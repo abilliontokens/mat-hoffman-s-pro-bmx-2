@@ -143,7 +143,6 @@ struct S_000ED170_Ed {
     int f274;
 };
 
-extern S_000ED170_Root *D_002B91AC_Root;
 extern S_000ED170_Global *D_002A8490;
 int func_00092A10(void);
 
