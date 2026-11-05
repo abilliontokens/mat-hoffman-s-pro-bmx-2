@@ -33,6 +33,28 @@ int __stdcall func_001FFE40(int);
 int func_00200210();
 void __stdcall func_002011F0(int, void *);
 int func_001B2C40(int);
+int func_001B2B90(int);
+void func_001B29F0(int format, int *a, int *r, int *g, int *b);
+void func_001B3AF0(int bits, int w, int h, int pitch, int mask, const char *name, int bpp);
+void func_001B39B0(int bits, int w, int h, int pitch, const char *name, int bpp);
+void func_001B3A50(int bits, int w, int h, int pitch, const char *name, int bpp);
+void __stdcall func_00201210(int surface, void *lock, int rect, int flags);
+
+/* the Xbox surface description func_002011F0 fills in */
+struct S_001D5190_Desc {
+    unsigned int Format;
+    unsigned int Type;
+    unsigned int Usage;
+    unsigned int Size;
+    unsigned int MultiSampleType;
+    unsigned int Width;
+    unsigned int Height;
+};
+
+struct S_001D5190_Lock {
+    int Pitch;
+    int pBits;
+};
 void func_0014A7B0(void *, void *);
 extern char D_00010000[];
 extern char D_002ABD08[], D_002F0A80[], D_0028C1F0[], D_0028C1DC[];
