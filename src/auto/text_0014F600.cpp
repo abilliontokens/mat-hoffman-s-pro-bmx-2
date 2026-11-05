@@ -141,8 +141,9 @@ void func_00030AC0(void *, void *, void *);
 float func_0014F510(float);
 float func_0014F550(float);
 static void cross_1500(V_1500 * volatile out, V_1500 * volatile a, V_1500 * volatile b) {
- __m128 va = _mm_loadu_ps(&a->x);
- __m128 vb = _mm_loadu_ps(&b->x);
+ V_1500 *pa=a, *pb=b;
+ __m128 va = _mm_loadu_ps(&pa->x);
+ __m128 vb = _mm_loadu_ps(&pb->x);
  __m128 sa = va, sb = vb;
  sa = _mm_shuffle_ps(sa,sa,0xc9);
  sb = _mm_shuffle_ps(sb,sb,0xc9);
