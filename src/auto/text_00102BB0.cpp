@@ -34,6 +34,11 @@ struct C_00103AE0 {
     void *func_00103AE0(unsigned int flags);
 };
 
+struct S_00103_Vec4 {
+    float x, y, z, w;
+    void Init() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+};
+
 /* BmxRotateOverlayText */
 struct C_001033D0 {
     void *vtbl;
@@ -77,9 +82,9 @@ C_001033D0 *C_001033D0::func_001033D0(void *a, void *b)
 {
     ((C_001C0110 *)this)->func_001C0110(a, b);
     vtbl = (void *)&D_00282754;
-    unk3DC = 0;
-    unk3D8 = 0;
-    unk3D4 = 0;
+    unk3DC = 0.0f;
+    unk3D8 = 0.0f;
+    unk3D4 = 0.0f;
     unk3E0 = 1.0f;
     unk1B0 = 0;
     unk170 = 0;
