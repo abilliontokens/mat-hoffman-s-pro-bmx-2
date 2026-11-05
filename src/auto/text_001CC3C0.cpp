@@ -3,6 +3,12 @@
 
 extern int D_0028EECC;
 
+struct C_001CD220 {
+    char pad0[0xCC];
+    int fCC;
+    bool func_001CD220(void);
+};
+
 int func_001CB0A0(int x);
 void func_001CBC10(int e, void *file, int line);
 int __stdcall func_002209A2(int a, int b);
