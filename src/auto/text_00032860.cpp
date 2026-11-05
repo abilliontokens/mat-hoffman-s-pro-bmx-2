@@ -380,4 +380,37 @@ int BmxEvent::func_00033300(void)
     func_00157920();
     return 1;
 }
-
+struct O_60350 { void func_000602B0(); void func_00060350(int a); };
+struct O_Obj60 { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(); virtual int v16(); };
+struct O_Dev60 { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(int a); virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31(int a, int b); };
+struct O_Pl60 { char pad0[0x958]; float f958; };
+struct O_Arr60 { char pad0[0x4e0]; };
+struct S_Sub60 { char pad0[0x14]; O_Obj60 *items[1]; };
+struct S_Cur60 { int pad0; int f4; char pad8[0x2f4]; O_Dev60 *f2fc; int f300[1]; };
+struct S_Gm60 { char pad0[8]; S_Sub60 *f8; char pad0c[0x118]; int f124; char pad128[0x1b8]; S_Cur60 *f2e0; };
+struct S_Lv60 { char pad0[0x4c0]; O_Dev60 *f4c0; char pad4c4[0x1c]; O_Pl60 ***f4e0; };
+struct O_A60 { char pad0[0x1c0]; int f1c0; };
+struct O_B60 { char pad0[0xfc]; int ffc; };
+struct O_C60 { char pad0[0x168]; int f168; };
+struct O_D60 { char pad0[0x1c8]; int f1c8; };
+struct C_00032A60 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(int a);
+    char pad4[0x5c];
+    S_Lv60 *f64;
+    char pad68[0x28];
+    int f90;
+    char pad94[0x88];
+    int f11c;
+    int f120;
+    char pad124[0x38];
+    O_60350 *f15c;
+    O_60350 *f160;
+    char pad164[8];
+    O_D60 *f16c;
+    char pad170[0x20];
+    O_C60 *f190;
+    char pad194[0x14];
+    O_A60 *f1a8;
+    O_A60 *f1ac;
+    void func_00032A60(void);
+};
