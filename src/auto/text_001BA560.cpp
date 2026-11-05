@@ -9,6 +9,11 @@ struct C_001BB4D0 {
     void func_001BB4D0(int param_1);
 };
 
+struct C_001BB2C0 {
+    void func_001BAE30();
+    void *func_001BB2C0(int flags);
+};
+
 void func_001E891B(void *p);
 
 struct C_001BB2A0 {
