@@ -92,24 +92,22 @@ struct C_000A7560 {
 };
 
 
-void Slots_000A74B0::func_000A74B0(void)
+SlotsR_000A74B0 *SlotsR_000A74B0::func_000A74B0(void)
 {
-    int *p = &a50[0];
-    int i = 10;
+    int i;
 
-    do {
-        p[-0x14] = -2;
-        p[-10] = -2;
-        p[0] = 1;
-        p[0x32] = 0;
-        p[10] = 0;
-        p[0x14] = 1;
-        p[0x1e] = 0;
-        p[0x28] = 1;
-        p++;
-        i--;
-    } while (i != 0);
+    for (i = 0; i < 10; i++) {
+        a0[i] = -2;
+        a28[i] = -2;
+        a50[i] = 1;
+        a118[i] = 0;
+        a78[i] = 0;
+        aA0[i] = 1;
+        aC8[i] = 0;
+        aF0[i] = 1;
+    }
     count = 0;
+    return this;
 }
 
 void C_000A7500::func_000A7500(void)
