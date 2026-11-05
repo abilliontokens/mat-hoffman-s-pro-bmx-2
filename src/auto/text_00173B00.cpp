@@ -205,3 +205,18 @@ void C_00174550::func_00174550(int a0, int a1, int a2) {
     unk290 = a1;
     unk294 = a2;
 }
+
+void PhysicsRigidBody::func_00174580()
+{
+    *(Vec4 *)((char *)this + 0x130) = D_002A8C18;
+    *(Vec4 *)((char *)this + 0x140) = D_002A8C18;
+    *(Vec4 *)((char *)this + 0x6c) = D_002A8C18;
+    *(Vec4 *)((char *)this + 0x7c) = D_002A8C18;
+    *(Vec4 *)((char *)this + 0x238) = D_002A8C18;
+    *(Vec4 *)((char *)this + 0x248) = D_002A8C18;
+    *(Vec4 *)((char *)this + 0x5c) = D_002A8C18;
+    *(Vec4 *)((char *)this + 0x268) = D_002A8C18;
+    *(int *)((char *)this + 0x28) = 0;
+    ((C_00198330 *)this)->vA0();
+}
+
