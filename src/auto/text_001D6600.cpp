@@ -12,7 +12,15 @@ void *__cdecl func_001E8A44(int size);
 void __stdcall func_001FCEA0(void *map, int index, void *out, int a, int b);
 
 struct XboxTextureMap {
-    void *vtbl;
+    virtual void slot0(int flags);
+    virtual void slot1();
+    virtual void slot2();
+    virtual void slot3();
+    virtual void slot4();
+    virtual void slot5();
+    virtual void slot6();
+    virtual void slot7();
+    virtual int slot8(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9);
     char pad4[4];
     int f8;
     int fC;
