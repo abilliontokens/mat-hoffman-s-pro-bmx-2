@@ -174,6 +174,7 @@ struct C_0014C720 {
     int f1FC;
     char pad200[8];
     void *f208;
+    int func_0014C890(int);
     void func_0014C720();
     void func_0014C7D0();
     f32 func_0014C830(char param);
