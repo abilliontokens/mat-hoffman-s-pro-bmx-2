@@ -48,9 +48,12 @@ struct C_0018E1D0 {
 
 void *C_0018E1D0::func_0018E1D0()
 {
+    void *r = 0;
+
     switch (type) {
     case 1:
-        return &f20;
+        r = &f20;
+        break;
     case 2:
         return &f24;
     case 3:
@@ -68,7 +71,7 @@ void *C_0018E1D0::func_0018E1D0()
     case 9:
         return f150.func_00191400();
     }
-    return 0;
+    return r;
 }
 
 undefined4 C_0018E720::func_0018E720(byte param_1)
