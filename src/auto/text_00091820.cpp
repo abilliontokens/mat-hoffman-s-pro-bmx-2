@@ -72,6 +72,52 @@ struct C_00091950 {
     void *func_00091950(int flags);
 };
 
+extern int D_00279CCC;
+
+struct C_00091860 {
+    void func_000864D0();
+    void *func_00091860(int flags);
+};
+
+struct C_00091A00 {
+    void func_0008A350();
+    void *func_00091A00(int flags);
+};
+
+struct C_00092750 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    void func_00157660();
+    void *func_00092750(int flags);
+};
+
+struct S_002A8490 {
+    char pad0[0x274];
+    int unk274;
+};
+extern S_002A8490 *D_002A8490;
+
+struct V_002EFDB8 {
+    virtual void vf0();
+    virtual void vf1();
+    virtual void vf2();
+    virtual void vf3();
+    virtual void vf4();
+    virtual void vf5();
+    virtual void vf6();
+    virtual void vf7(int a);
+    virtual void vf8();
+};
+extern V_002EFDB8 *D_002EFDB8;
+
+struct C_000919B0 {
+    void func_0008A190();
+    void func_00089FA0();
+    void func_00157960();
+    int func_000919B0();
+};
+
 struct C_00091840 {
     void func_00085520();
     void *func_00091840(int flags);
