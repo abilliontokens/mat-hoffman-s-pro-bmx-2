@@ -42,6 +42,39 @@ struct VT_00169C00 {
     virtual void v32();
 };
 
+int C_00169010::func_00169010(int idx, float *out)
+{
+    int type;
+    float val;
+
+    if (idx > count) {
+        return 0;
+    }
+    type = e[idx].type;
+    val = e[idx].val;
+    switch (type) {
+    case 0:
+        *out = val;
+        return 1;
+    case 1:
+        *out = val;
+        return 1;
+    case 2:
+        *out = func_001E9649(val);
+        return 1;
+    }
+    return 1;
+}
+
+int C_00169010::func_00169090(int idx, void *p)
+{
+    if (idx >= count) {
+        return 0;
+    }
+    func_00168210(e[idx].type, e[idx].val, p);
+    return 1;
+}
+
 void ParticleEmitter::func_00169DE0(void)
 {
     void *p = unk1BC;
