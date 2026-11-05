@@ -9,6 +9,39 @@ struct E_000C5710 {
     void func_001D5AD0();
 };
 
+struct S5580_C { int func_000301D0(); };
+struct S5580_B { char pad0[0x74]; S5580_C *f74; };
+struct S5580_A { char pad0[0x25C]; S5580_B *f25C; };
+struct S5580_Q { char pad0[0x30]; int f30; };
+struct S5580_P { int f0; S5580_Q *f4; };
+struct S5580_Elem {
+    char pad0[0x38];
+    unsigned int f38;
+    char pad3C[0x1C];
+    unsigned char b58;
+    void func_001D5AD0();
+};
+struct S5580_G {
+    char pad0[0x24];
+    S5580_Elem *f24;
+    S5580_Elem *f28;
+    S5580_Elem *f2C;
+    S5580_Elem *f30;
+    char pad34[0x1C];
+    S5580_Elem *f50;
+    char pad54[0x14];
+    S5580_Elem *f68;
+    char pad6C[0x1C];
+    S5580_Elem *f88;
+    S5580_Elem *f8C;
+    S5580_Elem *f90;
+    S5580_Elem *f94;
+};
+extern S5580_G *D_002B91AC_;
+struct S5580_R { int func_0005C0E0(); };
+struct S5580_Q2 { char pad0[0x2C0]; S5580_R *f2C0; };
+struct S5580_Root { char pad0[0x2E0]; S5580_Q2 *p2E0; };
+extern S5580_Root *D_002A8490_;
 struct C_5E40_A;
 struct C_6420_P;
 
