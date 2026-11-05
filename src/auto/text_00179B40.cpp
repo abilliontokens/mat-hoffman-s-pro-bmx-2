@@ -113,6 +113,10 @@ static inline float C_0017A1D0_Dot(const C_0017A1D0_Vec4 &a, const C_0017A1D0_Ve
 
 extern float D_00275544, D_00275460;
 struct V3_0017A010 { float x, y, z; };
+static inline float V3Dot_0017A010(const V3_0017A010 &a, const V3_0017A010 &b)
+{
+    return a.x * b.x + a.y * b.y + a.z * b.z;
+}
 int func_001793E0(C_0017A1D0_Vec4 *p, V3_0017A010 *n, V3_0017A010 *o, V3_0017A010 *a, V3_0017A010 *b, V3_0017A010 *c);
 struct C_0017A010 {
     char pad0[0x24];
