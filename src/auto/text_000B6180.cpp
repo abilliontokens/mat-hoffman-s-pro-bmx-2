@@ -175,4 +175,3 @@ void C_000B6640::func_000B6840(float a0, float a1, C_000B6840_Arg *a2)
     unk1D0->func_00133140(*a2->f4ac, 2);
     unk1D4->func_00133140(*a2->f4ac, 2);
 }
-#pragma optimize("", on)
