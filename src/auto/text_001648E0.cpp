@@ -1,6 +1,11 @@
 /* 3 functions from 0x001648E0 to 0x001653E0, found by Ghidra. */
 #include "common.h"
-struct Vec4_165EF0 { float x,y,z,w; };
+struct Vec4_165EF0 {
+ float x,y,z,w;
+ Vec4_165EF0 operator-(const Vec4_165EF0 &b) const { Vec4_165EF0 r; r.x=x-b.x; r.y=y-b.y; r.z=z-b.z; r.w=1.0f; return r; }
+ Vec4_165EF0 operator*(float s) const { Vec4_165EF0 r; r.x=x*s; r.y=y*s; r.z=z*s; r.w=1.0f; return r; }
+ Vec4_165EF0 operator+(const Vec4_165EF0 &b) const { Vec4_165EF0 r; r.x=x+b.x; r.y=y+b.y; r.z=z+b.z; r.w=1.0f; return r; }
+};
 struct C_001648E0_Item {
  virtual void v0();
  virtual void v1();
