@@ -127,7 +127,7 @@ struct DXShadowCaster {
 struct DXRenderableObject {
     void *vtbl;
     char pad4[0x17D];
-    unsigned char f181 : 1;    /* 0x181 bit 0 */
+    unsigned char f181;        /* 0x181 */
     char pad182[0x1A0 - 0x182];
     unsigned char f1a0;        /* 0x1A0 */
     char pad1a1[2];
@@ -260,7 +260,7 @@ void DXRenderableObject::func_00143660(void)
     ShadowPiece *piece;
     int i;
 
-    if (!(f181 & 1))
+    if (!f181)
         return;
     if (f1d4 == -1)
         f1d4 = (D_002A829C->f14[*f1b8].f4->f54->f24 >> 3) & 1;
