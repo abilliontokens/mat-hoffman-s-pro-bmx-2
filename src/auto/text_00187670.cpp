@@ -40,6 +40,99 @@ struct C_001884D0 {
     C_001884D0* func_001884D0(void);
 };
 
+int func_00135C70(int param_1, int param_2, int *param_3, int param_4);
+
+struct C_00187EE0 {
+    char pad0[0x28];
+    void *f28;
+    char pad2c[4];
+    void *f30;
+    void func_00187EE0(void);
+};
+
+struct S_001878D0_Elem {
+    virtual void v0();
+    virtual void v1(int a, int b);
+    int f4;
+    int f8;
+};
+
+struct C_001878D0 {
+    char pad0[0x24];
+    int f24;
+    S_001878D0_Elem *f28;
+    int func_001878D0(int a);
+};
+
+struct C_00187910 {
+    char pad0[0x2c];
+    int f2c;
+    int func_00157BF0(int *a, int b);
+    void func_00187910(int *a, int b);
+};
+
+struct Obj_00187A40 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    virtual void v31();
+    virtual void v32();
+    virtual void v33();
+    virtual void v34();
+    virtual void v35();
+    virtual void v36();
+    virtual int v37(int idx, char *a, char *b);
+};
+
+struct S_00187A40_Elem {
+    char pad0[4];
+    char f4[0x138];
+    char f13c[0x2c];
+};
+
+struct Game_00187A40 {
+    int f0;
+    int f4;
+};
+
+extern Game_00187A40 *D_002A8490;
+extern int D_00289D4C;
+
+struct C_00187A40 {
+    char pad0[0x24];
+    int f24;
+    S_00187A40_Elem *f28;
+    int func_00187A40(int a0, Obj_00187A40 *obj);
+};
+
 
 int C_001877F0::func_001877F0(C_001877F0Param *param)
 {
