@@ -234,7 +234,6 @@ extern char D_00275630[];
 extern char D_0028CD10[];
 extern char D_0028CD08[];
 extern char D_0028CC30[];
-extern "C" int memcmp(const void *a, const void *b, unsigned int n);
 extern "C" int strcmp(const char *a, const char *b);
 char *func_001E91F4(const char *s);
 
