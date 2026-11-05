@@ -297,3 +297,19 @@ int __stdcall func_001DDCA0(void *a0) {
     }
 }
 
+int __stdcall func_001DDCC0(void *handle, int ms, int alertable)
+{
+    u32 timeout[2];
+    void *p = func_001DF56E(timeout, ms);
+    int status;
+
+    do {
+        status = _imp__NtWaitForSingleObjectEx(handle, 1, alertable, p);
+        if (status < 0) {
+            func_001DD659(status);
+            return -1;
+        }
+    } while (alertable != 0 && status == 0x101);
+    return status;
+}
+
