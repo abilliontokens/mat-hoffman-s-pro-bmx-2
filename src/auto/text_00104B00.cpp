@@ -155,7 +155,14 @@ struct C_00104B00 {
     V4_00104B00 f814;
     char pad824[0x8a0 - 0x824];
     float f8a0;
-    char pad8a4[0xa00 - 0x8a4];
+    char pad8a4[0x970 - 0x8a4];
+    int f970;
+    char pad974[0x9e8 - 0x974];
+    C_00135D70 *f9e8;
+    C_00135D70 *f9ec;
+    C_00135D70 *f9f0;
+    C_00135D70 *f9f4;
+    char pad9f8[0xa00 - 0x9f8];
     S_00104B00_Fx *fa00;
     S_00104B00_Fx *fa04;
     char pada08[0xa28 - 0xa08];
