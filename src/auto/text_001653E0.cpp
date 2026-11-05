@@ -103,6 +103,41 @@ struct C_0013B210 {
 };
 extern C_0013B210 *D_002BEAAC;
 
+struct C_00165D00_Node {
+    void func_00199300(Vec4_165EF0 *p);
+    void func_00199650(Vec4_165EF0 *p);
+};
+
+struct C_00165D00_Elem {
+    char pad0[0x34];
+    C_00165D00_Node *f34;      /* 0x34 */
+    char pad38[8];
+};
+
+struct C_00165D00_Src {
+    void func_00199A70(int a, Vec4_165EF0 *out);
+};
+
+struct C_00165D00_Slot {
+    char pad0[8];
+    C_00165D00_Src *f8;        /* 0x08 */
+};
+
+struct C_00165D00 {
+    char pad0[0x1EC];
+    C_00165D00_Elem *f1EC;     /* 0x1EC */
+    char pad1F0[0x10];
+    Vec4_165EF0 *f200;         /* 0x200 */
+    Vec4_165EF0 *f204;         /* 0x204 */
+    char pad208[4];
+    int f20C;                  /* 0x20C */
+    C_00165D00_Slot **f210;    /* 0x210 */
+    Vec4_165EF0 *f214;         /* 0x214 */
+    int f218;                  /* 0x218 */
+    int *f21C;                 /* 0x21C */
+    void func_00165D00(f32 scale);
+};
+
 struct C_00166190 {
     char pad0[0xE8];
     char fE8[0xA8];            /* 0xE8 */
