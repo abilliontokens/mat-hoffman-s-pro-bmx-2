@@ -115,6 +115,16 @@ struct C_00158360 {
 
 void func_001E891B(void *p);
 
+/* GIDFireball: GameObject (0x24 bytes) followed by five vec4s at 0x4c..0x9b and a flag byte at 0x9c */
+struct C_00158590 {
+    void *vtbl;
+    char pad4[0x20];
+    int u[30];
+    unsigned char f9C;
+    C_00158590 *func_00158590(int a0);
+    void func_00157600(int a0);
+};
+
 extern int D_002A7B80, D_002A7B84, D_002A7B88, D_002A7B8C;
 void *func_001E8A44(int size);
 void func_00158510(struct S_00158510_Arg0 *a, struct S_00158510_Arg1 *b);
