@@ -119,3 +119,12 @@ void func_001EB977(void) {
     int func_001EB302(...);
     func_001EB302(13);
 }
+
+int __fastcall func_001EBA41(int unused, S_File *f)
+{
+    if (--f->cnt >= 0) {
+        return (unsigned char)*f->ptr++;
+    }
+    return func_001ED552(f);
+}
+
