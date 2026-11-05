@@ -1,6 +1,32 @@
 /* 9 functions from 0x000DB310 to 0x000DC270, found by Ghidra. */
 #include "common.h"
 
+struct C_001D5AD0 {
+    char pad0[0x38];
+    unsigned int f38;
+    char pad3C[0x1c];
+    unsigned char f58;
+    void func_001D5AD0();
+};
+struct S_002B91AC {
+    char pad0[0x24];
+    C_001D5AD0 *unk24, *unk28, *unk2C, *unk30;
+    char pad34[0x1c];
+    C_001D5AD0 *unk50, *unk54;
+    char pad58[0x10];
+    C_001D5AD0 *unk68, *unk6C;
+};
+extern S_002B91AC *D_002B91AC;
+struct C_000DB4B0 {
+    char pad0[0x280];
+    int unk280, unk284;
+    char pad288[0x54];
+    short unk2DC;
+    char pad2DE[0x36];
+    C_001D5AD0 *arr314[4], *arr324[2];
+    void func_000DB4B0();
+};
+
 extern char D_0027F7D4[];
 
 struct C_000DB310_Widget {
