@@ -226,6 +226,29 @@ extern unsigned char D_002A4330;
 extern unsigned char D_002A4331;
 int func_00134A10(V4_00134DE0 *seg, void *obj, V4_00134DE0 *out, void *hit);
 
+extern V4_00134DE0 D_002A4340;
+struct CollisionResult {
+    V4_00134DE0 a, b, normal;
+    char pad30[0x40];
+    int f70, f74, f78, f7C, f80, f84, f88, f8C, f90;
+    float fraction;
+    char pad98[8];
+    void func_00134980();
+};
+extern CollisionResult *D_002B92EC;
+struct __declspec(align(16)) CollisionMatrix {
+    float m[16];
+    void func_000264C0(void *);
+};
+float func_0011FDF0(void *, void *, void *);
+void func_0011AC30(void *, void *);
+int func_001294E0(void *, int, void *, void *, void *);
+int func_00122090(void *, void *, void *, int, void *);
+V4_00134DE0 *func_00011110(V4_00134DE0 *, void *, void *);
+V4_00134DE0 *func_00011140(V4_00134DE0 *, V4_00134DE0 *, float);
+V4_00134DE0 *func_000110E0(V4_00134DE0 *, V4_00134DE0 *, void *);
+void func_0001C680(void *, V4_00134DE0, void *);
+
 struct C_00135400 {
     char pad0[0x10];
     int unk10;
