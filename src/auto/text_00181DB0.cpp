@@ -222,6 +222,37 @@ struct C_00182C60 {
     void func_00182A80(void);
 };
 
+struct C_00182B00 {
+    char pad0[0x28];
+    int f28;
+    int f2C;
+    unsigned char f30;
+    char pad31[0x103];
+    unsigned char f134;
+    char pad135[0x103];
+    unsigned char f238;
+    char pad239[0x103];
+    int f33C, f340, f344, f348, f34C, f350;
+    char pad354[0x2c];
+    unsigned char f380;
+    char pad381[3];
+    int f384, f388, f38C, f390, f394, f398, f39C, f3A0, f3A4, f3A8, f3AC;
+    char pad3B0[4];
+    int f3B4;
+    char pad3B8[4];
+    int f3BC, f3C0, f3C4;
+    char pad3C8[4];
+    int f3CC, f3D0, f3D4, f3D8, f3DC, f3E0, f3E4, f3E8, f3EC, f3F0;
+    char pad3F4[0x90];
+    int f484, f488, f48C, f490;
+    char pad494[4];
+    int f498, f49C, f4A0, f4A4, f4A8, f4AC, f4B0, f4B4, f4B8, f4BC;
+    char pad4C0[4];
+    int f4C4, f4C8, f4CC, f4D0, f4D4;
+    unsigned char f4D8;
+    void func_00182B00(void);
+};
+
 struct C_00181DB0_Mgr {
     void func_001B0520(void *a0);
     void func_001B05A0(int a0, int a1, void *a2);
