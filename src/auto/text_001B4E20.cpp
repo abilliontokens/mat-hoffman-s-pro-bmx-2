@@ -334,6 +334,16 @@ C_001B5830 *C_001B5830::func_001B5830(void *a) {
     return this;
 }
 
+int C_001B59A0::func_001B59A0(int a)
+{
+    int i;
+
+    for (i = 0; i < f24; i++) {
+        f28[i]->v2(a);
+    }
+    return 1;
+}
+
 C_001B59E0* C_001B59E0::func_001B59E0(void) {
     extern int D_0028CC28;
     unk0 = (int)&D_0028CC28;
