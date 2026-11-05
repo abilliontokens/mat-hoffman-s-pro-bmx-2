@@ -17,8 +17,15 @@ struct S_000C29A0_Owner {
     int f298;
 };
 
+struct S_000C29A0_Item {
+    char pad0[0x610];
+    int f610;
+};
+
 struct S_000C29A0_Sub {
     void func_0005C1E0(int n);
+    S_000C29A0_Item *func_0005C020(int n);
+    void func_0005C130(int n);
 };
 
 struct S_000C29A0_Obj {
