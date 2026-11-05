@@ -73,6 +73,29 @@ BmxUIPageDemo *BmxUIPageDemo::func_000BFE90(int a0)
     return this;
 }
 
+void BmxUIPageDemo::func_000BFEE0()
+{
+    S_BFEE0_Page *page = f124;
+    int i, offset;
+    for (i = 0, offset = 0; offset < 0x1a80; offset += 0x1a8, ++i) {
+        if (!D_002A8490->f2e0->f2c0->func_0005C1D0(i)) {
+            if (offset == 0x1a8 || offset == 0x4f8 || offset == 0x9f0 || offset == 0xd40 || offset == 0x13e0 || offset == 0x18d8) {
+                int index = page->f150->f484->func_0001B3C0(page->f27c + offset);
+                char *obj = *(char **)(*(char **)(page->f150->f484->f2c + 0x28) + index * 4);
+                obj = *(char **)(obj + 0x1a4);
+                ((S_BFEE0_Virtual *)(obj + *(int *)(*(char **)obj + 4)))->v14();
+            }
+        } else {
+            if (offset == 0x1a8 || offset == 0x4f8 || offset == 0x9f0 || offset == 0xd40 || offset == 0x13e0 || offset == 0x18d8) {
+                int index = page->f150->f484->func_0001B3C0(page->f27c + offset);
+                char *obj = *(char **)(*(char **)(page->f150->f484->f2c + 0x28) + index * 4);
+                obj = *(char **)(obj + 0x1a4);
+                ((S_BFEE0_Virtual *)(obj + *(int *)(*(char **)obj + 4)))->v1c();
+            }
+        }
+    }
+}
+
 BmxUIPageDemo *BmxUIPageDemo::func_000C0010(int a0, int a1, int a2)
 {
     func_001BE4F0(a0, a1, a2);
