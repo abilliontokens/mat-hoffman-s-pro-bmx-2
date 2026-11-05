@@ -173,7 +173,10 @@ struct C_000BC590 {
 
 static inline void FloatToInt(int *out, float f)
 {
-    *out = _mm_cvtt_ss2si(_mm_load_ss(&f));
+    int * volatile p = out;
+    float t = f;
+
+    *p = _mm_cvttss_si32(*(__m128 *)&t);
 }
 
 struct S_000BC4C0_Sub {
