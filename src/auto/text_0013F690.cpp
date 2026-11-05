@@ -262,7 +262,35 @@ struct C_001446B0 {
     void func_001446B0(int a0, int a1, int a2);
 };
 
+void func_000263B0(float *out, float *a, float *b);
+void func_00030AC0(float *out, float *v, float *m);
+void func_0011ACC0(void *out, void *a, void *b);
+
+struct S_0013FF50_Info {
+    char pad0[0x30];
+    int f30;
+    char pad34[5];
+    unsigned char f39;
+    char pad3A[0x12];
+    int f4C;
+    float f50;
+    float f54;
+    float f58;
+    float f5C;
+};
+
+/* DXMeshVertexShaderItem */
 struct C_0013FF50 {
+    void *vtbl;
+    char pad4[0xC];
+    char f10[0x40];
+    char f50[0x40];
+    char f90[0x40];
+    char fD0[0x40];
+    char f110[0x40];
+    char f150[0x40];
+    float f190[4];
+    S_0013FF50_Info *f1A0;
     void func_0013FF50(int a0);
 };
 
