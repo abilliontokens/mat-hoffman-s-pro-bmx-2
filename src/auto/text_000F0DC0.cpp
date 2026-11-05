@@ -51,12 +51,13 @@ void C_000F1B60::func_000F1B60(void) {
 }
 
 BmxUIPageHPHChoice_000F1D00 *BmxUIPageHPHChoice_000F1D00::func_000F1D00(int a0) {
+    int i;
+    int *p;
     func_001BE360(1);
     vtbl = &D_0028248C;
-    unk2B4 = 0;
-    unk2B8 = 0;
-    unk2BC = 0;
-    unk2C0 = 0;
+    p = &unk2B4;
+    for (i = 0; i < 4; i++)
+        p[i] = 0;
     unk284 = 0;
     unk288 = 0;
     unk28C = 0;
