@@ -99,33 +99,31 @@ int func_001F4ED9(int ch, S_001F4_FILE *stream)
 {
     void func_001F57BB(S_001F4_FILE *stream);
 
-    if (ch == -1) {
-        return -1;
-    }
-    if (!((stream->flag & 1) || ((stream->flag & 0x80) && !(stream->flag & 2)))) {
-        return -1;
-    }
-    if (stream->base == 0) {
-        func_001F57BB(stream);
-    }
-    if (stream->ptr == stream->base) {
-        if (stream->cnt) {
-            return -1;
+    if (ch != -1 && ((stream->flag & 1) || ((stream->flag & 0x80) && !(stream->flag & 2)))) {
+        if (stream->base == 0) {
+            func_001F57BB(stream);
         }
-        stream->ptr++;
-    }
-    if (stream->flag & 0x40) {
-        if (*--stream->ptr != (char)ch) {
-            ++stream->ptr;
-            return -1;
+        if (stream->ptr == stream->base) {
+            if (stream->cnt) {
+                return -1;
+            }
+            stream->ptr++;
         }
-    } else {
-        *--stream->ptr = (char)ch;
+        stream->ptr--;
+        if (stream->flag & 0x40) {
+            if (*stream->ptr != (char)ch) {
+                stream->ptr++;
+                return -1;
+            }
+        } else {
+            *stream->ptr = (char)ch;
+        }
+        stream->cnt++;
+        stream->flag &= ~0x10;
+        stream->flag |= 1;
+        return ch & 0xff;
     }
-    stream->cnt++;
-    stream->flag &= ~0x10;
-    stream->flag |= 1;
-    return ch & 0xff;
+    return -1;
 }
 
 int func_001F4F45(unsigned short *pwc, const unsigned char *s, unsigned int n)
