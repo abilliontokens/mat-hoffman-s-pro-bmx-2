@@ -165,6 +165,9 @@ struct C_000E1770_V {
     virtual void v28(int a0, int a1);
 };
 
+struct C_E1850_Text { void func_0005E840(int s); };
+struct C_E1850_Ui { void func_000BF860(int a, int b, int c, int d); };
+
 extern float D_0027DE74;
 extern float D_00278C48;
 
