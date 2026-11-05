@@ -152,6 +152,55 @@ void C_00067D80::func_00067D80(int param_1)
   return;
 }
 
+int C_000683F0::func_000682B0()
+{
+    int i;
+    unk90->func_001D5AD0();
+    unk94->func_001D5AD0();
+    if (unk150 == 0) {
+        if (unk10C->unk90 == 1) {
+            if (unk108 == 0) {
+                unkC0->func_001D5AD0();
+                unkC4->func_001D5AD0();
+            } else if (unk108 == 2) {
+                unkC8->func_001D5AD0();
+                unkCC->func_001D5AD0();
+            } else if (unk108 == 1) {
+                unkD0->func_001D5AD0();
+                unkD4->func_001D5AD0();
+            }
+        } else {
+            if (unk108 == 0) {
+                unkC8->func_001D5AD0();
+                unkCC->func_001D5AD0();
+            } else if (unk108 == 1) {
+                unkD0->func_001D5AD0();
+                unkD4->func_001D5AD0();
+            }
+        }
+    }
+    for (i = 0; i < 5; i++) {
+        unk98[i]->func_001D5AD0();
+        unkAC[i]->func_001D5AD0();
+    }
+    if (unk138 != 0) {
+        unk13C->func_001D5AD0();
+    } else {
+        unk144->func_001D5AD0();
+    }
+    if (unk150 != 0) {
+        if (unk164 != 0) {
+            unk140->func_001D5AD0();
+        } else {
+            unk148->func_001D5AD0();
+        }
+    }
+    if (unkF8 != 0) {
+        unkF8->func_001D5AD0();
+    }
+    return 1;
+}
+
 void C_000683C0::func_000683C0(void)
 {
   int* in_ECX = (int*)this;
