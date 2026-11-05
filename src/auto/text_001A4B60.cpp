@@ -14,6 +14,26 @@ struct C_00157600 {
     void func_00157660(void);
 };
 
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+void *func_001E8A44(int size);
+extern char D_00275678[];
+extern char D_002A5348[];
+extern char D_0028B960[];
+extern char D_002769F8[];
+extern char D_0028B950[];
+extern char D_0028B94C[];
+extern char D_002867E8[];
+extern char D_0028B948[];
+
+struct C_00168280 {
+    C_00168280 *func_00168280(void);
+    int func_00169490(char *buf, int flag);
+    void func_00169710(const char *s);
+    void func_00168A10(const char *key, int *out);
+    void func_00168550(const char *key, void *dst, int size);
+    void func_001691E0(void);
+};
+
 /* SplashScreenManager */
 struct SplashScreenManager {
     void *vtbl;
