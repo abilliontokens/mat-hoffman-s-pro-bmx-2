@@ -68,8 +68,7 @@ struct C_0018D7B0_Slot {
 
 struct C_0018D7B0_Def {
     char *name;
-    u8 a;
-    u8 b;
+    C_0018D580_Sub sub;
     char pad6[2];
     int max;
     int slot;
