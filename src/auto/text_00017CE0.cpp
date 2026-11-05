@@ -160,6 +160,30 @@ void AiTikiGod::func_00017D20(int param_1)
     }
 }
 
+void AiTikiGod::func_00017DA0()
+{
+    S_00017DA0_Item **p;
+    S_00017DA0_Vec out;
+    int found = 0;
+    int i;
+
+    for (i = 0, p = (S_00017DA0_Item **)((char *)this + 0x39c); i < 2; i++, p++) {
+        if (!((*p)->f9c & 2)) {
+            found = i;
+            break;
+        }
+    }
+    out.z = 0;
+    out.y = 0;
+    out.x = 0;
+    out.w = 1.0f;
+    (*(S_00017DA0_Ref **)((char *)this + 0x498))->func_00199A70(0, &out);
+    *(int *)((char *)this + 0x4d0) = found;
+    (*(S_00017DA0_Item **)((char *)this + 0x39c + found * 4))->f24->func_0011CA60(out);
+    (*(S_00017DA0_Item **)((char *)this + 0x39c + *(int *)((char *)this + 0x4d0) * 4))->f24->v30();
+    (*(S_00017DA0_Item **)((char *)this + 0x39c + *(int *)((char *)this + 0x4d0) * 4))->f24->func_0011CA60(out);
+}
+
 void TikiEvadeState::func_00018340()
 {
     owner->func_00017760();
