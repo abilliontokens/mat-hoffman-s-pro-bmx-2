@@ -137,6 +137,56 @@ struct C_000F7670 {
 };
 
 
+void BmxUIPageGameOptions::func_000F7400(float dt)
+{
+    S_000F75D0_A *owner = unk124;
+    if (unk280) {
+        timer288 += dt;
+        if (timer288 >= D_0027DE74) {
+            unk284 = 1;
+            v28(unk290, unk28c);
+            timer288 = 0;
+        }
+    }
+    if (unk2cc && !unk2c0) {
+        unk2c8 += dt;
+        if (unk2c8 >= D_00278C48) {
+            unk2c0 = 1;
+            unk2cc = 0;
+            unk308 = 0;
+        }
+    }
+    if (unk30c != unk334[0x3b]) {
+        if (unk318 >= unk31c) unk314 = unk30c;
+        else {
+            unk314 = unk310 + (int)((unk30c - unk310) * (unk318 / unk31c));
+            unk318 += dt;
+        }
+    }
+    if (unk2ac && owner->unk25c->unk74->func_000301D0() == 0) {
+        unk2cc = 1;
+        unk2c8 = 0;
+        func_000F63D0();
+        unk2bc = 1;
+        unk30c = 255;
+        unk310 = 0;
+        unk314 = 0;
+        unk318 = 0;
+        unk31c = 0.25f;
+        unk2ac = 0;
+    }
+    if (unk2b0) {
+        func_000C9940();
+        unk30c = 0;
+        unk310 = 255;
+        unk314 = 255;
+        unk318 = 0;
+        unk31c = 0.25f;
+        unk2b0 = 0;
+    }
+    func_001BED00(dt);
+}
+
 void BmxUIPageGameOptions::func_000F75D0(void) {
     if (unk2bc != 0) {
         func_000F4E00();
