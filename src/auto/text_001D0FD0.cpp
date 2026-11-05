@@ -40,6 +40,10 @@ struct S_001D13D0_Alloc {
     void *func_001D7D50();
 };
 
+struct S_001D1290_Alloc {
+    V_002EFDB8 *func_001D48E0();
+};
+
 struct Game {
     void func_00156FC0();
 };
