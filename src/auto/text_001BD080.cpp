@@ -278,3 +278,24 @@ void C_001BDB50::func_001BDB50(void)
     }
 }
 
+void C_001BDB50::func_001BDBD0(void)
+{
+    int i, j;
+    S_001BDB50_Group *g;
+
+    for (i = 0; i < f28; i++) {
+        g = f2c[i];
+        if (g != 0) {
+            for (j = 0; j < g->f28; j++) {
+                g->f2c[j]->v5();
+            }
+        }
+    }
+    for (i = 0; i < f38; i++) {
+        g = f3c[i];
+        for (j = 0; j < g->f28; j++) {
+            g->f2c[j]->v5();
+        }
+    }
+}
+
