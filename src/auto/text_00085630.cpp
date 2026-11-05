@@ -39,6 +39,8 @@ struct C_00086180 {
 struct C_00085630_2A8490 {
     char pad0[0x2E0];
     void *f2E0;
+    char pad2E4[4];
+    void *f2E8;
 };
 
 extern C_00085630_2A8490 *D_002A8490;
