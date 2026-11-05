@@ -746,3 +746,22 @@ int ViewportFade::func_001C4180(int a0)
     return 1;
 }
 
+int FadeOut_001C41E0::func_001C41E0(int a0)
+{
+    float k = (float)a0 * D_00276098;
+    f28 = 0;
+    f2C = k;
+    if (f38 != 0) {
+        f28 = (D_00275460 - f30) * k;
+    }
+    if (a0 == 0) {
+        f30 = 1.0f;
+    } else {
+        f30 = 0.0f;
+    }
+    f38 = 0;
+    f3C = 1;
+    v6();
+    return 1;
+}
+
