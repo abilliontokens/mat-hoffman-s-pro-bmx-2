@@ -456,3 +456,40 @@ void *C_00188EF0::func_00188EF0(int flags)
     return this;
 }
 
+BasicScene *BasicScene::func_00188F20(int flags)
+{
+    S_001CD770 *obj;
+    u32 *p;
+    int n;
+
+    ((C_00157600_188F20 *)this)->func_00157600(flags);
+    vtbl = &D_0028A154;
+    f24 = 1;
+    func_00182B00();
+    obj = (S_001CD770 *)func_001E8A44(0x4c);
+    if (obj != 0) {
+        obj = obj->func_001CD770(D_002A8490->f4->fb4, 1);
+    } else {
+        obj = 0;
+    }
+    f4c0 = obj;
+    if (obj != 0) {
+        obj->v10();
+    }
+    func_001577A0(f4c0, 2);
+    p = &f3f4[12];
+    n = 12;
+    do {
+        p[-12] = 0;
+        p[0] = 0;
+        p[12] = 0;
+        p++;
+        n--;
+    } while (n != 0);
+    f494 = 0;
+    f3c8 = 0;
+    f3b0 = 0;
+    D_002EFDC8 = this;
+    return this;
+}
+
