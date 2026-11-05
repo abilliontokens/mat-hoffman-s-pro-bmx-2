@@ -156,6 +156,14 @@ int C_001D4B00::func_001D4B00(void)
   return 1;
 }
 
+int func_001D4B20(void)
+{
+    if (D_002F0630 != 0 && D_002ABD04 != 0) {
+        D_002F0630->func_00149480();
+    }
+    return 1;
+}
+
 C_001D5350* C_001D5350::func_001D5350(void) {
     unk0 = 0;
     unk4 = 0;
