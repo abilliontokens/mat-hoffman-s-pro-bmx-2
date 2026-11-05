@@ -2,6 +2,108 @@
 #include "common.h"
 #include "ghidra.h"
 #include "ghidra.h"
+
+void func_001E891B(void *p);
+void *func_001E8A44(int size);
+
+extern int D_0027C604;
+extern int D_0027C1EC;
+extern int D_0027C51C;
+extern int D_0027CABC;
+
+struct C_00157600 {
+    void func_00157600(int param_1);
+};
+
+struct C_00157660 {
+    void func_00157660(void);
+};
+
+struct C_000A0A10_Elem {
+    char pad0[0x28];
+    void func_000A0A10(void);
+};
+
+struct C_000AEF10 {
+    void *vtbl;
+    char pad4[0x24];
+    C_000A0A10_Elem *unk28;
+    void func_000AEF10(void);
+    void func_00157660(void);
+};
+
+struct C_000ACE60_Obj {
+    C_000ACE60_Obj *func_000ACE60(int param);
+    void func_000ACF30(void *scene, int a, int b, int c);
+};
+
+struct C_000AF080 {
+    char pad0[0x4e0];
+    C_000ACE60_Obj *f4e0;
+    int func_000AF080(int a, int b, int c);
+};
+
+struct C_000AF7D0_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27(int a, void **b, int c, void *d);
+    void func_00157600(int param_1);
+    char pad4[0x20];
+    int unk24;
+    int unk28;
+};
+
+struct C_000AF7D0 {
+    char pad0[0x28];
+    int f28;
+    char pad2c[0x530 - 0x2c];
+    int f530;
+    C_000AF7D0_Obj *f534;
+    void func_000AF7D0(void);
+};
+
+struct C_000AF840_Obj {
+    void *vtbl;
+    char pad4[0x20];
+    int unk24;
+    int unk28;
+    void func_00157600(int param_1);
+    void func_000AE780(int a);
+};
+
+struct C_000AF840 {
+    char pad0[0x28];
+    int f28;
+    char pad2c[0x53c - 0x2c];
+    C_000AF840_Obj *f53c;
+    void func_000AF840(void);
+};
+
 struct C_000AEF60 {
     undefined4 func_000AEF60(byte param_1);
 };
