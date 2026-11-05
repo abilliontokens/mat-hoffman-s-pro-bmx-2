@@ -17,6 +17,11 @@ struct C_00182810 {
 };
 
 extern int D_0028933C;
+void func_001E891B(void *p);
+struct RenderTarget {
+    void *vtbl;
+    void *func_00182870(unsigned int flags);
+};
 
 struct C_001827B0 {
     void *vtbl;
