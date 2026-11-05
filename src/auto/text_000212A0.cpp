@@ -106,6 +106,11 @@ struct C_000217F0 {
     C_000217F0 *func_000217F0(int a);
 };
 
+inline float Dot3_000212A0(V4_000212A0 *p, V4_000212A0 *q)
+{
+    return p->y * q->y + p->x * q->x + p->z * q->z;
+}
+
 struct W4_000212A0 {
     u32 x, y, z, w;
     W4_000212A0 *func_000212A0(u32 *p);
