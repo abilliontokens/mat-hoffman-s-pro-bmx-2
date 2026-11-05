@@ -73,6 +73,14 @@ struct S_001B70D0_Arg {
     char pad0[0x24];
     int f24;
     S_001B70D0_Entry **f28;
+    S_001B70D0_Entry *&At(int i) { return f28[i]; }
+};
+
+struct S_001B70D0_Items {
+    char pad0[0x24];
+    int f24;
+    S_001B70D0_Obj **f28;
+    S_001B70D0_Obj *&At(int i) { return f28[i]; }
 };
 
 struct S_001B7480_Quat {
@@ -272,6 +280,51 @@ void C_001B6E70::func_001B7010(C_001B7010_arg *arg) {
             arg->vf54(f28[i]);
         if (func_001E8AF0((int)f28[i] + 0x90, &D_0028CF14))
             arg->vf55(f28[i]);
+    }
+}
+
+void C_001B6E70::func_001B70D0(S_001B70D0_Arg *arg) {
+    char name[0x40];
+    char buf[0x40];
+    int i, j, found;
+
+    for (i = 0; i < f24; i++) {
+        if (((S_001B70D0_Obj *)f28[i]->f4)->fD4[0] != 0) {
+            strcpy(name, ((S_001B70D0_Obj *)f28[i]->f4)->fD4);
+            found = 0;
+            for (j = 0; j < arg->f24 && !found; j++) {
+                S_001B70D0_Entry *e = arg->f28[j];
+                if (e != 0) {
+                    if (e->f4 == 1) {
+                        if (strcmp(name, e->fA0) == 0) {
+                            S_001B70D0_Mgr *mgr = e->f1A4;
+                            int id = mgr->f4->func_00198330(
+                                ((S_001B70D0_Obj *)f28[i]->f4)->f1D8);
+                            int k = 0;
+                            while (k < mgr->f284) {
+                                if (mgr->f280[k]->f1C0 == id) {
+                                    ((S_001B70D0_Obj *)f28[i]->f4)->f2DC =
+                                        mgr->f280[k]->f64->f22C;
+                                    found = 1;
+                                    break;
+                                }
+                                k++;
+                            }
+                        }
+                    } else {
+                        strcpy(buf, e->f58->f300);
+                        char *dot = func_001E8AC0(buf, '.');
+                        if (dot != 0) {
+                            memset(dot, 0, strlen(dot));
+                        }
+                        if (func_001EA426(buf, name) == 0) {
+                            ((S_001B70D0_Obj *)f28[i]->f4)->f2DC = e->f58->f22C;
+                            found = 1;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
