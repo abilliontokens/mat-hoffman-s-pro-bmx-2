@@ -29,6 +29,18 @@ struct C_000DB4B0 {
 
 extern char D_0027F7D4[];
 
+struct C_001BE360 { void func_001BE360(int a); };
+extern int D_0027F724;
+struct C_000DB5B0 {
+    void *vtbl;
+    char pad4[0x27c];
+    int f280, f284, f288, f28C, f290, f294, f298, f29C, f2A0, f2A4, f2A8, f2AC, f2B0, f2B4, f2B8, f2BC, f2C0, f2C4, f2C8, f2CC, f2D0, f2D4, f2D8, f2DC, f2E0, f2E4, f2E8, f2EC, f2F0, f2F4, f2F8, f2FC, f300, f304, f308;
+    char pad30C[4];
+    int a310[10];
+    int a338[10];
+    C_000DB5B0 *func_000DB5B0(int a);
+};
+
 struct C_000DB310_Widget {
     void func_001B1980();
     void func_001B2270(unsigned int color);
