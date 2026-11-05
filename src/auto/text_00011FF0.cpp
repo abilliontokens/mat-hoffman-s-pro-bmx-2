@@ -101,5 +101,13 @@ extern S_11FF0_Global2 *D_002B9120;
 extern float D_002A04FC[8];
 extern float D_002755E0;
 
+void __stdcall func_00011FF0(void *p, int step, int count, S_11FF0_IterFn fn)
+{
+    for (int i = count - 1; i >= 0; i--) {
+        fn(p);
+        p = (char *)p + step;
+    }
+}
+
 void func_00012140(void) {
 }
