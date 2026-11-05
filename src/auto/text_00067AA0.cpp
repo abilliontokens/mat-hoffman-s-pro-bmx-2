@@ -20,6 +20,10 @@ struct V_002EFDB8 {
 };
 extern V_002EFDB8 *D_002EFDB8;
 
+struct C_001D5AD0 {
+    void func_001D5AD0(void);
+};
+
 struct C_000683F0_Obj {
     virtual void v0();
     virtual void v1();
