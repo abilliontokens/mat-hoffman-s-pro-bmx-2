@@ -87,9 +87,22 @@ struct Game {
     char padC[0xc];
     int f18;
     char pad1C[0x214];
-    u8 f230;
-    char pad231[0x47];
+    union {
+        u8 f230;
+        S_Game_Flags f230bits;
+    };
+    char pad231[0x2f];
+    int f260;
+    int f264;
+    int f268;
+    int f26c;
+    int f270;
+    char pad274[4];
     S_00156F30_Iface *f278;
+    int func_00156880(void);
+    void func_001568A0(int a, int b, int c, int d);
+    int func_00156EA0(int v);
+    int func_00156F00(int a, int b);
     int func_00156F30(int a, int b);
     void func_00156FC0(void);
     int func_00157030(void);
