@@ -1,6 +1,9 @@
 /* 5 functions from 0x00028CD0 to 0x00029BD0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <xmmintrin.h>
+static __forceinline float Max_000298F0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float Min_000298F0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 struct C_00029290 {
     undefined4 func_00029290(void);
 };
@@ -100,3 +103,44 @@ undefined4 C_00029290::func_00029290(void)
   }
   return uVar1;
 }
+
+void C_000298F0::func_000298F0(int a0)
+{
+    float t;
+    V4_000298F0 v;
+    f230->func_001994C0(0, &f10C, &f11C);
+    if ((f468 != 0 || f704 != 0 || f70C != 0 || f680 != 0 || f1E8->f68 != 0) && f5C8 == 0) {
+        if (f468 != 0) {
+            t = f5C0;
+            v = D_002A1110;
+        } else if (f704 != 0 || f70C != 0 || f460 != 0) {
+            t = D_00275544;
+            v = D_002A1110;
+        } else if (f680 != 0 || f1E0->f28 < D_00275548) {
+            t = D_00275544;
+            v = f1E8->f1A0;
+        } else {
+            float c = f1E0->f26C * f60C * D_002766A0;
+            float lim;
+            c = c > -1.0f ? c : -1.0f;
+            c = c < 1.0f ? c : 1.0f;
+            if (f20C->f30 != 0) {
+                lim = f614;
+            } else {
+                lim = f610;
+            }
+            t = func_00011020(func_00011040(c, -lim), lim);
+            if (f1E0->f250 < D_00275544 && f20C->f30 == 0) {
+                t = -t;
+            }
+            v = f1E8->f1A0;
+        }
+        func_00158390(-t, f10C, v, &f12C);
+    } else {
+        f220->func_000269B0(f11C.x, FLT_MAX_298F0, FLT_MAX_298F0);
+        f224->func_000269B0(f11C.y, FLT_MAX_298F0, FLT_MAX_298F0);
+        f228->func_000269B0(f11C.z, FLT_MAX_298F0, FLT_MAX_298F0);
+        f12C = f11C;
+    }
+}
+
