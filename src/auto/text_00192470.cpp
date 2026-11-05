@@ -71,6 +71,18 @@ struct C_00192470 : C_0001DFE0 {
     int *f38;
     int f3C;
     int f40;
+    SearchEntry *at(int i)
+    {
+        if (f10 > 0 && f14 != 0 && i < f10) {
+            return f14[i];
+        }
+        return 0;
+    }
+    C_00192470 *func_00192720(void);
+    void func_001927A0(void);
+    void func_001926F0(int a, int b);
+    void func_00192700(int a, int b, int c, int d);
+    void func_00192710(int a, int b, int c);
     int *func_00192470(int *param_1);
     void func_001924E0(int a1, int *a2, int a3, int a4);
     int func_00192570();
