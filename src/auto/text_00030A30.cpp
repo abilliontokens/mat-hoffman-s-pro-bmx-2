@@ -28,12 +28,21 @@ struct C_00030B20 {
 };
 
 
-void func_00030A30(float *out, float x, float y, float z, float w, float *m)
+struct Vec4_00030A30 {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
+Vec4_00030A30 func_00030A30(float x, float y, float z, float w, float *m)
 {
-    out[0] = x * m[0] + (y * m[4] + z * m[8]);
-    out[1] = x * m[1] + (y * m[5] + z * m[9]);
-    out[2] = x * m[2] + (y * m[6] + z * m[10]);
-    out[3] = 1.0f;
+    Vec4_00030A30 r;
+    r.x = x * m[0] + (y * m[4] + z * m[8]);
+    r.y = x * m[1] + (y * m[5] + z * m[9]);
+    r.z = x * m[2] + (y * m[6] + z * m[10]);
+    r.w = 1.0f;
+    return r;
 }
 
 void func_00030AC0(float *out, float *v, float *m)
