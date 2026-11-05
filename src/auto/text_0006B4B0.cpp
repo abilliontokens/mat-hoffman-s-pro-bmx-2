@@ -179,6 +179,48 @@ void C_0006BB90::func_0006BB90(void) {
     vf4();
 }
 
+int C_0006BBF0::func_0006BBF0(void)
+{
+    char name[7];
+    char path[20];
+    int i;
+
+    vf6();
+    vf18(0);
+    unk15C->unk21 &= ~4;
+    unk1b4 = 0;
+    unk1bc = 0;
+    unk1b8 = 0;
+    unk15C->unk1f4 = 1;
+    unk170 = 0;
+    unk164 = 0;
+    unk168 = 0;
+    unk16C = 0;
+    unk184 = 0;
+    unk1c4 = 0;
+    unk1c8 = 0;
+    unk1cc = 0;
+    unk1d0 = 0;
+    unk1d4 = 0;
+    unk188 = 0;
+    unk1ec = 0;
+    unk1f0 = 0;
+    unk1d8 = 0x10;
+    for (i = 0; i < 7; i++) {
+        func_001ADCC0(name, 0x104, D_00277038, i + 1);
+        func_001AC330(path, D_002A8490->unk2E8->unk4->unkED0, name);
+        unk64[i]->func_001B17D0(path);
+    }
+    unk188 = 0x24;
+    unk178->func_0005E840(&D_002789B8);
+    unk1c0->func_0005E840(&D_002789B8);
+    unk1fc = 0;
+    unk158 = -1;
+    unk1e4 = 1;
+    unk1a8 = 1;
+    return 1;
+}
+
 C_0006C380 *C_0006C380::func_0006C380(int a0)
 {
     int i;
