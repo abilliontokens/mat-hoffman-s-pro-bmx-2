@@ -131,6 +131,27 @@ void C_0015E300::func_0015E3C0(void)
     }
 }
 
+void LightEmitter::func_0015E420(float *dir, float *mat)
+{
+    memset(dir, 0, 0x40);
+    memset(mat, 0, 0x40);
+    if (f34 != 0) {
+        dir[0] = -f34->f6C;
+        dir[1] = -f34->f70;
+        dir[2] = -f34->f74;
+        mat[0] = f34->f30;
+        mat[4] = f34->f34;
+        mat[8] = f34->f38;
+    }
+    mat[3] = f40;
+    mat[7] = f44;
+    mat[11] = f48;
+    mat[15] = 1.0f;
+    mat[12] = f40;
+    mat[13] = f44;
+    mat[14] = f48;
+}
+
 int C_0015E300::func_0015E5B0(void)
 {
     unsigned int min = f24[0].f4;
@@ -152,3 +173,46 @@ int C_0015E300::func_0015E5B0(void)
     }
     return best;
 }
+
+void LightEmitter::func_0015E600()
+{
+    vtbl = &D_002878B4;
+    if (D_002E2930 != 0) {
+        ((C_0015DA60 *)D_002E2930)->func_0015DCC0(this);
+    }
+    if (fC4 != 0) {
+        fC4->func_00193500();
+        func_001E891B(fC4);
+    }
+    if (fCC != 0) {
+        func_001E891B(fCC);
+    }
+    ((C_00157660 *)this)->func_00157660();
+}
+
+void LightEmitter::func_0015E800(float v)
+{
+    if (v == D_00275544 || v > D_002E293C) {
+        v = D_002E293C;
+    }
+    if (v != f78) {
+        f78 = v;
+        if (D_002E2930 != 0) {
+            D_002E2930->f68++;
+        }
+    }
+}
+
+void LightEmitter::func_0015E920(float *p)
+{
+    if (p[0] != fA4 || p[1] != fA8 || p[2] != fAC) {
+        func_0015CD90(&fA4, p);
+        f6C = fA4;
+        f70 = fA8;
+        f74 = fAC;
+        if (D_002E2930 != 0) {
+            D_002E2930->f68++;
+        }
+    }
+}
+
