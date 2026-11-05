@@ -1,6 +1,7 @@
 /* 12 functions from 0x001DC010 to 0x001DCDC7, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <string.h>
 extern "C" u32 *_imp__KeTickCount;
 extern "C" void (__stdcall *_imp__KeQuerySystemTime)(void *time);
 extern "C" void (__stdcall *_imp__RtlTimeToTimeFields)(void *time, void *fields);
@@ -71,6 +72,22 @@ undefined4 C_001DC540::func_001DC540(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+void __stdcall func_001DC910(S_SystemTime *out)
+{
+    S_TimeFields fields;
+    s64 time;
+    _imp__KeQuerySystemTime(&time);
+    _imp__RtlTimeToTimeFields(&time, &fields);
+    out->year = fields.year;
+    out->month = fields.month;
+    out->dayOfWeek = fields.weekday;
+    out->day = fields.day;
+    out->hour = fields.hour;
+    out->minute = fields.minute;
+    out->second = fields.second;
+    out->milliseconds = fields.milliseconds;
 }
 
 u32 func_001DC974(void)
