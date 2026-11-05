@@ -211,6 +211,28 @@ struct S_35860_Obj {
     void func_0008A080(void);
 };
 
+struct S_002EFDB8 {
+    char pad0[0x2c];
+    unsigned int f2c;
+    int f30;
+};
+extern S_002EFDB8 *D_002EFDB8;
+extern unsigned int D_002B8F24;
+extern unsigned int D_002B8F20;
+
+struct C_000353F0 {
+    char pad0[0x64];
+    S_35860_Obj *f64;
+    char pad68[0x21c];
+    int f284;
+    char pad288[0x40];
+    int f2c8;
+    char pad2cc[0x274];
+    S_35860_Obj *f540;
+    void func_001578D0(void);
+    void func_000353F0(void);
+};
+
 struct C_00035720 {
     char pad0[0x24];
     S_35680_Screen *f24;
