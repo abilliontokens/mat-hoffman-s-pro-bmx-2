@@ -210,9 +210,9 @@ static inline void Set_0016DAC0(float *p, float a, float b, float c, float d)
 
 static inline void AddTo_0016DAC0(C_Quad *d, const C_Quad *s)
 {
-    d->a = s->a + d->a;
-    d->b = s->b + d->b;
-    d->c = s->c + d->c;
+    d->a += s->a;
+    d->b += s->b;
+    d->c += s->c;
 }
 
 struct C_0016DAC0 {
