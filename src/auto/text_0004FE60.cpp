@@ -50,6 +50,41 @@ BmxEventPush *BmxEventPush::func_00050A10(int a0) {
     return this;
 }
 
+void BmxEventPush::func_00050C60() {
+    if (unk1f4 != 0) {
+        func_001578D0();
+        return;
+    }
+    if (unk290 != 0) {
+        (**(code **)(*(int *)D_002EFDB8 + 0x1c))(1);
+        (**(code **)(*(int *)D_002EFDB8 + 0x20))();
+        if (D_002A8490->unk274 == D_002A8490->unk270 - 1) {
+            int s;
+            if (unk290 > 0)
+                s = unk284 ? 8 : 1;
+            else
+                s = unk284 ? -8 : -1;
+            if (func_00032560(s) == 0) {
+                unk294 = 1;
+                unk284 = 0;
+            }
+            unk290 -= s;
+        }
+    }
+    func_00031400();
+}
+
+void BmxEventPush::func_00050D00() {
+    (**(code **)(*(int *)this + 0x6c))();
+    unk298 = 0;
+    unk290 = 0;
+    unk288 = 0;
+    unk28c = 0;
+    unk294 = 0;
+    unk284 = 0;
+    func_00034090();
+}
+
 void *BmxEventPush::func_00050D40(int flags) {
     vtbl = &D_0027784C;
     func_00033220();
