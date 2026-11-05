@@ -67,3 +67,25 @@ float func_0012C930(float a, float b)
     return (float)fmod(a, b);
 }
 
+void C_0012CC20::func_0012CC20(int a)
+{
+    unk228 = a;
+}
+
+void C_0012CCA0::func_0012CCA0()
+{
+    vtbl = &D_00284274;
+    if (unk500) {
+        func_001E891B(unk500);
+    }
+    if (unk414) {
+        unk414->unk4--;
+        if (unk414->unk4 == 0) {
+            D_002BEAAC->func_0013B210(unk414);
+            func_001E891B(unk414->unk8);
+            func_001E891B(unk414);
+        }
+    }
+    func_00170B50();
+}
+
