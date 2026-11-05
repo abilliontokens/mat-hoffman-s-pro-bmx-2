@@ -4,6 +4,8 @@
 extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
 extern "C" void (__stdcall *_imp__RtlLeaveCriticalSection)(void *cs);
 extern "C" void (__stdcall *_imp__RtlInitializeCriticalSection)(void *cs);
+extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *cs);
+extern "C" __declspec(dllimport) void __stdcall RtlLeaveCriticalSection(void *cs);
 extern int D_0029016C;
 
 void __stdcall func_001DDE02(int a0);
