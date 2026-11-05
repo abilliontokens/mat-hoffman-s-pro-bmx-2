@@ -32,6 +32,60 @@ struct C_0004C560Obj1C0 {
 
 struct C_0004C720List {
     int count;
+    int pad4;
+    void *f8;
+};
+
+void *func_001E8A44(unsigned int);
+
+struct C_0004BF00_Object {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    virtual void v5(); virtual void v6();
+    C_0004BF00_Object *func_00088530(int);
+    C_0004BF00_Object *func_00088570(void *);
+    C_0004BF00_Object *func_0005ECA0(int);
+    void func_0005EDC0(void *);
+    C_0004BF00_Object *func_000715B0(int);
+    void func_00071880(void *);
+    C_0004BF00_Object *func_00066C90(int);
+    void func_00066FA0(void *);
+    C_0004BF00_Object *func_00082450(int);
+    void func_0008DB70(void *, void *, void *, int, int, int, int);
+    C_0004BF00_Object *func_000876B0(int);
+    C_0004BF00_Object *func_00087760(void *, void *, int);
+    C_0004BF00_Object *func_00088DA0(int);
+    void func_00088DD0(void *, int, void *);
+};
+
+struct C_0004BF00_Riders {
+    char pad0[0x1a8];
+    void *f1A8[1];
+};
+
+struct C_0004BF00_World {
+    char pad0[0x4e0];
+    C_0004BF00_Riders *f4E0;
+};
+
+struct C_0004BF00 {
+    char pad0[0x64];
+    C_0004BF00_World *f64;
+    char pad68[0x7c];
+    C_0004BF00_Object *fE4;
+    char padE8[0x74];
+    C_0004BF00_Object *f15C;
+    char pad160[0x10];
+    C_0004BF00_Object *f170[1];
+    char pad174[0x1c];
+    C_0004BF00_Object *f190;
+    int f194;
+    C_0004BF00_Object *f198;
+    int f19C;
+    C_0004BF00_Object *f1A0;
+    char pad1A4[0x10a4];
+    C_0004BF00_Object *f1248[1];
+    void func_00031630();
+    void func_0004BF00();
 };
 
 struct C_0004C720Mgr {
@@ -155,6 +209,7 @@ void C_0004C560::func_0004C3F0(int idx, int sel, int mode)
     float v2[4];
     int j;
     S_0004C320_Obj *o;
+    S_0004C320_Base *b;
 
     o = f64->f3ac->f28[f284[0][idx]];
     o->f1a4->v5();
@@ -185,9 +240,7 @@ void C_0004C560::func_0004C3F0(int idx, int sel, int mode)
     }
     for (j = 0; j < f90; j++) {
         o = f64->f3ac->f28[f284[j + 1][idx]];
-        S_0004C320_PartRaw *raw = (S_0004C320_PartRaw *)o->f1a4;
-        int off = raw->vbptr[1];
-        S_0004C320_Base *b = (S_0004C320_Base *)((char *)raw + off);
+        b = (S_0004C320_Base *)((char *)o->f1a4 + ((S_0004C320_PartRaw *)o->f1a4)->vbptr[1]);
         if (j == sel) {
             b->v7();
             o->f1a4->f4->func_001824E0(v1, x, y, z);
