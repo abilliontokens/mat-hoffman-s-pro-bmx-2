@@ -28,6 +28,7 @@ struct HMRec {
     float f24;
     char f28[0x20];
     int f48;
+    int pad4C;
 };
 struct HMOwner {
     char pad0[0x1934];
