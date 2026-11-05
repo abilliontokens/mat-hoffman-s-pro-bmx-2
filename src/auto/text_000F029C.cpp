@@ -74,6 +74,32 @@ struct C_000F0AE0 {
     void func_000F0AE0();
 };
 
+extern float D_00275600;
+
+struct C_000F0400_Widget {
+    void func_001B1980();
+    void func_001B19A0(int v);
+    void func_001B19C0(int x, int y, float z);
+    void func_001B1A30(float x, float y, float z);
+    void func_001B2270(unsigned int color);
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, int a11, float a12, int a13);
+};
+
+struct C_000F0400 {
+    char pad0[0x124];
+    C_000F0AE0_Mgr *f124;
+    char pad128[0x3C4 - 0x128];
+    int f3C4;
+    int f3C8;
+    int f3CC;
+    char pad3D0[4];
+    int f3D4;
+    char pad3D8[0x638 - 0x3D8];
+    C_000F0400_Widget *f638[9];
+    int f65C[9];
+    void func_000F0400();
+};
+
 struct C_000F0A00_Widget {
     void func_001B1980();
     void func_001B2270(unsigned int color);
@@ -133,6 +159,41 @@ struct C_000F0910 {
     int f65C[9];
     void func_000F0910();
 };
+
+void C_000F029C::func_000F029C()
+{
+    int ids[3];
+    int i;
+    int *r;
+    C_NumHorse_Clamp *o;
+    C_NumHorse_Lookup *lk;
+
+    ids[0] = (int)&D_002786A0;
+    ids[1] = (int)&D_00278690;
+    ids[2] = (int)&D_00278678;
+    for (i = 0; i < 3; i++) {
+        lk = D_002A8490->p2EC;
+        r = lk->func_0018C160(ids[i]);
+        if (r != 0 && *r != 0) {
+            o = ((C_NumHorse_Mid *)*r)->func_0018C070();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+    }
+    for (i = 0; i < 9; i++) {
+        if (arr698[i] != 0) {
+            o = arr698[i]->func_001D5AA0();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+        if (arr6BC[i] != 0) {
+            o = arr6BC[i]->func_001D5AA0();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+    }
+    func_001578D0();
+}
 
 void C_000F0910::func_000F0910()
 {
