@@ -630,6 +630,13 @@ float C_001B15E0::func_001B15E0(void) {
     return unk9C;
 }
 
+void C_001B1580::func_001B17D0(const char *s)
+{
+    if (unkC0 == 0) {
+        unk24->func_0005E840(s);
+    }
+}
+
 undefined4 C_001B17F0::func_001B17F0(void)
 {
   int in_ECX = (int)this;
