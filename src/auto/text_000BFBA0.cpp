@@ -21,8 +21,16 @@ struct S_C0010_2EC {
     void func_0018C780(int a0, void *a1, int a2);
     void func_0018C160(char *a0);
 };
+struct S_BFEE0_Check { int func_0005C1D0(int index); };
+struct S_BFEE0_Manager { char pad[0x2c0]; S_BFEE0_Check *f2c0; };
+struct S_BFEE0_List { int func_0001B3C0(char *name); char pad[0x2c]; char *f2c; };
+struct S_BFEE0_Owner { char pad[0x484]; S_BFEE0_List *f484; };
+struct S_BFEE0_Page { char pad[0x150]; S_BFEE0_Owner *f150; char pad154[0x27c-0x154]; char *f27c; };
+struct S_BFEE0_Virtual { virtual void v0(); virtual void v4(); virtual void v8(); virtual void vc(); virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1c(); };
 struct S_C0010_Global {
-    char pad[0x2e8];
+    char pad[0x2e0];
+    S_BFEE0_Manager *f2e0;
+    char pad2e4[4];
     S_C0010_2E8 *f2e8;
     S_C0010_2EC *f2ec;
 };
