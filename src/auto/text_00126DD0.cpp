@@ -2,8 +2,6 @@
 #include "common.h"
 #include <xmmintrin.h>
 extern float D_002755E8;
-#include <xmmintrin.h>
-extern float D_002755E8;
 
 struct S_00126DD0_Vec { float x, y, z, w; };
 struct __declspec(align(16)) S_00126DD0_Mat { __m128 m[4]; };
