@@ -186,6 +186,17 @@ C_001B61A0* C_001B61A0::func_001B61A0(void) {
     return this;
 }
 
+int C_001B61E0::func_001B61E0(S_001B6130_Stream *stream, int a1)
+{
+    stream->func_00168550(&D_0028B7F4, f10c, 0x103);
+    stream->func_00168C20(&D_0028B80C, 0, &f214);
+    stream->func_00168C20(&D_0028CCD4, 0, &f218);
+    stream->func_00168C50(&D_0027CB60, 10.0f, &f21c);
+    stream->func_00168C50(&D_0027CB54, 50.0f, &f220);
+    stream->func_00168BE0(&D_0028CC30, &D_00275630, f8, 0x103);
+    return 1;
+}
+
 C_001B6410* C_001B6410::func_001B6410(void) {
     extern int D_0028CD24;
     unk4 = 0;
