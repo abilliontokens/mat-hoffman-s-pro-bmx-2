@@ -153,6 +153,7 @@ struct C_0015B150 {
     int unk8;
     C_0015B150* func_0015B150(void);
     void func_0015B170(void);
+    void *func_0015B2C0(unsigned int flags);
 };
 
 struct C_00135D90 {
