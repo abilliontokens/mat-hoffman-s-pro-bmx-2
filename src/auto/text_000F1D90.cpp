@@ -303,7 +303,7 @@ struct C_000F2BD0 {
     int f290;
     float f294;
     int arr298[0x14];
-    int Slot(int i) { return i < f290 ? arr298[i] : -1; }
+    int Slot(int i) { if (i >= f290) return -1; return arr298[i]; }
     void func_000BFEE0();
     void func_000C3F60(int i);
     void func_000C40D0(int i);
