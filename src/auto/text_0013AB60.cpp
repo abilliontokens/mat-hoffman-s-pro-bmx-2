@@ -263,6 +263,40 @@ undefined4 C_0013B260::func_0013B260(int param_1)
   return uVar1;
 }
 
+void C_0013AEC0::func_0013B340(void)
+{
+    S_0013B340_Buf *p = (S_0013B340_Buf *)((char *)this + 0x80);
+    int r;
+
+    do {
+        if (p->f4 == -2) {
+            r = (int)func_001E8AA5(0x6000);
+            p->f0 = r;
+            p->f8 = -0x6000;
+            p->f4 = (r != 0) - 2;
+        }
+        p++;
+    } while (p <= (S_0013B340_Buf *)((char *)this + 0xd4));
+}
+
+void C_0013AEC0::func_0013B390(int idx)
+{
+    int cur = f6C;
+    int p;
+
+    if (cur != idx) {
+        if (cur != -1) {
+            p = fC[cur].f10;
+            if (p != 0) {
+                func_00012140(p);
+            }
+        }
+        f74 = -1;
+        f78 = -1;
+        f6C = idx;
+    }
+}
+
 void __stdcall func_0013B440(int param_1)
 {
   int func_001E8390(...);
