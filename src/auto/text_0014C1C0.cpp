@@ -164,7 +164,9 @@ struct C_0014C720 {
     f32 f1C0;
     f32 f1C4;
     f32 f1C8;
-    char pad1CC[0x20];
+    float f1CC, f1D0, f1D4;
+    int f1D8;
+    char pad1DC[0x10];
     u32 f1EC;
     u32 f1F0;
     u32 f1F4;
