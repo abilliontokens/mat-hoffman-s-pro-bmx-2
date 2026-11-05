@@ -69,9 +69,16 @@ struct S_00092A10_Sub {
     int fc;
     char pad10[0x2b0];
     S_00092E30_Mgr *f2c0;
-    char pad2c4[8];
+    char pad2c4[4];
+    int f2c8;
     C_001D4300 *f2cc;
+    char pad2d0[8];
+    int f2d8;
 };
+
+extern char D_00279100;
+extern char D_0027A130;
+extern char D_0027A140;
 
 struct S_00092A10_Root {
     char pad0[0x2e0];
@@ -218,6 +225,24 @@ int C_00092890::func_00092C70(void)
             return 0;
         }
     }
+    return 1;
+}
+
+int C_00092890::func_00092E30(int idx)
+{
+    char buf[0x104];
+    S_00092E30_Mgr *mgr;
+    S_00092E30_Rec *rec;
+
+    if (func_00092B40(idx) != 0) {
+        func_001ADCC0(buf, 0x104, &D_0027A140, idx);
+        D_002A8490->f2e0->f2cc->func_001D4720(&f4c, buf);
+    }
+    mgr = D_002A8490->f2e0->f2c0->func_001D3F50();
+    rec = &mgr->fA14[idx];
+    rec->f4 = rec->f0 = 0;
+    memset(&mgr->f814[idx], 0, 0x1c);
+    *D_002A8490->f2e0->f2c0->func_0005C020(idx) = 1;
     return 1;
 }
 
