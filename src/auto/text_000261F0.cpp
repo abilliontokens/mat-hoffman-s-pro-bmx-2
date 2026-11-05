@@ -1,5 +1,10 @@
 /* 20 functions from 0x000261F0 to 0x00026B60, found by Ghidra. */
 #include "common.h"
+#include "ghidra.h"
+struct C_00026A70 {
+    undefined4 func_00026A70(int param_1);
+};
+
 struct C_00026280 {
     char pad0[0x3C];
     int unk3C;
@@ -19,5 +24,15 @@ void C_00026270::func_00026270(int a0) {
 
 void C_00026280::func_00026280(int a0) {
     unk3C = a0;
+}
+
+undefined4 C_00026A70::func_00026A70(int param_1)
+{
+  int in_ECX = (int)this;
+  
+  if ((*(int *)(in_ECX + 0x1d8) != 0) && (*(int *)(*(int *)(in_ECX + 0x1d8) + 0x68) == param_1)) {
+    return 1;
+  }
+  return 0;
 }
 
