@@ -336,3 +336,44 @@ void func_00053920(void) {
     int func_00031640(...);
     func_00031640();
 }
+extern char D_00277A0C[];
+extern char D_00277A04[];
+extern "C" int __cdecl func_001ADCC0(char *buf, int size, const char *fmt, const char *a, int b);
+
+struct C_52D90_Ui {
+    int func_00092BE0();
+    void func_00093280(float v);
+    int func_000928D0(...);
+};
+struct C_52D90_Net {
+    int func_001D4720(int a, int b);
+    int func_001D4440(int a, int b, int c, int d);
+};
+struct C_52D90_Mgr {
+    char pad0[0x2C0];
+    struct C_52D90_Pl *f2C0;
+    char pad2C4[8];
+    C_52D90_Net *f2CC;
+};
+struct C_52D90_Pl {
+    void func_0005C6D0(int a);
+    int func_0005C6A0(int a);
+    void func_0005C650(int a);
+};
+struct C_52D90_Game {
+    char pad0[0x2E0];
+    C_52D90_Mgr *f2E0;
+};
+struct C_52D90 {
+    char pad0[0x1D0];
+    C_52D90_Ui *f1D0;
+    char pad1D4[0xC0];
+    int f294;
+    char pad298[0x30];
+    int f2C8;
+    char pad2CC[0x90];
+    int f35C;
+    int func_00052D90();
+    void func_00052C10(int a);
+};
+extern C_52D90_Game *D_002A8490_g;
