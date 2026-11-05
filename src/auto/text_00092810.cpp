@@ -496,3 +496,45 @@ int __stdcall func_00093290(int a0)
     return result;
 }
 
+int C_00092890::func_00093300(int a)
+{
+    C_00092BE0_Str s;
+    char buf[0x104];
+    char *p, *q;
+    char c;
+    s.func_001D3E30();
+    s.func_001D3E60(&f4c);
+    s.func_001D3F20(&D_0027A130, 0xd);
+    if (func_00092AC0() == 0) {
+        s.func_001D3E80(&D_0027A1A4);
+        s.func_001D3EA0(3, &D_0027A178, &D_0027A188, &D_0027A198);
+        if (!D_002A8490->f2e0->f2cc->func_001D4380(&s)) return 0;
+        p = s.func_001D3F50();
+        q = &f4c;
+        do { c = *p++; *q++ = c; } while(c);
+        func_001ADCC0(buf, 0x104, &D_0027A168, &f4c);
+        func_001DD0A9(&D_0027A1CC, buf, 0);
+    }
+    if (D_002A8490->f2e0->f2cc->func_001D4200(&s)) {
+        if (D_002A8490->f2e0->f2cc->func_001D42A0(s.func_001D3F50(), &D_0027A1B0)) {
+            if (!D_002A8490->f2e0->f2cc->func_001D4720(s.func_001D3F50(), &D_0027A1B0)) return 0;
+        }
+        D_002A8490->f2e0->f2c0->func_0005B730();
+        D_002A8490->f2e0->f2c0->func_0005B880();
+        if (!D_002A8490->f2e0->f2cc->func_001D4440((int)s.func_001D3F50(), (int)&D_0027A1B0,
+            (int)D_002A8490->f2e0->f2c0->func_001D3F50(), 0xd80)) return 0;
+        for(int i=0;i<10;i++) {
+            if (*D_002A8490->f2e0->f2c0->func_0005C020(i) == 0) {
+                func_001ADCC0(buf,0x104,&D_0027A140,i);
+                if(D_002A8490->f2e0->f2cc->func_001D42A0(s.func_001D3F50(),buf)) {
+                    if(!D_002A8490->f2e0->f2cc->func_001D4720(s.func_001D3F50(),buf)) return 0;
+                    if(!D_002A8490->f2e0->f2cc->func_001D4440((int)s.func_001D3F50(),(int)buf,(int)D_002A8490->f2e0->f2c0->func_0005C020(i),0x1f98)) return 0;
+                } else {
+                    if(!D_002A8490->f2e0->f2cc->func_001D4440((int)s.func_001D3F50(),(int)buf,(int)D_002A8490->f2e0->f2c0->func_0005C020(i),0x1f98)) return 0;
+                }
+            }
+        }
+    }
+    return 1;
+}
+
