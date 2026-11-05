@@ -48,6 +48,13 @@ extern S_000D2080_Str22 D_0027EE38;
 extern S_000D2080_Str21 D_0027EE20;
 extern S_000D2080_Str18 D_0027EE0C;
 
+/* min taking references (so its operands live in stack temporaries), returning the value */
+template <class T>
+inline T min_ref(const T &a, const T &b)
+{
+    return b < a ? b : a;
+}
+
 char *func_001E8920(char *dst, const char *src, int n);
 char *func_001E8AC0(const char *s, int c);
 int func_001EA426(const char *a, const char *b);
@@ -215,6 +222,52 @@ inline int C_000D2300::Value(int i)
         return 0;
     }
     return D_002A8490->f2E0->f2DC[i];
+}
+
+void C_000D2080::func_000D2080(void)
+{
+    char buf[0x104];
+    S_000D2080_Mgr *mgr = f124;
+    int i;
+    int j;
+    volatile int t[2];
+    volatile int len;
+
+    *(S_000D2080_Str23 *)names[0] = D_0027EEDC;
+    *(S_000D2080_Str21 *)names[1] = D_0027EEC4;
+    *(S_000D2080_Str21 *)names[2] = D_0027EEAC;
+    *(S_000D2080_Str23 *)names[3] = D_0027EE94;
+    *(S_000D2080_Str21 *)names[4] = D_0027EE7C;
+    *(S_000D2080_Str20 *)names[5] = D_0027EE68;
+    *(S_000D2080_Str23 *)names[6] = D_0027EE50;
+    *(S_000D2080_Str22 *)names[7] = D_0027EE38;
+    *(S_000D2080_Str21 *)names[8] = D_0027EE20;
+    *(S_000D2080_Str18 *)names[9] = D_0027EE0C;
+    for (i = 0; i < 10; i++) {
+        for (j = 0; j < (*mgr->f150->f3A8)->count; (*(volatile int *)&j)++) {
+            S_000D2080_Entry *e = (*mgr->f150->f3A8)->items[j];
+            if (e != 0 && e->f4 == 1 && e->f8 != 0) {
+                len = strlen(e->f8->name);
+                t[0] = 0x103;
+                int a = t[0];
+                int b = len;
+                if (a > b) {
+                    a = b;
+                }
+                t[1] = a;
+                int n = t[1];
+                func_001E8920(buf, (*(S_000D2080_Item * volatile *)&e->f8)->name, n);
+                buf[n] = 0;
+                char *dot = func_001E8AC0(buf, '.');
+                if (dot != 0) {
+                    memset(dot, 0, strlen(dot));
+                }
+                if (func_001EA426(buf, names[i]) == 0) {
+                    ptrs[i] = e->f8;
+                }
+            }
+        }
+    }
 }
 
 void C_000D2300::func_000D2300(void)
