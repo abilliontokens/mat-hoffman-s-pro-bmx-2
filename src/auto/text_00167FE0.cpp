@@ -62,6 +62,9 @@ struct C_00168280 {
     int f4c4;
     int f4c8;
     C_00168280 *func_00168280(void);
+    int func_00168550(const char *name, char *dst, int size);
+    int func_00168C50(const char *name, float def, float *out);
+    int func_00168CB0(const char *name, const float *def, float *out);
 };
 
 
@@ -193,7 +196,7 @@ void C_001684B0::func_001684F0(int count)
     }
 }
 
-int C_00168B90::func_00168B90(void *a, float *out)
+int __stdcall func_00168B90(float a, float *out)
 {
     char buf[0x400];
 
