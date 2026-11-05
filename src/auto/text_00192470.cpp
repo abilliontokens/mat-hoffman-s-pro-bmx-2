@@ -383,6 +383,17 @@ void SearchNode::func_00192A50(int a, int b)
     f24 = p;
 }
 
+int C_00192A90::func_00192A90(S_00192A90_Obj *obj)
+{
+    if (f28 != 0) {
+        f28->v2();
+    }
+    obj->f8 = 1;
+    f28 = obj;
+    obj->v1();
+    return 0;
+}
+
 int SearchNode::func_00192AC0(S_00192930_Iface *obj)
 {
     if (f2C != 0) {
