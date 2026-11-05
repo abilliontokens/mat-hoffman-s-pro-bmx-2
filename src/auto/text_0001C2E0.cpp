@@ -113,6 +113,47 @@ struct C_0001C550 {
 
 void func_001E891B(void *p);
 void *func_001E8A44(int size);
+
+struct C_0001D0B0 {
+    char pad0[4];
+    void *f4;
+    int f8;
+    int fC;
+    unsigned char f10;
+    bool func_0001D0B0(int count, int p2);
+};
+
+struct C_00157660 {
+    void func_00157660(void);
+};
+
+/* object with a deleting destructor in vtable slot 0 */
+struct S_0001D200_Obj {
+    virtual void d0(int flags);
+};
+
+struct S_0001D200_Slot {
+    void func_001A13F0(void);
+};
+
+/* AuralScape */
+struct C_0001D200 {
+    void *vtbl;
+    char pad4[0x30];
+    void *f34;
+    char pad38[0x28];
+    S_0001D200_Slot *slots[4];
+    char pad70[4];
+    void *f74;
+    char pad78[0x10];
+    void *f88;
+    char pad8C[0x10];
+    void *f9C;
+    char padA0[0x14];
+    S_0001D200_Obj *fB4;
+    void func_0001D200(void);
+};
+extern int D_00275DFC;
 char *func_001E8AC0(const char *s, int c);
 int func_00135C70(int a, int b, int c, int d);
 
@@ -272,9 +313,9 @@ void func_0001C5E0(float *out, float s, float *in) {
 S_0001C610_V4 func_0001C610(float *a, float *b) {
     S_0001C610_V4 r;
 
-    r.x = b[2] * a[1] - a[2] * b[1];
-    r.y = a[2] * b[0] - b[2] * a[0];
-    r.z = a[0] * b[1] - b[0] * a[1];
+    r.x = a[1] * b[2] - a[2] * b[1];
+    r.y = a[2] * b[0] - a[0] * b[2];
+    r.z = a[0] * b[1] - a[1] * b[0];
     r.w = 1.0f;
     return r;
 }
@@ -282,9 +323,9 @@ S_0001C610_V4 func_0001C610(float *a, float *b) {
 S_0001C610_V4 func_0001C680(S_0001C610_V4 v, float *m) {
     S_0001C610_V4 r;
 
-    r.x = v.y * m[1] + v.z * m[2] + v.x * m[0];
-    r.y = v.y * m[5] + v.z * m[6] + v.x * m[4];
-    r.z = v.y * m[9] + v.z * m[10] + v.x * m[8];
+    r.x = v.z * m[2] + v.y * m[1] + v.x * m[0];
+    r.y = v.z * m[6] + v.y * m[5] + v.x * m[4];
+    r.z = v.z * m[10] + v.y * m[9] + v.x * m[8];
     r.w = 1.0f;
     return r;
 }
