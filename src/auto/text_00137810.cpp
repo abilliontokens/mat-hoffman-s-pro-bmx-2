@@ -64,6 +64,13 @@ undefined4 C_00138790::func_00138790(byte param_1)
   return in_ECX;
 }
 
+void *CubeTextureMap::func_001387B0(int a)
+{
+    func_001D6AD0(a);
+    vtbl = (void *)&D_002849BC;
+    return this;
+}
+
 C_001387D0* C_001387D0::func_001387D0(int a0) {
     return this;
 }
