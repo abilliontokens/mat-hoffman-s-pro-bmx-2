@@ -3,6 +3,8 @@
 extern char *D_002F6A28;
 struct ParserFlags { unsigned int low:12; unsigned int b12:1; unsigned int b13:1; unsigned int high:18; };
 extern ParserFlags D_002F6A38;
+struct ParserFlagsByte { unsigned char low:4; unsigned char b4:1; unsigned char b5:1; unsigned char high:2; };
+extern ParserFlagsByte D_002F6A39;
 extern unsigned char D_002F6A1C;
 extern char D_00295CE8[];
 struct S_001EF734 {
