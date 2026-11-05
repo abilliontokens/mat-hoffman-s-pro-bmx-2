@@ -13,8 +13,12 @@ struct C_0015A640 {
 };
 
 struct GLV { float x, y, z, w; };
+struct GLObj { GLObj *func_00193490(); };
+void *func_001E83E8(void *p, unsigned n);
+void *func_001E8A44(unsigned n);
+void func_001E8920(void *d, void *s, unsigned n);
 struct GrindLine {
-    GrindLine();
+    GrindLine *func_001594F0();
     int unk0;
     int unk4;
     int unk8;
