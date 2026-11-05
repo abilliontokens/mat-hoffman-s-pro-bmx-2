@@ -674,3 +674,23 @@ void C_001BDB50::func_001BDE90(S_001BDB50_Group **out)
     }
 }
 
+void C_001BDF00::func_001BDF60(int n)
+{
+    C_001BDF00 *cur;
+    int i;
+
+    cur = f34;
+    for (i = 0; i < cur->f28; i++) {
+        C_001BDF00 *c = cur->f2c[i];
+        if (c != 0) {
+            ((S_001BDF60_Virt *)c)->v29();
+        }
+    }
+    f30 = n;
+    cur = f2c[n - 1];
+    f34 = cur;
+    if (cur != 0 && cur->f24 != 0) {
+        cur->func_001BDA50();
+    }
+}
+
