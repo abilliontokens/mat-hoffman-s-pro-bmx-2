@@ -22,6 +22,7 @@ struct S_0023F3F7_Obj {
 
 int __stdcall func_0023F23E(S_0023F3F7_Obj *obj, int a0, int a1, int a2, int a3, int a4, int a5, int a6);
 
+struct S_0023F23E_Link { S_0023F23E_Link *next; S_0023F23E_Link *prev; };
 struct S_0023F23E_Node { S_0023F23E_Node *next; S_0023F23E_Node *prev; char pad[0x1c]; };
 struct S_0023F23E_Obj {
     struct VT { int (__stdcall *v0)(S_0023F23E_Obj *); int v1, v2, v3, v4, v5; int (__stdcall *v6)(S_0023F23E_Obj *); } *vtbl;
