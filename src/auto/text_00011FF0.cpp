@@ -147,3 +147,24 @@ void AIPedTurningBackState::func_000121E0()
     }
 }
 
+float S_11FF0_Owner::func_00012510(float *p, int start)
+{
+    int *list = D_002B9120->f588[f3b4];
+    float best = 100000.0f;
+    int idx = start - 1;
+    for (int i = 0; i < 3; i++) {
+        int j = idx;
+        if (j < 0) {
+            j = *list + j;
+        } else if (j >= *list) {
+            j = j - *list;
+        }
+        float v = func_00011730(p, j);
+        if (v < best) {
+            best = v;
+        }
+        idx++;
+    }
+    return best;
+}
+
