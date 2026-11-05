@@ -20,6 +20,8 @@ struct S_ObjectAttributes {
 
 extern int D_00010130;
 extern int D_002F6BC0;
+extern int D_002F6BB4;
+extern "C" long __stdcall ExQueryNonVolatileSetting(u32 valueIndex, u32 *type, void *value, u32 valueLength, u32 *resultLength);
 extern u8 D_002F41C8;
 extern char D_0028FD54;
 
@@ -339,5 +341,54 @@ void __stdcall func_001DF746(S_Heap *heap, S_FreeNode *node)
     node->addr = 0;
     node->size = 0;
 }
+
+void __stdcall func_001DF767(S_Heap *heap, unsigned int addr, unsigned int size)
+{
+    S_FreeNode **link = &heap->head;
+    S_FreeNode *n;
+
+    for (;;) {
+        n = *link;
+        if (n == 0) {
+            break;
+        }
+        if (n->addr > addr) {
+            if (addr + size == n->addr) {
+                n->size += size;
+                n->addr = addr;
+                if (n->size > heap->high) {
+                    heap->high = n->size;
+                }
+                return;
+            }
+            break;
+        }
+        if (n->addr + n->size == addr) {
+            size += n->size;
+            addr = n->addr;
+            *link = n->next;
+            func_001DF746(heap, n);
+            heap->count--;
+            if (size > heap->high) {
+                heap->high = size;
+            }
+            continue;
+        }
+        link = &n->next;
+    }
+    n = func_001DF626(heap);
+    if (n != 0) {
+        n->addr = addr;
+        n->size = size;
+        n->next = *link;
+        *link = n;
+        heap->count++;
+        if (size >= heap->high) {
+            heap->high = size;
+        }
+    }
+}
+#pragma optimize("", on)
+
 #pragma optimize("", on)
 
