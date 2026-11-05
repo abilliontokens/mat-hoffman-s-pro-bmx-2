@@ -16,10 +16,10 @@ struct C_0016B770 {
 };
 
 struct C_Quad {
-    int a;
-    int b;
-    int c;
-    int d;
+    float a;
+    float b;
+    float c;
+    float d;
 };
 
 struct C_0016B8B0 {
@@ -40,3 +40,15 @@ C_0016B770 *C_0016B770::func_0016B770(void *param)
     vtbl = (void *)&D_002884D4;
     return this;
 }
+
+void C_0016B8B0::func_0016B8B0(int a, int b, int c, int d, int e)
+{
+    C_Quad *p = &f24;
+    f34 = *p;
+    p->a = a;
+    p->b = b;
+    p->c = c;
+    p->d = d;
+    f1F0 = e;
+}
+
