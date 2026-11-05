@@ -41,6 +41,7 @@ struct C_0017D500_Mgr {
     s16 fC;
     char padE[0x890 - 0xE];
     s16 **f890;
+    char pad894[4];
     int f898;
     int f89C;
     void func_0017D500(S_QuadTreeListNode *node, int flag);
@@ -108,7 +109,7 @@ void QuadTreeNode::func_0017CEB0(void *item)
     S_QuadTreeListNode *node;
     S_QuadTreeListNode *last;
     S_QuadTreeListNode *n;
-    u32 *p;
+    u32 *z;
     int i;
 
     for (node = f8; node != 0; node = node->next) {
@@ -121,12 +122,8 @@ void QuadTreeNode::func_0017CEB0(void *item)
         last = node;
     }
     n = D_002EFD80->f90->func_0001E8A0();
-    p = (u32 *)n;
-    p[0] = 0;
-    p[1] = 0;
-    p[2] = 0;
-    p[3] = 0;
-    p[4] = 0;
+    z = (u32 *)n;
+    z[0] = z[1] = z[2] = z[3] = z[4] = 0;
     n->slot[0] = item;
     if (f8 == 0) {
         f8 = n;
@@ -142,3 +139,28 @@ void C_0017D190::func_0017D190(void)
     fc++;
     fac = 0;
 }
+
+void C_0017D500_Mgr::func_0017D500(S_QuadTreeListNode *node, int flag)
+{
+    int i;
+    s16 *slot;
+
+    while (node != 0) {
+        for (i = 0; i < 4; i++) {
+            if (f898 >= f89C) {
+                return;
+            }
+            slot = (s16 *)node->slot[i];
+            if (slot != 0 && *slot != fC) {
+                *slot = fC;
+                if (flag != 0) {
+                    slot = (s16 *)((char *)slot + 1);
+                }
+                f890[f898] = slot;
+                f898 = f898 + 1;
+            }
+        }
+        node = node->next;
+    }
+}
+
