@@ -452,6 +452,62 @@ void C_001BB620::func_001BB620(void *a1, void *a2, int a3, int a4)
     func_001D3F50();
 }
 
+C_001BBAA0 *C_001BBAA0::func_001BB680(int a)
+{
+    C_001BBAA0 * volatile self = this;
+    S_001BB680_Mat m;
+    S_001BB680_Mat copy;
+    S_001BB680_Mat * volatile p;
+    __m128 *v;
+    int i;
+
+    ((C_00157600 *)this)->func_00157600(a);
+    self->vtbl = &D_0028D2BC;
+    self->f24.Init();
+    self->f34.Init();
+    self->unk2EC |= 1;
+    self->unk2EC |= 2;
+    self->unk2EC |= 4;
+    self->unkB4 = 0;
+    self->unkB8 = 0;
+    self->unk2DC = 0;
+    self->unkBC = 0;
+    self->unkC0 = 0;
+    self->unkC4 = 0;
+    self->unkC8 = 0;
+    self->unk2EC &= 0xf7;
+    self->unk2EC &= 0xef;
+    self->unk2EC &= 0xdf;
+    self->unk2EC &= 0xbf;
+    self->unk90 = 100;
+    self->f24.x = D_002AAE04;
+    self->f24.y = D_002AAE08;
+    self->f24.z = D_002AAE0C;
+    self->f24.w = D_002AAE10;
+    self->unk2E0 = 0;
+    p = &m;
+    v = (__m128 *)p;
+    v[0] = _mm_setzero_ps();
+    v[1] = _mm_setzero_ps();
+    v[2] = _mm_setzero_ps();
+    v[3] = _mm_setzero_ps();
+    ((float *)v)[0] = 1.0f;
+    ((float *)v)[5] = 1.0f;
+    ((float *)v)[10] = 1.0f;
+    ((float *)v)[15] = 1.0f;
+    copy = m;
+    ((C_000264C0 *)((char *)self + 0x50))->func_000264C0(&copy);
+    self->unk94 = 0;
+    self->unk98 = 0;
+    self->unk2E8 = 0;
+    self->unk9C = 0;
+    self->unkD0 = 0;
+    for (i = 0xa0; i < 0xb4; i += 4) {
+        *(int *)((char *)self + i) = 0xbf800000;
+    }
+    return self;
+}
+
 void C_001BB860::func_001BB860()
 {
     vtbl = &D_0028D2BC;
@@ -518,6 +574,50 @@ void C_001BBAE0::func_001BBAE0(int a)
         unk2E4->v31((S_001BBAE0_Mat *)((char *)this + 0x50));
         ((C_001BBAE0 *)slot[0])->unk2E4->func_00133140(a, 1);
     }
+}
+
+S_001BBAE0_Mat *func_000263B0(S_001BBAE0_Mat *out, void *a, void *b);
+void C_001BBBE0::func_001BBBE0(float a)
+{
+    int i;
+    int j;
+    void *saved;
+
+    unk2EC = (unk2EC & 0x9f) | ((unk2EC & 0x20) << 1);
+    if (unk2DC != 0) {
+        S_001BBAE0_Mat m;
+        func_000263B0(&m, &unk50, unk2DC + 0xf0);
+        unk2E4->func_00133EF0(&m);
+    }
+    for (i = 0; i < unk2E4->unk88; i++) {
+        if (unk2E4->unk84[i] == 0) continue;
+        unk2E4->unk84[i]->func_00133ED0();
+        int r;
+        if (unk2E4->unk50 == 5)
+            r = unk2E4->func_001A4B60(unk2E4->unk84[i]);
+        else
+            r = unk2E4->func_00129A10(unk2E4->unk84[i]);
+        if (r != 0) continue;
+        saved = unk2E4->unk84[i];
+        unk2E4->unk84[i]->func_00133620(unk2E4);
+        unk2E4->func_00133620(unk2E4->unk84[i]);
+        unk2E4->unk84[i] = 0;
+        if (unk2EC & 1) {
+            for (j = 0; j < unk98; j++) {
+                unkB8[j](saved, this, unkB4[j], 0);
+            }
+        }
+    }
+    for (j = 0; j < unk98; j++) {
+        if (unkC8[j] > D_00275544) {
+            unkC8[j] -= a;
+            if (unkC8[j] <= D_00275544) {
+                unkC8[j] = 0;
+                unkB8[j](unkCC[j], this, unkB4[j], 1);
+            }
+        }
+    }
+    func_00157A00(a);
 }
 
 void C_001BBDD0::func_001BBDD0(int *a, int b)
