@@ -120,6 +120,22 @@ struct C_00160A70 {
     int func_00160AD0(int data);
 };
 
+/* chained hash table: an array of f4 bucket lists, f8 hashes a key */
+struct S_00160C90_Node {
+    int value;
+    int hash;
+    int key;
+    S_00160C90_Node *next;
+};
+
+struct C_00160C90 {
+    S_00160C90_Node **f0;
+    int f4;
+    int (*f8)(int key);
+    void func_00160C90(void);
+    void func_00160CE0(int key, int value);
+};
+
 /* LightFlare */
 struct C_00160860 {
     void *vtbl;
@@ -247,6 +263,31 @@ int C_00160A70::func_00160A70(int data)
     }
     head = n;
     tail = n;
+    count++;
+    return 1;
+}
+
+int C_00160A70::func_00160AD0(int data)
+{
+    S_ListNode_00160A70 *n = (S_ListNode_00160A70 *)func_001E8A44(0xc);
+
+    if (n == 0) {
+        return 0;
+    }
+    n->data = 0;
+    n->prev = 0;
+    n->next = 0;
+    n->data = data;
+    n->prev = 0;
+    n->next = head;
+    if (head != 0) {
+        head->prev = n;
+        head = n;
+        count++;
+        return 1;
+    }
+    tail = n;
+    head = n;
     count++;
     return 1;
 }
