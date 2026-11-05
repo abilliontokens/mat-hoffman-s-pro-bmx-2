@@ -239,6 +239,47 @@ extern float D_002A9974;
 extern float D_002A9978;
 extern float D_002A997C;
 
+struct V4_00193EB0 {
+    float x, y, z, w;
+};
+struct Seg_00193EB0 {
+    char pad0[0xc];
+    V4_00193EB0 *fC;
+    char *f10;
+    char *f14;
+};
+struct Body_00193EB0 {
+    void func_001994C0(int a0, V4_00193EB0 *q, int a2);
+    void func_00199790(int a0, void *pos);
+    void func_00199110(int a0, V4_00193EB0 *q, V4_00193EB0 *d, int a3, int a4, int a5);
+};
+struct Phys_00193EB0 {
+    void func_00199A70(int a0, void *out);
+    V4_00193EB0 *func_00197EC0(V4_00193EB0 *out, void *in);
+};
+struct List_00193EB0 {
+    char pad0[0x3c];
+    Seg_00193EB0 **f3c;
+};
+struct Cord_00193EB0 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    V4_00193EB0 f28;
+    V4_00193EB0 f38;
+    char pad48[4];
+    Body_00193EB0 **f4C;
+    Phys_00193EB0 *f50;
+    char pad54[4];
+    List_00193EB0 *f58;
+    void func_00193EB0(int a0);
+    void func_00157A00(int a0);
+};
+extern float D_0028AD00;
+extern float D_0028ACF0;
+extern float D_0028ACE0;
+extern V4_00193EB0 D_002A9924;
+
 /* growable pointer array (3 methods in one Ghidra symbol at 0x194190) */
 struct C_00194190 {
     char pad0[0x24];
