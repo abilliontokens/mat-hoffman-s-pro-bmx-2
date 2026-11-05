@@ -13,6 +13,10 @@ struct BmxUIPageMain {
 
 void BmxUIPageMain::func_000C58A0(void)
 {
+    if (f2F0 != 0) {
+        func_000C4CE0();
+        f2F0 = 0;
+    }
 }
 
 extern int D_0027E14C;
