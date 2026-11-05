@@ -175,3 +175,22 @@ void C_000683F0::func_00068440()
     unk150 = 0;
 }
 
+void C_000683F0::func_000684B0()
+{
+    unk108 = 0;
+    unk168 = 1;
+    v6();
+    unk10C->v35();
+    unk10C->v18(1);
+    v18(0);
+    unk10C->v35();
+    unk10C->unk21 &= 0xfb;
+    unk10C->unk1F4 = 1;
+    unk15C = 1;
+    unk160 = 1;
+    unk150 = 0;
+    unk138 = 0;
+    unk164 = 0;
+    unk158 = -1;
+}
+
