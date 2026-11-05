@@ -193,7 +193,7 @@ void C_0015BAC0::func_0015BAC0(int a0, u32 *a1, int a2) {
 
 int func_0015BF70(S_0015BF70_Node *arr, int n, float t)
 {
-    int lo, hi, mid;
+    int hi, lo, mid;
 
     if (n == 0) {
         return 0;
@@ -205,7 +205,7 @@ int func_0015BF70(S_0015BF70_Node *arr, int n, float t)
         lo = 0;
         hi = n;
         for (;;) {
-            mid = (hi + lo) / 2;
+            mid = (hi + lo) >> 1;
             if (t < arr[mid].f0) {
                 if (t >= arr[mid - 1].f0) {
                     return mid;
@@ -220,5 +220,63 @@ int func_0015BF70(S_0015BF70_Node *arr, int n, float t)
         }
     }
     return n;
+}
+
+int func_0015C100(S_0015BF70_Node *arr, float t, int n, S_0015BF70_Node **a, S_0015BF70_Node **b, float *r)
+{
+    int i = func_0015BF70(arr, n, t);
+
+    if (i != n) {
+        *a = &arr[i - 1];
+        *b = &arr[i];
+        *r = (t - arr[i - 1].f0) / (arr[i].f0 - arr[i - 1].f0);
+        return 1;
+    }
+    *a = &arr[n - 2];
+    *b = &arr[n - 1];
+    *r = (t - arr[n - 1].f0) / (arr[i - 1].f0 - arr[i - 2].f0);
+    return 0;
+}
+
+int func_0015C260(float *base, int hi, float v)
+{
+    if (hi == 0)
+        return 0;
+    if (v < base[(hi - 1) * 10]) {
+        if (v < base[0])
+            return 0;
+        int lo = 0;
+        int mid;
+        do {
+            while (1) {
+                mid = (hi + lo) >> 1;
+                if (v < base[mid * 10])
+                    break;
+                lo = mid;
+                if (v < base[mid * 10 + 10])
+                    return mid + 1;
+            }
+            hi = mid;
+        } while (v < base[mid * 10 - 10]);
+        return mid;
+    }
+    return hi;
+}
+
+int func_0015C530(float *base, float v, int hi, float **lo, float **up, float *t)
+{
+    int i = func_0015C260(base, hi, v);
+    if (i != hi) {
+        float *a = &base[i * 10];
+        float *b = &base[(i - 1) * 10];
+        *lo = b;
+        *up = a;
+        *t = (v - b[0]) / (a[0] - b[0]);
+        return 1;
+    }
+    *lo = &base[(hi - 1) * 10];
+    *up = &base[(hi - 1) * 10];
+    *t = (v - (*up)[0]) / (base[(i - 1) * 10] - base[(i - 2) * 10]);
+    return 0;
 }
 
