@@ -294,3 +294,29 @@ int func_001412A0(C_00168BE0 *cfg, const char *key, int def, int &out)
     return out;
 }
 
+int func_00141340(C_00168BE0 *cfg, const char *key, int def, int &out)
+{
+    char buf[64];
+    cfg->func_00168BE0(key, "undefined", buf, 64);
+    if (strcmp(buf, "undefined") == 0) {
+        out = def;
+    } else if (strcmp(buf, "D3DCMP_NEVER") == 0) {
+        out = 0x200;
+    } else if (strcmp(buf, "D3DCMP_LESS") == 0) {
+        out = 0x201;
+    } else if (strcmp(buf, "D3DCMP_EQUAL") == 0) {
+        out = 0x202;
+    } else if (strcmp(buf, "D3DCMP_LESSEQUAL") == 0) {
+        out = 0x203;
+    } else if (strcmp(buf, "D3DCMP_GREATER") == 0) {
+        out = 0x204;
+    } else if (strcmp(buf, "D3DCMP_NOTEQUAL") == 0) {
+        out = 0x205;
+    } else if (strcmp(buf, "D3DCMP_GREATEREQUAL") == 0) {
+        out = 0x206;
+    } else if (strcmp(buf, "D3DCMP_ALWAYS") == 0) {
+        out = 0x207;
+    }
+    return out;
+}
+
