@@ -90,12 +90,10 @@ struct C_001500A0 {
     C_001500A0 *func_001500A0(void);
 };
 
-static float fabs_0014FB30(float v)
+static float fabs_0014FB30(float x)
 {
-    volatile float x;
     volatile int tmp;
-    x = v;
-    tmp = *(volatile int *)&x & 0x7fffffff;
+    tmp = *(int *)&x & 0x7fffffff;
     return *(float *)&tmp;
 }
 
@@ -185,15 +183,15 @@ float func_0014F7E0(float x)
     extern float D_00275F58;
     extern float D_002DF86C;
     int i;
-    float t;
     int * volatile p = &i;
     float v;
+    float t;
     float f;
 
     v = x;
-    if (x > D_00275460) {
+    if (v > D_00275460) {
         v = D_00275460;
-    } else if (x < D_00275F58) {
+    } else if (v < D_00275F58) {
         v = D_00275F58;
     }
     v = (v + D_00275460) * D_002DF86C;
