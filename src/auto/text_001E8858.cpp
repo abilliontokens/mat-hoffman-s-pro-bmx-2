@@ -50,6 +50,12 @@ void func_001E891B(void) {
 
 void func_001E8A44(int a0) { func_001E8A79(a0, 1); }
 
+int func_001E8A52(unsigned int size) {
+    if (size == 0) size = 1;
+    if (D_002FB364 != 1) size = (size + 15) & 0xfffffff0;
+    return func_001E0AE0(func_001DF5B3(), 0, size);
+}
+
 void func_001E8AA5(undefined4 param_1)
 {
   extern undefined4 D_002F69EC;
