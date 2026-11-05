@@ -9,7 +9,7 @@ void func_00030F30(char *, const char *);
 int func_001ADCC0(char *, int, const char *, ...);
 extern const float D_00275460;
 struct Config136BE0 {
- char data[0x4d0];
+ double data[0x4d0 / 8];
  void func_00168280();
  void func_001691E0();
  int func_00169490(char *, int);
