@@ -74,7 +74,10 @@ struct C_001AC200 {
     int field_00;
     int field_04;
     const char *field_08;
-    char *field_0C;
+    union {
+        char *field_0C;
+        int field_0C_i;
+    };
     C_001AC150 *field_10;
     C_001AC200() {}
     C_001AC200(char *buf, const char *fmt, C_001AC150 *a) {
@@ -171,8 +174,14 @@ void C_001AC200::func_001AC200(int n)
         args->func_001AC1A0(n);
     }
     s = (char *)args->field_04[n - 1];
-    while ((c = *s++) != 0) {
-        field_0C[field_04++] = c;
+    c = *s;
+    if (c != 0) {
+        s++;
+        do {
+            *(char *)((int)field_0C + field_04) = c;
+            field_04++;
+            c = *s++;
+        } while (c != 0);
     }
 }
 
@@ -187,11 +196,11 @@ void func_001AC330(char *buf, const char *fmt, ...)
     args.field_08 = 10;
     args.field_0C = 0;
     args.field_04 = (int *)func_001E8A44(0x28);
-    out.field_00 = 0;
-    out.field_04 = 0;
     out.field_0C = buf;
     out.field_10 = &args;
     out.field_08 = fmt;
+    out.field_00 = 0;
+    out.field_04 = 0;
     out.func_001AC240();
     va_end(ap);
     func_001E891B(args.field_04);
