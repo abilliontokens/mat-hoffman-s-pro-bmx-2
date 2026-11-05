@@ -1,5 +1,10 @@
 /* 28 functions from 0x001358A0 to 0x00136860, found by Ghidra. */
 #include "common.h"
+#include "ghidra.h"
+struct C_00135A60 {
+    undefined4 func_00135A60(byte param_1);
+};
+
 struct C_00135D70 {
     char pad0[0xC];
     int unkC;
@@ -15,17 +20,30 @@ struct C_00135CB0 {
 extern int D_002BA700;
 extern void *D_002A8490;
 
+undefined4 C_00135A60::func_00135A60(byte param_1)
+{
+  int func_00135740(...);
+  int func_001E891B(...);
+  undefined4 in_ECX = (undefined4)this;
+  
+  func_00135740();
+  if ((param_1 & 1) != 0) {
+    func_001E891B(in_ECX);
+  }
+  return in_ECX;
+}
+
 int func_00135C70(int param_1, int param_2, int *param_3, int param_4)
 {
     int __stdcall func_0015AC20(int);
-    int *p;
     if ((*param_3 == param_1) && (param_3[1] == param_2)) {
         if (param_2 != 0) {
             return 1;
         }
-        p = *(int **)((char *)D_002A8490 + 8);
-        if ((*(int *)((char *)p + 0x38) != 0) && (func_0015AC20(param_4) != 0)) {
-            return 1;
+        if (*(int *)(*(int *)((char *)D_002A8490 + 8) + 0x38) != 0) {
+            if (func_0015AC20(param_4) != 0) {
+                return 1;
+            }
         }
     }
     return 0;
