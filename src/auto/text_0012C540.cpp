@@ -1,6 +1,7 @@
 /* 8 functions from 0x0012C540 to 0x0012D460, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <math.h>
 extern int D_00284274;
 
 struct C_0013B210 {
