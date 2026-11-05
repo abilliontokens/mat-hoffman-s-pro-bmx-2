@@ -90,6 +90,40 @@ struct C_001C04D0 {
     void func_001C04D0(int idx);
 };
 
+C_001C0110 *C_001C0110::func_001C0110(int a1, int a2)
+{
+    int i;
+
+    ((C_00157600 *)this)->func_00157600(a2);
+    unk24 = a1;
+    unk2C = 0;
+    unk28 = 0;
+    unk30 = 0;
+    unk34 = 0;
+    unk38 = 0;
+    unk3C = 0;
+    unk40 = 0;
+    for (i = 0; i < 8; i++) {
+        unk44[i] = 0;
+    }
+    unk64 = 0;
+    vtbl = &D_0028DB04;
+    unk68 = 0;
+    unk6C = 0;
+    unk170 = 0;
+    unk184 = 0;
+    unk19C = 0;
+    unk1A0 = 0;
+    unk1A4 = 0;
+    unk1A8 = 0;
+    unk190 = 0;
+    unk194 = 0xff;
+    unk198 = 0;
+    unk180 = 0;
+    unk1AC = 0;
+    return this;
+}
+
 void C_001C0670::func_001C0670(void)
 {
     unk40 = 0;
