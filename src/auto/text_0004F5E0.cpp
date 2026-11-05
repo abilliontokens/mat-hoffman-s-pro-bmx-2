@@ -177,7 +177,7 @@ struct V_4FC20 {
 };
 struct G_4FC20_2E0 { char pad0[4]; int f4; char pad8[0x2F4]; V_4FC20 *f2FC; };
 struct G_4FC20 { char pad0[0x2E0]; G_4FC20_2E0 *f2E0; };
-struct E_4FC20 { char pad0[0x958]; float f958; char pad95C[0x14]; int f970; };
+struct E_4FC20 { char pad0[0x958]; float f958; int f95C; char pad960[0x10]; int f970; };
 struct T_4FC20 { char pad0[0x1A8]; E_4FC20 *f1A8[1]; };
 struct M_4FC20 { char pad0[0x4C0]; V_4FC20 *f4C0; char pad4C4[0x1C]; T_4FC20 *f4E0; };
 struct P_4FC20_15C {
