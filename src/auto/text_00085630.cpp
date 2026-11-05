@@ -47,11 +47,31 @@ struct C_00086180 {
     int func_00086180(void);
 };
 
+struct C_00085F40_Obj4 {
+    char pad0[0x1048];
+    char *f1048;
+    char pad104C[4];
+    char *f1050;
+};
+
+struct C_00085F40_Obj2E8 {
+    char pad0[4];
+    C_00085F40_Obj4 *f4;
+};
+
 struct C_00085630_2A8490 {
     char pad0[0x2E0];
     void *f2E0;
     char pad2E4[4];
-    void *f2E8;
+    C_00085F40_Obj2E8 *f2E8;
+};
+
+struct C_00085F40 {
+    char pad0[0x84];
+    C_0005E840 *f84, *f88, *f8C, *f90;
+    char pad94[0xC];
+    int fA0;
+    void func_00085F40(int a);
 };
 
 extern C_00085630_2A8490 *D_002A8490;
