@@ -45,6 +45,7 @@ extern "C" long (__stdcall *_imp__NtQueryDirectoryFile)(void *fileHandle, void *
 extern "C" long (__stdcall *_imp__NtQueryFullAttributesFile)(S_ObjectAttributes *oa, void *info);
 
 #pragma intrinsic(__readfsbyte)
+#pragma intrinsic(__readfsdword)
 extern "C" long (__stdcall *_imp__PsCreateSystemThreadEx)(int *threadHandle, u32 extraSize, u32 kernelStackSize, u32 tlsDataSize, u32 *threadId, void *startContext1, void *startContext2, u32 createSuspended, u32 debugStack, void *startRoutine);
 extern "C" void (__stdcall *_imp__RtlInitAnsiString)(S_AnsiString *dst, const char *src);
 extern "C" long (__stdcall *_imp__IoDeleteSymbolicLink)(S_AnsiString *name);
