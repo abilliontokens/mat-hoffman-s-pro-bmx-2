@@ -1,6 +1,7 @@
 /* 24 functions from 0x00148780 to 0x00149620, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
 struct C_001488F0 {
     undefined4 func_001488F0(byte param_1);
 };
