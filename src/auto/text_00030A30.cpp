@@ -121,6 +121,76 @@ struct C_00031840 {
     void func_00031840(void);
 };
 
+struct VObj_00031450 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+};
+
+struct Target_00031610 {
+    void func_001A4100(int a0, int a1, int a2);
+};
+
+struct Obj_000317B0 {
+    char pad0[0x170];
+    Vec4_00030A30 f170;
+    Vec4_00030A30 f180;
+    Vec4_00030A30 f190;
+};
+
+struct Inner_000317B0 {
+    char pad0[0x238];
+    int f238;
+};
+
+struct Elem_000317B0 {
+    char pad0[0x1e0];
+    Inner_000317B0 *f1e0;
+};
+
+struct List_000317B0 {
+    char pad0[0x1a8];
+    Elem_000317B0 *f1a8[1];
+};
+
+struct Holder_000317B0 {
+    char pad0[0x4e0];
+    List_000317B0 *f4e0;
+};
+
+struct Mgr_000317B0 {
+    void func_0001CCE0(int id, Vec4_00030A30 *a, Vec4_00030A30 *b, Vec4_00030A30 *c, void *extra);
+};
+
+struct Root_000317B0 {
+    void *f0;
+    Mgr_000317B0 *f4;
+};
+
+extern Root_000317B0 *D_002A8490;
+
+struct BmxEvent_00030A30 {
+    char pad0[0x24];
+    Obj_000317B0 *f24[16];
+    Holder_000317B0 *f64;
+    char pad68[4];
+    int f6c[9];
+    int f90;
+    char pad94[0x170 - 0x94];
+    VObj_00031450 *f170[10];
+    VObj_00031450 *f198;
+    char pad19c[0x1d8 - 0x19c];
+    Target_00031610 *f1d8;
+    void func_00031450(void);
+    void func_000314A0(void);
+    void func_00031610(int a0, int a1);
+    void func_000317B0(int flag);
+};
+
 void func_00030A30(Vec4_00030A30 *out, float x, float y, float z, float w, float *m)
 {
     Vec4_00030A30 r;
@@ -165,9 +235,8 @@ void C_00030CD0::func_00030CD0(int a0) {
 
 int C_00030E70::func_00030E70(int a0)
 {
-    S_00030E70_Target *t = f78;
-    V4_00030E70 v(t->f190 + f68, t->f194 + f6c, t->f198 + f70, 1.0f);
-    func_0001C750(f58, v);
+    float *p = &f58.x;
+    func_0001C750(f58, V4_00030E70(f78->f190 + f68, f78->f194 + p[5], f78->f198 + p[6], 1.0f));
     return 1;
 }
 
@@ -209,5 +278,20 @@ void C_00031430::func_00031430(void)
 void func_00031630(void) {
     int func_000314F0(...);
     func_000314F0();
+}
+
+void C_00031840::func_00031840(void)
+{
+    void *m = func_001E8A44(0x19c);
+    C_0009A290 *obj = m ? ((C_0009A290 *)m)->func_0009A290(this, f64 + 0x134, 0) : 0;
+
+    f1C0 = obj;
+    if (obj->f194 != 0) {
+        if (obj != 0) {
+            obj->func_0009C770();
+            func_001E891B(obj);
+        }
+        f1C0 = 0;
+    }
 }
 
