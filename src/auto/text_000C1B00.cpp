@@ -18,7 +18,8 @@ struct S_000C2810_Owner {
 };
 
 struct S_000C2810_Entry {
-    char pad0[0x640];
+    char pad0[0x63C];
+    int f63C;
     int f640;
 };
 
