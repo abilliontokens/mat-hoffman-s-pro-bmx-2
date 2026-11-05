@@ -183,7 +183,6 @@ struct C_001BB300 {
 };
 
 
-#pragma optimize("t", off)
 int C_001BA560::func_001BA560(S_001BA560_arg *arg1, int arg2)
 {
     void *func_001E8A44(int size);
