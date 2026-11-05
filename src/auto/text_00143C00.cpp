@@ -1,6 +1,27 @@
 /* 14 functions from 0x00143C00 to 0x00144BF0, found by Ghidra. */
 #include "common.h"
 
+struct Entry_00144AE0 { int f0; int f4; int f8; int fc; };
+struct Mgr_00144AE0 {
+    virtual void v0();
+    virtual void v4();
+    virtual void v8();
+    virtual void vc();
+    virtual void v10();
+    virtual void v14(int index);
+    virtual void v18();
+    virtual int v1c(const char *name, int flag);
+    int f4;
+    int f8;
+    int fc;
+    int f10;
+    Entry_00144AE0 *f14;
+};
+extern Mgr_00144AE0 *D_002A71C0;
+extern char D_00285C6C[], D_00285C5C[], D_00285C40[], D_00285C28[], D_00285C0C[];
+int __stdcall func_001FCF20(int,int,int,int,int,int,int);
+int __stdcall func_001FCE50(int,int);
+
 extern unsigned char *D_002EFDB8;
 void __stdcall func_001FEE00(int stream, void *data, int stride);
 void __stdcall func_00200B30(void *a, int b, void *c);
