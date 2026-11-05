@@ -384,6 +384,10 @@ struct BmxEvent_00030A30 {
     void *f1d0;
     char pad1d4[4];
     Target_00031610 *f1d8;
+    char pad1dc[0x1f4 - 0x1dc];
+    int f1f4;
+    int func_00031260(float dt);
+    int func_00157A00(float dt);
     void func_00031640(void);
     void func_000314F0(void);
     void func_001577A0(void *, int);
