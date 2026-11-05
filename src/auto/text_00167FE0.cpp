@@ -17,7 +17,37 @@ extern char D_00288004[];
 extern char D_00288008[];
 
 struct C_001684B0 {
+    char pad0[0x1c];
+    int f1c;
+    int *f20;
     void func_001684B0(void);
+    void func_001684F0(int count);
+};
+
+struct C_00168280 {
+    int f0;
+    int f4;
+    int f8;
+    int fc;
+    int f10;
+    int f14;
+    int f18;
+    int f1c;
+    int f20;
+    char f24;
+    char pad25[0x3ff];
+    int f424;
+    int f428;
+    int f42c;
+    int f430;
+    int f434;
+    int f438[32];
+    int f4b8;
+    int f4bc;
+    int f4c0;
+    int f4c4;
+    int f4c8;
+    C_00168280 *func_00168280(void);
 };
 
 
@@ -109,6 +139,17 @@ void C_001684B0::func_001684B0(void)
   *(undefined4 *)(in_ECX + 0x1c) = 0;
   *(undefined4 *)(in_ECX + 0x20) = 0;
   return;
+}
+
+int __stdcall func_00168550(int a, char *dst, int d);
+int __stdcall func_00168550(void *a, char *dst, int d);
+int __stdcall func_00168BE0(int a, const char *src, char *dst, int d)
+{
+    if (func_00168550(a, dst, d) != 0) {
+        return 1;
+    }
+    strcpy(dst, src);
+    return 0;
 }
 
 int __stdcall func_00168C20(int a, int b, int *out)
