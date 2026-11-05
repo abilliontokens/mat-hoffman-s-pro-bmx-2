@@ -55,7 +55,12 @@ struct S_0005F3C0_2E0 {
 struct S_0005F3C0_8490 {
     char pad0[0x2E0];
     S_0005F3C0_2E0 *f2E0;
+    char pad2E4[0x8];
+    struct Lookup_5F *f2EC;
 };
+struct Mid_5F { S_0005FBD0_Obj *func_0018C070(); };
+struct Lookup_5F { int *func_0018C160(int); };
+extern int D_002786A0, D_00278690, D_00278678;
 extern S_0005F3C0_8490 *D_002A8490;
 
 struct BmxInGameMenuSub {
