@@ -573,3 +573,91 @@ void *C_001B2700::func_001B2700(unsigned int flags)
     return this;
 }
 
+int func_001B2810(int x)
+{
+    switch (x) {
+    case 0x10:
+    case 0x11:
+    case 0x12:
+    case 0x13:
+    case 0x15:
+    case 0x16:
+    case 0x17:
+    case 0x18:
+    case 0x19:
+    case 0x1a:
+    case 0x1b:
+    case 0x1c:
+    case 0x1d:
+    case 0x1e:
+    case 0x20:
+    case 0x22:
+    case 0x24:
+    case 0x26:
+    case 0x28:
+    case 0x2a:
+        return 1;
+    case 5:
+    case 0x14:
+        return 0;
+    default:
+        return 0;
+    }
+}
+
+int func_001B2870(int x)
+{
+    switch (x) {
+    case 0xc:
+    case 0xf:
+    case 0x1b:
+    case 0x1e:
+    case 0x23:
+    case 0x24:
+        return 0x22b8;
+    case 1:
+    case 9:
+    case 0x10:
+    case 0x18:
+    case 0x1f:
+    case 0x20:
+        return 0x378;
+    case 2:
+    case 7:
+    case 0x11:
+    case 0x16:
+        return 0x22b;
+    case 3:
+    case 8:
+    case 0x12:
+    case 0x17:
+        return 0x235;
+    case 10:
+    case 0xd:
+    case 0x19:
+    case 0x1c:
+    case 0x21:
+    case 0x22:
+        return 0x613;
+    case 0xb:
+    case 0xe:
+    case 0x1a:
+    case 0x1d:
+        return 0x115c;
+    case 4:
+    case 6:
+    case 0x13:
+    case 0x15:
+    case 0x27:
+    case 0x28:
+        return 8;
+    case 0x25:
+    case 0x26:
+    case 0x29:
+    case 0x2a:
+        return 0x20;
+    default:
+        return 0;
+    }
+}
+
