@@ -9,7 +9,11 @@ extern float D_0028B010;
 
 extern float D_002755E8;
 #include <xmmintrin.h>
-static __forceinline void Trunc_00196560(int * volatile out, float f) { *out = _mm_cvttss_si32(_mm_load_ss(&f)); }
+static __forceinline void Trunc_00196560(int *out, float f)
+{
+    int * volatile p = out;
+    *p = _mm_cvttss_si32(*(__m128 *)&f);
+}
 
 struct S_001968C0_Hdr {
     float a;
