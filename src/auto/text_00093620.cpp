@@ -53,6 +53,11 @@ struct C_00093140 {
     C_001B17D0 *f28;
     C_001B17D0 *f2c;
     C_001B17D0 *f30;
+    C_001B17D0 *f34;
+    void func_000943A0(int a1, int a2, int a3, int a4, int a5, int a6);
+    void func_00093E80(int a1, int a2, int a3, int a4, int a5, int a6);
+    void func_00093F30(int a1, int a2, int a3, int a4, int a5, int a6);
+    void func_00094000(int a1, int a2, int a3, int a4, int a5, int a6);
     void func_00093140(int a1, int a2, int a3, int a4, int a5, int a6, int a7);
     void func_00093C80(int a1, int a2, int a3, int a4, int a5, int a6);
     void func_00093970(int a1, int a2, int a3, int a4, int a5, int a6);
