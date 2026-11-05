@@ -206,6 +206,47 @@ struct C_00182CC0 {
     void func_00183AB0();
 };
 
+void C_00182CC0_Scene::func_00182CC0()
+{
+    char bufB[0x100];
+    char bufA[0x100];
+    int j;
+    int def;
+    int n;
+    int cnt;
+    int i;
+    int k;
+    int m;
+
+    n = 0;
+    def = 0;
+    cnt = 0;
+    f2C->func_00169710(D_0027AEE4);
+    f2C->func_00168C20(D_0027AED4, 0, &n);
+    f2C->func_00168C20(D_0027AEC4, 0, &def);
+    for (i = 1; i <= n; i++) {
+        func_001ADCC0(bufA, 0x100, D_0027AEA8, i);
+        f2C->func_00169710(bufA);
+        f2C->func_00168C20(D_0027AE94, 0, &cnt);
+        for (j = 1; j <= cnt; j++) {
+            func_001ADCC0(bufA, 0x100, D_0027AE80, i, j);
+            f2C->func_00169710(bufA);
+            f2C->func_00168BE0(D_0027AE7C, D_00275630, bufB, -1);
+            for (k = 1; k <= f340; k++) {
+                for (m = 1; m <= f3B0[k - 1]->f24; m++) {
+                    if (func_001EA426(bufB, f3B0[k - 1]->f28[m - 1]->fC->name) == 0) {
+                        f3B0[k - 1]->f28[m - 1]->fC->f148 = i;
+                    } else if (def != 0) {
+                        if (f3B0[k - 1]->f28[m - 1]->fC->f148 == 0) {
+                            f3B0[k - 1]->f28[m - 1]->fC->f148 = def;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 void C_00182CC0::func_00183130()
 {
     int j;
