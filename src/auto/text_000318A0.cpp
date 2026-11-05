@@ -200,6 +200,40 @@ struct C_0002EF20_31AF0 {
 extern "C" void *func_001E8A44(unsigned int n);
 extern char D_00276B88[];
 
+struct S_32560_Panel {
+    char pad0[0x1e8];
+    int f1e8;
+    int f1ec;
+    char pad1f0[0x204 - 0x1f0];
+    int f204;
+    int f208;
+    void func_0012B190(int x, int y, int w, int h);
+};
+
+struct S_32560_Root {
+    virtual void v00(); virtual void v01(); virtual void v02(); virtual void v03();
+    virtual void v04(); virtual void v05(); virtual void v06(); virtual void v07();
+    virtual void v08(); virtual void v09(); virtual void v0A(); virtual void v0B();
+    virtual void v0C(); virtual void v0D(); virtual void v0E();
+    virtual void v0F(S_32560_Panel *p, int a, int b, int c);
+    char pad4[0x2e0 - 4];
+    S_31AF0_Mgr *f2e0;
+};
+
+struct S_32560_Info {
+    char pad0[0xf0];
+    int fF0;
+};
+
+struct C_00032560 {
+    char pad0[0x24];
+    S_32560_Panel *f24;
+    S_32560_Panel *f28;
+    char pad2c[0xe4 - 0x2c];
+    S_32560_Info *fE4;
+    int func_00032560(int delta);
+};
+
 /* BmxEvent: a GameObject (vtable, sibling/child links in the base) */
 struct BmxEvent {
     virtual void v00(); virtual void v01(); virtual void v02(); virtual void v03();
