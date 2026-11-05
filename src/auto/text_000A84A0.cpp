@@ -240,6 +240,29 @@ C_000A89F0 *C_000A89F0::func_000A89F0()
     return this;
 }
 
+C_000A8AF0 *C_000A8AF0::func_000A8AF0() {
+    extern int D_0027C2DC;
+    extern float D_002A2734;
+    extern float D_002A2738;
+    extern float D_002A273C;
+    extern float D_002A2740;
+    int i;
+    ((C_001B59E0 *)this)->func_001B59E0();
+    vtbl = (void *)&D_0027C2DC;
+    unk1C0[2] = 0.0f;
+    unk1C0[1] = 0.0f;
+    unk1C0[0] = 0.0f;
+    unk1C0[3] = 1.0f;
+    for (i = 0; i < 3; i++) {
+        items[i].unk0 = 0;
+    }
+    unk1C0[0] = D_002A2734;
+    unk1C0[1] = D_002A2738;
+    unk1C0[2] = D_002A273C;
+    unk1C0[3] = D_002A2740;
+    return this;
+}
+
 int C_000A8B70::func_000A8B70(void *param1, void *param2) {
     extern int D_000A8A60;
     int __stdcall func_001BBAA0(void *, void *);
