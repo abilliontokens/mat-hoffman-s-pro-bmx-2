@@ -40,6 +40,13 @@ struct C_00135CB0 {
     void func_00135D00(int a0, int a1);
     void func_00135D30(int idx, int *out, int row);
 };
+struct C_00136370 {
+    char pad0[0xC];
+    int unkC;
+    char pad10[0xCC0 - 0x10];
+    C_00135CB0 *fCC0;
+    int func_00136370();
+};
 extern int D_002BA700;
 struct C_00135E00;
 struct S_Game_001358A0 {
