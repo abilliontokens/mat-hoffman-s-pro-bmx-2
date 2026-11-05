@@ -5,8 +5,14 @@ struct S_001BFF40_Inner { void func_00198E60(void); };
 struct S_001BFF40_Obj { char pad0[4]; S_001BFF40_Inner *unk4; };
 struct C_001BFF40 { char pad0[0x68]; S_001BFF40_Obj *unk68; void func_001BFF40(void); };
 
+struct S_001C0820_Vec4 {
+    float x, y, z, w;
+};
+
 struct S_001C0CB0_Stream {
     void func_00168C20(int *name, int value, int *out);
+    void func_00168C50(int *name, float value, float *out);
+    int func_00168CB0(int *name, S_001C0820_Vec4 *def, S_001C0820_Vec4 *out);
 };
 extern int D_0028DDA0;
 extern int D_0028DD94;
