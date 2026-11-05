@@ -67,6 +67,27 @@ struct C_00019830 {
 };
 
 
+void C_00019790::func_00019790(void)
+{
+    int chance;
+
+    if (f8->f4d4 > 500) {
+        fC = D_002A8490->f238 + 3500;
+        chance = 50;
+    } else {
+        fC = D_002A8490->f238 + 2000;
+        chance = 25;
+    }
+    if (func_00011260(0, 100) > chance) {
+        f8->func_00019070();
+        f8->func_00017D20(75);
+        f8->func_001C6DA0(f8->f74c, 1);
+    } else {
+        f8->func_001C6DA0(f8->f750, 1);
+        f8->func_00017D20(100);
+    }
+}
+
 undefined4 C_0001A3E0::func_0001A3E0(byte param_1)
 {
   int func_00019830(...);
