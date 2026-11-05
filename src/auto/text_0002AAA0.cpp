@@ -31,6 +31,12 @@ struct C_0002B180 {
 };
 
 
+void C_0002B140::func_0002B140(C_00168B90 *param_1) {
+    param_1->func_00168B90(D_002766F0, &unk0);
+    param_1->func_00168A10(D_002766E0, &unk4);
+    param_1->func_00168B90(D_002766D0, &unk8);
+}
+
 void C_0002B180::func_0002B180(void)
 {
   int in_ECX = (int)this;
