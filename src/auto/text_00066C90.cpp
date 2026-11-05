@@ -79,11 +79,12 @@ C_00066C90 *C_00066C90::func_00066C90(int a0)
         unk64[i] = 0;
         unk6C[i] = 0;
     }
-    unk78 = 0;
-    unk7C = 0;
-    unk80 = 0;
-    unk90 = 0;
-    unk94 = 0;
+    for (i = 0; i < 3; i++) {
+        a78[i] = 0;
+    }
+    for (i = 0; i < 2; i++) {
+        a90[i] = 0;
+    }
     unk10C = 0;
     for (i = 0; i < 2; i++) {
         unk13C[i] = 0;
