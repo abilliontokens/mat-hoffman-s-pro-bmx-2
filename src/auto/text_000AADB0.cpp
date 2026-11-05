@@ -30,6 +30,31 @@ struct C_000AB490 {
     void func_000AB490(void);
 };
 
+extern char D_0027C704[], D_0027C6E4[], D_0027C6CC[], D_0027C6C4[], D_0027C6BC[], D_0027C6B4[], D_0027C6AC[], D_0027C6A4[], D_0027C69C[], D_0027C67C[], D_0027C670[], D_002764F0[];
+void * __cdecl func_001E8A44(unsigned int);
+void * __cdecl func_001E83E8(void *, unsigned int);
+int __cdecl func_001ADCC0(char *, unsigned int, const char *, ...);
+void __stdcall func_00011FF0(void *, int, int, void *);
+void func_000A09F0();
+struct C_000AADB0_Parser {
+    int func_00169710(const char *);
+    void func_00168C20(const char *, int, int *);
+    void func_00168C50(const char *, int, float *);
+    void func_00168BE0(const char *, const char *, char *, int);
+};
+struct C_000AADB0_Box {
+    float f0, f4, f8, fC, f10, f14;
+    int f18;
+    char **f1C;
+    int *f20;
+    int f24;
+};
+struct C_000AADB0 {
+    char pad[0x24];
+    int f24;
+    C_000AADB0_Box *f28;
+    void func_000AADB0(C_000AADB0_Parser *);
+};
 /* ObjectExclusionBoxes */
 struct C_000AB340_Obj {
     void func_00198390();
