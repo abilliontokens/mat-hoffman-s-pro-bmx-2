@@ -102,6 +102,7 @@ struct Game {
     int f270;
     char pad274[4];
     S_00156F30_Iface *f278;
+    Game *func_00157150(void);
     int func_00156880(void);
     int func_001570C0(const char *name, char *out);
     int func_00157130(int a, char *out);
