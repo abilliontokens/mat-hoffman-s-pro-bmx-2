@@ -90,6 +90,70 @@ int C_00078D60::func_00078D60(int *param_1, int param_2) {
     return 0;
 }
 
+void C_00079790::func_00078E60(void)
+{
+    BmxMenuBase *m = (BmxMenuBase *)this;
+    int i;
+    m->vtbl = (void *)&D_0027857C;
+    for (i = 0; i < 2; i++) {
+        RawBuf_Menu *p = m->fE4[i];
+        if (p) {
+            p->func_001D6410();
+            func_001E891B(p);
+            m->fE4[i] = 0;
+        }
+    }
+    for (i = 0; i < 2; i++) {
+        if (m->f94[i]) {
+            m->f94[i]->destroying(1);
+            m->f94[i] = 0;
+        }
+    }
+    for (i = 0; i < 2; i++) {
+        if (m->fD4[i]) {
+            m->fD4[i]->destroying(1);
+            m->fD4[i] = 0;
+        }
+        if (m->fDC[i]) {
+            m->fDC[i]->destroying(1);
+            m->fDC[i] = 0;
+        }
+    }
+    if (m->f10C) {
+        m->f10C->destroying(1);
+        m->f10C = 0;
+    }
+    for (i = 0; i < 5; i++) {
+        if (m->fAC[i]) {
+            m->fAC[i]->destroying(1);
+            m->fAC[i] = 0;
+        }
+        if (m->fC0[i]) {
+            m->fC0[i]->destroying(1);
+            m->fC0[i] = 0;
+        }
+    }
+    for (i = 0; i < 8; i++) {
+        if (m->f64[i]) {
+            m->f64[i]->destroying(1);
+            m->f64[i] = 0;
+        }
+    }
+    RawBuf_Menu *p = m->fEC;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+        m->fEC = 0;
+    }
+    p = m->f124;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+        m->f124 = 0;
+    }
+    m->func_00157660();
+}
+
 C_00079790 *C_00079790::func_00079790(void *param)
 {
     int i;
