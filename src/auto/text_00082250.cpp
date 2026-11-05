@@ -64,7 +64,7 @@ void C_00082430::func_00082430(float param_1)
 
 int C_000831C0::func_000831C0(void)
 {
-    if (D_00275544 < fd64) {
+    if (fd64 > D_00275544) {
         return 1;
     }
     return 0;
