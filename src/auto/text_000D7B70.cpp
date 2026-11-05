@@ -15,3 +15,25 @@ struct BmxUIPageHOF4D {
     void func_001BE3F0();
     void func_000D7B70();
 };
+
+void BmxUIPageHOF4D::func_000D7B70()
+{
+    vtbl = &D_0027F404;
+    for (int i = 0; i < 2; i++) {
+        if (arr2F4[i] != 0) {
+            arr2F4[i]->Destroy(1);
+            arr2F4[i] = 0;
+        }
+        if (arr2FC[i] != 0) {
+            arr2FC[i]->Destroy(1);
+            arr2FC[i] = 0;
+        }
+    }
+    for (int i = 0; i < 2; i++) {
+        if (arr304[i] != 0) {
+            arr304[i]->Destroy(1);
+            arr304[i] = 0;
+        }
+    }
+    func_001BE3F0();
+}
