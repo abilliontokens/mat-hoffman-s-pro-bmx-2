@@ -53,6 +53,8 @@ struct C_00199BE0 {
     void func_00197AA0(void);
     void func_00199CF0(int a0, int a1, int a2, int a3, float angle);
     void func_0019A210(C_00199BE0 *node);
+    S_00199B00_F4 func_00198120(S_00199B00_F4 *p);
+    S_00199B00_F4 func_00199B00(C_00199BE0 *other);
     void func_00199BE0(void *m);
     void func_00199C20(C_00199BE0 *p, void *m);
     void func_00199C90(int a0, int a1, int a2, int a3, int a4, int a5);
