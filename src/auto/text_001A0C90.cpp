@@ -72,12 +72,14 @@ struct S_001A1C70_Obj {
     virtual void v6();
     virtual void v7();
     virtual int v8(int a);
+    void func_001CB560(S_001A1C70_Obj *old);
 };
 
 struct C_001A1C70 {
     char pad0[0x1BC];
     S_001A1C70_Obj *unk1BC;
     int func_001A1C70(int a);
+    int func_001A1B60(S_001A1C70_Obj *obj);
 };
 
 
