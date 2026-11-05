@@ -59,7 +59,7 @@ u32 func_00177920(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   return 1;
 }
 
-u32 func_00177CA0(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int a6, int a7)
+u32 func_00177CA0(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int a6, C_00135420 *pal)
 {
   u8 *d;
   u8 *s;
@@ -68,13 +68,13 @@ u32 func_00177CA0(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   u8 *tbl;
   int x;
   int y;
-  if (a6 != 0 && a7 != 0) {
-    func_00176630(src, 0x235, width, height, srcPitch, dstPitch, 0, 0, 0, dst, a7);
+  if (a6 != 0 && pal != 0) {
+    func_00176630(src, 0x235, width, height, srcPitch, dstPitch, 0, 0, 0, dst, (int)pal);
     return 1;
   }
   s = src;
   d = dst;
-  tbl = (u8 *)func_00135420();
+  tbl = (u8 *)pal->func_00135420();
   for (y = height; y > 0; y--) {
     for (q = s, p = d, x = width; x > 0; x--) {
       *p = tbl[*(u16 *)q];
