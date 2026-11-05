@@ -180,6 +180,18 @@ C_001F318D *C_001F318D::func_001F318D(char **param_1) {
     unk8 = 1;
     return this;
 }
+
+#pragma optimize("sy", on)
+void C_001F3221::func_001F3221() {
+    extern int D_00295F00;
+    void func_001E8390(void *);
+    unk0 = (int)&D_00295F00;
+    if (unk8 != 0) {
+        func_001E8390(unk4);
+    }
+}
+#pragma optimize("", on)
+
 #pragma optimize("", on)
 undefined * C_001F3237::func_001F3237(void)
 {
