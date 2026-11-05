@@ -263,35 +263,37 @@ void C_00142560::func_00142560(void)
 
 C_001425B0 *C_001425B0::func_001425B0(void)
 {
-    volatile int tmp[4];
+    int *p;
+    S_001425B0_V3 *q;
+    volatile float tmp[4];
     int i;
 
     func_0001DFE0();
     vtbl = &D_00285970;
-    f64.z = 0;
-    f64.y = 0;
-    f64.x = 0;
-    f70.z = 0;
-    f70.y = 0;
-    f70.x = 0;
-    for (i = 0; i < 2; i++) {
-        f84[i].z = 0;
-        f84[i].y = 0;
-        f84[i].x = 0;
-    }
-    fDC.z = 0;
-    fDC.y = 0;
-    fDC.x = 0;
-    fDC.w = 0x3f800000;
-    tmp[0] = 0;
-    fDC.x = tmp[0];
-    tmp[1] = 0x40400000;
-    fDC.y = tmp[1];
-    tmp[2] = 0xc0800000;
-    fDC.z = tmp[2];
-    tmp[3] = 0;
+    InitV3_001425B0(&f64);
+    InitV3_001425B0(&f70);
+    q = f84;
+    i = 2;
+    do {
+        q->z = 0;
+        q->y = 0;
+        q->x = 0;
+        q++;
+    } while (--i != 0);
+    p = &fDC.x;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    tmp[0] = 0.0f;
+    *(float *)&fDC.x = tmp[0];
+    tmp[1] = 3.0f;
+    *(float *)&fDC.y = tmp[1];
+    tmp[2] = -4.0f;
+    *(float *)&fDC.z = tmp[2];
+    tmp[3] = 0.0f;
     fD8 = 0x3f800000;
-    fDC.w = tmp[3];
+    *(float *)&fDC.w = tmp[3];
     f1C = 0;
     f5C = 0;
     f20 = 0;
