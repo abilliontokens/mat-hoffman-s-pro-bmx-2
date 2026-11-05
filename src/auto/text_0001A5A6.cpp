@@ -19,6 +19,13 @@ struct Vec3 {
     float x, y, z;
 };
 
+struct Vec4 {
+    float x, y, z, w;
+};
+
+extern float D_00275B44;
+void func_0001AFB0(Vec3 *dst, Vec3 *src);
+
 /* object with a virtual base class that has virtual slots (slot 5 at +0x14) */
 struct VBase_0001B360 {
     virtual void v0();
