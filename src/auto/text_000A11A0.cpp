@@ -52,8 +52,17 @@ struct C_001BB900 {
     void func_001BB900(void *a0);
 };
 
+struct C_000A1920_Sub {
+    char pad0[0x9c];
+    void *f9c;
+    void *fa0;
+};
+
 struct C_000A1920_Elem {
-    char pad0[0x11b0];
+    char pad0[0x950];
+    C_000A1920_Sub *f950;
+    char pad954[0x11ac - 0x954];
+    void *f11ac;
     void *f11b0;
 };
 
@@ -67,10 +76,20 @@ struct C_000A1920_Arg {
     C_001BB900 *f4;
 };
 
+/* the targets the page feeds: a count at +0x24 and an array of C_000A1920_Arg at +0x28 */
+struct C_000A1830_Targets {
+    char pad0[0x24];
+    int f24;
+    C_000A1920_Arg **f28;
+};
+
 struct C_000A1920 {
-    char pad0[0x4e0];
+    char pad0[0x3b4];
+    C_000A1830_Targets *f3b4;
+    char pad3b8[0x4e0 - 0x3b8];
     C_000A1920_Scene *f4e0;
     void func_000A1920(C_000A1920_Arg *a0);
+    void func_000A1830(void);
 };
 
 struct C_000A1E90_Obj {
