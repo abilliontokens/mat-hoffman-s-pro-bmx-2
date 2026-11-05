@@ -152,6 +152,45 @@ struct C_001D6190 {
 };
 
 
+void C_001D5760::func_001D5760()
+{
+    vtbl = &D_0028F600;
+    v4.x = 0;
+    v4.y = 0;
+    v4.z = 1.0f;
+    v4.w = 1.0f;
+    v14.x = 0;
+    v14.y = 0;
+    v14.z = 1.0f;
+    v14.w = 1.0f;
+    f24 = 1.0f;
+    f28 = 1.0f;
+    f2c = 1.0f;
+    f30 = 0;
+    f34 = 0;
+    f38 = -1;
+    f3c = 0;
+    f40 = 1.0f;
+    f44 = 0;
+    f48 = 1.0f;
+    f4c = 1.0f;
+    f50 = 1.0f;
+    f5c = 0;
+    f60 = 0;
+    f58 = (f58 & 0xf7) | 7;
+}
+
+void C_001D5760::func_001D57E0()
+{
+    vtbl = &D_0028F600;
+    if (f5c != 0) {
+        f5c->v0(1);
+    }
+    if (f60 != 0) {
+        f60->v0(1);
+    }
+}
+
 undefined4 C_001D5AA0::func_001D5AA0(void)
 {
   extern undefined4 D_002A829C;
