@@ -165,7 +165,7 @@ void S_11FF0_StateB::func_00012380(void *arg1, float arg2)
         fC = 0;
     }
     if (D_002A8490->f4->func_0001CE80(f24[fC], arg1, D_002A04FC, 15.0f, 50.0f)) {
-        int v = (int)((float)f24[fC]->v17() * (D_002755E0 * arg2));
+        int v = (int)((float)f24[fC]->v17() * (arg2 * 0.01f));
         f24[fC]->v8(v);
         f24[fC]->v5(4);
     }
