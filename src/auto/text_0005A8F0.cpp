@@ -2,6 +2,24 @@
 #include "common.h"
 #include "ghidra.h"
 extern "C" char *strcpy(char *, const char *);
+struct R_Reader {
+    int func_00168280(void);
+    int func_00169490(char *name, int mode);
+    void func_00169710(char *s);
+    void func_00168A10(char *fmt, int *out);
+    void func_001691E0(void);
+};
+extern "C" char *strcat(char *, const char *);
+extern char D_002A5348[];
+extern char D_00278250[];
+extern char D_00278244[], D_0027823C[], D_00278234[], D_00278228[], D_0027821C[], D_00278210[], D_00278204[], D_002781FC[], D_002781F4[];
+extern void *func_001E8A44(int);
+extern void func_001E891B(void *);
+struct C_0005B240 {
+    char pad0[0x2DC];
+    int v[8];
+    void func_0005B240(void);
+};
 struct C_0005B220 {
     void func_0005B220(void);
 };
