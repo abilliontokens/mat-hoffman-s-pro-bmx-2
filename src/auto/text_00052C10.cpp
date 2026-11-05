@@ -304,6 +304,41 @@ void C_52C10::func_00052D20(int *out)
     *out = (unk2C8 << 0x11) + unk294;
 }
 
+int C_52D90::func_00052D90()
+{
+    char buf[0x104];
+    int i;
+
+    if (f35C) {
+        if (f1D0->func_00092BE0()) {
+            f1D0->func_00093280(10.0f);
+            func_001ADCC0(buf, 0x104, D_00277A04, D_00277A0C, *(int *)((char *)G->f2E0 + 0x48));
+            if (G->f2E0->f2CC->func_001D4720(f1D0->func_000928D0(), (int)buf)) {
+                if (G->f2E0->f2CC->func_001D4720(f1D0->func_000928D0(), (int)D_00277A0C)) {
+                    func_00052C10(1);
+                    i = f2C8;
+                    do {
+                        G->f2E0->f2C0->func_0005C6D0(f2C8);
+                        func_00052C10(0);
+                    } while (i != f2C8);
+                    f1D0->func_00093280(30.0f);
+                    if (G->f2E0->f2CC->func_001D4440(f1D0->func_000928D0(), (int)buf, f294, (int)D_00080000)) {
+                        if (G->f2E0->f2CC->func_001D4440(f1D0->func_000928D0(), (int)D_00277A0C, G->f2E0->f2C0->func_0005C6A0(), 0x80)) {
+                            f1D0->func_00093280(50.0f);
+                            f35C = 0;
+                            f1D0->func_00093280(10.0f);
+                            return 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    G->f2E0->f2C0->func_0005C650(1);
+    f35C = 0;
+    return 0;
+}
+
 int C_52C10::func_000533A0(void)
 {
     int arg;
