@@ -116,7 +116,12 @@ struct C_0012EF30 {
     void *f400;
     char pad404[0x10];
     S_0012E5F0 *f414;
-    char pad418[0xF8];
+    char pad418[0xA0];
+    u32 f4b8;
+    u32 pad4bc;
+    f32 f4c0;
+    f32 f4c4;
+    char pad4c8[0x48];
     f32 f510;
     u32 f514;
     S_0012EF60_Ref *f518;
