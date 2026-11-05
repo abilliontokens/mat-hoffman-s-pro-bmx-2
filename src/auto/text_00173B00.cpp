@@ -1,5 +1,6 @@
 /* 13 functions from 0x00173B00 to 0x001747F0, found by Ghidra. */
 #include "common.h"
+#include <math.h>
 #include <xmmintrin.h>
 
 extern float D_00275460;
@@ -99,6 +100,12 @@ void *PhysicsRigidBody::func_001744B0(void *a0)
 {
     f22C->func_00198040(a0, &f238);
     return a0;
+}
+
+Vec4 *PhysicsRigidBody::func_001744D0(Vec4 *out)
+{
+    *out = f238;
+    return out;
 }
 
 void *PhysicsRigidBody::func_00174530(void *a0)
