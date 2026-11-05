@@ -1,5 +1,74 @@
 /* 11 functions from 0x001D8340 to 0x001D8BF0, found by Ghidra. */
 #include "common.h"
+#include "ghidra.h"
+
+extern int D_002F0BB8;
+extern int D_0028F7FC;
+
+extern "C" void __stdcall MmFreeContiguousMemory(void *p);
+void *__stdcall func_001FF410(void *p, int flags);
+void __stdcall func_00201100(void *p);
+void __stdcall func_00202A40(void *p);
+
+struct S_001D8AA0_Local {
+    char pad0[0xC];
+    u32 fC;
+    u32 f10;
+    char pad14[0x14];
+};
+
+/* XboxVideoCard */
+struct XboxVideoCard {
+    void *vtbl;
+    u32 f4;
+    char pad8[0x14];
+    u32 f1C;
+    u32 f20;
+    char pad24[0x20];
+    u32 f44;
+    char pad48[0x104];
+    u32 f14C;
+    u32 f150;
+    int func_001D8140(S_001D8AA0_Local *out, void *a, u32 b);
+    int func_001D8970(int a, int b, int c);
+    void func_001D8AA0(void *param_1);
+    int func_001D8A10(int a1, int a2, int a3, int a4, int a5, int a6, int a7);
+};
+
+struct S_001D8AE0_S3 {
+    int a;
+    int b;
+    int c;
+};
+
+struct C_001D8AE0 {
+    S_001D8AE0_S3 sub;
+    u32 fC;
+    u32 f10;
+    void func_001D8AE0(int p1, int p2, int p3, int p4, int p5);
+};
+
+struct PageObjDtor {
+    virtual void destroy(int flags);
+};
+
+/* XboxWater */
+struct XboxWater {
+    void *vtbl;
+    char pad4[0x2A8];
+    u32 f2AC;
+    char pad2B0[0x8];
+    u32 f2B8;
+    char pad2BC[0x8];
+    u32 f2C4;
+    char pad2C8[0x8];
+    u32 f2D0;
+    char pad2D4[0x18];
+    void *f2EC;
+    PageObjDtor *f2F0;
+    void func_001D8B70();
+    void func_001C8740();
+};
 
 extern int D_0028F7FC;
 extern int D_0028F774;
