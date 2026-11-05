@@ -85,8 +85,6 @@ VehicleAI *VehicleAI::func_000B1EE0(int a0) {
 }
 
 void VehicleAI::func_000B1F70(void) {
-    u32 *p;
-
     f70 = 0;
     f2A9 = 0;
     f2AB = 0;
@@ -94,11 +92,7 @@ void VehicleAI::func_000B1F70(void) {
     f1A1 = 0;
     f5C = 0;
     f58 = 0;
-    p = &f8C;
-    p[0] = D_002A2DC4;
-    p[1] = D_002A2DC8;
-    p[2] = D_002A2DCC;
-    p[3] = D_002A2DD0;
+    *(VehicleV4 *)&f8C = *(VehicleV4 *)&D_002A2DC4;
     if (f2A7 == 1) {
         f60 = f3C->f4B8 + 2;
         f2A8 = 1;
