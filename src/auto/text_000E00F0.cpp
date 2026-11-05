@@ -117,3 +117,26 @@ void C_000E0D50::func_000E0DF0()
     }
     func_001BE3F0();
 }
+
+void C_000E0D50::func_000E0E30()
+{
+    func_001BEFC0(1, 4);
+    unk28C = 0;
+    unk290 = 0;
+    unk294 = 0;
+    unk2A0 = 1;
+    unk2A8 = 0;
+    unk2B0 = 0;
+    unk2AC = 0;
+    unk2B8 = 0;
+    unk2BC = 0;
+    unk2C0 = 0;
+    unk2C4 = 0;
+    unk2C8 = 0;
+    D_002B91AC->unk34->func_0005E840(D_002A8490->f2E8->f4->fA10);
+    D_002B91AC->func_000BF860(0, 0x1EB, 0x184, 0);
+    D_002B91AC->unk38->func_0005E840(D_002A8490->f2E8->f4->f7C8);
+    D_002B91AC->func_000BF860(1, 0x17B, 0x184, 0);
+    D_002B91AC->unk3C->func_0005E840(D_002A8490->f2E8->f4->f838);
+}
+
