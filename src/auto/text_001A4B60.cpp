@@ -4,9 +4,40 @@
 #include <xmmintrin.h>
 
 extern int D_0028B84C;
+extern int D_0028B8DC;
 void func_001E891B(void *p);
 void func_00030AC0(float *out, float *v, float *m);
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
+
+struct C_00157600 {
+    void func_00157600(void *a);
+    void func_00157660(void);
+};
+
+/* SplashScreenManager */
+struct SplashScreenManager {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    int f28;
+    char pad2C[0x80];
+    int fAC;
+    int fB0;
+    int fB4;
+    int fB8;
+    u8 fBC;
+    char padBD[0x103];
+    int f1C0;
+    int f1C4;
+    int f1C8;
+    void **f1CC;
+    int f1D0;
+    void **f1D4;
+    int f1D8;
+    int f1DC;
+    SplashScreenManager *func_001A58D0(void *a);
+    void func_001A5950(void);
+};
 
 struct Vec4 {
     int x, y, z, w;
