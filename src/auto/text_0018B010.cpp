@@ -215,6 +215,23 @@ void Lights::func_0018BEB0()
     func_00157660();
 }
 
+void *PhysicsObjectStaticModel::func_0018BF10(int flags)
+{
+    int func_001E891B(...);
+    void *p = unkC;
+    vtbl = (void *)&D_00289F8C;
+    if (p != 0) {
+        *(void **)p = (void *)&D_00289ED8;
+        func_001E891B(p);
+        unkC = 0;
+    }
+    vtbl = (void *)&D_00289F60;
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 undefined4 C_0018BF60::func_0018BF60(byte param_1)
 {
   int func_0018B540(...);
