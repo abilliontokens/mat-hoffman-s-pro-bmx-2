@@ -65,6 +65,31 @@ struct C_000D2860 {
     void func_000D2860(void);
 };
 
+struct C_Ret_D24B0 {
+    char pad0[0x678];
+    int f678[0x100];
+    char pad_a[0x1318 - 0x678 - 0x400];
+    int f1318[0x100];
+};
+struct C_Mgr_D24B0 {
+    char pad0[0x2C0];
+    C_0005C020 *f2C0;
+    char pad2C4[0x14];
+    int f2D8;
+    char pad2DC[0x34C - 0x2DC];
+    int f34C[8];
+    int f36C[8];
+};
+struct C_000D24B0 {
+    char pad0[0x418];
+    int f418;
+    char pad41C[0x2034 - 0x41C];
+    C_001B17D0 *f2034;
+    void func_000D24B0(void);
+};
+extern char D_0027EEFC[];
+extern char D_0027EEF4[];
+void func_001ADCC0(char *buf, int size, char *fmt, int a, char *s, int b);
 extern C_Root_D1 *D_002A8490;
 extern int D_00277038;
 extern int D_0027A2A8;
