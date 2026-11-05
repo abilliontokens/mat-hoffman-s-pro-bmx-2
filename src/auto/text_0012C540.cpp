@@ -22,6 +22,23 @@ struct C_0013B210 {
 extern C_0013B210 *D_002BEAAC;
 void func_001E891B(void *);
 
+struct Vec12C { float x,y,z; };
+struct Vec16C { float x,y,z,w; };
+struct C_0012C540 {
+ char pad[0x24];
+ Vec12C *a,*b,*c;
+ char pad30[0x10];
+ int count;
+ int *d;
+ int func_0012C540(char *, Vec16C *);
+ void func_0012BB60(char *,char *);
+};
+extern int D_002A3F00, D_002A3F04, D_002A3F08, D_002A3F0C;
+extern char D_0028422C[],D_00275FB4[];
+void D_00021290();
+void *func_001E8A44(unsigned int);
+void __stdcall func_00011FF0(void *, int, int, void (*)());
+void func_00030F30(char *,char *);
 struct C_0012C8F0 {
     undefined4 func_0012C8F0(byte param_1);
 };
