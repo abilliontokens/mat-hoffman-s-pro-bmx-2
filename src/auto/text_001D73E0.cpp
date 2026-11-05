@@ -162,6 +162,15 @@ int func_001D7D40()
     return ++D_002F0BBC;
 }
 
+void XboxVideoCard_001D7E30::func_001D7E30(void)
+{
+    if (D_002F0BB8 != 0) {
+        func_001FFB70();
+        D_002F0BB8 = 0;
+    }
+    ((C_00012140 *)this)->func_00012140();
+}
+
 struct C_001D8310 {
     void **vtbl;
     char pad4[0x9D0];
