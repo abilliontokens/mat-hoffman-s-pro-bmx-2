@@ -66,6 +66,13 @@ struct C_001EEE62 {
     void *func_001EEE62(int param_1, int param_2);
 };
 
+struct C_001F311D_Ctx {
+    int unk0[2];
+    int unk8[2];
+    int unk10[2];
+    C_001F311D_A unk18;
+};
+
 
 #pragma optimize("s", on)
 void *func_001F306F(void *param_1, int param_2) {
