@@ -103,4 +103,9 @@ int __stdcall func_001E2835(const char *name)
     return 0;
 }
 
+int __stdcall func_001E2850(int *section)
+{
+    return section[2];
+}
+
 #pragma optimize("", on)
