@@ -192,6 +192,51 @@ int C_001D8970::func_001D8970(int a1, int a2, int a3)
     return 1;
 }
 
+int XboxVideoCard::func_001D8A10(int a1, int a2, int a3, int a4, int a5, int a6, int a7)
+{
+    if (D_002F0BB8 == 0)
+        return 0;
+    if (a3 == 0x10) {
+        this->f14C = 5;
+    } else if (a3 == 0x20) {
+        this->f14C = 6;
+    } else {
+        return 0;
+    }
+    if (a4 == 0)
+        a4 = 2;
+    this->f150 = a4;
+    if (this->func_001D8970(a1, a2, a5) == 0)
+        return 0;
+    this->f20 = a2;
+    this->f4 = a3;
+    this->f1C = a1;
+    return 1;
+}
+
+void XboxVideoCard::func_001D8AA0(void *param_1)
+{
+    S_001D8AA0_Local local;
+    if (this->func_001D8140(&local, param_1, this->f44) != 0) {
+        this->func_001D8970(local.fC, local.f10, 0);
+    }
+}
+
+void C_001D8AE0::func_001D8AE0(int p1, int p2, int p3, int p4, int p5)
+{
+    S_001D8AE0_S3 t;
+    u32 *q = (u32 *)&sub;
+    q[2] = 0;
+    q[1] = 0;
+    q[0] = 0;
+    t.a = p1;
+    t.b = p2;
+    t.c = p3;
+    sub = t;
+    fC = p4;
+    f10 = p5;
+}
+
 C_001D8B40 *C_001D8B40::func_001D8B40(void *param)
 {
     ((C_001C99E0_1D8340 *)this)->func_001C99E0(param);
@@ -201,3 +246,19 @@ C_001D8B40 *C_001D8B40::func_001D8B40(void *param)
     vtbl = (void *)&D_0028F7FC;
     return this;
 }
+
+void XboxWater::func_001D8B70()
+{
+    vtbl = (void *)&D_0028F7FC;
+    if (f2F0 != 0)
+        f2F0->destroy(1);
+    MmFreeContiguousMemory(func_001FF410(&f2AC, 0));
+    MmFreeContiguousMemory(func_001FF410(&f2B8, 0));
+    MmFreeContiguousMemory(func_001FF410(&f2C4, 0));
+    if (f2D0 != 0)
+        func_00201100((void *)f2D0);
+    if (f2EC != 0)
+        func_00202A40(f2EC);
+    func_001C8740();
+}
+
