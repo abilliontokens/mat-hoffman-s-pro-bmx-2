@@ -197,6 +197,23 @@ void C_001CDCF0::func_001CDCF0(void)
     func_001E891B(f14);
 }
 
+void __stdcall func_001CDE40(S_001CDE40_Owner *owner, S_001CDE40_Obj *obj)
+{
+    owner->func_001CBCF0(obj);
+    if (obj != 0) {
+        if (obj->f8 != 0) {
+            obj->f8->Release();
+        }
+        if (obj->fC != 0) {
+            obj->fC->Release();
+        }
+        if (obj->f10 != 0) {
+            MmFreeContiguousMemory(obj->f10);
+        }
+        func_001E891B(obj);
+    }
+}
+
 int S_SoundElemList::func_001CDE90(S_SoundElem *elem)
 {
     if (count >= capacity && !func_0015ACA0(count + growBy)) {
