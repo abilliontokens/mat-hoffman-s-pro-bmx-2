@@ -23,7 +23,7 @@ struct C_001B1980 {
     void func_001B1AB0(int a, int b);
     void func_001B1BF0(int a);
 };
-extern float D_00275998;
+extern const float D_00275998;
 
 struct C_001C01B0 {
     void func_001C01B0();
