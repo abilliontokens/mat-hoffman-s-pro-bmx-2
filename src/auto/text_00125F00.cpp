@@ -71,3 +71,32 @@ int func_00126770(S_00126770_Rec *src, S_00126770_Rec *outA, S_00126770_Rec *out
     }
     return 0;
 }
+
+int func_001268E0(S_001268E0_Rec *src, S_001268E0_Vec *pos, S_001268E0_Rec *outA, S_001268E0_Rec *outB, S_001268E0_Vec *posA, S_001268E0_Vec *posB, int count, int *cntA, int *cntB, float thr, int mode)
+{
+ int sel;
+ S_001268E0_Rec *r;
+ S_001268E0_Vec *p;
+ *cntA = 0; *cntB = 0;
+ if(count > 0) {
+ p=pos; r=src;
+ for (int i = 0; i < count; i++) {
+ switch(mode) {
+ case 0: if(p->f[0] > thr) sel=1; else sel=0; break;
+ case 1: if(p->f[1] > thr) sel=1; else sel=0; break;
+ case 2: if(p->f[2] > thr) sel=1; else sel=0; break;
+ }
+ if(sel) {
+ outA[*cntA].a = r->a; outA[*cntA].b = r->b;
+ posA[*cntA] = *p; (*cntA)++;
+ } else {
+ outB[*cntB].a = r->a; outB[*cntB].b = r->b;
+ posB[*cntB] = *p; (*cntB)++;
+ }
+ r++; p++;
+ }
+ }
+ if(*cntB && *cntA) return 1;
+ *cntA=count/2; *cntB=count-count/2; return 0;
+}
+
