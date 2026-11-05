@@ -41,6 +41,33 @@ struct C_00026270 {
     void func_00026270(int a0);
 };
 
+extern "C" int strcmp(const char *a, const char *b);
+char *func_001E8BF0(char *dst, const char *src, int n);
+
+struct S_000264C0_Mat {
+    float m[16];
+};
+
+struct C_000264C0 {
+    S_000264C0_Mat mat;
+    C_000264C0 *func_000264C0(S_000264C0_Mat *src);
+};
+
+struct S_00026500_Entry {
+    char name[0x20];
+    int value;
+    char pad[0x2c];
+};
+
+struct C_00026500 {
+    char pad0[0x2c];
+    int count;
+    int f30;
+    char pad34[0x2c];
+    S_00026500_Entry entries[1];
+    int func_00026500(const char *name, int value);
+};
+
 
 void C_000261F0::func_000261F0(float delta)
 {
