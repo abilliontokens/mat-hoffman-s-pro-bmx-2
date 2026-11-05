@@ -196,7 +196,6 @@ struct C_001D6290 {
     C_001D6290Owner *unk40;
     char pad44[0xc];
     unsigned char unk50;
-    void ftoi(int *out, float f) { *out = _mm_cvttss_si32(_mm_load_ss(&f)); }
     int func_001D6290(void);
 };
 
