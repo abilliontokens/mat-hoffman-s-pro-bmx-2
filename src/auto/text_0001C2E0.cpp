@@ -34,6 +34,49 @@ struct C_0001C920 {
     void func_0001C920(void);
 };
 
+struct C_0001C9C0 {
+    int unk0;
+    void func_00157660(void);
+    void *func_0001C9C0(int flags);
+};
+
+struct C_0001C520 {
+    int unk0;
+    char pad4[0x14];
+    int unk18;
+    int unk1C;
+    void func_0001E050(void);
+    C_0001C520 *func_0001C520(void);
+};
+
+struct C_0013B210 {
+    void func_0013B210(void *);
+};
+
+struct C_0001C550 {
+    int unk0;
+    void func_0001C290(void);
+    void func_0001DFF0(void);
+    void *func_0001C550(int flags);
+};
+
+struct C_0001C4C0_Item {
+    virtual void dummy0();
+    virtual void dummy1();
+    virtual void dummy2();
+    virtual void dummy3();
+    virtual void dummy4();
+    virtual void dummy5();
+    virtual void func_0001C4C0(int *);
+};
+
+struct C_0001C4C0 {
+    char pad0[0x18];
+    int unk18;
+    C_0001C4C0_Item **unk1C;
+    void func_0001C4C0(int *);
+};
+
 
 void C_0001C540::func_0001C540(void) {
     unk10 = 0;
