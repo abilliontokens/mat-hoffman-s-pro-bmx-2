@@ -413,12 +413,9 @@ SphereCollisionObject *SphereCollisionObject::func_001A4A50(int param)
 void SphereCollisionObject::func_001A4AE0(u32 *pos, float *radius)
 {
     if (pos != 0) {
-        u32 *p = (u32 *)&fA8;
+        V4_001A3BF0 *p = (V4_001A3BF0 *)&fA8;
 
-        p[0] = pos[0];
-        p[1] = pos[1];
-        p[2] = pos[2];
-        p[3] = pos[3];
+        *p = *(V4_001A3BF0 *)pos;
     }
     if (radius != 0) {
         float r = *radius;
