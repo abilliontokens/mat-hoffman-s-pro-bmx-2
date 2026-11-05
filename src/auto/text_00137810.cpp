@@ -137,7 +137,7 @@ struct S_137F90_RS {
 
 __declspec(align(16)) struct S_137F90_Mat {
     float m[16];
-    void identity(void)
+    __forceinline void identity(void)
     {
         _mm_store_ps(&m[0], _mm_setzero_ps());
         _mm_store_ps(&m[4], _mm_setzero_ps());
