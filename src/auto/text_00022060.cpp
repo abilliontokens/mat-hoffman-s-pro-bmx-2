@@ -8,6 +8,7 @@ struct S_Vec4i_00022320 {
     int x, y, z, w;
 };
 extern S_Vec4i_00022320 D_002A0F74;
+extern int D_002A0F78, D_002A0F7C, D_002A0F80;
 extern char D_002A0F94[];
 extern char D_002A0FA4[];
 
