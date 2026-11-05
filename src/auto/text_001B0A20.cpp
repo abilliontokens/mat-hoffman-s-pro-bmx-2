@@ -813,6 +813,32 @@ void C_001B1580::func_001B15F0()
     unk24->func_001D6440();
 }
 
+int C_001B1580::func_001B1640() {
+    if (unk80) {
+        if (unk80 == D_002EFDB8[1] && unk64 && unk74) {
+        unk24->func_0005E9A0(unk164);
+        unk24->func_00082400((int)unk168);
+        unk24->set34(unk16C);
+        unk24->set38(unk170);
+        unk24->func_0005E960(unk2C, unk30);
+        unk24->set44(unk68);
+        unk24->func_001D6600();
+        }
+    } else if (unk64 && unk74) {
+        unk24->func_0005E9A0(unk164);
+        unk24->func_00082400((int)unk168);
+        unk24->set34(unk16C);
+        unk24->set38(unk170);
+        unk24->func_0005E960(unk2C, unk30);
+        unk24->set44(unk68);
+        unk24->func_001D6600();
+        func_001FD020(&D_0004035C, 1);
+        func_001FE490(1);
+    }
+    func_00157960();
+    return 1;
+}
+
 void C_001B1580::func_001B17D0(const char *s)
 {
     if (unkC0 == 0) {
