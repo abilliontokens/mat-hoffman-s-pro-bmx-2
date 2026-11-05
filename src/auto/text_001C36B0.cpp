@@ -297,6 +297,34 @@ void DXVertexBufferCache::func_001C3A10(void)
     }
 }
 
+void DXIndexBufferCache::func_001C3A80(void)
+{
+    DXIndexBuffer *p = (DXIndexBuffer *)f4;
+    vtbl = &D_0028E348;
+    if (p != 0) {
+        p->vtbl = &D_0028E30C;
+        if (p->f14 != 0) {
+            func_00201100(p->f14);
+            p->f14 = 0;
+        }
+        p->vtbl = &D_0028E2E8;
+        p->f8 = 0;
+        p->fC = 0;
+        p->f10 = 0;
+        func_001E891B(p);
+        f4 = 0;
+    }
+    {
+        void *p8 = f8;
+        vtbl = &D_0028E33C;
+        if (p8 != 0) {
+            ((C_0012A330 *)p8)->func_0012A330();
+            func_001E891B(p8);
+            f8 = 0;
+        }
+    }
+}
+
 void BufferManager::func_001C3AF0(void)
 {
     f4 = 0;
@@ -328,6 +356,34 @@ void DXVertexBufferManager::func_001C3BD0(void)
     unk0 = (int)&D_0028E360;
     ((BufferManager *)this)->func_001C3AF0();
     unk0 = (int)&D_0028E354;
+}
+
+int DXVertexBufferCache::func_001C3BF0(int a1, int a2)
+{
+    DXVertexBufferCache *cache = (DXVertexBufferCache *)func_001E8A44(0xc);
+    if (cache == 0) {
+        return 0;
+    }
+    cache->f4 = 0;
+    cache->f8 = 0;
+    cache->vtbl = &D_0028E384;
+    cache->func_001C3830(a1, a2);
+    if (f8 == 0) {
+        f8 = (void *)func_001E8A44(0xc);
+        if (f8 != 0) {
+            f8 = ((C_00160A60 *)f8)->func_00160A60();
+        }
+        if (f8 == 0) {
+            goto fail;
+        }
+    }
+    if (((C_00160A70 *)f8)->func_00160A70(cache) != 0) {
+        return 1;
+    }
+fail:
+    cache->func_001C3A10();
+    func_001E891B(cache);
+    return 0;
 }
 
 void C_001C3D30::func_001C3D30(int a0) {
