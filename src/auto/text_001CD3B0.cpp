@@ -19,6 +19,16 @@ struct S_SoundElem {
     virtual void v7();
     virtual void v8();
     virtual void v9(int a);
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18(int a);
+    virtual void v19(int a);
     char pad4[0x1a4];
     int f1A8;
 };
