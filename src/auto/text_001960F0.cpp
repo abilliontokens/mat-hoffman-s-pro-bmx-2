@@ -1,6 +1,8 @@
 /* 9 functions from 0x001960F0 to 0x00196C00, found by Ghidra. */
 #include "common.h"
 
+extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
+
 struct C_00196290 {
     char pad0[0x24];
     int f24;
