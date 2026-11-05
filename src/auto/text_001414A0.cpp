@@ -48,9 +48,9 @@ int func_00141780(C_00168BE0 *cfg, const char *key, int def, int &out)
     } else if (strcmp(buf, "D3DBLENDOP_MAX") == 0) {
         out = 0x8008;
     } else if (strcmp(buf, "D3DBLENDOP_ADDSIGNED") == 0) {
-        out = 0xf006;
+        out = (int)&D_0000F006;
     } else if (strcmp(buf, "D3DBLENDOP_REVSUBTRACTSIGNED") == 0) {
-        out = 0xf005;
+        out = (int)&D_0000F005;
     }
     return out;
 }
