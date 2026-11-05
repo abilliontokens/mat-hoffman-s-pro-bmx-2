@@ -199,6 +199,11 @@ void C_0015CD50::func_0015CD50(uint param_1)
   return;
 }
 
+void C_0015CD70::func_0015CD70(S_0015CD70_Vec4 *p)
+{
+    f24 = *p;
+}
+
 void C_0015CFE0::func_0015CFE0(undefined4 param_1)
 {
   int __stdcall func_001577A0(int, int);
