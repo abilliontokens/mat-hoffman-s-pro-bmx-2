@@ -44,6 +44,10 @@ struct S_002F6A20 {
     void func_001EF3D2(S_001EF734 *n);
 };
 extern S_002F6A20 *D_002F6A20;
+struct S_001EEEE6 {
+    S_001EF734 v;
+    S_001EEEE6(const S_001EF734 &src);
+};
 extern char D_00295CBC[];
 extern char D_00295CAC[];
 extern char D_00295CA8[];
