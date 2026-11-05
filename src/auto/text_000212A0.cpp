@@ -92,6 +92,69 @@ W4_000212A0 *W4_000212A0::func_000212A0(u32 *p)
     return this;
 }
 
+float *func_00021330(V4_000212A0 *out, V4_000212A0 *a, V4_000212A0 *b)
+{
+    V4_000212A0 r;
+    float d = b->y * a->y + a->x * b->x + b->z * a->z;
+
+    r.x = a->x - d * b->x;
+    r.y = a->y - d * b->y;
+    r.z = a->z - d * b->z;
+    r.w = 1.0f;
+    *out = r;
+    if (out->x == D_00275544 && out->y == D_00275544 && out->z == D_00275544) {
+        return 0;
+    }
+    return &out->x;
+}
+
+C_000213F0 *C_000213F0::func_000213F0(int a)
+{
+    ((C_00157600 *)this)->func_00157600(a);
+    vtbl = &D_002760E4;
+    f7c = 0;
+    f78 = 0;
+    f74 = 0;
+    f80 = 0x3f800000;
+    f8c = 0;
+    f88 = 0;
+    f84 = 0;
+    f90 = 0x3f800000;
+    f9c = 0;
+    f98 = 0;
+    f94 = 0;
+    fa0 = 0x3f800000;
+    f2c = 0;
+    f48 = 0;
+    f54 = 0;
+    f30 = 0;
+    f34 = 0;
+    f38 = 0;
+    f3c = 0;
+    f40 = 0;
+    f60 = 0;
+    f64 = 0;
+    f68 = 0;
+    f6c = 0;
+    f5c = 0;
+    f44 = 0;
+    f58 = 0;
+    f74 = D_002A0F74;
+    f78 = D_002A0F78;
+    f7c = D_002A0F7C;
+    f80 = D_002A0F80;
+    f24 = 0;
+    f4c = 0;
+    f28 = 0;
+    return this;
+}
+
+void C_000216F0::func_000216F0(int a0, int idx, int val)
+{
+    f70[idx - 1]->fc[f70[idx - 1]->f4] = val;
+    f70[idx - 1]->f4++;
+}
+
 C_00021720* C_00021720::func_00021720(void) {
     unk8 = 0;
     unk4 = 0;
