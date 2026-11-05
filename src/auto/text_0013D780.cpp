@@ -250,8 +250,7 @@ void func_0013E260(int obj, int id, int fmt, ...)
         va_start(ap, fmt);
         func_001ADD20(buf, 0x200, fmt, ap);
         va_end(ap);
-        int n = *(int *)(obj + 0x224) + 1;
-        *(int *)(obj + 0x224) = n;
+        int n = ++*(int *)(obj + 0x224);
         ((C_0013E170 *)obj)->func_0013E170(n, buf, 1);
     }
 }
