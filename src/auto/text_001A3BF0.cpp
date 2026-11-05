@@ -115,7 +115,7 @@ struct C_001A4590 {
     int pad2d0;
     int f2d4;
     void func_001A1FB0(int a0, int a1, S36_1A s0, S16_1A s1, S16_1A s2, int a19, int a20, int a21, int a22, int a23);
-    int func_001A3DA0(int a0);
+    int func_001A3DA0(int volatile a0);
     C_001A4590 *func_001A4590(int a0, int a1, int a2, int a3, S36_1A s0, S16_1A s1, S16_1A s2, int a21, int a22, int a23, int a24, int a25);
 };
 
@@ -374,6 +374,91 @@ undefined4 C_001A3D80::func_001A3D80(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+int C_001A4590::func_001A3DA0(int a0)
+{
+    C_00168280 obj;
+    char buf3[0x104];
+    char buf[0x104];
+    char buf2[0x104];
+    C_001A4590 * volatile self = this;
+    volatile int len;
+    volatile int limit;
+    volatile int cnt;
+    int a;
+    int b;
+    int c;
+    int d;
+    int i;
+    int ma;
+    int mb;
+    int n;
+
+    obj.func_00168280();
+    len = strlen((const char *)a0);
+    limit = 0x103;
+    ma = limit;
+    mb = len;
+    cnt = ma > mb ? mb : ma;
+    n = cnt;
+    func_001E8920(self->name9c, (const char *)a0, n);
+    self->name9c[n] = 0;
+    func_001ADCC0(buf, 0x104, D_00275678, D_002A48F8, a0);
+    if (obj.func_00169490(buf, 0) == 0) {
+        obj.func_001691E0();
+        return 0;
+    }
+    func_001ADCC0(buf2, 0x104, D_0028B7CC);
+    if (obj.func_00169710(buf2) != 0) {
+        obj.func_00168C20(D_00284BE8, 0, &a);
+        obj.func_00168C20(D_0028B7B8, 0, &b);
+        for (i = 1; i <= a; i++) {
+            func_001ADCC0(buf2, 0x104, D_00284AB0, i);
+            if (obj.func_00169710(buf2) != 0) {
+                S_001A3DA0_Item *item;
+                C_001A4590 *p;
+                C_001A4440_List *list;
+                int flags;
+
+                obj.func_00168BE0(D_0027A1F8, D_00275630, buf3, -1);
+                obj.func_00168C20(D_00287DA0, 0, &c);
+                obj.func_00168C20(D_0028B7B0, 0, &d);
+                item = (S_001A3DA0_Item *)func_001E8A44(0xc);
+                item->f4 = c;
+                item->f8 = d;
+                p = self;
+                flags = (p->f1a0 & 8) ? 1 : 9;
+                if (c != 0) {
+                    flags |= 0x80;
+                }
+                item->f0 = p->f1a4->fb4->func_001CFE90(p->f24, (int)buf3, flags, 1, (int)p->f3c, 0);
+                list = (C_001A4440_List *)self->list1c8;
+                if (list->count >= list->capacity) {
+                    if (!list->func_0015ACA0(list->base + list->count)) {
+                        continue;
+                    }
+                }
+                list->items[list->count] = item;
+                list->count++;
+            }
+        }
+        for (i = 1; i <= b; i++) {
+            func_001ADCC0(buf2, 0x104, D_0028B7A0, i);
+            if (obj.func_00169710(buf2) != 0) {
+                S_001A3DA0_Rec *r = (S_001A3DA0_Rec *)((char *)self + 0x1d0) + i;
+
+                obj.func_00168C20(D_0028B798, -1, &r->f0);
+                r = (S_001A3DA0_Rec *)((char *)self + 0x1d0) + i;
+                obj.func_00168C50(D_0028B78C, 0, &r->f4);
+                r = (S_001A3DA0_Rec *)((char *)self + 0x1d0) + i;
+                r->f8 = 0;
+            }
+        }
+        self->f2d4 = b;
+    }
+    obj.func_001691E0();
+    return 1;
 }
 
 undefined4 C_001A40E0::func_001A40E0(byte param_1)
