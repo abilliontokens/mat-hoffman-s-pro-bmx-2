@@ -141,3 +141,25 @@ int C_00097C20::func_00097C20(void)
   return 0;
 }
 
+undefined4 C_00097C60::func_00097C60(void)
+{
+  int in_ECX = (int)this;
+  int iVar1;
+
+  if (*(int *)(*(int *)(in_ECX + 0x198) + 0x1c8) != 0) {
+    iVar1 = *(int *)(in_ECX + 0x1c);
+  }
+  else {
+    iVar1 = *(int *)(in_ECX + 0x18);
+  }
+  switch (iVar1) {
+  case 0:
+    return *(undefined4 *)(in_ECX + 0xc);
+  case 1:
+    return *(undefined4 *)(in_ECX + 0x10);
+  case 2:
+    return *(undefined4 *)(in_ECX + 0x14);
+  }
+  return 0;
+}
+
