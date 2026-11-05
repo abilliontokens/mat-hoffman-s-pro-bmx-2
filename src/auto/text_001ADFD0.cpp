@@ -265,7 +265,7 @@ struct C_1AE570 {
     float f7C, f80;
     unsigned char f84_0 : 1;
     int func_001AE570(void);
-    void func_001578D0(void);
+    int func_001578D0(void);
 };
 
 float __stdcall func_001AE530(float x, float y)
