@@ -78,14 +78,20 @@ void BmxUIPageHOF::func_000D4DD0()
 {
     vtbl = &D_0027F20C;
     for (int i = 0; i < 2; i++) {
-        delete arr2EC[i];
-        arr2EC[i] = 0;
-        delete arr2F4[i];
-        arr2F4[i] = 0;
+        if (arr2EC[i] != 0) {
+            arr2EC[i]->Destroy(1);
+            arr2EC[i] = 0;
+        }
+        if (arr2F4[i] != 0) {
+            arr2F4[i]->Destroy(1);
+            arr2F4[i] = 0;
+        }
     }
     for (int i = 0; i < 2; i++) {
-        delete arr2FC[i];
-        arr2FC[i] = 0;
+        if (arr2FC[i] != 0) {
+            arr2FC[i]->Destroy(1);
+            arr2FC[i] = 0;
+        }
     }
     func_001BE3F0();
 }
