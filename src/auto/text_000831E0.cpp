@@ -258,20 +258,20 @@ int C_000831E0::func_00083970(const char *name, int a1, int key)
 int C_000831E0::func_000839F0(const char *name, int a, int id)
 {
     int i;
-    if (*name == 0) {
-        return 0;
-    }
-    for (i = 0; i < f2E8; i++) {
-        if (a47C[i] == id) {
-            return 0;
+    if (*name != 0) {
+        for (i = 0; i < f2E8; i++) {
+            if (a47C[i] == id) {
+                return 0;
+            }
         }
+        a47C[f2E8] = id;
+        f2E8++;
+        CopyName(s27C, name);
+        f2E0 = a;
+        f278 = 1;
+        return 1;
     }
-    a47C[f2E8] = id;
-    f2E8++;
-    CopyName(s27C, name);
-    f2E0 = a;
-    f278 = 1;
-    return 1;
+    return 0;
 }
 
 void C_000831E0::func_00083A70(const char *name)
