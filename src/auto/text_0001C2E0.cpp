@@ -292,6 +292,21 @@ void C_0001C920::func_0001C920(void) {
     func_00157660();
 }
 
+void *C_0001C930::func_0001C930(void)
+{
+    extern int D_00275C94;
+    func_0001DFE0();
+    f10C = 0;
+    f110 = 0;
+    f114 = 0;
+    f118 = 0;
+    f11C = 0;
+    f120 = 0;
+    f8 = 0;
+    vtbl = (void *)&D_00275C94;
+    return this;
+}
+
 void C_0001C970::func_0001C970(void) {
     extern int D_00275C94;
     int func_0001DFF0(...);
