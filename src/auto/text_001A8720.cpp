@@ -148,8 +148,8 @@ void C_001A8B80::func_001A95B0(V4_001A8B80 a, V4_001A8B80 b, V4_001A8B80 c, V4_0
         it->d = d;
         it->f48 = f;
         it->f40 = g;
-        it->f44 = e;
         it->f50 = h;
+        it->f44 = e;
         f88++;
         fD8 = h;
     }
