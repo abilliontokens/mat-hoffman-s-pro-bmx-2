@@ -114,8 +114,8 @@ struct C_0016D6A0 {
     char pad194[0x14];
     u32 f1A8, f1AC;
     char pad1B0[0x60];
-    u32 f210[4];
-    u32 f220[4];
+    float f210[4];
+    float f220[4];
     C_0016D6A0 *func_0016D6A0(void *a, char *name, void *b, u32 *c);
 };
 
@@ -178,6 +178,69 @@ struct C_0016D8D0 {
     float f220[4];
     int func_0016D8D0(S_0016D8D0_Stream *stream);
 };
+
+C_0016D6A0 *C_0016D6A0::func_0016D6A0(void *a, char *name, void *b, u32 *c)
+{
+    volatile int tmp[4];
+
+    ((C_001D3F50 *)this)->func_001D3F50();
+    f64 = a;
+    if (b) {
+        f68 = b;
+        if (c) *(V4u_0016D6A0 *)&f44 = *(V4u_0016D6A0 *)c;
+    }
+    if (!a) {
+        f1AC = 0x68;
+        f1A8 = 0x68;
+        f188 = 0x68;
+        tmp[1] = 0;
+        f210[1] = tmp[1];
+        tmp[0] = 0xbf800000;
+        f210[0] = tmp[0];
+        tmp[2] = 0xbf800000;
+        f210[2] = tmp[2];
+        tmp[3] = 0x3f800000;
+        f210[3] = tmp[3];
+        tmp[0] = 0x3f800000;
+        f220[0] = tmp[0];
+        tmp[1] = 0;
+        f220[1] = tmp[1];
+        tmp[2] = 0x3f800000;
+        f220[2] = tmp[2];
+        tmp[3] = 0x3f800000;
+        f220[3] = tmp[3];
+    } else {
+        f64 = a;
+        strcpy(&f6C, D_002A5558);
+        if (!name) {
+            ((ParticleEmitterResetVT *)this)->v2();
+            return 0;
+        }
+        strcat(&f6C, name);
+        if (((C_0016A330 *)this)->func_0016A330(&f6C)) return this;
+        tmp[1] = 0;
+        f210[1] = tmp[1];
+        tmp[0] = 0xbf800000;
+        f210[0] = tmp[0];
+        tmp[2] = 0xbf800000;
+        f210[2] = tmp[2];
+        tmp[3] = 0x3f800000;
+        f210[3] = tmp[3];
+        tmp[0] = 0x3f800000;
+        f220[0] = tmp[0];
+        tmp[1] = 0;
+        f220[1] = tmp[1];
+        tmp[2] = 0x3f800000;
+        f220[2] = tmp[2];
+        tmp[3] = 0x3f800000;
+        f220[3] = tmp[3];
+    }
+    f170 = 5000.0f;
+    f174 = 0.0f;
+    f17C = 500.0f;
+    f190 = 0x2005;
+    return this;
+}
 
 void C_0016D8A0::func_0016D8A0(int a, int b, int c, int d)
 {
