@@ -187,6 +187,15 @@ void C_00108610::func_00108610(int a0, int a1) {
     unk20B8 = a0;
 }
 
+void C_00108680::func_00108630(int arg)
+{
+    C_00083B20 *p = D_002A8490->f2A4->items[unkA2C];
+
+    if (p != 0) {
+        p->func_00083B20(arg);
+    }
+}
+
 int C_00108660::func_00108660(void) {
     return unk20A4;
 }
