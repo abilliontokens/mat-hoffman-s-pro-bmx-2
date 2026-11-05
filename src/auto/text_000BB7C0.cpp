@@ -418,6 +418,56 @@ void C_000BB7C0::func_000BB7C0(int idx)
     f25C->f74->func_000301A0();
 }
 
+void C_000BBE30::func_000BBA80(int idx, char *buf)
+{
+    char bufY[0x104];
+    char bufZ[0x104];
+    char bufX[0x104];
+    S_000BBA80_Vec4 pos;
+    S_000BBA80_Vec4 a0;
+    S_000BBA80_Vec4 a1;
+    S_000BBA80_Entry *e;
+    S_000BBA80_Anim *a;
+    int i;
+
+    e = f150->f484->f2C->f28[idx];
+    e->f1A4->f4->func_00197E70(&pos);
+    e->f1A4->f4->func_00197B40(&a0, &a1);
+    e->f1A4->func_00132D70();
+    for (i = 0; i < e->f58; i++) {
+        e->f1AC[i]->f40++;
+    }
+    e->f1A4->func_00157810();
+    e->f1A4->v2();
+    func_001ADCC0(D_002A46E8, 0x104, D_00275678, D_002A5870, D_002A45E0);
+    func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5870, D_002A45E0);
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+    func_001ADCC0(D_002A4C10, 0x104, D_00275678, D_002A5870, D_002A45E0);
+    func_001ADCC0(bufX, 0x104, D_00276C34, D_002A64D0, buf);
+    D_002BEAAC->func_0013C660(1);
+    D_002BEAAC->func_0013D780(bufX, 1, 0, 0, 0, 0, 0, 0);
+    D_002BEAAC->func_0013B260(1);
+    func_001ADCC0(bufY, 0x104, D_0027DB60, buf);
+    func_001ADCC0(bufZ, 0x104, D_0027D170, buf);
+    a = (S_000BBA80_Anim *)func_001E8A44(0x2b8);
+    e->f1A4 = a ? a->func_001328F0(1, 1) : 0;
+    e->f1A4->func_00132A40(bufY, bufZ, 0, 1, 1, 0, 1);
+    e->f1A4->f4->f180 |= 8;
+    e->f1A4->f4->f180 |= 0x10;
+    e->f1A4->f4->func_00199650(&pos);
+    e->f1A4->f4->func_00198F50(&a0, &a1, 0, 1, 0);
+    e->f1A4->func_00132CC0(e->f44, 0, 2);
+    f150->f3AC->func_001577A0(e->f1A4, 2);
+    e->f1A4->func_00164820(e->func_001B56F0());
+    e->f1A4->func_001670C0(0, 0, 0);
+    e->f1A4->f10 = 1;
+    e->f1A4->func_00132D20();
+    f150->func_000A0B80();
+    D_002BEAAC->func_0013DFF0(bufX, 1);
+    D_002BEAAC->func_0013B260(0);
+    D_002A829C->func_001616F0();
+}
+
 int C_000BBDF0::func_000BBDF0(void)
 {
   int in_ECX = (int)this;
