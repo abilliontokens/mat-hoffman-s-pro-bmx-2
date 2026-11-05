@@ -396,6 +396,28 @@ C_001C1150 *C_001C1150::func_001C1150(int a, int b)
     return this;
 }
 
+C_001C13A0 *C_001C13A0::func_001C11E0(int a, void *name, S_001C0F20_Stream *stream)
+{
+ float v[4];
+ v[0]=1; v[1]=1; v[2]=1; v[3]=1;
+ f1f0=stream->func_00168CB0(&D_00275AD4,v,f6c);
+ v[0]=0; v[1]=0; v[2]=1; v[3]=1;
+ f1f4=stream->func_00168CB0(&D_00275AC8,v,fbc);
+ f1f4=f1f4 && (v[0]=0,v[1]=0,v[2]=1,v[3]=1,stream->func_00168CB0(&D_0027CEE4,v,fcc));
+ stream->func_00168C20(&D_0028DC84,0,(int*)((char*)this+0xb8));
+ stream->func_00168C20(&D_0028DC7C,0,(int*)((char*)this+0x98));
+ stream->func_00168C20(&D_0028DC74,0,(int*)((char*)this+0x9c));
+ stream->func_00168C20(&D_0028DC6C,0,(int*)((char*)this+0xa0));
+ stream->func_00168C20(&D_0028DC60,1,(int*)((char*)this+0xa4));
+ stream->func_00168C50(&D_0028DC54,0,(char*)this+0x8c);
+ stream->func_00168C50(&D_0028DC48,0,(char*)this+0x90);
+ stream->func_00168C50(&D_0028DC3C,0,(char*)this+0x94);
+ stream->func_00168C20(&D_0028DEEC,0,(int*)((char*)this+0x1e8));
+ *(int*)((char*)this+0x28)=a;
+ func_001ADCC0(fdc,0x104,&D_00276F28,name);
+ return this;
+}
+
 int C_001C13A0::func_001C13A0()
 {
     int result = 1;
