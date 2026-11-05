@@ -157,10 +157,13 @@ struct S_Obj528 {
     virtual void dummy6();
     char pad4[0x3c - 4];
     S_Obj3C *f3c;
+    void func_00018EB0(void);
 };
 
 struct S_List {
-    char pad0[0x4e4];
+    char pad0[0x488];
+    S_Obj488 *f488;
+    char pad48c[0x4e4 - 0x48c];
     S_Obj4E4 *f4e4[16];
     S_Item80 **f524;
     S_Obj528 *f528;
