@@ -6,7 +6,15 @@ struct Q_001A1930 { float x,y,z,w; };
 static inline Q_001A1930 Sub_001A1930(const Q_001A1930 &a,const Q_001A1930 &b) { Q_001A1930 q; q.x=a.x-b.x;q.y=a.y-b.y;q.z=a.z-b.z;q.w=1;return q; }
 struct I3_001A1930 { float x,y,z; };
 struct O_001A1930 { char pad[8]; I3_001A1930 pos; char pad14[0x24]; I3_001A1930 vel; };
-struct N_001A1930 { int unk0; O_001A1930 *obj; };
+struct N_001A1930 { int unk0; O_001A1930 *obj;
+ void GetPosition(Q_001A1930 *p) {
+  O_001A1930 *o=obj;
+  if(o) {
+   int x=((const volatile int*)&o->pos)[0],y=((const volatile int*)&o->pos)[1],z=((const volatile int*)&o->pos)[2];
+   ((int*)p)[0]=x;((int*)p)[1]=y;((int*)p)[2]=z;
+  }
+ }
+};
 struct E_001A1930 {
 virtual void v0();
 virtual void v1();
