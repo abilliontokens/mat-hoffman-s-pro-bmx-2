@@ -123,6 +123,7 @@ struct C_0015B470 {
     }
     C_0015B470 *func_0015B470(void);
     void func_0015B4E0(const char *name, int value);
+    int func_0015B570(const char *name);
 };
 
 /* element of the array owned by S_0015B310_Owned (virtual destructor in slot 0) */
