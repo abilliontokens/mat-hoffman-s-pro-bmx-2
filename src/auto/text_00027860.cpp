@@ -154,11 +154,51 @@ struct C_00028070 {
 };
 
 
+struct E_Vec { char p0[0x40]; float x, y, z; };
+struct E_Mid { char p0[0x14]; char *name; char p18[0x18]; E_Vec *vec; };
+struct E_Phys { char p0[0x238]; float x, y, z; };
+struct E_Lim { char p0[0x3C]; float lim; };
+struct E_Name { char p0[0x14]; char *name; };
+struct E_Rec { void func_000261F0(float f); };
+struct C_00027E40 {
+    char p0[0x1E0]; E_Phys *phys; char p1e4[0x8]; E_Lim *lim; char p1f0[0x20]; E_Mid *mid;
+    char p214[0x230]; int u444; char p448[0x20]; int u468; char p46c[4]; int u470; char p474[4]; int u478;
+    char p47c[0x10]; int u48c; char p490[0x158]; int u5e8; E_Rec *u5ec; char p5f0[8]; float u5f8; float u5fc;
+    char p600[0x118]; int u718; int u71c; char p720[4]; E_Name *u724;
+    void func_00027E40(void);
+};
+
 void C_00027C30::func_00027C30(void) {
     unk4F4 = 0;
     unk4F8 = 0;
     unk538 = 0;
     unk698 = 0;
+}
+
+void C_00027C50::func_00027C50(float scale) {
+    V4_00027C50 a;
+    V4_00027C50 b;
+    V4_00027C50 c;
+    float d;
+
+    a.z = 0.0f;
+    a.y = 0.0f;
+    a.x = 0.0f;
+    a.w = 1.0f;
+    b.z = 0.0f;
+    b.y = 0.0f;
+    b.x = 0.0f;
+    b.w = 1.0f;
+    unk230->func_00197B40(&a.x, &b.x);
+    a = *(V4_00027C50 *)func_0001E9E0(&c.x, &a.x);
+    d = a.y * -1.0f;
+    d += a.x * 0.0f;
+    unk580 = (d + a.z * 0.0f) * scale;
+    if (unk580 < 0.0f) {
+        unk580 = 0.0f;
+    }
+    unk56C = 1;
+    unk588 = unk584;
 }
 
 void C_00027D40::func_00027D40(void) {
