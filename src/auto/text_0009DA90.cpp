@@ -34,7 +34,7 @@ struct BmxSmokeParticleEmitter {
     u32 f1AC;
     char pad1B0[0x40];
     u32 f1F0;
-    f32 f1F4[0x100];
+    f32 f1F4[0x40][4];
     u32 f5F4;
     u32 f5F8;
     u32 f5FC;
@@ -57,13 +57,10 @@ BmxSmokeParticleEmitter *BmxSmokeParticleEmitter::func_0009DB00(int param_1)
     f174 = 2.75f;
     f1F0 = 0;
     f190 = 0x80e;
-    f32 *p = f1F4;
     for (int i = 0; i < 0x40; i++) {
-        f32 *q = p;
-        p += 4;
         for (int j = 0; j < 4; j++) {
             f32 v = (f32)func_001E8833() * D_002754B0;
-            *q++ = v + v + D_00275460;
+            f1F4[i][j] = v + v + D_00275460;
         }
     }
     f5F4 = 0;
