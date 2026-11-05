@@ -93,3 +93,25 @@ void func_001B3970(int param_1)
   }
   return;
 }
+
+void func_001B39B0(int a1, u16 a2, u16 a3, int a4, const char *name, int a6)
+{
+    S_001B35D0_Desc desc;
+
+    desc.f0 = 0;
+    desc.f1 = 0;
+    desc.f2 = 2;
+    desc.f4 = 0;
+    desc.f6 = 0;
+    desc.f8 = 0;
+    desc.fa = 0;
+    desc.fc = 0;
+    desc.fe = a2;
+    desc.f10 = a3;
+    desc.f12 = 0x18;
+    desc.f13 = 0;
+    desc.f14 = a1;
+    strcpy(desc.f1c, name);
+    func_001B35D0(&desc, a4, 0, a6);
+}
+
