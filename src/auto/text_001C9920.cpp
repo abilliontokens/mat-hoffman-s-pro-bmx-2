@@ -107,6 +107,21 @@ struct C_001CA1D0 {
     C_001CA1D0* func_001CA1D0(int a0, int a1, int a2, int a3, int a4, int a5);
 };
 
+#include <math.h>
+struct S_002F08BC { char pad[0x9c]; float unk9C; };
+extern S_002F08BC *D_002F08BC;
+extern double D_002766B8;
+struct C_001CA1F0_elem { void func_00194520(float a0, int *a1); };
+struct C_001CA1F0 {
+    char pad0[0x38];
+    float unk38;
+    float unk3C;
+    float unk40;
+    C_001CA1F0_elem **unk44;
+    int func_00157A00(float a0);
+    int func_001CA1F0(float a0);
+};
+
 struct C_001CA1C0 {
     int unk0;
     void func_001CA1C0(void);
@@ -216,5 +231,30 @@ C_001CA1D0* C_001CA1D0::func_001CA1D0(int a0, int a1, int a2, int a3, int a4, in
     unk24 = a0;
     unk50 = a2;
     return this;
+}
+
+int func_001CA360(float *n, float *p, float *a, float *b, float *out)
+{
+    float d[4];
+    float t;
+
+    d[0] = b[0] - a[0];
+    d[1] = b[1] - a[1];
+    d[2] = b[2] - a[2];
+    if (d[0] * n[0] + d[1] * n[1] + d[2] * n[2] != D_00275544) {
+        t = ((p[0] - a[0]) * n[0] + (p[1] - a[1]) * n[1] + (p[2] - a[2]) * n[2]) / (d[0] * n[0] + d[1] * n[1] + d[2] * n[2]);
+        if (t >= D_00275544 && t <= D_00275460) {
+            d[0] = d[0] * t + a[0];
+            d[1] = d[1] * t + a[1];
+            d[2] = d[2] * t + a[2];
+            d[3] = 1.0f;
+            out[0] = d[0];
+            out[1] = d[1];
+            out[2] = d[2];
+            out[3] = d[3];
+            return 1;
+        }
+    }
+    return 0;
 }
 
