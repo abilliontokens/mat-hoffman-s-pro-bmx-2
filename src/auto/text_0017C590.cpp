@@ -36,6 +36,16 @@ struct S_QuadTreeItem {
     virtual void v0(int flag);
 };
 
+struct C_0017D500_Mgr {
+    char pad0[0xC];
+    s16 fC;
+    char padE[0x890 - 0xE];
+    s16 **f890;
+    int f898;
+    int f89C;
+    void func_0017D500(S_QuadTreeListNode *node, int flag);
+};
+
 struct QuadTreeNode {
     void *vtbl;
     S_QuadTreeItem **f4;
@@ -98,6 +108,7 @@ void QuadTreeNode::func_0017CEB0(void *item)
     S_QuadTreeListNode *node;
     S_QuadTreeListNode *last;
     S_QuadTreeListNode *n;
+    u32 *p;
     int i;
 
     for (node = f8; node != 0; node = node->next) {
@@ -110,11 +121,12 @@ void QuadTreeNode::func_0017CEB0(void *item)
         last = node;
     }
     n = D_002EFD80->f90->func_0001E8A0();
-    n->next = 0;
-    n->slot[0] = 0;
-    n->slot[1] = 0;
-    n->slot[2] = 0;
-    n->slot[3] = 0;
+    p = (u32 *)n;
+    p[0] = 0;
+    p[1] = 0;
+    p[2] = 0;
+    p[3] = 0;
+    p[4] = 0;
     n->slot[0] = item;
     if (f8 == 0) {
         f8 = n;
