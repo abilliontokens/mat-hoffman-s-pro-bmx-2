@@ -142,7 +142,7 @@ struct S_001BC810_Item {
     virtual void v3();
     virtual void v4();
     virtual void v5();
-    char pad4[0x3C];
+    char pad4[0x40];
     int f44[8];
 };
 
@@ -424,6 +424,47 @@ void *C_UIGlobalManager::func_001BCA30(unsigned int flags)
         func_001E891B(this);
     }
     return this;
+}
+
+int C_UIGlobalManager::func_001BCA90()
+{
+    C_00168280 parser;
+    int result;
+    int i;
+    int j;
+    int tmp;
+    char buf[0x100];
+    S_001BC810_Item *obj;
+
+    result = 1;
+    parser.func_00168280();
+    if (parser.func_00169490(D_0028D42C, 0) != 0) {
+        parser.func_00169710(D_002769F8);
+        parser.func_00168C20(D_0027D8FC, 0, &f28);
+        f2C = (S_001BC810_Item **)func_001E8AA5(f28 * 4);
+        for (i = 0; i < f28; i++) {
+            func_001ADCC0(buf, 0x100, D_0027D8F0, i + 1);
+            obj = func_001BC870(&parser, buf);
+            j = 0;
+            if (obj == 0) {
+                f2C[i] = 0;
+                result = 0;
+            } else {
+                int *p = obj->f44;
+                do {
+                    func_001ADCC0(buf, 0x100, D_0027D8D8, j + 1);
+                    parser.func_00168C20(buf, 0, &tmp);
+                    *p = tmp;
+                    j++;
+                    p++;
+                } while (j < 8);
+                obj->v5();
+                f2C[i] = obj;
+            }
+        }
+    }
+    parser.func_001691E0();
+    return result;
 }
 
 void *C_UIGlobalManager::func_001BCBE0(void *a1, void *a2, int a3)
