@@ -126,8 +126,8 @@ struct S_001DD670_Overlapped {
 unsigned __int64 __rdtsc();
 #pragma optimize("y", on)
 #pragma optimize("s", on)
+int __stdcall func_001DCDC7(int, int, int, int, int, int);
 void __stdcall func_001DD0A9(int a0, int a1, int a2) {
-    void __stdcall func_001DCDC7(int, int, int, int, int, int);
     func_001DCDC7(a0, a1, 0, 0, 0, a2 != 0);
 }
 void __stdcall func_001DD0C8(u32 *a0) {
