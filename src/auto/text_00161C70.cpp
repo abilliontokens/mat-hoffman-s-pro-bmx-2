@@ -254,6 +254,30 @@ void C_00162610::func_00162660(void)
     func_00157660();
 }
 
+C_00162610 *C_00162610::func_00162690(int p1, char flag, int count, int *arr, int p5)
+{
+    int i;
+    S_00162610_Stream *s;
+    void *m;
+
+    f38 = flag;
+    f28 = count;
+    f2C = (int *)func_001E8A44(count * 4);
+    f30 = (p5 == 0);
+    for (i = 0; i < count; i++) {
+        f2C[i] = arr[i];
+    }
+    m = func_001E8A44(0x14);
+    if (m != 0) {
+        s = ((S_00162610_Stream *)m)->func_00144640();
+    } else {
+        s = 0;
+    }
+    f24 = s;
+    s->v1(p1, D_002AA46C);
+    return this;
+}
+
 void C_00162720::func_00162720(undefined4 param_1)
 {
   int in_ECX = (int)this;
