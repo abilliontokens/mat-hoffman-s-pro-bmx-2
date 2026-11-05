@@ -30,9 +30,58 @@ struct S_0009A1F0_Table {
     C_000979C0 *f2C;
 };
 
+struct S_0009A100_Mid {
+    char pad0[0x48];
+    int f48;
+};
+
 struct S_0009A1F0_Root {
-    char pad0[0x2e8];
+    char pad0[0x2e0];
+    S_0009A100_Mid *f2e0;
+    char pad2e4[4];
     S_0009A1F0_Table *f2e8;
+};
+
+/* one of the objects the three lists hold */
+struct S_0009A100_Obj {
+    char pad0[0x1A8];
+    int f1A8;
+    char pad1AC[0x4734];
+    int f48E0;
+};
+
+struct C_0005C0B0 {
+    void func_0005C0B0(int a, int list, int index);
+};
+
+struct S_0009A100_Holder {
+    char pad0[0x68];
+    C_0005C0B0 *f68;
+};
+
+/* the block this fills in: three 0x3c-byte records per slot, and one count
+   per slot after them */
+struct S_0009A100_Rec {
+    char pad0[0xC];
+    int items[12];
+};
+
+struct S_0009A100_Out {
+    S_0009A100_Rec recs[24];
+    char pad5A0[0xC];
+    int counts[8];
+};
+
+struct C_0009A100 {
+    S_0009A100_Obj **f0;
+    S_0009A100_Obj **f4;
+    S_0009A100_Obj **f8;
+    int fC;
+    int f10;
+    int f14;
+    char pad18[0x180];
+    S_0009A100_Holder *f198;
+    void func_0009A100(S_0009A100_Out *out, int slot);
 };
 
 extern S_0009A1F0_Root *D_002A8490;
