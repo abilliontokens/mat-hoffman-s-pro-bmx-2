@@ -214,6 +214,7 @@ extern int D_0028A154;
 
 extern "C" char *strcpy(char *d, const char *s);
 extern char D_002764F0[5];
+static inline int func_001887A0_cmp(const char *a, const char *b, unsigned int n) { return memcmp(a, b, n); }
 extern int D_002BA160;
 struct __declspec(align(16)) M_001887A0 { float m[16]; };
 void func_000265C0(M_001887A0 *out, void *a, void *b, void *c, int d, int e);
