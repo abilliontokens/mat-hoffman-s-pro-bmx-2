@@ -65,11 +65,19 @@ struct C_000A88A0_Item {
     char pad1[0x3B];
 };
 
+struct C_000A88A0_Vec {
+    float z;
+    float y;
+    float x;
+    float w;
+    float &operator[](int i) { return (&z)[i]; }
+};
+
 struct C_000A88A0 {
     void *vtbl;
     char pad4[0x108];
     C_000A88A0_Item items[3];
-    float unk1C0[4];
+    C_000A88A0_Vec unk1C0;
     C_000A88A0 *func_000A88A0();
 };
 
@@ -164,6 +172,29 @@ int C_000A8520::func_000A8520(char *param)
     return -1;
 }
 
+C_000A88A0 *C_000A88A0::func_000A88A0() {
+    extern int D_0027C2A0;
+    extern float D_002A2734;
+    extern float D_002A2738;
+    extern float D_002A273C;
+    extern float D_002A2740;
+    int i;
+    ((C_001B59E0 *)this)->func_001B59E0();
+    vtbl = (void *)&D_0027C2A0;
+    unk1C0[2] = 0.0f;
+    unk1C0[1] = 0.0f;
+    unk1C0[0] = 0.0f;
+    unk1C0[3] = 1.0f;
+    for (i = 0; i < 3; i++) {
+        items[i].unk0 = 0;
+    }
+    unk1C0[0] = D_002A2734;
+    unk1C0[1] = D_002A2738;
+    unk1C0[2] = D_002A273C;
+    unk1C0[3] = D_002A2740;
+    return this;
+}
+
 C_000A89F0 *C_000A89F0::func_000A89F0()
 {
     ((C_001B59E0 *)this)->func_001B59E0();
@@ -172,12 +203,27 @@ C_000A89F0 *C_000A89F0::func_000A89F0()
     return this;
 }
 
+int C_000A8B70::func_000A8B70(void *param1, void *param2) {
+    extern int D_000A8A60;
+    int __stdcall func_001BBAA0(void *, void *);
+    if (param2 != 0) {
+        func_001BBAA0(this, &D_000A8A60);
+    }
+    return 1;
+}
+
 C_000A8BC0 *C_000A8BC0::func_000A8BC0() {
     extern int D_0027C2E8;
     ((C_001B59E0 *)this)->func_001B59E0();
     vtbl = (void *)&D_0027C2E8;
     unk10C = 0;
     return this;
+}
+
+void C_000A8BE0::func_000A8BE0(void *param1, void *param2) {
+    extern int D_0027C2F0;
+    ((Obj_00168550 *)param1)->func_00168550(&D_0027C2F0, &unk10C, 0x3B);
+    func_001B5A00(param1, param2);
 }
 
 C_000A8C90 *C_000A8C90::func_000A8C90()
@@ -214,8 +260,7 @@ extern char D_000A8D40;
 int C_000A8D90::func_000A8D90(void *a, int b)
 {
     if (b) {
-        func_001BBAA0(this, &D_000A8D40);
-        return 1;
+        Register(&D_000A8D40);
     }
     return 1;
 }
