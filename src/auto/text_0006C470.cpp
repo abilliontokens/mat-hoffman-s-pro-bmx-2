@@ -27,6 +27,7 @@ struct C_0006D100 {
     float unkDC;
     Sprite_6D *unkE0;
     int func_0006D100();
+    void func_0006CC20();
 };
 extern int D_002789F4;
 void func_001E891B(void *p);
