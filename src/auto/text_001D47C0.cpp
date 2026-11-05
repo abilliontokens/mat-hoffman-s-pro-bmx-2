@@ -185,6 +185,20 @@ void C_001D4F40::func_001D4F40(void)
     f70->func_00142D00(0);
 }
 
+int __stdcall func_001D5110(int param)
+{
+    int a[1];
+    int b[4];
+    int c[5];
+
+    func_001FF8D0(a);
+    func_001FF900(b);
+    if (func_00201A90(b[0], c) != 0) {
+        return 0;
+    }
+    return func_00201B50(b[0], b[1], c[4], 0, 3, param) >= 0;
+}
+
 C_001D5350* C_001D5350::func_001D5350(void) {
     unk0 = 0;
     unk4 = 0;
