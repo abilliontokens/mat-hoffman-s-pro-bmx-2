@@ -68,6 +68,17 @@ void *C_001BB5F0::func_001BB5F0(unsigned int flags)
     return this;
 }
 
+void C_001BB620::func_001BB620(void *a1, void *a2, int a3, int a4)
+{
+    unkE8 = (int)a1;
+    unkEC = (int)a2;
+    ((C_001BBAA0 *)a1)->func_001BBAA0(this, (void *)&func_001BB4F0);
+    ((C_001BBAA0 *)unkEC)->func_001BBAA0(this, (void *)&func_001BB4F0);
+    unk110 = a3;
+    unk114 = a4;
+    func_001D3F50();
+}
+
 undefined4 C_001BC020::func_001BC020(byte param_1)
 {
   int func_001BB860(...);
