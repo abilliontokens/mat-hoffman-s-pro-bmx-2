@@ -12,6 +12,15 @@ struct ioinfo {
 };
 
 extern ioinfo *D_002FB260[64];
+extern unsigned int D_002FB240;
+extern int D_002F6858;
+void *func_001E8AA5(int size);
+void func_001EE782(int fh);
+
+/* _sopen's helper takes shflag in ecx and the rest on the stack, caller cleans up */
+struct S_001F54D0 {
+    int func_001F54D0(int *unlockFlag, int *fh, const char *path, int oflag, int pmode, ...);
+};
 
 extern char D_002FB000[0x101];
 extern char D_002FB120[0x18];
