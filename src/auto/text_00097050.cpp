@@ -25,6 +25,19 @@ struct C_00097C60 {
     undefined4 func_00097C60(void);
 };
 
+void func_001E891B(void *p);
+
+struct C_00012140 {
+    void func_00012140(void);
+};
+
+struct C_00097A20 {
+    char pad0[0x63d8];
+    C_00012140 *arrA[10];
+    C_00012140 *arrB[10];
+    void func_00097A20(void);
+};
+
 typedef int (*func_000979C0_hash_t)(undefined4);
 typedef int (*func_000979C0_eq_t)(undefined4, undefined4);
 
