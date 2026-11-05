@@ -185,7 +185,9 @@ struct S_001B26C0_Entry {
 /* TextureMapManager */
 struct C_001B23D0 {
     void *vtbl;
-    char pad4[0x10];
+    char pad4[0x4];
+    int f8;
+    char padC[0x8];
     S_001B26C0_Entry *f14;
     char pad18[0xc];
     C_001B23D0_Obj *f24;
