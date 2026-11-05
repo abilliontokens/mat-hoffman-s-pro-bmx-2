@@ -48,6 +48,7 @@ struct C_000601D0 {
 struct C_0006E250_E8 {
     char pad0[0x160];
     C_000601D0 *f160;
+    char pad164[0x5c]; Objectives_6D *p1C0;
 };
 
 struct CreatorObj {
