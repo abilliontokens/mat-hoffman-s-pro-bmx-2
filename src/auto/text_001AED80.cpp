@@ -149,6 +149,23 @@ int C_001AF250::func_001AF250(int a0, int a1)
     return f4;
 }
 
+void *C_001AF2B0::func_001AF2B0(int flags)
+{
+    extern int D_0028C290;
+    int func_001E891B(...);
+    vtbl = (void *)&D_0028C290;
+    if (f4 >= 0) {
+        D_002A829C->func_001B26C0(f4);
+    }
+    if (f8) {
+        func_001E891B(f8);
+    }
+    if ((flags & 1) != 0) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void *C_001AF300::func_001AF300(int a0)
 {
     extern int D_0028C2AC;
