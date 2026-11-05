@@ -130,3 +130,16 @@ void *C_000ACE30::func_000ACE30(int flags) {
     }
     return this;
 }
+
+void *C_000ACF00::func_000ACF00(int flags) {
+    extern int D_0027B274;
+    void func_001E891B(void *);
+    int func_00157660(...);
+    unk0 = (int)&D_0027B274;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
