@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include "ghidra.h"
 #include <string.h>
+#include <stdlib.h>
 struct Obj_B0060 {
  virtual void v0();
  virtual void v1();
