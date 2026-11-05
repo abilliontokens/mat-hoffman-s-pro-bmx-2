@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <string.h>
+#include <xmmintrin.h>
 extern char D_002869B8[];
 struct S_0027C494 {
     char c[6];
