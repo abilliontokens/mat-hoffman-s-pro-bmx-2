@@ -75,7 +75,9 @@ struct S_0013B340_Buf {
 struct C_0013AEC0 {
     char pad0[0xC];
     S_0013AF80_Row *fC;
-    char pad10[0x1C];
+    char pad10[0x14];
+    int *f24;
+    int *f28;
     int f2C[8];
     char pad4C[0x20];
     int f6C;
