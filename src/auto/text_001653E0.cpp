@@ -142,6 +142,8 @@ extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
 extern char D_00287E48[];
 #include <string.h>
 
+static inline int min_165F70(const int &a, const int &b) { return a > b ? b : a; }
+
 struct C_00165F70_Elem {
     char name[0x38];
     int f38;
