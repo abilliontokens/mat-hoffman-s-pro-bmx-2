@@ -219,6 +219,15 @@ C_00135E00 *C_00135E00::func_00135E00(void)
     return this;
 }
 
+void C_00135E00::func_00135E50(void)
+{
+    vtbl = (void *)&D_00284834;
+    if (fC != 0 && fCC0 != 0) {
+        func_001E891B(fCC0);
+        fCC0 = 0;
+    }
+}
+
 int func_00135E80()
 {
     return ++D_002BA700;
