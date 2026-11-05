@@ -86,7 +86,8 @@ struct Game {
     Obj_00156FC0 *f8;
     char padC[0xc];
     int f18;
-    char pad1C[0x214];
+    char pad1C[0x110];
+    char f12c[0x104];
     union {
         u8 f230;
         S_Game_Flags f230bits;
