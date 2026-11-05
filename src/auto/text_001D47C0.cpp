@@ -390,6 +390,38 @@ int *C_001D48E0::func_001D48E0(void)
   return in_ECX;
 }
 
+XboxRenderTarget *XboxRenderTarget::func_001D4980(int a) {
+ int desc[7];
+ f54=func_001FFE40(-1);
+ f58=func_001FFE40(0);
+ f5C=func_00200210();
+ if (!f5C) goto fail;
+ func_002011F0(f58,desc);
+ f8=640; fC=448;
+ f24=func_001B2C40(desc[0]); f28=1.0f;
+ { InitResource *p=(InitResource *)func_001E8A44(16);
+ f64=p?p->func_001C37F0((int)D_00010000):0; }
+ if (!f64) goto fail;
+ { InitResource *p=(InitResource *)func_001E8A44(16);
+ f68=p?p->func_001C3810(0x2000):0; }
+ if (!f68) goto fail;
+ { InitResource *p=(InitResource *)func_001E8A44(12);
+ f6C=p?p->func_0014A610():0; }
+ if (!f6C) goto fail;
+ { InitResource *p=(InitResource *)func_001E8A44(4);
+ f70=p?p->func_00142CF0():0; }
+ if (!f70) { fail: v0(1); return 0; }
+ f8C=func_001FF3C0(96);
+ func_0014A7B0(D_002F0A80,D_002ABD08);
+ { InitResource *p=(InitResource *)func_001E8A44(12);
+ f84=p?p->func_0014A520(D_002F0A80):0; }
+ f84->func_0014A560(D_0028C1F0,0);
+ { InitResource *p=(InitResource *)func_001E8A44(240);
+ f88=p?p->func_00142C70():0; }
+ f88->func_00142C80(D_0028C1DC,0);
+ return this;
+}
+
 int C_001D4B00::func_001D4B00(void)
 {
   f6c->func_0014A630();
