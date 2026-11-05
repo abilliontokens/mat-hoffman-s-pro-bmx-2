@@ -79,8 +79,18 @@ int func_0014F190()
 
 extern "C" double __cdecl cos(double);
 extern "C" double __cdecl sin(double);
-#pragma intrinsic(cos, sin)
+extern "C" double __cdecl acos(double);
+#pragma intrinsic(cos, sin, acos)
 extern int D_002A7704;
+extern int D_002A7708;
+
+/* arccos lookup table: one entry per power-of-two input range */
+struct AcosEntry {
+    float lo;
+    float scale;
+    float *table;
+};
+extern AcosEntry D_002DF740[25];
 extern float D_002756EC;
 extern float D_002756B8;
 extern "C" void func_001E8390(void*);
