@@ -33,6 +33,7 @@ struct C_00193490 {
 };
 
 struct C_00171D00_F14C {
+    void func_0019A680(float *a, float *b);
     void func_001983A0(void);
     void func_00198390(void);
     void func_00198E60(void);
