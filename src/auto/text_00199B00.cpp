@@ -62,12 +62,16 @@ struct C_00199BE0 {
     float fF0[16];
     S_0019A680_V4 f130;
     S_0019A680_V4 f140;
-    char pad150[0x170 - 0x150];
+    S_00199B00_F4 f150;
+    S_00199B00_F4 f160;
     C_00199BE0 *f170;
     C_00199BE0 *f174;
     C_00199BE0 *f178;
     C_00199BE0 *f17c;
     u8 f180;
+    char pad181[3];
+    float f184;
+    float f188;
     void func_00197B10(void);
     void func_001982F0(void);
     void func_00197AA0(void);
@@ -216,33 +220,24 @@ void C_00199BE0::func_0019A210(C_00199BE0 *node)
 void C_00199BE0::func_0019A680(S_0019A680_V4 *center, S_0019A680_V4 *extent)
 {
     func_00197AA0();
-    S_00199B00_F4 a;
-    S_00199B00_F4 b;
-    int flag;
+    S_0019A680_V4 a;
+    S_0019A680_V4 b;
+    int flag = 0;
     C_00199BE0 *p;
 
-    a.z = 0.0f;
-    a.y = 0.0f;
-    a.x = 0.0f;
-    a.w = 1.0f;
-    b.z = 0.0f;
-    b.y = 0.0f;
-    b.x = 0.0f;
-    b.w = 1.0f;
-    flag = 0;
     if (f180 & 4) {
         flag = 1;
-        a = pSub_0019A680(*(S_00199B00_F4 *)&f130, *(S_00199B00_F4 *)&f140);
-        b = pAdd_0019A680(*(S_00199B00_F4 *)&f130, *(S_00199B00_F4 *)&f140);
+        a = Sub_0019A680(f130, f140);
+        b = Add_0019A680(f130, f140);
     }
     for (p = f174; p != 0; p = p->f178) {
-        p->func_001985D0(&flag, (S_0019A680_V4 *)&a, (S_0019A680_V4 *)&b, fF0, 1);
+        p->func_001985D0(&flag, &a, &b, fF0, 1);
     }
     if (center != 0) {
-        *(S_00199B00_F4 *)center = pScale_0019A680(pAdd_0019A680(b, a), D_002755E8);
+        *center = Scale_0019A680(Add_0019A680(b, a), D_002755E8);
     }
     if (extent != 0) {
-        *(S_00199B00_F4 *)extent = pScale_0019A680(pSub_0019A680(b, a), D_002755E8);
+        *extent = Scale_0019A680(Sub_0019A680(b, a), D_002755E8);
     }
 }
 
