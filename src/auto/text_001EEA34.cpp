@@ -276,6 +276,29 @@ BitObj *BitObj::func_001EF11B(BitObj *p)
     return this;
 }
 
+BitObj *BitObj::func_001EF170(int mode)
+{
+    S_001EF062 *obj;
+
+    s4 = (mode == 1 || mode == 3) ? mode : 0;
+    obj = (S_001EF062 *)D_002F6A04.func_001EEE62(0x10, 0);
+    if (obj != 0) {
+        obj = obj->func_001EF062(mode);
+    } else {
+        obj = 0;
+    }
+    b4 = 0;
+    b5 = 0;
+    b6 = 0;
+    b7 = 0;
+    b8 = 0;
+    f0 = (int)obj;
+    if (obj == 0) {
+        s4 = 3;
+    }
+    return this;
+}
+
 int __fastcall func_001EF1D0(BitObj *self, int unused)
 {
     return self->s4 == 0 || self->s4 == 2;
