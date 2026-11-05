@@ -94,7 +94,10 @@ struct BmxUIPageParkLevel {
         int arr2e4[3];
         C_000C6CA0_Widget *w2e4[3];
     };
-    PageObj *f2f0[6];
+    union {
+        PageObj *f2f0[6];
+        Mat *m2f0[6];
+    };
     void func_001BE360(int a);
     void func_001BE3F0();
     BmxUIPageParkLevel *func_000C6620(int a);
@@ -102,6 +105,7 @@ struct BmxUIPageParkLevel {
     void func_000C6CA0();
     void func_000C6AD0();
     void func_000C6BA0();
+    void func_000C6D70();
 };
 
 void BmxUIPageParkEditor::func_000C6550(void)
