@@ -14,6 +14,17 @@ struct C_00108D10 {
     void func_00108D10(int a, int b);
 };
 
+struct C_00108E30 {
+    char pad0[0xA8C];
+    int fA8C[4];
+    int fA9C[4];
+    int fAAC;
+    char padAB0[0xBC8-0xAB0];
+    int fBC8[150];
+    int fE20[1];
+    void func_00108E30(int a, int b);
+};
+
 struct C_001084E0 {
     void func_001084E0(void);
 };
