@@ -262,3 +262,10 @@ void C_00150350::func_00150350(void) {
     func_0012B540();
 }
 
+int C_00150440::func_00150440(void)
+{
+    D_002EFDB8->f4->func_0012AAE0(1.0f, f2C);
+    D_002EFDB8->v13(f28, f2C);
+    return 1;
+}
+
