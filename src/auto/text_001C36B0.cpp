@@ -453,17 +453,16 @@ int DXVertexBufferCache::func_001C3BF0(int a1, int a2)
         C_00160A60 *node = (C_00160A60 *)func_001E8A44(0xc);
         f8 = node != 0 ? (void *)node->func_00160A60() : 0;
         if (f8 == 0) {
-            goto fail;
+            cache->func_001C3A10();
+            func_001E891B(cache);
+            return 0;
         }
     }
-    if (((C_00160A70 *)f8)->func_00160A70(cache) != 0) {
-        goto success;
+    if (((C_00160A70 *)f8)->func_00160A70(cache) == 0) {
+        cache->func_001C3A10();
+        func_001E891B(cache);
+        return 0;
     }
-fail:
-    cache->func_001C3A10();
-    func_001E891B(cache);
-    return 0;
-success:
     return 1;
 }
 
@@ -511,7 +510,7 @@ VideoCard *VideoCard::func_001C3D90(void)
     f2C = 0;
     f34 = 0;
     f38 = 0;
-    ((VideoCardFlags *)&f3C)->bit0 = 0;
+    f3C.bit0 = 0;
     f1C = 0;
     f20 = 0;
     f4 = 0;
@@ -523,7 +522,7 @@ VideoCard *VideoCard::func_001C3D90(void)
     f30 = (int)func_001E8A44(4);
     f34 = 1;
     f38 = 1;
-    ((VideoCardFlags *)&f3C)->bit0 = 1;
+    f3C.bit0 = 1;
     f14 = 2;
     f18 = 2;
     return this;
