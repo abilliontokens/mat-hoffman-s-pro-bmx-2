@@ -147,7 +147,10 @@ struct LS_Sub15CD70 {
 
 struct LightSource {
     char pad0[0x24];
-    char f24[0x3C];
+    char f24[0xC];
+    LS_Vec4 f30;
+    LS_Vec4 f40;
+    LS_Vec4 f50;
     int f60;
     int f64;
     int f68;
