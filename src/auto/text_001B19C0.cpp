@@ -369,6 +369,18 @@ undefined4 C_001B2350::func_001B2350(void)
   return *(undefined4 *)(in_ECX + 8);
 }
 
+C_001B23D0 *C_001B23D0::func_001B23D0(void)
+{
+    ((C_00157600 *)this)->func_00157600(1);
+    f24 = 0;
+    f28 = 0;
+    f30 = 0;
+    f2c = 0;
+    f34 = 0;
+    vtbl = &D_0028C87C;
+    return this;
+}
+
 void *C_001B2700::func_001B2700(unsigned int flags)
 {
     extern int D_0028C90C;
