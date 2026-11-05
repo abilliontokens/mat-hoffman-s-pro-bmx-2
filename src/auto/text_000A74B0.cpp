@@ -42,6 +42,16 @@ struct SlotsR_000A74B0 {
     void func_000A7650(float t);
 };
 
+extern char D_0027C1D8[], D_0027C1CC[], D_0027C1BC[], D_0027C1B0[], D_0027C1A4[], D_0027C194[],
+    D_0027C18C[], D_0027C184[], D_0027C178[], D_0027C170[], D_0027C16C[], D_0027C160[],
+    D_0027C154[], D_0027C148[], D_0027C140[], D_0027B190[], D_0027C134[];
+extern "C" int func_001EA426(const char *a, const char *b);
+
+struct Parse_000A7C30 {
+    int func_001B6710(const char *s);
+    int func_000A7C30(const char *s);
+};
+
 struct Range_000A7650 {
     float lo;
     float hi;
@@ -499,10 +509,7 @@ void func_000A7FE0(int a0, S_A7FE0_Obj *obj, S_A7FE0_Req *req, int enabled)
                     for (j = 0; j < D_002B7E18->f60[i]->f28->f58; j++) {
                         if (func_001EA426(req->name2, D_002B7E18->f60[i]->f28->f1ac[j]->name) == 0) {
                             S_A7FE0_Ent *e = D_002B7E18->f60[i];
-                            float dx = e->x - obj->x;
-                            float dy = e->y - obj->y;
-                            float dz = e->z - obj->z;
-                            float dist = sqrtf(dz * dz + dy * dy + dx * dx);
+                            float dist = distance_A7FE0(*(S_A7FE0_Vec3 *)&e->x, *(S_A7FE0_Vec3 *)&obj->x);
                             if (dist <= obj->radius) {
                                 e->func_000219E0(j);
                             }
