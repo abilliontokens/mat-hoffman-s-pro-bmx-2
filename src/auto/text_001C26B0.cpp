@@ -315,12 +315,12 @@ void *C_001C3510::func_001C3510(int flags)
 
 DXVertexBuffer *DXVertexBuffer::func_001C3550(int type, int count)
 {
+    int ok;
+    int fail;
     switch (type) {
     case 0x112:
     case 0x1c4:
-    case 0x1c6: {
-        int ok;
-        int fail;
+    case 0x1c6:
         f10 = count;
         fC = 0x20;
         f8 = type;
@@ -328,9 +328,9 @@ DXVertexBuffer *DXVertexBuffer::func_001C3550(int type, int count)
         ok = f14 != 0;
         fail = (int)((unsigned)(ok - 1) & 0x8007000E) < 0;
         return (DXVertexBuffer *)((fail - 1) & (int)this);
+    default:
+        return 0;
     }
-    }
-    return 0;
 }
 
 void C_001C35B0::func_001C35B0(void *src, int index, unsigned int count)
@@ -339,5 +339,29 @@ void C_001C35B0::func_001C35B0(void *src, int index, unsigned int count)
     char *dst = (char *)func_001FF410(f14, 0) + offset;
 
     memcpy(dst, src, count);
+}
+
+void *DXVertexBuffer::func_001C35F0(S_001C35F0_Src *src, int b, int c, int d)
+{
+    void *buf = src->v4(c, d / src->fC, 0x80);
+    if (buf != 0) {
+        void *result = v2(buf, b, d);
+        if (src->v5() != 0 && result != 0) {
+            return result;
+        }
+    }
+    return 0;
+}
+
+char *DXVertexBuffer::func_001C3650(int index, int count, int flags)
+{
+    if (count == 0) {
+        count = f10 - index;
+    }
+    if (index >= 0 && index < f10 && count + index <= f10) {
+        int offset = fC * index;
+        return (char *)func_001FF410((void *)f14, flags) + offset;
+    }
+    return 0;
 }
 
