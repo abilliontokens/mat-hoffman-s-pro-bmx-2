@@ -45,7 +45,16 @@ struct ClampObj_000BF930 {
     char pad0[0x10];
     float f10;
     float f14;
+    void Clamp();
 };
+
+extern float D_00275AEC;
+
+inline void ClampObj_000BF930::Clamp()
+{
+    if (D_00275AEC > f10) *(int *)&f10 = 0x41200000;
+    if (D_00275AEC < f14 || f14 > f10) *(int *)&f14 = 0x41200000;
+}
 
 struct Elem_000BF930 {
     ClampObj_000BF930 *func_001D5AA0();
