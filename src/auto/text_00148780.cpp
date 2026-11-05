@@ -165,12 +165,16 @@ struct C_001490A0 {
     void *func_001490A0(unsigned int flags);
 };
 
+struct Anim_00149120_Data {
+    int v0;
+    int v1;
+    int v2;
+    int v3;
+};
+
 struct Anim_00149120 {
     int a0;
-    int a1;
-    int a2;
-    int a3;
-    int a4;
+    Anim_00149120_Data data;
 };
 
 struct AnimSrc_00149120 {
@@ -389,6 +393,33 @@ void *C_00149120::func_00149120(int a0, int a1)
     return this;
 }
 
+void *C_001491E0::func_001491E0(C_001491E0 *a0)
+{
+    void *func_001E8A44(int);
+    void __stdcall func_00011FF0(void *p, int a1, int a2, int *a3);
+    func_001B08F0(a0);
+    *(volatile u32 *)&unk1C = (u32)&D_00284E94;
+    *(volatile void **)&vtbl = (void *)&D_00285C84;
+    *(volatile u32 *)&unk1C = (u32)&D_00285C78;
+    int n = unk8->count;
+    if (n == 0) {
+        unk20 = 0;
+    } else {
+        void *p = func_001E8A44(n * 0x14);
+        if (p != 0) {
+            func_00011FF0(p, 0x14, n, &D_00144CD0);
+            unk20 = p;
+        } else {
+            p = 0;
+            unk20 = p;
+        }
+    }
+    if (unk20 != 0) {
+        memcpy(unk20, a0->unk20, unk8->count * 0x14);
+    }
+    return this;
+}
+
 void *C_00149280::func_00149280(int a0)
 {
   int __stdcall func_001B0E60(int);
@@ -472,6 +503,29 @@ void *C_001493B0::func_001493B0(unsigned int flags)
         func_001E891B(this);
     }
     return this;
+}
+
+void C_001493E0::func_001493E0()
+{
+    int __fastcall func_001FEBD0(int a, void *b);
+    void *func_001E8A44(int size);
+    extern undefined4 D_002EFDB8;
+    extern VObj_00148780 *D_002BF0C8;
+    extern int D_00286818;
+
+    if (unkC != 0) {
+        ((VObj_00148780 *)((char *)unkC + 4))->f1();
+    }
+    func_001FEBD0(0x21, (void *)(*(int *)(D_002EFDB8 + 4) + 0x170));
+    func_001FEBD0(0x3, (void *)(D_002EFDB8 + 0x74));
+    VObj_00148780 *p = D_002BF0C8;
+    if (p == 0) {
+        p = (VObj_00148780 *)func_001E8A44(4);
+        if (p != 0)
+            *(int *)p = (int)&D_00286818;
+    }
+    D_002BF0C8 = p;
+    p->f1();
 }
 
 void *C_00149450::func_00149450(unsigned int flags)
