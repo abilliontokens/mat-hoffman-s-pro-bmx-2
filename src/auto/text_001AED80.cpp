@@ -194,3 +194,17 @@ void *C_001AF330::func_001AF330(int flags)
     return this;
 }
 
+void C_001AF710::func_001AF710(void)
+{
+    extern int D_0028C444;
+    int func_001E891B(...);
+    int i;
+
+    unk0 = (int)&D_0028C444;
+    for (i = 0; i < 4; i++) {
+        if (arr[i] != 0) {
+            func_001E891B(arr[i]);
+        }
+    }
+}
+
