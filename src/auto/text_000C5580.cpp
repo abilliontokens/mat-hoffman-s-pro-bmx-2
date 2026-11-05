@@ -1,14 +1,22 @@
 /* 10 functions from 0x000C5580 to 0x000C6550, found by Ghidra. */
 #include "common.h"
 
+struct C_6420_Elem;
+
 struct BmxUIPageMain {
-    char pad0[0x2F0];
+    char pad0[0x2D0];
+    short f2D0;
+    char pad2D2[0x2F0 - 0x2D2];
     int f2F0;
+    char pad2F4[4];
+    C_6420_Elem *f2F8[10];
     void func_000C4CE0();
     void func_000C4FD0();
     void func_000C5580();
     void func_00157960();
     void func_000C58A0(void);
+    void func_000C5710(void);
+    void func_001BF000(void);
 };
 
 void BmxUIPageMain::func_000C58A0(void)
