@@ -159,7 +159,7 @@ void XboxSoundGroup::func_001CD840(int a)
     }
 }
 
-int XboxSoundGroup::func_001CD890(int a)
+int XboxSoundGroup::func_001CD890(int a, int b)
 {
     int i;
 
