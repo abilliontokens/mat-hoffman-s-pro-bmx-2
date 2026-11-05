@@ -65,4 +65,23 @@ void __stdcall func_001E26F1(int a0, int a1, int a2, int a3) {
         _imp__HalInitiateShutdown();
     }
 }
+
+#pragma optimize("t", off)
+void func_001E2703(void) {
+    unsigned int type;
+    unsigned int resultLength;
+    unsigned int value;
+    _imp__KeInitializeDpc(D_002F6AE0, (void *)func_001E26F1, 0);
+    _imp__KeInitializeTimerEx(D_002F6B00, 0);
+    D_002F6B28 = 0;
+    D_002F6B2C = 0;
+    if (func_001DF456(0x11, &type, &value, 4, &resultLength) == 0) {
+        D_002F6B28 = value & 1;
+    } else {
+        D_002F6B2C = 1;
+    }
+    func_001E26D6();
+}
+#pragma optimize("", on)
+
 #pragma optimize("", on)
