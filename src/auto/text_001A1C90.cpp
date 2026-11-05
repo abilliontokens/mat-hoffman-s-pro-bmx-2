@@ -169,8 +169,19 @@ C_001A2210 *C_001A2210::func_001A2210(int a0, int a1, int a2, int a3) {
     return this;
 }
 
+C_001A2250 *C_001A2250::func_001A2250(int a0, S36_1A s0, S16_1A s1, S16_1A s2, int a18, int a19, int a20, int a21, int a22) {
+    func_001A1860(s0, s1, s2, a18, a19, a20, a21, a22);
+    func_001A1D20(s0.f[4], 0);
+    return this;
+}
+
 void C_001A22E0::func_001A22E0(int a0) {
     unk1C0 = a0;
+}
+
+C_001A23F0 *C_001A23F0::func_001A23F0(S36_1A s0, S16_1A s1, S16_1A s2, int a17, int a18, int a19, int a20, int a21) {
+    func_001A1860(s0, s1, s2, a17, a18, a19, a20, a21);
+    return this;
 }
 
 bool C_001A2500::func_001A2500(void)
