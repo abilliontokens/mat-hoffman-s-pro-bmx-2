@@ -51,9 +51,12 @@ struct S_0009A1F0_Root {
 
 /* one of the objects the three lists hold */
 struct S_0009A100_Obj {
-    char pad0[0x1A8];
+    char pad0[0x1A4];
+    int f1A4;
     int f1A8;
-    char pad1AC[0x4734];
+    char pad1AC[8];
+    int f1B4;
+    char pad1B8[0x4728];
     int f48E0;
 };
 
