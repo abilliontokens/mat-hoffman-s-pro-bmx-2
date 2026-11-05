@@ -48,6 +48,41 @@ u32 func_00177230(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   return 1;
 }
 
+u32 func_001774E0(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int level, int a7)
+{
+  u8 *buf;
+  int w;
+  int h;
+  int y;
+  int n;
+  if (level == 0) {
+    for (y = 0; y < height; y++) {
+      memcpy(dst + y * dstPitch * 2, src + y * srcPitch * 2, width * 2);
+    }
+    return 1;
+  }
+  if (level == 1) {
+    func_00175A10(dst, src, width, height, dstPitch, srcPitch, a7, 0x7c1f);
+    return 1;
+  }
+  w = width << (level - 1);
+  h = height << (level - 1);
+  buf = (u8 *)func_001E8AA5(h * w * 2);
+  func_00175A10(buf, src, w, h, w, srcPitch, a7, 0x7c1f);
+  if (level > 2) {
+    n = level - 2;
+    do {
+      w /= 2;
+      h /= 2;
+      func_00175A10(buf, buf, w, h, w, w * 2, a7, 0x7c1f);
+      n--;
+    } while (n != 0);
+  }
+  func_00175A10(dst, buf, width, height, dstPitch, w, a7, 0x7c1f);
+  func_001E8390(buf);
+  return 1;
+}
+
 u32 func_00177860(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch)
 {
   u8 *d;
