@@ -12,6 +12,45 @@ struct C_000CB6B0_Widget {
     void func_001B1B30(float a, float b);
 };
 
+struct C_0005E840 {
+    void func_0005E840(int id);
+    void func_001D6600();
+};
+
+struct S_002B91AC {
+    char pad0[0x34];
+    C_0005E840 *f34;
+    C_0005E840 *f38;
+    C_0005E840 *f3C;
+    C_0005E840 *f40;
+};
+extern S_002B91AC *D_002B91AC;
+
+struct S_002A8490_2E8 {
+    int f0;
+    int *f4;
+};
+struct S_002A8490 {
+    char pad0[0x2e8];
+    S_002A8490_2E8 *f2E8;
+};
+extern S_002A8490 *D_002A8490;
+
+struct C_000CC370 {
+    char pad0[0x2e8];
+    int f2E8;
+    int f2EC;
+    int f2F0;
+    int f2F4;
+    char pad2F8[0x314 - 0x2f8];
+    int f314;
+    char pad318[0x324 - 0x318];
+    int f324;
+    char pad328[0x374 - 0x328];
+    int f374;
+    void func_000CC370();
+};
+
 struct C_00093120 {
     void func_00093120();
 };
