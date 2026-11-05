@@ -251,6 +251,31 @@ void *__cdecl func_001EF0E7(void *a)
     return a;
 }
 
+BitObj *BitObj::func_001EF11B(BitObj *p)
+{
+    S_001EF033 *obj;
+
+    if (p != 0) {
+        obj = (S_001EF033 *)D_002F6A04.func_001EEE62(0xc, 0);
+        if (obj != 0) {
+            obj = obj->func_001EF033(p);
+        } else {
+            obj = 0;
+        }
+        f0 = (int)obj;
+        s4 = (f0 != 0) ? 0 : 3;
+    } else {
+        s4 = 0;
+        f0 = 0;
+    }
+    b4 = 0;
+    b5 = 0;
+    b6 = 0;
+    b7 = 0;
+    b8 = 0;
+    return this;
+}
+
 int __fastcall func_001EF1D0(BitObj *self, int unused)
 {
     return self->s4 == 0 || self->s4 == 2;
@@ -262,6 +287,14 @@ int __fastcall func_001EF1E7(int *a, int b)
         return 0;
     }
     return 1;
+}
+
+int BitObj::func_001EF1FC(void)
+{
+    if (func_001EF1E7() == 0 && b5) {
+        return 1;
+    }
+    return 0;
 }
 
 BitObj *BitObj::func_001EF8F6(int a0, int a1) {
