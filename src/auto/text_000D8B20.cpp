@@ -165,6 +165,28 @@ BmxUIPageHOF5 *BmxUIPageHOF5::func_000D8C70(int a0)
     return this;
 }
 
+void BmxUIPageHOF5D::func_000D8D30()
+{
+    vtbl = &D_0027F49C;
+    for (int i = 0; i < 2; i++) {
+        if (arr2EC[i] != 0) {
+            arr2EC[i]->Destroy(1);
+            arr2EC[i] = 0;
+        }
+        if (arr2F4[i] != 0) {
+            arr2F4[i]->Destroy(1);
+            arr2F4[i] = 0;
+        }
+    }
+    for (int i = 0; i < 2; i++) {
+        if (arr2FC[i] != 0) {
+            arr2FC[i]->Destroy(1);
+            arr2FC[i] = 0;
+        }
+    }
+    func_001BE3F0();
+}
+
 void C_000D9750::func_000D9750() {
     if (unk29C != 0) {
         unk2AC = 1;
