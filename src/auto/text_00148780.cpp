@@ -26,6 +26,58 @@ struct C_00149380 {
 struct AnimSrc_001487D0 {
     char pad0[0x40];
     int count;
+    void func_001467A0();
+    void func_00146DC0();
+};
+
+struct VObj_00148780 {
+    virtual void f0();
+    virtual void f1();
+};
+
+struct Node_001492A0 {
+    Node_001492A0 *next;
+    char *unk4;
+    VObj_00148780 *unk8;
+    VObj_00148780 *unkC;
+    VObj_00148780 *unk10;
+};
+
+struct C_001492A0 {
+    void *vtbl;
+    u32 unk4;
+    AnimSrc_001487D0 *unk8;
+    u32 unkC;
+    Node_001492A0 *unk10;
+    void func_001492A0();
+};
+
+struct C_001493B0 {
+    void *vtbl;
+    void func_001B0E90();
+    void *func_001493B0(unsigned int flags);
+};
+
+struct Obj_00149310 {
+    char pad0[8];
+    int unk8;
+    int unkC;
+    int unk10;
+};
+
+struct C_00149310 {
+    void *vtbl;
+    char pad4[0x10];
+    Obj_00149310 *unk14;
+    void func_001B0EA0(int a1, void **p);
+    void func_00149310(int a1, int a2, int a3, int a4);
+};
+
+struct C_001493E0 {
+    void *vtbl;
+    char pad4[8];
+    void *unkC;
+    void func_001493E0();
 };
 
 struct C_00148780 {
