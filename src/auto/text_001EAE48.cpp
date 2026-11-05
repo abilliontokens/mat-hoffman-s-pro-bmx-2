@@ -11,3 +11,18 @@ void func_001EAECC(void) {
     func_001EB302(8);
 }
 
+void func_001EAF7F(int code) {
+    int func_001EAED5(...);
+    func_001EAED5(code, 1);
+}
+
+extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *cs);
+void func_001EB138(int i, char *s) {
+    int func_001EB390(...);
+    if (i < 20) {
+        func_001EB390(i + 16);
+    } else {
+        RtlEnterCriticalSection(s + 0x20);
+    }
+}
+
