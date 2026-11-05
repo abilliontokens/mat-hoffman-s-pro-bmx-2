@@ -3,7 +3,40 @@
 
 struct C_001D5AD0 {
     void func_001D5AD0(void);
+    void func_0005E840(int a);
 };
+
+struct C_00093120 {
+    void func_00093120(void);
+};
+
+struct S_000C86A0_124 {
+    char pad0[0x274];
+    C_00093120 *unk274;
+};
+
+struct S_002A8490_E8_4 {
+    char pad0[0x740];
+    int f740;
+    char pad744[0x7C8 - 0x744];
+    int f7C8;
+    char pad7CC[0x908 - 0x7CC];
+    int f908;
+    char pad90C[0x928 - 0x90C];
+    int f928;
+};
+
+struct S_002A8490_E8 {
+    int f0;
+    S_002A8490_E8_4 *f4;
+};
+
+struct S_002A8490 {
+    char pad0[0x2E8];
+    S_002A8490_E8 *f2E8;
+};
+
+extern S_002A8490 *D_002A8490;
 
 struct C_001B1980 {
     char pad0[0x24];
