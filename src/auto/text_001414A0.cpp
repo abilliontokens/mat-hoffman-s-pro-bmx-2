@@ -231,6 +231,50 @@ int func_00141E10(C_00168BE0 *cfg, const char *key, int def, int &out)
     return out;
 }
 
+int func_00141EC0(C_00168BE0 *cfg, const char *key, int def, int &out)
+{
+    char buf[64];
+    cfg->func_00168BE0(key, "undefined", buf, 64);
+    if (strcmp(buf, "undefined") == 0) {
+        out = def;
+    } else if (strcmp(buf, "D3DLOGICOP_NONE") == 0) {
+        out = 0;
+    } else if (strcmp(buf, "D3DLOGICOP_CLEAR") == 0) {
+        out = 0x1500;
+    } else if (strcmp(buf, "D3DLOGICOP_AND") == 0) {
+        out = 0x1501;
+    } else if (strcmp(buf, "D3DLOGICOP_AND_REVERSE") == 0) {
+        out = 0x1502;
+    } else if (strcmp(buf, "D3DLOGICOP_COPY") == 0) {
+        out = 0x1503;
+    } else if (strcmp(buf, "D3DLOGICOP_AND_INVERTED") == 0) {
+        out = 0x1504;
+    } else if (strcmp(buf, "D3DLOGICOP_NOOP") == 0) {
+        out = 0x1505;
+    } else if (strcmp(buf, "D3DLOGICOP_XOR") == 0) {
+        out = 0x1506;
+    } else if (strcmp(buf, "D3DLOGICOP_OR") == 0) {
+        out = 0x1507;
+    } else if (strcmp(buf, "D3DLOGICOP_NOR") == 0) {
+        out = 0x1508;
+    } else if (strcmp(buf, "D3DLOGICOP_EQUIV") == 0) {
+        out = 0x1509;
+    } else if (strcmp(buf, "D3DLOGICOP_INVERT") == 0) {
+        out = 0x150a;
+    } else if (strcmp(buf, "D3DLOGICOP_OR_REVERSE") == 0) {
+        out = 0x150b;
+    } else if (strcmp(buf, "D3DLOGICOP_COPY_INVERTED") == 0) {
+        out = 0x150c;
+    } else if (strcmp(buf, "D3DLOGICOP_OR_INVERTED") == 0) {
+        out = 0x150d;
+    } else if (strcmp(buf, "D3DLOGICOP_NAND") == 0) {
+        out = 0x150e;
+    } else if (strcmp(buf, "D3DLOGICOP_SET") == 0) {
+        out = 0x150f;
+    }
+    return out;
+}
+
 int DXParticleSimulation::func_00142150(float dt)
 {
     if (fA8 != 0) {
