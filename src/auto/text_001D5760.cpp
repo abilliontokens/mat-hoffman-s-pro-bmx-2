@@ -1,6 +1,80 @@
 /* 15 functions from 0x001D5760 to 0x001D6600, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+
+extern int D_0028F600;
+extern char D_002A60B0[];
+extern char D_002A5240[];
+extern int D_002AA470;
+void *func_001E8A44(int size);
+extern "C" char *strcpy(char *, const char *);
+
+struct Vec4_001D5760 {
+    float x, y, z, w;
+    Vec4_001D5760() {
+        x = y = z = 0;
+        w = 1.0f;
+    }
+};
+
+struct C_001D5760_Obj {
+    virtual void v0(int flags);
+};
+
+/* XboxScreenIcon */
+struct C_001D5760 {
+    void *vtbl;
+    Vec4_001D5760 v4;
+    Vec4_001D5760 v14;
+    float f24;
+    float f28;
+    float f2c;
+    int f30;
+    int f34;
+    int f38;
+    int f3c;
+    float f40;
+    int f44;
+    float f48;
+    float f4c;
+    float f50;
+    int f54;
+    unsigned char f58;
+    char pad59[3];
+    C_001D5760_Obj *f5c;
+    C_001D5760_Obj *f60;
+    void func_001D5760();
+    void func_001D57E0();
+};
+
+struct DXVSStreams_001D5760 {
+    virtual void v0(int flags);
+    virtual void v1(int arg, int d);
+    DXVSStreams_001D5760 *func_00144640();
+};
+
+struct C_001D5E90 {
+    char *f0;
+    Vec4_001D5760 v4;
+    Vec4_001D5760 v14;
+    Vec4_001D5760 v24;
+    float f34;
+    int f38;
+    int f3c;
+    void *f40;
+    int f44;
+    int f48;
+    unsigned short f4c;
+    unsigned char f4e;
+    unsigned char f4f;
+    unsigned char f50;
+    char pad51[3];
+    int f54;
+    int f58;
+    DXVSStreams_001D5760 *f5c;
+    void func_001D5E90();
+    int func_001D5F00(int param);
+};
 #include <string.h>
 extern int D_0028F5F4;
 extern int D_00284E94;
