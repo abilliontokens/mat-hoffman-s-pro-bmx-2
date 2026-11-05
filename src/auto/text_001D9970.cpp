@@ -1,6 +1,30 @@
 /* 7 functions from 0x001D9970 to 0x001DA500, found by Ghidra. */
 #include "common.h"
 
+extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
+extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
+
+/* the 18-byte header of an uncompressed true-colour .tga */
+struct S_001DA180_Tga {
+    unsigned char idLength;
+    unsigned char colorMapType;
+    unsigned char imageType;
+    unsigned char colorMap[5];
+    unsigned short xOrigin;
+    unsigned short yOrigin;
+    unsigned short width;
+    unsigned short height;
+    unsigned char bitsPerPixel;
+    unsigned char descriptor;
+};
+
+extern char D_00282960[];
+void *func_001E8A44(int size);
+void func_001E891B(void *p);
+void *func_0014FDF0(const char *name, const char *mode);
+int func_0014FE80(const void *buf, int size, int count, void *fp);
+int func_0014FE50(void *fp);
+
 struct WaterDisplacement {
     void *vtbl;
     char pad4[0x38];
