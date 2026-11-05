@@ -390,6 +390,22 @@ int C_00094890::func_00094890(void) {
     return unk38;
 }
 
+void C_00094840::func_000948A0(int a)
+{
+    if (a == 0 && unk40 != 0) {
+        unk40 = 0;
+        unk4C = 0;
+    }
+    unk28->v31(a, 1);
+    if (unk44 == 0) {
+        unk50->v18(a);
+    } else if (a != 0) {
+        unk50->v18(a);
+    } else {
+        unk50->v18(0);
+    }
+}
+
 int C_00094A00::func_00094960(int a)
 {
     if (f50->v33(a)) {
