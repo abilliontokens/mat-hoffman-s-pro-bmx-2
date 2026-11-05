@@ -26,6 +26,7 @@ struct C_0018F4D0 {
 struct C_00191420 {
     void func_00191420(char *n, unsigned int a, void **p);
 };
+static inline int minv(const int &x, const int &y) { return x < y ? x : y; }
 extern "C" void *func_001E8920(void *d, const void *s, int n);
 struct C_0018F350 {
     char pad0[0x18];
