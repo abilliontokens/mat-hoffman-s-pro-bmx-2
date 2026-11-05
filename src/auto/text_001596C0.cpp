@@ -144,6 +144,44 @@ int GrindLineManager::func_0015A540(int a1)
     return 1;
 }
 
+void GrindLineManager::func_0015A580(void)
+{
+    int i;
+    void *x;
+
+    x = unk3C;
+    vtbl = &D_002874B4;
+    if (x != 0) {
+        ((C_00193500 *)x)->func_00193500();
+        func_001E891B(x);
+    }
+    for (i = 0; i < unk28; i++) {
+        GrindLine *e = unk34[i];
+        if (e != 0) {
+            x = e->unk78;
+            if (x != 0) {
+                ((C_00193500 *)x)->func_00193500();
+                func_001E891B(x);
+            }
+            e = unk34[i];
+            if (e != 0) {
+                if (e->unk14 != 0) {
+                    func_001E891B(e->unk14);
+                }
+                if (e->unk18 != 0) {
+                    func_001E891B(e->unk18);
+                }
+                if (e->unk1C != 0) {
+                    func_001E891B(e->unk1C);
+                }
+                func_001E891B(e);
+            }
+        }
+    }
+    func_001E891B(unk34);
+    func_00157660();
+}
+
 undefined4 C_0015A640::func_0015A640(byte param_1)
 {
   int func_0015A580(...);
