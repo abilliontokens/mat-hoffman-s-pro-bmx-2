@@ -25,6 +25,8 @@ struct TrigEntry {
 extern TrigEntry *D_002CF6B4;
 
 float func_00016D60(int x);
+extern "C" void func_001E8390(void*);
+extern "C" void* func_001E8AA5(int);
 
 static inline void FloatToIndex(int *out, float f) {
     *out = (int)f;
