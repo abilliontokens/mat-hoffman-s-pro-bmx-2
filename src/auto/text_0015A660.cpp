@@ -450,6 +450,47 @@ int S_0015A660_List::func_0015ACA0(int n)
     return 1;
 }
 
+JoystickDevice *JoystickDevice::func_0015AD10(int a)
+{
+    extern int D_00287674;
+    extern int D_00287658;
+    extern S_0015AC20_Game *D_002A8490;
+    int i;
+    int j;
+
+    ((C_001D1460 *)this)->func_001D1460(2);
+    vtbl = (void *)&D_00287674;
+    for (i = 0; i < 6; i++) {
+        lists[i].data = 0;
+        lists[i].count = 0;
+        lists[i].f8 = 0;
+        lists[i].capacity = 0;
+        lists[i].f10 = 0;
+    }
+    f320 = a;
+    f31C = 0;
+    for (i = 0; i < 6; i++) {
+        for (j = 0; j < 16; j++) {
+            pairs[i][j].a = 0;
+            pairs[i][j].b = 0;
+        }
+    }
+    for (i = 0; i < 6; i++) {
+        S_0015A660_List *l = &lists[i];
+        f624[i] = 0;
+        l->data = (void **)func_001E8A44(4);
+        l->f8 = 1;
+        l->capacity = 1;
+        l->f10 = 1;
+    }
+    for (i = 0; i < 32; i++) {
+        ents[i].a = 0;
+        ents[i].b = 0;
+    }
+    f6B4 = ((S_0015AD10_Dev *)D_002A8490)->dummy22(&D_00287658, 0);
+    return this;
+}
+
 void JoystickDevice::func_0015AE20(void)
 {
     extern int D_00287674;
