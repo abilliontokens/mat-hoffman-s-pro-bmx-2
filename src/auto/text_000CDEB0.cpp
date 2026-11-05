@@ -54,6 +54,74 @@ struct C_000CE0A0 {
 };
 
 
+void C_000CDEB0::func_000CDEB0(void)
+{
+    int ids[3];
+    int i;
+    int *r;
+    ClampObj_CDE *o;
+    SubElem_CDE **e;
+    LookupObj_CDE *lk;
+
+    ids[0] = (int)&D_00278690;
+    ids[1] = (int)&D_002786A0;
+    ids[2] = (int)&D_00278678;
+    for (i = 0; i < 3; i++) {
+        lk = D_002A8490->p2EC;
+        r = lk->func_0018C160(ids[i]);
+        if (r != 0 && *r != 0) {
+            o = ((MidObj_CDE *)*r)->func_0018C070();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+    }
+    e = a390;
+    i = 8;
+    do {
+        if (*e != 0) {
+            o = (*e)->func_001D5AA0();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+        e++;
+        i--;
+    } while (i != 0);
+    e = a3b0;
+    i = 8;
+    do {
+        if (*e != 0) {
+            o = (*e)->func_001D5AA0();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+        e++;
+        i--;
+    } while (i != 0);
+    e = a3f8;
+    i = 2;
+    do {
+        if (*e != 0) {
+            o = (*e)->func_001D5AA0();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+        e++;
+        i--;
+    } while (i != 0);
+    e = a400;
+    i = 16;
+    do {
+        if (*e != 0) {
+            o = (*e)->func_001D5AA0();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+        e++;
+        i--;
+    } while (i != 0);
+    func_001578D0();
+}
+
 void C_000CE0A0::func_000CE0A0(void) {
     unk4C4 = 255;
     unk4C8 = 0;
