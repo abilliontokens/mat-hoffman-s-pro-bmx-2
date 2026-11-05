@@ -30,6 +30,21 @@ struct C_001A8B80 {
     void func_001D3F50(void);
 };
 
+void *C_001A8B80::func_001A8B80(int flags)
+{
+    void *p = f54;
+
+    vtbl = (void *)&D_0028BF14;
+    if (p != 0) {
+        func_001E891B(p);
+    }
+    ((C_00157660 *)this)->func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void C_001A8B80::func_001A9220(int idx, f32 v)
 {
     if (idx >= 0 && idx < 10) {
