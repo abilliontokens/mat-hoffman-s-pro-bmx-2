@@ -94,6 +94,28 @@ struct C_001D3690 {
     void func_001D3800();
 };
 
+extern float D_0028F26C;
+extern float D_002779FC;
+extern char D_0028F45C;
+void *__cdecl func_001E8A44(unsigned int);
+void *__stdcall func_001FFE40(int);
+void __stdcall func_002011F0(void *, void *);
+void *__stdcall func_001FCF20(int,int,int,int,int,int,int);
+void *__stdcall func_001FCE50(void *,int);
+void __stdcall func_001FFF40(void *,void *,int,void *,void *);
+void __stdcall func_00201100(void *);
+int __stdcall func_001DDBC7(int,int,int,void *);
+int __stdcall func_001DE8C7(int,int,void *,void *,int,int);
+void __stdcall func_001D3300(int,int);
+extern "C" __declspec(dllimport) void __stdcall RtlInitializeCriticalSection(void *);
+struct C_001D6AD0 {
+ char pad0[8]; int f8; int fc; char pad10[0x94]; int fa4; int fa8; char padac[0xc]; void *fb8;
+ C_001D6AD0 *func_001D6AD0(int);
+};
+struct C_001D3480 {
+ char pad0[0xc]; char fc; char padd[0xb]; int f18; int f1c; void *f20; int f24; char pad28[0x24]; int f4c; C_001D6AD0 *f50;
+ void func_001D3480();
+};
 struct C_001D3700 {
     void func_001D3700(int param_1, int param_2);
 };
