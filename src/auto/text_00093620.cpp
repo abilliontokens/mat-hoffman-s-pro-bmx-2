@@ -316,6 +316,30 @@ void C_00093140::func_000940D0(int a1, int a2, int a3, int a4, int a5, int a6)
     func_00093140(a1, a2, a3, 5, a4, a5, a6);
 }
 
+void C_00093140::func_000941A0(int a0, int a1, int a2, int a3, int a4, int a5, int a6)
+{
+    char buf[12];
+    char names[5][50];
+    C_001B17D0 **p;
+    char *n;
+    int i;
+
+    func_001ADCC0(buf, 10, (char *)&D_00277038, a0);
+    func_001AC330(names[0], D_002A8490->f2e8->f4->fC58, buf);
+    func_001AC330(names[1], D_002A8490->f2e8->f4->fC60, buf);
+    func_001AC330(names[2], D_002A8490->f2e8->f4->f11E0, buf);
+    func_001AC330(names[3], D_002A8490->f2e8->f4->fC68, buf);
+    func_001AC330(names[4], D_002A8490->f2e8->f4->fC70, buf);
+    n = names[0];
+    p = &f24;
+    for (i = 5; i > 0; i--) {
+        (*p)->func_001B17D0((int)n);
+        p++;
+        n += 50;
+    }
+    func_00093140(a1, a2, a3, 5, a4, a5, a6);
+}
+
 void C_00093140::func_000942F0(int a1, int a2, int a3, int a4, int a5, int a6)
 {
     f24->func_001B17D0(D_002A8490->f2e8->f4->fC78);
