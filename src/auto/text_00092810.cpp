@@ -188,6 +188,20 @@ int func_00092A10(void)
     return 0;
 }
 
+int __stdcall func_00092A50(int *out)
+{
+    int r = D_002A8490->f2e0->f2cc->func_001D4300(8);
+
+    D_002A8490->f2e0->f2cc->func_001D3F90(0, 0, out);
+    if (out != 0) {
+        *out = *out / 16;
+    }
+    if (r == -1 || r == -2) {
+        return 0;
+    }
+    return 1;
+}
+
 int C_00092890::func_00092BE0(void)
 {
     C_00092BE0_Str s;
@@ -236,17 +250,18 @@ int C_00092890::func_00092C70(void)
 int C_00092890::func_00092E30(int idx)
 {
     char buf[0x104];
-    S_00092E30_Mgr *mgr;
-    S_00092E30_Rec *rec;
+    int *base;
+    int *p;
 
     if (func_00092B40(idx) != 0) {
         func_001ADCC0(buf, 0x104, &D_0027A140, idx);
         D_002A8490->f2e0->f2cc->func_001D4720(&f4c, buf);
     }
-    mgr = D_002A8490->f2e0->f2c0->func_001D3F50();
-    rec = &mgr->fA14[idx];
-    rec->f4 = rec->f0 = 0;
-    memset(&mgr->f814[idx], 0, 0x1c);
+    base = (int *)D_002A8490->f2e0->f2c0->func_001D3F50();
+    p = base + (idx * 3 + 0x285);
+    p[0] = 0;
+    p[1] = 0;
+    memset((char *)base + idx * 0x20 + 0x814, 0, 0x1c);
     *D_002A8490->f2e0->f2c0->func_0005C020(idx) = 1;
     return 1;
 }
