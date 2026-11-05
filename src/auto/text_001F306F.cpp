@@ -312,6 +312,20 @@ C_001F3280 *C_001F3280::func_001F3280(int param_1) {
 }
 
 #pragma optimize("sy", on)
+#pragma optimize("", on)
+#pragma optimize("sy", on)
+void *C_001F32B0::func_001F32B0(unsigned int flags) {
+    void func_001E891B(void *);
+    void func_001F3221();
+    func_001F3221();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+#pragma optimize("", on)
+
+#pragma optimize("sy", on)
 C_001F3298::C_001F3298(int param_1) : C_001F325D(param_1) {
     extern int D_00295F24;
     unk0 = (int)&D_00295F24;
