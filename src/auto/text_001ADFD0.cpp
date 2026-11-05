@@ -40,12 +40,21 @@ struct C_001AE3E0_Vec4 {
     }
 };
 
+/* the queue entry a C_001AE3E0_Sub points at (flag byte at +0xC, owner at +0x10) */
+struct C_001AE3E0_Entry {
+    char pad0[0xC];
+    unsigned char fC;
+    char padD[3];
+    C_001ADFD0_Virt *f10;
+};
+
 struct C_001AE3E0_Sub {
     void *vtbl;
-    int f4;
+    C_001AE3E0_Entry *f4;
     C_001ADFD0_Virt *f8;
     void func_001D5480(void);
     void func_001D5490(void);
+    void func_001D54B0(int a);
     void Init(void)
     {
         func_001D5480();
