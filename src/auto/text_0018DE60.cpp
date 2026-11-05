@@ -184,6 +184,31 @@ struct C_0018E1D0 {
 };
 
 
+/* "name.value" record: 0x40-byte name followed by a lookup id */
+struct C_0018E7D0_Rec {
+    char name[0x40];
+    int f40;
+};
+
+struct C_0018E7D0_Ent {
+    int used;
+    C_0018E7D0_Rec rec;
+    char pad48[0x18];
+};
+
+extern char D_0028A9F4[];
+extern char D_0027CEF0[];
+char *func_001E95A4(char *s, const char *delim);
+
+struct C_0018E7D0 {
+    char pad0[0x158];
+    C_0018E7D0_Ent *named;
+    int func_0018D970(const char *name);
+    int func_0018DA00(int index, const char *name);
+    C_0018E7D0_Rec func_0018DA90(int kind, int idx, const char *name, unsigned int *out);
+    int func_0018E7D0(int kind, C_0018E7D0_Rec *buf, int *out);
+};
+
 void C_0018E0E0::func_0018E0E0(C_0018E0E0_Arg *arg, int idx)
 {
     int i;
@@ -313,7 +338,7 @@ void Node_0018EA50::func_0018E3E0(int a, int b)
     int k;
 
     slot[0] = (int)this;
-    flags = a;
+    *(volatile unsigned int *)&flags = a;
     p = (Node_0018EA50 *)slot[0];
     switch ((p->flags >> 8) & 0xff) {
     case 1:
