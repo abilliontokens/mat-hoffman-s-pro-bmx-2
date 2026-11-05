@@ -17,9 +17,30 @@ extern unsigned char D_002A9818;
 int func_001E91F4(int p);
 void func_001E8390(void *p);
 
+extern float D_00275544;
+double func_001E9649(int s);
+
 struct C_0018F390 {
     void func_0018F390(char *name, int id, int *value);
     void func_0018F390(char *name, int id, char *value);
+    void func_0018F390(char *name, int id, float *value);
+};
+
+struct C_00191640_Node {
+    char pad0[0x20];
+    float unk20;
+};
+
+struct C_001923F0 {
+    void *vtbl;
+    char pad4[0x24];
+    int unk28;
+    int unk2C;
+    int unk30;
+    int unk34;
+    int unk38;
+    void func_00192720();
+    C_001923F0 *func_001923F0(int a);
 };
 
 /* 4x4 float matrix, 16-byte aligned for movaps */
@@ -94,14 +115,15 @@ void func_00192310(int unused, C_0018F390 *obj)
 {
     S_00192310_Mat m;
     S_00192310_Mat * volatile p = &m;
+    __m128 z = _mm_setzero_ps();
     S_00192310_Mat *q = p;
     __m128 *v = (__m128 *)q;
     S_00192310_Mat copy;
 
-    v[0] = _mm_setzero_ps();
-    v[1] = _mm_setzero_ps();
-    v[2] = _mm_setzero_ps();
-    v[3] = _mm_setzero_ps();
+    v[0] = z;
+    v[1] = z;
+    v[2] = z;
+    v[3] = z;
     copy = m;
     obj->func_0018F390(&D_00275630, (int)&D_00010900, (int *)&copy);
 }
