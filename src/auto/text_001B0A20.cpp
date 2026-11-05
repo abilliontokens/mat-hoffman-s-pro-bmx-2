@@ -2,6 +2,45 @@
 #include "common.h"
 #include "ghidra.h"
 #include <string.h>
+struct C_001B1580_24 {
+    char pad0[0x4];
+    float unk4;                       /* 0x04 */
+    float unk8;                       /* 0x08 */
+    char padC[0x8];
+    float unk14;                      /* 0x14 */
+    float unk18;                      /* 0x18 */
+    char pad1C[0x28];
+    int unk44;                        /* 0x44 */
+    char pad48[0x6];
+    u8 unk4E;                         /* 0x4E */
+    void func_0005E840(const char *s);
+    void func_001D6440();
+};
+
+struct S_001B1810_Out {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
+struct C_001B1580 {
+    char pad0[0x24];
+    C_001B1580_24 *unk24;             /* 0x24 */
+    char pad28[0x4];
+    int unk2C;                        /* 0x2C */
+    int unk30;                        /* 0x30 */
+    char pad34[0x34];
+    int unk68;                        /* 0x68 */
+    char pad6C[0x54];
+    int unkC0;                        /* 0xC0 */
+    void func_001B13A0(int a, int b, int c, int len);
+    C_001B1580 *func_001B1580(int a, int b, const char *s, int c);
+    void func_001B15F0();
+    void func_001B17D0(const char *s);
+    void func_001B1810(S_001B1810_Out *out);
+};
+
 struct C_001B0E40 {
     undefined4 func_001B0E40(byte param_1);
 };
@@ -517,25 +556,15 @@ void *C_001B1130::func_001B1130(int a0)
 {
     func_00157600(a0);
     vtbl = (void *)&D_0028C70C;
-    unk2C = 0.0f;
-    unk28 = 0.0f;
-    unk24 = 0.0f;
+    unk24 = unk28 = unk2C = 0;
     unk30 = 1.0f;
-    unk3C = 0.0f;
-    unk38 = 0.0f;
-    unk34 = 0.0f;
+    unk34 = unk38 = unk3C = 0;
     unk40 = 1.0f;
-    unk4C = 0.0f;
-    unk48 = 0.0f;
-    unk44 = 0.0f;
+    unk44 = unk48 = unk4C = 0;
     unk50 = 1.0f;
-    unk5C = 0.0f;
-    unk58 = 0.0f;
-    unk54 = 0.0f;
+    unk54 = unk58 = unk5C = 0;
     unk60 = 1.0f;
-    unk6C = 0.0f;
-    unk68 = 0.0f;
-    unk64 = 0.0f;
+    unk64 = unk68 = unk6C = 0;
     unk70 = 1.0f;
     return this;
 }
