@@ -28,6 +28,35 @@ struct Class_002901A0 {
 extern int D_0001011C;
 extern S_SectionEntry *D_00010120;
 
+struct S_func_001E29CD_arg0 {
+    char pad0[0x358];
+    float f358;
+    float f35C;
+    float f360;
+    float f364;
+    float f368;
+    float f36C;
+    float f370;
+    float f374;
+    float f378;
+    float f37C;
+    int f380;
+    int f384;
+    int f388;
+    char pad38C[0x410 - 0x38C];
+    int f410;
+    int f414;
+    int f418;
+    int f41C;
+    int f420;
+    int f424;
+    int f428;
+    int f42C;
+};
+
+extern float *D_00252DE8[];
+extern float D_00275600;
+
 extern "C" __declspec(dllimport) void __stdcall RtlInitAnsiString(S_AnsiString *dst, const char *src);
 extern "C" __declspec(dllimport) u8 __stdcall RtlEqualString(S_AnsiString *a, S_AnsiString *b, int caseInsensitive);
 extern "C" __declspec(dllimport) int __stdcall XeLoadSection(void *section);
