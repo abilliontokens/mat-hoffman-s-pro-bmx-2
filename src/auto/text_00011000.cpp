@@ -36,6 +36,13 @@ C_00011060* C_00011060::func_00011060(void) {
     return this;
 }
 
+C_00011080* C_00011080::func_00011080(float *p) {
+    x = x + p[0];
+    y = y + p[1];
+    z = z + p[2];
+    return this;
+}
+
 void func_000111B0(float *out, float *in) {
     __m128 v = _mm_loadu_ps(in);
     __m128 sq = _mm_mul_ps(v, v);
