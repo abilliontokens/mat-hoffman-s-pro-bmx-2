@@ -1,6 +1,7 @@
 /* 17 functions from 0x00177230 to 0x00178210, found by Ghidra. */
 #include "common.h"
 
+extern char D_0000F800;
 extern char D_0000FFF8;
 extern char D_0000FFFC;
 
@@ -162,6 +163,42 @@ u32 func_00177650(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   func_001E8390(buf);
   return 1;
 }
+
+u32 func_00177780(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, u32 colorKey)
+{
+  int y;
+  u8 *d;
+  u8 *s;
+  int x;
+  u8 *p;
+  u8 *q;
+  u16 key;
+  u16 v;
+  key = ((colorKey >> 8) & 0xf800) | ((colorKey >> 5) & 0x7e0) | ((colorKey >> 3) & 0x1f);
+  s = src;
+  d = dst;
+  for (y = height; y > 0; y--) {
+    for (p = d, q = s, x = width; x > 0; x--) {
+      v = *(u16 *)q;
+      if (v == key) {
+        p[2] = 0xff;
+        p[1] = 0;
+        p[0] = 0xff;
+      } else {
+        p[2] = (v >> 8) & 0xf8;
+        p[1] = (*(u16 *)q >> 3) & 0xfc;
+        p[0] = q[0] << 3;
+      }
+      p[3] = 0xff;
+      p += 4;
+      q += 2;
+    }
+    s += srcPitch * 2;
+    d += dstPitch * 4;
+  }
+  return 1;
+}
+
 u32 func_00177860(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch)
 {
   u8 *d;
@@ -230,6 +267,28 @@ u32 func_001779C0(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   s += srcPitch * 3; d += dstPitch * 2;
  }
  return 1;
+}
+
+int func_00176630(unsigned char*, int, int, int, int, int, int, int, unsigned short*, int, int);
+int func_00177AB0(unsigned short* dst, unsigned char* src, int width, int height, int dstPitch, int srcPitch, int useBlit)
+{
+    if (useBlit) {
+        func_00176630(src, 0x378, width, height, srcPitch, dstPitch, 0, 0, dst, 0, 0);
+        return 1;
+    }
+    unsigned short* row = dst;
+    unsigned char* srow = src;
+    for (int y = 0; y < height; y++) {
+        unsigned short* d = row;
+        unsigned char* s = srow;
+        for (int x = 0; x < width; x++) {
+            *d++ = (unsigned short)((((((unsigned short)s[2] & 0xFFF8) << 5) | s[1]) & 0xFFF8) << 2 | (unsigned short)(s[0] >> 3));
+            s += 3;
+        }
+        srow += srcPitch * 3;
+        row += dstPitch;
+    }
+    return 1;
 }
 
 u32 func_00177CA0(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int a6, C_00135420 *pal)
