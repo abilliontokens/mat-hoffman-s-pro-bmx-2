@@ -123,6 +123,78 @@ struct C_001BD9F0 {
     void func_001BD9F0(void);
 };
 
+struct C_001BDA80 {
+    void func_001BDA80(void);
+};
+
+extern int D_0028D44C;
+extern int D_0028D51C;
+
+void func_001E8390(void *p);
+void func_001E891B(void *p);
+
+struct S_001BD870_Global {
+    char pad0[8];
+    int f8;
+};
+
+extern S_001BD870_Global *D_002F07B8;
+
+struct Quat_001BD870 {
+    u32 x;
+    u32 y;
+    u32 z;
+    u32 w;
+};
+
+struct S_001BD870_Elem {
+    Quat_001BD870 q0;
+    char pad10[8];
+    Quat_001BD870 q1;
+    Quat_001BD870 q2;
+};
+
+/* UIManager */
+struct C_001BD870 {
+    void *vtbl;
+    char pad4[0x24];
+    int f28;
+    S_001BD870_Elem elems[4];
+    int f10c;
+    void *f110;
+    int f114;
+    int f118;
+    char pad11c[4];
+    void *f120;
+    char pad124[4];
+    int f128;
+    int f12c;
+    char pad130[8];
+    int f138;
+    int f13c;
+    char pad140[4];
+    int f144;
+    char pad148[4];
+    int f14c;
+    C_001BD870 *func_001BD870(int a);
+    void *func_001BD920(unsigned int flags);
+};
+
+/* UIGroup */
+struct C_001BD980 {
+    void *vtbl;
+    char pad4[0x24];
+    int f28;
+    int f2c;
+    char pad30[4];
+    int f34;
+    int f38;
+    int f3c;
+    int f40;
+    int f44;
+    C_001BD980 *func_001BD980(int a);
+};
+
 
 undefined4 C_001BD790::func_001BD790(void)
 {
