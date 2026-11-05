@@ -15,7 +15,7 @@ extern int D_002FB36C;
 extern int *D_002FB368;
 extern double D_002766A8;
 extern void (__stdcall *__imp__RtlEnterCriticalSection)(void *cs);
-extern void (__stdcall *__imp__RtlLeaveCriticalSection)(void *cs);
+extern "C" void (__stdcall *__imp__RtlLeaveCriticalSection)(void *cs);
 
 void func_001EAEC3(void) {
     int func_001EB390(...);
