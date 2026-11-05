@@ -54,6 +54,20 @@ struct C_000F2780 {
 };
 
 
+undefined4 *C_000F2750::func_000F2750(byte param_1)
+{
+  int func_001BE3F0(...);
+  int func_001E891B(...);
+  undefined4 *p = (undefined4 *)this;
+
+  *p = (undefined4)&D_0027E00C;
+  func_001BE3F0();
+  if ((param_1 & 1) != 0) {
+    func_001E891B(p);
+  }
+  return p;
+}
+
 undefined4 C_000F2CA0::func_000F2CA0(byte param_1)
 {
   int func_000C45E0(...);
