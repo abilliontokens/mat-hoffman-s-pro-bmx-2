@@ -157,7 +157,7 @@ struct Mgr_00134770 {
     virtual int v29(Ent_00134770 *e);
     char pad4[0x98];
     EntCb cb9c;
-    EntCb cbA0;
+    char pad_a0[4];
     char pad_a4[3];
     unsigned char flags;
     int func_001332E0(Ent_00134770 *e);
