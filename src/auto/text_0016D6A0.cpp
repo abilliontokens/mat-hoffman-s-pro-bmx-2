@@ -194,6 +194,20 @@ static inline void Copy_0016DAC0(void *d, const void *s)
     *(V4u_0016D6A0 *)d = *(const V4u_0016D6A0 *)s;
 }
 
+static inline void Set_0016DAC0(float *p, float a, float b, float c, float d)
+{
+    volatile float tmp[4];
+    tmp[1] = b;
+    float y = tmp[1];
+    tmp[0] = a;
+    p[0] = tmp[0];
+    p[1] = y;
+    tmp[2] = c;
+    p[2] = tmp[2];
+    tmp[3] = d;
+    p[3] = tmp[3];
+}
+
 static inline void AddTo_0016DAC0(C_Quad *d, const C_Quad *s)
 {
     d->a = s->a + d->a;
