@@ -77,7 +77,7 @@ struct C_0011C900 {
     int f12C;
     char pad130[0x58];
     S_0011CA20_V4 f188;
-    void func_0011C900(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11, int a12);
+    void func_0011C900(S_0011CA20_V4 a, S_0011CA20_V4 b, S_0011CA20_V4 c, int d);
 };
 
 static inline void SetV4(S_0011CA20_V4 *v, int x, int y, int z, int w)
