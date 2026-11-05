@@ -198,9 +198,13 @@ struct C_0004D0E0 {
     char pad174[0x114];
     S_4D0E0_B *f288;
     int f28c;
-    char pad290[0x10];
-    int f2a0[1];
+    int f290;
+    char pad294[0xc];
+    int f2a0[8];
+    int f2c0;
+    void func_00034090();
     void func_0004D0E0();
+    int func_0004D650();
 };
 
 void C_0004CC60::func_0004CC60(int id, int a1, int a2, int a3, int a4, int a5)
