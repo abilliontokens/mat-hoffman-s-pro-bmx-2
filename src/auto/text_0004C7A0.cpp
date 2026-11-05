@@ -80,6 +80,57 @@ struct C_0004D070 {
 extern S_0004D070_Global *D_002A8490;
 extern char D_00275630;
 
+struct S_0004D630_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+};
+
+struct C_0004D630 {
+    char pad0[0x288];
+    S_0004D630_Obj *f288;
+    void func_000314A0();
+    void func_0004D630();
+};
+
+struct C_0004D5F0 {
+    char pad0[0x288];
+    void *f288;
+    void func_00031640();
+    void func_0004D5F0();
+};
+
+void __stdcall func_001577A0(void *p, int flag);
+int __stdcall func_00097DA0(void *p);
+
+struct S_4D230_Obj {
+    void func_0010C090(void *a, void *b, int c, int d);
+};
+
+struct S_4D230_Mgr {
+    char pad0[0x4e0];
+    char *f4e0;
+};
+
+struct C_0004D230 {
+    char pad0[0x64];
+    S_4D230_Mgr *f64;
+    char pad68[0xb8];
+    int f120;
+    char pad124[0x9c];
+    void *f1c0;
+    char pad1c4[0xc8];
+    int f28c;
+    char pad290[0x34];
+    char f2c4[0x3c0];
+    int f684;
+    void func_0004D230();
+};
+
 void C_0004CC60::func_0004CC60(int id, int a1, int a2, int a3, int a4, int a5)
 {
     for (int i = 0; i < f90; i++) {
