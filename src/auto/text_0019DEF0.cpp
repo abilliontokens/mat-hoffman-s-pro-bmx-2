@@ -65,6 +65,19 @@ struct C_0019EB10 {
     void func_0019ECB0(S_0019EB10_Node *root, S_0019EB10_Sub *d);
 };
 
+struct SoultreeHierarchyCollisionObject {
+    char pad0[0xa8];
+    float fA8[4];
+    float fB8;
+    float fBC;
+    float fC0;
+    char padC4[0x6c];
+    float f130[16];
+    void func_0019E860(float *m, float *ext);
+};
+
+#include <math.h>
+
 extern S_0019EB10_Loader *D_002BEAAC;
 void *func_001E8A44(int size);
 void *func_001E8AA5(int size);
@@ -107,3 +120,45 @@ void C_0019EB10::func_0019EB10(int h)
     }
     func_001E891B(c.list);
 }
+
+void C_0019EB10::func_0019ECB0(S_0019EB10_Node *root, S_0019EB10_Sub *d)
+{
+    S_0019EB10_Node **list;
+    S_0019EB10_Node *node;
+    int count;
+    int i;
+    void *mem;
+    S_0019EB10_Obj *obj;
+
+    f19c = root;
+    node = root;
+    while (node->f170 != 0) {
+        node = node->f170;
+    }
+    list = (S_0019EB10_Node **)func_001E8A44(node->func_00198270() * 4);
+    count = 1;
+    *list = node;
+    node->func_001982A0(&count, list);
+    f190 = d->f8;
+    f1a0 = (S_0019EB10_Obj **)func_001E8AA5(f190 * 4);
+    f194 = (int *)func_001E8A44(f190 * 4);
+    f198 = (int *)func_001E8A44(f190 * 4);
+    for (i = 0; i < f190; i++) {
+        mem = func_001E8A44(0x1e0);
+        obj = mem != 0 ? ((S_0019EB10_Obj *)mem)->func_0019B700(1) : 0;
+        f1a0[i] = obj;
+        f1a0[i]->f1c0 = list[d->f24[i]];
+        f194[i] = 1;
+        f1a0[i]->f1c4 = d->f14[i];
+        f1a0[i]->f1c8 = d->f18[i];
+        f1a0[i]->f1cc = (short)d->fC[i];
+        f1a0[i]->f1ce = (short)d->f10[i];
+        f1a0[i]->f1b0 = d->f1c[i];
+        f1a0[i]->fF0.func_000264C0(d->f20 + i);
+        f1a0[i]->f1bc = d->f28[i];
+    }
+    f1a4 = d;
+    d->f2c++;
+    func_001E891B(list);
+}
+
