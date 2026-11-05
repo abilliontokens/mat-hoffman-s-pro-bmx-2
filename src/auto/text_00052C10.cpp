@@ -105,6 +105,7 @@ struct C_52C10 {
     void func_00052830(int a);
     void func_00031400();
     void func_000342C0();
+    int GetActive() { return unk358; }
 };
 
 struct C_000536A0 {
@@ -131,12 +132,17 @@ void C_52C10::func_00052D20(int *out)
 
 int C_52C10::func_000533A0(void)
 {
+    int arg;
+
     if (unk358 != 0) {
         if (D_002A8490->f274 == 0) {
-            func_00052830(1);
+            arg = 1;
         } else if (unk358 != 0) {
-            func_00052830(0);
+            arg = 0;
+        } else {
+            return 1;
         }
+        func_00052830(arg);
         func_00031400();
     }
     return 1;
