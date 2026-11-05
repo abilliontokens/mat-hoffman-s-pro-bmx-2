@@ -400,6 +400,7 @@ extern char D_00285B40[], D_00285B3C[], D_00285B30[];
 int func_001ADCC0(char *, int, const char *, ...);
 void *func_001D6E20(char *, int, int);
 int func_001B2910(int);
+extern float D_00275460;
 int DXSignatureWave::func_00143A40(const char *name, int id)
 {
  char buf[260];
@@ -423,7 +424,7 @@ int DXSignatureWave::func_00143A40(const char *name, int id)
  *(unsigned *)(self+0x28)=size/(func_001B2910(*(int *)((char *)**(void ***)(self+0x24)+0xa4))/8);
  obj=**(void ***)(self+0x24);
  ((WaveBuffer *)obj)->Unlock(0);
- float scale=1.0f / *(unsigned *)(self+0x28);
+ float scale=D_00275460 / *(unsigned *)(self+0x28);
  *(float *)(self+0x8c)*=scale;
  *(float *)(self+0x90)*=scale;
  return 1;
