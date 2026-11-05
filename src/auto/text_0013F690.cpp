@@ -38,6 +38,9 @@ struct C_001449B0 {
     virtual void load(int key);
     char pad4[0x2c];
     void func_001449B0(int flag);
+    C_001449B0(int flag = 1);
+    ~C_001449B0();
+    static void *operator new[](unsigned int size) { return func_001E8A44(size); }
 };
 struct DXInstanceData {
     void *vtbl;
