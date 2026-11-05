@@ -132,6 +132,35 @@ struct PhysicsBodyVT {
     virtual void v29();
 };
 
+struct C_00172090_D0 {
+    void func_001A9110(int a, int b, int c, int d, int e, int f, int g, int h);
+    void func_001A9220(int a, int b);
+};
+
+extern float D_00275544;
+extern float D_00275460;
+extern float D_00283A7C;
+extern float D_00283A78;
+
+struct V4_00172090 {
+    float x, y, z, w;
+    V4_00172090() {}
+    V4_00172090(float a, float b, float c) : x(a), y(b), z(c), w(1.0f) {}
+};
+
+__declspec(align(16)) struct S_00172090_Mat {
+    float m[16];
+};
+
+static __forceinline void Zero_00172090(S_00172090_Mat *&p)
+{
+    S_00172090_Mat *q = p;
+    _mm_store_ps(&q->m[0], _mm_setzero_ps());
+    _mm_store_ps(&q->m[4], _mm_setzero_ps());
+    _mm_store_ps(&q->m[8], _mm_setzero_ps());
+    _mm_store_ps(&q->m[12], _mm_setzero_ps());
+}
+
 /* PhysicsBody */
 struct PhysicsBody {
     void *vtbl;
