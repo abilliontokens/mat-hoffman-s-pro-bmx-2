@@ -188,7 +188,7 @@ struct S_001BF540_Owner {
     virtual void v26();
     virtual void v27();
     virtual int v28(int idx, int key);
-    char pad4[0x274];
+    char pad4[0x278];
     int f27C;
 };
 
