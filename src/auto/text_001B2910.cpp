@@ -202,6 +202,45 @@ int func_001B2CB0(int param_1)
     return func_001B2910(param_1) / 8;
 }
 
+S_001B3560 *func_001B33A0(int a, int b)
+{
+    S_001B3560 *item = (S_001B3560 *)b;
+
+    if (item == 0) {
+        item = (S_001B3560 *)func_001E8AA5(0x128);
+        if (item == 0) {
+            goto fail;
+        }
+        item->f14 = 0;
+        item->f18 = 0;
+        item->f120 = 0;
+        item->f124 = 0;
+    }
+    item->f1c = 0;
+    if (D_002BEAAC->func_0013C8A0(a, &item->f0, 1, 1) == 1 &&
+        D_002BEAAC->func_0013C8A0(a, &item->f1, 1, 1) == 1 &&
+        D_002BEAAC->func_0013C8A0(a, &item->f2, 1, 1) == 1 &&
+        D_002BEAAC->func_0013C8A0(a, &item->f4, 2, 1) == 1 &&
+        D_002BEAAC->func_0013C8A0(a, &item->f6, 2, 1) == 1 &&
+        D_002BEAAC->func_0013C8A0(a, &item->f8, 1, 1) == 1 &&
+        D_002BEAAC->func_0013C8A0(a, &item->fA, 2, 1) == 1 &&
+        D_002BEAAC->func_0013C8A0(a, &item->fC, 2, 1) == 1 &&
+        D_002BEAAC->func_0013C8A0(a, &item->fE, 2, 1) == 1 &&
+        D_002BEAAC->func_0013C8A0(a, &item->f10, 2, 1) == 1 &&
+        D_002BEAAC->func_0013C8A0(a, &item->kind, 1, 1) == 1 &&
+        D_002BEAAC->func_0013C8A0(a, &item->f13, 1, 1) == 1 &&
+        (item->kind == 0x10 || item->kind == 0x18 || item->kind == 0x20) &&
+        (item->f2 == 2 || item->f2 == 10)) {
+        return item;
+    }
+    if (item->f14 != 0) {
+        func_001E8390(item->f14);
+    }
+    func_001E8390(item);
+fail:
+    return 0;
+}
+
 S_001B3560 *func_001B3560(int param_1, int param_2)
 {
     S_001B3560 *item;
