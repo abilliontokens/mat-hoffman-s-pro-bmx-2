@@ -70,7 +70,8 @@ struct C_00166CA0 {
  int f30, f34, f38;
  char pad3C[0xC];
  char f48[0x50], f98[0x50], fE8[0x50], f138[0x50];
- char pad188[8];
+ int f188;
+ char pad18C[4];
  char f190[0x50];
  char pad1E0[8];
  int f1E8;
