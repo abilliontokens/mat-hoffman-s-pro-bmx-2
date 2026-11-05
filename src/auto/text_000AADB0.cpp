@@ -120,6 +120,51 @@ struct C_000AB340 {
     void func_000AB340(void);
 };
 
+void C_000AADB0::func_000AADB0(C_000AADB0_Parser *p)
+{
+ int count, n, start;
+ volatile int total;
+ char name[260], item[260];
+ if (!p->func_00169710(D_0027C704)) return;
+ p->func_00168C20(D_0027C6E4,0,&count);
+ if(count<=0) return;
+ C_000AADB0_Box *result;
+ if(f28) {
+ start=f24; total=f24=count+start;
+ result=(C_000AADB0_Box *)func_001E83E8(f28,f24*40);
+ } else {
+ total=f24=count; start=0;
+ int allocCount=count;
+ int *mem=(int *)func_001E8A44(allocCount*40+4);
+ if(mem) { *mem=allocCount; C_000AADB0_Box *objects=(C_000AADB0_Box *)(mem+1); func_00011FF0(objects,40,allocCount,(void *)func_000A09F0); result=objects; }
+ else result=0;
+ }
+ f28=result;
+ for(int i=start;i<total;i++) {
+ func_001ADCC0(name,260,D_0027C6CC,i-start+1);
+ if(p->func_00169710(name)) {
+ p->func_00168C50(D_0027C6C4,0,&f28[i].f0);
+ p->func_00168C50(D_0027C6BC,0,&f28[i].f4);
+ p->func_00168C50(D_0027C6B4,0,&f28[i].f8);
+ p->func_00168C50(D_0027C6AC,0,&f28[i].fC);
+ p->func_00168C50(D_0027C6A4,0,&f28[i].f10);
+ p->func_00168C50(D_0027C69C,0,&f28[i].f14);
+ p->func_00168C20(D_0027C67C,0,&n);
+ f28[i].f18=n;
+ if(n>0) {
+ f28[i].f20=(int *)func_001E8A44(n*4);
+ f28[i].f1C=(char **)func_001E8A44(n*4);
+ for(int j=0;j<n;j++) {
+ func_001ADCC0(item,260,D_0027C670,j+1);
+ f28[i].f1C[j]=(char *)func_001E8A44(260);
+ f28[i].f20[j]=0;
+ p->func_00168BE0(item,D_002764F0,f28[i].f1C[j],-1);
+ }
+ }
+ }
+ }
+}
+
 void C_000AB340::func_000AB340(void)
 {
     C_000AB340_Vec v = D_002EFDB8->f4->f170;
