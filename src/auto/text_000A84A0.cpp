@@ -49,6 +49,7 @@ extern char D_000A8D40;
 /* BikeShutdownTriggerAction */
 struct C_000A8D90 {
     void *vtbl;
+    void Register(void *cb) { func_001BBAA0(this, cb); }
     int func_000A8D90(void *a, int b);
 };
 
