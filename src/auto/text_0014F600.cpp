@@ -228,15 +228,15 @@ float func_0014F7E0(float x)
     extern float D_00275F58;
     extern float D_002DF86C;
     int i;
+    float t;
     int * volatile p = &i;
     float v;
-    float t;
     float f;
 
     v = x;
-    if (v > D_00275460) {
+    if (x > D_00275460) {
         v = D_00275460;
-    } else if (v < D_00275F58) {
+    } else if (x < D_00275F58) {
         v = D_00275F58;
     }
     v = (v + D_00275460) * D_002DF86C;
@@ -430,6 +430,17 @@ void C_00150350::func_00150350(void) {
     int func_0012B540(...);
     unk0 = (int)&D_00286AE8;
     func_0012B540();
+}
+
+C_00150360 *C_00150360::func_00150360(int a0)
+{
+    ((C_00157600 *)this)->func_00157600(a0);
+    f38 = 0;
+    f40 = 0;
+    f3C = 1;
+    f50 = 1;
+    vtbl = (void *)&D_00286B04;
+    return this;
 }
 
 int C_00150440::func_00150440(void)
