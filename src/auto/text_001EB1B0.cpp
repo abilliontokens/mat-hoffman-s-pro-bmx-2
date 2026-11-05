@@ -222,7 +222,7 @@ void __cdecl func_001EB496(int flag, char *argument, char *number)
 
 void __cdecl func_001EB7D7(void)
 {
-    func_001F4BC8(0x10000, 0x30000);
+    func_001F4BC8((unsigned int)&D_00010000, (unsigned int)&D_00030000);
 }
 
 void func_001EB977(void) {
