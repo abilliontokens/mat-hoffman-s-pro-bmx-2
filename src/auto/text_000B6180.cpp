@@ -29,6 +29,7 @@ struct V4_000B6840 {
 struct V4Init_000B6840 : V4_000B6840 {
     V4Init_000B6840() { x = y = z = 0; w = 1; }
     V4Init_000B6840(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
+    V4Init_000B6840(float ny, const V4_000B6840 *p) { x = p->x; y = ny; z = p->z; w = 1.0f; }
 };
 
 static inline void Box_000B6840(V4_000B6840 *dst, V4_000B6840 *src, float h)
