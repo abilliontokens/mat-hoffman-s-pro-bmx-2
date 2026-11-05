@@ -101,9 +101,9 @@ void func_0019D9A0(float *out, float *a, float *b)
 
 void func_0019DA10(float *out, float *a, float *b)
 {
-    float x = a[0] > b[0] ? a[0] : b[0];
-    float y = a[1] > b[1] ? a[1] : b[1];
     float z = a[2] > b[2] ? a[2] : b[2];
+    float y = a[1] > b[1] ? a[1] : b[1];
+    float x = a[0] > b[0] ? a[0] : b[0];
     out[0] = x;
     out[3] = 1.0f;
     out[1] = y;
