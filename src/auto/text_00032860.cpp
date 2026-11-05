@@ -185,6 +185,49 @@ struct C_00032A00 {
 };
 
 
+void C_00032860::func_00032860(void)
+{
+    int i;
+
+    f1c8 = 1;
+    if (f64->f484 != 0) {
+        f64->f484->func_0001C240();
+    }
+    if (f64->f3b4 != 0) {
+        f64->f3b4->v30(f64);
+    }
+    for (i = 0; i < (*f64->f3a8)->count; i++) {
+        O_Obj32F50 *o = (*f64->f3a8)->items[i];
+        if (o->f8 != 0) {
+            o->f8->func_001824E0(1.0f, 1.0f, 1.0f);
+        }
+    }
+    if (f1c0 != 0) {
+        if ((*(int **)((char *)D_002A8490 + 0x2e0))[1] == 0) {
+            f1c0->func_00098EE0(f64->f3b4, f64->f534);
+        }
+        f1c0->func_00099A60(f64->f3b4);
+        if ((*(int **)((char *)D_002A8490 + 0x2e0))[1] == 0) {
+            f1c0->func_000981D0(f64->f3b4, f64->f534, f1c8);
+        }
+    }
+    v40();
+    if (f1c4 != 0) {
+        f1c4->func_001041E0();
+        f1c4->func_00104190();
+    }
+    D_002AADF8 = 0;
+    if (D_002B9134 != 0) {
+        D_002B9134->func_000B2D50(0);
+    }
+    if (D_002B7E18 != 0) {
+        D_002B7E18->func_00022B70();
+    }
+    for (i = 0; i < D_002B9120->count; i++) {
+        D_002B9120->items[i]->func_00012420();
+    }
+}
+
 void C_00032A00::func_00032A00(void) {
     extern int D_002AADF8;
     unk1C8 = 0;
