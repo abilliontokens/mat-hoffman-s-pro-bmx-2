@@ -17,6 +17,12 @@ struct C_0013B210 {
     void func_0013C8A0(int a0, void *a1, int a2, int a3);
 };
 
+struct C_00143C00 {
+    char pad0[0xac];
+    int fac;
+    void func_00143C00(int arg);
+};
+
 extern C_0013B210 *D_002BEAAC;
 
 struct C_001AF300 {
@@ -236,5 +242,17 @@ void C_001449B0::func_001449E0()
         func_001E891B((void *)f2c);
     }
     ((C_001AF320 *)this)->func_001AF320();
+}
+
+void C_001449B0::func_00144A20(int size)
+{
+    int id = size;
+    D_002BEAAC->func_0013C8A0(id, &size, 4, 1);
+    f24 = (int)func_001E8AA5(size);
+    D_002BEAAC->func_0013C8A0(id, (void *)f24, size, 1);
+    D_002BEAAC->func_0013C8A0(id, &size, 4, 1);
+    f28 = size / 4;
+    f2c = (int)func_001E8A44(f28 * 4);
+    D_002BEAAC->func_0013C8A0(id, (void *)f2c, size, 1);
 }
 
