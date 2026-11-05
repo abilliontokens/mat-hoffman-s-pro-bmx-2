@@ -128,6 +128,23 @@ int func_001F4ED9(int ch, S_001F4_FILE *stream)
     return ch & 0xff;
 }
 
+int func_001F4F45(unsigned short *pwc, const unsigned char *s, unsigned int n)
+{
+    if (s == 0 || n == 0) {
+        return 0;
+    }
+    if (*s == 0) {
+        if (pwc != 0) {
+            *pwc = 0;
+        }
+        return 0;
+    }
+    if (pwc != 0) {
+        *pwc = *s;
+    }
+    return 1;
+}
+
 int func_001F57FF(int fh)
 {
     if ((unsigned int)fh >= D_002FB240) {
