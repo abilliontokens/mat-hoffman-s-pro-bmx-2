@@ -217,12 +217,14 @@ void C_0014A540::func_0014A540(void)
   int func_001E8390(...);
   int in_ECX = (int)this;
   
-  if (*(int *)(in_ECX + 8) != 0) {
-    func_001E8390(*(int *)(in_ECX + 8));
-    *(undefined4 *)(in_ECX + 8) = 0;
-  }
-  return;
+      if (*(int *)(in_ECX + 8) != 0) {
+      func_001E8390(*(int *)(in_ECX + 8));
+      *(undefined4 *)(in_ECX + 8) = 0;
+    }
+    return;
 }
+#pragma auto_inline(on)
+
 
 int C_0014A560::func_0014A560(int param_1, int param_2)
 {
