@@ -92,3 +92,61 @@ void C_0018F4D0::func_0018F4D0(unsigned int a)
     func_0018E250(D_00275630, a);
 }
 
+void C_0018F4D0::func_0018F610(unsigned int a, unsigned int b)
+{
+    unsigned int t = *((unsigned char *)this + 0x19);
+    float &vf = *(float *)&f20;
+    int &vi = f24;
+    double &vd = *(double *)&f138;
+    unsigned char &vb = *(unsigned char *)&f140;
+    unsigned int &vu = *(unsigned int *)&f130;
+    switch ((b >> 8) & 0xff) {
+    case 1:
+        switch (t) {
+        case 1: vf = vf; break;
+        case 2: vf = (float)vi; break;
+        case 4: vf = (float)vd; break;
+        case 5: vf = (float)vb; break;
+        case 7: vf = (float)vu; break;
+        }
+        break;
+    case 2:
+        switch (t) {
+        case 1: vi = (int)vf; break;
+        case 2: vi = vi; break;
+        case 4: vi = (int)vd; break;
+        case 5: vi = vb; break;
+        case 7: vi = vu; break;
+        }
+        break;
+    case 4:
+        switch (t) {
+        case 1: vd = vf; break;
+        case 2: vd = vi; break;
+        case 4: vd = vd; break;
+        case 5: vd = vb; break;
+        case 7: vd = vu; break;
+        }
+        break;
+    case 5:
+        switch (t) {
+        case 1: vb = (unsigned char)(int)vf; break;
+        case 2: vb = (unsigned char)vi; break;
+        case 4: vb = (unsigned char)(int)vd; break;
+        case 5: vb = vb; break;
+        case 7: vb = (unsigned char)vu; break;
+        }
+        break;
+    case 7:
+        switch (t) {
+        case 1: vu = (int)vf; break;
+        case 2: vu = vi; break;
+        case 4: vu = (int)vd; break;
+        case 5: vu = vb; break;
+        case 7: vu = vu; break;
+        }
+        break;
+    }
+    func_0018E250((char *)a, b);
+}
+
