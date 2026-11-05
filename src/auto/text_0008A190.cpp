@@ -1,5 +1,10 @@
 /* 27 functions from 0x0008A190 to 0x0008AED0, found by Ghidra. */
 #include "common.h"
+#include "ghidra.h"
+struct C_0008A8F0 {
+    undefined4 func_0008A8F0(int param_1);
+};
+
 struct C_0008AB90 {
     char pad0[0x28];
     int unk28;
@@ -66,6 +71,17 @@ struct C_0008A910 {
     void func_0008A910(void);
 };
 
+
+undefined4 C_0008A8F0::func_0008A8F0(int param_1)
+{
+  int in_ECX = (int)this;
+  
+  if (param_1 == 0) {
+    return 0;
+  }
+  *(int *)(in_ECX + 0x4d0) = param_1;
+  return 1;
+}
 
 void C_0008A910::func_0008A910(void) {
     unk4D8 = 1;
