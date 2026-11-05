@@ -476,4 +476,8 @@ void GrindTrigger_000A8360::func_000A8450(void *param)
         }
     }
 }
-/* claim note */
+struct ObjB_79E0 {
+    void **vtbl;
+    char pad4[0x64];
+    int f68;
+};
