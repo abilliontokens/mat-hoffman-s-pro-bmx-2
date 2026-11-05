@@ -77,6 +77,7 @@ struct C_001B0E60 {
     u32 unk1C;
     u32 unk20;
     u32 unk24;
+    C_001B0E60(int param_1);
     void func_001B0E60(int param_1);
 };
 
@@ -149,12 +150,14 @@ void C_001B0DC0::func_001B0DC0(void)
 {
     void func_001E891B(void *);
     void func_001E8390(void *);
+    Elem_001B0DC0 *e;
+    int i;
     vtbl = &D_0028C5BC;
     if (unk10 != 0) {
-        if (0 < unk10->count) {
-            int i = 0;
+        if (unk10->count > 0) {
+            i = 0;
             do {
-                Elem_001B0DC0 *e = ((Elem_001B0DC0 **)unk10)[i * 2 + 2];
+                e = ((Elem_001B0DC0 **)unk10)[i * 2 + 2];
                 if (e != 0) {
                     e->func_001B0970();
                     func_001E891B(e);
@@ -164,10 +167,10 @@ void C_001B0DC0::func_001B0DC0(void)
         }
         func_001E8390(unk10);
     }
-    Elem_001B0DC0 *e2 = unkC;
-    if (e2 != 0) {
-        e2->func_001B0970();
-        func_001E891B(e2);
+    e = unkC;
+    if (e != 0) {
+        e->func_001B0970();
+        func_001E891B(e);
     }
     func_0001DFF0();
 }
