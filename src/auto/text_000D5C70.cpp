@@ -73,10 +73,18 @@ struct NodeHOF2 {
 };
 
 struct MgrHOF2 {
-    char pad0[0x34];
+    char pad0[0x24];
+    ElemHOF2 *unk24;
+    ElemHOF2 *unk28;
+    ElemHOF2 *unk2C;
+    ElemHOF2 *unk30;
     NodeHOF2 *unk34;
     char pad38[4];
     NodeHOF2 *unk3C;
+    char pad40[0x14];
+    ElemHOF2 *unk54;
+    char pad58[0x14];
+    ElemHOF2 *unk6C;
 };
 extern MgrHOF2 *D_002B91AC;
 
