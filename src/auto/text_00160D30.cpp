@@ -21,14 +21,32 @@ unsigned int func_0014FE60(void *buf, int size, void *file);
 void func_001E8390(void *ptr);
 void *func_001E8AA5(int size);
 char *func_001E9260(char *s, int c);
-struct S_00161040_Entry { char *text; int unk4; };
+struct S_00161040_Entry { char *text; short unk4; short unk6; };
+
+/* string list container built by func_00160D30 */
+struct S_00160C40 {
+    S_00160C40 *func_00160C40(int count, void *a, void *b);
+    void func_00160C90(void);
+    void func_00160CE0(char *s, int i);
+};
+
+/* 8-byte record read from the file header table */
+struct S_00160D30_Rec { int f0; short s4; short s6; };
+extern char D_00287AA0[], D_00287A90[];
+extern char *D_002A817C[];
+extern char D_00135BF0, D_00135C10;
+
 struct C_00161040 {
     char *data;
     S_00161040_Entry *entries;
     int unk8, unkC;
     short count;
-    char name[1];
+    char name[0x12];
+    char **strs;
+    char *text;
+    S_00160C40 *cont;
     int func_00161040(int index);
+    int func_00160D30(const char *nm, int idx, int flag);
 };
 
 struct V4_00161930 {
