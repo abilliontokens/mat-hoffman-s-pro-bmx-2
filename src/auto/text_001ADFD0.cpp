@@ -119,6 +119,56 @@ struct C_001AE810 {
 };
 
 
+C_001AE3E0 *C_001AE3E0::func_001AE3E0(int param_1)
+{
+    ((C_00157600 *)this)->func_00157600(param_1);
+    vtbl = &D_0028C214;
+    f48 = 0;
+    f44 = 0;
+    f40 = 0;
+    f4C = 0x3f800000;
+    f58.func_001D5480();
+    f58.f8 = 0;
+    f58.vtbl = &D_0028C208;
+    f6C = -1;
+    f74 = -1;
+    f70 = -1;
+    f78 = -1;
+    f50 = 0;
+    f30 = 0;
+    f38 = 0;
+    f3C = 0;
+    f64 = 0;
+    f54 = 0;
+    f68 = 0;
+    f84 &= 0xf8;
+    f24 = 1;
+    return this;
+}
+
+void C_001AE3E0::func_001AE460(void)
+{
+    vtbl = &D_0028C214;
+    if (f38) {
+        func_001E891B(f38);
+    }
+    if (f3C) {
+        func_001E891B(f3C);
+    }
+    if (f64) {
+        func_001E8390(f64);
+    }
+    if (f54) {
+        f54->v0(1);
+    }
+    f58.vtbl = &D_0028C208;
+    if (f58.f8) {
+        f58.f8->v0(1);
+    }
+    f58.func_001D5490();
+    ((C_00157660 *)this)->func_00157660();
+}
+
 float __stdcall func_001AE530(float x, float y)
 {
     extern float D_00278788;
