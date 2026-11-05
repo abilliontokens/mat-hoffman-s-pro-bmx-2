@@ -42,6 +42,7 @@ struct C_000739F0 {
     virtual void virt4();
     char pad4[0x60];
     C_000739F0_F64 *unk64;
+    char pad68[4];
     int unk6C;
     char pad70[0x14];
     float unk84;
