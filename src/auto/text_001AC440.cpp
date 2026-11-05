@@ -31,6 +31,7 @@ struct StringTable {
     int func_001AC680(const char *name, int value);
     void func_001AC750(int index, int data);
     int func_001AC7B0(const char *name);
+    int func_001AC7B0(const char *name, int unused);
 };
 
 struct DynamicStringTable {
@@ -127,6 +128,19 @@ void DynamicStringTable::func_001AC830()
             func_001E8390((void *)entries[i].name);
     }
     func_001AC3D0();
+}
+
+int DynamicStringTable::func_001AC870(const char *name, int value)
+{
+    for (int i = 0; i < count; i++) {
+        if (func_001EA426(name, entries[i].name) == 0)
+            return i;
+    }
+    int index = func_001AC680(name, value);
+    char *p = (char *)func_001E8AA5(strlen(name) + 1);
+    entries[index].name = p;
+    strcpy(p, name);
+    return index;
 }
 
 undefined4 C_001AC900::func_001AC900(byte param_1)
