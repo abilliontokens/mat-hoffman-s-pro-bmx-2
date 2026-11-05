@@ -304,6 +304,12 @@ C_00186EF0* C_00186EF0::func_00186EF0(void) {
     return this;
 }
 
+int C_00186F10::func_00186F10(int a)
+{
+    f110 = D_002A8490->f4->fb4->func_001CFE90(a, (int)this + 4, 1, 1, 0, 0);
+    return 1;
+}
+
 int C_00186F50::func_00186F50(void)
 {
     SoundObj_00186F50 *p = f110;
