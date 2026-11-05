@@ -70,19 +70,13 @@ void func_0014FD80(float *p);
 
 static __forceinline float Max_27860(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float Min_27860(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
-static __forceinline void Cross_27860(float * volatile out, float * volatile a, float * volatile b)
+inline void Cross_27860(float *out, float *a, float *b)
 {
-    float *pa = a, *pb = b;
-    __m128 va = _mm_loadu_ps(pa);
-    __m128 vb = _mm_loadu_ps(pb);
-    __m128 sa = va, sb = vb;
-    sa = _mm_shuffle_ps(sa, sa, 0xc9);
-    sb = _mm_shuffle_ps(sb, sb, 0xc9);
-    vb = _mm_mul_ps(vb, sa);
-    va = _mm_mul_ps(va, sb);
-    va = _mm_sub_ps(va, vb);
-    va = _mm_shuffle_ps(va, va, 0xc9);
-    _mm_storeu_ps(out, va);
+    _mm_storeu_ps(out, _mm_shuffle_ps(
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9))),
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9))), 0xc9));
 }
 
 struct C_00027C30 {
