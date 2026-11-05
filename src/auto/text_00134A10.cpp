@@ -325,7 +325,7 @@ void ParticleSystem::func_001357A0(int dt)
         if (f44 != 0) {
             f44(p, this);
         }
-        p->func_00135550(dt);
+        p->func_00135550(*(float *)&dt);
     }
     for (j = 0; j < f30; j++) {
         for (k = 0; k < f2c; k++) {
