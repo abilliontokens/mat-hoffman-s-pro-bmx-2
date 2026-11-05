@@ -69,3 +69,40 @@ void C_000CC6D0::func_000CC6D0(void) {
     unk33C = 1065353216;
     unk328 = 0;
 }
+
+void BmxUIPageRider::func_000CCB10()
+{
+    int i;
+
+    vtbl = &D_0027E54C;
+    for (i = 0; i < 8; i++) {
+        if (arr390[i] != 0) {
+            arr390[i]->Destroy(1);
+            arr390[i] = 0;
+        }
+    }
+    for (i = 0; i < 8; i++) {
+        if (arr3B0[i] != 0) {
+            arr3B0[i]->Destroy(1);
+            arr3B0[i] = 0;
+        }
+    }
+    for (i = 0; i < 2; i++) {
+        if (arr3F8[i] != 0) {
+            arr3F8[i]->Destroy(1);
+            arr3F8[i] = 0;
+        }
+    }
+    for (i = 0; i < 16; i++) {
+        if (arr400[i] != 0) {
+            arr400[i]->Destroy(1);
+            arr400[i] = 0;
+        }
+    }
+    if (unk550 != 0) {
+        unk550->Destroy(1);
+        unk550 = 0;
+    }
+    func_001BE3F0();
+}
+
