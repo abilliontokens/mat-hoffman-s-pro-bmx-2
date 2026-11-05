@@ -39,11 +39,6 @@ struct C_0018E0E0_Arg {
 
 struct C_0018E0E0 {
     C_0018DA90_Result func_0018DA90(int kind, int idx, const char *name, unsigned int *out);
-    C_0018DA90_Result Lookup(int idx, const char *name)
-    {
-        unsigned int x = 0;
-        return func_0018DA90(2, idx, name, &x);
-    }
     void func_0018E0E0(C_0018E0E0_Arg *arg, int idx);
 };
 
