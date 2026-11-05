@@ -11,7 +11,7 @@ struct V3_00171BA0 {
  V3_00171BA0 operator-(const V3_00171BA0 &o) const { return V3_00171BA0(x-o.x,y-o.y,z-o.z); }
  void operator+=(const V3_00171BA0 &o) { x+=o.x; y+=o.y; z+=o.z; }
 };
-static __forceinline float Sqrt_00171BA0(float x) { float r; _mm_store_ss(&r,_mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+static __forceinline float Sqrt_00171BA0(const float &x) { float r; _mm_store_ss(&r,_mm_sqrt_ss(_mm_load_ss(&x))); return r; }
 static __forceinline float Max_00171BA0(float a,float b) { float r; _mm_store_ss(&r,_mm_max_ss(_mm_load_ss(&a),_mm_load_ss(&b))); return r; }
 
 extern int D_00288C44;
