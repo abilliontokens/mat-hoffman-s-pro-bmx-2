@@ -153,3 +153,31 @@ SimpleVCR *SimpleVCR::func_00195D90(void)
     return this;
 }
 
+void func_001E891B(void *p);
+void SimpleVCR::func_00195E70(void)
+{
+    void **p = (void **)this;
+    vtbl = &D_0028AFA4;
+    if (p[0x50 / 4]) func_001E891B(p[0x50 / 4]);
+    if (p[0x78 / 4]) func_001E891B(p[0x78 / 4]);
+    if (p[0xcc / 4]) func_001E891B(p[0xcc / 4]);
+    if (p[0x7c / 4]) func_001E891B(p[0x7c / 4]);
+    if (p[0x80 / 4]) func_001E891B(p[0x80 / 4]);
+    if (p[0x84 / 4]) func_001E891B(p[0x84 / 4]);
+    if (p[0x88 / 4]) func_001E891B(p[0x88 / 4]);
+    if (p[0x8c / 4]) func_001E891B(p[0x8c / 4]);
+    if (p[0x90 / 4]) func_001E891B(p[0x90 / 4]);
+    if (p[0x94 / 4]) func_001E891B(p[0x94 / 4]);
+    if (p[0x98 / 4]) func_001E891B(p[0x98 / 4]);
+    if (p[0xa0 / 4]) func_001E891B(p[0xa0 / 4]);
+    if (p[0x9c / 4]) func_001E891B(p[0x9c / 4]);
+    if (p[0xac / 4]) func_001E891B(p[0xac / 4]);
+    if (p[0xb0 / 4]) func_001E891B(p[0xb0 / 4]);
+    if (p[0xb4 / 4]) func_001E891B(p[0xb4 / 4]);
+    if (p[0xa4 / 4]) func_001E891B(p[0xa4 / 4]);
+    if (p[0xa8 / 4]) func_001E891B(p[0xa8 / 4]);
+    if (p[0xb8 / 4]) func_001E891B(p[0xb8 / 4]);
+    if (p[0xbc / 4]) func_001E891B(p[0xbc / 4]);
+    func_00157660();
+}
+
