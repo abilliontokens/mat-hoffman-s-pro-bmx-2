@@ -580,6 +580,30 @@ void C_001B0620::func_001B0620(void)
   return;
 }
 
+void C_001B0230::func_001B0650(void)
+{
+    int i;
+
+    for (i = 0; i < unk50; i++) {
+        S_001B0230_Obj *newObj = 0;
+        arrD4[i] = D_002F0630->func_001493A0(arr54[i], &newObj);
+        if (newObj) {
+            arr54[i]->v2();
+            arr54[i] = newObj;
+            newObj->v1();
+        }
+        if (i > 0) {
+            D_002F0630->f10[arrD4[i - 1]]->unk20 = arrD4[i];
+        }
+    }
+    if (unk4C) {
+        D_002F0630->func_001B10B0(unk4C, arrD4[0]);
+    }
+    if (unk154) {
+        D_002F0630->func_001B10D0(unk154, arrD4[unk50 - 1]);
+    }
+}
+
 void C_001B0230::func_001B07A0(void)
 {
     int i;
