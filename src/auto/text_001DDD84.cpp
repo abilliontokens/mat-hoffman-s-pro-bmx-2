@@ -144,6 +144,7 @@ void __stdcall func_001DE25F(int param)
     }
 }
 
+#pragma optimize("y", off)
 int __stdcall func_001DE70D(int param)
 {
     int result;
@@ -157,5 +158,4 @@ int __stdcall func_001DE70D(int param)
     }
     return out;
 }
-
 #pragma optimize("", on)
