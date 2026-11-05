@@ -32,12 +32,12 @@ struct C_00053C80 {
     void *func_00053C80(int flags);
 };
 
-struct S_00054210_Vec3 {
-    float x, y, z;
+struct S_00054210_Vec4 {
+    float x, y, z, w;
 };
 
 struct S_00054210_Target {
-    S_00054210_Vec3 func_001824E0(float x, float y, float z);
+    S_00054210_Vec4 func_001824E0(float x, float y, float z);
 };
 
 struct S_00054210_Sub {
@@ -135,6 +135,29 @@ C_00053D20 *C_00053D20::func_00053D20(void *param)
     f2e4 = 2.0f;
     f2e8 = 0;
     return this;
+}
+
+void C_00053D20::func_00054210(float dt) {
+    int i;
+
+    for (i = 0; i < f90; i++) {
+        if (i == f2c4) {
+            f64->f4e0->f1a8[i]->fa00->f4->func_001824E0(D_002A1974 * f2d8, D_002A1978 * f2d8, D_002A197C * f2d8);
+        } else {
+            f64->f4e0->f1a8[i]->fa00->f4->func_001824E0(1.0f, 1.0f, 1.0f);
+        }
+    }
+    if (f2dc != 0) {
+        f2d8 = (dt + dt) + f2d8;
+        if (f2d8 >= D_00276288) {
+            f2dc = 0;
+        }
+    } else {
+        f2d8 = f2d8 - (dt + dt);
+        if (f2d8 <= D_002755E8) {
+            f2dc = 1;
+        }
+    }
 }
 
 void func_00054330(void) {
