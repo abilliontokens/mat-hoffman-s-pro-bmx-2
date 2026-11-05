@@ -80,6 +80,12 @@ struct C_0006D210_Obj {
     virtual void v33();
     virtual void v34();
     virtual void v35();
+    virtual void v36();
+    virtual void v37();
+    virtual void v38();
+    virtual void v39();
+    void func_00032720();
+    void func_00032740();
     char pad4[0x1D];
     u8 unk21;
     char pad22[0x1D2];
