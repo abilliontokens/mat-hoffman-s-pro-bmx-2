@@ -19,6 +19,15 @@ static inline const int &min_ref(const int &a, const int &b) {
     return (b < a) ? b : a;
 }
 
+struct C_001B4AF0;
+static inline void CopyName(char *dst, int size, const char *src) {
+    int limit = size - 1;
+    int len = strlen(src);
+    int count = (limit > len) ? len : limit;
+    func_001E8920(dst, src, count);
+    dst[count] = 0;
+}
+
 struct S_001B4B80_Stream {
     int func_00168C20(const char *name, int a, int *p);
 };
@@ -210,16 +219,10 @@ char *C_001B4A70::func_001B4A70(char *delims) {
 
 C_001B4AF0 *C_001B4AF0::func_001B4AF0(void) {
     C_001B4AF0 *self;
-    int limit;
     int count;
     self = this;
     self->vtbl = (void *)&D_0028CA64;
-    limit = sizeof(f4) - 1;
-    if (limit > strlen("none")) {
-        count = strlen("none");
-    } else {
-        count = limit;
-    }
+    count = min_ref(0x103, (int)strlen("none"));
     func_001E8920(self->f4, (const char *)&D_002764F0, count);
     self->f4[count] = 0;
     self->f108 = 0;
