@@ -2,6 +2,12 @@
 #include "common.h"
 #include "ghidra.h"
 #include <string.h>
+struct S_ObjectAttributes;
+struct S_IoStatusBlock;
+extern char D_00010000;
+extern "C" void *(__stdcall *_imp__MmAllocateSystemMemory)(u32, u32);
+extern "C" void (__stdcall *_imp__MmFreeSystemMemory)(void *, u32);
+extern "C" int (__stdcall *_imp__NtOpenFile)(u32 *, u32, S_ObjectAttributes *, S_IoStatusBlock *, u32, u32);
 extern "C" int (__stdcall *_imp__NtSetEvent)(void *a0, void *a1);
 extern "C" int (__stdcall *_imp__MmQueryStatistics)(void *a0);
 extern "C" int (__stdcall *_imp__NtClose)(void *a0);
