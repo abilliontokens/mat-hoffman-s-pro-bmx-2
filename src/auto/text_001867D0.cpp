@@ -84,9 +84,15 @@ struct SoundObj_00186F50 {
     virtual int v5(int a0);
 };
 
+struct C_001CFE90 {
+    int func_001CFE90(int a1, int a2, int a3, int a4, int a5, int a6);
+};
+
 struct Sub_00186F50 {
     char pad0[0x5C];
     int f5C;
+    char pad60[0xb4 - 0x60];
+    C_001CFE90 *fb4;
 };
 
 struct Game_00186F50 {
