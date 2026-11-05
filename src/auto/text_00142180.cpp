@@ -1,6 +1,8 @@
 /* 17 functions from 0x00142180 to 0x00142F30, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct Particle_00142180 { int x,y,z,a,b,c; float d; int e,f; float g; int h; };
+struct Vertex_00142180 { int x,y,z; float a; int b,c,d,e; float f; int g,h,i,j,k,l; };
 
 void __stdcall func_00201100(void *p);
 void func_001E8390(void *p);
