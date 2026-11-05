@@ -100,6 +100,7 @@ struct C_0013AEC0 {
     int func_0013B760(S_0013AF80_Row *row, int v);
     int func_0013B930(int idx, void *buf, int size, int count);
     void func_0013B210(int id);
+    void func_0013B840(S_0013AF80_Row *row);
     void func_0013B280(int keep);
     void func_0013AEC0(int idx);
     int func_0013AF80(int idx);
