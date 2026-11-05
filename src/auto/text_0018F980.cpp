@@ -13,6 +13,7 @@ extern char D_00275FB4[];
 void *func_001E8A44(int size);
 void func_001E891B(void *p);
 void *func_001E8920(void *, const void *, int);
+template <class T> inline const T &min0018FF10(const T &a, const T &b) { return b < a ? b : a; }
 struct C_0018FF10 {
     char pad[0x150];
     Node0018FF10 *head;
