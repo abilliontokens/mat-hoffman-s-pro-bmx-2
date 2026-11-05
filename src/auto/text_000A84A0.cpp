@@ -87,6 +87,7 @@ struct C_000A88A0 {
     C_000A88A0_Item items[3];
     C_000A88A0_Vec unk1C0;
     C_000A88A0 *func_000A88A0();
+    void func_000A8920(S_TriggerStream *a, void *b);
 };
 
 struct C_000A8B70 {
