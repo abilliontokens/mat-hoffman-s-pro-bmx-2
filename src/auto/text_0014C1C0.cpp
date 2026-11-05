@@ -157,3 +157,10 @@ undefined4 C_0014CA60::func_0014CA60(void)
   return *(undefined4 *)(*(int *)(D_002BF250 + 0x54 + (uint)*(byte *)(in_ECX + 0xe) * 4) + 0x1ec);
 }
 
+f32 C_0014CC20::func_0014CC20(void)
+{
+    extern undefined4 D_002BF250;
+    C_0014C720 *obj = *(C_0014C720 **)(D_002BF250 + 0x54 + (uint)bE * 4);
+    return (obj->f194 - obj->f18C) * (int)b11 * D_0027A094 + obj->f18C;
+}
+
