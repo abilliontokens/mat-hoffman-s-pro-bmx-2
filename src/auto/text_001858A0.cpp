@@ -226,6 +226,34 @@ int C_00185970::func_00185970(S_Stream *stream, int n)
     return 1;
 }
 
+int S_ZoneInfoItem::func_00185A40(S_Stream *stream)
+{
+    int ok = 1;
+
+    if (!stream->func_00168C50(&D_002896A4, 0, &f8)) {
+        ok = 0;
+    }
+    if (!stream->func_00168C50(&D_00289694, 0x3f800000, &f4)) {
+        ok = 0;
+    }
+    if (!stream->func_00168C50(&D_00289684, 0x3f800000, &fc)) {
+        ok = 0;
+    }
+    if (!stream->func_00168C50(&D_00283564, 0x3f800000, &f10)) {
+        ok = 0;
+    }
+    if (!stream->func_00168C50(&D_00289674, 0x3f800000, &f14)) {
+        ok = 0;
+    }
+    if (!stream->func_00168C20(&D_00289664, 1, &f18)) {
+        ok = 0;
+    }
+    if (!stream->func_00168C20(&D_00289654, 1, &f1c)) {
+        ok = 0;
+    }
+    return ok;
+}
+
 C_00185B10 *C_00185B10::func_00185B10(void)
 {
     S_ZoneInfo *p;
