@@ -162,7 +162,6 @@ void C_001B19C0::func_001B19C0(float a1, float a2, float a3)
 
 void C_001B19C0::func_001B1A30(float a1, float a2, float a3)
 {
-    extern float D_00275544;
     if (fC0 != 0) {
         return;
     }
@@ -172,7 +171,7 @@ void C_001B19C0::func_001B1A30(float a1, float a2, float a3)
     *(int *)&f4C.y = (int)a2;
     f3C = f2C;
     f40 = f30;
-    if (a3 == D_00275544) {
+    if (a3 == 0.0f) {
         *(C_001B19C0_Vec *)&f2C = f4C;
     }
 }
