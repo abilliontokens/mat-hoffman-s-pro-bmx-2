@@ -7,7 +7,17 @@ struct C_001B17D0 {
 
 /* Per-slot settings table (offsets are the game's). */
 struct S_00093620_Cfg {
-    char pad0[0xb28];
+    char pad0[0xb00];
+    int fB00;
+    char padB04[4];
+    int fB08;
+    char padB0C[4];
+    int fB10;
+    char padB14[4];
+    int fB18;
+    char padB1C[4];
+    int fB20;
+    char padB24[4];
     int fB28;
     char padB2C[4];
     int fB30;
