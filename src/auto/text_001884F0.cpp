@@ -502,3 +502,23 @@ BasicScene *BasicScene::func_00188F20(int flags)
     return this;
 }
 
+void *C_00188FD0::func_00188FD0(unsigned int flags)
+{
+    if (flags & 2) {
+        int *base = (int *)this - 1;
+        int i = *base;
+        C_00188FD0 *p = this + i;
+        while (--i >= 0) {
+            p--;
+            p->vtbl = &D_002895E8;
+            if (p->unk124) func_001E891B(p->unk124);
+        }
+        if (flags & 1) func_001E891B(base);
+        return base;
+    }
+    vtbl = &D_002895E8;
+    if (unk124) func_001E891B(unk124);
+    if (flags & 1) func_001E891B(this);
+    return this;
+}
+
