@@ -44,11 +44,6 @@ struct C_0011AB90 {
     void func_0011AB90(C_0011AB90Arg *arg);
 };
 
-extern float D_00275460;
-extern float D_00278C48;
-
-static __forceinline float Sqrt_0011ADD0(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_set_ss(x))); return r; }
-
 void func_0011AC30(float *out, float *in);
 void func_0011ACC0(void *a, void *b, float *m);
 
@@ -120,34 +115,34 @@ void func_0011ADD0(Vec4 *out, float *m)
     float t0, t1, t2, t3;
     float s, inv;
 
-    t0 = (m[5] + m[0] + m[10] + D_00275460) * D_00278C48;
-    t1 = (((m[0] + D_00275460) - m[5]) - m[10]) * D_00278C48;
-    t2 = (((D_00275460 - m[0]) + m[5]) - m[10]) * D_00278C48;
-    t3 = (((D_00275460 - m[0]) - m[5]) + m[10]) * D_00278C48;
+    t0 = (m[5] + m[0] + m[10] + 1.0f) * 0.25f;
+    t1 = (((m[0] + 1.0f) - m[5]) - m[10]) * 0.25f;
+    t2 = (((1.0f - m[0]) + m[5]) - m[10]) * 0.25f;
+    t3 = (((1.0f - m[0]) - m[5]) + m[10]) * 0.25f;
     if (t0 > t1 && t0 > t2 && t0 > t3) {
-        s = Sqrt_0011ADD0(t0);
-        inv = D_00278C48 / s;
+        s = sqrtf(t0);
+        inv = 0.25f / s;
         q.x = s;
         q.y = (m[9] - m[6]) * inv;
         q.z = (m[2] - m[8]) * inv;
         q.w = (m[4] - m[1]) * inv;
     } else if (t1 > t2 && t1 > t3) {
-        s = Sqrt_0011ADD0(t1);
-        inv = D_00278C48 / s;
+        s = sqrtf(t1);
+        inv = 0.25f / s;
         q.y = s;
         q.x = (m[9] - m[6]) * inv;
         q.z = (m[4] + m[1]) * inv;
         q.w = (m[8] + m[2]) * inv;
     } else if (t2 > t3) {
-        s = Sqrt_0011ADD0(t2);
-        inv = D_00278C48 / s;
+        s = sqrtf(t2);
+        inv = 0.25f / s;
         q.z = s;
         q.x = (m[2] - m[8]) * inv;
         q.y = (m[4] + m[1]) * inv;
         q.w = (m[9] + m[6]) * inv;
     } else {
-        s = Sqrt_0011ADD0(t3);
-        inv = D_00278C48 / s;
+        s = sqrtf(t3);
+        inv = 0.25f / s;
         q.w = s;
         q.x = (m[4] - m[1]) * inv;
         q.y = (m[8] + m[2]) * inv;
