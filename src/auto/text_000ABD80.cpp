@@ -156,6 +156,49 @@ struct C_000AC2C0 {
     C_000AC2C0 *func_000AC2C0(int flags);
 };
 
+struct C_000AC410_Obj {
+    virtual void v0(int flags);
+    virtual void v1();
+    virtual void v2();
+};
+struct C_000AC410_Pair {
+    void *a;
+    void *b;
+};
+extern void *D_002B7E18;
+/* BmxScene destructor */
+struct C_000AC410 {
+    void *vtbl;
+    char pad4[0x4dc - 4];
+    void *f4dc;
+    char pad4e0[0x524 - 0x4e0];
+    C_000AC410_Obj **f524;
+    char pad528[4];
+    void *f52c;
+    char pad530[4];
+    C_000AC410_Obj *f534;
+    char pad538[0x560 - 0x538];
+    int f560;
+    char pad564[4];
+    int f568;
+    C_000AC410_Obj **f56c;
+    char pad570[8];
+    int f578;
+    void *f57c;
+    int f580;
+    char pad584[4];
+    C_000AC410_Pair **f588;
+    int f58c;
+    void **f590;
+    void *f594;
+    char pad598[0x5a4 - 0x598];
+    void *f5a4;
+    int f5a8;
+    void **f5ac;
+    void func_0018B5C0(void);
+    void func_000AC410(void);
+};
+
 struct C_000AC6E0 {
     char pad0[0x538];
     void *field_538;
