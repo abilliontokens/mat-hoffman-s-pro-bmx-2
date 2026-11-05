@@ -17,7 +17,7 @@ struct O_D { virtual void v0(int a); };
 struct O_E { void func_0013B340(); };
 struct O_F { void func_0009C770(); };
 struct O_G { virtual void v0(); virtual void v1(); virtual void v2(); };
-struct O_H { void *vtbl; char pad[0x68]; void *f6c[1]; char pad2[0x20]; int f90; char pad3[0x88]; int f11c; char pad4[0xa0]; O_F *f1c0; char pad5[0x14]; O_G *f1d8; void func_00157660(); void *func_00033220(); };
+struct O_H { void *vtbl; char pad[0x68]; void *f6c[1]; char pad2[0x20]; int f90; char pad3[0x88]; int f11c; char pad4[0xa0]; O_F *f1c0; char pad5[0x14]; O_G *f1d8; void func_00157660(); void func_00033220(); };
 extern O_A *D_002EFDB8;
 extern float D_002A8F40;
 extern O_D *D_002F0630;
