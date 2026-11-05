@@ -11,18 +11,34 @@ struct C_0013B210 {
 extern C_0013B210 *D_002BEAAC;
 extern f32 D_00275544;
 
+struct S_0012F518;
+
+struct V4_0012FCF0 {
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 w;
+};
+
 /* CarProceduralExtended */
 struct C_CarProceduralExtended {
     void *vtbl;
-    char pad4[0x4A8];
+    char pad4[0x424];
+    V4_0012FCF0 f428;
+    V4_0012FCF0 f438;
+    char pad448[0x64];
     u32 f4AC;
-    char pad4B0[0x38];
+    char pad4B0[8];
+    u32 f4B8;
+    char pad4BC[0x2c];
     f32 f4E8;
     char pad4EC[0x24];
     f32 f510;
     u32 f514;
-    void *f518;
+    S_0012F518 *f518;
+    S_0012F518 *f51C;
     void func_0012F600(f32 param_1, int param_2);
+    int func_0012FCF0(u32 param_1, f32 param_2);
     void func_0012FBF0(int param_1);
     void func_0012FCB0(int param_1);
 };
