@@ -158,6 +158,39 @@ undefined4 C_0007E0A0::func_0007E0A0(byte param_1)
   return in_ECX;
 }
 
+undefined4 C_0007E0C0::func_0007E0C0(void)
+{
+    if (!(D_002B9060 & 1)) {
+        D_002B9060 |= 1;
+        D_002B905C = D_002A7CB8->func_00026500((int)&D_00278AF0, 0);
+    }
+    if (D_002A8490->f274 >= D_002A8490->f270 - 1) {
+        C_Rect24_7E r;
+        C_Rect24_7E out;
+        C_12B2B0_7E *vb;
+
+        D_002EFDB8->v8();
+        D_002EFDB8->v7(1);
+        vb = (C_12B2B0_7E *)D_002EFDB8->f4;
+        if (fD4->f90 > 1) {
+            r = vb->rect;
+            r.x = 0;
+            r.y = 0;
+            r.w = 0x280;
+            r.h = 0x1c0;
+            vb->func_0012B2B0(&r, &out);
+        }
+        func_0006D100();
+        func_0006CEC0();
+        func_00157960();
+        if (fD4->f90 > 1) {
+            vb->func_0012B2B0(&out, 0);
+        }
+        return 1;
+    }
+    return 1;
+}
+
 undefined4 C_0007E1C0::func_0007E1C0(byte param_1)
 {
   int func_0006D640(...);
