@@ -50,6 +50,34 @@ struct C_00136370 {
     int func_00136370();
 };
 extern int D_00284768;
+struct C_00135EE0_Ent {
+    int idx;
+    int type;
+    int sel;
+    int state;
+    int x;
+};
+struct C_00135EE0_Owner {
+    char pad[0x1898];
+    int unk1898;
+};
+struct C_00135EE0_Sink {
+    virtual void v0() = 0; virtual void v1() = 0; virtual void v2() = 0; virtual void v3() = 0;
+    virtual void v4() = 0; virtual void v5() = 0; virtual void v6() = 0; virtual void v7() = 0;
+    virtual void v8() = 0; virtual void v9() = 0; virtual void v10() = 0; virtual void v11() = 0;
+    virtual void v12() = 0;
+    virtual void on(C_00135EE0_Ent *e, void *p) = 0;
+    virtual void off(C_00135EE0_Ent *e, void *p) = 0;
+};
+struct C_00135EE0 {
+    char pad0[0x14];
+    char *arr14[8];
+    char *f34;
+    C_00135EE0_Owner *f38;
+    int count;
+    C_00135EE0_Ent ents[1];
+    void func_00135EE0(void);
+};
 struct C_00135B70 {
     void *vtbl;
     char pad[0x48];
