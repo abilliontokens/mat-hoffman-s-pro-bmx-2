@@ -104,6 +104,14 @@ struct C_0013B1A0 {
     int func_0013B1A0(const char *key);
 };
 extern C_0013B1A0 *D_002BEAAC;
+
+struct C_0004D480 {
+    char pad0[0x64];
+    char *f64;
+    char pad68[0x61c];
+    int f684;
+    void func_0004D480(void);
+};
 extern char D_00275630;
 
 struct S_0004D630_Obj {
