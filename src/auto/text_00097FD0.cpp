@@ -37,7 +37,6 @@ struct S_00098080_Global {
 
 extern S_00098080_Global *D_002A8490;
 int func_001EA426(const char *a, const char *b);
-void __stdcall func_00083A70(void *p);
 
 struct C_000831E0 {
     void func_00083A70(const char *name);
