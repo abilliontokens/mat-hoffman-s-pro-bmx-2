@@ -120,17 +120,20 @@ struct DXIndexBuffer {
 };
 
 struct DXVertexBufferCache {
-    int unk0;
+    void *vtbl;
     void *f4;
     void *f8;
     int func_001C3830(int a1, int a2);
+    void func_001C3980(void);
+    void func_001C3A10(void);
 };
 
 struct DXIndexBufferCache {
-    int unk0;
+    void *vtbl;
     void *f4;
     void *f8;
     int func_001C38D0(int a1, int a2);
+    void func_001C39C0(void);
 };
 
 
