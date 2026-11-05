@@ -159,3 +159,40 @@ void C_000E1770::func_000E1F00()
     f298->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
 }
 
+void C_000E1770::func_000E1F60()
+{
+    C_000E1_Elem **ptr;
+    C_000E1_Elem *e;
+    int count;
+    S_002B91AC *s;
+
+    if (f28C) {
+        D_002B91AC->unk68->func_001D5AD0();
+    } else {
+        D_002B91AC->unk50->func_001D5AD0();
+    }
+    if (f290) {
+        D_002B91AC->unk6C->func_001D5AD0();
+    } else {
+        D_002B91AC->unk54->func_001D5AD0();
+    }
+    ptr = (C_000E1_Elem **)arr2D4;
+    count = 2;
+    do {
+        e = *ptr;
+        e->f38 = ((short)f2C8 << 24) | (e->f38 & 0xffffff);
+        e->b58 |= 2;
+        e = *ptr;
+        e->f38 = (e->f38 & 0xffbfa35a) | 0xbfa35a;
+        e->b58 |= 2;
+        (*ptr)->func_001D5AD0();
+        ptr++;
+        count--;
+    } while (count != 0);
+    s = D_002B91AC;
+    s->unk24->func_001D5AD0();
+    s->unk28->func_001D5AD0();
+    s->unk2C->func_001D5AD0();
+    s->unk30->func_001D5AD0();
+}
+
