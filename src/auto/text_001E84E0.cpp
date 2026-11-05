@@ -33,6 +33,106 @@ static void func_001E84E0(char *lo, char *hi, unsigned int width, int (__cdecl *
         hi -= width;
     }
 }
+
+void func_001E8550(char *base, unsigned int num, unsigned int width, int (__cdecl *comp)(const void *, const void *))
+{
+    char *lo;
+    char *hi;
+    char *mid;
+    char *loguy;
+    char *higuy;
+    unsigned int size;
+    char *lostk[30];
+    char *histk[30];
+    int stkptr;
+
+    if (num < 2 || width == 0) {
+        return;
+    }
+    stkptr = 0;
+    lo = base;
+    hi = base + width * (num - 1);
+
+recurse:
+    size = (hi - lo) / width + 1;
+    if (size <= 8) {
+        func_001E84E0(lo, hi, width, comp);
+    } else {
+        mid = lo + (size / 2) * width;
+        if (comp(lo, mid) > 0) {
+            swap_bytes(lo, mid, width);
+        }
+        if (comp(lo, hi) > 0) {
+            swap_bytes(lo, hi, width);
+        }
+        if (comp(mid, hi) > 0) {
+            swap_bytes(mid, hi, width);
+        }
+        loguy = lo;
+        higuy = hi;
+        for (;;) {
+            if (mid > loguy) {
+                do {
+                    loguy += width;
+                } while (loguy < mid && comp(loguy, mid) <= 0);
+            }
+            if (mid <= loguy) {
+                do {
+                    loguy += width;
+                } while (loguy <= hi && comp(loguy, mid) <= 0);
+            }
+            do {
+                higuy -= width;
+            } while (higuy > mid && comp(higuy, mid) > 0);
+            if (higuy < loguy) {
+                break;
+            }
+            swap_bytes(loguy, higuy, width);
+            if (mid == higuy) {
+                mid = loguy;
+            }
+        }
+        higuy += width;
+        if (mid < higuy) {
+            do {
+                higuy -= width;
+            } while (higuy > mid && comp(higuy, mid) == 0);
+        }
+        if (mid >= higuy) {
+            do {
+                higuy -= width;
+            } while (higuy > lo && comp(higuy, mid) == 0);
+        }
+        if (higuy - lo >= hi - loguy) {
+            if (lo < higuy) {
+                lostk[stkptr] = lo;
+                histk[stkptr] = higuy;
+                ++stkptr;
+            }
+            if (loguy < hi) {
+                lo = loguy;
+                goto recurse;
+            }
+        } else {
+            if (loguy < hi) {
+                lostk[stkptr] = loguy;
+                histk[stkptr] = hi;
+                ++stkptr;
+            }
+            if (lo < higuy) {
+                hi = higuy;
+                goto recurse;
+            }
+        }
+    }
+    --stkptr;
+    if (stkptr >= 0) {
+        lo = lostk[stkptr];
+        hi = histk[stkptr];
+        goto recurse;
+    }
+}
+
 #pragma optimize("", on)
 
 void func_001E87E0(void) {
