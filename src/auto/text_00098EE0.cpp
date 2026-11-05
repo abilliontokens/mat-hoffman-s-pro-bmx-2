@@ -24,6 +24,7 @@ struct C_00096870 {
     f32 f63b0[1];
     void func_00096870(const char *name);
     void func_00096450(int idx);
+    void func_00096200(int idx);
     void func_00096AB0(void);
     void func_00097050(S_00097FD0_owner *owner);
 };
