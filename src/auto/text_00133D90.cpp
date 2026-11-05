@@ -141,10 +141,12 @@ float func_00133DF0(Coll_00133D90 *a, Coll_00133D90 *b)
 
 void C_00133E60::func_00133E60(void)
 {
+    C_00193500 *p = f98;
+
     vtbl = (void *)&D_0028464C;
-    if (f98 != 0) {
-        f98->func_00193500();
-        func_001E891B(f98);
+    if (p != 0) {
+        p->func_00193500();
+        func_001E891B(p);
     }
     if (f78 != 0) {
         func_001E8390(f78);
@@ -162,6 +164,10 @@ void Obj_00133ED0::func_00133ED0(void)
 {
     v32();
     ((C_00133210 *)this)->func_00133210();
+}
+
+C_00134980::C_00134980()
+{
 }
 
 undefined4 C_001349F0::func_001349F0(byte param_1)
