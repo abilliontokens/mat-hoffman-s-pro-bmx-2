@@ -177,6 +177,11 @@ struct Model_001B58C0 {
 };
 
 struct Model1B0_001B58C0 : Model_001B58C0 {
+    char pad8[0x50];
+    int f58, f5C, f60, f64, f68, f6C, f70, f74, f78, f7C, f80, f84, f88, f8C, f90, f94, f98, f9C;
+    char fA0[0x104];
+    int f1A4, f1A8, f1AC;
+    void func_001B4ED0(void);
     Model1B0_001B58C0 *func_001B5110(void);
 };
 
