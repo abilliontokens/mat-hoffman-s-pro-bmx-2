@@ -6,6 +6,63 @@ struct Vec4_000361F0 {
     Vec4_000361F0() { x = y = z = 0; w = 1; }
 };
 
+#include <string.h>
+
+/* config file reader, 0x4CC bytes */
+struct S_00035E80_Stream {
+    char pad0[0x4CC];
+    S_00035E80_Stream *func_00168280(void);
+    int func_00169490(const char *path, int flags);
+    void func_001691E0(void);
+    void func_00169710(const char *name);
+    void func_00168A10(const char *key, int *dst);
+    void func_00168550(const char *key, char *dst, int n);
+    void func_00168CB0(const char *key, void *def, void *dst);
+};
+
+struct S_00035E80_Line;
+
+/* grind line manager (owner->f530) */
+struct S_00035E80_Mgr {
+    S_00035E80_Line *func_00159E90(char *name, Vec4_000361F0 *p0, Vec4_000361F0 *p1, char *s2, char *s3, int n);
+    void func_00159C40(S_00035E80_Line *line);
+};
+
+struct S_00035E80_Owner {
+    char pad0[0x530];
+    S_00035E80_Mgr *f530;
+};
+
+struct S_00035E80_Out {
+    char pad0[0x14];
+    int f14;
+    S_00035E80_Line **f18;
+};
+
+struct C_00035E80 {
+    char pad0[0x64];
+    S_00035E80_Owner *f64;
+    int func_00035E80(int a1, const char *path, S_00035E80_Out *out);
+};
+
+extern char D_00276DCC[], D_00276DBC[], D_00276DB0[], D_00276DA4[], D_00276D98[], D_00276D8C[];
+void *func_001E8A44(unsigned int size);
+void func_001E891B(void *ptr);
+int func_001ADCC0(char *dst, int size, const char *fmt, ...);
+extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
+extern "C" char *func_001E8AC0(const char *s, int c);
+
+static __forceinline void stripExt(char *dst, const char *src)
+{
+    int len = strlen(src);
+    int lim = 0x103;
+    int n = *(lim > len ? &len : &lim);
+    func_001E8920(dst, src, n);
+    dst[n] = 0;
+    char *p = func_001E8AC0(dst, '.');
+    if (p) memset(p, 0, strlen(p));
+}
+
 /* the light/colour object a page owns (f44->f5C) */
 struct S_000361F0_Gfx {
     char pad0[4];
@@ -46,3 +103,35 @@ struct C_000361F0 {
     Vec4_000361F0 f52C;
     void func_000361F0(int flag);
 };
+
+void C_000361F0::func_000361F0(int flag)
+{
+    Vec4_000361F0 tmp;
+
+    if (flag != 0) {
+        if (f4A4 != 1) {
+            f44->f5C->func_00194F10(&f52C);
+            tmp.x = (float)((f434 - f428) / 2 + f428);
+            tmp.y = f440;
+            tmp.z = (float)((f43C - f430) / 2 + f430);
+            f44->f5C->func_00194EE0(tmp);
+            tmp.x = tmp.x - f470;
+            tmp.y = tmp.y + f46C;
+            f44->f5C->func_00194E60(tmp);
+            f44->f5C->f4 = 1;
+            f4A4 = 1;
+        }
+    } else {
+        if (f4A4 != 0) {
+            goto restore;
+        }
+        return;
+    restore:
+        f44->f5C->func_00194E60(f4AC);
+        if (f52C.x != D_002A14D4 || f52C.y != D_002A14D8 || f52C.z != D_002A14DC) {
+            f44->f5C->func_00194EE0(f52C);
+        }
+        f44->f5C->f4 = 1;
+        f4A4 = 0;
+    }
+}
