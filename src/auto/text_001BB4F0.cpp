@@ -38,7 +38,7 @@ struct C_001BBAA0 {
     char padD4[0x218];
     u8 unk2EC;                        /* 0x2EC */
     void func_001BBA60(void);
-    void func_001BBAA0(void *a, void *b);
+    __declspec(noinline) void func_001BBAA0(void *a, void *b);
     void func_001BBE20(int a);
 };
 
@@ -160,6 +160,25 @@ void C_001BBDD0::func_001BBDD0(int *a, int b)
         unk2E4->unkA6 = unk2E4->unkA6 == 0;
     }
     func_00157BF0(a, b);
+}
+
+void func_001BBF90(S_001BBF90_Arg *a, int b)
+{
+    C_001BBAA0 *p;
+    if (D_002AADF8 != 0) {
+        p = a->unk60;
+        if (p->unk21 & 1) {
+            u8 flags = p->unk2EC | 0x20;
+            p->unk2EC = flags;
+            if ((!(flags & 8) || !(flags & 0x10)) &&
+                (p->unk90 == 100 || (!(flags & 0x40) && func_00011260(1, 100) <= p->unk90))) {
+                p->unkD0++;
+                p->unk2EC |= 0x10;
+                p->func_001BBE20(b);
+                p->func_001BBA60();
+            }
+        }
+    }
 }
 
 undefined4 C_001BC020::func_001BC020(byte param_1)
