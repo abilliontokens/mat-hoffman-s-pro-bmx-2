@@ -60,6 +60,13 @@ struct C_001B5D90 {
 };
 extern "C" int strcmp(const char *, const char *);
 extern "C" char *strcpy(char *, const char *);
+struct S_001B5ED0_Cfg { void func_00168BE0(void *key, void *def, void *dst, int n); };
+struct C_001B5ED0 {
+    char pad0[8];
+    char f8[0x108];
+    char f110[1];
+    int func_001B5ED0(S_001B5ED0_Cfg *cfg, int unused);
+};
 struct C_001B61A0 {
     int unk0;
     int unk4;
