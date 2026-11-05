@@ -135,14 +135,17 @@ struct C_000AF8A0 {
 
 
 void C_000AEF10::func_000AEF10(void) {
-    int i;
-
+    C_000A0A10_Elem *p = unk28;
     vtbl = &D_0027C604;
-    if (unk28 != 0) {
-        for (i = ((int *)unk28)[-1] - 1; i >= 0; i--) {
-            unk28[i].func_000A0A10();
+    if (p != 0) {
+        int *base = (int *)p - 1;
+        int i = *base;
+        C_000A0A10_Elem *e = p + i;
+        while (--i >= 0) {
+            e--;
+            e->func_000A0A10();
         }
-        func_001E891B((int *)unk28 - 1);
+        func_001E891B(base);
     }
     func_00157660();
 }
