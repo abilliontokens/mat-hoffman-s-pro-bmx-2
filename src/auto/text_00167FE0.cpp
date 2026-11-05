@@ -38,3 +38,13 @@ void C_001684B0::func_001684B0(void)
   *(undefined4 *)(in_ECX + 0x20) = 0;
   return;
 }
+
+int __stdcall func_00168C20(int a, int b, int *out)
+{
+    if (func_00168A10(a, out) != 0) {
+        return 1;
+    }
+    *out = b;
+    return 0;
+}
+
