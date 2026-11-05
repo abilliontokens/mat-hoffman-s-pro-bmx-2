@@ -56,6 +56,15 @@ void *C_0005E790::func_0005E790(int flags)
     return this;
 }
 
+void C_0005E7C0::func_0005E7C0(float param_1, float param_2)
+{
+    if (f4 != param_1 || f8 != param_2) {
+        f4 = param_1;
+        f8 = param_2;
+        f58 |= 1;
+    }
+}
+
 void C_0005E9D0::func_0005E9D0(float param_1)
 {
   int in_ECX = (int)this;
