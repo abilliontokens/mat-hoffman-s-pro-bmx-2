@@ -193,3 +193,28 @@ UIControl *UIControl::func_001BE320(byte flags)
     }
     return this;
 }
+
+UIPage *UIPage::func_001BE360(int param_1)
+{
+    ((C_00157600 *)this)->func_00157600(param_1);
+    vtbl = (void *)&D_0028D604;
+    f130 = 0;
+    f134 = 0;
+    f138 = 0;
+    f128 = 0;
+    f13C = 0;
+    f140 = 0;
+    f12C = 0;
+    f144 = 0;
+    f168 = 0;
+    f16C = 0;
+    for (int i = 0; i < 8; i++) {
+        f148[i] = 1;
+    }
+    f27C = 1;
+    f170 = 0;
+    f274 = 0;
+    f278 = 0;
+    return this;
+}
+
