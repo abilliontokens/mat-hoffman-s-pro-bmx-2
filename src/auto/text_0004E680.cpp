@@ -289,6 +289,41 @@ void *C_0004ED80::func_0004ED80(int flags) {
     return this;
 }
 
+extern char D_002A47F0[];
+extern char D_00275678[];
+extern char D_002A48F8[];
+extern char D_00276C48[];
+extern char D_002A5348[];
+extern char *D_002A8490;
+C_0004EDB0 *C_0004EDB0::func_0004EDB0(void)
+{
+    char *g;
+    int i;
+
+    f204 = 1;
+    func_000342C0();
+    for (i = 0; i < f90; i++) {
+        *(int *)(*(char **)(*(char **)(f64 + 0x4e0) + 0x1a8 + i * 4) + 0xa38) = 0;
+    }
+    g = f64;
+    for (i = 0; i < *(int *)(*(char **)(f64 + 0x3b4) + 0x24); i++) {
+        if (strcmp((*(char ***)(*(char **)(g + 0x3b4) + 0x28))[i] + 0x18, "huntTrigger1") == 0) {
+            f28c = i;
+        }
+    }
+    func_0004EA20(*(int *)((*(char ***)(*(char **)(g + 0x3b4) + 0x28))[f28c] + 4));
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5870, D_002A47F0);
+    void *mem = func_001E8A44(0x20c);
+    fD50 = mem ? ((C_0004EDB0Obj *)mem)->func_001CF740(*(void **)(*(char **)(D_002A8490 + 4) + 0xb4), *(int *)(f64 + 0x4c0), 1) : 0;
+    fD50->v4(D_00276C48, 1, 1, 0, 0);
+    (*(C_0004EDB0Obj **)(*(char **)(D_002A8490 + 4) + 0xb4))->v6();
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5348, D_002A47F0);
+    if (f1C0) {
+        f1C0->func_00099D40(-1);
+    }
+    return this;
+}
+
 C_0004F220 *C_0004F220::func_0004F220(int a0)
 {
     extern int D_0027777C;
