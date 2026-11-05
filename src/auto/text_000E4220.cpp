@@ -28,6 +28,8 @@ struct C_000E4AB0 {
     S_000E4AB0_Obj *a6B8[6];
     S_000E4AB0_Obj *a6D0[4];
     S_000E4AB0_Obj *a6E0[4];
+    C_000E4AB0 *func_000E4830(int a0);
+    void func_001BE360(int a0);
     void func_000E4AB0();
     void func_001BE3F0();
 };
