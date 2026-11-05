@@ -165,7 +165,7 @@ struct Voice_001B8550 {
     char pad4[0x24];
     char name[0x104];
     void func_00199600(V4_001B8550 v);
-    void func_00198F50(void *a, void *b, int c, int d, int e);
+    void func_00198F50(void **a, void **b, int c, int d, int e);
     void func_0019ABA0(int a, int b);
 };
 
