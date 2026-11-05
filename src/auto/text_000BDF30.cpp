@@ -31,6 +31,17 @@ struct C_000BEDC0 {
 };
 
 
+void *C_000BE510::func_000BE510(int flags) {
+    extern int D_0027DB9C;
+    void func_001E891B(void *);
+    unk0 = (int)&D_0027DB9C;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 undefined4 C_000BEDA0::func_000BEDA0(byte param_1)
 {
   int func_000BE540(...);
