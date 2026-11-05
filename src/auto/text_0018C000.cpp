@@ -139,15 +139,14 @@ void *C_0018C000::func_0018C000(char *param) {
     return this;
 }
 
-undefined4 C_0018C070::func_0018C070(void)
+extern C_002AA6C0 *D_002AA6C0;
+
+C_002AA6C0_Obj *C_0018C000::func_0018C070(void)
 {
-  extern undefined4 D_002AA6C0;
-  int in_ECX = (int)this;
-  
-  if (*(int *)(in_ECX + 0x458) == -1) {
-    return 0;
-  }
-  return *(undefined4 *)(*(int *)(in_ECX + 0x458) * 0x10 + 4 + *(int *)(D_002AA6C0 + 0x14));
+    if (unk458 == -1) {
+        return 0;
+    }
+    return D_002AA6C0->unk14[unk458].unk4;
 }
 
 void C_0018C090::func_0018C090(int value) {
