@@ -145,6 +145,50 @@ struct Obj_00187A40 {
     virtual void v35();
     virtual void v36();
     virtual int v37(int idx, char *a, char *b);
+    virtual void v38();
+    virtual void v39();
+    virtual int v40(char *name, void *data, int flag);
+};
+
+/* 0x180-byte DriveOnSounds element as read by func_00187CE0 */
+struct S_00187CE0_Elem {
+    int pad0;
+    char name[0x114];
+    int f118;
+    int f11c;
+    char pad120[0x48];
+    int f168;
+    int f16c;
+    int f170;
+    int f174;
+    int f178;
+    int f17c;
+};
+
+/* 0x2c-byte record handed to the sound manager */
+struct S_00187CE0_Data {
+    int f0;
+    int f4;
+    int f8;
+    int fc;
+    int f10;
+    int f14;
+    int f18;
+    int f1c;
+    int f20;
+    int f24;
+    int f28;
+};
+
+extern int D_00289E68;
+
+struct C_00187CE0 {
+    char pad0[0x24];
+    int f24;
+    S_00187CE0_Elem *f28;
+    int f2c;
+    S_00187CE0_Elem *f30;
+    int func_00187CE0(int a0, Obj_00187A40 *obj);
 };
 
 struct S_00187A40_Elem {
