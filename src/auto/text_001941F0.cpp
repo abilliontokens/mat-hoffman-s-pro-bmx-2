@@ -362,6 +362,25 @@ void SimpleCutSceneCamera::func_00194B40(S_Vec4 *p)
     f18 = 0;
 }
 
+void SimpleCutSceneCamera::func_00194BD0(int a, int b, S_Vec4 *p)
+{
+    f24 = 1;
+    fC = (float)a / f8;
+    if (a < b) {
+        f14 = 0;
+        f1C = a;
+        f20 = b;
+    } else {
+        f14 = 1;
+        f1C = b;
+        f20 = a;
+    }
+    f4->f30 = D_002A9A28;
+    if (p != 0) {
+        f4->f30 = *p;
+    }
+}
+
 void C_00194C60::func_00194C60(void) {
     unk24 = 0;
 }
