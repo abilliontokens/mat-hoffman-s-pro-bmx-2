@@ -138,6 +138,28 @@ struct C_00165D00 {
     void func_00165D00(f32 scale);
 };
 
+extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
+extern char D_00287E48[];
+#include <string.h>
+
+struct C_00165F70_Elem {
+    char name[0x38];
+    int f38;
+    int f3C;
+};
+
+struct C_00165F70 {
+    char pad0[0x98];
+    char f98[0xF8];
+    char f190[0x58];
+    char pad1E8[4];
+    C_00165F70_Elem *f1EC;
+    char pad1F0[0xC];
+    int f1FC;
+    unsigned char func_00164650(const char *name);
+    void func_00165F70(void);
+};
+
 struct C_00166190 {
     char pad0[0xE8];
     char fE8[0xA8];            /* 0xE8 */
