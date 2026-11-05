@@ -1,6 +1,13 @@
 /* 3 functions from 0x0006A1A0 to 0x0006AA90, found by Ghidra. */
 #include "common.h"
-struct W_6A1A0 { virtual ~W_6A1A0(); };
+struct Clamp_6A { char pad[0x10]; float f10, f14; };
+struct Mid_6A { Clamp_6A *func_0018C070(); };
+struct Lookup_6A { int *func_0018C160(int); };
+struct Global_6A { char pad[0x2ec]; Lookup_6A *p2EC; };
+extern Global_6A *D_002A8490;
+extern float D_00275AEC;
+extern int D_002786A0, D_00278690, D_00278678;
+struct W_6A1A0 { virtual ~W_6A1A0(); Clamp_6A *func_001D5AA0(); };
 struct D_6A1A0 { void func_001D6410(); };
 void func_001E891B(void *p);
 extern int D_002788EC;
