@@ -6,10 +6,22 @@ struct C_0005E840 { void func_0005E840(const char *s); };
 extern char D_00275630[];
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 struct C_86A40_Obj4 {
-    char pad0[0x1048];
+    char pad0[0x1030];
+    char *f1030;
+    char pad1034[0x14];
     char *f1048;
     char pad104C[4];
     char *f1050;
+    char pad1054[4];
+    char *f1058;
+};
+extern char D_00279728[];
+struct C_00086B20 {
+    char pad0[0x30];
+    C_0005E840 *f30, *f34, *f38, *f3C;
+    int f40;
+    int f44;
+    void func_00086B20(int a);
 };
 struct C_86A40_Obj2E8 {
     char pad0[4];
