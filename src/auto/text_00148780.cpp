@@ -193,7 +193,7 @@ struct C_00149120 {
     u32 unk14;
     u32 unk18;
     u32 unk1C;
-    void *unk20;
+    Anim_00149120 *unk20;
     void func_001B07F0(int a0, int a1);
     void *func_00149120(int a0, int a1);
 };
