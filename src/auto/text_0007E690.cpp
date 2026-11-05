@@ -64,11 +64,26 @@ struct C_VertexBuffer {
     C_VertexBuffer2 *f4;
 };
 
+struct C_Audio2FC {
+    int func_00094A00(void);
+    void func_00094960(int a);
+    int func_000952A0(int a);
+    int func_00095250(int a);
+    void func_00095A00(int a);
+};
+
+struct C_Sub2E0 {
+    char pad0[0x2fc];
+    C_Audio2FC *f2fc;
+};
+
 struct C_Global8490 {
     char pad0[0x270];
     int f270;
     int f274;
-    char pad278[0x70];
+    char pad278[0x68];
+    C_Sub2E0 *f2e0;
+    int f2e4;
     C_VertexBuffer *f2e8;
 };
 
