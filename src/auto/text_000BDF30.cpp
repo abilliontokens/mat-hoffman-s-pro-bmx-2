@@ -51,7 +51,9 @@ struct S_000BDF30_Names {
 
 /* 0x1a8-byte element of the array at f27C */
 struct C_000BA2D0 {
+    ~C_000BA2D0();
     void func_000BA2D0();
+    static void operator delete[](void *p) { func_001E891B(p); }
 };
 
 struct C_00136300 {
