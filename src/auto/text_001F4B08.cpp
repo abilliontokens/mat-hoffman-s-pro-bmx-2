@@ -119,6 +119,32 @@ int func_001F4ED9(int ch, S_001F4_FILE *stream)
     return ch & 0xff;
 }
 
+__int64 func_001F5829(int fh, __int64 pos, int mthd)
+{
+    int func_001EE6CE(int fh);
+    int *func_001ED075(void);
+    int __stdcall func_001DD3A1(int h, long lo, long *hi, int mthd);
+    int func_001DD603(void);
+    void func_001ED087(int err);
+    __int64 newpos = pos;
+    int osfhandle;
+    int dosretval;
+
+    osfhandle = func_001EE6CE(fh);
+    if (osfhandle == -1) {
+        *func_001ED075() = 9;
+        return -1;
+    }
+    if ((*(long *)&newpos = func_001DD3A1(osfhandle, *(long *)&newpos,
+                                          ((long *)&newpos) + 1, mthd)) == -1 &&
+        (dosretval = func_001DD603()) != 0) {
+        func_001ED087(dosretval);
+        return -1;
+    }
+    D_002FB260[fh >> 5][fh & 0x1f].osfile &= 0xfd;
+    return newpos;
+}
+
 int func_001F58AA(unsigned char *s, unsigned short wc)
 {
     int *func_001ED075(void);
