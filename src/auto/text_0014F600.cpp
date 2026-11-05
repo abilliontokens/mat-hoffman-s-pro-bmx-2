@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <math.h>
+#include <xmmintrin.h>
 /* One entry of the sine/cosine table func_0014F6E0 interpolates in. */
 struct S_SinCosEntry {
     float a;
@@ -62,8 +63,9 @@ void func_0014F6E0(float a, float *s, float *c)
     extern float D_002DF870;
     extern float D_002DF874;
     float func_00016D60(float);
+    int i;
     float v = (func_00016D60(a) + D_002756D0) * D_002DF870;
-    int i = (int)v;
+    storeftoi(&i, v);
     float f = (v - (float)i) * D_002DF874;
     *s = f * D_002CF6B4[i].a + D_002CF6B4[i].b;
     *c = D_002CF6B4[i].a - f * D_002CF6B4[i].b;
