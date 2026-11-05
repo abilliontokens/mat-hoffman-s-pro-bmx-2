@@ -30,6 +30,13 @@ struct PageObj {
     virtual void destroy(int flags);
 };
 
+struct C_000C6CA0_Widget {
+    void func_001B1980();
+    void func_001B2270(unsigned int color);
+    void func_001B1A30(float a1, float a2, float a3);
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, float a7, int a8, float a9, int a10, float a11, float a12, int a13);
+};
+
 struct BmxUIPageParkLevel {
     void *vtbl;
     char pad4[0x27C];
