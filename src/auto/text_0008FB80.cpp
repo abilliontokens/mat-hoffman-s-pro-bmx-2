@@ -46,3 +46,48 @@ struct C_0008FB80 {
     char sCD6[0x32];
     void func_0008FB80(char *name, int a, float b, int c, int d);
 };
+
+void C_0008FB80::func_0008FB80(char *name, int a, float b, int c, int d)
+{
+    char ch;
+    char *src;
+    char *dst;
+
+    f60 = f5C;
+    f5C = d;
+    if (f50 == 1) {
+        f50 = 0;
+        ((C_000843E0 *)this)->func_000843E0(0);
+        fC5C = 0;
+        fC64 = 0;
+        fCA0 = 0;
+        ((C_000831E0 *)this)->func_000831E0();
+    }
+    if (fD4 == 0) {
+        func_001ADCC0(sCA4, 0x32, D_00276F28, name);
+        fD4++;
+    } else {
+        func_001ADCC0(sCD6, 0x32, D_00276F28, sCA4);
+        func_001ADCC0(sCA4, 0x32, D_00276F28, name);
+        fD4 = 2;
+    }
+    src = name;
+    dst = s68;
+    do {
+        ch = *src;
+        *dst = ch;
+        src++;
+        dst++;
+    } while (ch != 0);
+    fD8++;
+    fD0 = (float)a;
+    f138 = b + f138;
+    if (b > D_00275544) {
+        f15C = 2;
+    }
+    f54 = 1;
+    fCC = 1;
+    f150 = 1;
+    f128 = 1;
+    f198 = 0;
+}
