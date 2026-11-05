@@ -320,6 +320,17 @@ int C_00186F50::func_00186F50(void)
     return 0;
 }
 
+int C_00186F80::func_00186F80(C_00186AF0Param *stream, int n)
+{
+    char buf[0x3c];
+
+    func_001ADCC0(buf, 0x3c, (const char *)&D_00284AB0, n + 1);
+    stream->func_00168BE0(buf, (void *)&D_00276844, f4, -1);
+    func_001ADCC0(buf, 0x3c, (const char *)&D_00289A8C, n + 1);
+    stream->func_00168C50(buf, 0, &f108);
+    return 1;
+}
+
 int C_00187510::func_00187510(C_00187510Param *param)
 {
     char buf[0x104];
