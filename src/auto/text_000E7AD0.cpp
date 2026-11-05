@@ -22,6 +22,21 @@ struct C_000E86C0 {
     void func_000E8630(void);
 };
 
+void C_000E86C0::func_000E8630(void) {
+    int i;
+
+    unk474 = 1;
+    unk47C = 0xff;
+    unk480 = 0;
+    unk484 = 0;
+    unk488 = 0;
+    unk48C = 0.25f;
+    for (i = 0; i < 5; i++) {
+        unk578[i]->func_001B1980();
+        unk578[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.0f, 0, 0.25f, 0, 0);
+    }
+}
+
 void C_000E86C0::func_000E86C0(void) {
     int i;
 
