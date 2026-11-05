@@ -212,6 +212,40 @@ struct C_001A5F40 {
     C_001A5F40 *func_001A5F40(void *a, int b);
 };
 
+struct S_001A5FD0_Movie {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    void func_00157810(void);
+    char pad0[0x48 - 4];
+    int f48;
+};
+
+struct S_001A5FD0_F24 {
+    char pad0[0x24];
+    int f24;
+    char pad28[0x1dc - 0x28];
+    int f1dc;
+};
+
+struct C_0005C0E0 {
+    int func_0005C0E0(void);
+};
+
+struct S_001A5FD0_G1M {
+    char pad0[0x2c0];
+    C_0005C0E0 *f2c0;
+};
+
+struct C_001A5FD0 {
+    char pad0[0x24];
+    S_001A5FD0_F24 *f24;
+    S_001A5FD0_Movie *f28;
+    int f2c;
+    void func_00157A00(int arg);
+    void func_001A5FD0(int arg);
+};
+
 bool __stdcall func_001A5B10(char *name, void **pp)
 {
     char buf[260];
