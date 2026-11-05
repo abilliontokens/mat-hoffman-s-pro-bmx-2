@@ -83,6 +83,18 @@ int XboxSoundGroup::func_001CD800(void)
     return 1;
 }
 
+void XboxSoundGroup::func_001CD840(int a)
+{
+    int i;
+    S_SoundElem *e;
+
+    f28 = a;
+    for (i = 0; i < list.count; i++) {
+        e = list.at(i);
+        e->v9(e->f1A8);
+    }
+}
+
 int S_SoundElemList::func_001CDE90(S_SoundElem *elem)
 {
     if (count >= capacity && !func_0015ACA0(count + growBy)) {
