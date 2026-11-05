@@ -4,6 +4,51 @@
 extern int D_0028856C;
 extern int D_0028862C;
 
+extern char D_002A5558[];
+extern "C" char * __cdecl strcpy(char *, const char *);
+extern "C" char * __cdecl strcat(char *, const char *);
+
+struct V4u {
+    u32 x, y, z, w;
+};
+
+struct C_001D3F50 {
+    void func_001D3F50(void);
+};
+
+struct C_0016A330 {
+    int func_0016A330(char *buf);
+};
+
+struct ParticleEmitterResetVT {
+    virtual void v0(); virtual void v1(); virtual void v2();
+};
+
+struct C_0016BEC0 {
+    void *vtbl;
+    char pad4[0x40];
+    u32 f44;
+    char pad48[0x1C];
+    void *f64;
+    void *f68;
+    char f6C;
+    char pad6D[0x103];
+    float f170;
+    float f174;
+    char pad178[4];
+    float f17C;
+    char pad180[8];
+    u32 f188;
+    u32 f18C;
+    u32 f190;
+    char pad194[0x14];
+    u32 f1A8, f1AC;
+    char pad1B0[0x44];
+    float f1F4[4];
+    float f204[4];
+    C_0016BEC0 *func_0016BEC0(void *a, char *name, void *b, u32 *c);
+};
+
 struct C_00169C50 {
     void func_00169C50(void *param);
 };
