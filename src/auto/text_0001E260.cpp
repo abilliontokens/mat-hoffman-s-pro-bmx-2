@@ -143,6 +143,16 @@ struct C_0001EDC0 {
     void func_0001EDC0(int a0);
 };
 
+extern u32 D_002A0C18[];
+static inline u32 swap32(u32 x)
+{
+    unsigned char b0 = (unsigned char)x;
+    unsigned char b1 = (unsigned char)(x >> 8);
+    unsigned char b2 = (unsigned char)(x >> 16);
+    unsigned char b3 = (unsigned char)(x >> 24);
+    return ((b0 << 8 | b1) << 8 | b2) << 8 | b3;
+}
+
 struct V16_0001E260 {
     int a, b, c, d;
 };
