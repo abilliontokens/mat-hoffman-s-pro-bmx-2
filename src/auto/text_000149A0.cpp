@@ -29,3 +29,12 @@ extern Obj13F50 *D_002AF44C;
 
 void func_001E891B(void *ptr);
 int func_00011260(int arg1, int arg2);
+
+void *AIPedestrian::func_00015960(unsigned int flags)
+{
+    func_00014020();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
