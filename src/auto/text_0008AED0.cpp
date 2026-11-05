@@ -7,6 +7,11 @@ extern int D_00275630;
 extern int D_00279DEC;
 extern int D_00279E74;
 
+struct C_0008BA00 {
+    char pad0[0x2c];
+    int f2C;
+    void func_0008BA00(void);
+};
 struct C_00157600 {
     void func_00157600(int a0);
 };
