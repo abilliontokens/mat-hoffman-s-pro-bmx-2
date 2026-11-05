@@ -143,6 +143,7 @@ void C_00086160::func_00086200(void)
 
 MountVertOverlay *MountVertOverlay::func_00086470(int a)
 {
+    float *p;
     int i;
 
     func_00157600(1);
@@ -150,14 +151,13 @@ MountVertOverlay *MountVertOverlay::func_00086470(int a)
     unk28 = 0;
     unk2C = 0;
     unk48 = 0;
-    unk30 = 0.0f;
-    unk34 = 0.0f;
-    unk38 = 0.0f;
-    unk3C = 0.0f;
-    for (i = 0; i < 8; i++)
-        unk50[i] = 0;
+    p = &unk30;
+    for (i = 0; i < 4; i++)
+        p[i] = 0.0f;
     unk70 = 0;
     unk74 = 0;
+    for (i = 0; i < 8; i++)
+        unk50[i] = 0;
     unk80 = 0;
     unk44 = 0;
     unk84 = 0;
@@ -167,4 +167,25 @@ MountVertOverlay *MountVertOverlay::func_00086470(int a)
     return this;
 }
 
+void MountVertOverlay::func_000864D0(void)
+{
+    S_000864D0_Obj *p = (S_000864D0_Obj *)unk28;
+    S_000864D0_Obj **a = (S_000864D0_Obj **)&unk30;
+    int i;
+
+    vtbl = (void *)&D_002796BC;
+    if (p != 0) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+    for (i = 4; i != 0; i--) {
+        p = *a;
+        a++;
+        if (p != 0) {
+            p->func_001D6410();
+            func_001E891B(p);
+        }
+    }
+    ((C_00157660 *)this)->func_00157660();
+}
 
