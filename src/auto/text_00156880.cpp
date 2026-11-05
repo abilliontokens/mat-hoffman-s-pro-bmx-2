@@ -132,6 +132,28 @@ int Game::func_00156F30(int a, int b)
     return f278->v23(a, b) != 0;
 }
 
+void Game::func_00156FC0(void)
+{
+    extern int D_002870A4;
+    vtbl = (void *)&D_002870A4;
+    if (D_002EFDB8 != 0) {
+        D_002EFDB8->destroyObject(1);
+        D_002EFDB8 = 0;
+    }
+    if (D_002F07B8 != 0) {
+        D_002F07B8->v1();
+        if (D_002F07B8 != 0) {
+            D_002F07B8->destroyObject(1);
+        }
+        D_002F07B8 = 0;
+    }
+    if (D_002DF8F4 != 0) {
+        func_0014FE50(D_002DF8F4);
+    }
+    D_002BEAAC->v2();
+    func_0014F9A0();
+}
+
 undefined4 C_00157290::func_00157290(byte param_1)
 {
   int func_00156FC0(...);
