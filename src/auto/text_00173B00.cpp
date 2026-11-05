@@ -12,6 +12,8 @@ struct Vec4 {
     f32 x, y, z, w;
 };
 
+extern Vec4 D_002EF740;
+
 struct C_00198040 {
     void func_00198040(void *a0, void *a1);
     void func_00197EC0(void *a0, void *a1);
