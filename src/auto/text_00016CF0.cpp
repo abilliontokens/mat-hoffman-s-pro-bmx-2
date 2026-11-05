@@ -4,6 +4,9 @@
 
 extern float D_002755E8, D_002754B0, D_002757FC, D_002757F8;
 int func_001E8833();
+static __forceinline float random_00017910() {
+    return (float)func_001E8833() * D_002754B0;
+}
 extern float D_002756D0;
 extern float D_002756B8;
 extern float D_002756E8;
