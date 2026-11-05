@@ -25,7 +25,7 @@ struct S_00131400_In {
 /* a 0x14-byte tracked value: current value, a time, and its limits */
 struct S_KeyNode {
     f32 f0;
-    int f4;
+    f32 f4;
     u32 f8;
     u32 fC;
     u32 f10;
@@ -33,7 +33,7 @@ struct S_KeyNode {
 
 void *func_001E8A44(int size);
 
-static S_KeyNode *initKeyNode(S_KeyNode *n, f32 value, int time)
+static S_KeyNode *initKeyNode(S_KeyNode *n, f32 value, f32 time)
 {
     n->f0 = value;
     n->f4 = time;
