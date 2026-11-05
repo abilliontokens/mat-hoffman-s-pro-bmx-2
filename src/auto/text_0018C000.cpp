@@ -211,6 +211,26 @@ struct C_0018CE00 {
 
 static __inline int Min_0018CE00(int a, int b) { return a > b ? b : a; }
 
+void *func_001E8AA5(unsigned int size);
+
+struct S_0018CC00_Entry {
+    char name[0x20];
+    void *f20;
+    int f24;
+    int f28;
+    void *f2C;
+    int f30;
+    int f34;
+};
+
+struct C_0018CC00 {
+    char pad0[0x164];
+    S_0018CC00_Entry *entries;
+    int count;
+    int capacity;
+    int func_0018CC00(const char *name);
+};
+
 struct C_0018C120 {
     C_0018C120_Node *head;
     int count;
