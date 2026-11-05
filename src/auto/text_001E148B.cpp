@@ -49,6 +49,12 @@ extern "C" int __stdcall func_001E1D36(void *a0, void *a1, void *a2, int a3, int
 extern "C" void __stdcall func_001DCAFF(int a0, void *a1);
 extern "C" long __stdcall func_001E1BD7(S_AnsiString_1E148B *name, int size);
 
+static __declspec(noreturn) void __stdcall reboot_1E148B(int a)
+{
+    _imp__HalReturnToFirmware(a);
+    __debugbreak();
+}
+
 long __stdcall func_001E1BD7(S_AnsiString_1E148B *name, int size)
 {
     S_FsSizeInfo_1E148B fsi;
