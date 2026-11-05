@@ -127,10 +127,6 @@ static inline void DeleteObj(C_001D6410 *p)
     }
 }
 
-struct C_00073C30_Vec {
-    float x, y, z;
-};
-
 struct C_00073C30_V {
     virtual void destroyObject(int flags);
 };
