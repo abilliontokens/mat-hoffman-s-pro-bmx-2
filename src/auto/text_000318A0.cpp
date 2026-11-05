@@ -5,6 +5,34 @@ struct C_00032720 {
     void func_00032720(void);
 };
 
+struct C_001041A0 {
+    void func_001041A0(void);
+};
+
+struct C_00032550 {
+    char pad0[0x1c4];
+    C_001041A0 *unk1C4;
+    void func_00032550(void);
+};
+
+struct C_00031F10 {
+    int func_00157B90(int a, int b);
+    int func_00031F10(int a, int b);
+};
+
+/* score table: type selects one of the ranked lists */
+struct S_ScoreTable {
+    int func_0005B960(int type, float value);
+    int func_0005BA80(int type, float value, char *name);
+};
+
+struct C_00032060 {
+    char pad0[0x68];
+    S_ScoreTable *unk68;
+    int func_00032060(int score, char *name);
+    int func_000320A0(float value, char *name);
+};
+
 
 void C_00032720::func_00032720(void)
 {
