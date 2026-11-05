@@ -292,10 +292,36 @@ int C_001D5170::func_001D5170(int param_1)
     return func_001D5110(func_001B2BF0(param_1));
 }
 
+void C_001D52F0::func_001D52F0(float a, float b)
+{
+    float r;
+
+    unk50 = b;
+    unk4C = a;
+    r = D_00275460 / (b - a);
+    unk74 = D_00275F58 * r;
+    unk78 = r * b;
+    unk28 = D_00275460 - D_00275460 / b;
+}
+
 C_001D5350* C_001D5350::func_001D5350(void) {
     unk0 = 0;
     unk4 = 0;
     return this;
+}
+
+void C_001D5360::func_001D5360(void)
+{
+    if (!(unk0->flagsC & 1)) {
+        if (unk4 != 0) {
+            unk4->Destroy(1);
+            unk4 = 0;
+        }
+    }
+    if (unk0 != 0) {
+        unk0->Destroy(1);
+        unk0 = 0;
+    }
 }
 
 void C_001D5470::func_001D5470(void)
