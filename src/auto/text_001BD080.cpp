@@ -595,6 +595,47 @@ void C_001BDB50::func_001BDC50(void)
     }
 }
 
+void C_001BDB50::func_001BDC90(void)
+{
+    int i, j;
+    S_001BDB50_Group *g;
+    S_001BDB50_Item *it;
+
+    for (i = 0; i < f38; i++) {
+        g = f3c[i];
+        if (g != 0) {
+            for (j = 0; j < g->f28; j++) {
+                it = g->f2c[j];
+                if (it != 0) {
+                    it->v29();
+                }
+            }
+        }
+    }
+    if (f40 == 0) {
+        for (i = 0; i < f28; i++) {
+            g = f2c[i];
+            if (g != 0) {
+                for (j = 0; j < g->f28; j++) {
+                    it = g->f2c[j];
+                    if (it != 0) {
+                        it->v29();
+                    }
+                }
+            }
+        }
+    } else {
+        for (i = 0; i < f28; i++) {
+            g = f2c[i];
+            if (g != 0) {
+                for (j = 0; j < g->f28; j++) {
+                    g->f2c[j]->v32();
+                }
+            }
+        }
+    }
+}
+
 void C_001BDB50::func_001BDD60(int idx)
 {
     int i, j;
