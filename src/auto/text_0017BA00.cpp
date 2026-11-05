@@ -120,6 +120,11 @@ static inline f32 QuadCross(f32 a, f32 b, f32 c, f32 d) {
     return c * a + d * b;
 }
 
+static inline void QuadSetPt(f32 *dst, f32 x, f32 y) {
+    dst[0] = x;
+    dst[1] = y;
+}
+
 /* 4 points of a 2D quad, stored x,y */
 struct C_0017BDE0 {
     f32 v[8];
@@ -208,6 +213,95 @@ void C_0017BB50::func_0017BB50(undefined4 *param_1)
   in_ECX[6] = param_1[0xc];
   in_ECX[7] = param_1[0xd];
   return;
+}
+
+void C_0017BDE0::func_0017BB90(f32 *pts, int n)
+{
+    f32 minx;
+    f32 maxx;
+    f32 miny;
+    f32 maxy;
+    int i;
+
+    if (n < 1) {
+        return;
+    }
+    minx = pts[0];
+    maxx = pts[0];
+    miny = pts[1];
+    maxy = pts[1];
+    for (i = 1; i + 3 < n; i += 4) {
+        if (pts[i * 2] < minx) {
+            minx = pts[i * 2];
+        }
+        if (maxx < pts[i * 2]) {
+            maxx = pts[i * 2];
+        }
+        if (pts[i * 2 + 1] < miny) {
+            miny = pts[i * 2 + 1];
+        }
+        if (maxy < pts[i * 2 + 1]) {
+            maxy = pts[i * 2 + 1];
+        }
+        if (pts[i * 2 + 2] < minx) {
+            minx = pts[i * 2 + 2];
+        }
+        if (maxx < pts[i * 2 + 2]) {
+            maxx = pts[i * 2 + 2];
+        }
+        if (pts[i * 2 + 3] < miny) {
+            miny = pts[i * 2 + 3];
+        }
+        if (maxy < pts[i * 2 + 3]) {
+            maxy = pts[i * 2 + 3];
+        }
+        if (pts[i * 2 + 4] < minx) {
+            minx = pts[i * 2 + 4];
+        }
+        if (maxx < pts[i * 2 + 4]) {
+            maxx = pts[i * 2 + 4];
+        }
+        if (pts[i * 2 + 5] < miny) {
+            miny = pts[i * 2 + 5];
+        }
+        if (maxy < pts[i * 2 + 5]) {
+            maxy = pts[i * 2 + 5];
+        }
+        if (pts[i * 2 + 6] < minx) {
+            minx = pts[i * 2 + 6];
+        }
+        if (maxx < pts[i * 2 + 6]) {
+            maxx = pts[i * 2 + 6];
+        }
+        if (pts[i * 2 + 7] < miny) {
+            miny = pts[i * 2 + 7];
+        }
+        if (maxy < pts[i * 2 + 7]) {
+            maxy = pts[i * 2 + 7];
+        }
+    }
+    for (; i < n; i++) {
+        if (pts[i * 2] < minx) {
+            minx = pts[i * 2];
+        }
+        if (maxx < pts[i * 2]) {
+            maxx = pts[i * 2];
+        }
+        if (pts[i * 2 + 1] < miny) {
+            miny = pts[i * 2 + 1];
+        }
+        if (maxy < pts[i * 2 + 1]) {
+            maxy = pts[i * 2 + 1];
+        }
+    }
+    v[0] = minx;
+    v[1] = maxy;
+    v[3] = maxy;
+    v[2] = maxx;
+    v[4] = maxx;
+    v[5] = miny;
+    v[6] = minx;
+    v[7] = miny;
 }
 
 int C_0017BDE0::func_0017BDE0(f32 x, f32 y) {
