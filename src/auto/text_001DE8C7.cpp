@@ -34,6 +34,7 @@ extern "C" u32 (__stdcall *__imp__RtlNtStatusToDosError)(long status);
 extern "C" __declspec(dllimport) long __stdcall IoDeleteSymbolicLink(S_AnsiString *name);
 extern "C" __declspec(dllimport) u32 __stdcall RtlNtStatusToDosError(long status);
 
+unsigned char __stdcall func_001E1297(int a, int b, int c);
 void func_001DE82F(void);
 void __stdcall func_001DD659(int code);
 void func_001EA4E1(char *buf, const char *fmt, int value);
