@@ -20,12 +20,14 @@ struct C_0002F6C0 {
     S_0002F6C0_Camera *f30;
     char pad34[0x20];
     S_0002F6C0_Obj *f54;
-    char pad58[0xc];
+    char pad58[8];
+    S_0002F6C0_Obj *f60;
     S_0002F6C0_Obj *f64;
     char pad68[4];
     int f6c;
     void func_0012B7D0(void *, int, int, int, int);
     void func_0002F6C0();
+    void func_0002F7B0();
     void func_0002F990();
 };
 
