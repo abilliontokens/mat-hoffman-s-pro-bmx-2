@@ -369,8 +369,10 @@ struct FlatElemList_001CF2A0 : SoundElemList_001CF2A0 {
 
     FlatElemList_001CF2A0()
     {
-        count = capacity = growBy = 0;
-        items = (SoundElem_001CF2A0 **)count;
+        items = 0;
+        count = 0;
+        growBy = 0;
+        capacity = 0;
         flags &= 0xfe;
     }
 
