@@ -17,6 +17,10 @@ struct Sz_001D6D00 { int w; void *p; };
 
 struct S_001D7190_Pack {
     int func_0013C8A0(int a, void *b, int c, int d);
+    int func_0013D310(char *name, char *ext, int *key, void *out, int flag);
+    void func_0013AC40(char *name, int a, int b, int c, int *key, int d);
+    void func_0013B1F0(int key, void *obj);
+    void func_0013C110(int key);
 };
 extern S_001D7190_Pack *D_002BEAAC;
 
