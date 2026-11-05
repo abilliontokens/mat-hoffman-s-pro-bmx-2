@@ -1,5 +1,25 @@
 /* 36 functions from 0x001E9250 to 0x001EA23F, found by Ghidra. */
 #include "common.h"
+
+/* the CRT's FILE (only the fields these functions touch) */
+struct S_001E9714_File {
+    char pad0[0xc];
+    int _flag;
+    int _file;
+    char pad14[8];
+    char *_tmpfname;
+};
+
+int func_001E9DE9(S_001E9714_File *stream);
+void func_001ED527(S_001E9714_File *stream);
+int func_001ED48C(int fh);
+void func_001E8390(void *p);
+void func_001EB109(S_001E9714_File *stream);
+void func_001EB15B(S_001E9714_File *stream);
+int func_001E9714(S_001E9714_File *stream);
+int func_001EDBF6(S_001E9714_File *stream);
+int func_001EDD36(S_001E9714_File *stream, const char *format, char *arglist);
+void func_001EDC7E(int buffing, S_001E9714_File *stream);
 #include <string.h>
 
 int __fastcall func_001E9250(int param_1, int param_2) {
