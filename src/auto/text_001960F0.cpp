@@ -123,3 +123,10 @@ void C_00196290::func_00196360(u8 *param_1)
     f64 += 8;
 }
 
+void C_00196290::func_00196BD0(void)
+{
+    if (fc0 & 1) {
+        memcpy(fcc, f50, fc8);
+    }
+}
+
