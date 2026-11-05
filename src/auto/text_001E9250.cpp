@@ -384,6 +384,21 @@ int func_001E9B0C(S_001E9_FILE *str, long offset, int whence)
     return func_001EE52F(stream->file, offset, whence) == -1 ? -1 : 0;
 }
 
+int func_001E9B9B(S_001E9_FILE *stream, long offset, int whence)
+{
+    int func_001EB109(int);
+    int func_001EB15B(int);
+    int result;
+
+    func_001EB109((int)stream);
+    __try {
+        result = func_001E9B0C(stream, offset, whence);
+    } __finally {
+        func_001EB15B((int)stream);
+    }
+    return result;
+}
+
 int func_001E9D46(S_001E9714_File *stream) {
     int func_001E9BE4(S_001E9714_File *);
     int result;
