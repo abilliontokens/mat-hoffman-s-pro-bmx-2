@@ -1,8 +1,6 @@
 /* 4 functions from 0x001DA500 to 0x001DB4D0, found by Ghidra. */
 #include "common.h"
 
-extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
-#pragma intrinsic(memcpy)
 void *__stdcall func_001FF3C0(int size);
 void *__stdcall func_001FF410(void *buffer, int flags);
 int __fastcall func_001FEBD0(int n, void *p);
