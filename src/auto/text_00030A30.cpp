@@ -339,6 +339,23 @@ struct Root_000317B0 {
 
 extern Root_000317B0 *D_002A8490;
 
+/* BmxEvent */
+struct C_00030F90 {
+    void *vtbl;
+    C_00030F90 *func_00030F90(int a0);
+};
+extern int D_00276AB4;
+extern u32 D_002A1460;
+extern u32 D_002A1464;
+extern u32 D_002A1468;
+extern u32 D_002A146C;
+struct S_001C3D40 {
+    void func_001C3D40(int a);
+};
+extern S_001C3D40 *D_002F07B8;
+extern "C" void *memset(void *dst, int c, unsigned int n);
+#pragma intrinsic(memset)
+
 struct CreatorObj_00031260 {
     int func_00026500(int a, int b);
 };
