@@ -133,6 +133,26 @@ static __forceinline int Item_000C40D0(C_000C40D0 *p, int idx)
     return p->arr298[idx];
 }
 
+/* same list layout as C_000C40D0 */
+struct C_000C3F60 {
+    char pad0[0x124];
+    S_000C40D0_Owner *f124;
+    char pad128[0x290 - 0x128];
+    int f290;
+    char pad294[4];
+    int arr298[20];
+    int func_000C0100(int idx);
+    int func_000C3F60(int idx);
+};
+
+static __forceinline int Item_000C3F60(C_000C3F60 *p, int idx)
+{
+    if (idx >= p->f290) {
+        return -1;
+    }
+    return p->arr298[idx];
+}
+
 int C_000C40D0::func_000C40D0(int idx)
 {
     S_000C40D0_Ui *ui = f124->f24;
