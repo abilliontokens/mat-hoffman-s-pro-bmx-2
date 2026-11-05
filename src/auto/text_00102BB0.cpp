@@ -114,6 +114,7 @@ struct C_00102E20 {
     int unk3DC;
     void func_00102E20();
     void func_001030A0();
+    void func_00102BB0();
 };
 
 struct C_001BF660 {
