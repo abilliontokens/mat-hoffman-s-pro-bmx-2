@@ -13,6 +13,22 @@ struct C_0001DFF0 {
     void func_0001DFF0(void);
 };
 
+extern unsigned int D_002A0C18[];
+
+static inline unsigned int swap32(unsigned int x)
+{
+    return (((x & 0xff) << 8 | x >> 8 & 0xff) << 8 | x >> 16 & 0xff) << 8 | x >> 24;
+}
+
+struct C_0001E0E0 {
+    int unk0;
+    int nbits;
+    unsigned int *data;
+    char pad0c[0x0c];
+    int fill;
+    void func_0001E0E0(int n);
+};
+
 extern int D_00275F18;
 
 struct C_0001D690 {
