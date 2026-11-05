@@ -56,6 +56,16 @@ struct XboxSoundGroup {
 };
 
 
+int S_SoundElemList::func_001CDE90(S_SoundElem *elem)
+{
+    if (count >= capacity && !func_0015ACA0(count + growBy)) {
+        return 0;
+    }
+    items[count] = elem;
+    count++;
+    return 1;
+}
+
 undefined4 C_001CE120::func_001CE120(byte param_1)
 {
   int func_001CC140(...);
