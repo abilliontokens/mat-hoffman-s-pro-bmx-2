@@ -21,7 +21,59 @@ struct S_106E30_Cfg {
     char v200[0x10];
     char v210[0x10];
 };
-extern char *D_002A8490;
+struct S_106810_Player {
+    char pad0[0x1c8];
+    int f1c8;
+};
+struct S_106810_Global {
+    char pad0[0x2a4];
+    S_106810_Player *f2a4;
+};
+extern S_106810_Global *D_002A8490;
+extern char D_00282A5C[];
+struct S_106810_Vec {
+    float x, y, z, w;
+};
+struct S_106810_Node {
+    S_106810_Vec *func_00197F70(S_106810_Vec *out, S_106810_Vec *in);
+    void func_00197E70(S_106810_Vec *v);
+};
+struct S_106810_Mgr {
+    S_106810_Node *func_00198330(void *name);
+};
+struct S_106810_Arg {
+    int f0;
+    S_106810_Mgr *f4;
+};
+struct S_106810_Owner {
+    char pad0[0x22c];
+    S_106810_Node *f22c;
+};
+struct S_106810_Pos {
+    char pad0[0x38];
+    S_106810_Vec v38;
+    S_106810_Vec v48;
+};
+struct S_106810_Btn {
+    void func_0011CA60(S_106810_Vec v);
+    void func_0009EDB0(char on);
+};
+struct C_00106810 {
+    char pad0[0x1e0];
+    S_106810_Owner *f1e0;
+    char pad1e4[0x2c];
+    S_106810_Pos *f210;
+    char pad214[0x254];
+    int f468;
+    char pad46c[4];
+    int f470;
+    char pad474[0x368];
+    S_106810_Btn *f7dc;
+    S_106810_Btn *f7e0;
+    char pad7e4[0xac4];
+    unsigned char f12a8;
+    void func_00106810(S_106810_Arg *arg, int mode);
+};
 extern float D_00275544;
 struct Vec_106B20 { int x,y,z,w; };
 struct Obj_106B20 {
