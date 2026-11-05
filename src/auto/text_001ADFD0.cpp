@@ -129,6 +129,19 @@ float __stdcall func_001AE530(float x, float y)
     return sqrtf(dx * dx + dy * dy);
 }
 
+void *C_001AE7D0::func_001AE7D0(int flags)
+{
+    vtbl = &D_0028C1A4;
+    if (f4) {
+        f4->v0(1);
+    }
+    vtbl = &D_00284E94;
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void C_001AE810::func_001AE810(void)
 {
     extern int D_0028C1D0;
