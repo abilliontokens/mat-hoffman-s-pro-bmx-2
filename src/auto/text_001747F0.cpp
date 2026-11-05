@@ -28,6 +28,21 @@ struct C_00175110 {
     void *func_00175110(int a);
 };
 
+void *C_00175110::func_00175110(int a) {
+    func_00171340(a);
+    unk0 = (int)&D_00288DC4;
+    unk1B0 = 0;
+    unk280 = 1;
+    unk284 = 1;
+    unk288 = 1;
+    unk28C = 1;
+    unk290 = 1;
+    unk294 = 1;
+    func_00174580();
+    unk300 = 0;
+    return this;
+}
+
 void *C_00175170::func_00175170(int flags) {
     unk0 = (int)&D_00288DC4;
     func_00171980();
