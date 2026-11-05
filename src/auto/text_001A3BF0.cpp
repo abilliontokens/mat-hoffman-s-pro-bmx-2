@@ -154,6 +154,10 @@ struct V4_001A3BF0 {
     float x, y, z, w;
 };
 
+extern float D_002A9F44;
+extern float D_002A9F48;
+extern float D_002A9F4C;
+
 struct C_00132EB0 {
     void func_00132EB0(int a);
 };
