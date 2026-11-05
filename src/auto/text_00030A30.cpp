@@ -6,6 +6,27 @@ struct C_00030CD0 {
     void func_00030CD0(int a0);
 };
 
+struct C_00157660 {
+    void func_00157660(void);
+};
+
+struct C_00030F00 {
+    void *vtbl;
+    void *func_00030F00(unsigned int flags);
+};
+
+struct C_00030B20 {
+    char pad0[0x170];
+    float f170;
+    float f174;
+    float f178;
+    char pad17c[0xBC];
+    float f238;
+    float f23c;
+    float f240;
+    void func_00030B20(float x, float y, float z);
+};
+
 
 void C_00030CD0::func_00030CD0(int a0) {
     unk78 = a0;
