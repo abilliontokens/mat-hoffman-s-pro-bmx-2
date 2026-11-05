@@ -78,6 +78,15 @@ struct C_0006D590 {
     int func_0006E250(float dt);
 };
 
+struct PtrObj_0006D {
+    void func_001D6410(void);
+};
+struct VObj_0006D {
+    virtual void v0(int flags);
+};
+void func_001E891B(void *p);
+void func_00157660(void);
+
 struct C_00031610 {
     void func_00031610(int param_1, int param_2);
 };
