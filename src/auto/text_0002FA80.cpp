@@ -125,7 +125,14 @@ struct C_00195130 { void func_00195130(void); };
 struct C_00150350 { void func_00150350(void); };
 struct C_00136300 { void func_00136300(void); };
 struct C_0012B580 { void func_0012B580(void); };
-struct S_000308F0_Holder { int f0; C_00030500 *f4; };
+struct S_000308F0_Holder { void *f0; C_00030500 *f4; int f8; int fC; };
+struct S_000306F0_Rect { int a, b, c, d; };
+struct C_00055380 { C_00055380 *func_00055380(void); int func_000597B0(S_000306F0_Rect r, int a, const char *s, int b, int c); };
+struct C_0009F7F0 { C_0009F7F0 *func_0009F7F0(void); int func_000A08D0(S_000306F0_Rect r, int a); };
+struct C_00131150 { C_00131150 *func_00131150(void); int func_00131260(int a, float b, float c, float d, float e, float f, float g, float h, float i); };
+struct C_00194CC0 { C_00194CC0 *func_00194CC0(void); };
+struct C_00195090 { C_00195090 *func_00195090(void); void func_001956F0(const char *s); void func_001955D0(int a, float b); };
+struct C_001500A0 { C_001500A0 *func_001500A0(void); };
 struct C_000308F0 {
     void *vtbl;
     char pad4[0x3C];
