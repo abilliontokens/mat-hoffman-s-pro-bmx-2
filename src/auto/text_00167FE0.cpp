@@ -3,6 +3,8 @@
 #include "ghidra.h"
 extern "C" unsigned int strlen(const char *s);
 extern "C" char *strcpy(char *dst, const char *src);
+extern "C" void *memset(void *dst, int c, unsigned int n);
+#pragma intrinsic(memset)
 #pragma intrinsic(strlen)
 #pragma intrinsic(strcpy)
 
@@ -129,6 +131,8 @@ void func_00168210(int type, int value, char *dst)
 
 C_00168280 *C_00168280::func_00168280(void)
 {
+    int n;
+    int *p;
     f4 = 0;
     f8 = 0;
     fc = 0;
@@ -144,8 +148,10 @@ C_00168280 *C_00168280::func_00168280(void)
     f430 = 0;
     f434 = 0;
     f0 = -1;
-    for (int i = 0; i < 32; i++) {
-        f438[i] = 0;
+    p = f438;
+    for (n = 32; n != 0; n--) {
+        *p = 0;
+        p++;
     }
     f4c8 = 0;
     f4b8 = 0;
@@ -191,5 +197,34 @@ int __stdcall func_00168C20(int a, int b, int *out)
     }
     *out = b;
     return 0;
+}
+
+int __stdcall func_00168C50(void *a, float def, float *out)
+{
+    char buf[0x400];
+
+    if (func_00168550(a, buf, -1) != 0) {
+        *out = (float)func_001E9649(buf);
+        return 1;
+    }
+    *out = def;
+    return 0;
+}
+
+int __stdcall func_00168CB0(void *a, float *def, float *out)
+{
+    char buf[0x184];
+
+    if (func_00168550(a, buf, 0x80) == 0) {
+        strcpy(buf, D_00275630);
+        out[0] = def[0];
+        out[1] = def[1];
+        out[2] = def[2];
+        return 0;
+    }
+    out[0] = (float)func_001E9649(func_001E95A4(buf, D_002869B8));
+    out[1] = (float)func_001E9649(func_001E95A4(0, D_002869B8));
+    out[2] = (float)func_001E9649(func_001E95A4(0, D_002869B4));
+    return 1;
 }
 
