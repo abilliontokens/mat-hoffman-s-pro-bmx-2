@@ -74,6 +74,7 @@ struct RenderEntryCB {
     u32 f38;
     char pad3C[0x1C];
     u8 b58;
+    void func_001D5AD0();
 };
 
 /* give a drawable the colour of the page's index and mark it dirty */
@@ -83,14 +84,57 @@ static void setEntryColor(RenderEntryCB *e, s32 c)
     e->b58 |= 2;
 }
 
+/* give a drawable a fixed colour and mark it dirty */
+static void setEntryColorMask(RenderEntryCB *e, u32 mask, u32 color)
+{
+    e->f38 = (e->f38 & mask) | color;
+    e->b58 |= 2;
+}
+
+/* the shared drawable table the page draws from */
+struct S_000CB3B0_Mgr {
+    char pad0[0x24];
+    RenderEntryCB *unk24;
+    RenderEntryCB *unk28;
+    RenderEntryCB *unk2C;
+    RenderEntryCB *unk30;
+    char pad34[0x54 - 0x34];
+    RenderEntryCB *unk54;
+    char pad58[0x6C - 0x58];
+    RenderEntryCB *unk6C;
+};
+
+extern S_000CB3B0_Mgr *D_002B91AC;
+
+struct S_000CB3B0_Obj301D0 {
+    int func_000301D0(void);
+};
+
+struct S_000CB3B0_B {
+    char pad0[0x74];
+    S_000CB3B0_Obj301D0 *f74;
+};
+
+struct S_000CB3B0_A {
+    char pad0[0x25C];
+    S_000CB3B0_B *f25C;
+};
+
 /* BmxUIPageGameOptions */
 struct BmxUIPageGameOptions {
-    char pad0[0x314];
+    char pad0[0x124];
+    S_000CB3B0_A *f124;
+    char pad128[0x280 - 0x128];
+    int f280;
+    char pad284[0x2A4 - 0x284];
+    s32 f2A4;
+    char pad2A8[0x314 - 0x2A8];
     s16 f314;
     char pad316[0x334 - 0x316];
     RenderEntryCB *arr334[12];
     void func_001BF000();
     void func_000CB2D0();
+    void func_000CB3B0();
 };
 
 void C_000CA940::func_000CA940(void)
@@ -138,24 +182,12 @@ void BmxUIPageGameOptions::func_000CB2D0()
     RenderEntryCB **p = arr334 + 1;
 
     do {
-        RenderEntryCB *a = p[-1];
-        a->f38 = ((s32)f314 << 24) | (a->f38 & 0xffffff);
-        a->b58 |= 2;
-        a = p[0];
-        a->f38 = ((s32)f314 << 24) | (a->f38 & 0xffffff);
-        a->b58 |= 2;
-        a = p[1];
-        a->f38 = ((s32)f314 << 24) | (a->f38 & 0xffffff);
-        a->b58 |= 2;
-        a = p[2];
-        a->f38 = ((s32)f314 << 24) | (a->f38 & 0xffffff);
-        a->b58 |= 2;
-        a = p[3];
-        a->f38 = ((s32)f314 << 24) | (a->f38 & 0xffffff);
-        a->b58 |= 2;
-        a = p[4];
-        a->f38 = ((s32)f314 << 24) | (a->f38 & 0xffffff);
-        a->b58 |= 2;
+        setEntryColor(p[-1], f314);
+        setEntryColor(p[0], f314);
+        setEntryColor(p[1], f314);
+        setEntryColor(p[2], f314);
+        setEntryColor(p[3], f314);
+        setEntryColor(p[4], f314);
         p += 6;
         n--;
     } while (n != 0);
