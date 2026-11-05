@@ -171,7 +171,8 @@ struct C_0014C720 {
     u32 f1F0;
     u32 f1F4;
     C_0014C7D0_Obj *f1F8;
-    char pad1FC[0xC];
+    int f1FC;
+    char pad200[8];
     void *f208;
     void func_0014C720();
     void func_0014C7D0();
