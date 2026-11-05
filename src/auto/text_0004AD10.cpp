@@ -28,3 +28,17 @@ undefined4 C_0004BA90::func_0004BA90(byte param_1)
   }
   return in_ECX;
 }
+
+void *C_0004BAB0::func_0004BAB0(int param_1) {
+    int i;
+
+    func_00030F90(param_1);
+    vtbl = &D_0027732C;
+    for (i = 0; i < 8; i++) {
+        if (unk284[i] != 0) {
+            unk284[i] = 0;
+        }
+    }
+    return this;
+}
+
