@@ -88,6 +88,40 @@ struct C_001018F0 {
     void func_001018F0();
 };
 
+/* BmxUIPageOtherVideos */
+struct S_00101B40_Item {
+    void func_00103260(int a);
+    void func_00103350();
+};
+
+struct S_00101B40_Owner {
+    S_00101B40_Item *func_000BA9B0(int id);
+};
+
+struct C_00101B40 {
+    char pad0[0x124];
+    S_00101B40_Owner *f124;
+    char pad128[0x29C - 0x128];
+    int f29C;
+    int f2A0;
+    char pad2A4[4];
+    int f2A8;
+    int f2AC;
+    char pad2B0[0x3BC - 0x2B0];
+    int f3BC;
+    int f3C0;
+    int f3C4;
+    int f3C8;
+    int f3CC;
+    int f3D0;
+    float f3D4;
+    void func_001BEE50(int a, int b, int c);
+    void func_000F1B60();
+    void func_000F1BA0();
+    void func_00157960();
+    void func_00101B40();
+};
+
 struct C_00101A10 {
     undefined4 func_00101A10(byte param_1);
 };
