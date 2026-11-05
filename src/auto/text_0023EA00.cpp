@@ -172,6 +172,7 @@ unsigned int C_0023EC0D::func_0023EC0D(unsigned int a, unsigned int b, int *out)
     return r;
 }
 #pragma optimize("y", on)
+#pragma optimize("s", on)
 int __stdcall func_0023ED4C(S_0023ED4C_Src *src, S_0023ED4C_Out *out)
 {
     out->fC = 0;
@@ -230,6 +231,30 @@ int __stdcall func_0023F160(C_0023EFB0 *p)
 {
     p->func_0023EFB0();
     return 0;
+}
+
+int __stdcall func_0023F3F7(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7)
+{
+    S_0023F3F7_Obj *obj;
+    S_0023F3F7_Obj *mem;
+    int hr;
+
+    if (a5 == 0) {
+        a5 = 1000;
+    }
+    mem = (S_0023F3F7_Obj *)func_001E8A44(0xbc);
+    obj = mem != 0 ? mem->func_0023F1AB() : 0;
+    if (obj == 0) {
+        return 0x8007000e;
+    }
+    hr = func_0023F23E(obj, a0, a1, a2, a3, a4, a5, a6);
+    if (hr >= 0) {
+        *(S_0023F3F7_Obj **)a7 = obj;
+    } else {
+        *(S_0023F3F7_Obj **)a7 = 0;
+        obj->Release();
+    }
+    return hr;
 }
 
 #pragma optimize("y", off)
