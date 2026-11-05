@@ -39,8 +39,41 @@ struct C_000C87A0_Lookup {
     int *func_0018C160(int a);
 };
 
+struct C_000C8290_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual int v16();
+};
+
+struct C_000C8290_Sub {
+    int func_0005C0F0();
+};
+
+struct C_000C8290_Mid {
+    char pad0[0x2C0];
+    C_000C8290_Sub *f2C0;
+};
+
 struct S_002A8490 {
-    char pad0[0x2E8];
+    char pad0[8];
+    C_000C8290_Obj **f8;
+    char pad0C[0x2E0 - 0xC];
+    C_000C8290_Mid *f2E0;
+    char pad2E4[4];
     S_002A8490_E8 *f2E8;
     C_000C87A0_Lookup *p2EC;
 };
