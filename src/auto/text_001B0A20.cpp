@@ -18,6 +18,10 @@ struct C_001B1580_24 {
     u8 unk4E;                         /* 0x4E */
     void func_0005E840(const char *s);
     void func_001D6440();
+    void func_0005E9A0(int);
+    void func_00082400(int);
+    void func_0005E960(int, int);
+    void func_001D6600();
 };
 
 struct S_001B1810_Out {
