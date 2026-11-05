@@ -28,13 +28,46 @@ struct S_00054430_Ctx {
     char pad0[0x3b4]; S_00054430_List *f3b4;
     char pad3b8[0x4e0 - 0x3b8]; S_00054430_Items *f4e0;
 };
-struct S_00054430_Arrow {
+struct S_00053F90_Obj {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6();
+    S_00053F90_Obj *func_00088530(int);
+    S_00053F90_Obj *func_00088570(void *);
+    S_00053F90_Obj *func_0005ECA0(int);
+    void func_0005EDC0(void *);
+    S_00053F90_Obj *func_000715B0(int);
+    void func_00071880(void *);
+    S_00053F90_Obj *func_00066C90(int);
+    void func_00066FA0(void *);
+    S_00053F90_Obj *func_00082450(int);
+    void func_0008DB70(void *, void *, void *, int, int, int, int);
+    S_00053F90_Obj *func_000876B0(int);
+    S_00053F90_Obj *func_00087760(void *, void *, int);
+    S_00053F90_Obj *func_0008B820(int);
+    void func_0008B850(int, void *);
+    void func_0008BB50(int);
+    S_00053F90_Obj *func_000888D0(int);
+    void func_00088950(void *, int);
     void func_00088A40(int a, S_00054430_V4 *v);
 };
+struct S_00053F90_Info { int count; int pad4; void *f8; };
+struct S_00053F90_Global { char pad0[0x2e0]; S_00053F90_Info *f2e0; };
+extern S_00053F90_Global *D_002A8490;
+void *func_001E8A44(unsigned int);
 struct C_00054430 {
     char pad0[0x64]; S_00054430_Ctx *f64;
-    char pad68[0x2a4 - 0x68]; S_00054430_Arrow *f2a4[8];
+    char pad68[0x28]; int f90;
+    char pad94[0x50]; S_00053F90_Obj *fe4;
+    char pade8[0x74]; S_00053F90_Obj *f15c;
+    char pad160[0x10]; S_00053F90_Obj *f170[8];
+    S_00053F90_Obj *f190;
+    char pad194[4]; S_00053F90_Obj *f198;
+    char pad19c[4]; S_00053F90_Obj *f1a0;
+    char pad1a4[0x284 - 0x1a4]; S_00053F90_Obj *f284[8];
+    S_00053F90_Obj *f2a4[8];
     int f2c4, f2c8;
+    void func_00031630();
+    void func_00053F90();
     void func_00054430();
 };
 void func_00053CB0(S_00054430_V4 *out, S_00054430_V4 *in);
