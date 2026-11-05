@@ -296,6 +296,7 @@ struct C_001C04D0 {
     int unk180;
     void func_001C01E0(int a);
     void func_001C03F0(int a);
+    void func_001C03F0(char *text);
     void func_001C04D0(int idx);
 };
 
@@ -341,6 +342,35 @@ void C_001C0110::func_001C01B0(void)
     }
     vtbl = &D_0028D804;
     ((C_00157660 *)this)->func_00157660();
+}
+
+void C_001C04D0::func_001C03F0(int a)
+{
+    char *p = (char *)a;
+    char *end = p + strlen(p);
+    int i = -1;
+    int j;
+    char *nl;
+    char saved;
+
+    if (end != 0) {
+        do {
+            nl = func_001E9260(p, 0x40);
+            if (nl == 0) {
+                nl = end;
+            }
+            saved = *nl;
+            *nl = 0;
+            i++;
+            unk68[i]->func_001B17D0(p);
+            unk68[i]->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
+            *nl = saved;
+            p = nl + 1;
+        } while (nl != end);
+    }
+    for (j = i + 1; j < unk170; j++) {
+        unk68[j]->func_001B17D0((char *)D_00275630);
+    }
 }
 
 void C_001C04D0::func_001C04D0(int idx)
