@@ -83,6 +83,13 @@ struct V4Z_001858A0 {
         c = 0;
         d = 0;
     }
+    void Set(u32 x, u32 y, u32 z, u32 w)
+    {
+        a = x;
+        b = y;
+        c = z;
+        d = w;
+    }
 };
 
 struct IB_001858A0 {
@@ -92,6 +99,11 @@ struct IB_001858A0 {
     {
         a = 0;
         b = 0;
+    }
+    void Set(u32 x, u8 y)
+    {
+        a = x;
+        b = y;
     }
 };
 
@@ -211,6 +223,24 @@ void C_00185D00::func_00185D00(void)
 C_00186170 *C_00186170::func_00186170(void)
 {
     vtbl = &D_002897FC;
+    f4 = 4;
+    f8.Clear();
+    f2c = (f2c & 0x84) | 4;
+    f18 = 0;
+    f1c = 0;
+    f20 = 0;
+    f28 = 0;
+    f24 = 0;
+    fe8 = 1;
+    f38.Clear();
+    f40.Clear();
+    f50 = 0x3f800000;
+    f94.Clear();
+    fa4 = 0x3f800000;
+    f54 = 0;
+    fec = -1;
+    ff0 = 0x3f800000;
+    ff4 = 0;
     return this;
 }
 
