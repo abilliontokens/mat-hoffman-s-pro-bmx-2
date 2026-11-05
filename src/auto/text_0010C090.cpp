@@ -50,3 +50,46 @@ struct C_00104B00 {
 };
 
 extern V4_0010C090 D_002A3A5C;
+
+void C_00104B00::func_0010C090(V4_0010C090 *a, V4_0010C090 *b, V4_0010C090 *c, int d)
+{
+    int i;
+
+    if (func_000273F0(a, b, c) == 0 && d == 0) {
+        func_000273F0(&f7f4, &f804, &f814);
+    }
+    f1e0->f28 = 0;
+    f5c8 = 0;
+    f11c4 = 0;
+    f1220 = 0;
+    f1178 = 1;
+    f11c8 = 0;
+    f122c = 0;
+    f1f88 = 0;
+    for (i = 0; i < 20; i++) {
+        f12ac[i].a = *a;
+        if (c == 0) {
+            f12ac[i].b = D_002A3A5C;
+        } else {
+            f12ac[i].b = *c;
+        }
+        f12ac[i].c = 0;
+    }
+    f157c = 0;
+    f1580 = 0x13;
+    if (f1084 != 0) {
+        P_0010C090 *p = f1084;
+        p->count = 0;
+        for (i = 0; i < 5; i++) {
+            p->a[i] = -1;
+            p->b[i] = 0;
+        }
+        if (p->a[0] != -1) p->count++;
+        if (p->a[1] != -1) p->count++;
+        if (p->a[2] != -1) p->count++;
+        if (p->a[3] != -1) p->count++;
+        if (p->a[4] != -1) p->count++;
+        f1084->f2c = -1;
+    }
+    func_001056E0();
+}
