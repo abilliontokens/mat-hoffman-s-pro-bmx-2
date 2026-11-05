@@ -221,6 +221,17 @@ struct S_CrossFadeFx {
     float f2C;
     int f30;
     int f34;
+    S_CrossFadeFx *Init(void)
+    {
+        ((C_00157600 *)this)->func_00157600(1);
+        f24 = 0;
+        f28 = 0;
+        f2C = 1.0f;
+        f30 = 0;
+        f34 = 0;
+        *(void **)this = (void *)&D_0028E554;
+        return this;
+    }
 };
 
 /* CrossFade */
