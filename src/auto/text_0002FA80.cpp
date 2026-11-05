@@ -150,7 +150,7 @@ struct C_000308F0 {
     char pad68[8];
     int f70;
     S_000308F0_Holder *f74;
-    void func_000308F0(void);
+          void func_000308F0(void);
     int func_0012B5B0(int a);
     C_000308F0 *func_000306F0(int a0, int a1, int a2, int a3, int a4, int a5, int a6, const char *path, int a8);
 };
