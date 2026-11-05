@@ -43,7 +43,7 @@ struct S_002A8490 {
     virtual void v15();
     virtual void v16();
     virtual void v17();
-    int func_001D13D0(int a0);
+    void func_001D13D0(char *a0);
 };
 extern S_002A8490 *D_002A8490;
 
