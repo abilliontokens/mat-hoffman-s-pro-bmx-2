@@ -134,3 +134,22 @@ void BmxUIPageOptions::func_000C9860()
     unk32C->func_001B17D0(buf);
 }
 
+void C_000C98D0::func_000C98D0()
+{
+    char buf[20];
+    f330->func_001B1980();
+    int n = D_002A8490->p2E0->n2;
+    if (n > 0) {
+        func_001ADCC0(buf, 0x14, (int)&D_00278DD0, n);
+    } else {
+        char *s = D_002A8490->p2E8->p4->p930;
+        char *d = buf;
+        char c;
+        do {
+            c = *s++;
+            *d++ = c;
+        } while (c != 0);
+    }
+    f330->func_001B17D0(buf);
+}
+
