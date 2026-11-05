@@ -161,6 +161,27 @@ void SoultreeObject::func_0019ACE0(void)
     ((C_00157660_19A8C0 *)this)->func_00157660();
 }
 
+void SoultreeObject::func_0019AD60(SoultreeObject *p, void *m)
+{
+    if (p == this) {
+        ((S_0019A8C0_Mat *)((char *)this + 0xb0))->func_000264C0(m);
+        ((C_001982F0_19A8C0 *)this)->func_001982F0();
+    } else {
+        if (p != 0) {
+            p->func_00197AA0();
+            func_0011ACC0(m, m, (char *)p + 0xf0);
+        }
+        func_00198EF0((char *)this + 0xb0, this, m);
+        ((C_001982F0_19A8C0 *)this)->func_001982F0();
+    }
+    if (f180 & 1) {
+        f180 &= 0xfe;
+        if (f174 != 0) {
+            f174->func_00197B10();
+        }
+    }
+}
+
 void SoultreeObject::func_0019ADF0(SoultreeObject *p)
 {
     if (p->f170 != 0) {
