@@ -149,3 +149,15 @@ void C_000683C0::func_000683C0(void)
   return;
 }
 
+void C_000683F0::func_000683F0()
+{
+    unk168 = 1;
+    unk138 = 0;
+    unk164 = 0;
+    v6();
+    unk158 = -1;
+    unk15C = 1;
+    unk160 = 1;
+    unk150 = 0;
+}
+
