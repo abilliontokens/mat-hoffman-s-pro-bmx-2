@@ -54,16 +54,21 @@ struct C_001DAAD0 {
 int C_001DAAD0::func_001DAAD0(int a0, S_001DAAD0_Block *a1, void *a2)
 {
     void **p = &arr230[D_002F1034];
+    S_001DAAD0_Block *dst;
+    void *buf;
     int v;
 
     if (*p == 0) {
         *p = func_001FF3C0(0x50);
     }
-    *(S_001DAAD0_Block *)func_001FF410(arr230[D_002F1034], 0) = *a1;
+    buf = arr230[D_002F1034];
+    dst = (S_001DAAD0_Block *)func_001FF410(buf, 0);
+    *dst = *a1;
     D_002EFDB8->f6c->func_0014A650(fEC);
     func_001FEBD0(0x20, a2);
     D_002EFDB8->f70->func_00142D00(fF0);
-    func_001FEE00(0, arr230[D_002F1034], 0x14);
+    buf = arr230[D_002F1034];
+    func_001FEE00(0, buf, 0x14);
     func_001FD020(&D_00040304, 0);
     func_001FD020(&D_00040354, 0x207);
     v = D_0020C6DC;
