@@ -120,7 +120,7 @@ struct C_0001D0B0 {
     int f8;
     int fC;
     unsigned char f10;
-    bool func_0001D0B0(int count, int p2);
+    int func_0001D0B0(int count, int p2);
 };
 
 struct C_00157660 {
