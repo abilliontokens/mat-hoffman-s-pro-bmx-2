@@ -112,6 +112,18 @@ undefined4 C_001093A0::func_001093A0(int param_1)
   return *(undefined4 *)(in_ECX + 0x358 + param_1 * 4);
 }
 
+int C_001093B0::func_001093B0(int a, int b)
+{
+    int i;
+
+    for (i = 0; i < f34; i++) {
+        if (f38[i] == a && f358[i] == b) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
 void C_00109400::func_00109400(int param_1)
 {
     if (f34 >= 0) {
