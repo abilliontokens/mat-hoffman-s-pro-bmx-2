@@ -129,7 +129,8 @@ bool C_0002FA80::func_00030120(const char *subName)
 void C_0002FA80::func_00030160(void)
 {
     S_0002FA80_Entry *e = &entries[cur];
-    S_0002FA80_Sub *s = &e->subs[e->curSub];
+    S_0002FA80_Sub *subs = e->subs;
+    S_0002FA80_Sub *s = &subs[e->curSub];
 
     ((C_00194BD0 *)e->f0)->func_00194BD0(s->f104, s->f108, 0);
 }
@@ -137,9 +138,10 @@ void C_0002FA80::func_00030160(void)
 void C_0002FA80::func_000301A0(void)
 {
     S_0002FA80_Entry *e = &entries[cur];
-    S_0002FA80_Sub *s = &e->subs[e->curSub];
+    S_0002FA80_Sub *subs = e->subs;
+    int v = subs[e->curSub].f104;
 
-    ((C_00194BD0 *)e->f0)->func_00194BD0(s->f104, s->f104, 0);
+    ((C_00194BD0 *)e->f0)->func_00194BD0(v, v, 0);
 }
 
 void C_0002FA80::func_000301D0(void)
