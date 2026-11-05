@@ -349,9 +349,7 @@ int __stdcall func_001DF26F(int a, int b)
         return -1;
     }
     obj[0] = a;
-    if (img->titleId == b) {
-        key = (int)_imp__XboxSignatureKey;
-    } else {
+    if (img->titleId != b) {
         for (i = 0; i < 0x10; i++) {
             if (img->altTitleIds[i] == 0) {
                 func_001DD62B(5);
@@ -366,6 +364,8 @@ int __stdcall func_001DF26F(int a, int b)
             return -1;
         }
         key = (int)_imp__XboxAlternateSignatureKeys[i];
+    } else {
+        key = (int)_imp__XboxSignatureKey;
     }
     obj[1] = key;
     func_001DF160((const void *)obj[1], 0x10, obj + 2);
@@ -410,6 +410,7 @@ int __stdcall func_001DF375(int a)
 {
     void *t;
     char *p;
+    unsigned long tib;
 
     func_001E2213();
     t = *(void **)(__readfsdword(0x20) + 0x250);
@@ -419,9 +420,10 @@ int __stdcall func_001DF375(int a)
         p = 0;
     }
     if (p != 0) {
+        tib = __readfsdword(0x28);
         *p = 1;
         *(int *)(p + 4) = *(int *)(__readfsdword(4) + D_002F41D0 * 4) -
-                          *(int *)(__readfsdword(0x28) + 0x28) + 4;
+                          *(int *)(tib + 0x28) + 4;
     }
     func_001E26AD();
     func_001E2655();
@@ -537,7 +539,8 @@ void __stdcall func_001DF5B9(unsigned int a, int b)
 {
     func_001E0AE0(D_002F6BB4, (a >> 3) & 8, b);
 }
-
+#pragma optimize("", on)
+#pragma optimize("y", on)
 int __stdcall func_001DF5D6(int a)
 {
     return func_001E1297(D_002F6BB4, 0, a) ? 0 : a;
