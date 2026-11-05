@@ -153,6 +153,7 @@ struct C_00069BD0 {
     int unk170;
     char pad174[8];
     int unk17C;
+    int func_00069AB0();
     void func_00069BD0();
     void func_00069C40();
 };
