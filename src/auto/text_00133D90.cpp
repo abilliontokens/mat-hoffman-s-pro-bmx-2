@@ -155,6 +155,7 @@ struct Mgr_00134770 {
     virtual void v27();
     virtual void v28();
     virtual int v29(Ent_00134770 *e);
+    virtual void v30();
     char pad4[0x98];
     EntCb cb9c;
     char pad_a0[4];
