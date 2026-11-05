@@ -1,5 +1,6 @@
 /* 10 functions from 0x000A2ED0 to 0x000A3DE0, found by Ghidra. */
 #include "common.h"
+#include <string.h>
 #include "ghidra.h"
 struct C_000A3B60 {
     void func_000A3B60(int param_1);
