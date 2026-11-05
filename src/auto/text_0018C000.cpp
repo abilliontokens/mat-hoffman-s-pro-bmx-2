@@ -124,6 +124,14 @@ struct C_0018C000_Item {
     short unk1A;
     int unk1C;
     C_0018C000_Item *func_0018BFC0(int a, int b, int c, int d, int e);
+    void SetBounds(short a, short b, short c, short d)
+    {
+        unk14 = a;
+        unk16 = b;
+        unk18 = c;
+        unk1A = d;
+        unk1C = 1;
+    }
 };
 
 struct S_0018C2D0_File {
@@ -382,6 +390,85 @@ float C_0018C000::func_0018C210(void)
         return (item->unk10 - item->unkC) * obj->unkC;
     }
     return D_00275F58;
+}
+
+int C_0018C000::func_0018C2D0(char *a, char *b, int c)
+{
+    char saved[0x104];
+    char name[0x104];
+    int h;
+    unsigned int count = 0;
+    unsigned int i;
+    int A, B, C, D, E;
+    int G, H, I, J, K, L;
+    int j;
+
+    if (c != 0) {
+        func_0018C1C0();
+    }
+    h = D_002BEAAC->func_0013C9F0(a, D_00275FB4);
+    if (h == -1) {
+        return 0;
+    }
+    D_002BEAAC->func_0013C8A0(h, &count, 4, 1);
+    A = 0;
+    B = 0;
+    C = 0;
+    D = 0;
+    E = 0;
+    for (i = 0; i < count; i++) {
+        void *mem;
+        C_0018C000_Item *it;
+        D_002BEAAC->func_0013C8A0(h, &A, 4, 1);
+        if (!D_002BEAAC->func_0013C8A0(h, &B, 4, 1)) break;
+        if (!D_002BEAAC->func_0013C8A0(h, &C, 4, 1)) break;
+        if (!D_002BEAAC->func_0013C8A0(h, &D, 4, 1)) break;
+        if (!D_002BEAAC->func_0013C8A0(h, &E, 4, 1)) break;
+        mem = func_001E8A44(0x20);
+        it = mem != 0 ? ((C_0018C000_Item *)mem)->func_0018BFC0(A, B, C, D, E) : 0;
+        unk58[A] = it;
+    }
+    G = 0;
+    H = 0;
+    I = 0;
+    J = 0;
+    K = 0;
+    L = 0;
+    if (!D_002BEAAC->func_0013AFB0(h)) {
+        D_002BEAAC->func_0013C8A0(h, &G, 4, 1);
+        if (G > 0) {
+            for (j = 0; j < G; j++) {
+                C_0018C000_Item *it;
+                if (!D_002BEAAC->func_0013C8A0(h, &H, 4, 1)) break;
+                if (!D_002BEAAC->func_0013C8A0(h, &I, 2, 1)) break;
+                if (!D_002BEAAC->func_0013C8A0(h, &J, 2, 1)) break;
+                if (!D_002BEAAC->func_0013C8A0(h, &K, 2, 1)) break;
+                if (!D_002BEAAC->func_0013C8A0(h, &L, 2, 1)) break;
+                it = unk58[H];
+                if (it != 0) {
+                    it->unk14 = I;
+                    it->unk16 = J;
+                    it->unk18 = K;
+                    it->unk1A = L;
+                    it->unk1C = 1;
+                }
+            }
+        }
+    }
+    i = 0;
+    do { saved[i] = D_002A60B0[i]; } while (D_002A60B0[i++]);
+    i = 0;
+    do { D_002A60B0[i] = D_002A5240[i]; } while (D_002A5240[i++]);
+    func_001ADCC0(name, 0x104, D_00275678, D_002A60B0, b);
+    i = 0;
+    do { pad8[i] = name[i]; } while (name[i++]);
+    unk458 = D_002AA6C0->v7((int)name, 0);
+    D_002AA6C0->v6(unk458, 0);
+    D_002AA6C0->func_001B2640();
+    i = 0;
+    do { D_002A60B0[i] = saved[i]; } while (saved[i++]);
+    D_002BEAAC->func_0013C110(h);
+    return 1;
 }
 
 void C_0018C120::func_0018C640(void)
