@@ -47,9 +47,10 @@ struct SplitScreenSeparator {
 
 struct DirectionArrowOverlay {
     void *vtbl;            /* 0x00 */
-    char pad04[0x24];      /* 0x04 */
-    void *f28;             /* 0x28 */
-    void *f2C;             /* 0x2C */
+    char pad04[0x20];      /* 0x04 */
+    int f24;               /* 0x24 */
+    C_001D5760 *f28;       /* 0x28 */
+    C_001D5760 *f2C;       /* 0x2C */
     u32 f30;               /* 0x30 */
     f32 f34;               /* 0x34 */
     f32 f38;               /* 0x38 */
