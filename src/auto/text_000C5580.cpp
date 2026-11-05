@@ -178,6 +178,39 @@ void BmxUIPageParkEditor::func_000C5980(void)
     func_001BE3F0();
 }
 
+BmxUIPageParkEditor *BmxUIPageParkEditor::func_000C5D00(int a, int b, int c)
+{
+    int i;
+    PageObj_5580 *p;
+    PageObj_5580 *o;
+    func_001BE4F0(a, b, c);
+    D_002A8490->p2EC->func_0018C160((int)&D_00278690);
+    D_002A8490->p2EC->func_0018C160((int)&D_002786A0);
+    D_002A8490->p2EC->func_0018C160((int)&D_00278678);
+    for (i = 0; i < 4; i++) {
+        p = (PageObj_5580 *)func_001E8A44(0x64);
+        p = p != 0 ? p->func_001D5760() : 0;
+        f2D0[i] = p;
+        if (i % 2 == 0) {
+            p->func_001D5810(&D_002786B0, 100.0f, (float)(i / 2 * 40) + D_0027E140, 0);
+        } else {
+            p->func_001D5810(&D_002786B0, 321.0f, (float)(i / 2 * 40) + D_0027E140, 0);
+            o = f2D0[i];
+            o->f3C = 0x3f800000;
+            o->f40 = 0;
+            o->f44 = 0;
+            o->f48 = 0x3f800000;
+            o->f58 |= 4;
+        }
+        o = f2D0[i];
+        if (o->f28 != 0x435d0000) {
+            o->f28 = 0x435d0000;
+            o->f58 |= 1;
+        }
+    }
+    return this;
+}
+
 void BmxUIPageParkEditor::func_000C5E40(void)
 {
     C_5E40_B *b = this->f124->f25C;
