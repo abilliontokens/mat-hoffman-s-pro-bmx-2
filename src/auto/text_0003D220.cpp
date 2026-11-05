@@ -2,7 +2,7 @@
 #include "common.h"
 
 #include <xmmintrin.h>
-static inline void S_3D7B0_Round(float f, int *out) { *out = _mm_cvtss_si32(_mm_set_ss(f)); }
+__forceinline void S_3D7B0_Round(float f, int *out) { *out = _mm_cvtss_si32(_mm_set_ss(f)); }
 struct S_3D7B0_Vec4 { float x, y, z, w; };
 struct C_3D7B0 {
     char pad0[0x428]; int f428; int f42c; int f430;
