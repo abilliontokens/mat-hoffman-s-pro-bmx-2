@@ -291,6 +291,8 @@ struct C_00069BD0 {
     int func_00069AB0();
     void func_00069BD0();
     void func_00069C40();
+    int func_00069D00(int *a, int b);
+    int func_00157BF0(int *a, int b);
 };
 
 struct C_00069BB0 {
