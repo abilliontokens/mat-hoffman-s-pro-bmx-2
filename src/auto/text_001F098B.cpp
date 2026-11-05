@@ -4,6 +4,14 @@
 extern char *D_002F6A28;
 extern char D_0027D1D8[];
 extern char D_00295D30[];
+extern u32 D_002F6A38;
+extern char D_00295D20[];
+extern char D_00295D14[];
+extern char D_00295D0C[];
+extern char D_002871C8[];
+extern char D_00295D04[];
+extern char D_00295CFC[];
+extern char D_00295CEE[];
 
 /* 8-byte value object used by the undecorator helpers. */
 struct S_001EF734 {
