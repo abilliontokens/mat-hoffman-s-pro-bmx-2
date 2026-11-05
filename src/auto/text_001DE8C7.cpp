@@ -87,7 +87,7 @@ extern "C" void *memset(void *dst, int c, unsigned int n);
 
 #pragma intrinsic(memcpy)
 extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
-extern "C" long (__stdcall *_imp__NtQueryDirectoryFile)(void *fileHandle, void *event, void *apcRoutine, void *apcContext, S_IoStatusBlock *iosb, void *fileInfo, u32 length, u32 infoClass, u32 returnSingle, void *fileName);
+extern "C" long (__stdcall *_imp__NtQueryDirectoryFile)(void *fileHandle, void *event, void *apcRoutine, void *apcContext, S_IoStatusBlock *iosb, void *fileInfo, u32 length, u32 infoClass, void *fileName, u32 restartScan);
 extern "C" long (__stdcall *_imp__NtQueryFullAttributesFile)(S_ObjectAttributes *oa, void *info);
 
 /* access masks the original passes as the address of the (absolute) symbol */
