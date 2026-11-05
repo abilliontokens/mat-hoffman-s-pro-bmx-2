@@ -86,6 +86,12 @@ struct VehicleAI {
     u8 f1A1;
     char pad1A2[0x106];
     u8 f2A8;
+    void SetState(int s) {
+        if (f5C != s) {
+            f1A1 = 1;
+            f58 = s;
+        }
+    }
     void func_000B2450(float a);
     void func_000B2540(int mode, int a, VehicleV4 *p);
     void func_000B2C20(int a, int b);
