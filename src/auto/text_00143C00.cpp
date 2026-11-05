@@ -43,6 +43,7 @@ struct C_001449B0 {
     int f2c;
     C_001449B0 *func_001449B0(void *param);
     void func_001449E0();
+    void func_00144A20(int size);
 };
 
 struct C_001445C0 {
