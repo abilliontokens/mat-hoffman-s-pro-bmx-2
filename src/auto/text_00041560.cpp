@@ -135,12 +135,73 @@ struct S_41DC0_Menu {
     void func_0002F450(int a0);
 };
 
+struct S_41F00_Cur {
+    char pad0[0x47C];
+    int f47C;
+};
+
+struct S_41F00_Item {
+    char pad0[0x314];
+    char s314[0x32];
+};
+
 struct S_41CF0_Owner {
     char pad0[0x4c0];
     S_41CF0_Slot31 *f4c0;
     char pad4c4[0x4e0 - 0x4c4];
     S_41CF0_Obj1A8 *f4e0;
+    char pad4e4[0x5A4 - 0x4e4];
+    S_41F00_Cur *f5A4;
+    int f5A8;
+    S_41F00_Item **f5AC;
+    S_41F00_Item *GetItem(int k)
+    {
+        if (f5A8 > 0 && f5AC != 0 && k < f5A8)
+            return f5AC[k];
+        return 0;
+    }
 };
+
+struct S_41F00_V4 {
+    float x, y, z, w;
+    S_41F00_V4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+};
+
+struct S_41F00_P4 {
+    float x, y, z, w;
+};
+
+extern S_41F00_P4 D_002A14D4;
+extern char D_00276F8C[];
+
+struct S_41F00_Obj {
+    char pad0[0x28];
+    void func_00197E70(S_41F00_V4 *v);
+};
+
+struct S_41F00_Entry {
+    int type;
+    int pad4;
+    S_41F00_Obj *obj;
+    S_41F00_Obj *objC;
+};
+
+struct S_41F00_Arr {
+    int count;
+    S_41F00_Entry **items;
+    S_41F00_Entry *at(int i)
+    {
+        if (count > 0 && items != 0 && i < count)
+            return items[i];
+        return 0;
+    }
+};
+
+struct S_41F00_Sub {
+    void func_0008A910(void);
+};
+
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 
 struct S_41CF0_Cam {
     void func_00069C40();
