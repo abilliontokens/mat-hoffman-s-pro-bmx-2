@@ -39,6 +39,21 @@ struct V4_0012FCF0 {
     f32 w;
 };
 
+struct V4W_0012F0F0 {
+    f32 x, y, z, w;
+    V4W_0012F0F0() { x = y = z = 0; w = 1.0f; }
+};
+
+/* 0x28-byte spline key */
+struct S_0012F0F0_Key {
+    f32 time;
+    f32 f4;
+    V4_0012FCF0 f8;
+    V4_0012FCF0 pos;
+};
+
+extern V4_0012FCF0 D_002A4130;
+
 static inline void Swap_0012FCF0(S_0012F518 *&a, S_0012F518 *&b)
 {
     S_0012F518 *t = a;
