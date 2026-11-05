@@ -110,7 +110,8 @@ struct BmxEventFPS {
     virtual void dummy37();
     virtual void dummy38();
     virtual void dummy39();
-    char pad4[0x1ac - 4];
+    char pad4[0x1a8 - 4];
+    S_Obj1AC *f1a8;
     S_Obj1AC *f1ac;
     char pad1b0[0x284 - 0x1b0];
     S_Obj284 *f284;
@@ -165,6 +166,26 @@ void BmxEventFPS::func_0004AAD0(void)
             f1ac->func_000758F0();
             D_002A8490->f124 = 1;
         }
+    }
+}
+
+void BmxEventFPS::func_0004AB90(int param_1)
+{
+    if (D_002A8490->f2e0->f0 == 1) {
+        D_002A8490->f2e0->f2c0->func_0005C0A0();
+        if (D_002A8490->f2e0->f2c0->func_0005C0A0() != 0) {
+            f284->f60 = 200;
+            f1ac->func_000758F0();
+            D_002A8490->f124 = 1;
+        } else {
+            dummy39();
+        }
+    } else {
+        ((S_Obj284 **)((char *)this + 0x284))[param_1]->f60 = 200;
+        ((S_Obj1AC **)((char *)this + 0x1a8))[param_1]->func_000758F0();
+        D_002A8490->f124 = 1;
+        func_00011260(0, D_002A8490->f2e0->f0 - 1);
+        D_002B9120->f4e4[param_1]->func_00150F80();
     }
 }
 
