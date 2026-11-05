@@ -83,6 +83,14 @@ struct S_002B91AC {
 
 extern S_002B91AC *D_002B91AC;
 
+/* BmxUIPageTime */
+struct C_000E1550 {
+    char pad0[0x2D0];
+    C_NumHorse_Sub *ptrs[8];
+    void func_000E1550(void);
+    void func_001578D0(void);
+};
+
 /* BmxUIPageNumHorsePlayers */
 struct C_000E1770 {
     void *vtbl;
