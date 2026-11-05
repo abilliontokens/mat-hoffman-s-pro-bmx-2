@@ -540,6 +540,23 @@ BitObj *BitObj::func_001EF8F6(int a0, int a1) {
     return (BitObj *)a0;
 }
 
+BitObj *BitObj::func_001EF935(BitObj *o)
+{
+    if (o->func_001EF1E7() != 0) {
+        func_001EF613(o->s4);
+    } else if (func_001EF1E7() != 0) {
+        func_001EEF4F(o);
+    } else {
+        f0 = (int)((S_001EEFE3 *)f0)->func_001EF419();
+        if (f0 != 0) {
+            ((S_001EEFE3 *)f0)->func_001EEFE3((S_001EEFE3 *)o->f0);
+        } else {
+            ((unsigned int *)this)[1] = (((unsigned int *)this)[1] & 0xfffffff3) | 3;
+        }
+    }
+    return this;
+}
+
 BitObj *BitObj::func_001EF999(char c)
 {
     b4 = 0;
