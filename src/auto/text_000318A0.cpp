@@ -113,9 +113,15 @@ struct S_ScoreTable {
 };
 
 struct C_0010E810 {
-    char pad0[0x1190];
+    char pad0[0xa40];
+    int fA40;
+    char padA44[0x1190 - 0xa44];
     int f1190;
+    char pad1194[0x11b0 - 0x1194];
+    int f11B0;
     void func_0010E810(void);
+    void func_001084E0(void);
+    void func_00108630(int a);
 };
 
 struct C_000A4500 {
