@@ -14,3 +14,27 @@ struct DXParticleSimulation {
     int fA8;
     int func_00142150(float dt);
 };
+
+int func_001416E0(C_00168BE0 *cfg, const char *key, int def, int &out)
+{
+    char buf[64];
+    cfg->func_00168BE0(key, "undefined", buf, 64);
+    if (strcmp(buf, "undefined") == 0) {
+        out = def;
+    } else if (strcmp(buf, "D3DSHADE_FLAT") == 0) {
+        out = 0x1d00;
+    } else if (strcmp(buf, "D3DSHADE_GOURAUD") == 0) {
+        out = 0x1d01;
+    }
+    return out;
+}
+
+int DXParticleSimulation::func_00142150(float dt)
+{
+    extern float D_00276278;
+
+    if (fA8 != 0) {
+        f58 = dt * D_00276278 + f58;
+    }
+    return 1;
+}
