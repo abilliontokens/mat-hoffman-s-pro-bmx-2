@@ -44,6 +44,8 @@ struct BmxUIManager {
     void func_000BB340();
     void func_000BB360();
     void func_000BB380(const char *name);
+    void func_000BB3B0(const char *a, const char *b);
+    int func_000BB3F0(const char *a, const char *b);
 };
 
 int BmxUIManager::func_000BB0C0()
