@@ -50,6 +50,9 @@ struct S_0012EF60_Ref {
     int unk0;
     u32 refs;
     void *data;
+    u32 unkC;
+    f32 f10;
+    int f14;
 };
 
 /* CarProceduralExtended */
