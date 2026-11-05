@@ -18,8 +18,9 @@ struct SoundIface {
 struct SoundList {
     int count;
     int *data;
-    int growBy;
-    int capacity;
+    char pad8[0x10];
+    void *data2;
+    char pad1c[8];
     void func_001CDED0(int id);
     void Clear()
     {
@@ -28,11 +29,7 @@ struct SoundList {
     }
 };
 
-struct Music {
-    void func_0001C9B0();
-};
-
-struct XboxMusic : Music {
+struct XboxMusic {
     virtual void vf00(); virtual void vf01(); virtual void vf02(); virtual void vf03();
     virtual void vf04(); virtual void vf05(); virtual void vf06(); virtual void vf07();
     virtual void vf08(); virtual void vf09(); virtual void vf0A(); virtual void vf0B();
