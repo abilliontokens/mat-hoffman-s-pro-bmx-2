@@ -115,8 +115,8 @@ void func_0011ADA0(void *a, void *b, float *m)
 float func_0011B180(float a, float b)
 {
     float r = func_0014F7E0(b);
-    if (!(a > D_00275544)) {
-        r = D_002756B8 - r;
+    if (!(a > 0.0f)) {
+        r = 6.2831855f - r;
     }
     return r;
 }
