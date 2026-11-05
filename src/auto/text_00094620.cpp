@@ -1,5 +1,22 @@
 /* 41 functions from 0x00094620 to 0x00095620, found by Ghidra. */
 #include "common.h"
+/* one node of the path at +0x50: 0x44 bytes, the part at +0x20 is what
+   func_00094810 hands out */
+struct S_00094620_Node {
+    char pad0[0x20];
+    int unk20;
+    char pad24[0x20];
+};
+
+/* the path the camera walks: a node array and its length */
+struct S_00094620_Path {
+    char pad0[0x34];
+    S_00094620_Node *unk34;
+    char pad38[0x70];
+    int unkA8;
+    void func_001CEFD0(int node);
+};
+
 struct C_00094F00 {
     char pad0[0x7C];
     int unk7C;
