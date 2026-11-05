@@ -182,6 +182,47 @@ struct BmxInGameMenu {
 };
 
 
+void BmxInGameMenu::func_0005F960(void)
+{
+    int ids[3];
+    int i;
+    int *r;
+    C_001D5AD0 **e;
+    Lookup_5F *lk;
+    ids[0] = (int)&D_002786A0;
+    ids[1] = (int)&D_00278690;
+    ids[2] = (int)&D_00278678;
+    for (i = 0; i < 3; i++) {
+        lk = D_002A8490->f2EC;
+        r = lk->func_0018C160(ids[i]);
+        if (r && *r) {
+            S_0005FBD0_Obj *o = ((Mid_5F *)*r)->func_0018C070();
+            if (D_00275AEC > o->f10) o->f10 = 10.0f;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) o->f14 = 10.0f;
+        }
+    }
+    e = &unk94;
+    i = 2;
+    do { CLAMP(*e); e++; i--; } while (i);
+    e = &unkC0[0];
+    i = 5;
+    do {
+        if (e[-5]) CLAMP(e[-5]);
+        if (*e) CLAMP(*e);
+        e++; i--;
+    } while (i);
+    e = &unkDC;
+    i = 2;
+    do {
+        if (e[-2]) CLAMP(e[-2]);
+        if (*e) CLAMP(*e);
+        e++; i--;
+    } while (i);
+    vf28();
+    if (unk10C) CLAMP(unk10C);
+    func_001578D0();
+}
+
 void BmxInGameMenu::func_0005FBD0(void)
 {
     int i;
