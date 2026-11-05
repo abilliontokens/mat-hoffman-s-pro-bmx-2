@@ -1,5 +1,6 @@
 /* 3 functions from 0x000B3E10 to 0x000B4850, found by Ghidra. */
 #include "common.h"
+#include <string.h>
 extern char D_0027D144[];
 extern char D_0027D138[];
 extern char D_002764F0[];
