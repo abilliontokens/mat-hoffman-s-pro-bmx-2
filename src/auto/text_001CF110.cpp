@@ -377,6 +377,55 @@ int C_001CF3C0::func_001CF3C0(SoundVoice *voice)
     return 0;
 }
 
+unsigned long __stdcall func_001CF590(void *ctx)
+{
+    C_001CF3C0 *p = (C_001CF3C0 *)ctx;
+    IntArray *a = (IntArray *)p->f10;
+    IntArray *b = (IntArray *)p->f24;
+    int i;
+    int j;
+    int r;
+
+    do {
+        p->func_001CF450();
+        r = func_001DDDD6(p->f4, 0x10);
+    } while (r == 0x102);
+    for (i = 0; i < a->count; i++) {
+        SoundObj_001CF590 *obj = (SoundObj_001CF590 *)a->Get(i);
+        if (obj != 0) {
+            if (obj->f8 != 0) {
+                obj->f8->Release();
+            }
+            if (obj->fC != 0) {
+                obj->fC->Release();
+            }
+            if (obj->f10 != 0) {
+                MmFreeContiguousMemory(obj->f10);
+            }
+            func_001E891B(obj);
+        }
+    }
+    for (j = 0; j < b->count; j++) {
+        SoundObj_001CF590 *obj = (SoundObj_001CF590 *)b->Get(j);
+        if (obj != 0) {
+            if (obj->f8 != 0) {
+                obj->f8->Release();
+            }
+            if (obj->fC != 0) {
+                obj->fC->Release();
+            }
+            if (obj->f10 != 0) {
+                MmFreeContiguousMemory(obj->f10);
+            }
+            func_001E891B(obj);
+        }
+    }
+    a->Clear();
+    b->Clear();
+    p->f38.Clear();
+    return 0;
+}
+
 void XboxSoundInterface::func_001CF6E0()
 {
     vtbl = (void *)&D_0028EE8C;
