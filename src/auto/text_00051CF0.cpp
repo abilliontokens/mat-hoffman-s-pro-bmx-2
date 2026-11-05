@@ -68,10 +68,16 @@ struct C_00052AE0_Ctx {
     C_00052AE0_Inner *f1A8;
 };
 
+struct C_001503E0 {
+    void func_001503E0(float a, float b, float c);
+};
+
 struct C_00051CF0_64 {
     char pad0[0x3B4];
     C_00052AE0_List *f3B4;
-    char pad3B8[0xCC];
+    char pad3B8[0x24];
+    C_001503E0 *f3DC;
+    char pad3E0[0xA4];
     C_0001C240 *f484;
     char pad488[0x58];
     C_00052AE0_Ctx *f4E0;
