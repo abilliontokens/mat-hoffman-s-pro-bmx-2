@@ -50,8 +50,7 @@ struct C_00157810 {
     char pad4[0xc];
     S_00157810_Child *f10;
     char pad14[8];
-    char f1C;
-    char pad1D[3];
+    int f1C;
     char f20;
     unsigned char f21_b0 : 1;
     unsigned char f21_b1 : 1;
@@ -143,6 +142,18 @@ int C_00157810::func_00157AE0(void)
         for (S_00157810_Child *c = f10; c != 0; c = c->fC) {
             if (!(c->f21 & 8)) {
                 c->v20();
+            }
+        }
+    }
+    return 1;
+}
+
+int C_00157810::func_00157B10(void)
+{
+    if (f1C & 0x40) {
+        for (S_00157810_Child *c = f10; c != 0; c = c->fC) {
+            if (!(c->f21 & 8)) {
+                c->v19();
             }
         }
     }
