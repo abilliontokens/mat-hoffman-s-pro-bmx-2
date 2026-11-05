@@ -30,7 +30,7 @@ struct DXRenderableObjectData {
 struct DXRenderableObject;
 
 struct Vec4_143660 {
-    int x;
+    f32 x;
     f32 y;
     f32 z;
     f32 w;
@@ -41,11 +41,17 @@ struct Vec4_143660 {
         w = v.w;
     }
     Vec4_143660() {}
-    Vec4_143660(int a, f32 b, f32 c, f32 d) {
+    Vec4_143660(f32 a, f32 b, f32 c, f32 d) {
         x = a;
         y = b;
         z = c;
         w = d;
+    }
+    Vec4_143660(const Vec4_143660 &o) {
+        x = o.x;
+        y = o.y;
+        z = o.z;
+        w = o.w;
     }
 };
 
