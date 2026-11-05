@@ -205,3 +205,12 @@ void C_00182CC0::func_001839F0()
     f3C0 = 0;
 }
 
+void C_00182CC0::func_00183AB0()
+{
+    if (f3BC == 0) {
+        void *mem = func_001E8A44(0x2c);
+        f3BC = mem != 0 ? ((C_001B8450 *)mem)->func_001B8450(1) : 0;
+    }
+    f3BC->func_001BA9C0(f28);
+}
+
