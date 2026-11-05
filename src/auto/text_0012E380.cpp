@@ -45,6 +45,13 @@ struct S_0012E5F0_Elem {
     static void *operator new[](unsigned int size) { return func_001E8A44(size); }
 };
 
+/* reference-counted block pointed to by CarProceduralExtended::f518 / f51c */
+struct S_0012EF60_Ref {
+    int unk0;
+    u32 refs;
+    void *data;
+};
+
 /* CarProceduralExtended */
 struct C_0012EF30 {
     void *vtbl;
