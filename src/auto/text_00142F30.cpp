@@ -106,6 +106,37 @@ struct C_001437E0 {
     void func_001437E0(void *p);
 };
 
+struct DXSignatureWaveObjVT {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+};
+
+struct S_00143940_V4 {
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 w;
+};
+
+/* DXSignatureWave */
+struct DXSignatureWave {
+    void *vtbl;
+    char pad4[0x48];
+    u32 f4C;
+    char pad50[0xA0];
+    void *fF0[3];
+    void *fFC;
+    DXSignatureWaveObjVT **f100;
+    void func_001439D0();
+    DXSignatureWave *func_00143940(S_00143940_V4 a, S_00143940_V4 b, int c1, int c2,
+                                   int c3, int c4, int c5, int c6, int c7, int c8,
+                                   int c9, int c10);
+    void func_001942C0();
+    void func_00194600(S_00143940_V4 a, S_00143940_V4 b, int c1, int c2, int c3, int c4,
+                       int c5, int c6, int c7, int c8, int c9, int c10);
+};
+
 
 DXRenderableObjectData *DXRenderableObjectData::func_00143520(void)
 {
