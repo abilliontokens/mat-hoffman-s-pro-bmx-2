@@ -50,6 +50,59 @@ struct BmxEventPush {
     void func_001578D0();
 };
 
+struct S_000508C0_Item {
+    virtual void vf0();
+    virtual void vf1();
+    virtual void vf2();
+    virtual void vf3();
+    virtual void vf4();
+    virtual void vf5();
+    char pad4[0x958];
+    int unk95c;
+};
+
+struct S_000508C0_List {
+    char pad0[0x24];
+    int count;
+    char pad28[0x180];
+    S_000508C0_Item *items[1];
+};
+
+struct S_000508C0_Owner {
+    char pad0[0x4e0];
+    S_000508C0_List *list;
+};
+
+struct S_000508C0_Overlay {
+    void func_00086C10(int a0);
+    void func_00086C20(int a0);
+    void func_000867F0(int a0);
+};
+
+/* BmxEventMountVert */
+struct BmxEventMountVert {
+    void *vtbl;
+    char pad4[0x60];
+    S_000508C0_Owner *unk64;
+    char pad68[0xa8];
+    int unk110;
+    char pad114[0xc];
+    int unk120;
+    char pad124[0x160];
+    int unk284;
+    int unk288[8];
+    S_000508C0_Overlay *unk2a8;
+    int unk2ac;
+    int unk2b0;
+    int unk2b4;
+    int unk2b8[8];
+    char pad2d8[4];
+    int unk2dc;
+    int func_000508C0();
+    void func_00034090();
+    void func_0004FAC0();
+};
+
 BmxEventPush *BmxEventPush::func_00050A10(int a0) {
     func_00030F90(a0);
     unk290 = 0;
