@@ -110,6 +110,17 @@ void C_001625D0::func_001625D0(void) {
     func_00157660();
 }
 
+void *C_001625E0::func_001625E0(int flags)
+{
+    int func_00157660(...);
+    vtbl = (void *)&D_00287B94;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void C_00162720::func_00162720(undefined4 param_1)
 {
   int in_ECX = (int)this;
