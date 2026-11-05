@@ -41,6 +41,17 @@ int __stdcall func_001FF460(int a);
 int __stdcall func_001FF4C0(int a, int b);
 int __stdcall func_001FCE40(int a, int b, void *c);
 int __stdcall func_001FCF20(int a, int b, int c, int d, int e, int f, int g);
+
+static __forceinline int Mips_001D7190(int size)
+{
+    int n = 0;
+
+    while (size >= 4) {
+        size >>= 1;
+        n++;
+    }
+    return n;
+}
 int __cdecl func_001ADCC0(char *buf, int n, ...);
 void *__cdecl func_0014FDF0(char *buf, char *mode);
 void __cdecl func_0014FE50(void *h);
@@ -212,10 +223,10 @@ int XboxTextureMap::func_001D7190(int a1, int a2, int a3)
     int desc[3];
     int dims[2];
     int size;
-    XboxTextureMap *volatile p = this;
     int fmt;
     int n;
     int i;
+    XboxTextureMap *volatile p = this;
 
     t.f4 = -1;
     t.f0 = 1;
@@ -226,7 +237,7 @@ int XboxTextureMap::func_001D7190(int a1, int a2, int a3)
     desc[0] = 0;
     desc[1] = 0;
     desc[2] = 0;
-    D_002BEAAC->func_0013C8A0(a1, &t, 0x18, 1);
+    D_002BEAAC->func_0013C8A0(*(volatile int *)&a1, &t, 0x18, 1);
     switch (t.f4) {
     case 0:
         fmt = 0xc;
@@ -244,14 +255,14 @@ int XboxTextureMap::func_001D7190(int a1, int a2, int a3)
         p->fBC = (void *)func_001FF460(0);
         {
             void *q = (void *)func_001FF4C0((int)p->fBC, 0);
-            D_002BEAAC->func_0013C8A0(a1, q, t.fC * 4, 1);
+            D_002BEAAC->func_0013C8A0(*(volatile int *)&a1, q, t.fC * 4, 1);
         }
         break;
     case 6:
         fmt = 0x13;
         break;
     default:
-        fmt = a1;
+        fmt = *(volatile int *)&a1;
         break;
     }
     n = t.f8;
@@ -279,8 +290,8 @@ int XboxTextureMap::func_001D7190(int a1, int a2, int a3)
     for (i = t.f8 - 1; i >= 0; i--) {
         func_001FCE40((int)p->fB8, i, &t.f18);
         func_001FCEA0(p->fB8, i, dims, 0, 0);
-        D_002BEAAC->func_0013C8A0(a1, desc, 0xc, 1);
-        D_002BEAAC->func_0013C8A0(a1, (void *)dims[1], desc[2], 1);
+        D_002BEAAC->func_0013C8A0(*(volatile int *)&a1, desc, 0xc, 1);
+        D_002BEAAC->func_0013C8A0(*(volatile int *)&a1, (void *)dims[1], desc[2], 1);
         p->arrC0[i] = dims[1];
         p->arrE8[i] = dims[0];
     }
