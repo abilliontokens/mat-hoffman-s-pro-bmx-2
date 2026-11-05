@@ -49,6 +49,10 @@ struct S_cpinfo {
 };
 extern unsigned char D_002AEE60[];
 extern S_cpinfo D_002AEE68[5];
+/* the same table, addressed by field (the original references these addresses by name) */
+extern unsigned char D_002AEE84[];
+extern unsigned int D_002AEE6C[];
+extern unsigned char D_002FB001[];
 extern int D_002F6A64;
 
 struct S_mbcinfo {
