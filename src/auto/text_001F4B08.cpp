@@ -48,3 +48,16 @@ void func_001F4E30(void) {
     int func_001EB302(...);
     func_001EB302(13);
 }
+
+void func_001F4EB7(void)
+{
+    extern void (*D_002F6A68)(void);
+    void func_001F4E8B(int rterrnum);
+
+    func_001F4E8B(0xfc);
+    if (D_002F6A68 != 0) {
+        D_002F6A68();
+    }
+    func_001F4E8B(0xff);
+}
+
