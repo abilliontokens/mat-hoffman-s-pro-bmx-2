@@ -396,3 +396,10 @@ void C_0008ABA0::func_0008ABA0() {
     func_00157960();
 }
 
+C_0008ABF0 *C_0008ABF0::func_0008ABF0(int a0) {
+    func_00157600(1);
+    vtbl = &D_00279CCC;
+    unk24 = 0;
+    return this;
+}
+
