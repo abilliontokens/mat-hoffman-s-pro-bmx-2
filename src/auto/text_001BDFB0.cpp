@@ -218,3 +218,24 @@ UIPage *UIPage::func_001BE360(int param_1)
     return this;
 }
 
+int UIPage::func_001BEA50(int param_1)
+{
+    f32 y = f124->axisA[param_1]->value;
+    f32 x = f124->axisB[param_1]->value;
+    if (x * x + y * y > D_00278C48) {
+        if (x < D_00276A90) {
+            return 4;
+        }
+        if (x > D_00278C48) {
+            return 6;
+        }
+        if (y < D_00276A90) {
+            return 7;
+        }
+        if (y > D_00278C48) {
+            return 5;
+        }
+    }
+    return -1;
+}
+
