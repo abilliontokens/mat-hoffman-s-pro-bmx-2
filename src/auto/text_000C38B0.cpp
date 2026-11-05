@@ -37,3 +37,13 @@ struct C_000C45E0 {
     void func_001BE3F0(void);
     void func_000C45E0(void);
 };
+
+void C_000C4460::func_000C4460(void)
+{
+    if (unk288 != 0) {
+        unk280->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
+    } else {
+        unk280->func_001B1980();
+    }
+    func_00157960();
+}
