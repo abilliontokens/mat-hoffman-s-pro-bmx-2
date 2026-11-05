@@ -50,6 +50,12 @@ struct C_001B84E0_quat {
     float y;
     float z;
     float w;
+    void Reset(void) {
+        z = 0.0f;
+        y = 0.0f;
+        x = 0.0f;
+        w = 1.0f;
+    }
 };
 
 struct C_001B84E0 {
@@ -96,5 +102,25 @@ void C_001B8450::func_001B8480(void) {
         func_001E891B(f28);
     }
     ((C_00157660 *)this)->func_00157660();
+}
+
+C_001B84E0 *C_001B84E0::func_001B84E0(void) {
+    q[0].z = 0.0f;
+    q[0].y = 0.0f;
+    q[0].x = 0.0f;
+    q[0].w = 1.0f;
+    q[1].z = 0.0f;
+    q[1].y = 0.0f;
+    q[1].x = 0.0f;
+    q[1].w = 1.0f;
+    q[2].z = 0.0f;
+    q[2].y = 0.0f;
+    q[2].x = 0.0f;
+    q[2].w = 1.0f;
+    q[3].z = 0.0f;
+    q[3].y = 0.0f;
+    q[3].x = 0.0f;
+    q[3].w = 1.0f;
+    return this;
 }
 
