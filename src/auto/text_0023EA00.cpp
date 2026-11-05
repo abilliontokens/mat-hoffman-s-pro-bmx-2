@@ -250,6 +250,56 @@ void C_0023EA00::func_0023EA00(void)
     }
 }
 
+int __stdcall func_0023EA16(C_0023EC0D *self)
+{
+    int n;
+    int hr;
+    void *cs;
+    int r;
+
+    ((C_0023EA00 *)self)->func_0023EA00();
+    cs = self->f6c;
+    _imp__RtlEnterCriticalSection(cs);
+    self->f3c = 0;
+    self->f40 = 0;
+    if (self->f44 == 0) {
+        func_001DD3A1(self->f50, 0, 0, 0);
+        self->f54[2] = 0;
+        self->f54[3] = 0;
+        r = func_001DD15A(self->f50, self->f34, self->f94, &n, self->fB4 ? self->f54 : 0);
+        if (r == 0) {
+            if (self->fB4 != 0)
+                goto wait;
+            goto err;
+        } else if (self->fB4 == 0) {
+            goto ok;
+        }
+wait:
+        if (!func_001DD670(self->f50, self->f54, &n, 1)) {
+err:
+            _imp__RtlLeaveCriticalSection(cs);
+            if (func_001DD603() <= 0)
+                return func_001DD603();
+            return (func_001DD603() & (int)&D_0000FFFF) | 0x80070000;
+        }
+    }
+ok:
+    if (func_0023F724(&self->f30, self) != 0) {
+        hr = 0x80004005;
+    } else if (func_0024001F((void *)self->f30) != 0) {
+        hr = 0x80004005;
+    } else if (func_0023F770((void *)self->f30, self->f8) != 0) {
+        hr = 0x80004005;
+    } else if (self->f8[7] != 0) {
+        hr = 0x80004005;
+    } else {
+        self->fB0 = 1;
+        hr = 0;
+    }
+    _imp__RtlLeaveCriticalSection(cs);
+    return hr;
+}
+
 int __stdcall func_0023EB1F(S_0023EB1F_Obj *obj, S_0023EB1F_Req *req)
 {
     unsigned int count = 0;
