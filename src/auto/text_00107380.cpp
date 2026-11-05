@@ -99,6 +99,27 @@ void C_00107A40::func_00107AB0(void) {
     fa14->vf4();
 }
 
+int C_00108270::func_00108270(int a, int b)
+{
+    int idx = D_002A8490->f2e0->arr190[fa28];
+    S_00108270_Item *item = D_002A8490->f2a4->arr170[fa2c];
+    int i;
+
+    if (item != 0 && item->func_000831C0() != 0) {
+        for (i = 0; i < 8; i++) {
+            if (f24->f52c->a33f0[idx * 8 + i] == a && f24->f52c->a37f0[idx * 8 + i] == b) {
+                return f24->f52c->a35f0[idx * 8 + i];
+            }
+        }
+    }
+    for (i = 0; i < 8; i++) {
+        if (f24->f52c->a2df0[idx * 8 + i] == a && f24->f52c->a31f0[idx * 8 + i] == b) {
+            return f24->f52c->a2ff0[idx * 8 + i];
+        }
+    }
+    return -1;
+}
+
 void C_00108360::func_00108360(void) {
     unk1FC0 = 1;
 }
