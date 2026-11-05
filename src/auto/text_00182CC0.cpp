@@ -290,6 +290,50 @@ void C_00182CC0_Scene::func_00182CC0()
     }
 }
 
+void C_00182EB0_Scene::func_00182EB0()
+{
+    char bufB[0x100];
+    char bufA[0x100];
+    int n = 0;
+    int def = 0;
+    int cnt = 0;
+    int i, j, k, m;
+
+    if (f3AC) {
+        f2C->func_00169710(D_0027AEE4);
+        f2C->func_00168C20(D_0027AED4, 0, &n);
+        f2C->func_00168C20(D_0027AEC4, 0, &def);
+        for (i = 1; i <= n; i++) {
+            func_001ADCC0(bufA, 0x100, D_0027AEA8, i);
+            f2C->func_00169710(bufA);
+            f2C->func_00168C20(D_0027AE94, 0, &cnt);
+            for (j = 1; j <= cnt; j++) {
+                func_001ADCC0(bufA, 0x100, D_0027AE80, i, j);
+                f2C->func_00169710(bufA);
+                f2C->func_00168BE0(D_0027AE7C, D_00275630, bufB, -1);
+                for (k = 0; k < f3AC->f24; k++) {
+                    S_00182EB0_Ent *e = f3AC->f28[k];
+                    if (e->f4 == 1 && e->f1A4 && e->f1A4->f280) {
+                        if (func_001EA426(bufB, e->fA0) == 0) {
+                            for (m = 0; m < e->f1A4->f284; m++)
+                                e->f1A4->f280[m]->f6d = (char)i;
+                        } else if (def != 0 && e->f1A4->f280[0]->f6d == 0) {
+                            for (m = 0; m < e->f1A4->f284; m++)
+                                e->f1A4->f280[m]->f6d = (char)def;
+                        }
+                    }
+                    if (e->f4 == 2 && e->f58 && e->f58->name) {
+                        if (func_001EA426(bufB, e->f58->name) == 0)
+                            e->f58->f40C->f6d = (char)i;
+                        else if (def != 0 && e->f58->f40C->f6d == 0)
+                            e->f58->f40C->f6d = (char)def;
+                    }
+                }
+            }
+        }
+    }
+}
+
 void C_00182CC0::func_00183130()
 {
     int j;
