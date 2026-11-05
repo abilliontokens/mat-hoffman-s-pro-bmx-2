@@ -84,7 +84,7 @@ struct Vec_001BB950 {
 };
 
 struct Anim_001BB950 {
-    char pad0[0x50];
+    char pad4[0x4C];
     int f50;
     void func_001A4AE0(Vec_001BB950 *a, int *b);
     void func_001A52C0(void);
