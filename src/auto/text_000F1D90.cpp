@@ -417,6 +417,16 @@ void BmxUIPageHPHChoice::func_000F2120(void)
     func_00157960();
 }
 
+int BmxUIPageHPHChoice::func_000F2160(int a, int b)
+{
+    C_000F2AD0_Ui *ui = f124->f24;
+    if (f2b0 == 0)
+        return 0;
+    if (f294 != 0)
+        return 0;
+    return HandleKey(ui, b);
+}
+
 void C_000F2600::func_000F2600()
 {
     int i;
