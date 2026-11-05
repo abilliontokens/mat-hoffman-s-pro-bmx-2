@@ -78,6 +78,7 @@ struct C_001955D0 {
 struct V4f_001956F0 {
     float x, y, z, w;
     V4f_001956F0() { x = y = z = 0; w = 1.0f; }
+    V4f_001956F0(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
 };
 struct Ini_001956F0 {
     char data[0x4cc];
