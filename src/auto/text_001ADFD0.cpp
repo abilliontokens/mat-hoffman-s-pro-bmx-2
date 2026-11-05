@@ -245,7 +245,7 @@ void C_001AE700::func_001AE700(void)
 {
     int n = D_002AA3F4;
     int *p = f64;
-    float step = (float)D_002AA3F4 * D_0027A060 * D_00287B68;
+    float step = (float)D_002AA3F4 * D_00287B68 * D_0027A060;
     int i = 0;
     C_001AE700_Obj *obj;
     float v;
