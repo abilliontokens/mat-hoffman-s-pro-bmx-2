@@ -204,6 +204,50 @@ void C_00083710::func_00083710(undefined4 param_1, undefined4 param_2)
   return;
 }
 
+extern char D_00279578[];
+extern char D_00279580[];
+char *func_001E8AF0(const char *s, const char *pat);
+void C_000831E0::func_00083750(int a)
+{
+    extern char D_00276F28[];
+    int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+    float x = (float)a;
+    float t;
+    char *s;
+    char *p;
+
+    if (x <= D_002757F4) {
+        s = fD08->func_001B17F0();
+        p = func_001E8AF0(s, D_00279580);
+        if (p != 0) {
+            func_001ADCC0(sCA4, 0x32, D_00276F28, D_00279578);
+            if (p != s) {
+                f198 = 1;
+            }
+            f150 = 1;
+            f58 = 1;
+        }
+    } else if (x >= D_00275AF0) {
+        s = fD08->func_001B17F0();
+        p = func_001E8AF0(s, D_00279578);
+        if (p != 0) {
+            func_001ADCC0(sCA4, 0x32, D_00276F28, D_00279580);
+            if (p != s) {
+                f198 = 1;
+            }
+            f150 = 1;
+            f58 = 1;
+        }
+    }
+    if (x != fC4C) {
+        t = f138 + 0.5f;
+        fC48 = 1;
+        fC4C = x;
+        f15C = 2;
+        f138 = t;
+    }
+}
+
 void C_000831E0::func_00083850(void)
 {
     fC40 = 1;
