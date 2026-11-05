@@ -115,6 +115,52 @@ void C_00196290::func_00196350(int param_1)
     f28 = param_1;
 }
 
+void C_00196290::func_001963D0(void)
+{
+    int header[2];
+    u32 i;
+    if ((u32)(f5c + f68 + 8) < fc8) {
+        header[1] = f64 | 0x80000000;
+        header[0] = f24;
+        f64 = 0;
+        func_00196360((u8 *)header);
+        for (i = 0; i < f74; ++i) {
+            if (f80[i] == 0) {
+                u8 *p = (u8 *)f78[i];
+                f54[0] = p[0];
+                f54[1] = p[1];
+                f54[2] = p[2];
+                f54[3] = p[3];
+                f68 += 4;
+                f54 += 4;
+                f64 += 4;
+                f98[i] = *(int *)f78[i];
+            } else if (f80[i] == 1) {
+                u8 *p = (u8 *)f78[i];
+                f54[0] = p[0];
+                f54[1] = p[1];
+                f54[2] = p[2];
+                f54[3] = p[3];
+                f68 += 4;
+                f54 += 4;
+                f64 += 4;
+                fac[i] = *(int *)f78[i];
+            } else if (f80[i] == 2) {
+                f54[0] = *(u8 *)f78[i];
+                f54++;
+                f68++;
+                f64++;
+            }
+        }
+        header[0] = 0xc479c000;
+        header[1] = f64 | 0x80000000;
+        ((int *)f54)[0] = header[0];
+        ((int *)f54)[1] = header[1];
+    } else if (!(fc0 & 0x80)) {
+        fc0 |= 0x80;
+    }
+}
+
 void C_00196290::func_00196360(u8 *param_1)
 {
     f54[0] = param_1[0];
