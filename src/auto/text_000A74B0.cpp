@@ -31,9 +31,24 @@ struct SlotsR_000A74B0 {
     int aF0[10];
     int a118[10];
     int count;
+    int f144;
     SlotsR_000A74B0 *func_000A74B0(void);
     int func_000A7570(int state, int arg, int keep);
+    void func_000A7650(float t);
 };
+
+struct Range_000A7650 {
+    float lo;
+    float hi;
+};
+
+struct Global_000A7650 {
+    char pad0[0x52C];
+    Range_000A7650 *f52C;
+};
+
+extern Global_000A7650 *D_002B9120;
+extern float D_00276284;
 
 struct Model_000A77C0 {
     void *vtbl;
