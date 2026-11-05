@@ -1,6 +1,10 @@
 /* 14 functions from 0x00178210 to 0x00178C60, found by Ghidra. */
 #include "common.h"
 
+/* 0xF800 / 0xFFE0 masks: the original object references them as symbols */
+extern char D_0000F800;
+extern char D_0000FFE0;
+
 u32 func_00178210(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int pal)
 {
   u8 *srow;
@@ -210,6 +214,68 @@ u32 func_00178A40(u16 *dst, u16 *src, int width, int height, int dstPitch, int s
     }
     src += srcPitch;
     dst += dstPitch;
+  }
+  return 1;
+}
+
+u32 func_00178AE0(u16 *dst, u16 *src, int width, int height, int dstPitch, int srcPitch, u32 key)
+{
+  u16 *d;
+  u16 *s;
+  u16 *p;
+  u16 *q;
+  u16 c;
+  u16 v;
+  int x;
+  int y;
+
+  c = (u16)(((key >> 8) & 0xf800) | ((key >> 5) & 0x7e0) | ((key >> 3) & 0x1f));
+  s = src;
+  d = dst;
+  for (y = height; y > 0; y--) {
+    for (p = d, q = s, x = width; x > 0; x--) {
+      v = (u16)(((*q >> 1) & 0x7fe0) | (*q & 0x1f));
+      *p = v;
+      if (*q != c) {
+        v |= 0x8000;
+        *p = v;
+      }
+      p++;
+      q++;
+    }
+    s += srcPitch;
+    d += dstPitch;
+  }
+  return 1;
+}
+
+u32 func_00178BA0(u16 *dst, u16 *src, int width, int height, int dstPitch, int srcPitch, u32 key)
+{
+  u16 *d;
+  u16 *s;
+  u16 *p;
+  u16 *q;
+  u16 c;
+  u16 v;
+  int x;
+  int y;
+
+  c = (u16)(((key >> 8) & 0xf800) | ((key >> 5) & 0x7e0) | ((key >> 3) & 0x1f));
+  s = src;
+  d = dst;
+  for (y = height; y > 0; y--) {
+    for (p = d, q = s, x = width; x > 0; x--) {
+      v = *q;
+      if ((short)v < 0) {
+        *p = (u16)(((v & 0xffe0) << 1) | (v & 0x1f));
+      } else {
+        *p = c;
+      }
+      p++;
+      q++;
+    }
+    s += srcPitch;
+    d += dstPitch;
   }
   return 1;
 }
