@@ -156,3 +156,19 @@ void C_0017F0A0::func_0017F0A0(int a0) {
     func_00133020(a0);
 }
 
+void RayCollisionObject::func_0017F0B0() {
+ if (unkFC) { func_001E891B(unkFC); unkFC = 0; }
+ if (unk100) { func_001E891B(unk100); unk100 = 0; }
+ S_0017F0B0 *p = unk54;
+ if (p) {
+ if (p->unk8C) { func_001E891B(p->unk8C); p->unk94 = 0; }
+ if (p->unk70) { func_001E891B(p->unk70); p->unk70 = 0; }
+ if (p->unk90) { func_001E891B(p->unk90); p->unk90 = 0; }
+ if (p->unk74) { func_001E891B(p->unk74); p->unk74 = 0; }
+ if (p->unk88) { func_001E891B(p->unk88); p->unk88 = 0; }
+ if (p->unk84) { func_001E891B(p->unk84); p->unk84 = 0; }
+ if (p->unk78) { func_001E891B(p->unk78); p->unk78 = 0; }
+ func_001E891B(unk54); unk54 = 0;
+ }
+}
+
