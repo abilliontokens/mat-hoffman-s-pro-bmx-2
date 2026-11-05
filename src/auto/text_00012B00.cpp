@@ -46,7 +46,7 @@ struct S_12B00_Obstacle { char pad[0x7c]; S_13910_Vec pos; };
 struct S_12B00_Obstacles { char pad[0x38]; int count; char pad2[0xc]; S_12B00_Obstacle **items; };
 extern S_12B00_Obstacles *D_002B9134;
 extern S_13910_Vec D_002A051C;
-static __forceinline S_13910_Vec sub12(const S_13910_Vec &a, const S_13910_Vec &b) { S_13910_Vec r; r.x=a.x-b.x; r.y=a.y-b.y; r.z=a.z-b.z; r.w=1; return r; }
+static __forceinline S_13910_Vec sub12(const S_13910_Vec &a, const S_13910_Vec &b) { return S_13910_Vec(a.x-b.x,a.y-b.y,a.z-b.z); }
 static __forceinline S_13910_Vec add12(const S_13910_Vec &a, const S_13910_Vec &b) { S_13910_Vec r; r.x=a.x+b.x; r.y=a.y+b.y; r.z=a.z+b.z; r.w=1; return r; }
 static __forceinline S_13910_Vec mul12(const S_13910_Vec &a, float b) { S_13910_Vec r; r.x=a.x*b; r.y=a.y*b; r.z=a.z*b; r.w=1; return r; }
 static __forceinline float dot12(const S_13910_Vec &a, const S_13910_Vec &b) { return a.x*b.x+a.y*b.y+a.z*b.z; }
