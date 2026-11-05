@@ -102,6 +102,47 @@ void func_001F4BDE(void)
     D_002FAFF0 = 0;
     D_002FAFE8 = 0;
 }
+
+int func_001F4C09(unsigned int cp)
+{
+    unsigned int i;
+    unsigned int j;
+    unsigned char *p;
+    unsigned int c;
+
+    if (cp == 0) goto reset;
+    for (i = 0; i < 5; i++) {
+        if ((unsigned int)D_002AEE68[i].cp == cp) goto found;
+    }
+    if (D_002F6A64 != 0) {
+reset:
+        func_001F4BDE();
+        return 0;
+    }
+    return -1;
+found:
+    memset(D_002FB000, 0, 0x101);
+    for (j = 0; j < 4; j++) {
+        p = D_002AEE68[i].range[j];
+        while (p[0] != 0 && p[1] != 0) {
+            for (c = p[0]; c <= p[1]; c++)
+                D_002FB000[c + 1] |= D_002AEE60[j];
+            p += 2;
+        }
+    }
+    D_002FB104 = cp;
+    D_002FAFF0 = 1;
+    switch (cp) {
+    case 0x3a4: D_002FAFE8 = 0x411; break;
+    case 0x3a8: D_002FAFE8 = 0x804; break;
+    case 0x3b5: D_002FAFE8 = 0x412; break;
+    case 0x3b6: D_002FAFE8 = 0x404; break;
+    default: D_002FAFE8 = 0; break;
+    }
+    memcpy(D_002FB120, D_002AEE68[i].names, 0x18);
+    return 0;
+}
+
 void func_001F4E30(void) {
     int func_001EB302(...);
     func_001EB302(13);
