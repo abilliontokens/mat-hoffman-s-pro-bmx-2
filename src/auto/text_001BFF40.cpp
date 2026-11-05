@@ -171,6 +171,92 @@ struct S_001C04D0_Global {
 
 extern S_001C04D0_Global *D_002A8490;
 
+extern int D_0028DC94;
+extern int D_0028DDB4;
+
+/* UIWidgetMovementGroup */
+struct C_001C0EC0 {
+    void *vtbl;
+    char pad4[0x20];
+    int unk24;
+    int unk28;
+    int unk2C;
+    int unk30;
+    int unk34;
+    int unk38;
+    int unk3C;
+    int unk40;
+    int unk44[8];
+    int unk64;
+    int unk68[16];
+    C_001C0EC0 *func_001C0EC0(int a1, int a2);
+};
+
+/* UIControl: the object a movement widget drives */
+struct S_001C0DD0_Ctl {
+    void func_001BDE90(int a);
+    void func_001BDF00(int a);
+    void func_001BDF60(int a);
+    void func_001BDFB0(int a);
+    void func_001BE0B0(int a);
+    void func_001BE1B0(int a);
+    void func_001BE220(int a);
+};
+
+struct S_001C0DD0_Ent {
+    int unk0;
+    S_001C0DD0_Ctl *unk4;
+};
+
+struct S_001C0DD0_Tab {
+    char pad0[0x144];
+    S_001C0DD0_Ent **unk144;
+};
+
+struct S_001C0DD0_Owner {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30();
+    virtual void v31(int a, int b, int c, int d);
+    char pad4[0x114];
+    S_001C0DD0_Tab *unk118;
+};
+
+/* UIWidgetMovementControl */
+struct C_001C0C50 {
+    void *vtbl;
+    char pad4[0x20];
+    int unk24;
+    int unk28;
+    int unk2C;
+    int unk30;
+    int unk34;
+    int unk38;
+    int unk3C;
+    int unk40;
+    int unk44[8];
+    int unk64;
+    int unk68;
+    int unk6C[16];
+    C_001C0C50 *func_001C0C50(int a1, int a2);
+    void func_001C0DD0(int a, int b, int c);
+};
+
+struct C_001C0BE0 {
+    char pad0[0x68];
+    S_001C0B00_Node *unk68;
+    char pad6C[0x94 - 0x6C];
+    float unk94;
+    char pad98[0xb4 - 0x98];
+    float unkB4;
+    void func_001C0BE0(float dt);
+};
+
 struct C_001C04D0 {
     char pad0[0x180];
     int unk180;
@@ -322,6 +408,11 @@ void C_001C0A60::func_001C0AB0(void)
     }
     fA4 = 1;
     v5();
+}
+
+void C_001C0A60::func_001C0B00(float dt)
+{
+    fB4 = dt;
 }
 
 void C_001C0E80::func_001C0E80(void)
