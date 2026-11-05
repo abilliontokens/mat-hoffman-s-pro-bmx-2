@@ -1,6 +1,11 @@
 /* 5 functions from 0x00125F00 to 0x00126DD0, found by Ghidra. */
 #include "common.h"
 
+/* 0x34-byte record split by a float threshold */
+struct S_00126770_Rec {
+    float f[13];
+};
+
 void func_00126740(int a0, int a1, int a2, int a3, int a4, int a5) {
     extern int D_002B92F4;
     int func_00125F00(...);
