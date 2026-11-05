@@ -35,19 +35,15 @@ struct RenderableObjectData : C_0001DFE0 {
 struct RenderableObject {
     void *vtbl;
     char pad4[0x23];
-    unsigned char unk27;
+    unsigned char unk27 : 2;
+    unsigned char unk27_hi : 6;
     char pad28[0x159];
-    unsigned char unk181;
+    unsigned char unk181 : 1;
+    unsigned char unk181_hi : 7;
     char pad182[0x1e];
     unsigned char unk1A0;
     unsigned char unk1A1;
-    union {
-        unsigned short unk1A2;
-        struct {
-            unsigned char pad1A2;
-            unsigned char unk1A3;
-        };
-    };
+    unsigned short unk1A2;
     int unk1A4;
     int unk1A8;
     int unk1AC;
