@@ -186,6 +186,21 @@ struct IntList {
     int grow;
     int cap;
     int func_0015ACA0(int n);
+    void Add(int value) {
+        if(count >= cap) {
+            int n=count+grow;
+            if(n<=cap) return;
+            int *p=(int *)func_001E8A44(n*4);
+            if(!p) return;
+            memcpy(p,data,cap*4);
+            int *old=data;
+            data=p;
+            func_001E891B(old);
+            cap=n;
+        }
+        data[count]=value;
+        ++count;
+    }
 };
 
 struct TrackSet {
