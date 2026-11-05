@@ -130,6 +130,12 @@ int __stdcall func_001DEF8D(const char *name)
     func_001DD659(status);
     return -1;
 }
+
+int __stdcall func_001DF59C(int a, int b, int c)
+{
+    return func_001E1297(a, b, c);
+}
+
 #pragma optimize("", on)
 int func_001DF5B3(void) {
     extern int D_002F6BB4;
