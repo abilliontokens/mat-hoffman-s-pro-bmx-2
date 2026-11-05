@@ -16,7 +16,7 @@ void func_001E891B(void *p);
 extern S_6260_H *D_002F0630;
 struct C_001A6260 {
     void *vtbl; char pad4[0x20];
-    int f24; int f28; int f2c; int f30;
+    float f24; float f28; float f2c; float f30;
     S_6260_V *f34[2];
     S_6260_V *f3c[2];
     S_6260_E *f44[2];
