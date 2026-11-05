@@ -157,12 +157,71 @@ u32 __stdcall func_001DD5C8(void *a0, u32 *a1) {
     }
     return size[0];
 }
+
+int func_001DD603(void)
+{
+    if (__readfsbyte(0x24) < 2) {
+        __readfsdword(0x28);
+    }
+    return ((int **)__readfsdword(4))[D_002F41D0][1];
+}
+
+void __stdcall func_001DD62B(int a0)
+{
+    if (__readfsbyte(0x24) < 2) {
+        __readfsdword(0x28);
+    }
+    ((int **)__readfsdword(4))[D_002F41D0][1] = a0;
+}
+
 #pragma optimize("y", on)
 int __stdcall func_001DD659(int a0) {
     int err = _imp__RtlNtStatusToDosError(a0);
     func_001DD62B(err);
     return err;
 }
+
+int __stdcall func_001DD670(void *a0, S_001DD670_Overlapped *a1, u32 *a2, int a3)
+{
+    int r;
+
+    if (a1->Internal == 0x103) {
+        if (a3 != 0) {
+            void *h = a1->hEvent;
+            if (h == 0) {
+                h = a0;
+            }
+            r = func_001DDDD6(h, -1);
+        } else {
+            r = 0x102;
+        }
+        if (r == 0x102) {
+            func_001DD62B(0x3e4);
+            return 0;
+        }
+        if (r != 0) {
+            return 0;
+        }
+    }
+    *a2 = a1->InternalHigh;
+    if (a1->Internal < 0) {
+        func_001DD659(a1->Internal);
+        return 0;
+    }
+    return 1;
+}
+
+int __stdcall func_001DD6D5(void *a0, u32 *a1, u32 a2)
+{
+    u32 *buf = a1;
+
+    if (func_001DD15A(a0, buf, 0x200, &a1, 0) && (u32)a1 == 0x200 && (a2 == 0 || *buf == a2)) {
+        return 1;
+    }
+    return 0;
+}
+#pragma optimize("y", on)
+
 #pragma optimize("y", off)
 
 #pragma optimize("y", on)
