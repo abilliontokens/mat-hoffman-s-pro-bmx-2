@@ -169,6 +169,42 @@ struct TikiEvadeState {
     void func_00018340();
 };
 
+extern float D_00275804;
+extern float D_00275800;
+extern float D_002757FC;
+S_00017DA0_Vec *func_00011110(S_00017DA0_Vec *out, S_00017DA0_Vec *a, S_00017DA0_Vec *b);
+float func_00011170(S_00017DA0_Vec *v);
+S_00017DA0_Vec *func_00011140(S_00017DA0_Vec *out, S_00017DA0_Vec *v, float s);
+S_00017DA0_Vec *func_000110E0(S_00017DA0_Vec *out, S_00017DA0_Vec *a, S_00017DA0_Vec *b);
+
+struct S_00017FA0_Ref {
+    char pad0[0x24];
+    int f24;
+    void func_0008AB90(int a);
+};
+
+struct S_00017FA0_this {
+    char pad0[0xc4];
+    int fc4;
+    char padc8[0x384 - 0xc8];
+    S_00017FA0_Ref *f384;
+    char pad388[4];
+    int f38c;
+    char pad390[4];
+    int f394;
+    char pad398[0x4d4 - 0x398];
+    int f4d4;
+    char pad4d8[0x4f4 - 0x4d8];
+    int f4f4;
+    char pad4f8[0x508 - 0x4f8];
+    S_00017DA0_Vec f508;
+    S_00017DA0_Vec f518;
+    char pad528[0x734 - 0x528];
+    int f734;
+    int f738;
+    void func_00017FA0(S_00017DA0_Vec *a, S_00017DA0_Vec *b);
+};
+
 void AiTikiGod::func_00017CE0(S_00017CE0_Arg *a, int b, int c)
 {
     if (f4f0 == 0) {
