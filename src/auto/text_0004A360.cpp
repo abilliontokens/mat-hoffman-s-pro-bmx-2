@@ -138,7 +138,7 @@ S_Item80 *__stdcall func_0004AA80(int param_1)
     if (0 < D_002B9120->f560) {
         S_Item80 **p = D_002B9120->f524;
         do {
-            if ((*p)->f80 == param_1) {
+            if ((int)(*p)->f80 == param_1) {
                 return D_002B9120->f524[i];
             }
             i++;
