@@ -32,9 +32,47 @@ struct C_00053C80 {
     void *func_00053C80(int flags);
 };
 
+struct S_00054210_Vec3 {
+    float x, y, z;
+};
+
+struct S_00054210_Target {
+    S_00054210_Vec3 func_001824E0(float x, float y, float z);
+};
+
+struct S_00054210_Sub {
+    int unk0;
+    S_00054210_Target *f4;
+};
+
+struct S_00054210_Item {
+    char pad0[0xa00];
+    S_00054210_Sub *fa00;
+};
+
+struct S_00054210_List {
+    char pad0[0x1a8];
+    S_00054210_Item *f1a8[1];
+};
+
+struct S_00054210_Ctx {
+    char pad0[0x4e0];
+    S_00054210_List *f4e0;
+};
+
+extern float D_002A1974;
+extern float D_002A1978;
+extern float D_002A197C;
+extern float D_00276288;
+extern float D_002755E8;
+
 struct C_00053D20 {
     int unk0;
-    char pad4[0x1f8];
+    char pad4[0x60];
+    S_00054210_Ctx *f64;
+    char pad68[0x28];
+    int f90;
+    char pad94[0x168];
     int f1fc;
     char pad200[0x84];
     int f284[8];
