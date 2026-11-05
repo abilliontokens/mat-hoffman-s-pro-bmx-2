@@ -612,6 +612,43 @@ void C_00094A00::func_00094A00(void)
     f50->v37();
 }
 
+int C_00094A00::func_00094A10(char *name, void *arg)
+{
+    C_00094A10_Config cfg;
+    char path[0x104];
+    char section[0x104];
+    int flag;
+    int flags;
+    cfg.func_00168280();
+    if (arg) f2C = arg;
+    flags = 0x81;
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5348, D_002A47F0);
+    func_001ADCC0(path, 0x104, D_00275678, D_002A48F8, name);
+    cfg.func_00169490(path, 0);
+    if (cfg.func_00169710(D_0027A224)) {
+        cfg.func_00168C20(D_0027A214, 0, &f7C);
+        cfg.func_00168C20(D_0027A20C, 0, &flag);
+        if (flag) flags = 0xc1;
+        for (int i = 0; i < f7C; i++) {
+            func_001ADCC0(section, 0x104, D_0027A200, i + 1);
+            cfg.func_00169710(section);
+            memset(path, 0, sizeof(path));
+            cfg.func_00168BE0(D_0027A1F8, D_00275630, path, -1);
+            int len = strlen(path);
+            if (len) {
+                if (arg == 0)
+                    f84[i] = f80->fB4->func_001CFE90(f28, path, flags, 1, 0, 0);
+                else
+                    f84[i] = f80->fB4->func_001CFE90(arg, path, flags, 1, 0, 0);
+                if (f84[i]) f84[i]->v12(0);
+            }
+        }
+    }
+    int result = f7C;
+    cfg.func_001691E0();
+    return result;
+}
+
 void C_00094A00::func_00094C00(void)
 {
     int i;
