@@ -167,6 +167,7 @@ struct SoundVoice {
     char pad21[0xeb];
     unsigned char f10c;
     int func_001CD940(SoundVoice *other);
+    int func_001CDB10(void);
 };
 
 struct SoundVoiceList {
