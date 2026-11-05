@@ -11,6 +11,12 @@ extern f32 D_002754B0;
 extern f32 D_00275460;
 extern int D_0027AA28;
 extern int D_002A5558;
+extern int D_0027AB9C;
+extern int D_0027AB88;
+extern f32 D_002A2528;
+extern f32 D_002A252C;
+extern f32 D_002A2530;
+extern f32 D_002A2534;
 
 int func_001E8833(void);
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
