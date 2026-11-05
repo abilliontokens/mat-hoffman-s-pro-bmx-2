@@ -114,6 +114,21 @@ struct C_000AC2C0 {
     u8 flag;
     char pad5b9[3];
     int f5bc;
+    void initList(void)
+    {
+        items = 0;
+        count = 0;
+        cap = 0;
+        grow = 0;
+        flag &= 0xfe;
+    }
+    void allocList(void)
+    {
+        items = (void **)func_001E8A44(4);
+        cap = 16;
+        grow = 1;
+        flag |= 1;
+    }
     void func_00188F20(int flags);
     C_000AC2C0 *func_000AC2C0(int flags);
 };
