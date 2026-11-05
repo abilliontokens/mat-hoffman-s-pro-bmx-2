@@ -201,6 +201,27 @@ int C_000BBE30::func_000BBED0(int show)
     return idx;
 }
 
+void C_000BBE30::func_000BBF90(const char *name)
+{
+    int i;
+    int j;
+
+    if (D_002A8490->f2E0->f324 != 1) {
+        f288 = -1;
+        for (i = 0; i < f290; i++) {
+            if (func_001EA426(name, (const char *)&f27C[i]) == 0) {
+                f284 = i;
+                f28C = f27C[i].f124;
+                for (j = 0; j < f27C[i].f11C; j++) {
+                    if (f27C[i].f120[j] == f27C[i].f128) {
+                        f288 = j;
+                    }
+                }
+            }
+        }
+    }
+}
+
 extern S_000BBE30_Game *D_002A8490;
 
 undefined4 C_000BC180::func_000BC050(void)
