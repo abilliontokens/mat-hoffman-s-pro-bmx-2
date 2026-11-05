@@ -19,8 +19,10 @@ struct S_000BF860_elem {
             f58 |= 1;
         }
     }
-    void SetXY4E(float nx, float ny)
+    void SetXY4E(int ix, int iy)
     {
+        float nx = (float)ix;
+        float ny = (float)iy;
         if (nx != x || y != ny) {
             x = nx;
             y = ny;
