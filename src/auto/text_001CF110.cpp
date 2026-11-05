@@ -322,9 +322,7 @@ struct FlatElemList_001CF2A0 : SoundElemList_001CF2A0 {
     FlatElemList_001CF2A0()
     {
         items = 0;
-        count = 0;
-        growBy = 0;
-        capacity = 0;
+        count = capacity = growBy = 0;
         flags &= 0xfe;
     }
 
@@ -355,25 +353,22 @@ void XboxMusic::func_001CF110(IntArray *list)
 
 void XboxSoundGroup::func_001CF2A0()
 {
+    FlatElemList_001CF2A0 copy;
+    FlatElemList_001CF2A0 *p = &copy;
     int i;
-    OwnedElemList_001CF2A0 copy;
 
     if (list.count > 0) {
-        copy.init(list.count);
-        i = 0;
-        while (i < list.count) {
-            copy.list.add(list.at(i));
-            i++;
+        p->init(list.count);
+        for (i = 0; i < list.count; i++) {
+            p->add(list.at(i));
         }
-        i = 0;
-        while (i < copy.list.count) {
-            copy.list.at(i)->release();
-            i++;
+        for (i = 0; i < p->count; i++) {
+            p->at(i)->release();
         }
     }
     memset(list.items, 0, list.count * sizeof(int));
     list.count = 0;
-    func_001E891B(copy.list.items);
+    func_001E891B(p->items);
 }
 
 int C_001CF3C0::func_001CF3C0(SoundVoice *voice)
