@@ -34,7 +34,7 @@ extern float D_002A1178;
 
 struct Vec4_0002AF90 {
     float x, y, z, w;
-    __forceinline void Set(const Vec4_0002AF90 *o) { *this = *o; }
+    __forceinline void Set(const Vec4_0002AF90 *o) { x = o->x; y = o->y; z = o->z; w = o->w; }
     __forceinline Vec4_0002AF90 Sub(const Vec4_0002AF90 *o) const
     {
         Vec4_0002AF90 r;
@@ -131,7 +131,9 @@ void C_0002AF90::func_0002AF90(void)
     if (cur->x == D_002A10F0 && cur->y == D_002A10F4 && cur->z == D_002A10F8) {
         cur->Set(tgt);
     }
-    cur->Lerp(tgt);
+    v = cur->Sub(tgt);
+    v = v.Mul();
+    *cur = v.Add(tgt);
     f1f8->func_0014AC30(cur, 0);
     f1f8->func_00133ED0();
     f1f8->func_00133F10(0);
