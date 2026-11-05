@@ -77,3 +77,8 @@ C_0017F050 *C_0017F050::func_0017F050(int a0) {
     return this;
 }
 
+void C_0017F0A0::func_0017F0A0(int a0) {
+    unkA7 |= 0x40;
+    func_00133020(a0);
+}
+
