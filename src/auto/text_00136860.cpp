@@ -217,6 +217,7 @@ void func_00136B60(int a, TokenEntry *out)
     }
 }
 
+/* func_001376B0 support: sound-table fill helpers */
 int func_001B2810(int id);
 int func_00136460(int id, int i, int j);
 
