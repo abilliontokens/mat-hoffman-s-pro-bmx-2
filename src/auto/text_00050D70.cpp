@@ -40,9 +40,50 @@ struct C_0012B190 {
     void func_0012B190(int x, int y, int w, int h);
 };
 
-struct C_00051BB0 {
-    void func_00051BB0(void);
+struct C_00092890 {
+    int func_00092BE0(void);
 };
+
+struct C_000928D0 {
+    int func_000928D0(void);
+};
+
+struct C_0005C6A0 {
+    undefined *func_0005C6A0(void);
+};
+
+struct C_001D4300 {
+    int func_001D4590(char *out, const char *title, int a, int size);
+};
+
+struct S_00051BB0_Sub {
+    char pad0[0x48];
+    int f48;
+    char pad4C[0x274];
+    C_0005C6A0 *f2C0;
+    char pad2C4[8];
+    C_001D4300 *f2CC;
+};
+
+struct S_00051BB0_Root {
+    char pad0[0x2E0];
+    S_00051BB0_Sub *f2E0;
+};
+
+struct C_00051BB0 {
+    char pad0[0x1D0];
+    C_00092890 *f1D0;
+    char pad1D4[0xC0];
+    int f294;
+    char pad298[0xC4];
+    int f35C;
+    int func_00051BB0(void);
+};
+
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+extern char D_00277A04;
+extern char D_00277A0C;
+extern int D_00080000;
 
 struct C_000511A0 {
     undefined4 *func_000511A0(undefined4 param_1);
@@ -345,6 +386,42 @@ void C_000516C0::func_000516C0(void)
     ((C_0012B190 *)*(int *)(in_ECX + 0x28))->func_0012B190(0x280 - iVar2, 0x1c0 - iVar1, iVar2, iVar1);
   }
   return;
+}
+
+int BmxEventRoadTrip::func_00051750(void)
+{
+    S_00051750_Rect r;
+    int n;
+    int top;
+    int right = 0x280;
+
+    r.x = (int)(D_00277A00 - D_002B8FA0);
+    top = (int)D_00277920;
+    r.y = (int)(D_002779FC - D_002B8F98 + top);
+    r.w = right;
+    r.h = top + 0x1c0;
+    f64->func_000AC780(r);
+    v26();
+    n = 1;
+    if (f48 != 0) {
+        n = 2;
+    }
+    if (f64 != 0) {
+        func_001577A0(f64->func_000A1990(f24, n), -1);
+    }
+    if (f44 != 0) {
+        func_001577A0(f44, -1);
+    }
+    if (f48 != 0) {
+        func_001577A0(f48, -1);
+    }
+    if (f158 != 0) {
+        func_001577A0(f158, 10);
+    }
+    if (f1c4 != 0) {
+        func_001577A0(f1c4, -1);
+    }
+    return 1;
 }
 
 int C_00051840::func_00051840(void)
