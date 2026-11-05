@@ -28,3 +28,62 @@ struct C_0019D7B0 {
     void func_0019D6C0(char *path, int h);
     int func_0019D7B0(int a1, char *path);
 };
+
+struct C_0019DE30_Obj {
+    void func_0019CBF0(int a0, int a1);
+};
+
+struct C_0019DE30 {
+    char pad0[0xA4];
+    u16 fA4;
+    u8 fA6;
+    u8 fA7;
+    char padA8[0xE8];
+    int f190;
+    char pad194[0xC];
+    C_0019DE30_Obj **f1A0;
+    void func_0019DE30(int a0, int a1);
+    void func_00157A00(int a0);
+    void func_0019DE80(int a0);
+};
+
+int C_0019D7B0::func_0019D7B0(int a1, char *path)
+{
+    int v0;
+    int h;
+    int ptr;
+    int vC;
+    int v10;
+    int v14;
+    int v18;
+    char buf[0x100];
+
+    if (D_002A4C10[0] != 0) {
+        strcpy(buf, D_002A4C10);
+        if (D_002A4C10[strlen(D_002A4C10) - 1] != '\\')
+            func_001E8BF0(buf, &D_00284644, 0x7f);
+        strcat(buf, path);
+    } else {
+        strcpy(buf, path);
+    }
+    func_00030F30(buf, &D_0028463C);
+    h = -1;
+    ptr = 0;
+    v0 = D_002BEAAC->func_0013D310(buf, &D_00275FB4, &h, &ptr, 1);
+    if (v0 == 0)
+        return v0;
+    if (ptr != 0) {
+        v14 = *(int *)(ptr + 4);
+        func_0019C690((char *)a1, (int *)ptr);
+    } else {
+        D_002BEAAC->func_0013C8A0(h, &v18, 1, 4);
+        D_002BEAAC->func_0013C8A0(h, &vC, 4, 1);
+        D_002BEAAC->func_0013C8A0(h, &v10, 4, 1);
+        if (v18 != 0x4d2 || func_001EA426(&vC, &D_00284638) != 0 || v10 != 1)
+            D_002BEAAC->func_0013C110(h);
+        func_00132E90(h, &v14);
+        func_0019D6C0((char *)a1, h);
+    }
+    D_002BEAAC->func_0013C110(h);
+    return 1;
+}
