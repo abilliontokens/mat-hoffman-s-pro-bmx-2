@@ -70,6 +70,24 @@ struct BmxStallConstraint {
     void func_000B51C0(void);
 };
 
+int C_000B5020::func_000B5020(void)
+{
+    int i;
+    for (i = 0; i < f34; i++) {
+        f44[i]->func_000B3E10();
+        ((C_001577A0 *)this)->func_001577A0(f44[i], -1);
+    }
+    for (i = 0; i < f38; i++) {
+        f48[i]->func_000B3410(f28);
+        ((C_001577A0 *)this)->func_001577A0(f48[i], -1);
+    }
+    if (f38 > 0 || f34 > 0) {
+        ((C_000B1350 *)this)->func_000B1350();
+        return 1;
+    }
+    return 0;
+}
+
 BmxStallConstraint *BmxStallConstraint::func_000B50B0(int param_1)
 {
     u32 *p;
