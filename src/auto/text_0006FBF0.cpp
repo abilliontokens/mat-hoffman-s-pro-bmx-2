@@ -1,6 +1,25 @@
 /* 7 functions from 0x0006FBF0 to 0x000707D0, found by Ghidra. */
 #include "common.h"
-struct C_001D5AD0 { void func_001D5AD0(void); };
+struct C_001D5AD0 { void func_001D5AD0(void); void func_0005E840(int a0); };
+struct S_00070450_Data {
+    char pad0[0x7b8];
+    int f7b8;
+    char pad7bc[4];
+    int f7c0;
+    char pad7c4[0xec0 - 0x7c4];
+    int fec0;
+    char pad_ec4[0xee8 - 0xec4];
+    int fee8;
+};
+struct S_00070450_Mgr {
+    char pad0[4];
+    S_00070450_Data *f4;
+};
+struct S_00070450_Global {
+    char pad0[0x2e8];
+    S_00070450_Mgr *f2e8;
+};
+extern S_00070450_Global *D_002A8490;
 struct C_00070360 {
     char pad0[0x6C];
     int unk6C;
@@ -9,18 +28,27 @@ struct C_00070360 {
     C_001D5AD0 *unkC8, *unkCC;
     char padD0[8];
     C_001D5AD0 *unkD8;
-    char padDC[0x14];
+    char padDC[4];
+    C_001D5AD0 *unkE0;
+    char padE4[0xc];
     C_001D5AD0 *unkF0;
-    char padF4[0x10];
+    char padF4[4];
+    C_001D5AD0 *unkF8;
+    char padFC[4];
+    C_001D5AD0 *unk100;
     int unk104;
     char pad108[0x20];
     C_001D5AD0 *unk128, *unk12C;
-    char pad130[0x10];
+    C_001D5AD0 *unk130[3];
+    C_001D5AD0 *unk13C;
     C_001D5AD0 *unk140, *unk144, *unk148, *unk14C;
     C_001D5AD0 *unk150[2];
     C_001D5AD0 *unk158[5];
     C_001D5AD0 *unk16C[5];
+    C_001D5AD0 *unk180[1];
+    int func_0006FF80(void);
     void func_00070360(void);
+    void func_00070450(void);
 };
 struct C_000707C0 {
     char pad0[0xFC];
