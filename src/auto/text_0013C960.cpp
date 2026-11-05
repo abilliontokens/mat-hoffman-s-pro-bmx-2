@@ -22,6 +22,14 @@ struct S_0013C960_Ent {
     int f8;
 };
 
+/* eight allocated buffers with their sizes, at +0x2C of C_0013C960 */
+struct S_0013C960_BufSet {
+    void *bufs[8];
+    int sizes[8];
+    int f40;
+    int total;
+};
+
 struct S_0013C960_Elem {
     int f0;
     int f4;
@@ -133,5 +141,58 @@ int C_0013C960::func_0013D310(int a0, int a1, int *a2, int *a3, int a4)
         *a3 = 0;
     }
     return 1;
+}
+
+void C_0013C960::func_0013D400(void)
+{
+    int i;
+    int *q;
+
+    if (fC != 0 && fE8 != 0) {
+        func_0013C660(1);
+    }
+    if ((int *)&pad14 != 0) {
+        q = f24;
+        do {
+            *q = -1;
+            q++;
+        } while (q <= f28);
+    }
+    if (fC != 0) {
+        for (i = 0; i < f10; i++) {
+            func_0013B840(&fC[i]);
+        }
+        func_001E8390(fC);
+        fC = 0;
+    }
+    if (fE8 != 0) {
+        for (i = 0; i < fEC; i++) {
+            func_0013AEC0(i);
+        }
+        func_001E8390(fE8);
+        fE8 = 0;
+    }
+    if (f6C != -1 && fC[f6C].f10 != 0) {
+        func_00012140(fC[f6C].f10);
+    }
+    for (i = 0; i < 8; i++) {
+        if (f2C[i] != 0) {
+            func_001E8390((void *)f2C[i]);
+            f2C[i] = 0;
+        }
+    }
+    f70 = 0;
+    if (f7C != 0) {
+        func_001E8390(f7C);
+        f7C = 0;
+    }
+    for (i = 0; i < 8; i++) {
+        if (f80[i].f0 != 0) {
+            func_001E8390(f80[i].f0);
+            f80[i].f0 = 0;
+        }
+        f80[i].f4 = -2;
+        f80[i].f8 = 0xffffa000;
+    }
 }
 
