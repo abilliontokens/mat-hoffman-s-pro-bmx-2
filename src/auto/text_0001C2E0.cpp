@@ -137,6 +137,10 @@ struct C_0001C520 {
 
 struct C_0013B210 {
     void func_0013B210(void *);
+ void func_0013C8A0(int,void *,int,int);
+ void func_0013C110(int);
+ int func_0013AFD0(int);
+ void func_0013AFF0(int,int,int);
 };
 
 struct C_0001C550 {
