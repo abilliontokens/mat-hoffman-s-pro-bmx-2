@@ -156,9 +156,22 @@ struct S_00093620_Mid {
     S_00093620_Cfg *f4;
 };
 
+struct S_00093620_Mgr;
+
 struct S_00093620_Root {
-    char pad0[0x2e8];
+    char pad0[0x2e0];
+    S_00093620_Mgr *f2e0;
+    char pad2e4[4];
     S_00093620_Mid *f2e8;
+};
+
+/* profile page: name strings at +0x4c and +0x150 (same layout as C_00092890) */
+struct C_00093620 {
+    char pad0[0x4c];
+    char f4c[0x104];
+    char f150[0x104];
+    int func_00092BE0(void);
+    int func_00093620(int a);
 };
 
 extern S_00093620_Root *D_002A8490;
