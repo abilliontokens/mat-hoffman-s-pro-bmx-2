@@ -26,3 +26,11 @@ struct C_000DE300 {
     void func_000DE300();
     void func_000DE390();
 };
+
+void C_000DE300::func_000DE390()
+{
+    C_000DE_Elem *e = unk2EC;
+    e->f38 = ((int)unk314 << 24) | (e->f38 & 0xffffff);
+    e->b58 |= 2;
+    func_001BF000();
+}
