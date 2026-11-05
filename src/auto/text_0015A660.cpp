@@ -472,6 +472,26 @@ void C_0015B310::func_0015B1C0(void)
     func_00157660();
 }
 
+C_0015B210 *C_0015B210::func_0015B210(char *name)
+{
+    char path[0x104];
+    int a;
+    int b;
+    int id;
+
+    func_001ADCC0(path, 0x104, D_00275678, D_002A5EA0, name);
+    func_00030F30(path, D_0028775C);
+    id = D_002BEAAC->func_0013C9F0(path, &D_00275FB4);
+    if (id == 0) {
+        return 0;
+    }
+    D_002BEAAC->func_0013C8A0(id, &a, 4, 1);
+    D_002BEAAC->func_0013C8A0(id, &b, 4, 1);
+    v27(id);
+    D_002BEAAC->func_0013C110(id);
+    return this;
+}
+
 void *C_0015B150::func_0015B2C0(unsigned int flags)
 {
     extern int D_002876E0;
