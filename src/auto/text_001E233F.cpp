@@ -23,6 +23,10 @@ extern "C" void (__stdcall *_imp__KeInitializeTimerEx)(void *timer, int type);
 extern "C" void (__stdcall *_imp__HalInitiateShutdown)(void);
 extern "C" int (__stdcall *_imp__KeSetTimer)(void *timer, __int64 dueTime, void *dpc);
 
+static __inline void SetTimerRelative(void *timer, __int64 due, void *dpc) {
+    _imp__KeSetTimer(timer, due, dpc);
+}
+
 static void initterm(PVFV *pfbegin, PVFV *pfend) {
     while (pfbegin < pfend) {
         if (*pfbegin != 0 && (int)*pfbegin != -1) {
@@ -34,37 +38,31 @@ static void initterm(PVFV *pfbegin, PVFV *pfend) {
 
 #pragma optimize("t", off)
 void func_001E2655(void) {
-    PVFV *p;
     if (D_002AE580 != 0) {
         D_002AE580();
     }
-    for (p = D_002A0410; p < D_002A0424; p++) {
-        if (*p != 0 && (int)*p != -1) {
-            (*p)();
-        }
-    }
-    for (p = D_0029F4F0; p < D_002A040C; p++) {
-        if (*p != 0 && (int)*p != -1) {
-            (*p)();
-        }
-    }
+    initterm(D_002A0410, D_002A0424);
+    initterm(D_0029F4F0, D_002A040C);
 }
 #pragma optimize("", on)
 
 #pragma optimize("t", off)
 void func_001E26AD(void) {
-    PVFV *p;
-    for (p = D_0029F4E0; p < D_0029F4EC; p++) {
+    PVFV *end = D_0029F4EC;
+    PVFV *p = D_0029F4E0;
+    while (p < end) {
         if (*p != 0 && (int)*p != -1) {
             (*p)();
         }
+        p++;
     }
 }
 #pragma optimize("", on)
 
 #pragma optimize("t", off)
 void func_001E26D6(void) {
-    _imp__KeSetTimer(D_002F6B00, -216000000000i64, D_002F6AE0);
+    __int64 due = -216000000000i64;
+    _imp__KeSetTimer(D_002F6B00, due, D_002F6AE0);
 }
 #pragma optimize("", on)
 
