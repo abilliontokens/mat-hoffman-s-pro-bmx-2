@@ -89,6 +89,22 @@ struct C_0018BF80 {
 };
 
 
+undefined4 C_0018B010::func_0018B010(byte param_1)
+{
+  int func_001E891B(...);
+  undefined4 in_ECX = (undefined4)this;
+
+  vtbl = (void *)&D_00289B5C;
+  if (f28 != 0) {
+    func_001E891B(f28);
+  }
+  ((C_00157660 *)this)->func_00157660();
+  if ((param_1 & 1) != 0) {
+    func_001E891B(in_ECX);
+  }
+  return in_ECX;
+}
+
 undefined4 C_0018B120::func_0018B120(byte param_1)
 {
   int func_001E891B(...);
