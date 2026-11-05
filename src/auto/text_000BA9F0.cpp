@@ -161,6 +161,27 @@ extern char D_0027D970[];
 extern char D_0027D964[];
 extern char D_00275678[];
 
+extern char D_00276F28[], D_002A5348[], D_002A47F0[], D_002A48F8[], D_00276C34[], D_00276C08[], D_0027D948[];
+struct UILoader {
+    void func_0013D780(char *name, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
+    void func_0013B260(int a);
+    int func_0013DFF0(char *name, int a2);
+};
+extern UILoader *D_002BEAAC;
+struct UISingleton { virtual void v0(int a); };
+extern UISingleton *D_002F0630;
+struct C_00149380 { void func_00149380(); };
+struct C_000AC2C0 { UIItem *func_000AC2C0(int a); };
+struct UIStringHost {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(const char *path);
+};
+extern UIStringHost *D_002A829C;
+struct UIProgress {
+    virtual void v0(); virtual void v1();
+    virtual void v2(const char *name, int a, int b);
+    virtual void v3(const char *name, int a, int b);
+};
 extern char D_002A5FA8[], D_002A5870[], D_002A60B0[], D_002A5D98[], D_002A5EA0[];
 extern char D_0027D90C[], D_002769F8[], D_0027D8FC[], D_0027D8F0[], D_0027A604[], D_0027D8D8[];
 struct BmxMenuItem {
