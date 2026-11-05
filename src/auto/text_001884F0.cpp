@@ -148,3 +148,13 @@ CollisionObjects *CollisionObjects::func_00188A80(int a0)
     return this;
 }
 
+void *C_00188EF0::func_00188EF0(int flags)
+{
+    unk0 = (int)&D_00287EE4;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
