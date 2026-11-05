@@ -73,7 +73,7 @@ struct C_0015AC20 {
     int f3F8;
     char pad3FC[0x149c];
     unsigned int f1898;
-    Ret_0015AC20 func_0015AC20(unsigned int flags);
+    int func_0015AC20(unsigned int flags);
 };
 
 struct C_0015ABF0 {
