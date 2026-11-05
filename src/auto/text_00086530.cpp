@@ -1,5 +1,44 @@
 /* 17 functions from 0x00086530 to 0x000874E0, found by Ghidra. */
 #include "common.h"
+
+extern int D_00279734;
+void func_001E891B(void *p);
+
+struct C_00157600 {
+    void func_00157600(int a0);
+};
+
+struct C_00157660 {
+    void func_00157660(void);
+};
+
+struct BestScoreOverlay_24 {
+    void func_001D6410(void);
+};
+
+struct BestScoreOverlay_V {
+    virtual void Destroy(int flag);
+};
+
+struct BestScoreOverlay {
+    void *vtbl;
+    char pad4[0x20];
+    BestScoreOverlay_24 *f24;
+    BestScoreOverlay_24 *f28;
+    BestScoreOverlay_V *f2C;
+    BestScoreOverlay_V *f30;
+    u32 f34;
+    u32 f38;
+    u32 f3C;
+    u32 f40;
+    u32 f44;
+    char pad48[0x3C];
+    int f84;
+    BestScoreOverlay *func_00086DC0(int a0);
+    void func_00086E00(void);
+    void func_00086C40(float a0);
+};
+
 struct C_00086C70 {
     char pad0[0x70];
     int unk70;
