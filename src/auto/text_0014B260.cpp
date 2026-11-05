@@ -42,6 +42,7 @@ void DynamicRayCollisionObject::func_0014B940()
     }
 }
 
+#pragma inline_depth(0)
 void DynamicRayCollisionObject::func_0014BA40(int param_1)
 {
     if (unkA6 != 0) {
@@ -50,3 +51,4 @@ void DynamicRayCollisionObject::func_0014BA40(int param_1)
     unkA7 = unkA7 & 0xef;
     func_00157A00(param_1);
 }
+#pragma inline_depth()
