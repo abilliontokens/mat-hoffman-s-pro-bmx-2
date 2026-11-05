@@ -40,6 +40,9 @@ extern char D_0028FAC0[];
 void *__stdcall func_001DF56E(void *timeout, int ms);
 S_ObjectAttributes *__stdcall func_001DF546(S_ObjectAttributes *oa, S_AnsiString *str, const char *name);
 int __stdcall func_001DD659(int a0);
+extern "C" int (__stdcall *_imp__NtWriteFile)(void *, void *, void *, void *, void *, void *, u32, void *);
+extern "C" int (__stdcall *_imp__NtReadFile)(void *, void *, void *, void *, void *, void *, u32, void *);
+extern "C" int (__stdcall *_imp__NtWaitForSingleObject)(void *, int, void *);
 void __stdcall func_001DD62B(int a0);
 extern "C" unsigned __int64 __rdtsc();
 #pragma intrinsic(__rdtsc)
