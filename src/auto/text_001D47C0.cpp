@@ -6,9 +6,23 @@ struct S_001D5610_Obj {
     virtual void v0(int flags);
 };
 
+void *__stdcall func_001FF3C0(int size);
+void *func_001E8A44(int size);
+
 /* 0x10-byte aligned 4x4 float matrix */
 struct __declspec(align(16)) S_001D5660_Mat {
     float m[16];
+    __forceinline void identity(void)
+    {
+        _mm_store_ps(&m[0], _mm_setzero_ps());
+        _mm_store_ps(&m[4], _mm_setzero_ps());
+        _mm_store_ps(&m[8], _mm_setzero_ps());
+        _mm_store_ps(&m[12], _mm_setzero_ps());
+        m[0] = 1.0f;
+        m[5] = 1.0f;
+        m[10] = 1.0f;
+        m[15] = 1.0f;
+    }
 };
 
 struct C_001D5610 {
@@ -449,6 +463,37 @@ int C_001D5640::func_001D5640(u8 param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+void C_001D5660::func_001D5660(int count, int arg2)
+{
+    void *__stdcall func_001FF3C0(int size);
+    void *func_001E8A44(int size);
+    C_001D5660 * volatile self = this;
+    S_001D5660_Mat * volatile p;
+    S_001D5660_Mat *q;
+    __m128 *v;
+    int i;
+
+    self->f8 = count;
+    self->fC = count;
+    self->f14 = func_001FF3C0(self->f8 * 0x18);
+    self->f64 = (short *)func_001E8A44(self->fC * 2);
+    for (i = 0; i < self->fC; i++) {
+        self->f64[i] = (short)i;
+    }
+    self->f10 = arg2;
+    p = &self->f20;
+    q = p;
+    v = (__m128 *)q;
+    v[0] = _mm_setzero_ps();
+    v[1] = _mm_setzero_ps();
+    v[2] = _mm_setzero_ps();
+    v[3] = _mm_setzero_ps();
+    q->m[0] = 1.0f;
+    q->m[5] = 1.0f;
+    q->m[10] = 1.0f;
+    q->m[15] = 1.0f;
 }
 
 /* end */
