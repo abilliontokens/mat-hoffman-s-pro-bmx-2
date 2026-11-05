@@ -286,20 +286,12 @@ struct C_001A4790 {
 
 int C_001A3BF0::func_001A3BF0(int idx)
 {
-    S_001A3BF0_Item *item;
     S_001A3BF0_Obj *obj;
-    int i;
 
     if (idx < 1 || idx > f1c0) {
         return 0;
     }
-    i = idx - 1;
-    if (f1c0 > 0 && f1c4 != 0 && i < f1c0) {
-        item = f1c4[i];
-    } else {
-        item = 0;
-    }
-    obj = item->obj;
+    obj = Item(idx - 1)->obj;
     if (obj->v7()) {
         return obj->v6(0);
     }
@@ -466,7 +458,7 @@ void C_001A4790::func_001A4790(void *a1, u32 flags, u32 *a3, u32 *a4, int a5, in
         a1 = D_002EFE78;
     }
     f2C = a1;
-    f30 = a1;
+    f30 = (Mat_001A4790 *)a1;
     d = (V4_001A3BF0 *)&vec0[0];
     *d = *(V4_001A3BF0 *)a3;
     d = (V4_001A3BF0 *)&vec10[0];
