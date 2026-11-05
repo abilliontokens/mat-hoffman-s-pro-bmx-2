@@ -319,19 +319,32 @@ struct S_00095390_Node {
 /* BmxMusicManager */
 struct C_00095060 {
     void *vtbl;
-    char pad4[0x2c];
+    char pad4[0x20];
+    int f24;
+    void *f28;
+    int f2C;
     int f30;
     int f34;
     int f38;
-    char pad3C[0x14];
+    char pad3C[4];
+    int f40;
+    int f44;
+    int f48;
+    float f4C;
     S_00094A00_Obj *f50;
     C_00094F10 tracks;
-    char pad5C[0xc];
+    int f5C;
+    int f60;
+    unsigned char f64;
+    char pad65[3];
     S_00095060_PtrList ids;
-    char pad70[0xc];
+    int f70;
+    int f74;
+    unsigned char f78;
+    char pad79[3];
     int f7C;
     int f80;
-    S_00094A00_Child *f84[1];
+    S_00094A00_Child *f84[5];
     int func_000952F0(void);
     char *func_00095390(int index);
     char *func_00095430(int index);
@@ -341,6 +354,35 @@ struct C_00095060 {
     int func_000951B0(int n);
     int func_00095520(int n);
     int func_000955C0(void *id);
+    void *func_00094F40(void *arg);
+    void func_001577A0(void *child, int b);
+};
+
+struct C_00157600 {
+    void func_00157600(int a);
+};
+
+void *func_001E8A44(int size);
+
+/* the object func_001CD770 constructs; called through vtable slot 10 */
+struct C_001CD770 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    C_001CD770 *func_001CD770(int a, int b);
+};
+
+struct S_00094F40_Arg {
+    char pad0[0xb4];
+    int fB4;
 };
 
 /* object at C_00094840::unk28, called through vtable slot 31 */
