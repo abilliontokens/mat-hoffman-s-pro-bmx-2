@@ -422,3 +422,13 @@ void C_000AC890::func_000AC890(void)
     }
 }
 
+void C_000ACC40::func_000ACC40(void)
+{
+    C_000ACC40_List *list = field_534;
+    if (list != 0) {
+        for (int i = 0; i < list->count; i++) {
+            list->items[i]->func_000A8450(this);
+        }
+    }
+}
+
