@@ -85,6 +85,25 @@ struct C_00101010 {
     void v70(int a, int b);
 };
 
+struct C_00100CF0 {
+ char pad0[0x124];
+ O_101010 *owner;
+ char pad128[0x20];
+ int clear148[8];
+ char pad168[0x11c];
+ int f284, f288;
+ float f28c;
+ int f290, f294, f298, f29c, f2a0, f2a4, f2a8, f2ac, f2b0;
+ float f2b4;
+ int f2b8, f2bc, f2c0, f2c4;
+ float f2c8, f2cc;
+ M_101010 *f2d0;
+ void func_00100CF0(float dt);
+ void func_001BEE50(int, int, int);
+ void func_001BED00(float);
+};
+struct C_00094E40 { void func_00094E40(int, int, int); };
+
 struct C_001D6600 {
     void func_001D6600(void);
 };
