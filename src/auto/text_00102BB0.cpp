@@ -92,6 +92,29 @@ struct C_001BF6A0 {
     void func_001BF6A0();
 };
 
+/* BmxUIWidgetOverlayText, virtual function 32 */
+struct C_00102E20 {
+    void *vtbl;
+    char pad4[0x28];
+    int unk2C;
+    char pad30[0x140];
+    int unk170;
+    char pad174[4];
+    int unk178;
+    char pad17C[0x34];
+    C_001B1980 **unk1B0;
+    char pad1B4[0x20C];
+    int unk3C0;
+    int unk3C4;
+    int unk3C8;
+    int unk3CC;
+    char pad3D0[4];
+    int unk3D4;
+    int unk3D8;
+    int unk3DC;
+    void func_00102E20();
+};
+
 /* BmxUIWidgetOverlayText */
 struct C_00102FD0 {
     void *vtbl;
