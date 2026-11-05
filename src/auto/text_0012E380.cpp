@@ -147,6 +147,12 @@ struct K_0012E380 {
 };
 extern f32 D_00275544;
 
+static inline float Abs_0012E380(float x)
+{
+    u32 b = *(u32 *)&x & 0x7fffffff;
+    return *(float *)&b;
+}
+
 struct C_0012E6F0 {
     undefined4 func_0012E6F0(byte param_1);
 };
