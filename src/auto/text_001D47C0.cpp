@@ -28,6 +28,7 @@ struct XboxRenderTarget {
     void *f8C;
     XboxRenderTarget *func_001D4980(int);
     int func_001D4FF0(int a);
+    int func_001D4B40(int *rect, int *src, int *dst);
 };
 int __stdcall func_001FFE40(int);
 int func_00200210();
