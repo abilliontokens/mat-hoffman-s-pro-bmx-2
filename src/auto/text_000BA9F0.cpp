@@ -1,6 +1,12 @@
 /* 13 functions from 0x000BA9F0 to 0x000BB7C0, found by Ghidra. */
 #include "common.h"
 
+struct UIQuad { int x, y, z, w; };
+struct UIPositionData { char pad0[0x24]; UIQuad f24; char pad34[0x70]; UIQuad fA4; };
+struct UIItemData { char pad0[0x3e4]; int f3E4; char pad3E8[0xc0]; int *f4A8; char pad4AC[0x30]; UIPositionData *f4DC; };
+struct UIPositionItem { char pad0[0x170]; UIQuad f170, f180; void func_0012A770(int, int); };
+extern int D_002A32DC;
+
 struct UIService {
     int func_00030020(const char *name);
     int func_000300C0(const char *name);
@@ -95,5 +101,16 @@ void BmxUIManager::func_000BB3B0(const char *a, const char *b)
     f25c->f74->func_00030020(a);
     f25c->f74->func_000300C0(b);
     f25c->f74->func_00030160();
+}
+
+int BmxUIManager::func_000BB3F0(const char *a, const char *b)
+{
+    if (f25c->f74->func_000300F0(a) == 0) {
+        return 0;
+    }
+    if (f25c->f74->func_00030120(b) == 0) {
+        return 0;
+    }
+    return f25c->f74->func_000301D0() != 0 ? 1 : 0;
 }
 
