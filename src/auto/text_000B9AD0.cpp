@@ -188,7 +188,8 @@ int BmxUIGlobalManager::func_000B9AD0(int mode, int arg)
     m = func_001E8A44(0x1f0);
     f30 = m ? ((C_B9AD0_Object *)m)->func_001A2C00(*(void **)(D_002A8490+4), *(void **)(*(char **)((char *)f24+0x150)+0x4c0), 6, 1) : 0;
     func_001577A0(f30, -1);
-    f30->func_001A23F0(local, D_002A3138, D_002A3138, 2, 20.0f, 100.0f, 0, 1);
+    Block16 color = { D_002A3138.v[0], D_002A313C, D_002A3140, D_002A3144 };
+    f30->func_001A23F0(local, color, color, 2, 20.0f, 100.0f, 0, 1);
     f30->func_001A4640(D_0027D674, D_00275630, -1);
     ((V_B9AD0 *)*(void **)(*(char **)(D_002A8490+4)+0xb4))->vf6();
     ((V_B9AD0 *)*(void **)(D_002A8490+4))->vf6();
