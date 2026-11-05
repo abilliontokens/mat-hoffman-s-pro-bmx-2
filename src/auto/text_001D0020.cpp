@@ -69,12 +69,14 @@ struct ControllerPort_001D14C0 {
     virtual void v1(int flags);
     ControllerPort_001D14C0 *func_001D14C0(int port);
     int func_001D1550(int port);
+    void func_001D15B0(void);
 };
 
 struct XboxControlInterface_001D0C30 {
     void *vtbl;
     int f4;
-    char pad8[0xC];
+    char pad8[8];
+    ControllerPort_001D14C0 *f10;
     ControllerPort_001D14C0 *f14[4];
     char pad24[0x14];
     int f38;
