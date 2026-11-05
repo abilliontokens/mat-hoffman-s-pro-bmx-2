@@ -168,6 +168,29 @@ struct C_001D1B70 {
 };
 
 
+int XboxGame::func_001D0FD0(int param_1)
+{
+    int saved = 0;
+    if (D_002EFDB8 != 0) {
+        saved = D_002EFDB8->unk4;
+    }
+    if (param_1 != D_002F07B8->unk6C) {
+        if (D_002EFDB8 != 0) {
+            D_002EFDB8->v0(1);
+            D_002EFDB8 = 0;
+        }
+        D_002F07B8->func_001D8AA0(param_1);
+        if (((V_XboxGame *)this)->v34() == 0) {
+            return 0;
+        }
+    }
+    if (D_002EFDB8 != 0 && saved != 0) {
+        D_002EFDB8->func_00182830(saved);
+        D_002EFDB8->v12(saved + 0x1e0);
+    }
+    return 1;
+}
+
 void *C_001D1460::func_001D1460(int a0)
 {
     func_0015A910(a0);
