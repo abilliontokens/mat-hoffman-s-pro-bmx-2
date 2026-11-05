@@ -3,8 +3,34 @@
 #include "ghidra.h"
 void func_001E891B(void *p);
 
+void *func_001E8A44(int size);
+
+struct V4_15D850 { float x, y, z, w; };
+static inline V4_15D850 v4_15D850(float x, float y, float z)
+{
+    V4_15D850 r;
+    r.x = x;
+    r.y = y;
+    r.z = z;
+    r.w = 1.0f;
+    return r;
+}
+
 struct C_00192A50 {
+    char pad0[0x3c];
+    int unk3C;
+    C_00192A50 *func_00192900(int a);
     void func_00192A50(C_00192A50 *other, int c);
+    void func_00192A90(void *p);
+    void func_00192AC0(void *p);
+};
+
+struct C_001923F0 {
+    C_001923F0 *func_001923F0(int a);
+};
+
+struct C_0017D5A0 {
+    C_0017D5A0 *func_0017D5A0(int a1, int a2, int a3, int a4, int a5, int a6, int a7);
 };
 
 struct C_00193500 {
