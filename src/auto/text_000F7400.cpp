@@ -93,6 +93,30 @@ struct C_000F7670 {
 };
 
 
+void BmxUIPageGameOptions::func_000F75D0(void) {
+    if (unk2bc != 0) {
+        func_000F4E00();
+        unk2bc = 0;
+    }
+    if (unk328 != 0) {
+        func_000F58F0();
+        unk328 = 0;
+    }
+    if (unk2b0 != 0) {
+        func_000C9940();
+        unk2b0 = 0;
+    }
+    S_000F75D0_B *b = unk124->unk25c;
+    if (b->unk74->func_000301D0() == 0) {
+        S_000F75D0_Root *r = D_002B91AC;
+        r->f3c->func_001D6600();
+    }
+    S_000F75D0_Root *r2 = D_002B91AC;
+    r2->f34->func_001D6600();
+    func_000CB3B0();
+    func_00157960();
+}
+
 undefined4 C_000F7670::func_000F7670(byte param_1)
 {
   int func_000CB650(...);
