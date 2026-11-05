@@ -37,7 +37,6 @@ struct C_0014A540;
 struct C_00012140 {
     void func_00012140();
 };
-void func_001E891B(void *p);
 
 struct C_0014A3A0 : C_0001DFE0 {
     int unk8[8];
@@ -50,10 +49,12 @@ struct C_0014A3A0 : C_0001DFE0 {
     float unk5C[16];
     char pad9C[0x40];
     int unkDC;
-    char padE0[8];
-    int unkE8;
-    int unkEC;
+    int unkE0;
+    int unkE4;
+    C_0014A540 *unkE8;
+    C_00012140 *unkEC;
     C_0014A3A0 *func_0014A3A0();
+    void func_0014A420();
 };
 
 struct C_0014A560 {
