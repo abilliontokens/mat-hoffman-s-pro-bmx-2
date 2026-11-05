@@ -52,3 +52,19 @@ undefined4 C_001923D0::func_001923D0(byte param_1)
   return in_ECX;
 }
 
+void C_00192420::func_00192420(void)
+{
+    int i;
+
+    vtbl = &D_0028AB24;
+    if (f34 != 0) {
+        for (i = 0; i < f2c; i++) {
+            if (f34[i] != 0) {
+                func_001E8390((void *)f34[i]);
+            }
+        }
+        func_001E8390(f34);
+    }
+    ((C_001927A0 *)this)->func_001927A0();
+}
+
