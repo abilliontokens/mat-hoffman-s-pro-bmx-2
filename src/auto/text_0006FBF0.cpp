@@ -112,6 +112,8 @@ struct C_00070360 {
     int func_0006FF80(void);
     void func_00070360(void);
     void func_00070450(void);
+    int func_00070570(void);
+    void func_00157960(void);
 };
 struct C_000707C0 {
     char pad0[0xFC];
