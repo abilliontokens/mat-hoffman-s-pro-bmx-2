@@ -274,6 +274,30 @@ void AiTikiGod::func_00017E90(S_00017DA0_Vec *a, float *b)
     f774++;
 }
 
+void S_00017FA0_this::func_00017FA0(S_00017DA0_Vec *a, S_00017DA0_Vec *b)
+{
+    S_00017DA0_Vec u;
+    S_00017DA0_Vec d;
+    float len;
+
+    if (f4f4 != 1 && f384->f24 == f38c && fc4 != f734 && fc4 != f738) {
+        int chance = f4d4 < 500 ? 40 : 25;
+        if (func_00011260(1, 100) <= chance) {
+            func_00011110(&u, &f508, a);
+            len = func_00011170(&u);
+            if (!(len < D_00275804)) {
+                S_00017DA0_Vec *n = (S_00017DA0_Vec *)func_00016DD0((float *)b, (float *)b);
+                func_000110E0(&u, a, func_00011140(&d, n, len));
+                if (func_00011170(func_00011110(&d, &u, &f508)) <= D_00275800) {
+                    u.y -= D_002757FC;
+                    f518 = u;
+                    f384->func_0008AB90(f394);
+                }
+            }
+        }
+    }
+}
+
 void TikiEvadeState::func_00018340()
 {
     owner->func_00017760();
