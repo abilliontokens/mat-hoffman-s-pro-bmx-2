@@ -132,11 +132,51 @@ void func_000111B0(float *out, float *in) {
     _mm_storeu_ps(out, _mm_mul_ps(scale, v));
 }
 
+float func_00011220(float *a, float *b)
+{
+    return a[1] * b[1] + a[0] * b[0] + a[2] * b[2];
+}
+
 int func_001E8833(void);
 extern float D_002754B0;
 float func_00011240(void) {
     return func_001E8833() * D_002754B0;
 }
 
+int func_00011260(int lo, int hi)
+{
+    if (D_002AF45C == 0) {
+        S_SystemTime t;
+        func_001DC910(&t);
+        D_002AF45C = (((t.day * 240 + t.hour) * 6 + t.minute) * 60) + t.second;
+        func_001E8826(D_002AF45C);
+    }
+    return lo + (int)((float)func_001E8833() * D_002754B0 * (float)(hi - lo + 1));
+}
+
+int C_00011410::func_00011410(void)
+{
+    return unk4;
+}
+
 void __stdcall func_00011430(int a0, int a1) {
 }
+
+void C_00011440::func_00011440(C_00017680_Vec pos)
+{
+    float vecB[4];
+    float vecA[4];
+
+    vecA[2] = 0.0f;
+    vecA[1] = 0.0f;
+    vecA[0] = 0.0f;
+    vecA[3] = 1.0f;
+    vecB[2] = 0.0f;
+    vecB[1] = 0.0f;
+    vecB[0] = 0.0f;
+    vecB[3] = 1.0f;
+    f3C->f4->func_00197B40(vecA, vecB);
+    pos.y = vecA[1];
+    f3C->f4->func_00199110(0, (float *)&pos, vecB, 0, 1, 0);
+}
+
