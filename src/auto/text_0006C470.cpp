@@ -101,3 +101,15 @@ void C_0006D1D0::func_0006D1D0() {
     unkE4 = -1;
     unkEC = 1;
 }
+
+void C_0006D1D0::func_0006D210() {
+    D_002EFDB8->vf7(1);
+    D_002EFDB8->vf8();
+    unkE0 = 0;
+    unkCC = 0;
+    unkD4->v34();
+    unkD4->func_00032A40();
+    v4();
+    unkD4->unk1F4 = 0;
+}
+
