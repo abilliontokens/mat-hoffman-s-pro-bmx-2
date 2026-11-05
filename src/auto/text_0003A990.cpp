@@ -3,7 +3,12 @@
 #include <string.h>
 #include <xmmintrin.h>
 extern float D_00275548;
-struct S_0003AC20_Vec { float x,y,z,w; };
+struct S_0003AC20_Vec {
+ float x,y,z,w;
+ S_0003AC20_Vec() {}
+ S_0003AC20_Vec(float a,float b,float c,float d) { x=a; y=b; z=c; w=d; }
+ S_0003AC20_Vec(const S_0003AC20_Vec &v) { x=v.x; y=v.y; z=v.z; w=v.w; }
+};
 struct S_0003AC20_Data { char pad0[0x34]; S_0003AC20_Vec pos; };
 struct S_0003AC20_Owner { char pad0[0xE8]; S_0003AC20_Data *fE8; };
 struct S_0003AC20_Entry { int type; S_0003AC20_Owner *owner; };
