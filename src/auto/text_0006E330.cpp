@@ -18,6 +18,62 @@ struct C_001B1980 {
     void func_001B1980();
 };
 
+extern int D_0027850C;
+extern int D_00278B14;
+
+struct C_0006E330 {
+    void *vtbl;
+    char pad4[0x20];
+    int unk24[8];
+    int unk44[8];
+    int unk64;
+    char pad68[8];
+    int unk70;
+    u8 unk74;
+    char pad75[0xA0 - 0x75];
+    int unkA0;
+    u8 unkA4;
+    char padA5[0xBC - 0xA5];
+    int unkBC;
+    int unkC0;
+    int unkC4;
+    int unkC8;
+    int unkCC;
+    int unkD0;
+    int unkD4;
+    int unkD8;
+    int unkDC;
+    int unkE0;
+    int unkE4;
+    int unkE8;
+    int unkEC;
+    int unkF0;
+    int unkF4;
+    int unkF8;
+    int unkFC;
+    int unk100;
+    int unk104;
+    int unk108;
+    char pad10C[4];
+    int unk110;
+    char pad114[0xC];
+    int unk120;
+    int unk124;
+    int unk128;
+    int unk12C;
+    int unk130[4];
+    int unk140[4];
+    int unk150;
+    int unk154;
+    int unk158[5];
+    int unk16C[5];
+    int unk180[6];
+    char pad198[4];
+    int unk19C;
+    void func_00157600(int a0);
+    C_0006E330 *func_0006E330(int a0);
+};
+
 struct C_0006EC60_EC {
     virtual void v0();
     virtual void v1();
