@@ -277,6 +277,16 @@ struct SearchNode {
     S_00192930_Iface *f2C;
     int *f30;
     int f34;
+    int f38;
+    int f3c;
+    float f40;
+    float f44;
+    float f48;
+    float f4c;
+    char f50[0x40];
+    short f90;
+    short f92;
+    int func_001930F0(void);
     void func_00192930(void);
     int func_00192990(int a, int b);
     void func_00192A50(int a, int b);
@@ -402,16 +412,16 @@ C_00192470 *C_00192470::func_00192720(void)
     void *func_001E8A44(int);
     func_0001DFE0();
     vtbl = (void *)&D_0028AB84;
+    f20 &= 0xfe;
     list.items = 0;
     list.count = 0;
     list.growBy = 0;
     list.capacity = 0;
-    f20 &= 0xfe;
     f8 = 0;
     list.items = (SearchEntry **)func_001E8A44(0x78);
+    f20 |= 1;
     list.growBy = 0x1e;
     list.capacity = 0x1e;
-    f20 |= 1;
     f24 = D_002AAEC8->func_001BC6E0(D_0028AB70);
     f25 = D_002AAEC8->func_001BC6E0(D_0028AA90);
     return this;
@@ -640,7 +650,8 @@ void func_00192C00(float a, float b, float c, float d, void *out)
     __declspec(align(16)) float m[16];
     S_00192C00_Obj *o = D_002EFDB8->f4;
     float s = func_0014F600(o->f1D0 * 0.00872664526f) * o->f1FC;
-    func_00162470(m, s * a, b * s, s * o->f1F8 * c, d * (s * o->f1F8), o->f1FC, o->f200, 0);
+    float u = s * o->f1F8;
+    func_00162470(m, s * a, b * s, u * c, d * u, o->f1FC, o->f200, 0);
     func_000263B0(out, o->fB0, m);
 }
 
