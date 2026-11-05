@@ -65,6 +65,52 @@ struct C_00011440 {
     void func_00011440(C_00017680_Vec pos);
 };
 
+struct S_00011D30_Cfg {
+    char pad0[0x1b0];
+    float f1B0;
+};
+
+struct S_00011D30_Mid {
+    int f0;
+    S_00011D30_Cfg *f4;
+};
+
+struct S_00011D30_Game {
+    char pad0[0x1c8];
+    int f1C8;
+};
+
+struct S_00011D30_Root {
+    char pad0[0x2a4];
+    S_00011D30_Game *f2A4;
+};
+
+struct S_00011D30_Global {
+    int f0;
+    char *f4;
+};
+
+struct C_001C5C50 {
+    int func_001C5C50(void *a, void *b, void *c, void *d, void *e);
+};
+
+struct C_00011D30 {
+    char pad0[0x3C];
+    S_00011D30_Mid *f3C;
+    char pad40[0x39E];
+    u8 f3DE;
+    char pad3DF[5];
+    C_00017680_Vec f3E4;
+    void func_001578D0(void);
+    int func_00011D30(void);
+};
+
+extern S_00011D30_Root *D_002A8490;
+extern S_00011D30_Global *D_002EFDB8;
+extern C_001C5C50 *D_002AB66C;
+extern float D_0027554C;
+extern float D_00275548;
+
 extern int D_002AF45C;
 extern float D_002754B0;
 
