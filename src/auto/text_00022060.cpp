@@ -178,7 +178,8 @@ struct Obj_B70 {
 struct Hold_B70 { char pad0[4]; Obj_B70 *o; char pad8[8]; int f10; };
 struct Y_B70 { void *f0; char pad4[4]; void *f8; };
 struct Own_B70 { char pad0[0x1a4]; Hold_B70 *h; char pad1a8[4]; Y_B70 *y; };
-struct T_B70 { char pad0[0x18]; V4_B70 *pts; char pad1c[0x10]; char f2c; char f2d; char pad2e; char f2f; };
+struct P_B70 { float x, y, z, pad[3]; };
+struct T_B70 { char pad0[0x18]; P_B70 *pts; char pad1c[0x10]; char f2c; char f2d; char pad2e; char f2f; };
 struct E_B70 {
     char pad0[0x28]; Own_B70 *own; T_B70 *t; int f30, f34, f38, f3c, f40, pad44, f48;
     V4_B70 a; V4_B70 b; char pad6c[0xc]; char f78, f79, pad7a, f7b;
