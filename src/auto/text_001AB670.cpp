@@ -154,6 +154,43 @@ void C_001AC150::func_001AC1A0(int n)
     }
 }
 
+void C_001AC200::func_001AC200(int n)
+{
+    C_001AC150 *args = field_10;
+    if (args->field_0C < n) {
+        args->func_001AC1A0(n);
+    }
+    char *s = (char *)args->field_04[n - 1];
+    char c = *s;
+    while (c != 0) {
+        s++;
+        field_0C[field_04] = c;
+        field_04++;
+        c = *s;
+    }
+}
+
+void func_001AC330(char *buf, const char *fmt, ...)
+{
+    va_list ap;
+    C_001AC150 args;
+    C_001AC200 out;
+
+    va_start(ap, fmt);
+    args.field_00 = (int **)&ap;
+    args.field_08 = 10;
+    args.field_0C = 0;
+    args.field_04 = (int *)func_001E8A44(0x28);
+    out.field_00 = 0;
+    out.field_04 = 0;
+    out.field_08 = fmt;
+    out.field_0C = buf;
+    out.field_10 = &args;
+    out.func_001AC240();
+    va_end(ap);
+    func_001E891B(args.field_04);
+}
+
 StringTable *StringTable::func_001AC3A0()
 {
     func_0001DFE0();
@@ -166,3 +203,24 @@ StringTable *StringTable::func_001AC3A0()
     vtbl = (void *)&D_0028C0BC;
     return this;
 }
+
+void StringTable::func_001AC3D0()
+{
+    int i;
+
+    vtbl = (void *)&D_0028C0BC;
+    if (field_18 != 0) {
+        for (i = 0; i < field_1C; i++) {
+            func_001E8390(field_18[i].str);
+        }
+        func_001E8390(field_18);
+    }
+    if (field_14 != 0) {
+        func_001E891B(field_14);
+    }
+    if (field_10 != 0) {
+        func_001E8390(field_10);
+    }
+    func_0001DFF0();
+}
+
