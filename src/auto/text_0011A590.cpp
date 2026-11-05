@@ -121,13 +121,18 @@ float func_0011B180(float a, float b)
     return r;
 }
 
-void func_0011B1B0(Vec4 *out, float angle)
+Vec4 func_0011B1B0(float angle)
 {
+    Vec4 r;
     if (angle > D_002756D0) {
         angle -= D_002756B8;
     } else if (angle < D_002756E8) {
-        angle += D_002756B8;
+        angle += 6.2831855f;
     }
-    *out = Vec4(func_0014F550(angle), 0.0f, func_0014F510(angle), 1.0f);
+    r.w = 1.0f;
+    r.y = 0.0f;
+    r.z = func_0014F510(angle);
+    r.x = func_0014F550(angle);
+    return r;
 }
 
