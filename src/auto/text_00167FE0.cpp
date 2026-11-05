@@ -25,14 +25,6 @@ extern char D_002869B4[];
 extern char D_002869B8[];
 char *func_001E95A4(char *s, const char *delim);
 
-static __forceinline void parse_int4_00168E70(char *s, int *out)
-{
-    out[0] = func_001E91F4(func_001E95A4(s, D_002869B8));
-    out[2] = func_001E91F4(func_001E95A4(0, D_002869B8));
-    out[1] = func_001E91F4(func_001E95A4(0, D_002869B8));
-    out[3] = func_001E91F4(func_001E95A4(0, D_002869B4));
-}
-
 struct C_001684B0 {
     char pad0[0x1c];
     int f1c;
@@ -273,6 +265,7 @@ int C_00168280::func_00168CB0(const char *name, const float *def, float *out)
 int C_00168280::func_00168E70(const char *name, const int *def, int *out)
 {
     char buf[0x184];
+    char *tok;
 
     if (func_00168550(name, buf, 0x80) == 0) {
         strcpy(buf, D_00275630);
@@ -281,12 +274,12 @@ int C_00168280::func_00168E70(const char *name, const int *def, int *out)
         out[1] = def[1];
         out[3] = def[3];
         return 0;
-    } else {
-        out[0] = func_001E91F4(func_001E95A4(buf, D_002869B8));
-        out[2] = func_001E91F4(func_001E95A4(0, D_002869B8));
-        out[1] = func_001E91F4(func_001E95A4(0, D_002869B8));
-        out[3] = func_001E91F4(func_001E95A4(0, D_002869B4));
-        return 1;
     }
+    tok = buf;
+    out[0] = func_001E91F4(tok = func_001E95A4(tok, D_002869B8));
+    out[2] = func_001E91F4(tok = func_001E95A4(0, D_002869B8));
+    out[1] = func_001E91F4(tok = func_001E95A4(0, D_002869B8));
+    out[3] = func_001E91F4(tok = func_001E95A4(0, D_002869B4));
+    return 1;
 }
 
