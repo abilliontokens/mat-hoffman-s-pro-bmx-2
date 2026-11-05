@@ -241,6 +241,67 @@ void func_001ED883(int fh)
     func_001EE782(fh);
 }
 
+int func_001ED8A7(int ch, void *str)
+{
+    int func_001F57FF(int fh);
+    int func_001EDB4B(int fh, char *buf, int cnt);
+    int func_001EE52F(int fh, int off, int origin);
+    extern S_001ED_FILE D_002AE690;
+    extern S_001ED_FILE D_002AE6B0;
+    extern char *D_002FB260[];
+    extern char D_002AEC40[];
+    S_001ED_FILE *stream;
+    int fh;
+    int charcount;
+    int written;
+
+    stream = (S_001ED_FILE *)str;
+    fh = stream->file;
+    if (!(stream->flag & 0x82) || (stream->flag & 0x40)) {
+        stream->flag |= 0x20;
+        return -1;
+    }
+    if (stream->flag & 1) {
+        stream->cnt = 0;
+        if (!(stream->flag & 0x10)) {
+            stream->flag |= 0x20;
+            return -1;
+        }
+        stream->ptr = stream->base;
+        stream->flag &= ~1;
+    }
+    stream->flag |= 2;
+    stream->flag &= ~0x10;
+    stream->cnt = 0;
+    written = charcount = 0;
+    if (!(stream->flag & 0x10c) &&
+        !((stream == &D_002AE690 || stream == &D_002AE6B0) && func_001F57FF(fh))) {
+        func_001F57BB(stream);
+    }
+    if (stream->flag & 0x108) {
+        charcount = stream->ptr - stream->base;
+        stream->ptr = stream->base + 1;
+        stream->cnt = stream->bufsiz - 1;
+        if (charcount > 0) {
+            written = func_001EDB4B(fh, stream->base, charcount);
+        } else {
+            char *info = fh != -1 ? D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 : D_002AEC40;
+            if (info[4] & 0x20) {
+                func_001EE52F(fh, 0, 2);
+            }
+        }
+        *stream->base = (char)ch;
+    } else {
+        charcount = 1;
+        written = func_001EDB4B(fh, (char *)&ch, charcount);
+    }
+    if (written != charcount) {
+        stream->flag |= 0x20;
+        return -1;
+    }
+    return ch & 0xff;
+}
+
 int func_001EDBF6(int *param_1)
 {
     int func_001F57FF(...);
