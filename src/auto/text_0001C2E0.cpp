@@ -150,6 +150,15 @@ void *C_0001C550::func_0001C550(int flags) {
     return this;
 }
 
+float func_0001C590(float x) { return fabsf(x); }
+
+C_0001C5B0 *C_0001C5B0::func_0001C5B0(float *p) {
+    x = x - p[0];
+    y = y - p[1];
+    z = z - p[2];
+    return this;
+}
+
 void C_0001C920::func_0001C920(void) {
     extern int D_00275C0C;
     int func_00157660(...);
