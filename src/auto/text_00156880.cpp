@@ -114,6 +114,32 @@ struct C_00157660 {
     void func_0001DFF0(void);
 };
 
+extern int D_002DF948;
+
+/* node of the GameObject tree: prev/next siblings, first child, parent */
+struct GameObject {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    GameObject *f8;
+    GameObject *fC;
+    GameObject *f10;
+    GameObject *f14;
+    unsigned int f18;
+    unsigned int f1C;
+    char pad20;
+    u8 f21;
+    void func_001576E0(void);
+    void func_00157740(unsigned int flags);
+    unsigned int func_00157770(void);
+    GameObject *func_001577A0(GameObject *child, unsigned int b);
+};
+
 int func_00135C70(int a, int b, int c, int d);
 void func_001D47C0(void);
 void func_0014FE50(int a);
