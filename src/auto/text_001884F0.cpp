@@ -397,6 +397,21 @@ int C_00188CB0::func_00188D20(int n)
     return 0;
 }
 
+int C_00188CB0::func_00188DB0(int idx, int n)
+{
+    int i;
+
+    if (n >= 0 && fC[idx] == 0) {
+        f4[idx] = n;
+        fC[idx] = func_001E8A44(n * 4);
+        for (i = 0; i < n; i++) {
+            ((int *)fC[idx])[i] = 0;
+        }
+        return 1;
+    }
+    return 0;
+}
+
 int C_00188CB0::func_00188E20(int idx, int value)
 {
     int k;
