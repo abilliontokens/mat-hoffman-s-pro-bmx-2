@@ -148,6 +148,11 @@ struct C_001D61E0 {
     int func_001D61E0(void);
 };
 
+template <class T> inline const T &Min_001D5FA0(const T &a, const T &b)
+{
+    return b < a ? b : a;
+}
+
 struct C_001D5FA0Obj {
     void *vtbl;
     int f4;
