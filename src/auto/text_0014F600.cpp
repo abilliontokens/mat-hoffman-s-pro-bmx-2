@@ -373,18 +373,19 @@ void *func_0014FDF0(const char *path, const char *mode)
     int func_001ADCC0(char *buf, int size, const char *fmt, ...);
     void *func_001E9701(const char *name, const char *mode);
     char buf[0x100];
-    const char *s;
-    char *d;
+    char *s;
+    int off;
     char c;
 
     if (path[1] != ':') {
         func_001ADCC0(buf, 0x100, D_00275678, D_00286AD0, path);
     } else {
-        s = path;
-        d = buf;
+        s = (char *)path;
+        off = buf - s;
         do {
-            c = *s++;
-            *d++ = c;
+            c = *s;
+            s[off] = c;
+            s++;
         } while (c != 0);
     }
     return func_001E9701(buf, mode);
@@ -451,6 +452,33 @@ C_00150360 *C_00150360::func_00150360(int a0)
     f50 = 1;
     vtbl = (void *)&D_00286B04;
     return this;
+}
+
+void C_00150360::func_00150390(float a, float b, float c, int d)
+{
+    f30 = b;
+    f24 = a;
+    f34 = c;
+    f2C = (f44 - f48) * b + f48;
+    f28 = (D_00275460 - c) * (f2C - f4C);
+    D_002EFDB8->f2C = a;
+    f50 = 1;
+}
+
+void C_00150360::func_001503E0(float a, float b, float c)
+{
+    float s = f30;
+    float t = f34;
+
+    f30 = s;
+    f34 = t;
+    f44 = a;
+    f48 = b;
+    f4C = c;
+    f2C = (a - b) * s + b;
+    f28 = (D_00275460 - t) * (f2C - c);
+    D_002EFDB8->f2C = f24;
+    f50 = 1;
 }
 
 int C_00150440::func_00150440(void)
