@@ -34,6 +34,37 @@ void *__stdcall func_001DF5B9(int a0, int size);
 void __stdcall func_001DF4E1(void *dst, const void *src, int n);
 extern char D_0028FB58[];
 extern unsigned short D_0028FB88[];
+extern unsigned short D_0028FB90[];
+extern unsigned short D_0028FBB0[];
+extern unsigned short D_0028FBD0[];
+extern char D_0000FEFF;
+int __stdcall func_001DF066(const char *name, int unused);
+int __stdcall func_001DF0D2(const char *name);
+int __stdcall func_001DD247(int h, const void *buf, unsigned int size, unsigned int *written, void *ovl);
+int func_001EAA6D(unsigned short *buf, int count, const unsigned short *fmt, ...);
+
+/* ANSI_STRING / OBJECT_ATTRIBUTES / IO_STATUS_BLOCK / LARGE_INTEGER (Xbox kernel layouts) */
+struct S_AnsiString {
+    unsigned short len;
+    unsigned short maxLen;
+    char *buf;
+};
+struct S_ObjAttr {
+    int root;
+    S_AnsiString *name;
+    unsigned int attr;
+};
+struct S_IoStatus {
+    int status;
+    unsigned int info;
+};
+struct S_Large {
+    unsigned int lo;
+    int hi;
+};
+extern "C" void (__stdcall *_imp__RtlInitAnsiString)(S_AnsiString *dst, const char *src);
+extern "C" int (__stdcall *_imp__NtCreateFile)(int *handle, unsigned int access, S_ObjAttr *oa, S_IoStatus *iosb, S_Large *alloc, unsigned int attrs, unsigned int share, unsigned int disp, unsigned int opts);
+extern "C" unsigned int (__stdcall *_imp__RtlNtStatusToDosError)(int status);
 int func_001EA410(const unsigned short *s);
 unsigned short *func_001EA9DD(const unsigned short *wcs1, const unsigned short *wcs2);
 void func_001EA6A0(void *dst, const void *src, unsigned int n);
@@ -231,6 +262,89 @@ int __stdcall func_001DDF0A(int handle, int param2)
         out = 0;
     }
     return out;
+}
+
+int __stdcall func_001DDF52(int a0, void *a1, char *a2, int a3)
+{
+    int room;
+    int skipRead;
+    int bytesRead;
+    int result;
+    unsigned int nameLen;
+    unsigned short buf[0x8d];
+    unsigned short *p;
+    unsigned short *found;
+    unsigned int total;
+    unsigned int off;
+    unsigned int rem;
+    int partial;
+    int n;
+    int x;
+
+    partial = 0;
+    result = 0;
+    p = buf;
+    room = 0x8c;
+    skipRead = 0;
+    nameLen = func_001EA410((unsigned short *)a1);
+    buf[0x8c] = 0;
+    for (;;) {
+        if (skipRead == 0) {
+            if (func_001DD15A(a0, p, room * 2, &bytesRead, 0) == 0) {
+                break;
+            }
+            if (bytesRead == 0) {
+                break;
+            }
+        }
+        total = bytesRead + (p - buf) * 2;
+        skipRead = 0;
+        if (partial) {
+            found = func_001EA9DD(buf, D_0028FB88);
+            p = buf;
+            room = 0x8c;
+            if (found == 0) {
+                continue;
+            }
+            off = ((char *)found - (char *)buf) + 4;
+            if (off < total) {
+                rem = total - off;
+                func_001EA6A0(buf, (char *)buf + off, rem);
+                p = (unsigned short *)((char *)buf + rem);
+                room = 0x8c - (rem >> 1);
+            }
+            partial = 0;
+            continue;
+        }
+        found = func_001EA9DD(buf, (unsigned short *)a1);
+        if (found == 0 || found[nameLen] != 0x3d) {
+            partial = 1;
+            skipRead = 1;
+            continue;
+        }
+        p = found + nameLen + 1;
+        found = func_001EA9DD(p, D_0028FB88);
+        if (found == 0) {
+            partial = 1;
+            p = buf;
+            room = 0x8c;
+            continue;
+        }
+        x = found - p;
+        n = a3 - 1;
+        if (n >= x) {
+            n = x;
+        }
+        func_001EA4A4((unsigned short *)a2, p, n);
+        ((unsigned short *)a2)[n] = 0;
+        off = ((char *)found - (char *)buf) + 4;
+        if (off < total) {
+            func_001DD3A1(a0, off - total, 0, 1);
+        }
+        result = 1;
+        break;
+    }
+    return result;
 }
 
 int __stdcall func_001DE1DF(int param1, int param2)
