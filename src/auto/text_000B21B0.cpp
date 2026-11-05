@@ -127,6 +127,17 @@ undefined4 C_000B2530::func_000B2530(void)
   return *(undefined4 *)(*(int *)(in_ECX + 0x3c) + 0x4b8);
 }
 
+void VehicleAI::func_000B2C20(int a, int b)
+{
+    if (f54 >= 0 && f54 < D_002B9134->f3C) {
+        if (f3C->func_0012FCF0(a, b)) {
+            int t = f54;
+            f54 = f50;
+            f50 = t;
+        }
+    }
+}
+
 undefined4 C_000B2C60::func_000B2C60(byte param_1)
 {
   int func_000B1200(...);
