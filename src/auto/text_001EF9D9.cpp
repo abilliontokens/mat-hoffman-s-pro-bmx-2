@@ -39,6 +39,13 @@ extern char D_00295C60[];
 extern int D_00278798;
 extern int D_0027D1D8;
 void *_func_001EFBEE(S_001EF734 *o);
+struct C_Lex {
+    int kind;
+    void func_001EEFBA(int d);
+    void func_001EF3D2(void *p);
+};
+extern C_Lex *D_002F6A18;
+void func_001F2F3F(void *a, void *b);
 void *_func_001EFD19(void *a, char *b, void *c);
 void *_func_001EFF6E(S_001EF734 *o);
 void *_func_001EFDB9(void *out, int v);
