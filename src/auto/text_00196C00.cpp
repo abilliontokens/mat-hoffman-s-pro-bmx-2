@@ -91,3 +91,10 @@ void C_00197590::func_00197590(void)
   return;
 }
 
+C_00197680 *C_00197680::func_00197680(int a0)
+{
+    ((C_00138330 *)this)->func_00138330(a0);
+    vtbl = &D_0028B02C;
+    return this;
+}
+
