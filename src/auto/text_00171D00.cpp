@@ -1,5 +1,18 @@
 /* 12 functions from 0x00171D00 to 0x00172BA0, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
+void func_001712D0(float *out, void *in);
+struct V3_00171BA0 {
+ float x,y,z;
+ V3_00171BA0() {}
+ V3_00171BA0(float a,float b,float c):x(a),y(b),z(c) {}
+ V3_00171BA0 operator*(float s) const { return V3_00171BA0(x*s,y*s,z*s); }
+ V3_00171BA0 operator+(const V3_00171BA0 &o) const { return V3_00171BA0(x+o.x,y+o.y,z+o.z); }
+ V3_00171BA0 operator-(const V3_00171BA0 &o) const { return V3_00171BA0(x-o.x,y-o.y,z-o.z); }
+ void operator+=(const V3_00171BA0 &o) { x+=o.x; y+=o.y; z+=o.z; }
+};
+static __forceinline float Sqrt_00171BA0(float x) { float r; _mm_store_ss(&r,_mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+static __forceinline float Max_00171BA0(float a,float b) { float r; _mm_store_ss(&r,_mm_max_ss(_mm_load_ss(&a),_mm_load_ss(&b))); return r; }
 
 extern int D_00288C44;
 void func_001E891B(void *p);
