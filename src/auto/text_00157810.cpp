@@ -94,6 +94,41 @@ void func_001E891B(void *p);
 
 extern int D_002DF948;
 
+struct S_00158510_Vec4 {
+    int x, y, z, w;
+};
+
+struct S_00158510_Src {
+    char pad0[0x20];
+    S_00158510_Vec4 f20;
+    char pad30[0x48];
+    S_00158510_Vec4 *f78;
+};
+
+struct S_00158510_Dst {
+    char pad0[0x7c];
+    S_00158510_Vec4 f7C;
+    S_00158510_Vec4 f8C;
+    unsigned char f9C;
+};
+
+struct S_00158510_Arg0 {
+    char pad0[0x54];
+    S_00158510_Src *f54;
+    char pad58[8];
+    S_00158510_Dst *f60;
+};
+
+struct S_00158510_Arg1 {
+    char pad0[0x68];
+    int f68;
+};
+
+extern int D_002BA160;
+extern int D_002B9118;
+extern int D_002B9108;
+extern int D_002BA148;
+
 /* node of the GameObject tree: prev/next siblings, first child, parent */
 struct C_00157CF0 {
     void *vtbl;
