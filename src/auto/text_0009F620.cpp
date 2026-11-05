@@ -1,6 +1,27 @@
 /* 12 functions from 0x0009F620 to 0x000A0260, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <xmmintrin.h>
+static __forceinline float Max(float a, float b) {
+    float r;
+    _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b)));
+    return r;
+}
+static __forceinline float Min(float a, float b) {
+    float r;
+    _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b)));
+    return r;
+}
+struct C_0009FD60 {
+    char pad0[0x3c];
+    float unk3C;
+    char pad40[0xc];
+    float unk4C;
+    char pad50[0x3c];
+    int unk8C;
+    float unk90;
+    void func_0009FD60(int a0, float a1, float a2, float a3);
+};
 extern const float D_00277D04;
 
 extern int D_0027AD64;
