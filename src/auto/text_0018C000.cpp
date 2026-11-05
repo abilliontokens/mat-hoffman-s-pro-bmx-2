@@ -71,7 +71,6 @@ struct V_0018C120 {
 struct C_0018C120 {
     C_0018C120_Node *head;
     int count;
-    void func_001E891B(void *p);
     void func_0018C120(void);
 };
 
