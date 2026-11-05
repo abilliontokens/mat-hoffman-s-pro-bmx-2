@@ -2,6 +2,41 @@
 #include "common.h"
 #include <string.h>
 
+#include <xmmintrin.h>
+
+static __forceinline float Min_00062CD0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+
+struct Vec4_62 { float x, y, z, w; };
+
+struct C_Elem_62 {
+    char pad0[4];
+    float f4;
+    float f8;
+    char padC[0x1C];
+    float f28;
+    float f2C;
+    char pad30[0x28];
+    unsigned char f58;
+};
+
+struct C_00062CD0 {
+    char pad0[0x12C];
+    C_Elem_62 *f12C[30];
+    C_Elem_62 *f1A4[33];
+    int f228;
+    int pad22C;
+    int f230;
+    float f234;
+    void __stdcall func_00062CD0(float dt);
+};
+
+extern float D_002A1D08;
+extern float D_002A1D88, D_002A1D8C, D_002A1D90;
+extern float D_002A1DC8, D_002A1DCC, D_002A1DD0;
+extern float D_002A1DD8, D_002A1DDC, D_002A1DE0;
+extern float D_002A1E18, D_002A1E1C, D_002A1E20;
+extern float D_00278784;
+
 struct S_func_000639B0_arg1 { int f0; };
 
 struct C_0005E840 {
