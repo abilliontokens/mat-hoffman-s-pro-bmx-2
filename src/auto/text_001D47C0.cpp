@@ -4,9 +4,38 @@
 #include <string.h>
 
 void __stdcall func_00200230(int a);
+struct InitResource {
+    InitResource *func_001C37F0(int);
+    InitResource *func_001C3810(int);
+    InitResource *func_0014A610();
+    InitResource *func_00142CF0();
+    InitResource *func_0014A520(void *);
+    InitResource *func_00142C70();
+    void func_0014A560(void *, int);
+    void func_00142C80(void *, int);
+};
 struct XboxRenderTarget {
+    virtual void v0(int);
+    int f4, f8, fC;
+    char pad10[0x14];
+    int f24;
+    float f28;
+    char pad2C[0x28];
+    int f54, f58, f5C, f60;
+    InitResource *f64, *f68, *f6C, *f70;
+    char pad74[0x10];
+    InitResource *f84, *f88;
+    void *f8C;
+    XboxRenderTarget *func_001D4980(int);
     int func_001D4FF0(int a);
 };
+int __stdcall func_001FFE40(int);
+int func_00200210();
+void __stdcall func_002011F0(int, void *);
+int func_001B2C40(int);
+void func_0014A7B0(void *, void *);
+extern char D_002ABD08[], D_002F0A80[], D_0028C1F0[], D_0028C1DC[];
+
 
 struct S_001D5610_Obj {
     virtual void v0(int flags);
