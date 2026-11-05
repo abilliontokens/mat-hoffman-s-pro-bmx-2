@@ -10,7 +10,9 @@ struct BmxVehicle {
  void func_0010C090(void*,void*,void*,int);
 };
 extern char *D_002A8490;
-extern int D_002A3A3C, D_002A3A40, D_002A3A44, D_002A3A48;
+struct Reset_11A00 { int a,b,c,d; };
+extern Reset_11A00 D_002A3A3C;
+extern int D_002A3A40, D_002A3A44, D_002A3A48;
 extern char D_002A3A5C[];
 extern "C" int func_00026300(void*,void*);
 #define I(p,o) (*(int*)((char*)(p)+(o)))
