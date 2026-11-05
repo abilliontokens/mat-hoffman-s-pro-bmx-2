@@ -133,17 +133,41 @@ struct S_00094A00_Obj {
     virtual void v30();
     virtual void v31();
     virtual void v32();
-    virtual void v33();
+    virtual int v33(int a);
     virtual void v34();
     virtual void v35();
-    virtual void v36();
+    virtual void v36(int a, int b, int c);
     virtual void v37();
 };
 
+struct C_001CD3B0 {
+    int func_001CD3B0(int v);
+};
+
+struct C_001CD7D0 {
+    void func_001CD7D0(void *p);
+};
+
+extern float D_00275544;
+
 struct C_00094A00 {
-    char pad0[0x50];
+    char pad0[0x28];
+    C_001CD7D0 *f28;
+    int f2C;
+    int f30;
+    char pad34[0x10];
+    int f44;
+    char pad48[8];
     S_00094A00_Obj *f50;
+    char pad54[0x28];
+    int f7C;
+    char pad80[4];
+    void *f84[1];
     void func_00094A00(void);
+    void func_00094960(int a);
+    void func_00094990(float a);
+    void func_000949B0(float a, int b, int c);
+    void func_00094C00(void);
 };
 
 
