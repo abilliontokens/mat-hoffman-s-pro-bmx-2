@@ -20,7 +20,7 @@ struct SoundList {
     int *data;
     char pad8[0x10];
     void *data2;
-    char pad1c[8];
+    char pad1c[0xc];
     void func_001CDED0(int id);
     void Clear()
     {
