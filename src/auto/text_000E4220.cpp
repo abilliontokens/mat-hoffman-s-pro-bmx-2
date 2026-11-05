@@ -30,3 +30,10 @@ int __stdcall func_000E5150(int index)
     C_000E5150_Mgr *mgr = D_002A8490->f2E0;
     return mgr->f2C0->func_0005C020(mgr->f2D8)->f638[index];
 }
+
+int __stdcall func_000E5180(int index)
+{
+    C_000E5150_Mgr *mgr = D_002A8490->f2E0;
+    return mgr->f2C0->func_0005C020(mgr->f2D8)->f62C[index];
+}
+
