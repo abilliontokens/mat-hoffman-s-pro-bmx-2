@@ -10,7 +10,7 @@ struct V3_0015D0A0 {
 struct V4_0015D0A0 {
     float x, y, z, w;
     V4_0015D0A0() {}
-    V4_0015D0A0(const V3_0015D0A0 &v, float d) { *(V3_0015D0A0 *)&x = v; w = d; }
+    V4_0015D0A0(V3_0015D0A0 v, float d) { *(V3_0015D0A0 *)&x = v; w = d; }
 };
 
 struct C_001938C0 {
