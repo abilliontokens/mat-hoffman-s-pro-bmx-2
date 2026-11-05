@@ -54,6 +54,7 @@ struct C_000C2810 {
     int func_000C2810(int idx);
     int func_000C24F0(int idx);
     int func_000C2680(int idx);
+    int func_000C1E60(int idx);
 };
 
 int C_000C2810::func_000C0100(int idx)
