@@ -207,6 +207,8 @@ struct C_00140400_Child {
 extern C_00140400_Global *D_002A829C;
 extern C_00140400_Engine *D_002EFDB8;
 
+struct V3_00140520 { int x, y, z; };
+
 /* DXMesh */
 struct C_00140390 {
     void *vtbl;
