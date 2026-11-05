@@ -201,7 +201,7 @@ struct InputDevice {
 };
 
 struct C_001577A0 {
-    int func_001577A0(int a, int b);
+    int func_001577A0(int a, unsigned int b);
 };
 
 /* constructors (thiscall, flag argument) of the objects BmxGame::func_00059AC0 creates, each returns this */
@@ -423,59 +423,60 @@ int BmxGame::func_00059A00(void)
 int BmxGame::func_00059AC0(void)
 {
     S_00059F50_Obj *obj;
+    void *m;
 
     D_002A8490->f4->fB4->v9();
     if (f2E4 != 0) {
         switch (f2E0->f4) {
         case 1:
-            obj = (S_00059F50_Obj *)func_001E8A44(0x2a4);
-            obj = obj ? ((S_00059AC0_Ctors *)obj)->func_0004BAB0(1) : 0;
+            m = func_001E8A44(0x2a4);
+            obj = m ? ((S_00059AC0_Ctors *)m)->func_0004BAB0(1) : 0;
             break;
         case 0:
-            obj = (S_00059F50_Obj *)func_001E8A44(0x360);
-            obj = obj ? ((S_00059AC0_Ctors *)obj)->func_000511A0(1) : 0;
+            m = func_001E8A44(0x360);
+            obj = m ? ((S_00059AC0_Ctors *)m)->func_000511A0(1) : 0;
             break;
         case 2:
-            obj = (S_00059F50_Obj *)func_001E8A44(0x28c);
-            obj = obj ? ((S_00059AC0_Ctors *)obj)->func_000536A0(1) : 0;
+            m = func_001E8A44(0x28c);
+            obj = m ? ((S_00059AC0_Ctors *)m)->func_000536A0(1) : 0;
             break;
         case 3:
-            obj = (S_00059F50_Obj *)func_001E8A44(0x1254);
-            obj = obj ? ((S_00059AC0_Ctors *)obj)->func_0004C610(1) : 0;
+            m = func_001E8A44(0x1254);
+            obj = m ? ((S_00059AC0_Ctors *)m)->func_0004C610(1) : 0;
             break;
         case 4:
-            obj = (S_00059F50_Obj *)func_001E8A44(0x788);
-            obj = obj ? ((S_00059AC0_Ctors *)obj)->func_0004D930(1) : 0;
+            m = func_001E8A44(0x788);
+            obj = m ? ((S_00059AC0_Ctors *)m)->func_0004D930(1) : 0;
             break;
         case 5:
-            obj = (S_00059F50_Obj *)func_001E8A44(0x2ec);
-            obj = obj ? ((S_00059AC0_Ctors *)obj)->func_00053D20(1) : 0;
+            m = func_001E8A44(0x2ec);
+            obj = m ? ((S_00059AC0_Ctors *)m)->func_00053D20(1) : 0;
             break;
         case 6:
-            obj = (S_00059F50_Obj *)func_001E8A44(0xd78);
-            obj = obj ? ((S_00059AC0_Ctors *)obj)->func_0004ECC0(1) : 0;
+            m = func_001E8A44(0xd78);
+            obj = m ? ((S_00059AC0_Ctors *)m)->func_0004ECC0(1) : 0;
             break;
         case 7:
-            obj = (S_00059F50_Obj *)func_001E8A44(0x29c);
-            obj = obj ? ((S_00059AC0_Ctors *)obj)->func_00050A10(1) : 0;
+            m = func_001E8A44(0x29c);
+            obj = m ? ((S_00059AC0_Ctors *)m)->func_00050A10(1) : 0;
             break;
         case 10:
-            obj = (S_00059F50_Obj *)func_001E8A44(0x2ec);
-            obj = obj ? ((S_00059AC0_Ctors *)obj)->func_00049C00(1) : 0;
+            m = func_001E8A44(0x2ec);
+            obj = m ? ((S_00059AC0_Ctors *)m)->func_00049C00(1) : 0;
             break;
         case 8:
         case 9:
-            obj = (S_00059F50_Obj *)func_001E8A44(0x2e4);
-            obj = obj ? ((S_00059AC0_Ctors *)obj)->func_0004F220(1) : 0;
+            m = func_001E8A44(0x2e4);
+            obj = m ? ((S_00059AC0_Ctors *)m)->func_0004F220(1) : 0;
             break;
         case 11:
-            obj = (S_00059F50_Obj *)func_001E8A44(0x94c);
-            obj = obj ? ((S_00059AC0_Ctors *)obj)->func_000378D0(1) : 0;
+            m = func_001E8A44(0x94c);
+            obj = m ? ((S_00059AC0_Ctors *)m)->func_000378D0(1) : 0;
             break;
         default:
             goto done;
         }
-        f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->v10(), -1);
+        f2A4 = Register(obj);
     }
 done:
     if (f2F0 != 0) {
