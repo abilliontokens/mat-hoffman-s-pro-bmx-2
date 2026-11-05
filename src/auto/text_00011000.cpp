@@ -11,15 +11,22 @@ struct C_00011060 {
 };
 
 
+struct C_00011080 {
+    float x;
+    float y;
+    float z;
+    C_00011080* func_00011080(float *p);
+};
+
 extern float D_00275480;
 extern float D_00275490;
 extern float D_002754A0;
 
 float func_00011000(float x) { return sqrtf(x); }
 
-float func_00011020(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_set_ss(a), _mm_set_ss(b))); return r; }
+float func_00011020(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 
-float func_00011040(float a, float b) { return a > b ? a : b; }
+float func_00011040(float a, float b) { return b > a ? b : a; }
 
 C_00011060* C_00011060::func_00011060(void) {
     unk8 = 0;
