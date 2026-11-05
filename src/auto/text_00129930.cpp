@@ -66,13 +66,65 @@ struct CacheVCall_129930 {
     virtual void v2();
 };
 
+struct CacheEntry_12A310 {
+    int f0;
+    int f4;
+    ~CacheEntry_12A310() { f0 = 0; f4 = 0; }
+    static void operator delete(void *p) { func_001E891B(p); }
+};
+
 struct Cache_129930 {
     void *vtbl;
     int f4;
     int f8;
     CacheList_129930 *fC;
     void func_0012A2C0(void);
+    void func_0012A310(CacheEntry_12A310 *p);
     void func_0012A330(void);
+};
+
+extern int D_00284018;
+extern int D_002A3E3C;
+extern const float D_00284034;
+
+struct StaticCache_12A350 {
+    void *vtbl;
+    int f4;
+    int f8;
+    int fC;
+    StaticCache_12A350 *func_0012A350(int a, int b);
+};
+
+struct Cam_12A770 {
+    Cam_12A770 *func_00193490(void);
+    void func_001938C0(void *a, int b, int c, void *vecA, void *vecB, int d);
+};
+
+struct Emitter_12A770 {
+    char pad0[0x24];
+    int f24;
+    Cam_12A770 *f28;
+    int f2C;
+    char pad30[0x170 - 0x30];
+    int f170;
+    void func_0012A770(int a1, int a2);
+};
+
+struct Emitter_12A7C0 {
+    void *vtbl;
+    char pad4[0x1DC - 4];
+    float f1DC;
+    int f1E0;
+    int f1E4;
+    int f1E8;
+    int f1EC;
+    int f1F0;
+    float f1F4;
+    float f1F8;
+    char pad1FC[0x204 - 0x1FC];
+    int f204;
+    int f208;
+    int func_0012A7C0(int a, int b, int c, int d);
 };
 
 struct ListEntry_12A200 {
@@ -138,6 +190,18 @@ void *BoxCollisionObject::func_0012A1C0(unsigned int flags)
     if (flags & 1)
         func_001E891B(this);
     return this;
+}
+
+ListEntry_12A200 * __stdcall func_0012A200(int a, int b)
+{
+    ListEntry_12A200 *p = (ListEntry_12A200 *)func_001E8A44(8);
+
+    if (p != 0) {
+        p->f0 = a;
+        p->f4 = b;
+        return p;
+    }
+    return 0;
 }
 
 void Cache_129930::func_0012A2C0(void)
