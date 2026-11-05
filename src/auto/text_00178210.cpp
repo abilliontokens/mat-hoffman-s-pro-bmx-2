@@ -1,8 +1,6 @@
 /* 14 functions from 0x00178210 to 0x00178C60, found by Ghidra. */
 #include "common.h"
 
-extern u8 D_0000FFF8[];
-
 u32 func_00178210(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int pal)
 {
   u8 *srow;
