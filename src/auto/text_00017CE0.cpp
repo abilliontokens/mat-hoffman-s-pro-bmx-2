@@ -82,3 +82,9 @@ struct TikiEvadeState {
     int f14;
     void func_00018340();
 };
+
+void AiTikiGod::func_00017D00()
+{
+    D_002A8490->f2a4->func_0004AAD0();
+    v4();
+}
