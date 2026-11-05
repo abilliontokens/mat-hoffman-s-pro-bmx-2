@@ -318,6 +318,36 @@ struct C_00032060 {
 };
 
 
+int BmxEvent::func_00031AF0(void)
+{
+    char buf[0x104];
+
+    if (((S_31AF0_Root *)D_002A8490)->f2b8[0]) {
+        func_001ADCC0(buf, 0x104, D_00276B88, ((S_31AF0_Root *)D_002A8490)->f2b8);
+    } else {
+        func_001ADCC0(buf, 0x104, D_00276B88, ((S_31AF0_Root *)D_002A8490)->f2e0->f4c);
+    }
+    if (f90 == 1) {
+        ((S_31AF0_Root *)D_002A8490)->f230 |= 1;
+        ((S_31AF0_Root *)D_002A8490)->f124 = 0.0f;
+    }
+    for (int i = 0; i < f90; i++) {
+        C_0013E4F0_31AF0 *p = (C_0013E4F0_31AF0 *)func_001E8A44(0x2d0);
+        f24[i] = (int)(p ? p->func_0013E4F0(1) : 0);
+        ((C_0012B410 *)f24[i])->func_0012B410(0x3f9f49f5, 0x280, 0x1c0);
+        C_0002EF20_31AF0 *q = (C_0002EF20_31AF0 *)func_001E8A44(0x78);
+        f44[i] = q ? q->func_0002EF20(1) : 0;
+        S_31AF0_Mgr *m = ((S_31AF0_Root *)D_002A8490)->f2e0;
+        if (m->f4 == 0) {
+            ((C_000306F0 *)f44[i])->func_000306F0((void *)f24[i], m->f8, *((S_31AF0_Level *)f64)->f4ac, ((S_31AF0_Level *)f64)->f4dc->v[i], buf, 0);
+        } else {
+            ((C_000306F0 *)f44[i])->func_000306F0((void *)f24[i], m->f8, *((S_31AF0_Level *)f64)->f4ac, ((S_31AF0_Level *)f64)->f4dc->v[i], 0, 0);
+        }
+    }
+    v1C();
+    return 1;
+}
+
 void BmxEvent::func_00031C90(void)
 {
     int i = 0;
