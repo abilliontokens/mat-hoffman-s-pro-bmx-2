@@ -331,7 +331,11 @@ struct C_00095060 {
     char pad70[0xc];
     int f7C;
     int f80;
+    S_00094A00_Child *f84[1];
     int func_000952F0(void);
+    char *func_00095390(int index);
+    char *func_00095430(int index);
+    int func_00095490(int index);
     void func_00095060(void);
     int func_00095110(int n);
     int func_000951B0(int n);
@@ -459,7 +463,7 @@ int *C_00094760::func_00094810(int node)
     S_00094620_Path *path = unk50;
 
     if (node < path->unkA8 && node >= 0) {
-        S_00094620_NodeTail &tail = path->NodeAt(node);
+        S_00094620_NodeTail &tail = *path->Node(node);
         return &tail.unk0;
     }
     return 0;
