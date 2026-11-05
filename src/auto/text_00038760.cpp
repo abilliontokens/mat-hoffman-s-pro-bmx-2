@@ -45,9 +45,8 @@ int *C_00038760::func_000389C0(int param_1)
 int *C_00038760::func_00038A10(int param_1, int *param_2)
 {
     int i;
-    int n = count;
-    for (i = 0; i < n; i++) {
-        int *e = (int *)at(i);
+    for (i = 0; i < arr.count; i++) {
+        int *e = (int *)arr.at(i);
         if (e[0] == 1 && e[4] == param_1) {
             if (param_2)
                 *param_2 = i;
