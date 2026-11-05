@@ -314,6 +314,10 @@ void C_0001DFF0::func_0001DFF0(void) {
     unk0 = (int)&D_00275F18;
 }
 
+int C_0001E000::func_0001E000(void) {
+    return ++unk4;
+}
+
 void *C_0001E030::func_0001E030(int flags) {
     extern int D_00275F18;
     void func_001E891B(void *);
