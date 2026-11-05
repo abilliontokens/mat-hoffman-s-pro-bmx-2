@@ -5,6 +5,41 @@ struct C_0018B3B0 {
     undefined4 func_0018B3B0(byte param_1);
 };
 
+extern int D_00289F60;
+extern int D_00289B5C;
+extern int D_00289BFC;
+extern int D_00289C9C;
+
+struct C_00157660 {
+    void func_00157660(void);
+};
+
+struct C_0018B120 {
+    void *vtbl;
+    undefined4 func_0018B120(byte param_1);
+};
+
+struct C_0018B010 {
+    void *vtbl;
+    char pad4[0x24];
+    void *f28;
+    undefined4 func_0018B010(byte param_1);
+};
+
+struct C_0018B050 {
+    void *vtbl;
+    char pad4[0x24];
+    void *f28;
+    undefined4 func_0018B050(byte param_1);
+};
+
+struct C_0018B090 {
+    void *vtbl;
+    char pad4[0x24];
+    void *f28;
+    undefined4 func_0018B090(byte param_1);
+};
+
 
 undefined4 C_0018B3B0::func_0018B3B0(byte param_1)
 {
