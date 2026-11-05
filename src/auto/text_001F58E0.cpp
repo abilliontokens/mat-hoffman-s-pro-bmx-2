@@ -104,6 +104,34 @@ int func_001F59D9(void) {
     return 0;
 }
 
+unsigned short func_001F59DC(unsigned short wc, S_001F59DC_FILE *stream)
+{
+    if (!(stream->flag & 0x40)) {
+        char *info = stream->file != -1 ? D_002FB260[stream->file >> 5] + (stream->file & 0x1f) * 0x28 : D_002AEC40;
+        if (info[4] & 0x80) {
+            char mb[8];
+            int size = func_001F58AA(mb, wc);
+            int i;
+            if (size == -1) {
+                *func_001ED075() = 0x2a;
+                return 0xffff;
+            }
+            for (i = 0; i < size; i++) {
+                if ((--stream->cnt >= 0 ? 0xff & (*stream->ptr++ = mb[i]) : func_001ED8A7(mb[i], stream)) == -1) {
+                    return 0xffff;
+                }
+            }
+            return wc;
+        }
+    }
+    if ((stream->cnt -= 2) >= 0) {
+        *(unsigned short *)stream->ptr = wc;
+        stream->ptr += 2;
+        return wc;
+    }
+    return func_001F62CE(wc, stream);
+}
+
 #pragma optimize("sy", on)
 int func_001F5AA1(unsigned int a, unsigned int b, unsigned int *out)
 {
