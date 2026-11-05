@@ -396,6 +396,60 @@ int func_001E98A9(int param_1, int param_2, int param_3, int param_4) {
     return result;
 }
 
+unsigned int func_001E98F5(const void *buffer, unsigned int size, unsigned int num, S_001E9714_File *stream) {
+    const char *data = (const char *)buffer;
+    unsigned int total;
+    unsigned int count;
+    unsigned int bufsize;
+    unsigned int nbytes;
+    unsigned int nwritten;
+    count = total = size * num;
+    if (count == 0) {
+        return 0;
+    }
+    if (stream->_flag & 0x10c) {
+        bufsize = *(int *)((char *)stream + 0x18);
+    } else {
+        bufsize = 0x1000;
+    }
+    while (count != 0) {
+        if ((stream->_flag & 0x108) && stream->_cnt != 0) {
+            nbytes = (count < (unsigned int)stream->_cnt) ? count : stream->_cnt;
+            memcpy(stream->_ptr, data, nbytes);
+            count -= nbytes;
+            stream->_cnt -= nbytes;
+            stream->_ptr += nbytes;
+            data += nbytes;
+        } else if (count >= bufsize) {
+            if (stream->_flag & 0x108) {
+                if (func_001E9DE9(stream)) {
+                    return (total - count) / size;
+                }
+            }
+            nbytes = bufsize ? (count - count % bufsize) : count;
+            nwritten = func_001EDB4B(stream->_file, (char *)data, nbytes);
+            if (nwritten == (unsigned int)-1) {
+                stream->_flag |= 0x20;
+                return (total - count) / size;
+            }
+            count -= nwritten;
+            data += nwritten;
+            if (nwritten < nbytes) {
+                stream->_flag |= 0x20;
+                return (total - count) / size;
+            }
+        } else {
+            if (func_001ED8A7(*data, (S_001E9_FILE *)stream) == -1) {
+                return (total - count) / size;
+            }
+            ++data;
+            --count;
+            bufsize = *(int *)((char *)stream + 0x18) > 0 ? *(int *)((char *)stream + 0x18) : 1;
+        }
+    }
+    return num;
+}
+
 int func_001E9A0C(int param_1, int param_2, int param_3, int param_4) {
     int func_001EB109(int);
     int func_001EB15B(int);
