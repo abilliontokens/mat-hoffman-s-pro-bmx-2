@@ -45,6 +45,26 @@ struct Vec4_195D40 {
     int x, y, z, w;
 };
 
+struct Item_001955F0 {
+    Vec4_195D40 a;
+    Vec4_195D40 b;
+    Vec4_195D40 c;
+    float f30;
+    float f34;
+    float f38;
+    float f3c;
+    float f40;
+    int f44;
+};
+
+struct C_001955F0 {
+    char pad0[0x40];
+    Item_001955F0 *f40;
+    int f44;
+    int f48;
+    int func_001955F0(Vec4_195D40 *a, float b, float c, float d, float e, int f, Vec4_195D40 *g, Vec4_195D40 *h, float i);
+};
+
 struct C_001955D0 {
     char pad0[0x70];
     int unk70;
