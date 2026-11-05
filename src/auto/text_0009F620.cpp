@@ -21,6 +21,11 @@ struct C_0009FD60 {
 extern const float D_00277D04;
 
 extern int D_0027AD64;
+struct C_0009F7F0 {
+    void func_0012B510(void);
+    C_0009F7F0 *func_0009F7F0(void);
+};
+extern int D_002A2600[4];
 void func_001E891B(void *p);
 inline void operator delete(void *p) { func_001E891B(p); }
 
