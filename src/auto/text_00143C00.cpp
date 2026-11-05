@@ -189,26 +189,6 @@ struct Color_143C00 {
     }
 };
 
-static __forceinline void SetColor_143C00(C_00143C00 *w, float s)
-{
-    const Vec4_143C00 *m = &D_002BECE0[w->fAC];
-    Color_143C00 col(s * m->x, s * m->y, s * m->z, w->f58);
-    func_001FEBD0(0x20, &col);
-}
-
-static __forceinline void Uv28_143C00(C_00143C00 *w, Vtx28_143C00 *v, float rw, float rh)
-{
-    v->u0 = (v->pos.x - w->f94) * rw;
-    v->v0 = (v->pos.z - w->f98) * rh;
-    v->u1 = v->u0;
-    v->v1 = v->v0;
-}
-
-static __forceinline void Uv20_143C00(C_00143C00 *w, Vtx20_143C00 *v, float rw, float rh)
-{
-    v->u = (v->pos.x - w->f94) * rw;
-    v->v = (v->pos.z - w->f98) * rh;
-}
 
 struct C_001AF300 {
     void func_001AF300(void *param);
