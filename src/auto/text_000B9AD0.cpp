@@ -2,6 +2,65 @@
 #include "common.h"
 #include "ghidra.h"
 #include "ghidra.h"
+struct Block36 { int v[9]; };
+struct Block16 { int v[4]; };
+struct C_B9AD0_Object {
+    void *func_000BE640(const char *, int, void *);
+    C_B9AD0_Object *func_001A2C00(void *, void *, int, int);
+    void func_001A23F0(Block36, Block16, Block16, int, float, float, int, int);
+    void func_001A4640(const char *, const char *, int);
+};
+struct BmxUIGlobalManager {
+    char pad0[0x24];
+    void *f24;
+    char pad28[8];
+    C_B9AD0_Object *f30;
+    int func_000B9AD0(int, int);
+    void *func_001577A0(void *, int);
+};
+struct V_B9AD0 {
+    virtual void vf0();
+    virtual void vf1();
+    virtual void vf2();
+    virtual void vf3();
+    virtual void vf4();
+    virtual void vf5();
+    virtual void vf6();
+    virtual void vf7();
+    virtual void vf8();
+    virtual void vf9();
+    virtual void vf10();
+    virtual void vf11();
+    virtual void vf12();
+    virtual void vf13();
+    virtual void vf14();
+    virtual void vf15();
+    virtual void vf16();
+    virtual void vf17();
+    virtual void vf18();
+    virtual void vf19();
+    virtual void vf20();
+    virtual void vf21();
+    virtual void vf22();
+    virtual void vf23();
+    virtual void vf24();
+    virtual void vf25();
+    virtual void vf26();
+    virtual void vf27();
+    virtual void vf28();
+    virtual void vf29();
+    virtual void vf30(int);
+};
+extern int D_0027D694, D_0027D698;
+extern short D_0027D69C;
+extern char D_0027D69E;
+extern int D_002A64D0, D_002A64D4;
+extern short D_002A64D8;
+extern char D_002A64DA;
+extern char D_0027D68C[], D_0027D684[], D_002A47F0[], D_002A5348[], D_00275678[], D_002A48F8[], D_00275630[], D_0027D674[];
+extern char *D_002A8490;
+extern Block16 D_002A3138;
+void func_001ADCC0(void *, int, const char *, const void *, const void *);
 struct C_000BA9D0 {
     undefined4 func_000BA9D0(int param_1);
 };
