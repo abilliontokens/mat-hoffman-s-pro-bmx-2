@@ -34,6 +34,8 @@ int func_00200210();
 void __stdcall func_002011F0(int, void *);
 int func_001B2C40(int);
 int func_001B2B90(int);
+extern "C" char D_0028F5BC[], D_00276274[];
+extern "C" int D_002F0B8C;
 void func_001B29F0(int format, int *a, int *r, int *g, int *b);
 void func_001B3AF0(int bits, int w, int h, int pitch, int mask, const char *name, int bpp);
 void func_001B39B0(int bits, int w, int h, int pitch, const char *name, int bpp);
