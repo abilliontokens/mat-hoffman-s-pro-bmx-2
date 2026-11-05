@@ -107,7 +107,7 @@ struct SimpleCutSceneCamera {
     void *vtbl;
     C_0012B8F0 *f4;
     float f8;
-    int fC;
+    float fC;
     float f10;
     int f14;
     int f18;
@@ -119,6 +119,17 @@ struct SimpleCutSceneCamera {
     void func_0012B510(void);
     SimpleCutSceneCamera *func_00194740(void);
     void func_00194790(void *a0, int a1, int a2);
+    int func_001947E0(void *a0, int a1, int a2, int a3);
+    void func_00194B40(S_Vec4 *p);
+    void func_00194BD0(int a, int b, S_Vec4 *p);
+};
+
+extern S_Vec4 D_002A9A28;
+
+struct C_00194EB0 {
+    char pad0[0x18];
+    S_Vec4Int f18;
+    void func_00194EB0(S_Vec4Int v);
 };
 
 extern int D_0028AE90;
