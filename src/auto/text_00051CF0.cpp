@@ -200,6 +200,7 @@ struct R_00051CF0 {
     char pad168[4];
     R_G *f16c;
     R_E *f170[8];
+    char pad190[4];
     R_D *f194;
     R_F *f198;
     char pad19c[4];
