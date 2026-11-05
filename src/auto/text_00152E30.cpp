@@ -95,7 +95,7 @@ void C_001532E0::func_001532E0(void)
 
 void C_00153D30::func_00153D30(int dt)
 {
-    S_Obj_153 *o;
+    int idx;
     if (unk588 == 0) {
         unk584 -= dt;
         D_002A8490->unk2A4->slots[unk24]->unk60 = 200;
@@ -105,13 +105,15 @@ void C_00153D30::func_00153D30(int dt)
             unk58C = 0;
             unk590 = 0;
             unk594 = 0;
-            unk6CC++;
-            o = arr5B8[func_00011260(0, 1)];
+            unk6CC = unk6CC + 1;
+            idx = func_00011260(0, 1);
+            S_Obj_153 *o = arr5B8[idx];
             o->v5(0);
-        } else {
-            o = arr5A8[func_00011260(0, 3)];
-            o->v5(0);
+            return;
         }
+        idx = func_00011260(0, 3);
+        S_Obj_153 *o = arr5A8[idx];
+        o->v5(0);
     }
 }
 
