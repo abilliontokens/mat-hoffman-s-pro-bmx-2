@@ -16,7 +16,43 @@ struct C_00170B50 {
 };
 
 extern int D_00284E94;
+extern int D_00288A94;
 void func_001E891B(void *p);
+void __stdcall func_00201100(void *p);
+
+struct S_Obj {
+    virtual void v0(int flags);
+    virtual void v4();
+    virtual void v8();
+};
+
+struct S_Obj154 {
+    void func_0014A540(void);
+};
+
+struct C_001703B0 {
+    void *vtbl;
+    char pad4[0x100];
+    void *f104;
+    char pad108[8];
+    void *f110;
+    char pad114[0x128 - 0x114];
+    S_Obj *f128;
+    void *f12c;
+    void *f130;
+    void *f134;
+    char pad138[0x148 - 0x138];
+    S_Obj *f148;
+    char pad14c[8];
+    S_Obj154 *f154;
+    S_Obj *f158;
+    void *f15c;
+    void *f160;
+    char pad164[0x170 - 0x164];
+    S_Obj *f170;
+    void func_00157660(void);
+    void func_001703B0(void);
+};
 
 struct C_00170AD0 {
     void *vtbl;
