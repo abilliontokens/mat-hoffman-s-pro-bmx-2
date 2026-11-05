@@ -103,7 +103,7 @@ RenderableObject *RenderableObject::func_001814B0(int a)
     unk1B4 = 0;
     unk1B8 = 0;
     unk1BC = 0;
-    unk1A3 |= 8;
+    unk1A2 |= 0x800;
     unk1C0 = 1.0f;
     unk1C4 = 1.0f;
     unk1C8 = 1.0f;
