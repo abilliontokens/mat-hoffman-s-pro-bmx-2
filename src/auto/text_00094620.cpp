@@ -213,6 +213,15 @@ int C_00094890::func_00094890(void) {
     return unk38;
 }
 
+int C_00094A00::func_00094960(int a)
+{
+    if (f50->v33(a)) {
+        f30 = 5;
+        return 1;
+    }
+    return 0;
+}
+
 void C_00094A00::func_00094990(float a)
 {
     f50->func_001CD3B0((int)a);
