@@ -47,3 +47,47 @@ void C_0011AB90::func_0011AB90(C_0011AB90Arg *arg)
     func_001D3F50();
 }
 
+void func_0011AC30(float *out, float *in)
+{
+    __m128 r0 = _mm_load_ps(in);
+    __m128 r1 = _mm_load_ps(in + 4);
+    __m128 r2 = _mm_load_ps(in + 8);
+    __m128 r3 = _mm_load_ps(in + 12);
+    __m128 a, b, c, t;
+    a = _mm_movehl_ps(a, r0);
+    b = _mm_movehl_ps(b, r1);
+    c = _mm_movehl_ps(c, r2);
+    a = _mm_shuffle_ps(a, a, 0x55);
+    b = _mm_shuffle_ps(b, b, 0x55);
+    c = _mm_shuffle_ps(c, c, 0x55);
+    t = _mm_setzero_ps();
+    a = _mm_mul_ps(a, r0);
+    b = _mm_mul_ps(b, r1);
+    c = _mm_mul_ps(c, r2);
+    t = _mm_sub_ps(t, a);
+    b = _mm_add_ps(b, c);
+    t = _mm_sub_ps(t, b);
+    a = _mm_movehl_ps(a, r0);
+    b = _mm_movehl_ps(b, r1);
+    c = _mm_movehl_ps(c, r2);
+    r0 = _mm_unpacklo_ps(r0, r1);
+    _mm_store_ss(out + 3, t);
+    _mm_storel_pi((__m64 *)(out + 6), t);
+    _mm_storeh_pi((__m64 *)(out + 11), t);
+    ((int *)out)[2] = ((int *)in)[8];
+    ((int *)out)[6] = ((int *)in)[9];
+    _mm_storel_pi((__m64 *)out, r0);
+    _mm_storeh_pi((__m64 *)(out + 4), r0);
+    _mm_store_ss(out + 8, a);
+    _mm_store_ss(out + 9, b);
+    _mm_store_ss(out + 10, c);
+    _mm_store_ps(out + 12, r3);
+}
+
+void func_0011ADA0(void *a, void *b, float *m)
+{
+    __declspec(align(16)) float inv[16];
+    func_0011AC30(inv, m);
+    func_0011ACC0(a, b, inv);
+}
+
