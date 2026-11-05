@@ -49,6 +49,7 @@ struct UIWidgetStaticUserRotate {
     void func_001C2F90(int p);
     void func_001C32E0(void);
     void func_001C33A0(void);
+    void func_001C3440(int p);
 
     void SyncOn(void)
     {
