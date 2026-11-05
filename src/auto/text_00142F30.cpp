@@ -59,6 +59,16 @@ struct ShadowTarget {
     int func_0017AB70(int a);
 };
 
+struct DXShadowCaster {
+    void *vtbl;
+    DXRenderableObject *f4;
+    int f8;
+    Alloc190 *fc;
+    DXShadowCaster *func_00143820(DXRenderableObject *owner);
+    void func_00143870(ShadowTarget *target);
+    void *func_00143900(int flags);
+};
+
 struct DXRenderableObject {
     void *vtbl;
     char pad4[0x19F];
