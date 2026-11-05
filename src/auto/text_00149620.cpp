@@ -75,6 +75,21 @@ struct C_0014A520 {
 };
 
 
+int C_00149E70::func_00149E70(int param_1, int param_2, int param_3)
+{
+    int hr;
+    if (unk4C != 0) {
+        func_00201100(unk4C);
+    }
+    unk48 = param_1;
+    unk50 = param_2;
+    unk54 = param_3;
+    unk4C = 0;
+    unk4C = func_001FCE50(param_1, 0);
+    hr = unk4C != 0 ? 0 : 0x8007000e;
+    return hr >= 0;
+}
+
 undefined4 C_0014A360::func_0014A360(int param_1)
 {
   int __stdcall func_00149ED0(int, int);
