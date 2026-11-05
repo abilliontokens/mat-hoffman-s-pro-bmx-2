@@ -85,7 +85,8 @@ struct C_001A8B80 {
     char pad58[0x1C];
     int f74;
     int f78;
-    char pad7C[8];
+    int f7C;
+    int f80;
     void *f84;
     int f88;
     int f8C;
