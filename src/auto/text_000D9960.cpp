@@ -15,6 +15,7 @@ extern "C" int func_001ADCC0(char *buf, int n, char *fmt, ...);
 
 struct C_001D6600 {
     void func_001D6600();
+    void func_0005E840(int a);
 };
 
 struct S_002B91AC {
@@ -22,6 +23,7 @@ struct S_002B91AC {
     C_001D6600 *unk34;
     int unk38;
     C_001D6600 *unk3C;
+    void func_000BF860(int a, int b, int c, int d);
 };
 
 extern S_002B91AC *D_002B91AC;
