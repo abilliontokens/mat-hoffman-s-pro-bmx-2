@@ -79,7 +79,7 @@ struct C_001B1860 {
     int f178;
     int f17C;
     int f180;
-    void func_001B1860(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11, int a12, int a13);
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, float a7, int a8, float a9, int a10, float a11, float a12, int a13);
 };
 
 extern float D_00275544;
