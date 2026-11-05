@@ -31,11 +31,13 @@ struct C_000B11C0 {
     int unk38;
     int unk3C;
     int unk40;
-    int unk44;
-    int unk48;
-    int unk4C;
-    int unk50;
+    void *unk44;
+    void *unk48;
+    C_000B1200_Entry **unk4C;
+    void **unk50;
     void func_00157600(int a0);
+    void func_00157660(void);
+    void func_000B1200(void);
     C_000B11C0 *func_000B11C0(int param_1);
 };
 
