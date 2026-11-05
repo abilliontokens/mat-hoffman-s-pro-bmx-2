@@ -60,6 +60,11 @@ template <class T> inline const T &min_ref(const T &a, const T &b)
     return b < a ? b : a;
 }
 
+template <class T> inline const T &min_ref2(const T &a, const T &b)
+{
+    return a < b ? a : b;
+}
+
 inline void str_copy(char *dst, const char *src, int size)
 {
     int n = min_ref((int)strlen(src), size - 1);
