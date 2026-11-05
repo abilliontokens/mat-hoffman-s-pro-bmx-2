@@ -3,6 +3,48 @@
 #include "ghidra.h"
 
 extern int D_0028D58C;
+extern int D_0028D604;
+extern f32 D_00278C48;
+extern f32 D_00276A90;
+
+struct C_00157600 {
+    void func_00157600(int a);
+};
+
+struct UIStick {
+    char pad00[0x24];
+    f32 value;
+};
+
+struct UIInputState {
+    char pad00[0x2B0];
+    UIStick *axisA[8];
+    UIStick *axisB[8];
+};
+
+struct UIPage {
+    void *vtbl;
+    char pad04[0x120];
+    UIInputState *f124;
+    u32 f128;
+    u32 f12C;
+    u32 f130;
+    u32 f134;
+    void *f138;
+    u32 f13C;
+    void *f140;
+    void *f144;
+    u32 f148[8];
+    void *f168;
+    void *f16C;
+    u8 f170;
+    char pad171[0x103];
+    u32 f274;
+    u32 f278;
+    u32 f27C;
+    UIPage *func_001BE360(int param_1);
+    int func_001BEA50(int param_1);
+};
 
 struct UIVirt70 {
     virtual void dummy0();
@@ -104,7 +146,7 @@ void UIControl::func_001BE220(int n)
         f34 = cur;
     } while (cur == 0 || cur->f24 == 0);
     for (i = 0; i < cur->f28; i++) {
-        ((UIVirt70 *)cur->f2c[i])->virt28();
+        ((UIVirt70 *)cur->getChild(i))->virt28();
     }
 }
 
