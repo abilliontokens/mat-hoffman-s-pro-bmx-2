@@ -67,6 +67,18 @@ struct XboxControlInterface_001D0C30 {
 };
 
 
+XboxSoundGroup_001D0870 *XboxSoundGroup_001D0870::func_001D0870(unsigned int flags)
+{
+    vtbl = (void *)&D_0028F004;
+    ((C_001CF2A0 *)this)->func_001CF2A0();
+    func_001E891B(f34);
+    ((C_0001C920 *)this)->func_0001C920();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 undefined4 C_001D0DE0::func_001D0DE0(byte param_1)
 {
   int func_001D0D30(...);
