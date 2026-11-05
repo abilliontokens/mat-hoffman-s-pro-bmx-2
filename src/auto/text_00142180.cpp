@@ -128,6 +128,50 @@ void C_00142560::func_00142560(void)
     }
 }
 
+void C_00142720::func_00142720(void)
+{
+    void func_001E891B(void *p);
+    int i;
+    C_0014A540 *p;
+
+    vtbl = &D_00285970;
+    if (f8 != 0) {
+        for (i = 0; i < f20; i++) {
+            if (f8[i] != 0) {
+                func_00201100(f8[i]);
+            }
+        }
+        func_001E8390(f8);
+        f8 = 0;
+    }
+    if (fC != 0) {
+        func_001E8390(fC);
+    }
+    if (f10 != 0) {
+        func_001E8390(f10);
+    }
+    if (f14 != 0) {
+        func_001E8390(f14);
+    }
+    if (f18 != 0) {
+        func_001E8390(f18);
+    }
+    if (fC8 != 0) {
+        fC8->Destroy(1);
+    }
+    if (fCC != 0) {
+        fCC->Destroy(1);
+    }
+    p = f9C;
+    if (p != 0) {
+        p->func_0014A540();
+        func_001E891B(p);
+        f9C = 0;
+    }
+    fA8 = 0;
+    func_0001DFF0();
+}
+
 undefined4 C_00142BF0::func_00142BF0(byte param_1)
 {
   int func_00142720(...);
