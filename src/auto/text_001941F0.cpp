@@ -1,5 +1,13 @@
 /* 32 functions from 0x001941F0 to 0x00195190, found by Ghidra. */
 #include "common.h"
+struct C_00194C70 {
+    char pad0[0xC];
+    int unkC;
+    char pad10[0x14];
+    int unk24;
+    int func_00194C70(void);
+};
+
 struct C_00194F90 {
     char pad0[0x48];
     int unk48;
@@ -20,6 +28,12 @@ struct C_00194C60 {
 
 void C_00194C60::func_00194C60(void) {
     unk24 = 0;
+}
+
+int C_00194C70::func_00194C70(void) {
+    unkC = 0;
+    unk24 = 0;
+    return 1;
 }
 
 void C_00194DB0::func_00194DB0(void) {
