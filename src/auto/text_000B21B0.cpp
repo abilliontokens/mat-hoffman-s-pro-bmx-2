@@ -171,6 +171,8 @@ struct VehicleAI {
     u8 f1A1;
     char pad1A2[0x106];
     u8 f2A8;
+    u8 f2AA;
+    u8 f2AB;
     void SetState(int s) {
         if (f5C != s) {
             f1A1 = 1;
