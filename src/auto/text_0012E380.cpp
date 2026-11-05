@@ -63,6 +63,17 @@ struct C_0012E6F0 {
 };
 
 
+void __stdcall func_0012E5A0(float t, float *a, float *b, float *c, float *d)
+{
+    float t2 = t * t;
+    float t3 = t * t2;
+    float x = (t2 * 3.0f - t3) - t3;
+    *a = D_00275460 - x;
+    *b = x;
+    *c = ((t3 - t2) - t2) + t;
+    *d = t3 - t2;
+}
+
 void C_0012EF30::func_0012E5F0(int param_1)
 {
     S_0012E5F0 *t = (S_0012E5F0 *)func_001E8A44(0x18);
