@@ -29,3 +29,10 @@ struct C_000AB490 {
     S_000AB490_28 **f28;
     void func_000AB490(void);
 };
+
+C_000ABD60 *C_000ABD60::func_000ABD60()
+{
+    ((C_001B59E0 *)this)->func_001B59E0();
+    vtbl = (void *)&D_0027C7F8;
+    return this;
+}
