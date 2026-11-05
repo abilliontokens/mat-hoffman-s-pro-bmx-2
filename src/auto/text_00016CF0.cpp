@@ -186,3 +186,28 @@ C_00016E40_Vec C_00016E40::func_00016E40(void)
     return f2C->f1A4->f4->func_00199B00(0);
 }
 
+float C_00017600::func_00017600(const char *name)
+{
+    int i;
+
+    for (i = 0; i < 26; i++) {
+        if (strcmp(entries[i].name, name) == 0) {
+            return entries[i].value;
+        }
+    }
+    return D_00275460;
+}
+
+void C_00017700::func_00017700(void)
+{
+    f4E0++;
+    if (f4E0 >= 4) {
+        f4E0 = 0;
+    }
+    if (D_002A0700[f4E0] == 1) {
+        f384->func_0008AB90(f388);
+    } else {
+        f384->func_0008AB90(f38C);
+    }
+}
+
