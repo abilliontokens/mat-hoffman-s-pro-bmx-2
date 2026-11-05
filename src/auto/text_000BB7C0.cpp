@@ -383,6 +383,14 @@ char *C_000BBE30::func_000BC2E0(void)
     return f27C[f284].f130;
 }
 
+S_000BC320_Rec *C_000BBE30::func_000BC320(void)
+{
+    if (D_002A8490->f2E0->f324 == 1) {
+        return (S_000BC320_Rec *)f27C->f130 + f288;
+    }
+    return (S_000BC320_Rec *)f27C[f284].f130 + f288;
+}
+
 void C_000BC4A0::func_000BC4A0(undefined4 param_1, undefined4 param_2)
 {
   int in_ECX = (int)this;
