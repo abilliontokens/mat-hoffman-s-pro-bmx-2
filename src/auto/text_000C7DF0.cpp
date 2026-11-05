@@ -127,7 +127,22 @@ struct S_002B91AC {
     void func_000BF860(int a, int b, int c, int d);
 };
 
+extern float D_002755E8;
+
 struct C_000C8590 {
+    char pad0[0x2DC];
+    int unk2DC;
+    int unk2E0;
+    char pad2E4[8];
+    int unk2EC;
+    char pad2F0[8];
+    int unk2F8;
+    float unk2FC;
+    int unk300;
+    char pad304[0x1C];
+    C_001B1980 *unk320[9];
+    int unk344[9];
+    float unk368[9];
     void func_000C7DF0(void);
     void func_000C83E0(void);
     void func_00157960(void);
