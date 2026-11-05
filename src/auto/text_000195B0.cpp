@@ -2,7 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
-static __forceinline float Sqrt_000195B0(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_set_ss(x))); return r; }
+static __forceinline void SqrtR_000195B0(float *r, const float &x) { _mm_store_ss(r, _mm_sqrt_ss(_mm_load_ss(&x))); }
 struct S_1A400_Pos { char pad[0x24]; float x, y, z; float w; };
 struct S_1A400_Arg { S_1A400_Pos *p; char pad[4]; float f8; char pad2[0xC]; float f18, f1C, f20; };
 struct C_1A400 { void func_0001A400(S_1A400_Arg *a, float t); };
