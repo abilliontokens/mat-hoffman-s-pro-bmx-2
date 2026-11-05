@@ -152,7 +152,11 @@ struct C_00035360 {
     virtual void v38();
     virtual void v39();
     virtual void v40();
-    char pad4[0x60];
+    char pad4[0x20];
+    UIPositionItem *f24, *f28;
+    char pad2c[0x18];
+    UIOwner *f44, *f48;
+    char pad4c[0x18];
     S_35360_Mgr *f64;
     char pad68[0x22c];
     char f294[0x10];
