@@ -85,9 +85,9 @@ struct C_00167860 {
     char pad4[0xc];
     char f10[0x40];
     S_00167860_Owner *f50;
-    float f54;
-    float f58;
-    float f5c;
+    int f54;
+    int f58;
+    int f5c;
     float f60;
     void func_00167860(void);
 };
@@ -140,19 +140,25 @@ struct C_001677C0 {
 C_001676D0 *C_001676D0::func_001676D0(int n)
 {
     float t;
-    float tt;
+    void *mem;
     int i;
 
     n = n + 1;
     f4 = n;
-    f0 = (int *)func_001E8AA5(n * 4);
+    mem = func_001E8AA5(n * 4);
     t = D_00275544;
+    f0 = (int *)mem;
     i = 0;
     if (f4 > 0) {
         do {
-            tt = t * t;
+            float sq;
+            float v;
+
+            sq = t * t;
             i++;
-            ((float *)f0)[i - 1] = tt * D_00287EC4 + (D_00275460 - t * D_00287EC8) - tt * t * D_00287EC0;
+            v = sq * D_00287EC4 + (D_00275460 - t * D_00287EC8);
+            v = v - sq * t * D_00287EC0;
+            ((float *)f0)[i - 1] = v;
             t = t + D_002755EC / f4;
         } while (i < f4);
     }
@@ -254,5 +260,31 @@ C_00167AC0 *C_00167AC0::func_00167AC0(void)
         n--;
     } while (n != 0);
     return this;
+}
+
+C_00167760 *C_00167760::func_00167D10(C_0017A860 *owner, int b)
+{
+    void *m = func_001E8A44(0x14);
+    f34c = m ? ((C_00167760_Stream *)m)->func_00144640() : 0;
+    f34c->v1(b, D_002AA46C);
+    f354 = f34c->f4;
+    if (owner != 0) {
+        func_001D3F50();
+        f24 = owner;
+        owner->func_0017A860(this);
+        C_00167860 *p = (C_00167860 *)func_001E8A44(0x70);
+        if (p != 0) {
+            p->vtbl = (void *)&D_00287FE4;
+            p->f5c = 0.0f;
+            p->f58 = 0.0f;
+            p->f54 = 0.0f;
+            p->f60 = 1.0f;
+            f360 = (C_00167760_Obj *)p;
+        } else {
+            f360 = 0;
+        }
+        return this;
+    }
+    return 0;
 }
 
