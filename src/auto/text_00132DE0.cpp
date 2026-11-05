@@ -34,6 +34,35 @@ int func_00123EF0(float *a, float b, int c, int d, int *e, char *f, char *g);
 
 struct C_0013B210 {
     void func_0013C8A0(int a, void *b, int c, int d);
+    int func_0013D310(char *a, char *b, int *c, int *d, int e);
+    void func_0013C110(int a);
+};
+void func_00132E90(int h, int *out);
+void func_00030F30(char *a, char *b);
+void *func_001E8A44(unsigned int size);
+char *func_001E8BF0(char *a, char *b, int n);
+extern char D_002A4C10[];
+extern char D_002A4C0F[];
+extern char D_00284644[];
+extern char D_0028463C[];
+extern char D_00275FB4[];
+extern char D_00284638[];
+struct C_0017F050 {
+    C_0017F050 *func_0017F050(int a);
+    void func_0017F0A0(int a);
+    void func_00180600(int a, int b);
+};
+struct C_0019DA80 {
+    C_0019DA80 *func_0019DA80(int a);
+    void func_00129920(int a);
+    void func_0019ECB0(int a, int b);
+    void func_0019F780(int a, int b);
+};
+struct C_0019B700 {
+    C_0019B700 *func_0019B700(int a);
+    void func_00129920(int a);
+    void func_0019C690(int a, int b);
+    void func_0019D6C0(int a, int b);
 };
 extern C_0013B210 *D_002BEAAC;
 
