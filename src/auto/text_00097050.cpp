@@ -95,3 +95,21 @@ undefined4 C_00097740::func_00097740(int param_1)
   return 0;
 }
 
+int C_000979C0::func_000979C0(undefined4 key, undefined4 *out)
+{
+  int in_ECX = (int)this;
+  int h;
+  int *e;
+
+  h = (*(func_000979C0_hash_t *)(in_ECX + 0x8))(key);
+  e = *(int **)(*(int *)in_ECX + ((h < 0 ? -h : h) % *(int *)(in_ECX + 0x4)) * 4);
+  while (e != (int *)0x0) {
+    if (e[1] == h && (*(func_000979C0_eq_t *)(in_ECX + 0xc))(e[2], key) != 0) {
+      *out = e[0];
+      return 1;
+    }
+    e = (int *)e[3];
+  }
+  return 0;
+}
+
