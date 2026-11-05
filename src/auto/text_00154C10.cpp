@@ -18,14 +18,7 @@ template <class T> inline const T &Min_001554D0(const T &l, const T &r) { return
 /* the path buffers are saved and restored with a length-clamped copy */
 static __forceinline void CopyPath_001554D0(char *dst, const char *src)
 {
-    volatile int len;
-    volatile int lim;
-    volatile int res;
-    int n;
-    len = strlen(src);
-    lim = 0x103;
-    res = lim > len ? len : lim;
-    n = res;
+    int n = Min_001554D0(0x103, (int)strlen(src));
     func_001E8920(dst, src, n);
     dst[n] = 0;
 }
