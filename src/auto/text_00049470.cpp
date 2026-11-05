@@ -41,6 +41,19 @@ struct C_00049C00 {
     C_00049C00 *func_00049C00(int param_1);
 };
 
+struct C_00049C60_Obj1C0 {
+    void func_00099D40(int a);
+};
+
+struct C_00049C60 {
+    char pad0[0x1C0];
+    C_00049C60_Obj1C0 *f1C0;   /* 0x1C0 */
+    char pad1C4[0x48];         /* 0x1C4 */
+    int f20C;                  /* 0x20C */
+    C_00049C60 *func_00049C60(void);
+    void func_000342C0(void);
+};
+
 struct C_00049BD0 {
     int unk0;
     int unk4;
