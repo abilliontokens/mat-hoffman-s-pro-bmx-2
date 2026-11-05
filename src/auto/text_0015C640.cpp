@@ -27,12 +27,12 @@ extern float D_00275544;
 int func_0015C640(float *param_1, int param_2, float param_3)
 {
     int iVar1;
-    int iVar2;
     if (param_2 != 0) {
         if (param_3 >= param_1[param_2 * 2 - 2]) {
             return param_2;
         }
         if (param_3 >= *param_1) {
+            int iVar2;
             iVar2 = 0;
             do {
                 while (iVar1 = (param_2 + iVar2) >> 1, param_3 >= param_1[iVar1 * 2]) {
@@ -68,6 +68,24 @@ void func_0015C930(float *param_1, int param_2)
     float sum;
     float locals[4];
     func_0001B1D0(param_2, locals);
+    sum = locals[0] * param_1[0];
+    sum = sum + locals[1] * param_1[1];
+    sum = sum + locals[3] * param_1[3];
+    sum = sum + locals[2] * param_1[2];
+    if (sum < D_00275544) {
+        param_1[1] = -param_1[1];
+        param_1[2] = -param_1[2];
+        param_1[3] = -param_1[3];
+        *param_1 = -*param_1;
+    }
+}
+
+void func_0015CC50(float *param_1, int param_2)
+{
+    int func_0001B2E0(...);
+    float sum;
+    float locals[4];
+    func_0001B2E0(param_2, locals);
     sum = locals[0] * param_1[0];
     sum = sum + locals[1] * param_1[1];
     sum = sum + locals[3] * param_1[3];
