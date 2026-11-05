@@ -36,8 +36,42 @@ struct Obj_6C {
 };
 
 struct Res_6C {
+    char pad0[0x34];
+    unsigned int f34;
+    char pad38[0xC];
+    unsigned int f44, f48;
+    char pad4C[2];
+    unsigned char flags;
     void func_001D6410();
+    void func_0005E840(char *);
+    void func_001D6600();
 };
+struct Item_6C {
+    void func_001B1980();
+    void func_001B2270(unsigned int);
+    void func_001B19C0(int,int,int);
+    void func_001B1860(float,float,int,float,float,float,float,int,float,float,float,float,float);
+};
+struct C_0006CEC0 {
+    char pad0[0x64];
+    Item_6C *items[2];
+    char pad6C[8];
+    int positions[2];
+    char pad7C[0x3C];
+    int fB8;
+    char padBC[8];
+    Res_6C *fC4, *fC8;
+    int fCC, fD0;
+    char padD4[8];
+    float fDC;
+    int fE0, fE4, fE8;
+    void func_0006CEC0();
+};
+extern char D_00277038[];
+extern unsigned int D_0028F5E0;
+int func_001ADCC0(char *, int, const char *, ...);
+int func_001AC330(char *, const char *, ...);
+extern "C" char * __cdecl strcpy(char *, const char *);
 
 struct C_0006C470 {
     void *vtbl;
