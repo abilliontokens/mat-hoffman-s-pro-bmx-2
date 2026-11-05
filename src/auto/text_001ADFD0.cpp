@@ -48,6 +48,21 @@ struct C_001AE810 {
 };
 
 
+void *C_001AEB70::func_001AEB70(int flags)
+{
+    extern int D_0028C208;
+
+    vtbl = (void *)&D_0028C208;
+    if (f8 != 0) {
+        f8->v0(1);
+    }
+    func_001D5490();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 undefined4 C_001AEBB0::func_001AEBB0(byte param_1)
 {
   int func_001AE460(...);
