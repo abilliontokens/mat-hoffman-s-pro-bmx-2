@@ -328,6 +328,18 @@ void C_00192470::func_001927A0(void)
     func_0001DFF0();
 }
 
+C_00192800 *C_00192800::func_00192800(unsigned int flags)
+{
+    void func_001E891B(void *);
+    vtbl = &D_0028AB84;
+    func_001E891B(f14);
+    func_0001DFF0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void SearchNode::func_00192930(void)
 {
     extern int D_0028ABD4;
