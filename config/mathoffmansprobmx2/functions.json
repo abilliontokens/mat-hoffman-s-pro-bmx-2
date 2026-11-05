@@ -524440,6 +524440,8 @@
   "func_001E2F0A": "XcSHAFinal",
   "func_001E2F10": "ExQueryNonVolatileSetting",
   "func_001E2F16": "DbgPrint",
+  "func_001EAB1B": "__SEH_epilog",
+  "func_001F325D": "C_001F325D::C_001F325D",
   "func_001F656A": "RtlUnwind"
  }
 }

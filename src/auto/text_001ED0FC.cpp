@@ -89,7 +89,7 @@ int func_001ED48C(int fh)
     int func_001EE70F(int);
     int *func_001ED075(void);
     int *func_001ED07E(void);
-    void func_001EAB1B(void);
+    void __SEH_epilog(void);
     void func_001ED503(void);
     int func_001ED40B(int);
     extern int D_002954F0;
@@ -110,7 +110,7 @@ int func_001ED48C(int fh)
     }
     *func_001ED075() = 9;
     *func_001ED07E() = 0;
-    func_001EAB1B();
+    __SEH_epilog();
     return -1;
 }
 
@@ -124,12 +124,12 @@ int func_001ED50B(void)
 {
     int *func_001ED075(void);
     int *func_001ED07E(void);
-    void func_001EAB1B(void);
+    void __SEH_epilog(void);
     int result;
     *func_001ED075() = 9;
     *func_001ED07E() = 0;
     result = -1;
-    func_001EAB1B();
+    __SEH_epilog();
     return result;
 }
 
@@ -153,7 +153,7 @@ int func_001ED7FC(int fh, int param_2, int param_3)
     int *func_001ED075(void);
     int *func_001ED07E(void);
     void func_001ED883(void);
-    void func_001EAB1B(void);
+    void __SEH_epilog(void);
     extern int D_00295500;
     extern unsigned int D_002FB240;
     extern int *D_002FB260[];
@@ -172,7 +172,7 @@ int func_001ED7FC(int fh, int param_2, int param_3)
     }
     *func_001ED075() = 9;
     *func_001ED07E() = 0;
-    func_001EAB1B();
+    __SEH_epilog();
     return -1;
 }
 
@@ -223,6 +223,33 @@ void func_001EDC7E(int a, S_001EDC7E *p) {
         p->f18 &= 0;
         p->f0 &= 0;
         p->f8 &= 0;
+    }
+}
+
+int func_001EDCA8(int ch, S_001EDC7E *stream, int *pcnt) {
+    int c;
+    if ((stream->fC & 0x40) == 0 || stream->f8 != 0) {
+        if (--stream->f4 < 0) {
+            c = func_001ED8A7(ch, stream);
+        } else {
+            *(char *)stream->f0 = (char)ch;
+            stream->f0++;
+            c = (unsigned char)ch;
+        }
+        if (c == -1) {
+            *pcnt = -1;
+            return -1;
+        }
+    }
+    (*pcnt)++;
+    return 0;
+}
+
+void func_001EDCDB(int *pcnt, int ch, int n, S_001EDC7E *stream) {
+    while (n > 0) {
+        n--;
+        func_001EDCA8(ch, stream, pcnt);
+        if (*pcnt == -1) break;
     }
 }
 
