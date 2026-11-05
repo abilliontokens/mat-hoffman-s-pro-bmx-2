@@ -307,6 +307,18 @@ void C_0001BAC0::func_0001BD60(int id, int slot)
     obj->f90 = -1;
 }
 
+void C_0001C1E0::func_0001BDB0(int idx)
+{
+    S_0001C1E0_Slot *s;
+
+    if (f2c != 0 && idx < f2c->f24 && idx >= 0) {
+        s = f2c->f28[idx];
+        s->f78[s->f84] = 0;
+        s->f88 = -1;
+        s->f90 = -1;
+    }
+}
+
 void C_0001B790::func_0001BE50(void)
 {
     int i;
