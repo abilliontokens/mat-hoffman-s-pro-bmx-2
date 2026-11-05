@@ -83,7 +83,11 @@ struct C_0013AEC0 {
     int fEC;
     char padF0[8];
     int fF8;
+    int fFC;
     int func_0013AFB0(int idx);
+    int func_0013B1A0(const char *key);
+    void func_0013B210(int id);
+    void func_0013B280(int keep);
     void func_0013AEC0(int idx);
     int func_0013AF80(int idx);
     int func_0013AF40(int idx, int *a, unsigned int *b);
