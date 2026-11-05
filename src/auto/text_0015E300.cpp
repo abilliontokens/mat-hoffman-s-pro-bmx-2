@@ -176,13 +176,16 @@ int C_0015E300::func_0015E5B0(void)
 
 void LightEmitter::func_0015E600()
 {
+    C_00193500 *sub;
+
     vtbl = &D_002878B4;
     if (D_002E2930 != 0) {
         ((C_0015DA60 *)D_002E2930)->func_0015DCC0(this);
     }
-    if (fC4 != 0) {
-        fC4->func_00193500();
-        func_001E891B(fC4);
+    sub = fC4;
+    if (sub != 0) {
+        sub->func_00193500();
+        func_001E891B(sub);
     }
     if (fCC != 0) {
         func_001E891B(fCC);
