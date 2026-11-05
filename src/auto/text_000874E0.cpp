@@ -4,6 +4,7 @@
 extern int D_002797A4;
 
 void func_001E891B(void *p);
+extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 
 struct C_00157600 {
     void func_00157600(int param);
