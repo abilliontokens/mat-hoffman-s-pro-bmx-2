@@ -134,7 +134,8 @@ void func_000111B0(float *out, float *in) {
 
 float func_00011220(float *a, float *b)
 {
-    return a[1] * b[1] + a[0] * b[0] + a[2] * b[2];
+    float s = a[1] * b[1] + a[0] * b[0];
+    return s + a[2] * b[2];
 }
 
 int func_001E8833(void);
@@ -151,7 +152,7 @@ int func_00011260(int lo, int hi)
         D_002AF45C = (((t.day * 240 + t.hour) * 6 + t.minute) * 60) + t.second;
         func_001E8826(D_002AF45C);
     }
-    return lo + (int)((float)func_001E8833() * D_002754B0 * (float)(hi - lo + 1));
+    return lo + (int)((float)(hi - lo + 1) * ((float)func_001E8833() * D_002754B0));
 }
 
 int C_00011410::func_00011410(void)
