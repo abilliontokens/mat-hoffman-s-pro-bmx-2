@@ -283,7 +283,7 @@ void func_001F4675(unsigned int *x, int n)
 
 #pragma optimize("", on)
 
-int func_001F46F0(...);
+
 #pragma optimize("y", on)
 void func_001F4848(int a0, int a1) { func_001F46F0(a0, a1, (int)&D_002AEDA4); }
 
