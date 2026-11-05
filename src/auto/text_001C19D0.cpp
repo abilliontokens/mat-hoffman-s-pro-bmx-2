@@ -1,6 +1,41 @@
 /* 12 functions from 0x001C19D0 to 0x001C26B0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+extern char D_00275AD4[], D_00275AC8[], D_0027CEE4[];
+extern char D_00284A98[], D_0028E23C[], D_00277268[], D_0028E234[];
+extern char D_0028E220[], D_0028E210[], D_0028E1F8[], D_0028E1E8[];
+void *func_001E8A44(int);
+void *func_001E8AA5(int);
+int func_001ADCC0(char *, int, const char *, ...);
+extern "C" char * __cdecl strcpy(char *,const char *);
+struct Config1C22C0 {
+ Config1C22C0 *func_00168280();
+ void func_001691E0();
+ int func_00169490(char *,int);
+ int func_00168C20(const char *,int,int *);
+ void func_00168CB0(const char *,float *,float *);
+ void func_00169710(const char *);
+ void func_00168550(const char *,char *,int);
+};
+struct Object1C22C0 {
+ int *table;
+ char *data;
+ Object1C22C0 *func_00164440(int,int);
+ void func_001673B0(int,int,int,int,int);
+};
+struct UIWidgetSoultreeCharacter {
+ char pad0[0x28];
+ int unk28;
+ char pad2C[0x3c];
+ Object1C22C0 *unk68;
+ float v6C[4],v7C[4],v8C[4];
+ char str9C[0x100],str19C[0x100],str29C[0x100];
+ int count;
+ char **strings;
+ void func_001BF600(Config1C22C0 *);
+ void func_001577A0(void *,int);
+ UIWidgetSoultreeCharacter *func_001C22C0(int,Config1C22C0 *,char *);
+};
 struct C_001C22A0 {
     undefined4 func_001C22A0(byte param_1);
 };
@@ -147,11 +182,11 @@ void C_001C2210::func_001C2210() {
 
 void C_001C2250::func_001C2250() {
     unk2C = 0;
-    if (unk38 == 0 || unk3C == 0) {
-        if (unk38 != 0) {
+    if (!(unk38 && unk3C)) {
+        if (unk38) {
             ((VCall8 *)this)->v7();
         }
-        if (unk3C != 0) {
+        if (unk3C) {
             ((VCall8 *)this)->v5();
         }
     }
