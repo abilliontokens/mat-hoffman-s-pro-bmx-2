@@ -116,7 +116,10 @@ struct C_001D4200 {
     int func_001D4200(char *out);
     int func_001D4300(unsigned a);
     int func_001D4380(char *out);
+    int func_001D4720(const char *a, const char *b);
 };
+
+int __stdcall func_001DEFD8(const char *name);
 
 void __stdcall func_0025ADD0(void *p);
 void __stdcall func_0025AA70(void *p);
@@ -377,24 +380,29 @@ int C_001D4200::func_001D40E0(int a)
         strcpy(unk4, "u:\\");
         return 1;
     }
-    if ((func_001D4060(a) & func_0026EBC5(&D_0026D8D0)) != 0 &&
-        func_0026ED5B(func_001D4010(a), a >= 4, &letter) >= 0) {
-        func_001ADCC0(unk4, 4, D_0028F130, letter);
-        unk0 = a;
-        return 1;
+    if ((func_0026EBC5(&D_0026D8D0) & func_001D4060(a)) != 0) {
+        if (func_0026ED5B(func_001D4010(a), a >= 4, &letter) >= 0) {
+            func_001ADCC0(unk4, 4, D_0028F130, letter);
+            unk0 = a;
+            return 1;
+        }
     }
     return 0;
 }
 
 int C_001D4200::func_001D4170(int a)
 {
+    char *p;
+
     if (a == 8) {
-        memset(unk4, 0, sizeof(unk4));
+        p = unk4;
+        memset(p, 0, 4);
         unk0 = -1;
         return 1;
     }
     if (func_0026EE8D(func_001D4010(a), a >= 4) >= 0) {
-        memset(unk4, 0, sizeof(unk4));
+        p = unk4;
+        memset(p, 0, 4);
         unk0 = -1;
         return 1;
     }
