@@ -49,6 +49,7 @@ struct C_001CBD40 {
         char pad11[0x7f];
         Vec b;
         Sub() { f10 = 0; }
+        void init() { a.init(); f10 = 0; b.init(); }
     } f34;
     int fD4;
     char padD8[0x10];
