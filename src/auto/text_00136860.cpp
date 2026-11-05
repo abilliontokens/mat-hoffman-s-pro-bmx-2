@@ -63,6 +63,20 @@ struct TokenEntry {
 };
 
 
+void Cube::func_00136A70(void)
+{
+    vtbl = &D_00284860;
+    for (int i = 5; i >= 0; i--) {
+        for (int j = 15; j >= 0; j--) {
+            if (groups[i].ptrs[j] != 0) {
+                groups[i].ptrs[j]->vf2();
+                groups[i].ptrs[j] = 0;
+            }
+        }
+    }
+    func_0001DFF0();
+}
+
 undefined4 C_00136B40::func_00136B40(byte param_1)
 {
   int func_00136A70(...);
