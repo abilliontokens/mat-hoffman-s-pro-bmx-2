@@ -155,6 +155,15 @@ void C_000BBE30::func_000BC240(void)
     }
 }
 
+void C_000BBE30::func_000BC2A0(void)
+{
+    if (D_002A8490->f2E0->f324 == 1) {
+        f27C->f124 = 0;
+    } else {
+        f27C[f284].f124 = 0;
+    }
+}
+
 void C_000BC4A0::func_000BC4A0(undefined4 param_1, undefined4 param_2)
 {
   int in_ECX = (int)this;
