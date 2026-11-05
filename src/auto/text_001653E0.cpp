@@ -195,17 +195,18 @@ static inline int min_165F70(const int &a, const int &b) { return a > b ? b : a;
 static __forceinline void mirror_165A20(Vec4_165EF0 *v, int mode)
 {
     float t = v->y;
+    float w = v->w;
 
     if (mode == 0) {
         t = -t;
     } else if (mode == 1) {
         v->z = -v->z;
     } else if (mode == 2) {
-        v->w = -v->w;
+        w = -w;
     }
     v->y = -t;
-    v->z = -v->w;
     v->w = -v->z;
+    v->z = -w;
 }
 
 struct C_00165F70_Elem {
