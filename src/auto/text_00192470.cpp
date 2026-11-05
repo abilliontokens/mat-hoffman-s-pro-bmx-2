@@ -50,6 +50,57 @@ struct SearchEntry {
     virtual void v14();
     virtual void v15();
     virtual void v16();
+    char pad4[0x1D];
+    unsigned char f21;
+    char pad22[4];
+    unsigned char f26;
+    unsigned char f27;
+    char pad28[0x159];
+    unsigned char f181;
+};
+
+/* the growable list embedded at +0x10 of C_00192470 */
+struct S_00192840_List {
+    int count;
+    SearchEntry **items;
+    int func_001CDE90(SearchEntry *entry);
+};
+
+struct C_00157600 {
+    void func_00157600(int a);
+};
+
+struct C_00192800 : C_0001DFE0 {
+    char pad8[0xC];
+    void *f14;
+    C_00192800 *func_00192800(unsigned int flags);
+};
+
+struct S_00192A90_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    int f4;
+    int f8;
+};
+
+struct C_00192A90 {
+    char pad0[0x28];
+    S_00192A90_Obj *f28;
+    int func_00192A90(S_00192A90_Obj *obj);
+};
+
+struct C_00192900 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    int f28;
+    int f2c;
+    int f30;
+    int f34;
+    int f38;
+    int f3c;
+    C_00192900 *func_00192900(int a);
 };
 
 struct C_00192470 : C_0001DFE0 {
