@@ -145,6 +145,18 @@ void C_001C2210::func_001C2210() {
     }
 }
 
+void C_001C2250::func_001C2250() {
+    unk2C = 0;
+    if (unk38 == 0 || unk3C == 0) {
+        if (unk38 != 0) {
+            ((VCall8 *)this)->v7();
+        }
+        if (unk3C != 0) {
+            ((VCall8 *)this)->v5();
+        }
+    }
+}
+
 void C_001C2290::func_001C2290(void) {
     unk2C = 0;
 }
@@ -160,5 +172,18 @@ undefined4 C_001C22A0::func_001C22A0(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+void *C_001C2670::func_001C2670(int flags) {
+    vtbl = (void *)&D_0028DB04;
+    if (unk68) {
+        func_001E8390(unk68);
+    }
+    vtbl = (void *)&D_0028D804;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
 }
 
