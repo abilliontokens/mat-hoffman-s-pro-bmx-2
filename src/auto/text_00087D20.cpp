@@ -34,6 +34,23 @@ struct C_001D5760 {
     int f34;
     char pad38[0x20];
     unsigned char b58;
+    /* move the sprite, marking it dirty only when something changed */
+    void SetPos(float x, float y)
+    {
+        if (f4 != x || f8 != y) {
+            f4 = x;
+            f8 = y;
+            b58 |= 1;
+        }
+    }
+    void SetSize(float w, float h)
+    {
+        if (f14 != w || f18 != h) {
+            f14 = w;
+            f18 = h;
+            b58 |= 1;
+        }
+    }
     C_001D5760 *func_001D5760();
     void func_001D5810(void *a, int b, int c, int d);
 };
@@ -143,5 +160,42 @@ DirectionArrowOverlay *DirectionArrowOverlay::func_00088950(int a0, int a1)
     }
     func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
     return this;
+}
+
+void DirectionArrowOverlay::func_00088A40(int a, S_00088A40_V4 *v)
+{
+    int y = (f24 != 1) ? 0xE0 : 0x70;
+    int x = 0;
+    C_001D5760 *o;
+
+    if (a >= 0) {
+        x = (f24 != 1) ? 0x120 : 0x260;
+    }
+    o = f28;
+    if ((float)x != o->f4 || o->f8 != (float)y) {
+        o->f4 = (float)x;
+        o->f8 = (float)y;
+        o->b58 |= 1;
+    }
+    o = f28;
+    if ((float)(x + 0x10) != o->f14 || o->f18 != (float)(y + 0x10)) {
+        o->f14 = (float)(x + 0x10);
+        o->f18 = (float)(y + 0x10);
+        o->b58 |= 1;
+    }
+    if (a < 0) {
+        o = f28;
+        if (*(float *)&o->f30 != D_00275544) {
+            o->f30 = 0;
+            o->b58 |= 1;
+        }
+    } else {
+        o = f28;
+        if (o->f30 != 0x40490fd9) {
+            o->f30 = 0x40490fd9;
+            o->b58 |= 1;
+        }
+    }
+    *(S_00088A40_V4 *)&f34 = *v;
 }
 
