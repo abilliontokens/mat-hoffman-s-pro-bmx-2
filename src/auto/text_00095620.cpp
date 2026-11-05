@@ -17,12 +17,42 @@ int func_001EA426(const char *, const char *);
 struct S_00096200_Manager {
  void func_0001B910(S_00096020_Item *);
  void func_0001B820(S_00096020_Item *);
+ void func_0001B9E0(S_00096020_Item *, int, int);
  void func_0001BDB0(int);
  void func_0001BB00(int, char *, int);
 };
-struct S_00096200_Owner { char pad[0x3ac]; S_00096020_List *list; char pad3b0[0xd4]; S_00096200_Manager *manager; };
-struct S_00096200_Player { char pad[0x64]; S_00096200_Owner *owner; };
-struct S_00096200_Game { char pad[0x2a4]; S_00096200_Player *player; };
+/* object driven by func_00095D70 (virtual slots 5, 6, 30 and 32) */
+struct S_00095D70_Obj {
+ virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+ virtual void v4(); virtual void v5(int a); virtual void v6(); virtual void v7();
+ virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+ virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+ virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+ virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+ virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+ virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+ virtual void v32();
+};
+struct S_00095D70_Group { int count; S_00095D70_Obj **items; };
+struct S_00095D70_Table { char pad[0x28]; S_00095D70_Group **items; };
+struct S_00095D70_Sink { void func_00094E40(int, int, int); };
+struct S_00095D70_Mid { char pad[0x2fc]; S_00095D70_Sink *f2fc; };
+struct S_00096200_Owner { char pad[0x3ac]; S_00096020_List *list; char pad3b0[0x10]; S_00095D70_Table *f3c0; char pad3c4[0xc0]; S_00096200_Manager *manager; };
+struct S_00096200_Player { char pad[0x64]; S_00096200_Owner *owner; char pad68[0x160]; int f1c8; void func_00052630(char *); };
+struct S_00096200_Game { char pad[0x2a4]; S_00096200_Player *player; char pad2a8[0x38]; S_00095D70_Mid *f2e0; };
+/* per-slot state at +0x300 (12 slots, 0x78 byte strings) */
+struct C_00095D70 {
+ char pad[0x300];
+ int count;
+ char names[0x1680];
+ int f1984[12];
+ char f19B4[0x1ba0];
+ int f24F4[12];
+ int f2524[12];
+ char pad2554[0x6458 - 0x2554];
+ S_00095D70_Obj *objs[12];
+ void func_00095D70(void);
+};
 extern S_00096200_Game *D_002A8490;
 struct S_00096200_Obj { void func_001B65D0(); };
 struct C_00096200 { void func_00096200(int idx); };
