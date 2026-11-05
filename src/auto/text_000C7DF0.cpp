@@ -309,3 +309,22 @@ void BmxUIPageOptions::func_000C8660(void)
     func_001BE3F0();
 }
 
+void C_000C86A0::func_000C86A0(void)
+{
+    unk280 = 0;
+    unk284 = 0;
+    unk298 = 0;
+    unk294 = 0;
+    unk29C = 1;
+    unk2A4 = 0;
+    unk2C0 = 0;
+    unk2BC = 0;
+    unk2B8 = unk124->unk274;
+    unk2B8->func_00093120();
+    D_002B91AC->unk34->func_0005E840(D_002A8490->f2E8->f4->f740);
+    D_002B91AC->func_000BF860(0, 0x1EB, 0x184, 0);
+    D_002B91AC->unk38->func_0005E840(D_002A8490->f2E8->f4->f7C8);
+    D_002B91AC->unk80->func_0005E840(D_002A8490->f2E8->f4->f928);
+    D_002B91AC->unk84->func_0005E840(D_002A8490->f2E8->f4->f908);
+}
+
