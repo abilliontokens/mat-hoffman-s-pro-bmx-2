@@ -194,6 +194,7 @@ struct C_001C13A0 {
     int f200;
     int func_001577A0(void *, int);
     int func_001C13A0();
+    C_001C13A0 *func_001C11E0(int a, void *name, S_001C0F20_Stream *stream);
 };
 void *func_001E8A44(unsigned int);
 
