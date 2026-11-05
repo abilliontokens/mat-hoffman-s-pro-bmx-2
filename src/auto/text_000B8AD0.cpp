@@ -47,3 +47,10 @@ void *BmxUIGlobalManager::func_000B9A60(int a0)
     return this;
 }
 
+void C_000B9A80::func_000B9A80(int a0, int a1)
+{
+    if (unk30 != 0) {
+        unk30->func_001A4100(a0, a1, 0);
+    }
+}
+
