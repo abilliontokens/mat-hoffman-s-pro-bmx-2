@@ -157,3 +157,26 @@ void func_001B3AF0(int a1, u16 a2, u16 a3, int a4, int a5, const char *name, int
     func_001B35D0(&desc, a4, a5, a7);
 }
 
+C_001B3DC0 *C_001B3DC0::func_001B3DC0(int a1, int a2, int a3, int a4)
+{
+    S_001B3DC0_New *p;
+    int *buf;
+    int i;
+
+    fa4 = a3;
+    fa8 = (char)(a4 >> 16);
+    fa9 = (char)(a4 >> 8);
+    faa = (char)a4;
+    buf = (int *)func_001E8A44(a2 * 4);
+    for (i = 0; i < a2; i++) {
+        buf[i] = 0x10;
+    }
+    f28 = a2;
+    p = (S_001B3DC0_New *)func_001E8A44(0x60);
+    f24 = p != 0 ? p->func_00140390(1) : 0;
+    f24->v27(a1, 0xf, a2, buf, 0);
+    func_001577A0(f24, 8);
+    func_001E891B(buf);
+    return this;
+}
+
