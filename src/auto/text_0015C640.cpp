@@ -224,16 +224,20 @@ int func_0015CAB0(S_0015CA10_Key *arr, int n, float t)
         return 0;
     }
     lo = 0;
-    do {
-        while (mid = (n + lo) >> 1, t >= arr[mid].t) {
-            lo = mid;
+    for (;;) {
+        mid = (lo + n) >> 1;
+        if (t >= arr[mid].t) {
             if (t < arr[mid + 1].t) {
                 return mid + 1;
             }
+            lo = mid;
+        } else {
+            if (t >= arr[mid - 1].t) {
+                return mid;
+            }
+            n = mid;
         }
-        n = mid;
-    } while (t < arr[mid - 1].t);
-    return mid;
+    }
 }
 
 void C_0015CB40::func_0015CB40(int a0, int a1) {
@@ -292,19 +296,22 @@ void C_0015CD70::func_0015CD70(S_0015CD70_Vec4 *p)
 
 unsigned int C_0015CF60::func_0015CF60(void)
 {
-    int a, b, c, d;
+    unsigned int r;
     if (f28 == 4) {
-        a = (int)f50;
-        b = (int)f5c;
-        c = (int)f54;
-        d = (int)f58;
+        r = (int)f50 & 0xff;
+        r |= (int)f5c << 8;
+        r <<= 8;
+        r |= (int)f54 & 0xff;
+        r <<= 8;
+        return ((int)f58 & 0xff) | r;
     } else {
-        a = (int)f30;
-        b = (int)f3c;
-        c = (int)f34;
-        d = (int)f38;
+        r = (int)f30 & 0xff;
+        r |= (int)f3c << 8;
+        r <<= 8;
+        r |= (int)f34 & 0xff;
+        r <<= 8;
+        return ((int)f38 & 0xff) | r;
     }
-    return ((((a & 0xff) | (b << 8)) << 8 | (c & 0xff)) << 8) | (d & 0xff);
 }
 
 void C_0015CFE0::func_0015CFE0(undefined4 param_1)
