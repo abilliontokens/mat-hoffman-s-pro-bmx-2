@@ -10,7 +10,7 @@ extern int D_002F0BB8;
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 void func_001E891B(void *ptr);
 void func_001FFB70();
-void __stdcall func_001FFD90(void *p);
+int __stdcall func_001FFD90(void *p);
 void __stdcall func_001FF4E0(int a, int b, int c, int d, int e, int f);
 void __stdcall func_002025D0(int a);
 
