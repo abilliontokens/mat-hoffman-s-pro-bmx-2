@@ -1,5 +1,22 @@
 /* 15 functions from 0x0014A610 to 0x0014B260, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
+
+struct Vec4 {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
+struct C_0014AC30 {
+    char pad0[0xA8];
+    int fA8;
+    int *fAC;
+    Vec4 *fB0;
+    void func_0014AC30(Vec4 *vecs, int *ints);
+};
+
 struct C_0014A630 {
     int unk0;
     int unk4;
