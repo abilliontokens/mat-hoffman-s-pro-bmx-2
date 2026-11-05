@@ -49,6 +49,7 @@ struct S_000BDF30_Names {
     S_000BDF30_Lookup *f484;
 };
 
+/* 0x1a8-byte element of the array at f27C */
 struct C_000BA2D0 {
     void func_000BA2D0();
 };
@@ -162,7 +163,41 @@ void *C_000BE510::func_000BE510(int flags) {
 
 void C_000BBE30::func_000BE540()
 {
-    *(void **)this = 0;
+    int i;
+
+    vtbl = (void *)&D_0027D75C;
+    D_002EFDB8->v7(1);
+    D_002EFDB8->v8();
+    if (f27C != 0) {
+        int n = ((int *)f27C)[-1];
+        void *base = (char *)f27C - 4;
+        C_000BA2D0 *p = (C_000BA2D0 *)((char *)f27C + n * 0x1a8);
+        while (n-- > 0) {
+            p--;
+            p->func_000BA2D0();
+        }
+        func_001E891B(base);
+    }
+    if (f280 != 0) {
+        func_001E891B((void *)f280);
+    }
+    if (f260 != 0) {
+        f260->v2();
+        f260 = 0;
+    }
+    D_002BEAAC->func_0013B340();
+    for (i = 0; i < 8; i++) {
+        if (f2B0[i] != 0) {
+            ((C_00136300 *)f2B0[i])->func_00136300();
+            func_001E891B((void *)f2B0[i]);
+        }
+        if (f2D0[i] != 0) {
+            ((C_00136300 *)f2D0[i])->func_00136300();
+            func_001E891B((void *)f2D0[i]);
+        }
+    }
+    ((C_0018C120 *)D_002A8490->f2EC)->func_0018C120();
+    ((C_001BCC40 *)this)->func_001BCC40();
 }
 
 undefined4 C_000BEDA0::func_000BEDA0(byte param_1)
