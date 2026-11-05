@@ -53,6 +53,19 @@ int func_001EE63F(int fh, int value)
     return -1;
 }
 
+int func_001EE685(int fh)
+{
+    if ((unsigned int)fh < D_002FB240 &&
+        (*((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) != 0 &&
+        *(int *)((char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28) != -1) {
+        *(int *)((char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28) = -1;
+        return 0;
+    }
+    *func_001ED075() = 9;
+    *func_001ED07E() = 0;
+    return -1;
+}
+
 void func_001EE782(int fh)
 {
     _imp__RtlLeaveCriticalSection((char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 0xc);
