@@ -172,6 +172,32 @@ void C_000EE060::func_000EDB70(void)
     unk3C0 = 1;
 }
 
+void C_000EDF00::func_000EDC70(void)
+{
+    int i;
+
+    unk3B8->func_00093120();
+    for (i = 0; i < unk29C; i++) {
+        arr48C[i]->func_001B1980();
+        if (i == unk280) {
+            arr48C[i]->func_001B2270(0xffbfa35a);
+            arr48C[i]->func_001B1A30(320.0f, arr460[i], 0.5f);
+            arr48C[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0xff, 1.45f, 0, 0, 0.2f, 0);
+        } else if (i == unk3D4) {
+            arr48C[i]->func_001B2270(0xffcccccc);
+            arr48C[i]->func_001B1A30(320.0f, arr460[i], 0.5f);
+            arr48C[i]->func_001B1860(0, -1.0f, 0xff, 1.45f, 0, 0, 0, 0xff, 1.15f, 0, 0, 0.2f, 0);
+        } else {
+            arr48C[i]->func_001B2270(0xffcccccc);
+            arr48C[i]->func_001B1A30(320.0f, arr460[i], 0.5f);
+            arr48C[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
+        }
+        if (arr460[i] > D_00279B50 || arr460[i] < D_0027E144) {
+            arr48C[i]->func_001B1980();
+        }
+    }
+}
+
 void C_000EDF00::func_000EDDC0(void)
 {
     int i;
