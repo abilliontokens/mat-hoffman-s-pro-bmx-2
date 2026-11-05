@@ -83,6 +83,7 @@ struct C_001033D0 {
     C_001033D0 *func_001033D0(void *a, void *b);
     void func_00103350();
     void func_00103A70();
+    void func_00103960();
 };
 
 struct C_001BF6A0 {
