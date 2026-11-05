@@ -106,16 +106,73 @@ struct C_00134980 {
 };
 
 
+struct Ent_00134770;
+struct Mgr_00134770;
+typedef void (*EntCb)(void *, void *);
+struct Ent_00134770 {
+    char pad0[2];
+    char b2;
+    char pad3[5];
+    unsigned short w8;
+    char pad0A[2];
+    unsigned short wC;
+    char pad0E[0xa7 - 0xe];
+    unsigned char flags;
+    char pad_a8[0];
+    int func_0014CA60(void);
+    Ent_00134770 *func_0014CA80(int i);
+    float func_0014CC20(void);
+};
+struct Mgr_00134770 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual int v29(Ent_00134770 *e);
+    char pad4[0x98];
+    EntCb cb9c;
+    EntCb cbA0;
+    char pad_a4[3];
+    unsigned char flags;
+    int func_001332E0(Ent_00134770 *e);
+    int func_00134770(Ent_00134770 **list, int count);
+};
+extern char D_002A4330;
+extern char D_002A4331;
+extern int D_002BA144;
+extern char *D_002BF250;
+
 float func_00133D90(Coll_00133D90 *obj, float *p, float r)
 {
     float rad = r + obj->f48;
     float dx = obj->f28 - p[0];
     float dz = obj->f30 - p[2];
-    float d;
-    float res;
-
-    _mm_store_ss(&d, _mm_sqrt_ss(_mm_set_ss(dz * dz + dx * dx)));
-    res = d - rad;
+    float res = sqrtf(dz * dz + dx * dx) - rad;
     if (res <= D_00275544) {
         res = D_00275544;
     }
