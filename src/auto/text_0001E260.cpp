@@ -336,16 +336,35 @@ void *C_0001E930::func_0001E930(unsigned int flags) {
     return this;
 }
 
+float func_0001E960(float lengthSquared)
+{
+    __m128 v;
+    __m128 r;
+    __m128 eps;
+
+    v = _mm_load_ss(&lengthSquared);
+    eps = _mm_load_ss(&D_00275FC8);
+    v = _mm_add_ss(v, _mm_and_ps(_mm_cmplt_ss(v, eps), eps));
+    r = _mm_rsqrt_ss(v);
+    r = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_00275FC0)),
+                   _mm_sub_ss(_mm_load_ss(&D_00275FC4), _mm_mul_ss(_mm_mul_ss(v, r), r)));
+    _mm_store_ss(&lengthSquared, r);
+    return lengthSquared;
+}
+
+void func_0001E9B0(float *out, float *a, float *b)
+{
+    vec3_set(out, a[0] * b[0], a[1] * b[1], a[2] * b[2]);
+}
+
 void func_0001EAB0(float *out, float *a, float *b)
 {
     __m128 va = _mm_loadu_ps(a);
     __m128 vb = _mm_loadu_ps(b);
-    __m128 sa = _mm_shuffle_ps(va, va, 0xc9);
-    __m128 sb = _mm_shuffle_ps(vb, vb, 0xc9);
-    __m128 r = _mm_sub_ps(_mm_mul_ps(va, sb), _mm_mul_ps(vb, sa));
+    __m128 r = _mm_sub_ps(_mm_mul_ps(va, _mm_shuffle_ps(vb, vb, 0xc9)),
+                          _mm_mul_ps(vb, _mm_shuffle_ps(va, va, 0xc9)));
 
-    r = _mm_shuffle_ps(r, r, 0xc9);
-    _mm_storeu_ps(out, r);
+    _mm_storeu_ps(out, _mm_shuffle_ps(r, r, 0xc9));
 }
 
 void C_0001EDC0::func_0001EDC0(int a0) {
