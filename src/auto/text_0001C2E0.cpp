@@ -104,6 +104,17 @@ void C_0001C9B0::func_0001C9B0(void) {
     func_00157660();
 }
 
+void *C_0001C9C0::func_0001C9C0(int flags) {
+    extern int D_00275C0C;
+    void func_001E891B(void *);
+    unk0 = (int)&D_00275C0C;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void C_0001CD40::func_0001CD40(void) {
     unk5C = 0;
 }
