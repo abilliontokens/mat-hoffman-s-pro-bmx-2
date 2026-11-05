@@ -28,7 +28,7 @@ static float clampf(float x)
 }
 
 extern float D_00275544;
-static float fold_acos(float x, float *offset, float *sign)
+static __forceinline float fold_acos(float x, float *offset, float *sign)
 {
  x = clampf(x);
  if (x < D_00275544) {
