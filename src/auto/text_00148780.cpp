@@ -92,6 +92,69 @@ struct C_00149040 {
     void *func_00149040(unsigned int flags);
 };
 
+struct C_001490F0 {
+    void *vtbl;
+    void func_001B0230();
+    void *func_001490F0(unsigned int flags);
+};
+
+struct C_001490A0_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+};
+
+struct C_001490A0 {
+    void *vtbl;
+    u32 f4;
+    C_001490A0_Obj *f8;
+    void func_001B01C0();
+    void *func_001490A0(unsigned int flags);
+};
+
+struct Anim_00149120 {
+    int a0;
+    int a1;
+    int a2;
+    int a3;
+    int a4;
+};
+
+struct AnimSrc_00149120 {
+    char pad0[0x34];
+    Anim_00149120 *arr;
+    char pad38[8];
+    int count;
+};
+
+struct C_00149120 {
+    void *vtbl;
+    u32 unk4;
+    AnimSrc_00149120 *unk8;
+    u32 unkC;
+    u32 unk10;
+    u32 unk14;
+    u32 unk18;
+    u32 unk1C;
+    void *unk20;
+    void func_001B07F0(int a0, int a1);
+    void *func_00149120(int a0, int a1);
+};
+
+struct C_001491E0 {
+    void *vtbl;
+    u32 unk4;
+    AnimSrc_00149120 *unk8;
+    u32 unkC;
+    u32 unk10;
+    u32 unk14;
+    u32 unk18;
+    u32 unk1C;
+    void *unk20;
+    void func_001B08F0(C_001491E0 *a0);
+    void *func_001491E0(C_001491E0 *a0);
+};
+
 struct C_00149450 {
     void *vtbl;
     void func_001B0F70();
