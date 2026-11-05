@@ -17,7 +17,7 @@ void *func_0014FDF0(const char *name, const char *mode);
 int func_0014FED0(void *file, int offset, int origin);
 int D_0014FEE0(void *file);
 int func_0014FE50(void *file);
-int func_0014FE60(void *buf, int size, void *file);
+unsigned int func_0014FE60(void *buf, int size, void *file);
 void func_001E8390(void *ptr);
 void *func_001E8AA5(int size);
 char *func_001E9260(char *s, int c);
@@ -278,7 +278,7 @@ void __fastcall func_00161170(int unused, S_00161170 *table)
 
 void func_001611C0(char *out, void *data, int size)
 {
-    register unsigned int prev;
+    unsigned int prev;
     char *p = out;
     S_001611C0_BitReader br;
     S_00161170 table[1365];
