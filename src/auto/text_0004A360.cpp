@@ -50,20 +50,83 @@ struct S_Obj12140 {
     void func_00012140(void);
 };
 
+struct C_001983A0 {
+    void func_001983A0(void);
+};
+
+/* base reached through virtual inheritance */
+struct S_PartBase {
+    virtual void dummy0();
+    virtual void dummy1();
+    virtual void dummy2();
+    virtual void dummy3();
+    virtual void dummy4();
+    virtual void dummy5();
+    virtual void dummy6();
+};
+
+struct S_Part : virtual S_PartBase {
+    C_001983A0 *f4;
+};
+
+struct S_Obj1A4 {
+    char pad0[0x1a4];
+    S_Part *f1a4;
+};
+
+struct S_Obj80 {
+    virtual void dummy0();
+    virtual void dummy1();
+    virtual void dummy2();
+    virtual void dummy3();
+    virtual void dummy4();
+    virtual void dummy5();
+    virtual void dummy6();
+};
+
 struct S_Item80 {
-    char pad0[0x80];
-    int f80;
+    char pad0[4];
+    S_Obj1A4 *f4;
+    char pad8[0x80 - 8];
+    S_Obj80 *f80;
 };
 
 struct S_Obj4E4 {
+    virtual void dummy0();
+    virtual void dummy1();
+    virtual void dummy2();
+    virtual void dummy3();
+    virtual void dummy4();
+    virtual void dummy5();
+    virtual void dummy6();
+    char pad4[0x2c - 4];
+    S_Obj1A4 *f2c;
     void func_00150F80(void);
+};
+
+struct S_Obj3C {
+    char pad0[4];
+    C_001983A0 *f4;
+};
+
+struct S_Obj528 {
+    virtual void dummy0();
+    virtual void dummy1();
+    virtual void dummy2();
+    virtual void dummy3();
+    virtual void dummy4();
+    virtual void dummy5();
+    virtual void dummy6();
+    char pad4[0x3c - 4];
+    S_Obj3C *f3c;
 };
 
 struct S_List {
     char pad0[0x4e4];
     S_Obj4E4 *f4e4[16];
     S_Item80 **f524;
-    char pad528[0x560 - 0x528];
+    S_Obj528 *f528;
+    char pad52c[0x560 - 0x52c];
     int f560;
 };
 
