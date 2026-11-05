@@ -98,8 +98,26 @@ struct S_00104B00_Mgr {
     S_00104B00_Obj *f170[1];
 };
 
+/* binding the device list entries are handed (see JoystickDevice::func_0015B060) */
+struct C_00135D70 {
+    char pad0[4];
+    int f4;
+};
+
+struct JoystickDevice {
+    virtual void v0(int a);
+    int func_0015B060(C_00135D70 *p, int a, int b);
+};
+
+struct S_00104C80_Devices {
+    char pad0[0x14];
+    JoystickDevice *a14[8];
+};
+
 struct S_00104B00_Global {
-    char pad0[0x2a4];
+    char pad0[8];
+    S_00104C80_Devices *f8;
+    char padC[0x2a4 - 0xc];
     S_00104B00_Mgr *f2a4;
 };
 
