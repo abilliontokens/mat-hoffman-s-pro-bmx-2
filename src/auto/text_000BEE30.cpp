@@ -3,6 +3,24 @@
 
 extern int D_0027DF54;
 
+struct S_000BF860_elem {
+    char pad0[4];
+    float x;
+    float y;
+    char pad0C[0x42];
+    unsigned char f4E;
+    char pad4F[9];
+    unsigned char f58;
+};
+
+struct C_000BF860 {
+    char pad0[0x38];
+    S_000BF860_elem *a38[6];
+    S_000BF860_elem *a50[6];
+    S_000BF860_elem *a68[6];
+    void func_000BF860(int idx, int x, int y, int w);
+};
+
 struct C_001BE360 {
     void func_001BE360(void *param);
 };
