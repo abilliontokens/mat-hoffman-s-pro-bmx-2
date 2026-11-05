@@ -124,7 +124,6 @@ struct C_0023EC0D {
     unsigned int func_0023EC0D(unsigned int a, unsigned int b, int *out);
     unsigned int func_0023EE81(unsigned int a, unsigned int b, int *out);
     void func_0023EED3(void);
-    C_0023EC0D *func_0023F1AB(void);
 };
 
 #pragma pack(push, 1)
@@ -356,7 +355,7 @@ unsigned int __stdcall func_0023F0F4(int p1, C_0023EC0D *obj, unsigned int a, un
 
 int __stdcall func_0023F119(S_0023F119_Src *src, S_0023F119_Wfx *wfx)
 {
-    unsigned short ch;
+    short ch;
     unsigned short align;
 
     wfx->wFormatTag = 1;
