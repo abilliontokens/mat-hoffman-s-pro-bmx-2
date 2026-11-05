@@ -53,3 +53,31 @@ struct C_00013F50 {
     int *f24;
     void func_00013F50(C_00013F50_Dst *dst, int kind, void *arg1, float arg2);
 };
+
+void C_00013F50::func_00013F50(C_00013F50_Dst *dst, int kind, void *arg1, float arg2)
+{
+    dst->f3ac = 0;
+    switch (kind) {
+    case 0:
+        if (f20 != 0) {
+            ((S_11FF0_StateA *)this)->func_000122E0(arg1, arg2);
+            dst->f3ac = f20[f8];
+            dst->f3e1 = 1;
+        }
+        break;
+    case 1:
+        if (f1c != 0) {
+            ((S_11FF0_State3 *)this)->func_00012240(arg1, arg2);
+            dst->f3ac = f1c[f4];
+            dst->f3e1 = 1;
+        }
+        break;
+    case 2:
+        if (f24 != 0) {
+            ((S_11FF0_StateB *)this)->func_00012380(arg1, arg2);
+            dst->f3ac = f24[fC];
+            dst->f3e1 = 1;
+        }
+        break;
+    }
+}
