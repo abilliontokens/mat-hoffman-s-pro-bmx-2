@@ -174,6 +174,19 @@ int C_000C40D0::func_000C40D0(int idx)
     return 0;
 }
 
+struct C_000C3C20_Ui {
+    void func_000B9A80(int a, int b);
+};
+
+struct C_000C3C20_Sub {
+    char pad0[0x24];
+    C_000C3C20_Ui *f24;
+};
+
+struct C_000C3C20_Query {
+    int func_00136170(int a, int b, int c);
+};
+
 void C_000C4460::func_000C4460(void)
 {
     if (unk288 != 0) {
