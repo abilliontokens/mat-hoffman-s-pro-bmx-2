@@ -47,6 +47,21 @@ void func_00128440(S_00127DD0_Node *node)
     func_001E891B(node);
 }
 
+void func_001285A0(S_00127DD0_Entry *out, S_00127DD0_Node *node, int *count)
+{
+    S_00127DD0_Entry *e;
+    if (node->split >= D_00275544) {
+        do {
+            func_001285A0(out, node->left, count);
+            node = node->right;
+        } while (node->split >= D_00275544);
+    }
+    e = out + *count;
+    e->a = node->a;
+    e->b = node->b;
+    (*count)++;
+}
+
 C_00128910* C_00128910::func_00128910(void) {
     unk14 = 0;
     unk10 = 0;
