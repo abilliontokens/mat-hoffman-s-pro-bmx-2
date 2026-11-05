@@ -8,6 +8,7 @@ struct ElemHOF2 {
     unsigned int f38;
     char pad3c[0x1c];
     unsigned char b58;
+    void func_001D5AD0();
 };
 
 struct S_000D6A60_Widget {
