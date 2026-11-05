@@ -70,6 +70,8 @@ struct DrawableCube {
     void func_00136FE0();
     void func_00137810();
     void func_00157660();
+    void func_00157A00(float dt);
+    void func_00137E50(float dt);
     void func_00192370(int a);
     void func_00138390(void);
     int func_001382B0(void);
