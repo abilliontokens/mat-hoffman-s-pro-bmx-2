@@ -96,7 +96,7 @@ struct Game {
     volatile int f264;
     volatile int f268;
     volatile int f26c;
-    int f270;
+    volatile int f270;
     char pad274[4];
     S_00156F30_Iface *f278;
     int func_00156880(void);
