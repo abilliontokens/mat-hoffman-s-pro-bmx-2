@@ -124,9 +124,14 @@ struct S_Sub2_0002A6B0 {
 
 extern int D_002A10F0, D_002A10F4, D_002A10F8, D_002A10FC;
 
+struct V4i_0002A6B0 {
+    int a, b, c, d;
+    void Set(int x, int y, int z, int w) { a = x; b = y; c = z; d = w; }
+};
+
 struct C_0002A6B0 {
     char pad0[0x13c];
-    int f13c, f140, f144, f148;
+    V4i_0002A6B0 f13c;
     char pad14c[0x1e8 - 0x14c];
     S_Sub_0002A6B0 *f1e8;
     char pad1ec[0x1f4 - 0x1ec];
