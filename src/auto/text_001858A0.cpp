@@ -18,8 +18,12 @@ extern char D_002A90B4;
 
 struct S_Vec4_001858A0 {
     float x, y, z, w;
-    S_Vec4_001858A0() { x = 0.0f; y = 0.0f; z = 0.0f; w = 1.0f; }
+    S_Vec4_001858A0() { x = y = z = 0.0f; w = 1.0f; }
 };
+
+extern float D_002A90B8;
+extern float D_002A90BC;
+extern float D_002A90C0;
 
 extern char D_00289604;
 
