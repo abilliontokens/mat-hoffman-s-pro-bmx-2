@@ -53,6 +53,45 @@ struct C_00148820 {
 };
 
 
+struct C_00149280 {
+    void *vtbl;
+    void *func_00149280(int a0);
+};
+
+struct C_00148850 {
+    void *vtbl;
+    u32 unk4;
+    void *unk8;
+    u32 unkC;
+    u32 unk10;
+    u32 unk14;
+    void *func_00148850(unsigned int flags);
+};
+
+struct C_001488B0 {
+    void *vtbl;
+    u32 unk4;
+    void *unk8;
+    u32 unkC;
+    void func_00144E70();
+    void *func_001488B0(C_001488B0 *a);
+};
+
+struct C_001AC790 {
+    void func_001AC790(int param_1);
+};
+
+struct C_00149040 {
+    void *vtbl;
+    u32 unk4;
+    void *unk8;
+    u32 unkC;
+    u32 unk10;
+    u32 unk14;
+    void func_001B01A0();
+    void *func_00149040(unsigned int flags);
+};
+
 void *C_00148780::func_00148780(unsigned int flags)
 {
     void func_001E891B(void *);
