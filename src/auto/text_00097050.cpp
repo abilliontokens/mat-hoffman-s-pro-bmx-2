@@ -46,6 +46,9 @@ struct C_000979C0 {
     int func_000979C0(undefined4 key, undefined4 *out);
 };
 
+struct C_00097A80_Vec4 {
+    int x, y, z, w;
+};
 extern int D_002A2400;
 extern int D_002A2404;
 extern int D_002A2408;
