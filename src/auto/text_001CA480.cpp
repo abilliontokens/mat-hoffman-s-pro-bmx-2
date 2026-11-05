@@ -100,14 +100,18 @@ struct VCall_1CAFF0 {
 
 WaterDisplacement *WaterDisplacement::func_001CAF20()
 {
-    int i;
+    Quat_1CAF20 *p;
+    int n;
     func_00157600(1);
     vtbl = (void *)&D_0028EC24;
     unk54.Identity();
     unk64.Identity();
-    for (i = 0; i < 4; i++) {
-        unk74[i].Identity();
-    }
+    p = unk74;
+    n = 4;
+    do {
+        p->Identity();
+        p++;
+    } while (--n);
     unkB4.w = 1.0f;
     unkB4.x = unkB4.y = unkB4.z = 0.0f;
     unk28 = unk2C = 0;
@@ -134,6 +138,17 @@ void *WaterObject::func_001CAFD0(int a0)
     return this;
 }
 
+WaterObject *WaterObject::func_001CAFF0(int a0, int a1, int a2)
+{
+    char buf[260];
+    strcpy(buf, D_002A5EA0);
+    D_002A5EA0[0] = 0;
+    func_00143540(a0, 0, 0);
+    ((VCall_1CAFF0 *)this)->v31();
+    strcpy(D_002A5EA0, buf);
+    return this;
+}
+
 void *WaterObject::func_001CB070(int flags) {
     vtbl = &D_0028ECAC;
     func_001435D0();
@@ -149,3 +164,22 @@ bool C_001CB120::func_001CB120(void)
   
   return *(int *)(in_ECX + 0xcc) == 2;
 }
+
+void *C_001CB130::func_001CB130(int flags) {
+    int p = unk8;
+    vtbl = (void *)&D_0028ED5C;
+    if (p != 0) {
+        func_001E8390((void *)p);
+    }
+    func_0001DFF0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
+void func_001CB270(void)
+{
+    func_0021FC46(0);
+}
+
