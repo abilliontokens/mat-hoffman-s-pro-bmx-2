@@ -44,6 +44,13 @@ struct C_0001CBF0 {
 
 extern float D_00275544;
 
+struct S_0001C610_V4 {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
 struct C_0001CD50 {
     char pad0[0x5C];
     int unk5C;
