@@ -739,4 +739,24 @@ void *C_001B0230::func_001B0A00(unsigned int flags)
     }
     return this;
 }
-
+C_001AFCC0 *C_001AFCC0::func_001AFCC0(int **src, int *a, int *b, C_00168C20 *stream)
+{
+ int active = 0;
+ items[0] = src[0];
+ if (items[0] && items[0][6]) active = 1;
+ items[1] = src[1];
+ if (items[1] && items[1][6]) active = 1;
+ items[2] = src[2];
+ if (items[2] && items[2][6]) active = 1;
+ items[3] = src[3];
+ if (items[3] && items[3][6]) active = 1;
+ unk1C = a;
+ unk20 = b;
+ if (active || (a && a[1]) || (b && b[1])) unk28 = 1;
+ else unk28 = 0;
+ unk8 = -1;
+ unk0 = 0;
+ unk4 = 0;
+ stream->func_00168C20(&D_0028C5A4, 0, &unk24);
+ return this;
+}
