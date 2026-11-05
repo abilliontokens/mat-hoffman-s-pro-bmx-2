@@ -105,6 +105,7 @@ struct C_000C4EB0 {
     int f364;
     void func_001BEF50(int a, int b);
     void func_000C4EB0();
+    void func_000C4CE0();
 };
 
 struct C_000C4FD0 {
