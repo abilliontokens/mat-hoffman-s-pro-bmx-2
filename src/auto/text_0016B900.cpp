@@ -54,6 +54,36 @@ struct C_0016BEC0 {
     C_0016BEC0 *func_0016BEC0(void *a, char *name, void *b, u32 *c);
 };
 
+struct C_0016C640 {
+    void *vtbl;
+    char pad4[0x40];
+    u32 f44;
+    char pad48[0x1C];
+    void *f64;
+    void *f68;
+    char f6C;
+    char pad6D[0x103];
+    float f170;
+    char pad174[4];
+    float f178;
+    float f17C;
+    char pad180[8];
+    u32 f188;
+    char pad18C[4];
+    u32 f190;
+    char pad194[0x14];
+    u32 f1A8, f1AC;
+    char pad1B0[4];
+    float f1B4;
+    char pad1B8[0xC];
+    u32 f1C4, f1C8;
+    char pad1CC[0x24];
+    V4f f1F0;
+    V4f f200;
+    float f210;
+    C_0016C640 *func_0016C640(void *a, char *name, void *b, u32 *c);
+};
+
 struct C_00169C50 {
     void func_00169C50(void *param);
 };
