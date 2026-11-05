@@ -282,14 +282,14 @@ C_000112E0 *C_000112E0::func_000112E0(int a)
     f3B4 = -1;
     f3D0 = 4.0f;
     f3D4 = 8.0f;
+    f3C0 = D_002A8490->f238;
     f3DC = 0;
     f3DD = 0;
+    f3DE = 1;
     f3DF = 0;
     f3E0 = 0;
     f3E1 = 0;
     f3E2 = 0;
-    f3C0 = D_002A8490->f238;
-    f3DE = 1;
     f3E3 = 1;
     return this;
 }
