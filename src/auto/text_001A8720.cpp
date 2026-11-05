@@ -73,6 +73,40 @@ struct S_001A9240_Item {
     char pad55[3];
 };
 
+struct S_001A9430_V3 {
+    float x, y, z;
+};
+
+/* decoded-points block hanging off the effect object at +0x1D4 */
+struct S_001A9430_Elem {
+    char pad0[0x14];
+    char *f14;
+    char pad18[4];
+    int f1C;
+};
+
+/* effect object passed to C_001A8B80::func_001A9430, kind at +0x50 */
+struct S_001A9430_Obj {
+    char pad0[0x50];
+    int f50;
+    char pad54[0xA8 - 0x54];
+    V4_001A8B80 fA8;
+    char padB8[0xF0 - 0xB8];
+    unsigned short fF0;
+    char padF2[0xFC - 0xF2];
+    int fFC;
+    float f100;
+    char pad104[0x1CC - 0x104];
+    unsigned short f1CC;
+    char pad1CE[0x1D4 - 0x1CE];
+    S_001A9430_Elem *f1D4;
+};
+
+struct C_0011EDF0_Vec {
+    float x, y, z, w;
+    C_0011EDF0_Vec *func_0011EDF0(short *p);
+};
+
 struct C_001A8B80 {
     void *vtbl;
     char pad4[0x28];
