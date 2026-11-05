@@ -20,9 +20,34 @@ struct S_00070450_Mgr {
     char pad0[4];
     S_00070450_Data *f4;
 };
+struct ClampObj_6FB {
+    char pad0[0x10];
+    float f10;
+    float f14;
+};
+struct MidObj_6FB { ClampObj_6FB *func_0018C070(); };
+struct SubElem_6FB { ClampObj_6FB *func_001D5AA0(); };
+struct LookupObj_6FB { int *func_0018C160(int a); };
+extern float D_00275AEC;
+extern int D_00278690;
+extern int D_00278678;
 struct S_00070450_Global {
     char pad0[0x2e8];
     S_00070450_Mgr *f2e8;
+    LookupObj_6FB *f2ec;
+};
+struct C_0006FBF0 {
+    char pad0[0xd8];
+    SubElem_6FB *unkD8;
+    char padDC[0x128 - 0xdc];
+    SubElem_6FB *a128[2];
+    char pad130[0x10];
+    SubElem_6FB *a140[4];
+    SubElem_6FB *a150[2];
+    SubElem_6FB *a158[5];
+    SubElem_6FB *a16C[5];
+    void func_0006FBF0(void);
+    void func_001578D0(void);
 };
 extern S_00070450_Global *D_002A8490;
 struct C_00070360 {
@@ -61,6 +86,36 @@ struct C_000707C0 {
     void func_000707C0(int a0);
 };
 
+
+char *__stdcall func_0006FE60(int value, char *out)
+{
+    char buf[64];
+    int i;
+    int j;
+    int c;
+    int rem;
+    int n;
+
+    memset(buf, 0, 64);
+    func_001ADCC0(buf, 0x104, D_00277038, value);
+    rem = strlen(buf) % 3;
+    j = 0;
+    n = strlen(buf);
+    c = -rem;
+    for (i = 0; i < n; i++) {
+        if (buf[i] == ' ') {
+            strcat(out, &buf[i]);
+            break;
+        }
+        if (i > rem - 1 && i != 0 && (c == 0 || c % 3 == 0)) {
+            out[j++] = ',';
+        }
+        out[j++] = buf[i];
+        c++;
+    }
+    out[j] = 0;
+    return out;
+}
 
 void C_00070360::func_00070360(void) {
     int i;
