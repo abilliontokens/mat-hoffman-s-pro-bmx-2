@@ -29,6 +29,34 @@ struct C_0005ECA0 {
     void func_0005ECA0(void *param);
 };
 
+extern int D_0027857C;
+void func_001E891B(void *p);
+void func_00157660_base(void);
+
+struct S_00078E60_Raw {
+    void func_001D6410();
+};
+
+struct B_00078E60 {
+    void *vtbl;
+    char pad4[0x5C];
+    S_00079790_Obj *f64[8];
+    S_00079790_Obj *f84[4];
+    S_00079790_Obj *f94[2];
+    char pad9C[0x10];
+    S_00079790_Obj *fAC[5];
+    S_00079790_Obj *fC0[5];
+    S_00079790_Obj *fD4[2];
+    S_00079790_Obj *fDC[2];
+    S_00078E60_Raw *fE4[2];
+    S_00078E60_Raw *fEC;
+    char padF0[0x1C];
+    S_00079790_Obj *f10C;
+    char pad110[0x14];
+    S_00078E60_Raw *f124;
+    void func_00157660();
+};
+
 struct C_00079790 {
     void *vtbl;
     char pad4[0x158];
