@@ -81,6 +81,29 @@ struct C_0009A100 {
     int f14;
     char pad18[0x180];
     S_0009A100_Holder *f198;
+    /* the three lists and their lengths, by index */
+    S_0009A100_Obj **List(int which) {
+        switch (which) {
+        case 0:
+            return f0;
+        case 1:
+            return f4;
+        case 2:
+            return f8;
+        }
+        return 0;
+    }
+    int Count(int which) {
+        switch (which) {
+        case 0:
+            return fC;
+        case 1:
+            return f10;
+        case 2:
+            return f14;
+        }
+        return 0;
+    }
     void func_0009A100(S_0009A100_Out *out, int slot);
 };
 
@@ -96,6 +119,67 @@ void C_0009A0E0::func_0009A0E0(int param_1)
          *(int *)(param_1 + 4) + *(int *)(in_ECX + 0x20 + *(int *)(in_ECX + 0x18) * 4);
   }
   return;
+}
+
+void C_0009A100::func_0009A100(S_0009A100_Out *out, int slot)
+{
+    int i;
+    int j;
+    int count;
+    int *dst;
+    S_0009A100_Obj **list;
+    int n;
+    S_0009A100_Obj *o;
+
+    count = 0;
+    for (i = 0; i < 3; i++) {
+        j = 0;
+        switch (i) {
+        case 0:
+            list = f0;
+            break;
+        case 1:
+            list = f4;
+            break;
+        case 2:
+            list = f8;
+            break;
+        default:
+            list = 0;
+            break;
+        }
+        switch (i) {
+        case 0:
+            n = fC;
+            break;
+        case 1:
+            n = f10;
+            break;
+        case 2:
+            n = f14;
+            break;
+        default:
+            n = j;
+            break;
+        }
+        if (n > j) {
+            dst = out->recs[slot * 3 + i].items;
+            do {
+                o = list[j];
+                if (o->f48E0 != 0) {
+                    f198->f68->func_0005C0B0(D_002A8490->f2e0->f48, i, j);
+                    o = list[j];
+                    if (o->f1A8 != 0) {
+                        count++;
+                    }
+                }
+                *dst = o->f48E0;
+                j++;
+                dst++;
+            } while (j < n);
+        }
+        out->counts[slot] = count;
+    }
 }
 
 void func_0009A1F0(C_00168550 *tbl, const char *key, const char *fallback, char *dst, int size)
