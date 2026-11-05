@@ -107,6 +107,15 @@ struct PhysicsParticle : PhysicsParticleBase {
     PhysicsParticle();
 };
 
+/* palette (256 RGB entries) with its two converted lookup tables */
+struct C_00135020 {
+    char pad0[0x10];
+    unsigned char pal[256][3];
+    unsigned short tab555[256];
+    unsigned short tab565[256];
+    void func_00135020(void);
+};
+
 struct C_00135870 {
     char pad0[0x4];
     int unk4;
