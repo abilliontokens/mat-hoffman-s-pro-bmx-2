@@ -37,6 +37,13 @@ static inline S_0012B950_V3 V3Add_0012B950(const S_0012B950_V3 &a, const S_0012B
     return r;
 }
 
+static inline void V3AddInto_0012B950(S_0012B950_Vec4 *o, const S_0012B950_V3 &a, const S_0012B950_V3 &b)
+{
+    o->x = a.x + b.x;
+    o->y = a.y + b.y;
+    o->z = a.z + b.z;
+}
+
 static inline S_0012B950_V3 V3Scale_0012B950(const S_0012B950_V3 &v, float s)
 {
     S_0012B950_V3 r;
