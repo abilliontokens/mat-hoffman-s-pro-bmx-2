@@ -134,8 +134,13 @@ struct C_001B6930 {
     float f44;
     float f48;
     float f4c;
+    C_001B6930* func_001B6850(void);
     int func_001B6930(S_001B6130_Stream *stream, int a1);
 };
+
+extern int D_002AA9F8;
+extern int D_002AA9FC;
+extern int D_002AAA00;
 
 /* resource manager held in D_002A829C */
 struct S_002A829C {
