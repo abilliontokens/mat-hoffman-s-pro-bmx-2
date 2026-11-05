@@ -191,7 +191,7 @@ struct C_001BC870_C {
     virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
     virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35();
     virtual void v36(); virtual void v37();
-    virtual void *vf38(int a, char *name, C_001BC870_Tbl *t, int b);
+    virtual void *vf38(int a, char *name, C_001BC870_Tbl *t);
     C_001BC870_C *func_001BFDB0(int a, int b);
 };
 
