@@ -308,3 +308,71 @@ done:
     return result;
 }
 
+#pragma optimize("sy", on)
+#pragma optimize("y", off)
+void * __stdcall func_001DCC3C(const char *path, u32 access, u32 share, void *sa, u32 disp, u32 flags, void *tmpl)
+{
+    void *handle;
+    S_AnsiString str;
+    S_IoStatusBlock iosb;
+    S_ObjectAttributes oa;
+    u32 ntDisp;
+    u32 options;
+    long status;
+    int trailingSlash;
+
+    switch (disp) {
+    case 1:
+        ntDisp = 2;
+        break;
+    case 2:
+        ntDisp = 5;
+        break;
+    case 3:
+        ntDisp = 1;
+        break;
+    case 4:
+        ntDisp = 3;
+        break;
+    case 5:
+        ntDisp = 4;
+        if (access & 0x40000000)
+            break;
+    default:
+        func_001DD659(0xc000000d);
+        return (void *)-1;
+    }
+    _imp__RtlInitAnsiString(&str, path);
+    if (str.Length > 1 && path[str.Length - 1] == '\\')
+        trailingSlash = 1;
+    else
+        trailingSlash = 0;
+    oa.RootDirectory = (void *)-3;
+    oa.ObjectName = &str;
+    oa.Attributes = 0x40;
+    options = ((flags & 0x80000000) ? 2 : 0) | ((flags & 0x20000000) ? 8 : 0) | ((flags & 0x8000000) ? 4 : 0) | ((flags & 0x10000000) ? 0x800 : 0) | ((flags & 0x2000000) ? 0x4000 : 0) | ((flags & 0x40000000) ? 0 : 0x20);
+    if (flags & 0x4000000) {
+        options |= 0x1000;
+        access |= (u32)D_00010000;
+    }
+    if (!(flags & 0x2000000))
+        options |= 0x40;
+    status = _imp__NtCreateFile(&handle, access | (u32)D_00100080, &oa, &iosb, 0, flags & 0x7fa7, share, ntDisp, options);
+    if (status < 0) {
+        func_001DD659(status);
+        if (status == (long)0xc0000035) {
+            func_001DD62B(0x50);
+        } else if (status == (long)0xc00000ba) {
+            if (trailingSlash)
+                func_001DD62B(3);
+            else
+                func_001DD62B(5);
+        }
+        return (void *)-1;
+    }
+    if ((disp == 2 && iosb.Information == 3) || (disp == 4 && iosb.Information == 1))
+        func_001DD62B(0xb7);
+    else
+        func_001DD62B(0);
+    return handle;
+}
