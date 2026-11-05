@@ -287,6 +287,8 @@ struct C_001A4790 {
     int func_001A4840(void);
 };
 
+extern Shape_001A4790 *D_002EFE4C;
+
 
 int C_001A3BF0::func_001A3BF0(int idx)
 {
