@@ -5,6 +5,11 @@ struct C_001C2F70 {
     undefined4 func_001C2F70(void);
 };
 
+struct UIWidgetMovementControl {
+    void func_001C0DD0(int slot, int value, int key);
+    void func_001C3000(int p1, int p2, int value, int id);
+};
+
 
 undefined4 C_001C2F70::func_001C2F70(void)
 {
