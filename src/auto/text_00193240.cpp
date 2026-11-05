@@ -193,7 +193,7 @@ struct Cam_00193C20 {
     void func_001577A0(void *child, int a);
     void func_001D3F50(void);
     void func_00193C20(int count, float dt, int a3, Env_00193C20 *env, int a5, Tgt_00193C20 *tgt,
-                       float x, float y, float z, float w, int last);
+                       V4_00193C20 v, int last);
 };
 
 extern char D_002A9934;
