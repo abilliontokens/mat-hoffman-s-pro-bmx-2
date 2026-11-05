@@ -216,3 +216,16 @@ void C_00136300::func_00136300(void)
     }
 }
 
+C_00135E00 *C_00135E00::func_00136320(unsigned int flags)
+{
+    vtbl = (void *)&D_00284834;
+    if (fC != 0 && fCC0 != 0) {
+        func_001E891B(fCC0);
+        fCC0 = 0;
+    }
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
