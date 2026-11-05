@@ -209,7 +209,8 @@ struct C_00184930 {
     void *vtbl;
     char pad4[0x2c];
     char f30[0x104];
-    char pad134[0x340 - 0x134];
+    char f134[0x104];
+    char pad238[0x340 - 0x238];
     int f340;
     char pad344[4];
     int f348;
