@@ -108,3 +108,18 @@ void BmxUIPageGameOptions::func_000CFCA0()
         unk580 = 1;
     }
 }
+
+void BmxUIPageGameOptions::func_000CFCD0()
+{
+    unk4f8->func_00093120();
+    unk4ec = 0;
+    if (D_002A8490->f2e0->f4 == 0) {
+        unk568->func_001B1980();
+        unk568->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
+    }
+    unk480->func_001B1980();
+    if (unk48c != 2 && unk48c != 4 && unk48c != 7 && unk48c != 9 && unk48c != 0xd && unk48c != 0x10) {
+        unk480->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
+    }
+}
+
