@@ -209,6 +209,37 @@ C_000AC6E0 *C_000AC6E0::func_000AC6E0(void)
     return this;
 }
 
+void C_000AC7F0::func_000AC7F0(void)
+{
+    C_000AC7F0_Dyn *p = 0;
+    if (D_002A8490->field_2F0->field_1DC == 0 && D_002A8490->field_2E0->field_48 == 0xd) {
+        if (D_002A8490->field_2E0->field_0 != 1) {
+            return;
+        }
+        if (D_002A8490->field_2E0->field_2C0->func_0005C1D0(0xf) != 0) {
+            return;
+        }
+    }
+    if (field_3AC == 0) {
+        p = (C_000AC7F0_Dyn *)func_001E8A44(0x2c);
+        if (p != 0) {
+            p->func_001B5830(1);
+            *(void **)p = &D_0027AE04;
+        } else {
+            p = 0;
+        }
+        field_3AC = p;
+    }
+    if (field_3AC->v27(field_28) != 0) {
+        return;
+    }
+    if (field_3AC->field_24 != 0) {
+        return;
+    }
+    field_3AC->v2();
+    field_3AC = 0;
+}
+
 void C_000AC890::func_000AC890(void)
 {
     if (D_002B9134 == 0) {
@@ -227,52 +258,3 @@ void C_000AC890::func_000AC890(void)
     }
 }
 
-struct C_000AC140 {
-    void *vtbl;
-    C_000AC140 *func_000AC140();
-};
-
-struct C_000A9A70 {
-    void func_000A9A70(void *a);
-};
-
-struct C_000AB790 {
-    void func_000AB790(void *a);
-};
-
-struct C_000AB030 {
-    void func_000AB030(void *a);
-};
-
-struct C_002A829C {
-    void func_00161680(void);
-};
-
-struct C_002AA6C0 {
-    void func_001B2640(void);
-};
-
-extern C_002A829C *D_002A829C;
-extern C_002AA6C0 *D_002AA6C0;
-
-struct C_000AC700 {
-    void *vtbl;
-    char pad4[0x53C - 4];
-    C_000A9A70 *unk53C;
-    int func_000AC700();
-};
-
-struct C_000AC730 {
-    void *vtbl;
-    char pad4[0x540 - 4];
-    C_000AB790 *unk540;
-    int func_000AC730();
-};
-
-struct C_000AC760 {
-    void *vtbl;
-    char pad4[0x54C - 4];
-    C_000AB030 *unk54C;
-    void func_000AC760();
-};
-/* end */
