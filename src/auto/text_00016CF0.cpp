@@ -2,6 +2,11 @@
 #include "common.h"
 #include <xmmintrin.h>
 
+static inline void FloatToInt(int *out, float f)
+{
+    *out = _mm_cvttss_si32(_mm_load_ss(&f));
+}
+
 extern float D_002756D0;
 extern float D_002756B8;
 extern float D_002756E8;
