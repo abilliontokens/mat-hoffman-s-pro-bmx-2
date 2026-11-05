@@ -30,7 +30,7 @@ struct S_Obj_153 {
     virtual void v2();
     virtual void v3();
     virtual void v4();
-    virtual void v5(int a);
+    virtual int v5(int a);
 };
 
 struct S_Slot_153 {
@@ -95,6 +95,7 @@ void C_001532E0::func_001532E0(void)
 
 void C_00153D30::func_00153D30(int dt)
 {
+    S_Obj_153 *o;
     if (unk588 == 0) {
         unk584 -= dt;
         D_002A8490->unk2A4->slots[unk24]->unk60 = 200;
@@ -105,9 +106,11 @@ void C_00153D30::func_00153D30(int dt)
             unk590 = 0;
             unk594 = 0;
             unk6CC++;
-            arr5B8[func_00011260(0, 1)]->v5(0);
+            o = arr5B8[func_00011260(0, 1)];
+            o->v5(0);
         } else {
-            arr5A8[func_00011260(0, 3)]->v5(0);
+            o = arr5A8[func_00011260(0, 3)];
+            o->v5(0);
         }
     }
 }
