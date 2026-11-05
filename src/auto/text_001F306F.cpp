@@ -98,10 +98,21 @@ struct S_001F32E8 {
     int f1C;
 };
 
+struct S_001F3321_Flags {
+    unsigned int Inexact : 1;
+    unsigned int Underflow : 1;
+    unsigned int Overflow : 1;
+    unsigned int ZeroDivide : 1;
+    unsigned int InvalidOperation : 1;
+};
+
 struct S_001F3321_Rec {
     unsigned int bits;
     unsigned int cause;
-    unsigned int enable;
+    union {
+        unsigned int enable;
+        S_001F3321_Flags Enable;
+    };
     unsigned int status;
     double op1;
     char pad18[8];
@@ -390,6 +401,137 @@ void __stdcall func_001F32E8(int param_1, int param_2) {
     s.f18 = param_1;
     s.f1C = param_2;
     func_001DE759(s.f0, s.f4, s.f10, &s.f14);
+}
+
+#pragma optimize("s", on)
+void func_001F3321(S_001F3321_Rec *rec, unsigned int *pcw, unsigned int code, int op, double *a, double *res)
+{
+    extern char D_0001FFE0;
+    int func_001F3AE0(void);
+    void func_001F3AED(void);
+    void __stdcall func_001DE759(int, int, int, int *);
+    unsigned int flags = code;
+    int fsw;
+
+    rec->cause = 0;
+    rec->enable = 0;
+    rec->status = 0;
+    if (flags & 0x10) {
+        rec->cause |= 1;
+        code = 0xc000008f;
+    }
+    if (flags & 2) {
+        rec->cause |= 2;
+        code = 0xc0000093;
+    }
+    if (flags & 1) {
+        rec->cause |= 4;
+        code = 0xc0000091;
+    }
+    if (flags & 4) {
+        rec->cause |= 8;
+        code = 0xc000008e;
+    }
+    if (flags & 8) {
+        rec->cause |= 0x10;
+        code = 0xc0000090;
+    }
+    rec->enable ^= (~(*pcw << 4) ^ rec->enable) & 0x10;
+    rec->enable ^= (~(*pcw << 1) ^ rec->enable) & 8;
+    rec->enable ^= (~(*pcw >> 1) ^ rec->enable) & 4;
+    rec->enable ^= (~(*pcw >> 3) ^ rec->enable) & 2;
+    rec->enable ^= (~(*pcw >> 5) ^ rec->enable) & 1;
+    fsw = func_001F3AE0();
+    if (fsw & 1) {
+        rec->status |= 0x10;
+    }
+    if (fsw & 4) {
+        rec->status |= 8;
+    }
+    if (fsw & 8) {
+        rec->status |= 4;
+    }
+    if (fsw & 0x10) {
+        rec->status |= 2;
+    }
+    if (fsw & 0x20) {
+        rec->status |= 1;
+    }
+    switch (*pcw & 0xc00) {
+    case 0:
+        rec->bits &= 0xfffffffc;
+        break;
+    case 0x400:
+        rec->bits = (rec->bits & 0xfffffffd) | 1;
+        break;
+    case 0x800:
+        rec->bits = (rec->bits & 0xfffffffe) | 2;
+        break;
+    case 0xc00:
+        rec->bits |= 3;
+        break;
+    }
+    switch (*pcw & 0x300) {
+    case 0:
+        rec->bits = (rec->bits & 0xffffffeb) | 8;
+        break;
+    case 0x200:
+        rec->bits = (rec->bits & 0xffffffe7) | 4;
+        break;
+    case 0x300:
+        rec->bits &= 0xffffffe3;
+        break;
+    }
+    rec->bits ^= ((op << 5) ^ rec->bits) & (unsigned int)&D_0001FFE0;
+    rec->op1flags |= 1;
+    rec->op1flags = (rec->op1flags & 0xffffffe3) | 2;
+    rec->op1 = *a;
+    rec->resflags |= 1;
+    rec->resflags = (rec->resflags & 0xffffffe3) | 2;
+    rec->result = *res;
+    func_001F3AED();
+    func_001DE759(code, 0, 1, (int *)&rec);
+    if (rec->enable & 0x10) {
+        *pcw &= 0xfffffffe;
+    }
+    if (rec->enable & 8) {
+        *pcw &= 0xfffffffb;
+    }
+    if (rec->enable & 4) {
+        *pcw &= 0xfffffff7;
+    }
+    if (rec->enable & 2) {
+        *pcw &= 0xffffffef;
+    }
+    if (rec->enable & 1) {
+        *pcw &= 0xffffffdf;
+    }
+    switch (rec->bits & 3) {
+    case 0:
+        *pcw &= 0xfffff3ff;
+        break;
+    case 1:
+        *pcw = (*pcw & 0xfffff7ff) | 0x400;
+        break;
+    case 2:
+        *pcw = (*pcw & 0xfffffbff) | 0x800;
+        break;
+    case 3:
+        ((unsigned char *)pcw)[1] |= 0xc;
+        break;
+    }
+    switch ((rec->bits >> 2) & 7) {
+    case 0:
+        *pcw = (*pcw & 0xfffff3ff) | 0x300;
+        break;
+    case 1:
+        *pcw = (*pcw & 0xfffff3ff) | 0x200;
+        break;
+    case 2:
+        *pcw &= 0xfffff3ff;
+        break;
+    }
+    *res = rec->result;
 }
 
 #pragma optimize("", on)
