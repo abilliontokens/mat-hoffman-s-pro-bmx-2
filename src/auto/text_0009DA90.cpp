@@ -1,5 +1,10 @@
 /* 11 functions from 0x0009DA90 to 0x0009E680, found by Ghidra. */
 #include "common.h"
+#include "ghidra.h"
+struct C_0009DF90 {
+    void func_0009DF90(float param_1);
+};
+
 
 extern int D_0027AA3C;
 extern f32 D_002754B0;
@@ -38,3 +43,46 @@ struct BmxSmokeParticleEmitter {
     f32 f608;
     BmxSmokeParticleEmitter *func_0009DB00(int param_1);
 };
+
+BmxSmokeParticleEmitter *BmxSmokeParticleEmitter::func_0009DB00(int param_1)
+{
+    ((C_00169C50 *)this)->func_00169C50(param_1);
+    vtbl = &D_0027AA3C;
+    f600 = 0;
+    f5FC = 0;
+    f5F8 = 0;
+    f604 = 1.0f;
+    f170 = 1000.0f;
+    f178 = 0.2f;
+    f174 = 2.75f;
+    f1F0 = 0;
+    f190 = 0x80e;
+    f32 *p = f1F4;
+    for (int i = 0; i < 0x40; i++) {
+        f32 *q = p;
+        p += 4;
+        for (int j = 0; j < 4; j++) {
+            f32 v = (f32)func_001E8833() * D_002754B0;
+            *q++ = v + v + D_00275460;
+        }
+    }
+    f5F4 = 0;
+    f1AC = 0;
+    f1A8 = 0;
+    f188 = 0;
+    f608 = 100.0f;
+    func_001ADCC0((char *)this + 0x6C, 0x104, (const char *)&D_0027AA28, (const char *)&D_002A5558);
+    return this;
+}
+
+void C_0009DF90::func_0009DF90(float param_1)
+{
+  int in_ECX = (int)this;
+  float fVar1;
+  
+  fVar1 = D_00275460 - *(float *)(in_ECX + 0x198);
+  *(byte *)(in_ECX + 0x1cc) = *(byte *)(in_ECX + 0x1cc) | 2;
+  *(float *)(in_ECX + 0x1f0) = D_00275460 - fVar1 * param_1;
+  return;
+}
+
