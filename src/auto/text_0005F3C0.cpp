@@ -123,7 +123,7 @@ struct BmxInGameMenu {
     virtual void vf15();
     virtual void vf16();
     virtual void vf17();
-    virtual void vf18();
+    virtual void vf18(int a);
     virtual void vf19();
     virtual void vf20();
     virtual void vf21();
