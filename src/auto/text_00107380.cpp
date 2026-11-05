@@ -41,6 +41,13 @@ struct C_00108360 {
 };
 
 
+void C_00107A40::func_00107AB0(void) {
+    fa08->vf4();
+    fa0c->vf4();
+    fa10->vf4();
+    fa14->vf4();
+}
+
 void C_00108360::func_00108360(void) {
     unk1FC0 = 1;
 }
