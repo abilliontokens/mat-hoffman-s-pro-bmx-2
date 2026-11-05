@@ -13,6 +13,7 @@ extern char D_00200000[];
 
 void func_00012140(void *p);
 int func_0014FED0(void *a, int b, int c);
+char *func_001E9260(char *s, int c);
 extern "C" int D_0014FEE0(void *a);
 void func_0014FE50(void *a);
 
