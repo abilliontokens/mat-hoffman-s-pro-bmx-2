@@ -125,6 +125,7 @@ struct C_00163A50 {
 };
 
 extern char D_00284A98[], D_00276980[], D_002764EC[], D_00287DA8[], D_00287DA0[], D_002764D8[], D_00287D8C[], D_00287D78[], D_00287D68[], D_00287D5C[], D_00287D50[], D_00287D40[], D_00287D38[], D_00287D30[], D_00287D10[], D_00287D28[];
+extern char D_00287D20[];
 extern float D_00278C48;
 extern float D_002755E8;
 void *func_001E8A44(unsigned int size);
