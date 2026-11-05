@@ -85,7 +85,7 @@ struct Cache_129930 {
 
 extern int D_00284018;
 extern int D_002A3E3C;
-extern const float D_00284034;
+extern float D_00284034;
 
 struct StaticCache_12A350 {
     void *vtbl;
@@ -293,5 +293,13 @@ int Emitter_12A7C0::func_0012A7C0(int a, int b, int c, int d)
     f1F8 = ((float)d / c) / (((float)f208 / f204) * f1DC);
     ((VCall31_129E10 *)this)->v28();
     return 1;
+}
+
+bool Emitter_12A7C0::func_0012A840(void)
+{
+    int n = D_002EFDB8->f10 + 1;
+    f210 = n;
+    f20C = n;
+    return D_002EFDB8->v12(&f1E0) != 0;
 }
 
