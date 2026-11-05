@@ -39,9 +39,11 @@ struct C_00196290 {
     u8 *fb8;
     char padbc[4];
     u8 fc0;
-    char padc1[0xcc - 0xc1];
+    char padc1[0xc8 - 0xc1];
+    u32 fc8;
     u8 *fcc;
     void func_00196290(void);
+    void func_00196BD0(void);
     void func_00196350(int param_1);
     int func_001961E0(int param_1, int param_2, int param_3);
     void func_00196360(u8 *param_1);
@@ -70,10 +72,9 @@ int C_00196290::func_001961E0(int param_1, int param_2, int param_3)
 void C_00196290::func_00196290(void)
 {
     u32 i;
-    u32 n = f6c;
-    f5c = n * 4 + 8;
+    f5c = f6c * 4 + 8;
     fc0 &= 0xdf;
-    f60 = n * 5 + 8;
+    f60 = f6c * 5 + 8;
     f68 = 0;
     f24 = 0;
     f34 = 0;
@@ -88,18 +89,14 @@ void C_00196290::func_00196290(void)
     } else {
         f58 = f50;
     }
-    i = 0;
-    if (n != 0) {
-        do {
-            f98[i] = 0;
-            fa0[i] = 0;
-            f9c[i] = 0;
-            fac[i] = 0;
-            fb4[i] = 0;
-            fb0[i] = 0;
-            fb8[i] = 0;
-            i++;
-        } while (i < f6c);
+    for (i = 0; i < f6c; i++) {
+        f98[i] = 0;
+        fa0[i] = 0;
+        f9c[i] = 0;
+        fac[i] = 0;
+        fb4[i] = 0;
+        fb0[i] = 0;
+        fb8[i] = 0;
     }
 }
 
