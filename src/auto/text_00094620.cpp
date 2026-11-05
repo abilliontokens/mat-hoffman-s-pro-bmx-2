@@ -174,7 +174,7 @@ struct C_00094A00 {
     char pad80[4];
     void *f84[1];
     void func_00094A00(void);
-    void func_00094960(int a);
+    int func_00094960(int a);
     void func_00094990(float a);
     void func_000949B0(float a, int b, int c);
     void func_00094C00(void);
