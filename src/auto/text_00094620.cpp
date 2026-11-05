@@ -1,6 +1,20 @@
 /* 41 functions from 0x00094620 to 0x00095620, found by Ghidra. */
 #include "common.h"
 #include <string.h>
+
+extern char D_002A47F0[], D_002A5348[], D_00275678[], D_002A48F8[];
+extern char D_0027A224[], D_0027A214[], D_0027A20C[], D_0027A200[], D_0027A1F8[];
+extern "C" int func_001ADCC0(char *, int, const char *, ...);
+struct C_00094A10_Config {
+    double data[154];
+    void func_00168280();
+    void func_001691E0();
+    void func_00169490(char *, int);
+    int func_00169710(const char *);
+    void func_00168C20(const char *, int, int *);
+    void func_00168BE0(const char *, const char *, char *, int);
+};
+
 /* one node of the path at +0x50: 0x44 bytes, the part at +0x20 is what
    func_00094810 hands out */
 struct S_00094620_NodeHead {
