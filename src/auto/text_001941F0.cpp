@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <math.h>
+#include <xmmintrin.h>
 extern int D_002A99B0;
 extern const float D_00275544;
 extern const float D_00275460;
@@ -576,6 +577,122 @@ int SimpleCutSceneCamera::func_001947E0(void *a0, int a1, int a2, int a3)
     }
     f28 = a3;
     return 1;
+}
+
+void SimpleCutSceneCamera::func_00194820(float dt, int *done, S_Vec4 *pos, int a3, float *fov, S_Vec4 *v2, S_Vec4 *v3, int a7)
+{
+    S_Vec4 p;
+    S_Vec4 q;
+    S_Vec4 r;
+    float f;
+    float t;
+    int fl;
+    int a;
+    float frac;
+    int i0;
+    int i1;
+    int i2;
+
+    p.z = 0.0f;
+    p.y = 0.0f;
+    p.x = 0.0f;
+    p.w = 1.0f;
+    q.z = 0.0f;
+    q.y = 0.0f;
+    q.x = 0.0f;
+    q.w = 1.0f;
+    r.z = 0.0f;
+    r.y = 0.0f;
+    r.x = 0.0f;
+    r.w = 1.0f;
+    if (f24 == 0) {
+        *done = 0;
+        return;
+    }
+    if (f14 == 1) {
+        fC = fC - dt;
+        t = fC * f8;
+        FloatToInt(&fl, t);
+        if (t <= (float)fl) {
+            f18 = fl;
+        } else {
+            f18 = fl + 1;
+        }
+        if (f18 <= f1C) {
+            if (f2C != 0) {
+                f18 = f20;
+                fC = (float)f20 / f8;
+            } else {
+                f18 = f1C;
+                fC = (float)f1C / f8;
+                f24 = 0;
+            }
+        }
+        if (f20 != f1C && f18 != f1C) {
+            a = f18;
+            frac = (float)a - fC * f8;
+            i0 = a;
+            i1 = a - 1;
+            i2 = i1;
+            if (a != f20) {
+                i0 = a + 1;
+            }
+            if (a != f1C + 1) {
+                i2 = i1 - 1;
+            }
+            if (f4->f40 >= 2) {
+                f4->func_0012BF90(f18, i0, i1, i2, frac, &p, &q, &r, &f);
+                goto tail;
+            }
+        }
+    } else {
+        fC = dt + fC;
+        FloatToInt(&f18, fC * f8);
+        if (f18 >= f20) {
+            if (f2C != 0) {
+                f18 = f1C;
+                fC = (float)f1C / f8;
+            } else {
+                f18 = f20;
+                f24 = 0;
+            }
+        }
+        if (f1C != f20 && f18 != f20) {
+            a = f18;
+            frac = fC * f8 - (float)a;
+            i0 = a;
+            i1 = a + 1;
+            i2 = i1;
+            if (a != f1C) {
+                i0 = a - 1;
+            }
+            if (a != f20 - 1) {
+                i2 = i1 + 1;
+            }
+            if (f4->f40 >= 2) {
+                f4->func_0012BF90(f18, i0, i1, i2, frac, &p, &q, &r, &f);
+                goto tail;
+            }
+        }
+    }
+    f4->func_0012BF10(f18, &p, &q, &r, &f);
+tail:
+    p.x = p.x + f4->f30.x;
+    p.y = p.y + f4->f30.y;
+    p.z = p.z + f4->f30.z;
+    if (pos != 0) {
+        *pos = p;
+    }
+    if (v2 != 0) {
+        *v2 = q;
+    }
+    if (v3 != 0) {
+        *v3 = r;
+    }
+    if (fov != 0) {
+        *fov = f;
+    }
+    *done = 0;
 }
 
 void SimpleCutSceneCamera::func_00194B40(S_Vec4 *p)
