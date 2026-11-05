@@ -107,3 +107,21 @@ void *C_0004C6F0::func_0004C6F0(int flags) {
     }
     return this;
 }
+
+int C_0004C560::func_0004C720(void)
+{
+    int i;
+
+    f208 = 1;
+    func_000342C0();
+    func_0004C130();
+    func_0004C320();
+    for (i = 0; i < D_002A8490->f2e0->count; i++) {
+        f1248[i]->func_00088F60(f1250 / 2);
+    }
+    if (f1c0 != 0) {
+        f1c0->func_00099D40(-1);
+    }
+    return (int)this;
+}
+
