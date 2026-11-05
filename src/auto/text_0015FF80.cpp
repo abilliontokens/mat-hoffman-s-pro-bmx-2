@@ -173,7 +173,7 @@ struct C_001608E0 {
     int pad7C;
     int unk80;
     int unk84;
-    void func_001608E0(int *a0, int *a1, int a2, int a3, int a4);
+    void func_001608E0(V4_001608E0 *a0, int *a1, int a2, int a3, int a4);
     void func_001577A0(C_001608E0_Obj *a0, int a1);
 };
 struct C_00160860 {
