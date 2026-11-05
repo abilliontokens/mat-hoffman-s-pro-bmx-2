@@ -37,10 +37,17 @@ struct C_001CBD40 {
     unsigned char f2C;
     char pad2D[3];
     int f30;
-    int f34[4];
-    unsigned char f44;
-    char pad45[0x7f];
-    int fC4[4];
+    struct Vec {
+        int v[4];
+        Vec() { v[0] = 0; v[1] = 0; v[2] = 0; v[3] = 0; }
+    };
+    struct Sub {
+        Vec a;
+        unsigned char f10;
+        char pad11[0x7f];
+        Vec b;
+        Sub() { f10 = 0; }
+    } f34;
     int fD4;
     char padD8[0x10];
     int fE8;
