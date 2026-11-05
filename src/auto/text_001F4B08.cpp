@@ -9,6 +9,25 @@ extern int D_002FB104;
 extern int D_002FAFF0;
 extern int D_002FAFE8;
 
+/* CRT run-time error message table */
+struct S_002AEF98 {
+    int num;
+    const char *msg;
+};
+extern S_002AEF98 D_002AEF98[0x12];
+
+/* CRT FILE */
+struct S_001F4_FILE {
+    char *ptr;
+    int cnt;
+    char *base;
+    int flag;
+    int file;
+    int charbuf;
+    int bufsiz;
+    char *tmpfname;
+};
+
 unsigned int func_001F4BC8(unsigned int newv, unsigned int mask)
 {
     unsigned int func_001F4B96(unsigned int newv, unsigned int mask);
@@ -16,6 +35,7 @@ unsigned int func_001F4BC8(unsigned int newv, unsigned int mask)
     return func_001F4B96(newv, mask & 0xfff7ffff);
 }
 
+#pragma intrinsic(memset)
 void func_001F4BDE(void)
 {
     memset(D_002FB000, 0, 0x101);
@@ -24,7 +44,6 @@ void func_001F4BDE(void)
     D_002FAFF0 = 0;
     D_002FAFE8 = 0;
 }
-
 void func_001F4E30(void) {
     int func_001EB302(...);
     func_001EB302(13);
