@@ -48,6 +48,10 @@ struct C_0017C300 {
     void func_0017C520(void);
 };
 
+struct QuadV2 {
+    f32 x, y;
+};
+
 static inline f32 QuadCross(f32 a, f32 b, f32 c, f32 d) {
     return c * a + d * b;
 }
@@ -116,6 +120,7 @@ int C_0017BDE0::func_0017BFB0(void) {
     f32 e[8];
     f32 n[8];
     int i;
+    int j;
 
     e[0] = v[2] - v[0];
     e[1] = v[3] - v[1];
@@ -128,7 +133,8 @@ int C_0017BDE0::func_0017BFB0(void) {
     for (i = 0; i < 4; i++) {
         n[i * 2 + 1] = e[i * 2];
         n[i * 2] = -e[i * 2 + 1];
-        if (D_00275544 < e[((i + 1) & 3) * 2 + 1] * n[i * 2 + 1] + e[((i + 1) & 3) * 2] * n[i * 2]) {
+        j = (i + 1) & 3;
+        if (D_00275544 < e[j * 2 + 1] * n[i * 2 + 1] + e[j * 2] * n[i * 2]) {
             return 0;
         }
     }
