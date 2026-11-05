@@ -242,15 +242,15 @@ C_0005ECA0 *C_0005ECA0::func_0005ECA0(int a0)
     unk100 = 0;
     unk18 = -1;
     for (i = 0; i < 2; i++) {
-        ((int *)&unkE4)[i] = 0;
+        unkE4[i] = 0;
     }
     for (i = 0; i < 4; i++) {
-        ((int *)&unk84)[i] = 0;
+        unk84[i] = 0;
     }
     unk104 = 0;
     unk108 = 1;
     for (i = 0; i < 2; i++) {
-        ((int *)&unk94)[i] = 0;
+        unk94[i] = 0;
     }
     for (i = 0; i < 2; i++) {
         unkD4[i] = 0;
