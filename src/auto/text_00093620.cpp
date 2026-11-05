@@ -117,6 +117,10 @@ struct C_00093140 {
     void func_00093970(int a1, int a2, int a3, int a4, int a5, int a6);
     void func_00093AD0(int a1, int a2, int a3, int a4, int a5, int a6);
     void func_00093CF0(int a1, int a2, int a3, int a4, int a5, int a6);
+    void func_000940D0(int a1, int a2, int a3, int a4, int a5, int a6);
+    void func_000942F0(int a1, int a2, int a3, int a4, int a5, int a6);
+    void func_00094410(int a1, int a2, int a3, int a4, int a5, int a6);
+    void func_000944C0(int a1, int a2, int a3, int a4, int a5, int a6);
 };
 
 void C_00093140::func_00093970(int a1, int a2, int a3, int a4, int a5, int a6)
