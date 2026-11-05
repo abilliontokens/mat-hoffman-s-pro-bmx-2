@@ -118,6 +118,25 @@ struct C_001A7260 {
     void func_001A7260();
 };
 
+int func_001361E0(int, int, int, unsigned int);
+struct C_CardView {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    virtual void v5(int);
+    virtual void v6(); virtual void v7(); virtual void v8();
+    virtual void v9(int);
+};
+struct LoadMemoryCard {
+    char pad0[0x5c];
+    int f5c, f60, f64;
+    char pad68[4];
+    int f6c;
+    char pad70[0x20];
+    C_CardView *f90;
+    int f94, f98;
+    int func_00157BF0(int, int);
+    int func_001A6A40(int, int);
+};
+
 struct C_001A7860 {
     void *func_001A7860(unsigned int flags);
 };
