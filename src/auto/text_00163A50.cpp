@@ -114,6 +114,20 @@ struct C_001643A0 {
 };
 
 
+void func_001640D0(C_1640D0_Obj *a1, C_1640D0_Obj *a2, int axis, S_Vec4_1640D0 *out)
+{
+    *out = a2->func_00197F70((float *)out);
+    *out = a1->func_00198120((float *)out);
+    if (axis == 0)
+        out->x = -out->x;
+    else if (axis == 1)
+        out->y = -out->y;
+    else if (axis == 2)
+        out->z = -out->z;
+    *out = a1->func_00197F70((float *)out);
+    *out = a2->func_00198120((float *)out);
+}
+
 void func_001641B0(int mode, float *v)
 {
     if (mode == 0) {
