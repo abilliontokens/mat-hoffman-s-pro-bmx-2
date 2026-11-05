@@ -34,6 +34,13 @@ struct C_00032060 {
 };
 
 
+void C_00032550::func_00032550(void)
+{
+    if (unk1C4 != 0) {
+        unk1C4->func_001041A0();
+    }
+}
+
 void C_00032720::func_00032720(void)
 {
   int func_0001BE50(...);
