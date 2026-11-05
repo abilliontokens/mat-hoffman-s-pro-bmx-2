@@ -68,6 +68,20 @@ static C_001C65E0 *init_001C7250(C_001C65E0 *p)
     return p;
 }
 
+void C_001C6DA0::func_001C6DA0(int idx, int arg)
+{
+    if (unk3C->unk10 == 0) {
+        unk3C->func_00166C80(unkC0[idx].unk40, arg);
+    } else {
+        unk3C->func_00164820(unkC0[idx].unk40);
+    }
+    int old = unkC4;
+    unkC4 = idx;
+    unkCC = 0;
+    unkC8 = old;
+    unkD4 = D_002AB798;
+}
+
 int C_001C6DA0::func_001C6E30(const char *name)
 {
     for (int i = 0; i < unkBC; i++) {
@@ -82,3 +96,20 @@ void func_001C6E90(void) {
     int func_00157960(...);
     func_00157960();
 }
+
+C_001C65E0 *func_001C7250(int key)
+{
+    for (int i = 0; i < D_002F0894; i++) {
+        if (D_002F0890[i].key == key) {
+            return D_002F0890[i].obj;
+        }
+    }
+    D_002F0890 = (S_001C7250_Entry *)func_001E83E8(D_002F0890, D_002F0894 * 8 + 8);
+    D_002F0890[D_002F0894].key = key;
+    C_001C65E0 *p = (C_001C65E0 *)func_001E8A44(0x14);
+    D_002F0890[D_002F0894].obj = p ? init_001C7250(p) : 0;
+    D_002F0890[D_002F0894].obj->func_001C65E0(key);
+    D_002F0894++;
+    return D_002F0890[D_002F0894 - 1].obj;
+}
+
