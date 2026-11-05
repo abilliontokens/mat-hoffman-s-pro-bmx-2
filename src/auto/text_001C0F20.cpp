@@ -245,6 +245,46 @@ void C_001C1110::func_001C1110(void)
   v5();
 }
 
+C_001C1150 *C_001C1150::func_001C1150(int a, int b)
+{
+    u32 *p;
+
+    ((C_001C0730 *)this)->func_001C0730(a, b);
+    vtbl = &D_0028DE54;
+    p = (u32 *)&fBC;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = (u32 *)&fCC;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    fB8 = 0;
+    f240 = 0;
+    f1E0 = 0;
+    f1E4 = 0;
+    f1E8 = 0;
+    f1F8 = 0;
+    f1EC = 0;
+    f1F0 = 0;
+    f1F4 = 0;
+    return this;
+}
+
+int C_001C1490::func_001C1490(void)
+{
+    if (f68 != 0) {
+        f1ec = 1;
+        func_00197EA0(&f200);
+        f68->func_00157810();
+        f68->v2();
+        f68 = 0;
+    }
+    return 1;
+}
+
 void C_001C1950::func_001C1950(void)
 {
   f68->func_001D5AD0();
