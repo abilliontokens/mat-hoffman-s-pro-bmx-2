@@ -19,6 +19,43 @@ struct S_0002EF70_Mgr {
     S_0002EF70_Item *items[1];
     void *func_00135E80();
 };
+extern "C" void *func_001E8A44(int size);
+struct S_2EF70_Ent {
+    void *func_001362A0(float a, float b, int c, void *d, int e, float f);
+};
+struct S_2EF70_Sub { char pad[0x3c]; int f3c; };
+struct S_2EF70_Obj {
+    void func_000559E0(int a, float b, int c);
+    void func_0009FAD0(int a, float b, int c);
+    void func_0009FAC0(void *a);
+    void func_000560A0();
+    void func_00195160(int a, float b, float c);
+};
+struct S_2EF70_Prm { int f0; int f4; };
+struct S_2EF70_Veh {
+    char pad0[0x1e0];
+    int f1e0;
+    char pad1e4[8];
+    S_2EF70_Sub *f1ec;
+    char pad1f0[0x810];
+    S_2EF70_Prm *fa00;
+};
+struct S_2EF70_This {
+    char pad0[0x34];
+    void *f34;
+    char pad38[8];
+    void *f40;
+    void *f44;
+    void *f48;
+    void *f4c;
+    S_2EF70_Obj *f50;
+    S_2EF70_Obj *f54;
+    char pad58[8];
+    S_2EF70_Obj *f60;
+    char pad64[4];
+    int f68;
+    void func_0002EF70(S_2EF70_Veh *veh, int idx);
+};
 struct S_0002EE30_Global {
     char pad0[8];
     S_0002EF70_Mgr *f8;
