@@ -25,15 +25,26 @@ extern char D_0027AC58[];
 extern char D_0027AC48[];
 extern char D_0027AC30[];
 
-struct C_0016A1D0 {
-    int func_0016A1D0(int a1, int a2, int a3);
-    int func_0016A330(char *buf);
-    int func_0016A3A0(void *stream);
-};
-
 struct S_0009E5F0_Stream {
     int func_00169710(const char *name);
     int func_00168C50(const char *name, int value, int *ptr);
+};
+
+struct C_0016A1D0 {
+    int func_0016A1D0(int a1, int a2, int a3);
+    int func_0016A330(char *buf);
+    int func_0016A3A0(S_0009E5F0_Stream *stream);
+};
+
+struct S_0009E590_Sub {
+    char pad0[4];
+    u32 f4;
+    u32 f8;
+};
+
+struct S_0009E590_Item {
+    char pad0[0x18];
+    S_0009E590_Sub sub;
 };
 
 struct S_0009E590_Owner {
