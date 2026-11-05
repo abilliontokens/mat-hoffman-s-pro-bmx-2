@@ -99,8 +99,8 @@ void *func_001E8A44(int size);
 
 struct S_00088DD0_Sprite {
     char pad0[0x28];
-    float f28;
-    float f2C;
+    u32 f28;
+    u32 f2C;
     char pad30[8];
     u32 f38;
     char pad3C[0x1c];
