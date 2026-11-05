@@ -67,7 +67,8 @@ struct C_00198B70 {
     int f24;
     char pad28[0xb0 - 0x28];
     S_00198B70_Mat fB0;
-    char pad_f0[0x150 - 0xf0];
+    S_00198B70_Mat fF0;
+    char pad130[0x150 - 0x130];
     S_00198B70_V4 f150;
     S_00198B70_V4 f160;
     int f170;
