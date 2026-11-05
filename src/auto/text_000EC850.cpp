@@ -41,3 +41,30 @@ void C_000ECD90::func_000ECD90(void) {
     unk38C = 0;
     unk390 = 1048576000;
 }
+
+void C_000ED0E0::func_000ED0E0(void) {
+    int i;
+    vtbl = &D_00281C8C;
+    if (f288 != 0) {
+        f288->Destroy(1);
+        f288 = 0;
+    }
+    f3C4 = 0;
+    f3C8 = 0;
+    f3D8 = 0;
+    for (i = 0; i < 11; i++) f3E4[i] = 0;
+    for (i = 0; i < 4; i++) {
+        if (f4B8[i] != 0) {
+            f4B8[i]->Destroy(1);
+            f4B8[i] = 0;
+        }
+    }
+    for (i = 0; i < 2; i++) {
+        if (f4C8[i] != 0) {
+            f4C8[i]->Destroy(1);
+            f4C8[i] = 0;
+        }
+    }
+    func_001BE3F0();
+}
+
