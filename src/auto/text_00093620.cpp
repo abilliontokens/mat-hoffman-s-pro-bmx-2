@@ -31,7 +31,9 @@ struct S_00093620_Cfg {
     int fB50;
     char padB54[4];
     int fB58;
-    char padB5C[0x1c];
+    char padB5C[4];
+    int fB60;
+    char padB64[0x14];
     int fB78;
     char padB7C[4];
     int fB80;
