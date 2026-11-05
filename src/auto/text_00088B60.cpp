@@ -6,6 +6,9 @@
 
 extern int D_002799BC;
 extern int D_00279A44;
+extern float D_00278E60;
+extern float D_002755E0;
+extern float D_00275AE8;
 
 struct C_00157600 {
     void func_00157600(int a0);
