@@ -70,3 +70,18 @@ struct BmxSinglePlayerInGameMenu {
     void func_00060D80(void);
     int func_00061030(void);
 };
+
+void BmxSinglePlayerInGameMenu::func_00060D80(void) {
+    int i;
+    for (i = 0; i < 10; i++) {
+        if (unk15c[i] != 0) {
+            S_00060D80_Obj *p = unk15c[i]->func_001D5AA0();
+            if (D_00275AEC > p->f10) {
+                p->f10 = 10.0f;
+            }
+            if (D_00275AEC < p->f14 || p->f14 > p->f10) {
+                p->f14 = 10.0f;
+            }
+        }
+    }
+}
