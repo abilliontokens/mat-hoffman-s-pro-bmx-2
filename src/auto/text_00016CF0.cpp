@@ -19,6 +19,12 @@ struct C_00016E40_Vec {
     float w;
 };
 
+static __forceinline void copy_00017910(C_00016E40_Vec &out, const C_00016E40_Vec &in) {
+    out.x = in.x;
+    out.y = in.y;
+    out.z = in.z;
+    out.w = in.w;
+}
 extern C_00016E40_Vec D_002A0718;
 
 struct C_00199B00 {
