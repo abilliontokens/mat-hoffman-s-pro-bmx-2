@@ -51,8 +51,8 @@ struct C_00144D30_Cnt { char pad[0x40]; int n; };
 struct C_00144D30 {
     void func_00144D30();
 };
-void __fastcall func_001FEC30(void *self, int, C_00144D30_V *m);
-void __fastcall func_001FEBD0(void *self, int, C_00144D30_V *m);
+void __fastcall func_001FEC30(void *self, C_00144D30_V *m);
+void __fastcall func_001FEBD0(void *self, C_00144D30_V *m);
 
 void *func_001E8A44(int size);
 void func_001E891B(void *p);
