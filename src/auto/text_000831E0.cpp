@@ -74,7 +74,13 @@ struct C_000831E0 {
     void func_00083880(void);
     int func_000839F0(const char *name, int a, int id);
     void func_00083A70(const char *name);
+    void func_000838B0(int a0);
+    void func_000838F0(const char *name, int flag);
+    int func_00083970(const char *name, int a1, int key);
+    void func_00083B20(const char *name);
 };
+
+extern float D_002755E8;
 
 struct C_000836A0 {
     char pad0[0xCC];
