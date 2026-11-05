@@ -59,6 +59,15 @@ void func_001F44D6(void) {
 int func_001F46F0(...);
 #pragma optimize("y", on)
 void func_001F4848(int a0, int a1) { func_001F46F0(a0, a1, (int)&D_002AEDA4); }
+
+void func_001F4874(int d, const char *s)
+{
+    char ld[12];
+    char *end;
+    func_001F5059(ld, &end, s, 0, 0, 0, 0);
+    func_001F4848((int)ld, d);
+}
+
 #pragma optimize("", on)
 void func_001F4A6D(void) {
     int func_001EB9F3(...);
