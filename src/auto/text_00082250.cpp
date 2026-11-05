@@ -1,6 +1,14 @@
 /* 7 functions from 0x00082250 to 0x000831E0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <string.h>
+extern int D_0027915C;
+extern char *D_002A8490;
+struct BmxInGameOverlays {
+ int w[0xda4/4];
+ void func_00157600(int);
+ BmxInGameOverlays *func_00082450(int);
+};
 struct C_00082400 {
     void func_00082400(short param_1);
 };
