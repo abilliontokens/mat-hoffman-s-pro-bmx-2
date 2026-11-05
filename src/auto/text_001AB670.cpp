@@ -1,5 +1,6 @@
 /* 14 functions from 0x001AB670 to 0x001AC440, found by Ghidra. */
 #include "common.h"
+#include <stdarg.h>
 extern int D_0028BFC4;
 extern int D_0028C03C;
 extern int D_0028C0BC;
