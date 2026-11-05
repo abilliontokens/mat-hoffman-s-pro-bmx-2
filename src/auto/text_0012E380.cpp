@@ -57,6 +57,58 @@ struct S_0012EF60_Ref {
     int f14;
 };
 
+/* CarProceduralExtended vtable, up to slot 47 (offset 0xbc) */
+struct C_0012EF30_Vtbl {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    virtual void v31();
+    virtual void v32();
+    virtual void v33();
+    virtual void v34();
+    virtual void v35();
+    virtual void v36();
+    virtual void v37();
+    virtual void v38();
+    virtual void v39();
+    virtual void v40();
+    virtual void v41();
+    virtual void v42();
+    virtual void v43();
+    virtual void v44();
+    virtual void v45();
+    virtual void v46();
+    virtual void v47(char *name, void *buf);
+};
+
 /* CarProceduralExtended */
 struct C_0012EF30 {
     void *vtbl;
@@ -159,5 +211,28 @@ void C_0012EF30::func_0012EF60()
         }
     }
     func_0012CCA0();
+}
+
+C_0012EF30 *C_0012EF30::func_0012F000(int a1, int a2, int a3, int a4, char *name, int a6, int a7,
+                                   int a8, int a9, int a10, int a11, int a12, int a13, int a14,
+                                   int a15, int a16, int a17, int a18, int a19, int a20)
+{
+    func_0012CD10(a1, a2, a3, a4, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17);
+    if (f518) {
+        f518->f14 = a18;
+        f518->f10 = 16.666667f;
+    }
+    if (memcmp(name, D_002764F0, 5) != 0) {
+        S_0012EF60_Ref *old = f518;
+        S_0012EF60_Ref *nw = f518;
+        f51c = nw;
+        f518 = old;
+        if (nw) {
+            f51c->f14 = a19;
+            f51c->f10 = 16.666667f;
+            f514 = a20;
+        }
+    }
+    return this;
 }
 
