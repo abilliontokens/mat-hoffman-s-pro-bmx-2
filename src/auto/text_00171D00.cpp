@@ -22,9 +22,9 @@ struct C_00171D00_F14C {
     void func_00198390(void);
     void func_00198E60(void);
     void func_0019A8C0(float *a, float *b);
-    void __stdcall func_00199790(int a, void *b);
-    void __stdcall func_00199110(int a, void *b, void *c, int d, int e, int f);
-    void __stdcall func_0019ABA0(int a, int b);
+    void func_00199790(int a, void *b);
+    void func_00199110(int a, void *b, void *c, int d, int e, int f);
+    void func_0019ABA0(int a, int b);
 };
 
 struct C_00172460Obj {
