@@ -1,6 +1,10 @@
 /* 24 functions from 0x0015C640 to 0x0015D340, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_0015CFE0 {
+    void func_0015CFE0(undefined4 param_1);
+};
+
 struct C_0015CD50 {
     void func_0015CD50(uint param_1);
 };
@@ -83,3 +87,16 @@ void C_0015CD50::func_0015CD50(uint param_1)
   *(uint *)(in_ECX + 0xcc) = param_1 & 0xffffff;
   return;
 }
+
+void C_0015CFE0::func_0015CFE0(undefined4 param_1)
+{
+  int __stdcall func_001577A0(int, int);
+  int in_ECX = (int)this;
+  
+  if (*(int *)(in_ECX + 0xb8) == 0) {
+    *(undefined4 *)(in_ECX + 0xb8) = param_1;
+    func_001577A0((int)(param_1), (int)(0));
+  }
+  return;
+}
+
