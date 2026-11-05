@@ -134,6 +134,24 @@ void C_00093140::func_00094690(int a1, int a2, int a3, int a4, int a5, int a6)
     func_00093140(a1, a2, a3, 3, 0, 0, 0);
 }
 
+void *C_00094710::func_00094710(unsigned int flags)
+{
+    extern int D_0027A0C4;
+    C_001D35E0 *p = f44;
+
+    vtbl = (void *)&D_0027A0C4;
+    if (p != 0) {
+        p->func_001D35E0();
+        func_001E891B(p);
+        f44 = 0;
+    }
+    ((C_00157660 *)this)->func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 int C_00094890::func_00094890(void) {
     return unk38;
 }
