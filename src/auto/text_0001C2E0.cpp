@@ -109,6 +109,20 @@ void C_0001C540::func_0001C540(void) {
     unk14 = 2139095039;
 }
 
+void *C_0001C550::func_0001C550(int flags) {
+    extern int D_00275BD0;
+    extern C_0013B210 *D_002BEAAC;
+    void func_001E891B(void *);
+    unk0 = (int)&D_00275BD0;
+    func_0001C290();
+    D_002BEAAC->func_0013B210(this);
+    func_0001DFF0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void C_0001C920::func_0001C920(void) {
     extern int D_00275C0C;
     int func_00157660(...);
