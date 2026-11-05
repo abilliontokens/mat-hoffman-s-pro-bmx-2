@@ -20,6 +20,7 @@ struct S_0011F5A0_V3 {
 };
 extern float D_002B9348;
 extern float D_002AB30C;
+extern float D_00275460;
 
 struct V4_0011EE50 {
     float x;
