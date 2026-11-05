@@ -151,6 +151,39 @@ struct C_00182730 {
 };
 
 void *func_001E8A44(int size);
+void *func_001E8AA5(int size);
+
+struct C_00182570_Loader {
+    void func_0013C8A0(int key, void *out, int size, int flag);
+};
+
+extern C_00182570_Loader *D_002BEAAC;
+extern int D_002AA46C;
+
+struct C_00182570_Elem {
+    void *vtbl;
+    char pad4[8];
+    u8 fc;
+    char padD[3];
+    void *f10;
+    C_00182570_Elem *func_00144640();
+    void func_00144960(int a0, int a1, int a2, int a3);
+};
+
+struct C_00182570_Entry {
+    int count;
+    int f4;
+    C_00182570_Elem *elems;
+};
+
+struct C_00182570 {
+    void *vtbl;
+    int f4;
+    int count;
+    int fC;
+    C_00182570_Entry *entries;
+    void func_00182570(int key, int a1);
+};
 
 struct C_00182C60Scene {
     virtual void v0();
