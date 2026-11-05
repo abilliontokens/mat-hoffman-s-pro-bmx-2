@@ -70,3 +70,10 @@ struct C_000B4300 {
     void func_000B25D0(void);
     C_000B4300 *func_000B4300(S_B4300_Stream *a, S_B4300_Stream *b);
 };
+
+template <class T>
+inline void B4300_Reg(T *const &obj, void (T::*cb)(void), const char *a, const char *b, const char *c)
+{
+    void (T::*f)(void) = cb;
+    D_002EFE08->func_0018CF40(obj->f38, f, a, b, c, 1);
+}
