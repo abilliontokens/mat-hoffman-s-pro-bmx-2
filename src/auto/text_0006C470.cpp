@@ -113,3 +113,17 @@ void C_0006D1D0::func_0006D210() {
     unkD4->unk1F4 = 0;
 }
 
+void C_0006D1D0::func_0006D280() {
+    unkD0 = 0;
+    unkCC = 1;
+    v6();
+    unkD4->v35();
+    v18(0);
+    unkD4->unk21 &= 0xfb;
+    unkD4->unk1F4 = 1;
+    unkE8 = 1;
+    unkEC = 1;
+    unkE4 = -1;
+    unkDC = 1.5f;
+}
+
