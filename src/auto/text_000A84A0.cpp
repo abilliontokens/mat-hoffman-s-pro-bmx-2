@@ -38,3 +38,10 @@ struct C_000A8520 {
     char **items;
     int func_000A8520(char *param);
 };
+
+C_000A8D70 *C_000A8D70::func_000A8D70()
+{
+    ((C_001B59E0 *)this)->func_001B59E0();
+    vtbl = (void *)&D_0027C310;
+    return this;
+}
