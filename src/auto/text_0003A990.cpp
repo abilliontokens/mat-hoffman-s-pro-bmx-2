@@ -3,6 +3,9 @@
 #include <string.h>
 #include <xmmintrin.h>
 extern float D_00275548;
+extern float D_00276E9C, D_00276E98;
+void *func_001E8A44(unsigned int size);
+void func_001E891B(void *p);
 struct S_0003AC20_Vec { float x,y,z,w; };
 struct S_0003AC20_Data { char pad0[0x34]; S_0003AC20_Vec pos; };
 struct S_0003AC20_Owner { char pad0[0xE8]; S_0003AC20_Data *fE8; };
