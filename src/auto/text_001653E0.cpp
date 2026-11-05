@@ -29,6 +29,7 @@ struct C_001659D0 {
 struct C_00165EF0_Obj {
     virtual void v0();
     virtual void v1(f32 a, Vec4_165EF0 *out);
+    virtual void v2(f32 a, Vec4_165EF0 *out);
 };
 
 struct C_00165EF0_Arg1 {
@@ -72,5 +73,16 @@ void C_001659D0::func_001659D0(int *a, int b, int c)
             return;
         }
     }
+}
+
+void C_00165EF0::func_00165EF0(Vec4_165EF0 *out, C_00165EF0_Arg1 *a1, f32 a2, int a3, void *a4)
+{
+    Vec4_165EF0 v;
+    a2 = a2 * a1->f38;
+    C_00165EF0_Obj *o = a1->f18[(u8)func_00164650(a3)];
+    o->v1(a2, &v);
+    if (a4)
+        func_001641B0(fC, &v);
+    *out = v;
 }
 
