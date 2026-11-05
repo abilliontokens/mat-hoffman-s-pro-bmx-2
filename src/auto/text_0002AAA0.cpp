@@ -45,9 +45,9 @@ struct Vec4_0002AF90 {
     __forceinline Vec4_0002AF90 Mul(const float &t) const
     {
         Vec4_0002AF90 r;
-        r.x = x * t;
-        r.y = y * t;
-        r.z = z * t;
+        r.x = t * x;
+        r.y = t * y;
+        r.z = t * z;
         r.w = 1.0f;
         return r;
     }
