@@ -79,6 +79,34 @@ struct C_001BB5F0 {
 
 extern int D_002AADF8;
 
+struct Vec_001BB950 {
+    float x, y, z, w;
+};
+
+struct Anim_001BB950 {
+    char pad0[0x50];
+    int f50;
+    void func_001A4AE0(Vec_001BB950 *a, int *b);
+    void func_001A52C0(void);
+    void func_00133210(void);
+    void func_001299C0(int a, Vec_001BB950 *b);
+    virtual void v0();
+};
+
+struct C_001BB950 {
+    char pad0[0x24];
+    Vec_001BB950 f24;
+    Vec_001BB950 f34;
+    char pad44[0xC];
+    char f50[0x290];
+    int f2E0;
+    Anim_001BB950 *f2E4;
+    int func_001BB950(Vec_001BB950 *a, Vec_001BB950 *b, int c, int d, float e);
+};
+
+extern float D_00275544, D_002AAE04, D_002AAE08, D_002AAE0C;
+void __cdecl func_000265C0(void *a, Vec_001BB950 *b, int c, int d, int e, int f);
+
 int func_00011260(int lo, int hi);
 int func_00135C70(int param_1, int param_2, int *param_3, int param_4);
 
@@ -248,12 +276,12 @@ void func_001BB4F0(S_1BB4F0_Arg1 *a1, int a2, S_1BB4F0_Arg3 *a3, int enable)
 {
     S_1BB4F0_List *list;
     S_1BB4F0_Obj *obj;
-    S_1BB4F0_Obj **pp;
     int found;
     int idx;
     int i;
     int key;
     int n;
+    S_1BB4F0_Obj **pp;
 
     if (enable == 0) {
         return;
@@ -265,8 +293,7 @@ void func_001BB4F0(S_1BB4F0_Arg1 *a1, int a2, S_1BB4F0_Arg3 *a3, int enable)
     list = D_002A8490->f2A4->f64->f4E0;
     n = list->f24;
     found = 0;
-    pp = list->f1A8;
-    for (i = 0; i < n; i++, pp++) {
+    for (pp = list->f1A8, i = 0; i < n; i++, pp++) {
         if (found) {
             break;
         }
