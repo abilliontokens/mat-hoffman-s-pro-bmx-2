@@ -193,6 +193,16 @@ void C_00093140::func_00094000(int a1, int a2, int a3, int a4, int a5, int a6)
     func_00093140(a1, a2, a3, 5, a4, a5, a6);
 }
 
+void C_00093140::func_000940D0(int a1, int a2, int a3, int a4, int a5, int a6)
+{
+    f24->func_001B17D0(D_002A8490->f2e8->f4->fC38);
+    f28->func_001B17D0(D_002A8490->f2e8->f4->fC40);
+    f2c->func_001B17D0(D_002A8490->f2e8->f4->fC48);
+    f30->func_001B17D0(D_002A8490->f2e8->f4->fC50);
+    f34->func_001B17D0(D_002A8490->f2e8->f4->f11F0);
+    func_00093140(a1, a2, a3, 5, a4, a5, a6);
+}
+
 void C_00093140::func_000942F0(int a1, int a2, int a3, int a4, int a5, int a6)
 {
     f24->func_001B17D0(D_002A8490->f2e8->f4->fC78);
