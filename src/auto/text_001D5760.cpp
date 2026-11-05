@@ -79,3 +79,17 @@ undefined4 C_001D5AA0::func_001D5AA0(void)
                                        *(int *)(D_002A829C + 0x14)) + 0x54) + 0x18) * 0x10 + 4 +
           *(int *)(D_002AA6C0 + 0x14));
 }
+
+void C_001D6410::func_001D6410(void)
+{
+    if (unk0 != 0) {
+        func_001E891B(unk0);
+    }
+    if (unk5C != 0) {
+        unk5C->destroy(1);
+    }
+    if (unk58 != 0) {
+        unk58->destroy(1);
+    }
+}
+
