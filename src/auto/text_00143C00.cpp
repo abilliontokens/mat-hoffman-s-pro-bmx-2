@@ -67,6 +67,47 @@ struct C_00144660 {
     void func_00144660();
 };
 
+struct C_00144940 {
+    void *vtbl;
+    void *func_00144940(unsigned int flags);
+};
+
+struct C_00144710 {
+    C_00144710 *func_00144710(int a0);
+};
+
+struct C_001474B0 {
+    void func_001474B0(void *owner, int a0, int a1);
+};
+
+struct Sel_001446B0 {
+    char pad0[4];
+    C_001474B0 *obj;
+};
+
+struct Mgr_002A829C {
+    char pad0[0x14];
+    Sel_001446B0 *arr;
+};
+
+extern Mgr_002A829C *D_002A829C;
+
+struct C_001446B0 {
+    char pad0[4];
+    int f4;
+    void func_001446B0(int a0, int a1, int a2);
+};
+
+struct C_00144960 {
+    void *vtbl;
+    char pad4[8];
+    u8 fc;
+    char padD[3];
+    void *f10;
+    void func_001AF100(int a0, int a1, int a2, int a3);
+    void func_00144960(int a0, int a1, int a2, int a3);
+};
+
 void C_001445C0::func_001445C0()
 {
     vtbl = (void *)&D_00285B58;
