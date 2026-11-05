@@ -223,6 +223,10 @@ struct C_00069BD0_Obj {
     u8 unk21;
     char pad22[0x1D2];
     int unk1F4;
+    char pad1F8[0x8C];
+    int unk284;
+    char pad288[8];
+    int unk290;
     void func_00032A40();
     void func_00035720();
     void func_00031610(int, int);
