@@ -48,6 +48,45 @@ u32 func_00177230(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   return 1;
 }
 
+extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
+#pragma intrinsic(memcpy)
+extern "C" u32 func_00175E30(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int flags, unsigned int mask);
+extern char D_0000F81F;
+u32 func_00177370(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int level, int flags)
+{
+  u8 *buf;
+  int w;
+  int h;
+  int y;
+  int n;
+  if (level == 0) {
+    for (y = 0; y < height; y++) {
+      memcpy(dst + y * dstPitch * 2, src + y * srcPitch * 2, width * 2);
+    }
+    return 1;
+  }
+  if (level == 1) {
+    func_00175E30(dst, src, width, height, dstPitch, srcPitch, flags, (unsigned int)&D_0000F81F);
+    return 1;
+  }
+  w = width << (level - 1);
+  h = height << (level - 1);
+  buf = (u8 *)func_001E8AA5(h * w * 2);
+  func_00175E30(buf, src, w, h, w, srcPitch, flags, (unsigned int)&D_0000F81F);
+  if (level > 2) {
+    n = level - 2;
+    do {
+      w /= 2;
+      h /= 2;
+      func_00175E30(buf, buf, w, h, w, w * 2, flags, (unsigned int)&D_0000F81F);
+      n--;
+    } while (n != 0);
+  }
+  func_00175E30(dst, buf, width, height, dstPitch, w, flags, (unsigned int)&D_0000F81F);
+  func_001E8390(buf);
+  return 1;
+}
+
 u32 func_001774E0(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int level, int a7)
 {
   u8 *buf;
