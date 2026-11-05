@@ -163,6 +163,11 @@ int func_001DDE51(char *dst, const char *fmt, ...);
 void *func_001E8AA5(int size);
 int func_001ADCC0(char *dst, int size, const char *fmt, ...);
 
+void *func_001E8A44(int size);
+void *func_001E83E8(void *p, int size);
+int __stdcall func_001DD816(void *p);
+int __stdcall func_001DD7F7(int h, void *p);
+void __stdcall func_001DE66C(int h);
 template <class T> inline const T &Min(const T &a, const T &b)
 {
     return b < a ? b : a;
