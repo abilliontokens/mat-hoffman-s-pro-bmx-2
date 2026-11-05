@@ -29,9 +29,11 @@ struct C_0013E8C0 {
 
 struct C_0013ECA0 {
     char pad00[0x10];
-    char f10[0xC0];
+    char f10[0x40];
+    char f50[0x40];
+    char f90[0x40];
     char fD0[0x10];
-    char fE0_pad[0];
+    int fE0;
     void func_0013ECA0(void);
 };
 
