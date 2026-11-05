@@ -49,9 +49,9 @@ struct C_6420_P;
 
 struct BmxUIPageMain {
     char pad0[0x124];
-    C_5E40_A *f124;
+    S5580_A *f124;
     char pad128[0x18];
-    C_6420_P *f140;
+    S5580_P *f140;
     char pad144[0x144];
     int f288;
     char pad28C[0x14];
