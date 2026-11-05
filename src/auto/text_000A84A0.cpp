@@ -123,6 +123,43 @@ struct C_000A8520 {
     int func_000A8520(char *param);
 };
 
+/* PipTriggerAction */
+struct C_000A9030 {
+    void *vtbl;
+    char pad4[0x108];
+    unsigned char unk10C;
+    C_000A9030 *func_000A9030();
+};
+
+/* BikeWreckTriggerAction */
+struct C_000A8AF0 {
+    void *vtbl;
+    char pad4[0x108];
+    C_000A88A0_Item items[3];
+    C_000A88A0_Vec unk1C0;
+    C_000A8AF0 *func_000A8AF0();
+};
+
+/* CameraTriggerAction */
+struct C_000A8DB0 {
+    void *vtbl;
+    char pad4[0x108];
+    int unk10C;
+    C_000A8DB0 *func_000A8DB0();
+};
+
+struct C_000A8DD0_P1 {
+    void func_00168C20(void *key, int v, void *dst);
+};
+
+/* CameraTriggerAction */
+struct C_000A8DD0 {
+    char pad0[0x10c];
+    int unk10C;
+    void func_001B5A00(void *a, void *b);
+    void func_000A8DD0(C_000A8DD0_P1 *a, void *b);
+};
+
 void C_000A84A0::func_000A84A0(void *param1, void *param2)
 {
     int i;
@@ -206,8 +243,9 @@ C_000A89F0 *C_000A89F0::func_000A89F0()
 int C_000A8B70::func_000A8B70(void *param1, void *param2) {
     extern int D_000A8A60;
     int __stdcall func_001BBAA0(void *, void *);
+    void *self = this;
     if (param2 != 0) {
-        func_001BBAA0(this, &D_000A8A60);
+        func_001BBAA0(self, &D_000A8A60);
     }
     return 1;
 }
