@@ -64,3 +64,16 @@ struct C_000E35E0 {
     void func_000E3790(void);
     void func_000E3C90(void);
 };
+
+void C_000E35E0::func_000E35E0(int param_1) {
+    int i;
+
+    for (i = 8; i >= 0; i--) {
+        if (i != f420[param_1 == 0]) {
+            S_000E35E0_Obj *obj = D_002A8490->f8[i + 5];
+            if (obj != 0 && obj->v16() == 1) {
+                f420[param_1] = i;
+            }
+        }
+    }
+}
