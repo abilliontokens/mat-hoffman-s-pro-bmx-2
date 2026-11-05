@@ -240,31 +240,4 @@ void C_000788D0::func_000788D0()
     unkEC = 0;
     unkC8->func_00092A50(&unkCC);
 }
-extern int D_0028F5E0;
-struct Text_782C0 {
-    int pad0, x, y;
-    char padC[0x42];
-    unsigned char flags;
-    void func_0005E840(int);
-    void func_0005E920(float, float);
-    void func_001D6600();
-};
-struct Sub_782C0 {
-    void func_00093120();
-    void func_00094690(float,float,int,int,int,int);
-    void func_000941A0(int,float,float,int,int,int,int);
-    void func_000942F0(float,float,int,int,int,int);
-    void func_00094410(float,float,int,int,int,int);
-    void func_00093A00(float,float,int,int,int,int);
-    void func_00093CF0(float,float,int,int,int,int);
-    void func_00093C80(float,float,int,int,int,int);
-};
-struct C_000782C0 {
-    char pad0[0x98];
-    Text_782C0 *f98;
-    char pad9C[0x20];
-    Text_782C0 *fbc, *fc0, *fc4;
-    Sub_782C0 *fc8;
-    int fcc, fd0, fd4, fd8, fdc, fe0, fe4, fe8, fec, ff0;
-    void func_000782C0();
-};
+
