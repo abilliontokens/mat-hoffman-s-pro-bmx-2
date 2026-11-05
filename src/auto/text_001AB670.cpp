@@ -183,6 +183,59 @@ void C_001AC200::func_001AC200(int n)
     }
 }
 
+void C_001AC200::func_001AC240()
+{
+    int state;
+    int n;
+    char c;
+
+    c = field_08[field_00++];
+    n = 0;
+    state = 0;
+    while (c != 0) {
+        switch (state) {
+        case 0:
+            if (c != '^') {
+                field_0C[field_04++] = c;
+            } else {
+                state = 1;
+            }
+            break;
+        case 1:
+            if (c == '^') {
+                field_0C[field_04++] = '^';
+                state = 0;
+            } else if (c >= '0' && c <= '9') {
+                state = 2;
+                n = c - '0';
+            } else {
+                state = 0;
+            }
+            break;
+        case 2:
+            if (c == '^') {
+                func_001AC200(n);
+                state = 0;
+            } else if (c == '.') {
+                func_001AC200(n);
+                state = 3;
+            } else if (c >= '0' && c <= '9') {
+                n = n * 10 + (c - '0');
+            } else {
+                state = 0;
+            }
+            break;
+        case 3:
+            if (c == '^') {
+                state = 0;
+            }
+            break;
+        }
+        c = field_08[field_00++];
+    }
+    field_0C[field_04++] = 0;
+}
+
 void func_001AC330(char *buf, const char *fmt, ...)
 {
     va_list ap;
