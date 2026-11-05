@@ -31,9 +31,14 @@ struct S_002A8490_E8 {
     S_002A8490_E8_4 *f4;
 };
 
+struct C_000C87A0_Lookup {
+    int *func_0018C160(int a);
+};
+
 struct S_002A8490 {
     char pad0[0x2E8];
     S_002A8490_E8 *f2E8;
+    C_000C87A0_Lookup *p2EC;
 };
 
 extern S_002A8490 *D_002A8490;
