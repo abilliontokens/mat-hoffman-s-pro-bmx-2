@@ -230,6 +230,57 @@ void BmxUIPageHOF3::func_000D6D50(void)
     func_001BE3F0();
 }
 
+void BmxUIPageHOF3::func_000D75D0(void)
+{
+    C_000D6D50_Item *e;
+    C_000D6D50_Item **ptr;
+    int count;
+    C_000D6BC0_Global *s;
+
+    if (unk280) {
+        D_002B91AC->unk6c->func_001D5AD0();
+    } else {
+        D_002B91AC->unk54->func_001D5AD0();
+    }
+    if (unk298) {
+        e = unk2cc[0];
+        e->f38 = ((short)unk2b8 << 24) | (e->f38 & 0xffffff);
+        e->b58 |= 2;
+        unk2cc[0]->func_001D5AD0();
+    } else {
+        e = unk2cc[0];
+        e->f38 = ((short)unk2b8 << 24) | (e->f38 & 0xffffff);
+        e->b58 |= 2;
+        unk2c4[0]->func_001D5AD0();
+    }
+    if (unk294) {
+        e = unk2cc[1];
+        e->f38 = ((short)unk2b8 << 24) | (e->f38 & 0xffffff);
+        e->b58 |= 2;
+        unk2cc[1]->func_001D5AD0();
+    } else {
+        e = unk2cc[1];
+        e->f38 = ((short)unk2b8 << 24) | (e->f38 & 0xffffff);
+        e->b58 |= 2;
+        unk2c4[1]->func_001D5AD0();
+    }
+    ptr = unk2fc;
+    count = 2;
+    do {
+        e = *ptr;
+        e->f38 = ((short)unk2b8 << 24) | (e->f38 & 0xffffff);
+        e->b58 |= 2;
+        (*ptr)->func_001D5AD0();
+        ptr++;
+        count--;
+    } while (count != 0);
+    s = D_002B91AC;
+    s->unk24->func_001D5AD0();
+    s->unk28->func_001D5AD0();
+    s->unk2c->func_001D5AD0();
+    s->unk30->func_001D5AD0();
+}
+
 void BmxUIPageHOF3::func_000D7900(void)
 {
     S_000D7900_Owner *owner = f124;
