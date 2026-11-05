@@ -48,7 +48,7 @@ struct C_0015CA10 {
     void func_0015CA10(Quat_0015CA10 *q, float t);
 };
 
-void func_0001B250(S_0015CA10_Key *out, Quat_0015CA10 *q);
+void func_0001B250(void *out, Quat_0015CA10 *q);
 int func_0015CAB0(S_0015CA10_Key *arr, int n, float t);
 
 struct C_0015CFE0 {
