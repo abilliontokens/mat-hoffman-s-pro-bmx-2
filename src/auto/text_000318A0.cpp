@@ -340,6 +340,28 @@ int C_00031F10::func_00031F10(int a, int b)
     return func_00157B90(a, b) != 0;
 }
 
+int BmxEvent::func_00031F30(void)
+{
+    int i;
+
+    for (i = 0; i < f64->f4e0->f24; i++) {
+        f64->f4e0->arr1a8[i]->func_0010E6D0();
+        f64->f4e0->arr1a8[i]->func_001067B0();
+        f64->f4e0->arr1a8[i]->f1234->func_001B49B0();
+        f64->f4e0->arr1a8[i]->f1230->func_001B49B0();
+        f64->f4e0->arr1a8[i]->f1238->func_001B49B0();
+        f64->f4e0->arr1a8[i]->f123c->func_001B49B0();
+        f64->f4e0->arr1a8[i]->f1240->func_001B49B0();
+        f64->f4e0->arr1a8[i]->func_00104BE0();
+        f64->f4e0->arr1a8[i]->func_00109F80();
+        f64->f4e0->arr1a8[i]->func_0010C090(f64->f4e0->arr1a8[i]->f7f4, f64->f4e0->arr1a8[i]->f804, D_002A1480, 0);
+        if (f170[i] != 0) {
+            f170[i]->func_000847A0();
+        }
+    }
+    return 1;
+}
+
 int C_00032060::func_00032060(int score, char *name)
 {
     if (unk68->func_0005B960(3, (float)score) != 0) {
