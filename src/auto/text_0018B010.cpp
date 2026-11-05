@@ -142,7 +142,7 @@ struct S_0018B3D0_Parser {
 struct S_0018B3D0_Info {
     char pad0[4];
     void *f4;
-    char pad8[0x10C - 8];
+    char f8[0x10C - 8];
     int f10c;
     char pad110[0x14C - 0x110];
     unsigned char f14c;
