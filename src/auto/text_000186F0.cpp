@@ -271,6 +271,46 @@ struct TikiHuntState {
     void func_00019520();
 };
 
+extern float D_00275998, D_00275994, D_0027599C;
+extern float D_002756B8, D_002756D0, D_002756E8, D_002756EC;
+float func_0014F510(float x);
+float func_0014F550(float x);
+void __stdcall func_00017810(void *obj, float *pos);
+
+/* wraps an angle into [-pi, pi] (func_00016D60, inlined) */
+static __forceinline float wrap_angle_00016D60(float x)
+{
+    int n;
+    float t;
+    int * volatile p = &n;
+    float r;
+
+    t = x * D_002756EC;
+    *p = _mm_cvttss_si32(*(__m128 *)&t);
+    r = x - (float)n * D_002756B8;
+    if (r > D_002756D0) {
+        return r - D_002756B8;
+    }
+    if (r < D_002756E8) {
+        return r + D_002756B8;
+    }
+    return r;
+}
+
+struct S_00019070_Slot {
+    char pad0[0xc];
+    int fc;
+    char pad10[0x28 - 0x10];
+};
+
+struct C_00019070 {
+    char pad0[0x398];
+    S_000192D0_Slot *f398;
+    char pad39c[0x3a4 - 0x39c];
+    S_00019070_Slot f3a4[6];
+    void func_00019070();
+};
+
 void C_00018D40::func_00018D40(C_00018D40Param *param)
 {
     int count;
