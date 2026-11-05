@@ -2,7 +2,9 @@
 #include "common.h"
 
 struct Sprite_6D {
-    char pad0[0x38];
+    char pad0[0x10];
+    float f10, f14;
+    char pad18[0x20];
     unsigned int f38;
     char pad3C[0x1C];
     unsigned char b58;
