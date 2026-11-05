@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <string.h>
 extern char D_002A60B0[];
+extern char D_002A60AF[];
 extern char D_00284644[];
 extern char *func_001E8AC0(const char *, int);
 struct C_001AF120 {
