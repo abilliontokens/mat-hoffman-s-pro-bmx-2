@@ -3,6 +3,37 @@
 
 extern const float D_00277D04;
 
+extern int D_00277CF4;
+
+/* base class: CameraBehavior */
+struct C_0012B540 {
+    int unk0;
+    void func_0012B540(void);
+};
+
+struct S_00055910_Part {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+};
+
+struct C_00055910 : C_0012B540 {
+    char pad4[0x10];
+    S_00055910_Part *unk14;
+    S_00055910_Part *unk18;
+    char pad1C[0x30];
+    char *unk4C;
+    char pad50[0xE0];
+    char *unk130;
+    char *unk134;
+    char pad138[0xD4];
+    S_00055910_Part *unk20C;
+    S_00055910_Part *unk210;
+    S_00055910_Part *unk214;
+    S_00055910_Part *unk218;
+    void func_00055910(void);
+};
+
 struct S_000560A0_Inner {
     char pad0[0x3C];
     float unk3C;
