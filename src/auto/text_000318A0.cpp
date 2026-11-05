@@ -34,6 +34,11 @@ struct C_00032060 {
 };
 
 
+int C_00031F10::func_00031F10(int a, int b)
+{
+    return func_00157B90(a, b) != 0;
+}
+
 void C_00032550::func_00032550(void)
 {
     if (unk1C4 != 0) {
