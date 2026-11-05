@@ -221,6 +221,10 @@ struct S_0001CBC0_Item {
     float f90;
 };
 
+static __forceinline void clear_bit0_0001C9F0(unsigned char *p) {
+    *p &= 0xfe;
+}
+
 static __forceinline float vec3_abs(float x) {
     int i = *(int *)&x & 0x7fffffff;
     return *(float *)&i;
