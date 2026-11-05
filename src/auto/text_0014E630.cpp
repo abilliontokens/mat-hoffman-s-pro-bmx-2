@@ -91,6 +91,8 @@ struct AcosEntry {
     float *table;
 };
 extern AcosEntry D_002DF740[25];
+extern float *D_002DF748;
+extern char D_002DF868;
 extern float D_002756EC;
 extern float D_002756B8;
 extern "C" void func_001E8390(void*);
@@ -115,6 +117,38 @@ int func_0014F270()
     }
     p[0] = p[-2];
     p[1] = p[-1];
+    return 1;
+}
+
+int func_0014F350()
+{
+    float lo = 0.0f;
+    float hi = 5.9604645e-08f;
+    int i;
+    float *p;
+    int e;
+
+    for (e = 0; e < 25; e++) {
+        if (D_002DF740[e].table) {
+            func_001E8390(D_002DF740[e].table);
+        }
+        p = (float *)func_001E8AA5(D_002A7708 * 4);
+        D_002DF740[e].table = p;
+        if (!p) {
+            return 0;
+        }
+        D_002DF740[e].lo = lo;
+        float scale = (float)(D_002A7708 - 2) / (hi - lo);
+        D_002DF740[e].scale = scale;
+        float step = D_00275460 / scale;
+        for (i = 0; i < D_002A7708 - 1; i++) {
+            *p = (float)acos(D_00275460 - ((float)i * step + lo));
+            p++;
+        }
+        lo = hi;
+        hi = hi + hi;
+        *p = p[-1];
+    }
     return 1;
 }
 
