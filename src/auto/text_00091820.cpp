@@ -260,6 +260,18 @@ void *C_00092710::func_00092710(int flags)
     return this;
 }
 
+void *C_00092750::func_00092750(int flags) {
+    C_001D6410 *p = (C_001D6410 *)f24;
+    vtbl = (void *)&D_00279CCC;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+    func_00157660();
+    if (flags & 1) func_001E891B(this);
+    return this;
+}
+
 void *C_00092790::func_00092790(int flags)
 {
     ((C_0008ADF0 *)this)->func_0008ADF0();
