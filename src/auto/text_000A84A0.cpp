@@ -354,6 +354,46 @@ int C_000A8520::func_000A8520(char *param)
     return -1;
 }
 
+int C_000A85C0::func_000A85C0(S_GrindsStream *stream, int a2, int a3, int a4)
+{
+    int count;
+    int i;
+    int end;
+    int start;
+    char buf[0x104];
+    S_GrindElem *e;
+
+    stream->func_00169710(D_0027C280);
+    stream->func_00168C20(D_0027C26C, 0, &count);
+    if (count > 0) {
+        if (f28 != 0) {
+            start = f24;
+            f24 = start + count;
+            end = f24;
+            f28 = (S_GrindElem **)func_001E83E8(f28, f24 * 4);
+        } else {
+            start = 0;
+            f24 = count;
+            end = f24;
+            f28 = (S_GrindElem **)func_001E8A44(f24 * 4);
+        }
+        for (i = start; i < end; i++) {
+            e = (S_GrindElem *)func_001E8A44(0x408);
+            if (e != 0) {
+                e = e->func_000A8360();
+            } else {
+                e = 0;
+            }
+            f28[i] = e;
+            func_001ADCC0(buf, 0x104, D_0027C25C, i - start + 1);
+            if (stream->func_00169710(buf) != 0) {
+                f28[i]->v0(stream, i - start + 1, a2, a4, &D_002A8490->f2A4->f124);
+            }
+        }
+    }
+    return 1;
+}
+
 C_000A88A0 *C_000A88A0::func_000A88A0() {
     extern int D_0027C2A0;
     extern float D_002A2734;
