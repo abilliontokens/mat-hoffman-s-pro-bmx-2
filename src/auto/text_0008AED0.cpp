@@ -34,3 +34,7 @@ struct C_0008B6C0 {
     int f54;
     void func_0008B6C0(void);
 };
+
+void C_0008B670::func_0008B670(int param_1) {
+    ((C_0005E840 *)f24)->func_0005E840(param_1);
+}
