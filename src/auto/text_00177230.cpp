@@ -1,6 +1,9 @@
 /* 17 functions from 0x00177230 to 0x00178210, found by Ghidra. */
 #include "common.h"
 
+int func_00135420(void);
+void func_00176630(u8 *src, int fmt, int width, int height, int srcPitch, int dstPitch, int a6, int a7, int a8, u8 *dst, int a10);
+
 u32 func_00177860(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch)
 {
   u8 *d;
