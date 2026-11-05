@@ -70,6 +70,31 @@ struct S_000267F0_V4 {
     float w;
 };
 
+extern float D_00276610;
+
+struct C_000269B0 {
+    float f0;
+    float f4;
+    float f8;
+    float fC;
+    float f10;
+    void func_000269B0(float a, float b, float c);
+};
+
+struct C_00026A10 {
+    float f0;
+    float f4;
+    float f8;
+    float func_00026A10(float a, float b);
+};
+
+static __forceinline float min_ss_00026A10(float a, float b)
+{
+    float r;
+    _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&b), _mm_load_ss(&a)));
+    return r;
+}
+
 struct C_00026500 {
     char pad0[0x2c];
     int count;
