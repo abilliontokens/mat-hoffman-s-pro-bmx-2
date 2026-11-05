@@ -320,7 +320,13 @@ struct SearchNode {
     void func_00192AF0(int *src, int count);
     int func_00192B70(void);
     int func_00192AC0(S_00192930_Iface *obj);
+    int func_00192CC0(float *pts);
 };
+
+struct C_00179B40 {
+    int func_00179B40(void *out, void *obj);
+};
+int func_0017C060(float *pts, void *a, void *b);
 
 int *C_00192470::func_00192470(int *param_1)
 {
