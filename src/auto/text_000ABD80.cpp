@@ -365,6 +365,34 @@ struct C_000AC890 {
     void func_000AC890(void);
 };
 
+extern int D_0027C868;
+extern int D_0027C858;
+extern int D_0027C848;
+extern int D_0027C83C;
+extern int D_0027C82C;
+extern char D_00275630;
+extern "C" int func_001ADCC0(char *buf, int size, void *fmt, ...);
+
+struct C_000AC160_P1 {
+    void func_00168C20(void *key, int v, void *dst);
+    void func_00168C50(void *key, int v, void *dst);
+    void func_00168BE0(void *key, void *def, char *dst, int size);
+};
+
+/* LayeredMusicTriggerAction */
+struct C_000AC160 {
+    char pad0[0x10c];
+    int field_10C;
+    int field_110;
+    int field_114;
+    char field_118[0x78];
+    int field_190;
+    int field_194;
+    char field_198[1][0x78];
+    void func_001B5A00(void *a, void *b);
+    void func_000AC160(C_000AC160_P1 *a, void *b);
+};
+
 void C_000ABD80::func_000ABD80(C_000ABD80_P1 *a, void *b)
 {
     a->func_00168C20(&D_0027C80C, 0, &field_10C);
