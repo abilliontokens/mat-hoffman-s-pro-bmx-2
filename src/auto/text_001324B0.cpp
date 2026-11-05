@@ -25,3 +25,8 @@ struct Class_002845AC {
 
 extern int D_00284514;
 void func_001E891B(void *ptr);
+
+void Class_002845AC::func_00132DB0()
+{
+    ((Class_002845AC *)((char *)this - *(int *)((char *)this - 4)))->func_00132DE0();
+}
