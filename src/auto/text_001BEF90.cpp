@@ -264,6 +264,7 @@ struct S_Vec4i_001BF930 {
 
 struct S_Vec4f_001BFD00 {
     float x, y, z, w;
+    S_Vec4f_001BFD00() {}
     S_Vec4f_001BFD00(float a, float b, float c, float d)
     {
         x = a;
