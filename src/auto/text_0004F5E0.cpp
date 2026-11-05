@@ -277,6 +277,55 @@ void C_0004FE30::func_0004F7B0(void)
     ((C_00031C90 *)this)->func_00031C90();
 }
 
+void C_0004F820::func_0004F820(unsigned int state)
+{
+ f2A8->func_00086C10(0);
+ f2A8->func_00086C20(0);
+ switch(state) {
+ case 0:
+ f2A8->func_000867F0(1);
+ f64->f4E0->f1A8[f120]->f95C = 1;
+ f110 = 0;
+ break;
+ case 2:
+ f2A8->func_00086910(1);
+ f2A8->func_00086C10(1);
+ f64->f4E0->f1A8[f120]->f95C = 1;
+ f110 = 0;
+ break;
+ case 1:
+ f110 = 1;
+ f2A8->func_00086C10(0);
+ f2A8->func_00086C20(1);
+ f64->f4E0->f1A8[f120]->f95C = 0;
+ f64->f4E0->f1A8[f120]->f958 = 0.1f;
+ break;
+ case 3:
+ f110 = 1;
+ f2A8->func_00086C20(1);
+ f2A8->func_00086C10(1);
+ f64->f4E0->f1A8[f120]->f95C = 0;
+ f64->f4E0->f1A8[f120]->f958 = 0.1f;
+ break;
+ case 5:
+ f2A8->func_00086A40(1);
+ f64->f4E0->f1A8[f120]->f95C = 1;
+ f110 = 0;
+ break;
+ case 4:
+ f2A8->func_00086B20(1);
+ f64->f4E0->f1A8[f120]->f95C = 1;
+ f110 = 0;
+ break;
+ case 6:
+ f2D8->fB8 = f2B4 + 1;
+ func_00032A20();
+ f2D8->func_0006D280();
+ break;
+ }
+ f2DC = state;
+}
+
 void C_0004FE30::func_0004FA60(int id)
 {
     for (int i = 0; i < f90; i++) {
