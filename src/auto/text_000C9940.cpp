@@ -33,3 +33,15 @@ struct C_000CA8D0 {
     void func_000CA8D0(void);
 };
 
+void C_000CA8D0::func_000CA8D0(void)
+{
+    unk2E0->func_001B1980();
+    switch (unk2E8) {
+    case 0:
+        unk2E0->func_001B17D0(D_002A8490->p2E8->p4->f78);
+        break;
+    case 1:
+        unk2E0->func_001B17D0(D_002A8490->p2E8->p4->f80);
+        break;
+    }
+}
