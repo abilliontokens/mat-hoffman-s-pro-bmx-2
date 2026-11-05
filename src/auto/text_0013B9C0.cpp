@@ -52,7 +52,8 @@ struct C_0013B9C0 {
     int f70;
     int f74;
     int f78;
-    char pad7C[0x64];
+    unsigned short *f7C;
+    char pad80[0x60];
     int fE0;
     char padE4[4];
     S_0013B9C0_Ent20 *fE8;
