@@ -255,6 +255,76 @@ struct C_000B1B80 {
     void func_000B1B80(void);
 };
 
+struct V4_000B1350 {
+    float x, y, z, w;
+    V4_000B1350() {}
+    V4_000B1350(float a, float b, float c)
+    {
+        x = a;
+        y = b;
+        z = c;
+        w = 1.0f;
+    }
+};
+
+struct S_000B1350_Key {
+    char pad0[8];
+    float x, y, z;
+    char pad14[0x14];
+};
+
+struct S_000B1350_Tbl {
+    unsigned int count;
+    int f4;
+    S_000B1350_Key *f8;
+};
+
+struct S_000B1350_Owner {
+    char pad0[0x518];
+    S_000B1350_Tbl *f518;
+};
+
+struct S_000B1350_B {
+    char pad0[0x3C];
+    S_000B1350_Owner *f3C;
+    char pad40[8];
+    S_000B1350_B *f48;
+    char pad4C[4];
+    int f50;
+    int f54;
+};
+
+struct S_000B1350_Sub {
+    int f0;
+    float f4;
+    V4_000B1350 f8;
+};
+
+struct S_000B1350_A {
+    char pad0[0x48];
+    S_000B1350_Sub **f48;
+    int f4C;
+};
+
+struct S_000B1350_Node {
+    int f0;
+    int f4;
+    S_000B1350_A **f8;
+    S_000B1350_B **fC;
+};
+
+struct C_000B1350 {
+    char pad0[0x34];
+    int f34;
+    int f38;
+    int f3C;
+    char pad40[4];
+    S_000B1350_A **f44;
+    S_000B1350_B **f48;
+    S_000B1350_Node **f4C;
+    void func_000B1350(void);
+};
+
 void C_000B1660::func_000B1660(S_000B1660_Arg *a) {
  for (int i = 0; i < D_002B9120->f578; i++) {
  S_000B1660_Item *item = D_002B9120->f57C[i];
@@ -320,16 +390,20 @@ void C_000B1B80::func_000B1B80(void)
     S_000B1B80_Mat mat;
     struct { C_000B1B80 * volatile self; volatile int limit; volatile int cnt; volatile int len; } t;
     int n;
+    int ma;
+    int mb;
 
     t.self = this;
     if (func_001EA426(name, D_002764F0) != 0) {
         t.len = strlen(D_002A4C10);
         t.limit = 0x103;
-        t.cnt = t.limit > t.len ? t.len : t.limit;
+        ma = t.limit;
+        mb = t.len;
+        t.cnt = ma > mb ? mb : ma;
         n = t.cnt;
         func_001E8920(buf, D_002A4C10, n);
         buf[n] = 0;
-        func_001ADCC0(D_002A4C10, 0x104, D_00275678, t.self->f3C->f8 != 0 ? D_002A5348 : D_002A5870, D_002A45E0);
+        func_001ADCC0(D_002A4C10, 0x104, D_00275678, (t.self->f3C->f8 != 0) ? D_002A5348 : D_002A5870, D_002A45E0);
         {
             void *mem = func_001E8A44(0x1e0);
             t.self->f44->f8 = mem ? ((S_000B1B80_Obj *)mem)->func_0019B700(1) : 0;
@@ -350,7 +424,9 @@ void C_000B1B80::func_000B1B80(void)
         }
         t.cnt = strlen(buf);
         t.limit = 0x103;
-        t.len = t.limit > t.cnt ? t.cnt : t.limit;
+        ma = t.limit;
+        mb = t.cnt;
+        t.len = ma > mb ? mb : ma;
         n = t.len;
         func_001E8920(D_002A4C10, buf, n);
         D_002A4C10[n] = 0;
