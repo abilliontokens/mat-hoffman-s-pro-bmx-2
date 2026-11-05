@@ -416,6 +416,23 @@ void C_00108D10::func_00108D10(int a, int b) {
  } else { fA68[fA88]=a; fA78[fA88]=b; ++fA88; }
 }
 
+void C_00108E30::func_00108E30(int a, int b) {
+ if (fAAC >= 4) {
+ int old=fA8C[0], other=fA9C[0];
+ int found=0;
+ for(int i=1;i<4;i++) {
+ if(old == -1) break;
+ if(old==fA8C[i] && other==fA9C[i]) found=1;
+ }
+ if(!found && old!=-1) {
+ if(b==-1) fBC8[old]=0;
+ else fE20[b*16+old]=0;
+ }
+ for(int j=0;j<3;j++) { fA8C[j]=fA8C[j+1]; fA9C[j]=fA9C[j+1]; }
+ fA8C[3]=a; fA9C[3]=b;
+ } else { fA8C[fAAC]=a; fA9C[fAAC]=b; ++fAAC; }
+}
+
 void C_00108F50::func_00108F50(void)
 {
     int i;
