@@ -94,9 +94,25 @@ extern char D_00279100;
 extern char D_0027A130;
 extern char D_0027A140;
 
+struct C_0018C780 {
+    void func_0018C780(int a, void *b, int c);
+    void *func_0018C160(void *name);
+};
+
 struct S_00092A10_Root {
     char pad0[0x2e0];
     S_00092A10_Sub *f2e0;
+    char pad2e4[8];
+    C_0018C780 *f2ec;
+};
+
+extern char D_0027958C;
+extern "C" void *func_001E8A44(unsigned int size);
+
+struct C_001B12C0 {
+    C_001B12C0 *func_001B12C0(int a);
+    void func_001B13A0(void *a, void *b, int c, int d);
+    void func_001B2270(int color);
 };
 
 extern S_00092A10_Root *D_002A8490;
