@@ -91,7 +91,7 @@ struct V4_000A00A0 {
 };
 extern V4_000A00A0 D_002A25E0;
 extern char D_0009F700;
-void func_0009F620(void);
+void func_0009F620(int *, int *);
 extern int D_002BA160, D_002B9118, D_002B9108, D_002B9114, D_002B9110;
 struct V4_0009F620 { int x, y, z, w; };
 struct Obj_000A00A0 {
