@@ -67,8 +67,8 @@ static inline float C_0017A1D0_Dot(const C_0017A1D0_Vec4 &a, const C_0017A1D0_Ve
 
 static inline float C_0017A1D0_Fabs(const float &f)
 {
-    int i = *(int *)&f;
-    i &= 0x7fffffff;
+    float t = f;
+    int i = *(int *)&t & 0x7fffffff;
     return *(float *)&i;
 }
 
