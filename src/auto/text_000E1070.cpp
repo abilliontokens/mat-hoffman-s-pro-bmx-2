@@ -107,6 +107,8 @@ struct C_000E1770 {
     int f2CC;
     int f2D0;
     DelObjNumHorse *arr2D4[2];
+    void func_001578D0();
+    void func_000E1DA0();
     void func_001BE360(int a);
     void func_001BE3F0();
     C_000E1770 *func_000E1770(int a);
