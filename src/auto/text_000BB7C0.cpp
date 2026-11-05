@@ -391,6 +391,28 @@ S_000BC320_Rec *C_000BBE30::func_000BC320(void)
     return (S_000BC320_Rec *)f27C[f284].f130 + f288;
 }
 
+void C_000BBE30::func_000BC370(S_000BC320_Rec *out, int entry, int idx)
+{
+    if (D_002A8490->f2E0->f324 == 1) {
+        *out = ((S_000BC320_Rec *)(f27C->f130 + 0x3c))[idx];
+    } else {
+        *out = ((S_000BC320_Rec *)(f27C[entry].f130 + 0x3c))[idx];
+    }
+}
+
+void C_000BBE30::func_000BC3E0(int idx)
+{
+    S_000BC320_Rec rec;
+
+    func_000BC370(&rec, f284, f288);
+    *(float *)((char *)D_002A8490->f2E0 + idx * 0x18 + 0x398) = rec.w[3];
+    *(float *)((char *)D_002A8490->f2E0 + idx * 0x18 + 0x39c) = rec.w[4];
+    *(float *)((char *)D_002A8490->f2E0 + idx * 0x18 + 0x3a0) = rec.w[1];
+    *(float *)((char *)D_002A8490->f2E0 + idx * 0x18 + 0x3a4) = rec.w[1];
+    *(float *)((char *)D_002A8490->f2E0 + (idx * 3 + 0x75) * 8) = rec.w[2];
+    *(float *)((char *)D_002A8490->f2E0 + idx * 0x18 + 0x3ac) = rec.w[0];
+}
+
 void C_000BC4A0::func_000BC4A0(undefined4 param_1, undefined4 param_2)
 {
   int in_ECX = (int)this;
