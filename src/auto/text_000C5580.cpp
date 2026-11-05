@@ -42,7 +42,8 @@ extern C_5E40_G *D_002B91AC;
 struct S5580_R { int func_0005C0E0(); };
 struct S5580_Q2 { char pad0[0x2C0]; S5580_R *f2C0; };
 struct S5580_Root { char pad0[0x2E0]; S5580_Q2 *p2E0; };
-extern S5580_Root *D_002A8490_;
+struct C_NumHorse_Root;
+extern C_NumHorse_Root *D_002A8490;
 struct C_5E40_A;
 struct C_6420_P;
 
