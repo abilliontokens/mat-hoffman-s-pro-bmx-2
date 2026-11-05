@@ -30,6 +30,21 @@ struct C_0017F050 {
     void func_00132EB0(int a0);
 };
 
+struct S_0017F0B0 {
+    char pad0[0x70];
+    void *unk70, *unk74, *unk78;
+    char pad7C[8];
+    void *unk84, *unk88, *unk8C, *unk90, *unk94;
+};
+
+struct RayCollisionObject {
+    char pad0[0x54];
+    S_0017F0B0 *unk54;
+    char pad58[0xA4];
+    void *unkFC, *unk100;
+    void func_0017F0B0();
+};
+
 struct C_0017F0A0 {
     char pad0[0xA7];
     u8 unkA7;
