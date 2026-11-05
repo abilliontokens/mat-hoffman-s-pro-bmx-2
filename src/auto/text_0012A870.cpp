@@ -168,6 +168,7 @@ struct CameraController {
     void func_00157600(int a);
     void func_00157660(void);
     CameraController *func_0012B550(int a);
+    void func_0012B580(void);
     CameraController *func_0012B790(byte flags);
 };
 
