@@ -503,6 +503,23 @@ void C_001D54F0::func_001D54F0(void)
     unk4->func_001446B0(0, 0, -1);
 }
 
+void C_001D5500::func_001D5500()
+{
+    vtbl = &D_0028F584;
+    if (f54) { func_00201100(f54); f54 = 0; }
+    if (f58) { func_00201100(f58); f58 = 0; }
+    if (f5c) { func_00201100(f5c); f5c = 0; }
+    if (f64) { C_001C3BD0 *p = f64; p->func_001C3BD0(); func_001E891B(p); f64 = 0; }
+    if (f68) { C_001C3C80 *p = f68; p->func_001C3C80(); func_001E891B(p); f68 = 0; }
+    if (f6c) { C_0014A630 *p = f6c; p->func_0014A630(); func_001E891B(p); f6c = 0; }
+    if (f70) { C_001B65E0 *p = f70; p->func_001B65E0(); func_001E891B(p); f70 = 0; }
+    D_002F0BB8 = 0;
+    if (f8c) func_00201100(f8c);
+    if (f84) { C_0014A540 *p = f84; p->func_0014A540(); func_001E891B(p); }
+    if (f88) { C_00012140 *p = f88; p->func_00012140(); func_001E891B(p); }
+    func_00182800();
+}
+
 void C_001D5600::func_001D5600(void) {
     int __stdcall func_001D5190(int);
     func_001D5190(unk58);
