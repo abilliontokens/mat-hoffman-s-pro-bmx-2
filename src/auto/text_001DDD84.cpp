@@ -95,4 +95,67 @@ void __stdcall func_001DDE78(unsigned short *s, char *out, int unused)
     } while (shift <= 0x2c);
     out[12] = 0;
 }
+
+int __stdcall func_001DDF0A(int handle, int param2)
+{
+    int local;
+    int result;
+    if (param2 != 0) {
+        func_001DD3A1(handle, 0, 0, 0);
+    }
+    result = func_001DD15A(handle, (u16 *)((char *)&param2 + 2), 2, &local, 0);
+    if (result == 0 || local == 2 || *(u16 *)((char *)&param2 + 2) == 0xFEFF) {
+        return 1;
+    }
+    return 0;
+}
+
+int __stdcall func_001DE1DF(int param1, int param2)
+{
+    char buffer[256];
+    int result;
+    int handle;
+    result = 0;
+    handle = func_001DCC3C(param1, 0x80100000, 0, 0, 4, 4, 0);
+    if (handle == -1) {
+        return func_001DD603();
+    }
+    if (func_001DDF0A(handle, 1) == 0 || func_001DDF52(handle, (void *)&D_0028FB38, buffer, 0x80) == 0 || func_001EAA3B(buffer, param2) != 0) {
+        result = 0x491;
+    }
+    func_001DD13C(handle);
+    return result;
+}
+
+void __stdcall func_001DE25F(int param)
+{
+    int handle;
+    int info[10];
+    int iosb[2];
+    int i;
+    handle = func_001DCC3C(param, 0xC0000000, 3, 0, 3, 0x2000000, 0);
+    if (handle != -1) {
+        for (i = 0; i < 10; i = i + 1) {
+            info[i] = 0;
+        }
+        _imp__KeQuerySystemTime(&info[4]);
+        _imp__NtSetInformationFile(handle, iosb, info, 0x28, 4);
+        func_001DD13C(handle);
+    }
+}
+
+int __stdcall func_001DE70D(int param)
+{
+    int result;
+    int out;
+    result = _imp__NtSuspendThread(param, &param);
+    if (result < 0) {
+        func_001DD659(result);
+        out = -1;
+    } else {
+        out = param;
+    }
+    return out;
+}
+
 #pragma optimize("", on)
