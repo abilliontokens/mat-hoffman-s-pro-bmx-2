@@ -180,6 +180,47 @@ struct C_0008A910 {
     void func_0008A910(void);
 };
 
+extern int D_00279CCC;
+extern int D_00279D3C;
+extern int D_002B9098;
+extern int D_002B9094;
+
+struct C_0008ABF0 {
+    void *vtbl;
+    char pad4[0x20];
+    void *unk24;
+    C_0008ABF0 *func_0008ABF0(int a0);
+    void func_00157600(int a0);
+};
+
+struct C_0008AD60 {
+    void *vtbl;
+    char pad4[0x20];
+    NodeObj *unk24;
+    void func_0008AD60();
+    void func_00157960();
+};
+
+struct C_0008ADB0 {
+    void *vtbl;
+    char pad4[0x20];
+    void *unk24;
+    void *unk28;
+    void *unk2c;
+    void *unk30;
+    void *unk34;
+    char pad38[0x4];
+    void *unk3c;
+    void *unk40;
+    void *unk44;
+    int unk48;
+    int unk4c;
+    int unk50;
+    int unk54;
+    C_0008ADB0 *func_0008ADB0(int a0);
+    void func_00157600(int a0);
+};
+
 
 C_0008A2E0 *C_0008A2E0::func_0008A2E0(int a0) {
     func_00157600(1);
