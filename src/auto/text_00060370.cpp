@@ -17,6 +17,10 @@ struct C_001D5AD0 {
     void func_001D5AD0(void);
 };
 
+extern int D_002B9018;
+int func_001361E0(int a, int b, int *c, unsigned int d);
+struct C_00031610 { void func_00031610(int a, int b); };
+
 struct BmxSinglePlayerInGameMenu {
     virtual void vf0();
     virtual void vf1();
