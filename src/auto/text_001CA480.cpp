@@ -134,6 +134,15 @@ void *WaterObject::func_001CAFD0(int a0)
     return this;
 }
 
+void *WaterObject::func_001CB070(int flags) {
+    vtbl = &D_0028ECAC;
+    func_001435D0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 bool C_001CB120::func_001CB120(void)
 {
   int in_ECX = (int)this;
