@@ -176,7 +176,30 @@ struct C_00143C00 {
         p->u = (p->pos.x - f94) / f34;
         p->v = (p->pos.z - f98) / f38;
     }
+    __forceinline float GetScale()
+    {
+        switch (fAC) {
+        case 0:
+            return fD8 / D_002EFEA0;
+        case 1:
+        case 2:
+            return fD8;
+        case 3:
+            return D_00275460;
+        }
+    }
     void func_00143C00(Quad_143C00 *arg);
+};
+
+struct Color_143C00 {
+    float r, g, b, a;
+    Color_143C00(float x, float y, float z, float w)
+    {
+        r = x;
+        g = y;
+        b = z;
+        a = w;
+    }
 };
 
 struct C_001AF300 {
@@ -289,6 +312,149 @@ struct C_00144960 {
     void func_001AF100(int a0, int a1, int a2, int a3);
     void func_00144960(int a0, int a1, int a2, int a3);
 };
+
+void C_00143C00::func_00143C00(Quad_143C00 *arg)
+{
+    if (D_002A99B0 != 0 || fAC != 3) {
+        int wide = fE4 != D_00275544;
+        {
+            char *g = D_002F08BC;
+            char *tbl[4] = { g + 0x228, g + 0x240, g + 0x240, g + 0x240 };
+            func_001FF940(tbl[fAC], g + 0x258);
+        }
+        f94 = f84 + f64;
+        f98 = f88 + f6C;
+        {
+            float col[4];
+            float scale;
+            switch (fAC) {
+            case 0:
+                scale = fD8 / D_002EFEA0;
+                break;
+            case 1:
+            case 2:
+                scale = fD8;
+                break;
+            case 3:
+                scale = D_00275460;
+                break;
+            }
+            col[0] = scale * D_002BECE0[fAC].x;
+            col[1] = scale * D_002BECE0[fAC].y;
+            col[2] = scale * D_002BECE0[fAC].z;
+            col[3] = f58;
+            func_001FEBD0(0x20, col);
+        }
+        func_001FEC30(0x18, (void *)(*(int *)(D_002EFDB8 + 4) + 0x290));
+        D_0020C6DC |= 0x3000;
+        D_0020CA7C = 0;
+        func_001FD020(&D_00040304, 1);
+        func_001FD020(&D_00040350, fDC ? 0x8006 : 0x800b);
+        func_001FD020(&D_00040344, 0x302);
+        func_001FD020(&D_00040348, 1);
+        func_00200390(0, f24[f50]->fB8);
+        func_00200510(0, f24[f50]->fBC);
+        D_0020C6E0 = fA4;
+        D_0020C6DC |= 1;
+        D_0020C6E4 = fA4;
+        D_0020C6DC |= 1;
+        D_0020C6EC = 2;
+        D_0020C6F0 = 2;
+        D_0020C6F4 = 2;
+        D_0020C6F8 = fEC;
+        D_0020C6DC |= 1;
+        if (fE4 != D_00275544) {
+            func_00200390(1, f24[f54]->fB8);
+            func_00200510(1, f24[f54]->fBC);
+            D_0020C6DC |= 2;
+            D_0020C760 = fA4;
+            D_0020C764 = fA4;
+            D_0020C6DC |= 2;
+            D_0020C76C = 2;
+            D_0020C770 = 2;
+            D_0020C774 = 2;
+            D_0020C778 = fEC;
+            D_0020C6DC |= 2;
+        }
+        Vtx28_143C00 v28[4];
+        Vtx20_143C00 v20[4];
+        if (fF0[0] == 0) {
+            int size = wide ? 0x70 : 0x50;
+            fF0[0] = func_001FF3C0(size);
+            fF0[1] = func_001FF3C0(size);
+            fF0[2] = func_001FF3C0(size);
+        }
+        if (wide) {
+            ((Slot6C_143C00 *)*(void **)(D_002EFDB8 + 0x6c))->func_0014A650(arg->fE4);
+            ((Slot70_143C00 *)*(void **)(D_002EFDB8 + 0x70))->func_00142D00(arg->fF4);
+            if (D_002A6F8C != 0) {
+                Vtx28_143C00 *p = (Vtx28_143C00 *)func_001FF410(fF0[fFC], 0);
+                Fill28(&p[0], arg->c[0]);
+                Fill28(&p[1], arg->c[1]);
+                Fill28(&p[2], arg->c[2]);
+                Fill28(&p[3], arg->c[3]);
+                func_001FEE00(0, fF0[fFC], 0x1c);
+            } else {
+                float invW = D_00275460 / f34;
+                v28[0].pos = arg->c[0].pos;
+                v28[1].pos = arg->c[1].pos;
+                v28[2].pos = arg->c[2].pos;
+                v28[3].pos = arg->c[3].pos;
+                float invH = D_00275460 / f38;
+                for (int i = 0; i < 4; i++) {
+                }
+                v28[0].u0 = (v28[0].pos.x - f94) * invW;
+                v28[0].v0 = (v28[0].pos.z - f98) * invH;
+                v28[0].u1 = v28[0].u0;
+                v28[0].v1 = v28[0].v0;
+                v28[1].u0 = (v28[1].pos.x - f94) * invW;
+                v28[1].v0 = (v28[1].pos.z - f98) * invH;
+                v28[1].u1 = v28[1].u0;
+                v28[1].v1 = v28[1].v0;
+                v28[2].u0 = (v28[2].pos.x - f94) * invW;
+                v28[2].v0 = (v28[2].pos.z - f98) * invH;
+                v28[2].u1 = v28[2].u0;
+                v28[2].v1 = v28[2].v0;
+                v28[3].u0 = (v28[3].pos.x - f94) * invW;
+                v28[3].v0 = (v28[3].pos.z - f98) * invH;
+                v28[3].u1 = v28[3].u0;
+                v28[3].v1 = v28[3].v0;
+                func_001FEE00(0, v28, 0x1c);
+            }
+        } else {
+            ((Slot6C_143C00 *)*(void **)(D_002EFDB8 + 0x6c))->func_0014A650(arg->fE0);
+            ((Slot70_143C00 *)*(void **)(D_002EFDB8 + 0x70))->func_00142D00(arg->fF0);
+            if (D_002A6F8C != 0) {
+                Vtx20_143C00 *p = (Vtx20_143C00 *)func_001FF410(fF0[fFC], 0);
+                Fill20(&p[0], arg->c[0]);
+                Fill20(&p[1], arg->c[1]);
+                Fill20(&p[2], arg->c[2]);
+                Fill20(&p[3], arg->c[3]);
+                func_001FEE00(0, fF0[fFC], 0x14);
+            } else {
+                float invW = D_00275460 / f34;
+                v20[0].pos = arg->c[0].pos;
+                v20[1].pos = arg->c[1].pos;
+                v20[2].pos = arg->c[2].pos;
+                v20[3].pos = arg->c[3].pos;
+                float invH = D_00275460 / f38;
+                v20[0].u = (v20[0].pos.x - f94) * invW;
+                v20[0].v = (v20[0].pos.z - f98) * invH;
+                v20[1].u = (v20[1].pos.x - f94) * invW;
+                v20[1].v = (v20[1].pos.z - f98) * invH;
+                v20[2].u = (v20[2].pos.x - f94) * invW;
+                v20[2].v = (v20[2].pos.z - f98) * invH;
+                v20[3].u = (v20[3].pos.x - f94) * invW;
+                v20[3].v = (v20[3].pos.z - f98) * invH;
+                func_001FEE00(0, v20, 0x14);
+            }
+        }
+        func_00200B30((void *)6, 4, D_002A7054);
+        if (++fFC == 3) {
+            fFC = 0;
+        }
+    }
+}
 
 void DXStripSurfaceData::func_001444F0()
 {
