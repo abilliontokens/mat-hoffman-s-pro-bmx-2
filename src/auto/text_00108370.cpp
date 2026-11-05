@@ -67,6 +67,20 @@ struct C_00108630_Arr {
 struct C_00108630_Mgr {
     char pad0[0x2A4];
     C_00108630_Arr *f2A4;
+    char pad2A8[0x2E0 - 0x2A8];
+    struct C_001083E0_St *f2E0;
+};
+
+struct C_001083E0_St {
+    char pad0[0x190];
+    int f190[(0x45C - 0x190) / 4];
+    int f45C;
+};
+
+struct C_001083E0_24 {
+    char pad0[0x4A8];
+    int *f4A8;
+    int *f4AC;
 };
 
 extern C_00108630_Mgr *D_002A8490;
