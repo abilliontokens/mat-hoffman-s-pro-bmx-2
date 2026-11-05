@@ -52,6 +52,14 @@ struct S_001B70D0_Mgr {
     char pad8[0x280 - 8];
     S_001B70D0_Slot **volatile f280;
     int f284;
+    S_001B70D0_Slot *Find(int id) {
+        int k;
+        for (k = 0; k < f284; k++) {
+            if (f280[k]->f1C0 == id)
+                return f280[k];
+        }
+        return 0;
+    }
 };
 
 struct S_001B70D0_Lookup {
@@ -278,11 +286,12 @@ void C_001B6E70::func_001B7010(C_001B7010_arg *arg) {
 void C_001B6E70::func_001B70D0(S_001B70D0_Arg *arg) {
     char name[0x40];
     char buf[0x40];
-    int i, j, found;
-    S_001B70D0_Src *src;
+    int i;
 
     for (i = 0; i < f24; i++) {
         if (((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->fD4[0] != 0) {
+            int found;
+            int j;
             strcpy(name, ((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->fD4);
             found = 0;
             for (j = 0; j < arg->f24 && !found; j++) {
@@ -294,12 +303,16 @@ void C_001B6E70::func_001B70D0(S_001B70D0_Arg *arg) {
                             int id = mgr->f4->func_00198330(
                                 ((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->f1D8);
                             int k = 0;
-                            while (k < mgr->f284) {
+                        again:
+                            if (k < mgr->f284) {
                                 if (mgr->f280[k]->f1C0 == id) {
-                                    src = mgr->f280[k]->f64;
-                                    goto hit;
+                                    ((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->f2DC =
+                                        mgr->f280[k]->f64->f22C;
+                                    found = 1;
+                                } else {
+                                    k++;
+                                    goto again;
                                 }
-                                k++;
                             }
                         }
                     } else {
@@ -310,15 +323,12 @@ void C_001B6E70::func_001B70D0(S_001B70D0_Arg *arg) {
                             memset(dot, 0, strlen(dot));
                         }
                         if (func_001EA426(buf, name) == 0) {
-                            src = p->f58;
-                            goto hit;
+                            ((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->f2DC =
+                                p->f58->f22C;
+                            found = 1;
                         }
                     }
                 }
-                continue;
-            hit:
-                ((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->f2DC = src->f22C;
-                found = 1;
             }
         }
     }
