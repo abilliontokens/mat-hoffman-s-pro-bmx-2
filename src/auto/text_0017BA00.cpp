@@ -222,69 +222,72 @@ void C_0017BDE0::func_0017BB90(f32 *pts, int n)
     f32 miny;
     f32 maxy;
     int i;
+    QuadV2 p;
 
     if (n < 1) {
         return;
     }
-    minx = pts[0];
-    maxx = pts[0];
-    miny = pts[1];
-    maxy = pts[1];
-    for (i = 1; i + 3 < n; i += 4) {
-        if (pts[i * 2] < minx) {
-            minx = pts[i * 2];
-        }
-        if (maxx < pts[i * 2]) {
-            maxx = pts[i * 2];
-        }
-        if (pts[i * 2 + 1] < miny) {
-            miny = pts[i * 2 + 1];
-        }
-        if (maxy < pts[i * 2 + 1]) {
-            maxy = pts[i * 2 + 1];
-        }
-        if (pts[i * 2 + 2] < minx) {
-            minx = pts[i * 2 + 2];
-        }
-        if (maxx < pts[i * 2 + 2]) {
-            maxx = pts[i * 2 + 2];
-        }
-        if (pts[i * 2 + 3] < miny) {
-            miny = pts[i * 2 + 3];
-        }
-        if (maxy < pts[i * 2 + 3]) {
-            maxy = pts[i * 2 + 3];
-        }
-        if (pts[i * 2 + 4] < minx) {
-            minx = pts[i * 2 + 4];
-        }
-        if (maxx < pts[i * 2 + 4]) {
-            maxx = pts[i * 2 + 4];
-        }
-        if (pts[i * 2 + 5] < miny) {
-            miny = pts[i * 2 + 5];
-        }
-        if (maxy < pts[i * 2 + 5]) {
-            maxy = pts[i * 2 + 5];
-        }
-        if (pts[i * 2 + 6] < minx) {
-            minx = pts[i * 2 + 6];
-        }
-        if (maxx < pts[i * 2 + 6]) {
-            maxx = pts[i * 2 + 6];
-        }
-        if (pts[i * 2 + 7] < miny) {
-            miny = pts[i * 2 + 7];
-        }
-        if (maxy < pts[i * 2 + 7]) {
-            maxy = pts[i * 2 + 7];
-        }
+    minx = maxx = pts[0];
+    maxy = miny = pts[1];
+    i = 1;
+    if (n - 1 >= 4) {
+        do {
+            if (pts[i * 2] < minx) {
+                minx = pts[i * 2];
+            }
+            if (pts[i * 2] > maxx) {
+                maxx = pts[i * 2];
+            }
+            if (pts[i * 2 + 1] < miny) {
+                miny = pts[i * 2 + 1];
+            }
+            if (maxy < pts[i * 2 + 1]) {
+                maxy = pts[i * 2 + 1];
+            }
+            if (pts[i * 2 + 2] < minx) {
+                minx = pts[i * 2 + 2];
+            }
+            if (pts[i * 2 + 2] > maxx) {
+                maxx = pts[i * 2 + 2];
+            }
+            if (pts[i * 2 + 3] < miny) {
+                miny = pts[i * 2 + 3];
+            }
+            if (maxy < pts[i * 2 + 3]) {
+                maxy = pts[i * 2 + 3];
+            }
+            if (pts[i * 2 + 4] < minx) {
+                minx = pts[i * 2 + 4];
+            }
+            if (pts[i * 2 + 4] > maxx) {
+                maxx = pts[i * 2 + 4];
+            }
+            if (pts[i * 2 + 5] < miny) {
+                miny = pts[i * 2 + 5];
+            }
+            if (maxy < pts[i * 2 + 5]) {
+                maxy = pts[i * 2 + 5];
+            }
+            if (pts[i * 2 + 6] < minx) {
+                minx = pts[i * 2 + 6];
+            }
+            if (pts[i * 2 + 6] > maxx) {
+                maxx = pts[i * 2 + 6];
+            }
+            if (pts[i * 2 + 7] < miny) {
+                miny = pts[i * 2 + 7];
+            }
+            if (maxy < pts[i * 2 + 7]) {
+                maxy = pts[i * 2 + 7];
+            }
+            i += 4;
+        } while (i + 3 < n);
     }
     for (; i < n; i++) {
         if (pts[i * 2] < minx) {
             minx = pts[i * 2];
         }
-        if (maxx < pts[i * 2]) {
+        if (pts[i * 2] > maxx) {
             maxx = pts[i * 2];
         }
         if (pts[i * 2 + 1] < miny) {
@@ -294,14 +297,18 @@ void C_0017BDE0::func_0017BB90(f32 *pts, int n)
             maxy = pts[i * 2 + 1];
         }
     }
-    v[0] = minx;
-    v[1] = maxy;
-    v[3] = maxy;
-    v[2] = maxx;
-    v[4] = maxx;
-    v[5] = miny;
-    v[6] = minx;
-    v[7] = miny;
+    p.x = minx;
+    p.y = maxy;
+    *(QuadV2 *)&v[0] = p;
+    p.x = maxx;
+    p.y = maxy;
+    *(QuadV2 *)&v[2] = p;
+    p.x = maxx;
+    p.y = miny;
+    *(QuadV2 *)&v[4] = p;
+    p.x = minx;
+    p.y = miny;
+    *(QuadV2 *)&v[6] = p;
 }
 
 int C_0017BDE0::func_0017BDE0(f32 x, f32 y) {
