@@ -117,6 +117,12 @@ int C_00109520::func_00109520(int p1, int p2) {
     return 1;
 }
 
+void C_00109520::func_00109550(int p) {
+    if (count < 0x14 && count >= 1) {
+        c[count - 1] = p;
+    }
+}
+
 int C_00109570::func_00109570(void) {
     return unk0;
 }
