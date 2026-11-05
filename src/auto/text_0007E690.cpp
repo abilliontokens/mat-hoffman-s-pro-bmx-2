@@ -56,3 +56,9 @@ undefined4 C_0007EB00::func_0007EB00(byte param_1)
   return in_ECX;
 }
 
+void C_0007EE20::func_0007EE20(void) {
+    func_00078620();
+    func_000782C0();
+    func_00157960();
+}
+
