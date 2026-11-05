@@ -70,3 +70,38 @@ int C_0013C960::func_0013C9F0(int a0, int a1)
     func_0013B040(local);
     return local;
 }
+
+int C_0013C960::func_0013D310(int a0, int a1, int *a2, int *a3, int a4)
+{
+    S_0013C960_Elem *e;
+
+    if (fF4 == -1 || fE8[fF4].f8 == 0 || func_001EA426(fE8[fF4].f8, a0) != 0) {
+        fF4 = func_0013B130(a0);
+        if (fF4 == -1) {
+            if (fFC == 0) {
+                return 0;
+            }
+            if (func_0013C3D0(a0, a1, &fF4) == 0) {
+                return 0;
+            }
+        }
+    }
+    e = &fE8[fF4];
+    if (e->f1C != 0) {
+        if (a4 != 0) {
+            *a2 = fF4;
+        } else {
+            *a2 = -1;
+        }
+        *a3 = e->f1C;
+        if (fF0 != 0) {
+            e->f18 |= 8;
+        }
+    } else {
+        func_0013B040(fF4);
+        *a2 = fF4;
+        *a3 = 0;
+    }
+    return 1;
+}
+
