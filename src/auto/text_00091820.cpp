@@ -233,6 +233,12 @@ int C_000919B0::func_000919B0() {
     func_00157960();
 }
 
+void *C_00091A00::func_00091A00(int flags) {
+    func_0008A350();
+    if (flags & 1) func_001E891B(this);
+    return this;
+}
+
 void *C_00092710::func_00092710(int flags)
 {
     C_001D6410 *p = (C_001D6410 *)f24;
