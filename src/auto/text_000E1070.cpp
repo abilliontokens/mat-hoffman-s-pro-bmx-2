@@ -149,6 +149,7 @@ struct C_000E1770 {
     void func_000E1EA0();
     void func_000E1F00();
     void func_000E1F60();
+    void func_000E1850();
     void func_000E1C80(float dt);
     void func_001BED00(float dt);
 };
