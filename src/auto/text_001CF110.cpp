@@ -115,6 +115,8 @@ struct IntArray {
     int growBy;
     int capacity;
     int func_0015ACA0(int newCapacity);
+    int func_001CDED0(int id);
+    void func_001CBCF0(int id);
     void Clear()
     {
         memset(data, 0, count * sizeof(int));
