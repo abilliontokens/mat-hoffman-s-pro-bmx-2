@@ -323,15 +323,18 @@ void C_000219E0::func_000219E0(int idx)
 
 int C_00021A50::func_00021A50(int idx, int v)
 {
+    int n;
     if (idx >= 0 && idx < D_002B7E18->f34 && D_002B7E18->f64[idx]->f4 != 0) {
         f2c = D_002B7E18->f64[idx];
         f30 = idx;
-        if (v != 0) {
-            if (--v < 0) {
-                v = D_002B7E18->f64[idx]->f4 - 1;
+        n = v;
+        if (n != 0) {
+            n = n - 1;
+            if (n < 0) {
+                n = D_002B7E18->f64[idx]->f4 - 1;
             }
         }
-        f34 = v;
+        f34 = n;
         func_00021A20();
         return 1;
     }
