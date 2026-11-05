@@ -29,6 +29,10 @@ struct C_0006D100 {
     int func_0006D100();
 };
 extern float D_00275544;
+extern float D_00278500;
+struct C_6D_ManagerObj { char pad[0x154]; int unk154; void func_0001EDC0(int); };
+struct C_6D_Manager { char pad[0x2A4]; C_6D_ManagerObj *unk2A4; char pad2A8[0x48]; C_6D_ManagerObj *unk2F0; };
+extern C_6D_Manager *D_002A8490;
 
 struct V_002EFDB8 {
     virtual void vf0();
