@@ -73,6 +73,32 @@ void *C_001507E0::func_001507E0(int flags) {
     return this;
 }
 
+C_00150810 *C_00150810::func_00150810(int a0, float a1, float a2, float a3, float a4, float a5) {
+    func_001D3F50();
+    unk4C = a5;
+    unk44 = a3;
+    unk48 = a4;
+    unk2C = (a3 - a4) * a1 + a4;
+    unk30 = a1;
+    unk24 = a0;
+    unk3C = 1;
+    unk38 = 0x100;
+    unk34 = a2;
+    unk28 = (unk2C - a5) * (D_00275460 - a2);
+    D_002EFDB8->unk2C = a0;
+    unk50 = 1;
+    return this;
+}
+
+void C_00150900::func_00150900(Vec4_150900 *a0, Vec4_150900 *a1) {
+    if (unk2C == 0) {
+        *a0 = D_002A78CC;
+        *a1 = D_002A78BC;
+        return;
+    }
+    unk2C->unk1A4->unk4->func_00197B40(a0, a1);
+}
+
 void C_00150F60::func_00150F60(int a0, int a1) {
     int func_001D3F50(...);
     unk24 = a0;
