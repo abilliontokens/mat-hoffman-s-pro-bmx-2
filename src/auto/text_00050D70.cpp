@@ -126,3 +126,15 @@ void C_00051180::func_00051180(float param_1)
   return;
 }
 
+int C_00051A90::func_00051A90(int flag)
+{
+    if (flag != 0) {
+        f2D0 = 1;
+        f44->f54->func_0009FE70(1);
+        return 1;
+    }
+    f2D0 = 2;
+    f44->f54->func_0009FE70(0);
+    return 1;
+}
+
