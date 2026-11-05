@@ -55,6 +55,21 @@ void C_001313C0::func_001313C0(S_001313C0_Data *src)
     fAC = *src;
 }
 
+void C_001313C0::func_00131400(S_00131400_In *in, int param_2)
+{
+    f14 = in->f0;
+    f4 = in->f0;
+    *f80 = f14.x;
+    *f84 = f14.y;
+    *f88 = f14.z;
+    S_Vec4 v = in->f10;
+    f48 = func_0014F870(-v.y);
+    v.y = 0;
+    func_001310E0(&v, &v);
+    f4C = func_0014FBA0(v.x, v.z);
+    f98 = 1;
+}
+
 void C_001314E0::func_001314E0(undefined4 *param_1)
 {
   int in_ECX = (int)this;
