@@ -67,6 +67,7 @@ struct MountVertOverlay {
     int unk40;
     int unk44;
     int unk48;
+    char pad4C[4];
     int unk50[8];
     int unk70;
     u8 unk74;
@@ -127,5 +128,31 @@ void C_00086160::func_00086200(void)
 
     for (i = 0; i < *(int *)D_002A8490->f2E0; i++)
         unkA4[i] = 0;
+}
+
+MountVertOverlay *MountVertOverlay::func_00086470(int a)
+{
+    int i;
+
+    func_00157600(1);
+    vtbl = (void *)&D_002796BC;
+    unk28 = 0;
+    unk2C = 0;
+    unk48 = 0;
+    unk30 = 0;
+    unk34 = 0;
+    unk38 = 0;
+    unk3C = 0;
+    for (i = 0; i < 8; i++)
+        unk50[i] = 0;
+    unk70 = 0;
+    unk74 = 0;
+    unk80 = 0;
+    unk44 = 0;
+    unk84 = 0;
+    unk40 = 0;
+    unk88 = 0;
+    unk8C = 0;
+    return this;
 }
 
