@@ -216,6 +216,15 @@ void *C_00091950::func_00091950(int flags)
     return this;
 }
 
+int C_000919B0::func_000919B0() {
+    if (D_002A8490->unk274 != 0) return 1;
+    D_002EFDB8->vf8();
+    D_002EFDB8->vf7(1);
+    func_0008A190();
+    func_00089FA0();
+    func_00157960();
+}
+
 void *C_00092710::func_00092710(int flags)
 {
     C_001D6410 *p = (C_001D6410 *)f24;
