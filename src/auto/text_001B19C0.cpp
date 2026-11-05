@@ -397,6 +397,34 @@ void C_001B23D0::func_001B2400(void)
     ((C_00157660 *)this)->func_00157660();
 }
 
+void C_001B23D0::func_001B2450(void)
+{
+    C_00161580 *p = (C_00161580 *)func_001E8A44(0x1c);
+
+    if (p != 0) {
+        f24 = (C_001B23D0_Obj *)p->func_00161580();
+    } else {
+        f24 = 0;
+    }
+    ((C_001D3F50 *)this)->func_001D3F50();
+}
+
+void *C_001B23D0::func_001B2480(unsigned int size)
+{
+    if (f30 < size) {
+        if (f28 != 0) {
+            func_001E8390(f28);
+            f28 = 0;
+        }
+        f28 = func_001E8AA5(size);
+        if (f28 == 0) {
+            return 0;
+        }
+        f30 = size;
+    }
+    return f28;
+}
+
 void *C_001B2700::func_001B2700(unsigned int flags)
 {
     extern int D_0028C90C;
