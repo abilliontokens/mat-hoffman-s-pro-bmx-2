@@ -137,6 +137,23 @@ void C_00086A40::func_00086A40(int a)
     f40 = a;
 }
 
+void C_00086B20::func_00086B20(int a)
+{
+    char buf[0x104];
+
+    if (a) {
+        func_001ADCC0(buf, 0x104, D_00279728, D_002A8490->f2E8->f4->f1058, f44);
+        f30->func_0005E840(buf);
+        func_001ADCC0(buf, 0x104, D_002A8490->f2E8->f4->f1030);
+        f34->func_0005E840(buf);
+        func_001ADCC0(buf, 0x104, D_00275630);
+        f38->func_0005E840(buf);
+        func_001ADCC0(buf, 0x104, D_00275630);
+        f3C->func_0005E840(buf);
+    }
+    f40 = a;
+}
+
 void C_00086C10::func_00086C10(int a0) {
     unk88 = a0;
 }
