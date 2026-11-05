@@ -152,6 +152,22 @@ S_001EEFE3 *S_001EEFE3::func_001EEFE3(S_001EEFE3 *n)
     return this;
 }
 
+int func_001EF00C(void)
+{
+    return 1;
+}
+
+S_001EF033 *__fastcall func_001EF033(S_001EF033 *self, int unused, BitObj *p)
+{
+    self->f4 = 0;
+    self->vtbl = &D_00295BD8;
+    if (p != 0 && (p->s4 == 1 || p->s4 == 3)) {
+        p = 0;
+    }
+    self->f8 = p;
+    return self;
+}
+
 int __fastcall func_001EF1D0(BitObj *self, int unused)
 {
     return self->s4 == 0 || self->s4 == 2;
