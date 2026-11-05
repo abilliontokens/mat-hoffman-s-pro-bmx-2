@@ -49,6 +49,16 @@ struct C_0001EDC0 {
 };
 
 
+void *C_0001E930::func_0001E930(unsigned int flags) {
+    vtbl = &D_00275F9C;
+    func_0001E800();
+    func_0001DFF0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void C_0001EDC0::func_0001EDC0(int a0) {
     unk24 = a0;
 }
