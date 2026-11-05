@@ -85,10 +85,10 @@ struct C_00140390 {
     int f44;
     void *f48;
     int f4C;
-    float f50;
-    float f54;
-    float f58;
-    float f5C;
+    int f50;
+    int f54;
+    int f58;
+    int f5C;
     C_00140390 *func_00140390(int a);
 };
 
@@ -322,6 +322,22 @@ void C_001402C0::func_00140360(int n)
         p->f4 = n;
         p->f8 = n;
     }
+}
+
+C_00140390 *C_00140390::func_00140390(int a)
+{
+    ((C_00162610 *)this)->func_00162610(a);
+    vtbl = (void *)&D_00284F8C;
+    f58 = 0.0f;
+    f54 = 0.0f;
+    f50 = 0.0f;
+    f5C = 1.0f;
+    f3C = 0;
+    f40 = 0;
+    f44 = 0;
+    f48 = 0;
+    f4C = -1;
+    return this;
 }
 
 void C_001403D0::func_001403D0(int a, int b, int c)
