@@ -83,7 +83,7 @@ struct C_00168F40 {
     /* a file is open and its current record is within the table */
     int CanRead(void)
     {
-        return f8 != 0 && f424 != 0 && f430 <= f42C - 1;
+        return f424 != 0 && f430 <= f42C - 1;
     }
 };
 
@@ -273,15 +273,8 @@ int C_00168F40::func_00169A50(char *line)
     char *s;
     int i;
 
-    if (f8 == 0) {
-fail:
+    if (!CanRead()) {
         return 0;
-    }
-    if (f424 == 0) {
-        goto fail;
-    }
-    if (f430 > f42C - 1) {
-        goto fail;
     }
     for (i = 0; i < slotCount; i++) {
         if (slots[i].kind == 2) {
