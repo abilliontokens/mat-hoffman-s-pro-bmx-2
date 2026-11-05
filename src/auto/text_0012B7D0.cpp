@@ -15,6 +15,37 @@ struct S_0012B950_Vec4 {
     float x, y, z, w;
 };
 
+struct S_0012B950_V3 {
+    float x, y, z;
+};
+
+static inline S_0012B950_V3 V3Sub_0012B950(const S_0012B950_V3 &a, const S_0012B950_V3 &b)
+{
+    S_0012B950_V3 r;
+    r.x = a.x - b.x;
+    r.y = a.y - b.y;
+    r.z = a.z - b.z;
+    return r;
+}
+
+static inline S_0012B950_V3 V3Add_0012B950(const S_0012B950_V3 &a, const S_0012B950_V3 &b)
+{
+    S_0012B950_V3 r;
+    r.x = a.x + b.x;
+    r.y = a.y + b.y;
+    r.z = a.z + b.z;
+    return r;
+}
+
+static inline S_0012B950_V3 V3Scale_0012B950(const S_0012B950_V3 &v, float s)
+{
+    S_0012B950_V3 r;
+    r.x = v.x * s;
+    r.y = v.y * s;
+    r.z = v.z * s;
+    return r;
+}
+
 void func_001E891B(void *p);
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 
@@ -121,6 +152,50 @@ C_0012B8F0 *C_0012B8F0::func_0012B8F0(void) {
     p[2] = D_002A3F08;
     p[3] = D_002A3F0C;
     return this;
+}
+
+void __stdcall func_0012B950(S_0012B950_Vec4 *out, float t, S_0012B950_Vec4 p0, S_0012B950_Vec4 p1, S_0012B950_Vec4 p2, S_0012B950_Vec4 p3) {
+    float t2;
+    float t3;
+    float a;
+    float b;
+    float c;
+    float d;
+    float dx0;
+    float dy0;
+    float dz0;
+    float dx1;
+    float dy1;
+    float dz1;
+    float m0x;
+    float m0y;
+    float m0z;
+    float m1x;
+    float m1y;
+    float m1z;
+
+    t2 = t * t;
+    t3 = t * t2;
+    a = ((t3 + t3) - t2 * D_002755EC) + D_00275460;
+    b = t2 * D_002755EC - (t3 + t3);
+    c = (t3 - D_00275600 * t2) + t;
+    d = t3 - t2;
+    dx0 = p2.x - p0.x;
+    dy0 = p2.y - p0.y;
+    dz0 = p2.z - p0.z;
+    m0x = dx0 * D_002755E8;
+    m0y = dy0 * D_002755E8;
+    m0z = dz0 * D_002755E8;
+    dx1 = p3.x - p1.x;
+    dy1 = p3.y - p1.y;
+    dz1 = p3.z - p1.z;
+    m1x = dx1 * D_002755E8;
+    m1y = dy1 * D_002755E8;
+    m1z = dz1 * D_002755E8;
+    out->w = 1.0f;
+    out->x = p1.x * a + p2.x * b + m0x * c + m1x * d;
+    out->y = p1.y * a + p2.y * b + m0y * c + m1y * d;
+    out->z = p1.z * a + p2.z * b + m0z * c + m1z * d;
 }
 
 float __stdcall func_0012BAE0(float t, float p0, float p1, float p2, float p3) {
