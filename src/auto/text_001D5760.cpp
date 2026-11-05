@@ -2,6 +2,12 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+extern float D_00275544, D_002ABDD0, D_002ABDD4;
+extern int D_002ABDC4;
+extern unsigned char *D_002EFDB8;
+void * __stdcall func_001FF410(void *, int);
+void func_0014F670(float, float *, float *);
+struct Draw_001D5AD0 { void func_001446B0(void *, int, int); };
 
 extern int D_0028F600;
 extern char D_002A60B0[];
