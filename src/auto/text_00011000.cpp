@@ -169,6 +169,15 @@ static __forceinline float distance_11BE0(const C_00017680_Vec &a, const C_00017
 }
 struct C_00011BE0 { char pad[0x3e4]; C_00017680_Vec pos; void func_00011BE0(int *, float *); };
 extern S_115F0_Mgr *D_002B9120;
+struct C_00011E30 {
+    char pad0[0x3c];
+    S_11BE0_Mid *f3C;
+    char pad40[0x370];
+    int f3B0, f3B4, f3B8;
+    char pad3BC[0x404 - 0x3bc];
+    C_00017680_Vec v404;
+    C_00017680_Vec func_00011E30(void);
+};
 struct C_000115F0 {
     char pad[0x3b4];
     int pathIdx;
