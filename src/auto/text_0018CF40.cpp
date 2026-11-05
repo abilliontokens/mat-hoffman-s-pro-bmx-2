@@ -90,7 +90,7 @@ struct C_0018D7B0 {
         int i;
 
         for (i = 0; i < defCount; i++) {
-            if (b == defs[i].sub.b) {
+            if (b == (*(u16 *)&defs[i].sub >> 8)) {
                 return i;
             }
         }
