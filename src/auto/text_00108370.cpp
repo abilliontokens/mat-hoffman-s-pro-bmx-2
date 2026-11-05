@@ -111,10 +111,6 @@ struct C_001092E0 {
     int func_00109340(int p1, int p2);
 };
 
-static __forceinline void zero_mem(void *p, int n) {
-    memset(p, 0, n);
-}
-
 static __forceinline void vec3_set(float *out, float x, float y, float z) {
     out[3] = 1.0f;
     out[0] = x;
@@ -205,7 +201,6 @@ void C_00108680::func_00108680(int a0) {
 
 void C_00108F50::func_00108F50(void)
 {
-    int *p;
     int i;
     int j;
 
@@ -213,9 +208,8 @@ void C_00108F50::func_00108F50(void)
         fa68[i] = -1;
         fa78[i] = -1;
     }
-    p = fab0;
     fa88 = 0;
-    memset(p, 0, sizeof(fab0));
+    memset(fab0, 0, sizeof(fab0));
     for (j = 0; j < 16; j++) {
         for (i = 0; i < 5; i++) {
             fce0[i][j] = 0;
@@ -236,7 +230,6 @@ void C_00108F50::func_00108F50(void)
 
 void C_00108F50::func_00108FF0(void)
 {
-    int *p;
     int i;
     int j;
 
@@ -244,9 +237,8 @@ void C_00108F50::func_00108FF0(void)
         fa8c[i] = -1;
         fa9c[i] = -1;
     }
-    p = fbc8;
     faac = 0;
-    memset(p, 0, sizeof(fbc8));
+    memset(fbc8, 0, sizeof(fbc8));
     for (j = 0; j < 16; j++) {
         for (i = 0; i < 5; i++) {
             fe20[i][j] = 0;
