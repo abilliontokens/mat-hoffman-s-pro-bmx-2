@@ -6,6 +6,22 @@ extern int D_0028C0BC;
 
 void func_001E8390(void *p);
 void func_001E891B(void *p);
+void *func_001E8A44(int size);
+
+struct StateObject {
+    virtual void vf0();
+    virtual void vf1();
+    virtual void vf2(int a);
+};
+
+struct C_001AC150 {
+    int **field_00;
+    int *field_04;
+    int field_08;
+    int field_0C;
+    void func_001AC150(int count);
+    void func_001AC1A0(int n);
+};
 
 struct SpringCollisionModel {
     void *vtbl;
