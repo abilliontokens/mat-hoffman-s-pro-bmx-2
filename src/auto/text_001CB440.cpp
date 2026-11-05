@@ -121,15 +121,38 @@ struct C_001CB650 {
     virtual void v1C(); virtual void v1D(); virtual void v1E(); virtual void v1F();
     virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
     virtual void v24(int a, float b, int c);
-    char pad4[0x9c];
+    virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28();
+    virtual int v29(int a);
+    char pad4[0x20];
+    int f24;
+    char pad28[0x5c];
+    int f84;
+    float f88;
+    int f8c;
+    int f90;
+    char pad94[4];
+    int f98;
+    char pad9c[4];
     unsigned char fa0;
-    char pada1[0x17];
+    char pada1[3];
+    int fa4;
+    char pada8[4];
+    int fac;
+    char padb0[8];
     void *fb8;
     void *fbc;
     char padc0[8];
     int fc8;
     int fcc;
+    unsigned int fd0[0x2b];
     int func_001CB650(float a);
+    int func_001CB6D0(void);
+    int func_001CB720(int a, int b, int c);
+    int func_001CB780(unsigned int *out, unsigned int idx);
+};
+
+struct C_001576D0 {
+    void func_001576D0(void);
 };
 
 void __stdcall func_002223E1(int a, int b, int c);
