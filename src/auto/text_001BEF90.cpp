@@ -387,17 +387,6 @@ struct C_001BF6F0 {
 extern int D_0028D9BC;
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 
-struct S_Vec4_001BFA70 {
-    float x, y, z, w;
-    S_Vec4_001BFA70()
-    {
-        z = 0;
-        y = 0;
-        x = 0;
-        w = 1.0f;
-    }
-};
-
 /* UIWidgetSoultreeLightweight */
 struct C_001BFA70 {
     void *vtbl;
