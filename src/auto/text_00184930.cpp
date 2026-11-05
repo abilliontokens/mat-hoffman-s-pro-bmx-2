@@ -231,7 +231,8 @@ struct C_00184930 {
     S_00184BB0_List **f3a8;
     S_00184C00_Obj *f3ac;
     S_00184CC0_Item **f3b0;
-    char pad3b4[0x3c0 - 0x3b4];
+    S_00184C00_Obj *f3b4;
+    char pad3b8[0x3c0 - 0x3b8];
     S_00184C00_Obj *f3c0;
     char pad3c4[0x3dc - 0x3c4];
     S_00184930_Fx *f3dc;
