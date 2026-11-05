@@ -65,8 +65,10 @@ struct C_0013C960 {
     int fEC;
     int fF0;
     int fF4;
-    char padF8[4];
+    int fF8;
     int fFC;
+    int f100;
+    int func_0013CA50(void);
     int func_0013B130(int a0);
     int func_0013C3D0(int a0, int a1, int *out);
     void func_0013B040(int a0);
