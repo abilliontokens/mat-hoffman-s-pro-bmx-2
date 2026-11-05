@@ -88,6 +88,30 @@ int func_001EA539(char *buf, const unsigned short *fmt, va_list ap)
     }
     return retval;
 }
+
+#pragma optimize("y", on)
+#pragma optimize("t", off)
+int func_001EA5A7(char *buf, const char *fmt, va_list ap)
+{
+    S_001EA_FILE str;
+    int retval;
+
+    str.cnt = 0x7fffffff;
+    str.flag = 0x42;
+    str.base = buf;
+    str.ptr = buf;
+    retval = func_001EDD36(&str, fmt, ap);
+    if (buf) {
+        if (--str.cnt >= 0) {
+            *str.ptr++ = 0;
+        } else {
+            func_001ED8A7(0, &str);
+        }
+    }
+    return retval;
+}
+#pragma optimize("", on)
+
 #pragma optimize("", on)
 
 #pragma optimize("", on)
