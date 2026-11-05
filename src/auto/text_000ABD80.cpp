@@ -105,6 +105,88 @@ struct C_000AC6E0 {
 
 C_000AC6E0 *__stdcall func_000A95D0(void *p);
 
+extern int D_0027CABC;
+extern int D_0027C41C;
+
+struct C_000ACC40_Item {
+    void func_000A8450(void *a);
+};
+
+struct C_000ACC40_List {
+    char pad0[0x24];
+    int count;
+    C_000ACC40_Item **items;
+};
+
+struct C_000ACC40 {
+    char pad0[0x534];
+    C_000ACC40_List *field_534;
+    void func_000ACC40(void);
+};
+
+struct C_000ACC70_Dyn {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual int v27(void *a, int b, void *c, int d);
+    virtual void v28();
+    virtual void v29();
+    C_000ACC70_Dyn *func_001B6E70(int v);
+    char pad0[0x24 - 4];
+    int field_24;
+};
+
+struct C_000ACC70 {
+    char pad0[0x28];
+    int field_28;
+    char pad2[0x3b4 - 0x2c];
+    C_000ACC70_Dyn *field_3B4;
+    char pad3[0x550 - 0x3b8];
+    int field_550;
+    void func_000ACC70(void);
+};
+
+struct C_000ACCF0_Obj {
+    void *vtbl;
+    char pad4[0x24 - 4];
+    int field_24;
+    int field_28;
+    void func_00157600(int v);
+    void func_000A91C0(int v);
+};
+
+struct C_000ACCF0 {
+    char pad0[0x28];
+    int field_28;
+    char pad2[0x538 - 0x2c];
+    C_000ACCF0_Obj *field_538;
+    void func_000ACCF0(void);
+};
+
 extern int D_0027C874;
 extern int D_0027AE04;
 
