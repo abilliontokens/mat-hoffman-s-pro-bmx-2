@@ -108,6 +108,43 @@ struct C_52C10 {
     int GetActive() { return unk358; }
 };
 
+struct C_535C0_44 { void func_0002F8A0(); };
+struct C_535C0_1C0 {
+    void func_000988B0(int a, int b);
+    void func_00098EE0(int a, int b);
+    void func_000981D0(int a, int b, int c);
+};
+struct C_535C0_64 {
+    char pad0[0x3B4];
+    int f3B4;
+    char pad3B8[0x17C];
+    int f534;
+};
+struct C_535C0_16C {
+    char pad0[0x274];
+    int f274;
+};
+struct C_535C0 {
+    char pad0[0x44];
+    C_535C0_44 *unk44;
+    char pad48[0x1C];
+    C_535C0_64 *unk64;
+    char pad68[0x104];
+    C_535C0_16C *unk16C;
+    char pad170[0x50];
+    C_535C0_1C0 *unk1C0;
+    char pad1C4[4];
+    int unk1C8;
+    char pad1CC[0xC0];
+    int unk28C;
+    char pad290[0x28];
+    int unk2B8, unk2BC, unk2C0, unk2C4, unk2C8, unk2CC, unk2D0, unk2D4;
+    void func_000533E0();
+    void func_00051A00();
+    void func_00034090();
+    int func_000535C0();
+};
+
 struct C_000536A0 {
     void *vtbl;                       /* 0x00 */
     char pad04[0x280];
@@ -134,17 +171,17 @@ int C_52C10::func_000533A0(void)
 {
     int arg;
 
-    if (unk358 != 0) {
-        if (D_002A8490->f274 == 0) {
-            arg = 1;
-        } else if (unk358 != 0) {
-            arg = 0;
-        } else {
-            return 1;
-        }
-        func_00052830(arg);
-        func_00031400();
+    if (unk358 == 0)
+        return 1;
+    if (D_002A8490->f274 == 0) {
+        arg = 1;
+    } else if (unk358 != 0) {
+        arg = 0;
+    } else {
+        return 1;
     }
+    func_00052830(arg);
+    func_00031400();
     return 1;
 }
 
