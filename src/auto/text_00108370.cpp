@@ -24,6 +24,7 @@ struct C_00108680 {
     char pad0[0xA2C];
     int unkA2C;
     void func_00108680(int a0);
+    void func_00108630(int arg);
 };
 
 struct C_00108670 {
