@@ -1,6 +1,5 @@
 /* 13 functions from 0x00025240 to 0x000261F0, found by Ghidra. */
 #include "common.h"
-#include <xmmintrin.h>
 struct C_00025E10 {
     int unk0;
     int unk4;
