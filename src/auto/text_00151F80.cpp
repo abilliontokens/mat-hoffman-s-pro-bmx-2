@@ -55,6 +55,11 @@ extern float D_002A78A4;
 extern float D_002A78A8;
 extern float D_00286CA8;
 extern int D_002BA148;
+extern float D_00275460;
+extern float D_00276288;
+extern float D_002755E8;
+extern char D_00286CB0;
+extern "C" int func_001DC974(void);
 struct C_00151F80 {
     char pad0[0x2c];
     S_151F80_Cam *f2c;
