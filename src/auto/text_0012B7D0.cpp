@@ -75,8 +75,9 @@ int C_0012B7D0::func_0012B7D0(void *id, int a1, int a2, S_0012B7D0_Vec *a3, S_00
     int i;
 
     for (i = 0; i < f24; i++) {
-        if ((void *)f2C[i] == id) {
-            float buf[24] = {0};
+        if (id == (void *)f2C[i]) {
+            float buf[24];
+            memset(buf, 0, sizeof(buf));
             if (f28 >= 0) {
                 f2C[f28]->v1(buf);
             }
