@@ -137,6 +137,7 @@ struct UIControl {
     void func_001BDA80(void);
     void func_00157660(void);
     UIControl *func_001BE320(byte flags);
+    void func_001BE0B0(int n);
     void func_001BE1B0(int n);
     void func_001BE220(int n);
     void func_001BE290(void);
