@@ -529,10 +529,14 @@ void C_001CB940::func_001CB980(void)
 
 void C_001CB9A0::func_001CB9A0(void)
 {
+    int i;
+
     _imp__RtlEnterCriticalSection((void *)(D_002F08EC->f138 + 0x50));
-    *(float *)&f4 = 0;
+    f4 = 0;
     _imp__RtlLeaveCriticalSection((void *)(D_002F08EC->f138 + 0x50));
-    f14[2] = f14[1] = f14[0] = 0;
+    for (i = 0; i < 3; i++) {
+        f14[i] = 0;
+    }
     f0 = -1;
     f20 &= 0xf0;
 }
@@ -678,5 +682,41 @@ void C_001CC0C0::func_001CC140(void)
     }
     D_002BEAAC->func_0013B210(this);
     func_0001C970();
+}
+
+int C_001CC0C0::func_001CC320(unsigned int v)
+{
+    int r;
+    int line;
+
+    if (f13C != 0) {
+        if (f19C == v) {
+            return 1;
+        }
+        if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
+            return 0;
+        }
+        r = func_00221974(f13C, v);
+        if (r >= 0) {
+            f19C = v;
+            return 1;
+        }
+        line = 0x621;
+    } else {
+        if (f140 == 0 || f19C == v) {
+            return 1;
+        }
+        if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
+            return 0;
+        }
+        r = D_00221B4C(f140->fC, v);
+        if (r >= 0) {
+            f19C = v;
+            return 1;
+        }
+        line = 0x630;
+    }
+    func_001CBC10(r, &D_0028EECC, line);
+    return 0;
 }
 
