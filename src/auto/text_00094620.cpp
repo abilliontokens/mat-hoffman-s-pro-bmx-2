@@ -53,7 +53,9 @@ struct C_00095160 {
     S_00095160_Item **f58;
     S_00095160_Item *Item(int i)
     {
-        if (f54 > 0 && f58 != 0 && i < f54) {
+        int n = *(volatile int *)&f54;
+
+        if (n > 0 && f58 != 0 && i < n) {
             return f58[i];
         }
         return 0;
