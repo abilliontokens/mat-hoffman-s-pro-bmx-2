@@ -132,6 +132,14 @@ struct C_001576C0 {
 };
 
 
+int Game::func_00156880(void)
+{
+    Obj_00156FC0 *p = (Obj_00156FC0 *)((VT_Game *)vtbl)->f80(this);
+
+    D_002EFDB8 = p;
+    return p != 0;
+}
+
 void C_00156E80::func_00156E80(void)
 {
   int func_001DC974(...);
