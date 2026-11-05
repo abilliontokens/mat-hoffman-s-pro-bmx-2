@@ -305,6 +305,7 @@ struct C_001BF930 {
     float fA0;
     void func_001BF930(void);
     void func_001BFCB0(void);
+    void func_001BF980(float dt);
     void func_001BFD00(float dt);
     void func_001BFF10(int a, int b);
 };
