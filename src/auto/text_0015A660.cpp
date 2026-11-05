@@ -66,8 +66,6 @@ struct S_0015AC20_Game {
     unsigned char f230;
 };
 
-typedef int Ret_0015AC20;
-
 struct C_0015AC20 {
     char pad0[0x3f8];
     int f3F8;
