@@ -136,14 +136,40 @@ void __stdcall func_00011FF0(void *p, int step, int count, S_11FF0_IterFn fn)
 void func_00012140(void) {
 }
 
+int AIPedFallState::func_00012150(int arg)
+{
+    if (D_002A8490->f2a4->f1c8 == 1) {
+        return 1;
+    }
+    if (owner->f3c->f10 != 1) {
+        return 1;
+    }
+    if (D_002A8490->f2a4 != 0 && D_002A8490->f2a4->f1c8 == 0) {
+        owner->f3bc = 3;
+    }
+    owner->f384->func_0008AB90(owner->f39c);
+    return 1;
+}
+
 void AIPedTurningBackState::func_000121E0()
 {
     owner->func_001C6DA0(owner->f418, 1);
     if (D_002A8490->f2a4->f1c8 == 0) {
-        owner->f3b0--;
-        if (owner->f3b0 < 0) {
+        if (--owner->f3b0 < 0) {
             owner->f3b0 = *D_002B9120->f588[owner->f3b4] - 1;
         }
+    }
+}
+
+void S_11FF0_State3::func_00012240(void *arg1, float arg2)
+{
+    if (++f4 >= f10) {
+        f4 = 0;
+    }
+    if (D_002A8490->f4->func_0001CE80(f1c[f4], arg1, D_002A04FC, 15.0f, 50.0f)) {
+        int v = (int)((float)f1c[f4]->v17() * (arg2 * 0.01f));
+        f1c[f4]->v8(v);
+        f1c[f4]->v5(4);
     }
 }
 
