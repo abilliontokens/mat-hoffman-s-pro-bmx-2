@@ -62,6 +62,19 @@ struct C_00096740 {
 };
 
 
+void C_00096700::func_00096700(void) {
+    int i;
+
+    for (i = 0; i < 12; i++) {
+        C_00012140 *p = arr4880[i];
+        if (p != 0) {
+            p->func_00012140();
+            func_001E891B(p);
+            arr4880[i] = 0;
+        }
+    }
+}
+
 int C_00096740::func_00096740(void) {
     return unk48E0;
 }
