@@ -418,6 +418,24 @@ void *C_001B03A0::func_001B03A0(void *arg)
     return obj;
 }
 
+void *C_001B0460::func_001B0460(void *arg)
+{
+    char buf[0x80];
+    void *obj = 0;
+
+    ((C_00168BE0 *)arg)->func_00168BE0(&D_0028C648, &D_002764F0, buf, -1);
+    if (func_001EA426(buf, &D_002764F0) != 0) {
+        void *p = func_001E8A44(0x18);
+        obj = p != 0 ? ((C_00148820 *)p)->func_00148820(arg, this) : 0;
+        if (func_001EA426(buf, &D_0028C608) == 0) {
+            ((C_00148820 *)obj)->unk4 = 1;
+        } else {
+            D_002AA474->v7(buf, this);
+        }
+    }
+    return obj;
+}
+
 void C_001B0560::func_001B0560(undefined4 param_1, undefined4 param_2)
 {
   int in_ECX = (int)this;
