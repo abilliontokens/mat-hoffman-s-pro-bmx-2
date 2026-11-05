@@ -14,7 +14,8 @@ struct C_001B1580_24 {
     float unk38;
     char pad3C[8];
     int unk44;                        /* 0x44 */
-    char pad48[0x6];
+    int unk48;
+    short unk4C;
     u8 unk4E;                         /* 0x4E */
     void func_0005E840(const char *s);
     void func_001D6440();
