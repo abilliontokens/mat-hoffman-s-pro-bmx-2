@@ -189,3 +189,20 @@ void C_00035BE0::func_00035BE0(void)
         func_001577A0(f1a0, -1);
     }
 }
+struct S_35980_A {
+    void func_00069BB0(void);
+    void func_00069BA0(void);
+};
+
+struct S_35980_B {
+    void func_0006BB90(void);
+    void func_0006BBF0(void);
+};
+
+struct C_00035980 {
+    char pad0[0x2c4];
+    S_35980_A *f2c4;
+    char pad2c8[0x2c0];
+    S_35980_B *f588;
+    void func_00035980(int enable);
+};
