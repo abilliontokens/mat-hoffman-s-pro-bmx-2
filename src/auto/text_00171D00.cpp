@@ -5,7 +5,7 @@ static __forceinline void SqrtR_00171D00(float *r,const float &x);
 static __forceinline void MaxR_00171D00(float *r,const float &a,const float &b);
 void func_001712D0(float *out, void *in);
 struct V3_00171BA0 {
- float x,y,z;
+ float x,y,z,w;
  V3_00171BA0() {}
  V3_00171BA0(float a,float b,float c):x(a),y(b),z(c) {}
  V3_00171BA0 operator*(float s) const { return V3_00171BA0(x*s,y*s,z*s); }
