@@ -41,3 +41,13 @@ struct C_000E6D00 {
     void func_000E6DC0(void);
     void func_000E6E20(void);
 };
+
+void C_000E6D00::func_000E6DC0(void)
+{
+    f124->f268->func_001C4D50(500);
+    f340->func_001B1980();
+    f344->func_001B1980();
+    f348->func_001B1980();
+    f34C->func_001B1980();
+    f350->func_001B1980();
+}
