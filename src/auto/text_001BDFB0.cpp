@@ -73,6 +73,8 @@ struct UIPage {
     u32 f274;
     u32 f278;
     u32 f27C;
+    void func_00157660(void);
+    void func_001BE3F0(void);
     UIPage *func_001BE360(int param_1);
     int func_001BEA50(int param_1);
     void func_001BEB00(void);
