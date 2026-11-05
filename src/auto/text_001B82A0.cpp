@@ -52,3 +52,23 @@ C_001B82A0 *C_001B82A0::func_001B82A0(void *param) {
     vtbl = (void *)&D_0028CF94;
     return this;
 }
+
+int C_001B82A0::func_001B83F0(void *param) {
+    int i;
+
+    for (i = 0; i < f24; i++) {
+        C_001B83F0_item *e = f28[i];
+        if (func_001E8AF0(*e->f4 + 0x6c, param) != 0 && e->f10 == 1)
+            return *e->f4;
+    }
+    return 0;
+}
+
+C_001B8450 *C_001B8450::func_001B8450(void *param) {
+    ((C_00157600 *)this)->func_00157600(param);
+    f24 = 0;
+    f28 = 0;
+    vtbl = (void *)&D_0028D04C;
+    return this;
+}
+
