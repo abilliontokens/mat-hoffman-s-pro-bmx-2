@@ -80,20 +80,9 @@ AmbientDebris *AmbientDebris::func_00024140(int a, int b)
     f2c = m ? ((C_00143580 *)m)->func_00143580(1) : 0;
     m = func_001E8A44(0x54);
     f30 = m ? ((C_00023C30 *)m)->func_00023C30(a, b, (int)f2c, *D_002B7E18->f70) : 0;
-    link = (S_00024140_Link *)func_001E8A44(0x30);
-    if (link != 0) {
-        link->f0 = f30;
-        link->fC = 0;
-        link->f10 = 0;
-        link->f14 = 0;
-        link->f18 = 0;
-        link->f1C = 0;
-        link->f20 = 0;
-        link->f24 = 0;
-        link->f28 = 0;
-        link->f2C = 0;
-        link->f4 = f2c;
-        link->f8 = *D_002B7E18->f70;
+    m = func_001E8A44(0x30);
+    if (m != 0) {
+        link = ((S_00024140_Link *)m)->Init(f30, f2c, *D_002B7E18->f70);
     } else {
         link = 0;
     }
