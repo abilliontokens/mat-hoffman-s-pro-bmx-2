@@ -33,3 +33,15 @@ struct C_0006BB90 {
     int unk1b8;
     void func_0006BB90(void);
 };
+
+void C_0006BB90::func_0006BB90(void) {
+    D_002EFDB8->vf7(1);
+    unk1b4 = 0;
+    unk1b8 = 0;
+    D_002EFDB8->vf8();
+    unk150 = 0;
+    for (int i = 0; i < 8; i++) {
+        unk64[i]->func_001B1980();
+    }
+    vf4();
+}
