@@ -402,6 +402,15 @@ void C_0018C800::func_0018C850(void)
     }
 }
 
+int C_0018C800::func_0018C890(const char *name)
+{
+    S_002EFE08_Entry *e = &D_002EFE08->f158[unk38];
+    if (e->f4C != 0 && e->f48 != 0) {
+        return D_002EFE08->func_0018DDD0(this, e->f48, name);
+    }
+    return 0;
+}
+
 void *C_0018C8D0::func_0018C8D0(int flags) {
     extern int D_0028A784;
     void func_001E891B(void *);
