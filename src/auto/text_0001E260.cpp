@@ -92,6 +92,8 @@ struct GR_BitString {
     void func_0001E710(int a0);
     void func_0001E5D0(int a0);
     void D_0001E650(int a0);
+    void func_0001E0E0(int a0);
+    void func_0001E260(int a0);
 };
 
 struct C_0001EF70 {
@@ -444,6 +446,11 @@ void C_0001EDC0::func_0001EDC0(int a0) {
 
 void C_0001EDD0::func_0001EDD0(int a0) {
     unk28 = a0;
+}
+
+void C_0001EDE0::func_0001EDE0(int a0, int a1) {
+    unk58 = a0;
+    unk5C = a1;
 }
 
 void C_0001EED0::func_0001EED0(void)
