@@ -52,18 +52,45 @@ struct S_001C9920_arg {
 };
 
 struct C_001C9920 {
-    char pad0[0x44];
+    void *vtbl;
+    char pad4[0x23];
+    u8 unk27;
+    char pad28[4];
+    int unk2C;
+    int unk30;
+    int unk34;
+    int unk38;
+    int unk3C;
+    char pad40[4];
     int unk44;
-    char pad48[0x70];
+    char pad48[0xC];
+    int unk54;
+    int unk58[2];
+    int unk60[2];
+    int unk68;
+    int unk6C[6];
+    int unk84[6];
+    char pad9C[0x1C];
     int unkB8;
     char padBC[8];
     float unkC4;
     char padC8[4];
     S_001C9920_arg *unkCC;
-    char padD0[0x14C];
+    int unkD0;
+    float unkD4[4];
+    float unkE4[4];
+    float unkF4[4];
+    char pad104[4];
+    int unk108;
+    char pad10C[0x108];
+    float unk214;
+    float unk218;
     int unk21C;
+    int unk220;
     void func_001C9920(S_001C9920_arg *arg);
     void func_001C9920(int a);
+    void func_00192370(int a0);
+    C_001C9920 *func_001C99E0(int a0);
 };
 
 struct C_001C9AF0 {
