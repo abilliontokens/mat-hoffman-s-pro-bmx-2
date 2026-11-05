@@ -28,3 +28,20 @@ struct C_00199BE0 {
 struct C_00199C20Mat {
     void func_000264C0(void *m);
 };
+
+void C_00199BE0::func_00199BE0(void *m)
+{
+    ((C_00199BE0Mat *)((char *)this + 0xb0))->func_000264C0(m);
+    func_001982F0();
+    if (f180 & 1) {
+        f180 &= 0xfe;
+        if (f174 != 0) {
+            f174->func_00197B10();
+        }
+    }
+}
+
+void __stdcall func_00199E30(int a0, int a1, int a2, int a3, int a4)
+{
+    func_00199D70(a0, a1, a2, a4);
+}
