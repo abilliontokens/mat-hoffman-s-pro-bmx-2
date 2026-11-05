@@ -1,6 +1,23 @@
 /* 11 functions from 0x0006D3E0 to 0x0006E330, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct Objective_6D {
+ char pad[0x1a8]; int f1a8;
+ int func_00096740();
+};
+struct Objectives_6D {
+ int func_000976A0();
+ int func_00097C60();
+ Objective_6D **func_00097C20();
+};
+struct Text_6D {
+ char pad[0x34]; int scale; char pad38[0x10]; unsigned int color; char pad4c[2]; unsigned char flags;
+ void func_001D6600();
+ void func_0005E840(const char *);
+};
+extern char D_00278AEC[];
+int func_001ADCC0(char *, unsigned int, const char *, ...);
+
 struct C_0006DF20 {
     void func_0006DF20(int param_1);
 };
