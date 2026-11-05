@@ -61,6 +61,41 @@ struct S_00019520_Owner {
     int f4f0;
     int func_000192D0(int a, int b);
 };
+struct S_TikiObj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5(int a);
+};
+
+/* AiTikiGod */
+struct AiTikiGod {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    char pad4[0x380];
+    C_0008AB90 *f384;
+    char pad388[8];
+    int f390;
+    char pad394[0x4bc - 0x394];
+    S_TikiObj *f4bc;
+    char pad4c0[0x4d4 - 0x4c0];
+    int f4d4;
+    char pad4d8[4];
+    int f4dc;
+    char pad4e0[0x4f4 - 0x4e0];
+    int f4f4;
+    char pad4f8[0x508 - 0x4f8];
+    char f508[4];
+    char pad50c[0x76c - 0x50c];
+    int f76c;
+    void func_00019480();
+};
+
 struct TikiHuntState {
     char pad0[8];
     S_00019520_Owner *f8;
