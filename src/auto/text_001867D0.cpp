@@ -1,5 +1,20 @@
 /* 19 functions from 0x001867D0 to 0x00187670, found by Ghidra. */
 #include "common.h"
+extern int D_002764F0, D_0027B168, D_00275AD4, D_00287DA0;
+extern int D_0028998C, D_00289978, D_00289970, D_0027A20C;
+extern int D_00289960, D_00289948, D_0027CB54, D_0027CB60, D_0028993C, D_00289930;
+struct Stream_00186960 {
+ int func_00168BE0(void *, void *, void *, int);
+ int func_00168CB0(void *, void *, void *);
+ int func_00168C20(void *, int, void *);
+ int func_00168C50(void *, int, void *);
+};
+struct BasicSoundTempData {
+ char pad0[4]; char f4[0x104]; char f108[0x10];
+ int f118, f11C, f120, f124, f128, f12C, f130, f134, f138;
+ char pad13C[0xC]; int f148, f14C; char pad150[0x10]; int f160, f164;
+ int func_00186960(Stream_00186960 *);
+};
 struct C_00186EF0 {
     int unk0;
     char unk4;
