@@ -213,19 +213,17 @@ void C_00139080::func_00139080(int a0, int a1) {
 void CutScene::func_001390A0(int index)
 {
     S_1390A0_This *self = (S_1390A0_This *)this;
+    int off = index * 0x2c;
     int i, j, k;
-    char *item;
     S_1390A0_Q *q;
 
-    for (i = 0; i < ((S_1390A0_Entry *)((char *)self->f40 + index * 0x2c))->count1; i++) {
-        item = ((S_1390A0_Entry *)((char *)self->f40 + index * 0x2c))->list1 + i * 0x1c;
-        if (*(int *)(item + 0x18) == 0)
-            ((S_1390A0_A *)((void **)self->f58)[*(int *)item])->f4->func_00198390();
+    for (i = 0; i < ((S_1390A0_Entry *)((char *)self->f40 + off))->count1; i++) {
+        if (*(int *)(((S_1390A0_Entry *)((char *)self->f40 + off))->list1 + i * 0x1c + 0x18) == 0)
+            ((S_1390A0_A *)((void **)self->f58)[*(int *)(((S_1390A0_Entry *)((char *)self->f40 + off))->list1 + i * 0x1c)])->f4->func_00198390();
     }
-    for (j = 0; j < ((S_1390A0_Entry *)((char *)self->f40 + index * 0x2c))->count2; j++) {
-        item = ((S_1390A0_Entry *)((char *)self->f40 + index * 0x2c))->list2 + j * 0x10;
-        if (*(int *)(item + 0xc) == 0) {
-            q = (S_1390A0_Q *)((S_1390A0_60 *)self->f60)->f28[*(int *)item];
+    for (j = 0; j < ((S_1390A0_Entry *)((char *)self->f40 + off))->count2; j++) {
+        if (*(int *)(((S_1390A0_Entry *)((char *)self->f40 + off))->list2 + j * 0x10 + 0xc) == 0) {
+            q = (S_1390A0_Q *)((S_1390A0_60 *)self->f60)->f28[*(int *)(((S_1390A0_Entry *)((char *)self->f40 + off))->list2 + j * 0x10)];
             for (k = 0; k < q->f10; k++) {
                 q->f4[k]->v31();
                 q->f4[k]->v4();
