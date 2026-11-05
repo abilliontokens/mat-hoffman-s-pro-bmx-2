@@ -169,6 +169,25 @@ struct C_0008B850_Text {
     unsigned int argb;
     char pad4c[2];
     unsigned char flags;
+    void SetPos(int nx, int ny) {
+        if (x != nx || y != ny) {
+            x = nx;
+            y = ny;
+            flags |= 6;
+        }
+    }
+    void SetColor(int c) {
+        if (color != c) {
+            color = c;
+            flags |= 6;
+        }
+    }
+    void SetArgb(unsigned int c) {
+        if (argb != c) {
+            flags |= 8;
+            argb = (argb & c) | (c & 0xffffff);
+        }
+    }
     C_0008B850_Text *func_001D5E90();
     void func_001D5FA0(int a0, char *a1, int a2, char *a3);
 };
