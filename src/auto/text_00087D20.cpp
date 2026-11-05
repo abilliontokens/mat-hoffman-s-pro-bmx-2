@@ -55,10 +55,36 @@ struct C_001D5760 {
     void func_001D5810(void *a, int b, int c, int d);
 };
 
+extern float D_00275544;
+
+/* a sprite the separator owns: 0x64 bytes */
 struct Sub_00088530 {
-    char pad0[0x64];
+    char pad0[4];
+    float f4;
+    float f8;
+    char padC[0x58 - 0xC];
+    unsigned char b58;
+    char pad59[0x64 - 0x59];
+    /* move the sprite, marking it dirty only when something changed */
+    void SetPos(float x, float y)
+    {
+        if (f4 != x || f8 != y) {
+            f4 = x;
+            f8 = y;
+            b58 |= 1;
+        }
+    }
     void func_001D5760();
+    void func_001D5AD0();
+    void func_0005E800(int x, int y);
 };
+
+struct S_00088720_Global {
+    char pad0[0x10];
+    int f10;
+};
+
+extern S_00088720_Global *D_002A8490;
 
 struct SplitScreenSeparator {
     void *vtbl;            /* 0x00 */
@@ -66,10 +92,11 @@ struct SplitScreenSeparator {
     Sub_00088530 sub24;    /* 0x24 */
     Sub_00088530 sub88;    /* 0x88 */
     u32 fEC;               /* 0xEC */
+    int fF0;               /* 0xF0 */
     SplitScreenSeparator *func_00088530(int param_1);
+    void func_00088720(void);
+    void func_00157960(void);
 };
-
-extern float D_00275544;
 
 struct S_00088A40_V4 {
     float x;
