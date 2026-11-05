@@ -88,6 +88,11 @@ static inline void SetV4(S_0011CA20_V4 *v, int x, int y, int z, int w)
     v->w = w;
 }
 
+static inline void CopyV4(S_0011CA20_V4 *dst, S_0011CA20_V4 src)
+{
+    *dst = src;
+}
+
 void C_0011CA20::func_0011CA20()
 {
     unk5C = D_002A3BBC;
