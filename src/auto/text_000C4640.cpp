@@ -93,7 +93,9 @@ struct C_000C4EB0 {
     int f2E4;
     int f2E8;
     int f2EC;
-    char pad2F0[0x320 - 0x2F0];
+    int f2F0;
+    int f2F4;
+    char pad2F8[0x320 - 0x2F8];
     S_000C4EB0_Obj *a320[3];
     S_000C4EB0_Obj *a32C[3];
     S_000C4EB0_Obj *a338[3];
