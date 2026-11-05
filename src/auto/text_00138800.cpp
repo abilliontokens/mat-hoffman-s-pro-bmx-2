@@ -136,7 +136,7 @@ struct S_1390A0_Obj {
     virtual void v27();
     virtual void v28();
     virtual void v29();
-    virtual void v30();
+    virtual void v30(int,int);
     virtual void v31();
 };
 
