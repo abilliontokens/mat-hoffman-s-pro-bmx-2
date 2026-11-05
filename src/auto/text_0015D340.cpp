@@ -17,7 +17,7 @@ static __forceinline void Normalize_DD80(float *volatile out, const float *volat
  scale=_mm_shuffle_ps(scale,scale,0);
  _mm_storeu_ps(out,_mm_mul_ps(scale,v));
 }
-static __forceinline void Xform_DD80(float *out,float *in,float *m) {
+static __forceinline void Xform_DD80(float *volatile out,float *volatile in,float *volatile m) {
  __m128 v=_mm_loadu_ps(in);
  _mm_storeh_pi((__m64*)(out+2),v);
  out[3]=1.0f;
