@@ -149,7 +149,10 @@ struct C_00104B00 {
     S_001058F0_Obj *f11b0;
     char pad11b4[0x11f4 - 0x11b4];
     int f11f4;
-    char pad11f8[0x15d8 - 0x11f8];
+    char pad11f8[0x1230 - 0x11f8];
+    S_00104DF0_Tex *f1230;
+    S_00104DF0_Tex *f1234;
+    char pad1238[0x15d8 - 0x1238];
     int f15d8;
     int f15dc;
     char pad15e0[4];
