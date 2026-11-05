@@ -635,6 +635,31 @@ int C_001B0230::func_001B07D0(int idx, void *arg)
     return -1;
 }
 
+C_001B07F0 *C_001B07F0::func_001B07F0(C_00168C20 *stream, int a2)
+{
+    int i;
+
+    vtbl = (void *)&D_0028C444;
+    unk4 = 0;
+    unk8 = a2;
+    for (i = 0; i < 4; i++) {
+        int local = 0;
+        char buf[0x80];
+
+        items[i] = 0;
+        if (i == 0) {
+            stream->func_00168C20(&D_0028C678, 0, &local);
+        }
+        func_001ADCC0(buf, 0x80, (const char *)&D_0028C668, i + 1);
+        stream->func_00168C20(buf, local, &local);
+        if (local) {
+            void *p = func_001E8A44(0x3c);
+            items[i] = p ? ((C_001AF740 *)p)->func_001AF740(stream, i) : 0;
+        }
+    }
+    return this;
+}
+
 void *C_001B08B0::func_001B08B0(unsigned int flags)
 {
     extern int D_0028C444;
