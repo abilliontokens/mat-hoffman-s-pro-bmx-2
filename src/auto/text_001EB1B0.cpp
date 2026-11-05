@@ -69,7 +69,7 @@ extern "C" unsigned char __readfsbyte(unsigned long Offset);
 
 extern "C" void (__stdcall *_imp__KeBugCheck)(unsigned long code);
 
-extern int D_002F41D0;
+extern unsigned long D_002F41D0;
 extern S_Tiddata *D_002FB360;
 extern char D_002AEDD8[];
 extern char D_002F69F0[];
@@ -363,15 +363,13 @@ int __cdecl func_001EB980(void)
 {
     S_Tiddata *ptd;
     S_Tiddata **tls;
-    int idx;
 
     if (func_001EB290() == 0) {
         func_001EB2D9();
         return 0;
     }
     ptd = func_001EA1A1(1, 0x84);
-    idx = D_002F41D0;
-    tls = (S_Tiddata **)((char **)__readfsdword(4))[idx];
+    tls = (S_Tiddata **)D_002F41D0[(char **)__readfsdword(4)];
     tls[2] = ptd;
     if (ptd == 0) {
         ptd->pxcptacttab = D_002AEDD8;
