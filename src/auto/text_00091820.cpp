@@ -106,10 +106,11 @@ void *C_00091950::func_00091950(int flags)
 
 void *C_00092710::func_00092710(int flags)
 {
+    C_001D6410 *p = (C_001D6410 *)f24;
     vtbl = (void *)&D_00279C3C;
-    if (f24) {
-        ((C_001D6410 *)f24)->func_001D6410();
-        func_001E891B((void *)f24);
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
     }
     func_00157660();
     if (flags & 1) func_001E891B(this);
