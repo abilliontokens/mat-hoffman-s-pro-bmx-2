@@ -107,3 +107,18 @@ int func_00140890(C_00168BE0 *cfg, const char *key, int def, int &out)
     }
     return out;
 }
+
+int func_001E958D(const char *s, char **end, int base);
+int func_001409A0(C_00168BE0 *cfg, const char *key, int def, int &out)
+{
+    char *end;
+    char buf[64];
+    cfg->func_00168BE0(key, "undefined", buf, 64);
+    if (strcmp(buf, "undefined") == 0) {
+        out = def;
+    } else {
+        out = func_001E958D(buf, &end, 0);
+    }
+    return out;
+}
+
