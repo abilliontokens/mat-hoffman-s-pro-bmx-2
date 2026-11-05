@@ -53,6 +53,12 @@ struct S_U12 {
     unsigned int l[3];
 };
 
+extern char D_0000FFFF[];
+extern char D_0001FFFF[];
+extern char D_00018000[];
+void func_001F5B20(S_U12 *p);
+void func_001F5B4E(S_U12 *p);
+
 int func_001F5AA1(unsigned int a, unsigned int b, unsigned int *out);
 
 struct S_001F59DC_FILE {
