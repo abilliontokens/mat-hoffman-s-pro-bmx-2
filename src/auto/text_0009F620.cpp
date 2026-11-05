@@ -23,6 +23,16 @@ struct C_0009FAC0 {
     void func_0009FAC0(int a0);
 };
 
+struct C_0009FAD0 {
+    char pad0[8];
+    int unk8;
+    int unkC;
+    char pad10[0x40];
+    float unk50;
+    int unk54;
+    void func_0009FAD0(int a0, int a1, float a2);
+};
+
 
 void C_0009FAC0::func_0009FAC0(int a0) {
     unk4 = a0;
