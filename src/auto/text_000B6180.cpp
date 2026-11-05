@@ -23,7 +23,7 @@ struct C_000B6640_Obj {
 
 struct V4_000B6840 {
     float x, y, z, w;
-    void Set(float px, float py, float pz, float pw) { x = px; y = py; z = pz; w = pw; }
+    void Set(const float &px, const float &py, const float &pz, const float &pw) { x = px; y = py; z = pz; w = pw; }
 };
 
 struct V4Init_000B6840 : V4_000B6840 {
@@ -146,3 +146,29 @@ void *C_000B6810::func_000B6810(int flags)
     }
     return this;
 }
+
+void C_000B6640::func_000B6840(float a0, float a1, C_000B6840_Arg *a2)
+{
+    V4Init_000B6840 line[2];
+
+    if (f7C == D_00275544) {
+        C_000B6840_Node *n = ((C_000B6840_Owner *)unk88)->f22c->func_00198330(D_0027D3F0);
+        n->func_00199A70(((C_000B6840_Owner *)unk88)->f22c, &vA);
+        vA.x = 0;
+        f7C = n->f144;
+        f80 = D_00275460 / f7C;
+        n = ((C_000B6840_Owner *)unk88)->f22c->func_00198330(D_0027D3FC);
+        n->func_00199A70(((C_000B6840_Owner *)unk88)->f22c, &vB);
+        vB.x = 0;
+        vE0.Set(vA.x, -f7C + vA.y, vA.z, 1.0f);
+        vF0.Set(vB.x, -f7C + vB.y, vB.z, 1.0f);
+    }
+    f78 = a0;
+    line[0].Set(0.0f, a1, 0.0f, 1.0f);
+    line[1].Set(0.0f, -a0, 0.0f, 1.0f);
+    unk1D0->func_00180E00(1, line, 1, 0);
+    unk1D4->func_00180E00(1, line, 1, 0);
+    unk1D0->func_00133140(*a2->f4ac, 2);
+    unk1D4->func_00133140(*a2->f4ac, 2);
+}
+
