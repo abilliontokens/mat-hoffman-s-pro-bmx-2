@@ -98,11 +98,11 @@ struct C_0015B470 {
     int f10;
     char pad14[0x108];
     int f11C;
-    void grow(int n);
+    void func_0015B370(int n);
     S_0015B470_Entry *at(int i)
     {
         if (i >= f4) {
-            grow(i * 2 + 2);
+            func_0015B370(i * 2 + 2);
         }
         if (i + 1 > fC) {
             fC = i + 1;
