@@ -34,3 +34,29 @@ void C_0016F7B0::func_0016F7B0(void)
         this->obj170->func_00142560();
     }
 }
+struct S_0016FBC0_Node {
+    float x,y,z;
+    char padc[0x14];
+    S_0016FBC0_Node *next;
+    int f24, index;
+    float f2c, f30, f34, f38, f3c;
+    int f40, flags;
+    char *owner;
+};
+struct S_0016FBC0_Entry { int id; S_0016FBC0_Node *node; };
+struct S_0016FBC0_Root { int f0; char *obj; };
+extern S_0016FBC0_Root *D_002EFDB8;
+extern float D_002A88BC;
+extern "C" void *__stdcall func_001FF410(int size, int align);
+struct C_0016FBC0 {
+    char pad0[0x104];
+    int *table;
+    int id, f10c;
+    S_0016FBC0_Entry *entries;
+    int f114, count;
+    char pad11c[0x24];
+    float f140;
+    char pad144[0x18];
+    int size1, size2, count1, count2, max;
+    void func_0016FBC0();
+};
