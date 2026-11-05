@@ -46,16 +46,17 @@ struct BmxUIPageHOF {
     s32 unk2B8;
     u32 unk2BC;
     u32 unk2C0;
-    u32 arr2C4[5];
-    u32 arr2D8[5];
+    S_000D5B90_Widget *arr2C4[5];
+    S_000D5B90_Widget *arr2D8[5];
     DelObjA_000D4DD0 *arr2EC[2];
     DelObjB_000D4DD0 *arr2F4[2];
     DelObjC_000D4DD0 *arr2FC[2];
-    u32 arr304[5];
+    S_000D5B90_Widget *arr304[5];
     void func_001BE360(int a0);
     void func_001BE3F0();
     BmxUIPageHOF *func_000D4D20(int a0);
     void func_000D4DD0();
+    void func_000D5B90();
 };
 
 BmxUIPageHOF *BmxUIPageHOF::func_000D4D20(int a0)
