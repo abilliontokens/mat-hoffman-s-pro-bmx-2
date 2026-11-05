@@ -1,6 +1,51 @@
 /* 23 functions from 0x0013F690 to 0x00140680, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+
+struct C_0013FBD0 {
+    void *vtbl;
+    void *func_0013FBD0(int flags);
+};
+
+struct C_0013FC00 {
+    void *vtbl;
+    char pad0[0xc];
+    void *f10;
+    void *f14;
+    void *f18;
+    void *f1c;
+    void *f20;
+    void func_0013FC00();
+};
+
+struct C_0013FC60 {
+    void *vtbl;
+    int f4;
+    int f8;
+    int f0c;
+    void *f10;
+    void *f14;
+    void *f18;
+    void *f1c;
+    short *f20;
+    int f24;
+    int f28;
+    void func_0013FC60(int count);
+};
+
+struct C_0013FCF0 {
+    void *vtbl;
+    int f4;
+    int f8;
+    int f0c;
+    void *f10;
+    void *f14;
+    void *f18;
+    void *f1c;
+    void *f20;
+    void func_0013FCF0();
+};
+
 struct C_00140660 {
     undefined4 func_00140660(byte param_1);
 };
