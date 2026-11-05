@@ -186,6 +186,22 @@ struct C_001A5F40 {
     C_001A5F40 *func_001A5F40(void *a, int b);
 };
 
+C_001A5BF0 *C_001A5BF0::func_001A5BF0(void *param)
+{
+    int i;
+
+    ((C_00157600 *)this)->func_00157600(param);
+    vtbl = (void *)&D_0028B974;
+    f24 = 0;
+    f28 = 0;
+    f2c = 0;
+    for (i = 0; i < 8; i++) {
+        f34[i] = 0;
+    }
+    f30 = 0;
+    return this;
+}
+
 void func_001A5C30(char *text, S_001A5C30_Obj **arr, int width, int maxCount)
 {
     int start = 0;
