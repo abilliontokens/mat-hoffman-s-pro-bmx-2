@@ -70,6 +70,8 @@ struct C_0006D590 {
     int unkF4;
     int unkF8;
     void func_00157600(int a0);
+    void func_00157660();
+    void func_0006D640();
     int func_00157960();
     void func_0006DFC0();
     C_0006D590 *func_0006D590(int a0);
