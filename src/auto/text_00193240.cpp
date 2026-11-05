@@ -143,6 +143,62 @@ struct Owner_00193240 {
     u16 f92;
     int func_00193240(struct Args_00193240 *arg);
 };
+struct V4_00193C20 {
+    float x, y, z, w;
+};
+
+/* camera-path actor: the 0x1e0-byte object kept per segment */
+struct Seg_00193C20 {
+    Seg_00193C20 *func_00143580(int flag);
+    void func_00199600(V4_00193C20 pos);
+    void func_00198F50(void *a, void *b, int c, int d, int e);
+    void func_0019ABA0(void *a, int b);
+    void func_00199A70(int a, void *b);
+};
+
+struct Key_00193C20 {
+    Key_00193C20 *func_00135850(void);
+    void func_00135870(float t, void *a, void *b, void *c, int flag);
+};
+
+struct Path_00193C20 {
+    char pad0[0x34];
+    char *f34;
+    char pad38[0xc];
+    void *f44;
+    Path_00193C20 *func_00135700(int flag);
+    void func_00135A80(int count, int n1, int *p1, int n2, void *p2, void *owner);
+};
+
+struct Tgt_00193C20 {
+    float *func_00197EC0(float *tmp, V4_00193C20 *in);
+    void func_00199A70(int a, void *b);
+};
+
+struct Env_00193C20 {
+    char pad0[0x4a8];
+    int *f4a8;
+};
+
+struct Cam_00193C20 {
+    char pad0[0x24];
+    int f24;
+    V4_00193C20 f28;
+    V4_00193C20 f38;
+    Env_00193C20 *f48;
+    Seg_00193C20 **f4c;
+    Tgt_00193C20 *f50;
+    Key_00193C20 **f54;
+    Path_00193C20 *f58;
+    void func_001577A0(void *child, int a);
+    void func_001D3F50(void);
+    void func_00193C20(int count, float dt, int a3, Env_00193C20 *env, int a5, Tgt_00193C20 *tgt,
+                       float x, float y, float z, float w, int last);
+};
+
+extern char D_002A9934;
+void *func_001E8AA5(int size);
+
 struct Args_00193240 {
     char pad0[0x30];
     int *f30;
