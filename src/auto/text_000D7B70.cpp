@@ -12,9 +12,33 @@ static inline int StrLen(const char *s)
     return p - s - 1;
 }
 
+/* a drawable the page owns: func_001D5AD0 draws it, f38/b58 are its colour and dirty flag */
 struct DelObjHOF4 {
     virtual void Destroy(int a0);
+    char pad4[0x34];
+    unsigned int f38;
+    char pad3c[0x1c];
+    unsigned char b58;
+    void func_001D5AD0();
 };
+
+struct S_000D85C0_Sprite {
+    void func_001D5AD0();
+};
+
+struct S_002B91AC {
+    char pad0[0x24];
+    S_000D85C0_Sprite *unk24;
+    S_000D85C0_Sprite *unk28;
+    S_000D85C0_Sprite *unk2C;
+    S_000D85C0_Sprite *unk30;
+    char pad34[0x54 - 0x34];
+    S_000D85C0_Sprite *unk54;
+    char pad58[0x6C - 0x58];
+    S_000D85C0_Sprite *unk6C;
+};
+
+extern S_002B91AC *D_002B91AC;
 
 struct S_000D8A40_Widget {
     void func_001B1980();
