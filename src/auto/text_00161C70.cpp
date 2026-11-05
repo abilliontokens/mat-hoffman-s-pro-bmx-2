@@ -189,6 +189,14 @@ void C_00162720::func_00162720(undefined4 param_1)
   return;
 }
 
+int C_001628A0::func_001628A0(float t)
+{
+    if (t > f38) {
+        return 1;
+    }
+    return 0;
+}
+
 void *LinearPositionController::func_001629A0(unsigned char flags)
 {
     if (flags & 2) {
