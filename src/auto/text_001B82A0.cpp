@@ -72,3 +72,17 @@ C_001B8450 *C_001B8450::func_001B8450(void *param) {
     return this;
 }
 
+void C_001B8450::func_001B8480(void) {
+    int i;
+
+    vtbl = (void *)&D_0028D04C;
+    if (f28) {
+        for (i = 0; i < f24; i++) {
+            func_001E891B(f28[i]->f158);
+            func_001E891B(f28[i]);
+        }
+        func_001E891B(f28);
+    }
+    ((C_00157660 *)this)->func_00157660();
+}
+
