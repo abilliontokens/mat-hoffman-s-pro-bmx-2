@@ -81,6 +81,26 @@ struct C_00157920 {
     void func_00157920();
 };
 
+struct ConfigFile {
+    ConfigFile();
+    ~ConfigFile();
+    int __stdcall func_00169490(const char *path, int b);
+    void __stdcall func_00169710(const char *section);
+    void __stdcall func_00168C20(const char *key, int def, int *out);
+    void __stdcall func_00168550(const char *key, char *buf, int size);
+    char pad[0x4cc];
+};
+void func_001ADCC0(char *buf, int size, const char *fmt, ...);
+void *func_001E8AA5(int size);
+extern char D_002A64D0[];
+extern char D_0027D998[];
+extern char D_0027D98C[];
+extern char D_0027D984[];
+extern char D_0027D978[];
+extern char D_0027D970[];
+extern char D_0027D964[];
+extern char D_00275678[];
+
 struct BmxUIManager {
     void *vtbl;
     char pad4[0x11c];
@@ -105,6 +125,20 @@ struct BmxUIManager {
     void func_000BB3B0(const char *a, const char *b);
     int func_000BB3F0(const char *a, const char *b);
 };
+
+int BmxUIManager::func_000BABF0()
+{
+    C_0013E4F0 *p = (C_0013E4F0 *)func_001E8A44(0x2d0);
+    f258 = (int)(p ? p->func_0013E4F0(1) : 0);
+    ((C_0012B410 *)f258)->func_0012B410(0x3f9f49f5, 0x280, 0x1c0);
+    C_0002EF20 *q = (C_0002EF20 *)func_001E8A44(0x78);
+    f25c = q ? q->func_0002EF20(1) : 0;
+    int mode = D_002A8490->f2E0->f324;
+    f25c->func_000306F0(f258, 0, *((UIItemData *)f150)->f4AC, ((UIItemData *)f150)->f4DC->f24,
+                        mode == 0 ? D_0027D934 : D_0027D91C, 0);
+    D_002A8490->v15((void *)f258, 0, 0, 0);
+    return 1;
+}
 
 void BmxUIManager::func_000BACE0()
 {
