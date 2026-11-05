@@ -52,7 +52,11 @@ static __forceinline S_13910_Vec sub12(const S_13910_Vec &a, const S_13910_Vec &
 static __forceinline S_13910_Vec add12(const S_13910_Vec &a, const S_13910_Vec &b) { return S_13910_Vec(a.x+b.x,a.y+b.y,a.z+b.z); }
 static __forceinline S_13910_Vec mul12(const S_13910_Vec &a, float b) { return S_13910_Vec(a.x*b,a.y*b,a.z*b); }
 static __forceinline float dot12(const S_13910_Vec &a, const S_13910_Vec &b) { return a.x*b.x+a.y*b.y+a.z*b.z; }
-static __forceinline void cross12(S_13910_Vec *out,const S_13910_Vec *a,const S_13910_Vec *b) { *out=S_13910_Vec(a->y*b->z-a->z*b->y,a->z*b->x-a->x*b->z,a->x*b->y-a->y*b->x,0); }
+static __forceinline void cross12(S_13910_Vec *out,const S_13910_Vec *a,const S_13910_Vec *b) {
+ _mm_storeu_ps(&out->x,_mm_shuffle_ps(
+ _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a->x),_mm_shuffle_ps(_mm_loadu_ps(&b->x),_mm_loadu_ps(&b->x),0xc9)),_mm_mul_ps(_mm_loadu_ps(&b->x),_mm_shuffle_ps(_mm_loadu_ps(&a->x),_mm_loadu_ps(&a->x),0xc9))),
+ _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a->x),_mm_shuffle_ps(_mm_loadu_ps(&b->x),_mm_loadu_ps(&b->x),0xc9)),_mm_mul_ps(_mm_loadu_ps(&b->x),_mm_shuffle_ps(_mm_loadu_ps(&a->x),_mm_loadu_ps(&a->x),0xc9))),0xc9));
+}
 static __forceinline float sqrt12(float f) { return _mm_sqrt_ss(*(__m128 *)&f).m128_f32[0]; }
 
 void AIPedFightState::func_00012B00(int a0)
