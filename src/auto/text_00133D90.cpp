@@ -169,6 +169,7 @@ extern char D_002A4331;
 extern int D_002BA144;
 extern char *D_002BF250;
 
+#pragma auto_inline(off)
 float func_00133D90(Coll_00133D90 *obj, float *p, float r)
 {
     float rad = r + obj->f48;
