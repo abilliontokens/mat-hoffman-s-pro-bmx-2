@@ -97,9 +97,9 @@ struct S_137F90_Obj {
 
 struct S_137F90_Src {
     char pad0[8];
-    float f8;
-    float fC;
-    float f10;
+    int f8;
+    int fC;
+    int f10;
 };
 
 struct S_137F90_Slot6C {
@@ -277,27 +277,30 @@ void DrawableCube::func_00137E50(float dt)
 
 int DrawableCube::func_00137F90()
 {
-    DrawableCube *self = this;
-    DrawableCube **pself = &self;
+    DrawableCube * volatile self = this;
     S_137F90_Mat mat;
     S_137F90_Mat mat2;
     S_137F90_Mat * volatile pm;
     S_137F90_V4 v;
     unsigned short idx[4];
     char *g4;
+    float depth;
     int i;
     int j;
     int k;
 
     if (D_002A67D8 != 0) {
-        D_002EFDB8->f6c->func_0014A650(self->f7d0);
+        D_002EFDB8->f6c->func_0014A650(f7d0);
         D_002EFDB8->f70->func_00142D00(self->f7d4);
         g4 = D_002EFDB8->f4;
         pm = &mat;
         pm->identity();
-        mat.m[3] = self->f28->f8;
-        mat.m[7] = self->f28->fC;
-        mat.m[11] = self->f28->f10;
+        {
+            DrawableCube *t = self;
+            mat.m[3] = t->f28->f8;
+            mat.m[7] = t->f28->fC;
+            mat.m[11] = t->f28->f10;
+        }
         func_000263B0(mat2.m, mat.m, (float *)(g4 + 0x250));
         func_001FEC30(0x18, mat2.m);
         v = *(S_137F90_V4 *)(g4 + 0x170);
@@ -325,9 +328,10 @@ int DrawableCube::func_00137F90()
         idx[3] = 3;
         for (k = 0; k < 6; k++) {
             for (j = 0; j < 16; j++) {
-                if (((1 << j) & *(unsigned short *)((char *)self->f28 + k * 0xfc + 0x12c)) != 0 &&
-                    ((1 << j) & *(unsigned short *)((char *)self->f28 + k * 0xfc + 0x48)) != 0) {
-                    if (((S_137F90_Obj **)self->f28)[0x13 + k * 0x3f + j]->v11() != 0) {
+                char *c = (char *)self->f28;
+                if (((1 << j) & *(unsigned short *)(c + k * 0xfc + 0x12c)) != 0 &&
+                    ((1 << j) & *(unsigned short *)(c + k * 0xfc + 0x48)) != 0) {
+                    if (((S_137F90_Obj **)c)[0x13 + k * 0x3f + j]->v11() != 0) {
                         ((S_137F90_Obj **)self->f28)[0x13 + k * 0x3f + j]->v21(0);
                         if (D_002BEA90 != 0) {
                             void *p = func_001FF410(self->f7d8, 0);
@@ -343,7 +347,8 @@ int DrawableCube::func_00137F90()
         }
         func_001FD020(&D_0004035C, 1);
         func_001FE490(1);
-        func_001FF4E0(0, 0, 3, 0, D_002EFDB8->f28, 0);
+        depth = D_002EFDB8->f28;
+        func_001FF4E0(0, 0, 3, 0, depth, 0);
     }
     return 1;
 }
