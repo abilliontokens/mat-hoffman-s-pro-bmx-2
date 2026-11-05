@@ -55,6 +55,21 @@ struct S_U12 {
 
 int func_001F5AA1(unsigned int a, unsigned int b, unsigned int *out);
 
+struct S_001F59DC_FILE {
+    char *ptr;
+    int cnt;
+    char *base;
+    int flag;
+    int file;
+};
+
+extern char *D_002FB260[];
+extern char D_002AEC40[];
+int func_001F58AA(char *mb, unsigned short wc);
+int *func_001ED075(void);
+int func_001ED8A7(int ch, S_001F59DC_FILE *stream);
+int func_001F62CE(unsigned short wc, S_001F59DC_FILE *stream);
+
 #pragma optimize("sy", on)
 #pragma optimize("sy", on)
 unsigned __int64 __stdcall func_001F58E0(unsigned __int64 dividend, unsigned __int64 divisor)
