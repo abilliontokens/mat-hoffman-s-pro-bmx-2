@@ -164,3 +164,14 @@ void C_001092E0::func_001092E0(int start)
     }
 }
 
+int C_001092E0::func_00109340(int p1, int p2)
+{
+    if (f0 >= 5) {
+        return 0;
+    }
+    f4[f0] = p1;
+    f18[f0] = p2;
+    f0++;
+    return 1;
+}
+
