@@ -79,6 +79,41 @@ struct C_00161580 {
 };
 
 
+void __fastcall func_00161170(int unused, S_00161170 *table)
+{
+    unsigned int i = 0;
+    do {
+        unsigned int idx = ((i >> 8) << 8) + (i & 0xff);
+        i++;
+        table[idx].unk0 = -1;
+    } while (i < 0x88cf);
+    D_002EB254 = 0x103;
+    D_002E2978 = 9;
+    D_002EB250 = 0x1ff;
+}
+
+int func_001614C0(void)
+{
+    char buf[256];
+    int i;
+
+    if (func_001DCA56(&D_002EBE68, &D_002EB268) == 0 && D_002EBE68 == 3) {
+        func_001613B0();
+    }
+    D_002A8490->v2();
+    buf[0] = 0;
+    D_002A8490->func_001D13D0(buf);
+    D_002EBE70 = 1;
+    while (D_002A8490->v10() != 0) {
+    }
+    D_002A8490->v17();
+    for (i = 0; i < D_002EBE78; i++) {
+        func_001E891B(D_002EBE7C[i]);
+    }
+    func_001E891B(D_002EBE7C);
+    return 0;
+}
+
 undefined4 C_00161600::func_00161600(byte param_1)
 {
   int func_001615B0(...);
