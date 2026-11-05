@@ -32,7 +32,10 @@ extern float D_00275AEC;
 extern int D_00278690;
 extern int D_00278678;
 struct S_00070450_Global {
-    char pad0[0x2e8];
+    char pad0[0x270];
+    int f270;
+    int f274;
+    char pad278[0x70];
     S_00070450_Mgr *f2e8;
     LookupObj_6FB *f2ec;
 };
