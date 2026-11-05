@@ -77,6 +77,7 @@ struct DelObjC_CA {
 struct C_000CB480 {
     void *vtbl;
     u32 u[0x100];
+    u32 &at(int off) { return u[(off - 4) / 4]; }
     C_000CB480 *func_000CB480(int a0);
     void func_001BE360(int a0);
 };
