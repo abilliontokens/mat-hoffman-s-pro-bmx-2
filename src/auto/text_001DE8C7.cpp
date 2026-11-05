@@ -235,6 +235,48 @@ void __stdcall func_001DEDC3(void *info, char *out)
     out[0x2c + *(u32 *)((char *)info + 0x3c)] = 0;
     out[0x130] = 0;
 }
+
+int __stdcall func_001DEE2F(const char *path, char *out)
+{
+    S_AnsiString fileName;
+    S_AnsiString name;
+    S_ObjectAttributes oa;
+    S_IoStatusBlock iosb;
+    char buf[0x148];
+    long status;
+    unsigned int i;
+
+    _imp__RtlInitAnsiString(&name, path);
+    oa.objectName = &name;
+    oa.rootDirectory = (void *)-3;
+    oa.attributes = 0x40;
+    for (i = name.length; i > 0 && name.buffer[i - 1] != '\\'; i--) {
+    }
+    fileName.maxLength = fileName.length = name.length - i;
+    fileName.buffer = name.buffer + i;
+    name.maxLength = name.length = i;
+    if (name.length == 0 || fileName.length == 0) {
+        func_001DD62B(0x57);
+        return -1;
+    }
+    if (fileName.length == 3 && fileName.buffer[0] == '*' && fileName.buffer[1] == '.' && fileName.buffer[2] == '*') {
+        fileName.length = 0;
+    }
+    status = _imp__NtOpenFile((void **)&path, (u32)D_00100001, &oa, &iosb, 3, 0x4021);
+    if (status < 0) {
+        func_001DD659(status);
+        return -1;
+    }
+    status = _imp__NtQueryDirectoryFile((void *)path, 0, 0, 0, &iosb, buf, 0x148, 1, &fileName, 0);
+    if (status < 0) {
+        _imp__NtClose((void *)path);
+        func_001DD659(status);
+        return -1;
+    }
+    func_001DEDC3(buf, out);
+    return (int)path;
+}
+
 #pragma optimize("t", off)
 int __stdcall func_001DEF3C(int handle, int out)
 {
