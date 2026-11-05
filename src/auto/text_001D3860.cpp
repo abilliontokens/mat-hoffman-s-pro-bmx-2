@@ -116,6 +116,12 @@ void C_001D3E60::func_001D3E60(int a0) {
     func_001E8920(this, a0, 30);
 }
 
+void C_001D3E30::func_001D3E80(const char *s)
+{
+    int func_001E8920(...);
+    func_001E8920(&unk64, s, 30);
+}
+
 C_001D3F50* C_001D3F50::func_001D3F50(void) {
     return this;
 }
