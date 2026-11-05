@@ -116,6 +116,42 @@ extern "C" void *func_001E8A44(unsigned int size);
 void func_000551B0();
 extern char D_00055290;
 extern S_00056100_Quat D_002A1A64;
+extern S_00056100_Quat D_002A1A84;
+
+/* BmxFollowCamera (base class CameraBehavior) */
+struct C_00055380 {
+    u32 unk0;
+    char pad4[4];
+    u32 unk8, unkC, unk10, unk14, unk18;
+    S_00056100_Quat q1C;
+    S_00056100_Quat q2C;
+    u32 unk3C, unk40, unk44, unk48, unk4C, unk50, unk54, unk58;
+    char pad5C[4];
+    u32 unk60, unk64, unk68;
+    S_00056100_Quat q6C;
+    S_00056100_Quat q7C;
+    S_00056100_Quat q8C;
+    S_00056100_Quat q9C;
+    S_00056100_Quat qAC;
+    S_00056100_Quat qBC;
+    S_00056100_Quat qCC;
+    S_00056100_Quat qDC;
+    S_00056100_Quat qEC;
+    S_00056100_Quat qFC;
+    S_00056100_Quat q10C;
+    S_00056100_Quat q11C;
+    char pad12C[12];
+    u32 unk138, unk13C, unk140, unk144, unk148, unk14C, unk150, unk154, unk158, unk15C;
+    u32 unk160, unk164, unk168, unk16C, unk170, unk174, unk178, unk17C, unk180, unk184;
+    u32 unk188, unk18C, unk190, unk194, unk198, unk19C, unk1A0, unk1A4, unk1A8, unk1AC;
+    u32 unk1B0, unk1B4, unk1B8, unk1BC, unk1C0, unk1C4, unk1C8, unk1CC, unk1D0, unk1D4;
+    u32 unk1D8, unk1DC, unk1E0, unk1E4, unk1E8;
+    S_00056100_Quat q1EC;
+    S_00056100_Quat q1FC;
+    u32 unk20C, unk210, unk214, unk218, unk21C;
+    void func_0012B510(void);
+    C_00055380 *func_00055380(void);
+};
 
 void C_000559E0_unused();
 void C_00055910::func_00055910(void)
@@ -190,5 +226,39 @@ void C_000560A0::func_000560A0()
     unk10 = 0;
     unk68 = 0x40400000;
     unk64 = f;
+}
+
+void C_00056100::func_00056100(S_00056100_Quat a0, int a1)
+{
+    if (unk14 == 0) {
+        void *m = func_001E8A44(0x120);
+        unk14 = m ? ((S_00056100_Node *)m)->func_001A4A50(1) : 0;
+        unk14->func_00129920(2);
+        unk14->unk60 = this;
+        unk14->unk9C = (void *)func_000551B0;
+        unk14->func_001334E0(1);
+        unk14->unkA7 |= 1;
+        unk14->func_001A57E0(D_002A1A64, unk21C, 0);
+        unk14->func_00133ED0();
+        unk14->func_001332A0();
+        unk14->func_00133140(a1, 2);
+    }
+    if (unk18 == 0) {
+        void *m = func_001E8A44(0xf4);
+        unk18 = m ? ((S_00056100_Node *)m)->func_0014AB30(1) : 0;
+        unk18->func_00129920(2);
+        unk18->unk60 = this;
+        unk18->unk9C = &D_00055290;
+        unk18->func_001334E0(1);
+        unk18->unkA7 |= 1;
+        unk18->func_0014C1C0(1, 0, 0);
+        S_00056100_Quat q[2];
+        q[1] = a0;
+        q[0] = a0;
+        unk18->func_0014AC30(q, 0);
+        unk18->func_00133ED0();
+        unk18->func_001332A0();
+        unk18->func_00133140(a1, 2);
+    }
 }
 
