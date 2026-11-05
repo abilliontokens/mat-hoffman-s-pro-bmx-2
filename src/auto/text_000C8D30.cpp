@@ -18,6 +18,13 @@ struct C_000C8D30 {
     void func_000C8D30();
 };
 
+struct C_000C8F10 {
+    void func_000C5E40();
+    void func_000C8D30();
+    void func_00157960();
+    void func_000C8F10();
+};
+
 struct BmxUIPageOptions {
     void *vtbl;
     char pad4[0x2CC - 4];
