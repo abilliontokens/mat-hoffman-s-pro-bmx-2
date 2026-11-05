@@ -473,4 +473,7 @@ C_001C1970 *C_001C1970::func_001C1970(int a, int b)
     subCC.func_001D5760();
     return this;
 }
-
+extern int D_00275AD4, D_00275AC8, D_0027CEE4;
+extern int D_0028DC84, D_0028DC7C, D_0028DC74, D_0028DC6C, D_0028DC60;
+extern int D_0028DC54, D_0028DC48, D_0028DC3C, D_0028DEEC, D_00276F28;
+void func_001ADCC0(void *out, int size, int *format, void *name);
