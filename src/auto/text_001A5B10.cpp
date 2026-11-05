@@ -78,3 +78,57 @@ extern S_001A5D80_G1 *D_002A8490;
 extern S_001A5D80_G2 *D_002EFDB8;
 
 void __stdcall func_001A5B10(void *a, void *b);
+
+extern int D_0028BB04;
+extern int D_0028BAE0;
+
+struct C_001A5F10 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    int f28;
+    int f2c;
+    C_001A5F10 *func_001A5F10(void *param);
+};
+
+struct C_001A5E20_Obj {
+    char pad0[0x24];
+    int f24;
+};
+
+struct C_001A5E20 {
+    char pad0[0x24];
+    C_001A5E20_Obj *f24;
+    char pad28[0x2c - 0x28];
+    int f2c;
+    void func_00157A00(int arg);
+    void func_001A5E20(int arg);
+};
+
+struct C_001A5E70_P1 {
+    void func_001A5B10(void *a, void *b);
+};
+
+struct C_001A5E70 {
+    char pad0[0x24];
+    void *f24;
+    void *f28;
+    C_001A5E70 *func_001A5E70(void *param);
+};
+
+struct C_001A5F40_Obj {
+    char pad0[0x24];
+    int f24;
+    C_001A5F40_Obj *func_001D3690(int v);
+    void func_001D3CC0(int v);
+    void func_001D3730(int v);
+};
+
+struct C_001A5F40 {
+    char pad0[0x24];
+    void *f24;
+    C_001A5F40_Obj *f28;
+    int f2c;
+    void func_001577A0(void *a, int b);
+    C_001A5F40 *func_001A5F40(void *a, int b);
+};
