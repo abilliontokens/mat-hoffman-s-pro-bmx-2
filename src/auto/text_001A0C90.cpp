@@ -1,6 +1,7 @@
 /* 19 functions from 0x001A0C90 to 0x001A1C90, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct Q_001A1930 { float x,y,z,w; };
 struct C_001A1650 {
     undefined4 func_001A1650(undefined4 *param_1);
 };
