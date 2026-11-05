@@ -309,6 +309,31 @@ void *C_0001D690::func_0001D690(unsigned char param_1)
   return this;
 }
 
+int C_0001DF80::func_0001DF80(int param_1, int param_2)
+{
+  if (param_1 == 0) {
+    return 0;
+  }
+  if (param_2 != 0) {
+    sub30.func_001CDED0(param_1);
+  }
+  if (sub70.n >= sub70.cap) {
+    if (sub70.func_0015ACA0(sub70.base + sub70.n) == 0) {
+      return 0;
+    }
+  }
+  sub70.arr[sub70.n] = param_1;
+  sub70.n++;
+  return 1;
+}
+
+C_0001DFE0 *C_0001DFE0::func_0001DFE0(void)
+{
+  unk0 = (int)&D_00275F18;
+  unk4 = 1;
+  return this;
+}
+
 void C_0001DFF0::func_0001DFF0(void) {
     extern int D_00275F18;
     unk0 = (int)&D_00275F18;
@@ -316,6 +341,15 @@ void C_0001DFF0::func_0001DFF0(void) {
 
 int C_0001E000::func_0001E000(void) {
     return ++unk4;
+}
+
+int C_0001E010::func_0001E010(void) {
+    int n = --unk4;
+    if (n == 0) {
+        virt0(1);
+        n = 0;
+    }
+    return n;
 }
 
 void *C_0001E030::func_0001E030(int flags) {
