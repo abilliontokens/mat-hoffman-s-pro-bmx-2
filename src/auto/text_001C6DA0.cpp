@@ -13,8 +13,21 @@ struct S_001C6DA0_V4 {
 };
 extern S_001C6DA0_V4 D_002AB798;
 
+struct Vec4 {
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 w;
+};
+
+struct C_00198330 {
+    void func_00199A70(C_00198330 *a0, Vec4 *a1);
+};
+
 struct C_001C6DA0_Mgr {
-    char pad0[0x10];
+    char pad0[4];
+    C_00198330 *unk4;
+    char pad8[8];
     int unk10;
     void func_00166C80(int a, int b);
     void func_00164820(int a);
@@ -70,10 +83,12 @@ static C_001C65E0 *init_001C7250(C_001C65E0 *p)
 
 void C_001C6DA0::func_001C6DA0(int idx, int arg)
 {
-    if (unk3C->unk10 == 0) {
-        unk3C->func_00166C80(unkC0[idx].unk40, arg);
+    int mode = unk3C->unk10;
+    unsigned off = idx * 0x58u;
+    if (mode == 0) {
+        unk3C->func_00166C80(*(int *)((char *)unkC0 + off + 0x40), arg);
     } else {
-        unk3C->func_00164820(unkC0[idx].unk40);
+        unk3C->func_00164820(*(int *)((char *)unkC0 + off + 0x40));
     }
     int old = unkC4;
     unkC4 = idx;
