@@ -56,3 +56,19 @@ void BmxUIPageHOF4D::func_000D7B70()
     }
     func_001BE3F0();
 }
+
+void BmxUIPageHOF4D::func_000D8A40()
+{
+    S_000D8A40_Owner *owner = f124;
+    int i;
+    for (i = 0; i < 5; i++) {
+        arr2CC[i]->func_001B1980();
+        arr2E0[i]->func_001B1980();
+        arr30C[i]->func_001B1980();
+        arr2CC[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
+        arr2E0[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
+        arr30C[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
+    }
+    owner->func_000BA9B0(0x20)->func_00103260(0);
+}
+
