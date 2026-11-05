@@ -97,6 +97,7 @@ struct C_0004C560 {
     int f1244;
     C_0004C560Tracker *f1248[2];
     int f1250;
+    void func_00030F90(int a0);
     void func_00031640(void);
     void func_00034090(void);
     void func_000342C0(void);
