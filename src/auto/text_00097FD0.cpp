@@ -59,6 +59,7 @@ struct C_00097FD0 {
     S_00097FD0_owner *unk198;
     void func_00098E80(int idx);
     int func_00097FD0(void);
+    int func_00098080(const char *name);
 };
 
 int C_00097FD0::func_00097FD0(void) {
