@@ -392,7 +392,7 @@ void C_00192470::func_001927A0(void)
 {
     void func_001E891B(void *);
     vtbl = (void *)&D_0028AB84;
-    func_001E891B(f14);
+    func_001E891B(list.items);
     func_0001DFF0();
 }
 
