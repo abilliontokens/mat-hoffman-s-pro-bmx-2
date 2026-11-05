@@ -138,12 +138,12 @@ void func_001E9576(int a0, int a1, int a2) {
     int func_001E93CD(int, int, int, int);
     func_001E93CD(a0, a1, a2, 0);
 }
-#pragma optimize("", on)
+#pragma optimize("s", on)
 void func_001E958D(int a0, int a1, int a2) {
     int func_001E93CD(int, int, int, int);
     func_001E93CD(a0, a1, a2, 1);
 }
-
+#pragma optimize("", on)
 char *func_001E95A4(char *string, const char *control) {
     int func_001EB7E9(void);
     unsigned char *str;
