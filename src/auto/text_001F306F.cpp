@@ -385,26 +385,25 @@ void func_001F37B0(int code) {
 }
 
 #pragma optimize("sy", on)
-int func_001F37D8(u8 status) {
-    u32 bits;
-    if (status & 0x20) {
+int func_001F37D8(int status) {
+    if ((u8)status & 0x20) {
         return 5;
     }
-    if (status & 0x08) {
+    if ((u8)status & 0x08) {
         return 1;
     }
-    if (status & 0x04) {
+    if ((u8)status & 0x04) {
         return 2;
     }
-    if (status & 0x01) {
+    if ((u8)status & 0x01) {
         return 3;
     }
-    bits = status;
-    return (bits & 2) << 1;
+    return ((u8)status & 2) << 1;
 }
 double func_001F3805(int type, int fnid, D8_001F3805 arg1, D8_001F3805 arg2, D8_001F3805 retval, u32 cw) {
     extern int D_002AEC70[];
     extern char *D_002AEC74[];
+    extern u8 D_0000FFFF[];
     int func_001F3AFB(u32, u32);
     int func_001F59D9(ExceptionRaw_001F3805 *);
     void func_001F37B0(int);
@@ -424,15 +423,15 @@ found:
     if (name != 0) {
         e.arg1 = arg1;
         e.arg2 = arg2;
-        e.retval = retval;
         e.type = type;
-        func_001F3AFB(cw, 0xffff);
+        e.retval = retval;
+        func_001F3AFB(cw, (u32)D_0000FFFF);
         if (func_001F59D9(&e) == 0) {
             func_001F37B0(type);
         }
         return *(double *)&e.retval;
     }
-    func_001F3AFB(cw, 0xffff);
+    func_001F3AFB(cw, (u32)D_0000FFFF);
     func_001F37B0(type);
     return *(double *)&retval;
 }
@@ -478,6 +477,30 @@ double func_001F38F6(int param_1, int param_2, double param_3, double param_4, i
     func_001F37B0(r);
     func_001F3AFB(param_5, (int)&D_0000FFFF);
     return param_4;
+}
+
+extern long double D_002AED80;
+extern long double D_002AED8C;
+void func_001F3B1F(unsigned int flags)
+{
+    double d;
+
+    if (flags & 1) {
+        flags = (int)D_002AED80;
+    }
+    if (flags & 8) {
+        d = (double)D_002AED80;
+    }
+    if (flags & 0x10) {
+        d = (double)D_002AED8C;
+    }
+    if (flags & 4) {
+        volatile double z = 0.0;
+        d = 1.0 / z;
+    }
+    if (flags & 0x20) {
+        d = 3.14159265358979323846;
+    }
 }
 
 #pragma optimize("", on)
