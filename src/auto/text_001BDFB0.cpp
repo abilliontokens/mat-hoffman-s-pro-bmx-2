@@ -77,7 +77,11 @@ struct UIPage {
     int func_001BEA50(int param_1);
     void func_001BEB00(void);
     void func_001BEB90(int idx);
+    void func_001BEC10(int idx);
+    void func_001BEC90(int idx, int target);
     void func_001BEE30(int idx, int arg);
+    void func_001BEF20(int idx);
+    void func_001BEF50(int idx, int n);
 };
 
 struct UIVirt70 {
