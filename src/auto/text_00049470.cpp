@@ -68,3 +68,19 @@ C_00049BD0* C_00049BD0::func_00049BD0(void) {
     unk8C = 0;
     return this;
 }
+
+C_00049C00 *C_00049C00::func_00049C00(int param_1) {
+    ((C_00030F90 *)this)->func_00030F90(param_1);
+    f2CC = 0;
+    f2D0 = 0;
+    f2D4 = 0;
+    f2D8 = 0;
+    f2DC = 0;
+    f2E4 = 0;
+    f2E8 = 0;
+    f2C8 = 0;
+    vtbl = &D_0027718C;
+    f2E0 = 1;
+    return this;
+}
+
