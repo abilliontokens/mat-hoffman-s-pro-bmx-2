@@ -542,6 +542,20 @@ void CameraController::func_0012B580(void)
     func_00157660();
 }
 
+C_0012B5B0 *C_0012B5B0::func_0012B5B0(int param_1)
+{
+    int func_001D3F50(...);
+
+    if (func_001D3F50() != 0) {
+        if (param_1 != 0) {
+            f30 = param_1;
+            return this;
+        }
+        v2();
+    }
+    return 0;
+}
+
 undefined4 C_0012B750::func_0012B750(undefined4 param_1)
 {
   int func_001E83E8(...);
