@@ -82,12 +82,50 @@ struct EcoSystem {
     void *unk21EC;
     void *unk21F0;
     void *unk21F4;
+    void func_0013ED30(void);
+    void func_0013ECF0(void *a1, void *a2, EcoVirt *a3, EcoVirt *a4, void *a5);
+    void func_0014E1C0(void *a1, int a2);
+    int func_0014E200(void);
     EcoSystem *func_0014E3E0(int param_1);
     void func_0014E4E0(void);
     void func_00157660(void);
 };
 
 extern EcoSystem *D_002BF250;
+extern int D_002BF27C;
+extern int D_002A7690;
+extern int D_002A7694;
+extern int D_002A7698;
+extern int D_002A769C;
+extern int D_002A768C;
+extern char D_00286A00[];
+extern char D_002869E8[];
+extern char D_002869D0[];
+extern char D_002869C4[];
+
+/* log object at global root +0x18 */
+struct EcoLog {
+    char pad0[0x1934];
+    int unk1934;
+};
+
+struct EcoRoot {
+    char pad0[0x18];
+    EcoLog *unk18;
+};
+
+extern EcoRoot *D_002A8490;
+
+struct EcoGlobal {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6();
+    virtual void v7(int);
+};
+
+extern EcoGlobal *D_002EFDB8;
+
+void func_0013E1F0(EcoLog *log, int id, const char *fmt, ...);
+void func_0013E260(EcoLog *log, int id, const char *fmt, ...);
 
 void C_0014E1C0::func_0014E1C0(C_0013E9B0 **param_1, int param_2)
 {
