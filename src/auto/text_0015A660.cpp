@@ -60,6 +60,24 @@ struct C_0015B150 {
 };
 
 
+void C_0015A740::func_0015A740(void)
+{
+    for (int i = 0; i < 150; i++) {
+        recs[i].f08 = 0;
+        recs[i].f0C = 0;
+        recs[i].f00 = 0;
+        recs[i].f04 = 0;
+        recs[i].f10 = 0;
+        recs[i].f14 = 0;
+        recs[i].f18 = 0;
+        recs[i].f1C = 0;
+        recs[i].f24 = 0;
+        recs[i].f28 = 0;
+    }
+    f2C = 0;
+    f30 = 0;
+}
+
 void *C_0015A8E0::func_0015A8E0(int flags) {
     extern int D_00287534;
     void func_001E891B(void *);
