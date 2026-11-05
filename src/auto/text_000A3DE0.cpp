@@ -12,6 +12,26 @@ extern char D_002A5660[];
 extern char D_002A4A00[];
 extern char D_00276F28[];
 extern char D_0027B208[];
+extern char D_0027B1FC[];
+extern char D_0027B1E4[];
+extern char D_0027B1CC[];
+extern char D_0027B1C0[];
+extern char D_002A2734[];
+extern char D_002A2764[];
+
+struct C_000A4080_Stream {
+    int func_00169710(const char *name);
+    void func_00168CB0(char *buf, const char *key, void *dst);
+    void func_00168C20(const char *key, int def, void *dst);
+};
+
+struct BmxPlayerStart {
+    char pad0[0x24];
+    char unk24[0x80];
+    char unkA4[0x80];
+    int unk124;
+    int func_000A4080(C_000A4080_Stream *stream);
+};
 
 struct C_000A4150_flags {
     char pad0[0x180];
