@@ -260,11 +260,11 @@ void C_001AE700::func_001AE700(void)
         p += n;
     } while (i < 0x100);
     obj = f54;
-    v = (f2C - f28) * (D_00284758 * f68) + f28;
-    v = D_002AA3F0 * obj->f3C + (D_00275460 - D_002AA3F0) * v;
+    v = (f2C - f28) * ((double)f68 * D_00284758) + f28;
+    v = (double)obj->f3C * D_002AA3F0 + (D_00275460 - D_002AA3F0) * v;
     obj->f3C = v;
     obj->f40 = v;
-    b = (unsigned char)(D_00276E9C * f68);
+    b = (unsigned char)((double)f68 * D_00276E9C);
     obj = f54;
     obj->f64 = b;
     c = (unsigned int)b << 24;
