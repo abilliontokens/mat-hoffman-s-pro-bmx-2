@@ -43,10 +43,10 @@ struct BmxUIPageHPHChoice_000F1D00 {
 };
 
 void C_000F1B60::func_000F1B60(void) {
-    int off;
+    int i;
 
-    for (off = 0x38; off < 0x40; off += 4)
-        (*(C_001D6600 **)(off + (int)D_002B91AC))->func_001D6600();
+    for (i = 14; i < 16; i++)
+        ((C_001D6600 **)D_002B91AC)[i]->func_001D6600();
     D_002B91AC->f34->func_001D6600();
 }
 
