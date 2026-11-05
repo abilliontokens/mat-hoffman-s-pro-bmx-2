@@ -195,6 +195,7 @@ extern float D_0027E140;
 void *func_001E8A44(int size);
 
 struct BmxUIPageParkEditor {
+    void func_000C59C0();
     void *vtbl;
     char pad4[0x120];
     C_5E40_A *f124;
