@@ -9,6 +9,23 @@ struct C_00082430 {
     void func_00082430(float param_1);
 };
 
+extern float D_00275544;
+
+struct C_000823C0 {
+    char pad0[0x14];
+    float f14;
+    float f18;
+    char pad1C[0x3c];
+    unsigned char f58;
+    void func_000823C0(int param_1, int param_2);
+};
+
+struct C_000831C0 {
+    char pad0[0xd64];
+    float fd64;
+    int func_000831C0(void);
+};
+
 
 void C_00082400::func_00082400(short param_1)
 {
