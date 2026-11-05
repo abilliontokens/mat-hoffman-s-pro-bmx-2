@@ -153,6 +153,17 @@ struct C_001332E0 {
     int func_001332E0(C_001332E0 *o);
 };
 
+static inline int ListHas(C_001332E0 **list, int n, C_001332E0 *x)
+{
+    int i;
+    for (i = 0; i < n; i++) {
+        if (list[i] == x) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
 void *func_001E8A44(int size);
 void func_001E891B(void *ptr);
 int func_00135C70(int a, int b, int c, int d);
