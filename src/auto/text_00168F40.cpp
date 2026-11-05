@@ -83,11 +83,12 @@ struct C_00168F40 {
     int slotCount;
     S_00168F40_Slot slots[16];
     S_00168F40_Index *f4B8;
-    void *f4BC;
+    int f4BC;
     void *f4C0;
     void *f4C4;
     void *f4C8;
     int func_00168300(int id);
+    int func_00169490(int name, int flag);
     void func_001692E0(int h);
     int func_00168F40(int id);
     void func_001691E0(void);
