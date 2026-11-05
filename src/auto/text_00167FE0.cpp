@@ -64,8 +64,9 @@ struct C_00168280 {
     int f4bc;
     int f4c0;
     int f4c4;
-    int f4c8;
+    char *f4c8;
     C_00168280 *func_00168280(void);
+    int func_00168300(const char *name);
     int func_00168550(const char *name, char *dst, int size);
     int func_00168C50(const char *name, float def, float *out);
     int func_00168CB0(const char *name, const float *def, float *out);
