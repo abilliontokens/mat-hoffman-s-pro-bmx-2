@@ -120,7 +120,11 @@ struct C_00038760 {
     int *func_00038A10(int param_1, int *param_2);
     int func_00038A70(void *param_1, void **param_2);
     int func_00038760(float x, float y, float z, int unused, int *out);
+    int func_00038B10(void *obj, S_000392B0_Vec4 va, S_000392B0_Vec4 vb, int *ox, int *oy, int *oz, int flag);
+    int func_000392B0();
 };
+extern float D_00276E9C;
+extern float D_00276E98;
 
 int C_00038760::func_00038760(float x, float y, float z, int unused, int *out)
 {
