@@ -7,6 +7,7 @@ extern float D_00275460;
 
 void func_001E891B(void *ptr);
 void func_0011AC30(float *out, float *in);
+void func_000265C0(float *m, float *t, float *a, float *b, int c, int d);
 void func_0011ACC0(void *a, void *b, float *m);
 
 struct S_00198B70_MatCopy {
