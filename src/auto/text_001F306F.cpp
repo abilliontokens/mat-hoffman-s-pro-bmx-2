@@ -195,6 +195,15 @@ undefined * C_001F3237::func_001F3237(void)
 }
 
 #pragma optimize("sy", on)
+C_001F3244 *C_001F3244::func_001F3244(char *param_1) {
+    extern int D_00295F1C;
+    ((C_001F318D *)this)->func_001F318D(&param_1);
+    unk0 = (int)&D_00295F1C;
+    return this;
+}
+#pragma optimize("", on)
+
+#pragma optimize("sy", on)
 C_001F325D *C_001F325D::func_001F325D(int param_1) {
     extern int D_00295F1C;
     void __stdcall func_001F31D2(int);
