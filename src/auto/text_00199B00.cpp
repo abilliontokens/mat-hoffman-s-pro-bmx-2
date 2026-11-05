@@ -72,6 +72,8 @@ struct C_00199BE0 {
     void func_00199D70(int a0, int a1, int a2, float angle);
     void func_00199E30(int a0, int a1, int a2, int a3, int a4);
     void func_0019A0A0(float sx, float sy, float sz);
+    void func_001985D0(int *flag, S_0019A680_V4 *a, S_0019A680_V4 *b, float *m, int n);
+    void func_0019A680(S_0019A680_V4 *center, S_0019A680_V4 *extent);
 };
 
 void func_001977B0(S_00199B00_F4 *out, const S_00199B00_F4 *in);
