@@ -24,3 +24,12 @@ struct SoultreeCollisionObject {
 
 extern "C" void __stdcall func_0019BBD0(unsigned short param_1, int *param_2, int param_3, char *param_4, char *param_5);
 extern "C" void __stdcall func_0019BD20(unsigned short param_1, int *param_2, char *param_3, char *param_4, int param_5);
+
+void SoultreeCollisionObject::func_0019CCA0(int param_1)
+{
+    if (unkA6 != 0) {
+        func_0019CBF0(unkA4, unkA6);
+    }
+    unkA7 = unkA7 & 0xef;
+    func_00157A00(param_1);
+}
