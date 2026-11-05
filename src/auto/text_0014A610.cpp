@@ -23,6 +23,13 @@ struct VSEntry {
     char fD;
 };
 
+struct VSEntry2 {
+    int f0;
+    int f4;
+    int f8;
+    int fC;
+};
+
 struct C_0014A520 {
     C_0014A520 *func_0014A520(int a);
     void func_0014A560(int a, int b);
@@ -63,6 +70,66 @@ void C_0014A630::func_0014A630(void) {
     unk8 = -1;
 }
 
+void C_0014A610::func_0014A650(C_0014A610 *src)
+{
+    if (src == 0) {
+        func_001FF220((int)src);
+        unk0 = 0;
+        unk4 = 0;
+        unk8 = 0;
+        return;
+    }
+    if (unk4 == src->unk8 && unk8 != 0) {
+        func_001FEEF0(src->unk8, 0);
+    }
+    int v = (unk0 == src->unk4) ? 0 : src->unk4;
+    if (v != 0 || unk8 != 0) {
+        func_001FEB90(v, 0);
+    }
+    unk0 = src->unk4;
+    unk4 = src->unk8;
+    unk8 = 0;
+}
+
+int func_0014A7B0(VSEntry *entries, unsigned int *tokens)
+{
+    for (int i = 0; i < 16; i++) {
+        entries[i].f0 = 0;
+        entries[i].f4 = 0;
+        entries[i].f8 = 2;
+        entries[i].fC = 0;
+        entries[i].fD = 0;
+    }
+    int count = 0;
+    int offset = 0;
+    int index = 0;
+    while (*tokens != 0xffffffff) {
+        unsigned int tok = *tokens;
+        unsigned int op = tok >> 29;
+        if (op == 1) {
+            index = tok & 0xf;
+            offset = 0;
+        } else if (op == 2) {
+            if (tok & 0x10000000) {
+                offset += ((tok >> 16) & 0xf) * 4;
+            } else if (tok & 0x18000000) {
+                offset += (tok >> 16) & 0xf;
+            } else {
+                VSEntry *e = &entries[tok & 0x1f];
+                e->f0 = index;
+                e->f4 = offset;
+                e->f8 = (tok >> 16) & 0xff;
+                e->fC = 0;
+                e->fD = 0;
+                offset += func_0014A6C0(e->f8);
+                count++;
+            }
+        }
+        tokens++;
+    }
+    return count;
+}
+
 void *C_0014A870::func_0014A870(int flags) {
     extern int D_00286870;
     void func_001E891B(void *);
@@ -72,5 +139,20 @@ void *C_0014A870::func_0014A870(int flags) {
         func_001E891B(this);
     }
     return this;
+}
+
+void C_0014A8A0::func_0014A8A0(void)
+{
+    for (int i = 0; i < f8; i++) {
+        VSEntry *e = &f14[i];
+        if (e->fC > 0 && e->f4 == 0) {
+            C_0014A520 *p = (C_0014A520 *)func_001E8A44(0xc);
+            if (p != 0) {
+                p = p->func_0014A520(e->f8);
+            }
+            p->func_0014A560(e->f0, i);
+            e->f4 = (int)p;
+        }
+    }
 }
 
