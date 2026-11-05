@@ -103,6 +103,12 @@ int C_001A13F0::func_001A1450(int a)
     return !CheckFailed(unk4->func_001D6C40(a, 1), 0x51);
 }
 
+int C_001A13F0::func_001A14A0(int a)
+{
+    if (unk4 == 0) return 0;
+    return !CheckFailed(unk4->func_001D6C40(a, 1), 0x5d);
+}
+
 undefined4 C_001A15C0::func_001A15C0(undefined4 *param_1)
 {
   int in_ECX = (int)this;
