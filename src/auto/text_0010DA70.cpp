@@ -148,6 +148,25 @@ struct C_0010DD90 {
     void func_0010DD90(float, int, int, int, int, int);
 };
 
+struct Table_10DED0 {
+ char pad0[0x20EC]; int flags[70]; int names[70]; int values[70];
+ void func_000A4AF0(int, char *);
+};
+struct Owner_10DED0 { char pad0[0x52C]; Table_10DED0 *f52C; };
+struct Queue_10DED0 { int count; int ids[5]; int modes[5]; void func_00109340(int,int); };
+struct C_0010DED0 {
+ char pad0[0x24]; Owner_10DED0 *f24;
+ char pad28[0x960-0x28]; float f960;
+ char pad964[0x1084-0x964]; Queue_10DED0 *f1084;
+ char pad1088[0x111C-0x1088]; int f111C;
+ char pad1120[8]; int f1128;
+ char pad112C[0x1168-0x112C]; int f1168;
+ char pad116C[0x11DC-0x116C]; int f11DC;
+ char pad11E0[8]; int f11E8;
+ int func_00108270(int,int);
+ void func_0010DED0(int,int);
+};
+
 struct C_0010E260 {
     void func_0010E260(void);
 };
