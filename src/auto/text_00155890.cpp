@@ -52,6 +52,14 @@ struct S_00156030_Player {
     char pad_3C4[0x3d4 - 0x3c4];
     int unk3D4;
     int unk3D8;
+    void Flinch(void)
+    {
+        if (unk39C->unk108 != 0) {
+            func_001C6DA0(unk3D8, 1);
+        } else {
+            func_001C6DA0(unk3D4, 1);
+        }
+    }
 };
 
 struct TikiPlayerFlinchState {
@@ -130,6 +138,15 @@ int TikiPlayerAirborneState::func_00156030(int param_1)
         func_001C6DA0(p->unk3BC, 1);
     }
     return 1;
+}
+
+void TikiPlayerFlinchState::func_001560A0(void)
+{
+    if (unk8->unk39C->unk108 != 0) {
+        func_001C6DA0(unk8->unk3D8, 1);
+    } else {
+        func_001C6DA0(unk8->unk3D4, 1);
+    }
 }
 
 void C_00156740::func_00156740(void)
