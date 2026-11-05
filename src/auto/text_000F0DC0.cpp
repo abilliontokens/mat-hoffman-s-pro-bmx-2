@@ -40,8 +40,28 @@ struct LookupObj_000F1980 {
     int *func_0018C160(int a);
 };
 
+/* input mapping object at D_002A8490+8 */
+struct S_KeyMap_000F1580 {
+    int func_00136170(int a, int b, int c);
+};
+
+struct S_Bubble_000F1580 {
+    void func_00094E40(int a, int b, int c);
+};
+
+struct S_2E0_000F1580 {
+    char pad0[0x2fc];
+    S_Bubble_000F1580 *f2fc;
+    char pad300[0x464 - 0x300];
+    int f464;
+};
+
 struct GObjRoot_000F1980 {
-    char pad0[0x2ec];
+    char pad0[8];
+    S_KeyMap_000F1580 *f8;
+    char padC[0x2e0 - 0xC];
+    S_2E0_000F1580 *f2E0;
+    char pad2E4[0x2ec - 0x2e4];
     LookupObj_000F1980 *p2EC;
 };
 
