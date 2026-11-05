@@ -14,6 +14,119 @@ struct S_00176250_Pal {
   int func_00135400(void);
 };
 
+u32 func_00176250(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, S_00176250_Pal *pal)
+{
+  u8 *srow = src;
+  u8 *drow = dst;
+  u8 *tbl;
+  Rgb3 *colors;
+  int key;
+  int i;
+  int x;
+  int y;
+  u8 *s;
+  u8 *s1;
+  u8 *d;
+  u8 *p;
+  Rgb3 c0;
+  Rgb3 c1;
+  Rgb3 c2;
+  Rgb3 c3;
+  int r = 0;
+  int g = 0;
+  int b = 0;
+  int n;
+  if (pal != 0) {
+    tbl = (u8 *)pal->func_00135410();
+    if (tbl != 0) {
+      colors = (Rgb3 *)pal->func_00135400();
+      if (colors != 0) {
+        key = -1;
+        p = (u8 *)colors;
+        i = 0;
+        do {
+          if (p[2] == 0xff && p[1] == 0 && p[0] == 0xff) {
+            key = i;
+            break;
+          }
+          i++;
+          p += 3;
+        } while (i < 256);
+        if (key != -1) {
+          for (y = height; y > 0; y--) {
+            s = srow;
+            d = drow;
+            for (x = width; x > 0; x--) {
+              b = 0;
+              g = 0;
+              r = 0;
+              n = 0;
+              s1 = s + srcPitch;
+              c0 = colors[s[0]];
+              c1 = colors[s[1]];
+              c2 = colors[s1[0]];
+              c3 = colors[s1[1]];
+              if (s[0] != key) {
+                r += c0.r;
+                g += c0.g;
+                b += c0.b;
+                n++;
+              }
+              if (s[1] != key) {
+                r += c1.r;
+                g += c1.g;
+                b += c1.b;
+                n++;
+              }
+              if (s1[0] != key) {
+                r += c2.r;
+                g += c2.g;
+                b += c2.b;
+                n++;
+              }
+              if (s1[1] != key) {
+                r += c3.r;
+                g += c3.g;
+                b += c3.b;
+                n++;
+              }
+              if (n >= 2) {
+                *d++ = tbl[((((r + n * 4) / n & ~7) << 5 | ((g + n * 4) / n & ~7)) << 2) | ((b + n * 4) / n >> 3)];
+              } else {
+                *d++ = (u8)key;
+              }
+              s += 2;
+            }
+            srow += srcPitch * 2;
+            drow += dstPitch;
+          }
+        } else {
+          for (y = height; y > 0; y--) {
+            s = srow;
+            d = drow;
+            for (x = width; x > 0; x--) {
+              s1 = s + srcPitch;
+              c0 = colors[s[0]];
+              c1 = colors[s[1]];
+              c2 = colors[s1[0]];
+              c3 = colors[s1[1]];
+              r = c3.r + c2.r + c1.r + c0.r + 0x10;
+              b = c3.b + c2.b + c1.b + c0.b + 0x10;
+              g = c3.g + c2.g + c1.g + c0.g + 0x10;
+              *d++ = tbl[((r & ~31) << 5) | (b >> 5) | (g & ~31)];
+              s += 2;
+            }
+            srow += srcPitch * 2;
+            drow += dstPitch;
+          }
+        }
+        return 1;
+      }
+    }
+  }
+  return 0;
+}
+
 u32 func_00176CD0(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch)
 {
   u8 *d;
