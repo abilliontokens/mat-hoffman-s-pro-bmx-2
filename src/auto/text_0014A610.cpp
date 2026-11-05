@@ -192,6 +192,23 @@ void C_0014A8A0::func_0014A910(int param_1)
     }
 }
 
+void *C_0014A960::func_0014A960(void) {
+    extern int D_00286904;
+    extern int D_00286870;
+    extern int D_002868F0;
+    extern int D_002868DC;
+    extern int D_002868C8;
+    extern int D_002868B4;
+    func_001AC3A0();
+    unk0 = (int)&D_00286870;
+    func_001AC680((int)&D_00286904, -0x54);
+    func_001AC680((int)&D_002868F0, -0x53);
+    func_001AC680((int)&D_002868DC, -0x52);
+    func_001AC680((int)&D_002868C8, -0x51);
+    func_001AC680((int)&D_002868B4, -0x40);
+    return this;
+}
+
 void *C_0014AA40::func_0014AA40(int flags) {
     extern int D_00286894;
     void func_001E891B(void *);
