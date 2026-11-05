@@ -779,13 +779,12 @@ int C_00095060::func_00095520(int n)
 
 int C_00095060::func_000955C0(void *id)
 {
-    int n = ids.count;
     int i;
 
-    if (n == 0) {
+    if (ids.count == 0) {
         return 0;
     }
-    for (i = 0; i < n; i++) {
+    for (i = 0; i < ids.count; i++) {
         if (ids.at(i) == id) {
             return 1;
         }
