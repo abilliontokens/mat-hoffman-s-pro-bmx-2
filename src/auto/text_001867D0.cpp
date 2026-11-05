@@ -68,3 +68,12 @@ struct C_00186B90 {
     int f370;
     C_00186B90 *func_00186B90();
 };
+
+C_00187640 *C_00187640::func_00187640(void *param)
+{
+    ((C_00157600 *)this)->func_00157600(param);
+    f24 = 0;
+    f28 = 0;
+    vtbl = (void *)&D_00289B5C;
+    return this;
+}
