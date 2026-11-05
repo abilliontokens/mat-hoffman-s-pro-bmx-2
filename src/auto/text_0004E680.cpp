@@ -1,6 +1,35 @@
 /* 16 functions from 0x0004E680 to 0x0004F5E0, found by Ghidra. */
 #include "common.h"
 #include <string.h>
+
+struct H_Player {
+ char p0[0xa40]; int score; char pa44[8]; float fa4c; int fa50; float fa54;
+ char pa58[0x600]; float f1058; char p105c[0x154]; int f11b0;
+ int func_00108660(); void func_001084E0();
+};
+struct H_Players { char p0[0x24]; int count; char p28[0x180]; H_Player *items[1]; };
+struct H_Item { char p0[0x2e8]; int id; unsigned char flags; };
+struct H_Part { int pad; H_Item *item; };
+struct H_Scene { char p0[0x28]; H_Part **parts; };
+struct H_World { char p0[0x3b4]; H_Scene *scene; char p3b8[0x128]; H_Players *players; };
+struct H_Rules { int func_0005B960(int, float); };
+struct H_Result { char p0[0x168]; int done; void func_00067D60(int,int); void func_000684B0(); };
+struct H_Overlay { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(int); };
+struct H_State { char p0[0x10]; float time; char p14[0xc]; int mode; };
+struct H_Global { char p0[0x2e0]; H_State *state; };
+struct C_0004EF30 {
+ char p0[0x64]; H_World *world; H_Rules *rules;
+ char p6c[0x24]; int count;
+ char p94[0x90]; float f124; float f128; int f12c;
+ char p130[0x60]; H_Result *result;
+ char p194[0x60]; int f1f4;
+ char p1f8[0x94]; int index;
+ char p290[0xac0]; H_Overlay *overlay; int ready;
+ void func_00157A00(int); void func_0004EA20(H_Item *); void func_0004E7B0(); void func_00032A20(); void func_00031260(int);
+ void func_0004EF30(int);
+};
+extern float D_00275544;
+
 struct M_Base { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); };
 struct M_A : M_Base { M_A *func_0005ECA0(int); void func_0005EDC0(void *); };
 struct M_C : M_Base { M_C *func_000715B0(int); void func_00071880(void *); };
