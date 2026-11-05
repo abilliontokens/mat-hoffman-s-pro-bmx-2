@@ -112,6 +112,11 @@ struct BmxUIPageGameOptions {
     float unk318, unk31c;
     char pad320[8];
     int unk328;
+    char pad32c[8];
+    unsigned char *unk334;
+    void func_000F7400(float);
+    void func_000F63D0();
+    void func_001BED00(float);
     void func_000F7F80(void);
     void func_000F75D0(void);
     void func_000CC0B0(void);
