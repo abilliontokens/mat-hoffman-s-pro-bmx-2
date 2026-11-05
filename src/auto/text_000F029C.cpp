@@ -2,6 +2,23 @@
 #include "common.h"
 
 extern int D_002823DC;
+extern int D_0028F5DC;
+
+struct C_000F0A00_Widget {
+    void func_001B1980();
+    void func_001B2270(unsigned int color);
+    void func_001B19A0(int v);
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, float a7, int a8, float a9, int a10, float a11, float a12, int a13);
+};
+
+struct C_000F0A00 {
+    char pad0[0x3C4];
+    int f3C4;
+    char pad3C8[0x270];
+    C_000F0A00_Widget *f638[9];
+    int f65C;
+    void func_000F0A00();
+};
 
 struct DelObjC_000F0 {
     virtual void Destroy(int a0);
