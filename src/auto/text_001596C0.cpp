@@ -55,6 +55,53 @@ void func_001E891B(void *p);
 int func_001EA426(char *a, char *b);
 
 
+void GrindLineManager::func_0015A180(void *arg)
+{
+    int i;
+    int found;
+
+    if (arg == 0) {
+        return;
+    }
+    found = 0;
+    for (i = 0; !found && i < unk24; i++) {
+        if (unk34[i] == arg) {
+            ((C_00193870 *)unk34[i]->unk78)->func_00193870(unk34[i]);
+            if (unk34[i]->unk78 != 0) {
+                ((C_00193500 *)unk34[i]->unk78)->func_00193500();
+                func_001E891B(unk34[i]->unk78);
+            }
+            if (unk34[i] != 0) {
+                if (unk34[i]->unk14 != 0) {
+                    func_001E891B(unk34[i]->unk14);
+                }
+                if (unk34[i]->unk18 != 0) {
+                    func_001E891B(unk34[i]->unk18);
+                }
+                if (unk34[i]->unk1C != 0) {
+                    func_001E891B(unk34[i]->unk1C);
+                }
+                func_001E891B(unk34[i]);
+            }
+            unk34[i] = 0;
+            found = 1;
+        }
+    }
+    unk28--;
+}
+
+void GrindLineManager::func_0015A490(char *a1, int a2, int a3)
+{
+    int i;
+
+    for (i = 0; i < unk28; i++) {
+        if (func_001EA426(a1, unk34[i]->unk14) == 0) {
+            unk34[i]->unk7C = a3;
+            unk34[i]->unk80 = a2;
+        }
+    }
+}
+
 void C_0015A4F0::func_0015A4F0(int a0, int a1) {
     ((C_0015A4F0*)((char*)this + 64))->func_001A4790(unk3C, 1, a0, a1, 0, 0, 0);
 }
