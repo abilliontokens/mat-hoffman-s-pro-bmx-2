@@ -175,31 +175,28 @@ int C_000DCC20::func_000DCC20(void)
     void *mem = 0;
     int ret = 0;
     if (unk2D0 != 0) {
-        char *src;
         mem = func_001E8A44((int)&D_00080000);
         func_001ADCC0(buf, 0x104, &D_00277A04, &D_00277A0C, unk2D8);
-        src = (char *)mem;
-        if (D_002A8490->f2E0->f2CC->func_001D4590((char *)unk2BC->func_000928D0(), buf, (int)src, (int)&D_00080000) != 1) {
+        if (D_002A8490->f2E0->f2CC->func_001D4590((char *)unk2BC->func_000928D0(), buf, (int)mem, (int)&D_00080000) == 1) {
+            for (int i = 0; i < 4; i++) {
+                void *dst = arr368[i]->v40(0, 0, 0);
+                memcpy(dst, (char *)mem + i * (int)&D_00020000, 0x20000);
+            }
+            func_001ADCC0(buf, 0x104, &D_00277A04, &D_00277A0C, unk2DC);
+            if (D_002A8490->f2E0->f2CC->func_001D4590((char *)unk2BC->func_000928D0(), buf, (int)mem, (int)&D_00080000) == 1) {
+                for (int i = 0; i < 4; i++) {
+                    void *dst = arr378[i]->v40(0, 0, 0);
+                    memcpy(dst, (char *)mem + i * (int)&D_00020000, 0x20000);
+                }
+                unk298 = 0;
+            } else {
+                unk298 = 0;
+                goto done;
+            }
+        } else {
             unk298 = 0;
             goto done;
         }
-        for (int i = 0; i < 4; i++) {
-            void *dst = arr368[i]->v40(0, 0, 0);
-            memcpy(dst, src, 0x20000);
-            src += 0x20000;
-        }
-        func_001ADCC0(buf, 0x104, &D_00277A04, &D_00277A0C, unk2DC);
-        src = (char *)mem;
-        if (D_002A8490->f2E0->f2CC->func_001D4590((char *)unk2BC->func_000928D0(), buf, (int)src, (int)&D_00080000) != 1) {
-            unk298 = 0;
-            goto done;
-        }
-        for (int i = 0; i < 4; i++) {
-            void *dst = arr378[i]->v40(0, 0, 0);
-            memcpy(dst, src, 0x20000);
-            src += 0x20000;
-        }
-        unk298 = 0;
     }
     ret = 1;
 done:
