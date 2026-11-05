@@ -119,6 +119,17 @@ extern float D_002A9974;
 extern float D_002A9978;
 extern float D_002A997C;
 
+/* growable pointer array (3 methods in one Ghidra symbol at 0x194190) */
+struct C_00194190 {
+    char pad0[0x24];
+    int f24;
+    int f28;
+    int f2c;
+    char pad30[0x10];
+    int *f40;
+    void func_00194190(int a0);
+};
+
 /* SelectiveGravityModel */
 struct C_00194130 {
     void *vtbl;
