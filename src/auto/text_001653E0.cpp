@@ -84,6 +84,7 @@ struct C_00165E20 {
     int *f1F0;                 /* 0x1F0 */
     int func_00164650(int a);
     void func_00165E20(Vec4_165EF0 *out, C_00165E20_Arg1 *a1, f32 a2, int a3, void *a4);
+    Vec4_165EF0 func_00165E20(C_00165E20_Arg1 *a1, f32 a2, int a3, void *a4);
 };
 
 void *func_001E8AA5(unsigned int size);
@@ -113,6 +114,20 @@ void C_001659D0::func_001659D0(int *a, int b, int c)
             return;
         }
     }
+}
+
+void C_00165E20::func_00165E20(Vec4_165EF0 *out, C_00165E20_Arg1 *a1, f32 a2, int a3, void *a4)
+{
+    Vec4_165EF0 v;
+    int idx;
+    a2 = a2 * a1->f38;
+    idx = (u8)func_00164650(a3);
+    v.x = v.y = v.z = 0.0f;
+    v.w = 1.0f;
+    a1->f14[idx]->v3(a2, &v);
+    if (a4)
+        func_001640D0(f4, f1EC[f1F0[a1->f14[idx]->f4]].f34->f170, fC, &v);
+    *out = v;
 }
 
 void C_00165EF0::func_00165EF0(Vec4_165EF0 *out, C_00165EF0_Arg1 *a1, f32 a2, int a3, void *a4)
