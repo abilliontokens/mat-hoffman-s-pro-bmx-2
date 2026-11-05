@@ -10,6 +10,34 @@ struct C_0013FA70 {
 };
 
 
+struct C_0013FA10 {
+    void *vtbl;
+    void *func_0013FA10(int a0);
+};
+
+struct C_0013F7B0 {
+    void *vtbl;
+};
+
+struct C_0013FA30_Data {
+    void *vtbl;
+    int f4;
+    int f8;
+    void func_0015B150();
+};
+
+struct C_0013FA30 {
+    char pad0[0x24];
+    C_0013FA30_Data *f24;
+    void func_0013FA30(void);
+};
+
+struct C_0013FA90 {
+    void *vtbl;
+    void func_0015B170();
+    void *func_0013FA90(int flags);
+};
+
 undefined4 C_0013FA70::func_0013FA70(undefined4 param_1)
 {
   int __stdcall func_0015B210(int);
