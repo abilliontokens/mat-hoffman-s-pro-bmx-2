@@ -298,6 +298,49 @@ int C_001CC3C0::func_001CCAC0(int a, int b, int c, int d)
  return 1;
 }
 
+XboxMusic::XboxMusic(int a, S_XboxMusicArg *b, int c)
+{
+    ((C_0001C980 *)this)->func_0001C980(c);
+    vtbl = &D_0028EF54;
+    l0.reset();
+    l1.reset();
+    l2.reset();
+    f2C = b;
+    f9C = b->f28;
+    f30 = a;
+    f38 = 5;
+    l0.init(1);
+    l1.init(1);
+    l2.init(1);
+    f98 = 100;
+    f8C = 100;
+    f90 = 100;
+    f34 = 0;
+    fA8 = 0;
+    f78 = 0;
+    f7C = 0;
+    f24 = 0;
+    fA4 = 0;
+    fAC = 0;
+    f80 = 0;
+    f84 = 0;
+    f88 = 0;
+    f94 = 2;
+    fA0 &= 0xfc;
+    fB4 = 0;
+    fB8 = 0;
+    fBC = 0;
+    fB0 = 0;
+    fC0 = 0;
+    fC4 = -1;
+    fC8 = 0;
+    fCC = 0;
+    f1A4 = -1;
+    f1A8 = -1;
+    for (int i = 0; i < 0x35; i++)
+        fD0[i] = 0;
+}
+
 bool C_001CD220::func_001CD220(void)
 {
     return fCC == 1;

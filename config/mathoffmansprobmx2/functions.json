@@ -524437,6 +524437,7 @@
  },
  "names": {
   "func_00023C30": "C_00023C30::C_00023C30",
+  "func_0012F460": "C_0012F460::C_0012F460",
   "func_00134980": "C_00134980::C_00134980",
   "func_00135470": "PhysicsParticle::PhysicsParticle",
   "func_00142E90": "C_00142E90::C_00142E90",
@@ -524454,6 +524455,7 @@
   "func_001BA5E0": "C_001BA5E0::C_001BA5E0",
   "func_001BB470": "C_001BB470::C_001BB470",
   "func_001C4F40": "C_001C4F40::C_001C4F40",
+  "func_001CD090": "XboxMusic::XboxMusic",
   "func_001CDC20": "C_001CDC20::C_001CDC20",
   "func_001D5760": "C_001D5760::C_001D5760",
   "func_001D5E90": "C_001D5E90::C_001D5E90",
