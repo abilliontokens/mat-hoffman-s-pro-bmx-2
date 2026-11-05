@@ -103,6 +103,7 @@ struct C_001CC3C0 {
     int f1F8;               /* 0x1F8 */
     char pad1FC[0xC];       /* 0x1FC */
     u8 f208;                /* 0x208 */
+    int func_001CCAC0(int a, int b, int c, int d);
     int func_001CC3C0(int param_1);
     int func_001CC460(int param_1);
     int func_001CCA10(void);
