@@ -43,7 +43,7 @@ struct C_00157600 {
 };
 
 struct C_00167AC0_Sub {
-    char pad0[0x8];
+    int pad0[2];
     void func_001D3F50(void);
 };
 
