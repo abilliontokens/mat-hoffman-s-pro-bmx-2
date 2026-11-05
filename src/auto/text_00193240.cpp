@@ -46,6 +46,69 @@ struct C_00194110 {
     undefined4 func_00194110(byte param_1);
 };
 
+extern int D_0028AD14;
+extern f32 D_00275BF8;
+extern f32 D_002A98DC;
+extern u32 D_002A9904;
+extern u32 D_002A9908;
+extern u32 D_002A990C;
+extern u32 D_002A9910;
+
+void func_001E8390(void *p);
+
+struct C_00157600 {
+    void func_00157600(int a0);
+    void func_00157660(void);
+};
+
+struct C_00192B50 {
+    Handler_00193240 *func_00192B50(int a0);
+};
+
+struct S_00193240_V4 {
+    f32 x;
+    f32 y;
+    f32 z;
+    int w;
+};
+
+struct DelObj_00193240 {
+    virtual void Destroy(int a0);
+};
+
+/* SegmentedCord */
+struct C_00193B50 {
+    void *vtbl;
+    char pad4[0x20];
+    u32 f24;
+    u32 f28;
+    u32 f2C;
+    u32 f30;
+    u32 f34;
+    u32 f38;
+    u32 f3C;
+    u32 f40;
+    u32 f44;
+    u32 f48;
+    void *f4C;
+    u32 f50;
+    DelObj_00193240 **f54;
+    void *f58;
+    C_00193B50 *func_00193B50(int a0);
+    void func_00193BC0(void);
+};
+
+struct S_00193AF0 {
+    char pad0[0x2c];
+    f32 f2C;
+    f32 f30;
+    f32 f34;
+    f32 f38;
+    f32 f3C;
+    f32 f40;
+    f32 f44;
+};
+
 struct V4_00194130 {
     float x, y, z, w;
 };
@@ -104,9 +167,11 @@ void func_00193500(void)
 
 void Node_00193240::func_001937F0(void *a1, void *a2, void *a3)
 {
-    Handler_00193240 *h = f8;
-    int r = h->v6(a2, a3, f14);
+    int r;
+    Handler_00193240 *h;
 
+    h = f8;
+    r = h->v6(a2, a3, f14);
     if (r != f14) {
         h->v9(a1, f14);
         if (r != 0) {
@@ -158,8 +223,11 @@ C_00194130 *C_00194130::func_00194130(int a0)
     f30.x = 0;
     f28 = 0;
     f24 = 0;
-    f2c = 35.2f;
-    f30 = D_002A9970;
+    f2c = 32.2f;
+    f30.x = D_002A9970.x;
+    f30.y = D_002A9974;
+    f30.z = D_002A9978;
+    f30.w = D_002A997C;
     f40 = 0;
     return this;
 }
