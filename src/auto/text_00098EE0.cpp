@@ -62,6 +62,7 @@ struct C_00097FD0 {
     void func_00099590(void);
     void func_000999E0(void);
     void func_00099D40(int param);
+    void func_00099600(f32 lo, f32 hi);
 };
 
 void C_00097FD0::func_00099500(const char *name) {
