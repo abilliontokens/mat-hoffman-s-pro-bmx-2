@@ -172,7 +172,7 @@ struct C_001BC870_Tbl {
 
 struct C_001BC870_A {
     C_001BC870_A *func_001BF6F0(int a, int b);
-    void *func_001BF7C0(int a, char *name, C_001BC870_Tbl *t, int b);
+    void *func_001BF7C0(int a, char *name, C_001BC870_Tbl *t);
 };
 
 struct C_001BC870_B {
