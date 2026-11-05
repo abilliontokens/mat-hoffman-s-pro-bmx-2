@@ -216,6 +216,7 @@ struct C_000536A0 {
 
 extern char D_00277A0C[];
 extern char D_00277A04[];
+extern char D_00080000[];
 extern "C" int __cdecl func_001ADCC0(char *buf, int size, const char *fmt, const char *a, int b);
 
 struct C_52D90_Ui {
