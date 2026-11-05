@@ -5,7 +5,7 @@ extern int D_002795C4;
 void func_001E891B(void *p);
 
 struct S_00083B50_B {
-    char pad0[0x4];
+    int f0;
     u32 f4;
     char pad8[0x2C8];
     u32 f2D0;
