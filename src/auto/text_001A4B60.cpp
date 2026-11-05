@@ -295,3 +295,31 @@ void SplashScreenManager::func_001A5950(void)
     ((C_00157600 *)this)->func_00157660();
 }
 
+void SplashScreenManager::func_001A59F0(void)
+{
+    char buf[0x104];
+    char name[0x28];
+    C_00168280 *obj;
+    void *mem;
+    int i;
+
+    func_001ADCC0(buf, 0x104, D_00275678, D_002A5348, D_0028B960);
+    mem = func_001E8A44(0x4cc);
+    obj = mem != 0 ? ((C_00168280 *)mem)->func_00168280() : 0;
+    if (obj->func_00169490(buf, 0) != 0) {
+        obj->func_00169710(D_002769F8);
+        obj->func_00168A10(D_0028B950, &f1D0);
+        f1CC = (void **)func_001E8A44(f1D0 * 4);
+        for (i = 0; i < f1D0; i++) {
+            f1CC[i] = func_001E8A44(0x104);
+            func_001ADCC0(name, 0x28, D_002867E8, D_0028B94C, i + 1);
+            obj->func_00169710(name);
+            obj->func_00168550(D_0028B948, f1CC[i], -1);
+        }
+    }
+    if (obj != 0) {
+        obj->func_001691E0();
+        func_001E891B(obj);
+    }
+}
+
