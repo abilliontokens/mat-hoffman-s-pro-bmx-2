@@ -87,18 +87,17 @@ struct S_001DD779_Out {
     unsigned short fC[16];
 };
 
-/* cached sector table: header words, then two 6-entry tables and six 32-char names */
+/* 0x1c0 bytes copied to a global: header words, two 6-entry tables, six 32-char names */
 struct S_001DD8C5_Table {
-    u32 signature;
-    u32 id;
-    u32 index;
-    u32 pad;
-    u32 t1[6];
-    u32 t2[6];
-    unsigned short names[6][0x20];
+    u32 w[0x70];
 };
 
 extern S_001DD8C5_Table D_002AC840;
+extern u32 D_002AC844;
+extern u32 D_002AC848;
+extern u32 D_002AC850[];
+extern u32 D_002AC868[];
+extern unsigned short D_002AC880[][0x20];
 extern u32 D_002ACA0C[];
 extern char D_00031073;
 extern S_001DD779_Header D_002ACA00;
