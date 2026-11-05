@@ -28,6 +28,10 @@ struct S_00100030_Pos {
 };
 
 struct S_00100030_Item {
+    char pad0[0x38];
+    unsigned int color;
+    char pad3c[0x1c];
+    unsigned char flags;
     void func_001D5AD0();
     int func_000301D0();
     void func_001D6600(void);
