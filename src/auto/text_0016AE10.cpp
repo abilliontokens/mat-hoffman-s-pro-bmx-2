@@ -43,12 +43,12 @@ C_0016B770 *C_0016B770::func_0016B770(void *param)
 
 void C_0016B8B0::func_0016B8B0(int a, int b, int c, int d, int e)
 {
+    f34 = f24;
     C_Quad *p = &f24;
-    f34 = *p;
-    p->a = a;
-    p->b = b;
-    p->c = c;
-    p->d = d;
+    p->a = *(float *)&a;
+    p->b = *(float *)&b;
+    p->c = *(float *)&c;
+    p->d = *(float *)&d;
     f1F0 = e;
 }
 
