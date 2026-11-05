@@ -169,6 +169,36 @@ void C_000A7560::func_000A7560(void) {
     unkF0 = 0;
 }
 
+int SlotsR_000A74B0::func_000A7570(int state, int arg, int keep)
+{
+    int i;
+
+    if (a0[0] == state) {
+        a118[0] = arg;
+        return 0;
+    }
+    if (count < 10) {
+        count++;
+    }
+    for (i = count - 1; i > 0; i--) {
+        a0[i] = a0[i - 1];
+        a78[i] = (a78[i - 1] != 0 && aA0[i - 1] != 0) ? 1 : 0;
+        aC8[i] = aC8[i - 1];
+        aF0[i] = aF0[i - 1];
+        a118[i] = a118[i - 1];
+    }
+    a118[0] = arg;
+    a0[0] = state;
+    a78[0] = 1;
+    aA0[0] = 1;
+    aC8[0] = 1;
+    aF0[0] = 1;
+    if (keep == 0 && (state == 5 || state == 7 || state == 0 || state == 3 || state == 1 || state == 2)) {
+        aC8[0] = 0;
+    }
+    return 1;
+}
+
 void Models_000A77C0::func_000A77C0(int type, int idx)
 {
     if (type == 2) {
