@@ -29,6 +29,16 @@ struct C_000CC2B0 {
     void func_000CC0B0();
 };
 
+struct C_000CC1B0 {
+    char pad0[0x298];
+    C_000CB6B0_Widget *f298[2];
+    char pad2A0[0x1c];
+    int f2BC;
+    char pad2C0[0x38];
+    C_00093120 *f2F8;
+    void func_000CC1B0();
+};
+
 void C_000CC2B0::func_000CC0B0()
 {
     int i;
