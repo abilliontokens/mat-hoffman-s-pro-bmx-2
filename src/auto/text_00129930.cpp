@@ -6,8 +6,78 @@ extern int D_00283F64;
 void func_001E891B(void *p);
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 
+extern int D_00284008;
+void *func_001E8A44(int size);
+
 struct Vec4 {
     int x, y, z, w;
+};
+
+struct VCall31_129E10 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    virtual void v31(int a);
+};
+
+struct CacheNode_129930 {
+    void *f0;
+    int f4;
+    CacheNode_129930 *f8;
+};
+
+struct CacheList_129930 {
+    int f0;
+    CacheNode_129930 *f4;
+    void func_00160B90(void);
+};
+
+struct CacheVCall_129930 {
+    virtual void *v0(int a, int b);
+    virtual void v1(void *p);
+    virtual void v2();
+};
+
+struct Cache_129930 {
+    void *vtbl;
+    int f4;
+    int f8;
+    CacheList_129930 *fC;
+    void func_0012A2C0(void);
+    void func_0012A330(void);
+};
+
+struct ListEntry_12A200 {
+    int f0;
+    int f4;
 };
 
 struct BoxCollisionObject {
