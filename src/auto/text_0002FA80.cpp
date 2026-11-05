@@ -7,6 +7,11 @@ struct S_0002FA80_Sub {
     int f108;
 };
 
+struct S_00030240_Vec { float x,y,z,w; };
+struct C_00030240_Virtual {
+    virtual void set(void *v,int a);
+    virtual void get(void *v);
+};
 struct C_00194C60 {
     void func_00194C60(void);
 };
