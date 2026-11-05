@@ -172,7 +172,7 @@ int func_00140CD0(C_00168BE0 *cfg, const char *key, int def, int &out)
             } else if (strcmp(tok, "D3DCOLORWRITEENABLE_GREEN") == 0) {
                 out |= 0x100;
             } else if (strcmp(tok, "D3DCOLORWRITEENABLE_RED") == 0) {
-                out |= 0x10000;
+                out |= (int)&D_00010000;
             } else if (strcmp(tok, "D3DCOLORWRITEENABLE_ALL") == 0) {
                 out |= 0x1010101;
             }
