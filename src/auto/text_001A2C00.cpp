@@ -53,3 +53,17 @@ struct ResponseEmitter {
     S_001A2C00_Snd *func_001A2EF0(int id);
     int func_001A2F70(void);
 };
+
+int ResponseEmitter::func_001A2F70(void)
+{
+    f1c0 = 0;
+    func_001A2E80();
+    f1a0 &= 0xef;
+    if (f1bc == 0) {
+        return 0;
+    }
+    if (f1b4 != 0) {
+        f1b4 = 0;
+    }
+    return f1bc->v6(0);
+}
