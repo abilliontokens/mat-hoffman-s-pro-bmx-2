@@ -452,6 +452,36 @@ void C_UIGlobalManager::func_001BC810()
     }
 }
 
+extern "C" int strcmp(const char *a, const char *b);
+#pragma intrinsic(strcmp)
+void *C_001BC870::func_001BC870(C_001BC870_Tbl *t, void *name)
+{
+    char buf[0x104];
+    char path[0x104];
+    t->func_00169710(name);
+    t->func_00168550(D_0027A604, buf, 0x104);
+    if (!strcmp(buf, "Soultree")) {
+        t->func_00168550(D_00276310, buf, 0x104);
+        C_001BC870_A *a = (C_001BC870_A *)func_001E8A44(0x16c);
+        a = a ? a->func_001BF6F0(0, 1) : 0;
+        return func_001577A0(a->func_001BF7C0(1, buf, t), -1);
+    }
+    if (!strcmp(buf, "Soultree_Lightweight")) {
+        t->func_00168550(D_00276310, buf, 0x104);
+        C_001BC870_B *b = (C_001BC870_B *)func_001E8A44(0x16c);
+        b = b ? b->func_001BFA70(0, 1) : 0;
+        return func_001577A0(b->func_001BFB40(2, buf, t), -1);
+    }
+    if (!strcmp(buf, "Soultree_Character")) {
+        t->func_00168550(D_0027D880, buf, 0x104);
+        func_001ADCC0(path, 0x104, D_00275678, D_002A46E8, buf);
+        C_001BC870_C *c = (C_001BC870_C *)func_001E8A44(0x3a4);
+        c = c ? c->func_001BFDB0(0, 1) : 0;
+        return func_001577A0(c->vf38(3, path, t), -1);
+    }
+    return 0;
+}
+
 void *C_UIGlobalManager::func_001BCA30(unsigned int flags)
 {
     vtbl = (void *)&D_0028D3B4;
