@@ -83,7 +83,7 @@ struct C_0006D1D0 {
     int unkD0;
     C_0006D210_Obj *unkD4;
     char padD8[4];
-    int unkDC;
+    f32 unkDC;
     int unkE0;
     int unkE4;
     int unkE8;
