@@ -60,3 +60,16 @@ struct C_001033D0 {
     void func_00103350();
     void func_00103A70();
 };
+
+void *C_00103AE0::func_00103AE0(unsigned int flags)
+{
+    vtbl = (void *)&D_002826B4;
+    if (unk1B0) {
+        func_001E891B(unk1B0);
+    }
+    ((C_001C01B0 *)this)->func_001C01B0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
