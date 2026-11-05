@@ -90,6 +90,71 @@ struct Lights {
     void func_00157660();
 };
 
+extern "C" void func_001E891B(void *p);
+struct C_001691E0 { void func_001691E0(); };
+struct C_00188FD0 { void func_00188FD0(int a); };
+struct C_00185D00 { void func_00185D00(); };
+struct C_00188CB0 { void func_00188CB0(); };
+struct C_0015B4C0 { void func_0015B4C0(); };
+struct C_0015D250 { void func_0015D250(); };
+struct C_00193500 { void func_00193500(); };
+struct C_0001D370 { void func_0001D370(); };
+struct S_0018B5C0_VObj { virtual void v0(); virtual void v4(); virtual void v8(); };
+struct S_0018B5C0_VDel { virtual ~S_0018B5C0_VDel(); };
+struct S_0018B5C0_Glob { int pad0; C_0001D370 *f4; };
+extern C_0015B4C0 *D_002E28F4;
+extern int D_002EFE4C;
+extern C_0015D250 *D_002E2930;
+extern C_00193500 *D_002EFE78;
+extern S_0018B5C0_Glob *D_002A8490;
+extern int D_002EFDC8;
+extern void *D_0028A154;
+
+struct C_0018B5C0 {
+    void *vtbl;
+    char pad4[0x24];
+    C_001691E0 *f28;
+    char pad2c[0x33C - 0x2C];
+    void *f33c;
+    int f340;
+    C_00188FD0 *f344;
+    char pad348[0x384 - 0x348];
+    void *f384;
+    C_00185D00 *f388;
+    char pad38c[4];
+    void *f390;
+    void *f394;
+    char pad398[0x3A8 - 0x398];
+    void *f3a8;
+    char pad3ac[4];
+    void *f3b0;
+    char pad3b4[4];
+    C_00188CB0 *f3b8;
+    S_0018B5C0_VDel *f3bc;
+    char pad3c0[0x3D8 - 0x3C0];
+    void *f3d8;
+    char pad3dc[4];
+    void *f3e0;
+    char pad3e4[0x48C - 0x3E4];
+    void *f48c;
+    char pad490[0x49C - 0x490];
+    void *f49c;
+    char pad4a0[8];
+    void *f4a8;
+    void *f4ac;
+    S_0018B5C0_VObj **f4b0;
+    S_0018B5C0_VObj **f4b4;
+    S_0018B5C0_VObj **f4b8;
+    S_0018B5C0_VObj **f4bc;
+    char pad4c0[4];
+    void *f4c4;
+    void *f4c8;
+    void *f4cc;
+    void *f4d0;
+    void *f4d4;
+    void func_0018B5C0();
+};
+
 /* 16-byte block copied by value (a Vec4) */
 struct S_0018B180_Vec4 {
     int x, y, z, w;
