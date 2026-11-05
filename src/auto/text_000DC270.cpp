@@ -45,3 +45,25 @@ void C_000DCBF0::func_000DCBF0(void) {
     unk300 = 1048576000;
     unk304 = 0;
 }
+
+void C_000DD130::func_000DD130()
+{
+    C_001D6410 *p = unk330;
+    vtbl = &D_0027F84C;
+    if (p != 0) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+    if (unk2EC != 0) {
+        unk2EC->Destroy(1);
+        unk2EC = 0;
+    }
+    for (int i = 0; i < 2; i++) {
+        if (arr340[i] != 0) {
+            arr340[i]->Destroy(1);
+            arr340[i] = 0;
+        }
+    }
+    func_001BE3F0();
+}
+
