@@ -80,6 +80,28 @@ void C_0005B220::func_0005B220(void)
   return;
 }
 
+void C_0005B730::func_0005B730(void)
+{
+    f258 = D_002A8490->f2E0->f18;
+    f25C = D_002A8490->f2E0->f1C;
+    f260 = D_002A8490->f2E0->fC;
+    f264 = D_002A8490->f2E0->f38C;
+    f268 = D_002A8490->f2E0->f460;
+    f26C = D_002A8490->f2E0->f464;
+}
+
+void C_0005B850::func_0005B850(char *src)
+{
+    int delta = (int)unkCD0 - (int)src;
+    char c;
+
+    do {
+        c = *src;
+        *(char *)((int)src + delta) = c;
+        src++;
+    } while (c);
+}
+
 int C_0005B870::func_0005B870(void) {
     return (int)&unkCD0;
 }
