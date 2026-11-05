@@ -170,7 +170,7 @@ struct C_0010E810Slot {
     void func_00083710(int, int);
     void func_000836C0(float, int);
     void func_0008FB80(int, int, int, int, int);
-    void func_000836A0(int);
+    void func_000836A0(float);
 };
 
 struct C_0010E810Arr {
