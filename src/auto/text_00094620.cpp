@@ -127,7 +127,7 @@ struct S_00094A00_Obj {
     virtual void v15();
     virtual void v16();
     virtual void v17();
-    virtual void v18();
+    virtual void v18(int a);
     virtual void v19();
     virtual void v20();
     virtual void v21();
