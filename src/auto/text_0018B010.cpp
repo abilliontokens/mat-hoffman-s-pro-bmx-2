@@ -123,6 +123,49 @@ struct C_0018BF80 {
 };
 
 
+extern char D_002893B4[];
+extern char D_0028A0B4[];
+extern char D_0028A024[];
+extern char D_0028A0A8[];
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+void *func_001E8A44(int size);
+
+struct C_00188DB0 {
+    void func_00188DB0(void *p, int n);
+};
+
+struct S_0018B3D0_Parser {
+    int func_00169710(char *name);
+    int func_00168BE0(const char *k1, const char *k2, char *dst, int size);
+};
+
+struct S_0018B3D0_Info {
+    char pad0[4];
+    void *f4;
+    char pad8[0x10C - 8];
+    int f10c;
+    char pad110[0x14C - 0x110];
+    unsigned char f14c;
+};
+
+struct S_0018B3D0_Reader {
+    virtual void v0(int *out, void *slot);
+    virtual int v1(char *buf);
+};
+
+struct S_0018B3D0_Obj {
+    virtual void v0();
+    virtual void v1(S_0018B3D0_Parser *parser);
+};
+
+struct C_0018B3D0 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    S_0018B3D0_Obj **f28;
+    int func_0018B3D0(C_00188DB0 *a1, S_0018B3D0_Parser *a2, S_0018B3D0_Info *a3, S_0018B3D0_Reader *a4);
+};
+
 undefined4 C_0018B010::func_0018B010(byte param_1)
 {
   int func_001E891B(...);
