@@ -313,35 +313,13 @@ void C_001C4C30::func_001C4C30(void)
 
     for (i = 0; i < f24; i++) {
         mem = func_001E8A44(0x38);
-        if (mem != 0) {
-            fx = (S_CrossFadeFx *)mem;
-            ((C_00157600 *)fx)->func_00157600(1);
-            fx->f24 = 0;
-            fx->f28 = 0;
-            fx->f2C = 1.0f;
-            fx->f30 = 0;
-            fx->f34 = 0;
-            *(void **)fx = (void *)&D_0028E554;
-        } else {
-            fx = 0;
-        }
+        fx = mem != 0 ? ((S_CrossFadeFx *)mem)->Init() : 0;
         a48[i] = fx;
         fx->v27(i);
         func_001577A0(a48[i], 10);
     }
     mem = func_001E8A44(0x38);
-    if (mem != 0) {
-        fx = (S_CrossFadeFx *)mem;
-        ((C_00157600 *)fx)->func_00157600(1);
-        fx->f24 = 0;
-        fx->f28 = 0;
-        fx->f2C = 1.0f;
-        fx->f30 = 0;
-        fx->f34 = 0;
-        *(void **)fx = (void *)&D_0028E554;
-    } else {
-        fx = 0;
-    }
+    fx = mem != 0 ? ((S_CrossFadeFx *)mem)->Init() : 0;
     f58 = fx;
     fx->v27(-1);
     func_001577A0(f58, 10);
