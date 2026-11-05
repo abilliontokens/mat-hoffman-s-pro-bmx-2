@@ -52,6 +52,10 @@ struct S_0001C610_V4 {
     float w;
 };
 
+static __forceinline float dot3_0001C680(float x, float y, float z, float *p) {
+    return x * p[0] + y * p[1] + z * p[2];
+}
+
 struct C_0001CD50 {
     char pad0[0x5C];
     int unk5C;
@@ -345,9 +349,9 @@ S_0001C610_V4 func_0001C610(float *a, float *b) {
 S_0001C610_V4 func_0001C680(float x, float y, float z, float w, float *m) {
     S_0001C610_V4 r;
 
-    r.x = y * m[1] + z * m[2] + x * m[0];
-    r.y = y * m[5] + z * m[6] + x * m[4];
-    r.z = y * m[9] + z * m[10] + x * m[8];
+    r.x = x * m[0] + y * m[1] + z * m[2];
+    r.y = x * m[4] + y * m[5] + z * m[6];
+    r.z = x * m[8] + y * m[9] + z * m[10];
     r.w = 1.0f;
     return r;
 }
