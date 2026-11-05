@@ -211,17 +211,18 @@ float func_0014F990(float x)
 
 void func_0014F9A0(void)
 {
-    extern float *D_002CF6B4_ptr;
     S_0014F9A0_Entry *p;
 
     if (D_002DF87C != 0) {
         func_001E8390(D_002DF87C);
     }
-    for (p = D_002DF748; p < (S_0014F9A0_Entry *)&D_002DF874; p++) {
+    p = D_002DF748;
+    do {
         if (p->f0 != 0) {
             func_001E8390(p->f0);
         }
-    }
+        p++;
+    } while ((int)p < (int)&D_002DF874);
     if (D_002CF6B4 != 0) {
         func_001E8390(D_002CF6B4);
     }
