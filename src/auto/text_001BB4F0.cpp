@@ -164,6 +164,19 @@ __declspec(align(16)) struct S_001BBAE0_Mat {
 
 S_001BBAE0_Mat func_000263B0(void *a, void *b);
 
+static __inline void CopyMat_001BBAE0(S_001BBAE0_Mat *src, S_001BBAE0_Mat *dst)
+{
+    __m128 r0 = src->r0;
+    __m128 r1 = src->r1;
+    __m128 r2 = src->r2;
+    __m128 r3 = src->r3;
+
+    dst->r0 = r0;
+    dst->r1 = r1;
+    dst->r2 = r2;
+    dst->r3 = r3;
+}
+
 struct C_001BBAE0_Copy {
     S_001BBAE0_Mat mat;
     void Load(S_001BBAE0_Mat *src)
@@ -244,8 +257,8 @@ void func_001BB4F0(S_1BB4F0_Arg1 *a1, int a2, S_1BB4F0_Arg3 *a3, int enable)
     if (D_002A8490->f2E0->f4 == 10) {
         return;
     }
-    list = D_002A8490->f2A4->f64->f4E0;
     key = a1->f64;
+    list = D_002A8490->f2A4->f64->f4E0;
     found = 0;
     for (i = 0; i < list->f24; i++) {
         if (found) {
@@ -352,18 +365,23 @@ void C_001BBAA0::func_001BBAA0(void *a, void *b)
 
 void C_001BBAE0::func_001BBAE0(int a)
 {
+    volatile int slot[3];
+
+    slot[0] = (int)this;
     if (unk2DC != 0) {
         S_001BBAE0_Mat t;
         S_001BBAE0_Mat r;
 
         unk2DC->func_00197EA0(&t);
-        r = func_000263B0((char *)this + 0x50, &t);
-        t = r;
-        unk2E4->v31(&t);
-        unk2E4->func_00133140(a, 2);
+        r = func_000263B0((char *)slot[0] + 0x50, &t);
+        slot[1] = (int)&r;
+        slot[2] = (int)&t;
+        ((C_001BBAE0_Copy *)slot[2])->Load((S_001BBAE0_Mat *)slot[1]);
+        ((C_001BBAE0 *)slot[0])->unk2E4->v31(&t);
+        ((C_001BBAE0 *)slot[0])->unk2E4->func_00133140(a, 2);
     } else {
         unk2E4->v31((S_001BBAE0_Mat *)((char *)this + 0x50));
-        unk2E4->func_00133140(a, 1);
+        ((C_001BBAE0 *)slot[0])->unk2E4->func_00133140(a, 1);
     }
 }
 
