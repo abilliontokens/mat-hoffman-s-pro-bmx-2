@@ -20,5 +20,4 @@ struct Obj {
 };
 extern float D_00276E9C;
 extern float D_00276E98;
-void func_00197E70(Q*, V4*);
-void func_00197B40(Q*, V4*, V4*);
+
