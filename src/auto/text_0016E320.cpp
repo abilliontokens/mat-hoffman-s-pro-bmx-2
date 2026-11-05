@@ -72,3 +72,58 @@ extern const char D_002889C4[];
 void func_0016EC80(C_0016EEA0 *self, Body *p, float dt);
 void func_0013E260(S_16EEA0_Log *log, int id, const char *fmt, ...);
 void func_0013E1F0(S_16EEA0_Log *log, int id, const char *fmt, ...);
+
+int C_0016EEA0::func_0016EEA0(float dt)
+{
+    if (D_002A8490->f124 == 0) {
+        S_16EEA0_Node *node = D_002A829C->ents[f148->f4].node;
+        node->func_001B07A0();
+        if (f150 == 0) {
+            float sx, sy;
+            int idx = node->func_001B07D0(0, 0);
+            S_16EEA0_Tex *tex = D_002AA6C0->ents[idx].tex;
+            int i;
+            if (tex) {
+                sx = (float)tex->w;
+                sy = (float)tex->h;
+            }
+            for (i = 0; i < f14c; i++) {
+                f104[i * 8] /= sx;
+                f104[i * 8 + 1] /= sy;
+                f104[i * 8 + 2] /= sx;
+                f104[i * 8 + 3] /= sy;
+                f104[i * 8 + 4] /= sx;
+                f104[i * 8 + 5] /= sy;
+                f104[i * 8 + 6] /= sx;
+                f104[i * 8 + 7] /= sy;
+            }
+            f150 = 1;
+        }
+        if (f170 != 0 && f170->fA8 != 0) {
+            f170->v10(dt);
+        }
+        float step = dt * 1000.0f;
+        for (int j = 0; j < f11c; j++) {
+            Body *p = f12c[j];
+            if (!(p->flags & 0x80)) {
+                p->cur += step;
+                Body *t = f12c[j];
+                if (t->cur > t->len) {
+                    f12c[j] = f12c[f11c - 1];
+                    f12c[f11c - 1] = t;
+                    if (j == --f11c) break;
+                }
+            }
+            func_0016EC80(this, f12c[j], dt);
+        }
+        if (D_002A8490->log != 0) {
+            if (D_002A88B4 < 0) {
+                int id = D_002A8490->log->f1934++;
+                D_002A88B4 = id;
+            }
+            func_0013E260(D_002A8490->log, D_002A88B4, D_002889DC);
+            func_0013E1F0(D_002A8490->log, D_002A88B4, D_002889C4, f11c);
+        }
+    }
+    return 1;
+}
