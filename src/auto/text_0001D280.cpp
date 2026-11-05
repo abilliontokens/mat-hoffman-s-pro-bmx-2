@@ -103,6 +103,36 @@ struct C_0001D370 {
     char pad38[0x38];
     int unk70;
     C_0001D370_Item **unk74;
+    C_0001D370_Item *itemAt70(int i) {
+        if (unk70 > 0 && unk74 != 0 && i < unk70) {
+            return unk74[i];
+        }
+        return 0;
+    }
+    void remove30(C_0001D370_Item *item) {
+        int n = unk30;
+        if (n > 0) {
+            for (int i = 0; i < unk30; i++) {
+                if (unk34[i] == item) {
+                    unk34[i] = unk34[n - 1];
+                    unk30--;
+                    break;
+                }
+            }
+        }
+    }
+    void remove70(C_0001D370_Item *item) {
+        int n = unk70;
+        if (n > 0) {
+            for (int j = 0; j < unk70; j++) {
+                if (unk74[j] == item) {
+                    unk74[j] = unk74[n - 1];
+                    unk70--;
+                    break;
+                }
+            }
+        }
+    }
     int func_0001D370(void);
 };
 
