@@ -82,7 +82,7 @@ struct C_000B6640 {
     void func_000B6840(float a0, float a1, C_000B6840_Arg *a2);
     void Box(V4_000B6840 *dst, V4_000B6840 *src)
     {
-        *dst = V4Init_000B6840(src->x, (0.0f - f7C) + src->y, src->z, 1.0f);
+        *dst = V4Init_000B6840(0, 1.0f, src->z, (0.0f - f7C) + src->y, *(volatile float *)&src->x);
     }
 };
 
@@ -172,8 +172,8 @@ void C_000B6640::func_000B6840(float a0, float a1, C_000B6840_Arg *a2)
         n = ((C_000B6840_Owner *)unk88)->f22c->func_00198330(D_0027D3FC);
         n->func_00199A70(((C_000B6840_Owner *)unk88)->f22c, &vB);
         vB.x = 0;
-        Box_000B6840(&vE0, &vA, f7C);
-        Box_000B6840(&vF0, &vB, f7C);
+        Box(&vE0, &vA);
+        Box(&vF0, &vB);
     }
     f78 = a0;
     line[0] = V4Init_000B6840(0.0f, a1, 0.0f, 1.0f);
