@@ -265,6 +265,9 @@ struct V4_000B1350 {
         z = c;
         w = 1.0f;
     }
+    V4_000B1350 operator+(const V4_000B1350 &o) const { return V4_000B1350(x + o.x, y + o.y, z + o.z); }
+    V4_000B1350 operator-(const V4_000B1350 &o) const { return V4_000B1350(x - o.x, y - o.y, z - o.z); }
+    V4_000B1350 operator*(float s) const { return V4_000B1350(x * s, y * s, z * s); }
 };
 
 struct S_000B1350_Key {
@@ -324,6 +327,90 @@ struct C_000B1350 {
     S_000B1350_Node **f4C;
     void func_000B1350(void);
 };
+
+void C_000B1350::func_000B1350(void)
+{
+    int n;
+    int i;
+    int k;
+    int cnt;
+    int idx;
+
+    for (n = 0; n < f3C; n++) {
+        cnt = 0;
+        for (i = 0; i < f38; i++) {
+            if (f48[i]->f50 == n || f48[i]->f54 == n) {
+                cnt++;
+            }
+        }
+        if (cnt > 0) {
+            f4C[n]->fC = (S_000B1350_B **)func_001E8A44(cnt * 4);
+            idx = 0;
+            for (i = 0; i < f38; i++) {
+                if (f48[i]->f50 == n || f48[i]->f54 == n) {
+                    f4C[n]->fC[idx] = f48[i];
+                    idx++;
+                }
+            }
+            f4C[n]->f4 = idx;
+        }
+        cnt = 0;
+        for (i = 0; i < f34; i++) {
+            for (k = 0; k < f44[i]->f4C; k++) {
+                if (f44[i]->f48[k]->f0 == n) {
+                    cnt++;
+                }
+            }
+        }
+        if (cnt > 0) {
+            f4C[n]->f8 = (S_000B1350_A **)func_001E8A44(cnt * 4);
+            idx = 0;
+            for (i = 0; i < f34; i++) {
+                for (k = 0; k < f44[i]->f4C; k++) {
+                    if (f44[i]->f48[k]->f0 == n) {
+                        f4C[n]->f8[idx] = f44[i];
+                        idx++;
+                    }
+                }
+            }
+            f4C[n]->f0 = idx;
+        }
+    }
+    for (n = 0; n < f3C; n++) {
+        if (f4C[n]->f4 > 1) {
+            for (k = 0; k < f4C[n]->f4; k++) {
+                idx = k - 1;
+                if (idx < 0) {
+                    idx = f4C[n]->f4 + idx;
+                }
+                f4C[n]->fC[k]->f48 = f4C[n]->fC[idx];
+            }
+        } else if (f4C[n]->f4 == 1) {
+            f4C[n]->fC[0]->f48 = 0;
+        }
+    }
+    for (i = 0; i < f34; i++) {
+        for (k = 0; k < f44[i]->f4C; k++) {
+            S_000B1350_Sub *s = f44[i]->f48[k];
+            int cur = (int)s->f4;
+            S_000B1350_Node *node = f4C[s->f0];
+            if (node->f4 > 0) {
+                float t = s->f4 - (float)cur;
+                S_000B1350_Tbl *tbl = node->fC[0]->f3C->f518;
+                unsigned int next = cur + 1;
+                if (next >= tbl->count) {
+                    next = 0;
+                }
+                float *p1 = &tbl->f8[next].x;
+                float *p0 = &tbl->f8[cur].x;
+                float dx = p1[0] - p0[0];
+                float dy = p1[1] - p0[1];
+                float dz = p1[2] - p0[2];
+                s->f8 = V4_000B1350(p0[0] + t * dx, p0[1] + t * dy, p0[2] + t * dz);
+            }
+        }
+    }
+}
 
 void C_000B1660::func_000B1660(S_000B1660_Arg *a) {
  for (int i = 0; i < D_002B9120->f578; i++) {
