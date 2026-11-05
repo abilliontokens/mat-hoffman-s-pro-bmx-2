@@ -197,17 +197,23 @@ void C_0013FC60::func_0013FC60(int count)
 {
   void *__stdcall func_001FF3C0(int size);
   void *func_001E8A44(int size);
+  int n;
   int i;
 
   f28 = count;
   f24 = count;
   f4 = count;
-  f10 = func_001FF3C0(count * 12);
-  f14 = func_001FF3C0(f4 * 12);
-  f18 = func_001FF3C0(f4 * 4);
-  f1c = func_001FF3C0(f4 * 8);
+  n = count * 12;
+  f10 = func_001FF3C0(n);
+  n = f4 * 12;
+  f14 = func_001FF3C0(n);
+  n = f4 * 4;
+  f18 = func_001FF3C0(n);
+  n = f4 * 8;
+  f1c = func_001FF3C0(n);
   f8 = f24;
-  f20 = (short *)func_001E8A44(f24 * 2);
+  n = f24 * 2;
+  f20 = (short *)func_001E8A44(n);
   for (i = 0; i < f8; i++) {
     f20[i] = (short)i;
   }
