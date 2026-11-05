@@ -81,6 +81,7 @@ struct XboxSoundGroup {
     int func_001CD800(void);
     void func_001CD840(int a);
     int func_001CD890(int a);
+    int func_001CD890(int a, int b);
     void func_001CD8F0(int a);
 };
 
