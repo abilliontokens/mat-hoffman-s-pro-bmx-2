@@ -177,7 +177,7 @@ struct C_0001CD90 {
 
 static __forceinline S36_1A S36_0001CD90(void)
 {
-    S36_1A s = { 0x168, 0x168, 0, 0x3f800000, 0x4e6e6b28, 0, 0x3e9c0ebf, 0x3f800000, 0x3f800000 };
+    S36_1A s = { 0x168, 0x168, 0, 1.0f, 1.0e9f, 0.0f, 0.30481246f, 1.0f, 1.0f };
 
     return s;
 }
