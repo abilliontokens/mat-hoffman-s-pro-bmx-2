@@ -33,11 +33,19 @@ static inline int CheckFailed(int hr, int line) {
     return 0;
 }
 
+struct V3_001A1540 {
+    float x, y, z;
+};
+
 /* object held at +4 of C_001A13F0 */
 struct S_001A13F0_Obj {
     virtual void v0();
     virtual void v1();
     virtual void v2();
+    char pad4[0x14 - 4];
+    V3_001A1540 unk18;
+    char pad24[4];
+    V3_001A1540 unk28;
     int func_001D7D00(void);
     int func_001D6C40(int a, int b);
 };
@@ -48,6 +56,9 @@ struct C_001A13F0 {
     void func_001A13F0(void);
     int func_001A1410(void);
     int func_001A1450(int a);
+    int func_001A14A0(int a);
+    int func_001A14F0(int a);
+    int func_001A1540(V3_001A1540 *a, V3_001A1540 *b);
 };
 
 /* object held at +0x1BC of C_001A1C70 */
