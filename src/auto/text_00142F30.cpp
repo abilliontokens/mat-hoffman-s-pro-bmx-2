@@ -30,7 +30,7 @@ struct DXRenderableObjectData {
 struct DXRenderableObject;
 
 struct Vec4_143660 {
-    f32 x;
+    int x;
     f32 y;
     f32 z;
     f32 w;
@@ -40,14 +40,8 @@ struct Vec4_143660 {
         z = v.z;
         w = v.w;
     }
-    void Set(f32 a, f32 b, f32 c, f32 d) {
-        x = a;
-        y = b;
-        z = c;
-        w = d;
-    }
     Vec4_143660() {}
-    Vec4_143660(f32 a, f32 b, f32 c, f32 d) {
+    Vec4_143660(int a, f32 b, f32 c, f32 d) {
         x = a;
         y = b;
         z = c;
@@ -265,7 +259,7 @@ void DXRenderableObject::func_00143660(void)
     if (f1d4 == -1)
         f1d4 = (D_002A829C->f14[*f1b8].f4->f54->f24 >> 3) & 1;
     ((Alloc190 *)f1d0)->func_00142F30(D_002EFDB8[1]);
-    ((Alloc190 *)f1d0)->f160.Set(f1c0);
+    ((Alloc190 *)f1d0)->f160.Set(Vec4_143660(f1c0.x, f1c0.y, f1c0.z, f1c0.w));
     piece = &f1a4->pieces[f1a0];
     for (i = 0; i < piece->count; i++)
         piece->items[i].func_001446B0((int)f1d0, (int)this, f1b8[piece->items[i].f4]);
