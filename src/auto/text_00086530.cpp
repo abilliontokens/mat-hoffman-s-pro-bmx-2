@@ -51,6 +51,7 @@ struct C_Mid_00086C80 {
 struct C_Lookup_00086C80 {
     int *func_0018C160(int a);
 };
+C_Clamp_00086C80 *__fastcall func_0018C070(C_Mid_00086C80 *self);
 struct C_86A40_G {
     char pad0[0x2E8];
     C_86A40_Obj2E8 *f2E8;
@@ -249,6 +250,20 @@ int C_00086C60::func_00086C60(void) {
 int C_00086C70::func_00086C70(int a0) {
     unk70 = a0;
     return 1;
+}
+
+void C_00086C80::func_00086C80()
+{
+    C_Mid_00086C80 *m = (C_Mid_00086C80 *)D_002A8490->f2EC->func_0018C160((int)&D_00278690);
+    if (m != 0) {
+        m = *(C_Mid_00086C80 **)m;
+    }
+    if (m != 0) {
+        C_Clamp_00086C80 *o = m->func_0018C070();
+        if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+        if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+    }
+    func_001578D0();
 }
 
 BestScoreOverlay *BestScoreOverlay::func_00086DC0(int a0) {
