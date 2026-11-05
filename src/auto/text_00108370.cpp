@@ -61,6 +61,35 @@ struct C_00108660 {
     int func_00108660(void);
 };
 
+struct V4_08690 { float x, y, z, w; };
+struct C_Cam_08690 {
+    V4_08690 *func_00197F70(V4_08690 *out, V4_08690 *in);
+    void func_00197B90(V4_08690 *v);
+    void func_00199300(V4_08690 *v);
+    void func_00197B40(V4_08690 *a, V4_08690 *b);
+    void func_00199650(V4_08690 *v);
+};
+struct C_Obj_08690 { char pad[0x38]; float f38; };
+struct C_Gen_08690 {
+    void func_00165E20(V4_08690 *out, C_Obj_08690 *o, float f, void *d, int i);
+    void func_00165EF0(V4_08690 *out, C_Obj_08690 *o, float f, void *d, int i);
+};
+extern char D_00276690[];
+extern float D_00282AC0;
+extern double D_00282AB8;
+struct C_00108690 {
+    char pad0[0x1E0];
+    char *f1E0;
+    char pad1E4[0x230 - 0x1E4];
+    C_Cam_08690 *f230;
+    char pad234[0x790 - 0x234];
+    C_Obj_08690 *f790;
+    int f794;
+    char pad798[0xA04 - 0x798];
+    C_Gen_08690 *fA04;
+    void func_00108690(float dt);
+};
+
 extern float D_00275544;
 extern float D_002755E8;
 extern float D_00275460;
