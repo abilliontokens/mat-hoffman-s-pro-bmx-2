@@ -105,6 +105,7 @@ struct LightEmitter {
     void func_0015E600();
     void func_0015E800(float v);
     void func_0015E920(float *p);
+    float func_0015E4B0(float a1, S_0015E4B0_V4 v, LightEmitter *e);
 };
 
 extern LightEmitter *D_002E2930;
