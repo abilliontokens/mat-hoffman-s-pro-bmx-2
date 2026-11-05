@@ -131,26 +131,6 @@ void C_0015E300::func_0015E3C0(void)
     }
 }
 
-void LightEmitter::func_0015E420(float *dir, float *mat)
-{
-    memset(dir, 0, 0x40);
-    memset(mat, 0, 0x40);
-    if (f34 != 0) {
-        dir[0] = -f34->f6C;
-        dir[1] = -f34->f70;
-        dir[2] = -f34->f74;
-        mat[0] = f34->f30;
-        mat[4] = f34->f34;
-        mat[8] = f34->f38;
-    }
-    mat[3] = f40;
-    mat[7] = f44;
-    mat[11] = f48;
-    mat[15] = 1.0f;
-    mat[12] = f40;
-    mat[13] = f44;
-    mat[14] = f48;
-}
 
 int C_0015E300::func_0015E5B0(void)
 {
