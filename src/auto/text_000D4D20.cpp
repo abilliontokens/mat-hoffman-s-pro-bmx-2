@@ -223,6 +223,38 @@ void BmxUIPageHOF::func_000D5860()
     s->unk30->func_001D5AD0();
 }
 
+void BmxUIPageHOF::func_000D59A0()
+{
+    S_000D5B90_Owner *owner = f124;
+    float f;
+    int i;
+    char s[0x14];
+    char name[0x104];
+    char buf[0x108];
+    for (i = 0; i < 5; i++) {
+        volatile float y;
+        arr2C4[i]->func_001B1980();
+        arr2D8[i]->func_001B1980();
+        arr304[i]->func_001B1980();
+        D_002A8490->a->q->func_0005BED0(0, i, &f, s);
+        int k = 0;
+        char c;
+        do { c = s[k]; name[k] = c; k++; } while (c);
+        func_001ADCC0(buf, 0x104, D_0027F2C0, (double)f, D_002A8490->b->x->v);
+        arr2C4[i]->func_001B17D0(name);
+        y = i * D_0027F2BC;
+        arr2C4[i]->func_001B1A30(191.0f, y + D_00279F74, 0);
+        arr2C4[i]->func_001B19A0(D_0028F5DC);
+        arr2C4[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+        arr2D8[i]->func_001B17D0(buf);
+        arr2D8[i]->func_001B1A30(380.0f, y + D_0027F2B8, 0);
+        arr2D8[i]->func_001B19A0(D_0028F5DC);
+        arr2D8[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+        arr304[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+    }
+    owner->func_000BA9B0(0x18)->func_00103260(0);
+}
+
 void BmxUIPageHOF::func_000D5B90()
 {
     S_000D5B90_Owner *owner = f124;
