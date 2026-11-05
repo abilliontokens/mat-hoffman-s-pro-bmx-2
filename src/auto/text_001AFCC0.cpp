@@ -52,6 +52,55 @@ struct S_001B03A0_Global {
 };
 extern S_001B03A0_Global *D_002AA474;
 
+struct S_002AA478_Global {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual int v7(void *buf, int arg);
+};
+extern S_002AA478_Global *D_002AA478;
+
+struct S_002F0630_Elem {
+    char pad0[0x20];
+    int unk20;
+};
+
+struct S_002F0630_Tbl {
+    char pad0[0x10];
+    S_002F0630_Elem *f10[1];
+    int func_001493A0(void *obj, void *outObj);
+    void func_001B10B0(void *obj, int idx);
+    void func_001B10D0(void *obj, int idx);
+};
+extern S_002F0630_Tbl *D_002F0630;
+
+extern int D_0028C658;
+extern int D_0028C444;
+extern int D_0028C678;
+extern int D_0028C668;
+
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+
+struct C_00168C20 {
+    int func_00168C20(void *key, int def, void *dst);
+};
+
+struct C_001AF740 {
+    void *func_001AF740(void *stream, int idx);
+};
+
+struct C_001B07F0 {
+    void *vtbl;
+    int unk4;
+    int unk8;
+    void *items[4];
+    C_001B07F0 *func_001B07F0(C_00168C20 *stream, int a2);
+};
+
 /* SurfaceMaterial */
 struct C_001B0230 {
     void *vtbl;
