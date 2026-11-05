@@ -134,6 +134,40 @@ int C_0018D580::func_0018D580(unsigned int id)
     return 0;
 }
 
+extern "C" void *func_001E83E8(void *, unsigned int);
+extern "C" void *func_001E8AA5(unsigned int);
+void C_0018D7B0::func_0018D5C0(char *name, int type, int max, int a, int b, int c, int d, int e)
+{
+    if (defCapacity < defCount + 1) {
+        defCapacity = defCount + 10;
+        defs = (C_0018D7B0_Def *)func_001E83E8(defs, defCapacity * sizeof(C_0018D7B0_Def));
+        if (!defs) return;
+    }
+    if (b == 1) b = 126;
+    defs[defCount].name = name;
+    defs[defCount].f20 = b;
+    defs[defCount].f14 = c;
+    defs[defCount].f18 = e;
+    defs[defCount].f1C = d;
+    defs[defCount].max = max;
+    defs[defCount].f10 = a;
+    if (type == 9 && max > 0) {
+        if (slotCapacity < slotCount + 1) {
+            slotCapacity = slotCount + 10;
+            slots = (C_0018D7B0_Slot *)func_001E83E8(slots, slotCapacity * sizeof(C_0018D7B0_Slot));
+            if (!slots) return;
+        }
+        slots[slotCount].recs = (C_0018D7B0_Rec *)func_001E8AA5(max * sizeof(C_0018D7B0_Rec));
+        slots[slotCount].f4 = max;
+        defs[defCount].slot = slotCount;
+        *(int *)&defs[defCount].sub = (slotCount << 16) | 0x901;
+        slotCount++;
+    } else {
+        *(int *)&defs[defCount].sub = (type << 8) | 1;
+    }
+    defCount++;
+}
+
 void C_0018D7B0::func_0018D7B0(const char *name, int index, int b, int c, int d)
 {
     int i;
