@@ -5,7 +5,7 @@ extern int D_0028F578;
 extern int D_00284E94;
 extern int D_0028F584;
 
-static void Init_001D48E0(int *p)
+static __forceinline void Init_001D48E0(int *p)
 {
     p[0x20] = 0x3f800000;
     p[0x1f] = 0;
@@ -85,13 +85,7 @@ int *C_001D48E0::func_001D48E0(void)
 {
   int func_001827B0(...);
   int *in_ECX = (int *)this;
-  int iVar1;
-  int iVar2;
-  int *piVar3;
-  int *piVar4;
-  u8 bVar5;
 
-  bVar5 = 0;
   func_001827B0();
   *in_ECX = (int)&D_0028F584;
   in_ECX[0x1f] = 0;
@@ -106,22 +100,7 @@ int *C_001D48E0::func_001D48E0(void)
   in_ECX[0x19] = 0;
   in_ECX[0x1b] = 0;
   in_ECX[0x1c] = 0;
-  piVar3 = in_ECX + 0x25;
-  in_ECX[0x20] = 0x3f800000;
-  iVar1 = 0;
-  in_ECX[0x1d] = 0;
-  in_ECX[0x1e] = 0;
-  in_ECX[0x1f] = 0;
-  piVar4 = piVar3;
-  for (iVar2 = 300; iVar2 != 0; iVar2 = iVar2 + -1) {
-    *piVar4 = 0;
-    piVar4 = piVar4 + (u32)bVar5 * -2 + 1;
-  }
-  do {
-    *piVar3 = iVar1;
-    iVar1 = iVar1 + 1;
-    piVar3 = piVar3 + 1;
-  } while (iVar1 < 300);
+  Init_001D48E0(in_ECX);
   in_ECX[0x24] = 0xffffffff;
   in_ECX[0x23] = 0;
   in_ECX[0x21] = 0;
