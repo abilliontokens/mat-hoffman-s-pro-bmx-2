@@ -6,9 +6,6 @@ struct S_Vec4i_00023C30 {
     int x, y, z, w;
 };
 extern S_Vec4i_00023C30 D_002A0F74;
-extern int D_002A0F78;
-extern int D_002A0F7C;
-extern int D_002A0F80;
 
 void func_001E891B(void *p);
 
