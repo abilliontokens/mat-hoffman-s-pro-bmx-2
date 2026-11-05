@@ -339,6 +339,14 @@ C_001D5480* C_001D5480::func_001D5480(void) {
     return this;
 }
 
+void C_001D5490::func_001D5490(void)
+{
+    unk0 = (int)&D_0028F5CC;
+    if (unk4 != 0) {
+        unk4->v0(1);
+    }
+}
+
 void C_001D54F0::func_001D54F0(void)
 {
     unk4->func_001446B0(0, 0, -1);
