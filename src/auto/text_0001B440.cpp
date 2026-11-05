@@ -582,6 +582,12 @@ int C_0001C1E0::func_0001BDF0(int a, int b)
     return r;
 }
 
+struct S_0001C020_Mgr {
+    void func_0001B9E0(C_0001B910 *p, int slot, int flag);
+};
+
+extern S_0001C020_Mgr *D_002B7C88;
+
 void C_0001B790::func_0001BE50(void)
 {
     int i;
