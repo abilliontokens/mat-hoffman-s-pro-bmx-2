@@ -80,7 +80,7 @@ struct V4f_001956F0 {
     V4f_001956F0() { x = y = z = 0; w = 1.0f; }
 };
 struct Ini_001956F0 {
-    char data[0x4d0];
+    char data[0x4cc];
     void func_00168280();
     void func_001691E0();
     int func_00169490(const char *path, int a);
