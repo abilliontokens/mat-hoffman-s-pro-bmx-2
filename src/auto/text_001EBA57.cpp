@@ -2,3 +2,13 @@
 #include "common.h"
 
 extern unsigned short *D_002AEA30;
+
+#pragma optimize("t", off)
+int func_001EC5F1(int c, int mask)
+{
+    if ((unsigned)(c + 1) <= 256) {
+        return D_002AEA30[c] & mask;
+    }
+    return 0;
+}
+#pragma optimize("", on)
