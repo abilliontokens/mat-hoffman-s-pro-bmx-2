@@ -4,10 +4,10 @@
 struct SimpleVCR {
     void *vtbl;
     char pad4[0x20];
-    int f24, f28, f2c, f30, f34, f38, f3c, f40, f44, f48, f4c;
-    int f50, f54, f58, f5c, f60, f64, f68, f6c, f70, f74, f78, f7c, f80, f84, f88;
+    float f24, f28, f2c, f30, f34, f38, f3c, f40, f44, f48, f4c;
+    float f50, f54, f58, f5c, f60, f64, f68, f6c, f70, f74, f78, f7c, f80, f84, f88;
     char pad8C[4];
-    int f90, f94, f98, f9c, fA0, fA4, fA8, fAC, fB0, fB4, fB8;
+    float f90, f94, f98, f9c, fA0, fA4, fA8, fAC, fB0, fB4, fB8;
     char padBC[4];
     unsigned char fC0;
     char padC1[3];
@@ -40,5 +40,48 @@ int C_001955D0::func_001955D0(int a0, int a1) {
 void func_00195D40(Vec4_195D40 *out, Vec4_195D40 v)
 {
     *out = v;
+}
+
+SimpleVCR *SimpleVCR::func_00195D90(void)
+{
+    func_00157600(1);
+    fC0 = fC0 & 0x41;
+    f74 = 0;
+    f6c = 0;
+    f70 = 0;
+    f68 = 0;
+    fC8 = 0;
+    f50 = 0;
+    fCC = 0;
+    f78 = 0;
+    f7c = 0;
+    f80 = 0;
+    f54 = 0;
+    f58 = 0;
+    fC4 = 0;
+    f24 = 0;
+    f28 = 0;
+    f2c = 0;
+    f30 = 0;
+    f34 = 0;
+    f38 = 0;
+    f48 = 0;
+    f5c = 0;
+    f60 = 0;
+    f64 = 0;
+    f84 = 0;
+    f88 = 0;
+    f90 = 0;
+    f94 = 0;
+    f98 = 0;
+    fA0 = 0;
+    f9c = 0;
+    fAC = 0;
+    fB0 = 0;
+    fB4 = 0;
+    fA4 = 0;
+    fA8 = 0;
+    fB8 = 0;
+    return this;
 }
 
