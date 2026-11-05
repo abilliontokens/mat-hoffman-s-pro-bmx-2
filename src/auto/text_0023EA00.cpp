@@ -3,6 +3,8 @@
 
 extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
 extern "C" void (__stdcall *_imp__RtlLeaveCriticalSection)(void *cs);
+extern "C" void (__stdcall *_imp__RtlInitializeCriticalSection)(void *cs);
+extern int D_0029016C;
 
 void __stdcall func_001DDE02(int a0);
 int __stdcall func_0023F3F7(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
