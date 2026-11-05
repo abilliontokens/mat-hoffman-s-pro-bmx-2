@@ -41,7 +41,18 @@ struct C_00199BE0 {
     C_00199BE0 *f178;
     C_00199BE0 *f17c;
     u8 f180;
-    void func_00197B10(void);
+    void func_00197B10(void)
+    {
+        if (f178 != 0) {
+            f178->func_00197B10();
+        }
+        if (f180 & 1) {
+            f180 &= 0xfe;
+            if (f174 != 0) {
+                f174->func_00197B10();
+            }
+        }
+    }
     void func_001982F0(void);
     void func_00197AA0(void);
     void func_00199CF0(int a0, int a1, int a2, int a3, float angle);
