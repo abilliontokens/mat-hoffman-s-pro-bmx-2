@@ -152,6 +152,133 @@ struct UIControl {
     void func_001BD9F0(void);
 };
 
+void UIControl::func_001BDFB0(int n)
+{
+    UIControl **arr;
+    UIControl *cur;
+    int start;
+    int mod;
+    int i;
+    int prev;
+    int next;
+
+    if (f34 != 0) {
+        f34->func_001BDA80();
+    }
+    arr = f2c;
+    start = f30;
+    do {
+        i = f30 + 1;
+        f30 = i;
+        if (i % n == 1) {
+            f30 = i - n;
+        }
+        cur = arr[f30 - 1];
+        f34 = cur;
+    } while (cur == 0 || cur->f24 == 0);
+    i = f30;
+    if (i == start) {
+        mod = i % n;
+        do {
+            i = i + 1;
+            f30 = i;
+            if (i % n == 1) {
+                f30 = i - n;
+            }
+            if (i % n == mod) {
+                goto restore;
+            }
+            prev = f30;
+            i = prev;
+            do {
+                next = i + n;
+                if (f28 < next) {
+                    f30 = next - f28;
+                } else {
+                    f30 = next;
+                }
+                i = f30;
+                cur = f2c[i - 1];
+                f34 = cur;
+            } while (prev != i && (cur == 0 || cur->f24 == 0));
+            i = f30;
+        } while (prev == i);
+        if (next == mod) {
+restore:
+            f30 = start;
+            f34 = f2c[start - 1];
+        }
+    }
+    cur = f34;
+    if (cur != 0) {
+        for (i = 0; i < cur->f28; i++) {
+            ((UIVirt70 *)cur->f2c[i])->virt28();
+        }
+    }
+}
+
+void UIControl::func_001BE0B0(int n)
+{
+    UIControl **arr;
+    UIControl *cur;
+    int start, a, b, c, r, i, count;
+
+    if (f34 != 0) {
+        f34->func_001BDA80();
+    }
+    arr = f2c;
+    start = *(volatile int *)&f30;
+    do {
+        a = f30 - 1;
+        f30 = a;
+        if (a % n == 0) {
+            f30 = a + n;
+        }
+        cur = arr[f30 - 1];
+        f34 = cur;
+    } while (cur == 0 || cur->f24 == 0);
+    a = f30;
+    if (a == start) {
+        r = a % n;
+        do {
+            a = a - 1;
+            f30 = a;
+            if (a % n == 0) {
+                f30 = a + n;
+            }
+            if (a % n == r) {
+                goto restore;
+            }
+            a = f30;
+            count = f28;
+            b = a;
+            do {
+                c = a + n;
+                if (c > count) {
+                    f30 = c - count;
+                } else {
+                    f30 = c;
+                }
+                a = f30;
+                cur = f2c[a - 1];
+                f34 = cur;
+            } while (b != a && (cur == 0 || cur->f24 == 0));
+            a = f30;
+        } while (b == a);
+        if (c == r) {
+restore:
+            f30 = start;
+            f34 = f2c[start - 1];
+        }
+    }
+    cur = f34;
+    if (cur != 0) {
+        for (i = 0; i < cur->f28; i++) {
+            ((UIVirt70 *)cur->f2c[i])->virt28();
+        }
+    }
+}
+
 void UIControl::func_001BE1B0(int n)
 {
     int func_001BDA80(...);
