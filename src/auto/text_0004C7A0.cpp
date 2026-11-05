@@ -178,6 +178,14 @@ void C_0004D070::func_0004D070(int flag)
     }
 }
 
+void C_0004D5F0::func_0004D5F0()
+{
+    if (f288 != 0) {
+        func_001577A0(f288, -1);
+    }
+    func_00031640();
+}
+
 void C_0004D610::func_0004D610(void)
 {
     func_00031450();
