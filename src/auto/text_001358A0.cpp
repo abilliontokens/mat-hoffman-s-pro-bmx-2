@@ -131,6 +131,15 @@ void C_00135CB0::func_00135D00(int param_1, int param_2)
     }
 }
 
+void C_00135CB0::func_00135D30(int idx, int *out, int row)
+{
+    if (idx >= 0 && idx < 0x4a && row < 8) {
+        *out = tbl[row + 1][idx];
+    } else {
+        *out = -1;
+    }
+}
+
 void C_00135D70::func_00135D70(int a0, int a1) {
     unkC = a0;
     unk10 = a1;
