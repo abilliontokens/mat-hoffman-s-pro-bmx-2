@@ -49,6 +49,23 @@ void func_001E891B(void *p);
 void func_001E8390(void *p);
 void __stdcall func_00201100(void *p);
 
+extern float D_00275460;
+int func_00011260(int lo, int hi);
+
+/* 0x28-byte entry of DrawableCube::f3c */
+struct DrawableCubeItem {
+    float f0;
+    float f4;
+    char pad8[4];
+    float fC;
+    float f10;
+    int f14;
+    float f18;
+    float f1C;
+    float f20;
+    u8 f24;
+};
+
 struct DrawableCube {
     void *vtbl;
     char pad4[0x23];
@@ -58,7 +75,7 @@ struct DrawableCube {
     int f30;
     int f34;
     int f38;
-    void *f3c;
+    DrawableCubeItem *f3c;
     char pad40[0x780];
     DrawableCubeVirt *f7c0;
     C_00193500 *f7c4;
