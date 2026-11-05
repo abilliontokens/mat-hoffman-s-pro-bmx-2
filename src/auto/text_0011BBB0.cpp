@@ -73,7 +73,7 @@ struct C_0011C900 {
     int fBC;
     int fC0;
     int fC4;
-    char padC8[0xBC];
+    char padC8[0xC0];
     S_0011CA20_V4 f188;
     char pad198[0x94];
     int f12C;
