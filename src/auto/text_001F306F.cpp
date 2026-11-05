@@ -163,13 +163,20 @@ undefined * C_001F3237::func_001F3237(void)
   return puVar1;
 }
 
-#pragma optimize("y", on)
+#pragma optimize("sy", on)
 C_001F325D *C_001F325D::func_001F325D(int param_1) {
     extern int D_00295F1C;
     void __stdcall func_001F31D2(int);
     func_001F31D2(param_1);
     unk0 = (int)&D_00295F1C;
     return this;
+}
+#pragma optimize("", on)
+
+#pragma optimize("y", on)
+C_001F325D::C_001F325D(int param_1) : C_001F325D_Base(param_1) {
+    extern int D_00295F1C;
+    unk0 = (int)&D_00295F1C;
 }
 #pragma optimize("", on)
 void C_001F3275::func_001F3275(void) {
