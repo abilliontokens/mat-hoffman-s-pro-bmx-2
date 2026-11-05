@@ -61,6 +61,7 @@ struct C_0013C960 {
     int func_0013B760(S_0013C960_Rec *p, int v);
     int func_0013BBA0(S_0013C960_Rec *p, int a1, int a2, int a3);
     int func_0013C9F0(int a0, int a1);
+    void func_0013D400(void);
     int func_0013C660(int a0);
     void func_0013AEC0(int a0);
     void func_0013B840(S_0013C960_Rec *a0);
