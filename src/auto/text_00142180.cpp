@@ -116,6 +116,90 @@ struct C_00142C10 {
 
 void func_00142C10(C_00142C10 *param_1);
 
+struct C_00142AF0_Item {
+    char pad0[0xb8];
+    int fB8;
+};
+
+struct C_00142AF0_Slot {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual C_00142AF0_Item *v4(int a);
+};
+
+struct C_00142AF0_SlotEntry {
+    int f0;
+    C_00142AF0_Slot *f4;
+    int f8;
+    int fC;
+};
+
+struct C_00142AF0_SlotMgr {
+    char pad0[0x14];
+    C_00142AF0_SlotEntry *f14;
+};
+
+struct C_00142AF0_Node {
+    char pad0[0xd4];
+    int fD4;
+    void func_001B07A0(void);
+};
+
+struct C_00142AF0_NodeEntry {
+    int f0;
+    C_00142AF0_Node *f4;
+    int f8;
+    int fC;
+};
+
+struct C_00142AF0_NodeMgr {
+    char pad0[0x14];
+    C_00142AF0_NodeEntry *f14;
+};
+
+struct C_00142AF0_Params {
+    char pad0[0x18];
+    short f18[2];
+    int func_001AFF80(int idx);
+};
+
+struct C_00142AF0_Track {
+    char pad0[8];
+    C_00142AF0_Params *f8;
+    void func_00149310(int a1, int a2, int a3, int a4);
+};
+
+struct C_00142AF0_TrackMgr {
+    char pad0[0x10];
+    C_00142AF0_Track *f10[1];
+};
+
+struct C_00142AF0_Ref {
+    int f0;
+    int f4;
+    char pad8[8];
+    int f10;
+};
+
+struct C_00142AF0 {
+    char pad0[0xa8];
+    int fA8;
+    int fAC[2];
+    char padB4[0xc4 - 0xb4];
+    C_00142AF0_Track *fC4;
+    C_00142AF0_Ref *fC8;
+    int fCC;
+    void func_00142810(void);
+    int func_00142AF0(void);
+};
+
+extern int D_002A6D38;
+extern C_00142AF0_NodeMgr *D_002A829C;
+extern C_00142AF0_SlotMgr *D_002AA6C0;
+extern C_00142AF0_TrackMgr *D_002F0630;
+
 
 void C_00142560::func_00142560(void)
 {
