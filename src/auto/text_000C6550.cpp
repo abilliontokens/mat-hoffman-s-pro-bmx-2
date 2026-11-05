@@ -2,6 +2,7 @@
 #include "common.h"
 
 extern int D_0027E1F4;
+extern float D_00276DD4;
 
 struct Mat {
     char pad0[0x38];
