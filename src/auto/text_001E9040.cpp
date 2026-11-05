@@ -1,9 +1,7 @@
 /* 1 function from 0x001E9040 to 0x001E9086, found by Ghidra. */
 #include "common.h"
-extern "C" {
-unsigned char _bittest(const long *, long);
-unsigned char _bittestandset(long *, long);
-}
+extern "C" unsigned char __cdecl _bittest(long const *, long);
+extern "C" unsigned char __cdecl _bittestandset(long *, long);
 #pragma intrinsic(_bittest, _bittestandset)
 
 int func_001E9040(char *str, char *control)
