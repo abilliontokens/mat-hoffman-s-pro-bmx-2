@@ -117,6 +117,8 @@ struct PhysicsBody {
     void *func_00171E60(int flags);
     void func_00171F50(int a1, int a2);
     void func_00172420(void);
+    void func_00172460(void);
+    void func_00172000(void);
 };
 
 struct S_00171F10_F60 {
