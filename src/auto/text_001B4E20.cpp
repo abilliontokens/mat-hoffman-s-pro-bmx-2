@@ -149,9 +149,11 @@ struct Model1B0_001B58C0 : Model_001B58C0 {
     Model1B0_001B58C0 *func_001B5110(void);
 };
 
-struct Model60_001B58C0 : C_001B4ED0 {
+struct Model60_001B58C0 : Model_001B58C0 {
+    char pad8[0x50];
     int f58;
     int f5C;
+    void func_001B4ED0(void);
 };
 
 struct Models_001B58C0 {
@@ -371,6 +373,43 @@ void C_001B5860::func_001B5860(void)
         f28 = 0;
     }
     ((C_00157660 *)this)->func_00157660();
+}
+
+void Models_001B58C0::func_001B58C0(int type, int idx)
+{
+    if (type == 1) {
+        Model1B0_001B58C0 *p = (Model1B0_001B58C0 *)func_001E8A44(0x1b0);
+
+        if (p != 0) {
+            p = p->func_001B5110();
+        } else {
+            p = 0;
+        }
+        *(Model_001B58C0 **)((char *)f28 + idx * 4) = p;
+    } else if (type == 2) {
+        Model60_001B58C0 *p = (Model60_001B58C0 *)func_001E8A44(0x60);
+
+        if (p != 0) {
+            p->func_001B4ED0();
+            p->vtbl = (void *)&D_0028CB80;
+            p->f58 = 0;
+            p->f5C = 0;
+        } else {
+            p = 0;
+        }
+        *(Model_001B58C0 **)((char *)f28 + idx * 4) = (Model_001B58C0 *)p;
+    } else {
+        Model1B0_001B58C0 *p = (Model1B0_001B58C0 *)func_001E8A44(0x1b0);
+
+        if (p != 0) {
+            p = p->func_001B5110();
+        } else {
+            p = 0;
+        }
+        *(Model_001B58C0 **)((char *)f28 + idx * 4) = p;
+        type = 1;
+    }
+    (*(Model_001B58C0 **)((char *)f28 + idx * 4))->f4 = type;
 }
 
 int C_001B59A0::func_001B59A0(int a)
