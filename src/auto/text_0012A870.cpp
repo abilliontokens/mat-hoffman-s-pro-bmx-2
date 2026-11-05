@@ -328,6 +328,12 @@ int Camera::func_0012B150(void)
     return 1;
 }
 
+int C_0012B170::func_0012B170(int a, int b)
+{
+    func_00157BF0(a, b);
+    return 0;
+}
+
 void C_0012B1D0::func_0012B1D0(undefined4 *param_1)
 {
   int in_ECX = (int)this;
