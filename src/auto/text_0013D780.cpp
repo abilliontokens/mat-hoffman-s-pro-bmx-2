@@ -85,7 +85,7 @@ struct DXCamera {
 
 struct C_001D5600 {
     int f0;
-    void *f4;
+    DXCamera *f4;
     void func_001D5600(void);
 };
 
