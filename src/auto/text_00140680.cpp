@@ -4,6 +4,9 @@ extern int D_00284F8C;
 extern char D_0028502C[];
 extern char D_002850C4[];
 extern char D_00010000;
+extern char D_00020000;
+extern char D_00030000;
+extern char D_002789B8[];
 char *func_001E95A4(char *s, const char *delim);
 
 extern "C" int memcmp(const void *a, const void *b, unsigned int n);
