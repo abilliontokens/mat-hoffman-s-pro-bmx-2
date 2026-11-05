@@ -428,3 +428,43 @@ C_0015D1B0 *C_0015D1B0::func_0015D1B0(void)
     return this;
 }
 
+void C_0015D1B0::func_0015D250(void)
+{
+    int i;
+    if (f6C != 0) {
+        for (i = 0; i < f78; i++)
+            ((C_Obj_0015D250 **)f6C)[i]->v2();
+        func_001E891B((void *)f6C);
+        f6C = 0;
+    }
+    if (f70 != 0) {
+        for (i = 0; i < f78; i++)
+            ((C_Obj_0015D250 **)f70)[i]->v2();
+        func_001E891B((void *)f70);
+        f70 = 0;
+    }
+    if (f74 != 0) {
+        for (i = 0; i < f78; i++)
+            ((C_Obj_0015D250 **)f74)[i]->v2();
+        func_001E891B((void *)f74);
+        f74 = 0;
+    }
+    f78 = 0;
+    if (f50 != 0) {
+        func_001E891B((void *)f50);
+        f50 = 0;
+    }
+    if (f64 != 0) {
+        func_001E891B((void *)f64);
+        f64 = 0;
+    }
+    if (f3C != 0) {
+        func_001E891B((void *)f3C);
+        f3C = 0;
+    }
+    if (f38 != 0) {
+        func_001E891B((void *)f38);
+        f38 = 0;
+    }
+}
+
