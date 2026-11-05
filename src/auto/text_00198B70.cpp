@@ -223,6 +223,38 @@ void func_00198EF0(void *a, C_00198B70 *obj, void *c)
     }
 }
 
+void C_00198B70::func_00199300(float *q)
+{
+    float d=q[3], c=q[2], b=q[1], a=q[0];
+    float n=a*a+b*b+c*c+d*d;
+    if(n>D_00275544) {
+        float s=D_00275600/n;
+        float b2=s*q[1], c2=s*q[2], d2=s*q[3];
+        float ab=b2*q[0], ac=c2*q[0], ad=d2*q[0];
+        float bc=c2*q[1], bd=d2*q[1], cd=d2*q[2];
+        float bb=b2*q[1], cc=c2*q[2], dd=d2*q[3];
+        fB0.m[0]=D_00275460-(dd+cc);
+        fB0.m[4]=bc+ad;
+        fB0.m[8]=bd-ac;
+        fB0.m[1]=bc-ad;
+        fB0.m[5]=D_00275460-(dd+bb);
+        fB0.m[9]=cd+ab;
+        fB0.m[2]=bd+ac;
+        fB0.m[6]=cd-ab;
+        fB0.m[10]=D_00275460-(cc+bb);
+    fB0.m[14]=0; fB0.m[13]=0; fB0.m[12]=0;
+    func_001982F0();
+    if(f180&1) { f180&=0xfe; if(f174) f174->func_00197B10(); }
+    } else {
+        fB0.m[0]=1.0f; fB0.m[4]=0; fB0.m[8]=0;
+        fB0.m[1]=0; fB0.m[5]=1.0f; fB0.m[9]=0;
+        fB0.m[2]=0; fB0.m[6]=0; fB0.m[10]=1.0f;
+    fB0.m[14]=0; fB0.m[13]=0; fB0.m[12]=0;
+    func_001982F0();
+    if(f180&1) { f180&=0xfe; if(f174) f174->func_00197B10(); }
+    }
+}
+
 void C_00198B70::func_001994C0(C_00198B70 *other, S_00198B70_F4 *out0, S_00198B70_F4 *out1)
 {
     if (other == this) {
