@@ -205,6 +205,14 @@ undefined4 C_001926D0::func_001926D0(byte param_1)
   return in_ECX;
 }
 
+void C_00192470::func_001927A0(void)
+{
+    void func_001E891B(void *);
+    vtbl = (void *)&D_0028AB84;
+    func_001E891B(f14);
+    func_0001DFF0();
+}
+
 undefined4 C_00192B50::func_00192B50(byte param_1)
 {
   int in_ECX = (int)this;
