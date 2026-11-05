@@ -11,6 +11,10 @@ struct Rect16_000597B0 {
 extern Rect16_000597B0 D_002A1A64;
 extern char D_002A5348[];
 extern char D_00275678[];
+extern char D_002A60B0[];
+extern char D_002A5FA8[];
+extern char D_00278084[];
+extern char D_00278070[];
 void *func_001E8A44(unsigned int size);
 int func_001ADCC0(char *buf, int size, char *fmt, ...);
 
