@@ -14,22 +14,55 @@ struct S_002BEAAC_Loader {
 
 extern S_002BEAAC_Loader *D_002BEAAC;
 
+/* something with a bitmask-style flag set (hint/helper state) */
+struct S_0005C1D0_Obj {
+    int func_0005C1D0(int flag);
+    void func_0005C1E0(int flag);
+};
+
 struct S_002A8490_Mgr {
-    char pad0[0x2c4];
+    char pad0[0x2c0];
+    S_0005C1D0_Obj *f2c0;
     int f2c4;
     char pad2c8[0x300 - 0x2c8];
     void *arr300[1];
 };
 
+struct S_002A8490_Cam {
+    char pad0[0x1240];
+    int f1240;
+};
+
+struct S_002A8490_Player {
+    char pad0[4];
+    S_002A8490_Cam *f4;
+};
+
 struct S_002A8490_Root {
     char pad0[0x2e0];
     S_002A8490_Mgr *f2e0;
+    char pad2e4[4];
+    S_002A8490_Player *f2e8;
 };
 
 extern S_002A8490_Root *D_002A8490;
 
+struct S_00108510_Vec {
+    int x, y, z, w;
+};
+
+/* a rider/player object; f11b0 is its id */
 struct S_00104C80_Obj {
+    char pad0[0x11b0];
+    int f11b0;
     void func_00104C80(void *a);
+    void func_00108360(void);
+    void func_00108510(int a, S_00108510_Vec v);
+    void func_00108610(int a, int b);
+};
+
+struct S_00083A70_Obj {
+    void func_00083A70(int a);
 };
 
 struct S_BmxEvent_Scene {
