@@ -158,3 +158,13 @@ int func_001EE997(void)
     return -1;
 }
 
+void __fastcall func_001EE9AB(S_001EE9AB *list, int unused)
+{
+    if (list->f4 != 0) {
+        while ((list->fC = list->f8) != 0) {
+            list->f8 = (void **)*list->fC;
+            list->f4(list->fC);
+        }
+    }
+}
+
