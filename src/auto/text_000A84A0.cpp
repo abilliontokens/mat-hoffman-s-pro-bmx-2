@@ -172,6 +172,14 @@ C_000A89F0 *C_000A89F0::func_000A89F0()
     return this;
 }
 
+C_000A8BC0 *C_000A8BC0::func_000A8BC0() {
+    extern int D_0027C2E8;
+    ((C_001B59E0 *)this)->func_001B59E0();
+    vtbl = (void *)&D_0027C2E8;
+    unk10C = 0;
+    return this;
+}
+
 C_000A8C90 *C_000A8C90::func_000A8C90()
 {
     int i;
