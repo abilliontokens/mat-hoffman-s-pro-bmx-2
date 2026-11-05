@@ -393,10 +393,10 @@ void *C_00100AB0::func_00100AB0(unsigned int flags) {
 }
 
 void C_00100AD0::func_00100AD0(void) {
-    int off;
+    int i;
 
-    for (off = 0x38; off < 0x40; off += 4)
-        (*(C_001D6600 **)((char *)D_002B91AC + off))->func_001D6600();
+    for (i = 0; i < 2; i++)
+        D_002B91AC->arr38[i]->func_001D6600();
     D_002B91AC->f34->func_001D6600();
     if (unk2B8) {
         func_000E3AC0();
