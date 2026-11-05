@@ -1,5 +1,32 @@
 /* 3 functions from 0x001C8960 to 0x001C9920, found by Ghidra. */
 #include "common.h"
+extern float D_00275544, D_002F08AC, D_0028E858, D_002F08B0, D_0028E854, D_002AC5CC, D_002F08A8;
+extern int D_002AB7F0, D_002F0BD0;
+struct S_1C9760_Vec { float x,y,z; };
+struct S_1C9760_Cell { float height; int f4; };
+struct S_1C9760_Layer {
+    int f0; float scale, x, fC, z;
+    char pad14[0x14]; int index; char pad2c[0x14];
+    S_1C9760_Cell *data[2];
+};
+struct S_1C9760_Query {
+    virtual void v0(); virtual void v4(); virtual void v8(); virtual void vC();
+    virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1C();
+    virtual void v20(); virtual void v24(); virtual void v28(); virtual void v2C();
+    virtual void v30(); virtual void v34(); virtual void v38(); virtual void v3C();
+    virtual void v40(); virtual void v44(); virtual void v48(); virtual void v4C();
+    virtual void v50(); virtual void v54(); virtual void v58(); virtual void v5C();
+    virtual void v60(); virtual void v64(); virtual void v68(); virtual void v6C();
+    virtual void v70(); virtual float v74(float, float, int);
+};
+struct C_001C9760 {
+    char pad0[0x28]; float height;
+    S_1C9760_Layer *layers; char pad30[8]; int count;
+    char pad3c[8]; unsigned char *map; char pad48[0x70];
+    int size, dimension; int fC0; float scale; int fC8;
+    S_1C9760_Query *query; char padD0[0x14c]; int bits;
+    void func_001C9760(S_1C9760_Vec *, int, int);
+};
 struct C_001C96E0_Node {
     char pad0[0xd4];
     int fD4;
