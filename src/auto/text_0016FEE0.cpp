@@ -47,7 +47,7 @@ struct C_001703B0 {
     void *f134;
     u32 f138, f13c, f140, f144;
     S_Obj *f148;
-    char pad14c[8];
+    u32 f14c, f150;
     S_Obj154 *f154;
     S_Obj *f158;
     void *f15c;
