@@ -402,6 +402,27 @@ void JoystickDevice::func_0015AFC0(int idx, int a, int b)
     }
 }
 
+void *JoystickDevice::func_0015B010(unsigned int flags)
+{
+    extern int D_00287674;
+    void func_001E891B(void *p);
+    S_0015A660_List *l;
+    int i;
+
+    vtbl = (void *)&D_00287674;
+    l = &lists[6];
+    i = 6;
+    do {
+        l--;
+        func_001E891B(l->data);
+    } while (--i != 0);
+    ((C_001D1480 *)this)->func_001D1480();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 C_0015B150* C_0015B150::func_0015B150(void) {
     extern int D_002876E0;
     unk0 = (int)&D_002876E0;
