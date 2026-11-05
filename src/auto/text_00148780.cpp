@@ -69,6 +69,22 @@ void *C_00148780::func_00148780(unsigned int flags)
     return this;
 }
 
+void C_00148780::func_001487D0()
+{
+    void *func_001E8A44(int);
+    void __stdcall func_00011FF0(void *p, int a1, int a2, int *a3);
+    int n = unk8->count;
+    if (n == 0) {
+        unk20 = 0;
+        return;
+    }
+    void *p = func_001E8A44(n * 0x14);
+    if (p != 0) {
+        func_00011FF0(p, 0x14, n, &D_00144CD0);
+    }
+    unk20 = p;
+}
+
 undefined4 C_001488F0::func_001488F0(byte param_1)
 {
   int func_001452A0(...);
@@ -90,6 +106,12 @@ void C_00149300::func_00149300(void)
                     
   (**(code **)(*in_ECX + 4))();
   return;
+}
+
+C_00149380::C_00149380()
+{
+    func_001B0F10();
+    vtbl = &D_00286824;
 }
 
 void func_001493A0(void) {

@@ -524432,6 +524432,8 @@
   ]
  },
  "names": {
+  "func_00142E90": "C_00142E90::C_00142E90",
+  "func_00149380": "C_00149380::C_00149380",
   "func_0015B660": "LinearPositionController::LinearPositionController",
   "func_0015B7A0": "BezierPositionController::BezierPositionController",
   "func_001B0E60": "C_001B0E60::C_001B0E60",
