@@ -76,6 +76,7 @@ struct C_00199BE0 {
     void func_00199D70(int a0, int a1, int a2, int a3);
     void func_00199D70(int a0, int a1, int a2, float angle);
     void func_00199E30(int a0, int a1, int a2, int a3, int a4);
+    void func_00199E50(S_00199B00_F4 v, int a4, int a5, int a6, int a7, float angle);
     void func_0019A0A0(float sx, float sy, float sz);
     void func_001985D0(int *flag, S_0019A680_V4 *a, S_0019A680_V4 *b, float *m, int n);
     void func_0019A680(S_0019A680_V4 *center, S_0019A680_V4 *extent);
@@ -224,16 +225,10 @@ void C_00199BE0::func_0019A680(S_0019A680_V4 *center, S_0019A680_V4 *extent)
         p->func_001985D0(&flag, &a, &b, fF0, 1);
     }
     if (center != 0) {
-        float cx = a.x + b.x;
-        float cy = a.y + b.y;
-        float cz = a.z + b.z;
-        *center = S_0019A680_V4(cx * D_002755E8, cy * D_002755E8, cz * D_002755E8, 1.0f);
+        *center = Scale_0019A680(Add_0019A680(b, a), D_002755E8);
     }
     if (extent != 0) {
-        float ex = b.x - a.x;
-        float ey = b.y - a.y;
-        float ez = b.z - a.z;
-        *extent = S_0019A680_V4(ex * D_002755E8, ey * D_002755E8, ez * D_002755E8, 1.0f);
+        *extent = Scale_0019A680(Sub_0019A680(b, a), D_002755E8);
     }
 }
 
