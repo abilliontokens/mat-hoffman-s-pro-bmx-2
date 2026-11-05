@@ -16,3 +16,14 @@ int func_001EA268(int c)
     }
     return D_002AEA30[c] & 4;
 }
+
+#pragma optimize("t", off)
+int func_001EA291(int c)
+{
+    if (D_002AEA38 > 1) {
+        return func_001EC5F1(c, 8);
+    }
+    return D_002AEA30[c] & 8;
+}
+#pragma optimize("", on)
+
