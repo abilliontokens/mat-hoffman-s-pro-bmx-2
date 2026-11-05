@@ -176,6 +176,36 @@ void C_001CB510::func_001CB510(void)
     }
 }
 
+int C_001CB560::func_001CB560(C_001CB560 *other)
+{
+    if (f208 & 4) {
+        return 1;
+    }
+    if (other != this) {
+        if (other == 0) {
+            if ((f10C & 0x100) && f13c != 0) {
+                f154 = (C_001CB560 *)-1;
+            }
+        } else if (((f10C & 0x100) || (other->f10C & 0x100)) && other->f13c != 0) {
+            other->v6(0);
+            if ((f208 & 8) && other->f13c == f13c) {
+                f154 = other;
+                return 1;
+            }
+            return 0;
+        }
+    }
+    return 1;
+}
+
+void C_001CB610::func_001CB610(int idx, const char *name)
+{
+    if (idx <= fa8 && idx >= 0) {
+        func_001E8920(f34[idx].name, name, 0x1f);
+        f34[idx].term = 0;
+    }
+}
+
 void C_001CB940::func_001CB940(void)
 {
     ((C_001576C0 *)this)->func_001576C0();
