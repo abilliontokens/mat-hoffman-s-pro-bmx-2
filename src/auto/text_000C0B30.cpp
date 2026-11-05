@@ -1,7 +1,7 @@
 /* 9 functions from 0x000C0B30 to 0x000C1B00, found by Ghidra. */
 #include "common.h"
 
-struct S_BFEE0_Check { int func_0005C1D0(int index); void func_0005C310(int a, int b); };
+struct S_BFEE0_Check { int func_0005C1D0(int index); void func_0005C210(int a, int b); void func_0005C310(int a, int b); };
 struct S_C09B0_Ui { void func_000B9A80(int a, int b); };
 struct S_C09B0_Input { int func_00136170(int a, int b, int c); };
 struct S_BFEE0_Manager { char pad[0x2c0]; S_BFEE0_Check *f2c0; char pad2c4[0x2d0 - 0x2c4]; int f2d0; int f2d4; };
