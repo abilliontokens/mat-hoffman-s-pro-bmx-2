@@ -211,6 +211,52 @@ int func_001325D0(float *param_1)
     return bVar3;
 }
 
+Class_002845AC *Class_002845AC::func_001328F0(int a, int mostDerived)
+{
+    volatile int local = 0;
+    u32 *p;
+    if (mostDerived != 0) {
+        vbptr = &D_00284618;
+        ((C_00157600_1328F0 *)((char *)this + 0x294))->func_00157600(1);
+    }
+    ((C_00164440_1328F0 *)this)->func_00164440(a, 0);
+    *(void **)((char *)this + vbptr[1]) = (void *)&D_002845AC;
+    *(int *)((char *)this + vbptr[1] - 4) = vbptr[1] - 0x294;
+    p = &f220;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = &f230;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = &f240;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = &f250;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = &f260;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = &f270;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    f280 = 0;
+    f284 = 0;
+    return this;
+}
+
 void C_1329F0::func_001329F0()
 {
     char *base = (char *)this - 0x294;
