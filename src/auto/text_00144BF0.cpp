@@ -46,6 +46,7 @@ struct C_00145290 {
 };
 
 void *func_001E8A44(int size);
+void func_001E891B(void *p);
 
 #pragma intrinsic(memcpy)
 extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
