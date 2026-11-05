@@ -126,6 +126,8 @@ struct C_000BBE30 {
     int func_000BDF30(int show);
     int func_000BE020(int show);
     void func_000BE540();
+    void func_000BE1D0(int slot);
+    void func_000BC3E0(int slot);
 };
 
 struct C_000BEDA0 {
