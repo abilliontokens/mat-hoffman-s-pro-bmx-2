@@ -13,6 +13,38 @@ struct C_000A09F0 {
 void func_001E891B(void *p);
 void *func_001E8A44(int size);
 
+struct C_00132E20_000A0260 {
+    int func_00132E20(char *name);
+};
+
+extern C_00132E20_000A0260 *D_002A4334;
+extern char D_00276688[];
+extern char D_0027ADEC[];
+extern char D_0027ADE4[];
+extern char D_0027ADDC[];
+extern char D_0027ADD4[];
+extern char D_0027ADD0[];
+extern int D_002B9118;
+extern int D_002B9108;
+extern int D_002B910C;
+extern int D_002B911C;
+extern int D_002B9114;
+extern int D_002B9110;
+
+struct C_000A0AE0 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28();
+    char pad4[0x54C];
+    int f550;
+    C_000A0AE0 *func_000A0AE0(int a);
+};
+
 struct C_002A829C {
     void func_00161680(void);
 };
