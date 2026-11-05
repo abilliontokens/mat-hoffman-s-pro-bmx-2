@@ -35,7 +35,7 @@ struct C_001A86D0_Body {
 
 struct SpringCollisionDetectionModel {
     void *vtbl;
-    char pad4[0x24];
+    char pad4[0x20];
     void *f24;
     int f28;
     int f2C;
