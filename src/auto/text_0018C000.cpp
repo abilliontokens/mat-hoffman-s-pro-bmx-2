@@ -56,7 +56,6 @@ struct C_0018C090_Node {
 struct C_0018C090 {
     C_0018C090_Node *head;
     int count;
-    void *func_001E8A44(int size);
     void func_0018C090(int value);
 };
 
