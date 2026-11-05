@@ -80,6 +80,33 @@ struct C_000ED0E0 {
     void func_000ED0E0(void);
 };
 
+struct C_000ECF80 {
+    void *vtbl;
+    char pad4[0x27c];
+    int f280, f284, f288, f28C;
+    char pad290[4];
+    int f294, f298, f29C, f2A0, f2A4, f2A8, f2AC;
+    char f2B0;
+    char pad2B1[0x103];
+    int f3B4, f3B8, f3BC;
+    char pad3C0[4];
+    int f3C4, f3C8, f3CC, f3D0, f3D4;
+    char pad3D8[4];
+    int f3DC;
+    char pad3E0[0x30];
+    int f410, f414, f418, f41C, f420, f424, f428;
+    int f42C, f430, f434, f438, f43C;
+    char pad440[4];
+    int f444, f448, f44C, f450, f454, f458, f45C;
+    int f460[11];
+    int f48C[11];
+    C_000ED0E0_Obj *f4B8[4];
+    C_000ED0E0_Obj *f4C8[2];
+    int f4D0[11];
+    void func_001BE360(int a);
+    C_000ECF80 *func_000ECF80(int a);
+};
+
 void C_000ECD90::func_000ECD90(void) {
     unk380 = 0;
     unk384 = 255;
