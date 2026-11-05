@@ -69,7 +69,9 @@ struct C_0015BA90 {
 
 struct S_0015BF70_Node {
     float f0;
-    char pad4[0xC];
+    float f4;
+    float f8;
+    float fC;
 };
 
 int func_0015BF70(S_0015BF70_Node *arr, int n, float t);
