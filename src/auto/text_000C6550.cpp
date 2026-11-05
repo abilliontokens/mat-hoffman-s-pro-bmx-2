@@ -63,3 +63,10 @@ struct BmxUIPageParkLevel {
     BmxUIPageParkLevel *func_000C6620(int a);
     void func_000C66E0();
 };
+
+void BmxUIPageParkEditor::func_000C6600(void)
+{
+    func_000C5E40();
+    func_000C6420();
+    func_00157960();
+}
