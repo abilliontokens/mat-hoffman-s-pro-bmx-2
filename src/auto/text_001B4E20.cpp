@@ -130,6 +130,7 @@ struct C_001B59A0 {
 extern int D_0028CB80;
 void *func_001E8A44(int size);
 int func_001EA426(void *a, void *b);
+void func_001B4ED0(void);
 
 struct C_001B5790 {
     void *vtbl;
