@@ -29,7 +29,7 @@ extern float D_002A90C0;
 extern char D_00289604;
 
 struct PortalInfo {
-    void *vtbl;
+    virtual void func_vslot0();
     S_Vec4_001858A0 v[4];
     int f44;
     int f48;
