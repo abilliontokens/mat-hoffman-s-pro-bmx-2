@@ -149,6 +149,36 @@ struct C_0005C0A0 {
     int func_0005C0A0(void);
 };
 
+struct S_0005C650_Inner {
+    char pad0[0x48];
+    int f48;
+};
+
+struct S_0005C650_Game {
+    char pad0[0x2e0];
+    S_0005C650_Inner *f2e0;
+};
+
+struct S_0005C650_Slot {
+    int v[4];
+};
+
+struct C_0005C5B0 {
+    undefined4 func_0005C5B0(int param_1, int param_2);
+};
+
+struct C_0005C600 {
+    undefined4 func_0005C600(int param_1, int param_2);
+};
+
+struct C_0005C650 {
+    char pad0[0x14970];
+    S_0005C650_Slot slots[8];
+    void func_0005C650(int param_1);
+};
+
+extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
+
 
 int C_0005C020::func_0005C020(int param_1)
 {
