@@ -4,6 +4,23 @@
 
 void func_001E891B(void *p);
 
+struct C_001B1B20 { int func_001B1B20(); };
+struct C_001009D0 {
+ char pad0[0x298];
+ C_001B1B20 *unk298;
+ char pad29c[0xc];
+ int unk2a8, unk2ac, unk2b0, unk2b4;
+ float unk2b8;
+ int unk2bc, unk2c0, unk2c4, unk2c8;
+ float unk2cc, unk2d0;
+ void func_001009D0();
+ void func_000E1EA0();
+ void func_000E1F00();
+ void func_001008E0();
+ void func_000E1F60();
+ void func_00157960();
+};
+
 struct C_001D6600 {
     void func_001D6600(void);
 };
