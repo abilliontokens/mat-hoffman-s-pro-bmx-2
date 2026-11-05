@@ -116,7 +116,7 @@ void C_001659D0::func_001659D0(int *a, int b, int c)
     }
 }
 
-void C_00165E20::func_00165E20(Vec4_165EF0 *out, C_00165E20_Arg1 *a1, f32 a2, int a3, void *a4)
+Vec4_165EF0 C_00165E20::func_00165E20(C_00165E20_Arg1 *a1, f32 a2, int a3, void *a4)
 {
     Vec4_165EF0 v;
     int idx;
@@ -127,7 +127,7 @@ void C_00165E20::func_00165E20(Vec4_165EF0 *out, C_00165E20_Arg1 *a1, f32 a2, in
     a1->f14[idx]->v3(a2, &v);
     if (a4)
         func_001640D0(f4, f1EC[f1F0[a1->f14[idx]->f4]].f34->f170, fC, &v);
-    *out = v;
+    return v;
 }
 
 void C_00165EF0::func_00165EF0(Vec4_165EF0 *out, C_00165EF0_Arg1 *a1, f32 a2, int a3, void *a4)
