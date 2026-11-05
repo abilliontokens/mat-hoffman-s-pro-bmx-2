@@ -461,10 +461,13 @@ unsigned long func_001DF478(void)
     if (ExQueryNonVolatileSetting(9, &type, &value, 4, 0) < 0) {
         value = 0;
     }
-    if (*__imp__HalBootSMCVideoMode == 3) {
+    switch (*__imp__HalBootSMCVideoMode) {
+    case 3:
         value = 1;
-    } else if (*__imp__HalBootSMCVideoMode == 6) {
+        break;
+    case 6:
         *((unsigned short *)&value + 1) = 0;
+        break;
     }
     return value;
 }
