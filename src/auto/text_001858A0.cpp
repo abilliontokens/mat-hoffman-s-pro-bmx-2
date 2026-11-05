@@ -259,7 +259,7 @@ int C_00185B10::func_00185B60(S_Stream *stream)
     for (i = 0; i < 10; i++) {
         func_001ADCC0(buf, 0x104, &D_002896B8, i + 1);
         if (stream->func_00169710(buf)) {
-            ((S_ZoneInfoItem *)&elems[f4 + i])->load(stream);
+            ((S_ZoneInfoItem *)&elems[f4 + i])->func_00185A40(stream);
             count++;
         }
     }
