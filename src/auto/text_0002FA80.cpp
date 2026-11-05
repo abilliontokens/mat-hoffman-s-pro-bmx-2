@@ -70,6 +70,14 @@ struct C_00030A10 {
 };
 
 void func_001E891B(void *p);
+void *func_001E8A44(unsigned int size);
+int func_001ADCC0(char *dst, int size, const char *fmt, ...);
+void __stdcall func_00011FF0(void *array, unsigned int size, int count, void *ctor);
+extern char D_002A5870[];
+extern char D_00275678[];
+extern char D_002769F8[];
+extern char D_002769E8[];
+extern char D_0002FDF0[];
 
 struct C_00194C70 {
     void func_00194C70(void);
