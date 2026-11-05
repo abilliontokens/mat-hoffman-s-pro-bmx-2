@@ -227,6 +227,62 @@ int __stdcall func_0023EE30(int fmt)
     return rate;
 }
 
+int C_0023EE81::func_0023EE81(unsigned int a, unsigned int b, int *out)
+{
+    unsigned int blk = f50;
+    unsigned int off = a % blk;
+    unsigned int n = b;
+
+    if (off + b > blk) {
+        n = blk - off;
+    }
+    if ((f40 & 0x10) != 0 && a + b > f5C - f4C) {
+        return 0;
+    }
+    *out = f34 + off;
+    f38 = a;
+    return n;
+}
+
+void C_0023EA00::func_0023EED3(void)
+{
+    extern int D_0029016C;
+    void __stdcall func_0023F63D(void **p);
+    vtbl = (void *)&D_0029016C;
+    func_0023EA00();
+    if (f4C != 0) {
+        func_001DDC28(f4C);
+    }
+    if (f88 != 0) {
+        func_001DDDD6(f88, -1);
+    }
+    if (f30 != 0) {
+        func_0023F63D(&f30);
+    }
+    if (f34 != 0) {
+        func_001E891B(f34);
+    }
+    if (f38 != 0) {
+        func_001E891B(f38);
+    }
+    if (f50 != -1 && fAC == 0) {
+        func_001DD13C(f50);
+    }
+    if (f4C != 0) {
+        func_001DD13C(f4C);
+    }
+    if (f64 != 0) {
+        func_001DD13C(f64);
+    }
+}
+
+extern "C" long __cdecl _InterlockedIncrement(long volatile *);
+#pragma intrinsic(_InterlockedIncrement)
+int __stdcall func_0023EF5D(char *self)
+{
+    return _InterlockedIncrement((long volatile *)(self + 0x8c));
+}
+
 int __stdcall func_0023F160(C_0023EFB0 *p)
 {
     p->func_0023EFB0();
