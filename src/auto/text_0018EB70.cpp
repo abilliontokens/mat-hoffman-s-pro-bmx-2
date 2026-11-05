@@ -1,5 +1,24 @@
 /* 5 functions from 0x0018EB70 to 0x0018F980, found by Ghidra. */
 #include "common.h"
+extern char D_00275630[];
+struct C_0018F4D0 {
+    char pad0[0x20];
+    int f20;
+    int f24;
+    char *f28;
+    char f2C;
+    char pad2D[0x12C - 0x2D];
+    int f12C;
+    int f130;
+    int f134;
+    int f138;
+    int f13C;
+    char f140;
+    char pad141[0x150 - 0x141];
+    void func_0018E250(char *a, unsigned int b);
+    void func_00191470(unsigned int b);
+    void func_0018F4D0(unsigned int a);
+};
 struct C_0018F350 {
     char pad0[0x18];
     int unk18;
