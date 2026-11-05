@@ -52,6 +52,9 @@ struct V4_00194130 {
 
 extern int D_0028AD8C;
 extern V4_00194130 D_002A9970;
+extern float D_002A9974;
+extern float D_002A9978;
+extern float D_002A997C;
 
 /* SelectiveGravityModel */
 struct C_00194130 {
@@ -144,3 +147,20 @@ undefined4 C_00194110::func_00194110(byte param_1)
   }
   return in_ECX;
 }
+
+C_00194130 *C_00194130::func_00194130(int a0)
+{
+    func_00157600(a0);
+    vtbl = (void *)&D_0028AD8C;
+    f30.w = 1.0f;
+    f30.z = 0;
+    f30.y = 0;
+    f30.x = 0;
+    f28 = 0;
+    f24 = 0;
+    f2c = 35.2f;
+    f30 = D_002A9970;
+    f40 = 0;
+    return this;
+}
+
