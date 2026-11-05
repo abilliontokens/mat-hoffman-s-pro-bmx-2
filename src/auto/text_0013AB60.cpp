@@ -134,6 +134,15 @@ void C_0013AEC0::func_0013AEC0(int idx)
     fE4 = idx;
 }
 
+int C_0013AEC0::func_0013AF80(int idx)
+{
+    int v = fC[fE8[idx].f0].f10;
+    if (v != 0) {
+        return D_0014FEF0(v);
+    }
+    return 0;
+}
+
 int C_0013AEC0::func_0013AFB0(int idx)
 {
     S_0013AEC0_Slot *s = &fE8[idx];
