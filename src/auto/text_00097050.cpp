@@ -133,6 +133,26 @@ int C_000979C0::func_000979C0(undefined4 key, undefined4 *out)
   return 0;
 }
 
+void C_00097A20::func_00097A20(void)
+{
+    int i;
+
+    for (i = 0; i < 10; i++) {
+        C_00012140 *p = arrA[i];
+        if (p != 0) {
+            p->func_00012140();
+            func_001E891B(p);
+            arrA[i] = 0;
+        }
+        p = arrB[i];
+        if (p != 0) {
+            p->func_00012140();
+            func_001E891B(p);
+            arrB[i] = 0;
+        }
+    }
+}
+
 int C_00097C20::func_00097C20(void)
 {
   int in_ECX = (int)this;
