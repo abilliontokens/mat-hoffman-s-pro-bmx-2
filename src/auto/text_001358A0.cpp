@@ -244,6 +244,50 @@ void C_00135E00::func_00135E90(int a0, int a1, int a2, int a3)
     f3C++;
 }
 
+int C_00135E00::func_00135FF0(int a0, int kind, int a2, int idx)
+{
+    S_00136110_Dev *dev;
+    switch (kind) {
+    case 2:
+        dev = f14[idx];
+        if (dev != 0 && dev->v3(a0, a2, 0) != 0) {
+            return 1;
+        }
+        break;
+    case 1:
+        dev = f34;
+        if (dev != 0 && dev->v5(a0, a2, 0) != 0) {
+            return 1;
+        }
+        break;
+    case 0:
+        dev = f38;
+        if (dev != 0 && dev->v5(a0, a2, 0) != 0) {
+            return 1;
+        }
+        break;
+    }
+    return 0;
+}
+
+int C_00135E00::func_001360B0(int a0, int a1)
+{
+    S_00136110_Dev *dev;
+    dev = f14[0];
+    if (dev != 0 && dev->v2(a0, a1, 0) != 0) {
+        return 1;
+    }
+    dev = f38;
+    if (dev != 0 && dev->v4(a0, a1, 0) != 0) {
+        return 1;
+    }
+    dev = f34;
+    if (dev != 0 && dev->v4(a0, a1, 0) != 0) {
+        return 1;
+    }
+    return 0;
+}
+
 int C_00135E00::func_00136110(int a, int idx)
 {
     S_00136110_Dev *dev = f14[idx];
