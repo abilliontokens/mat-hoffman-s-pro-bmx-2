@@ -73,6 +73,17 @@ struct C_00104B00 {
 
 extern V4_00104B00 D_002A3A5C;
 
+V4_00104B00 func_00104B00(V4_00104B00 *a, V4_00104B00 *b)
+{
+    V4_00104B00 r;
+
+    r.x = a->x * b->x - b->y * a->y - b->z * a->z - b->w * a->w;
+    r.y = a->y * b->x + b->w * a->z + b->y * a->x - b->z * a->w;
+    r.z = a->z * b->x + b->y * a->w + b->z * a->x - b->w * a->y;
+    r.w = a->w * b->x + b->z * a->y + b->w * a->x - b->y * a->z;
+    return r;
+}
+
 float C_00104B00::func_00104BB0(int i)
 {
     if (f480 == 0) {
