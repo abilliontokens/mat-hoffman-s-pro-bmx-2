@@ -44,7 +44,6 @@ struct C_001D5760 {
     C_001D5760_Obj *f5c;
     C_001D5760_Obj *f60;
     C_001D5760();
-    void func_001D5760();
     void func_001D57E0();
 };
 
