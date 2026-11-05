@@ -54,3 +54,43 @@ void *C_00023BE0::func_00023BE0(int flags)
     }
     return this;
 }
+
+struct Vec4_00023C30 {
+    int x, y, z;
+    float w;
+    Vec4_00023C30() {
+        x = y = z = 0;
+        w = 1.0f;
+    }
+};
+
+struct C_00023C30 {
+    Vec4_00023C30 v0;
+    int unk10;
+    char pad14[8];
+    int unk1C;
+    Vec4_00023C30 v20;
+    Vec4_00023C30 v30;
+    int unk40;
+    int unk44;
+    int unk48;
+    int unk4C;
+    int unk50;
+    C_00023C30(int a, int b, int c, int d);
+};
+
+C_00023C30::C_00023C30(int a, int b, int c, int d)
+{
+    unk44 = b;
+    unk48 = a;
+    unk4C = c;
+    unk50 = d;
+    unk1C = 0;
+    v0.x = D_002A0F74;
+    v0.y = D_002A0F78;
+    v0.z = D_002A0F7C;
+    *(int *)&v0.w = D_002A0F80;
+    unk40 = 0;
+    unk10 = 1;
+}
+
