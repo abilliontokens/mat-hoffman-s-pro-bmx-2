@@ -1,5 +1,17 @@
 /* 10 functions from 0x0016FEE0 to 0x00170DB0, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
+extern int D_002A8A80, D_002A8A84, D_002A8A88, D_002A8A8C;
+struct S_00170B60_Mat { int m[16]; };
+struct C_000264C0 { void func_000264C0(void *src); };
+struct C_00170B60 { void func_00170B60(); };
+static inline void Identity_00170B60(S_00170B60_Mat * volatile p) {
+    __m128 z = _mm_setzero_ps();
+    ((__m128 *)p->m)[0]=z; ((__m128 *)p->m)[1]=z;
+    ((__m128 *)p->m)[2]=z; ((__m128 *)p->m)[3]=z;
+    p->m[0]=0x3f800000; p->m[5]=0x3f800000;
+    p->m[10]=0x3f800000; p->m[15]=0x3f800000;
+}
 #include "ghidra.h"
 #include "ghidra.h"
 struct C_00170B30 {
