@@ -28,7 +28,13 @@ struct C_0013B210 {
     void func_0013C110(int h);
     void func_0013AFF0(int a, int b, int c);
     void func_0013C8A0(int h, void *buf, int size, int count);
+    int func_0013C9F0(int name, const char *mode);
 };
+extern char D_00288030[];
+extern char D_00288038[];
+extern char D_00275FB4[];
+extern "C" int memcmp(const void *a, const void *b, unsigned int n);
+#pragma intrinsic(memcmp)
 extern C_0013B210 *D_002BEAAC;
 
 /* table row of C_00168F40::f18 */
