@@ -81,8 +81,33 @@ struct S_00011D30_Game {
 };
 
 struct S_00011D30_Root {
-    char pad0[0x2a4];
+    char pad0[0x238];
+    int f238;
+    char pad23c[0x2a4 - 0x23c];
     S_00011D30_Game *f2A4;
+};
+
+/* Walker base constructor */
+struct C_001C7310 {
+    void func_001C7310(int a);
+};
+
+extern int D_002754CC;
+
+/* AIPedestrian */
+struct C_000112E0 {
+    void *vtbl;
+    char pad4[0x380];
+    int f384, f388, f38C, f390, f394, f398, f39C, f3A0, f3A4, f3A8, f3AC, f3B0, f3B4;
+    char pad3B8[8];
+    int f3C0, f3C4, f3C8;
+    float f3CC, f3D0, f3D4;
+    int f3D8;
+    u8 f3DC, f3DD, f3DE, f3DF, f3E0, f3E1, f3E2, f3E3;
+    u32 v3E4[4];
+    u32 v3F4[4];
+    u32 v404[4];
+    C_000112E0 *func_000112E0(int a);
 };
 
 struct S_00011D30_Global {
@@ -226,5 +251,27 @@ void C_00011440::func_00011440(C_00017680_Vec pos)
     f3C->f4->func_00197B40(vecA, vecB);
     pos.y = vecA[1];
     f3C->f4->func_00199110(0, (float *)&pos, vecB, 0, 1, 0);
+}
+
+int C_00011D30::func_00011D30(void)
+{
+    C_00017680_Vec b;
+    C_00017680_Vec a;
+    int out;
+
+    func_001578D0();
+    if (D_002A8490->f2A4->f1C8 == 1 || f3C->f4->f1B0 < D_0027554C) {
+        a = f3E4;
+        a.y = a.y + D_00275548;
+        b.z = 0.0f;
+        b.y = 0.0f;
+        b.x = 0.0f;
+        b.w = 1.0f;
+        if (D_002AB66C->func_001C5C50(D_002EFDB8->f4, D_002EFDB8->f4 + 0xf0, &f3E4, &b, &out) == 1
+            || D_002AB66C->func_001C5C50(D_002EFDB8->f4, D_002EFDB8->f4 + 0xf0, &a, &b, &out) == 1) {
+            f3DE = 1;
+        }
+    }
+    return 1;
 }
 
