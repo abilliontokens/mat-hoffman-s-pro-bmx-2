@@ -1,6 +1,13 @@
 /* 10 functions from 0x00138800 to 0x001396D0, found by Ghidra. */
 #include "common.h"
 extern int D_00284A2C;
+extern float D_00275544;
+struct CutSceneAudio { void func_001D1A30(int); };
+struct CutSceneWorld { char pad[0xb4]; CutSceneAudio *audio; };
+struct CutSceneRoot { char pad[4]; CutSceneWorld *world; };
+struct CutScenePlayer { void func_001A4100(int,int,int); };
+struct CutSceneTimer { void func_001C4E70(float); };
+struct CutSceneView { void func_0012B7D0(void *,int,int,int,int); };
 struct ResetValue { int f0, f4, f8; };
 struct ResetObject { int f0, f4, f8, fc; };
 struct ResetItem { int pad[4]; int count; int f14; ResetValue *values; ResetObject *obj; int tail[3]; };
