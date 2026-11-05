@@ -91,3 +91,13 @@ float C_00104B00::func_00104BB0(int i)
     }
     return f24->f52c->f77e8[i];
 }
+
+void C_00104B00::func_00104BE0(void)
+{
+    if (f24 != 0) {
+        f7f4 = f24->f4dc->a24[fa2c];
+        f804 = f24->f4dc->aA4[fa2c];
+        f814 = D_002A3A5C;
+    }
+}
+
