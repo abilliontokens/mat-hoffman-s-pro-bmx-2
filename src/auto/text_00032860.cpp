@@ -61,6 +61,13 @@ struct C_00032E50 {
     void func_00032E50(float a, float b, float c, float d);
 };
 
+struct BmxEvent {
+    void func_00032E90();
+    void func_00032F50();
+    void func_00157920();
+    int func_00033300();
+};
+
 struct C_00032A00 {
     char pad0[0x1C8];
     int unk1C8;
