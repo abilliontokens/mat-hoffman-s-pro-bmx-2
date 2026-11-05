@@ -571,3 +571,25 @@ void C_001BDB50::func_001BDDE0(int a)
     }
 }
 
+void C_001BDB50::func_001BDE90(S_001BDB50_Group **out)
+{
+    S_001BDB50_Group *cur;
+
+    if (f28 != 0) {
+        f34->func_001BDA80();
+        do {
+            f30++;
+            if (f30 > f28) {
+                f30 = 1;
+            }
+            cur = f2c[f30 - 1];
+            f34 = cur;
+        } while (cur == 0 || cur->f24 == 0 || cur->f30 != 0);
+        if (out != 0) {
+            *out = cur;
+        } else {
+            ((C_001BDA50 *)cur)->func_001BDA50();
+        }
+    }
+}
+
