@@ -294,6 +294,33 @@ void C_000E1770::func_000E1C20()
     f298->func_001B17D0(dest);
 }
 
+void C_000E1770::func_000E1C80(float dt)
+{
+    if (f28C || f290) {
+        if ((*(float *)&f288 += dt) >= D_0027DE74) {
+            f294 = 1;
+            ((C_000E1770_V *)this)->v28(f284, f280);
+            *(float *)&f288 = 0.0f;
+        }
+    }
+    if (f2C0 != ((unsigned char *)arr2D4[0])[0x3b]) {
+        if (*(float *)&f2CC >= *(float *)&f2D0) {
+            f2C8 = f2C0;
+        } else {
+            int base = f2C4;
+            f2C8 = (int)((float)(f2C0 - base) * (*(float *)&f2CC / *(float *)&f2D0)) + base;
+            *(float *)&f2CC = dt + *(float *)&f2CC;
+        }
+    }
+    if (f2BC && !f2A8) {
+        if ((*(float *)&f2B8 += dt) >= D_00278C48) {
+            f2A8 = 1;
+            f2BC = 0;
+        }
+    }
+    func_001BED00(dt);
+}
+
 void C_000E1770::func_000E1DA0()
 {
     int ids[3];
