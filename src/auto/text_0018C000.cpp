@@ -452,3 +452,30 @@ C_0018C960 *C_0018C960::func_0018C960(int a)
     return this;
 }
 
+void C_0018C960::func_0018C9B0(int keep)
+{
+    S_0018C9B0_Node *node;
+    S_0018C9B0_Node *next;
+    S_0018C9B0_Item *item;
+    S_0018C9B0_Item *itemNext;
+
+    node = (S_0018C9B0_Node *)f150;
+    while (node != 0) {
+        next = node->f10C;
+        item = node->f104;
+        while (item != 0) {
+            itemNext = item->f2C;
+            if (item->f20 != 0) {
+                func_001E8390(item->f20);
+                item->f20 = 0;
+            }
+            func_001E891B(item);
+            item = itemNext;
+        }
+        if (keep == 0) {
+            func_001E891B(node);
+        }
+        node = next;
+    }
+}
+
