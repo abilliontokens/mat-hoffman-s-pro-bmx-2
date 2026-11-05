@@ -131,6 +131,21 @@ undefined4 C_00142C70::func_00142C70(void)
   return in_ECX;
 }
 
+int C_00142C80::func_00142C80(int param_1, int param_2)
+{
+    extern C_0013B210 *D_002BEAAC;
+    extern int D_00275FB4;
+    int id;
+    id = D_002BEAAC->func_0013C9F0(param_1, &D_00275FB4);
+    if (id == -1) {
+        return 0;
+    }
+    D_002BEAAC->func_0013C8A0(id, &param_1, 4, 1);
+    D_002BEAAC->func_0013C8A0(id, this, 0xf0, 1);
+    D_002BEAAC->func_0013C110(id);
+    return 1;
+}
+
 C_00142CF0* C_00142CF0::func_00142CF0(void) {
     unk0 = 0;
     return this;
