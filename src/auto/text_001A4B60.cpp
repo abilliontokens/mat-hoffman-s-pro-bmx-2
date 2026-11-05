@@ -238,3 +238,23 @@ SplashScreenManager *SplashScreenManager::func_001A58D0(void *a)
     return this;
 }
 
+void SplashScreenManager::func_001A5950(void)
+{
+    int i;
+
+    vtbl = (void *)&D_0028B8DC;
+    if (f1CC != 0) {
+        for (i = 0; i < f1D0; i++) {
+            func_001E891B(f1CC[i]);
+        }
+        func_001E891B(f1CC);
+    }
+    if (f1D4 != 0) {
+        for (i = 0; i < f1D8; i++) {
+            func_001E891B(f1D4[i]);
+        }
+        func_001E891B(f1D4);
+    }
+    ((C_00157600 *)this)->func_00157660();
+}
+
