@@ -6,7 +6,7 @@ extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
 struct S_50D70_Pl { int func_00108660(void); void func_001084E0(void); char pad0[0xA40]; int fa40; char pad44[8]; int fa4c; char padA50[4]; int fa54; char padA58[0x600]; int f1058; };
 struct S_50D70_L { char pad0[0x24]; int f24; char pad28[0x180]; S_50D70_Pl *items[8]; };
 struct S_50D70_P { char pad0[0x4E0]; S_50D70_L *f4E0; };
-struct S_50D70_R { int func_0005B960(int a, int b); };
+struct S_50D70_R { int func_0005B960(int a, float b); int func_0005B960(int a, int b); };
 struct S_50D70_E { char pad0[0xF0]; int fF0; };
 struct S_50D70_19C { char pad0[0xB8]; int fB8; void func_0006D280(void); };
 struct S_50D70_M { char pad0[0x20]; int mode; };
