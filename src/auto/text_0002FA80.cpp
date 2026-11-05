@@ -305,6 +305,44 @@ void C_0002FA80::func_00030210(void)
     ((C_00194C70 *)entries[cur].f0)->func_00194C70();
 }
 
+int C_000308F0::func_00030240(int unused, int mode, void *a, void *b, void *c)
+{
+    float v[24];
+    *(int *)((char *)this+0x6c)=mode;
+    v[0]=v[1]=v[2]=0; v[3]=1;
+    v[4]=v[5]=v[6]=0; v[7]=1;
+    v[8]=v[9]=v[10]=0; v[11]=1;
+    if(f50) func_0012B750(f50);
+    if(f58) func_0012B750(f58);
+    if(f5C) func_0012B750(f5C);
+    if(f54) func_0012B750(f54);
+    if(f60) func_0012B750(f60);
+    if(f64) func_0012B750(f64);
+    if(f74) for(int i=0;i<f74->f8;i++) func_0012B750(*(void **)((char *)f74->f4+i*0x118));
+    if(f50) {
+        ((C_00030240_Virtual *)f50)->get(v);
+        if(a) { for(int j=0;j<4;j++) ((int *)v)[j]=((int *)a)[j]; }
+        if(b) { for(int j=0;j<4;j++) ((int *)v)[j+4]=((int *)b)[j]; }
+        if(c) { for(int j=0;j<4;j++) ((int *)v)[j+8]=((int *)c)[j]; }
+    }
+    void *obj;
+    switch(mode) {
+    case 0: func_0012B7D0((int)f50,0,0,0,0); ((C_00030240_Virtual *)f50)->set(v,0); break;
+    case 4: func_0012B7D0((int)*(void **)f74->f4,0,0,0,0); goto done;
+    case 5: func_0012B7D0((int)f5C,0,0,0,0); ((C_00030240_Virtual *)f5C)->set(v,0); break;
+    case 6: func_0012B7D0((int)f5C,0,0,0,0); ((C_00030240_Virtual *)f58)->set(v,0); break;
+    case 2: case 7: func_0012B7D0((int)f58,0,0,0,0); ((C_00030240_Virtual *)f58)->set(v,0); break;
+    case 8: func_0012B7D0((int)f54,0,0,0,0); ((C_00030240_Virtual *)f54)->set(v,0); break;
+    case 9: func_0012B7D0((int)f60,0,0,0,0); ((C_00030240_Virtual *)f60)->set(v,0); break;
+    case 10: func_0012B7D0((int)f64,0,0,0,0); ((C_00030240_Virtual *)f64)->set(v,0); break;
+    default: goto done;
+    }
+done:
+    func_0012B5E0(0);
+    if(f74) ((C_00194C60 *)*(void **)f74->f4)->func_00194C60();
+    return 1;
+}
+
 void *C_00030500::func_00030500(unsigned int flags)
 {
     if (flags & 2) {
