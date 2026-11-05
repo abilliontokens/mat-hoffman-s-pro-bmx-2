@@ -108,6 +108,59 @@ void BmxUIPageGameOptions::func_000CFB20()
     p->func_000BA9D0(1)->unk360 = 3;
 }
 
+void BmxUIPageGameOptions::func_000CFB90()
+{
+    int idx;
+
+    switch (unk48c) {
+    case 1:
+        idx = 0;
+        break;
+    case 3:
+        idx = 1;
+        break;
+    case 5:
+        idx = 2;
+        break;
+    case 6:
+        idx = 3;
+        break;
+    case 8:
+        idx = 4;
+        break;
+    case 10:
+        idx = 5;
+        break;
+    case 11:
+        idx = 6;
+        break;
+    case 12:
+        idx = 7;
+        break;
+    case 14:
+        idx = 8;
+        break;
+    case 15:
+        idx = 9;
+        break;
+    case 2:
+    case 4:
+    case 7:
+    case 9:
+    case 13:
+        return;
+    default:
+        return;
+    }
+    if (unk4f8->func_00093300(100.0f) == 1) {
+        *D_002A8490->f2e0->f2c0->func_0005C020(idx) = 0;
+        unk57c = 1;
+    } else {
+        *D_002A8490->f2e0->f2c0->func_0005C020(idx) = 1;
+        unk580 = 1;
+    }
+}
+
 void BmxUIPageGameOptions::func_000CFCA0()
 {
     if (unk4f8->func_00093620(100.0f) == 1) {
