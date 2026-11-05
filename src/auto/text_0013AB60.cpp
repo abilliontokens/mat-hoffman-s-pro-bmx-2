@@ -82,8 +82,8 @@ char func_0013AB60(const char *path)
     func_0014FF00(path, drive, dir, fname, ext);
     strcat(fname, ext);
     p = fname;
-    n = strlen(fname);
     key = (char)0xfa;
+    n = strlen(fname);
     for (i = 0; i < n; i++) {
         c = *p++;
         key += (char)((key + 3) ^ c);
