@@ -30,8 +30,9 @@ struct C_0015F470 {
     int FindEntry(int id)
     {
         int i;
-        for (i = 0; i < f28; i++) {
-            if (f24[i].f0 == id) {
+        S_0015F470_Entry *p = f24;
+        for (i = 0; i < f28; i++, p++) {
+            if (p->f0 == id) {
                 return i;
             }
         }
@@ -112,6 +113,28 @@ int C_0015F470::func_0015F470(int a, S_0015F470_Mat *m0, S_0015F470_Mat *m1, S_0
     f24[i].m[2].row[3] = m2->row[3];
     f24[i].f4 = f2C;
     f24[i].f0 = a;
+    return 1;
+}
+
+int C_0015F470::func_0015F640(int a, S_0015F470_Mat *m0, S_0015F470_Mat *m1, S_0015F470_Mat *m2)
+{
+    int i = FindEntry(a);
+    if (i < 0) {
+        return 0;
+    }
+    m0->row[0] = *(S_0015F470_Row *)((char *)(i * 200) + (int)f24 + 8);
+    m1->row[0] = f24[i].m[1].row[0];
+    m2->row[0] = f24[i].m[2].row[0];
+    m0->row[1] = f24[i].m[0].row[1];
+    m1->row[1] = f24[i].m[1].row[1];
+    m2->row[1] = f24[i].m[2].row[1];
+    m0->row[2] = f24[i].m[0].row[2];
+    m1->row[2] = f24[i].m[1].row[2];
+    m2->row[2] = f24[i].m[2].row[2];
+    m0->row[3] = f24[i].m[0].row[3];
+    m1->row[3] = f24[i].m[1].row[3];
+    m2->row[3] = f24[i].m[2].row[3];
+    f24[i].f4 = f2C;
     return 1;
 }
 
