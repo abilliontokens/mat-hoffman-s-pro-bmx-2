@@ -273,6 +273,44 @@ undefined4 C_0018B3B0::func_0018B3B0(byte param_1)
   return in_ECX;
 }
 
+int C_0018B3D0::func_0018B3D0(C_00188DB0 *a1, S_0018B3D0_Parser *a2, S_0018B3D0_Info *a3, S_0018B3D0_Reader *a4)
+{
+    char buf[0x104];
+    char buf2[0x104];
+    int ret;
+    int count;
+    int i;
+
+    count = 0;
+    f24 = a3->f10c;
+    if (a3->f10c == 0) {
+        return 0;
+    }
+    f28 = (S_0018B3D0_Obj **)func_001E8A44(f24 * 4);
+    if (f24 > 0) {
+        for (i = 0; i < f24; i++) {
+            if (a3->f14c & 4) {
+                func_001ADCC0(buf, 0x104, D_002893B4, i + 1);
+            } else {
+                func_001ADCC0(buf, 0x104, D_0028A0B4, a3->f8, i + 1);
+            }
+            if (a2->func_00169710(buf) != 0) {
+                a2->func_00168BE0(D_0028A0A8, D_0028A024, buf2, -1);
+                ret = a4->v1(buf2);
+                a4->v0(&ret, &f28[i]);
+                f28[i]->v1(a2);
+                if (ret == 2) {
+                    count++;
+                }
+            }
+        }
+        if (count > 0) {
+            a1->func_00188DB0(a3->f4, count);
+        }
+    }
+    return 1;
+}
+
 void C_0018B540::func_0018B540(void)
 {
   int func_001E891B(...);
