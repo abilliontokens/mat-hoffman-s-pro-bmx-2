@@ -31,6 +31,10 @@ struct Quat_1CAF20 {
         x = y = z = 0.0f;
         w = 1.0f;
     }
+    void Reset() {
+        w = 1.0f;
+        x = y = z = 0.0f;
+    }
 };
 
 struct WaterDisplacement {
@@ -113,8 +117,11 @@ WaterDisplacement *WaterDisplacement::func_001CAF20()
         p++;
     } while (--n);
     unkB4.w = 1.0f;
-    unkB4.x = unkB4.y = unkB4.z = 0.0f;
-    unk28 = unk2C = 0;
+    unkB4.z = 0.0f;
+    unkB4.y = 0.0f;
+    unkB4.x = 0.0f;
+    unk2C = 0;
+    unk28 = 0;
     unk30 = 0;
     unk34 = 0;
     unk38 = 0;
@@ -156,6 +163,20 @@ void *WaterObject::func_001CB070(int flags) {
         func_001E891B(this);
     }
     return this;
+}
+
+extern "C" double __cdecl log10(double);
+int func_001CB0A0(int x)
+{
+    float f;
+    if (x == 0)
+        return -10000;
+    f = (float)log10((double)x * D_002755E0) * D_0028B320;
+    x = (int)f;
+    if (x > -2500)
+        x = x > -10000 ? x : -10000;
+    x = x < 0 ? x : 0;
+    return x;
 }
 
 bool C_001CB120::func_001CB120(void)
