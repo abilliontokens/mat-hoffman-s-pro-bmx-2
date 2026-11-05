@@ -164,6 +164,22 @@ struct C_000C3C20_Query {
     int func_00136170(int a, int b, int c);
 };
 
+struct C_000C3C20_Tail {
+    void func_0005C130(int n);
+};
+
+struct C_000C3C20_Mid {
+    char pad0[0x2c0];
+    C_000C3C20_Tail *f2c0;
+};
+
+struct C_000C3C20_Global {
+    char pad0[8];
+    C_000C3C20_Query *f8;
+    char padc[0x2d4];
+    C_000C3C20_Mid *f2e0;
+};
+
 void C_000C4460::func_000C4460(void)
 {
     if (unk288 != 0) {
