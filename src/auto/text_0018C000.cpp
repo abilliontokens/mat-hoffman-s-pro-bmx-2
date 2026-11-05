@@ -114,12 +114,13 @@ undefined4 C_0018C070::func_0018C070(void)
 
 void C_0018C090::func_0018C090(int value) {
     C_0018C090_Node *tail;
+    C_0018C090_Node *p;
     C_0018C090_Node *n;
     tail = 0;
-    if (head != 0) {
-        tail = head;
-        while (tail->next != 0)
-            tail = tail->next;
+    p = head;
+    while (p != 0) {
+        tail = p;
+        p = p->next;
     }
     if (tail == 0) {
         n = (C_0018C090_Node *)func_001E8A44(8);
@@ -149,7 +150,7 @@ void C_0018C120::func_0018C120(void) {
             ((V_0018C120 *)n->value)->vf0(1);
         }
         func_001E891B(n);
-        count--;
+        count = count - 1;
     }
 }
 
