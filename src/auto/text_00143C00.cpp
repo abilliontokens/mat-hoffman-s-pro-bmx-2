@@ -56,12 +56,6 @@ struct C_0013B210 {
     void func_0013C8A0(int a0, void *a1, int a2, int a3);
 };
 
-struct C_00143C00 {
-    char pad0[0xac];
-    int fac;
-    void func_00143C00(int arg);
-};
-
 extern C_0013B210 *D_002BEAAC;
 
 struct C_001AF300 {
