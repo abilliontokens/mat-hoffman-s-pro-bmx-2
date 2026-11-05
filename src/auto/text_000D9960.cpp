@@ -87,6 +87,20 @@ struct C_000DA140 {
     void func_000DA140();
 };
 
+void C_000DA140::func_000D9FE0()
+{
+    S_000D9FE0_Owner *owner = f124;
+    int i;
+    for (i = 0; i < 5; i++) {
+        a2C4[i]->func_001B1980();
+        a2D8[i]->func_001B1980();
+        a2C4[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+        a2D8[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+        a304[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+    }
+    owner->func_000BA9B0(0x21)->func_00103350();
+}
+
 void BmxUIPageHOF::func_000DA0C0()
 {
     RenderEntryHOF **p = arr2EC;
