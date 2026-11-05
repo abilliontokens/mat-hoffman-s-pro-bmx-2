@@ -44,7 +44,7 @@ struct SoultreeObject {
     char pad4[0x20];
     int f24;
     char pad28[0x170 - 0x28];
-    int f170;
+    S_0019A8C0_Mgr *f170;
     S_0019A8C0_Child *f174;
     char pad178[0x188 - 0x178];
     int f188;
