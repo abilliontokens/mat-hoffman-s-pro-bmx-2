@@ -2,6 +2,22 @@
 #include "common.h"
 
 extern int D_0028EECC;
+struct C_001CD260_Item { void *a; void *b; char pad8[16]; };
+struct C_001CD260_Group {
+ C_001CD260_Item *items; int count; int f8; int size; void *data; char pad14[0x30];
+};
+struct C_001CD260 {
+ char pad0[0x34]; C_001CD260_Group *groups;
+ int f38; int size3C; void *data40;
+ char pad44[0xC]; int size50; void *data54;
+ char pad58[0xC]; int size64; void *data68;
+ char pad6C[0x3C]; int countA8;
+ char padAC[0x14]; void *dataC0;
+ void func_001CD260();
+};
+void func_001E8390(void *);
+void func_001E891B(void *);
+extern "C" void * __cdecl memset(void *, int, unsigned int);
 
 struct C_001CD220 {
     char pad0[0xCC];
@@ -147,5 +163,10 @@ int C_001CC3C0::func_001CCA10(void)
         f208 &= 0xdf;
     }
     return 1;
+}
+
+bool C_001CD220::func_001CD220(void)
+{
+    return fCC == 1;
 }
 
