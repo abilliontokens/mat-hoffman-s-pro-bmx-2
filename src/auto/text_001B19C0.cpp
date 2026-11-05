@@ -69,11 +69,72 @@ struct C_001B22F0 {
 };
 
 
+struct C_001B2700 {
+    void *vtbl;
+    void func_001AC830();
+    void *func_001B2700(unsigned int flags);
+};
+
+struct C_001B19C0_Vec {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
+struct C_001B19C0 {
+    char pad0[0x2C];
+    float f2C;
+    float f30;
+    float f34;
+    float f38;
+    float f3C;
+    float f40;
+    char pad44[0x8];
+    C_001B19C0_Vec f4C;
+    int f5C;
+    float f60;
+    char pad64[0x5C];
+    int fC0;
+    void func_001B19C0(float a1, float a2, float a3);
+    void func_001B1A30(float a1, float a2, float a3);
+};
+
+struct C_001B1AB0 {
+    char pad0[0x24];
+    char *f24;
+    char pad28[0x5C];
+    int f84;
+    int f88;
+    int f90;
+    int f94;
+    char pad98[0x28];
+    int fC0;
+    void func_001B1AB0(int a1, int a2);
+};
+
 int C_001B1B20::func_001B1B20(void)
 {
   int in_ECX = (int)this;
   
   return (int)*(short *)(*(int *)(in_ECX + 0x24) + 0x4c);
+}
+
+void C_001B1B30::func_001B1B30(float param_1, undefined4 param_2)
+{
+  extern float D_00275544;
+  int in_ECX = (int)this;
+
+  if (*(int *)(in_ECX + 0xc0) == 0) {
+    *(undefined4 *)(in_ECX + 0xa4) = param_2;
+    *(float *)(in_ECX + 0x9c) = param_1;
+    *(undefined4 *)(in_ECX + 0xa0) = 0;
+    if (param_1 < D_00275544) {
+      *(undefined4 *)(in_ECX + 0x9c) = 0;
+    }
+  }
+  *(undefined4 *)(in_ECX + 0x98) = *(undefined4 *)(*(int *)(in_ECX + 0x24) + 0x34);
+  return;
 }
 
 void C_001B1BF0::func_001B1BF0(float param_1)
