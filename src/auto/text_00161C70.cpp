@@ -132,6 +132,7 @@ void func_001622C0(float *m, void *arg)
 
 void func_00162470(float *m, float a2, float a3, float a4, float a5, float a6, float a7, int a8)
 {
+    int ortho = a8;
     m[13] = 0.0f;
     m[9] = 0.0f;
     m[1] = 0.0f;
@@ -146,19 +147,38 @@ void func_00162470(float *m, float a2, float a3, float a4, float a5, float a6, f
     m[5] = (a6 + a6) / (a5 - a4);
     m[2] = (a2 + a3) / (a3 - a2);
     m[6] = (a4 + a5) / (a5 - a4);
-    if (a8 != 0) {
+    if (ortho != 0) {
         m[10] = a7 / (a7 - a6);
         m[11] = -(a6 * a7 / (a7 - a6));
     } else {
+        float num;
         m[10] = (a6 + a7) / (a7 - a6);
-        m[11] = a6 * a7 * D_00287B80 / (a7 - a6);
+        num = a6 * a7;
+        m[11] = num * D_00287B80 / (a7 - a6);
     }
 }
 
-void func_00162530(float *m, float a2, float a3, float a4, float a5, float a6)
+void func_00162530(float *m, float a2, float a3, float a4, float a5, int a6)
 {
-    float v = func_0014F590(a2 * D_002755E8) * a4;
-    func_00162470(m, -v, v, -(v / a3), v / a3, a4, a5, a6);
+    float h;
+    float v;
+    float w;
+    h = a2 * D_002755E8;
+    v = func_0014F590(h) * a4;
+    w = v / a3;
+    func_00162470(m, -v, v, -w, w, a4, a5, a6);
+}
+
+C_001625A0 *C_001625A0::func_001625A0(int a)
+{
+    func_00157600(a);
+    f24 = 0;
+    f28 = 0;
+    f30 = 0;
+    f34 = 0;
+    f38 &= ~1;
+    vtbl = (void *)&D_00287B94;
+    return this;
 }
 
 void C_001625D0::func_001625D0(void) {
