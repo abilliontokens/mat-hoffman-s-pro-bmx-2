@@ -343,8 +343,8 @@ int C_00168F40::func_00169490(int name, int flag)
         if (f0 == -1) {
             return 0;
         }
-        f8 = (void *)1;
-        *(int *)padC = 1;
+        *(int *)&f8 = 1;
+        *(int *)&padC = 1;
         f428 = 0;
         f4 = 0;
     } else {
