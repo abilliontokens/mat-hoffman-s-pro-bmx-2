@@ -276,6 +276,16 @@ void C_00142DE0::func_00142DE0() {
     unk8 = 0;
 }
 
+void *C_00142E60::func_00142E60(int flags)
+{
+    vtbl = &D_00285998;
+    func_00142DE0();
+    func_001AC830();
+    if (flags & 1)
+        func_001E891B(this);
+    return this;
+}
+
 C_00142E90::C_00142E90(int a0) {
     vtbl = &D_002859C4;
     unk150 = unk154 = unk158 = 0;
