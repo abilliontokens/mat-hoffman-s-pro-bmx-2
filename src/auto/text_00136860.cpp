@@ -139,9 +139,9 @@ void func_00136B60(int a, TokenEntry *out)
     tok.func_001B4A40(a);
     for (int n = 0; n < 16; n++) {
         char *s;
-        while ((s = tok.func_001B4A70(D_00284878)) != 0) {
+        for (s = tok.func_001B4A70(D_00284878); s != 0; i++) {
             out[i].name = (char *)func_001E91F4((int)s);
-            i++;
+            s = tok.func_001B4A70(D_00284878);
         }
     }
 }
