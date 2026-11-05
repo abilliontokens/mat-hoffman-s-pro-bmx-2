@@ -1,6 +1,8 @@
 /* 11 functions from 0x000EBB70 to 0x000EC850, found by Ghidra. */
 #include "common.h"
 
+extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
+
 extern int D_00281BF4;
 
 struct DelObjC_000EB {
