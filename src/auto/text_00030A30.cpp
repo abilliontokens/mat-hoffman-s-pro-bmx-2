@@ -1,5 +1,33 @@
 /* 24 functions from 0x00030A30 to 0x000318A0, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
+static __forceinline float Max_00030CE0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float Min_00030CE0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+extern float D_00275460;
+extern float D_00275544;
+extern float D_00276A90;
+struct Tgt_00030CE0 {
+    char pad0[0x28];
+    float f28;
+};
+struct C_00030CE0 {
+    char pad0[0x24];
+    int f24;
+    int f28;
+    int f2C;
+    float f30;
+    char pad34[0x10];
+    float f44;
+    float f48;
+    float f4C;
+    float f50;
+    float f54;
+    char pad58[8];
+    float f60;
+    char pad64[0x14];
+    Tgt_00030CE0 *f78;
+    int func_00030CE0(float dt);
+};
 extern char D_002A47F0[], D_002A5348[], D_00275678[], D_002A48F8[], D_00275630[], D_00276B78[], D_002A5870[];
 void func_001ADCC0(void *, int, void *, void *, void *);
 extern "C" char *strcpy(char *dst, const char *src);
