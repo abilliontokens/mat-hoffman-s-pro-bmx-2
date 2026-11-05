@@ -34,6 +34,7 @@ struct S_00100030_Item {
 };
 
 struct S_00100030_Hud {
+    void func_000BF860(int, int, int, int);
     char pad0[0x34];
     S_00100030_Item *f34;
     S_00100030_Item *f38;
