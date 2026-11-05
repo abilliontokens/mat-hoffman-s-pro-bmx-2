@@ -7,6 +7,8 @@ extern float D_002755E0;
 
 extern "C" void (__stdcall *__imp__RtlEnterCriticalSection)(void *cs);
 extern "C" void (__stdcall *__imp__RtlLeaveCriticalSection)(void *cs);
+extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
+extern "C" void (__stdcall *_imp__RtlLeaveCriticalSection)(void *cs);
 
 struct S_001CB440_Global {
     char pad0[0x138];
