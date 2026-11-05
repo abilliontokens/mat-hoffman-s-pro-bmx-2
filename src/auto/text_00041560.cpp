@@ -175,6 +175,24 @@ struct BmxEventEditor {
     int f48c;
     char pad490[0x564 - 0x490];
     int f564;
-    void func_0003D910(int a0);
+    void func_0003D910(bool a0);
     void func_00041CF0();
 };
+
+void BmxEventEditor::func_00041CF0()
+{
+    int idx = D_002A8490->f2e0->f300;
+    if (D_002A8490->f8->arr14[idx]->v16() == 0 && f2c8 == 0) {
+        if (f48c == -1 && f564 == 0) {
+        } else {
+            func_0003D910(0);
+        }
+        v18(1);
+        f2c8 = 1;
+        f64->f4c0->v31(1, 1);
+        D_002A8490->f2e0->f2fc->v18(1);
+        f64->f4e0->f1a8->f95c = 0;
+        f2c4->func_00069C40();
+        f2c4->func_00069FD0(idx);
+    }
+}
