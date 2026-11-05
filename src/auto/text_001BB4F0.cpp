@@ -122,19 +122,26 @@ extern float D_002AAE10;
 /* position vector, built z, y, x, w */
 struct V4_001BB680 {
     float x, y, z, w;
-    void Init()
+    void Init() volatile
     {
         z = 0.0f;
         y = 0.0f;
         x = 0.0f;
         w = 1.0f;
     }
+    void Set(const float &a, const float &b, const float &c, const float &d) volatile
+    {
+        x = a;
+        y = b;
+        z = c;
+        w = d;
+    }
 };
 
 /* direction vector, built w, z, y, x */
 struct V4b_001BB680 {
     float x, y, z, w;
-    void Init()
+    void Init() volatile
     {
         w = 1.0f;
         z = 0.0f;
@@ -480,17 +487,11 @@ C_001BBAA0 *C_001BBAA0::func_001BB680(int a)
     self->unk2EC &= 0xdf;
     self->unk2EC &= 0xbf;
     self->unk90 = 100;
-    self->f24.x = D_002AAE04;
-    self->f24.y = D_002AAE08;
-    self->f24.z = D_002AAE0C;
-    self->f24.w = D_002AAE10;
+    self->f24 = (V4_001BB680 &)D_002AAE04;
     self->unk2E0 = 0;
     p = &m;
     v = (__m128 *)p;
-    v[0] = _mm_setzero_ps();
-    v[1] = _mm_setzero_ps();
-    v[2] = _mm_setzero_ps();
-    v[3] = _mm_setzero_ps();
+    v[0] = v[1] = v[2] = v[3] = _mm_setzero_ps();
     ((float *)v)[0] = 1.0f;
     ((float *)v)[5] = 1.0f;
     ((float *)v)[10] = 1.0f;
