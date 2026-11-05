@@ -342,6 +342,29 @@ C_000A89F0 *C_000A89F0::func_000A89F0()
     return this;
 }
 
+void C_000A89F0::func_000A8A10(S_TriggerStream *stream, void *b)
+{
+    extern int D_0027C2C8;
+    stream->func_00168C50(&D_0027C2C8, 0, &unk10C);
+    func_001B5A00(stream, b);
+}
+
+/* the callback a wreck trigger registers (D_000A8A60): it makes the game
+   manager play the effect for one of the trigger's active items */
+struct S_000A8A60_Mgr {
+    char pad0[0x1c8];
+    int f1C8;
+    void func_000323C0(C_000A88A0_Vec v, void *a, void *b);
+};
+
+struct S_000A8A60_Global {
+    char pad0[0x2a4];
+    S_000A8A60_Mgr *f2A4;
+};
+
+extern S_000A8A60_Global *D_002A8490;
+int func_00011260(int lo, int hi);
+
 C_000A8AF0 *C_000A8AF0::func_000A8AF0() {
     extern int D_0027C2DC;
     extern float D_002A2734;
