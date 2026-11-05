@@ -1,6 +1,8 @@
 /* 12 functions from 0x0009F620 to 0x000A0260, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+extern const float D_00277D04;
+
 struct C_0009FE40 {
     void func_0009FE40(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined4 *param_4);
 };
