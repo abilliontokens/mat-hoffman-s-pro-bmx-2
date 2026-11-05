@@ -296,6 +296,38 @@ void BmxUIPageHOF3::func_000D75D0(void)
     s->unk30->func_001D5AD0();
 }
 
+void BmxUIPageHOF3::func_000D7710(void)
+{
+    S_000D7900_Owner *owner = f124;
+    float f;
+    int i;
+    char s[0x14];
+    char name[0x104];
+    char buf[0x108];
+    for (i = 0; i < 5; i++) {
+        volatile float y;
+        unk2d4[i]->func_001B1980();
+        unk2e8[i]->func_001B1980();
+        unk304[i]->func_001B1980();
+        D_002A8490->a->q->func_0005BED0(2, i, &f, s);
+        int k = 0;
+        char c;
+        do { c = s[k]; name[k] = c; k++; } while (c);
+        func_001ADCC0(buf, 0x104, D_0027F2C0, (double)f, D_002A8490->b->x->v);
+        unk2d4[i]->func_001B17D0(name);
+        y = i * D_0027F2BC;
+        unk2d4[i]->func_001B1A30(191.0f, y + D_00279F74, 0);
+        unk2d4[i]->func_001B19A0(D_0028F5DC);
+        unk2d4[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+        unk2e8[i]->func_001B17D0(buf);
+        unk2e8[i]->func_001B1A30(380.0f, y + D_0027F2B8, 0);
+        unk2e8[i]->func_001B19A0(D_0028F5DC);
+        unk2e8[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+        unk304[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+    }
+    owner->func_000BA9B0(0x1f)->func_00103260(0);
+}
+
 void BmxUIPageHOF3::func_000D7900(void)
 {
     S_000D7900_Owner *owner = f124;
