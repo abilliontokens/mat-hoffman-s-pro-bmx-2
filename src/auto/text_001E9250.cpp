@@ -79,6 +79,10 @@ struct S_001EA038_Locator {
 };
 
 int __stdcall func_001F64F6(const void *p, unsigned int n);
+/* _CxxThrowException(object, throw info) */
+__declspec(noreturn) void __stdcall func_001F32E8(void *object, const void *info);
+extern char D_0029F4BC[];
+extern char D_0029F4AC[];
 extern "C" unsigned long __cdecl _exception_code(void);
 
 /* std::type_info as the CRT lays it out */
@@ -581,6 +585,26 @@ const char *S_001E9FA2_TypeInfo::func_001E9FA2(void)
     }
     return _m_data;
 }
+
+#pragma optimize("t", off)
+void *func_001EA038(void *inptr)
+{
+    S_001EA038_Locator *locator;
+
+    if (inptr == 0) {
+        throw func_001F3244("Attempted a typeid of NULL pointer!");
+    }
+    __try {
+        locator = ((S_001EA038_Locator **)*(void **)inptr)[-1];
+        if (!func_001F64F6(locator->typeDescriptor, 8)) {
+            return locator->typeDescriptor;
+        }
+        throw func_001F3280("Bad read pointer - no RTTI data!");
+    } __except (_exception_code() == 0xc0000005) {
+        throw func_001F3280("Access violation - no RTTI data!");
+    }
+}
+
 #pragma optimize("t", off)
 void *func_001EA1A1(unsigned int num, unsigned int size)
 {
