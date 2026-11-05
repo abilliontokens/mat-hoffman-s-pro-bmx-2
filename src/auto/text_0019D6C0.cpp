@@ -59,7 +59,15 @@ struct C_0019DC80 {
     C_0019DC80_Item **f1A0;
     S_0019DC80_Res *f1A4;
     void func_0019DC80(void);
+    void func_00132EB0(int a0);
+    C_0019DC80 *func_0019DA80(int a0);
 };
+
+extern int D_0028B25C;
+extern int D_002A9D38;
+extern int D_002A9D3C;
+extern int D_002A9D40;
+extern int D_002A9D44;
 extern C_002BEAAC *D_002BEAAC;
 
 struct C_000264C0 {
