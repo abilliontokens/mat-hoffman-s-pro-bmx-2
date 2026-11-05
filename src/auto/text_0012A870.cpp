@@ -312,11 +312,6 @@ struct C_0012AEC0 {
     void func_0012AEC0(void);
 };
 
-static __forceinline float Half_0012AEC0(float v)
-{
-    return v * 0.5f;
-}
-
 
 void C_0012AAB0::func_0012AAB0(float param)
 {
