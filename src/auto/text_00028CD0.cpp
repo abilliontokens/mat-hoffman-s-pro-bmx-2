@@ -16,17 +16,9 @@ extern float D_00275548;
 extern float D_002766A0;
 extern V4_000298F0 D_002A1110;
 
-struct V4i_000298F0 {
-    int x, y, z, w;
-};
-extern int D_002A1114;
-extern int D_002A1118;
-extern int D_002A111C;
-
 float func_00011040(float a, float b);
 float func_00011020(float a, float b);
 void func_00158390(float f, V4_000298F0 a, V4_000298F0 b, V4_000298F0 *out);
-void func_00158390(float f, V4_000298F0 a, V4i_000298F0 b, V4_000298F0 *out);
 
 struct C_000269B0 {
     void func_000269B0(float a, float b, float c);
