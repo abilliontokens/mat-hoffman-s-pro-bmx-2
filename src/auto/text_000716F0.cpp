@@ -164,6 +164,27 @@ struct C_00072590 {
 };
 
 
+void C_000724E0::func_000716F0()
+{
+    int i;
+    Resource_716F0 *p;
+    vtbl = &D_00278C64;
+    if (unk78) { delete unk78; unk78 = 0; }
+    if (unk7C) { delete unk7C; unk7C = 0; }
+    p = unk74;
+    if (p) { p->func_001D6410(); func_001E891B(p); unk74 = 0; }
+    for (i = 0; i < 8; i++) { if (arrEC[i]) { delete arrEC[i]; arrEC[i] = 0; } }
+    for (i = 0; i < 2; i++) { if ((&unk134)[i]) { delete (&unk134)[i]; (&unk134)[i] = 0; } }
+    if (unk80) { delete unk80; unk80 = 0; }
+    for (i = 0; i < 5; i++) {
+        if (arr10C[i]) { delete arr10C[i]; arr10C[i] = 0; }
+        if (arr120[i]) { delete arr120[i]; arr120[i] = 0; }
+    }
+    p = unk70;
+    if (p) { p->func_001D6410(); func_001E891B(p); unk70 = 0; }
+    func_00157660();
+}
+
 void C_000717E0::func_000717E0(void)
 {
     int a;
