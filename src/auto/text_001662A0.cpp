@@ -38,9 +38,11 @@ struct S_00166CA0_Item {
  void func_000264C0(S_00166CA0_Item *);
 };
 struct C_00166CA0 {
- char pad0[0x10];
+ char pad0[8];
+ C_00166EB0_Config *f8;
+ int fC;
  int f10, f14, f18;
- char pad1C[0x14];
+ int f1C, f20, f24, f28, f2C;
  int f30, f34, f38;
  char pad3C[0xC];
  char f48[0x50], f98[0x50], fE8[0x50], f138[0x50];
