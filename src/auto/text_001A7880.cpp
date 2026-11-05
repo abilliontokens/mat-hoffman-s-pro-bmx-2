@@ -3,10 +3,10 @@
 #include "ghidra.h"
 
 extern int D_0028BF14;
-extern int D_002AA140;
-extern int D_002AA144;
-extern int D_002AA148;
-extern int D_002AA14C;
+extern float D_002AA140;
+extern float D_002AA144;
+extern float D_002AA148;
+extern float D_002AA14C;
 int func_001A7FE0();
 
 struct C_00157600 {
@@ -75,35 +75,32 @@ undefined4 C_001A7FC0::func_001A7FC0(byte param_1)
   return in_ECX;
 }
 
+extern "C" void *__cdecl memset(void *, int, unsigned int);
 SpringCollisionDetectionModel *SpringCollisionDetectionModel::func_001A8630(int param_1)
 {
     ((C_00157600 *)this)->func_00157600(param_1);
     vtbl = &D_0028BF14;
-    f3C = 0;
-    f38 = 0;
-    f34 = 0;
-    f40 = 0x3f800000;
-    f50 = 0x3f800000;
-    f4C = 0;
-    f48 = 0;
-    f44 = 0;
-    f58 = 0;
-    f24 = 0;
-    f28 = 0;
-    f2C = 0;
-    f54 = 0;
-    f64 = 0;
-    f68 = 0;
-    f5C = 1;
-    f60 = 1;
-    f34 = D_002AA140;
-    f38 = D_002AA144;
-    f3C = D_002AA148;
-    f40 = D_002AA14C;
-    f44 = D_002AA140;
-    f48 = D_002AA144;
-    f4C = D_002AA148;
-    f50 = D_002AA14C;
+    memset(&this->f34, 0, 12);
+    this->f40 = 0x3f800000;
+    this->f50 = 0x3f800000;
+    memset(&this->f44, 0, 12);
+    this->f58 = 0;
+    this->f24 = 0;
+    this->f28 = 0;
+    this->f2C = 0;
+    this->f54 = 0;
+    this->f64 = 0;
+    this->f68 = 0;
+    this->f5C = 1;
+    this->f60 = 1;
+    this->f34 = D_002AA140;
+    this->f38 = D_002AA144;
+    this->f3C = D_002AA148;
+    this->f40 = D_002AA14C;
+    this->f44 = D_002AA140;
+    this->f48 = D_002AA144;
+    this->f4C = D_002AA148;
+    this->f50 = D_002AA14C;
     return this;
 }
 
