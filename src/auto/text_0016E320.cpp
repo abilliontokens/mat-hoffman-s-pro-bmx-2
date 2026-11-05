@@ -3,7 +3,7 @@
 
 struct Anim { int unk_0; int unk_4; int unk_8; };
 struct Owner { char pad[0x1b0]; int idx; float unk_1b4; float unk_1b8; };
-struct Table { char pad[0x134]; Anim *anims; };
+struct Table { char pad[0x34]; float ax, ay, az; char pad2[0xf8]; Anim *anims; };
 struct Body {
     float x, y, z, pad0c;
     float vx, vy, vz, pad1c;
