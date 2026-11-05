@@ -46,3 +46,81 @@ struct C_00196290 {
     int func_001961E0(int param_1, int param_2, int param_3);
     void func_00196360(u8 *param_1);
 };
+
+int C_00196290::func_001961E0(int param_1, int param_2, int param_3)
+{
+    f70++;
+    if (f74 < f6c && (fc0 & 0x10) == 0) {
+        f78[f74] = param_1;
+        if (param_2 != 0) {
+            f7c[f74] = param_2;
+        } else {
+            f7c[f74] = param_1;
+        }
+        f80[f74] = 2;
+        f84[f74] = param_3;
+        f88[f74] = 4;
+        f90[f74] = 1.0f;
+        f94[f74] = 1.0f;
+        return f74++;
+    }
+    return -1;
+}
+
+void C_00196290::func_00196290(void)
+{
+    u32 i;
+    u32 n = f6c;
+    f5c = n * 4 + 8;
+    fc0 &= 0xdf;
+    f60 = n * 5 + 8;
+    f68 = 0;
+    f24 = 0;
+    f34 = 0;
+    f38 = 0;
+    f28 = 0;
+    f48 = 0;
+    f4c = 0x80000000;
+    f64 = 0;
+    f54 = f50;
+    if (fc0 & 1) {
+        f58 = fcc;
+    } else {
+        f58 = f50;
+    }
+    i = 0;
+    if (n != 0) {
+        do {
+            f98[i] = 0;
+            fa0[i] = 0;
+            f9c[i] = 0;
+            fac[i] = 0;
+            fb4[i] = 0;
+            fb0[i] = 0;
+            fb8[i] = 0;
+            i++;
+        } while (i < f6c);
+    }
+}
+
+void C_00196290::func_00196350(int param_1)
+{
+    func_00196290();
+    f28 = param_1;
+}
+
+void C_00196290::func_00196360(u8 *param_1)
+{
+    f54[0] = param_1[0];
+    f54[1] = param_1[1];
+    f54[2] = param_1[2];
+    f54[3] = param_1[3];
+    f54[4] = param_1[4];
+    f54[5] = param_1[5];
+    f54[6] = param_1[6];
+    f54[7] = param_1[7];
+    f54 += 8;
+    f68 += 8;
+    f64 += 8;
+}
+
