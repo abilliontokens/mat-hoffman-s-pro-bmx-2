@@ -72,6 +72,7 @@ struct C_0004F220 {
     void *f2d8;
     int f2dc;
     int f2e0;
+    void func_00030F90(int a0);
     C_0004F220 *func_0004F220(int a0);
 };
 
