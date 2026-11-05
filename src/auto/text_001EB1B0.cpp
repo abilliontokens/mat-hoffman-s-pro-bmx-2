@@ -69,7 +69,7 @@ extern "C" unsigned char __readfsbyte(unsigned long Offset);
 
 extern "C" void (__stdcall *_imp__KeBugCheck)(unsigned long code);
 
-extern unsigned long D_002F41D0;
+extern volatile unsigned long D_002F41D0;
 extern S_Tiddata *D_002FB360;
 extern char D_002AEDD8[];
 extern char D_002F69F0[];
