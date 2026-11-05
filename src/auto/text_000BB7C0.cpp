@@ -10,6 +10,35 @@ struct C_000BBDF0 {
     int func_000BBDF0(void);
 };
 
+extern char D_0027DB54[], D_0027DB44[], D_0027DB38[], D_0027DB28[], D_0027DB1C[], D_0027DB0C[], D_0027DB00[], D_0027DAF0[];
+extern char D_0027DAE4[], D_0027DAD4[], D_0027DAC8[], D_0027DAB8[], D_0027DAAC[], D_0027DA9C[], D_0027DA90[], D_0027DA80[];
+extern char D_0027DA70[], D_0027DA5C[], D_0027DA50[], D_0027DA40[], D_0027DA34[], D_0027DA24[], D_0027DA18[], D_0027DA08[];
+extern char D_0027D9F8[], D_0027D9E4[], D_0027D9D8[], D_0027D9CC[], D_0027D9C0[], D_0027D9B0[], D_0027D9A4[];
+
+struct S_000BB7C0_Svc {
+    int func_00030020(const char *name);
+    int func_000300C0(const char *name);
+    void func_000301A0(void);
+    void func_00030210(void);
+};
+
+struct S_000BB7C0_Owner {
+    char pad0[0x74];
+    S_000BB7C0_Svc *f74;
+};
+
+struct S_000BB7C0_Fade {
+    void func_001C4D50(int ms);
+};
+
+struct C_000BB7C0 {
+    char pad0[0x25c];
+    S_000BB7C0_Owner *f25C;
+    char pad260[8];
+    S_000BB7C0_Fade *f268;
+    void func_000BB7C0(int idx);
+};
+
 struct S_000BC180_Config {
     char pad0[0x324];
     int f324;
@@ -432,12 +461,19 @@ void C_000BC4A0::func_000BC4A0(undefined4 param_1, undefined4 param_2)
 
 void C_000BC4C0::func_000BC4C0(float a, float b)
 {
+    C_000BC4C0 * volatile self = this;
     int x;
     int y;
+    int * volatile p;
+    float t;
 
-    FloatToInt(&x, a);
-    FloatToInt(&y, b);
-    f30->func_001D3700(x, y);
+    p = &x;
+    t = a;
+    *p = _mm_cvttss_si32(*(__m128 *)&t);
+    p = &y;
+    t = b;
+    *p = _mm_cvttss_si32(*(__m128 *)&t);
+    self->f30->func_001D3700(x, y);
 }
 
 C_000BC520 *C_000BC520::func_000BC520(int a, S_000BC590_Owner *owner)
