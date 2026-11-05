@@ -36,6 +36,22 @@ void func_0001DFF0(void);
 void __stdcall func_0021FC46(int);
 void *func_001E8A44(int size);
 
+extern char D_0028ED6C[];
+extern char D_002A48F8[];
+void func_001ADCC0(char *buf, int size, const char *fmt, ...);
+extern "C" int __stdcall func_001DCC3C(const char *, unsigned long, unsigned long, void *, unsigned long, unsigned long, void *);
+extern "C" int func_001DD603(void);
+extern "C" unsigned long __stdcall func_001DD3A1(int, long, long *, unsigned long);
+extern "C" int __stdcall func_001DD15A(int, void *, unsigned long, unsigned long *, void *);
+extern "C" int __stdcall func_001DD13C(int);
+extern "C" int __stdcall func_0022097B(int, void *, unsigned long, int, unsigned long *);
+
+struct Loader_1CB170 {
+    char pad0[0x30];
+    int unk30;
+    int func_001CB170(const char *name, int a1);
+};
+
 struct SndEntry_1CB2D0 {
     int f0;
     int f4;
