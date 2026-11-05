@@ -24,6 +24,8 @@ struct C_00197EC0_Vec4 {
     float w;
 };
 
+struct __declspec(align(16)) M_00198040 { float m[16]; };
+
 struct C_00197EC0 {
     char padF0[0xF0];
     float fF0;
