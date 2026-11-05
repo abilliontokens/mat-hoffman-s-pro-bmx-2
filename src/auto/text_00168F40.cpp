@@ -2,7 +2,10 @@
 #include "common.h"
 extern "C" unsigned int strlen(const char *s);
 #pragma intrinsic(strlen)
+extern "C" char *strcpy(char *dst, const char *src);
+#pragma intrinsic(strcpy)
 extern int D_00288084;
+extern char D_0028803C[];
 void func_001E891B(void *p);
 void func_001E8390(void *p);
 void func_00168210(int type, float val, void *p);
