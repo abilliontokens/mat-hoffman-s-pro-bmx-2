@@ -1,11 +1,6 @@
 /* 5 functions from 0x00028CD0 to 0x00029BD0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
-#include <xmmintrin.h>
-static __forceinline float Max_000298F0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
-static __forceinline float Min_000298F0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
-static __forceinline float MaxM_000298F0(float a, float b) { const float *pa = &a; const float *pb = &b; return *pa > *pb ? *pa : *pb; }
-static __forceinline float MinM_000298F0(float a, float b) { const float *pa = &a; const float *pb = &b; return *pa < *pb ? *pa : *pb; }
 struct C_00029290 {
     undefined4 func_00029290(void);
 };
