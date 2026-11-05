@@ -30,6 +30,7 @@ struct C_000D2300 {
     int f470;
     char pad474[0x202C - 0x474];
     C_001B17D0 *f202C;
+    int Value(int i);
     void func_000D2300(void);
 };
 
@@ -70,6 +71,35 @@ extern int D_0027A2A8;
 extern float D_0027DE70;
 extern float D_0027ED00;
 void func_001ADCC0(char *buf, int size, char *fmt, int val);
+
+void C_000D2300::func_000D2300(void)
+{
+    char buf[0x14];
+    int idx = f418;
+    int v;
+
+    if (idx == 7 && f3E8[7] == 0) {
+        if (f470 == 0) {
+            f202C->func_001B17D0((char *)&D_0027A2A8);
+            return;
+        }
+        if (f3E8[7] != 0) {
+            v = 0;
+        } else {
+            v = D_002A8490->f2E0->f2DC[7];
+        }
+        func_001ADCC0(buf, 0x14, (char *)&D_00277038, v);
+        f202C->func_001B17D0(buf);
+        return;
+    }
+    if (f3E8[idx] != 0) {
+        v = 0;
+    } else {
+        v = D_002A8490->f2E0->f2DC[idx];
+    }
+    func_001ADCC0(buf, 0x14, (char *)&D_00277038, v);
+    f202C->func_001B17D0(buf);
+}
 
 void C_000D25A0::func_000D25A0(void)
 {
