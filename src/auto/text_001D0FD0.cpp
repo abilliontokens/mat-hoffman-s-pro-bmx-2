@@ -38,6 +38,10 @@ struct S_001D13D0_Alloc {
     void *func_001D7D50();
 };
 
+struct Game {
+    void func_00156FC0();
+};
+
 struct V_XboxGame {
     virtual void v0();
     virtual void v1();
