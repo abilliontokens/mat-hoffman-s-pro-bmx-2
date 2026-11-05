@@ -242,6 +242,30 @@ void C_0004D070::func_0004D070(int flag)
     }
 }
 
+void C_0004D0E0::func_0004D0E0()
+{
+    f158->func_001C4D50(1000);
+    if (f120 < f90) {
+        f64->f4e0->func_000A4500(0, f120);
+    }
+    do {
+        if (++f120 >= f90) {
+            f120 = 0;
+        }
+    } while (f2a0[f120] == 0);
+    f288->func_000861A0(f120);
+    ((C_0002EF70 *)f44)->func_0002EF70((int)f64->f4e0->objs[f120], 0);
+    f64->f4e0->func_000A4500(1, f120);
+    char *base = (char *)this + f28c * 0x10;
+    f64->f4e0->objs[f120]->func_0010C090(base + 0x688, base + 0x708, 0, 1);
+    f64->f4e0->objs[f120]->func_0010E810();
+    f44->f50->func_00056080();
+    if (f170 != 0) {
+        f170->func_00086C30((int)f64->f4e0->objs[f120]);
+        f170->func_000847A0();
+    }
+}
+
 void C_0004D230::func_0004D230()
 {
     char *p;
