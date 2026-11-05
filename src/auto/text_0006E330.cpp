@@ -79,6 +79,8 @@ struct C_0006E330 {
     char pad198[4];
     int unk19C;
     void func_00157600(int a0);
+    void func_00157660();
+    void func_0006E480();
     C_0006E330 *func_0006E330(int a0);
 };
 
