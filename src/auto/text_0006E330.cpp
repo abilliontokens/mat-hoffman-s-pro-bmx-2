@@ -222,7 +222,9 @@ struct S_6E970_EC {
     int unk1F4;
 };
 struct S_6E970_G2 {
-    char pad[0x2C0];
+    char pad[0x190];
+    int mode;
+    char pad194[0x12C];
     int field2C0;
 };
 struct S_6E970_G1 {
