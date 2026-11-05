@@ -81,7 +81,11 @@ struct C_00151F80 {
     char padd8[8];
     S_152BA0_Obj *fe0;
     int fe4;
-    char pade8[0xac];
+    S_151F80_Vec fe8;
+    float ff8;
+    float ffc;
+    float f100;
+    char pad104[0x90];
     S_152BA0_Slot slots[10];
     char pad554[0x1c];
     int f570;
