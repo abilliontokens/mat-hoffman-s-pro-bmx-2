@@ -352,3 +352,14 @@ BitObj *BitObj::func_001EF8F6(int a0, int a1) {
     ((BitObj *)a0)->func_001EEEE6(&local);
     return (BitObj *)a0;
 }
+
+BitObj *BitObj::func_001EF999(char c)
+{
+    b4 = 0;
+    b5 = 0;
+    b6 = 0;
+    b7 = 0;
+    func_001EF68E(&c, 1);
+    return this;
+}
+
