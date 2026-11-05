@@ -461,6 +461,65 @@ undefined4 C_00100FF0::func_00100FF0(byte param_1)
   return in_ECX;
 }
 
+void C_00101010::func_00101010(float dt)
+{
+    O_101010 *owner = p124;
+    if (f2C4 != 0 && f2BC == 0) {
+        f2C0 += dt;
+        if (f2C0 >= D_00278C48) {
+            f2BC = 1;
+            f2C4 = 0;
+        }
+    }
+    if (f2C8 != p280->b3B) {
+        if (f2D4 >= f2D8) {
+            f2D0 = f2C8;
+        } else {
+            f2D0 = (int)((float)(f2C8 - f2CC) * (f2D4 / f2D8)) + f2CC;
+            f2D4 += dt;
+        }
+    }
+    if (f2B4 != 0) {
+        if (owner->p25C->p74->func_000301D0() == 0) {
+            f2C4 = 1;
+            f2C0 = 0.0f;
+            owner->func_000BA9B0(0x2a)->func_00103260(0);
+            owner->func_000BA9B0(0x29)->func_00103260(0);
+            f2C8 = 0xff;
+            f2CC = 0;
+            f2D0 = 0;
+            f2D4 = 0.0f;
+            f2D8 = 0.25f;
+            func_001BEE50(1, f290, 0);
+            f2B4 = 0;
+        }
+    }
+    if (f2B8 != 0) {
+        owner->func_000BA9B0(0x2a)->func_00103350();
+        owner->func_000BA9B0(0x29)->func_00103350();
+        f2C8 = 0;
+        f2CC = 0xff;
+        f2D0 = 0xff;
+        f2D4 = 0.0f;
+        f2D8 = 0.25f;
+        f2B8 = 0;
+    }
+    if (f29C != 0 || f2B0 != 0 || f2AC != 0) {
+        f298 += dt;
+        if (f298 >= D_0027DE74) {
+            if (f29C != 0 && owner->f2A4 != 0) {
+                f29C = 0;
+                f2A0 = 0;
+            } else {
+                f2A0 = 1;
+                ((VP_101010 *)this)->v70(f2A4, f2A8);
+                f298 = 0.0f;
+            }
+        }
+    }
+    func_001BED00(dt);
+}
+
 undefined4 C_00101240::func_00101240(byte param_1)
 {
   int func_000EBE30(...);
