@@ -8,7 +8,7 @@ struct C_0001DFF0 {
 extern int D_00275F18;
 
 struct C_0001D690 {
-    int func_0001D690(unsigned char param_1);
+    void *func_0001D690(unsigned char param_1);
 };
 
 struct C_0001D420_Sub {
