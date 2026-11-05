@@ -167,7 +167,7 @@ public:
 };
 struct C_001608E0 {
     char pad0[0x28];
-    int unk28[4];
+    struct V4_001608E0 { int x, y, z, w; } unk28;
     char pad38[0x40];
     C_001608E0_Obj *unk78;
     int pad7C;
