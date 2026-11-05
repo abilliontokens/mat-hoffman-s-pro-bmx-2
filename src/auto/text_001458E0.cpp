@@ -32,6 +32,7 @@ struct S_00146540_Table {
     int capacity;
     int unk10;
     S_00146540_Entry *entries;
+    const char *GetName(int i) { return entries[i].name; }
     int func_001AC7B0(const char *name, int unused);
 };
 extern S_00146540_Table *D_002A7520;
@@ -47,3 +48,50 @@ struct C_00146540 {
     int f40;
     void func_00146540(S_00146540_Cfg *cfg);
 };
+
+void C_00146540::func_00146540(S_00146540_Cfg *cfg)
+{
+    int i;
+    int k;
+    int idx;
+    const char *name;
+
+    f40 = 0;
+    V4_00146540 vec;
+    char buf[0x104];
+    func_001ADCC0(buf, 0x104, "TexGenMatrixRow");
+    for (i = 0; i < D_002A7520->count; i++) {
+        name = D_002A7520->entries[i].name;
+        if (cfg->func_00168D70(name, &vec.x, 4)) {
+            if (func_001E8AF0(D_002A7520->entries[i].name, buf)) {
+                if (i == 0) {
+                    f40 += 4;
+                }
+            } else {
+                f40++;
+            }
+        }
+    }
+    if (f40 > 0) {
+        f34 = new S_00146540_Elem[f40];
+    }
+    if (f40 > 0) {
+        func_001ADCC0(buf, 0x104, "TexGenMatrixRow%d", 1);
+        if (cfg->func_00168D70(buf, &vec.x, 4)) {
+            V4_00146540 rows[4];
+            for (k = 0; k < 4; k++) {
+                func_001ADCC0(buf, 0x104, "TexGenMatrixRow%d", k + 1);
+                idx = D_002A7520->func_001AC7B0(buf, 1);
+                f34[k].id = D_002A7520->entries[idx].value;
+                f34[k].v = vec;
+            }
+        }
+    }
+    for (i = 0; i < D_002A7520->count; i++) {
+        name = D_002A7520->entries[i].name;
+        if (cfg->func_00168D70(name, &vec.x, 4)) {
+            f34[i].id = D_002A7520->entries[i].value;
+            f34[i].v = vec;
+        }
+    }
+}
