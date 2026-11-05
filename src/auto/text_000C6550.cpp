@@ -64,6 +64,25 @@ struct BmxUIPageParkLevel {
     void func_000C66E0();
 };
 
+void BmxUIPageParkEditor::func_000C6550(void)
+{
+    Mat *m;
+
+    m = f2d0;
+    m->f38 = (u32)(f2c4 << 24) | (m->f38 & 0xffffff);
+    m->f58 |= 2;
+    m = f2d4;
+    m->f38 = (u32)(f2c4 << 24) | (m->f38 & 0xffffff);
+    m->f58 |= 2;
+    m = f2d8;
+    m->f38 = (u32)(f2c4 << 24) | (m->f38 & 0xffffff);
+    m->f58 |= 2;
+    m = f2dc;
+    m->f38 = (u32)(f2c4 << 24) | (m->f38 & 0xffffff);
+    m->f58 |= 2;
+    func_001BF000();
+}
+
 void BmxUIPageParkEditor::func_000C6600(void)
 {
     func_000C5E40();
