@@ -159,7 +159,7 @@ struct C_Save_7D {
     undefined4 func_0007DDD0(void);
     void func_0006B4B0(void);
     void func_0006AA90(void);
-    void func_00157960(void);
+    undefined4 func_00157960(void);
 };
 
 
