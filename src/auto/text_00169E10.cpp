@@ -122,6 +122,84 @@ struct ParticleEmitter {
     void func_0016A220(void *a, u32 *b);
 };
 
+int ParticleEmitter::func_00169E10(float dt) {
+    V4f temp;
+    if (*(int *)(D_002A8490 + 0x124)) return 1;
+    if (flags & 1) {
+        flags &= ~1;
+        (*(V4u *)((char *)this + 0x34)) = (*(V4u *)((char *)this + 0x24));
+        return 1;
+    }
+    if (f68) {
+        (*(V4u *)((char *)this + 0x34)) = (*(V4u *)((char *)this + 0x24));
+        ((EmitterTransform *)f68)->func_00199A70(0, &(*(V4u *)((char *)this + 0x24)));
+        volatile V4f *p = ((EmitterTransform *)f68)->func_00197EC0(&temp, &f44);
+        V4f &v = *(V4f *)&(*(V4u *)((char *)this + 0x24));
+        v.x = p->x + v.x; v.y = p->y + v.y; v.z = p->z + v.z;
+    }
+    if (delay > 0.0f) {
+        if (flags & 2) delay -= dt;
+        return 1;
+    }
+    if (mode == 1) {
+        if (flags & 2) {
+            if (timer > 0.0f) { timer -= dt; return 0; }
+            ((ParticleEmitterVT *)this)->v31();
+            return 1;
+        }
+        (*(float *)((char *)this + 0x194)) += dt; (*(V4u *)((char *)this + 0x34)) = (*(V4u *)((char *)this + 0x24)); flags &= ~4;
+        return 1;
+    }
+    if (mode == 2) {
+        if (flags & 2) {
+            if (timer > 0.0f) {
+                timer -= dt;
+                if (timer <= 0.0f) {
+                    timer = func_00011240() * (high1-low1) + low1;
+                    ((ParticleEmitterVT *)this)->v31();
+                    return 1;
+                }
+                return 0;
+            }
+        } else if (timer > 0.0f) {
+            timer -= dt;
+            if (timer <= 0.0f) {
+                timer = func_00011240() * (high0-low0) + low0;
+                ((ParticleEmitterVT *)this)->v30();
+                (*(float *)((char *)this + 0x194)) = 0.0f; return 0;
+            }
+            (*(float *)((char *)this + 0x194)) += dt; (*(V4u *)((char *)this + 0x34)) = (*(V4u *)((char *)this + 0x24)); flags &= ~4;
+            return 1;
+        }
+    } else if (mode == 3) {
+        if (flags & 2) {
+            if (timer > 0.0f) {
+                timer -= dt;
+                if (timer <= 0.0f) {
+                    timer = high1;
+                    ((ParticleEmitterVT *)this)->v31();
+                    return 1;
+                }
+                return 0;
+            }
+        } else if (timer > 0.0f) {
+            timer -= dt;
+            if (timer <= 0.0f) {
+                timer = high0;
+                ((ParticleEmitterVT *)this)->v30();
+                (*(float *)((char *)this + 0x194)) = 0.0f; return 0;
+            }
+            (*(float *)((char *)this + 0x194)) += dt; (*(V4u *)((char *)this + 0x34)) = (*(V4u *)((char *)this + 0x24)); flags &= ~4;
+            return 1;
+        }
+    }
+    if (!(flags & 2)) {
+        (*(float *)((char *)this + 0x194)) += dt; (*(V4u *)((char *)this + 0x34)) = (*(V4u *)((char *)this + 0x24)); flags &= ~4; return 1;
+    }
+    if (!(flags & 4)) flags |= 4;
+    return 0;
+}
+
 ParticleEmitter *ParticleEmitter::func_0016A1D0(void *a, void *b, u32 *c) {
     ((C_001D3F50 *)this)->func_001D3F50();
     f64 = a;
