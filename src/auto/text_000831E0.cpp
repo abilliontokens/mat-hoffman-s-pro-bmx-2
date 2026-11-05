@@ -48,7 +48,8 @@ struct C_000831E0 {
     char pad0[0x54];
     int f54;
     int f58;
-    char pad5C[8];
+    int f5C;
+    int f60;
     int f64;
     char pad68[0xCC - 0x68];
     int fCC;
