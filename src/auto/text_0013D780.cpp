@@ -16,7 +16,76 @@ struct C_0013E170 {
 extern int D_00284C58;
 extern int D_00100000;
 
+#include <xmmintrin.h>
+
+extern int D_00284DEC;
+extern int D_00284D5C;
+extern float D_00284DD8;
+
+void __stdcall func_00201100(void *p);
+void func_000263B0(void *a, void *b, void *c);
+void func_0013E4A0(void *dst, void *src);
+int __stdcall func_001FFA20(int a, void *b);
+
+struct CubeSlot_0013E6A0 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+};
+
+struct DXCubeTextureMap {
+    void *vtbl;
+    char pad4[0x10C];
+    void *f110;
+    CubeSlot_0013E6A0 *f114[6];
+    void *f12C[6];
+    void func_0013E6A0(void);
+    void func_001D6B00(void);
+};
+
+struct Mat4_0013E4F0 {
+    float m[16];
+    void Zero() {
+        __m128 z = _mm_setzero_ps();
+        _mm_store_ps(&m[0], z);
+        _mm_store_ps(&m[4], z);
+        _mm_store_ps(&m[8], z);
+        _mm_store_ps(&m[12], z);
+    }
+    void Identity() {
+        Zero();
+        m[0] = 1.0f;
+        m[5] = 1.0f;
+        m[10] = 1.0f;
+        m[15] = 1.0f;
+    }
+    void Scale(float s) {
+        Zero();
+        m[0] = s;
+        m[5] = s;
+        m[10] = s;
+        m[15] = s;
+    }
+};
+
+struct DXCamera {
+    void *vtbl;
+    char pad4[0x1FC];
+    float f200;
+    char pad204[0x4C];
+    Mat4_0013E4F0 f250;
+    Mat4_0013E4F0 f290;
+    DXCamera *func_0013E4F0(int a);
+    void func_0012A3F0(int a);
+    void func_0012AEC0(void);
+    int func_0012B470(void);
+    void func_0013E580(void);
+    int func_0013E610(void);
+};
+
 struct C_001D5600 {
+    int f0;
+    void *f4;
     void func_001D5600(void);
 };
 
@@ -145,6 +214,45 @@ void *C_0013E080::func_0013E140(unsigned int flags) {
     if (flags & 1)
         func_001E891B(this);
     return this;
+}
+
+void C_0013E170::func_0013E170(int index, char *name, int value)
+{
+    int in_ECX = (int)this;
+
+    if (index < *(int *)(in_ECX + 0x193c)) {
+        int base = in_ECX + index * 0x5c;
+        char *buf = (char *)(base + 0x230);
+        if (strcmp(buf, name) != 0) {
+            func_001E8920(buf, name, 0x4f);
+            *(unsigned char *)(base + 0x27f) = 0;
+            *(int *)(base + 0x280) = value;
+        }
+    }
+}
+
+void func_0013E1F0(int obj, int id, int fmt)
+{
+    if ((*(unsigned char *)(obj + 0x21) & 1) != 0 && id == *(int *)(obj + 0x1938) &&
+        *(int *)(obj + 0x224) + 1 < *(int *)(obj + 0x193c)) {
+        char *buf = (char *)(obj + 0x24);
+        func_001ADD20(buf, 0x200, fmt, &fmt);
+        int n = *(int *)(obj + 0x224) + 1;
+        *(int *)(obj + 0x224) = n;
+        ((C_0013E170 *)obj)->func_0013E170(n, buf, 0);
+    }
+}
+
+void func_0013E260(int obj, int id, int fmt)
+{
+    if ((*(unsigned char *)(obj + 0x21) & 1) != 0 && id == *(int *)(obj + 0x1938) &&
+        *(int *)(obj + 0x224) + 1 < *(int *)(obj + 0x193c)) {
+        char *buf = (char *)(obj + 0x24);
+        func_001ADD20(buf, 0x200, fmt, &fmt);
+        int n = *(int *)(obj + 0x224) + 1;
+        *(int *)(obj + 0x224) = n;
+        ((C_0013E170 *)obj)->func_0013E170(n, buf, 1);
+    }
 }
 
 void func_0013E680(void) {
