@@ -17,6 +17,19 @@ static void storeftoi(int *out, float f)
     *out = (int)f;
 }
 
+/* one entry of the table func_0014F9A0 frees; the table ends where D_002DF874 starts */
+struct S_0014F9A0_Entry {
+    void *f0;
+    int f4;
+    int f8;
+};
+
+extern S_0014F9A0_Entry D_002DF748[];
+extern float D_002DF874;
+extern float *D_002DF87C;
+
+void func_001E8390(void *p);
+
 struct C_00150350 {
     int unk0;
     void func_00150350(void);
