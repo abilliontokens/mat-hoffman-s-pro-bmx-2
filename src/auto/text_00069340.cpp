@@ -91,6 +91,15 @@ struct C_00069BD0_Obj {
     void func_00035720();
 };
 
+/* a drawable the page owns: func_001D5AD0 draws it, f38/b58 are its colour and dirty flag */
+struct Sprite_69 {
+    char pad0[0x38];
+    unsigned int f38;
+    char pad3C[0x1C];
+    unsigned char b58;
+    void func_001D5AD0();
+};
+
 struct C_00069BD0 {
     virtual void v0();
     virtual void v1();
