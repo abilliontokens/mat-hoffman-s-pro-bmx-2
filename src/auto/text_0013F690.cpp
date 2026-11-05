@@ -299,6 +299,25 @@ void C_0013FCF0::func_0013FCF0()
   func_00200B30(f0c, f8, f20);
 }
 
+void C_001402C0::func_001402C0(int arg1, int arg2)
+{
+    if (a != 0) {
+        a->v0(1);
+        a = 0;
+    }
+    void *m = func_001E8A44(0x14);
+    a = m ? ((DXVSStreams *)m)->func_00144640() : 0;
+    a->v1(arg1, D_002AA46C);
+    C_0013FC60 *p = new C_0013FC60;
+    b = p;
+    a->f10 = p;
+    b->func_0013FC60(arg2);
+}
+
+void C_001403D0::func_001403D0(int a, int b, int c)
+{
+}
+
 undefined4 C_00140660::func_00140660(byte param_1)
 {
   int func_0013FC00(...);
