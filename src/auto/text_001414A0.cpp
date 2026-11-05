@@ -2,6 +2,8 @@
 #include "common.h"
 
 extern "C" int strcmp(const char *a, const char *b);
+extern char D_0000F005;
+extern char D_0000F006;
 
 struct C_00168BE0 {
     void func_00168BE0(const char *key, const char *def, char *buf, int size);
@@ -25,6 +27,30 @@ int func_001416E0(C_00168BE0 *cfg, const char *key, int def, int &out)
         out = 0x1d00;
     } else if (strcmp(buf, "D3DSHADE_GOURAUD") == 0) {
         out = 0x1d01;
+    }
+    return out;
+}
+
+int func_00141780(C_00168BE0 *cfg, const char *key, int def, int &out)
+{
+    char buf[64];
+    cfg->func_00168BE0(key, "undefined", buf, 64);
+    if (strcmp(buf, "undefined") == 0) {
+        out = def;
+    } else if (strcmp(buf, "D3DBLENDOP_ADD") == 0) {
+        out = 0x8006;
+    } else if (strcmp(buf, "D3DBLENDOP_SUBTRACT") == 0) {
+        out = 0x800a;
+    } else if (strcmp(buf, "D3DBLENDOP_REVSUBTRACT") == 0) {
+        out = 0x800b;
+    } else if (strcmp(buf, "D3DBLENDOP_MIN") == 0) {
+        out = 0x8007;
+    } else if (strcmp(buf, "D3DBLENDOP_MAX") == 0) {
+        out = 0x8008;
+    } else if (strcmp(buf, "D3DBLENDOP_ADDSIGNED") == 0) {
+        out = 0xf006;
+    } else if (strcmp(buf, "D3DBLENDOP_REVSUBTRACTSIGNED") == 0) {
+        out = 0xf005;
     }
     return out;
 }
