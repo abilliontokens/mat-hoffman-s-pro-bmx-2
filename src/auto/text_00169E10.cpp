@@ -102,6 +102,12 @@ struct ParticleEmitter {
     u32 f190;
     char pad194[0x14];
     u32 f1A8, f1AC;
+    char pad1B0[0x1c];
+    unsigned char flags;
+    char pad1CD[3];
+    int mode;
+    float delay, f1D8, timer, low0, high0, low1, high1;
+    int func_00169E10(float dt);
     ParticleEmitter *func_0016AD20(void *a, char *name, void *b, u32 *c);
     ParticleEmitter *func_0016A1D0(void *a, void *b, u32 *c);
     int func_0016A330(char *buf);
