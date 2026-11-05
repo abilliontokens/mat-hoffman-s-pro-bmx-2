@@ -125,26 +125,26 @@ int __cdecl func_001EB314(int locknum)
 {
     void *pcs;
 
+    if (D_002AE8F0[locknum].lock != 0)
+        return 1;
+    pcs = func_001E8AA5(0x1c);
+    if (pcs == 0) {
+        *func_001ED075() = 12;
+        return 0;
+    }
+    func_001EB390(10);
     if (D_002AE8F0[locknum].lock == 0) {
-        pcs = func_001E8AA5(0x1c);
-        if (pcs == 0) {
+        if (!func_001F44EF(pcs, 4000)) {
+            func_001E8390(pcs);
+            func_001EB302(10);
             *func_001ED075() = 12;
             return 0;
         }
-        func_001EB390(10);
-        if (D_002AE8F0[locknum].lock == 0) {
-            if (!func_001F44EF(pcs, 4000)) {
-                func_001E8390(pcs);
-                func_001EB302(10);
-                *func_001ED075() = 12;
-                return 0;
-            }
-            D_002AE8F0[locknum].lock = pcs;
-        } else {
-            func_001E8390(pcs);
-        }
-        func_001EB302(10);
+        D_002AE8F0[locknum].lock = pcs;
+    } else {
+        func_001E8390(pcs);
     }
+    func_001EB302(10);
     return 1;
 }
 
