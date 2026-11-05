@@ -35,6 +35,32 @@ struct S_001A2C00_Snd {
     virtual void v23(int a, int b, S_001A2C00_Vec v, int d);
 };
 
+struct S_3B10_Snd {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual int v6(int a); virtual int v7();
+};
+struct S_3B10_Elem { S_3B10_Snd *snd; };
+struct S_3B10_List {
+    int count;
+    S_3B10_Elem **items;
+    S_3B10_Elem *at(int i)
+    {
+        if (count > 0 && items != 0 && i < count) {
+            return items[i];
+        }
+        return 0;
+    }
+};
+struct MaterialSoundEmitter {
+    char pad[0x1d4];
+    S_3B10_List a;
+    char pad2[0x1e8 - 0x1dc];
+    S_3B10_List b;
+    char pad3[0x1fc - 0x1f0];
+    int f1fc;
+    int func_001A3B10(void);
+};
+
 struct C_00157A00 {
     void func_00157A00(int a);
 };
@@ -89,8 +115,7 @@ void ResponseEmitter::func_001A2DD0(int id)
     int i;
 
     for (i = 0; i < list1d8.count; i++) {
-        S_001A2C00_Elem *e = list1d8.at(i);
-        if (e->f0 == id) {
+        if (list1d8.at(i)->f0 == id) {
             list1d8.at(i)->f4->v6(0);
             list1d8.removeAt(i);
         }
