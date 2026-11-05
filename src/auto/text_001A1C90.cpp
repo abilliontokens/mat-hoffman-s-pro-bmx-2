@@ -41,6 +41,10 @@ struct ObjV23 {
 
 struct V4_1A {
     float x, y, z, w;
+    V4_1A() {}
+    V4_1A(float a, float b, float c) { x = a; y = b; z = c; w = 1.0f; }
+    V4_1A operator-(V4_1A o) const { return V4_1A(x - o.x, y - o.y, z - o.z); }
+    V4_1A operator*(float s) const { return V4_1A(x * s, y * s, z * s); }
 };
 
 extern V4_1A D_002A9ECC;
