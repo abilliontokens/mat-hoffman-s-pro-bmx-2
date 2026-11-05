@@ -101,10 +101,12 @@ struct C_CarProceduralExtendedVT {
 
 /* the 0x18-byte block CarProceduralExtended::f518 points to */
 struct S_0012F518 {
-    int count; /* number of 0x28-byte elements in arr */
+    u32 count; /* number of 0x28-byte elements in arr */
     u32 f4;
     void *arr;
     u32 fC;
+    u32 f10;
+    u32 f14;
 };
 
 struct C_0012FE30 {
