@@ -67,7 +67,7 @@ void func_001AC330(char *dest, char *fmt, char *arg);
 extern char D_002786BC[];
 extern char D_00275630[];
 
-static inline unsigned int StrLen_716(const char *str)
+__forceinline unsigned int StrLen_716(const char *str)
 {
     const char *eos = str;
     while (*eos++) {
@@ -290,6 +290,7 @@ void C_00072330::func_00072330(void)
 {
     char a[0x34];
     char b[0x40];
+    char *s;
     char *eos;
 
     if (fC8 != 0) {
@@ -305,10 +306,11 @@ void C_00072330::func_00072330(void)
         char *fmt = D_002A8490->p2E8->p4->fA78;
         func_001AC330(b, fmt, ((C_00095390 *)D_002A8490->f2E0->f2FC)->func_00095390(f88));
     }
-    eos = b;
+    s = b;
+    eos = s;
     while (*eos++) {
     }
-    if ((unsigned int)(eos - b - 1) > 0x27) {
+    if ((unsigned int)(eos - (s + 1)) > 0x27) {
         b[0x27] = 0;
     }
     fD0->func_001B17D0(b);
