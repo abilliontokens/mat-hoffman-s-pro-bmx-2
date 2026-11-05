@@ -381,14 +381,15 @@ void *C_00149120::func_00149120(int a0, int a1)
         void *p = func_001E8A44(n * 0x14);
         if (p != 0) {
             func_00011FF0(p, 0x14, n, &D_00144CD0);
-            unk20 = p;
+            unk20 = (Anim_00149120 *)p;
         } else {
             p = 0;
-            unk20 = p;
+            *(volatile void **)&unk20 = p;
         }
     }
     for (int i = 0; i < unk8->count; i++) {
-        ((Anim_00149120 *)unk20)[i] = unk8->arr[i];
+        ((Anim_00149120 *)unk20)[i].a0 = unk8->arr[i].a0;
+        ((Anim_00149120 *)unk20)[i].data = unk8->arr[i].data;
     }
     return this;
 }
@@ -408,10 +409,10 @@ void *C_001491E0::func_001491E0(C_001491E0 *a0)
         void *p = func_001E8A44(n * 0x14);
         if (p != 0) {
             func_00011FF0(p, 0x14, n, &D_00144CD0);
-            unk20 = p;
+            unk20 = (Anim_00149120 *)p;
         } else {
             p = 0;
-            unk20 = p;
+            *(volatile void **)&unk20 = p;
         }
     }
     if (unk20 != 0) {
@@ -512,17 +513,19 @@ void C_001493E0::func_001493E0()
     extern undefined4 D_002EFDB8;
     extern VObj_00148780 *D_002BF0C8;
     extern int D_00286818;
+    VObj_00148780 *p;
 
     if (unkC != 0) {
         ((VObj_00148780 *)((char *)unkC + 4))->f1();
     }
     func_001FEBD0(0x21, (void *)(*(int *)(D_002EFDB8 + 4) + 0x170));
     func_001FEBD0(0x3, (void *)(D_002EFDB8 + 0x74));
-    VObj_00148780 *p = D_002BF0C8;
-    if (p == 0) {
+    if (D_002BF0C8 == 0) {
         p = (VObj_00148780 *)func_001E8A44(4);
         if (p != 0)
             *(int *)p = (int)&D_00286818;
+    } else {
+        p = D_002BF0C8;
     }
     D_002BF0C8 = p;
     p->f1();
