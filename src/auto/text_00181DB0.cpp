@@ -37,6 +37,7 @@ struct C_00181DB0_Mgr {
 struct C_00181DB0_Entry {
     int f0;
     C_00181DB0_Mgr *f4;
+    char pad8[8];
 };
 
 struct C_00181DB0_Global {
@@ -69,6 +70,55 @@ struct C_00181DB0 {
     void func_001820B0(int a0, int a1, int a2);
 };
 
+
+void C_00181DB0::func_00181DB0(int a0)
+{
+  int i;
+
+  if (f1B4 > 0) {
+    for (i = 0; i < f1B4; i++) {
+      int v = f1B8[i];
+      if (a0 == -1 || a0 == v) {
+        D_002A829C->f14[v].f4->func_001B0520(this);
+      }
+    }
+  }
+}
+
+int C_00181DB0::func_00182020(int a0, int a1)
+{
+  int i;
+  int result = a0;
+
+  f1A1 = D_002A829C->f20 - 1;
+  f1BC = 0;
+  if (f1B4 > 0) {
+    for (i = 0; i < f1B4; i++) {
+      if (f1B8[i] == a0) {
+        int r = D_002A829C->func_00161850(a0);
+        D_002A829C->v6(a1, r);
+        D_002A829C->func_001B26C0(f1B8[i]);
+        f1B8[i] = a1;
+        result = a1;
+      }
+    }
+  }
+  return result;
+}
+
+void C_00181DB0::func_001820B0(int a0, int a1, int a2)
+{
+  int i;
+
+  if (f1B4 > 0) {
+    for (i = 0; i < f1B4; i++) {
+      int v = f1B8[i];
+      if (a2 == -1 || a2 == v) {
+        D_002A829C->f14[v].f4->func_001B05A0(a0, a1, this);
+      }
+    }
+  }
+}
 
 longdouble C_00182530::func_00182530(undefined4 param_1)
 {
