@@ -81,3 +81,15 @@ struct C_0006E910 {
     void func_0006E910();
     void func_0006EC60();
 };
+
+void C_0006E910::func_0006E910()
+{
+    D_002EFDB8->vf7(1);
+    D_002EFDB8->vf8();
+    unkD0->func_001B1980();
+    unkD4->func_001B1980();
+    unkDC->func_001B1980();
+    v4();
+    unkFC = 0;
+    unk19C = 0;
+}
