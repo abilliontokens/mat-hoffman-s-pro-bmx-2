@@ -70,7 +70,7 @@ struct S_0015E4B0_V4 {
     float x, y, z, w;
 };
 
-extern const float D_002755E8;
+extern float D_002755E8;
 extern float D_002A80A4;
 extern float D_00275460;
 float func_0014F510(float a);
@@ -233,16 +233,16 @@ float LightEmitter::func_0015E4B0(float a1, S_0015E4B0_V4 v, LightEmitter *e)
     n.z = -e->f74;
     func_0015CD90(&v.x, &v.x);
     float dot = v.x * n.x + v.y * n.y + v.z * n.z;
-    float t1 = func_0014F510(D_002755E8 * e->f90);
+    float t1 = func_0014F510(e->f90 * D_002755E8);
     if (dot < t1) {
         return D_002A80A4 * a1;
     }
-    float t2 = func_0014F510(D_002755E8 * e->f8C);
+    float t2 = func_0014F510(e->f8C * D_002755E8);
     if (dot > t2) {
         return D_00275460 * a1;
     }
     float ratio = (t2 - dot) / (t2 - t1);
-    return ((D_00275460 - ratio) + D_002A80A4 * ratio) * a1;
+    return (D_002A80A4 * ratio + (D_00275460 - ratio)) * a1;
 }
 
 int C_0015E300::func_0015E5B0(void)
