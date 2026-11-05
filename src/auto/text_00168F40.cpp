@@ -103,10 +103,10 @@ struct VT_00169C00 {
 
 int C_00168F40::func_00168F40(int id)
 {
-    int key;
     int idx;
+    int key = id;
 
-    idx = func_00168300(key = id);
+    idx = func_00168300(key);
     if (func_00168300(key) != -1) {
         if (f4 != 0) {
             D_002BEAAC->func_0013AFF0(f0, f4B8[idx].offset, 0);
@@ -123,7 +123,8 @@ int C_00168F40::func_00168F40(int id)
         f42C = f18[idx].size;
         return f42C;
     }
-    return 0;
+    key = 0;
+    return key;
 }
 
 int C_00169010::func_00169010(int idx, float *out)
@@ -155,6 +156,48 @@ int C_00169010::func_00169090(int idx, void *p)
     }
     func_00168210(e[idx].type, e[idx].val, p);
     return 1;
+}
+
+void C_00168F40::func_001691E0(void)
+{
+    int i;
+
+    if (f0 != -1) {
+        D_002BEAAC->func_0013AF80(f0);
+        D_002BEAAC->func_0013C110(f0);
+        f0 = -1;
+    }
+    if (f20 != 0) {
+        if (*f20 != 0) {
+            func_001E8390(*f20);
+        }
+        func_001E8390(f20);
+    }
+    f1C = 0;
+    f20 = 0;
+    if (f18 != 0) {
+        func_001E8390(f18);
+        f18 = 0;
+        f10 = 0;
+    }
+    for (i = 0; i < slotCount; i++) {
+        if (slots[i].kind == 2) {
+            func_001E8390(slots[i].ptr);
+        }
+        slots[i].ptr = 0;
+    }
+    slotCount = 0;
+    if (f4C8 != 0) {
+        func_001E8390(f4C8);
+        f4C8 = 0;
+    }
+    if (f4B8 != 0) {
+        func_001E8390(f4B8);
+        f4B8 = 0;
+    }
+    if (f4C0 != 0) {
+        func_001E8390(f4C0);
+    }
 }
 
 void func_00169C00(void *a0, void *a1, VT_00169C00 *obj, int flag)
