@@ -230,7 +230,7 @@ extern int D_0027CED8;
 extern int D_00289EB8;
 int func_001E9040(char *str, char *control);
 
-static __inline int Min_00187670(int a, int b) { return a > b ? b : a; }
+static __forceinline int Min_00187670(int a, int b) { return a > b ? b : a; }
 
 int C_001877F0::func_001877F0(C_001877F0Param *param)
 {
