@@ -2,6 +2,10 @@
 #include "common.h"
 #include <stdlib.h>
 #include "ghidra.h"
+struct C_0001E860 {
+    void func_0001E860(void);
+};
+
 struct C_0001EED0 {
     void func_0001EED0(void);
 };
@@ -170,6 +174,24 @@ C_0001E740 *C_0001E740::func_0001E740(int a0, int a1) {
     unk8 = n;
     unk18 = n;
     return this;
+}
+
+void C_0001E860::func_0001E860(void)
+{
+  int in_ECX = (int)this;
+  
+  if (*(int *)(in_ECX + 0xc) != 0) {
+    if ((*(int *)(in_ECX + 0x14) != 0) && (*(int **)(in_ECX + 0x10) != (int *)0x0)) {
+      **(int **)(in_ECX + 0x10) = *(int *)(in_ECX + 0x14);
+    }
+    *(undefined4 *)(in_ECX + 0x14) = *(undefined4 *)(in_ECX + 0xc);
+  }
+  *(undefined4 *)(in_ECX + 0xc) = 0;
+  *(undefined4 *)(in_ECX + 0x10) = 0;
+  *(undefined4 *)(in_ECX + 0x2c) = 0;
+  *(undefined4 *)(in_ECX + 0x24) = 0;
+  *(undefined4 *)(in_ECX + 0x18) = *(undefined4 *)(in_ECX + 8);
+  return;
 }
 
 void *C_0001E930::func_0001E930(unsigned int flags) {
