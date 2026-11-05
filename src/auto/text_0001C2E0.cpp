@@ -2,6 +2,13 @@
 #include "common.h"
 #include <math.h>
 #include <string.h>
+#include <xmmintrin.h>
+struct S_0001C610_V4;
+struct C_00197EC0_1C750 { void func_00197EC0(void *out, void *in); };
+struct C_0001C750 {
+ char pad0[0x130]; float f130[4]; float f140[4]; char pad150[0x40]; float f190[4]; char pad1A0[0x8C]; C_00197EC0_1C750 *f22C;
+ void func_0001C750(S_0001C610_V4 a, S_0001C610_V4 b);
+};
 struct C_0001C710 {
     char pad0[0x130];
     float unk130;
