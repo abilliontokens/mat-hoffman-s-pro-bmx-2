@@ -5,6 +5,46 @@ extern int D_00277FD4;
 
 void func_001E891B(void *p);
 
+struct Rect16_000597B0 {
+    int a, b, c, d;
+};
+extern Rect16_000597B0 D_002A1A64;
+extern char D_002A5348[];
+extern char D_00275678[];
+void *func_001E8A44(unsigned int size);
+int func_001ADCC0(char *buf, int size, char *fmt, ...);
+
+struct Fader_000597B0 {
+    float value;
+    float rate;
+    float scale;
+    float max;
+    float min;
+    Fader_000597B0(float r) {
+        value = 0.0f;
+        rate = r;
+        max = 3.402823466e+38f;
+        min = -3.402823466e+38f;
+        scale = 1.0f;
+    }
+};
+
+struct Screen_000597B0 {
+    char pad0[0x40];
+    int f40;
+    char pad44[8];
+    char *f4C;
+    int f50;
+    char pad54[0xCC - 0x54];
+    Rect16_000597B0 fCC;
+    char padDC[0x130 - 0xDC];
+    Fader_000597B0 *f130;
+    Fader_000597B0 *f134;
+    int func_000590F0(int a);
+    void func_00056100(Rect16_000597B0 r, int a);
+    int func_000597B0(Rect16_000597B0 r, int a4, int name, int a6, int a7);
+};
+
 struct C_0018C640 {
     void func_0018C640(void);
     void func_0018C120(void);
