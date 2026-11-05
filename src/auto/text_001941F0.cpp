@@ -190,6 +190,7 @@ struct SimpleCutSceneCamera {
     int func_001947E0(void *a0, int a1, int a2, int a3);
     void func_00194B40(S_Vec4 *p);
     void func_00194BD0(int a, int b, S_Vec4 *p);
+    void func_00194820(float dt, int *done, S_Vec4 *pos, int a3, float *fov, S_Vec4 *v2, S_Vec4 *v3, int a7);
 };
 
 extern S_Vec4 D_002A9A28;
@@ -416,7 +417,8 @@ void C_00194310::func_00194310(int a0, int a1) {
 
 void SignatureWave::func_00194330(S_Vec4 *a1, S_Vec4 *a2, int a3, float a4, float a5, float a6, float a7, int a8, int a9, int a10, int a11, int a12, int a13, float a14, int a15, int a16, int a17, int a18)
 {
-    const float inv4 = D_00275460 / a4;
+    float inv4 = D_00275460 / a4;
+    float inv5;
 
     *(S_Vec4 *)&f64 = *a1;
     *(S_Vec4 *)&f74 = *a2;
@@ -424,7 +426,7 @@ void SignatureWave::func_00194330(S_Vec4 *a1, S_Vec4 *a2, int a3, float a4, floa
     f34 = a4;
     f38 = a5;
     f3C = inv4;
-    const float inv5 = D_00275460 / a5;
+    inv5 = D_00275460 / a5;
     f40 = inv5;
     f84 = 0;
     f88 = 0;
@@ -483,7 +485,10 @@ int C_00194520::func_00194520(float dt, int a) {
 SignatureWave *SignatureWave::func_00194600(S_Vec4 *a1, S_Vec4 *a2, int a3, float a4, float a5, float a6, float a7, int a8, int a9, int a10, int a11, int a12, int a13, float a14, int a15, int a16, int a17, int a18)
 {
     ((C_00157600 *)this)->func_00157600(1);
-    vtbl = (void *)&D_0028AE14, f6C = 0.0f, f68 = 0.0f, f64 = 0.0f;
+    f6C = 0.0f;
+    f68 = 0.0f;
+    f64 = 0.0f;
+    vtbl = (void *)&D_0028AE14;
     f70 = 1.0f;
     f7C = 0.0f;
     f78 = 0.0f;
@@ -495,7 +500,7 @@ SignatureWave *SignatureWave::func_00194600(S_Vec4 *a1, S_Vec4 *a2, int a3, floa
     fBC = 1.0f;
     if (a12 == 0 && a14 > D_002EFEA0) {
         D_002EFEA0 = a14;
-        D_002AB85C = a14 * D_0027A060;
+        D_002AB85C = a14 * 255.0f;
     }
     f58 = 0;
     f54 = 0;
