@@ -50,6 +50,57 @@ void func_001F3BF3(int *cnt, int arg, int count, F3Obj *o) {
         if (*cnt == -1) break;
     }
 }
+
+void func_001F3C18(unsigned short *str, int len, F3Obj *f, int *pnum)
+{
+    if ((f->field_c & 0x40) && f->field_8 == 0) {
+        *pnum += len;
+        return;
+    }
+    while (len > 0) {
+        len--;
+        func_001F3BCE(f, *str, pnum);
+        str++;
+        if (*pnum == -1) break;
+    }
+}
+
+extern "C" unsigned long __cdecl _exception_code(void);
+int __stdcall func_001F4419(int *p)
+{
+    int r;
+    __try {
+        (void)*(volatile int *)p;
+        r = 1;
+    } __except (_exception_code() == 0xC0000005) {
+        r = 0;
+    }
+    return r;
+}
+
+int func_001F445B(void)
+{
+    int count = 0;
+    int i;
+    func_001EB390(1);
+    __try {
+        for (i = 3; i < D_002FB36C; i++) {
+            if (D_002FB368[i] != 0) {
+                if (*((unsigned char *)D_002FB368[i] + 0xc) & 0x83) {
+                    if (func_001E9760(D_002FB368[i]) != -1) count++;
+                }
+                if (i >= 20) {
+                    func_001E8390(D_002FB368[i]);
+                    D_002FB368[i] = 0;
+                }
+            }
+        }
+    } __finally {
+        func_001EB302(1);
+    }
+    return count;
+}
+
 #pragma optimize("", on)
 void func_001F44D6(void) {
     int func_001EB302(...);
