@@ -133,7 +133,7 @@ struct PhysicsBody {
     C_00171D00_F14C *f14C;
     char pad150[0xE0];
     int f230;
-    void *func_00171E60(int flags);
+          void *func_00171E60(int flags);
     void func_00171F50(int a1, int a2);
     void func_00172420(void);
     void func_00172460(void);
