@@ -278,6 +278,18 @@ void *C_00149040::func_00149040(unsigned int flags)
   return this;
 }
 
+void *C_001490F0::func_001490F0(unsigned int flags)
+{
+    void func_001E891B(void *);
+    extern int D_0028634C;
+    vtbl = (void *)&D_0028634C;
+    func_001B0230();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void *C_00149280::func_00149280(int a0)
 {
   int __stdcall func_001B0E60(int);
