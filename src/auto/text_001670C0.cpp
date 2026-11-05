@@ -2,6 +2,11 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+struct __declspec(align(16)) S_00167AF0_Vector { float x, y, z, w; };
+extern int D_002EFB1C;
+struct C_00167AF0_Context { int func_001C5DE0(void *, void *, void *, int); };
+extern C_00167AF0_Context *D_002AB66C;
+void func_000263B0(void *, void *, void *);
 struct C_00167AC0_Sub;
 extern u16 D_002EFE54;
 struct C_00167DD0_Context { int func_00192BD0(int value); };
