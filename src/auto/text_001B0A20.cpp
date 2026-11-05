@@ -383,6 +383,22 @@ void C_001B0E90::func_001B0E90(void) {
     unk0 = (int)&D_0028C6E8;
 }
 
+void C_001B0FC0::func_001B0FC0(void)
+{
+    int i;
+
+    if (unkC != 0) {
+        unkC->func_0001E860();
+    }
+    for (i = 0; i < count; i++) {
+        if (arr[i] != 0) {
+            arr[i]->v0(1);
+        }
+        arr[i] = 0;
+    }
+    count = 0;
+}
+
 void C_001B10B0::func_001B10B0(undefined4 param_1, int param_2)
 {
   int in_ECX = (int)this;
