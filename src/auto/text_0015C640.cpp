@@ -267,12 +267,47 @@ void func_0015C6F0(float *base, float v, int n, S_0015C6F0_Key *up, float *out)
     }
 }
 
+void func_0015C7D0(float *a, float *b, float *out, float t)
+{
+    float c;
+    float sign;
+    float theta;
+    float inv;
+    float sb;
+    float sa;
+
+    c = a[2] * b[2] + a[1] * b[1] + b[3] * a[3] + a[0] * b[0];
+    if (c < D_00275544) {
+        c = -c;
+        sign = -1.0f;
+    } else {
+        sign = 1.0f;
+    }
+    if (c < D_002A8318) {
+        theta = func_0014F7E0(c);
+        inv = D_00275460 / func_0015C900(theta);
+        sb = func_0015C900(theta * t) * inv * sign;
+        sa = func_0015C900(theta - theta * t) * inv;
+        out[0] = sa * a[0] + sb * b[0];
+        out[1] = sa * a[1] + sb * b[1];
+        out[2] = sa * a[2] + sb * b[2];
+        out[3] = sa * a[3] + sb * b[3];
+    } else {
+        out[0] = a[0];
+        out[1] = a[1];
+        out[2] = a[2];
+        out[3] = a[3];
+    }
+}
+
+#pragma auto_inline(off)
 float func_0015C900(float param_1)
 {
     float lVar1;
     lVar1 = param_1 * param_1;
     return (((D_00287844 - D_00287848 * lVar1) * lVar1 - D_00287840) * lVar1 + D_00275460) * param_1;
 }
+#pragma auto_inline(on)
 
 void func_0015C930(float *param_1, int param_2)
 {
