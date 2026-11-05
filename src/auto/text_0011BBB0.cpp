@@ -18,3 +18,10 @@ struct C_0011CA20 {
     int unk12C;
     void func_0011CA20();
 };
+
+void C_0011CA20::func_0011CA20()
+{
+    unk5C = D_002A3BBC;
+    unkBC = 0;
+    unk12C = 0;
+}
