@@ -124,20 +124,6 @@ extern int D_0028F578;
 extern int D_00284E94;
 extern int D_0028F584;
 
-static __forceinline void Init_001D48E0(int *p)
-{
-    p[0x20] = 0x3f800000;
-    p[0x1f] = 0;
-    p[0x1e] = 0;
-    p[0x1d] = 0;
-    for (int i = 0; i < 300; i++) {
-        p[0x25 + i] = 0;
-    }
-    for (int i = 0; i < 300; i++) {
-        p[0x25 + i] = i;
-    }
-}
-
 extern int D_002ABD04;
 
 void func_001FFBB0(void);
@@ -411,31 +397,28 @@ C_001D48A0* C_001D48A0::func_001D48A0(u8 param_1)
   return this;
 }
 
-int *C_001D48E0::func_001D48E0(void)
+C_001D48E0::C_001D48E0(void)
 {
-  int func_001827B0(...);
-  int *in_ECX = (int *)this;
-
-  func_001827B0();
-  *in_ECX = (int)&D_0028F584;
-  in_ECX[0x1f] = 0;
-  in_ECX[0x1e] = 0;
-  in_ECX[0x1d] = 0;
-  in_ECX[0x20] = 0x3f800000;
-  in_ECX[0x18] = 0x1b02;
-  in_ECX[0x15] = 0;
-  in_ECX[0x16] = 0;
-  in_ECX[0x17] = 0;
-  in_ECX[0x1a] = 0;
-  in_ECX[0x19] = 0;
-  in_ECX[0x1b] = 0;
-  in_ECX[0x1c] = 0;
-  Init_001D48E0(in_ECX);
-  in_ECX[0x24] = 0xffffffff;
-  in_ECX[0x23] = 0;
-  in_ECX[0x21] = 0;
-  in_ECX[0x22] = 0;
-  return in_ECX;
+    v74.x = 0;
+    v74.y = 0;
+    v74.z = 0;
+    v74.w = 1.0f;
+    f60 = 0x1b02;
+    f54 = 0;
+    f58 = 0;
+    f5C = 0;
+    f68 = 0;
+    f64 = 0;
+    f6C = 0;
+    f70 = 0;
+    memset(idx, 0, sizeof(idx));
+    for (int i = 0; i < 300; i++) {
+        idx[i] = i;
+    }
+    f90 = -1;
+    f8C = 0;
+    f84 = 0;
+    f88 = 0;
 }
 
 XboxRenderTarget *XboxRenderTarget::func_001D4980(int a) {
