@@ -52,6 +52,25 @@ struct S_0001C610_V4 {
     float w;
 };
 
+static __forceinline float clamp_0001C870(double v, float lo, float hi) {
+    if (hi <= lo) {
+        if (v < hi) {
+            return hi;
+        }
+        if (lo < v) {
+            return lo;
+        }
+    } else {
+        if (hi < v) {
+            return hi;
+        }
+        if (v < lo) {
+            return lo;
+        }
+    }
+    return v;
+}
+
 static __forceinline float cross_0001C610(float *a, float *b, int i, int j) {
     return b[j] * a[i] - b[i] * a[j];
 }
@@ -371,28 +390,28 @@ void C_0001C710::func_0001C710(float a0, float a1, float a2, int a3) {
 }
 
 float func_0001C870(float a, float b, float c, float d, float e) {
-    float r;
+    double r;
 
-    if (d == b) {
-        return D_00275544;
+    if (d != b) {
+        r = (a - b) * (e - c) / (d - b) + c;
+        if (e <= c) {
+            if (r < e) {
+                return e;
+            }
+            if (c < r) {
+                return c;
+            }
+        } else {
+            if (e < r) {
+                return e;
+            }
+            if (r < c) {
+                return c;
+            }
+        }
+        return r;
     }
-    r = (a - b) * (e - c) / (d - b) + c;
-    if (e <= c) {
-        if (r < e) {
-            return e;
-        }
-        if (c < r) {
-            return c;
-        }
-    } else {
-        if (e < r) {
-            return e;
-        }
-        if (r < c) {
-            return c;
-        }
-    }
-    return r;
+    return D_00275544;
 }
 
 void *C_0001C8F0::func_0001C8F0(int a)
@@ -476,8 +495,8 @@ C_0001CA30 *C_0001CA30::func_0001C9F0(void)
     f18 = 0;
     f20 = 0;
     f24 = 0;
-    f28 = 0;
-    f2C = 0;
+    clear_bit0_0001C9F0(&f28);
+    clear_bit0_0001C9F0(&f2C);
     return this;
 }
 
