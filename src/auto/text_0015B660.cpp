@@ -57,14 +57,13 @@ struct C_0015BAC0 {
     void func_0015BAC0(int a0, u32 *a1, int a2);
 };
 
-void C_0015B660::func_0015B660() {
-    C_0015B660 *self = this;
-    self->unk4 = 0;
-    self->unk8 = 1;
-    self->unkC = 0;
-    self->unk10 = 0;
-    self->vtbl = &D_0028779C;
-    self->unk14 = 0;
+LinearPositionController::LinearPositionController() {
+    unk4 = 0;
+    unk8 = 1;
+    unkC = 0;
+    unk10 = 0;
+    vtbl = &D_0028779C;
+    unk14 = 0;
 }
 
 void C_0015B660::func_0015B680() {
