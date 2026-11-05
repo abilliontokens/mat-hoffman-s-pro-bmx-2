@@ -21,6 +21,10 @@ struct C_00097740 {
     undefined4 func_00097740(int param_1);
 };
 
+struct C_00097C60 {
+    undefined4 func_00097C60(void);
+};
+
 typedef int (*func_000979C0_hash_t)(undefined4);
 typedef int (*func_000979C0_eq_t)(undefined4, undefined4);
 
