@@ -60,9 +60,12 @@ struct S_Vec4Int {
     }
 };
 
-struct C_00194E60 {
-    char pad0[8];
-    S_Vec4Int f8;
+struct S_00194E60_Base {
+    int f0;
+    int f4;
+};
+
+struct C_00194E60 : S_00194E60_Base, S_Vec4Int {
     void func_00194E60(int a, int b, int c, int d);
 };
 
@@ -202,7 +205,7 @@ void C_00194DB0::func_00194DB0(void) {
 
 void C_00194E60::func_00194E60(int a, int b, int c, int d)
 {
-    f8.Set(a, b, c, d);
+    ((S_Vec4Int *)((char *)this + 8))->Set(a, b, c, d);
 }
 
 void C_00194F90::func_00194F90(int a0) {
