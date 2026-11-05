@@ -29,12 +29,45 @@ struct DXRenderableObjectData {
 
 struct DXRenderableObject;
 
+struct Vec4_143660 {
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 w;
+};
+
 struct Alloc190 {
     virtual void destroy(int flags);
     DXRenderableObject *f4;
+    char pad8[0x158];
+    Vec4_143660 f160;          /* 0x160 */
     Alloc190 *func_00142E90(DXRenderableObject *owner);
     void func_00142F30(int a);
 };
+
+struct S_143660_Prop {
+    char pad0[0x24];
+    unsigned char f24;         /* 0x24 */
+};
+
+struct S_143660_Node {
+    char pad0[0x54];
+    S_143660_Prop *f54;        /* 0x54 */
+};
+
+struct S_143660_Entry {
+    int f0;
+    S_143660_Node *f4;         /* 0x04 */
+    int f8;
+    int fC;
+};
+
+struct S_143660_Mgr {
+    char pad0[0x14];
+    S_143660_Entry *f14;       /* 0x14 */
+};
+
+extern S_143660_Mgr *D_002A829C;
 
 struct C_001446B0 {
     char pad0[4];
