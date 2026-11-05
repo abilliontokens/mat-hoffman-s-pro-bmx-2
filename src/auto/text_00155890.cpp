@@ -60,6 +60,7 @@ struct TikiPlayerAirborneState {
 struct C_002754B8 {
     void *vtbl;
     ~C_002754B8() { vtbl = (void *)&D_002754B8; }
+    static void operator delete(void *ptr) { func_001E891B(ptr); }
 };
 
 struct S_00156740_Sub {
