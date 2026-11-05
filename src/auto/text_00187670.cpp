@@ -258,7 +258,81 @@ struct StaticModelTempData {
 };
 int func_001E9040(char *str, char *control);
 
+extern int D_00289E4C;
+extern int D_00289E34;
+extern int D_00289E1C;
+extern int D_00289E04;
+extern int D_00289998;
+void func_00186AB0();
+
+/* 0x180-byte DriveOnSounds element, loaded through virtual slot 0 */
+struct S_00187B10_Elem {
+    virtual void v0(void *stream);
+    char pad4[0x17c];
+};
+
+/* the same element seen by its inlined constructor */
+struct S_00187B10_Init {
+    void *vtbl;
+    char pad4[0x164];
+    int f168;
+    int f16c;
+    int f170;
+    int f174;
+    int f178;
+    int f17c;
+    void func_001867D0();
+};
+
+/* DriveOnSounds */
+struct C_00187B10 {
+    char pad0[0x24];
+    int f24;
+    S_00187B10_Elem *f28;
+    int f2c;
+    S_00187B10_Elem *f30;
+    int func_00187B10(C_001877F0Param *param);
+};
+
 static __forceinline int Min_00187670(int a, int b) { return a > b ? b : a; }
+
+int C_00187670::func_00187670(C_001877F0Param *stream)
+{
+    char buf[0x104];
+    char saved[0x104];
+    int i;
+    int n;
+    S_00187670_Elem *p;
+    char *s;
+    char c;
+    int off;
+
+    stream->func_00168C20((void *)&D_00289BE0, 0, &f24);
+    n = f24;
+    if (n == 0)
+        return 0;
+    p = (S_00187670_Elem *)func_001E8A44(n * 0x10);
+    if (p != 0) {
+        func_00011FF0(p, 0x10, n, (void *)&func_00187000);
+    } else {
+        p = 0;
+    }
+    f28 = p;
+    s = stream->section;
+    off = (int)saved - (int)s;
+    do {
+        c = *s;
+        s[off] = c;
+        s++;
+    } while (c != 0);
+    for (i = 0; i < f24; i++) {
+        func_001ADCC0(buf, 0x104, (const char *)&D_00289BD0, saved, i + 1);
+        stream->func_00169710(buf);
+        f28[i].v0(stream);
+    }
+    stream->func_00169710(saved);
+    return 1;
+}
 
 int C_001877F0::func_001877F0(C_001877F0Param *param)
 {
