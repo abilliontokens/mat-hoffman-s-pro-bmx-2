@@ -81,12 +81,12 @@ struct C_00161580 {
 
 void __fastcall func_00161170(int unused, S_00161170 *table)
 {
-    unsigned int i = 0;
-    do {
-        unsigned int idx = ((i >> 8) << 8) + (i & 0xff);
-        i++;
-        table[idx].unk0 = -1;
-    } while (i < 0x88cf);
+    unsigned int i;
+    for (i = 0; i < 0x88cf; i++) {
+        unsigned int hi = i >> 8;
+        unsigned int lo = i & 0xff;
+        table[(hi << 8) + lo].unk0 = -1;
+    }
     D_002EB254 = 0x103;
     D_002E2978 = 9;
     D_002EB250 = 0x1ff;
