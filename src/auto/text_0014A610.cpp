@@ -63,3 +63,14 @@ void C_0014A630::func_0014A630(void) {
     unk8 = -1;
 }
 
+void *C_0014A870::func_0014A870(int flags) {
+    extern int D_00286870;
+    void func_001E891B(void *);
+    unk0 = (int)&D_00286870;
+    func_001AC3D0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
