@@ -323,6 +323,13 @@ struct SearchNode {
     int func_00192CC0(float *pts);
 };
 
+struct S_00192CC0_Rect {
+    float minx;
+    float maxx;
+    float miny;
+    float maxy;
+};
+
 struct C_00179B40 {
     int func_00179B40(void *out, void *obj);
 };
