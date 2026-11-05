@@ -170,6 +170,7 @@ struct C_00194EE0 {
     char pad8[0x20];
     S_Vec4Int f28;
     void func_00194EE0(int a, int b, int c, int d);
+    void func_00194EE0(S_Vec4Int v);
     void func_00194F10(S_Vec4Int *out);
 };
 
