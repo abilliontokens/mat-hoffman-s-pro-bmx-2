@@ -55,6 +55,32 @@ int func_001EB3BE(unsigned int size);
 void *func_001E8AA5(unsigned int size);
 char *func_001F2B32(char *out, const char *name, int len, void *(*alloc)(unsigned int), void (*release)(void *), unsigned int flags);
 
+/* exception classes thrown by __RTtypeid: vtable, message, free flag */
+struct func_001F3244 {
+    void *vtbl;
+    const char *what;
+    int doFree;
+    func_001F3244(const char *msg);
+};
+
+struct func_001F3280 {
+    void *vtbl;
+    const char *what;
+    int doFree;
+    func_001F3280(const char *msg);
+};
+
+/* MSVC RTTI complete object locator: signature, offset, cdOffset, type descriptor */
+struct S_001EA038_Locator {
+    int signature;
+    int offset;
+    int cdOffset;
+    void *typeDescriptor;
+};
+
+int __stdcall func_001F64F6(const void *p, unsigned int n);
+extern "C" unsigned long __cdecl _exception_code(void);
+
 /* std::type_info as the CRT lays it out */
 struct S_001E9FA2_TypeInfo {
     void *vtbl;
