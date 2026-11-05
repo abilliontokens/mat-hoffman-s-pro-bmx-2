@@ -138,8 +138,11 @@ struct Voice {
     char pad194[8];
     unsigned int f19c;
     int f1a0;
-    char pad1a4[0x64];
+    char pad1a4[8];
+    int f1ac;
+    char pad1b0[0x58];
     unsigned char flags;
+    int func_001CE140(int arg);
     int func_001CE4C0();
     int func_001CE770(int buf);
     int func_001CCAC0(int buf, int handle, int zero, unsigned int size);
