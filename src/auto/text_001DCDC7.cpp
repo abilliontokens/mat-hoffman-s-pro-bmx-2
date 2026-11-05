@@ -8,6 +8,9 @@ extern "C" int (__stdcall *_imp__NtQueryInformationFile)(void *a0, void *a1, voi
 extern "C" int (__stdcall *_imp__NtSetInformationFile)(void *a0, void *a1, void *a2, u32 a3, int a4);
 extern "C" int (__stdcall *_imp__NtFlushBuffersFile)(void *a0, void *a1);
 extern "C" int (__stdcall *_imp__RtlNtStatusToDosError)(int a0);
+extern "C" int (__stdcall *_imp__NtWaitForMultipleObjectsEx)(int count, void **handles,
+                                                             int waitType, int waitMode,
+                                                             int alertable, void *timeout);
 struct S_AnsiString {
     u16 length;
     u16 maxLength;
@@ -187,14 +190,15 @@ u32 __stdcall func_001DD5C8(void *a0, u32 *a1) {
 
 int func_001DD603(void)
 {
-    unsigned long thread;
     int idx;
+    int **tls;
 
-    if (__readfsbyte(0x24) < 2) {
-        thread = __readfsdword(0x28);
+    if (__readfsbyte(0x24) < 2 && __readfsdword(0x28) == 0) {
+        tls = 0;
     }
     idx = D_002F41D0;
-    return ((int **)__readfsdword(4))[idx][1];
+    tls = (int **)__readfsdword(4);
+    return tls[idx][1];
 }
 
 void __stdcall func_001DD62B(int a0)
