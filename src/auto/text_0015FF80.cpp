@@ -226,6 +226,52 @@ C_00160A60* C_00160A60::func_00160A60(void) {
     return this;
 }
 
+int C_00160A70::func_00160A70(int data)
+{
+    S_ListNode_00160A70 *n = (S_ListNode_00160A70 *)func_001E8A44(0xc);
+
+    if (n == 0) {
+        return 0;
+    }
+    n->data = 0;
+    n->prev = 0;
+    n->next = 0;
+    n->data = data;
+    n->prev = tail;
+    n->next = 0;
+    if (tail != 0) {
+        tail->next = n;
+        tail = n;
+        count++;
+        return 1;
+    }
+    head = n;
+    tail = n;
+    count++;
+    return 1;
+}
+
+void C_00160B30::func_00160B30(S_00160B30_Node *node)
+{
+    if (node == head) {
+        head = node->next;
+    }
+    if (node == tail) {
+        tail = node->prev;
+    }
+    if (node->prev != 0) {
+        node->prev->next = node->next;
+    }
+    if (node->next != 0) {
+        node->next->prev = node->prev;
+    }
+    node->f0 = 0;
+    node->prev = 0;
+    node->next = 0;
+    func_001E891B(node);
+    count--;
+}
+
 C_00160BD0 *C_00160BD0::func_00160BD0(void)
 {
     extern int D_00287A44;
