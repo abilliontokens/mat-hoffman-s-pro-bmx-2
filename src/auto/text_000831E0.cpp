@@ -184,6 +184,42 @@ void C_000831E0::func_000831E0(void)
     }
 }
 
+void C_000831E0::func_000832A0(void)
+{
+    int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+    char buf[0x104];
+
+    if (f150 != 0) {
+        memset(buf, 0, 0x104);
+        if (fD4 > 1 && f198 == 0 && f58 == 0) {
+            fD0C->func_001B1980();
+            if (f60 != 0) {
+                fD0C->func_001B2270(0xff35fe3e);
+            } else {
+                fD0C->func_001B2270(0xffbfa35a);
+            }
+            fD0C->func_001B17D0(fD08->func_001B17F0());
+        }
+        if (f198 != 0) {
+            func_001ADCC0(buf, 0x104, s19C);
+            strcat(buf, " ");
+            f198 = 0;
+            fD9C = 1;
+        }
+        strcat(buf, sCA4);
+        fD08->func_001B1980();
+        if (f5C != 0) {
+            fD08->func_001B2270(0xff35fe3e);
+        } else {
+            fD08->func_001B2270(0xffbfa35a);
+        }
+        fD08->func_001B17D0(buf);
+        f150 = 0;
+        f154 = 1;
+        f58 = 0;
+    }
+}
+
 void C_000836A0::func_000836A0(float a0) {
     unkCC = 1;
     unkD0 = a0 + unkD0;
