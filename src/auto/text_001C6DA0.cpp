@@ -124,6 +124,31 @@ void func_001C6E90(void) {
     func_00157960();
 }
 
+void C_001C6DA0::func_001C6EA0(C_00198330 *obj, Vec4 *out, int unused)
+{
+    if (unkB0 != 0) {
+        Vec4 a;
+        a.z = 0.0f;
+        a.y = 0.0f;
+        a.x = 0.0f;
+        a.w = 1.0f;
+        obj->func_00199A70(0, &a);
+        Vec4 xf[2];
+        xf[1].z = 0.0f;
+        xf[1].y = 0.0f;
+        xf[1].x = 0.0f;
+        xf[1].w = 1.0f;
+        Vec4 pos = a;
+        xf[0].z = 0.0f;
+        xf[0].y = 0.0f;
+        xf[0].x = 0.0f;
+        xf[0].w = 1.0f;
+        unk3C->unk4->func_00199A70(0, &xf[0]);
+        v29(&pos, &xf[1], 0);
+        *out = pos;
+    }
+}
+
 C_001C65E0 *func_001C7250(int key)
 {
     for (int i = 0; i < D_002F0894; i++) {
