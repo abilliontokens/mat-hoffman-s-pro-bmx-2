@@ -81,6 +81,48 @@ struct C_00056080 {
 
 
 void C_000559E0_unused();
+void C_00055910::func_00055910(void)
+{
+    unk0 = (int)&D_00277CF4;
+    if (unk130 != 0) {
+        delete unk130;
+        unk130 = 0;
+    }
+    if (unk134 != 0) {
+        delete unk134;
+        unk134 = 0;
+    }
+    if (unk14 != 0) {
+        unk14->v2();
+        unk14 = 0;
+    }
+    if (unk18 != 0) {
+        unk18->v2();
+        unk18 = 0;
+    }
+    if (unk20C != 0) {
+        unk20C->v2();
+        unk20C = 0;
+    }
+    if (unk210 != 0) {
+        unk210->v2();
+        unk210 = 0;
+    }
+    if (unk214 != 0) {
+        unk214->v2();
+        unk214 = 0;
+    }
+    if (unk218 != 0) {
+        unk218->v2();
+        unk218 = 0;
+    }
+    if (unk4C != 0) {
+        delete unk4C;
+        unk4C = 0;
+    }
+    func_0012B540();
+}
+
 void C_000560A0::func_000559E0(int a0, int a1, float a2)
 {
     unkC = a0;
