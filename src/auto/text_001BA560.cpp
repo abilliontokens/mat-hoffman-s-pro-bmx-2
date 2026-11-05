@@ -27,6 +27,17 @@ struct C_001BB280 {
     void *func_001BB280(unsigned int flags);
 };
 
+struct T_A { void *vtbl; int f4; char f8; char pad9[0x103]; int f10c; int f110; char f114; char pad115[0x77]; char f18c; };
+struct T_H { void *vtbl; int f4; char f8; char pad9[0x103]; int f10c; };
+struct T_B { void *vtbl; int f4; char f8; char pad9[0x103]; char f10c; };
+struct T_C { T_C *func_001B5D00(); };
+struct T_D { T_D *func_001B5EA0(); };
+struct T_F { T_F *func_001B6100(); };
+struct T_G { T_G *func_001B61A0(); };
+struct T_I { T_I *func_001BA5E0(); };
+struct T_J { T_J *func_001B6410(); };
+extern int D_0028CC44, D_0028CC60, D_0028CCA8, D_0028CCF4, D_0028CCE8;
+void *func_001E8A44(unsigned int n);
 extern int D_0028CE6C;
 extern int D_0028D11C;
 extern int D_0028D110;
