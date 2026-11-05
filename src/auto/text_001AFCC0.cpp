@@ -379,21 +379,18 @@ void C_001B0230::func_001B0230(void)
 void *C_001B03A0::func_001B03A0(void *arg)
 {
     char buf[0x80];
-    void *obj;
+    void *obj = 0;
 
     ((C_00168BE0 *)arg)->func_00168BE0(&D_0028C638, &D_002764F0, buf, -1);
-    if (func_001EA426(buf, &D_002764F0) == 0) {
-        return 0;
+    if (func_001EA426(buf, &D_002764F0) != 0) {
+        void *p = func_001E8A44(0x24);
+        obj = p != 0 ? ((C_00149120 *)p)->func_00149120(arg, this) : 0;
+        if (func_001EA426(buf, &D_0028C608) == 0) {
+            ((C_00149120 *)obj)->unk4 = 1;
+        } else {
+            D_002AA474->v7(buf, this);
+        }
     }
-    obj = func_001E8A44(0x24);
-    if (obj != 0) {
-        obj = ((C_00149120 *)obj)->func_00149120(arg, this);
-    }
-    if (func_001EA426(buf, &D_0028C608) == 0) {
-        ((C_00149120 *)obj)->unk4 = 1;
-        return obj;
-    }
-    D_002AA474->v7(buf, this);
     return obj;
 }
 
