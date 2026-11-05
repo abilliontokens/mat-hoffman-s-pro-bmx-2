@@ -36,6 +36,7 @@ struct C_000BC180 {
     int f284;
     int f288;
     int f28c;
+    S_000BC180_Entry *cur(void);
     undefined4 func_000BC180(void);
     undefined4 func_000BC050(void);
     undefined4 func_000BC130(void);
@@ -254,8 +255,13 @@ int C_000BBE30::func_000BC0F0(int idx)
 
 undefined4 C_000BC180::func_000BC130(void)
 {
-    S_000BC180_Entry *e = (D_002A8490->f2E0->f324 == 1) ? f27c : &f27c[f284];
-    e->f128 = e->f120[f288];
+    S_000BC180_Entry *e;
+    if (D_002A8490->f2E0->f324 == 1) {
+        e = f27c;
+    } else {
+        e = &f27c[f284];
+    }
+    e->f128 = *(int *)((char *)e->f120 + f288 * 4);
     return f288;
 }
 
