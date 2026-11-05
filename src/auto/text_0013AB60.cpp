@@ -239,6 +239,45 @@ int C_0013AEC0::func_0013AFF0(int idx, int v, int mode)
     return 0;
 }
 
+void C_0013AEC0::func_0013B040(int id)
+{
+    S_0013AEC0_Slot *s = &fE8[id];
+    int i;
+    int found;
+
+    s->f18 |= 4;
+    s->f10 = 0;
+    if (ents[s->f4].f0 != id) {
+        if (fE0 != -1) {
+            s->f4 = fE0;
+            ents[fE0].f0 = id;
+            ents[fE0].f4 = -0x6000;
+            fE0 = -1;
+        } else {
+            found = 0;
+            i = 0;
+            do {
+                int st = ents[i].f0;
+                if (st != -2 && (st == -1 || (fE8[st].f18 & 4) == 0)) {
+                    s->f4 = i;
+                    ents[i].f4 = -0x6000;
+                    ents[i].f0 = id;
+                    found = 1;
+                }
+                i++;
+            } while (i < 8 && !found);
+            if (!found) {
+                s->f4 = -1;
+            }
+        }
+    } else if (fE0 == s->f4) {
+        fE0 = -1;
+    }
+    if (fF0 != 0) {
+        s->f18 |= 8;
+    }
+}
+
 int C_0013AEC0::func_0013B130(const char *key)
 {
     int i;
@@ -463,6 +502,49 @@ int __stdcall func_0013B4C0(S_BufSet *set, int n, int x)
         }
     }
     return total;
+}
+
+void __stdcall func_0013B660(S_BufSet *set, void *dst, unsigned int off)
+{
+    volatile int tmp[3];
+    char buf[0x6000];
+    char *out;
+    char *src;
+    int idx;
+    int i;
+    int o;
+    int n;
+    int r;
+
+    idx = off / set->sizes[0];
+    for (i = 0; i < idx; i++) {
+        off -= set->sizes[i];
+    }
+    if (off + 0x6000 > (unsigned int)set->sizes[idx]) {
+        out = buf;
+        tmp[0] = 0x6000;
+        o = idx * 4;
+        do {
+            tmp[1] = *(int *)((char *)set + o + 0x20) - off;
+            n = tmp[1];
+            r = tmp[0];
+            if (n > r) {
+                n = r;
+            }
+            tmp[2] = n;
+            n = tmp[2];
+            memcpy(out, *(char **)((char *)set + o) + off, n);
+            r = tmp[0] - n;
+            tmp[0] = r;
+            out += n;
+            off = 0;
+            o += 4;
+        } while (r > 0);
+        src = buf;
+    } else {
+        src = (char *)set->bufs[idx] + off;
+    }
+    memcpy(dst, src, 0x6000);
 }
 
 void C_0013AEC0::func_0013B840(S_0013AF80_Row *row)
