@@ -116,6 +116,28 @@ void C_000EBE30::func_000EC580()
     unk338->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0xff, 1.45f, 0, 0.0f, 0.2f, 0);
 }
 
+void C_000EBE30::func_000EC5E0()
+{
+    int i;
+
+    if (unk324 == 0) {
+        unk338->func_001B1980();
+        unk338->func_001B2270(0xffbfa35a);
+        unk338->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0xff, 1.45f, 0, 0.0f, 0.2f, 0);
+    } else {
+        for (i = 0; i < unk324; i++) {
+            unk280[i]->func_001B1980();
+            if (i == unk33C) {
+                unk280[i]->func_001B2270(0xffbfa35a);
+                unk280[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0xff, 1.45f, 0, 0.0f, 0.2f, 0);
+            } else {
+                unk280[i]->func_001B2270(0xffcccccc);
+                unk280[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0.0f, 0);
+            }
+        }
+    }
+}
+
 void C_000EBE30::func_000EC6F0()
 {
     int i;
