@@ -281,14 +281,14 @@ void C_0008A2E0::func_0008A9B0() {
     int *r = D_002A8490->lookup->func_0018C160((int)&D_00278690);
     MidObj *mid = (MidObj *)(r ? *r : 0);
     ClampObj *o = mid->func_0018C070();
-    if (o->f10 < D_00275AEC) *(int *)&o->f10 = 0x41200000;
-    if (D_00275AEC < o->f14 || o->f10 < o->f14) *(int *)&o->f14 = 0x41200000;
+    if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+    if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
     SubElem_0008 *e = elems;
     int n = 9;
     do {
         ClampObj *o2 = e->func_001D5AA0();
-        if (o2->f10 < D_00275AEC) *(int *)&o2->f10 = 0x41200000;
-        if (D_00275AEC < o2->f14 || o2->f10 < o2->f14) *(int *)&o2->f14 = 0x41200000;
+        if (D_00275AEC > o2->f10) *(int *)&o2->f10 = 0x41200000;
+        if (D_00275AEC < o2->f14 || o2->f14 > o2->f10) *(int *)&o2->f14 = 0x41200000;
         e++;
         n--;
     } while (n != 0);
@@ -310,6 +310,31 @@ C_0008AAB0 *C_0008AAB0::func_0008AAB0(int a0) {
     func_00157600(1);
     vtbl = &D_00279C3C;
     unk24 = 0;
+    return this;
+}
+
+C_0008ABA0 *C_0008ABA0::func_0008AAD0() {
+    int *r = D_002A8490->lookup->func_0018C160((int)&D_0027958C);
+    int name = r ? *r : 0;
+    void *mem = func_001E8A44(0x60);
+    NodeObj *o;
+    if (mem) o = ((AllocObj8 *)mem)->func_001D5E90();
+    else o = 0;
+    unk24 = o;
+    o->func_001D5FA0(name, (int)&D_0027958C, 0x4b, (int)&D_00275630);
+    if (o->f4 != 0x43a00000 || o->f8 != 0x43a50000) {
+        o->f4 = 0x43a00000;
+        o->f8 = 0x43a50000;
+        o->b4e |= 6;
+    }
+    if (o->u48 != 0xffff8000) {
+        o->b4e |= 8;
+        o->u48 = (o->u48 & 0xffff8000) | 0xff8000;
+    }
+    if (o->f44 != D_0028F5E0) {
+        o->f44 = D_0028F5E0;
+        o->b4e |= 6;
+    }
     return this;
 }
 
