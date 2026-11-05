@@ -24,6 +24,7 @@ struct BoxCollisionObject {
     void func_00129930(Vec4 a1, Vec4 a2);
     void func_001299C0(Vec4 *p1, Vec4 *p2);
     void func_00129DF0(int a, int b);
+    void func_00129E10(void);
 };
 
 void BoxCollisionObject::func_00129930(Vec4 a1, Vec4 a2)
