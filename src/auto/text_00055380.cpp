@@ -5,6 +5,31 @@ extern const float D_00277D04;
 
 extern int D_00277CF4;
 
+struct C_00168B90 {
+    int func_00168B90(const char *name, float *out);
+    void func_00169710(const char *name);
+};
+extern char D_00277F24[], D_00277F20[], D_002769F8[], D_00277F10[], D_00277EFC[], D_00277EE0[], D_00277ED4[], D_00277EC8[], D_00277EB8[], D_00277EAC[], D_00277E98[], D_00277E88[], D_00277E80[], D_00277E6C[], D_00277E58[], D_00277E48[], D_00277E38[], D_00277E20[], D_00277E14[], D_00277E04[], D_00277DF0[], D_00277DDC[], D_00277DCC[], D_00277DBC[], D_00277DA8[], D_00277D94[], D_00277D80[], D_00277D70[], D_00277D5C[], D_00277D40[], D_00277D2C[], D_00277D18[], D_00277D08[];
+extern const float D_00275998, D_00277EA8;
+
+struct C_00055D10 {
+    char pad0[0x44];
+    float unk44;
+    char pad48[0x14];
+    float unk5C, unk60;
+    char pad64[0xDC];
+    float unk140, unk144, unk148, unk14C, unk150, unk154, unk158, unk15C, unk160, unk164, unk168, unk16C, unk170, unk174, unk178;
+    char pad17C[4];
+    float unk180;
+    char pad184[4];
+    float unk188;
+    char pad18C[8];
+    float unk194;
+    char pad198[4];
+    float unk19C, unk1A0, unk1A4, unk1A8, unk1AC, unk1B0, unk1B4, unk1B8, unk1BC, unk1C0, unk1C4;
+    void func_00055D10(C_00168B90 *c);
+};
+
 /* base class: CameraBehavior */
 struct C_0012B540 {
     int unk0;
