@@ -136,3 +136,17 @@ int ResponseEmitter::func_001A2F70(void)
     }
     return f1bc->v6(0);
 }
+
+u32 ResponseEmitter::func_001A2FC0(int a, int b, S_001A2C00_Vec v, int d)
+{
+    int i;
+
+    for (i = 0; i < list1d8.count; i++) {
+        S_001A2C00_Snd *s = list1d8.at(i)->f4;
+        if (s != 0) {
+            s->v23(a, b, v, d);
+        }
+    }
+    return 1;
+}
+
