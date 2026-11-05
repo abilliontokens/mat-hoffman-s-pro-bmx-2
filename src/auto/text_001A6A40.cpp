@@ -1,6 +1,25 @@
 /* 13 functions from 0x001A6A40 to 0x001A7880, found by Ghidra. */
 #include "common.h"
 
+extern "C" int func_001ADCC0(char *, int, const char *, ...);
+void *func_001E8A44(int);
+extern char D_0028BC44[], D_002A5348[], D_00275678[], D_002769F8[], D_0028B950[], D_0028B94C[], D_002867E8[], D_0028B948[];
+struct C_00168280 {
+    C_00168280 *func_00168280();
+    void func_001691E0();
+    int func_00169490(char *, int);
+    void func_00169710(char *);
+    void func_00168A10(char *, int *);
+    void func_00168550(char *, char *, int);
+};
+struct C_001A7140 {
+    char pad0[0x1d0];
+    int f1d0;
+    char **f1d4;
+    int f1d8;
+    void func_001A7140();
+};
+
 extern int D_0028B9E4;
 extern int D_0028B974;
 
