@@ -16,9 +16,9 @@ struct V4_001CA360 {
     float x, y, z, w;
 };
 
-static inline float Dot3_001CA360(float ax, float ay, float az, float bx, float by, float bz)
+static inline float Dot3_001CA360(const V4_001CA360 &a, const V4_001CA360 &b)
 {
-    return ax * bx + ay * by + az * bz;
+    return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 
 extern int D_0028E864;
@@ -245,20 +245,24 @@ C_001CA1D0* C_001CA1D0::func_001CA1D0(int a0, int a1, int a2, int a3, int a4, in
 
 int func_001CA360(float *n, float *p, float *a, float *b, V4_001CA360 *out)
 {
-    V4_001CA360 d;
-    float denom;
     float t;
+    float denom;
+    V4_001CA360 d;
+    V4_001CA360 s;
 
     d.x = b[0] - a[0];
     d.y = b[1] - a[1];
     d.z = b[2] - a[2];
-    denom = d.z * n[2] + d.y * n[1] + d.x * n[0];
+    denom = d.x * n[0] + d.y * n[1] + d.z * n[2];
     if (denom != D_00275544) {
-        t = ((p[2] - a[2]) * n[2] + (p[1] - a[1]) * n[1] + (p[0] - a[0]) * n[0]) / denom;
+        t = ((p[0] - a[0]) * n[0] + (p[1] - a[1]) * n[1] + (p[2] - a[2]) * n[2]) / denom;
         if (t >= D_00275544 && t <= D_00275460) {
-            d.x = d.x * t + a[0];
-            d.y = d.y * t + a[1];
-            d.z = d.z * t + a[2];
+            s.x = d.x * t;
+            s.y = d.y * t;
+            s.z = d.z * t;
+            d.x = s.x + a[0];
+            d.y = s.y + a[1];
+            d.z = s.z + a[2];
             d.w = 1.0f;
             *out = d;
             return 1;
