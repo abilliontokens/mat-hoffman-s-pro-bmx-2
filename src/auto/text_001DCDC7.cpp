@@ -48,8 +48,6 @@ extern "C" unsigned char __readfsbyte(unsigned long Offset);
 #pragma intrinsic(__readfsdword)
 #pragma intrinsic(__readfsbyte)
 extern int D_002F41D0;
-/* SetLastError as the callers outside this file's kernel32 shims see it: no body, so no register info */
-void __stdcall func_001DD62B(unsigned long code);
 extern "C" void *(__stdcall *_imp__MmAllocateContiguousMemoryEx)(u32 size, u32 lowest, u32 highest, u32 alignment, u32 protect);
 extern S_AnsiString D_0028FA80;
 extern char D_00021371;
