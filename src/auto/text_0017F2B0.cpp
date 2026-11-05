@@ -77,6 +77,34 @@ struct RayCollisionObject {
     void func_00180070(void);
 };
 
+void C_0017FDB0::func_0017FDB0(u16 idx, S_0017FDB0_Tree *tree, float *m)
+{
+    Vec4_0017F2B0 out2;
+    Vec4_0017F2B0 max;
+    Vec4_0017F2B0 out1;
+    Vec4_0017F2B0 min;
+    S_0017FDB0_Leaf *leaf;
+
+    while ((idx & 0x8000) == 0) {
+        S_0017FDB0_Node *n = &tree->nodes[idx];
+        func_0017FDB0(n->f8, tree, m);
+        idx = n->fA;
+    }
+    leaf = &tree->leaves[idx & 0x7fff];
+    out1.z = 0.0f;
+    out1.y = 0.0f;
+    out1.x = 0.0f;
+    out1.w = 1.0f;
+    out2.z = 0.0f;
+    out2.y = 0.0f;
+    out2.x = 0.0f;
+    out2.w = 1.0f;
+    min = leaf->min;
+    max = leaf->max;
+    func_00030AC0(&out1.x, &min.x, m);
+    func_00030AC0(&out2.x, &max.x, m);
+}
+
 void RayCollisionObject::func_00180070(void) {
     S_Matrix16 m;
 
