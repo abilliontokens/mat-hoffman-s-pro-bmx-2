@@ -51,4 +51,3 @@ void DynamicRayCollisionObject::func_0014BA40(int param_1)
     unkA7 = unkA7 & 0xef;
     func_00157A00(param_1);
 }
-#pragma inline_depth()
