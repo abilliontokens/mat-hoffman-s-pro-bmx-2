@@ -68,7 +68,7 @@ extern char D_002AEC40[];
 int func_001F58AA(char *mb, unsigned short wc);
 int *func_001ED075(void);
 int func_001ED8A7(int ch, S_001F59DC_FILE *stream);
-int func_001F62CE(unsigned short wc, S_001F59DC_FILE *stream);
+int func_001F62CE(int wc, S_001F59DC_FILE *stream);
 
 #pragma optimize("sy", on)
 #pragma optimize("sy", on)
