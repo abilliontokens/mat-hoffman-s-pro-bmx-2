@@ -239,8 +239,10 @@ void Cache_129930::func_0012A330(void)
 
 StaticCache_12A350 *StaticCache_12A350::func_0012A350(int a, int b)
 {
-    f4 = 0;
-    f8 = 0;
+    int *p = &f4;
+
+    p[0] = 0;
+    p[1] = 0;
     f4 = a;
     f8 = b;
     fC = 0;
@@ -255,5 +257,18 @@ void Emitter_12A770::func_0012A770(int a1, int a2)
     f28 = p ? p->func_00193490() : 0;
     f2C = a1;
     f28->func_001938C0(&f24, a1, a2, &f170, &D_002A3E3C, 0);
+}
+
+int Emitter_12A7C0::func_0012A7C0(int a, int b, int c, int d)
+{
+    f1E0 = a;
+    f1E4 = (int)D_00284034 + b;
+    f1E8 = c;
+    f1EC = d;
+    f1F0 = 0;
+    f1F4 = 1.0f;
+    f1F8 = ((float)d / c) / (((float)f208 / f204) * f1DC);
+    ((VCall31_129E10 *)this)->v28();
+    return 1;
 }
 
