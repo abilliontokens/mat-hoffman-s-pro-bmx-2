@@ -15,6 +15,12 @@ struct AllocObj {
 
 extern AllocObj D_002F6A04;
 
+extern int D_00295BD8;
+extern int D_00295BE4;
+
+struct S_001EF033;
+struct S_001EF062;
+
 struct BitObj {
     int f0;
     int s4 : 4;
