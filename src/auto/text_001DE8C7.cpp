@@ -136,6 +136,26 @@ extern char D_0028FCEC[];
 extern S_AnsiString D_0028FCE4;
 extern "C" long (__stdcall *_imp__IoCreateSymbolicLink)(S_AnsiString *link, S_AnsiString *target);
 long __stdcall func_001DEA36(int a, int *x, int *y);
+extern S_AnsiString D_0028FD0C;
+extern "C" long (__stdcall *_imp__NtWriteFile)(void *handle, void *event, void *apc, void *apcctx, S_IoStatusBlock *iosb, const void *buf, u32 len, __int64 *off);
+extern "C" long (__stdcall *_imp__NtReadFile)(void *handle, void *event, void *apc, void *apcctx, S_IoStatusBlock *iosb, void *buf, u32 len, __int64 *off);
+extern "C" unsigned long *_imp__HalDiskCachePartitionCount;
+void *__cdecl func_001EA6A0(void *dst, const void *src, unsigned int n);
+
+/* one 12-byte slot of the cache partition table in the sector at 0x800 */
+struct S_CacheSlot {
+    unsigned int titleId;
+    unsigned int start;
+    unsigned int used;
+};
+
+struct S_CacheSector {
+    unsigned int magic;
+    unsigned int version;
+    S_CacheSlot slots[41];
+    unsigned int pad1F4;
+    unsigned int signature;
+};
 int __stdcall func_001E233F(S_AnsiString *s, unsigned int size);
 long __stdcall func_001E1BD7(S_AnsiString *s, unsigned int size);
 int __stdcall func_001DEC61(int a);
