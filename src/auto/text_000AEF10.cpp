@@ -228,6 +228,35 @@ undefined4 C_000AEF80::func_000AEF80(byte param_1)
   return in_ECX;
 }
 
+void C_000AEFA0::func_000AEFA0(void)
+{
+    void *local = &D_0027CA70;
+    int ok = 0;
+    int i;
+    C_000AEFA0_Obj *p;
+
+    f3B0 = (C_000AEFA0_Obj **)func_001E8A44(f340 * 4);
+    for (i = 0; i < f340; i++) {
+        p = (C_000AEFA0_Obj *)func_001E8A44(0x2c);
+        if (p != 0) {
+            p = p->func_00188A80(1);
+        } else {
+            p = 0;
+        }
+        f3B0[i] = p;
+        if (f3B0[i]->v27(f28, &f344[i], &local) == 0) {
+            f3B0[i]->v2();
+            f3B0[i] = 0;
+        } else {
+            ok++;
+        }
+    }
+    if (ok == 0) {
+        func_001E891B(f3B0);
+        f3B0 = 0;
+    }
+}
+
 int C_000AF080::func_000AF080(int a, int b, int c) {
     C_000ACE60_Obj *p = (C_000ACE60_Obj *)func_001E8A44(0x1e8);
     if (p != 0) {
