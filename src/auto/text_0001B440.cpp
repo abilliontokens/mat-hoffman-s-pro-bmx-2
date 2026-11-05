@@ -102,6 +102,7 @@ struct C_0001BAC0 {
     S_0001BAC0_List *f2c;
     int func_0001B3C0(int id);
     void func_0001BAC0(int idx, int slot);
+    void func_0001BB00(int idx, int slot, int flag);
     void func_0001BC00(int idx, int slot);
     void func_0001BD60(int id, int slot);
 };
