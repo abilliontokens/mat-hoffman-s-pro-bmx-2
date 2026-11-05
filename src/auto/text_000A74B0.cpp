@@ -77,6 +77,8 @@ struct GrindTrigger_000A8360 {
     int f400;
     int f404;
     GrindTrigger_000A8360 *func_000A8360(void);
+    void func_000A83C0(void);
+    void func_000A8450(void *param);
 };
 
 struct Sub_000A82C0 {
@@ -190,6 +192,13 @@ void Models_000A77C0::func_000A77C0(int type, int idx)
         type = 1;
     }
     (*(Model_000A77C0 **)((char *)f28 + idx * 4))->f4 = type;
+}
+
+void func_000A82C0(int a, int b, int c, int d)
+{
+    if (d != 0 && D_002A8490->f2A4->f1C8 == 0) {
+        func_00052630(c + 0x10C);
+    }
 }
 
 GrindTrigger_000A8360 *GrindTrigger_000A8360::func_000A8360(void)
