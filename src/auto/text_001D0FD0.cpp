@@ -191,6 +191,19 @@ int XboxGame::func_001D0FD0(int param_1)
     return 1;
 }
 
+void *XboxGame::func_001D1390(int flags)
+{
+    vtbl = (void *)&D_0028F154;
+    if (unk2A0 != 0) {
+        unk2A0 = 0;
+        func_00156FC0();
+    }
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void *C_001D1460::func_001D1460(int a0)
 {
     func_0015A910(a0);
@@ -246,12 +259,10 @@ int C_001D1550::func_001D1550(int a0)
 
     f6B8 = func_0026EC54((int)&D_0026D94C, a0, 0, 0);
     f6C0 = 0;
-    off = 0;
-    for (i = 0; i < f8; i++) {
+    for (i = 0, off = 0; i < f8; i++, off += 0xc) {
         f18[off] = 1;
         *(int *)(f18 + off + 4) = 0;
         *(short *)(f18 + off + 8) = 0;
-        off += 0xc;
     }
     return 1;
 }
@@ -286,8 +297,8 @@ void *C_001D1B70::func_001D1B70(unsigned int flags)
     vtbl = &D_0028F204;
     if (f6B8) {
         func_0026ECAA(f6B8);
-        f6B8 = 0;
     }
+    f6B8 = 0;
     func_0015AE20();
     if (flags & 1) {
         func_001E891B(this);
