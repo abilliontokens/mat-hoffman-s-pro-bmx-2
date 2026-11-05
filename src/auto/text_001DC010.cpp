@@ -77,6 +77,7 @@ undefined4 C_001DC540::func_001DC540(byte param_1)
 int func_001DC820(int a, int b, int c)
 {
     S_001DC820 s;
+    int result;
     memset(&s, 0, sizeof(s));
     s.f0 = a;
     s.f4 = c;
@@ -86,8 +87,9 @@ int func_001DC820(int a, int b, int c)
     s.f24 = &D_001DC810;
     func_00210FE0(&s, -1, &D_0028FA24, sizeof(s));
     func_0021004A(&s, 4);
+    result = s.f14;
     func_00210279(&s);
-    return s.f14;
+    return result;
 }
 
 void func_001DC8A0(int a, int b, int c)
