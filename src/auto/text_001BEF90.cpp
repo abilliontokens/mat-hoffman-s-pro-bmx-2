@@ -180,6 +180,42 @@ void *C_001BF3A0::func_001BF3A0(int a0)
     return this;
 }
 
+void C_001BF3C0::func_001BF3C0(void)
+{
+    vtbl = (void *)&D_0028D78C;
+    int off = 0;
+    do {
+        S_001BF3C0_List *list = *(S_001BF3C0_List **)((char *)unk2C + off);
+        S_001BF3C0_Node *node = list->head;
+        while (node != 0) {
+            S_001BF3C0_Node *next = node->unk8;
+            func_001E891B(node);
+            node = next;
+        }
+        func_001E891B(list);
+        off += 4;
+    } while (off < 0x20);
+    func_001E891B(unk2C);
+    unk2C = 0;
+    func_00157660();
+}
+
+void *C_001BF430::func_001BF430(int a0, int a1)
+{
+    unk28 = a0;
+    unk24 = a1;
+    unk2C = (S_001BF3C0_List **)func_001E8A44(0x20);
+    int off = 0;
+    do {
+        *(S_001BF3C0_List **)((char *)unk2C + off) = (S_001BF3C0_List *)func_001E8A44(8);
+        (*(S_001BF3C0_List **)((char *)unk2C + off))->tail = 0;
+        S_001BF3C0_List *list = *(S_001BF3C0_List **)((char *)unk2C + off);
+        off += 4;
+        list->head = 0;
+    } while (off < 0x20);
+    return this;
+}
+
 undefined4 C_001BF520::func_001BF520(byte param_1)
 {
   int func_001BF3C0(...);
