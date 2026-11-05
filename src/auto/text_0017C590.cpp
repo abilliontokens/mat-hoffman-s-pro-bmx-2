@@ -143,14 +143,16 @@ void C_0017D190::func_0017D190(void)
 void C_0017D500_Mgr::func_0017D500(S_QuadTreeListNode *node, int flag)
 {
     int i;
+    void **p;
     s16 *slot;
 
     while (node != 0) {
+        p = node->slot;
         for (i = 0; i < 4; i++) {
             if (f898 >= f89C) {
                 return;
             }
-            slot = (s16 *)node->slot[i];
+            slot = (s16 *)*p++;
             if (slot != 0 && *slot != fC) {
                 *slot = fC;
                 if (flag != 0) {
