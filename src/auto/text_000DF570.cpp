@@ -95,7 +95,10 @@ struct C_000DFA80 {
     S_000DFA80_W *arr894[18];
     S_000DFA80_W *arr8dc[18];
     void func_000DFA80();
+    void func_000DF8C0();
 };
+
+extern float D_002755EC;
 
 void C_000DFA80::func_000DFA80()
 {
