@@ -134,3 +134,14 @@ void *BoxCollisionObject::func_0012A1C0(unsigned int flags)
         func_001E891B(this);
     return this;
 }
+
+void Cache_129930::func_0012A330(void)
+{
+    vtbl = (void *)&D_00284008;
+    f4 = 0;
+    f8 = 0;
+    func_0012A2C0();
+    f4 = 0;
+    f8 = 0;
+}
+
