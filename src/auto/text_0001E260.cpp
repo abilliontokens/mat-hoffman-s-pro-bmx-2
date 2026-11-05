@@ -419,6 +419,18 @@ void C_0001EAF0::func_0001EAF0(Vec4 v)
     }
 }
 
+void C_0001EAF0::func_0001EB50(Vec4 v)
+{
+    Vec4 r;
+
+    if (f22c != 0) {
+        f22c->func_00197EC0(&r, &v);
+        f130 += r.x;
+        f134 += r.y;
+        f138 += r.z;
+    }
+}
+
 void C_0001EDC0::func_0001EDC0(int a0) {
     unk24 = a0;
 }
