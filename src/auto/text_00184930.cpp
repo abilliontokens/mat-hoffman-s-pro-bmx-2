@@ -189,7 +189,9 @@ struct C_00184930 {
     int f340;
     char pad344[4];
     int f348;
-    char pad34c[0x388 - 0x34c];
+    char pad34c[0x350 - 0x34c];
+    int f350;
+    char pad354[0x388 - 0x354];
     S_00184D10_Info *f388;
     char pad38c[0x3a8 - 0x38c];
     S_00184BB0_List **f3a8;
