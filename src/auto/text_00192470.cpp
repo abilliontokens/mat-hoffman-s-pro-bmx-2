@@ -570,6 +570,20 @@ int SearchNode::func_00192AC0(S_00192930_Iface *obj)
     return 0;
 }
 
+void SearchNode::func_00192AF0(int *src, int count)
+{
+    void *func_001E8A44(int);
+    int i;
+    if (f30 != 0) {
+        func_001E891B(f30);
+    }
+    f34 = count;
+    f30 = (int *)func_001E8A44(count * 4);
+    for (i = 0; i < count; i++) {
+        f30[i] = src[i];
+    }
+}
+
 undefined4 C_00192B50::func_00192B50(byte param_1)
 {
   int in_ECX = (int)this;
