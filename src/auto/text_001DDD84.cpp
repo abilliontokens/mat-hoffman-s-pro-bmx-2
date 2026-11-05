@@ -29,6 +29,12 @@ void __stdcall func_001DDDE8(int a0, int a1, int a2, int a3) {
     func_001DDD04(a0, a1, a2, a3, 0);
 }
 
+void __stdcall func_001DDE02(int a0)
+{
+    int __stdcall func_001DDD84(int, int);
+    func_001DDD84(a0, 0);
+}
+
 #pragma optimize("y", on)
 #pragma optimize("s", on)
 void __stdcall func_001DDE10(int a0, int a1, int a2)
