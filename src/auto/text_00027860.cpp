@@ -70,18 +70,35 @@ struct S_28070_Voice {
     int unk34;
 };
 
-struct C_000262B0 {
+extern float D_00275544;
+
+struct AmbientDebris {
+    void func_00026130(void);
+};
+
+struct C_000262B0 : AmbientDebris {
     void func_000262B0(void);
 };
 
+struct S_28070_Manager {
+    char pad0[0x64];
+    int unk64;
+};
+
 struct C_00028070 {
-    char pad0[0x1F4];
+    char pad0[0x1E8];
+    S_28070_Manager *unk1E8;
+    char pad1EC[0x8];
     S_28070_Owner *unk1F4;
     char pad1F8[0x18];
     S_28070_Voice *unk210;
     S_28070_Source *unk214;
     S_28070_Source *unk218;
-    char pad21C[0x24C];
+    char pad21C[0x238];
+    int unk454;
+    char pad458[0x4];
+    float unk45C;
+    char pad460[0x8];
     int unk468;
     char pad46C[0x4];
     int unk470;
@@ -89,13 +106,22 @@ struct C_00028070 {
     int unk480;
     int unk484;
     int unk488;
-    char pad48C[0x160];
+    char pad48C[0x6C];
+    int unk4F8;
+    char pad4FC[0xEC];
+    int unk5E8;
     C_000262B0 *unk5EC;
-    char pad5F0[0x130];
+    C_000262B0 *unk5F0;
+    C_000262B0 *unk5F4;
+    char pad5F8[0xA0];
+    int unk698;
+    char pad69C[0x84];
     S_28070_Sound *unk720;
-    char pad724[0x18];
+    int unk724;
+    char pad728[0x14];
     int unk73C;
     int unk740;
+    void func_00027D60(void);
     void func_00028070(void);
 };
 
