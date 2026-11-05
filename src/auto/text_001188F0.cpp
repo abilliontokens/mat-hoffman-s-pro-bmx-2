@@ -20,4 +20,9 @@ extern char D_00283D34[];
 extern float D_002756D0, D_002756B8, D_002756E8;
 extern Vec4 D_002A3A4C;
 extern int D_002B921C;
+static inline float Wrap(float v) {
+    if (v > D_002756D0) return v - D_002756B8;
+    if (v < D_002756E8) return v + D_002756B8;
+    return v;
+}
 
