@@ -80,6 +80,15 @@ undefined4 C_001D5AA0::func_001D5AA0(void)
           *(int *)(D_002AA6C0 + 0x14));
 }
 
+void C_001D6190::func_001D6190(int a, const char *s, int b)
+{
+    if (s != 0) {
+        func_001D5FA0(a, b, strlen(s), (int)s);
+    } else {
+        func_001D5FA0(a, b, 0x28, 0);
+    }
+}
+
 void C_001D6410::func_001D6410(void)
 {
     if (unk0 != 0) {
