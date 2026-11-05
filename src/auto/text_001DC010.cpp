@@ -53,6 +53,17 @@ extern "C" long (__stdcall *_imp__NtQuerySymbolicLinkObject)(void *handle, S_Ans
 extern "C" long (__stdcall *_imp__NtClose)(void *handle);
 
 typedef u32 (__stdcall *PFN_LaunchCallback)(const char *path, void *data);
+struct S_IoStatusBlock {
+    long Status;
+    unsigned long Information;
+};
+extern "C" long (__stdcall *_imp__NtCreateFile)(void **handle, u32 access, S_ObjectAttributes *oa, S_IoStatusBlock *iosb, void *allocSize, u32 attrs, u32 share, u32 disposition, u32 options);
+extern "C" void (__stdcall *_imp__RtlInitAnsiString)(S_AnsiString *dst, const char *src);
+extern char D_00010000[];
+extern char D_00100080[];
+void __stdcall func_001DD659(int code);
+void __stdcall func_001DD62B(int code);
+
 extern PFN_LaunchCallback D_002A0440[];
 extern PFN_LaunchCallback D_002A0444[];
 extern char D_0028FA24;
@@ -238,3 +249,62 @@ u32 __stdcall func_001DCABA(int a, int b, int c, int d, int e)
     }
     return _imp__RtlNtStatusToDosError(status);
 }
+
+u32 __stdcall func_001DCAFF(const char *path, void *data)
+{
+    S_AnsiString target;
+    S_ObjectAttributes oa;
+    char devicePath[0x168];
+    char targetBuf[0x208];
+    PFN_LaunchCallback *cb;
+    void *h;
+    long status;
+    u32 result;
+
+    for (cb = D_002A0440; cb < D_002A0444; cb++) {
+        if (*cb != 0) {
+            goto call_callback;
+        }
+    }
+    if (path == 0) {
+        goto no_path;
+    }
+    if ((*path == 'D' || *path == 'd') && path[1] == ':' && path[2] == '\\') {
+        goto have_path;
+    }
+    return 0x57;
+call_callback:
+    return (*cb)(path, data);
+no_path:
+    result = func_001DCABA(0, 0, (data != 0) * 2 - 1, D_00010118->titleId, (int)data);
+    goto done;
+have_path:
+    devicePath[0] = 0;
+    oa.RootDirectory = 0;
+    oa.Attributes = 0x40;
+    oa.ObjectName = &D_0028FA28;
+    status = _imp__NtOpenSymbolicLinkObject(&h, &oa);
+    if (status >= 0) {
+        target.Buffer = targetBuf;
+        target.Length = 0;
+        target.MaximumLength = 0x208;
+        status = _imp__NtQuerySymbolicLinkObject(h, &target, 0);
+        _imp__NtClose(h);
+    }
+    if (status >= 0) {
+        unsigned int len = target.Length + 1;
+        func_001DF4E1(devicePath, targetBuf, len <= 0x168 ? len : 0x168);
+    } else {
+        int i = 0;
+        char c;
+        do {
+            c = D_0028FA30[i];
+            devicePath[i] = c;
+            i++;
+        } while (c != 0);
+    }
+    result = func_001DCABA((int)(path + 3), (int)devicePath, (data != 0) - 1, D_00010118->titleId, (int)data);
+done:
+    return result;
+}
+
