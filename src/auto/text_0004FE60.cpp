@@ -160,7 +160,7 @@ int BmxEventMountVert::func_000508C0() {
         unk64->list->items[unk120]->unk95c = 1;
         unk110 = 0;
         unk2dc = 0;
-        (**(code **)(*(int *)this + 0xa0))();
+        vf40();
     }
     for (i = 0; i < unk64->list->count; i++) {
         unk288[i] = 0;
