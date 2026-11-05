@@ -79,7 +79,7 @@ struct SoultreeHierarchyCollisionObject {
 struct V4_0019E860 {
     float x, y, z, w;
     V4_0019E860() { x = y = z = 0.0f; w = 1.0f; }
-    V4_0019E860(float ax, float ay, float az, float aw) { x = ax; y = ay; z = az; w = aw; }
+    V4_0019E860(const float &ax, const float &ay, const float &az, const float &aw) { x = ax; y = ay; z = az; w = aw; }
 };
 
 static inline float fabs_0019E860(float f)
