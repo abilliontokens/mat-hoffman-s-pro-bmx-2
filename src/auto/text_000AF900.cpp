@@ -63,3 +63,18 @@ undefined4 C_000B0320::func_000B0320(byte param_1)
   return in_ECX;
 }
 
+void C_000B0340::func_000B0340(void) {
+    func_000AC8F0();
+    func_000A2F20();
+    func_000AF7D0();
+    func_000AC890();
+    func_000A1E90();
+    func_000ACCF0();
+    func_000ACD50();
+    func_000AF8A0();
+    func_000ACDB0();
+    if (D_002A8490->unk2E0->unk4 == 10) {
+        func_000A1EF0();
+    }
+}
+
