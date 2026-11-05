@@ -43,6 +43,31 @@ struct C_001B2330 {
     void func_001B2330(void);
 };
 
+struct C_001D6410 {
+    void func_001D6410(void);
+};
+
+struct C_00157660 {
+    void func_00157660(void);
+};
+
+struct C_001B22A0 {
+    undefined4 *func_001B22A0(byte param_1);
+};
+
+struct C_001B1B30 {
+    void func_001B1B30(float param_1, undefined4 param_2);
+};
+
+struct C_001B1B80 {
+    void func_001B1B80(undefined4 param_1, float param_2, float param_3,
+                       undefined4 param_4, undefined4 param_5, undefined4 param_6);
+};
+
+struct C_001B22F0 {
+    void func_001B22F0(void);
+};
+
 
 int C_001B1B20::func_001B1B20(void)
 {
