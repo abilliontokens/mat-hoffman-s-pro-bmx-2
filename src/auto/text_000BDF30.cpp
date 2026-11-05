@@ -4,7 +4,11 @@
 
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 extern char D_0027DB74[];
+extern char D_0027DB8C[];
+extern char D_0027DDE0[];
 void func_001E891B(void *p);
+char *func_001E8920(char *dst, const char *src, int n);
+extern "C" int strlen(const char *s);
 
 struct S_000BDF30_Config {
     char pad0[0x324];
