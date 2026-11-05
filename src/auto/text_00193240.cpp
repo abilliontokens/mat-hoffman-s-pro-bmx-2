@@ -21,7 +21,7 @@ struct Handler_00193240 {
     virtual void v2();
     virtual void v3();
     virtual void v4();
-    virtual void v5();
+    virtual int v5(void *a, int b);
     virtual int v6(void *a, void *b, int c);
     virtual void v7(void *a, int b, void *c, void *d);
     virtual void v8(void *a, int b, void *c, void *d);
