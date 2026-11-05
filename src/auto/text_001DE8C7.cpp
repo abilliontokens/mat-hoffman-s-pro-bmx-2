@@ -58,24 +58,6 @@ struct S_Heap {
 };
 
 S_FreeNode * __stdcall func_001DF626(S_Heap *heap);
-
-/* threads a block's free space onto the pool's free-node list */
-static __inline void HeapThreadNodes(S_HeapPool *pool, S_FreeNode *blk)
-{
-    S_FreeNode *p;
-    S_FreeNode *prev;
-    char *end;
-
-    p = (S_FreeNode *)((char *)blk + 0x10);
-    end = (char *)blk + blk->size;
-    prev = (S_FreeNode *)&pool->freeNodes;
-    while ((char *)p < end) {
-        prev->next = p;
-        prev = p;
-        p = (S_FreeNode *)((char *)p + 0x10);
-    }
-    prev->next = 0;
-}
 void __stdcall func_001DF746(S_Heap *heap, S_FreeNode *node);
 
 extern int D_00010108;
