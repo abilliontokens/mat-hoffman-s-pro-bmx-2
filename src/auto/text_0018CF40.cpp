@@ -8,6 +8,26 @@ struct C_0018D580_Sub {
     u8 b;
 };
 
+/* singly linked list node: name is stored inline at the start */
+struct C_0018DDD0_Node {
+    char name[0x24];
+    int f24;
+    char pad28[4];
+    C_0018DDD0_Node *next;
+};
+
+struct C_0018DDD0_Owner {
+    char pad0[0x38];
+    int f38;
+};
+
+struct C_0018DDD0_List {
+    char pad0[0x104];
+    C_0018DDD0_Node *head;
+};
+
+int __stdcall func_001904E0(C_0018DDD0_Owner *owner, int a, C_0018DDD0_Node *node, int b, int c);
+
 struct C_0018D580_Id {
     char pad0[4];
     C_0018D580_Sub sub;
