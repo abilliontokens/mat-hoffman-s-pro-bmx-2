@@ -163,3 +163,22 @@ void BmxEventFPS::func_0004AC70(int param_1, int param_2)
         func_00033320(param_1, param_2);
     }
 }
+
+void BmxEventFPS::func_0004ACB0(void)
+{
+    S_Obj12140 *p = f2e4;
+    *(void **)this = (void *)&D_0027718C;
+    if (p != 0) {
+        p->func_00012140();
+        func_001E891B(p);
+        f2e4 = 0;
+    }
+    p = f2e8;
+    if (p != 0) {
+        p->func_00012140();
+        func_001E891B(p);
+        f2e8 = 0;
+    }
+    func_00033220();
+}
+
