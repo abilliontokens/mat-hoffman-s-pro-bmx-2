@@ -57,6 +57,102 @@ struct C_0005DA80 {
 };
 
 
+C_0005D6A0 *C_0005D6A0::func_0005D6A0(void)
+{
+    char *p = (char *)this;
+    char buf[0x104];
+    int i;
+    *(int *)(p + 0x4) = 1;
+    *(int *)(p + 0x0) = 1;
+    *(int *)(p + 0x14) = 1;
+    *(int *)(p + 0x460) = 1;
+    *(int *)(p + 0x38c) = 1;
+    *(int *)(p + 0x324) = 0;
+    *(int *)(p + 0x2d8) = 0;
+    *(int *)(p + 0x320) = 0;
+    *(int *)(p + 0x328) = 0;
+    *(int *)(p + 0x458) = 0;
+    *(int *)(p + 0x45c) = 0;
+    *(int *)(p + 0x8) = 0;
+    *(int *)(p + 0xc) = 2;
+    *(float *)(p + 0x10) = 120.0f;
+    *(int *)(p + 0x20) = 0;
+    *(int *)(p + 0x24) = 0;
+    *(int *)(p + 0x18) = 50;
+    *(int *)(p + 0x1c) = 100;
+    *(int *)(p + 0x464) = 0;
+    *(int *)(p + 0x390) = 0;
+    *(int *)(p + 0x394) = 0;
+    *(int *)(p + 0x48) = 0;
+    memcpy(p + 0x4c, D_0027829C, 9);
+    for (i = 0; i < 8; i++) {
+        *(int *)(p + 0x190 + i * 4) = 0;
+        *(int *)(p + 0x150 + i * 8) = 0x74616d;
+        *(int *)(p + 0x1b0 + i * 4) = 0;
+        memcpy(p + 0x1f4 + i * 8, D_002782AC, 6);
+        *(int *)(p + 0x398 + i * 0x18) = 0;
+        *(int *)(p + 0x39c + i * 0x18) = 0;
+        *(int *)(p + 0x3a0 + i * 0x18) = 0;
+        *(int *)(p + 0x3a4 + i * 0x18) = 0;
+        *(int *)(p + 0x3a8 + i * 0x18) = 0;
+        *(int *)(p + 0x3ac + i * 0x18) = 0;
+    }
+    *(int *)(p + 0x1f0) = 0;
+    *(int *)(p + 0x2d0) = 0;
+    *(int *)(p + 0x2d4) = 0;
+    if (D_002A8490->f2E4 == 0) {
+        *(int *)(p + 0x194) = 5;
+        *(int *)(p + 0x158) = 0x6b696d;
+        *(int *)(p + 0x198) = 2;
+        *(int *)(p + 0x160) = 0x656f6a;
+        *(int *)(p + 0x19c) = 9;
+        *(int *)(p + 0x168) = 0x76656b;
+    }
+    for (i = 0; i < 8; i++) {
+        *(int *)(p + 0x2dc + i * 4) = 0;
+        *(int *)(p + 0x32c + i * 4) = 0;
+        *(int *)(p + 0x34c + i * 4) = 0;
+        *(int *)(p + 0x36c + i * 4) = 0;
+    }
+    for (i = 0; i < 8; i++) {
+        func_001ADCC0(p + 0x25f + i * 11, 11, D_00278438, i + 1);
+    }
+    for (i = 0; i < 8; i++) {
+        *(int *)(p + 0x300 + i * 4) = -1;
+    }
+    memcpy(p + 0x254, D_00278138, 6);
+    *(int *)(p + 0x2bc) = 1;
+    *(int *)(p + 0x2b8) = 0;
+    *(int *)(p + 0x2c0) = 0;
+    *(int *)(p + 0x2c4) = 0;
+    *(int *)(p + 0x2c8) = 0;
+    void *m = func_001E8A44(0x1a8);
+    *(void **)(p + 0x2c8) = m;
+    memset(m, 0, 0x1a8);
+    *(int *)(p + 0x2cc) = 0;
+    if (*(int *)(p + 0x2c0) == 0) {
+        S_0005CBD0 *o = (S_0005CBD0 *)func_001E8A44((unsigned int)D_000149F0);
+        if (o != 0) {
+            o->func_0005CBD0();
+        } else {
+            o = 0;
+        }
+        *(S_0005CBD0 **)(p + 0x2c0) = o;
+    }
+    if (*(int *)(p + 0x2cc) == 0) {
+        S_001D3F60 *o = (S_001D3F60 *)func_001E8A44(0xc);
+        *(void **)(p + 0x2cc) = o ? o->func_001D3F60() : 0;
+    }
+    *(int *)(p + 0x468) = 0;
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5348, D_002A47F0);
+    func_001ADCC0(buf, 0x104, D_0027842C, D_002A48F8);
+    S_00094F40 *t = (S_00094F40 *)func_001E8A44(0x98);
+    *(S_00094F40 **)(p + 0x2fc) = t ? t->func_00094F40(D_002A8490->f4) : 0;
+    (*(S_00094F40 **)(p + 0x2fc))->func_00095640(buf, D_002A8490->f4->fB4, 1);
+    D_002A8490->f14->func_001577A0(*(void **)(p + 0x2fc), -1);
+    return this;
+}
+
 void C_0005DA30::func_0005DA30(int a0) {
     int func_001D3F50(...);
     unk2C = a0;
