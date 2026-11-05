@@ -67,6 +67,51 @@ struct C_00073A50 {
     int func_00073A50(int *param_1, int param_2);
 };
 
+extern int D_00278D54;
+void func_001E891B(void *p);
+
+struct C_001D6410 {
+    void func_001D6410(void);
+};
+
+struct C_00073C30_V {
+    virtual void destroyObject(int flags);
+};
+
+struct SPFPSResultsScreen {
+    void *vtbl;
+    char pad04[0x60];
+    C_001D6410 *unk64[3];
+    C_001D6410 *unk70[3];
+    C_001D6410 *unk7C[3];
+    C_001D6410 *unk88[3];
+    char pad94[0xC];
+    int unkA0;
+    int unkA4;
+    int unkA8;
+    C_00073C30_V *unkAC[2];
+    C_00073C30_V *unkB4[5];
+    C_00073C30_V *unkC8[5];
+    C_00073C30_V *unkDC[6];
+    C_00073C30_V *unkF4;
+    C_001D6410 *unkF8;
+    C_001D6410 *unkFC;
+    C_001D6410 *unk100;
+    C_001D6410 *unk104;
+    C_001D6410 *unk108;
+    C_001D6410 *unk10C;
+    C_001D6410 *unk110;
+    C_001D6410 *unk114;
+    C_001D6410 *unk118;
+    char pad11C[0x7C];
+    C_00073C30_V *unk198[2];
+    C_00073C30_V *unk1A0[2];
+    char pad1A8[0x14];
+    C_001D6410 *unk1BC;
+    void func_00157660(void);
+    void func_00073C30(void);
+};
+
 void C_00073620::func_00073620(void) {
     unk78->func_001D5AD0();
     unk7C->func_001D5AD0();
