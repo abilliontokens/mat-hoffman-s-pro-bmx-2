@@ -111,7 +111,7 @@ struct C_0023EC0D {
 /* the stream object: its lock, the packet list and the "has a thread" flag */
 struct S_0023ED71 {
     char pad0[0x6c];
-    char f6c[0x28];
+    char f6c[0x30];
     S_0023EA00_Link f9c;
     char pada4[0x10];
     int fb4;
