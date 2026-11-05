@@ -49,6 +49,8 @@ __declspec(align(16)) struct S_00192310_Mat {
 };
 
 
+void func_001E8920(void *dst, const void *src, int n);
+
 struct C_000264C0 {
     void func_000264C0(void *param);
 };
@@ -141,34 +143,39 @@ struct C_00192420 {
 
 void C_00191470::func_00191470(unsigned int a0)
 {
+    C_00191470 * volatile self = this;
+
     switch ((a0 >> 16) & 0xff) {
     case 0:
-        f20 = D_002A97D8;
+        f20.Set(*(int *)&D_002A97D8, D_002A97DC, D_002A97E0, D_002A97E4);
         break;
     case 1: {
+        S_00192310_Mat * volatile p;
         S_00192310_Mat m;
-        S_00192310_Mat * volatile p = &m;
-        S_00192310_Mat *q = p;
-        __m128 *v = (__m128 *)q;
         S_00192310_Mat copy;
+        __m128 *v;
 
+        p = &m;
+        v = (__m128 *)p;
         v[0] = _mm_setzero_ps();
         v[1] = _mm_setzero_ps();
         v[2] = _mm_setzero_ps();
         v[3] = _mm_setzero_ps();
         copy = m;
-        ((C_000264C0 *)&f30)->func_000264C0(&copy);
+        ((C_000264C0 *)((char *)self + 0x30))->func_000264C0(&copy);
         break;
     }
     }
 }
 
-void C_00191470::func_00191510(const char *a0, unsigned int a1)
+void C_00191470::func_00191510(const char * volatile a0, volatile unsigned int a1)
 {
     C_00191470 * volatile self = this;
     volatile int len;
     volatile int lim;
     volatile int n;
+    int a;
+    int b;
     int k;
 
     switch ((a1 >> 16) & 0xff) {
@@ -181,7 +188,9 @@ void C_00191470::func_00191510(const char *a0, unsigned int a1)
     }
     len = strlen(a0);
     lim = 0x17;
-    n = lim > len ? len : lim;
+    a = lim;
+    b = len;
+    n = a > b ? b : a;
     k = n;
     func_001E8920(self, a0, k);
     ((char *)self)[k] = 0;
