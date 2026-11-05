@@ -50,12 +50,7 @@ struct SearchEntry {
     virtual void v14();
     virtual void v15();
     virtual void v16();
-    char pad4[0x1D];
-    unsigned char f21;
-    char pad22[4];
-    unsigned char f26;
-    unsigned char f27;
-    char pad28[0x159];
+    char pad4[0x17D];
     unsigned char f181;
 };
 
