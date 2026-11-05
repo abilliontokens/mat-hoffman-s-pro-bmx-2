@@ -72,14 +72,18 @@ void C_0013FA30::func_0013FA30(void)
   void *func_001E8A44(int size);
   extern int D_00284EE4;
   C_0013FA30_Data *p;
+  C_0013FA30_Data *q;
 
   p = (C_0013FA30_Data *)func_001E8A44(0xc);
   if (p != 0) {
     p->func_0015B150();
     p->vtbl = (void *)&D_00284EE4;
+    q = p;
+  } else {
+    q = 0;
   }
-  f24 = p;
-  (**(code **)(*(int *)p + 4))();
+  f24 = q;
+  ((C_0013FA30_VT *)q)->vfunc1();
 }
 
 undefined4 C_0013FA70::func_0013FA70(undefined4 param_1)
