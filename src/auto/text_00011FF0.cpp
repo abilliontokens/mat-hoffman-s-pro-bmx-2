@@ -68,8 +68,8 @@ struct S_11FF0_Owner {
     int f414;
     int f418;
     void func_001C6DA0(int a, int b);
-    float func_00011730(int a, int b);
-    float func_00012510(int a, int start);
+    float func_00011730(float *p, int idx);
+    float func_00012510(float *p, int start);
 };
 
 struct AIPedFallState {
