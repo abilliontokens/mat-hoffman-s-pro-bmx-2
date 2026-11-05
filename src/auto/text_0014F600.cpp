@@ -27,6 +27,20 @@ static float clampf(float x)
     return x;
 }
 
+extern float D_00275544;
+static float fold_acos(float x, float *offset, float *sign)
+{
+ x = clampf(x);
+ if (x < D_00275544) {
+  *offset = 3.14159265358979323846f;
+  *sign = -1.0f;
+  return x + D_00275460;
+ }
+ *offset = 0.0f;
+ *sign = 1.0f;
+ return D_00275460 - x;
+}
+
 /* Truncate towards zero into *out; inlined into its callers. */
 static void storeftoi(int * volatile out, float f)
 {
