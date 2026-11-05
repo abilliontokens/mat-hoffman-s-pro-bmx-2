@@ -215,6 +215,15 @@ int C_00186C00::func_00186C00(C_00186AF0Param *param)
     return 1;
 }
 
+int C_00186C00::func_00186CE0(C_00186AF0Param *param)
+{
+    if (func_00186960(param) == 0) {
+        return 0;
+    }
+    param->func_00168BE0((void *)&D_00289A4C, (void *)&D_00289A1C, f168, -1);
+    return 1;
+}
+
 C_00186EF0* C_00186EF0::func_00186EF0(void) {
     extern int D_00289A88;
     unk0 = (int)&D_00289A88;
