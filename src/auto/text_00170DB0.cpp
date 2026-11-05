@@ -51,6 +51,14 @@ void C_00171230::func_00171230(int a) {
     func_00157A00(a);
 }
 
+void *C_00171270::func_00171270(int a) {
+    func_00171340(a);
+    unk0 = (int)&D_00288B4C;
+    unk1B0 = 2;
+    func_00170B60();
+    return this;
+}
+
 void *C_001712A0::func_001712A0(int flags) {
     unk0 = (int)&D_00288B4C;
     func_00171980();
