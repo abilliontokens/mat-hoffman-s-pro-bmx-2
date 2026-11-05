@@ -98,6 +98,29 @@ struct C_000AC680 {
 };
 
 extern int D_0027C8E4;
+struct S_AC2C0_Block {
+    int count;
+    void **items;
+    int cap;
+    int grow;
+    u8 flag;
+    char pad[3];
+    void init(void)
+    {
+        items = 0;
+        count = 0;
+        cap = 0;
+        grow = 0;
+        flag &= 0xfe;
+    }
+    void alloc(void)
+    {
+        items = (void **)func_001E8A44(4);
+        cap = 16;
+        grow = 1;
+        flag |= 1;
+    }
+};
 struct C_000AC2C0;
 extern C_000AC2C0 *D_002B9120;
 struct C_000AC2C0 {
