@@ -28,8 +28,8 @@ struct C_001670C0 {
  char pad48[0x1A4]; C_00165D00_Elem *f1EC; int *f1F0;
  char pad1F4[0x14]; int f208,f20C; C_001670C0_Slot **f210; Vec4_165EF0 *f214;
  void func_001670C0(float, int, int *);
- void func_001664C0(float,int,int *);
- void func_00166830(float,int,int *);
+ void func_001664C0(float,int *,int);
+ void func_00166830(float,int *,int);
 };
 void func_001641B0(void *, void *);
 void func_001640D0(void *, int, void *, void *);
