@@ -55,6 +55,40 @@ struct SceneSound {
 
 struct BasicScene;
 
+extern int D_0027B160;
+
+struct SceneLoader {
+    virtual void dummy0();
+    virtual void dummy1();
+    virtual void dummy2();
+    virtual void dummy3();
+    virtual void dummy4();
+    virtual void dummy5();
+    virtual void dummy6();
+    virtual void dummy7();
+    virtual void dummy8();
+    virtual void dummy9();
+    virtual void dummy10();
+    virtual void dummy11();
+    virtual void dummy12();
+    virtual void dummy13();
+    virtual void dummy14();
+    virtual void dummy15();
+    virtual void dummy16();
+    virtual void dummy17();
+    virtual void dummy18();
+    virtual void dummy19();
+    virtual void dummy20();
+    virtual void dummy21();
+    virtual void dummy22();
+    virtual void dummy23();
+    virtual void dummy24();
+    virtual void dummy25();
+    virtual void dummy26();
+    virtual int dummy27(BasicScene *scene, int a, void *b, int c);
+    SceneLoader *func_001B6E70(int a);
+};
+
 struct SceneItem {
     virtual void dummy0();
     virtual void dummy1();
