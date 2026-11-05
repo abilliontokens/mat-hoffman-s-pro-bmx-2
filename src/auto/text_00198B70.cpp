@@ -67,7 +67,7 @@ struct C_00198B70 {
     C_00198B70 *f174;
     C_00198B70 *f178;
     char pad17c[4];
-    s8 f180;
+    u8 f180;
     char pad181[0x18c - 0x181];
     S_00198B70_Cam *f18c;
     void func_00197AA0(void);
