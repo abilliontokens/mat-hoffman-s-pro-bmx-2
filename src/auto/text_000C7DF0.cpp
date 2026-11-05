@@ -114,7 +114,8 @@ struct S_002B91AC {
     C_001D5AD0 *unk30;
     C_001D5AD0 *unk34;
     C_001D5AD0 *unk38;
-    char pad3C[0x14];
+    C_001D5AD0 *unk3C;
+    char pad40[0x10];
     C_001D5AD0 *unk50;
     C_001D5AD0 *unk54;
     char pad58[0x10];
