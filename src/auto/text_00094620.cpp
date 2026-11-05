@@ -282,20 +282,40 @@ struct C_00094F10 {
 
 extern int D_0027A23C;
 
+/* growable array of pointers, count at +0, items at +4 */
+struct S_00095060_PtrList {
+    int count;
+    void **items;
+    void *at(int i)
+    {
+        if (count > 0 && items != 0 && i < count) {
+            return items[i];
+        }
+        return 0;
+    }
+};
+
 /* BmxMusicManager */
 struct C_00095060 {
     void *vtbl;
-    char pad4[0x4c];
+    char pad4[0x2c];
+    int f30;
+    int f34;
+    int f38;
+    char pad3C[0x14];
     S_00094A00_Obj *f50;
     C_00094F10 tracks;
-    char pad5C[0x10];
-    void *f6C;
+    char pad5C[0xc];
+    S_00095060_PtrList ids;
     char pad70[0xc];
     int f7C;
     int f80;
+    int func_000952F0(void);
     void func_00095060(void);
     int func_00095110(int n);
     int func_000951B0(int n);
+    int func_00095520(int n);
+    int func_000955C0(void *id);
 };
 
 /* object at C_00094840::unk28, called through vtable slot 31 */
@@ -428,13 +448,11 @@ int C_00094840::func_00094840(void)
 {
     int node = unk34;
     S_00094A00_Obj *path = unk50;
-    S_00094620_Node *n;
 
     if (node >= path->unkA8 || node < 0) {
         return 0;
     }
-    n = path->unk34 + node;
-    return (int)((char *)n + 0x20);
+    return node * 0x44 + (int)path->unk34 + 0x20;
 }
 
 int C_00094840::func_00094870(void)
