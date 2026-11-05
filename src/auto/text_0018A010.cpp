@@ -13,6 +13,28 @@ extern int D_00289ABC;
 extern int D_00289830;
 extern int D_002897FC;
 void func_001E891B(void *p);
+extern int D_002895E8;
+extern int D_002898FC;
+extern char D_0028A398[];
+void func_001E8920(char *dst, const char *src, int n);
+
+struct C_0018A210_Sub {
+    void *vtbl;
+    int v[4];
+    float f14, f18;
+};
+
+struct C_0018A210 {
+    void *vtbl;
+    int f4;
+    char name[0x104];
+    int f10C;
+    int pad110;
+    int f114, f118, f11C, f120, f124, f128, f12C;
+    C_0018A210_Sub sub;
+    char pad150[0];
+    void func_0018A210();
+};
 
 /* LightTempData */
 struct S_LightTemp_AEF0 {
