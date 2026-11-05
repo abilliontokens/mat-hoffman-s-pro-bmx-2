@@ -170,6 +170,7 @@ struct C_000264C0_129E20 {
 };
 
 void func_00030AC0(Vec4 *out, Vec4 *in, f32 *m);
+extern "C" float __cdecl sqrtf(float);
 
 struct BoxCollisionObject {
     void *vtbl;
