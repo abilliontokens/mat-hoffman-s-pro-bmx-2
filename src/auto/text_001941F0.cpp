@@ -252,6 +252,36 @@ undefined4 C_00194720::func_00194720(byte param_1)
   return in_ECX;
 }
 
+SimpleCutSceneCamera *SimpleCutSceneCamera::func_00194740(void)
+{
+    func_0012B510();
+    vtbl = (void *)&D_0028AE90;
+    f4 = 0;
+    f8 = 30.0f;
+    fC = 0;
+    f10 = 80.0f;
+    f14 = 0;
+    f18 = 0;
+    f1C = 0;
+    f20 = 0;
+    f24 = 1;
+    f28 = 1;
+    f2C = 0;
+    return this;
+}
+
+void SimpleCutSceneCamera::func_00194790(void *a0, int a1, int a2)
+{
+    f2C = a1;
+    if (a0 != 0) {
+        C_0012B8F0 *p = (C_0012B8F0 *)func_001E8A44(0x48);
+        C_0012B8F0 *q = p ? p->func_0012B8F0() : 0;
+        f4 = q;
+        q->func_0012C910(a0, a2);
+        f20 = f4->f40;
+    }
+}
+
 void C_00194C60::func_00194C60(void) {
     unk24 = 0;
 }
