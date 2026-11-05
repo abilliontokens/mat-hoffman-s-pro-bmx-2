@@ -109,6 +109,19 @@ int C_001AF100::func_001AF100(int a0, int a1, int a2, int a3)
     return 1;
 }
 
+int C_001AF250::func_001AF250(int a0, int a1)
+{
+    if (f4 == a0) {
+        f4 = a1;
+        int v = D_002A829C->func_00161850(a0);
+        D_002A829C->v6(a1, v);
+        if (D_002A829C->arr[a0].fC != 0) {
+            D_002A829C->func_001B26C0(a0);
+        }
+    }
+    return f4;
+}
+
 void *C_001AF300::func_001AF300(int a0)
 {
     extern int D_0028C2AC;
