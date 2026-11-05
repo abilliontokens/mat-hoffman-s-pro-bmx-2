@@ -64,12 +64,7 @@ struct C_00199BE0 {
     void func_0019A0A0(float sx, float sy, float sz);
 };
 
-void func_001977B0(S_00199B00_F4 *out, S_00199B00_F4 *in);
-
-static inline void Normalize4(S_00199B00_F4 &v)
-{
-    func_001977B0(&v, &v);
-}
+S_00199B00_F4 func_001977B0(S_00199B00_F4 *in);
 
 struct C_00199C20Mat {
     void func_000264C0(void *m);
