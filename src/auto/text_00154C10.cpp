@@ -23,6 +23,27 @@ static __forceinline void CopyPath_001554D0(char *dst, const char *src)
     dst[n] = 0;
 }
 
+/* frame-resident temporaries of the inlined clamp (the original keeps them in stack slots) */
+struct S_001554D0_Tmp {
+    void * volatile self;
+    volatile int s0;
+    volatile int s1;
+    volatile int s2;
+};
+
+static __forceinline void CopyPathV_001554D0(char *dst, const char *src, volatile int &len, volatile int &lim, volatile int &res)
+{
+    int ma, mb, n;
+    len = strlen(src);
+    lim = 0x103;
+    ma = lim;
+    mb = len;
+    res = ma > mb ? mb : ma;
+    n = res;
+    func_001E8920(dst, src, n);
+    dst[n] = 0;
+}
+
 /* menu object (0x20c bytes) created through func_001CF740 */
 struct S_001554D0_Obj {
     virtual void v0();
