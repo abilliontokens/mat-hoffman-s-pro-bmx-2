@@ -1,5 +1,11 @@
 /* 40 functions from 0x0001C2E0 to 0x0001D280, found by Ghidra. */
 #include "common.h"
+struct C_0001CD50 {
+    char pad0[0x5C];
+    int unk5C;
+    void func_0001CD50(void);
+};
+
 struct C_0001CD40 {
     char pad0[0x5C];
     int unk5C;
@@ -45,5 +51,9 @@ void C_0001C9B0::func_0001C9B0(void) {
 
 void C_0001CD40::func_0001CD40(void) {
     unk5C = 0;
+}
+
+void C_0001CD50::func_0001CD50(void) {
+    unk5C = 1;
 }
 
