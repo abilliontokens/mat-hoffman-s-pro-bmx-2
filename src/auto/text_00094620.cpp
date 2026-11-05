@@ -516,6 +516,24 @@ int C_00094A00::func_00094E40(int idx, int a, int b)
     return f84[idx - 1]->v16(a, b, 0);
 }
 
+int C_00094A00::func_00094E70(int *ids, int count, int a, int b)
+{
+    int i;
+
+    if (a <= 1) {
+        f24 = 1;
+    }
+    for (i = 0; i < count; i++) {
+        if (ids[i] - 1 > f7C) {
+            return 0;
+        }
+        if (!f84[ids[i] - 1]->v16(a, b, 0)) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
 int C_00094A00::func_00094EE0(void)
 {
     if (f84[0] != 0 && f84[0]->v7()) {
