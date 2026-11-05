@@ -3,6 +3,7 @@
 extern int D_00284F8C;
 extern char D_0028502C[];
 extern char D_002850C4[];
+extern char D_00010000;
 char *func_001E95A4(char *s, const char *delim);
 
 extern "C" int memcmp(const void *a, const void *b, unsigned int n);
@@ -149,6 +150,34 @@ int func_001409A0(C_00168BE0 *cfg, const char *key, int def, int &out)
         out = def;
     } else {
         out = func_001E958D(buf, &end, 0);
+    }
+    return out;
+}
+
+int func_00140CD0(C_00168BE0 *cfg, const char *key, int def, int &out)
+{
+    char buf[64];
+    char *tok;
+    cfg->func_00168BE0(key, "undefined", buf, 64);
+    if (strcmp(buf, "undefined") == 0) {
+        out = def;
+    } else {
+        out = 0;
+        tok = func_001E95A4(buf, D_002850C4);
+        while (tok != 0) {
+            if (strcmp(tok, "D3DCOLORWRITEENABLE_ALPHA") == 0) {
+                out |= 0x1000000;
+            } else if (strcmp(tok, "D3DCOLORWRITEENABLE_BLUE") == 0) {
+                out |= 1;
+            } else if (strcmp(tok, "D3DCOLORWRITEENABLE_GREEN") == 0) {
+                out |= 0x100;
+            } else if (strcmp(tok, "D3DCOLORWRITEENABLE_RED") == 0) {
+                out |= 0x10000;
+            } else if (strcmp(tok, "D3DCOLORWRITEENABLE_ALL") == 0) {
+                out |= 0x1010101;
+            }
+            tok = func_001E95A4(0, D_002850C4);
+        }
     }
     return out;
 }
