@@ -324,11 +324,14 @@ struct DXIndexBufferManager {
     void func_001C3C80(void);
 };
 
+/* viewport: x, y, width, height, near, far */
 struct S_001C3F60_Rect {
     int x;
     int y;
     int w;
     int h;
+    float zmin;
+    float zmax;
 };
 
 struct C_001D5350 {
@@ -780,6 +783,32 @@ bool C_001C3F50::func_001C3F50(void)
   int in_ECX = (int)this;
   
   return *(int *)(in_ECX + 0x6c) != 0;
+}
+
+void VideoFXManager::func_001C3F60()
+{
+    extern undefined4 D_002F07B8;
+    S_001C3F60_Rect a;
+    S_001C3F60_Rect b;
+
+    if (((S_001C3F60_Item *)unk40)->f3c != 0 && (((S_001C3F60_Global *)D_002F07B8)->f9d4 & 1) != 0) {
+        ((S_001C3F60_Global *)D_002F07B8)->v5(0);
+    }
+    if (unk44 != 0) {
+        ((S_001C3F60_Global *)D_002F07B8)->v5((int)((S_001C3F60_Item *)unk40)->f2c);
+        unk44 = 0;
+    }
+    if (unk28 != 0 && unk2C != 0) {
+        a.x = 0;
+        a.y = 0;
+        a.w = 0x280;
+        a.h = 0x1e0;
+        unk28->func_001D5430(&a, &b, 1);
+        unk28->func_001D5470();
+        unk2C->func_001D5430(&b, &a, 0);
+        unk2C->func_001D5470();
+    }
+    func_00157960();
 }
 
 void *ViewportFade::func_001C40C0(int a0)
