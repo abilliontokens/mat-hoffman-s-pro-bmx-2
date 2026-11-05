@@ -6,8 +6,6 @@ extern int D_00284E94;
 
 void func_001E891B(void *p);
 void __stdcall func_00201100(void *p);
-void __stdcall func_001D5FA0(int a, int b, int c, int d);
-int strlen(const char *s);
 
 struct C_001D5AA0 {
     undefined4 func_001D5AA0(void);
