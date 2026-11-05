@@ -45,6 +45,7 @@ struct PhysicsRigidBody {
 static __forceinline float LengthSq(float x, float y, float z, float w) {
     return x * x + y * y + z * z + w * w;
 }
+static __forceinline float Sqrt_001743A0(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
 struct C_00174550 {
     char pad0[0x28C];
     int unk28C;
@@ -68,9 +69,7 @@ Vec4 *func_00174110(Vec4 *dst, Vec4 *src)
     Vec4 r;
     float sum = LengthSq(src->x, src->y, src->z, src->w);
     if (sum != D_00275544) {
-        float len;
-        _mm_store_ss(&len, _mm_sqrt_ss(_mm_set_ss(sum)));
-        float inv = D_00275460 / len;
+        float inv = D_00275460 / sqrtf(sum);
         r.x = inv * src->x;
         r.y = inv * src->y;
         r.z = inv * src->z;
