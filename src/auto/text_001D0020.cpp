@@ -63,6 +63,29 @@ struct XboxGame_001D0EC0 {
     int func_001D0F70(int a0, int a1);
 };
 
+struct Obj_001D0F30 {
+    char pad0[0x4c];
+    void (__fastcall *f4c)(void *self);
+};
+
+struct S_001D0F30_Holder {
+    Obj_001D0F30 *vtbl;
+};
+
+struct XboxGame_001D0F30 {
+    char pad0[0x278];
+    S_001D0F30_Holder *f278;
+    int func_001D0F30(void);
+};
+
+struct C_00156840 {
+    void func_00156840(void);
+};
+
+struct XboxGame_001D0E80 {
+    void func_001D0E80(void);
+};
+
 extern int D_002ABA84;
 void __stdcall func_0026EBC0(int count, void *types);
 int __stdcall func_0026EBE7(void *type, unsigned *insertions, unsigned *removals);
