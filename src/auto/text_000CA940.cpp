@@ -221,6 +221,27 @@ void C_000CAA10::func_000CAA10(void)
     }
 }
 
+void BmxUIPageGameOptions::func_000CAA80()
+{
+    f2A8 = 1;
+    f2AC = 1;
+    f2C4 = -1;
+    f308 = 1;
+    f284 = 0;
+    f280 = 0;
+    f2C0 = 0;
+    f2CC = 0;
+    f2C8 = 0;
+    f328 = 0;
+    f2D4 = D_002A8490->p2E0->fC;
+    f2E4 = D_002A8490->p2E0->f460;
+    f2E8 = D_002A8490->p2E0->f464;
+    f320 = D_002A8490->p2E0->f38C;
+    D_002B91AC->unk34->func_0005E840(D_002A8490->p2E8->p4->fE0);
+    D_002B91AC->func_000BF860(1, 0x17b, 0x184, 0);
+    D_002B91AC->unk3C->func_0005E840(D_002A8490->p2E8->p4->f838);
+}
+
 void BmxUIPageGameOptions::func_000CB2D0()
 {
     int n = 2;
