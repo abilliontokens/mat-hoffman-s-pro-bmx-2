@@ -140,9 +140,11 @@ struct C_001BDB50 {
     S_001BDB50_Group *f34;
     int f38;
     S_001BDB50_Group **f3c;
+    int f40;
     void func_001BDB50(void);
     void func_001BDBD0(void);
     void func_001BDC50(void);
+    void func_001BDC90(void);
     void func_001BDD60(int idx);
     void func_001BDDE0(int a);
     void func_001BDE90(S_001BDB50_Group **out);
