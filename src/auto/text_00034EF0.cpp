@@ -97,7 +97,7 @@ struct S_35360_Mgr {
     S_35360_Tbl *f4e0;
 };
 
-struct UIQuad { int x, y, z, w; };
+struct UIQuad { int x, y, z, w; void copy1514(); void copy1524(); };
 struct UIPositionItem { char pad0[0x170]; UIQuad f170, f180; void func_0012A770(int, int); };
 struct UIOwner {
     void func_0002EF70(int, int);
