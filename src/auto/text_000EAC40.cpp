@@ -26,6 +26,23 @@ struct C_NumHorse_Clamp { char pad0[0x10]; float f10, f14; };
 struct C_NumHorse_Mid { C_NumHorse_Clamp *func_0018C070(); };
 struct C_NumHorse_Sub { C_NumHorse_Clamp *func_001D5AA0(); };
 extern C_NumHorse_Root *D_002A8490;
+
+/* the HUD: text labels at +0x34/+0x38/+0x80/+0x84, func_000BF860 places one */
+struct S_000EB460_Label {
+    void func_0005E840(char *s);
+};
+
+struct S_000EB460_Hud {
+    char pad0[0x34];
+    S_000EB460_Label *f34;
+    S_000EB460_Label *f38;
+    char pad3C[0x80 - 0x3C];
+    S_000EB460_Label *f80;
+    S_000EB460_Label *f84;
+    void func_000BF860(int a, int b, int c, int d);
+};
+
+extern S_000EB460_Hud *D_002B91AC;
 extern float D_00275AEC;
 extern int D_002786A0, D_00278690, D_00278678;
 struct BmxUIPageHOFTitle {
