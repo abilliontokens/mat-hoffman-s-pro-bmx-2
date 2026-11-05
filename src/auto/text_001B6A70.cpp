@@ -52,14 +52,6 @@ struct S_001B70D0_Mgr {
     char pad8[0x280 - 8];
     S_001B70D0_Slot **volatile f280;
     int f284;
-    S_001B70D0_Slot *Find(int id) {
-        int k;
-        for (k = 0; k < f284; k++) {
-            if (f280[k]->f1C0 == id)
-                return f280[k];
-        }
-        return 0;
-    }
 };
 
 struct S_001B70D0_Lookup {
