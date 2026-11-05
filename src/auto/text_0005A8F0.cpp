@@ -114,6 +114,68 @@ void C_0005B220::func_0005B220(void)
   return;
 }
 
+void C_0005B3F0::func_0005B3F0(void)
+{
+    switch (f48) {
+    case 0:
+        strcpy(name, "oklahoma");
+        strcpy((char *)D_002A8490 + 0x2B8, name);
+        break;
+    case 7:
+        strcpy(name, "hawaii");
+        strcpy((char *)D_002A8490 + 0x2B8, name);
+        break;
+    case 6:
+        strcpy(name, "boston");
+        strcpy((char *)D_002A8490 + 0x2B8, name);
+        break;
+    case 3:
+        strcpy(name, "lasvegas");
+        strcpy((char *)D_002A8490 + 0x2B8, name);
+        break;
+    case 2:
+        strcpy(name, "langeles");
+        strcpy((char *)D_002A8490 + 0x2B8, name);
+        break;
+    case 5:
+        strcpy(name, "portland");
+        strcpy((char *)D_002A8490 + 0x2B8, name);
+        break;
+    case 1:
+        strcpy(name, "chicago");
+        strcpy((char *)D_002A8490 + 0x2B8, name);
+        break;
+    case 4:
+        strcpy(name, "norleans");
+        strcpy((char *)D_002A8490 + 0x2B8, name);
+        break;
+    case 11:
+        strcpy(name, "editor");
+        strcpy((char *)D_002A8490 + 0x2B8, name);
+        break;
+    case 8:
+        strcpy(name, "daytona");
+        strcpy((char *)D_002A8490 + 0x2B8, name);
+        break;
+    case 9:
+        strcpy(name, "sf");
+        strcpy((char *)D_002A8490 + 0x2B8, name);
+        break;
+    case 10:
+        strcpy(name, "austin");
+        strcpy((char *)D_002A8490 + 0x2B8, name);
+        break;
+    case 12:
+        strcpy(name, "halfpipe");
+        strcpy((char *)D_002A8490 + 0x2B8, name);
+        break;
+    case 13:
+        strcpy(name, "london");
+        strcpy((char *)D_002A8490 + 0x2B8, name);
+        break;
+    }
+}
+
 void C_0005B730::func_0005B730(void)
 {
     f258 = D_002A8490->f2E0->f18;
