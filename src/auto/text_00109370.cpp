@@ -127,6 +127,13 @@ int C_00109570::func_00109570(void) {
     return unk0;
 }
 
+int C_00109520::func_00109580(int idx) {
+    if (idx >= count) {
+        return -1;
+    }
+    return a[idx];
+}
+
 void C_00109F30::func_00109F30(void) {
     fA40 = 0;
     fA48 = 0;
