@@ -314,6 +314,16 @@ void C_001402C0::func_001402C0(int arg1, int arg2)
     b->func_0013FC60(arg2);
 }
 
+void C_001402C0::func_00140360(int n)
+{
+    C_0013FC60 *p = b;
+    if (n % 2 == 0 && n < p->f28) {
+        p->f24 = n;
+        p->f4 = n;
+        p->f8 = n;
+    }
+}
+
 void C_001403D0::func_001403D0(int a, int b, int c)
 {
 }
