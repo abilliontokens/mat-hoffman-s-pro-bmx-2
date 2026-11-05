@@ -113,6 +113,25 @@ void C_001B2270::func_001B2270(undefined4 param_1)
   return;
 }
 
+undefined4 *C_001B22A0::func_001B22A0(byte param_1)
+{
+  extern int D_0028C7EC;
+  void func_001E891B(void *);
+  undefined4 *in_ECX = (undefined4 *)this;
+  C_001D6410 *p = (C_001D6410 *)in_ECX[9];
+
+  *in_ECX = (undefined4)&D_0028C7EC;
+  if (p != 0) {
+    p->func_001D6410();
+    func_001E891B(p);
+  }
+  ((C_00157660 *)in_ECX)->func_00157660();
+  if ((param_1 & 1) != 0) {
+    func_001E891B(in_ECX);
+  }
+  return in_ECX;
+}
+
 C_001B22E0* C_001B22E0::func_001B22E0(void) {
     unk8 = 0;
     unk4 = 0;
