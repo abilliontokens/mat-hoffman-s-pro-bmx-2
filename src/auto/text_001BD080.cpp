@@ -236,3 +236,24 @@ void C_001BDAB0::func_001BDAB0(int a)
     }
 }
 
+C_001BDAF0 *C_001BDAF0::func_001BDAF0(byte flags)
+{
+    int func_001E8390(...);
+    int func_001E891B(...);
+
+    vtbl = (void *)&D_0028D51C;
+    if (f2c != 0) {
+        func_001E8390(f2c);
+        f2c = 0;
+    }
+    if (f3c != 0) {
+        func_001E8390(f3c);
+        f3c = 0;
+    }
+    func_00157660();
+    if ((flags & 1) != 0) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
