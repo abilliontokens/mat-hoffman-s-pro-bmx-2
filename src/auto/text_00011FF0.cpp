@@ -247,6 +247,34 @@ void S_11FF0_StateB::func_00012380(void *arg1, float arg2)
     }
 }
 
+void C_00012420::func_00012420(void)
+{
+    if (f3e3 == 1) {
+        f3c->f4->func_001983A0();
+        v6();
+    } else {
+        f3c->f4->func_00198390();
+        v4();
+    }
+    f3c->f4->func_00199600(f404);
+    f3b0 = f3b8;
+    f3dc = 0;
+    f3dd = 0;
+    f3e0 = 0;
+    f3e1 = 0;
+    f3c4 = 0;
+    f3c8 = 0;
+    f3d8 = 0;
+    f3c0 = D_002A8490->f238;
+    f3de = 1;
+    f3df = 0;
+    if (D_002A8490->f2a4 != 0 && D_002A8490->f2a4->f1c8 == 0) {
+        f3bc = 1;
+    }
+    f384->func_0008AB90(f394);
+    f3bc = 1;
+}
+
 float S_11FF0_Owner::func_00012510(float *p, int start)
 {
     int *list = D_002B9120->f588[f3b4];
