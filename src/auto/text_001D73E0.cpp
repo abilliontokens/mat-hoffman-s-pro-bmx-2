@@ -4,3 +4,10 @@
 int func_001D7D00(void) {
     return 1;
 }
+
+extern int D_002F0BBC;
+int func_001D7D40()
+{
+    return ++D_002F0BBC;
+}
+
