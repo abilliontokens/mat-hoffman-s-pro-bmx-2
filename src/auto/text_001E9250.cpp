@@ -205,13 +205,11 @@ double func_001E9649(char *str) {
         p++;
     }
     s = p;
-    while (*s != 0) {
-        s++;
+    while (*s++ != 0) {
     }
-    r = func_001ED0FC(&res, p, (int)(s - p), 0, 0);
+    r = func_001ED0FC(&res, p, (int)(s - p - 1), 0, 0);
     return *(double *)((char *)r + 0x10);
 }
-
 int func_001E96A5(int a0, int a1, int a2) {
     int func_001ED2E9(void);
     int *func_001ED075(void);
@@ -233,7 +231,11 @@ int func_001E96A5(int a0, int a1, int a2) {
     return result;
 }
 
-#pragma optimize("", on)
+#pragma optimize("y", on)
+void func_001E9701(int a0, int a1) {
+    int func_001E96A5(int, int, int);
+    func_001E96A5(a0, a1, 0x40);
+}
 
 #pragma optimize("t", off)
 int func_001E98A9(int param_1, int param_2, int param_3, int param_4) {
