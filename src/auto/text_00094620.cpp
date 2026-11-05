@@ -17,6 +17,17 @@ struct S_00094620_Path {
     void func_001CEFD0(int node);
 };
 
+/* the game globals: unk2E0 is the record func_00094760 writes the node into */
+struct S_00094620_Record {
+    char pad0[0x468];
+    int unk468;
+};
+
+struct S_00094620_Globals {
+    char pad0[0x2E0];
+    S_00094620_Record *unk2E0;
+};
+
 struct C_00094F00 {
     char pad0[0x7C];
     int unk7C;
