@@ -29,3 +29,10 @@ struct C_001A8B80 {
     void func_001A9220(int idx, f32 v);
     void func_001D3F50(void);
 };
+
+void C_001A8B80::func_001A9220(int idx, f32 v)
+{
+    if (idx >= 0 && idx < 10) {
+        fDC[idx] = v;
+    }
+}
