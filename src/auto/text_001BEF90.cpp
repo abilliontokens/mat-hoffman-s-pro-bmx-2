@@ -449,6 +449,19 @@ C_001BF600 *C_001BF600::func_001BF600(S_001BF600_Stream *stream)
     return this;
 }
 
+void C_001BF660::func_001BF660()
+{
+    unk2C = 0;
+    if (!(unk38 && unk3C)) {
+        if (unk38) {
+            ((VCall8 *)this)->v7();
+        }
+        if (unk3C) {
+            ((VCall8 *)this)->v5();
+        }
+    }
+}
+
 void C_001BF6A0::func_001BF6A0(void) {
     unk40 = 1;
 }
