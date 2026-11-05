@@ -86,6 +86,13 @@ struct S_00156820_Base {
     void func_001BBAA0(void *param_1, int *param_2);
 };
 
+struct C_00156840 {
+    void *vtbl;
+    char pad4[4];
+    void *unk8;
+    int func_00156840(void);
+};
+
 struct C_001D0C30 {
     virtual void dummy0();
     virtual int dummy1();
