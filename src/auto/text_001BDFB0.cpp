@@ -355,6 +355,20 @@ void UIPage::func_001BEC10(int idx)
     }
 }
 
+void UIPage::func_001BEC90(int idx, int target)
+{
+    if (f144[idx]->item != 0) {
+        UIControl *item = f140[target];
+        if (item != 0 && item->f24 != 0) {
+            f144[idx]->item->func_001BDC90();
+            item->func_001BDC50();
+            item->func_001BDD60(item->f30);
+            f144[idx]->index = target;
+            f144[idx]->item = item;
+        }
+    }
+}
+
 void UIPage::func_001BEE30(int idx, int arg)
 {
     f140[idx]->func_001BDD60(arg);
