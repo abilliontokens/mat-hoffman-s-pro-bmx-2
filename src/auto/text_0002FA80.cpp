@@ -23,6 +23,9 @@ struct C_00168280 {
     void func_001691E0(void);
     void func_00169710(const char *name);
     void func_00168C20(const char *key, int def, int *dst);
+    void func_00168550(const char *key, char *dst, int n);
+    void func_00168A10(const char *key, int *dst);
+    void func_00168BE0(const char *key, const char *def, char *dst, int n);
 };
 
 struct C_00194740 {
