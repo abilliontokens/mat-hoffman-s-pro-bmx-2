@@ -46,6 +46,12 @@ struct Vec4_150900 {
 };
 extern Vec4_150900 D_002A78BC;
 extern Vec4_150900 D_002A78CC;
+extern float D_002A78C0;
+extern float D_002A78C4;
+extern float D_002A78C8;
+extern float D_002A78D0;
+extern float D_002A78D4;
+extern float D_002A78D8;
 
 struct C_00197B40 {
     void func_00197B40(Vec4_150900 *a0, Vec4_150900 *a1);
@@ -75,16 +81,16 @@ void *C_001507E0::func_001507E0(int flags) {
 
 C_00150810 *C_00150810::func_00150810(int a0, float a1, float a2, float a3, float a4, float a5) {
     func_001D3F50();
-    unk4C = a5;
     unk44 = a3;
     unk48 = a4;
+    unk4C = a5;
     unk2C = (a3 - a4) * a1 + a4;
     unk30 = a1;
-    unk24 = a0;
-    unk3C = 1;
-    unk38 = 0x100;
     unk34 = a2;
-    unk28 = (unk2C - a5) * (D_00275460 - a2);
+    unk24 = a0;
+    unk28 = (D_00275460 - a2) * (unk2C - a5);
+    unk38 = 0x100;
+    unk3C = 1;
     D_002EFDB8->unk2C = a0;
     unk50 = 1;
     return this;
