@@ -97,6 +97,27 @@ struct C_000AC680 {
     int func_000AC680(void);
 };
 
+extern int D_0027C8E4;
+struct C_000AC2C0;
+extern C_000AC2C0 *D_002B9120;
+struct C_000AC2C0 {
+    void *vtbl;
+    char pad4[0x4e0 - 4];
+    int f4e0;
+    int f4e4[8];
+    int f504[8];
+    char pad524[0x5a8 - 0x524];
+    int count;
+    void **items;
+    int cap;
+    int grow;
+    u8 flag;
+    char pad5b9[3];
+    int f5bc;
+    void func_00188F20(int flags);
+    C_000AC2C0 *func_000AC2C0(int flags);
+};
+
 struct C_000AC6E0 {
     char pad0[0x538];
     void *field_538;
