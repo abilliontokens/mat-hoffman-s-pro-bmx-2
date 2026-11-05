@@ -15,6 +15,22 @@ struct C_000FF3E0 {
     undefined4 func_000FF3E0(byte param_1);
 };
 
+struct C_000FF420 {
+    undefined4 func_000FF420(byte param_1);
+};
+
+struct C_000FF440 {
+    undefined4 func_000FF440(byte param_1);
+};
+
+struct C_000FF460 {
+    undefined4 func_000FF460(byte param_1);
+};
+
+struct C_000FF480 {
+    undefined4 func_000FF480(byte param_1);
+};
+
 
 undefined4 C_000FF3C0::func_000FF3C0(byte param_1)
 {
