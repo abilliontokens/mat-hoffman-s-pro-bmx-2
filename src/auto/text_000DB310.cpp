@@ -21,6 +21,7 @@ struct C_000DBC40 {
     char pad2B8[0x58];
     C_000DB310_Widget *f310[1];
     void func_000DBC40();
+    void func_000DBD20();
 };
 
 struct S_000DBC00_G {
