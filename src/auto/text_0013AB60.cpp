@@ -49,7 +49,14 @@ int func_001EA426(const char *a, const char *b);
 struct C_0013AEC0 {
     char pad0[0xC];
     S_0013AF80_Row *fC;
-    char pad10[0x74];
+    char pad10[0x1C];
+    int f2C[8];
+    char pad4C[0x20];
+    int f6C;
+    char pad70[4];
+    int f74;
+    int f78;
+    char pad7C[8];
     S_0013AEC0_Ent ents[7];
     char padD8[8];
     int fE0;
