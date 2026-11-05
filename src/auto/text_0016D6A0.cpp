@@ -189,6 +189,18 @@ struct C_0016DAC0_Ref {
     C_Quad *func_00197EC0(C_Quad *out, V4u_0016D6A0 *v);
 };
 
+static inline void Copy_0016DAC0(void *d, const void *s)
+{
+    *(V4u_0016D6A0 *)d = *(const V4u_0016D6A0 *)s;
+}
+
+static inline void AddTo_0016DAC0(C_Quad *d, const C_Quad *s)
+{
+    d->a = s->a + d->a;
+    d->b = s->b + d->b;
+    d->c = s->c + d->c;
+}
+
 struct C_0016DAC0 {
     void *vtbl;
     char pad4[0x20];
