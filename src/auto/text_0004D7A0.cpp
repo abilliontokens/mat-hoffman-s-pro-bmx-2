@@ -73,7 +73,9 @@ struct C_0004DCA0 {
     C_0004D7A0_State *f1A0;
     char pad1a4[0x1c];
     C_0004DCA0_Snd *f1C0;
-    char pad1C4[0xc4];
+    char pad1C4[0x30];
+    int f1F4;
+    char pad1f8[0x90];
     C_0004DCA0_Cam *f288;
     int f28C;
     int f290;
