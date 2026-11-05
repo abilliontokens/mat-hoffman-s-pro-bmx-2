@@ -104,6 +104,19 @@ struct C_001862E0 {
 extern "C" int strcmp(const char *a, const char *b);
 void func_001E891B(void *p);
 extern int D_002896CC;
+extern int D_002764F0;
+char *func_001E8920(char *dst, const char *src, int n);
+
+struct C_00185BF0 {
+    void *vtbl;
+    int f4;
+    void *f8;
+    int fc;
+    char f10[0x104];
+    char f114[0x410];
+    int f524, f528, f52c, f530, f534, f538, f53c, f540, f544;
+    C_00185BF0 *func_00185BF0(void);
+};
 extern int D_002897FC;
 
 struct V4Z_001858A0 {
