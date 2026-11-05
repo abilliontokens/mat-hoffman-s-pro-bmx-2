@@ -386,23 +386,24 @@ void C_001B0E90::func_001B0E90(void) {
 
 void C_001B0E60::func_001B0EA0(int value, C_001B0E60 **first)
 {
-    C_001B0E60 *p;
     ShaderNode *node;
-    for (p = this; p->unk1C != 0; p = p->unk1C) {
+    if (unk1C != 0) {
         if (*first == 0) {
-            *first = p;
+            *first = this;
         }
+        unk1C->func_001B0EA0(value, first);
+        return;
     }
     node = D_002F0630->pool->func_0001E8A0();
     node->next = 0;
     node->value = value;
-    if (p->unk18 != D_002F0630->frame) {
-        p->unk18 = D_002F0630->frame;
-        p->unk10 = node;
-        p->unk14 = node;
+    if (unk18 != D_002F0630->frame) {
+        unk18 = D_002F0630->frame;
+        unk10 = node;
+        unk14 = node;
     } else {
-        p->unk14->next = node;
-        p->unk14 = node;
+        unk14->next = node;
+        unk14 = node;
     }
 }
 
@@ -469,10 +470,9 @@ int C_001B1010::func_001B1010(C_001B1010_Arg *arg0)
     }
     arr[index]->unk8 = arg0;
     for (int i = 0; i < count - 1; i++) {
-        C_001B1010_Obj *e = arr[i];
-        if (e != 0 && e->unk8 != 0) {
-            if (arg0->v5(e->unk8) != 0 && e->unk20 > index) {
-                e->unk1C = arr[index];
+        if (arr[i] != 0 && arr[i]->unk8 != 0) {
+            if (arg0->v5(arr[i]->unk8) != 0 && arr[i]->unk20 > index) {
+                arr[i]->unk1C = arr[index];
             }
         }
     }
