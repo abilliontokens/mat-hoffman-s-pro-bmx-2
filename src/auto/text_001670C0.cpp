@@ -48,6 +48,7 @@ struct C_00167AC0_Sub {
     void func_001D3F50(void);
 };
 
+struct S_00167DD0_Temps { C_00167AC0_Sub a[4], b[4]; };
 struct C_00167AC0 {
     C_00167AC0_Sub subs[4];
     C_00167AC0 *func_00167AC0(void);
