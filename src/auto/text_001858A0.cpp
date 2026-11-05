@@ -1,6 +1,71 @@
 /* 16 functions from 0x001858A0 to 0x001867D0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+
+extern char D_00289608;
+extern char D_00289614;
+extern char D_00289620;
+extern char D_00289628;
+extern char D_00289630;
+extern char D_00289638;
+extern char D_00289640;
+extern char D_00289650;
+extern char D_002896B4;
+extern char D_002896B8;
+extern char D_00289830;
+extern char D_002A90B4;
+
+/* the stream/config reader passed to the load functions */
+struct S_Stream {
+    int func_00169710(char *name);
+    void func_00168CB0(void *key, void *def, void *dst);
+    void func_00168C20(void *key, int def, void *dst);
+};
+
+struct C_00185970 {
+    char pad0[4];
+    char f4[0x10];
+    char f14[0x10];
+    char f24[0x10];
+    char f34[0x10];
+    int f44;
+    int f48;
+    int func_00185970(S_Stream *stream, int n);
+};
+
+/* element called through its vtable slot 0 */
+struct S_ZoneInfoItem {
+    virtual void load(S_Stream *stream);
+    char pad4[0x1c];
+};
+
+struct S_ZoneInfo {
+    u32 vtbl;
+    u32 f4;
+    u32 f8;
+    u32 fc;
+    u32 f10;
+    u32 f14;
+    u32 f18;
+    u32 f1c;
+};
+
+struct C_00185B10 {
+    void *vtbl;
+    int f4;
+    S_ZoneInfo elems[10];
+    C_00185B10 *func_00185B10(void);
+    int func_00185B60(S_Stream *stream);
+};
+
+struct C_001862E0 {
+    void *vtbl;
+    void *f4;
+    void *f8;
+    C_001862E0 *func_001862E0(void);
+};
+
 struct C_00186540 {
     void func_00186540(int param_1);
 };
