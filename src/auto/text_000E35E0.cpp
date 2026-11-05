@@ -111,6 +111,22 @@ void C_000E35E0::func_000E3AC0(void) {
     }
 }
 
+void C_000E35E0::func_000E3BA0(void) {
+    int i;
+    func_000E3790();
+    for (i = 0; i < f280; i++) {
+        f2E0[i]->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, 0xbf800000, 0xff, 1.0f, 0, 0.0f, 0.0f, 0);
+        f2E0[i]->func_001B1980();
+        if (i == f284) {
+            f2E0[i]->func_001B2270(0xffbfa35a);
+            f2E0[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0xff, 1.45f, 0, 0.0f, 0.2f, 0);
+        } else {
+            f2E0[i]->func_001B2270(0xffcccccc);
+            f2E0[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0.0f, 0);
+        }
+    }
+}
+
 void C_000E35E0::func_000E3C90(void) {
     int i;
 
