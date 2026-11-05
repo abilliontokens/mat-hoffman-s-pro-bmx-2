@@ -1,6 +1,20 @@
 /* 20 functions from 0x001B4E20 to 0x001B5D90, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_001B5D00 {
+    int unk0;
+    int unk4;
+    char unk8;
+    char pad9[0x103];
+    int unk10C;
+    char unk110;
+    char pad111[0x77];
+    char unk188;
+    char pad189[0x77];
+    int unk200;
+    C_001B5D00* func_001B5D00(void);
+};
+
 
 extern int D_0028CB94;
 extern int D_0028CA9C;
@@ -84,13 +98,27 @@ struct C_001B59E0 {
 };
 
 
+int C_001B4E20::func_001B4E20(void *param) {
+    char buf[0x104];
+    int len;
+    func_001B4B80(param);
+    func_00168BE0(&D_0027D880, &D_002764F0, buf, 0x104);
+    len = func_001E9040(buf, &D_0027CEF0);
+    if (len > 0x32) {
+        len = 0x32;
+    }
+    func_001E8920((char *)this + 4, buf, len);
+    buf[len] = 0;
+    func_00168C20(&D_0028CA88, 1, (char *)this + 0x114);
+    return 1;
+}
+
 void C_001B4ED0::func_001B4ED0() {
-    vtbl = (void *)&D_0028CA9C;
-    f10 = f0C = f08 = 0;
+    f08 = f0C = f10 = 0;
     f14 = 0x3f800000;
-    f20 = f1C = f18 = 0;
+    f18 = f1C = f20 = 0;
     f24 = 0x3f800000;
-    f30 = f2C = f28 = 0;
+    f28 = f2C = f30 = 0;
     f34 = 0x3f800000;
     f44 = 0;
     f48 = 0;
@@ -113,6 +141,7 @@ void C_001B4ED0::func_001B4ED0() {
     f4C = 0;
     f50 = 0;
     f54 = 0;
+    vtbl = (void *)&D_0028CA9C;
 }
 
 void C_001B4ED0::func_001B4F90() {
@@ -168,3 +197,16 @@ C_001B59E0* C_001B59E0::func_001B59E0(void) {
     unk8 = 0;
     return this;
 }
+
+C_001B5D00* C_001B5D00::func_001B5D00(void) {
+    extern int D_0028CC78;
+    unk4 = 0;
+    unk8 = 0;
+    unk0 = (int)&D_0028CC78;
+    unk10C = -1;
+    unk110 = 0;
+    unk188 = 0;
+    unk200 = 0;
+    return this;
+}
+
