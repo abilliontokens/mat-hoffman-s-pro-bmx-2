@@ -56,6 +56,9 @@ struct C_00166CA0 {
  void func_001662A0(int);
  void func_001646B0();
  void func_00166CA0(C_00166CA0 *, int);
+ void func_00166EB0(int);
+ void func_00164700();
+ void func_001643A0();
 };
 
 struct S_00166C80_Arg {
