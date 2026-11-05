@@ -163,7 +163,7 @@ extern char D_00275678[];
 
 extern char D_00276F28[], D_002A5348[], D_002A47F0[], D_002A48F8[], D_00276C34[], D_00276C08[], D_0027D948[];
 struct UILoader {
-    void func_0013D780(char *name, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
+    int func_0013D780(char *name, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
     void func_0013B260(int a);
     int func_0013DFF0(char *name, int a2);
 };
