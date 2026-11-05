@@ -130,23 +130,6 @@ struct Emitter_12A7C0 {
     bool func_0012A840(void);
 };
 
-struct Emitter_12A7C0f {
-    void *vtbl;
-    char pad4[0x1DC - 4];
-    float f1DC;
-    float f1E0;
-    int f1E4;
-    int f1E8;
-    int f1EC;
-    int f1F0;
-    float f1F4;
-    float f1F8;
-    char pad1FC[0x204 - 0x1FC];
-    int f204;
-    int f208;
-    int func_0012A7C0(float a, int b, int c, int d);
-};
-
 struct Engine_2EFDB8 {
     virtual void v0();
     virtual void v1();
