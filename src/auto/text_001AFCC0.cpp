@@ -604,6 +604,20 @@ void C_001B0230::func_001B0650(void)
     }
 }
 
+int C_001B0230::func_001B0710(void *arg)
+{
+    char buf[0x80];
+
+    ((C_00168BE0 *)arg)->func_00168BE0(&D_0028C658, &D_002764F0, buf, -1);
+    if (func_001EA426(buf, &D_002764F0) == 0) {
+        return -1;
+    }
+    if (func_001EA426(buf, &D_0028C608) == 0) {
+        return -2;
+    }
+    return D_002AA478->v7(buf, 0);
+}
+
 void C_001B0230::func_001B07A0(void)
 {
     int i;
