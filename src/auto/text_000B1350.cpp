@@ -93,10 +93,18 @@ struct S_000B1740_Panel { char pad0[0xC]; S_000B1740_Widget *f0C; S_000B1740_Wid
 static __inline int Min_000B1740(int a, int b) { return a > b ? b : a; }
 static __inline int Max_000B1740(int a, int b) { return a < b ? b : a; }
 
+struct S_000B1DA0_Res { void func_00181DB0(int h); void func_001820B0(void *cb, void *ctx, int h); };
+struct S_000B1DA0_Obj { char pad0[8]; S_000B1DA0_Res *f8; };
+struct S_000B1DA0_Mgr { int func_001617F0(void *p, int a); };
+struct S_000B1DA0_Root { char pad0[0x124]; int f124; };
+extern S_000B1DA0_Mgr *D_002A829C;
+extern char D_000B17D0[];
 struct VehicleAI {
     void *vtbl;
     char pad4[0x38];
     VehicleAIOwner *f3C;
+    int func_0018C900(int a);
+    int func_000B1DA0(int a);
     u32 f40;
     u32 f44;
     u32 f48;
@@ -175,6 +183,24 @@ int func_000B1740(VehicleAI *ai, S_000B1740_Panel *panel)
     return 0;
 }
 
+#pragma optimize("g", off)
+void C_000B1A40::func_000B1A40(S_000B1A40_Stream *stream)
+{
+    char buf[0x104];
+    int len;
+
+    stream->func_00168BE0(D_00276310, D_002764F0, buf, 0x104);
+    len = Min_000B1740(func_001E9040(buf, D_0027CEF0), 0x32);
+    func_001E8920(name, buf, len);
+    name[len] = 0;
+    stream->func_00168BE0(D_00275AE0, D_002764F0, text, 0x104);
+    stream->func_00168C20(D_00275680, 0, &f8);
+    stream->func_00168CB0(D_00275AD4, &D_002A2DC4, fC);
+    stream->func_00168CB0(D_00275AC8, &D_002A2DF4, f1C);
+    stream->func_00168CB0(D_0027CEE4, &D_002A2DE4, f2C);
+    stream->func_00168C20(D_0027CED8, 1, &f0);
+}
+#pragma optimize("g", on)
 VehicleAI *VehicleAI::func_000B1EE0(int a0) {
     ((C_0018C7B0 *)this)->func_0018C7B0(a0);
     vtbl = (void *)&D_0027CF8C;
