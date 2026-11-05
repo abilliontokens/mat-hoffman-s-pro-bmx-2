@@ -12,14 +12,24 @@ struct C_0015A640 {
     undefined4 func_0015A640(byte param_1);
 };
 
+struct GLV { float x, y, z, w; };
 struct GrindLine {
-    char pad0[0x14];
+    GrindLine();
+    int unk0;
+    int unk4;
+    int unk8;
+    int unkC;
+    int unk10;
     char *unk14;
     char *unk18;
     char *unk1C;
-    char pad20[0x30];
+    GLV unk20;
+    GLV unk30;
+    GLV unk40;
     void *unk50;
-    char pad54[0x24];
+    int unk54;
+    GLV unk58;
+    GLV unk68;
     void *unk78;
     int unk7C;
     int unk80;
@@ -90,6 +100,36 @@ extern float D_002755E8;
 void func_001E891B(void *p);
 int func_001EA426(char *a, char *b);
 
+
+void GrindLineManager::func_00159C40(GL2 * volatile g)
+{
+    GrindLineManager * volatile self = this;
+    V4 center;
+    V4 ext;
+    V4 tmp;
+
+    center.x = 0.0f;
+    center.y = 0.0f;
+    center.z = 0.0f;
+    center.w = 1.0f;
+    ext.x = 0.0f;
+    ext.y = 0.0f;
+    ext.z = 0.0f;
+    ext.w = 1.0f;
+    if (g->xf != 0) {
+        g->p0 = *g->xf->func_00197F70(&tmp, &g->s0);
+        g->p1 = *g->xf->func_00197F70(&tmp, &g->s1);
+        g->d = v4sub(g->p1, g->p0);
+        center = v4scale(v4add(g->p1, g->p0), D_002755E8);
+        ext = v4scale(g->d, D_002755E8);
+        func_00159480(&g->d, &g->d);
+        ext.x = v3abs(ext.x);
+        ext.y = v3abs(ext.y);
+        ext.z = v3abs(ext.z);
+        self->unk2C++;
+        g->sh->func_001938C0(g, self->unk38, 1, &center, &ext, 0);
+    }
+}
 
 void GrindLineManager::func_0015A180(void *arg)
 {
