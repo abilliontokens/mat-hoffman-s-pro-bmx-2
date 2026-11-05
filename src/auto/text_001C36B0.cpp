@@ -205,7 +205,7 @@ extern int D_0028E544;
 extern int D_0028E53C;
 extern int D_0028E5CC;
 extern int D_0028E5C4;
-extern int D_0028E3CC;
+extern f32 D_0028E3CC;
 extern f32 D_002779FC;
 extern f32 D_00276098;
 extern f32 D_00275460;
