@@ -72,6 +72,14 @@ extern float D_0027DE70;
 extern float D_0027ED00;
 void func_001ADCC0(char *buf, int size, char *fmt, int val);
 
+inline int C_000D2300::Value(int i)
+{
+    if (f3E8[i] != 0) {
+        return 0;
+    }
+    return D_002A8490->f2E0->f2DC[i];
+}
+
 void C_000D2300::func_000D2300(void)
 {
     char buf[0x14];
