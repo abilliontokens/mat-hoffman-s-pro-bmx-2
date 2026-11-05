@@ -85,6 +85,17 @@ struct C_0018D7B0 {
     int defCount;
     char pad178[4];
     C_0018D7B0_Slot *slots;
+    int findDef(int b)
+    {
+        int i;
+
+        for (i = 0; i < defCount; i++) {
+            if (b == defs[i].sub.b) {
+                return i;
+            }
+        }
+        return 0;
+    }
     void func_0018D7B0(const char *name, int index, int b, int c, int d);
 };
 
