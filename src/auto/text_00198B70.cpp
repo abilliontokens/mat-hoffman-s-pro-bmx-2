@@ -108,7 +108,9 @@ struct C_00198B70 {
         u8 f180;
         S_00198B70_Bits f180b;
     };
-    char pad181[0x18c - 0x181];
+    char pad181[3];
+    int f184;
+    int f188;
     S_00198B70_Cam *f18c;
     void func_00197AA0(void);
     void func_001576D0(void);
