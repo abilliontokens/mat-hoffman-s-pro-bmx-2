@@ -110,6 +110,7 @@ struct C_00151F80 {
     void func_00151F80(int a0);
     void func_00152BA0(void);
     void func_001528D0(float dt);
+    void Integrate(float dt);
 };
 
 void C_00151F80::func_00151F80(int a0)
@@ -171,9 +172,7 @@ void C_00151F80::func_001528D0(float dt)
     fe8 = S_151F80_Vec(dt * ff8 + fe8.x, dt * ffc + fe8.y, dt * f100 + fe8.z);
     S_151F80_Vec v = fe8;
     v.y = 0.0f;
-    float sq = v.z * v.z + v.x * v.x;
-    float len;
-    _mm_store_ss(&len, _mm_sqrt_ss(*(__m128 *)&sq));
+    float len = sqrtf(v.z * v.z + v.x * v.x);
     if (len > D_002A7870) {
         func_00150890(&v, &v);
         v = v * D_002A7870;
