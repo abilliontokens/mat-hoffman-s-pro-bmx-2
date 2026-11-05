@@ -421,15 +421,15 @@ void C_001089C0::func_001089C0(Vec4_00108370 *out)
     v.y = 0;
     v.x = 0;
     v.w = 1.0f;
-    if (f704) {
-        v = fA04->func_00165E20(f1874, f798, D_00276690, 0);
-        *out = f230->func_00197F70(&v);
-    } else if (f70C) {
-        v = fA04->func_00165E20(f1878, f798, D_00276690, 0);
-        *out = f230->func_00197F70(&v);
-    } else {
-        f230->func_00199A70(0, out);
+    if (f704 != 0) {
+        calc(f1874, &v, out);
+        return;
     }
+    if (f70C != 0) {
+        calc(f1878, &v, out);
+        return;
+    }
+    f230->func_00199A70(0, out);
 }
 
 float C_00108CB0::func_00108CB0(int idx, float v)
