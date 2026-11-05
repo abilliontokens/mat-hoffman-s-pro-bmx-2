@@ -238,6 +238,13 @@ C_000ABE10 *C_000ABE10::func_000ABE10()
     return this;
 }
 
+C_000AC140 *C_000AC140::func_000AC140()
+{
+    ((C_001B59E0 *)this)->func_001B59E0();
+    vtbl = (void *)&D_0027C824;
+    return this;
+}
+
 int C_000AC680::func_000AC680(void)
 {
     C_000AC680_Alloc *p = (C_000AC680_Alloc *)func_001E8A44(0x128);
