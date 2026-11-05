@@ -1,5 +1,21 @@
 /* 5 functions from 0x0018A010 to 0x0018B010, found by Ghidra. */
 #include "common.h"
+struct S_A010_Curve { float func_00026A10(float,float); };
+struct S_A010_Draw { void func_00150390(unsigned int,float,float,int); };
+struct S_A010_List { int pad; int count; int pad8; int *indices; };
+struct S_A010_Item { char pad[0x21]; unsigned char flags21; char pad22[5]; unsigned char flags27; };
+struct S_A010_Global { char pad[0x25c]; float time; char pad260[0x10]; int mode; };
+extern S_A010_Global *D_002A8490;
+extern char *D_002EFDB8;
+struct BasicScene {
+ char pad[0x340]; int f340; char pad344[0x44]; S_A010_List *f388;
+ char pad38c[0x50]; S_A010_Draw *f3DC; S_A010_Item **f3E0;
+ char pad3e4[0xe0]; S_A010_Curve *f4C4,*f4C8,*f4CC,*f4D0,*f4D4;
+ unsigned char f4D8;
+ void func_00185610(float *);
+ void func_001578D0();
+ void func_0018A010();
+};
 
 struct C_0018AFD0 {
     void *vtbl;
