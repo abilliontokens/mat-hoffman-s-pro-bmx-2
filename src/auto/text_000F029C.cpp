@@ -4,6 +4,58 @@
 extern int D_002823DC;
 extern int D_0028F5DC;
 
+struct C_001D5AD0 {
+    char pad0[0x38];
+    unsigned int f38;
+    char pad3C[0x1c];
+    unsigned char f58;
+    void func_001D5AD0();
+};
+
+struct S_002B91AC {
+    char pad0[0x24];
+    C_001D5AD0 *unk24, *unk28, *unk2C, *unk30;
+    char pad34[0x1c];
+    C_001D5AD0 *unk50, *unk54;
+    char pad58[0x10];
+    C_001D5AD0 *unk68, *unk6C;
+};
+extern S_002B91AC *D_002B91AC;
+extern float D_002823D4;
+extern float D_00275994;
+
+struct C_000F0AE0_Svc {
+    int func_000301D0();
+};
+
+struct C_000F0AE0_Owner {
+    char pad0[0x74];
+    C_000F0AE0_Svc *f74;
+};
+
+struct C_000F0AE0_Mgr {
+    char pad0[0x25c];
+    C_000F0AE0_Owner *f25c;
+};
+
+struct C_000F0AE0 {
+    char pad0[0x124];
+    C_000F0AE0_Mgr *f124;
+    char pad128[0x280 - 0x128];
+    int f280, f284;
+    char pad288[0x404 - 0x288];
+    short f404;
+    char pad406[0x614 - 0x406];
+    float f614[9];
+    char pad638[0x680 - 0x638];
+    C_001D5AD0 *arr680[4];
+    C_001D5AD0 *arr690[2];
+    C_001D5AD0 *arr698[9];
+    C_001D5AD0 *arr6BC[9];
+    int arr6E0[9];
+    void func_000F0AE0();
+};
+
 struct C_000F0A00_Widget {
     void func_001B1980();
     void func_001B2270(unsigned int color);
