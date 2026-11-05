@@ -19,7 +19,7 @@ void func_001EE782(int fh);
 
 /* _sopen's helper takes shflag in ecx and the rest on the stack, caller cleans up */
 struct S_001F54D0 {
-    int func_001F54D0(int *unlockFlag, int *fh, const char *path, int oflag, int pmode);
+    int func_001F54D0(int *unlockFlag, int *fh, const char *path, int oflag, int pmode, ...);
 };
 
 extern char D_002FB000[0x101];
@@ -63,6 +63,19 @@ void func_001F4BDE(void)
 void func_001F4E30(void) {
     int func_001EB302(...);
     func_001EB302(13);
+}
+
+int func_001F4E39(void)
+{
+    extern int D_002FB378;
+    void func_001F4D18(int a);
+
+    if (D_002FB378 == 0) {
+        D_002FB104 = -3;
+        func_001F4D18(0);
+        D_002FB378 = 1;
+    }
+    return 0;
 }
 
 void func_001F4E8B(int rterrnum)
