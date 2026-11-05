@@ -138,7 +138,7 @@ struct C_00192470 : C_0001DFE0 {
     void func_00192630();
     void func_00192680();
     void func_00192840(int *row, int *limit);
-    void func_001927C0(void *row, int limit);
+    __declspec(noinline) void func_001927C0(void *row, int limit);
 };
 
 struct C_00192CA0 {
@@ -350,7 +350,7 @@ void C_00192470::func_00192840(int *row, int *limit)
     for (i = 0; i < *limit; i++) {
         unsigned int e = row[i];
         if ((e & 2) == 0) {
-            unsigned char *p = (unsigned char *)(e & ~1);
+            char *p = (char *)(e & ~1);
             if ((p[3] & 1) != 0 && (p[3] & 4) == 0) {
                 if (p[2] == f24) {
                     if ((p[-3] & 1) != 0) {
