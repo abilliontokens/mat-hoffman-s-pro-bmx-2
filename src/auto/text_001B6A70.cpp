@@ -112,3 +112,17 @@ C_001B6E70 *C_001B6E70::func_001B6E70(void *param) {
     vtbl = (void *)&D_0028CE6C;
     return this;
 }
+
+void C_001B6E70::func_001B7010(C_001B7010_arg *arg) {
+    int i;
+
+    for (i = 0; i < f24; i++) {
+        if (func_001E8AF0((int)f28[i] + 0x90, &D_0028CF24))
+            arg->vf53(f28[i]);
+        if (func_001E8AF0((int)f28[i] + 0x90, &D_0028CF20))
+            arg->vf54(f28[i]);
+        if (func_001E8AF0((int)f28[i] + 0x90, &D_0028CF14))
+            arg->vf55(f28[i]);
+    }
+}
+
