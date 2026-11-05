@@ -281,6 +281,7 @@ struct S_6E970 {
 };
 extern char *func_0005B870(int p);
 extern char D_002789B8[2];
+extern char D_00278BC8[5], D_00278BC0[5], D_00278414[5], D_002783F8[5], D_00278BB8[6], D_00278BB0[8], D_00278BA8[6], D_00278BA0[5], D_00278B98[6], D_00278B90[5], D_00278B88[5], D_00278B80[5];
 extern S_6E970_G1 *D_002A8490;
 #include <string.h>
 #pragma intrinsic(memcmp)
