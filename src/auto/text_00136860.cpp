@@ -28,17 +28,28 @@ struct C_0001DFE0 {
     void func_0001DFF0(void);
 };
 
-struct CubeSlot {
-    virtual void vf0();
-    virtual void vf1();
-    virtual void vf2();
+struct XboxTextureMap {
+    virtual void slot0(int flags);
+    virtual void slot1();
+    virtual void slot2();
+    virtual void slot3();
+    virtual void slot4();
+    virtual void slot5();
+    virtual void slot6();
+    virtual void slot7();
+    virtual int slot8(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9);
+    virtual int slot9(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9);
+    virtual void slot10();
+    virtual void slot11();
+    virtual void slot12(int a1, int a2, int a3);
+    XboxTextureMap *func_001D6AD0(void *param);
 };
 
 struct CubeGroup {
+    unsigned int sizes;
     unsigned short mask;
-    CubeSlot *ptrs[0x39];
+    XboxTextureMap *ptrs[0x39];
     unsigned int vec[4];
-    int unkF8;
 };
 
 struct Cube : C_0001DFE0 {
@@ -46,12 +57,13 @@ struct Cube : C_0001DFE0 {
     float v18[4];
     float v28[4];
     int unk38;
-    void *unk3C;
+    int unk3C;
     char unk40;
-    char pad41[7];
+    char pad41[3];
     CubeGroup groups[6];
+    unsigned int unk62C;
     void func_001364B0(void);
-    void func_00136860(int i, int j, int a);
+    int func_00136860(int i, int j, int a);
     void func_00136A70(void);
     int func_001369E0(int a);
     Cube *func_00136AD0(void);
@@ -71,7 +83,7 @@ struct TokenEntry {
 
 int Cube::func_001369E0(int a)
 {
-    D_002BEAAC->func_0013AFF0(unk38, groups[5].unkF8, 0);
+    D_002BEAAC->func_0013AFF0(unk38, unk62C, 0);
     for (int i = 0; i < 6; i++) {
         for (int j = 0; j < 16; j++) {
             if ((groups[i].mask & (1 << j)) && groups[i].ptrs[j] == 0) {
@@ -88,7 +100,7 @@ void Cube::func_00136A70(void)
     for (int i = 5; i >= 0; i--) {
         for (int j = 15; j >= 0; j--) {
             if (groups[i].ptrs[j] != 0) {
-                groups[i].ptrs[j]->vf2();
+                groups[i].ptrs[j]->slot2();
                 groups[i].ptrs[j] = 0;
             }
         }
