@@ -162,6 +162,13 @@ void C_00100AD0::func_00100AD0(void) {
     }
 }
 
+void *C_00100C00::func_00100C00(unsigned int flags) {
+    func_000E4AB0();
+    if (flags & 1)
+        func_001E891B(this);
+    return this;
+}
+
 undefined4 C_00100FF0::func_00100FF0(byte param_1)
 {
   int func_000EB420(...);
