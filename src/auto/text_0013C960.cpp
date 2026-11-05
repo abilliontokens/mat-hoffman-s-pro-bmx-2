@@ -1,11 +1,26 @@
 /* 7 functions from 0x0013C960 to 0x0013D780, found by Ghidra. */
 #include "common.h"
 
-struct S_0013C960_Rec {
-    char pad0[0x28];
-};
+void func_00012140(void *p);
+void func_001E8390(void *p);
 
 int func_001EA426(void *p, int a);
+
+struct S_0013C960_Rec {
+    int f0;
+    int f4;
+    int f8;
+    int fC;
+    void *f10;
+    void *f14;
+    char pad18[0x10];
+};
+
+struct S_0013C960_Ent {
+    void *f0;
+    int f4;
+    int f8;
+};
 
 struct S_0013C960_Elem {
     int f0;
