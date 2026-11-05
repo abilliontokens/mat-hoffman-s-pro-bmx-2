@@ -258,6 +258,79 @@ struct C_000BC520 {
 };
 
 
+void C_000BB7C0::func_000BB7C0(int idx)
+{
+    switch (idx) {
+    case 0:
+        f25C->f74->func_00030020(D_0027DB54);
+        f25C->f74->func_000300C0(D_0027DB44);
+        break;
+    case 1:
+        f25C->f74->func_00030020(D_0027DB38);
+        f25C->f74->func_000300C0(D_0027DB28);
+        break;
+    case 2:
+        f25C->f74->func_00030020(D_0027DB1C);
+        f25C->f74->func_000300C0(D_0027DB0C);
+        break;
+    case 3:
+        f25C->f74->func_00030020(D_0027DB00);
+        f25C->f74->func_000300C0(D_0027DAF0);
+        break;
+    case 4:
+        f25C->f74->func_00030020(D_0027DAE4);
+        f25C->f74->func_000300C0(D_0027DAD4);
+        break;
+    case 5:
+        f25C->f74->func_00030020(D_0027DAC8);
+        f25C->f74->func_000300C0(D_0027DAB8);
+        break;
+    case 6:
+        f25C->f74->func_00030020(D_0027DAAC);
+        f25C->f74->func_000300C0(D_0027DA9C);
+        break;
+    case 7:
+        f25C->f74->func_00030020(D_0027DA90);
+        f25C->f74->func_000300C0(D_0027DA80);
+        break;
+    case 8:
+        f25C->f74->func_00030020(D_0027DA70);
+        f25C->f74->func_000300C0(D_0027DA5C);
+        break;
+    case 9:
+        f25C->f74->func_00030020(D_0027DA50);
+        f25C->f74->func_000300C0(D_0027DA40);
+        break;
+    case 10:
+        f25C->f74->func_00030020(D_0027DA34);
+        f25C->f74->func_000300C0(D_0027DA24);
+        break;
+    case 11:
+        f25C->f74->func_00030020(D_0027DA18);
+        f25C->f74->func_000300C0(D_0027DA08);
+        break;
+    case 12:
+        f25C->f74->func_00030020(D_0027D9F8);
+        f25C->f74->func_000300C0(D_0027D9E4);
+        break;
+    case 13:
+        f25C->f74->func_00030020(D_0027D9D8);
+        f25C->f74->func_000300C0(D_0027D9CC);
+        break;
+    case 14:
+        f25C->f74->func_00030020(D_0027D9C0);
+        f25C->f74->func_000300C0(D_0027D9B0);
+        break;
+    case 15:
+        f25C->f74->func_00030020(D_0027D9D8);
+        f25C->f74->func_000300C0(D_0027D9A4);
+        break;
+    }
+    f268->func_001C4D50(1000);
+    f25C->f74->func_00030210();
+    f25C->f74->func_000301A0();
+}
+
 int C_000BBDF0::func_000BBDF0(void)
 {
   int in_ECX = (int)this;
