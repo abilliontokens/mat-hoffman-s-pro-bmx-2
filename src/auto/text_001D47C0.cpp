@@ -42,6 +42,7 @@ struct C_001D5660 {
     S_001D5660_Mat f20;
     int f60;
     short *f64;
+    void alloc(int count);
     void func_001D5660(int count, int arg2);
     void func_001D5720(void);
 };
