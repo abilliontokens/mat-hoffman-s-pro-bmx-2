@@ -28,6 +28,30 @@ inline void str_copy(char *dst, const char *src, int size)
     dst[n] = 0;
 }
 void *func_001E83E8(void *block, unsigned int size);
+struct V4_000A3780 { float x, y, z, w; V4_000A3780() { x = y = z = 0; w = 1; } };
+struct S_000A3780_Stream {
+    char pad0[0x4CC];
+    S_000A3780_Stream *func_00168280(void);
+    int func_00169490(const char *path, int flags);
+    void func_001691E0(void);
+    void func_00169710(const char *name);
+    void func_00168A10(const char *key, int *dst);
+    void func_00168550(const char *key, char *dst, int n);
+    void func_00168CB0(const char *key, V4_000A3780 *def, V4_000A3780 *dst);
+};
+struct S_000A3780_Mgr {
+    void *func_00159E90(char *name, V4_000A3780 *p0, V4_000A3780 *p1, char *s2, char *s3, int n);
+    void func_00159C40(void *line);
+};
+struct S_000A3780_Out { char pad0[0x14]; int f14; void **f18; };
+struct C_000A3780 {
+    char pad0[0x530];
+    S_000A3780_Mgr *f530;
+    int func_000A3780(int a1, const char *path, S_000A3780_Out *out);
+};
+extern char D_00276DCC[], D_00276DBC[], D_00276DB0[], D_00276DA4[], D_00276D98[], D_00276D8C[];
+extern "C" char *func_001E8AC0(const char *s, int c);
+void func_001E891B(void *ptr);
 void *func_001E8A44(int size);
 
 struct C_00094A10 {
