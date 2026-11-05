@@ -52,7 +52,10 @@ struct S_000C4FD0_Root {
 
 extern S_000C4FD0_Root *D_002A8490;
 
-struct S_000C4EB0_Obj { void func_001B1980(); };
+struct S_000C4EB0_Obj {
+    void func_001B1980();
+    void func_001B1860(int, float, int, float, int, int, int, int, float, int, float, float, int);
+};
 struct C_000C4EB0 {
     virtual void v0();
     virtual void v1();
