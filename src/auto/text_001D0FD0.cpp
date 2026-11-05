@@ -347,3 +347,14 @@ void *C_001D1B70::func_001D1B70(unsigned int flags)
     return this;
 }
 
+C_001D1BB0 *C_001D1BB0::func_001D1BB0()
+{
+    func_00160BD0();
+    unk20 = 0;
+    unk28 = 0;
+    unk2C = 0;
+    unk50 = 0;
+    vtbl = &D_0028F274;
+    return this;
+}
+
