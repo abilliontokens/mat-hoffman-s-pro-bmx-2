@@ -133,6 +133,58 @@ struct C_000AF8A0 {
     void func_000AF8A0(void);
 };
 
+extern int D_0027CA70;
+
+/* one 0x160-byte record of the table at BmxScene+0x344 */
+struct S_000AEFA0_Elem {
+    char pad0[0x160];
+};
+
+/* CollisionObjects: made by func_00188A80, loaded through vtable slot 27 */
+struct C_000AEFA0_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual int v27(int a, S_000AEFA0_Elem *b, void **c);
+    C_000AEFA0_Obj *func_00188A80(int a);
+};
+
+/* BmxScene */
+struct C_000AEFA0 {
+    char pad0[0x28];
+    int f28;
+    char pad2C[0x340 - 0x2C];
+    int f340;
+    S_000AEFA0_Elem *f344;
+    char pad348[0x3B0 - 0x348];
+    C_000AEFA0_Obj **f3B0;
+    void func_000AEFA0(void);
+};
+
 
 void C_000AEF10::func_000AEF10(void) {
     C_000A0A10_Elem *p = unk28;
