@@ -34,6 +34,7 @@ struct S_001EF734 {
     S_001EF734 *func_001EFD7A(void *out, char *s);
 };
 
+struct S_001F062A_Arg { int x; };
 extern char D_00295C58[];
 extern char D_00295C60[];
 extern char D_00295C50[];
