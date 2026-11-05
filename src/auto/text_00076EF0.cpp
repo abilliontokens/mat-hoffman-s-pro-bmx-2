@@ -14,8 +14,8 @@ struct C_000777A0 {
     char pad4[0x24 - 4];
     u32 f24[8];
     u32 f44[8];
-    void *f64;
-    void *f68;    u32 f6C[5];
+    u32 f64;
+    u32 f68;    u32 f6C[5];
     u32 f80[5];
     u32 f94;
     u32 f98;
