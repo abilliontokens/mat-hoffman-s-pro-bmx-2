@@ -62,7 +62,15 @@ struct Sub_00088530 {
     char pad0[4];
     float f4;
     float f8;
-    char padC[0x58 - 0xC];
+    char padC[0x14 - 0xC];
+    float f14;
+    float f18;
+    char pad1C[0x28 - 0x1C];
+    float f28;
+    float f2c;
+    char pad30[0x38 - 0x30];
+    u32 f38;
+    char pad3C[0x58 - 0x3C];
     unsigned char b58;
     char pad59[0x64 - 0x59];
     /* move the sprite, marking it dirty only when something changed */
@@ -77,7 +85,10 @@ struct Sub_00088530 {
     void func_001D5760();
     void func_001D5AD0();
     void func_0005E800(int x, int y);
+    void func_001D5810(void *a, int b, int c, int d);
 };
+
+extern char D_00279920[];
 
 struct S_00088720_Global {
     char pad0[0x10];
