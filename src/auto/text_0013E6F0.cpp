@@ -92,6 +92,98 @@ struct C_0013E900 {
     undefined4 func_0013E900(byte param_1);
 };
 
+struct S_0013E9B0_Obj {
+    char pad00[0x1CC];
+    float f1CC;
+    float f1D0;
+    char pad1D4[0x200 - 0x1D4];
+    C_00149310 *f200;
+    int f204;
+    float func_0014C860(int a);
+    float func_0014C830(int a);
+};
+struct S_0013E9B0_Glob {
+    char pad00[0x54];
+    S_0013E9B0_Obj *f54[1];
+    char pad58[0x578 - 0x58];
+    float f578;
+};
+extern S_0013E9B0_Glob *D_002BF250;
+extern float D_002BEB34;
+extern float D_00284ED0;
+extern float D_0027988C;
+extern float D_00284ECC;
+struct S_0013E9B0_G2 { int f0; char *f4; };
+extern S_0013E9B0_G2 *D_002EFDB8;
+struct C_0015E420 { void func_0015E420(void *a, void *b, int c); };
+extern C_0015E420 *D_002E2930;
+void func_000263B0(void *a, void *b, void *c);
+void func_0011AC30(void *out, void *in);
+
+struct __declspec(align(16)) S_0013E9B0_Mat {
+    float m[16];
+};
+
+static __forceinline void Xform_0013E9B0(float *in, S_0013E9B0_Mat *mat, float *out)
+{
+    __m128 v = _mm_loadu_ps(in);
+    __m128 r0 = _mm_load_ps(&mat->m[0]);
+    _mm_storeh_pi((__m64 *)(out + 2), v);
+    __m128 r1 = _mm_load_ps(&mat->m[4]);
+    out[3] = 1.0f;
+    __m128 r2 = _mm_load_ps(&mat->m[8]);
+    v = _mm_loadh_pi(v, (const __m64 *)(out + 2));
+    r0 = _mm_mul_ps(r0, v);
+    r1 = _mm_mul_ps(r1, v);
+    r2 = _mm_mul_ps(r2, v);
+    __m128 lo = _mm_unpacklo_ps(r0, r1);
+    __m128 hi = _mm_unpackhi_ps(r0, r1);
+    __m128 junk;
+    junk = _mm_movehl_ps(junk, r2);
+    lo = _mm_add_ps(lo, hi);
+    r2 = _mm_add_ps(r2, junk);
+    hi = _mm_movehl_ps(hi, lo);
+    lo = _mm_movelh_ps(lo, r2);
+    hi = _mm_shuffle_ps(hi, r2, 0x14);
+    lo = _mm_add_ps(lo, hi);
+    _mm_storeu_ps(out, lo);
+    out[3] = 1.0f;
+}
+
+static __forceinline void Trunc_0013E9B0(int *volatile out, float f)
+{
+    *out = _mm_cvttss_si32(*(__m128 *)&f);
+}
+
+static __forceinline int Min_0013E9B0(int a, int b)
+{
+    return a > b ? b : a;
+}
+
+struct S_0013E9B0_Arg {
+    char pad00[0x10];
+    char f10[0x40];
+    float f50[4];
+    char f90[0x3C];
+    float fCC;
+    float fD0[4];
+    int fE0;
+};
+
+struct C_0013E9B0 {
+    char pad00[8];
+    u16 f8;
+    u16 fA;
+    u16 fC;
+    u8 fE;
+    u8 fF;
+    u8 f10;
+    u8 f11;
+    char pad12[2];
+    s16 f14;
+    s16 f16;
+    int func_0013E9B0(S_0013E9B0_Arg *arg);
+};
 
 C_0013E8C0 *C_0013E8C0::func_0013E8C0(int param_1)
 {
