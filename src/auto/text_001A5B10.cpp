@@ -9,6 +9,24 @@ struct LoadMemoryCard {
     void func_00157600(void *);
     LoadMemoryCard *func_001A61C0(void *);
 };
+struct S_6260_V { virtual void v0(int d); virtual void v1(); virtual void v2(); };
+struct S_6260_E { void func_001D6410(); };
+struct S_6260_H { virtual void v0(int d); };
+void func_001E891B(void *p);
+extern S_6260_H *D_002F0630;
+struct C_001A6260 {
+    void *vtbl; char pad4[0x20];
+    int f24; int f28; int f2c; int f30;
+    S_6260_V *f34[2];
+    S_6260_V *f3c[2];
+    S_6260_E *f44[2];
+    S_6260_V *f4c; S_6260_V *f50;
+    char pad54[0x40];
+    S_6260_V *f94;
+    void func_001A6260();
+    void func_00157660();
+    void func_0018C120();
+};
 extern int D_0028BA50;
 extern int D_00275630;
 
