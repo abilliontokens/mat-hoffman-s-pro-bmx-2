@@ -73,6 +73,8 @@ struct C_000E0D50 {
     void func_001BE3F0();
     C_000E0D50 *func_000E0D50(int a);
     void func_000E0DF0();
+    void func_001BEFC0(int a, int b);
+    void func_000E0E30();
 };
 
 C_000E0D50 *C_000E0D50::func_000E0D50(int a)
