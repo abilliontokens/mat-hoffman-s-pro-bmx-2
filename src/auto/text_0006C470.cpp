@@ -78,7 +78,7 @@ struct C_0006D1D0 {
     virtual void v16();
     virtual void v17();
     virtual void v18(int a);
-    char pad4[0xC4];
+    char pad4[0xC8];
     int unkCC;
     int unkD0;
     C_0006D210_Obj *unkD4;
