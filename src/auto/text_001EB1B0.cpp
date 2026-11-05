@@ -69,6 +69,12 @@ extern "C" unsigned char __readfsbyte(unsigned long Offset);
 
 extern "C" void (__stdcall *_imp__KeBugCheck)(unsigned long code);
 
+/* thread-local block: fs:[4] points at an array of these, indexed by the TLS index */
+struct S_TlsBlock {
+    int pad0[2];
+    S_Tiddata *ptd;
+};
+
 extern volatile unsigned long D_002F41D0;
 extern S_Tiddata *D_002FB360;
 extern char D_002AEDD8[];
