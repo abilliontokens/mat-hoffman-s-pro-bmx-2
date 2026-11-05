@@ -115,6 +115,13 @@ void C_00196290::func_00196350(int param_1)
     f28 = param_1;
 }
 
+void C_00196290::func_00196BD0(void)
+{
+    if (fc0 & 1) {
+        memcpy(fcc, f50, fc8);
+    }
+}
+
 void C_00196290::func_00196360(u8 *param_1)
 {
     f54[0] = param_1[0];
@@ -128,12 +135,5 @@ void C_00196290::func_00196360(u8 *param_1)
     f54 += 8;
     f68 += 8;
     f64 += 8;
-}
-
-void C_00196290::func_00196BD0(void)
-{
-    if (fc0 & 1) {
-        memcpy(fcc, f50, fc8);
-    }
 }
 
