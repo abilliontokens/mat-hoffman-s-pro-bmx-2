@@ -23,6 +23,88 @@ static __inline float Max(float a, float b)
     return r;
 }
 
+struct VecInit_0014ACB0 : Vec4 {
+    VecInit_0014ACB0() { z = 0; y = 0; x = 0; w = 1.0f; }
+    VecInit_0014ACB0(float x_, float y_, float z_) { x = x_; y = y_; z = z_; w = 1.0f; }
+};
+
+struct __declspec(align(16)) M44_0014ACB0 {
+    __m128 m[4];
+};
+
+struct S_0014ACB0_Node {
+    char pad0[0xF0];
+    M44_0014ACB0 mat;
+};
+
+struct S_0014ACB0_Pair {
+    S_0014ACB0_Node *a;
+    S_0014ACB0_Node *b;
+};
+
+struct S_0014ACB0_Shape {
+    Vec4 f0;
+    Vec4 f10;
+    char pad20[0x60];
+    int f80;
+    char pad84[0x10];
+    float f94;
+};
+
+extern float D_00275544;
+extern float D_00275460;
+extern float D_002755E8;
+extern u32 D_002B92E0;
+extern u32 D_002B92F0;
+Vec4 *func_0011EEE0(Vec4 *out, Vec4 *a, Vec4 *b);
+Vec4 *func_0014AA70(Vec4 *out, Vec4 *a, Vec4 *b);
+void func_00133D80(void *p);
+
+static __forceinline void Xform_0014ACB0(Vec4 *out, const M44_0014ACB0 *mat, const float *v)
+{
+    __m128 t = _mm_loadu_ps(v);
+    _mm_storeh_pi((__m64 *)&out->z, t);
+    out->w = 1.0f;
+    t = _mm_loadh_pi(t, (__m64 *)&out->z);
+    __m128 r0 = _mm_mul_ps(mat->m[0], t);
+    __m128 r1 = _mm_mul_ps(mat->m[1], t);
+    __m128 r2 = _mm_mul_ps(mat->m[2], t);
+    __m128 lo = _mm_unpacklo_ps(r0, r1);
+    __m128 hi = _mm_unpackhi_ps(r0, r1);
+    __m128 junk = _mm_movehl_ps(r2, r2);
+    lo = _mm_add_ps(lo, hi);
+    r2 = _mm_add_ps(r2, junk);
+    hi = _mm_movehl_ps(hi, lo);
+    lo = _mm_movelh_ps(lo, r2);
+    hi = _mm_shuffle_ps(hi, r2, 0x14);
+    lo = _mm_add_ps(lo, hi);
+    _mm_storeu_ps(&out->x, lo);
+    out->w = 1.0f;
+}
+
+/* DynamicRayCollisionObject */
+struct C_0014ACB0 {
+    char pad0[0x28];
+    Vec4 f28;
+    char pad38[0x10];
+    float f48;
+    char pad4C[8];
+    S_0014ACB0_Shape *f54;
+    char pad58[0x4F];
+    u8 fA7;
+    int fA8;
+    S_0014ACB0_Pair *fAC;
+    Vec4 *fB0;
+    char padB4[8];
+    float *fBC;
+    Vec4 *fC0;
+    Vec4 *fC4;
+    char padC8[0x10];
+    Vec4 fD8;
+    float fE8;
+    void func_0014ACB0(void);
+};
+
 struct C_0014AC30 {
     char pad0[0xA8];
     int fA8;
@@ -232,7 +314,7 @@ int func_0014A7B0(VSEntry *entries, unsigned int *tokens)
     int count = 0;
     int offset = 0;
     int index = 0;
-    while (*tokens != 0xffffffff) {
+    for (; *tokens != 0xffffffff; tokens++) {
         unsigned int tok = *tokens;
         switch (tok >> 29) {
         case 1:
@@ -257,7 +339,6 @@ int func_0014A7B0(VSEntry *entries, unsigned int *tokens)
             }
             break;
         }
-        tokens++;
     }
     return count;
 }
