@@ -28,3 +28,41 @@ struct C_00097FD0 {
     void func_00098E80(int idx);
     int func_00097FD0(void);
 };
+
+void C_00097FD0::func_00098E80(int idx) {
+    C_00096930 **list;
+    int count;
+    int i;
+
+    switch (idx) {
+    case 0:
+        list = arr0;
+        break;
+    case 1:
+        list = arr1;
+        break;
+    case 2:
+        list = arr2;
+        break;
+    default:
+        list = 0;
+        break;
+    }
+    switch (idx) {
+    case 0:
+        count = cnt0;
+        break;
+    case 1:
+        count = cnt1;
+        break;
+    case 2:
+        count = cnt2;
+        break;
+    default:
+        count = 0;
+        break;
+    }
+    for (i = 0; i < count; i++) {
+        list[i]->func_00096930();
+    }
+}
