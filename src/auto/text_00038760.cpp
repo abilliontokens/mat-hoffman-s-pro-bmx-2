@@ -33,9 +33,8 @@ struct C_00038760 {
 int *C_00038760::func_000389C0(int param_1)
 {
     int i;
-    int n = count;
-    for (i = 0; i < n; i++) {
-        int *e = (int *)at(i);
+    for (i = 0; i < arr.count; i++) {
+        int *e = (int *)arr.at(i);
         if ((e[0] == 0 || e[0] >= 3) && e[2] == param_1)
             return e;
     }
