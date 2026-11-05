@@ -33,7 +33,7 @@ struct S_R {
     virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24();
     virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29();
     virtual void v30(); virtual void v31(); virtual void v32();
-    void __stdcall func_0011CA60(Vec4_587F0);
+    void func_0011CA60(Vec4_587F0);
 };
 struct C_001587F0 {
     char pad0[0x24];
