@@ -89,6 +89,42 @@ void C_001D6190::func_001D6190(int a, const char *s, int b)
     }
 }
 
+int C_001D61E0::func_001D61E0(void)
+{
+    int result = 0;
+    C_001D61E0Entry *e = unk40->tbl[*unk0];
+
+    if (e == 0) {
+        C_001D61E0Entry **p = unk40->tbl;
+        do {
+            e = *p++;
+        } while (e == 0);
+    }
+    if (e->f1C == 0) {
+        float d = e->f10 - e->fC;
+        result = (int)((float)unk40->func_0018C070()->fC * unk34 * d);
+    } else {
+        result = (int)((float)(e->s1A + 1) * unk34);
+    }
+    return result;
+}
+
+C_001D6380 *C_001D6380::func_001D6380(unsigned int flags)
+{
+    vtbl = (void *)&D_0028F5F4;
+    if (unk64 != 0) {
+        func_001E891B(unk64);
+    }
+    if (unk14 != 0) {
+        func_00201100(unk14);
+    }
+    vtbl = (void *)&D_00284E94;
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void C_001D6410::func_001D6410(void)
 {
     if (unk0 != 0) {
