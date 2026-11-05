@@ -82,6 +82,11 @@ struct UIGlobalSub {
     int f324;
 };
 
+struct UIGlobalSub2 {
+    char pad0[0x1dc];
+    int f1DC;
+};
+
 struct UIGlobal {
     virtual void v0();
     virtual void v1();
