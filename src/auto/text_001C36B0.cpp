@@ -140,7 +140,6 @@ struct C_001C3720 {
     int fC;
     int f10;
     S_001C3720_Data *f14;
-    int func_001C3720(int offset, int count);
     int func_001C3720(int offset, int count, int a2);
 };
 
@@ -380,7 +379,7 @@ void C_001C3700::func_001C3700(void)
   return;
 }
 
-int C_001C3720::func_001C3720(int offset, int count)
+int C_001C3720::func_001C3720(int offset, int count, int a2)
 {
     if (count == 0) {
         count = f10 - offset;
