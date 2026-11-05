@@ -17,7 +17,7 @@ struct V4_00023340 {
 
 void func_000212C0(V4_00023340 *out, V4_00023340 *in);
 
-static __forceinline void cross_00023340(float *out, float *a, float *b)
+inline void cross_00023340(float *out, float *a, float *b)
 {
     __m128 va = _mm_loadu_ps(a);
     __m128 vb = _mm_loadu_ps(b);
