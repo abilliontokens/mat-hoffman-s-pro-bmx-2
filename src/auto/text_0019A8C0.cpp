@@ -77,18 +77,18 @@ void SoultreeObject::func_0019ABA0(int a1, int a2)
 
 void SoultreeObject::func_0019AC50(void)
 {
-    u32 vecB[4];
-    u32 vecA[4];
+    float vecB[4];
+    float vecA[4];
 
     if (f18c != 0) {
-        vecA[2] = 0;
-        vecA[1] = 0;
-        vecA[0] = 0;
-        vecA[3] = 0x3f800000;
-        vecB[2] = 0;
-        vecB[1] = 0;
-        vecB[0] = 0;
-        vecB[3] = 0x3f800000;
+        vecA[2] = 0.0f;
+        vecA[1] = 0.0f;
+        vecA[0] = 0.0f;
+        vecA[3] = 1.0f;
+        vecB[2] = 0.0f;
+        vecB[1] = 0.0f;
+        vecB[0] = 0.0f;
+        vecB[3] = 1.0f;
         func_0019A8C0(vecA, vecB);
         f18c->func_00193950(&f24, vecA, vecB, f188);
     }
