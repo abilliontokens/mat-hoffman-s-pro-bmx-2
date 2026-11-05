@@ -47,31 +47,12 @@ struct C_0015A910 {
     void *func_0015A970(unsigned char flags);
 };
 
-/* element of the InstanceData array (virtual destructor, slot 0) */
-struct S_InstElem {
-    virtual ~S_InstElem();
-    static void operator delete[](void *p) { void func_001E891B(void *); func_001E891B(p); }
-    static void operator delete(void *p) { void func_001E891B(void *); func_001E891B(p); }
-};
-
-/* InstanceData as seen through its virtual destructor */
-struct S_InstData {
-    virtual ~S_InstData();
-    int f4;
-    S_InstElem *f8;
-    static void operator delete[](void *p) { void func_001E891B(void *); func_001E891B(p); }
-    static void operator delete(void *p) { void func_001E891B(void *); func_001E891B(p); }
-};
-
-/* InstanceMaster */
 struct C_0015B1A0 {
     void *vtbl;
     char pad4[0x20];
-    S_InstData *f24;
+    int f24;
     void *func_0015B1A0(int a);
-    void func_0015B1C0(void);
     void func_00157600(int a);
-    void func_00157660(void);
 };
 
 struct C_0015AB70 {
