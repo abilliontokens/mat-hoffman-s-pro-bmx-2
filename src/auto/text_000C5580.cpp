@@ -95,6 +95,13 @@ struct C_5E40_G {
 
 extern C_5E40_G *D_002B91AC;
 
+struct C_NumHorse_Lookup { int *func_0018C160(int a); };
+struct C_NumHorse_Root { char pad0[0x2EC]; C_NumHorse_Lookup *p2EC; };
+extern C_NumHorse_Root *D_002A8490;
+extern int D_00278690, D_002786A0, D_00278678, D_002786B0;
+extern float D_0027E140;
+void *func_001E8A44(int size);
+
 struct BmxUIPageParkEditor {
     void *vtbl;
     char pad4[0x120];
