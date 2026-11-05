@@ -333,3 +333,22 @@ C_001A5F10 *C_001A5F10::func_001A5F10(void *param)
     return this;
 }
 
+C_001A5F40 *C_001A5F40::func_001A5F40(void *a, int b)
+{
+    D_002A8490->f234 = 1;
+    f2c = b;
+    D_002EFDB8->f30 = 0;
+    f24 = a;
+    if (f28 == 0) {
+        C_001A5F40_Obj *p = (C_001A5F40_Obj *)func_001E8A44(0x80);
+        f28 = p ? p->func_001D3690(1) : 0;
+        if (f28 != 0) {
+            func_001577A0(f28, -1);
+            f28->func_001D3CC0((int)f24 + 0xbc);
+            f28->func_001D3730(0x14);
+            return this;
+        }
+    }
+    return 0;
+}
+
