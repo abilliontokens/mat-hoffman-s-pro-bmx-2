@@ -49,7 +49,7 @@ struct S_0009E590_Item {
 
 struct S_0009E590_Owner {
     char pad0[0x134];
-    char *f134;
+    S_0009E590_Item *f134;
 };
 
 /* BmxSparkParticleEmitter */
