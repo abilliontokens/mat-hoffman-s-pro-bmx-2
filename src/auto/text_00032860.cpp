@@ -13,6 +13,12 @@ extern float D_00275600;
 
 struct V4_00032E50 {
     float x, y, z, w;
+    void Set(float a, float b, float c, float d) {
+        x = a;
+        y = b;
+        z = c;
+        w = d;
+    }
 };
 
 struct C_00032A20 {
@@ -70,5 +76,17 @@ void C_00032A20::func_00032A40(void)
 {
     v18(0);
     D_002A8490->f124 = 0;
+}
+
+void C_00032E50::func_00032E50(float a, float b, float c, float d)
+{
+    if (D_002F08BC != 0) {
+        V4_00032E50 *p = &f210;
+        p->x = a;
+        p->y = b;
+        p->z = c;
+        p->w = d;
+        f230 = 0.0f;
+    }
 }
 
