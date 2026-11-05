@@ -323,6 +323,21 @@ void *C_001F32B0::func_001F32B0(unsigned int flags) {
     }
     return this;
 }
+
+#pragma optimize("sy", on)
+#pragma optimize("", on)
+#pragma optimize("sy", on)
+void *C_001F32CC::func_001F32CC(unsigned int flags) {
+    void func_001E891B(void *);
+    void func_001F3275();
+    func_001F3275();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+#pragma optimize("", on)
+
 #pragma optimize("", on)
 
 #pragma optimize("sy", on)
