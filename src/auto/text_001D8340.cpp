@@ -71,3 +71,13 @@ struct C_001D8970 {
     int func_001D8040(int *a1, void *a2, int a3, int a4, int a5, int a6, int a7);
     int func_001D8970(int a1, int a2, int a3);
 };
+
+C_001D8B40 *C_001D8B40::func_001D8B40(void *param)
+{
+    ((C_001C99E0_1D8340 *)this)->func_001C99E0(param);
+    f2e8 = 0;
+    f2f0 = 0;
+    f2ec = 0;
+    vtbl = (void *)&D_0028F7FC;
+    return this;
+}
