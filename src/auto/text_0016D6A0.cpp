@@ -211,8 +211,16 @@ struct C_0016DAC0 {
     char pad1B0[0x14];
     int f1C4, f1C8;
     char pad1CC[0x24];
-    float f1F0[4];
-    float f200[4];
+    struct V4 {
+        u32 x, y, z, w;
+        void Set(float a, float b, float c, float d)
+        {
+            x = *(u32 *)&a;
+            y = *(u32 *)&b;
+            z = *(u32 *)&c;
+            w = *(u32 *)&d;
+        }
+    } f1F0, f200;
     char pad210[8];
     float f218, f21C, f220;
     C_0016DAC0 *func_0016DAC0(void *a, char *name, C_0016DAC0_Ref *b, V4u_0016D6A0 *c);
