@@ -175,13 +175,6 @@ struct C_00144960 {
     void func_00144960(int a0, int a1, int a2, int a3);
 };
 
-void C_00143C00::func_00143C00(int arg)
-{
-    if (fac != 3) {
-        fac = arg;
-    }
-}
-
 void DXStripSurfaceData::func_001444F0()
 {
     if (f14) func_001FEE00(0, f14, 12);
