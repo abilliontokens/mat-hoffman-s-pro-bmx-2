@@ -51,3 +51,17 @@ struct C_0003AD50 {
     S_0003AD50_Label *f550;
     void func_0003AD50(void);
 };
+
+void C_0003AD50::func_0003AD50(void)
+{
+    if (f64->f5A0 > -1) {
+        memset(s3BA, 0, 0x32);
+        func_001ADCC0(s3BA, 0x32, D_00276EEC, f47C + 1, f64->f5A0, (char *)&f64->f5A4[f47C]);
+        f550->func_0008A020(s3BA);
+        memset(s388, 0, 0x32);
+        S_0003AD50_Rec *rec = &f64->f5A4[f47C];
+        S_0003AD50_Item *item = f64->GetItem(rec->f44 + f480);
+        func_001ADCC0(s388, 0x32, D_00276ED8, f480 + 1, rec->f34, item->f314);
+        f550->func_0008A040(s388);
+    }
+}
