@@ -121,3 +121,14 @@ void C_001048E0::func_001048E0(void) {
     unkC4 = 1;
 }
 
+void C_00104900::func_00104900(void)
+{
+    int i;
+    for (i = 1; i < unk74; i++) {
+        if ((unsigned int)i < (unsigned int)unk74) {
+            unk8C[i] = 1;
+        }
+    }
+    unkE8 = 1;
+}
+
