@@ -347,6 +347,51 @@ undefined4 C_001D3CA0::func_001D3CA0(byte param_1)
   return in_ECX;
 }
 
+int C_001D3AB0::func_001D3CC0(char *name)
+{
+    int idx;
+
+    unk70 = 0;
+    func_0025BA60(0x160, 0);
+    func_0025BA60(3, 1);
+    if (D_002A8490->f4 != 0) {
+        func_00258240(func_0025B9C0, D_002A8490->f4->fB4->f30);
+    }
+    if (name != 0) {
+        func_001D3B20(name);
+    }
+    if (unk7C == 0) {
+        unk7C = func_001FF3C0(0x60);
+    }
+    if (unk74 == 0) {
+        idx = D_002A751C->func_001AC7B0(D_0028C1F0, 0);
+        if (idx != -1) {
+            unk74 = D_002A751C->f14[idx].f4;
+        }
+        if (unk74 == 0) {
+            idx = D_002A751C->Create(D_0028C1F0, 0);
+            func_0014A7B0(D_002F0958, D_002ABC60);
+            D_002A751C->Set(idx, D_002F0958);
+            D_002A751C->func_0014A8A0();
+            unk74 = D_002A751C->f14[idx].f4;
+        }
+    }
+    if (unk78 == 0) {
+        idx = D_002A6D84->func_001AC7B0(D_0028F4E8, 0);
+        if (idx != -1) {
+            unk78 = D_002A6D84->f14[idx].f4;
+        }
+        if (unk78 == 0) {
+            idx = D_002A6D84->Create(D_0028F4E8, 0);
+            D_002A6D84->Set(idx, 0);
+            D_002A6D84->func_00142D20();
+            unk78 = D_002A6D84->f14[idx].f4;
+        }
+    }
+    unk4C = 0;
+    return 1;
+}
+
 C_001D3E30* C_001D3E30::func_001D3E30(void) {
     unk0 = 0;
     unk60 = 0;
