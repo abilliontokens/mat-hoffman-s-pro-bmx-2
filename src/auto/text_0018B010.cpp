@@ -90,11 +90,92 @@ struct Lights {
     void func_00157660();
 };
 
+/* 16-byte block copied by value (a Vec4) */
+struct S_0018B180_Vec4 {
+    int x, y, z, w;
+};
+
+/* the object at body+0xC4 */
+struct S_0018B180_BodyA {
+    char pad0[0x190];
+    S_0018B180_Vec4 f190;
+};
+
+/* the object at body+0xD0 */
+struct S_0018B180_BodyB {
+    char pad0[0xB4];
+    int fB4;
+    char padB8[0xC8 - 0xB8];
+    int fC8;
+    char padCC[4];
+    int fD0;
+    int fD4;
+};
+
+/* the rigid body made by func_001732E0 and set up by func_00173F70 */
+struct S_0018B180_Body {
+    virtual void v00(); virtual void v04(); virtual void v08(); virtual void v0C();
+    virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1C();
+    virtual void v20(); virtual void v24(); virtual void v28(); virtual void v2C();
+    virtual void v30(); virtual void v34(); virtual void v38(); virtual void v3C();
+    virtual void v40(); virtual void v44(); virtual void v48(); virtual void v4C();
+    virtual void v50(); virtual void v54(); virtual void v58(); virtual void v5C();
+    virtual void v60(); virtual void v64(); virtual void v68();
+    virtual void v6C(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7,
+                     int a8, int a9, int a10, int a11, int a12, int a13, int a14, int a15);
+    virtual void v70();
+    virtual void v74();
+    char pad4[0xC0];
+    S_0018B180_BodyA *fC4;
+    char padC8[8];
+    S_0018B180_BodyB *fD0;
+    S_0018B180_Body *func_001732E0(int a);
+    S_0018B180_Body *func_00173F70(S_0018B180_Vec4 a, S_0018B180_Vec4 b, S_0018B180_Vec4 c,
+                                   int a12, int a13, int a14, int a15, int a16);
+};
+
+/* PhysicsObjectTempData */
+struct S_0018B180_Temp {
+    void *vtbl;
+    char pad4[0x104];
+    S_0018B180_Vec4 f108;
+    S_0018B180_Vec4 f118;
+    S_0018B180_Vec4 f128;
+    char pad138[0x144 - 0x138];
+    char f144[0x104];
+    int f248, f24C, f250, f254, f258, f25C, f260, f264, f268, f26C;
+    S_0018B180_Vec4 f270;
+};
+
+struct S_0018B180_Item {
+    void func_001577A0(void *p, int n);
+};
+
+struct S_0018B180_Reg {
+    int func_00188E20(int idx, void *obj);
+};
+
+struct S_0018B180_Mgr {
+    char pad0[0x348];
+    int f348;
+    char pad34C[0x3A8 - 0x34C];
+    S_0018B180_Item **f3A8;
+    char pad3AC[0x3B8 - 0x3AC];
+    S_0018B180_Reg *f3B8;
+    char pad3BC[0x4A8 - 0x3BC];
+    int *f4A8;
+    int *f4AC;
+};
+
+extern char D_0027C588[];
+
 struct PhysicsObjectStaticModel {
     void *vtbl;
-    char pad4[0x8];
-    void *unkC;
+    char pad4[0x4];
+    S_0018B180_Body *unk8;
+    S_0018B180_Temp *unkC;
     void *func_0018BF10(int flags);
+    int func_0018B180(S_0018B180_Mgr *a0);
 };
 
 struct C_0018BFC0 {
