@@ -31,8 +31,18 @@ struct DynamicRayCollisionObject {
     void func_00157A00(int param_1);
 };
 
+struct S_0014B940_Obj {
+    char pad_0[0xa8];
+    int unkA8;
+    char padAC[0x10];
+    f32 *unkBC;
+    Vec4 *unkC0;
+    Vec4 *unkC4;
+    void func_0014B940();
+};
+
 #pragma auto_inline(on)
-void DynamicRayCollisionObject::func_0014B940()
+void S_0014B940_Obj::func_0014B940()
 {
     Vec4 a(0.0f, 0.0f, 0.0f, 1.0f);
     Vec4 b(0.0f, 0.0f, 0.0f, 1.0f);
