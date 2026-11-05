@@ -43,7 +43,8 @@ struct C_001B1980 {
     void func_001B1980(void);
     void func_001B17D0(char *name);
     void func_001B2270(int a0);
-    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, float a11, float a12, int a13);
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, float a7, int a8, float a9, int a10, float a11, float a12, int a13);
+    void func_001B1A30(float a0, float a1, int a2);
 };
 extern float D_00279B50;
 extern float D_0027E144;
