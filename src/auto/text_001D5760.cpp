@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+extern float D_002755E4;
 struct Vertex_001D5AD0 { float x,y; int z,color; int u,v; };
 extern float D_00275544, D_002ABDD0, D_002ABDD4;
 extern int D_002ABDC4;
