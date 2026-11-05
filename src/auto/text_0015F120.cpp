@@ -82,6 +82,26 @@ struct C_0015FF60 {
 };
 
 
+int C_0015F470::func_0015F470(int a, S_0015F470_Mat *m0, S_0015F470_Mat *m1, S_0015F470_Mat *m2)
+{
+    int i = func_0015E5B0();
+    f24[i].m[0].row[0] = m0->row[0];
+    f24[i].m[1].row[0] = m1->row[0];
+    f24[i].m[2].row[0] = m2->row[0];
+    f24[i].m[0].row[1] = m0->row[1];
+    f24[i].m[1].row[1] = m1->row[1];
+    f24[i].m[2].row[1] = m2->row[1];
+    f24[i].m[0].row[2] = m0->row[2];
+    f24[i].m[1].row[2] = m1->row[2];
+    f24[i].m[2].row[2] = m2->row[2];
+    f24[i].m[0].row[3] = m0->row[3];
+    f24[i].m[1].row[3] = m1->row[3];
+    f24[i].m[2].row[3] = m2->row[3];
+    f24[i].f4 = f2C;
+    f24[i].f0 = a;
+    return 1;
+}
+
 undefined4 C_0015F840::func_0015F840(byte param_1)
 {
   int func_0015E600(...);
