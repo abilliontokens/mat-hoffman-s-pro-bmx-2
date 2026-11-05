@@ -126,6 +126,7 @@ struct C_0012AAE0 {
     float f1fc;
     float f200;
     void func_0012AAE0(float param1, float param2);
+    int func_0012B3D0(void);
 };
 
 struct C_0012AB70 {
