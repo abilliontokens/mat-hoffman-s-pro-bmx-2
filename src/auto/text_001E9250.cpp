@@ -429,6 +429,7 @@ char *func_001EA1EE(char *string) {
     return string;
 }
 #pragma optimize("", on)
+#pragma optimize("t", off)
 int func_001EA211(int c) {
     if (D_002AEA38 > 1) {
         return func_001EC5F1(c, 0x103);
