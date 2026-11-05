@@ -5,6 +5,53 @@ struct C_000F2CA0 {
     undefined4 func_000F2CA0(byte param_1);
 };
 
+extern int D_0027DF54;
+extern int D_0028248C;
+extern float D_00275AEC;
+
+struct C_000F2720 {
+    int unk0;
+    void func_001BE3F0(void);
+    void *func_000F2720(int flags);
+};
+
+struct S_000F1FC0_Obj {
+    char pad0[0x10];
+    float f10;
+    float f14;
+};
+
+struct S_000F1D90_Obj {
+    virtual void destroying(int flag);
+    S_000F1FC0_Obj *func_001D5AA0(void);
+};
+
+struct BmxUIPageHPHChoice {
+    void *vtbl;
+    char pad4[0x2b4 - 4];
+    S_000F1D90_Obj *unk2b4[4];
+    void func_000F1D90(void);
+    void func_000F1FC0(void);
+    void func_000F2120(void);
+    void func_001BE3F0(void);
+    void func_000F2030(void);
+    void func_00157960(void);
+    void func_001578D0(void);
+};
+
+struct S_000F2120_Obj {
+    void func_001D6600(void);
+};
+
+struct S_000F2120_Root {
+    char pad0[0x34];
+    S_000F2120_Obj *f34;
+    S_000F2120_Obj *f38;
+    S_000F2120_Obj *f3c;
+};
+
+extern S_000F2120_Root *D_002B91AC;
+
 extern int D_0027E00C;
 extern int D_0027DFFC;
 
