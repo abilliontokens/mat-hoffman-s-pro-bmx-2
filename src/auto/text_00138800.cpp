@@ -133,7 +133,15 @@ struct S_1390A0_60 {
     char pad0[0x28];
     void **f28;
 };
-
+struct S_1395_Owner {
+    char pad0[0x3c];
+    int count;
+    S_1390A0_Entry *entries;
+    char pad44[0x14];
+    S_1390A0_A **list58;
+    char pad5c[4];
+    S_1390A0_60 *p60;
+};
 
 CutScene *CutScene::func_00138800(int arg) {
 func_00157600(arg);
