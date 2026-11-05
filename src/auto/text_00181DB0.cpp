@@ -37,6 +37,7 @@ struct C_001824E0 {
     char pad0[0x1C0];
     C_001824E0_Vec f1C0;
     void func_001824E0(C_001824E0_Vec *out, int x, int y, int z);
+    C_001824E0_Vec func_001824E0(int x, int y, int z);
 };
 
 struct C_00182750_Global {
