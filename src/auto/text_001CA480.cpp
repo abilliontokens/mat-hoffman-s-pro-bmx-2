@@ -229,3 +229,30 @@ void func_001CB270(void)
     func_0021FC46(0);
 }
 
+void XboxSndIf_1CB290::func_001CB290(void)
+{
+    SndBank_1CB290 *p;
+
+    if (f13C != 0) {
+        f13C->v2();
+    }
+    p = (SndBank_1CB290 *)func_001E8A44(0x20);
+    p = p != 0 ? p->func_001AC3A0() : 0;
+    f13C = p;
+    p->v4();
+}
+
+void XboxSndIf_1CB290::func_001CB2D0(void)
+{
+    SndBank_1CB290 *bank = f13C;
+    int i;
+
+    if (bank != 0) {
+        for (i = 0; i < bank->f8; i++) {
+            bank->f14[i].fC = 0;
+            f13C->f14[i].f4 = 0;
+            bank = f13C;
+        }
+    }
+}
+
