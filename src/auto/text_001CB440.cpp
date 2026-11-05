@@ -343,6 +343,18 @@ int C_001CB650::func_001CB650(float a)
     return 1;
 }
 
+int C_001CB650::func_001CB6D0(void)
+{
+    if ((fa0 & 1) != 0 && f24 != -1) {
+        if (v29(fa4) > -1) {
+            fac = f24;
+            fcc = 2;
+            return 1;
+        }
+    }
+    return 0;
+}
+
 void C_001CB940::func_001CB940(void)
 {
     ((C_001576C0 *)this)->func_001576C0();
