@@ -68,9 +68,26 @@ struct C_000F2780_Obj2 {
     C_000F2780_Obj3 *f2fc;
 };
 
+/* string table of the settings record */
+struct C_000F1DD0_Strings {
+    char pad0[0x7C8];
+    char *f7C8;
+    char pad7CC[0x838 - 0x7CC];
+    char *f838;
+    char pad83C[0xFB0 - 0x83C];
+    char *fFB0;
+};
+
+struct C_000F1DD0_Mid {
+    int f0;
+    C_000F1DD0_Strings *f4;
+};
+
 struct C_000F2780_Global {
     char pad0[0x2E0];
     C_000F2780_Obj2 *f2e0;
+    char pad2E4[4];
+    C_000F1DD0_Mid *f2E8;
 };
 
 extern C_000F2780_Global *D_002A8490;
