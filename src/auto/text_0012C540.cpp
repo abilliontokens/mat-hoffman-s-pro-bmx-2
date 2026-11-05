@@ -80,7 +80,7 @@ void C_0012CCA0::func_0012CCA0()
     }
     if (unk414) {
         unk414->unk4--;
-        if (unk414->unk4 == 0) {
+        if (unk414->unk4 <= 0) {
             D_002BEAAC->func_0013B210(unk414);
             func_001E891B(unk414->unk8);
             func_001E891B(unk414);
