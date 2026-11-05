@@ -173,9 +173,11 @@ struct C_0012B8F0 {
     void func_0012BF90(int frame, int i0, int i1, int i2, float frac, S_Vec4 *pos, S_Vec4 *v2, S_Vec4 *v3, float *fov);
 };
 
-static inline void FloatToInt(int *out, float f)
+static __forceinline void FloatToInt(int *out, float f)
 {
-    *out = (int)f;
+    int * volatile p = out;
+
+    *p = _mm_cvttss_si32(*(__m128 *)&f);
 }
 
 /* SimpleCutSceneCamera (run-time type information), base class CameraBehavior */
