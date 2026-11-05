@@ -26,9 +26,11 @@ void func_001E8390(void *p);
 int __cdecl func_001EB290(void)
 {
     int locknum;
-    S_CritSect *pcs = D_002F6860;
+    S_CritSect *pcs;
 
-    for (locknum = 0; locknum < 36; locknum++) {
+    locknum = 0;
+    pcs = D_002F6860;
+    for (; locknum < 36; locknum++) {
         if (D_002AE8F4[locknum].lock == (void *)1) {
             D_002AE8F0[locknum].lock = pcs;
             pcs++;
