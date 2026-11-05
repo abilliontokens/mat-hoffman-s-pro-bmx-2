@@ -322,6 +322,20 @@ struct ResponseEmitter {
     void func_001A3050(int a);
 };
 
+ResponseEmitter::ResponseEmitter(int a, int b, int c, int d)
+{
+    S_30D0_Block *l0 = (S_30D0_Block *)&list1c4;
+    S_30D0_Block *l1 = (S_30D0_Block *)&list1d8;
+    ((C_001A1680 *)this)->func_001A1680(a, b, c, d);
+    vtbl = (void *)&D_0028B624;
+    l0->init();
+    l1->init();
+    l0->alloc();
+    l1->alloc();
+    f1ec = 0;
+    f1c0 = 0;
+}
+
 void ResponseEmitter::func_001A2CF0(void)
 {
     int i;
