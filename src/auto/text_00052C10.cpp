@@ -52,7 +52,7 @@ struct C_52C10_2A8490 {
     virtual void v13();
     virtual void v14();
     virtual void v15(void *a, void *b, int c, int d);
-    char pad4C[0x228];
+    char pad04[0x270];
     void *f274;
     char pad278[0x68];
     void *f2E0;
@@ -116,12 +116,60 @@ struct C_000536A0 {
     C_000536A0 *func_000536A0(int param);
 };
 
+void C_52C10::func_00052D20(int *out)
+{
+    if (func_00051BB0() == 0) {
+        *out = 0;
+        return;
+    }
+    if (((C_52C10_2E0 *)D_002A8490->f2E0)->f2C0->func_0005C6B0(unk2C8) == 0) {
+        *out = 0;
+        return;
+    }
+    *out = (unk2C8 << 0x11) + unk294;
+}
+
+int C_52C10::func_000533A0(void)
+{
+    if (unk358 != 0) {
+        if (D_002A8490->f274 == 0) {
+            func_00052830(1);
+        } else if (unk358 != 0) {
+            func_00052830(0);
+        }
+        func_00031400();
+    }
+    return 1;
+}
+
+void C_52C10::func_000533E0(void)
+{
+    if (unk48 != 0 && unk358 != 0) {
+        D_002A8490->v15(unk24, 0, 0, 0);
+        unk48->unk74->func_00030210();
+        unk48->v4();
+        unk28->v4();
+        unk358 = 0;
+        D_002EFDB8->f30 = 1;
+        func_00052830(0);
+        unk64->unk558->v4();
+    }
+}
+
 C_000536A0 *C_000536A0::func_000536A0(int param)
 {
     func_00030F90(param);
     unk284 = 0;
     unk288 = 0;
     vtbl = (void *)&D_00277A84;
+    return this;
+}
+
+C_52C10 *C_52C10::func_000536D0(void)
+{
+    func_000342C0();
+    if (unk1C0 != 0)
+        unk1C0->func_00099D40(-1);
     return this;
 }
 
