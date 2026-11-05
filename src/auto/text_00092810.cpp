@@ -236,18 +236,17 @@ int C_00092890::func_00092B40(int idx)
 {
     char buf[0x104];
 
-    if (func_00092AC0() == 0) {
-        return 0;
+    if (func_00092AC0() != 0) {
+        if (idx == -1) {
+            func_001ADCC0(buf, 0x104, &D_0027A140, D_002A8490->f2e0->f2d8);
+        } else {
+            func_001ADCC0(buf, 0x104, &D_0027A140, idx);
+        }
+        if (D_002A8490->f2e0->f2cc->func_001D42A0(&f4c, buf) != 0) {
+            return func_00092AC0();
+        }
     }
-    if (idx == -1) {
-        func_001ADCC0(buf, 0x104, &D_0027A140, D_002A8490->f2e0->f2d8);
-    } else {
-        func_001ADCC0(buf, 0x104, &D_0027A140, idx);
-    }
-    if (D_002A8490->f2e0->f2cc->func_001D42A0(&f4c, buf) == 0) {
-        return 0;
-    }
-    return func_00092AC0();
+    return 0;
 }
 
 int C_00092890::func_00092BE0(void)
