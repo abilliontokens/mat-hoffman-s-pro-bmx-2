@@ -230,13 +230,13 @@ void C_00181DB0::func_001820B0(int a0, int a1, int a2)
   }
 }
 
-void C_001824E0::func_001824E0(C_001824E0_Vec *out, int x, int y, int z)
+C_001824E0_Vec C_001824E0::func_001824E0(int x, int y, int z)
 {
     C_001824E0_Vec old = f1C0;
     f1C0.x = x;
     f1C0.y = y;
     f1C0.z = z;
-    *out = old;
+    return old;
 }
 
 longdouble C_00182530::func_00182530(undefined4 param_1)
