@@ -1,6 +1,28 @@
 /* 27 functions from 0x0008A190 to 0x0008AED0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+extern float D_00279B5C;
+extern float D_00279B58;
+extern float D_00279B54;
+extern float D_00279B50;
+extern float D_00279B4C;
+int func_001E8858(float f);
+struct E190 { void func_001D5AD0(); };
+struct R190 { int func_000377E0(); };
+struct T190 { char pad0[0x28]; float f28; char pad2c[0xc]; unsigned int c38; char pad3c[0x1c]; unsigned char b58; void func_001D5AD0(); };
+struct C_0008A190 {
+    char pad0[0x34];
+    E190 *e34[12];
+    E190 *e64, *e68, *e6c, *e70, *e74, *e78, *e7c, *e80;
+    E190 *e84[6];
+    T190 *t9c;
+    char pada0[0x80];
+    R190 *r120;
+    char pad124[4];
+    int f128;
+    int f12c;
+    int func_0008A190();
+};
 extern int D_00279C3C;
 extern int D_00279B64;
 void func_001E891B(void *p);
