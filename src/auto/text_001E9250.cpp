@@ -406,6 +406,17 @@ int func_001E9DE9(S_001E9714_File *stream) {
     return rc;
 }
 
+int func_001E9E46(S_001E9_FILE *str)
+{
+    if (func_001E9DE9(str)) {
+        return -1;
+    }
+    if (str->flag & 0x4000) {
+        return func_001EE8F1(str->file) ? -1 : 0;
+    }
+    return 0;
+}
+
 #pragma optimize("", on)
 void func_001E9F40(void) {
     int func_001EB302(...);
