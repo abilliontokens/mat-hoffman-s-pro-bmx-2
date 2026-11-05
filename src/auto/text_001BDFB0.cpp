@@ -36,14 +36,6 @@ struct UIVirt70 {
     virtual void virt28();
 };
 
-struct UIControl;
-
-struct UIList {
-    int count;
-    UIControl **data;
-    UIControl *get(int i) { return data[i]; }
-};
-
 struct UIControl {
     void *vtbl;
     char pad04[0x20];
