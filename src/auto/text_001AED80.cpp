@@ -99,7 +99,7 @@ struct C_001AF710 {
 };
 
 struct C_001AFB00 {
-    char pad0[0x30];
+    float f0, f4, f8, fC, f10, f14, f18, f1C, f20, f24, f28, f2C;
     int f30;
     int f34;
     unsigned char f38;
