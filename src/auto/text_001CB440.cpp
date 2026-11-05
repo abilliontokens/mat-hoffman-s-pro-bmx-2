@@ -26,6 +26,37 @@ struct C_001CC110 {
     void *func_001CC110(int flags);
 };
 
+extern int D_002ABA44, D_002ABA48, D_002ABA4C, D_002ABA50;
+extern int D_002ABA64, D_002ABA68, D_002ABA6C, D_002ABA70;
+extern int D_002ABA74, D_002ABA78, D_002ABA7C, D_002ABA80;
+
+/* XboxSoundInterface */
+struct C_001CBD40 {
+    void *vtbl;
+    char pad4[0x28];
+    unsigned char f2C;
+    char pad2D[3];
+    int f30;
+    int f34[4];
+    unsigned char f44;
+    char pad45[0x7f];
+    int fC4[4];
+    int fD4;
+    char padD8[0x10];
+    int fE8;
+    int fEC;
+    int fF0;
+    int fF4;
+    int fF8[4];
+    int f108[4];
+    int f118[4];
+    int f128[4];
+    int f138;
+    int f13C;
+    void func_0001C9F0();
+    C_001CBD40 *func_001CBD40();
+};
+
 struct C_001CB440 {
     char pad0[0x208];
     unsigned char f208;
@@ -571,6 +602,62 @@ void C_001CB9A0::func_001CB9A0(void)
     }
     f0 = -1;
     f20 &= 0xf0;
+}
+
+int C_001CB9A0::func_001CB9F0(unsigned int idx)
+{
+    void (__stdcall *enter)(void *) = _imp__RtlEnterCriticalSection;
+    void (__stdcall *leave)(void *) = _imp__RtlLeaveCriticalSection;
+    struct {
+        unsigned int total;
+        struct {
+            unsigned int buffer;
+            unsigned int size;
+            unsigned int *completed;
+            unsigned int *status;
+            void *context;
+            void *timestamp;
+        } pkt;
+    } st;
+    S_001CB9A0_Owner *owner;
+    int flag;
+
+    memset(&st.pkt, 0, sizeof(st.pkt));
+    st.pkt.buffer = (unsigned int)f10 + idx * 0x4800;
+    st.pkt.size = 0x4800;
+    st.pkt.completed = &idx;
+    st.total = 0;
+    do {
+        if (f0 >= 0) {
+            if (f8->v7(f0, 0, 0) < 0) {
+                goto fail;
+            }
+            f0 = -1;
+        }
+        if (f8->v4(0, (S_001CBB50_Packet *)&st.pkt) < 0) {
+            goto fail;
+        }
+        st.total += idx;
+        if (idx < st.pkt.size) {
+            owner = f4;
+            enter((void *)(D_002F08EC->f138 + 0x50));
+            flag = owner->f208 & 1;
+            leave((void *)(D_002F08EC->f138 + 0x50));
+            if (flag == 0) {
+                goto fail;
+            }
+            st.pkt.buffer += idx;
+            st.pkt.size -= idx;
+            if (f8->v7(0, 0, 0) < 0) {
+                goto fail;
+            }
+        }
+    } while (st.total < 0x4800);
+    return 0;
+fail:
+    f20 = (f20 & 0xfd) | 1;
+    memset((void *)(idx + st.pkt.buffer), 0, st.pkt.size - idx);
+    return 0;
 }
 
 int C_001CB9A0::func_001CBB50(int idx)
