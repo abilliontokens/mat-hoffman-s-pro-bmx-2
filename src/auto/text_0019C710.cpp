@@ -1,5 +1,6 @@
 /* 7 functions from 0x0019C710 to 0x0019D6C0, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
 
 void *func_001E8A44(int size);
 void func_00133D80(void *p);
