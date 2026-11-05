@@ -115,6 +115,7 @@ struct C_001B1AB0 {
     char pad28[0x5C];
     int f84;
     int f88;
+    int f8C;
     int f90;
     int f94;
     char pad98[0x28];
