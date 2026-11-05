@@ -179,6 +179,10 @@ struct C_001CF3C0 {
     int fc;
     char f10[0x14];
     char f24[0x14];
+    IntArray f38;
+    char pad48[8];
+    char cs[0x1c];
+    int func_001CF450(void);
     int func_001CDD50(SoundVoiceList *list, int x, SoundVoice **out, int *outIndex, SoundVoice **out2);
     void func_001CDE40(SoundVoiceList *list, SoundVoice *voice);
     int func_001CF3C0(SoundVoice *voice);
