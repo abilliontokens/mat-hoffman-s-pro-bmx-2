@@ -39,3 +39,22 @@ undefined4 C_0013B260::func_0013B260(int param_1)
   return uVar1;
 }
 
+void __stdcall func_0013B440(int param_1)
+{
+  int func_001E8390(...);
+  int iVar1;
+  int iVar2;
+  
+  iVar2 = 0;
+  do {
+    iVar1 = *(int *)(param_1 + iVar2 * 4);
+    if (iVar1 != 0) {
+      func_001E8390(iVar1);
+      *(undefined4 *)(param_1 + iVar2 * 4) = 0;
+    }
+    iVar2 = iVar2 + 1;
+  } while (iVar2 < 8);
+  *(undefined4 *)(param_1 + 0x44) = 0;
+  return;
+}
+
