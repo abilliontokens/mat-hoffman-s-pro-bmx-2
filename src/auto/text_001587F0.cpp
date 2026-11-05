@@ -37,7 +37,7 @@ struct C_001594F0 {
     int unk70;
     int unk74;
     int unk78;
-    void func_001594F0(void);
+    C_001594F0 *func_001594F0(void);
 };
 
 struct C_00159560_Sub {
@@ -70,35 +70,38 @@ void *C_00158BE0::func_00158BE0(int flags) {
     return this;
 }
 
-void C_001594F0::func_001594F0(void) {
-    unk0 = 0;
-    unk2 = (char)0xff;
-    unk3 &= 0xf8;
-    unk28 = 0;
-    unk24 = 0;
-    unk20 = 0;
-    unk2c = 0x3f800000;
-    unk38 = 0;
-    unk34 = 0;
-    unk30 = 0;
-    unk3c = 0x3f800000;
-    unk48 = 0;
-    unk44 = 0;
-    unk40 = 0;
-    unk4c = 0x3f800000;
-    unk60 = 0;
-    unk5c = 0;
-    unk58 = 0;
-    unk64 = 0x3f800000;
-    unk70 = 0;
-    unk6c = 0;
-    unk68 = 0;
-    unk74 = 0x3f800000;
-    unk14 = 0;
-    unk18 = 0;
-    unk1c = 0;
-    unk4 = 0;
-    unk78 = 0;
+C_001594F0 *C_001594F0::func_001594F0(void)
+{
+    unsigned int *p = (unsigned int *)this;
+    *(short *)p = 0;
+    *((char *)p + 2) = (char)0xff;
+    *((unsigned char *)p + 3) &= 0xf8;
+    p[10] = 0;
+    p[9] = 0;
+    p[8] = 0;
+    p[11] = 0x3f800000;
+    p[14] = 0;
+    p[13] = 0;
+    p[12] = 0;
+    p[15] = 0x3f800000;
+    p[18] = 0;
+    p[17] = 0;
+    p[16] = 0;
+    p[19] = 0x3f800000;
+    p[24] = 0;
+    p[23] = 0;
+    p[22] = 0;
+    p[25] = 0x3f800000;
+    p[28] = 0;
+    p[27] = 0;
+    p[26] = 0;
+    p[29] = 0x3f800000;
+    p[5] = 0;
+    p[6] = 0;
+    p[7] = 0;
+    p[1] = 0;
+    p[30] = 0;
+    return this;
 }
 
 C_00159560 *C_00159560::func_00159560(int param_1) {
