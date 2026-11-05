@@ -57,7 +57,7 @@ struct S_Vec4 {
     S_Vec4() { w = 1.0f; }
     S_Vec4 operator+(const S_Vec4 &o) const { S_Vec4 r; r.x = x + o.x; r.y = y + o.y; r.z = z + o.z; return r; }
     S_Vec4 operator-(const S_Vec4 &o) const { S_Vec4 r; r.x = x - o.x; r.y = y - o.y; r.z = z - o.z; return r; }
-    S_Vec4 operator*(const float &s) const { S_Vec4 r; r.x = x * s; r.y = y * s; r.z = z * s; return r; }
+    S_Vec4 operator*(float s) const { S_Vec4 r; r.x = x * s; r.y = y * s; r.z = z * s; return r; }
 };
 
 /* the particle's verlet state: previous and current position, velocity, acceleration */
