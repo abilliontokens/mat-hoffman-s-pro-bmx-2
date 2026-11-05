@@ -8,6 +8,7 @@ struct C_001AF360 {
     char pad0[0x18];
     int unk18;
     void *func_001AF360(void *arg, void *self, int idx);
+    C_001AF360 *copy(const C_001AF360 &src) { *this = src; return this; }
 };
 struct C_001B0280 {
     void *func_001B0280(void *arg, int idx);
