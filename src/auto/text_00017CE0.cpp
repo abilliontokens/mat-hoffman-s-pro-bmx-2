@@ -70,6 +70,8 @@ struct AiTikiGod {
     void func_00017D00();
     void func_00017D20(int param_1);
     void func_00017DA0();
+    void func_001C7310(int a0);
+    AiTikiGod *func_000185A0(int a0);
 };
 
 struct S_00017DA0_Vec {
@@ -221,8 +223,13 @@ void AiTikiGod::func_00017E90(S_00017DA0_Vec *a, float *b)
 {
     float *p = func_00016DD0(b, b);
     S_00017DA0_Vec v;
+    float x = p[0] * 180.0f;
+    float y = p[1] * 180.0f;
 
-    vec3_set(&v, p[0] * 180.0f, p[1] * 180.0f, p[2] * 180.0f);
+    v.w = 1.0f;
+    v.x = x;
+    v.y = y;
+    v.z = p[2] * 180.0f;
     f39c[f4d0]->func_001587F0((float)(u32)(D_002A8490->f238 + 10000), *a, v);
     if (func_00011260(0, 100) > 50) {
         D_002A8490->f4->func_0001CE80(f4b0[2], f508, &D_002A0718, 10.0f, 300.0f);
