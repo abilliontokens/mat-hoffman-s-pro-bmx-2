@@ -1,6 +1,35 @@
 /* 6 functions from 0x000A91C0 to 0x000A9ED0, found by Ghidra. */
 #include "common.h"
 extern int D_0027C51C;
+extern char D_0027C504[], D_0027C4EC[], D_0027C4DC[], D_002764F0[], D_0027C4D0[];
+extern char D_0027C4BC[], D_0027C4AC[], D_0027C49C[], D_0027C494[], D_0027C488[];
+
+/* config file reader */
+struct S_A91C0_Reader {
+    int func_00169710(const char *name);
+    void func_00168C20(const char *key, int def, int *dst);
+    void func_00168BE0(const char *key, const char *def, char *dst, int n);
+    void func_00168C50(const char *key, float def, float *dst);
+};
+struct V4_A91C0 { float x, y, z, w; };
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
+void *func_001E8A44(int size);
+void *func_001E83E8(void *block, unsigned int size);
+V4_A91C0 func_00182980(const char *s);
+
+static inline int a91c0_strlen(const char *s)
+{
+    const char *p = s;
+    while (*p++) {
+    }
+    return p - s - 1;
+}
+
+static inline int a91c0_min(const int &a, const int &b)
+{
+    return (b < a) ? b : a;
+}
 
 struct S_A95D0_b { char pad0[4]; char *f4; };
 struct S_A95D0_inner { char pad0[4]; int kind; char pad8[0x19C]; S_A95D0_b *f1A4; };
