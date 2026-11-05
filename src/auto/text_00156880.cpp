@@ -186,6 +186,59 @@ void func_001D47C0(void);
 void func_0014FE50(int a);
 void func_0014F9A0(void);
 
+struct C_0001D0F0 {
+    char pad0[0xb0];
+    u8 fb0;
+    C_0001D0F0 *func_0001D0F0(int a);
+    void func_0001D280(int a, int b, int c);
+};
+
+struct C_001D7CE0 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    C_001D7CE0 *func_001D7CE0(void);
+};
+extern C_001D7CE0 *D_002F0670;
+
+struct C_0015D1B0 {
+    GameObject *func_0015D1B0(void);
+};
+
+struct VT_Game2 {
+    char pad0[0xc];
+    int (__fastcall *fc)(void *self);
+    int (__fastcall *f10)(void *self);
+    char pad14[0x70];
+    int (__fastcall *f84)(void *self);
+};
+
+struct Game2 {
+    VT_Game2 *vtbl;
+    C_0001D0F0 *f4;
+    char pad8[0xc];
+    GameObject *f14;
+    char pad18[0x218];
+    u8 f230;
+    char pad231[3];
+    int f234;
+    char pad238[0x40];
+    GameObject *f278;
+    int func_001572B0(int a);
+};
+
+int func_001DC974(void);
+void func_001E8826(int seed);
+void func_001E8833(void);
+
 struct C_00156E80 {
     void func_00156E80(void);
 };
