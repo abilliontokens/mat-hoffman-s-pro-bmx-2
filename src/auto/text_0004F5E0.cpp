@@ -164,6 +164,44 @@ struct C_0004F6E0 {
     void func_0004F6E0();
 };
 
+struct V_4FC20 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(int a);
+    virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22();
+    virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26();
+    virtual void v27(); virtual void v28(); virtual void v29(); virtual void v30();
+    virtual void v31(int a, int b);
+};
+struct G_4FC20_2E0 { char pad0[4]; int f4; char pad8[0x2F4]; V_4FC20 *f2FC; };
+struct G_4FC20 { char pad0[0x2E0]; G_4FC20_2E0 *f2E0; };
+struct E_4FC20 { char pad0[0x958]; float f958; char pad95C[0x14]; int f970; };
+struct T_4FC20 { char pad0[0x1A8]; E_4FC20 *f1A8[1]; };
+struct M_4FC20 { char pad0[0x4C0]; V_4FC20 *f4C0; char pad4C4[0x1C]; T_4FC20 *f4E0; };
+struct P_4FC20_15C {
+    char pad0[0xFC]; int fFC;
+    void func_000602B0();
+    void __stdcall func_00060350(int a);
+};
+struct P_4FC20_190 { char pad0[0x168]; int f168; };
+struct P_4FC20_1A0 { char pad0[0x13C]; int f13C; };
+struct P_4FC20_2D8 { char pad0[0xCC]; int fCC; };
+int func_001361E0(int a, int b, int *c, unsigned int d);
+struct C_0004FC20 {
+    char pad0[0x64]; M_4FC20 *f64;
+    char pad68[0x28]; int f90;
+    char pad94[0x8C]; int f120;
+    char pad124[0x38]; P_4FC20_15C *f15C;
+    char pad160[0x30]; P_4FC20_190 *f190;
+    char pad194[0xC]; P_4FC20_1A0 *f1A0;
+    char pad1A4[0x134]; P_4FC20_2D8 *f2D8; int f2DC; int f2E0;
+    void func_00032A20();
+    int func_00157BF0(int *a, int b);
+    int func_0004FC20(int *a, int b);
+};
+
 int C_0004F5E0::func_0004F5E0()
 {
     if (f284 == 9) {
