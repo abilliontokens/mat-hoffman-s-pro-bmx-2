@@ -186,6 +186,30 @@ int C_0013AEC0::func_0013AFF0(int idx, int v, int mode)
     return 0;
 }
 
+int C_0013AEC0::func_0013B130(const char *key)
+{
+    int i;
+    int start;
+
+    start = fF8 + 1;
+    if (start >= fEC) {
+        start = 0;
+    }
+    i = start;
+    do {
+        const char *name = (const char *)fE8[i].f8;
+        if (name != 0 && func_001EA426(key, name) == 0) {
+            fF8 = i;
+            return i;
+        }
+        i++;
+        if (i >= fEC) {
+            i = 0;
+        }
+    } while (i != start);
+    return -1;
+}
+
 undefined4 C_0013B1F0::func_0013B1F0(int param_1, undefined4 param_2)
 {
   int in_ECX = (int)this;
