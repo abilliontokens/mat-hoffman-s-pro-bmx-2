@@ -13,6 +13,7 @@ void func_001ECDE7(int param_1, int param_2, int param_3, int param_4)
     func_001ECE2F();
 }
 
+#pragma optimize("s", on)
 void *func_001ECFEC(unsigned int size)
 {
     void func_001EB390(int);
@@ -34,7 +35,7 @@ void *func_001ECFEC(unsigned int size)
     }
     return func_001E013E(func_001DF5B3(), 0, size);
 }
-
+#pragma optimize("", on)
 void func_001ED03C(void) {
     int func_001EB302(...);
     func_001EB302(4);
@@ -74,13 +75,14 @@ int func_001ED07E(void)
 
 void func_001ED087(unsigned int code)
 {
-    extern unsigned int D_002AEAD0[][2];
+    extern unsigned int D_002AEAD0[];
+    extern unsigned int D_002AEAD4[];
     int func_001EB7E9(void);
     unsigned int i;
     *(unsigned int *)(func_001EB7E9() + 0xc) = code;
     for (i = 0; i < 0x2d; i++) {
-        if (code == D_002AEAD0[i][0]) {
-            *(unsigned int *)(func_001EB7E9() + 8) = D_002AEAD0[i][1];
+        if (code == D_002AEAD0[i * 2]) {
+            *(unsigned int *)(func_001EB7E9() + 8) = D_002AEAD4[i * 2];
             return;
         }
     }
