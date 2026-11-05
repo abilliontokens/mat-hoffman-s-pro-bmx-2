@@ -25,6 +25,29 @@ struct SoultreeCollisionObject {
 extern "C" void __stdcall func_0019BBD0(unsigned short param_1, int *param_2, int param_3, char *param_4, char *param_5);
 extern "C" void __stdcall func_0019BD20(unsigned short param_1, int *param_2, char *param_3, char *param_4, int param_5);
 
+void SoultreeCollisionObject::func_0019CBF0(int param_1, int param_2)
+{
+    int local[2];
+    local[0] = unk1C4;
+    local[1] = unk1C8;
+    switch (unkA6) {
+    case 1:
+        func_0019BBD0(unk1BC, local, param_1, unkB0, unk1B0);
+        return;
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+        return;
+    case 6:
+        func_0019BD20(unk1BC, local, unk1B0, unkB0, 1);
+        return;
+    case 7:
+        func_0019BD20(unk1BC, local, unk1B0, unkB0, 0);
+        return;
+    }
+}
+
 void SoultreeCollisionObject::func_0019CCA0(int param_1)
 {
     if (unkA6 != 0) {
@@ -33,3 +56,17 @@ void SoultreeCollisionObject::func_0019CCA0(int param_1)
     unkA7 = unkA7 & 0xef;
     func_00157A00(param_1);
 }
+
+int SoultreeCollisionObject::func_0019D680(void *param_1)
+{
+    if (((int *)param_1)[0x14] != 6) {
+        return 0;
+    }
+    int result = func_0019BB80(param_1);
+    if (result != 0) {
+        func_0019BA70();
+        func_0019B890();
+    }
+    return result;
+}
+
