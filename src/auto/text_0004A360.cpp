@@ -197,6 +197,25 @@ struct BmxEventFPS {
     void func_0004ACB0(void);
 };
 
+void BmxEventFPS::func_0004A590(void)
+{
+    int i;
+
+    for (i = 0; i < D_002A8490->f2e0->f0; i++) {
+        f64->f4e4[i]->dummy6();
+        f64->f4e4[i]->f2c->f1a4->f4->func_001983A0();
+    }
+    if (D_002B9120->f528 != 0) {
+        D_002B9120->f528->dummy6();
+        D_002B9120->f528->f3c->f4->func_001983A0();
+    }
+    for (i = 0; i < D_002B9120->f560; i++) {
+        D_002B9120->f524[i]->f80->dummy6();
+        D_002B9120->f524[i]->f4->f1a4->dummy6();
+        D_002B9120->f524[i]->f4->f1a4->f4->func_001983A0();
+    }
+}
+
 S_Item80 *__stdcall func_0004AA80(int param_1)
 {
     int i = 0;
