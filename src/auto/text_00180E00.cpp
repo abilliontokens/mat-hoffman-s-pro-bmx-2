@@ -113,6 +113,9 @@ struct Mgr {
 struct Rd {
     void func_0013C8A0(void *dst, int size, int n);
     void func_0013B210(void *p);
+    void func_0013C8A0_4(int a, void *b, int c, int d);
+    void func_0013C110(int a);
+    int func_0013D310(char *a, void *b, int *c, int *d, int e);
 };
 extern Rd *D_002BEAAC;
 extern Mgr *D_002A829C;
