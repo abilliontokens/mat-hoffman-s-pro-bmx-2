@@ -80,6 +80,8 @@ struct ResponseEmitter {
     void func_001A2E80(void);
     S_001A2C00_Snd *func_001A2EF0(int id);
     int func_001A2F70(void);
+    u32 func_001A2FC0(int a, int b, S_001A2C00_Vec v, int d);
+    void func_001A3050(int a);
 };
 
 void ResponseEmitter::func_001A2DD0(int id)
