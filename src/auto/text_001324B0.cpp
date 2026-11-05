@@ -24,7 +24,47 @@ struct Class_002845AC {
 };
 
 extern int D_00284514;
+extern int D_002845AC;
 void func_001E891B(void *ptr);
+void func_001E8390(void *ptr);
+
+struct C_Off_1324B0 {
+    char pad0[4];
+    int f4;
+};
+
+struct C_Item_1324B0 {
+    void func_00133ED0();
+    void func_00133140(int a, int b);
+};
+
+struct C_Dst_1324B0 {
+    void func_00157960();
+    void func_00157A00(int a);
+};
+
+struct C_Dst64520_1324B0 {
+    void func_00164520();
+};
+
+struct C_19_1324B0 {
+    void func_0019ABA0(int a, int b);
+};
+
+struct C_1329F0 {
+    void func_001329F0();
+    void func_00132C50(int a1);
+    void func_00132CA0();
+};
+
+struct C_132CC0 {
+    char pad0[4];
+    void *f4;
+    char pad8[0x278];
+    void *f280;
+    int f284;
+    void func_00132CC0(int a1, int a2, int a3);
+};
 
 void CinematographerCam::func_001324B0()
 {
@@ -48,6 +88,77 @@ void CinematographerCam::func_001324B0()
         func_001E891B(unk94);
     }
     func_0012B540();
+}
+
+void C_00132540::func_00132540()
+{
+    unsigned int *in_ECX = (unsigned int *)this;
+    int iVar2;
+    for (iVar2 = 0; iVar2 < 8; iVar2++) {
+        in_ECX[iVar2 * 4 + 2] = 0;
+        in_ECX[iVar2 * 4 + 1] = 0;
+        in_ECX[iVar2 * 4] = 0;
+        in_ECX[iVar2 * 4 + 3] = 0x3f800000;
+    }
+    in_ECX[1] = 0xff7fffff;
+    in_ECX[0x20] = 0xff7fffff;
+    in_ECX[0x21] = 0xff7fffff;
+    in_ECX[0x22] = 0x7f7fffff;
+    *in_ECX = 0xff7fffff;
+    in_ECX[2] = 0xff7fffff;
+    in_ECX[4] = 0x7f7fffff;
+    in_ECX[5] = 0xff7fffff;
+    in_ECX[6] = 0xff7fffff;
+    in_ECX[8] = 0x7f7fffff;
+    in_ECX[9] = 0x7f7fffff;
+    in_ECX[10] = 0xff7fffff;
+    in_ECX[0xc] = 0xff7fffff;
+    in_ECX[0xd] = 0x7f7fffff;
+    in_ECX[0xe] = 0xff7fffff;
+    in_ECX[0x10] = 0xff7fffff;
+    in_ECX[0x11] = 0xff7fffff;
+    in_ECX[0x12] = 0xff7fffff;
+    in_ECX[0x14] = 0x7f7fffff;
+    in_ECX[0x15] = 0xff7fffff;
+    in_ECX[0x16] = 0xff7fffff;
+    in_ECX[0x18] = 0x7f7fffff;
+    in_ECX[0x19] = 0x7f7fffff;
+    in_ECX[0x1a] = 0xff7fffff;
+    in_ECX[0x1c] = 0xff7fffff;
+    in_ECX[0x1d] = 0x7f7fffff;
+    in_ECX[0x1e] = 0xff7fffff;
+}
+
+int func_001325D0(float *param_1)
+{
+    float fVar1;
+    float fVar2;
+    int tmp;
+    int bVar3;
+    tmp = *(int *)&param_1[3];
+    tmp = tmp & 0x7fffffff;
+    fVar2 = *(float *)&tmp;
+    bVar3 = 0;
+    if (*param_1 > fVar2) {
+        bVar3 = 1;
+    }
+    fVar1 = -fVar2;
+    if (fVar1 > *param_1) {
+        bVar3 = bVar3 | 2;
+    }
+    if (param_1[1] > fVar2) {
+        bVar3 = bVar3 | 4;
+    }
+    if (fVar1 > param_1[1]) {
+        bVar3 = bVar3 | 8;
+    }
+    if (param_1[2] > fVar2) {
+        bVar3 = bVar3 | 0x10;
+    }
+    if (fVar1 > param_1[2]) {
+        bVar3 = bVar3 | 0x20;
+    }
+    return bVar3;
 }
 
 void Class_002845AC::func_00132DB0()
