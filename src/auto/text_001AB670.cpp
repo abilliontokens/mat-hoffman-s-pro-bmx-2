@@ -41,3 +41,17 @@ struct StringTable {
     void func_0001DFE0();
     StringTable *func_001AC3A0();
 };
+
+extern "C" char *strcpy(char *, const char *);
+StringTable *StringTable::func_001AC3A0()
+{
+    func_0001DFE0();
+    field_08 = 0;
+    field_0C = 0;
+    field_10 = 0;
+    field_14 = 0;
+    field_18 = 0;
+    field_1C = 0;
+    vtbl = (void *)&D_0028C0BC;
+    return this;
+}
