@@ -218,6 +218,7 @@ struct Camera {
     int f224;
     void func_0012B060(void);
     void func_0012B110(void);
+    void func_0012B350(void);
     int func_0012B150(void);
     void func_001576D0(void);
 };
