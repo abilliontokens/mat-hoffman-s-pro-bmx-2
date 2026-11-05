@@ -283,6 +283,52 @@ void C_000EBE30::func_000EBE30()
     func_001BE3F0();
 }
 
+void C_000EBE30::func_000EC320()
+{
+    int n;
+    int i;
+    char buf[0x32];
+
+    n = 0;
+    if (D_002A8490->f2E0->f2C8->flags[0] == 1) {
+        arr2E0[n] = 0;
+        n++;
+    }
+    if (D_002A8490->f2E0->f2C8->flags[1] == 1) {
+        arr2E0[n] = 1;
+        n++;
+    }
+    if (D_002A8490->f2E0->f2C8->flags[2] == 1) {
+        arr2E0[n] = 2;
+        n++;
+    }
+    if (D_002A8490->f2E0->f2C8->flags[3] == 1) {
+        arr2E0[n] = 3;
+        n++;
+    }
+    if (D_002A8490->f2E0->f2C8->flags[4] == 1) {
+        arr2E0[n] = 4;
+        n++;
+    }
+    if (D_002A8490->f2E0->f2C8->flags[5] == 1) {
+        arr2E0[n] = 5;
+        n++;
+    }
+    if (D_002A8490->f2E0->f2C8->flags[6] == 1) {
+        arr2E0[n] = 6;
+        n++;
+    }
+    if (D_002A8490->f2E0->f2C8->flags[7] == 1) {
+        arr2E0[n] = 7;
+        n++;
+    }
+    unk324 = n;
+    for (i = 0; i < unk324; i++) {
+        strcpy(buf, D_002A8490->f2E0->f2C8[arr2E0[i]].name);
+        unk280[i]->func_001B17D0(buf);
+    }
+}
+
 void C_000EBE30::func_000EC4A0()
 {
     int i;
