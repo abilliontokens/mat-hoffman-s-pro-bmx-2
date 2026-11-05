@@ -1,5 +1,7 @@
 /* 24 functions from 0x00030A30 to 0x000318A0, found by Ghidra. */
 #include "common.h"
+extern char D_002A47F0[], D_002A5348[], D_00275678[], D_002A48F8[], D_00275630[], D_00276B78[], D_002A5870[];
+void func_001ADCC0(void *, int, void *, void *, void *);
 extern "C" char *strcpy(char *dst, const char *src);
 extern "C" char *strcat(char *dst, const char *src);
 #pragma intrinsic(strcpy)
