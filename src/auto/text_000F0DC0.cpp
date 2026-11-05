@@ -34,7 +34,7 @@ struct BmxUIPageHPHChoice_000F1D00 {
     float unk2A8;
     int unk2AC;
     int unk2B0;
-    void *unk2B4;
+    int unk2B4;
     int unk2B8;
     int unk2BC;
     int unk2C0;
@@ -46,7 +46,7 @@ void C_000F1B60::func_000F1B60(void) {
     int off;
 
     for (off = 0x38; off < 0x40; off += 4)
-        (*(C_001D6600 **)((char *)D_002B91AC + off))->func_001D6600();
+        (*(C_001D6600 **)(off + (int)D_002B91AC))->func_001D6600();
     D_002B91AC->f34->func_001D6600();
 }
 
