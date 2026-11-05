@@ -9,6 +9,49 @@ struct C_00149300 {
     void func_00149300(void);
 };
 
+extern int D_00286824;
+extern int D_00285C84;
+extern int D_00285C78;
+extern int D_00284E94;
+extern int D_00285CA0;
+extern int D_00285C94;
+extern int D_00144CD0;
+
+struct C_00149380 {
+    void *vtbl;
+    void func_001B0F10();
+    C_00149380();
+};
+
+struct AnimSrc_001487D0 {
+    char pad0[0x40];
+    int count;
+};
+
+struct C_00148780 {
+    void *vtbl;
+    u32 unk4;
+    AnimSrc_001487D0 *unk8;
+    u32 unkC;
+    u32 unk10;
+    u32 unk14;
+    u32 unk18;
+    u32 unk1C;
+    void *unk20;
+    void func_001AF710();
+    void *func_00148780(unsigned int flags);
+    void func_001487D0();
+};
+
+struct C_00148820 {
+    void *vtbl;
+    u32 unk4;
+    void *unk8;
+    u32 unkC;
+    void func_00144E70();
+    C_00148820(int a1, void *a2);
+};
+
 
 undefined4 C_001488F0::func_001488F0(byte param_1)
 {
