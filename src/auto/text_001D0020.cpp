@@ -41,7 +41,7 @@ struct S_001D0020_Env {
 
 extern "C" void *memset(void *dst, int c, unsigned int n);
 #pragma intrinsic(memset)
-extern float D_0028F0AC;
+extern const float D_0028F0AC;
 int __stdcall func_002228F8(void *desc, void *outStream);
 extern "C" void __stdcall D_00220ADB(void *stream, void *env);
 int __stdcall func_001DDBC7(int a, int b, int c, int d);
