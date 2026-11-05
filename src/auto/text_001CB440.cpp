@@ -56,6 +56,82 @@ struct C_001CB510 {
     void func_001CB510(void);
 };
 
+extern float D_00275544;
+extern "C" void __stdcall D_00220AE0(void *obj, int arg);
+char *func_001E8920(char *dst, const char *src, int n);
+
+/* XboxSoundGroup: virtual slot 31 is called after the GameObject-style tree update */
+struct C_001576C0 {
+    void func_001576C0(void);
+};
+
+struct C_001CB940 {
+    virtual void v00(); virtual void v01(); virtual void v02(); virtual void v03();
+    virtual void v04(); virtual void v05(); virtual void v06(); virtual void v07();
+    virtual void v08(); virtual void v09(); virtual void v0A(); virtual void v0B();
+    virtual void v0C(); virtual void v0D(); virtual void v0E(); virtual void v0F();
+    virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13();
+    virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17();
+    virtual void v18(); virtual void v19(); virtual void v1A(); virtual void v1B();
+    virtual void v1C(); virtual void v1D(); virtual void v1E();
+    virtual void v1F(int a, int b);
+    void func_001CB940(void);
+};
+
+/* a sound object that can be handed focus by another one of the same kind */
+struct C_001CB560 {
+    virtual void v0(); virtual void v1(); virtual void v2();
+    virtual void v3(); virtual void v4(); virtual void v5();
+    virtual void v6(int a);
+    char pad4[0x104];
+    unsigned int f108;
+    char pad10c[0x30];
+    int f13c;
+    char pad140[0x14];
+    C_001CB560 *f154;
+    char pad158[0xb0];
+    unsigned char f208;
+    int func_001CB560(C_001CB560 *other);
+};
+
+struct S_001CB610_Entry {
+    char pad0[0x20];
+    char name[0x1f];
+    char term;
+    char pad40[4];
+};
+
+struct C_001CB610 {
+    char pad0[0x34];
+    S_001CB610_Entry *f34;
+    char pad38[0x70];
+    int fa8;
+    void func_001CB610(int idx, const char *name);
+};
+
+/* XboxMusic (see text_001CE140.cpp), the part func_001CB650 touches */
+struct C_001CB650 {
+    virtual void v00(); virtual void v01(); virtual void v02(); virtual void v03();
+    virtual void v04(); virtual void v05(); virtual void v06(); virtual void v07();
+    virtual void v08(); virtual void v09(); virtual void v0A(); virtual void v0B();
+    virtual void v0C(); virtual void v0D(); virtual void v0E(); virtual void v0F();
+    virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13();
+    virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17();
+    virtual void v18(); virtual void v19(); virtual void v1A(); virtual void v1B();
+    virtual void v1C(); virtual void v1D(); virtual void v1E(); virtual void v1F();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(int a, float b, int c);
+    char pad4[0x9c];
+    unsigned char fa0;
+    char pada1[0x17];
+    void *fb8;
+    void *fbc;
+    char padc0[8];
+    int fc8;
+    int fcc;
+    int func_001CB650(float a);
+};
+
 void __stdcall func_002223E1(int a, int b, int c);
 int __stdcall func_0021FB83(int a);
 
