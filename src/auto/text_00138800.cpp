@@ -1,5 +1,38 @@
 /* 10 functions from 0x00138800 to 0x001396D0, found by Ghidra. */
 #include "common.h"
+extern int D_00284A2C;
+struct CutScene {
+ void *vtbl; char pad4[0x20];
+int f24;
+int f28;
+int f2c;
+int f30;
+int f34;
+int f38;
+int f3c;
+int f40;
+int f44;
+int f48;
+int f4c;
+int f50;
+int f54;
+int f58;
+int f5c;
+int f60;
+int f64;
+int f68;
+int f6c;
+int f70;
+int f74;
+int f78;
+int f7c;
+int f80;
+int f84;
+int f88;
+int f8c;
+ void func_00157600(int);
+ CutScene *func_00138800(int);
+};
 struct C_00139080 {
     char pad0[0x88];
     int unk88;
