@@ -1,7 +1,10 @@
 /* 22 functions from 0x001B5D90 to 0x001B6A70, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
-struct C_001BBAA0;
+#define C_001BBAA0_DEFINED
+struct C_001BBAA0 {
+    void func_001BBAA0(void *owner, void *fn);
+};
 extern char D_0001C0B0;
 struct S_001B5D90_Item {
     char pad0[4];
