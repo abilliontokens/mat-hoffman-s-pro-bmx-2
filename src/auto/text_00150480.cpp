@@ -19,6 +19,18 @@ struct C_001507E0 {
     void func_00157660();
 };
 
+extern int D_0020C6DC, D_0020CA50, D_0020CA54;
+void __stdcall func_001FD400(int);
+struct C_00150480 {
+    char pad0[0x21];
+    unsigned char unk21;
+    char pad22[2];
+    int unk24;
+    char pad28[0x14];
+    int unk3C;
+    int func_00150480();
+};
+
 struct S_002EFDB8 {
     char pad0[0x2C];
     int unk2C;
