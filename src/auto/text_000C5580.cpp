@@ -128,6 +128,8 @@ struct BmxUIPageParkEditor {
     int f2C8;
     int f2CC;
     PageObj_5580 *f2D0[4];
+    BmxUIPageParkEditor *func_000C5D00(int a, int b, int c);
+    void func_001BE4F0(int a, int b, int c);
     void func_000C6420();
     void func_001BE360(int a);
     void func_001BE3F0();
