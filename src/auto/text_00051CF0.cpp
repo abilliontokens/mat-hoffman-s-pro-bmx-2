@@ -89,6 +89,15 @@ struct C_00051CF0;
 
 struct C_00052AE0_1C0 {
     void func_00099750(C_00051CF0 *owner, float a);
+    void func_00099600(float lo, float hi);
+};
+
+/* object at C_00051CF0::unk1C4: reports a float range, flag byte at 0xC0 */
+struct C_000529D0_1C4 {
+    char pad0[0xC0];
+    unsigned char fC0;
+    float func_00026110(void);
+    float func_00197250(void);
 };
 
 struct C_00051CF0_2A8490 {
