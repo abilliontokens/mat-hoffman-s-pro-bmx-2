@@ -465,12 +465,17 @@ void *__stdcall func_001DDC48(int attrs, int initialOwner, char *name)
     int status;
 
     status = _imp__NtCreateMutant((void **)&name, name ? func_001DF546(&oa, &str, name) : 0, initialOwner);
-    if (status < 0) {
+    if (status >= 0) {
+        if (status == 0x40000000) {
+            func_001DD62B(0xb7);
+        } else {
+            func_001DD62B(0);
+        }
+        return name;
+    } else {
         func_001DD659(status);
         return 0;
     }
-    func_001DD62B(status == 0x40000000 ? 0xb7 : 0);
-    return name;
 }
 
 int __stdcall func_001DDCA0(void *a0) {
