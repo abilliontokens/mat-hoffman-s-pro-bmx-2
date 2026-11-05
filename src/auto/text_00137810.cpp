@@ -124,8 +124,7 @@ void DrawableCube::func_00137E50(float dt)
                     if (func_00011260(0, 100) < e->f14) {
                         e->f24 |= 1;
                         f34 = i;
-                        func_00157A00(dt);
-                        return;
+                        break;
                     }
                 } else {
                     e->f1C = dt + e->f1C;
@@ -133,7 +132,7 @@ void DrawableCube::func_00137E50(float dt)
             }
         }
     } else {
-        e = f3c + f34;
+        e = &f3c[f34];
         e->f20 = dt * e->fC + e->f20;
         if (e->f20 > e->f4 - e->f0) {
             e->f20 = 0;
