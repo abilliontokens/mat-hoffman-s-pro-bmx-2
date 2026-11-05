@@ -57,6 +57,7 @@ struct GrindLineManager {
     void func_0015A250(GrindLine *a);
     void func_00157660();
     void func_0015A580(void);
+    GrindLine *func_00159E90(char *name, GLV *p0, GLV *p1, char *s2, char *s3, int n);
 };
 
 struct C_001596C0_Sub {
