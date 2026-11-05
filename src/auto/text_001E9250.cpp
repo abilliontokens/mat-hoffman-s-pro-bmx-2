@@ -104,6 +104,18 @@ struct S_001E9FA2_TypeInfo {
 };
 #include <string.h>
 
+/* CRT FILE with a 16-bit _flag, as fread reads it */
+struct S_001E97B1_File {
+    char *ptr;
+    int cnt;
+    char *base;
+    short flag;
+    short pad;
+    int file;
+    int charbuf;
+    int bufsiz;
+};
+
 int __fastcall func_001E9250(int param_1, int param_2) {
     return param_2 - 1;
 }
