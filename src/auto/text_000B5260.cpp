@@ -11,6 +11,35 @@ struct C_000B5870 {
     int func_000B5870(void);
 };
 
+struct C_000B5880 {
+    char pad0[0x34];
+    int unk34;
+    int unk38;
+    int unk3c;
+    int unk40;
+    void func_000B5880(int *param_1);
+};
+
+struct C_000B58B0 {
+    void func_000B58B0(void);
+};
+
+struct C_000B5950 {
+    int func_000B5950(void);
+};
+
+struct C_000B60A0 {
+    int unk0;
+    void *func_000B60A0(int flags);
+};
+
+struct C_00197F70 {
+    float *func_00197F70(float *param_1, float *param_2);
+};
+
+extern int D_0027D37C;
+extern float D_002A2EC8;
+
 
 int C_000B5870::func_000B5870(void) {
     return unk24;
