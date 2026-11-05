@@ -172,7 +172,7 @@ struct C_001D5760 {
     unsigned int f38;
     int f3C;
     int f40;
-    f32 f44;
+    int f44;
     f32 f48;
     char pad4C[0xC];
     u8 b58;
@@ -727,6 +727,37 @@ bool C_001C3F50::func_001C3F50(void)
   return *(int *)(in_ECX + 0x6c) != 0;
 }
 
+void *ViewportFade::func_001C40C0(int a0)
+{
+    C_001D5760 *o;
+    C_001D5760 *p;
+
+    f34 = a0;
+    func_001D3F50();
+    p = (C_001D5760 *)func_001E8A44(0x64);
+    p = p != 0 ? p->func_001D5760() : 0;
+    unk24 = p;
+    p->func_001D5810(a0 != -1 ? &D_0028E53C : &D_0028E544, 0, 0, 0);
+    o = unk24;
+    if (o->f28 != 0x44200000) {
+        o->f28 = 0x44200000;
+        o->b58 |= 1;
+    }
+    o = unk24;
+    if (o->f2C != 0x43e00000) {
+        o->f2C = 0x43e00000;
+        o->b58 |= 1;
+    }
+    o = unk24;
+    o->f38 &= 0xff000000;
+    o->b58 |= 2;
+    o = unk24;
+    o->f38 |= 0xff000000;
+    o->b58 |= 2;
+    v4();
+    return this;
+}
+
 int ViewportFade::func_001C4180(int a0)
 {
     float k = (float)a0 * D_00276098;
@@ -763,5 +794,35 @@ int FadeOut_001C41E0::func_001C41E0(int a0)
     f3C = 1;
     v6();
     return 1;
+}
+
+CrossFade_001C44A0 *CrossFade_001C44A0::func_001C44A0(int a0)
+{
+    C_001D5760 *o;
+    C_001D5760 *p;
+
+    f34 = a0;
+    func_001D3F50();
+    p = (C_001D5760 *)func_001E8A44(0x64);
+    unk24 = p != 0 ? p->func_001D5760() : 0;
+    unk24->func_001D5810(a0 == -1 ? &D_0028E5CC : &D_0028E5C4, 0, 0, 0);
+    o = unk24;
+    if (o->f28 != 0x44200000) {
+        o->f28 = 0x44200000;
+        o->b58 |= 1;
+    }
+    o = unk24;
+    if (o->f2C != 0x43e00000) {
+        o->f2C = 0x43e00000;
+        o->b58 |= 1;
+    }
+    o = unk24;
+    o->f44 = D_0028E3CC;
+    o->b58 |= 4;
+    o->f3C = 0;
+    o->f40 = 0x44200000;
+    o->f48 = D_0028E3CC + D_002779FC;
+    v4();
+    return this;
 }
 
