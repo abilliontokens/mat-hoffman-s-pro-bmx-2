@@ -182,6 +182,19 @@ undefined4 C_00161600::func_00161600(byte param_1)
   return in_ECX;
 }
 
+void C_00161870::func_00161620()
+{
+    int i;
+
+    for (i = 0; i < f8; i++) {
+        if (f14[i].f4 != 0) {
+            f14[i].f4->v2();
+            f14[i].f4 = 0;
+            f14[i].fC = 0;
+        }
+    }
+}
+
 void func_00161670(void) {
     int func_001AC440(...);
     func_001AC440();
