@@ -80,6 +80,14 @@ struct C_0011C900 {
     void func_0011C900(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11, int a12);
 };
 
+static inline void SetV4(S_0011CA20_V4 *v, int x, int y, int z, int w)
+{
+    v->x = x;
+    v->y = y;
+    v->z = z;
+    v->w = w;
+}
+
 void C_0011CA20::func_0011CA20()
 {
     unk5C = D_002A3BBC;
