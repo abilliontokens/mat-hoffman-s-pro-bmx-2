@@ -110,6 +110,37 @@ struct C_001B5A00 {
     int func_001B5A00(S_001B5A00_Stream *stream, int a1);
 };
 
+extern int D_0027CB30, D_0027CB2C, D_0028CABC, D_0028CAB8, D_0028CAB0, D_0028CAA8, D_00284BE8;
+
+struct S_001B5000_Stream {
+    void func_00168CB0(void *name, void *def, void *dst);
+    void func_00168C50(void *name, int def, void *dst);
+    void func_00168C20(void *name, int def, void *dst);
+    int func_00186F80(int idx);
+};
+
+struct S_00186EF0 {
+    S_00186EF0 *func_00186EF0(void);
+    int func_00186F80(S_001B5000_Stream *s, int idx);
+};
+
+struct C_001B5000 {
+    char pad0[8];
+    int f08;
+    char pad0C[0xC];
+    int f18;
+    char pad1C[0xC];
+    int f28;
+    char pad2C[0xC];
+    int f38;
+    int f3C;
+    int f40;
+    char pad44[8];
+    int f4C;
+    S_00186EF0 **f50;
+    int func_001B5000(S_001B5000_Stream *s);
+};
+
 struct C_001B5D30 {
     int func_001B5D30(S_001B5A00_Stream *stream, int a1);
 };
