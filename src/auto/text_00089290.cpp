@@ -150,3 +150,33 @@ void C_0008A0A0::func_0008A0A0(void) {
     unk128 = 0;
     unk12C = 0;
 }
+
+void C_0008A0B0::func_0008A0B0(void)
+{
+    int names[2] = { (int)&D_002786A0, (int)&D_0027958C };
+    S_0008A0B0_Elem **e = elems;
+    int n = 26;
+    int i;
+    int *r;
+    S_0008A0B0_Lookup *lk;
+    S_0008A0B0_Clamp *o;
+
+    do {
+        o = (*e)->func_001D5AA0();
+        if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+        if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        e++;
+        n--;
+    } while (n != 0);
+    for (i = 0; i < 2; i++) {
+        lk = D_002A8490->lookup;
+        r = lk->func_0018C160(names[i]);
+        if (r != 0 && *r != 0) {
+            o = ((S_0008A0B0_Mid *)*r)->func_0018C070();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+    }
+    func_001578D0();
+}
+
