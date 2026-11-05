@@ -213,10 +213,12 @@ int C_00184930::func_00184CC0(void)
     if (f3b0 != 0) {
         for (i = 0; i < f340; i++) {
             f348 = i;
-            if (f3b0[i]->f24 > 0) {
-                f3b0[i]->v28(this);
+            S_00184CC0_Item *item = f3b0[i];
+            if (item->f24 > 0) {
+                item->v28(this);
             }
         }
+        return 1;
     }
     return 1;
 }
