@@ -36,6 +36,31 @@ struct C_00016E40 {
     C_00016E40_Vec func_00016E40(void);
 };
 
+struct C_00017A40_Obj {
+    int pad0[0x124 / 4];
+    int f124;
+};
+struct C_00017A40_Glob {
+    char pad0[0x4DC];
+    C_00017A40_Obj *f4DC;
+};
+extern C_00017A40_Glob *D_002B9120;
+struct C_00017A40_T {
+    C_00016E40_Vec func_00199B00(int a0);
+    void func_00199600(C_00016E40_Vec v);
+};
+struct C_00017A40_M {
+    int pad0;
+    C_00017A40_T *f4;
+};
+struct C_00017A40 {
+    char pad0[0x3C];
+    C_00017A40_M *f3C;
+    char pad40[0x4F8 - 0x40];
+    C_00016E40_Vec f4F8;
+    C_00016E40_Vec func_00017A40(void);
+};
+
 extern "C" int strcmp(const char *s1, const char *s2);
 extern float D_00275460;
 extern int D_002A0700[];
