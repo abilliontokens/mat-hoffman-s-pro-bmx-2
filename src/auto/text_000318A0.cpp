@@ -145,6 +145,14 @@ int C_00032060::func_000320A0(float value, char *name)
     return 0;
 }
 
+int C_00032060::func_000320E0(int score, char *name)
+{
+    if (unk68->func_0005B960(4, (float)score) != 0) {
+        unk68->func_0005BA80(4, (float)score, name);
+    }
+    return 0;
+}
+
 void C_00032550::func_00032530(void)
 {
     if (unk1C4 != 0) {
