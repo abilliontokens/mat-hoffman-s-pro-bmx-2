@@ -114,7 +114,7 @@ struct C_00088570 {
     virtual void v0();
     virtual void v1();
     virtual void v2();
-    char padC[0x24 - 0xC];
+    char padC[0x24 - 0x4];
     Sub_00088530 sub24;
     Sub_00088530 sub88;
     u32 fEC;
@@ -156,6 +156,62 @@ SplitScreenSeparator *SplitScreenSeparator::func_00088530(int param_1)
     sub24.func_001D5760();
     sub88.func_001D5760();
     fEC = 0;
+    return this;
+}
+
+C_00088570 *C_00088570::func_00088570(int mode)
+{
+    int w;
+    int h;
+    int w2 = 0;
+    int h2 = 0;
+
+    fEC = mode;
+    if (mode == 0) {
+        v2();
+        return 0;
+    }
+    if (mode == 1) {
+        w = 0x280;
+        h = 2;
+        fF0 = 0xe0;
+    } else {
+        w = 2;
+        if (mode == 2) {
+            h = 0x1c0;
+            fF0 = 0x140;
+        } else {
+            h = 0xe0;
+        }
+    }
+    w2 = 0x140;
+    h2 = 2;
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
+    sub24.func_001D5810((void *)D_00279920, 0, 0, 0);
+    if (sub24.f28 != w) {
+        sub24.f28 = w;
+        sub24.b58 |= 1;
+    }
+    if (sub24.f2c != h) {
+        sub24.f2c = h;
+        sub24.b58 |= 1;
+    }
+    sub24.f38 &= 0xff000000;
+    sub24.b58 |= 2;
+    if (fEC == 3 || fEC == 4) {
+        sub88.func_001D5810((void *)D_00279920, 0, 0, 0);
+        if (sub88.f28 != w2) {
+            sub88.f28 = w2;
+            sub88.b58 |= 1;
+        }
+        if (sub88.f2c != h2) {
+            sub88.f2c = h2;
+            sub88.b58 |= 1;
+        }
+        sub88.f38 &= 0xff000000;
+        sub88.b58 |= 2;
+    }
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
     return this;
 }
 
