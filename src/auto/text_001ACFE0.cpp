@@ -55,3 +55,45 @@ struct SpriteTweak {
     void func_001ADDF0(int a);
     void func_001ADF30(int a, int b);
 };
+
+SpriteTweak *SpriteTweak::func_001ADEB0(void)
+{
+    unk40 = 1.0f;
+    unk3C = 1.0f;
+    unk50 = 1.0f;
+    unk48 = 1.0f;
+    unk4 = 0;
+    vtbl = &D_0028C1D0;
+    unk38 = 0;
+    unk34 = 0;
+    unk4C = 0;
+    unk44 = 0;
+    unk68 = 0;
+    unk64 = (char)0xff;
+    unk60 = 0x80808080;
+    unk5C = 0x80808080;
+    unk58 = 0x80808080;
+    unk54 = 0x80808080;
+    unk10 = 0;
+    unk14 = 0;
+    unk1C = func_001FCF20(0x280, 0x1e0, 1, 1, 1, 0x12, 3);
+    unk20 = func_001FCE50(unk1C, 0);
+    return this;
+}
+
+void SpriteTweak::func_001ADF30(int a, int b)
+{
+    func_001ADDF0(a);
+    unk18 = b;
+    unk28 = (int)func_001FF3C0(0x60);
+    func_0014A7B0(&D_002EFFD0, &D_002AA2D4);
+    C_0014A520 *p = (C_0014A520 *)func_001E8A44(0xc);
+    p = p != 0 ? p->func_0014A520((int)&D_002EFFD0) : 0;
+    unk10 = p;
+    p->func_0014A560((int)&D_0028C1F0, 0);
+    C_00142C70 *q = (C_00142C70 *)func_001E8A44(0xf0);
+    q = q != 0 ? q->func_00142C70() : 0;
+    unk14 = q;
+    q->func_00142C80((int)&D_0028C1DC, 0);
+}
+
