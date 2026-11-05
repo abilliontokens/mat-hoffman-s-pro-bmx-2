@@ -45,13 +45,13 @@ struct C_000AC680 {
     int func_000AC680(void);
 };
 
-int __stdcall func_000A95D0(void *p);
-
 struct C_000AC6E0 {
     char pad0[0x538];
     void *field_538;
-    void func_000AC6E0(void);
+    C_000AC6E0 *func_000AC6E0(void);
 };
+
+C_000AC6E0 *__stdcall func_000A95D0(void *p);
 
 void C_000ABD80::func_000ABD80(C_000ABD80_P1 *a, void *b)
 {
@@ -77,5 +77,13 @@ int C_000AC680::func_000AC680(void)
         field_4DC = 0;
     }
     return 1;
+}
+
+C_000AC6E0 *C_000AC6E0::func_000AC6E0(void)
+{
+    if (field_538 != 0) {
+        return func_000A95D0(this);
+    }
+    return this;
 }
 
