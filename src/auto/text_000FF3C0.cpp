@@ -167,6 +167,7 @@ struct C_000FFFA0 {
     void func_000DBC40();
     void func_000DBD20();
     void func_000DC270();
+    void func_000DCBF0();
     void func_000FFC20();
     void func_00157960();
     void func_000FFFA0();
