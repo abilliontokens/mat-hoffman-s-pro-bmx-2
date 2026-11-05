@@ -113,6 +113,11 @@ struct C_00102E20 {
     int unk3D8;
     int unk3DC;
     void func_00102E20();
+    void func_001030A0();
+};
+
+struct C_001BF660 {
+    void func_001BF660();
 };
 
 /* BmxUIWidgetOverlayText */
