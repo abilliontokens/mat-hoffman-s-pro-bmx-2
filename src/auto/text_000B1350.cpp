@@ -20,7 +20,11 @@ struct S_000B1660_Item {
 };
 struct S_000B1660_Entry { int f0, f4, f8; };
 struct S_000B1660_Global {
-    char pad0[0x578];
+    char pad0[0x348];
+    int f348;
+    char pad34C[0x160];
+    int *f4AC;
+    char pad4B0[0xC8];
     int f578;
     S_000B1660_Item **f57C;
     char pad580[0xC];
