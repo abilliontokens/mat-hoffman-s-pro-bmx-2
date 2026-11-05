@@ -433,6 +433,34 @@ void C_00051260::func_00051260(void)
   return;
 }
 
+C_000512D0 *C_000512D0::func_000512D0(void)
+{
+    S_000512D0_Root *root;
+    f1F8 = 1;
+    f200 = 1;
+    root = (S_000512D0_Root *)D_002A8490;
+    f290 = root->f2E0->f2C0->func_0005C020(root->f2E0->f2D8);
+    func_000342C0();
+    if (f1C0 != 0) {
+        f1C0->func_00099D40(((S_000512D0_Root *)D_002A8490)->f2E0->f2D8);
+    }
+    f1D0->func_00012140();
+    D_002BEAAC->func_0013B280(1);
+    D_002BEAAC->func_0013B260(0);
+    *(int *)(f290 + ((S_000512D0_Root *)D_002A8490)->f2E0->f48 * 4 + 0x658) = f64->f568;
+    *(int *)(f290 + ((S_000512D0_Root *)D_002A8490)->f2E0->f48 * 4 + 0x12F8) = f64->f534->f24;
+    if (f1C0 != 0 && f1C0->func_00097700() == 0) {
+        f1C0->func_00099E50(f290, ((S_000512D0_Root *)D_002A8490)->f2E0->f48);
+    }
+    func_000321C0();
+    f16C->func_00064A40();
+    func_00032720();
+    v9C();
+    func_00032740();
+    f1C0->func_000999B0();
+    return this;
+}
+
 void C_000516C0::func_000516C0(void)
 {
   int in_ECX = (int)this;
