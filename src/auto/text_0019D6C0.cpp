@@ -49,14 +49,13 @@ struct C_0019DE30 {
 
 int C_0019D7B0::func_0019D7B0(int a1, char *path)
 {
-    int v0;
     int h;
     int ptr;
     int vC;
     int v10;
     int v14;
     int v18;
-    char buf[0x100];
+    char buf[260];
 
     if (D_002A4C10[0] != 0) {
         strcpy(buf, D_002A4C10);
@@ -69,9 +68,8 @@ int C_0019D7B0::func_0019D7B0(int a1, char *path)
     func_00030F30(buf, &D_0028463C);
     h = -1;
     ptr = 0;
-    v0 = D_002BEAAC->func_0013D310(buf, &D_00275FB4, &h, &ptr, 1);
-    if (v0 == 0)
-        return v0;
+    if (D_002BEAAC->func_0013D310(buf, &D_00275FB4, &h, &ptr, 1) == 0)
+        return 0;
     if (ptr != 0) {
         v14 = *(int *)(ptr + 4);
         func_0019C690((char *)a1, (int *)ptr);
