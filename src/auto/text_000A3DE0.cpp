@@ -66,3 +66,23 @@ C_000A43E0* C_000A43E0::func_000A43E0(void) {
     unkC = 1;
     return this;
 }
+
+int C_000A4150::func_000A4400(char *a1) {
+    char buf[0x104];
+    C_000A4150_obj *obj;
+
+    func_001ADCC0(D_002A60B0, 0x104, D_00276F28, D_002A4A00);
+    func_001ADCC0(D_002A5EA0, 0x104, D_00276F28, D_002A4A00);
+    func_001ADCC0(D_002A46E8, 0x104, D_00276F28, D_002A4A00);
+    func_001ADCC0(D_002A4C10, 0x104, D_00276F28, D_002A4A00);
+    if (!unk0) {
+        obj = (C_000A4150_obj *)func_001E8A44(0x244);
+        unk0 = obj ? obj->func_00164440(1, 1) : 0;
+        func_001ADCC0(buf, 0x104, D_0027B208, D_002A4A00, a1);
+        unk0->func_001673B0(buf, 0, 1, 1, 1);
+        unk0->unk4->unk180 |= 8;
+        unk0->unk4->unk180 |= 0x10;
+    }
+    return 1;
+}
+
