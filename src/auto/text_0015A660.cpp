@@ -214,7 +214,7 @@ struct S_0015A660_List {
     int capacity;
     int f10;
     int func_0015ACA0(int n);
-    __forceinline void *at(int i)
+    void *at(int i)
     {
         if (count > 0 && data != 0 && i < count) {
             return data[i];
