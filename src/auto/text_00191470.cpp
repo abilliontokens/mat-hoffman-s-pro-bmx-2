@@ -120,6 +120,12 @@ void func_00191640(C_00191640_Node *a, C_00191640_Node *b, int op, C_0018F390 *o
     obj->func_0018F390(&D_00275630, 0x100, &r);
 }
 
+void func_001917E0(int name, C_0018F390 *obj)
+{
+    int value = func_001E91F4(name);
+    obj->func_0018F390(&D_00275630, 0x200, &value);
+}
+
 void func_00191C20(int name, C_0018F390 *obj)
 {
     int value = func_001E91F4(name);
