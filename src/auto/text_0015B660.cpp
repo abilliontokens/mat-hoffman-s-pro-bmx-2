@@ -13,6 +13,8 @@ struct C_0015B660 {
     u32 unkC;
     u32 unk10;
     void *unk14;
+    C_0015B660();
+    ~C_0015B660();
     void func_0015B660();
     void func_0015B680();
 };
