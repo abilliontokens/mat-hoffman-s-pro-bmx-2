@@ -23,6 +23,19 @@ undefined4 C_001B9D40::func_001B9D40(byte param_1)
   return in_ECX;
 }
 
+undefined4 C_001BA3B0::func_001BA3B0(byte param_1)
+{
+  int func_001B5860(...);
+  int func_001E891B(...);
+  undefined4 in_ECX = (undefined4)this;
+
+  func_001B5860();
+  if ((param_1 & 1) != 0) {
+    func_001E891B(in_ECX);
+  }
+  return in_ECX;
+}
+
 void func_001BA540(undefined4 param_1, undefined4 param_2, int param_3, int param_4)
 {
   if (param_4 != 0) {
