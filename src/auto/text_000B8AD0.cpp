@@ -11,7 +11,10 @@ struct BmxUIGlobalManager {
     void *vtbl;
     void *func_000B9A60(int a0);
     void func_001BC770(int a0);
+    void *func_000B9AA0(int flags);
+    void func_001BC7A0();
 };
+void func_001E891B(void *);
 struct C_000B8AD0 {
     char pad0[0x50];
     int unk50;
