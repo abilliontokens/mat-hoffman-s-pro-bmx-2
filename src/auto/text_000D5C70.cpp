@@ -10,9 +10,24 @@ struct ElemHOF2 {
     unsigned char b58;
 };
 
+struct S_000D6A60_Widget {
+    void func_001B1980();
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, float a11, int a12, int a13);
+};
+
+struct S_000D6A60_Res {
+    void func_00103350();
+};
+
+struct S_000D6A60_Owner {
+    S_000D6A60_Res *func_000BA9B0(int a);
+};
+
 struct BmxUIPageHOF2 {
     void *vtbl;
-    char pad4[0x280 - 4];
+    char pad4[0x124 - 4];
+    S_000D6A60_Owner *f124;
+    char pad128[0x280 - 0x128];
     u32 unk280;
     u32 unk284;
     u32 unk288;
