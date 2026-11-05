@@ -128,6 +128,14 @@ int func_001F4ED9(int ch, S_001F4_FILE *stream)
     return ch & 0xff;
 }
 
+int func_001F57FF(int fh)
+{
+    if ((unsigned int)fh >= D_002FB240) {
+        return 0;
+    }
+    return D_002FB260[fh >> 5][fh & 0x1f].osfile & 0x40;
+}
+
 __int64 func_001F5829(int fh, __int64 pos, int mthd)
 {
     int func_001EE6CE(int fh);
