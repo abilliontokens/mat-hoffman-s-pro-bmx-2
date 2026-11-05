@@ -703,7 +703,13 @@ int C_001CBF20::func_001CBFE0(S_001CBF20_Vec4 *a, S_001CBF20_Vec4 *b)
     if (f2C & 1) {
         fF8 = *a;
         f108 = *b;
-        e = func_00222309(f30, a->x, a->y, a->z, b->x, b->y, b->z, 1);
+        float z1 = b->z;
+        float y1 = b->y;
+        float x1 = b->x;
+        float z0 = a->z;
+        float y0 = a->y;
+        float x0 = a->x;
+        e = func_00222309(f30, x0, y0, z0, x1, y1, z1, 1);
         if (e < 0) {
             func_001CBC10(e, &D_0028EECC, 0x233);
             return 0;
