@@ -110,3 +110,17 @@ undefined4 C_00022530::func_00022530(byte param_1)
   }
   return in_ECX;
 }
+
+void *C_00022DF0::func_00022DF0(int flags)
+{
+    vtbl = (void *)&D_002761A4;
+    if (f28 != 0) {
+        f28->destroy(1);
+    }
+    ((C_00157660 *)this)->func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
