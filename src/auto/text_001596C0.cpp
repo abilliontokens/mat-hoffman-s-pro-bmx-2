@@ -12,6 +12,7 @@ struct C_0015A640 {
     undefined4 func_0015A640(byte param_1);
 };
 
+#include <string.h>
 struct GLV { float x, y, z, w; };
 struct GLObj { GLObj *func_00193490(); };
 void *func_001E83E8(void *p, unsigned n);
