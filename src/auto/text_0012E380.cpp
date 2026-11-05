@@ -69,22 +69,7 @@ void C_0012EF30::func_0012E5F0(int param_1)
     S_0012E5F0 *t = (S_0012E5F0 *)func_001E8A44(0x18);
     f414 = t;
     D_002BEAAC->func_0013C8A0(param_1, t, 4, 1);
-    int n = f414->count;
-    u32 *arr = 0;
-    u32 *q = (u32 *)func_001E8A44(n * 0x18);
-    if (q != 0) {
-        u32 *p = q + 2;
-        int i;
-        for (i = 0; i < n; i++) {
-            p[2] = 0;
-            p[1] = 0;
-            p[0] = 0;
-            p[3] = 0x3f800000;
-            p += 6;
-        }
-        arr = q;
-    }
-    f414->arr = arr;
+    f414->arr = new S_0012E5F0_Elem[f414->count];
     D_002BEAAC->func_0013C8A0(param_1, f414->arr, 0x18, f414->count);
     f414->f4 = 1;
     f414->f10 = 0;
