@@ -132,6 +132,7 @@ struct C_00198B70 {
     void func_00199790(C_00198B70 *other, S_00198B70_F4 *v);
     void func_001994C0(C_00198B70 *other, S_00198B70_F4 *out0, S_00198B70_F4 *out1);
     void func_001996A0(C_00198B70 *other, S_00198B70_F4 v);
+    void func_00198C00(C_00198B70 *src, C_00198B70 *dst);
     void func_00199300(float *q);
     void func_00199650(float *v);
     void func_00199900(float *v);
