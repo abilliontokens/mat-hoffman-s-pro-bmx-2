@@ -48,14 +48,6 @@ __declspec(align(16)) struct S_00192310_Mat {
     float m[16];
 };
 
-static __forceinline void zero_ref_00192310(S_00192310_Mat *&p)
-{
-    S_00192310_Mat *q = p;
-    _mm_store_ps(&q->m[0], _mm_setzero_ps());
-    _mm_store_ps(&q->m[4], _mm_setzero_ps());
-    _mm_store_ps(&q->m[8], _mm_setzero_ps());
-    _mm_store_ps(&q->m[12], _mm_setzero_ps());
-}
 
 struct C_00157600 {
     void func_00157600(int a);
