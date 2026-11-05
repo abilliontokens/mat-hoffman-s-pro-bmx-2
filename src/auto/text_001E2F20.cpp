@@ -12,7 +12,6 @@ void __stdcall func_0025BC30(void *p);
 void __stdcall func_001E2F20(int a, unsigned int b);
 
 int func_001E3000(void) {
-    extern int D_002F47D8;
     return D_002F47D8;
 }
 
