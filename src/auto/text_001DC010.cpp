@@ -107,6 +107,7 @@ void func_001DC8A0(int a, int b, int c)
     func_00211040(&s);
 }
 
+#pragma optimize("s", on)
 #pragma optimize("y", off)
 void __stdcall func_001DC910(S_SystemTime *out)
 {
