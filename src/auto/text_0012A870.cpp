@@ -239,6 +239,14 @@ void func_0012B140(void) {
     func_001576C0();
 }
 
+int Camera::func_0012B150(void)
+{
+    int func_00157AE0(...);
+    func_00157AE0();
+    f210 = D_002EFDB8[4] + 1;
+    return 1;
+}
+
 undefined4 C_0012B330::func_0012B330(byte param_1)
 {
   int func_0012B060(...);
