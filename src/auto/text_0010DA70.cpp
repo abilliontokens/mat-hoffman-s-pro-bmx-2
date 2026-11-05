@@ -137,6 +137,47 @@ struct C_0010E260 {
 };
 
 
+void BmxVehicle_10DA70::func_0010DA70(Blk24_10DA70 *p)
+{
+    f79C = *p;
+    f79C.f10 = f79C.f10 * D_00275998;
+    func_001057A0();
+}
+
+int BmxVehicle_10DA70::func_0010DAB0(void)
+{
+    if (f1584 == -1) {
+        Vec4 v;
+
+        v.z = 0.0f;
+        v.y = 0.0f;
+        v.x = 0.0f;
+        v.w = 1.0f;
+        f1E0->f22C->func_00199A70(0, &v);
+        fA00->f4->func_00199A70(0, &v);
+        if (v.x < (float)f24->f4DC->f124) {
+            func_00108510(&D_00275630, D_002A3A3C);
+        }
+    }
+    return 0;
+}
+
+void BmxVehicle_10DA70::func_0010DB70(void)
+{
+    if (f15A4->func_001A2EF0(3)->v7()) {
+        f15A4->func_001A2DD0(3);
+    }
+    if (f15A4->func_001A2EF0(2)->v7()) {
+        f15A4->func_001A2DD0(2);
+    }
+    f1244->v46();
+    func_001576C0();
+    fA08->v4();
+    fA0C->v4();
+    fA10->v4();
+    fA14->v4();
+}
+
 void C_0010E260::func_0010E260(void)
 {
   int in_ECX = (int)this;
