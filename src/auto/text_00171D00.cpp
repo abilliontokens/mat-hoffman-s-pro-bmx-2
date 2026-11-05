@@ -155,7 +155,17 @@ struct PhysicsBody {
     void func_00172000(void);
     void func_00172330(void);
     void func_00171D00(float x,float y,float z,float w);
+    void func_001729D0(void);
 };
+
+struct C_001729D0_Cam { void func_00199A70(int a, float *b); void func_00199790(int a, float *b); void func_0019AC50(void); };
+struct C_001729D0_Node { char pad[0x20]; float m[4]; float pos[4]; };
+struct C_001729D0_Obj {
+    char pad0[0x54]; C_001729D0_Node *f54; char pad58[0x4F]; unsigned char fA7;
+    void func_0014AC30(float *a, int b); void func_00133ED0(void);
+    float func_00133F10(int a); float func_00134770(int a, int b);
+};
+extern float D_002A8BA0, D_002A8BA4, D_002A8BA8, D_002A8BE8;
 
 struct S_00171F10_F60 {
     char pad0[0x28];
