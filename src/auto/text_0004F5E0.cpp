@@ -63,9 +63,17 @@ struct C_0004F6E0_Mgr {
 extern C_0004F6E0_Mgr *D_002A8490;
 void __stdcall func_0012B190(int a, int b, int c, int d);
 
+struct C_0004F6E0_Sub {
+    char pad0[0x1E0];
+    C_0004F6E0_Data f1E0;
+    char pad1F8[0xC];
+    int f204;
+    int f208;
+};
+
 struct C_0004F6E0 {
     char pad0[0x24];
-    void *f24;
+    C_0004F6E0_Sub *f24;
     char pad28[0x1B4];
     C_0004F6E0_Data unk1DC;
     char pad1F4[0x90];
@@ -73,6 +81,22 @@ struct C_0004F6E0 {
     void func_000318A0();
     void func_0004F6E0();
 };
+
+void C_0004F6E0::func_0004F6E0()
+{
+    if (f284 == 9) {
+        int b;
+        int a;
+
+        D_002A8490->v15(f24, 0, 0, 0);
+        b = *(int *)((char *)f24 + 0x208);
+        a = *(int *)((char *)f24 + 0x204);
+        func_0012B190(0, 0, a, b);
+        unk1DC = *(C_0004F6E0_Data *)((char *)f24 + 0x1e0);
+        return;
+    }
+    func_000318A0();
+}
 
 void C_0004FE30::func_0004F7B0(void)
 {
