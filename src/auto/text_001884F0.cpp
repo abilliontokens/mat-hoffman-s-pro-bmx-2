@@ -230,6 +230,16 @@ CollisionObjects *CollisionObjects::func_00188A80(int a0)
     return this;
 }
 
+int C_00188C20::func_00188C20(int a)
+{
+    int i;
+
+    for (i = 0; i < f24; i++) {
+        f28[i]->v1(a);
+    }
+    return 1;
+}
+
 void *C_00188EF0::func_00188EF0(int flags)
 {
     unk0 = (int)&D_00287EE4;
