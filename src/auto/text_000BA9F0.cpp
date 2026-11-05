@@ -46,6 +46,27 @@ struct BmxUIManager {
     void func_000BB380(const char *name);
 };
 
+int BmxUIManager::func_000BB0C0()
+{
+    if (f120 != 0) {
+        int i;
+        for (i = 0; i < f124; i++) {
+            f26c->func_001577A0(f120[i], -1);
+        }
+        ((UIItem *)this)->func_001577A0(f26c, -1);
+    }
+    ((UIItem *)this)->func_001577A0(f268, 10);
+    if (f150 != 0) {
+        ((UIItem *)this)->func_001577A0(f150->func_000A1990(&f258, 1), -1);
+    }
+    if (f25c != 0) {
+        ((UIItem *)this)->func_001577A0(f25c, -1);
+    }
+    ((UIItem *)this)->func_001577A0(f274, -1);
+    ((UIItem *)this)->func_001577A0(f270, -1);
+    return 1;
+}
+
 void BmxUIManager::func_000BB340()
 {
     f150->v4();
