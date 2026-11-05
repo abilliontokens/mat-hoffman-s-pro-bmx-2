@@ -99,7 +99,7 @@ struct C_00197700 {
     int f7C4;
     char pad7C8[0x14];
     float f7DC;
-    void func_00137E50(float z);
+    void func_00137E50(int a0);
     void func_00137F90();
     int func_00138480(char *name);
     void func_00197700(int a0);
