@@ -15,6 +15,12 @@ extern char D_00279258[2];
 extern char D_0027B50C[3];
 extern char D_0027B508[2];
 
+struct S2_000A4AF0 { u16 a; };
+struct S3_000A4AF0 { u16 a; u8 b; };
+
+#define APPEND2(D) { char *p = buf - 1; do ; while (*++p); *(S2_000A4AF0 *)p = *(S2_000A4AF0 *)(D); }
+#define APPEND3(D) { char *p = buf - 1; do ; while (*++p); *(S3_000A4AF0 *)p = *(S3_000A4AF0 *)(D); }
+
 extern char D_002A60B0[];
 extern char D_002A5EA0[];
 extern char D_002A46E8[];
