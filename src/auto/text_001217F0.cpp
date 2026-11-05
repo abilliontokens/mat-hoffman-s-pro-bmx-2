@@ -6,6 +6,11 @@ struct V4_001225C0 {
 
 extern float D_00275544;
 
+static inline float lensq_001225C0(float x, float y, float z)
+{
+    return x * x + y * y + z * z;
+}
+
 static inline V4_001225C0 sub_001225C0(const V4_001225C0 &a, const V4_001225C0 &b)
 {
     V4_001225C0 t;
