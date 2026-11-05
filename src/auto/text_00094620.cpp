@@ -215,6 +215,61 @@ struct C_00094A00 {
     int func_00094E70(int *ids, int count, int a, int b);
 };
 
+/* object at C_00094840::unk28, called through vtable slot 31 */
+struct S_00094840_Sub {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    virtual void v31(int a, int b);
+};
+
+/* BmxMusicManager */
+struct C_00094840 {
+    char pad0[0x28];
+    S_00094840_Sub *unk28;
+    char pad2C[8];
+    int unk34;
+    char pad38[8];
+    int unk40;
+    int unk44;
+    char pad48[4];
+    float unk4C;
+    S_00094A00_Obj *unk50;
+    int unk54;
+    int func_00094840(void);
+    int func_00094870(void);
+    void func_000948A0(int a);
+    int func_00094900(float a, int b, int c);
+};
+
 
 void C_00093140::func_00094620(int a1, int a2, int a3, int a4, int a5, int a6)
 {
