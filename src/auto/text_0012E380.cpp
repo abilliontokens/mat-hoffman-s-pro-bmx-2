@@ -70,6 +70,11 @@ struct C_0012EF30 {
     S_0012EF60_Ref *f518;
     S_0012EF60_Ref *f51c;
     C_0012EF30 *func_0012EF30(int a);
+    C_0012EF30 *func_0012F000(int a1, int a2, int a3, int a4, char *name, int a6, int a7,
+                               int a8, int a9, int a10, int a11, int a12, int a13, int a14,
+                               int a15, int a16, int a17, int a18, int a19, int a20);
+    void func_0012CD10(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8,
+                       int a9, int a10, int a11, int a12, int a13, int a14, int a15, int a16);
     void func_0012EF60();
     void func_0012CCA0();
     void func_0012E5F0(int a);
