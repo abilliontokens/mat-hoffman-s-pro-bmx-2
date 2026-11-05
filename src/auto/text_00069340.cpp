@@ -399,3 +399,49 @@ void C_00069FD0::func_00069FD0(int a0) {
     unk174 = 1;
 }
 
+C_00069FF0 *C_00069FF0::func_00069FF0(int a0)
+{
+ int i;
+ func_00157600(a0);
+ vtbl = &D_0027850C;
+ for(i=0;i<8;i++) { (&unk24)[i]=0; (&unk44)[i]=0; }
+ vtbl = &D_002788EC;
+ unk150=0; unk154=0; unk18=-1;
+ for(i=0;i<8;i++) (&unk64)[i]=0;
+ for(i=0;i<3;i++) { (&unkAC)[i]=0; (&unkA0)[i]=0; (&unk84)[i]=0; }
+ for(i=0;i<2;i++) unk98[i]=0;
+ for(i=0;i<2;i++) { (&unk90)[i]=0; (&unkB8)[i]=0; }
+unk15C=0;
+unk180=0;
+unk1AC=0;
+unk1B0=0x3f800000;
+unk160=0;
+unk1B4=0;
+unk1BC=0;
+unk1B8=0;
+unk170=0;
+unk164=0;
+unk168=0;
+unk16C=0;
+unk184=0;
+unk1C4=0;
+unk1C8=0;
+unk1CC=0;
+unk1D0=0;
+unk1D4=0;
+unk188=0;
+unk1C0=0;
+unk1A0=0;
+unk1A4=0;
+unk174=0;
+unk14C=0;
+unk178=0;
+unk17C=0;
+unk1D8=0;
+for(i=0;i<5;i++) { (&unkE4)[i]=0; (&unkF8)[i]=0; }
+for(i=0;i<16;i++) (&unk10C)[i]=0;
+unk1E0=0; unk158=-1; unk1E4=1;
+unk1EC=0; unk1F0=0; unk1E8=0; unk1F8=0; unk1F4=0; unk1FC=0;
+return this;
+}
+
