@@ -248,6 +248,25 @@ void C_00133070::func_00133140(int a, int b)
     local.func_00193500();
 }
 
+void C_00133070::func_00133210(void)
+{
+    float vecB[4];
+    float vecA[4];
+
+    if (f98 != 0) {
+        vecA[2] = 0.0f;
+        vecA[1] = 0.0f;
+        vecA[0] = 0.0f;
+        vecA[3] = 1.0f;
+        vecB[2] = 0.0f;
+        vecB[1] = 0.0f;
+        vecB[0] = 0.0f;
+        vecB[3] = 1.0f;
+        v30(vecA, vecB);
+        f98->func_00193950(&f24, vecA, vecB, f48);
+    }
+}
+
 void C_001332A0::func_001332A0(void)
 {
     int func_001E891B(...);
