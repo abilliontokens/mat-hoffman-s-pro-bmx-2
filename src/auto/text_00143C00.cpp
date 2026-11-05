@@ -58,27 +58,6 @@ struct C_0013B210 {
 
 extern C_0013B210 *D_002BEAAC;
 
-extern int D_002A99B0;
-extern int D_002A6F8C;
-extern const float D_00275544;
-extern const float D_00275460;
-extern float D_002EFEA0;
-extern char *D_002F08BC;
-extern char D_002A7054[];
-extern int D_00040304, D_00040344, D_00040348, D_00040350;
-extern int D_0020C6DC, D_0020C6E0, D_0020C6E4, D_0020C6EC, D_0020C6F0, D_0020C6F4, D_0020C6F8;
-extern int D_0020C760, D_0020C764, D_0020C76C, D_0020C770, D_0020C774, D_0020C778;
-extern int D_0020CA7C;
-
-void __stdcall func_001FF940(void *a, void *b);
-void *__stdcall func_001FF3C0(int size);
-void *__stdcall func_001FF410(void *buffer, int flags);
-int __fastcall func_001FEBD0(int n, void *p);
-void __fastcall func_001FEC30(int n, void *p);
-void __fastcall func_001FD020(void *p, int v);
-void __stdcall func_00200390(int index, int value);
-void __stdcall func_00200510(int index, int value);
-void __stdcall func_00200950(int a, int b, void *c, void *d, int e);
 
 
 struct C_001AF300 {
