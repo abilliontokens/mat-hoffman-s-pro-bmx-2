@@ -66,6 +66,8 @@ struct S_0015AC20_Game {
     unsigned char f230;
 };
 
+typedef bool Ret_0015AC20;
+
 struct C_0015AC20 {
     char pad0[0x3f8];
     int f3F8;
@@ -159,6 +161,11 @@ void *C_0015A910::func_0015A970(unsigned char flags)
     return this;
 }
 
+int C_0015AB70::func_0015AB70(unsigned int idx)
+{
+    return (idx < f8 && f18 != 0) ? (f18[idx * 0xc] & 2) : 0;
+}
+
 undefined4 C_0015ABF0::func_0015ABF0(int param_1)
 {
   int in_ECX = (int)this;
@@ -169,6 +176,30 @@ undefined4 C_0015ABF0::func_0015ABF0(int param_1)
   }
   *(byte *)(in_ECX + 0x6b4) = *(byte *)(in_ECX + 0x6b4) & 0xfb;
   return 1;
+}
+
+bool C_0015AC20::func_0015AC20(unsigned int flags)
+{
+    extern S_0015AC20_Game *D_002A8490;
+    unsigned char bit = (D_002A8490->f230 >> 2) & 1;
+
+    if (bit == 0 && (char)flags < 0) {
+        return 0;
+    }
+    if (flags == 0x3f) {
+        return 1;
+    }
+    if (bit == 0 || flags != 0x80) {
+        if (flags == 0x80000000) {
+            return f1898 == 0;
+        }
+    } else if (f3F8 == 1) {
+        return 1;
+    }
+    if ((flags & 0x40) == 0) {
+        return (f1898 & flags) != 0;
+    }
+    return (f1898 | 0x40) == flags;
 }
 
 C_0015B150* C_0015B150::func_0015B150(void) {
