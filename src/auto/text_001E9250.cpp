@@ -209,9 +209,6 @@ double func_001E9649(char *str) {
         double val;
     };
     char *p = str;
-    char *s;
-    char c;
-    char *q;
     struct Res res;
     void *r;
 
@@ -227,13 +224,7 @@ double func_001E9649(char *str) {
         }
         p++;
     }
-    s = p;
-    q = s + 1;
-    do {
-        c = *s;
-        s++;
-    } while (c != 0);
-    r = func_001ED0FC(&res, p, (int)(s - q), 0, 0);
+    r = func_001ED0FC(&res, p, (int)strlen(p), 0, 0);
     return *(double *)((char *)r + 0x10);
 }
 int func_001E96A5(int a0, int a1, int a2) {
