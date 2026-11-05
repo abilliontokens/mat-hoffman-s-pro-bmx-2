@@ -305,13 +305,8 @@ int C_000BBE30::func_000BC0F0(int idx)
 
 undefined4 C_000BC180::func_000BC130(void)
 {
-    S_000BC180_Entry *e;
-    if (D_002A8490->f2E0->f324 == 1) {
-        e = f27c;
-    } else {
-        e = &f27c[f284];
-    }
-    e->f128 = *(int *)((char *)e->f120 + f288 * 4);
+    S_000BC180_Entry *e = cur();
+    e->f128 = e->f120[f288];
     return f288;
 }
 
@@ -404,6 +399,26 @@ void C_000BC590::func_000BC590(void)
     if (f2C != 0) {
         f28->f150->v6();
         f2C = 0;
+    }
+}
+
+void C_000BC520::func_000BC5D0(int idx, int play)
+{
+    char buf[0x104];
+
+    func_001ADCC0(buf, 0x104, D_0027DC10, idx);
+    func_00030F30(buf, D_0027DC08);
+    f40 = 0;
+    f30->func_001D3B20(buf);
+    f30->func_001D3730(0x14);
+    f24 = 0;
+    if (f34 == 0) {
+        f30->f4C = 0;
+    }
+    f44 = 1;
+    f2C = play;
+    if (play != 0) {
+        f28->f150->v4();
     }
 }
 
