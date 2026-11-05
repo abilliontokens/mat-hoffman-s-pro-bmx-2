@@ -60,6 +60,17 @@ struct S_001C64A0_Node {
     S_001C64A0_Node **f14;
     char pad18[4];
     int f1C;
+    S_001C64A0_Node *findRoot()
+    {
+        S_001C64A0_Node *root = this;
+        int i;
+        for (i = 0; i < f1C; i++) {
+            if (f14[i]->f4 == 0) {
+                root = f14[i];
+            }
+        }
+        return root;
+    }
 };
 
 void func_001C63F0(Vec4 *out, Vec4 *vin, f32 *m)
@@ -95,6 +106,42 @@ void func_001C63F0(Vec4 *out, Vec4 *vin, f32 *m)
     ((u32 *)out)[1] = ((u32 *)pq)[1];
     ((u32 *)out)[2] = ((u32 *)pq)[2];
     ((u32 *)out)[3] = ((u32 *)pq)[3];
+}
+
+void func_001C64A0(S_001C64A0_Node *obj)
+{
+    Vec4 a;
+    Vec4 b;
+    S_001C64A0_Node *cur = obj;
+    int i;
+
+    for (i = 0; i < obj->f1C; i++) {
+        if (obj->f14[i]->f4 == 0) {
+            cur = obj->f14[i];
+        }
+    }
+    a.z = 0;
+    a.y = 0;
+    a.x = 0;
+    a.w = 1.0f;
+    cur->v5(0, &a, 0, 0, 0);
+    b.w = 1.0f;
+    b.x = -a.x;
+    b.y = -a.y;
+    b.z = -a.z;
+    a = b;
+    a.y = 0;
+    for (i = 0; i < cur->fC; i++) {
+        b.z = 0;
+        b.y = 0;
+        b.x = 0;
+        b.w = 1.0f;
+        cur->v5(i, &b, 0, 0, 0);
+        b.x = a.x + b.x;
+        b.y = b.y + a.y;
+        b.z = b.z + a.z;
+        cur->v4(i, &b, 0, 0, 0);
+    }
 }
 
 void C_001C67C0::func_001C67C0(Vec4 *out, int param_2)
