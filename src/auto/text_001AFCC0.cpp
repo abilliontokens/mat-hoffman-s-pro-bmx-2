@@ -536,6 +536,33 @@ int C_001B0230::func_001B07D0(int idx, void *arg)
     return -1;
 }
 
+void *C_001B08B0::func_001B08B0(unsigned int flags)
+{
+    extern int D_0028C444;
+    int i;
+
+    vtbl = (void *)&D_0028C444;
+    for (i = 0; i < 4; i++) {
+        if (items[i] != 0) {
+            func_001E891B(items[i]);
+        }
+    }
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
+void *C_001B09C0::func_001B09C0(unsigned int flags)
+{
+    extern int D_0028C5E0;
+    vtbl = (void *)&D_0028C5E0;
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void *C_001B0230::func_001B0A00(unsigned int flags)
 {
     func_001B0230();
