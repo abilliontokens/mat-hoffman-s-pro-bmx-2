@@ -283,6 +283,26 @@ int UIPage::func_001BEA50(int param_1)
     return -1;
 }
 
+void UIPage::func_001BEB00(void)
+{
+    int i;
+
+    ((UIPageVirt *)this)->virt5();
+    f278 = 0;
+    for (i = 0; i <= f13C; i++) {
+        if (f140[i] != 0) {
+            f140[i]->func_001BDBD0();
+        }
+    }
+    if (f16C != 0) {
+        f16C->func_001D37C0();
+        f16C->func_00157810();
+        f16C->virt2();
+        f16C = 0;
+    }
+    D_002EFDB8->f30 = 0;
+}
+
 void UIPage::func_001BEE30(int idx, int arg)
 {
     f140[idx]->func_001BDD60(arg);
