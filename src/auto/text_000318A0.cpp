@@ -112,6 +112,8 @@ struct S_BmxEvent_Level {
 
 struct S_BmxEvent_Hook {
     void func_00099500(int a);
+    void func_00099590(void);
+    void func_000999E0(void);
 };
 
 struct C_0002EF70 {
