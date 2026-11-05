@@ -441,7 +441,7 @@ int *C_00094760::func_00094810(int node)
     S_00094620_Path *path = unk50;
 
     if (node < path->unkA8 && node >= 0) {
-        S_00094620_NodeTail &tail = *path->Node(node);
+        S_00094620_NodeTail &tail = path->NodeAt(node);
         return &tail.unk0;
     }
     return 0;
@@ -746,5 +746,49 @@ int C_00095160::func_000952A0(int index)
         return 0;
     }
     return Item(index - 1)->f68;
+}
+
+int C_00095060::func_00095520(int n)
+{
+    if (f34 == 0) {
+        if (n < 1 || n > tracks.count) {
+            return 0;
+        }
+        if (!func_000952F0()) {
+            return 0;
+        }
+        if (tracks.func_00037820(n - 1)->f64 != 0) {
+            return 0;
+        }
+        if (tracks.func_00037820(n - 1)->f68 == 0) {
+            return 0;
+        }
+    } else {
+        if (n < 1 || n > f50->v41(f34)) {
+            return 0;
+        }
+    }
+    if (!f50->v32(n - 1, 1)) {
+        return 0;
+    }
+    f38 = n;
+    f30 = 4;
+    return 1;
+}
+
+int C_00095060::func_000955C0(void *id)
+{
+    int i;
+    int n = ids.count;
+
+    if (n == 0) {
+        return 0;
+    }
+    for (i = 0; i < n; i++) {
+        if (ids.at(i) == id) {
+            return 1;
+        }
+    }
+    return 0;
 }
 
