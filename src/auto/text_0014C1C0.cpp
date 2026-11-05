@@ -67,6 +67,15 @@ struct C_0014C720 {
     void func_0014C720();
     void func_0014C7D0();
     f32 func_0014C830(char param);
+    f32 func_0014C860(char param);
+};
+
+struct C_0014CC20 {
+    char pad0[0xE];
+    u8 bE;
+    char padF[2];
+    s8 b11;
+    f32 func_0014CC20(void);
 };
 
 
@@ -92,24 +101,24 @@ void C_0014C720::func_0014C720()
     b0 = 0;
     b80 = 0;
     b100 = 0;
-    f180 = 0;
-    f184 = 0;
-    f188 = 0;
-    f18C = 0;
-    f190 = 0;
-    f194 = 0;
-    f198 = 0;
-    f19C = 0;
-    f1A0 = 0;
-    f1A4 = 0;
-    f1A8 = 0;
-    f1AC = 0;
-    f1B0 = 0;
-    f1B4 = 0;
-    f1B8 = 0;
+    f180 = 0.0f;
+    f184 = 0.0f;
+    f188 = 0.0f;
+    f18C = 0.0f;
+    f190 = 0.0f;
+    f194 = 0.0f;
+    f198 = 0.0f;
+    f19C = 0.0f;
+    f1A0 = 0.0f;
+    f1A4 = 0.0f;
+    f1A8 = 0.0f;
+    f1AC = 0.0f;
+    f1B0 = 0.0f;
+    f1B4 = 0.0f;
+    f1B8 = 0.0f;
     f1BC = 1.0f;
     f1C0 = 1.0f;
-    f1C4 = 0;
+    f1C4 = 0.0f;
     f1C8 = 0.5f;
     f1EC = 0;
     f1F4 = 0;
