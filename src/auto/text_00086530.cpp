@@ -101,6 +101,21 @@ int C_00086C70::func_00086C70(int a0) {
     return 1;
 }
 
+BestScoreOverlay *BestScoreOverlay::func_00086DC0(int a0) {
+    ((C_00157600 *)this)->func_00157600(1);
+    f24 = 0;
+    f28 = 0;
+    f2C = 0;
+    f30 = 0;
+    f34 = 0;
+    f38 = 0;
+    f3C = 0;
+    f40 = 0;
+    f44 = 0;
+    vtbl = (void *)&D_00279734;
+    return this;
+}
+
 void C_000874D0::func_000874D0(void) {
     unk40 = 0;
 }
