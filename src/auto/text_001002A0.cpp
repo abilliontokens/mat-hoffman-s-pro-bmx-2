@@ -44,6 +44,66 @@ struct C_001003E0 {
     undefined4 func_001003E0(byte param_1);
 };
 
+struct C_00100C00 {
+    void func_000E4AB0();
+    void *func_00100C00(unsigned int flags);
+};
+
+struct C_00100CD0 {
+    void func_000EA9B0();
+    void *func_00100CD0(unsigned int flags);
+};
+
+struct C_00100B30 {
+    char pad0[0x288];
+    int unk288;
+    char pad28c[0x24];
+    int unk2b0;
+    int unk2b4;
+    char pad2b8[0xc];
+    int unk2c4;
+    int unk2c8;
+    int unk2cc;
+    int unk2d0;
+    float unk2d4;
+    int unk2d8;
+    int unk2dc;
+    void func_000E3640();
+    void func_000E3BA0();
+    void func_000E3C90();
+    void func_000E3790();
+    void func_000E3D30();
+    void func_00157960();
+    void func_00100B30();
+};
+
+struct C_001B1980 {
+    void func_001B1980();
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6,
+                        int a7, int a8, float a9, int a10, float a11, int a12, int a13);
+};
+
+struct C_001D5AD0 {
+    void func_001D5AD0();
+};
+
+struct C_00100C20 {
+    char pad0[0x2ac];
+    int unk2ac;
+    char pad2b0[0x228];
+    int unk4d8;
+    char pad4dc[0x34];
+    C_001D5AD0 *unk510;
+    char pad514[0x64];
+    C_001B1980 *f578[5];
+    void func_000E7AD0();
+    void func_000EA410();
+    void func_000E6E20();
+    void func_000E8740();
+    void func_00157960();
+    void func_00100C20();
+};
+
 struct C_00100FF0 {
     undefined4 func_00100FF0(byte param_1);
 };
