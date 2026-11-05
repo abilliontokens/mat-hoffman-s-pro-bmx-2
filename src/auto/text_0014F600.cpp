@@ -343,6 +343,20 @@ void func_0014FED0(void)
     func_001E9B9B();
 }
 
+C_001500A0 *C_001500A0::func_001500A0(void)
+{
+    extern int D_00286AE8;
+
+    ((C_0012B510R *)this)->func_0012B510();
+    f4 = 0;
+    f8 = 0;
+    fC = 0;
+    f10 = 0;
+    vtbl = (void *)&D_00286AE8;
+    f14 = 90.0f;
+    return this;
+}
+
 void C_00150350::func_00150350(void) {
     extern int D_00286AE8;
     int func_0012B540(...);
