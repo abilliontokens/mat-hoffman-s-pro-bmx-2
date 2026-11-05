@@ -22,6 +22,7 @@ struct S_000D6A60_Widget {
 
 struct S_000D6A60_Res {
     void func_00103350();
+    void func_00103260(int a);
 };
 
 struct S_000D6A60_Owner {
