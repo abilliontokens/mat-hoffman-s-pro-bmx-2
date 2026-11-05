@@ -8,7 +8,7 @@ extern int D_002A252C;
 extern int D_002A2530;
 extern int D_002A2534;
 extern int D_0027AC8C;
-void func_001ADCC0(void *dst, void *src, int n, void *x);
+void func_001ADCC0(void *dst, int n, void *src, void *x);
 
 struct C_0009EDF0 {
     int vtbl;
