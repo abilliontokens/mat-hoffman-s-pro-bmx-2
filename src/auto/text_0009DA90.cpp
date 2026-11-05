@@ -19,6 +19,49 @@ struct C_00169C50 {
     void func_00169C50(int param);
 };
 
+extern char D_00277298[];
+extern char D_0027AC68[];
+extern char D_0027AC58[];
+extern char D_0027AC48[];
+extern char D_0027AC30[];
+
+struct C_0016A1D0 {
+    int func_0016A1D0(int a1, int a2, int a3);
+    int func_0016A330(char *buf);
+    int func_0016A3A0(void *stream);
+};
+
+struct S_0009E5F0_Stream {
+    int func_00169710(const char *name);
+    int func_00168C50(const char *name, int value, int *ptr);
+};
+
+struct S_0009E590_Owner {
+    char pad0[0x134];
+    char *f134;
+};
+
+/* BmxSparkParticleEmitter */
+struct C_0009E590 {
+    void *vtbl;
+    char pad4[0x60];
+    S_0009E590_Owner *f64;
+    char pad68[4];
+    char buf6C[0x104];
+    char pad170[0x18];
+    u32 f188;
+    char pad18C[0x1c];
+    u32 f1A8;
+    u32 f1AC;
+    char pad1B0[0x5c];
+    int f20C;
+    int f210;
+    int f214;
+    int f218;
+    C_0009E590 *func_0009E590(int a1, int a2, int a3);
+    int func_0009E5F0(S_0009E5F0_Stream *stream);
+};
+
 struct BmxSmokeParticleEmitter {
     void *vtbl;
     char pad4[0x16C];
@@ -57,12 +100,17 @@ BmxSmokeParticleEmitter *BmxSmokeParticleEmitter::func_0009DB00(int param_1)
     f174 = 2.75f;
     f1F0 = 0;
     f190 = 0x80e;
-    for (int i = 0; i < 0x40; i++) {
-        for (int j = 0; j < 4; j++) {
+    int i = 0x40;
+    f32 *p = f1F4[0];
+    do {
+        f32 *q = p;
+        int j = 4;
+        p += 4;
+        do {
             f32 v = (f32)func_001E8833() * D_002754B0;
-            f1F4[i][j] = v + v + D_00275460;
-        }
-    }
+            *q++ = v + v + D_00275460;
+        } while (--j);
+    } while (--i);
     f5F4 = 0;
     f1AC = 0;
     f1A8 = 0;
