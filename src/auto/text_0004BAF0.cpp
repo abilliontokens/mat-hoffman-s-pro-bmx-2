@@ -61,6 +61,12 @@ struct S_0004C320_Part : virtual S_0004C320_Base {
     S_0004C320_Comp *f4;
 };
 
+/* S_0004C320_Part seen without its virtual inheritance: vbptr first, then f4 */
+struct S_0004C320_PartRaw {
+    int *vbptr;
+    S_0004C320_Comp *f4;
+};
+
 struct S_0004C320_Obj {
     char pad0[0x1a4];
     S_0004C320_Part *f1a4;
