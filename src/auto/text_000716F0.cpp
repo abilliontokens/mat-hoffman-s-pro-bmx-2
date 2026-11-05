@@ -38,6 +38,7 @@ struct S_Root_716 {
     S_Obj2E0_716 *f2E0;
     char pad2E4[4];
     S_Obj2E8_716 *p2E8;
+    Lookup_716 *p2EC;
 };
 
 struct S_Setter_716 {
