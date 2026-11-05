@@ -85,7 +85,7 @@ void func_00142C10(C_00142C10 *param_1);
 void C_00142560::func_00142560(void)
 {
     int i;
-    if (unkA8 != 0 && unk20 > 0) {
+    if (unkA8 != 0) {
         for (i = 0; i < unk20; i++) {
             unk14[i].unk0 = 0;
             unk14[i].unk14 = 100000.0f;
