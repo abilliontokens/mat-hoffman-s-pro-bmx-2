@@ -314,6 +314,7 @@ int __stdcall func_001DD713(u32 *a0, u32 *a1)
     return status;
 }
 
+#pragma optimize("y", on)
 int __stdcall func_001DD779(S_001DD779_Header *a0, S_001DD779_File *a1, S_001DD779_Out *a2)
 {
     int result = 0;
@@ -332,8 +333,6 @@ int __stdcall func_001DD779(S_001DD779_Header *a0, S_001DD779_File *a1, S_001DD7
     }
     return result;
 }
-
-#pragma optimize("y", on)
 
 #pragma optimize("y", on)
 
@@ -400,7 +399,7 @@ u32 __stdcall func_001DDAEE(u32 id, int flag)
     status = _imp__NtCreateFile(&id, 0x80100080, &oa, &iosb, 0, 0, 1, 1, (flag ? 8 : 0x20) | 0x40);
     if (status < 0) {
         func_001DD659(status);
-        return -1;
+        id = -1;
     }
     return id;
 }
