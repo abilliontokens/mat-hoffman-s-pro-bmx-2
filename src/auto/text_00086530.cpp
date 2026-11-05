@@ -204,6 +204,52 @@ struct C_00086C60 {
 };
 
 
+BestScoreOverlay *BestScoreOverlay::func_00086530(char **players, int idx)
+{
+    int *name = &D_00278690;
+    D_002A8490->f2EC->func_0018C780(1, &name, 0);
+    int *res = D_002A8490->f2EC->func_0018C160((int)&D_00278690);
+    int font = res ? *res : 0;
+    f48 = players;
+    f70 = idx;
+    void *mem = func_001E8A44(0x60);
+    f24 = mem ? ((BestScoreOverlay_Text *)mem)->func_001D5E90() : 0;
+    f24->func_001D5FA0(font, &D_00278690, 0x28, 0);
+    f24->SetPos(0x43fa0000, 0x41a00000);
+    f24->SetArgb(0xffffffff);
+    int i;
+    BestScoreOverlay_Text **slot;
+    for (i = 150, slot = (BestScoreOverlay_Text **)&f30; i < 270; i += 30, slot++) {
+        mem = func_001E8A44(0x60);
+        *slot = mem ? ((BestScoreOverlay_Text *)mem)->func_001D5E90() : 0;
+        (*slot)->func_001D5FA0(font, &D_00278690, 0x28, 0);
+        (*slot)->SetPosY(0x43a00000, (float)i);
+        (*slot)->SetArgb(0xffffffff);
+        (*slot)->SetColor(D_0028F5E0);
+    }
+    mem = func_001E8A44(0x60);
+    f28 = mem ? ((BestScoreOverlay_Text *)mem)->func_001D5E90() : 0;
+    f28->func_001D5FA0(font, &D_00278690, 0x28, 0);
+    f28->SetPos(0x43a00000, 0x41a00000);
+    f28->SetScale(0x40a00000);
+    f28->SetColor(D_0028F5E0);
+    mem = func_001E8A44(0x60);
+    f2C = mem ? ((BestScoreOverlay_Text *)mem)->func_001D5E90() : 0;
+    f2C->func_001D5FA0(font, &D_00278690, 0x28, 0);
+    f2C->SetPos(0x43a00000, 0x42200000);
+    f2C->SetScale(0x40a00000);
+    f2C->SetColor(D_0028F5E0);
+    char *src = D_002A8490->f2E0->name;
+    char *dst = f74;
+    char c;
+    do {
+        c = *src++;
+        *dst++ = c;
+    } while (c);
+    f80 = strlen(f74);
+    return this;
+}
+
 void C_000867F0::func_000867F0(int a)
 {
     char buf[0x104];
