@@ -11,6 +11,11 @@ extern int D_002AB7F0;
 extern float D_002F0BCC;
 extern float D_00275544;
 extern float D_00275460;
+
+struct V4_001CA360 {
+    float x, y, z, w;
+};
+
 extern int D_0028E864;
 extern char D_002A5A80[];
 extern char D_00275678[];
