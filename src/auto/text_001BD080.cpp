@@ -63,6 +63,58 @@ struct C_001BDA50 {
     void func_001BDA50(void);
 };
 
+extern int D_0028D51C;
+
+struct S_001BDAB0_Child {
+    void func_001BF6C0(int a);
+};
+
+struct C_001BDAB0 {
+    char pad0[0x24];
+    int f24;
+    int f28;
+    S_001BDAB0_Child **f2c;
+    void func_001BDAB0(int a);
+};
+
+struct C_001BDAF0 {
+    void *vtbl;
+    char pad4[0x28];
+    void *f2c;
+    char pad30[0xc];
+    void *f3c;
+    void func_00157660(void);
+    C_001BDAF0 *func_001BDAF0(byte flags);
+};
+
+struct S_001BDB50_Item {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+};
+
+struct S_001BDB50_Group {
+    char pad0[0x28];
+    int f28;
+    S_001BDB50_Item **f2c;
+};
+
+struct C_001BDB50 {
+    char pad0[0x28];
+    int f28;
+    S_001BDB50_Group **f2c;
+    char pad30[8];
+    int f38;
+    S_001BDB50_Group **f3c;
+    void func_001BDB50(void);
+    void func_001BDBD0(void);
+};
+
 struct C_001BDA20 {
     void func_001BDA20(void);
 };
@@ -93,8 +145,8 @@ undefined4 C_001BD790::func_001BD790(void)
 
 undefined4 C_001BD7E0::func_001BD7E0(void)
 {
-  int in_ECX = (int)this;
   int iVar1;
+  int in_ECX = (int)this;
 
   D_002EFDB8->v7(1);
   D_002EFDB8->v8();
