@@ -16,7 +16,6 @@ struct S_0003AD50_Rec {
     int f34;
     char pad38[0xC];
     int f44;
-    char pad48[0x48 - 0x48];
 };
 
 struct S_0003AD50_Data {
