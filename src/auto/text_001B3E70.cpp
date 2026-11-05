@@ -74,6 +74,21 @@ struct C_001B4B70 {
 };
 
 
+void TireTrack::func_001B4970()
+{
+    if (f34 == 0) {
+        int n = f2c + 1;
+        f30 = 0;
+        fa0 = 0;
+        f2c = n;
+        if (n >= f28) {
+            f2c = 0;
+        }
+        f38 = 1;
+        f34 = 1;
+    }
+}
+
 void TireTrack::func_001B4A20()
 {
     if (f3c != 0) {
