@@ -6,6 +6,42 @@ extern "C" char *strcat(char *dst, const char *src);
 #pragma intrinsic(strcat)
 char *func_001E8AC0(const char *s, int c);
 
+extern int D_00276A24;
+extern u32 D_002A135C;
+extern u32 D_002A1360;
+extern u32 D_002A1364;
+extern u32 D_002A1368;
+
+/* BmxEngineModel */
+struct C_00030C00 {
+    void *vtbl;
+    char pad4[0x20];
+    u32 f24;
+    u32 f28;
+    u32 f2C;
+    u32 f30;
+    u32 f34;
+    u32 f38;
+    u32 f3C;
+    u32 f40;
+    u32 f44;
+    u32 f48;
+    u32 f4C;
+    u32 f50;
+    u32 f54;
+    u32 f58;
+    u32 f5C;
+    u32 f60;
+    u32 f64;
+    u32 f68;
+    u32 f6C;
+    u32 f70;
+    u32 f74;
+    u32 f78;
+    C_00030C00 *func_00030C00(int a0);
+    void func_00157600(int a0);
+};
+
 struct C_00030CD0 {
     char pad0[0x78];
     int unk78;
