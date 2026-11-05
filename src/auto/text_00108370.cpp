@@ -321,7 +321,7 @@ struct C_001089C0 {
     char pad708[4];
     int f70C;
     char pad710[0x798 - 0x710];
-    float f798;
+    int f798;
     char pad79C[0xA04 - 0x79C];
     S_001089C0_Cam *fA04;
     char padA08[0x1874 - 0xA08];
@@ -406,6 +406,27 @@ int C_00108670::func_00108670(void) {
 
 void C_00108680::func_00108680(int a0) {
     unkA2C = a0;
+}
+
+void C_001089C0::func_001089C0(Vec4_00108370 *out)
+{
+    Vec4_00108370 v;
+
+    v.z = 0;
+    v.y = 0;
+    v.x = 0;
+    v.w = 1.0f;
+    if (f704 != 0) {
+        v = fA04->func_00165E20(f1874, f798, D_00276690, 0);
+        *out = f230->func_00197F70(&v);
+        return;
+    }
+    if (f70C != 0) {
+        v = fA04->func_00165E20(f1878, f798, D_00276690, 0);
+        *out = f230->func_00197F70(&v);
+        return;
+    }
+    f230->func_00199A70(0, out);
 }
 
 float C_00108CB0::func_00108CB0(int idx, float v)
