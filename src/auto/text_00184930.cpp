@@ -140,6 +140,14 @@ extern char D_00289588[];
 extern char D_002A5870[];
 extern void *D_002E2930;
 
+struct S_00185110_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    S_00185110_Obj *func_00197680(int a);
+    int func_001976A0(char *name, float f);
+};
+
 /* BasicScene */
 struct C_00184930 {
     void *vtbl;
