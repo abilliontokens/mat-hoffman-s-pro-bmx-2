@@ -133,6 +133,16 @@ double func_001E931E(char *str, char **endptr) {
     return v;
 }
 
+void func_001E9576(int a0, int a1, int a2) {
+    int func_001E93CD(int, int, int, int);
+    func_001E93CD(a0, a1, a2, 0);
+}
+
+void func_001E958D(int a0, int a1, int a2) {
+    int func_001E93CD(int, int, int, int);
+    func_001E93CD(a0, a1, a2, 1);
+}
+
 #pragma optimize("t", off)
 int func_001E98A9(int param_1, int param_2, int param_3, int param_4) {
     int func_001EB109(int);
@@ -147,6 +157,21 @@ int func_001E98A9(int param_1, int param_2, int param_3, int param_4) {
     }
     return result;
 }
+
+int func_001E9A0C(int param_1, int param_2, int param_3, int param_4) {
+    int func_001EB109(int);
+    int func_001EB15B(int);
+    int func_001E98F5(int, int, int, int);
+    int result;
+    func_001EB109(param_4);
+    __try {
+        result = func_001E98F5(param_1, param_2, param_3, param_4);
+    } __finally {
+        func_001EB15B(param_4);
+    }
+    return result;
+}
+
 #pragma optimize("", on)
 void func_001E9F40(void) {
     int func_001EB302(...);
