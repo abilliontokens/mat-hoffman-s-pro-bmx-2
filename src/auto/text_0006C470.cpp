@@ -28,6 +28,34 @@ struct C_0006D100 {
     Sprite_6D *unkE0;
     int func_0006D100();
 };
+extern int D_002789F4;
+void func_001E891B(void *p);
+
+struct Obj_6C {
+    virtual ~Obj_6C();
+};
+
+struct Res_6C {
+    void func_001D6410();
+};
+
+struct C_0006C470 {
+    void *vtbl;
+    char pad4[0x68];
+    Obj_6C *arr6C[2];
+    char pad74[8];
+    Obj_6C *arr7C[5];
+    Obj_6C *arr90[5];
+    Obj_6C *arrA4[4];
+    Obj_6C *unkB4;
+    char padB8[4];
+    Obj_6C *unkBC;
+    Obj_6C *unkC0;
+    Res_6C *unkC4;
+    Res_6C *unkC8;
+    void func_00157660();
+    void func_0006C470();
+};
 extern float D_00275544;
 extern float D_00278500;
 struct C_6D_ManagerObj { char pad[0x154]; int unk154; void func_0001EDC0(int); };
