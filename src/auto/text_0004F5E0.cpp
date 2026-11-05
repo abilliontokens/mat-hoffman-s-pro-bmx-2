@@ -1,6 +1,41 @@
 /* 8 functions from 0x0004F5E0 to 0x0004FE60, found by Ghidra. */
 #include "common.h"
 
+struct V4_4F5E0 { int a, b, c, d; };
+struct C_0012B410 { void func_0012B410(int a, int b, int c); };
+struct C_0013E4F0 { void func_0013E4F0(int a); };
+struct C_0002EF20 { void func_0002EF20(int a); };
+struct C_000306F0 { void func_000306F0(void *a, int b, int c, V4_4F5E0 d, int e, int f); };
+struct G_4F5E0_E0 { char pad0[8]; int f8; };
+struct G_4F5E0 {
+    char pad0[0x124]; int f124;
+    char pad128[0x108]; unsigned char f230;
+    char pad231[0xAF]; G_4F5E0_E0 *f2E0;
+};
+struct O_4F5E0_4DC { char pad0[0x24]; V4_4F5E0 f24; };
+struct O_4F5E0_64 { char pad0[0x4ac]; int *f4AC; char pad4B0[0x2c]; O_4F5E0_4DC *f4DC; };
+struct C_0004F5E0 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28();
+    char pad4[0x20];
+    C_0012B410 *f24;
+    char pad28[0x1C];
+    C_000306F0 *f44;
+    char pad48[0x1C];
+    O_4F5E0_64 *f64;
+    char pad68[0x21C];
+    int f284;
+    void func_00031AF0();
+    int func_0004F5E0();
+};
+void *func_001E8A44(int);
+
 struct C_0002EF70 {
     void func_0002EF70(int a, int b);
 };
