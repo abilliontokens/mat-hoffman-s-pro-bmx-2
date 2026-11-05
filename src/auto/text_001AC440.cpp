@@ -1,6 +1,7 @@
 /* 16 functions from 0x001AC440 to 0x001ACFE0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <string.h>
 struct C_001AC900 {
     undefined4 func_001AC900(byte param_1);
 };
