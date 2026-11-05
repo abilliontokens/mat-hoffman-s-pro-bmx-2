@@ -39,6 +39,30 @@ struct C_00079790 {
     void func_00078E60(void);
 };
 
+int C_00078D60::func_00078D60(int *param_1, int param_2) {
+    int func_001361E0(int, int, int *, int);
+    if (fA0 == 0 && fA4 == 0) {
+        if (func_001361E0(4, 2, param_1, -2147483648) == 0 &&
+            func_001361E0(23, 2, param_1, -2147483648) == 0) {
+            if (func_001361E0(5, 2, param_1, -2147483648) == 0 &&
+                func_001361E0(24, 2, param_1, -2147483648) == 0) {
+                return func_00157BF0(param_1, param_2);
+            }
+            if (fE8 != 0 || fEC != 0) {
+                return 0;
+            }
+            fD8->func_00031610(4, 1);
+            fA4 = 1;
+            f9C = 0.0f;
+            return 0;
+        }
+        fD8->func_00031610(4, 1);
+        fA0 = 1;
+        f9C = 0.0f;
+    }
+    return 0;
+}
+
 C_00079790 *C_00079790::func_00079790(void *param)
 {
     int i;
