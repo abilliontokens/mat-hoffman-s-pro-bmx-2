@@ -23,11 +23,28 @@ extern u32 D_002B7D50;
 extern u32 *D_002A0DAC;
 void func_001E891B(void *p);
 
+void *func_001E8AA5(int size);
+void func_001E8390(void *p);
+
+/* Fixed-size element pool: chunks are linked through their first word. */
 struct C_0001E930 {
     void *vtbl;
-    char pad4[0x28];
+    int unk4;
+    int unk8;           /* elements per chunk */
+    void **unkC;        /* first chunk */
+    void **unk10;       /* last chunk */
+    void **unk14;       /* spare chunks */
+    int unk18;          /* elements used in last chunk */
+    unsigned int unk1C; /* element size */
+    int unk20;          /* chunk size */
+    void **unk24;       /* freed elements */
+    int unk28;          /* bytes allocated from the heap */
+    int unk2C;          /* bytes in use */
     void *func_0001E930(unsigned int flags);
+    void func_0001E790(void **elem);
+    int func_0001E7B0();
     void func_0001E800();
+    void *func_0001E8A0();
     void func_0001DFF0();
 };
 
