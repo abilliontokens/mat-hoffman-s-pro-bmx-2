@@ -25,7 +25,7 @@ char *func_001E95A4(char *s, const char *delim);
 struct C_001684B0 {
     char pad0[0x1c];
     int f1c;
-    int *f20;
+    char **f20;
     void func_001684B0(void);
     void func_001684F0(int count);
 };
