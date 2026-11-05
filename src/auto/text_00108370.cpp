@@ -3,6 +3,17 @@
 #include "ghidra.h"
 #include <string.h>
 
+struct C_00108D10 {
+    char pad0[0xA68];
+    int fA68[4];
+    int fA78[4];
+    int fA88;
+    char padA8C[0xAB0-0xA8C];
+    int fAB0[140];
+    int fCE0[1];
+    void func_00108D10(int a, int b);
+};
+
 struct C_001084E0 {
     void func_001084E0(void);
 };
