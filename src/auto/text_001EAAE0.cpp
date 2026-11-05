@@ -51,3 +51,27 @@ int func_001EAB4C(volatile unsigned int *record, void *frame, void *context, voi
     }
     return result;
 }
+
+#pragma optimize("t", off)
+int func_001EAC1A(char *buf, int count, const char *fmt, ...)
+{
+    S_001EA_FILE str;
+    int retval;
+    va_list ap;
+
+    va_start(ap, fmt);
+    str.cnt = count;
+    str.flag = 0x42;
+    str.base = buf;
+    str.ptr = buf;
+    retval = func_001EDD36(&str, fmt, ap);
+    if (buf) {
+        if (--str.cnt >= 0) {
+            *str.ptr++ = 0;
+        } else {
+            func_001ED8A7(0, &str);
+        }
+    }
+    return retval;
+}
+
