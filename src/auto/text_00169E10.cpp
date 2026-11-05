@@ -48,6 +48,13 @@ struct V4f {
 };
 
 extern int D_002882EC;
+extern char *D_002A8490;
+extern float D_00275544;
+float func_00011240();
+struct EmitterTransform {
+    void func_00199A70(int, void *);
+    V4f *func_00197EC0(V4f *, void *);
+};
 
 void func_001E891B(void *p);
 void *func_001E8A44(int size);
