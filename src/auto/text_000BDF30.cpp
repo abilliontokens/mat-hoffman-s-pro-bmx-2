@@ -1,6 +1,68 @@
 /* 8 functions from 0x000BDF30 to 0x000BEE30, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+extern char D_0027DB74[];
+
+struct S_000BDF30_Config {
+    char pad0[0x324];
+    int f324;
+};
+
+struct S_000BDF30_Game {
+    char pad0[0x234];
+    int f234;
+    char pad238[0xa8];
+    S_000BDF30_Config *f2E0;
+};
+
+struct S_000BDF30_Audio {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7(int a);
+    virtual void v8();
+};
+
+extern S_000BDF30_Game *D_002A8490;
+extern S_000BDF30_Audio *D_002EFDB8;
+
+struct S_000BDF30_Entry {
+    char pad0[0x104];
+    char f104[0xa4];
+};
+
+struct S_000BDF30_Lookup {
+    int func_0001B3C0(S_000BDF30_Entry *entry);
+};
+
+struct S_000BDF30_Names {
+    char pad0[0x484];
+    S_000BDF30_Lookup *f484;
+};
+
+struct C_000BBE30 {
+    int func_000BBE30(int show);
+    void func_000BBA80(int idx, char *buf);
+};
+
+struct C_000BDF30 {
+    char pad0[0x150];
+    S_000BDF30_Names *f150;
+    char pad154[0x128];
+    S_000BDF30_Entry *f27C;
+    int f280;
+    int f284;
+    int f288;
+    int f28C;
+    int func_000BDF30(int show);
+};
+
 struct C_000BEDA0 {
     undefined4 func_000BEDA0(byte param_1);
 };
