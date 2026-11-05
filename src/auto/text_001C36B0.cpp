@@ -169,8 +169,12 @@ struct C_001D5760 {
     int f28;
     int f2C;
     char pad30[8];
-    int f38;
-    char pad3C[0x1C];
+    unsigned int f38;
+    int f3C;
+    int f40;
+    f32 f44;
+    f32 f48;
+    char pad4C[0xC];
     u8 b58;
     C_001D5760 *func_001D5760();
     void func_001D5810(void *a, int b, int c, int d);
