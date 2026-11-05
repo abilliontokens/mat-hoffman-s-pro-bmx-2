@@ -106,8 +106,17 @@ struct S_001F3321_Flags {
     unsigned int InvalidOperation : 1;
 };
 
+struct S_001F3321_Bits {
+    unsigned int RoundingMode : 2;
+    unsigned int Precision : 3;
+    unsigned int Operation : 12;
+};
+
 struct S_001F3321_Rec {
-    unsigned int bits;
+    union {
+        unsigned int bits;
+        S_001F3321_Bits Bits;
+    };
     unsigned int cause;
     union {
         unsigned int enable;
@@ -410,12 +419,13 @@ void func_001F3321(S_001F3321_Rec *rec, unsigned int *pcw, unsigned int code, in
     int func_001F3AE0(void);
     void func_001F3AED(void);
     void __stdcall func_001DE759(int, int, int, int *);
-    unsigned int flags = code;
+    unsigned char flags;
     int fsw;
 
     rec->cause = 0;
     rec->enable = 0;
     rec->status = 0;
+    flags = (unsigned char)code;
     if (flags & 0x10) {
         rec->cause |= 1;
         code = 0xc000008f;
@@ -436,11 +446,11 @@ void func_001F3321(S_001F3321_Rec *rec, unsigned int *pcw, unsigned int code, in
         rec->cause |= 0x10;
         code = 0xc0000090;
     }
-    rec->enable ^= (~(*pcw << 4) ^ rec->enable) & 0x10;
-    rec->enable ^= (~(*pcw << 1) ^ rec->enable) & 8;
-    rec->enable ^= (~(*pcw >> 1) ^ rec->enable) & 4;
-    rec->enable ^= (~(*pcw >> 3) ^ rec->enable) & 2;
-    rec->enable ^= (~(*pcw >> 5) ^ rec->enable) & 1;
+    rec->Enable.InvalidOperation = !(*pcw & 1);
+    rec->Enable.ZeroDivide = !(*pcw & 4);
+    rec->Enable.Overflow = !(*pcw & 8);
+    rec->Enable.Underflow = !(*pcw & 0x10);
+    rec->Enable.Inexact = !(*pcw & 0x20);
     fsw = func_001F3AE0();
     if (fsw & 1) {
         rec->status |= 0x10;
@@ -461,11 +471,11 @@ void func_001F3321(S_001F3321_Rec *rec, unsigned int *pcw, unsigned int code, in
     case 0:
         rec->bits &= 0xfffffffc;
         break;
-    case 0x400:
-        rec->bits = (rec->bits & 0xfffffffd) | 1;
-        break;
     case 0x800:
         rec->bits = (rec->bits & 0xfffffffe) | 2;
+        break;
+    case 0x400:
+        rec->bits = (rec->bits & 0xfffffffd) | 1;
         break;
     case 0xc00:
         rec->bits |= 3;
@@ -510,11 +520,11 @@ void func_001F3321(S_001F3321_Rec *rec, unsigned int *pcw, unsigned int code, in
     case 0:
         *pcw &= 0xfffff3ff;
         break;
-    case 1:
-        *pcw = (*pcw & 0xfffff7ff) | 0x400;
-        break;
     case 2:
         *pcw = (*pcw & 0xfffffbff) | 0x800;
+        break;
+    case 1:
+        *pcw = (*pcw & 0xfffff7ff) | 0x400;
         break;
     case 3:
         ((unsigned char *)pcw)[1] |= 0xc;
@@ -533,8 +543,6 @@ void func_001F3321(S_001F3321_Rec *rec, unsigned int *pcw, unsigned int code, in
     }
     *res = rec->result;
 }
-
-#pragma optimize("", on)
 double func_001F3A2E(double x, int *expptr);
 void func_001F3B1F(unsigned int flags);
 #pragma optimize("s", on)
