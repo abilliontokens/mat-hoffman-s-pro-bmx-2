@@ -4,6 +4,10 @@
 
 void *func_001E8A44(int size);
 void func_001E891B(void *p);
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+extern char D_0028A76C[];
+extern char D_002A5240[];
+extern char D_00276F28[];
 struct C_0018C820 {
     char pad0[0x24];
     int unk24;
