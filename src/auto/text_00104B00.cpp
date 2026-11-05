@@ -40,9 +40,22 @@ struct S_00104B00_Pos {
 };
 
 struct S_00104B00_Obj {
+    char pad0[0xe4];
+    int fe4;
     int func_000831C0(void);
     void func_001BB4D0(int a0);
 };
+
+struct S_001058F0_Obj {
+    void func_00086C20(int a0);
+    void func_00133700(void);
+    void func_00133660(int a0);
+    void func_00133ED0(void);
+    float func_00133F10(int a0);
+};
+
+extern int D_002BA154;
+extern int D_002B911C;
 
 struct S_00104B00_Plr {
     char pad0[0x568];
