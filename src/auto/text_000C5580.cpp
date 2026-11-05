@@ -8,6 +8,7 @@ struct BmxUIPageMain {
     void func_000C4FD0();
     void func_000C5580();
     void func_00157960();
+    void func_000C58A0(void);
 };
 
 extern int D_0027E14C;
