@@ -16,6 +16,7 @@ struct C_0013AFD0 {
 #include <string.h>
 
 static inline int Min_0013B530(int a, int b) { return a < b ? a : b; }
+template <class T> inline const T &Max_0013AC40(const T &a, const T &b) { return a < b ? b : a; }
 
 extern "C" int func_0014FF00(const char *path, char *drive, char *dir, char *fname, char *ext);
 void func_001E8390(void *p);
