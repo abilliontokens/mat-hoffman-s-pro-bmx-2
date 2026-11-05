@@ -328,6 +328,7 @@ struct JoystickDevice {
     unsigned char f6B4 : 1;
     JoystickDevice *func_0015AD10(int a);
     void func_0015AE20(void);
+    int func_0015AE60(int idx, unsigned int flags, S_0015AE60_Out *out);
     void *func_0015B010(unsigned int flags);
     void func_0015AFC0(int idx, int a, int b);
     int func_0015B060(C_00135D70 *p, int a, int b);
