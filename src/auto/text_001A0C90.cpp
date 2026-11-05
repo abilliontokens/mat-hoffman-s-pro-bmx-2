@@ -70,6 +70,14 @@ struct C_001A1C70 {
 };
 
 
+void C_001A13F0::func_001A13F0(void)
+{
+    if (unk4 != 0) {
+        unk4->v2();
+        unk4 = 0;
+    }
+}
+
 undefined4 C_001A15C0::func_001A15C0(undefined4 *param_1)
 {
   int in_ECX = (int)this;
