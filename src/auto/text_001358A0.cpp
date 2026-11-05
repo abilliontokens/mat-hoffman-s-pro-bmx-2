@@ -69,15 +69,18 @@ struct C_00135E00 {
     int f8;
     int fC;
     int f10;
-    int f14[8];
+    S_00136110_Dev *f14[8];
     int f34;
-    int f38;
+    S_001358A0_Handler *f38;
     int f3C;
     char pad40[0xc80];
-    int fCC0;
+    C_00135CB0 *fCC0;
     int fCC4[8];
     int fCE4[8];
     C_00135E00 *func_00135E00(void);
+    C_00135E00 *func_00136320(unsigned int flags);
+    int func_00136110(int a, int idx);
+    int func_00136170(int idx, int type, int row);
 };
 
 undefined4 C_00135A60::func_00135A60(byte param_1)
