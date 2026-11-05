@@ -335,6 +335,16 @@ struct Root_000317B0 {
 
 extern Root_000317B0 *D_002A8490;
 
+struct CreatorObj_00031260 {
+    int func_00026500(int a, int b);
+};
+
+extern CreatorObj_00031260 *D_002A7CB8;
+extern float D_002756DC;
+extern int D_002B8F18;
+extern int D_002B8F1C;
+extern int D_00276B68;
+
 struct Obj_00031260 {
     char pad0[0x19c];
     int f19c;
