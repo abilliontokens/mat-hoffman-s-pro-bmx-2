@@ -29,6 +29,35 @@ struct C_00104190 {
     void func_00104190(void);
 };
 
+extern int D_002828F4;
+
+/* BmxVCRController */
+struct C_00104120 {
+    void *vtbl;
+    char pad4[0xD0 - 4];
+    int unkD0;
+    int unkD4;
+    int unkD8;
+    int unkDC;
+    char unkE0;
+    char padE1[3];
+    int unkE4;
+    int unkE8;
+    void func_00195D90(void);
+    C_00104120 *func_00104120(int param_1);
+};
+
+struct C_00104900 {
+    char pad0[0x74];
+    int unk74;
+    char pad78[0x8C - 0x78];
+    int *unk8C;
+    char pad90[0xE8 - 0x90];
+    int unkE8;
+    void func_00104900(void);
+    void func_00104930(void);
+};
+
 
 void C_00104190::func_00104190(void)
 {
