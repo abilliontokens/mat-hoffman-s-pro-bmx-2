@@ -176,9 +176,10 @@ int func_001325D0(float *param_1)
 void C_1329F0::func_001329F0()
 {
     char *base = (char *)this - 0x294;
-    int off = ((C_Off_1324B0 *)*(void **)base)->f4;
+    int off;
 
-    *(void **)(base + off) = (void *)&D_002845AC;
+    *(void **)(base + ((C_Off_1324B0 *)*(void **)base)->f4) = (void *)&D_002845AC;
+    off = ((C_Off_1324B0 *)*(void **)base)->f4;
     *(int *)(base + off - 4) = off - 0x294;
     if (*(void **)((char *)this - 0x14) != 0) {
         func_001E8390(*(void **)((char *)this - 0x14));
@@ -191,7 +192,7 @@ void C_1329F0::func_00132C50(int a1)
     int i;
 
     for (i = 0; i < *(int *)((char *)this - 0x10); i++) {
-        ((C_Item_1324B0 *)*(void **)((char *)this - 0x14))[i].func_00133ED0();
+        ((C_Item_1324B0 **)*(void **)((char *)this - 0x14))[i]->func_00133ED0();
     }
     ((C_Dst_1324B0 *)((char *)this - 0x294 + ((C_Off_1324B0 *)*(void **)((char *)this - 0x294))->f4))->func_00157A00(a1);
 }
