@@ -47,6 +47,20 @@ void C_00144CF0::func_00144CF0(void)
   } while (--n);
 }
 
+void C_00144E70::func_00144E70(void)
+{
+  int in_ECX = (int)this;
+  int src = *(int *)(in_ECX + 8);
+  int n1 = *(int *)(src + 0x38);
+  int *dst1 = (int *)func_001E8A44(n1 * 0xc);
+  *(int **)(in_ECX + 0x10) = dst1;
+  memcpy(dst1, *(void **)(src + 0x2c), n1 * 0xc);
+  int n2 = *(int *)(src + 0x3c);
+  int *dst2 = (int *)func_001E8A44(n2 * 8);
+  *(int **)(in_ECX + 0x14) = dst2;
+  memcpy(dst2, *(void **)(src + 0x30), n2 * 8);
+}
+
 int C_00145290::func_00145290(int param_1)
 {
   int in_ECX = (int)this;
