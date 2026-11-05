@@ -55,6 +55,26 @@ struct C_000DFC00 {
     void func_000DFC90();
 };
 
+struct S_000DFCF0_W {
+    char pad0[4];
+    u32 f4;
+    float f8;
+    char pad0c[0x4c];
+    u8 f58;
+};
+
+struct C_000DFCF0 {
+    char pad0[0x2ac];
+    int unk2ac;
+    char pad2b0[0x18];
+    int unk2c8;
+    char pad2cc[0x1dc];
+    int unk4a8[72];
+    void func_000DF570();
+    void func_001BF000();
+    void func_000DFCF0();
+};
+
 void C_000DFC00::func_000DFC00()
 {
     S_000DFC00_Widget *w = D_002B91AC->unk44;
