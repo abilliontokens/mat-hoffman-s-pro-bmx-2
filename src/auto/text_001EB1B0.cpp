@@ -1,0 +1,2 @@
+/* 26 functions from 0x001EB1B0 to 0x001EBA57, found by Ghidra. */
+#include "common.h"

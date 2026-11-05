@@ -1,0 +1,45 @@
+{
+  "created": "from scratch",
+  "platform": "xbox",
+  "version": "mathoffmansprobmx2",
+  "compiler": "MSVC/7.0",
+  "analysis": 7,
+  "tools": "a483767369f7",
+  "game": {
+    "what": "the PE view of your copy of the game's program (default.xbe), which decompdecomp makes from it",
+    "path": "orig/mathoffmansprobmx2.exe",
+    "sha1": "7af2288e538b08d38b5b875ccbc478231133f4a8"
+  },
+  "setup": [
+    [
+      "python",
+      "tools/configure.py",
+      "mathoffmansprobmx2",
+      "--msvc",
+      "C:\\Users\\james\\AppData\\Local\\decompnet\\toolchains\\msvc2015",
+      "--msvc",
+      "C:\\Users\\james\\AppData\\Local\\decompnet\\toolchains\\msvc"
+    ],
+    [
+      "ninja",
+      "prepare"
+    ]
+  ],
+  "rebuild": {
+    "identical": true,
+    "detail": "identical: the whole program (2,919,503 bytes); its 6,827 functions (2,488,614 bytes of code), 0 of them from C",
+    "what": "The game's program, rebuilt from the project,"
+  },
+  "ltcg_detected": {
+    "ltcg": false,
+    "confirmed": 23,
+    "sampled": 1500,
+    "share": 0.0153,
+    "why": "23 of 1500 called functions looked at (1.5%) take a register other than ECX/EDX that their callers load right before calling them: not link-time code generation",
+    "examples": [
+      "_func_0001DCF0@112 reads edi, esi before writing it, and _func_00186D60+0x15F sets it up: rep movsd dword ptr es:[edi], dword ptr [esi]; push ecx; push edx; mov edx, dword ptr [0x2a8490]; push ecx; mov ecx, dword ptr [edx + 4]; add eax, 0x168; push eax -> call",
+      "_func_00059290@44 reads edi before writing it, and _func_0002F1C0+0xAA sets it up: push eax; rep movsd dword ptr es:[edi], dword ptr [esi]; mov ecx, dword ptr [ebx + 0x50] -> call",
+      "_func_0006E620@4 reads eax before writing it, and _func_0006E970@4+0x47 sets it up: mov eax, dword ptr [ebp + 0xec]; mov esi, dword ptr [esp + 0x24]; push esi; mov ecx, ebp -> call"
+    ]
+  }
+}
