@@ -69,6 +69,12 @@ struct C_001BF000 {
 };
 
 
+void C_001BEF90::func_001BEF90(int param_1)
+{
+  unk140[param_1]->func_001BDDE0(0);
+  unk140[param_1]->func_001BDBD0();
+}
+
 undefined4 C_001BF030::func_001BF030(void)
 {
   int __stdcall func_001577A0(int, int);
