@@ -9,10 +9,10 @@ struct C_002A8490 {
 };
 extern C_002A8490 *D_002A8490;
 
-void __stdcall func_00157A00(int);
+void __stdcall func_00157A00(float);
 
 struct C_000B1320 {
-    int func_000B1320(int param_1);
+    int func_000B1320(float dt);
 };
 
 struct C_000B11C0 {
@@ -44,7 +44,7 @@ C_000B11C0 *C_000B11C0::func_000B11C0(int param_1) {
     return this;
 }
 
-int C_000B1320::func_000B1320(int param_1) {
+int __stdcall func_000B1320(int param_1) {
     if (D_002A8490->f124 == 0) {
         func_00157A00(param_1);
     }
