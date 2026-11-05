@@ -180,8 +180,10 @@ struct C_001D3AB0 {
     int unk60;
     char pad64[0xC];
     S_001D3AB0_Res *unk70;
-    char pad74[8];
+    void *unk74;
+    void *unk78;
     void *unk7C;
+    int func_001D3CC0(char *name);
     void func_001D3B20(char *name);
     void func_001D3800(void);
     void func_001D3860(void);
