@@ -85,8 +85,15 @@ struct C_00135B70 {
 };
 extern int D_002BA700;
 struct C_00135E00;
+struct C_00135EE0_Ent;
 struct S_Game_001358A0 {
-    char pad0[8];
+    virtual void v0() = 0; virtual void v1() = 0; virtual void v2() = 0; virtual void v3() = 0;
+    virtual void v4() = 0; virtual void v5() = 0; virtual void v6() = 0; virtual void v7() = 0;
+    virtual void v8() = 0; virtual void v9() = 0; virtual void v10() = 0; virtual void v11() = 0;
+    virtual void v12() = 0;
+    virtual void on(C_00135EE0_Ent *e, void *p) = 0;
+    virtual void off(C_00135EE0_Ent *e, void *p) = 0;
+    char pad4[4];
     C_00135E00 *f8;
 };
 extern S_Game_001358A0 *D_002A8490;
