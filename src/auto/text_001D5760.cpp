@@ -64,6 +64,7 @@ struct C_001D61E0 {
 
 struct C_001D6190 {
     void func_001D5FA0(int a, int b, int c, int d);
+    void func_001D6190(int a, const char *s, int b);
 };
 
 
