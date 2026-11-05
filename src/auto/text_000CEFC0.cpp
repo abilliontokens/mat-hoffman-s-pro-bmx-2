@@ -52,6 +52,26 @@ struct BmxUIPageGameOptions {
     void func_000CFB20();
 };
 
+void BmxUIPageGameOptions::func_000CFAC0()
+{
+    S_000CEFC0_124 *p = unk124;
+    p->unk25c->unk74->func_00030020(D_0027EB6C);
+    p->unk25c->unk74->func_000300C0(D_0027EB60);
+    p->unk268->func_001C4D50(1000);
+    p->unk25c->unk74->func_00030210();
+    p->unk25c->unk74->func_000301A0();
+}
+
+void BmxUIPageGameOptions::func_000CFB20()
+{
+    unk124->unk25c->unk74->func_00030020(D_0027DB54);
+    unk124->unk25c->unk74->func_000300C0(D_0027EB78);
+    unk124->unk268->func_001C4D50(1000);
+    unk124->unk25c->unk74->func_00030210();
+    unk124->unk25c->unk74->func_000301A0();
+    unk124->func_000BA9D0(1)->unk360 = 3;
+}
+
 void BmxUIPageGameOptions::func_000CFCA0()
 {
     if (unk4f8->func_00093620(100.0f) == 1) {
