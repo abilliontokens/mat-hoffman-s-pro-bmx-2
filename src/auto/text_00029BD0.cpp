@@ -215,3 +215,59 @@ struct C_0002A6B0 {
     void func_00027D60(void);
     void func_0002A6B0(float dt);
 };
+#include <xmmintrin.h>
+struct V4_0002A7C0 {
+    float x, y, z, w;
+    V4_0002A7C0() {}
+    V4_0002A7C0(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
+};
+static inline void Cross_0002A7C0(float *out, float *a, float *b)
+{
+    __m128 va = _mm_loadu_ps(a);
+    __m128 vb = _mm_loadu_ps(b);
+    __m128 sa = va;
+    __m128 sb = vb;
+
+    sa = _mm_shuffle_ps(sa, sa, 0xc9);
+    sb = _mm_shuffle_ps(sb, sb, 0xc9);
+    vb = _mm_mul_ps(vb, sa);
+    va = _mm_mul_ps(va, sb);
+    va = _mm_sub_ps(va, vb);
+    va = _mm_shuffle_ps(va, va, 0xc9);
+    _mm_storeu_ps(out, va);
+}
+static inline float Sqrt_0002A7C0(const float &x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+struct W_0002A7C0 {
+    V4_0002A7C0 *func_00197F70(V4_0002A7C0 *, V4_0002A7C0 *);
+    V4_0002A7C0 *func_00198040(V4_0002A7C0 *, V4_0002A7C0 *);
+};
+struct VO_0002A7C0 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
+    virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14();
+    virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24();
+    virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29();
+    virtual void v30(); virtual void v31(); virtual void v32(); virtual void v33(); virtual void v34();
+    virtual void v35(); virtual void v36(); virtual void v37(); virtual void v38(); virtual void v39();
+    virtual void v40();
+    virtual V4_0002A7C0 *v41(V4_0002A7C0 *);
+    virtual V4_0002A7C0 *v42(V4_0002A7C0 *);
+    virtual void v43();
+    virtual V4_0002A7C0 *v44(V4_0002A7C0 *);
+    char pad4[0x28 - 4]; int f28;
+    char pad2c[0x4c - 0x2c]; V4_0002A7C0 f4c;
+    char pad5c[0x190 - 0x5c]; V4_0002A7C0 f190;
+    char pad1a0[0x22c - 0x1a0]; W_0002A7C0 *f22c;
+    char pad230[0x238 - 0x230]; V4_0002A7C0 f238;
+};
+struct B_0002A7C0 { char pad[0x8c]; VO_0002A7C0 *f8c; };
+struct C_0002A7C0 {
+    char pad[0x1e0]; VO_0002A7C0 *f1e0;
+    char pad1e4[4]; B_0002A7C0 *f1e8;
+    char pad1ec[0x744 - 0x1ec]; float f744;
+    V4_0002A7C0 f748;
+    V4_0002A7C0 f758;
+    V4_0002A7C0 f768;
+    void func_0002A7C0();
+};
