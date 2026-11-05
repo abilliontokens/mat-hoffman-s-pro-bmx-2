@@ -89,6 +89,34 @@ struct C_001D6600 {
     void func_001D6600(void);
 };
 
+struct G_2E0 {
+    int f0, f4, f8, fc, f10, f14;
+};
+struct C_00100400 {
+    void **vtbl;
+    char pad4[0x120];
+    O_101010 *p124;
+    char pad128[0x280 - 0x128];
+    int f280, f284;
+    float f288;
+    int f28C, f290, f294;
+    char pad298[8];
+    int f2A0, f2A4, f2A8;
+    float f2AC;
+    int f2B0;
+    char pad2B4[4];
+    int f2B8, f2BC, f2C0;
+    float f2C4, f2C8, f2CC;
+    M_101010 *p2D0;
+    void func_00100400(float dt);
+    void func_001BED00(float dt);
+    void func_001BEE50(int a, int b, int c);
+    void func_001BEF50(int a, int b);
+    void func_001BEFC0(int a, int b);
+    void v70(int a, int b);
+};
+extern float D_00275460;
+
 struct C_002B91AC_s {
     char pad0[0x34];
     C_001D6600 *f34;
