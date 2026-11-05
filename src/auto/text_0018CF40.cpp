@@ -78,8 +78,26 @@ struct C_0018D7B0_Def {
     int f20;
 };
 
+struct C_0018D330_Item {
+    int f0;
+    int f4;
+    int f8;
+    int fC;
+};
+
+struct C_0018D330_List {
+    char pad0[0x2c];
+    C_0018D330_Item *items;
+    int count;
+    int capacity;
+};
+
+extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
+
 struct C_0018D7B0 {
-    char pad0[0x170];
+    char pad0[0x164];
+    C_0018D330_List *lists;
+    char pad168[8];
     C_0018D7B0_Def *defs;
     int defCount;
     int defCapacity;
