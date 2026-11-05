@@ -27,6 +27,41 @@ struct MidObj_DA {
     ClampObj_DA *func_0018C070();
 };
 
+struct C_001D6600_DA {
+    void func_001D6600();
+};
+
+struct HudObj_DA {
+    char pad0[0x34];
+    C_001D6600_DA *f34;
+    C_001D6600_DA *arr38[2];
+};
+
+extern HudObj_DA *D_002B91AC;
+extern float D_00275600;
+extern float D_00279B50;
+extern float D_0027F718;
+
+struct TextObj_DA {
+    void func_001B1980(void);
+    void func_001B1A30(float x, float y, float z);
+    void func_001B2270(int color);
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, float a7, int a8, float a9, int a10, float a11, float a12, int a13);
+};
+
+struct C_000DB180 {
+    char pad0[0x2b4];
+    int f2B4;
+    int f2B8;
+    int f2BC;
+    char pad2C0[0x10];
+    int f2D0;
+    char pad2D4[0x14];
+    TextObj_DA *w2E8[11];
+    float f314[17];
+    void func_000DB180(void);
+};
+
 /* BmxUIPageViewVideosTitle */
 struct C_000DB0E0 {
     void func_000DB0E0(void);
