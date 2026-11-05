@@ -23,7 +23,51 @@ struct S_001EF734 {
     S_001EF734 *func_001EF9B2(char *s);
     S_001EF734 *func_001EFAB5(void *a, void *b);
     void func_001EF170(int v);
+    S_001EF734 *func_001EF170(char c);
     void func_001EF759(void *p);
+    S_001EF734 *func_001EF759(char c);
+};
+
+struct C_001EFB18_Child {
+    C_001EFB18_Child *func_001EF419(void);
+    void func_001EEFE3(void *p);
+};
+
+struct C_001EFB18 {
+    C_001EFB18_Child *f0;
+    u32 f4;
+    int func_001EF1E7(void);
+    void func_001EF999(char c);
+    void func_001EF9B2(char *s);
+    C_001EFB18 *func_001EFB18(char c);
+};
+
+struct C_001EFB82 {
+    C_001EFB18_Child *f0;
+    u32 f4;
+    int func_001EF1E7(void);
+    void func_001EF9B2(char *s);
+    C_001EFB82 *func_001EFB82(char *s);
+};
+
+struct C_Allocator {
+    void *func_001EEE62(int size, int flags);
+};
+
+extern C_Allocator *D_002F6A04;
+extern int D_00295BCC;
+
+struct S_001EFB18_Obj {
+    void *vtbl;
+    u32 f4;
+    char f8;
+};
+
+struct S_001EFB82_Obj {
+    void *vtbl;
+    u32 f4;
+    char pad8[8];
+    S_001EFB82_Obj *func_001EF45F(char *s, int a);
 };
 
 void *_func_001EF9D9(S_001EF734 *o)
@@ -43,7 +87,7 @@ void *_func_001EF9D9(S_001EF734 *o)
                 case 4:  local.func_001EF9B2((char *)func_001EEE49(4)); break;
                 case 6:  local.func_001EF9B2((char *)func_001EEE49(3)); break;
                 case 8:  local.func_001EF9B2((char *)func_001EEE49(5)); break;
-                case 12: { char *s = (char *)func_001EEE49(6); local.func_001EF9B2(s); break; }
+                case 12: local.func_001EF9B2((char *)func_001EEE49(6)); break;
                 }
             }
             o->func_001EEEE6(&local);
