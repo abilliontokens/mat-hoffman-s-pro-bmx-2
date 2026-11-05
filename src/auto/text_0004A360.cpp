@@ -70,8 +70,8 @@ void func_000499B0(S_Vec4Pod *out, S_Vec4Pod *in);
 float func_0014FBA0(float x, float z);
 
 struct C_001983A0 {
-    S_Vec4 *func_00199B00(S_Vec4 *out, int a);
-    S_Vec4 func_00198040(S_Vec4 *in);
+    S_Vec4Pod *func_00199B00(S_Vec4Pod *out, int a);
+    S_Vec4Pod func_00198040(S_Vec4Pod *in);
     void func_001983A0(void);
     void func_00198390(void);
 };
