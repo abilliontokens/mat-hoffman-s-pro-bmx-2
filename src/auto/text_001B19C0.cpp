@@ -495,6 +495,22 @@ void *C_001B23D0::func_001B2480(unsigned int size)
     return f28;
 }
 
+void *C_001B23D0::func_001B24D0(unsigned int size)
+{
+    if (f34 < size) {
+        if (f2c != 0) {
+            func_001E8390(f2c);
+            f2c = 0;
+        }
+        f2c = func_001E8AA5(size);
+        if (f2c == 0) {
+            return 0;
+        }
+        f34 = size;
+    }
+    return f2c;
+}
+
 void C_001B2690::func_001B2690(int index, int data)
 {
     func_001AC750(index, data | f14[index].data);
