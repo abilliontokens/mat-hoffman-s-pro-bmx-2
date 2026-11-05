@@ -141,6 +141,25 @@ struct C_000EE1F0 {
 };
 
 
+void C_000EE060::func_000EDB70(void)
+{
+    int i;
+
+    unk29C = 3;
+    arr48C[0]->func_001B17D0(D_002A8490->f2E8->f4->fF98);
+    arr48C[1]->func_001B17D0(D_002A8490->f2E8->f4->fFA0);
+    arr48C[2]->func_001B17D0(D_002A8490->f2E8->f4->fFA8);
+    for (i = 0; i < 8; i++) {
+        if (D_002A8490->f2E0->f2C8->flags[i] == 1) {
+            arr48C[unk29C]->func_001B17D0(D_002A8490->f2E0->f2C8->names[i]);
+            arr3E4[unk29C] = D_002A8490->f2E0->f2C8->values[i];
+            arr4D0[unk29C] = i;
+            unk29C++;
+        }
+    }
+    unk3C0 = 1;
+}
+
 void C_000EDF00::func_000EDF00(void)
 {
     int i;
