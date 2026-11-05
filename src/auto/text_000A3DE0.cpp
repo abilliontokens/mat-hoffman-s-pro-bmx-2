@@ -15,6 +15,14 @@ extern char D_00279258[2];
 extern char D_0027B50C[3];
 extern char D_0027B508[2];
 
+extern int D_0027B1BC;
+
+/* BmxPlayerStart */
+struct C_000A3DE0 {
+    C_000A3DE0 *func_000A3DE0(void);
+    void func_00185790(void);
+};
+
 struct S2_000A4AF0 { u16 a; };
 struct S3_000A4AF0 { u16 a; u8 b; };
 
