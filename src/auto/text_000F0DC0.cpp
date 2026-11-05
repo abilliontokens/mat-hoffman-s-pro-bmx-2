@@ -25,13 +25,13 @@ struct BmxUIPageHPHChoice_000F1D00 {
     int unk284;
     int unk288;
     int unk28C;
-    float unk290;
+    int unk290;
     int unk294;
     int unk298;
     int unk29C;
     int unk2A0;
-    float unk2A4;
-    float unk2A8;
+    int unk2A4;
+    int unk2A8;
     int unk2AC;
     int unk2B0;
     int unk2B4;
