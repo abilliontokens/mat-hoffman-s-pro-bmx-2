@@ -1,6 +1,7 @@
 /* 20 functions from 0x000261F0 to 0x00026B60, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <xmmintrin.h>
 struct C_00026290 {
     int unk0;
     void *func_00026290(int flags);
