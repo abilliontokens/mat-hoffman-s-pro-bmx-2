@@ -94,7 +94,7 @@ float __stdcall func_00243639(int v);
 
 extern char D_0019660D;
 
-static inline int dither_noise_step(int &seed, int &prev)
+static __forceinline int dither_noise_step(int &seed, int &prev)
 {
     int s = seed * (int)&D_0019660D + 1013904223;
     int n;
