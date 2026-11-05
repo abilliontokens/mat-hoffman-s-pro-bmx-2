@@ -1,6 +1,28 @@
 /* 24 functions from 0x00148780 to 0x00149620, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct ShaderData_00148E80 { char pad[0x80]; int f80; int f84; };
+struct Manager_00148E80 {
+ virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5();
+ virtual void Set(int, const void *);
+ virtual short Create(const void *, int);
+};
+struct Resource_00148E80 {
+ int func_001617F0(const char *, int);
+ ShaderData_00148E80 *func_00161850(int);
+};
+struct DXShaderDescriptor {
+ char pad0[0xA]; char fA; char padB[9]; int f14; short f18; char pad1A[6]; char f20; char pad21[3]; unsigned char f24; char pad25; short f26; short f28; short pad2A; void *f2C; void *f30; int f34; int f38; int f3C;
+ int func_00148E80(const char *);
+ void func_00145370(int, ShaderData_00148E80 *, int, void *, int *);
+ void func_001458E0(int, ShaderData_00148E80 *, void *, int *);
+};
+extern Resource_00148E80 *D_002A829C;
+extern ShaderData_00148E80 *D_002AA470;
+extern Manager_00148E80 *D_002A751C, *D_002A6D84, *D_002AA6C0;
+extern char D_002A7130[], D_002BED60[], D_002A7148[], D_002BEE60[];
+extern void __cdecl func_0014A7B0(char *, const char *);
+extern void *__cdecl func_001E8A44(unsigned int);
 extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
 struct C_001488F0 {
     undefined4 func_001488F0(byte param_1);
