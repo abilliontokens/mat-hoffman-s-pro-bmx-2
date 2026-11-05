@@ -64,9 +64,7 @@ struct C_001AE3E0 {
     int f74;
     int f78;
     char pad7C[8];
-    unsigned char f84_0 : 1;
-    unsigned char f84_1 : 1;
-    unsigned char f84_2 : 1;
+    unsigned char f84;
     C_001AE3E0 *func_001AE3E0(int param_1);
     void func_001AE460(void);
     void func_001AE4D0(int a, int b, int c, int d, int e, int f, int g, int h, int idx);
