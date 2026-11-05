@@ -74,7 +74,7 @@ struct C_00095A00 {
 void *func_001E8A44(unsigned int size);
 int func_001E891B(...);
 struct S_00095880_Array {
-    volatile int count;
+    int count;
     int *data;
     int growth;
     int capacity;
