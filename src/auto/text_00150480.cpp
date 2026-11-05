@@ -63,6 +63,7 @@ struct C_00197B40 {
 struct C_00150900_sub {
     char pad0[0x4];
     C_00197B40 *unk4;
+    void func_00132D20();
 };
 struct C_00150900_obj {
     char pad0[0x1A4];
