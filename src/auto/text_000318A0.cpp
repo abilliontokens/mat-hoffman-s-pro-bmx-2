@@ -123,6 +123,22 @@ struct C_00032060 {
 };
 
 
+int BmxEvent::func_00031D80(void)
+{
+    char buf[0x104];
+
+    if (D_002A8490->f2e0->f2c4 != 0) {
+        func_001ADCC0(buf, 0x104, D_00276B9C, D_002A5870);
+        D_002BEAAC->func_0013D780(buf, 1, 0, 0, 0, 0, 0, 0);
+        if (f64->func_000AF900(0) == 0) {
+            return 0;
+        }
+        f64->func_000B03A0(0, 0, 0);
+        D_002BEAAC->func_0013DFF0(buf, 1);
+    }
+    return 1;
+}
+
 int C_00031F10::func_00031F10(int a, int b)
 {
     return func_00157B90(a, b) != 0;
