@@ -106,3 +106,20 @@ int C_000DB310::func_000DBC00() {
     int idx = a->f150->f484->func_0001B3C0(D_0027F7D4);
     return a->f150->f484->f2c->f28[idx]->f1a4->f10;
 }
+
+void C_000DBC40::func_000DBC40() {
+    int i;
+    for (i = 0; i < f2A0; i++) {
+        f310[i]->func_001B1980();
+        if (i == f2A8) {
+            f310[i]->func_001B2270(0xffbfa35a);
+            f310[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.45f, 0, 0.25f, 0.2f, 0);
+        } else {
+            f310[i]->func_001B2270(0xffcccccc);
+            f310[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0.0f, 0);
+        }
+    }
+    f2B4->func_001B1980();
+    f2B4->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.45f, 0, 0.25f, 0.2f, 0);
+}
+
