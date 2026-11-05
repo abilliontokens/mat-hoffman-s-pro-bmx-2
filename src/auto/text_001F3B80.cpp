@@ -111,7 +111,7 @@ void func_001F44D6(void) {
 
 extern "C" __declspec(dllimport) void __stdcall RtlInitializeCriticalSection(void *cs);
 int __stdcall func_001F44DF(void *cs, int spinCount);
-extern int (__stdcall *D_002F6A60)(void *a, void *b);
+extern int (__stdcall *D_002F6A60)(void *a, int b);
 void __stdcall func_001DD62B(int code);
 int func_001F5AA1(unsigned int oldval, unsigned int mask, unsigned int *p);
 #pragma optimize("sy", on)
@@ -150,6 +150,29 @@ int func_001F4582(unsigned int *p, int bit)
     }
     return ok;
 }
+
+#pragma optimize("sy", on)
+int func_001F45CF(unsigned int *x, int bits)
+{
+    int ret = 0;
+    int pos = bits - 1;
+    int w = (pos + 1) / 32;
+    int sh = 31 - (pos + 1) % 32;
+
+    if (x[w] & (1 << sh)) {
+        if (func_001F4550(x, pos + 1) == 0) {
+            ret = func_001F4582(x, pos);
+        }
+    }
+    x[w] &= -1 << sh;
+    w++;
+    if (w < 3) {
+        memset(&x[w], 0, (3 - w) * 4);
+    }
+    return ret;
+}
+#pragma optimize("", on)
+
 #pragma optimize("", on)
 
 #pragma optimize("", on)
