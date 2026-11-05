@@ -140,6 +140,17 @@ void func_00132E90(int h, void *out);
 void __stdcall func_00011FF0(void *mem, int a, int b, void *cb);
 void func_00011060(void);
 
+static __forceinline void *AllocZero_00181140(int size, int count)
+{
+    void *m = (void *)func_001E8A44(size);
+
+    if (m != 0) {
+        func_00011FF0(m, 0x10, count, func_00011060);
+        return m;
+    }
+    return 0;
+}
+
 /* mesh/anim block loaded from file, fields at +0x70.. */
 struct S_00181140_Loaded {
     char pad0[0x70];
