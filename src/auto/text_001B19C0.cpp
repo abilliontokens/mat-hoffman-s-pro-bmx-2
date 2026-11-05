@@ -1,6 +1,10 @@
 /* 33 functions from 0x001B19C0 to 0x001B2910, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_001B2350 {
+    undefined4 func_001B2350(void);
+};
+
 struct C_001B1C10 {
     void func_001B1C10(int param_1);
 };
@@ -66,5 +70,15 @@ void C_001B2330::func_001B2330(void) {
 
 void C_001B2340::func_001B2340(void) {
     unk8 = unk4;
+}
+
+undefined4 C_001B2350::func_001B2350(void)
+{
+  int in_ECX = (int)this;
+  
+  if (*(int *)(in_ECX + 8) != 0) {
+    *(undefined4 *)(in_ECX + 8) = *(undefined4 *)(*(int *)(in_ECX + 8) + 0x98);
+  }
+  return *(undefined4 *)(in_ECX + 8);
 }
 
