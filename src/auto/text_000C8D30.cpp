@@ -149,6 +149,55 @@ void C_000C8F10::func_000C8F10(void) {
     func_00157960();
 }
 
+BmxUIPageGameOptions *BmxUIPageGameOptions::func_000C8F30(int a)
+{
+    int i;
+
+    func_001BE360(a);
+    unk2A0 = 1;
+    vtbl = &D_0027E3F4;
+    unk294 = 0;
+    unk298 = 0;
+    unk29C = 0;
+    unk2A4 = 0;
+    unk28C = 0;
+    unk290 = 0;
+    unk284 = 0;
+    unk288 = 0;
+    unk280 = 0;
+    unk2AC = 0;
+    unk2B0 = 0;
+    unk2C0 = 0;
+    unk2CC = 0;
+    unk2C8 = 0;
+    for (i = 0; i < 12; i++) {
+        arr334[i] = 0;
+    }
+    unk2D0 = 1;
+    unk2E4 = 1;
+    unk320 = 1;
+    unk308 = 1;
+    unk2D4 = 2;
+    unk2D8 = 0;
+    unk2DC = 0;
+    unk2E0 = 0;
+    unk30C = 0;
+    unk310 = 0;
+    unk314 = 0;
+    unk318 = 0;
+    unk31C = 0;
+    unk324 = 0;
+    unk2E8 = 0;
+    unk2EC = 0;
+    unk2F4 = 0;
+    unk2F8 = 0;
+    unk2FC = 0;
+    unk300 = 0;
+    unk304 = 0;
+    unk328 = 0;
+    return this;
+}
+
 void BmxUIPageGameOptions::func_000C9050()
 {
     vtbl = &D_0027E3F4;
