@@ -39,6 +39,41 @@ struct C_0018C800 {
     void func_0018C780(int count, int *arr, int c);
     void func_0018C800(void);
     void func_0018C850(void);
+    int func_0018C890(const char *name);
+    void func_0018C900(float dt);
+    void func_00157A00(float dt);
+};
+
+struct S_0018C9B0_Item {
+    char pad0[0x20];
+    void *f20;
+    char pad24[8];
+    S_0018C9B0_Item *f2C;
+};
+
+struct S_0018C9B0_Node {
+    char pad0[0x104];
+    S_0018C9B0_Item *f104;
+    char pad108[4];
+    S_0018C9B0_Node *f10C;
+};
+
+struct C_0018C960 {
+    void *vtbl;
+    char pad4[0x148];
+    int f14C;
+    int f150;
+    int f154;
+    int f158;
+    char pad15C[8];
+    int f164;
+    char pad168[8];
+    int f170;
+    char pad174[8];
+    int f17C;
+    C_0018C960 *func_0018C960(int a);
+    void func_0018C9B0(int keep);
+    void func_00157600(int a);
 };
 
 struct C_0018C7F0 {
