@@ -207,6 +207,7 @@ struct C_001B6570 {
     int f0;
     int f4;
     C_001B6570 *func_001B6570(int a0, int a1);
+    void func_001B6590(const char *name);
 };
 
 void func_001E891B(void *p);
