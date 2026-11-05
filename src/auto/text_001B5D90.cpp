@@ -1,5 +1,10 @@
 /* 22 functions from 0x001B5D90 to 0x001B6A70, found by Ghidra. */
 #include "common.h"
+struct C_001B65E0 {
+    int unk0;
+    void func_001B65E0(void);
+};
+
 struct C_001B65D0 {
     int unk0;
     void func_001B65D0(void);
@@ -9,3 +14,8 @@ struct C_001B65D0 {
 void C_001B65D0::func_001B65D0(void) {
     unk0 = 1;
 }
+
+void C_001B65E0::func_001B65E0(void) {
+    unk0 = 0;
+}
+
