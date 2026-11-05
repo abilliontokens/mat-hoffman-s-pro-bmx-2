@@ -136,6 +136,25 @@ void VehicleAI::func_000B3390(int param_1)
     f40->func_000B21B0(param_1);
 }
 
+void VehicleAI::func_000B3B40()
+{
+    int i, j;
+    int v = f3C->f4B8;
+
+    for (i = 0; i < D_002B9134->f4C[f50]->f0; i++) {
+        for (j = 0; j < D_002B9134->f4C[f50]->f8[i]->f4C; j++) {
+            S_000B3B40_Item *item = D_002B9134->f4C[f50]->f8[i]->f48[j];
+            if (f50 == item->f0) {
+                int c = (int)(item->f4 - v);
+                if (c >= D_002B9134->f30 - 1 && c <= D_002B9134->f30) {
+                    func_000B2540(D_002B9134->f4C[f50]->f8[i]->f50, (int)item->f4, &item->f8);
+                    f70 = 0;
+                }
+            }
+        }
+    }
+}
+
 undefined4 C_000B3DF0::func_000B3DF0(byte param_1)
 {
   int func_000B2E40(...);
