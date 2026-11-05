@@ -165,6 +165,14 @@ struct C_00194C80 {
 };
 
 /* camera behaviour that owns four 16-byte vectors from +0x8 */
+extern int D_0028AED0;
+extern int D_002A9B0C, D_002A9B10, D_002A9B14, D_002A9B18;
+extern int D_002A9AFC, D_002A9B00, D_002A9B04, D_002A9B08;
+struct SimpleStillCamera {
+ void *vtbl; int f4; S_Vec4Int f8, f18, f28, f38; float f48;
+ void func_0012B510(void);
+ SimpleStillCamera *func_00194CC0(void);
+};
 struct C_00194DC0 {
     int vtbl;
     int f4;
