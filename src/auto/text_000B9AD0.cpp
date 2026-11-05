@@ -62,6 +62,14 @@ BmxUIMain *BmxUIMain::func_000B9D30(int a)
     return this;
 }
 
+void BmxUIMain::func_000B9D50()
+{
+    void *m = func_001E8A44(0x98);
+    V_000B9D50 *obj = m ? ((C_000BEDC0 *)m)->func_000BEDC0(1) : 0;
+    obj->vf28();
+    func_001577A0(obj, 0x1000);
+}
+
 void func_000BA290(void) {
     int func_000BC7B0(...);
     func_000BC7B0();
