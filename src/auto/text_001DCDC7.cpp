@@ -48,6 +48,39 @@ extern "C" unsigned char __readfsbyte(unsigned long Offset);
 #pragma intrinsic(__readfsdword)
 #pragma intrinsic(__readfsbyte)
 extern int D_002F41D0;
+extern "C" void *(__stdcall *_imp__MmAllocateContiguousMemoryEx)(u32 size, u32 lowest, u32 highest, u32 alignment, u32 protect);
+extern char D_0028FA80;
+extern char D_00021371;
+int __stdcall func_001DD3A1(void *h, u32 lo, u32 *hi, int method);
+void *__stdcall func_001DF5B9(u32 flags, u32 size);
+int __stdcall func_001DF5D6(void *p);
+unsigned short *func_001EA4A4(unsigned short *dest, const unsigned short *source, unsigned int count);
+
+/* 0x1a0 bytes of file header data, copied to a global by func_001DD779 */
+struct S_001DD779_Header {
+    u32 w[0x68];
+};
+
+/* file object: counter of sectors read, limit, handle */
+struct S_001DD779_File {
+    u32 f0;
+    u32 f4;
+    u32 f8;
+    void *fC;
+};
+
+struct S_001DD779_Out {
+    u32 f0;
+    u32 f4;
+    u32 f8;
+    unsigned short fC[16];
+};
+
+extern S_001DD779_Header D_002ACA00;
+extern u32 D_002ACA04;
+extern u32 D_002ACA08;
+extern u32 D_002ACB5C;
+extern unsigned short D_002ACB60[];
 int __stdcall func_001DDDD6(void *a0, int a1);
 int __stdcall func_001DD15A(void *a0, void *a1, int a2, void *a3, int a4);
 
@@ -298,6 +331,21 @@ u32 __stdcall func_001DDAEE(u32 id, int flag)
     return id;
 }
 
+void *__stdcall func_001DDBC7(int attrs, int manualReset, int initial, char *name)
+{
+    S_ObjectAttributes oa;
+    S_AnsiString str;
+    int status;
+
+    status = _imp__NtCreateEvent((void **)&name, name ? func_001DF546(&oa, &str, name) : 0, manualReset == 0, initial);
+    if (status < 0) {
+        func_001DD659(status);
+        return 0;
+    }
+    func_001DD62B(status == 0x40000000 ? 0xb7 : 0);
+    return name;
+}
+
 int __stdcall func_001DDC28(void *a0) {
     int result = _imp__NtSetEvent(a0, 0);
     if (result >= 0) {
@@ -306,6 +354,21 @@ int __stdcall func_001DDC28(void *a0) {
         func_001DD659(result);
         return 0;
     }
+}
+
+void *__stdcall func_001DDC48(int attrs, int initialOwner, char *name)
+{
+    S_ObjectAttributes oa;
+    S_AnsiString str;
+    int status;
+
+    status = _imp__NtCreateMutant((void **)&name, name ? func_001DF546(&oa, &str, name) : 0, initialOwner);
+    if (status < 0) {
+        func_001DD659(status);
+        return 0;
+    }
+    func_001DD62B(status == 0x40000000 ? 0xb7 : 0);
+    return name;
 }
 
 int __stdcall func_001DDCA0(void *a0) {
