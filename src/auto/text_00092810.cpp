@@ -26,7 +26,12 @@ struct C_001D4300 {
     void func_001D41D0(int a);
     int func_001D4200(void *s);
     void func_001D7D00(void);
+    void func_001D4720(void *a, void *b);
 };
+
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
+extern char D_0027A140;
 
 extern char D_0027A144;
 
