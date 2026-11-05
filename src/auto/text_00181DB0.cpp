@@ -111,7 +111,7 @@ extern float D_002A8F40;
 extern float D_002A8F3C;
 
 static __forceinline float Sqrt_00181E10(const float &x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
-static __forceinline float Max_00181E10(const float &a, const float &b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float Max_00181E10(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 
 struct C_00182750 {
     virtual void v0();
@@ -420,6 +420,43 @@ void C_00181DB0::func_00181DB0(int a0)
       i++;
     } while (i < f1B4);
   }
+}
+
+void C_00182750::func_00181E10(void)
+{
+    float threshold;
+    const V4_00181E10 *p;
+    unsigned char lvl;
+    int i;
+    int n;
+    S_00181E10_Tbl *tbl;
+    S_00181E10_Ent *ent;
+
+    if (f190 == 1) {
+        threshold = f184;
+    } else {
+        threshold = f188;
+    }
+    p = (f190 == 1) ? &f130 : &f150;
+    V4_00181E10 d = *p - D_002EFDB8->f4->f170;
+    f1B0 = Sqrt_00181E10((d.z + fDC) * (d.z + fDC) + (d.y + fCC) * (d.y + fCC) + (d.x + fBC) * (d.x + fBC));
+    float inv = D_00275460 / Max_00181E10(0.1f, f1B0 - threshold);
+    float t1 = inv * D_002EFDB8->f4->f1d8;
+    float val2 = inv * D_002EFDB8->f4->f1d8 * D_002A8F40 * threshold;
+    val2 = val2 + val2;
+    tbl = f1A4;
+    lvl = 0;
+    n = tbl->f8 - 1;
+    for (i = 0; i < n; i++) {
+        if (tbl->f10[i].f4 * tbl->fC * D_002A8F3C * t1 < D_00275460) {
+            lvl = i + 1;
+        }
+    }
+    f1A0 = lvl;
+    ent = &f1A4->f10[f1A0];
+    for (i = 0; i < ent->count; i++) {
+        ent->f8[i].v2(&f1A8[i], val2, t1, f1B8[i]);
+    }
 }
 
 int C_00181DB0::func_00182020(int a0, int a1)
