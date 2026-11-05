@@ -3,7 +3,79 @@
 #include "ghidra.h"
 #include "ghidra.h"
 #include "ghidra.h"
+#include <string.h>
 extern int D_0027F724;
+extern int D_0028F5DC;
+extern float D_00275AEC;
+
+struct S_00100030_V4 {
+    float x, y, z, w;
+};
+
+/* text sprite (label) */
+struct S_00100030_Text {
+    char *func_001B17F0(void);
+    int func_001B1800(void);
+    void func_001B1810(S_00100030_V4 *out);
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, float a7, int a8, float a9, int a10, float a11, float a12, int a13);
+    void func_001B1980(void);
+    void func_001B1A30(float x, float y, float z);
+    void func_001B1C10(int color);
+};
+
+struct S_00100030_Pos {
+    void func_0005E7C0(float x, float y);
+};
+
+struct S_00100030_Item {
+    void func_001D6600(void);
+};
+
+struct S_00100030_Hud {
+    char pad0[0x34];
+    S_00100030_Item *f34;
+    S_00100030_Item *f38;
+    S_00100030_Item *f3C;
+    char pad40[8];
+    S_00100030_Item *f48;
+    S_00100030_Item *f4C;
+};
+extern S_00100030_Hud *D_002B91AC;
+
+struct S_00100030_Root {
+    char pad0[0x10];
+    int f10;
+};
+extern S_00100030_Root *D_002A8490;
+
+/* BmxUIPageHorseWord */
+struct C_00100030 {
+    char pad0[0x288];
+    int f288;
+    char pad28C[0x60];
+    S_00100030_Pos *f2EC;
+    float f2F0;
+    int f2F4;
+    int f2F8;
+    int f2FC;
+    char pad300[0xC];
+    int f30C;
+    int f310;
+    int f314;
+    int f318;
+    float f31C;
+    char pad320[8];
+    S_00100030_Text *f328;
+    S_00100030_Text *f32C;
+    char pad330[8];
+    int f338;
+    int f33C;
+    void D_000DE220(void);
+    void func_000DE300(void);
+    void func_000DE3C0(void);
+    void func_00157960(void);
+    void func_00100030(void);
+};
 
 struct PageObj {
     virtual void destroy(int flags);
