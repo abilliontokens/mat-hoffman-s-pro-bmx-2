@@ -48,6 +48,18 @@ void C_000B8C80::func_000B8C80(int a0) {
     unk9C = a0;
 }
 
+void *C_000B9A30::func_000B9A30(int flags) {
+    extern int D_0027D574;
+    void func_00157660();
+    void func_001E891B(void *);
+    vtbl = (void *)&D_0027D574;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void *BmxUIGlobalManager::func_000B9A60(int a0)
 {
     func_001BC770(a0);
