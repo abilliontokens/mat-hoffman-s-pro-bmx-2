@@ -102,3 +102,16 @@ void C_00100AD0::func_00100AD0(void) {
     }
 }
 
+undefined4 C_00100FF0::func_00100FF0(byte param_1)
+{
+  int func_000EB420(...);
+  int func_001E891B(...);
+  undefined4 in_ECX = (undefined4)this;
+
+  func_000EB420();
+  if ((param_1 & 1) != 0) {
+    func_001E891B(in_ECX);
+  }
+  return in_ECX;
+}
+
