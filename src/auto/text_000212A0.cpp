@@ -2,6 +2,10 @@
 #include "common.h"
 
 extern float D_00275544;
+extern float D_00275994, D_0027554C, D_00275818, D_00276210;
+extern char **D_002EFDB8;
+struct C_001C5C50 { int func_001C5C50(void *, void *, void *, void *, void *); };
+extern C_001C5C50 *D_002AB66C;
 extern int D_002760E4;
 extern u32 D_002A0F74;
 extern u32 D_002A0F78;
