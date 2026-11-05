@@ -153,9 +153,4 @@ void C_000298F0::func_000298F0(int a0)
         f12C = f11C;
     }
 }
-Q_292C0 *func_0001C610(Q_292C0 *, Q_292C0 *, Q_292C0 *);
-struct C_295D0_Event { void func_0011A550(Q_292C0 *, Q_292C0 *); };
-struct C_295D0 {
- char p0[0x1e0]; Q_292C0_Aux *f1e0; char p1e4[0x1c]; Q_292C0_Obj *f200; char p204[0x18]; C_295D0_Event *f21c; char p220[0x10]; Q_292C0_Orient *f230; char p234[0x470]; int f6a4,f6a8; char p6ac[0x20]; Q_292C0 f6cc,f6dc; float f6ec,f6f0; int f6f4; char p6f8[0xc]; int f704; char p708[4]; int f70c; char p710[4]; int f714;
- int func_000295D0(int); void func_00027C30();
-};
+
