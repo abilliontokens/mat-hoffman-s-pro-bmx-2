@@ -145,3 +145,13 @@ struct C_00035680 {
     u32 f1e0;
     void func_00035680(void);
 };
+
+void C_00035BE0::func_00035BE0(void)
+{
+    if (f1d0 != 0) {
+        func_001577A0(f1d0, -1);
+    }
+    if (f1a0 != 0) {
+        func_001577A0(f1a0, -1);
+    }
+}
