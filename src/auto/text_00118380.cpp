@@ -32,14 +32,56 @@ struct CreatorObj {
 
 extern CreatorObj *D_002A7CB8;
 
+struct C_0005C600 {
+    int func_0005C600(int a, int b);
+};
+
+struct C_00083970 {
+    int func_00083970(int a, int b, int c);
+    void func_000836A0(int a);
+};
+
+struct S_00118410_Inner {
+    char pad0[0x68];
+    C_0005C600 *f68;
+    char pad6C[0x104];
+    C_00083970 *a170[34];
+    int f1F8;
+};
+
+struct S_00118410_Obj {
+    char pad0[0x2D8];
+    int f2D8;
+};
+
+struct S_00118410_Global {
+    char pad0[0x2A4];
+    S_00118410_Inner *f2A4;
+    char pad2A8[0x38];
+    S_00118410_Obj *f2E0;
+};
+
+extern S_00118410_Global *D_002A8490;
+
 struct C_00118380 {
     char pad0[0x5C8];
     int f5C8;
-    char pad5CC[0xC4C];
+    char pad5CC[0x460];
+    int fA2C;
+    char padA30[8];
+    int fA38;
+    char padA3C[0x618];
+    int f1054;
+    char pad1058[0x19C];
+    int f11F4;
+    char pad11F8[0x20];
     int f1218;
-    char pad121C[0xE84];
+    char pad121C[0xDF4];
+    int f2010;
+    char pad2014[0x8C];
     int f20A0;
     int func_00118380(int a, int b);
+    void func_00118410(int a, int b, int c);
     void func_00118840(int a);
 };
 
