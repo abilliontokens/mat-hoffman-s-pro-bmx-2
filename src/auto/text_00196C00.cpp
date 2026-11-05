@@ -68,6 +68,13 @@ float C_00197250::func_00197250(void) {
     return unk2C;
 }
 
+void C_00197260::func_00197260(int index, char *out)
+{
+    if (index < 0 || index >= count || table[index] != 2)
+        return;
+    *out = buf[index];
+}
+
 undefined4 C_00197290::func_00197290(byte param_1)
 {
   int func_00195E70(...);
