@@ -96,6 +96,46 @@ struct C_0006E2C0 {
 };
 
 
+C_0006D590 *C_0006D590::func_0006D590(int a0)
+{
+    u32 *p;
+    C_001D5AD0 **q;
+    int n;
+
+    func_00157600(a0);
+    vtbl = &D_0027850C;
+    p = unk44;
+    n = 8;
+    do {
+        p[-8] = 0;
+        p[0] = 0;
+        p++;
+    } while (--n != 0);
+    vtbl = &D_00278A7C;
+    unk64 = 0;
+    unkEC = 0;
+    memset(unk68, 0, sizeof(unk68));
+    unkA4 = 0;
+    unkA8 = 0;
+    unkAC = 0;
+    unkD8 = 0;
+    unkDC = 0;
+    unkE0 = 0;
+    unkE4 = 0;
+    unkE8 = 0;
+    unkF0 = 0;
+    unkF4 = 0;
+    q = unkC4;
+    n = 5;
+    do {
+        q[-5] = 0;
+        q[0] = 0;
+        q++;
+    } while (--n != 0);
+    unkF8 = -1;
+    return this;
+}
+
 void C_0006DF20::func_0006DF20(int param_1)
 {
   int* in_ECX = (int*)this;
@@ -105,6 +145,28 @@ void C_0006DF20::func_0006DF20(int param_1)
   (**(code **)(*in_ECX + 0x18))();
   in_ECX[0x3e] = param_1;
   return;
+}
+
+void C_0006D590::func_0006DF50()
+{
+    unkA4->func_001D5AD0();
+    unkA8->func_001D5AD0();
+    C_001D5AD0 **ptr = &unkC4[0];
+    int count = 5;
+    do {
+        (*(ptr - 5))->func_001D5AD0();
+        (*ptr)->func_001D5AD0();
+        ptr++;
+        count--;
+    } while (count != 0);
+    if (unk64 != 0) {
+        unkDC->func_001D5AD0();
+    } else {
+        unkD8->func_001D5AD0();
+    }
+    if (unkF0 != 0) {
+        unkF0->func_001D5AD0();
+    }
 }
 
 int C_0006D590::func_0006E250(float dt)
