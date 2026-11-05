@@ -85,3 +85,18 @@ void C_001D3700::func_001D3700(int param_1, int param_2)
   }
   return;
 }
+
+void C_001D3690::func_001D37C0()
+{
+    f48 = 0;
+    D_002F07B8->func_001C3D80();
+    if (f44 != 0) {
+        func_0025ADD0(f44);
+        f44 = 0;
+        if (f70 != 0) {
+            f70->v2();
+            f70 = 0;
+        }
+    }
+}
+
