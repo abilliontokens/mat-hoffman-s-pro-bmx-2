@@ -338,6 +338,30 @@ int __stdcall func_001D4010(int x)
     }
 }
 
+int C_001D4200::func_001D4200(char *out)
+{
+    int func_001E8920(...);
+    S_001D4200_Find find;
+    char buf[0x80];
+    int found;
+    int h;
+
+    h = func_001DE51E(&unk4, &find);
+    found = 0;
+    if (h != -1) {
+        do {
+            func_001DDE51(buf, D_0028F0A8, find.alt);
+            if (func_001EA426(buf, out + 0x1f) == 0) {
+                func_001E8920(out, find.name, 30);
+                found = 1;
+                break;
+            }
+        } while (func_001DE625(h, &find) != 0);
+        func_001DE66C(h);
+    }
+    return found;
+}
+
 int __stdcall func_001D42A0(const char *a, const char *b)
 {
     char buf[0x104];
@@ -349,5 +373,28 @@ int __stdcall func_001D42A0(const char *a, const char *b)
         return 1;
     }
     return 0;
+}
+
+int C_001D4200::func_001D4300(unsigned a)
+{
+    unsigned removed;
+    unsigned mask;
+    unsigned cur;
+
+    if (a == 8) {
+        return 1;
+    }
+    mask = func_001D4060(a);
+    if (func_0026EBE7(&D_0026D8D0, &a, &removed) != 0) {
+        if ((a & mask) != 0) {
+            return 2;
+        }
+        if ((removed & mask) != 0) {
+            return 0;
+        }
+    }
+    cur = func_0026EBC5(&D_0026D8D0);
+    unk8 = cur;
+    return (cur | mask) == cur;
 }
 
