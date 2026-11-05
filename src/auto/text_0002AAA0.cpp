@@ -33,17 +33,36 @@ struct C_0002B180 {
 struct Vec4_0002AF90 {
     float x, y, z, w;
     __forceinline void Set(const Vec4_0002AF90 *o) { *this = *o; }
-    __forceinline void Lerp(const Vec4_0002AF90 *o, float t)
+    __forceinline Vec4_0002AF90 Sub(const Vec4_0002AF90 *o) const
     {
         Vec4_0002AF90 r;
-        float dx = x - o->x;
-        float dy = y - o->y;
-        float dz = z - o->z;
-        r.x = t * dx + o->x;
-        r.y = t * dy + o->y;
-        r.z = t * dz + o->z;
+        r.x = x - o->x;
+        r.y = y - o->y;
+        r.z = z - o->z;
         r.w = 1.0f;
-        *this = r;
+        return r;
+    }
+    __forceinline Vec4_0002AF90 Mul(float t) const
+    {
+        Vec4_0002AF90 r;
+        r.x = x * t;
+        r.y = y * t;
+        r.z = z * t;
+        r.w = 1.0f;
+        return r;
+    }
+    __forceinline Vec4_0002AF90 Add(const Vec4_0002AF90 *o) const
+    {
+        Vec4_0002AF90 r;
+        r.x = x + o->x;
+        r.y = y + o->y;
+        r.z = z + o->z;
+        r.w = 1.0f;
+        return r;
+    }
+    __forceinline void Lerp(const Vec4_0002AF90 *o, float t)
+    {
+        *this = Sub(o).Mul(t).Add(o);
     }
 };
 
