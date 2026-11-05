@@ -53,6 +53,22 @@ struct C_00148820 {
 };
 
 
+void *C_00148780::func_00148780(unsigned int flags)
+{
+    void func_001E891B(void *);
+    vtbl = &D_00285C84;
+    unk1C = (u32)&D_00285C78;
+    if (unk20 != 0) {
+        func_001E891B(unk20);
+    }
+    unk1C = (u32)&D_00284E94;
+    func_001AF710();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 undefined4 C_001488F0::func_001488F0(byte param_1)
 {
   int func_001452A0(...);
