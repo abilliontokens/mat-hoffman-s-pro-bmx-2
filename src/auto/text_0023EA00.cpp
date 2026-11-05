@@ -156,23 +156,19 @@ void C_0023EA00::func_0023EA00(void)
 unsigned int C_0023EC0D::func_0023EC0D(unsigned int a, unsigned int b, int *out)
 {
     unsigned int end;
-    unsigned int r;
 
     if (f44 != 0) {
-        r = f44(f48, a, b, out);
-    } else {
-        _imp__RtlEnterCriticalSection(f6c);
-        end = f94 + f3c;
-        if (end > a && b <= end - a) {
-            *out = (f34 - f3c) + a;
-            f40 = a;
-            _imp__RtlLeaveCriticalSection(f6c);
-            r = b;
-        } else {
-            r = 0;
-        }
+        return f44(f48, a, b, out);
     }
-    return r;
+    _imp__RtlEnterCriticalSection(f6c);
+    end = f94 + f3c;
+    if (end > a && b <= end - a) {
+        *out = (f34 - f3c) + a;
+        f40 = a;
+        _imp__RtlLeaveCriticalSection(f6c);
+        return b;
+    }
+    return 0;
 }
 #pragma optimize("y", on)
 #pragma optimize("s", on)
