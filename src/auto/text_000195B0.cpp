@@ -170,7 +170,11 @@ static __forceinline void Cross_1A060(S_1A060_Vec * volatile out, S_1A060_Vec * 
     va = _mm_shuffle_ps(va, va, 0xc9);
     _mm_storeu_ps(&out->x, va);
 }
-static __forceinline float Sqrt2_1A060(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
+static __forceinline void Dist_1A060(float *d, const float *a, const float *b) {
+    float x = a[0]-b[0], y = a[1]-b[1], z = a[2]-b[2];
+    float square = z*z+y*y+x*x;
+    _mm_store_ss(d, _mm_sqrt_ss(*(__m128 *)&square));
+}
 
 void C_00019790::func_00019790(void)
 {
