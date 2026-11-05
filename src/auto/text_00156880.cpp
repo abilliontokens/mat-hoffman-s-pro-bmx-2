@@ -60,7 +60,7 @@ struct S_00156F30_Iface {
     virtual void v9();
     virtual void v10();
     virtual void v11();
-    virtual void v12();
+    virtual void v12(float);
     virtual void v13();
     virtual void v14();
     virtual void v15();
