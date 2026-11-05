@@ -99,17 +99,112 @@ struct C_001C1030 {
     void func_001C1030(int slot, int value, int key);
 };
 
+extern int D_0028DE54;
+extern int D_0028DF04;
+extern int D_0028DFE4;
+void __stdcall func_00197EA0(void *p);
+
+struct C_00157600 {
+    void func_00157600(int a0);
+};
+
+struct C_001C0730 {
+    void func_001C0730(int a, int b);
+};
+
+struct S_001C1490_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    void func_00157810(void);
+};
+
+struct C_001C1490 {
+    char pad0[0x68];
+    S_001C1490_Obj *f68;
+    char pad6c[0x180];
+    int f1ec;
+    char pad1f0[0x10];
+    int f200;
+    int func_001C1490(void);
+};
+
+struct C_001C1150 {
+    void *vtbl;
+    char pad4[0xB4];
+    u32 fB8;
+    u32 fBC;
+    u32 fC0;
+    u32 fC4;
+    u32 fC8;
+    u32 fCC;
+    u32 fD0;
+    u32 fD4;
+    u32 fD8;
+    char padDC[0x104];
+    u32 f1E0;
+    u32 f1E4;
+    u32 f1E8;
+    u32 f1EC;
+    u32 f1F0;
+    u32 f1F4;
+    u32 f1F8;
+    char pad1FC[0x44];
+    u32 f240;
+    C_001C1150 *func_001C1150(int a, int b);
+};
+
+struct C_001C14D0 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    u32 f28;
+    u32 f2c;
+    u32 f30;
+    u32 f34;
+    u32 f38;
+    u32 f3c;
+    u32 f40;
+    u32 f44[8];
+    u32 f64;
+    u32 f68;
+    C_001C14D0 *func_001C14D0(int a, int b);
+};
+
+struct Sub_001C1970 {
+    char pad0[0x64];
+    void func_001D5760();
+};
+
+struct C_001C1970 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    u32 f28;
+    u32 f2c;
+    u32 f30;
+    u32 f34;
+    u32 f38;
+    u32 f3c;
+    u32 f40;
+    u32 f44[8];
+    u32 f64;
+    Sub_001C1970 sub68;
+    Sub_001C1970 subCC;
+    C_001C1970 *func_001C1970(int a, int b);
+};
+
 
 void C_001C1030::func_001C1030(int slot, int value, int key)
 {
   int v = f68[slot];
 
-  if (v == -2) {
+  switch (v) {
+  case -2:
     f24->f118->func_001BEC10(value);
     f24->v31(v, 1, 0, 0);
     return;
-  }
-  if (v == -1) {
+  case -1:
     f24->f118->func_001BEB90(value);
     f24->v31(v, 1, 0, 0);
     return;
