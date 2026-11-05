@@ -1,5 +1,11 @@
 /* 31 functions from 0x0001E260 to 0x0001EFA0, found by Ghidra. */
 #include "common.h"
+struct C_0001EF00 {
+    char pad0[0xE0];
+    int unkE0;
+    void func_0001EF00(int a0);
+};
+
 struct C_0001EDD0 {
     char pad0[0x28];
     int unk28;
@@ -19,5 +25,9 @@ void C_0001EDC0::func_0001EDC0(int a0) {
 
 void C_0001EDD0::func_0001EDD0(int a0) {
     unk28 = a0;
+}
+
+void C_0001EF00::func_0001EF00(int a0) {
+    unkE0 = a0;
 }
 
