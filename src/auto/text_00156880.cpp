@@ -75,7 +75,9 @@ struct S_00156F30_Iface {
 };
 
 struct VT_Game {
-    char pad0[0x80];
+    char pad0[0x20];
+    void (__fastcall *f20)(void *self);
+    char pad24[0x5c];
     void *(__fastcall *f80)(void *self);
 };
 
