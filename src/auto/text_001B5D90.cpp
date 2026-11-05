@@ -522,6 +522,44 @@ void C_001B65F0::func_001B65F0()
     }
 }
 
+int C_001B6710::func_001B6710(const char *name)
+{
+    if (strcmp(name, "Animation") == 0) {
+        return 1;
+    }
+    if (strcmp(name, "ChangeAnimSequence") == 0) {
+        return 2;
+    }
+    if (strcmp(name, "ResetAnimation") == 0) {
+        return 3;
+    }
+    if (strcmp(name, "HideAnimation") == 0) {
+        return 4;
+    }
+    if (strcmp(name, "EnableTrigger") == 0) {
+        return 5;
+    }
+    if (strcmp(name, "AnimTexmapTrigger") == 0) {
+        return 6;
+    }
+    if (strcmp(name, "Sound") == 0) {
+        return 7;
+    }
+    if (strcmp(name, "StopSound") == 0) {
+        return 8;
+    }
+    if (strcmp(name, "PhysicsObject") == 0) {
+        return 9;
+    }
+    if (strcmp(name, "ShaderPass") == 0) {
+        return 10;
+    }
+    if (strcmp(name, "Particles") == 0) {
+        return 11;
+    }
+    return 0;
+}
+
 C_001B6930 *C_001B6930::func_001B6850(void)
 {
     int *p;
