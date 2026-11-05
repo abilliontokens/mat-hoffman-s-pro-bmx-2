@@ -231,6 +231,15 @@ void *C_000FF550::func_000FF550(int flags)
     return this;
 }
 
+void C_000FFF70::func_000FFF70()
+{
+    if (unk298 != 0) {
+        func_000DCE10();
+        unk298 = 0;
+    }
+    func_001BF000();
+}
+
 void C_000FFFA0::func_000FFFA0()
 {
   if (f2c4 != 0) {
