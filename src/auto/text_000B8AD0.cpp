@@ -29,6 +29,11 @@ struct C_000B9A80 {
 };
 extern int D_0027D5FC;
 
+struct C_000B9A30 {
+    void *vtbl;
+    void *func_000B9A30(int flags);
+};
+
 void C_000B8AD0::func_000B8AD0(int a0, int a1)
 {
     unk50 = a0;
