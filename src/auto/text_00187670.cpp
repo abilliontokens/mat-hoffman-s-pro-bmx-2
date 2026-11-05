@@ -326,6 +326,24 @@ C_00187F20 *C_00187F20::func_00187F20(void)
     return this;
 }
 
+int C_001880A0::func_001880A0(S_001880A0_Stream *stream)
+{
+    char buf[0x104];
+    int len;
+
+    stream->func_00168BE0(&D_00276310, &D_002764F0, buf, -1);
+    len = Min_00187670(func_001E9040(buf, (char *)&D_0027CEF0), 0x32);
+    func_001E8920(f4, buf, len);
+    f4[len] = 0;
+    stream->func_00168CB0(&D_00275AD4, &D_002A90B4, f108);
+    stream->func_00168CB0(&D_00275AC8, &D_002A90E4, f118);
+    stream->func_00168CB0(&D_0027CEE4, &D_002A90D4, f128);
+    stream->func_00168C20(&D_0027CED8, 1, &f138);
+    stream->func_00168C20(&D_00289EB8, 0, &f13C);
+    return 1;
+}
+#pragma optimize("g", on)
+
 C_001881C0 *C_001881C0::func_001881C0(void)
 {
     C_001881C0 * volatile self = this;
