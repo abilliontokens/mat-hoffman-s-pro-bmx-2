@@ -79,6 +79,7 @@ struct C_001313C0 {
     S_001313C0_Data fAC;
     C_001313C0 *func_00131150(void);
     int func_00131260(int a1, int a2, int a3, int a4, f32 a5, f32 a6, int a7, int a8, int a9);
+    int func_00131260(int a1, f32 a2, int a3, int a4, f32 a5, f32 a6, f32 a7, f32 a8, f32 a9);
     void func_001313C0(S_001313C0_Data *src);
     void func_00131400(S_00131400_In *in, int param_2);
     void func_0012B510(void);
