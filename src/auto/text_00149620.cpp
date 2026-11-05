@@ -104,6 +104,44 @@ undefined4 C_0014A360::func_0014A360(int param_1)
   return 0;
 }
 
+C_0014A3A0 *C_0014A3A0::func_0014A3A0()
+{
+    unsigned int *p;
+    int i;
+    func_0001DFE0();
+    vtbl = &D_0028684C;
+    p = (unsigned int *)unk5C;
+    i = 4;
+    do {
+        p[2] = 0;
+        p[1] = 0;
+        p[0] = 0;
+        p[3] = 0x3f800000;
+        p += 4;
+        i--;
+    } while (i != 0);
+    i = 0;
+    unkEC = 0;
+    unkE8 = 0;
+    unk48 = 0;
+    unk4C = 0;
+    unk54 = 0;
+    unk50 = 0;
+    unkDC = 0;
+    if (0 < unk58) {
+        int *q = unk8;
+        do {
+            if (*q != 0) {
+                *q = 0;
+                q[8] = 0;
+            }
+            i++;
+            q++;
+        } while (i < unk58);
+    }
+    return this;
+}
+
 undefined4 C_0014A500::func_0014A500(byte param_1)
 {
   int func_0014A420(...);
