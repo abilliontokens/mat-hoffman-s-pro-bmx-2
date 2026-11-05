@@ -4,12 +4,13 @@
 struct SimpleVCR {
     void *vtbl;
     char pad4[0x20];
-    u32 f24, f28, f2c, f30, f34, f38, f3c, f40, f44, f48, f4c;
-    u32 f50, f54, f58, f5c, f60, f64, f68, f6c, f70, f74, f78, f7c, f80, f84, f88;
+    float f24, f28, f2c, f30, f34, f38, f3c, f40, f44, f48;
+    int f4c;
+    float f50, f54, f58, f5c, f60, f64, f68, f6c, f70, f74, f78, f7c, f80, f84, f88;
     char pad8C[4];
-    u32 f90, f94, f98, f9c, fA0, fA4, fA8, fAC, fB0, fB4, fB8;
+    float f90, f94, f98, f9c, fA0, fA4, fA8, fAC, fB0, fB4, fB8;
     char padBC[4];
-    unsigned char fC0;
+    char fC0;
     char padC1[3];
     int fC4, fC8, fCC;
     void func_00157600(int a);
