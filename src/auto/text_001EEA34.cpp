@@ -701,55 +701,62 @@ BitObj *BitObj::func_001EF759(char *s)
 
 BitObj *BitObj::func_001EF789(char **pp, char delim)
 {
+    unsigned int *flags = (unsigned int *)((char *)this + 4);
+    unsigned int st;
     char *start;
     char *p;
     char c;
     int n;
 
     ClearFlags();
+    st = *flags;
     n = 0;
     f0 = 0;
     p = *pp;
-    if (p == 0) {
-        s4 = 1;
-        return this;
-    }
-    if (*p == 0) {
-        s4 = 2;
-        return this;
-    }
-    start = p;
-    do {
-        p = *pp;
-        c = *p;
-        if (c == delim) {
-            break;
+    if (p != 0) {
+        if (*p != 0) {
+            start = p;
+            do {
+                p = *pp;
+                c = *p;
+                if (c == delim) {
+                    break;
+                }
+                if (c != '_' && c != '$' && (c < 'a' || c > 'z') && (c < 'A' || c > 'Z') &&
+                    (c < '0' || c > '9') && (D_002F6A3A & 1) == 0) {
+                    st = (*flags & 0xfffffff1) | 1;
+                    *flags = st;
+                    return this;
+                }
+                n++;
+                p++;
+                *pp = p;
+            } while (*p != 0);
+            func_001EF68E(start, n);
+            p = *pp;
+            c = *p;
+            if (c != 0) {
+                *pp = p + 1;
+                if (c != delim) {
+                    st = (*flags & 0xfffffff3) | 3;
+                    f0 = 0;
+                    *flags = st;
+                    return this;
+                }
+                *flags = *flags & 0xfffffff0;
+                return this;
+            }
+            st = *flags;
+            if ((st & 0xf) != 0) {
+                return this;
+            }
         }
-        if (c != '_' && c != '$' && (c < 'a' || c > 'z') && (c < 'A' || c > 'Z') &&
-            (c < '0' || c > '9') && (D_002F6A3A & 1) == 0) {
-            s4 = 1;
-            return this;
-        }
-        n++;
-        p++;
-        *pp = p;
-    } while (*p != 0);
-    func_001EF68E(start, n);
-    p = *pp;
-    c = *p;
-    if (c == 0) {
-        if (s4 == 0) {
-            s4 = 2;
-        }
+        st = (st & 0xfffffff2) | 2;
+        *flags = st;
         return this;
     }
-    *pp = p + 1;
-    if (c == delim) {
-        s4 = 0;
-        return this;
-    }
-    s4 = 3;
-    f0 = 0;
+    st = (st & 0xfffffff1) | 1;
+    *flags = st;
     return this;
 }
 
