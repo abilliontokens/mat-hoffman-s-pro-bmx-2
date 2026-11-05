@@ -155,6 +155,11 @@ struct V4_00188250 {
     V4_00188250(int) { x = 0.0f; y = 0.0f; z = 0.0f; w = 1.0f; }
 };
 
+static __forceinline int MinLen_001881C0(int cap, int len)
+{
+    return cap > len ? len : cap;
+}
+
 struct C_001881C0 {
     void *vtbl;
     char pad4[0x140];
@@ -271,10 +276,63 @@ void C_00187EE0::func_00187EE0(void)
     }
 }
 
+C_00187F20 *C_00187F20::func_00187F20(void)
+{
+    vtbl = (void *)&D_00289EA4;
+    f4 = 0;
+    return this;
+}
+
+C_001881C0 *C_001881C0::func_001881C0(void)
+{
+    C_001881C0 * volatile self = this;
+    volatile int limit;
+    int count;
+
+    self->func_00187F60();
+    self->vtbl = (void *)&D_00289ED0;
+    limit = sizeof(f144) - 1;
+    if (limit > 4) {
+        count = 4;
+    } else {
+        count = limit;
+    }
+    func_001E8920(self->f144, (const char *)&D_002764F0, count);
+    self->f144[count] = 0;
+    return self;
+}
+
 int __stdcall func_00188230(int a0) {
     int __stdcall func_001880A0(int);
     func_001880A0(a0);
     return 1;
+}
+
+C_00188250 *C_00188250::func_00188250(void)
+{
+    u32 *p;
+
+    func_00187F60();
+    vtbl = (void *)&D_00289ED8;
+    p = (u32 *)&f270;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    V4_00188250 u(0);
+    f270 = u;
+    f144 = 0;
+    f248 = 0;
+    f24c = 0;
+    f254 = 0;
+    f250 = 0;
+    f258 = 0;
+    f25c = 0;
+    f260 = 0;
+    f264 = 0;
+    f268 = 0;
+    f26c = 0;
+    return this;
 }
 
 C_001884D0* C_001884D0::func_001884D0(void) {
