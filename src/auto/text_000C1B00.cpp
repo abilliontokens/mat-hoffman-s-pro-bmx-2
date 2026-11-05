@@ -44,6 +44,7 @@ struct C_000C2810 {
     int arr298[20];
     int func_000C0100(int idx);
     int func_000C2810(int idx);
+    int func_000C24F0(int idx);
 };
 
 static __forceinline int Item_000C2810(C_000C2810 *p, int idx)
