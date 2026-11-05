@@ -482,6 +482,7 @@ struct C_001BF7C0 {
     void func_001BF600(void *stream);
     void func_001577A0(void *a, int b);
     C_001BF7C0 *func_001BF7C0(int a0, int a1, S_001BF7C0_Stream *stream);
+    C_001BF7C0 *func_001BFB40(int a0, int a1, S_001BF7C0_Stream *stream);
 };
 
 void C_001BEF90::func_001BEF90(int param_1)
