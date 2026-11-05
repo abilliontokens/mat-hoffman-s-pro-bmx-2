@@ -1,6 +1,13 @@
 /* 36 functions from 0x001C36B0 to 0x001C4560, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_001C3E00 {
+    int unk0;
+    char pad4[0x2C];
+    int unk30;
+    void func_001C3E00(void);
+};
+
 struct C_001C3F50 {
     bool func_001C3F50(void);
 };
@@ -29,6 +36,13 @@ void C_001C3D30::func_001C3D30(int a0) {
 
 void C_001C3D80::func_001C3D80(void) {
     unk14 = unk18;
+}
+
+void C_001C3E00::func_001C3E00(void) {
+    extern int D_0028E3A0;
+    int func_001E891B(...);
+    unk0 = (int)&D_0028E3A0;
+    func_001E891B(unk30);
 }
 
 undefined4 C_001C3F30::func_001C3F30(void)
