@@ -367,6 +367,39 @@ void C_0010E260::func_0010E260(void)
   return;
 }
 
+void C_10E6D0::func_0010E6D0(void)
+{
+    char *t = (char *)this;
+    func_00109F80();
+    C_0010E8A0 *p = *(C_0010E8A0 **)(t + 0x1084);
+    p->f0 = 0;
+    for (int i = 0; i < 5; ++i) { p->f4[i] = -1; p->f18[i] = 0; }
+    if (p->f4[0] != -1) ++p->f0;
+    if (p->f4[1] != -1) ++p->f0;
+    if (p->f4[2] != -1) ++p->f0;
+    if (p->f4[3] != -1) ++p->f0;
+    if (p->f4[4] != -1) ++p->f0;
+    (*(C_0010E8A0 **)(t + 0x1084))->f2C = -1;
+    (*(C_10E6D0_A64 **)(t + 0xA64))->func_001094B0();
+    C_10E6D0_950 *q = *(C_10E6D0_950 **)(t + 0x950);
+    if (q) {
+        q->func_0011CA20();
+        C_Device *d = *(C_Device **)(t + 0x1E0);
+        ((void (__stdcall *)(void *))(*(void ***)d)[0x74 / 4])(t + 0x910);
+        char *o = *(char **)(t + 0x1F0);
+        *(int *)(o + 0xC8) = 0;
+        *(int *)(*(char **)(t + 0x1F0) + 0xB4) = *(int *)(t + 0x8C8);
+        *(int *)(*(char **)(t + 0x1F0) + 0xBC) = *(int *)(t + 0x8C0);
+        *(int *)(*(char **)(t + 0x1F0) + 0xC0) = *(int *)(t + 0x8C0);
+        *(int *)(*(char **)(t + 0x1F0) + 0xC4) = *(int *)(t + 0x8C0);
+        *(float *)(*(char **)(t + 0x1F0) + 0xD0) = 0.25f;
+        char *e = *(char **)(t + 0x1E0);
+        *(int *)(t + 0x5C8) = 0;
+        *(Vec4 *)(e + 0x190) = *(Vec4 *)(t + 0xEC);
+        *(int *)(*(char **)(t + 0x1E0) + 0x220) = 0x468e6200;
+    }
+}
+
 void C_0010E810::func_0010E810(void)
 {
     f209C = 0;
