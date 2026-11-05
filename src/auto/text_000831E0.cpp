@@ -255,6 +255,44 @@ int C_000831E0::func_00083970(const char *name, int a1, int key)
     return 1;
 }
 
+int C_000831E0::func_000839F0(const char *name, int a, int id)
+{
+    int i;
+    if (*name == 0) {
+        return 0;
+    }
+    for (i = 0; i < f2E8; i++) {
+        if (a47C[i] == id) {
+            return 0;
+        }
+    }
+    a47C[f2E8] = id;
+    f2E8++;
+    CopyName(s27C, name);
+    f2E0 = a;
+    f278 = 1;
+    return 1;
+}
+
+void C_000831E0::func_00083A70(const char *name)
+{
+    int i;
+    if (fC28 == 0 && f60C == 0) {
+        if (*name != 0) {
+            CopyName(s614, name);
+            f60C = 1;
+        }
+    } else {
+        for (i = 0; i < 4; i++) {
+            if (f808[i] == 0) {
+                CopyName(s678[i], name);
+                f808[i] = 1;
+                return;
+            }
+        }
+    }
+}
+
 void C_00083B00::func_00083B00(int a0) {
     unk17C = 1;
     unk180 = a0;
