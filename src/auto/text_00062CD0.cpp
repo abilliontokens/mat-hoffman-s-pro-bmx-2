@@ -6,7 +6,14 @@
 
 static __forceinline float Min_00062CD0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 
-struct Vec4_62 { float x, y, z, w; };
+struct Vec4_62 {
+    float x, y, z, w;
+    Vec4_62() {}
+    Vec4_62(float x_, float y_, float z_) { x = x_; y = y_; z = z_; w = 1.0f; }
+};
+static inline Vec4_62 operator+(const Vec4_62 &a, const Vec4_62 &b) { return Vec4_62(a.x + b.x, a.y + b.y, a.z + b.z); }
+static inline Vec4_62 operator-(const Vec4_62 &a, const Vec4_62 &b) { return Vec4_62(a.x - b.x, a.y - b.y, a.z - b.z); }
+static inline Vec4_62 operator*(const Vec4_62 &a, float s) { return Vec4_62(a.x * s, a.y * s, a.z * s); }
 
 struct C_Elem_62 {
     char pad0[4];
