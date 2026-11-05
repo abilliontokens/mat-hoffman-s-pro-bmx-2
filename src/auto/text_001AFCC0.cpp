@@ -10,7 +10,7 @@ struct C_001AF360 {
     void *func_001AF360(void *arg, void *self, int idx);
 };
 struct C_001B0280 {
-    void *func_001B0280(int idx, void *arg);
+    void *func_001B0280(void *arg, int idx);
 };
 struct C_001B0560 {
     void func_001B0560(undefined4 param_1, undefined4 param_2);
