@@ -114,6 +114,16 @@ BezierPositionController::BezierPositionController() {
     unk14 = 0;
 }
 
+void C_0015B7C0::func_0015B7C0() {
+    C_0015B7C0 *self = this;
+    void *p = self->unk14;
+    self->vtbl = &D_002877C0;
+    if (p != 0) {
+        func_001E8390(p);
+    }
+    self->vtbl = &D_00287778;
+}
+
 void C_0015BAC0::func_0015BAC0(int a0, u32 *a1, int a2) {
     if (a1 != 0) {
         *a1 = unk14[a0 * 3];
