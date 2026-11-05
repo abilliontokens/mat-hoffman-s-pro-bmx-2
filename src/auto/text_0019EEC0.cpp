@@ -29,7 +29,24 @@ struct C_002BEAAC {
 };
 extern C_002BEAAC *D_002BEAAC;
 
+struct F3_F780 { float x, y, z; };
+struct M_F780 { void func_000264C0(void *src); char pad[0x40]; };
+struct N_F780 {
+    char pad0[0xf0]; char fF0[0x40];
+    char pad130[0x1b0 - 0x130];
+    F3_F780 f1B0; char pad1bc2[0x1bc - 0x1b8];
+    short f1BC; char pad1be[6];
+    int f1C4, f1C8; unsigned short f1CC, f1CE;
+};
+struct D_F780 {
+    int f0, f4, f8; int *fC; int *f10; int *f14; int *f18;
+    F3_F780 *f1C; M_F780 *f20; int pad24; short *f28; int f2C;
+};
+void *func_001E8AA5(int size);
+extern "C" int dummy_F780_unused;
 struct C_0019F9B0 {
+    char pad0[0x190]; int f190; char pad194[4]; int f198; char *f19C; N_F780 **f1A0; D_F780 *f1A4;
+    void func_0019EB10(int h);
     void func_0019ECB0(char *path, int *p);
     void func_0019F780(char *path, int h);
     int func_0019F9B0(int a1, char *path);
