@@ -55,5 +55,8 @@ void C_000634D0::func_000634D0(void)
     char buf[5];
     C_Mgr_62 *mgr = D_002A8490->f2E0;
 
-    func_001ADCC0(buf, 5, (char *)&D_00277038, mgr->f2D8);
+    func_001ADCC0(buf, 5, (char *)&D_00277038,
+                  mgr->f2C0->func_0005C020(mgr->f2D8)->f4);
+    func_001AC330(dest, D_002A8490->p2E8->p4->fEA8, buf);
+    f29C->func_0005E840(dest);
 }
