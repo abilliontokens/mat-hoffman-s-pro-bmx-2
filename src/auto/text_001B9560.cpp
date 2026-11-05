@@ -69,6 +69,50 @@ C_001B9B20 *C_001B9B20::func_001B9B20(void *param) {
     return this;
 }
 
+int C_001B9B20::func_001B9B50(S_001B9B50_Stream *stream)
+{
+    int count;
+    int i;
+    int end;
+    int start;
+    char buf[0x104];
+    S_001B9B50_Elem *e;
+
+    if (stream->func_00169710(D_0028D1B0) == 0) {
+        return 0;
+    }
+    stream->func_00168C20(D_0028D1A0, 0, &count);
+    if (count > 0) {
+        if (f28 != 0) {
+            start = f24;
+            f24 = start + count;
+            end = f24;
+            f28 = (S_001B9B50_Elem **)func_001E83E8(f28, f24 * 4);
+        } else {
+            start = 0;
+            f24 = count;
+            end = f24;
+            f28 = (S_001B9B50_Elem **)func_001E8A44(f24 * 4);
+        }
+        for (i = start; i < end; i++) {
+            func_001ADCC0(buf, 0x104, D_0028D190, i - start + 1);
+            if (stream->func_00169710(buf) != 0) {
+                e = (S_001B9B50_Elem *)func_001E8A44(0x10);
+                if (e != 0) {
+                    e->vtbl = (void *)&D_0028D110;
+                    e->f4 = 0;
+                    e->f8 = 0;
+                } else {
+                    e = 0;
+                }
+                f28[i] = e;
+                ((S_001B9B50_ElemV *)f28[i])->v0(stream);
+            }
+        }
+    }
+    return 1;
+}
+
 undefined4 C_001B9D40::func_001B9D40(byte param_1)
 {
   int func_001B4F90(...);
