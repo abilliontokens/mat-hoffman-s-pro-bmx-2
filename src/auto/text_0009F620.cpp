@@ -48,6 +48,7 @@ struct C_0009FE80 {
     char pad50[0x3c];
     float unk8C;
     float unk90;
+    #pragma optimize("g", off)
     __forceinline float Abs(float v)
     {
         volatile float t = v;
