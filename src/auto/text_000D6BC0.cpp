@@ -200,6 +200,35 @@ void BmxUIPageHOF3::func_000D6D50(void)
     func_001BE3F0();
 }
 
+void BmxUIPageHOF3::func_000D79E0(void)
+{
+    if (unk2a4 != 0) {
+        unk2a0 = 1;
+        unk29c = 0;
+        func_000D7710();
+        unk2b0 = 0xff;
+        unk2b4 = 0;
+        unk2b8 = 0;
+        unk2bc = 0;
+        unk2c0 = 0.25f;
+        func_001BEE30(0, 1);
+        unk2a4 = 0;
+    }
+    if (unk2a8 != 0) {
+        func_000D7900();
+        unk2b0 = 0;
+        unk2b4 = 0xff;
+        unk2b8 = 0xff;
+        unk2bc = 0;
+        unk2c0 = 0.25f;
+        unk2a8 = 0;
+    }
+    D_002B91AC->unk34->func_001D6600();
+    D_002B91AC->unk3c->func_001D6600();
+    func_000D75D0();
+    func_00157960();
+}
+
 BmxUIPageHOF4 *BmxUIPageHOF4::func_000D7AB0(int param) {
     extern int D_0027F404;
     func_001BE360(param);
