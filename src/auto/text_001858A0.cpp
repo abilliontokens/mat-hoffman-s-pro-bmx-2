@@ -71,13 +71,29 @@ void func_001E891B(void *p);
 extern int D_002896CC;
 extern int D_002897FC;
 
-inline void Zero4_001858A0(u32 *v)
-{
-    v[0] = 0;
-    v[1] = 0;
-    v[2] = 0;
-    v[3] = 0;
-}
+struct V4Z_001858A0 {
+    u32 a;
+    u32 b;
+    u32 c;
+    u32 d;
+    void Clear(void)
+    {
+        a = 0;
+        b = 0;
+        c = 0;
+        d = 0;
+    }
+};
+
+struct IB_001858A0 {
+    u32 a;
+    u8 b;
+    void Clear(void)
+    {
+        a = 0;
+        b = 0;
+    }
+};
 
 struct C_00185D00 {
     void *vtbl;
