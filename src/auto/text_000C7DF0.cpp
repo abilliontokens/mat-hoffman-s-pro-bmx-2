@@ -144,6 +144,26 @@ struct BmxUIPageOptions {
     void func_001BE3F0(void);
 };
 
+struct C_000C86A0 {
+    void *vtbl;
+    char pad4[0x120];
+    S_000C86A0_124 *unk124;
+    char pad128[0x280 - 0x128];
+    int unk280;
+    int unk284;
+    char pad288[0xC];
+    int unk294;
+    int unk298;
+    int unk29C;
+    int unk2A0;
+    int unk2A4;
+    char pad2A8[0x10];
+    C_00093120 *unk2B8;
+    int unk2BC;
+    int unk2C0;
+    void func_000C86A0(void);
+};
+
 struct E_000C8490 {
     char pad0[0x38];
     unsigned int unk38;
