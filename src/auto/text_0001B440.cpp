@@ -312,6 +312,28 @@ int __stdcall func_0001B900(int param_1)
   return *(int *)(param_1 + 0x60) + -1;
 }
 
+void __stdcall func_0001B910(C_0001B910 *p)
+{
+    int i;
+
+    p->f9C = p->func_001B56F0()->f38;
+    p->f1A4->func_00164820(p->func_001B56F0());
+    p->f1A4->f34 = p->func_001B56F0()->f38;
+    p->f1A4->func_001670C0(0, 0, 0);
+    if ((p->f1A4->f18->f24 & 1) == 0) {
+        p->f1A4->f10 = 1;
+    }
+    p->f1A4->func_00132D20();
+    if (p->f70[p->f84] == 0) {
+        for (i = 0; i < p->f60; i++) {
+            p->f78[i] = 0;
+        }
+    }
+    for (i = 0; i < p->f4C; i++) {
+        p->f50[i]->f10C = 1;
+    }
+}
+
 void C_0001BAC0::func_0001BAC0(int idx, int slot)
 {
     S_0001BAC0_Obj *obj;
