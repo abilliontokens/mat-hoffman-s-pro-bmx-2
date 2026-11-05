@@ -194,6 +194,19 @@ int C_001AFF80::func_001AFF80(int idx)
     return 0;
 }
 
+int C_001B0040::func_001B0040(unsigned int key)
+{
+    S_001B0040_list *l = unk10;
+    int n = l->count;
+    int i;
+    for (i = 0; i < n; i++) {
+        if (l->items[i].key >= key && l->items[i].val != 0) {
+            break;
+        }
+    }
+    return i;
+}
+
 void C_001B01A0::func_001B01A0(void) {
     extern int D_0028C5E0;
     unk0 = (int)&D_0028C5E0;
