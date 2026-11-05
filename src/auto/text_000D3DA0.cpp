@@ -7,10 +7,7 @@ struct C_001B1860 {
 
 struct C_001D5AD0 {
     char pad0[0x38];
-    unsigned b : 8;
-    unsigned g : 8;
-    unsigned r : 8;
-    unsigned a : 8;
+    unsigned int f38;
     char pad3C[0x58 - 0x3C];
     unsigned char f58;
     void func_001D5AD0();
