@@ -222,6 +222,11 @@ void Cache_129930::func_0012A2C0(void)
     }
 }
 
+void Cache_129930::func_0012A310(CacheEntry_12A310 *p)
+{
+    delete p;
+}
+
 void Cache_129930::func_0012A330(void)
 {
     vtbl = (void *)&D_00284008;
