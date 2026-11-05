@@ -210,6 +210,34 @@ void func_00198EF0(void *a, C_00198B70 *obj, void *c)
     }
 }
 
+void C_00198B70::func_001995B0(float a, float b, float c)
+{
+    fB0.m[3] = a;
+    fB0.m[7] = b;
+    fB0.m[11] = c;
+    func_001982F0();
+    if (f180 & 1) {
+        f180 &= 0xfe;
+        if (f174 != 0) {
+            f174->func_00197B10();
+        }
+    }
+}
+
+void C_00198B70::func_00199600(float a, float b, float c, float d)
+{
+    fB0.m[7] = b;
+    fB0.m[3] = a;
+    fB0.m[11] = c;
+    func_001982F0();
+    if (f180 & 1) {
+        f180 &= 0xfe;
+        if (f174 != 0) {
+            f174->func_00197B10();
+        }
+    }
+}
+
 void C_00198B70::func_00199650(float *v)
 {
     fB0.m[3] = v[0];
