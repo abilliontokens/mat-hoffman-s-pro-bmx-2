@@ -80,11 +80,6 @@ struct C_00168F40 {
     void func_001691E0(void);
     void func_001690D0(char *src, char *dst);
     int func_00169A50(char *line);
-    /* a file is open and its current record is within the table */
-    int CanRead(void)
-    {
-        return f424 != 0 && f430 <= f42C - 1;
-    }
 };
 
 struct ParticleEmitter {
@@ -276,7 +271,10 @@ int C_00168F40::func_00169A50(char *line)
     if (f8 == 0) {
         return 0;
     }
-    if (!CanRead()) {
+    if (f424 == 0) {
+        return 0;
+    }
+    if (f430 > f42C - 1) {
         return 0;
     }
     for (i = 0; i < slotCount; i++) {
