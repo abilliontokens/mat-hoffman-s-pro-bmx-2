@@ -406,6 +406,32 @@ void BufferManager::func_001C3AF0(void)
     fC = 0;
 }
 
+void IndexBufferManager::func_001C3B60(void)
+{
+    f4 = 0;
+    if (f8 != 0) {
+        BMNode *node = ((BMHead *)f8)->f4;
+        while (node != 0) {
+            DXIndexBufferCache *cache = (DXIndexBufferCache *)node->f0;
+            if (cache != 0) {
+                cache->func_001C3A80();
+                func_001E891B(cache);
+            }
+            node->f0 = 0;
+            node = node->f8;
+        }
+        {
+            void *head = f8;
+            if (head != 0) {
+                ((C_00160B90 *)head)->func_00160B90();
+                func_001E891B(head);
+            }
+            f8 = 0;
+        }
+    }
+    fC = 0;
+}
+
 void DXVertexBufferManager::func_001C3BD0(void)
 {
     unk0 = (int)&D_0028E360;
