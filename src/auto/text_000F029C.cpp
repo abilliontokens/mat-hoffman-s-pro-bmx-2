@@ -173,6 +173,14 @@ struct C_000F05C0_Widget {
     float f8;
     char padC[0x58 - 0xC];
     unsigned char f58;
+    void SetValue(float v)
+    {
+        if (f4 != 0x43160000 || v != f8) {
+            f8 = v;
+            f4 = 0x43160000;
+            f58 |= 1;
+        }
+    }
 };
 
 struct C_000F05C0 {
@@ -280,6 +288,51 @@ void C_000F0400::func_000F0400()
         }
         f3CC = 0;
     }
+}
+
+int C_000F05C0::func_000F05C0()
+{
+    C_000F05C0_Widget *w;
+
+    if (f3D0 != 0) {
+        w = arr698[0];
+        if (w->f4 != 0x43160000 || (float)f420 != w->f8) { w->f8 = (float)f420; w->f4 = 0x43160000; w->f58 |= 1; }
+        w = arr6BC[0];
+        if (w->f4 != 0x43160000 || (float)f420 != w->f8) { w->f8 = (float)f420; w->f4 = 0x43160000; w->f58 |= 1; }
+        w = arr698[1];
+        if (w->f4 != 0x43160000 || (float)f430 != w->f8) { w->f8 = (float)f430; w->f4 = 0x43160000; w->f58 |= 1; }
+        w = arr6BC[1];
+        if (w->f4 != 0x43160000 || (float)f430 != w->f8) { w->f8 = (float)f430; w->f4 = 0x43160000; w->f58 |= 1; }
+        w = arr698[2];
+        if (w->f4 != 0x43160000 || (float)f440 != w->f8) { w->f8 = (float)f440; w->f4 = 0x43160000; w->f58 |= 1; }
+        w = arr6BC[2];
+        if (w->f4 != 0x43160000 || (float)f440 != w->f8) { w->f8 = (float)f440; w->f4 = 0x43160000; w->f58 |= 1; }
+        w = arr698[3];
+        if (w->f4 != 0x43160000 || (float)f450 != w->f8) { w->f8 = (float)f450; w->f4 = 0x43160000; w->f58 |= 1; }
+        w = arr6BC[3];
+        if (w->f4 != 0x43160000 || (float)f450 != w->f8) { w->f8 = (float)f450; w->f4 = 0x43160000; w->f58 |= 1; }
+        w = arr698[4];
+        if (w->f4 != 0x43160000 || (float)f460 != w->f8) { w->f8 = (float)f460; w->f4 = 0x43160000; w->f58 |= 1; }
+        w = arr6BC[4];
+        if (w->f4 != 0x43160000 || (float)f460 != w->f8) { w->f8 = (float)f460; w->f4 = 0x43160000; w->f58 |= 1; }
+        w = arr698[5];
+        if (w->f4 != 0x43160000 || (float)f470 != w->f8) { w->f8 = (float)f470; w->f4 = 0x43160000; w->f58 |= 1; }
+        w = arr6BC[5];
+        if (w->f4 != 0x43160000 || (float)f470 != w->f8) { w->f8 = (float)f470; w->f4 = 0x43160000; w->f58 |= 1; }
+        w = arr698[6];
+        if (w->f4 != 0x43160000 || (float)f480 != w->f8) { w->f8 = (float)f480; w->f4 = 0x43160000; w->f58 |= 1; }
+        w = arr6BC[6];
+        if (w->f4 != 0x43160000 || (float)f480 != w->f8) { w->f8 = (float)f480; w->f4 = 0x43160000; w->f58 |= 1; }
+        w = arr698[7];
+        if (w->f4 != 0x43160000 || (float)f490 != w->f8) { w->f8 = (float)f490; w->f4 = 0x43160000; w->f58 |= 1; }
+        w = arr6BC[7];
+        if (w->f4 != 0x43160000 || (float)f490 != w->f8) { w->f8 = (float)f490; w->f4 = 0x43160000; w->f58 |= 1; }
+        w = arr698[8];
+        if (w->f4 != 0x43160000 || (float)f4A0 != w->f8) { w->f8 = (float)f4A0; w->f4 = 0x43160000; w->f58 |= 1; }
+        w = arr6BC[8];
+        if (w->f4 != 0x43160000 || (float)f4A0 != w->f8) { w->f8 = (float)f4A0; w->f4 = 0x43160000; w->f58 |= 1; }
+    }
+    return 0;
 }
 
 void C_000F0910::func_000F0910()
