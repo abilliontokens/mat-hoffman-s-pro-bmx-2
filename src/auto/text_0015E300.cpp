@@ -34,6 +34,69 @@ struct C_0015E300 {
     int func_0015E5B0(void);
 };
 
+extern float D_00275544;
+extern float D_002E293C;
+extern int D_002878B4;
+void func_001E891B(void *p);
+void func_0015CD90(float *dst, float *src);
+extern "C" void *memset(void *dst, int c, unsigned int n);
+
+struct C_00157660 {
+    void func_00157660();
+};
+
+struct C_00193500 {
+    void func_00193500();
+};
+
+struct LightEmitter;
+
+struct C_0015DA60 {
+    void func_0015DCC0(LightEmitter *item);
+};
+
+struct LightEmitter_Sub {
+    char pad0[0x30];
+    float f30;
+    float f34;
+    float f38;
+    char pad3C[0x30];
+    float f6C;
+    float f70;
+    float f74;
+};
+
+/* LightEmitter */
+struct LightEmitter {
+    void *vtbl;
+    char pad4[0x30];
+    LightEmitter_Sub *f34;
+    char pad38[0x8];
+    float f40;
+    float f44;
+    float f48;
+    char pad4C[0x1C];
+    int f68;
+    float f6C;
+    float f70;
+    float f74;
+    float f78;
+    char pad7C[0x28];
+    float fA4;
+    float fA8;
+    float fAC;
+    char padB0[0x14];
+    C_00193500 *fC4;
+    char padC8[0x4];
+    void *fCC;
+    void func_0015E420(float *dir, float *mat);
+    void func_0015E600();
+    void func_0015E800(float v);
+    void func_0015E920(float *p);
+};
+
+extern LightEmitter *D_002E2930;
+
 void C_0015E300::func_0015E300(int idx, S_0015E300_V3 *pos, int *val)
 {
     if (idx >= 0 && idx < f78) {
