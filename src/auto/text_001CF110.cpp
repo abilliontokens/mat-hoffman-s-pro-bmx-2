@@ -86,14 +86,38 @@ struct SoundThread_001CFE20 {
     int func_001CFE20(void);
 };
 
+/* stream object: slot 4 = Process(src, dst), slot 6 = Flush() */
+struct StreamIface_001CFC00 {
+    virtual long __stdcall s0();
+    virtual long __stdcall s1();
+    virtual long __stdcall s2();
+    virtual long __stdcall s3();
+    virtual long __stdcall Process(void *src, void *dst);
+    virtual long __stdcall s5();
+    virtual long __stdcall Flush();
+};
+
 struct SoundThread_001CFDC0 {
-    char pad0[0xB4];
+    char pad0[0x24];
+    int f24;
+    char pad28[0xA0 - 0x28];
+    unsigned char fA0;
+    char padA1[0xAC - 0xA1];
+    int fAC;
+    int fB0;
     SoundIface_001CFDC0 *fB4;
-    char padB8[0xC4 - 0xB8];
+    StreamIface_001CFC00 *fB8[2];
+    char padC0[4];
     int fC4;
-    char padC8[0x1A8 - 0xC8];
+    int fC8;
+    int fCC;
+    int fD0[54];
     int f1A8;
-    void func_001CFC00(void);
+    int func_001CFC00(void);
+    int func_001CB780(unsigned int *out, unsigned int idx);
+    int func_001CF1B0(int block, S_001CF1B0_Packet *packet);
+    void func_001CB7D0();
+    void func_001CB8A0();
 };
 
 struct SoundObj_001CFE90 {
