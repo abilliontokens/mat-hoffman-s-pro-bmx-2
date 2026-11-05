@@ -60,13 +60,13 @@ struct UIPage {
     u32 f128;
     u32 f12C;
     u32 f130;
-    u32 f134;
-    void *f138;
+    int f134;
+    UIPageObj **f138;
     int f13C;
     UIControl **f140;
     UIPageSlot **f144;
     u32 f148[8];
-    void *f168;
+    UIPageObj *f168;
     UIPageObj *f16C;
     u8 f170;
     char pad171[0x103];
