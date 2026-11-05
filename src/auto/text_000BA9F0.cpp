@@ -248,6 +248,51 @@ struct BmxUIManager {
     int func_000BB3F0(const char *a, const char *b);
 };
 
+int BmxUIManager::func_000BA9F0()
+{
+    ConfigFile parser;
+    int result = 1;
+    int i, j, tmp;
+    char buf[0x104];
+    BmxMenuItem *obj;
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+    func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5870, D_002A5D98);
+    func_001ADCC0(buf, 0x104, D_0027D90C, D_002A64D0);
+    parser.func_00168280();
+    if (!parser.func_00169490(buf, 0)) {
+        parser.func_001691E0();
+        return 0;
+    }
+    parser.func_00169710(D_002769F8);
+    parser.func_00168C20(D_0027D8FC, 0, &f124);
+    f120 = (void **)func_001E8AA5(f124 * 4);
+    for (i = 0; i < f124; i++) {
+        func_001ADCC0(buf, 0x104, D_0027D8F0, i + 1);
+        parser.func_00169710(buf);
+        parser.func_00168550(D_0027A604, buf, 0x104);
+        obj = ((BmxManagerView *)this)->v38(&parser, buf);
+        j = 0;
+        if (obj) {
+            int *p = obj->f44;
+            do {
+                func_001ADCC0(buf, 0x104, D_0027D8D8, j + 1);
+                parser.func_00168C20(buf, 0, &tmp);
+                *p = tmp;
+                j++;
+                p++;
+            } while (j < 8);
+            obj->v34();
+            obj->v5();
+            f120[i] = obj;
+        } else {
+            f120[i] = 0;
+            result = 0;
+        }
+    }
+    parser.func_001691E0();
+    return result;
+}
+
 int BmxUIManager::func_000BABF0()
 {
     C_0013E4F0 *p = (C_0013E4F0 *)func_001E8A44(0x2d0);
