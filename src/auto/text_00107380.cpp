@@ -57,11 +57,10 @@ extern float D_00282A7C;
 float func_0014FBA0(float a, float b);
 #include <math.h>
 #include <xmmintrin.h>
-static __forceinline float sqrt_00107FB0(float x)
+static __forceinline void length_00107FB0(float *d, float x, float y)
 {
-    float r;
-    _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x)));
-    return r;
+    float square = y * y + x * x;
+    _mm_store_ss(d, _mm_sqrt_ss(*(__m128 *)&square));
 }
 
 struct C_00107FB0 {
