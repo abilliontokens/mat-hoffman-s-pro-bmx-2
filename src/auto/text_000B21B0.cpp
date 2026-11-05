@@ -179,6 +179,7 @@ struct VehicleAI {
             f58 = s;
         }
     }
+    void func_000B2930(void);
     void func_000B2450(float a);
     void func_000B2540(int mode, int a, VehicleV4 *p);
     void func_000B2C20(int a, int b);
