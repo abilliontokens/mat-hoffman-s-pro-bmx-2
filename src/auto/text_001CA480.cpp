@@ -117,6 +117,16 @@ WaterDisplacement *WaterDisplacement::func_001CAF20()
     return this;
 }
 
+void *WaterDisplacement::func_001CAFA0(int flags)
+{
+    vtbl = (void *)&D_0028EC24;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void *WaterObject::func_001CAFD0(int a0)
 {
     func_00143580(a0);
