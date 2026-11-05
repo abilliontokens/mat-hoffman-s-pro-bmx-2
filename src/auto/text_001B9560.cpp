@@ -31,6 +31,57 @@ int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 struct S_001B9B50_Stream {
     int func_00169710(void *name);
     void func_00168C20(void *key, int def, int *out);
+    void func_00168BE0(void *key, void *def, char *buf, int size);
+};
+
+extern char D_0028D1F0[];
+extern char D_0028D1DC[];
+extern char D_0028D1D0[];
+extern char D_0028D1C0[];
+extern char D_002764F0[];
+extern char D_0028CC18[];
+extern char D_0028CC0C[];
+extern "C" int memcmp(const void *a, const void *b, unsigned int n);
+
+struct S_001BA3D0_Elem {
+    virtual void v0();
+    virtual void v1(S_001B9B50_Stream *stream);
+};
+
+struct C_001BA3D0 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28(int kind, int index);
+    char pad4[0x20];
+    int f24;
+    S_001BA3D0_Elem **f28;
+    int func_001BA3D0(S_001B9B50_Stream *stream);
 };
 
 struct S_001B9B50_Elem {
