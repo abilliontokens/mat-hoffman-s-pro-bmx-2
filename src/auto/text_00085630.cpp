@@ -143,7 +143,8 @@ struct C_00085BD0 {
     C_0005E840 *f84, *f88, *f8C, *f90;
     char pad94[0xC];
     int fA0;
-    char padA4[0x24];
+    char padA4[0x20];
+    int fC4;
     char **fC8;
     int fCC;
     int fD0;
