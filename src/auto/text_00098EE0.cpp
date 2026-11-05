@@ -127,3 +127,46 @@ void C_00097FD0::func_000999B0(void) {
         }
     }
 }
+
+void C_00097FD0::func_000999E0(void) {
+    C_00096870 **list;
+    int count;
+    int i;
+    int j;
+
+    for (i = 0; i < 3; i++) {
+        switch (i) {
+        case 0:
+            list = arr0;
+            break;
+        case 1:
+            list = arr1;
+            break;
+        case 2:
+            list = arr2;
+            break;
+        default:
+            list = 0;
+            break;
+        }
+        switch (i) {
+        case 0:
+            count = cnt0;
+            break;
+        case 1:
+            count = cnt1;
+            break;
+        case 2:
+            count = cnt2;
+            break;
+        default:
+            count = 0;
+            break;
+        }
+        for (j = 0; j < count; j++) {
+            list[j]->f1b4 = 0;
+        }
+    }
+    mode1 = unk198->unk1c8 ? mode1 : mode0;
+}
+
