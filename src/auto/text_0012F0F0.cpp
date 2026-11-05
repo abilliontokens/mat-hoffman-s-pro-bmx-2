@@ -10,6 +10,7 @@ struct C_0013B210 {
 };
 extern C_0013B210 *D_002BEAAC;
 extern f32 D_00275544;
+extern f32 D_00276544;
 
 struct S_0012F518;
 
