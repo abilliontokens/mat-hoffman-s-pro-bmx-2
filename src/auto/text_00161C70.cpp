@@ -165,6 +165,43 @@ struct C_00162610 {
 };
 
 
+void C_00161F80::func_00161D90()
+{
+    int i, j, k;
+    float s;
+    float *v;
+    for (i = 0; i < 256; i++) {
+        D_002EEF28[i] = i;
+        D_002ED710[i] = (float)(func_001E8833() % 512 - 256) * D_00287B68;
+        for (j = 0; j < 2; j++)
+            D_002EDF18[i][j] = (float)(func_001E8833() % 512 - 256) * D_00287B68;
+        v = D_002EDF18[i];
+        s = D_00275460 / (float)sqrt(v[0] * v[0] + v[1] * v[1]);
+        v[0] = s * v[0];
+        v[1] = s * v[1];
+        for (j = 0; j < 3; j++)
+            D_002EBEF0[i][j] = (float)(func_001E8833() % 512 - 256) * D_00287B68;
+        v = D_002EBEF0[i];
+        s = D_00275460 / (float)sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
+        v[0] = s * v[0];
+        v[1] = s * v[1];
+        v[2] = s * v[2];
+    }
+    while (--i) {
+        k = D_002EEF28[i];
+        D_002EEF28[i] = D_002EEF28[j = func_001E8833() % 256];
+        D_002EEF28[j] = k;
+    }
+    for (i = 0; i < 0x102; i++) {
+        D_002EEF28[256 + i] = D_002EEF28[i];
+        D_002ED710[256 + i] = D_002ED710[i];
+        for (j = 0; j < 2; j++)
+            D_002EDF18[256 + i][j] = D_002EDF18[i][j];
+        for (j = 0; j < 3; j++)
+            D_002EBEF0[256 + i][j] = D_002EBEF0[i][j];
+    }
+}
+
 float C_00161F80::func_00161F80(float param)
 {
     float t;
