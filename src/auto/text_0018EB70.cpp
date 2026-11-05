@@ -1,6 +1,9 @@
 /* 5 functions from 0x0018EB70 to 0x0018F980, found by Ghidra. */
 #include "common.h"
 extern char D_00275630[];
+struct C_00191470 {
+    void func_00191470(unsigned int b);
+};
 struct C_0018F4D0 {
     char pad0[0x20];
     int f20;
