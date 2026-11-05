@@ -64,7 +64,8 @@ struct XboxMusic {
     int fa0;
     int f_a4;
     int f_a8;
-    char padac[0xc];
+    int f_ac;
+    char padb0[8];
     SoundIface *fb8;
     SoundIface *fbc;
     char padc0[0xc];
