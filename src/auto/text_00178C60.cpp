@@ -25,7 +25,28 @@ struct C_00179820 {
     float fB4;
     C_00179820 *func_00179820(int a0);
     void func_00179880(void);
+    void func_00179950(void);
 };
+
+extern float D_00288EC0;
+extern float D_00288EB0;
+extern float D_00288EA0;
+void func_00179370(Vec4 *out, Vec4 *in);
+
+static __forceinline void cross_179950(float *out, float *a, float *b)
+{
+    __m128 va = _mm_loadu_ps(a);
+    __m128 vb = _mm_loadu_ps(b);
+    __m128 sa = va;
+    __m128 sb = vb;
+    sa = _mm_shuffle_ps(sa, sa, 0xc9);
+    sb = _mm_shuffle_ps(sb, sb, 0xc9);
+    vb = _mm_mul_ps(vb, sa);
+    va = _mm_mul_ps(va, sb);
+    va = _mm_sub_ps(va, vb);
+    va = _mm_shuffle_ps(va, va, 0xc9);
+    _mm_storeu_ps(out, va);
+}
 
 C_00179820 *C_00179820::func_00179820(int a0) {
     u32 *p;
@@ -58,3 +79,20 @@ C_00179820 *C_00179820::func_00179820(int a0) {
     } while (--n != 0);
     return this;
 }
+
+void C_00179820::func_00179880(void) {
+    float dx1 = v24[2].x - v24[0].x;
+    float dy1 = v24[2].y - v24[0].y;
+    float dz1 = v24[2].z - v24[0].z;
+    float dx2 = v24[3].x - v24[1].x;
+    float dy2 = v24[3].y - v24[1].y;
+    float dz2 = v24[3].z - v24[1].z;
+    float a;
+    float b;
+    float m;
+    _mm_store_ss(&a, _mm_sqrt_ss(_mm_set_ss(dy1 * dy1 + dx1 * dx1 + dz1 * dz1)));
+    _mm_store_ss(&b, _mm_sqrt_ss(_mm_set_ss(dy2 * dy2 + dx2 * dx2 + dz2 * dz2)));
+    _mm_store_ss(&m, _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b)));
+    fB4 = m;
+}
+
