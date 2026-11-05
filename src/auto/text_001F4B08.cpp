@@ -127,10 +127,10 @@ reset:
 found:
     memset(D_002FB000, 0, 0x101);
     for (j = 0; j < 4; j++) {
-        p = D_002AEE68[i].range[j];
+        p = D_002AEE84 + i * 0x3c + j * 8;
         while (p[0] != 0 && p[1] != 0) {
             for (c = p[0]; c <= p[1]; c++)
-                D_002FB000[c + 1] |= D_002AEE60[j];
+                D_002FB001[c] |= D_002AEE60[j];
             p += 2;
         }
     }
@@ -143,7 +143,7 @@ found:
     case 0x3b6: D_002FAFE8 = 0x404; break;
     default: D_002FAFE8 = 0; break;
     }
-    memcpy(D_002FB120, D_002AEE68[i].names, 0x18);
+    memcpy(D_002FB120, (char *)D_002AEE6C + i * 0x3c, 0x18);
     return 0;
 }
 
