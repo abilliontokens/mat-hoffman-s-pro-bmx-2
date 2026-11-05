@@ -25,3 +25,13 @@ undefined4 C_0007E0A0::func_0007E0A0(byte param_1)
   }
   return in_ECX;
 }
+
+void *C_0007E1E0::func_0007E1E0(unsigned int flags)
+{
+    func_0006E480();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
