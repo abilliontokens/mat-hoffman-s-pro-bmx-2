@@ -48,6 +48,41 @@ int func_00168120(const char *s)
     return 0;
 }
 
+void func_001681A0(const char *s, int *out)
+{
+    char *copy;
+
+    out[0] = func_00168120(s);
+    switch (out[0]) {
+    case 0:
+        out[1] = func_001E91F4(s);
+        break;
+    case 1:
+        *(float *)&out[1] = (float)func_001E9649(s);
+        break;
+    case 2:
+        copy = (char *)func_001E8AA5(strlen(s) + 1);
+        out[1] = (int)copy;
+        strcpy(copy, s);
+        break;
+    }
+}
+
+void func_00168210(int type, int value, char *dst)
+{
+    switch (type) {
+    case 0:
+        func_001ADCC0(dst, 3, D_00288004, value);
+        break;
+    case 1:
+        func_001ADCC0(dst, 3, D_00288008, *(float *)&value);
+        break;
+    case 2:
+        strcpy(dst, (const char *)value);
+        break;
+    }
+}
+
 void C_001684B0::func_001684B0(void)
 {
   int func_001E8390(...);
