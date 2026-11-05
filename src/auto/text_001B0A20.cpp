@@ -1,5 +1,10 @@
 /* 35 functions from 0x001B0A20 to 0x001B19C0, found by Ghidra. */
 #include "common.h"
+#include "ghidra.h"
+struct C_001B17F0 {
+    undefined4 func_001B17F0(void);
+};
+
 struct C_001B15E0 {
     char pad0[0x9C];
     float unk9C;
@@ -23,5 +28,12 @@ int __stdcall func_001B1190(int a0, int a1, int a2, int a3, int a4, int a5, int 
 
 float C_001B15E0::func_001B15E0(void) {
     return unk9C;
+}
+
+undefined4 C_001B17F0::func_001B17F0(void)
+{
+  int in_ECX = (int)this;
+  
+  return **(undefined4 **)(in_ECX + 0x24);
 }
 
