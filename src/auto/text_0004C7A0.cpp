@@ -78,6 +78,32 @@ struct C_0004D070 {
 };
 
 extern S_0004D070_Global *D_002A8490;
+
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+void *func_001E8A44(int size);
+extern char D_002A5870[];
+extern char D_002775F0[];
+extern char D_002775E8[];
+extern char D_002775D4[];
+extern char D_002775BC[];
+extern char D_002775A4[];
+extern char D_00277590[];
+extern char D_002A16E8[];
+extern char D_002A1718[];
+
+struct C_00168280 {
+    C_00168280 *func_00168280(void);
+    int func_00169490(char *buf, int flag);
+    void func_00169710(const char *s);
+    void func_00168C20(const char *key, int flag, int *out);
+    void func_00168550(const char *key, void *dst, int size);
+    void func_00168CB0(const char *key, void *def, void *dst);
+};
+
+struct C_0013B1A0 {
+    int func_0013B1A0(const char *key);
+};
+extern C_0013B1A0 *D_002BEAAC;
 extern char D_00275630;
 
 struct S_0004D630_Obj {
