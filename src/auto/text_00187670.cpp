@@ -133,6 +133,56 @@ struct C_00187A40 {
     int func_00187A40(int a0, Obj_00187A40 *obj);
 };
 
+extern "C" int strlen(const char *s);
+char *func_001E8920(char *dst, const char *src, int n);
+extern int D_00289EA4;
+extern int D_00289ED0;
+extern int D_00289ED8;
+extern int D_002764F0;
+
+struct C_00187F20 {
+    void *vtbl;
+    char f4;
+    C_00187F20 *func_00187F20(void);
+};
+
+/* (0, 0, 0, 1) vector built by the temp-init constructor, stored x, y, z, w */
+struct V4_00188250 {
+    float x;
+    float y;
+    float z;
+    float w;
+    V4_00188250(int) { x = 0.0f; y = 0.0f; z = 0.0f; w = 1.0f; }
+};
+
+struct C_001881C0 {
+    void *vtbl;
+    char pad4[0x140];
+    char f144[0x104];
+    void func_00187F60(void);
+    C_001881C0 *func_001881C0(void);
+};
+
+struct C_00188250 {
+    void *vtbl;
+    char pad4[0x140];
+    char f144;
+    char pad145[0x103];
+    int f248;
+    int f24c;
+    int f250;
+    int f254;
+    int f258;
+    int f25c;
+    int f260;
+    int f264;
+    int f268;
+    int f26c;
+    V4_00188250 f270;
+    void func_00187F60(void);
+    C_00188250 *func_00188250(void);
+};
+
 
 int C_001877F0::func_001877F0(C_001877F0Param *param)
 {
