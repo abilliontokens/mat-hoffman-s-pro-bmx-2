@@ -79,6 +79,9 @@ struct S_00092E30_Mgr {
     S_00092E30_Rec fA14[16];
     S_00092E30_Mgr *func_001D3F50(void);
     int *func_0005C020(int idx);
+    void func_0005B7C0(void);
+    void func_0005B8D0(void);
+    void func_0005C3A0(int a);
 };
 
 struct S_00092A10_Sub {
