@@ -56,12 +56,28 @@ struct S_00156F30_Iface {
     virtual void v15();
     virtual void v16();
     virtual void v17();
-    virtual void v18();
+    virtual void v18(int a);
     virtual void v19();
     virtual void v20();
-    virtual void v21();
-    virtual void v22();
+    virtual int v21(int a);
+    virtual int v22(int a, int b);
     virtual int v23(int a, int b);
+};
+
+struct VT_Game {
+    char pad0[0x80];
+    void *(__fastcall *f80)(void *self);
+};
+
+struct S_Game_Flags {
+    unsigned char b0 : 1;
+    unsigned char b1 : 1;
+    unsigned char b2 : 1;
+    unsigned char b3 : 1;
+    unsigned char b4 : 1;
+    unsigned char b5 : 1;
+    unsigned char b6 : 1;
+    unsigned char b7 : 1;
 };
 
 struct Game {
