@@ -11,6 +11,21 @@ struct S_SinCosEntry {
 
 extern S_SinCosEntry *D_002CF6B4;
 
+extern float D_00275460;
+extern float D_00275F58;
+
+/* clamp into [D_00275F58, D_00275460]; inlined into its callers */
+static float clampf(float x)
+{
+    if (x > D_00275460) {
+        return D_00275460;
+    }
+    if (x < D_00275F58) {
+        return D_00275F58;
+    }
+    return x;
+}
+
 /* Truncate towards zero into *out; inlined into its callers. */
 static void storeftoi(int * volatile out, float f)
 {
