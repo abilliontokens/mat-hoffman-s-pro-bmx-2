@@ -91,9 +91,13 @@ struct V4_00135470 {
     }
 };
 
-/* PhysicsParticle */
-struct PhysicsParticle {
+struct PhysicsParticleBase {
     void *vtbl;
+    PhysicsParticleBase() { vtbl = (void *)&D_00284768; }
+};
+
+/* PhysicsParticle */
+struct PhysicsParticle : PhysicsParticleBase {
     int f4;
     int f8;
     V4_00135470 m0;
@@ -163,6 +167,27 @@ void *C_00135430::func_00135430(int flags)
         func_001E891B(this);
     }
     return this;
+}
+
+PhysicsParticle::PhysicsParticle()
+{
+    f4 = 0;
+    m0.x = D_002A4434;
+    m0.y = D_002A4438;
+    m0.z = D_002A443C;
+    m0.w = D_002A4440;
+    m1.x = D_002A4434;
+    m1.y = D_002A4438;
+    m1.z = D_002A443C;
+    m1.w = D_002A4440;
+    m2.x = D_002A4434;
+    m2.y = D_002A4438;
+    m2.z = D_002A443C;
+    m2.w = D_002A4440;
+    m3.x = D_002A4434;
+    m3.y = D_002A4438;
+    m3.z = D_002A443C;
+    m3.w = D_002A4440;
 }
 
 ParticleSystem *ParticleSystem::func_00135700(int a)
