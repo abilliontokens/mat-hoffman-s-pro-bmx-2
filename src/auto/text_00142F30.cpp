@@ -101,7 +101,8 @@ struct C_1432Light {
 extern C_1432Light *D_002E2930;
 extern int D_002A6E78;
 static __forceinline void Transpose_1432(Mat_1432B0 *d, const float *s) {
- __m128 a = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (const __m64*)s), (const __m64*)(s+4));
+ __m128 a;
+ a = _mm_loadh_pi(_mm_loadl_pi(a, (const __m64*)s), (const __m64*)(s+4));
  __m128 b = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (const __m64*)(s+2)), (const __m64*)(s+6));
  __m128 c = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (const __m64*)(s+8)), (const __m64*)(s+12));
  __m128 e = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (const __m64*)(s+10)), (const __m64*)(s+14));
