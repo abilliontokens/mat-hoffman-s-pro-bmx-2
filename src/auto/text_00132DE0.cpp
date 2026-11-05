@@ -54,6 +54,35 @@ struct C_00132E20 {
     int func_00132E20(char *name);
 };
 
+struct C_001BC6E0 {
+    unsigned char func_001BC6E0(char *name);
+};
+extern C_001BC6E0 *D_002AAEC8;
+extern unsigned char D_002A4330;
+extern unsigned char D_002A4331;
+extern char D_00282AA8[];
+extern char D_00282A9C[];
+extern int D_0028464C;
+
+struct C_00132EB0 {
+    void *vtbl;
+    char pad4[0x20];
+    unsigned short f24;
+    unsigned char f26;
+    unsigned char f27;
+    int f28, f2C, f30;
+    float f34, f38, f3C, f40, f44;
+    int f48, f4C, f50, f54, f58, f5C, f60, f64, f68;
+    char f6C, f6D;
+    char pad6E[2];
+    int f70, f74, f78, f7C, f80, f84, f88, f8C, f90, f94, f98, f9C, fA0;
+    unsigned short fA4;
+    unsigned char fA6;
+    unsigned char fA7;
+    void func_00157600(int a);
+    C_00132EB0 *func_00132EB0(int a);
+};
+
 struct C_00132DE0 {
     void func_001329F0(void);
     void func_00157660(void);
