@@ -112,6 +112,44 @@ struct SceneEntry {
     char pad14d[0x160 - 0x14d];
 };
 
+int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+extern char D_0028A388[];
+extern char D_0028A374[];
+extern char D_0028A35C[];
+extern int D_0028A0D4;
+
+struct S_00189B60_Vec4 {
+    float x, y, z, w;
+    S_00189B60_Vec4(float x_, float y_, float z_, float w_) {
+        x = x_;
+        y = y_;
+        z = z_;
+        w = w_;
+    }
+};
+
+struct C_0015E0F0 {
+    int func_0015E0F0(int a);
+};
+extern C_0015E0F0 *D_002E2930;
+
+struct C_00189B60_Node;
+
+struct C_0017A4D0 {
+    C_00189B60_Node *func_0017A4D0(int a);
+};
+
+struct C_00167760 {
+    C_00167760 *func_00167760(int a);
+    C_00167760 *func_00167D10(C_00189B60_Node *owner, const char *name);
+};
+
+/* per-slot loaded object of the scene */
+struct C_00189B60_Node {
+    C_00189B60_Node *func_0017ABE0(const char *name);
+    void func_0017A8F0(S_00189B60_Vec4 *a, S_00189B60_Vec4 *b, int c);
+};
+
 struct BasicScene {
     virtual void dummy0();
     virtual void dummy1();
