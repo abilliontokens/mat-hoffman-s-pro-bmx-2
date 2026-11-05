@@ -241,6 +241,42 @@ void CutScene::func_001390A0(int index)
     }
 }
 
+void CutScene::func_00139360(int oldIndex, int index)
+{
+ if(index==0 && f64!=-1 && ((CutSceneRoot *)D_002A8490)->world && f78){
+ ((CutSceneRoot *)D_002A8490)->world->audio->func_001D1A30(f68);
+ ((S_1390A0_Obj *)f78)->v30(f64,1);
+ }
+ 
+ if((&((ResetItem *)f40)[index])->values){
+ if(f74==1){
+ ResetValue *v=(&((ResetItem *)f40)[index])->values;
+ if(*(float *)&v->f4 == D_00275544 && v->f0>=0 && f7c)
+ ((CutScenePlayer *)f7c)->func_001A4100(v->f0,0,0);
+ }else{
+ for(int i=0;i<(&((ResetItem *)f40)[index])->count;i++){
+ if(*(float *)&(&((ResetItem *)f40)[index])->values[i].f4==D_00275544){
+ int id=(&((ResetItem *)f40)[index])->values[i].f0;
+ if(id>=0 && ((ResetChild **)f80)[id] && !((ResetChild **)f80)[id]->v7())
+ ((ResetChild **)f80)[id]->v5(0);
+ }
+ }
+ }
+ }
+ if(oldIndex!=-1)func_001390A0(oldIndex);
+ if(index!=-1){
+ if((&((ResetItem *)f40)[index])->tail[2]==1){
+ f2c=0x40000000;
+ ((CutSceneTimer *)f50)->func_001C4E70(100.0f);
+ }
+ func_00139180(index);
+ ((CutSceneView *)f48)->func_0012B7D0((&((ResetItem *)f40)[index])->obj,0,0,0,0);
+ }
+ f24=index;
+ if(f88)((void (__cdecl *)(int,int))f88)(f8c,index);
+ if(f84)((void (__cdecl *)(int,int))f84)(f8c,index);
+}
+
 void CutScene::func_001394F0(int arg) {
     f24 = arg; f34 = 0; f28 = 0;
     int i, j;
