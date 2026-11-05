@@ -223,9 +223,11 @@ struct C_00194F90 {
     void func_00194F90(int a0);
 };
 
-struct C_00194F60 {
+struct S_00194F60_Base {
     char pad0[0x38];
-    S_Vec4Int f38;
+};
+
+struct C_00194F60 : S_00194F60_Base, S_Vec4Int {
     void func_00194F60(int a, int b, int c, int d);
 };
 
