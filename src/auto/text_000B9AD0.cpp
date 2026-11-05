@@ -155,6 +155,46 @@ struct C_000BA2D0 {
 };
 
 
+int BmxUIGlobalManager::func_000B9AD0(int mode, int arg)
+{
+    Block36 local;
+    void *m;
+    BmxUIMain *obj;
+    switch (mode) {
+    case 3:
+        D_002A64D0 = D_0027D694;
+        D_002A64D4 = D_0027D698;
+        D_002A64D8 = D_0027D69C;
+        D_002A64DA = D_0027D69E;
+        m = func_001E8A44(0x31c);
+        obj = m ? ((BmxUIMain *)m)->func_000B9D30(1) : 0;
+        f24 = func_001577A0(((C_B9AD0_Object *)obj)->func_000BE640(D_0027D68C, arg, this), -1);
+        break;
+    case 2:
+        D_002A64D0 = D_0027D694;
+        D_002A64D4 = D_0027D698;
+        D_002A64D8 = D_0027D69C;
+        D_002A64DA = D_0027D69E;
+        m = func_001E8A44(0x31c);
+        obj = m ? ((BmxUIMain *)m)->func_000B9D30(1) : 0;
+        f24 = func_001577A0(((C_B9AD0_Object *)obj)->func_000BE640(D_0027D684, arg, this), -1);
+        break;
+    }
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5348, D_002A47F0);
+    char *p = *(char **)(D_002A8490 + 0x2e0);
+    ((V_B9AD0 *)*(void **)(*(char **)(p+0x2fc)+0x28))->vf30(*(int *)(p+0x18));
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, &D_002A64D0, D_002A47F0);
+    m = func_001E8A44(0x1f0);
+    f30 = m ? ((C_B9AD0_Object *)m)->func_001A2C00(*(void **)(D_002A8490+4), *(void **)(*(char **)((char *)f24+0x150)+0x4c0), 6, 1) : 0;
+    func_001577A0(f30, -1);
+    f30->func_001A23F0(local, D_002A3138, D_002A3138, 2, 20.0f, 100.0f, 0, 1);
+    f30->func_001A4640(D_0027D674, D_00275630, -1);
+    ((V_B9AD0 *)*(void **)(*(char **)(D_002A8490+4)+0xb4))->vf6();
+    ((V_B9AD0 *)*(void **)(D_002A8490+4))->vf6();
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5348, D_002A47F0);
+    return f24 != 0;
+}
+
 __declspec(noinline) BmxUIMain *BmxUIMain::func_000B9D30(int a)
 {
     func_000BA360(a);
