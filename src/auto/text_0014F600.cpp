@@ -129,7 +129,7 @@ struct C_0012B510R {
     C_0012B510R *func_0012B510(void);
 };
 
-struct V_1500 { float x,y,z,w; };
+struct V_1500 { float x,y,z,w; V_1500() { x=y=z=0; w=1; } };
 struct T_1500 {
  V_1500 *func_00199B00(V_1500 *, int);
  void func_00197B40(V_1500 *, V_1500 *);
