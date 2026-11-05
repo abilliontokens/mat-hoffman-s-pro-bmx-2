@@ -182,6 +182,21 @@ struct S_000B2C80_Arg {
     int f50;
 };
 
+static inline int IsNear(int v, int c, int r)
+{
+    if (v == c) {
+        return 1;
+    }
+    if (v < c) {
+        if (v >= c - r) {
+            return 1;
+        }
+    } else if (v <= c + r) {
+        return 1;
+    }
+    return 0;
+}
+
 struct C_000B2C80 {
     char pad0[0x30];
     int f30;
@@ -305,5 +320,56 @@ undefined4 C_000B2C60::func_000B2C60(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+void C_000B2C80::func_000B2C80(S_000B2C80_Arg *a)
+{
+    int i;
+    int j;
+
+    for (i = 0; i < a->f4C; i++) {
+        int idx = a->f48[i]->idx;
+        S_000B2C80_Group *g = f4C[idx];
+
+        for (j = 0; j < g->f4; j++) {
+            S_000B2C80_Item *item = g->fC[j];
+
+            item->f70 = 1;
+            if (a->f50 == 2) {
+                int range = f30;
+                int cur = (int)a->f48[i]->f4;
+                int v = item->f3C->f4B8;
+
+                if (v == cur || (v < cur ? v >= cur - range : v <= cur + range)) {
+                    item->func_000B2540(2, 0, 0);
+                }
+            }
+            g = f4C[idx];
+        }
+    }
+}
+
+void C_000B2E40::func_000B2E40(void)
+{
+    int i;
+
+    vtbl = &D_0027CEFC;
+    if (f48 != 0) {
+        for (i = 0; i < f4C; i++) {
+            func_001E891B(f48[i]);
+        }
+        func_001E891B(f48);
+        f48 = 0;
+        f4C = 0;
+    }
+    if (f40 != 0) {
+        f40->Destroy(1);
+        f40 = 0;
+    }
+    if (f44 != 0) {
+        f44->func_00188720();
+        func_001E891B(f44);
+    }
+    func_0018C7F0();
 }
 
