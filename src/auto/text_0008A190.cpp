@@ -46,6 +46,7 @@ struct ClampObj {
 
 struct LookupObj {
     int *func_0018C160(int a);
+    void func_0018C780(int a, int *b, int c);
 };
 
 struct GlobalObj {
