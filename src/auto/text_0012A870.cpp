@@ -362,6 +362,11 @@ void C_0012AC20::func_0012AC20(S_0012AB70Vec *p1, S_0012AB70Vec *p2, S_0012AB70V
     if (p5) *p5 = f1d0;
 }
 
+void C_0012AEC0::func_0012AEC0(void)
+{
+    func_000263B0(&ff0, &fb0, &f70);
+}
+
 void C_0012B000::func_0012B000(float param1, float param2)
 {
     f1fc = param1;
