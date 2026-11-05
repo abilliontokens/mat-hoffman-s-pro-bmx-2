@@ -105,6 +105,8 @@ struct BmxEventPush {
     int unk298;
     BmxEventPush *func_00050A10(int a0);
     void func_00050C60();
+    void func_00050A50();
+    void func_00031630();
     void func_00050D00();
     void *func_00050D40(int flags);
     void func_00033220();
