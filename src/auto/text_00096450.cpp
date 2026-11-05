@@ -23,6 +23,7 @@ struct Q_Mgr { char pad0[0x64]; Q_P64 *f64; char pad68[0x160]; int f1C8; };
 struct Q_Root { char pad0[0x2a4]; Q_Mgr *f2A4; };
 extern Q_Root *D_002A8490;
 void __stdcall func_00052630(char *s);
+extern "C" char *__cdecl strcpy(char *d, const char *s);
 struct C_00096450 {
     char pad0[0x63d8];
     Q_Click *a63d8[10];
