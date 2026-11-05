@@ -165,7 +165,7 @@ struct S36_1A {
 
 /* callees of C_00187370::func_00187400, one class per original file layout */
 struct C_001A2210 {
-    C_001A2210 *func_001A2210(int a0, int a1, int a2, int a3);
+    C_001A2210 *func_001A2210(int a0, int a1, unsigned short a2, int a3);
 };
 
 struct C_001A2250 {
