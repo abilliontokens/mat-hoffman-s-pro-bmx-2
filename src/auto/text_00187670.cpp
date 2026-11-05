@@ -179,6 +179,22 @@ void C_00187910::func_00187910(int *a, int b)
     func_00157BF0(a, b);
 }
 
+int C_00187A40::func_00187A40(int a0, Obj_00187A40 *obj)
+{
+    char buf[0x100];
+    int i;
+
+    if (D_002A8490->f4 == 0) {
+        return 0;
+    }
+    for (i = 0; i < f24; i++) {
+        if (obj->v37(i + 1, f28[i].f4, f28[i].f13c) == 0) {
+            func_001ADCC0(buf, 0x100, (const char *)&D_00289D4C, i + 1, f28[i].f4);
+        }
+    }
+    return 1;
+}
+
 void C_00187AF0::func_00187AF0(void)
 {
   int func_001E891B(...);
