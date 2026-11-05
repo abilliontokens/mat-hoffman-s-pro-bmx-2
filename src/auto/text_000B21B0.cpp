@@ -31,6 +31,7 @@ struct C_000B21B0 {
  void func_001B4B80(S_000B21B0_Stream *);
  void func_000B21B0(S_000B21B0_Stream *);
 };
+static __inline int Min_000B21B0(int a, int b) { return a > b ? b : a; }
 int func_001E9040(char *, char *);
 char *func_001E8920(char *, const char *, int);
 
