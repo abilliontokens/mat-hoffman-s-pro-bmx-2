@@ -14,7 +14,7 @@ struct Obj {
     int* grid;
     char pad3[0x564 - 0x4a0];
     Sub* f564;
-    int func_00038B10(Q*, V4, V4, int*, int*, int*, int*);
+    int func_00038B10(Q*, V4, V4, int*, int*, int*, int);
     void func_00038A70(Q*, Blk**);
     int _func_0003E410();
 };
