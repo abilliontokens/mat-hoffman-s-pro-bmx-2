@@ -128,6 +128,13 @@ struct C_0001EDD0 {
     void func_0001EDD0(int a0);
 };
 
+struct C_0001EDE0 {
+    char pad0[0x58];
+    int unk58;
+    int unk5C;
+    void func_0001EDE0(int a0, int a1);
+};
+
 struct C_0001EDC0 {
     char pad0[0x24];
     int unk24;
