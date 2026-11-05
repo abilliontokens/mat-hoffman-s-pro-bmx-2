@@ -168,3 +168,15 @@ void C_0006D1D0::func_0006D280() {
     unkDC = 1.5f;
 }
 
+void C_0006D1D0::func_0006D2F0(float dt) {
+ if (unkE0 && (unkD8 += dt) >= D_00278500) {
+ switch (unkD0) {
+ case 1: D_002A8490->unk2A4->unk154 = 1; D_002A8490->unk2F0->func_0001EDC0(4); break;
+ case 0: func_0006D210(); unkD4->func_00032720(); unkD4->v39(); unkD4->func_00032740(); break;
+ }
+ unkE0 = 0; unkD8 = 0.0f;
+ }
+ if (unkDC > D_00275544) { unkDC -= dt; if (unkDC < D_00275544) unkDC = 0.0f; }
+ func_0005EA10(dt);
+}
+
