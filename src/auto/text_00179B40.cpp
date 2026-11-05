@@ -56,6 +56,17 @@ struct C_0017A640 {
     void func_0017A640();
 };
 
+struct C_0017A1D0_Vec4 {
+    float x, y, z, w;
+};
+
+struct C_0017A1D0 {
+    char pad0[0x24];
+    C_0017A1D0_Vec4 pts[4];
+    C_0017A1D0_Vec4 normals[5];
+    int func_0017A1D0(float *p, float r, float *out);
+};
+
 struct C_0017A860 {
     char pad0[0x138];
     int f138;
