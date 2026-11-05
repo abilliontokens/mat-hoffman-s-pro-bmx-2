@@ -376,7 +376,7 @@ void C_001C04D0::func_001C03F0(int a)
 void C_001C04D0::func_001C04D0(int idx)
 {
     if (unk180 != 0) {
-        func_001C03F0(D_002A8490->unk2E8->unk4[idx].unk0);
+        func_001C03F0((char *)D_002A8490->unk2E8->unk4[idx].unk0);
     } else {
         func_001C01E0(D_002A8490->unk2E8->unk4[idx].unk0);
     }
