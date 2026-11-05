@@ -666,3 +666,68 @@ undefined4 C_001BC020::func_001BC020(byte param_1)
   }
   return in_ECX;
 }
+struct V4_001BC040 {
+    float x, y, z, w;
+    V4_001BC040() {}
+    V4_001BC040(float a, float b, float c, float d)
+    {
+        x = a;
+        y = b;
+        z = c;
+        w = d;
+    }
+};
+
+struct C_001BC040;
+
+struct Base_001BC040 {
+    char pad0[0x60];
+    C_001BC040 *f60;
+    char pad64[4];
+    int f68;
+    char pad6C[0x34];
+    void *fA0;
+    void func_00129920(int a);
+    void func_00133570(int a);
+};
+
+struct ObjA_001BC040 : Base_001BC040 {
+    ObjA_001BC040 *func_001A4A50(int a);
+    void func_001A57E0(V4_001BC040 v, float e, int z);
+    void func_001A52C0(void);
+};
+
+struct ObjB_001BC040 : Base_001BC040 {
+    ObjB_001BC040 *func_00129840(int a);
+    void func_00129930(V4_001BC040 a, V4_001BC040 b);
+    void func_00129E10(void);
+};
+
+extern int D_002BA154;
+void *func_001E8A44(int size);
+
+struct C_001BC040 {
+    char pad0[0x24];
+    V4_001BC040 f24;
+    V4_001BC040 f34;
+    char pad44[0xC];
+    char f50[0x40];
+    int f90;
+    int f94;
+    int f98;
+    int *f9C;
+    char padA0[0x14];
+    int *fB4;
+    int *fB8;
+    int *fBC;
+    int *fC0;
+    int *fC4;
+    int *fC8;
+    int *fCC;
+    char padD0[0x210];
+    float f2E0;
+    Base_001BC040 *f2E4;
+    void func_001D3F50(void);
+    void func_001577A0(Base_001BC040 *p, int n);
+    C_001BC040 *func_001BC040(V4_001BC040 a, V4_001BC040 b, V4_001BC040 c, V4_001BC040 d, float e, int n, int p90, int *p9c);
+};
