@@ -1,5 +1,82 @@
 /* 7 functions from 0x00027860 to 0x00028130, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
+
+struct S_V4_27860 {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
+struct S_Phys_27860 {
+    char pad0[0x130];
+    float f130[3];
+    char pad13C[0xD4];
+    float f210;
+};
+
+struct S_Obj_27860 {
+    char pad0[0x50];
+    int f50;
+    int f54;
+    char pad58[0x10];
+    int f68;
+    char pad6C[0x14];
+    float f80;
+    char pad84[0x11C];
+    float f1A0[4];
+};
+
+struct C_00027860 {
+    char pad0[0x10C];
+    float f10C[4];
+    char pad11C[0x1E0 - 0x11C];
+    S_Phys_27860 *f1E0;
+    char pad1E4[4];
+    S_Obj_27860 *f1E8;
+    char pad1EC[0x59C - 0x1EC];
+    float f59C;
+    char pad5A0[0x5CC - 0x5A0];
+    float f5CC;
+    float f5D0;
+    float f5D4;
+    float f5D8;
+    float f5DC;
+    float f5E0;
+    float f5E4;
+    char pad5E8[0x744 - 0x5E8];
+    float f744;
+    float f748[4];
+    void func_00027860(float dt);
+};
+
+extern float D_002756DC;
+extern float D_002A1150;
+extern float D_00275BF8;
+extern float D_00275544;
+void func_000265C0(float *out, float *a, float *b, float *c, int d, int e);
+S_V4_27860 func_00026880(float *v, float *m);
+S_V4_27860 func_000267F0(float *v, float *m);
+void func_0014FD80(float *p);
+
+static __forceinline float Max_27860(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float Min_27860(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline void Cross_27860(float * volatile out, float * volatile a, float * volatile b)
+{
+    float *pa = a, *pb = b;
+    __m128 va = _mm_loadu_ps(pa);
+    __m128 vb = _mm_loadu_ps(pb);
+    __m128 sa = va, sb = vb;
+    sa = _mm_shuffle_ps(sa, sa, 0xc9);
+    sb = _mm_shuffle_ps(sb, sb, 0xc9);
+    vb = _mm_mul_ps(vb, sa);
+    va = _mm_mul_ps(va, sb);
+    va = _mm_sub_ps(va, vb);
+    va = _mm_shuffle_ps(va, va, 0xc9);
+    _mm_storeu_ps(out, va);
+}
+
 struct C_00027C30 {
     char pad0[0x4F4];
     int unk4F4;
