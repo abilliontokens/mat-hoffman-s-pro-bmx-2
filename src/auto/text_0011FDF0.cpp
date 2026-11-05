@@ -9,7 +9,7 @@ extern float D_00275544;
 extern float D_002B9348;
 extern void **D_002B92F4;
 struct S_0011F4B0_V4 { float x, y, z, w; };
-static S_0011F4B0_V4 sub_00120470(S_0011F4B0_V4 &a, S_0011F4B0_V4 &b)
+static __forceinline S_0011F4B0_V4 sub_00120470(S_0011F4B0_V4 &a, S_0011F4B0_V4 &b)
 {
     S_0011F4B0_V4 r;
     r.x = a.x - b.x; r.y = a.y - b.y; r.z = a.z - b.z; r.w = 1.0f;
