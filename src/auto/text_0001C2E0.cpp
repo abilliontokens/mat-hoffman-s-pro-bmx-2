@@ -40,6 +40,12 @@ struct C_0001C9C0 {
     void *func_0001C9C0(int flags);
 };
 
+struct C_0001CA80 {
+    int unk0;
+    void func_00157660(void);
+    void *func_0001CA80(int flags);
+};
+
 struct C_0001C520 {
     int unk0;
     char pad4[0x14];
