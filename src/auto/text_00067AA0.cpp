@@ -59,7 +59,9 @@ struct C_000683F0_Obj {
     virtual void v35();
     char pad4[0x1D];
     u8 unk21;
-    char pad22[0x1D2];
+    char pad22[0x6E];
+    int unk90;
+    char pad94[0x1F4 - 0x94];
     int unk1F4;
     void func_00032A40();
 };
