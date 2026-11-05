@@ -56,6 +56,11 @@ struct SearchEntry {
     unsigned char f181;
 };
 
+struct S_00192840_Flags {
+    unsigned char b0 : 1;
+    unsigned char b1 : 1;
+};
+
 /* the growable list embedded at +0x10 of C_00192470 */
 struct S_00192840_List {
     int count;
@@ -449,8 +454,10 @@ void C_00192470::func_00192840(int *row, int *limit)
         if ((e & 2) == 0) {
             char *p = (char *)(e & ~1);
             if ((p[3] & 1) != 0 && (p[3] & 4) == 0) {
+                char fl;
                 if (p[2] == f24) {
-                    if ((p[-3] & 1) != 0) {
+                    fl = p[-3];
+                    if ((fl & 1) != 0) {
                         SearchEntry *obj = (SearchEntry *)(p - 0x24);
                         obj->v14();
                         if ((obj->f181 & 1) != 0) {
@@ -458,7 +465,8 @@ void C_00192470::func_00192840(int *row, int *limit)
                         }
                     }
                 } else if (p[2] == f25) {
-                    if ((p[-3] & 1) != 0) {
+                    fl = p[-3];
+                    if ((fl & 1) != 0) {
                         SearchEntry *obj = (SearchEntry *)(p - 0x24);
                         obj->v14();
                         if ((p[3] & 2) != 0) {
@@ -611,6 +619,16 @@ undefined4 C_00192BD0::func_00192BD0(int param_1)
     } while (iVar1 < *(int *)(in_ECX + 0x34));
   }
   return 0;
+}
+
+void func_00192C00(float a, float b, float c, float d, void *out)
+{
+    float m[16];
+    S_00192C00_Obj *o = D_002EFDB8->f4;
+    float s = func_0014F600(o->f1D0 * D_0028AC40) * o->f1FC;
+    float u = s * o->f1F8;
+    func_00162470(m, s * a, b * s, u * c, d * u, o->f1FC, o->f200, 0);
+    func_000263B0(out, o->fB0, m);
 }
 
 C_00192CA0 *C_00192CA0::func_00192CA0(unsigned int flags)
