@@ -34,7 +34,22 @@ struct S_001EF734 {
     void func_001EFB82(char *s);
     void func_001EEF4F(S_001EF734 *src);
     void func_001EF9B2(char *s);
+    char *func_001EF26D(char *buf, int n);
+    S_001EF734 *func_001EF789(char **pp, char delim);
 };
+
+struct S_002F6A20 {
+    int count;
+    void func_001EEFBA(int i);
+    void func_001EF3D2(S_001EF734 *n);
+};
+extern S_002F6A20 *D_002F6A20;
+extern char D_00295CBC[];
+extern char D_00295CAC[];
+extern char D_00295CA8[];
+extern char D_00295C94[];
+extern unsigned char D_002F6A39;
+extern char *(*D_002F6A3C)(long);
 
 #pragma optimize("t", off)
 extern char D_00295CE8[];
