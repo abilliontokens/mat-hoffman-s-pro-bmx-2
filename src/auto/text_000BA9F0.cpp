@@ -90,3 +90,10 @@ void BmxUIManager::func_000BB380(const char *name)
     f25c->f74->func_00030160();
 }
 
+void BmxUIManager::func_000BB3B0(const char *a, const char *b)
+{
+    f25c->f74->func_00030020(a);
+    f25c->f74->func_000300C0(b);
+    f25c->f74->func_00030160();
+}
+
