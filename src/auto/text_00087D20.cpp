@@ -164,35 +164,27 @@ DirectionArrowOverlay *DirectionArrowOverlay::func_00088950(int a0, int a1)
 
 void DirectionArrowOverlay::func_00088A40(int a, S_00088A40_V4 *v)
 {
-    int y = (f24 != 1) ? 0xE0 : 0x70;
-    int x = 0;
     C_001D5760 *o;
+    int x = 0;
+    int y = (f24 != 1) ? 0xE0 : 0x70;
 
     if (a >= 0) {
         x = (f24 != 1) ? 0x120 : 0x260;
     }
     o = f28;
-    if ((float)x != o->f4 || o->f8 != (float)y) {
-        o->f4 = (float)x;
-        o->f8 = (float)y;
-        o->b58 |= 1;
-    }
+    o->SetPos((float)x, (float)y);
     o = f28;
-    if ((float)(x + 0x10) != o->f14 || o->f18 != (float)(y + 0x10)) {
-        o->f14 = (float)(x + 0x10);
-        o->f18 = (float)(y + 0x10);
-        o->b58 |= 1;
-    }
-    if (a < 0) {
+    o->SetSize((float)(x + 0x10), (float)(y + 0x10));
+    if (a >= 0) {
         o = f28;
-        if (*(float *)&o->f30 != D_00275544) {
-            o->f30 = 0;
+        if (o->f30 != 0x40490fd9) {
+            o->f30 = 0x40490fd9;
             o->b58 |= 1;
         }
     } else {
         o = f28;
-        if (o->f30 != 0x40490fd9) {
-            o->f30 = 0x40490fd9;
+        if (*(float *)&o->f30 != D_00275544) {
+            o->f30 = 0;
             o->b58 |= 1;
         }
     }
