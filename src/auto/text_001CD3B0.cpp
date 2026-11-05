@@ -329,7 +329,7 @@ mismatch:
     }
 done:
     fC->GetStatus(&status);
-    if ((status & 0x40000) == 0 && (status & 0x10000) != 0) {
+    if ((status & (unsigned long)&D_00040000) == 0 && (status & (unsigned long)&D_00010000) != 0) {
         return 0;
     }
     f20 |= 6;
