@@ -266,6 +266,36 @@ struct C_00055380 {
  int func_00055A10(S_00056100_Quat,S_00056100_Quat,S_00056100_Quat,S_00056100_Quat,float);
 };
 
+struct CameraBehavior_00055380 {
+    __forceinline CameraBehavior_00055380() { ((C_00055380 *)this)->func_0012B510(); }
+};
+
+struct Quat_00055380 : S_00056100_Quat {
+    Quat_00055380() { z = 0; y = 0; x = 0; w = 1.0f; }
+    void operator=(const S_00056100_Quat &q) { *(S_00056100_Quat *)this = q; }
+};
+
+struct func_00055380 : CameraBehavior_00055380 {
+    void *vtbl_dummy_unused_pad;
+    char pad4[4];
+    u32 unk8, unkC, unk10, unk14, unk18;
+    Quat_00055380 q1C;
+    Quat_00055380 q2C;
+    u32 unk3C, unk40, unk44, unk48, unk4C, unk50, unk54, unk58;
+    char pad5C[4];
+    u32 unk60, unk64, unk68;
+    Quat_00055380 q6C, q7C, q8C, q9C, qAC, qBC, qCC, qDC, qEC, qFC, q10C, q11C;
+    char pad12C[12];
+    u32 unk138, unk13C, unk140, unk144, unk148, unk14C, unk150, unk154, unk158, unk15C;
+    u32 unk160, unk164, unk168, unk16C, unk170, unk174, unk178, unk17C, unk180, unk184;
+    u32 unk188, unk18C, unk190, unk194, unk198, unk19C, unk1A0, unk1A4, unk1A8, unk1AC;
+    u32 unk1B0, unk1B4, unk1B8, unk1BC, unk1C0, unk1C4, unk1C8, unk1CC, unk1D0, unk1D4;
+    u32 unk1D8, unk1DC, unk1E0, unk1E4, unk1E8;
+    Quat_00055380 q1EC, q1FC;
+    u32 unk20C, unk210, unk214, unk218, unk21C;
+    func_00055380();
+};
+
 #include <xmmintrin.h>
 #include <math.h>
 struct C_00055A10_Filter { float func_00026A10(float,float); void func_000269B0(float,float,float); };
