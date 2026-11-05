@@ -36,15 +36,6 @@ struct C_5E40_G {
 
 extern C_5E40_G *D_002B91AC;
 
-struct BmxUIPageMain {
-    char pad0[0x2F0];
-    int f2F0;
-    void func_000C4CE0();
-    void func_000C4FD0();
-    void func_000C5580();
-    void func_00157960();
-};
-
 struct BmxUIPageParkEditor {
     void *vtbl;
     char pad4[0x120];
@@ -118,11 +109,11 @@ void BmxUIPageParkEditor::func_000C5980(void)
 
 void BmxUIPageParkEditor::func_000C5E40(void)
 {
-    if (f124->f25C->f74->func_000301D0() == 0) {
-        D_002B91AC->f38->func_001D6600();
-        D_002B91AC->f80->func_001D6600();
-        D_002B91AC->f84->func_001D6600();
-        D_002B91AC->f34->func_001D6600();
-    }
+    if (f124->f25C->f74->func_000301D0() != 0)
+        return;
+    D_002B91AC->f38->func_001D6600();
+    D_002B91AC->f80->func_001D6600();
+    D_002B91AC->f84->func_001D6600();
+    D_002B91AC->f34->func_001D6600();
 }
 
