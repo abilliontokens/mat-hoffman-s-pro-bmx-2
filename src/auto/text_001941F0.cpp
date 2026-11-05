@@ -483,9 +483,9 @@ void C_00194DC0::func_00194DC0(int a0, int *a1, S_Vec4Int *a2, S_Vec4Int *a3, in
     *a1 = f4;
 }
 
-void C_00194E60::func_00194E60(int a, int b, int c, int d)
+void C_00194E60::func_00194E60(S_Vec4Int v)
 {
-    Set(a, b, c, d);
+    Assign(v);
 }
 
 void C_00194E60::func_00194E90(S_Vec4Int *out)
