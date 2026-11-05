@@ -37,6 +37,8 @@ struct C_001A6260 {
     char pad54[0x40];
     S_6260_V *f94;
     void func_001A6260();
+    void func_001A6930();
+    void func_001578D0();
     void func_00157660();
     void func_0018C120();
 };
