@@ -1,8 +1,43 @@
 /* 8 functions from 0x0017D580 to 0x0017E2C0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+extern int D_0028909C;
+extern void *D_002EFD80;
+
 struct C_0017D580 {
     undefined4 func_0017D580(byte param_1);
+};
+
+struct C_0017DAC0 {
+    undefined4 func_0017DAC0(byte param_1);
+};
+
+struct C_0017D5A0 {
+    void *vtbl;
+    char pad4[0x94];
+    u32 flags98;
+    char pad9C[0x7E4];
+    u32 unk880;
+    s32 unk884;
+    u32 unk888;
+    u32 unk88C;
+    u32 unk890;
+    u32 unk894;
+    u32 unk898;
+    u32 unk89C;
+    char pad8A0[0x10];
+    u32 unk8B0;
+    void func_00192720();
+    void func_0017C360(int a1, int a2, int a3, int a4, int a5);
+    C_0017D5A0 *func_0017D5A0(int a1, int a2, int a3, int a4, int a5, int a6, int a7);
+};
+
+struct C_0017DC00 {
+    char pad0[4];
+    C_0017DC00 **arr4;
+    int f8;
+    void func_0017DC00();
+    void func_0017D120(int a0);
 };
 
 
