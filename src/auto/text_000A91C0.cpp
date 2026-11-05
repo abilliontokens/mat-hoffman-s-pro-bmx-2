@@ -2,6 +2,18 @@
 #include "common.h"
 extern int D_0027C51C;
 
+struct S_A95D0_b { char pad0[4]; char *f4; };
+struct S_A95D0_inner { char pad0[4]; int kind; char pad8[0x19C]; S_A95D0_b *f1A4; };
+struct S_A95D0_o { char pad0[0x104]; int n; void **arr; };
+struct S_A95D0_list { char pad0[0x24]; int num; void **items; };
+struct S_A95D0_arg { char pad0[0x3A8]; S_A95D0_list **f3A8; S_A95D0_list *f3AC; };
+struct C_A95D0 {
+    char pad0[0x24];
+    int num;
+    S_A95D0_o **objs;
+    void func_000A95D0(S_A95D0_arg *a);
+};
+
 struct CCElem { void func_001824E0(float *out, float a, float b, float c); };
 struct CCObj {
     char pad0[0x104];
