@@ -62,6 +62,21 @@ BmxUIPageDemo *BmxUIPageDemo::func_000BFE90(int a0)
     return this;
 }
 
+BmxUIPageDemo *BmxUIPageDemo::func_000C0010(int a0, int a1, int a2)
+{
+    func_001BE4F0(a0, a1, a2);
+    a2 = (int)D_0027958C;
+    D_002A8490->f2ec->func_0018C780(1, &a2, 0);
+    D_002A8490->f2ec->func_0018C160(D_0027958C);
+    unk280 = (int)new S_C0010_Text(1);
+    ((S_C0010_Text *)unk280)->func_001B1580(D_0027958C, D_0027958C, D_002A8490->f2e8->f4->fae8, 0);
+    ((S_C0010_Text *)unk280)->func_001B1A30(320.0f, 224.0f, 0);
+    ((S_C0010_Text *)unk280)->func_001B19A0(D_0028F5E0);
+    ((S_C0010_Text *)unk280)->func_001B2270(0xffcccccc);
+    func_001577A0((void *)unk280, -1);
+    return this;
+}
+
 int BmxUIPageDemo::func_000C0100(int idx)
 {
     if (idx >= unk290) {
