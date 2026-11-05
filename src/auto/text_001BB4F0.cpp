@@ -141,6 +141,19 @@ int C_001BB900::func_001BB900(void *a1)
     return 0;
 }
 
+void C_001BBAA0::func_001BBA60(void)
+{
+    int i;
+    if (unk9C != 0) {
+        for (i = 0; i < 5; i++) {
+            if (unkA0[i] == -1082130432) {
+                unkA0[i] = *unk9C;
+                return;
+            }
+        }
+    }
+}
+
 undefined4 C_001BC020::func_001BC020(byte param_1)
 {
   int func_001BB860(...);
