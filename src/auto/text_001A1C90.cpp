@@ -296,6 +296,25 @@ struct C_001A2A10 {
     int func_001A2B40(int a0);
 };
 
+struct ObjV5_22F0 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5(int a);
+};
+
+struct C_001A22F0 {
+    char pad0[0x98];
+    u8 f98;
+    char pad99[0x1b4 - 0x99];
+    int f1b4;
+    char pad1b8[4];
+    ObjV5_22F0 *f1bc;
+    void func_001A22F0(void);
+};
+
 int C_001A1C90::func_001A1C90(int a0, int a1, S16_1A s, int a2) {
     if (unk1BC == 0) {
         return 0;
