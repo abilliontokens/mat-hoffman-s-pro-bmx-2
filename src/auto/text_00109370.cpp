@@ -17,6 +17,13 @@ struct C_00109520 {
     void func_00109550(int p);
     int func_00109580(int idx);
     int func_00109C70(C_00109520 *src);
+
+    int GetB(int idx) { if (idx >= count) return 0; return b[idx]; }
+    int GetC(int idx) { if (idx >= count) return 0; return c[idx]; }
+    int GetD(int idx) { if (idx >= count) return 0; return d[idx]; }
+    int GetE(int idx) { if (idx >= count) return -1; return e[idx]; }
+    void SetD(int p) { if (count >= 1) d[count - 1] = p; }
+    void SetE(int p) { if (count >= 1) e[count - 1] = p; }
 };
 
 struct C_00109F30 {
@@ -217,6 +224,29 @@ int C_00109520::func_00109580(int idx) {
         return -1;
     }
     return a[idx];
+}
+
+int C_00109520::func_00109C70(C_00109520 *src)
+{
+    int i;
+    int n;
+    int v;
+
+    ((C_001094B0 *)this)->func_001094B0();
+    n = src->count;
+    for (i = 0; i < n; i++) {
+        func_00109520(i < src->count ? src->b[i] : 0, i < src->count ? src->a[i] : -1);
+        func_00109550(i < src->count ? src->c[i] : 0);
+        v = i < src->count ? src->d[i] : 0;
+        if (count >= 1) {
+            d[count - 1] = v;
+        }
+        v = i < src->count ? src->e[i] : -1;
+        if (count >= 1) {
+            e[count - 1] = v;
+        }
+    }
+    return 1;
 }
 
 void C_00109F30::func_00109F30(void) {
