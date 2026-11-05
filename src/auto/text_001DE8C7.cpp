@@ -34,6 +34,30 @@ extern "C" u32 (__stdcall *__imp__RtlNtStatusToDosError)(long status);
 extern "C" __declspec(dllimport) long __stdcall IoDeleteSymbolicLink(S_AnsiString *name);
 extern "C" __declspec(dllimport) u32 __stdcall RtlNtStatusToDosError(long status);
 
+/* free-region list node of the kernel heap (address, size, next) */
+struct S_FreeNode {
+    S_FreeNode *next;
+    unsigned int addr;
+    unsigned int size;
+};
+
+struct S_HeapPool {
+    char pad0[0x4c];
+    S_FreeNode *freeNodes;
+};
+
+struct S_Heap {
+    char pad0[0x18];
+    S_HeapPool *pool;
+    unsigned int high;
+    char pad20[0x14];
+    int count;
+    S_FreeNode *head;
+};
+
+S_FreeNode * __stdcall func_001DF626(S_Heap *heap);
+void __stdcall func_001DF746(S_Heap *heap, S_FreeNode *node);
+
 unsigned char __stdcall func_001E1297(int a, int b, int c);
 void func_001DE82F(void);
 void __stdcall func_001DD659(int code);
