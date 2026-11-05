@@ -1,6 +1,37 @@
 /* 6 functions from 0x000E4220 to 0x000E51B0, found by Ghidra. */
 #include "common.h"
 
+extern int D_0027FC74;
+void func_001E891B(void *p);
+
+/* anything the page owns and frees through its virtual destructor */
+struct S_000E4AB0_Obj {
+    virtual ~S_000E4AB0_Obj();
+};
+
+/* owned object destroyed with an explicit call, then freed */
+struct S_000E4AB0_Raw {
+    void func_001D6410();
+};
+
+/* BmxUIPageRiderOps */
+struct C_000E4AB0 {
+    void *vtbl;
+    char pad4[0x50C];
+    S_000E4AB0_Obj *f510;
+    S_000E4AB0_Obj *a514[5];
+    S_000E4AB0_Obj *a528[5];
+    S_000E4AB0_Obj *a53C[5];
+    S_000E4AB0_Obj *a550[5];
+    S_000E4AB0_Raw *a564[5];
+    char pad578[0x6B8 - 0x578];
+    S_000E4AB0_Obj *a6B8[6];
+    S_000E4AB0_Obj *a6D0[4];
+    S_000E4AB0_Obj *a6E0[4];
+    void func_000E4AB0();
+    void func_001BE3F0();
+};
+
 struct C_000E5150_Slots {
     char pad0[0x62C];
     int f62C[3];
