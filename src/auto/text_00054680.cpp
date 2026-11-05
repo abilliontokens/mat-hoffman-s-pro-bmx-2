@@ -16,3 +16,15 @@ struct C_00054960 {
     void func_00054960(void);
     void func_001577A0(int a, int b);
 };
+
+void *C_000549C0::func_000549C0(int flags) {
+    extern int D_00277B74;
+    void func_00033220();
+    void func_001E891B(void *);
+    vtbl = (void *)&D_00277B74;
+    func_00033220();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
