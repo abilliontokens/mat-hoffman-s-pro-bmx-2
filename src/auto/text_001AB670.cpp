@@ -104,6 +104,17 @@ void StateMachine::func_001AC0D0(int a)
     func_00157A00(a);
 }
 
+void C_001AC150::func_001AC150(int count)
+{
+    int *p = (int *)func_001E8A44(count * 4);
+    for (int i = 0; i < field_08; i++) {
+        p[i] = field_04[i];
+    }
+    func_001E891B(field_04);
+    field_04 = p;
+    field_08 = count;
+}
+
 StringTable *StringTable::func_001AC3A0()
 {
     func_0001DFE0();
