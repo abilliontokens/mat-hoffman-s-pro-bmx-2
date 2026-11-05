@@ -52,6 +52,7 @@ struct C_0002FA80 {
     int cur;
 
     undefined4 func_00030020(const char *name);
+    undefined4 func_000305C0(const char *path);
     int func_000300C0(const char *subName);
     void func_000301D0(void);
     bool func_00030120(const char *subName);
