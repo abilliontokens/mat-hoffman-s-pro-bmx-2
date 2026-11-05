@@ -230,21 +230,18 @@ int C_00109520::func_00109C70(C_00109520 *src)
 {
     int i;
     int n;
-    int v;
+    int vb;
+    int va;
 
     ((C_001094B0 *)this)->func_001094B0();
     n = src->count;
     for (i = 0; i < n; i++) {
-        func_00109520(i < src->count ? src->b[i] : 0, i < src->count ? src->a[i] : -1);
-        func_00109550(i < src->count ? src->c[i] : 0);
-        v = i < src->count ? src->d[i] : 0;
-        if (count >= 1) {
-            d[count - 1] = v;
-        }
-        v = i < src->count ? src->e[i] : -1;
-        if (count >= 1) {
-            e[count - 1] = v;
-        }
+        vb = src->GetB(i);
+        va = src->func_00109580(i);
+        func_00109520(vb, va);
+        func_00109550(src->GetC(i));
+        SetD(src->GetD(i));
+        SetE(src->GetE(i));
     }
     return 1;
 }
