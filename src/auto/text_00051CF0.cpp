@@ -126,7 +126,9 @@ struct C_00051CF0 {
     float unk124;                     /* 0x124 */
     char pad128[0x48];
     C_00051CF0_170 *unk170;           /* 0x170 */
-    char pad174[0x54];
+    char pad174[0x4C];
+    C_00052AE0_1C0 *unk1C0;           /* 0x1C0 */
+    char pad1C4[4];
     int unk1C8;                       /* 0x1C8 */
     char pad1CC[0xEC];
     float unk2B8[4];                  /* 0x2B8 */
