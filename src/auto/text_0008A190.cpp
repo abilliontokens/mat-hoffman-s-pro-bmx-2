@@ -111,6 +111,22 @@ struct C_0008A910 {
 };
 
 
+C_0008A2E0 *C_0008A2E0::func_0008A2E0(int a0) {
+    func_00157600(1);
+    vtbl = &D_00279B64;
+    int i;
+    for (i = 0; i < 9; i++) {
+        elems[i].func_001D5760();
+    }
+    for (i = 0; i < 5; i++) {
+        ptrs[i] = 0;
+        vals[i] = -1;
+    }
+    unk4D8 = 1;
+    unk4DC = 10;
+    return this;
+}
+
 undefined4 C_0008A8F0::func_0008A8F0(int param_1)
 {
   int in_ECX = (int)this;
