@@ -14,7 +14,9 @@ struct S_001EF734 {
     int func_001EF1D0();
     void func_001EEEE6(S_001EF734 *);
     void func_001EEF4F(S_001EF734 *);
-    void func_001EF170(int);
+    S_001EF734 *func_001EF170(int);
+    void func_001EF333(int);
+    S_001EF734 *func_001EFD3B(void *, char);
     S_001EF734 *func_001EFAB5(void *, void *);
     S_001EF734 *func_001EFD7A(void *, const char *);
 };
