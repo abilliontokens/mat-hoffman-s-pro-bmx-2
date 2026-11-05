@@ -202,3 +202,11 @@ void *C_00092710::func_00092710(int flags)
     return this;
 }
 
+void *C_00092790::func_00092790(int flags)
+{
+    ((C_0008ADF0 *)this)->func_0008ADF0();
+    if (flags & 1)
+        func_001E891B(this);
+    return this;
+}
+
