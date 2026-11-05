@@ -94,10 +94,56 @@ struct C_001AE3E0_Quat {
     }
 };
 
+void *func_001E8A44(int size);
+void *func_001E8AA5(int size);
+float *func_0001E9E0(float *out, float *in);
+extern int D_0028C198;
+
+/* packed color: alpha is the top byte */
+union U_001AEBD0_Color {
+    unsigned int rgba;
+    struct {
+        unsigned char b;
+        unsigned char g;
+        unsigned char r;
+        unsigned char a;
+    } c;
+};
+
+/* the 0x6c-byte sprite a particle object owns (virtual destructor in slot 0) */
+struct S_001AEBD0_Sprite : C_001ADFD0_Virt {
+    char pad4[0x28];
+    int f2C;
+    int f30;
+    int f34;
+    int f38;
+    float f3C;
+    float f40;
+    char pad44[0x10];
+    U_001AEBD0_Color col[4];
+    unsigned char f64;
+    S_001AEBD0_Sprite *func_001ADEB0(void);
+    void func_001ADF30(int a, int b);
+};
+
+struct C_001AE3E0;
+
+/* 8-byte back-reference object stored into C_001AE3E0_Sub::f8 */
+struct S_001AEBD0_Ref {
+    void *vtbl;
+    C_001AE3E0 *f4;
+    S_001AEBD0_Ref()
+    {
+        vtbl = &D_0028C198;
+        f4 = 0;
+    }
+    static void *operator new(unsigned int size) { return func_001E8A44(size); }
+};
+
 struct C_001AE3E0 : C_001AE3E0_Head {
     C_001AE3E0_Quat f40;
     int f50;
-    C_001ADFD0_Virt *f54;
+    S_001AEBD0_Sprite *f54;
     C_001AE3E0_Sub f58;
     void *f64;
     int f68;
