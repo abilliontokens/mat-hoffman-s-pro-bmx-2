@@ -20,6 +20,16 @@ struct C_Mgr_D1 {
     char pad2C4[0x14];
     int f2D8;
     int f2DC[8];
+    char pad2FC[0x32C - 0x2FC];
+    int f32C[8];
+};
+
+struct C_000D23D0 {
+    char pad0[0x418];
+    int f418;
+    char pad41C[0x2030 - 0x41C];
+    C_001B17D0 *f2030;
+    void func_000D23D0(void);
 };
 
 struct C_000D2300 {
