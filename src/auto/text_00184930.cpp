@@ -228,13 +228,14 @@ int C_00184930::func_00184D10(void)
     if (f388 != 0) {
         func_001ADCC0(buf, 0x104, D_00275678, f30, f388->name);
         func_00030F30(buf, D_00289580);
-        if (D_002BEAAC->func_0013B1A0(buf) == 0) {
-            return 0;
+        if (D_002BEAAC->func_0013B1A0(buf) != 0) {
+            void *mem = func_001E8A44(0xe00);
+            C_001B1130 *obj = mem != 0 ? ((C_001B1130 *)mem)->func_001B1130(1) : 0;
+            f3e4 = obj;
+            f3e4 = obj->func_001B1190(buf, 1, 8, 0, 0, 0, 0);
+            return 1;
         }
-        void *mem = func_001E8A44(0xe00);
-        C_001B1130 *obj = mem != 0 ? ((C_001B1130 *)mem)->func_001B1130(1) : 0;
-        f3e4 = obj;
-        f3e4 = obj->func_001B1190(buf, 1, 8, 0, 0, 0, 0);
+        return 0;
     }
     return 1;
 }
