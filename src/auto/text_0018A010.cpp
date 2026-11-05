@@ -1,5 +1,6 @@
 /* 5 functions from 0x0018A010 to 0x0018B010, found by Ghidra. */
 #include "common.h"
+struct S_00185610_Out { char pad0[4]; float f4, f8, fC; int pad10; float f14, f18; };
 struct S_A010_Curve { float func_00026A10(float,float); };
 struct S_A010_Draw { void func_00150390(unsigned int,float,float,int); };
 struct S_A010_List { int pad; int count; int pad8; int *indices; };
