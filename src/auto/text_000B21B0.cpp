@@ -109,6 +109,28 @@ struct C_000B2530 {
 };
 
 
+void VehicleAI::func_000B2450(float arg)
+{
+    if (f78) {
+        VehicleAIBody *body = f44->f28->f8;
+        if (body->f1A0 & 2) {
+            unsigned int u = (unsigned int)(body->f1BC->v17() * D_002755E8);
+            body->func_001A1C70((int)(arg * u + u));
+        }
+    }
+}
+
+float __stdcall func_000B24C0(float a, float b, float c)
+{
+    if (a <= b) {
+        return b;
+    }
+    if (a >= c) {
+        return c;
+    }
+    return (a + c) * D_002755E8 + b;
+}
+
 void C_000B2510::func_000B2510(int param_1)
 {
   int in_ECX = (int)this;
