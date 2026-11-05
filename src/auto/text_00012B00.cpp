@@ -10,7 +10,8 @@ struct S_13910_Ent {
     char pad3[0xa00 - 0x954]; struct S_13910_Pl *fa00;
 };
 struct S_13910_Pl { char pad[4]; S_13910_Obj2 *f4; };
-struct S_13910_Row { char pad[8]; float f8; };
+struct S_13910_Row { int count; S_13910_Vec *points; float f8; };
+extern void func_000111B0(S_13910_Vec *, S_13910_Vec *);
 struct S_13910_G {
     char pad[0x4e0]; struct S_13910_Arr *f4e0;
     char pad2[0x588 - 0x4e4]; S_13910_Row **f588;
@@ -36,6 +37,24 @@ struct AIPedFightState {
     void func_00013910();
 };
 extern S_13910_G *D_002B9120;
+
+void AIPedFightState::func_00012B00(int a0)
+{
+    int a, b;
+
+    f1c = D_002A8490->f238 + 0x177;
+    f8->func_00011BE0(&a, &b);
+    if (a != -1) {
+        S_13910_Vec pos;
+        pos.z = 0; pos.y = 0; pos.x = 0; pos.w = 1.0f;
+        if (D_002B9120->f4e0->ents[a]->f950->fbc != 0) {
+            S_13910_Vec t;
+            pos = *D_002B9120->f4e0->ents[a]->fa00->f4->func_00199B00(&t, 0);
+        } else {
+            pos = D_002B9120->f4e0->ents[a]->f834;
+        }
+    }
+}
 
 void AIPedFightState::func_00013910()
 {
