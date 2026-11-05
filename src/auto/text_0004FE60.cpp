@@ -38,6 +38,18 @@ struct BmxEventPush {
     void func_001578D0();
 };
 
+BmxEventPush *BmxEventPush::func_00050A10(int a0) {
+    func_00030F90(a0);
+    unk290 = 0;
+    unk288 = 0;
+    unk28c = 0;
+    unk294 = 0;
+    unk298 = 0;
+    unk284 = 0;
+    vtbl = &D_0027784C;
+    return this;
+}
+
 void *BmxEventPush::func_00050D40(int flags) {
     vtbl = &D_0027784C;
     func_00033220();
