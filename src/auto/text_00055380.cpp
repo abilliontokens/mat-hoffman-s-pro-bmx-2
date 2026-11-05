@@ -1,7 +1,7 @@
 /* 8 functions from 0x00055380 to 0x000562C0, found by Ghidra. */
 #include "common.h"
 
-extern float D_00277D04;
+extern const float D_00277D04;
 
 struct S_000560A0_Inner {
     char pad0[0x3C];
