@@ -8,6 +8,12 @@ struct C_002B92A0 {
 };
 extern C_002B92A0 D_002B92A0;
 
+void func_00123940(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8) {
+    int func_001237D0(...);
+    D_002B92F4 = a7;
+    func_001237D0(a1, a2, a3, a4, a5, a6, a8);
+}
+
 void func_00123C50(int a1, int a2, int a3, int a4, int a5, int a6, int a7) {
     int func_00123AF0(...);
     D_002B92F4 = a7;
