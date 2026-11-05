@@ -37,6 +37,19 @@ static float fabs_0011EE50(float v)
     return *(float *)&tmp;
 }
 
+struct V3_0011EEE0 {
+    float x;
+    float y;
+    float z;
+};
+
+static float min_0011EEE0(float a, float b)
+{
+    float r;
+    _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b)));
+    return r;
+}
+
 struct C_0011EDF0 {
     float x;
     float y;
