@@ -40,7 +40,7 @@ struct BmxUIPageOptions {
     int unk148[8];
     char pad168[0x280 - 0x168];
     int unk280, unk284;
-    float unk288, unk28c;
+    int unk288, unk28c;
     float unk290;
     int unk294, unk298, unk29c, unk2a0, unk2a4;
     char pad2a8[0x2b0 - 0x2a8];
