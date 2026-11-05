@@ -32,6 +32,11 @@ void func_001E8390(void *p);
 
 extern int D_00286B04;
 
+struct S_002EFDB8_Fog {
+    char pad0[0x2c];
+    float f2C;
+};
+
 struct S_00150440_Renderer {
     void func_0012AAE0(float a, int b);
 };
@@ -265,19 +270,39 @@ void func_0014FAD0(void)
     }
 }
 
+float func_0014FB30(float x)
+{
+    extern float D_00275460;
+    extern float D_00286AC0;
+    extern float D_002756D4;
+    extern float D_00275544;
+    float ax = fabs_0014FB30(x);
+    float r;
+
+    if (ax > D_00275460) {
+        r = D_002756D4 - ax / (ax * ax + D_00286AC0);
+    } else {
+        r = ax / (ax * ax * D_00286AC0 + D_00275460);
+    }
+    if (x < D_00275544) {
+        r = -r;
+    }
+    return r;
+}
+
 void func_0014FD80(float *p)
 {
     extern double D_002843A0;
     extern float D_002756D0;
     extern float D_002756B8;
     extern float D_002756E8;
-    double r = fmod(*p, D_002843A0);
+    float r = (float)fmod(*p, D_002843A0);
 
-    *p = (float)r;
+    *p = r;
     if (r > D_002756D0) {
-        *p = (float)(r - D_002756B8);
+        *p = r - D_002756B8;
     } else if (r < D_002756E8) {
-        *p = (float)(r + D_002756B8);
+        *p = r + D_002756B8;
     }
 }
 
@@ -309,15 +334,15 @@ void *func_0014FDF0(const char *path, const char *mode)
     char *d;
     char c;
 
-    if (path[1] == ':') {
+    if (path[1] != ':') {
+        func_001ADCC0(buf, 0x100, D_00275678, D_00286AD0, path);
+    } else {
         s = path;
         d = buf;
         do {
             c = *s++;
             *d++ = c;
         } while (c != 0);
-    } else {
-        func_001ADCC0(buf, 0x100, D_00275678, D_00286AD0, path);
     }
     return func_001E9701(buf, mode);
 }
