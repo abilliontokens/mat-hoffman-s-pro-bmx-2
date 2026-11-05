@@ -30,6 +30,34 @@ struct C_001B6100 {
     C_001B6100* func_001B6100(void);
 };
 
+struct S_001B6130_Stream;
+struct C_001BBAA0;
+
+struct S_001B6440_Param {
+    char pad0[0x3c8];
+    int f3c8;
+};
+
+struct S_001B64C0_Item {
+    char pad0[4];
+    void **f4;
+    char pad8[4];
+    int fc;
+};
+
+struct S_001B64C0_List {
+    char pad0[0x28];
+    S_001B64C0_Item **f28;
+};
+
+struct S_001B64C0_Param {
+    char pad0[0x3c0];
+    S_001B64C0_List *f3c0;
+};
+
+extern int D_00169C30;
+void func_00169C00(void);
+
 struct C_001B6410 {
     int unk0;
     int unk4;
@@ -39,6 +67,8 @@ struct C_001B6410 {
     int unk110;
     int unk114;
     C_001B6410* func_001B6410(void);
+    int func_001B6440(S_001B6130_Stream *stream, S_001B6440_Param *param);
+    int func_001B64C0(S_001B64C0_Param *param, C_001BBAA0 *obj);
 };
 
 struct C_001B5EA0 {
