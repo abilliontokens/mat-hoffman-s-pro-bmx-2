@@ -417,6 +417,37 @@ int C_0001CBF0::func_0001CBF0(void) {
     return ++unk44 - 1;
 }
 
+int C_0001CC00::func_0001CC00(int idx, int a, int b) {
+    void *mem = func_001E8A44(8);
+    S_0001CC00_Slot *obj = mem != 0 ? ((S_0001CC00_Slot *)mem)->func_001D5350() : 0;
+    slots[idx] = obj;
+    if (obj != 0 && obj->func_001A2510(this, a, b) != 0) {
+        unk58++;
+        unk2C = 0;
+        return 1;
+    }
+    if (slots[idx] != 0) {
+        slots[idx]->func_001A13F0();
+        func_001E891B(slots[idx]);
+    }
+    slots[idx] = 0;
+    return 0;
+}
+
+int C_0001CC00::func_0001CC80(int idx) {
+    S_0001CC00_Slot *s = slots[idx];
+    if (s != 0) {
+        s->func_001A13F0();
+        func_001E891B(s);
+        slots[idx] = 0;
+        unk58--;
+        unk44--;
+        unk2C = 0;
+        return 1;
+    }
+    return 0;
+}
+
 void C_0001CD40::func_0001CD40(void) {
     unk5C = 0;
 }
