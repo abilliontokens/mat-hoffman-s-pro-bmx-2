@@ -52,6 +52,10 @@ struct S_0001C610_V4 {
     float w;
 };
 
+static __forceinline float cross_0001C610(float *a, float *b, int i, int j) {
+    return b[j] * a[i] - b[i] * a[j];
+}
+
 static __forceinline float dot3_0001C680(float x, float y, float z, float *p) {
     return x * p[0] + y * p[1] + z * p[2];
 }
@@ -461,17 +465,17 @@ C_0001CA30 *C_0001CA30::func_0001C9F0(void)
 {
     extern int D_00275DAC;
     vtbl = (void *)&D_00275DAC;
-    f4 = 0;
     f8 = 0;
+    f4 = 0;
     fC = 0;
     f10 = 0;
     f14 &= 0xfe;
-    f18 = 0;
     f1C = 0;
+    f18 = 0;
     f20 = 0;
     f24 = 0;
-    f28 &= 0xfe;
-    f2C &= 0xfe;
+    f28 = 0;
+    f2C = 0;
     return this;
 }
 
