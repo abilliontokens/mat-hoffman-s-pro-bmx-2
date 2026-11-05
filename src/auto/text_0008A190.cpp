@@ -105,6 +105,9 @@ struct C_0008A2E0 {
     void func_00157660();
     void func_0008A350();
     void func_0008A8C0();
+    void func_0008A9B0();
+    int func_0008AA70();
+    void func_001578D0();
 };
 
 struct C_0008A8F0 {
