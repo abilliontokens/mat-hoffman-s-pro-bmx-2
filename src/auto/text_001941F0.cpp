@@ -104,7 +104,7 @@ struct SignatureWave {
     void *vtbl;
     char pad4[0x20];
     S_00194490_Clamp **f24;
-    unsigned f28;
+    int f28;
     int f2C;
     int f30;
     float f34;
@@ -414,6 +414,46 @@ void C_001942C0::func_001942C0(void)
 void C_00194310::func_00194310(int a0, int a1) {
     unk48 = a0;
     unk44 = a1;
+}
+
+void SignatureWave::func_00194330(S_Vec4 *a1, S_Vec4 *a2, int a3, float a4, float a5, float a6, float a7, int a8, int a9, int a10, int a11, int a12, int a13, float a14, int a15, int a16, int a17, int a18)
+{
+    float inv4 = D_00275460 / a4;
+    float inv5;
+    double v3;
+
+    *(S_Vec4 *)&f64 = *a1;
+    *(S_Vec4 *)&f74 = *a2;
+    f4C = a3;
+    f34 = a4;
+    f38 = a5;
+    f84 = 0;
+    f88 = 0;
+    f94 = 0;
+    f98 = 0;
+    f3C = inv4;
+    inv5 = D_00275460 / a5;
+    f40 = inv5;
+    v3 = (double)f28;
+    f9C = a9;
+    fA0 = a10;
+    fAC = a12;
+    fBC = 1.0f;
+    fB8 = 1.0f;
+    f50 = 0;
+    f54 = 0;
+    fE4 = a15;
+    fE8 = a17;
+    fA4 = a11 == 0 ? 3 : 1;
+    fD0 = a13;
+    fDC = a16;
+    fA8 = a11;
+    fEC = a18;
+    fD8 = a14;
+    f8C = a4 * a6 / v3;
+    f90 = a5 * a7 / v3;
+    fB0 = inv4 * D_00278784;
+    fB4 = inv5 * D_0028AE80;
 }
 
 int SignatureWave::func_00194490(void)
