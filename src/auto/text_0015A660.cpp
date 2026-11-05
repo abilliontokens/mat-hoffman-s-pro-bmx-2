@@ -178,12 +178,12 @@ undefined4 C_0015ABF0::func_0015ABF0(int param_1)
   return 1;
 }
 
-Ret_0015AC20 C_0015AC20::func_0015AC20(unsigned int flags)
+int C_0015AC20::func_0015AC20(unsigned int flags)
 {
     extern S_0015AC20_Game *D_002A8490;
     unsigned char bit = (D_002A8490->f230 >> 2) & 1;
 
-    if (bit == 0 && (char)flags < 0) {
+    if (bit == 0 && (flags & 0x80)) {
         return 0;
     }
     if (flags == 0x3f) {
@@ -196,10 +196,10 @@ Ret_0015AC20 C_0015AC20::func_0015AC20(unsigned int flags)
     } else if (f3F8 == 1) {
         return 1;
     }
-    if ((flags & 0x40) == 0) {
-        return (f1898 & flags) != 0;
+    if (flags & 0x40) {
+        return (f1898 | 0x40) == flags;
     }
-    return (f1898 | 0x40) == flags;
+    return (f1898 & flags) != 0;
 }
 
 C_0015B150* C_0015B150::func_0015B150(void) {
