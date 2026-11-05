@@ -726,4 +726,47 @@ undefined4 C_00051CB0::func_00051CB0(void *param_1)
   memcpy((void *)(*(int *)(in_ECX + 0x2c8) * 0x20000 + *(int *)(in_ECX + 0x294)), param_1, 0x20000);
   return 1;
 }
-
+struct S_50D70_Pl { int func_00108660(void); void func_001084E0(void); char pad0[0xA40]; int fa40; char pad44[8]; int fa4c; char padA50[4]; int fa54; char padA58[0x600]; int f1058; };
+struct S_50D70_L { char pad0[0x24]; int f24; char pad28[0x180]; S_50D70_Pl *items[8]; };
+struct S_50D70_P { char pad0[0x4E0]; S_50D70_L *f4E0; };
+struct S_50D70_R { int func_0005B960(int a, int b); };
+struct S_50D70_E { char pad0[0xF0]; int fF0; };
+struct S_50D70_19C { char pad0[0xB8]; int fB8; void func_0006D280(void); };
+struct S_50D70_M { char pad0[0x20]; int mode; };
+struct S_50D70_G { char pad0[0x2E0]; S_50D70_M *f2E0; };
+extern float D_00277910, D_00277900, D_00277914;
+extern double D_00277908;
+extern "C" double __cdecl pow(double, double);
+void func_00157A00(int a);
+struct C_00050D70 {
+    virtual void v00(); virtual void v04(); virtual void v08(); virtual void v0C();
+    virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1C();
+    virtual void v20(); virtual void v24(); virtual void v28(); virtual void v2C();
+    virtual void v30(); virtual void v34(); virtual void v38(); virtual void v3C();
+    virtual void v40(); virtual void v44(); virtual void v48(int a);
+    char pad4[0x60];
+    S_50D70_P *f64;
+    S_50D70_R *f68;
+    char pad6C[0x24];
+    int f90;
+    char pad94[0x50];
+    S_50D70_E *fE4;
+    char padE8[0x40];
+    float f128;
+    int f12C;
+    int pad130;
+    int f134;
+    char pad138[0x64];
+    S_50D70_19C *f19C;
+    char pad1A0[0x54];
+    int f1F4;
+    char pad1F8[0x8C];
+    int f284;
+    int f288;
+    int f28C;
+    int f290;
+    int f294;
+    int f298;
+    void func_00050D70(int arg);
+    void func_00031260(int arg);
+};
