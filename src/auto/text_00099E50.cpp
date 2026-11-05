@@ -48,3 +48,30 @@ void C_0009A0E0::func_0009A0E0(int param_1)
   }
   return;
 }
+
+void func_0009A1F0(C_00168550 *tbl, const char *key, const char *fallback, char *dst, int size)
+{
+    int n = size;
+    char *buf = (char *)func_001E8A44(n);
+    S_0009A1F0_Table *t;
+    C_000979C0 *hash;
+    char *src;
+    char c;
+
+    n--;
+    if (tbl->func_00168550(key, buf, n)) {
+        t = D_002A8490->f2e8;
+        hash = t->f2C;
+        size = 0;
+        hash->func_000979C0(buf, &size);
+        src = t->f4[size].str;
+        do {
+            c = *src++;
+            *dst++ = c;
+        } while (c != 0);
+    } else {
+        tbl->func_00168550(fallback, dst, n);
+    }
+    func_001E891B(buf);
+}
+
