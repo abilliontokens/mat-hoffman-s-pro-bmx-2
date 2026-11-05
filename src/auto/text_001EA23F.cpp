@@ -9,6 +9,16 @@ extern int D_002AEA38;
 extern unsigned short *D_002AEA30;
 int func_001EC5F1(int, int);
 
+#pragma optimize("t", off)
+int func_001EA23F(int c)
+{
+    if (D_002AEA38 > 1) {
+        return func_001EC5F1(c, 2);
+    }
+    return *(unsigned char *)&D_002AEA30[c] & 2;
+}
+#pragma optimize("", on)
+
 int func_001EA268(int c)
 {
     if (D_002AEA38 > 1) {
