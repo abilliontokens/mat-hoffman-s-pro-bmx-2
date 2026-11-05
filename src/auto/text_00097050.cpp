@@ -1,6 +1,7 @@
 /* 16 functions from 0x00097050 to 0x00097FD0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <string.h>
 struct C_000976A0 {
     undefined4 func_000976A0(void);
 };
