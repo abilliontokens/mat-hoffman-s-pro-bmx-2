@@ -114,6 +114,15 @@ int func_001614C0(void)
     return 0;
 }
 
+void *C_00161580::func_00161580(void)
+{
+    func_0001DFE0();
+    vtbl = &D_00287AD8;
+    sub8.func_001B22E0();
+    unk18 = -1;
+    return this;
+}
+
 undefined4 C_00161600::func_00161600(byte param_1)
 {
   int func_001615B0(...);
