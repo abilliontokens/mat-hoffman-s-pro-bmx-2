@@ -37,6 +37,7 @@ char *func_001E8920(char *, const char *, int);
 
 
 extern float D_002755E8;
+extern float D_00275544;
 extern char D_0027D0D8[];
 extern char D_0027D0E8[];
 
