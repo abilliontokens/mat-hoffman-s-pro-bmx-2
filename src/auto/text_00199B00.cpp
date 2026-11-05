@@ -38,13 +38,14 @@ struct S_00199B00_F4 {
     float x, y, z, w;
 };
 
+extern float D_002755E8;
+
 struct S_0019A680_V4 {
     float x, y, z, w;
     S_0019A680_V4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
     S_0019A680_V4(float px, float py, float pz, float pw) { x = px; y = py; z = pz; w = pw; }
+    S_0019A680_V4(float px, float py, float pz) { x = px * D_002755E8; y = py * D_002755E8; z = pz * D_002755E8; w = 1.0f; }
 };
-
-extern float D_002755E8;
 
 struct C_00199BE0 {
     char pad0[0xb0];
@@ -199,6 +200,36 @@ void C_00199BE0::func_0019A210(C_00199BE0 *node)
     }
     if (p->f17c != 0) {
         p->f17c = 0;
+    }
+}
+
+void C_00199BE0::func_0019A680(S_0019A680_V4 *center, S_0019A680_V4 *extent)
+{
+    func_00197AA0();
+    S_0019A680_V4 a;
+    S_0019A680_V4 b;
+    int flag = 0;
+    C_00199BE0 *p;
+
+    if (f180 & 4) {
+        flag = 1;
+        a = S_0019A680_V4(f130.x - f140.x, f130.y - f140.y, f130.z - f140.z, 1.0f);
+        b = S_0019A680_V4(f140.x + f130.x, f140.y + f130.y, f140.z + f130.z, 1.0f);
+    }
+    for (p = f174; p != 0; p = p->f178) {
+        p->func_001985D0(&flag, &a, &b, fF0, 1);
+    }
+    if (center != 0) {
+        float cx = a.x + b.x;
+        float cy = a.y + b.y;
+        float cz = a.z + b.z;
+        *center = S_0019A680_V4(cx * D_002755E8, cy * D_002755E8, cz * D_002755E8, 1.0f);
+    }
+    if (extent != 0) {
+        float ex = b.x - a.x;
+        float ey = b.y - a.y;
+        float ez = b.z - a.z;
+        *extent = S_0019A680_V4(ex * D_002755E8, ey * D_002755E8, ez * D_002755E8, 1.0f);
     }
 }
 
