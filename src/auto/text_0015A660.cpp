@@ -82,11 +82,58 @@ struct C_0015B4C0 {
     void func_0015B4C0(void);
 };
 
+/* element of C_0015B150::unk8, an array allocated with new[]: destroyed
+   through vtable slot 0 with the vector-delete flags */
+struct S_0015B150_Elem {
+    virtual void v0(int flags);
+    virtual void v1(void);
+};
+
 struct C_0015B150 {
     int unk0;
     int unk4;
     int unk8;
     C_0015B150* func_0015B150(void);
+    void func_0015B170(void);
+};
+
+struct C_00135D90 {
+    void func_00135D90(int a, int b);
+};
+
+/* growable array of pointers */
+struct S_0015A660_List {
+    int count;
+    void **data;
+    int f8;
+    int capacity;
+    int f10;
+    int func_0015ACA0(int n);
+    __forceinline void *at(int i)
+    {
+        if (count <= 0) {
+            return 0;
+        }
+        if (data == 0) {
+            return 0;
+        }
+        if (i >= count) {
+            return 0;
+        }
+        return data[i];
+    }
+};
+
+struct C_001D1480 {
+    void func_001D1480(void);
+};
+
+struct JoystickDevice {
+    void *vtbl;
+    char pad4[0x638];
+    S_0015A660_List lists[6];
+    void func_0015AE20(void);
+    void func_0015AFC0(int idx, int a, int b);
 };
 
 
