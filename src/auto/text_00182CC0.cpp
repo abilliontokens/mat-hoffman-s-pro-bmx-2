@@ -90,6 +90,41 @@ struct C_001B8450 {
     void func_001BA9C0(C_00168280 *a);
 };
 
+struct S_00182CC0_Obj {
+    char pad0[4];
+    char name[0x144];
+    int f148;
+};
+
+struct S_00182CC0_Item {
+    char pad0[0xc];
+    S_00182CC0_Obj *fC;
+};
+
+struct S_00182CC0_Group {
+    char pad0[0x24];
+    int f24;
+    S_00182CC0_Item **f28;
+};
+
+extern char D_0027AEE4[];
+extern char D_0027AED4[];
+extern char D_0027AEC4[];
+extern char D_0027AEA8[];
+extern char D_0027AE94[];
+extern char D_0027AE80[];
+extern char D_0027AE7C[];
+
+struct C_00182CC0_Scene {
+    char pad0[0x2c];
+    C_00168280 *f2C;
+    char pad30[0x340 - 0x30];
+    int f340;
+    char pad344[0x3b0 - 0x344];
+    S_00182CC0_Group **f3B0;
+    void func_00182CC0();
+};
+
 /* BmxScene */
 struct C_00182CC0 {
     virtual void v0();
@@ -170,6 +205,40 @@ struct C_00182CC0 {
     void func_00183A50();
     void func_00183AB0();
 };
+
+void C_00182CC0::func_00183130()
+{
+    int j;
+    int N;
+    int Y;
+    int i;
+    char base[0x104];
+    char buf[0x104];
+    char *p;
+    int k;
+
+    f28->func_00169710(D_002893D8);
+    f28->func_00168C20(D_002893BC, 0, &N);
+    for (i = 0; i < N; i++) {
+        func_001ADCC0(buf, 0x104, D_002893B4, i + 1);
+        f28->func_00169710(buf);
+        f28->func_00168BE0(D_00276310, D_00275630, base, -1);
+        p = func_001E8AC0(base, '.');
+        if (p != 0) {
+            memset(p, 0, strlen(p));
+        }
+        f28->func_00168C20(D_0028939C, 1, &Y);
+        for (j = 0; j < f340; j++) {
+            S_00183130_Group *g = f3A8[j];
+            for (k = 0; k < g->f24; k++) {
+                S_00183130_Item *it = g->f28[k];
+                if (it != 0 && it->f4 == 1 && func_001EA426(it->fC->name, base) == 0) {
+                    it->fC->f140 = Y;
+                }
+            }
+        }
+    }
+}
 
 void C_00182CC0::func_001832C0()
 {
