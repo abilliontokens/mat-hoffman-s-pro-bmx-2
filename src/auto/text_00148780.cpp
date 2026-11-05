@@ -81,8 +81,21 @@ void C_00148780::func_001487D0()
     void *p = func_001E8A44(n * 0x14);
     if (p != 0) {
         func_00011FF0(p, 0x14, n, &D_00144CD0);
+        unk20 = p;
+    } else {
+        p = 0;
+        unk20 = p;
     }
-    unk20 = p;
+}
+
+C_00148820::C_00148820(int a1, void *a2)
+{
+    *(volatile u32 *)&unk4 = 0;
+    *(volatile void **)&unk8 = a2;
+    *(volatile int *)((char *)this + 0xC) = (int)&D_00284E94;
+    *(volatile void **)&vtbl = (void *)&D_00285CA0;
+    *(volatile u32 *)&unkC = (u32)&D_00285C94;
+    func_00144E70();
 }
 
 undefined4 C_001488F0::func_001488F0(byte param_1)
@@ -105,6 +118,16 @@ void C_00149300::func_00149300(void)
                     
                     
   (**(code **)(*in_ECX + 4))();
+  return;
+}
+
+void func_00149350(void)
+{
+  int __stdcall func_001FF940(int, int);
+  extern undefined4 D_002EFDB8;
+  int __stdcall func_00200230(int);
+  func_001FF940((int)(*(undefined4 *)(D_002EFDB8 + 0x58)), (int)(*(undefined4 *)(D_002EFDB8 + 0x5c)));
+  func_00200230((int)(*(int *)(D_002EFDB8 + 4) + 0x1e0));
   return;
 }
 
