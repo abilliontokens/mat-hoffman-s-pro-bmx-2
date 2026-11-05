@@ -208,7 +208,9 @@ struct TrackSet {
     int count;
     int handle;
     IntList ids;
-    char pad1c[4];
+    unsigned char f1c : 1;
+    unsigned char unused1c : 7;
+    char pad1d[3];
     char name[32];
     unsigned char flags;
     char pad41[3];
