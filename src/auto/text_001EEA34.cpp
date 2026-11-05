@@ -26,6 +26,7 @@ struct BitObj {
     unsigned int rest : 23;
     void func_001EEEE6(BitObj *o);
     int func_001EF1E7(int a);
+    int func_001EF1E7();
     void func_001EF333(int a);
     void func_001EF613(int a);
     BitObj *func_001EF8F6(int a0, int a1);
@@ -42,18 +43,16 @@ int AllocObj::func_001EEE62(int size, int flag) {
     if (flag) return fn0(sz);
     if (sz == 0) sz = 8;
     if ((unsigned int)field_10 < sz) {
-        if (sz <= 0x1fc) {
-            int *blk = (int *)D_002F6A04.func_001EEE62(0x200, 1);
-            if (blk) *blk = 0;
-            if (blk) {
-                if (field_c == 0) field_8 = (int)blk;
-                else *field_c = (int)blk;
-                field_c = blk;
-                field_10 = 0x1fc - sz;
-                return (int)(field_c + 1) + field_10;
-            }
-        }
-        return 0;
+        int space = 0x1fc;
+        if (sz > (unsigned int)space) return 0;
+        int *blk = (int *)D_002F6A04.func_001EEE62(0x200, 1);
+        if (blk) *blk = 0;
+        if (!blk) return 0;
+        if (field_c == 0) field_8 = (int)blk;
+        else *field_c = (int)blk;
+        field_c = blk;
+        field_10 = space - (int)sz;
+        return (int)(field_c + 1) + field_10;
     }
     field_10 -= sz;
     return (int)(field_c + 1) + field_10;
