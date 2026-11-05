@@ -18,7 +18,7 @@ struct C_001B1580_24 {
 };
 
 struct S_001B1810_Out {
-    float x;
+    u32 x;
     float y;
     float z;
     float w;
@@ -639,6 +639,22 @@ C_001B1580 *C_001B1580::func_001B1580(int a, int b, const char *s, int c)
 
 float C_001B15E0::func_001B15E0(void) {
     return unk9C;
+}
+
+void C_001B1580::func_001B15F0()
+{
+    float h = (float)unk30;
+    float w = (float)unk2C;
+    if (!(unk24->unk4 == w && unk24->unk8 == h)) {
+        unk24->unk4 = w;
+        unk24->unk8 = h;
+        unk24->unk4E |= 6;
+    }
+    if (unk24->unk44 != unk68) {
+        unk24->unk44 = unk68;
+        unk24->unk4E |= 6;
+    }
+    unk24->func_001D6440();
 }
 
 void C_001B1580::func_001B17D0(const char *s)
