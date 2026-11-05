@@ -92,6 +92,13 @@ struct C_0008ABA0 {
     C_0008ABA0 *func_0008AAD0();
 };
 
+struct C_0008AC10 {
+    void *vtbl;
+    char pad4[0x20];
+    NodeObj *unk24;
+    C_0008AC10 *func_0008AC10();
+};
+
 struct PtrObj_0008 {
     void func_001D6410();
     void func_001D6600();
