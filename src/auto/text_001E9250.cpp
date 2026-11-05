@@ -359,6 +359,28 @@ int func_001E9A58(S_001E9714_File *str, const char *format, ...) {
     return retval;
 }
 
+#pragma optimize("y", off)
+int func_001E9AB6(char *buf, unsigned int count, const char *fmt, va_list ap)
+{
+    S_001E9_FILE str;
+    int retval;
+
+    str.flag = 0x42;
+    str.base = buf;
+    str.ptr = buf;
+    str.cnt = count;
+    retval = func_001EDD36(&str, fmt, ap);
+    if (buf != 0) {
+        if (--str.cnt >= 0) {
+            *str.ptr = 0;
+        } else {
+            func_001ED8A7(0, &str);
+        }
+    }
+    return retval;
+}
+#pragma optimize("y", on)
+
 int func_001E9B0C(S_001E9_FILE *str, long offset, int whence)
 {
     int *func_001ED075(void);
