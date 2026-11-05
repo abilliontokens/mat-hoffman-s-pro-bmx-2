@@ -107,6 +107,16 @@ int C_000A17E0::func_000A17E0(void) {
     return r;
 }
 
+void C_000A1920::func_000A1920(C_000A1920_Arg *a0) {
+    int i = 0;
+    if (D_002A8490->f2e0->f0 > 0) {
+        do {
+            a0->f4->func_001BB900(f4e0->arr1a8[i]->f11b0);
+            i++;
+        } while (i < D_002A8490->f2e0->f0);
+    }
+}
+
 int C_000A1E60::func_000A1E60(void) {
     if (f530 != 0) {
         f530->func_001596C0(f3ac);
