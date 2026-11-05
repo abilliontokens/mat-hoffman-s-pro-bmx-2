@@ -70,6 +70,10 @@ struct S_28070_Voice {
     int unk34;
 };
 
+struct C_000262B0 {
+    void func_000262B0(void);
+};
+
 struct C_00028070 {
     char pad0[0x1F4];
     S_28070_Owner *unk1F4;
@@ -108,3 +112,38 @@ void C_00027D40::func_00027D40(void) {
     unk588 = 0;
     unk580 = 0;
 }
+
+extern "C" void func_000262B0(void);
+void C_00028070::func_00028070(void) {
+    S_28070_Sound *sound;
+
+    if (unk470 != 0 && unk740 != 0) {
+        if (unk480 != 0) {
+            sound = unk214->v27();
+        } else {
+            sound = unk218->v27();
+        }
+    } else {
+        sound = unk720;
+        if (sound == 0 || unk73C == 0) {
+            goto done;
+        }
+    }
+    if (sound->unk7C != 0) {
+        sound->unk7C(unk1F4->unk2C, sound, sound->unk80, 0);
+    }
+done:
+    unk720 = 0;
+    unk468 = 0;
+    unk470 = 0;
+    if (unk5EC != 0) {
+        func_000262B0();
+    }
+    unk484 = 0;
+    unk488 = 0;
+    if (unk210 != 0) {
+        unk210->unk30 = 0;
+        unk210->unk34 = 0;
+    }
+}
+
