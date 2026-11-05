@@ -272,3 +272,34 @@ int BmxUIManager::func_000BB3F0(const char *a, const char *b)
     return f25c->f74->func_000301D0() != 0 ? 1 : 0;
 }
 
+void BmxUIManager::func_000BB440(int type)
+{
+    int idx;
+    int count = 0;
+    int i;
+    switch (type) {
+    case 0: idx = 0; break;
+    case 2: idx = 1; break;
+    case 4: idx = 2; break;
+    case 5: idx = 3; break;
+    case 7: idx = 4; break;
+    case 9: idx = 5; break;
+    case 10: idx = 6; break;
+    case 11: idx = 7; break;
+    case 13: idx = 8; break;
+    case 14: idx = 9; break;
+    default: return;
+    }
+    for (i = 0; i < f27c[type].count; ++i) {
+        if (D_002A8490->f2E0->f2c0->func_0005C020(idx)->flags[i] == 0)
+            ++count;
+    }
+    if (count == f27c[type].count) {
+        for (i = 0; i < f27c[type].count; ++i) {
+            D_002A8490->f2E0->f2c0->func_0005C020(idx)->flags[i] = f27c[type].flags[i] == 0;
+            if (f27c[type].flags[i] == 0)
+                D_002A8490->f2E0->f2c0->func_0005C1B0(type, i);
+        }
+    }
+}
+
