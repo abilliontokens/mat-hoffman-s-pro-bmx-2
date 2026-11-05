@@ -4,6 +4,8 @@
 #include <xmmintrin.h>
 static __forceinline float Max_000298F0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float Min_000298F0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float MaxM_000298F0(float a, float b) { const float *pa = &a; const float *pb = &b; return *pa > *pb ? *pa : *pb; }
+static __forceinline float MinM_000298F0(float a, float b) { const float *pa = &a; const float *pb = &b; return *pa < *pb ? *pa : *pb; }
 struct C_00029290 {
     undefined4 func_00029290(void);
 };
@@ -121,15 +123,13 @@ void C_000298F0::func_000298F0(int a0)
             v = f1E8->f1A0;
         } else {
             float c = f1E0->f26C * f60C * D_002766A0;
-            float lim;
             c = c > -1.0f ? c : -1.0f;
             c = c < 1.0f ? c : 1.0f;
             if (f20C->f30 != 0) {
-                lim = f614;
+                t = func_00011020(func_00011040(c, -f614), f614);
             } else {
-                lim = f610;
+                t = func_00011020(func_00011040(c, -f610), f610);
             }
-            t = func_00011020(func_00011040(c, -lim), lim);
             if (f1E0->f250 < D_00275544 && f20C->f30 == 0) {
                 t = -t;
             }
