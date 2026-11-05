@@ -355,6 +355,22 @@ void *C_UIGlobalManager::func_001BCA30(unsigned int flags)
     return this;
 }
 
+void *C_UIGlobalManager::func_001BCBE0(void *a1, void *a2, int a3)
+{
+    C_00149380 *obj = (C_00149380 *)func_001E8A44(0x4010);
+    if (obj != 0) {
+        obj->func_00149380();
+    }
+    if (this->func_001BCA90() == 0) {
+        return 0;
+    }
+    if (a3 > -1 && f24 != 0) {
+        f24->v36();
+    }
+    ((C_UIGlobalManagerVT *)this)->vf28(a1, a2);
+    return this;
+}
+
 C_001BCC90 *C_001BCC90::func_001BCC90(void *param_1)
 {
     f24 = param_1;
