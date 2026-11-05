@@ -151,6 +151,55 @@ struct C_0012A770 {
     void func_0012A770(int a, int b);
 };
 
+struct S_31AF0_Vecs {
+    char pad0[0x24];
+    S_00108510_Vec v[1];
+};
+
+struct S_31AF0_Mgr {
+    char pad0[4];
+    int f4;
+    int f8;
+    char padc[0x4c - 0xc];
+    char f4c[1];
+};
+
+struct S_31AF0_Root {
+    char pad0[0x124];
+    int f124;
+    char pad128[0x230 - 0x128];
+    unsigned char f230;
+    char pad231[0x2b8 - 0x231];
+    char f2b8[0x28];
+    S_31AF0_Mgr *f2e0;
+};
+
+struct S_31AF0_Level {
+    char pad0[0x4ac];
+    int *f4ac;
+    char pad4b0[0x4dc - 0x4b0];
+    S_31AF0_Vecs *f4dc;
+};
+
+struct C_0012B410 {
+    void func_0012B410(int a, int b, int c);
+};
+
+struct C_000306F0 {
+    void func_000306F0(void *a, int b, int c, S_00108510_Vec v, char *d, int e);
+};
+
+struct C_0013E4F0_31AF0 {
+    C_0012B410 *func_0013E4F0(int a);
+};
+
+struct C_0002EF20_31AF0 {
+    C_000306F0 *func_0002EF20(int a);
+};
+
+extern "C" void *func_001E8A44(unsigned int n);
+extern char D_00276B88[];
+
 /* BmxEvent: a GameObject (vtable, sibling/child links in the base) */
 struct BmxEvent {
     virtual void v00(); virtual void v01(); virtual void v02(); virtual void v03();
