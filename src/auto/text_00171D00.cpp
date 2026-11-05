@@ -76,8 +76,8 @@ struct C_00171D00_C4VT {
     virtual void v25();
     virtual void v26();
     virtual void v27();
-    virtual void v28();
-    virtual void v29();
+    virtual void v28(float a);
+    virtual void v29(void *m);
     virtual void v30();
     virtual void v31();
     virtual void v32();
@@ -94,6 +94,8 @@ struct C_00171D00_C4VT {
     virtual void v43();
     virtual void v44();
     virtual void v45();
+    char pad4[0x20C];
+    float f210;
 };
 
 struct PhysicsBodyVT {
