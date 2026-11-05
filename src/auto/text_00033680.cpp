@@ -2,7 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 typedef void (__fastcall *E34090_Fn)(void *self);
-struct E34090_Obj { void func_000831E0(); void func_000843C0(); void func_000843E0(int a); };
+struct E34090_Obj { void func_000831E0(); void func_000843C0(); void func_000843E0(int a); void func_00099A60(void *p); };
 struct E34090_T { char pad[0x67c]; int f67c; char pad680[0x958 - 0x680]; float f958; };
 struct E34090_Sub { void func_000560A0(); };
 struct E34090_Hold { char pad[0x50]; E34090_Sub *f50; };
