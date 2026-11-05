@@ -12,6 +12,11 @@ extern "C" char *strcpy(char *, const char *);
 extern "C" char *strcat(char *, const char *);
 extern "C" unsigned int strlen(const char *);
 struct C_0017AA90;
+struct ShadowPreambleDataItem {
+    void *vtbl;
+    C_0017AA90 *owner;
+    ShadowPreambleDataItem(C_0017AA90 *p);
+};
 
 struct C_0017AA90_Child {
     virtual void v0();
