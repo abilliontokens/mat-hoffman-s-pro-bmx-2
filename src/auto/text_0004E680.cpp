@@ -228,6 +228,17 @@ C_0004F220 *C_0004F220::func_0004F220(int a0)
     return this;
 }
 
+void C_0004F550::func_0004F550(void)
+{
+    func_00031640();
+    if (f2a8 != 0) {
+        func_001577A0(f2a8, -1);
+    }
+    if (f2d8 != 0) {
+        func_001577A0(f2d8, -1);
+    }
+}
+
 void C_0004F590::func_0004F590(void)
 {
     func_00031450();
