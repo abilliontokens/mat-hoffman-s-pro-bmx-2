@@ -202,6 +202,7 @@ struct S_00192930_Iface {
     virtual void v13();
     virtual void v14();
     virtual void v15();
+    virtual void v16();
     int pad4;
     int f8;
 };
