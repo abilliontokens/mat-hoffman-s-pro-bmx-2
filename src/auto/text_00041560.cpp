@@ -1,5 +1,8 @@
 /* 4 functions from 0x00041560 to 0x00042260, found by Ghidra. */
 #include "common.h"
+#include <string.h>
+
+extern char D_00275630[];
 
 struct S_41CF0_Pad {
     virtual void v0();
