@@ -61,6 +61,7 @@ struct func_001F3244 {
     const char *what;
     int doFree;
     func_001F3244(const char *msg);
+    func_001F3244(const func_001F3244 &other);
 };
 
 struct func_001F3280 {
@@ -68,6 +69,7 @@ struct func_001F3280 {
     const char *what;
     int doFree;
     func_001F3280(const char *msg);
+    func_001F3280(const func_001F3280 &other);
 };
 
 /* MSVC RTTI complete object locator: signature, offset, cdOffset, type descriptor */
