@@ -47,6 +47,14 @@ struct C_00194110 {
 };
 
 
+void func_00193500(void)
+{
+    if (--D_002EFE74 == 0 && D_002EFE70 != 0) {
+        D_002EFE70->v2();
+        D_002EFE70 = 0;
+    }
+}
+
 undefined4 C_00194110::func_00194110(byte param_1)
 {
   int func_00193BC0(...);
