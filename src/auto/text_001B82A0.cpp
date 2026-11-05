@@ -143,3 +143,94 @@ C_001B84E0 *C_001B84E0::func_001B84E0(void) {
     return this;
 }
 
+extern char D_0027C588[];
+
+struct Ctor_001B8550 {
+    void *func_00143580(int a);
+};
+
+struct V4_001B8550 { int a, b, c, d; };
+
+struct Voice_001B8550 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34();
+    virtual int v35(char *buf, int a, int b);
+    char pad4[0x24];
+    char name[0x104];
+    void func_00199600(V4_001B8550 v);
+    void func_00198F50(void *a, void *b, int c, int d, int e);
+    void func_0019ABA0(int a, int b);
+};
+
+struct Play_001B8550 {
+    void func_001577A0(Voice_001B8550 *v, int a);
+};
+
+struct Wrap_001B8550 {
+    char pad0[4];
+    void *f4;
+};
+
+struct Entry1_001B8550 {
+    char pad0[4];
+    int f4;
+    char pad8[0x1a4 - 8];
+    Wrap_001B8550 *f1A4;
+};
+
+struct Entry2_001B8550 {
+    char pad0[4];
+    int f4;
+    void *f8;
+};
+
+struct List_001B8550 {
+    char pad0[0x24];
+    int f24;
+    void **f28;
+};
+
+struct Arg_001B8550 {
+    char pad0[0x348];
+    int f348;
+    char pad34C[0x3a8 - 0x34c];
+    void **f3A8;
+    List_001B8550 *f3AC;
+    char pad3B0[0x4a8 - 0x3b0];
+    void **f4A8;
+};
+
+struct Item_001B8550 {
+    char pad0[0x104];
+    int f104;
+    char pad108[0x128 - 0x108];
+    V4_001B8550 f128;
+    char pad138[0x148 - 0x138];
+    void *f148;
+    char pad14C[0x158 - 0x14c];
+    void **f158;
+};
+
+struct C_001B8550 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    Item_001B8550 **f28;
+    void func_001B8550(Arg_001B8550 *arg);
+};
+
+void func_0014FF00(int a, const char *b, int c, char *d, int e);
+extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
+extern "C" char *func_001E8AC0(const char *s, int c);
+extern "C" int func_001EA426(const char *a, const char *b);
+extern "C" int strlen(const char *s);
+extern "C" void *memset(void *dst, int c, unsigned int n);
+#pragma intrinsic(memset)
+
