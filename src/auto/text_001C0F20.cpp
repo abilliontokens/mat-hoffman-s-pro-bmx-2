@@ -117,3 +117,10 @@ void C_001C10D0::func_001C10D0(void)
   (**(code **)(*in_ECX + 0x1c))();
   return;
 }
+
+void C_001C1950::func_001C1950(void)
+{
+  f68->func_001D5AD0();
+  ((C_00157960 *)this)->func_00157960();
+}
+
