@@ -181,6 +181,16 @@ struct C_001577A0 {
     void func_001577A0(int a, int b);
 };
 
+struct Level_00059CC0 {
+ char pad0[0x4C0];
+ S_00059F50_Fb4 *f4C0;
+ char pad4C4[0x594-0x4C4];
+ int f594;
+};
+struct Obj_00059CC0 {
+ char pad0[0x64];
+ Level_00059CC0 *f64;
+};
 struct S_002A8490 {
     char pad0[4];
     S_00059F50_F4 *f4;
