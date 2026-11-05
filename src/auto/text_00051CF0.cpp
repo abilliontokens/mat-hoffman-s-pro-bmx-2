@@ -2,7 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 extern float D_00275544;
-extern float D_00277924;
+extern int D_00277924;
 extern float D_002A8F40;
 
 struct C_00051CF0_74 {
