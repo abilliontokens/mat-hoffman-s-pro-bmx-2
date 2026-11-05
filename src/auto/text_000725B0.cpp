@@ -1,6 +1,7 @@
 /* 5 functions from 0x000725B0 to 0x000733F0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <string.h>
 struct C_00072E50 {
     void func_00072E50(void);
 };
@@ -65,11 +66,11 @@ C_00072C90 *C_00072C90::func_00072C90(int flags)
     f70 = 0;
     f74 = 0;
     f80 = 0;
-    fB8 = 0;
-    fBC = 0;
-    fC0 = 0;
-    fC4 = 0;
-    fC8 = 0;
+    fB8 = 0.0f;
+    fBC = 0.0f;
+    fC0 = 0.0f;
+    fC4 = 0.0f;
+    fC8 = 0.0f;
     f88 = 0;
     return this;
 }
