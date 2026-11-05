@@ -37,8 +37,7 @@ struct C_0005ECA0 {
     int unkC0[5];
     int unkD4[2];
     int unkDC[2];
-    int unkE4;
-    int unkE8;
+    int unkE4[2];
     int unkEC;
     int unkF0;
     int unkF4;
