@@ -212,6 +212,22 @@ void C_001677C0::func_001677C0(C_001677C0_Dst *dst)
     p[3] = d;
 }
 
+void C_00167860::func_00167860(void)
+{
+    if (!(D_002EFB3C & 1)) {
+        D_002EFB3C |= 1;
+        D_002EFB2C = 0.0f;
+        D_002EFB30 = 0.0f;
+        D_002EFB34 = 0.0f;
+        D_002EFB38 = 0.15f;
+    }
+    func_001FEC30(0xc, f10);
+    func_001FEBD0(0x23, f50->fC0);
+    func_001FEBD0(0x24, f50->fFC + 0x180);
+    func_001FEBD0(0x25, &f54);
+    func_001FEBD0(0x26, &D_002EFB2C);
+}
+
 C_00167760 *C_00167760::func_00167A70(int flags)
 {
     vtbl = (void *)&D_00287F64;
