@@ -95,8 +95,19 @@ struct C_000ACE10 {
 };
 
 void C_000ACD50::func_000ACD50(void) {
+    void *func_001E8A44(...);
+    C_0027C724 *p;
     if (unk540 == 0) {
-        unk540 = new C_0027C724(1);
+        p = (C_0027C724 *)func_001E8A44(0x2c);
+        if (p != 0) {
+            ((C_00157600 *)p)->func_00157600(1);
+            p->vtbl = &D_0027C724;
+            p->unk24 = 0;
+            p->unk28 = 0;
+        } else {
+            p = 0;
+        }
+        unk540 = p;
     }
     ((C_000AB4F0 *)unk540)->func_000AB4F0(unk28);
 }
