@@ -85,6 +85,68 @@ struct C_00089210 {
     void func_00089210();
 };
 
+extern char D_002A60B0[];
+extern char D_00275678[];
+extern char D_002A5348[];
+extern char D_002A5870[];
+extern char D_002A5FA8[];
+extern char D_002A48F8[];
+extern char D_002A47F0[];
+extern int D_00279A34;
+extern int D_00279A28;
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+void *func_001E8A44(int size);
+
+struct S_00088DD0_Sprite {
+    char pad0[0x28];
+    float f28;
+    float f2C;
+    char pad30[8];
+    u32 f38;
+    char pad3C[0x1c];
+    unsigned char b58;
+    S_00088DD0_Sprite *func_001D5760();
+    void func_001D5810(void *a, int b, int c, int d);
+};
+
+struct S_00088DD0_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4(void *a, int b, int c, int d, int e);
+};
+
+struct S_00088DD0_Mid {
+    char pad0[0xb4];
+    int fB4;
+};
+struct S_00088DD0_Glob {
+    char pad0[4];
+    S_00088DD0_Mid *f4;
+};
+extern S_00088DD0_Glob *D_002A8490;
+
+struct S_00088DD0_Ctor {
+    S_00088DD0_Ctor *func_001CF740(int a, int b, int c);
+};
+
+struct S_00088DD0_Arg {
+    char pad0[0x64];
+    struct { char pad[0x4c0]; int f4C0; } *f64;
+};
+
+struct C_00088DD0 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    int f28;
+    S_00088DD0_Sprite *f2C;
+    char pad30[0x10];
+    S_00088DD0_Obj *f40;
+    C_00088DD0 *func_00088DD0(int a0, int a1, S_00088DD0_Arg *a2);
+};
+
 struct C_00088F60 {
     void func_00088F60(int param_1);
 };
