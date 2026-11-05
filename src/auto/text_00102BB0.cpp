@@ -87,10 +87,7 @@ C_001033D0 *C_001033D0::func_001033D0(void *a, void *b)
 {
     ((C_001C0110 *)this)->func_001C0110(a, b);
     vtbl = (void *)&D_00282754;
-    unk3DC = 0.0f;
-    unk3D8 = 0.0f;
-    unk3D4 = 0.0f;
-    unk3E0 = 1.0f;
+    vec3D4.Init();
     unk1B0 = 0;
     unk170 = 0;
     unk3C0 = 0;
