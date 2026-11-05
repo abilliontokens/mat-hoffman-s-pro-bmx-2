@@ -14,6 +14,14 @@ struct S_001EDC7E {
     int f18;
 };
 
+/* The CRT's per-file-handle record: D_002FB260[fh >> 5][fh & 0x1f]. */
+struct S_ioinfo {
+    int osfhnd;
+    unsigned char osfile : 8;
+    char pipech;
+    char pad6[0x22];
+};
+
 #pragma optimize("y", off)
 void func_001ED0FC(unsigned int *param_1, int param_2)
 {
@@ -75,7 +83,7 @@ zero_err:
     err = 0;
 done:
     func_001EE685(fh);
-    *(unsigned char *)((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) = 0;
+    *(unsigned char *)((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) &= ~0xff;
     if (err != 0) {
         func_001ED087(err);
         return -1;
@@ -125,12 +133,10 @@ int func_001ED50B(void)
     int *func_001ED075(void);
     int *func_001ED07E(void);
     void __SEH_epilog(void);
-    int result;
     *func_001ED075() = 9;
     *func_001ED07E() = 0;
-    result = -1;
     __SEH_epilog();
-    return result;
+    return -1;
 }
 
 void func_001ED527(int *param_1)
@@ -145,35 +151,35 @@ void func_001ED527(int *param_1)
     }
 }
 
-int func_001ED7FC(int fh, int param_2, int param_3)
+int func_001ED7FC(int fh, void *buffer, unsigned cnt)
 {
-    void __SEH_prolog(void *, int);
     int func_001EE70F(int);
-    int func_001ED633(int, int, int);
+    int func_001ED633(int, void *, unsigned);
+    int func_001EE782(int);
     int *func_001ED075(void);
     int *func_001ED07E(void);
-    void func_001ED883(void);
-    void __SEH_epilog(void);
-    extern int D_00295500;
     extern unsigned int D_002FB240;
     extern int *D_002FB260[];
-    int result;
-    __SEH_prolog(&D_00295500, 0xc);
-    if ((unsigned int)fh < D_002FB240 && (*(unsigned char *)((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) != 0) {
-        func_001EE70F(fh);
-        if ((*(unsigned char *)((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) == 0) {
-            *func_001ED075() = 9;
-            result = -1;
-        } else {
-            result = func_001ED633(fh, param_2, param_3);
-        }
-        func_001ED883();
-        return result;
+    int retval;
+    if ((unsigned)fh >= D_002FB240 || (*(unsigned char *)((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) == 0) {
+        *func_001ED075() = 9;
+        *func_001ED07E() = 0;
+        return -1;
     }
-    *func_001ED075() = 9;
-    *func_001ED07E() = 0;
-    __SEH_epilog();
-    return -1;
+    func_001EE70F(fh);
+    __try {
+        if (*(unsigned char *)((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) {
+            retval = func_001ED633(fh, buffer, cnt);
+        } else {
+            *func_001ED075() = 9;
+            *func_001ED07E() = 0;
+            retval = -1;
+        }
+    }
+    __finally {
+        func_001EE782(fh);
+    }
+    return retval;
 }
 
 int func_001EDBF6(int *param_1)
@@ -249,6 +255,20 @@ void func_001EDCDB(int *pcnt, int ch, int n, S_001EDC7E *stream) {
     while (n > 0) {
         n--;
         func_001EDCA8(ch, stream, pcnt);
+        if (*pcnt == -1) break;
+    }
+}
+
+void func_001EDCFF(char *str, int len, S_001EDC7E *stream, int *pcnt)
+{
+    if ((stream->fC & 0x40) && stream->f8 == 0) {
+        *pcnt += len;
+        return;
+    }
+    while (len > 0) {
+        len--;
+        func_001EDCA8(*str, stream, pcnt);
+        str++;
         if (*pcnt == -1) break;
     }
 }
