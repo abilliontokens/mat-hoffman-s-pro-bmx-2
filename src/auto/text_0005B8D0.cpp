@@ -175,6 +175,8 @@ struct S_0005B8D0_Pair {
     int b;
 };
 
+extern float D_002782A8;
+
 struct C_0005B960 {
     float f0[25];
     float f64[25];
