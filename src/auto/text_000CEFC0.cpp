@@ -38,6 +38,7 @@ struct S_000CEFC0_124 {
 struct S_000CEFC0_4F8 {
     void func_00093120();
     int func_00093620(float v);
+    int func_00093300(float v);
 };
 
 struct S_000CEFC0_Mgr {
