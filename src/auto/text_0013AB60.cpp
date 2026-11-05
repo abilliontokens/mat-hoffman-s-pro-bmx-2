@@ -45,6 +45,24 @@ struct S_0013AF80_Row {
 
 extern "C" int D_0014FEF0(int p);
 int func_001EA426(const char *a, const char *b);
+void *func_001E8AA5(unsigned int size);
+void func_00012140(int p);
+int func_0014FE60(int a0, int a1, int a2);
+
+/* eight allocated buffers with their sizes (freed by func_0013B440) */
+struct S_BufSet {
+    int bufs[8];
+    int sizes[8];
+    int f40;
+    int total;
+};
+
+/* 12-byte record starting at +0x80 of C_0013AEC0 */
+struct S_0013B340_Buf {
+    int f0;
+    int f4;
+    int f8;
+};
 
 struct C_0013AEC0 {
     char pad0[0xC];
