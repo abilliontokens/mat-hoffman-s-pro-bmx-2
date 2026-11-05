@@ -36,6 +36,40 @@ struct C_00142720 {
     void func_0001DFF0(void);
 };
 
+struct S_001425B0_V3 {
+    int x, y, z;
+};
+
+struct S_001425B0_V4 {
+    int x, y, z, w;
+};
+
+/* DXParticleSimulation constructor view */
+struct C_001425B0 {
+    void *vtbl;
+    char pad4[4];
+    int f8, fC, f10, f14, f18, f1C, f20, f24;
+    int f28[4];
+    int f38[4];
+    int f48, f4C, f50, f54, f58, f5C;
+    char pad60[4];
+    S_001425B0_V3 f64;
+    S_001425B0_V3 f70;
+    int f7C, f80;
+    S_001425B0_V3 f84[2];
+    int f9C, fA0;
+    char padA4[4];
+    int fA8;
+    int fAC[4];
+    int fBC, fC0, fC4, fC8, fCC, fD0, fD4, fD8;
+    S_001425B0_V4 fDC;
+    int fEC;
+    void func_0001DFE0(void);
+    C_001425B0 *func_001425B0(void);
+};
+
+extern int D_002A6D30;
+
 struct C_00142BF0 {
     undefined4 func_00142BF0(byte param_1);
 };
