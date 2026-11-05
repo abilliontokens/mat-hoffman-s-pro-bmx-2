@@ -351,7 +351,7 @@ int __stdcall func_001E29CD(S_func_001E29CD_arg0 *obj)
     return 0;
 }
 
-int __stdcall lcg_dither_step(S_func_001E2B60_arg0 *self, S_func_001E2B60_arg1 *arg, float *gains)
+int __stdcall mix_dither_block(S_func_001E2B60_arg0 *self, S_func_001E2B60_arg1 *arg, float *gains)
 {
     float level = func_00243639(self->f344);
     float inv = 1.0f / arg->f6c;
