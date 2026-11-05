@@ -124,9 +124,9 @@ float func_0011B180(float a, float b)
 Vec4 func_0011B1B0(float angle)
 {
     Vec4 r;
-    if (angle > D_002756D0) {
-        angle -= D_002756B8;
-    } else if (angle < D_002756E8) {
+    if (angle > 3.1415927f) {
+        angle -= 6.2831855f;
+    } else if (angle < -3.1415927f) {
         angle += 6.2831855f;
     }
     r.w = 1.0f;
