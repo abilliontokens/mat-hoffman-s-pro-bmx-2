@@ -65,6 +65,7 @@ struct C_000A9820 {
     CCObj **objs;
     void func_00157A00(float dt);
     void func_000A9820(float dt);
+    void func_000A91C0(S_A91C0_Reader *stream);
 };
 
 struct C_00157660 {
