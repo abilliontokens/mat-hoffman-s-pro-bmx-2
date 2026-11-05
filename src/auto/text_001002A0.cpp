@@ -85,8 +85,8 @@ struct C_00101010 {
     void v70(int a, int b);
 };
 
-struct C_00100CF0 {
- char pad0[0x124];
+struct C_00100CF0 : VP_101010 {
+ char pad0[0x120];
  O_101010 *owner;
  char pad128[0x20];
  int clear148[8];
