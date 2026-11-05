@@ -51,6 +51,9 @@ int func_00168120(const char *s)
 void func_001681A0(const char *s, int *out)
 {
     char *copy;
+    char *d;
+    const char *p;
+    char c;
 
     out[0] = func_00168120(s);
     switch (out[0]) {
@@ -63,7 +66,14 @@ void func_001681A0(const char *s, int *out)
     case 2:
         copy = (char *)func_001E8AA5(strlen(s) + 1);
         out[1] = (int)copy;
-        strcpy(copy, s);
+        p = s;
+        d = copy;
+        do {
+            c = *p;
+            p++;
+            *d = c;
+            d++;
+        } while (c != '\0');
         break;
     }
 }
