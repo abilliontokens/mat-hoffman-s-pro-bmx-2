@@ -92,11 +92,14 @@ struct C_001577A0 {
 };
 
 struct S_002A8490 {
-    char pad0[8];
+    char pad0[4];
+    S_00059F50_F4 *f4;
     InputDevice *f8;
     char padC[8];
     C_001577A0 *f14;
-    char pad18[0x2F0 - 0x18];
+    char pad18[0x2E0 - 0x18];
+    S_00059F50_E0 *f2E0;
+    char pad2E4[0xC];
     int f2F0;
 };
 extern S_002A8490 *D_002A8490;
