@@ -42,6 +42,15 @@ extern int D_002FB104;
 extern int D_002FAFF0;
 extern int D_002FAFE8;
 
+struct S_cpinfo {
+    int cp;
+    unsigned int names[6];
+    unsigned char range[4][8];
+};
+extern unsigned char D_002AEE60[];
+extern S_cpinfo D_002AEE68[5];
+extern int D_002F6A64;
+
 /* CRT run-time error table: {num, msg} pairs, 8 bytes each */
 extern int D_002AEF98[];
 extern const char *D_002AEF9C[];
