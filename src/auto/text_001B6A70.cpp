@@ -25,6 +25,10 @@ struct S_001B7480_Quat {
 
 extern S_001B7480_Quat D_002AA9F4;
 
+static inline const int &min_ref(const int &a, const int &b) {
+    return (b < a) ? b : a;
+}
+
 /* ParticleEmitterTempData */
 struct C_001B7480 {
     void *vtbl;
