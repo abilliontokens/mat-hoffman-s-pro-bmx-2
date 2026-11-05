@@ -86,6 +86,7 @@ C_00023C30::C_00023C30(int a, int b, int c, int d)
     unk4C = c;
     unk50 = d;
     unk1C = 0;
+    *(S_Vec4i_00023C30 *)&v0 = D_002A0F74;
     unk40 = 0;
     unk10 = 1;
 }
