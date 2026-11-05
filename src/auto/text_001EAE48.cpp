@@ -73,19 +73,22 @@ double func_001EAF91(double x, double y) {
     return r;
 }
 
+extern char D_000FFFFF;
 int func_001EAFB2(double x) {
     int func_001F39D3(...);
     unsigned short e = ((unsigned short *)&x)[3];
-    unsigned int sign = e & 0x8000;
+    unsigned int sign;
     if ((e & 0x7ff0) == 0x7ff0) {
-        int t = func_001F39D3(x);
-        if (t == 1) return 0x200;
-        if (t == 2) return 4;
-        if (t == 3) return 2;
-        return 1;
+        switch (func_001F39D3(x)) {
+        case 1: return 0x200;
+        case 2: return 4;
+        case 3: return 2;
+        default: return 1;
+        }
     }
+    sign = e & 0x8000;
     if ((e & 0x7ff0) == 0
-        && ((((unsigned int *)&x)[1] & 0xfffff) != 0 || ((unsigned int *)&x)[0] != 0)) {
+        && ((((unsigned int *)&x)[1] & (unsigned int)&D_000FFFFF) != 0 || ((unsigned int *)&x)[0] != 0)) {
         return sign ? 0x10 : 0x80;
     }
     if (x == D_002766A8) {
@@ -96,15 +99,13 @@ int func_001EAFB2(double x) {
 
 int func_001EB04C(void) {
     int *func_001EA1A1(...);
-    int n, i, p;
-    n = D_002FB36C;
-    if (n == 0) {
-        n = 0x200;
-    } else if (n < 20) {
-        n = 20;
+    int i, p;
+    if (D_002FB36C == 0) {
+        D_002FB36C = 0x200;
+    } else if (D_002FB36C < 20) {
+        D_002FB36C = 20;
     }
-    D_002FB36C = n;
-    D_002FB368 = func_001EA1A1(n, 4);
+    D_002FB368 = func_001EA1A1(D_002FB36C, 4);
     if (D_002FB368 == 0) {
         D_002FB36C = 20;
         D_002FB368 = func_001EA1A1(20, 4);
@@ -112,12 +113,12 @@ int func_001EB04C(void) {
             return 0x1a;
         }
     }
-    for (i = 0, p = (int)&D_002AE670; p < (int)&D_002AE8F0; p += 0x20, i++) {
+    for (i = 0, p = (int)D_002AE670; p < (int)D_002AE8F0; p += 0x20, i++) {
         ((int *)D_002FB368)[i] = p;
     }
-    for (i = 0, p = (int)&D_002AE680; p < (int)&D_002AE6E0; p += 0x20, i++) {
-        int *q = (int *)((char *)D_002FB260[i >> 5] + (i & 0x1f) * 0x28);
-        if (*q == -1 || *q == 0) {
+    for (i = 0, p = (int)D_002AE680; p < (int)D_002AE6E0; p += 0x20, i++) {
+        LockEntry *e = &D_002FB260[i >> 5][i & 0x1f];
+        if (e->f0 == -1 || e->f0 == 0) {
             *(int *)p = -1;
         }
     }
