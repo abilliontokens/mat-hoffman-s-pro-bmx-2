@@ -12,6 +12,77 @@ struct C_00160BF0 {
     void func_00160BF0(void);
 };
 
+struct C_00160C00 {
+    int f0;
+    int f4;
+    char pad8[0x8];
+    short f10;
+    char pad12[0x12];
+    int f24;
+    int f28;
+    int f2c;
+    C_00160C00 *func_00160C00(void);
+};
+
+void *func_001E8A44(int size);
+extern int D_002A80C0;
+extern int D_002A80CC;
+extern int D_002879C4;
+
+struct S_001607B0_Dev {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28(int a, int b, void *c);
+};
+
+struct S_00160810_Cam {
+    S_00160810_Cam *func_00193490(void);
+    void func_001938C0(void *a, int b, int c, void *vecA, void *vecB, int d);
+};
+
+/* LightFlare */
+struct C_00160860 {
+    void *vtbl;
+    char pad4[0x23];
+    unsigned char f27;
+    unsigned int vec[5][4];
+    S_001607B0_Dev *f78;
+    S_00160810_Cam *f7c;
+    char pad80[4];
+    int f84;
+    void func_00192370(int a0);
+    void func_00157960(void);
+    int func_001607B0(void);
+    void func_00160810(int a1, int a2);
+    C_00160860 *func_00160860(int a0);
+};
+
 
 C_00160A60* C_00160A60::func_00160A60(void) {
     unk0 = 0;
