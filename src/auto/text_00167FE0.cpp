@@ -17,6 +17,7 @@ int func_00168120(const char *s);
 int __stdcall func_00168A10(int a, int *out);
 int __stdcall func_00168550(int a, char *dst, int d);
 int __stdcall func_00168550(void *a, char *dst, int d);
+int __stdcall func_00168550(float a, char *dst, int d);
 extern char D_00288004[];
 extern char D_00288008[];
 extern char D_00275630[];
@@ -192,7 +193,7 @@ void C_001684B0::func_001684F0(int count)
     }
 }
 
-int __stdcall func_00168B90(void *a, float *out)
+int C_00168B90::func_00168B90(void *a, float *out)
 {
     char buf[0x400];
 
