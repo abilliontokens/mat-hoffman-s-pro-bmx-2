@@ -30,6 +30,50 @@ struct C_0018C7F0 {
     void func_0018C7F0(void);
 };
 
+struct C_0018C8D0 {
+    int unk0;
+    void func_00157660(void);
+    void *func_0018C8D0(int flags);
+};
+
+struct C_0018C000 {
+    int vtbl;
+    char *unk4;
+    char pad8[0x50];
+    int unk58[0x100];
+    int unk458;
+    void *func_001E8A44(int size);
+    void *func_0018C000(char *param);
+};
+
+struct C_0018C090_Node {
+    int value;
+    C_0018C090_Node *next;
+};
+
+struct C_0018C090 {
+    C_0018C090_Node *head;
+    int count;
+    void *func_001E8A44(int size);
+    void func_0018C090(int value);
+};
+
+struct C_0018C120_Node {
+    int value;
+    C_0018C120_Node *next;
+};
+
+struct V_0018C120 {
+    virtual void vf0(int a);
+};
+
+struct C_0018C120 {
+    C_0018C120_Node *head;
+    int count;
+    void func_001E891B(void *p);
+    void func_0018C120(void);
+};
+
 
 undefined4 C_0018C070::func_0018C070(void)
 {
