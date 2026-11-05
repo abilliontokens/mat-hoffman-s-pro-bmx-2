@@ -194,6 +194,27 @@ void BmxUIPageHPHChoice::func_000F1D90(void)
     func_001BE3F0();
 }
 
+void C_000F1DD0::func_000F1DD0(void)
+{
+    f280 = 1;
+    f284 = 0;
+    f288 = 0;
+    f28C = 0;
+    f294 = 0;
+    f298 = 0;
+    f29C = 0;
+    f2A0 = 0;
+    f2A4 = 0;
+    f2A8 = 0;
+    f2AC = 0;
+    f2B0 = 0;
+    D_002B91AC->f34->func_0005E840(D_002A8490->f2E8->f4->fFB0);
+    D_002B91AC->func_000BF860(0, 0x1EB, 0x184, 0);
+    D_002B91AC->f38->func_0005E840(D_002A8490->f2E8->f4->f7C8);
+    D_002B91AC->func_000BF860(1, 0x17B, 0x184, 0);
+    D_002B91AC->f3c->func_0005E840(D_002A8490->f2E8->f4->f838);
+}
+
 void BmxUIPageHPHChoice::func_000F1FC0(void)
 {
     int i;
