@@ -94,3 +94,73 @@ void C_0017BB50::func_0017BB50(undefined4 *param_1)
   return;
 }
 
+int C_0017BDE0::func_0017BDE0(f32 x, f32 y) {
+    int i = 0;
+    int j;
+
+    do {
+        j = (i + 1) & 3;
+        if (D_00275544 < (x - v[i * 2]) * (v[i * 2 + 1] - v[j * 2 + 1]) + (y - v[i * 2 + 1]) * (v[j * 2] - v[i * 2])) {
+            return 0;
+        }
+        i++;
+    } while (i < 4);
+    return 1;
+}
+
+int C_0017BDE0::func_0017BFB0(void) {
+    f32 e[8];
+    f32 n[8];
+    int i;
+
+    e[0] = v[2] - v[0];
+    e[1] = v[3] - v[1];
+    e[2] = v[4] - v[2];
+    e[3] = v[5] - v[3];
+    e[4] = v[6] - v[4];
+    e[5] = v[7] - v[5];
+    e[6] = v[0] - v[6];
+    e[7] = v[1] - v[7];
+    for (i = 0; i < 4; i++) {
+        n[i * 2 + 1] = e[i * 2];
+        n[i * 2] = -e[i * 2 + 1];
+        if (D_00275544 < e[((i + 1) & 3) * 2 + 1] * n[i * 2 + 1] + e[((i + 1) & 3) * 2] * n[i * 2]) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+void C_0017C300::func_0017C300(void) {
+    D_002EFD80 = this;
+    flags98 &= ~1;
+    unk880 = 0;
+    unk884 = -1;
+    unk888 = 0;
+    unk88C = 0;
+    unk890 = 0;
+    unk898 = 0;
+    unk894 = 0;
+    unk89C = 0;
+    unk8B0 = 0;
+}
+
+void C_0017C300::func_0017C520(void) {
+    vtbl = (void *)&D_0028909C;
+    D_002EFD80 = this;
+    flags98 |= 1;
+    if (unk894 != 0) {
+        func_001E8390(unk894);
+    }
+    if (f8C != 0) {
+        f8C->Destroy(1);
+    }
+    if (f90 != 0) {
+        f90->Release();
+    }
+    if (f94 != 0) {
+        f94->Release();
+    }
+    ((C_001927A0 *)this)->func_001927A0();
+}
+
