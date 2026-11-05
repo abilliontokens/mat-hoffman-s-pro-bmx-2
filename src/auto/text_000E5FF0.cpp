@@ -65,3 +65,20 @@ void C_000E6D00::func_000E6DC0(void)
     f34C->func_001B1980();
     f350->func_001B1980();
 }
+
+void C_000E6D00::func_000E6E20(void)
+{
+    int i;
+
+    f124->f268->func_001C4D50(500);
+    f340->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
+    f4C8 = f4CC = 1;
+    for (i = 0; i < f3E4; i++) {
+        f5A0[i]->func_001B1980();
+    }
+    for (i = 0; i < f504; i++) {
+        f62C[i]->func_001B1980();
+    }
+    f500->func_001B1980();
+}
+
