@@ -5,7 +5,31 @@ struct AIPedestrian {
     void *func_00015960(unsigned int flags);
     void func_00014020();
     void func_001C6DA0(int arg1, int arg2);
+    void func_000149A0(int idx, float scale);
 };
+
+struct Vec4_149A0 {
+    float x, y, z, w;
+};
+
+struct Obj197B40 {
+    void func_00197B40(Vec4_149A0 *a, Vec4_149A0 *b);
+};
+
+struct Obj108360 {
+    void func_00108360();
+};
+
+struct Sound149A0 {
+    virtual void v00(); virtual void v04(); virtual void v08(); virtual void v0C();
+    virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1C();
+    virtual void v20(); virtual void v24(); virtual void v28(); virtual void v2C();
+    virtual void v30(); virtual void v34(); virtual void v38();
+    virtual void Play(int a, float vol);
+};
+
+extern char *D_002B9120;
+extern float D_002756B4;
 
 struct Obj13F50 {
     void func_00013F50(void *arg1, int arg2, void *arg3, int arg4);
