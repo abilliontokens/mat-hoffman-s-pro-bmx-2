@@ -119,6 +119,11 @@ void C_001C21B0::func_001C21B0() {
     }
 }
 
+void C_001C21F0::func_001C21F0(int a0) {
+    func_001BFD00(a0);
+    func_00157A00(a0);
+}
+
 void C_001C2210::func_001C2210() {
     unk2C = 1;
     if (unk30 == 0 || unk34 == 0) {
