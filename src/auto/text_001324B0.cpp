@@ -161,9 +161,43 @@ int func_001325D0(float *param_1)
     return bVar3;
 }
 
+void C_1329F0::func_001329F0()
+{
+    char *base = (char *)this - 0x294;
+    int off = ((C_Off_1324B0 *)*(void **)base)->f4;
+
+    *(void **)(base + off) = (void *)&D_002845AC;
+    *(int *)(base + off - 4) = off - 0x294;
+    if (*(void **)((char *)this - 0x14) != 0) {
+        func_001E8390(*(void **)((char *)this - 0x14));
+    }
+    ((C_Dst64520_1324B0 *)((char *)this - 0x74))->func_00164520();
+}
+
+void C_1329F0::func_00132C50(int a1)
+{
+    int i;
+
+    for (i = 0; i < *(int *)((char *)this - 0x10); i++) {
+        ((C_Item_1324B0 *)*(void **)((char *)this - 0x14))[i].func_00133ED0();
+    }
+    ((C_Dst_1324B0 *)((char *)this - 0x294 + ((C_Off_1324B0 *)*(void **)((char *)this - 0x294))->f4))->func_00157A00(a1);
+}
+
 void C_1329F0::func_00132CA0()
 {
     ((C_Dst_1324B0 *)((char *)this - 0x294 + ((C_Off_1324B0 *)*(void **)((char *)this - 0x294))->f4))->func_00157960();
+}
+
+void C_132CC0::func_00132CC0(int a1, int a2, int a3)
+{
+    int i;
+
+    ((C_19_1324B0 *)f4)->func_0019ABA0(a1, a3);
+    for (i = 0; i < f284; i++) {
+        ((C_Item_1324B0 **)f280)[i]->func_00133ED0();
+        ((C_Item_1324B0 **)f280)[i]->func_00133140(a2, a3);
+    }
 }
 
 void Class_002845AC::func_00132DB0()
