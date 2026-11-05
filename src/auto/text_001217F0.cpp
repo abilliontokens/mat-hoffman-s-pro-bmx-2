@@ -11,12 +11,12 @@ static inline float dot_001225C0(const V4_001225C0 &a, const V4_001225C0 &b)
     return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 
-static inline V4_001225C0 sub_001225C0(const V4_001225C0 &a, const V4_001225C0 &b)
+static inline V4_001225C0 sub_001225C0(const V4_001225C0 *a, const V4_001225C0 *b)
 {
     V4_001225C0 t;
-    t.x = a.x - b.x;
-    t.y = a.y - b.y;
-    t.z = a.z - b.z;
+    t.x = a->x - b->x;
+    t.y = a->y - b->y;
+    t.z = a->z - b->z;
     t.w = 1.0f;
     return t;
 }
