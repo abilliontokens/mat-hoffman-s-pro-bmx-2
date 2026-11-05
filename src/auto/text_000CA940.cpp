@@ -9,11 +9,15 @@ struct SetterObj_CA {
 };
 
 struct GObj4_CA {
-    char pad0[0x130];
+    char pad0[0xE0];
+    int fE0;
+    char padE4[0x130 - 0xE4];
     int f130;
     char pad134[0x408 - 0x134];
     int f408;
-    char pad40C[0x930 - 0x40C];
+    char pad40C[0x838 - 0x40C];
+    int f838;
+    char pad83C[0x930 - 0x83C];
     int f930;
     char pad934[0xF70 - 0x934];
     int fF70;
@@ -24,8 +28,20 @@ struct GObj2E8_CA {
     GObj4_CA *p4;
 };
 
+struct GObj2E0_CA {
+    char pad0[0xC];
+    int fC;
+    char pad10[0x38C - 0x10];
+    int f38C;
+    char pad390[0x460 - 0x390];
+    int f460;
+    int f464;
+};
+
 struct GObjRoot_CA {
-    char pad0[0x2E8];
+    char pad0[0x2E0];
+    GObj2E0_CA *p2E0;
+    char pad2E4[4];
     GObj2E8_CA *p2E8;
 };
 
