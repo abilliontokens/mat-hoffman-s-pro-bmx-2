@@ -135,6 +135,62 @@ struct C_0010E260 {
     void func_0010E260(void);
 };
 
+struct C_0010E8A0 {
+    int f0;
+    int f4[5];
+    int f18[5];
+    int f2C;
+    int f30;
+    int f34;
+    int f38[100];
+    int f1C8[100];
+    int f358[100];
+    void func_0010E8A0(void);
+};
+
+struct C_0010E810Slot {
+    void func_000848F0(void);
+};
+
+struct C_0010E810Arr {
+    char pad0[0x170];
+    C_0010E810Slot *f170[1];
+};
+
+struct C_0010E810Global {
+    char pad0[0x2A4];
+    C_0010E810Arr *f2A4;
+};
+
+extern C_0010E810Global *D_002A8490;
+
+struct C_0010E810Child {
+    char pad0[0x24];
+    int f24;
+};
+
+struct C_0010E810 {
+    char pad0[0x1EC];
+    C_0010E810Child *f1EC;
+    char pad1F0[0x99C - 0x1F0];
+    int f99C;
+    char pad9A0[4];
+    float f9A4;
+    char pad9A8[0xA2C - 0x9A8];
+    int fA2C;
+    char padA30[0x11EC - 0xA30];
+    int f11EC;
+    int f11F0;
+    int f11F4;
+    char pad11F8[0x209C - 0x11F8];
+    int f209C;
+    int f20A0;
+    int f20A4;
+    int f20A8;
+    void func_00108FF0(void);
+    void func_0010E810(void);
+};
+
 
 void BmxVehicle_10DA70::func_0010DA70(Blk24_10DA70 *p)
 {
