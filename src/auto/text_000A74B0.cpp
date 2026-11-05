@@ -6,6 +6,20 @@
 extern int D_0027B1A4;
 extern int D_0027C1E4;
 void *func_001E8A44(int size);
+void func_001E891B(void *p);
+
+struct Path_000A8450 {
+    void func_001B6590(void *p);
+};
+
+struct Node_000A8450 {
+    virtual void vf0();
+    virtual void vf1(void *p, int flag);
+    int f4;
+    char pad8[0x17c];
+    char f184[0x104];
+    Path_000A8450 *f288;
+};
 
 struct SlotsR_000A74B0 {
     int a0[10];
