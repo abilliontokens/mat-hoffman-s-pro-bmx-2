@@ -1,6 +1,10 @@
 /* 42 functions from 0x0005B8D0 to 0x0005C720, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_0005C1D0 {
+    undefined4 func_0005C1D0(int param_1);
+};
+
 struct C_0005C120 {
     undefined4 func_0005C120(int param_1);
 };
@@ -111,6 +115,13 @@ undefined4 C_0005C120::func_0005C120(int param_1)
   int in_ECX = (int)this;
   
   return *(undefined4 *)(in_ECX + 0xb38 + param_1 * 4);
+}
+
+undefined4 C_0005C1D0::func_0005C1D0(int param_1)
+{
+  int in_ECX = (int)this;
+  
+  return *(undefined4 *)(in_ECX + 0xad0 + param_1 * 4);
 }
 
 int C_0005C360::func_0005C360(void) {
