@@ -101,6 +101,8 @@ struct C_000EA910 {
     C_000EA910 *func_000EA910(int a);
     void func_000EA9B0();
     void func_000EA9F0();
+    void func_001BE4F0(int a, int b, int c);
+    C_000EA910 *func_000EAB00(int a, int b, int c);
 };
 
 C_000EA910 *C_000EA910::func_000EA910(int a)
