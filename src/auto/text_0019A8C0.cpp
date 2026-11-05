@@ -216,3 +216,21 @@ C_0019B6F0 *C_0019B6F0::func_0019B6F0(void)
     return this;
 }
 
+C_0019B700 *C_0019B700::func_0019B700(int a)
+{
+    ((C_00132EB0_19A8C0 *)this)->func_00132EB0(a);
+    f1bc = 0;
+    f1c0 = 0;
+    f1c4 = 0;
+    f1c8 = 0;
+    f1b0 = 0;
+    f1b4 = 0;
+    f1cc = 0;
+    f1ce = 0;
+    f1d0 = 0;
+    f1d4 = 0;
+    f50 = 0;
+    vtbl = (void *)&D_0028B1C4;
+    return this;
+}
+
