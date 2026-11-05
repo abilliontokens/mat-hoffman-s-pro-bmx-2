@@ -38,3 +38,22 @@ int BmxUIPageDemo::func_000C0100(int idx)
     }
     return items[idx];
 }
+
+int BmxUIPageDemo::func_000C0CB0(int idx)
+{
+    S_C09B0_Ui *ui = f124->f24;
+    if (idx + 6 <= 20) {
+        if (func_000C0100(idx) == D_002A8490->f8->func_00136170(0x29, 2, 0) &&
+            func_000C0100(idx + 1) == D_002A8490->f8->func_00136170(0x28, 2, 0) &&
+            func_000C0100(idx + 2) == D_002A8490->f8->func_00136170(1, 2, 0) &&
+            func_000C0100(idx + 3) == D_002A8490->f8->func_00136170(0x29, 2, 0) &&
+            func_000C0100(idx + 4) == D_002A8490->f8->func_00136170(0, 2, 0) &&
+            func_000C0100(idx + 5) == D_002A8490->f8->func_00136170(0x29, 2, 0)) {
+            ui->func_000B9A80(6, 1);
+            for (int i = 0; i < 9; ++i)
+                D_002A8490->f2e0->f2c0->func_0005C310(2, i);
+            return 1;
+        }
+    }
+    return 0;
+}
