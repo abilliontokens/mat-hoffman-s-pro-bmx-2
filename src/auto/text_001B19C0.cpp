@@ -448,6 +448,11 @@ void *C_001B23D0::func_001B2480(unsigned int size)
     return f28;
 }
 
+void C_001B2690::func_001B2690(int index, int data)
+{
+    func_001AC750(index, data | f14[index].data);
+}
+
 void *C_001B2700::func_001B2700(unsigned int flags)
 {
     extern int D_0028C90C;
