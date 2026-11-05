@@ -82,13 +82,35 @@ struct C_00157920 {
 };
 
 struct ConfigFile {
-    ConfigFile();
-    ~ConfigFile();
-    int __stdcall func_00169490(const char *path, int b);
-    void __stdcall func_00169710(const char *section);
-    void __stdcall func_00168C20(const char *key, int def, int *out);
-    void __stdcall func_00168550(const char *key, char *buf, int size);
+    void func_00168280();
+    void func_001691E0();
+    int func_00169490(const char *path, int b);
+    void func_00169710(const char *section);
+    void func_00168C20(const char *key, int def, int *out);
+    void func_00168550(const char *key, char *buf, int size);
     char pad[0x4cc];
+};
+
+struct UIScreen {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5();
+};
+
+struct BmxUIScreens {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33();
+    virtual UIScreen *v34(int index, const char *name);
+    virtual void v35();
+    char pad4[0x10c];
+    UIScreen **f110;
+    int f114;
 };
 void func_001ADCC0(char *buf, int size, const char *fmt, ...);
 void *func_001E8AA5(int size);
