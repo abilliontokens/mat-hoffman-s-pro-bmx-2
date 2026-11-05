@@ -225,3 +225,15 @@ GrindTrigger_000A8360 *GrindTrigger_000A8360::func_000A8360(void)
     return this;
 }
 
+void GrindTrigger_000A8360::func_000A8450(void *param)
+{
+    int i;
+
+    for (i = 0; i < f4; i++) {
+        f8[i]->vf1(param, 0);
+        if (f8[i]->f4 == 6) {
+            f8[i]->f288->func_001B6590(f8[i]->f184);
+        }
+    }
+}
+
