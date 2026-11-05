@@ -1,6 +1,7 @@
 /* 8 functions from 0x0012F0F0 to 0x0012FE50, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <math.h>
 
 void *func_001E8A44(int size);
 
