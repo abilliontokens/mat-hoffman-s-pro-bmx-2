@@ -19,7 +19,8 @@ struct S_0013B9C0_Ent28 {
 struct S_0013B9C0_Ent20 {
     int f0;
     int f4;
-    char pad8[8];
+    int f8;
+    int fC;
     void *f10;
     void *f14;
     int f18;
