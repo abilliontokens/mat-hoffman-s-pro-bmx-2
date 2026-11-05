@@ -99,6 +99,37 @@ struct C_001D3700 {
 };
 
 
+void C_001D35E0::func_001D35E0()
+{
+    vtbl = (void *)&D_0028F274;
+    if (f18 != 0) {
+        ((C_001D27F0 *)this)->func_001D27F0();
+    }
+    if (f14 != 0) {
+        int i;
+        for (i = 0; i < f4; i++) {
+            if (f14[i].obj != 0) {
+                f14[i].obj->v2();
+                f14[i].obj = 0;
+            }
+        }
+        func_001E891B(f14);
+    }
+    if (f10 != 0) {
+        int i = ((int *)f10)[-1];
+        char *base = (char *)f10 - 4;
+        S_001D35E0_Elem *p = f10 + i;
+        while (--i >= 0) {
+            p--;
+            if (p->ptr != 0) {
+                func_001E891B(p->ptr);
+            }
+        }
+        func_001E891B(base);
+    }
+    ((C_00160BF0 *)this)->func_00160BF0();
+}
+
 C_001D3690 *C_001D3690::func_001D3690(int a)
 {
     ((C_001625A0 *)this)->func_001625A0(a);
