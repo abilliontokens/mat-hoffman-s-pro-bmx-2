@@ -92,3 +92,12 @@ struct C_0006D1D0 {
     void func_0006D210();
     void func_0006D280();
 };
+
+void C_0006D1D0::func_0006D1D0() {
+    unkCC = 1;
+    unkE0 = 0;
+    v6();
+    unkE8 = 1;
+    unkE4 = -1;
+    unkEC = 1;
+}
