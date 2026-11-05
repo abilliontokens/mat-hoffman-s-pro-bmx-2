@@ -10,3 +10,15 @@ struct C_000229C0 {
 };
 
 extern C_000229C0 *D_002B7E18;
+
+void func_000A25E0(void)
+{
+    if (D_002B7E18) {
+        if ((D_002B7E18->func_00025240() | D_002B7E18->func_00022550()) == 0) {
+            if (D_002B7E18) {
+                D_002B7E18->vfunc8();
+                D_002B7E18 = 0;
+            }
+        }
+    }
+}
