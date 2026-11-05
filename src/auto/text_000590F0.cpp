@@ -215,6 +215,26 @@ void __stdcall func_000597A0(int a0, int a1) {
     func_000560A0();
 }
 
+int Screen_000597B0::func_000597B0(Rect16_000597B0 r, int a4, int name, int a6, int a7)
+{
+    f50 = a7;
+    f130 = new Fader_000597B0(0.02f);
+    f134 = new Fader_000597B0(0.2f);
+    if (f4C == 0) {
+        f4C = (char *)func_001E8A44(0x104);
+    }
+    func_001ADCC0(f4C, 0x104, D_00275678, D_002A5348, name);
+    if (!func_000590F0(a7)) {
+        return 0;
+    }
+    if (a6) {
+        func_00056100(r, a4);
+    }
+    fCC = D_002A1A64;
+    f40 = 1;
+    return 1;
+}
+
 BmxGame *BmxGame::func_000598E0(void)
 {
     ((C_001D0E30 *)this)->func_001D0E30();
