@@ -149,7 +149,12 @@ struct C_000E1770 {
     void func_000E1EA0();
     void func_000E1F00();
     void func_000E1F60();
+    void func_000E1C80(float dt);
+    void func_001BED00(float dt);
 };
+
+extern float D_0027DE74;
+extern float D_00278C48;
 
 void C_000E1550::func_000E1550(void)
 {
