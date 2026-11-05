@@ -413,9 +413,9 @@ struct C_001BFA70 {
     int f44[8];
     int f64;
     int f68;
-    S_Vec4_001BFA70 f6C;
-    S_Vec4_001BFA70 f7C;
-    S_Vec4_001BFA70 f8C;
+    float f6C[4];
+    float f7C[4];
+    float f8C[4];
     int f9C;
     int fA0;
     void *func_001BFA70(int a0, int a1);
