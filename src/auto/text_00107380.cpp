@@ -55,8 +55,7 @@ extern float D_00282A84;
 extern float D_00282A80;
 extern float D_00282A7C;
 float func_0014FBA0(float a, float b);
-extern "C" float __cdecl sqrtf(float);
-#pragma intrinsic(sqrtf)
+#include <xmmintrin.h>
 
 struct C_00107FB0 {
     char pad0[0x970];
