@@ -298,16 +298,29 @@ struct S_001CB9A0_Owner {
     unsigned char f208;
 };
 
+/* file media object (Seek at slot 7, Process at slot 4); COM-style, __stdcall */
+struct S_001CB9F0_Media {
+    virtual unsigned long __stdcall v0();
+    virtual unsigned long __stdcall v1();
+    virtual int __stdcall v2();
+    virtual int __stdcall v3();
+    virtual int __stdcall v4(S_001CBB50_Packet *src, S_001CBB50_Packet *dst);
+    virtual int __stdcall v5();
+    virtual int __stdcall v6();
+    virtual int __stdcall v7(int offset, int origin, int *absolute);
+};
+
 /* a streaming sound with three queued packets */
 struct C_001CB9A0 {
     int f0;
     S_001CB9A0_Owner *f4;
-    int f8;
+    S_001CB9F0_Media *f8;
     S_001CBB50_Stream *fC;
     char *f10;
     unsigned int f14[3];
     unsigned char f20;
     void func_001CB9A0(void);
+    int func_001CB9F0(unsigned int idx);
     int func_001CBB50(int idx);
     void func_001CBBC0(void);
 };
@@ -765,6 +778,11 @@ void C_001CC0C0::func_001CC140(void)
     }
     D_002BEAAC->func_0013B210(this);
     func_0001C970();
+}
+
+int C_001CC0C0::func_001CC1E0(void)
+{
+    return f1A0;
 }
 
 int C_001CC0C0::func_001CC320(unsigned int v)
