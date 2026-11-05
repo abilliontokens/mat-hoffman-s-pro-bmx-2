@@ -54,8 +54,13 @@ struct S_Item80 {
     int f80;
 };
 
+struct S_Obj4E4 {
+    void func_00150F80(void);
+};
+
 struct S_List {
-    char pad0[0x524];
+    char pad0[0x4e4];
+    S_Obj4E4 *f4e4[16];
     S_Item80 **f524;
     char pad528[0x560 - 0x528];
     int f560;
