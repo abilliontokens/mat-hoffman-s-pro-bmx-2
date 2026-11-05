@@ -8,6 +8,33 @@ struct C_001B59E0 {
     void func_001B59E0();
 };
 
+/* the stream the grind trigger list is read from */
+struct S_GrindsStream {
+    int func_00169710(void *name);
+    void func_00168C20(void *key, int def, int *out);
+};
+
+/* a grind trigger entry: 0x408 bytes, loaded through its first virtual method */
+struct S_GrindElem {
+    virtual int v0(S_GrindsStream *stream, int index, int a, int b, int *mgrData);
+    S_GrindElem *func_000A8360();
+};
+
+/* Grinds */
+struct C_000A85C0 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    S_GrindElem **f28;
+    int func_000A85C0(S_GrindsStream *stream, int a1, int a2, int a3);
+};
+
+extern char D_0027C280[];
+extern char D_0027C26C[];
+extern char D_0027C25C[];
+void *func_001E8A44(int size);
+void *func_001E83E8(void *block, unsigned int size);
+
 struct C_000A8D70 {
     void *vtbl;
     C_000A8D70 *func_000A8D70();
