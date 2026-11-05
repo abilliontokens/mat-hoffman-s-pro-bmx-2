@@ -411,3 +411,48 @@ void C_00096020::func_00096020(S_00096020_Arg *arg)
  } while(i<count);
 }
 
+extern "C" char *__cdecl strcpy(char *, const char *);
+#pragma intrinsic(strcpy)
+void C_00096200::func_00096200(int idx)
+{
+ char buf[0x104];
+ strcpy(buf, (char *)this + idx * 0x78 + 0x2ff8);
+ S_00096200_Player *p = D_002A8490->player;
+ S_00096200_Owner *o = p->owner;
+ if (buf[0]) {
+  int found = 0;
+  for (int j = 0; j < o->list->count && !found; ++j) {
+   S_00096020_Item *item = o->list->items[j];
+   if (!func_001EA426(item->name, buf)) { p->owner->manager->func_0001B910(item); found = 1; }
+  }
+ }
+ strcpy(buf, (char *)this + idx * 0x78 + 0x34a8);
+ if (buf[0]) {
+  int found = 0;
+  for (int j = 0; j < o->list->count && !found; ++j) {
+   S_00096020_Item *item = o->list->items[j];
+   if (!func_001EA426(item->name, buf)) { p->owner->manager->func_0001B820(item); found = 1; }
+  }
+ }
+ if (((char *)this + idx * 0x78)[0x5578] && ((char *)this + idx * 0x78)[0x50c8])
+  (*(S_00096200_Obj **)((char *)this + idx * 4 + 0x63d8))->func_001B65D0();
+ if (((char *)this + idx * 0x78)[0x5ed8] && ((char *)this + idx * 0x78)[0x5a28])
+  (*(S_00096200_Obj **)((char *)this + idx * 4 + 0x6400))->func_001B65D0();
+ char *a = (char *)this + idx * 0x78 + 0x3958;
+ if (*a) {
+  char *b = (char *)this + idx * 0x78 + 0x3e08;
+  if (*b) {
+   int found = 0;
+   for (int j = 0; j < p->owner->list->count && !found; ++j) {
+    S_00096020_Item *item = p->owner->list->items[j];
+    if (!func_001EA426(item->name, a)) {
+     p->owner->manager->func_0001BDB0(j);
+     p->owner->manager->func_0001BB00(j, b, found);
+     p->owner->manager->func_0001B910(item);
+     found = 1;
+    }
+   }
+  }
+ }
+}
+
