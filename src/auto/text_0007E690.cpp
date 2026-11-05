@@ -163,14 +163,14 @@ undefined4 C_0007EB00::func_0007EB00(byte param_1)
 
 undefined4 C_0007EB20::func_0007EB20(void)
 {
-    if ((D_002B9068 & 1) == 0) {
+    if (!(D_002B9068 & 1)) {
         D_002B9068 |= 1;
         D_002B9064 = D_002A7CB8->func_00026500((int)&D_00278AF0, 0);
     }
     if (D_002A8490->f274 >= D_002A8490->f270 - 1) {
-        C_12B2B0 *vb;
         C_Rect24 r;
         C_Rect24 out;
+        C_12B2B0 *vb;
 
         D_002EFDB8->v8();
         D_002EFDB8->v7(1);
@@ -190,12 +190,13 @@ undefined4 C_0007EB20::func_0007EB20(void)
             f1BC->func_001D6600();
         } else {
             fFC->func_0005E840(D_002A8490->f2e8->f4->f7c8);
-            ((C_Node *)fFC)->func_001D6600();
         }
+        ((C_Node2 *)fFC)->func_001D6600();
         func_00157960();
         if (f120->f90 > 1) {
             vb->func_0012B2B0(&out, 0);
         }
+        return 1;
     }
     return 1;
 }
