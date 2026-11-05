@@ -443,9 +443,7 @@ void C_00162A80::func_00162A80(C_00162790 *item)
         for (i = idx; i < unk0 - 1; i++) {
             unk18[i] = unk18[i + 1];
         }
-        idx = unk0 - 1;
-        unk0 = idx;
-        unk18 = (C_00162790 **)func_001E83E8(unk18, idx * 4);
+        unk18 = (C_00162790 **)func_001E83E8(unk18, --unk0 * 4);
     }
 }
 
