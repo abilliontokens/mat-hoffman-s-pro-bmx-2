@@ -424,6 +424,31 @@ void C_001C0BE0::func_001C0BE0(float dt)
     }
 }
 
+C_001C0C50 *C_001C0C50::func_001C0C50(int a1, int a2)
+{
+    int i;
+
+    ((C_00157600 *)this)->func_00157600(a2);
+    unk24 = (S_001C0DD0_Owner *)a1;
+    unk2C = 0;
+    unk28 = 0;
+    unk30 = 0;
+    unk34 = 0;
+    unk38 = 0;
+    unk3C = 0;
+    unk40 = 0;
+    for (i = 0; i < 8; i++) {
+        unk44[i] = 0;
+    }
+    unk64 = 0;
+    vtbl = &D_0028DC94;
+    unk68 = 0;
+    for (i = 0; i < 16; i++) {
+        unk6C[i] = 0;
+    }
+    return this;
+}
+
 void C_001C0E80::func_001C0E80(void)
 {
     unk2C = 1;
