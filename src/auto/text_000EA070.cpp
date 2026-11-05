@@ -37,6 +37,34 @@ struct C_000EA910 {
     void func_000EA9B0();
 };
 
+C_000EA910 *C_000EA910::func_000EA910(int a)
+{
+    func_001BE360(a);
+    vtbl = &D_00281A74;
+    unk290 = 0;
+    unk28C = 0;
+    unk298 = 0;
+    unk284 = 0;
+    unk288 = 0;
+    unk29C = 0;
+    unk2A0 = 0;
+    unk2A4 = 0;
+    unk2A8 = 0;
+    unk2AC = 1;
+    unk2B0 = 0;
+    unk2B8 = 0;
+    unk2B4 = 0;
+    for (int i = 0; i < 12; i++) {
+        arr2D0[i] = 0;
+    }
+    unk2BC = 0;
+    unk2C0 = 0;
+    unk2C4 = 0;
+    unk2C8 = 0;
+    unk2CC = 0;
+    return this;
+}
+
 void C_000EA910::func_000EA9B0()
 {
     int i;
