@@ -42,6 +42,10 @@ struct FOS {
     char man[24];
 };
 
+struct FloatFormat {
+ int maxexp, minexp, precision, shift, bits, bias;
+};
+
 struct STRFLT {
     int sign;
     int decpt;
