@@ -366,7 +366,8 @@ void *C_0001E030::func_0001E030(int flags) {
 
 C_0001E050 *C_0001E050::func_0001E050(void) {
     extern int D_00275F34;
-    ((C_0001DFE0 *)this)->func_0001DFE0();
+    void func_0001DFE0(...);
+    func_0001DFE0();
     unk8 = 0;
     unkC = 0;
     unk10 = 0;
