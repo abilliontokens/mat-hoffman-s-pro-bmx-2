@@ -43,6 +43,66 @@ struct C_000342A0 {
 };
 
 
+int E34090_Ev::func_00034090()
+{
+    int i;
+    int j;
+    ((E34090_Fn)vtbl[0xa0 / 4])(this);
+    func_00032220();
+    for (i = 0; i < f64->f4e0->count; i++) {
+        f64->f4e0->items[i]->f67c = 0;
+    }
+    if (f64->f484) {
+        f64->f484->func_0001C240();
+    }
+    ((E34090_Fn)f64->vtbl[0x158 / 4])(f64);
+    f64->func_000A2ED0();
+    if (f64->f3b4) {
+        f64->f3b4->v30(f64);
+    }
+    if (f64->f534) {
+        f64->f534->func_000A84F0();
+    }
+    if (f1c0) {
+        f1c0->func_00099A60(f64->f3b4);
+    }
+    if (D_002A8490->f124) {
+        D_002A8490->f124 = 0;
+    }
+    for (j = 0; j < f90; j++) {
+        if (f170[j]) {
+            f170[j]->func_000831E0();
+        }
+    }
+    f128 = D_002A8490->f2e0->f10;
+    f124 = 0;
+    f12c = 0;
+    f130 = 0;
+    f134 = -1;
+    f1c8 = 0;
+    D_002AADF8 = 1;
+    f44->f50->func_000560A0();
+    if (f90 > 1 && f11c == 0) {
+        switch (D_002A8490->f2e0->f8) {
+        case 1:
+            *(int *)(fe4 + 0xf0) = 0xe0;
+            break;
+        case 2:
+            *(int *)(fe4 + 0xf0) = 0x140;
+            break;
+        }
+        f48->f50->func_000560A0();
+    }
+    for (i = 0; i < f64->f4e0->count; i++) {
+        if (f170[i]) {
+            f170[i]->func_000843E0(1);
+            f170[i]->func_000843C0();
+        }
+        f64->f4e0->items[i]->f958 = 0.2f;
+    }
+    return 1;
+}
+
 undefined4 C_000342A0::func_000342A0(byte param_1)
 {
   int func_00033220(...);
