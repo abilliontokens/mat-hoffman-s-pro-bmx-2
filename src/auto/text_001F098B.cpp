@@ -51,6 +51,17 @@ extern char D_00295C94[];
 extern unsigned char D_002F6A39;
 extern char *(*D_002F6A3C)(long);
 
+static inline int und_strncmp(const char *first, const char *last, unsigned int count)
+{
+    if (!count)
+        return 0;
+    while (--count && *first && *first == *last) {
+        first++;
+        last++;
+    }
+    return *(unsigned char *)first - *(unsigned char *)last;
+}
+
 #pragma optimize("t", off)
 extern char D_00295CE8[];
 S_001EF734 *func_001F1DF5(S_001EF734 *);
