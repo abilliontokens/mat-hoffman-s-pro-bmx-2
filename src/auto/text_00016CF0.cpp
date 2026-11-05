@@ -20,10 +20,7 @@ struct C_00016E40_Vec {
 };
 
 static __forceinline void copy_00017910(C_00016E40_Vec &out, const C_00016E40_Vec &in) {
-    out.x = in.x;
-    out.y = in.y;
-    out.z = in.z;
-    out.w = in.w;
+    out = in;
 }
 extern C_00016E40_Vec D_002A0718;
 
