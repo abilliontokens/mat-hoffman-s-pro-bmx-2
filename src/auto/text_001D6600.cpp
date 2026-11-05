@@ -142,3 +142,36 @@ int XboxTextureMap::func_001D6CB0(int param)
     return i;
 }
 
+void XboxTextureMap::func_001D6D00(Img_001D6D00 *img, Sz_001D6D00 *sz, char *name)
+{
+    char buf[0x104];
+    char *ext;
+    int i;
+    void *h;
+    void *mem;
+
+    if (func_001B2910(img->f0) == 8)
+        ext = D_0028F6B8;
+    else
+        ext = D_0028762C;
+    char *base = name;
+    i = 0;
+    if (base == 0)
+        base = D_0028F6B4;
+    h = 0;
+    for (;;) {
+        if (h != 0)
+            func_0014FE50(h);
+        func_001ADCC0(buf, 0x104, D_0028F6A0, base, i, ext);
+        h = func_0014FDF0(buf, D_00276274);
+        i++;
+        if (h == 0)
+            break;
+    }
+    mem = func_001E8AA5(img->f18 * img->f14 * 4);
+    int w = img->f14;
+    func_00178C60(mem, sz->p, w, img->f18, w, (sz->w << 3) / func_001B2910(fA4), 0x22b8, fA4, 0, 0, 0x80, 0xff00ff, 1);
+    func_001B3A50(mem, img->f14, img->f18, 0, buf, 0x20);
+    func_001E8390(mem);
+}
+
