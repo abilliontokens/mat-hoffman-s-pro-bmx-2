@@ -5,6 +5,7 @@
 #include <xmmintrin.h>
 
 static __forceinline float Min_00062CD0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float MinR_00062CD0(const float &a, const float &b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 
 struct Vec4_62 {
     float x, y, z, w;
