@@ -402,21 +402,20 @@ void XboxMusic::func_001CF110(IntArray *list)
 void XboxSoundGroup::func_001CF2A0()
 {
     FlatElemList_001CF2A0 copy;
-    FlatElemList_001CF2A0 *p = &copy;
     int i;
 
     if (list.count > 0) {
-        p->init(list.count);
+        copy.init(list.count);
         for (i = 0; i < list.count; i++) {
-            p->add(list.at(i));
+            copy.add(list.at(i));
         }
-        for (i = 0; i < p->count; i++) {
-            p->at(i)->release();
+        for (i = 0; i < copy.count; i++) {
+            copy.at(i)->release();
         }
     }
     memset(list.items, 0, list.count * sizeof(int));
     list.count = 0;
-    func_001E891B(p->items);
+    func_001E891B(copy.items);
 }
 
 int C_001CF3C0::func_001CF3C0(SoundVoice *voice)
@@ -508,6 +507,47 @@ void XboxSoundInterface::func_001CF6E0()
     }
     f13c->release();
     func_0001CA30();
+}
+
+int XboxSound_001CF970::func_001CF970(int on)
+{
+    int was;
+
+    if (on != 0) {
+        RtlEnterCriticalSection(D_002F08EC->f138->cs);
+        was = f208.playing;
+        RtlLeaveCriticalSection(D_002F08EC->f138->cs);
+        if (was != 0) {
+            return 1;
+        }
+        if (v7() == 0) {
+            return 1;
+        }
+        if (f140 != 0) {
+            D_00220AE0(f140->fC, 1);
+        } else {
+            v6(0);
+        }
+        RtlEnterCriticalSection(D_002F08EC->f138->cs);
+        f208.playing = on;
+        RtlLeaveCriticalSection(D_002F08EC->f138->cs);
+    } else {
+        RtlEnterCriticalSection(D_002F08EC->f138->cs);
+        was = f208.playing;
+        RtlLeaveCriticalSection(D_002F08EC->f138->cs);
+        if (was == 0) {
+            return 1;
+        }
+        if (f140 != 0) {
+            D_00220AE0(f140->fC, 0);
+        } else {
+            func_001CE4C0();
+        }
+        RtlEnterCriticalSection(D_002F08EC->f138->cs);
+        f208.playing = 0;
+        RtlLeaveCriticalSection(D_002F08EC->f138->cs);
+    }
+    return 1;
 }
 
 undefined4 C_001CFAE0::func_001CFAE0(byte param_1)
