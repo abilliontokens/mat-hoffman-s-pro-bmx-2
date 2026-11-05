@@ -127,3 +127,25 @@ C_0012EF30 *C_0012EF30::func_0012EF30(int a)
     return this;
 }
 
+void C_0012EF30::func_0012EF60()
+{
+    vtbl = (void *)&D_002843F4;
+    if (f518) {
+        f518->refs--;
+        if (f518->refs <= 0) {
+            D_002BEAAC->func_0013B210(f518);
+            func_001E891B(f518->data);
+            func_001E891B(f518);
+        }
+    }
+    if (f51c) {
+        f51c->refs--;
+        if (f51c->refs <= 0) {
+            D_002BEAAC->func_0013B210(f51c);
+            func_001E891B(f51c->data);
+            func_001E891B(f51c);
+        }
+    }
+    func_0012CCA0();
+}
+
