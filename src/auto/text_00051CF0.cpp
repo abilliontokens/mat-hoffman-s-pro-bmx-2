@@ -24,3 +24,10 @@ undefined4 C_00052BB0::func_00052BB0(byte param_1)
   }
   return in_ECX;
 }
+
+void C_00052BF0::func_00052BF0(void)
+{
+    func_000314A0();
+    func_00052740(0);
+}
+
