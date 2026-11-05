@@ -87,12 +87,16 @@ struct C_00032720 {
 };
 
 struct C_001041A0 {
+    char pad0[0xc0];
+    unsigned char fC0;
     void func_001041A0(void);
+    void func_001041C0(void);
 };
 
 struct C_00032550 {
     char pad0[0x1c4];
     C_001041A0 *unk1C4;
+    void func_00032530(void);
     void func_00032550(void);
 };
 
