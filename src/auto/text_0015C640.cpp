@@ -20,6 +20,12 @@ extern float D_00287840;
 extern float D_00275460;
 extern float D_00275544;
 
+void C_0015C6C0::func_0015C6C0(int param_1, int param_2)
+{
+    int func_0015C6F0(...);
+    func_0015C6F0(unk14, param_1, unkC, unk8, param_2);
+}
+
 void C_0015CD50::func_0015CD50(uint param_1)
 {
   int in_ECX = (int)this;
