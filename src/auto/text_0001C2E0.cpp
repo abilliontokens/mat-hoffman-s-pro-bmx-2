@@ -127,6 +127,9 @@ struct S_0001CC00_Slot {
     S_0001CC00_Slot *func_001D5350(void);
     int func_001A2510(C_0001CC00 *owner, int a, int b);
     void func_001A13F0(void);
+    int func_001A15F0(int *p);
+    int func_001A1580(float *a, float *b);
+    int func_001A1650(int *p);
 };
 
 struct C_0001CC00 {
