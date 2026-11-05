@@ -42,9 +42,19 @@ struct C_0015DCC0_Item {
     char pad0[0x24];
     int unk24;
     int unk28;
-    char pad2C[0x98];
+    int unk2C;
+    int unk30;
+    int unk34;
+    int unk38;
+    char pad3C[0x14];
+    float unk50;
+    float unk54;
+    float unk58;
+    char pad5C[0x68];
     C_00193500 *unkC4;
+    void func_0015D0A0(C_00192A50 *p, int a);
 };
+void *func_001E83E8(void *p, int size);
 
 struct C_0015DA60 {
     char pad0[0x38];
