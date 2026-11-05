@@ -459,7 +459,7 @@ char *BitObj::func_001EF26D(char *buf, int n)
 
 BitObj *__fastcall func_001EF2FE(BitObj *self, int unused, BitObj *o)
 {
-    if (self->s4 != 3 && func_001EF1D0(o, unused) == 0) {
+    if (self->s4 != 3 && func_001EF1D0(o, (int)self) == 0) {
         self->s4 = o->s4;
     }
     return self;
