@@ -167,6 +167,43 @@ struct C_00069BA0 {
 };
 
 
+int C_00069BD0::func_00069AB0()
+{
+    int i;
+    Sprite_69 *e;
+
+    unk80->func_001D5AD0();
+    unk84->func_001D5AD0();
+    for (i = 0; i < 5; i++) {
+        arrD8[i]->func_001D5AD0();
+        arrEC[i]->func_001D5AD0();
+    }
+    if (unk160 == 0 && unk168 == 0 && unk164 == 0) {
+        for (i = 0; i < 14; i++) {
+            if (i == unk144 * 2 || i == unk144 * 2 + 1) {
+                e = arr100[i];
+                e->f38 = (e->f38 & 0xffbfa35a) | 0xbfa35a;
+                e->b58 |= 2;
+                arr100[i]->func_001D5AD0();
+            }
+        }
+    }
+    if (unk154 != 0) {
+        unkC8->func_001D5AD0();
+    } else {
+        unkB8->func_001D5AD0();
+    }
+    if (unk158 != 0) {
+        unkCC->func_001D5AD0();
+    } else {
+        unkBC->func_001D5AD0();
+    }
+    if (unk138 != 0) {
+        unk138->func_001D5AD0();
+    }
+    return 1;
+}
+
 void C_00069BA0::func_00069BA0(void)
 {
   int* in_ECX = (int*)this;
