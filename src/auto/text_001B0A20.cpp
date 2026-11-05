@@ -459,6 +459,25 @@ void C_001B0FC0::func_001B0FC0(void)
     count = 0;
 }
 
+int C_001B1010::func_001B1010(C_001B1010_Arg *arg0, int arg1)
+{
+    int index = count;
+
+    count = index + 1;
+    if (arr[index] == 0) {
+        C_001B1010_Obj *p = (C_001B1010_Obj *)func_001E8A44(0x28);
+        arr[index] = p != 0 ? p->func_00149280(arg0->unk14) : 0;
+    }
+    arr[index]->unk8 = arg0;
+    for (int i = 0; i < count - 1; i++) {
+        if (arr[i] != 0 && arr[i]->unk8 != 0) {
+            if (arg0->v5(arr[i]->unk8) != 0 && arr[i]->unk20 > index) {
+                arr[i]->unk1C = arr[index];
+            }
+        }
+    }
+    return index;
+}
 
 void C_001B10B0::func_001B10B0(undefined4 param_1, int param_2)
 {
