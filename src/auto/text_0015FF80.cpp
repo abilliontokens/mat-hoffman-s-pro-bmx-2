@@ -323,11 +323,11 @@ void C_00160B30::func_00160B90(void)
     p = head;
     while (p != 0) {
         node = p;
-        pnext = &node->next;
+        pnext = &p->next;
         p = *pnext;
         node->f0 = 0;
         node->prev = 0;
-        *pnext = 0;
+        node->next = 0;
         func_001E891B(node);
     }
     head = 0;
