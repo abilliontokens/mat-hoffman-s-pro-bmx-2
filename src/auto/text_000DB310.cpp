@@ -2,7 +2,6 @@
 #include "common.h"
 
 extern char D_0027F7D4[];
-extern const float D_00276DD4;
 
 struct C_000DB310_Widget {
     void func_001B1980();
