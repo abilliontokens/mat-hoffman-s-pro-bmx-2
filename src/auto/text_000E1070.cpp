@@ -65,6 +65,7 @@ struct C_000E1770 {
     void func_000E1810();
     void func_000E1C20();
     void func_000E1EA0();
+    void func_000E1F00();
 };
 
 C_000E1770 *C_000E1770::func_000E1770(int a)
