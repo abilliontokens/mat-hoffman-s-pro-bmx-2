@@ -103,11 +103,15 @@ struct C_00108370_A00 {
 };
 
 struct C_00108370 {
-    char pad0[0x230];
+    char pad0[0x24];
+    C_001083E0_24 *f24;
+    char pad28[0x230 - 0x28];
     C_00198390_Obj *f230;
     char pad234[0xA00 - 0x234];
     C_00108370_A00 *fA00;
-    char padA04[0x11AC - 0xA04];
+    char padA04[0xA28 - 0xA04];
+    int fA28;
+    char padA2C[0x11AC - 0xA2C];
     C_001332A0_Obj *f11AC;
     C_001332A0_Obj *f11B0;
     C_001332A0_Obj *f11B4;
