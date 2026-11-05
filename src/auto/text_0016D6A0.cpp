@@ -21,9 +21,19 @@ struct C_Quad {
     float d;
 };
 
+struct C_IntQuad {
+    int a, b, c, d;
+    void Set(int a_, int b_, int c_, int d_) {
+        a = a_;
+        b = b_;
+        c = c_;
+        d = d_;
+    }
+};
+
 struct C_0016D8A0 {
     char pad0[0x54];
-    int f54, f58, f5C, f60;
+    C_IntQuad f54;
     void func_0016D8A0(int a, int b, int c, int d);
 };
 
@@ -48,11 +58,11 @@ struct C_0016E2E0 {
 
 void C_0016D8A0::func_0016D8A0(int a, int b, int c, int d)
 {
-    int *p = &f54;
-    p[0] = a;
-    p[1] = b;
-    p[2] = c;
-    p[3] = d;
+    C_Quad *p = (C_Quad *)&f54;
+    p->a = *(float *)&a;
+    p->b = *(float *)&b;
+    p->c = *(float *)&c;
+    p->d = *(float *)&d;
 }
 
 C_0016DA40 *C_0016DA40::func_0016DA40(void *param)
