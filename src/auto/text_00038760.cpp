@@ -12,18 +12,54 @@ struct C_00038760 {
     int count2;              /* 0x5A8 */
     void **items2;           /* 0x5AC */
     void *at(int i) {
-        if (count < 1) return 0;
-        if (items == 0) return 0;
-        if (i >= count) return 0;
-        return items[i];
+        if (count > 0 && items != 0 && i < count)
+            return items[i];
+        return 0;
     }
     void *at2(int i) {
-        if (count2 < 1) return 0;
-        if (items2 == 0) return 0;
-        if (i >= count2) return 0;
-        return items2[i];
+        if (count2 > 0 && items2 != 0 && i < count2)
+            return items2[i];
+        return 0;
     }
     int *func_000389C0(int param_1);
     int *func_00038A10(int param_1, int *param_2);
     int func_00038A70(void *param_1, void **param_2);
 };
+
+int *C_00038760::func_000389C0(int param_1)
+{
+    int i;
+    for (i = 0; i < count; i++) {
+        int *e = (int *)at(i);
+        if ((e[0] == 0 || e[0] > 2) && e[2] == param_1)
+            return e;
+    }
+    return 0;
+}
+
+int *C_00038760::func_00038A10(int param_1, int *param_2)
+{
+    int i;
+    for (i = 0; i < count; i++) {
+        int *e = (int *)at(i);
+        if (e[0] == 1 && e[4] == param_1) {
+            if (param_2)
+                *param_2 = i;
+            return e;
+        }
+    }
+    return 0;
+}
+
+int C_00038760::func_00038A70(void *param_1, void **param_2)
+{
+    int i;
+    for (i = 0; i < f64->count2; i++) {
+        if (func_001EA426(param_1, f64->at2(i)) == 0) {
+            *param_2 = f64->at2(i);
+            return i;
+        }
+    }
+    return -1;
+}
+
