@@ -57,7 +57,8 @@ struct S_000F2120_Obj {
 };
 
 struct S_000F2120_Root {
-    char pad0[0x34];
+    char pad0[0x24];
+    S_000F1D90_Obj *f24, *f28, *f2c, *f30;
     S_000F2120_Obj *f34;
     S_000F2120_Obj *f38;
     S_000F2120_Obj *f3c;
