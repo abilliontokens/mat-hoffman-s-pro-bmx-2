@@ -643,16 +643,18 @@ float C_001B15E0::func_001B15E0(void) {
 
 void C_001B1580::func_001B15F0()
 {
+    C_001B1580_24 *p = unk24;
     float h = (float)unk30;
     float w = (float)unk2C;
-    if (!(unk24->unk4 == w && unk24->unk8 == h)) {
-        unk24->unk4 = w;
-        unk24->unk8 = h;
-        unk24->unk4E |= 6;
+    if (!(p->unk4 == w && p->unk8 == h)) {
+        p->unk4 = w;
+        p->unk8 = h;
+        p->unk4E |= 6;
     }
-    if (unk24->unk44 != unk68) {
-        unk24->unk44 = unk68;
-        unk24->unk4E |= 6;
+    p = unk24;
+    if (p->unk44 != unk68) {
+        p->unk44 = unk68;
+        p->unk4E |= 6;
     }
     unk24->func_001D6440();
 }
