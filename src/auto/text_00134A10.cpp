@@ -11,6 +11,28 @@ inline void operator delete(void *p) { func_001E891B(p); }
 
 struct C_0013B210 {
     void func_0013B210(void *p);
+    int __stdcall_dummy;
+    int func_0013C8A0(int f, void *dst, int size, int count);
+};
+
+void *func_001E8AA5(unsigned int n);
+void func_001E8390(void *p);
+void func_001611C0(void *dst, void *src, int n);
+
+struct C_0001DFE0 {
+    void func_0001DFE0();
+};
+
+/* ColorMapper: palette plus 555 and 565 inverse lookup tables */
+struct ColorMapper : C_0001DFE0 {
+    void *vtbl;
+    int f4;
+    int f8;
+    int fC;
+    unsigned char pal[256][3];
+    unsigned char map555[0x8000];
+    unsigned char map565[0x10000];
+    ColorMapper *func_00135150(int f);
 };
 extern C_0013B210 *D_002BEAAC;
 
