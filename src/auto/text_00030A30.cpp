@@ -24,9 +24,35 @@ struct C_00030B20 {
     float f238;
     float f23c;
     float f240;
-    void func_00030B20(float x, float y, float z);
+    void func_00030B20(float x, float y, float z, float w);
 };
 
+
+void func_00030A30(float *out, float x, float y, float z, float w, float *m)
+{
+    out[0] = x * m[0] + (y * m[4] + z * m[8]);
+    out[1] = x * m[1] + (y * m[5] + z * m[9]);
+    out[2] = x * m[2] + (y * m[6] + z * m[10]);
+    out[3] = 1.0f;
+}
+
+void func_00030AC0(float *out, float *v, float *m)
+{
+    out[0] = v[0] * m[0] + v[1] * m[1] + v[2] * m[2] + v[3] * m[3];
+    out[1] = v[0] * m[4] + v[1] * m[5] + v[2] * m[6] + v[3] * m[7];
+    out[2] = v[0] * m[8] + v[1] * m[9] + v[2] * m[10] + v[3] * m[11];
+    out[3] = 1.0f;
+}
+
+void C_00030B20::func_00030B20(float x, float y, float z, float w)
+{
+    f170 = x + f170;
+    f174 = y + f174;
+    f178 = z + f178;
+    f238 = x + f238;
+    f23c = y + f23c;
+    f240 = z + f240;
+}
 
 void C_00030CD0::func_00030CD0(int a0) {
     unk78 = a0;
