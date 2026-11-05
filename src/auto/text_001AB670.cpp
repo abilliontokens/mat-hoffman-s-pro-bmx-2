@@ -40,6 +40,7 @@ struct StateMachine {
     int field_28;
     char field_2C[1];
     void func_00157600(int a);
+    void func_00157660();
     void func_001D3F50();
     void func_00157A00(int a);
     StateMachine *func_001AC080();
@@ -113,6 +114,18 @@ void C_001AC150::func_001AC150(int count)
     func_001E891B(field_04);
     field_04 = p;
     field_08 = count;
+}
+
+void C_001AC150::func_001AC1A0(int n)
+{
+    if (field_08 < n) {
+        func_001AC150((n / 10 + 1) * 10);
+    }
+    while (field_0C < n) {
+        (*field_00)++;
+        field_04[field_0C] = *(*field_00 - 1);
+        field_0C++;
+    }
 }
 
 StringTable *StringTable::func_001AC3A0()
