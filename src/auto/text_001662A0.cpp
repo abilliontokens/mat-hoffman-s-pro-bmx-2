@@ -54,7 +54,7 @@ void C_00166C50::func_00166C50(int param_1)
     f34 = 0;
 }
 
-void __stdcall func_00166C80(S_00166C80_Arg *param_1, int param_2)
+void C_00166C80::func_00166C80(S_00166C80_Arg *param_1, int param_2)
 {
     func_00164840(param_1, param_1->f3c, param_2);
 }
