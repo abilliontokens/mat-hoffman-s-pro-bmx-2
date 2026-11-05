@@ -2,6 +2,7 @@
 #include "common.h"
 
 extern int D_0027C310;
+extern "C" int strcmp(const char *s1, const char *s2);
 
 struct C_001B59E0 {
     void func_001B59E0();
@@ -62,6 +63,30 @@ void C_000A84F0::func_000A84F0()
             i = i + 1;
         } while (i < count);
     }
+}
+
+int strcmp(const char *s1, const char *s2);
+int C_000A8520::func_000A8520(char *param)
+{
+    int i;
+    int j;
+    char *p;
+    i = 0;
+    if (0 < count) {
+        do {
+            j = 0;
+            p = items[i] + 0x128;
+            do {
+                if (strcmp(p, param) == 0) {
+                    return i;
+                }
+                j = j + 1;
+                p = p + 0x78;
+            } while (j < 6);
+            i = i + 1;
+        } while (i < count);
+    }
+    return -1;
 }
 
 C_000A8D70 *C_000A8D70::func_000A8D70()
