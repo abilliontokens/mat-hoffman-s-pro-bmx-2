@@ -1,5 +1,38 @@
 /* 6 functions from 0x00029BD0 to 0x0002AAA0, found by Ghidra. */
 #include "common.h"
+struct V4_00029BD0 { float x,y,z,w; };
+struct __declspec(align(16)) M4_00029BD0 { float m[16]; };
+struct Sub_00029BD0 { char pad[0x1a0]; V4_00029BD0 v; };
+struct Data_00029BD0 { char pad[0x78]; V4_00029BD0 *v; };
+struct Obj_00029BD0 {
+ char pad[0x54]; Data_00029BD0 *data;
+ char pad58[0xa7-0x58]; unsigned char flags;
+ void func_00086C20(int);
+ void func_00133700();
+ void func_00133660(int);
+ void func_00133EF0(M4_00029BD0 *);
+ float func_00133F10(int);
+};
+struct World_00029BD0 {
+ char pad[0xf0]; M4_00029BD0 mat;
+ V4_00029BD0 *func_00198120(V4_00029BD0 *,V4_00029BD0 *);
+};
+struct Manager_00029BD0 { int func_00132E20(const char *); };
+extern float D_002766A4, D_00275544, D_002755E8;
+extern V4_00029BD0 D_002A1110;
+extern int D_002BA154;
+extern Manager_00029BD0 *D_002A4334;
+extern char D_00276688[];
+V4_00029BD0 *func_0001E9E0(V4_00029BD0 *,V4_00029BD0 *);
+V4_00029BD0 *func_0001C610(V4_00029BD0 *,V4_00029BD0 *,V4_00029BD0 *);
+struct C_00029BD0 {
+ char pad[0x10c]; float x,y,z;
+ char pad118[0x1e8-0x118]; Sub_00029BD0 *f1e8;
+ char pad1ec[0x10]; Obj_00029BD0 *f1fc;
+ char pad200[0x30]; World_00029BD0 *f230;
+ char pad234[0x464-0x234]; float f464;
+ int func_00029BD0();
+};
 
 struct S_Cb_0002A6B0 {
     char pad0[0x7c];
