@@ -131,6 +131,16 @@ void C_00030B20::func_00030B20(float x, float y, float z, float w)
     f240 = z + f240;
 }
 
+void C_00030B90::func_00030B90(float x, float y, float z, float w)
+{
+    f180 = x + f180;
+    f184 = y + f184;
+    f188 = z + f188;
+    f268 = x + f268;
+    f26c = y + f26c;
+    f270 = z + f270;
+}
+
 void C_00030CD0::func_00030CD0(int a0) {
     unk78 = a0;
 }
