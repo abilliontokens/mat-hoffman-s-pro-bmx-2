@@ -201,6 +201,52 @@ struct S_0001B820_Owner {
 };
 
 
+struct S_0001B910_Node {
+    char pad0[0x38];
+    int f38;
+};
+
+struct S_0001B910_Flags {
+    char pad0[0x24];
+    unsigned char f24;
+};
+
+struct S_0001B910_Anim {
+    int pad0[4];
+    int f10;
+    int pad14;
+    S_0001B910_Flags *f18;
+    char pad1C[0x18];
+    int f34;
+    void func_00164820(S_0001B910_Node *node);
+    void func_001670C0(int a, int b, int c);
+    void func_00132D20(void);
+};
+
+struct S_0001B910_Child {
+    char pad0[0x10C];
+    int f10C;
+};
+
+struct C_0001B910 {
+    char pad0[0x4C];
+    int f4C;
+    S_0001B910_Child **f50;
+    char pad54[0xC];
+    int f60;
+    char pad64[0xC];
+    int *f70;
+    char pad74[4];
+    int *f78;
+    char pad7C[8];
+    int f84;
+    char pad88[0x14];
+    int f9C;
+    char padA0[0x104];
+    S_0001B910_Anim *f1A4;
+    S_0001B910_Node *func_001B56F0(void);
+};
+
 int C_0001B790::func_0001B790(float dt)
 {
     int i;
@@ -326,7 +372,10 @@ int C_0001C1E0::func_0001BDF0(int a, int b)
     int r;
     int idx = func_0001B3C0(a);
 
-    if (f2c == 0 || idx >= f2c->f24 || idx < 0) {
+    if (f2c == 0 || idx >= f2c->f24) {
+        return 0;
+    }
+    if (idx < 0) {
         return 0;
     }
     s = f2c->f28[idx];
