@@ -140,10 +140,16 @@ void func_00030AC0(void *, void *, void *);
 float func_0014F510(float);
 float func_0014F550(float);
 static void cross_1500(V_1500 * volatile out, V_1500 * volatile a, V_1500 * volatile b) {
- __m128 x = _mm_loadu_ps(&a->x), y = _mm_loadu_ps(&b->x);
- __m128 p = _mm_shuffle_ps(x,x,0xc9), q = _mm_shuffle_ps(y,y,0xc9);
- x = _mm_sub_ps(_mm_mul_ps(x,q),_mm_mul_ps(y,p));
- _mm_storeu_ps(&out->x,_mm_shuffle_ps(x,x,0xc9));
+ __m128 va = _mm_loadu_ps(&a->x);
+ __m128 vb = _mm_loadu_ps(&b->x);
+ __m128 sa = va, sb = vb;
+ sa = _mm_shuffle_ps(sa,sa,0xc9);
+ sb = _mm_shuffle_ps(sb,sb,0xc9);
+ vb = _mm_mul_ps(vb,sa);
+ va = _mm_mul_ps(va,sb);
+ va = _mm_sub_ps(va,vb);
+ va = _mm_shuffle_ps(va,va,0xc9);
+ _mm_storeu_ps(&out->x,va);
 }
 /* FirstPersonCam */
 struct C_001500A0 {
