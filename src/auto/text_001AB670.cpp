@@ -49,17 +49,34 @@ struct StateMachine {
     void *func_001AC120(unsigned int flags);
 };
 
+struct StringTableEntry {
+    void *str;
+    int pad04[3];
+};
+
 struct StringTable {
     void *vtbl;
     int field_04;
     int field_08;
     int field_0C;
-    int field_10;
+    void *field_10;
     void *field_14;
-    void *field_18;
+    StringTableEntry *field_18;
     int field_1C;
     void func_0001DFE0();
+    void func_0001DFF0();
     StringTable *func_001AC3A0();
+    void func_001AC3D0();
+};
+
+struct C_001AC200 {
+    int field_00;
+    int field_04;
+    const char *field_08;
+    char *field_0C;
+    C_001AC150 *field_10;
+    void func_001AC200(int n);
+    void func_001AC240();
 };
 
 extern "C" char *strcpy(char *, const char *);
