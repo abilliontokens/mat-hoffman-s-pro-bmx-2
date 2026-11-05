@@ -365,6 +365,7 @@ void __stdcall func_001DE7C2(int status)
     func_001DE6B8(0);
     terminate_thread_1DE7C2(status);
 }
+#pragma optimize("y", on)
 Callback_001DE6F0 __stdcall func_001DE7D4(Callback_001DE6F0 fn)
 {
     Callback_001DE6F0 old = D_002F6BBC;
@@ -372,8 +373,6 @@ Callback_001DE6F0 __stdcall func_001DE7D4(Callback_001DE6F0 fn)
     D_002F6BBC = fn;
     return old;
 }
-
-#pragma optimize("y", on)
 void __stdcall func_001DE7E6(S_002ACBBC_Node *node, int add)
 {
     S_002ACBBC_Node *tail;
