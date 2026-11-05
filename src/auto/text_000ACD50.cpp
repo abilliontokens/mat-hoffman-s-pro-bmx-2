@@ -95,18 +95,8 @@ struct C_000ACE10 {
 };
 
 void C_000ACD50::func_000ACD50(void) {
-    extern int D_0027C724;
-    void *func_001E8A44(...);
-    C_0027C724 *p;
     if (unk540 == 0) {
-        p = (C_0027C724 *)func_001E8A44(0x2c);
-        if (p != 0) {
-            ((C_00157600 *)p)->func_00157600(1);
-            p->vtbl = &D_0027C724;
-            p->unk24 = 0;
-            p->unk28 = 0;
-        }
-        unk540 = p;
+        unk540 = new C_0027C724(1);
     }
     ((C_000AB4F0 *)unk540)->func_000AB4F0(unk28);
 }
@@ -142,6 +132,38 @@ void *C_000ACE30::func_000ACE30(int flags) {
     func_001BAEC0();
     if (flags & 1) {
         func_001E891B(this);
+    }
+    return this;
+}
+
+C_000ACE60 *C_000ACE60::func_000ACE60(int param) {
+    extern int D_0027B274;
+    int i;
+
+    ((C_00157600 *)this)->func_00157600(param);
+    unk0 = (int)&D_0027B274;
+    for (i = 0; i < 8; i++) {
+        arr1[i].a = 0;
+        arr1[i].b = 1;
+        arr1[i].c = 1;
+        arr1[i].d = 1;
+    }
+    for (i = 0; i < 8; i++) {
+        arr2[i].a = 0;
+        arr2[i].b = 1;
+        arr2[i].c = 1;
+        arr2[i].d = 1;
+    }
+    for (i = 0; i < 8; i++) {
+        arr3[i].a = 0;
+        arr3[i].b = 0;
+        arr3[i].c = 0;
+        arr3[i].d = 0;
+    }
+    unk24 = 0;
+    for (i = 0; i < 8; i++) {
+        arr4[i] = 0;
+        arr5[i] = 0;
     }
     return this;
 }
