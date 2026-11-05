@@ -35,6 +35,31 @@ struct C_0005E800 {
     void func_0005E800(int param_1, int param_2);
 };
 
+struct C_0005E960 {
+    char pad0[4];
+    float f4;
+    float f8;
+    char padC[0x42];
+    unsigned char f4e;
+    void func_0005E960(int param_1, int param_2);
+};
+
+union U_0005E9A0_Color {
+    unsigned int raw;
+    struct {
+        unsigned int lo : 24;
+        unsigned int hi : 8;
+    } b;
+};
+
+struct C_0005E9A0 {
+    char pad0[0x48];
+    U_0005E9A0_Color f48;
+    char pad4c[2];
+    unsigned char f4e;
+    void func_0005E9A0(unsigned int param_1);
+};
+
 struct C_0005E920 {
     char pad0[4];
     float f4;
