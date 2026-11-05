@@ -13,20 +13,11 @@ struct C_00157660 {
     void func_00157660(void);
 };
 
-extern float D_002AA248;
-extern float D_002AA24C;
-extern float D_002AA250;
-extern float D_002AA254;
-
 struct V4_001A8B80 {
     float x, y, z, w;
-    void Set(float nx, float ny, float nz, float nw) {
-        x = nx;
-        y = ny;
-        z = nz;
-        w = nw;
-    }
 };
+
+extern V4_001A8B80 D_002AA248;
 
 /* 0x58-byte entry stored at C_001A8B80::f90 */
 struct S_001A8B80_Item {
