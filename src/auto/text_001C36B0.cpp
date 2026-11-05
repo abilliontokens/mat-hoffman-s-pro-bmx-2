@@ -457,12 +457,14 @@ int DXVertexBufferCache::func_001C3BF0(int a1, int a2)
         }
     }
     if (((C_00160A70 *)f8)->func_00160A70(cache) != 0) {
-        return 1;
+        goto success;
     }
 fail:
     cache->func_001C3A10();
     func_001E891B(cache);
     return 0;
+success:
+    return 1;
 }
 
 void DXIndexBufferManager::func_001C3C80(void)
@@ -541,6 +543,26 @@ void *VideoCard::func_001C3E20(unsigned int flags)
     if (flags & 1) {
         func_001E891B(this);
     }
+    return this;
+}
+
+VideoFXManager *VideoFXManager::func_001C3E50(int a)
+{
+    int i;
+    func_00157600(a);
+    vtbl = &D_0028E3D4;
+    unk28 = 0;
+    unk2C = 0;
+    unk24 = 1;
+    for (i = 0; i < 4; i++) {
+        arr30[i] = 0;
+        arr48[i] = 0;
+        arr5C[i] = 0;
+    }
+    unk40 = 0;
+    unk44 = 0;
+    unk58 = 0;
+    unk6C = 0;
     return this;
 }
 
