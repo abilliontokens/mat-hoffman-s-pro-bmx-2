@@ -155,7 +155,7 @@ struct C_000BA2D0 {
 };
 
 
-BmxUIMain *BmxUIMain::func_000B9D30(int a)
+__declspec(noinline) BmxUIMain *BmxUIMain::func_000B9D30(int a)
 {
     func_000BA360(a);
     vtbl = (void *)&D_0027D6AC;
