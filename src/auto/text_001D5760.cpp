@@ -75,6 +75,7 @@ struct C_001D5E90 {
     DXVSStreams_001D5760 *f5c;
     C_001D5E90();
     void func_001D5F00(int param);
+    void func_001D6440(void);
 };
 #include <string.h>
 extern int D_0028F5F4;
@@ -317,13 +318,12 @@ int C_001D6290::func_001D6290(void)
     int result;
     float total = D_00275544;
     C_001D6290Sub *last = 0;
-    unsigned char n = unk50;
     int i;
 
-    if (n == 0) {
+    if (unk50 == 0) {
         return 0;
     }
-    for (i = 0; i < n; i++) {
+    for (i = 0; i < unk50; i++) {
         C_001D6290Entry *e = unk40->tbl[unk0[i]];
         if (e == 0) {
             e = unk40->tbl[0];
