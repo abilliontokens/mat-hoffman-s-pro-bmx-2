@@ -129,6 +129,22 @@ int C_001A13F0::func_001A1540(V3_001A1540 *a, V3_001A1540 *b)
     return 1;
 }
 
+int C_001A13F0::func_001A1580(V3_001A1540 *a, V3_001A1540 *b)
+{
+    int *src;
+    int *obj = (int *)unk4;
+    if (obj == 0) return 0;
+    src = (int *)a;
+    obj[6] = src[0];
+    obj[7] = src[1];
+    obj[8] = src[2];
+    src = (int *)b;
+    obj[10] = src[0];
+    obj[11] = src[1];
+    obj[12] = src[2];
+    return 1;
+}
+
 undefined4 C_001A15C0::func_001A15C0(undefined4 *param_1)
 {
   int in_ECX = (int)this;
