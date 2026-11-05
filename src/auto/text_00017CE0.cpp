@@ -283,3 +283,58 @@ void TikiEvadeState::func_00018340()
     owner->f4f4 = 1;
 }
 
+extern int D_00275854;
+AiTikiGod *AiTikiGod::func_000185A0(int a0)
+{
+    int i;
+    int *p;
+    func_001C7310(a0);
+    *(void **)this = &D_00275854;
+    p = (int *)((char *)this + 0x3c0);
+    for (i = 0; i < 6; i++, p += 10) { p[1] = 0; p[0] = 0; p[-1] = 0; p[2] = 0x3f800000; }
+    p = (int *)((char *)this + 0x4f8);
+    p[3] = 0x3f800000;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p = (int *)((char *)this + 0x508);
+    p[3] = 0x3f800000;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p = (int *)((char *)this + 0x518);
+    p[3] = 0x3f800000;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    *(int *)((char *)this + 0x384) = 0;
+    *(int *)((char *)this + 0x388) = 0;
+    *(int *)((char *)this + 0x38c) = 0;
+    *(int *)((char *)this + 0x390) = 0;
+    *(int *)((char *)this + 0x394) = 0;
+    *(int *)((char *)this + 0x398) = 0;
+    *(int *)((char *)this + 0x49c) = 0;
+    *(int *)((char *)this + 0x494) = 0;
+    *(int *)((char *)this + 0x4a8) = 0;
+    *(int *)((char *)this + 0x4b0) = 0;
+    *(int *)((char *)this + 0x4ac) = 0;
+    *(int *)((char *)this + 0x4b4) = 0;
+    *(int *)((char *)this + 0x4b8) = 0;
+    *(int *)((char *)this + 0x4bc) = 0;
+    *(int *)((char *)this + 0x4c0) = 0;
+    *(int *)((char *)this + 0x498) = 0;
+    *(int *)((char *)this + 0x4a0) = 0;
+    *(int *)((char *)this + 0x4e4) = 0;
+    *(int *)((char *)this + 0x4a4) = 0;
+    p = (int *)((char *)this + 0x3a8);
+    for (i = 0; i < 6; i++, p += 10) { p[-1] = 0; p[0] = 0; }
+    for (i = 0; i < 2; i++) f39c[i] = 0;
+    *(int *)((char *)this + 0x4d8) = 0;
+    *(int *)((char *)this + 0x4d0) = 0;
+    *(int *)((char *)this + 0x76c) = 0;
+    *(int *)((char *)this + 0x770) = 0;
+    *(int *)((char *)this + 0x774) = 0;
+    *(int *)((char *)this + 0x778) = 0;
+    return this;
+}
+
