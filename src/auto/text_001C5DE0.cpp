@@ -99,6 +99,23 @@ static __forceinline Vec4 vec3_neg(Vec4 *v)
     return r;
 }
 
+void *func_001E8A44(unsigned int size);
+void func_0015BB70(void *p);
+
+struct C_0015B660 {
+    S_001C64A0_Node *func_0015B660();
+};
+
+struct C_0015B7A0 {
+    S_001C64A0_Node *func_0015B7A0();
+};
+
+struct C_001C65E0 {
+    Vec4 pos;
+    S_001C64A0_Node *f10;
+    void func_001C65E0(S_001C64A0_Node *obj);
+};
+
 void func_001C63F0(Vec4 *out, Vec4 *vin, f32 *m)
 {
     Vec4 q;
