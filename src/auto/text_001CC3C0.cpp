@@ -174,3 +174,23 @@ bool C_001CD220::func_001CD220(void)
     return fCC == 1;
 }
 
+void C_001CD260::func_001CD260()
+{
+ if (dataC0) { func_001E891B(dataC0); dataC0 = 0; }
+ if (groups) {
+  clear_001CD260(&size64);
+  clear_001CD260(&size50);
+  for (int i=0; i<countA8; ++i) {
+   for (int j=0; j<groups[i].count; ++j) {
+    if (groups[i].items[j].a) func_001E8390(groups[i].items[j].a);
+    if (groups[i].items[j].b) func_001E8390(groups[i].items[j].b);
+   }
+   func_001E8390(groups[i].items);
+   clear_001CD260(&groups[i].size);
+  }
+  func_001E8390(groups); groups = 0;
+ }
+ clear_001CD260(&size3C);
+ countA8=0;
+}
+
