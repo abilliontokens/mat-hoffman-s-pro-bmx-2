@@ -66,3 +66,25 @@ undefined4 C_00091820::func_00091820(byte param_1)
   }
   return in_ECX;
 }
+
+void *C_000918C0::func_000918C0(int flags)
+{
+    ((C_001D57E0 *)((char *)this + 0x88))->func_001D57E0();
+    ((C_001D57E0 *)((char *)this + 0x24))->func_001D57E0();
+    func_00157660();
+    if (flags & 1) func_001E891B(this);
+    return this;
+}
+
+void *C_00092710::func_00092710(int flags)
+{
+    vtbl = (void *)&D_00279C3C;
+    if (f24) {
+        ((C_001D6410 *)f24)->func_001D6410();
+        func_001E891B((void *)f24);
+    }
+    func_00157660();
+    if (flags & 1) func_001E891B(this);
+    return this;
+}
+
