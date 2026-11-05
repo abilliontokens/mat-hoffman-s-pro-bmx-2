@@ -156,6 +156,17 @@ void C_000BC4A0::func_000BC4A0(undefined4 param_1, undefined4 param_2)
   return;
 }
 
+void C_000BC590::func_000BC590(void)
+{
+    f30->func_001D37C0();
+    f24 = 1;
+    f40 = 1;
+    if (f2C != 0) {
+        f28->f150->v6();
+        f2C = 0;
+    }
+}
+
 undefined4 C_000BC670::func_000BC670(void)
 {
   int in_ECX = (int)this;
