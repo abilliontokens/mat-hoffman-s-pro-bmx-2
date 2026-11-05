@@ -63,6 +63,7 @@ int func_001FCE40(int a, int b, int c);
 void *func_001B2CB0(int a);
 void __stdcall func_00201100(void *a);
 extern "C" void *memset(void *, int, unsigned int);
+extern "C" void *memcpy(void *, const void *, unsigned int);
 extern "C" unsigned int strlen(const char *);
 
 struct C_0013ECA0 {
