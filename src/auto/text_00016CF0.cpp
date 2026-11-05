@@ -158,6 +158,27 @@ struct C_00017760 {
     void func_00017760(void);
 };
 
+extern float D_002A0738;
+extern float D_002A073C;
+extern float D_002A0740;
+extern float D_002757F4;
+
+struct C_00017810_Glob {
+    char pad0[0x238];
+    int f238;
+};
+
+extern C_00017810_Glob *D_002A8490;
+
+struct C_00017810_Obj {
+    C_00017760_Dev *f0;
+    char pad4[8];
+    int fC;
+    int f10;
+    int f14;
+    C_00017680_Vec f18;
+};
+
 int func_00016CF0(float f)
 {
     int * volatile p = (int *)&f;
