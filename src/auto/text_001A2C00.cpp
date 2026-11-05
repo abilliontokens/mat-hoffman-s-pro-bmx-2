@@ -76,7 +76,7 @@ struct ResponseEmitter {
     S_001A2C00_List list1c4;
     char pad1cc[0x1d8 - 0x1cc];
     S_001A2C00_List list1d8;
-    void func_001A2DD0(int id);
+    int func_001A2DD0(int id);
     void func_001A2E80(void);
     S_001A2C00_Snd *func_001A2EF0(int id);
     int func_001A2F70(void);
@@ -84,7 +84,7 @@ struct ResponseEmitter {
     void func_001A3050(int a);
 };
 
-void ResponseEmitter::func_001A2DD0(int id)
+int ResponseEmitter::func_001A2DD0(int id)
 {
     int i;
 
@@ -95,7 +95,7 @@ void ResponseEmitter::func_001A2DD0(int id)
             list1d8.removeAt(i);
         }
     }
-    return;
+    return 0;
 }
 
 void ResponseEmitter::func_001A2E80(void)
