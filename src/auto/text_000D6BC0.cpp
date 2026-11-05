@@ -101,3 +101,95 @@ struct BmxUIPageHOF4 {
     BmxUIPageHOF4 *func_000D7AB0(int param);
     void func_001BE360(int param);
 };
+
+BmxUIPageHOF3 *BmxUIPageHOF3::func_000D6C90(int param) {
+    extern int D_0027F36C;
+    func_001BE360(param);
+    vtbl = (int)&D_0027F36C;
+    for (int i = 0; i < 5; i++) {
+        unk2d4[i] = 0;
+        unk2e8[i] = 0;
+        unk304[i] = 0;
+    }
+    unk288 = 0;
+    unk28c = 0;
+    unk280 = 0;
+    unk290 = 0;
+    unk284 = 0;
+    for (int i = 0; i < 2; i++) {
+        unk2c4[i] = 0;
+        unk2cc[i] = 0;
+    }
+    unk294 = 0;
+    unk298 = 0;
+    unk2a4 = 0;
+    unk2a8 = 0;
+    unk2ac = 0;
+    unk2a0 = 0;
+    unk29c = 0;
+    unk2fc[0] = 0;
+    unk2fc[1] = 0;
+    unk2b0 = 0;
+    unk2b4 = 0;
+    unk2b8 = 0;
+    unk2bc = 0;
+    unk2c0 = 0;
+    return this;
+}
+
+void BmxUIPageHOF3::func_000D6D50(void)
+{
+    extern int D_0027F36C;
+    vtbl = (int)&D_0027F36C;
+    for (int i = 0; i < 2; i++) {
+        if (unk2c4[i] != 0) {
+            unk2c4[i]->Destroy(1);
+            unk2c4[i] = 0;
+        }
+        if (unk2cc[i] != 0) {
+            unk2cc[i]->Destroy(1);
+            unk2cc[i] = 0;
+        }
+    }
+    for (int i = 0; i < 2; i++) {
+        if (unk2fc[i] != 0) {
+            unk2fc[i]->Destroy(1);
+            unk2fc[i] = 0;
+        }
+    }
+    func_001BE3F0();
+}
+
+BmxUIPageHOF4 *BmxUIPageHOF4::func_000D7AB0(int param) {
+    extern int D_0027F404;
+    func_001BE360(param);
+    vtbl = (int)&D_0027F404;
+    for (int i = 0; i < 5; i++) {
+        unk2cc[i] = 0;
+        unk2e0[i] = 0;
+        unk30c[i] = 0;
+    }
+    unk280 = 0;
+    unk290 = 0;
+    unk284 = 0;
+    unk288 = 0;
+    unk28c = 0;
+    for (int i = 0; i < 2; i++) {
+        unk2f4[i] = 0;
+        unk2fc[i] = 0;
+    }
+    unk2ac = 0;
+    unk2b0 = 0;
+    unk2b4 = 0;
+    unk2a0 = 0;
+    unk29c = 0;
+    unk304 = 0;
+    unk308 = 0;
+    unk2b8 = 0;
+    unk2bc = 0;
+    unk2c0 = 0;
+    unk2c4 = 0;
+    unk2c8 = 0;
+    return this;
+}
+
