@@ -37,6 +37,7 @@ struct C_001594F0 {
     float unk70;
     float unk74;
     int unk78;
+    C_001594F0(void);
     C_001594F0 *func_001594F0(void);
 };
 
