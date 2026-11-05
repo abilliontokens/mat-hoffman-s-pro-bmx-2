@@ -221,6 +221,14 @@ void C_00094A00::func_00094990(float a)
     f50->func_001CD3B0((int)a);
 }
 
+void C_00094A00::func_000949B0(float a, int b, int c)
+{
+    if (a > D_00275544 && f44 != 0) {
+        f44 = 0;
+    }
+    f50->v36((int)a, b, c);
+}
+
 void C_00094A00::func_00094A00(void)
 {
     f50->v37();
