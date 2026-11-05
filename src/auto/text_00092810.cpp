@@ -30,6 +30,7 @@ struct C_001D4300 {
     int func_001D3F90(int a, int b, int *out);
     int func_001D42A0(const char *path, const char *name);
     int func_001D4590(char *out, const char *title, int a, int size);
+    int func_001D4380(void *s);
 };
 
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
