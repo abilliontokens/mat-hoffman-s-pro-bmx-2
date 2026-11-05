@@ -65,19 +65,21 @@ struct BoxCollisionObject {
 
 
 #pragma optimize("y", off)
-#pragma optimize("y", off)
 int func_00129050(unsigned int a0, unsigned int a1)
 {
     int func_00128930(...);
-    S_00129050_Leaf20 *leaf;
-    S_00129050_Leaf32 local;
 
-    if (D_002B92E4 != 1) {
-        return 0;
+    switch (D_002B92E4) {
+    case 1: {
+        S_00129050_Leaf20 *leaf = &D_002B9290->leaves[a1 & 0x7fff];
+        S_00129050_Vec4 local[2];
+        S_00129050_Leaf32 *src = &D_002B92E8->leaves[a0 & 0x7fff];
+        local[0] = src->v[0];
+        local[1] = src->v[1];
+        return func_00128930(leaf, local, a0, &D_002B9300);
     }
-    leaf = &D_002B9290->leaves[a1 & 0x7fff];
-    local = D_002B92E8->leaves[a0 & 0x7fff];
-    return func_00128930(leaf, &local, a0, &D_002B9300);
+    }
+    return 0;
 }
 #pragma optimize("y", on)
 
