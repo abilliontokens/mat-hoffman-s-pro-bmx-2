@@ -54,6 +54,16 @@ void C_0004FE30::func_0004F7B0(void)
     ((C_00031C90 *)this)->func_00031C90();
 }
 
+void C_0004FE30::func_0004FA60(int id)
+{
+    for (int i = 0; i < f90; i++) {
+        if (id == *(int *)(*(int *)(*(int *)((char *)f64 + 0x4e0) + 0x1a8 + i * 4) + 0x11b0)) {
+            (&f288)[i] = 1;
+        }
+    }
+    func_000324E0(id);
+}
+
 void *C_0004FE30::func_0004FE30(int flags) {
     extern int D_0027777C;
     void func_001E891B(void *);
