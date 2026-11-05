@@ -51,6 +51,36 @@ struct DrawableCube {
 };
 
 
+int DrawableCube::func_001382B0(void)
+{
+    if (D_002A67D8 != 0) {
+        if (D_002BDE8C != 0)
+            func_00136FE0();
+        func_00137810();
+    }
+    return 1;
+}
+
+DrawableCube *DrawableCube::func_00138330(int a)
+{
+    func_00192370(a);
+    f27 |= 3;
+    f28 = 0;
+    f2c = 0;
+    f30 = 0;
+    f34 = 0;
+    f3c = 0;
+    f38 = 0;
+    f7c8 = 0;
+    f7c0 = 0;
+    f7c4 = 0;
+    f7d0 = 0;
+    f7d4 = 0;
+    f7d8 = 0;
+    vtbl = (void *)&D_00284924;
+    return this;
+}
+
 undefined4 C_00138790::func_00138790(byte param_1)
 {
   int func_00138390(...);
