@@ -102,8 +102,10 @@ extern int D_0028CC30;
 extern int D_0027AF24;
 extern int D_0028CC80;
 
+extern int D_0028CC4C;
 struct S_001B5A00_Stream {
     void func_00168BE0(void *a, void *b, void *c, int d);
+    void func_00168C50(void *name, int def, void *dst);
 };
 
 struct C_001B5A00 {
