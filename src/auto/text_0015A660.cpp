@@ -253,10 +253,58 @@ struct C_00135D70 {
     void func_00135D70(int a0, int a1);
 };
 
+struct C_001D1460 {
+    void func_001D1460(int a);
+};
+
+struct S_0015AD10_Pair {
+    int a;
+    int b;
+};
+
+struct S_0015AD10_Ent {
+    int a;
+    int b;
+    char pad8[0x10];
+};
+
+struct S_0015AD10_Dev {
+    virtual void dummy0();
+    virtual void dummy1();
+    virtual void dummy2();
+    virtual void dummy3();
+    virtual void dummy4();
+    virtual void dummy5();
+    virtual void dummy6();
+    virtual void dummy7();
+    virtual void dummy8();
+    virtual void dummy9();
+    virtual void dummy10();
+    virtual void dummy11();
+    virtual void dummy12();
+    virtual void dummy13();
+    virtual void dummy14();
+    virtual void dummy15();
+    virtual void dummy16();
+    virtual void dummy17();
+    virtual void dummy18();
+    virtual void dummy19();
+    virtual void dummy20();
+    virtual void dummy21();
+    virtual int dummy22(void *a, int b);
+};
+
 struct JoystickDevice {
     void *vtbl;
-    char pad4[0x638];
+    char pad4[0x18];
+    S_0015AD10_Pair pairs[6][16];
+    int f31C;
+    int f320;
+    S_0015AD10_Ent ents[32];
+    int f624[6];
     S_0015A660_List lists[6];
+    unsigned char f6B4 : 1;
+    JoystickDevice *func_0015AD10(int a);
     void func_0015AE20(void);
     void *func_0015B010(unsigned int flags);
     void func_0015AFC0(int idx, int a, int b);
