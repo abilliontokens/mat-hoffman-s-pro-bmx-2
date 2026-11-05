@@ -53,6 +53,11 @@ struct C_00049BD0 {
 };
 
 
+void func_00049A20(S_00049A20_Arg *arg) {
+    arg->f2E4->f0->f4->func_00198390();
+    arg->f2E8->f0->f4->func_00198390();
+}
+
 C_00049BD0* C_00049BD0::func_00049BD0(void) {
     extern int D_00277184;
     unk0 = (int)&D_00277184;
