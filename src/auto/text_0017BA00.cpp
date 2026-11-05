@@ -4,6 +4,7 @@
 #include "ghidra.h"
 
 extern f32 D_00275544;
+extern f32 D_00275460;
 extern int D_0028909C;
 extern void *D_002EFD80;
 
@@ -117,27 +118,29 @@ int C_0017BDE0::func_0017BDE0(f32 x, f32 y) {
 }
 
 int C_0017BDE0::func_0017BFB0(void) {
-    f32 e[8];
-    f32 n[8];
-    int i;
-    int j;
+    f32 loc[16];
+    unsigned int k;
+    int off;
 
-    e[0] = v[2] - v[0];
-    e[1] = v[3] - v[1];
-    e[2] = v[4] - v[2];
-    e[3] = v[5] - v[3];
-    e[4] = v[6] - v[4];
-    e[5] = v[7] - v[5];
-    e[6] = v[0] - v[6];
-    e[7] = v[1] - v[7];
-    for (i = 0; i < 4; i++) {
-        n[i * 2 + 1] = e[i * 2];
-        n[i * 2] = -e[i * 2 + 1];
-        j = (i + 1) & 3;
-        if (D_00275544 < e[j * 2 + 1] * n[i * 2 + 1] + e[j * 2] * n[i * 2]) {
+    k = 0;
+    loc[0] = v[2] - v[0];
+    loc[1] = v[3] - v[1];
+    loc[2] = v[4] - v[2];
+    loc[3] = v[5] - v[3];
+    loc[4] = v[6] - v[4];
+    loc[5] = v[7] - v[5];
+    loc[6] = v[0] - v[6];
+    off = 0;
+    loc[7] = v[1] - v[7];
+    do {
+        *(u32 *)((char *)loc + off + 0x24) = *(u32 *)((char *)loc + off);
+        k++;
+        *(f32 *)((char *)loc + off + 0x20) = -*(f32 *)((char *)loc + off + 4);
+        if (D_00275544 < loc[(k & 3) * 2 + 1] * *(f32 *)((char *)loc + off + 0x24) + loc[(k & 3) * 2] * *(f32 *)((char *)loc + off + 0x20)) {
             return 0;
         }
-    }
+        off += 8;
+    } while (off < 0x20);
     return 1;
 }
 
