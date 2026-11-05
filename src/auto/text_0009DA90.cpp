@@ -144,8 +144,37 @@ void C_0009DF90::func_0009DF90(float param_1)
   return;
 }
 
+int BmxSmokeParticleEmitter::func_0009E400(S_0009E5F0_Stream *stream) {
+    ((C_0016A1D0 *)this)->func_0016A3A0(stream);
+    int i = 0x40;
+    f32 *p = f1F4[0];
+    do {
+        f32 *q = p;
+        int j = 4;
+        p += 4;
+        do {
+            *q++ = (f32)func_001E8833() * D_002754B0 * f174 + D_00275460;
+        } while (--j);
+    } while (--i);
+    return 0;
+}
+
 int BmxSmokeParticleEmitter::func_0009E470(void) {
     ((C_0016A1D0 *)this)->func_0016A330((char *)this + 0x6C);
     return 1;
+}
+
+C_0009E590 *C_0009E590::func_0009E590(int a1, int a2, int a3) {
+    ((C_0016A1D0 *)this)->func_0016A1D0(a1, a2, a3);
+    S_0009E590_Item *item = f64->f134;
+    if (item != 0) {
+        S_0009E590_Sub *sub = &item->sub;
+        if (sub != 0) {
+            f1AC = sub->f8;
+            f188 = f1A8 = sub->f4;
+            ((C_0016A1D0 *)this)->func_0016A330(buf6C);
+        }
+    }
+    return this;
 }
 
