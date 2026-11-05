@@ -85,6 +85,15 @@ extern int D_0028C668;
 
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 
+extern int D_0028C5A4;
+struct C_00168C20;
+struct C_001AFCC0 {
+    int unk0, unk4, unk8;
+    int *items[4];
+    int *unk1C, *unk20;
+    int unk24, unk28;
+    C_001AFCC0 *func_001AFCC0(int **items, int *a, int *b, C_00168C20 *stream);
+};
 struct C_00168C20 {
     int func_00168C20(void *key, int def, void *dst);
 };
@@ -689,8 +698,7 @@ C_001B08B0 *C_001B08B0::func_001B08F0(C_001B08B0 *src)
     for (i = 0; i < 4; i++) {
         items[i] = 0;
         if (src->items[i] != 0) {
-            S_001B08F0_Item *m = (S_001B08F0_Item *)func_001E8A44(0x3c);
-            items[i] = m ? (*m = *src->items[i], m) : 0;
+            items[i] = new S_001B08F0_Item(*src->items[i]);
         }
     }
     return this;
