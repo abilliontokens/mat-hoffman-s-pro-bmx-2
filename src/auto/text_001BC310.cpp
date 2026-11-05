@@ -51,3 +51,13 @@ C_001BC640 *C_001BC640::func_001BC640(void *param)
     vtbl = (void *)&D_0028D334;
     return this;
 }
+
+void C_001BC670::func_001BC670(void *a1, void *a2)
+{
+    f24 = (int)a1;
+    f28 = (int)a2;
+    ((C_001BBAA0 *)a1)->func_001BBAA0(this, (void *)&func_001BC310);
+    ((C_001BBAA0 *)f28)->func_001BBAA0(this, (void *)&func_001BC310);
+    func_001D3F50();
+}
+
