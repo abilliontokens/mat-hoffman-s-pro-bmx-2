@@ -51,6 +51,31 @@ struct C_000AB340_Vec {
 struct C_000AB340_Cam {
     char pad0[0x170];
     C_000AB340_Vec f170;
+    C_000AB340_Vec f180;
+    C_000AB340_Vec f190;
+};
+
+struct C_000ABBC0_Sub {
+    void func_00199650(C_000AB340_Vec *a);
+    void func_00198F50(C_000AB340_Vec *a, C_000AB340_Vec *b, int c, int d, int e);
+    void func_0019AC50();
+};
+
+struct C_000ABBC0_Obj {
+    char pad0[0x104];
+    int f104;
+    char pad108[4];
+    int f10C;
+    C_000ABBC0_Sub **f110;
+};
+
+struct C_000ABBC0 {
+    void *vtbl;
+    char pad04[0x20];
+    int f24;
+    C_000ABBC0_Obj **f28;
+    void func_001578D0();
+    void func_000ABBC0(void);
 };
 
 struct C_000AB340_Global {
