@@ -29,7 +29,8 @@ struct Anim136BE0 {
  float fC, f10;
  int f14;
  float f18, f1C, f20;
- unsigned char flags;
+ unsigned char flags : 1;
+ unsigned char otherFlags : 7;
  char pad[3];
 };
 struct Group136BE0 { int id, count, entries[3]; };
