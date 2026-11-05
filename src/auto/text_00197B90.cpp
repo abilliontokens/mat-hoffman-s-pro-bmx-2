@@ -253,11 +253,7 @@ void C_001983A0::func_001983A0(void)
 void C_001983B0::func_001983B0(void **out)
 {
     C_00197820 *p = (C_00197820 *)func_001E8A44(0x1a0);
-    if (p != 0) {
-        *out = p->func_00197820(1);
-    } else {
-        *out = 0;
-    }
+    *out = p ? p->func_00197820(1) : 0;
 }
 
 void C_001983E0::func_001983E0(void *out0, void *out1)
