@@ -97,3 +97,15 @@ void AiTikiGod::func_00017D00()
     D_002A8490->f2a4->func_0004AAD0();
     v4();
 }
+
+void AiTikiGod::func_00017D20(int param_1)
+{
+    if (func_00011260(0, 100) < param_1) {
+        int i = func_00011260(0, 1);
+        if (f4b0[i]->v7() == 0) {
+            D_002A8490->f4->func_0001CE80(f4b0[i], f508, &D_002A0718, 10.0f, 750.0f);
+            f4b0[i]->v5(4);
+        }
+    }
+}
+
