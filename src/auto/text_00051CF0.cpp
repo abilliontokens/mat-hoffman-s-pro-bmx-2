@@ -282,6 +282,38 @@ void C_00051CF0::func_00052740(int a)
     }
 }
 
+void C_00052830::func_00052830(int a)
+{
+    int i;
+    if (unk1F4 == 0) {
+        if (a != 0) {
+            if (unk198 != 0) unk198->v4();
+            if (unk170 != 0) unk170->v4();
+            D_002A8F40 = 0.25f;
+            unk64->f3DC->func_001503E0(256.0f, D_00277924, 64.0f);
+            unk64->f554 = 0;
+            for (i = 0; i < unk64->f494; i++) {
+                if (unk64->f3F4[i] != 0) unk64->f3F4[i]->v4();
+                if (unk64->f424[i] != 0) unk64->f424[i]->v4();
+            }
+            if (unk64->f48C != 0) (*unk64->f48C)->v4();
+            unk64->f558->v4();
+        } else {
+            if (unk198 != 0) unk198->v6();
+            if (unk170 != 0) unk170->v6();
+            D_002A8F40 = 1.0f;
+            unk64->f3DC->func_001503E0(1000.0f, D_00277924, 64.0f);
+            unk64->f554 = 1;
+            for (i = 0; i < unk64->f494; i++) {
+                if (unk64->f3F4[i] != 0) unk64->f3F4[i]->v6();
+                if (unk64->f424[i] != 0) unk64->f424[i]->v6();
+            }
+            if (unk64->f48C != 0) (*unk64->f48C)->v6();
+            unk64->f558->v6();
+        }
+    }
+}
+
 void C_00051CF0::func_000529D0()
 {
     float hi;
