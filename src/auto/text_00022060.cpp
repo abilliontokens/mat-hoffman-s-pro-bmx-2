@@ -217,7 +217,7 @@ void __stdcall func_00011FF0(void *p, int stride, int count, void *ctor);
 void func_00021720(void);
 
 struct S_00022730_Vec3 {
-    float x, y, z;
+    int x, y, z;
 };
 
 /* one 0x18-byte keyframe: two vectors */
@@ -301,6 +301,62 @@ undefined4 C_00022530::func_00022530(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+int C_00022730::func_00022730(int name, int idx)
+{
+    char s2[0x100];
+    char s1[0x100];
+    char line[0x400];
+    float tmp[9];
+    int count;
+    int handle;
+    int i;
+
+    handle = D_002BEAAC->func_0013C9F0(name, D_00276274);
+    if (handle == -1) {
+        return 0;
+    }
+    count = 0;
+    while (!D_002BEAAC->func_0013AFB0(handle)) {
+        D_002BEAAC->func_0013C6E0(handle, line, 0x400);
+        if (func_001E8BB0(line, D_0027626C, 5) == 0) {
+            count++;
+        }
+    }
+    f64[idx]->count = count;
+    if (count > 0) {
+        S_00022730_Key *p = (S_00022730_Key *)func_001E8A44(count * 0x18);
+        if (p != 0) {
+            func_00011FF0(p, 0x18, count, (void *)func_00021720);
+        } else {
+            p = 0;
+        }
+        f64[idx]->items = p;
+        Vec4_000223B0 a;
+        Vec4_000223B0 b;
+        D_002BEAAC->func_0013AFF0(handle, 0, 0);
+        i = -1;
+        while (!D_002BEAAC->func_0013AFB0(handle)) {
+            D_002BEAAC->func_0013C6E0(handle, line, 0x400);
+            if (func_001E8BB0(line, D_0027626C, 5) == 0) {
+                i++;
+                if (i >= count) {
+                    i = count - 1;
+                }
+            } else if (func_001E8BB0(line, D_00276260, 9) == 0) {
+                func_001E8B76(line, D_00276234, s1, s2, &tmp[0], &tmp[1], &tmp[2], &tmp[0], &tmp[1], &tmp[2], &b.x, &b.z, &b.y, &a.x, &a.z, &a.y);
+                f64[idx]->items[i].b.x = b.x;
+                f64[idx]->items[i].b.y = b.y;
+                f64[idx]->items[i].b.z = b.z;
+                f64[idx]->items[i].a.x = a.x;
+                f64[idx]->items[i].a.y = a.y;
+                f64[idx]->items[i].a.z = a.z;
+            }
+        }
+    }
+    D_002BEAAC->func_0013C110(handle);
+    return 1;
 }
 
 void *C_00022DF0::func_00022DF0(int flags)
