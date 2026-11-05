@@ -56,6 +56,10 @@ extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
 void __cdecl func_001EB390(int locknum);
 int __cdecl func_001EB314(int locknum);
 
+/* _MCW_PC / _PC_53: the original takes these two by address */
+extern "C" int D_00010000;
+extern "C" int D_00030000;
+
 #pragma optimize("sy", on)
 int __cdecl func_001EB290(void)
 {
