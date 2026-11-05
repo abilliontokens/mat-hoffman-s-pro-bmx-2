@@ -197,6 +197,20 @@ DXShadowCaster *DXShadowCaster::func_00143820(DXRenderableObject *owner)
     return this;
 }
 
+void DXShadowCaster::func_00143870(ShadowTarget *target)
+{
+    ShadowPiece *piece = &f4->f1a4->pieces[f8];
+    int a2 = target->f154;
+    int i;
+
+    fc->f4 = f4;
+    fc->func_00142F30(target->ffc);
+    for (i = 0; i < piece->count; i++) {
+        if (target->func_0017AB70(a2))
+            piece->items[i].func_001446B0((int)fc, (int)this, a2);
+    }
+}
+
 undefined4 C_00143BD0::func_00143BD0(byte param_1)
 {
   int func_001439D0(...);
