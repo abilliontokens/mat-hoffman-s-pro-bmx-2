@@ -211,6 +211,17 @@ void DXShadowCaster::func_00143870(ShadowTarget *target)
     }
 }
 
+void *DXShadowCaster::func_00143900(int flags)
+{
+    vtbl = (void *)&D_00285AAC;
+    if (fc)
+        fc->destroy(1);
+    vtbl = (void *)&D_00285A9C;
+    if (flags & 1)
+        func_001E891B(this);
+    return this;
+}
+
 undefined4 C_00143BD0::func_00143BD0(byte param_1)
 {
   int func_001439D0(...);
