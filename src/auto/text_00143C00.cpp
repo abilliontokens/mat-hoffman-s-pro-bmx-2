@@ -216,3 +216,16 @@ C_001449B0 *C_001449B0::func_001449B0(void *param)
     vtbl = (void *)&D_00285B84;
     return this;
 }
+
+void C_001449B0::func_001449E0()
+{
+    vtbl = (void *)&D_00285B84;
+    if (f24 != 0) {
+        func_001E8390((void *)f24);
+    }
+    if (f2c != 0) {
+        func_001E891B((void *)f2c);
+    }
+    ((C_001AF320 *)this)->func_001AF320();
+}
+
