@@ -227,6 +227,7 @@ struct C_00140390 {
     C_00140390 *func_00140390(int a);
     int func_00140400(void);
     int func_00157960(void);
+    void func_00140520(int i, int j, int *v);
 };
 
 struct C_00162720 {
