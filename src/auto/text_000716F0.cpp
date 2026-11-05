@@ -1,5 +1,10 @@
 /* 10 functions from 0x000716F0 to 0x000725B0, found by Ghidra. */
 #include "common.h"
+struct Clamp_716 { char pad[16]; float f10, f14; };
+struct Lookup_716 { int *func_0018C160(int); };
+struct Mid_716 { Clamp_716 *func_0018C070(); };
+extern float D_00275AEC;
+extern int D_00278690, D_00278678;
 
 struct S_Obj4_716 {
     char pad0[0x930];
@@ -284,7 +289,6 @@ void C_00072330::func_00072330(void)
     char b[0x40];
     char *p;
     char *q;
-    S_Setter_716 *t;
 
     if (fC8 != 0) {
         S_Obj4_716 *o = D_002A8490->p2E8->p4;
@@ -306,8 +310,7 @@ void C_00072330::func_00072330(void)
     if ((unsigned int)(p - q) > 0x27) {
         b[0x27] = 0;
     }
-    t = fD0;
-    t->func_001B17D0(b);
+    fD0->func_001B17D0(b);
 }
 
 void C_00072450::func_00072450(void)
