@@ -225,11 +225,56 @@ struct C_001BA560 {
     int func_001BA560(S_001BA560_arg *arg1, int arg2);
 };
 
+extern char D_0028514C[];
+extern char D_0028D22C[];
+extern char D_0028D220[];
+extern char D_0028D208[];
+extern char D_0028803C[];
+extern char D_00275630[];
+extern char D_0028CD10[];
+extern char D_0028CD08[];
+extern char D_0028CC30[];
+extern "C" int memcmp(const void *a, const void *b, unsigned int n);
+char *func_001E91F4(const char *s);
+
+/* config reader */
+struct S_001BB060_Stream {
+    void func_00168BE0(const char *key, const char *def, char *dst, int n);
+};
+
+/* 8-byte string tokenizer state (strtok-like) */
+struct S_001BB060_Tokenizer {
+    int state[2];
+    void func_001B4A40(const char *str);
+    char *func_001B4A70(const char *delims);
+};
+
+/* growable pointer array: data, capacity, limit, count */
+struct S_001BB060_Array {
+    char **data;
+    int cap;
+    int max;
+    int count;
+    void func_001B9C70(int n);
+    char *&At(int i)
+    {
+        if (i >= cap) {
+            func_001B9C70((i + 1) * 2);
+        }
+        if (count < i + 1) {
+            count = i + 1;
+        }
+        return data[i];
+    }
+};
+
+/* ShaderPassTriggerAction */
 struct C_001BA5E0 {
     void *vtbl;
     int f4;
     char f8;
-    char pad09[0x107];
+    char pad09[0x103];
+    int f10c;
     int f110;
     int f114;
     int f118;
