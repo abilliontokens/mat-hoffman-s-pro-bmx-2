@@ -106,8 +106,16 @@ void C_000DE300::func_000DE3C0()
     C_000DE_Elem *e;
     int count;
 
-    (unk2DC ? D_002B91AC->unk68 : D_002B91AC->unk50)->func_001D5AD0();
-    (unk2E0 ? D_002B91AC->unk6C : D_002B91AC->unk54)->func_001D5AD0();
+    if (unk2DC) {
+        D_002B91AC->unk68->func_001D5AD0();
+    } else {
+        D_002B91AC->unk50->func_001D5AD0();
+    }
+    if (unk2E0) {
+        D_002B91AC->unk6C->func_001D5AD0();
+    } else {
+        D_002B91AC->unk54->func_001D5AD0();
+    }
     D_002B91AC->unk60->func_001D5AD0();
     D_002B91AC->unk64->func_001D5AD0();
     s = D_002B91AC;
