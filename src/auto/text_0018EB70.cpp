@@ -21,6 +21,7 @@ struct C_0018F4D0 {
     char pad141[0x150 - 0x141];
     void func_0018E250(char *a, unsigned int b);
     void func_0018F4D0(unsigned int a);
+    void func_0018F610(unsigned int a, unsigned int b);
     void func_0018F390(char *n, unsigned int a, void **p);
 };
 struct C_00191420 {
