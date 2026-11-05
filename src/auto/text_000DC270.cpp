@@ -3,6 +3,65 @@
 
 extern int D_0027F84C;
 void func_001E891B(void *p);
+void *func_001E8A44(int size);
+int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
+extern char D_00277A04;
+extern char D_00277A0C;
+extern int D_00080000;
+
+/* D_002EFDB8 object */
+struct I_002EFDB8 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6();
+    virtual void v7(int a0);
+    virtual void v8();
+};
+extern I_002EFDB8 *D_002EFDB8;
+
+struct C_001D4300 {
+    int func_001D4590(char *out, const char *title, int a, int size);
+};
+
+struct S_000DCC20_Sub {
+    char pad0[0x2CC];
+    C_001D4300 *f2CC;
+};
+
+struct S_000DCC20_Root {
+    char pad0[0x2E0];
+    S_000DCC20_Sub *f2E0;
+};
+extern S_000DCC20_Root *D_002A8490;
+
+struct C_000928D0 {
+    int func_000928D0(void);
+};
+
+/* object whose slot 0x40 returns a writable buffer */
+struct I_000DCC20_Buf {
+    virtual void v00(); virtual void v04(); virtual void v08(); virtual void v0C();
+    virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1C();
+    virtual void v20(); virtual void v24(); virtual void v28(); virtual void v2C();
+    virtual void v30(); virtual void v34(); virtual void v38(); virtual void v3C();
+    virtual void *v40(int a0, int a1, int a2);
+};
+
+struct C_000DCC20 {
+    char pad0[0x298];
+    int unk298;
+    char pad29C[0x20];
+    C_000928D0 *unk2BC;
+    char pad2C0[0x10];
+    int unk2D0;
+    int unk2D4;
+    int unk2D8;
+    int unk2DC;
+    char pad2E0[0x88];
+    I_000DCC20_Buf *arr368[4];
+    I_000DCC20_Buf *arr378[4];
+    int func_000DCC20(void);
+};
 
 struct C_001D6410 {
     void func_001D6410(void);
