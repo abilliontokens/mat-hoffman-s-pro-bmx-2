@@ -370,13 +370,15 @@ void C_0012AC20::func_0012AC20(S_0012AB70Vec *p1, S_0012AB70Vec *p2, S_0012AB70V
 void C_0012AEC0::func_0012AEC0(void)
 {
     S_0012AEC0_Mat tmp;
+    float num;
     float half;
 
     fb0.func_000264C0(func_00161AE0(&tmp, f170, f180, f190, f1d4));
     f70.func_000264C0(func_00161AA0(&tmp, f1fc, f200, f1d0 * 0.0174532905f, D_00275460 / f1f8));
     func_000263B0(&ff0, &fb0, &f70);
-    half = (float)f1e8 * 0.5f;
-    f1d8 = half / func_0014F600(f1d0 * 0.5f * 0.0174532905f);
+    num = (float)f1e8 * 0.5f;
+    half = f1d0 * 0.5f;
+    f1d8 = num / func_0014F600(half * 0.0174532905f);
 }
 
 void C_0012B000::func_0012B000(float param1, float param2)
