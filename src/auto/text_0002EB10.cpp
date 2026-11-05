@@ -1,6 +1,8 @@
 /* 11 functions from 0x0002EB10 to 0x0002FA80, found by Ghidra. */
 #include "common.h"
 
+struct S_0002F1C0_Value { char pad[0x24]; float value; };
+struct S_0002F1C0_Vehicle { char pad[0x9e8]; S_0002F1C0_Value *x,*y,*z,*w; char pad9f8[0x820]; int index; };
 struct S_0002F1C0_Params { int a,b,c,d,e,f; float x,y,z,w; };
 struct S_0002F1C0_Input { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual int query(int,int,int,int); };
 struct S_0002F1C0_Camera { void func_00059290(S_0002F1C0_Params,int); void func_0009FE80(S_0002F1C0_Params,int); };
