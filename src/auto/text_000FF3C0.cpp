@@ -28,6 +28,8 @@ struct S_00100030_Pos {
 };
 
 struct S_00100030_Item {
+    void func_001D5AD0();
+    int func_000301D0();
     void func_001D6600(void);
 };
 
