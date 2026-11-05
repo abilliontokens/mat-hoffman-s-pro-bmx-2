@@ -60,6 +60,19 @@ struct S_001A8B80_Tree {
     S_001A8B80_Leaf *leaves;
 };
 
+struct S_001A9240_Item {
+    char pad0[0x10];
+    V4_001A8B80 pos;
+    V4_001A8B80 b;
+    V4_001A8B80 c;
+    int f40;
+    char pad44[8];
+    float f4C;
+    char pad50[4];
+    unsigned char f54;
+    char pad55[3];
+};
+
 struct C_001A8B80 {
     void *vtbl;
     char pad4[0x28];
