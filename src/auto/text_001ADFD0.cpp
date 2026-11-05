@@ -124,6 +124,16 @@ struct S_001AEBD0_Sprite : C_001ADFD0_Virt {
     unsigned char f64;
     S_001AEBD0_Sprite *func_001ADEB0(void);
     void func_001ADF30(int a, int b);
+    void SetSize(int w, int h)
+    {
+        f34 = w;
+        f38 = h;
+    }
+    void SetOffset(int x, int y)
+    {
+        f2C = x;
+        f30 = y;
+    }
     void SetScale(float s)
     {
         f3C = s;
@@ -475,19 +485,16 @@ C_001AE3E0 *C_001AE3E0::func_001AEBD0(int a1, int a2, float *a3, int a4, float a
     void *mem;
     S_001AEBD0_Ref *ref;
     unsigned int color;
-    float v;
 
     f24 = a8;
     f40 = *(C_001AE3E0_Quat *)func_0001E9E0(tmp, a3);
-    f2C = a5;
     f28 = a4;
+    f2C = a5;
     f84_2 = a13;
     mem = func_001E8A44(0x6c);
     f54 = mem ? ((S_001AEBD0_Sprite *)mem)->func_001ADEB0() : 0;
     f54->func_001ADF30(a1, (int)this);
-    v = f2C;
-    f54->f3C = v;
-    f54->f40 = v;
+    f54->SetScale(f2C);
     f54->SetAlpha(0);
     color = MakeColor_001AEBD0(-1, (unsigned char)a9, (unsigned char)a10, (unsigned char)a11);
     f54->col[0].rgba = color;
