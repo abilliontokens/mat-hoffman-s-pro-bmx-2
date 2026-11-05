@@ -88,6 +88,37 @@ void C_000EDF00::func_000EDF00(void)
     D_002B91AC->unk34->func_001D6600();
 }
 
+void C_000EDF00::func_000EE140(void)
+{
+    C_001D5AD0 *p;
+    S_002B91AC *s;
+    C_001D5AD0 **ptr;
+    int count;
+    p = unk2A0 ? D_002B91AC->unk68 : D_002B91AC->unk50;
+    p->func_001D5AD0();
+    p = unk2A4 ? D_002B91AC->unk6C : D_002B91AC->unk54;
+    p->func_001D5AD0();
+    s = D_002B91AC;
+    s->unk24->func_001D5AD0();
+    s->unk28->func_001D5AD0();
+    s->unk2C->func_001D5AD0();
+    s->unk30->func_001D5AD0();
+    ptr = arr4B8;
+    count = 4;
+    do {
+        (*ptr)->func_001D5AD0();
+        ptr++;
+        count--;
+    } while (count != 0);
+    ptr = arr4C8;
+    count = 2;
+    do {
+        (*ptr)->func_001D5AD0();
+        ptr++;
+        count--;
+    } while (count != 0);
+}
+
 void C_000EE1F0::func_000EE1F0(void) {
     unk42C = 178;
     unk430 = 0;
