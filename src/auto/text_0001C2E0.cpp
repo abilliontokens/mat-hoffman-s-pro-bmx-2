@@ -141,6 +141,32 @@ struct C_0001C550 {
 void func_001E891B(void *p);
 void *func_001E8A44(int size);
 
+struct S16_1A {
+    int a;
+    int b;
+    int c;
+    int d;
+};
+
+struct S36_1A {
+    int f[9];
+};
+
+struct C_001A30D0 {
+    C_001A30D0 *func_001A30D0(void *a0, int a1, int a2, int a3);
+};
+
+struct C_001A23F0 {
+    char pad0[0x70];
+    S16_1A f70;
+    S16_1A f80;
+    C_001A23F0 *func_001A23F0(S36_1A s0, S16_1A s1, S16_1A s2, int a17, int a18, int a19, int a20, int a21);
+};
+
+struct C_0001CD90 {
+    void *func_0001CD90(int arg);
+};
+
 struct C_0001D0B0 {
     char pad0[4];
     void *f4;
