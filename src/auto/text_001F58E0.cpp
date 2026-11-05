@@ -14,3 +14,15 @@ undefined4 func_001F59BB(void)
 int func_001F59D9(void) {
     return 0;
 }
+
+#pragma optimize("sy", on)
+int func_001F5AA1(unsigned int a, unsigned int b, unsigned int *out)
+{
+    unsigned int sum = a + b;
+    int overflow = 0;
+    if (sum < a || sum < b) {
+        overflow = 1;
+    }
+    *out = sum;
+    return overflow;
+}
