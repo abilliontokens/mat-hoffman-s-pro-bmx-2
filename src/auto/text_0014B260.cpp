@@ -15,7 +15,6 @@ struct Vec4 {
     }
 };
 
-#pragma auto_inline(off)
 struct DynamicRayCollisionObject {
     char pad_0[0xa6];
     unsigned char unkA6;
