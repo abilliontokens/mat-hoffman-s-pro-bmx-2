@@ -120,14 +120,17 @@ struct C_00182CC0 {
     C_00168280 *f28;
     char pad2C[4];
     char f30[0x104];
-    char pad134[0x3C0 - 0x134];
+    char pad134[0x3BC - 0x134];
+    C_001B8450 *f3BC;
     C_001B82A0 *f3C0;
-    char pad3C4[4];
+    C_001B9B20 *f3C4;
     int f3C8;
     void func_001832C0();
     int func_001832F0(char *name);
     int func_001833A0();
     void func_001839F0();
+    void func_00183A50();
+    void func_00183AB0();
 };
 
 void C_00182CC0::func_001832C0()
