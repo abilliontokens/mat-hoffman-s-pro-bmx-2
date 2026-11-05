@@ -60,6 +60,44 @@ struct C_0008A0A0 {
     void func_0008A0A0(void);
 };
 
+extern float D_00275AEC;
+extern int D_002786A0;
+extern int D_0027958C;
+
+/* a clamped range: both limits are reset to 10.0f when they leave it */
+struct S_0008A0B0_Clamp {
+    char pad0[0x10];
+    float f10;
+    float f14;
+};
+
+struct S_0008A0B0_Elem {
+    S_0008A0B0_Clamp *func_001D5AA0(void);
+};
+
+struct S_0008A0B0_Mid {
+    S_0008A0B0_Clamp *func_0018C070(void);
+};
+
+struct S_0008A0B0_Lookup {
+    int *func_0018C160(int name);
+};
+
+struct S_0008A0B0_Root {
+    char pad0[0x2ec];
+    S_0008A0B0_Lookup *lookup;
+};
+
+extern S_0008A0B0_Root *D_002A8490;
+
+/* EditorMenuOverlay */
+struct C_0008A0B0 {
+    char pad0[0x34];
+    S_0008A0B0_Elem *elems[26];
+    void func_0008A0B0(void);
+    void func_001578D0(void);
+};
+
 
 void C_00089FA0::func_00089FA0(void)
 {
