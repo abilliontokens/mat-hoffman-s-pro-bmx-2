@@ -56,7 +56,7 @@ void __cdecl func_001EB2D9(void)
 
 void __cdecl func_001EB302(int locknum)
 {
-    _imp__RtlLeaveCriticalSection(D_002AE8F0[locknum].lock);
+    _imp__RtlLeaveCriticalSection(((void **)D_002AE8F0)[locknum * 2]);
 }
 
 void func_001EB977(void) {
