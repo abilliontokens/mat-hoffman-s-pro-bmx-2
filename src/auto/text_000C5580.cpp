@@ -1,6 +1,15 @@
 /* 10 functions from 0x000C5580 to 0x000C6550, found by Ghidra. */
 #include "common.h"
 
+struct BmxUIPageMain {
+    char pad0[0x2F0];
+    int f2F0;
+    void func_000C4CE0();
+    void func_000C4FD0();
+    void func_000C5580();
+    void func_00157960();
+};
+
 extern int D_0027E14C;
 
 struct PageObj_5580 {
