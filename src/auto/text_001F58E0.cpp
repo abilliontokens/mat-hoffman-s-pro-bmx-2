@@ -30,6 +30,11 @@ undefined4 func_001F59BB(void)
   return 0;
 }
 
+#pragma optimize("sy", on)
+PFN_001F5975 func_001F59CD(void)
+{
+    return func_001DE7D4(D_002F6A70);
+}
 int func_001F59D9(void) {
     return 0;
 }
