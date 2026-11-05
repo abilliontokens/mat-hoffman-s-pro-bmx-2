@@ -205,3 +205,21 @@ void C_000AF7D0::func_000AF7D0(void) {
     f534->v27(f28, &local, f530, this);
 }
 
+void C_000AF840::func_000AF840(void) {
+    C_000AF840_Obj *p;
+
+    if (f53c == 0) {
+        p = (C_000AF840_Obj *)func_001E8A44(0x2c);
+        if (p != 0) {
+            p->func_00157600(1);
+            p->vtbl = &D_0027C51C;
+            p->unk24 = 0;
+            p->unk28 = 0;
+        } else {
+            p = 0;
+        }
+        f53c = p;
+    }
+    f53c->func_000AE780(f28);
+}
+
