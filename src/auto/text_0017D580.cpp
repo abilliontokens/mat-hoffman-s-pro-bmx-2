@@ -54,6 +54,25 @@ undefined4 C_0017D580::func_0017D580(byte param_1)
   return in_ECX;
 }
 
+C_0017D5A0 *C_0017D5A0::func_0017D5A0(int a1, int a2, int a3, int a4, int a5, int a6, int a7)
+{
+  func_00192720();
+  vtbl = &D_0028909C;
+  D_002EFD80 = this;
+  flags98 &= ~1;
+  unk880 = 0;
+  unk888 = 0;
+  unk88C = 0;
+  unk890 = 0;
+  unk898 = 0;
+  unk894 = 0;
+  unk89C = 0;
+  unk8B0 = 0;
+  unk884 = -1;
+  func_0017C360(a1, a3, a4, a6, a7);
+  return this;
+}
+
 undefined4 C_0017DAC0::func_0017DAC0(byte param_1)
 {
   int func_0017CE40(...);
