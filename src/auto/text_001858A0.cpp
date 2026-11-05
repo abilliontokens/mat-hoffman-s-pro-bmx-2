@@ -142,6 +142,28 @@ struct C_00186170 {
     void func_00186210(void);
 };
 
+extern char D_00289924;
+extern char D_0027C494;
+extern char D_00289918;
+extern char D_0028990C;
+extern char D_00289900;
+struct S_Stream2 {
+    int func_00169710(void *name);
+    void func_00168BE0(void *key, void *def, void *dst, int n);
+    void func_00168C50(void *key, u32 def, void *dst);
+};
+struct V4_186720 {
+    u32 a, b, c, d;
+};
+extern "C" V4_186720 *func_00182980(void *a, void *b);
+struct C_00186720 {
+    char pad0[4];
+    V4_186720 f4;
+    u32 f14;
+    u32 f18;
+    int func_00186720(S_Stream2 *stream);
+};
+
 struct C_00186540 {
     void func_00186540(int param_1);
 };
@@ -224,7 +246,7 @@ C_00186170 *C_00186170::func_00186170(void)
 {
     vtbl = &D_002897FC;
     f4 = 4;
-    f8.Clear();
+    f8.Set(0, 0, 0, 0);
     f2c = (f2c & 0x84) | 4;
     f18 = 0;
     f1c = 0;
@@ -232,10 +254,10 @@ C_00186170 *C_00186170::func_00186170(void)
     f28 = 0;
     f24 = 0;
     fe8 = 1;
-    f38.Clear();
-    f40.Clear();
+    f38.Set(0, 0);
+    f40.Set(0, 0, 0, 0);
     f50 = 0x3f800000;
-    f94.Clear();
+    f94.Set(0, 0, 0, 0);
     fa4 = 0x3f800000;
     f54 = 0;
     fec = -1;
