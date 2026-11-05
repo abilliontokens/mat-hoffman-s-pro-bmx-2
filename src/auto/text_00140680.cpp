@@ -95,13 +95,15 @@ void *DXMesh::func_001407D0(unsigned int flags)
     return this;
 }
 
-int func_00140890(C_00168BE0 *cfg, const char *key, int def, int *out)
+int func_00140890(C_00168BE0 *cfg, const char *key, int def, int &out)
 {
     char *end;
     char buf[64];
     cfg->func_00168BE0(key, "undefined", buf, 64);
     if (strcmp(buf, "undefined") == 0) {
-        return *out = def;
+        out = def;
+    } else {
+        out = func_001E9576(buf, &end, 0);
     }
-    return *out = func_001E9576(buf, &end, 0);
+    return out;
 }
