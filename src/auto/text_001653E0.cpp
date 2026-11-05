@@ -138,6 +138,45 @@ struct C_00165D00 {
     void func_00165D00(f32 scale);
 };
 
+/* node/elem pair driven by func_00165A20 (f170 + the two 0x1993xx sinks) */
+struct C_00165A20_Node {
+    char pad0[0x170];
+    int f170;
+    void func_00199300(Vec4_165EF0 *p);
+    void func_00199650(Vec4_165EF0 *p);
+};
+
+struct C_00165A20_Elem {
+    char pad0[0x34];
+    C_00165A20_Node *f34;
+    char pad38[8];
+};
+
+struct C_00165A20_Arg1 {
+    char pad0[0x14];
+    C_00165E20_Item **f14;     /* 0x14 */
+    C_00165E20_Item **f18;     /* 0x18 */
+    int f1C;                   /* 0x1C */
+    int f20;                   /* 0x20 */
+};
+
+struct C_00165A20 {
+    char pad0[0x4];
+    void *f4;                  /* 0x04 */
+    char pad8[4];              /* 0x08 */
+    int fC;                    /* 0x0C */
+    char pad10[0x1DC];         /* 0x10 */
+    C_00165A20_Elem *f1EC;     /* 0x1EC */
+    int *f1F0;                 /* 0x1F0 */
+    char pad1F4[0x14];         /* 0x1F4 */
+    int f20C;                  /* 0x20C */
+    C_00165D00_Slot **f210;    /* 0x210 */
+    Vec4_165EF0 *f214;         /* 0x214 */
+    int f218;                  /* 0x218 */
+    int *f21C;                 /* 0x21C */
+    void func_00165A20(C_00165A20_Arg1 *a1, int *unused, f32 a2, int *mask, void *a4);
+};
+
 extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
 extern char D_00287E48[];
 #include <string.h>
