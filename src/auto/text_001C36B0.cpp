@@ -116,6 +116,22 @@ struct DXIndexBufferCache {
 };
 
 
+DXIndexBuffer *DXIndexBuffer::func_001C36B0(int type, int count)
+{
+    if (type == 0x65) {
+        int ok;
+        int fail;
+        f8 = 0x65;
+        f10 = count;
+        fC = 2;
+        f14 = func_001FF380(count * 2);
+        ok = f14 != 0;
+        fail = (int)((unsigned)(ok - 1) & 0x8007000E) < 0;
+        return (DXIndexBuffer *)((fail - 1) & (int)this);
+    }
+    return 0;
+}
+
 void C_001C3700::func_001C3700(void)
 {
   int __stdcall func_00201100(int);
@@ -144,6 +160,62 @@ C_001C3810* C_001C3810::func_001C3810(int a0) {
     unkC = 0;
     unk0 = (int)&D_0028E378;
     return this;
+}
+
+bool DXVertexBufferCache::func_001C3830(int a1, int a2)
+{
+    VertexBuffer *vb;
+    IndexBuffer *ib;
+
+    vb = (VertexBuffer *)func_001E8A44(0x18);
+    if (vb) {
+        vb->fC = 0;
+        vb->f10 = 0;
+        vb->vtbl = (void *)&D_0028E2C4;
+        vb->f4 = 0;
+        vb->func_001C3550(a1, a2);
+    } else {
+        vb = 0;
+    }
+    f4 = vb;
+    if (!vb)
+        return false;
+    ib = (IndexBuffer *)func_001E8A44(0x10);
+    if (ib)
+        ib = ib->func_0012A350(0, a2);
+    f8 = ib;
+    return ib != 0;
+}
+
+bool DXIndexBufferCache::func_001C38D0(int a1, int a2)
+{
+    VertexBuffer *vb;
+    IndexBuffer *ib;
+
+    vb = (VertexBuffer *)func_001E8A44(0x18);
+    if (vb) {
+        vb->f8 = 0;
+        vb->fC = 0;
+        vb->f10 = 0;
+        vb->vtbl = (void *)&D_0028E30C;
+        vb->f4 = 0;
+        if (a1 == 0x65) {
+            vb->f8 = 0x65;
+            vb->fC = 2;
+            vb->f10 = a2;
+            vb->f14 = func_001FF380(a2 * 2);
+        }
+    } else {
+        vb = 0;
+    }
+    f4 = vb;
+    if (!vb)
+        return false;
+    ib = (IndexBuffer *)func_001E8A44(0x10);
+    if (ib)
+        ib = ib->func_0012A350(0, a2);
+    f8 = ib;
+    return ib != 0;
 }
 
 void DXVertexBufferManager::func_001C3BD0(void)
