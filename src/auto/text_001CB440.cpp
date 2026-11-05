@@ -339,9 +339,11 @@ struct C_001CC0C0 {
     C_001CB9A0 *f140;
     char pad144[0x58];
     unsigned int f19C;
-    char pad1A0[0x68];
+    int f1A0;
+    char pad1A4[0x64];
     unsigned char f208;
     int func_001CC0C0(int v);
+    int func_001CC1E0(void);
     void func_001CC140(void);
     int func_001CC320(unsigned int v);
     void func_001CB510(void);
