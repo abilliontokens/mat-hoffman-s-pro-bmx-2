@@ -104,6 +104,22 @@ struct BmxUIPageOptions {
     void func_001BE3F0(void);
 };
 
+struct E_000C8490 {
+    char pad0[0x38];
+    unsigned int unk38;
+    char pad3C[0x1C];
+    unsigned char unk58;
+};
+
+struct C_000C8490 {
+    char pad0[0x2CC];
+    short unk2CC;
+    char pad2CE[0x3A];
+    E_000C8490 *unk308[6];
+    void func_000C8490(void);
+    void func_001BF000(void);
+};
+
 extern S_002B91AC *D_002B91AC;
 extern float D_00279B50;
 extern float D_00275994;
