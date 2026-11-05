@@ -178,6 +178,26 @@ void C_00069BD0::func_00069BD0()
     unk170 = -1;
 }
 
+void C_00069BD0::func_00069C40()
+{
+    unk144 = 0;
+    unk164 = 0;
+    unk168 = 0;
+    unk160 = 0;
+    v6();
+    unk14C->v35();
+    unk15C = 1;
+    v18(0);
+    unk14C->unk21 &= 0xfb;
+    unk154 = 0;
+    unk158 = 0;
+    unk14C->unk1F4 = 1;
+    unk6C->func_001B17D0(D_002A8490->p2E8->p4->f890);
+    unk70->func_001B17D0(D_002A8490->p2E8->p4->f868);
+    unk16C = 1;
+    unk17C = 1;
+}
+
 void C_00069FD0::func_00069FD0(int a0) {
     unk170 = a0;
     unk17C = 1;
