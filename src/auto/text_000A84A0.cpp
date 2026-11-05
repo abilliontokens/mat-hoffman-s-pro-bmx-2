@@ -128,6 +128,14 @@ int C_000A8520::func_000A8520(char *param)
     return -1;
 }
 
+C_000A89F0 *C_000A89F0::func_000A89F0()
+{
+    ((C_001B59E0 *)this)->func_001B59E0();
+    vtbl = (void *)&D_0027C2C0;
+    unk10C = 0;
+    return this;
+}
+
 C_000A8D70 *C_000A8D70::func_000A8D70()
 {
     ((C_001B59E0 *)this)->func_001B59E0();
