@@ -166,6 +166,15 @@ struct C_0015C190 {
     void func_0015C190(S_0015C190_Vec3 *pos, float t);
 };
 
+struct C_0015C000 {
+    void *vtbl;
+    u32 unk4;
+    int unk8;
+    int unkC;
+    S_0015BF70_Node *unk14;
+    void func_0015C000(float t, float *out);
+};
+
 LinearPositionController::LinearPositionController() {
     unk4 = 0;
     unk8 = 1;
