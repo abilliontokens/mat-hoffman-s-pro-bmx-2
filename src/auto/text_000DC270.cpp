@@ -45,7 +45,7 @@ struct C_000DD030 {
     int unk2E0;
     int unk2E4;
     char pad2E8[4];
-    int unk2EC;
+    DelObjC_000DC *unk2EC;
     int unk2F0;
     int unk2F4;
     int unk2F8;
@@ -91,6 +91,49 @@ void C_000DCBF0::func_000DCBF0(void) {
     unk2FC = 0;
     unk300 = 1048576000;
     unk304 = 0;
+}
+
+C_000DD030 *C_000DD030::func_000DD030(int a)
+{
+    func_001BE360(a);
+    unk280 = 0;
+    unk328 = 0;
+    unk32C = 0;
+    unk330 = 0;
+    unk2EC = 0;
+    unk284 = 0;
+    unk320 = 0;
+    unk324 = 0;
+    unk28C = 0;
+    unk294 = 0;
+    unk2BC = 0;
+    unk2D0 = 0;
+    unk2D4 = 0;
+    unk2DC = 0;
+    unk2E0 = 0;
+    unk2D8 = 0;
+    unk2E4 = 0;
+    unk2C0 = 0;
+    unk2F0 = 0;
+    unk2F8 = 0;
+    unk2FC = 0;
+    unk2F4 = 0;
+    unk334 = 0;
+    unk30C = 0;
+    unk310 = 0;
+    unk314 = 0;
+    unk31C = 0;
+    unk318 = 0;
+    unk33C = 0;
+    unk338 = 0;
+    vtbl = &D_0027F84C;
+    unk288 = 1;
+    unk340 = 0;
+    unk344 = 0;
+    unk300 = 0;
+    unk308 = 0;
+    unk304 = 0;
+    return this;
 }
 
 void C_000DD130::func_000DD130()
