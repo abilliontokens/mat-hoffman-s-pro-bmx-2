@@ -27,9 +27,11 @@ struct V4_0011EE50 {
     float w;
 };
 
-static float fabs_0011EE50(volatile float x)
+static float fabs_0011EE50(float v)
 {
+    volatile float x;
     volatile int tmp;
+    x = v;
     tmp = *(volatile int *)&x & 0x7fffffff;
     return *(float *)&tmp;
 }
@@ -64,18 +66,14 @@ C_0011EDF0 *C_0011EDF0::func_0011EDF0(s16 *p)
     return this;
 }
 
-void func_0011EE50(V4_0011EE50 *out, V4_0011EE50 *in)
+V4_0011EE50 *func_0011EE50(V4_0011EE50 *out, V4_0011EE50 *in)
 {
-    volatile int tmp;
-    tmp = fabs_0011EE50(in->x);
-    in->x = *(float *)&tmp;
-    tmp = fabs_0011EE50(in->y);
-    in->y = *(float *)&tmp;
-    tmp = fabs_0011EE50(in->z);
-    in->z = *(float *)&tmp;
-    tmp = fabs_0011EE50(in->w);
-    in->w = *(float *)&tmp;
+    in->x = fabs_0011EE50(in->x);
+    in->y = fabs_0011EE50(in->y);
+    in->z = fabs_0011EE50(in->z);
+    in->w = fabs_0011EE50(in->w);
     *out = *in;
+    return out;
 }
 
 void func_0011F400(int a0, int a1, int a2, int a3, int a4, int a5)
