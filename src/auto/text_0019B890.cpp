@@ -9,22 +9,22 @@ extern float D_002B9448[];
 extern float D_0028B1B0, D_0028B1A0, D_0028B190;
 extern float D_0028B248;
 
+#define N19V (_mm_loadu_ps(in))
+#define N19SQ (_mm_mul_ps(N19V, N19V))
+#define N19D (_mm_add_ss(_mm_add_ss(_mm_movehl_ps(N19SQ, N19SQ), N19SQ), _mm_shuffle_ps(N19SQ, N19SQ, 0xE1)))
+#define N19D2 (_mm_add_ss(N19D, _mm_and_ps(_mm_cmplt_ss(N19D, _mm_set_ss(D_0028B1B0)), _mm_set_ss(D_0028B1B0))))
+#define N19R (_mm_mul_ss(_mm_mul_ss(_mm_rsqrt_ss(N19D2), _mm_set_ss(D_0028B190)), _mm_sub_ss(_mm_set_ss(D_0028B1A0), _mm_mul_ss(_mm_mul_ss(N19D2, _mm_rsqrt_ss(N19D2)), _mm_rsqrt_ss(N19D2)))))
+
 static __forceinline void Normalize_0019B890(float *out, const float *in)
 {
-    __m128 v = _mm_loadu_ps(in);
-    __m128 sq = _mm_mul_ps(v, v);
-    __m128 d = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
-    d = _mm_add_ss(d, _mm_shuffle_ps(sq, sq, 0xE1));
-    __m128 eps = _mm_set_ss(D_0028B1B0);
-    d = _mm_add_ss(d, _mm_and_ps(_mm_cmplt_ss(d, eps), eps));
-    __m128 r = _mm_rsqrt_ss(d);
-    __m128 dr = _mm_mul_ss(_mm_mul_ss(d, r), r);
-    __m128 c2 = _mm_set_ss(D_0028B1A0);
-    r = _mm_mul_ss(r, _mm_set_ss(D_0028B190));
-    r = _mm_mul_ss(r, _mm_sub_ss(c2, dr));
-    r = _mm_shuffle_ps(r, r, 0);
-    _mm_storeu_ps(out, _mm_mul_ps(r, v));
+    _mm_storeu_ps(out, _mm_mul_ps(_mm_shuffle_ps(N19R, N19R, 0), N19V));
 }
+
+#undef N19V
+#undef N19SQ
+#undef N19D
+#undef N19D2
+#undef N19R
 
 struct C_0019BA70 {
     char pad0[0x54];
@@ -143,6 +143,33 @@ struct C_0019C320 {
     void func_0019C320(undefined4 *param_1);
 };
 
+
+void C_0019BA70::func_0019B890(void)
+{
+    float *obj = (float *)f54;
+    float *sum = obj + 4;
+    int i;
+
+    sum[0] = 0.0f;
+    sum[1] = 0.0f;
+    sum[2] = 0.0f;
+    sum[3] = 1.0f;
+    if (D_002B92E0 > 0) {
+        const float *p = D_002B9448;
+        for (i = 0; i < D_002B92E0; i++) {
+            sum[0] += p[-2];
+            sum[1] += p[-1];
+            sum[2] += p[0];
+            p += 4;
+        }
+        Normalize_0019B890(sum, sum);
+    }
+    float t[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
+    Normalize_0019B890(t, obj);
+    obj[0] += t[0] * D_0028B248;
+    obj[1] += t[1] * D_0028B248;
+    obj[2] += t[2] * D_0028B248;
+}
 
 void SoultreeCollisionObject::func_0019BB80(void *arg1)
 {
