@@ -512,6 +512,55 @@ C_000512D0 *C_000512D0::func_000512D0(void)
     return this;
 }
 
+int C_00051420::func_00051420(void)
+{
+    char buf[0x104];
+    RT_Tex *t;
+    RT_Spr *s;
+
+    if (((RT_Root *)D_002A8490)->f2B8)
+        func_001ADCC0(buf, 0x104, D_00276B88, &((RT_Root *)D_002A8490)->f2B8);
+    else
+        func_001ADCC0(buf, 0x104, D_00276B88, (char *)((RT_Root *)D_002A8490)->f2E0 + 0x4c);
+    ((RT_Root *)D_002A8490)->f230 |= 1;
+    ((RT_Root *)D_002A8490)->f124 = 0;
+    t = (RT_Tex *)func_001E8A44(0x2d0);
+    f28 = t ? t->func_0013E4F0(1) : 0;
+    f28->func_0012B410(0x3f9f49f5, 0x280, 0x1c0);
+    t = (RT_Tex *)func_001E8A44(0x2d0);
+    f24 = t ? t->func_0013E4F0(1) : 0;
+    f24->func_0012B410(0x3f9f49f5, 0x280, 0x1c0);
+    s = (RT_Spr *)func_001E8A44(0x78);
+    s = s ? s->func_0002EF20(1) : 0;
+    f44 = s;
+    s->func_000306F0(f24, *(int *)((char *)((RT_Root *)D_002A8490)->f2E0 + 8), (int)*f64->f4AC, *(RT_Vec *)((char *)f64->f4D8 + 0x24), buf, 0);
+
+    if (((RT_Root *)D_002A8490)->f2B8)
+        func_001ADCC0(buf, 0x104, D_002779E8, &((RT_Root *)D_002A8490)->f2B8);
+    else
+        func_001ADCC0(buf, 0x104, D_002779E8, (char *)((RT_Root *)D_002A8490)->f2E0 + 0x4c);
+    s = (RT_Spr *)func_001E8A44(0x78);
+    s = s ? s->func_0002EF20(1) : 0;
+    f48 = s;
+    s->func_000306F0(f28, *(int *)((char *)((RT_Root *)D_002A8490)->f2E0 + 8), (int)*f64->f4AC, *(RT_Vec *)((char *)f64->f4D8 + 0x24), buf, 1);
+
+    if (!f48->f74) {
+        f48->rel();
+        f48 = 0;
+        f28->rel();
+        f28 = 0;
+    }
+    v70();
+    if (f48) {
+        f48->func_0002EF70(0, 0);
+        f48->func_00030240(f64->f3E4, 4, &f28->f170, &f28->f180, 0);
+        f28->func_0012A770((int)*f64->f4A8, 2);
+        f48->v4();
+        f28->v4();
+    }
+    return 1;
+}
+
 void C_000516C0::func_000516C0(void)
 {
   int in_ECX = (int)this;
