@@ -107,17 +107,42 @@ struct C_0023EC0D {
     int f50;
     int f54[5];
     int f68;
-    char f6c[0x28];
+    char f6c[0x1c];
+    int f88;
+    int f8C;
+    int f90;
     unsigned int f94;
     int f98;
-    char pad9c[0x88 - 0x80];
+    char pad9c[8];
     S_0023EA00_Link fA4;
     int fAC;
     int fB0;
     int fB4;
     int fB8;
     unsigned int func_0023EC0D(unsigned int a, unsigned int b, int *out);
+    unsigned int func_0023EE81(unsigned int a, unsigned int b, int *out);
+    void func_0023EED3(void);
+    C_0023EC0D *func_0023F1AB(void);
 };
+
+struct S_0023F119_Wfx {
+    unsigned short wFormatTag;
+    unsigned short nChannels;
+    unsigned int nSamplesPerSec;
+    unsigned int nAvgBytesPerSec;
+    unsigned short nBlockAlign;
+    unsigned short wBitsPerSample;
+    unsigned short cbSize;
+};
+
+struct S_0023F119_Src {
+    char pad0[0xc];
+    int fC;
+    unsigned short f10;
+    int func_0023EE30(int a);
+};
+
+void func_001E891B(void *p);
 
 /* the stream object: its lock, the packet list and the "has a thread" flag */
 struct S_0023ED71 {
