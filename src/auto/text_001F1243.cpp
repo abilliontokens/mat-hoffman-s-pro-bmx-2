@@ -1,7 +1,8 @@
 /* 3 functions from 0x001F1243 to 0x001F208F, found by Ghidra. */
 #include "common.h"
 extern char *D_002F6A28;
-extern unsigned int D_002F6A38;
+struct ParserFlags { unsigned int low:12; unsigned int b12:1; unsigned int b13:1; unsigned int high:18; };
+extern ParserFlags D_002F6A38;
 extern unsigned char D_002F6A1C;
 extern char D_00295CE8[];
 struct S_001EF734 {
