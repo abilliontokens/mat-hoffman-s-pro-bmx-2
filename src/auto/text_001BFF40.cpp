@@ -413,7 +413,7 @@ void C_001C0A60::func_001C0AB0(void)
 void C_001C0A60::func_001C0B00(float dt)
 {
     if (f68 != 0) {
-        ((C_00157600 *)this)->func_00157600(1);
+        f68->func_00199CF0(S_001C0B00_Vec4(1.0f, 0.0f, 0.0f, 1.0f), fB4 * f8C * dt);
     }
 }
 
