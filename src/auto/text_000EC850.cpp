@@ -202,6 +202,30 @@ void C_000ECD90::func_000ECD90(void) {
     unk390 = 1048576000;
 }
 
+void C_000ECDC0::func_000ECDC0() {
+ if (f34C && !f330) {
+  f398=0; f39C=1; func_000EC5E0();
+  f380=255; f384=0; f388=f364; f38C=0; f390=0x3e800000; f34C=0;
+ }
+ if(f350) {
+  func_000EC6F0();
+  f380=255; f384=0; f388=f364; f38C=0; f390=0x3e800000; f350=0;
+ }
+ if(f354) { if(!f324) func_000EC580(); else func_000EC4A0(); f354=0; }
+ if(f374) { f360=178; f364=0; f368=0; f36C=0; f370=0x3e800000; f374=0; }
+ if(f378) { f360=0; f364=178; f368=178; f36C=0; f370=0x3f800000; f378=0; }
+ if(f330 || f35C) {
+  C_001D5AD0 *p = f320;
+  unsigned int color = (p->f38 & 0xffffff) | ((short)f368 << 24);
+  unsigned char flags = p->f58 | 2;
+  p->f38 = color;
+  p->f58 = flags;
+  f320->func_001D5AD0();
+  if(!f394) { f344->func_00093A00(320.0f,80.0f,D_0028F5E0,1,0,0.25f); f394=1; }
+ }
+ func_000EC7E0(); func_000ECC60(); func_00157960();
+}
+
 C_000ECF80 *C_000ECF80::func_000ECF80(int a) {
     int i;
     func_001BE360(a);
