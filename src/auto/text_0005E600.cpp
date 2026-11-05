@@ -45,6 +45,17 @@ struct C_0005E920 {
 };
 
 
+void *C_0005E790::func_0005E790(int flags)
+{
+    extern int D_00278484;
+    unk0 = (int)&D_00278484;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void C_0005E9D0::func_0005E9D0(float param_1)
 {
   int in_ECX = (int)this;
