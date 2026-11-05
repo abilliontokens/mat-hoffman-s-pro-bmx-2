@@ -87,6 +87,38 @@ C_0016B770 *C_0016B770::func_0016B770(void *param)
     return this;
 }
 
+ParticleEmitterLoader *ParticleEmitterLoader::func_0016B7A0(void *a, char *name, void *b, u32 *c)
+{
+    ((C_001D3F50 *)this)->func_001D3F50();
+    f64 = a;
+    if (b) {
+        f68 = b;
+        if (c) *(V4u *)&f44 = *(V4u *)c;
+    }
+    if (!a) {
+        f1AC = 31;
+        f1A8 = 16;
+        f188 = 16;
+    } else {
+        f64 = a;
+        strcpy(&f6C, D_002A5558);
+        if (!name) {
+            ((ParticleEmitterResetVT *)this)->v2();
+            return 0;
+        }
+        strcat(&f6C, name);
+        if (((C_0016A330 *)this)->func_0016A330(&f6C)) return this;
+    }
+    u32 flags = f190 | 0x100C;
+    f170 = 8000.0f;
+    f198 = 1000.0f;
+    f178 = 1.0f;
+    f174 = 6.0f;
+    f17C = 10.0f;
+    f190 = flags;
+    return this;
+}
+
 void C_0016B8B0::func_0016B8B0(int a, int b, int c, int d, int e)
 {
     f34 = f24;
