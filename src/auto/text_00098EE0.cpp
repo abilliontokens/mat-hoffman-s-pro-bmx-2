@@ -32,6 +32,51 @@ struct C_00097FD0 {
     void func_000999E0(void);
 };
 
+void C_00097FD0::func_00099500(const char *name) {
+    C_00096870 **list;
+    int count;
+    int i;
+    int flag;
+    int mode;
+
+    if (mode0 < 3) {
+        flag = unk198->unk1c8;
+        mode = flag ? mode1 : mode0;
+        switch (mode) {
+        case 0:
+            list = arr0;
+            break;
+        case 1:
+            list = arr1;
+            break;
+        case 2:
+            list = arr2;
+            break;
+        default:
+            list = 0;
+            break;
+        }
+        mode = flag ? mode1 : mode0;
+        switch (mode) {
+        case 0:
+            count = cnt0;
+            break;
+        case 1:
+            count = cnt1;
+            break;
+        case 2:
+            count = cnt2;
+            break;
+        default:
+            count = 0;
+            break;
+        }
+        for (i = 0; i < count; i++) {
+            list[i]->func_00096870(name);
+        }
+    }
+}
+
 void C_00097FD0::func_000999B0(void) {
     int i;
 
