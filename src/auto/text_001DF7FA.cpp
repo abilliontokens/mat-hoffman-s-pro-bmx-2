@@ -64,7 +64,32 @@ extern "C" __declspec(dllimport) long __stdcall NtAllocateVirtualMemory(void *ba
 extern "C" long (__stdcall *__imp__NtAllocateVirtualMemory)(void *baseAddress, unsigned int zeroBits, unsigned int *size, unsigned int allocType, unsigned int protect);
 extern "C" long (__stdcall *__imp__NtFreeVirtualMemory)(void **baseAddress, unsigned int *size, unsigned int freeType);
 unsigned char *__stdcall func_001DF7FA(S_HeapRoot *root, S_HeapBlock *blk, unsigned int *size, int a3);
-unsigned char *__stdcall func_001DF985(S_HeapRoot *root, unsigned char *entry, unsigned int *size, int a3);
+unsigned char *__stdcall func_001DF985(S_HeapRoot *root, unsigned char *entry, unsigned int *size, char a3);
+extern char D_0000FF00;
+extern "C" unsigned long (__stdcall *__imp__RtlCompareMemoryUlong)(void *source, unsigned long length, unsigned long pattern);
+
+#pragma optimize("sy", on)
+#pragma optimize("y", off)
+static __forceinline void FreeUnlink_001DF985(S_HeapRoot *root, S_HeapEntry *e)
+{
+    S_HeapLink *flink = e->link.flink;
+    S_HeapLink *blink = e->link.blink;
+    unsigned int len;
+
+    blink->flink = flink;
+    flink->blink = blink;
+    if (flink == blink && e->size < 0x80) {
+        root->freeMap[e->size >> 3] ^= (unsigned char)(1 << (e->size & 7));
+    }
+    if (e->flags & 4) {
+        len = e->size * 16 - 0x18;
+        if ((e->flags & 2) && len > 4) {
+            len -= 4;
+        }
+        __imp__RtlCompareMemoryUlong((unsigned char *)e + 0x18, len, 0xfeeefeee);
+    }
+}
+#pragma optimize("sy", on)
 void __stdcall func_001DF746(S_HeapBlock *blk, S_FreeNode *node);
 void __stdcall func_001DF767(S_HeapBlock *blk, unsigned int addr, unsigned int size);
 void __stdcall func_001DFC2A(S_HeapRoot *root, unsigned char *blk, int granules);
