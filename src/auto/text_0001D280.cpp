@@ -105,3 +105,14 @@ void C_0001DFF0::func_0001DFF0(void) {
     extern int D_00275F18;
     unk0 = (int)&D_00275F18;
 }
+
+void *C_0001E030::func_0001E030(int flags) {
+    extern int D_00275F18;
+    void func_001E891B(void *);
+    unk0 = (int)&D_00275F18;
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
