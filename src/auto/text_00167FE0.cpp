@@ -186,6 +186,7 @@ int C_00168280::func_00168300(const char *name)
     int hi;
     int mid;
     int i;
+    int off;
     char *table;
 
     if (f4 != 0) {
@@ -228,11 +229,13 @@ int C_00168280::func_00168300(const char *name)
     }
     i = 0;
     if (f10 > 0) {
+        off = 0;
         do {
-            if (func_001EA426(name, ((S_00168280_Entry *)f18)[i].name) == 0) {
+            if (func_001EA426(name, (char *)f18 + off + 8) == 0) {
                 return i;
             }
             i++;
+            off += 0x410;
         } while (i < f10);
         return -1;
     }
