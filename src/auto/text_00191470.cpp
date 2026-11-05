@@ -31,6 +31,11 @@ struct C_00191640_Node {
     float unk20;
 };
 
+struct C_00191C50_Node {
+    char pad0[0x130];
+    unsigned int unk130;
+};
+
 struct C_001923F0 {
     void *vtbl;
     char pad4[0x24];
