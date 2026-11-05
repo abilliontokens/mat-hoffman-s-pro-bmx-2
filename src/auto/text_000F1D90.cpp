@@ -370,14 +370,6 @@ struct C_000F2AD0_Mgr {
     C_000F2AD0_Res *func_000BA9D0(int a);
 };
 
-struct C_000F2AD0_Ui {
-    void func_000B9A80(int a, int b);
-};
-
-struct C_000F2AD0_Mgr2 {
-    char pad0[0x24];
-    C_000F2AD0_Ui *f24;
-};
 
 struct C_000F2AD0 {
     char pad0[0x124];
