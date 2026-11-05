@@ -72,6 +72,33 @@ void *C_0004BED0::func_0004BED0(int flags) {
     return this;
 }
 
+int C_0004C560::func_0004C560(void)
+{
+    int i;
+
+    f1244 = 0;
+    func_00034090();
+    func_0004C320();
+    for (i = 0; i < f1250; i++) {
+        items[i].a = -1;
+        items[i].b = 0;
+    }
+    f1248[0]->func_00088F70(0, 1);
+    f1248[1]->func_00088F70(0, 1);
+    return 1;
+}
+
+void C_0004C560::func_0004C5D0(void)
+{
+    func_00031640();
+    if (f1248[0] != 0) {
+        func_001577A0(f1248[0], 0xa);
+    }
+    if (f1248[1] != 0) {
+        func_001577A0(f1248[1], 0xa);
+    }
+}
+
 void *C_0004C6F0::func_0004C6F0(int flags) {
     unk0 = (int)&D_002773EC;
     func_00033220();
