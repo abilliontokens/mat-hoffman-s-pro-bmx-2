@@ -59,3 +59,10 @@ struct C_000EBE30 {
     void func_000EC580();
     void func_000EC7E0();
 };
+
+void C_000EBCD0::func_000EBCD0()
+{
+    func_000C5E40();
+    func_000EBB70();
+    func_00157960();
+}
