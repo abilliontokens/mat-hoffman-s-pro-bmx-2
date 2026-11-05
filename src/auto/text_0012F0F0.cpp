@@ -55,7 +55,10 @@ struct C_CarProceduralExtended {
     u32 f4AC;
     char pad4B0[8];
     u32 f4B8;
-    char pad4BC[0x2c];
+    char pad4BC[4];
+    f32 f4C0;
+    f32 f4C4;
+    char pad4C8[0x20];
     f32 f4E8;
     char pad4EC[0x24];
     f32 f510;
@@ -138,6 +141,10 @@ struct C_0012FE30 {
     undefined4 func_0012FE30(byte param_1);
 };
 
+
+C_0012F460::C_0012F460()
+{
+}
 
 void C_CarProceduralExtended::func_0012F600(f32 param_1, int param_2)
 {
