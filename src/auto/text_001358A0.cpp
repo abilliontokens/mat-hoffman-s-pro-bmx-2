@@ -595,6 +595,54 @@ int func_00136460(int param_1, int param_2, int param_3)
     return 0;
 }
 
+C_001364B0 *C_001364B0::func_001365B0(int handle, int discard)
+{
+    int i;
+    int j;
+    int pad;
+    int h;
+
+    f38 = handle;
+    if (D_002BEAAC->func_0013C8A0(handle, &f3C, 4, 1) != 1) goto fail;
+    if (D_002BEAAC->func_0013C8A0(f38, &handle, 2, 1) != 1) goto fail;
+    if (D_002BEAAC->func_0013C8A0(f38, &f42, 2, 1) != 1) goto fail;
+    for (i = 0; i < 6; i++) {
+        if (D_002BEAAC->func_0013C8A0(f38, &records[i].f4, 2, 1) != 1) goto fail;
+    }
+    for (i = 0; i < 6; i++) {
+        if (D_002BEAAC->func_0013C8A0(f38, &records[i].f0, 4, 1) != 1) goto fail;
+    }
+    if (D_002BEAAC->func_0013C8A0(f38, &f8, 0xc, 1) != 1) goto fail;
+    if (D_002BEAAC->func_0013C8A0(f38, &f18, 0xc, 1) != 1) goto fail;
+    if (D_002BEAAC->func_0013C8A0(f38, &f28, 0xc, 1) != 1) goto fail;
+    if (handle & 4) {
+        for (i = 0; i < 6; i++) {
+            if (D_002BEAAC->func_0013C8A0(f38, records[i].f88, 0x20, 1) != 1) goto fail;
+        }
+    }
+    if (handle & 1) {
+        for (i = 0; i < 6; i++) {
+            for (j = 0; j < 16; j++) {
+                if (D_002BEAAC->func_0013C8A0(f38, &records[i].f48[j], 4, 1) != 1) goto fail;
+            }
+        }
+    }
+    if (handle & 2) {
+        h = f38;
+        pad = 0x800 - D_002BEAAC->func_0013AFD0(h) % 0x800;
+        if (pad != 0x800) {
+            D_002BEAAC->func_0013AFF0(h, pad, 1);
+        }
+    }
+    f62C = D_002BEAAC->func_0013AFD0(f38);
+    if (discard != 0) {
+fail:
+        v2();
+        return 0;
+    }
+    return this;
+}
+
 int C_001367F0::func_001367F0(S_001367F0_Vec4 *a, S_001367F0_Vec4 *b, S_001367F0_Vec4 *c)
 {
     if (a != 0) {
