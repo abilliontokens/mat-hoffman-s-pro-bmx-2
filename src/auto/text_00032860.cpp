@@ -1,6 +1,7 @@
 /* 12 functions from 0x00032860 to 0x00033680, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include <string.h>
 struct O_B { void func_0018C120(); void func_0001CC80(void *p); };
 struct S_002A8490 {
     char pad0[4];
