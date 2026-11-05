@@ -51,7 +51,10 @@ struct C_001C6DA0 {
     virtual void v29(Vec4 *a, Vec4 *b, int c);
     char pad4[0x38];
     C_001C6DA0_Mgr *unk3C;
-    char pad40[0x70];
+    char pad40[8];
+    void *unk48;
+    void *unk4C;
+    char pad50[0x60];
     int unkB0;
     char padB4[8];
     int unkBC;
