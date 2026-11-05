@@ -25,6 +25,14 @@ struct C_001BA3B0 {
 };
 
 
+C_001B9B20 *C_001B9B20::func_001B9B20(void *param) {
+    ((C_00157600 *)this)->func_00157600(param);
+    f24 = 0;
+    f28 = 0;
+    vtbl = (void *)&D_0028D11C;
+    return this;
+}
+
 undefined4 C_001B9D40::func_001B9D40(byte param_1)
 {
   int func_001B4F90(...);
