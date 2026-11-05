@@ -347,7 +347,7 @@ struct S_001C3F60_Global {
     virtual void v3();
     virtual void v4();
     virtual void v5(int a);
-    char pad4[0x9d0 - 0x18 + 4];
+    char pad4[0x9d0];
     unsigned char f9d4;
 };
 
