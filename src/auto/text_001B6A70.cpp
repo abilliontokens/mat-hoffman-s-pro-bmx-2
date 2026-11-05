@@ -158,6 +158,7 @@ struct C_001B6E70 {
     void func_001B7010(C_001B7010_arg *arg);
     int func_001B72B0(C_00169710 *param);
     int func_001B7370(void *param);
+    void func_001B73C0(C_001B73C0_Arg *arg);
     void func_001577A0(void *p, int v);
 };
 
