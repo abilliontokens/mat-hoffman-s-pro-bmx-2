@@ -305,6 +305,26 @@ void SearchNode::func_00192930(void)
     ((C_00157660 *)this)->func_00157660();
 }
 
+int SearchNode::func_00192990(int a, int b)
+{
+    if (func_00135C70(0x19, 0, a, 0x80) != 0) {
+        D_002EFE58 = 1 - D_002EFE58;
+        return 1;
+    }
+    if (func_00135C70(0x10, 0, a, 0x80) != 0) {
+        D_002A986C = 1 - D_002A986C;
+        return 1;
+    }
+    if (func_00135C70(0x2c, 0, a, 0x80) != 0) {
+        D_002EFE5C = D_002EFE5C + 1;
+        if (D_002EFE5C > 6) {
+            D_002EFE5C = 0;
+        }
+        return 1;
+    }
+    return ((C_00157BF0 *)this)->func_00157BF0(a, b);
+}
+
 int SearchNode::func_00192AC0(S_00192930_Iface *obj)
 {
     if (f2C != 0) {
