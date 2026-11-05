@@ -240,6 +240,19 @@ struct C_001D1480 {
     void func_001D1480(void);
 };
 
+struct JoystickDevice;
+
+/* binding registered with a JoystickDevice list */
+struct C_00135D70 {
+    JoystickDevice *f0;
+    char pad4[4];
+    int f8;
+    char padC[0x10];
+    int f1C;
+    int f20;
+    void func_00135D70(int a0, int a1);
+};
+
 struct JoystickDevice {
     void *vtbl;
     char pad4[0x638];
@@ -247,6 +260,7 @@ struct JoystickDevice {
     void func_0015AE20(void);
     void *func_0015B010(unsigned int flags);
     void func_0015AFC0(int idx, int a, int b);
+    int func_0015B060(C_00135D70 *p, int a, int b);
 };
 
 
