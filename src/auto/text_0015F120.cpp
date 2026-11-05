@@ -126,7 +126,7 @@ int C_0015F470::func_0015F640(int a, S_0015F470_Mat *m0, S_0015F470_Mat *m1, S_0
     if (i < 0) {
         return 0;
     }
-    m0->row[0] = *(S_0015F470_Row *)((char *)(i * 200) + (int)f24 + 8);
+    m0->row[0] = f24[i].m[0].row[0];
     m1->row[0] = f24[i].m[1].row[0];
     m2->row[0] = f24[i].m[2].row[0];
     m0->row[1] = f24[i].m[0].row[1];
