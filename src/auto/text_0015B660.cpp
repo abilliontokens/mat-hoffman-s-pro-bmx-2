@@ -479,27 +479,65 @@ void C_0015C190::func_0015C190(S_0015C190_Vec3 *pos, float t)
     unkC++;
 }
 
-int func_0015C260(float *base, int hi, float v)
+int func_0015C260(float *base, int n, float v)
 {
-    if (hi == 0)
+    int mid;
+    int lo;
+    int hi;
+
+    if (n == 0) {
         return 0;
-    if (v >= base[(hi - 1) * 10])
-        return hi;
-    if (v < base[0])
+    }
+    if (v >= base[(n - 1) * 10]) {
+        return n;
+    }
+    if (v < base[0]) {
         return 0;
-    int lo = 0;
-    while (1) {
-        int mid = (hi + lo) >> 1;
+    }
+    lo = 0;
+    hi = n;
+    for (;;) {
+        mid = (hi + lo) >> 1;
         if (v >= base[mid * 10]) {
-            if (v < base[mid * 10 + 10])
+            if (v < base[mid * 10 + 10]) {
                 return mid + 1;
+            }
             lo = mid;
         } else {
-            if (v >= base[mid * 10 - 10])
+            if (v >= base[mid * 10 - 10]) {
                 return mid;
+            }
             hi = mid;
         }
     }
+}
+
+void C_0015C190::func_0015C2F0(S_0015C190_Vec3 *pos, float t, S_0015C190_Vec3 *a3, S_0015C190_Vec3 *in)
+{
+    S_0015C190_Key key;
+    S_0015C190_Key *arr;
+    int n;
+    int idx;
+    int i;
+
+    if (unkC >= unk10) {
+        v7(unk10 + 1);
+    }
+    key.pos.x = pos->x;
+    key.pos.y = pos->y;
+    key.pos.z = pos->z;
+    key.t = t;
+    key.in.x = in->x;
+    key.in.y = in->y;
+    key.in.z = in->z;
+    n = unkC;
+    arr = unk14;
+    idx = func_0015C260((float *)arr, n, t);
+    for (i = n; i > idx; i++) {
+        arr[i] = arr[i - 1];
+    }
+    arr[idx] = key;
+    unkC++;
 }
 
 int func_0015C530(float *base, float v, int hi, float **lo, float **up, float *t)
