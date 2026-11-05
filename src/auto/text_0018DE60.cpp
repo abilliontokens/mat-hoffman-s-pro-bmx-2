@@ -179,3 +179,45 @@ int C_0018E1D0::func_0018E740(C_0018E740_Out *out, const char *name)
     return 0;
 }
 
+void C_0018EA50::func_0018EA50(int a, int b)
+{
+    Node_0018EA50 *n;
+    Node_0018EA50 *p;
+
+    if (f14c->state == 1) {
+        f14c->func_0018E3E0(a, b);
+        f14c->state = 0;
+        if (f14c->next == 0) {
+            p = (Node_0018EA50 *)func_001E8A44(0x190);
+            if (p != 0) {
+                p->v.x = p->v.y = p->v.z = 0;
+                p->v.w = 1.0f;
+            } else {
+                p = 0;
+            }
+            f14c->next = p;
+            f14c->next->next = 0;
+        }
+        f14c->next->state = 1;
+        return;
+    }
+    n = f14c->next;
+    while (n->state != 1) {
+        n = n->next;
+    }
+    n->func_0018E3E0(a, b);
+    n->state = 0;
+    if (n->next == 0) {
+        p = (Node_0018EA50 *)func_001E8A44(0x190);
+        if (p != 0) {
+            p->v.x = p->v.y = p->v.z = 0;
+            p->v.w = 1.0f;
+        } else {
+            p = 0;
+        }
+        n->next = p;
+        n->next->next = 0;
+    }
+    n->next->state = 1;
+}
+
