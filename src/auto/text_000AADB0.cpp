@@ -30,6 +30,45 @@ struct C_000AB490 {
     void func_000AB490(void);
 };
 
+/* ObjectExclusionBoxes */
+struct C_000AB340_Obj {
+    void func_00198390();
+    void func_001983A0();
+};
+
+struct C_000AB340_Box {
+    float f0, f4, f8, fC, f10, f14;
+    int f18;
+    int pad1C;
+    C_000AB340_Obj **f20;
+    int f24;
+};
+
+struct C_000AB340_Vec {
+    float x, y, z, w;
+};
+
+struct C_000AB340_Cam {
+    char pad0[0x170];
+    C_000AB340_Vec f170;
+};
+
+struct C_000AB340_Global {
+    char pad0[4];
+    C_000AB340_Cam *f4;
+};
+
+extern C_000AB340_Global *D_002EFDB8;
+
+struct C_000AB340 {
+    void *vtbl;
+    char pad04[0x20];
+    int f24;
+    C_000AB340_Box *f28;
+    void func_001578D0();
+    void func_000AB340(void);
+};
+
 void C_000AB490::func_000AB490(void)
 {
     int func_001E891B(...);
