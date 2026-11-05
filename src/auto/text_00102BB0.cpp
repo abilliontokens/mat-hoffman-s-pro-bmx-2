@@ -92,12 +92,16 @@ struct C_00102FD0 {
     int unk170;
     char pad174[4];
     int unk178;
-    char pad17C[0x34];
+    char pad17C[0x30];
+    int unk1AC;
     C_001B1980 **unk1B0;
-    char pad1B4[0x220];
+    char pad1B4[0x218];
+    int unk3CC;
+    char pad3D0[4];
     int unk3D4;
     int unk3D8;
     void func_00102FD0();
+    void func_00103260(int a);
 };
 
 void C_00102FD0::func_00102FD0()
