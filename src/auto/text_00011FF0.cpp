@@ -123,6 +123,13 @@ struct C_00012420 {
     void func_00012420(void);
 };
 
+struct AIPedIdleState {
+    void *vtbl;
+    int f4;
+    S_11FF0_Owner *owner;
+    void func_00012020();
+};
+
 struct AIPedFallState {
     void *vtbl;
     char pad4[4];
