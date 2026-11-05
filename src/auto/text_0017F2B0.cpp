@@ -22,6 +22,11 @@ struct C_0017F2B0 {
     int func_0017F2B0(char *a);
 };
 extern f32 D_002755E8;
+static inline Vec4_0017F2B0 Vec4Make_0017F2B0(f32 x, f32 y, f32 z) {
+    Vec4_0017F2B0 r;
+    r.x = x; r.y = y; r.z = z; r.w = 1.0f;
+    return r;
+}
 int func_00123770(Vec4_0017F2B0 *a, Vec4_0017F2B0 *b, void *c, Vec4_0017F2B0 *d, Vec4_0017F2B0 *e, void *f);
 
 struct S_0017FDB0_Node {
