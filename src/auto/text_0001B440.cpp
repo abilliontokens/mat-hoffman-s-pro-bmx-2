@@ -282,7 +282,7 @@ struct S_0001BE90_Ctx0 {
 
 struct S_0001B910_Anim {
     int pad0;
-    S_0001BE90_Ctx0 *f4;
+    S_0001BE90_Ctx1 *f4;
     int pad8[2];
     int f10;
     void func_00132D70(void);
