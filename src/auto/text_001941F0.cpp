@@ -513,6 +513,11 @@ void C_00194EE0::func_00194F10(S_Vec4Int *out)
     }
 }
 
+void C_00194F60::func_00194F60(S_Vec4Int v)
+{
+    f38 = v;
+}
+
 void C_00194F90::func_00194F90(int a0) {
     unk48 = a0;
 }
