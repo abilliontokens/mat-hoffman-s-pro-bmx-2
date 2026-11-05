@@ -90,7 +90,10 @@ struct C_000DFA80 {
     int unk280;
     char pad284[0x100];
     float arr384[18];
-    char pad3cc[0x4c8 - 0x3cc + 0x3cc - 0x3cc];
+    float arr3cc[18];
+    char pad414[0x480];
+    S_000DFA80_W *arr894[18];
+    S_000DFA80_W *arr8dc[18];
     void func_000DFA80();
 };
 
