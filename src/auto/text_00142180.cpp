@@ -1,6 +1,41 @@
 /* 17 functions from 0x00142180 to 0x00142F30, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+
+void __stdcall func_00201100(void *p);
+void func_001E8390(void *p);
+extern int D_00285970;
+
+struct C_00142720_Virt {
+    virtual void Destroy(int flag);
+};
+
+struct C_0014A540 {
+    void func_0014A540(void);
+};
+
+/* DXParticleSimulation */
+struct C_00142720 {
+    void *vtbl;
+    char pad4[4];
+    void **f8;
+    void *fC;
+    void *f10;
+    void *f14;
+    void *f18;
+    char pad1C[4];
+    int f20;
+    char pad24[0x9C - 0x24];
+    C_0014A540 *f9C;
+    char padA0[8];
+    int fA8;
+    char padAC[0xC8 - 0xAC];
+    C_00142720_Virt *fC8;
+    C_00142720_Virt *fCC;
+    void func_00142720(void);
+    void func_0001DFF0(void);
+};
+
 struct C_00142BF0 {
     undefined4 func_00142BF0(byte param_1);
 };
