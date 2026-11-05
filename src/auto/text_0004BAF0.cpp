@@ -72,6 +72,11 @@ struct S_0004C320_Obj {
     S_0004C320_Part *f1a4;
 };
 
+struct S_0004C3F0_Obj {
+    char pad0[0x1a4];
+    S_0004C320_Part &f1a4;
+};
+
 struct S_0004C320_Scene {
     char pad0[0x28];
     S_0004C320_Obj **f28;
@@ -145,6 +150,53 @@ void C_0004C560::func_0004C320(void)
         o = f64->f3ac->f28[f284[0][i]];
         ((S_0004C320_Base *)((char *)o->f1a4 + ((S_0004C320_PartRaw *)o->f1a4)->vbptr[1]))->v7();
         o->f1a4->f4->func_001824E0(v, 1.0f, 1.0f, 1.0f);
+    }
+}
+
+void C_0004C560::func_0004C3F0(int idx, int sel, int mode)
+{
+    float x, y, z;
+    float v1[4];
+    float v2[4];
+    int j;
+    S_0004C320_Obj *o;
+
+    f64->f3ac->f28[f284[0][idx]]->f1a4->v5();
+    x = 1.0f;
+    y = 1.0f;
+    z = 1.0f;
+    switch (mode) {
+    case 1:
+        x = 2.0f;
+        y = 1.8f;
+        z = 0.2f;
+        break;
+    case 2:
+        x = 2.0f;
+        y = 1.0f;
+        z = 0.4f;
+        break;
+    case 3:
+        x = 2.0f;
+        y = 0.2f;
+        z = 0.2f;
+        break;
+    case 4:
+        x = 1.4f;
+        y = 0.6f;
+        z = 1.8f;
+        break;
+    }
+    for (j = 0; j < f90; j++) {
+        o = f64->f3ac->f28[f284[j + 1][idx]];
+        S_0004C320_Base &b = *o->f1a4;
+        if (j == sel) {
+            b.v7();
+            o->f1a4->f4->func_001824E0(v1, x, y, z);
+        } else {
+            b.v5();
+            o->f1a4->f4->func_001824E0(v2, 1.0f, 1.0f, 1.0f);
+        }
     }
 }
 
