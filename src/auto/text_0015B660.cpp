@@ -163,6 +163,15 @@ void C_0015B7C0::func_0015B7C0() {
     self->vtbl = &D_00287778;
 }
 
+void ByteAxisRotationController::func_0015B990()
+{
+    void *p = unk14;
+    vtbl = &D_00287804;
+    if (p)
+        func_001E8390(p);
+    vtbl = &D_002877E4;
+}
+
 void C_0015BA90::func_0015BA90() {
     C_0015BA90 *self = this;
     void *p = self->unk14;
@@ -180,5 +189,36 @@ void C_0015BAC0::func_0015BAC0(int a0, u32 *a1, int a2) {
     if (a2 != 0) {
         func_0001B2E0(&unk14[a0 * 3 + 1], a2);
     }
+}
+
+int func_0015BF70(S_0015BF70_Node *arr, int n, float t)
+{
+    int lo, hi, mid;
+
+    if (n == 0) {
+        return 0;
+    }
+    if (t < arr[n - 1].f0) {
+        if (t < arr[0].f0) {
+            return 0;
+        }
+        lo = 0;
+        hi = n;
+        for (;;) {
+            mid = (hi + lo) / 2;
+            if (t < arr[mid].f0) {
+                if (t >= arr[mid - 1].f0) {
+                    return mid;
+                }
+                hi = mid;
+            } else {
+                if (t < arr[mid + 1].f0) {
+                    return mid + 1;
+                }
+                lo = mid;
+            }
+        }
+    }
+    return n;
 }
 
