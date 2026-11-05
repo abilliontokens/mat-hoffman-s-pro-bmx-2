@@ -115,6 +115,22 @@ void func_0011F010(int a0, float x, float y, float z, float s, float c)
     m[10] = *(volatile float *)&s * z + c;
 }
 
+void func_0011F0E0(C_0011EDF0 *a, C_0011EDF0 *b, C_0011EDF0 *c, unsigned short *indices, void **data)
+{
+    if (data[2]) {
+        s16 *p = (s16 *)data[0];
+        C_0011EDF0 t;
+        t.func_0011EDF0(p + indices[0] * 3); *a = t;
+        t.func_0011EDF0(p + indices[1] * 3); *b = t;
+        t.func_0011EDF0(p + indices[2] * 3); *c = t;
+    } else {
+        S_0011F5A0_V3 *p = (S_0011F5A0_V3 *)data[0];
+        int i0 = indices[0]; ((int *)a)[0] = p[i0].x; ((int *)a)[1] = p[i0].y; ((int *)a)[2] = p[i0].z; a->w = 1.0f;
+        int i1 = indices[1]; ((int *)b)[0] = p[i1].x; ((int *)b)[1] = p[i1].y; ((int *)b)[2] = p[i1].z; b->w = 1.0f;
+        int i2 = indices[2]; ((int *)c)[0] = p[i2].x; ((int *)c)[1] = p[i2].y; ((int *)c)[2] = p[i2].z; c->w = 1.0f;
+    }
+}
+
 void func_0011F400(int a0, int a1, int a2, int a3, int a4, int a5)
 {
     float x = *(float *)&a1;
