@@ -14,10 +14,18 @@ struct S_000C2810_Owner {
     S_000C2810_Ui *f24;
     char pad28[0x298 - 0x28];
     int f298;
+    int f29C;
+};
+
+struct S_000C2810_Entry {
+    char pad0[0x640];
+    int f640;
 };
 
 struct S_000C2810_Sub {
     void func_0005C1E0(int flag);
+    S_000C2810_Entry *func_0005C020(int i);
+    void func_0005C1B0(int j, int k);
 };
 
 struct S_000C2810_Obj {
