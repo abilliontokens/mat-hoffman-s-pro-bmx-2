@@ -81,6 +81,7 @@ struct C_001362A0 {
     int f30;
     float f34;
     float f38;
+    C_001362A0(int p1, int p2, float p3, int p4, int p5, float p6);
     void func_001362A0(int p1, int p2, float p3, int p4, int p5, float p6);
 };
 
