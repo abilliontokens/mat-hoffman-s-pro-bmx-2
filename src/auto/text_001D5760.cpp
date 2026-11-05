@@ -166,6 +166,82 @@ struct C_001D5FA0Obj {
     void func_001D5660(int a, int b);
 };
 
+/* screen surface data: reads the size of a surface slot (by index, by .ini-style name, or defaults) */
+struct Sub_001D5810 {
+    char pad0[0x18];
+    short f18;
+};
+struct Info_001D5810 {
+    char pad0[8];
+    int f8;
+    int fC;
+    char pad10[0x44];
+    Sub_001D5810 *f54;
+};
+struct Rec_001D5810 {
+    char *name;
+    Info_001D5810 *info;
+    char pad8[8];
+};
+struct Tbl_001D5810 {
+    char pad0[0x14];
+    Rec_001D5810 *f14;
+    void func_00161680(void);
+    void func_001B2640(void);
+};
+struct Size_001D5810 {
+    char pad0[0x14];
+    unsigned int w;
+    unsigned int h;
+    char pad1C[4];
+};
+struct Cfg_001D5810 {
+    char pad0[0x4c0];
+    void func_00168280(void);
+    int func_00169490(const char *s, int flag);
+    void func_00169710(const char *s);
+    void func_00168C50(const char *key, float def, float *out);
+    void func_001691E0(void);
+};
+struct Part_001D5810 {
+    void *vtbl;
+    int f4;
+    char pad8[8];
+    C_001D5FA0Obj *f10;
+    Part_001D5810 *func_00144640(void);
+    void vSlot1(float a, int b);
+};
+struct C_001D5810 {
+    void *vtbl;
+    int f4;
+    int f8;
+    char pad0C[0x18];
+    float f24;
+    float f28;
+    float f2C;
+    char pad30[0x1c];
+    float f4C;
+    float f50;
+    int f54;
+    unsigned char f58;
+    char pad59[3];
+    Part_001D5810 *f5C;
+    C_001D5FA0Obj *f60;
+    C_001D5810 *func_001D5810(float a, int b, int c, int d);
+};
+extern undefined4 D_002A829C;
+extern undefined4 D_002AA6C0;
+extern undefined4 D_002A71C0;
+extern float D_002755E4;
+extern float D_002755E8;
+extern float D_00275460;
+extern char D_00286764;
+extern char D_0028F624;
+extern char D_0028F614;
+extern char D_0028F604;
+int __stdcall func_001FCE40(void *a, int b, Size_001D5810 *out);
+void func_00030F30(char *dst, const char *src);
+
 struct C_001D6190 {
     void func_001D5FA0(int a, int b, int c, int d);
     void func_001D6190(int a, const char *s, int b);
