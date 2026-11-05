@@ -45,6 +45,46 @@ struct C_001B0E40 {
     undefined4 func_001B0E40(byte param_1);
 };
 
+struct C_001B1860 {
+    char pad0[0x64];
+    int f64;
+    char pad68[4];
+    int f6C;
+    int f70;
+    int f74;
+    int f78;
+    int f7C;
+    char pad80[8];
+    int f88;
+    char pad8C[8];
+    int f94;
+    char pad98[4];
+    int f9C;
+    char padA0[4];
+    int fA4;
+    int fA8;
+    char padAC[8];
+    int fB4;
+    char padB8[8];
+    int fC0;
+    int fC4;
+    int fC8;
+    int fCC;
+    int fD0;
+    char padD4[0x94];
+    float f168;
+    int f16C;
+    int f170;
+    char pad174[4];
+    int f178;
+    int f17C;
+    int f180;
+    void func_001B1860(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11, int a12, int a13);
+};
+
+extern float D_00275544;
+extern float D_00275F58;
+
 struct C_001B1840 {
     char pad0[0x64];
     int unk64;
