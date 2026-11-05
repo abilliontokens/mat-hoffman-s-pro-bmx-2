@@ -163,6 +163,25 @@ struct C_0019DE30 {
     void func_0019DE80(int a0);
 };
 
+void C_0019D7B0::func_0019D6C0(char *path, int h)
+{
+    v27();
+    f1C0 = path;
+    func_0019CCE0(h);
+    f1D4 = (S_0019D6C0_Obj *)func_001E8AA5(0x80);
+    f1D4->f0 = 0;
+    f1D4->f4 = f50;
+    f1D4->fC = f1C4;
+    f1D4->f10 = f1C8;
+    f1D4->f8 = f1CC;
+    f1D4->fA = f1CE;
+    f1D4->f14 = f1B0;
+    f1D4->f20 = f1BC;
+    ((C_000264C0 *)f1D4->f30)->func_000264C0(fF0);
+    f1D4->f70 = 1;
+    D_002BEAAC->func_0013B1F0(h, f1D4);
+}
+
 int C_0019D7B0::func_0019D7B0(int a1, char *path)
 {
     int h;
