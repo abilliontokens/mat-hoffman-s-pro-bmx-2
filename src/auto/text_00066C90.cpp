@@ -14,12 +14,22 @@ struct C_00066C90 {
     int unk64[2];
     int unk6C[2];
     char pad74[4];
-    int unk78;
-    int unk7C;
-    int unk80;
+    union {
+        struct {
+            int unk78;
+            int unk7C;
+            int unk80;
+        };
+        int a78[3];
+    };
     char pad84[0xC];
-    int unk90;
-    int unk94;
+    union {
+        struct {
+            int unk90;
+            int unk94;
+        };
+        int a90[2];
+    };
     int unk98[5];
     int unkAC[5];
     int unkC0[6];
@@ -47,3 +57,58 @@ struct C_00066C90 {
     void func_00157600(int a0);
     C_00066C90 *func_00066C90(int a0);
 };
+
+C_00066C90 *C_00066C90::func_00066C90(int a0)
+{
+    int i;
+
+    func_00157600(a0);
+    vtbl = &D_0027850C;
+    for (i = 0; i < 8; i++) {
+        unk24[i] = 0;
+        unk44[i] = 0;
+    }
+    vtbl = &D_002787FC;
+    unk168 = 0;
+    unk108 = 0;
+    unk18 = -1;
+    unk100 = 0;
+    unkFC = 0;
+    unkF8 = 0;
+    for (i = 0; i < 2; i++) {
+        unk64[i] = 0;
+        unk6C[i] = 0;
+    }
+    unk78 = 0;
+    unk7C = 0;
+    unk80 = 0;
+    unk90 = 0;
+    unk94 = 0;
+    unk10C = 0;
+    for (i = 0; i < 2; i++) {
+        unk13C[i] = 0;
+        unk144[i] = 0;
+    }
+    unk138 = 0;
+    unk110 = 0;
+    for (i = 0; i < 8; i++) {
+        unk118[i] = 0;
+    }
+    unk15C = 1;
+    unk158 = -1;
+    for (i = 0; i < 5; i++) {
+        unk98[i] = 0;
+        unkAC[i] = 0;
+    }
+    for (i = 0; i < 6; i++) {
+        unkC0[i] = 0;
+    }
+    unk104 = 0;
+    for (i = 0; i < 8; i++) {
+        unkD8[i] = 0;
+    }
+    unk14C = 0;
+    unk150 = 0;
+    unk164 = 0;
+    return this;
+}
