@@ -116,9 +116,10 @@ struct Ent_00134770 {
     unsigned short w8;
     char pad0A[2];
     unsigned short wC;
-    char pad0E[0xa7 - 0xe];
+    char pad0E[0xa0 - 0xe];
+    EntCb cbA0;
+    char pad_a4[3];
     unsigned char flags;
-    char pad_a8[0];
     int func_0014CA60(void);
     Ent_00134770 *func_0014CA80(int i);
     float func_0014CC20(void);
