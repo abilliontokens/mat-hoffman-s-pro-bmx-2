@@ -11,6 +11,16 @@ float func_0014F510(float x);
 float func_0014F550(float x);
 void func_0011F400(void *m, int a, int b, int c, int d, int e);
 
+struct Vec3i {
+    int x, y, z;
+    void Set(int a, int b, int c)
+    {
+        x = a;
+        y = b;
+        z = c;
+    }
+};
+
 struct C_00199BE0Mat {
     void func_000264C0(void *m);
 };
@@ -96,17 +106,18 @@ void C_00199BE0::func_00199CF0(int a0, int a1, int a2, int a3, float angle)
     }
 }
 
-void C_00199BE0::func_00199D70(int a0, int a1, int a2, int a3)
+void C_00199BE0::func_00199D70(int a0, int a1, int a2, float angle)
 {
-    int t0 = *(int *)((char *)this + 0xbc);
-    int t1 = *(int *)((char *)this + 0xcc);
-    int t2 = *(int *)((char *)this + 0xdc);
-    float s = func_0014F510((float)a3);
-    float c = func_0014F550((float)a3);
+    struct { int x, y, z, w; } saved;
+    saved.x = *(int *)((char *)this + 0xbc);
+    saved.y = *(int *)((char *)this + 0xcc);
+    saved.z = *(int *)((char *)this + 0xdc);
+    float s = func_0014F510(angle);
+    float c = func_0014F550(angle);
     func_0011F400((char *)this + 0xb0, a0, a1, a2, *(int *)&s, *(int *)&c);
-    *(int *)((char *)this + 0xcc) = t1;
-    *(int *)((char *)this + 0xbc) = t0;
-    *(int *)((char *)this + 0xdc) = t2;
+    *(int *)((char *)this + 0xcc) = saved.y;
+    *(int *)((char *)this + 0xbc) = saved.x;
+    *(int *)((char *)this + 0xdc) = saved.z;
     func_001982F0();
     if (f180 & 1) {
         f180 &= 0xfe;
