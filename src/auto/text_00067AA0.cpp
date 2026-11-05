@@ -121,6 +121,8 @@ struct C_000683F0 {
     int unk164;
     int unk168;
     int func_000682B0();
+    void func_00157600(int a);
+    C_000683F0 *func_000687B0(int a);
     void func_000683F0();
     void func_00068440();
     void func_000684B0();
