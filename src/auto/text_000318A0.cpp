@@ -74,9 +74,32 @@ struct S_BmxEvent_Scene {
     S_00104C80_Obj *arr1a8[1];
 };
 
+/* per-entry state whose five floats get reset to -1 */
+struct S_BmxEvent_Rec {
+    char pad0[0xa0];
+    float fA0;
+    float fA4;
+    float fA8;
+    float fAC;
+    float fB0;
+};
+
+struct S_BmxEvent_Ent {
+    char pad0[4];
+    S_BmxEvent_Rec *f4;
+};
+
+struct S_BmxEvent_List {
+    char pad0[0x24];
+    int f24;
+    S_BmxEvent_Ent **f28;
+};
+
 /* the level object an event works on */
 struct S_BmxEvent_Level {
-    char pad0[0x3e4];
+    char pad0[0x3b4];
+    S_BmxEvent_List *f3b4;
+    char pad3b8[0x3e4 - 0x3b8];
     int f3e4;
     char pad3e8[0x4a8 - 0x3e8];
     int *f4a8;
