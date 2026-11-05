@@ -107,7 +107,10 @@ struct DelObjC_000ED {
 /* BmxUIPagePlayerVideos */
 struct C_000EDF00 {
     void *vtbl;
-    char pad4[0x2A0 - 4];
+    char pad4[0x280 - 4];
+    int unk280;
+    char pad284[0x29C - 0x284];
+    int unk29C;
     int unk2A0;
     int unk2A4;
     char pad2A8[0x444 - 0x2A8];
