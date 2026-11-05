@@ -367,7 +367,9 @@ int C_000A8A40::func_000A8A40(void *param1, void *param2) {
 /* the callback a wreck trigger registers (D_000A8A60): it makes the game
    manager play the effect for one of the trigger's active items */
 struct S_000A8A60_Mgr {
-    char pad0[0x1c8];
+    char pad0[0x124];
+    int f124;
+    char pad128[0x1c8 - 0x128];
     int f1C8;
     void func_000323C0(C_000A88A0_Vec v, void *a, void *b);
 };
