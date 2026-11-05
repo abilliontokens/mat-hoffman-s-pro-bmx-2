@@ -182,6 +182,28 @@ int func_00140CD0(C_00168BE0 *cfg, const char *key, int def, int &out)
     return out;
 }
 
+int func_00140DF0(C_00168BE0 *cfg, const char *key, int def, int &out)
+{
+    char buf[64];
+    cfg->func_00168BE0(key, "undefined", buf, 64);
+    if (strcmp(buf, "undefined") == 0) {
+        out = def;
+    } else if (strcmp(buf, "D3DTTFF_DISABLE") == 0) {
+        out = 0;
+    } else if (strcmp(buf, "D3DTTFF_COUNT1") == 0) {
+        out = 1;
+    } else if (strcmp(buf, "D3DTTFF_COUNT2") == 0) {
+        out = 2;
+    } else if (strcmp(buf, "D3DTTFF_COUNT3") == 0) {
+        out = 3;
+    } else if (strcmp(buf, "D3DTTFF_COUNT4") == 0) {
+        out = 4;
+    } else if (strcmp(buf, "D3DTTFF_PROJECTED") == 0) {
+        out = 0x100;
+    }
+    return out;
+}
+
 int func_00141070(C_00168BE0 *cfg, const char *key, int def, int &out)
 {
     char buf[64];
