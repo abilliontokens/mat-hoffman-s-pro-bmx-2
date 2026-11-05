@@ -83,6 +83,53 @@ void C_000C4460::func_000C4460(void)
     func_00157960();
 }
 
+C_000C45E0 *C_000C45E0::func_000C44C0(int a)
+{
+    int i;
+
+    func_001BE360(a);
+    unk280 = 1;
+    unk2BC = 1;
+    vtbl = &D_0027E0A4;
+    unk288 = 0;
+    unk2A4 = 0;
+    unk2A0 = 0;
+    unk284 = 0;
+    unk294 = 0;
+    unk290 = 0;
+    unk28C = 0;
+    unk298 = 0;
+    unk29C = 0;
+    unk2AC = 0;
+    unk2B0 = 0;
+    unk2B4 = 0;
+    unk2B8 = 0;
+    for (i = 0; i < 10; i++) {
+        unk2F8[i] = 0;
+    }
+    unk2C0 = 0;
+    unk2C8 = 0;
+    unk2CC = 0;
+    unk2D0 = 0;
+    unk2D4 = 0;
+    unk2D8 = 0;
+    unk2DC = 0;
+    unk2C4 = 0;
+    unk2E0 = 0;
+    unk2E4 = 0;
+    unk2E8 = 0;
+    unk364 = 0;
+    unk2EC = 0;
+    unk2F0 = 0;
+    for (i = 0; i < 12; i++) {
+        ((u32 *)arr320)[i] = 0;
+    }
+    unk35C = 0;
+    unk360 = 0xffffffff;
+    unk2F4 = 0;
+    return this;
+}
+
 void C_000C45E0::func_000C45E0(void)
 {
     vtbl = &D_0027E0A4;
