@@ -39,6 +39,25 @@ undefined4 C_000976A0::func_000976A0(void)
   return *(undefined4 *)(in_ECX + 0x18);
 }
 
+int C_000976C0::func_000976C0(void)
+{
+  int in_ECX = (int)this;
+  int state = *(int *)(in_ECX + 0x18);
+
+  switch (state) {
+  case 0:
+    *(int *)(in_ECX + 0x18) = 1;
+    return 1;
+  case 1:
+    *(int *)(in_ECX + 0x18) = 2;
+    return 1;
+  case 2:
+    *(int *)(in_ECX + 0x18) = 3;
+    return 0;
+  }
+  return 1;
+}
+
 bool C_00097700::func_00097700(void)
 {
   int in_ECX = (int)this;
@@ -57,6 +76,21 @@ undefined4 C_00097710::func_00097710(int param_1)
     return *(undefined4 *)(in_ECX + 0x10);
   case 2:
     return *(undefined4 *)(in_ECX + 0x14);
+  }
+  return 0;
+}
+
+undefined4 C_00097740::func_00097740(int param_1)
+{
+  undefined4 *in_ECX = (undefined4 *)this;
+
+  switch (param_1) {
+  case 0:
+    return in_ECX[0];
+  case 1:
+    return in_ECX[1];
+  case 2:
+    return in_ECX[2];
   }
   return 0;
 }
