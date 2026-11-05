@@ -46,7 +46,7 @@ struct C_00095D70 {
  int count;
  char names[0x1680];
  int f1984[12];
- char f19B4[0x1ba0];
+ char f19B4[0xb40];
  int f24F4[12];
  int f2524[12];
  char pad2554[0x6458 - 0x2554];
