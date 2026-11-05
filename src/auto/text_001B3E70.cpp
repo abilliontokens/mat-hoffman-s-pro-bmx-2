@@ -58,6 +58,24 @@ static inline void copy_name(C_001B4AF0 *&self, const int &limit, int &count)
     self->f4[count] = 0;
 }
 
+extern char D_00276310[];
+extern char D_002764EC[];
+extern char D_002764D8[];
+extern char D_0027CEF0[];
+extern char D_0027D060[];
+extern char D_0027D050[];
+extern char D_0027D044[];
+extern char D_0027D030[];
+extern char D_0027D020[];
+extern char D_0027D008[];
+int func_001E9040(char *a, char *b);
+
+struct S_001B4C90_Stream {
+    void func_00168BE0(char *a, char *b, char *buf, int size);
+    void func_00168C50(char *name, int a, int *p);
+    void func_00168C20(char *name, int a, int *p);
+};
+
 /* ProceduralTempData */
 struct C_001B4BE0 {
     void *vtbl;
