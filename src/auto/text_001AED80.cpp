@@ -104,6 +104,7 @@ struct C_001AFB00 {
     int f34;
     unsigned char f38;
     int func_001AFB00(void);
+    void func_001AFB60(float *a, float *b, float *c);
 };
 
 
