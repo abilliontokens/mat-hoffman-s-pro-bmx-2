@@ -33,6 +33,20 @@ static inline int CheckFailed(int hr, int line) {
     return 0;
 }
 
+/* the emitter object at +0x1BC: slot 7 is called through */
+struct S_001A1B90_Obj {
+    virtual int v0(); virtual int v1(); virtual int v2(); virtual int v3();
+    virtual int v4(); virtual int v5(); virtual int v6(); virtual int v7();
+};
+
+/* SoundEmitter */
+struct C_001A1B90 {
+    char pad0[0x1B4];
+    int f1B4;
+    S_001A1B90_Obj *f1BC;
+    int func_001A1B90();
+};
+
 struct V3_001A1540 {
     float x, y, z;
 };
@@ -241,6 +255,35 @@ bool C_001A1850::func_001A1850(void)
   int in_ECX = (int)this;
   
   return *(int *)(in_ECX + 0x1bc) != 0;
+}
+
+int C_001A1860::func_001A1860(S_001A1860_Buf buf, S_001A1860_Quad q70, S_001A1860_Quad q80,
+                              int a18, int a19, int a20, int a21, int a22)
+{
+    u8 b;
+
+    if (func_001D3F50() == 0) {
+        goto fail;
+    }
+    if (unk1A4 == 0) {
+        goto fail;
+    }
+    if ((a18 & 2) == 0 || (a18 & 4) != 0 || a21 != 0) {
+        unk1A0 |= 4;
+    }
+    b = unk1A0;
+    b ^= ((a22 << 3) ^ b) & 8;
+    unk1A0 = b;
+    unk3C = buf;
+    unk70 = q70;
+    unk80 = q80;
+    unk98 = a18;
+    unk1A8 = a19;
+    unk1AC = a20;
+    return (int)this;
+fail:
+    v2();
+    return 0;
 }
 
 int C_001A1C70::func_001A1B60(S_001A1C70_Obj *obj)
