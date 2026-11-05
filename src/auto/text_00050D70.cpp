@@ -1,6 +1,31 @@
 /* 18 functions from 0x00050D70 to 0x00051CF0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+/* the object D_002A8490 points at: only the slot this file calls is known */
+struct I_002A8490 {
+    virtual void slot_00(void) = 0;
+    virtual void slot_04(void) = 0;
+    virtual void slot_08(void) = 0;
+    virtual void slot_0c(void) = 0;
+    virtual void slot_10(void) = 0;
+    virtual void slot_14(void) = 0;
+    virtual void slot_18(void) = 0;
+    virtual void slot_1c(void) = 0;
+    virtual void slot_20(void) = 0;
+    virtual void slot_24(void) = 0;
+    virtual void slot_28(void) = 0;
+    virtual void slot_2c(void) = 0;
+    virtual void slot_30(void) = 0;
+    virtual void slot_34(void) = 0;
+    virtual void slot_38(void) = 0;
+    virtual void slot_3c(undefined4 param_1, int param_2, int param_3, int param_4) = 0;
+};
+
+/* anything this file deletes through a virtual destructor */
+struct I_Deletable {
+    virtual void scalar_delete(int flags) = 0;
+};
+
 struct C_00030F90 {
     void func_00030F90(undefined4 param_1);
 };
