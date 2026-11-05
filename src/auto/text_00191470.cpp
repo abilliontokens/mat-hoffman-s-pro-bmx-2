@@ -119,6 +119,65 @@ struct C_00192420 {
 };
 
 
+void C_00191470::func_00191470(unsigned int a0)
+{
+    switch ((a0 >> 16) & 0xff) {
+    case 0:
+        f20 = D_002A97D8;
+        break;
+    case 1: {
+        S_00192310_Mat m;
+        S_00192310_Mat * volatile p = &m;
+        S_00192310_Mat *q = p;
+        __m128 *v = (__m128 *)q;
+        S_00192310_Mat copy;
+
+        v[0] = _mm_setzero_ps();
+        v[1] = _mm_setzero_ps();
+        v[2] = _mm_setzero_ps();
+        v[3] = _mm_setzero_ps();
+        copy = m;
+        ((C_000264C0 *)&f30)->func_000264C0(&copy);
+        break;
+    }
+    }
+}
+
+void C_00191470::func_00191510(const char *a0, unsigned int a1)
+{
+    int len;
+    int n;
+
+    switch ((a1 >> 16) & 0xff) {
+    case 0:
+        f1C = 0x10;
+        break;
+    case 1:
+        f1C = 0x40;
+        break;
+    }
+    len = strlen(a0);
+    n = Min(0x17, len);
+    func_001E8920(f0, a0, n);
+    f0[n] = 0;
+    f18 = a1;
+}
+
+void *C_001915A0::func_001915A0(unsigned int a0, C_00191470_Vec *a1, int *a2)
+{
+    switch ((a0 >> 16) & 0xff) {
+    case 0:
+        f0 = *a1;
+        *a2 = 0x10;
+        return &f0;
+    case 1:
+        ((C_000264C0 *)&f10)->func_000264C0(a1);
+        *a2 = 0x40;
+        return &f10;
+    }
+    return 0;
+}
+
 void func_00191610(int name, C_0018F390 *obj)
 {
     float value = (float)func_001E9649(name);
