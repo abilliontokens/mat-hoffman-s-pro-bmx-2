@@ -145,6 +145,14 @@ int C_00032060::func_000320A0(float value, char *name)
     return 0;
 }
 
+void C_00032550::func_00032530(void)
+{
+    if (unk1C4 != 0) {
+        unk1C4->fC0 &= ~2;
+        unk1C4->func_001041C0();
+    }
+}
+
 void C_00032550::func_00032550(void)
 {
     if (unk1C4 != 0) {
