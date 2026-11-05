@@ -143,6 +143,24 @@ struct VehicleAI {
     void func_000B2450(float a);
     void func_000B2540(int mode, int a, VehicleV4 *p);
     void func_000B2C20(int a, int b);
+    void func_000B1F70(void);
+};
+
+struct C_0018C800 {
+    void func_0018C800(void);
+    void func_0018C890(int a);
+};
+
+extern char D_0027CF70[];
+
+struct VehicleAIMgr {
+    char pad0[0x34];
+    int f34;
+    int f38;
+    char pad3C[8];
+    C_0018C800 **f44;
+    VehicleAI **f48;
+    void func_000B2D50(int a);
 };
 extern int D_0027CEFC;
 void func_001E891B(void *p);
