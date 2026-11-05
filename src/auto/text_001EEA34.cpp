@@ -55,7 +55,7 @@ struct S_001EF087 {
     void *vtbl;
     int f4;
     int f8;
-    int func_001EF087(void);
+    unsigned char func_001EF087(void);
 };
 
 int func_001EEE49(int i) {
@@ -111,6 +111,23 @@ int *S_001EEFBA::func_001EEFBA(int idx)
         return &f34;
     }
     return items[idx];
+}
+
+void S_001EEFE3::func_001EEFE3(S_001EEFE3 *n)
+{
+    S_001EEFE3 *p;
+
+    if (n != 0) {
+        p = next;
+        if (p == 0) {
+            next = n;
+        } else {
+            while (p->next != 0) {
+                p = p->next;
+            }
+            p->next = n;
+        }
+    }
 }
 
 BitObj *BitObj::func_001EF8F6(int a0, int a1) {
