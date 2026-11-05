@@ -145,6 +145,65 @@ struct C_001A3D80 {
     undefined4 func_001A3D80(byte param_1);
 };
 
+extern int D_0028B84C;
+extern u32 D_002A9F40[4];
+extern void *D_002EFE78;
+
+struct C_00132EB0 {
+    void func_00132EB0(int a);
+};
+
+struct SphereCollisionObject {
+    void *vtbl;
+    char pad4[0x4c];
+    int f50;
+    char pad54[0xa8 - 0x54];
+    float fA8;
+    float fAC;
+    float fB0;
+    float fB4;
+    char padB8[0x100 - 0xb8];
+    float f100;
+    float f104;
+    float f108;
+    float f10C;
+    float f110;
+    SphereCollisionObject *func_001A4A50(int param);
+    void func_001A4AE0(u32 *pos, float *radius);
+};
+
+struct Mat_001A4790 {
+    char pad0[4];
+    void *f4;
+};
+
+struct Shape_001A4790 {
+    char pad0[0x28];
+    void *f28;
+    void *f2C;
+};
+
+struct VT_001A4790 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10();
+    virtual void v11(void *a, void *b, int c, int d);
+};
+
+struct C_001A4790 {
+    u32 vec0[4];
+    u32 vec10[4];
+    u32 f20;
+    void *f24;
+    void *f28;
+    void *f2C;
+    void *f30;
+    int f34;
+    int f38;
+    int f3C;
+    void func_001A4790(void *a1, u32 flags, u32 *a3, u32 *a4, int a5, int a6, int a7);
+};
+
 
 undefined4 C_001A3D80::func_001A3D80(byte param_1)
 {
@@ -291,20 +350,14 @@ C_001A46F0::C_001A46F0()
     V4_001A46F0 t;
 
     t.x = -3.402823466e+38f;
-    a.x = t.x;
     t.y = -3.402823466e+38f;
-    a.y = t.y;
     t.z = -3.402823466e+38f;
-    a.z = t.z;
-    a.w = t.w;
+    a = t;
     b.x = 0.0f;
     b.y = 0.0f;
     b.z = 0.0f;
-    t.w = 1.0f;
-    t.x = 0.0f;
-    t.y = 0.0f;
-    t.z = 0.0f;
-    b.w = t.w;
+    V4_001A46F0 u;
+    b = u;
     f20 = 0.0f;
     f24 = 0.0f;
     f28 = 0.0f;
