@@ -116,7 +116,7 @@ void C_001A8B80::func_001A9070(int count)
     func_001D3F50();
 }
 
-float __stdcall func_001A90B0(float a, float b, float c)
+__declspec(noinline) float __stdcall func_001A90B0(float a, float b, float c)
 {
     if (b > D_00275544 && c > D_00275544) {
         float prod = b * c;
