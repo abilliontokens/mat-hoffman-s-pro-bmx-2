@@ -179,6 +179,25 @@ void PhysicsBody::func_00171F50(int a1, int a2)
     fB0->func_001938C0(&f24, a1, a2, vecA, vecB, 0);
 }
 
+void PhysicsBody::func_00172000(void)
+{
+    float vecB[4];
+    float vecA[4];
+
+    if (fB0 != 0) {
+        vecA[2] = 0.0f;
+        vecA[1] = 0.0f;
+        vecA[0] = 0.0f;
+        vecA[3] = 1.0f;
+        vecB[2] = 0.0f;
+        vecB[1] = 0.0f;
+        vecB[0] = 0.0f;
+        vecB[3] = 1.0f;
+        f14C->func_0019A8C0(vecA, vecB);
+        fB0->func_00193950(&f24, vecA, vecB, 0);
+    }
+}
+
 void PhysicsBody::func_00172420(void)
 {
     f12C = 0;
