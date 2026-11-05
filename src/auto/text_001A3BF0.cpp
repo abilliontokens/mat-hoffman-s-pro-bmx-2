@@ -346,26 +346,22 @@ int C_001A4640::func_001A4640(int a1, int a2, int a3)
 
 void C_001A4790::func_001A4790(void *a1, u32 flags, u32 *a3, u32 *a4, int a5, int a6, int a7)
 {
-    void *mat = a1;
+    V4_001A3BF0 *d;
 
     f3C = a7;
-    if (mat == 0) {
-        mat = D_002EFE78;
+    if (a1 == 0) {
+        a1 = D_002EFE78;
     }
-    f2C = mat;
-    f30 = mat;
-    vec0[0] = a3[0];
-    vec0[1] = a3[1];
-    vec0[2] = a3[2];
-    vec0[3] = a3[3];
-    vec10[0] = a4[0];
-    vec10[1] = a4[1];
-    vec10[2] = a4[2];
-    vec10[3] = a4[3];
+    f2C = a1;
+    f30 = a1;
+    d = (V4_001A3BF0 *)&vec0[0];
+    *d = *(V4_001A3BF0 *)a3;
+    d = (V4_001A3BF0 *)&vec10[0];
+    *d = *(V4_001A3BF0 *)a4;
     f34 = a5;
     f38 = a6;
     f20 = flags;
-    f24 = ((Mat_001A4790 *)mat)->f4;
+    f24 = ((Mat_001A4790 *)a1)->f4;
     f28 = 0;
     if (flags & 1) {
         f28 = ((Shape_001A4790 *)f24)->f28;
@@ -373,7 +369,7 @@ void C_001A4790::func_001A4790(void *a1, u32 flags, u32 *a3, u32 *a4, int a5, in
     if (f28 == 0 && (flags & 2)) {
         f28 = ((Shape_001A4790 *)f24)->f2C;
     }
-    ((VT_001A4790 *)f28)->v11(this, vec10, a5, a6);
+    ((VT_001A4790 *)f28)->v11(this, d, a5, a6);
 }
 
 void C_001A4A20::func_001A4A20(void)
@@ -397,10 +393,10 @@ SphereCollisionObject *SphereCollisionObject::func_001A4A50(int param)
     p[1] = 0;
     p[0] = 0;
     p[3] = 0x3f800000;
-    p[0] = D_002A9F40[0];
-    p[1] = D_002A9F40[1];
-    p[2] = D_002A9F40[2];
-    p[3] = D_002A9F40[3];
+    fA8 = *(float *)&D_002A9F40[0];
+    fAC = D_002A9F44;
+    fB0 = D_002A9F48;
+    fB4 = D_002A9F4C;
     f100 = 0;
     f104 = 0;
     f108 = 0;
