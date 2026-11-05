@@ -44,6 +44,16 @@ struct C_001719B0 {
     void func_001719B0(int param_1);
 };
 
+extern float D_00275544;
+extern float D_00275460;
+
+struct C_001719D0 {
+    char pad0[0x210];
+    float f210;
+    float f214;
+    void func_001719D0(float param);
+};
+
 
 void C_00171230::func_00171230(int a) {
     ((C_000264C0 *)((char *)this + 0x2c0))->func_000264C0((char *)this + 0x280);
