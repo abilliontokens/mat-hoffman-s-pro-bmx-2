@@ -343,6 +343,85 @@ undefined4 C_001003E0::func_001003E0(byte param_1)
   return in_ECX;
 }
 
+void C_00100400::func_00100400(float dt)
+{
+    O_101010 *owner = p124;
+    if (f28C != 0 || f290 != 0) {
+        f288 += dt;
+        if (f288 >= D_0027DE74) {
+            f294 = 1;
+            ((VP_101010 *)this)->v70(f284, f280);
+            f288 = 0;
+        }
+    }
+    if (f2B0 != 0 && f2A8 == 0) {
+        f2AC += dt;
+        if (f2AC >= D_00278C48) {
+            f2A8 = 1;
+            f2B0 = 0;
+        }
+    }
+    if (f2B8 != p2D0->b3B) {
+        if (f2C4 >= f2C8) {
+            f2C0 = f2B8;
+        } else {
+            int base = f2BC;
+            f2C0 = (int)((float)(f2B8 - base) * (f2C4 / f2C8)) + base;
+            f2C4 += dt;
+        }
+    }
+    f2CC += dt;
+    if (f2A0 != 0 && owner->p25C->p74->func_000301D0() == 0 && f2CC >= D_00275460) {
+        int a;
+        int x;
+        int ff = 0xff;
+        f2AC = 0;
+        f2B0 = 1;
+        func_001BEF50(1, 4);
+        owner->func_000BA9B0(0x1b)->func_00103260(0);
+        owner->func_000BA9B0(0x1c)->func_00103260(0);
+        owner->func_000BA9B0(0x1d)->func_00103260(0);
+        x = ((G_2E0 *)*(int *)(D_002A8490 + 0x2e0))->f4;
+        if (x != 7 && x != 3) {
+            func_001BEFC0(1, 4);
+        } else {
+            owner->func_000BA9B0(0x1e)->func_00103260(0);
+        }
+        f2B8 = ff;
+        f2BC = 0;
+        f2C0 = 0;
+        f2C4 = 0;
+        f2C8 = 0.25f;
+        G_2E0 *g = (G_2E0 *)*(int *)(D_002A8490 + 0x2e0);
+        a = g->f14;
+        if (a == 4) {
+            if (g->f4 == 7 || g->f4 == 3)
+                func_001BEE50(1, 4, 0);
+            else
+                func_001BEE50(1, 1, 0);
+        } else {
+            func_001BEE50(1, a, 0);
+        }
+        f2A0 = 0;
+    }
+    if (f2A4 != 0) {
+        int x;
+        owner->func_000BA9B0(0x1b)->func_00103350();
+        owner->func_000BA9B0(0x1c)->func_00103350();
+        owner->func_000BA9B0(0x1d)->func_00103350();
+        x = ((G_2E0 *)*(int *)(D_002A8490 + 0x2e0))->f4;
+        if (x == 7 || x == 3)
+            owner->func_000BA9B0(0x1e)->func_00103350();
+        f2B8 = 0;
+        f2BC = 0xff;
+        f2C0 = 0xff;
+        f2C4 = 0;
+        f2C8 = 0.25f;
+        f2A4 = 0;
+    }
+    func_001BED00(dt);
+}
+
 void C_001006E0::func_001006E0(void) {
     func_000F1B60();
     func_000E1650();
