@@ -20,6 +20,19 @@ struct Slots_000A74B0 {
     void func_000A74B0(void);
 };
 
+struct SlotsR_000A74B0 {
+    int a0[10];
+    int a28[10];
+    int a50[10];
+    int a78[10];
+    int aA0[10];
+    int aC8[10];
+    int aF0[10];
+    int a118[10];
+    int count;
+    SlotsR_000A74B0 *func_000A74B0(void);
+};
+
 struct Model_000A77C0 {
     void *vtbl;
     int f4;
@@ -81,18 +94,21 @@ struct C_000A7560 {
 
 void Slots_000A74B0::func_000A74B0(void)
 {
-    int i;
+    int *p = &a50[0];
+    int i = 10;
 
-    for (i = 0; i < 10; i++) {
-        a0[i] = -2;
-        a28[i] = -2;
-        a50[i] = 1;
-        a118[i] = 0;
-        a78[i] = 0;
-        aA0[i] = 1;
-        aC8[i] = 0;
-        aF0[i] = 1;
-    }
+    do {
+        p[-0x14] = -2;
+        p[-10] = -2;
+        p[0] = 1;
+        p[0x32] = 0;
+        p[10] = 0;
+        p[0x14] = 1;
+        p[0x1e] = 0;
+        p[0x28] = 1;
+        p++;
+        i--;
+    } while (i != 0);
     count = 0;
 }
 
