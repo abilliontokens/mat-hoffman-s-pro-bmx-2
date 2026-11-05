@@ -72,6 +72,12 @@ undefined4 C_0008A000::func_0008A000(int param_1)
   return 1;
 }
 
+void C_0008A020::func_0008A020(int param_1)
+{
+    unk24->func_0005E840(param_1);
+    unk28->func_0005E840(param_1);
+}
+
 void C_0008A060::func_0008A060(void) {
     unk128 = 1;
     unk12C = 0;
