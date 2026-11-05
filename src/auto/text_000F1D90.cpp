@@ -65,15 +65,22 @@ extern float D_0027E140;
 
 struct BmxUIPageHPHChoice {
     void *vtbl;
-    char pad4[0x13c];
+    char pad4[0x120];
+    struct HPHChoice_124 *f124;
+    char pad128[0x18];
     int **f140;
-    char pad144[0x144];
+    char pad144[0x140];
+    int f284;
     int f288;
     int f28c;
-    char pad290[0x10];
+    int f290;
+    int f294;
+    char pad298[8];
     short f2a0;
-    char pad2a2[0x12];
+    char pad2a2[0xe];
+    int f2b0;
     S_000F1D90_Obj *unk2b4[4];
+    int func_000F2160(int a, int b);
     void func_001BE4F0(int a, int b, int c);
     BmxUIPageHPHChoice *func_000F1EC0(int a, int b, int c);
     void func_000F1D90(void);
