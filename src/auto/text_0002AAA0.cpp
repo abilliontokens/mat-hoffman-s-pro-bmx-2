@@ -32,6 +32,16 @@ struct C_0002B180 {
 
 struct Vec4_0002AF90 {
     float x, y, z, w;
+    void Set(const Vec4_0002AF90 *o) { x = o->x; y = o->y; z = o->z; w = o->w; }
+    void Lerp(const Vec4_0002AF90 *o, float t)
+    {
+        Vec4_0002AF90 r;
+        r.x = t * (x - o->x) + o->x;
+        r.y = t * (y - o->y) + o->y;
+        r.z = t * (z - o->z) + o->z;
+        r.w = 1.0f;
+        *this = r;
+    }
 };
 
 struct S_0002AF90_Node {
@@ -60,6 +70,39 @@ struct C_0002AF90 {
     void func_0002AF90(void);
 };
 
+
+void C_0002AF90::func_0002AF90(void)
+{
+    Vec4_0002AF90 v;
+
+    if ((D_002B7E5C & 1) == 0) {
+        D_002B7E5C |= 1;
+        D_002B7E4C.x = 0;
+        D_002B7E4C.y = 2.0f;
+        D_002B7E4C.z = 0;
+        D_002B7E4C.w = 1.0f;
+    }
+    v = f230->func_00197EC0(&D_002B7E4C);
+    f230->func_00199A70(0, &f14c);
+    f14c.x += v.x;
+    f14c.y += v.y;
+    f14c.z += v.z;
+    if (f13c.x == D_002A10F0 && f13c.y == D_002A10F4 && f13c.z == D_002A10F8) {
+        f13c = f14c;
+    }
+    v.x = f13c.x - f14c.x;
+    v.y = f13c.y - f14c.y;
+    v.z = f13c.z - f14c.z;
+    v.w = 1.0f;
+    f13c.x = D_002A1178 * v.x + f14c.x;
+    f13c.y = D_002A1178 * v.y + f14c.y;
+    f13c.z = D_002A1178 * v.z + f14c.z;
+    f13c.w = 1.0f;
+    f1f8->func_0014AC30(&f13c, 0);
+    f1f8->func_00133ED0();
+    f1f8->func_00133F10(0);
+    f13c = f14c;
+}
 
 void C_0002B140::func_0002B140(C_00168B90 *param_1) {
     param_1->func_00168B90(D_002766F0, &unk0);
