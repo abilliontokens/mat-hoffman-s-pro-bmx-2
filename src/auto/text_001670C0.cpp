@@ -182,7 +182,7 @@ struct C_00167760 {
     C_00149310 *f28;
     S_00167900_Obj *f2c[0x320 / 4];
     C_00167760_Stream *f34c;
-    u32 f350;
+    int f350;
     u32 f354;
     u32 f358;
     u32 f35c;
@@ -311,6 +311,37 @@ void C_00167860::func_00167860(void)
     func_001FEBD0(0x24, f50->fFC + 0x180);
     func_001FEBD0(0x25, &f54);
     func_001FEBD0(0x26, &D_002EFB2C);
+}
+
+int C_00167760::func_00167900(void)
+{
+    int i;
+    int j;
+    S_00167900_Obj *obj;
+    S_00167900_Node *node;
+    S_00167900_Elem *e;
+
+    if (D_002A8CDC != 0) {
+        if (f24->fF4 != 0 && f24->f150 == 0 && D_002A85D4 != 0) {
+            node = D_002A829C->f14[f354].f4;
+            node->func_001B07A0();
+            f28 = D_002F0630->f10[node->fD4];
+            func_001677C0(f360);
+            for (i = 0; i < f350; i++) {
+                if (f28 != 0 && (obj = f2c[i]) != 0 && obj->f190 <= 1) {
+                    obj->f1d0->func_00142F30(*(int *)(D_002EFDB8 + 4));
+                    e = &obj->f1a4->f10[obj->f1a0];
+                    for (j = 0; j < e->count; j++) {
+                        f28->func_00149310(e->f8 + j * 0x14, (int)obj->f1d0, (int)f360, 0);
+                    }
+                }
+            }
+            f350 = 0;
+            return 1;
+        }
+        f350 = 0;
+    }
+    return 1;
 }
 
 C_00167760 *C_00167760::func_00167A70(int flags)
