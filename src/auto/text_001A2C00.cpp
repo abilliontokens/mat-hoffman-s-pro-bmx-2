@@ -138,6 +138,30 @@ struct V_001A34D0 {
  virtual void v47(int a);
 };
 extern int D_0028B6BC;
+void *func_001E8A44(int size);
+struct S_30D0_Block {
+    int count;
+    void **items;
+    int cap;
+    int grow;
+    u8 flag;
+    char pad[3];
+    void init(void)
+    {
+        items = 0;
+        count = 0;
+        cap = 0;
+        grow = 0;
+        flag &= 0xfe;
+    }
+    void alloc(void)
+    {
+        items = (void **)func_001E8A44(4);
+        cap = 16;
+        grow = 1;
+        flag |= 1;
+    }
+};
 struct MaterialSoundEmitter {
     void *vtbl;
     char pad4[0x1a0];
@@ -395,6 +419,29 @@ void ResponseEmitter::func_001A3050(int a)
         }
     }
     ((C_00157A00 *)this)->func_00157A00(a);
+}
+
+MaterialSoundEmitter::MaterialSoundEmitter(int arg0, int arg1, int arg2, int arg3)
+{
+    ((C_001A1680 *)this)->func_001A1680(arg0, arg1, arg2, arg3);
+    vtbl = (void *)&D_0028B6BC;
+    initA();
+    initB();
+    initC();
+    list1c0.items = (S_001A33A0_Elem **)func_001E8A44(4);
+    f1c8 = 16;
+    f1cc = 1;
+    f1d0 |= 1;
+    a.items = (S_3B10_Elem **)func_001E8A44(4);
+    f1dc = 16;
+    f1e0 = 1;
+    f1e4 |= 1;
+    b.items = (S_3B10_Elem **)func_001E8A44(4);
+    f1f4 = 1;
+    f1f8 |= 1;
+    f1f0 = 16;
+    f200 = 1;
+    f1fc = -1;
 }
 
 int MaterialSoundEmitter::func_001A33A0(int idx, S_001A33A0_Vec3 pos, int a4, int vol)
