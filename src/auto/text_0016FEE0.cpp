@@ -32,7 +32,10 @@ struct S_Obj154 {
 
 struct C_001703B0 {
     void *vtbl;
-    char pad4[0x100];
+    char pad4[0x20];
+    u32 f24, f28, f2c, f30, f34, f38, f3c, f40;
+    u32 vectors[4][4];
+    char pad84[0x80];
     void *f104;
     char pad108[8];
     void *f110;
