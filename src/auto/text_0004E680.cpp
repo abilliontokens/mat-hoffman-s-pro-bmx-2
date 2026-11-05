@@ -105,7 +105,9 @@ struct C_0004ECC0Vec {
 
 struct C_0004ECC0 {
     void *vtbl;
-    char pad4[0x280];
+    char pad4[0x60];
+    void *f64;
+    char pad68[0x21c];
     int f284;
     int f288;
     int f28c;
