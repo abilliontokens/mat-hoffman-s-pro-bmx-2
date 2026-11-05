@@ -285,11 +285,48 @@ struct Mgr_000317B0 {
     void func_0001CCE0(int id, Vec4_00030A30 *a, Vec4_00030A30 *b, Vec4_00030A30 *c, void *extra);
 };
 
+/* BmxEvent's vtable view (45 slots) */
+struct VT_00031260 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(int a); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35();
+    virtual void v36(); virtual void v37(); virtual void v38(); virtual void v39();
+    virtual void v40(); virtual void v41(); virtual void v42(); virtual void v43();
+    virtual void v44();
+};
+
+struct Inner_00031260 {
+    char pad0[0x28];
+    VT_00031260 *f28;
+    void func_000947F0(int node);
+    void func_00095880(void);
+};
+
+struct Ctx_00031260 {
+    char pad0[4];
+    int f4;
+    char pad8[0x18 - 8];
+    int f18;
+    int f1c;
+    char pad20[0x2fc - 0x20];
+    Inner_00031260 *f2fc;
+    char pad300[0x468 - 0x300];
+    int f468;
+};
+
 struct Root_000317B0 {
     void *f0;
     Mgr_000317B0 *f4;
-    char pad8[0x2d8];
-    int *f2e0;
+    char pad8[0x124 - 8];
+    int f124;
+    char pad128[0x2e0 - 0x128];
+    Ctx_00031260 *f2e0;
 };
 
 extern Root_000317B0 *D_002A8490;
