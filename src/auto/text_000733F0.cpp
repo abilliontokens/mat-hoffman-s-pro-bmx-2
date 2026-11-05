@@ -209,6 +209,48 @@ void C_00073620::func_00073620(void) {
     unk70->func_001D5AD0();
 }
 
+void C_000739D0::func_000737A0() {
+    unk68->func_001D6600();
+    unk88->func_001D6600();
+    char number[20];
+    memset(number,0,sizeof(number));
+    char item[20];
+    char output[260];
+    char text[780];
+    char *state = *(char **)(*(char **)(*(char **)(unk64 + 0x64) + 0x4E0) + 0x1A8);
+    C_000737A0_List *list = *(C_000737A0_List **)(state + 0xA60);
+    int count = list->func_00109570();
+    if (count > 20) count = 20;
+    for (int i=0;i<count;i++) {
+        if (i==0) {
+            list->func_001095A0(i,item);
+            strcpy(text,item);
+        } else {
+            strcat(text," to ");
+            list->func_001095A0(i,item);
+            strcat(text,item);
+        }
+    }
+    if (count>0) {
+        if (strlen(text)>40) func_00063AD0(text,unkB8,40,4);
+        else {
+            unkB8[0]->func_0005E840(text);
+            unkB8[1]->func_0005E840(D_00275630);
+            unkB8[2]->func_0005E840(D_00275630);
+            unkB8[3]->func_0005E840(D_00275630);
+        }
+        C_000737A0_UI **p=unkB8;
+        int n=4;
+        do { (*p)->func_001D6600(); ++p; } while(--n);
+    }
+    int value=*(int *)(*(char **)(*(char **)(*(char **)(unk64+0x64)+0x4E0)+0x1A8)+0xA40);
+    if(value>0) func_00073680(value,number);
+    else { strcpy(number,"0"); }
+    func_001ADCC0(output,260,D_00278D44,number);
+    unk80->func_0005E840(output);
+    unk80->func_001D6600();
+}
+
 void C_000739D0::func_000739D0(void) {
     func_000737A0();
     func_00073620();
