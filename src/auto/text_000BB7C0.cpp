@@ -81,6 +81,8 @@ struct S_000BBE30_Audio {
     virtual void v6();
     virtual void v7(int a);
     virtual void v8();
+    char pad4[0x2c];
+    int f30;
 };
 
 extern S_000BBE30_Audio *D_002EFDB8;
