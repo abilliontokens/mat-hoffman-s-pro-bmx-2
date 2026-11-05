@@ -420,8 +420,8 @@ void C_00192470::func_001927A0(void)
 void C_00192470::func_001927C0(void *row, int limit)
 {
     int i;
-    for (i = 0; i < f10; i++) {
-        at(i)->v16();
+    for (i = 0; i < list.count; i++) {
+        list.at(i)->v16();
     }
 }
 
