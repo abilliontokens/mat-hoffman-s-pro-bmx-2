@@ -1,6 +1,34 @@
 /* 15 functions from 0x00104B00 to 0x00105AA0, found by Ghidra. */
 #include "common.h"
 
+struct S_00104DF0_Tex {
+    S_00104DF0_Tex *func_001B3C10(int a0);
+    void func_001B3DC0(int a0, int a1, float a2, int a3);
+};
+
+struct S_00104DF0_Info {
+    char pad0[0x190];
+    int f190[25];
+    char f1f4[1][8];
+};
+
+struct S_00104DF0_G {
+    char pad0[0x2e0];
+    S_00104DF0_Info *f2e0;
+};
+
+extern "C" void func_001ADCC0(char *dst, int n, const char *fmt, const char *a, const char *b);
+extern "C" int func_001EA426(const char *a, const char *b);
+extern "C" void *func_001E8A44(unsigned int n);
+extern char D_002A5FA8[];
+extern char D_002A5348[];
+extern char D_00275678[];
+extern char D_002A60B0[];
+extern char D_002A5D98[];
+extern char D_002A5EA0[];
+extern char D_002829A0[];
+extern char D_0010103F[];
+
 struct V4_00104B00 {
     float x, y, z, w;
 };
