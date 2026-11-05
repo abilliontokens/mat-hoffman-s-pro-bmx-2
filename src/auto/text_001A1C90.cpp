@@ -215,6 +215,86 @@ struct C_001A2580 {
     C_001A2580 *func_001A2580(int a0, int a1, int a2, int a3);
 };
 
+struct Item_1A {
+    Obj_001A2480 *obj;
+    int f4;
+    int f8;
+};
+
+struct ItemList_1A {
+    int count;
+    Item_1A **data;
+    Item_1A *Get(int i) {
+        if (count < 1 || data == 0 || i >= count) {
+            return 0;
+        }
+        return data[i];
+    }
+};
+
+void func_001E891B(void *p);
+
+struct C_001A2620 {
+    void *vtbl;
+    char pad4[0x1c4];
+    ItemList_1A items;
+    void func_00157660();
+    void func_001A2620();
+};
+
+struct C_001A2A10 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual int v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    virtual void v31();
+    virtual void v32();
+    virtual void v33();
+    char pad4[0x44];
+    int f48;
+    int f4c;
+    char pad50[0x20];
+    char f70[0x10];
+    char f80[0x10];
+    char pad90[0x1a4 - 0x90];
+    S_0001CE80 *f1a4;
+    char pad1a8[0x1bc - 0x1a8];
+    Obj_001A2480 *f1bc;
+    char pad1c0[8];
+    ItemList_1A items;
+    char pad1d0[0x2d8 - 0x1d0];
+    int f2d8;
+    int func_001A2A10(int a0);
+    int func_001A2AA0(int a0);
+    int func_001A2B40(int a0);
+};
 
 int C_001A1C90::func_001A1C90(int a0, int a1, S16_1A s, int a2) {
     if (unk1BC == 0) {
@@ -328,21 +408,23 @@ int C_001A2510::func_001A2510(S_001A2510_Arg *arg, int a1, int a2)
 
 C_001A2580 *C_001A2580::func_001A2580(int a0, int a1, int a2, int a3)
 {
+    u32 *p = (u32 *)this;
+
     func_001A1680(a0, a1, a2, a3);
-    f1c0 = 0;
-    f1c4 = 0;
-    vtbl = &D_0028B58C;
-    f1cc = 0;
-    f1c8 = 0;
-    f1d0 = 0;
-    f1d4 = 0;
-    f1d8 &= 0xfe;
-    f1cc = func_001E8A44(4);
-    f1d4 = 1;
-    f1d0 = 0x10;
-    f1d8 |= 1;
-    f2d0 = 0;
-    f2d8 = 1;
+    p[0x70] = 0;
+    p[0x71] = 0;
+    p[0] = (u32)&D_0028B58C;
+    p[0x73] = 0;
+    p[0x72] = 0;
+    p[0x74] = 0;
+    p[0x75] = 0;
+    *(u8 *)(p + 0x76) = *(u8 *)(p + 0x76) & 0xfe;
+    p[0x73] = (u32)func_001E8A44(4);
+    p[0x75] = 1;
+    p[0x74] = 0x10;
+    *(u8 *)(p + 0x76) = *(u8 *)(p + 0x76) | 1;
+    p[0xb4] = 0;
+    p[0xb6] = 1;
     return this;
 }
 
