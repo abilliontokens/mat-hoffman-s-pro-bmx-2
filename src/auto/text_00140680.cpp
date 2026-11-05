@@ -151,6 +151,26 @@ int func_001409A0(C_00168BE0 *cfg, const char *key, int def, int &out)
     return out;
 }
 
+int func_001411A0(C_00168BE0 *cfg, const char *key, int def, int &out)
+{
+    char buf[64];
+    cfg->func_00168BE0(key, "undefined", buf, 64);
+    if (strcmp(buf, "undefined") == 0) {
+        out = def;
+    } else if (strcmp(buf, "D3DTCOLORKEYOP_DISABLE") == 0) {
+        out = 0;
+    } else if (strcmp(buf, "D3DTCOLORKEYOP_ALPHA") == 0) {
+        out = 1;
+    } else if (strcmp(buf, "D3DTCOLORKEYOP_RGBA") == 0) {
+        out = 2;
+    } else if (strcmp(buf, "D3DTCOLORKEYOP_KILL") == 0) {
+        out = 3;
+    } else if (strcmp(buf, "D3DTCOLORKEYOP_MAX") == 0) {
+        out = 4;
+    }
+    return out;
+}
+
 int func_001412A0(C_00168BE0 *cfg, const char *key, int def, int &out)
 {
     char buf[64];
