@@ -547,6 +547,40 @@ void C_001B23D0::func_001B2580(int *a, int b)
     func_00157BF0(a, b);
 }
 
+void C_001B23D0::func_001B25E0(void)
+{
+    int i = 0;
+
+    if (i < f8) {
+        do {
+            C_001B23D0_Obj *p = f14[i].f4;
+            if (p != 0) {
+                p->v2();
+                f14[i].f4 = 0;
+            }
+            int q = f14[i].f0;
+            if (q != 0) {
+                func_001E8390((void *)q);
+                f14[i].f0 = 0;
+            }
+            f14[i].fC = 0;
+            i++;
+        } while (i < f8);
+    }
+    f8 = 0;
+}
+
+void C_001B23D0::func_001B2640(void)
+{
+    int func_001D6E20(...);
+
+    for (int i = 0; i < f8; i++) {
+        if (f14[i].fC > 0 && f14[i].f4 == 0) {
+            f14[i].f4 = (C_001B23D0_Obj *)func_001D6E20(f14[i].f0, 0x613, f14[i].f8);
+        }
+    }
+}
+
 void C_001B2690::func_001B2690(int index, int data)
 {
     func_001AC750(index, data | f14[index].data);
