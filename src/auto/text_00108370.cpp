@@ -328,11 +328,10 @@ struct C_001089C0 {
     void *f1874;
     void *f1878;
     void func_001089C0(Vec4_00108370 *out);
-    __forceinline void calc(void *target, Vec4_00108370 *out)
+    __forceinline void calc(void *target, Vec4_00108370 *v, Vec4_00108370 *out)
     {
-        Vec4_00108370 v;
-        v = fA04->func_00165E20(target, f798, D_00276690, 0);
-        *out = f230->func_00197F70(&v);
+        *v = fA04->func_00165E20(target, f798, D_00276690, 0);
+        *out = f230->func_00197F70(v);
     }
 };
 
