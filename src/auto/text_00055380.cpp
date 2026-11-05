@@ -234,6 +234,7 @@ struct C_00055380 {
 };
 
 #include <xmmintrin.h>
+#include <math.h>
 struct C_00055A10_Filter { float func_00026A10(float,float); void func_000269B0(float,float,float); };
 void func_00055140(S_00056100_Quat *,S_00056100_Quat *);
 void C_000559E0_unused();
