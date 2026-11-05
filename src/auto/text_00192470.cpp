@@ -201,9 +201,29 @@ struct S_00192930_Iface {
     virtual void v12();
     virtual void v13();
     virtual void v14();
+    virtual void v15();
     int pad4;
     int f8;
 };
+
+struct S_001D3F50 {
+    int a;
+    int b;
+    void func_001D3F50(void);
+};
+
+struct S_002A8490 {
+    char pad0[0x18];
+    int f18;
+};
+extern S_002A8490 *D_002A8490;
+extern int D_002A9868;
+extern short D_002EFE54;
+extern float D_0028AC88;
+extern float D_00275460;
+extern float D_00278788;
+extern char D_0028AC8C[];
+void func_0013E1F0(int a, int b, const char *fmt, ...);
 
 struct C_00157660 {
     void func_00157660(void);
