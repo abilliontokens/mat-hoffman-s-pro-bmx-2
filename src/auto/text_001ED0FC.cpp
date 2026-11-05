@@ -4,6 +4,9 @@
 extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *);
 void func_001E9DE9(void *p);
 int func_001ED8A7(int ch, void *stream);
+int func_001F5766(const char *path, int oflag, int shflag, int pmode);
+extern int D_002F6A6C;
+extern int D_002F6858;
 
 struct S_001EDC7E {
     int f0;
