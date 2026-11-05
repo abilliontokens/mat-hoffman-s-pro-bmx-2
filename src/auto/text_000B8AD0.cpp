@@ -32,6 +32,16 @@ struct C_000B9A80 {
 };
 extern int D_0027D5FC;
 
+struct C_000B8B60 {
+    void *vtbl;
+    char pad4[0x20];
+    int u[32];
+    C_000B8B60 *func_000B8B60(int a0);
+    void func_00157600(int a0);
+};
+extern int D_002A3084, D_002A3088, D_002A308C, D_002A3090;
+extern int D_002A3064, D_002A3068, D_002A306C, D_002A3070;
+
 struct C_000B9A30 {
     void *vtbl;
     void *func_000B9A30(int flags);
