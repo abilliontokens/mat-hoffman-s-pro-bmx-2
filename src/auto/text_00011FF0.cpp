@@ -55,7 +55,9 @@ struct S_11FF0_Mgr {
 struct S_11FF0_Global {
     char pad0[4];
     S_11FF0_Coll *f4;
-    char pad8[0x230];
+    char pad8[0x11c];
+    int f124;
+    char pad128[0x110];
     int f238;
     char pad23c[0x68];
     S_11FF0_Mgr *f2a4;
