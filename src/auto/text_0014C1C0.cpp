@@ -38,6 +38,14 @@ struct C_0014CA80_Obj {
     virtual void v29();
     virtual void v30();
     virtual void setMatrix(void *);
+    char pad4[0x4c]; int type;
+    char pad54[0x68]; float fBC;
+    char padC0[0xc]; float fCC;
+    char padD0[0xc]; float fDC;
+    char padE0[0xc]; float fEC;
+    char padF0[0x18]; float f108, f10C;
+    char pad110[8]; float f118, f11C;
+    char pad120[0x10]; float matrix[16];
 };
 struct C_0014CA80 {
     char pad0[8]; u16 x, y, z; u8 bE; char padF; s8 b10, b11;
