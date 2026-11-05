@@ -216,10 +216,9 @@ void *C_0013E080::func_0013E140(unsigned int flags) {
 void C_0013E170::func_0013E170(int index, char *name, int value)
 {
     if (index < *(int *)((int)this + 0x193c)) {
-        char *base = (char *)this + index * 0x5c;
-        char *buf = base + 0x230;
-        if (strcmp(buf, name) != 0) {
-            func_001E8920(buf, name, 0x4f);
+        char *base = (char *)((int)this + index * 0x5c);
+        if (strcmp(base + 0x230, name) != 0) {
+            func_001E8920(base + 0x230, name, 0x4f);
             *(unsigned char *)(base + 0x27f) = 0;
             *(int *)(base + 0x280) = value;
         }
@@ -236,8 +235,7 @@ void func_0013E1F0(int obj, int id, int fmt, ...)
         va_start(ap, fmt);
         func_001ADD20(buf, 0x200, fmt, ap);
         va_end(ap);
-        int n = *(int *)(obj + 0x224) + 1;
-        *(int *)(obj + 0x224) = n;
+        int n = ++*(int *)(obj + 0x224);
         ((C_0013E170 *)obj)->func_0013E170(n, buf, 0);
     }
 }
@@ -270,9 +268,17 @@ DXCamera *DXCamera::func_0013E4F0(int a)
 void DXCamera::func_0013E580(void)
 {
     __declspec(align(16)) Mat4_0013E4F0 m;
+    float s;
 
     func_0012AEC0();
-    func_000263B0(&f250, &f290 - 0 + 0, 0);
+    func_000263B0(&f250, (char *)this + 0xb0, (char *)this + 0x70);
+    memset(&m, 0, sizeof(m));
+    s = D_00284DD8 / f200;
+    m.m[15] = s;
+    m.m[0] = s;
+    m.m[5] = s;
+    m.m[10] = s;
+    func_000263B0(&f290, &f250, &m);
 }
 
 int DXCamera::func_0013E610(void)
