@@ -1,6 +1,14 @@
 /* 10 functions from 0x00138800 to 0x001396D0, found by Ghidra. */
 #include "common.h"
 extern int D_00284A2C;
+struct ResetValue { int f0, f4, f8; };
+struct ResetObject { int f0, f4, f8, fc; };
+struct ResetItem { int pad[4]; int count; int f14; ResetValue *values; ResetObject *obj; int tail[3]; };
+struct ResetChild { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31(); virtual void v32(); };
+struct ResetGlobal { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(int,int,int,int); };
+struct ResetGroup { int f0; ResetChild **children; int pad[2]; int count; };
+struct ResetGroups { char pad[0x24]; int count; ResetGroup **groups; };
+extern ResetGlobal *D_002A8490;
 struct CutScene {
  void *vtbl; char pad4[0x20];
 int f24;
@@ -200,5 +208,29 @@ void C_00139060::func_00139060(int a0, int a1) {
 void C_00139080::func_00139080(int a0, int a1) {
     unk88 = a0;
     unk8C = a1;
+}
+
+void CutScene::func_001390A0(int index)
+{
+    S_1390A0_This *self = (S_1390A0_This *)this;
+    int i, j, k;
+    char *item;
+    S_1390A0_Q *q;
+
+    for (i = 0; i < ((S_1390A0_Entry *)((char *)self->f40 + index * 0x2c))->count1; i++) {
+        item = ((S_1390A0_Entry *)((char *)self->f40 + index * 0x2c))->list1 + i * 0x1c;
+        if (*(int *)(item + 0x18) == 0)
+            ((S_1390A0_A *)((void **)self->f58)[*(int *)item])->f4->func_00198390();
+    }
+    for (j = 0; j < ((S_1390A0_Entry *)((char *)self->f40 + index * 0x2c))->count2; j++) {
+        item = ((S_1390A0_Entry *)((char *)self->f40 + index * 0x2c))->list2 + j * 0x10;
+        if (*(int *)(item + 0xc) == 0) {
+            q = (S_1390A0_Q *)((S_1390A0_60 *)self->f60)->f28[*(int *)item];
+            for (k = 0; k < q->f10; k++) {
+                q->f4[k]->v31();
+                q->f4[k]->v4();
+            }
+        }
+    }
 }
 
