@@ -54,6 +54,13 @@ static __forceinline void Xform_00198120(C_00197EC0_Vec4 *out, const M_00198040 
     out->w = 1.0f;
 }
 
+/* by-value argument block of func_00198440 */
+struct S_00198440_Args {
+    float *pos;
+    float *maxDist;
+    int recurse;
+};
+
 struct C_00197EC0 {
     char padF0[0xF0];
     float fF0;
@@ -361,5 +368,38 @@ void C_001983E0::func_001983E0(void *out0, void *out1)
     }
     *(C_001983E0_V4 *)out0 = f130;
     *(C_001983E0_V4 *)out1 = f140;
+}
+
+void C_00197EC0::func_00198440(float * volatile pos, float * volatile maxDist, int recurse)
+{
+    C_00197EC0_Vec4 v;
+    C_00197EC0 * volatile self = this;
+
+    if (self->f180 & 4) {
+        if (*maxDist > D_00275544) {
+            v = self->func_00197F70(self->f130);
+            float d = fabs_00198440(v.x - pos[0]);
+            float e = fabs_00198440(v.y - pos[1]);
+            if (e > d) {
+                d = e;
+            }
+            e = fabs_00198440(v.z - pos[2]);
+            if (e > d) {
+                d = e;
+            }
+            if (d + self->f184 > *maxDist) {
+                *maxDist = d + self->f184;
+            }
+        } else {
+            *maxDist = self->f184;
+            *(C_00197EC0_Vec4 *)pos = self->func_00197F70(self->f130);
+        }
+    }
+    if (recurse) {
+        C_00197EC0 *c;
+        for (c = self->f174; c != 0; c = c->f178) {
+            c->func_00198440(pos, maxDist, 1);
+        }
+    }
 }
 
