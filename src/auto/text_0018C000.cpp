@@ -86,7 +86,8 @@ struct C_0018C960 {
     int f150;
     int f154;
     int f158;
-    char pad15C[8];
+    int f15C;
+    int f160;
     int f164;
     char pad168[8];
     int f170;
