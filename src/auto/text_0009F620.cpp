@@ -38,6 +38,14 @@ void C_0009FAC0::func_0009FAC0(int a0) {
     unk4 = a0;
 }
 
+void C_0009FAD0::func_0009FAD0(int a0, int a1, float a2)
+{
+    unk8 = a0;
+    unkC = 0;
+    unk50 = a2 * 1.46666f;
+    unk54 = a1;
+}
+
 void C_0009FE40::func_0009FE40(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined4 *param_4)
 {
   int in_ECX = (int)this;
