@@ -101,6 +101,43 @@ struct C_0014A870 {
     void *func_0014A870(int flags);
 };
 
+extern u32 D_00286924;
+extern u32 D_002A75A8;
+extern u32 D_002A75AC;
+extern u32 D_002A75B0;
+extern u32 D_002A75B4;
+
+struct C_00132EB0 {
+    void func_00132EB0(int a);
+};
+
+struct C_0014AB30 {
+    void *vtbl;
+    char pad4[0x4C];
+    u32 f50;
+    char pad54[0x54];
+    u32 fA8;
+    u32 fAC;
+    u32 fB0;
+    u32 fB4;
+    u32 fB8;
+    u32 fBC;
+    u32 fC0;
+    u32 fC4;
+    u32 fC8;
+    u32 fCC;
+    u32 fD0;
+    u32 fD4;
+    u32 fD8;
+    u32 fDC;
+    u32 fE0;
+    u32 fE4;
+    u32 fE8;
+    u32 fEC;
+    u32 fF0;
+    C_0014AB30 *func_0014AB30(int a);
+};
+
 void *func_001E8A44(int size);
 void __stdcall func_001FF220(int v);
 void __stdcall func_001FEEF0(int a, int b);
@@ -197,11 +234,12 @@ int func_0014A7B0(VSEntry *entries, unsigned int *tokens)
     int index = 0;
     while (*tokens != 0xffffffff) {
         unsigned int tok = *tokens;
-        unsigned int op = tok >> 29;
-        if (op == 1) {
+        switch (tok >> 29) {
+        case 1:
             index = tok & 0xf;
             offset = 0;
-        } else if (op == 2) {
+            break;
+        case 2:
             if (tok & 0x10000000) {
                 offset += ((tok >> 16) & 0xf) * 4;
             } else if (tok & 0x18000000) {
@@ -210,12 +248,14 @@ int func_0014A7B0(VSEntry *entries, unsigned int *tokens)
                 VSEntry *e = &entries[tok & 0x1f];
                 e->f0 = index;
                 e->f4 = offset;
-                e->f8 = (tok >> 16) & 0xff;
+                int type = ((unsigned char *)tokens)[2];
+                e->f8 = type;
                 e->fC = 0;
                 e->fD = 0;
-                offset += func_0014A6C0(e->f8);
+                offset += func_0014A6C0(type);
                 count++;
             }
+            break;
         }
         tokens++;
     }
