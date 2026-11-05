@@ -1,6 +1,25 @@
 /* 9 functions from 0x000C1B00 to 0x000C29A0, found by Ghidra. */
 #include "common.h"
 
+struct C_000C2680 {
+    char pad0[0x124];
+    void *f124;
+    char pad128[0x290 - 0x128];
+    int f290;
+    char pad294[4];
+    int arr298[20];
+    int func_000C0100(int idx);
+    int func_000C2680(int idx);
+};
+
+int C_000C2680::func_000C0100(int idx)
+{
+    if (idx >= f290) {
+        return -1;
+    }
+    return arr298[idx];
+}
+
 struct S_000C2810_Query {
     int func_00136170(int a, int b, int c);
 };
