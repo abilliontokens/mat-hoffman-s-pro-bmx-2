@@ -72,9 +72,12 @@ static inline float C_0017A1D0_Fabs(const float &f)
     return *(float *)&i;
 }
 
-static inline float C_0017A1D0_Abs(float f)
+static inline float C_0017A1D0_Abs(const float &f)
 {
-    return C_0017A1D0_Fabs(f);
+    union { float f; int i; } u;
+    u.f = f;
+    u.i &= 0x7fffffff;
+    return u.f;
 }
 
 struct C_0017A1D0 {
