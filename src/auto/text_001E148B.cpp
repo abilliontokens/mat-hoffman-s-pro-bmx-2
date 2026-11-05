@@ -66,15 +66,14 @@ long __stdcall func_001E1BD7(S_AnsiString_1E148B *name, int size)
     oa.ObjectName = name;
     oa.Attributes = 0x40;
     st = _imp__NtOpenFile((void **)&name, (u32)D_00100001, &oa, &iosb, 3, 0x800021);
-    if (st < 0)
-        return st;
-    st = _imp__NtQueryVolumeInformationFile(name, &iosb, &fsi, 0x18, 3);
-    _imp__NtClose(name);
-    if (st < 0)
-        return st;
-    if (fsi.BytesPerSector * fsi.SectorsPerAllocationUnit == size)
-        return st;
-    st = 0xC000014F;
+    if (st >= 0) {
+        st = _imp__NtQueryVolumeInformationFile(name, &iosb, &fsi, 0x18, 3);
+        _imp__NtClose(name);
+        if (st >= 0) {
+            if (fsi.BytesPerSector * fsi.SectorsPerAllocationUnit != size)
+                st = 0xC000014F;
+        }
+    }
     return st;
 }
 
