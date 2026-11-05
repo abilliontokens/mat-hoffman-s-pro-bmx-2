@@ -165,3 +165,37 @@ void C_000E0D50::func_000E0E30()
     D_002B91AC->unk3C->func_0005E840(D_002A8490->f2E8->f4->f838);
 }
 
+C_000E0D50 *C_000E0D50::func_000E0F30(int a, int b, int c)
+{
+    int i;
+    DelObjTime *p;
+    DelObjTime *o;
+
+    func_001BE4F0(a, b, c);
+    D_002A8490->f2EC->func_0018C160(&D_00278690);
+    D_002A8490->f2EC->func_0018C160(&D_002786A0);
+    D_002A8490->f2EC->func_0018C160(&D_00278678);
+    for (i = 0; i < 8; i++) {
+        p = (DelObjTime *)func_001E8A44(0x64);
+        p = p != 0 ? p->func_001D5760() : 0;
+        arr2D0[i] = p;
+        if (i % 2 == 0) {
+            p->func_001D5810(&D_002786B0, 100.0f, (float)(i / 2 * 40) + D_0027E140, 0);
+        } else {
+            p->func_001D5810(&D_002786B0, 321.0f, (float)(i / 2 * 40) + D_0027E140, 0);
+            o = arr2D0[i];
+            o->f3C = 0x3f800000;
+            o->f40 = 0;
+            o->f44 = 0;
+            o->f48 = 0x3f800000;
+            o->f58 |= 4;
+        }
+        o = arr2D0[i];
+        if (o->f28 != 0x435d0000) {
+            o->f28 = 0x435d0000;
+            o->f58 |= 1;
+        }
+    }
+    return this;
+}
+
