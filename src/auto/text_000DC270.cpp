@@ -62,12 +62,12 @@ struct C_000DD030 {
     int unk324;
     int unk328;
     int unk32C;
-    int unk330;
+    C_001D6410 *unk330;
     int unk334;
     int unk338;
     int unk33C;
-    int unk340;
-    int unk344;
+    DelObjC_000DC *unk340;
+    DelObjC_000DC *unk344;
     void func_001BE360(int a);
     C_000DD030 *func_000DD030(int a);
 };
