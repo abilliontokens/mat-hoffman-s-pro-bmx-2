@@ -34,7 +34,8 @@ struct C_00196290 {
     int *f98;
     int *f9c;
     int *fa0;
-    char pada4[0xac - 0xa4];
+    float *fa4;
+    float *fa8;
     int *fac;
     int *fb0;
     int *fb4;
@@ -74,9 +75,10 @@ int C_00196290::func_001961E0(int param_1, int param_2, int param_3)
 void C_00196290::func_00196290(void)
 {
     u32 i;
-    f5c = f6c * 4 + 8;
+    u32 n = f6c;
+    f5c = n * 4 + 8;
     fc0 &= 0xdf;
-    f60 = f6c * 5 + 8;
+    f60 = n * 5 + 8;
     f68 = 0;
     f24 = 0;
     f34 = 0;
