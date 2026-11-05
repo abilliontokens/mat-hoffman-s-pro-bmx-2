@@ -189,8 +189,8 @@ struct S_00187400_Desc {
     int f134;
     int f138;
     S36_1A f13C;
-    int f160;
-    char pad164[4];
+    unsigned short f160;
+    char pad162[6];
     int f168;
 };
 
