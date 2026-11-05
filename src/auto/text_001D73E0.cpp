@@ -284,6 +284,28 @@ int XboxVideoCard_001D7FB0::func_001D7FB0(float x, float y, float z, int w)
     return 1;
 }
 
+int __stdcall func_001D8040(S_001D8040 *p, int (__cdecl *callback)(S_001D8040 *), int adapter, int width, int height, int a5, int a6)
+{
+ unsigned int count;
+ char display[20];
+ char caps[212];
+ p->f0=adapter;
+ count=func_00201860(adapter);
+ func_00201A90(p->f0,display);
+ int total=0;
+ for(unsigned int k=0;k<2;++k) {
+  func_00201A60(p->f0,D_0028F768[k],caps);
+  for(unsigned int i=0;i<count;) {
+   func_00201900(p->f0,i,&p->fC);
+   p->f4=i; p->f8=D_0028F768[k]; p->f20=64; p->f24=0;
+   if ((!callback || callback(p)) && width==p->fC && height==p->f10) return total;
+   ++i;
+   ++total;
+  }
+ }
+ return -1;
+}
+
 void XboxVideoCard_001D8310::func_001D8310(void)
 {
     v6();
