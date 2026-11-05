@@ -9,7 +9,11 @@ struct Sprite_6D {
     char pad3C[0x1C];
     unsigned char b58;
     void func_001D5AD0();
+    Sprite_6D *func_001D5AA0();
 };
+extern float D_00275AEC;
+struct Mid_6C { Sprite_6D *func_0018C070(); };
+struct Lookup_6C { int *func_0018C160(int); };
 
 struct C_0006D100 {
     char pad0[0x6C];
