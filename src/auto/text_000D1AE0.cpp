@@ -136,6 +136,29 @@ void C_000D2300::func_000D2300(void)
     f202C->func_001B17D0(buf);
 }
 
+void C_000D23D0::func_000D23D0(void)
+{
+    char buf[0x40];
+    int count = 0;
+    int i;
+    int j;
+    int idx;
+    int done;
+
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 15; j++) {
+            C_Mgr_D1 *mgr = D_002A8490->f2E0;
+            if (mgr->f2C0->func_0005C020(mgr->f2D8)->fC[(f418 * 3 + i) * 15 + j] == 1) {
+                count++;
+            }
+        }
+    }
+    idx = f418;
+    done = D_002A8490->f2E0->f2C0->func_0005C020(D_002A8490->f2E0->f2D8)->f5AC[idx];
+    func_001ADCC0(buf, 0x40, D_0027EEF4, count - done, D_0027EEFC, D_002A8490->f2E0->f32C[idx]);
+    f2030->func_001B17D0(buf);
+}
+
 void C_000D24B0::func_000D24B0(void)
 {
     char buf[0x40];
