@@ -168,6 +168,13 @@ struct C_001D1B70 {
 };
 
 
+void *C_001D1460::func_001D1460(int a0)
+{
+    func_0015A910(a0);
+    vtbl = (void *)&D_0028F1F0;
+    return this;
+}
+
 void C_001D1480::func_001D1480(void) {
     extern int D_0028F1F0;
     int func_0015A940(...);
