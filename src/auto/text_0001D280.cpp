@@ -54,6 +54,33 @@ struct C_0001E030 {
     void *func_0001E030(int flags);
 };
 
+struct C_0001E080 {
+    int unk0;
+    void *func_0001E080(int flags);
+};
+
+struct C_0001E000 {
+    int unk0;
+    int unk4;
+    int func_0001E000(void);
+};
+
+struct C_0001E010 {
+    virtual void virt0(int param_1);
+    int unk4;
+    int func_0001E010(void);
+};
+
+struct C_0001E050 {
+    int unk0;
+    int unk4;
+    int unk8;
+    int unkC;
+    int unk10;
+    int unk14;
+    C_0001E050 *func_0001E050(void);
+};
+
 struct C_0001D280_B4 {
     virtual void dummy0();
     virtual int virt1(int param_1, int param_2);
