@@ -40,6 +40,10 @@ struct C_0018B090 {
     undefined4 func_0018B090(byte param_1);
 };
 
+struct C_0018BF80 {
+    undefined4 func_0018BF80(byte param_1);
+};
+
 
 undefined4 C_0018B120::func_0018B120(byte param_1)
 {
