@@ -329,6 +329,49 @@ struct C_0013FA90 {
     void *func_0013FA90(int flags);
 };
 
+S_0013F690_Item *C_0013F690::func_0013F690(void)
+{
+    S_0013F690_Item *item;
+    S_0013F690_Item *p;
+    S_0013F690_Shader *s;
+    int i;
+    int *q;
+    void *buf;
+
+    p = (S_0013F690_Item *)func_001E8A44(0x14);
+    if (p != 0) {
+        p->vtbl = (void *)&D_00284EAC;
+        p->fC = 0;
+        p->f8 = 0;
+        p->f4 = 0;
+        p->f10 = 0x3f800000;
+        item = p;
+    } else {
+        item = 0;
+    }
+    for (i = 0; i < 16; i++) {
+        s = shaders[i];
+        if (s != 0) {
+            s->f208 = func_001FF3C0(0x48);
+            buf = shaders[i]->f208;
+            q = func_001FF410(buf, 0x10);
+            *q++ = shaders[i]->f1C8;
+            *q++ = shaders[i]->f1C4;
+            *q++ = shaders[i]->f1B8;
+            *q++ = shaders[i]->f1C4;
+            *q++ = shaders[i]->f1B8;
+            *q++ = shaders[i]->f1C0;
+            *q++ = shaders[i]->f1C8;
+            *q++ = shaders[i]->f1C0;
+            *q++ = shaders[i]->f1BC;
+            *q++ = shaders[i]->f1C0;
+            *q++ = shaders[i]->f1BC;
+            *q++ = shaders[i]->f1C4;
+        }
+    }
+    return item;
+}
+
 C_0013F7B0 *func_0013F7B0(void)
 {
   void *func_001E8A44(int size);
