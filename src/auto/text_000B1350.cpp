@@ -38,6 +38,39 @@ struct VehicleV4 {
     u32 x, y, z, w;
 };
 
+/* config record reader (func_00168BE0 reads a string, func_00168C20 an int, func_00168CB0 a vec4) */
+struct S_000B1A40_Stream {
+    void func_00168BE0(const char *key, const char *def, char *dst, int size);
+    void func_00168C20(const char *key, int def, void *dst);
+    void func_00168CB0(const char *key, void *def, void *dst);
+};
+
+struct C_000B1A40 {
+    int f0;
+    char pad4[4];
+    int f8;
+    u32 fC[4];
+    u32 f1C[4];
+    u32 f2C[4];
+    char name[0x244 - 0x3C];
+    char text[0x104];
+    void func_000B1A40(S_000B1A40_Stream *stream);
+};
+
+extern char D_002764F0[];
+extern char D_00276310[];
+extern char D_0027CEF0[];
+extern char D_00275AE0[];
+extern char D_00275680[];
+extern char D_00275AD4[];
+extern char D_00275AC8[];
+extern char D_0027CEE4[];
+extern char D_0027CED8[];
+extern u32 D_002A2DF4;
+extern u32 D_002A2DE4;
+int func_001E9040(char *str, char *control);
+char *func_001E8920(char *dst, const char *src, int n);
+
 struct C_0018C7B0 {
     void func_0018C7B0(int a0);
 };
@@ -115,6 +148,31 @@ void C_000B1660::func_000B1660(S_000B1660_Arg *a) {
  }
  }
  }
+}
+
+int func_000B1740(VehicleAI *ai, S_000B1740_Panel *panel)
+{
+    if (D_002A8490->f2A4->f1C8 == 1) {
+        int hi = 2;
+        int lo = 0;
+        int v = ai->f50;
+        const int &m = (hi < v) ? hi : v;
+        const int &r = (m < lo) ? lo : m;
+        ai->f50 = r;
+    }
+    if (panel->f0C != 0) {
+        panel->f0C->fC = (float)ai->f50;
+    }
+    if (panel->f10 != 0) {
+        panel->f10->fC = (float)ai->f50;
+    }
+    if (panel->f14 != 0) {
+        panel->f14->fC = (float)ai->f50;
+    }
+    if (panel->f18 != 0) {
+        panel->f18->fC = (float)ai->f50;
+    }
+    return 0;
 }
 
 VehicleAI *VehicleAI::func_000B1EE0(int a0) {
