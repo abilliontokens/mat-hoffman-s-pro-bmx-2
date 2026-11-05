@@ -3,6 +3,7 @@
 #include <xmmintrin.h>
 #include <math.h>
 
+extern float D_002760D0, D_002760C0, D_002760B0;
 extern float D_00275544;
 extern float D_00275994, D_0027554C, D_00275818, D_00276210;
 extern char **D_002EFDB8;
