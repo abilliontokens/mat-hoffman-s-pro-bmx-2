@@ -166,8 +166,8 @@ struct S_SlotList {
 };
 struct S_Owner { char pad[0x138]; char *f138; };
 extern S_Owner *D_002F08EC;
-extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *p);
-extern "C" __declspec(dllimport) void __stdcall RtlLeaveCriticalSection(void *p);
+extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
+extern "C" void (__stdcall *_imp__RtlLeaveCriticalSection)(void *cs);
 
 XboxSoundGroup *XboxSoundGroup::func_001CD770(int a, int b)
 {
