@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <math.h>
 #include <xmmintrin.h>
+#include <stdarg.h>
 /* One entry of the sine/cosine table func_0014F6E0 interpolates in. */
 struct S_SinCosEntry {
     float a;
