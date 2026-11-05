@@ -285,6 +285,38 @@ int C_00109520::func_00109C70(C_00109520 *src)
     return 1;
 }
 
+void C_00109D40::func_00109D40(void)
+{
+    C_00136300 *p;
+
+    vtbl = &D_00282AE4;
+    p = f9E8[0]; if (p) { p->func_00136300(); func_001E891B(p); }
+    p = f9E8[1]; if (p) { p->func_00136300(); func_001E891B(p); }
+    p = f9E8[2]; if (p) { p->func_00136300(); func_001E891B(p); }
+    p = f9E8[3]; if (p) { p->func_00136300(); func_001E891B(p); }
+    if (f204C[0]) func_001E891B(f204C[0]);
+    if (f204C[1]) func_001E891B(f204C[1]);
+    if (f204C[2]) func_001E891B(f204C[2]);
+    if (f204C[3]) func_001E891B(f204C[3]);
+    if (f1084) func_001E891B(f1084);
+    if (f15A4) f15A4->Release();
+    if (f15A8) f15A8->Release();
+    if (f1244) f1244->Release();
+    if (f954) func_001E891B(f954);
+    if (f15D4) func_001E891B(f15D4);
+    if (f15B4[0]) func_001E8390(f15B4[0]);
+    if (f15B4[1]) func_001E8390(f15B4[1]);
+    if (f15B4[2]) func_001E8390(f15B4[2]);
+    if (f15B4[3]) func_001E8390(f15B4[3]);
+    if (f15B4[4]) func_001E8390(f15B4[4]);
+    if (f15B4[5]) func_001E8390(f15B4[5]);
+    if (f15D0) func_001E8390(f15D0);
+    if (f15B4[6]) func_001E8390(f15B4[6]);
+    if (fA60) func_001E891B(fA60);
+    if (fA64) func_001E891B(fA64);
+    func_00026A90();
+}
+
 void C_00109F30::func_00109F30(void) {
     fA40 = 0;
     fA48 = 0;
