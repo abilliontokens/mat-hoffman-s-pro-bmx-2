@@ -110,6 +110,48 @@ struct C_00052BF0 {
 };
 
 
+int C_00051CF0::func_00052590(int idx)
+{
+    int count;
+    if (unk1C8 != 0) {
+        return 0;
+    }
+    unk2B8[idx] = unk124;
+    unk2CC = 1;
+    count = 0;
+    if (unk2B8[0] > D_00275544) {
+        count++;
+    }
+    if (unk2B8[1] > D_00275544) {
+        count++;
+    }
+    if (unk2B8[2] > D_00275544) {
+        count++;
+    }
+    if (unk2B8[3] > D_00275544) {
+        count++;
+    }
+    unk170->func_00083B00(count);
+    return 1;
+}
+
+void C_00051CF0::func_00052630(const char *name)
+{
+    if (unk48 != 0) {
+        if (unk48->unk74->func_00030020(name) != 0 &&
+            unk48->unk74->func_000300C0(name) != 0) {
+            unk48->unk74->func_00030160();
+        }
+        D_002A8490->v15(unk28, unk24, 0, 0);
+        unk48->v6();
+        unk28->v6();
+        unk48->v18(0);
+        unk28->v18(0);
+        unk358 = 1;
+        D_002EFDB8->f30 = 0;
+    }
+}
+
 undefined4 C_00052BB0::func_00052BB0(byte param_1)
 {
   int func_00051260(...);
