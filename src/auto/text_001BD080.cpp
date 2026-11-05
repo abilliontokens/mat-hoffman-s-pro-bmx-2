@@ -223,3 +223,16 @@ void C_001BDA50::func_001BDA50(void)
   return;
 }
 
+void C_001BDAB0::func_001BDAB0(int a)
+{
+    int i;
+
+    f24 = a;
+    for (i = 0; i < f28; i++) {
+        S_001BDAB0_Child *c = f2c[i];
+        if (c != 0) {
+            c->func_001BF6C0(a);
+        }
+    }
+}
+
