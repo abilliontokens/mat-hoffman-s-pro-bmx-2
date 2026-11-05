@@ -200,4 +200,7 @@ void C_00095AB0::func_00095AB0(float a)
     }
     func_00157A00(a);
 }
-
+struct C_00095BC0 {
+    char data[0x6454];
+    void func_00095BC0();
+};
