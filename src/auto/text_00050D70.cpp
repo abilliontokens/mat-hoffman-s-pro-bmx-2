@@ -163,6 +163,19 @@ struct C_00051CB0 {
     undefined4 func_00051CB0(void *param_1);
 };
 
+struct RT_Vec { int a, b, c, d; };
+struct RT_Tex { RT_Tex *ctor(int f); void init(int a, int b, int c); char pad[0x180]; };
+struct RT_Spr { RT_Spr *ctor(int f); void init(RT_Tex *t, int a, int b, RT_Vec v, int c, int d); };
+struct RT_P1 { char pad[0x4ac]; int **f4AC; char pad2[0x2c]; int **f4D8; };
+struct C_00051420 {
+    char pad0[0x24];
+    RT_Tex *f24; RT_Tex *f28;
+    char pad2C[0x18];
+    RT_Spr *f44; RT_Spr *f48;
+    char pad4C[0x14];
+    RT_P1 *f64;
+    int func_00051420(void);
+};
 extern undefined4 D_00277934;
 extern S_00051BB0_Root *D_002A8490;
 extern float D_002B8F98;
