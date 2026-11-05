@@ -24,6 +24,15 @@ int __stdcall func_001F5975(S_001F5975_Pointers *pointers);
 void func_001F6292(void);
 int func_001F627B(PFN_001F5975 fn);
 
+struct S_Ld12_001F60E2 {
+    unsigned short exp;
+    unsigned short mant[5];
+};
+
+extern S_Ld12_001F60E2 D_002AF038[];
+extern S_Ld12_001F60E2 D_002AF198[];
+void __cdecl func_001F5EC0(S_Ld12_001F60E2 *dst, S_Ld12_001F60E2 *src);
+
 struct S_Ptd_001F6292 {
     char pad0[0x68];
     void (__cdecl *pterminate)(void);
@@ -108,11 +117,11 @@ int func_001F5AC2(S_U12 *a, S_U12 *b)
 void func_001F5B20(S_U12 *p)
 {
     unsigned int l0 = p->l[0];
+    unsigned int n0 = l0 << 1;
     unsigned int l1 = p->l[1];
-    unsigned int c0 = l0 >> 31;
 
-    p->l[0] = l0 << 1;
-    p->l[1] = (l1 << 1) | c0;
+    p->l[0] = n0;
+    p->l[1] = (l1 << 1) | (l0 >> 31);
     p->l[2] = (p->l[2] << 1) | (l1 >> 31);
 }
 
