@@ -73,15 +73,16 @@ struct C_00181DB0 {
 
 void C_00181DB0::func_00181DB0(int a0)
 {
-  int i;
+  int i = 0;
 
   if (f1B4 > 0) {
-    for (i = 0; i < f1B4; i++) {
+    do {
       int v = f1B8[i];
       if (a0 == -1 || a0 == v) {
         D_002A829C->f14[v].f4->func_001B0520(this);
       }
-    }
+      i++;
+    } while (i < f1B4);
   }
 }
 
