@@ -368,6 +368,31 @@ C_00162790 *C_00162790::func_00162790(void)
     return this;
 }
 
+void C_00162790::func_001627E0(void)
+{
+    if (unk4 != 0) {
+        delete[] unk4;
+    }
+    if (unk8 != 0) {
+        delete[] unk8;
+    }
+    if (unkC != 0) {
+        delete[] unkC;
+    }
+    if (unk10 != 0) {
+        delete[] unk10;
+    }
+    if (unk18 != 0) {
+        func_001E891B(unk18);
+    }
+    if (unk14 != 0) {
+        func_001E891B(unk14);
+    }
+    if (unk0 != 0) {
+        func_001E891B(unk0);
+    }
+}
+
 int C_001628A0::func_001628A0(float t)
 {
     if (t > f38) {
