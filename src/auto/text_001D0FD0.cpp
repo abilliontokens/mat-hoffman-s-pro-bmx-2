@@ -4,3 +4,8 @@
 int __stdcall func_001D1A30(int a0) {
     return 0;
 }
+
+int __stdcall func_001D1A50(int a0, int a1, int a2) {
+    return 0;
+}
+
