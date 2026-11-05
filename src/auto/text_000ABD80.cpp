@@ -205,7 +205,7 @@ struct C_000AC410 {
     }
     void clearItems(void)
     {
-        memset(f5ac, 0, f5a8 * 4);
+        memset(f5ac, 0, f5a8 * sizeof(void *));
         f5a8 = 0;
     }
     void func_0018B5C0(void);
