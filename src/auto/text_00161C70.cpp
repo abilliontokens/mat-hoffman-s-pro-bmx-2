@@ -253,26 +253,17 @@ struct S_Mat44_00162470 {
     }
 };
 
-float *func_00162470(float *m, float a2, float a3, float a4, float a5, float a6, float a7, int a8)
+S_Mat44_00162470 func_00162470(float a2, float a3, float a4, float a5, float a6, float a7, int a8)
 {
-    if (a8 != 0) {
-        setprojcommon(m, a2, a3, a4, a5, a6);
-        m[10] = a7 / (a7 - a6);
-        m[11] = -(a6 * a7 / (a7 - a6));
-    } else {
-        setprojcommon(m, a2, a3, a4, a5, a6);
-        m[10] = (a6 + a7) / (a7 - a6);
-        m[11] = a6 * a7 * -2.0f / (a7 - a6);
-    }
-    return m;
+    return S_Mat44_00162470(a2, a3, a4, a5, a6, a7, a8);
 }
 
-void func_00162530(float *m, float a2, float a3, float a4, float a5, int a6)
+S_Mat44_00162470 func_00162530(float a2, float a3, float a4, float a5, int a6)
 {
     float v;
     float w;
     w = (v = func_0014F590(a2 * 0.5f) * a4) / a3;
-    func_00162470(m, -v, v, -w, w, a4, a5, a6);
+    return func_00162470(-v, v, -w, w, a4, a5, a6);
 }
 
 C_001625A0 *C_001625A0::func_001625A0(int a)
