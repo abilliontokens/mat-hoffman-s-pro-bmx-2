@@ -340,13 +340,11 @@ void C_001D53A0::func_001D53A0(int a)
     if (q != 0) {
         q->unk0 = (int)&D_0028F578;
         q->unk4 = (int)func_001E8A44(0x18);
-        unk4 = q;
-        unk0->unk10 = q;
     } else {
         q = 0;
-        unk4 = q;
-        unk0->unk10 = q;
     }
+    unk4 = q;
+    unk0->unk10 = q;
 }
 
 void C_001D53A0::func_001D5430(S_0012B2B0_Rect *in, S_0012B2B0_Rect *out, int c)
