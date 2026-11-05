@@ -311,6 +311,20 @@ struct S_001BC310_Pair {
     S_001BC310_Node *f28;
 };
 
+static __forceinline void MulT_001BC310(V4Raw_001BC310 *out, V4_001BC310 *v, float *m)
+{
+    out->x = v->x * m[0] + v->y * m[4] + v->z * m[8];
+    out->y = v->x * m[1] + v->y * m[5] + v->z * m[9];
+    out->z = v->x * m[2] + v->y * m[6] + v->z * m[10];
+}
+
+static __forceinline void Mul_001BC310(V4_001BC310 *out, V4Raw_001BC310 *v, float *m)
+{
+    out->x = v->x * m[0] + v->y * m[1] + v->z * m[2];
+    out->y = v->x * m[4] + v->y * m[5] + v->z * m[6];
+    out->z = v->x * m[8] + v->y * m[9] + v->z * m[10];
+}
+
 void func_0011F4B0(float *out, V4_001BC310 *pos, float *m);
 void func_00030AC0(float *out, float *v, float *m);
 void func_001BC310(S_001BC310_Ctx *a0, S_001BC310_Node *p2, S_001BC310_Pair *p3, int flag);
@@ -402,6 +416,50 @@ struct C_001BC6E0 {
     char *data;
     char func_001BC6E0(void *param);
 };
+
+void func_001BC310(S_001BC310_Ctx *a0, S_001BC310_Node *p2, S_001BC310_Pair *p3, int flag)
+{
+    if (flag != 0) {
+        S_001BC310_Node *other = p3->f24;
+        S_001BC310_View *view;
+        float *m;
+        if (p2 == other) {
+            other = p3->f28;
+        }
+        view = a0->f64;
+        V4_001BC310 A;
+        view->f22c->func_00199A70(0, &A);
+        V4_001BC310 C;
+        V4_001BC310 B;
+        view->f22c->func_001994C0(0, &C, &B);
+        m = (float *)((char *)p2->f2e4 + 0xb0);
+        V4_001BC310 D;
+        func_0011F4B0(&D.x, &A, m);
+        V4Raw_001BC310 E1;
+        V4Raw_001BC310 E2;
+        E1.x = C.x * m[0] + C.y * m[4] + C.z * m[8];
+        E1.y = C.x * m[1] + C.y * m[5] + C.z * m[9];
+        E1.z = C.x * m[2] + C.y * m[6] + C.z * m[10];
+        E2.x = B.x * m[0] + B.y * m[4] + B.z * m[8];
+        E2.y = B.x * m[1] + B.y * m[5] + B.z * m[9];
+        E2.z = B.x * m[2] + B.y * m[6] + B.z * m[10];
+        V4_001BC310 F;
+        V4_001BC310 G;
+        m = (float *)((char *)other->f2e4 + 0xb0);
+        func_00030AC0(&A.x, &D.x, m);
+        F.x = E1.x * m[0] + E1.y * m[1] + E1.z * m[2];
+        F.y = E1.x * m[4] + E1.y * m[5] + E1.z * m[6];
+        F.z = E1.x * m[8] + E1.y * m[9] + E1.z * m[10];
+        G.x = E2.x * m[0] + E2.y * m[1] + E2.z * m[2];
+        G.y = E2.x * m[4] + E2.y * m[5] + E2.z * m[6];
+        G.z = E2.x * m[8] + E2.y * m[9] + E2.z * m[10];
+        view->f22c->func_00199790(0, &A);
+        view->f22c->func_00199110(0, &F, &G, 0, 1, 0);
+        other->f2ec &= 0xfd;
+    } else {
+        p2->f2ec |= 2;
+    }
+}
 
 C_001BC640 *C_001BC640::func_001BC640(void *param)
 {
