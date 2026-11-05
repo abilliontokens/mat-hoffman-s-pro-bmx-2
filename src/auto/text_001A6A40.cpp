@@ -91,6 +91,7 @@ struct C_CardStringsHolder { char pad0[4]; C_CardStrings *f4; };
 struct C_CardText {
     int f0, x, y;
     char padc[0x4e-0xc]; unsigned char flags;
+    void setPosition(int a, int b) { if(x != a || y != b) { y=b; x=a; flags |= 6; } }
     void func_0005E840(int);
     void func_0005E7C0(float, float);
     void func_001D6600();
