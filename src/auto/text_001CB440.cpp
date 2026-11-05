@@ -355,6 +355,34 @@ int C_001CB650::func_001CB6D0(void)
     return 0;
 }
 
+int C_001CB650::func_001CB720(int a, int b, int c)
+{
+    f84 = b;
+    if (c == 0) {
+        f8c = a;
+    } else {
+        f8c = (int)((float)a * D_002755E0 * f98);
+    }
+    f90 = f98;
+    f88 = (float)f98;
+    return 1;
+}
+
+int C_001CB650::func_001CB780(unsigned int *out, unsigned int idx)
+{
+    unsigned int i;
+
+    for (i = idx; i < 0x2b; i += 2) {
+        if (fd0[i] != 0x8000000a && (i > 0x14 || (i & 1) == idx)) {
+            if (out != 0) {
+                *out = i;
+            }
+            return 1;
+        }
+    }
+    return 0;
+}
+
 void C_001CB940::func_001CB940(void)
 {
     ((C_001576C0 *)this)->func_001576C0();
