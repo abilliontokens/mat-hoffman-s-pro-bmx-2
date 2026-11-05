@@ -7,9 +7,31 @@ struct C_001D6600 {
     void func_001D6600(void);
 };
 
+struct C_001D5AD0 {
+    char pad0[0x38];
+    unsigned int f38;
+    char pad3C[0x1c];
+    unsigned char f58;
+    void func_001D5AD0();
+};
 struct S_002B91AC_000F1B60 {
-    char pad0[0x34];
+    char pad0[0x24];
+    C_001D5AD0 *unk24, *unk28, *unk2C, *unk30;
     C_001D6600 *f34;
+    char pad38[0x18];
+    C_001D5AD0 *unk50, *unk54;
+    char pad58[0x10];
+    C_001D5AD0 *unk68, *unk6C;
+};
+struct C_000F1BA0 {
+    char pad0[0x280];
+    int unk280, unk284;
+    char pad288[0x144];
+    short unk3CC;
+    char pad3CE[0xa];
+    int arr3D8[4];
+    C_001D5AD0 *arr3E8[4], *arr3F8[2], *arr400[4], *arr410[4];
+    void func_000F1BA0();
 };
 
 extern S_002B91AC_000F1B60 *D_002B91AC;
