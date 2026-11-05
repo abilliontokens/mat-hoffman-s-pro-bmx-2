@@ -21,3 +21,18 @@ struct UIControl {
     void func_001BE220(int n);
     void func_001BE290(void);
 };
+
+UIControl *UIControl::func_001BE320(byte flags)
+{
+    int func_001E8390(...);
+    int func_001E891B(...);
+    vtbl = (void *)&D_0028D58C;
+    if (f2c != 0) {
+        func_001E8390(f2c);
+    }
+    func_00157660();
+    if ((flags & 1) != 0) {
+        func_001E891B(this);
+    }
+    return this;
+}
