@@ -588,3 +588,9 @@ void C_001BFEE0::func_001BFEE0(int a)
     func_00157A00(a);
 }
 
+void C_001BF930::func_001BFF10(int a, int b)
+{
+    f68->f4->func_00198E60();
+    f68->f4->func_0019ABA0(a, b);
+}
+
