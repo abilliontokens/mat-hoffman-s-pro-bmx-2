@@ -239,6 +239,45 @@ struct C_00022730 {
     int func_00022730(int name, int idx);
 };
 
+#include <math.h>
+#include <xmmintrin.h>
+
+extern float D_00276230, D_002755E8, D_002756D0, D_002756E8;
+extern "C" void func_00167FE0(void *a, void *b, float x, float y, float z);
+
+struct S_00022060_Src {
+    float x, y, z;
+    char pad0C[0xC];
+    int f18;
+};
+
+struct S_00022060_Cfg {
+    char pad0[0x28];
+    float f28;
+    float f2C;
+    float f30;
+};
+
+struct S_00022060_Dst {
+    void func_00198F50(Vec4_000223B0 *a, Vec4_000223B0 *b, int c, int d, int e);
+};
+
+struct C_00022060 {
+    S_00022060_Src *f0;
+    S_00022060_Dst *f4;
+    S_00022060_Cfg *f8;
+    float fC, f10, f14, f18, f1C, f20, f24, f28, f2C;
+    int func_00022060(float dt);
+};
+
+static __forceinline float length_00022060(S_00022060_Src *v)
+{
+    float square = v->x * v->x + v->y * v->y + v->z * v->z;
+    float r;
+    _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&square));
+    return r;
+}
+
 Obj_00022320 *C_00022320::func_00022320(int a)
 {
     f2C->v35(a, 1, 0);
