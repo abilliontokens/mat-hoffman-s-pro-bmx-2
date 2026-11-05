@@ -1,6 +1,7 @@
 /* 23 functions from 0x0013F690 to 0x00140680, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <xmmintrin.h>
 struct C_0013C8A0 {
     void func_0013C8A0(int key, void *out, int size, int flag);
 };
