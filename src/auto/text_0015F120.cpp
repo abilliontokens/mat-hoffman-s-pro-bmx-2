@@ -29,12 +29,16 @@ struct C_0015F470 {
     /* index of the entry whose f0 is id, or -1 */
     int FindEntry(int id)
     {
-        int i;
-        S_0015F470_Entry *p = f24;
-        for (i = 0; i < f28; i++, p++) {
-            if (p->f0 == id) {
-                return i;
-            }
+        int i = 0;
+        if (0 < f28) {
+            S_0015F470_Entry *p = f24;
+            do {
+                if (p->f0 == id) {
+                    return i;
+                }
+                i++;
+                p++;
+            } while (i < f28);
         }
         return -1;
     }
