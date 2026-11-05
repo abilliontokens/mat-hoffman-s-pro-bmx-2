@@ -193,13 +193,44 @@ struct Obj_00059CC0 {
  char pad0[0x64];
  Level_00059CC0 *f64;
 };
+struct C_001C4B60 {
+    void func_001C4B60(int a, int b);
+};
+
+/* text console: prints the two strings, then the reset sequence */
+struct S_00059E10_Console {
+    void func_00030020(const char *s);
+    void func_000300C0(const char *s);
+    void func_00030210(void);
+    void func_000301A0(void);
+};
+
+struct S_00059E10_Screen {
+    char pad0[0x74];
+    S_00059E10_Console *f74;
+};
+
+struct S_00059E10_View {
+    char pad0[0x25C];
+    S_00059E10_Screen *f25C;
+    char pad260[8];
+    C_001C4B60 *f268;
+};
+
+struct S_00059E10_Scene {
+    char pad0[0x24];
+    S_00059E10_View *f24;
+};
+
 struct S_002A8490 {
     char pad0[4];
     S_00059F50_F4 *f4;
     InputDevice *f8;
     char padC[8];
     C_001577A0 *f14;
-    char pad18[0x2E0 - 0x18];
+    char pad18[0x2AC - 0x18];
+    S_00059E10_Scene *f2AC;
+    char pad2B0[0x2E0 - 0x2B0];
     S_00059F50_E0 *f2E0;
     char pad2E4[0xC];
     int f2F0;
