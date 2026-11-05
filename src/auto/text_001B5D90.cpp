@@ -184,6 +184,8 @@ extern int D_002AAA00;
 
 /* resource manager held in D_002A829C */
 struct S_002A829C {
+    char pad0[0x14];
+    char *f14;
     int func_001617F0(const char *name, int flag);
 };
 extern S_002A829C *D_002A829C;
