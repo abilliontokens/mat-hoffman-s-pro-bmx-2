@@ -1,6 +1,14 @@
 /* 9 functions from 0x000C1B00 to 0x000C29A0, found by Ghidra. */
 #include "common.h"
 
+struct S_000C2680_Query {
+    int func_00136170(int a, int b, int c);
+};
+
+struct S_000C2680_Ui {
+    void func_000B9A80(int a, int b);
+};
+
 struct C_000C2680 {
     char pad0[0x124];
     void *f124;
