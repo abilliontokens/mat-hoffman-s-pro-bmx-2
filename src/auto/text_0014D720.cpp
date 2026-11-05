@@ -57,7 +57,10 @@ struct EcoSystem {
     char pad454[0x558 - 0x454];
     int unk558;
     int unk55C;
-    char pad560[0x578 - 0x560];
+    char pad560[0x56c - 0x560];
+    void *unk56C;
+    int unk570;
+    void *unk574;
     float f578;
     float f57C;
     char pad580[0x594 - 0x580];
