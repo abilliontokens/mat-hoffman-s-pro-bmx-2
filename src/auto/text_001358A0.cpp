@@ -245,6 +245,47 @@ int C_00135E00::func_00136170(int idx, int type, int row)
     return -1;
 }
 
+int func_001361E0(int idx, int type, int *binding, int a3)
+{
+    int v;
+    C_00135CB0 *t = D_002A8490->f8->fCC0;
+
+    if (t == 0) {
+        return 0;
+    }
+    switch (type) {
+    case 0:
+        if (D_002A8490->f8->f38 != 0) {
+            if (D_002A8490->f8->f38->func_0015AC20(a3) == 0) {
+                return 0;
+            }
+        }
+        if (idx >= 0 && idx < 0x4a) {
+            v = D_002A8490->f8->fCC0->tbl[0][idx];
+        } else {
+            v = -1;
+        }
+        break;
+    case 1:
+        if (idx >= 0 && idx < 0x4a) {
+            v = t->tbl[9][idx];
+        } else {
+            v = -1;
+        }
+        break;
+    case 2:
+        t->func_00135D30(idx, &v, binding[2]);
+        break;
+    default:
+        v = -1;
+        break;
+    }
+    if (binding[0] == v && binding[1] == type && v != -1) {
+        return 1;
+    }
+    return 0;
+}
+
 void C_00136300::func_00136300(void)
 {
     if (*(int *)((char *)D_002A8490 + 8) != 0 && f0 != 0) {
