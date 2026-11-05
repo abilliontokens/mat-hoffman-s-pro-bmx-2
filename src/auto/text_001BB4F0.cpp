@@ -156,7 +156,10 @@ struct C_001BB900 {
 };
 
 __declspec(align(16)) struct S_001BBAE0_Mat {
-    float m[16];
+    __m128 r0;
+    __m128 r1;
+    __m128 r2;
+    __m128 r3;
 };
 
 S_001BBAE0_Mat func_000263B0(void *a, void *b);
