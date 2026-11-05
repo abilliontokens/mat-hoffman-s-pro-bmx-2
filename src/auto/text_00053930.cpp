@@ -2,7 +2,8 @@
 #include "common.h"
 struct TagVector { int x, y, z, w; };
 struct TagObject {
-    void **vtbl;
+    virtual void v0(); virtual void v1(); virtual void v2();
+    virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6();
     void func_0008BB50(int);
     void func_00199600(TagVector);
     void func_0019AC50();
