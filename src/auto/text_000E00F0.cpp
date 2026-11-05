@@ -86,7 +86,16 @@ struct C_000E0D50 {
     void func_000E0DF0();
     void func_001BEFC0(int a, int b);
     void func_000E0E30();
+    void func_001BE4F0(int a, int b, int c);
+    C_000E0D50 *func_000E0F30(int a, int b, int c);
 };
+
+void *func_001E8A44(int size);
+extern int D_00278690;
+extern int D_002786A0;
+extern int D_00278678;
+extern int D_002786B0;
+extern float D_0027E140;
 
 C_000E0D50 *C_000E0D50::func_000E0D50(int a)
 {
