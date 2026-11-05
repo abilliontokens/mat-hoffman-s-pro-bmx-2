@@ -13,6 +13,14 @@ struct S_SectionEntry {
     char pad18[0x20];
 };
 
+struct C_00224F6E {
+    void func_00224F6E(unsigned int flags);
+};
+
+struct Class_002901A0 {
+    void func_001E29C5(unsigned int flags);
+};
+
 extern int D_0001011C;
 extern S_SectionEntry *D_00010120;
 
