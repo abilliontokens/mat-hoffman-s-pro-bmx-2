@@ -56,6 +56,61 @@ struct C_000E5150_Global {
 
 extern C_000E5150_Global *D_002A8490;
 
+void C_000E4AB0::func_000E4AB0()
+{
+    int i;
+    S_000E4AB0_Raw *p;
+
+    vtbl = (void *)&D_0027FC74;
+    for (i = 0; i < 5; i++) {
+        if (a514[i]) {
+            delete a514[i];
+            a514[i] = 0;
+        }
+        if (a528[i]) {
+            delete a528[i];
+            a528[i] = 0;
+        }
+        if (a53C[i]) {
+            delete a53C[i];
+            a53C[i] = 0;
+        }
+        if (a550[i]) {
+            delete a550[i];
+            a550[i] = 0;
+        }
+        p = a564[i];
+        if (p) {
+            p->func_001D6410();
+            func_001E891B(p);
+            a564[i] = 0;
+        }
+    }
+    for (i = 0; i < 6; i++) {
+        if (a6B8[i]) {
+            delete a6B8[i];
+            a6B8[i] = 0;
+        }
+    }
+    for (i = 0; i < 4; i++) {
+        if (a6E0[i]) {
+            delete a6E0[i];
+            a6E0[i] = 0;
+        }
+    }
+    for (i = 0; i < 4; i++) {
+        if (a6D0[i]) {
+            delete a6D0[i];
+            a6D0[i] = 0;
+        }
+    }
+    if (f510) {
+        delete f510;
+        f510 = 0;
+    }
+    func_001BE3F0();
+}
+
 int __stdcall func_000E5150(int index)
 {
     C_000E5150_Mgr *mgr = D_002A8490->f2E0;
