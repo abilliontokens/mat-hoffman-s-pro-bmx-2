@@ -88,7 +88,8 @@ struct C_001CC3C0 {
     int f13C;               /* 0x13C */
     C_001CC3C0_140 *f140;   /* 0x140 */
     C_001CC3C0_144 *f144;   /* 0x144 */
-    char pad148[0xC];       /* 0x148 */
+    char pad148[8];
+    int f150;
     C_001CC3C0_154 *f154;   /* 0x154 */
     char pad158[0x50];      /* 0x158 */
     int f1A8;               /* 0x1A8 */
