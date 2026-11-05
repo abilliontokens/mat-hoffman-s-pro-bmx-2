@@ -7,17 +7,25 @@ void *func_001E8A44(int size);
 
 struct C_001576D0 {
     void func_001576D0(void);
+    void func_001576C0(void);
     void func_00157660(void);
 };
 
 struct C_00193490 {
     C_00193490 *func_00193490(void);
     void func_001938C0(void *a, int b, int c, float *d, float *e, int f);
+    void func_00193950(void *a, float *vecA, float *vecB, int d);
 };
 
 struct C_00171D00_F14C {
     void func_001983A0(void);
+    void func_00198390(void);
+    void func_00198E60(void);
     void func_0019A8C0(float *a, float *b);
+};
+
+struct C_00172460Obj {
+    void func_001332A0(void);
 };
 
 struct C_00171D00_C4VT {
@@ -139,8 +147,10 @@ void *PhysicsBody::func_00171E60(int flags)
 
 void func_00171F10(S_00171F10_Arg0 *arg)
 {
+    C_00171D00_C4VT *obj = arg->f64;
+
     if (arg->f60->f28 != 0) {
-        arg->f64->v34(1);
+        obj->v34(1);
     }
 }
 
