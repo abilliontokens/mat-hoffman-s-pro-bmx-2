@@ -60,6 +60,97 @@ extern u32 D_002A9908;
 extern u32 D_002A990C;
 extern u32 D_002A9910;
 
+struct V8_00193240 {
+    int p[2];
+    void func_001D3F50(void);
+};
+struct Log_00193240 {
+    char pad0[0x1934];
+    int f1934;
+};
+struct Root_00193240 {
+    char pad0[0x18];
+    Log_00193240 *f18;
+};
+struct Link_00193240 {
+    Link_00193240 *next;
+    struct Obj_00193240 *item;
+};
+struct Obj_00193240 {
+    char pad0[0x8];
+    struct Sub_00193240 *f8;
+};
+struct Sub_00193240 {
+    int func_00179B40(V8_00193240 *out, int value);
+};
+struct Dev_00193240 {
+    char pad0[4];
+    int f4;
+};
+struct Ent_00193240 {
+    char pad0[4];
+    struct Tgt_00193240 *f4;
+};
+struct Tgt_00193240 {
+    char pad0[0x3c];
+    int f3c;
+    void func_00192CC0(V8_00193240 *a);
+};
+struct Link2_00193240 {
+    Link2_00193240 *next;
+    Tgt_00193240 *item;
+    Sub_00193240 *sub;
+};
+struct Vt_00193240 {
+    virtual void v0();
+};
+struct Stamp_00193240 {
+    char pad0[0x90];
+    u16 f90;
+    char pad92[0x16];
+};
+struct Owner_00193240 {
+    char pad0[0x24];
+    Link2_00193240 *f24;
+    Vt_00193240 *f28;
+    Vt_00193240 *f2c;
+    char pad30[8];
+    int f38;
+    int f3c;
+    f32 f40;
+    f32 f44;
+    f32 f48;
+    f32 f4c;
+    char pad50[0x40];
+    u16 f90;
+    u16 f92;
+    int func_00193240(struct Args_00193240 *arg);
+};
+struct Args_00193240 {
+    char pad0[0x30];
+    int **f30;
+    int f34;
+};
+extern Root_00193240 *D_002A8490;
+extern int D_002A9868;
+extern char D_0028ACB4[];
+extern char D_0028AC8C[];
+extern f32 D_0028AC88;
+extern f32 D_00275460;
+extern f32 D_00278788;
+extern u16 D_002EFE50;
+extern u16 D_002EFE54;
+extern int D_002EFE48;
+extern Owner_00193240 *D_002EFE4C;
+extern char D_002EFD38[];
+extern char *D_002EFDB8;
+void func_0013E260(Log_00193240 *o, int id, const char *fmt, ...);
+void func_0013E1F0(Log_00193240 *o, int id, const char *fmt, ...);
+int func_001E8858(float f);
+int func_0017C060(void *, void *, void *);
+void func_00192C00(float, float, float, float, void *);
+void func_001930F0(void);
+
 void func_001E8390(void *p);
 #include <xmmintrin.h>
 static inline float sqrtf(float x)
