@@ -6,6 +6,7 @@ extern int D_00278E6C;
 
 struct C_000777A0_Base {
     void func_00157600(int a);
+    void func_00157660();
 };
 
 /* FPSSaveMenu */
