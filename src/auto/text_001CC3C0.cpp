@@ -48,8 +48,11 @@ struct C_001CC3C0_140 {
 };
 
 struct C_001CC3C0_144 {
-    char pad0[0x8];
+    virtual void v0();
+    virtual void v1();
+    int f4;
     int f8;
+    void func_0001DFE0();
 };
 
 struct C_001CC3C0_154 {
