@@ -49,19 +49,22 @@ struct C_000A17E0 {
 };
 
 struct C_001BB900 {
+    void func_001BB900(void *a0);
+};
+
+struct C_000A1920_Elem {
     char pad0[0x11b0];
     void *f11b0;
-    void func_001BB900(void *a0);
 };
 
 struct C_000A1920_Scene {
     char pad0[0x1a8];
-    C_001BB900 *arr1a8[1];
+    C_000A1920_Elem *arr1a8[1];
 };
 
 struct C_000A1920_Arg {
     char pad0[4];
-    C_000A1920_Scene *f4;
+    C_001BB900 *f4;
 };
 
 struct C_000A1920 {
