@@ -82,6 +82,20 @@ void func_001D86C0(char *buf, int size, int adapter)
                   ident.Data4[4], ident.Data4[5], ident.Data4[6], ident.Data4[7]);
 }
 
+C_001D8760 *C_001D8760::func_001D8760(int flags)
+{
+    vtbl = (void *)&D_0028F774;
+    if (D_002F0BB8 != 0) {
+        func_001FFB70();
+        D_002F0BB8 = 0;
+    }
+    ((C_001C3E00_1D8340 *)this)->func_001C3E00();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 C_001D8B40 *C_001D8B40::func_001D8B40(void *param)
 {
     ((C_001C99E0_1D8340 *)this)->func_001C99E0(param);
