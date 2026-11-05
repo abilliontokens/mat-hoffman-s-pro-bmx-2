@@ -33,6 +33,7 @@ struct BmxUIPageDemo {
     int func_000C0E30(int idx);
     int func_000C1000(int idx);
     int func_000C11D0(int idx);
+    int func_000C13A0(int idx);
     int func_000C1570(int idx);
     int func_000C1710(int idx);
 };
