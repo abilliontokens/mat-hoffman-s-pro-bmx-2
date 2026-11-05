@@ -115,12 +115,72 @@ struct C_00167860 {
     void func_00167860(void);
 };
 
+extern char *D_002EFDB8;
+extern int D_002A8CDC;
+extern int D_002A85D4;
+
+struct C_00149310 {
+    void func_00149310(int a1, int a2, int a3, int a4);
+};
+
+struct C_00142F30 {
+    void func_00142F30(int a);
+};
+
+struct S_00167900_Node {
+    char pad0[0xd4];
+    int fD4;
+    void func_001B07A0(void);
+};
+
+struct S_00167900_Entry {
+    int f0;
+    S_00167900_Node *f4;
+    int f8;
+    int fC;
+};
+
+struct S_00167900_Mgr {
+    char pad0[0x14];
+    S_00167900_Entry *f14;
+};
+
+struct S_00167900_Tbl {
+    char pad0[0x10];
+    C_00149310 *f10[1];
+};
+
+extern S_00167900_Mgr *D_002A829C;
+extern S_00167900_Tbl *D_002F0630;
+
+struct S_00167900_Elem {
+    int count;
+    int f4;
+    int f8;
+};
+
+struct S_00167900_Inner {
+    char pad0[0x10];
+    S_00167900_Elem *f10;
+};
+
+struct S_00167900_Obj {
+    char pad0[0x190];
+    int f190;
+    char pad194[0x1a0 - 0x194];
+    u8 f1a0;
+    char pad1a1[3];
+    S_00167900_Inner *f1a4;
+    char pad1a8[0x1d0 - 0x1a8];
+    C_00142F30 *f1d0;
+};
+
 struct C_00167760 {
     void *vtbl;
     char pad4[0x20];
     C_0017A860 *f24;
-    u32 f28;
-    char pad2c[0x320];
+    C_00149310 *f28;
+    S_00167900_Obj *f2c[0x320 / 4];
     C_00167760_Stream *f34c;
     u32 f350;
     u32 f354;
