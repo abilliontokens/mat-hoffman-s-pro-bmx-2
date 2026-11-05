@@ -237,6 +237,22 @@ static __forceinline void setprojcommon(float *m, float a2, float a3, float a4, 
     m[6] = (a4 + a5) / (a5 - a4);
 }
 
+struct S_Mat44_00162470 {
+    float m[16];
+    __forceinline S_Mat44_00162470(float a2, float a3, float a4, float a5, float a6, float a7, int a8)
+    {
+        if (a8 != 0) {
+            setprojcommon(m, a2, a3, a4, a5, a6);
+            m[10] = a7 / (a7 - a6);
+            m[11] = -(a6 * a7 / (a7 - a6));
+        } else {
+            setprojcommon(m, a2, a3, a4, a5, a6);
+            m[10] = (a6 + a7) / (a7 - a6);
+            m[11] = a6 * a7 * -2.0f / (a7 - a6);
+        }
+    }
+};
+
 float *func_00162470(float *m, float a2, float a3, float a4, float a5, float a6, float a7, int a8)
 {
     if (a8 != 0) {
