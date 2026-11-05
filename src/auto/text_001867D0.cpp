@@ -214,6 +214,16 @@ C_00186EF0* C_00186EF0::func_00186EF0(void) {
     return this;
 }
 
+int C_00186F50::func_00186F50(void)
+{
+    SoundObj_00186F50 *p = f110;
+
+    if (p != 0 && D_002A8490->f4->f5C != 0) {
+        return p->v5(2);
+    }
+    return 0;
+}
+
 int C_00187510::func_00187510(C_00187510Param *param)
 {
     char buf[0x104];
