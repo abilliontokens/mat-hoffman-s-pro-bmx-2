@@ -8,6 +8,17 @@ void *func_001E8A44(int size);
 extern float D_0028957C;
 extern char D_00289570[];
 
+extern char D_00289528[];
+extern char D_002769E8[];
+extern char D_0028951C[];
+extern char D_00289510[];
+void *func_001E83E8(void *ptr, int size);
+
+struct C_00169710 {
+    void func_00169710(char *name);
+    void func_00168C20(char *key, int flag, int *out);
+};
+
 struct C_001691E0 {
     void func_001691E0(void);
 };
