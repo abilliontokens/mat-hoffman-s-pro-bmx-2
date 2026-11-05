@@ -78,7 +78,7 @@ struct C_00198B70 {
     virtual void v26();
     virtual void v27();
     virtual void v28();
-    virtual void v29();
+    virtual void v29(C_00198B70 **out);
     virtual void v30();
     virtual void v31();
     virtual void v32();
