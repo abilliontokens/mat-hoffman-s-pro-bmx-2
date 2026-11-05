@@ -148,9 +148,7 @@ void SoultreeCollisionObject::func_0019C690(int a1, S_0019C690_Arg *a2)
     f1C8 = e->f10;
     f1CC = e->f8;
     f1CE = e->fA;
-    f1B0 = e->f14;
-    f1B4 = e->f18;
-    f1B8 = e->f1C;
+    *(S_0019C690_V3 *)&f1B0 = *(S_0019C690_V3 *)((char *)e + 0x14);
     f1BC = e->f20;
     ((C_000264C0 *)fF0)->func_000264C0(e->f30);
     f1D4 = e;
