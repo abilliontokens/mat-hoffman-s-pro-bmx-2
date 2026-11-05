@@ -1,6 +1,17 @@
 /* 4 functions from 0x00118380 to 0x001188F0, found by Ghidra. */
 #include "common.h"
 
+extern float D_002756D4;
+extern float D_002756D0;
+extern float D_00276080;
+extern float D_002B920C;
+extern float D_002A3AAC;
+float *func_00011110(float *out, float *a, float *b);
+float func_00011170(float *v);
+float *func_0001C5E0(float *out, float f, float *v);
+void func_00104A90(float *a, float *b);
+float func_0014F7E0(float f);
+int func_000B5950_(int x);
 extern int D_002A1030;
 extern int D_002B9210;
 extern int D_002B9214;
