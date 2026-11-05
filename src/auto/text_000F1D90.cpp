@@ -163,6 +163,24 @@ struct C_000F2BD0 {
     void func_000F2BD0(float dt);
 };
 
+struct C_000F1DD0 {
+    char pad0[0x280];
+    int f280;
+    int f284;
+    int f288;
+    int f28C;
+    int f290;
+    int f294;
+    int f298;
+    int f29C;
+    int f2A0;
+    int f2A4;
+    int f2A8;
+    int f2AC;
+    int f2B0;
+    void func_000F1DD0(void);
+};
+
 void BmxUIPageHPHChoice::func_000F1D90(void)
 {
     int i;
