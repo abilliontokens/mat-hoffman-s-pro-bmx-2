@@ -114,3 +114,16 @@ void C_0004D010::func_0004D010(void)
     ((C_0012A770 *)f24)->func_0012A770(**(int **)((char *)f64 + 0x4a8), 2);
 }
 
+void C_0004D070::func_0004D070(int flag)
+{
+    if (f6c != -1) {
+        void *p;
+        if (flag != 0) {
+            p = (void *)(*(int *)(*(int *)(*(int *)((char *)f64 + 0x4e0) + 0x1a8 + f120 * 4) + 0x1e0) + 0x238);
+        } else {
+            p = 0;
+        }
+        D_002A8490->f4->func_0001CCE0(f6c, f24 + 0x170, f24 + 0x180, f24 + 0x190, p);
+    }
+}
+
