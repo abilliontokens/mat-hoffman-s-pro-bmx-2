@@ -219,6 +219,8 @@ struct C_000C3C20_Global {
     C_000C3C20_Mid *f2e0;
 };
 
+extern C_000C3C20_Global *D_002A8491;
+
 struct C_000C3C20 {
     char pad0[0x124];
     C_000C3C20_Sub *f124;
