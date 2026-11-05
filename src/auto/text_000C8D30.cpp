@@ -79,12 +79,58 @@ struct C_000C98D0 {
     void func_000C98D0();
 };
 
+extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
+
 struct BmxUIPageGameOptions {
     void *vtbl;
-    char pad4[0x334 - 4];
+    char pad4[0x280 - 4];
+    u32 unk280;
+    u32 unk284;
+    u32 unk288;
+    u32 unk28C;
+    u32 unk290;
+    u32 unk294;
+    u32 unk298;
+    u32 unk29C;
+    u32 unk2A0;
+    u32 unk2A4;
+    char pad2A8[4];
+    u32 unk2AC;
+    u32 unk2B0;
+    char pad2B4[0xc];
+    u32 unk2C0;
+    char pad2C4[4];
+    u32 unk2C8;
+    u32 unk2CC;
+    u32 unk2D0;
+    u32 unk2D4;
+    u32 unk2D8;
+    u32 unk2DC;
+    u32 unk2E0;
+    u32 unk2E4;
+    u32 unk2E8;
+    u32 unk2EC;
+    char pad2F0[4];
+    u32 unk2F4;
+    u32 unk2F8;
+    u32 unk2FC;
+    u32 unk300;
+    u32 unk304;
+    u32 unk308;
+    u32 unk30C;
+    u32 unk310;
+    u32 unk314;
+    u32 unk318;
+    u32 unk31C;
+    u32 unk320;
+    u32 unk324;
+    u32 unk328;
+    char pad32C[8];
     DelObjC_000C *arr334[12];
     void func_001BE3F0();
+    void func_001BE360(int a);
     void func_000C9050();
+    BmxUIPageGameOptions *func_000C8F30(int a);
 };
 
 void BmxUIPageOptions::func_000C8E60()
