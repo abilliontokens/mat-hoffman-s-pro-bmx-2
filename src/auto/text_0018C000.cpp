@@ -14,10 +14,6 @@ struct C_0018C820 {
     void func_0018C820(int a0, int a1, int a2, int a3);
 };
 
-struct C_0018C070 {
-    undefined4 func_0018C070(void);
-};
-
 struct C_0018C800 {
     char pad0[0x24];
     int unk24;
