@@ -30,7 +30,7 @@ static inline void Xform_00126DD0(S_00126DD0_Vec *out, const S_00126DD0_Mat *mat
 }
 
 static inline float Sqrt_00126DD0(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
-static __forceinline float Max_00126DD0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(*(__m128 *)&a, *(__m128 *)&b)); return r; }
+static inline float Max_00126DD0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(*(__m128 *)&a, *(__m128 *)&b)); return r; }
 static __forceinline float Abs_00126DD0(float f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
 
 void func_00126A80(float *verts, int count, float *center, float *extent, float *volume, float *radius, float *matrix);
