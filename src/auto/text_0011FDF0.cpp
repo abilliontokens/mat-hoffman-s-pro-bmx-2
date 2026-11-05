@@ -15,7 +15,7 @@ static __forceinline S_0011F4B0_V4 sub_00120470(S_0011F4B0_V4 &a, S_0011F4B0_V4 
     r.x = a.x - b.x; r.y = a.y - b.y; r.z = a.z - b.z; r.w = 1.0f;
     return r;
 }
-static S_0011F4B0_V4 mul_00120470(S_0011F4B0_V4 &a, float f)
+static __forceinline S_0011F4B0_V4 mul_00120470(S_0011F4B0_V4 &a, float f)
 {
     S_0011F4B0_V4 r;
     r.x = a.x * f; r.y = a.y * f; r.z = a.z * f; r.w = 1.0f;
