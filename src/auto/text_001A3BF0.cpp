@@ -252,6 +252,13 @@ undefined4 C_001A4500::func_001A4500(int a1, int *a2, int a3)
   return 1;
 }
 
+C_001A4590 *C_001A4590::func_001A4590(int a0, int a1, int a2, int a3, S36_1A s0, S16_1A s1, S16_1A s2, int a21, int a22, int a23, int a24, int a25)
+{
+    func_001A1FB0(a2, a3, s0, s1, s2, a21, a22, a23, a24, a25);
+    f2cc = a1;
+    return func_001A3DA0(a0) ? this : 0;
+}
+
 void C_001A4A20::func_001A4A20(void)
 {
     if (f24->f28 != 0) {
