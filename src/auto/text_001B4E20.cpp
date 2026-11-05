@@ -306,12 +306,11 @@ int C_001B5750::func_001B5750(void *name)
 
 C_001B5790 *C_001B5790::func_001B5790(void)
 {
-    C_001B5790 *self = this;
-    ((C_001B4ED0 *)this)->func_001B4ED0();
-    self->f58 = 0;
-    self->f5C = 0;
-    self->vtbl = (void *)&D_0028CB80;
-    return self;
+    ((C_00157660 *)this)->func_00157660();
+    f58 = 0;
+    f5C = 0;
+    vtbl = (void *)&D_0028CB80;
+    return this;
 }
 
 void C_001B57B0::func_001B57B0(void *param)
