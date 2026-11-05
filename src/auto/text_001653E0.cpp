@@ -8,3 +8,12 @@ struct C_00165980 {
     int unk1E8;
     void func_00165980(int **out, int value);
 };
+
+void C_00165980::func_00165980(int **out, int value)
+{
+    int i;
+    *out = (int *)func_001E8AA5(unk1E8 << 2);
+    for (i = 0; i < unk1E8; i++) {
+        (*out)[i] = value;
+    }
+}
