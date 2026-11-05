@@ -92,6 +92,33 @@ C_001C4F40::C_001C4F40(void)
     f8B4 = 0;
 }
 
+void C_001C4D50::func_001C4D50(int a0)
+{
+    C_001C4D50_Fx *fx = f58;
+
+    fx->f28 = 0;
+    fx->f2C = (float)a0 * D_00276098;
+    if (a0 == 0) {
+        fx->f30 = 1.0f;
+    } else {
+        fx->f30 = 0.0f;
+    }
+    fx->v6();
+}
+
+void *C_001C4EA0::func_001C4EA0(int flags)
+{
+    vtbl = &D_0028E454;
+    if (f24 != 0) {
+        f24->v0(1);
+    }
+    ((C_00157660 *)this)->func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 C_001C4F70 *C_001C4F70::func_001C4F70(int a1, int a2, int a3, int a4, int a5, int a6, int a7)
 {
     func_0017C300();
