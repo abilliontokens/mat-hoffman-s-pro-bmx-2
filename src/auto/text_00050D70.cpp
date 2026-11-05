@@ -17,6 +17,72 @@ struct C_00051120 {
     void func_00051120(short param_1);
 };
 
+extern float D_00275544;
+
+struct C_00051840 {
+    char pad0[0x2B8];
+    float f2B8[4];
+    int func_00051840(void);
+};
+
+struct C_0009FE70 {
+    void func_0009FE70(int a0);
+};
+
+struct C_00051A90Mid {
+    char pad0[0x54];
+    C_0009FE70 *f54;
+};
+
+struct C_00051A90 {
+    char pad0[0x44];
+    C_00051A90Mid *f44;
+    char pad48[0x288];
+    int f2D0;
+    int func_00051A90(int flag);
+};
+
+struct C_00051A00Node {
+    char pad0[4];
+    int f4;
+};
+
+struct C_00051A00Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+};
+
+struct C_00051A00Group {
+    char pad0[4];
+    C_00051A00Obj *f4;
+    int f8;
+    char padC[0x100];
+    C_00051A00Node **f10c;
+};
+
+struct C_00051A00List {
+    char pad0[0x24];
+    int f24;
+    C_00051A00Group **f28;
+};
+
+struct C_00051A00Owner {
+    char pad0[0x3B4];
+    C_00051A00List *f3b4;
+};
+
+struct C_00051A00 {
+    char pad0[0x64];
+    C_00051A00Owner *f64;
+    int func_00051A00(void);
+};
+
 
 void C_00051120::func_00051120(short param_1)
 {
