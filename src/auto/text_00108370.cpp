@@ -118,6 +118,7 @@ struct C_00108370 {
     C_001332A0_Obj *f11B8;
     C_001332A0_Obj *f11BC;
     void func_00108370();
+    void func_001083E0();
 };
 
 struct C_00108CB0_T {
