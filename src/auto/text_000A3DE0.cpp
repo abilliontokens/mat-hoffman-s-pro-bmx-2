@@ -158,6 +158,29 @@ struct C_000A43E0 {
 };
 
 
+C_000A3DE0 *C_000A3DE0::func_000A3DE0(void)
+{
+    struct Q4 { int x, y, z, w; };
+    int *u;
+    int *p;
+    int i;
+    func_00185790();
+    u = (int *)this;
+    u[0] = (int)&D_0027B1BC;
+    p = &u[0x24 / 4];
+    i = 8;
+    do { p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000; p += 4; } while (--i);
+    p = &u[0xa4 / 4];
+    i = 8;
+    do { p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000; p += 4; } while (--i);
+    for (i = 0; i < 8; i++) {
+        ((Q4 *)&u[0x24 / 4])[i] = *(Q4 *)D_002A2734;
+        ((Q4 *)&u[0xa4 / 4])[i] = *(Q4 *)D_002A2764;
+    }
+    u[0x124 / 4] = 0;
+    return this;
+}
+
 int BmxPlayerStart::func_000A4080(C_000A4080_Stream *stream)
 {
     char buf[0x104];
