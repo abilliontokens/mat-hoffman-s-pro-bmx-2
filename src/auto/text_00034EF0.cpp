@@ -107,6 +107,9 @@ struct S_35560_State {
     char pad0[0x24]; int f24;
     char pad28[8]; UIPositionItem *f30; UIOwner *f34;
     int f38; int f3c;
+    void init(UIPositionItem *item, UIOwner *owner, int id) {
+        f24=0; f30=item; f34=owner; f3c=id;
+    }
 };
 extern UIQuad D_002A1514, D_002A1524;
 
