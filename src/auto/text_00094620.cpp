@@ -334,6 +334,55 @@ void C_00094A00::func_00094C00(void)
     }
 }
 
+int C_00094A00::func_00094C60(void)
+{
+    int i;
+
+    if (f24 != 0) {
+        f24 = 0;
+    }
+    if (f7C == 0) {
+        return 0;
+    }
+    if (f84[0]->v7()) {
+        for (i = 0; i < f7C; i++) {
+            f84[i]->v6(0);
+        }
+    }
+    for (i = 0; i < f7C; i++) {
+        if (i == 0) {
+            f84[0]->v12(100);
+        } else {
+            f84[i]->v12(1);
+        }
+        if (!f84[i]->v5(0)) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int C_00094A00::func_00094D00(void)
+{
+    int i;
+
+    if (f7C == 0) {
+        return 0;
+    }
+    if (f84[0]->v7()) {
+        for (i = 0; i < f7C; i++) {
+            f84[i]->v9(f84[i]->f1AC);
+        }
+    } else {
+        for (i = 0; i < f7C; i++) {
+            if (!f84[i]->v5(0)) {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
 int C_00094A00::func_00094EE0(void)
 {
     if (f84[0] != 0 && f84[0]->v7()) {
