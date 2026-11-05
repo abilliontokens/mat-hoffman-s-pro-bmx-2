@@ -16,6 +16,21 @@ extern char D_002896B8;
 extern char D_00289830;
 extern char D_002A90B4;
 
+struct S_Vec4_001858A0 {
+    float x, y, z, w;
+    S_Vec4_001858A0() { x = 0.0f; y = 0.0f; z = 0.0f; w = 1.0f; }
+};
+
+extern char D_00289604;
+
+struct PortalInfo {
+    void *vtbl;
+    S_Vec4_001858A0 v[4];
+    int f44;
+    int f48;
+    PortalInfo();
+};
+
 /* the stream/config reader passed to the load functions */
 struct S_Stream {
     int func_00169710(char *name);
