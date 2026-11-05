@@ -152,7 +152,8 @@ int func_00011260(int lo, int hi)
         D_002AF45C = (((t.day * 240 + t.hour) * 6 + t.minute) * 60) + t.second;
         func_001E8826(D_002AF45C);
     }
-    return lo + (int)((float)(hi - lo + 1) * ((float)func_001E8833() * D_002754B0));
+    float v = (float)func_001E8833() * D_002754B0;
+    return lo + (int)((double)v * (double)(hi - lo + 1));
 }
 
 int C_00011410::func_00011410(void)
