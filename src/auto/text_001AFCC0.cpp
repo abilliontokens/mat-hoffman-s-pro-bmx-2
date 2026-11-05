@@ -40,6 +40,7 @@ struct C_001AFEC0 {
 
 struct C_0001DFE0 {
     void func_0001DFE0();
+    void func_0001DFF0();
 };
 
 /* ShaderDescriptor */
