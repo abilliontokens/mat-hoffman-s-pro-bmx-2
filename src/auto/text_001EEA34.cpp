@@ -435,6 +435,14 @@ BitObj *BitObj::func_001EF333(int mode)
     return this;
 }
 
+S_001EEFBA *S_001EEFBA::func_001EF3B4(void)
+{
+    ((BitObj *)&f2C)->func_001EF170(3);
+    ((BitObj *)&f34)->func_001EF170(1);
+    count = -1;
+    return this;
+}
+
 BitObj *BitObj::func_001EF8F6(int a0, int a1) {
     BitObj local;
     local.func_001EEEE6(this);
