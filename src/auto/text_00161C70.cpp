@@ -49,7 +49,7 @@ extern float D_00287B80;
 extern float D_002755E8;
 float func_0014F590(float x);
 void func_00162470(float *m, float a2, float a3, float a4, float a5, float a6, float a7, int a8);
-void func_00162530(float *m, float a2, float a3, float a4, float a5, float a6);
+void func_00162530(float *m, float a2, float a3, float a4, float a5, int a6);
 
 struct C_001625A0 {
     void *vtbl;
@@ -60,7 +60,14 @@ struct C_001625A0 {
     int f30;
     int f34;
     unsigned char f38;
+    void func_00157600(int a);
     C_001625A0 *func_001625A0(int a);
+};
+
+struct C_001628A0 {
+    char pad0[0x38];
+    float f38;
+    int func_001628A0(float t);
 };
 
 
@@ -121,6 +128,37 @@ void func_001622C0(float *m, void *arg)
     m[7] = 0.0f;
     m[11] = 0.0f;
     m[15] = 1.0f;
+}
+
+void func_00162470(float *m, float a2, float a3, float a4, float a5, float a6, float a7, int a8)
+{
+    m[13] = 0.0f;
+    m[9] = 0.0f;
+    m[1] = 0.0f;
+    m[12] = 0.0f;
+    m[8] = 0.0f;
+    m[4] = 0.0f;
+    m[15] = 0.0f;
+    m[7] = 0.0f;
+    m[3] = 0.0f;
+    m[14] = 1.0f;
+    m[0] = (a6 + a6) / (a3 - a2);
+    m[5] = (a6 + a6) / (a5 - a4);
+    m[2] = (a2 + a3) / (a3 - a2);
+    m[6] = (a4 + a5) / (a5 - a4);
+    if (a8 != 0) {
+        m[10] = a7 / (a7 - a6);
+        m[11] = -(a6 * a7 / (a7 - a6));
+    } else {
+        m[10] = (a6 + a7) / (a7 - a6);
+        m[11] = a6 * a7 * D_00287B80 / (a7 - a6);
+    }
+}
+
+void func_00162530(float *m, float a2, float a3, float a4, float a5, float a6)
+{
+    float v = func_0014F590(a2 * D_002755E8) * a4;
+    func_00162470(m, -v, v, -(v / a3), v / a3, a4, a5, a6);
 }
 
 void C_001625D0::func_001625D0(void) {
