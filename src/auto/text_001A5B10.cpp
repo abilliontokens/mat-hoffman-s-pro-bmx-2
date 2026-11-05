@@ -2,6 +2,7 @@
 #include "common.h"
 
 extern int D_0028BA74;
+struct S_60A0_Ctl { void func_001D37C0(); };
 extern int D_0028BB74;
 struct LoadMemoryCard {
     void *vtbl; char pad4[0x20];
