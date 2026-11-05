@@ -215,6 +215,9 @@ struct S_001CBF20_Vec4 {
     int y;
     int z;
     int w;
+    void CopyFrom(S_001CBF20_Vec4 *src) {
+        *this = *src;
+    }
 };
 
 /* sound voice wrapper: flags at +0x2c, DirectSound buffer at +0x30 */
@@ -475,7 +478,7 @@ int C_001CB610::func_001CB7D0(void)
 int C_001CB610::func_001CB810(int idx)
 {
     char path[0x104];
-    S_001CB610_Entry *e = &f34[fa4];
+    S_001CB610_Entry *e = f34 + fa4;
 
     if (e->f40 & 1) {
         func_001ADCC0(path, sizeof(path), D_0028ED6C, D_002A48F8, e->f0[idx].name);
