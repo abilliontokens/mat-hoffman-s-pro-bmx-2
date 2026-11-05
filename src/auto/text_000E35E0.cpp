@@ -168,3 +168,34 @@ void C_000E35E0::func_000E3FC0(void) {
  }
 }
 
+void C_000E35E0::func_000E40F0(void) {
+    if (D_002A8490->p2E0[1] == 10) {
+        int other = f420[f284 == 0];
+        while (f28C != 0) {
+            if (other != f420[f284]) {
+                S_000E35E0_Obj *obj = D_002A8490->f8[f420[f284] + 5];
+                if (obj != 0 && obj->v16() == 1) {
+                    f28C = 0;
+                    continue;
+                }
+            }
+            f420[f284]--;
+            if (f420[f284] < 0) {
+                f420[f284] = 7;
+            }
+        }
+    } else {
+        while (f28C != 0) {
+            S_000E35E0_Obj *obj = D_002A8490->f8[f420[f284] + 5];
+            if (obj != 0 && obj->v16() == 1) {
+                f28C = 0;
+                continue;
+            }
+            f420[f284]--;
+            if (f420[f284] < 0) {
+                f420[f284] = 7;
+            }
+        }
+    }
+}
+
