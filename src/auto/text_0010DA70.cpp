@@ -140,7 +140,7 @@ struct C_0010E260 {
 void BmxVehicle_10DA70::func_0010DA70(Blk24_10DA70 *p)
 {
     f79C = *p;
-    f79C.f10 = f79C.f10 * D_00275998;
+    f79C.f10 = f79C.f10 * 0.01745329f;
     func_001057A0();
 }
 
