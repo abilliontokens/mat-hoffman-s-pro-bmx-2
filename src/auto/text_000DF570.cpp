@@ -71,11 +71,17 @@ void C_000DFC00::func_000DFC00()
 
 void C_000DFC00::func_000DFC90()
 {
-    for (int i = 1; i <= 18; i++) {
-        if (unk338[i] != 0) {
+    int i = 1;
+    int *p = &unk338[1];
+    int n = 18;
+    do {
+        if (*p != 0) {
             D_002A8490->p2e0->p2fc->func_000951B0(i);
         } else {
             D_002A8490->p2e0->p2fc->func_00095200(i);
         }
-    }
+        p++;
+        i++;
+        n--;
+    } while (n != 0);
 }
