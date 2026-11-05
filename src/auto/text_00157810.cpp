@@ -112,6 +112,18 @@ int C_00157810::func_00157A00(int a)
     return 1;
 }
 
+int C_00157810::func_00157A50(int a)
+{
+    if (f1C & 1) {
+        for (S_00157810_Child *c = f10; c != 0; c = c->fC) {
+            if ((c->f21 & 1) && !(c->f21 & 0xc) && (c->f18 & 1)) {
+                c->v11(a);
+            }
+        }
+    }
+    return 1;
+}
+
 int C_00157810::func_00157AE0(void)
 {
     if (f1C & 0x80) {
