@@ -44,6 +44,7 @@ struct C_0013B9C0 {
     char padE4[4];
     S_0013B9C0_Ent20 *fE8;
     int fEC;
+    int func_0013C240(const char *name, unsigned int size);
     int func_0013C1D0(int a);
     int func_0013C110(int a);
     int func_0013C5D0(S_0013B9C0_Ent28 *a, int b);
@@ -170,5 +171,42 @@ int C_0013B9C0::func_0013C660(int arg)
         } while (q <= f28);
     }
     return r;
+}
+
+int C_0013B9C0::func_0013C8A0(int idx, int a2, int size, int count)
+{
+    C_0013B9C0 * volatile self = this;
+    volatile int tmp[3];
+    S_0013B9C0_Ent20 *e = &fE8[idx];
+    S_0013B9C0_Ent28 *t = &fC[e->f0];
+    int m;
+    int l;
+    int n;
+    int r;
+
+    if (func_0013B760(t, e->fC + (int)e->f10) == 0) {
+        return 0;
+    }
+    tmp[0] = (int)e->f14 - (int)e->f10;
+    tmp[1] = size * count;
+    m = tmp[1];
+    l = tmp[0];
+    if (m > l) {
+        m = l;
+    }
+    tmp[2] = m;
+    n = tmp[2];
+    if (n < 1) {
+        return 0;
+    }
+    r = self->func_0013BBA0(t, e->f4, a2, n);
+    e->f10 = (void *)((int)e->f10 + r);
+    if (r == n) {
+        return count;
+    }
+    if (r == 0) {
+        return 0;
+    }
+    return n / r;
 }
 
