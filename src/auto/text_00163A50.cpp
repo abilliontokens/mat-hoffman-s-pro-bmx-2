@@ -103,6 +103,40 @@ struct C_001643A0 {
 };
 
 
+void func_001641B0(int mode, float *v)
+{
+    if (mode == 0) {
+        v[1] = -v[1];
+        v[2] = -v[2];
+        v[3] = -v[3];
+        v[1] = -v[1];
+    } else if (mode == 1) {
+        v[1] = -v[1];
+        v[2] = -v[2];
+        v[3] = -v[3];
+        v[2] = -v[2];
+    } else if (mode == 2) {
+        v[1] = -v[1];
+        v[2] = -v[2];
+        v[3] = -v[3];
+        v[3] = -v[3];
+    }
+}
+
+float func_00164220(float a, float b, float c)
+{
+    float t;
+
+    if (c < a) {
+        return D_00275544;
+    }
+    if (c >= b) {
+        return D_00275460;
+    }
+    t = (c - a) / (b - a);
+    return (D_002755EC - (t + t)) * t * t;
+}
+
 void C_001646B0::func_001646B0(void)
 {
     int i;
