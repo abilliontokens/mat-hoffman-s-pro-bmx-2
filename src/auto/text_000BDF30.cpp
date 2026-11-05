@@ -11,7 +11,6 @@ char *func_001E8920(char *dst, const char *src, int n);
 extern "C" int strlen(const char *s);
 
 template <class T> inline T Min(const T &a, const T &b) { return a > b ? b : a; }
-static inline void CopyName(char *dst, const char *src) { int n = Min(7, (int)strlen(src)); func_001E8920(dst, src, n); dst[n] = 0; }
 
 struct S_000BE1D0_Slot {
     char pad0[0x5d4];
