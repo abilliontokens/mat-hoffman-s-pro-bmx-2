@@ -149,7 +149,15 @@ struct S16_1A {
 };
 
 struct S36_1A {
-    int f[9];
+    int f0;
+    int f4;
+    int f8;
+    float fC;
+    float f10;
+    float f14;
+    float f18;
+    float f1C;
+    float f20;
 };
 
 struct C_001A30D0 {
@@ -692,10 +700,9 @@ void *C_0001CD90::func_0001CD90(int arg)
     if (obj == 0) {
         return 0;
     }
-    S36_1A s = { 0x168, 0x168, 0, 0x3f800000, 0x4e6e6b28, 0, 0x3e9c0ebf, 0x3f800000, 0x3f800000 };
     C_001A23F0 *o = (C_001A23F0 *)obj;
 
-    o->func_001A23F0(s, o->f70, o->f80, 2, 20.0f, 100.0f, 0, 0);
+    o->func_001A23F0(S36_0001CD90(), o->f70, o->f80, 2, 0x41a00000, 0x42c80000, 0, 0);
     return obj;
 }
 
