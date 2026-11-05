@@ -135,6 +135,43 @@ SplitScreenSeparator *SplitScreenSeparator::func_00088530(int param_1)
     return this;
 }
 
+void SplitScreenSeparator::func_00088720(void)
+{
+    int g;
+
+    if (fEC == 1) {
+        if (D_002A8490->f10 == 0) {
+            sub24.SetPos(0.0f, (float)(fF0 - 2));
+        } else {
+            sub24.SetPos(0.0f, 0.0f);
+        }
+    } else if (fEC == 2) {
+        if (D_002A8490->f10 == 0) {
+            sub24.func_0005E800(fF0 - 2, 0);
+        } else {
+            sub24.func_0005E800(0, 0);
+        }
+    } else if (fEC == 3 || fEC == 4) {
+        g = D_002A8490->f10;
+        if (g == 0) {
+            sub24.func_0005E800(0x13e, 0);
+            sub88.func_0005E800(0, 0xde);
+        } else if (g == 1) {
+            sub24.func_0005E800(0, 0);
+            sub88.func_0005E800(0, 0xde);
+        } else if (g == 2) {
+            sub24.func_0005E800(0x13e, 0);
+            sub88.func_0005E800(0, 0);
+        } else {
+            sub24.func_0005E800(0, 0);
+            sub88.func_0005E800(0, 0);
+        }
+        sub88.func_001D5AD0();
+    }
+    sub24.func_001D5AD0();
+    func_00157960();
+}
+
 DirectionArrowOverlay *DirectionArrowOverlay::func_000888D0(int param_1)
 {
     u32 *p;
