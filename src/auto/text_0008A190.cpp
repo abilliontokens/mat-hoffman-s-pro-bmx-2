@@ -128,6 +128,26 @@ C_0008A2E0 *C_0008A2E0::func_0008A2E0(int a0) {
     return this;
 }
 
+void C_0008A2E0::func_0008A350() {
+    vtbl = &D_00279B64;
+    int i;
+    for (i = 0; i < 5; i++) {
+        PtrObj_0008 *p = ptrs[i];
+        if (p != 0) {
+            p->func_001D6410();
+            func_001E891B(p);
+        }
+    }
+    SubElem_0008 *e = elems + 9;
+    i = 9;
+    do {
+        e--;
+        e->func_001D57E0();
+        i--;
+    } while (i != 0);
+    func_00157660();
+}
+
 void C_0008A2E0::func_0008A8C0() {
     int i;
     for (i = 0; i < 5; i++) {
