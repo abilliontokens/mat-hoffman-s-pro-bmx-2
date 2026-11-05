@@ -109,6 +109,19 @@ struct SplitScreenSeparator {
     void func_00157960(void);
 };
 
+/* func_00088570's view of the separator: same layout, with the vtable slots */
+struct C_00088570 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    char padC[0x24 - 0xC];
+    Sub_00088530 sub24;
+    Sub_00088530 sub88;
+    u32 fEC;
+    int fF0;
+    SplitScreenSeparator *func_00088570(int mode);
+};
+
 struct S_00088A40_V4 {
     float x;
     float y;
