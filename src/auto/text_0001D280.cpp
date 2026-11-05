@@ -294,6 +294,55 @@ struct C_0001D450 {
     C_0001D450_Item *func_0001D450(const char *name);
 };
 
+struct C_0001DA00_Item {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6();
+    virtual int virt7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void virt12(int a);
+    virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16();
+    virtual void v17(); virtual void v18(); virtual void v19(); virtual void v20();
+    virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24();
+    virtual void v25(); virtual void v26(); virtual void v27();
+    virtual int virt28();
+    char pad4[0x114];
+    int unk118;
+};
+
+struct C_0001DA00_List {
+    int n;
+    C_0001DA00_Item **arr;
+    C_0001DA00_Item *at(int i) {
+        if (n > 0 && arr != 0 && i < n) return arr[i];
+        return 0;
+    }
+};
+
+struct C_0001DA00_B4 {
+    int unk0;
+    C_0001DA00_List list;
+};
+
+struct C_0001DA00 {
+    char pad0[0x30];
+    C_0001DA00_List l30;
+    char pad38[0x24];
+    int unk5C;
+    char pad60[0x10];
+    C_0001DA00_List l70;
+    char pad78[0xc];
+    int unk84;
+    char pad88[0x10];
+    int unk98;
+    char pad9C[0x10];
+    int unkAC;
+    char padB0[4];
+    C_0001DA00_B4 *unkB4;
+    void func_0001D6B0(void);
+    void func_00157A00(int a);
+    void func_0001DA00(int a);
+};
+
 struct S4 { int a, b, c, d; };
 struct S9 { int v[9]; };
 
