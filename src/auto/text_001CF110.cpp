@@ -114,3 +114,13 @@ undefined4 C_001CFAE0::func_001CFAE0(byte param_1)
   }
   return in_ECX;
 }
+
+void *XboxSoundInterface::func_001CFE70(int flags)
+{
+    func_001CF6E0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
