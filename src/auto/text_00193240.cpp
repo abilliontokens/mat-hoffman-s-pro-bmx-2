@@ -270,6 +270,27 @@ C_00193B50 *C_00193B50::func_00193B50(int a0)
     return this;
 }
 
+void C_00193B50::func_00193BC0(void)
+{
+    int i;
+
+    vtbl = &D_0028AD14;
+    if (f4C != 0) {
+        func_001E8390(f4C);
+    }
+    if (f54 != 0) {
+        for (i = 0; i < (int)f24; i++) {
+            DelObj_00193240 *e = f54[i];
+
+            if (e != 0) {
+                e->Destroy(1);
+            }
+        }
+        func_001E8390(f54);
+    }
+    ((C_00157600 *)this)->func_00157660();
+}
+
 undefined4 C_00194110::func_00194110(byte param_1)
 {
   int func_00193BC0(...);
