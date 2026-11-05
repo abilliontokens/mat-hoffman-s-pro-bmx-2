@@ -67,32 +67,6 @@ void func_001AC330(char *dest, char *fmt, char *arg);
 extern char D_002786BC[];
 extern char D_00275630[];
 
-__forceinline unsigned int StrLen_716(const char *str)
-{
-    const char *eos = str;
-    while (*eos++) {
-    }
-    return eos - str - 1;
-}
-
-inline void Truncate_716(char *str, unsigned int max)
-{
-    const char *eos = str;
-    while (*eos++) {
-    }
-    if ((unsigned int)(eos - str - 1) > max) {
-        str[max] = 0;
-    }
-}
-
-static unsigned int StrLen2_716(const char *str)
-{
-    const char *eos = str;
-    while (*eos++) {
-    }
-    return eos - str - 1;
-}
-
 struct C_0005E840 {
     void func_0005E840(char *s);
 };
@@ -310,6 +284,7 @@ void C_00072330::func_00072330(void)
     char b[0x40];
     char *p;
     char *q;
+    S_Setter_716 *t;
 
     if (fC8 != 0) {
         S_Obj4_716 *o = D_002A8490->p2E8->p4;
@@ -331,7 +306,8 @@ void C_00072330::func_00072330(void)
     if ((unsigned int)(p - q) > 0x27) {
         b[0x27] = 0;
     }
-    fD0->func_001B17D0(b);
+    t = fD0;
+    t->func_001B17D0(b);
 }
 
 void C_00072450::func_00072450(void)
