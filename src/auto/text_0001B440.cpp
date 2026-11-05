@@ -154,7 +154,7 @@ struct S_0001C1E0_Slot {
     int f80;
     int f84;
     int f88;
-    char pad8C[4];
+    int f8C;
     int f90;
     char pad94[8];
     int f9C;
