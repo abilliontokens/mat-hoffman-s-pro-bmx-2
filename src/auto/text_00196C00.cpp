@@ -149,27 +149,36 @@ struct C_001BC6E0 {
 extern C_001BC6E0 *D_002AAEC8;
 
 struct S_00197820_Mat {
-    __m128 r[4];
+    float m[16];
 };
 
 static inline void S_00197820_Identity(S_00197820_Mat *m)
 {
-    m->r[0] = _mm_setzero_ps();
-    m->r[1] = _mm_setzero_ps();
-    m->r[2] = _mm_setzero_ps();
-    m->r[3] = _mm_setzero_ps();
-    ((float *)m)[0] = 1.0f;
-    ((float *)m)[5] = 1.0f;
-    ((float *)m)[10] = 1.0f;
-    ((float *)m)[15] = 1.0f;
+    _mm_store_ps(&m->m[0], _mm_setzero_ps());
+    _mm_store_ps(&m->m[4], _mm_setzero_ps());
+    _mm_store_ps(&m->m[8], _mm_setzero_ps());
+    _mm_store_ps(&m->m[12], _mm_setzero_ps());
+    m->m[0] = 1.0f;
+    m->m[5] = 1.0f;
+    m->m[10] = 1.0f;
+    m->m[15] = 1.0f;
 }
 
 static inline void S_00197820_Zero(S_00197820_Mat *m)
 {
-    m->r[0] = _mm_setzero_ps();
-    m->r[1] = _mm_setzero_ps();
-    m->r[2] = _mm_setzero_ps();
-    m->r[3] = _mm_setzero_ps();
+    _mm_store_ps(&m->m[0], _mm_setzero_ps());
+    _mm_store_ps(&m->m[4], _mm_setzero_ps());
+    _mm_store_ps(&m->m[8], _mm_setzero_ps());
+    _mm_store_ps(&m->m[12], _mm_setzero_ps());
+}
+
+static inline S_00197700_Vec4 *S_00197820_VecInit(S_00197700_Vec4 *v)
+{
+    v->z = 0.0f;
+    v->y = 0.0f;
+    v->x = 0.0f;
+    v->w = 1.0f;
+    return v;
 }
 
 /* SoultreeObject */
