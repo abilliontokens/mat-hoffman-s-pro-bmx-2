@@ -127,3 +127,33 @@ void C_000EE1F0::func_000EE1F0(void) {
     unk43C = 1048576000;
     unk440 = 1;
 }
+
+void C_000EDF00::func_000EE3B0(void)
+{
+    int i;
+    vtbl = &D_00281D24;
+    for (i = 0; i < 4; i++) {
+        if (arr680[i] != 0) {
+            arr680[i]->Destroy(1);
+            arr680[i] = 0;
+        }
+    }
+    for (i = 0; i < 2; i++) {
+        if (arr690[i] != 0) {
+            arr690[i]->Destroy(1);
+            arr690[i] = 0;
+        }
+    }
+    for (i = 0; i < 9; i++) {
+        if (arr698[i] != 0) {
+            arr698[i]->Destroy(1);
+            arr698[i] = 0;
+        }
+        if (arr6BC[i] != 0) {
+            arr6BC[i]->Destroy(1);
+            arr6BC[i] = 0;
+        }
+    }
+    func_001BE3F0();
+}
+
