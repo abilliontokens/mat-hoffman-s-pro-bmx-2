@@ -35,6 +35,30 @@ struct C_NumHorse_Root {
 
 extern C_NumHorse_Root *D_002A8490;
 
+struct C_000E1_Elem {
+    char pad0[0x38];
+    unsigned int f38;
+    char pad3c[0x1c];
+    unsigned char b58;
+    void func_001D5AD0();
+};
+
+struct S_002B91AC {
+    char pad0[0x24];
+    C_000E1_Elem *unk24;
+    C_000E1_Elem *unk28;
+    C_000E1_Elem *unk2C;
+    C_000E1_Elem *unk30;
+    char pad34[0x50 - 0x34];
+    C_000E1_Elem *unk50;
+    C_000E1_Elem *unk54;
+    char pad58[0x68 - 0x58];
+    C_000E1_Elem *unk68;
+    C_000E1_Elem *unk6C;
+};
+
+extern S_002B91AC *D_002B91AC;
+
 /* BmxUIPageNumHorsePlayers */
 struct C_000E1770 {
     void *vtbl;
