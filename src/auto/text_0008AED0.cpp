@@ -106,6 +106,35 @@ struct C_0008B6C0 {
     void func_0008B6C0(void);
 };
 
+struct PtrObj_0008 {
+    void func_001D6410();
+};
+
+struct VirtObj_0008 {
+    virtual void v0(int a);
+};
+
+void func_001E891B(void *p);
+
+struct C_0008BBE0 {
+    void *vtbl;
+    char pad4[0x20];
+    PtrObj_0008 *unk24;
+    PtrObj_0008 *unk28;
+    PtrObj_0008 *unk2c;
+    PtrObj_0008 *unk30;
+    PtrObj_0008 *unk34;
+    VirtObj_0008 *unk38;
+    VirtObj_0008 *unk3c;
+    VirtObj_0008 *unk40;
+    VirtObj_0008 *unk44;
+    VirtObj_0008 *unk48;
+    VirtObj_0008 *unk4c;
+    VirtObj_0008 *unk50;
+    void func_0008BBE0();
+    void func_00157660();
+};
+
 void C_0008B670::func_0008B670(int param_1) {
     ((C_0005E840 *)f24)->func_0005E840(param_1);
 }
