@@ -137,6 +137,7 @@ struct D_000688C0 {
 };
 
 void func_001E891B(void *p);
+extern int D_0027887C;
 
 struct C_000688C0 {
     void *vtbl;
