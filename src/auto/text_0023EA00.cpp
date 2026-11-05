@@ -39,8 +39,8 @@ struct S_0023F23E_Obj {
     char pad8C[8];
     unsigned int f94;
     unsigned int f98;
-    S_0023F23E_Node f9c;
-    S_0023F23E_Node fA4;
+    S_0023F23E_Link f9c;
+    S_0023F23E_Link fA4;
     int fAC;
     int fB4;
     int fB8;
