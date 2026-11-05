@@ -137,11 +137,24 @@ struct Obj_001A2480 {
     virtual void v3();
     virtual void v4();
     virtual void v5(int flags);
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16(int a0, int a1, int a2);
     void func_001CB560(Obj_001A2480 *old);
 };
 
 struct S_0001CE80 {
-    void func_0001CE80(Obj_001A2480 *obj, void *a, void *b, int c, int d);
+    char pad0[0x5c];
+    int f5c;
+    int func_0001CE80(Obj_001A2480 *obj, void *a, void *b, int c, int d);
 };
 
 struct Game_001A2480 {
@@ -298,6 +311,39 @@ bool C_001A2500::func_001A2500(void)
   int in_ECX = (int)this;
   
   return 0 < *(int *)(in_ECX + 0x1d8);
+}
+
+int C_001A2510::func_001A2510(S_001A2510_Arg *arg, int a1, int a2)
+{
+    if (arg == 0) {
+        return 0;
+    }
+    f0 = arg;
+    f4 = arg->fb4->func_001CBEF0();
+    if (f4 == 0 || func_001A14A0(a1) == 0 || func_001A14F0(a2) == 0 || func_001A1450(0.3048f) == 0) {
+        return 0;
+    }
+    return func_001A1410() != 0;
+}
+
+C_001A2580 *C_001A2580::func_001A2580(int a0, int a1, int a2, int a3)
+{
+    func_001A1680(a0, a1, a2, a3);
+    f1c0 = 0;
+    f1c4 = 0;
+    vtbl = &D_0028B58C;
+    f1cc = 0;
+    f1c8 = 0;
+    f1d0 = 0;
+    f1d4 = 0;
+    f1d8 &= 0xfe;
+    f1cc = func_001E8A44(4);
+    f1d4 = 1;
+    f1d0 = 0x10;
+    f1d8 |= 1;
+    f2d0 = 0;
+    f2d8 = 1;
+    return this;
 }
 
 void *C_001A2BD0::func_001A2BD0(unsigned int flags)
