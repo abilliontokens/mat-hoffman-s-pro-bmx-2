@@ -91,6 +91,18 @@ struct C_000C85B0 {
     C_000C85B0 *func_000C85B0(int param_1);
 };
 
+struct S_000C8660_Obj {
+    virtual void destroying(int flag);
+};
+
+struct BmxUIPageOptions {
+    void *vtbl;
+    char pad4[0x2D8 - 4];
+    S_000C8660_Obj *unk2D8[4];
+    void func_000C8660(void);
+    void func_001BE3F0(void);
+};
+
 extern S_002B91AC *D_002B91AC;
 extern float D_00279B50;
 extern float D_00275994;
@@ -164,7 +176,7 @@ C_000C85B0 *C_000C85B0::func_000C85B0(int param_1) {
     unk2A4 = 0;
     unk2C0 = 0;
     unk2BC = 0;
-    vtbl = &D_0027E334;
+    *(void **)this = &D_0027E334;
     unk2B0 = 1;
     unk2D8 = 0;
     unk2DC = 0;
