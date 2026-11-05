@@ -176,6 +176,10 @@ struct C_00142D20 {
     void func_00142D20();
 };
 
+struct F4_142 {
+    f32 x, y, z, w;
+};
+
 struct C_00142E90 {
     void *vtbl;
     int unk4;
@@ -262,7 +266,7 @@ void C_00142DE0::func_00142DE0() {
     unk8 = 0;
 }
 
-void C_00142E90::func_00142E90(int a0) {
+C_00142E90::C_00142E90(int a0) {
     vtbl = &D_002859C4;
     unk150 = unk154 = unk158 = 0;
     unk15C = 1.0f;
@@ -273,9 +277,10 @@ void C_00142E90::func_00142E90(int a0) {
     unk180 = unk184 = unk188 = 0;
     unk18C = 1.0f;
     unk4 = a0;
-    unk160 = 1.0f;
-    unk164 = 1.0f;
-    unk168 = 1.0f;
-    unk16C = 1.0f;
+    f32 *c = (f32 *)&unk160;
+    c[0] = 1.0f;
+    c[1] = 1.0f;
+    c[2] = 1.0f;
+    c[3] = 1.0f;
 }
 
