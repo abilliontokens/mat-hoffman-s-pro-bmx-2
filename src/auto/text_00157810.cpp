@@ -155,6 +155,39 @@ struct C_00157CF0 {
     int func_0001E010(void);
 };
 
+int C_00157810::func_00157810(void)
+{
+    S_00157810_Child *p;
+    S_00157810_Child *c;
+    unsigned int r;
+
+    if (D_002DF948 != 0) {
+        return 0;
+    }
+    if (f8 != 0) {
+        f8->fC = fC;
+    }
+    if (fC != 0) {
+        fC->f8 = f8;
+    }
+    if (f14 != 0 && f14->f10 == (S_00157810_Child *)this) {
+        f14->f10 = fC;
+    }
+    p = (S_00157810_Child *)this;
+    while (p->f14 != 0) {
+        p = p->f14;
+    }
+    r = 0;
+    for (c = p->f10; c != 0; c = c->fC) {
+        r |= c->func_00157770();
+    }
+    p->f1C = r;
+    f14 = 0;
+    fC = 0;
+    f8 = 0;
+    return 1;
+}
+
 void C_00157810::func_001578A0(void)
 {
     S_00157810_Child *c;
@@ -163,6 +196,19 @@ void C_00157810::func_001578A0(void)
         c->v25();
     }
     f21_b3 = 1;
+}
+
+int C_00157810::func_001578D0(void)
+{
+    if (f1C & 0x1000) {
+        for (S_00157810_Child *c = f10; c != 0; c = c->fC) {
+            if ((c->f21 & 1) && !(c->f21 & 8) && (c->f18 & 0x1000)) {
+                D_002EFDB8->v7(0);
+                c->v14();
+            }
+        }
+    }
+    return 1;
 }
 
 int C_00157810::func_00157960(void)
