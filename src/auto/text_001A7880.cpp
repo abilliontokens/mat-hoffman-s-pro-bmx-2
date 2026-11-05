@@ -21,7 +21,7 @@ struct C_001334E0 {
 
 struct C_001A86D0_Body {
     void *vtbl;
-    char pad4[0x24];
+    char pad4[0x20];
     void *f24;
     char pad28[0x38];
     void *f60;
@@ -74,3 +74,47 @@ undefined4 C_001A7FC0::func_001A7FC0(byte param_1)
   }
   return in_ECX;
 }
+
+SpringCollisionDetectionModel *SpringCollisionDetectionModel::func_001A8630(int param_1)
+{
+    ((C_00157600 *)this)->func_00157600(param_1);
+    vtbl = &D_0028BF14;
+    f3C = 0;
+    f38 = 0;
+    f34 = 0;
+    f40 = 0x3f800000;
+    f50 = 0x3f800000;
+    f4C = 0;
+    f48 = 0;
+    f44 = 0;
+    f58 = 0;
+    f24 = 0;
+    f28 = 0;
+    f2C = 0;
+    f54 = 0;
+    f64 = 0;
+    f68 = 0;
+    f5C = 1;
+    f60 = 1;
+    f34 = D_002AA140;
+    f38 = D_002AA144;
+    f3C = D_002AA148;
+    f40 = D_002AA14C;
+    f44 = D_002AA140;
+    f48 = D_002AA144;
+    f4C = D_002AA148;
+    f50 = D_002AA14C;
+    return this;
+}
+
+void SpringCollisionDetectionModel::func_001A86D0(int param_1)
+{
+    C_001A86D0_Body *body = (C_001A86D0_Body *)param_1;
+    this->f2C = param_1;
+    body->f60 = this->f24;
+    ((C_001A86D0_Body *)this->f2C)->f64 = ((C_001A86D0_Body *)this->f24)->f24;
+    ((C_001A86D0_Body *)this->f2C)->f9C = &func_001A7FE0;
+    ((C_001334E0 *)this->f2C)->func_001334E0(1);
+    ((C_001A86D0_Body *)this->f24)->f7C = body->f68;
+}
+
