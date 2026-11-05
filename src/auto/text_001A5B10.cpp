@@ -484,3 +484,29 @@ void C_001A5FD0::func_001A5FD0(int arg)
     func_00157A00(arg);
 }
 
+void C_001A6260::func_001A6930()
+{
+    int *r = D_002A8490->f2ec->func_0018C160((int)&D_0027958C);
+    S_6930_Mid *mid = (S_6930_Mid *)(r ? *r : 0);
+    if (mid != 0) {
+        S_6930_Clamp *o = mid->func_0018C070();
+        if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+        if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+    }
+    int i = 0;
+    do {
+        if (f34[i] != 0) {
+            S_6930_Clamp *o2 = f34[i]->func_001D5AA0();
+            if (D_00275AEC > o2->f10) *(int *)&o2->f10 = 0x41200000;
+            if (D_00275AEC < o2->f14 || o2->f14 > o2->f10) *(int *)&o2->f14 = 0x41200000;
+        }
+        if (f3c[i] != 0) {
+            S_6930_Clamp *o3 = f3c[i]->func_001D5AA0();
+            if (D_00275AEC > o3->f10) *(int *)&o3->f10 = 0x41200000;
+            if (D_00275AEC < o3->f14 || o3->f14 > o3->f10) *(int *)&o3->f14 = 0x41200000;
+        }
+        i++;
+    } while (i < 2);
+    func_001578D0();
+}
+
