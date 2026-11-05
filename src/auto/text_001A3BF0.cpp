@@ -32,6 +32,18 @@ struct C_001A4440 {
 };
 
 struct C_001A4500 {
+    char pad0[0x24];
+    int f24;
+    char pad28[0x48 - 0x28];
+    int f48;
+    int f4c;
+    char pad50[0x1a4 - 0x50];
+    C_001A4440_Holder *f1a4;
+    char pad1a8[0x1c0 - 0x1a8];
+    char pad1c0[0x14];
+    C_001A4440_List list1;
+    char pad1e4[4];
+    C_001A4440_List list2;
     undefined4 func_001A4500(int a1, int *a2, int a3);
 };
 struct C_001A4B30 {
@@ -134,7 +146,11 @@ undefined4 C_001A4500::func_001A4500(int a1, int *a2, int a3)
     return 0;
   }
   *a2 = iVar1;
-  list = (C_001A4440_List *)(in_ECX + (a1 ? 0x1d4 : 0x1e8));
+  if (a1 != 0) {
+    list = (C_001A4440_List *)(in_ECX + 0x1d4);
+  } else {
+    list = (C_001A4440_List *)(in_ECX + 0x1e8);
+  }
   if (list->count >= list->capacity) {
     if (!list->func_0015ACA0(list->base + list->count)) {
       return 1;
