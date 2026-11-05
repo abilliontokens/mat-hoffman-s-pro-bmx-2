@@ -517,7 +517,7 @@ void C_00194EE0::func_00194F10(S_Vec4Int *out)
 
 void C_00194F60::func_00194F60(int a, int b, int c, int d)
 {
-    ((S_Vec4Int *)((char *)this + 0x38))->Set(a, b, c, d);
+    Set(a, b, c, d);
 }
 
 void C_00194F90::func_00194F90(int a0) {
@@ -584,7 +584,7 @@ void C_00195090::func_00195160(int a0, int a1, float a2)
 {
     f24 = a0;
     f20 = 0;
-    f8 = a2 * D_00277D04;
+    f8 = a2 * 1.46666f;
     fC = a1;
 }
 
