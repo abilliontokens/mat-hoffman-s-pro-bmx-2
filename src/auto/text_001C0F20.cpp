@@ -291,6 +291,25 @@ struct C_001C1970 {
 };
 
 
+C_001C0F20 *C_001C0F20::func_001C0F20(int a, S_001C0F20_Stream *stream, void *owner)
+{
+    f28 = a;
+    f24 = owner;
+    stream->func_00168C20(&D_0028DD94, 0, &f68[0]);
+    stream->func_00168C20(&D_0028DD88, 0, &f68[1]);
+    stream->func_00168C20(&D_0028DD80, 0, &f68[2]);
+    stream->func_00168C20(&D_0028DD74, 0, &f68[3]);
+    stream->func_00168C20(&D_0028DD6C, 0, &f68[4]);
+    stream->func_00168C20(&D_0028DD64, 0, &f68[5]);
+    stream->func_00168C20(&D_0028DD5C, 0, &f68[6]);
+    stream->func_00168C20(&D_0028DD54, 0, &f68[7]);
+    stream->func_00168C20(&D_0028DD48, 0, &f68[8]);
+    stream->func_00168C20(&D_0028DD3C, 0, &f68[9]);
+    stream->func_00168C20(&D_0028DD34, 0, &f68[10]);
+    stream->func_00168C20(&D_0028DD2C, 0, &f68[11]);
+    return this;
+}
+
 void C_001C1030::func_001C1030(int slot, int value, int key)
 {
   int v = f68[slot];
