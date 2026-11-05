@@ -25,6 +25,25 @@ struct C_001D27F0 {
     void func_001D27F0();
 };
 
+struct C_001D2A40 {
+    void func_001D2A40();
+};
+
+struct S_001D3300_Arg {
+    C_001D2A40 *obj;
+    int h;
+    void (*cb)(int);
+    int cbArg;
+    int pad10[7];
+    int lock;
+};
+
+int __stdcall func_001DDDD6(int h, int t);
+void __stdcall func_001DE70D(int a);
+void __stdcall func_001DE733(int a);
+void __stdcall func_002025D0(int a);
+void __stdcall func_001DE7C2(int a);
+
 struct C_00160BF0 {
     void func_00160BF0();
 };
