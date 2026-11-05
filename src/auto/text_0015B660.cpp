@@ -46,6 +46,16 @@ void C_0015B660::func_0015B660() {
     unk14 = 0;
 }
 
+void C_0015B660::func_0015B680() {
+    C_0015B660 *self = this;
+    void *p = self->unk14;
+    self->vtbl = &D_0028779C;
+    if (p != 0) {
+        func_001E8390(p);
+    }
+    self->vtbl = &D_00287778;
+}
+
 void C_0015B7A0::func_0015B7A0() {
     unk4 = 0;
     unk8 = 1;
