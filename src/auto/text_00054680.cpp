@@ -1,6 +1,10 @@
 /* 6 functions from 0x00054680 to 0x00055380, found by Ghidra. */
 #include "common.h"
 
+struct V_000551B0 { int x, y, z, w; };
+extern V_000551B0 D_002A1A64;
+extern int D_002BA160, D_002B9118, D_002B9108, D_002B9114, D_002B9110, D_002B910C;
+
 struct C_000549C0 {
     void *vtbl;
     void *func_000549C0(int flags);
