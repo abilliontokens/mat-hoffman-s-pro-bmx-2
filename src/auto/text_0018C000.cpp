@@ -150,9 +150,18 @@ struct C_002AA6C0_Entry {
 };
 
 struct C_002AA6C0 {
-    char pad0[0x14];
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6(int a, int b);
+    virtual int v7(int a, int b);
+    char pad4[0x10];
     C_002AA6C0_Entry *unk14;
     void func_001B26C0(int a0);
+    void func_001B2640(void);
 };
 
 struct V_002EFDB8 {
