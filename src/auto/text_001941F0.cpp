@@ -236,7 +236,7 @@ extern u32 D_002A9B48;
 extern u32 D_002A9B4C;
 extern u32 D_002A9B50;
 extern int D_0028AF24;
-extern float D_00277D04;
+extern const float D_00277D04;
 void func_001E8390(void *p);
 
 /* SimpleTVCamera (run-time type information), base class CameraBehavior */
