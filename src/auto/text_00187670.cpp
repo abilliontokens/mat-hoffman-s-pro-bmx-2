@@ -1,5 +1,10 @@
 /* 18 functions from 0x00187670 to 0x001884F0, found by Ghidra. */
 #include "common.h"
+#include "ghidra.h"
+struct C_00187AF0 {
+    void func_00187AF0(void);
+};
+
 struct C_001884D0 {
     int unk0;
     int unk4;
@@ -8,6 +13,18 @@ struct C_001884D0 {
     C_001884D0* func_001884D0(void);
 };
 
+
+void C_00187AF0::func_00187AF0(void)
+{
+  int func_001E891B(...);
+  int in_ECX = (int)this;
+  
+  if (*(int *)(in_ECX + 0x28) != 0) {
+    func_001E891B(*(int *)(in_ECX + 0x28));
+    *(undefined4 *)(in_ECX + 0x28) = 0;
+  }
+  return;
+}
 
 int __stdcall func_00188230(int a0) {
     int __stdcall func_001880A0(int);
