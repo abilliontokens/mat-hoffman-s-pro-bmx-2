@@ -1,6 +1,29 @@
 /* 8 functions from 0x001587F0 to 0x001596C0, found by Ghidra. */
 #include "common.h"
 
+struct S_Inner { char pad[0x538]; int f538; int f53c; int f540; int f544; };
+struct S_Arg2 { char pad[0x388]; S_Inner *p388; };
+struct S_B { S_B *func_0017D5A0(int, int, int, int, int, int, int); };
+struct S_A {
+    S_A *func_00192900(int);
+    void func_00192A90(S_B *);
+    void func_00192AC0(S_B *);
+};
+struct S_C { S_C *func_00193490(void); void *vtbl; int unk4; S_B *unk8; };
+struct C_001595A0 {
+    char pad0[0x24];
+    int unk24;
+    char pad28[0xc];
+    int *unk34;
+    S_A *unk38;
+    S_C *unk3c;
+    void func_001577A0(S_A *, int);
+    C_001595A0 *func_001595A0(int n, S_Arg2 *arg2);
+};
+extern "C" void *func_001E8AA5(int);
+extern "C" void *func_001E8A44(int);
+extern int D_00287520;
+
 struct C_00158BE0 {
     int unk0;
     void *func_00158BE0(int flags);
