@@ -81,7 +81,10 @@ struct LightEmitter {
     float f70;
     float f74;
     float f78;
-    char pad7C[0x28];
+    char pad7C[0x10];
+    float f8C;
+    float f90;
+    char pad94[0x10];
     float fA4;
     float fA8;
     float fAC;
