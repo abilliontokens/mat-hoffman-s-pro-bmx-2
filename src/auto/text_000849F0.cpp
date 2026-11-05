@@ -23,6 +23,12 @@ struct S_84FF0_F38 {
     int fA40;
 };
 
+struct S_851C0_State { char pad0[4]; int f4; };
+struct S_851C0_Values { char pad0[0x10]; float f10, f14; };
+struct S_851C0_Item { S_851C0_Values *func_0018C070(); };
+struct S_851C0_List { S_851C0_Item **func_0018C160(const char *); };
+extern char D_00279630[], D_00278690[], D_0027958C[];
+extern float D_00275AEC;
 struct S_84FF0_Global {
     char pad0[0x240];
     float f240;
@@ -61,6 +67,48 @@ struct C_00085520 {
     void func_00157660();
     void func_00085520();
 };
+
+void C_00084FF0::func_00084FF0(void)
+{
+    char buf[15];
+    char out[15];
+    int rem;
+    int i;
+    char *p;
+    char c;
+
+    memset(buf, 0, 15);
+    memset(out, 0, 15);
+    if (f40 == 1) {
+        func_001ADCC0(out, 15, D_0027956C, f38->fA40, f34->f1250 / 2);
+    } else if (f40 == 2) {
+        func_001ADCC0(out, 15, D_00279560, (double)D_002A8490->f240);
+    } else if (f40 == 3) {
+        func_001ADCC0(out, 15, D_00279550, D_002A8490->f27C);
+    } else {
+        func_001ADCC0(buf, 15, D_00277038, f38->fA40);
+        i = 0;
+        rem = strlen(buf) % 3;
+        if ((int)strlen(buf) > 0) {
+            p = out;
+            do {
+                c = buf[i];
+                if (c == ' ') {
+                    strcat(out, &buf[i]);
+                    break;
+                }
+                if (i > rem - 1 && i && ((i - rem) == 0 || (i - rem) % 3 == 0)) {
+                    *p++ = ',';
+                }
+                *p++ = c;
+                i++;
+            } while (i < (int)strlen(buf));
+        }
+    }
+    f24->func_001D6600();
+    f28->func_0005E840(out);
+    f28->func_001D6600();
+}
 
 void C_00085520::func_00085520()
 {
