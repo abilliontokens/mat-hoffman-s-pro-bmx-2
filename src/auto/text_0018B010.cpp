@@ -341,6 +341,40 @@ undefined4 *C_0018B140::func_0018B140(byte param_1)
   return (undefined4 *)this;
 }
 
+int PhysicsObjectStaticModel::func_0018B180(S_0018B180_Mgr *a0)
+{
+    int func_001E891B(...);
+    char buf[0x104];
+    void *m;
+    S_0018B180_Temp *t;
+
+    func_001ADCC0(buf, 0x104, D_0027C588, unkC->f144);
+    m = func_001E8A44(0x154);
+    unk8 = m ? ((S_0018B180_Body *)m)->func_001732E0(1) : 0;
+    if (!unk8->func_00173F70(unkC->f108, unkC->f118, unkC->f128, 0, 0, (int)buf,
+                             a0->f4A8[a0->f348], a0->f4AC[a0->f348])) {
+        unk8->v08();
+        t = unkC;
+        unk8 = 0;
+        if (t) {
+            t->vtbl = (void *)&D_00289ED8;
+            func_001E891B(t);
+        }
+        unkC = 0;
+        return 0;
+    }
+    unk8->v6C(unkC->f248, unkC->f24C, 0, 0, 0, 0, 0, unkC->f254, unkC->f250, 0, 0, 0, 0, 0, 0, 0);
+    unk8->fC4->f190 = unkC->f270;
+    unk8->fD0->fB4 = unkC->f260;
+    unk8->fD0->fC8 = unkC->f264;
+    unk8->fD0->fD0 = unkC->f268;
+    unk8->fD0->fD4 = unkC->f26C;
+    unk8->v74();
+    a0->f3A8[a0->f348]->func_001577A0(unk8, 2);
+    a0->f3B8->func_00188E20(a0->f348, unk8);
+    return 1;
+}
+
 undefined4 C_0018B3B0::func_0018B3B0(byte param_1)
 {
   int func_00188920(...);
