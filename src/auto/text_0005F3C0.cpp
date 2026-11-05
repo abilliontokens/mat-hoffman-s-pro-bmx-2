@@ -159,6 +159,22 @@ struct BmxInGameMenu {
 };
 
 
+void BmxInGameMenu::func_0005FBD0(void)
+{
+    int i;
+    for (i = 0; i < 8; i++) {
+        if (unk64[i] != 0) {
+            S_0005FBD0_Obj *p = unk64[i]->func_001D5AA0();
+            if (D_00275AEC > p->f10) {
+                p->f10 = 10.0f;
+            }
+            if (D_00275AEC < p->f14 || p->f14 > p->f10) {
+                p->f14 = 10.0f;
+            }
+        }
+    }
+}
+
 void C_000601B0::func_000601B0(void)
 {
   int* in_ECX = (int*)this;
