@@ -125,8 +125,8 @@ struct C_000AC2C0 {
     void allocList(void)
     {
         items = (void **)func_001E8A44(4);
-        cap = 16;
         grow = 1;
+        cap = 16;
         flag |= 1;
     }
     void func_00188F20(int flags);
