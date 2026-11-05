@@ -133,3 +133,34 @@ int C_00145290::func_00145290(int param_1)
   
   return (int)*(short *)(in_ECX + 0x18 + param_1 * 2);
 }
+
+void C_001452A0::func_001452A0()
+{
+    int i;
+
+    vtbl = &D_00285CB0;
+    if (f2C != 0) {
+        func_001E891B((void *)f2C);
+    }
+    if (f30 != 0) {
+        func_001E891B((void *)f30);
+    }
+    if (f34 != 0) {
+        func_001E891B((void *)f34);
+    }
+    for (i = 0; i < fA; i++) {
+        short v = a18[i];
+        if (v == -1 || v == -2 || v == -3 || v == -4) {
+            continue;
+        }
+        if (v >= 0) {
+            D_002AA6C0->func_001B26C0(v);
+        } else if (v < -4) {
+            D_002A71C0->func_001AC790(-v);
+        }
+    }
+    D_002A751C->func_0014A910(f26);
+    D_002A6D84->func_00142D90(f28);
+    func_001B0DC0();
+}
+
