@@ -334,6 +334,17 @@ void SimpleCutSceneCamera::func_00194790(void *a0, int a1, int a2)
     }
 }
 
+int SimpleCutSceneCamera::func_001947E0(void *a0, int a1, int a2, int a3)
+{
+    if (a0 != 0) {
+        func_00194790(a0, a1, a2);
+        f28 = a3;
+        return 1;
+    }
+    f28 = a3;
+    return 1;
+}
+
 void C_00194C60::func_00194C60(void) {
     unk24 = 0;
 }
