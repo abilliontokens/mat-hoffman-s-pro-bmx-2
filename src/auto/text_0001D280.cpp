@@ -282,6 +282,29 @@ done:
     return o;
 }
 
+C_0001DE30_Item *C_0001DE30::func_0001DE30(int a0,int a1,int a2,int a3,int a4,int a5,S_0001DE30_36 a6,S_0001DE30_16 a15,S_0001DE30_16 a19,int a23,int a24,int a25,int a26,int a27,int a28,int a29)
+{
+    void *func_001E8A44(unsigned int);
+    C_0001DE30_Item *item = (C_0001DE30_Item *)func_001E8A44(0x2dc);
+    if (item) item = item->func_001A2580(this,a4,a24,a23);
+    if (!item) return 0;
+    if (!item->func_001A4590(a0,a1,a2,a3,a6,a15,a19,a25,a26,a27,a28,a29)) {
+        item->virt0(1);
+        return 0;
+    }
+    if (a5) {
+        if (a25 & 8) item->func_001A1D20(a5,1);
+        else item->func_001A1D20(a5,0);
+    }
+    C_0001DF80_Arr *array = &sub70;
+    if (array->n < array->cap || array->func_0015ACA0(array->n + array->base)) {
+        array->arr[array->n] = (int)item;
+        array->n++;
+    }
+    func_001577A0(item,2);
+    return item;
+}
+
 C_0001D280 *C_0001D280::func_0001D280(int param_1, int param_2, int param_3) {
     void *func_001E8A44(int);
     if (func_001D3F50() == 0) {
