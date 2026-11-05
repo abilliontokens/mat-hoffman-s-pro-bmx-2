@@ -19,6 +19,30 @@ struct C_001D5AD0 {
     unsigned char f58;
     void func_001D5AD0(void);
 };
+extern int D_0028F5E0;
+struct C_000ECDC0_Obj {
+    void func_00093A00(float a, float b, int c, int d, int e, float f);
+};
+struct C_000ECDC0 {
+    char pad0[0x320];
+    C_001D5AD0 *f320;
+    int f324;
+    char pad328[8];
+    int f330;
+    char pad334[0x10];
+    C_000ECDC0_Obj *f344;
+    int f348, f34C, f350, f354, f358, f35C;
+    int f360, f364, f368, f36C, f370, f374, f378, f37C;
+    int f380, f384, f388, f38C, f390, f394, f398, f39C;
+    void func_000EC5E0();
+    void func_000EC6F0();
+    void func_000EC580();
+    void func_000EC4A0();
+    void func_000EC7E0();
+    void func_000ECC60();
+    void func_00157960();
+    void func_000ECDC0();
+};
 struct S_000ED170_Obj {
     void func_0005E840(char *s);
 };
@@ -256,5 +280,50 @@ void C_000ED0E0::func_000ED0E0(void) {
         }
     }
     func_001BE3F0();
+}
+
+void C_000ED170::func_000ED170(void)
+{
+    int i;
+
+    f2A0 = 0;
+    f2A4 = 0;
+    f2A8 = 0;
+    f29C = 3;
+    f3B8 = f124->f274;
+    if (func_00092A10() != 0) {
+        f28C = 1;
+        f3C4 = 0;
+    } else {
+        f294 = 1;
+        f3C4 = 1;
+    }
+    f3D8 = 0;
+    f414 = 0;
+    f410 = 0;
+    f418 = 0;
+    f41C = 0;
+    f420 = 0;
+    f424 = 0;
+    f428 = 0;
+    f42C = 0;
+    f430 = 0;
+    f434 = 0;
+    f438 = 0;
+    f43C = 0;
+    f3D0 = 0;
+    f3D4 = -1;
+    f3DC = 0;
+    for (i = 0; i < 11; i++) {
+        f3E4[i] = 0;
+        f4D0[i] = 0;
+    }
+    f444 = 0;
+    f45C = 0;
+    D_002B91AC->f34->func_0005E840((char *)(D_002A8490->f2E8->f4->fA58));
+    D_002B91AC->func_000BF860(0, 0x1EB, 0x184, 0);
+    D_002B91AC->f38->func_0005E840((D_002A8490->f2E8->f4->f7C8));
+    D_002B91AC->func_000BF860(1, 0x17B, 0x184, 0);
+    D_002B91AC->f3c->func_0005E840((D_002A8490->f2E8->f4->f838));
 }
 
