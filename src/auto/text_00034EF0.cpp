@@ -339,6 +339,60 @@ struct C_000359C0 {
     void func_000359C0(void);
 };
 
+extern "C" int strlen(const char *s);
+char *func_001E8920(char *dst, const char *src, int n);
+int func_001E8D25(int c);
+int func_001E8AF0(const char *s, const char *pat);
+extern char D_00276D84[];
+extern char D_00276D7C[];
+extern char D_00276D74[];
+extern char D_00276D6C[];
+extern char D_00276D64[];
+extern int D_002B9118;
+extern int D_002B9108;
+extern int D_002B910C;
+extern int D_002B911C;
+extern int D_002B9114;
+extern int D_002BA160;
+
+struct __declspec(align(16)) S_35C10_Mat { float m[16]; };
+void func_000265C0(S_35C10_Mat *out, void *a, void *b, void *c, int d, int e);
+
+struct S_35C10_Holder {
+    void func_001577A0(void *p, int n);
+};
+struct S_35C10_Mgr {
+    char pad0[0x3a8];
+    S_35C10_Holder **f3a8;
+    char pad3ac[0x100];
+    int *f4ac;
+};
+struct S_35C10_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    char pad4[0x64];
+    int f68;
+    char pad6c[1];
+    char f6d;
+    S_35C10_Obj *func_0019B700(int a);
+    int func_00129920(int a);
+    int func_0019D7B0(void *a, char *name);
+    void func_00133EF0(S_35C10_Mat *m);
+    void func_00133140(int a, int b);
+    void func_00133210(void);
+};
+struct C_00035C10 {
+    void *vtbl;
+    char pad4[0x60];
+    S_35C10_Mgr *f64;
+    char pad68[0x500];
+    S_35C10_Obj *f568;
+    S_35C10_Obj *f56c;
+    S_35C10_Obj *f570;
+    int func_00035C10(void *a1, char a2, char *name, void *a4, void *a5, void *a6, int a7, int a8);
+};
+
 void C_00035300::func_00035300(char *name, int n)
 {
     char buf[0x34];
