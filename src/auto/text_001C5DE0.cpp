@@ -99,6 +99,57 @@ static __forceinline Vec4 vec3_neg(Vec4 *v)
     return r;
 }
 
+extern float D_00275544;
+void func_001C6380(Vec4 *out, Vec4 *in);
+float func_0014F7E0(float x);
+
+static __forceinline float Min_001C6B30(float a, float b)
+{
+    float r;
+    _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b)));
+    return r;
+}
+
+static __forceinline float Max_001C6B30(float a, float b)
+{
+    float r;
+    _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b)));
+    return r;
+}
+
+static __forceinline void cross_001C6B30(float *out, float *a, float *b)
+{
+    __m128 va = _mm_loadu_ps(a);
+    __m128 vb = _mm_loadu_ps(b);
+    __m128 sa = va;
+    __m128 sb = vb;
+    sa = _mm_shuffle_ps(sa, sa, 0xc9);
+    sb = _mm_shuffle_ps(sb, sb, 0xc9);
+    vb = _mm_mul_ps(vb, sa);
+    va = _mm_mul_ps(va, sb);
+    va = _mm_sub_ps(va, vb);
+    va = _mm_shuffle_ps(va, va, 0xc9);
+    _mm_storeu_ps(out, va);
+}
+
+struct C_001C6B30_Node {
+    void func_001994C0(int a, Vec4 *p, Vec4 *q);
+    void func_00199A70(int a, Vec4 *out);
+    void func_00199110(int a, Vec4 *p, Vec4 *q, int b, int c, int d);
+    void func_00199CF0(Vec4 axis, float angle);
+};
+
+struct C_001C6B30_Holder {
+    int unk0;
+    C_001C6B30_Node *f4;
+};
+
+struct C_001C6B30 {
+    char pad0[0x3c];
+    C_001C6B30_Holder *f3C;
+    void func_001C6B30(Vec4 target, float maxAngle);
+};
+
 void *func_001E8A44(unsigned int size);
 void func_0015BB70(void *p);
 
@@ -175,6 +226,59 @@ void func_001C64A0(S_001C64A0_Node *obj)
         b.y = b.y + a.y;
         b.z = b.z + a.z;
         root->v4(i, &b, 0, 0, 0);
+    }
+}
+
+void C_001C65E0::func_001C65E0(S_001C64A0_Node *obj)
+{
+    Vec4 a;
+    int i;
+    S_001C64A0_Node *root = find_root(obj);
+    S_001C64A0_Node *node;
+
+    if (obj->f2C == 0) {
+        void *mem = func_001E8A44(0x18);
+        node = mem ? ((C_0015B660 *)mem)->func_0015B660() : 0;
+    } else {
+        void *mem = func_001E8A44(0x18);
+        node = mem ? ((C_0015B7A0 *)mem)->func_0015B7A0() : 0;
+    }
+    f10 = node;
+    f10->f4 = 1;
+    f10->fC = root->fC;
+    f10->f8 = root->f8;
+    f10->v7(root->fC);
+    a.z = 0;
+    a.y = 0;
+    a.x = 0;
+    a.w = 1.0f;
+    root->v5(0, &a, 0, 0, 0);
+    for (i = 0; i < f10->fC; i++) {
+        Vec4 b;
+        Vec4 c;
+        float t;
+        float y;
+        b.z = 0;
+        b.y = 0;
+        b.x = 0;
+        b.w = 1.0f;
+        root->v5(i, &b, &t, 0, 0);
+        y = b.y;
+        b.x = b.x - a.x;
+        b.z = b.z - a.z;
+        b.y = 0;
+        f10->v4(i, &b, &t, 0, 0);
+        c.x = 0;
+        c.z = 0;
+        c.w = 1.0f;
+        c.y = y;
+        b = c;
+        root->v4(i, &b, 0, 0, 0);
+    }
+    f10->v5(f10->fC - 1, &pos, 0, 0, 0);
+    if (obj->f2C == 1) {
+        func_0015BB70(f10);
+        func_0015BB70(root);
     }
 }
 
