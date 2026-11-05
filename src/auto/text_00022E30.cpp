@@ -10,6 +10,84 @@ extern S_Vec4i_00023C30 D_002A0F74;
 
 void func_001E891B(void *p);
 
+struct V4_00023340 {
+    float x, y, z, w;
+    V4_00023340() { x = y = z = 0; w = 1.0f; }
+};
+
+void func_000212C0(V4_00023340 *out, V4_00023340 *in);
+
+static __forceinline void cross_00023340(float *out, float *a, float *b)
+{
+    __m128 va = _mm_loadu_ps(a);
+    __m128 vb = _mm_loadu_ps(b);
+    __m128 sa = va;
+    __m128 sb = vb;
+
+    sa = _mm_shuffle_ps(sa, sa, 0xc9);
+    sb = _mm_shuffle_ps(sb, sb, 0xc9);
+    vb = _mm_mul_ps(vb, sa);
+    va = _mm_mul_ps(va, sb);
+    va = _mm_sub_ps(va, vb);
+    va = _mm_shuffle_ps(va, va, 0xc9);
+    _mm_storeu_ps(out, va);
+}
+
+struct C_00023340_Sub {
+    void func_00198F50(V4_00023340 *a, V4_00023340 *b, int c, int d, int e);
+};
+
+struct C_00023340_Rig {
+    int pad0;
+    C_00023340_Sub *f4;
+};
+
+struct C_00023340_Owner {
+    char pad0[0x1a4];
+    C_00023340_Rig *f1a4;
+};
+
+struct C_00023340_Elem {
+    float px, py, pz;
+    float dx, dy, dz;
+};
+
+struct C_00023340_Tbl {
+    int pad0;
+    int count;
+    char pad8[0x10];
+    C_00023340_Elem *elems;
+    char pad1c[0x10];
+    char f2c;
+    char pad2d[2];
+    char f2f;
+};
+
+struct C_00023340 {
+    char pad0[0x28];
+    C_00023340_Owner *f28;
+    C_00023340_Tbl *f2c;
+    int pad30;
+    int f34;
+    int f38;
+    char pad3c[0x10];
+    V4_00023340 f4c;
+    V4_00023340 f5c;
+    float f6c;
+    float f70;
+    __forceinline void Wrap()
+    {
+        if (f34 < 0 || f34 >= f2c->count) {
+            f34 = 0;
+        }
+        f38 = f34 + 1;
+        if (f38 >= f2c->count) {
+            f38 = 0;
+        }
+    }
+    void func_00023340();
+};
+
 /* AmbientDebrisType */
 struct C_00023BE0 {
     void *vtbl;
