@@ -92,10 +92,10 @@ struct Game {
         S_Game_Flags f230bits;
     };
     char pad231[0x2f];
-    int f260;
-    int f264;
-    int f268;
-    int f26c;
+    volatile int f260;
+    volatile int f264;
+    volatile int f268;
+    volatile int f26c;
     int f270;
     char pad274[4];
     S_00156F30_Iface *f278;
