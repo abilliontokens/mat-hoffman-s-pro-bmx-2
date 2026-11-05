@@ -41,6 +41,19 @@ struct C_00108360 {
 };
 
 
+void C_00107A40::func_00107A40(int a0) {
+    if (D_002A8490->f2e0->f2d4 == 0) {
+        f1e58 = a0;
+        if (a0 != 0) {
+            fa08->vf6();
+        } else {
+            fa0c->vf6();
+            fa10->vf6();
+        }
+        fa14->vf6();
+    }
+}
+
 void C_00107A40::func_00107AB0(void) {
     fa08->vf4();
     fa0c->vf4();
