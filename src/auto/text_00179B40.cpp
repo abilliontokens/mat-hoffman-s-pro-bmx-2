@@ -111,6 +111,23 @@ static inline float C_0017A1D0_Dot(const C_0017A1D0_Vec4 &a, const C_0017A1D0_Ve
     return a.z * b.z + (a.x * b.x + a.y * b.y);
 }
 
+extern float D_00275544, D_00275460;
+struct V3_0017A010 { float x, y, z; };
+int func_001793E0(C_0017A1D0_Vec4 *p, V3_0017A010 *n, V3_0017A010 *o, V3_0017A010 *a, V3_0017A010 *b, V3_0017A010 *c);
+struct C_0017A010 {
+    char pad0[0x24];
+    V3_0017A010 f24;
+    char pad30[4];
+    V3_0017A010 f34;
+    char pad40[4];
+    V3_0017A010 f44;
+    char pad50[4];
+    V3_0017A010 f54;
+    char pad60[4];
+    V3_0017A010 f64;
+    int func_0017A010(V3_0017A010 *a, V3_0017A010 *b, C_0017A1D0_Vec4 *out);
+};
+
 static inline float C_0017A1D0_Fabs(const float &f)
 {
     int i = *(int *)&f;
