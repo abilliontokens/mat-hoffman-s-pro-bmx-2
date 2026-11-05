@@ -275,10 +275,7 @@ struct S_0001BE90_Ctx1 {
     S_0001BE90_Ctx2 *f18c;
 };
 
-struct S_0001BE90_Ctx0 {
-    char pad0[4];
-    S_0001BE90_Ctx1 *f4;
-};
+extern float D_00275BC0;
 
 struct S_0001B910_Anim {
     int pad0;
