@@ -333,23 +333,28 @@ void func_00161910(float a, float *s, float *c)
     *s = (float)sin(a);
 }
 
-void func_00161930(float *a, float *n, V4_00161930 *out)
+void func_00161930(V3_00161930 *a, V3_00161930 *n, V4_00161930 *out)
 {
     float v[4];
     V4_00161930 r;
     float d;
+    float p0, p1, p2;
 
-    d = a[0] * n[0] + n[1] * a[1] + n[2] * a[2];
+    p0 = a->x * n->x;
+    p1 = n->y * a->y;
+    d = p0 + p1;
+    p2 = n->z * a->z;
+    d = d + p2;
     r.w = 1.0f;
-    r.x = n[0] + n[0];
-    r.y = n[1] + n[1];
-    r.z = n[2] + n[2];
+    r.x = n->x + n->x;
+    r.y = n->y + n->y;
+    r.z = n->z + n->z;
     v[0] = r.x * d;
     v[1] = r.y * d;
     v[2] = r.z * d;
-    r.x = a[0] - v[0];
-    r.y = a[1] - v[1];
-    r.z = a[2] - v[2];
+    r.x = a->x - v[0];
+    r.y = a->y - v[1];
+    r.z = a->z - v[2];
     *out = r;
     func_001618A0(out, out);
 }
