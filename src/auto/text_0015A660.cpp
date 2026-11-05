@@ -178,7 +178,7 @@ undefined4 C_0015ABF0::func_0015ABF0(int param_1)
   return 1;
 }
 
-bool C_0015AC20::func_0015AC20(unsigned int flags)
+Ret_0015AC20 C_0015AC20::func_0015AC20(unsigned int flags)
 {
     extern S_0015AC20_Game *D_002A8490;
     unsigned char bit = (D_002A8490->f230 >> 2) & 1;
