@@ -6,7 +6,7 @@ struct Pool { int func_001AC7B0(void *p, int n); void func_001B26C0(int h); };
 struct Entry { char pad[0x2c]; void *e2c; void *e30; void *e34; void *e38; void *e3c; int e40; int e44; };
 struct WaterBase { void func_00157660(); };
 struct Water : WaterBase {
-    void *vtbl; char pad0[0x28]; Entry *entries; char pad1[4]; int count; Obj *obj3c; char pad2[0x14]; Obj **list54; char pad3[0x8]; int h58; int h5c; int n68; char pad4[0x64]; Obj **arrd0; char pad5[0x34]; void *p108; char pad6[0x114]; void *p220;
+    void *vtbl; char pad0[0x28]; Entry *entries; char pad1[8]; int count; Obj *obj3c; char pad2[0x14]; Obj **list54; int h58[4]; int n68; char pad4[0x64]; Obj **arrd0; char pad5[0x34]; void *p108; char pad6[0x114]; void *p220;
     ~Water();
 };
 extern int D_0028E864, D_002F08BC;
