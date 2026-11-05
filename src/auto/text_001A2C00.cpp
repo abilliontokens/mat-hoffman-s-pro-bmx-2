@@ -171,6 +171,28 @@ struct ResponseEmitter {
     void func_001A3050(int a);
 };
 
+void ResponseEmitter::func_001A2CF0(void)
+{
+    int i;
+
+    vtbl = (void *)&D_0028B624;
+    for (i = 0; i < list1c4.count; i++) {
+        S_001A2C00_Elem *e = list1c4.at(i);
+        if (e != 0) {
+            func_001E891B(e);
+        }
+    }
+    list1c4.Clear();
+    list1d8.Clear();
+    if (f1ec != 0) {
+        D_002A8490->f4->func_0001D420(this);
+    }
+    func_001E891B(list1d8.items);
+    func_001E891B(list1c4.items);
+    vtbl = (void *)&D_0028B3C4;
+    ((C_00157660 *)this)->func_00157660();
+}
+
 void ResponseEmitter::func_001A2DD0(int id)
 {
     int i;
