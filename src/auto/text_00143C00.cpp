@@ -161,6 +161,27 @@ void C_00143C00::func_00143C00(int arg)
     }
 }
 
+void DXStripSurfaceData::func_001444F0()
+{
+    if (f14) func_001FEE00(0, f14, 12);
+    if (f18) func_001FEE00(1, f18, 12);
+    if (f1c) func_001FEE00(2, f1c, 4);
+    if (f28) func_001FEE00(4, f28, 4);
+    for (int i = 0; i < 4; i++) {
+        int selector = D_002EFDB8[0x90 + i];
+        if (selector != 255) {
+            int stream;
+            if (i == 0) stream = 3;
+            else if (i == 1) stream = 10;
+            else if (i == 2) stream = 11;
+            else if (i == 3) stream = 12;
+            else stream = -1;
+            func_001FEE00(stream, selector == 0 ? f20 : f24, 8);
+        }
+    }
+    func_00200B30(f10, fc, f30);
+}
+
 void C_001445C0::func_001445C0()
 {
     vtbl = (void *)&D_00285B58;
