@@ -6,6 +6,14 @@ extern int D_002890E8;
 struct S_QuadTreeListNode {
     S_QuadTreeListNode *next;
     void *slot[4];
+    void init(void)
+    {
+        next = 0;
+        slot[0] = 0;
+        slot[1] = 0;
+        slot[2] = 0;
+        slot[3] = 0;
+    }
 };
 
 struct S_QuadTreePool {
@@ -83,6 +91,36 @@ void QuadTreeNode::func_0017CE40(void)
         }
     }
     D_002EFD80->f880--;
+}
+
+void QuadTreeNode::func_0017CEB0(void *item)
+{
+    S_QuadTreeListNode *node;
+    S_QuadTreeListNode *last;
+    S_QuadTreeListNode *n;
+    int i;
+
+    for (node = f8; node != 0; node = node->next) {
+        for (i = 0; i < 4; i++) {
+            if (node->slot[i] == 0) {
+                node->slot[i] = item;
+                return;
+            }
+        }
+        last = node;
+    }
+    n = D_002EFD80->f90->func_0001E8A0();
+    n->next = 0;
+    n->slot[0] = 0;
+    n->slot[1] = 0;
+    n->slot[2] = 0;
+    n->slot[3] = 0;
+    n->slot[0] = item;
+    if (f8 == 0) {
+        f8 = n;
+    } else {
+        last->next = n;
+    }
 }
 
 void C_0017D190::func_0017D190(void)
