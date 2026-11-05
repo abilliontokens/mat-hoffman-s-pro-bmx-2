@@ -335,8 +335,7 @@ struct SoundElemList_001CF2A0 {
         if (count >= capacity && !func_0015ACA0(count + growBy)) {
             return;
         }
-        items[count] = elem;
-        count++;
+        items[count++] = elem;
     }
 };
 
