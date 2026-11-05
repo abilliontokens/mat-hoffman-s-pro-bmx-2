@@ -178,6 +178,27 @@ struct V_0018C120 {
 };
 
 extern "C" int strcmp(const char *s1, const char *s2);
+extern "C" unsigned int strlen(const char *s);
+void *func_001E83E8(void *block, unsigned int size);
+char *func_001E8920(char *dst, const char *src, int n);
+
+struct S_0018CE00_Entry {
+    int id;
+    char name[0x50];
+    int f54;
+    int f58;
+    char pad5c[4];
+};
+
+struct C_0018CE00 {
+    char pad0[0x158];
+    S_0018CE00_Entry *entries;
+    int count;
+    int capacity;
+    int func_0018CE00(int id, char *name);
+};
+
+static __inline int Min_0018CE00(int a, int b) { return a > b ? b : a; }
 
 struct C_0018C120 {
     C_0018C120_Node *head;
@@ -347,6 +368,28 @@ void *C_0018C000::func_0018C650(int flags)
         func_001E891B(this);
     }
     return this;
+}
+
+void C_0018C800::func_0018C6B0(int a, int b)
+{
+    char buf1[0x104];
+    char buf2[0x104];
+    char *name = (char *)a;
+    C_0018C120_Node *node;
+    void *mem;
+    C_0018C000 *obj;
+
+    func_001ADCC0(buf1, 0x104, D_0028A76C, D_002A5240, name);
+    func_001ADCC0(buf2, 0x104, D_00276F28, name);
+    node = ((C_0018C120 *)this)->func_0018C160(name);
+    if (!(node != 0 && node->value != 0)) {
+        mem = func_001E8A44(0x45c);
+        obj = mem != 0 ? (C_0018C000 *)((C_0018C000 *)mem)->func_0018C000(name) : 0;
+        obj->func_0018C2D0(buf1, buf2, 0);
+        ((C_0018C090 *)this)->func_0018C090((int)obj);
+    } else if (b != 0) {
+        ((C_0018C000 *)node->value)->func_0018C2D0(buf1, buf2, 1);
+    }
 }
 
 void C_0018C800::func_0018C780(int count, int *arr, int c)
