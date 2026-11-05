@@ -86,6 +86,43 @@ struct S_11FF0_Owner {
     float func_00012510(float *p, int start);
 };
 
+struct C_00012420 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    char pad4[0x38];
+    S_11FF0_Sub3c *f3c;
+    char pad40[0x344];
+    S_11FF0_Sub384 *f384;
+    char pad388[0xc];
+    int f394;
+    char pad398[0x18];
+    int f3b0;
+    char pad3b4[4];
+    int f3b8;
+    int f3bc;
+    int f3c0;
+    int f3c4;
+    int f3c8;
+    char pad3cc[0xc];
+    int f3d8;
+    char f3dc;
+    char f3dd;
+    char f3de;
+    char f3df;
+    char f3e0;
+    char f3e1;
+    char pad3e2;
+    char f3e3;
+    char pad3e4[0x20];
+    S_11FF0_Vec4i f404;
+    void func_00012420(void);
+};
+
 struct AIPedFallState {
     void *vtbl;
     char pad4[4];
