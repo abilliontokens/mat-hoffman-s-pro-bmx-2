@@ -61,6 +61,16 @@ extern char D_002A5EA0[];
 void func_00164270(int, int, int);
 void *func_001E8A44(unsigned int);
 template <class T> inline T min_00166CA0(const T &a, const T &b) { return a > b ? b : a; }
+struct Str_00166CA0 {
+ char s[0x104];
+ void set(const char *src) {
+  int len = strlen(src);
+  int max = 0x103;
+  int n = min_00166CA0(max, len);
+  func_001E8920(s, src, n);
+  s[n] = 0;
+ }
+};
 struct C_00166CA0 {
  int *vbptr;
  C_00166CA0_Obj *f4;
