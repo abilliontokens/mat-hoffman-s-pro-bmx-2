@@ -143,7 +143,7 @@ extern int D_0028F144;
 extern int D_0028F148;
 int func_001D7D40();
 void __stdcall func_00201A60(int adapter, int type, void *caps);
-void __stdcall func_00202950(void *a, int b);
+int __stdcall func_00202950(void *a, int b);
 int __stdcall func_00202970(int a, int b, int c, int d, void *params, int *out);
 void __stdcall func_001FFBC0(int (*cb)());
 int func_001B2B90(int fmt);
@@ -215,6 +215,59 @@ C_001D8760 *C_001D8760::func_001D8760(int flags)
     if (flags & 1) {
         func_001E891B(this);
     }
+    return this;
+}
+
+C_001D87A0 *C_001D87A0::func_001D87A0(int a1, int a2, int a3, int a4)
+{
+    int r;
+    int hr;
+    unsigned int i;
+
+    f40 = a2;
+    r = func_001D8040(&f44, &D_001D0E90, a1, D_0028F144, D_0028F148, 6, 0);
+    if (r == -1) {
+        return 0;
+    }
+    memset(pp, 0, sizeof(pp));
+    f60 = 6;
+    f54 = 0x1e0;
+    f50 = 0x280;
+    f6B4 = 0xffffff;
+    pp[0] = 0x280;
+    pp[1] = 0x1e0;
+    pp[2] = 6;
+    pp[3] = 2;
+    pp[4] = 0x11;
+    pp[5] = 2;
+    pp[6] = f40;
+    pp[7] = 0;
+    pp[8] = 1;
+    pp[9] = 0x2a;
+    pp[10] = 0x100;
+    pp[11] = 0;
+    pp[12] = 1;
+    func_00202950(&D_00100000, 0x8000);
+    hr = func_00202970(0, 1, f40, 0x50, pp, &D_002F0BB8);
+    if (hr != 0) {
+        v0(1);
+        return 0;
+    }
+    f6C = r;
+    f1C = pp[0];
+    f20 = pp[1];
+    f4 = func_001B2B90(pp[2]);
+    func_00201830(f44, 0, &ident);
+    func_00201A60(f44, f4C, caps);
+    func_001D86C0(guid, 0x100, f44);
+    i = 0;
+    do {
+        func_001FF4E0(0, 0, 0xf3, 0, 0, 0);
+        func_002025D0(0);
+        i++;
+    } while (i <= (unsigned int)pp[3]);
+    func_001D7FB0(1.25f, 1.25f, 1.3f, 0);
+    func_001FFBC0(func_001D7D40);
     return this;
 }
 
