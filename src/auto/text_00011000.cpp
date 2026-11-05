@@ -147,6 +147,15 @@ extern float D_00275480;
 extern float D_00275490;
 extern float D_002754A0;
 
+struct S_115F0_Path { int count; float *pts; };
+struct S_115F0_Mgr { char pad[0x588]; S_115F0_Path **paths; };
+extern S_115F0_Mgr *D_002B9120;
+struct C_000115F0 {
+    char pad[0x3b4];
+    int pathIdx;
+    int func_000115F0(float *pos, float radius, int start, int dir);
+};
+
 float func_00011000(float x) { return sqrtf(x); }
 
 float func_00011020(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
