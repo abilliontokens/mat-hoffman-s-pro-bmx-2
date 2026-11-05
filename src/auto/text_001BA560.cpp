@@ -257,6 +257,26 @@ int C_001BA560::func_001BA560(S_001BA560_arg *arg1, int arg2)
     f288 = 0;
     return 1;
 }
+
+void C_001BB280::func_001BA8B0(void)
+{
+    int i;
+
+    vtbl = (void *)&D_0028CE6C;
+    if (f28 != 0) {
+        for (i = 0; i < f24; i++) {
+            S_001BA910_Elem *e = ((S_001BA910_Elem **)f28)[i];
+            if (e != 0) {
+                e->func_001B69F0();
+                func_001E891B(e);
+            }
+        }
+        func_001E891B(f28);
+        f28 = 0;
+    }
+    ((C_00157660 *)this)->func_00157660();
+}
+
 inline void Init_001BA5E0(C_001BA5E0 *p)
 {
     p->f4 = 0;
