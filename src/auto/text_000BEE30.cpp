@@ -14,3 +14,12 @@ struct C_000BFB70 {
     int f284;
     C_000BFB70 *func_000BFB70(void *param);
 };
+
+C_000BFB70 *C_000BFB70::func_000BFB70(void *param)
+{
+    ((C_001BE360 *)this)->func_001BE360(param);
+    f280 = 0;
+    f284 = 0;
+    vtbl = (void *)&D_0027DF54;
+    return this;
+}
