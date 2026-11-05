@@ -286,3 +286,18 @@ void *Lights::func_0018BFA0(int flags)
     return this;
 }
 
+C_0018BFC0 *C_0018BFC0::func_0018BFC0(int a0, int a1, int a2, int a3, int a4)
+{
+    unk14 = 0;
+    unk16 = 0;
+    unk18 = 0;
+    unk1A = 0;
+    unk1C = 0;
+    unk0 = a0;
+    unk4 = a1;
+    unk8 = a3;
+    unkC = a2;
+    unk10 = a4;
+    return this;
+}
+
