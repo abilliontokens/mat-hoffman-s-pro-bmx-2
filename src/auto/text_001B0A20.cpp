@@ -415,6 +415,15 @@ void C_001B10D0::func_001B10D0(undefined4 param_1, int param_2)
   return;
 }
 
+void *C_001B0E60::func_001B10F0(int flags)
+{
+    vtbl = (void *)&D_0028C6E8;
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void *C_001B1110::func_001B1110(unsigned int flags)
 {
     func_001B0F70();
