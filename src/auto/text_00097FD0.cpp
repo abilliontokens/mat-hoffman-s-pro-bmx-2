@@ -2,14 +2,11 @@
 #include "common.h"
 
 struct C_00096930 {
-    void func_00096930(void);
-};
-
-struct S_00097FD0_elem {
     char pad0[0x1a8];
     int unk1a8;
     char pad1ac[0x48e0 - 0x1ac];
     int unk48e0;
+    void func_00096930(void);
 };
 
 struct S_00097FD0_owner {
