@@ -164,6 +164,12 @@ struct C_001A7860 {
 
 /* LoadMemoryCard */
 struct C_001A6D30_Menu {
+    int func_00092A10();
+    void func_00093120();
+    int func_00092A50(int *p);
+    int func_00092AC0();
+    int func_00092EF0();
+    void func_00093A00(int a1, int a2, int a3, int a4, int a5, int a6);
     void func_00093970(int a1, int a2, int a3, int a4, int a5, int a6);
     void func_00093B80(int a1, int a2, int a3, int a4, int a5, int a6);
     void func_00094570(int a1, int a2, int a3, int a4, int a5, int a6);
