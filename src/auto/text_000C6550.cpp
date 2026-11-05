@@ -13,7 +13,7 @@ struct ParkManager { char pad0[0x2E8]; ParkData *data; ParkLookup *lookup; };
 extern ParkManager *D_002A8490;
 struct ParkDrawable {
  char pad0[0x28]; float f28; char pad2c[0x10];
- float f3c, f40, f44, f48; char pad4c[0xC]; unsigned char f58; char pad59[0xB];
+ float f3c; volatile float f40, f44; float f48; char pad4c[0xC]; unsigned char f58; char pad59[0xB];
  ParkDrawable *func_001D5760();
  void func_001D5810(const char *, float, float, int);
 };
