@@ -144,9 +144,14 @@ struct C_001C05F0 {
     S_001C05F0_Item **unk68;
     char pad6C[0x170 - 0x6C];
     int unk170;
-    char pad174[0x184 - 0x174];
+    int unk174;
+    int unk178;
+    float unk17C;
+    int unk180;
     int unk184;
-    char pad188[0x194 - 0x188];
+    int unk188;
+    int unk18C;
+    int unk190;
     int unk194;
     char pad198[4];
     int unk19C;
