@@ -44,6 +44,28 @@ struct C_000F0D20 {
     void func_000F0D20(void);
 };
 
+C_000F0D20 *C_000F0D20::func_000F0C40(int a)
+{
+    int i;
+    func_001BE360(a);
+    vtbl = &D_002823DC;
+    f2B8 = 0;
+    f284 = 0; f294 = 0; f288 = 0; f280 = 0;
+    f28C = 0; f290 = 0; f298 = 0; f29C = 0;
+    f2A0 = 0; f2A4 = 0; f2AC = 0; f2A8 = 0;
+    f3BC = 1;
+    for (i = 0; i < 2; i++) arr3F8[i] = 0;
+    for (i = 0; i < 4; i++) arr3E8[i] = 0;
+    for (i = 0; i < 4; i++) {
+        arr400[i] = 0;
+        arr410[i] = 0;
+        arr3D8[i] = 0;
+    }
+    f3C4 = 0; f3C8 = 0; f3CC = 0; f3D0 = 0; f3D4 = 0;
+    f3C0 = 1;
+    return this;
+}
+
 void C_000F0D20::func_000F0D20(void)
 {
     int i;
