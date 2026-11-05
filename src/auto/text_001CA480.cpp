@@ -8,8 +8,22 @@ struct C_001CB120 {
 
 extern int D_0028EC24;
 extern int D_0028ECAC;
+extern int D_0028ED5C;
+extern float D_002755E0;
+extern float D_0028B320;
 extern char D_002A5EA0[];
 void func_001E891B(void *);
+void func_001E8390(void *);
+void func_0001DFF0(void);
+void __stdcall func_0021FC46(int);
+
+struct C_001CB130 {
+    void *vtbl;
+    int unk4;
+    int unk8;
+    void func_0001DFF0();
+    void *func_001CB130(int flags);
+};
 
 struct Quat_1CAF20 {
     float x, y, z, w;
