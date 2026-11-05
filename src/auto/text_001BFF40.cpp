@@ -65,6 +65,49 @@ struct C_001C0670 {
     void func_001C0670(void);
 };
 
+/* element of UIWidgetOverlayText's child array */
+struct S_001C05F0_Item {
+    void func_001B2270(int a);
+    void func_001B1980(void);
+};
+
+/* UIWidgetOverlayText seen through virtual slots 5 and 7 */
+struct C_001C05F0 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    char pad4[0x28];
+    int unk2C;
+    char pad30[8];
+    int unk38;
+    int unk3C;
+    int unk40;
+    char pad44[0x68 - 0x44];
+    S_001C05F0_Item **unk68;
+    char pad6C[0x170 - 0x6C];
+    int unk170;
+    char pad174[0x184 - 0x174];
+    int unk184;
+    char pad188[0x19C - 0x188];
+    int unk19C;
+    char pad1A0[4];
+    int unk1A4;
+    int unk1A8;
+    void func_001C05F0(void);
+    void func_001C0690(void);
+    void func_001C06F0(void);
+};
+
+/* UIWidgetMovementControl seen through virtual slots 5 and 7 */
+struct C_001C0E80 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    char pad4[0x28];
+    int unk2C;
+    int unk30;
+    int unk34;
+    void func_001C0E80(void);
+};
+
 struct S_001C04D0_Entry {
     int unk0;
     int unk4;
