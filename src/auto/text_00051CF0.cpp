@@ -184,7 +184,7 @@ struct C_00052830_64 {
 struct C_00052830 {
     char pad0[0x64];
     C_00052830_64 *unk64;
-    char pad68[0x100];
+    char pad68[0x108];
     C_00051CF0_Obj *unk170;
     char pad174[0x24];
     C_00051CF0_Obj *unk198;
