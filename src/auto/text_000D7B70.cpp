@@ -73,6 +73,7 @@ struct BmxUIPageHOF4D {
     S_000D8A40_Widget *arr30C[5];
     void func_001BE3F0();
     void func_000D7B70();
+    void func_000D85C0();
     void func_000D8A40();
 };
 
