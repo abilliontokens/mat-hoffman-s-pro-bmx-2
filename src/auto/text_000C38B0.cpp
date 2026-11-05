@@ -30,12 +30,47 @@ struct C_000C4460 {
 /* BmxUIPageMain */
 struct C_000C45E0 {
     void *vtbl;
-    char pad4[0x2C0];
+    char pad4[0x280 - 4];
+    u32 unk280;
+    u32 unk284;
+    u32 unk288;
+    u32 unk28C;
+    u32 unk290;
+    u32 unk294;
+    u32 unk298;
+    u32 unk29C;
+    u32 unk2A0;
+    u32 unk2A4;
+    char pad2A8[4];
+    u32 unk2AC;
+    u32 unk2B0;
+    u32 unk2B4;
+    u32 unk2B8;
+    u32 unk2BC;
+    u32 unk2C0;
     C_001D6410 *unk2C4;
-    char pad2C8[0x2F8 - 0x2C8];
+    u32 unk2C8;
+    u32 unk2CC;
+    u32 unk2D0;
+    u32 unk2D4;
+    u32 unk2D8;
+    u32 unk2DC;
+    u32 unk2E0;
+    u32 unk2E4;
+    u32 unk2E8;
+    u32 unk2EC;
+    u32 unk2F0;
+    u32 unk2F4;
     DelObjC_000C4 *unk2F8[10];
+    u32 arr320[12];
+    char pad350[0xc];
+    u32 unk35C;
+    u32 unk360;
+    u32 unk364;
     void func_001BE3F0(void);
+    void func_001BE360(int a);
     void func_000C45E0(void);
+    C_000C45E0 *func_000C44C0(int a);
 };
 
 void C_000C4460::func_000C4460(void)
