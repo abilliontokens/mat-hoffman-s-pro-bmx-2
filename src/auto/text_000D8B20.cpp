@@ -64,8 +64,6 @@ struct S_002B91AC {
 
 extern S_002B91AC *D_002B91AC;
 
-void __stdcall func_001BEE30(int a, int b);
-
 struct C_000D9750 {
     char pad0[0x29C];
     int unk29C;
@@ -80,6 +78,7 @@ struct C_000D9750 {
     float unk2C0;
     void func_000D9530();
     void func_000D9FE0();
+    void func_001BEE30(int a, int b);
     void func_000D5860();
     void func_00157960();
     void func_000D9750();
