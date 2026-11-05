@@ -14,14 +14,31 @@ struct C_0018C820 {
     void func_0018C820(int a0, int a1, int a2, int a3);
 };
 
+struct C_0018C800;
+
+struct C_002EFE08 {
+    void func_001904E0(C_0018C800 *owner, int a, int b, int c, int d);
+};
+extern C_002EFE08 *D_002EFE08;
+
+struct C_00157600 {
+    void func_00157600(int a0);
+};
+
 struct C_0018C800 {
-    char pad0[0x24];
+    int unk0;
+    char pad4[0x20];
     int unk24;
     int unk28;
     int unk2C;
     int unk30;
     int unk34;
+    int unk38;
+    void func_0018C6B0(int a, int b);
+    C_0018C800 *func_0018C7B0(int a0);
+    void func_0018C780(int count, int *arr, int c);
     void func_0018C800(void);
+    void func_0018C850(void);
 };
 
 struct C_0018C7F0 {
