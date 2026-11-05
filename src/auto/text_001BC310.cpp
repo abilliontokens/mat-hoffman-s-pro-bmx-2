@@ -42,3 +42,12 @@ struct C_001BC6E0 {
     char *data;
     char func_001BC6E0(void *param);
 };
+
+C_001BC640 *C_001BC640::func_001BC640(void *param)
+{
+    ((C_00157600 *)this)->func_00157600(param);
+    f24 = 0;
+    f28 = 0;
+    vtbl = (void *)&D_0028D334;
+    return this;
+}
