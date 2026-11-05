@@ -36,6 +36,11 @@ struct S_001EF734 {
 
 extern char D_00295C58[];
 extern char D_00295C60[];
+extern char D_00295C50[];
+extern char D_00295C48[];
+extern char D_00295C40[];
+extern char D_00295C38[];
+extern char D_00295C2C[];
 extern int D_00278798;
 extern int D_0027D1D8;
 void *_func_001EFBEE(S_001EF734 *o);
