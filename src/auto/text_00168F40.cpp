@@ -2,6 +2,7 @@
 #include "common.h"
 extern int D_00288084;
 void func_001E891B(void *p);
+void func_001E8390(void *p);
 void func_00168210(int type, float val, void *p);
 float func_001E9649(float x);
 
@@ -102,11 +103,10 @@ struct VT_00169C00 {
 
 int C_00168F40::func_00168F40(int id)
 {
-    int idx;
     int key;
+    int idx;
 
-    key = id;
-    idx = func_00168300(key);
+    idx = func_00168300(key = id);
     if (func_00168300(key) != -1) {
         if (f4 != 0) {
             D_002BEAAC->func_0013AFF0(f0, f4B8[idx].offset, 0);
