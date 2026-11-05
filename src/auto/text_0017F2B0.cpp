@@ -49,8 +49,6 @@ struct C_0017FEB0 {
     char padF2[0xA];
     S_0017FDB0_Tree tree;
     void func_00157A00(int a);
-    void func_0017FDB0(u16 idx, S_0017FDB0_Tree *t, float *m);
-    void func_0017FCA0(u16 idx, S_0017FDB0_Tree *t, int depth);
     void func_0017FEB0(int a);
 };
 
