@@ -18,3 +18,32 @@ struct C_000F0D20 {
     void func_001BE3F0(void);
     void func_000F0D20(void);
 };
+
+void C_000F0D20::func_000F0D20(void)
+{
+    int i;
+    vtbl = &D_002823DC;
+    for (i = 0; i < 2; i++) {
+        if (arr3F8[i] != 0) {
+            arr3F8[i]->Destroy(1);
+            arr3F8[i] = 0;
+        }
+    }
+    for (i = 0; i < 4; i++) {
+        if (arr3E8[i] != 0) {
+            arr3E8[i]->Destroy(1);
+            arr3E8[i] = 0;
+        }
+    }
+    for (i = 0; i < 4; i++) {
+        if (arr400[i] != 0) {
+            arr400[i]->Destroy(1);
+            arr400[i] = 0;
+        }
+        if (arr410[i] != 0) {
+            arr410[i]->Destroy(1);
+            arr410[i] = 0;
+        }
+    }
+    func_001BE3F0();
+}
