@@ -73,3 +73,21 @@ void *C_001BC6B0::func_001BC6B0(unsigned int flags)
     return this;
 }
 
+char C_001BC6E0::func_001BC6E0(void *param)
+{
+    int func_001E8BB0(...);
+    char *func_001E83E8(...);
+    void func_001E8920(...);
+    int i;
+
+    for (i = 0; i < count; i++) {
+        if (func_001E8BB0(param, data + i * 0x80, 0x80) == 0)
+            return i;
+    }
+    count = count + 1;
+    data = func_001E83E8(data, count * 0x80);
+    memset(data + i * 0x80, 0, 0x80);
+    func_001E8920(data + i * 0x80, param, 0x80);
+    return count - 1;
+}
+
