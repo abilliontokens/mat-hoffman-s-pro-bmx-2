@@ -158,6 +158,32 @@ void C_00135D90::func_00135D90(float a, float b)
     }
 }
 
+C_00135E00 *C_00135E00::func_00135E00(void)
+{
+    int i;
+    int *p;
+
+    vtbl = (void *)&D_00284834;
+    f4 = 0;
+    f8 = 0;
+    f10 = 0;
+    i = 0;
+    p = fCC4;
+    do {
+        p[0] = i;
+        p[8] = i;
+        p[-0x32c] = 0;
+        i++;
+        p++;
+    } while (i < 8);
+    f34 = 0;
+    f38 = 0;
+    fCC0 = 0;
+    f3C = 0;
+    fC = 0;
+    return this;
+}
+
 int func_00135E80()
 {
     return ++D_002BA700;
