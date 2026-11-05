@@ -17,6 +17,9 @@ void BmxUIPageMain::func_000C58A0(void)
         func_000C4CE0();
         f2F0 = 0;
     }
+    func_000C4FD0();
+    func_000C5580();
+    func_00157960();
 }
 
 extern int D_0027E14C;
