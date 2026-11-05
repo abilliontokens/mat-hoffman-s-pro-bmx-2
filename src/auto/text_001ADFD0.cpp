@@ -231,6 +231,43 @@ void C_001AE3E0::func_001AE4D0(int a, int b, int c, int d, int e, int f, int g, 
     f3C[idx].Set(e, f, g, h);
 }
 
+struct C_1AE570_Cam {
+    char pad0[0xF0];
+    float mat[28];
+    float pos[3];
+    float f17C;
+    float dir[3];
+    char pad18C[0x60];
+    unsigned int f1EC;
+};
+struct C_1AE570_Root {
+    char pad0[4];
+    C_1AE570_Cam *cam;
+};
+struct C_1AE570_Tr {
+    int func_001C5C50(C_1AE570_Cam *cam, float *mat, float *b, float *a, float *out);
+};
+extern int D_002F00D0;
+extern int D_002AA3EC;
+extern C_1AE570_Root *D_002EFDB8;
+extern C_1AE570_Tr *D_002AB66C;
+extern const float D_002755E4;
+extern const float D_00275544;
+extern const float D_0028C280;
+float __stdcall func_001AE530(float x, float y);
+void func_001578D0_(void);
+struct C_1AE570 {
+    char pad0[0x30];
+    float f30;
+    char pad34[0xC];
+    float f40, f44, f48;
+    char pad4C[0x30];
+    float f7C, f80;
+    unsigned char f84_0 : 1;
+    int func_001AE570(void);
+    void func_001578D0(void);
+};
+
 float __stdcall func_001AE530(float x, float y)
 {
     extern float D_00278788;
