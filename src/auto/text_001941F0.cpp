@@ -121,6 +121,46 @@ struct SimpleCutSceneCamera {
     void func_00194790(void *a0, int a1, int a2);
 };
 
+extern int D_0028AE90;
+extern int D_002A9ADC;
+extern int D_002A9AE0;
+extern int D_002A9AE4;
+extern int D_002A9AE8;
+
+struct S_00194C80_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+};
+
+struct C_00194C80 {
+    void *vtbl;
+    S_00194C80_Obj *f4;
+    void func_0012B540(void);
+    void *func_00194C80(int flags);
+};
+
+/* camera behaviour that owns four 16-byte vectors from +0x8 */
+struct C_00194DC0 {
+    int vtbl;
+    int f4;
+    S_Vec4Int f8;
+    S_Vec4Int f18;
+    S_Vec4Int f28;
+    S_Vec4Int f38;
+    int f48;
+    void func_00194DC0(int a0, int *a1, S_Vec4Int *a2, S_Vec4Int *a3, int *a4, S_Vec4Int *a5, S_Vec4Int *a6, int *a7);
+};
+
+struct C_00194EE0 {
+    int vtbl;
+    int f4;
+    char pad8[0x20];
+    S_Vec4Int f28;
+    void func_00194EE0(int a, int b, int c, int d);
+    void func_00194F10(S_Vec4Int *out);
+};
+
 struct C_00194280 {
     void *vtbl;
     char pad4[0x3C];
