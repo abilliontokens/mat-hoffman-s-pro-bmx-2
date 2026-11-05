@@ -42,6 +42,102 @@ struct C_00079790 {
 
 void func_001E891B(void *p);
 
+struct FPSSave_Card {
+    int func_00092B40(int slot);
+    int func_00092AC0();
+    int func_00093300(float f);
+};
+
+struct FPSSave_Opt {
+    int *func_0005C020(int i);
+};
+
+struct FPSSave_Mem {
+    virtual void v00(); virtual void v01(); virtual void v02(); virtual void v03();
+    virtual void v04(); virtual void v05(); virtual void v06(); virtual void v07();
+    virtual void v08(); virtual void v09(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17();
+    virtual void v18(int a0);
+    void func_00094960(int a0);
+};
+
+struct FPSSave_Disp {
+    virtual void v00(); virtual void v01(); virtual void v02(); virtual void v03();
+    virtual void v04(); virtual void v05(); virtual void v06(); virtual void v07();
+    virtual void v08(); virtual void v09(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30();
+    virtual void v31(int a0, int a1);
+};
+
+struct FPSSave_R64 {
+    char pad0[0x4C0];
+    FPSSave_Disp *p4C0;
+};
+
+struct FPSSave_R2A4 {
+    char pad0[0x64];
+    FPSSave_R64 *p64;
+    char pad68[0x154 - 0x68];
+    int f154;
+};
+
+struct FPSSave_R2E0 {
+    char pad0[0x2C0];
+    FPSSave_Opt *p2C0;
+    char pad2C4[0x2D8 - 0x2C4];
+    int f2D8;
+    char pad2DC[0x2FC - 0x2DC];
+    FPSSave_Mem *p2FC;
+    char pad300[0x324 - 0x300];
+    int f324;
+};
+
+struct FPSSave_Snd {
+    void func_0001EDC0(int id);
+};
+
+struct FPSSave_Root {
+    char pad0[0x2A4];
+    FPSSave_R2A4 *p2A4;
+    char pad2A8[0x2E0 - 0x2A8];
+    FPSSave_R2E0 *p2E0;
+    char pad2E4[0x2F0 - 0x2E4];
+    FPSSave_Snd *p2F0;
+};
+
+extern FPSSave_Root *D_002A8490;
+extern float D_00276220;
+extern float D_00278500;
+
+void __stdcall func_001DCAFF(int a0, int *a1);
+
+/* FPSSaveMenu */
+struct C_00078970 {
+    char pad0[0x9C];
+    float f9C;
+    int fA0;
+    int fA4;
+    char padA8[0xC8 - 0xA8];
+    FPSSave_Card *fC8;
+    int fCC;
+    int fD0;
+    int fD4;
+    char padD8[4];
+    int fDC;
+    float fE0;
+    int fE4;
+    int fE8;
+    int fEC;
+    int fF0;
+    void func_00078970(float dt);
+    void func_00157A00(float dt);
+};
+
 struct RawBuf_Menu {
     void func_001D6410();
 };
