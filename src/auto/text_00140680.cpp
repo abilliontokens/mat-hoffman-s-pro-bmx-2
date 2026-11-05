@@ -19,6 +19,7 @@ struct C_00140680 {
     VObj *b;
     C_00140680() { a = 0; b = 0; }
     ~C_00140680();
+    static void *operator new[](unsigned int size) { return func_001E8A44(size); }
     void func_001402C0(int p1, int p2);
     void *func_00140680(unsigned int flags);
 };
