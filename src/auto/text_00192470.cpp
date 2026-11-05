@@ -14,10 +14,56 @@ struct C_001926D0 {
 };
 
 
-struct C_00192470 {
-    char pad0[0xE];
+extern int D_0028AB84;
+extern char D_0028AB70[];
+extern char D_0028AA90[];
+
+struct C_0001DFE0 {
+    void *vtbl;
+    int unk4;
+    void func_0001DFE0(void);
+    void func_0001DFF0(void);
+};
+
+struct C_001BC6E0 {
+    char func_001BC6E0(void *param);
+};
+extern C_001BC6E0 *D_002AAEC8;
+
+struct SearchEntry {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+};
+
+struct C_00192470 : C_0001DFE0 {
+    int f8;
+    char padC[2];
     unsigned char fE;
-    char padF[0x19];
+    char padF;
+    int f10;
+    SearchEntry **f14;
+    int f18;
+    int f1C;
+    unsigned char f20;
+    char pad21[3];
+    char f24;
+    char f25;
+    char pad26[2];
     int f28;
     int f2c;
     int f30;
