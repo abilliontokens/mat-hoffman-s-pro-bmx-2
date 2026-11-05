@@ -188,24 +188,12 @@ struct S_0005B960_IGroup {
 };
 
 struct C_0005B960 {
-    union {
-        struct {
-            float f0[25];
-            float f64[25];
-            float fC8[25];
-            int i12C[25];
-            int i190[25];
-            int i1F4[25];
-        };
-        struct {
-            S_0005B960_FGroup g0;
-            S_0005B960_FGroup g1;
-            S_0005B960_FGroup g2;
-            S_0005B960_IGroup g3;
-            S_0005B960_IGroup g4;
-            S_0005B960_IGroup g5;
-        };
-    };
+    S_0005B960_FGroup g0;
+    S_0005B960_FGroup g1;
+    S_0005B960_FGroup g2;
+    S_0005B960_IGroup g3;
+    S_0005B960_IGroup g4;
+    S_0005B960_IGroup g5;
     int func_0005B960(int sel, float val);
     int func_0005BED0(int sel, int idx, float *out, char *dst);
 };
