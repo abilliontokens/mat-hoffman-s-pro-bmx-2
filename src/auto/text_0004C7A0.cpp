@@ -114,6 +114,53 @@ struct C_0004D480 {
 };
 extern char D_00275630;
 
+struct H_Obj {
+    virtual void vf0(); virtual void vf1(); virtual void vf2(); virtual void vf3(); virtual void vf4();
+    virtual void vf5(); virtual void vf6();
+    H_Obj *func_00088530(int a);
+    H_Obj *func_00088570(int a);
+    H_Obj *func_0005ECA0(int a);
+    H_Obj *func_0005EDC0(void *a);
+    H_Obj *func_000715B0(int a);
+    H_Obj *func_00071880(void *a);
+    H_Obj *func_00066C90(int a);
+    H_Obj *func_00066FA0(void *a);
+    H_Obj *func_00082450(int a);
+    H_Obj *func_0008DB70(void *a, int b, int c, int d, int e, int f, int g);
+    H_Obj *func_0006C380(int a);
+    H_Obj *func_0006C570(void *a);
+    H_Obj *func_00085470(int a);
+    H_Obj *func_00085630(int a, int b);
+};
+struct H_Owner {
+    char pad0[0x4e0];
+    struct { char pad[0x1a8]; int unk1a8; } *unk4e0;
+};
+struct H_Global {
+    char pad0[0x2e0];
+    struct { int pad[2]; int unk8; } *unk2e0;
+};
+struct BmxEventHorse {
+    void *vtbl;
+    char pad4[0x60];
+    H_Owner *unk64;
+    char pad68[0x7c];
+    H_Obj *unke4;
+    char pade8[0x74];
+    H_Obj *unk15c;
+    char pad160[0x10];
+    H_Obj *unk170;
+    char pad174[0x1c];
+    H_Obj *unk190;
+    char pad194[8];
+    H_Obj *unk19c;
+    H_Obj *unk1a0;
+    char pad1a4[0xe4];
+    H_Obj *unk288;
+    void func_00031630();
+    void func_0004D2C0();
+};
+
 struct S_0004D630_Obj {
     virtual void v0();
     virtual void v1();
