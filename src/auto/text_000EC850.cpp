@@ -194,6 +194,41 @@ struct C_000ED170 {
     void func_000ED170(void);
 };
 
+extern char D_002786A0[], D_00278690[], D_00278678[];
+extern float D_00275AEC;
+struct C_000EC850_Range {
+    float pad0[4];
+    float f10;
+    float f14;
+    void Clamp() {
+        if (D_00275AEC > f10)
+            f10 = 10.0f;
+        if (D_00275AEC < f14 || f14 > f10)
+            f14 = 10.0f;
+    }
+};
+struct C_000EC850_Node {
+    C_000EC850_Range *func_0018C070();
+};
+struct C_000EC850_Lib {
+    C_000EC850_Node **func_0018C160(char *name);
+};
+struct C_000EC850_Glob {
+    char pad0[0x2EC];
+    C_000EC850_Lib *f2EC;
+};
+struct C_000EC850_Ctl {
+    C_000EC850_Range *func_001D5AA0();
+};
+struct C_000EC850 {
+    char pad0[0x2A0];
+    C_000EC850_Ctl *f2A0[16];
+    char pad2E0[0x40];
+    C_000EC850_Ctl *f320;
+    void func_001578D0();
+    void func_000EC850();
+};
+
 void C_000ECD90::func_000ECD90(void) {
     unk380 = 0;
     unk384 = 255;
