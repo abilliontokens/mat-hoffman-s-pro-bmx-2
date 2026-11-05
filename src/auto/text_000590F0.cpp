@@ -87,6 +87,43 @@ void __stdcall func_000597A0(int a0, int a1) {
     func_000560A0();
 }
 
+BmxGame *BmxGame::func_000598E0(void)
+{
+    ((C_001D0E30 *)this)->func_001D0E30();
+    f2A4 = 0;
+    f2B0 = 0;
+    f2B4 = 0;
+    f2B8 = 0;
+    f2C7 = 0;
+    f2DC = 0;
+    f2E0 = 0;
+    f2EC = 0;
+    f2F0 = 0;
+    f2F8 = 0;
+    f2FC = 0;
+    vtbl = (void *)&D_00277FD4;
+    f2D8 = 1;
+    f2E4 = 1;
+    f2F4 = 1;
+    return this;
+}
+
+int BmxGame::func_00059950(GameEvent *e, int b)
+{
+    if ((f230 & 1) && f2A4 != 0 && (f2A4->f21 & 1) && e->f4 == 0) {
+        if (D_002A8490->f8->v5(0x21, 0, 0xC, 0)) {
+            f124 = 1 - f124;
+        } else if (D_002A8490->f8->v5(0x12, 0, 0x3F, 0)) {
+            if (f124 != 0) {
+                f128 = 1;
+                f124 = 0;
+            }
+        }
+    }
+    f2F8 = 1;
+    return ((C_001D0F70 *)this)->func_001D0F70(e, b);
+}
+
 void BmxGame::func_0005A0B0(void)
 {
     C_0018C640 *p = f2EC;
