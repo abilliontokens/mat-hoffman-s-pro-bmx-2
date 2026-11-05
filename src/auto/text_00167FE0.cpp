@@ -15,6 +15,8 @@ void *func_001E8AA5(unsigned int size);
 int func_001ADCC0(char *dst, int n, const char *fmt, ...);
 int func_00168120(const char *s);
 int __stdcall func_00168A10(int a, int *out);
+int __stdcall func_00168550(int a, char *dst, int d);
+int __stdcall func_00168550(void *a, char *dst, int d);
 extern char D_00288004[];
 extern char D_00288008[];
 extern char D_00275630[];
