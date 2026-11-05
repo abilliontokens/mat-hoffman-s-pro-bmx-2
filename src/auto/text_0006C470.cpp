@@ -111,7 +111,7 @@ struct C_0006D1D0 {
     int unkCC;
     int unkD0;
     C_0006D210_Obj *unkD4;
-    char padD8[4];
+    f32 unkD8;
     f32 unkDC;
     int unkE0;
     int unkE4;
