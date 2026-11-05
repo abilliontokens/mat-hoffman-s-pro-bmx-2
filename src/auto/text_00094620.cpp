@@ -179,11 +179,11 @@ struct S_00094A00_Obj {
     virtual void v27();
     virtual void v28();
     virtual void v29();
-    virtual void v30();
+    virtual int v30(int a, int b);
     virtual void v31();
     virtual int v32(int a, int b);
     virtual int v33(int a);
-    virtual void v34();
+    virtual int v34();
     virtual void v35();
     virtual int v36(int a, int b, int c);
     virtual int v37();
