@@ -96,6 +96,14 @@ struct C_0019C320 {
 };
 
 
+void SoultreeCollisionObject::func_0019C1E0(void)
+{
+    S_Matrix16 m;
+
+    ((C_00199C20 *)f1C0)->func_00199C20(0, &m);
+    func_0019C0E0(&m);
+}
+
 void C_0019C320::func_0019C320(undefined4 *param_1)
 {
   int in_ECX = (int)this;
