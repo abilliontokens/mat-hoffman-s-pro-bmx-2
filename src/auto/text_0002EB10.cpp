@@ -57,17 +57,22 @@ BmxCameraController_0002EF20 *BmxCameraController_0002EF20::func_0002EF20(int a0
 
 C_0002F190 *C_0002F190::func_0002F190(void)
 {
-    m[2] = 0;
-    m[1] = 0;
-    m[0] = 0;
-    m[3] = 0x3f800000;
-    m[6] = 0;
-    m[5] = 0;
-    m[4] = 0;
-    m[7] = 0x3f800000;
-    m[10] = 0;
-    m[9] = 0;
-    m[8] = 0;
-    m[11] = 0x3f800000;
+    unsigned int *p;
+
+    p = (unsigned int *)&m[0];
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = (unsigned int *)&m[4];
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = (unsigned int *)&m[8];
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
     return this;
 }
