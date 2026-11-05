@@ -103,7 +103,7 @@ struct C_00168B90 {
 extern float D_00275544, D_00276520;
 extern char D_002A0F74[];
 int func_001E8858(float f);
-void __stdcall func_0001CE80(void *a, void *b, void *c, float d, float e);
+double __cdecl sqrt(double);
 
 struct S_000255D0_Part {
     virtual void v0();
