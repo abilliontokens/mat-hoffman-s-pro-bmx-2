@@ -50,6 +50,18 @@ void func_0011F460(int a0, int a1, int a2, int a3, float angle)
     func_0011F400(a0, a1, a2, a3, *(int *)&s, *(int *)&c);
 }
 
+void func_0011F4B0(float *out, S_0011F4B0_V4 *pos, float *m)
+{
+    S_0011F4B0_V4 v = *pos;
+    float x = v.x - m[3];
+    float y = v.y - m[7];
+    float z = v.z - m[11];
+
+    out[0] = x * m[0] + y * m[4] + z * m[8];
+    out[1] = x * m[1] + y * m[5] + z * m[9];
+    out[2] = x * m[2] + y * m[6] + z * m[10];
+}
+
 void func_0011F540(S_0011F4B0_V4 *out, S_0011F4B0_V4 pos, float *m)
 {
     S_0011F4B0_V4 r;
