@@ -228,6 +228,18 @@ void *C_001625E0::func_001625E0(int flags)
     return this;
 }
 
+void C_00162610::func_00162660(void)
+{
+    vtbl = (void *)&D_00287C24;
+    if (f2C != 0) {
+        func_001E891B(f2C);
+    }
+    if (f24 != 0) {
+        f24->destroyObject(1);
+    }
+    func_00157660();
+}
+
 void C_00162720::func_00162720(undefined4 param_1)
 {
   int in_ECX = (int)this;
