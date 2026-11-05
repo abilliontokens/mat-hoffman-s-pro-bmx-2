@@ -26,6 +26,17 @@ struct C_0002F6C0 {
     void func_0002F6C0();
 };
 
+struct C_0002F8A0 {
+    char pad0[0x30];
+    S_0002F6C0_Camera *f30;
+    char pad34[0x1c];
+    S_0002F6C0_Obj *f50;
+    char pad54[0x18];
+    int f6c;
+    void func_0012B7D0(void *, int, int, int, int);
+    void func_0002F8A0();
+};
+
 struct C_0002F190 {
     float m[12];
     C_0002F190 *func_0002F190(void);
