@@ -46,6 +46,7 @@ struct UIControl {
     UIControl *f34;
     int f38;
     UIControl **f3c;
+    UIControl *getChild(int i) { return f2c[i]; }
     void func_001BDA80(void);
     void func_00157660(void);
     UIControl *func_001BE320(byte flags);
