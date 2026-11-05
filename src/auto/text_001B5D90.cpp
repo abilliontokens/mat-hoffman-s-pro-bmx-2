@@ -250,6 +250,13 @@ struct C_001B61E0 {
     int func_001B6280(S_001B6280_Param *param, C_001BBAA0 *obj);
 };
 
+struct C_001B6300 {
+    char pad0[0x8];
+    char f8[0x104];
+    char f10c[0x104];
+    int func_001B6300(S_001B6130_Stream *stream, int a1);
+};
+
 struct C_001B6570 {
     int f0;
     int f4;
