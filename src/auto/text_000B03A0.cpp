@@ -29,3 +29,24 @@ struct C_000B11C0 {
     void func_00157600(int a0);
     C_000B11C0 *func_000B11C0(int param_1);
 };
+
+C_000B11C0 *C_000B11C0::func_000B11C0(int param_1) {
+    func_00157600(param_1);
+    unk44 = 0;
+    unk48 = 0;
+    unk34 = 0;
+    unk38 = 0;
+    unk3C = 0;
+    unk4C = 0;
+    unk50 = 0;
+    unk40 = 0;
+    vtbl = &D_0027CE64;
+    return this;
+}
+
+int C_000B1320::func_000B1320(int param_1) {
+    if (D_002A8490->f124 == 0) {
+        func_00157A00(param_1);
+    }
+    return 1;
+}
