@@ -45,10 +45,29 @@ struct C_00161F80 {
     float func_00161F80(float param);
 };
 
+extern float D_00287B80;
+extern float D_002755E8;
+float func_0014F590(float x);
+void func_00162470(float *m, float a2, float a3, float a4, float a5, float a6, float a7, int a8);
+void func_00162530(float *m, float a2, float a3, float a4, float a5, float a6);
+
+struct C_001625A0 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    int f28;
+    char pad2c[0x30 - 0x2c];
+    int f30;
+    int f34;
+    unsigned char f38;
+    C_001625A0 *func_001625A0(int a);
+};
+
 
 float C_00161F80::func_00161F80(float param)
 {
-    int *p;
+    float t;
+    int n;
     float f;
     float a;
     float b;
@@ -56,9 +75,10 @@ float C_00161F80::func_00161F80(float param)
         D_002A8314 = 0;
         func_00161D90();
     }
-    p = &D_002ED708;
-    *p = (int)(param + D_00287B6C);
-    f = (param + D_00287B6C) - (float)D_002ED708;
+    t = param + D_00287B6C;
+    n = (int)t;
+    D_002ED708 = n;
+    f = t - (float)D_002ED708;
     a = D_002ED710[D_002EEF28[D_002ED708 & 0xff]];
     b = D_002ED710[D_002EEF28[(D_002ED708 + 1) & 0xff]];
     return f * a + (D_002755EC - 2.0f * f) * f * f * ((f - 1.0f) * b - f * a);
@@ -68,27 +88,27 @@ int func_00162210(float *out, float *m)
 {
     float det;
     float s;
-    int i;
-    det = m[0] * (m[5] * m[10] - m[6] * m[9]) - m[1] * (m[4] * m[10] - m[6] * m[8]) + m[2] * (m[4] * m[9] - m[5] * m[8]);
+    det = (m[10] * m[5] - m[9] * m[6]) * m[0] - (m[4] * m[10] - m[8] * m[6]) * m[1] + (m[9] * m[4] - m[8] * m[5]) * m[2];
     if (det == 0.0f) {
         return 0;
     }
     func_00162020(out, m, 1);
-    s = 1.0f / det;
-    for (i = 0; i < 16; i++) {
-        out[i] = out[i] * s;
-    }
+    s = D_00275460 / det;
+    *(__m128 *)out = _mm_mul_ps(*(__m128 *)out, _mm_set1_ps(s));
+    *(__m128 *)(out + 4) = _mm_mul_ps(*(__m128 *)(out + 4), _mm_set1_ps(s));
+    *(__m128 *)(out + 8) = _mm_mul_ps(*(__m128 *)(out + 8), _mm_set1_ps(s));
+    *(__m128 *)(out + 12) = _mm_mul_ps(*(__m128 *)(out + 12), _mm_set1_ps(s));
     return 1;
 }
 
 void func_001622C0(float *m, void *arg)
 {
-    float x, y;
-    func_0014F6E0(arg, &y, &x);
-    m[0] = x;
-    m[4] = y;
-    m[5] = x;
-    m[1] = -y;
+    float v[2];
+    func_0014F6E0(arg, &v[0], &v[1]);
+    m[0] = v[1];
+    m[4] = v[0];
+    m[5] = v[1];
+    m[1] = -v[0];
     m[8] = 0.0f;
     m[12] = 0.0f;
     m[9] = 0.0f;
