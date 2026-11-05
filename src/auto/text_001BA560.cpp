@@ -269,21 +269,6 @@ struct S_001BB060_Array {
     }
 };
 
-/* split buf on D_0028803C and store a copy of each token in arr */
-static __forceinline void Split_001BB060(S_001BB060_Array *arr, char *buf)
-{
-    S_001BB060_Tokenizer tok;
-    char *s;
-    int i;
-
-    tok.func_001B4A40(buf);
-    s = tok.func_001B4A70(D_0028803C);
-    for (i = 0; s != 0; i++) {
-        arr->At(i) = func_001E91F4(s);
-        s = tok.func_001B4A70(D_0028803C);
-    }
-}
-
 /* ShaderPassTriggerAction */
 struct C_001BA5E0 {
     void *vtbl;
