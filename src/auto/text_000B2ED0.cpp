@@ -98,6 +98,58 @@ struct VehicleAI {
     void func_000B3B40();
 };
 
+struct S_000B3C30_Cnt {
+    char pad0[0x28];
+    struct S_000B3C30_Sub *f28;
+};
+struct S_000B3C30_Sub {
+    char pad0[8];
+    struct C_001A2AA0 *f8;
+};
+struct C_001A2AA0 {
+    void func_001A2AA0(int a);
+};
+struct S_000B3C30_Own {
+    char pad0[0x4B8];
+    int f4B8;
+    char pad4BC[0x518 - 0x4BC];
+    int *f518;
+};
+struct S_000B3C30_Oth {
+    char pad0[0x3C];
+    S_000B3C30_Own *f3C;
+};
+struct S_000B3C30_Glob {
+    char pad0[0x2C];
+    int f2C, f30;
+};
+extern S_000B3C30_Glob *D_002B9134g;
+extern float D_00275544;
+extern float D_00279B54;
+extern float D_002756DC;
+extern float D_002755E0;
+int func_00011260(int a, int b);
+struct VehicleAI2 {
+    char pad0[0x3C];
+    S_000B3C30_Own *f3C;
+    char pad40[4];
+    struct S_000B3C30_Cnt *f44;
+    S_000B3C30_Oth *f48;
+    char pad4C[0xC];
+    int f58, f5C;
+    char pad60[4];
+    float f64, f68;
+    char pad6C[0xC];
+    int f78;
+    char pad7C[0x1a1 - 0x7c];
+    u8 f1a1;
+    char pad1a2[0x2a9 - 0x1a2];
+    u8 f2a9, f2aa, f2ab;
+    void func_000B2930();
+    float func_000B24C0(float a, int b, float c);
+    void func_000B2450(float a);
+    void func_000B3C30();
+};
 struct C_000B31F0 {
     void func_00167750();
     void func_000B2ED0(int a);
