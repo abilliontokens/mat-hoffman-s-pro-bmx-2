@@ -263,6 +263,13 @@ static __declspec(noinline) void func_001EB4D4(char *s, int dist)
     }
 }
 
+static __declspec(noinline) void shift_tmp(char *s, int dist)
+{
+    if (dist != 0) {
+        func_001EA6A0(s + dist, s, strlen(s) + 1);
+    }
+}
+
 char *__cdecl func_001EB4F7(char *buf, int ndec, int caps, S_StrFlt *pflt, char g_fmt)
 {
     char *p;
@@ -309,13 +316,87 @@ char *__cdecl func_001EB4F7(char *buf, int ndec, int caps, S_StrFlt *pflt, char 
 
 char *__cdecl func_001EB5A0(double *pvalue, char *buf, int ndec, int caps)
 {
+    typedef S_StrFlt *(__cdecl *Fltout2Fn)(S_CrtDouble, S_StrFlt *, char *);
     char resultstr[24];
     S_StrFlt flt;
 
-    func_001F4A07(*pvalue, &flt, resultstr);
+    ((Fltout2Fn)func_001F4A07)(*(S_CrtDouble *)pvalue, &flt, resultstr);
     func_001F48CE(buf + (flt.sign == '-') + (ndec > 0), ndec + 1, &flt);
     func_001EB4F7(buf, ndec, caps, &flt, 0);
     return buf;
+}
+
+static __declspec(noinline) char *func_001EB600(S_StrFlt *pflt, char *buf, int ndec, char g_fmt)
+{
+    char *p;
+    int dist;
+
+    if (g_fmt && pflt->decpt - 1 == ndec) {
+        p = (char *)((pflt->sign == '-') + (pflt->decpt - 1) + buf);
+        *p = '0';
+        p[1] = 0;
+    }
+    p = buf;
+    if (pflt->sign == '-') {
+        *p = '-';
+        p++;
+    }
+    dist = 1;
+    if (pflt->decpt <= 0) {
+        func_001EB4D4(p, dist);
+        *p = '0';
+        p++;
+    } else {
+        p += pflt->decpt;
+    }
+    if (ndec > 0) {
+        func_001EB4D4(p, dist);
+        *p = D_002AEA3C;
+        p++;
+        if (pflt->decpt < 0) {
+            if (g_fmt || ndec >= -pflt->decpt) {
+                ndec = -pflt->decpt;
+            }
+            dist = ndec;
+            func_001EB4D4(p, dist);
+            memset(p, '0', dist);
+        }
+    }
+    return buf;
+}
+
+char *__cdecl func_001EB6A7(double *arg, char *buffer, int precision)
+{
+    S_StrFlt flt;
+    char resultstr[24];
+
+    func_001F4A07(*arg, &flt, resultstr);
+    func_001F48CE((char *)((flt.sign == '-') + buffer), flt.decpt + precision, &flt);
+    func_001EB600(&flt, buffer, precision, 0);
+    return buffer;
+}
+
+void __cdecl func_001EB6F9(double *arg, char *buffer, int precision, int caps)
+{
+    S_StrFlt flt;
+    char resultstr[24];
+    char *p;
+    int oldexpo;
+
+    func_001F4A07(*arg, &flt, resultstr);
+    oldexpo = flt.decpt - 1;
+    p = (char *)((flt.sign == '-') + buffer);
+    func_001F48CE(p, precision, &flt);
+    if (flt.decpt - 1 < -4 || flt.decpt - 1 >= precision) {
+        func_001EB4F7(buffer, precision, caps, &flt, 1);
+    } else {
+        if (oldexpo < flt.decpt - 1) {
+            while (*p++ != 0) {
+            }
+            p[-2] = 0;
+        }
+        func_001EB600(&flt, buffer, precision, 1);
+    }
 }
 
 void __cdecl func_001EB786(double *arg, char *buffer, int format, int precision, int caps)
