@@ -316,8 +316,8 @@ void C_001B1B80::func_001B1B80(undefined4 param_1, float param_2, float param_3,
   float fVar1;
 
   if (*(int *)(in_ECX + 0xc0) == 0) {
-    *(undefined4 *)(in_ECX + 0xa8) = param_1;
     *(undefined4 *)(in_ECX + 0xb4) = param_6;
+    *(undefined4 *)(in_ECX + 0xa8) = param_1;
     iVar1 = *(int *)(in_ECX + 0x24);
     *(undefined4 *)(in_ECX + 0xb0) = 0;
     if (*(float *)(iVar1 + 0x24) != param_2 || *(float *)(iVar1 + 0x28) != param_3) {
