@@ -55,10 +55,62 @@ struct C_00038850_Item {
     void func_0019C320(float *out);
 };
 
+struct S_000392B0_Vec4 {
+    float x, y, z, w;
+    S_000392B0_Vec4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+};
+
+struct S_000392B0_Obj {
+    char pad0[0x28];
+    int f28;
+    void func_00197E70(S_000392B0_Vec4 *v);
+    void func_00197B40(S_000392B0_Vec4 *a, S_000392B0_Vec4 *b);
+};
+
+struct S_000392B0_Slot {
+    int type;                /* 0x00 */
+    int pad4;
+    S_000392B0_Obj *obj;     /* 0x08 */
+};
+
+struct S_000392B0_Block {
+    char pad0[0x358];
+    int w;                   /* 0x358 */
+    int h;                   /* 0x35C */
+    int d;                   /* 0x360 */
+};
+
+struct S_000392B0_Text {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    void func_0008B670(char *s);
+};
+
+extern char D_00276EC8[];
+extern char D_00276EA0[];
+
 struct C_00038760 {
     char pad0[0x64];
     C_00038760 *f64;         /* 0x64 */
-    char pad68[0x538];       /* 0x68 */
+    char pad68[0x450 - 0x68];
+    int f450;                /* 0x450 */
+    char pad454[0x45C - 0x454];
+    int f45C;                /* 0x45C */
+    int f460;                /* 0x460 */
+    char pad464[0x490 - 0x464];
+    int f490;                /* 0x490 */
+    char pad494[0x49C - 0x494];
+    S_000392B0_Obj **f49C;   /* 0x49C */
+    char pad4A0[0x558 - 0x4A0];
+    S_000392B0_Text *f558;   /* 0x558 */
+    char pad55C[0x564 - 0x55C];
+    S_000392B0_Slot *f564;   /* 0x564 */
+    char pad568[0x5A0 - 0x568];
     S_00038760_Arr arr;      /* 0x5A0 */
     S_00038760_Arr arr2;     /* 0x5A8 */
     int pad5B0;
