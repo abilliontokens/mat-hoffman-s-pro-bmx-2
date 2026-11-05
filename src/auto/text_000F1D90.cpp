@@ -33,7 +33,14 @@ struct S_000F1D90_Obj {
 
 struct BmxUIPageHPHChoice {
     void *vtbl;
-    char pad4[0x2b4 - 4];
+    char pad4[0x13c];
+    int **f140;
+    char pad144[0x144];
+    int f288;
+    int f28c;
+    char pad290[0x10];
+    short f2a0;
+    char pad2a2[0x12];
     S_000F1D90_Obj *unk2b4[4];
     void func_000F1D90(void);
     void func_000F1FC0(void);
