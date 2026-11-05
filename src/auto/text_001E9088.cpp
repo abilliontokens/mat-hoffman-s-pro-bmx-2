@@ -9,12 +9,18 @@ void __fastcall func_001E9088(int a) {
     func_001ECDE7(a, &D_002AE5B0);
 }
 
+void __fastcall func_001E9092(int a) {
+    int __fastcall func_001ECD6C(int, void *);
+    func_001ECD6C(a, &D_002AE5B0);
+}
+
+#pragma optimize("t", off)
 int func_001E90AA(int value) {
     int func_001ECFEC(...);
     int func_001E83E8(...);
-    int n = func_001ECFEC(D_002FB374);
-    if (n < (int)((char *)D_002FB370 - (char *)D_002FB374) + 4) {
-        int size = n < 0x800 ? n : 0x800;
+    unsigned n = func_001ECFEC(D_002FB374);
+    if (n < (unsigned)((char *)D_002FB370 - (char *)D_002FB374) + 4) {
+        unsigned size = n < 0x800 ? n : 0x800;
         int *p = (int *)func_001E83E8(D_002FB374, size + n);
         if (p == 0) {
             p = (int *)func_001E83E8(D_002FB374, n + 0x10);
@@ -28,8 +34,6 @@ int func_001E90AA(int value) {
     D_002FB370++;
     return value;
 }
-
-#pragma optimize("t", off)
 int func_001E912A(void) {
     int func_001E8AA5(...);
     D_002FB374 = (int *)func_001E8AA5(0x80);
