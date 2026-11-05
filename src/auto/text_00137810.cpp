@@ -140,10 +140,10 @@ __declspec(align(16)) struct S_137F90_Mat {
     __forceinline void identity(void)
     {
         __m128 z = _mm_setzero_ps();
-        _mm_store_ps(&m[0], z);
-        _mm_store_ps(&m[4], z);
-        _mm_store_ps(&m[8], z);
-        _mm_store_ps(&m[12], z);
+        ((__m128 *)m)[0] = z;
+        ((__m128 *)m)[1] = z;
+        ((__m128 *)m)[2] = z;
+        ((__m128 *)m)[3] = z;
         m[0] = 1.0f;
         m[5] = 1.0f;
         m[10] = 1.0f;
@@ -277,7 +277,8 @@ void DrawableCube::func_00137E50(float dt)
 
 int DrawableCube::func_00137F90()
 {
-    DrawableCube * volatile self = this;
+    DrawableCube *self = this;
+    DrawableCube **pself = &self;
     S_137F90_Mat mat;
     S_137F90_Mat mat2;
     S_137F90_Mat * volatile pm;
@@ -289,7 +290,7 @@ int DrawableCube::func_00137F90()
     int k;
 
     if (D_002A67D8 != 0) {
-        D_002EFDB8->f6c->func_0014A650(f7d0);
+        D_002EFDB8->f6c->func_0014A650(self->f7d0);
         D_002EFDB8->f70->func_00142D00(self->f7d4);
         g4 = D_002EFDB8->f4;
         pm = &mat;
