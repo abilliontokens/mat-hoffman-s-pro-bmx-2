@@ -62,6 +62,11 @@ struct S_Tiddata {
     char pad58[0x2c];
 };
 
+extern "C" unsigned long __readfsdword(unsigned long Offset);
+extern "C" unsigned char __readfsbyte(unsigned long Offset);
+#pragma intrinsic(__readfsdword)
+#pragma intrinsic(__readfsbyte)
+
 extern int D_002F41D0;
 extern S_Tiddata *D_002FB360;
 extern char D_002AEDD8[];
