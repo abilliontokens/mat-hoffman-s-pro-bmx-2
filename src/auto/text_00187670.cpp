@@ -171,6 +171,14 @@ int C_001878D0::func_001878D0(int a)
     return 1;
 }
 
+void C_00187910::func_00187910(int *a, int b)
+{
+    if (func_00135C70(0x1f, 0, a, 0xc) != 0) {
+        f2c = (f2c + 1) % 3;
+    }
+    func_00157BF0(a, b);
+}
+
 void C_00187AF0::func_00187AF0(void)
 {
   int func_001E891B(...);
