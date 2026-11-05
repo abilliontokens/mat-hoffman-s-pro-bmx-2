@@ -49,6 +49,76 @@ struct C_00097C20 {
     int func_00097C20(void);
 };
 
+int func_001EA426(const char *a, const char *b);
+
+struct C_00097DA0_Item {
+    char pad0[0xC0];
+    char fC0[1];
+};
+
+struct C_00097DA0_Obj {
+    char pad0[0x1B8];
+    int f1B8;
+    char pad1BC[0xC];
+    C_00097DA0_Item **f1C8;
+    char pad1CC[0x48E0 - 0x1CC];
+    int f48E0;
+};
+
+struct C_00097DA0_Owner {
+    char pad0[0x1C8];
+    int f1C8;
+};
+
+struct C_00097DA0 {
+    C_00097DA0_Obj **f0;
+    C_00097DA0_Obj **f4;
+    C_00097DA0_Obj **f8;
+    int fC;
+    int f10;
+    int f14;
+    int f18;
+    int f1C;
+    char pad20[0x198 - 0x20];
+    C_00097DA0_Owner *f198;
+
+    int Mode(void)
+    {
+        if (f198->f1C8 != 0) {
+            return f1C;
+        }
+        return f18;
+    }
+
+    C_00097DA0_Obj **List(void)
+    {
+        switch (Mode()) {
+        case 0:
+            return f0;
+        case 1:
+            return f4;
+        case 2:
+            return f8;
+        }
+        return 0;
+    }
+
+    int Count(void)
+    {
+        switch (Mode()) {
+        case 0:
+            return fC;
+        case 1:
+            return f10;
+        case 2:
+            return f14;
+        }
+        return 0;
+    }
+
+    int func_00097DA0(const char *name);
+};
+
 
 undefined4 C_000976A0::func_000976A0(void)
 {
