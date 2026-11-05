@@ -65,7 +65,21 @@ struct C_00157600 {
     void func_00157660(void);
 };
 
+struct Query_00193530 {
+    int func_0017A1D0(void *a, void *b, void **out);
+};
+
+struct Link_00193530 {
+    Link_00193530 *next;
+    C_00192B50 *owner;
+    Query_00193530 *query;
+    void *fC;
+    void *f10;
+};
+
 struct C_00192B50 {
+    char pad0[0x24];
+    Link_00193530 *f24;
     Handler_00193240 *func_00192B50(int a0);
 };
 
