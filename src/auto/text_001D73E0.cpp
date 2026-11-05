@@ -162,11 +162,46 @@ struct S_001D7C50_desc {
     u32 h;
 };
 
+struct S_001D7910_Rect {
+    int pitch;
+    void *bits;
+};
+
+struct S_001D7910_Desc {
+    int format;
+    int type;
+    int usage;
+    unsigned int size;
+    int msaa;
+    int width;
+    int height;
+};
+
+extern int D_002ABE74;
+void *__cdecl func_001E8A44(int size);
+void __cdecl func_00178C60(void *a, void *b, int c, int d, int e, int f, int g, int h, int i, int j, int k, int l, int m);
+int __stdcall func_001FCF20(int w, int h, int levels, int depth, int usage, int format, int type);
+int __stdcall func_001FCE40(void *map, int index, void *out);
+int __cdecl func_001B2910(int format);
+int __stdcall func_0020FE81(void *map, int a, int b, int c);
+extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
+
 struct XboxTextureMap {
-    char pad0[0xB8];
+    char pad0[8];
+    int f8;
+    int fC;
+    char pad10[0xA0 - 0x10];
+    int fA0;
+    int fA4;
+    int fA8;
+    char padAC[0xB8 - 0xAC];
     void *field_b8;
+    char padBC[4];
+    u32 arrC0[10];
+    u32 arrE8[10];
     int func_001D7BF0(int param_1);
     int func_001D7C50();
+    int func_001D7910(void *data, int width, int height, int a4, int minDim, int srcFmt, int dxFmt, unsigned int flags, int a9);
 };
 
 struct C_001D7CE0 {
