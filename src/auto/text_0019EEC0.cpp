@@ -11,3 +11,14 @@ struct SoultreeHierarchyCollisionObject {
     void func_00133E60();
     void *func_0019FBA0(int flags);
 };
+
+void *SoultreeHierarchyCollisionObject::func_0019FBA0(int flags)
+{
+    vtbl = (void *)&D_0028B25C;
+    func_0019DC80();
+    func_00133E60();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
