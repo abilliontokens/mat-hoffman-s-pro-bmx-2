@@ -25,11 +25,17 @@ struct S_FreeNode {
 };
 
 /* chunk header inside a heap block (16-byte granules) */
+struct S_HeapLink {
+    S_HeapLink *flink;
+    S_HeapLink *blink;
+};
 struct S_HeapEntry {
     unsigned short size;
     unsigned short prevSize;
     unsigned char bucket;
     unsigned char flags;
+    char pad06[2];
+    S_HeapLink link;            /* 0x08, free-list links */
 };
 
 /* kernel heap block header (16-byte granules) */
