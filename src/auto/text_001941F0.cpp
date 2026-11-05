@@ -151,8 +151,6 @@ struct SignatureWave {
     int fEC;
     SignatureWave *func_00194600(S_Vec4 *a1, S_Vec4 *a2, int a3, float a4, float a5, float a6, float a7, int a8, int a9, int a10, int a11, int a12, int a13, float a14, int a15, int a16, int a17, int a18);
     void func_00194330(S_Vec4 *a1, S_Vec4 *a2, int a3, float a4, float a5, float a6, float a7, int a8, int a9, int a10, int a11, int a12, int a13, float a14, int a15, int a16, int a17, int a18);
-    SignatureWave *func_00194600(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11, int a12, int a13, float a14, int a15, int a16, int a17, int a18);
-    void func_00194330(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11, int a12, int a13, float a14, int a15, int a16, int a17, int a18);
     int func_00194490(void);
 };
 
@@ -418,26 +416,21 @@ void C_00194310::func_00194310(int a0, int a1) {
 
 void SignatureWave::func_00194330(S_Vec4 *a1, S_Vec4 *a2, int a3, float a4, float a5, float a6, float a7, int a8, int a9, int a10, int a11, int a12, int a13, float a14, int a15, int a16, int a17, int a18)
 {
-    float inv4 = D_00275460 / a4;
-    float inv5;
-    float v3;
+    const float inv4 = D_00275460 / a4;
 
     *(S_Vec4 *)&f64 = *a1;
     *(S_Vec4 *)&f74 = *a2;
     f4C = a3;
     f34 = a4;
     f38 = a5;
+    f3C = inv4;
+    const float inv5 = D_00275460 / a5;
+    f40 = inv5;
     f84 = 0;
     f88 = 0;
     f94 = 0;
     f98 = 0;
-    f3C = inv4;
-    inv5 = D_00275460 / a5;
-    f40 = inv5;
-    v3 = (float)f28;
-    if (f28 < 0) {
-        v3 = v3 + 4294967296.0f;
-    }
+    f8C = a4 * a6 / (float)f28;
     f9C = a9;
     fA0 = a10;
     fAC = a12;
@@ -445,16 +438,15 @@ void SignatureWave::func_00194330(S_Vec4 *a1, S_Vec4 *a2, int a3, float a4, floa
     fB8 = 1.0f;
     f50 = 0;
     f54 = 0;
-    fE4 = a15;
-    fE8 = a17;
     fA4 = a11 == 0 ? 3 : 1;
+    fE4 = a15;
     fD0 = a13;
+    fE8 = a17;
     fDC = a16;
     fA8 = a11;
-    fEC = a18;
     fD8 = a14;
-    f8C = a4 * a6 / v3;
-    f90 = a5 * a7 / v3;
+    fEC = a18;
+    f90 = a5 * a7 / (float)f28;
     fB0 = inv4 * D_00278784;
     fB4 = inv5 * D_0028AE80;
 }
@@ -488,7 +480,7 @@ int C_00194520::func_00194520(float dt, int a) {
  return 1;
 }
 
-SignatureWave *SignatureWave::func_00194600(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11, int a12, int a13, float a14, int a15, int a16, int a17, int a18)
+SignatureWave *SignatureWave::func_00194600(S_Vec4 *a1, S_Vec4 *a2, int a3, float a4, float a5, float a6, float a7, int a8, int a9, int a10, int a11, int a12, int a13, float a14, int a15, int a16, int a17, int a18)
 {
     ((C_00157600 *)this)->func_00157600(1);
     vtbl = (void *)&D_0028AE14, f6C = 0.0f, f68 = 0.0f, f64 = 0.0f;
