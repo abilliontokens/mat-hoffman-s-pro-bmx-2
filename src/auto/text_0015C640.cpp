@@ -58,6 +58,24 @@ float func_0015C900(float param_1)
     return (((D_00287844 - D_00287848 * lVar1) * lVar1 - D_00287840) * lVar1 + D_00275460) * param_1;
 }
 
+void func_0015C930(float *param_1, int param_2)
+{
+    int func_0001B1D0(...);
+    float sum;
+    float locals[4];
+    func_0001B1D0(param_2, locals);
+    sum = locals[0] * param_1[0];
+    sum = sum + locals[1] * param_1[1];
+    sum = sum + locals[3] * param_1[3];
+    sum = sum + locals[2] * param_1[2];
+    if (sum < D_00275544) {
+        param_1[1] = -param_1[1];
+        param_1[2] = -param_1[2];
+        param_1[3] = -param_1[3];
+        *param_1 = -*param_1;
+    }
+}
+
 void C_0015CD50::func_0015CD50(uint param_1)
 {
   int in_ECX = (int)this;
