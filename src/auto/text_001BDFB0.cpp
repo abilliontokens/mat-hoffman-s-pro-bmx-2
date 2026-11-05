@@ -111,15 +111,15 @@ void UIControl::func_001BE1B0(int n)
     do {
         i = f30 - n;
         if (i < 1) {
-            i += f28;
+            f30 = f28 + i;
+        } else {
+            f30 = i;
         }
-        f30 = i;
         cur = arr[f30 - 1];
         f34 = cur;
     } while (cur == 0 || cur->f24 == 0);
     for (i = 0; i < cur->f28; i++) {
-        UIControl *e = cur->f2c[i];
-        (**(code **)(*(int *)e + 0x70))();
+        ((UIVirt70 *)cur->f2c[i])->virt28();
     }
 }
 
