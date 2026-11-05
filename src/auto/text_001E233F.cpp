@@ -23,6 +23,15 @@ extern "C" void (__stdcall *_imp__KeInitializeTimerEx)(void *timer, int type);
 extern "C" void (__stdcall *_imp__HalInitiateShutdown)(void);
 extern "C" int (__stdcall *_imp__KeSetTimer)(void *timer, __int64 dueTime, void *dpc);
 
+static void initterm(PVFV *pfbegin, PVFV *pfend) {
+    while (pfbegin < pfend) {
+        if (*pfbegin != 0 && (int)*pfbegin != -1) {
+            (**pfbegin)();
+        }
+        ++pfbegin;
+    }
+}
+
 #pragma optimize("t", off)
 void func_001E2655(void) {
     PVFV *p;
