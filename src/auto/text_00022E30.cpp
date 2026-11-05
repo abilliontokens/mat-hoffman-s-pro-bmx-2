@@ -35,3 +35,22 @@ struct C_00023BE0 {
     void *func_00023BE0(int flags);
     C_00023BE0 *func_00023C30(int a, int b, int c, int d);
 };
+
+void *C_00023BE0::func_00023BE0(int flags)
+{
+    vtbl = &D_00276218;
+    if (unk18 != 0) {
+        func_001E891B((void *)unk18);
+        unk18 = 0;
+        unk14 = 0;
+    }
+    if (unkC != 0) {
+        func_001E891B((void *)unkC);
+        unkC = 0;
+        unk8 = 0;
+    }
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
