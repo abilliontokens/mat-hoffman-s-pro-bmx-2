@@ -101,6 +101,7 @@ struct C_0013AEC0 {
     int fF8;
     int fFC;
     int func_0013AFB0(int idx);
+    void func_0013B040(int id);
     int func_0013B1A0(const char *key);
     int func_0013B760(S_0013AF80_Row *row, int v);
     int func_0013B930(int idx, void *buf, int size, int count);
