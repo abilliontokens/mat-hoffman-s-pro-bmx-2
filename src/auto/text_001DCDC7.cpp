@@ -121,7 +121,7 @@ unsigned __int64 __rdtsc();
 #pragma optimize("y", on)
 #pragma optimize("s", on)
 void __stdcall func_001DD0A9(int a0, int a1, int a2) {
-    void __stdcall func_001DCDC7(int, int, int, int, int, int);
+    int __stdcall func_001DCDC7(int, int, int, int, int, int);
     func_001DCDC7(a0, a1, 0, 0, 0, a2 != 0);
 }
 void __stdcall func_001DD0C8(u32 *a0) {
@@ -485,6 +485,110 @@ void *__stdcall func_001DD816(int a0)
 done:
     return p ? p : (void *)-1;
 }
+
+#pragma optimize("y", off)
+int __stdcall func_001DD8C5(u32 id, u32 idx, u32 *out1, u32 *out2, unsigned short *name, int unused)
+{
+    u32 buf[0x80];
+    void *h = (void *)-1;
+    int status;
+    u32 n;
+    u32 i;
+    u32 *p;
+    u32 sector;
+    u32 ok = 1;
+
+    if (D_002ACA04 != id) {
+        status = func_001DD713((u32 *)&h, buf);
+        ok = status >= 0;
+        if (ok) {
+            n = buf[1];
+            if (n >= 0x64) {
+                n = 0x64;
+            }
+            i = 0;
+            if (n > 0) {
+                p = &buf[3];
+                do {
+                    if (*p == id) {
+                        break;
+                    }
+                    i++;
+                    p++;
+                } while (i < n);
+            }
+            if (i == n) {
+                ok = 0;
+                func_001DD62B(0x57);
+            }
+        } else {
+            func_001DD62B(_imp__RtlNtStatusToDosError(status));
+        }
+        if (ok) {
+            ok = func_001DD3A1(h, idx << 9, 0, 1) != -1;
+            if (ok) {
+                ok = func_001DD6D5(h, buf, (u32)&D_00021371);
+                if (ok) {
+                    memcpy(&D_002ACA00, buf, 0x1a0);
+                    if (buf[1] == id && buf[2] > idx) {
+                        ok = 1;
+                    } else {
+                        ok = 0;
+                        func_001DD62B(0x57);
+                    }
+                }
+            } else {
+                func_001DD62B(0xd);
+            }
+        }
+    }
+    if (ok) {
+        if (D_002AC844 != id || idx < D_002AC848 * 6 || idx >= D_002AC848 * 6 + 6) {
+            if ((int)h == -1) {
+                status = func_001DD713((u32 *)&h, buf);
+                ok = status >= 0;
+                if (!ok) {
+                    func_001DD62B(_imp__RtlNtStatusToDosError(status));
+                }
+            }
+            if (ok) {
+                sector = (D_002ACA0C[idx / 6] + 0x65) << 9;
+                ok = func_001DD3A1(h, sector, 0, 0) != -1;
+                if (ok) {
+                    ok = func_001DD6D5(h, buf, (u32)&D_00031073);
+                    if (ok) {
+                        ok = buf[1] == id;
+                        memcpy(&D_002AC840, buf, 0x1c0);
+                        if (!ok) {
+                            func_001DD62B(0xd);
+                        }
+                    }
+                } else {
+                    func_001DD62B(0xd);
+                }
+            }
+        }
+    }
+    if (idx > D_002ACA08) {
+        ok = 0;
+        func_001DD62B(0x57);
+    }
+    if (ok) {
+        u32 slot = idx % 6;
+
+        *out1 = D_002AC850[slot];
+        *out2 = D_002AC868[slot];
+        if (name != 0) {
+            func_001EA4A4(name, D_002AC880[slot], 0x20);
+        }
+    }
+    if ((int)h != -1) {
+        func_001DD13C(h);
+    }
+    return ok;
+}
+#pragma optimize("y", on)
+
 #pragma optimize("y", on)
 
 u32 __stdcall func_001DDAEE(u32 id, int flag)
