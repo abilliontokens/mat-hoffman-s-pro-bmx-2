@@ -5,6 +5,16 @@
 
 extern float D_00275544;
 
+static void CopyString(char *dst, const char *src)
+{
+    char c;
+
+    do {
+        c = *src++;
+        *dst++ = c;
+    } while (c != 0);
+}
+
 static inline void CopyName(char *dst, const char *src)
 {
     char c;
@@ -300,13 +310,14 @@ void C_00083B00::func_00083B00(int a0) {
 
 void C_000831E0::func_00083B20(const char *name)
 {
-    char *dst = sC64;
+    int i = 0;
     char c;
 
     fC5C = 1;
     do {
-        c = *name++;
-        *dst++ = c;
+        c = name[i];
+        sC64[i] = c;
+        i++;
     } while (c != 0);
     fCA0 = 1.0f;
 }
