@@ -61,6 +61,10 @@ extern S_002B92E8 *D_002B92E8;
 extern S_002B9290 *D_002B9290;
 extern int D_002B9300;
 
+struct __declspec(align(16)) S_00123AF0_Mat {
+    float m[16];
+};
+
 struct C_002B92A0 {
     void func_000264C0(int param_1);
 };
