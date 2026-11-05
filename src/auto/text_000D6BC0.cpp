@@ -10,10 +10,20 @@ struct C_001D6600 {
 };
 
 struct C_000D6BC0_Global {
-    char pad0[0x34];
+    char pad0[0x24];
+    C_000D6D50_Item *unk24;
+    C_000D6D50_Item *unk28;
+    C_000D6D50_Item *unk2c;
+    C_000D6D50_Item *unk30;
     C_001D6600 *unk34;
     char pad38[4];
     C_001D6600 *unk3c;
+    char pad40[0x10];
+    C_000D6D50_Item *unk50;
+    C_000D6D50_Item *unk54;
+    char pad58[0x10];
+    C_000D6D50_Item *unk68;
+    C_000D6D50_Item *unk6c;
 };
 
 extern C_000D6BC0_Global *D_002B91AC;
