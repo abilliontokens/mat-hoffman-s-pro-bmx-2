@@ -420,6 +420,46 @@ int C_001628A0::func_001628A0(float t)
     return 0;
 }
 
+void C_001628C0::func_001628C0(int count) {
+    int i;
+    int *mem;
+    char *a;
+    char *b;
+
+    if (count == 0) {
+        f14 = 0;
+        return;
+    }
+    f14 = (void **)func_001E8A44(count * 4);
+    if (f2c == 0) {
+        mem = (int *)func_001E8A44(count * 0x18 + 4);
+        if (mem != 0) {
+            a = (char *)(mem + 1);
+            *mem = count;
+            func_00011FF0(a, 0x18, count, &D_0015B660);
+        } else {
+            a = 0;
+        }
+        f4 = a;
+        for (i = 0; i < count; i++) {
+            f14[i] = f4 + i * 0x18;
+        }
+    } else if (f2c == 1) {
+        mem = (int *)func_001E8A44(count * 0x18 + 4);
+        if (mem != 0) {
+            b = (char *)(mem + 1);
+            *mem = count;
+            func_00011FF0(b, 0x18, count, &D_0015B7A0);
+        } else {
+            b = 0;
+        }
+        f8 = b;
+        for (i = 0; i < count; i++) {
+            f14[i] = f8 + i * 0x18;
+        }
+    }
+}
+
 void *LinearPositionController::func_001629A0(unsigned char flags)
 {
     if (flags & 2) {
