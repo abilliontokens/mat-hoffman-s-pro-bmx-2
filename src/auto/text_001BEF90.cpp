@@ -428,18 +428,9 @@ struct C_001BFDB0 {
     int f44[8];
     int f64;
     int f68;
-    union {
-        float a6C[4];
-        struct { float f6C, f70, f74, f78; };
-    };
-    union {
-        float a7C[4];
-        struct { float f7C, f80, f84, f88; };
-    };
-    union {
-        float a8C[4];
-        struct { float f8C, f90, f94, f98; };
-    };
+    float a6C[4];
+    float a7C[4];
+    float a8C[4];
     char pad9C[0x39C - 0x9C];
     int f39C;
     int f3A0;
