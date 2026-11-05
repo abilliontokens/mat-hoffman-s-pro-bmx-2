@@ -303,7 +303,7 @@ extern float D_00282AC8;
 float *func_0001E9E0(float *out, float *in);
 
 struct S_001089C0_Cam {
-    Vec4_00108370 func_00165E20(void *a1, float a2, char *a3, void *a4);
+    Vec4_00108370 func_00165E20(void *a1, int a2, char *a3, void *a4);
 };
 
 struct S_001089C0_Node {
