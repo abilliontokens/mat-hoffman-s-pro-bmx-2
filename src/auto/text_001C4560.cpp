@@ -339,6 +339,26 @@ C_001C4F40::C_001C4F40(void)
     f8B4 = 0;
 }
 
+void C_001C4A70::func_001C4A70(void)
+{
+    int i;
+    void *mem;
+    S_ViewportFadeFx *fx;
+
+    for (i = 0; i < f24; i++) {
+        mem = func_001E8A44(0x44);
+        fx = mem != 0 ? ((S_ViewportFadeFx *)mem)->Init() : 0;
+        a30[i] = fx;
+        fx->v27(i);
+        func_001577A0(a30[i], 10);
+    }
+    mem = func_001E8A44(0x44);
+    fx = mem != 0 ? ((S_ViewportFadeFx *)mem)->Init() : 0;
+    f40 = fx;
+    fx->v27(-1);
+    func_001577A0(f40, 10);
+}
+
 int FadeManager_001C4B60::func_001C4B60(int a0, int a1)
 {
     if (f40->f38 != 0) {
