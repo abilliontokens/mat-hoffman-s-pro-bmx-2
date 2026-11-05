@@ -23,7 +23,7 @@ struct C_Mgr_62 {
 
 struct C_GObj4_62 {
     char pad0[0xEA8];
-    int fEA8;
+    char *fEA8;
 };
 
 struct C_GObj2E8_62 {
@@ -48,3 +48,12 @@ extern C_Root_62 *D_002A8490;
 extern int D_00277038;
 void func_001ADCC0(char *buf, int size, char *fmt, int val);
 void func_001AC330(char *dest, char *fmt, char *arg);
+
+void C_000634D0::func_000634D0(void)
+{
+    char dest[0x40];
+    char buf[5];
+    C_Mgr_62 *mgr = D_002A8490->f2E0;
+
+    func_001ADCC0(buf, 5, (char *)&D_00277038, mgr->f2D8);
+}
