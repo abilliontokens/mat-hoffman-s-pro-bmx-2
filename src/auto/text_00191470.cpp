@@ -81,6 +81,37 @@ int func_00192300(void) {
     return 0;
 }
 
+void func_00192310(int unused, C_0018F390 *obj)
+{
+    S_00192310_Mat m;
+    S_00192310_Mat * volatile p = &m;
+    S_00192310_Mat *q = p;
+    __m128 *v = (__m128 *)q;
+    S_00192310_Mat copy;
+
+    v[0] = _mm_setzero_ps();
+    v[1] = _mm_setzero_ps();
+    v[2] = _mm_setzero_ps();
+    v[3] = _mm_setzero_ps();
+    copy = m;
+    obj->func_0018F390(&D_00275630, (int)&D_00010900, (int *)&copy);
+}
+
+C_00192370 *C_00192370::func_00192370(int a)
+{
+    ((C_00157600 *)this)->func_00157600(a);
+    f24 = 0;
+    f26 = 0xff;
+    f27 &= 0xf8;
+    vtbl = &D_0028AAAC;
+    if (D_002A9818 == 0xff) {
+        D_002A9818 = D_002AAEC8->func_001BC6E0(&D_0028AA90);
+    }
+    f26 = D_002A9818;
+    f27 = (f27 & 0xf9) | 1;
+    return this;
+}
+
 undefined4 C_001923D0::func_001923D0(byte param_1)
 {
   int func_00157660(...);
