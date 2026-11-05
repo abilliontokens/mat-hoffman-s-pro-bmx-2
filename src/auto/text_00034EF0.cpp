@@ -89,7 +89,11 @@ struct S_35360_Tbl {
 };
 
 struct S_35360_Mgr {
-    char pad0[0x4e0];
+    char pad0[0x3e4];
+    int f3e4;
+    char pad3e8[0xc0];
+    int *f4a8;
+    char pad4ac[0x34];
     S_35360_Tbl *f4e0;
 };
 
