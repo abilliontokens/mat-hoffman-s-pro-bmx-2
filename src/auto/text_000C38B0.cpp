@@ -112,7 +112,13 @@ struct C_000C40D0 {
     int f290;
     char pad294[4];
     int arr298[20];
-    int func_000C0100(int idx);
+    int func_000C0100(int idx)
+    {
+        if (idx >= f290) {
+            return -1;
+        }
+        return arr298[idx];
+    }
     int func_000C40D0(int idx);
 };
 
@@ -122,6 +128,24 @@ static __forceinline int Item_000C40D0(C_000C40D0 *p, int idx)
         return -1;
     }
     return p->arr298[idx];
+}
+
+int C_000C40D0::func_000C40D0(int idx)
+{
+    S_000C40D0_Ui *ui = f124->f24;
+    if (idx + 6 <= 20) {
+        if (Item_000C40D0(this, idx) == D_002A8490->f8->func_00136170(0x28, 2, 0) &&
+            Item_000C40D0(this, idx + 1) == D_002A8490->f8->func_00136170(0, 2, 0) &&
+            Item_000C40D0(this, idx + 2) == D_002A8490->f8->func_00136170(2, 2, 0) &&
+            Item_000C40D0(this, idx + 3) == D_002A8490->f8->func_00136170(2, 2, 0) &&
+            func_000C0100(idx + 4) == D_002A8490->f8->func_00136170(2, 2, 0) &&
+            func_000C0100(idx + 5) == D_002A8490->f8->func_00136170(0, 2, 0)) {
+            ui->func_000B9A80(6, 1);
+            D_002A8490->f2E0->f2C0->func_0005C110();
+            return 1;
+        }
+    }
+    return 0;
 }
 
 void C_000C4460::func_000C4460(void)
