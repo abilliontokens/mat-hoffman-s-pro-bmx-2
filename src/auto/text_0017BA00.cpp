@@ -57,7 +57,7 @@ static inline f32 QuadCross(f32 a, f32 b, f32 c, f32 d) {
     return c * a + d * b;
 }
 
-static inline f32 QuadArea(const QuadV2 &p, const QuadV2 &q, const QuadV2 &r) {
+static inline f32 QuadArea(QuadV2 p, QuadV2 q, QuadV2 r) {
     return (q.y - r.y) * p.x + (p.y - q.y) * r.x + (r.y - p.y) * q.x;
 }
 
