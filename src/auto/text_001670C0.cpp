@@ -93,3 +93,17 @@ undefined4 C_00167750::func_00167750(void)
 void C_001677B0::func_001677B0(int a0) {
     unk358 = a0;
 }
+
+C_00167AC0 *C_00167AC0::func_00167AC0(void)
+{
+    C_00167AC0_Sub *p = subs;
+    int n = 4;
+
+    do {
+        p->func_001D3F50();
+        p++;
+        n--;
+    } while (n != 0);
+    return this;
+}
+
