@@ -1,6 +1,39 @@
 /* 24 functions from 0x0015C640 to 0x0015D340, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct V4_0015D0A0 {
+    float x, y, z, w;
+};
+
+struct V3_0015D0A0 {
+    float x, y, z;
+};
+
+struct C_001938C0 {
+    char pad0[0x28];
+    C_001938C0 *func_00193490(void);
+    void func_001938C0(void *a0, int a1, int a2, V4_0015D0A0 *a3, V4_0015D0A0 *a4, float a5);
+};
+
+extern float D_002755E8;
+
+struct C_0015D0A0 {
+    char pad0[0x24];
+    char f24[0x8];
+    int f2c;
+    char pad30[0x3c];
+    float f6c;
+    float f70;
+    float f74;
+    float f78;
+    char pad7c[0x18];
+    V4_0015D0A0 f94;
+    char padA4[0x20];
+    C_001938C0 *fc4;
+    int fc8;
+    void func_0015D0A0(int a0, int a1);
+};
+
 struct C_0015CB40 {
     char pad0[0x8];
     int unk8;
