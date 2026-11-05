@@ -86,6 +86,24 @@ struct C_00174550 {
 };
 
 
+PhysicsRigidBody *PhysicsRigidBody::func_00173F70(Vec4 a, Vec4 b, Vec4 c, int a12, int a13, int a14, int a15, int a16)
+{
+    Vec4 *p = &f44;
+    *p = a;
+    f54 = b;
+    f64 = c;
+    *(int *)(pad74 + 0x30) = a13;
+    void *m = func_001E8A44(0x1e0);
+    f14C = m ? ((C_00198330 *)m)->func_00143580(1) : 0;
+    f14C->v8C(a14, 0, 0);
+    func_001577A0(f14C, 0);
+    if (p->x == D_002A8BA0.x && p->y == D_002A8BA0.y && p->z == D_002A8BA0.z)
+        f14C->func_00197E70(p);
+    f14C->func_00199600(D_002A8BA0);
+    func_00173580(a12, a13, a14, a15, a16);
+    return this;
+}
+
 PhysicsRigidBody *PhysicsRigidBody::func_001740B0(C_00198330 *a0, int a1, int a2, int a3, int a4, int a5)
 {
     f14C = a0;
