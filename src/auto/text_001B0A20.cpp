@@ -23,6 +23,10 @@ struct C_001B1580_24 {
     void func_00082400(int);
     void func_0005E960(int, int);
     void func_001D6600();
+    C_001B1580_24 *func_001D5E90();
+    void func_001D5FA0(int, int, int, const char *);
+    void setColour(int x) { if (unk48 != x) { unk4E |= 8; unk48 = (unk48 & 0xFF000000) | (x & 0xFFFFFF); } }
+    void setAlpha(short x) { if (unk4C != x) { unk4E |= 8; unk4C = x; unk48 = (unk48 & 0xFFFFFF) | (x << 24); } }
     void set34(float x) { if (x != unk34) { unk34 = x; unk4E |= 6; } }
     void set38(float x) { if (x != unk38) unk38 = x; }
     void set44(int x) { if (unk44 != x) { unk44 = x; unk4E |= 6; } }
