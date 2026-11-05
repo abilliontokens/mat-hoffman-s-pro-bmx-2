@@ -135,6 +135,7 @@ struct C_0018D580 {
     int func_0018D900(const char *name);
     int func_0018D970(const char *name);
     int func_0018DA00(int index, const char *name);
+    void *func_0018DA90(void *result, int index, int type, const char *name, int *out);
 };
 
 int C_0018D580::func_0018D580(unsigned int id)
