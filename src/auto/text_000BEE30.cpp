@@ -109,6 +109,44 @@ void C_000BF860::func_000BF860(int idx, int x, int y, int w)
     e->SetXY4E((float)(x + 0x27 + w), (float)(y + 5));
 }
 
+void BmxUIPageGlobal::func_000BF930(void)
+{
+    int ids[3];
+    int i;
+    Mid_000BF930 **r;
+    Elem_000BF930 **e;
+    Lookup_000BF930 *lk;
+
+    ids[0] = (int)&D_002786A0;
+    ids[1] = (int)&D_00278678;
+    ids[2] = (int)&D_00278690;
+    f2C->func_001D5AA0()->Clamp();
+    f30->func_001D5AA0()->Clamp();
+    for (i = 0; i < 3; i++) {
+        lk = D_002A8490->p2EC;
+        r = lk->func_0018C160(ids[i]);
+        if (r != 0 && *r != 0)
+            (*r)->func_0018C070()->Clamp();
+    }
+    e = a68;
+    i = 6;
+    do {
+        e[-6]->func_001D5AA0()->Clamp();
+        (*e)->func_001D5AA0()->Clamp();
+        e++;
+        i--;
+    } while (i != 0);
+    e = a90;
+    i = 2;
+    do {
+        e[-2]->func_001D5AA0()->Clamp();
+        (*e)->func_001D5AA0()->Clamp();
+        e++;
+        i--;
+    } while (i != 0);
+    func_001578D0();
+}
+
 C_000BFB70 *C_000BFB70::func_000BFB70(void *param)
 {
     ((C_001BE360 *)this)->func_001BE360(param);
