@@ -1,12 +1,29 @@
 /* 12 functions from 0x00032860 to 0x00033680, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+struct O_B { void func_0018C120(); void func_0001CC80(void *p); };
 struct S_002A8490 {
-    char pad0[0x124];
+    char pad0[4];
+    O_B *f4;
+    char pad8[0x11C];
     int f124;
     char pad128[0x11C];
     float f244;
+    char pad248[0xA4];
+    O_B *f2ec;
 };
+struct O_A { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(int a); virtual void v8(); };
+struct O_D { virtual void v0(int a); };
+struct O_E { void func_0013B340(); };
+struct O_F { void func_0009C770(); };
+struct O_G { virtual void v0(); virtual void v1(); virtual void v2(); };
+struct O_H { void *vtbl; char pad[0x68]; void *f6c[1]; char pad2[0x20]; int f90; char pad3[0x88]; int f11c; char pad4[0xa0]; O_F *f1c0; char pad5[0x14]; O_G *f1d8; void func_00157660(); void *func_00033220(); };
+extern O_A *D_002EFDB8;
+extern float D_002A8F40;
+extern O_D *D_002F0630;
+extern O_E *D_002BEAAC;
+extern int D_00276AB4;
+extern void func_001E891B(void *p);
 extern S_002A8490 *D_002A8490;
 extern int D_002F08BC;
 extern float D_00275544;
@@ -122,6 +139,18 @@ void C_00032E50::func_00032E50(float a, float b, float c, float d)
         p[2] = c;
         p[3] = d;
         f230 = 0.0f;
+    }
+}
+
+void C_00032E90::func_00032E90(void)
+{
+    int r;
+    float t;
+
+    if (D_002F08BC != 0 && (f210 != D_00275544 || f214 != D_00275544 || f218 != D_00275544) && f230 < D_00275600) {
+        f230 = D_002A8490->f244 + f230;
+        t = func_0001C870(f230, 0, f220, 2.0f, f210);
+        r = _mm_cvtss_si32(_mm_load_ss(&t));
     }
 }
 
