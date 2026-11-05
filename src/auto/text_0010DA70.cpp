@@ -145,7 +145,7 @@ struct C_0010DD90 {
     char padA68[0x1068-0xA68]; int f1068;
     char pad106C[0x120C-0x106C]; int f120C; int f1210;
     char pad1214[0x2010-0x1214]; int f2010;
-    void func_0010DD90(int, float, int, int, int, int);
+    void func_0010DD90(float, int, int, int, int, int);
 };
 
 struct C_0010E260 {
