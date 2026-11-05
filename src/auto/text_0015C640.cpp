@@ -199,6 +199,9 @@ extern float D_00287844;
 extern float D_00287840;
 extern float D_00275460;
 extern float D_00275544;
+extern float D_002A8318;
+float func_0014F7E0(float x);
+float func_0015C900(float param_1);
 
 int func_0015C640(float *param_1, int param_2, float param_3)
 {
