@@ -60,6 +60,20 @@ struct S_Heap {
 S_FreeNode * __stdcall func_001DF626(S_Heap *heap);
 void __stdcall func_001DF746(S_Heap *heap, S_FreeNode *node);
 
+extern int D_00010108;
+extern int D_0028FD6C;
+extern int D_0028FD70;
+extern int D_0028FD7C;
+extern int *D_0028FD74;
+
+void __stdcall func_001E0AE0(int a, int b, int c);
+void func_001DF375(void);
+void __stdcall func_001E20BF(int a, int b, int c);
+void __stdcall func_001DD13C(int a);
+
+/* the SMC's boot video mode, read through the import table */
+extern "C" unsigned long *__imp__HalBootSMCVideoMode;
+
 unsigned char __stdcall func_001E1297(int a, int b, int c);
 void func_001DE82F(void);
 void __stdcall func_001DD659(int code);
@@ -323,15 +337,98 @@ int __stdcall func_001DF234(int base, void *data, void *out)
     return 1;
 }
 
+int __stdcall func_001DF26F(int a, int b)
+{
+    S_001DF26F_Image *img = (S_001DF26F_Image *)D_00010118;
+    int *obj;
+    unsigned int i;
+    int key;
+
+    obj = (int *)func_001DF5B9(0, 0x7c);
+    if (obj == 0) {
+        func_001DD62B(8);
+        return -1;
+    }
+    obj[0] = a;
+    if (img->titleId == b) {
+        key = (int)_imp__XboxSignatureKey;
+    } else {
+        for (i = 0; i < 0x10; i++) {
+            if (img->altTitleIds[i] == 0) {
+                func_001DD62B(5);
+                return -1;
+            }
+            if (b == img->altTitleIds[i]) {
+                break;
+            }
+        }
+        if (i >= 0x40) {
+            func_001DD62B(5);
+            return -1;
+        }
+        key = (int)_imp__XboxAlternateSignatureKeys[i];
+    }
+    obj[1] = key;
+    func_001DF160((const void *)obj[1], 0x10, obj + 2);
+    return (int)obj;
+}
+
 int __stdcall func_001DF2EA(int ctx, const void *data, unsigned int len)
 {
     XcSHAUpdate((void *)(ctx + 8), data, len);
     return 0;
 }
 
+int __stdcall func_001DF304(int *a, void *out)
+{
+    unsigned int digest[5];
+    int flag;
+    int ok;
+
+    ok = 1;
+    flag = a[0] & 1;
+    if (out != 0) {
+        if (flag != 0) {
+            func_001DF1C2(a + 2, (const void *)a[1], 0x10, digest);
+        }
+        if (flag != 0) {
+            ok = func_001DF234(a, digest, out);
+        }
+    }
+    func_001DF5D6(a);
+    if (ok != 0) {
+        return 0;
+    }
+    return func_001DD603();
+}
+
 int __stdcall func_001DF361(int a0)
 {
     return func_001DF26F(a0, ((int *)D_00010118)[2]);
+}
+
+int __stdcall func_001DF375(int a)
+{
+    void *t;
+    char *p;
+
+    func_001E2213();
+    t = *(void **)(__readfsdword(0x20) + 0x250);
+    if (t != 0) {
+        p = *(char **)((char *)t + 0x24);
+    } else {
+        p = 0;
+    }
+    if (p != 0) {
+        *p = 1;
+        *(int *)(p + 4) = *(int *)(__readfsdword(4) + D_002F41D0 * 4) -
+                          *(int *)(__readfsdword(0x28) + 0x28) + 4;
+    }
+    func_001E26AD();
+    func_001E2655();
+    func_001614C0(0, 0, 0);
+    func_001E20BF(1, 1, 0);
+    return 0;
 }
 
 u32 func_001DF4BC(void)
@@ -416,7 +513,8 @@ void __stdcall func_001DF746(S_Heap *heap, S_FreeNode *node)
     node->addr = 0;
     node->size = 0;
 }
-#pragma optimize("", on)
+#pragma optimize("s", on)
+#pragma optimize("y", off)
 void __stdcall func_001DF767(S_Heap *heap, unsigned int addr, unsigned int size)
 {
     S_FreeNode **link = &heap->head;
