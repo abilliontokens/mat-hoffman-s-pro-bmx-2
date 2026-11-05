@@ -177,6 +177,7 @@ struct C_53460_V4 { float x, y, z, w; };
 struct C_53460_54 {
     void func_0009FE70(int a);
     void func_0009FD60(float a, float b, float c, float d);
+    void SetCol(const float *m) { func_0009FD60(m[0], m[4], m[8], m[12]); }
 };
 struct C_53460_44 {
     char pad0[0x54];
