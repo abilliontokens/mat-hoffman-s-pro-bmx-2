@@ -346,6 +346,35 @@ void C_0010DD90::func_0010DD90(float a, int b, int c, int d, int e, int f)
  } else (*(C_0010E810Slot **)((char *)D_002A8490->f2A4+index))->func_000836A0(a);
 }
 
+void C_0010DED0::func_0010DED0(int a,int b)
+{
+ char buffer[260];
+ if(!f1168) {
+  f1128=0;
+  int id=func_00108270(a,b);
+  if(id!=-1) {
+   if(f11DC) return;
+   Queue_10DED0 *q=f1084;
+   if(q->count<5) { q->ids[q->count]=id; q->modes[q->count]=1; ++q->count; }
+   f111C=b; f960=0.25f; return;
+  }
+  for(int i=0;i<70;++i) {
+   if(f24->f52C->names[i]==a && f24->f52C->values[i]==b) {
+    f111C=b;
+    if(f11DC) {
+     if(f24->f52C->flags[i]) { f11E8=1; f1084->func_00109340(i,0); return; }
+    } else {
+     Queue_10DED0 *q=f1084;
+     if(q->count<5) {q->ids[q->count]=i;q->modes[q->count]=0;++q->count;}
+     return;
+    }
+   }
+  }
+ }
+ ((volatile C_0010DED0 *)this)->f24->f52C->func_000A4AF0(a,buffer);
+ if(a && (a>>=8)) func_0010DED0(a,b);
+}
+
 void C_0010E260::func_0010E260(void)
 {
   int in_ECX = (int)this;
