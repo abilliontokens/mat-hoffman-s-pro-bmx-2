@@ -231,3 +231,56 @@ void C_0005E9F0::func_0005E9F0(int param_1)
   }
   return;
 }
+
+C_0005ECA0 *C_0005ECA0::func_0005ECA0(int a0)
+{
+    int i;
+
+    func_00157600(a0);
+    vtbl = &D_0027850C;
+    for (i = 0; i < 8; i++) {
+        unk24[i] = 0;
+        unk44[i] = 0;
+    }
+    vtbl = &D_0027857C;
+    unkFC = 0;
+    unk100 = 0;
+    unk18 = -1;
+    for (i = 0; i < 2; i++) {
+        ((int *)&unkE4)[i] = 0;
+    }
+    for (i = 0; i < 4; i++) {
+        ((int *)&unk84)[i] = 0;
+    }
+    unk104 = 0;
+    unk108 = 1;
+    for (i = 0; i < 2; i++) {
+        ((int *)&unk94)[i] = 0;
+    }
+    for (i = 0; i < 2; i++) {
+        unkD4[i] = 0;
+        unkDC[i] = 0;
+    }
+    unkF4 = 0;
+    unkF0 = 0;
+    unk10C = 0;
+    unk110 = 0;
+    unk114 = -1;
+    unk11C = -1;
+    unk118 = 0;
+    for (i = 0; i < 5; i++) {
+        unkAC[i] = 0;
+        unkC0[i] = 0;
+    }
+    for (i = 0; i < 8; i++) {
+        unk64[i] = 0;
+    }
+    unkEC = 0;
+    unk124 = 0;
+    unk120 = 0;
+    unkF8 = 0;
+    unk12C = 0;
+    unk130 = 1;
+    return this;
+}
+
