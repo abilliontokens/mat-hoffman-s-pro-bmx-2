@@ -283,3 +283,8 @@ int UIPage::func_001BEA50(int param_1)
     return -1;
 }
 
+void UIPage::func_001BEE30(int idx, int arg)
+{
+    f140[idx]->func_001BDD60(arg);
+}
+
