@@ -132,7 +132,9 @@ struct LightManager {
 
 struct LS_Vec4 {
     float x, y, z, w;
+    void func_0015FF60(unsigned int *color);
 };
+extern float D_0027A060, D_00284758, D_00287928, D_00287924, D_00287920;
 
 struct LS_Sub193950 {
     void func_00193950(void *a, void *b, void *c, int d);
