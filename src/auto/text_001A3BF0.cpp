@@ -146,6 +146,41 @@ struct C_001A3D80 {
     undefined4 func_001A3D80(byte param_1);
 };
 
+struct C_001A4100_Obj {
+    void func_001CB560(C_001A4100_Obj *old);
+};
+
+struct C_001A4100_Item {
+    int f0;
+    C_001A4100_Obj *f4;
+};
+
+struct C_001A4100_List {
+    char pad0[1];
+    void func_001CDED0(C_001A4100_Item *item);
+};
+
+struct C_001A4100 {
+    char pad0[0x1BC];
+    C_001A4100_Obj *f1BC;
+    char pad1C0[4];
+    int f1C4;
+    C_001A4100_Item **f1C8;
+    char pad1CC[0x1D8 - 0x1CC];
+    C_001A4100_List f1D8;
+
+    C_001A4100_Item *Item(int i)
+    {
+        if (f1C4 > 0 && f1C8 != 0 && i < f1C4) {
+            return f1C8[i];
+        }
+        return 0;
+    }
+
+    int func_001A2480(C_001A4100_Obj *obj, int a1, int a2);
+    int func_001A4100(int key, int a1, int a2);
+};
+
 extern int D_0028B84C;
 extern u32 D_002A9F40[4];
 extern void *D_002EFE78;
