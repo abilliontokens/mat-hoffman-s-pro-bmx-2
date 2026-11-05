@@ -18,16 +18,44 @@ static __forceinline V4_001225C0 sub_001225C0(const V4_001225C0 *a, const V4_001
     return t;
 }
 extern "C" void func_0011F4B0(float *out, V4_001225C0 *pos, float *m);
+
+static __forceinline void xform_00122090(float *out, const float *in, const float *m)
+{
+    __m128 v = _mm_loadu_ps(in);
+    __m128 r0 = _mm_load_ps(m);
+    _mm_storeh_pi((__m64 *)(out + 2), v);
+    __m128 r1 = _mm_load_ps(m + 4);
+    out[3] = 1.0f;
+    __m128 r2 = _mm_load_ps(m + 8);
+    v = _mm_loadh_pi(v, (__m64 *)(out + 2));
+    r0 = _mm_mul_ps(r0, v);
+    r1 = _mm_mul_ps(r1, v);
+    r2 = _mm_mul_ps(r2, v);
+    __m128 t = r0;
+    r0 = _mm_unpacklo_ps(r0, r1);
+    t = _mm_unpackhi_ps(t, r1);
+    __m128 h = _mm_movehl_ps(r2, r2);
+    r0 = _mm_add_ps(r0, t);
+    r2 = _mm_add_ps(r2, h);
+    t = _mm_movehl_ps(t, r0);
+    r0 = _mm_movelh_ps(r0, r2);
+    t = _mm_shuffle_ps(t, r2, 0x14);
+    r0 = _mm_add_ps(r0, t);
+    _mm_storeu_ps(out, r0);
+    out[3] = 1.0f;
+}
+V4_001225C0 func_00104A00(const V4_001225C0 &v);
 extern "C" V4_001225C0 *func_0011EE50(V4_001225C0 *out, V4_001225C0 *in);
 extern "C" V4_001225C0 *func_0011EEE0(V4_001225C0 *out, V4_001225C0 *a, V4_001225C0 *b);
 
 extern "C" int func_00122400(float *pa, float *pb, V4_001225C0 *pos, float f, float radius, float *m)
 {
     V4_001225C0 v = { 0.0f, 0.0f, 0.0f, 1.0f };
+    V4_001225C0 *vp = &v;
 
-    v.x = m[0] * pos->x + m[1] * pos->y + m[2] * pos->z + m[3];
-    v.y = m[4] * pos->x + m[5] * pos->y + m[6] * pos->z + m[7];
-    v.z = m[8] * pos->x + m[9] * pos->y + m[10] * pos->z + m[11];
+    vp->x = m[0] * pos->x + m[1] * pos->y + m[2] * pos->z + m[3];
+    vp->y = m[4] * pos->x + m[5] * pos->y + m[6] * pos->z + m[7];
+    vp->z = m[8] * pos->x + m[9] * pos->y + m[10] * pos->z + m[11];
     v.x -= pa[0];
     v.y -= pa[1];
     v.z -= pa[2];
