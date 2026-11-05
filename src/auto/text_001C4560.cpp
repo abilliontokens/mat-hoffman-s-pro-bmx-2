@@ -114,6 +114,58 @@ struct FadeManager_001C4B60 {
     void func_001C4E70(f32 v);
 };
 
+extern int D_0028E5DC;
+void *func_001E8A44(unsigned int size);
+
+struct MotionBlur_Fx {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27(int a);
+    char pad4[0x20];
+    int f24;
+    int f28;
+    float f2C;
+    int f30;
+    int f34;
+    void func_00157600(int a);
+};
+
+struct MotionBlur {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    char pad28[0x34];
+    MotionBlur_Fx *f5C[4];
+    MotionBlur_Fx *f6C;
+    void func_001577A0(MotionBlur_Fx *fx, int flags);
+    void func_001C4D90(void);
+};
+
 /* ScreenTransition */
 struct C_001C4EA0_Obj {
     virtual void v0(int flags);
@@ -240,6 +292,48 @@ int FadeManager_001C4B60::func_001C4BD0(int a0, int a1)
     f40->f30 = 0;
     f40->f2C = (f32)a0;
     return 1;
+}
+
+void C_001C4C30::func_001C4C30(void)
+{
+    int i;
+    void *mem;
+    S_CrossFadeFx *fx;
+
+    for (i = 0; i < f24; i++) {
+        mem = func_001E8A44(0x38);
+        if (mem != 0) {
+            fx = (S_CrossFadeFx *)mem;
+            ((C_00157600 *)fx)->func_00157600(1);
+            fx->f24 = 0;
+            fx->f28 = 0;
+            fx->f2C = 1.0f;
+            fx->f30 = 0;
+            fx->f34 = 0;
+            *(void **)fx = (void *)&D_0028E554;
+        } else {
+            fx = 0;
+        }
+        a48[i] = fx;
+        fx->v27(i);
+        func_001577A0(a48[i], 10);
+    }
+    mem = func_001E8A44(0x38);
+    if (mem != 0) {
+        fx = (S_CrossFadeFx *)mem;
+        ((C_00157600 *)fx)->func_00157600(1);
+        fx->f24 = 0;
+        fx->f28 = 0;
+        fx->f2C = 1.0f;
+        fx->f30 = 0;
+        fx->f34 = 0;
+        *(void **)fx = (void *)&D_0028E554;
+    } else {
+        fx = 0;
+    }
+    f58 = fx;
+    fx->v27(-1);
+    func_001577A0(f58, 10);
 }
 
 void FadeManager_001C4B60::func_001C4D10(int idx, int v)
