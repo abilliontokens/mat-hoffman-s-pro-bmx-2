@@ -132,8 +132,9 @@ int C_001941F0::func_001941F0(int a)
     S_001941F0_Obj **p = f40;
 
     for (i = 0; i < f24; i++) {
-        f30.y = -(p[i]->f210 * f2C);
-        p[i]->Add(f30);
+        f30.y = -((*p)->f210 * f2C);
+        (*p)->Add(f30);
+        p++;
     }
     return 1;
 }
@@ -205,7 +206,7 @@ void C_00194DB0::func_00194DB0(void) {
 
 void C_00194E60::func_00194E60(int a, int b, int c, int d)
 {
-    ((S_Vec4Int *)((char *)this + 8))->Set(a, b, c, d);
+    Set(a, b, c, d);
 }
 
 void C_00194F90::func_00194F90(int a0) {
