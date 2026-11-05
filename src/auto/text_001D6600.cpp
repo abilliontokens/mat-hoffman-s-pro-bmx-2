@@ -60,6 +60,54 @@ void __cdecl func_001E8390(void *p);
 void __cdecl func_00178C60(void *a, void *b, int c, int d, int e, int f, int g, int h, int i, int j, int k, int l, int m);
 void __cdecl func_001B3A50(void *a, int b, int c, int d, char *e, int f);
 
+extern char D_0028F6C8[], D_00275FB4[], D_0028F6C0[];
+void __cdecl func_00030F30(char *path, char *ext);
+void __cdecl func_001B3970(void *p);
+char *__cdecl func_001E8920(char *dst, char *src, int n);
+
+struct S_001D6E20_Info {
+    char pad0[0xe];
+    short w;
+    short h;
+    unsigned char bpp;
+    char pad13;
+    void *data;
+};
+S_001D6E20_Info *__cdecl func_001B3560(int key, int a);
+
+struct S_001D6E20_Res {
+    virtual void slot0(int flags);
+    virtual void slot1();
+    virtual void slot2();
+    virtual void slot3();
+    virtual void slot4();
+    virtual void slot5();
+    virtual void slot6();
+    virtual void slot7();
+    virtual void slot8();
+    virtual void slot9();
+    virtual void slot10();
+    virtual void slot11();
+    virtual void slot12();
+    virtual void slot13();
+    virtual void slot14();
+    virtual void slot15();
+    virtual void slot16();
+    virtual void slot17();
+    virtual void slot18();
+    virtual void slot19();
+    virtual void slot20();
+    virtual void slot21();
+    virtual void slot22();
+    virtual int slot23(char *name, int a2, unsigned int flags);
+    S_001D6E20_Res *func_0013E8C0(int param);
+};
+
+struct S_001D6E20_Obj20 {
+    S_001D6E20_Obj20 *func_0001C520(void);
+    void func_0001C2E0(char *name, int key);
+};
+
 struct XboxTextureMap {
     void func_001D6D00(Img_001D6D00 *img, Sz_001D6D00 *sz, char *name);
     virtual void slot0(int flags);
@@ -219,14 +267,13 @@ void XboxTextureMap::func_001D6D00(Img_001D6D00 *img, Sz_001D6D00 *sz, char *nam
 
 int XboxTextureMap::func_001D7190(int a1, int a2, int a3)
 {
+    XboxTextureMap *volatile p = this;
     S_001D7190_Tex t;
     int desc[3];
     int dims[2];
-    int size;
     int fmt;
     int n;
     int i;
-    XboxTextureMap *volatile p = this;
 
     t.f4 = -1;
     t.f0 = 1;
@@ -271,10 +318,10 @@ int XboxTextureMap::func_001D7190(int a1, int a2, int a3)
         t.f8 = 1;
     }
     if ((a3 & 2) != 0 && n == 1) {
-        size = t.f10 < t.f14 ? t.f10 : t.f14;
+        dims[0] = t.f10 < t.f14 ? t.f10 : t.f14;
         n = 0;
-        while (size >= 4) {
-            size >>= 1;
+        while (dims[0] >= 4) {
+            dims[0] >>= 1;
             n++;
         }
     }
