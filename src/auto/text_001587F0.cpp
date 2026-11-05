@@ -57,3 +57,15 @@ struct C_00159560 {
     C_00159560_Sub sub40;
     C_00159560 *func_00159560(int param_1);
 };
+
+void *C_00158BE0::func_00158BE0(int flags) {
+    extern int D_002873B4;
+    int func_00157660(...);
+    void func_001E891B(void *);
+    unk0 = (int)&D_002873B4;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
