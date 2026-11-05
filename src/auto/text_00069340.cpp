@@ -164,6 +164,20 @@ void C_00069BB0::func_00069BB0(void)
   return;
 }
 
+void C_00069BD0::func_00069BD0()
+{
+    D_002EFDB8->vf7(1);
+    unk154 = 0;
+    unk158 = 0;
+    D_002EFDB8->vf8();
+    unk140 = 0;
+    unk14C->func_00032A40();
+    unk14C->func_00035720();
+    v4();
+    unk14C->unk1F4 = 0;
+    unk170 = -1;
+}
+
 void C_00069FD0::func_00069FD0(int a0) {
     unk170 = a0;
     unk17C = 1;
