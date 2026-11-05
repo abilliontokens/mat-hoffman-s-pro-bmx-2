@@ -65,11 +65,6 @@ struct C_198E60_1324B0 {
     void func_00198E60();
 };
 
-struct C_Item2_1324B0 {
-    void func_00133210();
-    void func_001332A0();
-};
-
 struct C_132CC0 {
     char pad0[4];
     void *f4;
