@@ -343,7 +343,7 @@ struct C_00095060 {
     unsigned char f78;
     char pad79[3];
     int f7C;
-    int f80;
+    void *f80;
     S_00094A00_Child *f84[5];
     int func_000952F0(void);
     char *func_00095390(int index);
@@ -733,6 +733,27 @@ void C_00094F10::func_00094F10(void)
 
 void *C_00095060::func_00094F40(void *arg)
 {
+    ((C_00157600 *)this)->func_00157600(1);
+    vtbl = (void *)&D_0027A23C;
+    tracks.items = 0;
+    tracks.count = 0;
+    f5C = 0;
+    f60 = 0;
+    f64 &= 0xfe;
+    ids.items = 0;
+    ids.count = 0;
+    f70 = 0;
+    f74 = 0;
+    f78 &= 0xfe;
+    f30 = 5;
+    f34 = 0;
+    f38 = -1;
+    f3C = -1;
+    f50 = 0;
+    f40 = 0;
+    f44 = 0;
+    f4C = 0;
+    f48 = 0;
     return this;
 }
 
