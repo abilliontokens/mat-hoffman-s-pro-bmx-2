@@ -159,6 +159,10 @@ C_0001C5B0 *C_0001C5B0::func_0001C5B0(float *p) {
     return this;
 }
 
+void func_0001C5E0(float *out, float s, float *in) {
+    vec3_set(out, s * in[0], s * in[1], s * in[2]);
+}
+
 void C_0001C920::func_0001C920(void) {
     extern int D_00275C0C;
     int func_00157660(...);
