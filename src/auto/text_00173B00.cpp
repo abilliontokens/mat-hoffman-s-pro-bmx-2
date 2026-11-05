@@ -13,6 +13,7 @@ struct Vec4 {
 };
 
 extern Vec4 D_002EF740;
+extern Vec4 D_002A8C18;
 static __forceinline void Zero3(int *p) { p[0]=0; p[1]=0; p[2]=0; }
 
 struct __declspec(align(16)) Mat4_001741C0 {
