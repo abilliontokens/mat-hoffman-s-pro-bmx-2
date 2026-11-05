@@ -260,13 +260,14 @@ struct S_001CBB50_Packet {
     void *timestamp;
 };
 
+/* COM-style interface: slots are __stdcall with an implicit this */
 struct S_001CBB50_Stream {
-    virtual void v0();
-    virtual void v1();
-    virtual void v2();
-    virtual void v3();
-    virtual int Process(S_001CBB50_Packet *packet, void *out);
-    virtual void v5();
+    virtual unsigned long __stdcall v0();
+    virtual unsigned long __stdcall v1();
+    virtual int __stdcall v2();
+    virtual int __stdcall v3();
+    virtual int __stdcall v4(S_001CBB50_Packet *packet, void *out);
+    virtual int __stdcall v5();
 };
 
 struct S_001CB9A0_Owner {
@@ -431,6 +432,18 @@ int C_001CB610::func_001CB7D0(void)
         fb4 = 0;
     }
     return 0;
+}
+
+int C_001CB610::func_001CB810(int idx)
+{
+    char path[0x104];
+    S_001CB610_Entry *e = &f34[fa4];
+
+    if (e->f40 & 1) {
+        func_001ADCC0(path, sizeof(path), D_0028ED6C, D_002A48F8, e->f0[idx].name);
+        return func_001DCC3C(path, 0x80000000, 1, 0, 3, 0x80, 0);
+    }
+    return func_001DDAEE(e->f0[idx].f10, 0);
 }
 
 void C_001CB940::func_001CB940(void)
