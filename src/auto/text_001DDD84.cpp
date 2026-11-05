@@ -259,17 +259,11 @@ int __stdcall func_001DDF0A(int handle, int param2)
 {
     int local;
     int result;
-    int out;
     if (param2 != 0) {
         func_001DD3A1(handle, 0, 0, 0);
     }
     result = func_001DD15A(handle, (u16 *)((char *)&param2 + 2), 2, &local, 0);
-    if (result == 0 || local == 2 || *(u16 *)((char *)&param2 + 2) == 0xFEFF) {
-        out = 1;
-    } else {
-        out = 0;
-    }
-    return out;
+    return ((result != 0 && local == 2) || *(u16 *)((char *)&param2 + 2) == 0xFEFF) ? 1 : 0;
 }
 
 int __stdcall func_001DDF52(int a0, void *a1, char *a2, int a3)
@@ -399,45 +393,20 @@ unsigned int __stdcall func_001DE2BB(char *root, unsigned short *name, int disp,
     S_AnsiString ansi;
     S_ObjAttr oa;
     S_Large alloc;
-    char *s;
-    char *d;
     char *tail;
-    char c;
     unsigned int len;
     unsigned int err;
     unsigned int n;
     int r;
     int status;
 
-    s = root;
-    d = path;
-    do {
-        c = *s;
-        *d = c;
-        s++;
-        d++;
-    } while (c != 0);
-    s = path;
-    do {
-        c = *s++;
-    } while (c != 0);
-    len = s - (path + 1);
+    strcpy(path, root);
+    len = strlen(path);
     func_001DDE78(name, path + len, 0xf7 - len);
-    s = path;
-    do {
-        c = *s++;
-    } while (c != 0);
-    len = s - (path + 1);
+    len = strlen(path);
     if (disp == 3) {
         tail = path + len;
-        s = D_0028FAD0;
-        d = tail;
-        do {
-            c = *s;
-            *d = c;
-            s++;
-            d++;
-        } while (c != 0);
+        strcpy(tail, D_0028FAD0);
         r = func_001DE1DF((int)path, (int)name);
         *tail = 0;
         if (r != 0) {
@@ -450,38 +419,22 @@ unsigned int __stdcall func_001DE2BB(char *root, unsigned short *name, int disp,
         r = 0x491;
         if (flags == 0xb7) {
             tail = path + len;
-            s = D_0028FAD0;
-            d = tail;
-            do {
-                c = *s;
-                *d = c;
-                s++;
-                d++;
-            } while (c != 0);
+            strcpy(tail, D_0028FAD0);
             r = func_001DE1DF((int)path, (int)name);
             *tail = 0;
-            if (r != 0) {
+            if (r == 0) {
+                func_001DE25F((int)path);
+            } else {
                 return 0x52;
             }
-            func_001DE25F((int)path);
         }
-        if (disp == 1) {
-            return flags;
+        if (disp != 1 && r == 0) {
+            goto done;
         }
-        if (r != 0) {
-            return flags;
-        }
-        goto done;
+        return flags;
     }
     tail = path + len;
-    s = D_0028FAD0;
-    d = tail;
-    do {
-        c = *s;
-        *d = c;
-        s++;
-        d++;
-    } while (c != 0);
+    strcpy(tail, D_0028FAD0);
     _imp__RtlInitAnsiString(&ansi, path);
     alloc.hi = 0;
     oa.name = &ansi;
@@ -496,15 +449,13 @@ unsigned int __stdcall func_001DE2BB(char *root, unsigned short *name, int disp,
     }
     func_001EAA6D(buf, 0x98, (flags & 1) ? D_0028FBD0 : D_0028FBB0, (int)&D_0000FEFF, &D_0028FB38, 0x3d, name, D_0028FB88, D_0028FB90);
     n = func_001EA410(buf) * 2;
-    if (n != 0) {
-        do {
-            if (func_001DD247((int)root, buf, n, (unsigned int *)&name, 0) == 0) {
-                err = func_001DD603();
-                func_001DD13C((int)root);
-                goto fail;
-            }
-            n -= (unsigned int)name;
-        } while (n != 0);
+    while (n != 0) {
+        if (func_001DD247((int)root, buf, n, (unsigned int *)&name, 0) == 0) {
+            err = func_001DD603();
+            func_001DD13C((int)root);
+            goto fail;
+        }
+        n -= (unsigned int)name;
     }
     func_001DD13C((int)root);
 done:
