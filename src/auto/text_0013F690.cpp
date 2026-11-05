@@ -421,14 +421,14 @@ int C_00140390::func_00140400(void)
     if (f4C == -1) {
         f4C = (D_002A829C->f14[f24->f4].f4->f54->f24 >> 3) & 1;
     }
-    if (f39 & 2) {
-        return 1;
+    if ((f39 & 2) == 0) {
+        f48->func_0013FF50(D_002EFDB8->f4);
+        for (i = 0; i < f40; i++) {
+            f3C[i].obj->func_001446B0((int)f48, 0, -1);
+        }
+        return func_00157960();
     }
-    f48->func_0013FF50(D_002EFDB8->f4);
-    for (i = 0; i < f40; i++) {
-        f3C[i].obj->func_001446B0((int)f48, 0, -1);
-    }
-    return func_00157960();
+    return 1;
 }
 
 void C_00140480::func_00140480(unsigned int color)
