@@ -5,6 +5,66 @@
 extern int D_00289134;
 extern int D_002891C4;
 
+extern float D_00275544;
+void func_001E8390(void *p);
+void *func_001E8AA5(int size);
+
+static inline void FloatToInt(int *out, float f)
+{
+    int * volatile p = out;
+
+    *p = _mm_cvttss_si32(*(__m128 *)&f);
+}
+
+struct S_0017E1D0 {
+    void func_0017E1D0(int a, int b, int c, int d, int e, int f, int g, int h);
+};
+
+struct QuadTree {
+    virtual void v00();
+    virtual void v01();
+    virtual void v02();
+    virtual void v03();
+    virtual void v04();
+    virtual void v05();
+    virtual void v06();
+    virtual void v07();
+    virtual void v08();
+    virtual void v09();
+    virtual int func_0017E2C0(float *a, float *b, int *c, int **d, int *e);
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    char pad04[8];
+    u16 f0C;
+    u8 f0E;
+    char pad0F[0x19];
+    float f28;
+    char pad2C[4];
+    float f30;
+    char pad34[0xC];
+    float f40;
+    float f44;
+    char pad48[8];
+    int f50;
+    float f54;
+    char pad58[0x34];
+    S_0017E1D0 *f8C;
+    char pad90[0x7F8];
+    int f888;
+    int f88C;
+    int *f890;
+    int *f894;
+    int f898;
+    int f89C;
+};
+
+extern QuadTree *D_002EFD80;
+
 void func_001E891B(void *p);
 
 struct C_0017EE30 {
@@ -216,6 +276,47 @@ void *C_0017EE30::func_0017EE30(unsigned int flags) {
         func_001E891B(this);
     }
     return this;
+}
+
+int RadiusLineCollisionObject::func_0017EE60(S_0017EE60 *s)
+{
+    if ((s->f21 & 1) == 0) {
+        return 0;
+    }
+    V4C_0017E7C0 v[2];
+    int loc[2];
+    int i;
+    float d;
+
+    v[0] = *(V4C_0017E7C0 *)&fF0;
+    v[1] = *(V4C_0017E7C0 *)&f100;
+    d = func_0011FDF0(s->f28, &v[0].x, &v[1].x);
+    if (d < s->f48 + f110) {
+        switch (s->f50) {
+        case 0:
+            loc[0] = s->f1C4;
+            loc[1] = s->f1C8;
+            if (func_00123EF0(&v[0].x, f110, f114, 0, loc, s->fB0, s->f1B0) != 0) {
+                return 1;
+            }
+            break;
+        case 1:
+            if (func_00122810(s->fA8, s->fB8, &v[0].x, f110, f114, s->f130) != 0) {
+                for (i = 0; i < s->f190; i++) {
+                    S_0017EE60 *e = s->f1A0[i];
+                    int x = e->f1C4;
+                    int y = e->f1C8;
+                    loc[0] = x;
+                    loc[1] = y;
+                    if (func_00123EF0(&v[0].x, f110, f114, 0, loc, e->fB0, e->f1B0) != 0) {
+                        return 1;
+                    }
+                }
+            }
+            break;
+        }
+    }
+    return 0;
 }
 
 C_0017F050 *C_0017F050::func_0017F050(int a0) {
