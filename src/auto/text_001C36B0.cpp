@@ -190,7 +190,7 @@ struct VideoCard {
     int f30;
     int f34;
     int f38;
-    unsigned char f3C;
+    VideoCardFlags f3C;
     VideoCard *func_001C3D90(void);
     void *func_001C3E20(unsigned int flags);
 };
