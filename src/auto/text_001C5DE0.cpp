@@ -9,6 +9,11 @@ struct Vec4 {
     f32 w;
 };
 
+struct S_001C63F0_Work {
+    Vec4 *pq;
+    Vec4 q;
+};
+
 struct S_001C6820_Pair {
     f32 time;
     int value;
@@ -44,12 +49,11 @@ struct C_001C67C0 {
 void func_001C63F0(Vec4 *out, Vec4 *vin, f32 *m)
 {
     Vec4 q;
+    q.z = 0;
+    q.y = 0;
+    q.x = 0;
+    q.w = 1.0f;
     Vec4 *pq = &q;
-    u32 *p = (u32 *)pq;
-    p[2] = 0;
-    p[1] = 0;
-    p[0] = 0;
-    p[3] = 0x3f800000;
     __m128 v = _mm_loadu_ps(&vin->x);
     __m128 r0 = _mm_load_ps(m);
     _mm_storeh_pi((__m64 *)&pq->z, v);
@@ -72,40 +76,31 @@ void func_001C63F0(Vec4 *out, Vec4 *vin, f32 *m)
     lo = _mm_add_ps(lo, hi);
     _mm_storeu_ps(&pq->x, lo);
     pq->w = 1.0f;
-    out->x = q.x;
-    out->y = q.y;
-    out->z = q.z;
-    out->w = q.w;
+    *out = q;
 }
 
 void C_001C67C0::func_001C67C0(Vec4 *out, int param_2)
 {
     Vec4 local;
-    u32 *p = (u32 *)&local;
-    p[2] = 0;
-    p[1] = 0;
-    p[0] = 0;
-    p[3] = 0x3f800000;
+    local.z = 0;
+    local.y = 0;
+    local.x = 0;
+    local.w = 1.0f;
     this->obj10->func_vtbl3(param_2, &local);
-    out->x = local.x;
-    out->y = local.y;
-    out->z = local.z;
-    out->w = local.w;
+    *out = local;
 }
 
 int C_001C6820::func_001C6820(f32 param_1)
 {
     S_001C6820_Elem *e = &this->elems[this->idx];
-    S_001C6820_Pair *p = e->pairs;
     int count = e->count;
     int result = 0;
-    int i;
-    for (i = 0; i < count; i++, p++) {
-        if (param_1 > p->time) {
-            result = p->value;
-        } else {
-            break;
-        }
+    S_001C6820_Pair *p = e->pairs;
+    int i = 0;
+    while (i < count && param_1 > p->time) {
+        result = p->value;
+        i++;
+        p++;
     }
     return result;
 }
