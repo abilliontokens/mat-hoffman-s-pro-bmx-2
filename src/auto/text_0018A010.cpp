@@ -13,7 +13,7 @@ struct BasicScene {
  char pad38c[0x50]; S_A010_Draw *f3DC; S_A010_Item **f3E0;
  char pad3e4[0xe0]; S_A010_Curve *f4C4,*f4C8,*f4CC,*f4D0,*f4D4;
  unsigned char f4D8;
- void func_00185610(float *);
+ void func_00185610(S_00185610_Out *);
  void func_001578D0();
  void func_0018A010();
 };
