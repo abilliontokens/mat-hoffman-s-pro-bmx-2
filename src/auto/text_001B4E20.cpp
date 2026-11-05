@@ -97,6 +97,36 @@ struct C_001B59E0 {
     C_001B59E0* func_001B59E0(void);
 };
 
+extern int D_00275630;
+extern int D_0028CC30;
+extern int D_0027AF24;
+extern int D_0028CC80;
+
+struct S_001B5A00_Stream {
+    void func_00168BE0(void *a, void *b, void *c, int d);
+};
+
+struct C_001B5A00 {
+    int func_001B5A00(S_001B5A00_Stream *stream);
+};
+
+struct C_001B5D30 {
+    int func_001B5D30(S_001B5A00_Stream *stream);
+};
+
+struct S_001B59A0_Item {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2(int a);
+};
+
+struct C_001B59A0 {
+    char pad0[0x24];
+    int f24;
+    S_001B59A0_Item **f28;
+    int func_001B59A0(int a);
+};
+
 extern int D_0028CB80;
 void *func_001E8A44(int size);
 int func_001EA426(void *a, void *b);
