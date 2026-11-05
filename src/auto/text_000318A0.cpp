@@ -166,7 +166,7 @@ struct S_31AF0_Mgr {
 
 struct S_31AF0_Root {
     char pad0[0x124];
-    int f124;
+    float f124;
     char pad128[0x230 - 0x128];
     unsigned char f230;
     char pad231[0x2b8 - 0x231];
