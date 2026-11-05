@@ -116,6 +116,9 @@ struct S_001CB610_Entry {
     char term;
     unsigned char f40;
     char pad41[3];
+    /* bit 0 of f40: the resource lives in a file, so it has to be opened by
+       name; otherwise it is already in memory */
+    int Open(int idx, char *path);
 };
 
 /* a COM-style object: the functions in its table take it as their first
@@ -616,37 +619,42 @@ int C_001CBF20::func_001CBF60(void)
 {
     int e;
 
-    if (f2C & 1) {
-        e = func_0022195C(f30);
-        if (e >= 0) {
-            return 1;
-        }
-        func_001CBC10(e, &D_0028EECC, 0x1f1);
+    if (!(f2C & 1)) {
+        return 0;
     }
-    return 0;
+    e = func_0022195C(f30);
+    if (e < 0) {
+        func_001CBC10(e, &D_0028EECC, 0x1f1);
+        return 0;
+    }
+    return 1;
 }
 
 int C_001CBF20::func_001CBF90(int v)
 {
     int e;
 
-    if (f2C & 1) {
-        fEC = v;
-        e = func_002222E5(f30, v, 1);
-        if (e >= 0) {
-            return 1;
-        }
-        func_001CBC10(e, &D_0028EECC, 0x205);
+    if (!(f2C & 1)) {
+        return 0;
     }
-    return 0;
+    fEC = v;
+    e = func_002222E5(f30, v, 1);
+    if (e < 0) {
+        func_001CBC10(e, &D_0028EECC, 0x205);
+        return 0;
+    }
+    return 1;
 }
 
 int C_001CC0C0::func_001CC0C0(int v)
 {
     int r;
+    int h;
 
     if (f2C & 1) {
-        r = func_00222388(f30, fF4 = v, 1);
+        fF4 = v;
+        h = f30;
+        r = func_00222388(h, v, 1);
         if (r < 0) {
             func_001CBC10(r, &D_0028EECC, 0x284);
             return 0;
