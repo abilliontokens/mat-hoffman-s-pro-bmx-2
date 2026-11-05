@@ -25,8 +25,7 @@ struct S_00129050_Vec4 {
 };
 
 struct S_00129050_Leaf32 {
-    S_00129050_Vec4 v0;
-    S_00129050_Vec4 v1;
+    S_00129050_Vec4 v[2];
 };
 
 struct S_00129050_Leaf20 {
