@@ -63,16 +63,41 @@ struct C_000D0FD0 {
     void *vtbl;
     char pad4[0x120];
     S_000D1980_Mgr *f124;
-    char pad128[0x284 - 0x128];
+    char pad128[0x280 - 0x128];
+    int f280;
     DelObjC_000D0 *arr284[2];
-    char pad28C[0x17C];
+    int f28C, f290, f294, f298, f29C, f2A0;
+    float f2A4;
+    int f2A8, f2AC, f2B0, f2B4, f2B8, f2BC, f2C0;
+    u8 f2C4;
+    char pad2C5[0x3C8 - 0x2C5];
+    float f3C8;
+    int f3CC;
+    int f3D0, f3D4, f3D8, f3DC, f3E0, f3E4;
+    int f3E8[8];
     C_001D6410 *unk408;
-    char pad40C[0x1EDC - 0x40C];
+    int f40C, f410, f414, f418, f41C, f420;
+    int f424[10];
+    int f44C;
+    int f450[8];
+    int f470;
+    char f474[8];
+    char pad47C[0xE9C - 0x47C];
+    char fE9C[8];
+    char padEA4[0x16BC - 0xEA4];
+    char f16BC[8];
+    char pad16C4[0x1EDC - 0x16C4];
     S_000D1980_Str10 f1EDC;
-    char pad1EE6[0x2044 - 0x1EE6];
+    char pad1EE6[0x1FE0 - 0x1EE6];
+    int f1FE0, f1FE4, f1FE8, f1FEC;
+    int f1FF0[8];
+    int f2010, f2014, f2018, f201C, f2020, f2024, f2028, f202C, f2030, f2034, f2038, f203C, f2040;
     DelObjC_000D0 *unk2044;
     char pad2048[0x20B0 - 0x2048];
     S_000D1980_Item *f20B0;
+    int f20B4;
+    C_000D0FD0 *func_000D0E00(int a);
+    void func_001BE360(int a);
     void func_001BE3F0();
     void func_000D0FD0();
     void func_000D1980();
@@ -105,17 +130,23 @@ void C_000D0FD0::func_000D1980()
     char buf[0x104];
     S_000D1980_Mgr *mgr = f124;
     int i;
+    volatile int t[2];
+    volatile int len;
 
     f1EDC = D_0027ED04;
-    for (i = 0; i < (*mgr->f150->f3A8)->count; i++) {
+    for (i = 0; i < (*mgr->f150->f3A8)->count; (*(volatile int *)&i)++) {
         S_000D1980_Entry *e = (*mgr->f150->f3A8)->items[i];
         if (e != 0 && e->f4 == 1 && e->f8 != 0) {
-            volatile int len = strlen(e->f8->name);
-            volatile int lim = 0x103;
-            int a = lim;
+            len = strlen(e->f8->name);
+            t[0] = 0x103;
+            int a = t[0];
             int b = len;
-            volatile int n = a > b ? b : a;
-            func_001E8920(buf, e->f8->name, n);
+            if (a > b) {
+                a = b;
+            }
+            t[1] = a;
+            int n = t[1];
+            func_001E8920(buf, (*(S_000D1980_Item * volatile *)&e->f8)->name, n);
             buf[n] = 0;
             char *dot = func_001E8AC0(buf, '.');
             if (dot != 0) {
