@@ -451,6 +451,24 @@ void *C_0001C9C0::func_0001C9C0(int flags) {
     return this;
 }
 
+C_0001CA30 *C_0001CA30::func_0001C9F0(void)
+{
+    extern int D_00275DAC;
+    vtbl = (void *)&D_00275DAC;
+    f4 = 0;
+    f8 = 0;
+    fC = 0;
+    f10 = 0;
+    f14 &= 0xfe;
+    f18 = 0;
+    f1C = 0;
+    f20 = 0;
+    f24 = 0;
+    f28 &= 0xfe;
+    f2C &= 0xfe;
+    return this;
+}
+
 void C_0001CA30::func_0001CA30(void)
 {
     extern int D_00275DAC;
@@ -481,11 +499,34 @@ void *C_0001CA80::func_0001CA80(int flags) {
     return this;
 }
 
+void *C_0001CA30::func_0001CAB0(unsigned char flags)
+{
+    extern int D_00275DAC;
+    vtbl = (void *)&D_00275DAC;
+    func_001E891B(f1C);
+    func_001E891B(f8);
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void func_0001CB80(char *s) {
     char *dot = func_001E8AC0(s, '.');
     if (dot != 0) {
         memset(dot, 0, strlen(dot));
     }
+}
+
+int func_0001CBC0(S_0001CBC0_Item **a, S_0001CBC0_Item **b)
+{
+    int r;
+
+    r = -1;
+    if ((*a)->f90 <= (*b)->f90) {
+        r = 1;
+    }
+    return r;
 }
 
 int C_0001CBF0::func_0001CBF0(void) {
@@ -562,5 +603,26 @@ bool C_0001D0B0::func_0001D0B0(int count, int p2)
     f4 = p;
     f8 = p2;
     return p != 0;
+}
+
+void C_0001D200::func_0001D200(void)
+{
+    int i;
+
+    vtbl = (void *)&D_00275DFC;
+    for (i = 0; i < 4; i++) {
+        if (slots[i] != 0) {
+            slots[i]->func_001A13F0();
+            func_001E891B(slots[i]);
+        }
+    }
+    if (fB4 != 0) {
+        fB4->d0(1);
+    }
+    func_001E891B(f9C);
+    func_001E891B(f88);
+    func_001E891B(f74);
+    func_001E891B(f34);
+    ((C_00157660 *)this)->func_00157660();
 }
 
