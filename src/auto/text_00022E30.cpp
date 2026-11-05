@@ -86,10 +86,6 @@ C_00023C30::C_00023C30(int a, int b, int c, int d)
     unk4C = c;
     unk50 = d;
     unk1C = 0;
-    v0.x = D_002A0F74;
-    v0.y = D_002A0F78;
-    v0.z = D_002A0F7C;
-    *(int *)&v0.w = D_002A0F80;
     unk40 = 0;
     unk10 = 1;
 }
