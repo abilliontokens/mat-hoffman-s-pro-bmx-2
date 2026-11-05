@@ -164,3 +164,23 @@ int C_000AF080::func_000AF080(int a, int b, int c) {
     return 1;
 }
 
+void C_000AF7D0::func_000AF7D0(void) {
+    void *local;
+    C_000AF7D0_Obj *p;
+
+    if (f534 == 0) {
+        p = (C_000AF7D0_Obj *)func_001E8A44(0x2c);
+        if (p != 0) {
+            p->func_00157600(1);
+            *(void **)p = &D_0027C1EC;
+            p->unk24 = 0;
+            p->unk28 = 0;
+        } else {
+            p = 0;
+        }
+        f534 = p;
+    }
+    local = (void *)&D_0027CABC;
+    f534->v27(f28, &local, f530, this);
+}
+
