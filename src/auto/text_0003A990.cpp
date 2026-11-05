@@ -20,6 +20,13 @@ struct C_0003AC20 {
 };
 static inline void Round_0003AC20(int *out,float f) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
 
+struct S_3AE40_Obj { void func_00197E70(float *p); void func_00197B40(float *p, void *q); };
+extern char D_002A14F4[];
+struct C_3AE40 {
+    char pad0[0x484]; int f484; char pad488[0x5A0-0x488]; int count; void **items;
+    unsigned short func_00038A70(void *p, int *o);
+    void func_0003AE40(char *dst);
+};
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 extern char D_00276EEC[];
 extern char D_00276ED8[];
