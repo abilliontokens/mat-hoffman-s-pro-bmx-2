@@ -30,21 +30,56 @@ extern int D_0028DD2C;
 
 extern int D_0028DBA4;
 
+extern int D_0028DC84;
+extern int D_0028DC7C;
+extern int D_0028DC74;
+extern int D_0028DC6C;
+extern int D_0028DC60;
+extern int D_0028DC54;
+extern int D_0028DC48;
+extern int D_0028DC3C;
+extern int D_00275AD4;
+extern int D_00275AC8;
+extern int D_0027CEE4;
+
+void *func_001E8A44(int size);
+
+/* the 0x1e0-byte scene node a UIWidgetStaticUserRotate rotates */
+struct S_001C0820_Node {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34();
+    virtual void *v35(int a, int b, int c);
+    S_001C0820_Node *func_00143580(int a);
+    void func_00197E70(S_001C0820_Vec4 *v);
+    void func_00199650(S_001C0820_Vec4 *v);
+    void func_00198F50(S_001C0820_Vec4 *a, S_001C0820_Vec4 *b, int c, int d, int e);
+};
+
 /* UIWidgetStaticUserRotate constructor */
 struct C_001C0730 {
     void *vtbl;
     char pad4[0x20];
     int f24, f28, f2C, f30, f34, f38, f3C, f40;
     int f44[8];
-    int f64, f68;
-    float f6C, f70, f74, f78;
-    float f7C, f80, f84, f88;
+    int f64;
+    S_001C0820_Node *f68;
+    S_001C0820_Vec4 f6C;
+    S_001C0820_Vec4 f7C;
     float f8C, f90, f94;
-    float f98, f9C, fA0;
+    int f98, f9C, fA0;
     int fA4;
     float fA8, fAC, fB0;
     float fB4;
     C_001C0730 *func_001C0730(int a1, int a2);
+    C_001C0730 *func_001C0820(int a, int b, S_001C0CB0_Stream *stream);
+    int func_001577A0(void *child, int n);
 };
 
 extern "C" unsigned int strlen(const char *s);
