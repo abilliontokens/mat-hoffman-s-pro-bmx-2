@@ -70,7 +70,45 @@ struct BmxUIPageParkEditor {
     int f2CC;
     PageObj_5580 *f2D0[4];
     void func_001BE360(int a);
+    void func_001BE3F0();
     BmxUIPageParkEditor *func_000C58E0(int a);
     void func_000C5980();
     void func_000C5E40();
 };
+
+BmxUIPageParkEditor *BmxUIPageParkEditor::func_000C58E0(int a)
+{
+    func_001BE360(a);
+    vtbl = (void *)&D_0027E14C;
+    f2D0[0] = 0;
+    f2D0[1] = 0;
+    f2D0[2] = 0;
+    f2D0[3] = 0;
+    f280 = 0;
+    f284 = 0;
+    f290 = 0;
+    f28C = 0;
+    f294 = 0;
+    f298 = 0;
+    f29C = 0;
+    f2A0 = 0;
+    f2A4 = 0;
+    f2BC = 0;
+    f2C0 = 0;
+    f2C4 = 0;
+    f2C8 = 0;
+    f2CC = 0;
+    f2B0 = 1;
+    return this;
+}
+
+void BmxUIPageParkEditor::func_000C5E40(void)
+{
+    if (f124->f25C->f74->func_000301D0() == 0) {
+        D_002B91AC->f38->func_001D6600();
+        D_002B91AC->f80->func_001D6600();
+        D_002B91AC->f84->func_001D6600();
+        D_002B91AC->f34->func_001D6600();
+    }
+}
+
