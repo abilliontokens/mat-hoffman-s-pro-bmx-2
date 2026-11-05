@@ -134,6 +134,25 @@ struct C_0007EB20 {
     void func_00157960(void);
 };
 
+extern int D_002B9070;
+extern int D_002B906C;
+
+struct C_0007ECA0 {
+    void *vtbl;
+    char pad4[0xF8];
+    C_5E840 *fFC;
+    char pad100[0x20];
+    C_Cache120 *f120;
+    char pad124[0x90];
+    int f1B4;
+    int f1B8;
+    C_Node *f1BC;
+    undefined4 func_0007ECA0(void);
+    void func_00075750(void);
+    void func_00076EF0(void);
+    void func_00157960(void);
+};
+
 
 undefined4 C_0007EAE0::func_0007EAE0(byte param_1)
 {
