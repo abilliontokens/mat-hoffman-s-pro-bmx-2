@@ -81,8 +81,7 @@ struct BmxMusicMenu {
  int f128;
  int f12c;
  int f130;
- int f134;
- int f138;
+ __int64 f134;
  int f13c;
 };
 extern int D_0027850C;
