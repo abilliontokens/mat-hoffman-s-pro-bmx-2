@@ -412,6 +412,7 @@ u32 __stdcall func_001DDAEE(u32 id, int flag)
     return id;
 }
 
+void __stdcall func_001DD62B(unsigned long code);
 #pragma optimize("y", off)
 void *__stdcall func_001DDB7E(u32 a0, u32 a1, u32 a2, u32 a3)
 {
@@ -429,7 +430,7 @@ void *__stdcall func_001DDB7E(u32 a0, u32 a1, u32 a2, u32 a3)
     }
     p = _imp__MmAllocateContiguousMemoryEx(a0, lo, hi, a2, a3);
     if (p == 0) {
-        func_001DD62B(8);
+        func_001DD62B(8UL);
     }
     return p;
 }
