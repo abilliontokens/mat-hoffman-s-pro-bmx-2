@@ -293,6 +293,28 @@ int __stdcall func_001DD6D5(void *a0, u32 *a1, u32 a2)
     }
     return 0;
 }
+
+#pragma optimize("y", off)
+int __stdcall func_001DD713(u32 *a0, u32 *a1)
+{
+    S_ObjectAttributes oa;
+    S_IoStatusBlock iosb;
+    int status;
+
+    oa.rootDirectory = 0;
+    oa.attributes = 0x40;
+    oa.objectName = &D_0028FA80;
+    status = _imp__NtCreateFile(a0, 0x80100000, &oa, &iosb, 0, 0xc, 1, 1, 0x20);
+    if (status >= 0) {
+        if (func_001DD6D5((void *)*a0, a1, 0) == 0) {
+            status = 0xc00000e4;
+            _imp__NtClose((void *)*a0);
+        }
+    }
+    return status;
+}
+#pragma optimize("y", on)
+
 #pragma optimize("y", on)
 
 #pragma optimize("y", off)
@@ -330,6 +352,29 @@ u32 __stdcall func_001DDAEE(u32 id, int flag)
     }
     return id;
 }
+
+#pragma optimize("y", off)
+void *__stdcall func_001DDB7E(u32 a0, u32 a1, u32 a2, u32 a3)
+{
+    u32 lo;
+    u32 hi;
+    void *p;
+
+    if (a1 != 0xffffffff) {
+        a2 = 0;
+        lo = a1;
+        hi = a0 + a1 - 1;
+    } else {
+        lo = 0;
+        hi = 0xffffffff;
+    }
+    p = _imp__MmAllocateContiguousMemoryEx(a0, lo, hi, a2, a3);
+    if (p == 0) {
+        func_001DD62B(8);
+    }
+    return p;
+}
+#pragma optimize("y", on)
 
 void *__stdcall func_001DDBC7(int attrs, int manualReset, int initial, char *name)
 {
