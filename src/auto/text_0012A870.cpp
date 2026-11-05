@@ -498,6 +498,23 @@ C_0012B410 *C_0012B410::func_0012B410(int a, int b, int c)
     return this;
 }
 
+void Camera::func_0012B470(void)
+{
+    int rect[4];
+
+    if (f20c != 0) {
+        rect[0] = f1e0;
+        rect[1] = f1e4;
+        rect[2] = f1e0 + f1e8;
+        rect[3] = f1e4 + f1ec;
+        ((S_002EFDB8V *)D_002EFDB8)->v10(rect, 0);
+    }
+    if (f200 != D_0028403C || f1fc != D_00284038) {
+        ((C_0012AAE0 *)this)->func_0012AAE0(D_00284038, D_0028403C);
+    }
+    func_00157920();
+}
+
 C_0012B510R *C_0012B510R::func_0012B510(void)
 {
     extern int D_002840FC;
