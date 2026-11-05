@@ -514,3 +514,26 @@ int C_001D4200::func_001D4380(char *out)
     return 0;
 }
 
+int C_001D4200::func_001D4720(const char *a, const char *b)
+{
+    char buf[0x104];
+    int r;
+    int h;
+
+    if (unk0 != -1) {
+        r = func_001D4300(unk0);
+        if (r == 2) {
+            h = unk0;
+            if (h == -1 || func_001D4170(h) != 0) {
+                func_001D40E0(h);
+            }
+        } else if (r != 1) {
+            func_001D4170(unk0);
+            return 0;
+        }
+        func_001ADCC0(buf, 0x104, D_00278068, a, b);
+        return func_001DEFD8(buf) != 0;
+    }
+    return 0;
+}
+
