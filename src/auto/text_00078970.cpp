@@ -2,6 +2,7 @@
 #include "common.h"
 
 extern int D_00278EDC;
+extern int D_0027857C;
 
 struct S_00079790_Obj {
     virtual void destroying(int flag);
