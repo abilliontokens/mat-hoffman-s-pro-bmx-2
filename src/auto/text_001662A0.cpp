@@ -2,6 +2,30 @@
 #include "common.h"
 
 void func_001E891B(void *p);
+void *func_001E8920(void *, const void *, unsigned int);
+void *func_001E8AA5(unsigned int);
+struct S_00166CA0_Item {
+ char data[0x40];
+ void func_000264C0(S_00166CA0_Item *);
+};
+struct C_00166CA0 {
+ char pad0[0x10];
+ int f10, f14, f18;
+ char pad1C[0x14];
+ int f30, f34, f38;
+ char pad3C[0xC];
+ char f48[0x50], f98[0x50], fE8[0x50], f138[0x50];
+ char pad188[8];
+ char f190[0x50];
+ char pad1E0[8];
+ int f1E8;
+ char pad1EC[0xC];
+ S_00166CA0_Item *f1F8;
+ int f1FC;
+ void func_001662A0(int);
+ void func_001646B0();
+ void func_00166CA0(C_00166CA0 *, int);
+};
 
 struct S_00166C80_Arg {
     char pad0[0x3c];
