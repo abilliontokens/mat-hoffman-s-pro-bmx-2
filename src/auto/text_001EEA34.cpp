@@ -608,6 +608,35 @@ void *func_001EF5E4(BitObj *self, BitObj *p)
     return self;
 }
 
+BitObj *BitObj::func_001EF613(int a)
+{
+    S_001EF062 *q;
+    void *mem;
+
+    if (func_001EF1E7() != 0 || a == 1 || a == 3) {
+        func_001EF333(a);
+    } else {
+        mem = (void *)D_002F6A04.func_001EEE62(0x10, 0);
+        if (mem != 0) {
+            q = ((S_001EF062 *)mem)->func_001EF062(a);
+        } else {
+            q = 0;
+        }
+        if (q != 0) {
+            f0 = (int)((S_001EEFE3 *)f0)->func_001EF419();
+            if (f0 != 0) {
+                ((S_001EEFE3 *)f0)->func_001EEFE3((S_001EEFE3 *)q);
+            }
+        } else {
+            f0 = 0;
+        }
+        if (f0 == 0) {
+            s4 = 3;
+        }
+    }
+    return this;
+}
+
 BitObj *__fastcall func_001EF734(BitObj *self, int unused, char c)
 {
     self->f0 = 0;
