@@ -285,6 +285,13 @@ int C_000AC730::func_000AC730()
     return 0;
 }
 
+void C_000AC760::func_000AC760()
+{
+    if (unk54C != 0) {
+        unk54C->func_000AB030(this);
+    }
+}
+
 void C_000AC7F0::func_000AC7F0(void)
 {
     if (D_002A8490->field_2F0->field_1DC == 0 && D_002A8490->field_2E0->field_48 == 0xd) {
