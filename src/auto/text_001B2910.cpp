@@ -13,8 +13,8 @@ struct S_001B3560 {
     char pad9;
     unsigned short fA;
     unsigned short fC;
-    unsigned short fE;
-    unsigned short f10;
+    short fE;
+    short f10;
     unsigned char kind;
     unsigned char f13;
     void *f14;
