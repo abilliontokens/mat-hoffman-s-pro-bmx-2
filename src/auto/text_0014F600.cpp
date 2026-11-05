@@ -8,6 +8,11 @@ struct C_00150350 {
 };
 
 
+float func_0014F990(float x)
+{
+    return (float)atan(x);
+}
+
 void func_0014FDD0(void)
 {
   int func_0014F190(...);
