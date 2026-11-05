@@ -135,13 +135,21 @@ struct S_001701F0_Tbl {
 };
 
 struct S_001701F0_Inner {
-    char pad0[0x1d8];
+    char pad0[0x170];
+    char f170[1];
+    char pad171[0x1d8 - 0x171];
     float f1d8;
+    char pad1dc[0x250 - 0x1dc];
+    char f250[1];
 };
 
 struct S_001701F0_Global {
     char pad0[4];
     S_001701F0_Inner *f4;
+    char pad8[0x6c - 8];
+    S_Obj154 *f6c;
+    char pad70[4];
+    char f74[1];
 };
 
 extern S_001701F0_Global *D_002EFDB8;
