@@ -208,6 +208,57 @@ void __cdecl func_001F60E2(S_Ld12_001F60E2 *dst, int pow, unsigned int mult12)
     }
 }
 
+extern "C" void *memset(void *, int, unsigned int);
+#pragma intrinsic(memset)
+long func_001EE4BD(int fh, long pos, int mthd);
+int func_001E9D87(int fh, int mode);
+int func_001ED9C0(int fh, const void *buf, unsigned cnt);
+unsigned long *func_001ED07E(void);
+long func_001EE6CE(int fh);
+int __stdcall func_001DD31D(long h);
+unsigned long func_001DD603(void);
+int func_001F6158(int filedes, long size)
+{
+    long filend;
+    long extend;
+    long place;
+    int cnt;
+    int oldmode;
+    int retval = 0;
+    char blk[0x1000];
+
+    if ((place = func_001EE4BD(filedes, 0L, 1)) == -1 ||
+        (filend = func_001EE4BD(filedes, 0L, 2)) == -1)
+        return -1;
+
+    extend = size - filend;
+
+    if (extend > 0) {
+        memset(blk, 0, 0x1000);
+        oldmode = func_001E9D87(filedes, 0x8000);
+        do {
+            cnt = (extend >= 0x1000) ? 0x1000 : (int)extend;
+            if ((cnt = func_001ED9C0(filedes, blk, cnt)) == -1) {
+                if (*func_001ED07E() == 5)
+                    *func_001ED075() = 13;
+                retval = cnt;
+                break;
+            }
+        } while ((extend -= cnt) > 0);
+        func_001E9D87(filedes, oldmode);
+    } else if (extend < 0) {
+        func_001EE4BD(filedes, size, 0);
+        retval = func_001DD31D(func_001EE6CE(filedes)) ? 0 : -1;
+        if (retval == -1) {
+            *func_001ED075() = 13;
+            *func_001ED07E() = func_001DD603();
+        }
+    }
+
+    func_001EE4BD(filedes, place, 0);
+    return retval;
+}
+
 int func_001F627B(PFN_001F5975 fn)
 {
     int valid = 1;
