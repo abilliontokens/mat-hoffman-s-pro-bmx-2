@@ -73,3 +73,9 @@ C_000A09F0* C_000A09F0::func_000A09F0(void) {
     unk24 = 0;
     return this;
 }
+
+void func_000A0B80(void) {
+    D_002A829C->func_00161680();
+    D_002AA6C0->func_001B2640();
+}
+
