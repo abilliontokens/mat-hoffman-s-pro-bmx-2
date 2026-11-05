@@ -443,6 +443,25 @@ S_001EEFBA *S_001EEFBA::func_001EF3B4(void)
     return this;
 }
 
+S_001EEFBA *S_001EEFBA::func_001EF3D2(BitObj *src)
+{
+    if (count != 9 && src->func_001EF1E7() == 0) {
+        BitObj *mem = (BitObj *)D_002F6A04.func_001EEE62(8, 0);
+        BitObj *copy;
+
+        if (mem != 0) {
+            copy = mem->func_001EEEE6(src);
+        } else {
+            copy = 0;
+        }
+        if (copy != 0) {
+            count++;
+            items[count] = (int *)copy;
+        }
+    }
+    return this;
+}
+
 BitObj *BitObj::func_001EF8F6(int a0, int a1) {
     BitObj local;
     local.func_001EEEE6(this);
