@@ -42,6 +42,11 @@ struct C_001C2290 {
 };
 
 
+void C_001C2190::func_001C2190(int a0) {
+    func_001BF980(a0);
+    func_00157A00(a0);
+}
+
 void C_001C2290::func_001C2290(void) {
     unk2C = 0;
 }
