@@ -563,3 +563,14 @@ C_00195090 *C_00195090::func_00195090(void)
     return this;
 }
 
+void C_00195090::func_00195130(void)
+{
+    void *p = f40;
+
+    vtbl = (void *)&D_0028AF24;
+    if (p != 0) {
+        func_001E8390(p);
+    }
+    func_0012B540();
+}
+
