@@ -1,6 +1,48 @@
 /* 11 functions from 0x0018CF40 to 0x0018DE60, found by Ghidra. */
 #include "common.h"
 
+extern "C" int strcmp(const char *s1, const char *s2);
+
+struct C_0018D580_Id {
+    char pad0[5];
+    u8 f5;
+    char pad6[0x1E];
+};
+
+struct C_0018D970_Entry {
+    int used;
+    char name[0x5C];
+};
+
+struct C_0018DA00_Item {
+    char *str;
+    int f4;
+    char pad8[0x14];
+};
+
+struct C_0018D900_Entry {
+    char name[0x20];
+    C_0018DA00_Item *items;
+    int count;
+    char pad28[0x10];
+};
+
+struct C_0018D580 {
+    char pad0[0x158];
+    C_0018D970_Entry *named;
+    int namedCount;
+    char pad160[4];
+    C_0018D900_Entry *entries;
+    int entryCount;
+    char pad16C[4];
+    C_0018D580_Id *ids;
+    int idCount;
+    int func_0018D580(unsigned int id);
+    int func_0018D900(const char *name);
+    int func_0018D970(const char *name);
+    int func_0018DA00(int index, const char *name);
+};
+
 void func_0018DE50(void) {
     int func_00157A00(...);
     func_00157A00();
