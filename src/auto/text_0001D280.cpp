@@ -26,6 +26,8 @@ static inline unsigned int swap32(unsigned int x)
     return r;
 }
 
+#define SWAP32(x) (((((x) & 0xff) << 8 | ((x) >> 8) & 0xff) << 8 | ((x) >> 16) & 0xff) << 8 | ((x) >> 24))
+
 struct C_0001E0E0 {
     int unk0;
     int nbits;
