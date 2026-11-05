@@ -87,6 +87,18 @@ struct S_BmxEvent_Hook {
     void func_00099500(int a);
 };
 
+struct C_0002EF70 {
+    void func_0002EF70(int a, int b);
+};
+
+struct C_00030240 {
+    void func_00030240(int a, int b, int c, int d, int e);
+};
+
+struct C_0012A770 {
+    void func_0012A770(int a, int b);
+};
+
 /* BmxEvent: a GameObject (vtable, sibling/child links in the base) */
 struct BmxEvent {
     virtual void v00(); virtual void v01(); virtual void v02(); virtual void v03();
