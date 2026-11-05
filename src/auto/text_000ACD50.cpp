@@ -113,6 +113,12 @@ void C_000ACDB0::func_000ACDB0(void) {
     ((C_000AADB0 *)unk54C)->func_000AADB0(unk28);
 }
 
+void C_000ACE10::func_000ACE10(void) {
+    void __stdcall func_000A3BA0(int);
+    func_000A3BA0(unk2C);
+    func_00189770();
+}
+
 void *C_000ACE30::func_000ACE30(int flags) {
     extern int D_0027B1A4;
     void func_001E891B(void *);
