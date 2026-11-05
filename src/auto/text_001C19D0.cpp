@@ -53,7 +53,6 @@ struct C_001C2210 {
 
 struct C_001C21F0 {
     void func_001C21F0(int a0);
-    void __stdcall_dummy();
     void func_001BFD00(int a0);
     void func_00157A00(int a0);
 };
