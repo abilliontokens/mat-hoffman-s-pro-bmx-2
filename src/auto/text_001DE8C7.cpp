@@ -263,6 +263,16 @@ void __stdcall func_001DF1C2(void *ctx, const void *key, unsigned int len, void 
     XcSHAFinal(ctx, out);
 }
 
+int __stdcall func_001DF234(int base, void *data, void *out)
+{
+    void *ctx = (char *)base + 8;
+
+    func_001DF160(XboxHDKey, 0x10, ctx);
+    XcSHAUpdate(ctx, data, 0x14);
+    func_001DF1C2(ctx, XboxHDKey, 0x10, out);
+    return 1;
+}
+
 int __stdcall func_001DF361(int a0)
 {
     return func_001DF26F(a0, ((int *)D_00010118)[2]);
