@@ -9,9 +9,11 @@ extern int D_002859D0;
 extern int D_002859EC;
 extern int D_00285A9C;
 extern int D_00285AAC;
+extern int D_00285AC4;
 extern int *D_002EFDB8;
 void *func_001E8A44(int size);
 void func_001E891B(void *);
+void __stdcall func_00201100(void *);
 
 struct PageObj {
     virtual void destroy(int flags);
