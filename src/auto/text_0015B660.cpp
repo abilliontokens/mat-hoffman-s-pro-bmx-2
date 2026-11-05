@@ -92,6 +92,23 @@ struct C_0015B6B0 {
     void func_0015B6B0(int a0, int a1, int a2, int a3);
 };
 
+struct Key_0015BB70 {
+    float t;
+    float p[3];
+    float in[3];
+    float out[3];
+    float pad;
+};
+struct Path_0015BB70 {
+    int f0;
+    int f4;
+    int f8;
+    int count;
+    int f10;
+    Key_0015BB70 *keys;
+};
+void func_0015BB70(Path_0015BB70 *path);
+
 struct C_0015B660 {
     void *vtbl;
     u32 unk4;
@@ -293,6 +310,15 @@ void C_0015BAC0::func_0015BAC0(int a0, u32 *a1, int a2) {
     if (a2 != 0) {
         func_0001B2E0(&unk14[a0 * 3 + 1], a2);
     }
+}
+
+void *C_0015BDB0::func_0015BDB0(unsigned char flags)
+{
+    vtbl = &D_00287778;
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
 }
 
 int func_0015BF70(S_0015BF70_Node *arr, int n, float t)
