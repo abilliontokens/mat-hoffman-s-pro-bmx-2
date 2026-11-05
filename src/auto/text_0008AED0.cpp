@@ -2,6 +2,77 @@
 #include "common.h"
 
 extern int *D_002A8490;
+extern int D_00275630;
+extern int D_00279DEC;
+extern int D_00279E74;
+
+struct C_00157600 {
+    void func_00157600(int a0);
+};
+
+struct S_0008BB50_Child {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5(int a);
+};
+
+struct C_0008B6F0 {
+    char pad0[0x34];
+    int f34;
+    char pad38[0x1c];
+    int f54;
+    void func_0008B6F0(void);
+};
+
+struct C_0008B820 {
+    void *vtbl;
+    char pad4[0x20];
+    u32 f24;
+    u32 pad28;
+    u32 f2C;
+    u32 f30;
+    u32 f34;
+    C_0008B820 *func_0008B820(int unused);
+};
+
+struct C_0008BB50 {
+    char pad0[0x30];
+    int f30;
+    S_0008BB50_Child *f34;
+    void func_0008BB50(int param_1);
+};
+
+struct C_0008BB80 {
+    void *vtbl;
+    char pad4[0x20];
+    u32 f24;
+    u32 f28;
+    u32 f2C;
+    u32 f30;
+    u32 f34;
+    u32 f38;
+    u32 f3C;
+    u32 f40;
+    u32 f44;
+    u32 f48;
+    u32 f4C;
+    u32 f50;
+    u32 f54;
+    u32 f58;
+    u32 f5C;
+    u32 f60;
+    u32 f64;
+    u32 f68;
+    u32 f6C;
+    u32 f70;
+    u32 pad74;
+    u32 f78;
+    u32 f7C;
+    C_0008BB80 *func_0008BB80(int unused);
+};
 
 struct C_0005E840 {
     void func_0005E840(int param_1);
