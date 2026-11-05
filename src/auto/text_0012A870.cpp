@@ -416,6 +416,20 @@ undefined4 C_0012B330::func_0012B330(byte param_1)
   return in_ECX;
 }
 
+void Camera::func_0012B350(void)
+{
+    int func_001E891B(...);
+    if (f28 != 0) {
+        f28->func_00193870(&f24);
+        S_Camera28 *p = f28;
+        if (p != 0) {
+            p->func_00193500();
+            func_001E891B(p);
+        }
+        f28 = 0;
+    }
+}
+
 undefined4 C_0012B390::func_0012B390(undefined4 param_1, undefined4 param_2, undefined4 param_3)
 {
   int __stdcall func_0012A7C0(int, int, int, int);
