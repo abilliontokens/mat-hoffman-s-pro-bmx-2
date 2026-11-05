@@ -1,6 +1,14 @@
 /* 17 functions from 0x00103B60 to 0x00104B00, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_001048E0 {
+    char pad0[0xC4];
+    int unkC4;
+    char padC8[0x18];
+    char unkE0;
+    void func_001048E0(void);
+};
+
 struct C_001048C0 {
     char pad0[0xC4];
     int unkC4;
@@ -43,6 +51,11 @@ void func_001041E0(void) {
 
 void C_001048C0::func_001048C0(void) {
     unkE0 = 1;
+    unkC4 = 1;
+}
+
+void C_001048E0::func_001048E0(void) {
+    unkE0 = 0;
     unkC4 = 1;
 }
 
