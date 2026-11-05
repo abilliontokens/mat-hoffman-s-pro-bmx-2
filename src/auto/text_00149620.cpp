@@ -154,6 +154,8 @@ void C_0014A3A0::func_0014A420()
 {
     int func_001E891B(...);
     int i;
+    C_0014A540 *filter;
+    C_00012140 *matrix;
     vtbl = &D_0028684C;
     if (unkDC != 0) {
         func_00201100(unkDC);
@@ -178,14 +180,16 @@ void C_0014A3A0::func_0014A420()
     if (unk4C != 0) {
         func_00201100(unk4C);
     }
-    if (unkE8 != 0) {
-        unkE8->func_0014A540();
-        func_001E891B(unkE8);
+    filter = unkE8;
+    if (filter != 0) {
+        filter->func_0014A540();
+        func_001E891B(filter);
         unkE8 = 0;
     }
-    if (unkEC != 0) {
-        unkEC->func_00012140();
-        func_001E891B(unkEC);
+    matrix = unkEC;
+    if (matrix != 0) {
+        matrix->func_00012140();
+        func_001E891B(matrix);
         unkEC = 0;
     }
     func_0001DFF0();
