@@ -120,9 +120,49 @@ extern char D_002A60B0[];
 extern unsigned short D_00284644;
 extern int D_002AA46C;
 void *func_001E8AA5(unsigned int n);
+extern "C" void *func_001E8A44(unsigned int n);
 extern "C" char *strcpy(char *, const char *);
 extern "C" char *strcat(char *, const char *);
 extern "C" unsigned int strlen(const char *);
+
+extern char D_002A4C10[];
+extern char D_002A4C0F[];
+extern char D_0028463C;
+extern char D_00284638;
+extern char D_00275FB4;
+
+int func_001E8BF0(char *dst, char *src, int n);
+void func_00030F30(char *a, char *b);
+int func_001EA426(char *a, char *b);
+void func_00132E90(int h, void *out);
+void __stdcall func_00011FF0(void *mem, int a, int b, void *cb);
+void func_00011060(void);
+
+/* mesh/anim block loaded from file, fields at +0x70.. */
+struct S_00181140_Loaded {
+    char pad0[0x70];
+    void *f70;
+    void *f74;
+    void *f78;
+    int f7c;
+    void *f84;
+    void *f88;
+    void *f8c;
+    void *f90;
+    S_00181140_Loaded *func_00134980(void);
+};
+
+/* owner of the loaded block: +0x54 block, +0xf8 count, +0x104 source id */
+struct C_00181140 {
+    char pad0[0x54];
+    S_00181140_Loaded *f54;
+    char pad58[0xa0];
+    int fF8;
+    char padFC[8];
+    int f104;
+    void func_00180600(int a, int b);
+    int func_00181140(int a1, char *path, int a3);
+};
 
 struct Loader {
     char pad[0x1b4];
