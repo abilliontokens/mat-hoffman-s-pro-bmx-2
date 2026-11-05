@@ -150,6 +150,22 @@ void C_000867F0::func_000867F0(int a)
     f40 = a;
 }
 
+void C_000867F0::func_00086910(int a)
+{
+    char buf[0x104];
+    if (a) {
+        func_001ADCC0(buf, 0x104, D_00279058, *(char **)((char *)D_002A8490->f2E8->f4 + 0x1038), f44);
+        f30->func_0005E840(buf);
+        func_001ADCC0(buf, 0x104, D_00279058, *(char **)((char *)D_002A8490->f2E8->f4 + 0x1018), f70 + 1);
+        f34->func_0005E840(buf);
+        func_001ADCC0(buf, 0x104, D_00279058, *(char **)((char *)D_002A8490->f2E8->f4 + 0x1028), *(int *)(f48[f70 + 0x6a] + 0x970) + 1);
+        f38->func_0005E840(buf);
+        func_001ADCC0(buf, 0x104, *(char **)((char *)D_002A8490->f2E8->f4 + 0x1030));
+        f3C->func_0005E840(buf);
+    }
+    f40 = a;
+}
+
 void C_00086A40::func_00086A40(int a)
 {
     char buf[0x104];
