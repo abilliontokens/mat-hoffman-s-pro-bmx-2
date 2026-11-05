@@ -22,20 +22,14 @@ struct C_000B6640_Obj {
 };
 
 struct V4_000B6840 {
-    float x, y, z, w;
-    void Set(const float &px, const float &py, const float &pz, const float &pw) { x = px; y = py; z = pz; w = pw; }
+    int x;
+    float y, z, w;
 };
 
 struct V4Init_000B6840 : V4_000B6840 {
-    V4Init_000B6840() { x = y = z = 0; w = 1; }
-    V4Init_000B6840(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
-    V4Init_000B6840(int, float d, float c, float b, float a) { x = a; y = b; z = c; w = d; }
+    V4Init_000B6840() { x = 0; y = z = 0; w = 1; }
+    V4Init_000B6840(int a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
 };
-
-static inline void Box_000B6840(V4_000B6840 *dst, V4_000B6840 *src, float h)
-{
-    *dst = V4Init_000B6840(0, 1.0f, src->z, (0.0f - h) + src->y, src->x);
-}
 
 struct C_000B6840_Mgr;
 struct C_000B6840_Node {
