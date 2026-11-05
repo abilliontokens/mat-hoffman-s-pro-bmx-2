@@ -79,7 +79,8 @@ extern C_0013B210 *D_002BEAAC;
 extern int D_0027D75C;
 
 struct C_000BBE30 {
-    char pad0[0x150];
+    void *vtbl;
+    char pad4[0x14C];
     S_000BDF30_Names *f150;
     char pad154[0x10C];
     S_000BE540_Vt *f260;
@@ -157,6 +158,11 @@ void *C_000BE510::func_000BE510(int flags) {
         func_001E891B(this);
     }
     return this;
+}
+
+void C_000BBE30::func_000BE540()
+{
+    *(void **)this = 0;
 }
 
 undefined4 C_000BEDA0::func_000BEDA0(byte param_1)
