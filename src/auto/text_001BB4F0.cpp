@@ -112,7 +112,7 @@ struct C_001BB950 {
 };
 
 extern float D_00275544, D_002AAE04, D_002AAE08, D_002AAE0C;
-void __cdecl func_000265C0(void *a, Vec_001BB950 *b, int c, int d, int e, int f);
+void __cdecl func_000265C0(void *a, Vec_001BB950 *b, void *c, void *d, int e, int f);
 
 int func_00011260(int lo, int hi);
 int func_00135C70(int param_1, int param_2, int *param_3, int param_4);
@@ -500,7 +500,7 @@ C_001BBAA0 *C_001BBAA0::func_001BB680(int a)
     self->unk2EC &= 0xbf;
     self->unk90 = 100;
     self->f24.Set(D_002AAE04, D_002AAE08, D_002AAE0C, D_002AAE10);
-    self->unk2E0 = 0;
+    *(volatile int *)&self->unk2E0 = 0;
     p = &m;
     p->identity();
     copy = m;
