@@ -107,6 +107,74 @@ struct C_000ECF80 {
     C_000ECF80 *func_000ECF80(int a);
 };
 
+struct S_000ED170_Obj {
+    void func_0005E840(char *s);
+};
+
+struct S_000ED170_Root {
+    char pad0[0x34];
+    S_000ED170_Obj *f34;
+    S_000ED170_Obj *f38;
+    S_000ED170_Obj *f3c;
+    void func_000BF860(int a, int b, int c, int d);
+};
+
+struct S_000ED170_Strings {
+    char pad0[0x7C8];
+    char *f7C8;
+    char pad7CC[0x838 - 0x7CC];
+    char *f838;
+    char pad83C[0xA58 - 0x83C];
+    char *fA58;
+};
+
+struct S_000ED170_Mid {
+    int f0;
+    S_000ED170_Strings *f4;
+};
+
+struct S_000ED170_Global {
+    char pad0[0x2E8];
+    S_000ED170_Mid *f2E8;
+};
+
+struct S_000ED170_Ed {
+    char pad0[0x274];
+    int f274;
+};
+
+extern S_000ED170_Root *D_002B91AC_Root;
+extern S_000ED170_Global *D_002A8490;
+int func_00092A10(void);
+
+struct C_000ED170 {
+    char pad0[0x124];
+    S_000ED170_Ed *f124;
+    char pad128[0x164];
+    int f28C;
+    char pad290[4];
+    int f294;
+    char pad298[4];
+    int f29C, f2A0, f2A4, f2A8;
+    char pad2AC[0x10c];
+    int f3B8;
+    char pad3BC[8];
+    int f3C4;
+    char pad3C8[8];
+    int f3D0, f3D4, f3D8, f3DC;
+    char pad3E0[4];
+    int f3E4[11];
+    int f410, f414, f418, f41C, f420, f424, f428;
+    int f42C, f430, f434, f438, f43C;
+    char pad440[4];
+    int f444;
+    char pad448[0x14];
+    int f45C;
+    char pad460[0x70];
+    int f4D0[11];
+    void func_000ED170(void);
+};
+
 void C_000ECD90::func_000ECD90(void) {
     unk380 = 0;
     unk384 = 255;
