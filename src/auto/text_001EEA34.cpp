@@ -567,3 +567,19 @@ BitObj *BitObj::func_001EF999(char c)
     return this;
 }
 
+BitObj *BitObj::func_001EF9B2(char *s)
+{
+    int len;
+
+    b4 = 0;
+    b5 = 0;
+    b6 = 0;
+    b7 = 0;
+    len = 0;
+    while (s[len] != 0) {
+        len++;
+    }
+    func_001EF68E(s, len);
+    return this;
+}
+
