@@ -123,3 +123,17 @@ int C_00157810::func_00157AE0(void)
     }
     return 1;
 }
+
+void *C_00158360::func_00158360(int flags)
+{
+    extern int D_002DF94C;
+    extern int D_0028715C;
+    D_002DF94C--;
+    vtbl = (void *)&D_0028715C;
+    func_0001DFF0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
