@@ -225,7 +225,7 @@ struct ItemList_1A {
     int count;
     Item_1A **data;
     Item_1A *Get(int i) {
-        if (count < 1 || data == 0 || i >= count) {
+        if (count <= 0 || data == 0 || i >= count) {
             return 0;
         }
         return data[i];
@@ -408,24 +408,103 @@ int C_001A2510::func_001A2510(S_001A2510_Arg *arg, int a1, int a2)
 
 C_001A2580 *C_001A2580::func_001A2580(int a0, int a1, int a2, int a3)
 {
-    u32 *p = (u32 *)this;
+    u8 t;
 
     func_001A1680(a0, a1, a2, a3);
-    p[0x70] = 0;
-    p[0x71] = 0;
-    p[0] = (u32)&D_0028B58C;
-    p[0x73] = 0;
-    p[0x72] = 0;
-    p[0x74] = 0;
-    p[0x75] = 0;
-    *(u8 *)(p + 0x76) = *(u8 *)(p + 0x76) & 0xfe;
-    p[0x73] = (u32)func_001E8A44(4);
-    p[0x75] = 1;
-    p[0x74] = 0x10;
-    *(u8 *)(p + 0x76) = *(u8 *)(p + 0x76) | 1;
-    p[0xb4] = 0;
-    p[0xb6] = 1;
+    f1c0 = 0;
+    f1c4 = 0;
+    vtbl = &D_0028B58C;
+    t = f1d8 & 0xfe;
+    f1cc = 0;
+    f1c8 = 0;
+    f1d0 = 0;
+    f1d4 = 0;
+    f1d8 = t;
+    f1cc = func_001E8A44(4);
+    f1d4 = 1;
+    f1d0 = 0x10;
+    f1d8 |= 1;
+    f2d0 = 0;
+    f2d8 = 1;
     return this;
+}
+
+void C_001A2620::func_001A2620()
+{
+    int i;
+
+    vtbl = &D_0028B58C;
+    for (i = 0; i < items.count; i++) {
+        func_001E891B(items.Get(i));
+    }
+    func_001E891B(items.data);
+    vtbl = &D_0028B3C4;
+    func_00157660();
+}
+
+int C_001A2A10::func_001A2A10(int a0)
+{
+    Item_1A *item;
+    Obj_001A2480 *o;
+
+    f2d8 = 0;
+    if (v27() != 0) {
+        f1bc->v16(0, 0x5dc, 0);
+        v33();
+    }
+    item = items.Get(a0 - 1);
+    if (item->f8 != 0) {
+        o = item->obj;
+        if (o != 0 && f1bc != o) {
+            o->func_001CB560(f1bc);
+        }
+        f1bc = o;
+        return 1;
+    }
+    return 0;
+}
+
+int C_001A2A10::func_001A2AA0(int a0)
+{
+    Item_1A *item;
+    Obj_001A2480 *o;
+
+    if (a0 > items.count) {
+        return 0;
+    }
+    item = items.Get(a0 - 1);
+    if (item->f8 == 0) {
+        return 0;
+    }
+    if (v27() != 0) {
+        f1bc->v16(0, 0x5dc, 0);
+    }
+    o = item->obj;
+    if (o != 0 && f1bc != o) {
+        o->func_001CB560(f1bc);
+    }
+    f1bc = o;
+    v33();
+    return 1;
+}
+
+int C_001A2A10::func_001A2B40(int a0)
+{
+    Item_1A *item;
+
+    if (f1a4->f5c == 0) {
+        return 0;
+    }
+    if (a0 <= items.count) {
+        item = items.Get(a0 - 1);
+        if (item->f8 == 0) {
+            if (f1a4->func_0001CE80(item->obj, f70, f80, f48, f4c) != 0) {
+                item->obj->v5(4);
+                return 1;
+            }
+        }
+    }
+    return 0;
 }
 
 void *C_001A2BD0::func_001A2BD0(unsigned int flags)
