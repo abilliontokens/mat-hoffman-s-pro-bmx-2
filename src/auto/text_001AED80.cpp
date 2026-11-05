@@ -90,6 +90,14 @@ C_001AF0B0* C_001AF0B0::func_001AF0B0(void) {
     return this;
 }
 
+void *C_001AF300::func_001AF300(int a0)
+{
+    extern int D_0028C2AC;
+    func_00157600(a0);
+    vtbl = (void *)&D_0028C2AC;
+    return this;
+}
+
 void C_001AF320::func_001AF320(void) {
     extern int D_0028C2AC;
     int func_00157660(...);
