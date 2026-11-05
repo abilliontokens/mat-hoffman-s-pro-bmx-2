@@ -25,6 +25,7 @@ int __stdcall func_00168550(float a, char *dst, int d);
 extern char D_00288004[];
 extern char D_00288008[];
 struct S_00168CB0_V3 { float x, y, z; };
+static __forceinline float tokf_00168CB0(char *s, const char *delim);
 extern char D_00275630[];
 extern char D_002869B4[];
 extern char D_002869B8[];
@@ -313,23 +314,21 @@ int C_00168280::func_00168C50(const char *name, float def, float *out)
 int C_00168280::func_00168CB0(const char *name, const float *def, float *out)
 {
     char buf[0x184];
-    char *s;
+    int ret;
 
     if (func_00168550(name, buf, 0x80) == 0) {
         strcpy(buf, D_00275630);
         out[0] = def[0];
         out[1] = def[1];
         out[2] = def[2];
-        return 0;
+        ret = 0;
+    } else {
+        out[0] = (float)func_001E9649(func_001E95A4(buf, D_002869B8));
+        out[1] = (float)func_001E9649(func_001E95A4(0, D_002869B8));
+        out[2] = (float)func_001E9649(func_001E95A4(0, D_002869B4));
+        ret = 1;
     }
-    s = buf;
-    s = func_001E95A4(s, D_002869B8);
-    out[0] = (float)func_001E9649(s);
-    s = func_001E95A4(0, D_002869B8);
-    out[1] = (float)func_001E9649(s);
-    s = func_001E95A4(0, D_002869B4);
-    out[2] = (float)func_001E9649(s);
-    return 1;
+    return ret;
 }
 
 int C_00168280::func_00168D70(const char *name, float *out, int count)
