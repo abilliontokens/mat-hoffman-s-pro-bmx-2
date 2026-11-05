@@ -1,6 +1,7 @@
 /* 13 functions from 0x001ADFD0 to 0x001AED80, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <math.h>
 struct C_001AEBB0 {
     undefined4 func_001AEBB0(byte param_1);
 };
@@ -47,6 +48,35 @@ struct C_001AE810 {
     void func_001AE810(void);
 };
 
+
+void C_001AE810::func_001AE810(void)
+{
+    extern int D_0028C1D0;
+    extern int D_0028C1A4;
+    extern int D_00284E94;
+
+    vtbl = (void *)&D_0028C1D0;
+    if (f1C != 0) {
+        func_00201100(f1C);
+    }
+    if (f20 != 0) {
+        func_00201100(f20);
+    }
+    D_002AA6C0->func_001B26C0(fC);
+    if (f10 != 0) {
+        f10->func_0014A540();
+        func_001E891B(f10);
+    }
+    if (f14 != 0) {
+        f14->func_00012140();
+        func_001E891B(f14);
+    }
+    vtbl = (void *)&D_0028C1A4;
+    if (f4 != 0) {
+        f4->v0(1);
+    }
+    vtbl = (void *)&D_00284E94;
+}
 
 void *C_001AEB70::func_001AEB70(int flags)
 {
