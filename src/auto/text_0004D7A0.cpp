@@ -79,7 +79,9 @@ struct C_0004DCA0 {
     C_0004DCA0_Cam *f288;
     int f28C;
     int f290;
-    char pad294[0x3f4];
+    char pad294[0x2c];
+    int f2C0;
+    char pad2c4[0x3c4];
     C_0004DCA0_Vec f688[8];
     C_0004DCA0_Vec f708[8];
     void func_000342C0(void);
