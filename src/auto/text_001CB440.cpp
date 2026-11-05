@@ -641,7 +641,7 @@ int C_001CBF20::func_001CBF60(void)
     return 1;
 }
 
-int C_001CBF20::func_001CBF90(int v)
+int C_001CBF20::func_001CBF90(float v)
 {
     int e;
     int h;
