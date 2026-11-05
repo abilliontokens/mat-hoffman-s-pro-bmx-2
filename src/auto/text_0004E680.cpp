@@ -155,20 +155,16 @@ void C_0004EBA0::func_0004EC40(void)
 C_0004ECC0 *C_0004ECC0::func_0004ECC0(int a0)
 {
     extern int D_00277644;
-    extern u32 D_002A174C;
-    extern u32 D_002A1750;
-    extern u32 D_002A1754;
-    extern u32 D_002A1758;
+    extern C_0004ECC0Vec D_002A174C;
+    C_0004ECC0Vec *q;
     u32 *p;
-    u32 *q;
-    u32 *v;
     char *c;
     int n;
     int i;
 
     func_00030F90(a0);
     vtbl = (void *)&D_00277644;
-    p = f290;
+    p = (u32 *)f290;
     n = 20;
     do {
         p[2] = 0;
@@ -181,19 +177,14 @@ C_0004ECC0 *C_0004ECC0::func_0004ECC0(int a0)
     f28c = -1;
     f284 = 0;
     c = f3d0;
-    q = f290;
+    q = (C_0004ECC0Vec *)f290;
     n = 20;
     do {
         *c = 0;
-        v = q;
-        v[0] = D_002A174C;
-        v[1] = D_002A1750;
-        v[2] = D_002A1754;
-        q += 4;
+        *q = D_002A174C;
+        q++;
         c += 0x78;
-        n--;
-        v[3] = D_002A1758;
-    } while (n != 0);
+    } while (--n != 0);
     fD54 = 0;
     for (i = 0; i < 8; i++) {
         fD30[i] = 0;
