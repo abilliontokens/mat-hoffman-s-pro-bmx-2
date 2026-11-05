@@ -150,6 +150,55 @@ C_0006D590 *C_0006D590::func_0006D590(int a0)
     return this;
 }
 
+void C_0006D590::func_0006D640()
+{
+    int i;
+    vtbl = &D_00278A7C;
+    for (i = 0; i < 15; i++) {
+        PtrObj_0006D *p = (PtrObj_0006D *)unk68[i];
+        if (p) {
+            p->func_001D6410();
+            func_001E891B(p);
+        }
+    }
+    for (i = 0; i < 2; i++) {
+        VObj_0006D *v = ((VObj_0006D **)&unkA4)[i];
+        if (v) v->v0(1);
+    }
+    if (unkD8) ((VObj_0006D *)unkD8)->v0(1);
+    if (unkDC) ((VObj_0006D *)unkDC)->v0(1);
+    {
+        PtrObj_0006D *p = (PtrObj_0006D *)unkE0;
+        if (p) {
+            p->func_001D6410();
+            func_001E891B(p);
+        }
+    }
+    if (unkF0) {
+        ((VObj_0006D *)unkF0)->v0(1);
+        unkF0 = 0;
+    }
+    {
+        PtrObj_0006D *p = (PtrObj_0006D *)unkF4;
+        if (p) {
+            p->func_001D6410();
+            func_001E891B(p);
+            unkF4 = 0;
+        }
+    }
+    for (i = 0; i < 5; i++) {
+        if (unkB0[i]) {
+            ((VObj_0006D *)unkB0[i])->v0(1);
+            unkB0[i] = 0;
+        }
+        if (unkC4[i]) {
+            ((VObj_0006D *)unkC4[i])->v0(1);
+            unkC4[i] = 0;
+        }
+    }
+    func_00157660();
+}
+
 void C_0006DF20::func_0006DF20(int param_1)
 {
   int* in_ECX = (int*)this;
