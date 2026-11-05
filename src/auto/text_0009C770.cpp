@@ -37,3 +37,131 @@ struct C_0009C770 {
     int cnt8;
     void func_0009C770(void);
 };
+
+static __forceinline void Free_0009C770(S_0009C770_E2 *e)
+{
+    S_0009C770_Child **p = e->f4880;
+    int n = 12;
+    S_0009C770_Child *c;
+
+    do {
+        c = *p;
+        if (c != 0) {
+            c->func_00012140();
+            func_001E891B(c);
+            *p = 0;
+        }
+        p++;
+    } while (--n != 0);
+    func_001E891B(e);
+}
+
+void C_0009C770::func_0009C770(void)
+{
+    int i;
+    int j;
+    int n;
+    S_0009C770_E1 *e1;
+    S_0009C770_E2 *e2;
+    S_0009C770_Child *c;
+    S_0009C770_Child **p;
+
+    if (arr0 != 0) {
+        for (i = 0; i < cnt0; i++) {
+            if (arr0[i] != 0) {
+                if (arr0[i]->f1c8 != 0) {
+                    for (j = 0; j < arr0[i]->f1b8; j++) {
+                        c = arr0[i]->f1c8[j];
+                        if (c != 0) {
+                            c->func_00097A20();
+                            func_001E891B(c);
+                        }
+                        arr0[i]->f1c8[j] = 0;
+                    }
+                    func_001E891B(arr0[i]->f1c8);
+                    arr0[i]->f1c8 = 0;
+                }
+                e1 = arr0[i];
+                if (e1 != 0) {
+                    e1->func_00096700();
+                    func_001E891B(e1);
+                }
+            }
+            arr0[i] = 0;
+        }
+        func_001E891B(arr0);
+        arr0 = 0;
+    }
+    if (arr4 != 0) {
+        for (i = 0; i < cnt4; i++) {
+            if (arr4[i] != 0) {
+                if (arr4[i]->f1c8 != 0) {
+                    for (j = 0; j < arr4[i]->f1b8; j++) {
+                        c = arr4[i]->f1c8[j];
+                        if (c != 0) {
+                            c->func_00097A20();
+                            func_001E891B(c);
+                        }
+                        arr4[i]->f1c8[j] = 0;
+                    }
+                    func_001E891B(arr4[i]->f1c8);
+                    arr4[i]->f1c8 = 0;
+                }
+                e2 = arr4[i];
+                if (e2 != 0) {
+                    n = 12;
+                    p = e2->f4880;
+                    do {
+                        c = *p;
+                        if (c != 0) {
+                            c->func_00012140();
+                            func_001E891B(c);
+                            *p = 0;
+                        }
+                        p++;
+                    } while (--n != 0);
+                    func_001E891B(e2);
+                }
+            }
+            arr4[i] = 0;
+        }
+        func_001E891B(arr4);
+        arr4 = 0;
+    }
+    if (arr8 != 0) {
+        for (i = 0; i < cnt8; i++) {
+            if (arr8[i] != 0) {
+                if (arr8[i]->f1c8 != 0) {
+                    for (j = 0; j < arr8[i]->f1b8; j++) {
+                        c = arr8[i]->f1c8[j];
+                        if (c != 0) {
+                            c->func_00097A20();
+                            func_001E891B(c);
+                        }
+                        arr8[i]->f1c8[j] = 0;
+                    }
+                    func_001E891B(arr8[i]->f1c8);
+                    arr8[i]->f1c8 = 0;
+                }
+                e2 = arr8[i];
+                if (e2 != 0) {
+                    n = 12;
+                    p = e2->f4880;
+                    do {
+                        c = *p;
+                        if (c != 0) {
+                            c->func_00012140();
+                            func_001E891B(c);
+                            *p = 0;
+                        }
+                        p++;
+                    } while (--n != 0);
+                    func_001E891B(e2);
+                }
+            }
+            arr8[i] = 0;
+        }
+        func_001E891B(arr8);
+        arr8 = 0;
+    }
+}
