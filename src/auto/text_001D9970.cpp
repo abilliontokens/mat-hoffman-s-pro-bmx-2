@@ -104,6 +104,7 @@ struct XboxWaterDisplacement {
     int unk230[0x96];
     int unk488[6];
     void *unk4A0;
+    float func_001DA250(float x, float y, int *out);
     XboxWaterDisplacement *func_001DA0E0();
     void func_001D9E60(void *a1, void *a2);
     int func_001D9820(void *dest, char *name, int size);
