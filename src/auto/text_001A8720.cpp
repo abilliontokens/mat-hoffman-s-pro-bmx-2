@@ -23,6 +23,14 @@ struct C_001A8BC0 {
     void func_001A8BC0(int a, int b, int c, int d, int e, int f, int g, int h, int i);
 };
 
+extern int D_0028BFC4;
+struct C_00157600 {
+    void func_00157600(int a0);
+};
+struct C_001A8E30 {
+    C_001A8E30 *func_001A8E30(int a0);
+};
+
 struct C_00157660 {
     void func_00157660(void);
 };
