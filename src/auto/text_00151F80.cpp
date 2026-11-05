@@ -75,10 +75,25 @@ struct C_00151F80 {
     char pada4[0x20];
     int fc4;
     S_151F80_Vec fc8;
-    char padd8[0x498];
+    char padd8[8];
+    S_152BA0_Obj *fe0;
+    int fe4;
+    char pade8[0xac];
+    S_152BA0_Slot slots[10];
+    char pad554[0x1c];
     int f570;
+    int f574;
+    int f578;
+    int f57c;
+    float f580;
+    char pad584[0x14];
+    S_152BA0_Ctl *f598;
+    char pad59c[0x138];
+    int f6d4;
     S_151F80_Vec func_00016E40(void);
+    void func_00150900(S_151F80_Vec *a, S_151F80_Vec *b);
     void func_00151F80(int a0);
+    void func_00152BA0(void);
 };
 
 void C_00151F80::func_00151F80(int a0)
