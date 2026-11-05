@@ -41,6 +41,63 @@ struct C_001092E0 {
     int f4[5];
     int f18[5];
     void func_001092E0(int start);
+    int func_00109340(int p1, int p2);
+};
+
+static __forceinline void vec3_set(float *out, float x, float y, float z) {
+    out[3] = 1.0f;
+    out[0] = x;
+    out[1] = y;
+    out[2] = z;
+}
+
+struct Vec4_00108370 {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
+struct C_0001EF10 {
+    Vec4_00108370 *func_0001EF10(Vec4_00108370 *out);
+};
+
+struct S_00109180_Base {
+    char pad0[0x268];
+    float f268;
+    float f26c;
+    float f270;
+};
+
+struct C_00109180 {
+    char pad0[0x1e0];
+    S_00109180_Base *f1e0;
+    char pad1e4[0x24];
+    C_0001EF10 *f208;
+    Vec4_00108370 *func_00109180(Vec4_00108370 *out);
+};
+
+struct S_00108F50_Pair {
+    int a;
+    int b;
+};
+
+struct C_00108F50 {
+    char pad0[0xa68];
+    int fa68[4];
+    int fa78[4];
+    int fa88;
+    int fa8c[4];
+    int fa9c[4];
+    int faac;
+    int fab0[0x46];
+    int fbc8[0x46];
+    int fce0[5][16];
+    int fe20[5][16];
+    S_00108F50_Pair ff60[6];
+    int ff90[3][16];
+    void func_00108F50(void);
+    void func_00108FF0(void);
 };
 
 
