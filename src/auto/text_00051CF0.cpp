@@ -165,6 +165,34 @@ struct C_00051CF0 {
     void func_00052AE0(float threshold);
 };
 
+struct C_00052830_64 {
+    char pad0[0x3DC];
+    C_001503E0 *f3DC;
+    char pad3E0[0x14];
+    C_00051CF0_Obj *f3F4[1];
+    char pad3F8[0x2C];
+    C_00051CF0_Obj *f424[1];
+    char pad428[0x64];
+    C_00051CF0_Obj **f48C;
+    char pad490[4];
+    int f494;
+    char pad498[0xBC];
+    int f554;
+    C_00051CF0_Obj *f558;
+};
+
+struct C_00052830 {
+    char pad0[0x64];
+    C_00052830_64 *unk64;
+    char pad68[0x100];
+    C_00051CF0_Obj *unk170;
+    char pad174[0x24];
+    C_00051CF0_Obj *unk198;
+    char pad19C[0x58];
+    int unk1F4;
+    void func_00052830(int a);
+};
+
 struct C_00052BB0 {
     undefined4 func_00052BB0(byte param_1);
 };
