@@ -6,7 +6,7 @@ void *func_001E8A44(int size);
 int func_001E8AF0(int a, void *b);
 
 extern int D_0028CE6C;
-extern int D_0028CEE8;
+extern char D_0028CEE8[];
 extern int D_0028CF14;
 extern int D_0028CF20;
 extern int D_0028CF24;
