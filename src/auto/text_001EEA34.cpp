@@ -386,13 +386,13 @@ int __fastcall func_001EF210(BitObj *self, int unused)
     return sum;
 }
 
-unsigned char BitObj::func_001EF235(void)
+unsigned char __fastcall func_001EF235(BitObj *self, int unused)
 {
     S_001EF210_Node *last = 0;
     S_001EF210_Node *n;
 
-    if (func_001EF1E7() == 0) {
-        for (n = (S_001EF210_Node *)f0; n != 0; n = n->next) {
+    if (func_001EF1E7(self, unused) == 0) {
+        for (n = (S_001EF210_Node *)self->f0; n != 0; n = n->next) {
             if (n->v0() != 0) {
                 last = n;
             }
@@ -518,6 +518,47 @@ S_001EF033 *__fastcall func_001EF419(int v, int unused)
     return func_001EF033(obj, 0, raw != 0 ? raw->Reset(v) : 0);
 }
 
+S_001EF45F *__fastcall func_001EF45F(S_001EF45F *self, int unused, const char *src, int len)
+{
+    self->f4 = 0;
+    self->vtbl = &D_00295BF0;
+    if (len == 0) {
+        if (src == 0) {
+            self->f8 = 0;
+            self->fC = 0;
+            return self;
+        }
+        len = 0;
+        while (src[len] != 0) {
+            len++;
+        }
+        if (len == 0) {
+            self->f8 = 0;
+            self->fC = 0;
+            return self;
+        }
+    }
+    if (src == 0) {
+        self->f8 = 0;
+        self->fC = 0;
+        return self;
+    }
+    self->f8 = (char *)D_002F6A04.func_001EEE62(len, 0);
+    self->fC = len;
+    if (self->f8 != 0) {
+        func_001EF094(self->f8, src, len);
+    }
+    return self;
+}
+
+char S_001EF45F::func_001EF4C6(void)
+{
+    if (fC != 0) {
+        return f8[fC - 1];
+    }
+    return 0;
+}
+
 S_001EF577 *S_001EF577::func_001EF577(void *a, char *name, int c, int d, int e)
 {
     ((S_001EEFBA *)this)->func_001EF3B4();
@@ -549,6 +590,34 @@ void *func_001EF5E4(BitObj *self, BitObj *p)
         func_001F306F(self, p);
     }
     return self;
+}
+
+void BitObj::func_001EF613(int a)
+{
+    S_001EF062 *q;
+    void *mem;
+
+    if (func_001EF1E7() != 0 || a == 1 || a == 3) {
+        func_001EF333(a);
+    } else {
+        mem = (void *)D_002F6A04.func_001EEE62(0x10, 0);
+        if (mem != 0) {
+            q = ((S_001EF062 *)mem)->func_001EF062(a);
+        } else {
+            q = 0;
+        }
+        if (q != 0) {
+            f0 = (int)((S_001EEFE3 *)f0)->func_001EF419();
+            if (f0 != 0) {
+                ((S_001EEFE3 *)f0)->func_001EEFE3((S_001EEFE3 *)q);
+            }
+        } else {
+            f0 = 0;
+        }
+        if (f0 == 0) {
+            s4 = 3;
+        }
+    }
 }
 
 BitObj *__fastcall func_001EF734(BitObj *self, int unused, char c)
