@@ -56,6 +56,66 @@ struct SoultreeObject {
 };
 
 
+void SoultreeObject::func_0019ABA0(int a1, int a2)
+{
+    u32 vecB[4];
+    u32 vecA[4];
+    S_0019A8C0_Cam *p = (S_0019A8C0_Cam *)func_001E8A44(0x28);
+
+    f18c = p ? p->func_00193490() : 0;
+    vecA[2] = 0;
+    vecA[1] = 0;
+    vecA[0] = 0;
+    vecA[3] = 0x3f800000;
+    vecB[2] = 0;
+    vecB[1] = 0;
+    vecB[0] = 0;
+    vecB[3] = 0x3f800000;
+    func_0019A8C0(vecA, vecB);
+    f18c->func_001938C0(&f24, a1, a2, vecA, vecB, 0);
+}
+
+void SoultreeObject::func_0019AC50(void)
+{
+    u32 vecB[4];
+    u32 vecA[4];
+
+    if (f18c != 0) {
+        vecA[2] = 0;
+        vecA[1] = 0;
+        vecA[0] = 0;
+        vecA[3] = 0x3f800000;
+        vecB[2] = 0;
+        vecB[1] = 0;
+        vecB[0] = 0;
+        vecB[3] = 0x3f800000;
+        func_0019A8C0(vecA, vecB);
+        f18c->func_00193950(&f24, vecA, vecB, f188);
+    }
+}
+
+void SoultreeObject::func_0019ACE0(void)
+{
+    S_0019A8C0_Cam *p;
+
+    vtbl = (void *)&D_0028B0E4;
+    if (f170 != 0) {
+        f170->func_0019A210(this);
+    }
+    if (f174 != 0) {
+        while (f174->f178 != 0) {
+            f174->f178->v2();
+        }
+        f174->v2();
+    }
+    p = f18c;
+    if (p != 0) {
+        p->func_00193500();
+        func_001E891B(p);
+    }
+    ((C_00157660_19A8C0 *)this)->func_00157660();
+}
+
 undefined4 C_0019B6D0::func_0019B6D0(byte param_1)
 {
   int func_0019ACE0(...);
