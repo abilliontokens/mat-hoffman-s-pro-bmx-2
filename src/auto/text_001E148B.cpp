@@ -52,6 +52,8 @@ extern "C" HalReturnToFirmware_t _imp__HalReturnToFirmware;
 
 extern void *D_00010118;
 extern char D_00100001[];
+extern char D_002ACBEC[];
+extern u32 D_0004D014;
 extern char D_0028FD4C[];
 extern char D_002ACBFC[];
 extern char D_002ACC04[];
