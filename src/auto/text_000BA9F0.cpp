@@ -106,6 +106,8 @@ struct UIGlobal {
     virtual void v15(void *a, int b, int c, int d);
     char pad4[0x2DC];
     UIGlobalSub *f2E0;
+    char pad2E4[0xc];
+    UIGlobalSub2 *f2F0;
 };
 
 extern UIGlobal *D_002A8490;
