@@ -160,6 +160,7 @@ struct LightSource {
     int fC0_;
     LS_Sub193950 *fC4;
     void func_0015E850(LS_Vec4 *v);
+    void func_0015E650(LS_Vec4 v);
 };
 
 extern char D_002A801C[];
