@@ -446,10 +446,7 @@ int C_UIGlobalManager::func_001BCA90()
             func_001ADCC0(buf, 0x100, D_0027D8F0, i + 1);
             obj = func_001BC870(&parser, buf);
             j = 0;
-            if (obj == 0) {
-                f2C[i] = 0;
-                result = 0;
-            } else {
+            if (obj != 0) {
                 int *p = obj->f44;
                 do {
                     func_001ADCC0(buf, 0x100, D_0027D8D8, j + 1);
@@ -460,6 +457,9 @@ int C_UIGlobalManager::func_001BCA90()
                 } while (j < 8);
                 obj->v5();
                 f2C[i] = obj;
+            } else {
+                f2C[i] = 0;
+                result = 0;
             }
         }
     }
