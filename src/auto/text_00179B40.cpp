@@ -120,6 +120,14 @@ struct C_0017A1D0 {
 
 extern int D_002A8CEC, D_002A8CF0, D_002A8CF4, D_002A8CF8;
 
+static __forceinline void ZeroVec4_0017A4D0(int *v)
+{
+    v[0] = 0;
+    v[1] = 0;
+    v[2] = 0;
+    v[3] = 0;
+}
+
 /* ProjectedShadow: GameObject (0xb0 bytes) followed by four vec4s and shadow state */
 struct C_0017A4D0 {
     void *vtbl;
@@ -167,6 +175,31 @@ C_0017A1D0 *C_0017A1D0::func_0017A310(C_0017A1D0_Vec4 *p)
     D_002EFD38.func_0017BE40();
     func_00179880();
     func_00179950();
+    return this;
+}
+
+C_0017A4D0 *C_0017A4D0::func_0017A4D0(int a0)
+{
+    int *p;
+    float *fp;
+    int i;
+    func_00157600(a0);
+    vtbl = (void *)&D_00288F84;
+    p = &u[0]; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    p = &u[4]; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    p = &u[8]; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    p = &u[12]; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    u[16] = 0; u[17] = 0; u[18] = 0; u[19] = 0;
+    fp = (float *)&u[21];
+    for (i = 0; i < 4; i++) fp[i] = 0.0f;
+    u[25] = 0; u[35] = 0; u[36] = 0; u[34] = 0;
+    u[26] = 1; u[28] = 1;
+    u[4] = D_002A8CEC; u[5] = D_002A8CF0; u[6] = D_002A8CF4; u[7] = D_002A8CF8;
+    u[0] = D_002A8CEC; u[1] = D_002A8CF0; u[2] = D_002A8CF4;
+    int w = D_002A8CF8;
+    u[37] = 0; u[40] = 0; u[42] = 0; u[43] = 0; u[44] = 0;
+    u[3] = w;
+    u[31] = 0x3f800000; u[32] = 0x3f800000; u[41] = -1; u[33] = 0x3f800000;
     return this;
 }
 
