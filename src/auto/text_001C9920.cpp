@@ -54,7 +54,7 @@ struct S_001C9920_arg {
 struct C_001C9920 {
     void *vtbl;
     char pad4[0x23];
-    u8 unk27;
+    char unk27;
     char pad28[4];
     int unk2C;
     int unk30;
@@ -139,6 +139,51 @@ int C_001C99A0::func_001C99A0(int a0)
 void func_001C99D0(void) {
     int func_00157BF0(...);
     func_00157BF0();
+}
+
+C_001C9920 *C_001C9920::func_001C99E0(int a0)
+{
+    int i;
+
+    func_00192370(a0);
+    vtbl = &D_0028E864;
+    unkD4[2] = 0;
+    unkD4[1] = 0;
+    unkD4[0] = 0;
+    unkD4[3] = 1.0f;
+    unkE4[2] = 0;
+    unkE4[1] = 0;
+    unkE4[0] = 0;
+    unkE4[3] = 1.0f;
+    unkF4[2] = 0;
+    unkF4[1] = 0;
+    unkF4[0] = 0;
+    unkF4[3] = 1.0f;
+    unk27 |= 3;
+    unk2C = 0;
+    unk30 = 0;
+    unk34 = 0;
+    unk44 = 0;
+    unk3C = 0;
+    unkD0 = 0;
+    unk220 = 0;
+    unk108 = 0;
+    unk38 = 0;
+    unk54 = 0;
+    for (i = 0; i < 2; i++) {
+        unk58[i] = -1;
+        unk60[i] = -1;
+    }
+    for (i = 0; i < 6; i++) {
+        unk6C[i] = 0;
+        unk84[i] = 0;
+    }
+    unk68 = 0;
+    unk21C = 0;
+    unk214 = 1.0f;
+    unk218 = 1.0f;
+    func_001ADCC0(D_002A5A80, 0x104, D_00275678, D_002A5870, D_002A5978);
+    return this;
 }
 
 undefined4 C_001C9AF0::func_001C9AF0(byte param_1)
