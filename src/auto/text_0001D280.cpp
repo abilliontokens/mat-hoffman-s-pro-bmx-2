@@ -101,6 +101,95 @@ struct C_0001D370 {
 };
 
 
+C_0001D280 *C_0001D280::func_0001D280(int param_1, int param_2, int param_3) {
+    void *func_001E8A44(int);
+    if (func_001D3F50() == 0) {
+        return 0;
+    }
+    void *mem = func_001E8A44(0x140);
+    C_0001D280_B4 *obj = mem != 0 ? ((C_0001D280_B4 *)mem)->func_001CBD40() : 0;
+    unkB4 = obj;
+    if (obj == 0) {
+        return 0;
+    }
+    if (unkB4->virt1(param_2, param_3) != 0) {
+        return 0;
+    }
+    unk48 = param_1;
+    unk4C = unkB4->virt2();
+    if (unk70.func_0001D0B0(8, 16) == 0) {
+        goto fail;
+    }
+    if (unk84.func_0001D0B0(8, 16) == 0) {
+        goto fail;
+    }
+    if (unk98.func_0001D0B0(8, 16) == 0) {
+        goto fail;
+    }
+    return this;
+fail:
+    virt2();
+    return 0;
+}
+
+void C_0001D330::func_0001D330(void) {
+    int i = 0;
+    if (i < unk70) {
+        do {
+            C_0001D330_Item *item;
+            if (unk70 > 0 && unk74 != 0 && i < unk70) {
+                item = unk74[i];
+            } else {
+                item = 0;
+            }
+            item->virt33();
+            i++;
+        } while (i < unk70);
+    }
+}
+
+int C_0001D370::func_0001D370(void) {
+    while (unk70 != 0) {
+        int idx = 0;
+        C_0001D370_Item *item;
+        if (unk70 > 0 && unk74 != 0 && idx < unk70) {
+            item = unk74[idx];
+        } else {
+            break;
+        }
+        if (item == 0) {
+            break;
+        }
+        int nA = unk30;
+        if (nA > 0) {
+            int i = 0;
+            while (i < unk30) {
+                if (unk34[i] == item) {
+                    unk34[i] = unk34[nA - 1];
+                    unk30--;
+                    break;
+                }
+                i++;
+            }
+        }
+        int nB = unk70;
+        if (nB > 0) {
+            int j = 0;
+            while (j < unk70) {
+                if (unk74[j] == item) {
+                    unk74[j] = unk74[nB - 1];
+                    unk70--;
+                    break;
+                }
+                j++;
+            }
+        }
+        item->func_00157810();
+        item->virt2();
+    }
+    return 1;
+}
+
 void C_0001DFF0::func_0001DFF0(void) {
     extern int D_00275F18;
     unk0 = (int)&D_00275F18;
