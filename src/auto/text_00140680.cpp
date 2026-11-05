@@ -182,6 +182,30 @@ int func_00140CD0(C_00168BE0 *cfg, const char *key, int def, int &out)
     return out;
 }
 
+int func_00141070(C_00168BE0 *cfg, const char *key, int def, int &out)
+{
+    char buf[64];
+    cfg->func_00168BE0(key, "undefined", buf, 64);
+    if (strcmp(buf, "undefined") == 0) {
+        out = def;
+    } else if (strcmp(buf, "D3DTEXF_NONE") == 0) {
+        out = 0;
+    } else if (strcmp(buf, "D3DTEXF_POINT") == 0) {
+        out = 1;
+    } else if (strcmp(buf, "D3DTEXF_LINEAR") == 0) {
+        out = 2;
+    } else if (strcmp(buf, "D3DTEXF_ANISOTROPIC") == 0) {
+        out = 3;
+    } else if (strcmp(buf, "D3DTEXF_QUINCUNX") == 0) {
+        out = 4;
+    } else if (strcmp(buf, "D3DTEXF_GAUSSIANCUBIC") == 0) {
+        out = 5;
+    } else if (strcmp(buf, "D3DTEXF_MAX") == 0) {
+        out = 6;
+    }
+    return out;
+}
+
 int func_001411A0(C_00168BE0 *cfg, const char *key, int def, int &out)
 {
     char buf[64];
