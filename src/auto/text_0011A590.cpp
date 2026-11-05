@@ -28,3 +28,13 @@ struct C_0011AB90 {
 
 void func_0011AC30(float *out, float *in);
 void func_0011ACC0(void *a, void *b, float *m);
+
+void *C_0011AB60::func_0011AB60(int flags)
+{
+    vtbl = (void *)&D_00283D5C;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
