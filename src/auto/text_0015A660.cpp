@@ -1,6 +1,8 @@
 /* 30 functions from 0x0015A660 to 0x0015B660, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <string.h>
+
 struct C_0015A8E0 {
     int unk0;
     void func_00157660();
@@ -251,6 +253,30 @@ int C_0015AC20::func_0015AC20(unsigned int flags)
         return (f1898 | 0x40) == flags;
     }
     return (f1898 & flags) != 0;
+}
+
+void JoystickDevice::func_0015AE20(void)
+{
+    extern int D_00287674;
+    void func_001E891B(void *p);
+    int i;
+
+    vtbl = (void *)&D_00287674;
+    for (i = 5; i >= 0; i--) {
+        func_001E891B(lists[i].data);
+    }
+    ((C_001D1480 *)this)->func_001D1480();
+}
+
+void JoystickDevice::func_0015AFC0(int idx, int a, int b)
+{
+    S_0015A660_List *l;
+    int i;
+
+    l = &lists[idx];
+    for (i = 0; i < l->count; i++) {
+        ((C_00135D90 *)l->at(i))->func_00135D90(a, b);
+    }
 }
 
 C_0015B150* C_0015B150::func_0015B150(void) {
