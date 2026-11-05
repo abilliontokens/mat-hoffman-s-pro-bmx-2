@@ -2,6 +2,7 @@
 #include "common.h"
 #include <xmmintrin.h>
 #include <xmmintrin.h>
+#include <xmmintrin.h>
 #include "ghidra.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
