@@ -337,6 +337,50 @@ void C_0005C390::func_0005C390(void) {
     unkCE4 = 1;
 }
 
+undefined4 C_0005C5B0::func_0005C5B0(int param_1, int param_2)
+{
+  int in_ECX = (int)this;
+  
+  if (param_2 >= 0 && param_2 <= 100) {
+    *(undefined4 *)
+     (in_ECX + 0x2098 +
+     (param_1 * 0x7e6 + param_2 + *(int *)(param_1 * 0x1f98 + 0xd88 + in_ECX) * 100) * 4) = 1;
+    return 1;
+  }
+  return 0;
+}
+
+undefined4 C_0005C600::func_0005C600(int param_1, int param_2)
+{
+  int in_ECX = (int)this;
+  
+  if ((-1 < param_2) && (param_2 < 0x65)) {
+    *(undefined4 *)
+     (in_ECX + 0x13f8 +
+     (param_1 * 0x7e6 + param_2 + *(int *)(param_1 * 0x1f98 + 0xd88 + in_ECX) * 100) * 4) = 1;
+    return 1;
+  }
+  return 0;
+}
+
+void C_0005C650::func_0005C650(int param_1)
+{
+    extern undefined4 D_002A8490;
+    int lo;
+    int hi;
+
+    if (param_1 == 0) {
+        lo = 0;
+        hi = 8;
+    } else {
+        lo = *(int *)(*(int *)(D_002A8490 + 0x2e0) + 0x48);
+        hi = lo;
+    }
+    if (lo < hi) {
+        memset(&slots[lo], 0, (hi - lo) * 16);
+    }
+}
+
 undefined * C_0005C6A0::func_0005C6A0(void)
 {
   extern undefined D_00014970;
