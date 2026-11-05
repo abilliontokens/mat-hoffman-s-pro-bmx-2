@@ -1,5 +1,6 @@
 /* 7 functions from 0x000186F0 to 0x000195B0, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
 struct C_0004AAD0 {
     void func_0004AAD0();
 };
