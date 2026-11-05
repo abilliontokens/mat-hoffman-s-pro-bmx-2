@@ -108,6 +108,7 @@ struct C_0017C300 {
     char pad8A0[0x10];
     u32 unk8B0;
     void func_0017C300(void);
+    void func_0017C360(f32 a, f32 b, f32 c, f32 d, f32 e);
     void func_0017C520(void);
 };
 
