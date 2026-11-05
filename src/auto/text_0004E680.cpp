@@ -116,6 +116,7 @@ struct C_0004ECC0 {
     int fD54;
     void *fD58[8];
     void func_00030F90(int a0);
+    void func_0004E680(void);
     C_0004ECC0 *func_0004ECC0(int a0);
 };
 
