@@ -106,3 +106,28 @@ int BasicScene::func_00189720(void)
         return dummy45();
     }
 }
+
+int BasicScene::func_00189AA0(void)
+{
+    int i = 0;
+    if (f3a8 != 0 && 0 < f340) {
+        do {
+            f348 = i;
+            f4a8[i]->f38 = (f344[i].flags >> 1) & 1;
+            SceneGroup *g = f3a8[i];
+            if (g->count > 0) {
+                int j = 0;
+                if (j < g->count) {
+                    do {
+                        g->items[j]->dummy2(this);
+                        j++;
+                    } while (j < g->count);
+                }
+            }
+            dummy36();
+            i++;
+        } while (i < f340);
+    }
+    return 1;
+}
+
