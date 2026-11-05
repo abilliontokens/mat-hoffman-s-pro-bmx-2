@@ -2,6 +2,15 @@
 #include "common.h"
 
 extern int D_0027718C;
+extern char D_00277160[], D_00277150[], D_00277140[];
+struct C_00162B20 { int func_00162B20(const char *, int); };
+extern C_00162B20 *D_002EF7D0;
+struct S_00049A50_Global {
+ void **vtbl;
+ char pad4[0x4a4];
+ int *f4A8;
+};
+extern S_00049A50_Global *D_002B9120;
 
 struct C_00198390 {
     void func_00198390(void);
