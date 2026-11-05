@@ -1,5 +1,67 @@
 /* 8 functions from 0x000D1AE0 to 0x000D28D0, found by Ghidra. */
 #include "common.h"
+#include <string.h>
+
+/* a record whose name string sits at +0x28 */
+struct S_000D2080_Item {
+    char pad0[0x28];
+    char name[1];
+};
+
+struct S_000D2080_Entry {
+    int f0;
+    int f4;
+    S_000D2080_Item *f8;
+};
+
+struct S_000D2080_List {
+    char pad0[0x24];
+    int count;
+    S_000D2080_Entry **items;
+};
+
+struct S_000D2080_Group {
+    char pad0[0x3A8];
+    S_000D2080_List **f3A8;
+};
+
+struct S_000D2080_Mgr {
+    char pad0[0x150];
+    S_000D2080_Group *f150;
+};
+
+/* the level name strings copied in by func_000D2080 (the size is the string's, with its NUL) */
+struct S_000D2080_Str18 { char c[18]; };
+struct S_000D2080_Str20 { char c[20]; };
+struct S_000D2080_Str21 { char c[21]; };
+struct S_000D2080_Str22 { char c[22]; };
+struct S_000D2080_Str23 { char c[23]; };
+
+extern S_000D2080_Str23 D_0027EEDC;
+extern S_000D2080_Str21 D_0027EEC4;
+extern S_000D2080_Str21 D_0027EEAC;
+extern S_000D2080_Str23 D_0027EE94;
+extern S_000D2080_Str21 D_0027EE7C;
+extern S_000D2080_Str20 D_0027EE68;
+extern S_000D2080_Str23 D_0027EE50;
+extern S_000D2080_Str22 D_0027EE38;
+extern S_000D2080_Str21 D_0027EE20;
+extern S_000D2080_Str18 D_0027EE0C;
+
+char *func_001E8920(char *dst, const char *src, int n);
+char *func_001E8AC0(const char *s, int c);
+int func_001EA426(const char *a, const char *b);
+
+/* BmxUIPageLevelSelection */
+struct C_000D2080 {
+    char pad0[0x124];
+    S_000D2080_Mgr *f124;
+    char pad128[0x474 - 0x128];
+    char names[10][0x104];
+    char padE9C[0x2048 - 0xE9C];
+    S_000D2080_Item *ptrs[10];
+    void func_000D2080(void);
+};
 
 struct C_001B17D0 {
     void func_001B17D0(char *s);
