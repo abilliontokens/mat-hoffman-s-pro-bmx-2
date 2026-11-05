@@ -22,13 +22,14 @@ extern "C" void (__stdcall *_imp__RtlLeaveCriticalSection)(void *cs);
 extern "C" int __cdecl func_001F44EF(void *cs, int spinCount);
 void func_001E8390(void *p);
 
+#pragma optimize("sy", on)
 int __cdecl func_001EB290(void)
 {
     int locknum;
     S_CritSect *pcs = D_002F6860;
 
     for (locknum = 0; locknum < 36; locknum++) {
-        if (D_002AE8F0[locknum].kind == 1) {
+        if (D_002AE8F4[locknum].lock == (void *)1) {
             D_002AE8F0[locknum].lock = pcs;
             pcs++;
             if (!func_001F44EF(D_002AE8F0[locknum].lock, 4000)) {
@@ -38,6 +39,19 @@ int __cdecl func_001EB290(void)
         }
     }
     return 1;
+}
+
+void __cdecl func_001EB2D9(void)
+{
+    S_LockEntry *p = D_002AE8F0;
+
+    do {
+        if (p->lock != 0 && p->kind != 1) {
+            func_001E8390(p->lock);
+            p->lock = 0;
+        }
+        p++;
+    } while ((int)p < (int)D_002AEA10);
 }
 
 void __cdecl func_001EB302(int locknum)
