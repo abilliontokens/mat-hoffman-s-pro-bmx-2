@@ -81,6 +81,19 @@ void C_000CA940::func_000CA940(void)
     }
 }
 
+void C_000CA9B0::func_000CA9B0(void)
+{
+    f2D8->func_001B1980();
+    switch (f2D4) {
+    case 1:
+        f2D8->func_001B17D0(D_002A8490->p2E8->p4->f130);
+        break;
+    case 2:
+        f2D8->func_001B17D0(D_002A8490->p2E8->p4->f408);
+        break;
+    }
+}
+
 void C_000CB650::func_000CB650()
 {
     vtbl = &D_0027E49C;
