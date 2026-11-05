@@ -49,4 +49,11 @@ void func_001641B0(void *, void *);
 void func_001640D0(void *, int, void *, void *);
 void func_0015C7D0(Vec4_165EF0 *, Vec4_165EF0 *, Vec4_165EF0 *, float);
 extern float D_00275544;
+static __forceinline Vec4_165EF0 Blend_1648E0(const Vec4_165EF0 &a, const Vec4_165EF0 &b, float t) {
+ Vec4_165EF0 r;
+ float x=b.x-a.x, y=b.y-a.y, z=b.z-a.z;
+ r.w=1.0f;
+ r.x=x*t+a.x; r.y=y*t+a.y; r.z=z*t+a.z;
+ return r;
+}
 
