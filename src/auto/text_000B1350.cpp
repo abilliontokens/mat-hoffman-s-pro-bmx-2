@@ -89,6 +89,21 @@ struct VehicleAI {
     void func_000B1F70(void);
 };
 
+void C_000B1660::func_000B1660(S_000B1660_Arg *a) {
+ for (int i = 0; i < D_002B9120->f578; i++) {
+ S_000B1660_Item *item = D_002B9120->f57C[i];
+ if (item->f3DD != 1) {
+ for (int j = 0; j < D_002B9120->f58C; j++) {
+ S_000B1660_Entry *entry = D_002B9120->f590[j];
+ if (entry->f0 == item->f3B4 && entry->f4 == item->f3B0 && f44[entry->f8] == a) {
+ if (item->f3DC == 0 && a->f54 != 1) item->func_00014850(2);
+ else if (item->f3DC == 1 && a->f54 == 1) item->func_00014850(1);
+ }
+ }
+ }
+ }
+}
+
 VehicleAI *VehicleAI::func_000B1EE0(int a0) {
     ((C_0018C7B0 *)this)->func_0018C7B0(a0);
     vtbl = (void *)&D_0027CF8C;
