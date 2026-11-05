@@ -129,8 +129,12 @@ struct Sprite_724E0 {
     void func_001D5AD0();
 };
 
+extern int D_00278C64;
+extern "C" void __cdecl func_001E891B(void *);
+struct Resource_716F0 { void func_001D6410(); };
 struct C_000724E0 {
-    char pad0[0x64];
+    void *vtbl;
+    char pad0[0x60];
     int unk64;
     char pad68[0x78 - 0x68];
     Sprite_724E0 *unk78;
