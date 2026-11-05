@@ -9,12 +9,37 @@ struct S_001313C0_Data {
     int w[10];
 };
 
+struct S_Vec4 {
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 w;
+};
+
+/* the 32-byte key func_00131400 copies from */
+struct S_00131400_In {
+    S_Vec4 f0;
+    S_Vec4 f10;
+};
+
 struct C_001313C0 {
-    char pad0[0x9C];
+    char pad0[0x4];
+    S_Vec4 f4;
+    S_Vec4 f14;
+    char pad24[0x48 - 0x24];
+    f32 f48;
+    f32 f4C;
+    char pad50[0x80 - 0x50];
+    f32 *f80;
+    f32 *f84;
+    f32 *f88;
+    char pad8C[0x98 - 0x8C];
+    u32 f98;
     int f9C;
     char padA0[0xC];
     S_001313C0_Data fAC;
     void func_001313C0(S_001313C0_Data *src);
+    void func_00131400(S_00131400_In *in, int param_2);
 };
 
 
