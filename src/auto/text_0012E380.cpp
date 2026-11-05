@@ -149,8 +149,8 @@ extern f32 D_00275544;
 
 static inline float Abs_0012E380(float x)
 {
-    u32 b = *(u32 *)&x & 0x7fffffff;
-    return *(float *)&b;
+    *(u32 *)&x &= 0x7fffffff;
+    return x;
 }
 
 struct C_0012E6F0 {
