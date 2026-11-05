@@ -167,6 +167,43 @@ int func_001F4F45(unsigned short *pwc, const unsigned char *s, unsigned int n)
     return 1;
 }
 
+extern "C" int func_001F35C5(int, void*, unsigned int);
+extern "C" void func_001F3321(void*, unsigned int*, int, int, void*, void*);
+extern "C" void func_001F3AFB(unsigned int, int);
+extern "C" int func_001F59D9(int*);
+extern "C" void func_001F37B0(int);
+extern "C" char D_0000FFFF;
+extern "C" int D_002AF030;
+extern "C" void func_001F4F7C(int op, int* info, unsigned short* pcw)
+{
+    unsigned int cw = *pcw;
+    __declspec(align(16)) unsigned int rec[0x1c];
+    int code;
+    switch (*info) {
+    case 1: case 5: code = 8; break;
+    case 2: code = 4; break;
+    case 3: code = 0x11; break;
+    case 4: code = 0x12; break;
+    case 7: *info = 1; goto done;
+    case 8: code = 0x10; break;
+    default: goto done;
+    }
+    if (func_001F35C5(code, info + 6, cw) == 0) {
+        if (op == 0x10 || op == 0x16 || op == 0x1d) {
+            *(double*)&rec[12] = *(double*)(info + 4);
+            rec[16] = (rec[16] & ~0x1c) | 3;
+        } else {
+            rec[16] &= ~1;
+        }
+        func_001F3321(rec, &cw, code, op, info + 2, info + 6);
+    }
+done:
+    func_001F3AFB(cw, (int)&D_0000FFFF);
+    if (*info != 8 && D_002AF030 == 0 && func_001F59D9(info) != 0)
+        return;
+    func_001F37B0(*info);
+}
+
 static int func_001F54D0(int *punlock_flag, int *pfh, const char *path, int oflag, int shflag, int pmode)
 {
     int fh;
