@@ -1,6 +1,40 @@
 /* 31 functions from 0x001BEF90 to 0x001BFF40, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+extern char D_002A63C8[];
+extern char D_00275678[];
+extern char D_0028762C[];
+extern char D_0028D774[];
+extern char D_0027EF00[];
+extern char D_00276F28[];
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+int func_001E8AF0(const char *, const char *);
+void *func_001D6E20(char *name, int size, int a);
+
+struct S_001BF090_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+};
+struct S_001BF090_Obj2 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    void func_001D37C0();
+    void func_00157810();
+    void func_001D3CC0(char *p);
+};
+struct C_001BF090 {
+    char pad0[0x168];
+    S_001BF090_Obj *unk168;
+    S_001BF090_Obj2 *unk16c;
+    char unk170[0x104];
+    int unk274;
+    int unk278;
+    void func_001BF030();
+    int func_001BF090(char *name, int a);
+};
+
 struct C_001BF070 {
     undefined4 func_001BF070(byte param_1);
 };
