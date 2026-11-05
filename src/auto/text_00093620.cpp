@@ -163,6 +163,9 @@ struct S_00093620_Root {
 
 extern S_00093620_Root *D_002A8490;
 extern char D_00275630[];
+extern int D_00277038;
+void func_001ADCC0(char *buf, int size, char *fmt, int val);
+void func_001AC330(char *dest, int fmt, char *arg);
 
 struct C_00093140 {
     char pad0[0x24];
