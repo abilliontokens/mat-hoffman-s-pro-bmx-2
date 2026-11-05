@@ -124,6 +124,54 @@ struct C_000831E0 {
 };
 
 
+struct S_00083410_Text {
+    char pad0[0x34];
+    float f34;
+    char pad38[0x4E - 0x38];
+    unsigned char f4E;
+    void func_001D6600(void);
+    void func_0005E840(char *s);
+};
+
+struct S_00083410_Rider {
+    char pad0[0xA40];
+    int fA40;
+};
+
+struct S_00083410_Stats {
+    char pad0[0x1250];
+    int f1250;
+};
+
+struct S_00083410_Game {
+    char pad0[0x240];
+    float f240;
+    char pad244[0x27C - 0x244];
+    int f27C;
+    char pad280[0x2A4 - 0x280];
+    S_00083410_Stats *f2A4;
+};
+extern S_00083410_Game *D_002A8490;
+extern char D_0027956C[];
+extern char D_00279560[];
+extern char D_00279550[];
+extern char D_00277038[];
+extern float D_0027954C;
+extern float D_00276288;
+extern float D_00275460;
+
+struct C_00083410 {
+    char pad0[0x44];
+    S_00083410_Rider *f44;
+    char pad48[0xD7C - 0x48];
+    S_00083410_Text *fD7C;
+    S_00083410_Text *fD80;
+    char padD84[0xD8C - 0xD84];
+    int fD8C;
+    int fD90;
+    void func_00083410(void);
+};
+
 struct C_000836A0 {
     char pad0[0xCC];
     int unkCC;
