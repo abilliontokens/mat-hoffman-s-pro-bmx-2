@@ -109,6 +109,26 @@ extern float D_00279B50;
 extern float D_00275994;
 extern void *D_0027E334;
 
+void C_000C8090::func_000C7FC0(void) {
+    int i;
+    for (i = 0; i < 9; i++) {
+        unk320[i]->func_001B1980();
+        if (unk344[i] != 0) {
+            unk320[i]->func_001B2270(0xff606060);
+            unk320[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+        } else if (i == unk2DC) {
+            unk320[i]->func_001B2270(0xffbfa35a);
+            unk320[i]->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 0xff, 1.45f, 0, 0, 0.2f, 0);
+        } else {
+            unk320[i]->func_001B2270(0xffcccccc);
+            unk320[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+        }
+        if (unk368[i] > D_00279B50 || unk368[i] < D_00275994) {
+            unk320[i]->func_001B1980();
+        }
+    }
+}
+
 void C_000C8090::func_000C8090(void) {
     int i;
     for (i = 0; i < 9; i++) {
