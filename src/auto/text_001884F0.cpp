@@ -276,6 +276,25 @@ void C_00188CB0::func_00188CB0(void)
     }
 }
 
+int C_00188CB0::func_00188D20(int n)
+{
+    int i;
+
+    if (n > 0 && f4 == 0) {
+        f0 = n;
+        f4 = (int *)func_001E8A44(n * 4);
+        f8 = (int *)func_001E8A44(f0 * 4);
+        fC = (void **)func_001E8A44(f0 * 4);
+        for (i = 0; i < f0; i++) {
+            fC[i] = 0;
+            f4[i] = 0;
+            f8[i] = 0;
+        }
+        return 1;
+    }
+    return 0;
+}
+
 void *C_00188EF0::func_00188EF0(int flags)
 {
     unk0 = (int)&D_00287EE4;
