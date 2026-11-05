@@ -332,3 +332,60 @@ undefined4 C_000F2CA0::func_000F2CA0(byte param_1)
   }
   return in_ECX;
 }
+extern int D_00278084;
+extern int D_0028251C;
+
+struct C_000F2AD0_Cam {
+    void func_00030020(int *p);
+    void func_000300C0(int *p);
+    void func_00030210(void);
+    void func_000301A0(void);
+};
+
+struct C_000F2AD0_Own {
+    char pad0[0x74];
+    C_000F2AD0_Cam *f74;
+};
+
+struct C_000F2AD0_Res {
+    int pad0[0x360 / 4];
+    int f360;
+};
+
+struct C_000F2AD0_Snd {
+    void func_001C4D50(int ms);
+};
+
+struct C_000F2AD0_Mgr {
+    char pad0[0x24];
+    char f24;
+    char pad25[0x134 - 0x25];
+    int f134;
+    int f138;
+    char pad13C[0x25c - 0x13C];
+    C_000F2AD0_Own *f25c;
+    char pad260[8];
+    C_000F2AD0_Snd *f268;
+    C_000F2AD0_Res *func_000BA9D0(int a);
+};
+
+struct C_000F2AD0_Ui {
+    void func_000B9A80(int a, int b);
+};
+
+struct C_000F2AD0_Mgr2 {
+    char pad0[0x24];
+    C_000F2AD0_Ui *f24;
+};
+
+struct C_000F2AD0 {
+    char pad0[0x124];
+    C_000F2AD0_Mgr *f124;
+    char pad128[0x15C];
+    int f284;
+    char pad288[8];
+    int f290;
+    int f294;
+    int arr298[0x14];
+    int func_000F2AD0(int a, int key);
+};
