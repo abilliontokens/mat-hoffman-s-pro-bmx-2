@@ -330,6 +330,32 @@ void C_00198B70::func_00199900(float *v)
     }
 }
 
+void C_00198B70::func_00199960(C_00198B70 *other, S_00198B70_F4 *v)
+{
+    if (other == this) {
+        func_00199900(&v->x);
+        return;
+    }
+    if (other != 0) {
+        S_00198B70_F4 tmp;
+        tmp.z = 0;
+        tmp.y = 0;
+        tmp.x = 0;
+        tmp.w = 1.0f;
+        tmp = other->func_00197EC0(v);
+        tmp = f170->func_00198040(&tmp);
+        func_00199900(&tmp.x);
+    } else {
+        S_00198B70_F4 tmp;
+        if (f170 != 0) {
+            tmp = f170->func_00198120(v);
+        } else {
+            tmp = *v;
+        }
+        func_00199900(&tmp.x);
+    }
+}
+
 void C_00198B70::func_00199A70(C_00198B70 *other, S_00198B70_F4 *out)
 {
     if (other == this) {
