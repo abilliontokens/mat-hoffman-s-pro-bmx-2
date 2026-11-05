@@ -346,6 +346,14 @@ int __stdcall func_0023EF7B(S_0023EF7B_Src *src, S_0023EF7B_Out *out)
     return 0;
 }
 
+unsigned int __stdcall func_0023F0F4(int p1, C_0023EC0D *obj, unsigned int a, unsigned int b, int *out)
+{
+    if (obj->f4 == 1) {
+        return obj->func_0023EC0D(a, b, out);
+    }
+    return obj->func_0023EE81(a, b, out);
+}
+
 int __stdcall func_0023F119(S_0023F119_Src *src, S_0023F119_Wfx *wfx)
 {
     unsigned short ch;
