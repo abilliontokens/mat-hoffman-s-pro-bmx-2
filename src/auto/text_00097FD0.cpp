@@ -1,16 +1,48 @@
 /* 5 functions from 0x00097FD0 to 0x00098EE0, found by Ghidra. */
 #include "common.h"
 
+struct S_00098080_Sub {
+    int unk0;
+    char pad4[0x2554 - 4];
+    int cnt2554;
+    char pad2558[0x6388 - 0x2558];
+    int arr6388[1];
+};
+
 struct C_00096930 {
-    char pad0[0x1a8];
+    char pad0[0x3c];
+    char name3c[0xb4 - 0x3c];
+    char nameb4[0x1a4 - 0xb4];
+    int unk1a4;
     int unk1a8;
-    char pad1ac[0x48e0 - 0x1ac];
+    char pad1ac[0x1b4 - 0x1ac];
+    int unk1b4;
+    int cnt1b8;
+    char pad1bc[0x1c8 - 0x1bc];
+    S_00098080_Sub **arr1c8;
+    char pad1cc[0x48e0 - 0x1cc];
     int unk48e0;
     void func_00096930(void);
 };
 
+struct S_00098080_Cur {
+    char pad0[0x124];
+    int unk124;
+};
+
+struct S_00098080_Global {
+    char pad0[0x2a4];
+    S_00098080_Cur *unk2a4;
+};
+
+extern S_00098080_Global *D_002A8490;
+int func_001EA426(const char *a, const char *b);
+void __stdcall func_00083A70(void *p);
+
 struct S_00097FD0_owner {
-    char pad0[0x1c8];
+    char pad0[0x170];
+    int unk170;
+    char pad174[0x1c8 - 0x174];
     int unk1c8;
 };
 
