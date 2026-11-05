@@ -304,6 +304,17 @@ int __stdcall func_001DF361(int a0)
     return func_001DF26F(a0, ((int *)D_00010118)[2]);
 }
 
+u32 func_001DF4BC(void)
+{
+    u32 type;
+    u32 value;
+
+    if (ExQueryNonVolatileSetting(10, &type, &value, 4, 0) >= 0) {
+        return value;
+    }
+    return 0;
+}
+
 __int64 * __stdcall func_001DF56E(__int64 *out, unsigned int ms)
 {
     if (ms == 0xffffffff) {
@@ -325,6 +336,11 @@ int func_001DF5B3(void) {
     return D_002F6BB4;
 }
 
+int __stdcall func_001DF5D6(int a)
+{
+    return func_001E1297(D_002F6BB4, 0, a) ? 0 : a;
+}
+
 #pragma intrinsic(memcpy)
 extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
 extern "C" long (__stdcall *_imp__NtQueryDirectoryFile)(void *fileHandle, void *event, void *apcRoutine, void *apcContext, S_IoStatusBlock *iosb, void *fileInfo, u32 length, u32 infoClass, u32 returnSingle, void *fileName);
@@ -333,7 +349,7 @@ void __stdcall func_001DF622(int a)
 {
 }
 
-#pragma optimize("s", on)
+#pragma optimize("y", on)
 void __stdcall func_001DF746(S_Heap *heap, S_FreeNode *node)
 {
     node->next = heap->pool->freeNodes;
@@ -341,7 +357,7 @@ void __stdcall func_001DF746(S_Heap *heap, S_FreeNode *node)
     node->addr = 0;
     node->size = 0;
 }
-
+#pragma optimize("", on)
 void __stdcall func_001DF767(S_Heap *heap, unsigned int addr, unsigned int size)
 {
     S_FreeNode **link = &heap->head;
