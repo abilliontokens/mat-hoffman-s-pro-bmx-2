@@ -185,6 +185,37 @@ extern S_Owner *D_002F08EC;
 extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
 extern "C" void (__stdcall *_imp__RtlLeaveCriticalSection)(void *cs);
 
+int __stdcall func_00220AE5(void *obj, int a, int b, int c);
+
+struct S_001CDB10_Iface {
+    virtual unsigned long __stdcall v0();
+    virtual unsigned long __stdcall Release();
+    virtual unsigned long __stdcall v2();
+    virtual long __stdcall GetStatus(unsigned long *out);
+};
+
+struct S_001CDB10_Dev {
+    char pad0[0x140];
+    int f140;
+    char pad144[0xc4];
+    u8 f208;
+    int func_001CB440(void);
+};
+
+struct C_001CDB10 {
+    char pad0[4];
+    S_001CDB10_Dev *f4;
+    S_001CDB10_Iface *f8;
+    S_001CDB10_Iface *fC;
+    unsigned long f10;
+    unsigned long f14[3];
+    u8 f20;
+    int func_001CB9A0(void);
+    int func_001CB9F0(unsigned int i);
+    int func_001CBB50(unsigned int i);
+    int func_001CDB10(void);
+};
+
 XboxSoundGroup *XboxSoundGroup::func_001CD770(int a, int b)
 {
     func_0001C8F0(b);
