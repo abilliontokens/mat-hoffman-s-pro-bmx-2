@@ -677,6 +677,17 @@ void C_001B1800::func_001B1800(int param_1) {
     ((C_001D6290 *)f24)->func_001D6290(param_1);
 }
 
+void C_001B1580::func_001B1810(S_001B1810_Out *out)
+{
+    C_001B1580_24 *p = unk24;
+    float y = p->unk18;
+    u32 x = p->unk14;
+    out->y = y;
+    out->x = x;
+    out->z = 0.0f;
+    out->w = 1.0f;
+}
+
 void C_001B1840::func_001B1840(int a0, int a1, int a2) {
     unkC0 = a2;
     unk64 = a0;
