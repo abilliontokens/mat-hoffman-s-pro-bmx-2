@@ -140,6 +140,44 @@ struct BmxEvent {
     int func_00033300();
 };
 
+struct O_32860Ctl { void func_0001C240(); };
+struct O_32860Vt { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29(); virtual void v30(void *p); };
+struct S_00032860_Level {
+    char pad0[0x3a8];
+    S_00033090_List **f3a8;
+    char pad3ac[8];
+    O_32860Vt *f3b4;
+    char pad3b8[0xcc];
+    O_32860Ctl *f484;
+    char pad488[0xac];
+    int f534;
+};
+struct O_32860Sk {
+    void func_00098EE0(O_32860Vt *a, int b);
+    void func_00099A60(O_32860Vt *a);
+    void func_000981D0(O_32860Vt *a, int b, int c);
+};
+struct O_32860Rp { void func_001041E0(); void func_00104190(); };
+struct O_32860B { void func_000B2D50(int a); };
+struct O_32860C { void func_00022B70(); };
+struct O_32860It { void func_00012420(); };
+struct S_002B9120 { char pad0[0x578]; int count; O_32860It **items; };
+extern O_32860B *D_002B9134;
+extern O_32860C *D_002B7E18;
+extern S_002B9120 *D_002B9120;
+extern int D_002AADF8;
+
+struct C_00032860 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31(); virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35(); virtual void v36(); virtual void v37(); virtual void v38(); virtual void v39(); virtual void v40();
+    char pad4[0x60];
+    S_00032860_Level *f64;
+    char pad68[0x158];
+    O_32860Sk *f1c0;
+    O_32860Rp *f1c4;
+    int f1c8;
+    void func_00032860(void);
+};
+
 struct C_00032A00 {
     char pad0[0x1C8];
     int unk1C8;
@@ -186,6 +224,60 @@ void C_00032E90::func_00032E90(void)
         f230 = D_002A8490->f244 + f230;
         t = func_0001C870(f230, 0, f220, 2.0f, f210);
         r = _mm_cvtss_si32(_mm_load_ss(&t));
+    }
+}
+
+void BmxEvent::func_00033090(const char *name, float x, float y, float z, float w, int flag)
+{
+    char buf[0x104];
+    int i;
+    int j;
+    int found;
+    O_Obj32F50 *obj;
+    char *dot;
+    char *s;
+    int delta;
+    char c;
+
+    for (i = 0; i < (*f64->f3a8)->count; i++) {
+        obj = (*f64->f3a8)->items[i];
+        if (obj->f8) {
+            s = obj->f8->name;
+            delta = buf - s;
+            do {
+                c = *s;
+                s[delta] = c;
+                s++;
+            } while (c);
+            dot = func_001E8AC0(buf, '.');
+            if (dot) {
+                memset(dot, 0, strlen(dot));
+            }
+            if (!func_001EA426(buf, name)) {
+                found = 0;
+                if (flag) {
+                    obj->f8->func_001824E0(x, y, z);
+                } else {
+                    for (j = found; j < 2; j++) {
+                        if (found) {
+                            break;
+                        }
+                        if (!f234[j]) {
+                            f23C[j].x = x;
+                            f23C[j].y = y;
+                            f23C[j].z = z;
+                            f23C[j].w = w;
+                            f234[j] = obj;
+                            f25C[j].x = obj->f8->f1c0;
+                            f25C[j].y = obj->f8->f1c4;
+                            f25C[j].z = obj->f8->f1c8;
+                            found = 1;
+                            f27C[j] = 0.0f;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
