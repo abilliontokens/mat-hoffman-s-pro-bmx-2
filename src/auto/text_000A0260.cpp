@@ -32,6 +32,15 @@ struct S_000A08D0_5 {
     f32 f0, f1, f2, f3, f4;
 };
 
+static S_000A08D0_5 *init_000A08D0(S_000A08D0_5 *p, f32 f1) {
+    p->f0 = 0.0f;
+    p->f1 = f1;
+    p->f3 = 3.402823466e+38f;
+    p->f4 = -3.402823466e+38f;
+    p->f2 = 1.0f;
+    return p;
+}
+
 struct C_000A08D0 {
     char pad0[0x38];
     int f38;
