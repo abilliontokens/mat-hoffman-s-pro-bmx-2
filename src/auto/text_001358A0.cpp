@@ -89,6 +89,10 @@ struct C_00135E00 {
     int fCC4[8];
     int fCE4[8];
     C_00135E00 *func_00135E00(void);
+    void func_00135E50(void);
+    void func_00135E90(int a0, int a1, int a2, int a3);
+    int func_00135FF0(int a0, int kind, int a2, int idx);
+    int func_001360B0(int a0, int a1);
     C_00135E00 *func_00136320(unsigned int flags);
     int func_00136110(int a, int idx);
     int func_00136170(int idx, int type, int row);
