@@ -141,8 +141,6 @@ struct V4_00018EB0 {
 };
 struct C_00199600 {
     void func_00199600(V4_00018EB0 v);
-};
-struct C_00182530 {
     float func_00182530(float a);
 };
 struct S_00018EB0_Dev {
