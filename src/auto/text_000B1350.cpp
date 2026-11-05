@@ -312,6 +312,51 @@ void C_000B1A40::func_000B1A40(S_000B1A40_Stream *stream)
     stream->func_00168CB0(D_0027CEE4, &D_002A2DE4, f2C);
     stream->func_00168C20(D_0027CED8, 1, &f0);
 }
+
+#pragma optimize("g", on)
+void C_000B1B80::func_000B1B80(void)
+{
+    char buf[0x104];
+    S_000B1B80_Mat mat;
+    struct { C_000B1B80 * volatile self; volatile int limit; volatile int cnt; volatile int len; } t;
+    int n;
+
+    t.self = this;
+    if (func_001EA426(name, D_002764F0) != 0) {
+        t.len = strlen(D_002A4C10);
+        t.limit = 0x103;
+        t.cnt = t.limit > t.len ? t.len : t.limit;
+        n = t.cnt;
+        func_001E8920(buf, D_002A4C10, n);
+        buf[n] = 0;
+        func_001ADCC0(D_002A4C10, 0x104, D_00275678, t.self->f3C->f8 != 0 ? D_002A5348 : D_002A5870, D_002A45E0);
+        {
+            void *mem = func_001E8A44(0x1e0);
+            t.self->f44->f8 = mem ? ((S_000B1B80_Obj *)mem)->func_0019B700(1) : 0;
+        }
+        if (t.self->f44->f8->func_00133020(0xd) != 0) {
+            t.self->f44->f8->f68 = D_002BA160;
+            if (t.self->f44->f8->func_0019D7B0(0, t.self->name) == 0) {
+                t.self->f44->f8->v2();
+                t.self->f44->f8 = 0;
+            }
+        }
+        if (t.self->f44->f8 != 0) {
+            func_001577A0(t.self->f44->f8, 0);
+            func_000265C0(&mat, t.self->f3C->fC, t.self->f3C->f1C, t.self->f3C->f2C, 0, 1);
+            t.self->f44->f8->v31(&mat);
+            t.self->f44->f8->v31(&mat);
+            t.self->f44->f8->func_00133140(D_002B9120->f4AC[D_002B9120->f348], 1);
+        }
+        t.cnt = strlen(buf);
+        t.limit = 0x103;
+        t.len = t.limit > t.cnt ? t.cnt : t.limit;
+        n = t.len;
+        func_001E8920(D_002A4C10, buf, n);
+        D_002A4C10[n] = 0;
+    }
+}
+
 #pragma optimize("g", on)
 VehicleAI *VehicleAI::func_000B1EE0(int a0) {
     ((C_0018C7B0 *)this)->func_0018C7B0(a0);
