@@ -22,6 +22,35 @@ struct S_0023F3F7_Obj {
 
 int __stdcall func_0023F23E(S_0023F3F7_Obj *obj, int a0, int a1, int a2, int a3, int a4, int a5, int a6);
 
+struct S_0023F23E_Node { S_0023F23E_Node *next; S_0023F23E_Node *prev; char pad[0x1c]; };
+struct S_0023F23E_Obj {
+    struct VT { int (__stdcall *v0)(S_0023F23E_Obj *); int v1, v2, v3, v4, v5; int (__stdcall *v6)(S_0023F23E_Obj *); } *vtbl;
+    char pad4[0x30];
+    char *f34;
+    S_0023F23E_Node *f38;
+    char pad3C[0x10];
+    int f4C;
+    int f50;
+    char pad54[0x10];
+    int f64;
+    char pad68[0x20];
+    int f88;
+    char pad8C[8];
+    unsigned int f94;
+    unsigned int f98;
+    S_0023F23E_Node f9c;
+    S_0023F23E_Node fA4;
+    int fAC;
+    int fB4;
+    int fB8;
+};
+extern "C" int (__stdcall *_imp__NtQueryInformationFile)(int h, void *iosb, void *info, unsigned int len, int cls);
+int __stdcall func_001DCC3C(int a, int b, int c, int d, int e, int f, int g);
+int __stdcall func_001DE8C7(int a, int b, void *fn, void *p, int c, void *d);
+int __stdcall func_001DDBC7(int a, int b, int c, int d);
+unsigned int __stdcall func_0023F160(void *p);
+int __stdcall func_0023F119(S_0023F23E_Obj *o, int a);
+
 struct S_0023EA00_Link {
     S_0023EA00_Link *next;
     S_0023EA00_Link *prev;
