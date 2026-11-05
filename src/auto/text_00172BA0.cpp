@@ -80,10 +80,55 @@ struct C_001730B0 {
     void func_001730B0(float dt);
 };
 
+extern int D_002A8BA0;
+extern int D_002A8BA4;
+extern int D_002A8BA8;
+extern int D_002A8BAC;
+extern int D_00288D34;
+
+struct C_001732E0 {
+    void func_00192370(int a0);
+    C_001732E0 *func_001732E0(int a0);
+};
+
 struct C_00173550 {
     int unk0;
     void *func_00173550(int flags);
 };
+
+void C_001730B0::func_001730B0(float dt)
+{
+    if (f130 > D_00275544) {
+        float v;
+        if ((f30 == 0 || f34 == 0) && fd0->f30 != 0) {
+            f12c = dt + f12c;
+            v = f130 + f130;
+            if (f12c < v) {
+                v = f12c;
+            }
+        } else {
+            f12c = f12c - dt;
+            v = 0.0f;
+            if (f12c > v) {
+                v = f12c;
+            }
+        }
+        f12c = v;
+        fe4 = func_0001C870(f12c, f130, f100, f130 + f130, f104);
+        fe0 = func_0001C870(f12c, f130, ffc, f130 + f130, f108);
+    }
+    {
+        float len = (float)sqrt(fc4->f268 * fc4->f268 + fc4->f26c * fc4->f26c + fc4->f270 * fc4->f270);
+        if (fc4->f28 < f134 && len < f138 && f124 < f13c && f128 < f140 && fd0->f30 != 0) {
+            fc4->v34(0);
+            return;
+        }
+        if (f2c != 0 && f38 == 0 && fd0->f30 != 0) {
+            fc4->v34(0);
+            fc4->v45();
+        }
+    }
+}
 
 void *C_00173550::func_00173550(int flags) {
     extern int D_00288D34;
