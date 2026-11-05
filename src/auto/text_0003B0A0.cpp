@@ -19,6 +19,27 @@ struct C_0003BC70 {
 };
 
 
+void C_0003BB60::func_0003BB60() {
+ char* p=(char*)this;
+ *(Copy_0003BB60*)(*(char**)(p+0x24)+0x170)=*(Copy_0003BB60*)(p+0x4ac);
+ (*(C_0003BB60**)(p+0x44))->func_0002F450(6);
+ ((V_0003BB60*)this)->v40();
+ (*(C_0003BB60**)(*(char**)(p+0x64)+0x4e0))->func_000A4500(0,0);
+ func_000321C0(); func_0003AD50();
+ (*(V_0003BB60**)(p+0x550))->v4();
+ *(int*)(p+0x490)=0; *(int*)(p+0x494)=0;
+ (*(V_0003BB60**)(p+0x560))->v4();
+ *(int*)(p+0x284)=0;
+ (*(V_0003BB60**)(p+0x58c))->v6();
+ if(func_001E8AF0(*(char**)(*(char**)(p+0x64)+0x5a4)+*(int*)(p+0x47c)*72,D_00276F00)) {
+ if(*(int*)(p+0x480)==0)
+ (*(C_0003BB60**)(*(char**)(*(char**)(p+0x590)+0x1a4)+4))->func_001983A0();
+ else
+ (*(C_0003BB60**)(*(char**)(*(char**)(p+0x594)+0x1a4)+4))->func_001983A0();
+ }
+ func_000361F0(1);
+}
+
 undefined4 C_0003BC70::func_0003BC70(byte param_1)
 {
   int func_000380B0(...);
