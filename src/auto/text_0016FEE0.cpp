@@ -46,7 +46,27 @@ struct S_Obj {
 
 struct S_Obj154 {
     void func_0014A540(void);
+    void func_0014A650(S_Obj154 *src);
 };
+
+struct V4_0016FEE0 {
+    float x, y, z, w;
+    V4_0016FEE0() { x = y = z = 0; w = 1.0f; }
+    V4_0016FEE0(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
+};
+
+struct S_Light_0016FEE0 {
+    union { u32 d; u8 b[4]; } col;
+    char pad4[0x1c];
+};
+
+extern int D_00040344, D_00040348;
+extern float D_002A88C0;
+void __fastcall func_001FD020(void *p, int v);
+void __fastcall func_001FEC30(int n, void *p);
+int __fastcall func_001FEBD0(int n, void *p);
+void __stdcall func_001FEE00(int stream, void *data, int stride);
+void __stdcall func_00200A90(int a, int b, int c);
 
 struct C_001703B0 {
     void *vtbl;
