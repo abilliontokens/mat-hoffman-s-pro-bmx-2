@@ -173,3 +173,14 @@ void *C_001A77B0::func_001A77B0(int flags)
     }
     return this;
 }
+
+void *C_001A7830::func_001A7830(int flags)
+{
+    vtbl = (void *)&D_0028BB04;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
