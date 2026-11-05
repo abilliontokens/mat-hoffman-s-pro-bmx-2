@@ -3,6 +3,11 @@
 
 int func_001EA426(void *a, void *b);
 
+struct S_Probe_38760 {
+    int count;
+    void **items;
+};
+
 struct C_00038760 {
     char pad0[0x64];
     C_00038760 *f64;         /* 0x64 */
