@@ -189,6 +189,17 @@ struct C_001CF3C0 {
     int func_001CF3C0(SoundVoice *voice);
 };
 
+struct SoundPending_001CF450 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5(int a);
+    char pad4[0x208 - 4];
+    unsigned char f208;
+};
+
 struct C_SoundRelease {
     virtual void vv0();
     virtual void vv1();
@@ -314,14 +325,15 @@ void XboxSoundGroup::func_001CF2A0()
 {
     OwnedElemList_001CF2A0 copy;
     int i;
+    int j;
 
     if (list.count > 0) {
         copy.init(list.count);
         for (i = 0; i < list.count; i++) {
             copy.list.add(list.at(i));
         }
-        for (i = 0; i < copy.list.count; i++) {
-            copy.list.at(i)->release();
+        for (j = 0; j < copy.list.count; j++) {
+            copy.list.at(j)->release();
         }
     }
     memset(list.items, 0, list.count * sizeof(int));
