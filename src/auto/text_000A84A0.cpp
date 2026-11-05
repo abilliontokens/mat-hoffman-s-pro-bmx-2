@@ -52,6 +52,18 @@ void C_000A84A0::func_000A84A0(void *param1, void *param2)
     }
 }
 
+void C_000A84F0::func_000A84F0()
+{
+    int i;
+    i = 0;
+    if (0 < count) {
+        do {
+            *(int *)((char *)items[i] + 0x18) = 0;
+            i = i + 1;
+        } while (i < count);
+    }
+}
+
 C_000A8D70 *C_000A8D70::func_000A8D70()
 {
     ((C_001B59E0 *)this)->func_001B59E0();
