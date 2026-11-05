@@ -77,6 +77,8 @@ struct C_00147280 {
     void *vtbl2;
     void *unk8;
     C_00147280 *func_00147280();
+    int func_001472B0(struct S_1472_Config *cfg);
+    void D_00011420(struct S_1472_Config *cfg);
 };
 
 struct C_00146DC0 {
