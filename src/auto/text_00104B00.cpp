@@ -185,6 +185,7 @@ struct C_00104B00 {
     void func_001059E0(void);
     void func_00105A40(void);
     void func_00104DF0(int a0);
+    void func_00104F10(int a0);
     void func_001577A0(S_00104DF0_Tex *t, int a1);
 };
 
