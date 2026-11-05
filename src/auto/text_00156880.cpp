@@ -314,6 +314,12 @@ int Game::func_00157030(void)
     return 1;
 }
 
+int Game::func_00157130(int a, char *out)
+{
+    strcpy(out, "No Strings Available");
+    return 0;
+}
+
 undefined4 C_00157290::func_00157290(byte param_1)
 {
   int func_00156FC0(...);
