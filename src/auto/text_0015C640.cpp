@@ -1,12 +1,16 @@
 /* 24 functions from 0x0015C640 to 0x0015D340, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
-struct V4_0015D0A0 {
-    float x, y, z, w;
-};
-
 struct V3_0015D0A0 {
     float x, y, z;
+    V3_0015D0A0() {}
+    V3_0015D0A0(float a, float b, float c) { x = a; y = b; z = c; }
+};
+
+struct V4_0015D0A0 {
+    float x, y, z, w;
+    V4_0015D0A0() {}
+    V4_0015D0A0(const V3_0015D0A0 &v, float d) { x = v.x; y = v.y; z = v.z; w = d; }
 };
 
 struct C_001938C0 {
