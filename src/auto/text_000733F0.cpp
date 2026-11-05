@@ -57,6 +57,7 @@ struct C_00031610 {
 struct C_00073A50 {
     char pad0[0x64];
     C_00031610 *unk64;
+    char pad68[4];
     int unk6C;
     char pad70[0x14];
     float unk84;
