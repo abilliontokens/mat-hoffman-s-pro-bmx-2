@@ -21,6 +21,25 @@ extern char D_00276174;
 extern char D_00276164;
 extern char D_00276150;
 
+void func_001E891B(void *p);
+struct C_000214B0_A { int f0; int f4; int f8; int fC; int f10; int f14; void *f18; };
+struct C_000214B0_B { int f0; int f4; int f8; int fC; void *f10; };
+struct C_000214B0 {
+    void *vtbl;
+    char pad4[0x2c];
+    int f30;
+    int f34;
+    int f38;
+    char pad3c[4];
+    int f40;
+    char pad44[0x18];
+    void **f5c;
+    void *f60;
+    C_000214B0_A **f64;
+    C_000214B0_B **f68;
+    void func_00157660(void);
+    void func_000214B0(void);
+};
 void *func_001E8A44(int size);
 int func_001E8AF0(const char *, const char *);
 struct C_00021600_Item { char pad0[0xc]; char *fc; };
