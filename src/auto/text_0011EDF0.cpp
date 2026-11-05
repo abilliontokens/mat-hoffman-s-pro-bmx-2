@@ -49,3 +49,16 @@ void func_0011F460(int a0, int a1, int a2, int a3, float angle)
     float c = func_0014F550(angle);
     func_0011F400(a0, a1, a2, a3, *(int *)&s, *(int *)&c);
 }
+
+void func_0011F540(S_0011F4B0_V4 *out, S_0011F4B0_V4 pos, float *m)
+{
+    S_0011F4B0_V4 r;
+
+    r.z = 0.0f;
+    r.y = 0.0f;
+    r.x = 0.0f;
+    r.w = 1.0f;
+    func_0011F4B0(&r.x, &pos, m);
+    *out = r;
+}
+
