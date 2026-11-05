@@ -64,24 +64,29 @@ void GrindLineManager::func_0015A180(void *arg)
         return;
     }
     found = 0;
-    for (i = 0; !found && i < unk24; i++) {
+    for (i = 0; i < unk24; i++) {
+        if (found) {
+            break;
+        }
         if (unk34[i] == arg) {
             ((C_00193870 *)unk34[i]->unk78)->func_00193870(unk34[i]);
             if (unk34[i]->unk78 != 0) {
-                ((C_00193500 *)unk34[i]->unk78)->func_00193500();
-                func_001E891B(unk34[i]->unk78);
+                void *x = unk34[i]->unk78;
+                ((C_00193500 *)x)->func_00193500();
+                func_001E891B(x);
             }
-            if (unk34[i] != 0) {
-                if (unk34[i]->unk14 != 0) {
-                    func_001E891B(unk34[i]->unk14);
+            GrindLine *e = unk34[i];
+            if (e != 0) {
+                if (e->unk14 != 0) {
+                    func_001E891B(e->unk14);
                 }
-                if (unk34[i]->unk18 != 0) {
-                    func_001E891B(unk34[i]->unk18);
+                if (e->unk18 != 0) {
+                    func_001E891B(e->unk18);
                 }
-                if (unk34[i]->unk1C != 0) {
-                    func_001E891B(unk34[i]->unk1C);
+                if (e->unk1C != 0) {
+                    func_001E891B(e->unk1C);
                 }
-                func_001E891B(unk34[i]);
+                func_001E891B(e);
             }
             unk34[i] = 0;
             found = 1;
