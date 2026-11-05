@@ -2,6 +2,13 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+
+struct V4_00161930 {
+    float x, y, z, w;
+};
+
+void func_001618A0(V4_00161930 *out, V4_00161930 *in);
+
 struct C_00161600 {
     undefined4 func_00161600(byte param_1);
 };
