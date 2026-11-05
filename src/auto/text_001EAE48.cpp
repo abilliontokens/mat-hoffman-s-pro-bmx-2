@@ -160,6 +160,15 @@ void func_001EB138(int i, char *s) {
     }
 }
 
+void _func_001EB15B(char *p) {
+    int func_001EB302(...);
+    if (p >= D_002AE670 && p <= D_002AE8D0) {
+        func_001EB302(((int)(p - D_002AE670) >> 5) + 16);
+    } else {
+        __imp__RtlLeaveCriticalSection(p + 0x20);
+    }
+}
+
 void _func_001EB18A(int i, char *s) {
     int func_001EB302(...);
     if (i < 20) {
