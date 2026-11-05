@@ -1,2 +1,80 @@
 /* 18 functions from 0x001A5B10 to 0x001A6A40, found by Ghidra. */
 #include "common.h"
+
+extern int D_0028BA74;
+extern int D_0028BA50;
+extern int D_00275630;
+
+struct C_00157600 {
+    void func_00157600(void *param);
+};
+
+struct C_001A5E40 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    int f28;
+    int f2c;
+    C_001A5E40 *func_001A5E40(void *param);
+};
+
+struct S_001A5C30_Obj {
+    void func_0005E840(char *s);
+};
+
+void func_001A5C30(char *text, S_001A5C30_Obj **arr, int width, int maxCount);
+
+struct S_001A5CD0_Obj {
+    void func_001D6600(void);
+};
+
+struct C_001A5CD0 {
+    char pad0[0x30];
+    S_001A5CD0_Obj *unk30;
+    S_001A5CD0_Obj *unk34[8];
+    void func_001A5CD0(void);
+    void func_00157960(void);
+};
+
+struct S_001A5D80_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+};
+
+struct S_001A5D80_G1 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    char pad28[0x234 - 0x28];
+    int f234;
+};
+
+struct S_001A5D80_G2 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4(int a, int b, int c, int d);
+    char pad14[0x30 - 0x14];
+    int f30;
+};
+
+struct C_001A5D80 {
+    char pad0[0x24];
+    int unk24;
+    S_001A5D80_Obj *unk28;
+    C_001A5D80 *func_001A5D80(int param);
+};
+
+extern S_001A5D80_G1 *D_002A8490;
+extern S_001A5D80_G2 *D_002EFDB8;
+
+void __stdcall func_001A5B10(void *a, void *b);
