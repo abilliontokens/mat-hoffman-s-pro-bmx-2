@@ -252,7 +252,7 @@ struct S_6E970 {
     virtual void v15();
     virtual void v16();
     virtual void v17();
-    virtual void v18();
+    virtual void v18(int a);
     char pad4[0x9C];
     int lenA0;
     char unkA4[0x1C];
