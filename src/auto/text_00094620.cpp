@@ -416,13 +416,12 @@ void C_00094760::func_000947F0(int node)
 int *C_00094760::func_00094810(int node)
 {
     S_00094620_Path *path = unk50;
-    S_00094620_Node *n;
 
-    if (node >= path->unkA8 || node < 0) {
-        return 0;
+    if (node < path->unkA8 && node >= 0) {
+        S_00094620_NodeTail &tail = *path->Node(node);
+        return &tail.unk0;
     }
-    n = path->unk34 + node;
-    return (int *)((char *)n + 0x20);
+    return 0;
 }
 
 int C_00094840::func_00094840(void)
@@ -665,7 +664,7 @@ void C_00095060::func_00095060(void)
     tracks.Clear();
     f7C = 0;
     f80 = 0;
-    func_001E891B(f6C);
+    func_001E891B(*(void **)((char *)this + 0x6c));
     func_001E891B(tracks.items);
     ((C_00157660 *)this)->func_00157660();
 }
