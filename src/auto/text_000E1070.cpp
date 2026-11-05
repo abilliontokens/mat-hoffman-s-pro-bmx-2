@@ -28,9 +28,33 @@ struct C_NumHorse_Obj2E8 {
     C_NumHorse_Obj4 *p4;
 };
 
+struct C_NumHorse_Lookup {
+    int *func_0018C160(int a);
+};
+
 struct C_NumHorse_Root {
     char pad0[0x2E8];
     C_NumHorse_Obj2E8 *p2E8;
+    C_NumHorse_Lookup *p2EC;
+};
+
+extern float D_00275AEC;
+extern int D_002786A0;
+extern int D_00278690;
+extern int D_00278678;
+
+struct C_NumHorse_Clamp {
+    char pad0[0x10];
+    float f10;
+    float f14;
+};
+
+struct C_NumHorse_Mid {
+    C_NumHorse_Clamp *func_0018C070();
+};
+
+struct C_NumHorse_Sub {
+    C_NumHorse_Clamp *func_001D5AA0();
 };
 
 extern C_NumHorse_Root *D_002A8490;
