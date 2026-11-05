@@ -27,6 +27,29 @@ struct C_000DE300 {
     void func_000DE390();
 };
 
+/* anything the page owns and frees through its virtual destructor */
+struct S_000DE650_Obj {
+    virtual ~S_000DE650_Obj();
+};
+
+extern int D_0027F8E4;
+
+/* BmxUIPageMusicPlaylist: six rows of 18 owned objects, then two more groups */
+struct C_000DE650 {
+    void *vtbl;
+    char pad4[0x920];
+    S_000DE650_Obj *row0[18];
+    S_000DE650_Obj *row1[18];
+    S_000DE650_Obj *row2[18];
+    S_000DE650_Obj *row3[18];
+    S_000DE650_Obj *row4[18];
+    S_000DE650_Obj *row5[18];
+    S_000DE650_Obj *group4[4];
+    S_000DE650_Obj *group2[2];
+    void func_001BE3F0();
+    void func_000DE650();
+};
+
 void C_000DE300::func_000DE300()
 {
     unk32C->func_001B1980();
