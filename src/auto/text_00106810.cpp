@@ -33,27 +33,29 @@ struct C_00106E30 {
 
 void C_00106E30::func_00106E30(void)
 {
+    float x, y, z;
+
     if (f950->f1ac != 0) {
         if (f950->f1b4 != 0) {
-            float x = (float)func_001E8833() / 32768.0f;
-            float y = (float)func_001E8833() / 32768.0f;
-            float z = (float)func_001E8833() / 32768.0f * 0.3f;
+            x = (float)func_001E8833() / 32768.0f;
+            y = (float)func_001E8833() / 32768.0f;
+            z = (float)func_001E8833() / 32768.0f * D_00278C58;
             f1238->func_001B3E70(f950->v1c0, f950->v1f0, z + 0.1f, y + 0.5f, x * x);
         } else {
             f1238->func_001B4970();
         }
         if (f950->f1b8 != 0) {
-            float x = (float)func_001E8833() / 32768.0f;
-            float y = (float)func_001E8833() / 32768.0f;
-            float z = (float)func_001E8833() / 32768.0f * 0.3f;
+            x = (float)func_001E8833() / 32768.0f;
+            y = (float)func_001E8833() / 32768.0f;
+            z = (float)func_001E8833() / 32768.0f * D_00278C58;
             f123c->func_001B3E70(f950->v1d0, f950->v200, z + 0.1f, y + 0.5f, x * x);
         } else {
             f123c->func_001B4970();
         }
         if (f950->f1bc != 0) {
-            float x = (float)func_001E8833() / 32768.0f;
-            float y = (float)func_001E8833() / 32768.0f;
-            float z = (float)func_001E8833() / 32768.0f * 0.3f;
+            x = (float)func_001E8833() / 32768.0f;
+            y = (float)func_001E8833() / 32768.0f;
+            z = (float)func_001E8833() / 32768.0f * D_00278C58;
             f1240->func_001B3E70(f950->v1e0, f950->v210, z + 0.1f, y + 0.5f, x * x);
         } else {
             f1240->func_001B4970();
