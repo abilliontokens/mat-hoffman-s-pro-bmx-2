@@ -229,6 +229,49 @@ float __stdcall func_0012BAE0(float t, float p0, float p1, float p2, float p3) {
          + b * p2;
 }
 
+void __stdcall func_0012BB60(char *input, char *output) {
+ char line[256];
+ int header[3];
+ int f=D_002BEAAC->func_0013C9F0(input,D_00276274);
+ int count=0;
+ while(D_002BEAAC->func_0013C6E0(f,line,255)) {
+  if(!func_001F6570(line,D_00284224,6)) ++count;
+ }
+ int *ids=(int *)func_001E8A44(count*4);
+ Vec_0012BB60 *a=Alloc_0012BB60(count);
+ Vec_0012BB60 *b=Alloc_0012BB60(count);
+ Vec_0012BB60 *c=Alloc_0012BB60(count);
+ D_002BEAAC->func_0013AFF0(f,0,0);
+ int i=0;
+ while(D_002BEAAC->func_0013C6E0(f,line,255)) {
+  if(!func_001F6570(line,D_00284224,6)) {
+   func_001E8B76(line,D_00284200,&a[i].x,&a[i].z,&a[i].y,&b[i].x,&b[i].z,&b[i].y,&c[i].x,&c[i].z,&c[i].y,&ids[i]);
+   ++i;
+  }
+ }
+ D_002BEAAC->func_0013C110(f);
+ f=D_002BEAAC->func_0013C9F0(output,D_00282960);
+ header[0]=2; header[1]=count; header[2]=1;
+ D_002BEAAC->func_0013B930(f,header,12,1);
+ int size;
+
+ char *buffer=(char *)func_001E8A44(size=count*40);
+ char *p=buffer;
+ for(i=0;i<count;++i) {
+  *(Triple_0012BB60 *)p=*(Triple_0012BB60 *)&a[i]; p+=12;
+  *(Triple_0012BB60 *)p=*(Triple_0012BB60 *)&b[i]; p+=12;
+  *(Triple_0012BB60 *)p=*(Triple_0012BB60 *)&c[i]; p+=12;
+  *(int *)p=ids[i]; p+=4;
+ }
+ D_002BEAAC->func_0013B930(f,buffer,size,1);
+ D_002BEAAC->func_0013C110(f);
+ if(buffer) func_001E891B(buffer);
+ if(ids) func_001E891B(ids);
+ if(a) func_001E891B(a);
+ if(b) func_001E891B(b);
+ if(c) func_001E891B(c);
+}
+
 void C_0012B8F0::func_0012BF10(int idx, u32 *a, u32 *b, u32 *c, int *d) {
     u32 *s = (u32 *)(f2C + idx * 12);
     a[0] = s[0];
