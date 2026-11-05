@@ -68,10 +68,10 @@ struct Vec4_0002AF90 {
     }
     __forceinline Vec4_0002AF90 Mul(void) const
     {
-        Vec4_0002AF90 r = *this;
-        r.x *= D_002A1178;
-        r.y *= D_002A1178;
-        r.z *= D_002A1178;
+        Vec4_0002AF90 r;
+        r.x = x * D_002A1178;
+        r.y = y * D_002A1178;
+        r.z = z * D_002A1178;
         r.w = 1.0f;
         return r;
     }
