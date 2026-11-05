@@ -8,6 +8,45 @@ extern int D_002877E4;
 void func_001E8390(void *p);
 void func_0001B2E0(void *p, int a);
 
+extern int D_00287804;
+extern int D_002877E4;
+
+void func_0001B130(void *out, int a);
+int func_0015C640(void *array, int count, int a);
+int func_0015C260(float *base, int hi, float v);
+int func_0015C530(float *base, float v, int hi, float **lo, float **up, float *t);
+
+struct ByteAxisRotationController {
+    void *vtbl;
+    u32 unk4;
+    u32 unk8;
+    u32 unkC;
+    u32 unk10;
+    void *unk14;
+    void func_0015B990();
+};
+
+struct C_0015C5C0_Entry {
+    int a;
+    int b;
+};
+
+struct C_0015C5C0 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6(int x);
+    u32 unk4;
+    u32 unk8;
+    int unkC;
+    int unk10;
+    C_0015C5C0_Entry *unk14;
+    void func_0015C5C0(int a0, int a1);
+};
+
 struct C_0015B7C0 {
     void *vtbl;
     u32 unk4;
