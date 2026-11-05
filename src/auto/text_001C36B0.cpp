@@ -146,6 +146,13 @@ C_001C3810* C_001C3810::func_001C3810(int a0) {
     return this;
 }
 
+void DXVertexBufferManager::func_001C3BD0(void)
+{
+    unk0 = (int)&D_0028E360;
+    ((BufferManager *)this)->func_001C3AF0();
+    unk0 = (int)&D_0028E354;
+}
+
 void C_001C3D30::func_001C3D30(int a0) {
     unk10 = a0;
 }
