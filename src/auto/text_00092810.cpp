@@ -41,10 +41,30 @@ struct C_00092BE0_Str {
 extern char D_0027A150;
 extern char D_00279100;
 
+struct S_00092E30_Slot {
+    int w[8];
+};
+
+struct S_00092E30_Rec {
+    int f0;
+    int f4;
+    int f8;
+};
+
+struct S_00092E30_Mgr {
+    char pad0[0x814];
+    S_00092E30_Slot f814[16];
+    S_00092E30_Rec fA14[16];
+    S_00092E30_Mgr *func_001D3F50(void);
+    int *func_0005C020(int idx);
+};
+
 struct S_00092A10_Sub {
     char pad0[0xc];
     int fc;
-    char pad10[0x2bc];
+    char pad10[0x2b0];
+    S_00092E30_Mgr *f2c0;
+    char pad2c4[8];
     C_001D4300 *f2cc;
 };
 
