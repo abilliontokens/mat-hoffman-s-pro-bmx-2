@@ -214,6 +214,34 @@ void Node_00193240::func_00193870(void *a)
     }
 }
 
+void Node_00193240::func_001938C0(void *a1, C_00192B50 *a2, int a3, S_00193240_V4 *a4,
+                                  void *a5, void *a6)
+{
+    Handler_00193240 *h = a2->func_00192B50(a3);
+    int r = h->v6(a4, a5, 0);
+
+    h->v7(a1, r, a4, a5);
+    f4 = a2;
+    f14 = r;
+    f8 = h;
+    f0 = 0;
+    *(S_00193240_V4 *)&f18 = *a4;
+    func_00193530(a1, a4, a5, a6);
+}
+
+void func_00193AF0(S_00193AF0 *p)
+{
+    float v[3];
+
+    p->f40 -= D_00275BF8;
+    v[0] = D_002A98DC * p->f2C;
+    v[1] = D_002A98DC * p->f30;
+    v[2] = D_002A98DC * p->f34;
+    p->f3C -= v[0];
+    p->f40 -= v[1];
+    p->f44 -= v[2];
+}
+
 undefined4 C_00194110::func_00194110(byte param_1)
 {
   int func_00193BC0(...);
@@ -247,5 +275,10 @@ C_00194130 *C_00194130::func_00194130(int a0)
     f30.w = D_002A997C;
     f40 = 0;
     return this;
+}
+
+void C_00194190::func_00194190(int a0)
+{
+    f2c = a0;
 }
 
