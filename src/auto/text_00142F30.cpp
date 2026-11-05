@@ -394,6 +394,41 @@ void DXSignatureWave::func_001439D0()
     func_001942C0();
 }
 
+extern int D_002A99B0;
+extern int D_002ABE74;
+extern char D_00285B40[], D_00285B3C[], D_00285B30[];
+int func_001ADCC0(char *, int, const char *, ...);
+void *func_001D6E20(char *, int, int);
+int func_001B2910(int);
+int DXSignatureWave::func_00143A40(const char *name, int id)
+{
+ char buf[260];
+ char *self=(char *)this;
+ if(!D_002A99B0 && *(int *)(self+0xac)==3) return 1;
+ *(void ***)(self+0x24)=(void **)func_001E8A44(f4C*4);
+ if(!*(int *)(self+0xac)) f100=(DXSignatureWaveObjVT **)func_001E8A44(f4C*4);
+ for(unsigned i=0;i<f4C;i++){
+ func_001ADCC0(buf,260,D_00285B40,name,i,id);
+ (*(void ***)(self+0x24))[i]=func_001D6E20(buf,8,2);
+ if(!*(int *)(self+0xac)){
+ int old=D_002ABE74; D_002ABE74=0;
+ func_001ADCC0(buf,260,D_00285B30,name,i,D_00285B3C,id);
+ f100[i]=(DXSignatureWaveObjVT *)func_001D6E20(buf,8,0);
+ D_002ABE74=old;
+ }
+ }
+ void *obj=**(void ***)(self+0x24);
+ int size;
+ ((WaveBuffer *)obj)->Lock(0,&size,0);
+ *(unsigned *)(self+0x28)=size/(func_001B2910(*(int *)((char *)**(void ***)(self+0x24)+0xa4))/8);
+ obj=**(void ***)(self+0x24);
+ ((WaveBuffer *)obj)->Unlock(0);
+ float scale=1.0f / *(unsigned *)(self+0x28);
+ *(float *)(self+0x8c)*=scale;
+ *(float *)(self+0x90)*=scale;
+ return 1;
+}
+
 undefined4 C_00143BD0::func_00143BD0(byte param_1)
 {
   int func_001439D0(...);
