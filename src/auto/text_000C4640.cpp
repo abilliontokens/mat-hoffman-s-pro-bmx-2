@@ -52,6 +52,28 @@ struct S_000C4FD0_Root {
 
 extern S_000C4FD0_Root *D_002A8490;
 
+struct S_000C4EB0_Obj { void func_001B1980(); };
+struct C_000C4EB0 {
+    virtual void v0();
+    char pad4[0x288 - 4];
+    int f288;
+    char pad28C[0x2E0 - 0x28C];
+    int f2E0;
+    int f2E4;
+    int f2E8;
+    int f2EC;
+    char pad2F0[0x320 - 0x2F0];
+    S_000C4EB0_Obj *a320[3];
+    S_000C4EB0_Obj *a32C[3];
+    S_000C4EB0_Obj *a338[3];
+    S_000C4EB0_Obj *a344[3];
+    S_000C4EB0_Obj *a350[3];
+    char pad35C[0x364 - 0x35C];
+    int f364;
+    void func_001BEF50(int a, int b);
+    void func_000C4EB0();
+};
+
 struct C_000C4FD0 {
     char pad0[0x124];
     S_000C4FD0_Mgr *f124;
