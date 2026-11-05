@@ -200,6 +200,27 @@ void *C_00100C00::func_00100C00(unsigned int flags) {
     return this;
 }
 
+void C_00100C20::func_00100C20() {
+    int i;
+
+    func_000E7AD0();
+    func_000EA410();
+    if (unk2ac != 0) {
+        for (i = 0; i < 5; i++)
+            f578[i]->func_001B1980();
+        if (unk510 != 0)
+            unk510->func_001D5AD0();
+    }
+    if (unk4d8 != 0) {
+        for (i = 0; i < 5; i++)
+            f578[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.0f, 0, 0.25f, 0, 0);
+        func_000E6E20();
+        unk4d8 = 0;
+    }
+    func_000E8740();
+    func_00157960();
+}
+
 undefined4 C_00100FF0::func_00100FF0(byte param_1)
 {
   int func_000EB420(...);
