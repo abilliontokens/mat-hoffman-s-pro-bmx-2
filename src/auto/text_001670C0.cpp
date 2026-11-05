@@ -305,6 +305,26 @@ C_00167760 *C_00167760::func_00167D10(C_0017A860 *owner, int b)
     return 0;
 }
 
+int C_00167DD0::func_00167DD0(S_00167DD0_Object *contextArg, C_00167DD0_Context *objectArg, void *arg)
+{
+ S_00167DD0_Object *object = (S_00167DD0_Object *)objectArg;
+ C_00167DD0_Context *context = (C_00167DD0_Context *)contextArg;
+ S_00167DD0_Node *node = object->head;
+ S_00167DD0_Temps temps;
+ C_00167AC0_Sub *a = temps.a, *b = temps.b;
+ int i;
+ for(i=0;i<4;i++) a[i].func_001D3F50();
+ for(i=0;i<4;i++) b[i].func_001D3F50();
+ if(D_002EFE54 == object->stamp) return 0;
+ object->stamp = D_002EFE54;
+ if(object->f28 && !context->func_00192BD0(object->f3c)) func_00167AF0(object->f28);
+ for(;node;node=node->next) {
+  if(node->item->func_00179B40(a, *(int *)(f24+0xfc)) && func_0017C060(arg,a,b))
+   func_00167DD0((S_00167DD0_Object *)context,(C_00167DD0_Context *)node->value,b);
+ }
+ return 1;
+}
+
 extern char *D_002EFDB8;
 extern int D_002A85D8;
 extern char D_002EFD38[];
