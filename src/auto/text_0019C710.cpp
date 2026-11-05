@@ -21,6 +21,9 @@ struct SoultreeCollisionObject {
     int func_0019BB80(void *param_1);
     void func_0019BA70();
     void func_0019B890();
+    void func_0019B760();
+    void func_00133E60();
+    void *func_0019D650(int flags);
 };
 
 extern "C" void __stdcall func_0019BBD0(unsigned short param_1, int *param_2, int param_3, char *param_4, char *param_5);
