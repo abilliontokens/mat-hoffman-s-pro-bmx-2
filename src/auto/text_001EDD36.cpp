@@ -12,6 +12,7 @@ void func_001EB390(int locknum);
 int func_001F44EF(void *cs, unsigned long spinCount);
 extern unsigned int D_002FB240;
 extern int *D_002FB260[];
+extern int *D_002FB360[];
 extern char *D_002F6A28;
 
 int __stdcall func_001DD563(int h);
@@ -62,6 +63,36 @@ int func_001EE4BD(int fh, int pos, int mthd)
     }
     *((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) &= 0xfd;
     return newpos;
+}
+
+int func_001EE52F(int fh, int pos, int mthd)
+{
+    int retval;
+
+    if ((unsigned int)fh >= D_002FB240 ||
+        (*((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) == 0) {
+        *func_001ED075() = 9;
+        *func_001ED07E() = 0;
+        return -1;
+    }
+    func_001EE70F(fh);
+    __try {
+        if (*((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) {
+            retval = func_001EE4BD(fh, pos, mthd);
+        } else {
+            *func_001ED075() = 9;
+            *func_001ED07E() = 0;
+            retval = -1;
+        }
+    } __finally {
+        func_001EE782(fh);
+    }
+    return retval;
+}
+
+void func_001EE5B6(void)
+{
+    func_001EE782(0);
 }
 
 int func_001EE5BE(void)
@@ -182,6 +213,11 @@ done:
         func_001EE782(fh);
     }
     return retval;
+}
+
+void func_001EE98F(void)
+{
+    func_001EE782(0);
 }
 
 int func_001EE997(void)
