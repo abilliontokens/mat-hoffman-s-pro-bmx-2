@@ -161,3 +161,17 @@ void C_000683F0::func_000683F0()
     unk150 = 0;
 }
 
+void C_000683F0::func_00068440()
+{
+    D_002EFDB8->vf7(1);
+    D_002EFDB8->vf8();
+    unk138 = 0;
+    unk168 = 0;
+    unk10C->v34();
+    unk10C->func_00032A40();
+    v4();
+    unk10C->unk1F4 = 0;
+    memset(unkD8, 0, sizeof(unkD8));
+    unk150 = 0;
+}
+
