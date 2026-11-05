@@ -213,6 +213,37 @@ C_0001B0A0 *C_0001B0A0::func_0001B0A0(void) {
     return this;
 }
 
+void func_0001B1D0(const PackedQuat *p, Quat *q) {
+    float v[4];
+    float s = D_002B3470[p->angle];
+    q->w = D_002B3870[p->angle];
+    v[0] = (float)p->x * D_002B7C78;
+    v[1] = (float)p->y * D_002B7C78;
+    v[2] = (float)p->z * D_002B7C78;
+    q->x = v[0] * s;
+    q->y = v[1] * s;
+    q->z = v[2] * s;
+}
+
+void func_0001B250(S_0001B250_Out *out, Quat *q)
+{
+    float angle;
+    S_0001B250_Block v;
+    u32 *p = (u32 *)&v;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    func_0001B020(q, &angle, (Vec3 *)&v);
+    func_0001AFB0(&v, &v);
+    float t = D_002B7C80 * angle;
+    out->f0 = _mm_cvtss_si32(*(__m128 *)&t);
+    C_0001AF00 obj;
+    obj.func_0001AF00((Vec3 *)&v);
+    out->f2 = *(u32 *)&obj;
+    out->f6 = *(u16 *)((char *)&obj + 4);
+}
+
 void func_0001B2E0(const S_0001B2E0_In *in, S_0001B2E0_Out *out)
 {
     u32 idx = in->idx;
@@ -242,3 +273,18 @@ C_0001B3B0* C_0001B3B0::func_0001B3B0(int a0) {
     unk2C = a0;
     return this;
 }
+
+int C_0001B3C0::func_0001B3C0(const char *name)
+{
+    int i;
+
+    if (tbl != 0) {
+        for (i = 0; i < tbl->count; i++) {
+            S_0001B3C0_Entry *e = tbl->entries[i];
+            if (e->f4 == 1 && strcmp(e->name, name) == 0)
+                return i;
+        }
+    }
+    return -1;
+}
+
