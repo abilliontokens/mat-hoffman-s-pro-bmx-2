@@ -204,8 +204,10 @@ void C_000F029C::func_000F029C()
 void C_000F0400::func_000F0400()
 {
     int i;
+    C_000F0AE0_Owner *b;
 
-    if (f124->f25c->f74->func_000301D0() == 0) {
+    b = f124->f25c;
+    if (b->f74->func_000301D0() == 0) {
         for (i = 0; i < 2; i++) {
             D_002B91AC->arr38[i]->func_001D6600();
         }
