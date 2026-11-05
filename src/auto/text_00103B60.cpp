@@ -107,8 +107,8 @@ C_00104120 *C_00104120::func_00104120(int param_1)
     return this;
 }
 
-void C_00104170::func_00104170(int a0, int a1) {
-    int __stdcall func_001972B0(int, int, int);
+void C_00104170::func_00104170(int a0, int a1)
+{
     func_001972B0(a0, a1, 1);
 }
 
