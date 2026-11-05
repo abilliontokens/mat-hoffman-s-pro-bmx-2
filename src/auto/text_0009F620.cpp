@@ -174,6 +174,34 @@ struct Obj_000A00A0 {
     void func_001332A0(void);
     void func_00133140(int a0, int a1);
 };
+struct V4_0009FB00 {
+    float x, y, z, w;
+    V4_0009FB00() { z = 0; y = 0; x = 0; w = 1.0f; }
+    V4_0009FB00(float ax, float ay, float az) { x = ax; y = ay; z = az; w = 1.0f; }
+    V4_0009FB00 operator+(const V4_0009FB00 &o) const { return V4_0009FB00(x + o.x, y + o.y, z + o.z); }
+    V4_0009FB00 operator-(const V4_0009FB00 &o) const { return V4_0009FB00(x - o.x, y - o.y, z - o.z); }
+    V4_0009FB00 operator*(float s) const { return V4_0009FB00(x * s, y * s, z * s); }
+    float Length() const { return _mm_sqrt_ss(_mm_set_ss(x * x + y * y + z * z)).m128_f32[0]; }
+};
+void func_0009F5B0(V4_0009FB00 *, V4_0009FB00 *);
+struct Obj_0009FB00 {
+    void func_001A4AE0(V4_0009FB00 *a0, int a1);
+    void func_0014AC30(V4_0009FB00 *a0, int a1);
+    void func_00133ED0(void);
+    float func_00133F10(int a0);
+};
+struct C_0009FB00 {
+    char pad0[0x10];
+    Obj_0009FB00 *unk10;
+    Obj_0009FB00 *unk14;
+    char pad18[0x40];
+    V4_0009FB00 v58, v68;
+    char pad78[0x3c];
+    float unkB4;
+    int unkB8;
+    V4_0009FB00 vBC, vCC;
+    int func_0009FB00(V4_0009FB00 a0, V4_0009FB00 a1, V4_0009FB00 a2, V4_0009FB00 a3, int a4);
+};
 void *func_001E8A44(unsigned int n);
 struct C_000A00A0 {
     char pad0[0x10];
