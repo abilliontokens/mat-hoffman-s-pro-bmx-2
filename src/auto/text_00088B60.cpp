@@ -147,6 +147,58 @@ struct C_00088DD0 {
     C_00088DD0 *func_00088DD0(int a0, int a1, S_00088DD0_Arg *a2);
 };
 
+struct S_00088B60_Sprite {
+    char pad0[4];
+    f32 f4;
+    f32 f8;
+    char padC[0x4c];
+    unsigned char b58;
+};
+struct S_00088B60_Player {
+    char pad0[0xf0];
+    char fF0[0x80];
+    f32 f170[3];
+    char pad17C[0x70];
+    u32 f1EC;
+};
+struct S_00088B60_Game {
+    char pad0[4];
+    S_00088B60_Player *f4;
+};
+extern S_00088B60_Game *D_002EFDB8;
+struct S_00088B60_Proj {
+    int func_001C5C50(S_00088B60_Player *a, void *b, f32 *c, f32 *d, int e);
+};
+extern S_00088B60_Proj *D_002AB66C;
+struct S_00088B60_Ent {
+    char pad0[0x5c];
+    int f5C;
+};
+struct S_00088B60_World {
+    char pad0[0x4e4];
+    S_00088B60_Ent *f4E4[1];
+};
+extern S_00088B60_World *D_002B9120;
+extern float D_002755E4;
+extern float D_002756C4;
+extern float D_002755E8;
+
+/* DirectionArrowOverlay */
+struct C_00088B60 {
+    void *vtbl;
+    char pad4[0x28];
+    S_00088B60_Sprite *f2C;
+    int f30;
+    f32 f34[3];
+    char pad40[4];
+    u32 f44;
+    f32 f48;
+    f32 f4C;
+    f32 f50;
+    void func_00088B60();
+    void func_001578D0();
+};
+
 struct C_00088F60 {
     void func_00088F60(int param_1);
 };
