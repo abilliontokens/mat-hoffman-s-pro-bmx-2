@@ -535,17 +535,4 @@ C_001AE3E0 *C_001AE3E0::func_001AEBD0(int a1, int a2, float *a3, int a4, float a
     }
     return this;
 }
-struct C_001AE890 {
-    char pad0[8]; int f8, fC; char pad10[8]; C_001AE700 *f18;
-    int f1C; void *f20; int f24, f28, f2C, f30, f34, f38;
-    float f3C, f40; char pad44[0x20]; unsigned char f64; float f68;
-    void func_001AE890();
-    void __stdcall func_001ADFD0(void *, int, int, int, int, int);
-};
-struct S_001AE890_View { int v[6]; };
-void func_001ADD80(void *);
-void __stdcall func_001FF940(void *, void *);
-void __stdcall func_00200230(void *);
-void __stdcall func_001FF4E0(int, void *, int, int, int, int);
-void __stdcall func_00201210(void *, void *, int, int);
-void __stdcall func_002011F0(void *, void *);
+
