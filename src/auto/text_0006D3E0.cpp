@@ -101,6 +101,7 @@ C_0006D590 *C_0006D590::func_0006D590(int a0)
     u32 *p;
     C_001D5AD0 **q;
     int n;
+    int i;
 
     func_00157600(a0);
     vtbl = &D_0027850C;
@@ -114,10 +115,12 @@ C_0006D590 *C_0006D590::func_0006D590(int a0)
     vtbl = &D_00278A7C;
     unk64 = 0;
     unkEC = 0;
-    memset(unk68, 0, sizeof(unk68));
-    unkA4 = 0;
-    unkA8 = 0;
-    unkAC = 0;
+    for (i = 0; i < 15; i++) {
+        unk68[i] = 0;
+    }
+    for (i = 0; i < 3; i++) {
+        (&unkA4)[i] = 0;
+    }
     unkD8 = 0;
     unkDC = 0;
     unkE0 = 0;
