@@ -47,6 +47,7 @@ struct C_0002FA80 {
     void func_00030160(void);
     void func_000301A0(void);
     undefined4 func_000301F0(void);
+    void func_00030210(void);
 };
 
 struct C_000300F0 {
@@ -143,11 +144,13 @@ bool C_000300F0::func_000300F0(undefined4 param_1)
 bool C_0002FA80::func_00030120(const char *subName)
 {
     int func_001EA426(...);
-    S_0002FA80_Entry *base = entries;
-    S_0002FA80_Entry *e = &base[cur];
-    int idx = e->curSub;
-    S_0002FA80_Sub *s = &e->subs[idx];
+    int idx;
+    S_0002FA80_Sub *s;
+    S_0002FA80_Entry *e;
 
+    e = &entries[cur];
+    idx = e->curSub;
+    s = &e->subs[idx];
     return func_001EA426(subName, s->name) == 0;
 }
 
