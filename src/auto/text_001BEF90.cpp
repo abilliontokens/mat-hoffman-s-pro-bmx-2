@@ -513,6 +513,21 @@ void C_001BF6C0::func_001BF6C0(int enable)
     }
 }
 
+void C_001BFE80::func_001BFE80(void)
+{
+    int i;
+
+    vtbl = (void *)&D_0028DA5C;
+    if (f39C > 0) {
+        for (i = 0; i < f39C; i++) {
+            func_001E8390(f3A0[i]);
+        }
+        func_001E8390(f3A0);
+    }
+    vtbl = (void *)&D_0028D804;
+    func_00157660();
+}
+
 void C_001BFEE0::func_001BFEE0(int a)
 {
     f68->func_001670C0(a, 0, 0);
