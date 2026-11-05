@@ -253,40 +253,47 @@ void C_0009FE70::func_0009FE70(int a0) {
     unk40 = a0;
 }
 
-void C_0009FE80::func_0009FE80(int a0, int a1, int a2, int a3, int a4, int a5, float a6, float a7, float a8, float a9, float a10)
-{
-    if (unk40 == 0)
-        return;
-    if (fabs_0009FE80(a6) > D_00278C58) {
-        unk8C = a6 * a10 * D_0027AD80 + unk8C;
-        if (unk8C > D_002756D0)
-            unk8C = unk8C - D_002756B8;
-        else if (unk8C < D_002756E8)
-            unk8C = unk8C + D_002756B8;
-    }
-    if (fabs_0009FE80(a7) > D_00278C58) {
-        unk90 = a7 * a10 * D_0027AD80 + unk90;
-        if (unk90 > D_002756D0)
-            unk90 = unk90 - D_002756B8;
-        else if (unk90 < D_002756E8)
-            unk90 = unk90 + D_002756B8;
-    }
-    if (fabs_0009FE80(a9) > D_00278C58) {
-        unk4C = unk4C - a9 * a10 * D_0027AD7C;
-        if (unk4C > D_0027653C)
-            unk4C = 15.0f;
-        else if (unk4C < D_0027AD78)
-            unk4C = 7.0f;
-    }
-    if (fabs_0009FE80(a8) > D_00278C58) {
-        unk3C = a8 * a10 * D_0027AD74 + unk3C;
-        if (unk3C > D_002786B8)
-            unk3C = 110.0f;
-        else if (unk3C < D_00276558)
-            unk3C = 60.0f;
-    }
+#pragma optimize("p", on)
+void C_0009FE80::func_0009FE80(int a0, int a1, int a2, int a3, int a4, int a5, float a6, float a7, float a8, float a9, float a10) {
+ C_0009FE80 * volatile self=this;
+ volatile float scratch[2];
+ C_0009FE80 *p;
+ register int bits;
+ if (*(volatile int *)&unk40==0) return;
+ scratch[0]=a6; bits=*(volatile int *)&scratch[0]; bits &=0x7fffffff; *(volatile int *)&scratch[1]=bits;
+ if(scratch[1]>D_00278C58) {
+ p=self;
+ *(volatile float *)&p->unk8C=D_0027AD80 * (a6 * a10) + p->unk8C;
+ p=self;
+ if(p->unk8C>D_002756D0) p->unk8C=p->unk8C-D_002756B8;
+ else if(p->unk8C<D_002756E8) p->unk8C=*(volatile float *)&p->unk8C+D_002756B8;
+ }
+ scratch[1]=a7; bits=*(volatile int *)&scratch[1]; bits &=0x7fffffff; *(volatile int *)&scratch[0]=bits;
+ if(scratch[0]>D_00278C58) {
+ p=self;
+ *(volatile float *)&p->unk90=D_0027AD80 * (a7 * a10) + p->unk90;
+ p=self;
+ if(p->unk90>D_002756D0) p->unk90=p->unk90-D_002756B8;
+ else if(p->unk90<D_002756E8) p->unk90=*(volatile float *)&p->unk90+D_002756B8;
+ }
+ scratch[1]=a9; bits=*(volatile int *)&scratch[1]; bits &=0x7fffffff; *(volatile int *)&scratch[0]=bits;
+ if(scratch[0]>D_00278C58) {
+ p=self;
+ *(volatile float *)&p->unk4C=p->unk4C - D_0027AD7C * (a9 * a10);
+ p=self;
+ if(p->unk4C>D_0027653C) p->unk4C=15.0f;
+ else if(p->unk4C<D_0027AD78) p->unk4C=7.0f;
+ }
+ scratch[1]=a8; bits=*(volatile int *)&scratch[1]; bits &=0x7fffffff; *(volatile int *)&scratch[0]=bits;
+ if(scratch[0]>D_00278C58) {
+ p=self;
+ *(volatile float *)&p->unk3C=D_0027AD74 * (a8 * a10) + p->unk3C;
+ p=self;
+ if(p->unk3C>D_002786B8) p->unk3C=110.0f;
+ else if(p->unk3C<D_00276558) p->unk3C=60.0f;
+ }
 }
-
+#pragma optimize("", on)
 void C_000A0090::func_000A0090(int a0, int a1) {
     unk38 = 1;
 }
