@@ -23,6 +23,7 @@ struct S_00094620_Path {
     char pad38[0x70];
     int unkA8;
     S_00094620_Node *Node(int node) { return &unk34[node]; }
+    S_00094620_Node &NodeAt(int node) { return unk34[node]; }
     void func_001CEFD0(int node);
 };
 
