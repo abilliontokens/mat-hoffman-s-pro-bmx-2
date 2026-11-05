@@ -1,6 +1,11 @@
 /* 6 functions from 0x00029BD0 to 0x0002AAA0, found by Ghidra. */
 #include "common.h"
-struct V4_00029BD0 { union { struct { float x,y,z,w; }; int i[4]; }; };
+struct V4_00029BD0 {
+ union { struct { float x,y,z,w; }; __int64 q[2]; };
+ V4_00029BD0() {}
+ V4_00029BD0(const V4_00029BD0 &v) { q[0]=v.q[0]; q[1]=v.q[1]; }
+ V4_00029BD0 &operator=(const V4_00029BD0 &v) { q[0]=v.q[0]; q[1]=v.q[1]; return *this; }
+};
 struct __declspec(align(16)) M4_00029BD0 { float m[16]; };
 struct Sub_00029BD0 { char pad[0x1a0]; V4_00029BD0 v; };
 struct Data_00029BD0 { char pad[0x78]; V4_00029BD0 *v; };
