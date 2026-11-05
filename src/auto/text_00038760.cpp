@@ -3,13 +3,6 @@
 
 int func_001EA426(void *a, void *b);
 
-static inline void *GetAt(void **items, int count, int i)
-{
-    if (count > 0 && items != 0 && i < count)
-        return items[i];
-    return 0;
-}
-
 struct C_00038760 {
     char pad0[0x64];
     C_00038760 *f64;         /* 0x64 */
