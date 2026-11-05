@@ -35,6 +35,8 @@ extern char D_00288038[];
 extern char D_00275FB4[];
 extern "C" int memcmp(const void *a, const void *b, unsigned int n);
 #pragma intrinsic(memcmp)
+extern "C" int strcmp(const char *a, const char *b);
+#pragma intrinsic(strcmp)
 extern C_0013B210 *D_002BEAAC;
 
 /* table row of C_00168F40::f18 */
@@ -320,6 +322,7 @@ int C_00168F40::func_00169490(int name, int flag)
     unsigned int count;
     char *p;
     int i;
+    int h;
 
     if (f18 != 0) {
         func_001E8390(f18);
@@ -339,22 +342,24 @@ int C_00168F40::func_00169490(int name, int flag)
         f4C0 = 0;
     }
     if (flag != 0) {
-        f0 = D_002BEAAC->func_0013C9F0(name, D_00288038);
-        if (f0 == -1) {
+        h = D_002BEAAC->func_0013C9F0(name, D_00288038);
+        f0 = h;
+        if (h == -1) {
             return 0;
         }
-        *(int *)&f8 = 1;
-        *(int *)((char *)this + 0xC) = 1;
+        f8 = 1;
+        fC = 1;
         f428 = 0;
         f4 = 0;
+        func_001692E0(h);
     } else {
         f0 = D_002BEAAC->func_0013C9F0(name, D_00275FB4);
         if (f0 == -1) {
             return 0;
         }
         f428 = 0;
-        *(int *)&f8 = 1;
-        *(int *)((char *)this + 0xC) = 0;
+        f8 = 1;
+        fC = 0;
         D_002BEAAC->func_0013C8A0(f0, tag, 7, 1);
         tag[6] = 0;
         if (memcmp(tag, D_00288030, 7) == 0) {
@@ -394,8 +399,8 @@ int C_00168F40::func_00169490(int name, int flag)
         }
         f4 = 0;
         D_002BEAAC->func_0013AFF0(f0, 0, 0);
+        func_001692E0(f0);
     }
-    func_001692E0(f0);
     f424 = 0;
     return 1;
 }
