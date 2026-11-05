@@ -113,6 +113,26 @@ void C_001D3AB0::func_001D3AB0(void)
     ((C_001625D0 *)this)->func_001625D0();
 }
 
+void C_001D3AB0::func_001D3C30(void)
+{
+    if (unk48 != 0) {
+        func_001D3800();
+        if (unk50 == 0 && unk70 != 0) {
+            func_001D3860();
+        }
+        func_0025AA70(unk44);
+        if (unk44->fC == unk44->f8 - 1) {
+            if (unk4C != 0) {
+                func_0025AC10(unk44, 1, &D_00080000);
+                unk48 = 1;
+            } else {
+                func_001D37C0();
+            }
+        }
+    }
+    ((C_00157920 *)this)->func_00157920();
+}
+
 undefined4 C_001D3CA0::func_001D3CA0(byte param_1)
 {
   int func_001D3AB0(...);
