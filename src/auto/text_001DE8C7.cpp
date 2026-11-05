@@ -39,7 +39,7 @@ int __stdcall func_001DE8C7(int unused, int threadHandle, void *startContext1, v
     return threadHandle;
 }
 
-#pragma intrinsic(__readfsdword, __readfsbyte)
+#pragma intrinsic(__readfsdword)
 int func_001DE935(void)
 {
     return *(int *)(__readfsdword(0x28) + 0x12c);
