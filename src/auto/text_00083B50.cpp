@@ -118,3 +118,27 @@ HuntPointsOverlay *HuntPointsOverlay::func_00084930(int param_1)
     return this;
 }
 
+void HuntPointsOverlay::func_00084980(void)
+{
+    C_00084980_24 *p = unk24;
+    vtbl = &D_002795C4;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+    p = unk28;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+    if (unk2C) {
+        unk2C->v0(1);
+        unk2C = 0;
+    }
+    if (unk30) {
+        unk30->v0(1);
+        unk30 = 0;
+    }
+    ((C_00157660 *)this)->func_00157660();
+}
+
