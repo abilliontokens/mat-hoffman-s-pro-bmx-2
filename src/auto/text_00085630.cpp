@@ -52,6 +52,8 @@ struct C_00085F40_Obj4 {
     char *f1048;
     char pad104C[4];
     char *f1050;
+    char pad1054[4];
+    char *f1058;
 };
 
 struct C_00085F40_Obj2E8 {
