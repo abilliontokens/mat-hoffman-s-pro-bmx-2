@@ -76,7 +76,7 @@ struct C_001033D0 {
         };
         S_00103_Vec4 vec3D4;
     };
-    char pad3E4[4];
+    float unk3E4;
     int unk3E8;
     int unk3EC;
     int unk3F0;
