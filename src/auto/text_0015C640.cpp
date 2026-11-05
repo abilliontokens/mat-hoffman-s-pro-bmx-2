@@ -10,6 +10,47 @@ struct C_0015CB40 {
     void func_0015CB40(int a0, int a1);
 };
 
+struct S_0015CD70_Vec4 {
+    int v0;
+    int v1;
+    int v2;
+    int v3;
+};
+
+struct C_0015CD70 {
+    char pad0[0x24];
+    S_0015CD70_Vec4 f24;
+    void func_0015CD70(S_0015CD70_Vec4 *p);
+};
+
+struct S_0015CA10_Key {
+    float t;
+    u16 q[4];
+};
+
+struct Quat_0015CA10 {
+    float w, x, y, z;
+};
+
+struct C_0015CA10 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6(int n);
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    S_0015CA10_Key *f14;
+    void func_0015CA10(Quat_0015CA10 *q, float t);
+};
+
+void func_0001B250(S_0015CA10_Key *out, Quat_0015CA10 *q);
+int func_0015CAB0(S_0015CA10_Key *arr, int n, float t);
+
 struct C_0015CFE0 {
     void func_0015CFE0(undefined4 param_1);
 };
