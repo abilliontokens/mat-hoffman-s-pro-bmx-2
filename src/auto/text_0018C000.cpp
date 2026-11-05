@@ -190,6 +190,7 @@ struct V_0018C120 {
 
 extern "C" int strcmp(const char *s1, const char *s2);
 extern "C" unsigned int strlen(const char *s);
+extern "C" char *strcpy(char *dst, const char *src);
 void *func_001E83E8(void *block, unsigned int size);
 char *func_001E8920(char *dst, const char *src, int n);
 
@@ -556,6 +557,39 @@ void C_0018C960::func_0018C9B0(int keep)
         }
         node = next;
     }
+}
+
+int C_0018CC00::func_0018CC00(const char *name)
+{
+    volatile int len;
+    volatile int limit;
+    volatile int n;
+    int slot;
+
+    if (capacity < count + 1) {
+        C_0018CC00 * volatile s = this;
+        capacity = count + 10;
+        s->entries = (S_0018CC00_Entry *)func_001E83E8(s->entries, s->capacity * 0x38);
+        if (s->entries == 0) {
+            return -1;
+        }
+    }
+    slot = count;
+    len = strlen(name);
+    limit = 0x1f;
+    n = limit > len ? len : limit;
+    func_001E8920((char *)&entries[count], name, n);
+    ((char *)&entries[count])[n] = 0;
+    entries[count].f20 = 0;
+    entries[count].f24 = 0;
+    entries[count].f28 = entries[count].f24 + 0x14;
+    entries[count].f20 = (void *)func_001E8AA5(entries[count].f28 * 0x1c);
+    entries[count].f2C = 0;
+    entries[count].f30 = 0;
+    entries[count].f34 = entries[count].f30 + 0xa;
+    entries[count].f2C = (void *)func_001E8AA5(entries[count].f34 << 4);
+    count++;
+    return slot;
 }
 
 int C_0018CE00::func_0018CE00(int id, char *name)
