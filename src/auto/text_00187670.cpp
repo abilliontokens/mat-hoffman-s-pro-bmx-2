@@ -199,6 +199,39 @@ struct C_00188250 {
 };
 
 
+/* config record reader (func_00168BE0 reads a string, func_00168C20 an int, func_00168CB0 a vec4) */
+struct S_001880A0_Stream {
+    void func_00168BE0(void *key, void *def, char *dst, int size);
+    void func_00168C20(void *key, int def, void *dst);
+    void func_00168CB0(void *key, void *def, void *dst);
+};
+
+/* StaticModelTempData */
+struct C_001880A0 {
+    void *vtbl;
+    char f4[0x104];
+    char f108[0x10];
+    char f118[0x10];
+    char f128[0x10];
+    int f138;
+    int f13C;
+    int func_001880A0(S_001880A0_Stream *stream);
+};
+
+extern int D_00276310;
+extern int D_0027CEF0;
+extern int D_002A90B4;
+extern int D_00275AD4;
+extern int D_002A90E4;
+extern int D_00275AC8;
+extern int D_002A90D4;
+extern int D_0027CEE4;
+extern int D_0027CED8;
+extern int D_00289EB8;
+int func_001E9040(char *str, char *control);
+
+static __inline int Min_00187670(int a, int b) { return a > b ? b : a; }
+
 int C_001877F0::func_001877F0(C_001877F0Param *param)
 {
     char buf[0x104];
