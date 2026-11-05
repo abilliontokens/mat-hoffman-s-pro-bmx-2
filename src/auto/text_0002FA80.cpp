@@ -61,6 +61,64 @@ struct C_000B5870 {
     void func_000B5870(void);
 };
 
+/* BmxCameraController::func_0002FA80 (camera mode switch on a button press) */
+extern int D_002B7EBC;
+int func_00135C70(int a, int b, int c, int d);
+
+struct C_00157BF0_2FA80 {
+    int func_00157BF0(int a, int b);
+};
+
+struct C_0002F190_2FA80 {
+    float m[12];
+    C_0002F190_2FA80 *func_0002F190(void);
+};
+
+struct S_0002FA80_Obj {
+    virtual void v0(void *, int);
+    virtual void v1(void *);
+};
+
+struct S_0002FA80_Camera {
+    void func_0012AC20(void *, void *, void *, void *, void *);
+};
+
+struct S_0002FA80_Flag {
+    char pad0[0x95C];
+    int f95C;
+};
+
+/* 0x118-byte slot, camera object first */
+struct S_0002FA80_Slot {
+    S_0002FA80_Obj *obj;
+    char pad4[0x114];
+};
+
+struct S_0002FA80_List {
+    char pad0[4];
+    S_0002FA80_Slot *slots;
+    char pad8[4];
+    int cur;
+};
+
+struct BmxCameraController_0002FA80 {
+    char pad0[0x30];
+    S_0002FA80_Camera *f30;
+    S_0002FA80_Flag *f34;
+    char pad38[0x18];
+    S_0002FA80_Obj *f50;
+    char pad54[4];
+    S_0002FA80_Obj *f58;
+    char pad5C[8];
+    S_0002FA80_Obj *f64;
+    char pad68[4];
+    int f6C;
+    char pad70[4];
+    S_0002FA80_List *f74;
+    void func_0012B7D0(void *, int, int, int, int);
+    void func_0002FA80(int a, int b);
+};
+
 struct C_0012B7D0 {
     void func_0012B7D0(int handle, int a, int b, int c, int d);
 };
