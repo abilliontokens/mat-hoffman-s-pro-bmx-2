@@ -3,6 +3,39 @@
 #include "ghidra.h"
 extern const float D_00277D04;
 
+extern int D_0027AD64;
+void func_001E891B(void *p);
+inline void operator delete(void *p) { func_001E891B(p); }
+
+/* base class: CameraBehavior */
+struct C_0012B540 {
+    int unk0;
+    void func_0012B540(void);
+};
+
+struct S_0009F9F0_Part {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+};
+
+/* BmxPhotoCamera */
+struct C_0009F9F0 : C_0012B540 {
+    char pad4[0x8];
+    S_0009F9F0_Part *unkC;
+    S_0009F9F0_Part *unk10;
+    S_0009F9F0_Part *unk14;
+    char pad18[0x8C];
+    S_0009F9F0_Part *unkA4;
+    S_0009F9F0_Part *unkA8;
+    S_0009F9F0_Part *unkAC;
+    S_0009F9F0_Part *unkB0;
+    char padB4[0x28];
+    char *unkDC;
+    char *unkE0;
+    void func_0009F9F0(void);
+};
+
 struct C_0009FE40 {
     void func_0009FE40(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined4 *param_4);
 };
