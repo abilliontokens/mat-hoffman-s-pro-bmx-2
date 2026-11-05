@@ -19,6 +19,7 @@ struct UIService {
 struct UIOwner {
     void func_0002EF70(int, int);
     void func_00030240(int, int, UIQuad *, UIQuad *, void *);
+    void func_000306F0(int a, int b, int c, UIQuad d, const char *e, int f);
     char pad0[0x74];
     UIService *f74;
 };
