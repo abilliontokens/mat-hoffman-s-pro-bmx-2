@@ -166,6 +166,7 @@ struct C_000AC410_Pair {
     void *b;
 };
 extern void *D_002B7E18;
+extern "C" void *__cdecl memset(void *, int, unsigned int);
 /* BmxScene destructor */
 struct C_000AC410 {
     void *vtbl;
