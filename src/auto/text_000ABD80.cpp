@@ -109,7 +109,7 @@ struct C_000AC7F0_Dyn {
     virtual void v24();
     virtual void v25();
     virtual void v26();
-    virtual void v27(int arg);
+    virtual int v27(int arg);
     virtual void v28();
     virtual void v29();
     C_000AC7F0_Dyn *func_001B5830(int v);
