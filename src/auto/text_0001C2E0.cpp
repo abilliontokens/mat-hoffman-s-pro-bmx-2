@@ -536,13 +536,7 @@ void func_0001CB80(char *s) {
 
 int func_0001CBC0(S_0001CBC0_Item **a, S_0001CBC0_Item **b)
 {
-    int r;
-
-    r = -1;
-    if ((*a)->f90 <= (*b)->f90) {
-        r = 1;
-    }
-    return r;
+    return (*a)->f90 > (*b)->f90 ? -1 : 1;
 }
 
 int C_0001CBF0::func_0001CBF0(void) {
