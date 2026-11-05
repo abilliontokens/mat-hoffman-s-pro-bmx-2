@@ -14,6 +14,9 @@ extern float D_0028403C;
 
 void func_0012A380(void *dst, int param);
 
+struct S_0012AB70Vec;
+inline void Vec_Normalize(void *dst, int src) { func_0012A380(dst, src); }
+
 struct S_0012AB70Vec {
     int v0;
     int v1;
@@ -132,16 +135,17 @@ void C_0012AAE0::func_0012AAE0(float param1, float param2)
     f200 = r;
 }
 
+void func_0012A380(S_0012AB70Vec *dst, const S_0012AB70Vec *src);
 void C_0012AB70R::func_0012AB70(S_0012AB70Vec *param1, int param2, int param3, int *param4, float *param5)
 {
     if (param1 != 0) {
         f170 = *param1;
     }
-    if (param2 != 0) {
-        func_0012A380(f180, param2);
+    if ((S_0012AB70Vec *)param2 != 0) {
+        func_0012A380((S_0012AB70Vec *)f180, (S_0012AB70Vec *)param2);
     }
-    if (param3 != 0) {
-        func_0012A380(f190, param3);
+    if ((S_0012AB70Vec *)param3 != 0) {
+        func_0012A380((S_0012AB70Vec *)f190, (S_0012AB70Vec *)param3);
     }
     if (param4 != 0) {
         f1d4 = *param4;
@@ -169,8 +173,9 @@ void C_0012B000::func_0012B000(float param1, float param2)
 {
     f1fc = param1;
     f200 = param2;
-    f98 = D_00275460 / (D_00275460 - param1 / param2);
-    f9c = -(f98 * param1);
+    float f = D_00275460 / (D_00275460 - param1 / param2);
+    f98 = f;
+    f9c = -(f * param1);
     func_000263B0(ff0, fb0, f70);
 }
 
