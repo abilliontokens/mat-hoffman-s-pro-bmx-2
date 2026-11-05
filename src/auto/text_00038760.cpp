@@ -19,8 +19,9 @@ struct C_00038760 {
     char pad68[0x538];       /* 0x68 */
     int count;               /* 0x5A0 */
     void **items;            /* 0x5A4 */
-    int count2;              /* 0x5A8 */
-    void **items2;           /* 0x5AC */
+    S_00038760_Arr arr2;     /* 0x5A8 */
+    int count2;              /* 0x5B0 */
+    void **items2;           /* 0x5B4 */
     void *at(int i);
     void *at2(int i);
     int *func_000389C0(int param_1);
