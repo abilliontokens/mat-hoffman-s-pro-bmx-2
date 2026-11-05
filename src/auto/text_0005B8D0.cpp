@@ -1,5 +1,11 @@
 /* 42 functions from 0x0005B8D0 to 0x0005C720, found by Ghidra. */
 #include "common.h"
+struct C_0005C700 {
+    char pad0[0xCE8];
+    int unkCE8;
+    int func_0005C700(void);
+};
+
 struct C_0005C380 {
     char pad0[0xCE4];
     int unkCE4;
@@ -49,5 +55,9 @@ int C_0005C360::func_0005C360(void) {
 
 int C_0005C380::func_0005C380(void) {
     return unkCE4;
+}
+
+int C_0005C700::func_0005C700(void) {
+    return unkCE8;
 }
 
