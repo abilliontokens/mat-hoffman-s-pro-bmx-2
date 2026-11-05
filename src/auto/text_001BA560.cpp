@@ -426,6 +426,24 @@ C_001BB300 *C_001BB300::func_001BB300(byte flags)
     return this;
 }
 
+C_001BB470::C_001BB470(int a0)
+{
+    func_00157600(a0);
+    vtbl = (void *)&D_0028D244;
+    fE8 = 0;
+    fEC = 0;
+    fE0 = 0;
+    f24 = 0;
+    fD8 = -1;
+    f60 = 0;
+    fDC = 0;
+    for (int i = 0; i < 8; i++) {
+        fF0[i] = 0;
+    }
+    f110 = 0;
+    fE4 = 0;
+}
+
 void C_001BB4D0::func_001BB4D0(int param_1)
 {
   int in_ECX = (int)this;
