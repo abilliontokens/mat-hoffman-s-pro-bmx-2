@@ -32,8 +32,8 @@ struct C_0002B180 {
 
 struct Vec4_0002AF90 {
     float x, y, z, w;
-    void Set(const Vec4_0002AF90 *o) { *this = *o; }
-    void Lerp(const Vec4_0002AF90 *o, float t)
+    __forceinline void Set(const Vec4_0002AF90 *o) { *this = *o; }
+    __forceinline void Lerp(const Vec4_0002AF90 *o, float t)
     {
         Vec4_0002AF90 r;
         r.x = t * (x - o->x) + o->x;
