@@ -243,7 +243,10 @@ struct C_001CBF20 {
     int func_001CBF20(void);
     int func_001CBF60(void);
     int func_001CBF90(int v);
+    int func_001CBF90(float v);
 };
+
+int __stdcall func_002222E5(int a, float b, int c);
 
 /* swap-remove int array */
 struct C_001CBCF0 {
@@ -641,11 +644,14 @@ int C_001CBF20::func_001CBF60(void)
 int C_001CBF20::func_001CBF90(int v)
 {
     int e;
+    int h;
 
     if (!(f2C & 1)) {
         return 0;
     }
-    e = func_002222E5(f30, fEC = v, 1);
+    fEC = v;
+    h = f30;
+    e = func_002222E5(h, v, 1);
     if (e < 0) {
         func_001CBC10(e, &D_0028EECC, 0x205);
         return 0;
