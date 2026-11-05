@@ -189,6 +189,8 @@ struct C_00167760 {
     C_00167760_Obj *f360;
     C_00167760 *func_00167760(int a0);
     C_00167760 *func_00167A70(int flags);
+    int func_00167900(void);
+    void func_001677C0(C_00167760_Obj *a);
     C_00167760 *func_00167D10(C_0017A860 *owner, int b);
     void func_00157660(void);
     void func_001D3F50(void);
