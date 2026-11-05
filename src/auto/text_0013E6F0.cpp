@@ -114,3 +114,17 @@ void C_0013ECF0::func_0013ECF0(int a1, int a2, C_0013ECF0_Arg *a3, int a4, int a
     f21D0->func_00149310((int)a3, a4, a5, 0);
 }
 
+C_0013F650 *func_0013F650(void)
+{
+    C_0013F650 *p = (C_0013F650 *)func_001E8A44(0xf0);
+    if (p != 0) {
+        p->vtbl = (void *)&D_00284EA0;
+        p->fD8 = 0;
+        p->fD4 = 0;
+        p->fD0 = 0;
+        p->fDC = 1.0f;
+        return p;
+    }
+    return 0;
+}
+
