@@ -8,7 +8,7 @@ void func_001CBC10(int e, void *file, int line);
 int __stdcall func_002209A2(int a, int b);
 int __stdcall func_00220A8A(int a, int b);
 int __stdcall func_00220AD6(int a, int b);
-void __stdcall func_002223E1(int a, int b, int c);
+int __stdcall func_002223E1(int a, int b, int c);
 
 struct C_001CC3C0_138 {
     char pad0[0x28];
@@ -120,5 +120,14 @@ int C_001CC3C0::func_001CC460(int param_1)
         f140->f0 = param_1;
     }
     return 1;
+}
+
+int C_001CC3C0::func_001CCA10(void)
+{
+    if ((int)f154 != -1) {
+        if (f154->v7() != 0)
+            return 1;
+    }
+    return 0;
 }
 
