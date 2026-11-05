@@ -4,6 +4,8 @@
 /* 0xF800 / 0xFFE0 masks: the original object references them as symbols */
 extern char D_0000F800;
 extern char D_0000FFE0;
+extern char D_0000F000;
+extern char D_0000FF00;
 
 u32 func_00178210(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int pal)
 {
