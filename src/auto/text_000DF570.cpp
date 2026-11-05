@@ -72,13 +72,25 @@ struct S_000DFCF0_W {
     u8 f58;
 };
 
+struct S_000DFA80_W;
 struct C_000DFCF0 {
-    char pad0[0x2ac];
+    char pad0[0x280];
+    int unk280;
+    char pad284[0x28];
     int unk2ac;
     char pad2b0[0x18];
     int unk2c8;
-    char pad2cc[0x1dc];
+    int unk2cc;
+    char pad2d0[0x18];
+    int unk2e8;
+    char pad2ec[0x98];
+    float arr384[18];
+    float arr3cc[18];
+    char pad414[0x94];
     int unk4a8[72];
+    char pad5c8[0x2cc];
+    S_000DFA80_W *arr894[18];
+    S_000DFA80_W *arr8dc[18];
     void func_000DF570();
     void func_001BF000();
     void func_000DFCF0();
