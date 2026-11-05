@@ -47,7 +47,8 @@ struct S_0013B9C0_Ent20 {
 };
 
 struct C_0013B9C0 {
-    char pad0[0xC];
+    char pad0[8];
+    int f8;
     S_0013B9C0_Ent28 *fC;
     int f10;
     char pad14[0x10];
