@@ -45,6 +45,27 @@ struct C_002B91AC_s {
 
 extern C_002B91AC_s *D_002B91AC;
 
+struct C_001002A0 {
+ char pad0[0x280];
+ int unk280;
+ char pad284[0x34];
+ int unk2b8, unk2bc, unk2c0, unk2c4, unk2c8, unk2cc;
+ int unk2d0, unk2d4, unk2d8, unk2dc;
+ float unk2e0;
+ int unk2e4, unk2e8;
+ float unk2ec;
+ int unk2f0[1];
+ char pad2f4[0x5a0];
+ C_001B1B20 *unk894;
+ void func_001002A0();
+ void func_000DFC00();
+ void func_000DFC90();
+ void func_000DF8C0();
+ void func_000DFA80();
+ void func_000DFE50();
+ void func_00157960();
+};
+
 struct C_001006E0 {
     void func_001006E0(void);
     void func_000F1B60(void);
