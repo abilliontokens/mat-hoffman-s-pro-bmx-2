@@ -177,3 +177,16 @@ void C_00092890::func_00093120(void)
 void __stdcall func_00093280(int a0) {
 }
 
+int __stdcall func_00093290(int a0)
+{
+    int result = 0;
+    int r = D_002A8490->f2e0->f2cc->func_001D4300(8);
+
+    if (r == -1 || r == -2) {
+        D_002A8490->f2e0->f2cc->func_001D41D0(0);
+        D_002A8490->f2e0->f2cc->func_001D7D00();
+        result = 1;
+    }
+    return result;
+}
+
