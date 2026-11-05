@@ -242,6 +242,19 @@ int __stdcall func_0001B900(int param_1)
   return *(int *)(param_1 + 0x60) + -1;
 }
 
+void C_0001BAC0::func_0001BAC0(int idx, int slot)
+{
+    S_0001BAC0_Obj *obj;
+
+    if (f2c == 0 || idx >= f2c->f24 || idx < 0) {
+        return;
+    }
+    obj = f2c->f28[idx];
+    obj->f78[slot] = 0;
+    obj->f88 = -1;
+    obj->f90 = -1;
+}
+
 void C_0001B790::func_0001BE50(void)
 {
     int i;
