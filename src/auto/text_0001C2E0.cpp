@@ -425,3 +425,8 @@ void C_0001CD50::func_0001CD50(void) {
     unk5C = 1;
 }
 
+void C_0001CD60::func_0001CD60(int a, int b) {
+    func_00135C70(0x1f, 0, a, 0x30);
+    func_00157BF0(a, b);
+}
+
