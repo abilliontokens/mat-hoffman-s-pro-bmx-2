@@ -112,6 +112,20 @@ void C_001975A0::func_001975A0(f32 dt)
     f38 = f38 - dt;
 }
 
+int C_001975A0::func_00197610(f32 dt)
+{
+    if (D_002A8490->f124 != 0)
+        return 1;
+    fC0 = fC0 | 0x10;
+    if (fC0 & 2)
+        func_001975A0(dt);
+    if (fC0 & 4)
+        func_00196C00(dt);
+    fC4 = 0;
+    func_00157A00(dt);
+    return 1;
+}
+
 C_00197680 *C_00197680::func_00197680(int a0)
 {
     ((C_00138330 *)this)->func_00138330(a0);
