@@ -11,7 +11,19 @@ int __stdcall func_001FCFE0(int a0);
 void *__cdecl func_001E8A44(int size);
 void __stdcall func_001FCEA0(void *map, int index, void *out, int a, int b);
 
+extern char D_0028F6B8[], D_0028762C[], D_0028F6B4[], D_0028F6A0[], D_00276274[];
+struct Img_001D6D00 { int f0; char pad[0x10]; int f14; int f18; };
+struct Sz_001D6D00 { int w; void *p; };
+int __cdecl func_001ADCC0(char *buf, int n, ...);
+void *__cdecl func_0014FDF0(char *buf, char *mode);
+void __cdecl func_0014FE50(void *h);
+void *__cdecl func_001E8AA5(int n);
+void __cdecl func_001E8390(void *p);
+void __cdecl func_00178C60(void *a, ...);
+void __cdecl func_001B3A50(void *a, ...);
+
 struct XboxTextureMap {
+    void func_001D6D00(Img_001D6D00 *img, Sz_001D6D00 *sz, char *name);
     virtual void slot0(int flags);
     virtual void slot1();
     virtual void slot2();
@@ -87,12 +99,12 @@ XboxTextureMap *XboxTextureMap::func_001D6B70(void)
         p = (XboxTextureMap *)func_001E8A44(0x110);
         if (p != 0) {
             p->func_001B1200((void *)1);
-            *(void * volatile *)p = (void *)&D_0028F644;
+            ((void **)p)[0] = (void *)&D_0028F644;
             p->fB8 = 0;
             p->fBC = 0;
-            if (((XboxTextureMapVtbl *)p)->slot8(dims[1], f8, fC, (dims[0] << 3) / func_001B2910(fA4), fA0, fA4, fA4, 0, 0))
+            if (p->slot8(dims[1], f8, fC, (dims[0] << 3) / func_001B2910(fA4), fA0, fA4, fA4, 0, 0))
                 return p;
-            ((XboxTextureMapVtbl *)p)->slot0(1);
+            p->slot0(1);
         }
     }
     return 0;
