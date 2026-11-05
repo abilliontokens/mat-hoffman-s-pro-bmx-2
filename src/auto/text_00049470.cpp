@@ -81,6 +81,52 @@ struct S_4A1A0_Global {
 };
 extern S_4A1A0_Global *D_002A8490;
 
+struct E49Obj {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
+    virtual void v10();
+    E49Obj *func_00092890(int);
+    E49Obj *func_00088530(int);
+    E49Obj *func_00088570(void *);
+    E49Obj *func_0005ECA0(int);
+    void func_0005EDC0(void *);
+    E49Obj *func_00075B20(int);
+    void func_00075F30(void *);
+    E49Obj *func_00073AE0(int);
+    void func_00073EF0(void *);
+    E49Obj *func_000715B0(int);
+    void func_00071880(void *);
+    E49Obj *func_000777A0(int);
+    void func_000779C0(void *);
+    E49Obj *func_0008BB80(int);
+    void func_00092810(void *, void *, int, void *);
+    E49Obj *func_000888D0(int);
+    void func_00088950(void *, int);
+};
+struct E49Glob { char pad0[0x4e4]; void *f4E4[1]; char pad4e8[0x40]; void *f528; };
+struct E49Fps {
+    char pad0[0xe4];
+    E49Obj *fE4;
+    char padE8[0x74];
+    E49Obj *f15C;
+    char pad160[8];
+    E49Obj *f168;
+    char pad16c[0x34];
+    E49Obj *f1A0;
+    char pad1a4[4];
+    E49Obj *f1A8;
+    E49Obj *f1AC;
+    char pad1b0[0x20];
+    E49Obj *f1D0;
+    char pad1d4[0xb0];
+    E49Obj *f284[1];
+    char pad288[0x1c];
+    E49Obj *f2A4[1];
+    void func_00031630();
+    void func_00049C90();
+};
+void *func_001E8A44(unsigned int);
+
 struct S_4A1A0_V5C0 {
     virtual void dummy0();
     virtual void dummy1();
