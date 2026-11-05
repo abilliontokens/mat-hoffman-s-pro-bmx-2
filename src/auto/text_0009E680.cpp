@@ -14,3 +14,14 @@ struct C_0009F550 {
     void func_00169DE0(void);
     void *func_0009F550(int flags);
 };
+
+void *C_0009F550::func_0009F550(int flags) {
+    extern int D_0027AB9C;
+    void func_001E891B(void *);
+    unk0 = (int)&D_0027AB9C;
+    func_00169DE0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
