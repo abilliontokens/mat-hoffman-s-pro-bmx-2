@@ -236,6 +236,15 @@ struct CollisionResult {
     void func_00134980();
 };
 extern CollisionResult *D_002B92EC;
+struct CollisionNode {
+    char pad0[0x21]; unsigned char flags;
+    char pad22[6]; V4_00134DE0 center;
+    char pad38[0x10]; float radius;
+    int f4c, mode;
+    char pad54[0x13c]; int count;
+    char pad194[0xc]; CollisionNode **children;
+    char pad1a4[0x20]; int low, high;
+};
 struct __declspec(align(16)) CollisionMatrix {
     float m[16];
     void func_000264C0(void *);
