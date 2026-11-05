@@ -99,8 +99,7 @@ struct S_StrFlt {
 
 /* "e+000" copied as 4 + 2 bytes */
 struct S_ExpStr {
-    int a;
-    short b;
+    char s[6];
 };
 extern S_ExpStr D_00295024;
 
@@ -270,13 +269,13 @@ static __declspec(noinline) void shift_tmp(char *s, int dist)
     }
 }
 
-char *__cdecl func_001EB4F7(char *buf, int ndec, int caps, S_StrFlt *pflt, char g_fmt)
+static __declspec(noinline) char *func_001EB4F7(char *buf, int ndec, int caps, S_StrFlt *pflt, char g_fmt)
 {
     char *p;
     int expo;
 
     if (g_fmt) {
-        func_001EB4D4(buf + (pflt->sign == '-'), ndec > 0);
+        shift_tmp(buf + (pflt->sign == '-'), ndec > 0);
     }
     p = buf;
     if (pflt->sign == '-') {
