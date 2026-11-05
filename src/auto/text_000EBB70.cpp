@@ -158,6 +158,56 @@ struct C_000EBE30 {
     void func_000EC7E0();
 };
 
+void C_000EBCD0::func_000EBB70()
+{
+    C_000EBB_Elem *m;
+    C_000EBB_Elem *e;
+    S_002B91AC *s;
+    S_000EBB_Owner *owner;
+    int n;
+    int i;
+
+    owner = f124->f25C;
+    if (owner->f74->func_000301D0() == 0) {
+        if (f29C)
+            m = D_002B91AC->unk68;
+        else
+            m = D_002B91AC->unk50;
+        m->func_001D5AD0();
+    }
+    if (f2AC)
+        m = D_002B91AC->unk90;
+    else
+        m = D_002B91AC->unk88;
+    m->func_001D5AD0();
+    if (f2B0)
+        m = D_002B91AC->unk94;
+    else
+        m = D_002B91AC->unk8C;
+    m->func_001D5AD0();
+    n = f140->f4->f30 - 1;
+    for (i = 0; i < 4; i++) {
+        e = arr280[i];
+        e->f38 = ((int)f2D0 << 24) | (e->f38 & 0xffffff);
+        e->b58 |= 2;
+        if (i == n * 2 || i == n * 2 + 1) {
+            e = arr280[i];
+            e->f38 = (e->f38 & 0xffbfa35a) | 0xbfa35a;
+            e->b58 |= 2;
+            arr280[i]->func_001D5AD0();
+        } else {
+            e = arr280[i];
+            e->f38 = (e->f38 & 0xffcccccc) | 0xcccccc;
+            e->b58 |= 2;
+        }
+    }
+    s = D_002B91AC;
+    s->unk24->func_001D5AD0();
+    s->unk28->func_001D5AD0();
+    s->unk2C->func_001D5AD0();
+    s->unk30->func_001D5AD0();
+}
+
 void C_000EBCD0::func_000EBCD0()
 {
     func_000C5E40();
