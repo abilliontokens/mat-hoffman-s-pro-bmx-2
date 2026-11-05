@@ -121,6 +121,87 @@ struct C_001A23F0 {
     C_001A23F0 *func_001A23F0(S36_1A s0, S16_1A s1, S16_1A s2, int a17, int a18, int a19, int a20, int a21);
 };
 
+extern int D_0028B58C;
+void *func_001E8A44(int size);
+
+struct C_001A2470 {
+    char pad0[0x1c0];
+    int f1c0;
+    int func_001A2470(void);
+};
+
+struct Obj_001A2480 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5(int flags);
+    void func_001CB560(Obj_001A2480 *old);
+};
+
+struct S_0001CE80 {
+    void func_0001CE80(Obj_001A2480 *obj, void *a, void *b, int c, int d);
+};
+
+struct Game_001A2480 {
+    int f0;
+    S_0001CE80 *f4;
+};
+
+extern Game_001A2480 *D_002A8490;
+
+struct C_001A2480 {
+    char pad0[0x48];
+    int f48;
+    int f4c;
+    char pad50[0x20];
+    char f70[0x10];
+    char f80[0x10];
+    char pad90[0x1bc - 0x90];
+    Obj_001A2480 *f1bc;
+    char pad1c0[0x1ec - 0x1c0];
+    int f1ec;
+    void func_001A2480(Obj_001A2480 *obj, int a1, int a2);
+};
+
+struct S_001CBEF0 {
+    int func_001CBEF0(void);
+};
+
+struct S_001A2510_Arg {
+    char pad0[0xb4];
+    S_001CBEF0 *fb4;
+};
+
+struct C_001A2510 {
+    S_001A2510_Arg *f0;
+    int f4;
+    int func_001A14A0(int a);
+    int func_001A14F0(int a);
+    int func_001A1450(float a);
+    int func_001A1410(void);
+    int func_001A2510(S_001A2510_Arg *arg, int a1, int a2);
+};
+
+struct C_001A2580 {
+    void *vtbl;
+    char pad4[0x1bc];
+    int f1c0;
+    int f1c4;
+    int f1c8;
+    void *f1cc;
+    int f1d0;
+    int f1d4;
+    u8 f1d8;
+    char pad1d9[0x2d0 - 0x1d9];
+    int f2d0;
+    char pad2d4[4];
+    int f2d8;
+    void func_001A1680(int a0, int a1, int a2, int a3);
+    C_001A2580 *func_001A2580(int a0, int a1, int a2, int a3);
+};
+
 
 int C_001A1C90::func_001A1C90(int a0, int a1, S16_1A s, int a2) {
     if (unk1BC == 0) {
