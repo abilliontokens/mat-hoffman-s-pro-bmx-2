@@ -33,6 +33,20 @@ struct Fader_000597B0 {
     }
 };
 
+struct File_000590F0 {
+    char data[0x4CC];
+    void func_00168280(void);
+    int func_00169490(char *name, int mode);
+    void func_001691E0(void);
+    void func_00169710(char *s);
+};
+extern char D_00277FA0[];
+extern char D_00277F8C[];
+extern char D_00277F78[];
+extern char D_00277F64[];
+extern char D_00277F50[];
+extern "C" char *func_001E8920(char *d, const char *s, int n);
+
 struct Screen_000597B0 {
     char pad0[0x40];
     int f40;
