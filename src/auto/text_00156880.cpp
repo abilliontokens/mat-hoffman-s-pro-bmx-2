@@ -129,6 +129,8 @@ struct GameObject {
     virtual void v5();
     virtual void v6();
     virtual void v7();
+    virtual void v8();
+    virtual void v9();
     int pad4;
     GameObject *f8;
     GameObject *fC;
@@ -138,6 +140,7 @@ struct GameObject {
     unsigned int f1C;
     char pad20;
     u8 f21;
+    void func_00157680(void);
     void func_001576E0(void);
     void func_00157740(unsigned int flags);
     unsigned int func_00157770(void);
