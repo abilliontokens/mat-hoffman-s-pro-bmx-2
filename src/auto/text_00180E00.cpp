@@ -32,6 +32,38 @@ struct RenderableObjectData : C_0001DFE0 {
     void func_00181440(void);
 };
 
+/* 0x14-byte cell of S_00181540_Row::cells */
+struct S_00181540_Cell {
+    int f0;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+};
+
+/* 0xc-byte row of S_00181540_Res::rows */
+struct S_00181540_Row {
+    int count;
+    int f4;
+    S_00181540_Cell *cells;
+};
+
+/* resource object owned by RenderableObject::unk1A4 */
+struct S_00181540_Res {
+    virtual void v0();
+    virtual void v1();
+    virtual int v2();
+    virtual int v3();
+    int f4;
+    int count;
+    int fC;
+    S_00181540_Row *rows;
+};
+
+struct SoultreeObject {
+    void func_0019ACE0(void);
+};
+
 struct RenderableObject {
     void *vtbl;
     char pad4[0x23];
