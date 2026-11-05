@@ -2,6 +2,59 @@
 #include "common.h"
 #include "ghidra.h"
 #include "ghidra.h"
+extern int D_0028684C;
+extern int D_00275FB4;
+
+int __stdcall func_00201100(int param_1);
+int __stdcall func_001FCE50(int param_1, int param_2);
+void *func_001E8AA5(unsigned int size);
+
+struct C_0013B210 {
+    int func_0013C9F0(int param_1, int *param_2);
+    void func_0013AF40(int param_1, int param_2, int *param_3);
+    void func_0013C8A0(int param_1, void *param_2, int param_3, int param_4);
+    void func_0013C110(int param_1);
+};
+extern C_0013B210 *D_002BEAAC;
+
+struct C_00149E70 {
+    char pad0[0x48];
+    int unk48;
+    int unk4C;
+    int unk50;
+    int unk54;
+    int func_00149E70(int param_1, int param_2, int param_3);
+};
+
+struct C_0001DFE0 {
+    void *vtbl;
+    int unk4;
+    void func_0001DFE0();
+};
+
+struct C_0014A3A0 : C_0001DFE0 {
+    int unk8[8];
+    int unk28[8];
+    int unk48;
+    int unk4C;
+    int unk50;
+    int unk54;
+    int unk58;
+    float unk5C[16];
+    char pad9C[0x40];
+    int unkDC;
+    char padE0[8];
+    int unkE8;
+    int unkEC;
+    C_0014A3A0 *func_0014A3A0();
+};
+
+struct C_0014A560 {
+    char pad0[8];
+    void *unk8;
+    int func_0014A560(int param_1, int param_2);
+};
+
 struct C_0014A360 {
     undefined4 func_0014A360(int param_1);
 };
