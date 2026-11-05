@@ -299,6 +299,23 @@ struct S_00095060_PtrList {
     }
 };
 
+extern char D_00275630[];
+extern char D_0027A2A8[];
+
+/* a node of the path at C_00095060::f50: 0x44 bytes, a table of 0x18-byte
+   entries and its length */
+struct S_00095390_Entry {
+    int f0;
+    char *f4;
+    char pad8[0x10];
+};
+
+struct S_00095390_Node {
+    S_00095390_Entry *entries;
+    int count;
+    char pad8[0x3c];
+};
+
 /* BmxMusicManager */
 struct C_00095060 {
     void *vtbl;
