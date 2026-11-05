@@ -36,7 +36,10 @@ struct C_001C6DA0_Mgr {
 struct C_001C6DA0_Entry {
     char name[0x40];
     int unk40;
-    char pad44[0x14];
+    int unk44;
+    void *unk48;
+    void *unk4C;
+    char pad50[8];
 };
 
 struct C_001C6DA0 {
