@@ -40,6 +40,23 @@ struct C_0013E8C0 {
     C_0013E8C0 *func_0013E8C0(int param_1);
 };
 
+struct C_0013E6F0 {
+    char pad00[0xA4];
+    void *fA4;
+    char padA8[4];
+    int fAC;
+    char padB0[0x110 - 0xB0];
+    int f110;
+    int f114[6];
+    int func_0013E6F0(char *name, int b, int c);
+};
+char *func_001E8AC0(char *s, int ch);
+int func_001ADCC0(char *buf, int n, void *fmt, char *name, int idx);
+int func_001D6E20(char *buf, int b, int c);
+extern char D_002772CC[];
+extern "C" void *memset(void *, int, unsigned int);
+extern "C" unsigned int strlen(const char *);
+
 struct C_0013ECA0 {
     char pad00[0x10];
     char f10[0x40];
