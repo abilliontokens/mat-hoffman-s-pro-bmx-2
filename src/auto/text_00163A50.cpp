@@ -1,5 +1,16 @@
 /* 15 functions from 0x00163A50 to 0x001648E0, found by Ghidra. */
 #include "common.h"
+struct S_Vec4_1640D0 {
+    float x, y, z, w;
+};
+
+struct C_1640D0_Obj {
+    S_Vec4_1640D0 func_00197F70(float *vin);
+    S_Vec4_1640D0 func_00198120(float *p);
+};
+
+void func_001640D0(C_1640D0_Obj *a1, C_1640D0_Obj *a2, int axis, S_Vec4_1640D0 *out);
+
 struct C_00164820 {
     char pad0[0x10];
     int unk10;
