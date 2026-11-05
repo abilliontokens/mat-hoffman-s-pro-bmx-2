@@ -126,7 +126,22 @@ struct S_00189B60_Vec4 {
         z = z_;
         w = w_;
     }
+    S_00189B60_Vec4() {}
+    void Set(float a, float b, float c, float d) {
+        x = a;
+        y = b;
+        z = c;
+        w = d;
+    }
 };
+
+static inline void SetVec4_00189B60(S_00189B60_Vec4 *v, float a, float b, float c, float d)
+{
+    v->x = a;
+    v->y = b;
+    v->z = c;
+    v->w = d;
+}
 
 struct C_0015E0F0 {
     int func_0015E0F0(int a);
@@ -350,6 +365,41 @@ int BasicScene::func_00189AA0(void)
             dummy36();
             i++;
         } while (i < f340);
+    }
+    return 1;
+}
+
+int BasicScene::func_00189B60(int n)
+{
+    char nameB[0x80];
+    char nameA[0x80];
+    S_00189B60_Vec4 hi(1000.0f, 1000.0f, 1000.0f, 1.0f);
+    S_00189B60_Vec4 lo(-0.3f, -0.3f, -0.3f, 1.0f);
+    int i;
+
+    f494 = n;
+    D_002E2930->func_0015E0F0(2);
+    for (i = 0; i < n; i++) {
+        void *mem = func_001E8A44(0x170);
+        arr3f4[i] = mem != 0 ? ((C_0017A4D0 *)mem)->func_0017A4D0(1) : 0;
+        func_001ADCC0(nameA, 0x80, D_0028A388, i + 1);
+        arr3f4[i] = arr3f4[i]->func_0017ABE0(nameA);
+        if (arr3f4[i] != 0) {
+            func_001ADCC0(nameA, 0x80, D_0028A374, i + 1);
+            mem = func_001E8A44(0x364);
+            C_00167760 *o = mem != 0 ? ((C_00167760 *)mem)->func_00167760(1) : 0;
+            arr424[i] = o->func_00167D10(arr3f4[i], nameA);
+            if (f3e4 != 0) {
+                func_001ADCC0(nameB, 0x80, D_0028A35C, i + 1);
+                void *p = func_001E8A44(0x6778);
+                if (p != 0) {
+                    ((C_00157600 *)p)->func_00157600(1);
+                    *(void **)p = &D_0028A0D4;
+                }
+                arr454[i] = 0;
+            }
+            arr3f4[i]->func_0017A8F0(&hi, &lo, 3);
+        }
     }
     return 1;
 }
