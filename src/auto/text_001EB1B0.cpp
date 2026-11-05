@@ -67,6 +67,8 @@ extern "C" unsigned char __readfsbyte(unsigned long Offset);
 #pragma intrinsic(__readfsdword)
 #pragma intrinsic(__readfsbyte)
 
+extern "C" void (__stdcall *_imp__KeBugCheck)(unsigned long code);
+
 extern int D_002F41D0;
 extern S_Tiddata *D_002FB360;
 extern char D_002AEDD8[];
