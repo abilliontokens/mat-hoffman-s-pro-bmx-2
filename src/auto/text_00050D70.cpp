@@ -354,6 +354,20 @@ int C_00051A90::func_00051A90(int flag)
     return 1;
 }
 
+int C_00051AE0::func_00051AE0(int flag)
+{
+    if (flag != 0) {
+        ((C_0009FE40 *)f44->f54)->func_0009FE40(&f2D8[f2C8], &f2E8[f2C8], &f2F8[f2C8], &f308[f2C8]);
+        return 1;
+    }
+    ((C_0009FD60 *)f44->f54)->func_0009FD60(f318[f2C8], f328[f2C8], f338[f2C8], f348[f2C8]);
+    f2D8[f2C8] = f318[f2C8];
+    f2E8[f2C8] = f328[f2C8];
+    f2F8[f2C8] = f338[f2C8];
+    f308[f2C8] = f348[f2C8];
+    return 1;
+}
+
 undefined4 C_00051CB0::func_00051CB0(void *param_1)
 {
   int in_ECX = (int)this;
