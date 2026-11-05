@@ -50,6 +50,26 @@ struct C_001975A0 {
     void func_00157A00(f32 dt);
     int func_00197610(f32 dt);
 };
+#include <string.h>
+extern "C" void *func_001E8A44(unsigned size);
+
+struct C_001972B0 {
+    char pad0[0x50];
+    char *f50;
+    char pad54[0x18];
+    unsigned f6C;
+    char pad70[8];
+    int *f78, *f7C, *f80, *f84, *f88, *f8C, *f90, *f94, *f98, *f9C, *fA0, *fA4, *fA8, *fAC, *fB0, *fB4;
+    char *fB8;
+    char *fBC;
+    u8 fC0;
+    char padC1[7];
+    unsigned fC8;
+    char *fCC;
+    void func_00196290();
+    C_001972B0 *func_001972B0(unsigned a, unsigned b, u8 c);
+};
+
 struct C_00197290 {
     undefined4 func_00197290(byte param_1);
 };
