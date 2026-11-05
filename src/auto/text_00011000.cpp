@@ -178,6 +178,11 @@ struct C_00011E30 {
     C_00017680_Vec v404;
     C_00017680_Vec func_00011E30(void);
 };
+static inline float sqrt_119D0(float x) {
+    float r;
+    _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x)));
+    return r;
+}
 static __forceinline float distance_119D0(const float *a, const float *b) {
     float x = a[0]-b[0], y = a[1]-b[1], z = a[2]-b[2];
     float square = z*z+y*y+x*x;
