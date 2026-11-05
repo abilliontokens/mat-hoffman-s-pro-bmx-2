@@ -34,6 +34,12 @@ struct Vec4_143660 {
     f32 y;
     f32 z;
     f32 w;
+    void Set(Vec4_143660 v) {
+        x = v.x;
+        y = v.y;
+        z = v.z;
+        w = v.w;
+    }
 };
 
 struct Alloc190 {
@@ -234,6 +240,23 @@ void C_00143600::func_00143600()
     func_00197AA0();
     func_000263B0(m, (char *)this + 0xf0, (char *)(D_002EFDB8[1] + 0xf0));
     D_002AB66C->func_001C5DE0(m, (char *)this + 0x150, (char *)this + 0x160, 0);
+}
+
+void DXRenderableObject::func_00143660(void)
+{
+    ShadowPiece *piece;
+    int i;
+
+    if (!(f181 & 1))
+        return;
+    if (f1d4 == -1)
+        f1d4 = (D_002A829C->f14[*f1b8].f4->f54->f24 >> 3) & 1;
+    ((Alloc190 *)f1d0)->func_00142F30(D_002EFDB8[1]);
+    ((Alloc190 *)f1d0)->f160 = f1c0;
+    piece = &f1a4->pieces[f1a0];
+    for (i = 0; i < piece->count; i++)
+        piece->items[i].func_001446B0((int)f1d0, (int)this, f1b8[piece->items[i].f4]);
+    func_00157960();
 }
 
 void *DXRenderableObjectData::func_00143770(int flags)
