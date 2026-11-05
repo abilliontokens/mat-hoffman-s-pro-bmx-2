@@ -42,7 +42,7 @@ struct S_001B1810_Out {
 struct C_001B1580 {
     char pad0[0x24];
     C_001B1580_24 *unk24;             /* 0x24 */
-    char pad28[0x4];
+    int unk28;
     int unk2C;                        /* 0x2C */
     int unk30;                        /* 0x30 */
     char pad34[0x30];
