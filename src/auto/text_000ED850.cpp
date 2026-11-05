@@ -3,6 +3,24 @@
 
 extern int D_00281D24;
 
+struct C_001B1980 {
+    void func_001B1980(void);
+    void func_001B2270(int a0);
+    void func_001B1860(float a0, float a1, int a2, float a3, float a4, float a5, float a6, float a7, float a8, float a9, float a10, float a11, float a12);
+};
+extern float D_00279B50;
+extern float D_0027E144;
+struct C_000EE060 {
+    char pad0[0x280];
+    int unk280;
+    char pad284[0x29C - 0x284];
+    int unk29C;
+    char pad2A0[0x460 - 0x2A0];
+    float arr460[9];
+    C_001B1980 *arr48C[9];
+    void func_000EE060(void);
+};
+
 struct C_001D5AD0 {
     void func_001D5AD0(void);
 };
