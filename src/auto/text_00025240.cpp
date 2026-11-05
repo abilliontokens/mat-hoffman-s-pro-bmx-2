@@ -160,6 +160,34 @@ struct C_000255D0 {
     void func_000255D0(Vec4_257E0 *pos, float radius, float t, int chance);
 };
 
+#include <xmmintrin.h>
+static __forceinline float Max_00025E50(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float Min_00025E50(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+extern int D_002A1030;
+extern f32 D_00276558, D_00276554, D_00276550, D_00275AF4, D_0027654C, D_00276548;
+extern f32 D_00275800, D_00276544, D_00276540, D_0027653C, D_002756B4, D_00276538;
+extern f32 D_002755E0, D_002A1050;
+
+struct C_00025E50 {
+    void *vtbl;
+    float unk4;
+    float unk8;
+    float unkC;
+    float unk10;
+    float unk14;
+    float unk18;
+    float unk1C;
+    int unk20;
+    float unk24;
+    float unk28;
+    float unk2C;
+    float unk30;
+    float unk34;
+    float unk38;
+    int unk3C;
+    void func_00025E50(float dt);
+};
+
 struct AmbientDebris {
     void *vtbl;
     float unk4;
@@ -182,6 +210,66 @@ struct AmbientDebris {
     void func_00026170(C_00168B90 *cfg);
 };
 
+
+void C_000255D0::func_000255D0(Vec4_257E0 *pos, float radius, float t, int chance)
+{
+    int hits;
+    int id;
+    int i;
+    int n;
+    int k;
+    int idx[6];
+
+    if (t != D_00275544) {
+        f58 = D_002A8490->unk238 - (int)(t * D_00276520);
+        f74 = *pos;
+        f24 = radius;
+        return;
+    }
+    hits = 0;
+    id = -1;
+    for (i = 0; i < f30; i++) {
+        if (f60[i]->f79 == 0) {
+            float dx = f60[i]->f5c - pos->x;
+            float dy = f60[i]->f60 - pos->y;
+            float dz = f60[i]->f64 - pos->z;
+            float d = (float)sqrt(dx * dx + dy * dy + dz * dz);
+            if (d < radius) {
+                f60[i]->func_000235C0();
+                f60[i]->f34--;
+                f60[i]->func_00023340();
+                f60[i]->f79 = 1;
+                f60[i]->f78 = 0;
+                id = f60[i]->f44;
+                hits++;
+            }
+        }
+    }
+    if (hits != 0 && id != -1) {
+        n = 0;
+        for (i = 0; i < f40; i++) {
+            if (f5c[i]->id == id) {
+                idx[n++] = i;
+                if (n >= 6) {
+                    break;
+                }
+            }
+        }
+        if ((chance == 0 || func_00011260(1, 100) <= 50) && n != 0) {
+            if (n == 1) {
+                k = 0;
+            } else {
+                k = func_00011260(0, n - 1);
+                if (k < 0) {
+                    return;
+                }
+            }
+            k = idx[k];
+            D_002A8490->unk4->func_0001CE80(f5c[k]->f4, pos, D_002A0F74, 4.0f, 100.0f);
+            f5c[k]->f4->v5(4);
+        }
+    }
+}
 
 void *AmbientDebris::func_00025920(unsigned int flags)
 {
