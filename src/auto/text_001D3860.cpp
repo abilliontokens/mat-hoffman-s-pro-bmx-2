@@ -76,6 +76,40 @@ struct C_001D3F60 : C_001D3F50 {
 
 extern int D_0028F474;
 extern int D_00080000;
+extern char D_00278068[];
+extern char D_0028F0A8[];
+extern char D_0028F510[];
+extern int D_0026D8D0;
+
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+int __stdcall func_001DEF8D(const char *name);
+int __stdcall func_001DE51E(void *path, void *find);
+int __stdcall func_001DE625(int handle, void *find);
+int __stdcall func_001DE66C(int handle);
+int __stdcall func_001DE2BB(void *a, void *b, int c, int d, void *e, int f);
+void __cdecl func_001DDE3E(char *buf, const char *fmt, ...);
+void __cdecl func_001DDE51(char *buf, const char *fmt, ...);
+int func_001EA426(const char *a, const char *b);
+unsigned __stdcall func_0026EBC5(void *type);
+int __stdcall func_0026EBE7(void *type, unsigned *insertions, unsigned *removals);
+
+struct S_001D4200_Find {
+    char pad0[0x140];
+    char name[0x104];
+    char alt[0x100];
+};
+
+struct C_001D4200 {
+    int unk0;
+    int unk4;
+    int unk8;
+    unsigned func_001D4060(int a);
+    int func_001D40E0(int a);
+    int func_001D4170(int a);
+    int func_001D4200(char *out);
+    int func_001D4300(unsigned a);
+    int func_001D4380(char *out);
+};
 
 void __stdcall func_0025ADD0(void *p);
 void __stdcall func_0025AA70(void *p);
