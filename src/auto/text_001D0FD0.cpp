@@ -39,6 +39,7 @@ struct S_001D13D0_Alloc {
 };
 
 struct Game {
+    virtual void v0();
     void func_00156FC0();
 };
 
@@ -200,7 +201,7 @@ void *XboxGame::func_001D1390(int flags)
     vtbl = (void *)&D_0028F154;
     if (unk2A0 != 0) {
         unk2A0 = 0;
-        func_00156FC0();
+        ((Game *)this)->func_00156FC0();
     }
     if (flags & 1) {
         func_001E891B(this);
@@ -213,20 +214,18 @@ int XboxGame::func_001D13D0(int param_1)
     S_001D13D0_Alloc *p;
 
     unk2A0 = func_00201820(0);
-    if (unk2A0 == 0) {
-        return 0;
-    }
-    p = (S_001D13D0_Alloc *)func_001E8A44(0x9e0);
-    if (p == 0) {
-        D_002F07B8 = 0;
-        return 0;
-    }
-    D_002F07B8 = (S_002F07B8 *)p->func_001D7D50();
-    if (D_002F07B8 == 0) {
-        return 0;
-    }
-    if (D_002F07B8->func_001D87A0(0, unk29C, unk2A0, (unk230 >> 6) & 1) != 0) {
-        return func_001572B0(param_1);
+    if (unk2A0 != 0) {
+        p = (S_001D13D0_Alloc *)func_001E8A44(0x9e0);
+        if (p != 0) {
+            D_002F07B8 = (S_002F07B8 *)p->func_001D7D50();
+            if (D_002F07B8 != 0) {
+                if (D_002F07B8->func_001D87A0(0, unk29C, unk2A0, (unk230 >> 6) & 1) != 0) {
+                    return func_001572B0(param_1);
+                }
+            }
+        } else {
+            D_002F07B8 = 0;
+        }
     }
     return 0;
 }
