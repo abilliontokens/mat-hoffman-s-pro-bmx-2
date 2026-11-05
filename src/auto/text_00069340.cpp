@@ -223,6 +223,7 @@ struct C_00069BD0_Obj {
     int unk1F4;
     void func_00032A40();
     void func_00035720();
+    void func_00031610(int, int);
 };
 
 /* a drawable the page owns: func_001D5AD0 draws it, f38/b58 are its colour and dirty flag */
