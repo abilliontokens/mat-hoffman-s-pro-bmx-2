@@ -178,10 +178,13 @@ struct C_001BBAA0 {
     float *unkC8;
     int *unkCC;
     int unkD0;                        /* 0xD0 */
-    char padD4[0x210];
+    char padD4[0x208];
+    int unk2DC;
+    int unk2E0;
     struct S_001BBE20_2E4 *unk2E4;
     int unk2E8;
     u8 unk2EC;                        /* 0x2EC */
+    C_001BBAA0 *func_001BB680(int a);
     void func_001BBA60(void);
     __declspec(noinline) void func_001BBAA0(void *a, void *b);
     void func_001BBE20(int a);
