@@ -58,6 +58,19 @@ struct S_0009E590_Owner {
     S_0009E590_Item *f134;
 };
 
+struct C_0009DC00 {
+    char pad0[0x64];
+    S_0009E590_Owner *f64;
+    char pad68[4];
+    char buf6C[0x104];
+    char pad170[0x18];
+    u32 f188;
+    char pad18C[0x1c];
+    u32 f1A8;
+    u32 f1AC;
+    C_0009DC00 *func_0009DC00(int a1, int a2, int a3);
+};
+
 /* BmxSparkParticleEmitter */
 struct C_0009E590 {
     void *vtbl;
@@ -192,6 +205,21 @@ void C_0009DF90::func_0009DF90(float param_1)
   *(byte *)(in_ECX + 0x1cc) = *(byte *)(in_ECX + 0x1cc) | 2;
   *(float *)(in_ECX + 0x1f0) = D_00275460 - fVar1 * param_1;
   return;
+}
+
+C_0009E0C0 *C_0009E0C0::func_0009E0C0(int a1, int a2, int a3)
+{
+    ((C_0016A1D0 *)this)->func_0016A1D0(a1, a2, a3);
+    S_0009E0C0_Item *item = f64->f134;
+    if (item != 0) {
+        S_0009E0C0_Sub *sub = &item->sub;
+        if (sub != 0) {
+            f1AC = sub->f8;
+            f188 = f1A8 = sub->f4;
+            ((C_0016A1D0 *)this)->func_0016A330((char *)this + 0x6C);
+        }
+    }
+    return this;
 }
 
 int BmxSmokeParticleEmitter::func_0009E400(S_0009E5F0_Stream *stream) {
