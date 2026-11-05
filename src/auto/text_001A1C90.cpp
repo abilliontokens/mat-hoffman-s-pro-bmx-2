@@ -2,6 +2,8 @@
 #include "common.h"
 #include "ghidra.h"
 extern int D_0028B45C;
+extern int D_0028B3C4;
+extern int D_0028B4F4;
 
 struct S16_1A {
     int a;
