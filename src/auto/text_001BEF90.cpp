@@ -81,6 +81,14 @@ void C_001BEFC0::func_001BEFC0(int param_1, int param_2)
   unk140[param_1]->unk2C[param_2 - 1]->func_001BDA20();
 }
 
+void C_001BF000::func_001BF000(void)
+{
+  if (unk168 != 0) {
+    D_002EFDB8->v4(0, unk168, 0, 0);
+  }
+  func_00157920();
+}
+
 undefined4 C_001BF030::func_001BF030(void)
 {
   int __stdcall func_001577A0(int, int);
