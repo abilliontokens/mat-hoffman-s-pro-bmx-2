@@ -96,6 +96,7 @@ struct RenderableObject {
     float unk1CC;
     void func_00197820(int a);
     RenderableObject *func_001814B0(int a);
+    void func_00181540(void);
 };
 
 struct Mgr {
