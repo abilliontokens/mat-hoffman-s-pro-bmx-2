@@ -57,7 +57,12 @@ struct C_0015DCC0_Item {
 void *func_001E83E8(void *p, int size);
 
 struct C_0015DA60 {
-    char pad0[0x38];
+    char pad0[0x24];
+    int unk24;
+    int unk28;
+    int unk2C;
+    int unk30;
+    C_0015DCC0_Item *unk34;
     void *unk38;
     V4_15D850 *unk3C;
     V4_15D850 unk40;
