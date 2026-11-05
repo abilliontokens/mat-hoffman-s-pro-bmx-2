@@ -4,6 +4,14 @@ extern "C" __declspec(dllimport) int __stdcall KeDelayExecutionThread(int a0, in
 
 extern int D_0028FB38;
 extern char D_0028FAD0[];
+
+struct S_001DE0DD {
+    unsigned int flags;
+    char pad4[0x28];
+    char name[0x114];
+    char path[0x104];
+    char resp[0x80];
+};
 extern "C" int (__stdcall *_imp__NtSuspendThread)(int a0, int *a1);
 extern "C" void (__stdcall *_imp__KeQuerySystemTime)(void *a0);
 extern "C" int (__stdcall *_imp__NtSetInformationFile)(int a0, void *a1, void *a2, int a3, int a4);
