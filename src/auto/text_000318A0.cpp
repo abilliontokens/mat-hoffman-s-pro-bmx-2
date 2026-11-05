@@ -512,3 +512,30 @@ void C_00032720::func_00032720(void)
   }
   return;
 }
+
+void BmxEvent::func_00032740(void)
+{
+    int i;
+
+    if (f1c0 != 0) {
+        f1c0->func_000999E0();
+    }
+    if (D_002A8490->f2e0->f4 != 10) {
+        for (i = 0; i < f64->f4e0->f24; i++) {
+            f64->f4e0->arr1a8[i]->func_00109F30();
+        }
+    }
+    if (f1c0 != 0) {
+        f1c0->func_00099590();
+    }
+    if (f64->f3b4 != 0) {
+        for (i = 0; i < f64->f3b4->f24; i++) {
+            f64->f3b4->f28[i]->f4->fA0 = -1.0f;
+            f64->f3b4->f28[i]->f4->fA4 = -1.0f;
+            f64->f3b4->f28[i]->f4->fA8 = -1.0f;
+            f64->f3b4->f28[i]->f4->fAC = -1.0f;
+            f64->f3b4->f28[i]->f4->fB0 = -1.0f;
+        }
+    }
+}
+
