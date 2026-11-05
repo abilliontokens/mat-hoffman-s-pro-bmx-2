@@ -1,5 +1,6 @@
 /* 13 functions from 0x0008AED0 to 0x0008BCD0, found by Ghidra. */
 #include "common.h"
+#include <string.h>
 
 extern int *D_002A8490;
 extern int D_00275630;
