@@ -59,20 +59,6 @@ struct S_0004C320_Comp {
 
 struct S_0004C320_Part : virtual S_0004C320_Base {
     S_0004C320_Comp *f4;
-
-    __forceinline void SetHighlight(int on, float x, float y, float z)
-    {
-        float v1[4];
-        float v2[4];
-
-        if (on) {
-            v7();
-            f4->func_001824E0(v1, x, y, z);
-        } else {
-            v5();
-            f4->func_001824E0(v2, 1.0f, 1.0f, 1.0f);
-        }
-    }
 };
 
 /* S_0004C320_Part seen without its virtual inheritance: vbptr first, then f4 */
