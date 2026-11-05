@@ -71,6 +71,46 @@ struct C_0018AEF0 {
     void *func_0018AEF0(unsigned int flags);
 };
 
+extern "C" void * __cdecl memset(void *, int, unsigned int);
+void BasicScene::func_0018A010()
+{
+ if(f4D8 & 1) {
+  S_00185610_Out v;
+  memset(&v.f4,0,16); v.f14=1; v.f18=0.5f;
+  func_00185610(&v);
+  if(D_002A8490->mode==1) {
+   float time=D_002A8490->time;
+   float x=f4C4->func_00026A10(v.f14,time);
+   float y=f4C8->func_00026A10(v.f18,time);
+   float r=f4CC->func_00026A10(v.f4,time);
+   float g=f4D0->func_00026A10(v.f8,time);
+   float b=f4D4->func_00026A10(v.fC,time);
+   unsigned int color=((unsigned int)(int)b & 255) | (((((unsigned int)(int)r | 0xffffff00)<<8) | ((unsigned int)(int)g &255))<<8);
+   f3DC->func_00150390(color,x,y,0);
+  } else {
+   unsigned int color=(unsigned int)(int)v.f4 | 0xffffff00;
+   color=(color<<8) | ((unsigned int)(int)v.f8&255);
+   color=(color<<8) | ((unsigned int)(int)v.fC&255);
+   f3DC->func_00150390(color,v.f14,v.f18,0);
+  }
+ }
+ if(f388->count>0 && f3E0) {
+  int current=*(int *)(*(char **)(*(char **)(D_002EFDB8+4)+0x2c)+0x3c);
+  if(current<f340) {
+   int selected=f388->indices[current];
+   for(int i=0;i<f388->count;i++) {
+    f3E0[i]->flags27 &= ~2;
+    f3E0[i]->flags21 &= ~1;
+   }
+   if(selected>=0) {
+    f3E0[selected]->flags27 |= 2;
+    f3E0[selected]->flags21 |= 1;
+   }
+  }
+ }
+ func_001578D0();
+}
+
 void *C_0018AEF0::func_0018AEF0(unsigned int flags)
 {
     if (flags & 2) {
