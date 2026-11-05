@@ -211,7 +211,6 @@ extern int D_0028EECC;
 void func_001CBC10(int e, void *file, int line);
 int __stdcall func_0022195C(int a);
 int __stdcall func_0022095F(int a, void *b);
-int __stdcall func_002222E5(int a, int b, int c);
 
 struct S_001CBF20_Vec4 {
     int x;
@@ -716,6 +715,7 @@ int C_001CC0C0::func_001CC320(unsigned int v)
             func_001CBC10(r, &D_0028EECC, 0x621);
             return 0;
         }
+    store:
         f19C = v;
         return 1;
     }
@@ -726,11 +726,10 @@ int C_001CC0C0::func_001CC320(unsigned int v)
         return 0;
     }
     r = D_00221B4C(f140->fC, v);
-    if (r < 0) {
-        func_001CBC10(r, &D_0028EECC, 0x630);
-        return 0;
+    if (r >= 0) {
+        goto store;
     }
-    f19C = v;
-    return 1;
+    func_001CBC10(r, &D_0028EECC, 0x630);
+    return 0;
 }
 
