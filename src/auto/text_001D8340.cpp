@@ -10,6 +10,19 @@ void *__stdcall func_001FF410(void *p, int flags);
 void __stdcall func_00201100(void *p);
 void __stdcall func_00202A40(void *p);
 
+struct C_001D8340 {
+    char pad0[0x6D4];
+    unsigned char r[0x100];
+    unsigned char g[0x100];
+    unsigned char b[0x100];
+    unsigned char flags;
+    void func_001D8340(int amount);
+};
+extern float D_00284758, D_002755E4, D_00275460;
+extern "C" int func_001DC974(void);
+extern "C" int func_001E8858(void);
+extern "C" void __stdcall func_001FF960(int mode, void *ramp);
+
 struct S_001D8AA0_Local {
     char pad0[0xC];
     u32 fC;
@@ -220,22 +233,25 @@ int XboxVideoCard::func_001D8A10(int a1, int a2, int a3, int a4, int a5, int a6,
 void XboxVideoCard::func_001D8AA0(void *param_1)
 {
     S_001D8AA0_Local local;
-    if (this->func_001D8140(&local, param_1, this->f44) == 0)
+    switch (this->func_001D8140(&local, param_1, this->f44)) {
+    case 0:
         return;
+    default:
+        break;
+    }
     this->func_001D8970(local.fC, local.f10, 0);
 }
 
 void C_001D8AE0::func_001D8AE0(int p1, int p2, int p3, int p4, int p5)
 {
-    S_001D8AE0_S3 t;
-    u32 *q = (u32 *)&sub;
-    q[2] = 0;
-    q[1] = 0;
-    q[0] = 0;
-    t.a = p1;
-    t.b = p2;
-    t.c = p3;
-    sub = t;
+    volatile u32 t[3];
+    sub.c = 0;
+    sub.b = 0;
+    sub.a = 0;
+    t[0] = p1;
+    t[1] = p2;
+    t[2] = p3;
+    sub = *(S_001D8AE0_S3 *)t;
     fC = p4;
     f10 = p5;
 }
