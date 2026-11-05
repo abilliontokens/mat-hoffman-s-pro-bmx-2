@@ -148,23 +148,36 @@ struct C_0010DD90 {
     void func_0010DD90(float, int, int, int, int, int);
 };
 
+struct Rec_10DED0 { char b[0x32]; };
 struct Table_10DED0 {
  char pad0[0x20EC]; int flags[70]; int names[70]; int values[70];
+ char pad2434[0x3A04-0x2434]; Rec_10DED0 recs[80];
+ char pad49A4[0x60C4-0x49A4]; int ids[80]; int keys[80];
  void func_000A4AF0(int, char *);
 };
 struct Owner_10DED0 { char pad0[0x52C]; Table_10DED0 *f52C; };
-struct Queue_10DED0 { int count; int ids[5]; int modes[5]; void func_00109340(int,int); };
+struct Queue_10DED0 { int count; int ids[5]; int modes[5]; int f2C; int f30; int f34; int f38[100]; int f1C8[100]; void func_00109340(int,int); };
+struct Obj_10E030_5F0 { void func_000261F0(int); };
 struct C_0010DED0 {
  char pad0[0x24]; Owner_10DED0 *f24;
- char pad28[0x960-0x28]; float f960;
- char pad964[0x1084-0x964]; Queue_10DED0 *f1084;
+ char pad28[0x5F0-0x28]; Obj_10E030_5F0 *f5F0;
+ char pad5F4[0x604-0x5F4]; int f604;
+ char pad608[0x960-0x608]; float f960;
+ char pad964[0xCE0-0x964]; int cntCE0[80]; int cntE20[80];
+ char padF60[0x1084-0xF60]; Queue_10DED0 *f1084;
  char pad1088[0x111C-0x1088]; int f111C;
  char pad1120[8]; int f1128;
- char pad112C[0x1168-0x112C]; int f1168;
+ char pad112C[0x1134-0x112C]; int f1134;
+ char pad1138[0x1158-0x1138]; int f1158;
+ char pad115C[0x1168-0x115C]; int f1168;
  char pad116C[0x11DC-0x116C]; int f11DC;
  char pad11E0[8]; int f11E8;
+ char pad11EC[0x15F4-0x11EC]; int f15F4;
  int func_00108270(int,int);
+ void func_00108D10(int,int);
+ void func_00108E30(int,int);
  void func_0010DED0(int,int);
+ int func_0010E030(int,int);
 };
 
 struct C_0010E260 {
