@@ -43,6 +43,16 @@ struct StringTable {
 };
 
 extern "C" char *strcpy(char *, const char *);
+void *SpringCollisionModel::func_001AB7B0(unsigned int flags)
+{
+    vtbl = (void *)&D_0028BFC4;
+    if (field_84) func_001E8390(field_84);
+    if (field_90) func_001E8390(field_90);
+    func_00157660();
+    if (flags & 1) func_001E891B(this);
+    return this;
+}
+
 StringTable *StringTable::func_001AC3A0()
 {
     func_0001DFE0();
