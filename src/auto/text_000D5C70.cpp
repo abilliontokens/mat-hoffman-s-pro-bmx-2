@@ -42,3 +42,25 @@ struct BmxUIPageHOF2 {
     void func_000D5E00();
     void func_000D6B40();
 };
+
+void BmxUIPageHOF2::func_000D5E00()
+{
+    vtbl = &D_0027F2D4;
+    for (int i = 0; i < 2; i++) {
+        if (arr2C4[i] != 0) {
+            arr2C4[i]->Destroy(1);
+            arr2C4[i] = 0;
+        }
+        if (arr2CC[i] != 0) {
+            arr2CC[i]->Destroy(1);
+            arr2CC[i] = 0;
+        }
+    }
+    for (int i = 0; i < 2; i++) {
+        if (arr2FC[i] != 0) {
+            arr2FC[i]->Destroy(1);
+            arr2FC[i] = 0;
+        }
+    }
+    func_001BE3F0();
+}
