@@ -1,2 +1,27 @@
 /* 17 functions from 0x00177230 to 0x00178210, found by Ghidra. */
 #include "common.h"
+
+u32 func_00177920(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch)
+{
+  u8 *d;
+  u8 *s;
+  u8 *p;
+  u8 *q;
+  int x;
+  int y;
+  s = src;
+  d = dst;
+  for (y = height; y > 0; y--) {
+    for (p = d, q = s, x = width; x > 0; x--) {
+      p[3] = q[1] & 0xf0;
+      p[2] = (*(u16 *)q >> 4) & 0xf0;
+      p[1] = q[0] & 0xf0;
+      p[0] = q[0] << 4;
+      p += 4;
+      q += 2;
+    }
+    s += srcPitch * 2;
+    d += dstPitch * 4;
+  }
+  return 1;
+}
