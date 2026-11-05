@@ -18,3 +18,29 @@ struct C_00085520 {
     void func_00157660();
     void func_00085520();
 };
+
+void C_00085520::func_00085520()
+{
+    int i;
+    C_001D6410 *p;
+    vtbl = (int)&D_00279644;
+    for (i = 0; i < 8; i++) {
+        p = a24[i];
+        if (p) { p->func_001D6410(); func_001E891B(p); }
+        p = a44[i];
+        if (p) { p->func_001D6410(); func_001E891B(p); }
+        p = a64[i];
+        if (p) { p->func_001D6410(); func_001E891B(p); }
+    }
+    for (i = 0; i < 4; i++) {
+        p = a84[i];
+        if (p) { p->func_001D6410(); func_001E891B(p); }
+    }
+    p = f94;
+    if (p) { p->func_001D6410(); func_001E891B(p); f94 = 0; }
+    p = f9C;
+    if (p) { p->func_001D6410(); func_001E891B(p); f9C = 0; }
+    p = f98;
+    if (p) { p->func_001D6410(); func_001E891B(p); f98 = 0; }
+    func_00157660();
+}
