@@ -49,6 +49,16 @@ void C_00026280::func_00026280(int a0) {
     unk3C = a0;
 }
 
+void *C_00026290::func_00026290(int flags) {
+    extern int D_00276534;
+    void func_001E891B(void *);
+    unk0 = (int)&D_00276534;
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 undefined4 C_00026A70::func_00026A70(int param_1)
 {
   int in_ECX = (int)this;
