@@ -31,6 +31,11 @@ struct V4Init_000B6840 : V4_000B6840 {
     V4Init_000B6840(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
 };
 
+static inline void Box_000B6840(V4_000B6840 *dst, V4_000B6840 *src, float h)
+{
+    *dst = V4Init_000B6840(src->x, (0.0f - h) + src->y, src->z, 1.0f);
+}
+
 struct C_000B6840_Mgr;
 struct C_000B6840_Node {
     char pad0[0x144];
@@ -148,28 +153,33 @@ void *C_000B6810::func_000B6810(int flags)
     return this;
 }
 
+#pragma optimize("a", on)
 void C_000B6640::func_000B6840(float a0, float a1, C_000B6840_Arg *a2)
 {
     V4Init_000B6840 line[2];
 
     if (f7C == D_00275544) {
+        V4_000B6840 *pA;
+        V4_000B6840 *pB;
         C_000B6840_Node *n = ((C_000B6840_Owner *)unk88)->f22c->func_00198330(D_0027D3F0);
-        n->func_00199A70(((C_000B6840_Owner *)unk88)->f22c, &vA);
-        vA.x = 0;
+        pA = &vA;
+        n->func_00199A70(((C_000B6840_Owner *)unk88)->f22c, pA);
+        pA->x = 0;
         f7C = n->f144;
         f80 = D_00275460 / f7C;
         n = ((C_000B6840_Owner *)unk88)->f22c->func_00198330(D_0027D3FC);
-        n->func_00199A70(((C_000B6840_Owner *)unk88)->f22c, &vB);
-        vB.x = 0;
-        vE0.Set(vA.x, -f7C + vA.y, vA.z, 1.0f);
-        vF0.Set(vB.x, -f7C + vB.y, vB.z, 1.0f);
+        pB = &vB;
+        n->func_00199A70(((C_000B6840_Owner *)unk88)->f22c, pB);
+        pB->x = 0;
+        vE0 = V4Init_000B6840(pA->x, (0.0f - f7C) + pA->y, pA->z, 1.0f);
+        vF0 = V4Init_000B6840(pB->x, (0.0f - f7C) + pB->y, pB->z, 1.0f);
     }
     f78 = a0;
-    line[0].Set(0.0f, a1, 0.0f, 1.0f);
-    line[1].Set(0.0f, -a0, 0.0f, 1.0f);
+    line[0] = V4Init_000B6840(0.0f, a1, 0.0f, 1.0f);
+    line[1] = V4Init_000B6840(0.0f, -a0, 0.0f, 1.0f);
     unk1D0->func_00180E00(1, line, 1, 0);
     unk1D4->func_00180E00(1, line, 1, 0);
     unk1D0->func_00133140(*a2->f4ac, 2);
     unk1D4->func_00133140(*a2->f4ac, 2);
 }
-
+#pragma optimize("", on)
