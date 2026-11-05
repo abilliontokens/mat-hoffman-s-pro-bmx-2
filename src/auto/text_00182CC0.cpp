@@ -158,10 +158,10 @@ int C_00182CC0::func_001833A0()
     if (f28 == 0) {
         return 0;
     }
-    if (f3C0 == 0) {
-        f3C8 = 0;
-    } else {
+    if (f3C0 != 0) {
         f3C8 = f3C0->f24;
+    } else {
+        f3C8 = 0;
     }
     v34();
     v35();
