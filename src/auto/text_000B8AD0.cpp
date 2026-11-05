@@ -32,3 +32,11 @@ extern int D_0027D5FC;
 void C_000B8C80::func_000B8C80(int a0) {
     unk9C = a0;
 }
+
+void *BmxUIGlobalManager::func_000B9A60(int a0)
+{
+    func_001BC770(a0);
+    vtbl = (void *)&D_0027D5FC;
+    return this;
+}
+
