@@ -69,4 +69,18 @@ void C_001D5600::func_001D5600(void) {
     int __stdcall func_001D5190(int);
     func_001D5190(unk58);
 }
+
+int C_001D5640::func_001D5640(u8 param_1)
+{
+  int func_001D5500(...);
+  int func_001E891B(...);
+  int in_ECX = (int)this;
+
+  func_001D5500();
+  if ((param_1 & 1) != 0) {
+    func_001E891B(in_ECX);
+  }
+  return in_ECX;
+}
+
 /* end */
