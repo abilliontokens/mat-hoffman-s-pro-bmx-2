@@ -21,7 +21,7 @@ void __stdcall func_001F6400(int a0, S_ListEntry_F64 *head, int a2, int a3)
         char *irp = (char *)e - 0x3c;
         e = e->Flink;
         *(long *)(irp + 0x10) = 0xc0000120;
-        __imp__IofCompleteRequest(irp, 0);
+        _imp__IofCompleteRequest(irp, 0);
     }
 }
 
