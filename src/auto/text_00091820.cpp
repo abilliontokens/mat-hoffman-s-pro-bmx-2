@@ -224,6 +224,14 @@ void *C_00091950::func_00091950(int flags)
     return this;
 }
 
+void *C_00091990::func_00091990(int flags) {
+    func_00089210();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 int C_000919B0::func_000919B0() {
     if (D_002A8490->unk274 != 0) return 1;
     D_002EFDB8->vf8();
