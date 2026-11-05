@@ -53,7 +53,7 @@ struct CCObj {
     float *r;
     float *g;
     float *b;
-    char pad120[4];
+    float f120;
     float dur;
     float t;
 };
