@@ -154,6 +154,7 @@ struct C_001500A0 {
     int f10;
     float f14;
     C_001500A0 *func_001500A0(void);
+ void func_001500D0(int, int *, V_1500 *, int, float *, V_1500 *, V_1500 *, int *);
 };
 
 static float fabs_0014FB30(float x)
