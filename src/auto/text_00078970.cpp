@@ -91,6 +91,7 @@ struct BmxMenuBase {
     S_00079790_Obj *f10C;
     char pad110[0x14];
     RawBuf_Menu *f124;
+    void func_00157660();
 };
 
 int C_00078D60::func_00078D60(int *param_1, int param_2) {
