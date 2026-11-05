@@ -272,6 +272,35 @@ void XboxSndIf_1CB290::func_001CB2D0(void)
     }
 }
 
+Listener *Listener::func_001CB320(void)
+{
+    int *p;
+
+    func_0001DFE0();
+    vtbl = &D_0028ED78;
+    p = &f8.x; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    p = &f18.x; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    p = &f28.x; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    p = &f38.x; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    f8.x = D_002ABA44;
+    f8.y = D_002ABA48;
+    f8.z = D_002ABA4C;
+    f8.w = D_002ABA50;
+    f18.x = D_002ABA74;
+    f18.y = D_002ABA78;
+    f18.z = D_002ABA7C;
+    f18.w = D_002ABA80;
+    f28.x = D_002ABA64;
+    f28.y = D_002ABA68;
+    f28.z = D_002ABA6C;
+    f28.w = D_002ABA70;
+    f38.x = D_002ABA44;
+    f38.y = D_002ABA48;
+    f38.z = D_002ABA4C;
+    f38.w = D_002ABA50;
+    return this;
+}
+
 int __stdcall func_001CB400(int a, int b, int c, int d, int e, int f, int g)
 {
     return D_002F08EC != 0;
