@@ -52,6 +52,27 @@ struct C_0017F0A0 {
     void func_00133020(int a0);
 };
 
+struct V4_0017F1B0 { u32 x, y, z, w; };
+struct S_0017F1B0 {
+    V4_0017F1B0 v0, v10;
+    char pad20[0x20];
+    V4_0017F1B0 v40, v50, v60;
+    char pad70[0x10];
+    u32 unk80;
+    char pad84[0x10];
+    u32 unk94;
+};
+struct C_0017F1B0 {
+    char pad0[0x54];
+    S_0017F1B0 *unk54;
+    char pad58[0x4F];
+    u8 unkA7;
+    void func_0017F1B0();
+};
+extern u32 D_002B92E0, D_002B92F0;
+extern V4_0017F1B0 D_002A8EE8;
+void func_00133D80(void *p);
+
 extern int D_002A8E7C, D_002A8E80, D_002A8E84, D_002A8E88;
 
 struct RadiusLineCollisionObject {
