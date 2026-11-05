@@ -1,6 +1,10 @@
 /* 9 functions from 0x00095620 to 0x00096450, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_00095BC0 {
+    char fields[0x6454];
+    void func_00095BC0();
+};
 struct S_00095A00_Vt {
     virtual void v0();
     virtual void v1();
