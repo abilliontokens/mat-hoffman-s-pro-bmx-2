@@ -13,6 +13,7 @@ struct Vec4 {
 };
 
 extern Vec4 D_002EF740;
+static __forceinline void Zero3(int *p) { p[0]=0; p[1]=0; p[2]=0; }
 
 struct C_00198040 {
     void func_00198040(void *a0, void *a1);
