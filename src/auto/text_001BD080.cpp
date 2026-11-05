@@ -38,6 +38,9 @@ struct C_001BD7E0_Global {
 extern C_001BD7E0_Global *D_002EFDB8;
 
 struct C_001BD7E0 {
+    char pad0[0x120];
+    void **f120;
+    int f124;
     undefined4 func_001BD7E0(void);
 };
 
