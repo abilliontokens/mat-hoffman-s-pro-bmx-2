@@ -18,7 +18,7 @@ struct C_00066C90 {
     int unk6C[2];
     char pad74[4];
     int a78[3];
-    char pad84[0xC];
+    int pad84[3];
     int a90[2];
     int unk98[5];
     int unkAC[5];
