@@ -186,21 +186,22 @@ void func_001ADD80(S_func_001ADD80_arg0 *r)
 void SpriteTweak::func_001ADDF0(int a)
 {
     C_00144640 *p = (C_00144640 *)func_001E8A44(0x14);
+    C_00144640 *q;
     int saved;
 
-    p = p != 0 ? p->func_00144640() : 0;
-    unk4 = p;
-    p->v1(a, D_002AA470);
+    unk4 = p != 0 ? p->func_00144640() : 0;
+    unk4->v1(a, D_002AA470);
     D_002A829C->func_00161680();
-    unk8 = D_002A829C->unk14[p->unk4].unk4->unk54->unk18;
+    unk8 = D_002A829C->unk14[unk4->unk4].unk4->unk54->unk18;
     unkC = D_002AA6C0->v7((int)&D_0028C1B0, 0);
     D_002AA6C0->v6(unkC, 0);
     saved = D_002ABE74;
     D_002ABE74 = 0;
     D_002AA6C0->func_001B2640();
     D_002ABE74 = saved;
-    p->unk10 = this;
-    p->unkC &= 0xfe;
+    q = unk4;
+    q->unk10 = this;
+    q->unkC &= 0xfe;
 }
 
 SpriteTweak *SpriteTweak::func_001ADEB0(void)
