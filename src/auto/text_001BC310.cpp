@@ -156,6 +156,50 @@ struct C_00168280 {
     void func_001691E0(void);
 };
 
+extern char D_0027A604[];
+extern char D_0027D8B0[];
+extern char D_00276310[];
+extern char D_0027D898[];
+extern char D_0027D884[];
+extern char D_0027D880[];
+extern char D_002A46E8[];
+extern char D_00275678[];
+
+struct C_001BC870_Tbl {
+    void func_00169710(void *name);
+    void func_00168550(char *key, char *dst, int size);
+};
+
+struct C_001BC870_A {
+    C_001BC870_A *func_001BF6F0(int a, int b);
+    void *func_001BF7C0(int a, char *name, C_001BC870_Tbl *t, int b);
+};
+
+struct C_001BC870_B {
+    C_001BC870_B *func_001BFA70(int a, int b);
+    void *func_001BFB40(int a, char *name, C_001BC870_Tbl *t, int b);
+};
+
+struct C_001BC870_C {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35();
+    virtual void v36(); virtual void v37();
+    virtual void *vf38(int a, char *name, C_001BC870_Tbl *t, int b);
+    C_001BC870_C *func_001BFDB0(int a, int b);
+};
+
+struct C_001BC870 {
+    void *func_001BC870(void *name, C_001BC870_Tbl *t);
+    void *func_001577A0(void *child, int b);
+};
+
 extern char D_0028D42C[];
 extern char D_002769F8[];
 extern char D_0027D8FC[];
