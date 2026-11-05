@@ -110,6 +110,75 @@ extern char D_00285C0C[];
 int __stdcall func_002012B0(int a, int b, int c, int d);
 
 
+/* render-state replay for a pixel animation: secondary subobject at +0xC, src data pointer at this[-1] */
+struct C_00144ED0_Src {
+    char pad0[0x38];
+    int count1;
+    int count2;
+};
+
+struct C_00144ED0_A {
+    int a;
+    int k;
+    unsigned int v;
+};
+
+struct C_00144ED0_B {
+    int k;
+    unsigned int v;
+};
+
+struct C_00144ED0 {
+    void *vtbl;
+    C_00144ED0_A *arr1;
+    C_00144ED0_B *arr2;
+    void func_00144ED0();
+};
+
+extern int D_0020C6DC;
+extern int D_0020C6E0[];
+extern int D_0020C710[];
+extern int D_0020C8E0[];
+extern unsigned int D_002751E8[];
+extern void *D_002752F0[];
+extern "C" unsigned int _imp__PsCreateSystemThreadEx[];
+
+void __fastcall func_001FD020(void *p, int v);
+int __stdcall func_001FD8E0(int a, int b);
+int __stdcall func_001FDA60(int a, int b);
+int __stdcall func_001FDAA0(int a, int b);
+int __stdcall func_001FD9F0(int a, int b, int c);
+void __stdcall func_001FCFF0(unsigned int v);
+void __stdcall func_001FD890(unsigned int v);
+void __stdcall func_001FD400(unsigned int v);
+void __stdcall func_001FD770(unsigned int v);
+void __stdcall func_001FD7C0(unsigned int v);
+void __stdcall func_001FD820(unsigned int v);
+void __stdcall func_001FD500(unsigned int v);
+void __stdcall func_001FE490(unsigned int v);
+void __stdcall func_001FE520(unsigned int v);
+void __stdcall func_001FE5B0(unsigned int v);
+void __stdcall func_001FD450(unsigned int v);
+void __stdcall func_001FD4C0(unsigned int v);
+void __stdcall func_001FD540(unsigned int v);
+void __stdcall func_001FD690(unsigned int v);
+void __stdcall func_001FD710(unsigned int v);
+void __stdcall func_001FD380(unsigned int v);
+void __stdcall func_001FE810(unsigned int v);
+void __stdcall func_001FE890(unsigned int v);
+void __stdcall func_001FE790(unsigned int v);
+void __stdcall func_001FE7D0(unsigned int v);
+void __stdcall func_001FD3C0(unsigned int v);
+void __stdcall func_001FD5A0(unsigned int v);
+void __stdcall func_001FE8E0(unsigned int v);
+void __stdcall func_001FD610(unsigned int v);
+void __stdcall func_001FE620(unsigned int v);
+void __stdcall func_001FE650(unsigned int v);
+void __stdcall func_001FE6C0(unsigned int v);
+void __stdcall func_001FE730(unsigned int v);
+void __stdcall func_001FE750(unsigned int v);
+void __stdcall func_001FE770(unsigned int v);
+
 int func_00144BF0(const char *a0, int a1, int a2, int a3)
 {
     int idx;
