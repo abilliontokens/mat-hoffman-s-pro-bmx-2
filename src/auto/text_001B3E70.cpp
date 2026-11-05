@@ -40,6 +40,13 @@ struct C_001B4AF0 {
     C_001B4AF0 *func_001B4AF0(void);
 };
 
+static inline void copy_name(C_001B4AF0 *&self, const int &limit, int &count)
+{
+    count = limit > strlen("none") ? strlen("none") : limit;
+    func_001E8920(self->f4, (const char *)&D_002764F0, count);
+    self->f4[count] = 0;
+}
+
 /* ProceduralTempData */
 struct C_001B4BE0 {
     void *vtbl;
@@ -200,26 +207,27 @@ char *C_001B4A70::func_001B4A70(char *delims) {
             f4 = 0;
             return f0;
         }
-        if (func_001E9260(delims, c) != 0) {
-            while (func_001E9260(delims, *++f4) != 0) {
-            }
+        while (func_001E9260(delims, c) != 0) {
+            f4++;
+            c = *f4;
         }
     }
     return f0;
 }
 
 C_001B4AF0 *C_001B4AF0::func_001B4AF0(void) {
-    C_001B4AF0 *self;
+    int limit;
     int count;
-    self = this;
-    self->vtbl = (void *)&D_0028CA64;
-    count = min_ref(0x103, (int)strlen("none"));
-    func_001E8920(self->f4, (const char *)&D_002764F0, count);
-    self->f4[count] = 0;
-    self->f108 = 0;
-    self->f10C = 1;
-    self->f110 = 1;
-    return self;
+
+    vtbl = (void *)&D_0028CA64;
+    limit = sizeof(f4) - 1;
+    count = strlen("none") > limit ? limit : strlen("none");
+    func_001E8920(f4, (const char *)&D_002764F0, count);
+    f4[count] = 0;
+    f108 = 0;
+    f10C = 1;
+    f110 = 1;
+    return this;
 }
 
 void C_001B4B70::func_001B4B70(void) {
