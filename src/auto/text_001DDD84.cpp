@@ -58,6 +58,12 @@ void __stdcall func_001DDE10(int a0, int a1, int a2)
     func_001EA539(a0, a1, a2);
 }
 
+void __stdcall func_001DDE27(int a0, int a1, int a2)
+{
+    int func_001EA5A7(...);
+    func_001EA5A7(a0, a1, a2);
+}
+
 #pragma optimize("y", on)
 #pragma optimize("s", on)
 void __cdecl func_001DDE3E(int a0, int a1, int a2) {
