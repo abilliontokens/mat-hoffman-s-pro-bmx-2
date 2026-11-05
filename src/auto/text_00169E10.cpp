@@ -103,3 +103,31 @@ int ParticleEmitter::func_0016A8D0(void) {
     }
     return 1;
 }
+
+ParticleEmitter *ParticleEmitter::func_0016AD20(void *a, char *name, void *b, u32 *c) {
+    ((C_001D3F50 *)this)->func_001D3F50();
+    f64 = a;
+    if (b) {
+        f68 = b;
+        if (c) *(V4u *)&f44 = *(V4u *)c;
+    }
+    if (!a) {
+        f1AC = 31;
+        f1A8 = 16;
+        f188 = 16;
+    } else {
+        f64 = a;
+        strcpy((char *)&f6C, D_002A5558);
+        if (!name) {
+            ((ParticleEmitterResetVT *)this)->v2();
+            return 0;
+        }
+        strcat((char *)&f6C, name);
+        if (func_0016A330((char *)&f6C)) return this;
+    }
+    u32 flags = f190 | 0x100E;
+    f174 = 0x40000000;
+    f190 = flags;
+    return this;
+}
+
