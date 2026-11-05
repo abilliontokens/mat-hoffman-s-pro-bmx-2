@@ -88,6 +88,7 @@ struct C_00164650 {
     void func_00164700(void);
     void func_00164770(void);
     void func_00164840(S_00164650_Scale *scale, float time, float a2);
+    void func_00164840(S_00164650_Scale *scale, float time, int rescale);
 };
 
 extern C_00163A50 *D_002EF7D0;
@@ -106,20 +107,17 @@ struct C_001643A0 {
 void func_001641B0(int mode, float *v)
 {
     if (mode == 0) {
-        v[1] = -v[1];
+        v[1] = -(-v[1]);
         v[2] = -v[2];
         v[3] = -v[3];
-        v[1] = -v[1];
     } else if (mode == 1) {
         v[1] = -v[1];
-        v[2] = -v[2];
+        v[2] = -(-v[2]);
         v[3] = -v[3];
-        v[2] = -v[2];
     } else if (mode == 2) {
         v[1] = -v[1];
         v[2] = -v[2];
-        v[3] = -v[3];
-        v[3] = -v[3];
+        v[3] = -(-v[3]);
     }
 }
 
