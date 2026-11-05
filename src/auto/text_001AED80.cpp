@@ -22,8 +22,7 @@ extern char D_0028C3A4[], D_0028C384[], D_0028C36C[], D_0028C34C[], D_0028C32C[]
 extern "C" void func_001ADCC0(char *buf, int n, const char *fmt, int idx);
 struct C_001AF360 {
     float f0;
-    unsigned char b4_0 : 1;
-    unsigned char b4_1 : 1;
+    unsigned char f4;
     int f8;
     int fC;
     int f10;
