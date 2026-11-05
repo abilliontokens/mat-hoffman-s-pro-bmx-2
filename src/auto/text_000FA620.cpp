@@ -39,3 +39,21 @@ struct C_000FA620 {
     void func_000CFF30(void);
     void func_000FA620(void);
 };
+
+void C_000FA620::func_000FA620(void)
+{
+    C_000BBDF0 *p = f124;
+
+    f568->func_001B1980();
+    f568->func_001B19A0(D_0028F5DC);
+    func_000CFF30();
+    if (D_002A8490->f2e0->f4 == 0) {
+        f568->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+    }
+    f480->func_001B1980();
+    if (f48c != 2 && f48c != 4 && f48c != 7 && f48c != 9 && f48c != 0xd && f48c != 0x10) {
+        f480->func_001B19A0(D_0028F5DC);
+        f480->func_001B17D0(p->func_000BBDF0());
+        f480->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+    }
+}
