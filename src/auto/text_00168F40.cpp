@@ -5,6 +5,11 @@ extern "C" unsigned int strlen(const char *s);
 extern "C" char *strcpy(char *dst, const char *src);
 #pragma intrinsic(strcpy)
 extern int D_00288084;
+extern char D_0028802C[];
+int func_001E9040(const char *, const char *);
+void *func_001E8920(void *, const void *, int);
+void *func_001E83E8(void *, int);
+void *func_001E8AA5(int);
 extern char D_0028803C[];
 void func_001E891B(void *p);
 void func_001E8390(void *p);
