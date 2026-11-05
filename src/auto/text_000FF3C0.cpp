@@ -189,6 +189,33 @@ undefined4 C_000FF480::func_000FF480(byte param_1)
   return in_ECX;
 }
 
+void C_000FF4A0::func_000FF4A0()
+{
+    if (unk29C != 0) {
+        unk2AC = 1;
+        unk2A8 = 0;
+        unk2D4 = 0xff;
+        unk2D8 = 0;
+        unk2DC = 0;
+        unk2E0 = 0;
+        unk2E4 = 0.25f;
+        func_000DB3E0();
+        unk29C = 0;
+    }
+    if (unk2A0 != 0) {
+        unk2D4 = 0;
+        unk2D8 = 0xff;
+        unk2DC = 0xff;
+        unk2E0 = 0;
+        unk2E4 = 0.25f;
+        func_000DB310();
+        unk2A0 = 0;
+    }
+    func_000DB180();
+    func_000DB4B0();
+    func_00157960();
+}
+
 void C_000FFFA0::func_000FFFA0()
 {
   if (f2c4 != 0) {
