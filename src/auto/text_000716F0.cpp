@@ -182,6 +182,8 @@ struct C_000724E0 {
     void func_000716F0();
     void func_00157660();
     void func_000724E0(void);
+    void func_00071F40();
+    void func_001578D0();
 };
 
 struct C_00072330 {
