@@ -77,7 +77,60 @@ struct C_001A5D80 {
 extern S_001A5D80_G1 *D_002A8490;
 extern S_001A5D80_G2 *D_002EFDB8;
 
-void __stdcall func_001A5B10(void *a, void *b);
+bool __stdcall func_001A5B10(char *name, void **pp);
+
+extern int D_0028B9E4;
+extern int D_0028B974;
+extern int D_00284C44;
+
+extern "C" char *strcpy(char *, const char *);
+void func_00030F30(char *s, void *p);
+void *func_001D6E20(char *name, int a1, int a2);
+
+struct C_002BEAAC {
+    void func_0013D780(char *name, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
+    int func_0013DFF0(char *name, int a2);
+};
+extern C_002BEAAC *D_002BEAAC;
+
+struct S_001A5B10_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+};
+
+struct C_001A5D50 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    int f28;
+    int f2c;
+    C_001A5D50 *func_001A5D50(void *param);
+};
+
+struct C_001A5BF0 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    int f28;
+    int f2c;
+    int f30;
+    int f34[8];
+    C_001A5BF0 *func_001A5BF0(void *param);
+};
+
+struct S_001A5BC0_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    void func_00157810(void);
+};
+
+struct C_001A5BC0 {
+    char pad0[0xb0];
+    S_001A5BC0_Obj *fB0;
+    void func_001A5BC0(void);
+};
 
 extern int D_0028BB04;
 extern int D_0028BAE0;
