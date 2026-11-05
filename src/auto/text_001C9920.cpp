@@ -56,7 +56,7 @@ struct C_001C9920 {
     S_001C9920_arg *unkCC;
     char padD0[0x14C];
     int unk21C;
-    void func_001C9920(int a0);
+    void func_001C9920(S_001C9920_arg *arg);
 };
 
 struct C_001C9AF0 {
