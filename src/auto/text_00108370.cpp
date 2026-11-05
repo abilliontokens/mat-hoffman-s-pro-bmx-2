@@ -47,6 +47,57 @@ struct C_000AD5C0 {
     int func_000AD5C0(int a, int *out, int b);
 };
 
+struct S_00108510_Vec4 {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
+struct S_00108510_Device {
+    virtual void v0();  virtual void v1();  virtual void v2();  virtual void v3();
+    virtual void v4();  virtual void v5();  virtual void v6();  virtual void v7();
+    virtual void v8();  virtual void v9();  virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35();
+    virtual void v36(); virtual void v37(); virtual void v38(); virtual void v39();
+    virtual void v40(); virtual void v41(); virtual void v42(); virtual void v43();
+    virtual void v44(); virtual void v45(); virtual void v46();
+};
+
+struct S_00108510_Button {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6();
+    virtual int v7();
+};
+
+struct S_00108510_ButtonSet {
+    S_00108510_Button *func_001A2EF0(int index);
+    void func_001A2DD0(int index);
+};
+
+struct C_00108510 {
+    char pad0[0xA2C];
+    int fA2C;
+    char padA30[0x11F4 - 0xA30];
+    int f11F4;
+    char pad11F8[0x1244 - 0x11F8];
+    S_00108510_Device *f1244;
+    char pad1248[0x1584 - 0x1248];
+    int f1584;
+    char pad1588[0x15A4 - 0x1588];
+    S_00108510_ButtonSet *f15A4;
+    char pad15A8[0x1FC0 - 0x15A8];
+    int f1FC0;
+    char f1FC4[0x2000 - 0x1FC4];
+    S_00108510_Vec4 f2000;
+    void func_00108510(const char *name, S_00108510_Vec4 v);
+};
+
 struct C_00109090 {
     char pad0[0x718];
     int f718;
