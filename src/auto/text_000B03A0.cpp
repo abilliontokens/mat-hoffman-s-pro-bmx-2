@@ -55,6 +55,54 @@ C_000B11C0 *C_000B11C0::func_000B11C0(int param_1) {
     return this;
 }
 
+void C_000B11C0::func_000B1200(void)
+{
+    int i;
+
+    vtbl = &D_0027CE64;
+    if (unk50 != 0) {
+        for (i = 0; i < unk40; i++) {
+            func_001E891B(unk50[i]);
+        }
+        if (unk50 != 0) {
+            func_001E891B(unk50);
+            unk50 = 0;
+            unk40 = 0;
+        }
+    }
+    if (unk4C != 0) {
+        for (i = 0; i < unk3C; i++) {
+            if (unk4C[i]->unk8 != 0) {
+                func_001E891B(unk4C[i]->unk8);
+                unk4C[i]->unk8 = 0;
+                unk4C[i]->unk0 = 0;
+            }
+            if (unk4C[i]->unkC != 0) {
+                func_001E891B(unk4C[i]->unkC);
+                unk4C[i]->unkC = 0;
+                unk4C[i]->unk4 = 0;
+            }
+            func_001E891B(unk4C[i]);
+        }
+        if (unk4C != 0) {
+            func_001E891B(unk4C);
+            unk4C = 0;
+            unk3C = 0;
+        }
+    }
+    if (unk44 != 0) {
+        func_001E891B(unk44);
+        unk44 = 0;
+        unk34 = 0;
+    }
+    if (unk48 != 0) {
+        func_001E891B(unk48);
+        unk48 = 0;
+        unk38 = 0;
+    }
+    func_00157660();
+}
+
 int __fastcall func_000B1320(int unused1, int unused2, float dt) {
     if (D_002A8490->f124 == 0) {
         func_00157A00(dt);
