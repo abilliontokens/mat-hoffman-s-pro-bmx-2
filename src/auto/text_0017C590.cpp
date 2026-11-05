@@ -56,6 +56,37 @@ struct QuadTreeNode {
     QuadTreeNode *func_0017CE10(void);
     void func_0017CE40(void);
     void func_0017CEB0(void *item);
+    int func_0017CF30(void *item);
+    void *func_0017CFF0(void *item);
+};
+
+struct S_QuadTreeFx {
+    void func_0001E860();
+};
+
+/* QuadTree */
+struct QuadTree {
+    void *vtbl;
+    char pad4[8];
+    u16 stampC;
+    u8 flagsE;
+    char padF[0x94 - 0xF];
+    S_QuadTreeFx *f94;
+    u32 f9C;
+    u32 fA0;
+    u32 fA4;
+    char padA8[4];
+    u32 fAC;
+    char padB0[0x890 - 0xB0];
+    void **array890;
+    u32 count898;
+    u32 cap89C;
+    u32 f8A0;
+    u32 f8A4;
+    u32 f8A8;
+    u32 f8AC;
+    void func_0017D120(S_QuadTreeListNode *node);
+    void func_0017D1B0(void);
 };
 
 struct C_0017D190 {
