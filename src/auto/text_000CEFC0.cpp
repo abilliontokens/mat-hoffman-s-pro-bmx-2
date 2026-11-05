@@ -51,3 +51,12 @@ struct BmxUIPageGameOptions {
     void func_000CFAC0();
     void func_000CFB20();
 };
+
+void BmxUIPageGameOptions::func_000CFCA0()
+{
+    if (unk4f8->func_00093620(100.0f) == 1) {
+        unk57c = 1;
+    } else {
+        unk580 = 1;
+    }
+}
