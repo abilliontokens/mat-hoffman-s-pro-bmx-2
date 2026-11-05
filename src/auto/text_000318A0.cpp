@@ -170,6 +170,13 @@ int C_00032060::func_00032150(float value, char *name)
     return 0;
 }
 
+void BmxEvent::func_000324C0(int a)
+{
+    if (f1c0 != 0) {
+        f1c0->func_00099500(a);
+    }
+}
+
 void C_00032550::func_00032530(void)
 {
     if (unk1C4 != 0) {
