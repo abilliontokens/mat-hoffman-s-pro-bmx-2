@@ -97,6 +97,16 @@ struct C_000A1E90 {
     void func_000A1E90(void);
 };
 
+int C_000A17E0::func_000A17E0(void) {
+    int r;
+
+    func_001ADCC0(D_002A5C90, 0x104, D_00275678, D_002A5870, D_002A5B88);
+    r = func_00185110(0);
+    D_002A829C->func_00161680();
+    D_002AA6C0->func_001B2640();
+    return r;
+}
+
 int C_000A1E60::func_000A1E60(void) {
     if (f530 != 0) {
         f530->func_001596C0(f3ac);
