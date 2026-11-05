@@ -14,7 +14,7 @@ extern float D_002755E8;
 struct S_00126A80_Vec { float x, y, z, w; };
 struct __declspec(align(16)) S_00126A80_Mat { __m128 m[4]; };
 
-static __forceinline void Xform_00126A80(S_00126A80_Vec *out, const S_00126A80_Mat *mat, const float *v)
+static inline void Xform_00126A80(S_00126A80_Vec *out, const S_00126A80_Mat *mat, const float *v)
 {
     __m128 t = _mm_loadu_ps(v);
     _mm_storeh_pi((__m64 *)&out->z, t);
