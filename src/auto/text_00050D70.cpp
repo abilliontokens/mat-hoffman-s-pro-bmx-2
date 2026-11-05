@@ -279,6 +279,10 @@ struct BmxEventRoadTrip {
     int func_00051750(void);
 };
 
+extern "C" int func_001EA426(const char *a, const char *b);
+struct C_0001B820 { void func_0001B820(void *p); };
+struct C_000518A0 { int func_000518A0(void); };
+
 struct C_00051A00Node {
     char pad0[4];
     int f4;
