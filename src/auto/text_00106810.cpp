@@ -75,6 +75,29 @@ struct C_00106810 {
     void func_00106810(S_106810_Arg *arg, int mode);
 };
 extern float D_00275544;
+struct S_107070_Vec { float x, y, z, w; };
+struct S_107070_Obj { void func_001994C0(int a, S_107070_Vec *b, S_107070_Vec *c); };
+struct S_107070_Ptr { int pad0; S_107070_Obj *f4; };
+extern float D_00276288, D_002756DC, D_002755E8, D_00275460, D_00282A70, D_00276DD4;
+int func_00011260(int a, int b);
+struct C_00107070 {
+    char pad0[0x744];
+    float f744, f748, f74c, f750;
+    char pad754[0x99c - 0x754];
+    float f99c;
+    char pad9a0[0xa04 - 0x9a0];
+    S_107070_Ptr *fa04;
+    char pada08[0x1178 - 0xa08];
+    int f1178;
+    char pad117c[0x163c - 0x117c];
+    float f163c, f1640, f1644;
+    int f1648;
+    char pad164c[0x1654 - 0x164c];
+    float f1654;
+    char pad1658[0x1fa0 - 0x1658];
+    float f1fa0;
+    void func_00107070(void);
+};
 struct Vec_106B20 { int x,y,z,w; };
 struct Obj_106B20 {
  char pad0[0x1cc]; unsigned char flags;
