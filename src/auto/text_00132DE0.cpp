@@ -506,6 +506,65 @@ float func_00133A30(float *a, float t, int c, S_00133A30 *s)
     return d;
 }
 
+int func_00133B90(float *box, float t, int flag, int count, S_00133A30 **list)
+{
+    int result;
+    float tt;
+    float vecA[4];
+    float vecB[4];
+    S_00133B90_Iter iter;
+    S_00133B90_Node *node;
+    float hx, hy;
+
+    result = 0;
+    tt = t * t;
+    vecB[3] = 1.0f;
+    vecA[3] = 1.0f;
+    vecB[1] = 0.0f;
+    *(int *)&vecA[1] = 0x7effffff;
+    vecB[0] = (box[0] + box[4]) * D_002755E8;
+    vecB[2] = (box[6] + box[2]) * D_002755E8;
+    hx = (box[0] - box[4]) * D_002755E8;
+    hy = (box[2] - box[6]) * D_002755E8;
+    if (hx < D_00275544) {
+        hx = -hx;
+    }
+    if (hy < D_00275544) {
+        hy = -hy;
+    }
+    vecA[0] = hx + t;
+    vecA[2] = hy + t;
+    iter.func_001A46F0();
+    iter.func_001A4790(0, 3, vecB, vecA, 0, 0, 1);
+    for (node = iter.func_001A4840(); node != 0; node = iter.func_001A4840()) {
+        if (node->f2 == D_002A4330) {
+            S_00133A30 *obj = (S_00133A30 *)((char *)node - 0x24);
+            int found = 0;
+            int i;
+            for (i = 0; i < count; i++) {
+                if (obj == list[i]) {
+                    found = 1;
+                }
+            }
+            if (!found) {
+                ((u8 *)obj)[0xa7] |= 0x10;
+                if (func_00133A30(box, t, *(int *)&tt, obj) == D_00275544) {
+                    result = 1;
+                }
+            }
+        } else if (flag == 0 && node->f2 == D_002A4331) {
+            int i;
+            for (i = 0; i < node->func_0014CA60(); i++) {
+                if (func_00133A30(box, t, *(int *)&tt, node->func_0014CA80(i)) == D_00275544) {
+                    result = 1;
+                }
+            }
+        }
+    }
+    iter.func_001A4A20();
+    return result;
+}
+
 void func_00133D80(int a0) {
     extern int D_002B92EC;
     D_002B92EC = a0;
