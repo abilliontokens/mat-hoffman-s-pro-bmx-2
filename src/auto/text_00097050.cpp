@@ -51,6 +51,46 @@ struct C_00097C20 {
 
 int func_001EA426(const char *a, const char *b);
 
+extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
+extern "C" char *func_001E8AC0(const char *s, int c);
+
+template <class T> inline const T &func_00097770_min(const T &a, const T &b)
+{
+    return a > b ? b : a;
+}
+
+struct C_00097770_Named {
+    char pad0[0x28];
+    char name[1];
+};
+
+struct C_00097770_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    char pad4[0x148];
+    C_00097770_Named *f14C;
+};
+
+struct C_00097770_Entry {
+    int f0;
+    int f4;
+    C_00097770_Obj *f8;
+};
+
+struct C_00097770_List {
+    char pad0[0x24];
+    int count;
+    C_00097770_Entry **items;
+};
+
+struct C_00097770_3A8 { C_00097770_List *f0; };
+struct C_00097770_64 { char pad0[0x3a8]; C_00097770_3A8 *f3A8; };
+struct C_00097770_2A4 { char pad0[0x64]; C_00097770_64 *f64; };
+struct C_00097770_Root { char pad0[0x2a4]; C_00097770_2A4 *f2A4; };
+
 struct C_00097DA0_Item {
     char pad0[0xC0];
     char fC0[1];
