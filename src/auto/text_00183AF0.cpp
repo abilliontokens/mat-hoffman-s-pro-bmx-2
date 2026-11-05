@@ -84,6 +84,7 @@ void BmxScene::func_00183D70(void *a0)
         do {
             Elem58 *e = ((BmxSceneMgr *)f3ac)->objs[i];
             if (e->f4 == 2) {
+                ((C_001BB900 *)((ArgP *)a0)->f4)->func_001BB900((void *)e->f58->f410);
             }
             i++;
         } while (i < ((BmxSceneMgr *)f3ac)->count);
