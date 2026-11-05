@@ -534,3 +534,29 @@ C_000A90B0 *C_000A90B0::func_000A90B0() {
     return this;
 }
 
+void C_000A90B0::func_000A90D0(S_TriggerStream *stream, void *b)
+{
+    extern int D_0027823C;
+    stream->func_00168C20(&D_0027823C, 0, &unk10C);
+    func_001B5A00(stream, b);
+}
+
+void C_000A9120::func_000A9120(void)
+{
+    extern int D_0027C41C;
+    int i;
+
+    vtbl = (void *)&D_0027C41C;
+    if (items) {
+        for (i = 0; i < count; i++) {
+            func_001E891B(items[i]->unk114);
+            func_001E891B(items[i]->unk118);
+            func_001E891B(items[i]->unk11C);
+            func_001E891B(items[i]->unk108);
+            func_001E891B(items[i]);
+        }
+        func_001E891B(items);
+    }
+    ((C_00157660 *)this)->func_00157660();
+}
+
