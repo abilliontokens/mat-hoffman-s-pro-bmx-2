@@ -197,6 +197,16 @@ void func_0001B360(int a0, int a1, S_0001B360 *a2, int a3) {
     }
 }
 
+C_0001B380 *C_0001B380::func_0001B380(int a) {
+    ((C_00157600 *)this)->func_00157600(a);
+    f24 = 0;
+    f2c = 0;
+    vtbl = (void *)&D_00275B54;
+    f28 = 1.0f;
+    D_002B7C88 = this;
+    return this;
+}
+
 C_0001B3B0* C_0001B3B0::func_0001B3B0(int a0) {
     unk2C = a0;
     return this;
