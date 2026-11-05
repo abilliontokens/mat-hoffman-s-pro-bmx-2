@@ -51,3 +51,30 @@ struct C_0013B9C0 {
     void func_0013AEC0(int a);
     void func_0013B840(void *a);
 };
+
+int C_0013B9C0::func_0013C1D0(int arg)
+{
+    int *q;
+    int r;
+
+    if (f6C != -1) {
+        if (fC[f6C].f10 != 0) {
+            func_00012140(fC[f6C].f10);
+        }
+        f74 = -1;
+        f78 = -1;
+        f6C = -1;
+    }
+    q = f24;
+    do {
+        *q = -1;
+        q++;
+    } while (q <= f28);
+    func_0013B440((void *)((char *)this + 0x2c));
+    r = func_0013B3E0((void *)((char *)this + 0x2c), arg);
+    if (r == 0) {
+        f70 = 0;
+        return 0;
+    }
+    return 1;
+}
