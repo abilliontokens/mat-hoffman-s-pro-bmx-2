@@ -18,9 +18,9 @@ struct Sz_001D6D00 { int w; void *p; };
 struct S_001D7190_Pack {
     int func_0013C8A0(int a, void *b, int c, int d);
     int func_0013D310(char *name, char *ext, int *key, void *out, int flag);
-    void func_0013AC40(char *name, int a, int b, int c, int *key, int d);
-    void func_0013B1F0(int key, void *obj);
-    void func_0013C110(int key);
+    int func_0013AC40(char *name, int a, int b, int c, int *key, int d);
+    int func_0013B1F0(int key, void *obj);
+    int func_0013C110(int key);
 };
 extern S_001D7190_Pack *D_002BEAAC;
 
@@ -267,6 +267,115 @@ void XboxTextureMap::func_001D6D00(Img_001D6D00 *img, Sz_001D6D00 *sz, char *nam
     func_00178C60(mem, sz->p, w, img->f18, w, (sz->w << 3) / func_001B2910(fA4), 0x22b8, fA4, 0, 0, 0x80, 0xff00ff, 1);
     func_001B3A50(mem, img->f14, img->f18, 0, buf, 0x20);
     func_001E8390(mem);
+}
+
+void *func_001D6E20(char *name, int arg2, unsigned int flags)
+{
+    char buf[0x104];
+    int hasC;
+    int ok;
+    int hasB;
+    int hasA;
+    int width;
+    int height;
+    int mips;
+    int key;
+    S_001D6E20_Res *found;
+    S_001D6E20_Info *info;
+    void *obj;
+    char *s;
+    char *d;
+
+    obj = 0;
+    info = 0;
+    hasB = 0;
+    hasA = 0;
+    hasC = 0;
+    ok = 0;
+    s = name;
+    d = buf;
+    while ((*d++ = *s++) != 0)
+        ;
+    found = 0;
+    key = -1;
+
+    if (flags & 0x20) {
+        func_00030F30(buf, D_0028F6C8);
+        D_002BEAAC->func_0013D310(buf, D_00275FB4, &key, &found, 0);
+        if (found != 0) {
+            found->slot1();
+            return found;
+        }
+        S_001D6E20_Res *p = (S_001D6E20_Res *)func_001E8A44(0x144);
+        obj = p ? p->func_0013E8C0(1) : 0;
+        if (((S_001D6E20_Res *)obj)->slot23(name, arg2, flags & ~0x20)) {
+            D_002BEAAC->func_0013AC40(buf, 0, -1, 0, &key, 0);
+            D_002BEAAC->func_0013B1F0(key, obj);
+            D_002BEAAC->func_0013C110(key);
+            return obj;
+        }
+        ((S_001D6E20_Res *)obj)->slot2();
+        return 0;
+    }
+
+    func_00030F30(buf, D_0028F6C8);
+    if (D_002BEAAC->func_0013D310(buf, D_00275FB4, &key, &found, 0)) {
+        hasA = 1;
+    } else {
+        func_00030F30(buf, D_0028762C);
+        if (D_002BEAAC->func_0013D310(buf, D_00275FB4, &key, &found, 0)) {
+            hasB = 1;
+        } else {
+            func_00030F30(buf, D_0028F6C0);
+            if (!D_002BEAAC->func_0013D310(buf, D_00275FB4, &key, &found, 0))
+                return 0;
+            hasC = 1;
+        }
+    }
+
+    if (found != 0) {
+        found->slot1();
+        return found;
+    }
+
+    if (hasC) {
+        S_001D6E20_Obj20 *p = (S_001D6E20_Obj20 *)func_001E8A44(0x20);
+        obj = p ? p->func_0001C520() : 0;
+        ((S_001D6E20_Obj20 *)obj)->func_0001C2E0(buf, key);
+    } else {
+        if (hasB) {
+            info = func_001B3560(key, 0);
+            if (info == 0)
+                return 0;
+            width = info->w;
+            height = info->h;
+        }
+        XboxTextureMap *p = (XboxTextureMap *)func_001E8A44(0x110);
+        obj = p ? p->func_001D6AD0((void *)1) : 0;
+        func_001E8920((char *)obj + 0x18, buf, 0x7f);
+        ((char *)obj)[0x97] = 0;
+        mips = (flags & 2) ? 1 : width;
+        if (hasB) {
+            unsigned char bpp = info->bpp;
+            int fmt;
+            if (bpp == 0x10)
+                fmt = 0x22b;
+            else
+                fmt = bpp == 0x18 ? 0x378 : 0x22b8;
+            ok = ((XboxTextureMap *)obj)->slot8((int)info->data, width, height, width, mips, fmt,
+                bpp == 0x20 ? 6 : 3, flags, 0);
+            func_001B3970(info);
+        }
+        if (hasA)
+            ok = ((XboxTextureMap *)obj)->func_001D7190(key, (int)name, flags);
+        if (!ok) {
+            D_002BEAAC->func_0013C110(key);
+            return obj;
+        }
+    }
+    D_002BEAAC->func_0013B1F0(key, obj);
+    D_002BEAAC->func_0013C110(key);
+    return obj;
 }
 
 int XboxTextureMap::func_001D7190(int a1, int a2, int a3)
