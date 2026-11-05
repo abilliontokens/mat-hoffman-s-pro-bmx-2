@@ -652,6 +652,22 @@ BitObj *__fastcall func_001EF734(BitObj *self, int unused, char c)
     return self;
 }
 
+BitObj *BitObj::func_001EF759(char *s)
+{
+    int n;
+
+    ClearFlags();
+    f0 = 0;
+    if (s != 0) {
+        n = 0;
+        while (s[n] != 0) {
+            n++;
+        }
+        func_001EF68E(s, n);
+    }
+    return this;
+}
+
 BitObj *BitObj::func_001EF88F(long num)
 {
     char buf[12];
