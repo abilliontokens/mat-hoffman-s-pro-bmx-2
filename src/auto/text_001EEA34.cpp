@@ -31,7 +31,7 @@ struct BitObj {
     unsigned int b8 : 1;
     unsigned int rest : 23;
     void func_001EEEE6(BitObj *o);
-    void func_001EEF4F(BitObj *o);
+    BitObj *func_001EEF4F(BitObj *o);
     int func_001EF1E7(int a);
     int func_001EF1E7();
     void func_001EF333(int a);
