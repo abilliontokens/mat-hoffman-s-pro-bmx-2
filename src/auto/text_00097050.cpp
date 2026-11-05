@@ -45,15 +45,14 @@ int C_000976C0::func_000976C0(void)
   int state = *(int *)(in_ECX + 0x18);
 
   switch (state) {
-  case 0:
-    *(int *)(in_ECX + 0x18) = 1;
-    return 1;
   case 1:
     *(int *)(in_ECX + 0x18) = 2;
     return 1;
   case 2:
     *(int *)(in_ECX + 0x18) = 3;
     return 0;
+  case 0:
+    *(int *)(in_ECX + 0x18) = 1;
   }
   return 1;
 }
