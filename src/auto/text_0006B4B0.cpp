@@ -107,8 +107,9 @@ C_0006C380 *C_0006C380::func_0006C380(int a0)
     unkD4 = 0;
     unkDC = 0.5f;
     unkB8 = -1;
-    unk6C = 0;
-    unk70 = 0;
+    for (i = 0; i < 2; i++) {
+        (&unk6C)[i] = 0;
+    }
     unkBC = 0;
     unkC0 = 0;
     unkE0 = 0;
@@ -119,10 +120,9 @@ C_0006C380 *C_0006C380::func_0006C380(int a0)
         unk7C[i] = 0;
         unk90[i] = 0;
     }
-    unkA4 = 0;
-    unkA8 = 0;
-    unkAC = 0;
-    unkB0 = 0;
+    for (i = 0; i < 4; i++) {
+        (&unkA4)[i] = 0;
+    }
     return this;
 }
 
