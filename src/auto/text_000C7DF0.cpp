@@ -308,10 +308,8 @@ extern void *D_0027E334;
 
 void C_000C8590::func_000C7DF0(void) {
     int i;
-    int o;
-    for (o = 0x38; o < 0x40; o += 4) {
-        S_002B91AC *s = D_002B91AC;
-        (*(C_001D5AD0 **)(o + (int)s))->func_001D6600();
+    for (i = 0; i < 2; i++) {
+        D_002B91AC->arr38[i]->func_001D6600();
     }
     D_002B91AC->unk34->func_001D6600();
     if (unk300 != 0) {
