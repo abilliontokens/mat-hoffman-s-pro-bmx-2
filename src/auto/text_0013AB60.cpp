@@ -41,7 +41,8 @@ struct S_0013AEC0_Ent {
 
 /* one 0x28-byte row of C_0013AEC0::fC */
 struct S_0013AF80_Row {
-    char pad0[8];
+    int f0;
+    int f4;
     int f8;
     int fC;
     int f10;
