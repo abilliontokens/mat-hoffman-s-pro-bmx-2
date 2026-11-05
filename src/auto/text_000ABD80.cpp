@@ -2,6 +2,10 @@
 #include "common.h"
 
 extern int D_0027C824;
+
+struct FooTest {
+    int x;
+};
 extern int D_0027C818;
 extern int D_0027C80C;
 extern int D_0027C800;
