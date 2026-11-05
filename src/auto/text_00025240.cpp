@@ -44,6 +44,47 @@ struct C_000260F0 {
     float func_000260F0(void);
 };
 
+extern int D_00276294;
+extern f32 D_002754B0;
+extern f32 D_00275460;
+extern f32 D_002756DC;
+extern char D_002765C4[];
+extern char D_002765B8[];
+extern char D_002765AC[];
+extern char D_0027659C[];
+extern char D_00276580[];
+extern char D_0027656C[];
+extern char D_0027655C[];
+
+int func_001E8833(void);
+void func_001E891B(void *p);
+
+struct C_00168B90 {
+    int func_00168B90(const char *name, void *out);
+};
+
+struct AmbientDebris {
+    void *vtbl;
+    float unk4;
+    float unk8;
+    float unkC;
+    float unk10;
+    float unk14;
+    float unk18;
+    float unk1C;
+    float unk20;
+    float unk24;
+    float unk28;
+    float unk2C;
+    void *unk30;
+    void *unk34;
+    float unk38;
+    void func_00157660(void);
+    void func_00026130(void);
+    void *func_00025920(unsigned int flags);
+    void func_00026170(C_00168B90 *cfg);
+};
+
 
 C_00025E10* C_00025E10::func_00025E10(void) {
     extern int D_00276534;
