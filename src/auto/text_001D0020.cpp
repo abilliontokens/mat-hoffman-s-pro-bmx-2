@@ -280,3 +280,15 @@ int XboxGame_001D0EC0::func_001D0EC0(void)
     return r;
 }
 
+int XboxGame_001D0EC0::func_001D0F70(int a0, int a1)
+{
+    if (((C_00156F30 *)this)->func_00156F30(a0, a1) != 0) {
+        return 1;
+    }
+    if ((f230 & 4) != 0 && func_00135C70(0x41, 0, a0, 3) != 0) {
+        D_002EFDB8->f60 = (D_002EFDB8->f60 != 0x1b02) + 0x1b01;
+        return 1;
+    }
+    return 0;
+}
+
