@@ -22,6 +22,38 @@ struct F3Obj {
     char pad_0d[0x3];
 };
 
+extern "C" unsigned int strlen(const char *s);
+extern "C" char *strcpy(char *dst, const char *src);
+#pragma intrinsic(strlen)
+#pragma intrinsic(strcpy)
+
+void *func_001EA6A0(void *dst, const void *src, unsigned int n);
+
+#pragma pack(push, 2)
+struct LD10 {
+    unsigned long lo;
+    unsigned long hi;
+    unsigned short se;
+};
+#pragma pack(pop)
+
+struct FOS {
+    short exp;
+    char sign;
+    char manlen;
+    char man[24];
+};
+
+struct STRFLT {
+    int sign;
+    int decpt;
+    int flag;
+    char *mantissa;
+};
+
+void func_001F494D(LD10 *dst, unsigned long *src);
+int func_001F5C49(LD10 ld, int ndigits, int flags, FOS *fos);
+
 int func_001F3B80(unsigned char *a, unsigned char *b) {
     unsigned char c1, c2;
     do {
