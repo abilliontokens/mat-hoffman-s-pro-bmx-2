@@ -43,6 +43,37 @@ struct S_000E35E0_Root {
     int *p2E0;
     char pad2E4[4];
     S_000E3790_Sub *p2E8;
+    struct LookupObj_E38 *p2EC;
+};
+
+struct ClampObj_E38 {
+    char pad0[0x10];
+    float f10;
+    float f14;
+};
+
+struct MidObj_E38 {
+    ClampObj_E38 *func_0018C070();
+};
+
+struct SubElem_E38 {
+    ClampObj_E38 *func_001D5AA0();
+};
+
+struct LookupObj_E38 {
+    int *func_0018C160(int a);
+};
+
+extern float D_00275AEC;
+extern int D_00278690;
+extern int D_002786A0;
+extern int D_00278678;
+
+struct C_000E3810 {
+    char pad0[0x320];
+    SubElem_E38 *a320[8][8];
+    void func_000E3810(void);
+    void func_001578D0(void);
 };
 
 extern S_000E35E0_Root *D_002A8490;
