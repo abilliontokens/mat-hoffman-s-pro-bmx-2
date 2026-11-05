@@ -59,6 +59,7 @@ struct C_0013B9C0 {
     int func_0013C110(int a);
     int func_0013C5D0(S_0013B9C0_Ent28 *a, int b);
     int func_0013C660(int a);
+    char *func_0013C6E0(int idx, char *buf, int size);
     int func_0013C8A0(int idx, int a2, int size, int count);
     int func_0013B760(S_0013B9C0_Ent28 *p, int v);
     int func_0013BBA0(S_0013B9C0_Ent28 *p, int a1, int a2, int a3);
