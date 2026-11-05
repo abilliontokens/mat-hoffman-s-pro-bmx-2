@@ -3,8 +3,37 @@
 extern int D_0028779C;
 extern int D_00287778;
 extern int D_002877C0;
+extern int D_00287824;
+extern int D_002877E4;
 void func_001E8390(void *p);
 void func_0001B2E0(void *p, int a);
+
+struct C_0015B7C0 {
+    void *vtbl;
+    u32 unk4;
+    u32 unk8;
+    u32 unkC;
+    u32 unk10;
+    void *unk14;
+    void func_0015B7C0();
+};
+
+struct C_0015BA90 {
+    void *vtbl;
+    u32 unk4;
+    u32 unk8;
+    u32 unkC;
+    u32 unk10;
+    void *unk14;
+    void func_0015BA90();
+};
+
+struct S_0015BF70_Node {
+    float f0;
+    char pad4[0xC];
+};
+
+int func_0015BF70(S_0015BF70_Node *arr, int n, float t);
 
 struct C_0015B660 {
     void *vtbl;
