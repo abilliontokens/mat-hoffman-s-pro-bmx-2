@@ -125,6 +125,12 @@ int func_001EB04C(void) {
 }
 
 void func_001EB109(char *p) {
+    int func_001EB390(...);
+    if (p >= D_002AE670 && p <= D_002AE8D0) {
+        func_001EB390(((int)(p - D_002AE670) >> 5) + 16);
+    } else {
+        RtlEnterCriticalSection(p + 0x20);
+    }
 }
 
 extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *cs);
