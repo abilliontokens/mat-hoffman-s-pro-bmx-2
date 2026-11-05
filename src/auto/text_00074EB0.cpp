@@ -59,6 +59,7 @@ struct C_00075880_Obj {
     char pad22[0x1D2];
     int unk1F4;
     void func_00032A40();
+    void func_00031610(int, int);
 };
 
 struct C_00075880 {
