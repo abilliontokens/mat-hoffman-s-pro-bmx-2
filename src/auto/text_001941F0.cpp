@@ -168,7 +168,14 @@ struct C_0012B8F0 {
     int f40;
     C_0012B8F0 *func_0012B8F0(void);
     void func_0012C910(void *a, int b);
+    void func_0012BF10(int frame, S_Vec4 *pos, S_Vec4 *v2, S_Vec4 *v3, float *fov);
+    void func_0012BF90(int frame, int i0, int i1, int i2, float frac, S_Vec4 *pos, S_Vec4 *v2, S_Vec4 *v3, float *fov);
 };
+
+static inline void FloatToInt(int *out, float f)
+{
+    *out = (int)f;
+}
 
 /* SimpleCutSceneCamera (run-time type information), base class CameraBehavior */
 struct SimpleCutSceneCamera {
