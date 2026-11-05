@@ -193,7 +193,7 @@ void C_0015BAC0::func_0015BAC0(int a0, u32 *a1, int a2) {
 
 int func_0015BF70(S_0015BF70_Node *arr, int n, float t)
 {
-    int hi, lo, mid;
+    int lo, hi, mid;
 
     if (n == 0) {
         return 0;
@@ -206,16 +206,16 @@ int func_0015BF70(S_0015BF70_Node *arr, int n, float t)
         hi = n;
         for (;;) {
             mid = (hi + lo) >> 1;
-            if (t < arr[mid].f0) {
-                if (t >= arr[mid - 1].f0) {
-                    return mid;
-                }
-                hi = mid;
-            } else {
+            if (t >= arr[mid].f0) {
                 if (t < arr[mid + 1].f0) {
                     return mid + 1;
                 }
                 lo = mid;
+            } else {
+                if (t >= arr[mid - 1].f0) {
+                    return mid;
+                }
+                hi = mid;
             }
         }
     }
@@ -242,25 +242,24 @@ int func_0015C260(float *base, int hi, float v)
 {
     if (hi == 0)
         return 0;
-    if (v < base[(hi - 1) * 10]) {
-        if (v < base[0])
-            return 0;
-        int lo = 0;
-        int mid;
-        do {
-            while (1) {
-                mid = (hi + lo) >> 1;
-                if (v < base[mid * 10])
-                    break;
-                lo = mid;
-                if (v < base[mid * 10 + 10])
-                    return mid + 1;
-            }
+    if (v >= base[(hi - 1) * 10])
+        return hi;
+    if (v < base[0])
+        return 0;
+    int lo = 0;
+    int mid;
+    while (1) {
+        mid = (hi + lo) >> 1;
+        if (v < base[mid * 10]) {
+            if (v >= base[mid * 10 - 10])
+                return mid;
             hi = mid;
-        } while (v < base[mid * 10 - 10]);
-        return mid;
+        } else {
+            if (v >= base[mid * 10 + 10])
+                return mid + 1;
+            lo = mid;
+        }
     }
-    return hi;
 }
 
 int func_0015C530(float *base, float v, int hi, float **lo, float **up, float *t)
@@ -274,9 +273,24 @@ int func_0015C530(float *base, float v, int hi, float **lo, float **up, float *t
         *t = (v - b[0]) / (a[0] - b[0]);
         return 1;
     }
-    *lo = &base[(hi - 1) * 10];
-    *up = &base[(hi - 1) * 10];
-    *t = (v - (*up)[0]) / (base[(i - 1) * 10] - base[(i - 2) * 10]);
+    *lo = &base[(hi - 2) * 10];
+    float *p = &base[(hi - 1) * 10];
+    *up = p;
+    *t = (v - p[0]) / (base[(i - 1) * 10] - base[(i - 2) * 10]);
     return 0;
+}
+
+void C_0015C5C0::func_0015C5C0(int a0, int a1)
+{
+    if (unkC >= unk10)
+        v6(unk10 + 1);
+    int local1;
+    func_0001B130(&local1, a0);
+    int index = func_0015C640(unk14, unkC, a1);
+    for (int i = unkC; i > index; i--)
+        unk14[i] = unk14[i - 1];
+    unk14[index].a = a1;
+    unk14[index].b = local1;
+    unkC++;
 }
 
