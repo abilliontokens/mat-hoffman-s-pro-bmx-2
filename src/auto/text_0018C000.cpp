@@ -282,6 +282,21 @@ void C_0018C120::func_0018C640(void)
     func_0018C120();
 }
 
+void *C_0018C000::func_0018C650(int flags)
+{
+    extern int D_0028A768;
+    vtbl = (int)&D_0028A768;
+    D_002EFDB8->vf7(1);
+    D_002EFDB8->vf8();
+    func_0018C1C0();
+    func_001E891B(unk4);
+    unk4 = 0;
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void C_0018C800::func_0018C780(int count, int *arr, int c)
 {
     int i;
