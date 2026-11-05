@@ -96,6 +96,14 @@ int C_00160860::func_001607B0(void)
     return 1;
 }
 
+void C_00160860::func_00160810(int a1, int a2)
+{
+    S_00160810_Cam *p = (S_00160810_Cam *)func_001E8A44(0x28);
+
+    f7c = p ? p->func_00193490() : 0;
+    f7c->func_001938C0(&vec[-1][3], a1, a2, &vec[0][0], &D_002A80CC, 0);
+}
+
 C_00160A60* C_00160A60::func_00160A60(void) {
     unk0 = 0;
     unk4 = 0;
