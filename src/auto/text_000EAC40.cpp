@@ -84,6 +84,7 @@ struct BmxUIPageMedia {
     int unk2D4;
     int unk2D8;
     BmxUIPageMedia *func_000EB370(void *param_1);
+    void func_000EB460(void);
     void func_000EB420(void);
     void func_001BE360(void *param_1);
     void func_001BE3F0(void);
