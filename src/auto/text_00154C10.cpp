@@ -16,10 +16,14 @@ extern char D_002758F0[], D_002758E4[], D_002758D8[], D_002758CC[];
 /* the path buffers are saved and restored with a length-clamped copy */
 static __forceinline void CopyPath_001554D0(char *dst, const char *src)
 {
-    volatile int len = strlen(src);
-    volatile int lim = 0x103;
-    volatile int res = lim > len ? len : lim;
-    int n = res;
+    volatile int len;
+    volatile int lim;
+    volatile int res;
+    int n;
+    len = strlen(src);
+    lim = 0x103;
+    res = lim > len ? len : lim;
+    n = res;
     func_001E8920(dst, src, n);
     dst[n] = 0;
 }
@@ -112,3 +116,41 @@ C_00155450 *C_00155450::func_00155450(void *param)
     vtbl = (void *)&D_00286DD4;
     return this;
 }
+
+void C_001554D0::func_001554D0(int a0)
+{
+    char buf1[0x104];
+    char buf2[0x104];
+    char name[0x104];
+    void *mem;
+    int i;
+
+    f3C->f4->func_0019ABA0(D_002B9120->f4A8[D_002B9120->f348], 2);
+    CopyPath_001554D0(buf1, D_002A5EA0);
+    CopyPath_001554D0(buf2, D_002A60B0);
+    func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5870, D_002A45E0);
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+    CopyPath_001554D0(D_002A5EA0, buf1);
+    CopyPath_001554D0(D_002A60B0, buf2);
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5870, D_002A47F0);
+    mem = func_001E8A44(0x20c);
+    f3B4 = mem ? ((S_001554D0_Obj *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+    f3B4->v4(D_002758F0, 1, 1, 0, 0);
+    mem = func_001E8A44(0x20c);
+    f3B8 = mem ? ((S_001554D0_Obj *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+    f3B8->v4(D_002758E4, 1, 1, 0, 0);
+    for (i = 0; i < 2; i++) {
+        func_001ADCC0(name, 0x104, D_002758D8, i + 1);
+        mem = func_001E8A44(0x20c);
+        f3A0[i] = mem ? ((S_001554D0_Obj *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+        f3A0[i]->v4(name, 1, 1, 0, 0);
+    }
+    for (i = 0; i < 2; i++) {
+        func_001ADCC0(name, 0x104, D_002758CC, i + 1);
+        mem = func_001E8A44(0x20c);
+        f3A8[i] = mem ? ((S_001554D0_Obj *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+        f3A8[i]->v4(name, 1, 1, 0, 0);
+    }
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5348, D_002A47F0);
+}
+
