@@ -77,6 +77,35 @@ void *C_0017A2E0::func_0017A2E0(unsigned int flags)
     return this;
 }
 
+void C_0017A640::func_0017A640()
+{
+    int i;
+
+    vtbl = &D_00288F84;
+    if (fFC) {
+        fFC->v2();
+    }
+    if (f160) {
+        f160->v0(1);
+    }
+    for (i = 0; i < fF8; i++) {
+        if (fF0[i]) {
+            fF0[i]->v0(1);
+        }
+    }
+    if (fF0) {
+        func_001E8390(fF0);
+    }
+    if (f140) {
+        func_001E8390(f140);
+    }
+    if (f158) {
+        func_001E8390(f158);
+    }
+    D_002A829C->func_001B26C0(f154);
+    func_00157660();
+}
+
 void C_0017A6F0::func_0017A6F0(int a0) {
     unk134 = a0;
 }
