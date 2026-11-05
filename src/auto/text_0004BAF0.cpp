@@ -183,6 +183,41 @@ void *C_0004BED0::func_0004BED0(int flags) {
     return this;
 }
 
+void C_0004BF00::func_0004BF00() {
+    C_0004BF00_Object *p;
+    int i;
+    func_00031630();
+    p = (C_0004BF00_Object *)func_001E8A44(0xf4);
+    fE4 = p ? p->func_00088530(1) : 0;
+    fE4 = fE4->func_00088570(D_002A8490->f2e0->f8);
+    p = (C_0004BF00_Object *)func_001E8A44(0x134);
+    f15C = p ? p->func_0005ECA0(1) : 0;
+    f15C->func_0005EDC0(this);
+    f15C->v4();
+    p = (C_0004BF00_Object *)func_001E8A44(0x140);
+    f1A0 = p ? p->func_000715B0(1) : 0;
+    f1A0->func_00071880(this);
+    f1A0->v4();
+    p = (C_0004BF00_Object *)func_001E8A44(0x16c);
+    f190 = p ? p->func_00066C90(1) : 0;
+    f190->func_00066FA0(this);
+    f190->v4();
+    for (i = 0; i < D_002A8490->f2e0->count; ++i) {
+        p = (C_0004BF00_Object *)func_001E8A44(0xda4);
+        f170[i] = p ? p->func_00082450(1) : 0;
+        f170[i]->func_0008DB70(f64, f64->f4E0->f1A8[i], D_002A8490->f2e0->f8, i, 1, 1, 0);
+        f170[i]->v6();
+    }
+    p = (C_0004BF00_Object *)func_001E8A44(0xc8);
+    p = p ? p->func_000876B0(1) : 0;
+    f198 = p->func_00087760(D_002A8490->f2e0->f8, this, 0);
+    for (i = 0; i < D_002A8490->f2e0->count; ++i) {
+        p = (C_0004BF00_Object *)func_001E8A44(0x44);
+        f1248[i] = p ? p->func_00088DA0(1) : 0;
+        f1248[i]->func_00088DD0(D_002A8490->f2e0->f8, i, this);
+    }
+}
+
 void C_0004C560::func_0004C320(void)
 {
     int i;
