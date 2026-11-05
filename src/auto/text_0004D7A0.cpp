@@ -69,3 +69,25 @@ void *C_0004DC70::func_0004DC70(int flags) {
     }
     return this;
 }
+
+C_0004DCA0 *C_0004DCA0::func_0004DCA0(void)
+{
+    int i;
+    func_000342C0();
+    for (i = 0; i < f90; i++) {
+        f64->f4E0->func_000A4500(0, i);
+        f64->f4E0->f1A8[i]->f95C = 1;
+        f64->f4E0->f1A8[i]->func_00108680(0);
+        f64->f4E0->f1A8[i]->func_0010C090(&f688[f28C], &f708[f28C], 0, 1);
+    }
+    f120 = f90 - 1;
+    f288->func_00086130(0);
+    f288->func_00086140(0);
+    f288->func_00085BD0(1);
+    f64->f4E0->f1A8[f120]->f95C = 1;
+    f290 = 0;
+    if (f1C0)
+        f1C0->func_00099D40(-1);
+    return this;
+}
+
