@@ -168,7 +168,7 @@ void *DynamicStringTable::func_001AC920(int flags)
     return this;
 }
 
-static char *func_001ACCF0(int flag, int *sign, int value, char *end, int *len)
+char *func_001ACCF0(int flag, int *sign, unsigned value, char *end, int *len)
 {
     char *p = end;
     if (flag) {
