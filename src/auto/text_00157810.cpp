@@ -52,6 +52,7 @@ struct S_00157810_Child {
     char pad20;
     unsigned char f21;
     unsigned int func_00157770(void);
+    int func_00157810(void);
 };
 
 struct C_00157810 {
