@@ -209,6 +209,42 @@ int func_00135E80()
     return ++D_002BA700;
 }
 
+int C_00135E00::func_00136110(int a, int idx)
+{
+    S_00136110_Dev *dev = f14[idx];
+
+    if (dev != 0) {
+        if (dev->v3(a, 0x3f, 0) != 0) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int C_00135E00::func_00136170(int idx, int type, int row)
+{
+    C_00135CB0 *t = fCC0;
+
+    if (t != 0) {
+        switch (type) {
+        case 0:
+            if (idx >= 0 && idx < 0x4a) {
+                return t->tbl[0][idx];
+            }
+            break;
+        case 1:
+            if (idx >= 0 && idx < 0x4a) {
+                return t->tbl[9][idx];
+            }
+            break;
+        case 2:
+            t->func_00135D30(idx, &idx, row);
+            return idx;
+        }
+    }
+    return -1;
+}
+
 void C_00136300::func_00136300(void)
 {
     if (*(int *)((char *)D_002A8490 + 8) != 0 && f0 != 0) {
