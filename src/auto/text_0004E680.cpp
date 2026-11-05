@@ -555,6 +555,50 @@ C_0004EDB0 *C_0004EDB0::func_0004EDB0(void)
     return this;
 }
 
+void C_0004EF30::func_0004EF30(int arg) {
+ extern char *D_002A8490;
+ int i, all, found;
+ if(f1f4) { func_00157A00(arg); return; }
+ if(world->scene) {
+ H_Item *item=world->scene->parts[index]->item;
+ if(item->flags & 0x10) {
+ overlay->v5(1); func_0004EA20(item);
+ for(i=0;i<count;i++) {
+ H_Player *player=world->players->items[i];
+ if(item->id==player->f11b0) player->score+=100;
+ }
+ }
+ }
+ func_0004E7B0();
+ if(result) {
+ if(!ready) {
+ H_State *state=((H_Global*)D_002A8490)->state;
+ if(!state->mode) { if(f128 <= D_00275544) ready=1; }
+ else { if(f124 > state->time) ready=1; }
+ }
+ all=1;
+ for(i=0;i<count;i++) if(!world->players->items[i]->func_00108660()) all=0;
+ if(ready) {
+ for(i=0;i<count;i++) world->players->items[i]->func_001084E0();
+ }
+ if(ready && all && !result->done) {
+ for(i=0;i<count;i++) result->func_00067D60(i,world->players->items[i]->score);
+ func_00032A20();
+ found=0; i=0;
+ do {
+ if(rules->func_0005B960(3,(float)f12c) ||
+ rules->func_0005B960(1,world->players->items[i]->fa4c) ||
+ rules->func_0005B960(4,(float)world->players->items[i]->score) ||
+ rules->func_0005B960(2,world->players->items[i]->f1058) ||
+ rules->func_0005B960(0,world->players->items[i]->fa54)) found=1;
+ ++i;
+ } while(i<world->players->count && !found);
+ result->func_000684B0();
+ }
+ }
+ func_00031260(arg);
+}
+
 C_0004F220 *C_0004F220::func_0004F220(int a0)
 {
     extern int D_0027777C;
