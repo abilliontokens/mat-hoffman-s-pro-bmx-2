@@ -379,14 +379,11 @@ int __stdcall func_0023F160(C_0023EFB0 *p)
 S_0023F3F7_Obj *S_0023F3F7_Obj::func_0023F1AB(void)
 {
     C_0023EC0D *p = (C_0023EC0D *)this;
-    int i;
 
     p->vtbl = &D_0029016C;
     p->f4 = 1;
-    p->f30 = 0;
-    for (i = 0; i < 10; i++) {
-        p->f8[i] = 0;
-    }
+    memset(&p->f30, 0, 4);
+    memset(p->f8, 0, 0x28);
     p->f50 = -1;
     p->f34 = 0;
     p->f98 = 0;
@@ -404,9 +401,7 @@ S_0023F3F7_Obj *S_0023F3F7_Obj::func_0023F1AB(void)
     p->f68 = 0;
     p->fB8 = 1000;
     p->fB0 = 1;
-    for (i = 0; i < 5; i++) {
-        p->f54[i] = 0;
-    }
+    memset(p->f54, 0, 0x14);
     _imp__RtlInitializeCriticalSection(p->f6c);
     p->fA4.prev = &p->fA4;
     p->fA4.next = &p->fA4;
