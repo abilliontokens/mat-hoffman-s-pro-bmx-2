@@ -91,6 +91,8 @@ void __cdecl func_001DDE51(char *buf, const char *fmt, ...);
 int func_001EA426(const char *a, const char *b);
 unsigned __stdcall func_0026EBC5(void *type);
 int __stdcall func_0026EBE7(void *type, unsigned *insertions, unsigned *removals);
+int __stdcall func_0026ED5B(int port, int slot, char *letter);
+int __stdcall func_0026EE8D(int port, int slot);
 
 struct S_001D4200_Find {
     char pad0[0x140];
