@@ -122,15 +122,14 @@ void C_000B58B0::func_000B58B0(void)
 
 int C_000B5950::func_000B5950(void)
 {
-  int in_ECX = (int)this;
   struct {
     volatile int self;
     volatile float f;
     volatile int tmp;
   } s;
 
-  s.self = in_ECX;
-  s.f = *(float *)((**(code **)(*(int *)in_ECX + 0x6c))() + 0x44);
+  s.self = (int)this;
+  s.f = *(float *)((**(code **)(*(int *)this + 0x6c))() + 0x44);
   s.tmp = *(int *)&s.f & 0x7fffffff;
   if (*(float *)&s.tmp > D_002A2EC8) {
     return 1;
@@ -145,10 +144,10 @@ C_000B5990 *C_000B5990::func_000B5990(int param_1)
   func_000B50B0(param_1);
   vtbl = (int)&D_0027D40C;
   unk58 = 0.1f;
-  unk5c = 0.034906446933746338f;
+  unk5c = 0.03490658104419708251953125f;
   unk60 = 0.05f;
-  unk64 = 0.017453223466873169f;
-  unk6c = 15.707490920066833f;
+  unk64 = 0.017453290522098541259765625f;
+  unk6c = 15.70796108245849609375f;
   unk68 = 10.0f;
   return this;
 }
