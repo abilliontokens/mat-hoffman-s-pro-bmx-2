@@ -200,11 +200,6 @@ extern char D_0028A9F4[];
 extern char D_0027CEF0[];
 char *func_001E95A4(char *s, const char *delim);
 
-static inline int MinRef_0018E7D0(const int &a, const int &b)
-{
-    return (b < a) ? b : a;
-}
-
 struct C_0018E7D0 {
     char pad0[0x158];
     C_0018E7D0_Ent *named;
