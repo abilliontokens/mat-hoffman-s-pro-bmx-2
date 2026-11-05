@@ -19,6 +19,7 @@ struct C_00157660 {
 struct C_0013B210 {
     int func_0013C6E0(int h, char *buf, int size);
     void func_0013AF80(int h);
+    int func_0013AFD0(int h);
     void func_0013C110(int h);
     void func_0013AFF0(int a, int b, int c);
     void func_0013C8A0(int h, void *buf, int size, int count);
