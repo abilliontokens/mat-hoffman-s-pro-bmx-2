@@ -24,7 +24,42 @@ struct C_00160C00 {
     C_00160C00 *func_00160C00(void);
 };
 
+struct C_00160BD0 {
+    int unk0;
+    int unk4;
+    int unk8;
+    char unkC;
+    char padD[3];
+    int unk10;
+    int unk14;
+    int unk18;
+    C_00160BD0 *func_00160BD0(void);
+};
+
+struct S_00160B30_Node {
+    int f0;
+    S_00160B30_Node *prev;
+    S_00160B30_Node *next;
+};
+
+struct C_00160B30 {
+    int count;
+    S_00160B30_Node *head;
+    S_00160B30_Node *tail;
+    void func_00160B30(S_00160B30_Node *node);
+    void func_00160B90(void);
+};
+
+struct C_00160C40 {
+    int *data;
+    int count;
+    int f8;
+    int fC;
+    C_00160C40 *func_00160C40(int n, int a, int b);
+};
+
 void *func_001E8A44(int size);
+void func_001E891B(void *p);
 extern int D_002A80C0;
 extern int D_002A80CC;
 extern int D_002879C4;
