@@ -27,6 +27,14 @@ struct C_000DE300 {
     void func_000DE390();
 };
 
+void C_000DE300::func_000DE300()
+{
+    unk32C->func_001B1980();
+    unk328->func_001B1980();
+    unk32C->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
+    unk328->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
+}
+
 void C_000DE300::func_000DE390()
 {
     C_000DE_Elem *e = unk2EC;
