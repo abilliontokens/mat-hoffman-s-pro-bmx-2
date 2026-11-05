@@ -68,13 +68,14 @@ void func_001EAF7F(int code) {
     func_001EAED5(code, 1);
 }
 
-double func_001EAF91(double x, double y) {
+double func_001EAF91(unsigned int xlo, unsigned int xhi, unsigned int ylo, unsigned int yhi) {
     union {
         double d;
         unsigned int i[2];
     } u;
-    u.i[0] = ((unsigned int *)&x)[0];
-    u.i[1] = (((unsigned int *)&y)[1] ^ ((unsigned int *)&x)[1]) & 0x7fffffff ^ ((unsigned int *)&y)[1];
+
+    u.i[0] = xlo;
+    u.i[1] = (*(volatile unsigned int *)&yhi ^ xhi) & 0x7fffffff ^ yhi;
     return u.d;
 }
 
