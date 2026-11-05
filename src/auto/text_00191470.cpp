@@ -227,10 +227,10 @@ C_001923F0 *C_001923F0::func_001923F0(int a)
 {
     func_00192720();
     unk28 = a;
+    vtbl = &D_0028AB24;
     unk34 = 0;
     unk30 = a;
     unk2C = 0;
-    vtbl = &D_0028AB24;
     unk38 = 0;
     return this;
 }
