@@ -212,7 +212,23 @@ struct Game_000A79E0 {
     char pad3b4[0xf8];
     int *f4ac;
 };
+struct S_A7FE0_Rec {
+    char *name;
+};
+struct S_A7FE0_Sub {
+    char pad0[0xa0];
+    char name[0x104];
+    char pad1a4[4];
+    int pad1a8;
+    char padx[0x58 - 0x4c];
+    int f58;
+};
+struct S_A7FE0_Ent;
 struct Hook_000A79E0 {
+    char pad0[0x30];
+    int f30;
+    char pad34[0x2c];
+    S_A7FE0_Ent **f60;
     void func_000216F0(char *a, int b, Obj_000A79E0 *c);
 };
 struct Pt_000A79E0 {
