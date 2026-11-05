@@ -676,6 +676,15 @@ int C_00095160::func_00095160(int index)
     return 1;
 }
 
+int C_00095060::func_000951B0(int n)
+{
+    if (n >= 1 && n <= tracks.count) {
+        tracks.at(n - 1)->f68 = 1;
+        return 1;
+    }
+    return 0;
+}
+
 int C_00095160::func_00095200(int index)
 {
     if (index < 1 || index > f54) {
