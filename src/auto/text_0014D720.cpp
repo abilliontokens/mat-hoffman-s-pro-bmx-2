@@ -124,6 +124,17 @@ struct EcoGlobal {
 
 extern EcoGlobal *D_002EFDB8;
 
+static inline int EcoLogId(EcoLog *log)
+{
+    int id = D_002A768C;
+    if (id < 0) {
+        id = log->unk1934;
+        D_002A768C = id;
+        log->unk1934 = id + 1;
+    }
+    return id;
+}
+
 void func_0013E1F0(EcoLog *log, int id, const char *fmt, ...);
 void func_0013E260(EcoLog *log, int id, const char *fmt, ...);
 
@@ -133,6 +144,40 @@ void C_0014E1C0::func_0014E1C0(C_0013E9B0 **param_1, int param_2)
         param_1[i]->func_0013E9B0(unk21D8[i]);
     }
     D_002BF278 += param_2;
+}
+
+int EcoSystem::func_0014E200(void)
+{
+    if (D_002A7690 != 0) {
+        D_002BF278 = 0;
+        D_002BF27C = 0;
+        if (unk56C != 0 || unk574 != 0) {
+            func_0013ED30();
+        }
+        if (D_002A7698 != 0 && unk56C != 0) {
+            func_0013ECF0(unk44, unk56C, unk21C8, unk21DC, 0);
+        }
+        if (D_002A769C != 0 && unk574 != 0) {
+            func_0013ECF0(unk4C, unk574, unk21CC, unk21DC, unk21E0);
+        }
+        if (D_002A7694 != 0 && unk570 != 0) {
+            func_0014E1C0(unk48, unk570);
+        }
+        D_002EFDB8->v7(0);
+        EcoLog *log = D_002A8490->unk18;
+        if (log != 0) {
+            if (D_002A768C < 0) {
+                int t = log->unk1934;
+                log->unk1934 = t + 1;
+                D_002A768C = t;
+            }
+            func_0013E260(D_002A8490->unk18, D_002A768C, D_00286A00, unk3C);
+            func_0013E1F0(D_002A8490->unk18, D_002A768C, D_002869E8, unk56C, unk570);
+            func_0013E1F0(D_002A8490->unk18, D_002A768C, D_002869D0, D_002BF27C, D_002BF278);
+            func_0013E1F0(D_002A8490->unk18, D_002A768C, D_002869C4, 0);
+        }
+    }
+    return 1;
 }
 
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
