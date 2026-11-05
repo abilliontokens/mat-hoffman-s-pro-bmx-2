@@ -167,6 +167,13 @@ struct C_0001CD90 {
     void *func_0001CD90(int arg);
 };
 
+static __forceinline S36_1A S36_0001CD90(void)
+{
+    S36_1A s = { 0x168, 0x168, 0, 0x3f800000, 0x4e6e6b28, 0, 0x3e9c0ebf, 0x3f800000, 0x3f800000 };
+
+    return s;
+}
+
 struct C_0001D0B0 {
     char pad0[4];
     void *f4;
@@ -672,6 +679,24 @@ void C_0001CD50::func_0001CD50(void) {
 void C_0001CD60::func_0001CD60(int a, int b) {
     func_00135C70(0x1f, 0, a, 0x30);
     func_00157BF0(a, b);
+}
+
+void *C_0001CD90::func_0001CD90(int arg)
+{
+    void *mem = func_001E8A44(0x204);
+
+    if (mem == 0) {
+        return 0;
+    }
+    C_001A30D0 *obj = ((C_001A30D0 *)mem)->func_001A30D0(this, arg, 5, 1);
+    if (obj == 0) {
+        return 0;
+    }
+    S36_1A s = { 0x168, 0x168, 0, 0x3f800000, 0x4e6e6b28, 0, 0x3e9c0ebf, 0x3f800000, 0x3f800000 };
+    C_001A23F0 *o = (C_001A23F0 *)obj;
+
+    o->func_001A23F0(s, o->f70, o->f80, 2, 20.0f, 100.0f, 0, 0);
+    return obj;
 }
 
 int C_0001D0B0::func_0001D0B0(int count, int p2)
