@@ -101,6 +101,12 @@ struct C_00198B70 {
     void func_00198BE0(int a);
     void func_00198DE0(void);
     void func_00198E60(void);
+    void func_001982F0(void);
+    void func_00197B10(void);
+    S_00198B70_F4 func_00198120(S_00198B70_F4 *p);
+    void func_00199650(float *v);
+    void func_00199900(float *v);
+    void func_00199A70(C_00198B70 *other, S_00198B70_F4 *out);
 };
 
 void C_00198B70::func_00198B70(S_00198B70_V4 *out0, S_00198B70_V4 *out1)
