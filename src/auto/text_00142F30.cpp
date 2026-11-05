@@ -107,12 +107,21 @@ struct DXShadowCaster {
 
 struct DXRenderableObject {
     void *vtbl;
-    char pad4[0x19F];
+    char pad4[0x17D];
+    unsigned char f181;        /* 0x181 */
+    char pad182[0x1A0 - 0x182];
+    unsigned char f1a0;        /* 0x1A0 */
+    char pad1a1[2];
     unsigned char f1a3 : 1;
     ShadowPieceTable *f1a4;
-    char pad1a8[0x28];
+    char pad1a8[0x10];
+    int *f1b8;                 /* 0x1B8 */
+    char pad1bc[4];
+    Vec4_143660 f1c0;          /* 0x1C0 */
     PageObj *f1d0;
     int f1d4;
+    void func_00143660(void);
+    void func_00157960(void);
     void func_001814B0(int a);
     int func_001817F0(int a, int b, int c);
     void func_00181540();
