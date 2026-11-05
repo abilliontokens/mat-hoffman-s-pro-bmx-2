@@ -18,6 +18,62 @@ extern int D_0028CF30;
 extern int D_002764F0;
 extern "C" int strlen(const char *s);
 char *func_001E8920(char *dst, const char *src, int n);
+extern "C" char *strcpy(char *dst, const char *src);
+extern "C" int strcmp(const char *a, const char *b);
+extern "C" void *memset(void *dst, int c, unsigned int n);
+char *func_001E8AC0(const char *s, int c);
+int func_001EA426(const char *a, const char *b);
+
+/* blob holding a name at +0xD4, a name at +0x1D8 and a slot at +0x2DC */
+struct S_001B70D0_Obj {
+    char pad0[0xD4];
+    char fD4[0x104];
+    char f1D8[0x104];
+    int f2DC;
+};
+
+struct S_001B70D0_Src {
+    char pad0[0x22C];
+    int f22C;
+    char pad230[0x300 - 0x230];
+    char f300[1];
+};
+
+struct S_001B70D0_Slot {
+    char pad0[0x64];
+    S_001B70D0_Src *f64;
+    char pad68[0x1C0 - 0x68];
+    int f1C0;
+};
+
+struct S_001B70D0_Mgr {
+    char pad0[4];
+    struct S_001B70D0_Lookup *f4;
+    char pad8[0x280 - 8];
+    S_001B70D0_Slot **f280;
+    int f284;
+};
+
+struct S_001B70D0_Lookup {
+    int func_00198330(void *name);
+};
+
+struct S_001B70D0_Entry {
+    char pad0[4];
+    int f4;
+    char pad8[0x58 - 8];
+    S_001B70D0_Src *f58;
+    char pad5C[0xA0 - 0x5C];
+    char fA0[1];
+    char padA1[0x1A4 - 0xA1];
+    S_001B70D0_Mgr *f1A4;
+};
+
+struct S_001B70D0_Arg {
+    char pad0[0x24];
+    int f24;
+    S_001B70D0_Entry **f28;
+};
 
 struct S_001B7480_Quat {
     u32 x;
