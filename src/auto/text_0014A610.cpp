@@ -41,6 +41,27 @@ struct C_0014A8A0 {
     char padC[8];
     VSEntry2 *f14;
     void func_0014A8A0(void);
+    void func_0014A910(int param_1);
+    void func_0014A9C0(void);
+    void func_001AC790(int param_1);
+};
+
+struct C_00012140 {
+    void func_0014A540(void);
+};
+
+struct C_0014AA40 {
+    int unk0;
+    void func_0014A9C0(void);
+    void func_001AC830(void);
+    void *func_0014AA40(int flags);
+};
+
+struct C_0014A960 {
+    int unk0;
+    void func_001AC3A0(void);
+    void func_001AC680(int a, int b);
+    void *func_0014A960(void);
 };
 
 struct C_0014A870 {
