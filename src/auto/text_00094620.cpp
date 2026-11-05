@@ -210,6 +210,9 @@ struct C_00094A00 {
     void func_00094990(float a);
     void func_000949B0(float a, int b, int c);
     void func_00094C00(void);
+    int func_00094E10(int idx, int a);
+    int func_00094E40(int idx, int a, int b);
+    int func_00094E70(int *ids, int count, int a, int b);
 };
 
 
