@@ -216,6 +216,70 @@ void VehicleAI::func_000B3B40()
     }
 }
 
+void VehicleAI2::func_000B3C30()
+{
+    S_000B3C30_Glob *g;
+    int d;
+    S_000B3C30_Own *own = f3C;
+    int me = own->f4B8;
+    if (f64 == D_00275544) {
+        if (f48 != 0) {
+            int o = f48->f3C->f4B8;
+            if (o < me) {
+                d = *own->f518 - me + o;
+            } else {
+                d = o - me;
+            }
+            if (d > func_00011260(1, ((S_000B3C30_Glob *)D_002B9134)->f30) + ((S_000B3C30_Glob *)D_002B9134)->f2C) {
+                if (func_00011260(1, 100) > 75) {
+                    if (f2ab || f2aa) {
+                        func_000B2930();
+                        return;
+                    }
+                    goto fin;
+                }
+            }
+        }
+        return;
+    }
+    f2a9 = 0;
+    if (f48 != 0) {
+        S_000B3C30_Own *oo = f48->f3C;
+        int o = oo->f4B8;
+        if (o < me) {
+            d = *own->f518 - me + o;
+        } else {
+            d = o - me;
+        }
+        g = (S_000B3C30_Glob *)D_002B9134;
+        if (d <= g->f2C) {
+            float x = (float)d - (float)g->f30 * D_00279B54;
+            f68 = func_000B24C0(D_002756DC * x * x, 0, f64);
+            f2a9 = 1;
+            if (f5C != 0x5a) {
+                f1a1 = 1;
+                f58 = 0x5a;
+            }
+            func_000B2450(f64);
+            if (f64 < D_002755E0 && f64 == f68) {
+                f68 = 0;
+                if (f78) {
+                    f44->f28->f8->func_001A2AA0(2);
+                }
+            }
+            f64 = f68;
+        }
+    }
+    if (!f2a9 && !f2aa && !f2ab) {
+fin:
+        f68 = 1.0f;
+        if (f5C) {
+            f1a1 = 1;
+            f58 = 0;
+        }
+    }
+}
+
 undefined4 C_000B3DF0::func_000B3DF0(byte param_1)
 {
   int func_000B2E40(...);
