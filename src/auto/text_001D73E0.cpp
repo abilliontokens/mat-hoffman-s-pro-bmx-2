@@ -3,6 +3,25 @@
 
 extern int D_0028F6DC;
 
+struct S_001D8140 {
+    int f0;
+    unsigned int f4;
+    unsigned int f8;
+    char fC[0x20 - 0xC];
+    int f20;
+    unsigned int f24;
+};
+
+struct S_001D8140_Info {
+    char pad0[0xC];
+    unsigned int fC;
+    char pad10[0x1C - 0x10];
+    unsigned int f1C;
+    char pad20[0xC4 - 0x20];
+    unsigned int fC4;
+    char padC8[0xD4 - 0xC8];
+};
+
 struct C_001B23D0 {
     void func_001B23D0();
 };
