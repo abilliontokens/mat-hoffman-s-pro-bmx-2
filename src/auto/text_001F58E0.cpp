@@ -2,12 +2,31 @@
 #include "common.h"
 #include "ghidra.h"
 
+struct S_001F5975_Record {
+    int code;
+    int flags;
+    void *record;
+    void *address;
+    int numParams;
+    int info[15];
+};
+
+struct S_001F5975_Pointers {
+    S_001F5975_Record *record;
+    void *context;
+};
+
+typedef int (__stdcall *PFN_001F5975)(S_001F5975_Pointers *);
+
+extern PFN_001F5975 D_002F6A70;
+PFN_001F5975 __stdcall func_001DE7D4(PFN_001F5975 filter);
+int __stdcall func_001F5975(S_001F5975_Pointers *pointers);
+void func_001F6292(void);
+int func_001F627B(PFN_001F5975 fn);
+
 undefined4 func_001F59BB(void)
 {
-  extern undefined4 D_002F6A70;
-  int __stdcall func_001DE7D4(int);
-  int __stdcall func_001F5975(int);
-  D_002F6A70 = func_001DE7D4((int)(&func_001F5975));
+  D_002F6A70 = func_001DE7D4(&func_001F5975);
   return 0;
 }
 
