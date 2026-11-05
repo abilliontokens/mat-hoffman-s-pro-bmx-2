@@ -130,6 +130,7 @@ struct C_00092890 {
     int func_00092E30(int idx);
     int func_00092AC0(void);
     int func_000930D0(void);
+    void func_00092D10(void);
 };
 
 struct C_000928D0 {
