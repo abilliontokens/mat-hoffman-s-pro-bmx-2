@@ -154,6 +154,14 @@ void C_001BBAA0::func_001BBA60(void)
     }
 }
 
+void C_001BBDD0::func_001BBDD0(int *a, int b)
+{
+    if (func_00135C70(0x14, 0, a, 0x80) != 0 && unk2E4 != 0) {
+        unk2E4->unkA6 = unk2E4->unkA6 == 0;
+    }
+    func_00157BF0(a, b);
+}
+
 undefined4 C_001BC020::func_001BC020(byte param_1)
 {
   int func_001BB860(...);
