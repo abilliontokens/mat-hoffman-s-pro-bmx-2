@@ -14,6 +14,8 @@ struct ExceptionRaw_001F3805 {
     D8_001F3805 retval;
 };
 
+extern double D_002766A8;
+
 struct Exception_001F3805 {
     int type;
     char *name;
