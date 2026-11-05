@@ -85,6 +85,12 @@ struct Obj_00133ED0 {
 };
 
 
+void Obj_00133ED0::func_00133ED0(void)
+{
+    v32();
+    ((C_00133210 *)this)->func_00133210();
+}
+
 undefined4 C_001349F0::func_001349F0(byte param_1)
 {
   int func_00133E60(...);
