@@ -3,7 +3,7 @@
 extern float D_002879B8, D_00275544, D_002756D4, D_00286AC4, D_002756D0;
 extern float D_002879B4, D_002879B0, D_002879AC, D_002879A8;
 #pragma optimize("g", off)
-static __forceinline float abs_0015FF80(float v) { *(unsigned int *)&v &= 0x7fffffff; return v; }
+static __forceinline float abs_0015FF80(volatile float v) { unsigned int bits = *(volatile unsigned int *)&v & 0x7fffffff; return *(float *)&bits; }
 #pragma optimize("", on)
 static __forceinline float atan_poly_0015FF80(float t) {
     float s = t * t;
