@@ -168,7 +168,7 @@ void *DynamicStringTable::func_001AC920(int flags)
     return this;
 }
 
-char *func_001ACCF0(int flag, int *sign, unsigned value, char *end, int *len)
+static char *func_001ACCF0(int flag, int *sign, int value, char *end, int *len)
 {
     char *p = end;
     if (flag) {
@@ -187,5 +187,117 @@ char *func_001ACCF0(int flag, int *sign, unsigned value, char *end, int *len)
     } while (value);
     *len = (int)(end - p);
     return p;
+}
+
+char *func_001AC940(double value, int ndec, int *decpt, int flag);
+int func_001EA211(int c);
+char *func_001ACD40(int ndec, char fmt, double value, int alt, int *sign, char *buf, int *outlen)
+{
+    int decpt;
+    char expbuf[10];
+    char digits[0x50];
+    char *src;
+    char *p;
+    int esign;
+    int len;
+
+    src = func_001AC940(value, fmt == 'f' ? ndec : ndec + 1, &decpt, fmt != 'f');
+    if (func_001EA211(*src)) {
+        strcpy(buf, src);
+        *outlen = strlen(buf);
+        *sign = 0;
+        return buf;
+    }
+    if (fmt == 'f') {
+        if (decpt > 0) {
+            int n = decpt;
+            p = buf;
+            do {
+                *p++ = *src++;
+            } while (--n);
+            decpt = -1;
+            if (ndec > 0 || alt)
+                *p++ = '.';
+        } else {
+            p = buf;
+            *p++ = '0';
+            if (ndec > 0) {
+                *p++ = '.';
+                if (decpt < 0) {
+                    int n = -decpt;
+                    memset(p, '0', n);
+                    p += n;
+                    decpt += n;
+                }
+                decpt++;
+            } else if (alt) {
+                *p++ = '.';
+            }
+        }
+    } else {
+        p = buf;
+        *p++ = *src++;
+        if (ndec > 0 || alt)
+            *p++ = '.';
+    }
+    while (*src)
+        *p++ = *src++;
+    if (fmt != 'f') {
+        *p++ = fmt;
+        if (decpt == 1) {
+            *p++ = '+';
+            *p++ = '0';
+            *p++ = '0';
+        } else {
+            src = func_001ACCF0(0, &esign, decpt - 1, expbuf + 10, &decpt);
+            *p++ = esign ? '-' : '+';
+            if (decpt == 1)
+                *p++ = '0';
+            for (len = 0; len < decpt; len++)
+                *p++ = *src++;
+        }
+    }
+    *outlen = p - buf;
+    return buf;
+}
+
+void __fastcall func_001ACF30(unsigned int value, int unused, char fmt, int *outlen)
+{
+    char *end;
+    int shift;
+    char *digits = D_0028C118;
+    char *p = end;
+    unsigned int mask;
+    if (fmt == 'X') {
+        digits = D_0028C12C;
+    }
+    mask = (1 << shift) - 1;
+    do {
+        p--;
+        *p = digits[value & mask];
+        value >>= shift;
+    } while (value != 0);
+    *outlen = end - p;
+}
+
+void __fastcall func_001ACF80(int shift, int value, char fmt, int *outlen)
+{
+    char *end;
+    char *digits = D_0028C140;
+    char *p = end;
+    int mask = (1 << shift) - 1;
+    if (fmt == 'X') {
+        digits = D_0028C154;
+    }
+    if ((unsigned int)value > 0xffffffff) {
+        func_001ACF30(value, 0, fmt, outlen);
+        return;
+    }
+    do {
+        p--;
+        *p = digits[value & mask];
+        value >>= shift;
+    } while (value != 0);
+    *outlen = end - p;
 }
 
