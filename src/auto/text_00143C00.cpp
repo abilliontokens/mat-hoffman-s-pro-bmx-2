@@ -54,12 +54,16 @@ struct C_00144640 {
     C_00144640 *func_00144640();
 };
 
+struct C_00144660Obj {
+    virtual void func_v0(int param);
+};
+
 struct C_00144660 {
     void *vtbl;
     char pad4[8];
     u8 fc;
     char padD[3];
-    void *f10;
+    C_00144660Obj *f10;
     void func_00144660();
 };
 
