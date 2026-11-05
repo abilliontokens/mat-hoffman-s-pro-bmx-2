@@ -4,6 +4,19 @@
 
 extern int D_0028D11C;
 
+void *func_001E8A44(int size);
+void func_001E891B(void *p);
+
+struct C_001B9C70 {
+    int *data;
+    int size;
+    int f08;
+    int f0C;
+    int f10;
+    int f14;
+    int func_001B9C70(int n);
+};
+
 struct C_00157600 {
     void func_00157600(void *param);
 };
