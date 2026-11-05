@@ -124,17 +124,6 @@ struct EcoGlobal {
 
 extern EcoGlobal *D_002EFDB8;
 
-static inline int EcoLogId(EcoLog *log)
-{
-    int id = D_002A768C;
-    if (id < 0) {
-        id = log->unk1934;
-        D_002A768C = id;
-        log->unk1934 = id + 1;
-    }
-    return id;
-}
-
 void func_0013E1F0(EcoLog *log, int id, const char *fmt, ...);
 void func_0013E260(EcoLog *log, int id, const char *fmt, ...);
 
