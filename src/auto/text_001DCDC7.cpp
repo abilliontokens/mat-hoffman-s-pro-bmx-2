@@ -101,6 +101,31 @@ int __stdcall func_001DD563(void *a0) {
         return 0;
     }
 }
+
+#pragma optimize("y", off)
+int __stdcall func_001DD58A(void *a0, u32 *a1) {
+    struct NetworkOpenInfo {
+        __int64 creationTime;
+        __int64 lastAccessTime;
+        __int64 lastWriteTime;
+        __int64 changeTime;
+        __int64 allocationSize;
+        __int64 endOfFile;
+        u32 fileAttributes;
+    };
+    u32 iosb[2];
+    NetworkOpenInfo info;
+    int result = _imp__NtQueryInformationFile(a0, iosb, &info, 0x38, 0x22);
+    if (result < 0) {
+        func_001DD659(result);
+        return 0;
+    } else {
+        *(__int64 *)a1 = info.endOfFile;
+        return 1;
+    }
+}
+#pragma optimize("y", on)
+
 #pragma optimize("y", on)
 
 void __stdcall func_001DD7F7(undefined4 param_1, undefined4 param_2)
