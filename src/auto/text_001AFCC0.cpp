@@ -436,6 +436,18 @@ void *C_001B0460::func_001B0460(void *arg)
     return obj;
 }
 
+void C_001B0230::func_001B0520(unsigned int key)
+{
+    int i;
+
+    for (i = 0; i < unk50; i++) {
+        C_001B0040 *p = (C_001B0040 *)arr54[i];
+        if (p->unkC) {
+            p->func_001B0070(key);
+        }
+    }
+}
+
 void C_001B0560::func_001B0560(undefined4 param_1, undefined4 param_2)
 {
   int in_ECX = (int)this;
