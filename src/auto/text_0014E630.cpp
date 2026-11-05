@@ -47,3 +47,10 @@ undefined4 C_0014F170::func_0014F170(byte param_1)
   }
   return in_ECX;
 }
+
+float func_0014F550(float x) {
+    float t = x * x;
+
+    return ((((D_002A773C * t + D_002A7738) * t + D_002A7734) * t + D_002A7730) * t + D_00275460) * x;
+}
+
