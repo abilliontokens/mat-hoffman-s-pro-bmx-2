@@ -174,6 +174,32 @@ struct C_00097DA0 {
     int func_00097CA0(const char *name);
     int func_00097DA0(const char *name);
     int func_00097E90(const char *a, const char *b);
+
+    C_00097DA0_Obj **ListAt(int k)
+    {
+        switch (k) {
+        case 0:
+            return f0;
+        case 1:
+            return f4;
+        case 2:
+            return f8;
+        }
+        return 0;
+    }
+
+    int CountAt(int k)
+    {
+        switch (k) {
+        case 0:
+            return fC;
+        case 1:
+            return f10;
+        case 2:
+            return f14;
+        }
+        return 0;
+    }
 };
 
 
