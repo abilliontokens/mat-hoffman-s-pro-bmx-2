@@ -29,6 +29,37 @@ struct C_00026A70 {
     undefined4 func_00026A70(int param_1);
 };
 
+extern int D_0027661C;
+void func_001E891B(void *p);
+
+/* base class: GameObject */
+struct C_00157660 {
+    int unk0;
+    void func_00157660(void);
+};
+
+struct S_00026A90_Part {
+    virtual void v0(int flags);
+    virtual void v1();
+    virtual void v2();
+};
+
+/* BmxBaseVehicle */
+struct C_00026A90 : C_00157660 {
+    char pad4[0x210];
+    S_00026A90_Part *unk214;
+    S_00026A90_Part *unk218;
+    S_00026A90_Part *unk21C;
+    char *unk220;
+    char *unk224;
+    char *unk228;
+    char pad22C[0x5EC - 0x22C];
+    S_00026A90_Part *unk5EC;
+    S_00026A90_Part *unk5F0;
+    S_00026A90_Part *unk5F4;
+    void func_00026A90(void);
+};
+
 struct C_00026280 {
     char pad0[0x3C];
     int unk3C;
@@ -244,12 +275,23 @@ S_000267F0_V4 func_00026910(float *m, int col)
     return r;
 }
 
-void func_00026960(S_00026960_Mat *out)
+S_00026960_Mat func_00026960(void)
 {
     S_00026960_Mat m;
+    S_00026960_Mat * volatile p = &m;
+    S_00026960_Mat *q = p;
+    __m128 *v = (__m128 *)q;
+    unsigned int *iq = (unsigned int *)q;
 
-    m.identity();
-    *out = m;
+    v[0] = _mm_setzero_ps();
+    v[1] = _mm_setzero_ps();
+    v[2] = _mm_setzero_ps();
+    v[3] = _mm_setzero_ps();
+    iq[0] = 0x3f800000;
+    iq[5] = 0x3f800000;
+    iq[10] = 0x3f800000;
+    iq[15] = 0x3f800000;
+    return m;
 }
 
 void C_000269B0::func_000269B0(float a, float b, float c)
@@ -270,11 +312,8 @@ void C_000269B0::func_000269B0(float a, float b, float c)
 float C_00026A10::func_00026A10(float a, float b)
 {
     C_00026A10 * volatile self = this;
-    float lim = f4;
-    float v = b;
-    float t;
+    float t = min_ss_00026A10(f4, b);
 
-    _mm_store_ss(&t, _mm_min_ss(_mm_load_ss(&v), _mm_load_ss(&lim)));
     self->f8 = t / self->f4;
     self->f0 = (a - self->f0) * self->f8 + self->f0;
     return self->f0;
