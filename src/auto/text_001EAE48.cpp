@@ -133,8 +133,6 @@ void func_001EB109(char *p) {
     }
 }
 
-extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *cs);
-
 void func_001EB138(int i, char *s) {
     int func_001EB390(...);
     if (i < 20) {
