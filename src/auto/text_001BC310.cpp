@@ -178,3 +178,11 @@ char C_001BC6E0::func_001BC6E0(void *param)
     return count - 1;
 }
 
+int C_UIGlobalManager::func_001BC7F0(void *a)
+{
+    if (f24 != 0) {
+        f24->v36();
+    }
+    return 1;
+}
+
