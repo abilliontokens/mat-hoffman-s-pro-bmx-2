@@ -302,6 +302,52 @@ void QuadTree::func_0017D1B0(void)
     }
 }
 
+S_QuadTreeListNode **QuadTreeNode::func_0017D210(int x, int y, S_QuadTreeListNode **r, int cx, int cy, int size)
+{
+    int half;
+    int mx = cx + size;
+    int my = cy + size;
+    S_QuadTreeListNode *n;
+
+    half = size >> 1;
+    if (f4 != 0) {
+        if (x >= mx) {
+            if (y >= my) {
+                if (f4[0] != 0) r = f4[0]->v2(x, y, r, cx, cy, half);
+                if (f4[1] != 0) r = f4[1]->v2(x, y, r, cx, my, half);
+                if (f4[2] != 0) r = f4[2]->v2(x, y, r, mx, cy, half);
+                if (f4[3] != 0) r = f4[3]->v2(x, y, r, mx, my, half);
+            } else {
+                if (f4[1] != 0) r = f4[1]->v2(x, y, r, cx, my, half);
+                if (f4[0] != 0) r = f4[0]->v2(x, y, r, cx, cy, half);
+                if (f4[3] != 0) r = f4[3]->v2(x, y, r, mx, my, half);
+                if (f4[2] != 0) r = f4[2]->v2(x, y, r, mx, cy, half);
+            }
+        } else {
+            if (y >= my) {
+                if (f4[2] != 0) r = f4[2]->v2(x, y, r, mx, cy, half);
+                if (f4[3] != 0) r = f4[3]->v2(x, y, r, mx, my, half);
+                if (f4[0] != 0) r = f4[0]->v2(x, y, r, cx, cy, half);
+                if (f4[1] != 0) r = f4[1]->v2(x, y, r, cx, my, half);
+            } else {
+                if (f4[3] != 0) r = f4[3]->v2(x, y, r, mx, my, half);
+                if (f4[2] != 0) r = f4[2]->v2(x, y, r, mx, cy, half);
+                if (f4[1] != 0) r = f4[1]->v2(x, y, r, cx, my, half);
+                if (f4[0] != 0) r = f4[0]->v2(x, y, r, cx, cy, half);
+            }
+        }
+    }
+    if (f8 != 0) {
+        n = D_002EFD80->f94->func_0001E8A0();
+        if (r != 0)
+            *r = n;
+        n->next = 0;
+        n->slot[0] = (void *)this;
+        return (S_QuadTreeListNode **)n;
+    }
+    return r;
+}
+
 void C_0017D500_Mgr::func_0017D500(S_QuadTreeListNode *node, int flag)
 {
     int i;
