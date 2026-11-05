@@ -48,6 +48,37 @@ undefined4 C_0014F170::func_0014F170(byte param_1)
   return in_ECX;
 }
 
+extern "C" double __cdecl cos(double);
+extern "C" double __cdecl sin(double);
+#pragma intrinsic(cos, sin)
+extern int D_002A7704;
+extern float D_002756EC;
+extern float D_002756B8;
+extern "C" void func_001E8390(void*);
+extern "C" void* func_001E8AA5(int);
+int func_0014F270()
+{
+    float n = (float)(D_002A7704 - 2);
+    D_002DF870 = D_002756EC * n;
+    D_002DF874 = D_002756B8 / n;
+    if (D_002CF6B4)
+        func_001E8390(D_002CF6B4);
+    float* p = (float*)func_001E8AA5(D_002A7704 * 8);
+    D_002CF6B4 = (TrigEntry*)p;
+    if (!p)
+        return 0;
+    float step = D_002756B8 / (float)(D_002A7704 - 2);
+    for (int i = 0; i < D_002A7704 - 1; i++) {
+        float a = i * step - D_002756D0;
+        p[0] = (float)cos(a);
+        p[1] = (float)sin(a);
+        p += 2;
+    }
+    p[0] = p[-2];
+    p[1] = p[-1];
+    return 1;
+}
+
 float func_0014F450(int x) {
     float f = (func_00016D60(x) + D_002756D0) * D_002DF870;
 
@@ -76,9 +107,8 @@ float func_0014F550(float x) {
 
 float func_0014F590(int x) {
     float f = (func_00016D60(x) + D_002756D0) * D_002DF870;
-
-    FloatToIndex(&x, f);
-    float t = (f - (float)x) * D_002DF874;
-    return (t * D_002CF6B4[x].a + D_002CF6B4[x].b) / (D_002CF6B4[x].a - t * D_002CF6B4[x].b);
+    int i = _mm_cvttss_si32(_mm_set_ss(f));
+    float t = (f - (float)i) * D_002DF874;
+    return (t * D_002CF6B4[i].a + D_002CF6B4[i].b) / (D_002CF6B4[i].a - t * D_002CF6B4[i].b);
 }
 
