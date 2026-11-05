@@ -8,8 +8,6 @@ void *func_001E8A44(unsigned int size);
 void func_001E891B(void *p);
 struct S_0003AC20_Vec { float x,y,z,w; };
 struct S_3A990_Blk { char pad[0x358]; int width, height; };
-union U_3A990_Buffer { int *used; S_3A990_Blk *block; };
-struct S_3A990_Locals { int row, height, width; union { int *used; S_3A990_Blk *block; }; int x,z; S_3A990_Blk *entry; int y; };
 struct S_3A990_Owner { char pad[8]; char *object; };
 struct C_3A990 {
  char pad[0x450]; int f450; char pad454[8]; int f45C, f460;
