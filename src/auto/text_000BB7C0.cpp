@@ -265,6 +265,85 @@ struct C_000BC520 {
     void func_000BC700(int a, int b);
 };
 
+extern char D_002A46E8[], D_002A45E0[], D_002A5870[], D_00275678[], D_002A5EA0[], D_002A5FA8[];
+extern char D_002A60B0[], D_002A4C10[], D_002A64D0[], D_00276C34[], D_0027DB60[], D_0027D170[];
+
+struct S_000BBA80_Vec4 {
+    float x, y, z, w;
+    S_000BBA80_Vec4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+};
+
+/* virtual base of the animation object at entry+0x1a4 */
+struct S_000BBA80_VBase {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    void func_00157810(void);
+};
+
+struct S_000BBA80_Cam {
+    char pad0[0x180];
+    unsigned char f180;
+    void func_00197E70(S_000BBA80_Vec4 *pos);
+    void func_00197B40(S_000BBA80_Vec4 *a, S_000BBA80_Vec4 *b);
+    void func_00199650(S_000BBA80_Vec4 *pos);
+    void func_00198F50(S_000BBA80_Vec4 *a, S_000BBA80_Vec4 *b, int c, int d, int e);
+};
+
+struct S_000BBA80_Node;
+
+struct S_000BBA80_Anim : virtual S_000BBA80_VBase {
+    S_000BBA80_Cam *f4;
+    char pad8[8];
+    int f10;
+    S_000BBA80_Anim *func_001328F0(int a, int mostDerived);
+    void func_00132A40(char *a, char *b, int c, int d, int e, int f, int g);
+    void func_00132CC0(int a, int b, int c);
+    void func_00132D20(void);
+    void func_00132D70(void);
+    void func_00164820(S_000BBA80_Node *node);
+    void func_001670C0(int a, int b, int c);
+};
+
+struct S_000BBA80_Child {
+    char pad0[0x40];
+    int f40;
+};
+
+struct S_000BBA80_Entry {
+    char pad0[0x44];
+    int f44;
+    char pad48[0x58 - 0x48];
+    int f58;
+    char pad5C[0x1a4 - 0x5c];
+    S_000BBA80_Anim *f1A4;
+    char pad1A8[4];
+    S_000BBA80_Child **f1AC;
+    S_000BBA80_Node *func_001B56F0(void);
+};
+
+struct S_000BBA80_List {
+    char pad0[0x28];
+    S_000BBA80_Entry **f28;
+};
+
+struct S_000BBA80_Video {
+    void func_001577A0(S_000BBA80_VBase *a, int b);
+};
+
+struct S_000BBA80_Loader {
+    int func_0013C660(int a);
+    int func_0013D780(char *name, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
+    void func_0013B260(int a);
+    int func_0013DFF0(char *name, int a2);
+};
+
+struct S_000BBA80_Mgr {
+    void func_001616F0(void);
+};
+
+extern S_000BBA80_Loader *D_002BEAAC;
+extern S_000BBA80_Mgr *D_002A829C;
 
 void C_000BB7C0::func_000BB7C0(int idx)
 {
