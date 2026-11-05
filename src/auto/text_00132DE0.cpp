@@ -108,8 +108,8 @@ int C_00132E20::func_00132E20(char *name)
         }
     }
     bit = 1 << count;
-    dst = names[count];
     src = name;
+    dst = names[count];
     do {
         c = *src++;
         *dst++ = c;
