@@ -100,6 +100,10 @@ struct BmxEventFPS {
     virtual void dummy33();
     virtual void dummy34();
     virtual void dummy35();
+    virtual void dummy36();
+    virtual void dummy37();
+    virtual void dummy38();
+    virtual void dummy39();
     char pad4[0x1ac - 4];
     S_Obj1AC *f1ac;
     char pad1b0[0x284 - 0x1b0];
