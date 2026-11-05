@@ -80,23 +80,51 @@ struct C_52C10_99D40 {
     void func_00099D40(int a);
 };
 
+extern float D_00275544;
+
+struct C_52C10_9FD60 {
+    void func_0009FD60(float a, float b, float c, float d);
+};
+
+struct C_52C10_44 {
+    char pad0[0x54];
+    C_52C10_9FD60 *f54;
+};
+
+struct C_52C10_1C4 {
+    char pad0[0xC0];
+    unsigned char fC0;
+    void func_00196350(float v);
+    void func_00196C00(int v);
+};
+
 struct C_52C10 {
     void *vtbl;                       /* 0x00 */
     char pad04[0x20];
     void *unk24;                      /* 0x24 */
     C_52C10_Obj *unk28;               /* 0x28 */
-    char pad2C[0x1C];
+    char pad2C[0x18];
+    C_52C10_44 *unk44;                /* 0x44 */
     C_52C10_Obj *unk48;               /* 0x48 */
     char pad4C[0x18];
     C_52C10_64 *unk64;                /* 0x64 */
     char pad68[0x158];
     C_52C10_99D40 *unk1C0;            /* 0x1C0 */
-    char pad1C4[0xD0];
+    C_52C10_1C4 *unk1C4;              /* 0x1C4 */
+    char pad1C8[0xCC];
     int unk294;                       /* 0x294 */
-    char pad298[0x30];
+    char pad298[0x20];
+    float f2B8[4];                    /* 0x2B8 */
     int unk2C8;                       /* 0x2C8 */
-    char pad2CC[0x8C];
+    char pad2CC[0xC];
+    float f2D8[4];                    /* 0x2D8 */
+    float f2E8[4];                    /* 0x2E8 */
+    float f2F8[4];                    /* 0x2F8 */
+    float f308[4];                    /* 0x308 */
+    char pad318[0x40];
     int unk358;                       /* 0x358 */
+    int func_00052C10(int param);
+    void func_00052AE0(float v);
     int func_00051BB0();
     void func_00052D20(int *out);
     int func_000533A0();
