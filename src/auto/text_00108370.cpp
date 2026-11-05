@@ -310,6 +310,42 @@ void C_00108F50::func_00108FF0(void)
     ff60[5].b = 0;
 }
 
+int C_00109090::func_00109090(void)
+{
+    int sel;
+
+    if (f954->func_000AD5C0(2, &sel, 0) == 8) {
+        switch (sel) {
+        case 1:
+            f718 = 7;
+            break;
+        case 2:
+            f718 = 3;
+            break;
+        case 3:
+            f718 = 6;
+            break;
+        case 4:
+            f718 = 0;
+            break;
+        case 5:
+            f718 = 4;
+            break;
+        case 6:
+            f718 = 2;
+            break;
+        case 7:
+            f718 = 5;
+            break;
+        default:
+            f718 = 1;
+            break;
+        }
+        return 1;
+    }
+    return 0;
+}
+
 Vec4_00108370 *C_00109180::func_00109180(Vec4_00108370 *out)
 {
     Vec4_00108370 tmp;
