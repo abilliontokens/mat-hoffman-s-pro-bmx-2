@@ -7,7 +7,11 @@ extern "C" void *memset(void *dst, int c, unsigned int n);
 #pragma intrinsic(memset)
 #pragma intrinsic(strlen)
 #pragma intrinsic(strcpy)
+extern "C" int strcmp(const char *s1, const char *s2);
+#pragma intrinsic(strcmp)
 
+void func_000347F0(char *s);
+int func_001EA426(const char *a, const char *b);
 int func_001EA211(int c);
 int func_001E91F4(const char *s);
 double func_001E9649(const char *s);
