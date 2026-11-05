@@ -22,25 +22,46 @@ struct S_00131400_In {
     S_Vec4 f10;
 };
 
+/* CinematographerCam */
 struct C_001313C0 {
-    char pad0[0x4];
+    void *vtbl;
     S_Vec4 f4;
     S_Vec4 f14;
-    char pad24[0x48 - 0x24];
+    S_Vec4 f24;
+    S_Vec4 f34;
+    f32 f44;
     f32 f48;
     f32 f4C;
-    char pad50[0x80 - 0x50];
+    int f50;
+    int f54;
+    int f58;
+    f32 f5C;
+    f32 f60;
+    int f64;
+    int f68;
+    int f6C;
+    int f70;
+    int f74;
+    int f78;
+    int f7C;
     f32 *f80;
     f32 *f84;
     f32 *f88;
-    char pad8C[0x98 - 0x8C];
+    int f8C;
+    int f90;
+    int f94;
     u32 f98;
     int f9C;
-    char padA0[0xC];
+    f32 fA0;
+    char padA4[8];
     S_001313C0_Data fAC;
+    C_001313C0 *func_00131150(void);
     void func_001313C0(S_001313C0_Data *src);
     void func_00131400(S_00131400_In *in, int param_2);
+    void func_0012B510(void);
 };
+
+extern int D_00284514;
 
 f32 func_0014F870(f32 a);
 f32 func_0014FBA0(f32 a, f32 b);
