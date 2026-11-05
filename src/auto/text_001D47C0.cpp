@@ -1,6 +1,7 @@
 /* 28 functions from 0x001D47C0 to 0x001D5760, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include <string.h>
 
 struct S_001D5610_Obj {
     virtual void v0(int flags);
