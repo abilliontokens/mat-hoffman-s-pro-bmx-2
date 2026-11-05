@@ -240,6 +240,10 @@ struct S_0001CBC0_Item {
     float f90;
 };
 
+static __forceinline void set_vtbl_0001C9F0(void **p, void *v) {
+    *p = v;
+}
+
 static __forceinline void clear_bit0_0001C9F0(unsigned char *p) {
     *p &= 0xfe;
 }
@@ -390,26 +394,8 @@ void C_0001C710::func_0001C710(float a0, float a1, float a2, int a3) {
 }
 
 float func_0001C870(float a, float b, float c, float d, float e) {
-    double r;
-
     if (d != b) {
-        r = (a - b) * (e - c) / (d - b) + c;
-        if (e <= c) {
-            if (r < e) {
-                return e;
-            }
-            if (c < r) {
-                return c;
-            }
-        } else {
-            if (e < r) {
-                return e;
-            }
-            if (r < c) {
-                return c;
-            }
-        }
-        return r;
+        return clamp_0001C870((a - b) * (e - c) / (d - b) + c, c, e);
     }
     return D_00275544;
 }
@@ -490,7 +476,7 @@ C_0001CA30 *C_0001CA30::func_0001C9F0(void)
     f4 = 0;
     fC = 0;
     f10 = 0;
-    f14 &= 0xfe;
+    clear_bit0_0001C9F0(&f14);
     f1C = 0;
     f18 = 0;
     f20 = 0;
