@@ -88,3 +88,23 @@ struct C_000788D0 {
     int unkF4;
     void func_000788D0();
 };
+
+void C_000788D0::func_000788D0()
+{
+    unkF4 = 1;
+    v6();
+    unkD8->v35();
+    v18(0);
+    unkD8->v35();
+    unkD8->unk21 &= 0xfb;
+    unkD8->unk1F4 = 1;
+    unkB8 = 1;
+    unkA4 = 0;
+    unkA0 = 0;
+    unkD4 = 0;
+    unkDC = 0;
+    unkE4 = 0;
+    unkE8 = 0;
+    unkEC = 0;
+    unkC8->func_00092A50(&unkCC);
+}
