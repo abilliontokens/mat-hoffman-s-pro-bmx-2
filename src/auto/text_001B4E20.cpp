@@ -107,12 +107,10 @@ struct S_001B5A00_Stream {
 };
 
 struct C_001B5A00 {
-    int func_001B5A00(S_001B5A00_Stream *stream);
     int func_001B5A00(S_001B5A00_Stream *stream, int a1);
 };
 
 struct C_001B5D30 {
-    int func_001B5D30(S_001B5A00_Stream *stream);
     int func_001B5D30(S_001B5A00_Stream *stream, int a1);
 };
 
