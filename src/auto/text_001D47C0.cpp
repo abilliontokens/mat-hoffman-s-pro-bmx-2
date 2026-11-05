@@ -54,6 +54,7 @@ struct C_001D54F0 {
 };
 
 extern int D_002AA470;
+extern int D_0028F5CC;
 void *func_001E8A44(int size);
 
 struct C_00144640 {
