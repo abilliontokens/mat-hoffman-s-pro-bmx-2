@@ -54,6 +54,16 @@ struct C_001719D0 {
     void func_001719D0(float param);
 };
 
+void func_00162210(void *a, void *b);
+
+struct C_00171A00 {
+    char pad0[0xB0];
+    C_000264C0 fB0;
+    char padB1[0xF0 - 0xB1];
+    char fF0;
+    void func_00171A00(void *param_1);
+};
+
 #include <xmmintrin.h>
 
 void func_001712D0(float *out, void *in);
