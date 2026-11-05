@@ -530,7 +530,7 @@ void C_001CB940::func_001CB980(void)
 void C_001CB9A0::func_001CB9A0(void)
 {
     _imp__RtlEnterCriticalSection((void *)(D_002F08EC->f138 + 0x50));
-    f4 = 0;
+    *(float *)&f4 = 0;
     _imp__RtlLeaveCriticalSection((void *)(D_002F08EC->f138 + 0x50));
     f14[2] = f14[1] = f14[0] = 0;
     f0 = -1;
@@ -637,6 +637,21 @@ int C_001CBF20::func_001CBF90(int v)
     return 0;
 }
 
+int C_001CC0C0::func_001CC0C0(int v)
+{
+    int r;
+
+    if (f2C & 1) {
+        fF4 = v;
+        r = func_00222388(f30, v, 1);
+        if (r >= 0) {
+            return 1;
+        }
+        func_001CBC10(r, &D_0028EECC, 0x284);
+    }
+    return 0;
+}
+
 void *C_001CC110::func_001CC110(int flags) {
     unk0 = (int)&D_0028ED78;
     func_0001DFF0();
@@ -644,5 +659,24 @@ void *C_001CC110::func_001CC110(int flags) {
         func_001E891B(this);
     }
     return this;
+}
+
+void C_001CC0C0::func_001CC140(void)
+{
+    vtbl = (void *)&D_0028EEEC;
+    if (f208 & 4) {
+        __imp__RtlEnterCriticalSection((void *)(D_002F08EC->f138 + 0x50));
+        if (f140 != 0) {
+            f140->func_001CBBC0();
+            if (f140->f4 != 0) {
+                f140->f4 = 0;
+            }
+        }
+        __imp__RtlLeaveCriticalSection((void *)(D_002F08EC->f138 + 0x50));
+    } else if (!(f10C & 4)) {
+        func_001CB510();
+    }
+    D_002BEAAC->func_0013B210(this);
+    func_0001C970();
 }
 
