@@ -5,6 +5,70 @@ extern int D_00279C3C;
 extern int D_00279B64;
 void func_001E891B(void *p);
 
+extern int D_002B9090;
+extern int D_002B908C;
+extern int D_00279CA8;
+extern float D_00275AEC;
+extern int D_00278690;
+extern int D_0027958C;
+extern int D_00275630;
+extern int D_0028F5E0;
+
+void *func_001E8A44(int a);
+
+struct ClampObj {
+    char pad0[0x10];
+    float f10;
+    float f14;
+};
+
+struct LookupObj {
+    int *func_0018C160(int a);
+};
+
+struct GlobalObj {
+    char pad0[0x2ec];
+    LookupObj *lookup;
+};
+
+extern GlobalObj *D_002A8490;
+
+struct MidObj {
+    ClampObj *func_0018C070();
+};
+
+struct CreatorObj {
+    int func_00026500(int a, int b);
+};
+
+extern CreatorObj *D_002A7CB8;
+
+struct NodeObj {
+    char pad0[0x4];
+    int f4;
+    int f8;
+    char pad0c[0x38];
+    int f44;
+    unsigned int u48;
+    char pad4c[0x2];
+    unsigned char b4e;
+    void func_001D6600();
+    void func_001D5FA0(int a, int b, int c, int d);
+};
+
+struct AllocObj8 {
+    NodeObj *func_001D5E90();
+};
+
+struct C_0008ABA0 {
+    void *vtbl;
+    char pad4[0x20];
+    NodeObj *unk24;
+    void func_0008ABA0();
+    void func_00157960();
+    C_0008ABA0 *func_0008AAD0();
+};
+
 struct PtrObj_0008 {
     void func_001D6410();
     void func_001D6600();
