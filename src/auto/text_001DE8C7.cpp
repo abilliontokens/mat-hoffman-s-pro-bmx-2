@@ -147,6 +147,54 @@ int func_001DE935(void)
 {
     return *(int *)(__readfsdword(0x28) + 0x12c);
 }
+
+unsigned __int64 __stdcall func_001EA470(unsigned __int64 a, unsigned __int64 b);
+extern "C" long (__stdcall *_imp__NtQueryVolumeInformationFile)(void *handle, S_IoStatusBlock *iosb, void *info, u32 length, u32 infoClass);
+#pragma optimize("gsy", on)
+#pragma optimize("t", off)
+int __stdcall func_001DE942(const char *path, unsigned __int64 *freeToCaller, unsigned __int64 *total, unsigned __int64 *totalFree)
+{
+    S_IoStatusBlock iosb;
+    struct {
+        u32 total[2];
+        u32 avail[2];
+        u32 sectorsPerUnit, bytesPerSector;
+    } info;
+    long status;
+
+    {
+        S_AnsiString name;
+        S_ObjectAttributes oa;
+        _imp__RtlInitAnsiString(&name, path);
+        oa.objectName = &name;
+        oa.rootDirectory = (void *)-3;
+        oa.attributes = 0x40;
+        status = _imp__NtOpenFile((void **)&path, (u32)D_00100001, &oa, &iosb, 3, 0x800021);
+    }
+    if (status < 0) {
+        func_001DD659(status);
+        if (func_001DD603() == 2) {
+            func_001DD62B(3);
+        }
+        return 0;
+    }
+    status = _imp__NtQueryVolumeInformationFile((void *)path, &iosb, &info, 0x18, 3);
+    _imp__NtClose((void *)path);
+    if (status < 0) {
+        func_001DD659(status);
+        return 0;
+    }
+    {
+        unsigned __int64 unit = info.bytesPerSector * info.sectorsPerUnit;
+        unsigned __int64 avail = func_001EA470(*(unsigned __int64 *)info.avail, unit);
+        unsigned __int64 tot = func_001EA470(*(unsigned __int64 *)info.total, unit);
+        if (freeToCaller) *freeToCaller = avail;
+        if (total) *total = tot;
+        if (totalFree) *totalFree = avail;
+    }
+    return 1;
+}
+
 void __stdcall func_001DED66(char c)
 {
     char buf[260];
@@ -341,7 +389,6 @@ int __stdcall func_001DF26F(int a, int b)
     S_001DF26F_Image *img = (S_001DF26F_Image *)D_00010118;
     int *obj;
     unsigned int i;
-    int key;
 
     obj = (int *)func_001DF5B9(0, 0x7c);
     if (obj == 0) {
@@ -352,22 +399,21 @@ int __stdcall func_001DF26F(int a, int b)
     if (img->titleId != b) {
         for (i = 0; i < 0x10; i++) {
             if (img->altTitleIds[i] == 0) {
-                func_001DD62B(5);
-                return -1;
+                goto badkey;
             }
             if (b == img->altTitleIds[i]) {
                 break;
             }
         }
         if (i >= 0x40) {
+badkey:
             func_001DD62B(5);
             return -1;
         }
-        key = (int)_imp__XboxAlternateSignatureKeys[i];
+        obj[1] = (int)_imp__XboxAlternateSignatureKeys[i];
     } else {
-        key = (int)_imp__XboxSignatureKey;
+        obj[1] = (int)_imp__XboxSignatureKey;
     }
-    obj[1] = key;
     func_001DF160((const void *)obj[1], 0x10, obj + 2);
     return (int)obj;
 }
@@ -381,14 +427,16 @@ int __stdcall func_001DF2EA(int ctx, const void *data, unsigned int len)
 int __stdcall func_001DF304(int *a, void *out)
 {
     unsigned int digest[5];
-    int flag;
     int ok;
+    int flag;
 
     ok = 1;
     flag = a[0] & 1;
     if (out != 0) {
         if (flag != 0) {
             func_001DF1C2(a + 2, (const void *)a[1], 0x10, digest);
+        } else {
+            ok = 1;
         }
         if (flag != 0) {
             ok = func_001DF234(a, digest, out);
