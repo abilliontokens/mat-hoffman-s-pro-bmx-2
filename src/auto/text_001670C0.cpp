@@ -64,6 +64,34 @@ struct C_0017A860 {
     void func_0017A860(void *owner);
 };
 
+void __fastcall func_001FEC30(int n, void *p);
+int __fastcall func_001FEBD0(int n, void *p);
+
+extern u32 D_002EFB3C;
+extern float D_002EFB2C;
+extern float D_002EFB30;
+extern float D_002EFB34;
+extern float D_002EFB38;
+
+struct S_00167860_Owner {
+    char pad0[0xc0];
+    char fC0[0x3c];
+    char *fFC;
+};
+
+/* DXObjectShadowTweakItem */
+struct C_00167860 {
+    void *vtbl;
+    char pad4[0xc];
+    char f10[0x40];
+    S_00167860_Owner *f50;
+    float f54;
+    float f58;
+    float f5c;
+    float f60;
+    void func_00167860(void);
+};
+
 struct C_00167760 {
     void *vtbl;
     char pad4[0x20];
