@@ -183,3 +183,41 @@ RenderableObject *RenderableObject::func_001814B0(int a)
     return this;
 }
 
+void RenderableObject::func_00181540(void)
+{
+    int i;
+    int j;
+    int k;
+
+    vtbl = &D_0028926C;
+    if (unk1A4 != 0) {
+        if (unk1B8 != 0) {
+            for (i = 0; i < unk1B4; i++) {
+                D_002A829C->func_001B26C0(unk1B8[i]);
+            }
+            if (unk1A4->v3() == 1) {
+                for (k = 0; k < unk1B4; k++) {
+                    for (i = 0; i < unk1A4->count; i++) {
+                        for (j = 0; j < unk1A4->rows[i].count; j++) {
+                            unk1A4->rows[i].cells[j].f4 = -1;
+                        }
+                    }
+                }
+            }
+        }
+        if (unk1A4->v2() == 0) {
+            D_002BEAAC->func_0013B210(unk1A4);
+        }
+    }
+    if (unk1A8 != 0) {
+        func_001E891B(unk1A8);
+    }
+    if (unk1AC != 0) {
+        func_001E891B(unk1AC);
+    }
+    if (unk1B8 != 0) {
+        func_001E8390(unk1B8);
+    }
+    ((SoultreeObject *)this)->func_0019ACE0();
+}
+
