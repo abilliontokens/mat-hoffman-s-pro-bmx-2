@@ -10,6 +10,24 @@ extern float D_0028403C;
 
 void func_0012A380(void *dst, int param);
 
+struct S_0012AB70Vec {
+    int v0;
+    int v1;
+    int v2;
+    int v3;
+};
+
+struct C_0012AB70R {
+    char pad0[0x170];
+    S_0012AB70Vec f170;
+    char pad180[0x50];
+    float f1d0;
+    int f1d4;
+    char pad1d8[0x38];
+    int f210;
+    void func_0012AB70(S_0012AB70Vec *param1, int param2, int param3, int *param4, float *param5);
+};
+
 struct C_0012B510 {
     int unk0;
     void func_0012B510(void);
@@ -62,10 +80,12 @@ void C_0012AAB0::func_0012AAB0(float param)
 void C_0012AB70::func_0012AB70(int *param1, int param2, int param3, int *param4, float *param5)
 {
     if (param1 != 0) {
-        f170[0] = param1[0];
-        f170[1] = param1[1];
-        f170[2] = param1[2];
-        f170[3] = param1[3];
+        int *dst;
+        dst = f170;
+        dst[0] = param1[0];
+        dst[1] = param1[1];
+        dst[2] = param1[2];
+        dst[3] = param1[3];
     }
     if (param2 != 0) {
         func_0012A380((char *)this + 0x180, param2);
@@ -77,8 +97,10 @@ void C_0012AB70::func_0012AB70(int *param1, int param2, int param3, int *param4,
         f1d4 = *param4;
     }
     if (param5 != 0) {
-        if (*param5 != D_00275544) {
-            f1d0 = *param5;
+        float v;
+        v = *param5;
+        if (v != D_00275544) {
+            f1d0 = v;
         }
         f210 = D_002EFDB8[4] + 1;
     }
