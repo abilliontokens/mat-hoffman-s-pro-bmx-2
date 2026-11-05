@@ -72,15 +72,7 @@ struct S_001B70D0_Entry {
 struct S_001B70D0_Arg {
     char pad0[0x24];
     int f24;
-    S_001B70D0_Entry **f28;
-    S_001B70D0_Entry *&At(int i) { return f28[i]; }
-};
-
-struct S_001B70D0_Items {
-    char pad0[0x24];
-    int f24;
-    S_001B70D0_Obj **f28;
-    S_001B70D0_Obj *&At(int i) { return f28[i]; }
+    S_001B70D0_Entry *volatile *f28;
 };
 
 struct S_001B7480_Quat {
