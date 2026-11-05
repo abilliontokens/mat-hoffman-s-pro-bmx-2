@@ -240,8 +240,8 @@ struct C_0004EDB0 {
 };
 
 struct S_0004E7B0_Vec {
-    u32 x, y, z, w;
-    S_0004E7B0_Vec() { z = 0; y = 0; x = 0; w = 0x3f800000; }
+    float x, y, z, w;
+    S_0004E7B0_Vec() { z = 0; y = 0; x = 0; w = 1.0f; }
 };
 
 /* the viewer's direction filter: hands back a vector through its hidden return slot */
