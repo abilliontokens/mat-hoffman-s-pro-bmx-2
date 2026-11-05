@@ -56,9 +56,10 @@ void __stdcall func_001DD7F7(undefined4 param_1, undefined4 param_2)
 
 int __stdcall func_001DDC28(void *a0) {
     int result = _imp__NtSetEvent(a0, 0);
-    if (result < 0) {
+    if (result >= 0) {
+        return 1;
+    } else {
         func_001DD659(result);
         return 0;
     }
-    return 1;
 }
