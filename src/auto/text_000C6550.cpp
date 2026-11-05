@@ -41,7 +41,10 @@ struct C_000C6CA0_Widget {
 struct BmxUIPageParkLevel {
     void *vtbl;
     char pad4[0x27C];
-    int arr280[3];
+    union {
+        int arr280[3];
+        float f280[3];
+    };
     int f28c;
     int f290;
     int f294;
