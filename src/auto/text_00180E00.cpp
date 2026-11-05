@@ -83,12 +83,12 @@ struct RenderableObject {
             unsigned short bits12 : 4;
         };
     };
-    int unk1A4;
-    int unk1A8;
-    int unk1AC;
+    S_00181540_Res *unk1A4;
+    void *unk1A8;
+    void *unk1AC;
     int unk1B0;
     int unk1B4;
-    int unk1B8;
+    int *unk1B8;
     int unk1BC;
     float unk1C0;
     float unk1C4;
