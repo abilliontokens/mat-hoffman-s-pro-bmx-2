@@ -229,6 +229,16 @@ void func_001A5C30(char *text, S_001A5C30_Obj **arr, int width, int maxCount)
     }
 }
 
+C_001A5D50 *C_001A5D50::func_001A5D50(void *param)
+{
+    ((C_00157600 *)this)->func_00157600(param);
+    f24 = 0;
+    f28 = 0;
+    f2c = 0;
+    vtbl = (void *)&D_0028B9E4;
+    return this;
+}
+
 C_001A5E40 *C_001A5E40::func_001A5E40(void *param)
 {
     ((C_00157600 *)this)->func_00157600(param);
