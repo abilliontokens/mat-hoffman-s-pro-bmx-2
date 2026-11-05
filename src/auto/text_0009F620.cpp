@@ -130,6 +130,32 @@ struct V4_000A00A0 {
 };
 extern V4_000A00A0 D_002A25E0;
 extern char D_0009F700;
+extern V4_000A00A0 D_002A2600;
+struct C_0009F7F0 {
+    void func_0012B510(void);
+};
+struct CameraBehavior_0009F7F0 {
+    __forceinline CameraBehavior_0009F7F0() { ((C_0009F7F0 *)this)->func_0012B510(); }
+};
+struct V4_0009F7F0 {
+    float x, y, z, w;
+    V4_0009F7F0() { z = 0; y = 0; x = 0; w = 1.0f; }
+    void operator=(const V4_000A00A0 &o) { x = o.x; y = o.y; z = o.z; w = o.w; }
+};
+struct func_0009F7F0 : CameraBehavior_0009F7F0 {
+    void *vtbl;
+    char pad4[4];
+    int unk8, unkC, unk10, unk14;
+    V4_0009F7F0 v18, v28;
+    int unk38; float unk3C; int unk40, unk44, unk48; float unk4C;
+    int unk50, unk54;
+    V4_0009F7F0 v58, v68, v78;
+    float unk88; int unk8C, unk90;
+    V4_0009F7F0 v94;
+    int unkA4, unkA8, unkAC, unkB0; float unkB4; int unkB8;
+    V4_0009F7F0 vBC, vCC;
+    func_0009F7F0();
+};
 void func_0009F620(int *, int *);
 extern int D_002BA160, D_002B9118, D_002B9108, D_002B9114, D_002B9110;
 struct V4_0009F620 { int x, y, z, w; };
