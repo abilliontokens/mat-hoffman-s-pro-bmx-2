@@ -75,6 +75,14 @@ struct C_001A22E0 {
 };
 
 
+C_001A1F70 *C_001A1F70::func_001A1F70(int a0, int a1, int a2, int a3) {
+    func_001A1680(a0, a1, a2, a3);
+    unk1C0 = 0;
+    unk1C4 = 0;
+    vtbl = &D_0028B45C;
+    return this;
+}
+
 void C_001A22E0::func_001A22E0(int a0) {
     unk1C0 = a0;
 }
