@@ -178,6 +178,22 @@ C_001033D0 *C_001033D0::func_001033D0(void *a, void *b)
     return this;
 }
 
+void C_001033D0::func_00103960()
+{
+    int i;
+    if (unk3CC) {
+        for (i = 0; i < unk170; i++) {
+            unk1B0[i]->func_001B2270(unk3D0);
+        }
+    }
+    for (i = 0; i < unk170; i++) {
+        unk1B0[i]->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
+        unk1B0[i]->func_001B1B80((float)(unk3E4 * (double)D_00275998), vec3D4, 0);
+        unk1B0[i]->func_001B1AB0(unk3EC, 0);
+        unk1B0[i]->func_001B1BF0(unk3F4);
+    }
+}
+
 void C_001033D0::func_00103A70()
 {
     int i;
