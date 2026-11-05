@@ -167,7 +167,7 @@ struct Obj_001A2480 {
     virtual void v4();
     virtual void v5(int flags);
     virtual void v6();
-    virtual void v7();
+    virtual int v7();
     virtual void v8();
     virtual void v9();
     virtual void v10();
