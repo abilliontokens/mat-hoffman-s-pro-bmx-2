@@ -97,6 +97,11 @@ int func_001DDE51(char *dst, const char *fmt, ...);
 void *func_001E8AA5(int size);
 int func_001ADCC0(char *dst, int size, const char *fmt, ...);
 
+template <class T> inline const T &Min(const T &a, const T &b)
+{
+    return b < a ? b : a;
+}
+
 struct TrackRec {
     int f0;
     char *name;
