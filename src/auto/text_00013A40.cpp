@@ -127,3 +127,70 @@ void C_00013F50::func_00013F50(C_00013F50_Dst *dst, int kind, void *arg1, float 
         break;
     }
 }
+
+void C_00014020::func_00014020()
+{
+    S_00014020_Small *p;
+    S_00014020_Shared *s;
+
+    vtbl = &D_002754CC;
+    if (f384 != 0) {
+        f384->vf2();
+    }
+    p = f388;
+    if (p != 0) {
+        p->vtbl = &D_002754B8;
+        func_001E891B(p);
+    }
+    p = f38C;
+    if (p != 0) {
+        p->vtbl = &D_002754B8;
+        func_001E891B(p);
+    }
+    p = f390;
+    if (p != 0) {
+        p->vtbl = &D_002754B8;
+        func_001E891B(p);
+    }
+    p = f394;
+    if (p != 0) {
+        p->vtbl = &D_002754B8;
+        func_001E891B(p);
+    }
+    p = f398;
+    if (p != 0) {
+        p->vtbl = &D_002754B8;
+        func_001E891B(p);
+    }
+    p = f39C;
+    if (p != 0) {
+        p->vtbl = &D_002754B8;
+        func_001E891B(p);
+    }
+    p = f3A0;
+    if (p != 0) {
+        p->vtbl = &D_002754B8;
+        func_001E891B(p);
+    }
+    p = f3A4;
+    if (p != 0) {
+        p->vtbl = &D_002754B8;
+        func_001E891B(p);
+    }
+    p = f3A8;
+    if (p != 0) {
+        p->vtbl = &D_002754B8;
+        func_001E891B(p);
+    }
+    D_002AF44C->refs--;
+    s = D_002AF44C;
+    if (s->refs <= 0) {
+        func_001E891B(s->f1c);
+        func_001E891B(s->f20);
+        func_001E891B(s->f24);
+        func_001E891B(s);
+        D_002AF44C = 0;
+    }
+    func_001C75A0();
+}
+
