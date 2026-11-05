@@ -139,7 +139,16 @@ struct C_0015D1B0 {
     int f90;
     void func_00157600(int a0);
     C_0015D1B0 *func_0015D1B0(void);
+    void func_0015D250(void);
 };
+
+struct C_Obj_0015D250 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+};
+
+void func_001E891B(void *p);
 
 extern C_0015D1B0 *D_002E2930;
 
