@@ -200,3 +200,28 @@ void func_0011F5A0(void *m, int a, int b, int c, int d, int e)
     mi[11] = saved[2];
 }
 
+void func_0011F610(S_0011F4B0_V4 *pts, int n, S_0011F4B0_V4 *mn, S_0011F4B0_V4 *mx)
+{
+    int i;
+
+    *mx = pts[0];
+    *mn = pts[0];
+    for (i = 1; i < n; i++) {
+        if (pts[i].x > mx->x) {
+            mx->x = pts[i].x;
+        } else if (pts[i].x < mn->x) {
+            mn->x = pts[i].x;
+        }
+        if (pts[i].y > mx->y) {
+            mx->y = pts[i].y;
+        } else if (pts[i].y < mn->y) {
+            mn->y = pts[i].y;
+        }
+        if (pts[i].z > mx->z) {
+            mx->z = pts[i].z;
+        } else if (pts[i].z < mn->z) {
+            mn->z = pts[i].z;
+        }
+    }
+}
+
