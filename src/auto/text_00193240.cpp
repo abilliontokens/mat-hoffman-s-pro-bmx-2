@@ -122,7 +122,7 @@ struct Owner_00193240 {
     f32 f44;
     f32 f48;
     f32 f4c;
-    char pad50[0x40];
+    char f50[0x40];
     u16 f90;
     u16 f92;
     int func_00193240(struct Args_00193240 *arg);
