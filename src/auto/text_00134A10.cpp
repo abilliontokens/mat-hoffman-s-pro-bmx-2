@@ -46,6 +46,27 @@ struct S_Particle {
     static void operator delete(void *p) { func_001E891B(p); }
 };
 
+extern float D_00275544;
+extern float D_00275460;
+
+struct S_Vec4 {
+    float x;
+    float y;
+    float z;
+    float w;
+    S_Vec4() { x = y = z = 0.0f; w = 1.0f; }
+};
+
+/* the particle's verlet state: previous and current position, velocity, acceleration */
+struct S_ParticleData {
+    void *vtbl;
+    char pad4[8];
+    S_Vec4 prev;
+    S_Vec4 cur;
+    S_Vec4 vel;
+    S_Vec4 acc;
+};
+
 /* polymorphic helper object held in the f38 / f3c tables */
 struct S_ParticleObj {
     virtual void v0();
