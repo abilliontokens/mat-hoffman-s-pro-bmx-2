@@ -146,9 +146,28 @@ void C_0014A610::func_0014A650(C_0014A610 *src)
     unk8 = 0;
 }
 
-int func_0014A6C0(int type)
+static __declspec(noinline) int func_0014A6C0(int type)
 {
     switch (type) {
+    case 0x12:
+    case 0x16:
+    case 0x21:
+    case 0x25:
+    case 0x40:
+    case 0x44:
+        return 4;
+    case 0x42:
+        return 0x10;
+    case 0x32:
+    case 0x72:
+        return 0xc;
+    case 0x31:
+    case 0x35:
+        return 6;
+    case 0x22:
+    case 0x41:
+    case 0x45:
+        return 8;
     case 0x14:
         return 1;
     case 0x11:
@@ -157,25 +176,8 @@ int func_0014A6C0(int type)
         return 2;
     case 0x34:
         return 3;
-    case 0x12:
-    case 0x16:
-    case 0x21:
-    case 0x25:
-    case 0x40:
-    case 0x44:
-        return 4;
-    case 0x31:
-    case 0x35:
-        return 6;
-    case 0x22:
-    case 0x41:
-    case 0x45:
-        return 8;
-    case 0x32:
-    case 0x72:
-        return 0xc;
-    case 0x42:
-        return 0x10;
+    case 2:
+        return 0;
     default:
         return 0;
     }
