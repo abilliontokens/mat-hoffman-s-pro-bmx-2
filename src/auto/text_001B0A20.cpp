@@ -61,7 +61,8 @@ struct C_001B1580 {
     char padB0[8];
     float unkB8, unkBC;
     int unkC0;                        /* 0xC0 */
-    void func_001B13A0(int a, int b, int c, int len);
+    C_001B1580 *func_001B13A0(int a, int b, int c, int len);
+    void func_001D3F50();
     C_001B1580 *func_001B1580(int a, int b, const char *s, int c);
     void func_001B15F0();
     int unkC4, unkC8;
