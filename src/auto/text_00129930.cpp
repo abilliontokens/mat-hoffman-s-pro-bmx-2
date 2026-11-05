@@ -297,9 +297,7 @@ int Emitter_12A7C0::func_0012A7C0(int a, int b, int c, int d)
 
 bool Emitter_12A7C0::func_0012A840(void)
 {
-    int n = D_002EFDB8->f10 + 1;
-    f210 = n;
-    f20C = n;
+    f20C = f210 = D_002EFDB8->f10 + 1;
     return D_002EFDB8->v12(&f1E0) != 0;
 }
 
