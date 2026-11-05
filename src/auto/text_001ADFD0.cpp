@@ -152,10 +152,8 @@ struct C_001AE810 {
 };
 
 
-C_001AE3E0 *C_001AE3E0::func_001AE3E0(int param_1)
+C_001AE3E0::C_001AE3E0(int param_1) : C_001AE3E0_Head(param_1)
 {
-    ((C_00157600 *)this)->func_00157600(param_1);
-    vtbl = &D_0028C214;
     f58.Init();
     f6C = -1;
     f74 = -1;
@@ -170,7 +168,6 @@ C_001AE3E0 *C_001AE3E0::func_001AE3E0(int param_1)
     f68 = 0;
     f84 &= 0xf8;
     f24 = 1;
-    return this;
 }
 
 void C_001AE3E0::func_001AE460(void)
