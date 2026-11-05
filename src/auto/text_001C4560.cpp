@@ -96,8 +96,8 @@ void C_001C4D50::func_001C4D50(int a0)
 {
     C_001C4D50_Fx *fx = f58;
 
-    fx->f28 = 0;
     fx->f2C = (float)a0 * D_00276098;
+    fx->f28 = 0;
     if (a0 == 0) {
         fx->f30 = 1.0f;
     } else {
