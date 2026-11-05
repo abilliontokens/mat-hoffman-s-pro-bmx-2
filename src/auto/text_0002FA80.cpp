@@ -44,6 +44,20 @@ struct C_00030A10 {
 };
 
 
+int S_0002FA80_Entry::func_0002FFD0(const char *subName)
+{
+    int func_001EA426(...);
+    int i;
+
+    for (i = 0; i < subCount; i++) {
+        if (func_001EA426(subName, subs[i].name) == 0) {
+            curSub = i;
+            return i;
+        }
+    }
+    return -1;
+}
+
 bool C_000300F0::func_000300F0(undefined4 param_1)
 {
   int func_001EA426(...);
