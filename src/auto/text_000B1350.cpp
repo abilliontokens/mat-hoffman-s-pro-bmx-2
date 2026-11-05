@@ -83,7 +83,7 @@ struct C_001B4AF0 {
 /* ProceduralTempDataExtended */
 extern int D_0027D004;
 struct C_000B2020 {
-    void *vtbl;
+    void * volatile vtbl;
     char pad4[0x110];
     int f114, f118, f11C, f120, f124, f128, f12C, f130, f134, f138, f13C, f140, f144, f148;
     char f14C[0x104];
@@ -274,9 +274,9 @@ void func_000B2010(void) {
 C_000B2020 *C_000B2020::func_000B2020(void) {
     C_000B2020 * volatile self = this;
     volatile int limit;
-    volatile int count;
+    int count;
     ((C_001B4AF0 *)this)->func_001B4AF0();
-    self->vtbl = (void *)&D_0027D004;
+    this->vtbl = (void *)&D_0027D004;
     limit = sizeof(f250) - 1;
     count = Min_000B1740(limit, 4);
     func_001E8920(self->f250, (const char *)&D_002764F0, count);
