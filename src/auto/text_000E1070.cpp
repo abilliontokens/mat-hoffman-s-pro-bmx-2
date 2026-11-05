@@ -83,6 +83,44 @@ struct S_002B91AC {
 
 extern S_002B91AC *D_002B91AC;
 
+/* give a drawable the colour of the page's index and mark it dirty */
+static void setEntryColor(C_000E1_Elem *e, s32 c)
+{
+    e->f38 = (c << 24) | (e->f38 & 0xffffff);
+    e->b58 |= 2;
+}
+
+/* give a drawable a fixed colour and mark it dirty */
+static void setEntryColorMask(C_000E1_Elem *e, u32 mask, u32 color)
+{
+    e->f38 = (e->f38 & mask) | color;
+    e->b58 |= 2;
+}
+
+struct C_000E1650_Sel {
+    char pad0[0x30];
+    int f30;
+};
+
+struct C_000E1650_Page {
+    char pad0[4];
+    C_000E1650_Sel *f4;
+};
+
+/* page with a row of 8 drawables, two of which are highlighted */
+struct C_000E1650 {
+    char pad0[0x140];
+    C_000E1650_Page *f140;
+    char pad144[0x28C - 0x144];
+    int f28C;
+    int f290;
+    char pad294[0x2C0 - 0x294];
+    short f2C0;
+    char pad2C2[0x2D0 - 0x2C2];
+    C_000E1_Elem *arr2D0[8];
+    void func_000E1650(void);
+};
+
 /* BmxUIPageTime */
 struct C_000E1550 {
     char pad0[0x2D0];
