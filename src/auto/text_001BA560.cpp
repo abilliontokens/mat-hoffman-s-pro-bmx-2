@@ -223,7 +223,6 @@ C_001BA5E0::C_001BA5E0() : f4(0), f8(0)
     f110 = 0;
     f144 = 0;
 }
-#pragma optimize("", on)
 
 void C_001BA910::func_001BA910(void)
 {
