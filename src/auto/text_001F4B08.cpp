@@ -74,7 +74,8 @@ unsigned int func_001F4BC8(unsigned int newv, unsigned int mask)
     return func_001F4B96(newv, mask & 0xfff7ffff);
 }
 
-#pragma intrinsic(memset)
+extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
+#pragma intrinsic(memset, memcpy)
 void func_001F4BDE(void)
 {
     memset(D_002FB000, 0, 0x101);
