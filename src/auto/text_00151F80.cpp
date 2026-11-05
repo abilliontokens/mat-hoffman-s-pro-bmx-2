@@ -52,7 +52,9 @@ extern int D_002BA148;
 struct C_00151F80 {
     char pad0[0x2c];
     S_151F80_Cam *f2c;
-    char pad30[0x34];
+    char pad30[0x24];
+    float f54;
+    char pad58[0xc];
     S_151F80_Tgt *f64;
     char pad68[0x10];
     S_151F80_Line *f78;
