@@ -15,6 +15,10 @@ int func_00168120(const char *s);
 int __stdcall func_00168A10(int a, int *out);
 extern char D_00288004[];
 extern char D_00288008[];
+extern char D_00275630[];
+extern char D_002869B4[];
+extern char D_002869B8[];
+char *func_001E95A4(char *s, const char *delim);
 
 struct C_001684B0 {
     char pad0[0x1c];
@@ -121,6 +125,34 @@ void func_00168210(int type, int value, char *dst)
         strcpy(dst, (const char *)value);
         break;
     }
+}
+
+C_00168280 *C_00168280::func_00168280(void)
+{
+    f4 = 0;
+    f8 = 0;
+    fc = 0;
+    f10 = 0;
+    f14 = 0;
+    f18 = 0;
+    f1c = 0;
+    f20 = 0;
+    f24 = 0;
+    f424 = 0;
+    f428 = 0;
+    f42c = 0;
+    f430 = 0;
+    f434 = 0;
+    f0 = -1;
+    for (int i = 0; i < 32; i++) {
+        f438[i] = 0;
+    }
+    f4c8 = 0;
+    f4b8 = 0;
+    f4bc = 0;
+    f4c0 = 0;
+    f4c4 = 0;
+    return this;
 }
 
 void C_001684B0::func_001684B0(void)
