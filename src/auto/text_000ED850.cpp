@@ -63,11 +63,11 @@ struct C_000ED850 {
     char pad128[0x280 - 0x128];
     int unk280;
     char pad284[0x28C - 0x284];
-    int unk28C;
+    unsigned unk28C;
     char pad290[0x29C - 0x290];
     int unk29C;
-    int unk2A0;
-    int unk2A4;
+    unsigned unk2A0;
+    unsigned unk2A4;
     int unk2A8;
     char pad2AC[0x3C8 - 0x2AC];
     int unk3C8;
