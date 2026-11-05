@@ -4,6 +4,33 @@
 #include <xmmintrin.h>
 #include <string.h>
 
+struct S_00161040_Global {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6();
+    virtual void v7(int a); virtual void v8();
+};
+extern S_00161040_Global *D_002EFDB8;
+extern char *D_002A8184[];
+extern char D_002A65D8[], D_002BA5F0[], D_00287A80[], D_00275FB4[];
+int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+void *func_0014FDF0(const char *name, const char *mode);
+int func_0014FED0(void *file, int offset, int origin);
+int D_0014FEE0(void *file);
+int func_0014FE50(void *file);
+int func_0014FE60(void *buf, int size, void *file);
+void func_001E8390(void *ptr);
+void *func_001E8AA5(int size);
+char *func_001E9260(char *s, int c);
+struct S_00161040_Entry { char *text; int unk4; };
+struct C_00161040 {
+    char *data;
+    S_00161040_Entry *entries;
+    int unk8, unkC;
+    short count;
+    char name[1];
+    int func_00161040(int index);
+};
+
 struct V4_00161930 {
     float x, y, z, w;
 };
