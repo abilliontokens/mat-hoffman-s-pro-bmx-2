@@ -198,6 +198,50 @@ struct VideoCard {
 extern int D_0028E33C;
 extern int D_0028E348;
 extern int D_0028E3A0;
+extern int D_0028E378;
+extern int D_0028E36C;
+extern int D_0028E3D4;
+extern char D_0028E448[];
+extern char D_0028E440[];
+
+struct IndexBufferManager {
+    int unk0;
+    int f4;
+    void *f8;
+    int fC;
+    void func_001C3B60();
+};
+
+struct DXIndexBufferManager {
+    int unk0;
+    void func_001C3C80(void);
+};
+
+struct C_001D5350 {
+    char pad0[8];
+    C_001D5350 *func_001D5350();
+    void func_001D53A0(const char *name);
+};
+
+/* VideoFXManager */
+struct VideoFXManager {
+    void *vtbl;
+    char pad4[0x20];
+    int unk24;
+    C_001D5350 *unk28;
+    C_001D5350 *unk2C;
+    int arr30[4];
+    int unk40;
+    int unk44;
+    int arr48[4];
+    int unk58;
+    int arr5C[4];
+    int unk6C;
+    void func_00157600(int a);
+    void func_001D3F50();
+    VideoFXManager *func_001C3E50(int a);
+    void func_001C3EA0(int n);
+};
 
 
 DXIndexBuffer *DXIndexBuffer::func_001C36B0(int type, int count)
@@ -380,10 +424,8 @@ int DXVertexBufferCache::func_001C3BF0(int a1, int a2)
     cache->vtbl = &D_0028E384;
     cache->func_001C3830(a1, a2);
     if (f8 == 0) {
-        f8 = (void *)func_001E8A44(0xc);
-        if (f8 != 0) {
-            f8 = ((C_00160A60 *)f8)->func_00160A60();
-        }
+        C_00160A60 *node = (C_00160A60 *)func_001E8A44(0xc);
+        f8 = node != 0 ? (void *)node->func_00160A60() : 0;
         if (f8 == 0) {
             goto fail;
         }
@@ -434,7 +476,7 @@ VideoCard *VideoCard::func_001C3D90(void)
     f2C = 0;
     f34 = 0;
     f38 = 0;
-    f3C = f3C & 0xfe;
+    ((VideoCardFlags *)&f3C)->bit0 = 0;
     f1C = 0;
     f20 = 0;
     f4 = 0;
@@ -446,7 +488,7 @@ VideoCard *VideoCard::func_001C3D90(void)
     f30 = (int)func_001E8A44(4);
     f34 = 1;
     f38 = 1;
-    f3C = f3C | 1;
+    ((VideoCardFlags *)&f3C)->bit0 = 1;
     f14 = 2;
     f18 = 2;
     return this;
