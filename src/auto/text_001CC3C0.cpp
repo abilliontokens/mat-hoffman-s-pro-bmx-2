@@ -2,6 +2,16 @@
 #include "common.h"
 
 extern int D_0028EECC;
+extern int D_0028ED5C;
+struct C_002BEAAC {
+ int func_0013AFB0(int);
+ void func_0013AFF0(int,int,int);
+ void func_0013C8A0(int,int,int,int);
+};
+extern C_002BEAAC *D_002BEAAC;
+void *func_001E8A44(unsigned int);
+int func_001E8AA5(int);
+int __stdcall func_00220A36(int);
 struct C_001CD260_Item { void *a; void *b; char pad8[16]; };
 struct C_001CD260_Group {
  C_001CD260_Item *items; int count; int f8; int size; void *data; char pad14[0x30];
