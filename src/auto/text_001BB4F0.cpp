@@ -733,3 +733,60 @@ undefined4 C_001BC020::func_001BC020(byte param_1)
   return in_ECX;
 }
 
+C_001BC040 *C_001BC040::func_001BC040(V4_001BC040 a, V4_001BC040 b, V4_001BC040 c, V4_001BC040 d, float e, int n, int p90, int *p9c)
+{
+    int i;
+    V4_001BC040 *pb;
+
+    func_001D3F50();
+    f24 = a;
+    pb = &f34;
+    *pb = b;
+    f2E0 = e;
+    f90 = p90;
+    if (p9c != 0) {
+        f9C = p9c;
+    }
+    if (e > D_00275544) {
+        void *mem = func_001E8A44(0x120);
+        ObjA_001BC040 *o = mem ? ((ObjA_001BC040 *)mem)->func_001A4A50(1) : 0;
+        o->func_00129920(7);
+        o->func_001A57E0(f24, f2E0, 0);
+        o->func_001A52C0();
+        f2E4 = o;
+    } else if (pb->x != D_002AAE04 || pb->y != D_002AAE08 || pb->z != D_002AAE0C) {
+        void *mem = func_001E8A44(0x110);
+        ObjB_001BC040 *o = mem ? ((ObjB_001BC040 *)mem)->func_00129840(1) : 0;
+        o->func_00129920(7);
+        o->func_00129930(*(V4_001BC040 *)&D_002AAE04, *pb);
+        func_000265C0(f50, (Vec_001BB950 *)&f24, &c, &d, 0, 1);
+        o->func_00129E10();
+        f2E4 = o;
+    }
+    f2E4->f68 = D_002BA154;
+    f2E4->func_00133570(1);
+    f2E4->f60 = this;
+    f2E4->fA0 = (void *)func_001BBF90;
+    func_001577A0(f2E4, 2);
+    if (n < 1) {
+        n = 1;
+    }
+    fB4 = (int *)func_001E8A44(n * 4);
+    fB8 = (int *)func_001E8A44(n * 4);
+    fBC = (int *)func_001E8A44(n * 4);
+    fC0 = (int *)func_001E8A44(n * 4);
+    fC4 = (int *)func_001E8A44(n * 4);
+    fC8 = (int *)func_001E8A44(n * 4);
+    fCC = (int *)func_001E8A44(n * 4);
+    for (i = 0; i < n; i++) {
+        fB8[i] = 0;
+        fBC[i] = -1;
+        fC0[i] = -1;
+        fC4[i] = 0;
+        fC8[i] = 0;
+    }
+    f94 = n;
+    f98 = 0;
+    return this;
+}
+
