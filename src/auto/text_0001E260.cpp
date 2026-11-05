@@ -40,6 +40,15 @@ struct C_0001EF40 {
     undefined4 func_0001EF40(void);
 };
 
+struct C_0001EBB0 {
+    void func_00157600(int a);
+    C_0001EBB0 *func_0001EBB0(int a0);
+};
+extern int D_002A0E84;
+extern int D_002A0E88;
+extern int D_002A0E8C;
+extern int D_002A0E90;
+
 extern int D_00275F9C;
 extern int D_00275F7C;
 extern int D_00276004;
