@@ -92,29 +92,19 @@ struct S_func_001E2B60_arg1 {
 
 float __stdcall func_00243639(int v);
 
-static inline int func_001E2B60_noise(S_func_001E2B60_arg0 *self)
+static inline int dither_noise_step(int &seed, int &prev)
 {
-    int s = self->f40c * 1664525 + 1013904223;
+    int s = seed * 1664525 + 1013904223;
     int n;
-    self->f40c = s;
+    seed = s;
     s >>= 2;
     s += s >> 2;
-    n = s - self->f408;
-    self->f408 = s;
+    n = s - prev;
+    prev = s;
     return n;
 }
 
-static inline int dither_noise(S_func_001E2B60_arg0 *self)
-{
-    int s = self->f40c * 1664525 + 1013904223;
-    int n;
-    self->f40c = s;
-    s >>= 2;
-    s += s >> 2;
-    n = s - self->f408;
-    self->f408 = s;
-    return n;
-}
+#define dither_noise(self) dither_noise_step((self)->f40c, (self)->f408)
 
 extern "C" __declspec(dllimport) void __stdcall RtlInitAnsiString(S_AnsiString *dst, const char *src);
 extern "C" __declspec(dllimport) u8 __stdcall RtlEqualString(S_AnsiString *a, S_AnsiString *b, int caseInsensitive);
@@ -389,11 +379,11 @@ int __stdcall mix_dither_block(S_func_001E2B60_arg0 *self, S_func_001E2B60_arg1 
         int end;
         float t;
         for (i = 0; i < n; i++) {
-            dst[i] = func_001E2B60_noise(self) * amp * gains[self->f324] * scale;
+            dst[i] = dither_noise(self) * amp * gains[self->f324] * scale;
         }
         n = self->f3c4;
         for (; i < n; i++) {
-            t = func_001E2B60_noise(self) * amp;
+            t = dither_noise(self) * amp;
             if (i >= self->f354[seg + 1]) {
                 seg++;
             }
@@ -411,7 +401,7 @@ int __stdcall mix_dither_block(S_func_001E2B60_arg0 *self, S_func_001E2B60_arg1 
             if (flags[seg] == 1) {
                 float g = func_00243639(*pb) * *pa * inv * D_002902B8;
                 for (; i < end; i++) {
-                    dst[i] = func_001E2B60_noise(self) * gains[i] * g;
+                    dst[i] = dither_noise(self) * gains[i] * g;
                 }
                 pa++;
                 pb++;
@@ -420,7 +410,7 @@ int __stdcall mix_dither_block(S_func_001E2B60_arg0 *self, S_func_001E2B60_arg1 
                     end = self->f328;
                 }
                 for (; i < end; i++) {
-                    dst[i] = (func_001E2B60_noise(self) * amp + src[j]) * gains[i] * scale;
+                    dst[i] = (dither_noise(self) * amp + src[j]) * gains[i] * scale;
                     j++;
                 }
             }
@@ -428,7 +418,7 @@ int __stdcall mix_dither_block(S_func_001E2B60_arg0 *self, S_func_001E2B60_arg1 
         n = self->f60;
         t = scale * gains[self->f328 - 1] * amp;
         for (; i < n; i++) {
-            dst[i] = func_001E2B60_noise(self) * t;
+            dst[i] = dither_noise(self) * t;
         }
     }
     return 0;
