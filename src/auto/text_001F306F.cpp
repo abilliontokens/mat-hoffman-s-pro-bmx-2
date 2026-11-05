@@ -216,3 +216,14 @@ void C_001F3275::func_001F3275(void) {
     unk0 = (int)&D_00295F1C;
     func_001F3221();
 }
+
+#pragma optimize("sy", on)
+C_001F3280 *C_001F3280::func_001F3280(int param_1) {
+    extern int D_00295F24;
+    void __stdcall func_001F3244(int);
+    func_001F3244(param_1);
+    unk0 = (int)&D_00295F24;
+    return this;
+}
+#pragma optimize("", on)
+
