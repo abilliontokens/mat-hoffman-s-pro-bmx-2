@@ -23,3 +23,22 @@ struct C_000CC2B0 {
     C_00093120 *f2F8;
     void func_000CC2B0();
 };
+
+void C_000CC2B0::func_000CC2B0()
+{
+    int i;
+
+    f2F8->func_00093120();
+    for (i = 0; i < 2; i++) {
+        f298[i]->func_001B1980();
+        if (i == f2BC) {
+            f298[i]->func_001B2270(0xffbfa35a);
+            f298[i]->func_001B19A0(D_0028F5E0);
+            f298[i]->func_001B1860(0, -1.0f, 0xff, 1.45f, 0, 0, 0, 0xff, 1.45f, 0, 0.25f, 0, 0);
+        } else {
+            f298[i]->func_001B2270(0xffcccccc);
+            f298[i]->func_001B19A0(D_0028F5E0);
+            f298[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+        }
+    }
+}
