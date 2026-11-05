@@ -117,6 +117,38 @@ struct LightManager {
     void func_0015F080();
 };
 
+struct LS_Vec4 {
+    float x, y, z, w;
+};
+
+struct LS_Sub193950 {
+    void func_00193950(void *a, void *b, void *c, int d);
+};
+
+struct LS_Sub15CD70 {
+    void func_0015CD70(void *p);
+};
+
+struct LightSource {
+    char pad0[0x24];
+    char f24[0x3C];
+    int f60;
+    int f64;
+    int f68;
+    char pad6C[0xC];
+    int f78;
+    char pad7C[0x18];
+    LS_Vec4 f94;
+    int fA4_[0x4];
+    LS_Sub15CD70 *fB4;
+    LS_Vec4 *fB8;
+    char padBC[4];
+    int fC0_;
+    LS_Sub193950 *fC4;
+    void func_0015E850(LS_Vec4 *v);
+};
+
+extern char D_002A801C[];
 extern int D_00287934;
 void func_001E8390(void *p);
 struct C_0015D250 {
