@@ -108,6 +108,52 @@ struct C_001C0E80 {
     void func_001C0E80(void);
 };
 
+struct S_001C0B00_Vec4 {
+    float x, y, z, w;
+    S_001C0B00_Vec4(float a, float b, float c, float d)
+    {
+        x = a;
+        y = b;
+        z = c;
+        w = d;
+    }
+};
+
+struct S_001C0B00_Node {
+    void func_00199CF0(S_001C0B00_Vec4 v, float angle);
+};
+
+/* UIWidgetStaticUserRotate: slots 28/29 start/stop the rotation */
+struct C_001C0A60 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    char pad4[0x28];
+    int f2C;
+    int f30;
+    int f34;
+    int f38;
+    int f3C;
+    char pad40[0x28];
+    S_001C0B00_Node *f68;
+    char pad6C[0x20];
+    float f8C;
+    float f90;
+    char pad94[0x10];
+    int fA4;
+    char padA8[0xC];
+    float fB4;
+    void func_001C0A60(void);
+    void func_001C0AB0(void);
+    void func_001C0B00(float dt);
+    void func_001C0B70(float dt);
+};
+
 struct S_001C04D0_Entry {
     int unk0;
     int unk4;
