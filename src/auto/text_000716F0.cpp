@@ -177,6 +177,19 @@ struct C_000724E0 {
     void func_000724E0(void);
 };
 
+struct C_00072330 {
+    char pad0[0x70];
+    C_0005E840 *f70;
+    char pad74[0x14];
+    int f88;
+    char pad8C[0x38];
+    int fC4;
+    int fC8;
+    char padCC[4];
+    S_Setter_716 *fD0;
+    void func_00072330(void);
+};
+
 struct C_00072590 {
     char pad0[0xC0];
     int unkC0;
