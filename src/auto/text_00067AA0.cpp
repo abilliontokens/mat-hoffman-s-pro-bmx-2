@@ -5,6 +5,21 @@ struct C_000683C0 {
     void func_000683C0(void);
 };
 
+extern int D_002786A0, D_00278690, D_00278678;
+extern float D_00275AEC;
+struct Clamp_67 { char pad[0x10]; float f10, f14; };
+struct Mid_67 { Clamp_67 *func_0018C070(); };
+struct Lookup_67 { int *func_0018C160(int); };
+struct Global_67 { char pad[0x2ec]; Lookup_67 *p2EC; };
+extern Global_67 *D_002A8490;
+struct W_67 { Clamp_67 *func_001D5AA0(); };
+struct C_00067AA0 {
+    char pad0[0x90];
+    W_67 *w[48];
+    void func_001578D0();
+    void func_00067AA0();
+};
+
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 
 struct V_002EFDB8 {
