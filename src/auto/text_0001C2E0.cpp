@@ -348,14 +348,14 @@ S_0001C610_V4 func_0001C610(float *a, float *b) {
     return r;
 }
 
-S_0001C610_V4 func_0001C680(float x, float y, float z, float w, float *m) {
+void func_0001C680(S_0001C610_V4 *out, float x, float y, float z, float w, float *m) {
     S_0001C610_V4 r;
 
     r.x = dot3_0001C680(x, y, z, m);
     r.y = dot3_0001C680(x, y, z, m + 4);
     r.z = dot3_0001C680(x, y, z, m + 8);
     r.w = 1.0f;
-    return r;
+    *out = r;
 }
 
 void C_0001C710::func_0001C710(float a0, float a1, float a2, int a3) {
