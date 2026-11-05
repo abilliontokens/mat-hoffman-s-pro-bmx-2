@@ -117,6 +117,7 @@ struct C_0018D7B0 {
         return 0;
     }
     void func_0018D7B0(const char *name, int index, int b, int c, int d);
+    void func_0018D330(int index, int a, int b, const char *str);
 };
 
 struct C_0018D580 {
