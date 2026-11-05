@@ -105,6 +105,44 @@ struct C_0015CF60 {
     void func_0015D000(int a0, int a1, int a2);
 };
 
+extern int D_00287934;
+extern int D_002A801C;
+extern int D_002A8020;
+extern int D_002A8024;
+extern int D_002A8028;
+
+/* LightManager */
+struct C_0015D1B0 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    int f28;
+    int f2C;
+    int f30;
+    int f34;
+    int f38;
+    int f3C;
+    char pad40[0x10];
+    int f50;
+    char pad54[0x10];
+    int f64;
+    int f68;
+    int f6C;
+    int f70;
+    int f74;
+    int f78;
+    int f7C;
+    int f80;
+    int f84;
+    int f88;
+    int f8C;
+    int f90;
+    void func_00157600(int a0);
+    C_0015D1B0 *func_0015D1B0(void);
+};
+
+extern C_0015D1B0 *D_002E2930;
+
 int func_0015CAB0(float *base, int hi, float v);
 extern float D_00287848;
 extern float D_00287844;
