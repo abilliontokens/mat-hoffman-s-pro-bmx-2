@@ -44,7 +44,7 @@ struct C_CarProceduralExtended {
     f32 f510;
     u32 f514;
     S_0012F518 *f518;
-    S_0012F518 *f51C;
+    S_0012F518 *volatile f51C;
     void func_0012F600(f32 param_1, int param_2);
     int func_0012FCF0(u32 param_1, f32 param_2);
     void func_0012FBF0(int param_1);
