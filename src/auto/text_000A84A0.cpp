@@ -349,6 +349,21 @@ void C_000A89F0::func_000A8A10(S_TriggerStream *stream, void *b)
     func_001B5A00(stream, b);
 }
 
+/* 0xA8A40 and 0xA8A60: the analysis merged them into func_000A8A10 */
+struct C_000A8A40 {
+    int func_000A8A40(void *param1, void *param2);
+};
+
+int C_000A8A40::func_000A8A40(void *param1, void *param2) {
+    extern int D_000A89C0;
+    int __stdcall func_001BBAA0(void *, void *);
+    void *self = this;
+    if (param2 != 0) {
+        func_001BBAA0(self, &D_000A89C0);
+    }
+    return 1;
+}
+
 /* the callback a wreck trigger registers (D_000A8A60): it makes the game
    manager play the effect for one of the trigger's active items */
 struct S_000A8A60_Mgr {
