@@ -23,13 +23,26 @@ struct S_000F1FC0_Obj {
 
 struct S_000F1D90_Obj {
     virtual void destroying(int flag);
-    char pad4[0x34];
+    char pad4[0x24];
+    int f28;
+    char pad2c[0xc];
     unsigned int f38;
-    char pad3c[0x1c];
+    int f3C;
+    int f40;
+    int f44;
+    int f48;
+    char pad4c[0xc];
     unsigned char f58;
     void func_001D5AD0();
     S_000F1FC0_Obj *func_001D5AA0(void);
+    S_000F1D90_Obj *func_001D5760(void);
+    void func_001D5810(void *a, float b, float c, int d);
 };
+
+void *func_001E8A44(int size);
+extern int D_002786B0;
+extern float D_002757F0;
+extern float D_0027E140;
 
 struct BmxUIPageHPHChoice {
     void *vtbl;
