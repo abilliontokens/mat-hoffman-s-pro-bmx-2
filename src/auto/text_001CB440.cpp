@@ -482,7 +482,7 @@ int C_001CB610::func_001CB7D0(void)
 int C_001CB610::func_001CB810(int idx)
 {
     char path[0x104];
-    S_001CB610_Entry *e = f34 + fa4;
+    S_001CB610_Entry *e = Entry();
 
     if (e->f40 & 1) {
         func_001ADCC0(path, sizeof(path), D_0028ED6C, D_002A48F8, e->f0[idx].name);
@@ -607,9 +607,10 @@ C_001CB320 *C_001CBEF0::func_001CBEF0(void)
 int C_001CBF20::func_001CBF20(void)
 {
     S_001CBF20_Vec4 *p = &fD8;
+    int h = f30;
 
-    if (func_0022095F(f30, p) == 0) {
-        p->CopyFrom(p);
+    if (func_0022095F(h, p) == 0) {
+        fD8 = *p;
         return 1;
     }
     return 0;
@@ -703,32 +704,30 @@ int C_001CC0C0::func_001CC320(unsigned int v)
     int r;
 
     if (f13C != 0) {
-        if (f19C == v) {
-            return 1;
+        if (f19C != v) {
+            if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
+                return 0;
+            }
+            r = func_00221974(f13C, v);
+            if (r < 0) {
+                func_001CBC10(r, &D_0028EECC, 0x621);
+                return 0;
+            }
+            f19C = v;
         }
-        if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
-            return 0;
+    } else if (f140 != 0) {
+        if (f19C != v) {
+            if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
+                return 0;
+            }
+            r = D_00221B4C(f140->fC, v);
+            if (r < 0) {
+                func_001CBC10(r, &D_0028EECC, 0x630);
+                return 0;
+            }
+            f19C = v;
         }
-        r = func_00221974(f13C, v);
-        if (r < 0) {
-            func_001CBC10(r, &D_0028EECC, 0x621);
-            return 0;
-        }
-    store:
-        f19C = v;
-        return 1;
     }
-    if (f140 == 0 || f19C == v) {
-        return 1;
-    }
-    if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
-        return 0;
-    }
-    r = D_00221B4C(f140->fC, v);
-    if (r >= 0) {
-        goto store;
-    }
-    func_001CBC10(r, &D_0028EECC, 0x630);
-    return 0;
+    return 1;
 }
 
