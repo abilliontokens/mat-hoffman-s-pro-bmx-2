@@ -288,6 +288,7 @@ struct C_001B09C0 {
 
 struct S_001B08F0_Item {
     int d[15];
+    static void *operator new(unsigned int size) { return func_001E8A44(size); }
 };
 
 /* VertexAnimationData */
