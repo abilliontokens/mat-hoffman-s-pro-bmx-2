@@ -40,9 +40,15 @@ struct S_000CEFC0_4F8 {
     int func_00093620(float v);
 };
 
+struct S_000CEFC0_Mgr {
+    int *func_0005C020(int idx);
+};
+
 struct S_000CEFC0_Record {
     int f0;
     int f4;
+    char pad8[0x2b8];
+    S_000CEFC0_Mgr *f2c0;
 };
 
 struct S_000CEFC0_Root {
