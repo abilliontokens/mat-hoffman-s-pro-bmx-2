@@ -161,6 +161,7 @@ struct BmxUIPageOptions {
     char pad4[0x2D8 - 4];
     S_000C8660_Obj *unk2D8[4];
     BmxUIPageOptions *func_000C87A0(int a, int b, int c);
+    void func_001BE4F0(int a, int b, int c);
     void func_000C8660(void);
     void func_000C86A0(void);
     void func_001BE3F0(void);
