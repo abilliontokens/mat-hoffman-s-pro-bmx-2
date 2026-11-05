@@ -220,6 +220,25 @@ C_0001B0A0 *C_0001B0A0::func_0001B0A0(void) {
     return this;
 }
 
+void func_0001B130(u8 *dst, Quat *q) {
+    int tmp;
+    float angle;
+    int * volatile p;
+    Vec4 v;
+    C_0001AE60 col;
+    v.z = 0.0f;
+    v.y = 0.0f;
+    v.x = 0.0f;
+    v.w = 1.0f;
+    func_0001B020(q, &angle, (Vec3 *)&v);
+    func_0001AFB0((Vec3 *)&v, (Vec3 *)&v);
+    angle *= D_00275B44;
+    p = &tmp;
+    *p = _mm_cvtss_si32(*(__m128 *)&angle);
+    *dst++ = (u8)tmp;
+    *(C_0001AE60 *)dst = *col.func_0001AE60((Vec3 *)&v);
+}
+
 void func_0001B1D0(const PackedQuat *p, Quat *q) {
     float v[4];
     float s = D_002B3470[p->angle];
@@ -252,12 +271,16 @@ void func_0001B250(S_0001B250_Out *out, Quat *q)
 
 void func_0001B2E0(const S_0001B2E0_In *in, S_0001B2E0_Out *out)
 {
+    float v[4];
     u32 k = (u32)in->idx * 4;
-    f32 s = *(f32 *)((char *)D_002B3C70 + k);
+    float s = *(f32 *)((char *)D_002B3C70 + k);
     out->v0 = *(u32 *)((char *)D_002AF470 + k);
-    out->x = (f32)in->x * D_002B7C70 * s;
-    out->y = (f32)in->y * D_002B7C70 * s;
-    out->z = (f32)in->z * D_002B7C70 * s;
+    v[0] = (float)in->x * D_002B7C70;
+    v[1] = (float)in->y * D_002B7C70;
+    v[2] = (float)in->z * D_002B7C70;
+    out->x = v[0] * s;
+    out->y = v[1] * s;
+    out->z = v[2] * s;
 }
 
 void func_0001B360(int a0, int a1, S_0001B360 *a2, int a3) {
