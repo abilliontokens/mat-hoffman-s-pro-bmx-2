@@ -102,6 +102,110 @@ extern char D_0028D8C4[];
 extern char D_0028D8B0[];
 extern char D_0028D89C[];
 
+/* UIWidgetEventHandler::func_001BF540 (slot 23) */
+struct S_001BF540_Event {
+    int f0;
+    int f4;
+    int f8;
+};
+
+struct S_001BF540_Widget {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    virtual void v31();
+    virtual void v32();
+    virtual void v33(S_001BF540_Event *ev, int a, int idx, int key);
+    char pad4[0x28];
+    int f2C;
+};
+
+struct S_001BF540_Node {
+    S_001BF540_Widget *widget;
+    int active;
+    S_001BF540_Node *next;
+};
+
+struct S_001BF540_List {
+    S_001BF540_Node *head;
+};
+
+struct S_001BF540_Owner {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual int v28(int idx, int key);
+    char pad4[0x274];
+    int f27C;
+};
+
+struct S_001BF540_Mid {
+    char pad0[0x118];
+    S_001BF540_Owner *f118;
+};
+
+struct C_001BF540 {
+    char pad0[0x24];
+    S_001BF540_Mid *f24;
+    char pad28[4];
+    S_001BF540_List **f2C;
+    int func_00157BF0(S_001BF540_Event *ev, int a);
+    int func_001BF540(S_001BF540_Event *ev, int a);
+};
+
 struct C_001BF600 {
     char pad0[0x30];
     int f30;
@@ -268,13 +372,15 @@ void *C_001BF430::func_001BF430(int a0, int a1)
 
 void C_001BF490::func_001BF490(C_001BF490_Item *a0)
 {
-    int *flag = a0->unk44;
-    int off = 0;
-    do {
-        if (*flag != 0) {
-            S_001BF3C0_List *list = *(S_001BF3C0_List **)((char *)unk2C + off);
+    S_001BF3C0_List *list;
+    S_001BF3C0_Node *node;
+    int i;
+
+    for (i = 0; i < 8; i++) {
+        if (a0->unk44[i] != 0) {
+            list = unk2C[i];
             if (list->head == 0) {
-                S_001BF3C0_Node *node = (S_001BF3C0_Node *)func_001E8A44(0xc);
+                node = (S_001BF3C0_Node *)func_001E8A44(0xc);
                 list->head = node;
                 node->unk0 = a0;
                 node->unk8 = 0;
@@ -282,16 +388,14 @@ void C_001BF490::func_001BF490(C_001BF490_Item *a0)
                 list->tail = node;
             } else {
                 list->tail->unk8 = (S_001BF3C0_Node *)func_001E8A44(0xc);
-                S_001BF3C0_Node *node = list->tail->unk8;
+                node = list->tail->unk8;
                 list->tail = node;
                 node->unk0 = a0;
                 list->tail->unk4 = 0;
                 list->tail->unk8 = 0;
             }
         }
-        off += 4;
-        flag++;
-    } while (off < 0x20);
+    }
 }
 
 undefined4 C_001BF520::func_001BF520(byte param_1)
