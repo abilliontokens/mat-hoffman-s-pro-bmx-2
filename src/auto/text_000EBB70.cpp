@@ -2,8 +2,26 @@
 #include "common.h"
 
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
+extern "C" char *__cdecl strcpy(char *dst, const char *src);
+#pragma intrinsic(strcpy)
 
 extern int D_00281BF4;
+
+struct S_EC320_Entry {
+    char flags[0x10];
+    char name[0x22];
+};
+
+struct S_EC320_Mgr {
+    char pad0[0x2C8];
+    S_EC320_Entry *f2C8;
+};
+
+struct S_EC320_Global {
+    char pad0[0x2E0];
+    S_EC320_Mgr *f2E0;
+};
+extern S_EC320_Global *D_002A8490;
 
 struct DelObjC_000EB {
     virtual void Destroy(int a0);
