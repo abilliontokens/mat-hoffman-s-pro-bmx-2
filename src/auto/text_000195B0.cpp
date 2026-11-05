@@ -112,6 +112,65 @@ struct TikiEvadeState {
 };
 extern float D_00275804;
 
+struct S_1A060_Vec { float x, y, z, w; };
+struct S_1A060_Fx {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    virtual void func_14(int a); virtual void v6(); virtual int func_1C(void);
+};
+struct S_1A060_Node { char pad0[0x13c]; float f13c; char pad140[0xc]; float f14c; char pad150[0xc]; float f15c; char pad160[0x60]; char *f1c0; };
+struct S_1A060_List { char pad0[0x190]; int f190; int *f194; char pad198[8]; S_1A060_Node **f1a0; };
+struct S_1A060_Cam { void func_00197B40(S_1A060_Vec *a, S_1A060_Vec *b); };
+struct S_1A060_F3C { char pad0[4]; S_1A060_Cam *f4; };
+struct S_1A060_Owner {
+    char pad0[0x3c];
+    S_1A060_F3C *f3c;
+    char pad40[0xc4 - 0x40];
+    int fc4;
+    char padc8[0x4a0 - 0xc8];
+    S_1A060_List *f4a0;
+    char pad4a4[4];
+    S_1A060_Fx *f4a8[2];
+    char pad4b0[0x4c4 - 0x4b0];
+    float f4c4;
+    char pad4c8[0x4d4 - 0x4c8];
+    int f4d4;
+    char pad4d8[0x4f0 - 0x4d8];
+    int f4f0;
+    int f4f4;
+    char pad4f8[0x508 - 0x4f8];
+    float f508, f50c, f510;
+    char pad514[0x734 - 0x514];
+    int f734, f738, f73c;
+    char pad740[0x754 - 0x740];
+    int f754[3];
+    int f760[3];
+    void func_0001A060(float *pos, int damage);
+    void func_00019480(void);
+    void func_001C6DA0(int a, int b);
+};
+float func_00017600(char *p);
+float func_00011170(S_1A060_Vec *v);
+void func_00016DD0(S_1A060_Vec *out, S_1A060_Vec *in);
+extern float D_00275544;
+extern float D_00275AE8;
+extern char D_002A0718;
+static __forceinline float Sqrt_1A060(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+static __forceinline void Round_1A060(int *out, float f) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
+static __forceinline void Cross_1A060(float *out, float *a, float *b)
+{
+    __m128 va = _mm_loadu_ps(a);
+    __m128 vb = _mm_loadu_ps(b);
+    __m128 sa = va;
+    __m128 sb = vb;
+    sa = _mm_shuffle_ps(sa, sa, 0xc9);
+    sb = _mm_shuffle_ps(sb, sb, 0xc9);
+    vb = _mm_mul_ps(vb, sa);
+    va = _mm_mul_ps(va, sb);
+    va = _mm_sub_ps(va, vb);
+    va = _mm_shuffle_ps(va, va, 0xc9);
+    _mm_storeu_ps(out, va);
+}
+
 void C_00019790::func_00019790(void)
 {
     int chance;
