@@ -43,6 +43,22 @@ struct C_0008D910 {
     void func_0008D910();
 };
 
+struct S_5E { void func_0005E840(char *s); void func_001D6600(); void func_001D5AD0(); };
+struct S_64 { char pad[0x574]; int u574; int u578; char pad2[8]; int u584; };
+struct S_68 { char pad[0x4d4]; int u4d4; };
+extern char D_00277038[];
+int func_001ADCC0(char *buf, int n, char *fmt, int v);
+int strlen(const char *);
+struct S_0008D290 {
+    char pad0[0x28];
+    S_5E *u28; S_5E *u2c; char pad30[4]; S_5E *u34;
+    char pad38[0x10];
+    S_5E *u48; S_5E *u4c; char pad50[0x14];
+    S_64 *u64; S_68 *u68; char pad6c[4];
+    int u70; int u74; int u78;
+    void func_0008D290();
+};
+
 struct C_001B1980 {
     void func_001B1980(void);
 };
