@@ -23,6 +23,7 @@ struct SoundList {
     int *data2;
     char pad1c[0xc];
     int func_001CDED0(int id);
+    void func_001CBCF0(int id);
     void Clear()
     {
         memset(data, 0, count * sizeof(int));
