@@ -123,6 +123,10 @@ struct Players_150F80 { char pad[0x4e4]; C_00150900 *f4e4[4]; };
 extern Global_150F80 *D_002A8490;
 extern Players_150F80 *D_002B9120;
 struct C_00150F80 { int u[445]; void func_00150F80(); };
+__forceinline void Vec4_150900::reset_150F80(int *flag) {
+    *(int *)&x=D_002A789C; *(int *)&y=D_002A78A0; *(int *)&z=D_002A78A4;
+    int t=D_002A78A8; *flag=0; *(int *)&w=t;
+}
 static __forceinline void ResetVec_150F80(int *p) {
     p[0]=D_002A789C; p[1]=D_002A78A0; p[2]=D_002A78A4; p[3]=D_002A78A8;
 }
