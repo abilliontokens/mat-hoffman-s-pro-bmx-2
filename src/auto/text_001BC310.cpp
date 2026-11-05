@@ -188,6 +188,20 @@ C_UIGlobalManager *C_UIGlobalManager::func_001BC770(void *param)
     return this;
 }
 
+void C_UIGlobalManager::func_001BC7A0()
+{
+    vtbl = (void *)&D_0028D3B4;
+    if (f2C != 0) {
+        func_001E8390(f2C);
+        f2C = 0;
+    }
+    if (D_002F0630 != 0) {
+        D_002F0630->destroy(1);
+        D_002F0630 = 0;
+    }
+    func_00157660();
+}
+
 int C_UIGlobalManager::func_001BC7F0(void *a)
 {
     if (f24 != 0) {
