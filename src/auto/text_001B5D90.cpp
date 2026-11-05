@@ -138,6 +138,13 @@ struct C_001B6930 {
     int func_001B6930(S_001B6130_Stream *stream, int a1);
 };
 
+struct S_Vec4_001B6850 {
+    int x;
+    int y;
+    int z;
+    int w;
+};
+
 extern int D_002AA9F8;
 extern int D_002AA9FC;
 extern int D_002AAA00;
@@ -386,6 +393,25 @@ void C_001B65D0::func_001B65D0(void) {
 
 void C_001B65E0::func_001B65E0(void) {
     unk0 = 0;
+}
+
+C_001B6930 *C_001B6930::func_001B6850(void)
+{
+    int *p;
+
+    p = (int *)f0;  p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    p = (int *)f10; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    p = (int *)f20; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    p = (int *)f30; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    p = (int *)f0;  p[0] = D_002AA9F4; p[1] = D_002AA9F8; p[2] = D_002AA9FC; p[3] = D_002AAA00;
+    p = (int *)f10; p[0] = D_002AA9F4; p[1] = D_002AA9F8; p[2] = D_002AA9FC; p[3] = D_002AAA00;
+    p = (int *)f20; p[0] = D_002AA9F4; p[1] = D_002AA9F8; p[2] = D_002AA9FC; p[3] = D_002AAA00;
+    p = (int *)f30; p[0] = D_002AA9F4; p[1] = D_002AA9F8; p[2] = D_002AA9FC; p[3] = D_002AAA00;
+    f40 = 0;
+    f44 = 0;
+    f48 = 0;
+    f4c = 0;
+    return this;
 }
 
 int C_001B6930::func_001B6930(S_001B6130_Stream *stream, int a1)
