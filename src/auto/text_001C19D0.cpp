@@ -102,6 +102,15 @@ void C_001C2140::func_001C2140() {
     func_00157960();
 }
 
+void *C_001C2160::func_001C2160(int flags) {
+    vtbl = (void *)&D_0028D804;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void C_001C2190::func_001C2190(int a0) {
     func_001BF980(a0);
     func_00157A00(a0);
