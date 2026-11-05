@@ -155,11 +155,6 @@ struct V4_00188250 {
     V4_00188250(int) { x = 0.0f; y = 0.0f; z = 0.0f; w = 1.0f; }
 };
 
-static __forceinline int MinLen_001881C0(int cap, int len)
-{
-    return cap > len ? len : cap;
-}
-
 struct C_001881C0 {
     void *vtbl;
     char pad4[0x140];
