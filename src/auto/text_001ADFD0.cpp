@@ -382,7 +382,7 @@ struct C_001AE890 {
     int f1C; void *f20; int f24, f28, f2C, f30, f34, f38;
     float f3C, f40; char pad44[0x20]; unsigned char f64; float f68;
     void func_001AE890();
-    void __stdcall func_001ADFD0(void *, int, int, int, int, int);
+    void func_001ADFD0(void *, int, int, int, int, int);
 };
 struct S_001AE890_View { int v[6]; };
 void func_001ADD80(void *);
