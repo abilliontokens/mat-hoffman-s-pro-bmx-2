@@ -426,18 +426,18 @@ struct C_001BFDB0 {
     int f44[8];
     int f64;
     int f68;
-    float f6C;
-    float f70;
-    float f74;
-    float f78;
-    float f7C;
-    float f80;
-    float f84;
-    float f88;
-    float f8C;
-    float f90;
-    float f94;
-    float f98;
+    union {
+        float a6C[4];
+        struct { float f6C, f70, f74, f78; };
+    };
+    union {
+        float a7C[4];
+        struct { float f7C, f80, f84, f88; };
+    };
+    union {
+        float a8C[4];
+        struct { float f8C, f90, f94, f98; };
+    };
     char pad9C[0x39C - 0x9C];
     int f39C;
     int f3A0;
@@ -792,7 +792,7 @@ void C_001BF930::func_001BFD00(float dt)
 
 void *C_001BFDB0::func_001BFDB0(int a0, int a1)
 {
-    int i;
+    float *p;
 
     func_00157600(a1);
     f24 = a0;
@@ -803,30 +803,37 @@ void *C_001BFDB0::func_001BFDB0(int a0, int a1)
     f38 = 0;
     f3C = 0;
     f40 = 0;
-    for (i = 0; i < 8; i++) {
-        f44[i] = 0;
-    }
+    memset(f44, 0, sizeof(f44));
     f64 = 0;
     vtbl = (void *)&D_0028DA5C;
-    f6C = f70 = f74 = 0;
-    f78 = 1.0f;
-    f88 = 1.0f;
-    f7C = f80 = f84 = 0;
-    f98 = 1.0f;
-    f8C = f90 = f94 = 0;
+    p = &f6C;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 1.0f;
+    p = &f7C;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 1.0f;
+    p = &f8C;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 1.0f;
     f68 = 0;
     f6C = 1.0f;
     f70 = 1.0f;
     f74 = 1.0f;
     f78 = 1.0f;
-    f88 = 1.0f;
     f7C = 0;
     f80 = 0;
     f84 = 0;
-    f98 = 1.0f;
+    f88 = 1.0f;
     f8C = 0;
     f90 = 0;
     f94 = 0;
+    f98 = 1.0f;
     f39C = 0;
     f3A0 = 0;
     return this;
