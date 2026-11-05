@@ -17,7 +17,11 @@ extern unsigned int D_002A0C18[];
 
 static inline unsigned int swap32(unsigned int x)
 {
-    return (((x & 0xff) << 8 | x >> 8 & 0xff) << 8 | x >> 16 & 0xff) << 8 | x >> 24;
+    unsigned char b0 = (unsigned char)x;
+    unsigned char b1 = (unsigned char)(x >> 8);
+    unsigned char b2 = (unsigned char)(x >> 16);
+    unsigned char b3 = (unsigned char)(x >> 24);
+    return ((b0 << 8 | b1) << 8 | b2) << 8 | b3;
 }
 
 struct C_0001E0E0 {
@@ -503,5 +507,53 @@ void C_0001E0A0::func_0001E0A0(float a0, float a1, float a2, int a3) {
     unk140 = a0 + unk140;
     unk144 = a1 + unk144;
     unk148 = a2 + unk148;
+}
+
+void C_0001E0E0::func_0001E0E0(int n)
+{
+    unsigned int *first = data;
+    unsigned int *prev = first;
+    unsigned int *next;
+    int m = 32 - n;
+    int words = (nbits + 31) / 32;
+    unsigned int v;
+
+    v = swap32(*first) << n;
+    *first = swap32(v);
+    for (;;) {
+        words--;
+        if (words == 0) {
+            if (fill == 0) {
+                *first &= D_002A0C18[m];
+            } else {
+                *first |= ~D_002A0C18[m];
+            }
+            return;
+        }
+        next = prev + 1;
+        if (*next != 0) {
+            if (*next == 0xffffffff) {
+                *first |= ~D_002A0C18[m];
+                v = D_002A0C18[m];
+            } else {
+                v = swap32(*next);
+                *next = v;
+                v >>= m;
+                if (v != 0) {
+                    *first |= swap32(v);
+                }
+                v = *next << n;
+                *next = v;
+                if (v == 0) {
+                    goto skip;
+                }
+                v = swap32(v);
+            }
+            *next = v;
+        }
+skip:
+        first++;
+        prev = next;
+    }
 }
 
