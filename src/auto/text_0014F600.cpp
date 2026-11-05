@@ -1,10 +1,28 @@
 /* 30 functions from 0x0014F600 to 0x00150480, found by Ghidra. */
 #include "common.h"
+#include "ghidra.h"
 struct C_00150350 {
     int unk0;
     void func_00150350(void);
 };
 
+
+void func_0014FDD0(void)
+{
+  int func_0014F190(...);
+  int func_0014F350(...);
+  int func_0014F270(...);
+  int func_0014F9F0(...);
+  int func_0014FA70(...);
+  int func_0014FAD0(...);
+  func_0014F190();
+  func_0014F350();
+  func_0014F270();
+  func_0014F9F0();
+  func_0014FA70();
+  func_0014FAD0();
+  return;
+}
 
 void func_0014FE50(void) {
     int func_001E9760(...);
