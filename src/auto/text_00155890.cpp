@@ -86,6 +86,8 @@ struct S_00156820_Base {
     void func_001BBAA0(void *param_1, int *param_2);
 };
 
+void *func_001E8A44(int size);
+
 struct C_00156820 {
     int func_00156820(int param_1, void *param_2);
 };
@@ -93,15 +95,17 @@ struct C_00156820 {
 
 int TikiPlayerAirborneState::func_00156030(int param_1)
 {
-    if (unk8->unk39C->unk108 != 0) {
-        if (unk8->unk3C->unk10 != 0) {
-            unk8->unk384->func_0008AB90(unk8->unk388);
-        } else if (unk8->unkC4 != unk8->unk3C0) {
-            func_001C6DA0(unk8->unk3C0, 1);
+    S_00156030_Player *p = unk8;
+    if (p->unk39C->unk108 != 0) {
+        if (p->unk3C->unk10 != 0) {
+            p->unk384->func_0008AB90(p->unk388);
+        } else if (p->unkC4 != p->unk3C0) {
+            func_001C6DA0(p->unk3C0, 1);
         }
     }
-    if (unk8->unk3C->unk10 != 0) {
-        func_001C6DA0(unk8->unk3BC, 1);
+    p = unk8;
+    if (p->unk3C->unk10 != 0) {
+        func_001C6DA0(p->unk3BC, 1);
     }
     return 1;
 }
