@@ -17,18 +17,24 @@ struct S_Vec4 {
 };
 
 /* object with a position accumulator at +0x130 */
-struct S_001941F0_Obj {
+struct S_001941F0_Base0 {
     char pad0[0x130];
+};
+
+struct S_001941F0_Acc {
     float f130;
     float f134;
     float f138;
-    char pad13C[0xD4];
-    float f210;
     void Add(S_Vec4 v) {
         f130 = v.x + f130;
         f134 = v.y + f134;
         f138 = v.z + f138;
     }
+};
+
+struct S_001941F0_Obj : S_001941F0_Base0, S_001941F0_Acc {
+    char pad13C[0xD4];
+    float f210;
 };
 
 struct C_001941F0 {
@@ -120,10 +126,11 @@ struct C_00194C60 {
 int C_001941F0::func_001941F0(int a)
 {
     int i;
+    S_001941F0_Obj **p = f40;
 
     for (i = 0; i < f24; i++) {
-        f30.y = -(f40[i]->f210 * f2C);
-        f40[i]->Add(f30);
+        f30.y = -(p[i]->f210 * f2C);
+        p[i]->Add(f30);
     }
     return 1;
 }
