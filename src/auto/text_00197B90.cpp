@@ -54,13 +54,6 @@ static __forceinline void Xform_00198120(C_00197EC0_Vec4 *out, const M_00198040 
     out->w = 1.0f;
 }
 
-/* by-value argument block of func_00198440 */
-struct S_00198440_Args {
-    float *pos;
-    float *maxDist;
-    int recurse;
-};
-
 struct C_00197EC0 {
     char padF0[0xF0];
     float fF0;
