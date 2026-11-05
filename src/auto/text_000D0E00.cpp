@@ -13,6 +13,13 @@ struct DelObjC_000D0 {
     virtual void Destroy(int a0);
 };
 
+/* std::min-like: takes and returns references, so its operands live in stack temporaries */
+template <class T>
+inline const T &min_ref(const T &a, const T &b)
+{
+    return b < a ? b : a;
+}
+
 /* a record whose name string sits at +0x28 */
 struct S_000D1980_Item {
     char pad0[0x28];
@@ -92,3 +99,29 @@ void C_000D0FD0::func_000D0FD0()
     }
     func_001BE3F0();
 }
+
+void C_000D0FD0::func_000D1980()
+{
+    char buf[0x104];
+    S_000D1980_Mgr *mgr = f124;
+    int i;
+
+    f1EDC = D_0027ED04;
+    for (i = 0; i < (*mgr->f150->f3A8)->count; i++) {
+        S_000D1980_Entry *e = (*mgr->f150->f3A8)->items[i];
+        if (e != 0 && e->f4 == 1 && e->f8 != 0) {
+            int len = strlen(e->f8->name);
+            int n = len < 0x103 ? len : 0x103;
+            func_001E8920(buf, e->f8->name, n);
+            buf[n] = 0;
+            char *dot = func_001E8AC0(buf, '.');
+            if (dot != 0) {
+                memset(dot, 0, strlen(dot));
+            }
+            if (func_001EA426(buf, f1EDC.c) == 0) {
+                f20B0 = e->f8;
+            }
+        }
+    }
+}
+
