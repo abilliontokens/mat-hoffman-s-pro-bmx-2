@@ -146,6 +146,69 @@ void C_0015DA60::func_0015DA60(int a, int b, int c)
     unk6C[b]->func_00192A50(unk6C[a], c);
 }
 
+void C_0015DA60::func_0015DAA0(C_0015DCC0_Item *item, int idx)
+{
+    int i;
+    if (unk50 != 0 && item->unk28 == 4) {
+        unk64[idx].x = item->unk50;
+        unk50[idx].x = unk64[idx].x;
+        unk40.x = unk54.x = unk50[idx].x;
+        unk64[idx].y = item->unk54;
+        unk50[idx].y = unk64[idx].y;
+        unk40.y = unk54.y = unk50[idx].y;
+        unk64[idx].z = item->unk58;
+        unk50[idx].z = unk64[idx].z;
+        unk40.z = unk54.z = unk50[idx].z;
+        unk64[idx].w = 1.0f;
+        unk50[idx].w = 1.0f;
+        unk54.w = 1.0f;
+        unk40.w = 1.0f;
+        if (idx == 0) {
+            for (i = 0; i < unk78; i++) {
+                unk50[i] = unk40;
+                unk64[i] = unk40;
+            }
+        }
+    }
+    if (unk6C != 0) {
+        int t = item->unk28;
+        if (t == 1 || t == 3) {
+            item->func_0015D0A0(unk6C[idx], 1);
+        }
+    }
+    if (item->unk28 == 2 || item->unk28 == 1) {
+        unk24 = item->unk30;
+        unk28 = item->unk34;
+        unk2C = item->unk38;
+        unk30 = 0;
+    }
+    if (item->unk28 == 2) {
+        unk34 = item;
+        if (unk3C != 0 && idx == 0) {
+            for (i = 0; i < unk78; i++) {
+                ((int *)&unk3C[i])[0] = item->unk30;
+                ((int *)&unk3C[i])[1] = item->unk34;
+                ((int *)&unk3C[i])[2] = item->unk38;
+                ((int *)&unk3C[i])[3] = 0;
+                if (unk38 != 0) {
+                    ((int *)unk38)[i] = 1;
+                }
+            }
+        }
+    }
+    switch (item->unk28) {
+    case 1:
+    case 3:
+        unk88 = 1;
+    }
+    if (unk80 < unk7C + 1) {
+        unk80 = unk7C + 10;
+        unk84 = (C_0015DCC0_Item **)func_001E83E8(unk84, unk80 * 4);
+    }
+    unk84[unk7C] = item;
+    unk7C++;
+}
+
 void C_0015DA60::func_0015DCC0(C_0015DCC0_Item *item)
 {
     int found = 0;
