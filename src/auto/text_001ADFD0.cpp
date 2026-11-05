@@ -231,6 +231,8 @@ struct C_001AEB70 {
 };
 
 struct C_001AE810Mgr {
+    char pad0[0x14];
+    char *f14;
     void func_001B26C0(int a0);
 };
 
