@@ -150,6 +150,21 @@ ParticleSystem *ParticleSystem::func_00135700(int a)
     return this;
 }
 
+void ParticleSystem::func_00135740()
+{
+    vtbl = (void *)&D_00284774;
+    if (f34 != 0) {
+        delete[] f34;
+    }
+    if (f38 != 0) {
+        func_001E891B(f38);
+    }
+    if (f3c != 0) {
+        func_001E891B(f3c);
+    }
+    ((C_00157660 *)this)->func_00157660();
+}
+
 void ParticleSystem::func_001357A0(int dt)
 {
     int i;
