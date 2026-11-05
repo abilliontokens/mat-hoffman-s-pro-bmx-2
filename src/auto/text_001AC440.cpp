@@ -76,7 +76,7 @@ int StringTable::func_001AC680(const char *name, int value)
     entries[count].value = value;
     entries[count].data = 0;
     entries[count].refCount = 0;
-    return count++;
+    return ++count - 1;
 }
 
 void StringTable::func_001AC750(int index, int data)
