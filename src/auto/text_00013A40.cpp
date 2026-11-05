@@ -86,13 +86,6 @@ struct V4_00014850 : S_00014850_Vec4 {
     V4_00014850() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
 };
 
-/* copy a point and lift it by two units */
-static void raisedCopy(S_00014850_Vec4 *dst, S_00014850_Vec4 *src)
-{
-    *dst = *src;
-    dst->y += 2.0f;
-}
-
 struct S_00014850_Track {
     int count;
     S_00014850_Vec4 *entries;
