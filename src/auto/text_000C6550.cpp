@@ -2,7 +2,7 @@
 #include "common.h"
 
 extern int D_0027E1F4;
-extern float D_00276DD4;
+extern const float D_00276DD4;
 
 struct Mat {
     char pad0[0x38];
@@ -155,20 +155,18 @@ void BmxUIPageParkLevel::func_000C66E0()
 
 void BmxUIPageParkLevel::func_000C6CA0()
 {
-    C_000C6CA0_Widget **w = (C_000C6CA0_Widget **)arr2e4;
-    float *f = (float *)arr280;
     int i;
 
     for (i = 0; i < 3; i++) {
-        w[i]->func_001B1980();
+        w2e4[i]->func_001B1980();
         if (i == f28c) {
-            w[i]->func_001B2270(0xffbfa35a);
-            w[i]->func_001B1A30(320.0f, f[i] + D_00276DD4, 0.0f);
-            w[i]->func_001B1860(0, -1.0f, 0xff, 1.45f, 0, 0, 0, 0, 1.45f, 0, 0.25f, 0, 0);
+            w2e4[i]->func_001B2270(0xffbfa35a);
+            w2e4[i]->func_001B1A30(320.0f, D_00276DD4 + f280[i], 0.0f);
+            w2e4[i]->func_001B1860(0, -1.0f, 0xff, 1.45f, 0, 0, 0, 0, 1.45f, 0, 0.25f, 0, 0);
         } else {
-            w[i]->func_001B2270(0xffcccccc);
-            w[i]->func_001B1A30(320.0f, f[i], 0.0f);
-            w[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
+            w2e4[i]->func_001B2270(0xffcccccc);
+            w2e4[i]->func_001B1A30(320.0f, f280[i], 0.0f);
+            w2e4[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
         }
     }
 }
