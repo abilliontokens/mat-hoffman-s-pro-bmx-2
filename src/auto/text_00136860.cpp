@@ -46,7 +46,7 @@ struct XboxTextureMap {
 };
 
 struct CubeGroup {
-    unsigned int sizes;
+    int sizes;
     unsigned short mask;
     XboxTextureMap *ptrs[0x39];
     unsigned int vec[4];
@@ -80,6 +80,59 @@ struct TokenEntry {
     int pad[4];
 };
 
+
+int Cube::func_00136860(int i, int j, int a)
+{
+    int res;
+    int size;
+    XboxTextureMap *tex;
+    void *mem;
+
+    switch (((groups[i].sizes >> ((j % 4) * 2)) >> ((j / 4) * 8)) & 3) {
+    case 0:
+        res = 0x200;
+        break;
+    case 1:
+        res = 0x40;
+        break;
+    case 2:
+        res = 0x80;
+        break;
+    case 3:
+        res = 0x100;
+        break;
+    default:
+        res = 0;
+    }
+    if (func_001B27B0(unk3C)) {
+        D_002BEAAC->func_0013C8A0(unk38, &size, 4, 1);
+    } else {
+        size = func_001B2730(unk3C) * res * res / 8;
+    }
+    mem = func_001E8A44(0x110);
+    if (mem != 0) {
+        tex = ((XboxTextureMap *)mem)->func_001D6AD0((void *)1);
+    } else {
+        tex = 0;
+    }
+    groups[i].ptrs[j] = tex;
+    if (tex != 0) {
+        if (unk3C == 0x26) {
+            tex->slot9(unk38, res, res, 1, 0x26, size, 0xc, 2, 0);
+        } else {
+            tex->slot9(unk38, res, res, 1, unk3C, size, 6, 2, 0);
+        }
+        groups[i].ptrs[j]->slot12(1, 0, 0);
+    }
+    if (unk40 & 2) {
+        int h = unk38;
+        int r = 0x800 - D_002BEAAC->func_0013AFD0(h) % 0x800;
+        if (r != 0x800) {
+            D_002BEAAC->func_0013AFF0(h, r, 1);
+        }
+    }
+    return 1;
+}
 
 int Cube::func_001369E0(int a)
 {
