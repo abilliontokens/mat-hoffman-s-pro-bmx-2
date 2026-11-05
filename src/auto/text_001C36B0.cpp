@@ -526,6 +526,33 @@ void DXIndexBufferManager::func_001C3C80(void)
     unk0 = (int)&D_0028E36C;
 }
 
+int DXIndexBufferCache::func_001C3CA0(int a1, int a2)
+{
+    DXIndexBufferCache *cache = (DXIndexBufferCache *)func_001E8A44(0xc);
+    if (cache == 0) {
+        return 0;
+    }
+    cache->f4 = 0;
+    cache->f8 = 0;
+    cache->vtbl = &D_0028E348;
+    cache->func_001C38D0(a1, a2);
+    if (f8 == 0) {
+        C_00160A60 *node = (C_00160A60 *)func_001E8A44(0xc);
+        f8 = node != 0 ? (void *)node->func_00160A60() : 0;
+        if (f8 == 0) {
+            cache->func_001C3A80();
+            func_001E891B(cache);
+            return 0;
+        }
+    }
+    if (((C_00160A70 *)f8)->func_00160A70(cache) == 0) {
+        cache->func_001C3A80();
+        func_001E891B(cache);
+        return 0;
+    }
+    return 1;
+}
+
 void C_001C3D30::func_001C3D30(int a0) {
     unk10 = a0;
 }
