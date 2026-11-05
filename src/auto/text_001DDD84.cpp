@@ -33,6 +33,11 @@ void __stdcall func_001DD62B(int err);
 void *__stdcall func_001DF5B9(int a0, int size);
 void __stdcall func_001DF4E1(void *dst, const void *src, int n);
 extern char D_0028FB58[];
+extern unsigned short D_0028FB88[];
+int func_001EA410(const unsigned short *s);
+unsigned short *func_001EA9DD(const unsigned short *wcs1, const unsigned short *wcs2);
+void func_001EA6A0(void *dst, const void *src, unsigned int n);
+unsigned short *func_001EA4A4(unsigned short *dest, const unsigned short *source, unsigned int count);
 extern "C" unsigned int strlen(const char *);
 extern "C" char *strcpy(char *, const char *);
 #pragma intrinsic(strlen, strcpy)
