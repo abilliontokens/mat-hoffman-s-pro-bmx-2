@@ -23,6 +23,11 @@ struct S_000F1FC0_Obj {
 
 struct S_000F1D90_Obj {
     virtual void destroying(int flag);
+    char pad4[0x34];
+    unsigned int f38;
+    char pad3c[0x1c];
+    unsigned char f58;
+    void func_001D5AD0();
     S_000F1FC0_Obj *func_001D5AA0(void);
 };
 
