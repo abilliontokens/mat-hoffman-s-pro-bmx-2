@@ -162,6 +162,37 @@ void C_00100AD0::func_00100AD0(void) {
     }
 }
 
+void C_00100B30::func_00100B30() {
+    if (unk288 != 0) {
+        func_000E3640();
+        unk288 = 0;
+    }
+    if (unk2b0 != 0) {
+        unk2dc = 1;
+        unk2d8 = 0;
+        unk2c4 = 0xff;
+        unk2c8 = 0;
+        unk2cc = 0;
+        unk2d0 = 0;
+        unk2d4 = 0.25f;
+        func_000E3BA0();
+        unk2b0 = 0;
+    }
+    if (unk2b4 != 0) {
+        unk2c4 = 0;
+        unk2c8 = 0xff;
+        unk2cc = 0xff;
+        unk2d0 = 0;
+        unk2d4 = 0.25f;
+        func_000E3C90();
+        unk2b4 = 0;
+    }
+    func_000E3790();
+    ((C_00100AD0 *)this)->func_00100AD0();
+    func_000E3D30();
+    func_00157960();
+}
+
 void *C_00100C00::func_00100C00(unsigned int flags) {
     func_000E4AB0();
     if (flags & 1)
