@@ -246,11 +246,11 @@ void *C_00073AE0::func_00073AE0(int param_1) {
         p[6] = 0;
         p++;
     } while (--n != 0);
-    unk94 = 0;
-    unk98 = 0;
-    unk9C = 0;
-    unkAC = 0;
-    unkB0 = 0;
+    *(u32 *)((char *)this + 0x94) = 0;
+    *(u32 *)((char *)this + 0x98) = 0;
+    *(u32 *)((char *)this + 0x9C) = 0;
+    *(u32 *)((char *)this + 0xAC) = 0;
+    *(u32 *)((char *)this + 0xB0) = 0;
     unk120 = 0;
     p = (u32 *)((char *)this + 0x1A0);
     n = 2;
