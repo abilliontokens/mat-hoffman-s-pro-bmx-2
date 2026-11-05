@@ -174,7 +174,8 @@ struct C_001A6D30 {
     C_001A6D30_Obj4C *f4C;
     char pad50[0x5C - 0x50];
     int f5C;
-    char pad60[0x6C - 0x60];
+    int f60;
+    char pad64[0x6C - 0x64];
     int f6C;
     char pad70[4];
     int f74;
