@@ -176,6 +176,51 @@ struct C_00075750 {
     int func_00075750(void);
 };
 
+int C_00075750::func_00075750(void)
+{
+    int i;
+    C_001D5AD0 **ptr;
+    C_001D5AD0 *p;
+
+    unkAC[0]->func_001D5AD0();
+    unkAC[1]->func_001D5AD0();
+    if (unk1B4 != 0) {
+        p = unk194 ? unk198[0] : unk1A0[0];
+        p->func_001D5AD0();
+        p = unk1B8 ? unk198[1] : unk1A0[1];
+    } else {
+        if (unk120->f90 > 1) {
+            if (unk11C == 0) {
+                unkDC[2]->func_001D5AD0();
+                unkDC[3]->func_001D5AD0();
+            } else {
+                unkDC[4]->func_001D5AD0();
+                unkDC[5]->func_001D5AD0();
+            }
+        } else {
+            for (i = 0; i < 6; i++) {
+                if (i == unk11C * 2 || i == unk11C * 2 + 1) {
+                    unkDC[i]->func_001D5AD0();
+                }
+            }
+        }
+        p = unk194 ? unk198[0] : unk1A0[0];
+    }
+    p->func_001D5AD0();
+    ptr = &unkC8[0];
+    i = 5;
+    do {
+        (*(ptr - 5))->func_001D5AD0();
+        (*ptr)->func_001D5AD0();
+        ptr++;
+        i--;
+    } while (i != 0);
+    if (unkF4 != 0) {
+        unkF4->func_001D5AD0();
+    }
+    return 1;
+}
+
 void C_00075880::func_00075880() {
     D_002EFDB8->vf7(1);
     D_002EFDB8->vf8();
