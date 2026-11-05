@@ -115,6 +115,29 @@ undefined4 *C_000F2750::func_000F2750(byte param_1)
   return p;
 }
 
+void C_000F2780::func_000F2780()
+{
+  C_000F2780_Obj3 *obj;
+  C_000F2780_Ed *ed;
+  int i;
+
+  f284 = 1;
+  obj = D_002A8490->f2e0->f2fc;
+  ed = (C_000F2780_Ed *)f124;
+  obj->func_00094C60();
+  f28C = 0;
+  f288 = 1;
+  func_000BFEE0();
+  ed->f274->func_00093120();
+  if (ed->func_000BB3F0((int)&D_0027DFFC, (int)&D_0027DFFC) == 0) {
+    ed->func_000BB3B0((int)&D_0027DFFC, (int)&D_0027DFFC);
+  }
+  f290 = 0;
+  for (i = 0; i < 0x14; i++) {
+    arr298[i] = -1;
+  }
+}
+
 undefined4 C_000F2CA0::func_000F2CA0(byte param_1)
 {
   int func_000C45E0(...);
