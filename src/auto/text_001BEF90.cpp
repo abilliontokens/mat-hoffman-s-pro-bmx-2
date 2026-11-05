@@ -727,7 +727,11 @@ void C_001BF930::func_001BF980(float dt)
         if (fA0 > 6.2831855f) {
             fA0 = fA0 - 6.2831855f;
         }
-        S_Vec4f_001BFD00 axis(0.0f, 0.0f, 1.0f, 1.0f);
+        S_Vec4f_001BFD00 axis;
+        axis.w = 1.0f;
+        axis.z = 1.0f;
+        axis.y = 0.0f;
+        axis.x = 0.0f;
         if (f68 != 0) {
             f68->func_00199E30(axis, fA0);
         } else {
