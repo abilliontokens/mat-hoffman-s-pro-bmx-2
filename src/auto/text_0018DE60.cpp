@@ -46,6 +46,31 @@ struct C_0018E1D0 {
 };
 
 
+void *C_0018E1D0::func_0018E1D0()
+{
+    switch (type) {
+    case 1:
+        return &f20;
+    case 2:
+        return &f24;
+    case 3:
+        return &f28;
+    case 4:
+        return &f138;
+    case 5:
+        return &f140;
+    case 6:
+        return &f12C;
+    case 7:
+        return &f130;
+    case 8:
+        return &f134;
+    case 9:
+        return f150.func_00191400();
+    }
+    return 0;
+}
+
 undefined4 C_0018E720::func_0018E720(byte param_1)
 {
   int func_0018CA20(...);
@@ -58,3 +83,18 @@ undefined4 C_0018E720::func_0018E720(byte param_1)
   }
   return in_ECX;
 }
+
+int C_0018E1D0::func_0018E740(C_0018E740_Out *out, const char *name)
+{
+    int i;
+
+    for (i = 0; i < count; i++) {
+        if (strcmp(entries[i].name, name) == 0) {
+            out->f38 = i;
+            return 1;
+        }
+    }
+    out->f38 = func_0018CC00(name);
+    return 0;
+}
+
