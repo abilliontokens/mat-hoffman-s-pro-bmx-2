@@ -412,3 +412,21 @@ void C_0008AD60::func_0008AD60() {
     func_00157960();
 }
 
+C_0008ADB0 *C_0008ADB0::func_0008ADB0(int a0) {
+    func_00157600(1);
+    unk24 = 0;
+    unk28 = 0;
+    unk2c = 0;
+    unk30 = 0;
+    unk34 = 0;
+    unk3c = 0;
+    unk40 = 0;
+    unk44 = 0;
+    unk48 = 0;
+    unk50 = 0;
+    unk54 = 0;
+    vtbl = &D_00279D3C;
+    unk4c = 1;
+    return this;
+}
+
