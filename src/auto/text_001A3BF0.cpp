@@ -121,7 +121,7 @@ struct C_001A4590 {
 
 /* local scratch object built on the stack (size 0x4cc) */
 struct C_00168280 {
-    char data[0x4cc];
+    int data[0x133];
     C_00168280 *func_00168280(void);
     int func_00169490(char *buf, int flag);
     void func_001691E0(void);
@@ -376,12 +376,12 @@ undefined4 C_001A3D80::func_001A3D80(byte param_1)
   return in_ECX;
 }
 
-int C_001A4590::func_001A3DA0(int a0)
+int C_001A4590::func_001A3DA0(int volatile a0)
 {
-    C_00168280 obj;
-    char buf3[0x104];
-    char buf[0x104];
     char buf2[0x104];
+    char buf[0x104];
+    char buf3[0x104];
+    C_00168280 obj;
     C_001A4590 * volatile self = this;
     volatile int len;
     volatile int limit;
