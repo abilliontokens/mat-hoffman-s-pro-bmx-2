@@ -244,6 +244,25 @@ void __stdcall func_001DF160(const void *key, unsigned int len, void *ctx)
     XcSHAUpdate(ctx, pad, 0x40);
 }
 
+void __stdcall func_001DF1C2(void *ctx, const void *key, unsigned int len, void *out)
+{
+    unsigned int buf[21];
+    unsigned int i;
+
+    if (len > 0x40) {
+        len = 0x40;
+    }
+    memset(buf, 0, 0x40);
+    memcpy(buf, key, len);
+    for (i = 0; i < 0x10; i++) {
+        buf[i] ^= 0x5c5c5c5c;
+    }
+    XcSHAFinal(ctx, &buf[16]);
+    XcSHAInit(ctx);
+    XcSHAUpdate(ctx, buf, 0x54);
+    XcSHAFinal(ctx, out);
+}
+
 int __stdcall func_001DF361(int a0)
 {
     return func_001DF26F(a0, ((int *)D_00010118)[2]);
