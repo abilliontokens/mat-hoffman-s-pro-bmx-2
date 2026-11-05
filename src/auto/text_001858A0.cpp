@@ -136,6 +136,23 @@ int C_00185970::func_00185970(S_Stream *stream, int n)
     return 1;
 }
 
+int C_00185B10::func_00185B60(S_Stream *stream)
+{
+    char buf[0x104];
+    int i;
+    int count = 0;
+
+    for (i = 0; i < 10; i++) {
+        func_001ADCC0(buf, 0x104, &D_002896B8, i + 1);
+        if (stream->func_00169710(buf)) {
+            ((S_ZoneInfoItem *)&elems[f4 + i])->load(stream);
+            count++;
+        }
+    }
+    f4 += count;
+    return count != 0;
+}
+
 void C_00185D00::func_00185D00(void)
 {
     int i;
