@@ -20,6 +20,9 @@ void func_001E8390(void *p);
 void *func_001E8AA5(int size);
 int func_0014FE60(void *p, int size, void *file);
 
+void *func_001E83E8(void *p, int size);
+void *func_0014FDF0(const char *name, char *mode);
+extern short D_00284C50;
 static inline int min_i(int a, int b) { return a < b ? a : b; }
 
 struct S_0013B9C0_Ent28 {
