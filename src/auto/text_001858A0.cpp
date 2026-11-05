@@ -55,8 +55,14 @@ struct C_00185970 {
 
 /* element called through its vtable slot 0 */
 struct S_ZoneInfoItem {
-    virtual void load(S_Stream *stream);
-    char pad4[0x1c];
+    u32 f4;
+    u32 f8;
+    u32 fc;
+    u32 f10;
+    u32 f14;
+    u32 f18;
+    u32 f1c;
+    virtual int load(S_Stream *stream);
 };
 
 struct S_ZoneInfo {
