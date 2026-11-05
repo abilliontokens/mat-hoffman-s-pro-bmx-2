@@ -340,6 +340,14 @@ int *C_00094760::func_00094810(int node)
     return 0;
 }
 
+int C_00094840::func_00094870(void)
+{
+    if (unk34 == 0) {
+        return unk54;
+    }
+    return unk50->v41(unk34);
+}
+
 int C_00094890::func_00094890(void) {
     return unk38;
 }
