@@ -200,9 +200,7 @@ struct C_00197820 {
     char pad4[0x1C];
     u8 f20;
     char pad21[3];
-    u16 f24;
-    u8 f26;
-    u8 f27;
+    S_00197820_Hdr f24;
     u8 f28;
     char pad29[0xB0 - 0x29];
     S_00197820_Mat fB0;
