@@ -445,6 +445,44 @@ undefined4 C_00157290::func_00157290(byte param_1)
   return in_ECX;
 }
 
+int Game2::func_001572B0(int a)
+{
+    f234 = 1;
+    C_00157600 *o = (C_00157600 *)func_001E8A44(0x24);
+    f278 = (GameObject *)(o ? o->func_00157600(1) : 0);
+    o = (C_00157600 *)func_001E8A44(0x24);
+    f14 = (GameObject *)(o ? o->func_00157600(1) : 0);
+    f278->func_001577A0(f14, 0xffffffff);
+    C_0001D0F0 *s = (C_0001D0F0 *)func_001E8A44(0xb8);
+    f4 = s ? s->func_0001D0F0(0) : 0;
+    f4->func_0001D280(0, 6, 6);
+    f4->fb0 &= 0xfe;
+    func_001E8826(func_001DC974());
+    int n = func_001DC974() & 0xff;
+    do {
+        func_001E8833();
+    } while (n--);
+    ((S_Game_Flags *)&f230)->b2 = 0;
+    if (!vtbl->f84(this)) {
+        return 0;
+    }
+    C_001D7CE0 *c = (C_001D7CE0 *)func_001E8A44(0x38);
+    D_002F0670 = c ? c->func_001D7CE0() : 0;
+    D_002F0670->v10();
+    f14->func_001577A0((GameObject *)D_002F0670, 0xffffffff);
+    C_0015D1B0 *m = (C_0015D1B0 *)func_001E8A44(0x94);
+    f14->func_001577A0(m ? m->func_0015D1B0() : 0, 0x402);
+    f230 |= 1;
+    if (!vtbl->fc(this)) {
+        return 0;
+    }
+    if (!vtbl->f10(this)) {
+        return 0;
+    }
+    f278->func_001577A0((GameObject *)f4, 0xffffffff);
+    return 1;
+}
+
 C_00157600 *C_00157600::func_00157600(unsigned char flags)
 {
     int func_0001DFE0(...);
