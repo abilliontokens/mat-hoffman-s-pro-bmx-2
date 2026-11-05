@@ -119,6 +119,9 @@ struct S_001BDB50_Item {
     virtual void v27();
     virtual void v28();
     virtual void v29();
+    virtual void v30();
+    virtual void v31();
+    virtual void v32();
     void func_001BF6C0(int a);
 };
 
