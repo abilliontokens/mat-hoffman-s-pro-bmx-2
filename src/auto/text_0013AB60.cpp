@@ -48,6 +48,69 @@ struct C_0013AEC0 {
 };
 
 
+char func_0013AB60(const char *path)
+{
+    char dir[256];
+    char ext[256];
+    char fname[260];
+    char drive[3];
+    char key;
+    int n;
+    int i;
+
+    func_0014FF00(path, drive, dir, fname, ext);
+    strcat(fname, ext);
+    n = strlen(fname);
+    key = (char)0xfa;
+    for (i = 0; i < n; i++) {
+        key += (char)((key + 3) ^ fname[i]);
+    }
+    return key;
+}
+
+void func_0013AC00(unsigned char *p, unsigned int n, unsigned char key)
+{
+    unsigned char *last = p + (n - 1);
+    unsigned char c;
+
+    if (n < 2) {
+        *p = *p ^ key;
+        return;
+    }
+    do {
+        c = *p ^ key;
+        key = key + *p;
+        *p = c;
+        p++;
+    } while (p != last);
+    *p = *p ^ key;
+}
+
+void C_0013AEC0::func_0013AEC0(int idx)
+{
+    S_0013AEC0_Slot *s = &fE8[idx];
+
+    if (s->f4 != -1) {
+        S_0013AEC0_Ent *e = &ents[s->f4];
+        if (e->f0 == idx) {
+            e->f0 = -1;
+            fE0 = s->f4;
+        }
+    }
+    if (s->f8 != 0) {
+        func_001E8390(s->f8);
+        s->f8 = 0;
+    }
+    s->f4 = 0;
+    s->f10 = 0;
+    s->f0 = 0;
+    s->f1C = 0;
+    s->f14 = 0;
+    s->fC = 0;
+    s->f18 = 1;
+    fE4 = idx;
+}
+
 int C_0013AEC0::func_0013AFB0(int idx)
 {
     S_0013AEC0_Slot *s = &fE8[idx];
