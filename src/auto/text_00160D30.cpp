@@ -5,3 +5,9 @@ void func_00161670(void) {
     int func_001AC440(...);
     func_001AC440();
 }
+
+void func_00161840(void) {
+    int func_001AC750(...);
+    func_001AC750();
+}
+
