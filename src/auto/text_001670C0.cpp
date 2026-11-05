@@ -46,6 +46,9 @@ virtual void v38();
 virtual void v39();
 virtual int test();
 };
+static inline S_00167AF0_Vector add_00167AF0(const S_00167AF0_Vector &a, char *m) {
+ S_00167AF0_Vector r=a; r.x+=*(float*)(m+12); r.y+=*(float*)(m+28); r.z+=*(float*)(m+44); return r;
+}
 extern int D_002EFB1C;
 struct C_00167AF0_Context { int func_001C5DE0(void *, void *, void *, int); };
 extern C_00167AF0_Context *D_002AB66C;
