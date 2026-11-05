@@ -6,6 +6,7 @@ extern "C" char *strcat(char *, const char *);
 extern "C" unsigned int strlen(const char *);
 
 extern char D_002A4C10[];
+extern char D_002A4C0F[];
 extern char D_00284644;
 extern char D_0028463C;
 extern char D_00284638;
