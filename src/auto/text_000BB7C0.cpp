@@ -167,6 +167,23 @@ int C_000BBDF0::func_000BBDF0(void)
                  *(int *)(in_ECX + 0x288) * 4) * 0x120 + *(int *)(in_ECX + 0x280);
 }
 
+int C_000BBE30::func_000BBE30(int show)
+{
+    char buf[0x104];
+    int idx;
+
+    func_001ADCC0(buf, 0x104, D_0027DB74, f27C->f104, f28C + 1);
+    if (D_002A8490->f234 != 1) {
+        D_002EFDB8->v7(1);
+        D_002EFDB8->v8();
+    }
+    idx = f150->f484->func_0001B3C0(D_0027DB68);
+    if (show != 0) {
+        func_000BBA80(idx, buf);
+    }
+    return idx;
+}
+
 extern S_000BBE30_Game *D_002A8490;
 
 undefined4 C_000BC180::func_000BC050(void)
@@ -199,15 +216,8 @@ int C_000BBE30::func_000BC0F0(int idx)
 
 undefined4 C_000BC180::func_000BC130(void)
 {
-    S_000BC180_Entry *e;
-    int *tbl;
-    if (D_002A8490->f2E0->f324 == 1) {
-        e = f27c;
-    } else {
-        e = &f27c[f284];
-    }
-    tbl = e->f120;
-    e->f128 = tbl[f288];
+    S_000BC180_Entry *e = (D_002A8490->f2E0->f324 == 1) ? f27c : &f27c[f284];
+    e->f128 = e->f120[f288];
     return f288;
 }
 
