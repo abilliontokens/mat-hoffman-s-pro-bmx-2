@@ -1,5 +1,6 @@
 /* 33 functions from 0x001CB440 to 0x001CC3C0, found by Ghidra. */
 #include "common.h"
+#include <string.h>
 
 extern int D_0028ED78;
 extern float D_00276098;
@@ -602,8 +603,37 @@ int C_001CBF20::func_001CBF20(void)
     S_001CBF20_Vec4 *p = &fD8;
 
     if (func_0022095F(f30, p) == 0) {
-        *p = *p;
+        p->CopyFrom(p);
         return 1;
+    }
+    return 0;
+}
+
+int C_001CBF20::func_001CBF60(void)
+{
+    int e;
+
+    if (f2C & 1) {
+        e = func_0022195C(f30);
+        if (e >= 0) {
+            return 1;
+        }
+        func_001CBC10(e, &D_0028EECC, 0x1f1);
+    }
+    return 0;
+}
+
+int C_001CBF20::func_001CBF90(int v)
+{
+    int e;
+
+    if (f2C & 1) {
+        fEC = v;
+        e = func_002222E5(f30, v, 1);
+        if (e >= 0) {
+            return 1;
+        }
+        func_001CBC10(e, &D_0028EECC, 0x205);
     }
     return 0;
 }
