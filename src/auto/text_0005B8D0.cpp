@@ -149,6 +149,48 @@ struct C_0005C0A0 {
     int func_0005C0A0(void);
 };
 
+struct S_0005B8D0_Obj {
+    void func_00095110(int i);
+    void func_00095160(int i);
+    void func_000951B0(int i);
+    void func_00095200(int i);
+};
+
+struct S_0005B8D0_Mid {
+    char pad0[0x48];
+    int f48;
+    char pad4c[0x2b0];
+    S_0005B8D0_Obj *p2fc;
+};
+
+struct S_0005B8D0_Root {
+    char pad0[0x2e0];
+    S_0005B8D0_Mid *p2e0;
+};
+
+struct S_0005B8D0_Pair {
+    int a;
+    int b;
+};
+
+struct C_0005B8D0 {
+    char pad0[0xCF0];
+    S_0005B8D0_Pair pairs[0x12];
+    void func_0005B8D0(void);
+};
+
+struct C_0005C210 {
+    void func_0005C210(int param_1, int param_2);
+};
+
+struct C_0005C280 {
+    void func_0005C280(int param_1);
+};
+
+struct C_0005C6D0 {
+    void func_0005C6D0(int param_1);
+};
+
 struct S_0005C650_Slot {
     int v[4];
 };
@@ -369,12 +411,12 @@ void C_0005C650::func_0005C650(int param_1)
     int lo;
     int hi;
 
-    if (param_1 == 0) {
-        lo = 0;
-        hi = 8;
-    } else {
+    if (param_1 != 0) {
         lo = *(int *)(*(int *)(D_002A8490 + 0x2e0) + 0x48);
         hi = lo;
+    } else {
+        lo = 0;
+        hi = 8;
     }
     if (lo < hi) {
         memset(&slots[lo], 0, (hi - lo) * 16);
