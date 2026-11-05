@@ -76,3 +76,45 @@ struct C_001CC3C0 {
     int func_001CCA10(void);
     int func_001CC4B0(int *a, int *b, int *c, int *d);
 };
+
+int C_001CC3C0::func_001CC3C0(int param_1)
+{
+    int v = param_1;
+    int r;
+    if (f138 != 0)
+        v = f138->f28 * param_1 / 100;
+    r = func_001CB0A0(v);
+    if (f13C != 0) {
+        int e = func_002209A2(f13C, r);
+        if (e < 0) {
+            func_001CBC10(e, &D_0028EECC, 0x674);
+            return 0;
+        }
+    } else if (f140 != 0) {
+        int e = func_00220AD6(f140->fC, r);
+        if (e < 0) {
+            func_001CBC10(e, &D_0028EECC, 0x67b);
+            return 0;
+        }
+    }
+    f1A8 = param_1;
+    f124 = r;
+    return 1;
+}
+
+int C_001CC3C0::func_001CC460(int param_1)
+{
+    if (f13C != 0) {
+        int e = func_00220A8A(f13C, param_1);
+        if (e < 0) {
+            func_001CBC10(e, &D_0028EECC, 0x71e);
+            return 0;
+        }
+    } else {
+        if (f140 == 0)
+            return 0;
+        f140->f0 = param_1;
+    }
+    return 1;
+}
+
