@@ -326,3 +326,40 @@ void C_001576D0::func_001576D0(void)
   return;
 }
 
+void GameObject::func_001576E0(void)
+{
+    GameObject *c;
+
+    f21 &= 0xfc;
+    for (c = f10; c != 0; c = c->fC) {
+        if (!(c->f21 & 8)) {
+            c->v5();
+        }
+    }
+}
+
+void GameObject::func_00157740(unsigned int flags)
+{
+    GameObject *p = this;
+    GameObject *q;
+
+    f1C |= flags;
+    while (p->f14 != 0) {
+        q = p->f14;
+        q->f1C |= p->f18 | p->f1C;
+        p = q;
+    }
+}
+
+unsigned int GameObject::func_00157770(void)
+{
+    GameObject *c;
+    unsigned int r = 0;
+
+    for (c = f10; c != 0; c = c->fC) {
+        r |= c->func_00157770();
+    }
+    f1C = r;
+    return f18 | r;
+}
+
