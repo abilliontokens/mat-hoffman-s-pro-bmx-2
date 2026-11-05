@@ -244,6 +244,41 @@ void *C_001AF330::func_001AF330(int flags)
     return this;
 }
 
+C_001AF360 *C_001AF360::func_001AF360(S_001AF360_Stream *stream, int owner, int idx)
+{
+    char buf[0x80];
+    int a, b;
+    f14 = owner;
+    idx++;
+    f4 = 0;
+    f10 = -1;
+    fC = 0;
+    f0 = 1.0f;
+    a = 1;
+    b = 0;
+    f8 = -1;
+    if (idx == 1) {
+        stream->func_00168C50(D_0028C428, 0, &fC);
+        stream->func_00168C50(D_0028C40C, *(int *)&f0, &f0);
+        stream->func_00168C20(D_0028C3F8, a, &a);
+        stream->func_00168C20(D_0028C3DC, b, &b);
+        stream->func_00168C20(D_0028C3C0, f8, &f8);
+    }
+    func_001ADCC0(buf, 0x80, D_0028C3A4, idx);
+    stream->func_00168C50(buf, fC, &fC);
+    func_001ADCC0(buf, 0x80, D_0028C384, idx);
+    stream->func_00168C50(buf, *(int *)&f0, &f0);
+    func_001ADCC0(buf, 0x80, D_0028C36C, idx);
+    stream->func_00168C20(buf, a, &a);
+    func_001ADCC0(buf, 0x80, D_0028C34C, idx);
+    stream->func_00168C20(buf, b, &b);
+    func_001ADCC0(buf, 0x80, D_0028C32C, idx);
+    stream->func_00168C20(buf, f8, &f8);
+    f4 = ((a & 1) << 1) | (f4 & 0xfc) | (b & 1);
+    f18 = 0;
+    return this;
+}
+
 void C_001AF710::func_001AF710(void)
 {
     extern int D_0028C444;
