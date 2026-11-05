@@ -118,6 +118,15 @@ struct BezierPositionController {
     BezierPositionController();
 };
 
+void func_0001B1D0(void *p, int a);
+
+struct C_0015B9C0 {
+    char pad0[0x14];
+    u32 *unk14;
+    char pad18[0x8];
+    void func_0015B9C0(int a0, u32 *a1, int a2);
+};
+
 struct C_0015BAC0 {
     char pad0[0x14];
     u32 *unk14;
@@ -193,8 +202,6 @@ void C_0015BAC0::func_0015BAC0(int a0, u32 *a1, int a2) {
 
 int func_0015BF70(S_0015BF70_Node *arr, int n, float t)
 {
-    int lo, hi, mid;
-
     if (n == 0) {
         return 0;
     }
@@ -202,8 +209,9 @@ int func_0015BF70(S_0015BF70_Node *arr, int n, float t)
         if (t < arr[0].f0) {
             return 0;
         }
-        lo = 0;
-        hi = n;
+        int lo = 0;
+        int hi = n;
+        int mid;
         for (;;) {
             mid = (hi + lo) >> 1;
             if (t >= arr[mid].f0) {
@@ -247,17 +255,16 @@ int func_0015C260(float *base, int hi, float v)
     if (v < base[0])
         return 0;
     int lo = 0;
-    int mid;
     while (1) {
-        mid = (hi + lo) >> 1;
-        if (v < base[mid * 10]) {
+        int mid = (hi + lo) >> 1;
+        if (v >= base[mid * 10]) {
+            if (v < base[mid * 10 + 10])
+                return mid + 1;
+            lo = mid;
+        } else {
             if (v >= base[mid * 10 - 10])
                 return mid;
             hi = mid;
-        } else {
-            if (v >= base[mid * 10 + 10])
-                return mid + 1;
-            lo = mid;
         }
     }
 }
@@ -284,13 +291,18 @@ void C_0015C5C0::func_0015C5C0(int a0, int a1)
 {
     if (unkC >= unk10)
         v6(unk10 + 1);
-    int local1;
-    func_0001B130(&local1, a0);
-    int index = func_0015C640(unk14, unkC, a1);
-    for (int i = unkC; i > index; i--)
-        unk14[i] = unk14[i - 1];
-    unk14[index].a = a1;
-    unk14[index].b = local1;
+    C_0015C5C0_Entry e;
+    func_0001B130(&e.b, a0);
+    e.a = e.b;
+    int count = unkC;
+    C_0015C5C0_Entry *entries = unk14;
+    int index = func_0015C640(entries, count, e.b);
+    int i = count;
+    while (i > index) {
+        entries[i] = entries[i - 1];
+        i--;
+    }
+    entries[index] = e;
     unkC++;
 }
 
