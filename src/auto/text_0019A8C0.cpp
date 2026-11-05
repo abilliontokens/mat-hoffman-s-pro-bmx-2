@@ -7,6 +7,7 @@ struct C_0019B6D0 {
 };
 
 extern int D_0028B0E4;
+extern char D_00010410;
 void *func_001E8A44(int size);
 void func_001E891B(void *ptr);
 
@@ -326,6 +327,68 @@ int SoultreeObject::func_0019B1A0(int file, SoultreeObject **arr)
     }
     func_001E891B(parents);
     return f190;
+}
+
+void SoultreeObject::func_0019B400(void)
+{
+    SoultreeObject *arr[256];
+    char names[256][256];
+    S_0019A8C0_Mgr *saved;
+    int n;
+    int i;
+    int j;
+
+    saved = f170;
+    f170 = 0;
+    n = f194->func_00168F40(D_0028B170);
+    f190 = n;
+    arr[0] = this;
+    for (i = 1; i < n; i++) {
+        ((S_0019B1A0_VThis *)this)->v29(&arr[i]);
+    }
+    for (i = 0; i < n; i++) {
+        f194->func_00169A50(0);
+        f194->func_00169090(0, arr[i]->f28);
+        f194->func_00169090(1, names[i]);
+        f194->func_00169010(2, &arr[i]->fB0[0]);
+        f194->func_00169010(3, &arr[i]->fB0[4]);
+        f194->func_00169010(4, &arr[i]->fB0[8]);
+        f194->func_00169010(5, &arr[i]->fB0[1]);
+        f194->func_00169010(6, &arr[i]->fB0[5]);
+        f194->func_00169010(7, &arr[i]->fB0[9]);
+        f194->func_00169010(8, &arr[i]->fB0[2]);
+        f194->func_00169010(9, &arr[i]->fB0[6]);
+        f194->func_00169010(10, &arr[i]->fB0[10]);
+        f194->func_00169010(11, &arr[i]->fB0[3]);
+        f194->func_00169010(12, &arr[i]->fB0[7]);
+        f194->func_00169010(13, &arr[i]->fB0[11]);
+    }
+    for (i = 0; i < n; i++) {
+        if (func_001EA426(names[i], D_00284A98) != 0) {
+            for (j = 0; j < n; j++) {
+                if (func_001EA426(names[i], arr[j]->f28) == 0) {
+                    SoultreeObject *child = arr[i];
+                    SoultreeObject *parent = arr[j];
+                    S_0019A8C0_Child *sib;
+
+                    if (child->f170 != 0) {
+                        parent->f170->func_0019A210(child);
+                    }
+                    child->f170 = (S_0019A8C0_Mgr *)parent;
+                    sib = parent->f174;
+                    if (sib == 0) {
+                        parent->f174 = (S_0019A8C0_Child *)child;
+                    } else if (sib->f178 == 0) {
+                        sib->f178 = (S_0019A8C0_Child *)child;
+                        child->f17c = sib;
+                    } else {
+                        sib->f178->func_00198230(child);
+                    }
+                }
+            }
+        }
+    }
+    f170 = saved;
 }
 
 undefined4 C_0019B6D0::func_0019B6D0(byte param_1)
