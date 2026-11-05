@@ -2,6 +2,10 @@
 #include "common.h"
 #include <xmmintrin.h>
 #include "ghidra.h"
+struct C_001B0560 {
+    void func_001B0560(undefined4 param_1, undefined4 param_2);
+};
+
 
 extern int D_0028C5F8;
 extern int D_0028C638;
@@ -392,6 +396,29 @@ void *C_001B03A0::func_001B03A0(void *arg)
         }
     }
     return obj;
+}
+
+void C_001B0560::func_001B0560(undefined4 param_1, undefined4 param_2)
+{
+  int in_ECX = (int)this;
+  undefined4 *puVar1;
+  int *piVar2;
+  int iVar3;
+  
+  iVar3 = 0;
+  if (0 < *(int *)(in_ECX + 0x50)) {
+    piVar2 = (int *)(in_ECX + 0x54);
+    do {
+      puVar1 = *(undefined4 **)(*piVar2 + 0xc);
+      if (puVar1 != (undefined4 *)0x0) {
+        *puVar1 = param_1;
+        puVar1[1] = param_2;
+      }
+      iVar3 = iVar3 + 1;
+      piVar2 = piVar2 + 1;
+    } while (iVar3 < *(int *)(in_ECX + 0x50));
+  }
+  return;
 }
 
 void C_001B0620::func_001B0620(void)
