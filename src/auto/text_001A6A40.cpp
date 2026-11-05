@@ -139,6 +139,30 @@ void *C_001A7120::func_001A7120(int flags)
     return this;
 }
 
+void C_001A7140::func_001A7140()
+{
+    char path[0x104];
+    char key[0x28];
+    func_001ADCC0(path, 0x104, D_00275678, D_002A5348, D_0028BC44);
+    void *mem = func_001E8A44(0x4cc);
+    C_00168280 *obj = mem ? ((C_00168280 *)mem)->func_00168280() : 0;
+    if (obj->func_00169490(path, 0)) {
+        obj->func_00169710(D_002769F8);
+        obj->func_00168A10(D_0028B950, &f1d8);
+        f1d4 = (char **)func_001E8A44(f1d0 * 4);
+        for (int i = 0; i < f1d8; i++) {
+            f1d4[i] = (char *)func_001E8A44(0x104);
+            func_001ADCC0(key, 0x28, D_002867E8, D_0028B94C, i + 1);
+            obj->func_00169710(key);
+            obj->func_00168550(D_0028B948, f1d4[i], -1);
+        }
+    }
+    if (obj) {
+        obj->func_001691E0();
+        func_001E891B(obj);
+    }
+}
+
 void C_001A7260::func_001A7260()
 {
     vtbl = (void *)&D_0028B974;
