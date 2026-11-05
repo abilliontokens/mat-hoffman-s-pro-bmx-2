@@ -7,6 +7,48 @@ struct DelObjHOFTitle {
     virtual void Destroy(int a0);
 };
 
+/* a text label: func_0005E840 sets its string */
+struct S_000EA9F0_Text {
+    void func_0005E840(char *s);
+};
+
+/* the HUD object: labels at +0x34, +0x38, +0x80, +0x84, and func_000BF860 places one */
+struct S_000EA9F0_Hud {
+    char pad0[0x34];
+    S_000EA9F0_Text *unk34;
+    S_000EA9F0_Text *unk38;
+    char pad3C[0x80 - 0x3C];
+    S_000EA9F0_Text *unk80;
+    S_000EA9F0_Text *unk84;
+    void func_000BF860(int a, int b, int c, int d);
+};
+
+extern S_000EA9F0_Hud *D_002B91AC;
+
+/* string table of the settings record */
+struct S_000EA9F0_Strings {
+    char pad0[0x740];
+    char *f740;
+    char pad744[0x7C8 - 0x744];
+    char *f7C8;
+    char pad7CC[0x928 - 0x7CC];
+    char *f928;
+    char pad92C[0x978 - 0x92C];
+    char *f978;
+};
+
+struct S_000EA9F0_Mid {
+    int f0;
+    S_000EA9F0_Strings *f4;
+};
+
+struct S_000EA9F0_Root {
+    char pad0[0x2E8];
+    S_000EA9F0_Mid *f2E8;
+};
+
+extern S_000EA9F0_Root *D_002A8490;
+
 /* BmxUIPageHOFTitle */
 struct C_000EA910 {
     void *vtbl;
