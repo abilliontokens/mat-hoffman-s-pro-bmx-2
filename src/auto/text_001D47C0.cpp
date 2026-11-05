@@ -424,6 +424,20 @@ void C_001D5600::func_001D5600(void) {
     func_001D5190(unk58);
 }
 
+void *C_001D5610::func_001D5610(int flags)
+{
+    int func_001E891B(...);
+    extern int D_0028F5CC;
+    vtbl = &D_0028F5CC;
+    if (f4) {
+        f4->v0(1);
+    }
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 int C_001D5640::func_001D5640(u8 param_1)
 {
   int func_001D5500(...);
