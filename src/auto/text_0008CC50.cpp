@@ -17,3 +17,14 @@ struct C_0008D550 {
     int unk78;
     void func_0008D550(void);
 };
+
+void C_0008D550::func_0008D550(void)
+{
+    unk70 = 1000;
+    unk74 = 10;
+    unk78 = 1000;
+    unk58 = 0;
+    unk54->func_001B1980();
+    unk5C = 1;
+    unk60 = 0;
+}
