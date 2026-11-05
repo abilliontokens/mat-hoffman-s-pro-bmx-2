@@ -1,6 +1,8 @@
 /* 12 functions from 0x00171D00 to 0x00172BA0, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+static __forceinline void SqrtR_00171D00(float *r,const float &x);
+static __forceinline void MaxR_00171D00(float *r,const float &a,const float &b);
 void func_001712D0(float *out, void *in);
 struct V3_00171BA0 {
  float x,y,z;
