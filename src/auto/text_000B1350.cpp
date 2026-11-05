@@ -47,6 +47,19 @@ struct VehicleAIOwner {
     int f4B8;
 };
 
+/* three levels deep from D_002A8490: +0x2A4 -> +0x1C8 is a mode word */
+struct S_000B1740_Mode { char pad0[0x1C8]; int f1C8; };
+struct S_000B1740_Root { char pad0[0x2A4]; S_000B1740_Mode *f2A4; };
+extern S_000B1740_Root *D_002A8490;
+
+/* a widget whose float lives at +0xC */
+struct S_000B1740_Widget { char pad0[0xC]; float fC; };
+/* four widget slots at +0xC..+0x18 */
+struct S_000B1740_Panel { char pad0[0xC]; S_000B1740_Widget *f0C; S_000B1740_Widget *f10; S_000B1740_Widget *f14; S_000B1740_Widget *f18; };
+
+static __inline int Min_000B1740(int a, int b) { return a > b ? b : a; }
+static __inline int Max_000B1740(int a, int b) { return a < b ? b : a; }
+
 struct VehicleAI {
     void *vtbl;
     char pad4[0x38];
