@@ -148,6 +148,8 @@ struct MaterialSoundEmitter {
     S_3B10_List b;
     char pad3[0x1fc - 0x1f0];
     int f1fc;
+    int f200;
+    int func_001A34D0(int idx, S_001A33A0_Vec3 pos, int a5, int a6, int vol, int flag);
     int func_001A3B10(void);
     int func_001A33A0(int idx, S_001A33A0_Vec3 pos, int a4, int vol);
 };
