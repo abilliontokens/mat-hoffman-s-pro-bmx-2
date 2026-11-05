@@ -77,6 +77,35 @@ struct C_0008D550 {
     void func_0008D550(void);
 };
 
+struct S_0008D590_Vals {
+    char pad0[0x10];
+    float f10;
+    float f14;
+};
+
+struct S_0008D590_Obj {
+    S_0008D590_Vals *func_0018C070();
+};
+
+struct S_0008D590_Reg {
+    S_0008D590_Obj **func_0018C160(char *name);
+};
+
+struct S_0008D590_G {
+    char pad0[0x2ec];
+    S_0008D590_Reg *f2ec;
+};
+
+extern S_0008D590_G *D_002A8490;
+extern char D_00278690[];
+extern char D_0027958C[];
+extern float D_00275AEC;
+
+struct C_0008D590 {
+    void func_0008D590();
+    void func_001578D0();
+};
+
 void C_0008D550::func_0008D550(void)
 {
     unk70 = 1000;
