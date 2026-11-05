@@ -157,13 +157,13 @@ int FadeManager_001C4B60::func_001C4B60(int a0, int a1)
     }
     if (a1 != 0) {
         f40->func_001C4180(a0);
-        return 1;
+    } else {
+        D_002F07B8->v4(a0);
+        f40->f40 = 1;
+        f40->f38 = 0;
+        f40->f3C = 0;
+        f40->f30 = 0;
     }
-    D_002F07B8->v4(a0);
-    f40->f40 = 1;
-    f40->f38 = 0;
-    f40->f3C = 0;
-    f40->f30 = 0;
     return 1;
 }
 
