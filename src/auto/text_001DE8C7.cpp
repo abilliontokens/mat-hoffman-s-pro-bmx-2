@@ -67,7 +67,6 @@ extern int D_0028FD7C;
 extern int *D_0028FD74;
 
 void __stdcall func_001E0AE0(int a, int b, int c);
-void func_001DF375(void);
 void __stdcall func_001E20BF(int a, int b, int c);
 void __stdcall func_001DD13C(int a);
 
@@ -434,6 +433,22 @@ int __stdcall func_001DF375(int a)
 unsigned long __stdcall func_001DF456(u32 valueIndex, u32 *type, void *value, u32 valueLength, u32 *resultLength)
 {
     return __imp__RtlNtStatusToDosError(ExQueryNonVolatileSetting(valueIndex, type, value, valueLength, resultLength));
+}
+
+unsigned long func_001DF478(void)
+{
+    unsigned long value;
+    u32 type;
+
+    if (ExQueryNonVolatileSetting(9, &type, &value, 4, 0) < 0) {
+        value = 0;
+    }
+    if (*__imp__HalBootSMCVideoMode == 3) {
+        value = 1;
+    } else if (*__imp__HalBootSMCVideoMode == 6) {
+        *((unsigned short *)&value + 1) = 0;
+    }
+    return value;
 }
 
 u32 func_001DF4BC(void)
