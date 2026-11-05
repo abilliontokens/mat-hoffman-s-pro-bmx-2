@@ -203,6 +203,63 @@ struct Loader {
     void func_001816A0(void *stream);
 };
 
+#include <xmmintrin.h>
+
+inline void *operator new(unsigned int, void *p) { return p; }
+
+struct S_00180E00_V4 {
+    float x, y, z, w;
+    S_00180E00_V4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+};
+
+/* 0x30-byte tree node: two vec4s at +8 and +0x18 */
+struct S_00180E00_Node {
+    int pad0, pad4;
+    S_00180E00_V4 a;
+    S_00180E00_V4 b;
+    int pad28, pad2C;
+};
+
+struct C_001805C0 {
+    C_001805C0 *func_001805C0(void);
+};
+
+void func_00128120(void *tree, int *nodeCount, int *leafCount, S_00180E00_Mat *mat, int entries, int count);
+void func_00128480(void *out, void *tree, int *idx, int *leaves);
+void func_001285A0(void *out, void *tree, int *idx);
+void func_00128440(void *tree);
+void func_00128910(void);
+
+static __forceinline S_00180E00_V4 *NewV4_00180E00(int n)
+{
+    void *m = func_001E8A44(n * 16);
+
+    if (m != 0) {
+        S_00180E00_V4 *p = (S_00180E00_V4 *)m;
+        for (int i = n - 1; i >= 0; i--) {
+            p->z = 0.0f; p->y = 0.0f; p->x = 0.0f; p->w = 1.0f;
+            p++;
+        }
+        return (S_00180E00_V4 *)m;
+    }
+    return 0;
+}
+
+static __forceinline void *NewPairs_00180E00(int n)
+{
+    void *m = func_001E8A44(n << 5);
+
+    if (m != 0) {
+        char *p = (char *)m;
+        for (int i = n - 1; i >= 0; i--) {
+            func_00011FF0(p, 0x10, 2, func_00011060);
+            p += 0x20;
+        }
+        return m;
+    }
+    return 0;
+}
+
 int C_00181140::func_00181140(int a1, char *path, int a3)
 {
     char buf[0x104];
