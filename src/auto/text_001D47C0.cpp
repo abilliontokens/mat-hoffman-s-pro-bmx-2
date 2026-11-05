@@ -53,6 +53,55 @@ struct C_001D54F0 {
     void func_001D54F0(void);
 };
 
+extern int D_002AA470;
+void *func_001E8A44(int size);
+
+struct C_00144640 {
+    C_00144640 *func_00144640(void);
+    virtual void v0(int flags);
+    virtual void v1(int a, int b);
+    int unk4;
+    int unk8;
+    u8 unkC;
+    char padD[3];
+    void *unk10;
+};
+
+struct S_0012B2B0_Rect {
+    u32 f0;
+    u32 f4;
+    u32 f8;
+    u32 fC;
+    u32 f10;
+    u32 f14;
+};
+
+struct C_0012B2B0 {
+    void func_0012B2B0(S_0012B2B0_Rect *in, S_0012B2B0_Rect *out);
+};
+
+struct S_002EFDB8 {
+    int unk0;
+    C_0012B2B0 *unk4;
+};
+extern S_002EFDB8 *D_002EFDB8;
+
+/* XboxRenderQueueTweak */
+struct C_001D5490 {
+    int unk0;
+    C_00144640 *unk4;
+    void func_001D5490(void);
+    void func_001D54B0(int a);
+};
+
+/* XboxViewportChangeSurfaceData */
+struct C_001D53A0 {
+    C_00144640 *unk0;
+    struct C_001D48A0 *unk4;
+    void func_001D53A0(int a);
+    void func_001D5430(S_0012B2B0_Rect *in, S_0012B2B0_Rect *out, int c);
+};
+
 struct C_001D4F40 {
     char pad0[0x6c];
     C_0014A650 *f6c;
