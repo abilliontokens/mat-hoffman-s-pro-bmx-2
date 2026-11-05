@@ -119,9 +119,42 @@ struct C_000A88A0 {
     void func_000A8920(S_TriggerStream *a, void *b);
 };
 
+/* entry of the list at f4E0: the owner id is at +0x1E0 */
+struct S_000A8710_Item {
+    char pad0[0x1e0];
+    int f1E0;
+};
+
+struct S_000A8710_List {
+    char pad0[0x24];
+    int count;
+    char pad28[0x1a8 - 0x28];
+    S_000A8710_Item *items[1];
+};
+
+struct S_000A8710_Node {
+    char pad0[0x4e0];
+    S_000A8710_List *f4E0;
+};
+
+struct S_000A8710_Arg0 {
+    char pad0[0x64];
+    int f64;
+};
+
+struct S_000A8710_Arg2 {
+    char pad0[0x10c];
+    char name[0x3c];
+    int f148;
+};
+
+void __stdcall func_00118410(void *name, int b, float c);
+
 /* the game manager (D_002A8490->f2A4) */
 struct S_000A8A60_Mgr {
-    char pad0[0x124];
+    char pad0[0x64];
+    S_000A8710_Node *f64;
+    char pad68[0x124 - 0x68];
     int f124;
     char pad128[0x1c8 - 0x128];
     int f1C8;
