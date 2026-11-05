@@ -74,6 +74,37 @@ undefined4 C_001DC540::func_001DC540(byte param_1)
   return in_ECX;
 }
 
+int func_001DC820(int a, int b, int c)
+{
+    S_001DC820 s;
+    memset(&s, 0, sizeof(s));
+    s.f0 = a;
+    s.f4 = c;
+    s.fC = b;
+    s.f10 = c;
+    s.f20 = &D_001DC7F0;
+    s.f24 = &D_001DC810;
+    func_00210FE0(&s, -1, &D_0028FA24, sizeof(s));
+    func_0021004A(&s, 4);
+    func_00210279(&s);
+    return s.f14;
+}
+
+void func_001DC8A0(int a, int b, int c)
+{
+    S_001DC820 s;
+    memset(&s, 0, sizeof(s));
+    s.f0 = b;
+    s.f4 = c;
+    s.fC = a;
+    s.f10 = c;
+    s.f20 = &D_001DC7F0;
+    s.f24 = &D_001DC810;
+    func_00211163(&s, &D_0028FA24, sizeof(s));
+    func_0021117A(&s, 4);
+    func_00211040(&s);
+}
+
 void __stdcall func_001DC910(S_SystemTime *out)
 {
     S_TimeFields fields;
