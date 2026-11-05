@@ -2,6 +2,23 @@
 #include "common.h"
 #include "ghidra.h"
 #include <string.h>
+struct S_Vec4Int_1CB320 {
+    int x, y, z, w;
+};
+
+struct Listener {
+    void *vtbl;
+    int f4;
+    S_Vec4Int_1CB320 f8, f18, f28, f38;
+    void func_0001DFE0(void);
+    Listener *func_001CB320(void);
+};
+
+extern int D_0028ED78;
+extern int D_002ABA44, D_002ABA48, D_002ABA4C, D_002ABA50;
+extern int D_002ABA64, D_002ABA68, D_002ABA6C, D_002ABA70;
+extern int D_002ABA74, D_002ABA78, D_002ABA7C, D_002ABA80;
+
 struct C_001CB120 {
     bool func_001CB120(void);
 };
@@ -253,5 +270,10 @@ void XboxSndIf_1CB290::func_001CB2D0(void)
             bank = f13C;
         }
     }
+}
+
+int __stdcall func_001CB400(int a, int b, int c, int d, int e, int f, int g)
+{
+    return D_002F08EC != 0;
 }
 
