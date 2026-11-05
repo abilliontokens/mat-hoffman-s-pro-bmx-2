@@ -339,6 +339,18 @@ int func_001E9A58(S_001E9714_File *str, const char *format, ...) {
     return retval;
 }
 
+int func_001E9D46(S_001E9714_File *stream) {
+    int func_001E9BE4(S_001E9714_File *);
+    int result;
+    func_001EB109(stream);
+    __try {
+        result = func_001E9BE4(stream);
+    } __finally {
+        func_001EB15B(stream);
+    }
+    return result;
+}
+
 #pragma optimize("", on)
 void func_001E9F40(void) {
     int func_001EB302(...);
@@ -361,5 +373,12 @@ char *func_001EA1EE(char *s) {
         p++;
     }
     return s;
+}
+
+int func_001EA211(int c) {
+    if (D_002AEA38 > 1) {
+        return func_001EC5F1(c, 0x103);
+    }
+    return D_002AEA30[c] & 0x103;
 }
 
