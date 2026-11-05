@@ -3,15 +3,15 @@
 
 u32 func_00178210(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int pal)
 {
-  u8 *drow;
   u8 *srow;
-  u8 *d;
+  u8 *drow;
   u8 *s;
+  u8 *d;
   int x;
   int y;
 
-  drow = dst;
   srow = src;
+  drow = dst;
   for (y = height; y > 0; y--) {
     s = srow;
     for (x = width, d = drow; x > 0; x--) {
@@ -54,18 +54,18 @@ u32 func_001782B0(u16 *dst, u8 *src, int width, int height, int dstPitch, int sr
 
 u32 func_00178330(u16 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int pal)
 {
-  u16 *drow;
   u8 *srow;
-  u16 *d;
+  u16 *drow;
   u8 *s;
+  u16 *d;
   int x;
   int y;
 
-  drow = dst;
   srow = src;
+  drow = dst;
   for (y = height; y > 0; y--) {
-    d = drow;
     s = srow;
+    d = drow;
     for (x = width; x > 0; x--) {
       *d = *(u16 *)(pal + 0x310 + *s * 2);
       d++;
