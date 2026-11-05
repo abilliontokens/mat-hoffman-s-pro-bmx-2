@@ -112,6 +112,44 @@ struct C_001B19C0_Vec {
     float w;
 };
 
+void func_001E8390(void *p);
+void *func_001E8A44(int size);
+void *func_001E8AA5(unsigned int size);
+extern int D_0028C87C;
+
+struct C_00157600 {
+    void func_00157600(int a);
+};
+
+struct C_001D3F50 {
+    void func_001D3F50(void);
+};
+
+struct C_00161580 {
+    C_00161580 *func_00161580(void);
+};
+
+struct C_001B23D0_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+};
+
+/* TextureMapManager */
+struct C_001B23D0 {
+    void *vtbl;
+    char pad4[0x20];
+    C_001B23D0_Obj *f24;
+    void *f28;
+    void *f2c;
+    unsigned int f30;
+    int f34;
+    C_001B23D0 *func_001B23D0(void);
+    void func_001B2400(void);
+    void func_001B2450(void);
+    void *func_001B2480(unsigned int size);
+};
+
 struct C_001B19C0 {
     char pad0[0x2C];
     float f2C;
