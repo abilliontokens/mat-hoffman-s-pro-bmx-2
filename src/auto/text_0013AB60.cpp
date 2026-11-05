@@ -96,6 +96,9 @@ struct C_0013AEC0 {
     int func_0013AF40(int idx, int *a, unsigned int *b);
     int func_0013AFF0(int idx, int v, int mode);
     int func_0013B130(const char *key);
+    void func_0013B340(void);
+    void func_0013B390(int idx);
+    int func_0013B3E0(S_BufSet *set, unsigned int size);
 };
 
 
