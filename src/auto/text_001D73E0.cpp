@@ -56,7 +56,7 @@ struct XboxVideoCard_001D7D50 {
     int f6CC;
     int f6D0;
     int a6D4[0xC0];
-    volatile u8 f9D4;
+    u8 f9D4;
     char pad9D5[3];
     int f9D8;
     XboxVideoCard_001D7D50 *func_001D7D50(void);
@@ -258,5 +258,8 @@ int XboxVideoCard_001D7FB0::func_001D7FB0(float x, float y, float z, int w)
     return 1;
 }
 
-
+void XboxVideoCard_001D8310::func_001D8310(void)
+{
+    v6();
+}
 
