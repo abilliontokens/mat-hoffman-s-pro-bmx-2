@@ -79,19 +79,23 @@ struct C_001CC3C0 {
 
 int C_001CC3C0::func_001CC3C0(int param_1)
 {
-    int v = param_1;
+    int v;
     int r;
+    int e;
     if (f138 != 0)
         v = f138->f28 * param_1 / 100;
+    else
+        v = param_1;
     r = func_001CB0A0(v);
     if (f13C != 0) {
-        int e = func_002209A2(f13C, r);
+        e = func_002209A2(f13C, r);
         if (e < 0) {
             func_001CBC10(e, &D_0028EECC, 0x674);
             return 0;
         }
     } else if (f140 != 0) {
-        int e = func_00220AD6(f140->fC, r);
+        int h = f140->fC;
+        e = func_00220AD6(h, r);
         if (e < 0) {
             func_001CBC10(e, &D_0028EECC, 0x67b);
             return 0;
