@@ -95,19 +95,60 @@ struct C_001CB560 {
     int func_001CB560(C_001CB560 *other);
 };
 
-struct S_001CB610_Entry {
-    char pad0[0x20];
-    char name[0x1f];
-    char term;
-    char pad40[4];
+/* one resource of an entry: a file name and, for the ones already in memory,
+   the object func_001DDAEE opens instead */
+struct S_001CB810_Res {
+    char *name;
+    char pad4[0xc];
+    void *f10;
+    char pad14[4];
 };
 
+struct S_001CB610_Entry {
+    S_001CB810_Res *f0;
+    char pad4[0x1c];
+    char name[0x1f];
+    char term;
+    unsigned char f40;
+    char pad41[3];
+};
+
+/* a COM-style object: the functions in its table take it as their first
+   stack argument, so its methods are __stdcall */
+struct S_001CB7D0_Com {
+    virtual void __stdcall v0();
+    virtual void __stdcall v1();
+};
+
+extern char D_0028ED6C[];
+extern char D_002A48F8[];
+extern int D_00010000;
+
+int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+void __stdcall func_001DD13C(int handle);
+int __stdcall func_001DCC3C(const char *name, unsigned int access, int share,
+                            int sa, int disposition, int attributes, int templ);
+int __stdcall func_001DDAEE(void *res, int flags);
+int __stdcall func_0023F469(int a0, int handle, int a2, int *a3, int a4, int a5,
+                            int *desc, S_001CB7D0_Com **out);
+
 struct C_001CB610 {
-    char pad0[0x34];
+    char pad0[0x24];
+    int f24;
+    char pad28[0xc];
     S_001CB610_Entry *f34;
-    char pad38[0x70];
+    char pad38[0x6c];
+    int fa4;
     int fa8;
+    int fac;
+    char padb0[4];
+    S_001CB7D0_Com *fb4;
+    char padb8[0xc];
+    int fc4;
     void func_001CB610(int idx, const char *name);
+    int func_001CB7D0(void);
+    int func_001CB810(int idx);
+    unsigned int func_001CB8A0(void);
 };
 
 /* XboxMusic (see text_001CE140.cpp), the part func_001CB650 touches */
