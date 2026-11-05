@@ -15,6 +15,7 @@ extern int D_002FB36C;
 extern int *D_002FB368;
 extern double D_002766A8;
 extern void (__stdcall *__imp__RtlEnterCriticalSection)(void *cs);
+extern void (__stdcall *__imp__RtlLeaveCriticalSection)(void *cs);
 
 void func_001EAEC3(void) {
     int func_001EB390(...);
@@ -72,8 +73,8 @@ double func_001EAF91(double x, double y) {
         double d;
         unsigned int i[2];
     } u;
-    u.d = x;
-    u.i[1] = (u.i[1] ^ ((unsigned int *)&y)[1]) & 0x7fffffff ^ ((unsigned int *)&y)[1];
+    u.i[0] = ((unsigned int *)&x)[0];
+    u.i[1] = (((unsigned int *)&y)[1] ^ ((unsigned int *)&x)[1]) & 0x7fffffff ^ ((unsigned int *)&y)[1];
     return u.d;
 }
 
