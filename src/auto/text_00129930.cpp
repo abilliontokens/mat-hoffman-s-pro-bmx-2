@@ -124,8 +124,31 @@ struct Emitter_12A7C0 {
     char pad1FC[0x204 - 0x1FC];
     int f204;
     int f208;
+    int f20C;
+    int f210;
     int func_0012A7C0(int a, int b, int c, int d);
+    bool func_0012A840(void);
 };
+
+struct Engine_2EFDB8 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual int v12(void *p);
+    char pad4[0xC];
+    int f10;
+};
+
+extern Engine_2EFDB8 *D_002EFDB8;
 
 struct ListEntry_12A200 {
     int f0;
