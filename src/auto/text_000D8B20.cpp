@@ -84,40 +84,61 @@ struct C_000D9750 {
     void func_000D9750();
 };
 
+void BmxUIPageHOF4::func_000D8B20()
+{
+    RenderEntryHOF **p = arr2F4;
+    int n = 2;
+    do {
+        RenderEntryHOF *a = p[4];
+        a->f38 = ((s32)unk2C0 << 24) | (a->f38 & 0xffffff);
+        a->b58 |= 2;
+        RenderEntryHOF *b = p[0];
+        b->f38 = ((s32)unk2C0 << 24) | (b->f38 & 0xffffff);
+        b->b58 |= 2;
+        RenderEntryHOF *c = p[2];
+        c->f38 = ((s32)unk2C0 << 24) | (c->f38 & 0xffffff);
+        c->b58 |= 2;
+        p++;
+        n--;
+    } while (n != 0);
+    func_001BF000();
+}
+
 BmxUIPageHOF5 *BmxUIPageHOF5::func_000D8C70(int a0)
 {
+    u32 z = 0;
     func_001BE360(a0);
     vtbl = &D_0027F49C;
     u32 *p = arr2D8;
     for (int i = 0; i < 5; i++) {
-        p[-5] = 0;
-        *p = 0;
-        p[11] = 0;
+        p[-5] = z;
+        *p = z;
+        p[11] = z;
         p++;
     }
-    unk280 = 0;
-    unk290 = 0;
-    unk284 = 0;
-    unk288 = 0;
-    unk28C = 0;
+    unk280 = z;
+    unk290 = z;
+    unk284 = z;
+    unk288 = z;
+    unk28C = z;
     p = arr2F4;
     for (int i = 0; i < 2; i++) {
-        p[-2] = 0;
-        *p = 0;
+        p[-2] = z;
+        *p = z;
         p++;
     }
-    unk29C = 0;
-    unk2A0 = 0;
-    unk2A4 = 0;
-    unk2AC = 0;
-    unk2A8 = 0;
+    unk29C = z;
+    unk2A0 = z;
+    unk2A4 = z;
+    unk2AC = z;
+    unk2A8 = z;
     arr2FC[0] = 0;
     arr2FC[1] = 0;
-    unk2B0 = 0;
-    unk2B4 = 0;
-    unk2B8 = 0;
-    unk2BC = 0;
-    unk2C0 = 0;
+    unk2B0 = z;
+    unk2B4 = z;
+    unk2B8 = z;
+    unk2BC = z;
+    unk2C0 = z;
     return this;
 }
 
