@@ -95,6 +95,31 @@ void func_00191610(int name, C_0018F390 *obj)
     obj->func_0018F390(&D_00275630, 0x100, &value);
 }
 
+void func_00191640(C_00191640_Node *a, C_00191640_Node *b, int op, C_0018F390 *obj)
+{
+    float x = a->unk20;
+    float y = b->unk20;
+    float r = -1.0f;
+
+    switch (op) {
+    case 0x16:
+        r = y + x;
+        break;
+    case 0x17:
+        r = x - y;
+        break;
+    case 0x18:
+        r = y * x;
+        break;
+    case 0x19:
+        if (y != D_00275544) {
+            r = x / y;
+        }
+        break;
+    }
+    obj->func_0018F390(&D_00275630, 0x100, &r);
+}
+
 void func_00191C20(int name, C_0018F390 *obj)
 {
     int value = func_001E91F4(name);
