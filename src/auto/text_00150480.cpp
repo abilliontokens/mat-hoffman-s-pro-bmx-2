@@ -57,6 +57,8 @@ extern float D_002A78D8;
 
 struct C_00197B40 {
     void func_00197B40(Vec4_150900 *a0, Vec4_150900 *a1);
+    void func_00199600(Vec4_150900 a);
+    void func_001983A0();
 };
 struct C_00150900_sub {
     char pad0[0x4];
