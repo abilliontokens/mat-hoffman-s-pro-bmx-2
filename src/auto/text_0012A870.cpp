@@ -279,8 +279,6 @@ struct C_0012B5B0 {
 
 extern int D_00284074;
 
-extern float D_002755E8;
-extern float D_00275998;
 float func_0014F600(float x);
 
 struct __declspec(align(16)) S_0012AEC0_Mat {
