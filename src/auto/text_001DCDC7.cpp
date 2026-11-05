@@ -362,27 +362,27 @@ void __stdcall func_001DD7F7(undefined4 param_1, undefined4 param_2)
 void *__stdcall func_001DD816(int a0)
 {
     u32 buf[128];
-    u32 h;
+    void *h;
     int status;
-    u32 *p = 0;
+    S_001DD816_Obj *p = 0;
 
-    status = func_001DD713(&h, buf);
+    status = func_001DD713((u32 *)&h, buf);
     if (status >= 0) {
-        p = (u32 *)func_001DF5B9(0, 0x10);
+        p = (S_001DD816_Obj *)func_001DF5B9(0, 0x10);
         if (p == 0) {
             func_001DD62B(_imp__RtlNtStatusToDosError(0xc000009a));
-            _imp__NtClose((void *)h);
+            _imp__NtClose(h);
             goto done;
         }
-        p[0] = 0xbe4bea00;
-        p[1] = 0;
-        p[2] = buf[1];
-        p[3] = h;
+        p->signature = 0xbe4bea00;
+        p->sectors = buf[1];
+        p->f4 = 0;
+        p->handle = h;
     } else {
         func_001DD62B(_imp__RtlNtStatusToDosError(status));
     }
     if (status >= 0 && func_001DD779((S_001DD779_Header *)buf, (S_001DD779_File *)p, (S_001DD779_Out *)a0) == 0) {
-        _imp__NtClose((void *)h);
+        _imp__NtClose(h);
         func_001DF5D6(p);
         p = 0;
     }
