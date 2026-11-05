@@ -45,7 +45,6 @@ struct C_0018C000 {
     char pad8[0x50];
     int unk58[0x100];
     int unk458;
-    void *func_001E8A44(int size);
     void *func_0018C000(char *param);
 };
 
