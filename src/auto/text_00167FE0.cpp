@@ -229,7 +229,7 @@ int C_00168280::func_00168300(const char *name)
     i = 0;
     if (f10 > 0) {
         do {
-            if (func_001EA426(name, &f18[i * 0x410 + 8]) == 0) {
+            if (func_001EA426(name, ((S_00168280_Entry *)f18)[i].name) == 0) {
                 return i;
             }
             i++;
