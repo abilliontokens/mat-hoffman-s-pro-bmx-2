@@ -57,6 +57,7 @@ struct S_00129110_Node {
 
 struct S_00129110_Vec4 {
     float x, y, z, w;
+    S_00129110_Vec4(const float *p) { x = p[0]; y = p[1]; z = p[2]; w = 1.0f; }
 };
 
 struct C_002B92A0 {
