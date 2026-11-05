@@ -5,6 +5,50 @@ struct C_0001DFF0 {
     void func_0001DFF0(void);
 };
 
+extern int D_00275F18;
+
+struct C_0001D690 {
+    int func_0001D690(unsigned char param_1);
+};
+
+struct C_0001D420_Sub {
+    char pad0[0x40];
+    int func_001CBCF0(int param);
+};
+
+struct C_0001D420 {
+    char pad0[0x30];
+    C_0001D420_Sub sub30;
+    C_0001D420_Sub sub70;
+    int func_0001D420(int param);
+};
+
+struct C_0001DF80_Sub30 {
+    char pad0[0x40];
+    void func_001CDED0(int param);
+};
+
+struct C_0001DF80_Arr {
+    int n;
+    int *arr;
+    int base;
+    int cap;
+    int func_0015ACA0(int idx);
+};
+
+struct C_0001DF80 {
+    char pad0[0x30];
+    C_0001DF80_Sub30 sub30;
+    C_0001DF80_Arr sub70;
+    int func_0001DF80(int param_1, int param_2);
+};
+
+struct C_0001DFE0 {
+    int unk0;
+    int unk4;
+    C_0001DFE0 *func_0001DFE0(void);
+};
+
 struct C_0001E030 {
     int unk0;
     void *func_0001E030(int flags);
@@ -169,19 +213,9 @@ fail:
 }
 
 void C_0001D330::func_0001D330(void) {
-    int i = 0;
-    if (i < unk70) {
-        do {
-            int cnt = unk70;
-            C_0001D330_Item *item;
-            if (cnt > 0 && unk74 != 0 && i < cnt) {
-                item = unk74[i];
-            } else {
-                item = 0;
-            }
-            item->virt33();
-            i++;
-        } while (i < unk70);
+    for (int i = 0; i < unk70; i++) {
+        C_0001D330_Item *item = itemAt(i);
+        item->virt33();
     }
 }
 
@@ -199,22 +233,26 @@ int C_0001D370::func_0001D370(void) {
         }
         int nA = unk30;
         if (nA > 0) {
-            for (int i = 0; i < unk30; i++) {
+            int i = 0;
+            while (i < unk30) {
                 if (unk34[i] == item) {
                     unk34[i] = unk34[nA - 1];
                     unk30--;
                     break;
                 }
+                i++;
             }
         }
         int nB = unk70;
         if (nB > 0) {
-            for (int j = 0; j < unk70; j++) {
+            int j = 0;
+            while (j < unk70) {
                 if (unk74[j] == item) {
                     unk74[j] = unk74[nB - 1];
                     unk70--;
                     break;
                 }
+                j++;
             }
         }
         item->func_00157810();
