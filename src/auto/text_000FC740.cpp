@@ -32,6 +32,23 @@ struct C_000FC740 {
 };
 
 
+void C_000FC740::func_000FC740(void)
+{
+    f4c4 = 0xff;
+    f4c8 = 0;
+    f4cc = 0;
+    f4d0 = 0;
+    f4d4 = 0.25f;
+    func_000FA620();
+    func_001BEE50(1, f48c, f490);
+    func_000CEA00(f490);
+    f594->func_001B1980();
+    f594->func_001B1B30(0.75f, 0);
+    f594->func_001B2270(0xffcccccc);
+    f594->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0, 1.0f, 0, 0.25f, 0, 0);
+    f598 = 0;
+}
+
 undefined4 C_000FCAE0::func_000FCAE0(byte param_1)
 {
   int func_000D0FD0(...);
