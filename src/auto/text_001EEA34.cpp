@@ -168,6 +168,15 @@ S_001EF033 *__fastcall func_001EF033(S_001EF033 *self, int unused, BitObj *p)
     return self;
 }
 
+S_001EF062 *__fastcall func_001EF062(S_001EF062 *self, int unused, int mode)
+{
+    self->f4 = 0;
+    self->vtbl = &D_00295BE4;
+    self->f8 = mode;
+    self->fC = (mode == 2) ? 4 : 0;
+    return self;
+}
+
 int __fastcall func_001EF1D0(BitObj *self, int unused)
 {
     return self->s4 == 0 || self->s4 == 2;
