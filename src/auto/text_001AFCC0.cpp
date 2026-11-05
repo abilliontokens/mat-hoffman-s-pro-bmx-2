@@ -1,6 +1,11 @@
 /* 31 functions from 0x001AFCC0 to 0x001B0A20, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "ghidra.h"
+struct C_001B0620 {
+    void func_001B0620(void);
+};
+
 
 extern int D_0028C5BC;
 
@@ -164,5 +169,23 @@ C_001B01B0 *C_001B01B0::func_001B01B0(void)
 void C_001B01C0::func_001B01C0(void) {
     extern int D_0028C5EC;
     unk0 = (int)&D_0028C5EC;
+}
+
+void C_001B0620::func_001B0620(void)
+{
+  int in_ECX = (int)this;
+  int iVar1;
+  undefined4 *puVar2;
+  
+  iVar1 = 0;
+  if (0 < *(int *)(in_ECX + 0x50)) {
+    puVar2 = (undefined4 *)(in_ECX + 0xd4);
+    do {
+      *puVar2 = 0;
+      iVar1 = iVar1 + 1;
+      puVar2 = puVar2 + 1;
+    } while (iVar1 < *(int *)(in_ECX + 0x50));
+  }
+  return;
 }
 
