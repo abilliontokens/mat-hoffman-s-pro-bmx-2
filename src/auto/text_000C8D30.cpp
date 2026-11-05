@@ -1,2 +1,44 @@
 /* 8 functions from 0x000C8D30 to 0x000C9940, found by Ghidra. */
 #include "common.h"
+extern int D_0027E3F4;
+extern int D_00278DD0;
+
+struct DelObjC_000C {
+    virtual void Destroy(int a0);
+};
+
+struct ElemC {
+    char pad0[0x38];
+    unsigned int f38;
+    char pad3c[0x1c];
+    unsigned char b58;
+};
+
+struct C_000C8D30 {
+    void func_000C8D30();
+};
+
+struct BmxUIPageOptions {
+    void *vtbl;
+    char pad4[0x2CC - 4];
+    short unk2CC;
+    char pad2ce[0xa];
+    ElemC *arr2D8[4];
+    char pad2e8[0x44];
+    DelObjC_000C *arr334[12];
+    void func_001BE3F0();
+    void func_001BF000();
+    void func_001B1980();
+    void func_001B17D0(char *s);
+    void func_000C8E60();
+    void func_000C8F10();
+    void func_000C9860();
+};
+
+struct BmxUIPageGameOptions {
+    void *vtbl;
+    char pad4[0x334 - 4];
+    DelObjC_000C *arr334[12];
+    void func_001BE3F0();
+    void func_000C9050();
+};
