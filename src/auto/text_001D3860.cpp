@@ -242,7 +242,7 @@ C_001D3F60 *C_001D3F60::func_001D3F60(void)
     func_001D3F50();
     f8 = 0;
     f0 = -1;
-    f4 = 0;
+    sub4.reset();
     return this;
 }
 
@@ -281,6 +281,8 @@ int C_001D3F90::func_001D3F90(unsigned int *a, unsigned int *b, unsigned int *c)
 int __stdcall func_001D4010(int x)
 {
     switch (x) {
+    case 0:
+        return 0;
     case 1:
     case 5:
         return 1;
@@ -290,8 +292,8 @@ int __stdcall func_001D4010(int x)
     case 3:
     case 7:
         return 3;
-    case 0:
     case 4:
+        return 0;
     default:
         return 0;
     }
