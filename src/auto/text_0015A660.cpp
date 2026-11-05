@@ -265,7 +265,20 @@ struct S_0015AD10_Pair {
 struct S_0015AD10_Ent {
     int a;
     int b;
-    char pad8[0x10];
+    int c;
+    int d;
+    int e;
+    int f;
+};
+
+/* event record filled in by JoystickDevice::func_0015AE60 */
+struct S_0015AE60_Out {
+    int f0;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    int f14;
 };
 
 struct S_0015AD10_Dev {
