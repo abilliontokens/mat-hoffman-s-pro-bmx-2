@@ -50,6 +50,16 @@ struct BmxUIPageGameOptions {
     void func_000C9050();
 };
 
+void BmxUIPageOptions::func_000C8E60()
+{
+    for (int i = 0; i < 4; i++) {
+        ElemC *e = arr2D8[i];
+        e->f38 = ((int)unk2CC << 24) | (e->f38 & 0xffffff);
+        e->b58 |= 2;
+    }
+    func_001BF000();
+}
+
 void C_000C8F10::func_000C8F10(void) {
     func_000C5E40();
     func_000C8D30();
