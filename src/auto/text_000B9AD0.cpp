@@ -5,3 +5,7 @@ void func_000BA290(void) {
     int func_000BC7B0(...);
     func_000BC7B0();
 }
+
+void __stdcall func_000BA430(int a0, int a1, int a2, int a3) {
+}
+
