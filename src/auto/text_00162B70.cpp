@@ -20,10 +20,13 @@ struct Pack162B70 {
     int pad30, id0, id1;
 };
 
-struct Mgr13C9F0 { void *func_0013C9F0(int a, void *b); };
-struct Mgr13B930 { void *func_0013B930(void *a, void *b, int c); };
-struct Mgr13C110 { void func_0013C110(void *a); };
-extern Mgr13C9F0 *D_002BEAAC_A;
+struct Mgr162B70 {
+    void *func_0013C9F0(int a, void *b);
+    void *func_0013B930(void *a, void *b, int c, int d);
+    void func_0013C110(void *a);
+    void func_00162B70(Pack162B70 *p, int arg);
+};
+extern Mgr162B70 *D_002BEAAC;
 extern char D_00282960[];
 void func_001E891B(void *p);
 
