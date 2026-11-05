@@ -1,5 +1,20 @@
 /* 7 functions from 0x001D9970 to 0x001DA500, found by Ghidra. */
 #include "common.h"
+struct Global_1D9E { void *vtbl; char *p4; };
+extern Global_1D9E *D_002EFDB8;
+extern char D_002AC63C[], D_002AC64C[], D_002AB85C[], D_002AC61C[], D_002AC62C[], D_002AC65C[];
+extern float D_00275460, D_0028F7E8, D_0028F8D4, D_0028F8D0, D_0027A060, D_002F08A4, D_00284758;
+extern int D_002F0BDC;
+void __fastcall func_001FEC30(int, void *);
+void __fastcall func_001FEBD0(int, void *);
+void __stdcall func_00201590(int, void *, int);
+void __stdcall func_001FEE00(int, void *, int);
+void func_00202770(void *, int);
+void *__stdcall func_001FFE40(int);
+void *func_00200210();
+void __stdcall func_00201100(void *);
+struct XboxWaterDisplacement;
+struct DXVSWaterDataItem { void *vtbl; XboxWaterDisplacement *p4; void func_001D9ED0(); };
 
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
