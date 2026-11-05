@@ -242,6 +242,31 @@ struct C_00017810_Obj {
     C_00017680_Vec f18;
 };
 
+struct V4_00017AD0 {
+    float x, y, z, w;
+    V4_00017AD0() { z = 0; y = 0; x = 0; w = 1.0f; }
+};
+
+struct S_00017AD0_Node {
+    char pad0[2];
+    unsigned char f2;
+    char pad3[0x41];
+    int f44;
+};
+
+struct S_00017AD0_Iter {
+    char pad0[0x40];
+    void func_001A46F0(void);
+    void func_001A4790(int a, int b, float *c, float *d, int e, int f, int g);
+    S_00017AD0_Node *func_001A4840(void);
+    void func_001A4A20(void);
+};
+
+extern float D_00275544;
+extern unsigned char D_002A4330;
+extern int D_002BA148;
+int func_00134A10(V4_00017AD0 *seg, void *obj, V4_00017AD0 *out, V4_00017AD0 *hit);
+
 int func_00016CF0(float f)
 {
     int * volatile p = (int *)&f;
