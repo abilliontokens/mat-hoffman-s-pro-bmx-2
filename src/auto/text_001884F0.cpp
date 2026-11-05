@@ -53,6 +53,15 @@ C_00188700* C_00188700::func_00188700(void) {
     return this;
 }
 
+void C_00188700::func_00188720(void)
+{
+    unk0 = (int)&D_00289F80;
+    if (unkC != 0) {
+        func_001E891B((void *)unkC);
+        unkC = 0;
+    }
+}
+
 CollisionObjects *CollisionObjects::func_00188A80(int a0)
 {
     func_00157600(a0);
