@@ -18,6 +18,7 @@ static inline void Identity_00170B60(S_00170B60_Mat *p) {
 }
 #include "ghidra.h"
 #include "ghidra.h"
+#pragma optimize("", on)
 struct C_00170B30 {
     undefined4 * func_00170B30(undefined4 param_1);
 };
