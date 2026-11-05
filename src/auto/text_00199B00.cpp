@@ -108,16 +108,16 @@ void C_00199BE0::func_00199CF0(int a0, int a1, int a2, int a3, float angle)
 
 void C_00199BE0::func_00199D70(int a0, int a1, int a2, float angle)
 {
-    struct { int x, y, z, w; } saved;
-    saved.x = *(int *)((char *)this + 0xbc);
-    saved.y = *(int *)((char *)this + 0xcc);
-    saved.z = *(int *)((char *)this + 0xdc);
+    struct { float x, y, z, w; } saved;
+    saved.x = *(float *)((char *)this + 0xbc);
+    saved.y = *(float *)((char *)this + 0xcc);
+    saved.z = *(float *)((char *)this + 0xdc);
     float s = func_0014F510(angle);
     float c = func_0014F550(angle);
     func_0011F400((char *)this + 0xb0, a0, a1, a2, *(int *)&s, *(int *)&c);
-    *(int *)((char *)this + 0xcc) = saved.y;
-    *(int *)((char *)this + 0xbc) = saved.x;
-    *(int *)((char *)this + 0xdc) = saved.z;
+    *(float *)((char *)this + 0xbc) = saved.x;
+    *(float *)((char *)this + 0xcc) = saved.y;
+    *(float *)((char *)this + 0xdc) = saved.z;
     func_001982F0();
     if (f180 & 1) {
         f180 &= 0xfe;
