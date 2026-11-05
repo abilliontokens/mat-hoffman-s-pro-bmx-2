@@ -64,3 +64,10 @@ void C_001006E0::func_001006E0(void) {
     func_00157960();
 }
 
+void *C_00100700::func_00100700(unsigned int flags) {
+    func_000E1810();
+    if (flags & 1)
+        func_001E891B(this);
+    return this;
+}
+
