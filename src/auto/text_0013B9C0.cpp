@@ -40,6 +40,7 @@ struct C_0013B9C0 {
     int f78;
     char pad7C[0x64];
     int fE0;
+    char padE4[4];
     S_0013B9C0_Ent20 *fE8;
     int fEC;
     int func_0013C1D0(int a);
@@ -51,6 +52,40 @@ struct C_0013B9C0 {
     void func_0013AEC0(int a);
     void func_0013B840(void *a);
 };
+
+int C_0013B9C0::func_0013C110(int idx)
+{
+    S_0013B9C0_Ent20 *e = &fE8[idx];
+    S_0013B9C0_Ent28 *t;
+    int x;
+
+    if (!(e->f18 & 4)) {
+        return 0;
+    }
+    e->f18 &= ~4;
+    x = e->f4;
+    e->f10 = 0;
+    if (((int *)((char *)this + 0x84))[x * 3] == idx) {
+        fE0 = x;
+    }
+    t = &fC[e->f0];
+    if (!(t->fC & 2)) {
+        if (t->f10 != 0) {
+            if (t->fC & 0x10) {
+                func_0014FED0(t->f10, 0, 2);
+                e->f14 = (void *)D_0014FEE0(t->f10);
+                t->f14 = e->f14;
+            }
+            func_0014FE50(t->f10);
+            t->f10 = 0;
+        }
+        if (e->f1C == 0 && !(e->f18 & 8)) {
+            func_0013B840(t);
+            func_0013AEC0(idx);
+        }
+    }
+    return 1;
+}
 
 int C_0013B9C0::func_0013C1D0(int arg)
 {
@@ -78,3 +113,50 @@ int C_0013B9C0::func_0013C1D0(int arg)
     }
     return 1;
 }
+
+int C_0013B9C0::func_0013C5D0(S_0013B9C0_Ent28 *arg1, int arg2)
+{
+    int result = 1;
+    int i;
+
+    arg1->fC |= 0x20;
+    for (i = 0; i < fEC; i++) {
+        if (fE8[i].f0 == arg1->f0) {
+            if (arg2 != 0) {
+                func_0013AEC0(i);
+            } else if (fE8[i].f1C == 0 && !(fE8[i].f18 & 4)) {
+                func_0013AEC0(i);
+            } else {
+                result = 0;
+            }
+        }
+    }
+    if (result != 0) {
+        func_0013B840(arg1);
+    }
+    return 1;
+}
+
+int C_0013B9C0::func_0013C660(int arg)
+{
+    S_0013B9C0_Ent28 *e;
+    S_0013B9C0_Ent28 *end;
+    int *q;
+    int result = 1;
+    int r;
+
+    end = fC + f10 - 1;
+    for (e = fC; e < end; e++) {
+        if (func_0013C5D0(e, arg) == 0) {
+            result = 0;
+        }
+    }
+    r = func_0013C5D0(e, arg) ? result : 0;
+    q = f24;
+    do {
+        *q = -1;
+        q++;
+    } while (q <= f28);
+    return r;
+}
+
