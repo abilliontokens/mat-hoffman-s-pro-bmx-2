@@ -340,6 +340,32 @@ void __stdcall func_0001B910(C_0001B910 *p)
     }
 }
 
+void __stdcall func_0001B9E0(C_0001B910 *p, int slot, int flag)
+{
+    S_0001B910_Anim *anim = p->f1A4;
+
+    p->f78[slot] = 1;
+    p->f88 = -1;
+    p->f90 = -1;
+    if (flag != 0 || anim->f10 != 0) {
+        anim->f10 = 1;
+        p->f8C = 0;
+        p->f84 = slot;
+        if (p->f94[slot] != 0) {
+            anim->func_00166C80(p->func_001B56F0(), 0);
+        } else {
+            anim->func_00164820(p->func_001B56F0());
+        }
+        anim->f34 = 0;
+        p->f9C = 0;
+        anim->func_001670C0(0, 0, 0);
+        anim->func_00132D20();
+        if (p->f70[p->f84] == 0 && p->f8C == p->f64[p->f84] - 1) {
+            p->f78[p->f84] = 0;
+        }
+    }
+}
+
 void C_0001BAC0::func_0001BAC0(int idx, int slot)
 {
     S_0001BAC0_Obj *obj;
