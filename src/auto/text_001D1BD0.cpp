@@ -12,7 +12,11 @@ struct C_001D27F0_Obj {
 };
 
 struct C_001D27F0 {
-    char pad0[0x18];
+    char pad0[8];
+    int count;
+    int unkC;
+    struct LoadingRecord *records;
+    int unk14;
     int unk18;
     int unk1C;
     int unk20;
