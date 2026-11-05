@@ -9,6 +9,34 @@ struct C_001AC790 {
     void func_001AC790(int param_1);
 };
 
+void *func_001E8A44(unsigned int size);
+void func_001E891B(void *p);
+int func_001EA426(const char *a, const char *b);
+
+struct StringTableEntry {
+    const char *name;
+    int value;
+    int data;
+    int refCount;
+};
+
+struct StringTable {
+    void *vtbl;
+    int unk4;
+    int count;
+    int capacity;
+    int unk10;
+    StringTableEntry *entries;
+    int func_001AC680(const char *name, int value);
+    void func_001AC750(int index, int data);
+    int func_001AC7B0(const char *name);
+};
+
+struct DynamicStringTable {
+    void func_001AC830();
+    void *func_001AC920(int flags);
+};
+
 
 void C_001AC790::func_001AC790(int param_1)
 {
