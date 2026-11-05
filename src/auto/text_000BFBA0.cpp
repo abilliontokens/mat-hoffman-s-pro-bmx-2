@@ -3,6 +3,31 @@
 
 extern int D_0027E00C;
 
+extern char D_0027958C[];
+extern int D_0028F5E0;
+
+struct S_C0010_Text {
+    char pad[0x184];
+    S_C0010_Text(int a0);
+    void func_001B1580(char *a0, char *a1, int a2, int a3);
+    void func_001B1A30(float x, float y, int a2);
+    void func_001B19A0(int a0);
+    void func_001B2270(unsigned int color);
+};
+
+struct S_C0010_Sub4 { char pad[0xae8]; int fae8; };
+struct S_C0010_2E8 { int f0; S_C0010_Sub4 *f4; };
+struct S_C0010_2EC {
+    void func_0018C780(int a0, void *a1, int a2);
+    void func_0018C160(char *a0);
+};
+struct S_C0010_Global {
+    char pad[0x2e8];
+    S_C0010_2E8 *f2e8;
+    S_C0010_2EC *f2ec;
+};
+extern S_C0010_Global *D_002A8490;
+
 struct BmxUIPageDemo {
     void *vtbl;
     char pad4[0x280 - 4];
