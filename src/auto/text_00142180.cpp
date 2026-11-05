@@ -196,6 +196,7 @@ struct C_00142E90 {
     int unk184;
     int unk188;
     f32 unk18C;
+    C_00142E90(int a0);
     void func_00142E90(int a0);
 };
 
@@ -228,9 +229,9 @@ void C_00142D20::func_00142D20() {
             C_00142D90_Elem *e = &unk14[i];
             if (e->unkC > 0 && e->unk4 == 0) {
                 C_00142C70 *p = (C_00142C70 *)func_001E8A44(0xf0);
-                int obj = p ? p->func_00142C70() : 0;
-                ((C_00142C80 *)obj)->func_00142C80(unk14[i].unk0, i);
-                unk14[i].unk4 = obj;
+                C_00142C70 *obj = p ? (C_00142C70 *)p->func_00142C70() : 0;
+                ((C_00142C80 *)obj)->func_00142C80(e->unk0, i);
+                e->unk4 = (int)obj;
             }
             i++;
         } while (i < unk8);
