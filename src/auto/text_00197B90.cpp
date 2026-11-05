@@ -2,6 +2,13 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+extern float D_00275460;
+extern float D_00278C48;
+struct C_00197B90 {
+    char pad0[0xB0];
+    float m[12];
+    void func_00197B90(float *out);
+};
 void *func_001E8A44(int size);
 int func_001EA426(void *a, void *b);
 struct C_001982F0 {
