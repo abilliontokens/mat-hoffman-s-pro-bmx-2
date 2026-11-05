@@ -208,6 +208,8 @@ struct Cam_00193C20 {
 
 extern char D_002A9934;
 void *func_001E8AA5(int size);
+struct S_00193AF0;
+void func_00193AF0(S_00193AF0 *p);
 
 struct Args_00193240 {
     char pad0[0x30];
