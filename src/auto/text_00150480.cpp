@@ -98,8 +98,16 @@ C_00150810 *C_00150810::func_00150810(int a0, float a1, float a2, float a3, floa
 
 void C_00150900::func_00150900(Vec4_150900 *a0, Vec4_150900 *a1) {
     if (unk2C == 0) {
-        *a0 = D_002A78CC;
-        *a1 = D_002A78BC;
+        int *d0 = (int *)a0;
+        int *d1 = (int *)a1;
+        d0[0] = *(int *)&D_002A78CC;
+        d0[1] = *(int *)&D_002A78D0;
+        d0[2] = *(int *)&D_002A78D4;
+        d0[3] = *(int *)&D_002A78D8;
+        d1[0] = *(int *)&D_002A78BC;
+        d1[1] = *(int *)&D_002A78C0;
+        d1[2] = *(int *)&D_002A78C4;
+        d1[3] = *(int *)&D_002A78C8;
         return;
     }
     unk2C->unk1A4->unk4->func_00197B40(a0, a1);
