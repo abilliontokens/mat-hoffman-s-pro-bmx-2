@@ -38,6 +38,15 @@ struct C_00128910 {
 };
 
 
+void func_00128440(S_00127DD0_Node *node)
+{
+    if (node->split >= D_00275544) {
+        func_00128440(node->left);
+        func_00128440(node->right);
+    }
+    func_001E891B(node);
+}
+
 C_00128910* C_00128910::func_00128910(void) {
     unk14 = 0;
     unk10 = 0;
