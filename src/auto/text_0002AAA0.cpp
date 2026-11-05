@@ -68,10 +68,10 @@ struct Vec4_0002AF90 {
     }
     __forceinline Vec4_0002AF90 Mul(void) const
     {
-        Vec4_0002AF90 r;
-        r.x = D_002A1178 * x;
-        r.y = y * D_002A1178;
-        r.z = z * D_002A1178;
+        Vec4_0002AF90 r = *this;
+        r.x *= D_002A1178;
+        r.y *= D_002A1178;
+        r.z *= D_002A1178;
         r.w = 1.0f;
         return r;
     }
@@ -131,7 +131,7 @@ void C_0002AF90::func_0002AF90(void)
     if (cur->x == D_002A10F0 && cur->y == D_002A10F4 && cur->z == D_002A10F8) {
         cur->Set(tgt);
     }
-    cur->Lerp(tgt, D_002A1178);
+    cur->Lerp(tgt);
     f1f8->func_0014AC30(cur, 0);
     f1f8->func_00133ED0();
     f1f8->func_00133F10(0);
