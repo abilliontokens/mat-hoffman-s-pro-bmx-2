@@ -65,7 +65,21 @@ struct C_00095A00 {
     S_00095A00_Sub f68;
     int func_00095A00(int n);
     int func_000952F0(void);
+    int func_00095880();
+    int func_00095250(int n);
+    int func_000952A0(int n);
+    int func_000955C0(int n);
 };
+struct S_00095880_Array {
+    int count;
+    int *data;
+    int growth;
+    int capacity;
+    unsigned char flags;
+    void func_001CDED0(int n);
+};
+void *func_001E8A44(unsigned int size);
+int func_00011260(int a, int b);
 
 struct S_00095AB0_Vt {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
