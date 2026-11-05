@@ -96,7 +96,7 @@ void func_0011F400(int a0, int a1, int a2, int a3, int a4, int a5)
     float zz = z * z;
     float r = func_0001E960(xx + yy + zz);
 
-    func_0011F010(a0, x * r, y * r, z * r, a5, a4);
+    func_0011F010(a0, x * r, y * r, z * r, *(float *)&a5, *(float *)&a4);
 }
 
 void func_0011F460(int a0, int a1, int a2, int a3, float angle)
