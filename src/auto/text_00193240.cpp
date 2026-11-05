@@ -41,6 +41,8 @@ struct Node_00193240 {
     float f24;
     Node_00193240 *func_00193490(void);
     void func_001937F0(void *a1, void *a2, void *a3);
+    void func_00193600(void *a1, void *a2, void *a3, void *a4);
+    void func_00193950(void *a1, struct S_00193240_V4 *a2, void *a3, void *a4);
     void func_00193870(void *a);
     void func_00193530(void *a1, void *a2, void *a3, void *a4);
     void func_001938C0(void *a1, struct C_00192B50 *a2, int a3, struct S_00193240_V4 *a4,
