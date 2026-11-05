@@ -1,6 +1,36 @@
 /* 22 functions from 0x001B5D90 to 0x001B6A70, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_001BBAA0;
+extern char D_0001C0B0;
+struct S_001B5D90_Item {
+    char pad0[4];
+    int f4;
+    char pad8[0x70];
+    int *f78;
+    char pad7c[0x24];
+    char fa0[1];
+};
+struct S_001B5D90_List {
+    char pad0[0x24];
+    int f24;
+    S_001B5D90_Item **f28;
+};
+struct S_001B5D90_Param {
+    char pad0[0x3ac];
+    S_001B5D90_List *f3ac;
+    char pad3b0[4];
+    int f3b4;
+};
+struct C_001B5D90 {
+    char pad0[0x10c];
+    int f10c;
+    char f110[0xf0];
+    int f200;
+    int func_001B5D90(S_001B5D90_Param *param, C_001BBAA0 *obj);
+};
+extern "C" int strcmp(const char *, const char *);
+extern "C" char *strcpy(char *, const char *);
 struct C_001B61A0 {
     int unk0;
     int unk4;
