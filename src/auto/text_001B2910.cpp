@@ -41,6 +41,27 @@ int func_001B2BF0(int param_1)
     }
 }
 
+int func_001B2C40(int param_1)
+{
+    switch (param_1) {
+    case 6:
+    case 7:
+    case 0x12:
+        return 0x22b8;
+    case 5:
+        return 0x235;
+    case 2:
+    case 3:
+        return 0x613;
+    case 4:
+        return 0x115c;
+    case 0x19:
+        return 8;
+    default:
+        return -1;
+    }
+}
+
 int func_001B2CB0(int param_1)
 {
     return func_001B2910(param_1) / 8;
