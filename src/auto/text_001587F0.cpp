@@ -142,3 +142,33 @@ C_00159560 *C_00159560::func_00159560(int param_1) {
     return this;
 }
 
+C_001595A0 *C_001595A0::func_001595A0(int n, S_Arg2 *arg2) {
+    if (n < 1000) {
+        unk24 = 1000;
+    } else {
+        unk24 = n;
+    }
+    if (unk24 == 0) {
+        return (C_001595A0 *)unk24;
+    }
+    unk34 = (int *)func_001E8AA5(unk24 * 4);
+    for (int i = 0; i < unk24; i++) {
+        unk34[i] = 0;
+    }
+    S_A *m = (S_A *)func_001E8A44(0xa0);
+    S_A *a = m ? m->func_00192900(1) : 0;
+    unk38 = a;
+    func_001577A0(a, 0);
+    S_B *mb = (S_B *)func_001E8A44(0x8b4);
+    S_B *b = mb ? mb->func_0017D5A0(arg2->p388->f538, 0xff7fffff, arg2->p388->f540, arg2->p388->f53c, 0x7f7fffff, arg2->p388->f544, D_00287520) : 0;
+    unk38->func_00192A90(b);
+    unk38->func_00192AC0(b);
+    S_C *mc = (S_C *)func_001E8A44(0x28);
+    S_C *c = mc ? mc->func_00193490() : 0;
+    unk3c = c;
+    c->unk4 = (int)unk38;
+    unk3c->unk8 = b;
+    b->v2();
+    return this;
+}
+
