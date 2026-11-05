@@ -58,3 +58,14 @@ undefined4 C_0012E6F0::func_0012E6F0(byte param_1)
   }
   return in_ECX;
 }
+
+C_0012EF30 *C_0012EF30::func_0012EF30(int a)
+{
+    ((C_0012C940 *)this)->func_0012C940(a);
+    f510 = 0;
+    f518 = 0;
+    f51c = 0;
+    vtbl = (void *)&D_002843F4;
+    return this;
+}
+
