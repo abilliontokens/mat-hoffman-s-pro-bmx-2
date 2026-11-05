@@ -58,6 +58,16 @@ struct C_001BB900 {
 };
 
 
+void *C_001BB5F0::func_001BB5F0(unsigned int flags)
+{
+    vtbl = &D_0028D244;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 undefined4 C_001BC020::func_001BC020(byte param_1)
 {
   int func_001BB860(...);
