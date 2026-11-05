@@ -83,7 +83,6 @@ struct C_00165E20 {
     C_00165E20_Elem *f1EC;     /* 0x1EC */
     int *f1F0;                 /* 0x1F0 */
     int func_00164650(int a);
-    void func_00165E20(Vec4_165EF0 *out, C_00165E20_Arg1 *a1, f32 a2, int a3, void *a4);
     Vec4_165EF0 func_00165E20(C_00165E20_Arg1 *a1, f32 a2, int a3, void *a4);
 };
 
