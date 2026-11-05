@@ -94,10 +94,12 @@ struct C_001D5490 {
     void func_001D54B0(int a);
 };
 
+struct C_001D48A0;
+
 /* XboxViewportChangeSurfaceData */
 struct C_001D53A0 {
     C_00144640 *unk0;
-    struct C_001D48A0 *unk4;
+    C_001D48A0 *unk4;
     void func_001D53A0(int a);
     void func_001D5430(S_0012B2B0_Rect *in, S_0012B2B0_Rect *out, int c);
 };
