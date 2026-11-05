@@ -3,6 +3,13 @@
 
 int func_001EA426(void *a, void *b);
 
+static inline void *GetAt(void **items, int count, int i)
+{
+    if (count > 0 && items != 0 && i < count)
+        return items[i];
+    return 0;
+}
+
 struct C_00038760 {
     char pad0[0x64];
     C_00038760 *f64;         /* 0x64 */
@@ -29,9 +36,10 @@ struct C_00038760 {
 int *C_00038760::func_000389C0(int param_1)
 {
     int i;
-    for (i = 0; i < count; i++) {
+    int n = count;
+    for (i = 0; i < n; i++) {
         int *e = (int *)at(i);
-        if ((e[0] == 0 || e[0] > 2) && e[2] == param_1)
+        if ((e[0] == 0 || e[0] >= 3) && e[2] == param_1)
             return e;
     }
     return 0;
@@ -40,7 +48,8 @@ int *C_00038760::func_000389C0(int param_1)
 int *C_00038760::func_00038A10(int param_1, int *param_2)
 {
     int i;
-    for (i = 0; i < count; i++) {
+    int n = count;
+    for (i = 0; i < n; i++) {
         int *e = (int *)at(i);
         if (e[0] == 1 && e[4] == param_1) {
             if (param_2)
