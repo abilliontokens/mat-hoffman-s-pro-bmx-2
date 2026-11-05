@@ -170,7 +170,6 @@ MountVertOverlay *MountVertOverlay::func_00086470(int a)
 void MountVertOverlay::func_000864D0(void)
 {
     S_000864D0_Obj *p = (S_000864D0_Obj *)unk28;
-    S_000864D0_Obj **a = (S_000864D0_Obj **)&unk30;
     int i;
 
     vtbl = (void *)&D_002796BC;
@@ -178,13 +177,14 @@ void MountVertOverlay::func_000864D0(void)
         p->func_001D6410();
         func_001E891B(p);
     }
+    S_000864D0_Obj **a = (S_000864D0_Obj **)&unk30;
     for (i = 4; i != 0; i--) {
         p = *a;
-        a++;
         if (p != 0) {
             p->func_001D6410();
             func_001E891B(p);
         }
+        a++;
     }
     ((C_00157660 *)this)->func_00157660();
 }
