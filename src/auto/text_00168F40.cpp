@@ -362,7 +362,7 @@ int C_00168F40::func_00169490(int name, int flag)
         fC = 0;
         D_002BEAAC->func_0013C8A0(f0, tag, 7, 1);
         tag[6] = 0;
-        if (memcmp(tag, D_00288030, 7) == 0) {
+        if (strcmp(tag, "BINARY") == 0) {
             f4 = 1;
             D_002BEAAC->func_0013C8A0(f0, &flag, 4, 1);
             if (flag != 1) {
