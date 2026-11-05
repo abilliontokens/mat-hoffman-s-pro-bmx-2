@@ -1,5 +1,7 @@
 /* 6 functions from 0x001800A0 to 0x00180E00, found by Ghidra. */
 #include "common.h"
+
+static inline void FloatToInt(int *out, float f) { *out = (int)f; }
 struct C_001805F0 {
     char pad0[0x104];
     int unk104;
