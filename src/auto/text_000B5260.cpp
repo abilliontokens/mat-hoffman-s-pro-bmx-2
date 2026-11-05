@@ -138,6 +138,32 @@ int C_000B5950::func_000B5950(void)
   return 0;
 }
 
+C_000B5990 *C_000B5990::func_000B5990(int param_1)
+{
+  void __stdcall func_000B50B0(int);
+
+  func_000B50B0(param_1);
+  vtbl = (int)&D_0027D40C;
+  unk58 = 0.1f;
+  unk5c = 0.034906446933746338f;
+  unk60 = 0.05f;
+  unk64 = 0.017453223466873169f;
+  unk6c = 15.707490920066833f;
+  unk68 = 10.0f;
+  return this;
+}
+
+void C_000B6050::func_000B6050(int param_1)
+{
+  int in_ECX = (int)this;
+
+  unk2c = param_1;
+  unk30 = *(int *)(param_1 + 0x22c);
+  ((C_000B5120 *)in_ECX)->func_000B5120();
+  ((C_000B51C0 *)in_ECX)->func_000B51C0();
+  ((C_001D3F50 *)in_ECX)->func_001D3F50();
+}
+
 void C_000B6080::func_000B6080(int param_1)
 {
   int func_000B58B0(...);
