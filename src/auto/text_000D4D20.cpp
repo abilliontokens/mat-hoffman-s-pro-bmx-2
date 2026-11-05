@@ -145,6 +145,61 @@ void BmxUIPageHOF::func_000D4DD0()
     func_001BE3F0();
 }
 
+void BmxUIPageHOF::func_000D5860()
+{
+    DelObjC_000D4DD0 **ptr;
+    DelObjB_000D4DD0 *e;
+    DelObjC_000D4DD0 *c;
+    DelObjA_000D4DD0 *p;
+    int count;
+    S_002B91AC *s;
+
+    if (unk280) {
+        D_002B91AC->unk6C->func_001D5AD0();
+    } else {
+        D_002B91AC->unk54->func_001D5AD0();
+    }
+    if (unk298) {
+        e = arr2F4[0];
+        e->f38 = ((short)unk2B8 << 24) | (e->f38 & 0xffffff);
+        e->b58 |= 2;
+        p = (DelObjA_000D4DD0 *)arr2F4[0];
+    } else {
+        e = arr2F4[0];
+        e->f38 = ((short)unk2B8 << 24) | (e->f38 & 0xffffff);
+        e->b58 |= 2;
+        p = arr2EC[0];
+    }
+    p->func_001D5AD0();
+    if (unk294) {
+        e = arr2F4[1];
+        e->f38 = ((short)unk2B8 << 24) | (e->f38 & 0xffffff);
+        e->b58 |= 2;
+        p = (DelObjA_000D4DD0 *)arr2F4[1];
+    } else {
+        e = arr2F4[1];
+        e->f38 = ((short)unk2B8 << 24) | (e->f38 & 0xffffff);
+        e->b58 |= 2;
+        p = arr2EC[1];
+    }
+    p->func_001D5AD0();
+    ptr = arr2FC;
+    count = 2;
+    do {
+        c = *ptr;
+        c->f38 = ((short)unk2B8 << 24) | (c->f38 & 0xffffff);
+        c->b58 |= 2;
+        (*ptr)->func_001D5AD0();
+        ptr++;
+        count--;
+    } while (count != 0);
+    s = D_002B91AC;
+    s->unk24->func_001D5AD0();
+    s->unk28->func_001D5AD0();
+    s->unk2C->func_001D5AD0();
+    s->unk30->func_001D5AD0();
+}
+
 void BmxUIPageHOF::func_000D5B90()
 {
     S_000D5B90_Owner *owner = f124;
