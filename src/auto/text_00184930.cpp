@@ -225,7 +225,9 @@ struct C_00184930 {
     int f350;
     char pad354[0x388 - 0x354];
     S_00184D10_Info *f388;
-    char pad38c[0x3a8 - 0x38c];
+    char pad38c[4];
+    S_00184930_Col *f390;
+    char pad394[0x3a8 - 0x394];
     S_00184BB0_List **f3a8;
     S_00184C00_Obj *f3ac;
     S_00184CC0_Item **f3b0;
