@@ -21,9 +21,33 @@ struct C_001804F0 {
 };
 
 struct C_001805C0 {
-    void func_001805C0(void);
+    C_001805C0 *func_001805C0(void);
 };
 
+
+C_001804F0 *C_001804F0::func_001804F0(float *p) {
+    extern float D_002F0798;
+    extern float D_002891BC;
+    float f0 = D_002F0798 * p[0];
+    float f1 = D_002F0798 * p[1];
+    float f2 = D_002F0798 * p[2];
+    unk0 = (short)(D_002891BC * f0);
+    unk2 = (short)(D_002891BC * f1);
+    unk4 = (short)(D_002891BC * f2);
+    return this;
+}
+
+C_001805C0 *C_001805C0::func_001805C0(void) {
+    int *p = (int *)((char *)this + 4);
+    for (int i = 2; i != 0; i--) {
+        p[2] = 0;
+        p[1] = 0;
+        p[0] = 0;
+        p[3] = 0x3f800000;
+        p += 4;
+    }
+    return this;
+}
 
 void C_001805F0::func_001805F0(void) {
     extern int D_002B9344;
