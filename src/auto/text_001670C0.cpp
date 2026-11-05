@@ -116,10 +116,6 @@ struct __declspec(align(16)) S_001677C0_Block {
     f32 m[16];
 };
 
-struct M4_001677C0 {
-    __m128 r[4];
-};
-
 struct V4_001677C0 {
     f32 x;
     f32 y;
