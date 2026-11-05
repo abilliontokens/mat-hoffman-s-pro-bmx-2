@@ -36,3 +36,20 @@ struct C_0012B8F0 {
     void func_0012BF10(int idx, u32 *a, u32 *b, u32 *c, int *d);
     void func_0012C4E0(void);
 };
+
+void C_0012B8F0::func_0012C4E0(void) {
+    vtbl = (void *)&D_00284194;
+    if (f24 != 0) {
+        func_001E891B(f24);
+    }
+    if (f28 != 0) {
+        func_001E891B(f28);
+    }
+    if (f2C != 0) {
+        func_001E891B(f2C);
+    }
+    if (f44 != 0) {
+        func_001E891B(f44);
+    }
+    ((C_00157660 *)this)->func_00157660();
+}
