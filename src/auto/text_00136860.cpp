@@ -18,6 +18,11 @@ struct Config136BE0 {
  void func_00168C50(const char *, float, float *);
  void func_00168BE0(const char *, const char *, char *, int);
 };
+struct Locals136BE0 {
+ char key[0x108], section[0x108];
+ Config136BE0 cfg;
+ char list[0x108], path[0x108], text[0x104];
+};
 struct Anim136BE0 {
  float start, end;
  int count;
