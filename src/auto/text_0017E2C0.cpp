@@ -99,7 +99,7 @@ struct V4C_0017E7C0 { float x, y, z, w; V4C_0017E7C0() { z = 0; y = 0; x = 0; w 
 void func_00030AC0(V4C_0017E7C0 *out, void *v, void *m);
 void func_0017E5B0(V4C_0017E7C0 *a, V4C_0017E7C0 *b);
 
-inline void Xform_0017E7C0(V4C_0017E7C0 *out, float *m, float *vin)
+__forceinline void Xform_0017E7C0(V4C_0017E7C0 *out, float *m, float *vin)
 {
     __m128 v = _mm_loadu_ps(vin);
     __m128 r0 = _mm_load_ps(m);
