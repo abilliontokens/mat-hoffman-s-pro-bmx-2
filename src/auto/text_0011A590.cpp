@@ -3,8 +3,29 @@
 #include <xmmintrin.h>
 
 extern int D_00283D5C;
+extern float D_00275544;
+extern float D_002756B8;
+extern float D_002756D0;
+extern float D_002756E8;
 
 void func_001E891B(void *p);
+float func_0014F7E0(float x);
+float func_0014F510(float x);
+float func_0014F550(float x);
+
+struct Vec4 {
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 w;
+    Vec4() {}
+    Vec4(f32 x_, f32 y_, f32 z_, f32 w_) {
+        x = x_;
+        y = y_;
+        z = z_;
+        w = w_;
+    }
+};
 
 struct C_0011AB60 {
     void *vtbl;
