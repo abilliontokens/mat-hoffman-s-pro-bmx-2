@@ -24,6 +24,7 @@ struct C_0015B7A0 {
     u32 unkC;
     u32 unk10;
     void *unk14;
+    C_0015B7A0();
     void func_0015B7A0();
 };
 
@@ -33,4 +34,31 @@ struct C_0015BAC0 {
     char pad18[0x8];
     void func_0015BAC0(int a0, u32 *a1, int a2);
 };
+
+void C_0015B660::func_0015B660() {
+    unk4 = 0;
+    unk8 = 1;
+    unkC = 0;
+    unk10 = 0;
+    vtbl = &D_0028779C;
+    unk14 = 0;
+}
+
+void C_0015B7A0::func_0015B7A0() {
+    unk4 = 0;
+    unk8 = 1;
+    unk10 = 0;
+    vtbl = &D_002877C0;
+    unkC = 0;
+    unk14 = 0;
+}
+
+void C_0015BAC0::func_0015BAC0(int a0, u32 *a1, int a2) {
+    if (a1 != 0) {
+        *a1 = unk14[a0 * 3];
+    }
+    if (a2 != 0) {
+        func_0001B2E0(&unk14[a0 * 3 + 1], a2);
+    }
+}
 
