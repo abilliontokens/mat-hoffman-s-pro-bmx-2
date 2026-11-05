@@ -244,6 +244,18 @@ void __cdecl func_001EB496(int flag, char *argument, char *number)
         *(S_CrtFloat *)argument = fltval;
     }
 }
+
+void __cdecl func_001EB786(double *arg, char *buffer, int format, int precision, int caps)
+{
+    if (format == 'e' || format == 'E') {
+        func_001EB5A0(arg, buffer, precision, caps);
+    } else if (format == 'f') {
+        func_001EB6A7(arg, buffer, precision);
+    } else {
+        func_001EB6F9(arg, buffer, precision, caps);
+    }
+}
+
 #pragma optimize("y", on)
 
 void __cdecl func_001EB7D7(void)
