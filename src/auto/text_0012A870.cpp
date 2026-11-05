@@ -176,12 +176,11 @@ struct C_0012ACC0 {
 };
 inline void Cross_0012ACC0(float *dst, const float *a, const float *b)
 {
-    __m128 x = _mm_loadu_ps(a);
-    __m128 y = _mm_loadu_ps(b);
-    __m128 p = _mm_mul_ps(x, _mm_shuffle_ps(y, y, 0xc9));
-    __m128 q = _mm_mul_ps(y, _mm_shuffle_ps(x, x, 0xc9));
-    x = _mm_sub_ps(p, q);
-    _mm_storeu_ps(dst, _mm_shuffle_ps(x, x, 0xc9));
+    _mm_storeu_ps(dst, _mm_shuffle_ps(
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9))),
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9))), 0xc9));
 }
 
 struct C_0012B000 {
