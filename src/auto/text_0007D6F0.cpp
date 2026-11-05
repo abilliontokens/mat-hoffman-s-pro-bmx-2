@@ -43,8 +43,66 @@ struct GObj2E8_7E {
 };
 
 struct GObjRoot_7E {
-    char pad0[0x2e8];
+    char pad0[0x270];
+    int f270;
+    int f274;
+    char pad278[0x2e8 - 0x278];
     GObj2E8_7E *p2E8;
+};
+
+extern int D_002B9060;
+extern int D_002B905C;
+extern int D_00278AF0;
+
+struct C_Rect24_7E {
+    int x;
+    int y;
+    int w;
+    int h;
+    int f10;
+    int f14;
+};
+
+struct C_Creator_7E {
+    int func_00026500(int a, int b);
+};
+
+extern C_Creator_7E *D_002A7CB8;
+
+struct C_VCall8_7E {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7(int a);
+    virtual void v8();
+    int f4;
+};
+
+extern C_VCall8_7E *D_002EFDB8;
+
+struct C_12B2B0_7E {
+    char pad0[0x1e0];
+    C_Rect24_7E rect;
+    void func_0012B2B0(void *a, void *b);
+};
+
+struct C_Cache_7E {
+    char pad0[0x90];
+    int f90;
+};
+
+struct C_0007E0C0 {
+    void *vtbl;
+    char pad4[0xD0];
+    C_Cache_7E *fD4;
+    undefined4 func_0007E0C0(void);
+    void func_0006D100(void);
+    void func_0006CEC0(void);
+    void func_00157960(void);
 };
 
 struct SetterObj_7E {
