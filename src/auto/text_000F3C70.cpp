@@ -52,6 +52,7 @@ struct VPage_000F3C70 {
     virtual void v70(int a, int b);
 };
 
+extern float D_00278C58;
 extern float D_00278C48;
 extern float D_0027DE74;
 
