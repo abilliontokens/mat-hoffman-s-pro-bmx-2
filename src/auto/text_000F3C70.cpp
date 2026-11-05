@@ -87,6 +87,69 @@ struct BmxUIPageParkEditor {
     void func_001BED00(float dt);
 };
 
+void BmxUIPageParkEditor::func_000F3C70(float dt)
+{
+    Owner_000F3C70 *owner = p124;
+    int i;
+
+    if (f294 != 0 || f298 != 0) {
+        for (i = 0; i < 8; i++)
+            a148[i] = 0;
+    }
+    if (f2B8 != 0 && f2A4 == 0) {
+        f2B4 += dt;
+        if (f2B4 >= D_00278C48) {
+            f2A4 = 1;
+            f2B8 = 0;
+        }
+    }
+    if (f29C != 0) {
+        if (owner->p25C->p74->func_000301D0() == 0) {
+            f2B8 = 1;
+            f2B4 = 0.0f;
+            owner->func_000BA9B0(0x19)->func_00103260(0);
+            owner->func_000BA9B0(0x1a)->func_00103260(0);
+            f2BC = 0xff;
+            f2C0 = 0;
+            f2C4 = 0;
+            f2C8 = 0.0f;
+            f2CC = 0.25f;
+            func_001BEE50(1, f2B0, 0);
+            f29C = 0;
+        }
+    }
+    if (f2A0 != 0) {
+        owner->func_000BA9B0(0x19)->func_00103350();
+        owner->func_000BA9B0(0x1a)->func_00103350();
+        f2BC = 0;
+        f2C0 = 0xff;
+        f2C4 = 0xff;
+        f2C8 = 0.0f;
+        f2CC = 0.25f;
+        f2A0 = 0;
+    }
+    if (f2BC != p2D0->b3B) {
+        if (f2C8 >= f2CC) {
+            f2C4 = f2BC;
+        } else {
+            f2C4 = (int)((float)(f2BC - f2C0) * (f2C8 / f2CC)) + f2C0;
+            f2C8 += dt;
+        }
+    }
+    if (f280 != 0 || f298 != 0 || f294 != 0) {
+        f288 += dt;
+        if (f280 != 0 && owner->f2A4 != 0) {
+            f280 = 0;
+            f2A0 = 0;
+        } else if (f288 >= D_0027DE74) {
+            f284 = 1;
+            ((VPage_000F3C70 *)this)->v70(f28C, f290);
+            f288 = 0.0f;
+        }
+    }
+    func_001BED00(dt);
+}
+
 undefined4 C_000F3EC0::func_000F3EC0(byte param_1)
 {
   int func_000C66E0(...);
