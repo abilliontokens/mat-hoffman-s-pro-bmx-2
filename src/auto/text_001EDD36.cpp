@@ -77,6 +77,26 @@ int func_001EE6CE(int fh)
     return -1;
 }
 
+int func_001EE70F(int fh)
+{
+    char *p;
+
+    p = (char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28;
+    if (*(int *)(p + 8) == 0) {
+        func_001EB390(10);
+        if (*(int *)(p + 8) == 0) {
+            if (func_001F44EF(p + 0xc, 4000) == 0) {
+                func_001EB302(10);
+                return 0;
+            }
+            (*(int *)(p + 8))++;
+        }
+        func_001EB302(10);
+    }
+    _imp__RtlEnterCriticalSection((char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 0xc);
+    return 1;
+}
+
 void func_001EE782(int fh)
 {
     _imp__RtlLeaveCriticalSection((char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 0xc);
