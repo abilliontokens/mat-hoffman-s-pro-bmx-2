@@ -383,6 +383,26 @@ int C_00094A00::func_00094D00(void)
     return 1;
 }
 
+int C_00094A00::func_00094D90(int a)
+{
+    int i;
+
+    if (a == 0) {
+        for (i = 0; i < f7C; i++) {
+            if (!f84[i]->v6(0)) {
+                return 0;
+            }
+        }
+    } else {
+        for (i = 0; i < f7C; i++) {
+            if (!f84[i]->v16(0, a, 0)) {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
 int C_00094A00::func_00094EE0(void)
 {
     if (f84[0] != 0 && f84[0]->v7()) {
