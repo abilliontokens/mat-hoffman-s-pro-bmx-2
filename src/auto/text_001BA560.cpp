@@ -291,6 +291,7 @@ struct C_001BA5E0 {
     int f144;
     C_001BA5E0();
     C_001BA5E0 *func_001BA5E0(void);
+    int func_001BB060(S_001BB060_Stream *stream, int a1);
 };
 
 struct C_001BB300 {
