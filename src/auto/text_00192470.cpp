@@ -282,6 +282,29 @@ void C_00192470::func_001927A0(void)
     func_0001DFF0();
 }
 
+void SearchNode::func_00192930(void)
+{
+    extern int D_0028ABD4;
+    S_00192930_Node *n;
+    S_00192930_Node *next;
+
+    vtbl = (void *)&D_0028ABD4;
+    for (n = f24; n != 0; n = next) {
+        next = n->next;
+        func_001E8390(n);
+    }
+    if (f30 != 0) {
+        func_001E891B(f30);
+    }
+    if (f28 != 0) {
+        f28->v2();
+    }
+    if (f2C != 0) {
+        f2C->v2();
+    }
+    ((C_00157660 *)this)->func_00157660();
+}
+
 int SearchNode::func_00192AC0(S_00192930_Iface *obj)
 {
     if (f2C != 0) {
