@@ -129,3 +129,13 @@ void C_0008B6F0::func_0008B6F0(void) {
     ((C_0005E840 *)f34)->func_0005E840((int)&D_00275630);
 }
 
+C_0008B820 *C_0008B820::func_0008B820(int unused) {
+    ((C_00157600 *)this)->func_00157600(1);
+    f24 = 0;
+    f2C = 0;
+    f30 = 0;
+    f34 = 0;
+    vtbl = &D_00279DEC;
+    return this;
+}
+
