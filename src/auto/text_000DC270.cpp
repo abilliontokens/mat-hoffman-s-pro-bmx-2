@@ -56,6 +56,7 @@ struct I_000DCC20_Buf {
     virtual void v20(); virtual void v24(); virtual void v28(); virtual void v2C();
     virtual void v30(); virtual void v34(); virtual void v38(); virtual void v3C();
     virtual void *v40(int a0, int a1, int a2);
+    virtual void v44(int a0);
 };
 
 /* heap block released when the scope is left */
