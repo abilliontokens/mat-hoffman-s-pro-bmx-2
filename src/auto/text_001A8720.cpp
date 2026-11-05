@@ -78,6 +78,7 @@ struct C_001A8B80 {
     int f154;
     void *func_001A8B80(int flags);
     void func_001A9070(int count);
+    void func_001A9110(int a, float b, float c, float d, float e, float f, float g, float h);
     void func_001A9220(int idx, f32 v);
     void func_001D3F50(void);
     void func_001A9680(void);
