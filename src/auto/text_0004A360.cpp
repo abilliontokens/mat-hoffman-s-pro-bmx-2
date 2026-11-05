@@ -52,6 +52,11 @@ struct S_Obj12140 {
 
 struct C_001983A0 {
     void func_001983A0(void);
+    void func_00198390(void);
+};
+
+struct S_Obj488 {
+    void func_0016F7B0(void);
 };
 
 /* base reached through virtual inheritance */
