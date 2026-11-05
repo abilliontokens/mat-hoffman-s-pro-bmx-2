@@ -62,6 +62,26 @@ void C_00188700::func_00188720(void)
     }
 }
 
+void C_00188700::func_00188750(void)
+{
+    C_00188750_Obj *p;
+    C_00188750_Obj *q;
+
+    p = (C_00188750_Obj *)func_001E8A44(0x150);
+    if (p != 0) {
+        p->func_00187F60();
+        *(void **)p = (void *)&D_00289F54;
+        p->unk144 = 0;
+        p->unk148 = 0;
+        p->unk14C = 0;
+        q = p;
+    } else {
+        q = 0;
+    }
+    unkC = (int)q;
+    q->v1();
+}
+
 CollisionObjects *CollisionObjects::func_00188A80(int a0)
 {
     func_00157600(a0);
