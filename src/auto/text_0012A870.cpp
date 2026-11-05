@@ -42,6 +42,25 @@ struct C_0012B2B0 {
     void func_0012B2B0(S_0012B2B0_Rect *in, S_0012B2B0_Rect *out);
 };
 
+struct VT_0012B410 {
+    char pad0[0x70];
+    void (__fastcall *f70)(void *self);
+};
+
+struct C_0012B410 {
+    VT_0012B410 *vtbl;
+    char pad04[0x1d];
+    byte f21;
+    char pad22[0x1ba];
+    int f1dc;
+    char pad1e0[0x24];
+    int f204;
+    int f208;
+    void func_001D3F50(void);
+    void func_0012A7C0(int x, int y, int w, int h);
+    C_0012B410 *func_0012B410(int a, int b, int c);
+};
+
 struct C_0012B750 {
     undefined4 func_0012B750(undefined4 param_1);
 };
