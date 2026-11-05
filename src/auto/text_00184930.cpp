@@ -84,6 +84,17 @@ void C_00184930::func_00184BB0(void)
     }
 }
 
+int C_00184930::func_00184C00(void)
+{
+    if (f3ac != 0) {
+        void *mem = func_001E8A44(0x30);
+        f484 = mem != 0 ? ((S_00184C00_Mgr *)mem)->func_0001B380(1) : 0;
+        f3ac->v29(this);
+        f484->func_0001B3B0(f3ac);
+    }
+    return 1;
+}
+
 int __stdcall func_00185860(char *name)
 {
     if (memcmp(name, D_002895F4, 9) == 0) {
