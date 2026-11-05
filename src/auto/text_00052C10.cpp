@@ -176,7 +176,7 @@ struct C_535C0 {
 struct C_53460_V4 { float x, y, z, w; };
 struct C_53460_54 {
     void func_0009FE70(int a);
-    void func_0009FD60(int a, int b, int c, int d);
+    void func_0009FD60(float a, float b, float c, float d);
 };
 struct C_53460_44 {
     char pad0[0x54];
