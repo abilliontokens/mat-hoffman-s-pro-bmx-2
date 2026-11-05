@@ -235,6 +235,7 @@ extern char D_0028CD10[];
 extern char D_0028CD08[];
 extern char D_0028CC30[];
 extern "C" int memcmp(const void *a, const void *b, unsigned int n);
+extern "C" int strcmp(const char *a, const char *b);
 char *func_001E91F4(const char *s);
 
 /* config reader */
@@ -534,8 +535,8 @@ void C_001BAEC0::func_001BAEC0(void)
 int C_001BA5E0::func_001BB060(S_001BB060_Stream *stream, int a1)
 {
     char buf[0x80];
-    S_001BB060_Tokenizer tok2;
     S_001BB060_Tokenizer tok1;
+    S_001BB060_Tokenizer tok2;
     char *s;
     int i;
 
