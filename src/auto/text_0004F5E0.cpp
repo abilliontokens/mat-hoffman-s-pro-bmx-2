@@ -53,6 +53,39 @@ struct C_00031C90 {
     void func_00031C90(void);
 };
 
+struct S_4FAC0_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    void func_0010C090(void *a, void *b, int c, int d);
+    void func_0010E810(void);
+};
+
+struct S_4FAC0_Tbl {
+    char pad0[0x1A8];
+    S_4FAC0_Obj *objs[1];
+};
+
+struct S_4FAC0_Mgr {
+    char pad0[0x4DC];
+    char *f4DC;
+    S_4FAC0_Tbl *f4E0;
+};
+
+struct C_00086C70 {
+    int func_00086C70(int a0);
+};
+
+struct C_00086C30 {
+    void func_00086C30(int a0);
+    void func_000847A0(void);
+};
+
 struct C_0004FE30 {
     int unk0;
     char pad4[0x20];
@@ -60,17 +93,30 @@ struct C_0004FE30 {
     char pad28[0x1C];
     void *f44;
     char pad48[0x1C];
-    void *f64;
+    S_4FAC0_Mgr *f64;
     char pad68[0x28];
     int f90;
-    char pad94[0x1F0];
+    char pad94[0x120 - 0x94];
+    int f120;
+    int f124;
+    int f128;
+    char pad12C[0x170 - 0x12C];
+    C_00086C30 *f170;
+    char pad174[0x284 - 0x174];
     int f284;
     int f288;
+    char pad28C[0x2A8 - 0x28C];
+    C_00086C70 *f2A8;
+    int f2AC;
+    int f2B0;
+    char pad2B4[4];
+    int f2B8[1];
     void func_00033220(void);
     void func_000324E0(int id);
     void *func_0004FE30(int flags);
     void func_0004F7B0(void);
     void func_0004FA60(int id);
+    void func_0004FAC0(void);
 };
 
 struct C_0004F6E0_Data {
