@@ -566,6 +566,13 @@ void C_001BF6C0::func_001BF6C0(int enable)
     }
 }
 
+void C_001BF930::func_001BF930(void)
+{
+    v7();
+    f68->func_00199600(f6c);
+    f68->func_00198F50(f7c, f8c, 0, 1, 0);
+}
+
 void C_001BFE80::func_001BFE80(void)
 {
     int i;
