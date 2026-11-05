@@ -29,6 +29,7 @@ struct S_000C2810_Sub {
     void func_0005C1E0(int flag);
     S_000C2810_Entry *func_0005C020(int i);
     void func_0005C1B0(int j, int k);
+    void func_0005C170(int j, int k);
 };
 
 struct S_000C2810_Obj {
