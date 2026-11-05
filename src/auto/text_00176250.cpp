@@ -114,10 +114,8 @@ u32 func_001770E0(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   int y;
   int n;
   if (level == 0) {
-    for (y = height; y > 0; y--) {
-      memcpy(dst, src, width * 2);
-      src += srcPitch * 2;
-      dst += dstPitch * 2;
+    for (y = 0; y < height; y++) {
+      memcpy(dst + y * dstPitch * 2, src + y * srcPitch * 2, width * 2);
     }
     return 1;
   }
