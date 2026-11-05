@@ -3,8 +3,9 @@
 
 struct V4_4F5E0 { int a, b, c, d; };
 struct C_0012B410 { void func_0012B410(int a, int b, int c); };
-struct C_0013E4F0 { void func_0013E4F0(int a); };
-struct C_0002EF20 { void func_0002EF20(int a); };
+struct C_0013E4F0 { C_0012B410 *func_0013E4F0(int a); };
+struct C_000306F0;
+struct C_0002EF20 { C_000306F0 *func_0002EF20(int a); };
 struct C_000306F0 { void func_000306F0(void *a, int b, int c, V4_4F5E0 d, int e, int f); };
 struct G_4F5E0_E0 { char pad0[8]; int f8; };
 struct G_4F5E0 {
