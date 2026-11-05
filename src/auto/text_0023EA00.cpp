@@ -48,8 +48,7 @@ extern "C" int (__stdcall *_imp__NtQueryInformationFile)(int h, void *iosb, void
 int __stdcall func_001DCC3C(int a, int b, int c, int d, int e, int f, int g);
 int __stdcall func_001DE8C7(int a, int b, void *fn, void *p, int c, void *d);
 int __stdcall func_001DDBC7(int a, int b, int c, int d);
-unsigned int __stdcall func_0023F160(void *p);
-int __stdcall func_0023F119(S_0023F23E_Obj *o, int a);
+
 
 struct S_0023EA00_Link {
     S_0023EA00_Link *next;
