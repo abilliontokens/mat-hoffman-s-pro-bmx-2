@@ -101,3 +101,22 @@ void C_000739F0::func_000739F0(float param_1) {
     func_0005EA10(param_1);
 }
 
+int C_00073A50::func_00073A50(int *param_1, int param_2) {
+    extern int D_002B9040;
+    int func_001361E0(int, int, int *, int);
+    if (unk8C != 0) {
+        D_002B9040 = param_1[2];
+        unk8C = 0;
+    }
+    if (unk6C == 0) {
+        if (func_001361E0(5, 2, param_1, -2147483648) == 0 &&
+            func_001361E0(24, 2, param_1, -2147483648) == 0) {
+            return func_00157BF0(param_1, param_2);
+        }
+        unk64->func_00031610(4, 1);
+        unk6C = 1;
+        unk84 = 0.0f;
+    }
+    return 0;
+}
+
