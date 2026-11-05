@@ -1,6 +1,8 @@
 /* 9 functions from 0x000733F0 to 0x00073EF0, found by Ghidra. */
 #include "common.h"
 #include <string.h>
+extern char D_00277038[];
+int __cdecl func_001ADCC0(char *, unsigned int, const char *, ...);
 
 extern int D_0027850C;
 extern int D_00278D54;
