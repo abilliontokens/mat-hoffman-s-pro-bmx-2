@@ -4,7 +4,7 @@
 #include <string.h>
 
 extern float D_00275544;
-extern float D_002755E8;
+extern const float D_002755E8;
 
 struct C_00083710 {
     void func_00083710(undefined4 param_1, undefined4 param_2);
