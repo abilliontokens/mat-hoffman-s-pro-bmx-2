@@ -74,6 +74,31 @@ struct ParticleSystem {
     void func_001357A0(int dt);
 };
 
+extern int D_00284768;
+extern float D_002A4434;
+extern float D_002A4438;
+extern float D_002A443C;
+extern float D_002A4440;
+
+struct V4_00135470 {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
+/* PhysicsParticle */
+struct PhysicsParticle {
+    void *vtbl;
+    int f4;
+    int f8;
+    V4_00135470 m0;
+    V4_00135470 m1;
+    V4_00135470 m2;
+    V4_00135470 m3;
+    void func_00135470();
+};
+
 struct C_00135870 {
     char pad0[0x4];
     int unk4;
