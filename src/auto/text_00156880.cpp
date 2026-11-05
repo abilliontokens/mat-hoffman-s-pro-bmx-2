@@ -1,5 +1,9 @@
 /* 24 functions from 0x00156880 to 0x00157810, found by Ghidra. */
 #include "common.h"
+extern float D_00276098, D_002756DC, D_00275F64, D_0028714C, D_00275544, D_00275460;
+extern int D_002DF944, D_002DF918;
+extern float D_002DF91C[10];
+void func_00220AFD();
 extern int D_002870A4;
 extern char D_002A7A84[];
 extern char D_002A7AA0[];
