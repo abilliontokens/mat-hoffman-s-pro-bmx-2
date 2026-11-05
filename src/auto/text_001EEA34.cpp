@@ -80,6 +80,7 @@ struct S_001EF033 {
     void *vtbl;
     int f4;
     BitObj *f8;
+    S_001EF033 *func_001EF033(BitObj *p);
 };
 
 /* Class_00295BE4 instance */
@@ -88,6 +89,13 @@ struct S_001EF062 {
     int f4;
     int f8;
     int fC;
+    S_001EF062 *func_001EF062(int mode);
+};
+
+/* element of the list BitObj::f0 heads: vtable slot 0 yields a size, next at +4 */
+struct S_001EF210_Node {
+    virtual int v0();
+    S_001EF210_Node *next;
 };
 
 int func_001EEE49(int i) {
