@@ -72,20 +72,6 @@ struct C_0007E1E0 {
 void func_001E891B(void *ptr);
 
 
-void C_0007E050::func_0007E050(void)
-{
-  int i;
-
-  for (i = 0; i < 0x96; i++) {
-    items[i].q0.x = items[i].q0.y = items[i].q0.z = 0;
-    items[i].q0.w = 1.0f;
-    items[i].q1.x = items[i].q1.y = items[i].q1.z = 0;
-    items[i].q1.w = 1.0f;
-    items[i].q2.x = items[i].q2.y = items[i].q2.z = 0;
-    items[i].q2.w = 1.0f;
-  }
-}
-
 undefined4 C_0007E0A0::func_0007E0A0(byte param_1)
 {
   int func_0006C470(...);
