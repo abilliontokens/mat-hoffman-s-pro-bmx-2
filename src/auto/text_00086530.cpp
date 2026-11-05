@@ -58,7 +58,9 @@ struct C_86530_Prof {
 };
 C_Clamp_00086C80 *__fastcall func_0018C070(C_Mid_00086C80 *self);
 struct C_86A40_G {
-    char pad0[0x2E8];
+    char pad0[0x2E0];
+    C_86530_Prof *f2E0;
+    char pad2E4[4];
     C_86A40_Obj2E8 *f2E8;
     C_Lookup_00086C80 *f2EC;
 };
