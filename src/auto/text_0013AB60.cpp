@@ -15,6 +15,8 @@ struct C_0013AFD0 {
 
 #include <string.h>
 
+static inline int Min_0013B530(int a, int b) { return a < b ? a : b; }
+
 extern "C" int func_0014FF00(const char *path, char *drive, char *dir, char *fname, char *ext);
 void func_001E8390(void *p);
 extern "C" void *func_0014FDF0(const char *name, const char *mode);
