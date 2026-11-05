@@ -26,6 +26,15 @@ struct XboxTextureMap {
     int func_001D6CB0(int param);
 };
 
+XboxTextureMap *XboxTextureMap::func_001D6AD0(void *param)
+{
+    func_001B1200(param);
+    fB8 = 0;
+    fBC = 0;
+    vtbl = (void *)&D_0028F644;
+    return this;
+}
+
 int __stdcall func_001D6C40(int a0, int a1) {
     return 1;
 }
