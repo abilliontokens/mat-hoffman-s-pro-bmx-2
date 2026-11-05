@@ -109,6 +109,10 @@ struct C_Node {
     void func_001D6600(void);
 };
 
+struct C_Node2 {
+    void func_001D6600(void);
+};
+
 struct C_Cache120 {
     char pad0[0x90];
     int f90;
@@ -182,10 +186,10 @@ undefined4 C_0007EB20::func_0007EB20(void)
         func_00075750();
         func_00075170();
         if (f1B4 != 0) {
-            ((C_5E840 *)fFC)->func_0005E840(D_002A8490->f2e8->f4->f7b8);
-            ((C_Node *)f1BC)->func_001D6600();
+            fFC->func_0005E840(D_002A8490->f2e8->f4->f7b8);
+            f1BC->func_001D6600();
         } else {
-            ((C_5E840 *)fFC)->func_0005E840(D_002A8490->f2e8->f4->f7c8);
+            fFC->func_0005E840(D_002A8490->f2e8->f4->f7c8);
             ((C_Node *)fFC)->func_001D6600();
         }
         func_00157960();
