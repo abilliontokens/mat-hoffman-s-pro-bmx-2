@@ -254,6 +254,23 @@ void func_001E9701(int a0, int a1) {
     func_001E96A5(a0, a1, 0x40);
 }
 
+int func_001E9714(S_001E9714_File *stream) {
+    int result = -1;
+
+    if (stream->_flag & 0x83) {
+        result = func_001E9DE9(stream);
+        func_001ED527(stream);
+        if (func_001ED48C(stream->_file) < 0) {
+            result = -1;
+        } else if (stream->_tmpfname != 0) {
+            func_001E8390(stream->_tmpfname);
+            stream->_tmpfname = 0;
+        }
+    }
+    stream->_flag = 0;
+    return result;
+}
+
 #pragma optimize("t", off)
 int func_001E98A9(int param_1, int param_2, int param_3, int param_4) {
     int func_001EB109(int);
@@ -292,5 +309,18 @@ void func_001E9F40(void) {
 void func_001E9F99(void) {
     int func_001E9E74(...);
     func_001E9E74(1);
+}
+
+char *func_001EA1EE(char *s) {
+    char *p = s;
+
+    while (*p) {
+        char c = *p;
+        if (c >= 'a' && c <= 'z') {
+            *p = c - 0x20;
+        }
+        p++;
+    }
+    return s;
 }
 
