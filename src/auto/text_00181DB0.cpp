@@ -228,6 +228,15 @@ void C_00181DB0::func_001820B0(int a0, int a1, int a2)
   }
 }
 
+void C_001824E0::func_001824E0(C_001824E0_Vec *out, int x, int y, int z)
+{
+    C_001824E0_Vec old = f1C0;
+    f1C0.x = x;
+    f1C0.y = y;
+    f1C0.z = z;
+    *out = old;
+}
+
 longdouble C_00182530::func_00182530(undefined4 param_1)
 {
   int in_ECX = (int)this;
@@ -262,6 +271,35 @@ undefined4 C_00182730::func_00182730(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+int C_00182750::func_00182750(void)
+{
+    if (f27 & 4) {
+        f181_0 = 0;
+        return 1;
+    }
+    f181_0 = v39();
+    if (f181_0) {
+        func_00181E10();
+    }
+    D_002A8490->f284++;
+    return 1;
+}
+
+void C_001827B0::func_001827B0(void)
+{
+    vtbl = &D_0028933C;
+    f4 = 0;
+    f30 = 0;
+    f10 = 0;
+    f14 = 0;
+    f18 = 0;
+    f24 = 0;
+    f34 = 0;
+    f38 = 0;
+    f3C = 0;
+    f40 = 0;
 }
 
 void C_001827E0::func_001827E0(int a0, int a1) {
