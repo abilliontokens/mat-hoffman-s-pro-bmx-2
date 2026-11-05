@@ -31,6 +31,7 @@ struct DynamicRayCollisionObject {
     void func_00157A00(int param_1);
 };
 
+#pragma auto_inline(on)
 void DynamicRayCollisionObject::func_0014B940()
 {
     Vec4 a(0.0f, 0.0f, 0.0f, 1.0f);
@@ -41,7 +42,6 @@ void DynamicRayCollisionObject::func_0014B940()
         b = Vec4(a.x + unkBC[i] * unkC4[i].x, a.y + unkBC[i] * unkC4[i].y, a.z + unkBC[i] * unkC4[i].z, 1.0f);
     }
 }
-
 #pragma inline_depth(0)
 void DynamicRayCollisionObject::func_0014BA40(int param_1)
 {
