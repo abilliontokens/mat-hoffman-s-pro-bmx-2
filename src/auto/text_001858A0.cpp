@@ -113,6 +113,24 @@ struct C_00186540 {
 };
 
 
+void C_00185D00::func_00185D00(void)
+{
+    int i;
+
+    vtbl = &D_002896CC;
+    for (i = 0; i < f4; i++) {
+        if (f8[i] != 0) {
+            func_001E891B(f8[i]);
+        }
+    }
+    if (f8 != 0) {
+        func_001E891B(f8);
+    }
+    if (fc != 0) {
+        func_001E891B(fc);
+    }
+}
+
 void C_00186540::func_00186540(int param_1)
 {
   int func_001E8A44(...);
