@@ -11,16 +11,8 @@ struct C_00038760 {
     void **items;            /* 0x5A4 */
     int count2;              /* 0x5A8 */
     void **items2;           /* 0x5AC */
-    void *at(int i) {
-        if (count > 0 && items != 0 && i < count)
-            return items[i];
-        return 0;
-    }
-    void *at2(int i) {
-        if (count2 > 0 && items2 != 0 && i < count2)
-            return items2[i];
-        return 0;
-    }
+    void *at(int i);
+    void *at2(int i);
     int *func_000389C0(int param_1);
     int *func_00038A10(int param_1, int *param_2);
     int func_00038A70(void *param_1, void **param_2);
