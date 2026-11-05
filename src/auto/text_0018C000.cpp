@@ -94,6 +94,9 @@ struct C_0018C960 {
     int f170;
     char pad174[8];
     int f17C;
+    int f180;
+    void func_0018CA20();
+    void func_00157660();
     C_0018C960 *func_0018C960(int a);
     void func_0018C9B0(int keep);
     void func_00157600(int a);
