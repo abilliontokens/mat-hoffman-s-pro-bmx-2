@@ -45,6 +45,37 @@ struct C_001D7CE0 {
     void *func_001D7D10(int flags);
 };
 
+int XboxTextureMap::func_001D7BF0(int param_1)
+{
+    int info[2];
+    int idx = func_001D6CB0(param_1);
+    if (idx == -1)
+        return 0;
+    func_001FCEA0(field_b8, idx, info, 0, 0);
+    return info[1];
+}
+
+int XboxTextureMap::func_001D7C50()
+{
+    if (field_b8 == 0)
+        return 0;
+    unsigned count = func_001FCFE0(field_b8);
+    if (count == 0)
+        return 0;
+    for (unsigned i = 0; i < count; i++) {
+        void *p = func_001FCE50(field_b8, i);
+        if (p == 0)
+            return 0;
+        int dims[2];
+        S_001D7C50_desc desc;
+        func_00201210(p, dims, 0, 0x80);
+        func_002011F0(p, &desc);
+        ((C_001D6D00 *)this)->func_001D6D00(&desc, dims, 0);
+        func_00201100(p);
+    }
+    return 1;
+}
+
 C_001D7CE0 *C_001D7CE0::func_001D7CE0()
 {
     ((C_001B23D0 *)this)->func_001B23D0();
@@ -56,8 +87,13 @@ int func_001D7D00(void) {
     return 1;
 }
 
-void func_001D7D10(void)
+void *C_001D7CE0::func_001D7D10(int flags)
 {
+    vtbl = &D_0028F6DC;
+    ((C_001B2400 *)this)->func_001B2400();
+    if (flags & 1)
+        func_001E891B(this);
+    return this;
 }
 
 extern int D_002F0BBC;
