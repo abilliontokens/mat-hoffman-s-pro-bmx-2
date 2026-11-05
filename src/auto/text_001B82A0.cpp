@@ -45,6 +45,19 @@ struct C_001B8450 {
     void func_001B8480(void);
 };
 
+struct C_001B84E0_quat {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
+struct C_001B84E0 {
+    char pad0[0x118];
+    C_001B84E0_quat q[4];
+    C_001B84E0 *func_001B84E0(void);
+};
+
 C_001B82A0 *C_001B82A0::func_001B82A0(void *param) {
     ((C_00157600 *)this)->func_00157600(param);
     f24 = 0;
