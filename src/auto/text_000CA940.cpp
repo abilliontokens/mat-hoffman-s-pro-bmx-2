@@ -67,3 +67,19 @@ struct C_000CB650 {
     void func_001BE3F0();
     void func_000CB650();
 };
+
+void C_000CB650::func_000CB650()
+{
+    vtbl = &D_0027E49C;
+    for (int i = 0; i < 4; i++) {
+        if (arr2A0[i] != 0) {
+            arr2A0[i]->Destroy(1);
+            arr2A0[i] = 0;
+        }
+    }
+    if (f294 != 0) {
+        f294->Destroy(1);
+        f294 = 0;
+    }
+    func_001BE3F0();
+}
