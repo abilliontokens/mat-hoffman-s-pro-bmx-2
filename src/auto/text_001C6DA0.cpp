@@ -181,3 +181,42 @@ C_001C65E0 *func_001C7250(int key)
     return D_002F0890[D_002F0894 - 1].obj;
 }
 
+void C_001C6DA0::func_001C75A0()
+{
+    int i;
+    *(void **)this = &D_0028E74C;
+    if (unkC0 != 0) {
+        for (i = 0; i < unkBC; i++) {
+            unkC0[i].unk44 = 0;
+            if (unkC0[i].unk48 != 0) {
+                func_001E891B(unkC0[i].unk48);
+            }
+            if (unkC0[i].unk4C != 0) {
+                func_001E891B(unkC0[i].unk4C);
+            }
+        }
+        func_001E8390(unkC0);
+    }
+    if (unk48 != 0) {
+        func_001E891B(unk48);
+    }
+    if (unk4C != 0) {
+        func_001E891B(unk4C);
+    }
+    for (i = 0; i < D_002F0894; i++) {
+        C_001C65E0 *obj = D_002F0890[i].obj;
+        if (obj != 0) {
+            if (obj->f10 != 0) {
+                obj->f10->vf0(1);
+            }
+            func_001E891B(obj);
+        }
+    }
+    D_002F0894 = 0;
+    if (D_002F0890 != 0) {
+        func_001E8390(D_002F0890);
+        D_002F0890 = 0;
+    }
+    func_0018C7F0();
+}
+
