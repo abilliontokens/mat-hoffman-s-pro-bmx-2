@@ -302,7 +302,7 @@ void C_0015CB40::func_0015CB40(int a0, int a1) {
     func_0015CB70(unk14, a0, unkC, unk8, a1);
 }
 
-void func_0015CB70(float *base, float v, int n, float *up, float *out)
+void func_0015CB70(float *base, float v, int n, float *volatile up, float *out)
 {
     float *lo;
     float t;
@@ -310,7 +310,7 @@ void func_0015CB70(float *base, float v, int n, float *up, float *out)
     float qa[4];
 
     if (up != 0 && n > 1) {
-        if (func_0015CCC0(base, v, n, &lo, &up, &t) != 0) {
+        if (func_0015CCC0(base, v, n, &lo, (float **)&up, &t) != 0) {
             func_0001B2E0(lo + 1, qa);
             func_0001B2E0(up + 1, qb);
             func_0015C7D0(qa, qb, out, t);
