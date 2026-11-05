@@ -518,29 +518,4 @@ void C_001B69F0::func_001B69F0(void) {
         func_001E891B(f10c);
     }
 }
-struct S_001B65F0_Value { int pad0[3]; int fc; };
-struct S_001B65F0_Array { int pad0[3]; S_001B65F0_Value *values[1]; };
-struct S_001B65F0_Alt { int unk0; S_001B65F0_Array *array; };
-struct S_001B65F0_Alts { int count; S_001B65F0_Alt entries[1]; };
-struct S_001B65F0_Item {
-    char pad0[10];
-    unsigned char count;
-    char padB;
-    S_001B65F0_Array *array;
-    S_001B65F0_Alts *alts;
-};
-struct S_001B65F0_Group {
-    char pad0[0x50];
-    int count;
-    S_001B65F0_Item *items[1];
-};
-struct S_001B65F0_Obj {
-    char pad0[0x1b4];
-    int count;
-    int *handles;
-};
-struct C_001B65F0 {
-    int unk0;
-    S_001B65F0_Obj *obj;
-    void func_001B65F0();
-};
+
