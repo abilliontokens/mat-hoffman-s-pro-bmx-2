@@ -236,6 +236,57 @@ struct C_001CDB10 {
     int func_001CDB10(void);
 };
 
+struct S_001CD940_Buf {
+    int f0;
+    int f4;
+};
+
+struct S_001CD940_Dev {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual int v9(int a);
+    char pad4[4];
+    char f8[0x104];
+    u8 f10C;
+    char pad10d[0x33];
+    void *f140;
+    char pad144[0x58];
+    int f19C;
+    int f1A0;
+    char pad1a4[4];
+    int f1A8;
+    char pad1ac[8];
+    char f1B4[0x24];
+    char f1D8[0x10];
+    char f1E8[0x10];
+    char f1F8[0x10];
+    u8 f208;
+    int func_001CC4B0(void *a, void *b, void *c, void *d);
+};
+
+struct C_001CD940 {
+    char pad0[4];
+    S_001CD940_Dev *f4;
+    char f8[4];
+    void *fC;
+    int f10;
+    char pad14[0xc];
+    u8 f20;
+    int func_001CD940(S_001CD940_Dev *dev);
+};
+
+int __stdcall func_00220B26(void *a, S_001CD940_Buf **out, void *c);
+int func_00221B47(void *a, S_001CD940_Buf *b);
+int __stdcall func_002228F8(int *desc, void **out);
+int __stdcall func_001DDB7E(int a, int b, int c, int d);
+
 XboxSoundGroup *XboxSoundGroup::func_001CD770(int a, int b)
 {
     func_0001C8F0(b);
