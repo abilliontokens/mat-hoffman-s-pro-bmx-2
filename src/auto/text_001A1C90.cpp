@@ -354,7 +354,7 @@ struct SndHolder_001A1D20 {
 extern "C" int strlen(const char *s);
 char *func_001E8920(char *dst, const char *src, int n);
 
-static __inline int Min_001A1D20(int a, int b) { return a > b ? b : a; }
+static __inline const int &MinRef_001A1D20(const int &a, const int &b) { return (b < a) ? b : a; }
 
 /* object with a sound: v29 at +0x74, v30 at +0x78 */
 struct C_001A1D20 {
@@ -414,6 +414,52 @@ int C_001A1C90::func_001A1C90(int a0, int a1, S16_1A s, int a2) {
         return 0;
     }
     return unk1BC->v23(a0, a1, s, a2);
+}
+
+int C_001A1D20::func_001A1D20(const char * volatile name, volatile int b)
+{
+    C_001A1D20 * volatile self = this;
+    volatile int len;
+    volatile int limit;
+    volatile int cnt;
+    int n;
+    int flags;
+
+    if (f1bc != 0 || (f1a0 & 1)) {
+        return 0;
+    }
+    flags = 0;
+    if (!(f1a0 & 8)) {
+        flags = 8;
+    }
+    if (b != 0 || (f98 & 8)) {
+        flags |= 0x80;
+    }
+    if (f98 & 0x20) {
+        flags |= 2;
+    } else {
+        flags |= 1;
+    }
+    if (f98 & 4) {
+        flags |= 0x10;
+    }
+    self->f1bc = f1a4->fb4->func_001CFE90(f24, (int)name, flags, 3, (int)f3c, 0);
+    len = strlen(name);
+    limit = 0x103;
+    cnt = limit > len ? len : limit;
+    n = cnt;
+    func_001E8920(self->f9c, name, n);
+    self->f9c[n] = 0;
+    if (self->f1bc != 0) {
+        if (self->f98 & 4) {
+            self->v30(self->f3c);
+        } else {
+            self->f1bc->v22(self->f48, self->f4c);
+        }
+        self->v29(self->f70, self->f80);
+        return 1;
+    }
+    return 0;
 }
 
 void C_001A1E60::func_001A1E60() {
