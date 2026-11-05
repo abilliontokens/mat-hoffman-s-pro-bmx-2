@@ -3,6 +3,41 @@
 struct C_0004AAD0 {
     void func_0004AAD0();
 };
+
+struct Vec4_00018D40 {
+    float x, y, z, w;
+    Vec4_00018D40() { x = y = z = 0; w = 1; }
+};
+
+struct C_00018D40Param {
+    void func_00169710(void *a);
+    int func_00168C20(void *a, int b, void *c);
+    void func_00168CB0(void *a, void *b, void *c);
+    int func_00168C50(void *a, float b, void *c);
+};
+
+struct C_00018D40Elem {
+    float f0;
+    Vec4_00018D40 f4;
+};
+
+extern char D_00275984[];
+extern char D_00275978[];
+extern char D_00275968[];
+extern char D_0027595C[];
+extern char D_00275950[];
+extern int D_00144CD0;
+void *func_001E8A44(int size);
+int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+void __stdcall func_00011FF0(void *p, int stride, int count, void *ctor);
+
+struct C_00018D40 {
+    char pad0[0x49c];
+    C_00018D40Elem *f49c;
+    char pad4a0[0x4d8 - 0x4a0];
+    int f4d8;
+    void func_00018D40(C_00018D40Param *param);
+};
 struct C_0001CE80 {
     void func_0001CE80(void *a, void *b, void *c, float d, float e);
 };
