@@ -206,6 +206,42 @@ int __stdcall func_001DE625(S_001DE625_Obj *p, int arg)
     return r;
 }
 
+int __stdcall func_001DE66C(S_001DE66C_Obj *p)
+{
+    int h;
+
+    switch (p->tag) {
+    case 0x434f4e54:
+    case 0x53425645:
+        h = p->f4;
+        break;
+    case 0x4e49434b:
+        func_001DF5D6(p);
+        return 1;
+    case 0xbe4bea00:
+        h = p->fC;
+        break;
+    default:
+        return 0;
+    }
+    func_001DF5D6(p);
+    return func_001DD13C(h);
+}
+
+void __stdcall func_001DE6B8(int arg)
+{
+    S_002ACBBC_Node *n;
+    S_002ACBBC_Node *cur;
+
+    _imp__RtlEnterCriticalSection(D_002ACBA0);
+    for (n = D_002ACBBC.next; n != &D_002ACBBC; ) {
+        cur = n;
+        n = n->next;
+        cur->fn(arg);
+    }
+    _imp__RtlLeaveCriticalSection(D_002ACBA0);
+}
+
 #pragma optimize("y", off)
 int __stdcall func_001DE70D(int param)
 {
