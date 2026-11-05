@@ -21,12 +21,35 @@ struct C_00157600 {
     void func_00157600(void *param);
 };
 
+extern int D_0028D110;
+extern char D_0028D1B0[];
+extern char D_0028D1A0[];
+extern char D_0028D190[];
+void *func_001E83E8(void *block, unsigned int size);
+int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+
+struct S_001B9B50_Stream {
+    int func_00169710(void *name);
+    void func_00168C20(void *key, int def, int *out);
+};
+
+struct S_001B9B50_Elem {
+    void *vtbl;
+    int f4;
+    int f8;
+};
+
+struct S_001B9B50_ElemV {
+    virtual void v0(S_001B9B50_Stream *stream);
+};
+
 struct C_001B9B20 {
     void *vtbl;
     char pad4[0x20];
     int f24;
-    int f28;
+    S_001B9B50_Elem **f28;
     C_001B9B20 *func_001B9B20(void *param);
+    int func_001B9B50(S_001B9B50_Stream *stream);
 };
 
 struct C_001B9D40 {
