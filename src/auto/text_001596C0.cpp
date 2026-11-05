@@ -119,6 +119,19 @@ int GrindLineManager::func_0015A520(void)
     return r;
 }
 
+int GrindLineManager::func_0015A540(int a1)
+{
+    int i;
+
+    for (i = 0; i < unk28; i++) {
+        GrindLine *e = unk34[i];
+        if (e != 0 && e->unk50 != 0) {
+            func_0015A250(e);
+        }
+    }
+    return 1;
+}
+
 undefined4 C_0015A640::func_0015A640(byte param_1)
 {
   int func_0015A580(...);
