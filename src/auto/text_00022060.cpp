@@ -170,6 +170,34 @@ struct C_00022550 {
     int func_00022550();
 };
 
+struct V4_B70 { float x, y, z, w; };
+struct Obj_B70 {
+    void func_00199110(int a, V4_B70 *b, char *c, int d, int e, int f);
+    void func_00199600(V4_B70 v);
+};
+struct Hold_B70 { char pad0[4]; Obj_B70 *o; char pad8[8]; int f10; };
+struct Y_B70 { void *f0; char pad4[4]; void *f8; };
+struct Own_B70 { char pad0[0x1a4]; Hold_B70 *h; char pad1a8[4]; Y_B70 *y; };
+struct T_B70 { char pad0[0x18]; V4_B70 *pts; char pad1c[0x10]; char f2c; char f2d; char pad2e; char f2f; };
+struct E_B70 {
+    char pad0[0x28]; Own_B70 *own; T_B70 *t; int f30, f34, f38, f3c, f40, pad44, f48;
+    V4_B70 a; V4_B70 b; char pad6c[0xc]; char f78, f79, pad7a, f7b;
+};
+struct Row_B70 { int count; int f4; int pad8[2]; int *f10; };
+struct G_B70 { char pad0[0x238]; int f238; char pad23c[0xa4]; struct { char pad[0x10]; float f10; } *f2e0; };
+struct W_B70 { char pad[0x64]; T_B70 **ts; };
+extern G_B70 *D_002A8490;
+extern W_B70 *D_002B7E18;
+extern float D_00276278;
+extern "C" int func_001E8858();
+void __stdcall func_00166C80(void *, int);
+void __stdcall func_00164820(void *);
+struct C_B70 {
+    char pad0[0x2c]; int f2c; int f30; int f34; int f38; char pad3c[0xc]; int f48; char pad4c[8]; int f54; char pad58[8];
+    E_B70 **ents; T_B70 **f64; Row_B70 **rows;
+    void func_00022B70();
+};
+
 Obj_00022320 *C_00022320::func_00022320(int a)
 {
     f2C->v35(a, 1, 0);
