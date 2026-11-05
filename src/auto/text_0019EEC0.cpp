@@ -1,5 +1,6 @@
 /* 9 functions from 0x0019EEC0 to 0x0019FD20, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
 
 extern int D_0028B25C;
 
