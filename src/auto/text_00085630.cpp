@@ -88,6 +88,7 @@ struct MountVertOverlay {
     int unk8C;
     void func_00157600(int a);
     MountVertOverlay *func_00086470(int a);
+    void func_000864D0(void);
 };
 
 
