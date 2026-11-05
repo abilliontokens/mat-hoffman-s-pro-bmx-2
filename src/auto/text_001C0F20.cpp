@@ -28,6 +28,7 @@ struct C_001C1110 {
     virtual void v7();
     char pad4[0x28];
     int f2c;
+    char pad30[8];
     int f38;
     int f3c;
     void func_001C1110(void);
@@ -99,23 +100,54 @@ struct C_001C1030 {
 };
 
 
+void C_001C1030::func_001C1030(int slot, int value, int key)
+{
+  int v = f68[slot];
+
+  if (v == -2) {
+    f24->f118->func_001BEC10(value);
+    f24->v31(v, 1, 0, 0);
+    return;
+  }
+  if (v == -1) {
+    f24->f118->func_001BEB90(value);
+    f24->v31(v, 1, 0, 0);
+    return;
+  }
+  if (v > 0) {
+    f24->f118->func_001BEC90(value, v);
+  }
+  if (v != 0) {
+    f24->v31(v, 1, 0, 0);
+  }
+}
+
 void C_001C10D0::func_001C10D0(void)
 {
-  int* in_ECX = (int*)this;
-  
-  in_ECX[0xb] = 1;
-  if ((in_ECX[0xc] == 0) || (in_ECX[0xd] == 0)) {
-    if (in_ECX[0xc] != 0) {
-      (**(code **)(*in_ECX + 0x1c))();
+  f2c = 1;
+  if (f30 == 0 || f34 == 0) {
+    if (f30 != 0) {
+      v7();
     }
-    if (in_ECX[0xd] != 0) {
-      (**(code **)(*in_ECX + 0x14))();
+    if (f34 != 0) {
+      v5();
     }
   }
-                    
-                    
-  (**(code **)(*in_ECX + 0x1c))();
-  return;
+  v7();
+}
+
+void C_001C1110::func_001C1110(void)
+{
+  f2c = 0;
+  if (f38 == 0 || f3c == 0) {
+    if (f38 != 0) {
+      v7();
+    }
+    if (f3c != 0) {
+      v5();
+    }
+  }
+  v5();
 }
 
 void C_001C1950::func_001C1950(void)
