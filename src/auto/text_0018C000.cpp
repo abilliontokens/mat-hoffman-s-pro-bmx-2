@@ -16,10 +16,22 @@ struct C_0018C820 {
 
 struct C_0018C800;
 
+struct S_002EFE08_Entry {
+    char pad0[0x48];
+    void *f48;
+    int f4C;
+    char pad50[0x10];
+};
+
 struct C_002EFE08 {
+    char pad0[0x158];
+    S_002EFE08_Entry *f158;
     void func_001904E0(C_0018C800 *owner, int a, int b, int c, int d);
+    int func_0018DDD0(C_0018C800 *owner, void *list, const char *name);
 };
 extern C_002EFE08 *D_002EFE08;
+extern float D_00275544;
+void func_001E8390(void *p);
 
 struct C_00157600 {
     void func_00157600(int a0);
