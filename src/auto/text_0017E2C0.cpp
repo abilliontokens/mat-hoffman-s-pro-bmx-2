@@ -95,6 +95,10 @@ struct RadiusLineCollisionObject {
 
 struct Vec4_0017E6F0 { float x, y, z, w; };
 
+struct V4C_0017E7C0 { float x, y, z, w; V4C_0017E7C0() { z = 0; y = 0; x = 0; w = 1.0f; } };
+void func_00030AC0(V4C_0017E7C0 *out, void *v, void *m);
+void func_0017E5B0(V4C_0017E7C0 *a, V4C_0017E7C0 *b);
+
 struct C_0017E6F0 {
     virtual void v00(); virtual void v04(); virtual void v08(); virtual void v0C();
     virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1C();
