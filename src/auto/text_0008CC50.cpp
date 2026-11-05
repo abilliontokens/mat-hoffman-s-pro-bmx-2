@@ -48,7 +48,8 @@ struct S_64 { char pad[0x574]; int u574; int u578; char pad2[8]; int u584; };
 struct S_68 { char pad[0x4d4]; int u4d4; };
 extern char D_00277038[];
 int func_001ADCC0(char *buf, int n, char *fmt, int v);
-int strlen(const char *);
+extern "C" unsigned int strlen(const char *);
+#pragma intrinsic(strlen)
 struct S_0008D290 {
     char pad0[0x28];
     S_5E *u28; S_5E *u2c; char pad30[4]; S_5E *u34;
