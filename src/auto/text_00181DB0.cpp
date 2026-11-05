@@ -62,6 +62,57 @@ struct C_00182750_Global {
 
 extern C_00182750_Global *D_002A8490;
 
+struct V4_00181E10 {
+    float x, y, z, w;
+    V4_00181E10() {}
+    V4_00181E10(float a, float b, float c) { x = a; y = b; z = c; w = 1.0f; }
+    V4_00181E10 operator-(const V4_00181E10 &o) const { return V4_00181E10(x - o.x, y - o.y, z - o.z); }
+};
+
+struct S_00181E10_Cam {
+    char pad0[0x170];
+    V4_00181E10 f170;
+    char pad180[0x58];
+    float f1d8;
+};
+
+struct S_00181E10_Global {
+    char pad0[4];
+    S_00181E10_Cam *f4;
+};
+
+struct S_00181E10_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2(void *a, float b, float c, int d);
+    char pad4[0x10];
+};
+
+struct S_00181E10_Ent {
+    int count;
+    float f4;
+    S_00181E10_Obj *f8;
+};
+
+struct S_00181E10_Tbl {
+    char pad0[8];
+    int f8;
+    float fC;
+    S_00181E10_Ent *f10;
+};
+
+struct S_00181E10_Blk {
+    char d[0x100];
+};
+
+extern S_00181E10_Global *D_002EFDB8;
+extern float D_00275460;
+extern float D_002A8F40;
+extern float D_002A8F3C;
+
+static __forceinline float Sqrt_00181E10(const float &x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+static __forceinline float Max_00181E10(const float &a, const float &b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+
 struct C_00182750 {
     virtual void v0();
     virtual void v1();
