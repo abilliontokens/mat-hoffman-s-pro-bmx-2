@@ -10,6 +10,11 @@ struct C_001AC790 {
     void func_001AC790(int param_1);
 };
 
+extern char D_0028C118[];
+extern char D_0028C12C[];
+extern char D_0028C140[];
+extern char D_0028C154[];
+
 void *func_001E8A44(unsigned int size);
 void func_001E891B(void *p);
 int func_001EA426(const char *a, const char *b);
@@ -163,7 +168,7 @@ void *DynamicStringTable::func_001AC920(int flags)
     return this;
 }
 
-char *__fastcall func_001ACCF0(int flag, int *sign, unsigned value, char *end, int *len)
+char *func_001ACCF0(int flag, int *sign, unsigned value, char *end, int *len)
 {
     char *p = end;
     if (flag) {
