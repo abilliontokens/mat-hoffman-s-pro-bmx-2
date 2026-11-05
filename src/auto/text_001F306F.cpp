@@ -377,13 +377,15 @@ void __stdcall func_001F32E8(int param_1, int param_2) {
 #pragma optimize("", on)
 double func_001F3A2E(double x, int *expptr);
 void func_001F3B1F(unsigned int flags);
+#pragma optimize("s", on)
 int func_001F35C5(unsigned int flags, double *presult, unsigned int cw)
 {
     extern double D_002AED58;
     extern double D_002AED68;
-    unsigned int result = flags & 0x1f;
-    int sticky;
+    int sticky = 1;
+    unsigned int result;
     int exp;
+    int e;
     double ld;
     union {
         double d;
@@ -392,6 +394,7 @@ int func_001F35C5(unsigned int flags, double *presult, unsigned int cw)
         unsigned short s[4];
     } m;
 
+    result = flags & 0x1f;
     if ((flags & 8) && (cw & 1)) {
         func_001F3B1F(1);
         result &= ~8;
@@ -423,15 +426,20 @@ int func_001F35C5(unsigned int flags, double *presult, unsigned int cw)
         if (*presult != D_002766A8) {
             ld = func_001F3A2E(*presult, &exp);
             m.d = ld;
-            exp -= 0x600;
-            if (exp < -0x432) {
-                *presult = ld * D_002766A8;
+            e = exp - 0x600;
+            if (e < -0x432) {
+                ld = ld * D_002766A8;
                 sticky = 1;
             } else {
-                int neg = ld < D_002766A8;
-                m.s[3] = (m.b[6] & 0xf) | 0x10;
-                if (exp < -0x3fd) {
-                    int n = -0x3fd - exp;
+                int neg;
+                if (ld < D_002766A8) {
+                    neg = 1;
+                } else {
+                    neg = 0;
+                }
+                m.s[3] = (m.s[3] & 0xf) | 0x10;
+                if (e < -0x3fd) {
+                    int n = -0x3fd - e;
                     do {
                         if ((m.w[0] & 1) && !sticky) {
                             sticky = 1;
@@ -443,8 +451,9 @@ int func_001F35C5(unsigned int flags, double *presult, unsigned int cw)
                         m.w[1] >>= 1;
                     } while (--n);
                 }
-                *presult = neg ? -m.d : m.d;
+                ld = neg ? -m.d : m.d;
             }
+            *presult = ld;
         } else {
             sticky = 1;
         }
@@ -459,7 +468,6 @@ int func_001F35C5(unsigned int flags, double *presult, unsigned int cw)
     }
     return result == 0;
 }
-
 #pragma optimize("sy", on)
 void func_001F37B0(int code) {
     int *func_001ED075(void);
