@@ -123,6 +123,12 @@ void C_0002FA80::func_000301D0(void)
     ((C_000B5870 *)entries[cur].f0)->func_000B5870();
 }
 
+undefined4 C_0002FA80::func_000301F0(void)
+{
+    ((C_00194C60 *)entries[cur].f0)->func_00194C60();
+    return 1;
+}
+
 undefined4 C_00030A10::func_00030A10(byte param_1)
 {
   int func_000308F0(...);
