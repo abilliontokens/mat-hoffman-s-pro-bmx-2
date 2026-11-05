@@ -154,6 +154,21 @@ void *C_00161580::func_00161580(void)
     return this;
 }
 
+void C_00161580::func_001615B0(void)
+{
+    S_001B2340_Elem *e;
+
+    vtbl = &D_00287AD8;
+    e = sub8.func_001B2340();
+    while (e != 0) {
+        sub8.func_001B2370(e);
+        e->v2();
+        e = sub8.func_001B2340();
+    }
+    sub8.func_001B22F0();
+    func_0001DFF0();
+}
+
 undefined4 C_00161600::func_00161600(byte param_1)
 {
   int func_001615B0(...);
