@@ -313,6 +313,26 @@ int __stdcall func_001DD713(u32 *a0, u32 *a1)
     }
     return status;
 }
+
+int __stdcall func_001DD779(S_001DD779_Header *a0, S_001DD779_File *a1, S_001DD779_Out *a2)
+{
+    int result = 0;
+
+    if (a1->f4 < a1->f8) {
+        func_001DD3A1(a1->fC, (a1->f4 + 1) << 9, 0, 0);
+        a1->f4++;
+        result = func_001DD6D5(a1->fC, (u32 *)a0, (u32)&D_00021371);
+        if (result != 0) {
+            D_002ACA00 = *a0;
+            func_001EA4A4(a2->fC, D_002ACB60, 0x20);
+            a2->f0 = D_002ACA04;
+            a2->f4 = D_002ACA08;
+            a2->f8 = D_002ACB5C;
+        }
+    }
+    return result;
+}
+
 #pragma optimize("y", on)
 
 #pragma optimize("y", on)
@@ -332,6 +352,38 @@ void __stdcall func_001DD7F7(undefined4 param_1, undefined4 param_2)
   return;
 }
 
+void *__stdcall func_001DD816(int a0)
+{
+    u32 buf[128];
+    u32 h;
+    int status;
+    u32 *p = 0;
+
+    status = func_001DD713(&h, buf);
+    if (status < 0) {
+        func_001DD62B(_imp__RtlNtStatusToDosError(status));
+    } else {
+        p = (u32 *)func_001DF5B9(0, 0x10);
+        if (p == 0) {
+            func_001DD62B(_imp__RtlNtStatusToDosError(0xc000009a));
+            _imp__NtClose((void *)h);
+            goto done;
+        }
+        p[0] = 0xbe4bea00;
+        p[1] = 0;
+        p[2] = buf[1];
+        p[3] = h;
+    }
+    if (status >= 0 && func_001DD779((S_001DD779_Header *)buf, (S_001DD779_File *)p, (S_001DD779_Out *)a0) == 0) {
+        _imp__NtClose((void *)h);
+        func_001DF5D6(p);
+        p = 0;
+    }
+done:
+    return p ? p : (void *)-1;
+}
+#pragma optimize("y", on)
+
 u32 __stdcall func_001DDAEE(u32 id, int flag)
 {
     char buf[0x104];
@@ -343,8 +395,8 @@ u32 __stdcall func_001DDAEE(u32 id, int flag)
     func_001EA4E1(buf, D_0028FAC0, D_0028FA4C, id >> 16, id);
     _imp__RtlInitAnsiString(&str, buf);
     oa.rootDirectory = 0;
-    oa.objectName = &str;
     oa.attributes = 0x40;
+    oa.objectName = &str;
     status = _imp__NtCreateFile(&id, 0x80100080, &oa, &iosb, 0, 0, 1, 1, (flag ? 8 : 0x20) | 0x40);
     if (status < 0) {
         func_001DD659(status);
@@ -383,12 +435,17 @@ void *__stdcall func_001DDBC7(int attrs, int manualReset, int initial, char *nam
     int status;
 
     status = _imp__NtCreateEvent((void **)&name, name ? func_001DF546(&oa, &str, name) : 0, manualReset == 0, initial);
-    if (status < 0) {
+    if (status >= 0) {
+        if (status == 0x40000000) {
+            func_001DD62B(0xb7);
+        } else {
+            func_001DD62B(0);
+        }
+        return name;
+    } else {
         func_001DD659(status);
         return 0;
     }
-    func_001DD62B(status == 0x40000000 ? 0xb7 : 0);
-    return name;
 }
 
 int __stdcall func_001DDC28(void *a0) {
