@@ -41,6 +41,26 @@ struct S_00077450_Obj120 {
     virtual void v39();
     void func_00032720();
     void func_00032740();
+    void func_00031610(int a, int b);
+};
+
+int func_001361E0(int a, int b, int *c, int d);
+
+struct C_000775D0 {
+    char pad0[0x11C];
+    int f11C;
+    S_00077450_Obj120 *f120;
+    int f124;
+    char pad128[0x194 - 0x128];
+    int f194;
+    char pad198[0x1A8 - 0x198];
+    int f1A8;
+    int f1AC;
+    char pad1B0[4];
+    int f1B4;
+    int f1B8;
+    int func_000775D0(int *a, int b);
+    int func_00157BF0(int *a, int b);
 };
 
 struct S_00077450_Mgr2A4Owner {
