@@ -4,6 +4,23 @@
 extern int D_0028909C;
 extern void *D_002EFD80;
 
+struct S_QuadTreeListNode {
+    S_QuadTreeListNode *next;
+    void *slot[4];
+};
+struct S_QuadTreePool {
+    S_QuadTreeListNode *func_0001E8A0(void);
+    void func_0001E790(S_QuadTreeListNode *node);
+};
+struct S_QuadTreeGlobal {
+    char pad0[0x90];
+    S_QuadTreePool *f90;
+    S_QuadTreePool *f94;
+    u8 f98;
+    char pad99[0x880 - 0x99];
+    int f880;
+};
+
 struct C_0017D580 {
     undefined4 func_0017D580(byte param_1);
 };
