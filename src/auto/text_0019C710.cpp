@@ -61,6 +61,19 @@ void SoultreeCollisionObject::func_0019CCA0(int param_1)
     func_00157A00(param_1);
 }
 
+void *SoultreeCollisionObject::func_0019D650(int flags)
+{
+    extern int D_0028B1C4;
+    void func_001E891B(void *);
+    vtbl = (int)&D_0028B1C4;
+    func_0019B760();
+    func_00133E60();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 int SoultreeCollisionObject::func_0019D680(void *param_1)
 {
     unsigned int result;
