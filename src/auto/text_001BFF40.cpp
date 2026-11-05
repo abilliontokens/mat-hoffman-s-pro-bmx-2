@@ -294,6 +294,21 @@ void C_001C05F0::func_001C06F0(void)
     }
 }
 
+void C_001C0A60::func_001C0A60(void)
+{
+    f2C = 1;
+    if (f30 == 0 || f34 == 0) {
+        if (f30 != 0) {
+            v7();
+        }
+        if (f34 != 0) {
+            v5();
+        }
+    }
+    fA4 = 0;
+    v7();
+}
+
 void C_001C0E80::func_001C0E80(void)
 {
     unk2C = 1;
