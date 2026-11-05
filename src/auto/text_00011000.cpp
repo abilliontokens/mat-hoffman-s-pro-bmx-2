@@ -25,6 +25,53 @@ struct C_00011080 {
     C_00011080* func_00011080(float *p);
 };
 
+struct C_00011410 {
+    int unk0;
+    int unk4;
+    int func_00011410(void);
+};
+
+struct S_SystemTime {
+    unsigned short year;
+    unsigned short month;
+    unsigned short dayOfWeek;
+    unsigned short day;
+    unsigned short hour;
+    unsigned short minute;
+    unsigned short second;
+    unsigned short milliseconds;
+};
+
+struct C_00017680_Target {
+    void func_00197B40(float *a, float *b);
+    void func_00199110(int a0, float *a1, float *a2, int a3, int a4, int a5);
+};
+
+struct C_00017680_Mid {
+    int pad0;
+    C_00017680_Target *f4;
+};
+
+struct C_00017680_Vec {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
+struct C_00011440 {
+    char pad0[0x3C];
+    C_00017680_Mid *f3C;
+    void func_00011440(C_00017680_Vec pos);
+};
+
+extern int D_002AF45C;
+extern float D_002754B0;
+
+void __stdcall func_001DC910(S_SystemTime *out);
+void func_001E8826(int seed);
+int func_001E8833(void);
+
 extern float D_00275480;
 extern float D_00275490;
 extern float D_002754A0;
@@ -64,6 +111,10 @@ void func_00011110(float *out, float *a, float *b) {
 
 void func_00011140(float *out, float *in, float s) {
     vec3_set(out, s * in[0], s * in[1], s * in[2]);
+}
+
+float func_00011170(float *v) {
+    return sqrtf(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
 }
 
 void func_000111B0(float *out, float *in) {
