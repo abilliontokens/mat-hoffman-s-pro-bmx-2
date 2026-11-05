@@ -6,6 +6,20 @@ extern "C" void (__stdcall *_imp__RtlLeaveCriticalSection)(void *cs);
 
 void __stdcall func_001DDE02(int a0);
 int __stdcall func_0023F3F7(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
+void *func_001E8A44(int size);
+
+/* COM-style object created by func_0023F3F7 */
+struct S_0023F3F7_Obj {
+    virtual int __stdcall v0();
+    virtual int __stdcall Release();
+};
+
+struct S_0023F1AB_Obj : S_0023F3F7_Obj {
+    char pad4[0xb8];
+    S_0023F1AB_Obj *func_0023F1AB(void);
+};
+
+int __stdcall func_0023F23E(S_0023F3F7_Obj *obj, int a0, int a1, int a2, int a3, int a4, int a5, int a6);
 
 struct S_0023EA00_Link {
     S_0023EA00_Link *next;
