@@ -175,3 +175,38 @@ int C_000A2ED0::func_000A3C50(void)
     return D_002A8490->unk2E0->unk2FC->func_00094A10(unk594, unk4C0) != 0;
 }
 
+int C_000A3C90::func_000A3C90(int a)
+{
+    char buf[0x104];
+    int ret = func_001B9D60(a);
+    int i;
+    for (i = 0; i < unk1A4->unk284; i++) {
+        char *src = unk1A4->unk280[i]->unk1C0 + 0x28;
+        char *dst = buf;
+        char c;
+        int v;
+        do {
+            c = *src++;
+            *dst++ = c;
+        } while (c != 0);
+        func_001EA1EE(buf);
+        if (func_001E8AF0(buf, D_00276688)) {
+            v = D_002B9118;
+        } else if (func_001E8AF0(buf, D_0027ADEC)) {
+            v = D_002B9108;
+        } else if (func_001E8AF0(buf, D_0027ADE4)) {
+            v = D_002B910C;
+        } else if (func_001E8AF0(buf, D_0027ADDC)) {
+            v = D_002B911C;
+        } else if (func_001E8AF0(buf, D_0027ADD4)) {
+            v = D_002B9114;
+        } else if (func_001E8AF0(buf, D_0027B1B0) == buf) {
+            v = D_002B9110;
+        } else {
+            v = D_002BA160;
+        }
+        unk1A4->unk280[i]->unk68 = v;
+    }
+    return ret;
+}
+
