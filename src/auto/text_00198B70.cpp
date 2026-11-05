@@ -254,6 +254,28 @@ void C_00198B70::func_00199650(float *v)
     }
 }
 
+void C_00198B70::func_001996A0(C_00198B70 *other, S_00198B70_F4 v)
+{
+    if (other == this) {
+        fB0.m[3] = v.x + fB0.m[3];
+        fB0.m[7] = v.y + fB0.m[7];
+        fB0.m[11] = v.z + fB0.m[11];
+        func_001982F0();
+        if (f180 & 1) {
+            f180 &= 0xfe;
+            if (f174 != 0) {
+                f174->func_00197B10();
+            }
+        }
+        return;
+    }
+    if (other != 0) {
+        v = other->func_00197F70(&v);
+        v = f170->func_00198120(&v);
+    }
+    func_00199650(&v.x);
+}
+
 void C_00198B70::func_00199900(float *v)
 {
     fB0.m[3] = v[0] + fB0.m[3];
