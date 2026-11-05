@@ -66,6 +66,19 @@ struct C_Global2 {
 
 extern C_Global2 *D_002A8490;
 
+extern int D_0028BB04;
+
+struct C_001A7120 {
+    void func_001A5950();
+    void *func_001A7120(int flags);
+};
+
+struct C_001A7830 {
+    void *vtbl;
+    void func_00157660();
+    void *func_001A7830(int flags);
+};
+
 struct C_001A7260 {
     void *vtbl;
     char pad4[0x20];
