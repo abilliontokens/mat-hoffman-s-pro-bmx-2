@@ -40,6 +40,8 @@ struct DXStripSurfaceData {
     void *f28;
     int f2c;
     void *f30;
+    void *f34;
+    DXStripSurfaceData(int file);
     void func_001444F0();
 };
 
