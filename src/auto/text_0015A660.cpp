@@ -225,7 +225,7 @@ struct S_0015A660_List {
     void **data;
     int f8;
     int capacity;
-    int f10;
+    unsigned char f10 : 1;
     int func_0015ACA0(int n);
     void *at(int i)
     {
@@ -591,6 +591,48 @@ void *C_0015B310::func_0015B310(int flags)
         func_001E891B(this);
     }
     return this;
+}
+
+int C_0015B470::func_0015B370(volatile int n)
+{
+    C_0015B470 * volatile self = this;
+    volatile int tmp[2];
+    S_0015B470_Entry *old;
+    C_0015B470 *s;
+    int cnt;
+    int m;
+    int i;
+
+    if (n <= 0) {
+        return 0;
+    }
+    if (n < f4) {
+        fC = n - 1;
+    }
+    old = self->f0;
+    self->f0 = (S_0015B470_Entry *)func_001E8A44(n * 0x108);
+    s = self;
+    if (s->f0 == 0) {
+        return 0;
+    }
+    tmp[0] = s->f4;
+    m = tmp[0];
+    if (m > n) {
+        m = n;
+    }
+    tmp[1] = m;
+    cnt = tmp[1];
+    for (i = 0; i < cnt; i++) {
+        self->f0[i] = old[i];
+    }
+    if (self->f4 < cnt && self->f10 != 0) {
+        for (i = self->f4; i < cnt; i++) {
+            self->f0[i] = self->dflt;
+        }
+    }
+    func_001E891B(old);
+    self->f4 = n;
+    return 1;
 }
 
 C_0015B470 *C_0015B470::func_0015B470(void)
