@@ -232,6 +232,30 @@ void C_001C04D0::func_001C04D0(int idx)
     }
 }
 
+void C_001C05F0::func_001C05F0(void)
+{
+    int i;
+
+    unk2C = 0;
+    if (unk38 == 0 || unk3C == 0) {
+        if (unk38 != 0) {
+            v7();
+        }
+        if (unk3C != 0) {
+            v5();
+        }
+    }
+    if (unk19C != 0) {
+        for (i = 0; i < unk170; i++) {
+            unk68[i]->func_001B2270(unk184);
+        }
+    } else {
+        for (i = 0; i < unk170; i++) {
+            unk68[i]->func_001B1980();
+        }
+    }
+}
+
 void C_001C0670::func_001C0670(void)
 {
     unk40 = 0;
