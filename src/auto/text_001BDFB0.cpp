@@ -333,6 +333,28 @@ void UIPage::func_001BEB90(int idx)
     }
 }
 
+void UIPage::func_001BEC10(int idx)
+{
+    UIPageSlot *slot = f144[idx];
+    int cur = slot->index;
+    UIControl *item = slot->item;
+
+    if (item != 0) {
+        item->func_001BDC90();
+        do {
+            cur--;
+            if (cur < 1) {
+                cur = f13C;
+            }
+            item = f140[cur];
+        } while (item->f24 == 0);
+        item->func_001BDC50();
+        item->func_001BDD60(item->f30);
+        f144[idx]->index = cur;
+        f144[idx]->item = item;
+    }
+}
+
 void UIPage::func_001BEE30(int idx, int arg)
 {
     f140[idx]->func_001BDD60(arg);
