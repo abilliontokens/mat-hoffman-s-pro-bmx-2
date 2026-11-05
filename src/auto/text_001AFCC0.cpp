@@ -234,6 +234,22 @@ void C_001B0040::func_001B0070(unsigned int key)
     }
 }
 
+void *C_001B0040::func_001B0130(unsigned int key)
+{
+    if (key && unkC && unkC->unk28) {
+        S_001B0040_list *l = unk10;
+        if (l == 0) {
+            return unkC;
+        }
+        int i = func_001B0040(key);
+        if (i < l->count && l->items[i].key == key) {
+            return l->items[i].val;
+        }
+        return 0;
+    }
+    return unkC;
+}
+
 void C_001B01A0::func_001B01A0(void) {
     extern int D_0028C5E0;
     unk0 = (int)&D_0028C5E0;
