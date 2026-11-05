@@ -27,3 +27,12 @@ struct C_00175110 {
     void func_00174580(void);
     void *func_00175110(int a);
 };
+
+void *C_00175170::func_00175170(int flags) {
+    unk0 = (int)&D_00288DC4;
+    func_00171980();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
