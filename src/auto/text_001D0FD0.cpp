@@ -79,6 +79,18 @@ void C_001D1480::func_001D1480(void) {
     func_0015A940();
 }
 
+void *C_001D1490::func_001D1490(unsigned int flags)
+{
+    void func_001E891B(void *);
+
+    vtbl = &D_0028F1F0;
+    func_0015A940();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 undefined4 C_001D15B0::func_001D15B0(void)
 {
   int __stdcall func_0026ECAA(int);
