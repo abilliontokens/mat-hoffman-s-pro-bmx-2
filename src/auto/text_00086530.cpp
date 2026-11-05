@@ -116,6 +116,28 @@ BestScoreOverlay *BestScoreOverlay::func_00086DC0(int a0) {
     return this;
 }
 
+void BestScoreOverlay::func_00086E00(void) {
+    BestScoreOverlay_24 *p = f24;
+
+    vtbl = (void *)&D_00279734;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+    p = f28;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+    if (f2C) {
+        f2C->Destroy(1);
+    }
+    if (f30) {
+        f30->Destroy(1);
+    }
+    ((C_00157660 *)this)->func_00157660();
+}
+
 void C_000874D0::func_000874D0(void) {
     unk40 = 0;
 }
