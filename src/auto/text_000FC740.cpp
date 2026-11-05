@@ -12,6 +12,60 @@ struct C_000FC740_Widget {
     void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, float a11, int a12, int a13);
 };
 
+struct C_000FC800_Pane {
+    void func_00093120(void);
+    void func_00093A00(float x, float y, int c, int a, int b, int d);
+    void func_00094690(float x, float y, int c, int a, int b, int d);
+    void func_00093890(float x, float y, int c, int a, int b, int d);
+    void func_000942F0(float x, float y, int c, int a, int b, int d);
+    void func_00094410(float x, float y, int c, int a, int b, int d);
+    void func_00093F30(float x, float y, int c, int a, int b, float t);
+    void func_00093E80(float x, float y, int c, int a, int b, float t);
+    void func_000941A0(int v, float x, float y, int c, int a, int b, int d);
+    void func_00093970(float x, float y, int c, int a, int b, float t);
+};
+extern int D_0028F5E0;
+extern int D_002A3854;
+
+struct C_000FC800 {
+    char pad0[0x4e4];
+    int f4e4;
+    char pad4e8[4];
+    int f4ec;
+    int f4f0;
+    int f4f4;
+    C_000FC800_Pane *f4f8;
+    int f4fc;
+    int f500;
+    int f504;
+    int f508;
+    char pad50c[4];
+    int f510;
+    char pad514[0x52c - 0x514];
+    int f52c;
+    int f530;
+    char pad534[4];
+    int f538;
+    char pad53c[0x558 - 0x53c];
+    int f558;
+    char pad55c[0x57c - 0x55c];
+    int f57c;
+    int f580;
+    char pad584[0x590 - 0x584];
+    int f590;
+    char pad594[4];
+    int f598;
+    char pad59c[0x5b4 - 0x59c];
+    int f5b4;
+    void func_000D0110(void);
+    void func_000F83C0(void);
+    void func_000D0D60(void);
+    void func_000FC740(void);
+    void func_000D0D20(void);
+    void func_00157960(void);
+    void func_000FC800(void);
+};
+
 struct C_000FC740 {
     char pad0[0x48c];
     int f48c;
