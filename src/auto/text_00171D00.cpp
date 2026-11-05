@@ -170,7 +170,8 @@ struct PhysicsBody {
     C_00193490 *fB0;
     char padB4[0x10];
     void *fC4;
-    char padC8[0xC];
+    char padC8[8];
+    C_00172090_D0 *fD0;
     C_00172460Obj *fD4;
     C_00172460Obj *fD8;
     C_00172460Obj *fDC;
