@@ -2,6 +2,8 @@
 #include "common.h"
 #include <string.h>
 
+struct S_func_000639B0_arg1 { int f0; };
+
 struct C_0005E840 {
     void func_0005E840(char *s);
 };
