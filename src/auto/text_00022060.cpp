@@ -88,6 +88,42 @@ struct C_00022320 {
     Obj_00022320 *func_00022320(int a);
 };
 
+struct Vec4_000223B0 {
+    float x, y, z, w;
+    Vec4_000223B0() { x = y = z = 0; w = 1; }
+};
+
+struct S_000223B0_Obj {
+    void func_00199600(Vec4_000223B0 v);
+    void func_001983A0(void);
+};
+
+struct S_000223B0_State {
+    S_Vec4i_00022320 v;
+    int f10;
+    char pad14[8];
+    int f1c;
+    char pad20[0x20];
+    int f40;
+};
+
+struct S_000223B0_Zero {
+    char pad0[0xc];
+    int f[9];
+};
+
+struct C_000223B0 {
+    char pad0[0x24];
+    int f24;
+    char pad28[4];
+    S_000223B0_Obj *f2C;
+    S_000223B0_State *f30;
+    S_000223B0_Zero *f34;
+    int func_000223B0(Vec4_000223B0 pos, float dy);
+};
+
+extern "C" int func_00134DE0(Vec4_000223B0 *, Vec4_000223B0 *, Vec4_000223B0 *, int, int, int, int, int, int);
+
 
 Obj_00022320 *C_00022320::func_00022320(int a)
 {
