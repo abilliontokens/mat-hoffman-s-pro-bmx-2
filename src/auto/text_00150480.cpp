@@ -1,7 +1,7 @@
 /* 9 functions from 0x00150480 to 0x00151130, found by Ghidra. */
 #include "common.h"
 extern int D_002B911C, D_002B9110;
-static inline float abs_150970(float v) { *(int *)&v &= 0x7fffffff; return v; }
+static inline float abs_150970(float v) { volatile float t = v; int bits = *(volatile int *)&t & 0x7fffffff; return *(float *)&bits; }
 struct C_00150F60 {
     char pad0[0x24];
     int unk24;
