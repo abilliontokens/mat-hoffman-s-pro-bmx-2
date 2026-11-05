@@ -456,14 +456,16 @@ void *C_001BF430::func_001BF430(int a0, int a1)
 
 void C_001BF490::func_001BF490(C_001BF490_Item *a0)
 {
-    for (int i = 0; i < 8; i++) {
+    int i = 0;
+    do {
         if (a0->unk44[i] != 0) {
             S_001BF3C0_List *list = unk2C[i];
             if (list->head == 0) {
                 S_001BF3C0_Node *node = (S_001BF3C0_Node *)func_001E8A44(0xc);
                 list->head = node;
                 node->unk0 = a0;
-                node->unk4 = node->unk8 = 0;
+                node->unk8 = 0;
+                node->unk4 = 0;
                 list->tail = node;
             } else {
                 list->tail->unk8 = (S_001BF3C0_Node *)func_001E8A44(0xc);
@@ -474,7 +476,8 @@ void C_001BF490::func_001BF490(C_001BF490_Item *a0)
                 list->tail->unk8 = 0;
             }
         }
-    }
+        i++;
+    } while (i < 8);
 }
 
 undefined4 C_001BF520::func_001BF520(byte param_1)
@@ -578,6 +581,19 @@ void C_001BF930::func_001BFCB0(void)
     v7();
     f68->func_00199600(f6c);
     f68->func_00198F50(f7c, f8c, 1, 0, 0);
+}
+
+void C_001BF930::func_001BFD00(float dt)
+{
+    if (f9C != D_00275544) {
+        fA0 = dt / (f9C * 6.2831855f) + fA0;
+        if (fA0 > 6.2831855f) {
+            fA0 = fA0 - 6.2831855f;
+        }
+        if (f68 != 0) {
+            f68->func_00199E30(S_Vec4f_001BFD00(0.0f, 0.0f, 1.0f, 1.0f), fA0);
+        }
+    }
 }
 
 void C_001BFE80::func_001BFE80(void)
