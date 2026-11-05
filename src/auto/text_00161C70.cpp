@@ -111,7 +111,7 @@ struct C_00162A80 {
     int unk14;
     C_00162790 **unk18;
     void func_00162A80(C_00162790 *item);
-    C_00162790 *func_00162B20(const char *name);
+    C_00162790 *func_00162B20(const char *name, int unused);
 };
 
 extern int D_00287C24;
@@ -423,5 +423,30 @@ void *LinearPositionController::func_001629A0(unsigned char flags)
     if (flags & 1)
         func_001E891B(this);
     return this;
+}
+
+void C_00162A80::func_00162A80(C_00162790 *item)
+{
+    int idx = 0;
+    int i;
+    int n;
+
+    for (i = 0; i < unk0; i++) {
+        if (unk18[i] == item) {
+            idx = i;
+        }
+    }
+    item->unk40--;
+    if (item->unk40 <= 0 && unk10 == 0) {
+        item->func_001627E0();
+        func_001E891B(item);
+        unk18[idx] = 0;
+        for (i = idx; i < unk0 - 1; i++) {
+            unk18[i] = unk18[i + 1];
+        }
+        n = unk0 - 1;
+        unk0 = n;
+        unk18 = (C_00162790 **)func_001E83E8(unk18, n * 4);
+    }
 }
 
