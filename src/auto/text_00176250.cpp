@@ -40,8 +40,8 @@ u32 func_00176D60(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   int y;
   int n;
   if (level == 0) {
-    for (y = height; y > 0; y--, src += srcPitch * 3, dst += dstPitch * 3) {
-      memcpy(dst, src, width * 3);
+    for (y = 0; y < height; y++) {
+      memcpy(dst + y * dstPitch * 3, src + y * srcPitch * 3, width * 3);
     }
     return 1;
   }
@@ -66,3 +66,40 @@ u32 func_00176D60(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   func_001E8390(buf);
   return 1;
 }
+u32 func_001770E0(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int level)
+{
+  u8 *buf;
+  int w;
+  int h;
+  int y;
+  int n;
+  if (level == 0) {
+    for (y = height; y > 0; y--) {
+      memcpy(dst, src, width * 2);
+      src += srcPitch * 2;
+      dst += dstPitch * 2;
+    }
+    return 1;
+  }
+  if (level == 1) {
+    func_001755A0(dst, src, width, height, dstPitch, srcPitch, 0);
+    return 1;
+  }
+  w = width << (level - 1);
+  h = height << (level - 1);
+  buf = (u8 *)func_001E8AA5(h * w * 2);
+  func_001755A0(buf, src, w, h, w, srcPitch, 0);
+  if (level > 2) {
+    n = level - 2;
+    do {
+      w /= 2;
+      h /= 2;
+      func_001755A0(buf, buf, w, h, w, w * 2, 0);
+      n--;
+    } while (n != 0);
+  }
+  func_001755A0(dst, buf, width, height, dstPitch, w, 0);
+  func_001E8390(buf);
+  return 1;
+}
+
