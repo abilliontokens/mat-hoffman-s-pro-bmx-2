@@ -95,6 +95,18 @@ struct C_0012FE30 {
 };
 
 
+void C_CarProceduralExtended::func_0012F600(f32 param_1, int param_2)
+{
+    if (this->f518 != 0) {
+        if (this->f4E8 > D_00275544) {
+            this->f510 = ((C_CarProceduralExtendedVT *)this)->func_0012F670(param_1, this->f4E8);
+        } else {
+            this->f510 = param_1;
+        }
+    }
+    this->f4AC = param_2;
+}
+
 void C_CarProceduralExtended::func_0012FCB0(int param_1)
 {
     D_002BEAAC->func_0013B930(param_1, this->f518, 4, 1);
