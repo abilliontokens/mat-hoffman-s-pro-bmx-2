@@ -495,6 +495,34 @@ void C_001A5FD0::func_001A5FD0(int arg)
     func_00157A00(arg);
 }
 
+int func_001361E0(int a, int b, int c, unsigned int d);
+void C_001A60A0::func_001A60A0(int a, int b)
+{
+    if (f2c != 11) {
+        if (func_001361E0(4, 2, a, 0x80000000) || func_001361E0(0x17, 2, a, 0x80000000)) {
+            f24->f24 = 1;
+        }
+    } else if (f28 != 0) {
+        f28->func_001D37C0();
+        if (f2c == 9) {
+            f24->f24 = 6;
+        } else if (f2c == 11) {
+            if (((S_60A0_P *)D_002A8490->f2e0)->f2c0->func_0005C0E0() == 0) {
+                f24->f24 = 12;
+            } else {
+                f24->f1dc = 1;
+                f24->f24 = 1;
+            }
+        } else if (f2c == 13) {
+            f24->f1dc = 1;
+            f24->f24 = 1;
+        } else {
+            f24->f24 = 1;
+        }
+    }
+    func_00157BF0(a, b);
+}
+
 void C_001A6260::func_001A6930()
 {
     int *r = D_002A8490->f2ec->func_0018C160((int)&D_0027958C);
