@@ -22,6 +22,7 @@ struct S_0012AB70Vec {
     int v1;
     int v2;
     int v3;
+    void Normalize(int src) { func_0012A380(this, src); }
 };
 
 struct C_0012AB70R {
@@ -141,11 +142,11 @@ void C_0012AB70R::func_0012AB70(S_0012AB70Vec *param1, int param2, int param3, i
     if (param1 != 0) {
         f170 = *param1;
     }
-    if ((S_0012AB70Vec *)param2 != 0) {
-        func_0012A380((S_0012AB70Vec *)f180, (S_0012AB70Vec *)param2);
+    if (param2 != 0) {
+        Vec_Normalize(f180, param2);
     }
-    if ((S_0012AB70Vec *)param3 != 0) {
-        func_0012A380((S_0012AB70Vec *)f190, (S_0012AB70Vec *)param3);
+    if (param3 != 0) {
+        Vec_Normalize(f190, param3);
     }
     if (param4 != 0) {
         f1d4 = *param4;
