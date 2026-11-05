@@ -1,5 +1,10 @@
 /* 24 functions from 0x00156880 to 0x00157810, found by Ghidra. */
 #include "common.h"
+extern int D_002870A4;
+extern char D_002A7A84[];
+extern char D_002A7AA0[];
+void *func_001E8A44(unsigned int size);
+void func_0014FDD0();
 #include "ghidra.h"
 #include "ghidra.h"
 struct C_00157290 {
