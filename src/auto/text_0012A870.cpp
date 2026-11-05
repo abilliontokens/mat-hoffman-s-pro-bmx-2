@@ -227,6 +227,35 @@ void C_0012B000::func_0012B000(float param1, float param2)
     func_000263B0(ff0, fb0, f70);
 }
 
+void Camera::func_0012B060(void)
+{
+    int func_001E891B(...);
+    int func_0014FE50(...);
+    S_Camera28 *p = f28;
+    void *arr[4];
+    int i;
+
+    vtbl = (void *)&D_00284074;
+    if (p != 0) {
+        p->func_00193500();
+        func_001E891B(p);
+    }
+    if (f224 != 0) {
+        func_0014FE50(f224);
+    }
+    D_002A8490->v16(arr);
+    for (i = 0; i < 4; i++) {
+        if (arr[i] == (void *)this) {
+            arr[i] = 0;
+        }
+    }
+    D_002A8490->v15(arr[0], arr[1], arr[2], arr[3]);
+    if (D_002EFDB8 != 0 && D_002EFDB8[1] == (int)this) {
+        ((S_002EFDB8 *)D_002EFDB8)->func_00182830(0);
+    }
+    ((CameraController *)this)->func_00157660();
+}
+
 void Camera::func_0012B110(void)
 {
     func_001576D0();
