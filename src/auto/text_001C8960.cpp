@@ -113,7 +113,7 @@ void C_001C9760::func_001C9760(S_1C9760_Vec *pos, int arg1, int arg2) {
             int ix = (int)((x-layer->x)*layer->scale);
             int iz = (int)((z-layer->z)*layer->scale);
             if (ix>=0 && ix<dimension && iz>=0 && iz<dimension)
-                total += D_002F08AC * layer->data[layer->index][iz*dimension+ix].height * D_0028E858;
+                total += D_0028E858 * layer->data[layer->index][iz*dimension+ix].height * D_002F08AC;
         }
     }
     float value;
