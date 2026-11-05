@@ -55,6 +55,28 @@ struct S_U12 {
 
 extern char D_0000FFFF[];
 extern char D_0001FFFF[];
+
+extern "C" char *strcpy(char *dst, const char *src);
+#pragma intrinsic(strcpy)
+void __cdecl func_001F60E2(S_Ld12_001F60E2 *dst, int pow, unsigned int mult12);
+
+/* 12-byte extended value: the 10 bytes of a long double at +2, two zero bytes below */
+#pragma pack(push, 2)
+struct S_I10_Ld12 {
+    unsigned short w0;
+    unsigned long lo;
+    unsigned long hi;
+    unsigned short exp;
+};
+#pragma pack(pop)
+
+/* the digit string the converter fills in */
+struct S_I10_Fos {
+    short exp;
+    char sign;
+    char manlen;
+    char man[24];
+};
 extern char D_00018000[];
 void func_001F5B20(S_U12 *p);
 void func_001F5B4E(S_U12 *p);
@@ -185,6 +207,123 @@ void func_001F5B4E(S_U12 *p)
 }
 
 #pragma optimize("s", on)
+void __cdecl func_001F5EC0(S_Ld12_001F60E2 *px, S_Ld12_001F60E2 *py)
+{
+    unsigned short expsum;
+    int i;
+    unsigned short *q;
+    unsigned short *pxs;
+    unsigned short *pys;
+    int roffs;
+    int sticky = 0;
+    int j;
+    unsigned int sign;
+    unsigned short expx, expy;
+    unsigned int *px32 = (unsigned int *)px;
+    unsigned int *py32 = (unsigned int *)py;
+    unsigned char tm[12];
+
+    *(unsigned int *)(tm + 0) = 0;
+    *(unsigned int *)(tm + 4) = 0;
+    *(unsigned int *)(tm + 8) = 0;
+    expy = *(unsigned short *)((char *)py + 10);
+    expx = *(unsigned short *)((char *)px + 10);
+    sign = (expy ^ expx) & 0x8000;
+    expx &= 0x7fff;
+    expy &= 0x7fff;
+    expsum = expx + expy;
+    if (expx >= 0x7fff || expy >= 0x7fff || expsum > 0xbffd) {
+        goto overflow;
+    }
+    if (expsum <= 0x3fbf) {
+        px32[2] = 0;
+        px32[1] = 0;
+        px32[0] = 0;
+        return;
+    }
+    if (expx == 0) {
+        expsum++;
+        if (!(px32[2] & 0x7fffffff) && px32[1] == 0 && px32[0] == 0) {
+            *(unsigned short *)((char *)px + 10) = 0;
+            return;
+        }
+    }
+    if (expy == 0) {
+        expsum++;
+        if (!(py32[2] & 0x7fffffff) && py32[1] == 0 && py32[0] == 0) {
+            px32[2] = 0;
+            px32[1] = 0;
+            px32[0] = 0;
+            return;
+        }
+    }
+    q = (unsigned short *)tm + 2;
+    roffs = 0;
+    for (i = 5; i > 0; i--) {
+        pxs = (unsigned short *)px + roffs;
+        pys = (unsigned short *)py + (roffs ? 4 : 4);
+        for (j = i; j > 0; j--) {
+            if (func_001F5AA1(*(unsigned int *)(q - 2), (unsigned int)*pxs * (unsigned int)*pys, (unsigned int *)(q - 2))) {
+                ++*q;
+            }
+            pxs++;
+            pys--;
+        }
+        q++;
+        roffs++;
+    }
+    expsum += 0xc002;
+    while ((short)expsum > 0 && !(tm[11] & 0x80)) {
+        func_001F5B20((S_U12 *)tm);
+        expsum += (int)D_0000FFFF;
+    }
+    if ((short)expsum <= 0) {
+        expsum += (int)D_0000FFFF;
+        if ((short)expsum < 0) {
+            unsigned short n = -expsum;
+            expsum += n;
+            do {
+                if (tm[0] & 1) {
+                    sticky++;
+                }
+                func_001F5B4E((S_U12 *)tm);
+            } while (--n);
+            if (sticky) {
+                tm[0] |= 1;
+            }
+        }
+    }
+    if (*(unsigned short *)tm > 0x8000 || (*(unsigned int *)tm & (unsigned int)D_0001FFFF) == (unsigned int)D_00018000) {
+        if (*(unsigned int *)(tm + 2) == 0xffffffff) {
+            *(unsigned int *)(tm + 2) = 0;
+            if (*(unsigned int *)(tm + 6) == 0xffffffff) {
+                *(unsigned int *)(tm + 6) = 0;
+                if (*(unsigned short *)(tm + 10) == 0xffff) {
+                    expsum++;
+                    *(unsigned short *)(tm + 10) = 0x8000;
+                } else {
+                    (*(unsigned short *)(tm + 10))++;
+                }
+            } else {
+                (*(unsigned int *)(tm + 6))++;
+            }
+        } else {
+            (*(unsigned int *)(tm + 2))++;
+        }
+    }
+    if (expsum >= 0x7fff) {
+        goto overflow;
+    }
+    *(unsigned short *)px = *(unsigned short *)(tm + 2);
+    *(unsigned int *)((char *)px + 2) = *(unsigned int *)(tm + 4);
+    *(unsigned int *)((char *)px + 6) = *(unsigned int *)(tm + 8);
+    *(unsigned short *)((char *)px + 10) = expsum | sign;
+    return;
+overflow:
+    px32[1] = 0;
+    px32[0] = 0;
+    px32[2] = (-(unsigned int)(sign != 0) & 0x80000000) + 0x7fff8000;
+}
 void __cdecl func_001F60E2(S_Ld12_001F60E2 *dst, int pow, unsigned int mult12)
 {
     S_Ld12_001F60E2 tmp;
