@@ -208,6 +208,35 @@ struct XboxSoundInterface {
     void *func_001CFE70(int flags);
 };
 
+extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *cs);
+extern "C" __declspec(dllimport) void __stdcall RtlLeaveCriticalSection(void *cs);
+
+struct SoundThreadEx_001CFEF0 : SoundThread_001CFE20 {
+    char cs[0x1c];
+};
+
+struct SoundGlobal_001CFEF0 {
+    char pad0[0x138];
+    SoundThreadEx_001CFEF0 *f138;
+};
+extern SoundGlobal_001CFEF0 *D_002F08EC;
+
+struct SoundStream_001CFEF0 {
+    char pad0[8];
+    char f8;
+    char pad9[0x13c - 9];
+    int f13c;
+    int f140;
+    int f144;
+    SoundStream_001CFEF0 *f148;
+    SoundStream_001CFEF0 *f14c;
+    char pad150[8];
+    int f158[15];
+    char pad194[0x208 - 0x194];
+    unsigned char f208;
+    int func_001CE770(int a);
+    int func_001CFEF0(void);
+};
 
 void XboxMusic::func_001CF110(IntArray *list)
 {
