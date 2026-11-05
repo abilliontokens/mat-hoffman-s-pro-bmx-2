@@ -48,6 +48,26 @@ undefined4 C_0014F170::func_0014F170(byte param_1)
   return in_ECX;
 }
 
+float func_0014F450(int x) {
+    float f = (func_00016D60(x) + D_002756D0) * D_002DF870;
+
+    FloatToIndex(&x, f);
+    return (f - (float)x) * D_002CF6B4[x].a * D_002DF874 + D_002CF6B4[x].b;
+}
+
+float func_0014F4B0(int x) {
+    float f = (func_00016D60(x) + D_002756D0) * D_002DF870;
+
+    FloatToIndex(&x, f);
+    return D_002CF6B4[x].a - (f - (float)x) * D_002CF6B4[x].b * D_002DF874;
+}
+
+float func_0014F510(float x) {
+    float t = x * x;
+
+    return (((((D_002A7720 * t + D_002A771C) * t + D_002A7718) * t + D_002A7714) * t + D_002A7710) * t) + D_00275460;
+}
+
 float func_0014F550(float x) {
     float t = x * x;
 
