@@ -177,6 +177,36 @@ struct S_0023ED4C_Out {
     int fC;
 };
 
+/* a read request queued on the stream's list */
+struct S_0023EC71_Req {
+    S_0023EA00_Link link;
+    int f8;
+    int fC;
+};
+
+/* the file stream: reads windows of f94 bytes from the handle f50 */
+struct C_0023EC71 {
+    char pad0[0x3c];
+    unsigned int f3c;
+    unsigned int f40;
+    char pad44[0xc];
+    int f50;
+    char f54[8];
+    unsigned int f5c;
+    char pad60[0x30];
+    int f90;
+    unsigned int f94;
+    int pad98;
+    S_0023EA00_Link f9c;
+    int func_0023EC71(int a0, int a1, S_0023EC71_Req *req);
+    void func_0023EB1F(int *p);
+};
+
+int __stdcall func_001DD3A1(int h, int a, int b, int c);
+int __stdcall func_001DD15A(int h, int buf, int len, int *n, void *ovl);
+int __stdcall func_001DD670(int h, void *ovl, int *n, int wait);
+int func_001DD603(void);
+
 struct C_0023ED4C {
     int func_0023ED4C(S_0023ED4C_Src *src, S_0023ED4C_Out *out);
 };
