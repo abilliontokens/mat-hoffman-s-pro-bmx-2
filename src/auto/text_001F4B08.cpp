@@ -51,6 +51,22 @@ extern unsigned char D_002AEE60[];
 extern S_cpinfo D_002AEE68[5];
 extern int D_002F6A64;
 
+struct S_mbcinfo {
+    int refcount;
+    int cp;
+    int flag;
+    int lcid;
+    unsigned short names[5];
+    unsigned char ctype[0x101];
+    unsigned char xtype[0x100];
+};
+extern S_mbcinfo *D_002FAFEC;
+extern int D_002F6A58;
+extern unsigned short D_002FB120w[];
+extern unsigned char D_002FB140[0x100];
+void func_001EB390(int n);
+int func_001F4C09(unsigned int cp);
+
 /* CRT run-time error table: {num, msg} pairs, 8 bytes each */
 extern int D_002AEF98[];
 extern const char *D_002AEF9C[];
