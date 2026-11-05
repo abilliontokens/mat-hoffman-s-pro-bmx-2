@@ -20,6 +20,15 @@ struct Vec4 {
     f32 w;
 };
 
+struct S_001C7310_Vec {
+    float x, y, z, w;
+    S_001C7310_Vec(float a, float b, float c) { x = a; y = b; z = c; w = 1.0f; }
+};
+
+struct C_0018C7B0 {
+    void func_0018C7B0(int a0);
+};
+
 struct C_00198330 {
     void func_00199A70(C_00198330 *a0, Vec4 *a1);
 };
