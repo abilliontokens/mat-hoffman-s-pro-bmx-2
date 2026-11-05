@@ -149,6 +149,26 @@ struct C_001CDC20 {
 };
 
 
+struct S_Slot {
+    int f0;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    int f14;
+    int f18;
+    int f1C;
+    u8 f20;
+};
+struct S_SlotList {
+    int count;
+    S_Slot **items;
+};
+struct S_Owner { char pad[0x138]; char *f138; };
+extern S_Owner *D_002F08EC;
+extern "C" void __stdcall RtlEnterCriticalSection(void *p);
+extern "C" void __stdcall RtlLeaveCriticalSection(void *p);
+
 XboxSoundGroup *XboxSoundGroup::func_001CD770(int a, int b)
 {
     func_0001C8F0(b);
@@ -208,6 +228,44 @@ void XboxSoundGroup::func_001CD8F0(int a)
         list.at(i)->v19(a);
     }
     func_00157A00(a);
+}
+
+C_001CDC20 *C_001CDC20::func_001CDC20(int a, int b)
+{
+    list0.items = 0;
+    list0.count = 0;
+    list0.growBy = 0;
+    list0.capacity = 0;
+    f20b.b0 = 0;
+    list1.items = 0;
+    list1.count = 0;
+    list1.growBy = 0;
+    list1.capacity = 0;
+    f34b.b0 = 0;
+    list2.items = 0;
+    list2.count = 0;
+    list2.growBy = 0;
+    list2.capacity = 0;
+    f48b.b0 = 0;
+    f0 = -1;
+    f4 = -1;
+    f4C = 0;
+    list0.items = (S_SoundElem **)func_001E8A44(4);
+    f20b.b0 = 1;
+    list0.growBy = 0x10;
+    list0.capacity = 1;
+    list1.items = (S_SoundElem **)func_001E8A44(4);
+    f34b.b0 = 1;
+    list1.growBy = 0x10;
+    list1.capacity = 1;
+    list2.items = (S_SoundElem **)func_001E8A44(4);
+    f48b.b0 = 1;
+    list2.growBy = 0x10;
+    list2.capacity = 1;
+    f8 = b;
+    fC = a;
+    RtlInitializeCriticalSection(f50);
+    return this;
 }
 
 void C_001CDCF0::func_001CDCF0(void)
