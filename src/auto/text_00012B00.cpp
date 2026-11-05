@@ -53,9 +53,10 @@ static __forceinline S_13910_Vec add12(const S_13910_Vec &a, const S_13910_Vec &
 static __forceinline S_13910_Vec mul12(const S_13910_Vec &a, float b) { return S_13910_Vec(a.x*b,a.y*b,a.z*b); }
 static __forceinline float dot12(const S_13910_Vec &a, const S_13910_Vec &b) { return a.x*b.x+a.y*b.y+a.z*b.z; }
 static __forceinline void cross12(S_13910_Vec *out,const S_13910_Vec *a,const S_13910_Vec *b) {
- _mm_storeu_ps(&out->x,_mm_shuffle_ps(
- _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a->x),_mm_shuffle_ps(_mm_loadu_ps(&b->x),_mm_loadu_ps(&b->x),0xc9)),_mm_mul_ps(_mm_loadu_ps(&b->x),_mm_shuffle_ps(_mm_loadu_ps(&a->x),_mm_loadu_ps(&a->x),0xc9))),
- _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a->x),_mm_shuffle_ps(_mm_loadu_ps(&b->x),_mm_loadu_ps(&b->x),0xc9)),_mm_mul_ps(_mm_loadu_ps(&b->x),_mm_shuffle_ps(_mm_loadu_ps(&a->x),_mm_loadu_ps(&a->x),0xc9))),0xc9));
+ __m128 va=_mm_loadu_ps(&a->x),vb=_mm_loadu_ps(&b->x),sa=va,sb=vb;
+ sa=_mm_shuffle_ps(sa,sa,0xc9);sb=_mm_shuffle_ps(sb,sb,0xc9);
+ vb=_mm_mul_ps(vb,sa);va=_mm_mul_ps(va,sb);
+ va=_mm_sub_ps(va,vb);va=_mm_shuffle_ps(va,va,0xc9);_mm_storeu_ps(&out->x,va);
 }
 static __forceinline float sqrt12(float f) { return _mm_sqrt_ss(*(__m128 *)&f).m128_f32[0]; }
 
