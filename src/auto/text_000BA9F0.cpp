@@ -52,6 +52,7 @@ struct BmxUIManager {
     UIItem *f26c;
     void *f270;
     void *f274;
+    void func_000BACE0();
     int func_000BB0C0();
     void func_000BB340();
     void func_000BB360();
