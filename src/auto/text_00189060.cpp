@@ -135,6 +135,14 @@ struct S_00189B60_Vec4 {
     }
 };
 
+static inline void SetVec4Ref_00189B60(S_00189B60_Vec4 *v, const float &a, const float &b, const float &c, const float &d)
+{
+    v->z = c;
+    v->y = b;
+    v->x = a;
+    v->w = d;
+}
+
 static __forceinline void SetVec4_00189B60(S_00189B60_Vec4 *v, float a, float b, float c, float d)
 {
     v->x = a;
