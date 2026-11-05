@@ -206,7 +206,6 @@ struct XboxControlInterface_001D0C30 {
 int XboxSoundStreams_001D0020::func_001D0020(void)
 {
     S_001D0020_Wfx wfx = {0};
-    S_001D0020_StreamDesc desc = {0};
     int hr;
 
     wfx.wFormatTag = 1;
@@ -215,6 +214,7 @@ int XboxSoundStreams_001D0020::func_001D0020(void)
     wfx.wBitsPerSample = 16;
     wfx.nBlockAlign = 4;
     wfx.nAvgBytesPerSec = (unsigned int)D_0002B110;
+    S_001D0020_StreamDesc desc = {0};
     desc.dwMaxAttachedPackets = 0x2b;
     desc.lpwfxFormat = &wfx;
     hr = func_002228F8(&desc, &fB8);
