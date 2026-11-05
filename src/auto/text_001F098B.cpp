@@ -37,6 +37,55 @@ struct S_001EF734 {
 };
 
 #pragma optimize("t", off)
+void *func_001F1085(S_001EF734 *out)
+{
+    S_001EF734 *func_001EFE9D(S_001EF734 *out);
+    S_001EF734 *func_001EFD19(S_001EF734 *out, char *s, S_001EF734 *n);
+    void *func_001F0F86(void *out);
+    int ecsu = !(D_002F6A38 & 0x8000);
+    int prefix = ecsu && !(D_002F6A38 & 0x1000);
+    S_001EF734 name;
+    S_001EF734 result;
+    S_001EF734 t;
+    int c = *D_002F6A28;
+    name.value = 0;
+    name.flags &= 0xfffffe00;
+    D_002F6A28++;
+    switch (c) {
+    case 0:
+        D_002F6A28--;
+        out->func_001EF759(D_00295CEE);
+        return out;
+    case 'T':
+        name.func_001EF9B2(D_00295CFC);
+        break;
+    case 'U':
+        name.func_001EF9B2(D_00295D04);
+        break;
+    case 'V':
+        name.func_001EF9B2(D_002871C8);
+        break;
+    case 'W':
+        prefix = ecsu;
+        name.func_001EEF4F(func_001EFD19(&t, D_00295D0C, func_001EFE9D(&result)));
+        break;
+    case 'X':
+        name.func_001EF9B2(D_00295D14);
+        break;
+    case 'Y':
+        name.func_001EF9B2(D_00295D20);
+        break;
+    }
+    result.value = 0;
+    result.flags &= 0xfffffe00;
+    if (prefix)
+        result.func_001EEF4F(&name);
+    func_001F0F86(&name);
+    result.func_001EF935(&name);
+    out->func_001EEEE6(&result);
+    return out;
+}
+
 void *func_001F1184(void *p)
 {
     int func_001F0B53(...);
