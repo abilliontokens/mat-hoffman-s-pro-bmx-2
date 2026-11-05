@@ -260,6 +260,23 @@ void C_00051260::func_00051260(void)
   return;
 }
 
+void C_000516C0::func_000516C0(void)
+{
+  int in_ECX = (int)this;
+  int iVar1;
+  int iVar2;
+
+  ((I_002A8490 *)D_002A8490)->slot_3c(*(undefined4 *)(in_ECX + 0x24), 0, 0, 0);
+  ((C_0012B190 *)*(int *)(in_ECX + 0x24))->func_0012B190(0, 0, 0x280, 0x1c0);
+  memcpy((void *)(in_ECX + 0x1dc), (void *)(*(int *)(in_ECX + 0x24) + 0x1e0), 0x18);
+  if (*(int *)(in_ECX + 0x28) != 0) {
+    iVar1 = (int)D_002B8F98;
+    iVar2 = (int)D_002B8FA0;
+    ((C_0012B190 *)*(int *)(in_ECX + 0x28))->func_0012B190(0x280 - iVar2, 0x1c0 - iVar1, iVar2, iVar1);
+  }
+  return;
+}
+
 int C_00051840::func_00051840(void)
 {
     int count = 0;
