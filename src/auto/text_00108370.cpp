@@ -229,6 +229,17 @@ float C_00108CB0::func_00108CB0(int idx, float v)
     return v * f24->f52C->f7A64[idx];
 }
 
+float __stdcall func_00108CE0(int idx)
+{
+    if (idx > 2) {
+        return D_00275544;
+    }
+    if (idx > 1) {
+        return D_002755E8;
+    }
+    return D_00275460;
+}
+
 void C_00108F50::func_00108F50(void)
 {
     int i;
