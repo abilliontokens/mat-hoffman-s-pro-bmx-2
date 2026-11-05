@@ -33,7 +33,7 @@ struct BmxUIPageOptions {
     virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
     virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
     virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
-    virtual void v28(int, int);
+    virtual void v28(float, float);
     char pad4[0x124 - 4];
     S_000F4BA0_Owner *unk124;
     char pad128[0x148 - 0x128];
