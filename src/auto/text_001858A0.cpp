@@ -283,8 +283,7 @@ struct P_186330 {
 };
 struct Light_186330 {
     void *vtbl; ObjA_186330 *f4; P_186330 *f8;
-    int func_00186330(int a);
-    void func_00186210(void);
+    int func_00186330(int a, int b);
 };
 extern int D_002E2930;
 void *func_001E8A44(int size);
