@@ -58,6 +58,7 @@ struct C_00191470_Vec {
     int y;
     int z;
     int w;
+    void Set(int a, int b, int c, int d) { x = a; y = b; z = c; w = d; }
 };
 
 /* the value holder: name[0x18], flags, size, then a vector / matrix slot */
