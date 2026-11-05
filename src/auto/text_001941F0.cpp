@@ -226,6 +226,19 @@ void C_00194310::func_00194310(int a0, int a1) {
     unk44 = a1;
 }
 
+int SignatureWave::func_00194490(void)
+{
+    if (f24 != 0) {
+        S_00194490_Clamp *o = f24[f50];
+        if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+        if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        o = f24[f54];
+        if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+        if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+    }
+    return 1;
+}
+
 undefined4 C_00194720::func_00194720(byte param_1)
 {
   int func_001942C0(...);
