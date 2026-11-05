@@ -674,6 +674,11 @@ undefined4 C_001C3F30::func_001C3F30(void)
   return *(undefined4 *)(*(int *)(in_ECX + 0x40) + 0x38);
 }
 
+void C_001C3F40::func_001C3F40()
+{
+    f58->v4();
+}
+
 bool C_001C3F50::func_001C3F50(void)
 {
   int in_ECX = (int)this;
