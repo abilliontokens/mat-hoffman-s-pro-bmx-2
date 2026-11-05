@@ -89,14 +89,21 @@ struct C_00198B70 {
     char pad130[0x150 - 0x130];
     S_00198B70_V4 f150;
     S_00198B70_V4 f160;
-    int f170;
+    C_00198B70 *f170;
     C_00198B70 *f174;
     C_00198B70 *f178;
     char pad17c[4];
-    u8 f180;
+    union {
+        u8 f180;
+        S_00198B70_Bits f180b;
+    };
     char pad181[0x18c - 0x181];
     S_00198B70_Cam *f18c;
     void func_00197AA0(void);
+    void func_001576D0(void);
+    void func_00198EA0(void);
+    void func_001995B0(float a, float b, float c);
+    void func_00199600(float a, float b, float c, float d);
     void func_00198B70(S_00198B70_V4 *out0, S_00198B70_V4 *out1);
     void func_00198BE0(int a);
     void func_00198DE0(void);
