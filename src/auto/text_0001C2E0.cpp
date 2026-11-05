@@ -3,6 +3,21 @@
 #include <math.h>
 #include <string.h>
 #include <xmmintrin.h>
+struct Texture_1C2E0 {
+ virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6();
+ virtual void Load(int,int,int);
+ virtual void Create(void *,int,int,int,int,int,int,int,int);
+ int f4,f8,fC; char pad[0x100];
+ Texture_1C2E0 *func_001D6AD0(int);
+};
+struct Image_1C2E0 {char pad[14]; short width,height; unsigned char bits,pad13; void *pixels;};
+Image_1C2E0 *func_001B3560(int,int);
+void func_001B3970(Image_1C2E0 *);
+struct C_0001C2E0 {
+ virtual void v0(); virtual void v1(); virtual void Reset();
+ int f4,f8,fC,f10,f14,f18; Texture_1C2E0 **f1C;
+ C_0001C2E0 *func_0001C2E0(int,int);
+};
 struct S_0001C610_V4;
 struct C_00197EC0_1C750 { void func_00197EC0(void *out, void *in); };
 struct C_0001C750 {
