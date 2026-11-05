@@ -64,3 +64,21 @@ struct C_000C4FD0 {
     int f364;
     void func_000C4FD0();
 };
+
+void C_000C4FD0::func_000C4FD0()
+{
+    S_000C4FD0_Owner *owner = f124->f25C;
+    if (owner->f74->func_000301D0() == 0) {
+        if (f2E0 == 0 && f2E4 == 0 && f364 == 0 && f2E8 == 0 && f2EC == 0) {
+            D_002B91AC->f38->func_0005E840(D_002A8490->f2E8->f4->f7C8);
+        } else {
+            D_002B91AC->f38->func_0005E840(D_002A8490->f2E8->f4->f940);
+        }
+        D_002B91AC->f38->func_001D6600();
+    }
+    if (f2E0 == 0 && f2E4 == 0 && f364 == 0 && f2E8 == 0 && f2EC == 0) {
+        D_002B91AC->f80->func_001D6600();
+        D_002B91AC->f84->func_001D6600();
+        D_002B91AC->f34->func_001D6600();
+    }
+}
