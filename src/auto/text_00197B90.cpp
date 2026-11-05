@@ -2,7 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
-static __forceinline float Sqrt_00197B90(float x) { __m128 r = _mm_sqrt_ss(*(__m128 *)&x); return r.m128_f32[0]; }
+static __forceinline float Sqrt_00197B90(float x) { __m128 r = _mm_sqrt_ss(_mm_load_ss(&x)); return r.m128_f32[0]; }
 extern float D_00275460;
 extern float D_00278C48;
 struct C_00197B90 {
