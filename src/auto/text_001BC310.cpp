@@ -320,9 +320,9 @@ static __forceinline void MulT_001BC310(V4Raw_001BC310 *out, V4_001BC310 *v, flo
 
 static __forceinline void Mul_001BC310(V4_001BC310 *out, V4Raw_001BC310 *v, float *m)
 {
-    out->x = v->x * m[0] + v->y * m[1] + v->z * m[2];
-    out->y = v->x * m[4] + v->y * m[5] + v->z * m[6];
-    out->z = v->x * m[8] + v->y * m[9] + v->z * m[10];
+    out->x = v->y * m[1] + v->z * m[2] + v->x * m[0];
+    out->y = v->y * m[5] + v->z * m[6] + v->x * m[4];
+    out->z = v->y * m[9] + v->z * m[10] + v->x * m[8];
 }
 
 void func_0011F4B0(float *out, V4_001BC310 *pos, float *m);
