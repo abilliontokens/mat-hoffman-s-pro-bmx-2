@@ -73,6 +73,20 @@ void VehicleAI::func_000B3330(int param_1)
     D_002B9134->func_000B2C80(this);
 }
 
+void *VehicleAI::func_000B3350(int flags)
+{
+    vtbl = (void *)&D_0027CF8C;
+    if (f44) {
+        f44->dummy2();
+        f44 = 0;
+    }
+    func_0018C7F0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 undefined4 C_000B3DF0::func_000B3DF0(byte param_1)
 {
   int func_000B2E40(...);
