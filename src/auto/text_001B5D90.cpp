@@ -258,3 +258,23 @@ void C_001B65E0::func_001B65E0(void) {
     unk0 = 0;
 }
 
+void C_001B69F0::func_001B69F0(void) {
+    extern int D_0028CDE4;
+    int i;
+
+    vtbl = &D_0028CDE4;
+    if (f108 != 0) {
+        func_001E891B(f108);
+        f108 = 0;
+    }
+    if (f10c != 0) {
+        for (i = 0; i < f8; i++) {
+            if (f10c[i] != 0) {
+                func_001E891B(f10c[i]);
+                f10c[i] = 0;
+            }
+        }
+        func_001E891B(f10c);
+    }
+}
+
