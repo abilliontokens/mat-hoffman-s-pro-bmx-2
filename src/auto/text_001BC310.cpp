@@ -315,6 +315,11 @@ struct S_001BC310_Pair {
     S_001BC310_Node *f28;
 };
 
+static __forceinline M44_001BC310 *GetMat_001BC310(S_001BC310_Node *n)
+{
+    return &n->f2e4->mat;
+}
+
 static __forceinline void MulT_001BC310(V4Raw_001BC310 *out, V4_001BC310 *v, float *m)
 {
     out->x = v->y * m[4] + v->z * m[8] + v->x * m[0];
