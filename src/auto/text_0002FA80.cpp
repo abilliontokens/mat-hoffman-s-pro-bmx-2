@@ -15,6 +15,16 @@ struct C_00194BD0 {
     void func_00194BD0(int a, int b, int c);
 };
 
+/* config file reader, 0x4CC bytes */
+struct C_00168280 {
+    char pad0[0x4CC];
+    C_00168280 *func_00168280(void);
+    int func_00169490(const char *path, int flags);
+    void func_001691E0(void);
+    void func_00169710(const char *name);
+    void func_00168C20(const char *key, int def, int *dst);
+};
+
 struct S_0002FA80_Entry {
     void *f0;
     int subCount;
@@ -24,6 +34,7 @@ struct S_0002FA80_Entry {
     char name[0x118 - 0x14];
 
     int func_0002FFD0(const char *subName);
+    void func_0002FE10(C_00168280 *stream, int index);
 };
 
 struct C_000B5870 {
