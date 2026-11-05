@@ -40,9 +40,27 @@ struct C_86A40_Obj2E8 {
     char pad0[4];
     C_86A40_Obj4 *f4;
 };
+struct C_Clamp_00086C80 {
+    char pad0[0x10];
+    float f10;
+    float f14;
+};
+struct C_Mid_00086C80 {
+    C_Clamp_00086C80 *func_0018C070();
+};
+struct C_Lookup_00086C80 {
+    int *func_0018C160(int a);
+};
 struct C_86A40_G {
     char pad0[0x2E8];
     C_86A40_Obj2E8 *f2E8;
+    C_Lookup_00086C80 *f2EC;
+};
+extern int D_00278690;
+extern float D_00275AEC;
+struct C_00086C80 {
+    void func_001578D0();
+    void func_00086C80();
 };
 extern C_86A40_G *D_002A8490;
 struct C_00086A40 {
