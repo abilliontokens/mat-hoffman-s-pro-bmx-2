@@ -31,6 +31,25 @@ struct C_000A4150 {
     int func_000A4400(char *a1);
 };
 
+struct C_000A4500_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    void func_00108370();
+    void func_001083E0();
+};
+
+struct C_000A4500 {
+    char pad0[0x1A8];
+    C_000A4500_Obj *unk1A8[8];
+    int unk1C8[8];
+    void func_000A4500(int param_1, int param_2);
+};
+
 struct C_000A43E0 {
     int unk0;
     int unk4;
