@@ -26,6 +26,24 @@ extern "C" void (__stdcall *_imp__RtlLeaveCriticalSection)(void *cs);
 
 extern char D_002ACBA0[];
 
+typedef int (__stdcall *Callback_001DE6F0)(int arg);
+extern Callback_001DE6F0 D_002F6BBC;
+
+/* EXCEPTION_RECORD */
+struct S_ExceptionRecord_001DE759 {
+    unsigned int ExceptionCode;
+    unsigned int ExceptionFlags;
+    S_ExceptionRecord_001DE759 *ExceptionRecord;
+    void *ExceptionAddress;
+    unsigned int NumberParameters;
+    unsigned int ExceptionInformation[15];
+};
+
+extern "C" void (__stdcall *_imp__RtlRaiseException)(S_ExceptionRecord_001DE759 *rec);
+typedef __declspec(noreturn) void (__stdcall *PsTerminateSystemThread_t)(int status);
+extern "C" PsTerminateSystemThread_t _imp__PsTerminateSystemThread;
+void __stdcall func_001DE759(unsigned int code, unsigned int flags, unsigned int nargs, const unsigned int *args);
+
 /* callback list node; D_002ACBBC is the list head */
 struct S_002ACBBC_Node {
     S_002ACBBC_Node *next;
