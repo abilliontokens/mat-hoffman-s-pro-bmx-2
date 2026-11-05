@@ -331,7 +331,9 @@ struct Root_000317B0 {
     Mgr_000317B0 *f4;
     char pad8[0x124 - 8];
     int f124;
-    char pad128[0x2e0 - 0x128];
+    char pad128[0x2a8 - 0x128];
+    int f2a8;
+    char pad2ac[0x2e0 - 0x2ac];
     Ctx_00031260 *f2e0;
 };
 
