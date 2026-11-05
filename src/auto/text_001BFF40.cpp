@@ -568,14 +568,6 @@ C_001C0730 *C_001C0730::func_001C0820(int a, int b, S_001C0CB0_Stream *stream)
     int unused;
     void *m;
 
-    axis.z = 0;
-    axis.y = 0;
-    axis.x = 0;
-    axis.w = 1.0f;
-    angle.z = 0;
-    angle.y = 0;
-    angle.x = 0;
-    angle.w = 1.0f;
     stream->func_00168C20(&D_0028DC84, 0, &unused);
     stream->func_00168C20(&D_0028DC7C, 0, &f98);
     stream->func_00168C20(&D_0028DC74, 0, &f9C);
@@ -588,29 +580,14 @@ C_001C0730 *C_001C0730::func_001C0820(int a, int b, S_001C0CB0_Stream *stream)
     m = func_001E8A44(0x1e0);
     f68 = m ? ((S_001C0820_Node *)m)->func_00143580(1) : 0;
     if (func_001577A0(f68->v35(b, 0, 0), 0)) {
-        S_001C0820_Vec4 d1;
-        S_001C0820_Vec4 d2;
-        S_001C0820_Vec4 d3;
-        d1.x = 1.0f;
-        d1.y = 1.0f;
-        d1.z = 1.0f;
-        d1.w = 1.0f;
-        if (stream->func_00168CB0(&D_00275AD4, &d1, &f6C)) {
+        if (stream->func_00168CB0(&D_00275AD4, S_001C0820_Vec4(1.0f, 1.0f, 1.0f, 1.0f), &f6C)) {
             f68->func_00199650(&f6C);
         } else {
             f68->func_00197E70(&f6C);
         }
         f7C = f6C;
-        d2.x = 0;
-        d2.y = 0;
-        d2.z = 1.0f;
-        d2.w = 1.0f;
-        if (stream->func_00168CB0(&D_00275AC8, &d2, &axis)) {
-            d3.x = 0;
-            d3.y = 0;
-            d3.z = 1.0f;
-            d3.w = 1.0f;
-            if (stream->func_00168CB0(&D_0027CEE4, &d3, &angle)) {
+        if (stream->func_00168CB0(&D_00275AC8, S_001C0820_Vec4(0.0f, 0.0f, 1.0f, 1.0f), &axis)) {
+            if (stream->func_00168CB0(&D_0027CEE4, S_001C0820_Vec4(0.0f, 0.0f, 1.0f, 1.0f), &angle)) {
                 f68->func_00198F50(&axis, &angle, 1, 0, 0);
             }
         }
