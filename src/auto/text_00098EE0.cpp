@@ -202,3 +202,59 @@ void C_00097FD0::func_000999E0(void) {
     mode1 = unk198->unk1c8 ? mode1 : mode0;
 }
 
+void C_00097FD0::func_00099D40(int param) {
+    C_00096870 **list;
+    int count;
+    int i;
+    int j;
+    C_00096870 *obj;
+
+    for (i = 0; i < 3; i++) {
+        switch (i) {
+        case 0:
+            list = arr0;
+            break;
+        case 1:
+            list = arr1;
+            break;
+        case 2:
+            list = arr2;
+            break;
+        default:
+            list = 0;
+            break;
+        }
+        switch (i) {
+        case 0:
+            count = cnt0;
+            break;
+        case 1:
+            count = cnt1;
+            break;
+        case 2:
+            count = cnt2;
+            break;
+        default:
+            count = 0;
+            break;
+        }
+        for (j = 0; j < count; j++) {
+            int ok;
+            if (param != -1) {
+                ok = unk198->f68->func_0005C040(param, D_002A8490->f2e0->f48, i, j);
+            } else {
+                ok = unk198->f68->func_0005C070(D_002A8490->f2e0->f48, i, j);
+            }
+            if (ok) {
+                list[j]->func_00097050(unk198);
+                obj = list[j];
+                obj->f48e0 = 1;
+                obj->f1b4 = 1;
+                if (D_002A8490->f2a4) {
+                    obj->f1a4 = D_002A8490->f2a4->f124;
+                }
+            }
+        }
+    }
+}
+
