@@ -144,8 +144,16 @@ struct S_00094A00_Obj {
     virtual int v33(int a);
     virtual void v34();
     virtual void v35();
-    virtual void v36(int a, int b, int c);
+    virtual int v36(int a, int b, int c);
     virtual void v37();
+    virtual void v38();
+    virtual void v39();
+    virtual void v40();
+    virtual int v41(int a);
+    char pad4[0x30];
+    S_00094620_Node *unk34;
+    char pad38[0x70];
+    int unkA8;
     int func_001CD3B0(int v);
 };
 
@@ -235,6 +243,16 @@ void C_00094760::func_000947F0(int node)
     unk50->func_001CEFD0(node);
 }
 
+int *C_00094760::func_00094810(int node)
+{
+    S_00094620_Path *path = unk50;
+
+    if (node < path->unkA8 && node >= 0) {
+        return &path->unk34[node].unk20;
+    }
+    return 0;
+}
+
 int C_00094890::func_00094890(void) {
     return unk38;
 }
@@ -271,10 +289,13 @@ void C_00094A00::func_00094C00(void)
     int i;
 
     for (i = 0; i < f7C; i++) {
+        void *p;
         if (f2C != 0) {
-            f28->func_001CD7D0(f84[i]);
+            p = f84[i];
+            f28->func_001CD7D0(p);
         } else {
-            f28->func_001CD7D0(f84[i]);
+            p = f84[i];
+            f28->func_001CD7D0(p);
         }
         f84[i] = 0;
     }
