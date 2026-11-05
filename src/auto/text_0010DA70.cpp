@@ -129,6 +129,7 @@ struct BmxVehicle_10DA70 {
     int func_0010DAB0(void);
     void func_0010DB70(void);
     void func_0010DC00(void);
+    void func_0010DCB0(void);
 };
 
 struct C_0010E260 {
