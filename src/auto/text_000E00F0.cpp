@@ -37,6 +37,34 @@ struct C_000E0D50 {
     void func_000E0DF0();
 };
 
+C_000E0D50 *C_000E0D50::func_000E0D50(int a)
+{
+    func_001BE360(a);
+    vtbl = &D_0027FA0C;
+    unk28C = 0;
+    unk290 = 0;
+    unk288 = 0;
+    unk294 = 0;
+    unk280 = 0;
+    unk284 = 0;
+    unk2A0 = 0;
+    unk2A4 = 0;
+    unk2A8 = 0;
+    unk2B0 = 0;
+    unk2AC = 0;
+    for (int i = 0; i < 8; i++) {
+        arr2D0[i] = 0;
+    }
+    unk2B8 = 0;
+    unk2BC = 0;
+    unk2C0 = 0;
+    unk2C4 = 0;
+    unk2C8 = 0;
+    unk2B4 = 1;
+    unk2CC = 1.0f;
+    return this;
+}
+
 void C_000E0D50::func_000E0DF0()
 {
     int i;
