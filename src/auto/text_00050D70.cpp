@@ -136,6 +136,46 @@ struct C_00051AE0 {
     int func_00051AE0(int flag);
 };
 
+extern float D_00277A00;
+extern float D_00277920;
+extern float D_002779FC;
+
+struct S_00051750_Rect {
+    int x, y, w, h;
+};
+
+/* the level object an event works on */
+struct S_00051750_Level {
+    void func_000AC780(S_00051750_Rect r);
+    void *func_000A1990(void *p, int n);
+};
+
+struct BmxEventRoadTrip {
+    virtual void v00(); virtual void v01(); virtual void v02(); virtual void v03();
+    virtual void v04(); virtual void v05(); virtual void v06(); virtual void v07();
+    virtual void v08(); virtual void v09(); virtual void v0A(); virtual void v0B();
+    virtual void v0C(); virtual void v0D(); virtual void v0E(); virtual void v0F();
+    virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13();
+    virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17();
+    virtual void v18(); virtual void v19(); virtual void v1A(); virtual void v1B();
+    virtual void v1C(); virtual void v1D(); virtual void v1E(); virtual void v1F();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25();
+    virtual void v26();
+    char pad4[0x20];
+    int f24[8];
+    void *f44;
+    void *f48;
+    char pad4c[0x18];
+    S_00051750_Level *f64;
+    char pad68[0x158 - 0x68];
+    void *f158;
+    char pad15c[0x1c4 - 0x15c];
+    void *f1c4;
+    void *func_001577A0(void *child, int b);
+    int func_00051750(void);
+};
+
 struct C_00051A00Node {
     char pad0[4];
     int f4;
