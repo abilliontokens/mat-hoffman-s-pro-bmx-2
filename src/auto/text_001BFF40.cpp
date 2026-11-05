@@ -77,7 +77,8 @@ struct C_001C05F0 {
     virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
     char pad4[0x28];
     int unk2C;
-    char pad30[8];
+    int unk30;
+    int unk34;
     int unk38;
     int unk3C;
     int unk40;
@@ -87,11 +88,14 @@ struct C_001C05F0 {
     int unk170;
     char pad174[0x184 - 0x174];
     int unk184;
-    char pad188[0x19C - 0x188];
+    char pad188[0x194 - 0x188];
+    int unk194;
+    char pad198[4];
     int unk19C;
-    char pad1A0[4];
+    int unk1A0;
     int unk1A4;
     int unk1A8;
+    void func_001C0520(void);
     void func_001C05F0(void);
     void func_001C0690(void);
     void func_001C06F0(void);
