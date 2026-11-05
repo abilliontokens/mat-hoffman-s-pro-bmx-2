@@ -223,7 +223,7 @@ void *C_001488B0::func_001488B0(C_001488B0 *a)
 
   *(volatile void **)&vtbl = (void *)&D_00285C00;
   *(volatile u32 *)&unk4 = a->unk4;
-  *(volatile void **)&unk8 = a->unk8;
+  unk8 = a->unk8;
   *(volatile u32 *)&unkC = (u32)&D_00284E94;
   *(volatile void **)&vtbl = (void *)&D_00285CA0;
   *(volatile u32 *)&unkC = (u32)&D_00285C94;
@@ -318,3 +318,16 @@ void func_001493A0(void) {
     int func_001B1010(...);
     func_001B1010();
 }
+
+void *C_00149450::func_00149450(unsigned int flags)
+{
+    void func_001E891B(void *);
+
+    vtbl = &D_00286824;
+    func_001B0F70();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
