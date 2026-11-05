@@ -41,6 +41,13 @@ struct C_00026270 {
 };
 
 
+void C_000261F0::func_000261F0(float delta)
+{
+    f4 += delta;
+    f4 = f4 > f24 ? f4 : f24;
+    f4 = f4 < f28 ? f4 : f28;
+}
+
 void C_00026270::func_00026270(int a0) {
     unk30 = a0;
 }
@@ -57,6 +64,18 @@ void *C_00026290::func_00026290(int flags) {
         func_001E891B(this);
     }
     return this;
+}
+
+void C_000262B0::func_000262B0(void) {
+    f18 = f1C;
+}
+
+int func_000262C0(float *a, float *b)
+{
+    if (a[0] == b[0] && a[1] == b[1] && a[2] == b[2]) {
+        return 1;
+    }
+    return 0;
 }
 
 undefined4 C_00026A70::func_00026A70(int param_1)
