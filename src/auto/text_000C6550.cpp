@@ -173,6 +173,28 @@ void BmxUIPageParkLevel::func_000C6AD0()
     }
 }
 
+void BmxUIPageParkLevel::func_000C6BA0()
+{
+    int i;
+
+    for (i = 0; i < 3; i++) {
+        w2e4[i]->func_001B1980();
+        if (i == f28c) {
+            w2e4[i]->func_001B2270(0xffbfa35a);
+            w2e4[i]->func_001B1A30(320.0f, *(volatile float *)&f280[i] + D_00276DD4, 0.0f);
+            w2e4[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0xff, 1.45f, 0, 0, 0.2f, 0);
+        } else if (i == f2c0) {
+            w2e4[i]->func_001B2270(0xffcccccc);
+            w2e4[i]->func_001B1A30(320.0f, f280[i], 0.0f);
+            w2e4[i]->func_001B1860(0, -1.0f, 0xff, 1.45f, 0, 0, 0, 0xff, 1.15f, 0, 0, 0.2f, 0);
+        } else {
+            w2e4[i]->func_001B2270(0xffcccccc);
+            w2e4[i]->func_001B1A30(320.0f, f280[i], 0.0f);
+            w2e4[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
+        }
+    }
+}
+
 void BmxUIPageParkLevel::func_000C6CA0()
 {
     int i;
