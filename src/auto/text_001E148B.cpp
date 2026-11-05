@@ -83,7 +83,7 @@ void __stdcall func_001E206A(int a1, int a2)
 void __stdcall func_001E20BF(int a1, int a2, int a3)
 {
     if (((u32 *)D_00010118)[2] == 0xfffe0000) {
-        HalReturnToFirmware(4);
+        _imp__HalReturnToFirmware(4);
         __debugbreak();
     }
     {
@@ -92,7 +92,9 @@ void __stdcall func_001E20BF(int a1, int a2, int a3)
     }
 }
 
+#pragma optimize("y", on)
 long __stdcall func_001E2202(S_AnsiString_1E148B *name)
 {
     return func_001E1BD7(name, 0x4000);
 }
+#pragma optimize("", on)
