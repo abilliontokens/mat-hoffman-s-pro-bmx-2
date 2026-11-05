@@ -164,6 +164,60 @@ void C_000E35E0::func_000E3790(void) {
     }
 }
 
+void C_000E3810::func_000E3810(void)
+{
+    int ids[3];
+    int i;
+    int *r;
+    ClampObj_E38 *o;
+    SubElem_E38 **e;
+    LookupObj_E38 *lk;
+
+    ids[0] = (int)&D_002786A0;
+    ids[1] = (int)&D_00278690;
+    ids[2] = (int)&D_00278678;
+    for (i = 0; i < 3; i++) {
+        lk = D_002A8490->p2EC;
+        r = lk->func_0018C160(ids[i]);
+        if (r != 0 && *r != 0) {
+            o = ((MidObj_E38 *)*r)->func_0018C070();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+    }
+    e = &a320[1][0];
+    i = 8;
+    do {
+        o = e[-8]->func_001D5AA0();
+        if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+        if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        o = e[0]->func_001D5AA0();
+        if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+        if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        o = e[8]->func_001D5AA0();
+        if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+        if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        o = e[16]->func_001D5AA0();
+        if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+        if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        o = e[24]->func_001D5AA0();
+        if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+        if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        o = e[32]->func_001D5AA0();
+        if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+        if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        o = e[40]->func_001D5AA0();
+        if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+        if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        o = e[48]->func_001D5AA0();
+        if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+        if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        e++;
+        i--;
+    } while (i != 0);
+    func_001578D0();
+}
+
 void C_000E35E0::func_000E3AC0(void) {
     int i;
     for (i = 0; i < f280; i++) {
