@@ -55,6 +55,8 @@ struct BmxUIPageHPHChoice {
     short f2a0;
     char pad2a2[0x12];
     S_000F1D90_Obj *unk2b4[4];
+    void func_001BE4F0(int a, int b, int c);
+    BmxUIPageHPHChoice *func_000F1EC0(int a, int b, int c);
     void func_000F1D90(void);
     void func_000F1FC0(void);
     void func_000F2120(void);
