@@ -201,6 +201,31 @@ struct C_00108F50 {
 };
 
 
+struct S_001091D0_V {
+    float x, y, z, w;
+};
+struct S_001091D0_Ref {
+    char pad0[0x68];
+    int f68;
+};
+struct S_001091D0_Obj {
+    char pad0[0x1a0];
+    S_001091D0_V f1a0;
+    char pad1b0[0x28];
+    S_001091D0_Ref *f1d8;
+};
+struct C_001091D0 {
+    char pad0[0x1e8];
+    S_001091D0_Obj *f1e8;
+    char pad1ec[0x874 - 0x1ec];
+    S_001091D0_V f874;
+    int func_001091D0(void);
+};
+extern int D_002B9108;
+extern float D_00282AC4;
+extern float D_00282AC8;
+float *func_0001E9E0(float *out, float *in);
+
 void C_00108370::func_00108370()
 {
     f230->func_00198390();
