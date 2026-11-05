@@ -187,6 +187,39 @@ int BmxSmokeParticleEmitter::func_0009E470(void) {
     return 1;
 }
 
+C_0009E590 *C_0009E590::func_0009E480(int param_1)
+{
+    ((C_00169C50 *)this)->func_00169C50(param_1);
+    vtbl = &D_0027AB9C;
+    f32 *p = &f1FC;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 1.0f;
+    f1AC = 0;
+    f1A8 = 0;
+    f188 = 0;
+    f1F4 = 0;
+    f1F8 = 0;
+    f170 = 400.0f;
+    f178 = 0.015f;
+    f174 = 0.5f;
+    f190 = 0x2826;
+    f1CC |= 1;
+    f1F0 = 1000.0f;
+    f17C = 5.0f;
+    f1FC = D_002A2528;
+    f200 = D_002A252C;
+    f204 = D_002A2530;
+    f208 = D_002A2534;
+    *(f32 *)&f218 = 5.0f;
+    *(f32 *)&f20C = 10.0f;
+    *(f32 *)&f210 = 6.0f;
+    *(f32 *)&f214 = 0.8f;
+    func_001ADCC0(buf6C, 0x104, (const char *)&D_0027AB88, (const char *)&D_002A5558);
+    return this;
+}
+
 C_0009E590 *C_0009E590::func_0009E590(int a1, int a2, int a3) {
     ((C_0016A1D0 *)this)->func_0016A1D0(a1, a2, a3);
     S_0009E590_Item *item = f64->f134;
