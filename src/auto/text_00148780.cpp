@@ -148,6 +148,20 @@ void *C_00148850::func_00148850(unsigned int flags)
   return this;
 }
 
+void *C_001488B0::func_001488B0(C_001488B0 *a)
+{
+  extern int D_00285C00;
+
+  *(volatile void **)&vtbl = (void *)&D_00285C00;
+  unk4 = a->unk4;
+  unk8 = a->unk8;
+  *(volatile u32 *)&unkC = (u32)&D_00284E94;
+  *(volatile void **)&vtbl = (void *)&D_00285CA0;
+  *(volatile u32 *)&unkC = (u32)&D_00285C94;
+  func_00144E70();
+  return this;
+}
+
 C_00148820::C_00148820(int a1, void *a2)
 {
     *(volatile u32 *)&unk4 = 0;
@@ -169,6 +183,30 @@ undefined4 C_001488F0::func_001488F0(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+void *C_00149040::func_00149040(unsigned int flags)
+{
+  void func_001E891B(void *);
+  extern int D_0028617C;
+  extern int D_00286170;
+  extern C_001AC790 *D_002A71C0;
+  extern C_001AC790 *D_002A71C4;
+
+  vtbl = (void *)&D_0028617C;
+  unkC = (u32)&D_00286170;
+  if (unk10 != 0) {
+    D_002A71C0->func_001AC790(-(int)unk10);
+  }
+  if (unk14 != 0) {
+    D_002A71C4->func_001AC790(-(int)unk14);
+  }
+  unkC = (u32)&D_00284E94;
+  func_001B01A0();
+  if (flags & 1) {
+    func_001E891B(this);
+  }
+  return this;
 }
 
 void *C_00149280::func_00149280(int a0)
