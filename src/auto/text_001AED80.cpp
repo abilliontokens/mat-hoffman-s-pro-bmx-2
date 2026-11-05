@@ -1,6 +1,15 @@
 /* 17 functions from 0x001AED80 to 0x001AFCC0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <string.h>
+extern char D_002A60B0[];
+extern char D_00284644[];
+extern char *func_001E8AC0(const char *, int);
+struct C_001AF120 {
+    int f0;
+    int f4;
+    int func_001AF120(const char *name, int arg);
+};
 struct C_001AF090 {
     undefined4 func_001AF090(byte param_1);
 };
