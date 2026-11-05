@@ -182,17 +182,22 @@ int C_001CB560::func_001CB560(C_001CB560 *other)
         return 1;
     }
     if (other != this) {
-        if (other == 0) {
-            if ((f10C & 0x100) && f13c != 0) {
-                f154 = (C_001CB560 *)-1;
-            }
-        } else if (((f10C & 0x100) || (other->f10C & 0x100)) && other->f13c != 0) {
-            other->v6(0);
-            if ((f208 & 8) && other->f13c == f13c) {
+        if (other != 0) {
+            if (((f10C & 0x100) || (other->f10C & 0x100)) && other->f13c != 0) {
+                other->v6(0);
+                if (!(f208 & 8)) {
+                    return 0;
+                }
+                if (other->f13c != f13c) {
+                    return 0;
+                }
                 f154 = other;
                 return 1;
             }
-            return 0;
+        } else {
+            if ((f10C & 0x100) && f13c != 0) {
+                f154 = (C_001CB560 *)-1;
+            }
         }
     }
     return 1;
