@@ -178,6 +178,21 @@ void C_0004D070::func_0004D070(int flag)
     }
 }
 
+void C_0004D230::func_0004D230()
+{
+    char *p;
+    do {
+        if (++f28c >= f684) {
+            f28c = 0;
+        }
+        p = (char *)this + f28c * 0x78 + 0x2c4;
+    } while (*p != 0 && f1c0 != 0 && func_00097DA0(p) == 0);
+
+    char *base = (char *)this + f28c * 0x10;
+    S_4D230_Obj *obj = *(S_4D230_Obj **)(f64->f4e0 + 0x1a8 + f120 * 4);
+    obj->func_0010C090(base + 0x688, base + 0x708, 0, 1);
+}
+
 void C_0004D5F0::func_0004D5F0()
 {
     if (f288 != 0) {
@@ -192,6 +207,15 @@ void C_0004D610::func_0004D610(void)
     C_0004D610Obj *p = f288;
     if (p != 0) {
         p->func4();
+    }
+}
+
+void C_0004D630::func_0004D630()
+{
+    func_000314A0();
+    int *p = *(int **)((char *)this + 0x288);
+    if (p != 0) {
+        (*(void (__fastcall **)(void *))(*(int *)p + 0x18))(p);
     }
 }
 
