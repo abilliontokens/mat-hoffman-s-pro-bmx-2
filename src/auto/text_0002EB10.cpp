@@ -2,6 +2,75 @@
 #include "common.h"
 
 extern int D_002768FC;
+extern int D_002768E4;
+extern int D_002B7EA8;
+extern int D_002B7EAC;
+
+struct CreatorObj {
+    int func_00026500(int a, int b);
+};
+extern CreatorObj *D_002A7CB8;
+
+struct S_0002EE30_Global {
+    char pad0[0x18];
+    int f18;
+};
+extern S_0002EE30_Global *D_002A8490;
+
+struct C_000264C0 {
+    void func_000264C0(void *src);
+};
+
+struct C_000B8AD0 {
+    void func_000B8AD0(int a0, int a1);
+};
+
+struct S_0002EE30_Child {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13(int a0);
+};
+
+struct S_0002EE30_Model {
+    char pad0[0x174];
+    char *f174;
+};
+
+/* BmxBaseVehicle */
+struct C_0002EE30 {
+    void *vtbl;
+    char pad4[0x1E4];
+    C_000B8AD0 *f1E8;
+    char pad1EC[0x30];
+    S_0002EE30_Child *f21C;
+    char pad220[0x10];
+    S_0002EE30_Model *f230;
+    char pad234[0x23C];
+    int f470;
+    char pad474[0x154];
+    int f5C8;
+    char pad5CC[0x138];
+    int f704;
+    char pad708[4];
+    int f70C;
+    void func_0002AAA0(int a0);
+    void func_0002A6B0(int a0);
+    void func_0002D730(int a0);
+    void func_0002EB10();
+    int func_0002EE30(int a0);
+};
+
 struct S_0002F6C0_Global {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
     virtual void v4(); virtual void v5(); virtual void v6();
