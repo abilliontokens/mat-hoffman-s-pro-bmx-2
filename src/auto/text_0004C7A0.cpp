@@ -111,9 +111,14 @@ struct S_4D230_Obj {
     void func_0010C090(void *a, void *b, int c, int d);
 };
 
+struct S_4D230_Tbl {
+    char pad0[0x1a8];
+    S_4D230_Obj *objs[1];
+};
+
 struct S_4D230_Mgr {
     char pad0[0x4e0];
-    char *f4e0;
+    S_4D230_Tbl *f4e0;
 };
 
 struct C_0004D230 {
@@ -188,9 +193,9 @@ void C_0004D230::func_0004D230()
         p = (char *)this + f28c * 0x78 + 0x2c4;
     } while (*p != 0 && f1c0 != 0 && func_00097DA0(p) == 0);
 
-    char *base = (char *)this + f28c * 0x10;
-    S_4D230_Obj *obj = *(S_4D230_Obj **)(f64->f4e0 + 0x1a8 + f120 * 4);
-    obj->func_0010C090(base + 0x688, base + 0x708, 0, 1);
+    int idx = f28c;
+    char *base = (char *)this + idx * 0x10;
+    ((S_4D230_Obj **)(f64->f4e0 + 0x1a8))[f120]->func_0010C090(base + 0x688, base + 0x708, 0, 1);
 }
 
 void C_0004D5F0::func_0004D5F0()
