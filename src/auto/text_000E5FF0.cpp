@@ -1,2 +1,43 @@
 /* 4 functions from 0x000E5FF0 to 0x000E6EF0, found by Ghidra. */
 #include "common.h"
+
+struct C_001B1980 {
+    void func_001B1980(void);
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6,
+                       float a7, int a8, float a9, int a10, float a11, int a12, int a13);
+};
+
+struct C_001C4D50 {
+    void func_001C4D50(int a);
+};
+
+struct C_000E6D00_Owner {
+    char pad0[0x268];
+    C_001C4D50 *f268;
+};
+
+struct C_000E6D00 {
+    char pad0[0x124];
+    C_000E6D00_Owner *f124;
+    char pad128[0x218];
+    C_001B1980 *f340;
+    C_001B1980 *f344;
+    C_001B1980 *f348;
+    C_001B1980 *f34C;
+    C_001B1980 *f350;
+    char pad354[0x90];
+    int f3E4;
+    char pad3E8[0xE0];
+    int f4C8;
+    int f4CC;
+    char pad4D0[0x30];
+    C_001B1980 *f500;
+    int f504;
+    int f508;
+    char pad50C[0x94];
+    C_001B1980 *f5A0[35];
+    C_001B1980 *f62C[1];
+    void func_000E6D00(void);
+    void func_000E6DC0(void);
+    void func_000E6E20(void);
+};
