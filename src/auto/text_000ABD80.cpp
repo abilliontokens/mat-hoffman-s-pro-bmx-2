@@ -265,6 +265,16 @@ C_000AC6E0 *C_000AC6E0::func_000AC6E0(void)
     return this;
 }
 
+int C_000AC700::func_000AC700()
+{
+    if (unk53C != 0) {
+        unk53C->func_000A9A70(this);
+        D_002A829C->func_00161680();
+        D_002AA6C0->func_001B2640();
+    }
+    return 0;
+}
+
 void C_000AC7F0::func_000AC7F0(void)
 {
     C_000AC7F0_Dyn *p = 0;
