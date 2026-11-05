@@ -3,7 +3,7 @@
 
 struct UIQuad { int x, y, z, w; };
 struct UIPositionData { char pad0[0x24]; UIQuad f24; char pad34[0x70]; UIQuad fA4; };
-struct UIItemData { char pad0[0x3e4]; int f3E4; char pad3E8[0xc0]; int *f4A8; char pad4AC[0x30]; UIPositionData *f4DC; };
+struct UIItemData { char pad0[0x3e4]; int f3E4; char pad3E8[0xc0]; int *f4A8; int *f4AC; char pad4B0[0x2c]; UIPositionData *f4DC; };
 struct UIPositionItem { char pad0[0x170]; UIQuad f170, f180; void func_0012A770(int, int); };
 extern int D_002A32DC;
 
