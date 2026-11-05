@@ -54,6 +54,23 @@ struct C_000DB310 {
     int func_000DBC00();
 };
 
+void C_000DB310::func_000DB310() {
+    int i;
+
+    for (i = 0; i < 11; i++) {
+        f2E8[i]->func_001B1980();
+        if (i == f2B4) {
+            f2E8[i]->func_001B2270(0xffbfa35a);
+            f2E8[i]->func_001B1A30(320.0f, f32C[i] + 4.0f, 0.0f);
+            f2E8[i]->func_001B1860(0, -1.0f, 0xff, 1.45f, 0, 0, 0, 0, 1.45f, 0, 0.25f, 0, 0);
+        } else {
+            f2E8[i]->func_001B2270(0xffcccccc);
+            f2E8[i]->func_001B1A30(320.0f, f32C[i], 0.0f);
+            f2E8[i]->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
+        }
+    }
+}
+
 int C_000DB310::func_000DBC00() {
     S_000DBC00_A *a = f124;
     int idx = a->f150->f484->func_0001B3C0(D_0027F7D4);
