@@ -134,7 +134,7 @@ struct SoultreeObject {
     S_0019A8C0_Child *f174;
     char pad178[4];
     S_0019A8C0_Child *f17c;
-    u8 f180;
+    union { u8 f180; struct { unsigned char f180_low:5, f180_bit5:1, f180_bit6:1, f180_high:1; }; };
     char pad181[3];
     int f184;
     int f188;
