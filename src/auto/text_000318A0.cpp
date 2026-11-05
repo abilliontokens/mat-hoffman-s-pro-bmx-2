@@ -356,6 +356,18 @@ void BmxEvent::func_00032300(void)
     }
 }
 
+void BmxEvent::func_00032360(int id, int a1, int a2)
+{
+    int i;
+
+    for (i = 0; i < f90; i++) {
+        S_00104C80_Obj *item = f64->f4e0->arr1a8[i];
+        if (item->f11b0 == id) {
+            item->func_00108610(a1, a2);
+        }
+    }
+}
+
 void BmxEvent::func_000323C0(int id, int a1, int a2, int a3, int a4, int a5)
 {
     int i;
