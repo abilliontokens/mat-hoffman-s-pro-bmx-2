@@ -445,39 +445,42 @@ void C_001C4D50::func_001C4D50(int a0)
 void MotionBlur::func_001C4D90(void)
 {
     int i;
+    MotionBlur_Fx *tmp;
     MotionBlur_Fx *p;
 
     for (i = 0; i < f24; i++) {
-        p = (MotionBlur_Fx *)func_001E8A44(0x38);
-        if (p != 0) {
-            p->func_00157600(1);
-            p->f24 = 0;
-            p->f28 = 0;
-            p->f2C = 1.0f;
-            p->f30 = 0;
-            p->f34 = 0;
-            *(void **)p = &D_0028E5DC;
+        tmp = (MotionBlur_Fx *)func_001E8A44(0x38);
+        if (tmp != 0) {
+            tmp->func_00157600(1);
+            tmp->f24 = 0;
+            tmp->f28 = 0;
+            tmp->f2C = 1.0f;
+            tmp->f30 = 0;
+            tmp->f34 = 0;
+            *(void **)tmp = &D_0028E5DC;
+            p = tmp;
         } else {
             p = 0;
         }
         f5C[i] = p;
-        f5C[i]->v27(i);
+        p->v27(i);
         func_001577A0(f5C[i], 10);
     }
-    p = (MotionBlur_Fx *)func_001E8A44(0x38);
-    if (p != 0) {
-        p->func_00157600(1);
-        p->f24 = 0;
-        p->f28 = 0;
-        p->f2C = 1.0f;
-        p->f30 = 0;
-        p->f34 = 0;
-        *(void **)p = &D_0028E5DC;
+    tmp = (MotionBlur_Fx *)func_001E8A44(0x38);
+    if (tmp != 0) {
+        tmp->func_00157600(1);
+        tmp->f24 = 0;
+        tmp->f28 = 0;
+        tmp->f2C = 1.0f;
+        tmp->f30 = 0;
+        tmp->f34 = 0;
+        *(void **)tmp = &D_0028E5DC;
+        p = tmp;
     } else {
         p = 0;
     }
     f6C = p;
-    f6C->v27(-1);
+    p->v27(-1);
     func_001577A0(f6C, 10);
 }
 
