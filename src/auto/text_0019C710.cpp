@@ -2,7 +2,8 @@
 #include "common.h"
 
 struct SoultreeCollisionObject {
-    char pad_0[0xa4];
+    int vtbl;
+    char pad_0[0xa0];
     unsigned short unkA4;
     unsigned char unkA6;
     unsigned char unkA7;
@@ -59,14 +60,15 @@ void SoultreeCollisionObject::func_0019CCA0(int param_1)
 
 int SoultreeCollisionObject::func_0019D680(void *param_1)
 {
+    unsigned int result;
     if (((int *)param_1)[0x14] != 6) {
         return 0;
     }
-    int result = func_0019BB80(param_1);
+    result = (unsigned int)func_0019BB80(param_1);
     if (result != 0) {
         func_0019BA70();
         func_0019B890();
     }
-    return result;
+    return (int)result;
 }
 
