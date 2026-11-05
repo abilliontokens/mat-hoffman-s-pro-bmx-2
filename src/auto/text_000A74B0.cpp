@@ -225,6 +225,31 @@ GrindTrigger_000A8360 *GrindTrigger_000A8360::func_000A8360(void)
     return this;
 }
 
+void GrindTrigger_000A8360::func_000A83C0(void)
+{
+    int i;
+
+    vtbl = (void *)&D_0027C1E4;
+    if (f8 != 0) {
+        for (i = 0; i < f4; i++) {
+            if (f8[i] != 0) {
+                func_001E891B(f8[i]);
+                f8[i] = 0;
+            }
+        }
+        func_001E891B(f8);
+    }
+    if (fC != 0) {
+        func_001E891B(fC);
+    }
+    if (f10 != 0) {
+        func_001E891B(f10);
+    }
+    if (f14 != 0) {
+        func_001E891B(f14);
+    }
+}
+
 void GrindTrigger_000A8360::func_000A8450(void *param)
 {
     int i;
