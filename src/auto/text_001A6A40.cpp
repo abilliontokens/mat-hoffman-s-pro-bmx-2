@@ -77,6 +77,14 @@ struct C_001A7260 {
     void func_001A7260();
 };
 
+void C_001A6B70::func_001A6B70()
+{
+    if (f50 != 0) {
+        D_002EFDB8->v4(0, f50, 0, 0);
+    }
+    func_00157920();
+}
+
 void *C_001A77B0::func_001A77B0(int flags)
 {
     vtbl = (void *)&D_0028B9E4;
