@@ -25,19 +25,51 @@ struct BmxUIPageHPHChoice_000F1D00 {
     int unk284;
     int unk288;
     int unk28C;
-    int unk290;
+    float unk290;
     int unk294;
     int unk298;
     int unk29C;
     int unk2A0;
-    int unk2A4;
-    int unk2A8;
+    float unk2A4;
+    float unk2A8;
     int unk2AC;
     int unk2B0;
-    int unk2B4;
+    void *unk2B4;
     int unk2B8;
     int unk2BC;
     int unk2C0;
     void func_001BE360(int a0);
     BmxUIPageHPHChoice_000F1D00 *func_000F1D00(int a0);
 };
+
+void C_000F1B60::func_000F1B60(void) {
+    int off;
+
+    for (off = 0x38; off < 0x40; off += 4)
+        (*(C_001D6600 **)((char *)D_002B91AC + off))->func_001D6600();
+    D_002B91AC->f34->func_001D6600();
+}
+
+BmxUIPageHPHChoice_000F1D00 *BmxUIPageHPHChoice_000F1D00::func_000F1D00(int a0) {
+    func_001BE360(1);
+    vtbl = &D_0028248C;
+    unk2B4 = 0;
+    unk2B8 = 0;
+    unk2BC = 0;
+    unk2C0 = 0;
+    unk284 = 0;
+    unk288 = 0;
+    unk28C = 0;
+    unk298 = 0;
+    unk29C = 0;
+    unk2A0 = 0;
+    unk2A4 = 0;
+    unk2A8 = 0;
+    unk2AC = 0;
+    unk2B0 = 0;
+    unk290 = 0;
+    unk294 = 0;
+    unk280 = 1;
+    return this;
+}
+
