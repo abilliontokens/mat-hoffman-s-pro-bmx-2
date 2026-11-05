@@ -118,6 +118,15 @@ extern char D_00055290;
 extern S_00056100_Quat D_002A1A64;
 extern S_00056100_Quat D_002A1A84;
 
+static __forceinline void InitQuat_00055380(S_00056100_Quat *q)
+{
+    u32 *p = (u32 *)q;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+}
+
 /* BmxFollowCamera (base class CameraBehavior) */
 struct C_00055380 {
     u32 unk0;
@@ -154,6 +163,109 @@ struct C_00055380 {
 };
 
 void C_000559E0_unused();
+C_00055380 *C_00055380::func_00055380(void)
+{
+    func_0012B510();
+    unk0 = (u32)&D_00277CF4;
+    q1C.z = 0; q1C.y = 0; q1C.x = 0; q1C.w = 1.0f;
+    q2C.z = 0; q2C.y = 0; q2C.x = 0; q2C.w = 1.0f;
+    q6C.z = 0; q6C.y = 0; q6C.x = 0; q6C.w = 1.0f;
+    q7C.z = 0; q7C.y = 0; q7C.x = 0; q7C.w = 1.0f;
+    q8C.z = 0; q8C.y = 0; q8C.x = 0; q8C.w = 1.0f;
+    q9C.z = 0; q9C.y = 0; q9C.x = 0; q9C.w = 1.0f;
+    qAC.z = 0; qAC.y = 0; qAC.x = 0; qAC.w = 1.0f;
+    qBC.z = 0; qBC.y = 0; qBC.x = 0; qBC.w = 1.0f;
+    qCC.z = 0; qCC.y = 0; qCC.x = 0; qCC.w = 1.0f;
+    qDC.z = 0; qDC.y = 0; qDC.x = 0; qDC.w = 1.0f;
+    qEC.z = 0; qEC.y = 0; qEC.x = 0; qEC.w = 1.0f;
+    qFC.z = 0; qFC.y = 0; qFC.x = 0; qFC.w = 1.0f;
+    q10C.z = 0; q10C.y = 0; q10C.x = 0; q10C.w = 1.0f;
+    q11C.z = 0; q11C.y = 0; q11C.x = 0; q11C.w = 1.0f;
+    q1EC.z = 0; q1EC.y = 0; q1EC.x = 0; q1EC.w = 1.0f;
+    q1FC.z = 0; q1FC.y = 0; q1FC.x = 0; q1FC.w = 1.0f;
+    unkC = 0;
+    unk10 = 0;
+    unk14 = 0;
+    unk18 = 0;
+    q1C.x = D_002A1A64.x; q1C.y = D_002A1A64.y; q1C.z = D_002A1A64.z; q1C.w = D_002A1A64.w;
+    q2C.x = D_002A1A64.x; q2C.y = D_002A1A64.y; q2C.z = D_002A1A64.z; q2C.w = D_002A1A64.w;
+    unk178 = 0x44c80000;
+    unk180 = 0x44c80000;
+    unk148 = 0x44c80000;
+    unk40 = 0;
+    unk44 = 0x42a00000;
+    unk48 = 0x42a00000;
+    unk4C = 0;
+    unk50 = 0;
+    unk64 = 0;
+    unk68 = 0;
+    unk54 = 0;
+    unk58 = 0;
+    unk8 = 0;
+    unk13C = 0;
+    unk60 = 0x3f800000;
+    unk14C = 0x3eb2b8c1;
+    unk150 = 0x3eb2b8c1;
+    unk140 = 0x3f860a91;
+    unk158 = 0x40400000;
+    unk154 = 0x3f800000;
+    unk15C = 0x3e32b8c1;
+    unk160 = 0;
+    unk138 = 0;
+    unk164 = 0x3f800000;
+    unk168 = 0x3f800000;
+    unk16C = 0;
+    unk170 = 0;
+    unk174 = 0x3f800000;
+    unk17C = 0;
+    unk184 = 0;
+    unk188 = 0;
+    unk18C = 0;
+    unk190 = 0;
+    unk144 = 0x44480000;
+    unk19C = 0x459c4000;
+    unk194 = 0x3f5f66f1;
+    unk198 = 0;
+    unk1A8 = 0;
+    unk1AC = 0;
+    unk1B0 = 0x3fbde44d;
+    unk1B4 = 0x3eb2b8c1;
+    unk1B8 = 0x42700000;
+    unk1BC = 0x42a00000;
+    unk1C0 = 0x3f490fd9;
+    unk1C4 = 0x3f800000;
+    unk1C8 = 0;
+    unk1CC = 0;
+    unk1D0 = 0;
+    unk1D4 = 0;
+    unk1D8 = 0;
+    unk1DC = 0;
+    unk1E0 = 0;
+    unk1E4 = 0;
+    unk1E8 = 0;
+    unk1A0 = 0x3f000000;
+    unk1A4 = 0x3f000000;
+    q1EC.x = D_002A1A64.x; q1EC.y = D_002A1A64.y; q1EC.z = D_002A1A64.z; q1EC.w = D_002A1A64.w;
+    q6C.x = D_002A1A64.x; q6C.y = D_002A1A64.y; q6C.z = D_002A1A64.z; q6C.w = D_002A1A64.w;
+    q7C.x = D_002A1A64.x; q7C.y = D_002A1A64.y; q7C.z = D_002A1A64.z; q7C.w = D_002A1A64.w;
+    q8C.x = D_002A1A84.x; q8C.y = D_002A1A84.y; q8C.z = D_002A1A84.z; q8C.w = D_002A1A84.w;
+    q9C.x = D_002A1A64.x; q9C.y = D_002A1A64.y; q9C.z = D_002A1A64.z; q9C.w = D_002A1A64.w;
+    qBC.x = D_002A1A84.x; qBC.y = D_002A1A84.y; qBC.z = D_002A1A84.z; qBC.w = D_002A1A84.w;
+    qAC.x = D_002A1A64.x; qAC.y = D_002A1A64.y; qAC.z = D_002A1A64.z; qAC.w = D_002A1A64.w;
+    unk3C = 0;
+    qDC.x = D_002A1A64.x; qDC.y = D_002A1A64.y; qDC.z = D_002A1A64.z; qDC.w = D_002A1A64.w;
+    qEC.x = D_002A1A64.x; qEC.y = D_002A1A64.y; qEC.z = D_002A1A64.z; qEC.w = D_002A1A64.w;
+    q1FC.x = D_002A1A64.x; q1FC.y = D_002A1A64.y; q1FC.z = D_002A1A64.z; q1FC.w = D_002A1A64.w;
+    unk20C = 0;
+    unk210 = 0;
+    unk214 = 0;
+    unk218 = 0;
+    unk21C = 0x3f400000;
+    qCC.x = D_002A1A64.x; qCC.y = D_002A1A64.y; qCC.z = D_002A1A64.z; qCC.w = D_002A1A64.w;
+    qFC.x = D_002A1A64.x; qFC.y = D_002A1A64.y; qFC.z = D_002A1A64.z; qFC.w = D_002A1A64.w;
+    return this;
+}
+
 void C_00055910::func_00055910(void)
 {
     unk0 = (int)&D_00277CF4;
