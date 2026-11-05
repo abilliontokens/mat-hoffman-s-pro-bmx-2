@@ -161,6 +161,41 @@ struct C_00101240 {
     undefined4 func_00101240(byte param_1);
 };
 
+struct C_00100720_Lookup { int *func_0018C160(int a); };
+struct C_00100720_Str { char pad0[0x9c0]; char *s9c0; };
+struct C_00100720_Mid { char pad0[4]; C_00100720_Str *f4; };
+struct C_00100720_Game { char pad0[0x2e8]; C_00100720_Mid *p2E8; C_00100720_Lookup *p2EC; };
+struct C_00100720_Text {
+    C_00100720_Text *func_001B12C0(int a);
+    void func_001B13A0(void *a, void *b, int c, int d);
+    void func_001B1A30(float x, float y, int z);
+    void func_001B2270(int c);
+    void func_001B19A0(int a);
+};
+struct C_00100720_Spr {
+    char pad0[0x28];
+    int f28;
+    char pad2c[0x10];
+    int f3C, f40, f44, f48;
+    char pad4c[0xc];
+    unsigned char f58;
+    C_00100720_Spr *func_001D5760();
+    void func_001D5810(void *a, float x, float y, int z);
+};
+extern char D_00278690, D_002786A0, D_00278678, D_002786B0;
+extern int D_0028F5E0;
+void *func_001E8A44(unsigned int n);
+struct C_00100720 {
+    char pad0[0x298];
+    C_00100720_Text *unk298;
+    char pad29c[0x38];
+    C_00100720_Spr *unk2d4[2];
+    void func_001BE4F0(int a, int b, int c);
+    void func_000E1C20();
+    void func_001577A0(void *p, int n);
+    C_00100720 *func_00100720(int a, int b, int c);
+};
+
 struct C_00101260 {
     undefined4 func_00101260(byte param_1);
 };
