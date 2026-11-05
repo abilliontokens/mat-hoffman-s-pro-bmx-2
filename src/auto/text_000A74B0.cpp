@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include "ghidra.h"
 #include <math.h>
+#include <xmmintrin.h>
 
 extern int D_0027B1A4;
 extern int D_0027C1E4;
@@ -475,6 +476,65 @@ void Models_000A77C0::func_000A77C0(int type, int idx)
         type = 1;
     }
     (*(Model_000A77C0 **)((char *)f28 + idx * 4))->f4 = type;
+}
+
+void func_000A7FE0(int a0, S_A7FE0_Obj *obj, S_A7FE0_Req *req, int enabled)
+{
+    int i;
+    int j;
+
+    if (enabled) {
+        switch (req->type) {
+        case 1:
+            for (i = 0; i < D_002B7E18->f30; i++) {
+                if (func_001EA426(req->name, D_002B7E18->f60[i]->f28->name) == 0) {
+                    for (j = 0; j < D_002B7E18->f60[i]->f28->f58; j++) {
+                        if (func_001EA426(req->name2, D_002B7E18->f60[i]->f28->f1ac[j]->name) == 0) {
+                            S_A7FE0_Ent *e = D_002B7E18->f60[i];
+                            float dx = e->x - obj->x;
+                            float dy = e->y - obj->y;
+                            float dz = e->z - obj->z;
+                            float dist = sqrtf(dz * dz + dy * dy + dx * dx);
+                            if (dist <= obj->radius) {
+                                e->func_000219E0(j);
+                            }
+                            return;
+                        }
+                    }
+                }
+            }
+            break;
+        case 2:
+            for (i = 0; i < D_002B9120->f578; i++) {
+                if (func_001EA426(req->name, D_002B9120->f57c[i]->name) == 0) {
+                    int r = D_002B9120->f57c[i]->func_001C6E30(req->name2);
+                    if (D_002B9120->f57c[i]->fc4 != r) {
+                        D_002B9120->f57c[i]->func_001C6DA0(r, 1);
+                    }
+                    return;
+                }
+            }
+            break;
+        case 3:
+            for (i = 0; i < D_002B9120->f578; i++) {
+                if (func_001EA426(req->name, D_002B9120->f57c[i]->name) == 0) {
+                    D_002B9120->f57c[i]->f3c->f4->func_00198390();
+                    D_002B9120->f57c[i]->v4();
+                    return;
+                }
+            }
+            break;
+        case 4:
+            for (i = 0; i < D_002B9120->f578; i++) {
+                if (func_001EA426(req->name, D_002B9120->f57c[i]->name) == 0) {
+                    D_002B9120->f57c[i]->f3c->f4->func_001983A0();
+                    D_002B9120->f57c[i]->v6();
+                    return;
+                }
+            }
+            break;
+        }
+    }
 }
 
 void func_000A82C0(int a, int b, int c, int d)
