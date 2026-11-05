@@ -59,6 +59,25 @@ struct C_00104900 {
 };
 
 
+C_00104120 *C_00104120::func_00104120(int param_1)
+{
+    func_00195D90();
+    unkE4 = 0;
+    unkD0 = 0;
+    unkD4 = 0;
+    unkD8 = 0;
+    unkE8 = 0;
+    unkE0 = 0;
+    vtbl = &D_002828F4;
+    unkDC = -1;
+    return this;
+}
+
+void __stdcall func_00104170(int a0, int a1) {
+    int __stdcall func_001972B0(int, int, int);
+    func_001972B0(a0, a1, 1);
+}
+
 void C_00104190::func_00104190(void)
 {
   int in_ECX = (int)this;
