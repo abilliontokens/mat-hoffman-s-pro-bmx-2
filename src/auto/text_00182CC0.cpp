@@ -153,3 +153,43 @@ int C_00182CC0::func_001832F0(char *name)
     return 1;
 }
 
+int C_00182CC0::func_001833A0()
+{
+    if (f28 == 0) {
+        return 0;
+    }
+    if (f3C0 == 0) {
+        f3C8 = 0;
+    } else {
+        f3C8 = f3C0->f24;
+    }
+    v34();
+    v35();
+    v40();
+    v41();
+    v44();
+    v46(0);
+    v47();
+    v48();
+    v49();
+    v50();
+    v42();
+    return 1;
+}
+
+void C_00182CC0::func_001839F0()
+{
+    if (f3C0 == 0) {
+        void *mem = func_001E8A44(0x2c);
+        f3C0 = mem != 0 ? ((C_001B82A0 *)mem)->func_001B82A0(1) : 0;
+    }
+    if (f3C0->v27(f28) != 0) {
+        return;
+    }
+    if (f3C0->f24 != 0) {
+        return;
+    }
+    f3C0->v2();
+    f3C0 = 0;
+}
+
