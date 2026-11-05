@@ -154,6 +154,34 @@ void C_00032E90::func_00032E90(void)
     }
 }
 
+void O_H::func_00033220()
+{
+    vtbl = &D_00276AB4;
+    D_002EFDB8->v7(1);
+    D_002EFDB8->v8();
+    D_002A8F40 = 1.0f;
+    D_002A8490->f2ec->func_0018C120();
+    int n = f90;
+    if (f11c)
+        n = 1;
+    for (int i = 0; i < n; i++)
+        D_002A8490->f4->func_0001CC80(f6c[i]);
+    if (D_002F0630) {
+        D_002F0630->v0(1);
+        D_002F0630 = 0;
+    }
+    O_F *p = f1c0;
+    if (p) {
+        p->func_0009C770();
+        func_001E891B(p);
+        f1c0 = 0;
+    }
+    D_002BEAAC->func_0013B340();
+    if (f1d8)
+        f1d8->v2();
+    func_00157660();
+}
+
 int BmxEvent::func_00033300(void)
 {
     func_00032E90();
