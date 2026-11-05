@@ -1,6 +1,16 @@
 /* 6 functions from 0x00061300 to 0x00062070, found by Ghidra. */
 #include "common.h"
 
+extern "C" void *memset(void *dst, int c, unsigned int n);
+extern int D_0027850C;
+extern int D_002786CC;
+
+struct C_00061300 {
+    int w[0xBC];
+    void func_00157600(int a0);
+    C_00061300 *func_00061300(int a0);
+};
+
 extern const char D_0027877C[];
 
 struct C_002A8490 {
