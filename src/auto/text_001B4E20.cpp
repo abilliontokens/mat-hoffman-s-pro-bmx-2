@@ -307,7 +307,7 @@ int C_001B5750::func_001B5750(void *name)
 
 C_001B5790 *C_001B5790::func_001B5790(void)
 {
-    ((C_00157660 *)this)->func_00157660();
+    func_001B4ED0();
     f58 = 0;
     f5C = 0;
     vtbl = (void *)&D_0028CB80;
