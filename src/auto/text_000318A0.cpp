@@ -112,9 +112,37 @@ struct S_ScoreTable {
     int func_0005BA80(int type, float value, char *name);
 };
 
+struct C_0010E810 {
+    char pad0[0x1190];
+    int f1190;
+    void func_0010E810(void);
+};
+
+struct C_000A4500 {
+    char pad0[0x1a8];
+    C_0010E810 *items[1];
+    void func_000A4500(int a, int b);
+};
+
+struct S_Owner64 {
+    char pad0[0x4e0];
+    C_000A4500 *f4E0;
+};
+
+struct C_000321C0 {
+    char pad0[0x64];
+    S_Owner64 *unk64;
+    char pad68[0x28];
+    int unk90;
+    void func_000321C0(void);
+    void func_000321F0(void);
+    void func_00032220(void);
+};
+
 struct C_00032060 {
     char pad0[0x68];
     S_ScoreTable *unk68;
+    int func_00032180(int score, char *name);
     int func_00032060(int score, char *name);
     int func_000320A0(float value, char *name);
     int func_000320E0(int score, char *name);
