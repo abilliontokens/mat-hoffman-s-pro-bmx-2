@@ -112,10 +112,12 @@ int func_001ED50B(void)
     int *func_001ED075(void);
     int *func_001ED07E(void);
     void func_001EAB1B(void);
+    int result;
+    result = -1;
     *func_001ED075() = 9;
     *func_001ED07E() = 0;
     func_001EAB1B();
-    return -1;
+    return result;
 }
 
 void func_001ED527(int *param_1)
@@ -128,5 +130,76 @@ void func_001ED527(int *param_1)
         param_1[2] = 0;
         param_1[1] = 0;
     }
+}
+
+int func_001ED7FC(int fh, int param_2, int param_3)
+{
+    void func_001EAAE0(void *, int);
+    int func_001EE70F(int);
+    int func_001ED633(int, int, int);
+    int *func_001ED075(void);
+    int *func_001ED07E(void);
+    void func_001ED883(void);
+    void func_001EAB1B(void);
+    extern int D_00295500;
+    extern unsigned int D_002FB240;
+    extern int *D_002FB260[];
+    int result;
+    func_001EAAE0(&D_00295500, 0xc);
+    if ((unsigned int)fh < D_002FB240 && (*(unsigned char *)((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) != 0) {
+        func_001EE70F(fh);
+        if ((*(unsigned char *)((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) == 0) {
+            *func_001ED075() = 9;
+            result = -1;
+        } else {
+            result = func_001ED633(fh, param_2, param_3);
+        }
+        func_001ED883();
+        return result;
+    }
+    *func_001ED075() = 9;
+    *func_001ED07E() = 0;
+    func_001EAB1B();
+    return -1;
+}
+
+int func_001EDBF6(int *param_1)
+{
+    int func_001F57FF(...);
+    int func_001E8AA5(...);
+    extern int D_002AE690;
+    extern int D_002AE6B0;
+    extern int D_002F6858;
+    extern int *D_002F69FC[];
+    int **slot;
+    int idx;
+    if (func_001F57FF(param_1[4]) == 0) {
+        return 0;
+    }
+    if (param_1 == &D_002AE690) {
+        idx = 0;
+    } else if (param_1 == &D_002AE6B0) {
+        idx = 1;
+    } else {
+        return 0;
+    }
+    D_002F6858++;
+    if ((*(unsigned short *)(param_1 + 3) & 0x10c) != 0) {
+        return 0;
+    }
+    slot = &D_002F69FC[idx];
+    if (*slot == 0) {
+        *slot = (int *)func_001E8AA5(0x1000);
+        if (*slot == 0) {
+            param_1[0] = param_1[2] = (int)(param_1 + 5);
+            param_1[1] = param_1[6] = 2;
+            goto done;
+        }
+    }
+    param_1[0] = param_1[2] = (int)*slot;
+    param_1[1] = param_1[6] = 0x1000;
+done:
+    *(unsigned short *)(param_1 + 3) |= 0x1102;
+    return 1;
 }
 
