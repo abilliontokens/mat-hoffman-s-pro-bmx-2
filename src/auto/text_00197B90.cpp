@@ -26,6 +26,37 @@ struct C_00197EC0_Vec4 {
 
 struct __declspec(align(16)) M_00198040 { __m128 m[4]; };
 
+static __forceinline void Copy_00198120(M_00198040 *dst, const M_00198040 *src)
+{
+    dst->m[0] = src->m[0];
+    dst->m[1] = src->m[1];
+    dst->m[2] = src->m[2];
+    dst->m[3] = src->m[3];
+}
+
+static __forceinline void Xform_00198120(C_00197EC0_Vec4 *out, const M_00198040 *mat, const float *v)
+{
+    __m128 t = _mm_loadu_ps(v);
+    _mm_storeh_pi((__m64 *)&out->z, t);
+    out->w = 1.0f;
+    t = _mm_loadh_pi(t, (__m64 *)&out->z);
+    __m128 r0 = _mm_mul_ps(mat->m[0], t);
+    __m128 r1 = _mm_mul_ps(mat->m[1], t);
+    __m128 r2 = _mm_mul_ps(mat->m[2], t);
+    __m128 lo = _mm_unpacklo_ps(r0, r1);
+    __m128 hi = _mm_unpackhi_ps(r0, r1);
+    __m128 junk;
+    junk = _mm_movehl_ps(junk, r2);
+    lo = _mm_add_ps(lo, hi);
+    r2 = _mm_add_ps(r2, junk);
+    hi = _mm_movehl_ps(hi, lo);
+    lo = _mm_movelh_ps(lo, r2);
+    hi = _mm_shuffle_ps(hi, r2, 0x14);
+    lo = _mm_add_ps(lo, hi);
+    _mm_storeu_ps(&out->x, lo);
+    out->w = 1.0f;
+}
+
 struct C_00197EC0 {
     char padF0[0xF0];
     float fF0;
@@ -165,6 +196,42 @@ C_00197EC0_Vec4 C_00197EC0::func_00197EC0(float *v)
     r.y = f100 * v[0] + f104 * v[1] + f108 * v[2];
     r.z = f110 * v[0] + f114 * v[1] + f118 * v[2];
     return r;
+}
+
+C_00197EC0_Vec4 C_00197EC0::func_00198120(float *v)
+{
+    C_00197EC0_Vec4 q;
+    M_00198040 m;
+    q.z = 0; q.y = 0; q.x = 0; q.w = 1.0f;
+    C_00197EC0 * volatile self = this;
+    func_00197AA0();
+    __m128 * volatile src = (__m128 *)&self->fF0;
+    __m128 * volatile dst = (__m128 *)&m;
+    __m128 *s = src;
+    __m128 *d = dst;
+    __m128 a0 = s[0], a1 = s[1], a2 = s[2], a3 = s[3];
+    d[0] = a0; d[1] = a1; d[2] = a2; d[3] = a3;
+    func_0011AC30(&m, &m);
+    __m128 t = _mm_loadu_ps(v);
+    _mm_storeh_pi((__m64 *)&q.z, t);
+    q.w = 1.0f;
+    t = _mm_loadh_pi(t, (__m64 *)&q.z);
+    __m128 r0 = _mm_mul_ps(m.m[0], t);
+    __m128 r1 = _mm_mul_ps(m.m[1], t);
+    __m128 r2 = _mm_mul_ps(m.m[2], t);
+    __m128 lo = _mm_unpacklo_ps(r0, r1);
+    __m128 hi = _mm_unpackhi_ps(r0, r1);
+    __m128 junk;
+    junk = _mm_movehl_ps(junk, r2);
+    lo = _mm_add_ps(lo, hi);
+    r2 = _mm_add_ps(r2, junk);
+    hi = _mm_movehl_ps(hi, lo);
+    lo = _mm_movelh_ps(lo, r2);
+    hi = _mm_shuffle_ps(hi, r2, 0x14);
+    lo = _mm_add_ps(lo, hi);
+    _mm_storeu_ps(&q.x, lo);
+    q.w = 1.0f;
+    return q;
 }
 
 void C_00198230::func_00198230(C_00198230 *child)
