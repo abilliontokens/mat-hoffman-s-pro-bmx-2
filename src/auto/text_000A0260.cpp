@@ -54,6 +54,11 @@ extern char D_002A5450[];
 extern char D_00275678[];
 extern char D_002764F0[];
 
+struct C_000A10B0_Src {
+    char pad0[0x420];
+    char name[0x40];         /* 0x420 */
+};
+
 struct C_000A0AE0 {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
     virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
@@ -207,6 +212,27 @@ void func_000A0B80(void) {
 
 int C_000A0AE0::func_000A10B0(int a)
 {
-    return a;
+    char buf[0x104];
+    C_001702B0_000A0260 *pm;
+    unsigned int n = 5;
+
+    func_001ADCC0(D_002A5558, 0x104, D_00275678, D_002A5348, D_002A5450);
+    if (f388 == 0) {
+        return 1;
+    }
+    if (memcmp((char *)f388 + 0x420, D_002764F0, n) != 0) {
+        strcpy(buf, (char *)f388 + 0x420);
+        pm = (C_001702B0_000A0260 *)func_001E8A44(0x174);
+        f488 = pm ? pm->func_001702B0(1) : 0;
+        if (f488->v27(buf, a) == 0) {
+            f488->v2();
+            f488 = 0;
+            return 0;
+        }
+        D_002A829C->func_00161680();
+        D_002AA6C0->func_001B2640();
+        return 1;
+    }
+    return 0;
 }
 
