@@ -17,6 +17,8 @@ char *func_001E9260(char *s, int c);
 extern "C" int D_0014FEE0(void *a);
 void func_0014FE50(void *a);
 
+static inline int min_i(int a, int b) { return a < b ? a : b; }
+
 struct S_0013B9C0_Ent28 {
     int f0;
     int f4;
