@@ -330,3 +330,20 @@ void C_00186540::func_00186540(int param_1)
   }
   return;
 }
+
+int C_00186720::func_00186720(S_Stream2 *stream)
+{
+    char buf[0x104];
+    char tmp[0x10];
+
+    if (!stream->func_00169710(&D_00289924)) {
+        return 0;
+    }
+    stream->func_00168BE0(&D_00289918, &D_0027C494, buf, -1);
+    V4_186720 t = *func_00182980(tmp, buf);
+    f4 = t;
+    stream->func_00168C50(&D_0028990C, 0x3f800000, &f14);
+    stream->func_00168C50(&D_00289900, 0x3f000000, &f18);
+    return 1;
+}
+
