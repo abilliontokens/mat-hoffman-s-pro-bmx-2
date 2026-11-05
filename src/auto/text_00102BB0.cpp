@@ -108,7 +108,7 @@ struct C_00102E20 {
     int unk3C4;
     int unk3C8;
     int unk3CC;
-    char pad3D0[4];
+    int unk3D0;
     int unk3D4;
     int unk3D8;
     int unk3DC;
