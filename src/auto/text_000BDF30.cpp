@@ -36,12 +36,20 @@ extern S_000BDF30_Game *D_002A8490;
 extern S_000BDF30_Audio *D_002EFDB8;
 
 struct S_000BDF30_Entry {
+    char name[0x104];
+    char f104[0x1c];
+    int *f120;
+    char pad124[0x84];
+};
+
+/* 0x120-byte item, display text at +0x104 */
+struct S_000BE020_Item {
     char pad0[0x104];
-    char f104[0xa4];
+    char name[0x1c];
 };
 
 struct S_000BDF30_Lookup {
-    int func_0001B3C0(S_000BDF30_Entry *entry);
+    int func_0001B3C0(void *entry);
 };
 
 struct S_000BDF30_Names {
