@@ -122,6 +122,18 @@ void C_00192470::func_00192630()
     func_00192840(f34[i], &f30);
 }
 
+void C_00192470::func_00192680()
+{
+    int i;
+    if (f34 == 0) {
+        return;
+    }
+    for (i = 0; i < f2c - 1; i++) {
+        func_001927C0(f34[i], f28);
+    }
+    func_001927C0(f34[i], f30);
+}
+
 undefined4 C_001926D0::func_001926D0(byte param_1)
 {
   int func_00192420(...);
