@@ -6,6 +6,27 @@ extern int D_0015BA70;
 void *func_001E8A44(int size);
 void __stdcall func_00011FF0(void *p, int step, int count, int *ctor);
 
+struct Item162B70 {
+    int unk0, unk4, unk8, count, unk10;
+    void *data;
+};
+
+struct Pack162B70 {
+    char pad0[0x14];
+    Item162B70 **listA;
+    Item162B70 **listB;
+    int countA, countB;
+    int pad24, kindB, kindA;
+    int pad30, id0, id1;
+};
+
+struct Mgr13C9F0 { void *func_0013C9F0(int a, void *b); };
+struct Mgr13B930 { void *func_0013B930(void *a, void *b, int c); };
+struct Mgr13C110 { void func_0013C110(void *a); };
+extern Mgr13C9F0 *D_002BEAAC_A;
+extern char D_00282960[];
+void func_001E891B(void *p);
+
 struct S_00162DF0_A {
     char pad0[0x18];
 };
