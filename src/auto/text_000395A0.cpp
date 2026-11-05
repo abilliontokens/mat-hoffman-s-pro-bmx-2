@@ -5,6 +5,7 @@ struct C_000395A0 {
 char pad0[0x450]; int f450; char pad454[8]; int f45C,f460; char pad464[0x38]; S_000392B0_Obj **f49C; char pad4a0[0xc4]; S_000392B0_Slot *f564;
 int func_00038A70(int*,void**);
 void LoadBlock(S_000392B0_Obj *o, S_000392B0_Block **out) { *out = 0; func_00038A70(&o->f28, (void **)out); }
+void LoadBlock2(S_000392B0_Block **out, S_000392B0_Obj *o) { *out = 0; func_00038A70(&o->f28, (void **)out); }
 S_000392B0_Block *GetBlock(S_000392B0_Obj *o) { S_000392B0_Block *b = 0; func_00038A70(&o->f28, (void **)&b); return b; }
 int func_00038B10(void*,S_000392B0_Vec4,S_000392B0_Vec4,int*,int*,int*,int);
 int func_000395A0(S_000392B0_Vec4 pos);
