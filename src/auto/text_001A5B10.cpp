@@ -9,7 +9,20 @@ struct LoadMemoryCard {
     void func_00157600(void *);
     LoadMemoryCard *func_001A61C0(void *);
 };
-struct S_6260_V { virtual void v0(int d); virtual void v1(); virtual void v2(); };
+struct S_6930_Clamp {
+    char pad0[0x10];
+    float f10;
+    float f14;
+};
+struct S_6930_Mid {
+    S_6930_Clamp *func_0018C070();
+};
+struct S_6930_Lookup {
+    int *func_0018C160(int a);
+};
+extern int D_0027958C;
+extern float D_00275AEC;
+struct S_6260_V { virtual void v0(int d); virtual void v1(); virtual void v2(); S_6930_Clamp *func_001D5AA0(); };
 struct S_6260_E { void func_001D6410(); };
 struct S_6260_H { virtual void v0(int d); };
 void func_001E891B(void *p);
@@ -428,5 +441,42 @@ C_001A5F40 *C_001A5F40::func_001A5F40(void *a, int b)
         }
     }
     return 0;
+}
+
+void C_001A5FD0::func_001A5FD0(int arg)
+{
+    S_001A5FD0_F24 *p;
+
+    if (f28 != 0 && f28->f48 == 0) {
+        f28->func_00157810();
+        f28->v2();
+        int m = f2c;
+        f28 = 0;
+        if (m == 9) {
+            f24->f24 = 6;
+            func_00157A00(arg);
+            return;
+        }
+        if (m == 0xb) {
+            if (((S_001A5FD0_G1M *)D_002A8490->f2e0)->f2c0->func_0005C0E0() == 0) {
+                f24->f24 = 0xc;
+                func_00157A00(arg);
+                return;
+            }
+            p = f24;
+        } else {
+            p = f24;
+            if (m != 0xd) {
+                p->f24 = 1;
+                func_00157A00(arg);
+                return;
+            }
+        }
+        p->f1dc = 1;
+        f24->f24 = 1;
+        func_00157A00(arg);
+        return;
+    }
+    func_00157A00(arg);
 }
 
