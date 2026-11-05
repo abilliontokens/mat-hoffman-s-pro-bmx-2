@@ -2,6 +2,15 @@
 #include "common.h"
 
 extern int D_0028F6DC;
+extern int D_0028F768[2];
+unsigned int __stdcall func_00201860(int);
+void __stdcall func_00201A90(int, void *);
+void __stdcall func_00201A60(int, int, void *);
+void __stdcall func_00201900(int, unsigned int, void *);
+struct S_001D8040 {
+ int f0, f4, f8;
+ int fC, f10, f14, f18, f1C, f20, f24;
+};
 
 struct S_001D8140 {
     int f0;
