@@ -457,6 +457,21 @@ void *C_0015B1A0::func_0015B1A0(int a)
     return this;
 }
 
+void C_0015B310::func_0015B1C0(void)
+{
+    extern int D_002876EC;
+    vtbl = (void *)&D_002876EC;
+    if (f24 != 0) {
+        if (f24->f8 != 0) {
+            delete[] f24->f8;
+        }
+        if (f24 != 0) {
+            delete f24;
+        }
+    }
+    func_00157660();
+}
+
 void *C_0015B150::func_0015B2C0(unsigned int flags)
 {
     extern int D_002876E0;
