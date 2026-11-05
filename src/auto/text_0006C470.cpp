@@ -257,6 +257,42 @@ void C_0006C470::func_0006C470()
     func_00157660();
 }
 
+void C_0006D100::func_0006CC20()
+{
+    int ids[2];
+    int i;
+    Sprite_6D **e;
+    Lookup_6C *lk;
+    ids[0] = (int)D_002786A0;
+    ids[1] = (int)D_00278A64;
+    for (i = 0; i < 2; i++) {
+        lk = D_002A8490->f2EC;
+        int *r = lk->func_0018C160(ids[i]);
+        if (r && *r) {
+            Sprite_6D *o = ((Mid_6C *)*r)->func_0018C070();
+            if (D_00275AEC > o->f10) o->f10 = 10.0f;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) o->f14 = 10.0f;
+        }
+    }
+    e = &unk6C;
+    i = 2;
+    do { CLAMP(*e); e++; i--; } while (i);
+    if (unkBC) CLAMP(unkBC);
+    if (unkC0) CLAMP(unkC0);
+    e = &arr90[0];
+    i = 5;
+    do {
+        if (e[-5]) CLAMP(e[-5]);
+        if (*e) CLAMP(*e);
+        e++; i--;
+    } while (i);
+    e = arrA4;
+    i = 4;
+    do { if (*e) CLAMP(*e); e++; i--; } while (i);
+    if (unkB4) CLAMP(unkB4);
+    func_001578D0();
+}
+
 void C_0006CEC0::func_0006CEC0()
 {
  char buffer[68];
