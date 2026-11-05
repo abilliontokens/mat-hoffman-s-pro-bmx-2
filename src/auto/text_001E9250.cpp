@@ -3,7 +3,9 @@
 
 /* the CRT's FILE (only the fields these functions touch) */
 struct S_001E9714_File {
-    char pad0[0xc];
+    char *_ptr;
+    int _cnt;
+    char *_base;
     int _flag;
     int _file;
     char pad14[8];
