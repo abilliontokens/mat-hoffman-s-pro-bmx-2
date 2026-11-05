@@ -87,6 +87,11 @@ struct S_001A33A0_List {
         }
         return 0;
     }
+    void Clear()
+    {
+        memset(items, 0, count * 4);
+        count = 0;
+    }
 };
 struct S_001A33A0_Mgr {
     void func_0001CE80(S_001A33A0_Snd *snd, S_001A33A0_Vec3 *pos, void *name, int a, int b);
