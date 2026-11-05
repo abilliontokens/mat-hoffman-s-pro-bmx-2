@@ -24,6 +24,33 @@ extern "C" void *func_001E8AA5(int);
 extern "C" void *func_001E8A44(int);
 extern int D_00287520;
 
+struct S_P {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
+    virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14();
+    virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24();
+    virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29();
+    virtual void v30(); virtual void v31();
+    S_P *func_0016CE80(int);
+    S_P *func_0016CF10(int, void *, int, int);
+};
+struct S_Q : S_P {
+    S_Q *func_0016D620(int);
+    S_Q *func_0016D6A0(int, void *, int, int);
+};
+struct C_00158A60 {
+    char pad0[0x24];
+    S_P *unk24;
+    S_P *unk28[2];
+    S_P *unk30;
+    S_P *unk34;
+    S_Q *unk38;
+    void func_001577A0(void *, int);
+    void func_00158A60(int a);
+};
+extern char D_0028745C, D_00287448, D_00287438, D_00287424, D_0027592C;
+
 struct C_00158BE0 {
     int unk0;
     void *func_00158BE0(int flags);
