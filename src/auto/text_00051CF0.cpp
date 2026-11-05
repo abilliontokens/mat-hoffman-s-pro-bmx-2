@@ -31,7 +31,7 @@ struct C_00051CF0_Obj {
     virtual void v16();
     virtual void v17();
     virtual void v18(int a);
-    char pad4[0x6C];
+    char pad4[0x70];
     C_00051CF0_74 *unk74;
 };
 
