@@ -106,6 +106,7 @@ struct C_0004C560 {
     void func_001577A0(void *p, int n);
     int func_0004C560(void);
     void func_0004C5D0(void);
+    C_0004C560 *func_0004C610(int a0);
     int func_0004C720(void);
 };
 
