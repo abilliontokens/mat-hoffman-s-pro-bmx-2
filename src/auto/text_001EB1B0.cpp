@@ -46,6 +46,32 @@ int __cdecl func_001EC5F1(int c, int mask);
 int __cdecl func_001F4874(S_CrtDouble *out, char *str);
 int __cdecl func_001F48A1(S_CrtFloat *out, char *str);
 
+/* float-to-text converters behind func_001EB786 (_cftoe, _cftof, _cftog) */
+void __cdecl func_001EB5A0(double *arg, char *buffer, int precision, int caps);
+void __cdecl func_001EB6A7(double *arg, char *buffer, int precision);
+void __cdecl func_001EB6F9(double *arg, char *buffer, int precision, int caps);
+
+/* per-thread CRT data (_tiddata), only the fields the startup code touches */
+struct S_Tiddata {
+    unsigned long tid;
+    unsigned long thandle;
+    char pad8[0xc];
+    long holdrand;
+    char pad18[0x3c];
+    void *pxcptacttab;
+    char pad58[0x2c];
+};
+
+extern int D_002F41D0;
+extern S_Tiddata *D_002FB360;
+extern char D_002AEDD8[];
+extern char D_002F69F0[];
+extern void *D_002F69F8;
+
+extern "C" S_Tiddata *__cdecl func_001EA1A1(unsigned int num, unsigned int size);
+extern "C" unsigned long __cdecl func_001DE935(void);
+void __stdcall func_001DE7E6(void *node, int add);
+
 /* new-handler installed by set_new_handler, called by _callnewh */
 extern "C" int (__cdecl *D_002F69E8)(unsigned int size);
 extern "C" void *__cdecl func_001E8AA5(unsigned int size);
