@@ -6,14 +6,33 @@ struct DelObjHOF4 {
     virtual void Destroy(int a0);
 };
 
+struct S_000D8A40_Widget {
+    void func_001B1980();
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, float a11, int a12, int a13);
+};
+
+struct S_000D8A40_Res {
+    void func_00103260(int a);
+};
+
+struct S_000D8A40_Owner {
+    S_000D8A40_Res *func_000BA9B0(int a);
+};
+
 struct BmxUIPageHOF4D {
     void *vtbl;
-    char pad4[0x2F4 - 4];
+    char pad4[0x124 - 4];
+    S_000D8A40_Owner *f124;
+    char pad128[0x2CC - 0x128];
+    S_000D8A40_Widget *arr2CC[5];
+    S_000D8A40_Widget *arr2E0[5];
     DelObjHOF4 *arr2F4[2];
     DelObjHOF4 *arr2FC[2];
     DelObjHOF4 *arr304[2];
+    S_000D8A40_Widget *arr30C[5];
     void func_001BE3F0();
     void func_000D7B70();
+    void func_000D8A40();
 };
 
 void BmxUIPageHOF4D::func_000D7B70()
