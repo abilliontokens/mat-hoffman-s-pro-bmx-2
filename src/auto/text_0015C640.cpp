@@ -168,6 +168,24 @@ void func_0015C930(float *param_1, int param_2)
     }
 }
 
+int func_0015C9A0(float *base, float v, int n, float **lo, float **up, float *t)
+{
+    int i = func_0015C640(base, n, v);
+    if (i != n) {
+        float *a = &base[i * 2];
+        float *b = &base[(i - 1) * 2];
+        *lo = b;
+        *up = a;
+        *t = (v - b[0]) / (a[0] - b[0]);
+        return 1;
+    }
+    *lo = &base[(n - 2) * 2];
+    float *p = &base[(n - 1) * 2];
+    *up = p;
+    *t = (v - p[0]) / (base[(i - 1) * 2] - base[(i - 2) * 2]);
+    return 0;
+}
+
 void C_0015CB40::func_0015CB40(int a0, int a1) {
     int func_0015CB70(...);
     func_0015CB70(unk14, a0, unkC, unk8, a1);
