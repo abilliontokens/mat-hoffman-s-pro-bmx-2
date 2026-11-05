@@ -1,5 +1,13 @@
 /* 20 functions from 0x0001D280 to 0x0001E260, found by Ghidra. */
 #include "common.h"
+struct C_0001E0A0 {
+    char pad0[0x140];
+    float unk140;
+    float unk144;
+    float unk148;
+    void func_0001E0A0(float a0, float a1, float a2, int a3);
+};
+
 struct C_0001DFF0 {
     int unk0;
     void func_0001DFF0(void);
@@ -384,5 +392,11 @@ void *C_0001E080::func_0001E080(int flags) {
         func_001E891B(this);
     }
     return this;
+}
+
+void C_0001E0A0::func_0001E0A0(float a0, float a1, float a2, int a3) {
+    unk140 = a0 + unk140;
+    unk144 = a1 + unk144;
+    unk148 = a2 + unk148;
 }
 
