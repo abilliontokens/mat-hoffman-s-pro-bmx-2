@@ -201,7 +201,22 @@ struct InputDevice {
 };
 
 struct C_001577A0 {
-    void func_001577A0(int a, int b);
+    int func_001577A0(int a, int b);
+};
+
+/* constructors (thiscall, flag argument) of the objects BmxGame::func_00059AC0 creates, each returns this */
+struct S_00059AC0_Ctors {
+    S_00059F50_Obj *func_000511A0(int a);
+    S_00059F50_Obj *func_0004BAB0(int a);
+    S_00059F50_Obj *func_000536A0(int a);
+    S_00059F50_Obj *func_0004C610(int a);
+    S_00059F50_Obj *func_0004D930(int a);
+    S_00059F50_Obj *func_00053D20(int a);
+    S_00059F50_Obj *func_0004ECC0(int a);
+    S_00059F50_Obj *func_00050A10(int a);
+    S_00059F50_Obj *func_00049C00(int a);
+    S_00059F50_Obj *func_0004F220(int a);
+    S_00059F50_Obj *func_000378D0(int a);
 };
 
 struct Level_00059CC0 {
