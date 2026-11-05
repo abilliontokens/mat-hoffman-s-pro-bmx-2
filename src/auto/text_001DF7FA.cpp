@@ -32,7 +32,7 @@ struct S_HeapBlock {
     unsigned char *next;        /* 0x40 */
 };
 
-extern "C" long (__stdcall *__imp__NtAllocateVirtualMemory)(void *baseAddress, unsigned int zeroBits, unsigned int *size, unsigned int allocType, unsigned int protect);
+extern "C" long (__stdcall * const __imp__NtAllocateVirtualMemory)(void *baseAddress, unsigned int zeroBits, unsigned int *size, unsigned int allocType, unsigned int protect);
 extern "C" long (__stdcall *__imp__NtFreeVirtualMemory)(void **baseAddress, unsigned int *size, unsigned int freeType);
 unsigned char *__stdcall func_001DF7FA(S_HeapRoot *root, S_HeapBlock *blk, unsigned int *size, int a3);
 unsigned char *__stdcall func_001DF985(S_HeapRoot *root, unsigned char *entry, unsigned int *size, int a3);
@@ -113,5 +113,79 @@ unsigned char __stdcall func_001E016D(S_HeapRoot *root, unsigned int blkAddr, un
     tail[4] = bucket;
     func_001DFC2A(root, tail, (int)(cur - (unsigned int)tail) >> 4);
     return 1;
+}
+
+unsigned char *__stdcall func_001E028B(S_HeapRoot *heap, unsigned int size)
+{
+    unsigned int pages = (size + 0xfff) >> 12;
+    unsigned int bytes = pages << 12;
+    unsigned char firstFree = 0x40;
+    unsigned char i;
+    S_HeapBlock *cur;
+    unsigned int newSize;
+    unsigned int allocSize;
+    unsigned int commit;
+    long status;
+    unsigned char *r;
+    long (__stdcall *alloc)(void *, unsigned int, unsigned int *, unsigned int, unsigned int);
+
+    for (i = 0; i < 0x40; i++) {
+        cur = (S_HeapBlock *)heap->bucket[i];
+        if (cur != 0) {
+            if (pages <= (unsigned int)cur->spare && bytes <= cur->f1c) {
+                r = func_001DF7FA(heap, cur, &bytes, 0);
+                if (r != 0) {
+                    bytes >>= 4;
+                    r = func_001DF985(heap, r, &bytes, 0);
+                    func_001DFC2A(heap, r, bytes);
+                    return r;
+                }
+            }
+        } else {
+            if (firstFree == 0x40) {
+                firstFree = i;
+            }
+        }
+    }
+    if (firstFree == 0x40 || !(heap->flags & 2)) {
+        return 0;
+    }
+    cur = 0;
+    newSize = size + 0x1000;
+    allocSize = newSize;
+    if (newSize <= heap->reserveSize) {
+        allocSize = heap->reserveSize;
+    }
+    alloc = __imp__NtAllocateVirtualMemory;
+    status = alloc(&cur, 0, &allocSize, 0x2000, 4);
+    while (status < 0) {
+        if (allocSize == newSize) {
+            break;
+        }
+        allocSize >>= 1;
+        if (allocSize < newSize) {
+            allocSize = newSize;
+        }
+        status = alloc(&cur, 0, &allocSize, 0x2000, 4);
+    }
+    if (status < 0) {
+        return 0;
+    }
+    heap->reserveSize += allocSize;
+    commit = newSize;
+    if (newSize <= heap->commitSize) {
+        commit = heap->commitSize;
+    }
+    status = alloc(&cur, 0, &commit, 0x1000, 4);
+    if (status >= 0) {
+        if (!func_001E016D(heap, (unsigned int)cur, firstFree, 0, (unsigned char *)cur, (unsigned int)cur + commit, (unsigned int)cur + allocSize)) {
+            status = 0xc0000017;
+        }
+        if (status >= 0) {
+            return cur->tail;
+        }
+    }
+    __imp__NtFreeVirtualMemory((void **)&cur, &allocSize, 0x8000);
+    return 0;
 }
 
