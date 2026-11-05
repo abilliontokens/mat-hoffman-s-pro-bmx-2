@@ -119,7 +119,7 @@ struct C_00088570 {
     Sub_00088530 sub88;
     u32 fEC;
     int fF0;
-    SplitScreenSeparator *func_00088570(int mode);
+    C_00088570 *func_00088570(int mode);
 };
 
 struct S_00088A40_V4 {
