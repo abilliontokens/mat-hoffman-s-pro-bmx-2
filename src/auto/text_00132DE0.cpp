@@ -195,6 +195,21 @@ void C_00133020::func_00133020(unsigned int v)
     func_001D3F50();
 }
 
+void C_001332A0::func_001332A0(void)
+{
+    int func_001E891B(...);
+
+    if (f98 != 0) {
+        f98->func_00193870(&f24);
+        S_001332A0_Node *p = f98;
+        if (p != 0) {
+            p->func_00193500();
+            func_001E891B(p);
+        }
+        f98 = 0;
+    }
+}
+
 void C_001334E0::func_001334E0(int a0) {
     unk74 = a0;
 }
