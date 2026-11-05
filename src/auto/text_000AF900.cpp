@@ -40,7 +40,7 @@ struct Obj_B0060 {
  int f60, f64, f68;
  char f6C, f6D;
  Obj_B0060 *func_0019B700(int);
- int __stdcall func_00129920(int);
+ int func_00129920(int);
  int func_0019D7B0(int, const char *);
  void func_00133140(int, int);
 };
