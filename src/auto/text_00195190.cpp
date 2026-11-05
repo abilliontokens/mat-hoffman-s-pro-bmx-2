@@ -14,6 +14,8 @@ struct SimpleVCR {
     int fC4, fC8, fCC;
     void func_00157600(int a);
     SimpleVCR *func_00195D90(void);
+    void func_00195E70(void);
+    void func_00157660(void);
 };
 
 extern int D_0028AFA4;
