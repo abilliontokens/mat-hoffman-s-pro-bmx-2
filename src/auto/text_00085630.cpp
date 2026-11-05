@@ -77,6 +77,17 @@ struct C_00085F40 {
 };
 
 extern C_00085630_2A8490 *D_002A8490;
+extern char D_00279058[];
+
+struct C_00086030 {
+    char pad0[0x84];
+    C_0005E840 *f84, *f88, *f8C, *f90;
+    char pad94[0xC];
+    int fA0;
+    char padA4[0x20];
+    int fC4;
+    void func_00086030(int a);
+};
 
 extern int D_002796BC;
 
