@@ -115,8 +115,13 @@ struct S_002B91AC {
     C_001D5AD0 *unk2C;
     C_001D5AD0 *unk30;
     C_001D5AD0 *unk34;
-    C_001D5AD0 *unk38;
-    C_001D5AD0 *unk3C;
+    union {
+        struct {
+            C_001D5AD0 *unk38;
+            C_001D5AD0 *unk3C;
+        };
+        C_001D5AD0 *arr38[2];
+    };
     char pad40[0x10];
     C_001D5AD0 *unk50;
     C_001D5AD0 *unk54;
@@ -300,6 +305,44 @@ extern S_002B91AC *D_002B91AC;
 extern float D_00279B50;
 extern float D_00275994;
 extern void *D_0027E334;
+
+void C_000C8590::func_000C7DF0(void) {
+    int i;
+    int o;
+    for (o = 0x38; o < 0x40; o += 4) {
+        S_002B91AC *s = D_002B91AC;
+        (*(C_001D5AD0 **)(o + (int)s))->func_001D6600();
+    }
+    D_002B91AC->unk34->func_001D6600();
+    if (unk300 != 0) {
+        for (i = 0; i < 9; i++) {
+            unk320[i]->func_001B1980();
+            if (unk344[i] != 0) {
+                unk320[i]->func_001B2270(0xff606060);
+                goto plain;
+            } else if (i == unk2DC) {
+                unk320[i]->func_001B2270(0xffbfa35a);
+                if (unk2EC != 0) unk320[i]->func_001B1A30(320.0f, unk368[i], 0.5f);
+                unk320[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0xff, 1.45f, 0, 0, 0.2f, 0);
+            } else if (i == unk2E0) {
+                unk320[i]->func_001B2270(0xffcccccc);
+                if (unk2EC != 0) unk320[i]->func_001B1A30(320.0f, unk368[i], 0.5f);
+                unk320[i]->func_001B1860(0, -1.0f, 0xff, 1.45f, 0, 0, 0, 0xff, 1.15f, 0, 0, 0.2f, 0);
+            } else {
+                unk320[i]->func_001B2270(0xffcccccc);
+                if (unk2EC != 0) unk320[i]->func_001B1A30(320.0f, unk368[i], 0.5f);
+plain:
+                unk320[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, (int)0xbf800000, 0xff, 1.0f, 0, 0, 0, 0);
+            }
+            if (unk368[i] > D_00279B50 || unk368[i] < D_00275994) {
+                unk320[i]->func_001B1980();
+            }
+        }
+        unk2EC = 0;
+        unk300 = 0;
+    }
+    if (unk2FC >= D_002755E8) unk2F8 = 0;
+}
 
 void C_000C8090::func_000C7FC0(void) {
     int i;
