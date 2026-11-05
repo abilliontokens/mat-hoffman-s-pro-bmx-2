@@ -5,6 +5,75 @@ struct C_0006DF20 {
     void func_0006DF20(int param_1);
 };
 
+extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
+
+extern int D_0027850C;
+extern int D_00278A7C;
+extern int D_00278AF0;
+extern float D_00278500;
+extern int D_002B902C;
+extern int D_002B9030;
+
+struct C_001D5AD0 {
+    void func_001D5AD0(void);
+};
+
+struct C_000601D0 {
+    void func_000601D0(void);
+};
+
+struct C_0006E250_E8 {
+    char pad0[0x160];
+    C_000601D0 *f160;
+};
+
+struct CreatorObj {
+    int func_00026500(int a, int b);
+};
+extern CreatorObj *D_002A7CB8;
+
+struct C_002A8490 {
+    char pad0[0x270];
+    int f270;
+    int f274;
+};
+extern C_002A8490 *D_002A8490;
+
+/* LevelObjectivesMenu */
+struct C_0006D590 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    char pad4[0x1C];
+    u32 unk24[8];
+    u32 unk44[8];
+    int unk64;
+    u32 unk68[15];
+    C_001D5AD0 *unkA4;
+    C_001D5AD0 *unkA8;
+    C_001D5AD0 *unkAC;
+    C_001D5AD0 *unkB0[5];
+    C_001D5AD0 *unkC4[5];
+    C_001D5AD0 *unkD8;
+    C_001D5AD0 *unkDC;
+    int unkE0;
+    int unkE4;
+    C_0006E250_E8 *unkE8;
+    float unkEC;
+    C_001D5AD0 *unkF0;
+    int unkF4;
+    int unkF8;
+    void func_00157600(int a0);
+    int func_00157960();
+    void func_0006DFC0();
+    C_0006D590 *func_0006D590(int a0);
+    void func_0006DF50();
+    int func_0006E1E0();
+    int func_0006E250(float dt);
+};
+
 struct C_00031610 {
     void func_00031610(int param_1, int param_2);
 };
