@@ -282,6 +282,14 @@ void C_0018C120::func_0018C640(void)
     func_0018C120();
 }
 
+void C_0018C800::func_0018C780(int count, int *arr, int c)
+{
+    int i;
+    for (i = 0; i < count; i++) {
+        func_0018C6B0(arr[i], c);
+    }
+}
+
 void C_0018C7F0::func_0018C7F0(void) {
     extern int D_0028A784;
     int func_00157660(...);
