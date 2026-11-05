@@ -105,3 +105,26 @@ void C_000DFC00::func_000DFC90()
         n--;
     } while (n != 0);
 }
+
+void C_000DFCF0::func_000DFCF0()
+{
+    if (unk2c8 != 0) {
+        func_000DF570();
+        unk2c8 = 0;
+    }
+    if (unk2ac != 0) {
+        for (int i = 0; i < 18; i++) {
+            for (int k = 0; k < 6; k++) {
+                S_000DFCF0_W *w = ((S_000DFCF0_W **)((char *)this + 0x924))[i + k * 18];
+                float v = (float)unk4a8[i * 4];
+                if (w->f4 != 0x434c0000 || w->f8 != v) {
+                    w->f8 = v;
+                    w->f4 = 0x434c0000;
+                    w->f58 |= 1;
+                }
+            }
+        }
+    }
+    func_001BF000();
+}
+
