@@ -250,6 +250,7 @@ void *_func_001EFF6E(S_001EF734 *o)
 {
     S_001EF734 local;
     S_001EF734 tmp;
+    S_001EF734 *p;
     switch (*D_002F6A28) {
     case 'X':
         D_002F6A28++;
@@ -261,20 +262,25 @@ void *_func_001EFF6E(S_001EF734 *o)
         break;
     default:
         _func_001EFBEE(&local);
-        if ((local.flags & 0xf) == 0 && *D_002F6A28 != 0) {
-            char c = *D_002F6A28;
-            if (c == '@') {
-                D_002F6A28++;
-            } else if (c == 'Z') {
-                D_002F6A28++;
-                o->func_001EEEE6(local.func_001EFD7A(&tmp, D_00295C58));
+        if ((local.flags & 0xf) == 0) {
+            switch (*D_002F6A28) {
+            case 0:
                 break;
-            } else {
+            case '@':
+                D_002F6A28++;
+                break;
+            case 'Z':
+                D_002F6A28++;
+                p = local.func_001EFD7A(&tmp, D_00295C58);
+                goto emit;
+            default:
                 o->func_001EF170(1);
-                break;
+                return o;
             }
         }
-        o->func_001EEEE6(&local);
+        p = &local;
+    emit:
+        o->func_001EEEE6(p);
         break;
     }
     return o;
