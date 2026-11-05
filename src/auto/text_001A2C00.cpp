@@ -229,6 +229,7 @@ struct MaterialSoundEmitter {
         f1f8 &= 0xfe;
     }
     int func_001A34D0(int idx, S_001A33A0_Vec3 pos, int a5, int a6, int vol, int flag);
+    int func_001A3610(int idx, S_001A2C00_Vec pos, int a5, int a6, int flag);
     int func_001A3B10(void);
     void func_001A3210(void);
     int func_001A33A0(int idx, S_001A33A0_Vec3 pos, int a4, int vol);
