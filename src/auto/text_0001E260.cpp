@@ -87,6 +87,7 @@ struct GR_BitString {
     void func_0001E3F0(u32 *a0, u32 a1, int a2);
     GR_BitString(u32 *a0, u32 a1, int a2);
     void func_0001E460();
+    void func_0001E480(int *out);
     void *func_0001E6D0(unsigned int flags);
     void func_0001E710(int a0);
     void func_0001E5D0(int a0);
@@ -384,11 +385,10 @@ void func_0001E9B0(float *out, float *a, float *b)
 
 void func_0001E9E0(float *out, float *v)
 {
-    float s;
+    float inv;
 
-    s = v[0] * v[0] + v[1] * v[1] + v[2] * v[2];
-    s = func_0001E960(s);
-    vec3_set(out, s * v[0], s * v[1], s * v[2]);
+    inv = func_0001E960(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
+    vec3_set(out, inv * v[0], inv * v[1], inv * v[2]);
 }
 
 void func_0001EAB0(float *out, float *a, float *b)
