@@ -115,6 +115,32 @@ struct C_00158360 {
 
 void func_001E891B(void *p);
 
+extern int D_002A7B80, D_002A7B84, D_002A7B88, D_002A7B8C;
+void *func_001E8A44(int size);
+void func_00158510(struct S_00158510_Arg0 *a, struct S_00158510_Arg1 *b);
+
+struct S_001586F0_Obj {
+    char pad0[0x60];
+    void *f60;
+    char pad64[0x38];
+    void *f9C;
+    char padA0[7];
+    unsigned char fA7;
+    S_001586F0_Obj *func_0014AB30(int a);
+    void func_00129920(int a);
+    void func_001334E0(int a);
+    void func_0014C1C0(int a, int b, int c);
+    void func_0014AC30(int *v, int a);
+    void func_001332A0(void);
+    void func_00133140(int a, int b);
+};
+
+struct C_001586F0 {
+    char pad0[0x40];
+    S_001586F0_Obj *f40;
+    void func_001586F0(int a);
+};
+
 extern int D_002DF948;
 
 struct S_00158510_Vec4 {
