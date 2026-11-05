@@ -71,6 +71,12 @@ struct C_001B1B30 {
     int fA4;
     char padA8[0x18];
     int fC0;
+    void setTarget(float v, int t)
+    {
+        fA4 = t;
+        f9C = v;
+        fA0 = 0;
+    }
     void func_001B1B30(float param_1, undefined4 param_2);
 };
 
@@ -200,19 +206,16 @@ int C_001B1B20::func_001B1B20(void)
 
 void C_001B1B30::func_001B1B30(float param_1, undefined4 param_2)
 {
-  extern const float D_00275544;
-  int in_ECX = (int)this;
-
-  if (*(int *)(in_ECX + 0xc0) == 0) {
-    *(undefined4 *)(in_ECX + 0xa4) = param_2;
-    *(float *)(in_ECX + 0x9c) = param_1;
-    *(undefined4 *)(in_ECX + 0xa0) = 0;
-    if (param_1 < D_00275544) {
-      *(undefined4 *)(in_ECX + 0x9c) = 0;
+    extern float D_00275544;
+    if (fC0 == 0) {
+        fA4 = param_2;
+        f9C = param_1;
+        fA0 = 0;
+        if (param_1 < D_00275544) {
+            f9C = 0;
+        }
     }
-  }
-  *(float *)(in_ECX + 0x98) = *(float *)(*(int *)(in_ECX + 0x24) + 0x34);
-  return;
+    f98 = f24->getF34();
 }
 
 void C_001B1B80::func_001B1B80(undefined4 param_1, float param_2, float param_3,
