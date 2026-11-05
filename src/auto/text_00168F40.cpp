@@ -41,3 +41,14 @@ struct VT_00169C00 {
     virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
     virtual void v32();
 };
+
+void ParticleEmitter::func_00169DE0(void)
+{
+    void *p = unk1BC;
+
+    vtbl = (void *)&D_00288084;
+    if (p != 0) {
+        func_001E891B(p);
+    }
+    ((C_00157660 *)this)->func_00157660();
+}
