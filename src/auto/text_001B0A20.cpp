@@ -55,6 +55,84 @@ struct C_001B0E90 {
 
 extern int D_0028C5BC;
 extern int D_0028C6E8;
+extern int D_0028C70C;
+
+void func_001B0F70(void);
+void func_001E891B(void *p);
+void *func_001E8A44(int size);
+
+struct C_001B1110 {
+    void *func_001B1110(unsigned int flags);
+};
+
+struct Obj_001B0FC0 {
+    virtual void v0(int a);
+    void func_0001E860();
+};
+
+struct C_001B0FC0 {
+    char pad0[0x4];
+    int count;
+    char pad8[0x4];
+    Obj_001B0FC0 *unkC;
+    Obj_001B0FC0 *arr[1];
+    void func_001B0FC0(void);
+};
+
+struct C_001B1010_Obj {
+    char pad0[0x8];
+    void *unk8;
+    char padC[0x10];
+    C_001B1010_Obj *unk1C;
+    int unk20;
+    C_001B1010_Obj *func_00149280(int a0);
+};
+
+struct C_001B1010_Arg {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual int v5(void *a);
+    char pad4[0x10];
+    int unk14;
+};
+
+struct C_001B1010 {
+    char pad0[0x4];
+    int count;
+    char pad8[0x8];
+    C_001B1010_Obj *arr[1];
+    int func_001B1010(C_001B1010_Arg *arg0);
+};
+
+struct C_001B1130 {
+    void *vtbl;
+    char pad4[0x20];
+    float unk24;
+    float unk28;
+    float unk2C;
+    float unk30;
+    float unk34;
+    float unk38;
+    float unk3C;
+    float unk40;
+    float unk44;
+    float unk48;
+    float unk4C;
+    float unk50;
+    float unk54;
+    float unk58;
+    float unk5C;
+    float unk60;
+    float unk64;
+    float unk68;
+    float unk6C;
+    float unk70;
+    void *func_001B1130(int a0);
+    void func_00157600(int a0);
+};
 
 struct C_001D6290 {
     void func_001D6290(int param_1);
