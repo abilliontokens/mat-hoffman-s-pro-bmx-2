@@ -119,6 +119,8 @@ struct C_00163A50 {
     void func_00162A80(void *p);
     S_00163DC0_Res *func_00162B20(const char *name, int a);
     int func_00163780(const char *path, S_00163DC0_Res *res);
+    int func_00162FB0(S_00163A50_Arg *a1, const char *path, S_00163DC0_Res *res);
+    void func_00162B70(const char *path, S_00163DC0_Res *res);
     void *func_00163DC0(C_00163DC0_Parser *parser, const char *section, const char *prefix);
 };
 
