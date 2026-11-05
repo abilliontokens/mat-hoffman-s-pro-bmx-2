@@ -13,24 +13,8 @@ extern char D_002A5EA0[], D_002A60B0[], D_002A45E0[], D_002A5870[], D_00275678[]
 extern char D_002A5FA8[], D_002A47F0[], D_002A48F8[], D_002A5348[];
 extern char D_002758F0[], D_002758E4[], D_002758D8[], D_002758CC[];
 
-template <class T> inline const T &Min_001554D0(const T &l, const T &r) { return r < l ? r : l; }
-
-/* the path buffers are saved and restored with a length-clamped copy */
-static __forceinline void CopyPath_001554D0(char *dst, const char *src)
-{
-    int n = Min_001554D0(0x103, (int)strlen(src));
-    func_001E8920(dst, src, n);
-    dst[n] = 0;
-}
-
-/* frame-resident temporaries of the inlined clamp (the original keeps them in stack slots) */
-struct S_001554D0_Tmp {
-    void * volatile self;
-    volatile int s0;
-    volatile int s1;
-    volatile int s2;
-};
-
+/* the path buffers are saved and restored with a length-clamped copy; the original
+   keeps the clamp's operands and result in three stack slots (len/limit/result) */
 static __forceinline void CopyPathV_001554D0(char *dst, const char *src, volatile int &len, volatile int &lim, volatile int &res)
 {
     int ma, mb, n;
@@ -138,35 +122,46 @@ void C_001554D0::func_001554D0(int a0)
     char buf1[0x104];
     char buf2[0x104];
     char name[0x104];
+    struct { C_001554D0 * volatile self; volatile int s0; volatile int s1; volatile int s2; } t;
     void *mem;
-    int i;
+    int off;
+    int k;
 
+    t.self = this;
     f3C->f4->func_0019ABA0(D_002B9120->f4A8[D_002B9120->f348], 2);
-    CopyPath_001554D0(buf1, D_002A5EA0);
-    CopyPath_001554D0(buf2, D_002A60B0);
+    CopyPathV_001554D0(buf1, D_002A5EA0, t.s2, t.s1, t.s0);
+    CopyPathV_001554D0(buf2, D_002A60B0, t.s0, t.s1, t.s2);
     func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5870, D_002A45E0);
     func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
-    CopyPath_001554D0(D_002A5EA0, buf1);
-    CopyPath_001554D0(D_002A60B0, buf2);
+    CopyPathV_001554D0(D_002A5EA0, buf1, t.s0, t.s1, t.s2);
+    CopyPathV_001554D0(D_002A60B0, buf2, t.s0, t.s1, t.s2);
     func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5870, D_002A47F0);
     mem = func_001E8A44(0x20c);
-    f3B4 = mem ? ((S_001554D0_Obj *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
-    f3B4->v4(D_002758F0, 1, 1, 0, 0);
+    t.self->f3B4 = mem ? ((S_001554D0_Obj *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+    t.self->f3B4->v4(D_002758F0, 1, 1, 0, 0);
     mem = func_001E8A44(0x20c);
-    f3B8 = mem ? ((S_001554D0_Obj *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
-    f3B8->v4(D_002758E4, 1, 1, 0, 0);
-    for (i = 0; i < 2; i++) {
-        func_001ADCC0(name, 0x104, D_002758D8, i + 1);
+    t.self->f3B8 = mem ? ((S_001554D0_Obj *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+    t.self->f3B8->v4(D_002758E4, 1, 1, 0, 0);
+    k = 0;
+    off = 0x3a0;
+    do {
+        k++;
+        func_001ADCC0(name, 0x104, D_002758D8, k);
         mem = func_001E8A44(0x20c);
-        f3A0[i] = mem ? ((S_001554D0_Obj *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
-        f3A0[i]->v4(name, 1, 1, 0, 0);
-    }
-    for (i = 0; i < 2; i++) {
-        func_001ADCC0(name, 0x104, D_002758CC, i + 1);
+        *(S_001554D0_Obj **)((char *)t.self + off) = mem ? ((S_001554D0_Obj *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+        (*(S_001554D0_Obj **)((char *)t.self + off))->v4(name, 1, 1, 0, 0);
+        off += 4;
+    } while (off < 0x3a8);
+    k = 0;
+    off = 0x3a8;
+    do {
+        k++;
+        func_001ADCC0(name, 0x104, D_002758CC, k);
         mem = func_001E8A44(0x20c);
-        f3A8[i] = mem ? ((S_001554D0_Obj *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
-        f3A8[i]->v4(name, 1, 1, 0, 0);
-    }
+        *(S_001554D0_Obj **)((char *)t.self + off) = mem ? ((S_001554D0_Obj *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+        (*(S_001554D0_Obj **)((char *)t.self + off))->v4(name, 1, 1, 0, 0);
+        off += 4;
+    } while (off < 0x3b0);
     func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5348, D_002A47F0);
 }
 
