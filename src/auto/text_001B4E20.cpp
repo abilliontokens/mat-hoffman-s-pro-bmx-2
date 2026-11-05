@@ -334,6 +334,24 @@ C_001B5830 *C_001B5830::func_001B5830(void *a) {
     return this;
 }
 
+void C_001B5860::func_001B5860(void)
+{
+    int i;
+
+    vtbl = (void *)&D_0028CB94;
+    if (f28 != 0) {
+        for (i = 0; i < f24; i++) {
+            S_001B5860_Obj *e = ((S_001B5860_Obj **)f28)[i];
+            if (e != 0) {
+                e->destroy(1);
+            }
+        }
+        func_001E891B((void *)f28);
+        f28 = 0;
+    }
+    ((C_00157660 *)this)->func_00157660();
+}
+
 int C_001B59A0::func_001B59A0(int a)
 {
     int i;
