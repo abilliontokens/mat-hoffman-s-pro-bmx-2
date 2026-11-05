@@ -75,6 +75,7 @@ struct S_0015BF70_Node {
 };
 
 int func_0015BF70(S_0015BF70_Node *arr, int n, float t);
+int func_0015C100(S_0015BF70_Node *arr, float t, int n, S_0015BF70_Node **a, S_0015BF70_Node **b, float *r);
 
 /* LinearPositionController slot 1 forwards its first two arguments to slot 2 */
 struct C_0015B6B0 {
@@ -200,6 +201,11 @@ void C_0015B660::func_0015B680() {
         func_001E8390(p);
     }
     self->vtbl = &D_00287778;
+}
+
+void C_0015B6B0::func_0015B6B0(int a0, int a1, int a2, int a3)
+{
+    v2(a0, a1);
 }
 
 BezierPositionController::BezierPositionController() {
