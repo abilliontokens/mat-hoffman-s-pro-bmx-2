@@ -127,16 +127,34 @@ void C_00188700::func_00188750(void)
 void C_00188700::func_001888F0(void)
 {
     C_001888F0_Obj *p;
-    C_001888F0_Obj *q;
 
     p = (C_001888F0_Obj *)func_001E8A44(0x280);
     if (p != 0) {
-        q = p->func_00188250();
+        p = p->func_00188250();
     } else {
-        q = 0;
+        p = 0;
     }
-    unkC = (int)q;
-    ((C_00188VT2 *)q)->v0();
+    *(C_001888F0_Obj **)&unkC = p;
+    (*(C_001888F0_Obj **)&unkC)->v0();
+}
+
+void C_00188920::func_00188920(void)
+{
+    int i;
+
+    unk0 = (int)&D_00289FA4;
+    if (f28 != 0) {
+        for (i = 0; i < f24; i++) {
+            S_00188920_Obj *e = f28[i];
+            if (e != 0) {
+                e->destroy(1);
+                f28[i] = 0;
+            }
+        }
+        func_001E891B(f28);
+        f28 = 0;
+    }
+    func_00157660();
 }
 
 CollisionObjects *CollisionObjects::func_00188A80(int a0)
