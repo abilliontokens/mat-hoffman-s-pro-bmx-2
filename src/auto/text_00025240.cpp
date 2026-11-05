@@ -123,3 +123,12 @@ void C_00026120::func_00026120(int a0) {
     unk20 = a0;
 }
 
+void AmbientDebris::func_00026130(void)
+{
+    unk18 = unk1C;
+    unk4 = unk24;
+    unk14 = 0;
+    f32 v = (f32)func_001E8833() * D_002754B0;
+    unkC = (v + v - D_00275460) * D_002756DC;
+}
+
