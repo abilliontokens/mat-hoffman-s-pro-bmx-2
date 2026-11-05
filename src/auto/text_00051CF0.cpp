@@ -165,6 +165,53 @@ struct C_00051CF0 {
     void func_00052AE0(float threshold);
 };
 
+void *func_001E8A44(int size);
+struct R_Base { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); };
+struct R_Ctl {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
+    virtual void v10();
+};
+struct R_Ctl2 { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10();
+    virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19(); virtual void v20();
+    virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27(int a); };
+struct R_Owner;
+struct R_A : R_Base { R_A *func_00079790(int a); R_A *func_0005EDC0(void *o); };
+struct R_B : R_Base { R_B *func_0006E330(int a); R_B *func_0006ECC0(void *o); };
+struct R_C : R_Base { R_C *func_000715B0(int a); R_C *func_00071880(void *o); };
+struct R_D : R_Base { R_D *func_0006D590(int a); R_D *func_0006D750(void *o); };
+struct R_E : R_Base { R_E *func_00082450(int a); R_E *func_0008DB70(void *a, void *b, int c, int d, int e, int f, int g); };
+struct R_F : R_Base { R_F *func_000876B0(int a); R_F *func_00087760(void *a, void *b, int c); };
+struct R_G : R_Ctl2 { R_G *func_00061300(int a); };
+struct R_H { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); R_H *func_00092890(int a); };
+struct R_Items { char pad0[0x38]; void *items[1]; };
+struct R_Lvl { char pad0[0x4e0]; R_Items *f4e0; };
+struct R_S2e0 { int count; int pad4; void *unk8; };
+struct R_Glob { char pad0[0x2e0]; R_S2e0 *f2e0; };
+struct R_00051CF0 {
+    void *vtbl;
+    char pad4[0x60];
+    R_Lvl *f64;
+    char pad68[0x24];
+    int f8c;
+    int f90;
+    char pad94[0xcc];
+    R_A *f160;
+    R_B *f164;
+    char pad168[4];
+    R_G *f16c;
+    R_E *f170[8];
+    R_D *f194;
+    R_F *f198;
+    char pad19c[4];
+    R_C *f1a0;
+    char pad1a4[0x2c];
+    R_H *f1d0;
+    char pad1d4[0xc0];
+    int f294;
+    void func_00031630();
+    void func_00051CF0();
+};
+
 struct C_00052830_64 {
     char pad0[0x3DC];
     C_001503E0 *f3DC;
