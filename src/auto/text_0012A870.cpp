@@ -74,6 +74,44 @@ struct C_0012B540 {
     void func_0012B540(void);
 };
 
+extern float D_00275460;
+extern int D_0028411C;
+
+void func_000263B0(void *a, void *b, void *c);
+
+struct C_0012AC20 {
+    char pad0[0x170];
+    S_0012AB70Vec f170;
+    S_0012AB70Vec f180;
+    S_0012AB70Vec f190;
+    char pad1a0[0x30];
+    float f1d0;
+    int f1d4;
+    void func_0012AC20(S_0012AB70Vec *p1, S_0012AB70Vec *p2, S_0012AB70Vec *p3, int *p4, float *p5);
+};
+
+struct C_0012B000 {
+    char pad0[0x70];
+    char f70[0x40];
+    char fb0[0x40];
+    char fspan[0x40];
+    char ff0[0x10c];
+    float f1fc;
+    float f200;
+    void func_0012B000(float param1, float param2);
+};
+
+struct CameraController {
+    void *vtbl;
+    char pad04[0x20];
+    int f24;
+    int f28;
+    void *f2c;
+    void *f30;
+    void func_00157600(int a);
+    CameraController *func_0012B550(int a);
+};
+
 
 void C_0012AAB0::func_0012AAB0(float param)
 {
