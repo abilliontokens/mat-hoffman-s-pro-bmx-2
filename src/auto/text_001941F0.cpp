@@ -59,6 +59,9 @@ struct S_Vec4Int {
         w = d;
         return this;
     }
+    void Get(S_Vec4Int *out) {
+        *out = *this;
+    }
 };
 
 struct S_00194E60_Base {
@@ -68,6 +71,54 @@ struct S_00194E60_Base {
 
 struct C_00194E60 : S_00194E60_Base, S_Vec4Int {
     void func_00194E60(int a, int b, int c, int d);
+    void func_00194E90(S_Vec4Int *out);
+};
+
+extern float D_00275AEC;
+extern int D_0028AE90;
+void *__cdecl func_001E8A44(unsigned int size);
+
+/* a pair of clamped floats, the same shape _func_0008A9B0 walks */
+struct S_00194490_Clamp {
+    char pad0[0x10];
+    float f10;
+    float f14;
+};
+
+/* SignatureWave (run-time type information), slot 14 of its vtable */
+struct SignatureWave {
+    char pad0[0x24];
+    S_00194490_Clamp **f24;
+    char pad28[0x28];
+    int f50;
+    int f54;
+    int func_00194490(void);
+};
+
+struct C_0012B8F0 {
+    char pad0[0x40];
+    int f40;
+    C_0012B8F0 *func_0012B8F0(void);
+    void func_0012C910(void *a, int b);
+};
+
+/* SimpleCutSceneCamera (run-time type information), base class CameraBehavior */
+struct SimpleCutSceneCamera {
+    void *vtbl;
+    C_0012B8F0 *f4;
+    float f8;
+    int fC;
+    float f10;
+    int f14;
+    int f18;
+    int f1C;
+    int f20;
+    int f24;
+    int f28;
+    int f2C;
+    void func_0012B510(void);
+    SimpleCutSceneCamera *func_00194740(void);
+    void func_00194790(void *a0, int a1, int a2);
 };
 
 struct C_00194280 {
