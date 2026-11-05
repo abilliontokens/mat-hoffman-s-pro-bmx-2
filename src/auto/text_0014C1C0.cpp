@@ -304,6 +304,47 @@ f32 C_0014C720::func_0014C860(char param)
     return (f194 - f18C) * param * D_0027A094 + f18C;
 }
 
+int C_0014C720::func_0014C890(int arg)
+{
+    char name[128];
+    char savedA[260];
+    char savedB[260];
+    int i = 0;
+    do { savedA[i] = D_002A5EA0[i]; } while (D_002A5EA0[i++]);
+    i = 0;
+    do { D_002A5EA0[i] = D_002A4F28[i]; } while (D_002A4F28[i++]);
+    i = 0;
+    do { savedB[i] = D_002A60B0[i]; } while (D_002A60B0[i++]);
+    i = 0;
+    do { D_002A60B0[i] = D_002A5138[i]; } while (D_002A5138[i++]);
+    if (b80 && !((C_0014C890_Manager *)D_002BF250)->f21C8) {
+        char *src = (char *)&b80;
+        char *dst = name;
+        while ((*dst++ = *src++) != 0) {}
+        func_0001CB80(name);
+        ((C_0014C890_Manager *)D_002BF250)->f21C8 = ((C_0014C890_Manager *)D_002BF250)->func_0013F7D0(name);
+        ((C_0014C890_Manager *)D_002BF250)->f21CC = ((C_0014C890_Manager *)D_002BF250)->func_0013F7D0(name);
+    }
+    if (b0) {
+        C_0014C7D0_Obj *p = (C_0014C7D0_Obj *)func_001E8A44(0x1E0);
+        if (p) p = p->func_00143580(0);
+        else p = 0;
+        f1F8 = p;
+        p->v35(this, 0, 0);
+        float half = D_002755E8;
+        f1FC = f1F8->f1A4[4];
+        f1CC = half / f1F8->f144;
+        f1D0 = D_00275460 / f1F8->f140;
+        f1D4 = (f1F8->f134 - f1F8->f144) * f1CC;
+        f1D8 = 1;
+    }
+    i = 0;
+    do { D_002A5EA0[i] = savedA[i]; } while (savedA[i++]);
+    i = 0;
+    do { D_002A60B0[i] = savedB[i]; } while (savedB[i++]);
+    return 1;
+}
+
 undefined4 C_0014CA60::func_0014CA60(void)
 {
   extern undefined4 D_002BF250;
