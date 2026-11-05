@@ -86,7 +86,7 @@ struct V4_00104A00 {
 
 static float fabs_00104A00(float x)
 {
-    int tmp;
+    volatile int tmp;
     tmp = *(int *)&x & 0x7fffffff;
     return *(float *)&tmp;
 }
@@ -207,5 +207,15 @@ int C_00104900::func_001049A0(int param_1)
         }
     }
     return ret;
+}
+
+void func_00104A00(V4_00104A00 *out, V3_00104A00 *src)
+{
+    V4_00104A00 r;
+    r.x = fabs_00104A00(src->x);
+    r.y = fabs_00104A00(src->y);
+    r.z = fabs_00104A00(src->z);
+    r.w = 1.0f;
+    *out = r;
 }
 
