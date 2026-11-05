@@ -157,6 +157,45 @@ int C_0001B790::func_0001B790(float dt)
     return func_00157A00(dt);
 }
 
+int __stdcall func_0001B820(S_0001B820_Owner *owner)
+{
+    int i;
+
+    if (owner != 0) {
+        owner->f1a4->v5();
+        if (owner->f54 != 0) {
+            for (i = 0; i < owner->f54->f24; i++) {
+                S_0001B820_Elem *e = owner->f54->f28[i].elem;
+                if (e != 0) {
+                    e->v33();
+                    owner->f54->f28[i].elem->v32();
+                }
+            }
+        }
+        return 1;
+    }
+    return 0;
+}
+
+int __stdcall func_0001B8A0(S_0001B820_Owner *owner)
+{
+    int i;
+
+    if (owner == 0) {
+        return 0;
+    }
+    owner->f1a4->v7();
+    if (owner->f54 != 0) {
+        for (i = 0; i < owner->f54->f24; i++) {
+            S_0001B820_Elem *e = owner->f54->f28[i].elem;
+            if (e != 0) {
+                e->v31();
+            }
+        }
+    }
+    return 1;
+}
+
 int __stdcall func_0001B900(int param_1)
 {
   return *(int *)(param_1 + 0x60) + -1;
@@ -164,9 +203,10 @@ int __stdcall func_0001B900(int param_1)
 
 void C_0001C1E0::func_0001C1E0(int idx, int b, int c, int d)
 {
-    if (f2c != 0) {
-        func_0001BE90(f2c->f28[idx], b, c, d);
+    if (f2c == 0) {
+        return;
     }
+    func_0001BE90(f2c->f28[idx], b, c, d);
 }
 
 undefined4 C_0001C280::func_0001C280(int param_1)
