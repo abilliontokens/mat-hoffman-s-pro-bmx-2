@@ -5,6 +5,13 @@ struct C_0007E0A0 {
     undefined4 func_0007E0A0(byte param_1);
 };
 
+struct C_0007E1E0 {
+    void *func_0007E1E0(unsigned int flags);
+    void func_0006E480(void);
+};
+
+void func_001E891B(void *ptr);
+
 
 undefined4 C_0007E0A0::func_0007E0A0(byte param_1)
 {
