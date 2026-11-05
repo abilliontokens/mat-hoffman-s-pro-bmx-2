@@ -113,6 +113,21 @@ struct C_00186540 {
 };
 
 
+int C_00185970::func_00185970(S_Stream *stream, int n)
+{
+    char buf[0x104];
+
+    func_001ADCC0(buf, 0x104, &D_00289640, n);
+    stream->func_00169710(buf);
+    stream->func_00168CB0(&D_00289638, &D_002A90B4, f4);
+    stream->func_00168CB0(&D_00289630, &D_002A90B4, f14);
+    stream->func_00168CB0(&D_00289628, &D_002A90B4, f24);
+    stream->func_00168CB0(&D_00289620, &D_002A90B4, f34);
+    stream->func_00168C20(&D_00289614, 0, &f44);
+    stream->func_00168C20(&D_00289608, 0, &f48);
+    return 1;
+}
+
 void C_00185D00::func_00185D00(void)
 {
     int i;
