@@ -1,6 +1,24 @@
 /* 14 functions from 0x00143C00 to 0x00144BF0, found by Ghidra. */
 #include "common.h"
 
+extern unsigned char *D_002EFDB8;
+void __stdcall func_001FEE00(int stream, void *data, int stride);
+void __stdcall func_00200B30(void *a, int b, void *c);
+struct DXStripSurfaceData {
+    char pad0[0xc];
+    int fc;
+    void *f10;
+    void *f14;
+    void *f18;
+    void *f1c;
+    void *f20;
+    void *f24;
+    void *f28;
+    int f2c;
+    void *f30;
+    void func_001444F0();
+};
+
 extern int D_00285B84;
 extern int D_00285B58;
 extern int D_00284E94;
@@ -135,6 +153,13 @@ struct C_00144960 {
     void func_001AF100(int a0, int a1, int a2, int a3);
     void func_00144960(int a0, int a1, int a2, int a3);
 };
+
+void C_00143C00::func_00143C00(int arg)
+{
+    if (fac != 3) {
+        fac = arg;
+    }
+}
 
 void C_001445C0::func_001445C0()
 {
