@@ -399,15 +399,15 @@ C_00192470 *C_00192470::func_00192720(void)
     void *func_001E8A44(int);
     func_0001DFE0();
     vtbl = (void *)&D_0028AB84;
-    f14 = 0;
-    f10 = 0;
-    f18 = 0;
-    f1C = 0;
+    list.items = 0;
+    list.count = 0;
+    list.growBy = 0;
+    list.capacity = 0;
     f20 &= 0xfe;
     f8 = 0;
-    f14 = (SearchEntry **)func_001E8A44(0x78);
-    f18 = 0x1e;
-    f1C = 0x1e;
+    list.items = (SearchEntry **)func_001E8A44(0x78);
+    list.growBy = 0x1e;
+    list.capacity = 0x1e;
     f20 |= 1;
     f24 = D_002AAEC8->func_001BC6E0(D_0028AB70);
     f25 = D_002AAEC8->func_001BC6E0(D_0028AA90);
@@ -454,20 +454,17 @@ void C_00192470::func_00192840(int *row, int *limit)
         if ((e & 2) == 0) {
             char *p = (char *)(e & ~1);
             if ((p[3] & 1) != 0 && (p[3] & 4) == 0) {
-                char fl;
                 if (p[2] == f24) {
-                    fl = p[-3];
-                    if ((fl & 1) != 0) {
-                        SearchEntry *obj = (SearchEntry *)(p - 0x24);
+                    SearchEntry *obj = (SearchEntry *)(p - 0x24);
+                    if (obj->active) {
                         obj->v14();
                         if ((obj->f181 & 1) != 0) {
                             list->func_001CDE90(obj);
                         }
                     }
                 } else if (p[2] == f25) {
-                    fl = p[-3];
-                    if ((fl & 1) != 0) {
-                        SearchEntry *obj = (SearchEntry *)(p - 0x24);
+                    SearchEntry *obj = (SearchEntry *)(p - 0x24);
+                    if (obj->active) {
                         obj->v14();
                         if ((p[3] & 2) != 0) {
                             list->func_001CDE90(obj);
@@ -637,9 +634,9 @@ undefined4 C_00192BD0::func_00192BD0(int param_1)
 
 void func_00192C00(float a, float b, float c, float d, void *out)
 {
-    float m[16];
+    __declspec(align(16)) float m[16];
     S_00192C00_Obj *o = D_002EFDB8->f4;
-    float s = func_0014F600(o->f1D0 * D_0028AC40) * o->f1FC;
+    float s = func_0014F600(o->f1D0 * 0.00872664526f) * o->f1FC;
     float u = s * o->f1F8;
     func_00162470(m, s * a, b * s, u * c, d * u, o->f1FC, o->f200, 0);
     func_000263B0(out, o->fB0, m);
