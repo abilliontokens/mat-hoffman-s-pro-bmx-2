@@ -76,6 +76,13 @@ struct RenderEntryCB {
     u8 b58;
 };
 
+/* give a drawable the colour of the page's index and mark it dirty */
+static void setEntryColor(RenderEntryCB *e, s32 c)
+{
+    e->f38 = (c << 24) | (e->f38 & 0xffffff);
+    e->b58 |= 2;
+}
+
 /* BmxUIPageGameOptions */
 struct BmxUIPageGameOptions {
     char pad0[0x314];
@@ -123,6 +130,36 @@ void C_000CAA10::func_000CAA10(void)
         f2DC->func_001B17D0(D_002A8490->p2E8->p4->fF70);
         break;
     }
+}
+
+void BmxUIPageGameOptions::func_000CB2D0()
+{
+    int n = 2;
+    RenderEntryCB **p = arr334 + 1;
+
+    do {
+        RenderEntryCB *a = p[-1];
+        a->f38 = ((s32)f314 << 24) | (a->f38 & 0xffffff);
+        a->b58 |= 2;
+        a = p[0];
+        a->f38 = ((s32)f314 << 24) | (a->f38 & 0xffffff);
+        a->b58 |= 2;
+        a = p[1];
+        a->f38 = ((s32)f314 << 24) | (a->f38 & 0xffffff);
+        a->b58 |= 2;
+        a = p[2];
+        a->f38 = ((s32)f314 << 24) | (a->f38 & 0xffffff);
+        a->b58 |= 2;
+        a = p[3];
+        a->f38 = ((s32)f314 << 24) | (a->f38 & 0xffffff);
+        a->b58 |= 2;
+        a = p[4];
+        a->f38 = ((s32)f314 << 24) | (a->f38 & 0xffffff);
+        a->b58 |= 2;
+        p += 6;
+        n--;
+    } while (n != 0);
+    func_001BF000();
 }
 
 void C_000CB650::func_000CB650()
