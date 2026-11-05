@@ -61,6 +61,8 @@ struct C_001BF000_Global {
     virtual void v6();
     virtual void v7(int a);
     virtual void v8();
+    char pad4[0x2c];
+    int f30;
 };
 
 extern C_001BF000_Global *D_002EFDB8;
