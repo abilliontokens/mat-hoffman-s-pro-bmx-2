@@ -143,6 +143,34 @@ int __stdcall func_001DEF8D(const char *name)
     return -1;
 }
 
+int __stdcall func_001DEFD8(const char *name)
+{
+    S_ObjectAttributes oa;
+    S_IoStatusBlock iosb;
+    S_AnsiString str;
+    void *handle;
+    long status;
+
+    _imp__RtlInitAnsiString(&str, name);
+    oa.rootDirectory = (void *)0xfffffffd;
+    oa.objectName = &str;
+    oa.attributes = 0x40;
+    status = _imp__NtOpenFile(&handle, (u32)D_00010000, &oa, &iosb, 7, 0x4040);
+    if (status < 0) {
+        func_001DD659(status);
+        return 0;
+    }
+    *((char *)&name + 3) = 1;
+    status = _imp__NtSetInformationFile(handle, &iosb, (char *)&name + 3, 1, 0xd);
+    _imp__NtClose(handle);
+    if (status >= 0) {
+        return 1;
+    } else {
+        func_001DD659(status);
+        return 0;
+    }
+}
+
 int __stdcall func_001DF361(int a0)
 {
     return func_001DF26F(a0, ((int *)D_00010118)[2]);
