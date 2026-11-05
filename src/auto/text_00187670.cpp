@@ -528,6 +528,50 @@ int C_00187B10::func_00187B10(C_001877F0Param *param)
     return 1;
 }
 
+int C_00187CE0::func_00187CE0(int a0, Obj_00187A40 *obj)
+{
+    char buf[0x100];
+    int i;
+    S_00187CE0_Data *d;
+
+    if (D_002A8490->f4 == 0) {
+        return 0;
+    }
+    for (i = 0; i < f24; i++) {
+        d = (S_00187CE0_Data *)func_001E8A44(0x2c);
+        d->f4 = i + 1;
+        d->f8 = f28[i].f168;
+        d->fc = f28[i].f16c;
+        d->f10 = f28[i].f170;
+        d->f14 = f28[i].f174;
+        d->f18 = f28[i].f178;
+        d->f1c = f28[i].f17c;
+        d->f24 = f28[i].f11c;
+        d->f28 = f28[i].f118;
+        d->f20 = -1;
+        if (obj->v40(f28[i].name, d, 1) == 0) {
+            func_001ADCC0(buf, 0x100, (const char *)&D_00289E68, i + 1, f28[i].name);
+        }
+    }
+    for (i = 0; i < f2c; i++) {
+        d = (S_00187CE0_Data *)func_001E8A44(0x2c);
+        d->f4 = i + 1;
+        d->f8 = f30[i].f168;
+        d->fc = f30[i].f16c;
+        d->f10 = f30[i].f170;
+        d->f14 = f30[i].f174;
+        d->f18 = f30[i].f178;
+        d->f1c = f30[i].f17c;
+        d->f24 = f30[i].f11c;
+        d->f28 = f30[i].f118;
+        d->f20 = -1;
+        if (obj->v40(f30[i].name, d, 0) == 0) {
+            func_001ADCC0(buf, 0x100, (const char *)&D_00289E68, i + 1, f30[i].name);
+        }
+    }
+    return 1;
+}
+
 void C_00187EE0::func_00187EE0(void)
 {
     void func_001E891B(void *);
