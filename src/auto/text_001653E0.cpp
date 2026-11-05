@@ -46,6 +46,46 @@ struct C_00165EF0 {
     void func_00165EF0(Vec4_165EF0 *out, C_00165EF0_Arg1 *a1, f32 a2, int a3, void *a4);
 };
 
+struct C_00165E20_Node {
+    char pad0[0x170];
+    int f170;
+};
+
+struct C_00165E20_Elem {
+    char pad0[0x34];
+    C_00165E20_Node *f34;
+    char pad38[0x8];
+};
+
+struct C_00165E20_Item {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3(f32 a, Vec4_165EF0 *out);
+    int f4;
+};
+
+struct C_00165E20_Arg1 {
+    char pad0[0x14];
+    C_00165E20_Item **f14;     /* 0x14 */
+    char pad18[0x20];          /* 0x18 */
+    f32 f38;                   /* 0x38 */
+};
+
+void func_001640D0(void *a, int b, void *c, void *d);
+
+struct C_00165E20 {
+    char pad0[0x4];
+    void *f4;                  /* 0x04 */
+    char pad8[0x4];            /* 0x08 */
+    void *fC;                  /* 0x0C */
+    char pad10[0x1DC];         /* 0x10 */
+    C_00165E20_Elem *f1EC;     /* 0x1EC */
+    int *f1F0;                 /* 0x1F0 */
+    int func_00164650(int a);
+    void func_00165E20(Vec4_165EF0 *out, C_00165E20_Arg1 *a1, f32 a2, int a3, void *a4);
+};
+
 void *func_001E8AA5(unsigned int size);
 
 struct C_00165980 {
@@ -80,7 +120,7 @@ void C_00165EF0::func_00165EF0(Vec4_165EF0 *out, C_00165EF0_Arg1 *a1, f32 a2, in
     Vec4_165EF0 v;
     a2 = a2 * a1->f38;
     C_00165EF0_Obj *o = a1->f18[(u8)func_00164650(a3)];
-    o->v1(a2, &v);
+    o->v2(a2, &v);
     if (a4)
         func_001641B0(fC, &v);
     *out = v;
