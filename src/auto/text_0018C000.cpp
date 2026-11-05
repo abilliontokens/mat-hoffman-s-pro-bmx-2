@@ -244,34 +244,14 @@ struct C_0018C120 {
 void *C_0018C000::func_0018C000(char *param) {
     extern int D_0028A768;
     int i;
-    char *p;
-    char *base;
-    char *dest;
-    char c;
+
     vtbl = (int)&D_0028A768;
     unk4 = 0;
     for (i = 0; i < 0x100; i++)
         unk58[i] = 0;
-    p = param;
     unk458 = -1;
-    base = (char *)((unsigned int)p + 1);
-    do {
-        c = *p;
-        p++;
-    } while (c != 0);
-    dest = (char *)func_001E8A44((int)(p + (1 - (int)base)));
-    unk4 = dest;
-    {
-        char *s = param;
-        char *d = dest;
-        char ch;
-        do {
-            ch = *s;
-            s++;
-            *d = ch;
-            d++;
-        } while (ch != 0);
-    }
+    unk4 = (char *)func_001E8A44(strlen(param) + 1);
+    strcpy(unk4, param);
     return this;
 }
 
