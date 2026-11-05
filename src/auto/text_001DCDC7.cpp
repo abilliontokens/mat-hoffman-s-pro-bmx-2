@@ -5,12 +5,12 @@ extern "C" int (__stdcall *_imp__MmQueryStatistics)(void *a0);
 void __stdcall func_001DD659(int a0);
 
 unsigned __int64 __rdtsc();
+#pragma optimize("y", on)
+#pragma optimize("s", on)
 void __stdcall func_001DD0A9(int a0, int a1, int a2) {
     void __stdcall func_001DCDC7(int, int, int, int, int, int);
     func_001DCDC7(a0, a1, 0, 0, 0, a2 != 0);
 }
-
-#pragma optimize("s", on)
 void __stdcall func_001DD0C8(u32 *a0) {
     struct Stats {
         u32 size;
@@ -37,6 +37,7 @@ int __stdcall func_001DD117(u64 *a0) {
     return 1;
 }
 
+#pragma optimize("y", on)
 int __stdcall func_001DDC28(void *a0) {
     int result = _imp__NtSetEvent(a0, 0);
     if (result < 0) {
@@ -45,4 +46,3 @@ int __stdcall func_001DDC28(void *a0) {
     }
     return 1;
 }
-
