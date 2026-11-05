@@ -52,7 +52,6 @@ struct S_001B70D0_Mgr {
     char pad8[0x280 - 8];
     S_001B70D0_Slot **f280;
     int f284;
-    S_001B70D0_Slot *&At(int i) { return f280[i]; }
 };
 
 struct S_001B70D0_Lookup {
@@ -288,10 +287,12 @@ void C_001B6E70::func_001B70D0(S_001B70D0_Arg *arg) {
     char name[0x40];
     char buf[0x40];
     int i, j, found;
+    S_001B70D0_Src *src;
+    S_001B70D0_Obj *volatile *objs = (S_001B70D0_Obj *volatile *)0;
 
     for (i = 0; i < f24; i++) {
-        if (((S_001B70D0_Obj *)f28[i]->f4)->fD4[0] != 0) {
-            strcpy(name, ((S_001B70D0_Obj *)f28[i]->f4)->fD4);
+        if (((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->fD4[0] != 0) {
+            strcpy(name, ((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->fD4);
             found = 0;
             for (j = 0; j < arg->f24 && !found; j++) {
                 S_001B70D0_Entry *e = arg->f28[j];
@@ -304,10 +305,8 @@ void C_001B6E70::func_001B70D0(S_001B70D0_Arg *arg) {
                             int k = 0;
                             while (k < mgr->f284) {
                                 if (mgr->f280[k]->f1C0 == id) {
-                                    ((S_001B70D0_Obj *)f28[i]->f4)->f2DC =
-                                        mgr->f280[k]->f64->f22C;
-                                    found = 1;
-                                    break;
+                                    src = mgr->f280[k]->f64;
+                                    goto hit;
                                 }
                                 k++;
                             }
@@ -319,11 +318,15 @@ void C_001B6E70::func_001B70D0(S_001B70D0_Arg *arg) {
                             memset(dot, 0, strlen(dot));
                         }
                         if (func_001EA426(buf, name) == 0) {
-                            ((S_001B70D0_Obj *)f28[i]->f4)->f2DC = e->f58->f22C;
-                            found = 1;
+                            src = e->f58;
+                            goto hit;
                         }
                     }
                 }
+                continue;
+            hit:
+                ((S_001B70D0_Obj *)f28[i]->f4)->f2DC = src->f22C;
+                found = 1;
             }
         }
     }
