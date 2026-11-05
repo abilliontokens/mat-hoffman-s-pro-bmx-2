@@ -30,6 +30,10 @@ extern char D_00275630[];
 extern char D_002869B4[];
 extern char D_002869B8[];
 char *func_001E95A4(char *s, const char *delim);
+static __forceinline float tokf_00168CB0(char *s, const char *delim)
+{
+    return (float)func_001E9649(func_001E95A4(s, delim));
+}
 
 struct C_001684B0 {
     char pad0[0x1c];
