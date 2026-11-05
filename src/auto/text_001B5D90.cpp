@@ -494,6 +494,29 @@ void C_001B65E0::func_001B65E0(void) {
     unk0 = 0;
 }
 
+void C_001B65F0::func_001B65F0()
+{
+    for (int i = 0; i < obj->count; ++i) {
+        S_001B65F0_Group *group = *(S_001B65F0_Group **)(D_002A829C->f14 + obj->handles[i] * 16 + 4);
+        for (int j = 0; j < group->count; ++j) {
+            S_001B65F0_Item *item = group->items[j];
+            if (item->array) {
+                for (int k = 0; k < item->count; ++k)
+                    item->array->values[k]->fc = 0;
+            }
+            if (item->alts) {
+                for (int k = 0; k < item->alts->count; ++k) {
+                    S_001B65F0_Array *array = item->alts->entries[k].array;
+                    if (array) {
+                        for (int l = 0; l < item->count; ++l)
+                            array->values[l]->fc = 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
 C_001B6930 *C_001B6930::func_001B6850(void)
 {
     int *p;
