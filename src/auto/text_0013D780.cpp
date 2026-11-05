@@ -259,3 +259,20 @@ void func_0013E680(void) {
     D_002EFDB8->func_001D5600();
     D_002A8490->func_00156E80();
 }
+
+void DXCubeTextureMap::func_0013E6A0(void)
+{
+    int i;
+
+    vtbl = &D_00284DEC;
+    if (f110 != 0)
+        func_00201100(f110);
+    for (i = 0; i < 6; i++) {
+        if (f114[i] != 0)
+            f114[i]->v2();
+        if (f12C[i] != 0)
+            func_00201100(f12C[i]);
+    }
+    func_001D6B00();
+}
+
