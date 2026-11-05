@@ -86,6 +86,15 @@ struct C_00197EC0 {
 
 void func_0011AC30(void *out, void *in);
 
+extern float D_00275544;
+
+static float fabs_00198440(float x)
+{
+    volatile int tmp;
+    tmp = *(int *)&x & 0x7fffffff;
+    return *(float *)&tmp;
+}
+
 /* SceneNode: children list at 0x174 (siblings) and 0x178 (first child chain) */
 struct C_00198230 {
     char pad0[0x174];
