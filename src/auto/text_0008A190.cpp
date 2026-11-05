@@ -277,6 +277,35 @@ void C_0008A9A0::func_0008A9A0(void) {
     unk4D8 = 10;
 }
 
+void C_0008A2E0::func_0008A9B0() {
+    int *r = D_002A8490->lookup->func_0018C160((int)&D_00278690);
+    MidObj *mid = (MidObj *)(r ? *r : 0);
+    ClampObj *o = mid->func_0018C070();
+    if (o->f10 < D_00275AEC) *(int *)&o->f10 = 0x41200000;
+    if (D_00275AEC < o->f14 || o->f10 < o->f14) *(int *)&o->f14 = 0x41200000;
+    SubElem_0008 *e = elems;
+    int n = 9;
+    do {
+        ClampObj *o2 = e->func_001D5AA0();
+        if (o2->f10 < D_00275AEC) *(int *)&o2->f10 = 0x41200000;
+        if (D_00275AEC < o2->f14 || o2->f10 < o2->f14) *(int *)&o2->f14 = 0x41200000;
+        e++;
+        n--;
+    } while (n != 0);
+    func_001578D0();
+}
+
+int C_0008A2E0::func_0008AA70() {
+    int *v = vals;
+    int n = 5;
+    do {
+        if (*v >= 0) elems[*v].func_001D5AD0();
+        v++;
+        n--;
+    } while (n != 0);
+    return 1;
+}
+
 C_0008AAB0 *C_0008AAB0::func_0008AAB0(int a0) {
     func_00157600(1);
     vtbl = &D_00279C3C;
