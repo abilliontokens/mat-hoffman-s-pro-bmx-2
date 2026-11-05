@@ -1,5 +1,16 @@
 /* 18 functions from 0x00085630 to 0x00086530, found by Ghidra. */
 #include "common.h"
+struct C_0005E840 { void func_0005E840(const char *s); };
+struct C_00085E50 {
+    char pad0[0x84];
+    C_0005E840 *f84, *f88, *f8C, *f90;
+    char pad94[0xC];
+    int fA0;
+    void func_00085E50(int a);
+};
+extern char D_00275630[];
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+
 struct C_000861A0 {
     char pad0[0xD0];
     int unkD0;
