@@ -68,6 +68,17 @@ struct C_00171D00_C4VT {
     virtual void v32();
     virtual void v33();
     virtual void v34(int a);
+    virtual void v35();
+    virtual void v36();
+    virtual void v37();
+    virtual void v38();
+    virtual void v39();
+    virtual void v40();
+    virtual void v41();
+    virtual void v42();
+    virtual void v43();
+    virtual void v44();
+    virtual void v45();
 };
 
 struct PhysicsBodyVT {
