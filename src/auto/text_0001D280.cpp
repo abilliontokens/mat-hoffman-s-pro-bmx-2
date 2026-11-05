@@ -347,12 +347,11 @@ int C_0001E000::func_0001E000(void) {
 }
 
 int C_0001E010::func_0001E010(void) {
-    int n = --unk4;
-    if (n == 0) {
+    if (--unk4 == 0) {
         virt0(1);
-        n = 0;
+        return 0;
     }
-    return n;
+    return unk4;
 }
 
 void *C_0001E030::func_0001E030(int flags) {
