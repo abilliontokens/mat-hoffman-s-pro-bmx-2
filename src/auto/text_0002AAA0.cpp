@@ -32,7 +32,7 @@ struct C_0002B180 {
 
 struct Vec4_0002AF90 {
     float x, y, z, w;
-    void Set(const Vec4_0002AF90 *o) { x = o->x; y = o->y; z = o->z; w = o->w; }
+    void Set(const Vec4_0002AF90 *o) { *this = *o; }
     void Lerp(const Vec4_0002AF90 *o, float t)
     {
         Vec4_0002AF90 r;
