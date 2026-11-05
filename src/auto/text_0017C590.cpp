@@ -24,7 +24,7 @@ struct S_QuadTreePool {
 struct S_QuadTreeGlobal {
     char pad0[0x90];
     S_QuadTreePool *f90;
-    char pad94[4];
+    S_QuadTreePool *f94;
     u8 f98;
     char pad99[0x880 - 0x99];
     int f880;
