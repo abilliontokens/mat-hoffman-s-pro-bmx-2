@@ -25,6 +25,24 @@ extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
 extern "C" void (__stdcall *_imp__RtlLeaveCriticalSection)(void *cs);
 
 extern char D_002ACBA0[];
+extern "C" void (__stdcall *_imp__PsTerminateSystemThread)(int status);
+extern "C" void *__cdecl _exception_info(void);
+extern "C" unsigned long __readfsdword(unsigned long Offset);
+#pragma intrinsic(__readfsdword)
+#pragma intrinsic(memcpy, memset)
+extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
+extern "C" void *memset(void *dst, int c, unsigned int n);
+int __stdcall func_001DE6F0(void *exceptionPointers);
+void __stdcall func_001DE6B8(int attach);
+extern char *D_0028FD6C;
+extern char *D_0028FD70;
+extern unsigned int D_0028FD7C;
+
+/* kernel thread object: only the TLS data pointer is used */
+struct S_KThread {
+    char pad0[0x28];
+    int *tls;
+};
 
 typedef int (__stdcall *Callback_001DE6F0)(int arg);
 extern Callback_001DE6F0 D_002F6BBC;
@@ -306,6 +324,29 @@ int __stdcall func_001DE733(int param)
     return out;
 }
 
+void __stdcall func_001DE759(unsigned int code, unsigned int flags, unsigned int nargs, const unsigned int *args)
+{
+    S_ExceptionRecord_001DE759 er;
+    unsigned int i;
+
+    er.ExceptionCode = code;
+    er.ExceptionFlags = flags & 1;
+    er.ExceptionRecord = 0;
+    er.ExceptionAddress = (void *)func_001DE759;
+    if (args != 0) {
+        if (nargs > 15) {
+            nargs = 15;
+        }
+        er.NumberParameters = nargs;
+        for (i = 0; i < nargs; i++) {
+            er.ExceptionInformation[i] = args[i];
+        }
+    } else {
+        er.NumberParameters = 0;
+    }
+    _imp__RtlRaiseException(&er);
+}
+
 int func_001DE7AF(void)
 {
     return _imp__NtYieldExecution() != 0x40000024;
@@ -316,6 +357,14 @@ __declspec(noreturn) void __stdcall func_001DE7C2(int status)
     func_001DE6B8(0);
     _imp__PsTerminateSystemThread(status);
     __debugbreak();
+}
+
+Callback_001DE6F0 __stdcall func_001DE7D4(Callback_001DE6F0 fn)
+{
+    Callback_001DE6F0 old = D_002F6BBC;
+
+    D_002F6BBC = fn;
+    return old;
 }
 
 #pragma optimize("", on)
