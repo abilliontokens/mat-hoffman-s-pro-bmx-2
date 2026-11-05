@@ -34,6 +34,8 @@ struct C_0006A1A0 {
     D_6A1A0 *unk1C0;
     void func_00157660();
     void func_0006A1A0();
+    void func_0006A820();
+    void func_001578D0();
 };
 
 void C_0006A1A0::func_0006A1A0()
