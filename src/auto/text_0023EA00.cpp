@@ -35,6 +35,24 @@ struct C_0023EC0D {
     unsigned int func_0023EC0D(unsigned int a, unsigned int b, int *out);
 };
 
+/* the stream object: its lock, the packet list and the "has a thread" flag */
+struct S_0023ED71 {
+    char pad0[0x6c];
+    char f6c[0x28];
+    S_0023EA00_Link f9c;
+    char pada4[0x10];
+    int fb4;
+};
+
+struct S_0023EDB5 {
+    char pad0[0x30];
+    int f30;
+};
+
+struct C_0023EFB0 {
+    void func_0023EFB0(void);
+};
+
 struct S_0023ED4C_Src {
     char pad0[0x10];
     int f10;
