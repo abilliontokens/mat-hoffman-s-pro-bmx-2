@@ -1,7 +1,12 @@
 /* 10 functions from 0x000C5580 to 0x000C6550, found by Ghidra. */
 #include "common.h"
 
-struct C_6420_Elem;
+struct E_000C5710 {
+    char pad0[0x38];
+    unsigned int f38;
+    char pad3C[0x1C];
+    unsigned char b58;
+};
 
 struct BmxUIPageMain {
     char pad0[0x2D0];
@@ -9,7 +14,7 @@ struct BmxUIPageMain {
     char pad2D2[0x2F0 - 0x2D2];
     int f2F0;
     char pad2F4[4];
-    C_6420_Elem *f2F8[10];
+    E_000C5710 *f2F8[10];
     void func_000C4CE0();
     void func_000C4FD0();
     void func_000C5580();
