@@ -63,9 +63,15 @@ struct C_00085F40_Obj2E8 {
     C_00085F40_Obj4 *f4;
 };
 
+struct C_00085630_2E0 {
+    int count;
+    char pad4[0x2D0];
+    int f2D4;
+};
+
 struct C_00085630_2A8490 {
     char pad0[0x2E0];
-    void *f2E0;
+    C_00085630_2E0 *f2E0;
     char pad2E4[4];
     C_00085F40_Obj2E8 *f2E8;
 };
