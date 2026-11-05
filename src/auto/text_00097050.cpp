@@ -54,6 +54,8 @@ int func_001EA426(const char *a, const char *b);
 struct C_00097DA0_Item {
     char pad0[0xC0];
     char fC0[1];
+    char padC1[0x6454 - 0xC1];
+    int f6454;
 };
 
 struct C_00097DA0_Obj {
