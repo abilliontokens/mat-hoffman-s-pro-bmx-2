@@ -31,6 +31,7 @@ struct C_00199BE0 {
     void func_00199C20(C_00199BE0 *p, void *m);
     void func_00199C90(int a0, int a1, int a2, int a3, int a4, int a5);
     void func_00199D70(int a0, int a1, int a2, int a3);
+    void func_00199D70(int a0, int a1, int a2, float angle);
     void func_00199E30(int a0, int a1, int a2, int a3, int a4);
 };
 
@@ -95,7 +96,61 @@ void C_00199BE0::func_00199CF0(int a0, int a1, int a2, int a3, float angle)
     }
 }
 
+void C_00199BE0::func_00199D70(int a0, int a1, int a2, int a3)
+{
+    int t0 = *(int *)((char *)this + 0xbc);
+    int t1 = *(int *)((char *)this + 0xcc);
+    int t2 = *(int *)((char *)this + 0xdc);
+    float s = func_0014F510((float)a3);
+    float c = func_0014F550((float)a3);
+    func_0011F400((char *)this + 0xb0, a0, a1, a2, *(int *)&s, *(int *)&c);
+    *(int *)((char *)this + 0xcc) = t1;
+    *(int *)((char *)this + 0xbc) = t0;
+    *(int *)((char *)this + 0xdc) = t2;
+    func_001982F0();
+    if (f180 & 1) {
+        f180 &= 0xfe;
+        if (f174 != 0) {
+            f174->func_00197B10();
+        }
+    }
+}
+
 void C_00199BE0::func_00199E30(int a0, int a1, int a2, int a3, int a4)
 {
     func_00199D70(a0, a1, a2, a4);
 }
+
+void C_00199BE0::func_0019A210(C_00199BE0 *node)
+{
+    C_00199BE0 *p;
+    C_00199BE0 *zero = 0;
+    node->func_001982F0();
+    if (node->f180 & 1) {
+        node->f180 &= 0xfe;
+        if (node->f174 != zero) {
+            node->f174->func_00197B10();
+        }
+    }
+    for (p = f174; p != node; p = p->f178) {
+    }
+    if (p == f174) {
+        f174 = p->f178;
+    }
+    if (p->f178 != zero) {
+        p->f178->f17c = p->f17c;
+    }
+    if (p->f17c != zero) {
+        p->f17c->f178 = p->f178;
+    }
+    if (p->f170 != zero) {
+        p->f170 = zero;
+    }
+    if (p->f178 != zero) {
+        p->f178 = zero;
+    }
+    if (p->f17c != zero) {
+        p->f17c = zero;
+    }
+}
+
