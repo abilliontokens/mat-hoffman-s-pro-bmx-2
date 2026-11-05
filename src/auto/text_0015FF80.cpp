@@ -366,6 +366,22 @@ C_00160C00 *C_00160C00::func_00160C00(void)
     return this;
 }
 
+void func_00160C20(int *max, char *str)
+{
+    char *base = str + 1;
+    char c;
+    int len;
+
+    do {
+        c = *str;
+        str++;
+    } while (c != 0);
+    len = str - base;
+    if (len > *max) {
+        *max = len;
+    }
+}
+
 C_00160C40 *C_00160C40::func_00160C40(int n, int a, int b)
 {
     int i;
