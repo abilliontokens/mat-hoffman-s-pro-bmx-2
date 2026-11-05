@@ -165,6 +165,31 @@ void XboxControlInterface_001D0C30::func_001D0D30(void)
     ((C_00135E50 *)this)->func_00135E50();
 }
 
+void XboxControlInterface_001D0C30::func_001D0D60(void)
+{
+    unsigned inserted;
+    unsigned removed;
+    unsigned bit;
+    int i;
+
+    if (func_0026EBE7((void *)&D_0026D94C, &inserted, &removed) != 0) {
+        bit = 1;
+        for (i = 0; i < 4; i++) {
+            ControllerPort_001D14C0 *port = f14[i];
+
+            if (removed & bit) {
+                port->func_001D15B0();
+                f4--;
+            }
+            if (inserted & bit) {
+                port->func_001D1550(i);
+                f4++;
+            }
+            bit <<= 1;
+        }
+    }
+}
+
 undefined4 C_001D0DE0::func_001D0DE0(byte param_1)
 {
   int func_001D0D30(...);
@@ -176,6 +201,15 @@ undefined4 C_001D0DE0::func_001D0DE0(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+void XboxControlInterface_001D0C30::func_001D0E00(void)
+{
+    f4 = 0;
+    func_0026EBC0(2, (void *)&D_002ABA84);
+    func_001D0C70((int)&D_0026D94C);
+    f10 = f14[0];
+    ((C_00136370 *)this)->func_00136370();
 }
 
 XboxGame_001D0E60 *XboxGame_001D0E60::func_001D0E30(void)
