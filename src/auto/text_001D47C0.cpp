@@ -47,6 +47,18 @@ struct C_001D5660 {
     void func_001D5720(void);
 };
 
+__forceinline void C_001D5660::alloc(int count)
+{
+    int i;
+    f8 = count;
+    fC = count;
+    f14 = func_001FF3C0(f8 * 0x18);
+    f64 = (short *)func_001E8A44(fC * 2);
+    for (i = 0; i < fC; i++) {
+        f64[i] = (short)i;
+    }
+}
+
 extern int D_0028F578;
 extern int D_00284E94;
 extern int D_0028F584;
