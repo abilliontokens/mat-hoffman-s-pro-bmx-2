@@ -184,6 +184,23 @@ int C_000BBE30::func_000BBE30(int show)
     return idx;
 }
 
+int C_000BBE30::func_000BBED0(int show)
+{
+    char buf[0x104];
+    int idx;
+
+    func_001ADCC0(buf, 0x104, D_0027DB8C, f280 + f27C[f284].f120[f288] * 0x120 + 0x104);
+    if (D_002A8490->f234 != 1) {
+        D_002EFDB8->v7(1);
+        D_002EFDB8->v8();
+    }
+    idx = f150->f484->func_0001B3C0(D_0027DB80);
+    if (show != 0) {
+        func_000BBA80(idx, buf);
+    }
+    return idx;
+}
+
 extern S_000BBE30_Game *D_002A8490;
 
 undefined4 C_000BC180::func_000BC050(void)
