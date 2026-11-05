@@ -76,6 +76,7 @@ struct S_001BA910_Elem {
     void *vtbl;
     int f4;
     int f8;
+    void func_001B69F0();
 };
 
 struct C_001BA910 {
