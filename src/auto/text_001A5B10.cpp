@@ -186,6 +186,15 @@ struct C_001A5F40 {
     C_001A5F40 *func_001A5F40(void *a, int b);
 };
 
+void C_001A5BC0::func_001A5BC0(void)
+{
+    if (fB0 != 0) {
+        fB0->func_00157810();
+        fB0->v2();
+        fB0 = 0;
+    }
+}
+
 C_001A5BF0 *C_001A5BF0::func_001A5BF0(void *param)
 {
     int i;
@@ -282,6 +291,22 @@ C_001A5E40 *C_001A5E40::func_001A5E40(void *param)
     f28 = 0;
     f2c = 0;
     vtbl = (void *)&D_0028BA74;
+    return this;
+}
+
+C_001A5E70 *C_001A5E70::func_001A5E70(void *param)
+{
+    D_002A8490->f234 = 1;
+    D_002EFDB8->f30 = 0;
+    f24 = param;
+    ((C_001A5E70_P1 *)param)->func_001A5B10(&D_0028BAE0, &f28);
+    if (f28 != 0) {
+        D_002EFDB8->v4(0, (int)f28, 0, 0);
+        D_002A8490->v9();
+        D_002EFDB8->v4(0, (int)f28, 0, 0);
+        D_002A8490->v9();
+        D_002EFDB8->v4(0, (int)f28, 0, 0);
+    }
     return this;
 }
 
