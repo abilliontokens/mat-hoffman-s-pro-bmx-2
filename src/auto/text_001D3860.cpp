@@ -215,6 +215,22 @@ void C_001D3E30::func_001D3EA0(int n, const char *a, const char *b, const char *
     }
 }
 
+void C_001D3E30::func_001D3F20(const char *s, int n)
+{
+    strcpy(&unk1F, s);
+    unk5C = n * 2;
+}
+
 C_001D3F50* C_001D3F50::func_001D3F50(void) {
     return this;
 }
+
+C_001D3F60 *C_001D3F60::func_001D3F60(void)
+{
+    func_001D3F50();
+    f8 = 0;
+    f0 = -1;
+    f4 = 0;
+    return this;
+}
+
