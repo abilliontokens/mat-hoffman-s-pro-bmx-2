@@ -75,6 +75,33 @@ void func_00133D80(void *p);
 
 extern int D_002A8E7C, D_002A8E80, D_002A8E84, D_002A8E88;
 
+/* collision shape tested by RadiusLineCollisionObject::func_0017EE60 */
+struct S_0017EE60 {
+    char pad0[0x21];
+    u8 f21;
+    char pad22[6];
+    char f28[0x20];
+    float f48;
+    char pad4c[4];
+    int f50;
+    char pad54[0x54];
+    char fA8[8];
+    char fB0[8];
+    char fB8[0x78];
+    char f130[0x60];
+    int f190;
+    char pad194[0xc];
+    S_0017EE60 **f1A0;
+    char pad1a4[0xc];
+    char f1B0[0x14];
+    int f1C4;
+    int f1C8;
+};
+
+float func_0011FDF0(char *p, float *a, float *b);
+int func_00122810(char *a, char *b, float *c, float d, int e, char *f);
+int func_00123EF0(float *a, float b, int c, int d, int *e, char *f, char *g);
+
 struct RadiusLineCollisionObject {
     void *vtbl;
     char pad4[0x4c];
@@ -85,7 +112,10 @@ struct RadiusLineCollisionObject {
     char padA8[0x48];
     int fF0, fF4, fF8, fFC;
     int f100, f104, f108, f10C;
-    int f110, f114, f118, f11C;
+    float f110;
+    int f114;
+    int f118, f11C;
+    int func_0017EE60(S_0017EE60 *s);
     RadiusLineCollisionObject *func_0017E620(int a0);
     void func_00132EB0(int a0);
     void func_0017E8E0(int param_1);
