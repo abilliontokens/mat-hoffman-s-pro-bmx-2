@@ -45,7 +45,8 @@ struct S_0013C960_Elem {
 };
 
 struct C_0013C960 {
-    char pad0[0xc];
+    char pad0[8];
+    int f8;
     S_0013C960_Rec *fC;
     int f10;
     char pad14[0x10];
