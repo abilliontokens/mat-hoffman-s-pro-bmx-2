@@ -191,3 +191,21 @@ void *C_00104120::func_00104960(int flags)
     return this;
 }
 
+int C_00104900::func_001049A0(int param_1)
+{
+    int ret;
+    char b;
+    ret = func_00197610(param_1);
+    if (unkC0 & 4) {
+        func_00197260(unkDC, &b);
+        if (b != 0) {
+            if (unkE8 == 0) {
+                func_00104900();
+            }
+        } else if (unkE8 != 0) {
+            func_00104930();
+        }
+    }
+    return ret;
+}
+
