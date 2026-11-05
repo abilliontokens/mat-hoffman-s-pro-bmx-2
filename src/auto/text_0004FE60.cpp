@@ -23,8 +23,60 @@ struct S_002A8490 {
     char pad0[0x270];
     int unk270;
     int unk274;
+    char pad278[0x68];
+    struct S_2e0 *unk2e0;
+};
+struct S_2e0 {
+    int count;
+    int pad4;
+    int unk8;
 };
 extern S_002A8490 *D_002A8490;
+void *func_001E8A44(int size);
+struct O_Ev {
+    virtual void vf0();
+    virtual void vf1();
+    virtual void vf2();
+    virtual void vf3();
+    virtual void vf4();
+    O_Ev *func_00088530(int a);
+    O_Ev *func_00088570(int a);
+};
+struct O_Ev2 {
+    virtual void vf0();
+    virtual void vf1();
+    virtual void vf2();
+    virtual void vf3();
+    virtual void vf4();
+    O_Ev2 *func_00087760(int a, void *b, O_Ev *c);
+    O_Ev2 *func_000876B0(int a);
+};
+struct O_A {
+    virtual void vf0(); virtual void vf1(); virtual void vf2(); virtual void vf3(); virtual void vf4();
+    O_A *func_0005ECA0(int a);
+    O_A *func_0005EDC0(void *a);
+};
+struct O_B {
+    virtual void vf0(); virtual void vf1(); virtual void vf2(); virtual void vf3(); virtual void vf4();
+    O_B *func_000715B0(int a);
+    O_B *func_00071880(void *a);
+};
+struct O_C {
+    virtual void vf0(); virtual void vf1(); virtual void vf2(); virtual void vf3(); virtual void vf4();
+    O_C *func_0006C380(int a);
+    O_C *func_0006C570(void *a);
+};
+struct O_D {
+    virtual void vf0(); virtual void vf1(); virtual void vf2(); virtual void vf3(); virtual void vf4();
+    O_D *func_00066C90(int a);
+    O_D *func_00066FA0(void *a);
+};
+struct O_E {
+    virtual void vf0(); virtual void vf1(); virtual void vf2(); virtual void vf3(); virtual void vf4();
+    virtual void vf5(); virtual void vf6();
+    O_E *func_00082450(int a);
+    O_E *func_0008DB70(void *a, void *b, int c, int d, int e, int f, int g);
+};
 
 /* BmxEventPush */
 struct BmxEventPush {
