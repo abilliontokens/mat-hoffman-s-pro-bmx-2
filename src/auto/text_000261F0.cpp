@@ -45,8 +45,8 @@ struct C_00026270 {
 void C_000261F0::func_000261F0(float delta)
 {
     f4 += delta;
-    f4 = f4 > f24 ? f4 : f24;
-    f4 = f4 < f28 ? f4 : f28;
+    _mm_store_ss(&f4, _mm_max_ss(_mm_set_ss(f4), _mm_set_ss(f24)));
+    _mm_store_ss(&f4, _mm_min_ss(_mm_set_ss(f4), _mm_set_ss(f28)));
 }
 
 void C_00026270::func_00026270(int a0) {
@@ -68,7 +68,7 @@ void *C_00026290::func_00026290(int flags) {
 }
 
 void C_000262B0::func_000262B0(void) {
-    f18 = f1C;
+    *(volatile float *)&f18 = f1C;
 }
 
 int func_000262C0(float *a, float *b)
@@ -77,6 +77,14 @@ int func_000262C0(float *a, float *b)
         return 1;
     }
     return 0;
+}
+
+undefined4 func_00026300(float *param_1, float *param_2)
+{
+  if (((*param_1 == *param_2) && (param_1[1] == param_2[1])) && (param_1[2] == param_2[2])) {
+    return 0;
+  }
+  return 1;
 }
 
 undefined4 C_00026A70::func_00026A70(int param_1)
