@@ -98,11 +98,10 @@ struct VehicleAI {
 };
 extern int D_0027CEFC;
 void func_001E891B(void *p);
-void func_0018C7F0(void);
 
 struct S_000B25D0_Leaf {
-    void __stdcall func_001A2AA0(int a);
-    void __stdcall func_001A2B40(int a);
+    void func_001A2AA0(int a);
+    void func_001A2B40(int a);
 };
 
 struct S_000B25D0_Mid {
