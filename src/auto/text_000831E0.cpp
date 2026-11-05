@@ -211,7 +211,7 @@ void C_000831E0::func_000838B0(int a0)
     fC54 = 1;
     fC58 = a0;
     f15C = 2;
-    f138 = f138 + D_002755E8;
+    f138 = f138 + 0.5f;
 }
 
 void C_000831E0::func_000838F0(const char *name, int flag)
@@ -310,15 +310,8 @@ void C_00083B00::func_00083B00(int a0) {
 
 void C_000831E0::func_00083B20(const char *name)
 {
-    int i = 0;
-    char c;
-
     fC5C = 1;
-    do {
-        c = name[i];
-        sC64[i] = c;
-        i++;
-    } while (c != 0);
+    CopyString(sC64, name);
     fCA0 = 1.0f;
 }
 
