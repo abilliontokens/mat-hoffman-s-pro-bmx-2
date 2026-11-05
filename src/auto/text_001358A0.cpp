@@ -135,6 +135,26 @@ struct C_001367F0 {
     int func_001367F0(S_001367F0_Vec4 *a, S_001367F0_Vec4 *b, S_001367F0_Vec4 *c);
 };
 
+extern S_001367F0_Vec4 D_002A6760;
+struct S_001364B0_Record {
+    int f0;
+    short f4, f6;
+    int f8[16], f48[16];
+    short f88[16];
+    int fA8[16];
+    int fE8, fEC, fF0;
+    int padF4[2];
+};
+struct C_001364B0 {
+    int pad0[2];
+    S_001367F0_Vec4 f8, f18, f28;
+    int f38, f3C;
+    short f40, f42;
+    S_001364B0_Record records[6];
+    int f62C;
+    void func_001364B0();
+};
+
 struct S_ControlEntry {
     int type;
     int a;
