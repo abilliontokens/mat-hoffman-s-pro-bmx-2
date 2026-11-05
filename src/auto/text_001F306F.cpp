@@ -76,31 +76,28 @@ void *func_001F306F(void *param_1, int param_2) {
     int func_001EFD19(void *, void *, void *);
     int func_001F23B8(void *, void *, int, void *, int);
     int func_001F2F3F(void *, void *);
-    S8_001F local;
-    unsigned short v2;
-    int v3;
-    int v4[2];
-    local.func_001EF11B(param_2);
+    C_001F306F_Ctx ctx;
+    ctx.unk10.func_001EF11B(param_2);
     char c = *D_002F6A28;
     switch (c) {
     case 0:
-        func_001EFCF7(param_1, 2, &local);
+        func_001EFCF7(param_1, 2, &ctx.unk10);
         break;
     case '?':
         D_002F6A28++;
-        v2 &= 0xfe00;
-        v3 = 0;
-        local.func_001EEF4F(func_001F23B8(v4, &local, 0, &v3, 0));
+        ctx.unkC &= 0xfe00;
+        ctx.unk8 = 0;
+        ctx.unk10.func_001EEF4F(func_001F23B8(&ctx, &ctx.unk10, 0, &ctx.unk8, 0));
     default:
-        func_001F2F3F(param_1, &local);
+        func_001F2F3F(param_1, &ctx.unk10);
         break;
     case 'X':
         D_002F6A28++;
-        if (local.func_001EF1E7() == 0) {
-            func_001EFD19(param_1, &D_00295CA0, &local);
-            return param_1;
+        if (ctx.unk10.func_001EF1E7() != 0) {
+            ((C_001F306F_P1 *)param_1)->func_001EF759(&D_0027D1D8);
+        } else {
+            func_001EFD19(param_1, &D_00295CA0, &ctx.unk10);
         }
-        ((C_001F306F_P1 *)param_1)->func_001EF759(&D_0027D1D8);
         return param_1;
     }
     return param_1;
