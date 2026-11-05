@@ -103,6 +103,17 @@ void DXRenderableObject::func_001435D0(void)
     func_00181540();
 }
 
+void C_00143600::func_00143600()
+{
+    __declspec(align(16)) float m[16];
+    int func_000263B0(...);
+    int func_00197AA0(...);
+
+    func_00197AA0();
+    func_000263B0(m, (char *)this + 0xf0, (char *)(D_002EFDB8[1] + 0xf0));
+    D_002AB66C->func_001C5DE0(m, (char *)this + 0x150, (char *)this + 0x160, 0);
+}
+
 void *DXRenderableObjectData::func_00143770(int flags)
 {
     vtbl = (void *)&D_002859D0;
