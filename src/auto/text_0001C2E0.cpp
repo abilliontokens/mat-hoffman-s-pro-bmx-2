@@ -36,6 +36,14 @@ struct C_0001C540 {
     void func_0001C540(void);
 };
 
+struct C_0001CBF0 {
+    char pad0[0x44];
+    int unk44;
+    int func_0001CBF0(void);
+};
+
+extern float D_00275544;
+
 struct C_0001CD50 {
     char pad0[0x5C];
     int unk5C;
@@ -158,7 +166,10 @@ void *C_0001C550::func_0001C550(int flags) {
     return this;
 }
 
-float func_0001C590(float x) { return fabsf(x); }
+float func_0001C590(float x) {
+    int i = *(int *)&x & 0x7fffffff;
+    return *(float *)&i;
+}
 
 C_0001C5B0 *C_0001C5B0::func_0001C5B0(float *p) {
     x = x - p[0];
