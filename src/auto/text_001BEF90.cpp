@@ -238,9 +238,9 @@ void C_001BF3C0::func_001BF3C0(void)
         S_001BF3C0_List *list = *(S_001BF3C0_List **)((char *)unk2C + off);
         S_001BF3C0_Node *node = list->head;
         while (node != 0) {
-            S_001BF3C0_Node *next = node->unk8;
-            func_001E891B(node);
-            node = next;
+            S_001BF3C0_Node *cur = node;
+            node = node->unk8;
+            func_001E891B(cur);
         }
         func_001E891B(list);
         off += 4;
