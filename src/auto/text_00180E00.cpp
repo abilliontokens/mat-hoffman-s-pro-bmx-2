@@ -166,16 +166,34 @@ struct S_00181140_Loaded {
     S_00181140_Loaded *func_00134980(void);
 };
 
-/* owner of the loaded block: +0x54 block, +0xf8 count, +0x104 source id */
+struct S_00180E00_Mat {
+    float m[16];
+};
+
+/* owner of the loaded block: +0x54 block, +0xb0 matrix, +0xf8 count, +0xfc/+0x100 pools, +0x104 source id */
 struct C_00181140 {
-    char pad0[0x54];
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26();
+    virtual void Reset();
+    char pad4[0x50];
     S_00181140_Loaded *f54;
-    char pad58[0xa0];
+    char pad58[0x58];
+    S_00180E00_Mat matB0;
+    short fF0;
+    char padF2[2];
+    int fF4;
     int fF8;
-    char padFC[8];
+    void *fFC;
+    void *f100;
     int f104;
     void func_00180600(int a, int b);
     int func_00181140(int a1, char *path, int a3);
+    void func_00180E00(int a1, int a2, int a3, int a4);
 };
 
 struct Loader {
