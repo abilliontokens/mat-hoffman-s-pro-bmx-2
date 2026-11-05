@@ -11,6 +11,22 @@ struct S_000BF860_elem {
     unsigned char f4E;
     char pad4F[9];
     unsigned char f58;
+    void SetXY58(float nx, float ny)
+    {
+        if (nx != x || y != ny) {
+            x = nx;
+            y = ny;
+            f58 |= 1;
+        }
+    }
+    void SetXY4E(float nx, float ny)
+    {
+        if (nx != x || y != ny) {
+            x = nx;
+            y = ny;
+            f4E |= 6;
+        }
+    }
 };
 
 struct C_000BF860 {
@@ -32,6 +48,32 @@ struct C_000BFB70 {
     int f284;
     C_000BFB70 *func_000BFB70(void *param);
 };
+
+void C_000BF860::func_000BF860(int idx, int x, int y, int w)
+{
+    float fx = (float)x;
+    float fy = (float)y;
+    S_000BF860_elem *e = a50[idx];
+    if (fx != e->x || e->y != fy) {
+        e->x = fx;
+        e->y = fy;
+        e->f58 |= 1;
+    }
+    e = a68[idx];
+    if (fx != e->x || e->y != fy) {
+        e->x = fx;
+        e->y = fy;
+        e->f58 |= 1;
+    }
+    e = a38[idx];
+    float nx = (float)(w + 0x27 + x);
+    float ny = (float)(y + 5);
+    if (nx != e->x || e->y != ny) {
+        e->x = nx;
+        e->y = ny;
+        e->f4E |= 6;
+    }
+}
 
 C_000BFB70 *C_000BFB70::func_000BFB70(void *param)
 {
