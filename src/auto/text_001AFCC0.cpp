@@ -505,6 +505,14 @@ void C_001B0620::func_001B0620(void)
   return;
 }
 
+int C_001B0230::func_001B07D0(int idx, void *arg)
+{
+    if (arr54[idx] != 0) {
+        return arr54[idx]->v7(arg);
+    }
+    return -1;
+}
+
 void *C_001B0230::func_001B0A00(unsigned int flags)
 {
     func_001B0230();
