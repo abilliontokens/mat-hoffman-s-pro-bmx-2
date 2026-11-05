@@ -69,6 +69,48 @@ struct C_0009FAD0 {
 };
 
 
+void C_0009F9F0::func_0009F9F0(void)
+{
+    unk0 = (int)&D_0027AD64;
+    if (unkDC != 0) {
+        delete unkDC;
+        unkDC = 0;
+    }
+    if (unkE0 != 0) {
+        delete unkE0;
+        unkE0 = 0;
+    }
+    if (unk10 != 0) {
+        unk10->v2();
+        unk10 = 0;
+    }
+    if (unk14 != 0) {
+        unk14->v2();
+        unk14 = 0;
+    }
+    if (unkA4 != 0) {
+        unkA4->v2();
+        unkA4 = 0;
+    }
+    if (unkA8 != 0) {
+        unkA8->v2();
+        unkA8 = 0;
+    }
+    if (unkAC != 0) {
+        unkAC->v2();
+        unkAC = 0;
+    }
+    if (unkB0 != 0) {
+        unkB0->v2();
+        unkB0 = 0;
+    }
+    if (unkC != 0) {
+        unkC->v2();
+        unkC = 0;
+    }
+    func_0012B540();
+}
+
 void C_0009FAC0::func_0009FAC0(int a0) {
     unk4 = a0;
 }
