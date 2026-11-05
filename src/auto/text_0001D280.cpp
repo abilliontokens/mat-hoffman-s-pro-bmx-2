@@ -263,7 +263,7 @@ static __forceinline void stripExt(char *dst, const char *src)
 {
     int len = strlen(src);
     int lim = 0x103;
-    int n = minref(lim, len);
+    int n = *(lim > len ? &len : &lim);
     func_001E8920(dst, src, n);
     dst[n] = 0;
     char *p = func_001E8AC0(dst, '.');
