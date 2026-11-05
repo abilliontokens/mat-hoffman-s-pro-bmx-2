@@ -2,6 +2,59 @@
 #include "common.h"
 #include "ghidra.h"
 #include "ghidra.h"
+
+extern f32 D_00275544;
+extern int D_0028909C;
+extern void *D_002EFD80;
+
+void func_001E8390(void *p);
+
+struct C_001927A0 {
+    void func_001927A0(void);
+};
+
+/* object with a virtual deleting destructor in slot 0 */
+struct QuadTreeNode {
+    virtual void Destroy(int flag);
+};
+
+/* objects released through virtual slot 2 */
+struct QuadTreeRes {
+    virtual void v0();
+    virtual void v1();
+    virtual void Release();
+};
+
+/* QuadTree */
+struct C_0017C300 {
+    void *vtbl;
+    char pad4[0x84];
+    QuadTreeNode *f88;
+    QuadTreeRes *f90;
+    QuadTreeRes *f94;
+    u32 flags98;
+    char pad9C[0x7E4];
+    u32 unk880;
+    s32 unk884;
+    u32 unk888;
+    u32 unk88C;
+    u32 unk890;
+    void *unk894;
+    u32 unk898;
+    u32 unk89C;
+    char pad8A0[0x10];
+    u32 unk8B0;
+    void func_0017C300(void);
+    void func_0017C520(void);
+};
+
+/* 4 points of a 2D quad, stored x,y */
+struct C_0017BDE0 {
+    f32 v[8];
+    int func_0017BDE0(f32 x, f32 y);
+    int func_0017BFB0(void);
+};
+
 struct C_0017BB50 {
     void func_0017BB50(undefined4 *param_1);
 };
