@@ -356,6 +356,21 @@ void __stdcall func_001F32E8(int param_1, int param_2) {
     s.f1C = param_2;
     func_001DE759(s.f0, s.f4, s.f10, &s.f14);
 }
+
+#pragma optimize("sy", on)
+void func_001F37B0(int code) {
+    int *func_001ED075(void);
+    switch (code) {
+    case 1:
+        *func_001ED075() = 0x21;
+        break;
+    case 2:
+    case 3:
+        *func_001ED075() = 0x22;
+        break;
+    }
+}
+
 #pragma optimize("", on)
 
 #pragma optimize("", on)
