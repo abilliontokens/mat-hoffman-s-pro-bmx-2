@@ -28,6 +28,17 @@ struct S_00094620_Globals {
     S_00094620_Record *unk2E0;
 };
 
+struct C_00094760 {
+    char pad0[0x34];
+    int unk34;
+    char pad38[0x18];
+    S_00094620_Path *unk50;
+    int func_00094760(void);
+    int func_000947B0(void);
+    void func_000947F0(int node);
+    int *func_00094810(int node);
+};
+
 struct C_00094F00 {
     char pad0[0x7C];
     int unk7C;
