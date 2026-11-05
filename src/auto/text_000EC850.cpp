@@ -12,6 +12,52 @@ struct C_000ECD90 {
     void func_000ECD90(void);
 };
 
+struct C_001D5AD0 {
+    char pad0[0x38];
+    unsigned int f38;
+    char pad3C[0x1C];
+    unsigned char f58;
+    void func_001D5AD0(void);
+};
+struct S_002B91AC {
+    char pad0[0x24];
+    C_001D5AD0 *unk24;
+    C_001D5AD0 *unk28;
+    C_001D5AD0 *unk2C;
+    C_001D5AD0 *unk30;
+    char pad34[0x1C];
+    C_001D5AD0 *unk50;
+    C_001D5AD0 *unk54;
+    char pad58[0x10];
+    C_001D5AD0 *unk68;
+    C_001D5AD0 *unk6C;
+};
+extern S_002B91AC *D_002B91AC;
+struct C_000ECC60_124 {
+    char pad0[0x138];
+    int f138;
+};
+struct C_000ECC60 {
+    char pad0[0x124];
+    C_000ECC60_124 *f124;
+    char pad128[0x178];
+    C_001D5AD0 *f2A0[16];
+    char pad2E0[0x2C];
+    int f30C;
+    int f310;
+    char pad314[0x10];
+    int f324;
+    char pad328[8];
+    int f330;
+    char pad334[8];
+    int f33C;
+    char pad340[0x1C];
+    int f35C;
+    char pad360[0x28];
+    short f388;
+    void func_000ECC60(void);
+};
+
 extern void *D_00281C8C;
 struct C_000ED0E0_Obj {
     virtual void Destroy(int flags);
