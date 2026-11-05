@@ -149,6 +149,28 @@ undefined4 C_000B2530::func_000B2530(void)
   return *(undefined4 *)(*(int *)(in_ECX + 0x3c) + 0x4b8);
 }
 
+void VehicleAI::func_000B2540(int mode, int a, VehicleV4 *p)
+{
+    switch (mode) {
+    case 0:
+        f60 = a;
+        *(VehicleV4 *)&f8C = *p;
+        f68 = 0;
+        f2A8 = 1;
+        SetState(0x5A);
+        break;
+    case 1:
+        f60 = a;
+        func_0018C890((int)D_0027D0D8);
+        break;
+    case 2:
+        if (f2A8 == 1) {
+            func_0018C890((int)D_0027D0E8);
+        }
+        break;
+    }
+}
+
 void VehicleAI::func_000B2C20(int a, int b)
 {
     if (f54 >= 0 && f54 < D_002B9134->f3C) {
