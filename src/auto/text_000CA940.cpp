@@ -194,6 +194,36 @@ void BmxUIPageGameOptions::func_000CB2D0()
     func_001BF000();
 }
 
+void BmxUIPageGameOptions::func_000CB3B0()
+{
+    S_000CB3B0_B *b;
+    RenderEntryCB *m;
+    S_000CB3B0_Mgr *s;
+    int i;
+
+    b = f124->f25C;
+    if (b->f74->func_000301D0() == 0) {
+        if (f280)
+            m = D_002B91AC->unk6C;
+        else
+            m = D_002B91AC->unk54;
+        m->func_001D5AD0();
+    }
+    for (i = 0; i < 12; i++) {
+        if (i == f2A4 * 2 || i == f2A4 * 2 + 1) {
+            setEntryColorMask(arr334[i], 0xffbfa35a, 0xbfa35a);
+            arr334[i]->func_001D5AD0();
+        } else {
+            setEntryColorMask(arr334[i], 0xffcccccc, 0xcccccc);
+        }
+    }
+    s = D_002B91AC;
+    s->unk24->func_001D5AD0();
+    s->unk28->func_001D5AD0();
+    s->unk2C->func_001D5AD0();
+    s->unk30->func_001D5AD0();
+}
+
 void C_000CB650::func_000CB650()
 {
     vtbl = &D_0027E49C;
