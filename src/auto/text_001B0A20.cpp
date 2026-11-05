@@ -626,6 +626,17 @@ void *TextureMap::func_001B1270(int flags)
     return this;
 }
 
+C_001B1580 *C_001B1580::func_001B1580(int a, int b, const char *s, int c)
+{
+    if (s != 0) {
+        func_001B13A0(a, b, c, strlen(s));
+        unk24->func_0005E840(s);
+    } else {
+        func_001B13A0(a, b, c, 0x28);
+    }
+    return this;
+}
+
 float C_001B15E0::func_001B15E0(void) {
     return unk9C;
 }
