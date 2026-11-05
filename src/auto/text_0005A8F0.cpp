@@ -90,6 +90,16 @@ void C_0005B730::func_0005B730(void)
     f26C = D_002A8490->f2E0->f464;
 }
 
+void C_0005B730::func_0005B7C0(void)
+{
+    D_002A8490->f2E0->f18 = f258;
+    D_002A8490->f2E0->f1C = f25C;
+    D_002A8490->f2E0->fC = f260;
+    D_002A8490->f2E0->f38C = f264;
+    D_002A8490->f2E0->f460 = f268;
+    D_002A8490->f2E0->f464 = f26C;
+}
+
 void C_0005B850::func_0005B850(char *src)
 {
     int delta = (int)unkCD0 - (int)src;
