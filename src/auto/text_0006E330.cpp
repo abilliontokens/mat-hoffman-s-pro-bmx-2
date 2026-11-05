@@ -161,7 +161,8 @@ struct S_0006E620 {
     virtual void v3();
     virtual void v4();
     virtual void v5();
-    char pad4[0x6C];
+    virtual void v6();
+    char pad4[0x68];
     int unk70;
     char pad74[0x2C];
     int unkA0;
