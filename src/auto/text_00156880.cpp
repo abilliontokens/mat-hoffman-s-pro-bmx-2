@@ -336,6 +336,49 @@ int Game::func_00157130(int a, char *out)
     return 0;
 }
 
+Game *Game::func_00157150()
+{
+    vtbl = &D_002870A4;
+    S_002BEAAC *p = (S_002BEAAC *)func_001E8A44(0x104);
+    D_002BEAAC = p ? p->func_0013E080() : 0;
+    func_0014FDD0();
+    ((int *)this)[1] = 0;
+    D_002EFDB8 = 0;
+    D_002F07B8 = 0;
+    f230 = (f230 & 0xfb) | 0x42;
+    f8 = 0;
+    ((int *)this)[0x14/4] = 0;
+    f278 = 0;
+    ((int *)this)[0xc/4] = 1;
+    ((int *)this)[0x10/4] = 0;
+    f18 = 0;
+    ((int *)this)[0x1c/4] = 0;
+    D_002DF8F4 = 0;
+    f230 = (f230 & 0xe7) | 0x20;
+    ((char *)this)[0x20] = 0;
+    ((int *)this)[0x23c/4] = 0;
+    ((int *)this)[0x238/4] = 0;
+    ((float *)this)[0x24c/4] = 1.0f;
+    ((int *)this)[0x124/4] = 0;
+    ((int *)this)[0x128/4] = 0;
+    func_001568A0(0,0,0,0);
+    f270 = 1;
+    ((int *)this)[0x274/4] = 0;
+    ((int *)this)[0x284/4] = 0;
+    ((int *)this)[0x27c/4] = 0;
+    ((int *)this)[0x280/4] = 0;
+    ((float *)this)[0x250/4] = 1.0f;
+    ((int *)this)[0x254/4] = 0;
+    ((float *)this)[0x258/4] = 0.05f;
+    ((int *)this)[0x25c/4] = 0;
+    ((int *)this)[0x244/4] = 0;
+    char *str = D_002A7A84;
+    while (*str) { *str ^= 0x5b; ++str; }
+    str = D_002A7AA0;
+    while (*str) { *str ^= 0x5b; ++str; }
+    return this;
+}
+
 undefined4 C_00157290::func_00157290(byte param_1)
 {
   int func_00156FC0(...);
