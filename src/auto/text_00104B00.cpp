@@ -268,6 +268,20 @@ void C_00104B00::func_00105970(void)
     }
 }
 
+void C_00104B00::func_001059E0(void)
+{
+    int i;
+
+    if (D_002A8490->f2a4 != 0) {
+        for (i = 0; i < D_002A8490->f2a4->f64->f568; i++) {
+            S_00104B00_Obj *o = D_002A8490->f2a4->f64->f56c[i];
+            if (o != 0 && o->fe4 == 1) {
+                o->func_001BB4D0(fa28);
+            }
+        }
+    }
+}
+
 void C_00104B00::func_00105A40(void)
 {
     int i;
