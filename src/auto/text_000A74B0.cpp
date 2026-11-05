@@ -284,9 +284,12 @@ struct Hook_000A79E0 {
     void func_000216F0(char *a, int b, Obj_000A79E0 *c);
 };
 extern "C" int func_001EA426(const char *a, const char *b);
-static __forceinline float distance_A7FE0(const float *a, const float *b)
+struct S_A7FE0_Vec3 {
+    float x, y, z;
+};
+static __forceinline float distance_A7FE0(const S_A7FE0_Vec3 &a, const S_A7FE0_Vec3 &b)
 {
-    float x = a[0] - b[0], y = a[1] - b[1], z = a[2] - b[2];
+    float x = a.x - b.x, y = a.y - b.y, z = a.z - b.z;
     return sqrtf(z * z + y * y + x * x);
 }
 struct Pt_000A79E0 {
