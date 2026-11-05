@@ -52,3 +52,28 @@ SplitScreenSeparator *SplitScreenSeparator::func_00088530(int param_1)
     fEC = 0;
     return this;
 }
+
+DirectionArrowOverlay *DirectionArrowOverlay::func_000888D0(int param_1)
+{
+    u32 *p;
+    ((C_00157600 *)this)->func_00157600(param_1);
+    vtbl = &D_0027993C;
+    p = (u32 *)&f34;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    f28 = 0;
+    f2C = 0;
+    f30 = 1;
+    f34 = D_002A2034;
+    f38 = D_002A2038;
+    f3C = D_002A203C;
+    f40 = D_002A2040;
+    f44 = 0;
+    f48 = 1.0f;
+    f4C = 100.0f;
+    f50 = 50.0f;
+    return this;
+}
+
