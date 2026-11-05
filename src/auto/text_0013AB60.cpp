@@ -97,7 +97,8 @@ struct C_0013AEC0 {
     int fE4;
     S_0013AEC0_Slot *fE8;
     int fEC;
-    char padF0[8];
+    int fF0;
+    char padF4[4];
     int fF8;
     int fFC;
     int func_0013AFB0(int idx);
