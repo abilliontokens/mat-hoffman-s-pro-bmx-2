@@ -46,7 +46,9 @@ struct V3_0011EEE0 {
 static float min_0011EEE0(float a, float b)
 {
     float r;
-    _mm_store_ss(&r, _mm_min_ss(_mm_set_ss(a), _mm_set_ss(b)));
+    __m128 va = _mm_load_ss(&a);
+    __m128 vb = _mm_load_ss(&b);
+    _mm_store_ss(&r, _mm_min_ss(va, vb));
     return r;
 }
 
