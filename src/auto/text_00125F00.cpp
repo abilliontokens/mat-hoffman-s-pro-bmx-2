@@ -1,5 +1,7 @@
 /* 5 functions from 0x00125F00 to 0x00126DD0, found by Ghidra. */
 #include "common.h"
+struct S_001268E0_Vec { float f[4]; };
+struct S_001268E0_Rec { S_001268E0_Vec a, b; };
 
 /* 0x34-byte record split by a float threshold */
 struct S_00126770_Rec {
