@@ -182,6 +182,29 @@ struct C_001AF710 {
     void func_001AF710(void);
 };
 
+extern char D_0028C59C[], D_0028C590[], D_0028C584[], D_0028C574[], D_0028C56C[], D_0028C564[];
+extern char D_0028C55C[], D_0028C554[], D_0028C548[], D_0028C53C[], D_0028C530[], D_0028C524[];
+extern char D_0028C510[], D_0028C504[], D_0028C4F8[], D_0028C4EC[], D_0028C4D8[], D_0028C4CC[];
+extern char D_0028C4C0[], D_0028C4B4[], D_0028C4A8[], D_0028C498[], D_0028C488[], D_0028C478[];
+extern char D_0028C468[], D_0028C450[];
+struct C_001AF740 {
+    int f0;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    int f14;
+    float f18;
+    float f1C;
+    int f20;
+    int f24;
+    int f28;
+    int f2C;
+    int f30;
+    int f34;
+    unsigned char f38;
+    C_001AF740 *func_001AF740(S_001AF360_Stream *stream, int idx);
+};
 struct C_001AFB00 {
     float f0, f4, f8, fC, f10, f14, f18, f1C, f20, f24, f28, f2C;
     int f30;
@@ -191,6 +214,99 @@ struct C_001AFB00 {
     void func_001AFB60(float *a, float *b, float *c);
 };
 
+
+int C_001AED80::func_001AED80(void)
+{
+    C_001AED80 * volatile self = this;
+    volatile int x;
+    volatile int y;
+    volatile float out;
+    float r;
+    unsigned char a;
+    unsigned int argb;
+
+    if (D_002F00D0 != 0) {
+        return 0;
+    }
+    if ((f84 & 1) == 0 && f54->f64 == 0) {
+        f54->f3C = f2C;
+        f54->f40 = f2C;
+    } else {
+        {
+            C_001AED80 *p = self;
+            x = (int)(p->f7C - p->f54->f3C * (float)p->f54->f34 * D_002755E8);
+        }
+        {
+            C_001AED80 *p = self;
+            y = (int)(p->f80 - p->f54->f40 * (float)p->f54->f38 * D_002755E8);
+        }
+        {
+            C_001AED80 *p = self;
+            p->f54->f2C = x;
+            p->f54->f30 = y;
+        }
+    }
+    {
+        C_001AED80 *p = self;
+        p->f68 = 0;
+    }
+    if (((self->f84 & 1) == 0) && self->f54->f64 == 0) {
+        C_001AED80 *p = self;
+        if (p->f50 != 0 && (p->f84 & 2) != 0) {
+            r = p->f30 * D_00279B54;
+            r = r > 0.0f ? r : 0.0f;
+            r = r < 1.0f ? r : 1.0f;
+            out = r;
+        }
+        return ((C_00157960 *)self)->func_00157960();
+    }
+    if ((self->f84 & 1) != 0) {
+        C_001AED80 *p = self;
+        float c = (float)p->f54->f30;
+        x = (int)(p->f54->f40 * (float)p->f54->f34 * D_002755E8 + (float)p->f54->f2C);
+        {
+            C_001AED80 *q = self;
+            y = (int)(q->f54->f3C * (float)q->f54->f38 * D_002755E8 + c);
+        }
+        {
+            C_001AED80 *q = self;
+            q->f6C = x;
+            q->f74 = x + 0x10;
+            q->f70 = y;
+            q->f78 = y + 0x10;
+        }
+        ((C_001D54F0 *)((char *)self + 0x58))->func_001D54F0();
+    }
+    {
+        C_001AED80 *p = self;
+        r = (float)p->f54->f64 * D_002AA3F8 + (D_00275460 - D_002AA3F8) * p->f68;
+        r = r < 255.0f ? r : 255.0f;
+        out = r;
+        a = (unsigned char)(out * D_00276E9C);
+    }
+    {
+        C_001AED80 *p = self;
+        S_001AED80_Sub *s = p->f54;
+        s->f64 = a;
+        argb = (unsigned int)a << 24;
+        s->f54 = (s->f54 & 0xffffff) | argb;
+        s->f58 = (s->f58 & 0xffffff) | argb;
+        s->f5C = (s->f5C & 0xffffff) | argb;
+        s->f60 = (s->f60 & 0xffffff) | argb;
+    }
+    if ((self->f84 & 4) == 0) {
+        self->f54->f4->func_001446B0(0, 0, -1);
+    }
+    {
+        C_001AED80 *p = self;
+        if (p->f50 != 0 && (p->f84 & 2) != 0 && (p->f84 & 1) != 0 && p->f68 < D_0027A060) {
+            r = p->f68 * D_00284758;
+            r = r < 1.0f ? r : 1.0f;
+            out = r;
+        }
+    }
+    return ((C_00157960 *)self)->func_00157960();
+}
 
 undefined4 C_001AF090::func_001AF090(byte param_1)
 {
