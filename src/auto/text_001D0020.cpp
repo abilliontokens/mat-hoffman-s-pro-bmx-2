@@ -93,6 +93,40 @@ XboxControlInterface_001D0C30 *XboxControlInterface_001D0C30::func_001D0C30(void
     return this;
 }
 
+int XboxControlInterface_001D0C30::func_001D0C70(int unused)
+{
+    int i;
+    int found = 0;
+    unsigned mask;
+
+    fD08 = 0;
+    mask = func_0026EBC5((void *)&D_0026D94C);
+    for (i = 0; i < 4; i++) {
+        if (mask & (1 << i)) {
+            f4++;
+            if (!found) {
+                fD08 = i;
+            }
+            found = 1;
+            fD0C[i] = 1;
+        } else {
+            fD0C[i] = 0;
+        }
+    }
+    for (i = 0; i < 4; i++) {
+        ControllerPort_001D14C0 *p = (ControllerPort_001D14C0 *)func_001E8A44(0x72c);
+        p = p != 0 ? p->func_001D14C0(i) : 0;
+        f14[i] = p;
+        if (p == 0 || p->func_001D1550(i) == 0) {
+            if (f14[i] != 0) {
+                f14[i]->v1(1);
+            }
+            f14[i] = 0;
+        }
+    }
+    return 1;
+}
+
 undefined4 C_001D0DE0::func_001D0DE0(byte param_1)
 {
   int func_001D0D30(...);
