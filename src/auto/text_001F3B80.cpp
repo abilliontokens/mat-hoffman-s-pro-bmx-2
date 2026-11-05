@@ -107,6 +107,30 @@ void func_001F44D6(void) {
     func_001EB302(1);
 }
 
+extern "C" __declspec(dllimport) void __stdcall RtlInitializeCriticalSection(void *cs);
+int __stdcall func_001F44DF(void *cs, int spinCount);
+extern int (__stdcall *D_002F6A60)(void *a, void *b);
+void __stdcall func_001DD62B(int code);
+int func_001F5AA1(unsigned int oldval, unsigned int mask, unsigned int *p);
+#pragma optimize("sy", on)
+int __stdcall func_001F44DF(void *cs, int spinCount)
+{
+    RtlInitializeCriticalSection(cs);
+    return 1;
+}
+#pragma optimize("", on)
+
+#pragma optimize("sy", on)
+void func_001F4641(unsigned int *dst, unsigned int *src)
+{
+    int i;
+
+    for (i = 0; i < 3; i++) {
+        dst[i] = src[i];
+    }
+}
+#pragma optimize("", on)
+
 #pragma optimize("sy", on)
 int func_001F465C(unsigned int *p)
 {
