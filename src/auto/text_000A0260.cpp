@@ -66,12 +66,53 @@ struct C_000A0A80 {
 };
 
 
+int C_000A08D0::func_000A08D0(S_000A08D0 s, int a5) {
+    S_000A08D0_5 *p = (S_000A08D0_5 *)func_001E8A44(0x14);
+    if (p) {
+        p->f0 = 0.0f;
+        p->f1 = 0.02f;
+        p->f3 = 3.402823466e+38f;
+        p->f4 = -3.402823466e+38f;
+        p->f2 = 1.0f;
+    }
+    fDC = p;
+    p = (S_000A08D0_5 *)func_001E8A44(0x14);
+    if (p) {
+        p->f0 = 0.0f;
+        p->f1 = 0.2f;
+        p->f3 = 3.402823466e+38f;
+        p->f4 = -3.402823466e+38f;
+        p->f2 = 1.0f;
+    }
+    fE0 = p;
+    func_000A00A0(s, a5);
+    f38 = 1;
+    return 1;
+}
+
 C_000A09F0* C_000A09F0::func_000A09F0(void) {
     unk18 = 0;
     unk1C = 0;
     unk20 = 0;
     unk24 = 0;
     return this;
+}
+
+void C_000A09F0::func_000A0A10(void) {
+    if (unk20) {
+        func_001E891B((void *)unk20);
+        unk20 = 0;
+    }
+    if (unk1C) {
+        for (int i = 0; i < unk18; i++) {
+            if (unk1C[i]) {
+                func_001E891B((void *)unk1C[i]);
+                unk1C[i] = 0;
+            }
+        }
+        func_001E891B(unk1C);
+        unk1C = 0;
+    }
 }
 
 void func_000A0B80(void) {
