@@ -438,6 +438,52 @@ struct C_001BFDB0 {
     void func_00157600(int a0);
 };
 
+extern char D_00275AD4[];
+extern char D_00275AC8[];
+extern char D_0027CEE4[];
+extern char D_0028D9A8[];
+extern char D_0028D998[];
+extern char D_0028D984[];
+extern int D_00284A98;
+extern char D_00284A9C;
+
+struct S_001BF7C0_Stream {
+    void func_00168CB0(void *key, S_Vec4f_001BFD00 *def, void *dst);
+    void func_00168C50(void *key, int def, void *dst);
+    int func_00168550(void *key, void *dst, int size);
+};
+
+struct S_001BF7C0_Obj {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34();
+    virtual void v35(int a, int b, int c);
+    S_001BF7C0_Obj *func_00143580(int a);
+};
+
+struct C_001BF7C0 {
+    char pad0[0x28];
+    int f28;
+    char pad2C[0x3C];
+    S_001BF7C0_Obj *f68;
+    float f6C[4];
+    float f7C[4];
+    float f8C[4];
+    int f9C;
+    char padA0[4];
+    char fA4[0x64];
+    char f108[0x64];
+    void func_001BF600(void *stream);
+    void func_001577A0(void *a, int b);
+    C_001BF7C0 *func_001BF7C0(int a0, int a1, S_001BF7C0_Stream *stream);
+};
+
 void C_001BEF90::func_001BEF90(int param_1)
 {
   unk140[param_1]->func_001BDDE0(0);
