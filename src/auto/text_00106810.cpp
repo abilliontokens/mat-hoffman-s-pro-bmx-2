@@ -1,7 +1,10 @@
 /* 4 functions from 0x00106810 to 0x00107380, found by Ghidra. */
 #include "common.h"
 int func_001E8833(void);
+extern float D_002754B0;
 extern float D_00278C58;
+extern float D_002755E8;
+extern float D_002756DC;
 
 struct S_106E30_Fx {
     void func_001B3E70(void *a, void *b, float c, float d, float e);
