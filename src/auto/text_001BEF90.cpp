@@ -525,6 +525,14 @@ struct C_001BF220 {
     void func_001BF220(void);
 };
 
+static inline void S_001BF220_Release(C_001BF220 *self, char *name)
+{
+    if (self->f16C != 0) {
+        self->f16C->v27(self->f274);
+        self->f16C->func_001D3B20(name);
+    }
+}
+
 void C_001BEF90::func_001BEF90(int param_1)
 {
   unk140[param_1]->func_001BDDE0(0);
@@ -580,6 +588,7 @@ undefined4 C_001BF070::func_001BF070(byte param_1)
 void C_001BF220::func_001BF220(void)
 {
     int i;
+    char *name;
 
     v7();
     f278 = 1;
@@ -604,9 +613,10 @@ void C_001BF220::func_001BF220(void)
             f140[i]->func_001BE290();
         }
     }
+    name = f170;
     if (f16C != 0) {
         f16C->v27(f274);
-        f16C->func_001D3B20(f170);
+        f16C->func_001D3B20(name);
     }
     if (f168 == 0 && f16C == 0) {
         D_002EFDB8->f30 = 1;
