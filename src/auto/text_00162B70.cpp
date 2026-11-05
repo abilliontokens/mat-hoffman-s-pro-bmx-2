@@ -31,6 +31,8 @@ struct Mgr162B70 {
 extern Mgr162B70 *D_002BEAAC;
 extern char D_00282960[];
 void func_001E891B(void *p);
+extern "C" void *memcpy(void *, const void *, unsigned int);
+#pragma intrinsic(memcpy)
 
 struct S_00162DF0_A {
     char pad0[0x18];
