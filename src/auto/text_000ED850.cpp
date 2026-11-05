@@ -39,6 +39,49 @@ struct S_000EDB70_Mgr {
 
 extern S_000EDB70_Mgr *D_002A8490;
 
+struct C_00136170 {
+    int func_00136170(int a0, int a1, int a2);
+};
+
+struct S_000ED850_Mgr {
+    char pad0[8];
+    C_00136170 *f8;
+};
+
+struct C_000B9A80 {
+    void func_000B9A80(int a0, int a1);
+};
+
+struct C_000ED850 {
+    char pad0[0x124];
+    C_000B9A80 *unk124;
+    char pad128[0x280 - 0x128];
+    int unk280;
+    char pad284[0x28C - 0x284];
+    int unk28C;
+    char pad290[0x29C - 0x290];
+    int unk29C;
+    int unk2A0;
+    int unk2A4;
+    int unk2A8;
+    char pad2AC[0x3C8 - 0x2AC];
+    int unk3C8;
+    int unk3CC;
+    int unk3D0;
+    int unk3D4;
+    char pad3D8[0x444 - 0x3D8];
+    int unk444;
+    int unk448;
+    int unk44C;
+    int unk450;
+    int unk454;
+    int unk458;
+    int unk45C;
+    float arr460[11];
+    int func_000ED850(int a0, int a1);
+};
+extern float D_00279F6C;
+
 struct C_001B1980 {
     void func_001B1980(void);
     void func_001B17D0(char *name);
