@@ -71,6 +71,9 @@ struct C_0013B9C0 {
     int func_0013B3E0(void *a, int b);
     void func_0013AEC0(int a);
     void func_0013B840(void *a);
+    void func_0013B9C0(S_0013B9C0_Ent28 *p, int index);
+    void func_0013B480(void *a);
+    int func_0013B4C0(void *a, int size, void *file);
 };
 
 int C_0013B9C0::func_0013C110(int idx)
