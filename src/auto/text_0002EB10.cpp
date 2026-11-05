@@ -198,6 +198,8 @@ struct BmxCameraController_0002EF20 {
     int unk70;
     int unk74;
     void func_0012B550(int a0);
+    void func_0012B5E0(int a0);
+    void func_0002F1C0(int a0);
     BmxCameraController_0002EF20 *func_0002EF20(int a0);
 };
 
