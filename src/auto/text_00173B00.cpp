@@ -45,7 +45,7 @@ struct PhysicsRigidBody {
 static __forceinline float LengthSq(float x, float y, float z, float w) {
     return x * x + y * y + z * z + w * w;
 }
-static __forceinline float Sqrt_001743A0(const float &x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+static inline float Sqrt_001743A0(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
 struct C_00174550 {
     char pad0[0x28C];
     int unk28C;
