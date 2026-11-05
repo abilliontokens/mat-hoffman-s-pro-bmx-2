@@ -28,6 +28,7 @@ struct C_000A4150_obj {
 struct C_000A4150 {
     C_000A4150_obj *unk0;
     int func_000A4150(char *a1);
+    int func_000A4400(char *a1);
 };
 
 struct C_000A43E0 {
