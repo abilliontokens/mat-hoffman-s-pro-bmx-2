@@ -86,8 +86,19 @@ struct C_0018C120Obj {
     void func_0018C120();
 };
 
+struct C_CardStrings { char pad0[0x7a0]; int f7a0; char pad7a4[0x11a0-0x7a4]; int f11a0; char pad11a4[0x1248-0x11a4]; int f1248; };
+struct C_CardStringsHolder { char pad0[4]; C_CardStrings *f4; };
+struct C_CardText {
+    int f0, x, y;
+    char padc[0x4e-0xc]; unsigned char flags;
+    void func_0005E840(int);
+    void func_0005E7C0(float, float);
+    void func_001D6600();
+    void func_001D5AD0();
+};
 struct C_Global2 {
-    char pad0[0x2ec];
+    char pad0[0x2e8];
+    C_CardStringsHolder *f2e8;
     C_0018C120Obj *f2ec;
 };
 
