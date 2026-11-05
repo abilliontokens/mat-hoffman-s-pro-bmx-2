@@ -184,3 +184,14 @@ void *C_001A7830::func_001A7830(int flags)
     return this;
 }
 
+void *C_001A7860::func_001A7860(unsigned int flags)
+{
+  int func_001A6260(...);
+
+  func_001A6260();
+  if (flags & 1) {
+    func_001E891B(this);
+  }
+  return this;
+}
+
