@@ -80,6 +80,12 @@ struct C_0001D330 {
     char pad0[0x70];
     int unk70;
     C_0001D330_Item **unk74;
+    C_0001D330_Item *itemAt(int i) {
+        if (unk70 > 0 && unk74 != 0 && i < unk70) {
+            return unk74[i];
+        }
+        return 0;
+    }
     void func_0001D330(void);
 };
 
@@ -136,8 +142,9 @@ void C_0001D330::func_0001D330(void) {
     int i = 0;
     if (i < unk70) {
         do {
+            int cnt = unk70;
             C_0001D330_Item *item;
-            if (unk70 > 0 && unk74 != 0 && i < unk70) {
+            if (cnt > 0 && unk74 != 0 && i < cnt) {
                 item = unk74[i];
             } else {
                 item = 0;
@@ -162,26 +169,22 @@ int C_0001D370::func_0001D370(void) {
         }
         int nA = unk30;
         if (nA > 0) {
-            int i = 0;
-            while (i < unk30) {
+            for (int i = 0; i < unk30; i++) {
                 if (unk34[i] == item) {
                     unk34[i] = unk34[nA - 1];
                     unk30--;
                     break;
                 }
-                i++;
             }
         }
         int nB = unk70;
         if (nB > 0) {
-            int j = 0;
-            while (j < unk70) {
+            for (int j = 0; j < unk70; j++) {
                 if (unk74[j] == item) {
                     unk74[j] = unk74[nB - 1];
                     unk70--;
                     break;
                 }
-                j++;
             }
         }
         item->func_00157810();
