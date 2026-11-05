@@ -244,6 +244,55 @@ C_00049C60 *C_00049C60::func_00049C60(void)
     return this;
 }
 
+void E49Fps::func_00049C90() {
+    E49Obj *p;
+    int i;
+    func_00031630();
+    p = (E49Obj *)func_001E8A44(0x358);
+    f1D0 = p ? p->func_00092890(1) : 0;
+    f1D0->v10();
+    p = (E49Obj *)func_001E8A44(0xf4);
+    fE4 = p ? p->func_00088530(1) : 0;
+    fE4 = fE4->func_00088570(D_002A8490->f2e0->f8);
+    p = (E49Obj *)func_001E8A44(0x134);
+    f15C = p ? p->func_0005ECA0(1) : 0;
+    f15C->func_0005EDC0(this);
+    f15C->v4();
+    if (D_002A8490->f2e0->f0 > 1) {
+        p = (E49Obj *)func_001E8A44(0x1c4);
+        f1A8 = p ? p->func_00075B20(1) : 0;
+        f1A8->func_00075F30(this);
+        f1A8->v4();
+    } else {
+        p = (E49Obj *)func_001E8A44(0x1c4);
+        f1AC = p ? p->func_00073AE0(1) : 0;
+        f1AC->func_00073EF0(this);
+        f1AC->v4();
+    }
+    p = (E49Obj *)func_001E8A44(0x140);
+    f1A0 = p ? p->func_000715B0(1) : 0;
+    f1A0->func_00071880(this);
+    f1A0->v4();
+    p = (E49Obj *)func_001E8A44(0xf8);
+    f168 = p ? p->func_000777A0(1) : 0;
+    f168->func_000779C0(this);
+    f168->v4();
+    for (i = 0; i < D_002A8490->f2e0->f0; i++) {
+        p = (E49Obj *)func_001E8A44(0x80);
+        f284[i] = p ? p->func_0008BB80(1) : 0;
+        f284[i]->func_00092810(((E49Glob *)D_002B9120)->f4E4[i], i, ((E49Glob *)D_002B9120)->f528, D_002A8490->f2e0->f8);
+        f284[i]->v6();
+    }
+    if (D_002A8490->f2e0->f0 > 1) {
+        for (i = 0; i < D_002A8490->f2e0->f0; i++) {
+            p = (E49Obj *)func_001E8A44(0x54);
+            f2A4[i] = p ? p->func_000888D0(1) : 0;
+            f2A4[i]->func_00088950(D_002A8490->f2e0->f8, i);
+            *(float *)((char *)f2A4[i] + 0x4c) = 50.0f;
+        }
+    }
+}
+
 int C_0004A1A0::func_0004A1A0(void)
 {
     int i;
