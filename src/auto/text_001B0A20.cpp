@@ -99,6 +99,10 @@ struct C_001B1860 {
     void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, float a7, int a8, float a9, int a10, float a11, float a12, int a13);
 };
 
+extern int *D_002EFDB8;
+extern char D_0004035C;
+void __fastcall func_001FD020(void *, int);
+void __stdcall func_001FE490(int);
 extern float D_00275544;
 extern float D_00275F58;
 
