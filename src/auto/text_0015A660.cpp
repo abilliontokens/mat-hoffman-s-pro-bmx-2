@@ -394,12 +394,10 @@ void JoystickDevice::func_0015AE20(void)
 
 void JoystickDevice::func_0015AFC0(int idx, int a, int b)
 {
-    S_0015A660_List *l;
     int i;
 
-    l = &lists[idx];
-    for (i = 0; i < l->count; i++) {
-        ((C_00135D90 *)l->at(i))->func_00135D90(a, b);
+    for (i = 0; i < lists[idx].count; i++) {
+        ((C_00135D90 *)lists[idx].at(i))->func_00135D90(a, b);
     }
 }
 
