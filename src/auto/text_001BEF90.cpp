@@ -411,6 +411,44 @@ undefined4 C_001BF520::func_001BF520(byte param_1)
   return in_ECX;
 }
 
+int C_001BF540::func_001BF540(S_001BF540_Event *ev, int a)
+{
+    S_001BF540_Owner *owner;
+    S_001BF540_List *list;
+    S_001BF540_Node *n;
+    int idx;
+    int key;
+
+    D_002EFDB8->v7(1);
+    D_002EFDB8->v8();
+    if (ev->f4 == 2) {
+        owner = f24->f118;
+        idx = ev->f8;
+        key = ev->f0;
+        if (owner->f27C != 0 && owner->v28(idx, key) != 0) {
+            list = f2C[idx];
+            for (n = list->head; n != 0; n = n->next) {
+                n->active = (n->widget->f2C != 0);
+            }
+            for (n = list->head; n != 0; n = n->next) {
+                if (n->active != 0) {
+                    n->widget->v33(ev, a, idx, key);
+                }
+            }
+        }
+    }
+    return func_00157BF0(ev, a);
+}
+
+C_001BF600 *C_001BF600::func_001BF600(S_001BF600_Stream *stream)
+{
+    stream->func_00168C20(D_0028D8D4, 0, &f30);
+    stream->func_00168C20(D_0028D8C4, 0, &f34);
+    stream->func_00168C20(D_0028D8B0, 0, &f38);
+    stream->func_00168C20(D_0028D89C, 0, &f3C);
+    return this;
+}
+
 void C_001BF6A0::func_001BF6A0(void) {
     unk40 = 1;
 }
