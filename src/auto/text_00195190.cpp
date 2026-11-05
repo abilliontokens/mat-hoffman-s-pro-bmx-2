@@ -103,6 +103,22 @@ struct C_001956F0 {
     int func_001956F0(const char *name);
 };
 
+struct STV_1959E0 {
+    char pad0[0x38];
+    int cur;
+    int prev;
+    Item_001955F0 *items;
+    int count;
+    char pad48[0x24];
+    int f6c;
+    int f70;
+    float f74;
+    float f78;
+    int func_001959E0(float dt, float *pos, Vec4_195D40 *out);
+};
+int func_00134DE0(float *a, int b, float *c, float *d, int e, int f);
+int func_001E8833();
+
 int C_001955D0::func_001955D0(int a0, int a1) {
     unk70 = a0;
     unk78 = a1;
