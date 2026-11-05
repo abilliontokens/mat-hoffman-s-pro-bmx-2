@@ -407,6 +407,18 @@ void func_0001EAB0(float *out, float *a, float *b)
     _mm_storeu_ps(out, va);
 }
 
+void C_0001EAF0::func_0001EAF0(Vec4 v)
+{
+    Vec4 r;
+
+    if (f22c != 0) {
+        f22c->func_00198040(&r, &v);
+        f140 += r.x;
+        f144 += r.y;
+        f148 += r.z;
+    }
+}
+
 void C_0001EDC0::func_0001EDC0(int a0) {
     unk24 = a0;
 }
