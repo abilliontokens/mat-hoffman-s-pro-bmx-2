@@ -512,7 +512,7 @@ struct S_001BF220_Obj {
 struct C_001BF220 {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
     virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
-    char pad4[0x134];
+    char pad4[0x138];
     int f13C;
     S_001BF220_Ctl **f140;
     S_001BF220_Slot **f144;
@@ -575,6 +575,44 @@ undefined4 C_001BF070::func_001BF070(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+void C_001BF220::func_001BF220(void)
+{
+    int i;
+
+    v7();
+    f278 = 1;
+    f144[0]->f0 = -1;
+    f144[0]->f4 = 0;
+    f144[1]->f0 = -1;
+    f144[1]->f4 = 0;
+    f144[2]->f0 = -1;
+    f144[2]->f4 = 0;
+    f144[3]->f0 = -1;
+    f144[3]->f4 = 0;
+    f144[4]->f0 = -1;
+    f144[4]->f4 = 0;
+    f144[5]->f0 = -1;
+    f144[5]->f4 = 0;
+    f144[6]->f0 = -1;
+    f144[6]->f4 = 0;
+    f144[7]->f0 = -1;
+    f144[7]->f4 = 0;
+    for (i = 0; i <= f13C; i++) {
+        if (f140[i] != 0) {
+            f140[i]->func_001BE290();
+        }
+    }
+    if (f16C != 0) {
+        f16C->v27(f274);
+        f16C->func_001D3B20(f170);
+    }
+    if (f168 == 0 && f16C == 0) {
+        D_002EFDB8->f30 = 1;
+    } else {
+        D_002EFDB8->f30 = 0;
+    }
 }
 
 void *C_001BF3A0::func_001BF3A0(int a0)
