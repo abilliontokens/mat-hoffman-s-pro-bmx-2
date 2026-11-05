@@ -483,6 +483,87 @@ void C_001A4790::func_001A4790(void *a1, u32 flags, u32 *a3, u32 *a4, int a5, in
     ((VT_001A4790 *)f28)->v11(this, d, a5, a6);
 }
 
+int C_001A4790::func_001A4840(void)
+{
+    int r = f28->v12();
+
+    if (r == 0) {
+        if (f28 == f24->f28) {
+            f28 = 0;
+            if ((f20 & 2) && f24->f2C != f24->f28) {
+                f28 = f24->f2C;
+            }
+        } else {
+            f28 = 0;
+        }
+        if (f28 == 0) {
+            if (f30 != 0) {
+                f30 = f30->next;
+                if (f30 != 0) {
+                    f24 = f30->f4;
+                    if (f20 & 1) {
+                        f28 = f24->f28;
+                    }
+                    if (f28 == 0 && (f20 & 2)) {
+                        f28 = f24->f2C;
+                    }
+                }
+            }
+            if (f28 == 0) {
+                if (f3C != 0 && D_002EFE4C != 0 && f24 != D_002EFE4C) {
+                    f24 = D_002EFE4C;
+                    if (f20 & 1) {
+                        f28 = f24->f28;
+                    }
+                    if (f28 == 0 && (f20 & 2)) {
+                        f28 = f24->f2C;
+                    }
+                }
+                if (f28 == 0) {
+                    return 0;
+                }
+            }
+        }
+        if (f34 != 0) {
+            V4_001A46F0 mn;
+            V4_001A46F0 mx;
+            float *lo;
+            float *hi;
+
+            f28->v11(this, &vec10[0], (int)&mn, (int)&mx);
+            lo = (float *)f34;
+            hi = (float *)f38;
+            if (mn.x < lo[0]) {
+                lo[0] = mn.x;
+            }
+            lo = (float *)f34;
+            if (mn.y < lo[1]) {
+                lo[1] = mn.y;
+            }
+            lo = (float *)f34;
+            if (mn.z < lo[2]) {
+                lo[2] = mn.z;
+            }
+            hi = (float *)f38;
+            if (mx.x > hi[0]) {
+                hi[0] = mx.x;
+            }
+            hi = (float *)f38;
+            if (mx.y > hi[1]) {
+                hi[1] = mx.y;
+            }
+            hi = (float *)f38;
+            if (mx.z > hi[2]) {
+                hi[2] = mx.z;
+            }
+        } else {
+            f28->v11(this, &vec10[0], 0, 0);
+        }
+        r = f28->v12();
+    }
+    return r;
+}
+
 void C_001A4A20::func_001A4A20(void)
 {
     if (f24->f28 != 0) {
