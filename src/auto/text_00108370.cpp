@@ -1,6 +1,8 @@
 /* 24 functions from 0x00108370 to 0x00109370, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <string.h>
+
 struct C_001084E0 {
     void func_001084E0(void);
 };
