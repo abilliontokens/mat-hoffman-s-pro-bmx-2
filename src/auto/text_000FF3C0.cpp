@@ -216,6 +216,21 @@ void C_000FF4A0::func_000FF4A0()
     func_00157960();
 }
 
+void *C_000FF550::func_000FF550(int flags)
+{
+    int func_001E891B(...);
+    vtbl = (void *)&D_0027F724;
+    if (f29c) {
+        f29c->destroy(1);
+        f29c = 0;
+    }
+    func_001BE3F0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void C_000FFFA0::func_000FFFA0()
 {
   if (f2c4 != 0) {
