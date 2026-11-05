@@ -211,6 +211,18 @@ int C_00157810::func_001578D0(void)
     return 1;
 }
 
+int C_00157810::func_00157920(void)
+{
+    if (f1C & 4) {
+        for (S_00157810_Child *c = f10; c != 0; c = c->fC) {
+            if ((c->f21 & 1) && !(c->f21 & 8) && (c->f18 & 4)) {
+                c->v15();
+            }
+        }
+    }
+    return 1;
+}
+
 int C_00157810::func_00157960(void)
 {
     if (f1C & 8) {
