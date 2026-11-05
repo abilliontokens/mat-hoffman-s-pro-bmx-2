@@ -216,3 +216,33 @@ C_0004DCA0 *C_0004DCA0::func_0004DCA0(void)
     return this;
 }
 
+void C_0004E480::func_0004E480() {
+    C_0004E480_Object *p;
+    func_00031630();
+    p = (C_0004E480_Object *)func_001E8A44(0xf4);
+    fE4 = p ? p->func_00088530(1) : 0;
+    fE4 = fE4->func_00088570(*(void **)((char *)D_002A8490->f2E0 + 8));
+    p = (C_0004E480_Object *)func_001E8A44(0x134);
+    f15C = p ? p->func_0005ECA0(1) : 0;
+    f15C->func_0005EDC0(this); f15C->v4();
+    p = (C_0004E480_Object *)func_001E8A44(0x140);
+    f1A0 = p ? p->func_000715B0(1) : 0;
+    f1A0->func_00071880(this); f1A0->v4();
+    p = (C_0004E480_Object *)func_001E8A44(0x16c);
+    f190 = p ? p->func_00066C90(1) : 0;
+    f190->func_00066FA0(this); f190->v4();
+    for (int i=0; i<D_002A8490->f2E0->f0; ++i) {
+        p = (C_0004E480_Object *)func_001E8A44(0x44);
+        fD58[i] = p ? p->func_00084930(1) : 0;
+        fD58[i]->func_000849F0(((C_0004DCA0_World *)f64)->f4E0->f1A8[i], this, i, 0);
+    }
+    p = (C_0004E480_Object *)func_001E8A44(0xc8);
+    p = p ? p->func_000876B0(1) : 0;
+    f198 = p->func_00087760(*(void **)((char *)D_002A8490->f2E0 + 8), this, 0);
+    if (f90 > 1) for (int j=0; j<f90; ++j) {
+        p = (C_0004E480_Object *)func_001E8A44(0x54);
+        fD30[j] = p ? p->func_000888D0(1) : 0;
+        fD30[j]->func_00088950(*(void **)((char *)D_002A8490->f2E0 + 8), j);
+    }
+}
+
