@@ -1,5 +1,6 @@
 /* 16 functions from 0x0004E680 to 0x0004F5E0, found by Ghidra. */
 #include "common.h"
+#include <string.h>
 
 struct C_0004ED80 {
     int unk0;
