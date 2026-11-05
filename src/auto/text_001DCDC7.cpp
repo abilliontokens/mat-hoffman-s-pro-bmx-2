@@ -45,6 +45,12 @@ int __stdcall func_001DD117(u64 *a0) {
     return 1;
 }
 
+int __stdcall func_001DD128(u32 *a0) {
+    a0[1] = 0;
+    a0[0] = 0x2bb5c755;
+    return 1;
+}
+
 void __stdcall func_001DD7F7(undefined4 param_1, undefined4 param_2)
 {
   int __stdcall func_001DD779(int, int, int);
