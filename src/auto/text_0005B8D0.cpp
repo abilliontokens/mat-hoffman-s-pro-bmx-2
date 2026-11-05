@@ -1,6 +1,11 @@
 /* 42 functions from 0x0005B8D0 to 0x0005C720, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_0005C3A0 {
+    void func_0005C3A0(int idx);
+};
+extern int D_002782AC;
+extern short D_002782B0;
 struct C_0005C040 {
     undefined4 func_0005C040(int param_1, int param_2, int param_3, int param_4);
 };
