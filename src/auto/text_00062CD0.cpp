@@ -68,3 +68,67 @@ void C_000634D0::func_000634D0(void)
     func_001AC330(dest, D_002A8490->p2E8->p4->fEA8, buf);
     f29C->func_0005E840(dest);
 }
+
+void __stdcall func_00063AD0(char *str, C_0005E840 **lines, int width, int count)
+{
+    char buf[780];
+    char last[780];
+    int i;
+    int col;
+    int pos;
+    int start;
+    int lineStart;
+    int lastSpace;
+    int line;
+    int done;
+    int n;
+    int maxLine;
+    char *p;
+
+    for (i = 0; i < count; i++)
+        lines[i]->func_0005E840(D_00275630);
+
+    col = 0;
+    lastSpace = 0;
+    line = 0;
+    done = 0;
+    pos = 0;
+    start = 0;
+    lineStart = 0;
+    maxLine = count - 1;
+    while (line < maxLine) {
+        if (done)
+            break;
+        buf[0] = 0;
+        if (str[pos] == ' ')
+            lastSpace = pos;
+        else if (str[pos] == 0)
+            done = 1;
+        pos++;
+        col++;
+        if (col >= width || done) {
+            if (done) {
+                strcpy(buf, str + start);
+                lines[line]->func_0005E840(buf);
+            } else {
+                n = lastSpace - lineStart;
+                func_001E8920(buf, str + start, n);
+                buf[n] = 0;
+                lines[line]->func_0005E840(buf);
+                line++;
+                lineStart = lastSpace + 1;
+                start = lineStart;
+                col = 0;
+            }
+        }
+    }
+    if (line == maxLine) {
+        func_001E8920(last, str + start, width);
+        last[width] = 0;
+        p = func_001E8AF0(last, D_002787F0);
+        if ((int)strlen(last) >= width)
+            *(int *)(p + 4) = (int)D_002E2E2E;
+        lines[line]->func_0005E840(last);
+    }
+}
+
