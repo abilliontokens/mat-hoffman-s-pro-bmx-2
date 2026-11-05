@@ -57,6 +57,7 @@ struct C_00135EE0_Ent {
     int state;
     int x;
 };
+struct C_00135EE0_Rec { int w[6]; };
 struct C_00135EE0_Owner {
     char pad[0x1898];
     int unk1898;
