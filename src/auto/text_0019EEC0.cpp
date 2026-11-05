@@ -41,6 +41,45 @@ struct SoultreeHierarchyCollisionObject {
     void *func_0019FBA0(int flags);
 };
 
+int C_0019F9B0::func_0019F9B0(int a1, char *path)
+{
+    int h;
+    int ptr;
+    int vC;
+    int v10;
+    int v14;
+    int v18;
+    char buf[260];
+
+    if (D_002A4C10[0] != 0) {
+        strcpy(buf, D_002A4C10);
+        if (D_002A4C0F[strlen(D_002A4C10)] != '\\')
+            func_001E8BF0(buf, &D_00284644, 0x7f);
+        strcat(buf, path);
+    } else {
+        strcpy(buf, path);
+    }
+    func_00030F30(buf, &D_0028463C);
+    h = -1;
+    ptr = 0;
+    if (D_002BEAAC->func_0013D310(buf, &D_00275FB4, &h, &ptr, 1) == 0)
+        return 0;
+    if (ptr != 0) {
+        v14 = *(int *)(ptr + 4);
+        func_0019ECB0((char *)a1, (int *)ptr);
+    } else {
+        D_002BEAAC->func_0013C8A0(h, &v18, 1, 4);
+        D_002BEAAC->func_0013C8A0(h, &vC, 4, 1);
+        D_002BEAAC->func_0013C8A0(h, &v10, 4, 1);
+        if (v18 != 0x4d2 || func_001EA426(&vC, &D_00284638) != 0 || v10 != 1)
+            D_002BEAAC->func_0013C110(h);
+        func_00132E90(h, &v14);
+        func_0019F780((char *)a1, h);
+    }
+    D_002BEAAC->func_0013C110(h);
+    return 1;
+}
+
 void *SoultreeHierarchyCollisionObject::func_0019FBA0(int flags)
 {
     vtbl = (void *)&D_0028B25C;
