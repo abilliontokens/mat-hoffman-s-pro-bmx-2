@@ -353,13 +353,6 @@ extern float D_002A9ED0;
 extern float D_002A9ED4;
 extern float D_002A9ED8;
 
-struct V4K_1A {
-    float x, y, z, w;
-    V4K_1A() {}
-    V4K_1A(float a, float b, float c) { x = a; y = b; z = c; w = 1.0f; }
-    V4K_1A operator-(V4K_1A o) const { return V4K_1A(x - o.x, y - o.y, z - o.z); }
-    V4K_1A operator*(float s) const { return V4K_1A(x * s, y * s, z * s); }
-};
 
 struct KfBase_1A2690 {
     char pad0[0x21];
