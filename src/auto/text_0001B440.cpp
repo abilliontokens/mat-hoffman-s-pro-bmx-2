@@ -181,19 +181,19 @@ int __stdcall func_0001B8A0(S_0001B820_Owner *owner)
 {
     int i;
 
-    if (owner == 0) {
-        return 0;
-    }
-    owner->f1a4->v7();
-    if (owner->f54 != 0) {
-        for (i = 0; i < owner->f54->f24; i++) {
-            S_0001B820_Elem *e = owner->f54->f28[i].elem;
-            if (e != 0) {
-                e->v31();
+    if (owner != 0) {
+        owner->f1a4->v7();
+        if (owner->f54 != 0) {
+            for (i = 0; i < owner->f54->f24; i++) {
+                S_0001B820_Elem *e = owner->f54->f28[i].elem;
+                if (e != 0) {
+                    e->v31();
+                }
             }
         }
+        return 1;
     }
-    return 1;
+    return 0;
 }
 
 int __stdcall func_0001B900(int param_1)
