@@ -325,7 +325,7 @@ struct SoundElemList_001CF2A0 {
     int func_0015ACA0(int newCapacity);
     SoundElem_001CF2A0 *at(int i)
     {
-        if (count > 0 && items != 0 && i < count) {
+        if (count > 0 && items && i < count) {
             return items[i];
         }
         return 0;
