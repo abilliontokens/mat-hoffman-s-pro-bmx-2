@@ -96,6 +96,48 @@ int C_0013DFF0::func_0013DFF0(int a1, int a2) {
     return 0;
 }
 
+C_0013E080 *C_0013E080::func_0013E080(void) {
+    int i;
+
+    func_0001DFE0();
+    f24 = (int)((char *)this + 0x14);
+    f28 = (int)((char *)this + 0x20);
+    vtbl = &D_00284C58;
+    fF0 = 0;
+    f8 = -1;
+    f10 = 0;
+    fC = 0;
+    fE4 = -1;
+    fEC = 0;
+    fE8 = 0;
+    fF4 = -1;
+    fF8 = -1;
+    fE0 = -1;
+    fFC = 1;
+    memset(f2C, 0, 0x20);
+    f70 = 0;
+    f6C = -1;
+    f74 = -1;
+    f78 = -1;
+    f7C = 0;
+    for (i = 0; i < 8; i++) {
+        f80[i].x = 0;
+        f80[i].y = -2;
+        f80[i].z = -0x6000;
+    }
+    func_0013D550(1, 10, &D_00100000);
+    return this;
+}
+
+void *C_0013E080::func_0013E140(unsigned int flags) {
+    vtbl = &D_00284C58;
+    func_0013D400();
+    func_0001DFF0();
+    if (flags & 1)
+        func_001E891B(this);
+    return this;
+}
+
 void func_0013E680(void) {
     D_002EFDB8->func_001D5600();
     D_002A8490->func_00156E80();
