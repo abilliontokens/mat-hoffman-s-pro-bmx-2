@@ -136,6 +136,144 @@ struct C_0005E920 {
     void func_0005E920(float param_1, float param_2);
 };
 
+struct C_5EA10_Pos {
+    char pad0[0x24];
+    float f24;
+};
+
+struct C_5EA10_Rider {
+    char pad0[0x9E8];
+    C_5EA10_Pos *f9E8;
+    C_5EA10_Pos *f9EC;
+};
+
+struct C_5EA10_Riders {
+    char pad0[0x1A8];
+    C_5EA10_Rider *f1A8[8];
+};
+
+struct C_5EA10_Game {
+    char pad0[0x4E0];
+    C_5EA10_Riders *f4E0;
+};
+
+struct C_5EA10_Players {
+    char pad0[0x64];
+    C_5EA10_Game *f64;
+    char pad68[0x90 - 0x68];
+    int f90;
+};
+
+struct C_5EA10_Mode {
+    char pad0[4];
+    int f4;
+    char pad8[0x300 - 8];
+    int f300[8];
+};
+
+struct C_5EA10_Pad {
+    virtual void v00();
+    virtual void v04();
+    virtual void v08();
+    virtual void v0C();
+    virtual void v10();
+    virtual void v14();
+    virtual void v18();
+    virtual void v1C();
+    virtual void v20();
+    virtual void v24();
+    virtual void v28();
+    virtual void v2C();
+    virtual void v30();
+    virtual void v34();
+    virtual void v38();
+    virtual void v3C();
+    virtual void v40();
+    virtual int v44();
+};
+
+struct C_5EA10_Event {
+    int f0;
+    int type;
+    int pad;
+    int one;
+    int flags;
+};
+
+struct C_5EA10_Params {
+    int one;
+    float scale;
+    int z[4];
+};
+
+struct C_00135D30 {
+    void func_00135D30(int dir, C_5EA10_Event *ev, int pad);
+};
+
+struct C_5EA10_Input {
+    char pad0[0x14];
+    C_5EA10_Pad *f14[8];
+    char pad34[0xCC0 - 0x34];
+    C_00135D30 *fCC0;
+};
+
+struct C_5EA10_Root {
+    char pad0[8];
+    C_5EA10_Input *f8;
+    char padC[0x2A4 - 0xC];
+    C_5EA10_Players *f2A4;
+    char pad2A8[0x2E0 - 0x2A8];
+    C_5EA10_Mode *f2E0;
+};
+
+struct C_5EA10_Cam {
+    char pad0[0x40];
+    float f40;
+    float f44;
+};
+
+struct C_5EA10_World {
+    char pad0[0x4E4];
+    C_5EA10_Cam *f4E4;
+};
+
+extern C_5EA10_Root *D_002A8490;
+extern C_5EA10_World *D_002B9120;
+extern float D_00275544;
+extern float D_00277FBC;
+extern float D_002755E8;
+
+struct BmxMenu {
+    virtual void v00();
+    virtual void v04();
+    virtual void v08();
+    virtual void v0C();
+    virtual void v10();
+    virtual void v14();
+    virtual void v18();
+    virtual void v1C();
+    virtual void v20();
+    virtual void v24();
+    virtual void v28();
+    virtual void v2C();
+    virtual void v30();
+    virtual void v34();
+    virtual void v38();
+    virtual void v3C();
+    virtual void v40();
+    virtual void v44();
+    virtual void v48();
+    virtual void v4C();
+    virtual void v50();
+    virtual void v54();
+    virtual void v58();
+    virtual void v5C(C_5EA10_Event *ev, C_5EA10_Params *p);
+    char pad4[0x20];
+    float f24[8];
+    float f44[8];
+    void func_00157A00(int a0);
+    void func_0005EA10(int a0);
+};
 
 C_0005E600 *C_0005E600::func_0005E600(int a0)
 {
