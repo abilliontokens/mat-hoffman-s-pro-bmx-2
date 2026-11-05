@@ -11,13 +11,14 @@ struct C_000B5870 {
     int func_000B5870(void);
 };
 
+struct V16_000B5260 {
+    int a, b, c, d;
+};
+
 struct C_000B5880 {
     char pad0[0x34];
-    int unk34;
-    int unk38;
-    int unk3c;
-    int unk40;
-    void func_000B5880(int *param_1);
+    V16_000B5260 unk34;
+    V16_000B5260 func_000B5880(void);
 };
 
 struct C_000B58B0 {
@@ -44,21 +45,14 @@ struct V4_000B5260 {
     float x, y, z, w;
 };
 
-struct V16_000B5260 {
-    int a, b, c, d;
-};
-
 
 int C_000B5870::func_000B5870(void) {
     return unk24;
 }
 
-void C_000B5880::func_000B5880(int *param_1)
+V16_000B5260 C_000B5880::func_000B5880(void)
 {
-  param_1[0] = unk34;
-  param_1[1] = unk38;
-  param_1[2] = unk3c;
-  param_1[3] = unk40;
+  return unk34;
 }
 
 void C_000B58B0::func_000B58B0(void)
@@ -84,6 +78,19 @@ void C_000B58B0::func_000B58B0(void)
   row[3] = *(float *)(v + 0x4c);
   func_0001E9E0(w, row);
   *(float *)(in_ECX + 0x54) = d[0] * row[0] + d[1] * row[1] + d[2] * row[2];
+}
+
+int C_000B5950::func_000B5950(void)
+{
+  int in_ECX = (int)this;
+  float f;
+  float fabsf(float);
+
+  f = *(float *)((**(code **)(*(int *)in_ECX + 0x6c))() + 0x44);
+  if (fabsf(f) > D_002A2EC8) {
+    return 1;
+  }
+  return 0;
 }
 
 void C_000B6080::func_000B6080(int param_1)
