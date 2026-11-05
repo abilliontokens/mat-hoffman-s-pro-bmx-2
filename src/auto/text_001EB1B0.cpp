@@ -252,17 +252,17 @@ void __cdecl func_001EB496(int flag, char *argument, char *number)
     }
 }
 
-static void func_001EB4D4(char *s, int dist)
+static __declspec(noinline) void func_001EB4D4(char *s, int dist)
 {
     if (dist != 0) {
         func_001EA6A0(s + dist, s, strlen(s) + 1);
     }
 }
 
-static char *func_001EB4F7(char *buf, int ndec, int caps, S_StrFlt *pflt, char g_fmt)
+char *__cdecl func_001EB4F7(char *buf, int ndec, int caps, S_StrFlt *pflt, char g_fmt)
 {
     char *p;
-    int exp;
+    int expo;
 
     if (g_fmt) {
         func_001EB4D4(buf + (pflt->sign == '-'), ndec > 0);
@@ -283,22 +283,22 @@ static char *func_001EB4F7(char *buf, int ndec, int caps, S_StrFlt *pflt, char g
     }
     p++;
     if (*pflt->mantissa != '0') {
-        exp = pflt->decpt - 1;
-        if (exp < 0) {
-            exp = -exp;
+        expo = pflt->decpt - 1;
+        if (expo < 0) {
+            expo = -expo;
             *p = '-';
         }
         p++;
-        if (exp >= 100) {
-            *p += (char)(exp / 100);
-            exp %= 100;
+        if (expo >= 100) {
+            *p += (char)(expo / 100);
+            expo %= 100;
         }
         p++;
-        if (exp >= 10) {
-            *p += (char)(exp / 10);
-            exp %= 10;
+        if (expo >= 10) {
+            *p += (char)(expo / 10);
+            expo %= 10;
         }
-        *++p += (char)exp;
+        *++p += (char)expo;
     }
     return buf;
 }
@@ -324,6 +324,27 @@ void __cdecl func_001EB7D7(void)
 void func_001EB977(void) {
     int func_001EB302(...);
     func_001EB302(13);
+}
+
+int __cdecl func_001EB980(void)
+{
+    S_Tiddata *ptd;
+
+    if (func_001EB290() == 0) {
+        func_001EB2D9();
+        return 0;
+    }
+    ptd = func_001EA1A1(1, 0x84);
+    ((S_Tiddata **)((int **)__readfsdword(4))[D_002F41D0])[2] = ptd;
+    if (ptd == 0) {
+        ptd->pxcptacttab = D_002AEDD8;
+        ptd->holdrand = 1;
+    }
+    ptd->tid = func_001DE935();
+    ptd->thandle = (unsigned long)-1;
+    D_002F69F8 = 0;
+    func_001DE7E6(D_002F69F0, 1);
+    return 0;
 }
 
 void __cdecl func_001EB9F3(int rterrnum)
