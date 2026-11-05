@@ -50,7 +50,11 @@ struct UnlockRecord { char pad0[0x638]; int flags[1]; };
 struct UnlockService {
     UnlockRecord *func_0005C020(int index);
     void func_0005C1B0(int type, int index);
+    void func_0005C170(int type, int index);
 };
+struct GoalRecord { char pad0[0x62c]; int flags[1]; };
+struct GoalLevel { char pad0[0x11c]; int count; char pad120[0xc]; int *flags; char pad130[0x78]; };
+struct GoalOwner { char pad0[0x27c]; GoalLevel *f27c; };
 struct UnlockData { char pad0[0x110]; int count; int unk114; int *flags; char pad11c[0x8c]; };
 struct UIGlobalSub {
     char pad0[0x2c0];
