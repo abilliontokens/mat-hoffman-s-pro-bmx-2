@@ -29,6 +29,15 @@ struct C_001E2770 {
     int func_001E2770();
 };
 
+extern "C" unsigned char _BitScanForward(unsigned long *index, unsigned long mask);
+#pragma optimize("y", on)
+int __fastcall func_001E2770(unsigned long mask)
+{
+    unsigned long index;
+    _BitScanForward(&index, mask);
+    return (int)index;
+}
+#pragma optimize("", on)
 int __stdcall func_001E2774(const char *name)
 {
     S_AnsiString target;
@@ -73,4 +82,16 @@ int __stdcall func_001E281A(const char *name)
     }
     return 0;
 }
+
+int __stdcall func_001E27FC(int *section);
+int __stdcall func_001E2835(const char *name)
+{
+    int result;
+    result = func_001E2774(name);
+    if (result != -1) {
+        return func_001E27FC((int *)result);
+    }
+    return 0;
+}
+
 #pragma optimize("", on)
