@@ -89,6 +89,12 @@ struct C_00192420 {
 };
 
 
+void func_00191610(int name, C_0018F390 *obj)
+{
+    float value = (float)func_001E9649(name);
+    obj->func_0018F390(&D_00275630, 0x100, &value);
+}
+
 void func_00191C20(int name, C_0018F390 *obj)
 {
     int value = func_001E91F4(name);
@@ -114,16 +120,16 @@ int func_00192300(void) {
 void func_00192310(int unused, C_0018F390 *obj)
 {
     S_00192310_Mat m;
-    S_00192310_Mat * volatile p = &m;
-    __m128 z = _mm_setzero_ps();
-    S_00192310_Mat *q = p;
-    __m128 *v = (__m128 *)q;
     S_00192310_Mat copy;
+    S_00192310_Mat * volatile p;
+    __m128 *v;
 
-    v[0] = z;
-    v[1] = z;
-    v[2] = z;
-    v[3] = z;
+    p = &m;
+    v = (__m128 *)p;
+    v[0] = _mm_setzero_ps();
+    v[1] = _mm_setzero_ps();
+    v[2] = _mm_setzero_ps();
+    v[3] = _mm_setzero_ps();
     copy = m;
     obj->func_0018F390(&D_00275630, (int)&D_00010900, (int *)&copy);
 }
@@ -154,6 +160,18 @@ undefined4 C_001923D0::func_001923D0(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+C_001923F0 *C_001923F0::func_001923F0(int a)
+{
+    func_00192720();
+    unk28 = a;
+    unk30 = a;
+    vtbl = &D_0028AB24;
+    unk34 = 0;
+    unk2C = 0;
+    unk38 = 0;
+    return this;
 }
 
 void C_00192420::func_00192420(void)
