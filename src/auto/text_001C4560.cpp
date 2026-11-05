@@ -246,6 +246,75 @@ struct C_001C4C30 {
     void func_001C4C30(void);
 };
 
+extern int D_0028E4CC;
+
+/* one 0x44-byte ViewportFade layer */
+struct S_ViewportFadeFx {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27(int a);
+    char pad4[0x20];
+    int f24;
+    int f28;
+    float f2C;
+    int f30;
+    int f34;
+    int f38;
+    int f3C;
+    int f40;
+    S_ViewportFadeFx *Init(void)
+    {
+        ((C_00157600 *)this)->func_00157600(1);
+        f24 = 0;
+        f28 = 0;
+        f2C = 1.0f;
+        f30 = 0;
+        f34 = 0;
+        *(void **)this = (void *)&D_0028E4CC;
+        f38 = 0;
+        f3C = 0;
+        f40 = 0;
+        return this;
+    }
+};
+
+/* ViewportFade */
+struct C_001C4A70 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    char pad28[0x30 - 0x28];
+    S_ViewportFadeFx *a30[4];
+    S_ViewportFadeFx *f40;
+    void func_001577A0(void *child, int b);
+    void func_001C4A70(void);
+};
+
 /* VideoFXManager */
 struct C_001C4EE0_Obj {
     void func_001D5360(void);
@@ -351,6 +420,45 @@ void C_001C4D50::func_001C4D50(int a0)
         fx->f30 = 0.0f;
     }
     fx->v6();
+}
+
+void MotionBlur::func_001C4D90(void)
+{
+    int i;
+    MotionBlur_Fx *p;
+
+    for (i = 0; i < f24; i++) {
+        p = (MotionBlur_Fx *)func_001E8A44(0x38);
+        if (p != 0) {
+            p->func_00157600(1);
+            p->f24 = 0;
+            p->f28 = 0;
+            p->f2C = 1.0f;
+            p->f30 = 0;
+            p->f34 = 0;
+            *(void **)p = &D_0028E5DC;
+        } else {
+            p = 0;
+        }
+        f5C[i] = p;
+        f5C[i]->v27(i);
+        func_001577A0(f5C[i], 10);
+    }
+    p = (MotionBlur_Fx *)func_001E8A44(0x38);
+    if (p != 0) {
+        p->func_00157600(1);
+        p->f24 = 0;
+        p->f28 = 0;
+        p->f2C = 1.0f;
+        p->f30 = 0;
+        p->f34 = 0;
+        *(void **)p = &D_0028E5DC;
+    } else {
+        p = 0;
+    }
+    f6C = p;
+    f6C->v27(-1);
+    func_001577A0(f6C, 10);
 }
 
 void FadeManager_001C4B60::func_001C4E70(f32 v)
