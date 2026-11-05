@@ -68,6 +68,8 @@ struct S_11FF0_Owner {
     int f414;
     int f418;
     void func_001C6DA0(int a, int b);
+    float func_00011730(int a, int b);
+    float func_00012510(int a, int start);
 };
 
 struct AIPedFallState {
@@ -111,3 +113,15 @@ void __stdcall func_00011FF0(void *p, int step, int count, S_11FF0_IterFn fn)
 
 void func_00012140(void) {
 }
+
+void AIPedTurningBackState::func_000121E0()
+{
+    owner->func_001C6DA0(owner->f418, 1);
+    if (D_002A8490->f2a4->f1c8 == 0) {
+        owner->f3b0--;
+        if (owner->f3b0 < 0) {
+            owner->f3b0 = *D_002B9120->f588[owner->f3b4] - 1;
+        }
+    }
+}
+
