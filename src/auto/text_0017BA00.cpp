@@ -126,6 +126,7 @@ struct C_0017BDE0 {
     int func_0017BDE0(f32 x, f32 y);
     void func_0017BE40(void);
     int func_0017BFB0(void);
+    void func_0017BB90(f32 *pts, int n);
 };
 
 struct C_0017BB50 {
@@ -262,6 +263,59 @@ void C_0017C300::func_0017C300(void) {
     unk894 = 0;
     unk89C = 0;
     unk8B0 = 0;
+}
+
+void C_0017C300::func_0017C360(f32 a, f32 b, f32 c, f32 d, f32 e)
+{
+    C_0017C300 * volatile self = this;
+    C_0017C300 *p;
+    Pool_0017C360 *pool;
+    int limit;
+    int idx;
+    int step;
+    f32 x;
+    f32 y;
+    f32 m;
+
+    self->f8C = ((QuadTreeVt *)this)->v17();
+    self->f28 = a;
+    self->f2C = c;
+    self->f30 = b;
+    self->f34 = d;
+    self->f40 = c - a;
+    self->f44 = d - b;
+    *(f32 *)&self->unk8B0 = e;
+    x = self->f40;
+    y = self->f44;
+    _mm_store_ss(&m, _mm_max_ss(_mm_set_ss(x), _mm_set_ss(y)));
+    self->f54 = D_00289094 / m;
+    p = self;
+    D_002EFD7C = D_00275460 / p->f54;
+    limit = (int)(e * p->f54);
+    p->f4C = 0;
+    idx = self->f4C;
+    step = 0x8000;
+    do {
+        step >>= 1;
+        self->f58[idx] = step;
+        self->f4C++;
+        idx = self->f4C;
+        if (idx >= 12) {
+            break;
+        }
+    } while (step > limit);
+    self->f4C--;
+    self->f50 = self->f58[self->f4C];
+    self->fE &= 0xfe;
+    self->fC = 0;
+    self->fA0 = 0;
+    self->f9C = 0;
+    self->fA4 = 0;
+    self->fAC = 0;
+    pool = (Pool_0017C360 *)func_001E8A44(0x30);
+    self->f94 = (QuadTreeRes *)(pool != 0 ? pool->func_0001E740(8, 0x1000) : 0);
+    pool = (Pool_0017C360 *)func_001E8A44(0x30);
+    self->f90 = (QuadTreeRes *)(pool != 0 ? pool->func_0001E740(0x14, 0x1000) : 0);
 }
 
 void C_0017C300::func_0017C520(void) {
