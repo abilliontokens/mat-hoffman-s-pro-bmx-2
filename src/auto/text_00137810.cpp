@@ -87,7 +87,7 @@ struct DrawableCube {
     void func_00136FE0();
     void func_00137810();
     void func_00157660();
-    void func_00157A00(float dt);
+    int func_00157A00(float dt);
     void func_00137E50(float dt);
     void func_00192370(int a);
     void func_00138390(void);
@@ -95,6 +95,54 @@ struct DrawableCube {
     DrawableCube *func_00138330(int a);
 };
 
+
+void DrawableCube::func_00137E50(float dt)
+{
+    int i;
+    int idle;
+    DrawableCubeItem *e;
+
+    if (f3c == 0) {
+        func_00157A00(dt);
+        return;
+    }
+    idle = 1;
+    for (i = 0; i < f38; i++) {
+        e = &f3c[i];
+        if (e->f24 & 1) {
+            idle = 0;
+        } else {
+            e->f18 = dt + e->f18;
+        }
+    }
+    if (idle != 0) {
+        for (i = 0; i < f38; i++) {
+            e = &f3c[i];
+            if (e->f18 > e->f10) {
+                if (e->f1C >= D_00275460) {
+                    e->f1C = 0;
+                    if (func_00011260(0, 100) < e->f14) {
+                        e->f24 |= 1;
+                        f34 = i;
+                        func_00157A00(dt);
+                        return;
+                    }
+                } else {
+                    e->f1C = dt + e->f1C;
+                }
+            }
+        }
+    } else {
+        e = f3c + f34;
+        e->f20 = dt * e->fC + e->f20;
+        if (e->f20 > e->f4 - e->f0) {
+            e->f20 = 0;
+            e->f18 = 0;
+            e->f24 &= ~1;
+        }
+    }
+    func_00157A00(dt);
+}
 
 int DrawableCube::func_001382B0(void)
 {
