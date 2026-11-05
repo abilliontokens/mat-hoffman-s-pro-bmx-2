@@ -156,6 +156,33 @@ struct C_000688C0 {
     void func_000688C0();
 };
 
+struct R_Ctl {
+    char pad0[0x90];
+    int unk90;
+    void func_00031610(int a, int b);
+};
+
+extern int D_002B901C;
+int __cdecl func_001361E0(int a, int b, int *c, unsigned int d);
+
+struct C_00068540 {
+    char pad0[0x108];
+    int unk108;
+    R_Ctl *unk10C;
+    int unk110;
+    char pad114[0x24];
+    int unk138;
+    char pad13C[0x14];
+    int unk150;
+    char pad154[4];
+    int unk158;
+    int unk15C;
+    int unk160;
+    int unk164;
+    int func_00157BF0(int *a, int b);
+    int func_00068540(int *a, int b);
+};
+
 struct C_00067D60 {
     void func_00067D60(int param_1, undefined4 param_2);
 };
