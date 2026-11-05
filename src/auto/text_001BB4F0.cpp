@@ -79,6 +79,19 @@ void C_001BB620::func_001BB620(void *a1, void *a2, int a3, int a4)
     func_001D3F50();
 }
 
+void C_001BB860::func_001BB860()
+{
+    vtbl = &D_0028D2BC;
+    if (unkB4) func_001E891B(unkB4);
+    if (unkB8) func_001E891B(unkB8);
+    if (unkBC) func_001E891B(unkBC);
+    if (unkC0) func_001E891B(unkC0);
+    if (unkC8) func_001E891B(unkC8);
+    if (unkC4) func_001E891B(unkC4);
+    if (unkCC) func_001E891B(unkCC);
+    func_00157660();
+}
+
 undefined4 C_001BC020::func_001BC020(byte param_1)
 {
   int func_001BB860(...);
