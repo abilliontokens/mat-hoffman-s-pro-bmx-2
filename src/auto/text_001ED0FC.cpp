@@ -35,3 +35,38 @@ void func_001ED402(void) {
     int func_001EB302(...);
     func_001EB302(1);
 }
+
+int func_001ED40B(int fh)
+{
+    int func_001EE6CE(...);
+    int __stdcall func_001DD13C(int);
+    int func_001DD603(...);
+    int func_001EE685(...);
+    void func_001ED087(unsigned int);
+    extern int *D_002FB260[];
+    int err;
+    if (func_001EE6CE(fh) != -1) {
+        if (fh == 1 || fh == 2) {
+            int other = func_001EE6CE(2);
+            if (func_001EE6CE(1) == other) {
+                goto zero_err;
+            }
+        }
+        if (func_001DD13C(func_001EE6CE(fh))) {
+            goto zero_err;
+        }
+        err = func_001DD603();
+        goto done;
+    }
+zero_err:
+    err = 0;
+done:
+    func_001EE685(fh);
+    *(unsigned char *)((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) = 0;
+    if (err != 0) {
+        func_001ED087(err);
+        return -1;
+    }
+    return 0;
+}
+
