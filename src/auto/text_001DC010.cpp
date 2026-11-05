@@ -30,6 +30,10 @@ struct S_Prcb250 {
 
 long __stdcall func_001DC97C(int a, int b, int c, int d, int e);
 
+extern "C" void *(__stdcall *_imp__MmAllocateContiguousMemory)(unsigned int);
+extern "C" void (__stdcall *_imp__MmPersistContiguousMemory)(void *, unsigned int, int);
+extern char D_0028FA30;
+void __stdcall func_001DF4E1(char *, const char *, unsigned int);
 extern char D_0028FA24;
 extern char D_001DC7F0;
 extern char D_001DC810;
@@ -155,7 +159,6 @@ u32 func_001DC974(void)
 }
 
 #pragma intrinsic(memcpy)
-#pragma intrinsic(__readfsdword)
 #pragma optimize("sy", on)
 int __stdcall func_001DCA56(int *outType, void *outData)
 {
@@ -164,7 +167,7 @@ int __stdcall func_001DCA56(int *outType, void *outData)
 
     if (page != 0) {
         type = page->launchType;
-        if (type == 2 || type == 3 || page->titleId == D_00010118->titleId) {
+        if (type == 2 || type == 3 || D_00010118->titleId == page->titleId) {
             *outType = type;
             memcpy(outData, (char *)*_imp__LaunchDataPage + 0x400, 0xC00);
             page = *_imp__LaunchDataPage;
@@ -175,7 +178,6 @@ int __stdcall func_001DCA56(int *outType, void *outData)
     }
     return 0x490;
 }
-#pragma optimize("sy", on)
 u32 __stdcall func_001DCABA(int a, int b, int c, int d, int e)
 {
     long status = func_001DC97C(a, b, c, d, e);
