@@ -251,15 +251,17 @@ struct SphereCollisionObject {
     void func_001A4AE0(u32 *pos, float *radius);
 };
 
-struct Mat_001A4790 {
-    char pad0[4];
-    void *f4;
-};
+struct VT_001A4790;
 
 struct Shape_001A4790 {
     char pad0[0x28];
-    void *f28;
-    void *f2C;
+    VT_001A4790 *f28;
+    VT_001A4790 *f2C;
+};
+
+struct Mat_001A4790 {
+    Mat_001A4790 *next;
+    Shape_001A4790 *f4;
 };
 
 struct VT_001A4790 {
@@ -267,20 +269,22 @@ struct VT_001A4790 {
     virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
     virtual void v8(); virtual void v9(); virtual void v10();
     virtual void v11(void *a, void *b, int c, int d);
+    virtual int v12();
 };
 
 struct C_001A4790 {
     u32 vec0[4];
     u32 vec10[4];
     u32 f20;
-    void *f24;
-    void *f28;
+    Shape_001A4790 *f24;
+    VT_001A4790 *f28;
     void *f2C;
-    void *f30;
+    Mat_001A4790 *f30;
     int f34;
     int f38;
     int f3C;
     void func_001A4790(void *a1, u32 flags, u32 *a3, u32 *a4, int a5, int a6, int a7);
+    int func_001A4840(void);
 };
 
 
