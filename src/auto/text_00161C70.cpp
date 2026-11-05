@@ -70,6 +70,35 @@ struct C_001628A0 {
     int func_001628A0(float t);
 };
 
+extern int D_00287C24;
+extern int D_002AA46C;
+void *func_001E8A44(int size);
+
+/* object with a deleting destructor in slot 0; the vertex streams hold one more virtual */
+struct S_00162610_Stream {
+    virtual void destroyObject(int flags);
+    virtual void v1(int arg, int d);
+    S_00162610_Stream *func_00144640(void);
+};
+
+struct C_00162610 {
+    void *vtbl;
+    char pad4[0x20];
+    S_00162610_Stream *f24;
+    int f28;
+    int *f2C;
+    int f30;
+    int f34;
+    char f38;
+    unsigned char f39;
+    void func_00157600(int a);
+    void func_00157660(void);
+    C_00162610 *func_00162610(int a);
+    void func_00162660(void);
+    C_00162610 *func_00162690(int p1, char flag, int count, int *arr, int p5);
+    void *func_00162740(unsigned int flags);
+};
+
 
 float C_00161F80::func_00161F80(float param)
 {
