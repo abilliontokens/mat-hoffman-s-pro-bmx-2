@@ -228,6 +228,14 @@ extern int D_002A90D4;
 extern int D_0027CEE4;
 extern int D_0027CED8;
 extern int D_00289EB8;
+extern int D_00289EB4;
+struct StaticModelTempData {
+    void *vtbl;
+    char f4[0x104];
+    V4_00188250 f108, f118, f128;
+    int f138, f13C, f140;
+    StaticModelTempData();
+};
 int func_001E9040(char *str, char *control);
 
 static __forceinline int Min_00187670(int a, int b) { return a > b ? b : a; }
@@ -326,20 +334,23 @@ C_00187F20 *C_00187F20::func_00187F20(void)
     return this;
 }
 
-int C_001880A0::func_001880A0(S_001880A0_Stream *stream)
+int C_001880A0::func_001880A0(S_001880A0_Stream * volatile stream)
 {
     char buf[0x104];
-    int len;
+    C_001880A0 * volatile self = this;
+    volatile int len;
+    int n;
 
     stream->func_00168BE0(&D_00276310, &D_002764F0, buf, -1);
-    len = Min_00187670(func_001E9040(buf, (char *)&D_0027CEF0), 0x32);
-    func_001E8920(f4, buf, len);
-    f4[len] = 0;
-    stream->func_00168CB0(&D_00275AD4, &D_002A90B4, f108);
-    stream->func_00168CB0(&D_00275AC8, &D_002A90E4, f118);
-    stream->func_00168CB0(&D_0027CEE4, &D_002A90D4, f128);
-    stream->func_00168C20(&D_0027CED8, 1, &f138);
-    stream->func_00168C20(&D_00289EB8, 0, &f13C);
+    len = func_001E9040(buf, (char *)&D_0027CEF0);
+    n = len > 0x32 ? 0x32 : len;
+    func_001E8920(self->f4, buf, n);
+    self->f4[n] = 0;
+    stream->func_00168CB0(&D_00275AD4, &D_002A90B4, self->f108);
+    stream->func_00168CB0(&D_00275AC8, &D_002A90E4, self->f118);
+    stream->func_00168CB0(&D_0027CEE4, &D_002A90D4, self->f128);
+    stream->func_00168C20(&D_0027CED8, 1, &self->f138);
+    stream->func_00168C20(&D_00289EB8, 0, &self->f13C);
     return 1;
 }
 #pragma optimize("g", on)
