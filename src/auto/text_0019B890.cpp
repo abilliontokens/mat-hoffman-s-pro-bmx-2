@@ -1,6 +1,8 @@
 /* 12 functions from 0x0019B890 to 0x0019C710, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <math.h>
+#include <xmmintrin.h>
 
 void func_00123C50(void *a1, void *a2, void *a3, int a4, void *a5, void *a6, void *a7);
 
