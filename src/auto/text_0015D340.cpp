@@ -83,6 +83,7 @@ struct C_0015DA60 {
     void func_0015D850(int count, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int flag);
     void func_0015DA60(int a, int b, int c);
     void func_0015DCC0(C_0015DCC0_Item *item);
+    void func_0015DD80(float *m, int count, char *in, char *out, int stride);
 };
 
 extern float D_00275460;
