@@ -46,9 +46,13 @@ struct Range_000A7650 {
     float hi;
 };
 
+struct S_A7FE0_Item;
 struct Global_000A7650 {
     char pad0[0x52C];
     Range_000A7650 *f52C;
+    char pad530[0x578 - 0x530];
+    int f578;
+    S_A7FE0_Item **f57c;
 };
 
 extern Global_000A7650 *D_002B9120;
