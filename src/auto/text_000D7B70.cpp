@@ -1,6 +1,16 @@
 /* 6 functions from 0x000D7B70 to 0x000D8B20, found by Ghidra. */
 #include "common.h"
 extern int D_0027F404;
+extern char D_00277038[];
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+
+static inline int StrLen(const char *s)
+{
+    const char *p = s;
+    while (*p++) {
+    }
+    return p - s - 1;
+}
 
 struct DelObjHOF4 {
     virtual void Destroy(int a0);
