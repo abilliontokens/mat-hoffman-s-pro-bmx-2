@@ -139,7 +139,7 @@ void func_001EB138(int i, char *s) {
     if (i < 20) {
         func_001EB390(i + 16);
     } else {
-        RtlEnterCriticalSection(s + 0x20);
+        __imp__RtlEnterCriticalSection(s + 0x20);
     }
 }
 
