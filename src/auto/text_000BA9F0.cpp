@@ -72,3 +72,15 @@ void BmxUIManager::func_000BB340()
     f150->v4();
     f26c->v4();
 }
+
+void BmxUIManager::func_000BB360()
+{
+    ((C_00157920 *)this)->func_00157920();
+}
+
+void BmxUIManager::func_000BB380(const char *name)
+{
+    f25c->f74->func_000300C0(name);
+    f25c->f74->func_00030160();
+}
+
