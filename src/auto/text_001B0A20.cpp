@@ -464,6 +464,73 @@ struct C_001AFCC0 {
     C_001AFCC0 *func_001AFCC0(void *a0, int a1, int a2, int a3);
 };
 
+/* config file reader, 0x4CC bytes */
+struct C_00168280 {
+    int state;
+    char pad4[0x4C8];
+    C_00168280 *func_00168280(void);
+    int func_00169490(const char *path, int flags);
+    int func_00169710(const char *name);
+    void func_00168C20(const char *key, int def, int *dst);
+    void func_001691E0(void);
+};
+
+struct C_00146E20 {
+    virtual void v0();
+    virtual void v1(C_00168280 *s);
+    C_00146E20 *func_00146E20(void);
+};
+
+struct C_00145230 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4(const char *name);
+    C_00145230 *func_00145230(void);
+    void func_00148910(const char *dir, C_00168280 *s, int a, int b, int c);
+};
+
+struct C_00147280 {
+    virtual void v0();
+    virtual void v1(C_00168280 *s);
+    C_00147280 *func_00147280(void);
+};
+
+struct C_001B0A20;
+
+struct S_002A829C_Entry {
+    int f0;
+    C_001B0A20 *f4;
+    int f8;
+    int fC;
+};
+
+struct S_002A829C {
+    char pad0[0x14];
+    S_002A829C_Entry *f14;
+    int func_001617F0(const char *name, int flag);
+};
+extern S_002A829C *D_002A829C;
+extern char D_00286764[], D_0028C6D0[], D_002769F8[], D_0028C6BC[];
+extern char D_0028C6A8[], D_0028C690[], D_0028C684[];
+int func_001E8D25(int c);
+char *func_001E8AC0(const char *s, int c);
+void func_00030F30(char *dst, const char *src);
+
+struct C_001B0A20 {
+    char pad0[0x8];
+    char name[0x40];
+    int f48;
+    C_00146E20 *f4C;
+    int f50;
+    C_00145230 *f54[0x40];
+    C_00147280 *f154;
+    unsigned char b0 : 1;
+    unsigned char b1 : 1;
+    int func_001B0A20(const char *arg);
+};
+
 struct C_001B0D00 {
     char pad0[0xA];
     u8 unkA;
