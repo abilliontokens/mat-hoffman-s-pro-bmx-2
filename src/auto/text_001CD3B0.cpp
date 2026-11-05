@@ -11,7 +11,7 @@ void func_0021FB99();
 int __stdcall func_002228B1(int, void **, int);
 int __stdcall func_00222353(void *, float, float, float, int);
 int __stdcall func_00222309(void *, float, float, float, float, float, float, int);
-int __stdcall func_002223AC(void *, int, int, int, int);
+int __stdcall func_002223AC(void *, float, float, float, int);
 int __stdcall func_0022195C(void *);
 void func_001CBC10(int, const char *, int);
 struct XboxSoundInterface {
