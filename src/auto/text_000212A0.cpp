@@ -72,6 +72,49 @@ struct C_000216F0 {
     void func_000216F0(int a0, int idx, int val);
 };
 
+struct C_000219E0_Mgr {
+    char pad0[0x10];
+    int unk10;
+    void func_00166C80(int a, int b);
+    void func_00164820(int a);
+};
+
+struct C_000219E0_Owner {
+    char pad0[0x1a4];
+    C_000219E0_Mgr *f1a4;
+    char pad1a8[4];
+    int *f1ac;
+};
+
+struct C_000219E0 {
+    char pad0[0x28];
+    C_000219E0_Owner *f28;
+    void func_000219E0(int idx);
+};
+
+struct S_00021A50_Ent {
+    int f0;
+    int f4;
+};
+
+struct S_00021A50_Mgr {
+    char pad0[0x34];
+    int f34;
+    char pad38[0x2c];
+    S_00021A50_Ent **f64;
+};
+
+extern S_00021A50_Mgr *D_002B7E18;
+
+struct C_00021A50 {
+    char pad0[0x2c];
+    S_00021A50_Ent *f2c;
+    int f30;
+    int f34;
+    void func_00021A20();
+    int func_00021A50(int idx, int v);
+};
+
 struct C_00021720 {
     int unk0;
     int unk4;
@@ -95,11 +138,15 @@ W4_000212A0 *W4_000212A0::func_000212A0(u32 *p)
 float *func_00021330(V4_000212A0 *out, V4_000212A0 *a, V4_000212A0 *b)
 {
     V4_000212A0 r;
-    float d = b->y * a->y + a->x * b->x + b->z * a->z;
+    float v[3];
+    float d = a->y * b->y + a->x * b->x + b->z * a->z;
 
-    r.x = a->x - d * b->x;
-    r.y = a->y - d * b->y;
-    r.z = a->z - d * b->z;
+    v[0] = d * b->x;
+    v[1] = d * b->y;
+    v[2] = d * b->z;
+    r.x = a->x - v[0];
+    r.y = a->y - v[1];
+    r.z = a->z - v[2];
     r.w = 1.0f;
     *out = r;
     if (out->x == D_00275544 && out->y == D_00275544 && out->z == D_00275544) {
