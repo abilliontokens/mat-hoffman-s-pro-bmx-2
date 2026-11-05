@@ -2,6 +2,14 @@
 #include "common.h"
 extern int D_00284A2C;
 extern float D_00275544;
+struct SceneVector { int x,y,z,w; };
+struct SceneCamera { void func_001983A0(); void func_00199600(SceneVector); void func_00198E60(); void func_0019ABA0(int,int); };
+struct SceneActor { int f0; SceneCamera *camera; char pad8[0x2c]; int f34; void func_00164820(int); };
+struct SceneTrack { int id, value; SceneVector vector; int tail; };
+struct SceneEntry { int f0,count1,count2,id; int pad[3]; struct SceneTarget *target; SceneTrack *tracks; char *groups; int tail; };
+struct SceneTarget { int pad[3]; int fc; void func_00194B40(int); };
+struct SceneBank { char pad[0x4a8]; int *values; };
+struct SceneOutput { void func_0012B350(); void func_0012A770(int,int); };
 struct CutSceneAudio { void func_001D1A30(int); };
 struct CutSceneWorld { char pad[0xb4]; CutSceneAudio *audio; };
 struct CutSceneRoot { char pad[4]; CutSceneWorld *world; };
