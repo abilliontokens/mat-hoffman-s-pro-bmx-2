@@ -289,3 +289,12 @@ int C_0008AB90::func_0008AB90(int a0) {
     return 1;
 }
 
+void C_0008ABA0::func_0008ABA0() {
+    if ((D_002B9090 & 1) == 0) {
+        D_002B9090 |= 1;
+        D_002B908C = D_002A7CB8->func_00026500((int)&D_00279CA8, 0);
+    }
+    unk24->func_001D6600();
+    func_00157960();
+}
+
