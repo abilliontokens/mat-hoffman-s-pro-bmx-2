@@ -236,6 +236,8 @@ struct XboxSoundInterface {
 
 extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *cs);
 extern "C" __declspec(dllimport) void __stdcall RtlLeaveCriticalSection(void *cs);
+extern "C" void (__stdcall *__imp__RtlEnterCriticalSection)(void *cs);
+extern "C" void (__stdcall *__imp__RtlLeaveCriticalSection)(void *cs);
 extern "C" void __stdcall D_00220AE0(void *obj, int arg);
 
 struct SoundElem_001CF970 {
