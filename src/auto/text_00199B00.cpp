@@ -38,6 +38,14 @@ struct S_00199B00_F4 {
     float x, y, z, w;
 };
 
+struct S_0019A680_V4 {
+    float x, y, z, w;
+    S_0019A680_V4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+    S_0019A680_V4(float px, float py, float pz, float pw) { x = px; y = py; z = pz; w = pw; }
+};
+
+extern float D_002755E8;
+
 struct C_00199BE0 {
     char pad0[0xb0];
     float fB0[16];
