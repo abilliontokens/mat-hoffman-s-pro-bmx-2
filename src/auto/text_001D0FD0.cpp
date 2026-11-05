@@ -163,6 +163,21 @@ struct C_001D1550 {
     int func_001D1550(int a0);
 };
 
+extern int D_0028F274;
+
+struct C_001D1BB0 {
+    void *vtbl;
+    char pad4[0x1C];
+    int unk20;
+    char pad24[4];
+    int unk28;
+    int unk2C;
+    char pad30[0x20];
+    void *unk50;
+    void func_00160BD0();
+    C_001D1BB0 *func_001D1BB0();
+};
+
 struct C_001D1B70 {
     void *vtbl;
     char pad4[0x6B4];
@@ -200,7 +215,7 @@ void *XboxGame::func_001D1390(int flags)
     vtbl = (void *)&D_0028F154;
     if (unk2A0 != 0) {
         unk2A0 = 0;
-        ((Game *)this)->func_00156FC0();
+        Game::func_00156FC0();
     }
     if (flags & 1) {
         func_001E891B(this);
