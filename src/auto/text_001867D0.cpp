@@ -144,6 +144,7 @@ struct C_00187370 {
     virtual void func_00187390(void *a);
     int f4;
     int f8;
+    void func_00187400(void *a);
 };
 
 struct C_00187510 {
