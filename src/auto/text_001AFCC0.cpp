@@ -30,6 +30,20 @@ struct C_001AFEC0 {
     V_001AFEC0 *unk1C;
     V_001AFEC0 *unk20;
     int unk24;
+    void UpdateItems() {
+        int i;
+        for (i = 0; i < 4; i++) {
+            if (items[i]) {
+                items[i]->func_001AF530(i);
+            }
+        }
+        if (unk1C) {
+            unk1C->vf2();
+        }
+        if (unk20) {
+            unk20->vf2();
+        }
+    }
     int func_001AFEC0();
 };
 
@@ -131,6 +145,24 @@ C_001AFF50 *C_001AFF50::func_001AFF50()
     unkA = 0;
     vtbl = (void *)&D_0028C5BC;
     return this;
+}
+
+int C_001AFF80::func_001AFF80(int idx)
+{
+    int r;
+    int i;
+    if (unk10) {
+        for (i = 0; i < unk10->count; i++) {
+            if (unk10->entries[i].set && unk10->entries[i].set->vals[idx]) {
+                FloatToInt(&r, unk10->entries[i].set->vals[idx]->value);
+                return r;
+            }
+        }
+    } else if (unkC && unkC->vals[idx]) {
+        FloatToInt(&r, unkC->vals[idx]->value);
+        return r;
+    }
+    return 0;
 }
 
 void C_001B01A0::func_001B01A0(void) {
