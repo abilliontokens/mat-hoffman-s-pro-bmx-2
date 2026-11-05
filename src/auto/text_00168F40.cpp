@@ -82,6 +82,8 @@ struct C_00168F40 {
     int func_00169A50(char *line);
 };
 
+struct S_00169C50_Vec { int x, y, z, w; };
+
 struct ParticleEmitter {
     void *vtbl;
     char pad4[0x1b8];
