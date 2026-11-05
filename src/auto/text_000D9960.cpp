@@ -68,6 +68,26 @@ struct C_000DA140 {
     void func_000DA140();
 };
 
+void BmxUIPageHOF::func_000DA0C0()
+{
+    RenderEntryHOF **p = arr2EC;
+    int n = 2;
+    do {
+        RenderEntryHOF *a = p[4];
+        a->f38 = ((s32)unk2B8 << 24) | (a->f38 & 0xffffff);
+        a->b58 |= 2;
+        RenderEntryHOF *b = p[0];
+        b->f38 = ((s32)unk2B8 << 24) | (b->f38 & 0xffffff);
+        b->b58 |= 2;
+        RenderEntryHOF *c = p[2];
+        c->f38 = ((s32)unk2B8 << 24) | (c->f38 & 0xffffff);
+        c->b58 |= 2;
+        p++;
+        n--;
+    } while (n != 0);
+    func_001BF000();
+}
+
 void C_000DA140::func_000DA140() {
     if (unk29C != 0) {
         unk2AC = 1;
