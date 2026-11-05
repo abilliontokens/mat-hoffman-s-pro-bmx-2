@@ -32,7 +32,10 @@ struct S_001EF734 {
     S_001EF734 *func_001EF8F6(void *out, int v);
     S_001EF734 *func_001EFD3B(void *out, char c);
     S_001EF734 *func_001EFD7A(void *out, char *s);
+    S_001EF734 *func_001EF848(int n);
+    S_001EF734 *func_001EF88F(int n);
 };
+extern char D_00295C0C[];
 
 struct S_001F062A_Arg { int x; };
 extern char D_00295C58[];
