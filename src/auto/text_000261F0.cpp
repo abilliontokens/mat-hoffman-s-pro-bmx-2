@@ -329,3 +329,42 @@ undefined4 C_00026A70::func_00026A70(int param_1)
   return 0;
 }
 
+void C_00026A90::func_00026A90(void)
+{
+    unk0 = (int)&D_0027661C;
+    if (unk220 != 0) {
+        func_001E891B(unk220);
+    }
+    if (unk224 != 0) {
+        func_001E891B(unk224);
+    }
+    if (unk228 != 0) {
+        func_001E891B(unk228);
+    }
+    if (unk214 != 0) {
+        unk214->v2();
+        unk214 = 0;
+    }
+    if (unk218 != 0) {
+        unk218->v2();
+        unk218 = 0;
+    }
+    if (unk21C != 0) {
+        unk21C->v2();
+        unk21C = 0;
+    }
+    if (unk5EC != 0) {
+        unk5EC->v0(1);
+        unk5EC = 0;
+    }
+    if (unk5F0 != 0) {
+        unk5F0->v0(1);
+        unk5F0 = 0;
+    }
+    if (unk5F4 != 0) {
+        unk5F4->v0(1);
+        unk5F4 = 0;
+    }
+    func_00157660();
+}
+
