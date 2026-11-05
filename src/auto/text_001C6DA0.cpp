@@ -20,6 +20,13 @@ struct Vec4 {
     f32 w;
 };
 
+struct __declspec(align(16)) Vec4A {
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 w;
+};
+
 struct S_001C7310_Vec {
     float x, y, z, w;
     S_001C7310_Vec(float a, float b, float c) { x = a; y = b; z = c; w = 1.0f; }
