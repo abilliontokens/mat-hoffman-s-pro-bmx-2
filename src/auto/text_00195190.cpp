@@ -23,7 +23,7 @@ extern float D_00275460;
 struct C_00196000 {
     char pad0[0x6c];
     u32 f6c;
-    u32 f70;
+    int f70;
     u32 f74;
     int *f78;
     int *f7c;
