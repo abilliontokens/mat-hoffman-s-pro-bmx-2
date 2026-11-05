@@ -67,6 +67,18 @@ int C_0018D580::func_0018D900(const char *name)
     return -1;
 }
 
+int C_0018D580::func_0018D970(const char *name)
+{
+    int i;
+
+    for (i = 0; i < namedCount; i++) {
+        if (named[i].used != 0 && strcmp(named[i].name, name) == 0) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 void func_0018DE50(void) {
     int func_00157A00(...);
     func_00157A00();
