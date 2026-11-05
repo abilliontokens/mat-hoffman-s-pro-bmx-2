@@ -67,3 +67,15 @@ void C_000D25A0::func_000D25A0(void)
                   mgr->f2C0->func_0005C020(mgr->f2D8)->f4);
     f2038->func_001B17D0(buf);
 }
+
+void C_000D2860::func_000D2860(void)
+{
+    C_Obj_D1 *obj = f124;
+
+    obj->f270->func_000BC590();
+    obj->f270->func_000BC4C0(32.0f, D_0027DE70 + D_0027ED00);
+    obj->f270->func_000BC4A0(1.07f, 0.95f);
+    obj->f270->f38 = 1;
+    obj->f270->f34 = 0;
+}
+
