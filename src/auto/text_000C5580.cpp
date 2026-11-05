@@ -24,6 +24,18 @@ struct BmxUIPageMain {
     void func_001BF000(void);
 };
 
+void BmxUIPageMain::func_000C5710(void)
+{
+    int i;
+
+    for (i = 0; i < 10; i++) {
+        E_000C5710 *e = f2F8[i];
+        e->f38 = ((int)f2D0 << 24) | (e->f38 & 0xffffff);
+        e->b58 |= 2;
+    }
+    func_001BF000();
+}
+
 void BmxUIPageMain::func_000C58A0(void)
 {
     if (f2F0 != 0) {
