@@ -259,6 +259,21 @@ struct BmxEventFPS {
     void func_0004ACB0(void);
 };
 
+static inline S_Vec4 GetPos_0004A6A0(S_Obj4E4 *o)
+{
+    if (o->f2c == 0)
+        return D_002A15B0;
+    S_Vec4 t;
+    o->f2c->f1a4->f4->func_00199B00(&t, 0);
+    return t;
+}
+
+static inline S_Vec4 Sub_0004A6A0(const S_Vec4 &a, const S_Vec4 &b)
+{
+    S_Vec4 r(a.x - b.x, a.y - b.y, a.z - b.z);
+    return r;
+}
+
 void BmxEventFPS::func_0004A360(void)
 {
     int i;
