@@ -72,6 +72,26 @@ struct SoultreeCollisionObject {
 extern "C" void __stdcall func_0019BBD0(unsigned short param_1, int *param_2, int param_3, char *param_4, char *param_5);
 extern "C" void __stdcall func_0019BD20(unsigned short param_1, int *param_2, char *param_3, char *param_4, int param_5);
 
+void SoultreeCollisionObject::func_0019CB00(void)
+{
+    S_0019CB00_Xform *p;
+
+    D_002B92E0 = 0;
+    D_002B92F0 = 0;
+    if (unk54 == 0) {
+        void *m = func_001E8A44(0x38);
+        unk54 = m != 0 ? ((S_0019CB00_Xform *)m)->Init() : 0;
+    }
+    func_00133D80(unk54);
+    p = unk54;
+    V4_0019CB00 t(0);
+    p->a = t;
+    V4_0019CB00 u(0);
+    p->b = u;
+    p->f34 = 0.0f;
+    p->f30 = 1.0f;
+}
+
 void SoultreeCollisionObject::func_0019CBF0(int param_1, int param_2)
 {
     int local[2];
