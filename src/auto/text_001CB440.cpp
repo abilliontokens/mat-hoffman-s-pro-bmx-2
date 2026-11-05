@@ -176,6 +176,12 @@ void C_001CB510::func_001CB510(void)
     }
 }
 
+void C_001CB940::func_001CB940(void)
+{
+    ((C_001576C0 *)this)->func_001576C0();
+    v1F(1, 0);
+}
+
 int __stdcall func_001CBEE0(int a0, int a1, int a2, int a3, int a4) {
     return -2147467259;
 }
