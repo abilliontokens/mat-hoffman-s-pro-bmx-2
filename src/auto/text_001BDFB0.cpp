@@ -338,3 +338,9 @@ void UIPage::func_001BEE30(int idx, int arg)
     f140[idx]->func_001BDD60(arg);
 }
 
+void UIPage::func_001BEF20(int idx)
+{
+    f140[idx]->func_001BDDE0(1);
+    f140[idx]->func_001BDB50();
+}
+
