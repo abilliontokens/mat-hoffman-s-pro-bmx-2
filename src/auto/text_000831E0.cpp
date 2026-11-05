@@ -31,6 +31,9 @@ static inline void CopyName(char *dst, const char *src)
 /* the object at C_000831E0::fD08: hands out a string */
 struct C_001B17F0 {
     char *func_001B17F0(void);
+    void func_001B1980(void);
+    void func_001B2270(unsigned int color);
+    void func_001B17D0(char *s);
 };
 
 extern float D_002757F4;
