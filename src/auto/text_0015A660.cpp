@@ -360,18 +360,19 @@ int S_0015A660_List::func_0015ACA0(int n)
     void **p;
     void **old;
 
-    if (n > capacity) {
-        p = (void **)func_001E8A44(n * 4);
-        if (p != 0) {
-            memcpy(p, data, capacity * 4);
-            old = data;
-            data = p;
-            func_001E891B(old);
-            capacity = n;
-            return 1;
-        }
+    if (n <= capacity) {
+        return 0;
     }
-    return 0;
+    p = (void **)func_001E8A44(n * 4);
+    if (p == 0) {
+        return 0;
+    }
+    memcpy(p, data, capacity * 4);
+    old = data;
+    data = p;
+    func_001E891B(old);
+    capacity = n;
+    return 1;
 }
 
 void JoystickDevice::func_0015AE20(void)
