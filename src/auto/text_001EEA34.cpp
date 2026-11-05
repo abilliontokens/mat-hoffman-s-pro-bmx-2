@@ -43,7 +43,7 @@ struct BitObj {
     int func_001EF1E7(int a);
     int func_001EF1E7();
     BitObj *func_001EF333(int mode);
-    void func_001EF613(int a);
+    BitObj *func_001EF613(int a);
     BitObj *func_001EF8F6(int a0, int a1);
     BitObj *func_001EF11B(BitObj *p);
     BitObj *func_001EF170(int mode);
