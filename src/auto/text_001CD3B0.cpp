@@ -56,6 +56,33 @@ struct XboxSoundGroup {
 };
 
 
+XboxSoundGroup *XboxSoundGroup::func_001CD770(int a, int b)
+{
+    func_0001C8F0(b);
+    vtbl = (void *)&D_0028F004;
+    list.items = 0;
+    list.count = 0;
+    list.growBy = 0;
+    list.capacity = 0;
+    f40 &= 0xfe;
+    list.items = (S_SoundElem **)func_001E8A44(0x20);
+    f40 |= 1;
+    list.growBy = 0x10;
+    list.capacity = 8;
+    f44 = 0;
+    return this;
+}
+
+int XboxSoundGroup::func_001CD800(void)
+{
+    int i;
+
+    for (i = 0; i < list.count; i++) {
+        list.at(i)->v6(0);
+    }
+    return 1;
+}
+
 int S_SoundElemList::func_001CDE90(S_SoundElem *elem)
 {
     if (count >= capacity && !func_0015ACA0(count + growBy)) {
