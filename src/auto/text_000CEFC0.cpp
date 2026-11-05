@@ -84,6 +84,7 @@ struct BmxUIPageGameOptions {
     void func_000CFCA0();
     void func_000CFAC0();
     void func_000CFB20();
+    void func_000CFB90();
 };
 
 void BmxUIPageGameOptions::func_000CFAC0()
