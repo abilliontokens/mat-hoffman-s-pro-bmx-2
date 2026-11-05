@@ -73,7 +73,7 @@ struct C_000717E0 {
     virtual void v4();
     virtual void v5();
     virtual void v6();
-    char pad4[0x5C];
+    char pad4[0x60];
     int f64;
     int f68;
     int f6C;
