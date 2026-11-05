@@ -106,6 +106,36 @@ struct C_00051A90 {
     int func_00051A90(int flag);
 };
 
+struct C_0009FE40 {
+    void func_0009FE40(undefined4 *a, undefined4 *b, undefined4 *c, undefined4 *d);
+};
+
+struct C_0009FD60 {
+    void func_0009FD60(undefined4 a, undefined4 b, undefined4 c, undefined4 d);
+};
+
+struct C_00051AE0Mid {
+    char pad0[0x54];
+    void *f54;
+};
+
+struct C_00051AE0 {
+    char pad0[0x44];
+    C_00051AE0Mid *f44;
+    char pad48[0x280];
+    int f2C8;
+    char pad2CC[0xc];
+    undefined4 f2D8[4];
+    undefined4 f2E8[4];
+    undefined4 f2F8[4];
+    undefined4 f308[4];
+    undefined4 f318[4];
+    undefined4 f328[4];
+    undefined4 f338[4];
+    undefined4 f348[4];
+    int func_00051AE0(int flag);
+};
+
 struct C_00051A00Node {
     char pad0[4];
     int f4;
