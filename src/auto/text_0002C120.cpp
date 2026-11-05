@@ -34,4 +34,17 @@ struct C_0002CB00 {
     void func_0002CB00(float dt);
 };
 
+void C_0002CB00::func_0002CB00(float dt)
+{
+    if (f56c != 0) {
+        float s = f580;
 
+        f1e0->func_0001EB50(S_0002CB00_Vec4(s * f570, s * f574, s * f578, 1.0f));
+        f588 = f588 - dt;
+        if (f588 <= D_00275544) {
+            f56c = 0;
+            f588 = 0;
+            f580 = 0;
+        }
+    }
+}
