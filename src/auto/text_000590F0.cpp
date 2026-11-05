@@ -59,6 +59,7 @@ struct Screen_000597B0 {
     Fader_000597B0 *f130;
     Fader_000597B0 *f134;
     int func_000590F0(int a);
+    void func_00055D10(File_000590F0 *f);
     void func_00056100(Rect16_000597B0 r, int a);
     int func_000597B0(Rect16_000597B0 r, int a4, int name, int a6, int a7);
 };
