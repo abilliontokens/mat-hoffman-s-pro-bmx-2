@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <math.h>
+#include <xmmintrin.h>
 struct C_001AEBB0 {
     undefined4 func_001AEBB0(byte param_1);
 };
