@@ -160,6 +160,40 @@ struct C_00187510 {
     int func_00187510(C_00187510Param *param);
 };
 
+extern int D_00289A6C;
+extern int D_00284AB0;
+extern int D_00276844;
+extern int D_00289A8C;
+
+struct C_00186D20 {
+    char pad0[0x168];
+    int f168;
+    int func_00186960(void *param);
+    int func_00186D20(C_00186AF0Param *param);
+};
+
+struct C_00186F10 {
+    char pad0[0x4];
+    char f4[0x10c];
+    int f110;
+    int func_00186F10(int a);
+};
+
+struct C_00186F80 {
+    int unk0;
+    char f4[0x104];
+    int f108;
+    int func_00186F80(C_00186AF0Param *stream, int n);
+};
+
+struct C_001875F0 {
+    char pad0[0x24];
+    int f24;
+    C_00187370 *f28;
+    void func_001577A0(void *p, int n);
+    int func_001875F0(void *param);
+};
+
 extern int D_0027AEE4;
 extern int D_00289B40;
 extern int D_00289B30;
@@ -225,6 +259,21 @@ int C_00186C00::func_00186C00(C_00186AF0Param *param)
     param->func_00168C20((void *)&D_00289A3C, 0, &f370);
     param->func_00168BE0((void *)&D_00289A2C, (void *)&D_00275630, f26C, -1);
     return 1;
+}
+
+C_00186C70 *C_00186C70::func_00186C70(void)
+{
+    C_00186C70 * volatile self = this;
+    volatile int limit;
+    int n;
+
+    ((C_001867D0 *)this)->func_001867D0();
+    self->vtbl = (void *)&D_00289A60;
+    limit = sizeof(f168) - 1;
+    n = clamp_len_00186C70(limit, 4);
+    func_001E8920(self->f168, (const char *)&D_00289A1C, n);
+    self->f168[n] = 0;
+    return self;
 }
 
 int C_00186C00::func_00186CE0(C_00186AF0Param *param)
