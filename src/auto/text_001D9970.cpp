@@ -92,6 +92,34 @@ void XboxWaterDisplacement::func_001D9E60(void *a1, void *a2)
     func_001D9820(a2, D_0028F878, 0x20);
 }
 
+XboxWaterDisplacement *XboxWaterDisplacement::func_001DA0E0()
+{
+    int i;
+    base.func_001CAF20();
+    base.vtbl = (void *)&D_0028F8F4;
+    base.unk48 = 0;
+    base.unk3C = 0;
+    base.unk40 = 0;
+    unkD4 = -1;
+    unkD8 = 0;
+    unkE0 = unkE4 = unkE8 = 0;
+    unkEC = 0;
+    unk100 = 0;
+    base.unk4C = 0;
+    unkDC = 0;
+    unk20C = 0;
+    unk214 = 0;
+    for (i = 0; i < 3; i++) {
+        unk218[i] = 0;
+        unk224[i] = 0;
+    }
+    for (i = 0; i < 0x96; i++)
+        unk230[i] = 0;
+    for (i = 0; i < 6; i++)
+        unk488[i] = 0;
+    return this;
+}
+
 void C_001DA4C0_1D9970::func_001DA4C0(int a1)
 {
     XboxWaterDisplacement **list = unk4C;
