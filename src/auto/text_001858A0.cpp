@@ -71,6 +71,14 @@ void func_001E891B(void *p);
 extern int D_002896CC;
 extern int D_002897FC;
 
+inline void Zero4_001858A0(u32 *v)
+{
+    v[0] = 0;
+    v[1] = 0;
+    v[2] = 0;
+    v[3] = 0;
+}
+
 struct C_00185D00 {
     void *vtbl;
     int f4;
