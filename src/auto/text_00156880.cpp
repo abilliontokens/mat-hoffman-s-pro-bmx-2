@@ -363,3 +363,33 @@ unsigned int GameObject::func_00157770(void)
     return f18 | r;
 }
 
+GameObject *GameObject::func_001577A0(GameObject *child, unsigned int b)
+{
+    GameObject *p;
+
+    if (D_002DF948 != 0) {
+        return 0;
+    }
+    if (child != 0) {
+        p = f10;
+        if (p == 0) {
+            f10 = child;
+            child->f8 = 0;
+        } else {
+            while (p->fC != 0) {
+                p = p->fC;
+            }
+            p->fC = child;
+            child->f8 = p;
+        }
+        p = child;
+        do {
+            p->f14 = this;
+            p = p->fC;
+        } while (p != 0);
+        child->f18 = b;
+        child->func_00157740(child->f1C);
+    }
+    return child;
+}
+
