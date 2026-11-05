@@ -152,7 +152,9 @@ struct Rec_10DED0 { char b[0x32]; };
 struct Table_10DED0 {
  char pad0[0x20EC]; int flags[70]; int names[70]; int values[70];
  char pad2434[0x3A04-0x2434]; Rec_10DED0 recs[80];
- char pad49A4[0x60C4-0x49A4]; int ids[80]; int keys[80];
+ char pad49A4[0x60C4-0x49A4];
+ union { int ids[80]; int ids2[5][16]; };
+ union { int keys[80]; int keys2[5][16]; };
  void func_000A4AF0(int, char *);
 };
 struct Owner_10DED0 { char pad0[0x52C]; Table_10DED0 *f52C; };
@@ -386,6 +388,69 @@ void C_0010DED0::func_0010DED0(int a,int b)
  }
  ((volatile C_0010DED0 *)this)->f24->f52C->func_000A4AF0(a,buffer);
  if(a && (a>>=8)) func_0010DED0(a,b);
+}
+
+int C_0010DED0::func_0010E030(int a, int b)
+{
+    char buffer[260];
+    float scale;
+    Table_10DED0 *t;
+    int cur;
+    int i;
+    int idx;
+    int mode;
+    int flag;
+
+    f24->f52C->func_000A4AF0(a, buffer);
+    cur = f1158;
+    if (cur != -1) {
+        for (i = 0; i < 16; i++) {
+            if (f1134 != -1) break;
+            t = f24->f52C;
+            idx = cur * 16 + i;
+            if (t->ids[idx] != a) continue;
+            if (t->keys[idx] == b) {
+                int *p = &cntE20[cur * 16 + i];
+                f1134 = i;
+                f111C = b;
+                f1128 = 0;
+                f960 = 0.25f;
+                ++*p;
+                cntCE0[f1158 * 16 + f1134] = cntCE0[f1158 * 16 + f1134] + 1;
+                if (cntCE0[f1158 * 16 + f1134] > 2) {
+                    scale = 0.0f;
+                } else if (cntCE0[f1158 * 16 + f1134] > 1) {
+                    scale = 0.5f;
+                } else {
+                    scale = 1.0f;
+                }
+                func_00108D10(f1134, f1158);
+                func_00108E30(f1134, f1158);
+                flag = 0;
+                switch (f1158) {
+                case 0: mode = 1; break;
+                case 1: mode = 2; break;
+                case 2: mode = 3; break;
+                case 3: mode = 4; flag = 1; break;
+                case 4: mode = 5; break;
+                }
+                ((C_0010DD90 *)this)->func_0010DD90(0.0f, *(int *)&scale, (int)&f24->f52C->recs[f1158 * 16 + f1134], f1134, mode, flag);
+                Queue_10DED0 *q = f1084;
+                int n = q->f34 + 1;
+                q->f34 = n;
+                q->f38[n] = f1134;
+                q->f1C8[q->f34] = f1158;
+                f15F4 = 0;
+                f5F0->func_000261F0(f604);
+                return 1;
+            }
+        }
+    }
+    f24->f52C->func_000A4AF0(a, buffer);
+    if (a != 0 && (a >>= 8) != 0 && func_0010E030(a, b) != 0) {
+        return 1;
+    }
+    return 0;
 }
 
 void C_0010E260::func_0010E260(void)
