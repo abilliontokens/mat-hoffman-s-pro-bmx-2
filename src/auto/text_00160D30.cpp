@@ -47,11 +47,31 @@ struct S_002A8490 {
 };
 extern S_002A8490 *D_002A8490;
 
+struct S_00161620_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    S_00161620_Obj *func_00147490();
+    void func_001B0A20(int a);
+};
+
+struct S_00161620_Entry {
+    int f0;
+    S_00161620_Obj *f4;
+    int f8;
+    int fC;
+};
+
 struct C_00161870 {
     void *vtbl;
-    char pad4[0x28];
+    char pad4[4];
+    int f8;
+    char padC[8];
+    S_00161620_Entry *f14;
+    char pad18[0x14];
     void *func_00161870(unsigned int flags);
     void func_00161620();
+    void func_00161680();
     void func_001AC3D0();
 };
 
