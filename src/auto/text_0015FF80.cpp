@@ -95,3 +95,15 @@ void C_00160BF0::func_00160BF0(void) {
     extern int D_00287A44;
     unk0 = (int)&D_00287A44;
 }
+
+C_00160C00 *C_00160C00::func_00160C00(void)
+{
+    f0 = 0;
+    f4 = 0;
+    f24 = 0;
+    f28 = 0;
+    f2c = 0;
+    f10 = 0;
+    return this;
+}
+
