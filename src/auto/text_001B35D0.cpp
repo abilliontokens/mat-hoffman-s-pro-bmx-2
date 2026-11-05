@@ -2,6 +2,83 @@
 #include "common.h"
 #include "ghidra.h"
 
+extern "C" char *__cdecl strcpy(char *dst, const char *src);
+#pragma intrinsic(strcpy)
+
+void *func_001E8A44(int size);
+void func_001E891B(void *p);
+
+/* the message descriptor the four wrappers below fill in and hand to func_001B35D0 */
+struct S_001B35D0_Desc {
+    u8 f0;
+    u8 f1;
+    u8 f2;
+    u8 f3;
+    u16 f4;
+    u16 f6;
+    u8 f8;
+    u8 f9;
+    u16 fa;
+    u16 fc;
+    u16 fe;
+    u16 f10;
+    u8 f12;
+    u8 f13;
+    int f14;
+    int f18;
+    char f1c[0x10c];
+};
+
+int func_001B35D0(S_001B35D0_Desc *desc, int a1, int a2, int a3);
+
+struct V_001B3DC0_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual int v27(int a1, int a2, int a3, void *a4, int a5);
+};
+
+struct S_001B3DC0_New {
+    V_001B3DC0_Obj *func_00140390(int a);
+};
+
+struct C_001B3DC0 {
+    char pad0[0x24];
+    V_001B3DC0_Obj *f24;
+    int f28;
+    char pad2c[0x78];
+    int fa4;
+    char fa8;
+    char fa9;
+    char faa;
+    void func_001577A0(V_001B3DC0_Obj *a, int b);
+    C_001B3DC0 *func_001B3DC0(int a1, int a2, int a3, int a4);
+};
+
 void func_001B3970(int param_1)
 {
   int func_001E8390(...);
