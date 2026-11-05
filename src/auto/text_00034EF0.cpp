@@ -497,6 +497,54 @@ void C_00035980::func_00035980(int enable)
     }
 }
 
+void C_000359C0::func_000359C0(void)
+{
+    void *p;
+
+    func_00031630();
+    p = func_001E8A44(0x358);
+    f1d0 = p ? ((S_359C0_1D0 *)p)->func_00092890(1) : 0;
+    f1d0->v10();
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+    p = func_001E8A44(0x180);
+    f2c4 = p ? ((S_359C0_2C4 *)p)->func_000687B0(1) : 0;
+    f2c4->func_0007CA00(this);
+    f2c4->v4();
+    p = func_001E8A44(0x200);
+    f588 = p ? ((S_359C0_588 *)p)->func_00069FF0(1) : 0;
+    f588->func_0007D6F0(this);
+    f588->v4();
+    p = func_001E8A44(0x140);
+    f1a0 = p ? ((S_359C0_1A0 *)p)->func_000715B0(1) : 0;
+    f1a0->func_00071880(this);
+    f1a0->v4();
+    p = func_001E8A44(0x130);
+    f550 = p ? ((S_359C0_550 *)p)->func_000891A0(1) : 0;
+    if (f550->v10() != 0) {
+        f550->func_0008A000(this);
+    }
+    p = func_001E8A44(0x4e0);
+    f554 = p ? ((S_359C0_554 *)p)->func_0008A2E0(1) : 0;
+    if (f554->v10() != 0) {
+        f554->func_0008A8F0(this);
+    }
+    p = func_001E8A44(0x2c);
+    f558 = p ? ((S_359C0_558 *)p)->func_0008AAB0(1) : 0;
+    if (f558->v10() != 0) {
+        f558->func_0008AB90(this);
+    }
+    p = func_001E8A44(0x2c);
+    f55c = p ? ((S_359C0_55C *)p)->func_0008ABF0(1) : 0;
+    if (f55c->v10() != 0) {
+        f55c->func_0008AB90(this);
+    }
+    p = func_001E8A44(0x58);
+    f560 = p ? ((S_359C0_560 *)p)->func_0008ADB0(1) : 0;
+    if (f560->v10() != 0) {
+        f560->v4();
+    }
+}
+
 void C_00035BE0::func_00035BE0(void)
 {
     if (f1d0 != 0) {
