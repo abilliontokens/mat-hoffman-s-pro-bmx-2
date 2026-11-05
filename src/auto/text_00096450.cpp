@@ -161,6 +161,37 @@ void C_00096870::func_00096870(const char *name) {
     }
 }
 
+void C_00096930::func_00096930(void) {
+    int i;
+
+    for (i = 0; i < f1b8; i++) {
+        C_00096930_Elem *e = f1c8[i];
+        if (e->f0 == 1) {
+            e->f40 = 0;
+            f1c8[i]->ptrs[0] = 0;
+            f1c8[i]->vals[0] = -1.0f;
+            f1c8[i]->ptrs[1] = 0;
+            f1c8[i]->vals[1] = -1.0f;
+            f1c8[i]->ptrs[2] = 0;
+            f1c8[i]->vals[2] = -1.0f;
+            f1c8[i]->ptrs[3] = 0;
+            f1c8[i]->vals[3] = -1.0f;
+            f1c8[i]->ptrs[4] = 0;
+            f1c8[i]->vals[4] = -1.0f;
+            f1c8[i]->ptrs[5] = 0;
+            f1c8[i]->vals[5] = -1.0f;
+            f1c8[i]->ptrs[6] = 0;
+            f1c8[i]->vals[6] = -1.0f;
+            f1c8[i]->ptrs[7] = 0;
+            f1c8[i]->vals[7] = -1.0f;
+            f1c8[i]->ptrs[8] = 0;
+            f1c8[i]->vals[8] = -1.0f;
+            f1c8[i]->ptrs[9] = 0;
+            f1c8[i]->vals[9] = -1.0f;
+        }
+    }
+}
+
 void C_00096FE0::func_00096FE0(float dt) {
     int i;
 
