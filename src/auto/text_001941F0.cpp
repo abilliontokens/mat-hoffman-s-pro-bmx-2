@@ -117,6 +117,30 @@ struct C_00194C60 {
 };
 
 
+int C_001941F0::func_001941F0(int a)
+{
+    int i;
+
+    for (i = 0; i < f24; i++) {
+        f30.y = -(f40[i]->f210 * f2C);
+        f40[i]->Add(f30);
+    }
+    return 1;
+}
+
+void *C_00194280::func_00194280(int flags)
+{
+    vtbl = (void *)&D_0028AD8C;
+    if (f40 != 0) {
+        func_001E891B(f40);
+    }
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void C_00194310::func_00194310(int a0, int a1) {
     unk48 = a0;
     unk44 = a1;
@@ -150,6 +174,11 @@ void C_00194DB0::func_00194DB0(void) {
     int func_0012B540(...);
     unk0 = (int)&D_0028AED0;
     func_0012B540();
+}
+
+void C_00194E60::func_00194E60(int a, int b, int c, int d)
+{
+    f8.Set(a, b, c, d);
 }
 
 void C_00194F90::func_00194F90(int a0) {
