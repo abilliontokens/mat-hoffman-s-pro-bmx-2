@@ -253,6 +253,32 @@ void C_00075880::func_000758F0() {
     unk1A8 = -1;
 }
 
+int C_00075880::func_00075980(int *a, int b) {
+ int func_001361E0(int,int,int *,int);
+ if(unk194) return 0;
+ if(func_001361E0(2,2,a,0x80000000)) {
+ unk120->func_00031610(2,1);
+ unk1A8=unk11C;
+ unk1AC=1;
+ --unk11C;
+ if(unk11C<0) unk11C=1;
+ } else if(func_001361E0(3,2,a,0x80000000)) {
+ unk120->func_00031610(2,1);
+ unk1A8=unk11C;
+ unk1AC=1;
+ ++unk11C;
+ if(unk11C>1) unk11C=0;
+ } else {
+ if(func_001361E0(4,2,a,0x80000000) || func_001361E0(23,2,a,0x80000000)) {
+ unk120->func_00031610(4,1); unk194=1; unk124=0; return 0;
+ }
+ if((func_001361E0(5,2,a,0x80000000) || func_001361E0(24,2,a,0x80000000)) && unk1B4) {
+ unk120->func_00031610(4,1); unk1B8=1; unk124=0; return 0;
+ }
+ }
+ return func_00157BF0(a,b);
+}
+
 void *C_00075B20::func_00075B20(int param_1) {
     u32 *p;
     int n;
