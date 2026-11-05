@@ -44,6 +44,35 @@ struct C_001F3221 {
     void func_001F3221();
 };
 
+struct C_001F3298 : C_001F325D {
+    C_001F3298(int param_1);
+};
+
+struct C_001F32B0 {
+    int unk0;
+    char *unk4;
+    int unk8;
+    void *func_001F32B0(unsigned int flags);
+};
+
+struct C_001F32CC {
+    int unk0;
+    char *unk4;
+    int unk8;
+    void *func_001F32CC(unsigned int flags);
+};
+
+struct S_001F32E8 {
+    int f0;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    int f14;
+    int f18;
+    int f1C;
+};
+
 struct C_001F318D {
     int unk0;
     char *unk4;
@@ -180,6 +209,41 @@ C_001F318D *C_001F318D::func_001F318D(char **param_1) {
     unk8 = 1;
     return this;
 }
+
+#pragma optimize("sy", on)
+C_001F325D *C_001F325D::func_001F31D2(int param_1) {
+    extern int D_00295F00;
+    char *func_001E8AA5(int);
+    unk0 = (int)&D_00295F00;
+    unk8 = *(int *)(param_1 + 8);
+    char *src = *(char **)(param_1 + 4);
+    int n = *(int *)(param_1 + 8);
+    if (n != 0) {
+        char *p = src;
+        char *base = p + 1;
+        char c;
+        do {
+            c = *p;
+            p++;
+        } while (c != 0);
+        unk4 = func_001E8AA5((int)(p + (1 - (int)base)));
+        if (unk4 != 0) {
+            char *s = *(char **)(param_1 + 4);
+            char *d = unk4;
+            char ch;
+            do {
+                ch = *s;
+                s++;
+                *d = ch;
+                d++;
+            } while (ch != 0);
+        }
+    } else {
+        unk4 = src;
+    }
+    return this;
+}
+#pragma optimize("", on)
 
 #pragma optimize("sy", on)
 void C_001F3221::func_001F3221() {
