@@ -13,7 +13,7 @@ void func_0011F540(S_0011F4B0_V4 *out, S_0011F4B0_V4 pos, float *m);
 void func_0011F0E0(void *a, void *b, void *c, void *indices, void **data);
 int func_0011FF30(S_0011F4B0_V4 *p, void *tri);
 float func_0011FDF0(void *p, void *a, void *b);
-static __forceinline float fabs_00120470(float v)
+static float fabs_00120470(float v)
 {
     volatile float x = v;
     volatile int t = *(volatile int *)&x & 0x7fffffff;
