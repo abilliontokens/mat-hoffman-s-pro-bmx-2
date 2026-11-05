@@ -303,6 +303,17 @@ void *C_001BB2C0::func_001BB2C0(int flags) {
     return this;
 }
 
+C_001BB300 *C_001BB300::func_001BB2E0(byte flags)
+{
+    int func_001E891B(...);
+
+    func_001BAEC0();
+    if ((flags & 1) != 0) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 C_001BB300 *C_001BB300::func_001BB300(byte flags)
 {
     int func_001E891B(...);
