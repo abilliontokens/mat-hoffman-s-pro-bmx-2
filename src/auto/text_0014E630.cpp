@@ -50,6 +50,33 @@ undefined4 C_0014F170::func_0014F170(byte param_1)
   return in_ECX;
 }
 
+extern "C" double __cdecl acos(double);
+#pragma intrinsic(acos)
+extern int D_002A7700;
+extern float* D_002DF87C;
+extern float D_002755E8;
+extern float D_002DF86C;
+extern float D_00275600;
+int func_0014F190()
+{
+    D_002DF86C = (float)(D_002A7700 - 2) * D_002755E8;
+    if (D_002DF87C)
+        func_001E8390(D_002DF87C);
+    D_002DF87C = (float*)func_001E8AA5(D_002A7700 * 4);
+    if (!D_002DF87C)
+        return 0;
+    float step = D_00275600 / (float)(D_002A7700 - 2);
+    float* p = D_002DF87C;
+    for (int i = 0; i < D_002A7700 - 1; i++) {
+        float a = i * step - D_00275460;
+        if (a > D_00275460)
+            a = 1.0f;
+        *p++ = (float)acos(a);
+    }
+    *p = p[-1];
+    return 1;
+}
+
 extern "C" double __cdecl cos(double);
 extern "C" double __cdecl sin(double);
 #pragma intrinsic(cos, sin)
