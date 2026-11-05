@@ -55,6 +55,7 @@ extern S_002A8490 *D_002A8490;
 
 struct Rect_0005A020 {
     int x, y, w, h;
+    float minZ, maxZ;
 };
 
 struct Renderer_002EFDB8 {
