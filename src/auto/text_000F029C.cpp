@@ -44,6 +44,26 @@ struct C_000F0D20 {
     void func_000F0D20(void);
 };
 
+extern int D_0028F5DC;
+extern float D_00279B50;
+extern float D_0027F718;
+
+struct C_000F0910_Widget {
+    void func_001B1980();
+    void func_001B19A0(int v);
+    void func_001B2270(unsigned int color);
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, float a7, int a8, float a9, int a10, float a11, float a12, int a13);
+};
+
+struct C_000F0910 {
+    char pad0[0x3C4];
+    int f3C4;
+    char pad3C8[0x638 - 0x3C8];
+    C_000F0910_Widget *f638[9];
+    int f65C[9];
+    void func_000F0910();
+};
+
 C_000F0D20 *C_000F0D20::func_000F0C40(int a)
 {
     int i;
