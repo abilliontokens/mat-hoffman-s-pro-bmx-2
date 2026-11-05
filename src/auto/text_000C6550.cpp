@@ -92,28 +92,29 @@ void BmxUIPageParkEditor::func_000C6600(void)
 
 BmxUIPageParkLevel *BmxUIPageParkLevel::func_000C6620(int a)
 {
+    int *p;
+
     func_001BE360(a);
     vtbl = (void *)&D_0027E1F4;
     f28c = 0;
-    for (int i = 0; i < 3; i++) {
-        arr280[i] = 0;
-        arr2e4[i] = 0;
+    p = arr280;
+    for (int n = 3; n != 0; n--) {
+        *(p + 0x19) = 0;
+        *p = 0;
+        p++;
     }
-    f290 = 0;
-    f294 = 0;
-    f298 = 0;
-    f29c = 0;
     f2a0 = 0;
     f2a4 = 0;
-    f2a8 = 0;
-    f2ac = 0;
+    f298 = 0;
+    f290 = 0;
+    f294 = 0;
     f2b0 = 0;
-    f2b4 = 0;
-    f2b8 = 0;
+    f2ac = 0;
+    f2a8 = 0;
     f2bc = 0;
     f2c0 = -1;
-    f2c4 = 0;
     f2c8 = 0;
+    f2c4 = 0;
     for (int j = 0; j < 6; j++)
         f2f0[j] = 0;
     f2cc = 0;
