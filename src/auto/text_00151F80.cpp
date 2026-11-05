@@ -162,7 +162,7 @@ void C1521::func_001521D0(Vec1521* pos, Vec1521* out)
  pos->y = h;
 }
 
-__forceinline void C_00151F80::Integrate(float dt)
+void C_00151F80::func_001528D0(float dt)
 {
     ffc -= D_00286CAC;
     if (ff8 == D_00275544 && f100 == D_00275544) {
