@@ -40,9 +40,50 @@ struct C_00197F70 {
 extern int D_0027D37C;
 extern float D_002A2EC8;
 
+struct V4_000B5260 {
+    float x, y, z, w;
+};
+
+struct V16_000B5260 {
+    int a, b, c, d;
+};
+
 
 int C_000B5870::func_000B5870(void) {
     return unk24;
+}
+
+void C_000B5880::func_000B5880(int *param_1)
+{
+  param_1[0] = unk34;
+  param_1[1] = unk38;
+  param_1[2] = unk3c;
+  param_1[3] = unk40;
+}
+
+void C_000B58B0::func_000B58B0(void)
+{
+  int in_ECX = (int)this;
+  float w[4];
+  float vec4[4];
+  float vec3[4];
+  float row[4];
+  float d[4];
+  int v;
+  void func_0001E9E0(float *out, float *in);
+
+  v = (**(code **)(*(int *)in_ECX + 0x6c))();
+  (**(code **)(*(int *)in_ECX + 0x70))(vec4);
+  ((C_00197F70 *)*(int *)(in_ECX + 0x30))->func_00197F70(vec3, vec4);
+  d[0] = vec3[0] - *(float *)(v + 0x20);
+  d[1] = vec3[1] - *(float *)(v + 0x24);
+  d[2] = vec3[2] - *(float *)(v + 0x28);
+  row[0] = *(float *)(v + 0x40);
+  row[1] = *(float *)(v + 0x44);
+  row[2] = *(float *)(v + 0x48);
+  row[3] = *(float *)(v + 0x4c);
+  func_0001E9E0(w, row);
+  *(float *)(in_ECX + 0x54) = d[0] * row[0] + d[1] * row[1] + d[2] * row[2];
 }
 
 void C_000B6080::func_000B6080(int param_1)
