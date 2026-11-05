@@ -314,6 +314,62 @@ void C_0015BAC0::func_0015BAC0(int a0, u32 *a1, int a2) {
     }
 }
 
+void func_0015BB70(Path_0015BB70 *path)
+{
+    V4_0015BB70 d;
+    V4_0015BB70 v, u;
+    float s;
+    int i;
+    d.z = 0.0f; d.y = 0.0f; d.x = 0.0f; d.w = 1.0f;
+    int n = path->count;
+    if (n == 0) return;
+    i = 0;
+    if (n - 1 > 0) {
+        do {
+            d.x = path->keys[i + 1].p[0] - path->keys[i].p[0];
+            d.y = path->keys[i + 1].p[1] - path->keys[i].p[1];
+            d.z = path->keys[i + 1].p[2] - path->keys[i].p[2];
+            if (i == 0) {
+                v = d;
+            } else {
+                s = (path->keys[i + 1].t - path->keys[i].t) / (path->keys[i + 1].t - path->keys[i - 1].t);
+                v.x = (path->keys[i].p[0] - path->keys[i - 1].p[0] + d.x) * s;
+                v.y = (path->keys[i].p[1] - path->keys[i - 1].p[1] + d.y) * s;
+                v.z = (path->keys[i].p[2] - path->keys[i - 1].p[2] + d.z) * s;
+            }
+            if (i == n - 2) {
+                u = d;
+            } else {
+                s = (path->keys[i + 1].t - path->keys[i].t) / (path->keys[i + 2].t - path->keys[i].t);
+                u.x = (path->keys[i + 2].p[0] - path->keys[i + 1].p[0] + d.x) * s;
+                u.y = (path->keys[i + 2].p[1] - path->keys[i + 1].p[1] + d.y) * s;
+                u.z = (path->keys[i + 2].p[2] - path->keys[i + 1].p[2] + d.z) * s;
+            }
+            path->keys[i].in[0] = v.x;
+            path->keys[i].in[1] = v.y;
+            path->keys[i].in[2] = v.z;
+            path->keys[i].out[0] = u.x;
+            path->keys[i].out[1] = u.y;
+            path->keys[i].out[2] = u.z;
+            i++;
+            n = path->count;
+        } while (i < n - 1);
+    }
+    if (path->count >= 2) {
+        int j = path->count - 1;
+        path->keys[j].in[0] = path->keys[j].p[0] - path->keys[j - 1].p[0];
+        path->keys[j].in[1] = path->keys[j].p[1] - path->keys[j - 1].p[1];
+        path->keys[j].in[2] = path->keys[j].p[2] - path->keys[j - 1].p[2];
+        path->keys[j].out[0] = path->keys[j].in[0];
+        path->keys[j].out[1] = path->keys[j].in[1];
+        path->keys[j].out[2] = path->keys[j].in[2];
+    } else {
+        int j = path->count - 1;
+        path->keys[j].in[0] = 0; path->keys[j].in[1] = 0; path->keys[j].in[2] = 0;
+        path->keys[j].out[0] = 0; path->keys[j].out[1] = 0; path->keys[j].out[2] = 0;
+    }
+}
+
 void *C_0015BDB0::func_0015BDB0(unsigned char flags)
 {
     vtbl = &D_00287778;
