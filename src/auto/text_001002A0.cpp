@@ -128,3 +128,16 @@ undefined4 C_00101240::func_00101240(byte param_1)
   return in_ECX;
 }
 
+undefined4 C_00101260::func_00101260(byte param_1)
+{
+  int func_000ED0E0(...);
+  int func_001E891B(...);
+  undefined4 in_ECX = (undefined4)this;
+
+  func_000ED0E0();
+  if ((param_1 & 1) != 0) {
+    func_001E891B(in_ECX);
+  }
+  return in_ECX;
+}
+
