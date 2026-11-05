@@ -9,6 +9,42 @@ struct C_00157660 {
     void func_00157660(void);
 };
 
+/* the engine's file wrapper (D_002BEAAC) */
+struct C_0013B210 {
+    void func_0013AFF0(int a, int b, int c);
+    void func_0013C8A0(int h, void *buf, int size, int count);
+};
+extern C_0013B210 *D_002BEAAC;
+
+/* table row of C_00168F40::f18 */
+struct S_00168F40_Entry {
+    int offset;
+    int size;
+    char pad8[0x408];
+};
+
+/* table row of C_00168F40::f4B8 */
+struct S_00168F40_Index {
+    int offset;
+    int unk4;
+};
+
+struct C_00168F40 {
+    int f0;
+    int f4;
+    char pad8[0x10];
+    S_00168F40_Entry *f18;
+    char pad1C[0x408];
+    int f424;
+    char pad428[4];
+    int f42C;
+    int f430;
+    char pad434[0x84];
+    S_00168F40_Index *f4B8;
+    int func_00168300(int id);
+    int func_00168F40(int id);
+};
+
 struct ParticleEmitter {
     void *vtbl;
     char pad4[0x1b8];
