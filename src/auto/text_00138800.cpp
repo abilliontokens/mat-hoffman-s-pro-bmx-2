@@ -49,6 +49,39 @@ struct C_00139060 {
 };
 
 
+CutScene *CutScene::func_00138800(int arg) {
+func_00157600(arg);
+vtbl = &D_00284A2C;
+f24 = -1;
+f3c = 0;
+f54 = 0;
+f70 = 0;
+f6c = 0;
+f28 = 0;
+f34 = 0;
+f38 = 0;
+f40 = 0;
+f44 = 0;
+f48 = 0;
+f4c = 0;
+f50 = 0;
+f58 = 0;
+f5c = 0;
+f60 = 0;
+f78 = 0;
+f7c = 0;
+f80 = 0;
+f84 = 0;
+f88 = 0;
+f8c = 0;
+f2c = 0xbf800000;
+f30 = 0x40000000;
+f64 = -1;
+f68 = 100;
+f74 = 1;
+return this;
+}
+
 void C_00139060::func_00139060(int a0, int a1) {
     unk84 = a0;
     unk8C = a1;
