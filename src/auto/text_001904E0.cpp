@@ -14,9 +14,7 @@ struct C_00191400_Vec {
 
 struct C_00191400 {
     char pad0[0x18];
-    unsigned int f18_lo : 16;
-    unsigned int type : 8;
-    unsigned int f18_hi : 8;
+    int f18;
     char pad1c[4];
     C_00191400_Vec f20;
     C_00191400_Vec f30;
@@ -27,7 +25,7 @@ struct C_00191400 {
 void *C_00191400::func_00191400(void) {
     void *r = 0;
 
-    switch (type) {
+    switch ((f18 >> 16) & 0xff) {
     case 0:
         r = &f20;
         break;
