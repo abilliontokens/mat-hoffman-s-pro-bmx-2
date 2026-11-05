@@ -84,9 +84,36 @@ struct S16_1A {
     int d;
 };
 
+struct C_001A4440_Holder;
+
+/* 12-byte entry allocated per section of the file */
+struct S_001A3DA0_Item {
+    int f0;
+    int f4;
+    int f8;
+};
+
+/* 12-byte record at self+0x1d0 + 12*i, 1-based */
+struct S_001A3DA0_Rec {
+    int f0;
+    float f4;
+    int f8;
+};
+
 struct C_001A4590 {
-    char pad0[0x2cc];
+    char pad0[0x24];
+    int f24;
+    char pad28[0x3c - 0x28];
+    char f3c[0x9c - 0x3c];
+    char name9c[0x104];
+    unsigned int f1a0;
+    C_001A4440_Holder *f1a4;
+    char pad1a8[0x1c8 - 0x1a8];
+    char list1c8[0x10];
+    char pad1d8[0x2cc - 0x1d8];
     int f2cc;
+    int pad2d0;
+    int f2d4;
     void func_001A1FB0(int a0, int a1, S36_1A s0, S16_1A s1, S16_1A s2, int a19, int a20, int a21, int a22, int a23);
     int func_001A3DA0(int a0);
     C_001A4590 *func_001A4590(int a0, int a1, int a2, int a3, S36_1A s0, S16_1A s1, S16_1A s2, int a21, int a22, int a23, int a24, int a25);
