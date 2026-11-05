@@ -209,6 +209,12 @@ void *C_00094710::func_00094710(unsigned int flags)
     return this;
 }
 
+void C_00094760::func_000947F0(int node)
+{
+    unk34 = node;
+    unk50->func_001CEFD0(node);
+}
+
 int C_00094890::func_00094890(void) {
     return unk38;
 }
