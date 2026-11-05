@@ -47,12 +47,6 @@ struct Vec4_143660 {
         z = c;
         w = d;
     }
-    Vec4_143660(const Vec4_143660 &o) {
-        x = o.x;
-        y = o.y;
-        z = o.z;
-        w = o.w;
-    }
 };
 
 struct Alloc190 {
