@@ -85,6 +85,67 @@ C_00072C90 *C_00072C90::func_00072C90(int flags)
     return this;
 }
 
+void C_00072C90::func_00072D30()
+{
+    int i;
+    Res_72C90 *p;
+
+    vtbl = (void *)&D_00278CD4;
+    p = f80;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+        f80 = 0;
+    }
+    p = f68;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+        f68 = 0;
+    }
+    if (f78) {
+        delete f78;
+        f78 = 0;
+    }
+    if (f7C) {
+        delete f7C;
+        f7C = 0;
+    }
+    if (f70) {
+        delete f70;
+        f70 = 0;
+    }
+    if (f74) {
+        delete f74;
+        f74 = 0;
+    }
+    for (i = 0; i < 5; i++) {
+        p = aB8[i];
+        if (p) {
+            p->func_001D6410();
+            func_001E891B(p);
+        }
+        aB8[i] = 0;
+    }
+    p = f88;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+        f88 = 0;
+    }
+    for (i = 0; i < 5; i++) {
+        if (a90[i]) {
+            delete a90[i];
+            a90[i] = 0;
+        }
+        if (aA4[i]) {
+            delete aA4[i];
+            aA4[i] = 0;
+        }
+    }
+    func_00157660();
+}
+
 void C_00072E50::func_00072E50(void)
 {
   int* in_ECX = (int*)this;
