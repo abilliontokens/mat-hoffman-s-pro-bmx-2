@@ -116,6 +116,24 @@ int func_00211163(S_001DC820 *, void *, int);
 int func_0021117A(S_001DC820 *, int);
 int func_00211040(S_001DC820 *);
 
+struct XboxWaterDisplacement {
+    int v[65];
+    void func_001DC560();
+    void func_00157960();
+    void func_001DAC10();
+    void func_001DB080();
+    void func_001DC010();
+    void func_001DA4C0(int);
+};
+extern int D_002AC720, D_002AB7F0, D_002A99B0, D_002AC5C0;
+extern int *D_002A8490, *D_002F08BC;
+extern int **D_002EFDB8;
+int __stdcall func_001FFE40(int);
+int func_00200210();
+void __stdcall func_001FF940(void *, void *);
+void __stdcall func_001FF4E0(int,int,unsigned int,float,int,int);
+void __stdcall func_00201100(int);
+void __stdcall func_00200230(void *);
 struct C_001DC540 {
     undefined4 func_001DC540(byte param_1);
 };
