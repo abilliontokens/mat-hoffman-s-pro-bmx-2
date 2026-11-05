@@ -110,6 +110,13 @@ struct S_ListNode_00160A70 {
     int data;
     S_ListNode_00160A70 *prev;
     S_ListNode_00160A70 *next;
+    S_ListNode_00160A70 *init(void)
+    {
+        data = 0;
+        prev = 0;
+        next = 0;
+        return this;
+    }
 };
 
 struct C_00160A70 {
