@@ -87,7 +87,8 @@ struct Sel_001446B0 {
 };
 
 struct C_00144690 {
-    int func_00144690(int a0, int a1);
+    virtual void v0();
+    virtual int func_00144690(int a0, int a1);
 };
 
 struct Mgr_002A829C {
@@ -191,11 +192,9 @@ void C_00144960::func_00144960(int a0, int a1, int a2, int a3)
 {
     void *func_001E8A44(int);
     func_001AF100(a0, a1, a2, a3);
-    C_00144710 *p = (C_00144710 *)func_001E8A44(0x38);
+    void *p = func_001E8A44(0x38);
     if (p != 0) {
-        p = p->func_00144710(a0);
-    } else {
-        p = 0;
+        p = ((C_00144710 *)p)->func_00144710(a0);
     }
     f10 = p;
     fc |= 1;
