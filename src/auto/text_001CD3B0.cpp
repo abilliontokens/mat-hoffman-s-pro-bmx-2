@@ -65,9 +65,47 @@ struct XboxSoundGroup {
     char pad41[3];
     int f44;
     void func_0001C8F0(int a);
+    void func_00157A00(int a);
+    void func_00157A90(int a);
     XboxSoundGroup *func_001CD770(int a, int b);
     int func_001CD800(void);
     void func_001CD840(int a);
+    int func_001CD890(int a);
+    void func_001CD8F0(int a);
+};
+
+int __stdcall func_001DDC28(int a);
+int __stdcall func_001DDDD6(int a, int b);
+int __stdcall func_001DD13C(int a);
+extern "C" void __stdcall MmFreeContiguousMemory(void *p);
+void func_001E891B(void *p);
+
+struct C_001CDCF0 {
+    int f0;
+    int f4;
+    char pad8[0xc];
+    void *f14;
+    char pad18[0x10];
+    void *f28;
+    char pad2c[0x10];
+    void *f3C;
+    void func_001CDCF0(void);
+};
+
+struct S_001CDE40_Iface {
+    virtual unsigned long __stdcall AddRef();
+    virtual unsigned long __stdcall Release();
+};
+
+struct S_001CDE40_Obj {
+    char pad0[8];
+    S_001CDE40_Iface *f8;
+    S_001CDE40_Iface *fC;
+    void *f10;
+};
+
+struct S_001CDE40_Owner {
+    void func_001CBCF0(S_001CDE40_Obj *obj);
 };
 
 
