@@ -89,6 +89,19 @@ void *C_0015A8E0::func_0015A8E0(int flags) {
     return this;
 }
 
+C_0015A910 *C_0015A910::func_0015A910(int a)
+{
+    extern int D_00287640;
+    f14 &= 0xc0;
+    f18 = 0;
+    f4 = 0;
+    f8 = 0;
+    vtbl = (void *)&D_00287640;
+    fC = a;
+    f10 = -1;
+    return this;
+}
+
 undefined4 C_0015ABF0::func_0015ABF0(int param_1)
 {
   int in_ECX = (int)this;
