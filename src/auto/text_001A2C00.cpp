@@ -1,6 +1,8 @@
 /* 15 functions from 0x001A2C00 to 0x001A3BF0, found by Ghidra. */
 #include "common.h"
 
+extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
+
 struct S_001A2C00_Vec {
     int x;
     int y;
