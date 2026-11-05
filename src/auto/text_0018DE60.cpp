@@ -50,6 +50,11 @@ struct C_0018DE60_Arg {
     C_0018DE60_Entry *f20;
 };
 
+template <class T> inline const T &min_0018DE60(const T &a, const T &b)
+{
+    return (b < a) ? b : a;
+}
+
 extern char *D_002A96A4[];
 int func_001E91F4(const char *s);
 
@@ -295,6 +300,63 @@ void C_0018E250::func_0018E250(const char * volatile name, unsigned int flags)
         ((C_0018E250 *)slot[0])->f150.func_00191510(name, f);
         self = (C_0018E250 *)slot[0];
         self->f1C = self->f150.f1C;
+        break;
+    }
+}
+
+void Node_0018EA50::func_0018E3E0(int a, int b)
+{
+    flags = a;
+    switch ((flags >> 8) & 0xff) {
+    case 1:
+        f18 = *(int *)b;
+        f0C = &f18;
+        f4 = D_002EFE08->f12C;
+        break;
+    case 2:
+        f1C = *(int *)b;
+        f0C = &f1C;
+        f4 = D_002EFE08->f130;
+        break;
+    case 3: {
+        const char *s = *(const char **)b;
+        int n = Min_0018E3E0(StrLen_0018E3E0(s), 0xff);
+
+        func_001E8920(f24, s, n);
+        f24[n] = 0;
+        f20 = f24;
+        f0C = &f20;
+        f4 = D_002EFE08->f134;
+        break;
+    }
+    case 4:
+        f130 = *(int *)b;
+        f134 = ((int *)b)[1];
+        f0C = &f130;
+        f4 = D_002EFE08->f138;
+        break;
+    case 5:
+        f138 = *(char *)b;
+        f0C = &f138;
+        f4 = D_002EFE08->f13C;
+        break;
+    case 6:
+        f124 = *(int *)b;
+        f0C = &f124;
+        f4 = D_002EFE08->f140;
+        break;
+    case 7:
+        f128 = *(int *)b;
+        f0C = &f128;
+        f4 = D_002EFE08->f144;
+        break;
+    case 8:
+        f12C = *(int *)b;
+        f0C = &f12C;
+        f4 = D_002EFE08->f148;
+        break;
+    case 9:
+        f0C = (void *)v.func_001915A0(a, b, &f4);
         break;
     }
 }
