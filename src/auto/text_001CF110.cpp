@@ -111,6 +111,47 @@ void XboxMusic::func_001CF110(IntArray *list)
     }
 }
 
+int C_001CF3C0::func_001CF3C0(SoundVoice *voice)
+{
+    SoundVoiceList *list;
+    int x;
+    int index;
+    SoundVoice *found;
+    if (voice->f10c & 8) {
+        x = f8;
+        list = (SoundVoiceList *)f10;
+    } else {
+        x = fc;
+        list = (SoundVoiceList *)f24;
+    }
+    if (func_001CDD50(list, x, &found, &index, &found)) {
+        if (!found->func_001CD940(voice)) {
+            if (index >= 0 || list->func_001CDE90(found)) {
+                return 1;
+            }
+        }
+        found->flags &= ~8;
+        func_001CDE40(list, found);
+    }
+    return 0;
+}
+
+void XboxSoundInterface::func_001CF6E0()
+{
+    vtbl = (void *)&D_0028EE8C;
+    f2c &= ~1;
+    if (f138 != 0) {
+        C_001CDCF0 *obj = f138;
+        obj->func_001CDCF0();
+        func_001E891B(obj);
+    }
+    if (f30 != 0 && func_0021FB68(f30) == 0) {
+        f30 = 0;
+    }
+    f13c->release();
+    func_0001CA30();
+}
+
 undefined4 C_001CFAE0::func_001CFAE0(byte param_1)
 {
   int func_001CE920(...);
