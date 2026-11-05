@@ -1,6 +1,18 @@
 /* 24 functions from 0x001ED0FC to 0x001EDD36, found by Ghidra. */
 #include "common.h"
 
+void func_001E9DE9(void *p);
+
+struct S_001EDC7E {
+    int f0;
+    int f4;
+    int f8;
+    u8 fC;
+    u8 fD;
+    char padE[0xA];
+    int f18;
+};
+
 #pragma optimize("y", off)
 void func_001ED0FC(unsigned int *param_1, int param_2)
 {
@@ -113,9 +125,9 @@ int func_001ED50B(void)
     int *func_001ED07E(void);
     void func_001EAB1B(void);
     int result;
-    result = -1;
     *func_001ED075() = 9;
     *func_001ED07E() = 0;
+    result = -1;
     func_001EAB1B();
     return result;
 }
