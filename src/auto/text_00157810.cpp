@@ -66,7 +66,23 @@ struct C_00157810 {
     int func_00157A90(int a);
     int func_00157AE0(void);
     int func_00157B10(void);
+    int func_00157B90(int a, int b);
+    int func_00157BF0(int a, int b);
+    int func_00157C50(int a, int b, int c, int d, int e);
 };
+
+/* node with a parent link (f8) and a child link (fC), unlinked by func_00157CB0 */
+struct C_00157CB0 {
+    virtual void v0();
+    virtual void v1();
+    virtual int v2();
+    int f4;
+    C_00157CB0 *f8;
+    C_00157CB0 *fC;
+    int func_00157CB0(void);
+};
+
+extern int D_002DF948;
 
 struct C_00158360 {
     void *vtbl;
