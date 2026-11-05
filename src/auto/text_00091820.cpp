@@ -242,3 +242,12 @@ void *C_000927B0::func_000927B0(int flags)
     return this;
 }
 
+void *C_000927F0::func_000927F0(unsigned int flags)
+{
+    func_0008BBE0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
