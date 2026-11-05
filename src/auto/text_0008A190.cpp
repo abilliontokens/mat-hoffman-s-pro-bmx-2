@@ -78,6 +78,8 @@ struct SubElem_0008 {
     char pad0[0x64];
     void func_001D5760();
     void func_001D57E0();
+    ClampObj *func_001D5AA0();
+    void func_001D5AD0();
 };
 
 struct C_0008AAB0 {
