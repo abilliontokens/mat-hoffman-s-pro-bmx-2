@@ -10,6 +10,7 @@ struct S_151F80_Vec {
     S_151F80_Vec() { x = y = z = 0.0f; w = 1.0f; }
     S_151F80_Vec(float a, float b, float c) { x = a; y = b; z = c; w = 1.0f; }
     void Set(float a, float b, float c) { x = a; y = b; z = c; }
+    void SetRef(const float &a, const float &b, const float &c) { x = a; y = b; z = c; }
     S_151F80_Vec operator+(const S_151F80_Vec &o) const { return S_151F80_Vec(x + o.x, y + o.y, z + o.z); }
     S_151F80_Vec operator-(const S_151F80_Vec &o) const { return S_151F80_Vec(x - o.x, y - o.y, z - o.z); }
     S_151F80_Vec operator*(float s) const { return S_151F80_Vec(x * s, y * s, z * s); }
@@ -53,10 +54,15 @@ struct C_00151F80 {
 void C_00151F80::func_00151F80(int a0)
 {
     if (D_002B9120->f528 != 0) {
+        volatile float one1 = 1.0f;
+        volatile float one2 = 1.0f;
         S_151F80_Vec a;
-        a.x = 1.0f;
+        a.w = one1;
+        a.x = 0.0f;
+        a.y = 0.0f;
         a.y = 0.0f;
         a.z = 0.0f;
+        a.x = one2;
         a = f2c->f1a4->f4->func_00197F70(&a.x) - func_00016E40();
         fc4 = 0;
         f94 = D_002A789C;
