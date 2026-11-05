@@ -67,6 +67,16 @@ undefined4 C_00037820::func_00037820(int param_1)
   return 0;
 }
 
+void func_00037840(int a1, S_00037840_B *a2, int a3, int a4)
+{
+    if (a4 == 0)
+        return;
+    if (*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(D_002A8490 + 0x2a4) + 0x64) + 0x4e0) + 0x1a8) + 0x1e0) != *(int *)(a1 + 0x64))
+        return;
+    func_00035300(&a2->f24, a2->fDC);
+    a2->func_001BB4D0(0);
+}
+
 void *C_000378A0::func_000378A0(int flags)
 {
     unk0 = (int)&D_00276CE4;
@@ -76,4 +86,36 @@ void *C_000378A0::func_000378A0(int flags)
     }
     return this;
 }
-
+extern int D_00276DDC;
+extern char D_002A5870[], D_00276C34[];
+struct S_000380B0_Manager {
+    void func_0013DFF0(char *, int);
+    void func_0013B260(int);
+};
+extern S_000380B0_Manager *D_002BEAAC;
+void func_001ADCC0(char *, int, const char *, ...);
+extern "C" void *memset(void *, int, unsigned int);
+#pragma intrinsic(memset)
+struct S_000380B0_Node {
+    char pad0[0x14]; int count; void *data;
+};
+struct S_000380B0_Array {
+    int count; void *data; char pad8[0xC];
+};
+struct S_000380B0_Widget {
+    virtual void v0(int); virtual void v1(); virtual void v2();
+};
+struct BmxEventEditor {
+    void *vtbl;
+    char pad4[0x498];
+    void *f49C;
+    char pad4A0[0x9C];
+    S_000380B0_Widget *f53C;
+    int f540;
+    S_000380B0_Widget *f544, *f548, *f54C;
+    char pad550[0x40];
+    S_000380B0_Widget *f590, *f594, *f598, *f59C;
+    S_000380B0_Array a, b, c, d;
+    void func_000380B0();
+    void func_00033220();
+};
