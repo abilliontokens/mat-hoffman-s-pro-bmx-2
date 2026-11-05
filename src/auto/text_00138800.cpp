@@ -94,6 +94,21 @@ f74 = 1;
 return this;
 }
 
+void CutScene::func_00138890() {
+    vtbl = &D_00284A2C;
+    if (f58) func_001E8390((void *)f58);
+    if (f80) func_001E891B((void *)f80);
+    for (int i = 0; i < f3c; i++) {
+        int off = i * 0x2c;
+        if (((CutScene_Item *)(f40 + off))->f1c) ((CutScene_Item *)(f40 + off))->f1c->v4(1);
+        if (((CutScene_Item *)(f40 + off))->f20) func_001E8390(((CutScene_Item *)(f40 + off))->f20);
+        if (((CutScene_Item *)(f40 + off))->f24) func_001E8390(((CutScene_Item *)(f40 + off))->f24);
+        if (((CutScene_Item *)(f40 + off))->f18) func_001E891B(((CutScene_Item *)(f40 + off))->f18);
+    }
+    if (f40) func_001E8390((void *)f40);
+    func_00157660();
+}
+
 void C_00139060::func_00139060(int a0, int a1) {
     unk84 = a0;
     unk8C = a1;
