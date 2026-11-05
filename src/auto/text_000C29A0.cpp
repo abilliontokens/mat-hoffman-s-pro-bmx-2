@@ -63,6 +63,7 @@ struct C_000C29A0 {
     int func_000C3060(int idx);
     int func_000C2EC0(int idx);
     int func_000C3550(int idx);
+    int func_000C2CC0(int idx);
 };
 
 int C_000C29A0::func_000C0100(int idx)
