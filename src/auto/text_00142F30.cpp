@@ -96,14 +96,14 @@ struct C_00197AA0 {
 #include <xmmintrin.h>
 static __forceinline void Mat_Copy_1432B0(Mat_1432B0 *dst, const Mat_1432B0 *src)
 {
-    __m128 a = _mm_load_ps(&src->m[0]);
-    __m128 b = _mm_load_ps(&src->m[4]);
-    __m128 c = _mm_load_ps(&src->m[8]);
-    __m128 d = _mm_load_ps(&src->m[12]);
-    _mm_store_ps(&dst->m[0], a);
-    _mm_store_ps(&dst->m[4], b);
-    _mm_store_ps(&dst->m[8], c);
-    _mm_store_ps(&dst->m[12], d);
+    __m128 a = ((__m128 *)src)[0];
+    __m128 b = ((__m128 *)src)[1];
+    __m128 c = ((__m128 *)src)[2];
+    __m128 d = ((__m128 *)src)[3];
+    ((__m128 *)dst)[0] = a;
+    ((__m128 *)dst)[1] = b;
+    ((__m128 *)dst)[2] = c;
+    ((__m128 *)dst)[3] = d;
 }
 void __fastcall func_001FEC30(int n, void *p);
 int __fastcall func_001FEBD0(int n, void *p);
