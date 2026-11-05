@@ -46,14 +46,31 @@ struct S_001D3690_Handle {
     int f4;
 };
 
-struct C_001D3690 {
+/* 16-byte slot of the object table in XboxLoadingIcon */
+struct S_001D35E0_Slot {
+    S_001D3690_Obj *obj;
+    int pad4[3];
+};
+
+/* 0x54-byte element of the array at XboxLoadingIcon+0x10 */
+struct S_001D35E0_Elem {
+    void *ptr;
+    char pad4[0x50];
+};
+
+struct C_001D35E0 {
     void *vtbl;
     int f4;
     char pad8[8];
-    char *f10;
-    S_001D3690_Obj **f14;
+    S_001D35E0_Elem *f10;
+    S_001D35E0_Slot *f14;
     int f18;
-    char pad1c[0x3c - 0x1c];
+    void func_001D35E0();
+};
+
+struct C_001D3690 {
+    void *vtbl;
+    char pad4[0x38];
     u32 f3c;
     u32 f40;
     S_001D3690_Handle *f44;
@@ -97,8 +114,9 @@ C_001D3690 *C_001D3690::func_001D3690(int a)
     f78 = 0;
     f4c = 0;
     vtbl = (void *)&D_0028F474;
-    f40 = 1.0f;
-    f3c = 1.0f;
+    u32 *p = &f3c;
+    p[1] = 0x3f800000;
+    p[0] = 0x3f800000;
     f5c = 0x280;
     f60 = 0x1c0;
     f64 = 1;
@@ -125,10 +143,12 @@ void C_001D3700::func_001D3700(int param_1, int param_2)
 int C_001D3690::func_001D3730(int a)
 {
     if (f44 != 0 && f48 == 0) {
+        int v;
+        int *p = &v;
         f48 = 1;
         D_002F07B8->func_001C3D40(0);
         float t = (float)(a << 15) * D_002755E0;
-        int v = _mm_cvtss_si32(_mm_load_ss(&t));
+        *p = _mm_cvtss_si32(*(__m128 *)&t);
         func_002598A0(f44, 0, v);
         return f48;
     }
