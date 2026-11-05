@@ -51,6 +51,7 @@ struct S_00095A00_Sub {
     void *data;
     void func_001CDED0(int n);
     void func_001CBCF0(int n);
+    void func_00094F10();
 };
 
 struct C_00095A00 {
