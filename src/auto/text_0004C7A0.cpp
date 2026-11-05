@@ -137,6 +137,9 @@ struct C_0004D230 {
 };
 
 struct S_4D0E0_Obj {
+    char pad0[0x95c];
+    int f95c;
+    void func_00108680(int a);
     void func_0010C090(void *a, void *b, int c, int d);
     void func_0010E810();
 };
