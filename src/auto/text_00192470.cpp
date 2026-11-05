@@ -575,6 +575,24 @@ undefined4 C_00192B50::func_00192B50(byte param_1)
   return 0;
 }
 
+int SearchNode::func_00192B70(void)
+{
+    S_00192930_Node *n;
+    for (n = f24; n != 0; n = n->next) {
+        S_00192B70_Obj *obj = (S_00192B70_Obj *)n->a;
+        if (D_002EFE50 == obj->f90) {
+            obj->v17();
+        }
+    }
+    if (f28 != 0) {
+        f28->v14();
+    }
+    if (f2C != 0 && f2C != f28) {
+        f28->v14();
+    }
+    return 1;
+}
+
 undefined4 C_00192BD0::func_00192BD0(int param_1)
 {
   int in_ECX = (int)this;
