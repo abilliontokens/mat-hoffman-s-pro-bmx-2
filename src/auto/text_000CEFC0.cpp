@@ -27,12 +27,34 @@ struct S_000CEFC0_Obj360 {
     int unk360;
 };
 
+struct S_000CEFC0_Tags {
+    int func_0001B3C0(const char *name);
+};
+
+struct S_000CEFC0_Obj150 {
+    char pad0[0x484];
+    S_000CEFC0_Tags *f484;
+};
+
 struct S_000CEFC0_124 {
-    char pad0[0x25c];
+    char pad0[0x150];
+    S_000CEFC0_Obj150 *f150;
+    char pad154[0x25c - 0x154];
     S_000CEFC0_Obj25C *unk25c;
     char pad260[8];
     S_000CEFC0_Obj268 *unk268;
+    char pad26c[0x27c - 0x26c];
+    char *f27c;
+    char *f280;
+    char pad284[8];
+    int f28c;
     S_000CEFC0_Obj360 *func_000BA9D0(int v);
+    void func_000BB440(int v);
+    void func_000BB600(int v);
+    void func_000BC2A0();
+    void func_000BDF30(int show);
+    void func_000BC240();
+    void func_000BE020(int v);
 };
 
 struct S_000CEFC0_4F8 {
