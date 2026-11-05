@@ -384,7 +384,9 @@ void func_001F37B0(int code) {
     }
 }
 
+#pragma optimize("sy", on)
 int func_001F37D8(u8 status) {
+    u32 bits;
     if (status & 0x20) {
         return 5;
     }
@@ -397,25 +399,27 @@ int func_001F37D8(u8 status) {
     if (status & 0x01) {
         return 3;
     }
-    return (status & 2) << 1;
+    bits = status;
+    return (bits & 2) << 1;
 }
-
-double func_001F3805(int type, int fnid, double arg1, double arg2, double retval, u32 cw) {
+double func_001F3805(int type, int fnid, D8_001F3805 arg1, D8_001F3805 arg2, D8_001F3805 retval, u32 cw) {
     extern int D_002AEC70[];
     extern char *D_002AEC74[];
     int func_001F3AFB(u32, u32);
-    int func_001F59D9(Exception_001F3805 *);
+    int func_001F59D9(ExceptionRaw_001F3805 *);
     void func_001F37B0(int);
-    Exception_001F3805 e;
-    char *name = 0;
+    ExceptionRaw_001F3805 e;
+    char *name;
     int i;
 
     for (i = 0; i < 0x1d; i++) {
         if (D_002AEC70[i * 2] == fnid) {
             name = D_002AEC74[i * 2];
-            break;
+            goto found;
         }
     }
+    name = 0;
+found:
     e.name = name;
     if (name != 0) {
         e.arg1 = arg1;
@@ -426,24 +430,25 @@ double func_001F3805(int type, int fnid, double arg1, double arg2, double retval
         if (func_001F59D9(&e) == 0) {
             func_001F37B0(type);
         }
-        return e.retval;
+        return *(double *)&e.retval;
     }
     func_001F3AFB(cw, 0xffff);
     func_001F37B0(type);
-    return retval;
+    return *(double *)&retval;
 }
 
 double func_001F38A3(int param_1, double param_2, int param_3) {
     extern int D_002AF030;
+    extern char D_0000FFFF;
     double func_001F3805(int, int, double, double, double, int);
     int *func_001ED075(void);
     void func_001F3AFB(int, int);
-    if (D_002AF030 != 0) {
-        *func_001ED075() = 0x21;
-        func_001F3AFB(param_3, 0xffff);
-        return param_2;
+    if (D_002AF030 == 0) {
+        return func_001F3805(1, param_1, param_2, 0.0, param_2, param_3);
     }
-    return func_001F3805(1, param_1, param_2, 0.0, param_2, param_3);
+    *func_001ED075() = 0x21;
+    func_001F3AFB(param_3, (int)&D_0000FFFF);
+    return param_2;
 }
 
 double func_001F38F6(int param_1, int param_2, double param_3, double param_4, int param_5) {
