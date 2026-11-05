@@ -41,6 +41,13 @@ struct DXRenderableObject {
 };
 
 
+DXRenderableObjectData *DXRenderableObjectData::func_00143520(void)
+{
+    func_00181410();
+    vtbl = (void *)&D_002859D0;
+    return this;
+}
+
 undefined4 C_00143BD0::func_00143BD0(byte param_1)
 {
   int func_001439D0(...);
