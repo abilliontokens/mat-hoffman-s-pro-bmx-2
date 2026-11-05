@@ -79,6 +79,31 @@ struct C_000A43E0 {
 };
 
 
+int BmxPlayerStart::func_000A4080(C_000A4080_Stream *stream)
+{
+    char buf[0x104];
+    char *p;
+    int i;
+    int n;
+
+    if (!stream->func_00169710(D_0027B1FC)) {
+        return 0;
+    }
+    i = 1;
+    p = unkA4;
+    n = 8;
+    do {
+        func_001ADCC0(buf, 0x104, D_0027B1E4, i);
+        stream->func_00168CB0(buf, D_002A2734, p - 0x80);
+        func_001ADCC0(buf, 0x104, D_0027B1CC, i);
+        stream->func_00168CB0(buf, D_002A2764, p);
+        i++;
+        p += 0x10;
+    } while (--n);
+    stream->func_00168C20(D_0027B1C0, 0, &unk124);
+    return 1;
+}
+
 int C_000A4150::func_000A4150(char *a1) {
     char buf[0x104];
     C_000A4150_obj *obj;
