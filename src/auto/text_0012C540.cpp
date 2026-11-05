@@ -55,3 +55,15 @@ undefined4 C_0012C8F0::func_0012C8F0(byte param_1)
   }
   return in_ECX;
 }
+
+void C_0012C910::func_0012C910(int a, int b)
+{
+    func_0012C540(a, b);
+    func_001D3F50();
+}
+
+float func_0012C930(float a, float b)
+{
+    return (float)fmod(a, b);
+}
+
