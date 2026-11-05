@@ -13,7 +13,8 @@ struct S_00167DD0_Object {
  char pad2c[0x10]; int f3c; char pad40[0x52]; u16 stamp;
 };
 struct C_00167DD0 {
- char pad0[0x24]; char *f24;
+ char pad0[0x24]; char *f24; char pad28[0x328]; int f350;
+ int func_00167ED0(void);
  void func_00167AF0(void *p);
  int func_00167DD0(S_00167DD0_Object *, C_00167DD0_Context *, void *);
 };
