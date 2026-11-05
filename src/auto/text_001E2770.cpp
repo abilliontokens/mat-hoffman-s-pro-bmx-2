@@ -92,9 +92,11 @@ struct S_func_001E2B60_arg1 {
 
 float __stdcall func_00243639(int v);
 
+extern char D_0019660D;
+
 static inline int dither_noise_step(int &seed, int &prev)
 {
-    int s = seed * 1664525 + 1013904223;
+    int s = seed * (int)&D_0019660D + 1013904223;
     int n;
     seed = s;
     s >>= 2;
