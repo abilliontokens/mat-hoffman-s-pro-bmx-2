@@ -18,6 +18,22 @@ struct BmxUIPageDemo {
     int func_000C0100(int idx);
 };
 
+BmxUIPageDemo *BmxUIPageDemo::func_000BFE90(int a0)
+{
+    int i;
+
+    func_001BE360(a0);
+    unk280 = 0;
+    unk284 = 1;
+    unk288 = 1;
+    unk28C = 0;
+    unk290 = 0;
+    vtbl = &D_0027E00C;
+    for (i = 0; i < 20; i++)
+        items[i] = -1;
+    return this;
+}
+
 int BmxUIPageDemo::func_000C0100(int idx)
 {
     if (idx >= unk290) {
