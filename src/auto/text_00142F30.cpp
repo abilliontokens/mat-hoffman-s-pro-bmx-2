@@ -181,6 +181,22 @@ void C_001437E0::func_001437E0(void *p)
     unk8 = 0;
 }
 
+DXShadowCaster *DXShadowCaster::func_00143820(DXRenderableObject *owner)
+{
+    Alloc190 *p;
+
+    f4 = owner;
+    f8 = 0;
+    vtbl = (void *)&D_00285AAC;
+    p = (Alloc190 *)func_001E8A44(0x190);
+    if (p)
+        p = p->func_00142E90(owner);
+    else
+        p = 0;
+    fc = p;
+    return this;
+}
+
 undefined4 C_00143BD0::func_00143BD0(byte param_1)
 {
   int func_001439D0(...);
