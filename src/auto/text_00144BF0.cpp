@@ -1,6 +1,46 @@
 /* 9 functions from 0x00144BF0 to 0x001458E0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_001452A0_MgrA {
+    void func_001B26C0(int a);
+};
+
+struct C_001452A0_MgrB {
+    void func_001AC790(int a);
+};
+
+struct C_001452A0_MgrC {
+    void func_0014A910(int a);
+};
+
+struct C_001452A0_MgrD {
+    void func_00142D90(int a);
+};
+
+extern C_001452A0_MgrA *D_002AA6C0;
+extern C_001452A0_MgrB *D_002A71C0;
+extern C_001452A0_MgrC *D_002A751C;
+extern C_001452A0_MgrD *D_002A6D84;
+
+struct C_001452A0 {
+    void *vtbl;
+    char pad4[6];
+    u8 fA;
+    char padB[0x18 - 0xB];
+    s16 a18[4];
+    u8 a20[4];
+    u8 f24;
+    char pad25[1];
+    s16 f26;
+    s16 f28;
+    char pad2A[2];
+    int f2C;
+    int f30;
+    int f34;
+    void func_001B0DC0();
+    void func_001452A0();
+};
+
 struct C_00145290 {
     int func_00145290(int param_1);
 };
