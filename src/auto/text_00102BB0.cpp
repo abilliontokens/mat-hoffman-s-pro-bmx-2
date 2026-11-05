@@ -61,6 +61,52 @@ struct C_001033D0 {
     void func_00103A70();
 };
 
+void C_001033D0::func_00103350()
+{
+    int i;
+    int v;
+    for (i = 0; i < unk170; i++) {
+        v = unk1B0[i]->unk24->unk34;
+        unk1B0[i]->func_001B1980();
+        unk1B0[i]->func_001B1860(0, -1.0f, 0xff, v, 0, 0, 0, 0, v, 0, 0.25f, 0, 0);
+    }
+    unk1AC = 1;
+}
+
+C_001033D0 *C_001033D0::func_001033D0(void *a, void *b)
+{
+    ((C_001C0110 *)this)->func_001C0110(a, b);
+    vtbl = (void *)&D_00282754;
+    unk3DC = 0;
+    unk3D8 = 0;
+    unk3D4 = 0;
+    unk3E0 = 1.0f;
+    unk1B0 = 0;
+    unk170 = 0;
+    unk3C0 = 0;
+    unk3CC = 0;
+    unk3D0 = 0;
+    unk3E8 = 0;
+    unk3F4 = 0;
+    unk3F0 = 0;
+    unk3EC = 0xff;
+    return this;
+}
+
+void C_001033D0::func_00103A70()
+{
+    int i;
+    if (unk3CC) {
+        for (i = 0; i < unk170; i++) {
+            unk1B0[i]->func_001B2270(unk3C0);
+        }
+    } else {
+        for (i = 0; i < unk170; i++) {
+            unk1B0[i]->func_001B1980();
+        }
+    }
+}
+
 void *C_00103AE0::func_00103AE0(unsigned int flags)
 {
     vtbl = (void *)&D_002826B4;
