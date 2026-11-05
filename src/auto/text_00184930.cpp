@@ -229,7 +229,8 @@ struct C_00184930 {
     C_001B1130 *f3e4;
     S_00184EF0_Holder *f3e8;
     S_00184EF0_Obj *f3ec;
-    char pad3f0[0x484 - 0x3f0];
+    C_0014E3E0 *f3f0;
+    char pad3f4[0x484 - 0x3f4];
     S_00184C00_Mgr *f484;
     int func_00184EF0(int a0, int a1);
     void func_00184BB0(void);
