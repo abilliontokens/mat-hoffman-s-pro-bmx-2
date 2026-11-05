@@ -57,6 +57,8 @@ struct C_00109090 {
 
 struct C_00083B20 {
     void func_00083B20(int arg);
+    void func_000848F0(void);
+    void func_000843E0(int a);
 };
 
 struct C_00108630_Arr {
