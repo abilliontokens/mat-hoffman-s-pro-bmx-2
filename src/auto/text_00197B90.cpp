@@ -236,3 +236,12 @@ void C_001983A0::func_001983A0(void)
   return;
 }
 
+void C_001983E0::func_001983E0(void *out0, void *out1)
+{
+    if ((f180 & 0x20) == 0) {
+        v30();
+    }
+    *(C_001983E0_V4 *)out0 = f130;
+    *(C_001983E0_V4 *)out1 = f140;
+}
+
