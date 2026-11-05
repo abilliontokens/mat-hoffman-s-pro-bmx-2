@@ -161,6 +161,18 @@ struct S_00192930_Iface {
     virtual void v0();
     virtual void v1();
     virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
     int pad4;
     int f8;
 };
@@ -302,6 +314,11 @@ undefined4 C_001926D0::func_001926D0(byte param_1)
   return in_ECX;
 }
 
+int *C_00192470::func_001926F0(int a, int b)
+{
+    return func_00192470((int *)b);
+}
+
 C_00192470 *C_00192470::func_00192720(void)
 {
     void *func_001E8A44(int);
@@ -328,6 +345,14 @@ void C_00192470::func_001927A0(void)
     vtbl = (void *)&D_0028AB84;
     func_001E891B(f14);
     func_0001DFF0();
+}
+
+void C_00192470::func_001927C0(void *row, int limit)
+{
+    int i;
+    for (i = 0; i < f10; i++) {
+        at(i)->v16();
+    }
 }
 
 C_00192800 *C_00192800::func_00192800(unsigned int flags)
