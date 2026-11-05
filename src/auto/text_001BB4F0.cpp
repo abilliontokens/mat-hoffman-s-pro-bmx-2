@@ -71,6 +71,18 @@ extern S_1BB4F0_Global *D_002A8490;
 
 void func_001BB4F0(S_1BB4F0_Arg1 *a1, int a2, S_1BB4F0_Arg3 *a3, int idx);
 
+struct V4_001BC040 {
+    float x, y, z, w;
+    V4_001BC040() {}
+    V4_001BC040(float a, float b, float c, float d)
+    {
+        x = a;
+        y = b;
+        z = c;
+        w = d;
+    }
+};
+
 struct C_001BB5F0 {
     void *vtbl;
     void func_00157660();
