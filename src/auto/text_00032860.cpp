@@ -45,6 +45,14 @@ struct C_00032A20 {
     void func_00032A40(void);
 };
 
+static inline void SetV4(V4_00032E50 *v, float a, float b, float c, float d)
+{
+    v->x = a;
+    v->y = b;
+    v->z = c;
+    v->w = d;
+}
+
 struct C_00032E50 {
     char pad0[0x210];
     V4_00032E50 f210;
@@ -81,11 +89,7 @@ void C_00032A20::func_00032A40(void)
 void C_00032E50::func_00032E50(float a, float b, float c, float d)
 {
     if (D_002F08BC != 0) {
-        V4_00032E50 *p = &f210;
-        p->x = a;
-        p->y = b;
-        p->z = c;
-        p->w = d;
+        f210.Set(a, b, c, d);
         f230 = 0.0f;
     }
 }
