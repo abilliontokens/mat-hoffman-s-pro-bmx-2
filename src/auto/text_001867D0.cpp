@@ -64,7 +64,6 @@ extern int D_00289A3C;
 extern int D_00289A2C;
 extern int D_00275630;
 extern int D_00289A60;
-extern int D_002A8490_unused;
 
 struct C_00186C00 {
     char pad0[0x168];
