@@ -107,6 +107,11 @@ extern int D_002896CC;
 extern int D_002764F0;
 char *func_001E8920(char *dst, const char *src, int n);
 
+static __forceinline int clamp_len_00185BF0(int limit, int len)
+{
+    return len < limit ? len : limit;
+}
+
 struct C_00185BF0 {
     void *vtbl;
     int f4;
