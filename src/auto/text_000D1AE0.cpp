@@ -66,6 +66,7 @@ struct C_000D2860 {
 
 extern C_Root_D1 *D_002A8490;
 extern int D_00277038;
+extern int D_0027A2A8;
 extern float D_0027DE70;
 extern float D_0027ED00;
 void func_001ADCC0(char *buf, int size, char *fmt, int val);
