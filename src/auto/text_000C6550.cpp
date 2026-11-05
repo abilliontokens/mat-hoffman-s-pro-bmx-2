@@ -161,7 +161,7 @@ void BmxUIPageParkLevel::func_000C6CA0()
         w2e4[i]->func_001B1980();
         if (i == f28c) {
             w2e4[i]->func_001B2270(0xffbfa35a);
-            w2e4[i]->func_001B1A30(320.0f, D_00276DD4 + f280[i], 0.0f);
+            w2e4[i]->func_001B1A30(320.0f, *(volatile float *)&f280[i] + D_00276DD4, 0.0f);
             w2e4[i]->func_001B1860(0, -1.0f, 0xff, 1.45f, 0, 0, 0, 0, 1.45f, 0, 0.25f, 0, 0);
         } else {
             w2e4[i]->func_001B2270(0xffcccccc);
