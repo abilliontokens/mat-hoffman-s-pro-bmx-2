@@ -278,6 +278,8 @@ struct C_00094F10 {
         memset(items, 0, count * 4);
         count = 0;
     }
+    /* the out-of-line copy of at() */
+    S_00095060_Track *func_00037820(int i);
     void func_00094F10(void);
 };
 
