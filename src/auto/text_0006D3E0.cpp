@@ -169,6 +169,20 @@ void C_0006D590::func_0006DF50()
     }
 }
 
+int C_0006D590::func_0006E1E0()
+{
+    if ((D_002B9030 & 1) == 0) {
+        D_002B9030 |= 1;
+        D_002B902C = D_002A7CB8->func_00026500((int)&D_00278AF0, 0);
+    }
+    if (D_002A8490->f274 < D_002A8490->f270 - 1) {
+        return 1;
+    }
+    func_0006DF50();
+    func_0006DFC0();
+    return func_00157960();
+}
+
 int C_0006D590::func_0006E250(float dt)
 {
     if (unk64 != 0) {
