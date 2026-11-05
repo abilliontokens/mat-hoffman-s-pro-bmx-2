@@ -9,6 +9,29 @@ struct C_0004ED80 {
 
 void func_001E891B(void *ptr);
 
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+void *func_001E8A44(int size);
+extern char D_002A5870[];
+extern char D_00277744[];
+extern char D_00277734[];
+extern char D_0027771C[];
+extern char D_0027770C[];
+extern char D_002776F8[];
+
+struct C_00168280 {
+    C_00168280 *func_00168280(void);
+    int func_00169490(char *buf, int flag);
+    void func_00169710(const char *s);
+    void func_00168A10(const char *key, int *out);
+    void func_00168550(const char *key, void *dst, int size);
+    void func_00168CB0(const char *key, void *def, void *dst);
+};
+
+struct C_0013B210 {
+    int func_0013B1A0(const char *key);
+};
+extern C_0013B210 *D_002BEAAC;
+
 struct C_0004EC40Item {
     virtual void dummy0();
     virtual void dummy1();
