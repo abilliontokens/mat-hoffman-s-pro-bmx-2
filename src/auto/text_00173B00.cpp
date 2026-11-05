@@ -15,6 +15,10 @@ struct Vec4 {
 extern Vec4 D_002EF740;
 static __forceinline void Zero3(int *p) { p[0]=0; p[1]=0; p[2]=0; }
 
+struct __declspec(align(16)) Mat4_001741C0 {
+    float m[16];
+};
+
 struct C_00198040 {
     void func_00198040(void *a0, void *a1);
     void func_00197EC0(void *a0, void *a1);
