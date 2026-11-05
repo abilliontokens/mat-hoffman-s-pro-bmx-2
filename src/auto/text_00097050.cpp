@@ -9,6 +9,25 @@ struct C_00097700 {
     bool func_00097700(void);
 };
 
+struct C_000976C0 {
+    int func_000976C0(void);
+};
+
+struct C_00097710 {
+    undefined4 func_00097710(int param_1);
+};
+
+struct C_00097740 {
+    undefined4 func_00097740(int param_1);
+};
+
+typedef int (*func_000979C0_hash_t)(undefined4);
+typedef int (*func_000979C0_eq_t)(undefined4, undefined4);
+
+struct C_000979C0 {
+    int func_000979C0(undefined4 key, undefined4 *out);
+};
+
 
 undefined4 C_000976A0::func_000976A0(void)
 {
