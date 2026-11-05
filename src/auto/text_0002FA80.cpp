@@ -260,6 +260,70 @@ void *C_00030500::func_00030500(unsigned int flags)
     return this;
 }
 
+void C_000308F0::func_000308F0(void)
+{
+    C_00055910 *p50 = f50;
+    vtbl = &D_002768FC;
+    if (p50) {
+        p50->func_00055910();
+        func_001E891B(p50);
+    }
+    C_0009F9F0 *p54 = f54;
+    if (p54) {
+        p54->func_0009F9F0();
+        func_001E891B(p54);
+    }
+    C_001324B0 *p58 = f58;
+    if (p58) {
+        p58->func_001324B0();
+        func_001E891B(p58);
+    }
+    S_000308F0_Holder *p74 = f74;
+    if (p74) {
+        if (p74->f4) {
+            p74->f4->func_00030500(3);
+            p74->f4 = 0;
+        }
+        func_001E891B(p74);
+    }
+    C_00194DB0 *p5C = f5C;
+    if (p5C) {
+        p5C->func_00194DB0();
+        func_001E891B(p5C);
+    }
+    C_00195130 *p60 = f60;
+    if (p60) {
+        p60->func_00195130();
+        func_001E891B(p60);
+    }
+    C_00150350 *p64 = f64;
+    if (p64) {
+        p64->func_00150350();
+        func_001E891B(p64);
+    }
+    C_00136300 *p40 = f40;
+    if (p40) {
+        p40->func_00136300();
+        func_001E891B(p40);
+    }
+    C_00136300 *p44 = f44;
+    if (p44) {
+        p44->func_00136300();
+        func_001E891B(p44);
+    }
+    C_00136300 *p48 = f48;
+    if (p48) {
+        p48->func_00136300();
+        func_001E891B(p48);
+    }
+    C_00136300 *p4C = f4C;
+    if (p4C) {
+        p4C->func_00136300();
+        func_001E891B(p4C);
+    }
+    ((C_0012B580 *)this)->func_0012B580();
+}
+
 undefined4 C_00030A10::func_00030A10(byte param_1)
 {
   int func_000308F0(...);
