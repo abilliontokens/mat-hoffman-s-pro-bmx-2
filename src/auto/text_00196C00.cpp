@@ -214,7 +214,7 @@ void C_00197700::func_00197700(int a0)
     v.y = f7DC + D_002EFDB8->f4->f174;
     v.z = D_002EFDB8->f4->f178;
     f28->func_001367F0(&v, 0, 0);
-    func_00137E50(v.z);
+    func_00137E50(a0);
 }
 
 void C_00197700::func_00197780()
