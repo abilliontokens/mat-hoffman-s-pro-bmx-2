@@ -116,6 +116,7 @@ struct C_001D4200 {
     int func_001D4200(char *out);
     int func_001D4300(unsigned a);
     int func_001D4380(char *out);
+    int func_001D4440(const char *a, const char *b, const void *data, unsigned int size);
     int func_001D4720(const char *a, const char *b);
 };
 
