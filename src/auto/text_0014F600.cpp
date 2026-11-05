@@ -10,6 +10,12 @@ struct S_SinCosEntry {
 
 extern S_SinCosEntry *D_002CF6B4;
 
+/* Truncate towards zero into *out; inlined into its callers. */
+static void storeftoi(int *out, float f)
+{
+    *out = (int)f;
+}
+
 struct C_00150350 {
     int unk0;
     void func_00150350(void);
@@ -48,6 +54,19 @@ void func_0014F670(float x, float *num, float *den)
     float x2 = x * x;
     *num = ((((D_002A773C * x2 + D_002A7738) * x2 + D_002A7734) * x2 + D_002A7730) * x2 + D_00275460) * x;
     *den = (((((D_002A7720 * x2 + D_002A771C) * x2 + D_002A7718) * x2 + D_002A7714) * x2 + D_002A7710) * x2 + D_00275460);
+}
+
+void func_0014F6E0(float a, float *s, float *c)
+{
+    extern float D_002756D0;
+    extern float D_002DF870;
+    extern float D_002DF874;
+    float func_00016D60(float);
+    float v = (func_00016D60(a) + D_002756D0) * D_002DF870;
+    int i = (int)v;
+    float f = (v - (float)i) * D_002DF874;
+    *s = f * D_002CF6B4[i].a + D_002CF6B4[i].b;
+    *c = D_002CF6B4[i].a - f * D_002CF6B4[i].b;
 }
 
 float func_0014F990(float x)
