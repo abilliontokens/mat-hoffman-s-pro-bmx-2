@@ -166,3 +166,25 @@ void C_00165EF0::func_00165EF0(Vec4_165EF0 *out, C_00165EF0_Arg1 *a1, f32 a2, in
     *out = v;
 }
 
+void C_00166190::func_00166190(void)
+{
+    char buf[0x104];
+    int id;
+    int a;
+    int b;
+
+    func_001ADCC0(buf, 0x104, D_00275678, f190, fE8);
+    id = D_002BEAAC->func_0013C9F0(buf, &D_00276274);
+    if (id != -1) {
+        f1F0 = (int *)func_001E8A44(f1E8 << 2);
+        while (D_002BEAAC->func_0013C6E0(id, buf, 0xFF)) {
+            func_001EA1EE(buf);
+            a = func_00164650(func_001E95A4(buf, D_00287E50));
+            b = func_00164650(func_001E95A4(0, D_00287E40));
+            f1F0[a] = b;
+            f1F0[b] = a;
+        }
+        D_002BEAAC->func_0013C110(id);
+    }
+}
+
