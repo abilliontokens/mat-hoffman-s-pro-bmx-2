@@ -39,6 +39,13 @@ void func_001DE82F(void);
 void __stdcall func_001DD659(int code);
 void func_001EA4E1(char *buf, const char *fmt, int value);
 
+extern "C" void __stdcall XcSHAInit(void *ctx);
+extern "C" void __stdcall XcSHAUpdate(void *ctx, const void *data, unsigned int len);
+extern "C" void __stdcall XcSHAFinal(void *ctx, void *digest);
+extern "C" __declspec(dllimport) unsigned char XboxHDKey[16];
+#pragma intrinsic(memset)
+extern "C" void *memset(void *dst, int c, unsigned int n);
+
 #pragma intrinsic(memcpy)
 extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
 extern "C" long (__stdcall *_imp__NtQueryDirectoryFile)(void *fileHandle, void *event, void *apcRoutine, void *apcContext, S_IoStatusBlock *iosb, void *fileInfo, u32 length, u32 infoClass, u32 returnSingle, void *fileName);
