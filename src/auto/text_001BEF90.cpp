@@ -206,6 +206,37 @@ struct C_001BF540 {
     int func_001BF540(S_001BF540_Event *ev, int a);
 };
 
+/* UIWidgetSoultreeCharacter */
+extern int D_0028DA5C;
+extern int D_0028D804;
+void func_001E8390(void *p);
+
+struct S_001BFEE0_Soultree {
+    void func_0019AC50(void);
+};
+
+struct S_001BFEE0_Target {
+    char pad0[4];
+    S_001BFEE0_Soultree *f4;
+    void func_001670C0(int a, int b, int c);
+};
+
+struct C_001BFEE0 {
+    char pad0[0x68];
+    S_001BFEE0_Target *f68;
+    void func_00157A00(int a);
+    void func_001BFEE0(int a);
+};
+
+struct C_001BFE80 {
+    void *vtbl;
+    char pad4[0x398];
+    int f39C;
+    void **f3A0;
+    void func_00157660(void);
+    void func_001BFE80(void);
+};
+
 struct C_001BF600 {
     char pad0[0x30];
     int f30;
@@ -372,23 +403,18 @@ void *C_001BF430::func_001BF430(int a0, int a1)
 
 void C_001BF490::func_001BF490(C_001BF490_Item *a0)
 {
-    S_001BF3C0_List *list;
-    S_001BF3C0_Node *node;
-    int i;
-
-    for (i = 0; i < 8; i++) {
+    for (int i = 0; i < 8; i++) {
         if (a0->unk44[i] != 0) {
-            list = unk2C[i];
+            S_001BF3C0_List *list = unk2C[i];
             if (list->head == 0) {
-                node = (S_001BF3C0_Node *)func_001E8A44(0xc);
+                S_001BF3C0_Node *node = (S_001BF3C0_Node *)func_001E8A44(0xc);
                 list->head = node;
                 node->unk0 = a0;
-                node->unk8 = 0;
-                node->unk4 = 0;
+                node->unk4 = node->unk8 = 0;
                 list->tail = node;
             } else {
                 list->tail->unk8 = (S_001BF3C0_Node *)func_001E8A44(0xc);
-                node = list->tail->unk8;
+                S_001BF3C0_Node *node = list->tail->unk8;
                 list->tail = node;
                 node->unk0 = a0;
                 list->tail->unk4 = 0;
