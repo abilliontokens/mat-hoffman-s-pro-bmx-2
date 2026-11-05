@@ -37,7 +37,7 @@ struct C_001703B0 {
     u32 vectors[4][4];
     char pad84[0x80];
     void *f104;
-    char pad108[8];
+    u32 f108, f10c;
     void *f110;
     char pad114[0x128 - 0x114];
     S_Obj *f128;
