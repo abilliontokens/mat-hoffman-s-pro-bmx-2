@@ -42,6 +42,22 @@ struct C_0017A850 {
     void func_0017A850(void);
 };
 
+struct V4_0017A8F0 { float x, y, z, w; };
+struct C_0017A8F0 {
+    char pad0[0xfc];
+    void *fFC;
+    char pad100[0x18];
+    int f118;
+    int func_0017A8F0(V4_0017A8F0 *a0, V4_0017A8F0 *a1, int mode);
+};
+extern float D_002A8D0C, D_002A8D10, D_002A8D14, D_002A8D18, D_002A8CE0, D_00275800;
+extern int D_002EFD6C;
+extern struct { char pad[4]; char *p; } *D_002EFDB8;
+V4_0017A8F0 *func_0001E9E0(V4_0017A8F0 *, V4_0017A8F0 *);
+V4_0017A8F0 *func_0001C610(V4_0017A8F0 *, V4_0017A8F0 *, V4_0017A8F0 *);
+void func_0017A460(V4_0017A8F0 *, V4_0017A8F0 *);
+void func_0012AB70(V4_0017A8F0 *, V4_0017A8F0 *, V4_0017A8F0 *, int, int);
+
 extern int D_00288ED4;
 extern int D_00288F84;
 extern void func_001E8390(void *p);
