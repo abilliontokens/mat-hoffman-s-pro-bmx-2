@@ -320,6 +320,16 @@ C_001B6570 *C_001B6570::func_001B6570(int a0, int a1)
     return this;
 }
 
+void C_001B6570::func_001B6590(const char *name)
+{
+    int handle = -1;
+    if (*name != 0) {
+        handle = D_002A829C->func_001617F0(name, 1);
+    }
+    ((S_001B6590_Obj *)f4)->func_00181DB0(handle);
+    ((S_001B6590_Obj *)f4)->func_001820B0((void *)func_001B6560, this, handle);
+}
+
 void C_001B65D0::func_001B65D0(void) {
     unk0 = 1;
 }
