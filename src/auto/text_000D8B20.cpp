@@ -264,6 +264,43 @@ void BmxUIPageHOF5D::func_000D8D30()
     func_001BE3F0();
 }
 
+void C_000D9750::func_000D9530()
+{
+    S_000D9FE0_Owner *owner = f124;
+    float f;
+    int i;
+    char s[0x14];
+    char name[0x104];
+    char buf[0x104];
+    memset(buf, 0, sizeof(buf));
+    for (i = 0; i < 5; i++) {
+        volatile float y;
+        a2C4[i]->func_001B1980();
+        a2D8[i]->func_001B1980();
+        a304[i]->func_001B1980();
+        D_002A8490->a->q->func_0005BED0(3, i, &f, s);
+        int k = 0;
+        char c;
+        do { c = s[k]; name[k] = c; k++; } while (c);
+        memset(buf, 0, sizeof(buf));
+        if (f > D_00275544)
+            func_000D8700((int)f, buf);
+        else
+            func_001ADCC0(buf, 0x104, D_00277038, (double)f);
+        a2C4[i]->func_001B17D0(name);
+        y = i * D_0027F2BC;
+        a2C4[i]->func_001B1A30(191.0f, y + D_00279F74, 0);
+        a2C4[i]->func_001B19A0(D_0028F5DC);
+        a2C4[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+        a2D8[i]->func_001B17D0(buf);
+        a2D8[i]->func_001B1A30(380.0f, y + D_0027F2B8, 0);
+        a2D8[i]->func_001B19A0(D_0028F5DC);
+        a2D8[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+        a304[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+    }
+    owner->func_000BA9B0(0x21)->func_00103260(0);
+}
+
 void C_000D9750::func_000D9750() {
     if (unk29C != 0) {
         unk2AC = 1;
