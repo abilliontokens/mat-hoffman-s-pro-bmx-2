@@ -109,6 +109,98 @@ struct C_001BA3B0 {
     undefined4 func_001BA3B0(byte param_1);
 };
 
+extern char D_0027C588[];
+extern char D_0027D170[];
+extern int D_0028CA64;
+void func_00012140(void);
+
+struct S_001BA1B0_Temp {
+    void *vtbl;
+    char name[0x10c];
+    int f110;
+    char f114[0x104];
+    int f218;
+    int f21c;
+    int f220;
+    int f224;
+    int f228;
+    int f22c;
+    int f230;
+};
+
+struct S_001BA1B0_Mesh {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32();
+    void func_00133140(int a, int b);
+};
+
+struct S_001BA1B0_Skel { void func_0019ABA0(int a, int b); };
+
+struct S_001BA1B0_Obj {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35();
+    virtual void v36(); virtual void v37(); virtual void v38(); virtual void v39();
+    virtual void v40(); virtual void v41(); virtual void v42(); virtual void v43();
+    virtual void v44();
+    virtual int v45(char *a, char *b, int c, char *d, void *e, int f, int g, int h,
+                    float i, float j, int k, int l, int m, int n, int o, int p);
+    char pad4[0x3fc];
+    S_001BA1B0_Skel *f400;
+    char pad404[8];
+    S_001BA1B0_Mesh *f40c;
+    S_001BA1B0_Mesh *f410;
+    S_001BA1B0_Obj *func_0012C940(int a);
+};
+
+struct S_001BA1B0_Scene { void func_001577A0(S_001BA1B0_Obj *o, int a); };
+
+struct S_001BA1B0_Owner {
+    char pad0[0x3ac];
+    S_001BA1B0_Scene *f3ac;
+    char pad3b0[0x4a8 - 0x3b0];
+    int *f4a8;
+    int *f4ac;
+    char pad4b0[0x10];
+    int f4c0;
+};
+
+struct S_001BA1B0_Attach {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(S_001BA1B0_Owner *p, S_001BA1B0_Skel *s, int a, int b);
+};
+
+struct ProceduralModel {
+    void *vtbl;
+    char pad4[4];
+    char f8[0x3c];
+    int f44;
+    int f48;
+    char pad4c[8];
+    S_001BA1B0_Attach *f54;
+    S_001BA1B0_Obj *f58;
+    S_001BA1B0_Temp *f5c;
+    int func_001BA1B0(S_001BA1B0_Owner *p);
+};
 
 C_001B9B20 *C_001B9B20::func_001B9B20(void *param) {
     ((C_00157600 *)this)->func_00157600(param);
