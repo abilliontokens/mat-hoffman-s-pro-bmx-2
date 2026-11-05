@@ -1,6 +1,11 @@
 /* 14 functions from 0x00178210 to 0x00178C60, found by Ghidra. */
 #include "common.h"
 
+struct Px16 {
+    u8 lo;
+    u8 hi;
+};
+
 u32 func_00178210(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int pal)
 {
   u8 *srow;
@@ -117,8 +122,8 @@ u32 func_00178470(u16 *dst, u8 *src, int width, int height, int dstPitch, int sr
   for (y = height; y > 0; y--) {
     for (p = d, q = s, x = width; x > 0; x--) {
       c = q[2];
-      c = (u16)(((c & ~7) << 5) | q[1]);
-      c = (u16)(((c & ~7) << 2) | (q[0] >> 3));
+      c = (u16)(((c & 0xfff8) << 5) | q[1]);
+      c = (u16)(((c & 0xfff8) << 2) | (q[0] >> 3));
       *p = c;
       if (q[3] >= alphaRef) {
         c |= 0x8000;
@@ -165,7 +170,6 @@ u32 func_00178990(u16 *dst, u16 *src, int width, int height, int dstPitch, int s
   u16 *p;
   u16 *q;
   u16 c;
-  u16 v;
   int x;
   int y;
 
@@ -174,8 +178,7 @@ u32 func_00178990(u16 *dst, u16 *src, int width, int height, int dstPitch, int s
   d = dst;
   for (y = height; y > 0; y--) {
     for (p = d, q = s, x = width; x > 0; x--) {
-      v = *q;
-      *p = v;
+      *p = *q;
       if (*q == 0x7c1f) {
         *p = c;
       } else {
@@ -206,13 +209,12 @@ u32 func_00178A40(u16 *dst, u16 *src, int width, int height, int dstPitch, int s
   for (y = height; y > 0; y--) {
     q = (u8 *)s;
     p = (u8 *)d;
-    for (x = width; x > 0; x--) {
-      if (q[1] & 0x80) {
+    for (x = 0; x < width; x++) {
+      if (q[2 * x + 1] & 0x80) {
         p[1] &= 0x7f;
       } else {
         *(u16 *)p = c;
       }
-      q += 2;
       p += 2;
     }
     s += srcPitch;
