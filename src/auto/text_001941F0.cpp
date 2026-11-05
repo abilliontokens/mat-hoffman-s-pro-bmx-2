@@ -495,6 +495,33 @@ void *C_00194C80::func_00194C80(int flags)
     return this;
 }
 
+SimpleStillCamera *SimpleStillCamera::func_00194CC0(void) {
+ int *p;
+ func_0012B510();
+ vtbl = &D_0028AED0;
+p = &f8.x; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+p = &f18.x; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+p = &f28.x; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+p = &f38.x; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+f8.x = D_002A9ADC;
+f8.y = D_002A9AE0;
+f8.z = D_002A9AE4;
+f8.w = D_002A9AE8;
+f18.x = D_002A9B0C;
+f18.y = D_002A9B10;
+f18.z = D_002A9B14;
+f18.w = D_002A9B18;
+f28.x = D_002A9ADC;
+f28.y = D_002A9AE0;
+f28.z = D_002A9AE4;
+f28.w = D_002A9AE8;
+f38.x = D_002A9AFC;
+f38.y = D_002A9B00;
+f38.z = D_002A9B04;
+f38.w = D_002A9B08;
+f4 = 0; f48 = 80.0f; return this;
+}
+
 void C_00194DB0::func_00194DB0(void) {
     extern int D_0028AED0;
     int func_0012B540(...);
