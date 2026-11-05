@@ -4,6 +4,101 @@
 extern int D_0027850C;
 extern int D_00278DF4;
 
+struct V_002EFDB8 {
+    virtual void vf0();
+    virtual void vf1();
+    virtual void vf2();
+    virtual void vf3();
+    virtual void vf4();
+    virtual void vf5();
+    virtual void vf6();
+    virtual void vf7(int a);
+    virtual void vf8();
+};
+extern V_002EFDB8 *D_002EFDB8;
+
+struct C_00075880_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    virtual void v31();
+    virtual void v32();
+    virtual void v33();
+    virtual void v34();
+    virtual void v35();
+    char pad4[0x1D];
+    u8 unk21;
+    char pad22[0x1D2];
+    int unk1F4;
+    void func_00032A40();
+};
+
+struct C_00075880 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18(int a);
+    char pad4[0x118];
+    int unk11C;
+    C_00075880_Obj *unk120;
+    char pad124[0x6C];
+    int unk190;
+    int unk194;
+    char pad198[0x10];
+    int unk1A8;
+    int unk1AC;
+    int unk1B0;
+    int unk1B4;
+    int unk1B8;
+    char pad1BC[4];
+    int unk1C0;
+    void func_00075880();
+    void func_000758F0();
+};
+
 struct C_00075B20 {
     void *vtbl;                  /* 0x00 */
     char pad04[0x14];            /* 0x04 */
