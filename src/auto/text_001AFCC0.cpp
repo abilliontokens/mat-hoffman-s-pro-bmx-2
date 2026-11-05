@@ -30,20 +30,6 @@ struct C_001AFEC0 {
     V_001AFEC0 *unk1C;
     V_001AFEC0 *unk20;
     int unk24;
-    __forceinline void UpdateItems() {
-        int i;
-        for (i = 0; i < 4; i++) {
-            if (items[i]) {
-                items[i]->func_001AF530(i);
-            }
-        }
-        if (unk1C) {
-            unk1C->vf2();
-        }
-        if (unk20) {
-            unk20->vf2();
-        }
-    }
     int func_001AFEC0();
 };
 
@@ -111,27 +97,25 @@ struct C_001B01A0 {
 
 int C_001AFEC0::func_001AFEC0()
 {
-    int i;
-    if (D_002A8490->unk238 == unk8) {
-        return 1;
-    }
-    if (D_002A8490->unk124 != 0 && unk24 == 0) {
-        return 1;
-    }
-    if (cb == 0 || cb(user, this) != 0) {
-        for (i = 0; i < 4; i++) {
-            if (items[i]) {
-                items[i]->func_001AF530(i);
+    if (D_002A8490->unk238 != unk8) {
+        if (D_002A8490->unk124 == 0 || unk24 != 0) {
+            if (cb == 0 || cb(user, this) != 0) {
+                int i;
+                for (i = 0; i < 4; i++) {
+                    if (items[i]) {
+                        items[i]->func_001AF530(i);
+                    }
+                }
+                if (unk1C) {
+                    unk1C->vf2();
+                }
+                if (unk20) {
+                    unk20->vf2();
+                }
             }
-        }
-        if (unk1C) {
-            unk1C->vf2();
-        }
-        if (unk20) {
-            unk20->vf2();
+            unk8 = D_002A8490->unk238;
         }
     }
-    unk8 = D_002A8490->unk238;
     return 1;
 }
 
