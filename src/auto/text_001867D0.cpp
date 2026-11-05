@@ -244,6 +244,15 @@ struct C_00187510 {
     int func_00187510(C_00187510Param *param);
 };
 
+extern int D_00289AA4;
+struct C_00187000 {
+    void *vtbl;
+    int f4;
+    int f8;
+    int fC;
+    C_00187000 *func_00187000(void);
+};
+
 extern int D_00289A6C;
 extern int D_00284AB0;
 extern int D_00276844;
