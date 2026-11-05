@@ -115,6 +115,19 @@ int C_001A13F0::func_001A14F0(int a)
     return !CheckFailed(unk4->func_001D6C40(a, 1), 0x69);
 }
 
+int C_001A13F0::func_001A1540(V3_001A1540 *a, V3_001A1540 *b)
+{
+    S_001A13F0_Obj *o = unk4;
+    if (o == 0) return 0;
+    a->x = o->unk18.x;
+    a->y = o->unk18.y;
+    a->z = o->unk18.z;
+    b->x = o->unk28.x;
+    b->y = o->unk28.y;
+    b->z = o->unk28.z;
+    return 1;
+}
+
 undefined4 C_001A15C0::func_001A15C0(undefined4 *param_1)
 {
   int in_ECX = (int)this;
