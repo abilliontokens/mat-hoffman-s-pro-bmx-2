@@ -5,7 +5,7 @@ struct Obj { char pad[0x90]; Obj(int a, int b, int c, int d, unsigned short e); 
 struct T { int a; int b; int func_001EF1E7(); void func_001EF734(int); void func_001EF935(T*); void func_001EFB18(int); T* func_001EF170(int); void func_001EEEE6(T*); void func_001EF9B2(char*); };
 extern char* D_002F6A28;
 T* func_001F208F(T*, T*);
-void func_001F23B8(T*, T*, int, T*, int);
+T* func_001F23B8(T*, T*, int, T*, int);
 T* func_001F062A(T*, T*, int);
 T* func_001F2BCC(T*, T*);
 T* func_001F2A1C(T*, T*, T*, int);
@@ -109,3 +109,9 @@ void func_001F2BC3(void) {
     int func_001EB302(...);
     func_001EB302(5);
 }
+
+T *func_001F2F3F(T *a1, T *a2)
+{
+    return a1;
+}
+
