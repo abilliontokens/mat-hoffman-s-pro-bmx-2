@@ -63,6 +63,19 @@ struct TokenEntry {
 };
 
 
+int Cube::func_001369E0(int a)
+{
+    D_002BEAAC->func_0013AFF0(unk38, groups[5].unkF8, 0);
+    for (int i = 0; i < 6; i++) {
+        for (int j = 0; j < 16; j++) {
+            if ((groups[i].mask & (1 << j)) && groups[i].ptrs[j] == 0) {
+                func_00136860(i, j, a);
+            }
+        }
+    }
+    return 1;
+}
+
 void Cube::func_00136A70(void)
 {
     vtbl = &D_00284860;
