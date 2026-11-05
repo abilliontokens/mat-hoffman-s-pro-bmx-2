@@ -50,11 +50,10 @@ DXRenderableObjectData *DXRenderableObjectData::func_00143520(void)
 
 DXRenderableObject *DXRenderableObject::func_00143540(int a1, int a2, int a3)
 {
-    if (func_001817F0(a1, a2, 0) != 0) {
-        f1a3 = a3;
-        return this;
-    }
-    return 0;
+    if (func_001817F0(a1, a2, 0) == 0)
+        return 0;
+    f1a3 = a3;
+    return this;
 }
 
 DXRenderableObject *DXRenderableObject::func_00143580(int a)
