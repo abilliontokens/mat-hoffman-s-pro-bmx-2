@@ -56,7 +56,7 @@ struct S_mbcinfo {
     int cp;
     int flag;
     int lcid;
-    unsigned short names[5];
+    unsigned short names[6];
     unsigned char ctype[0x101];
     unsigned char xtype[0x100];
 };
