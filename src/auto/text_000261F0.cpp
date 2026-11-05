@@ -157,12 +157,15 @@ S_000267F0_V4 func_000267F0(float *v, float *m)
     return r;
 }
 
-void func_00026880(float *out, float *v, float *m)
+S_000267F0_V4 func_00026880(float *v, float *m)
 {
-    out[0] = m[8] * v[2] + m[4] * v[1] + m[0] * v[0];
-    out[1] = m[9] * v[2] + m[5] * v[1] + m[1] * v[0];
-    out[2] = m[10] * v[2] + m[6] * v[1] + m[2] * v[0];
-    out[3] = 1.0f;
+    S_000267F0_V4 r;
+
+    r.x = m[8] * v[2] + m[4] * v[1] + m[0] * v[0];
+    r.y = m[9] * v[2] + m[5] * v[1] + m[1] * v[0];
+    r.z = m[10] * v[2] + m[6] * v[1] + m[2] * v[0];
+    r.w = 1.0f;
+    return r;
 }
 
 undefined4 C_00026A70::func_00026A70(int param_1)
