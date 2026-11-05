@@ -1,5 +1,12 @@
 /* 7 functions from 0x000DF570 to 0x000E00F0, found by Ghidra. */
 #include "common.h"
+struct S_000DFE50_W {
+    char pad0[0x38];
+    u32 f38;
+    char pad3c[0x1c];
+    u8 f58;
+    void func_001D5AD0();
+};
 
 struct S_000DFC90_Obj {
     void func_000951B0(int i);
