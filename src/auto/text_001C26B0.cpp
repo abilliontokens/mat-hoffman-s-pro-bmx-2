@@ -217,6 +217,22 @@ void UIWidgetMovementControl::func_001C3170(int p1, int p2, int value, int id)
     }
 }
 
+void UIWidgetStaticUserRotate::func_001C32E0(void)
+{
+    SyncOn();
+    if (f1E0 == 0) {
+        if (f240 > D_00275544) {
+            f244 = func_001DC974();
+            f1E4 = 1;
+        } else {
+            f1E0 = func_001C13A0();
+        }
+    }
+    SyncOn();
+    fA4 = 0;
+    v7();
+}
+
 void C_001C35B0::func_001C35B0(void *src, int index, unsigned int count)
 {
     char *dst = (char *)func_001FF410(f14, 0) + fC * index;
