@@ -185,6 +185,58 @@ unsigned char *__stdcall func_001DF7FA(S_HeapRoot *root, S_HeapBlock *blk, unsig
     }
     return 0;
 }
+
+#pragma optimize("sy", on)
+#pragma optimize("y", off)
+unsigned char *__stdcall func_001DF985(S_HeapRoot *root, unsigned char *entry, unsigned int *size, char a3)
+{
+    S_HeapEntry *cur = (S_HeapEntry *)entry;
+    S_HeapEntry *prev = (S_HeapEntry *)((unsigned char *)cur - cur->prevSize * 16);
+    S_HeapEntry *next;
+
+    if (prev != cur && !(prev->flags & 1) && prev->size + *size <= (unsigned int)&D_0000FF00) {
+        if (a3) {
+            FreeUnlink_001DF985(root, cur);
+            root->freeTotal -= cur->size;
+            a3 = 0;
+        }
+        FreeUnlink_001DF985(root, prev);
+        prev->flags = cur->flags & 0x10;
+        if (prev->flags & 0x10) {
+            ((S_HeapBlock *)root->bucket[prev->bucket])->next = (unsigned char *)prev;
+        }
+        *size += prev->size;
+        root->freeTotal -= prev->size;
+        cur = prev;
+        cur->size = (unsigned short)*size;
+        if (!(cur->flags & 0x10)) {
+            *(unsigned short *)((unsigned char *)cur + *size * 16 + 2) = (unsigned short)*size;
+        }
+    }
+    if (!(cur->flags & 0x10)) {
+        next = (S_HeapEntry *)((unsigned char *)cur + *size * 16);
+        if (!(next->flags & 1) && next->size + *size <= (unsigned int)&D_0000FF00) {
+            if (a3) {
+                FreeUnlink_001DF985(root, cur);
+                root->freeTotal -= cur->size;
+            }
+            cur->flags = next->flags & 0x10;
+            if (cur->flags & 0x10) {
+                ((S_HeapBlock *)root->bucket[cur->bucket])->next = (unsigned char *)cur;
+            }
+            FreeUnlink_001DF985(root, next);
+            *size += next->size;
+            root->freeTotal -= next->size;
+            cur->size = (unsigned short)*size;
+            if (!(cur->flags & 0x10)) {
+                *(unsigned short *)((unsigned char *)cur + *size * 16 + 2) = (unsigned short)*size;
+            }
+        }
+    }
+    return (unsigned char *)cur;
+}
+#pragma optimize("sy", on)
+
 #pragma optimize("sy", on)
 
 unsigned char *__stdcall func_001DFD24(unsigned char *p)
