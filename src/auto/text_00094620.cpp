@@ -630,6 +630,11 @@ int C_00094F00::func_00094F00(void) {
     return unk7C;
 }
 
+void C_00094F10::func_00094F10(void)
+{
+    Clear();
+}
+
 int C_00095160::func_00095160(int index)
 {
     if (index < 1 || index > f54) {
