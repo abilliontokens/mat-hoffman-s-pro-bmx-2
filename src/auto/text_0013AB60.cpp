@@ -454,3 +454,23 @@ int __stdcall func_0013B4C0(S_BufSet *set, int n, int x)
     return total;
 }
 
+int C_0013AEC0::func_0013B930(int idx, void *buf, int size, int count)
+{
+    S_0013AEC0_Slot *s = &fE8[idx];
+    S_0013AF80_Row *row = &fC[s->f0];
+    int r;
+    int n;
+
+    if (func_0013B760(row, s->fC + s->f10) != 0) {
+        if (D_0014FEE0(row->f10) != row->f8) {
+            func_0014FED0(row->f10, row->f8, 0);
+        }
+        r = func_0014FE80(buf, size, count, row->f10);
+        n = r * size;
+        s->f10 += n;
+        row->f8 += n;
+        return r;
+    }
+    return 0;
+}
+
