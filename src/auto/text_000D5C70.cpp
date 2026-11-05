@@ -46,10 +46,10 @@ struct BmxUIPageHOF2 {
     u32 unk2C0;
     ElemHOF2 *arr2C4[2];
     ElemHOF2 *arr2CC[2];
-    u32 arr2D4[5];
-    u32 arr2E8[5];
+    S_000D6A60_Widget *arr2D4[5];
+    S_000D6A60_Widget *arr2E8[5];
     ElemHOF2 *arr2FC[2];
-    u32 arr304[5];
+    S_000D6A60_Widget *arr304[5];
     void func_001BE360(int a0);
     void func_001BE3F0();
     void func_001BF000();
