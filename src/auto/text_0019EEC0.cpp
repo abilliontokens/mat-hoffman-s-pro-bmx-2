@@ -34,11 +34,56 @@ struct C_0019F9B0 {
     int func_0019F9B0(int a1, char *path);
 };
 
+void *func_001E8A44(int size);
+void func_00133D80(void *p);
+extern int D_002B92E0;
+extern int D_002B92F0;
+
+/* (0, 0, 0, 1) vector */
+struct V4_0019F500 {
+    float x;
+    float y;
+    float z;
+    float w;
+    V4_0019F500() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+    V4_0019F500(int) { x = 0.0f; y = 0.0f; z = 0.0f; w = 1.0f; }
+};
+
+/* the 0x38-byte transform stored at +0x54 */
+struct S_0019F500_Xform {
+    V4_0019F500 a;
+    V4_0019F500 b;
+    V4_0019F500 c;
+    float f30;
+    float f34;
+    S_0019F500_Xform *Init(void)
+    {
+        a.z = 0.0f;
+        a.y = 0.0f;
+        a.x = 0.0f;
+        a.w = 1.0f;
+        b.z = 0.0f;
+        b.y = 0.0f;
+        b.x = 0.0f;
+        b.w = 1.0f;
+        c.z = 0.0f;
+        c.y = 0.0f;
+        c.x = 0.0f;
+        c.w = 1.0f;
+        return this;
+    }
+};
+
 struct SoultreeHierarchyCollisionObject {
     void *vtbl;
+    char pad4[0x50];
+    S_0019F500_Xform *unk54;
+    char pad58[0xA7 - 0x58];
+    unsigned char unkA7;
     void func_0019DC80();
     void func_00133E60();
     void *func_0019FBA0(int flags);
+    void func_0019F500(void);
 };
 
 int C_0019F9B0::func_0019F9B0(int a1, char *path)
