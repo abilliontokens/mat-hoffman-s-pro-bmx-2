@@ -129,6 +129,28 @@ int C_0013B9C0::func_0013C1D0(int arg)
     return 1;
 }
 
+int C_0013B9C0::func_0013C240(const char *name, unsigned int maxSize) {
+ unsigned int minSize=0;
+ for (int i=0;i<f10;i++) {
+ S_0013B9C0_Ent28 *e=&fC[i];
+ if (e->f4 && !func_001EA426((const char *)e->f4,name)) {
+ minSize=(unsigned int)e->f14; break;
+ }
+ }
+ unsigned int size;
+ if (minSize <= (unsigned int)D_00010000 && maxSize >= (unsigned int)D_00010000) size=(unsigned int)D_00010000;
+else if (minSize <= (unsigned int)D_00020000 && maxSize >= (unsigned int)D_00020000) size=(unsigned int)D_00020000;
+else if (minSize <= (unsigned int)D_00040000 && maxSize >= (unsigned int)D_00040000) size=(unsigned int)D_00040000;
+else if (minSize <= (unsigned int)D_00080000 && maxSize >= (unsigned int)D_00080000) size=(unsigned int)D_00080000;
+else if (minSize <= (unsigned int)D_00100000 && maxSize >= (unsigned int)D_00100000) size=(unsigned int)D_00100000;
+else if (minSize <= (unsigned int)D_00140000 && maxSize >= (unsigned int)D_00140000) size=(unsigned int)D_00140000;
+else if (minSize <= (unsigned int)D_00180000 && maxSize >= (unsigned int)D_00180000) size=(unsigned int)D_00180000;
+else if (minSize <= (unsigned int)D_001C0000 && maxSize >= (unsigned int)D_001C0000) size=(unsigned int)D_001C0000;
+else if (minSize <= (unsigned int)D_00200000 && maxSize >= (unsigned int)D_00200000) size=(unsigned int)D_00200000;
+ else size=maxSize;
+ return func_0013C1D0(size);
+}
+
 int C_0013B9C0::func_0013C5D0(S_0013B9C0_Ent28 *arg1, int arg2)
 {
     int result = 1;
