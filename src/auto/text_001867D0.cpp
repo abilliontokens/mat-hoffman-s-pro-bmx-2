@@ -152,11 +152,53 @@ struct C_00187510Param {
     int func_00168C20(void *a, int b, void *c);
 };
 
+struct S16_1A {
+    int a;
+    int b;
+    int c;
+    int d;
+};
+
+struct S36_1A {
+    int f[9];
+};
+
+/* callees of C_00187370::func_00187400, one class per original file layout */
+struct C_001A2210 {
+    C_001A2210 *func_001A2210(int a0, int a1, int a2, int a3);
+};
+
+struct C_001A2250 {
+    C_001A2250 *func_001A2250(int a0, S36_1A s0, S16_1A s1, S16_1A s2, int a18, int a19, int a20, int a21, int a22);
+};
+
+struct C_001A22E0 {
+    void func_001A22E0(int a0);
+};
+
+/* heap-owned description block of a C_00187370 entry (freed in func_00187400) */
+struct S_00187400_Desc {
+    char pad0[4];
+    char f4[0x104];
+    S16_1A f108;
+    char pad118[8];
+    int f120;
+    char pad124[8];
+    int f12C;
+    char pad130[4];
+    int f134;
+    int f138;
+    S36_1A f13C;
+    unsigned short f160;
+    char pad162[6];
+    int f168;
+};
+
 struct C_00187370 {
     virtual void func_00187390(void *a);
     int f4;
-    int f8;
-    void func_00187400(void *a);
+    S_00187400_Desc *f8;
+    int func_00187400(void *a);
 };
 
 struct C_00187510 {
