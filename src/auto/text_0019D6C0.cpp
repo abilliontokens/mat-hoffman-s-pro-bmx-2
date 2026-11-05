@@ -23,6 +23,42 @@ struct C_002BEAAC {
     void func_0013C8A0(int a, void *b, int c, int d);
     void func_0013C110(int a);
     void func_0013B1F0(int a, void *b);
+    void func_0013B210(void *a);
+};
+
+void func_001E8390(void *p);
+void func_001E891B(void *p);
+
+struct C_0019DC80_Item {
+    virtual void v0();
+    virtual void v1();
+    virtual int v2();
+};
+
+struct S_0019DC80_Res {
+    char pad0[0xC];
+    void *fC;
+    void *f10;
+    void *f14;
+    void *f18;
+    void *f1C;
+    void *f20;
+    void *f24;
+    void *f28;
+    int f2C;
+};
+
+struct C_0019DC80 {
+    char pad0[0x54];
+    void *f54;
+    char pad58[0x138];
+    int f190;
+    void *f194;
+    void *f198;
+    int pad19C;
+    C_0019DC80_Item **f1A0;
+    S_0019DC80_Res *f1A4;
+    void func_0019DC80(void);
 };
 extern C_002BEAAC *D_002BEAAC;
 
