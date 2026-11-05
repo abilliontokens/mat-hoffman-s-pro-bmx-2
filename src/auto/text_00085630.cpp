@@ -351,6 +351,52 @@ void C_00086160::func_00086200(void)
         unkA4[i] = 0;
 }
 
+int C_00086240::func_00086240(void)
+{
+    char buf[0x104];
+    char name[20];
+    int i;
+
+    if (D_002A8490->f2E0->f2D4 != 0) {
+        return 0;
+    }
+    if (fF0 != 0) {
+        func_001ADCC0(buf, 0x104, D_002A8490->f2E8->f4->f10F0);
+        f98->func_0005E840(buf);
+        f98->func_001D6600();
+        func_001ADCC0(buf, 0x104, D_00277038, fC4);
+        f9C->func_0005E840(buf);
+        f9C->func_001D6600();
+    }
+    if (fF4 != 0) {
+        func_001ADCC0(buf, 0x104, D_00277038, fEC);
+        f94->func_0005E840(buf);
+        f94->func_001D6600();
+    }
+    if (fA0 != 0) {
+        for (i = 0; i < 4; i++) {
+            a84[i]->func_001D6600();
+        }
+    }
+    for (i = 0; i < D_002A8490->f2E0->count; i++) {
+        name[0] = 0;
+        func_001E8BF0(name, fD4, aA4[i]);
+        a44[i]->func_0005E840(name);
+        a44[i]->func_001D6600();
+        if (fD0 == i) {
+            a24[i]->SetArgb(0xffffffff);
+            a44[i]->SetArgb(0xffffffff);
+        } else {
+            a24[i]->SetArgb(0xff8974f6);
+            a44[i]->SetArgb(0xff5eff5e);
+        }
+        a24[i]->func_001D6600();
+        a44[i]->func_001D6600();
+        a64[i]->func_001D6600();
+    }
+    return func_00157960();
+}
+
 MountVertOverlay *MountVertOverlay::func_00086470(int a)
 {
     float *p;
