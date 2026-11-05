@@ -399,6 +399,25 @@ int func_001361E0(int idx, int type, int *binding, int a3)
     return 0;
 }
 
+void C_001362A0::func_001362A0(int p1, int p2, float p3, int p4, int p5, float p6)
+{
+    f0 = 0;
+    f14 = 0;
+    f34 = p3 + p6;
+    f18 = 0;
+    f1C = 0;
+    f20 = 0;
+    fC = -1;
+    f38 = p3 - p6;
+    f10 = -1;
+    f2C = p1;
+    f30 = p2;
+    f24 = p3;
+    f28 = p3;
+    f4 = p4;
+    f8 = p5;
+}
+
 void C_00136300::func_00136300(void)
 {
     if (*(int *)((char *)D_002A8490 + 8) != 0 && f0 != 0) {
@@ -432,5 +451,19 @@ int func_00136460(int param_1, int param_2, int param_3)
         return 0x100;
     }
     return 0;
+}
+
+int C_001367F0::func_001367F0(S_001367F0_Vec4 *a, S_001367F0_Vec4 *b, S_001367F0_Vec4 *c)
+{
+    if (a != 0) {
+        f8 = *a;
+    }
+    if (b != 0) {
+        f18 = *b;
+    }
+    if (c != 0) {
+        f28 = *c;
+    }
+    return 1;
 }
 
