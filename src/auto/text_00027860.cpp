@@ -9,6 +9,14 @@ struct S_V4_27860 {
     float w;
 };
 
+struct S_V4Id_27860 {
+    float x;
+    float y;
+    float z;
+    float w;
+    S_V4Id_27860() { x = y = z = 0.0f; w = 1.0f; }
+};
+
 struct S_Phys_27860 {
     char pad0[0x130];
     float f130[3];
@@ -244,6 +252,65 @@ struct C_00027E40 {
     char p600[0x118]; int u718; int u71c; char p720[4]; E_Name *u724;
     void func_00027E40(void);
 };
+
+void C_00027860::func_00027860(float dt)
+{
+    C_00027860 * volatile self = this;
+    S_V4_27860 t;
+    S_V4_27860 v;
+    S_V4_27860 v1;
+    S_V4_27860 v2;
+    float m[16];
+    float s;
+    float neg;
+    float tmp;
+
+    t.z = 0.0f;
+    if (self->f1E8->f68 != 0) {
+        v1.z = 0.0f;
+        v1.y = 0.0f;
+        v1.x = 0.0f;
+        v1.w = 1.0f;
+        v2.z = 0.0f;
+        v2.y = 0.0f;
+        v2.x = 0.0f;
+        v2.w = 1.0f;
+        Cross_27860(&v1.x, self->f10C, self->f1E8->f1A0);
+        Cross_27860(&v2.x, self->f1E8->f1A0, &v1.x);
+        v.x = 0.0f;
+        v.y = 0.0f;
+        v.z = 0.0f;
+        v.w = 0.0f;
+        func_000265C0(m, &v.x, &v2.x, self->f1E8->f1A0, 0, 1);
+        t = func_00026880(self->f748, m);
+        s = Min_27860(Max_27860(t.z * D_002756DC, -1.0f), 1.0f);
+        neg = -(Max_27860(self->f5CC, 0.0f) * self->f5D4);
+        tmp = Min_27860(self->f59C - self->f744, 0.0f);
+        v.w = 1.0f;
+        v.x = 0.0f;
+        v.y = 0.0f;
+        v.z = (tmp * D_002A1150 + neg - self->f5D0) * self->f1E0->f210 * s * D_00275BF8 * self->f1E8->f80;
+        S_V4_27860 r = func_000267F0(&v.x, m);
+        float *p = self->f1E0->f130;
+        p[0] += r.x;
+        p[1] += r.y;
+        p[2] += r.z;
+    }
+    if (self->f1E8->f50 != 0) {
+        self->f5D8 = t.z * self->f1E8->f80;
+    } else if (self->f5CC > D_00275544) {
+        self->f5D8 = 0.0f;
+    }
+    if (self->f1E8->f54 != 0) {
+        self->f5DC = t.z * self->f1E8->f80;
+    } else if (self->f5CC > D_00275544) {
+        self->f5DC = 0.0f;
+    }
+    self->f5E0 = dt * self->f5D8 + self->f5E0;
+    self->f5E4 = dt * self->f5DC + self->f5E4;
+    func_0014FD80(&self->f5E0);
+    func_0014FD80(&self->f5E4);
+}
 
 void C_00027C30::func_00027C30(void) {
     unk4F4 = 0;
