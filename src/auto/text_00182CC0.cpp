@@ -120,3 +120,13 @@ struct C_00182CC0 {
     int func_001833A0();
     void func_001839F0();
 };
+
+void C_00182CC0::func_001832C0()
+{
+    C_00168280 *p = f28;
+    if (p != 0) {
+        p->func_001691E0();
+        func_001E891B(p);
+        f28 = 0;
+    }
+}
