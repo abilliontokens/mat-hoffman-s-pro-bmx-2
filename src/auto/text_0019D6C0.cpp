@@ -279,6 +279,48 @@ void func_0019DA10(float *out, float *a, float *b)
     out[2] = z;
 }
 
+void C_0019DC80::func_0019DC80(void)
+{
+    int i;
+
+    if (f1A4 != 0) {
+        f1A4->f2C--;
+        if (f1A4->f2C <= 0) {
+            D_002BEAAC->func_0013B210(f1A4);
+            for (i = 0; i < f190; i++) {
+                if (f1A0[i] != 0 && f1A0[i]->v2() == 0)
+                    f1A0[i] = 0;
+            }
+            func_001E8390(f1A0);
+            func_001E8390(f1A4->f14);
+            func_001E8390(f1A4->f18);
+            func_001E8390(f1A4->fC);
+            func_001E8390(f1A4->f10);
+            if (f1A4->f1C != 0)
+                func_001E891B(f1A4->f1C);
+            func_001E8390(f1A4->f20);
+            func_001E8390(f1A4->f28);
+            func_001E8390(f1A4->f24);
+            func_001E8390(f1A4);
+            f1A4 = 0;
+        }
+        func_001E891B(f194);
+        func_001E891B(f198);
+    } else {
+        for (i = 0; i < f190; i++) {
+            if (f1A0[i] != 0 && f1A0[i]->v2() == 0)
+                f1A0[i] = 0;
+        }
+        func_001E8390(f1A0);
+        func_001E891B(f194);
+        func_001E891B(f198);
+    }
+    if (f54 != 0) {
+        func_001E891B(f54);
+        f54 = 0;
+    }
+}
+
 void C_0019DE30::func_0019DE30(int a0, int a1)
 {
     for (int i = 0; i < f190; i++) {
