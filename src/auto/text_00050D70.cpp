@@ -1,6 +1,38 @@
 /* 18 functions from 0x00050D70 to 0x00051CF0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_00030F90 {
+    void func_00030F90(undefined4 param_1);
+};
+
+struct C_00033220 {
+    void func_00033220(void);
+};
+
+struct C_0012B190 {
+    void func_0012B190(int x, int y, int w, int h);
+};
+
+struct C_00051BB0 {
+    void func_00051BB0(void);
+};
+
+struct C_000511A0 {
+    undefined4 *func_000511A0(undefined4 param_1);
+};
+
+struct C_00051260 {
+    void func_00051260(void);
+};
+
+struct C_000516C0 {
+    void func_000516C0(void);
+};
+
+struct C_00051CB0 {
+    undefined4 func_00051CB0(void *param_1);
+};
+
 extern undefined4 D_00277934;
 extern int *D_002A8490;
 extern float D_002B8F98;
