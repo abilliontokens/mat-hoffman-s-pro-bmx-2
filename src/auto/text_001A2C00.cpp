@@ -52,6 +52,11 @@ struct S_3B10_List {
         }
         return 0;
     }
+    void Clear()
+    {
+        memset(items, 0, count * 4);
+        count = 0;
+    }
 };
 struct S_001A33A0_Vec3 {
     int x;
