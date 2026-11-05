@@ -194,6 +194,18 @@ C_00197680 *C_00197680::func_00197680(int a0)
     return this;
 }
 
+C_00197700 *C_00197700::func_001976A0(char *name, float f)
+{
+    char buf[0x104];
+
+    func_001ADCC0(buf, 0x104, D_00275678, D_002A5C90, name);
+    if (func_00138480(buf)) {
+        f7DC = f;
+        return this;
+    }
+    return 0;
+}
+
 void C_00197700::func_00197780()
 {
     if (f7C4 != 0) {
