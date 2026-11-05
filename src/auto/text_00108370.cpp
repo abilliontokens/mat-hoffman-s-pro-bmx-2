@@ -134,6 +134,74 @@ void C_00108680::func_00108680(int a0) {
     unkA2C = a0;
 }
 
+void C_00108F50::func_00108F50(void)
+{
+    int i;
+    int j;
+
+    for (i = 0; i < 4; i++) {
+        fa68[i] = -1;
+        fa78[i] = -1;
+    }
+    fa88 = 0;
+    memset(fab0, 0, sizeof(fab0));
+    for (j = 0; j < 16; j++) {
+        for (i = 0; i < 5; i++) {
+            fce0[i][j] = 0;
+        }
+    }
+    for (j = 0; j < 8; j++) {
+        ff90[0][j] = 0;
+        ff90[1][j] = 0;
+        ff90[2][j] = 0;
+    }
+    ff60[0].a = 0;
+    ff60[1].a = 0;
+    ff60[2].a = 0;
+    ff60[3].a = 0;
+    ff60[4].a = 0;
+    ff60[5].a = 0;
+}
+
+void C_00108F50::func_00108FF0(void)
+{
+    int i;
+    int j;
+
+    for (i = 0; i < 4; i++) {
+        fa8c[i] = -1;
+        fa9c[i] = -1;
+    }
+    faac = 0;
+    memset(fbc8, 0, sizeof(fbc8));
+    for (j = 0; j < 16; j++) {
+        for (i = 0; i < 5; i++) {
+            fe20[i][j] = 0;
+        }
+    }
+    for (j = 8; j < 16; j++) {
+        ff90[0][j] = 0;
+        ff90[1][j] = 0;
+        ff90[2][j] = 0;
+    }
+    ff60[0].b = 0;
+    ff60[1].b = 0;
+    ff60[2].b = 0;
+    ff60[3].b = 0;
+    ff60[4].b = 0;
+    ff60[5].b = 0;
+}
+
+Vec4_00108370 *C_00109180::func_00109180(Vec4_00108370 *out)
+{
+    Vec4_00108370 tmp;
+    float *a = (float *)f208->func_0001EF10(&tmp);
+    float *b = &f1e0->f268;
+
+    vec3_set((float *)out, b[0] + a[0], b[1] + a[1], b[2] + a[2]);
+    return out;
+}
+
 void C_001092D0::func_001092D0(int a0) {
     unk20C0 = a0;
 }
