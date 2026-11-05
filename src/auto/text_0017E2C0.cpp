@@ -5,6 +5,7 @@ struct RadiusLineCollisionObject {
     char pad_0[0xa6];
     unsigned char unkA6;
     unsigned char unkA7;
+    void func_0017E8E0(int param_1);
     void func_0017E7C0();
     void func_00157A00(int param_1);
 };
