@@ -162,6 +162,36 @@ int func_001D7D40()
     return ++D_002F0BBC;
 }
 
+XboxVideoCard_001D7D50 *XboxVideoCard_001D7D50::func_001D7D50(void)
+{
+    ((C_001C3D90 *)this)->func_001C3D90();
+    vtbl = (void *)&D_0028F774;
+    memset(a5B4, 0, 0x100);
+    D_002F0BB8 = 0;
+    f6BC = 0;
+    f6C = -1;
+    f9D8 = 500;
+    f9D4 &= 0xFC;
+    f6C4 = 0;
+    f6C8 = 0;
+    f6CC = 0;
+    f6D0 = 0;
+    memset(a6D4, 0, 0x300);
+    return this;
+}
+
+int __stdcall func_001D7DD0(Vec4_001D7DD0 *p, int b, int c, float d)
+{
+    Vec4_001D7DD0 v;
+
+    v.x = p->x;
+    v.z = p->z;
+    v.y = p->y;
+    v.w = p->w;
+    func_001FF4E0(1, &v, c, b, D_00275460 - d, 0);
+    return 1;
+}
+
 void XboxVideoCard_001D7E30::func_001D7E30(void)
 {
     if (D_002F0BB8 != 0) {
