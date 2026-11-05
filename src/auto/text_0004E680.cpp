@@ -290,9 +290,9 @@ float func_0014FBA0(float x, float z);
 static inline S_0004E7B0_Vec Sub_0004E7B0(const S_0004E7B0_Vec &a, const S_0004E7B0_Vec &b)
 {
     S_0004E7B0_Vec r;
-    r.x = a.x - b.x;
-    r.y = a.y - b.y;
-    r.z = a.z - b.z;
+    *(float *)&r.x = *(const float *)&a.x - *(const float *)&b.x;
+    *(float *)&r.y = *(const float *)&a.y - *(const float *)&b.y;
+    *(float *)&r.z = *(const float *)&a.z - *(const float *)&b.z;
     return r;
 }
 
