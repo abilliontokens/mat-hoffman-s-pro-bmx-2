@@ -91,7 +91,9 @@ struct C_0004C560 {
     int unk0;
     char pad4[0x60];
     S_0004C320_World *f64;
-    char pad68[0x158];
+    char pad68[0x28];
+    int f90;
+    char pad94[0x12c];
     C_0004C560Obj1C0 *f1c0;
     char pad1c4[0x44];
     int f208;
