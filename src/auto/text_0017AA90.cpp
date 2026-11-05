@@ -1,6 +1,66 @@
 /* 7 functions from 0x0017AA90 to 0x0017BA00, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct ShadowObject {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual int v27();
+    virtual void v28();
+    virtual int v29();
+};
+struct ShadowRenderer {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12(char *);
+    char *f4;
+    int f8, fC;
+    void func_00182830(char *);
+};
+extern ShadowRenderer *D_002EFDB8;
+extern int D_00289004;
+struct ShadowCamera {
+    void *vtbl;
+    char pad4[0x2cc];
+    void func_0013E4F0(int);
+    int func_0012B410(float, int, int);
+    void func_0012AAB0(float);
+    ShadowCamera *init() { func_0013E4F0(1); vtbl=&D_00289004; return this; }
+};
 extern char D_002A60B0[];
 extern char D_00284644[];
 extern int D_002A8D2C, D_002A8D30, D_002A8D34;
