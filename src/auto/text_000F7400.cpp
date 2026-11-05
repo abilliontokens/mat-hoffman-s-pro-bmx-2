@@ -102,7 +102,10 @@ struct BmxUIPageGameOptions {
     int unk2b0;
     char pad2b4[0x2bc - 0x2b4];
     int unk2bc;
-    char pad2c0[0x2f8 - 0x2c0];
+    int unk2c0, unk2c4;
+    float unk2c8;
+    int unk2cc;
+    char pad2d0[0x2f8 - 0x2d0];
     S_000F7F80_Obj93120 *unk2f8;
     char pad2fc[0x328 - 0x2fc];
     int unk328;
