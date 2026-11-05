@@ -374,6 +374,11 @@ void C_0001EF00::func_0001EF00(int a0) {
     unkE0 = a0;
 }
 
+V16_0001E260 C_0001EF10::func_0001EF10(void)
+{
+    return unk124;
+}
+
 undefined4 C_0001EF40::func_0001EF40(void)
 {
   int in_ECX = (int)this;
