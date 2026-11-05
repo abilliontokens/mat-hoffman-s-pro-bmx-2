@@ -259,6 +259,16 @@ void *C_00030F00::func_00030F00(unsigned int flags)
     return this;
 }
 
+void func_00030F30(char *dst, const char *src)
+{
+    char *dot = func_001E8AC0(dst, '.');
+    if (dot != 0) {
+        strcpy(dot, src);
+    } else {
+        strcat(dst, src);
+    }
+}
+
 void func_00031400(void) {
     int func_001578D0(...);
     func_001578D0();
