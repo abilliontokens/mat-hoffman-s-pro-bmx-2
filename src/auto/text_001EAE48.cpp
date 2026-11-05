@@ -1,6 +1,16 @@
 /* 13 functions from 0x001EAE48 to 0x001EB1AD, found by Ghidra. */
 #include "common.h"
 
+extern char D_002AE670[];
+extern char D_002AE8D0[];
+extern char D_002AE680[];
+extern char D_002AE6E0[];
+extern char D_002AE8F0[];
+extern int *D_002FB260[];
+extern int D_002FB36C;
+extern int *D_002FB368;
+extern double D_002766A8;
+
 void func_001EAEC3(void) {
     int func_001EB390(...);
     func_001EB390(8);
@@ -50,6 +60,15 @@ void func_001EAED5(int code, int quick, int retcaller) {
 void func_001EAF7F(int code) {
     int func_001EAED5(...);
     func_001EAED5(code, 1);
+}
+
+double func_001EAF91(double x, double y) {
+    double r = x;
+    ((unsigned int *)&r)[1] = (((unsigned int *)&r)[1] ^ ((unsigned int *)&y)[1]) & 0x7fffffff ^ ((unsigned int *)&y)[1];
+    return r;
+}
+
+void func_001EB109(char *p) {
 }
 
 extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *cs);
