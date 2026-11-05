@@ -290,8 +290,6 @@ u32 func_00177F50(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   return 1;
 }
 
-extern int func_00176630(u8 *, int, int, int, int, int, int, int, u16 *, int, int);
-
 u32 func_00178040(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch)
 {
   u8 *d;
