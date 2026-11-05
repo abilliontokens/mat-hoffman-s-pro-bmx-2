@@ -12,6 +12,23 @@ extern C_0013B210 *D_002BEAAC;
 extern f32 D_00275544;
 extern f32 D_00276544;
 
+struct Vec4w1_0012F460 {
+    f32 x, y, z, w;
+    Vec4w1_0012F460()
+    {
+        x = y = z = 0;
+        w = 1.0f;
+    }
+};
+
+struct C_0012F460 {
+    void *f0;
+    int f4;
+    Vec4w1_0012F460 f8;
+    Vec4w1_0012F460 f18;
+    C_0012F460();
+};
+
 struct S_0012F518;
 
 struct V4_0012FCF0 {
