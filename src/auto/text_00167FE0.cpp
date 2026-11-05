@@ -21,6 +21,33 @@ struct C_001684B0 {
 };
 
 
+int func_00168120(const char *s)
+{
+    int len;
+    int isText;
+    int isFloat;
+    int i;
+
+    len = strlen(s);
+    isFloat = 0;
+    isText = 0;
+    for (i = 0; i < len; i++) {
+        if (func_001EA211(s[i]) != 0) {
+            isText = 1;
+            i = len;
+        } else if (s[i] == '.') {
+            isFloat = 1;
+        }
+    }
+    if (isText != 0) {
+        return 2;
+    }
+    if (isFloat != 0) {
+        return 1;
+    }
+    return 0;
+}
+
 void C_001684B0::func_001684B0(void)
 {
   int func_001E8390(...);
