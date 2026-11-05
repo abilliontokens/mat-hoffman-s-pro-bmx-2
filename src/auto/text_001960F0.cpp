@@ -50,6 +50,7 @@ struct C_00196290 {
     u32 fc8;
     u8 *fcc;
     void func_00196290(void);
+    int func_001968C0(void);
     void func_00196BD0(void);
     void func_00196350(int param_1);
     int func_001961E0(int param_1, int param_2, int param_3);
