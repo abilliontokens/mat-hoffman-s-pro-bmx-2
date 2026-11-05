@@ -184,6 +184,81 @@ extern S_11FF0_Global *D_002A8490;
 extern S_11FF0_Global2 *D_002B9120;
 extern float D_002A04FC[8];
 extern float D_002755E0;
+extern char D_002A051C[];
+
+struct S_12590_Vec4f {
+    float x, y, z, w;
+};
+
+struct S_12590_Cam {
+    void func_00199650(void *p);
+    void func_00198F50(void *a, void *b, int c, int d, int e);
+    void func_00197B40(void *a, S_12590_Vec4f *b);
+    void func_0019AC50(void);
+};
+
+struct S_12590_Sub3c {
+    char pad0[4];
+    S_12590_Cam *f4;
+};
+
+struct S_12590_Anim {
+    char pad0[4];
+    int f4;
+};
+
+struct S_12590_Sub384 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12(int a);
+    char pad4[0x20];
+    S_12590_Anim *f24;
+};
+
+struct S_12590_Sub3ac {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual int v7();
+};
+
+struct C_00012590 {
+    void *vtbl;
+    char pad4[0x38];
+    S_12590_Sub3c *f3c;
+    char pad40[0x344];
+    S_12590_Sub384 *f384;
+    char pad388[0x24];
+    S_12590_Sub3ac *f3ac;
+    char pad3b0[0xc];
+    int f3bc;
+    char pad3c0[0x1e];
+    char f3de;
+    char f3df;
+    char pad3e0;
+    char f3e1;
+    char pad3e2[2];
+    S_11FF0_Vec4i f3e4;
+    char f3f4[0x10];
+    void func_000114D0(int a);
+    S_11FF0_Vec4i func_00011E30(void);
+    void func_001C7EB0(int a);
+    int func_00012590(int a);
+};
 
 void __stdcall func_00011FF0(void *p, int step, int count, S_11FF0_IterFn fn)
 {
