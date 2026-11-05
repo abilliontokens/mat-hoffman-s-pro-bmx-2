@@ -1,6 +1,9 @@
 /* 17 functions from 0x00177230 to 0x00178210, found by Ghidra. */
 #include "common.h"
 
+extern char D_0000FFF8;
+extern char D_0000FFFC;
+
 /* palette lookup table object: its table lives at +0x8710 */
 struct C_00135420 {
     int func_00135420(void);
