@@ -273,6 +273,29 @@ undefined4 C_001CFAE0::func_001CFAE0(byte param_1)
   return in_ECX;
 }
 
+int func_00011260(int lo, int hi);
+int XboxMusic::func_001CFB00(int arg)
+{
+    int idx;
+    int cur;
+    state = 2;
+    if (!(flags & 1)) return -1;
+    idx = func_00011260(0, tracks[currentTrack].list.count - 1);
+    cur = tracks[currentTrack].list.Get(idx);
+    if (tracks[currentTrack].list.count > 1) {
+        if (history.count == tracks[currentTrack].list.count) return func_001CF040(arg);
+        for (;;) {
+            if (cur != current) {
+                if (history.func_001CDED0(cur) != 0) break;
+            }
+            idx = (idx + 1) % tracks[currentTrack].list.count;
+            cur = tracks[currentTrack].list.Get(idx);
+        }
+    }
+    if (arg && !func_001CD450(cur, 1)) history.func_001CBCF0(cur);
+    return cur;
+}
+
 int __stdcall func_001CFDC0(SoundThread_001CFDC0 *p)
 {
     int r;
