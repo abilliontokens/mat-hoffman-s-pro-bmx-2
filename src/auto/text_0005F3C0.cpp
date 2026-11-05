@@ -153,11 +153,11 @@ struct BmxInGameMenu {
     int unkF4;
     int unkF8;
     int unkFC;
-    int pad100;
+    int unk100;
     BmxInGameMenuSub *unk104;
     int unk108;
     C_001D5AD0 *unk10C;
-    int pad110;
+    int unk110;
     int unk114;
     int unk118;
     int unk11C;
