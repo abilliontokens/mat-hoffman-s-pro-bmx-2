@@ -261,6 +261,35 @@ struct C_00186580 {
 };
 
 
+struct Vec16_186330 { u32 a, b, c, d; };
+struct ObjA_186330 {
+    virtual void func_vslot0();
+    virtual void func_vslot1();
+    ObjA_186330 *func_0015CE00(int a);
+    int func_0015E990(int type, Vec16_186330 v, int a, int b, int c, int d, int e, int f, void *g, int h);
+    void func_0015D070(int a, int b);
+    void func_0015DAA0(int a, int b);
+    void func_0015CFE0(void *p);
+    void func_0015D000(int a, int b, int c);
+};
+struct ObjB_186330 {
+    ObjB_186330 *func_00160860(int a);
+    void func_001608E0(int a, void *b, int c, void *d, int e);
+    void func_00160810(int a, int b);
+};
+struct P_186330 {
+    int f0; int type; Vec16_186330 v; int f18, f1c, f20, f24, f28; u8 flags; char p2d[3];
+    int f30, f34; char p38[0x1c]; char f54[0x40]; float c0, c1, c2, c3; int fa4; char fa8[0x40]; int fe8, fec, ff0, ff4;
+};
+struct Light_186330 {
+    void *vtbl; ObjA_186330 *f4; P_186330 *f8;
+    int func_00186330(int a);
+    void func_00186210(void);
+};
+extern int D_002E2930;
+void *func_001E8A44(int size);
+int func_001E8858(float f);
+
 PortalInfo::PortalInfo()
 {
     for (int i = 0; i < 4; i++) {
