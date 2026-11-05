@@ -160,8 +160,9 @@ BmxUIPageHOF3 *BmxUIPageHOF3::func_000D6C90(int param) {
     unk2ac = 0;
     unk2a0 = 0;
     unk29c = 0;
-    unk2fc[0] = 0;
-    unk2fc[1] = 0;
+    for (int j = 0; j < 2; j++) {
+        unk2fc[j] = 0;
+    }
     unk2b0 = 0;
     unk2b4 = 0;
     unk2b8 = 0;
