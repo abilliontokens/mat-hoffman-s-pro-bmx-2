@@ -22,3 +22,17 @@ undefined4 C_0007C670::func_0007C670(byte param_1)
   }
   return in_ECX;
 }
+
+undefined4 C_0007C9E0::func_0007C9E0(byte param_1)
+{
+  int func_000688C0(...);
+  int func_001E891B(...);
+  undefined4 in_ECX = (undefined4)this;
+
+  func_000688C0();
+  if ((param_1 & 1) != 0) {
+    func_001E891B(in_ECX);
+  }
+  return in_ECX;
+}
+
