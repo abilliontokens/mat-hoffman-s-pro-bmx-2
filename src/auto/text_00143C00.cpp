@@ -157,6 +157,15 @@ void C_00144660::func_00144660()
     ((C_001AF0D0 *)this)->func_001AF0D0();
 }
 
+void *C_00144940::func_00144940(unsigned int flags)
+{
+    ((C_001445C0 *)this)->func_001445C0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 C_001449B0 *C_001449B0::func_001449B0(void *param)
 {
     ((C_001AF300 *)this)->func_001AF300(param);
