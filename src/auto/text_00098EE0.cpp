@@ -3,6 +3,9 @@
 
 struct S_00097FD0_owner;
 
+#define FLD(T, p, off) (*(T *)((char *)(p) + (off)))
+extern "C" char *strcpy(char *, const char *);
+
 struct S_001B65E0_obj {
     void func_001B65E0(void);
     void func_001B65F0(void);
