@@ -66,6 +66,7 @@ void C_00056080::func_00056080(void) {
 
 void C_000560A0::func_000560A0()
 {
+    float f;
     unk40 = 1;
     unk1C8 = 0;
     unk1CC = 0;
@@ -74,9 +75,10 @@ void C_000560A0::func_000560A0()
     unk1D8 = 0;
     unk1E4 = 0;
     unk1E8 = 0;
+    f = unk4->unk1EC->unk3C * 1.46666f;
     unkC = unk4->unk1E0;
     unk10 = 0;
-    unk64 = D_00277D04 * unk4->unk1EC->unk3C;
     unk68 = 0x40400000;
+    unk64 = f;
 }
 
