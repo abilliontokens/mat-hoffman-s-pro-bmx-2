@@ -45,6 +45,20 @@ struct S_002B9290 {
 extern S_002B92E8 *D_002B92E8;
 extern S_002B9290 *D_002B9290;
 
+/* tree node, 0x24 bytes, of D_002B92E8 / D_002B9290 ->nodes */
+struct S_00129110_Node {
+    float f0;
+    float f4;
+    unsigned short child0;
+    unsigned short child1;
+    float min[3];
+    float max[3];
+};
+
+struct S_00129110_Vec4 {
+    float x, y, z, w;
+};
+
 struct C_002B92A0 {
     void func_000264C0(int param_1);
 };
