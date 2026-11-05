@@ -88,6 +88,21 @@ struct C_00026A10 {
     float func_00026A10(float a, float b);
 };
 
+__declspec(align(16)) struct S_00026960_Mat {
+    float m[16];
+    void identity(void)
+    {
+        _mm_store_ps(&m[0], _mm_setzero_ps());
+        _mm_store_ps(&m[4], _mm_setzero_ps());
+        _mm_store_ps(&m[8], _mm_setzero_ps());
+        _mm_store_ps(&m[12], _mm_setzero_ps());
+        m[0] = 1.0f;
+        m[5] = 1.0f;
+        m[10] = 1.0f;
+        m[15] = 1.0f;
+    }
+};
+
 static __forceinline float min_ss_00026A10(float a, float b)
 {
     float r;
@@ -229,6 +244,19 @@ void C_000269B0::func_000269B0(float a, float b, float c)
         fC = c;
         f10 = -c;
     }
+}
+
+float C_00026A10::func_00026A10(float a, float b)
+{
+    C_00026A10 * volatile self = this;
+    float lim = f4;
+    float v = b;
+    float t;
+
+    _mm_store_ss(&t, _mm_min_ss(_mm_load_ss(&v), _mm_load_ss(&lim)));
+    self->f8 = t / self->f4;
+    self->f0 = (a - self->f0) * self->f8 + self->f0;
+    return self->f0;
 }
 
 undefined4 C_00026A70::func_00026A70(int param_1)
