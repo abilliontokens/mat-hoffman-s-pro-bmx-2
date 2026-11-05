@@ -58,6 +58,69 @@ struct C_001334E0 {
     void func_001334E0(int a0);
 };
 
+void *func_001E8A44(int size);
+void func_001E891B(void *ptr);
+int func_00135C70(int a, int b, int c, int d);
+
+struct S_00133140_Cam {
+    char pad0[0x28];
+    S_00133140_Cam *func_00193490(void);
+    void func_00193500(void);
+    void func_001938C0(void *a, int b, int c, void *vecA, void *vecB, int d);
+    void func_00193950(void *a, void *vecA, void *vecB, int d);
+};
+
+struct C_00133070 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30(void *a, void *b);
+    char pad4[0x20];
+    int f24;
+    char pad28[0x20];
+    int f48;
+    char pad4c[0x8];
+    void *f54;
+    char pad58[0x40];
+    S_00133140_Cam *f98;
+    char pad9c[0x8];
+    s16 fA4;
+    u8 fA6;
+    u8 fA7;
+    void func_00157BF0(int a, int b);
+    void func_00133070(void);
+    void func_00133090(int a, int b);
+    void func_00133140(int a, int b);
+    void func_00133210(void);
+};
+
 struct S_001332A0_Node {
     void func_00193500(void);
     void func_00193870(void *p);
