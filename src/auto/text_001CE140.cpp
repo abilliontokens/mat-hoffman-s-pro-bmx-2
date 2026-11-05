@@ -89,6 +89,32 @@ struct XboxMusic {
 
 int func_00011260(int lo, int hi);
 
+static __forceinline float min_ss_001CE660(float a, float b)
+{
+    float r;
+    _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&b), _mm_load_ss(&a)));
+    return r;
+}
+
+struct XboxSound {
+    virtual void v00(); virtual void v01(); virtual void v02(); virtual void v03();
+    virtual void v04(); virtual void v05(); virtual void v06();
+    virtual int v07();
+    virtual void v08();
+    virtual void v09(int pos);
+    char pad04[0x11c];
+    float f120;
+    char pad124[4];
+    int f128;
+    float f12c;
+    float f130;
+    float f134;
+    char pad138[0x1c];
+    int f154;
+    int func_001CCA10();
+    int func_001CE660(float dt);
+};
+
 void XboxMusic::func_001CE920()
 {
     *(int *)this = (int)&D_0028EF54;
