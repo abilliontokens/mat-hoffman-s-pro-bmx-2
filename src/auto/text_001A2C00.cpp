@@ -71,8 +71,9 @@ void ResponseEmitter::func_001A2E80(void)
     int i;
 
     for (i = 0; i < list1d8.count; i++) {
-        if (list1d8.at(i)->f4 != 0) {
-            list1d8.at(i)->f4->v6(0);
+        S_001A2C00_Snd *s = list1d8.at(i)->f4;
+        if (s != 0) {
+            s->v6(0);
         }
         list1d8.removeAt(i);
     }
