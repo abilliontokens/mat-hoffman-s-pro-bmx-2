@@ -394,6 +394,40 @@ void C_0001BAC0::func_0001BAC0(int idx, int slot)
     obj->f90 = -1;
 }
 
+void C_0001BAC0::func_0001BB00(int idx, int slot, int flag)
+{
+    S_0001BAC0_Obj *obj;
+    S_0001B910_Anim *anim;
+    int s;
+
+    if (f2c == 0 || idx >= f2c->f24 || idx < 0) {
+        return;
+    }
+    obj = f2c->f28[idx];
+    s = obj->func_001B5750(slot);
+    anim = obj->f1A4;
+    obj->f78[s] = 1;
+    obj->f88 = -1;
+    obj->f90 = -1;
+    if (flag != 0 || anim->f10 != 0) {
+        anim->f10 = 1;
+        obj->f8C = 0;
+        obj->f84 = s;
+        if (obj->f94[s] != 0) {
+            anim->func_00166C80(obj->func_001B56F0(), 0);
+        } else {
+            anim->func_00164820(obj->func_001B56F0());
+        }
+        anim->f34 = 0;
+        obj->f9C = 0;
+        anim->func_001670C0(0, 0, 0);
+        anim->func_00132D20();
+        if (obj->f70[obj->f84] == 0 && obj->f8C == obj->f64[obj->f84] - 1) {
+            obj->f78[obj->f84] = 0;
+        }
+    }
+}
+
 void C_0001BAC0::func_0001BC00(int idx, int slot)
 {
     S_0001BAC0_Obj *obj;
