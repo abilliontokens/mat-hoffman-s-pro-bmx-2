@@ -48,6 +48,10 @@ struct C_0017C300 {
     void func_0017C520(void);
 };
 
+static inline f32 QuadCross(f32 a, f32 b, f32 c, f32 d) {
+    return c * a + d * b;
+}
+
 /* 4 points of a 2D quad, stored x,y */
 struct C_0017BDE0 {
     f32 v[8];
