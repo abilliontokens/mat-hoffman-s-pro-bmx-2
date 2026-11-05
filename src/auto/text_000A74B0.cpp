@@ -29,7 +29,10 @@ struct SlotsR_000A74B0 {
     int aA0[10];
     int aC8[10];
     int aF0[10];
-    int a118[10];
+    union {
+        int a118[10];
+        float f118[10];
+    };
     int count;
     int f144;
     SlotsR_000A74B0 *func_000A74B0(void);
@@ -212,6 +215,63 @@ int SlotsR_000A74B0::func_000A7570(int state, int arg, int keep)
         aC8[0] = 0;
     }
     return 1;
+}
+
+void SlotsR_000A74B0::func_000A7650(float t)
+{
+    int i;
+    int prev;
+    int done;
+    float *f118 = (float *)a118;
+
+    for (i = 0; i < 10; i++) {
+        a28[i] = -2;
+        a50[i] = 1;
+    }
+    done = 0;
+    prev = -2;
+    for (i = 0; i < count - 1; i++) {
+        if (done) {
+            return;
+        }
+        if (a0[i] == -1 || a0[i] == -2) {
+            a28[i] = a0[i];
+            a50[i] = aF0[i];
+        } else {
+            int ok = 1;
+            float diff = t - f118[i];
+            if (diff > D_002B9120->f52C->hi) {
+                ok = 0;
+            }
+            if (diff < D_002B9120->f52C->lo && i != 0) {
+                ok = 0;
+            }
+            if (a78[i] == 0) {
+                ok = 0;
+            }
+            if (prev == a0[i] && aC8[i] == 0) {
+                ok = 0;
+            }
+            f144 = 0;
+            if (i < 8 && (a0[i + 1] == 0 || a0[i + 1] == 1 || a0[i + 1] == 2 || a0[i + 1] == 3) &&
+                f118[i] - f118[i + 1] <= D_00276284) {
+                a28[i] = a0[i + 1];
+                a50[i] = aF0[i + 1];
+                f144 = 1;
+                done = 1;
+                continue;
+            }
+            if (ok) {
+                a28[i] = a0[i];
+                a50[i] = aF0[i];
+                prev = a0[i];
+                t = f118[i];
+            } else {
+                a28[i] = a0[i];
+                a50[i] = aF0[i];
+            }
+        }
+    }
 }
 
 void Models_000A77C0::func_000A77C0(int type, int idx)
