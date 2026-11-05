@@ -141,10 +141,10 @@ struct S_000C8660_Obj {
     char pad4[0x24];
     int f28;
     char pad2C[0x10];
-    int f3C;
-    int f40;
-    int f44;
-    int f48;
+    float f3C;
+    float f40;
+    float f44;
+    float f48;
     char pad4C[0xC];
     unsigned char f58;
     S_000C8660_Obj *func_001D5760(void);
