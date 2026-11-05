@@ -25,7 +25,7 @@ struct Sound149A0 {
     virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1C();
     virtual void v20(); virtual void v24(); virtual void v28(); virtual void v2C();
     virtual void v30(); virtual void v34(); virtual void v38();
-    virtual void Play(int a, float vol);
+    virtual void Play(int a, float vol, int c);
 };
 
 extern char *D_002B9120;
