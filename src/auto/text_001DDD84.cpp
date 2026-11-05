@@ -62,6 +62,14 @@ struct S_Large {
     unsigned int lo;
     int hi;
 };
+static __forceinline unsigned int xstrlen(const char *str)
+{
+    const char *eos = str;
+
+    while (*eos++) {
+    }
+    return eos - str - 1;
+}
 extern "C" void (__stdcall *_imp__RtlInitAnsiString)(S_AnsiString *dst, const char *src);
 extern "C" int (__stdcall *_imp__NtCreateFile)(int *handle, unsigned int access, S_ObjAttr *oa, S_IoStatus *iosb, S_Large *alloc, unsigned int attrs, unsigned int share, unsigned int disp, unsigned int opts);
 extern "C" unsigned int (__stdcall *_imp__RtlNtStatusToDosError)(int status);
@@ -381,6 +389,136 @@ void __stdcall func_001DE25F(int param)
         _imp__NtSetInformationFile(handle, iosb, info, 0x28, 4);
         func_001DD13C(handle);
     }
+}
+
+unsigned int __stdcall func_001DE2BB(char *root, unsigned short *name, int disp, unsigned int flags, char *outPath, unsigned int outSize)
+{
+    unsigned short buf[0x98];
+    char path[0x104];
+    S_IoStatus iosb;
+    S_AnsiString ansi;
+    S_ObjAttr oa;
+    S_Large alloc;
+    char *s;
+    char *d;
+    char *tail;
+    char c;
+    unsigned int len;
+    unsigned int err;
+    unsigned int n;
+    int r;
+    int status;
+
+    s = root;
+    d = path;
+    do {
+        c = *s;
+        *d = c;
+        s++;
+        d++;
+    } while (c != 0);
+    s = path;
+    do {
+        c = *s++;
+    } while (c != 0);
+    len = s - (path + 1);
+    func_001DDE78(name, path + len, 0xf7 - len);
+    s = path;
+    do {
+        c = *s++;
+    } while (c != 0);
+    len = s - (path + 1);
+    if (disp == 3) {
+        tail = path + len;
+        s = D_0028FAD0;
+        d = tail;
+        do {
+            c = *s;
+            *d = c;
+            s++;
+            d++;
+        } while (c != 0);
+        r = func_001DE1DF((int)path, (int)name);
+        *tail = 0;
+        if (r != 0) {
+            return r;
+        }
+        goto done;
+    }
+    if (func_001DF066(path, 0) == 0) {
+        flags = func_001DD603();
+        r = 0x491;
+        if (flags == 0xb7) {
+            tail = path + len;
+            s = D_0028FAD0;
+            d = tail;
+            do {
+                c = *s;
+                *d = c;
+                s++;
+                d++;
+            } while (c != 0);
+            r = func_001DE1DF((int)path, (int)name);
+            *tail = 0;
+            if (r != 0) {
+                return 0x52;
+            }
+            func_001DE25F((int)path);
+        }
+        if (disp == 1) {
+            return flags;
+        }
+        if (r != 0) {
+            return flags;
+        }
+        goto done;
+    }
+    tail = path + len;
+    s = D_0028FAD0;
+    d = tail;
+    do {
+        c = *s;
+        *d = c;
+        s++;
+        d++;
+    } while (c != 0);
+    _imp__RtlInitAnsiString(&ansi, path);
+    alloc.hi = 0;
+    oa.name = &ansi;
+    oa.root = -3;
+    oa.attr = 0x40;
+    alloc.lo = 1;
+    status = _imp__NtCreateFile((int *)&root, 0xc0100000, &oa, &iosb, &alloc, 4, 0, 3, 0x22);
+    *tail = 0;
+    if (status < 0) {
+        err = _imp__RtlNtStatusToDosError(status);
+        goto fail;
+    }
+    func_001EAA6D(buf, 0x98, (flags & 1) ? D_0028FBD0 : D_0028FBB0, (int)&D_0000FEFF, &D_0028FB38, 0x3d, name, D_0028FB88, D_0028FB90);
+    n = func_001EA410(buf) * 2;
+    if (n != 0) {
+        do {
+            if (func_001DD247((int)root, buf, n, (unsigned int *)&name, 0) == 0) {
+                err = func_001DD603();
+                func_001DD13C((int)root);
+                goto fail;
+            }
+            n -= (unsigned int)name;
+        } while (n != 0);
+    }
+    func_001DD13C((int)root);
+done:
+    if (outPath != 0) {
+        func_001DF4E1(outPath, path, outSize);
+        if (len < outSize - 1) {
+            outPath[len + 1] = 0;
+            outPath[len] = '\\';
+        }
+    }
+    return 0;
+fail:
+    func_001DF0D2(path);
+    return err;
 }
 
 int __stdcall func_001DE625(S_001DE625_Obj *p, int arg)
