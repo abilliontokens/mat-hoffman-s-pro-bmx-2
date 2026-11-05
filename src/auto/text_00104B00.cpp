@@ -72,3 +72,11 @@ struct C_00104B00 {
 };
 
 extern V4_00104B00 D_002A3A5C;
+
+float C_00104B00::func_00104BB0(int i)
+{
+    if (f480 == 0) {
+        return f24->f52c->f7948[i];
+    }
+    return f24->f52c->f77e8[i];
+}
