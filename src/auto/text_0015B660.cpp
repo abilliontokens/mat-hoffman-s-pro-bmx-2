@@ -285,6 +285,35 @@ int func_0015C100(S_0015BF70_Node *arr, float t, int n, S_0015BF70_Node **a, S_0
     return 0;
 }
 
+void C_0015C190::func_0015C190(S_0015C190_Vec3 *pos, float t)
+{
+    S_0015C190_Key key;
+    S_0015C190_Key *arr;
+    int n;
+    int idx;
+    int i;
+
+    if (unkC >= unk10) {
+        v7(unk10 + 1);
+    }
+    key.pos = *pos;
+    key.t = t;
+    key.in.x = 0.0f;
+    key.in.y = 0.0f;
+    key.in.z = 0.0f;
+    key.out.x = 0.0f;
+    key.out.y = 0.0f;
+    key.out.z = 0.0f;
+    n = unkC;
+    arr = unk14;
+    idx = func_0015C260((float *)arr, n, t);
+    for (i = n; i > idx; i++) {
+        arr[i] = arr[i - 1];
+    }
+    arr[idx] = key;
+    unkC++;
+}
+
 int func_0015C260(float *base, int hi, float v)
 {
     if (hi == 0)
