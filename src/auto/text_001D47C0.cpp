@@ -19,6 +19,47 @@ static __forceinline void Init_001D48E0(int *p)
     }
 }
 
+extern int D_002ABD04;
+
+void func_001FFBB0(void);
+void __stdcall func_00200390(int index, int value);
+void __stdcall func_00200510(int index, int value);
+void __stdcall func_001FEE00(int index, int ptr, int size);
+void __stdcall func_001FF8D0(int *out);
+void __stdcall func_001FF900(int *out);
+int __stdcall func_00201A90(int a, int *out);
+int __stdcall func_00201B50(int a, int b, int c, int d, int e, int f);
+
+struct C_001446B0 {
+    void func_001446B0(int a0, int a1, int a2);
+};
+
+struct C_0014A650 {
+    void func_0014A650(int a0);
+};
+
+struct C_00142D00 {
+    void func_00142D00(int a0);
+};
+
+struct C_00149480 {
+    void func_00149480(void);
+};
+extern C_00149480 *D_002F0630;
+
+struct C_001D54F0 {
+    int unk0;
+    C_001446B0 *unk4;
+    void func_001D54F0(void);
+};
+
+struct C_001D4F40 {
+    char pad0[0x6c];
+    C_0014A650 *f6c;
+    C_00142D00 *f70;
+    void func_001D4F40(void);
+};
+
 struct C_001D5640 {
     int func_001D5640(u8 param_1);
 };
