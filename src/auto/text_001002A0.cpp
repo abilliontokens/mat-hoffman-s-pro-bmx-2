@@ -71,3 +71,10 @@ void *C_00100700::func_00100700(unsigned int flags) {
     return this;
 }
 
+void *C_00100AB0::func_00100AB0(unsigned int flags) {
+    func_000E2140();
+    if (flags & 1)
+        func_001E891B(this);
+    return this;
+}
+
