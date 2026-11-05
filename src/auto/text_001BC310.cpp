@@ -443,6 +443,15 @@ C_001BCC90 *C_001BCC90::func_001BCC90(void *param_1)
     return this;
 }
 
+int C_001BCFE0::func_001BCFE0(int idx)
+{
+    f110[f11c - 1]->v35();
+    f110[idx - 1]->v34();
+    f11c = idx;
+    f118 = f110[idx - 1];
+    return 1;
+}
+
 int C_001BCFE0::func_001BD040(void)
 {
     int i;
