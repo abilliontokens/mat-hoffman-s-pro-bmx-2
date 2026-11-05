@@ -25,6 +25,23 @@ float func_0014F600(float x)
            (((((D_002A7720 * x2 + D_002A771C) * x2 + D_002A7718) * x2 + D_002A7714) * x2 + D_002A7710) * x2 + D_00275460);
 }
 
+void func_0014F670(float x, float *num, float *den)
+{
+    extern float D_002A773C;
+    extern float D_002A7738;
+    extern float D_002A7734;
+    extern float D_002A7730;
+    extern float D_00275460;
+    extern float D_002A7720;
+    extern float D_002A771C;
+    extern float D_002A7718;
+    extern float D_002A7714;
+    extern float D_002A7710;
+    float x2 = x * x;
+    *num = ((((D_002A773C * x2 + D_002A7738) * x2 + D_002A7734) * x2 + D_002A7730) * x2 + D_00275460) * x;
+    *den = (((((D_002A7720 * x2 + D_002A771C) * x2 + D_002A7718) * x2 + D_002A7714) * x2 + D_002A7710) * x2 + D_00275460);
+}
+
 float func_0014F990(float x)
 {
     return (float)atan(x);
