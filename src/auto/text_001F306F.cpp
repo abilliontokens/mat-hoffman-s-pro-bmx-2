@@ -516,6 +516,43 @@ int func_001F39D3(double x)
     }
     return 0;
 }
+
+#pragma optimize("s", on)
+double func_001F3A2E(double x, int *expptr)
+{
+    int exp;
+    int neg;
+    double result;
+
+    if (x == D_002766A8) {
+        result = 0.0;
+        exp = 0;
+    } else if ((*((unsigned short *)&x + 3) & 0x7ff0) == 0 &&
+               ((*((unsigned long *)&x + 1) & (unsigned long)&D_000FFFFF) != 0 || *(unsigned long *)&x != 0)) {
+        exp = -1021;
+        neg = x < D_002766A8 ? 1 : 0;
+        while ((*((unsigned char *)&x + 6) & 0x10) == 0) {
+            *((unsigned long *)&x + 1) <<= 1;
+            if (*((unsigned char *)&x + 3) & 0x80) {
+                *((unsigned long *)&x + 1) |= 1;
+            }
+            *(unsigned long *)&x <<= 1;
+            exp--;
+        }
+        *((unsigned char *)&x + 6) &= 0xef;
+        if (neg != 0) {
+            *((unsigned char *)&x + 7) |= 0x80;
+        }
+        result = func_001F39A9(x, 0);
+    } else {
+        result = func_001F39A9(x, 0);
+        exp = ((*((unsigned short *)&x + 3) & 0x7ff0) >> 4) - 0x3fe;
+    }
+    *expptr = exp;
+    return result;
+}
+#pragma optimize("", on)
+
 #pragma optimize("", on)
 
 extern long double D_002AED80;
