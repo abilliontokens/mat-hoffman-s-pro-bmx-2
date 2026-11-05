@@ -7,7 +7,9 @@ struct C_001C2F70 {
 
 struct UIWidgetMovementControl {
     void func_001C0DD0(int slot, int value, int key);
+    void func_001C1030(int slot, int value, int key);
     void func_001C3000(int p1, int p2, int value, int id);
+    void func_001C3170(int p1, int p2, int value, int id);
 };
 
 
