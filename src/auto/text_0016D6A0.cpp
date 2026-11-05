@@ -75,3 +75,16 @@ C_0016DA40 *C_0016DA40::func_0016DA40(void *param)
     return this;
 }
 
+void *C_0016E2E0::func_0016E2E0(unsigned int flags)
+{
+    vtbl = (void *)&D_00288084;
+    if (f1BC != 0) {
+        func_001E891B(f1BC);
+    }
+    ((C_00157660 *)this)->func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
