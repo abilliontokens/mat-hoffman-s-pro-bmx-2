@@ -81,7 +81,7 @@ struct C_00056080 {
 
 struct S_00056100_Quat {
     float x, y, z, w;
-    S_00056100_Quat() { x = 0; y = 0; z = 0; w = 1.0f; }
+    S_00056100_Quat() { z = 0; y = 0; x = 0; w = 1.0f; }
 };
 
 struct S_00056100_Node {
