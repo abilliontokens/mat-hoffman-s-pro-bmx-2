@@ -215,9 +215,25 @@ void C_00142D90::func_00142D90(int param_1)
 }
 
 void C_00142D00::func_00142D00(int a0) {
-    if (unk0 != a0) {
+    if (a0 != unk0) {
         func_00201350((void *)a0);
         unk0 = a0;
+    }
+}
+
+void C_00142D20::func_00142D20() {
+    int i = 0;
+    if (i < unk8) {
+        do {
+            C_00142D90_Elem *e = &unk14[i];
+            if (e->unkC > 0 && e->unk4 == 0) {
+                C_00142C70 *p = (C_00142C70 *)func_001E8A44(0xf0);
+                int obj = p ? p->func_00142C70() : 0;
+                ((C_00142C80 *)obj)->func_00142C80(unk14[i].unk0, i);
+                unk14[i].unk4 = obj;
+            }
+            i++;
+        } while (i < unk8);
     }
 }
 
