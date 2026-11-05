@@ -67,6 +67,18 @@ struct __declspec(align(16)) S_001401C0_Mat {
     }
 };
 
+static __forceinline void Mat_Copy_0013FD50(S_001401C0_Mat *dst, const S_001401C0_Mat *src)
+{
+    __m128 a = _mm_load_ps(&src->m[0]);
+    __m128 b = _mm_load_ps(&src->m[4]);
+    __m128 c = _mm_load_ps(&src->m[8]);
+    __m128 d = _mm_load_ps(&src->m[12]);
+    _mm_store_ps(&dst->m[0], a);
+    _mm_store_ps(&dst->m[4], b);
+    _mm_store_ps(&dst->m[8], c);
+    _mm_store_ps(&dst->m[12], d);
+}
+
 struct S_001401C0_Info {
     char pad0[0x30];
     int f30;
