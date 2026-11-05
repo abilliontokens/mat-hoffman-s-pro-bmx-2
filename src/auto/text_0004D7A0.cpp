@@ -2,8 +2,11 @@
 #include "common.h"
 
 struct C_0004DCA0_Rider {
-    char pad0[0x95c];
+    char pad0[0x958];
+    float f958;
     int f95C;
+    char pad960[0x10];
+    int f970;
     void func_00108680(int a);
     void func_0010C090(void *a, void *b, int c, int d);
 };
