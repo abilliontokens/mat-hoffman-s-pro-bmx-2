@@ -161,6 +161,16 @@ int C_001877F0::func_001877F0(C_001877F0Param *param)
     return 1;
 }
 
+int C_001878D0::func_001878D0(int a)
+{
+    int i;
+
+    for (i = 0; i < f24; i++) {
+        f28[i].v1(0, a);
+    }
+    return 1;
+}
+
 void C_00187AF0::func_00187AF0(void)
 {
   int func_001E891B(...);
