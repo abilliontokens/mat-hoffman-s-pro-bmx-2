@@ -138,12 +138,29 @@ struct C_000C85B0 {
 
 struct S_000C8660_Obj {
     virtual void destroying(int flag);
+    char pad4[0x24];
+    int f28;
+    char pad2C[0x10];
+    int f3C;
+    int f40;
+    int f44;
+    int f48;
+    char pad4C[0xC];
+    unsigned char f58;
+    S_000C8660_Obj *func_001D5760(void);
+    void func_001D5810(void *a, float b, float c, int d);
 };
+
+void *func_001E8A44(int size);
+extern int D_002786B0;
+extern float D_0027E140;
+extern int D_002786A0, D_00278690, D_00278678;
 
 struct BmxUIPageOptions {
     void *vtbl;
     char pad4[0x2D8 - 4];
     S_000C8660_Obj *unk2D8[4];
+    BmxUIPageOptions *func_000C87A0(int a, int b, int c);
     void func_000C8660(void);
     void func_000C86A0(void);
     void func_001BE3F0(void);
