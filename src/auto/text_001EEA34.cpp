@@ -96,18 +96,6 @@ void __fastcall func_001EEEE6(BitObj *dst, int dummy, BitObj *src) {
     dst->f0 = src->f0;
 }
 
-void BitObj::func_001EEF4F(BitObj *o)
-{
-    if (s4 == 0 || s4 == 2) {
-        s4 = o->s4;
-        b4 = o->b4;
-        b5 = o->b5;
-        b6 = o->b6;
-        b7 = o->b7;
-        f0 = o->f0;
-    }
-}
-
 int *S_001EEFBA::func_001EEFBA(int idx)
 {
     if (idx < 0 || idx > 9) {
