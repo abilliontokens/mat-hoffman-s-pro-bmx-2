@@ -19,7 +19,7 @@ struct Vec_0012BB60 {
 struct Triple_0012BB60 { int x,y,z; };
 static __forceinline Vec_0012BB60 *Alloc_0012BB60(int count) {
  Vec_0012BB60 *p=(Vec_0012BB60 *)func_001E8A44(count*16);
- if(p) { for(int i=0;i<count;++i) { p[i].z=0; p[i].y=0; p[i].x=0; p[i].w=0x3f800000; } return p; }
+ if(p) { for(int i=count-1;i>=0;--i) { p[i].z=0; p[i].y=0; p[i].x=0; p[i].w=0x3f800000; } return p; }
  return 0;
 }
 
