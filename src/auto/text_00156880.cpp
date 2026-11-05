@@ -119,6 +119,32 @@ struct C_00157660 {
 
 extern int D_002DF948;
 
+extern "C" char *__cdecl strcpy(char *dst, const char *src);
+extern "C" char *__cdecl strcat(char *dst, const char *src);
+
+/* the GameObject as its constructor sees it: the vtable is stored by hand
+   and the flags at +0x21 are bitfields */
+struct S_00157600_Flags {
+    unsigned char b0 : 1;
+    unsigned char b1 : 1;
+    unsigned char b23 : 2;
+    unsigned char b47 : 4;
+};
+
+struct C_00157600 {
+    void *vtbl;
+    int pad4;
+    int f8;
+    int fC;
+    int f10;
+    int f14;
+    int f18;
+    int f1C;
+    unsigned char f20;
+    S_00157600_Flags f21;
+    C_00157600 *func_00157600(unsigned char flags);
+};
+
 /* node of the GameObject tree: prev/next siblings, first child, parent */
 struct GameObject {
     virtual void v0();
