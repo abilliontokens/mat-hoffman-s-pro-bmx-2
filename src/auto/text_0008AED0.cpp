@@ -203,3 +203,55 @@ C_0008BB80 *C_0008BB80::func_0008BB80(int unused) {
     return this;
 }
 
+void C_0008BBE0::func_0008BBE0()
+{
+    PtrObj_0008 *p = unk24;
+    vtbl = &D_00279E74;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+    p = unk28;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+    p = unk2c;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+    p = unk30;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+    p = unk34;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+    if (unk38) {
+        unk38->v0(1);
+    }
+    if (unk3c) {
+        unk3c->v0(1);
+    }
+    if (unk40) {
+        unk40->v0(1);
+    }
+    if (unk48) {
+        unk48->v0(1);
+    }
+    if (unk4c) {
+        unk4c->v0(1);
+    }
+    if (unk44) {
+        unk44->v0(1);
+    }
+    if (unk50) {
+        unk50->v0(1);
+    }
+    func_00157660();
+}
+
