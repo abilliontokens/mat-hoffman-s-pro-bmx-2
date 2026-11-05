@@ -128,9 +128,15 @@ struct C_001BBAA0 {
     int unkA0[5];                     /* 0xA0 */
     void **unkB4;                     /* 0xB4 */
     void **unkB8;                     /* 0xB8 */
-    char padBC[0x14];
+    int *unkBC;
+    int *unkC0;
+    float *unkC4;
+    float *unkC8;
+    int *unkCC;
     int unkD0;                        /* 0xD0 */
-    char padD4[0x218];
+    char padD4[0x210];
+    struct S_001BBE20_2E4 *unk2E4;
+    int unk2E8;
     u8 unk2EC;                        /* 0x2EC */
     void func_001BBA60(void);
     __declspec(noinline) void func_001BBAA0(void *a, void *b);
