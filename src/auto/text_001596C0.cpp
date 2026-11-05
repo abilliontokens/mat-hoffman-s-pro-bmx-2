@@ -61,7 +61,10 @@ struct C_00193500 {
 struct V4 { float x, y, z, w; };
 struct GL2;
 struct Xf { V4 *func_00197F70(V4 *out, V4 *in); };
-struct Sh { void func_00193950(GL2 *a, V4 *b, V4 *c, int d); };
+struct Sh {
+    void func_00193950(GL2 *a, V4 *b, V4 *c, int d);
+    void func_001938C0(GL2 *g, int a, int b, V4 *c, V4 *d, int e);
+};
 struct GL2 {
     char pad0[0x20];
     V4 p0;
@@ -71,10 +74,10 @@ struct GL2 {
     Xf *xf;
     V4 s0;
     V4 s1;
-    char pad78[4];
     Sh *sh;
 };
-V4 func_00159480(V4 a, V4 b);
+V4 *func_00159480(V4 *out, V4 *in);
+static __forceinline float v3abs(float x) { int i = *(int *)&x & 0x7fffffff; return *(float *)&i; }
 static inline V4 v4(float x, float y, float z) { V4 r; r.x = x; r.y = y; r.z = z; r.w = 1.0f; return r; }
 static inline V4 v4sub(const V4 &a, const V4 &b) { return v4(a.x - b.x, a.y - b.y, a.z - b.z); }
 static inline V4 v4add(const V4 &a, const V4 &b) { return v4(a.x + b.x, a.y + b.y, a.z + b.z); }
