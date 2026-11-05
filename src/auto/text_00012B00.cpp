@@ -23,5 +23,38 @@ struct S_13910_Owner {
     float func_00012510(int *p, int w);
     void func_001C6DA0(int a, int b);
 };
-struct AIPedFightState { void *vtbl; char pad[4]; S_13910_Owner *f8; int fC; void func_00013910(); };
+struct S_12B00_G { char pad[0x238]; int f238; };
+extern S_12B00_G *D_002A8490;
+struct AIPedFightState {
+    void *vtbl;
+    char pad[4];
+    S_13910_Owner *f8;
+    int fC;
+    char pad10[0xc];
+    int f1c;
+    void func_00012B00(int a0);
+    void func_00013910();
+};
 extern S_13910_G *D_002B9120;
+
+void AIPedFightState::func_00013910()
+{
+    int a, b;
+    f8->func_00011BE0(&a, &b);
+    if (a != -1) {
+        S_13910_Vec pos;
+        pos.z = 0; pos.y = 0; pos.x = 0; pos.w = 1.0f;
+        if (D_002B9120->f4e0->ents[a]->f950->fbc != 0) {
+            S_13910_Vec t;
+            pos = *D_002B9120->f4e0->ents[a]->fa00->f4->func_00199B00(&t, 0);
+        } else {
+            pos = D_002B9120->f4e0->ents[a]->f834;
+        }
+        S_13910_Row *row = D_002B9120->f588[f8->f3b4];
+        if (f8->func_00012510((int *)&pos, f8->func_000119D0(&pos)) < row->f8) {
+            f8->func_001C6DA0(f8->f41c, 1);
+            f8->f3d8 = 0;
+            fC = 0;
+        }
+    }
+}
