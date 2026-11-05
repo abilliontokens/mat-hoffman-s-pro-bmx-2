@@ -42,7 +42,7 @@ struct S_Vt_0002A6B0 {
     virtual void v31();
     virtual void v32();
     virtual void v33();
-    virtual void v34(float dt);
+    virtual void v34();
     virtual void v35();
     virtual void v36();
     virtual void v37();
