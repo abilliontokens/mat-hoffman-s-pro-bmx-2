@@ -71,6 +71,7 @@ struct S_00194E60_Base {
 
 struct C_00194E60 : S_00194E60_Base, S_Vec4Int {
     void func_00194E60(int a, int b, int c, int d);
+    void func_00194E60(S_Vec4Int v);
     void func_00194E90(S_Vec4Int *out);
 };
 
@@ -572,5 +573,13 @@ void C_00195090::func_00195130(void)
         func_001E8390(p);
     }
     func_0012B540();
+}
+
+void C_00195090::func_00195160(int a0, int a1, float a2)
+{
+    f24 = a0;
+    f20 = 0;
+    f8 = a2 * D_00277D04;
+    fC = a1;
 }
 
