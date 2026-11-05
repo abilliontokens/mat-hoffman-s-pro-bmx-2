@@ -69,6 +69,17 @@ struct C_001BD9F0 {
 };
 
 
+C_001BD9C0 *C_001BD9C0::func_001BD9C0(int a)
+{
+  ((C_00157600 *)this)->func_00157600(a);
+  f24 = 0;
+  f28 = 0;
+  f2c = 0;
+  f30 = 0;
+  vtbl = (void *)&D_0028D58C;
+  return this;
+}
+
 void C_001BD9F0::func_001BD9F0(void)
 {
   int in_ECX = (int)this;
