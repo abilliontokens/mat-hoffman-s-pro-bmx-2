@@ -165,7 +165,8 @@ struct C_00184930 {
     S_00184CC0_Item **f3b0;
     char pad3b4[0x3c0 - 0x3b4];
     S_00184C00_Obj *f3c0;
-    char pad3c4[0x3e4 - 0x3c4];
+    char pad3c4[0x3e0 - 0x3c4];
+    S_00185110_Obj **f3e0;
     C_001B1130 *f3e4;
     S_00184EF0_Holder *f3e8;
     S_00184EF0_Obj *f3ec;
