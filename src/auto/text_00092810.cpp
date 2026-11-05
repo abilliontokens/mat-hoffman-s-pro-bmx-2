@@ -306,6 +306,28 @@ int C_00092890::func_00092C70(void)
     return 1;
 }
 
+void C_00092890::func_00092D10(void)
+{
+    char buf[0x104];
+    C_00092BE0_Str s;
+
+    if (D_002A8490->f2e0->f2cc->func_001D4300(8) == 1) {
+        D_002A8490->f2e0->f2cc->func_001D41D0(8);
+        if (func_00092C70() == 0) {
+            s.func_001D3E30();
+            s.func_001D3E60(&f254);
+            s.func_001D3E80(&D_0027A1A4);
+            s.func_001D3EA0(3, &D_0027A178, &D_0027A188, &D_0027A198);
+            s.func_001D3F20(&D_0027A150, 0xd);
+            if (D_002A8490->f2e0->f2cc->func_001D4380(&s) != 0) {
+                strcpy(&f254, s.func_001D3F50());
+                func_001ADCC0(buf, 0x104, &D_0027A168, &f254);
+                func_001DD0A9(&D_0027A158, buf, 0);
+            }
+        }
+    }
+}
+
 int C_00092890::func_00092E30(int idx)
 {
     char buf[0x104];
