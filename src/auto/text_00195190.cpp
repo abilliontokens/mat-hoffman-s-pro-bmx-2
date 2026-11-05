@@ -75,6 +75,32 @@ struct C_001955D0 {
     int func_001955D0(int a0, int a1);
 };
 
+struct V4f_001956F0 {
+    float x, y, z, w;
+    V4f_001956F0() { x = y = z = 0; w = 1.0f; }
+};
+struct Ini_001956F0 {
+    char data[0x4d0];
+    void func_00168280();
+    void func_001691E0();
+    int func_00169490(const char *path, int a);
+    void func_00169710(const char *section);
+    void func_00168C20(const char *key, int def, int *out);
+    void func_00168C50(const char *key, float def, float *out);
+    void func_00168CB0(const char *key, V4f_001956F0 *def, V4f_001956F0 *out);
+};
+int func_001ADCC0(char *buf, int n, const char *fmt, ...);
+void *func_001E8AA5(unsigned int n);
+extern char D_0028AF84[], D_0028AF74[], D_002769E8[], D_002769DC[], D_00275AD4[], D_00277F20[];
+extern char D_0028AEB4[], D_0028AEBC[], D_0028AF64[], D_0028AF54[], D_00289510[], D_0027CB30[], D_0027CB2C[], D_0028AF48[];
+extern float D_00275F58;
+extern V4f_001956F0 D_002A9B44;
+struct C_001956F0 {
+    char pad0[0x40];
+    Item_001955F0 *f40;
+    int f44;
+    int func_001956F0(const char *name);
+};
 
 int C_001955D0::func_001955D0(int a0, int a1) {
     unk70 = a0;
