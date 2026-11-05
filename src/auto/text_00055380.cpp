@@ -124,7 +124,7 @@ static __forceinline void InitQuat_00055380(S_00056100_Quat *q)
     p[2] = 0;
     p[1] = 0;
     p[0] = 0;
-    p[3] = 0x3f800000;
+    q->w = 1.0f;
 }
 
 /* BmxFollowCamera (base class CameraBehavior) */
@@ -187,8 +187,8 @@ C_00055380 *C_00055380::func_00055380(void)
     unk10 = 0;
     unk14 = 0;
     unk18 = 0;
-    q1C.x = D_002A1A64.x; q1C.y = D_002A1A64.y; q1C.z = D_002A1A64.z; q1C.w = D_002A1A64.w;
-    q2C.x = D_002A1A64.x; q2C.y = D_002A1A64.y; q2C.z = D_002A1A64.z; q2C.w = D_002A1A64.w;
+    q1C = D_002A1A64;
+    q2C = D_002A1A64;
     unk178 = 0x44c80000;
     unk180 = 0x44c80000;
     unk148 = 0x44c80000;
@@ -245,24 +245,24 @@ C_00055380 *C_00055380::func_00055380(void)
     unk1E8 = 0;
     unk1A0 = 0x3f000000;
     unk1A4 = 0x3f000000;
-    q1EC.x = D_002A1A64.x; q1EC.y = D_002A1A64.y; q1EC.z = D_002A1A64.z; q1EC.w = D_002A1A64.w;
-    q6C.x = D_002A1A64.x; q6C.y = D_002A1A64.y; q6C.z = D_002A1A64.z; q6C.w = D_002A1A64.w;
-    q7C.x = D_002A1A64.x; q7C.y = D_002A1A64.y; q7C.z = D_002A1A64.z; q7C.w = D_002A1A64.w;
-    q8C.x = D_002A1A84.x; q8C.y = D_002A1A84.y; q8C.z = D_002A1A84.z; q8C.w = D_002A1A84.w;
-    q9C.x = D_002A1A64.x; q9C.y = D_002A1A64.y; q9C.z = D_002A1A64.z; q9C.w = D_002A1A64.w;
-    qBC.x = D_002A1A84.x; qBC.y = D_002A1A84.y; qBC.z = D_002A1A84.z; qBC.w = D_002A1A84.w;
-    qAC.x = D_002A1A64.x; qAC.y = D_002A1A64.y; qAC.z = D_002A1A64.z; qAC.w = D_002A1A64.w;
+    q1EC = D_002A1A64;
+    q6C = D_002A1A64;
+    q7C = D_002A1A64;
+    q8C = D_002A1A84;
+    q9C = D_002A1A64;
+    qBC = D_002A1A84;
+    qAC = D_002A1A64;
     unk3C = 0;
-    qDC.x = D_002A1A64.x; qDC.y = D_002A1A64.y; qDC.z = D_002A1A64.z; qDC.w = D_002A1A64.w;
-    qEC.x = D_002A1A64.x; qEC.y = D_002A1A64.y; qEC.z = D_002A1A64.z; qEC.w = D_002A1A64.w;
-    q1FC.x = D_002A1A64.x; q1FC.y = D_002A1A64.y; q1FC.z = D_002A1A64.z; q1FC.w = D_002A1A64.w;
+    qDC = D_002A1A64;
+    qEC = D_002A1A64;
+    q1FC = D_002A1A64;
     unk20C = 0;
     unk210 = 0;
     unk214 = 0;
     unk218 = 0;
     unk21C = 0x3f400000;
-    qCC.x = D_002A1A64.x; qCC.y = D_002A1A64.y; qCC.z = D_002A1A64.z; qCC.w = D_002A1A64.w;
-    qFC.x = D_002A1A64.x; qFC.y = D_002A1A64.y; qFC.z = D_002A1A64.z; qFC.w = D_002A1A64.w;
+    qCC = D_002A1A64;
+    qFC = D_002A1A64;
     return this;
 }
 
