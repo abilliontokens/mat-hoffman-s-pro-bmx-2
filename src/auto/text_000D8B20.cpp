@@ -214,3 +214,26 @@ void C_000D9750::func_000D9750() {
     func_000D5860();
     func_00157960();
 }
+
+void BmxUIPageHOF6D::func_000D98E0()
+{
+    vtbl = &D_0027F534;
+    for (int i = 0; i < 2; i++) {
+        if (arr2EC[i] != 0) {
+            arr2EC[i]->Destroy(1);
+            arr2EC[i] = 0;
+        }
+        if (arr2F4[i] != 0) {
+            arr2F4[i]->Destroy(1);
+            arr2F4[i] = 0;
+        }
+    }
+    for (int i = 0; i < 2; i++) {
+        if (arr2FC[i] != 0) {
+            arr2FC[i]->Destroy(1);
+            arr2FC[i] = 0;
+        }
+    }
+    func_001BE3F0();
+}
+
