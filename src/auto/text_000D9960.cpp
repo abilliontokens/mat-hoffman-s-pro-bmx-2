@@ -95,3 +95,23 @@ void C_000DA140::func_000DA140() {
     func_000D5860();
     func_00157960();
 }
+
+void BmxUIPageViewVideosTitle::func_000DA320()
+{
+    int i;
+    vtbl = (void *)&D_0027F5CC;
+    for (i = 0; i < 4; i++) {
+        if (arr314[i] != 0) {
+            arr314[i]->destroying(1);
+            arr314[i] = 0;
+        }
+    }
+    for (i = 0; i < 2; i++) {
+        if (arr324[i] != 0) {
+            arr324[i]->destroying(1);
+            arr324[i] = 0;
+        }
+    }
+    func_001BE3F0();
+}
+
