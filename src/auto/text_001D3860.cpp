@@ -321,7 +321,7 @@ int C_001D3F90::func_001D3F90(unsigned int *a, unsigned int *b, unsigned int *c)
     return 1;
 }
 
-int __stdcall func_001D4010(int x)
+int C_001D4200::func_001D4010(int x)
 {
     switch (x) {
     case 0:
@@ -348,11 +348,13 @@ int C_001D4200::func_001D4200(char *out)
     S_001D4200_Find find;
     char buf[0x80];
     int found;
+    int ret;
     int h;
 
     h = func_001DE51E(&unk4, &find);
-    found = 0;
+    ret = 0;
     if (h != -1) {
+        found = 0;
         do {
             func_001DDE51(buf, D_0028F0A8, find.alt);
             if (func_001EA426(buf, out + 0x1f) == 0) {
@@ -362,8 +364,9 @@ int C_001D4200::func_001D4200(char *out)
             }
         } while (func_001DE625(h, &find) != 0);
         func_001DE66C(h);
+        ret = found;
     }
-    return found;
+    return ret;
 }
 
 int __stdcall func_001D42A0(const char *a, const char *b)
