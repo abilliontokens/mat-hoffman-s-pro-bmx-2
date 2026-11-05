@@ -174,7 +174,7 @@ struct S_00094A00_Obj {
     virtual void v34();
     virtual void v35();
     virtual int v36(int a, int b, int c);
-    virtual void v37();
+    virtual int v37();
     virtual void v38();
     virtual void v39();
     virtual void v40();
@@ -364,6 +364,16 @@ int *C_00094760::func_00094810(int node)
 
     if (node < path->unkA8 && node >= 0) {
         return &path->Node(node)->unk20;
+    }
+    return 0;
+}
+
+int C_00094840::func_00094840(void)
+{
+    int i = unk34;
+
+    if (i < unk50->unkA8 && i >= 0) {
+        return (int)&unk50->unk34[i].unk20;
     }
     return 0;
 }
