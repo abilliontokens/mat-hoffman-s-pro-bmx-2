@@ -40,6 +40,12 @@ struct Vec4_143660 {
         z = v.z;
         w = v.w;
     }
+    void SetRef(const Vec4_143660 &v) {
+        x = v.x;
+        y = v.y;
+        z = v.z;
+        w = v.w;
+    }
     Vec4_143660() {}
     Vec4_143660(f32 a, f32 b, f32 c, f32 d) {
         x = a;
