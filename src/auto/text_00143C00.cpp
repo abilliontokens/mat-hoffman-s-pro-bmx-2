@@ -60,6 +60,167 @@ extern C_0013B210 *D_002BEAAC;
 
 
 
+extern int D_002A99B0;
+extern int D_002A6F8C;
+extern const float D_00275544;
+extern const float D_00275460;
+extern float D_002EFEA0;
+extern char *D_002F08BC;
+extern char D_002A7054[];
+extern int D_00040304, D_00040344, D_00040348, D_00040350;
+extern int D_0020C6DC, D_0020C6E0, D_0020C6E4, D_0020C6EC, D_0020C6F0, D_0020C6F4, D_0020C6F8;
+extern int D_0020C760, D_0020C764, D_0020C76C, D_0020C770, D_0020C774, D_0020C778;
+extern int D_0020CA7C;
+
+void __stdcall func_001FF940(void *a, void *b);
+void *__stdcall func_001FF3C0(int size);
+void *__stdcall func_001FF410(void *buffer, int flags);
+int __fastcall func_001FEBD0(int n, void *p);
+void __fastcall func_001FEC30(int n, void *p);
+void __fastcall func_001FD020(void *p, int v);
+void __stdcall func_00200390(int index, int value);
+void __stdcall func_00200510(int index, int value);
+void __stdcall func_00200950(int a, int b, void *c, void *d, int e);
+
+struct Vec4_143C00 {
+    float x, y, z, w;
+};
+extern Vec4_143C00 D_002BECE0[];
+
+struct Vec3_143C00 {
+    float x, y, z;
+    Vec3_143C00() { x = y = z = 0; }
+};
+
+struct Corner_143C00 {
+    Vec3_143C00 pos;
+    float w;
+};
+
+struct Quad_143C00 {
+    char pad0[0x74];
+    Corner_143C00 c[4];
+    char padB4[0x2c];
+    int fE0;
+    int fE4;
+    char padE8[8];
+    int fF0;
+    int fF4;
+};
+
+struct Vtx28_143C00 {
+    Vec3_143C00 pos;
+    float u0, v0, u1, v1;
+};
+
+struct Vtx20_143C00 {
+    Vec3_143C00 pos;
+    float u, v;
+};
+
+struct Tex_143C00 {
+    char pad0[0xb8];
+    int fB8;
+    int fBC;
+};
+
+struct Slot6C_143C00 {
+    void func_0014A650(int a0);
+};
+
+struct Slot70_143C00 {
+    void func_00142D00(int a0);
+};
+
+struct C_00143C00 {
+    char pad0[0x24];
+    Tex_143C00 **f24;
+    char pad28[0xc];
+    float f34;
+    float f38;
+    char pad3C[0x14];
+    int f50;
+    int f54;
+    float f58;
+    char pad5C[8];
+    float f64;
+    char pad68[4];
+    float f6C;
+    char pad70[0x14];
+    float f84;
+    float f88;
+    char pad8C[8];
+    float f94;
+    float f98;
+    char pad9C[8];
+    int fA4;
+    char padA8[4];
+    int fAC;
+    char padB0[0x28];
+    float fD8;
+    int fDC;
+    char padE0[4];
+    float fE4;
+    char padE8[4];
+    int fEC;
+    void *fF0[3];
+    int fFC;
+    __forceinline float GetScale()
+    {
+        float s;
+        switch (fAC) {
+        case 0:
+            s = fD8 / D_002EFEA0;
+            break;
+        case 1:
+        case 2:
+            s = fD8;
+            break;
+        case 3:
+            s = D_00275460;
+            break;
+        }
+        return s;
+    }
+    __forceinline void SetColor(float s);
+    __forceinline void Uv28(Vtx28_143C00 *v, float rw, float rh);
+    __forceinline void Uv20(Vtx20_143C00 *v, float rw, float rh);
+    void func_00143C00(Quad_143C00 *arg);
+};
+
+struct Color_143C00 {
+    float r, g, b, a;
+    Color_143C00(float x, float y, float z, float w)
+    {
+        r = x;
+        g = y;
+        b = z;
+        a = w;
+    }
+};
+
+__forceinline void C_00143C00::SetColor(float s)
+{
+    const Vec4_143C00 *m = &D_002BECE0[fAC];
+    Color_143C00 col(s * m->x, s * m->y, s * m->z, f58);
+    func_001FEBD0(0x20, &col);
+}
+
+__forceinline void C_00143C00::Uv28(Vtx28_143C00 *v, float rw, float rh)
+{
+    v->u0 = (v->pos.x - f94) * rw;
+    v->v0 = (v->pos.z - f98) * rh;
+    v->u1 = v->u0;
+    v->v1 = v->v0;
+}
+
+__forceinline void C_00143C00::Uv20(Vtx20_143C00 *v, float rw, float rh)
+{
+    v->u = (v->pos.x - f94) * rw;
+    v->v = (v->pos.z - f98) * rh;
+}
+
+
 struct C_001AF300 {
     void func_001AF300(void *param);
 };
