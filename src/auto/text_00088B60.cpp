@@ -156,3 +156,27 @@ C_000891A0 *C_000891A0::func_000891A0(int unused)
     return this;
 }
 
+void C_00089210::func_00089210()
+{
+    vtbl = &D_00279A44;
+    for (int i = 0; i < 4; i++) {
+        C_001D6410 *p = arr24[i];
+        if (p != 0) {
+            p->func_001D6410();
+            func_001E891B(p);
+            arr24[i] = 0;
+        }
+    }
+    for (int j = 0; j < 26; j++) {
+        if (arr34[j] != 0) {
+            arr34[j]->Destroy(1);
+            arr34[j] = 0;
+        }
+    }
+    if (f9C != 0) {
+        f9C->Destroy(1);
+        f9C = 0;
+    }
+    func_00157660();
+}
+
