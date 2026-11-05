@@ -140,10 +140,11 @@ struct S_001364B0_Record {
     int f0;
     short f4, f6;
     int f8[16], f48[16];
-    short f88[16];
+    unsigned short f88[16];
     int fA8[16];
-    int fE8, fEC, fF0;
-    int padF4[2];
+    int padE8;
+    int fEC, fF0, fF4;
+    int padF8;
 };
 struct C_001364B0 {
     int pad0[2];
