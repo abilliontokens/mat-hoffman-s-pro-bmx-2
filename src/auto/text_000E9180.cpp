@@ -40,3 +40,21 @@ void C_000E9FD0::func_000E9FD0(void) {
     unk784 = 1;
     func_001BF220();
 }
+
+void C_000E9FE0::func_000E9FE0(void) {
+    func_000E86C0();
+    unk490 = 0;
+    unk494 = 255;
+    unk498 = unk480;
+    unk49C = 0;
+    unk4A0 = 0;
+    unk34C->func_001B1980();
+    unk350->func_001B1980();
+    unk340->func_001B1980();
+    unk344->func_001B1980();
+    unk348->func_001B1980();
+    unk4C8 = 0;
+    unk4CC = 0;
+    unk788 = 1;
+}
+
