@@ -100,8 +100,8 @@ struct C_00188C20 {
 
 struct C_00188CB0 {
     int f0;
-    int f4;
-    int f8;
+    int *f4;
+    int *f8;
     void **fC;
     void func_00188CB0(void);
     int func_00188D20(int n);
