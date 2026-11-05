@@ -139,10 +139,11 @@ __declspec(align(16)) struct S_137F90_Mat {
     float m[16];
     __forceinline void identity(void)
     {
-        _mm_store_ps(&m[0], _mm_setzero_ps());
-        _mm_store_ps(&m[4], _mm_setzero_ps());
-        _mm_store_ps(&m[8], _mm_setzero_ps());
-        _mm_store_ps(&m[12], _mm_setzero_ps());
+        __m128 z = _mm_setzero_ps();
+        _mm_store_ps(&m[0], z);
+        _mm_store_ps(&m[4], z);
+        _mm_store_ps(&m[8], z);
+        _mm_store_ps(&m[12], z);
         m[0] = 1.0f;
         m[5] = 1.0f;
         m[10] = 1.0f;
@@ -276,9 +277,10 @@ void DrawableCube::func_00137E50(float dt)
 
 int DrawableCube::func_00137F90()
 {
+    DrawableCube * volatile self = this;
     S_137F90_Mat mat;
     S_137F90_Mat mat2;
-    S_137F90_Mat *pm;
+    S_137F90_Mat * volatile pm;
     S_137F90_V4 v;
     unsigned short idx[4];
     char *g4;
@@ -288,13 +290,13 @@ int DrawableCube::func_00137F90()
 
     if (D_002A67D8 != 0) {
         D_002EFDB8->f6c->func_0014A650(f7d0);
-        D_002EFDB8->f70->func_00142D00(f7d4);
+        D_002EFDB8->f70->func_00142D00(self->f7d4);
         g4 = D_002EFDB8->f4;
         pm = &mat;
-        identity_ref_00137F90(pm);
-        mat.m[3] = f28->f8;
-        mat.m[7] = f28->fC;
-        mat.m[11] = f28->f10;
+        pm->identity();
+        mat.m[3] = self->f28->f8;
+        mat.m[7] = self->f28->fC;
+        mat.m[11] = self->f28->f10;
         func_000263B0(mat2.m, mat.m, (float *)(g4 + 0x250));
         func_001FEC30(0x18, mat2.m);
         v = *(S_137F90_V4 *)(g4 + 0x170);
@@ -322,14 +324,14 @@ int DrawableCube::func_00137F90()
         idx[3] = 3;
         for (k = 0; k < 6; k++) {
             for (j = 0; j < 16; j++) {
-                if (((1 << j) & *(unsigned short *)((char *)f28 + k * 0xfc + 0x12c)) != 0 &&
-                    ((1 << j) & *(unsigned short *)((char *)f28 + k * 0xfc + 0x48)) != 0) {
-                    if (((S_137F90_Obj **)f28)[0x13 + k * 0x3f + j]->v11() != 0) {
-                        ((S_137F90_Obj **)f28)[0x13 + k * 0x3f + j]->v21(0);
+                if (((1 << j) & *(unsigned short *)((char *)self->f28 + k * 0xfc + 0x12c)) != 0 &&
+                    ((1 << j) & *(unsigned short *)((char *)self->f28 + k * 0xfc + 0x48)) != 0) {
+                    if (((S_137F90_Obj **)self->f28)[0x13 + k * 0x3f + j]->v11() != 0) {
+                        ((S_137F90_Obj **)self->f28)[0x13 + k * 0x3f + j]->v21(0);
                         if (D_002BEA90 != 0) {
-                            void *p = func_001FF410(f7d8, 0);
+                            void *p = func_001FF410(self->f7d8, 0);
                             memcpy(p, &D_002BA728[k * 16 + j], 0x60);
-                            func_001FEE00(0, f7d8, 0x18);
+                            func_001FEE00(0, self->f7d8, 0x18);
                             func_00200B30((void *)7, 4, idx);
                         } else {
                             func_00200950(7, 4, idx, &D_002BA728[k * 16 + j], 0x18);
