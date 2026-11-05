@@ -12,11 +12,8 @@ void *func_001E8A44(int size);
 struct S_0023F3F7_Obj {
     virtual int __stdcall v0();
     virtual int __stdcall Release();
-};
-
-struct S_0023F1AB_Obj : S_0023F3F7_Obj {
     char pad4[0xb8];
-    S_0023F1AB_Obj *func_0023F1AB(void);
+    S_0023F3F7_Obj *func_0023F1AB(void);
 };
 
 int __stdcall func_0023F23E(S_0023F3F7_Obj *obj, int a0, int a1, int a2, int a3, int a4, int a5, int a6);
@@ -149,6 +146,52 @@ int __stdcall func_0023ED4C(S_0023ED4C_Src *src, S_0023ED4C_Out *out)
     out->f0 = 3;
     out->f8 = src->f10 << 12;
     return 0;
+}
+
+int __stdcall func_0023ED71(S_0023ED71 *p, int *out)
+{
+    if (out != 0) {
+        *out = 2;
+        if (p->fb4 != 0) {
+            _imp__RtlEnterCriticalSection(p->f6c);
+            if (p->f9c.next == &p->f9c) {
+                *out = 0;
+            }
+            _imp__RtlLeaveCriticalSection(p->f6c);
+        }
+    }
+    return 0;
+}
+
+unsigned int __stdcall func_0023EDB5(S_0023EDB5 *p, int a)
+{
+    int __stdcall func_0023F84B(int h, int a);
+
+    return func_0023F84B(p->f30, a) ? 0x80004005 : 0;
+}
+
+int __stdcall func_0023EE30(int fmt)
+{
+    int rate;
+
+    if (fmt == 0) {
+        rate = 48000;
+    } else if (fmt == 1) {
+        rate = 44100;
+    } else if (fmt == 2) {
+        rate = 32000;
+    } else if (fmt == 3) {
+        rate = 22050;
+    } else if (fmt == 4) {
+        rate = 16000;
+    } else if (fmt == 5) {
+        rate = 11025;
+    } else if (fmt == 6) {
+        rate = 8000;
+    } else {
+        rate = 0;
+    }
+    return rate;
 }
 
 int __stdcall func_0023F160(C_0023EFB0 *p)
