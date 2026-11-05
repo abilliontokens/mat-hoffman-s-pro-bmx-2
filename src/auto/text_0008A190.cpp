@@ -162,6 +162,13 @@ void C_0008A9A0::func_0008A9A0(void) {
     unk4D8 = 10;
 }
 
+C_0008AAB0 *C_0008AAB0::func_0008AAB0(int a0) {
+    func_00157600(1);
+    vtbl = &D_00279C3C;
+    unk24 = 0;
+    return this;
+}
+
 int C_0008AB90::func_0008AB90(int a0) {
     unk28 = a0;
     return 1;
