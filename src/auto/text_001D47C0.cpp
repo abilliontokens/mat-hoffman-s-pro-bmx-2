@@ -52,6 +52,21 @@ struct C_001D5600 {
 };
 
 
+C_001D48A0* C_001D48A0::func_001D48A0(u8 param_1)
+{
+  int func_001E891B(...);
+
+  unk0 = (int)&D_0028F578;
+  if (unk4 != 0) {
+    func_001E891B(unk4);
+  }
+  unk0 = (int)&D_00284E94;
+  if ((param_1 & 1) != 0) {
+    func_001E891B(this);
+  }
+  return this;
+}
+
 C_001D5350* C_001D5350::func_001D5350(void) {
     unk0 = 0;
     unk4 = 0;
