@@ -313,6 +313,19 @@ C_001B5790 *C_001B5790::func_001B5790(void)
     return this;
 }
 
+void C_001B57B0::func_001B57B0(void *param)
+{
+    void *mem = func_001E8A44(0x2c);
+    f54 = mem != 0 ? ((C_00187640 *)mem)->func_00187640(1) : 0;
+    if (((C_00187640 *)f54)->v27(param) == 0) {
+        ((C_00187640 *)f54)->v2();
+        f54 = 0;
+    }
+    mem = func_001E8A44(0x234);
+    f5C = mem != 0 ? ((C_001B4BE0 *)mem)->func_001B4BE0() : 0;
+    ((C_001B4BE0 *)f5C)->v0(param);
+}
+
 C_001B5830 *C_001B5830::func_001B5830(void *a) {
     ((C_001B57600 *)this)->func_00157600(a);
     f24 = 0;
@@ -327,6 +340,12 @@ C_001B59E0* C_001B59E0::func_001B59E0(void) {
     unk4 = 0;
     unk8 = 0;
     return this;
+}
+
+int C_001B5A00::func_001B5A00(S_001B5A00_Stream *stream)
+{
+    stream->func_00168BE0(&D_0028CC30, &D_00275630, (char *)this + 8, 0x103);
+    return 1;
 }
 
 C_001B5D00* C_001B5D00::func_001B5D00(void) {
