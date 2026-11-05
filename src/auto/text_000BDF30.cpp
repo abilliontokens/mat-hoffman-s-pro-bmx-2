@@ -4,6 +4,7 @@
 
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 extern char D_0027DB74[];
+void func_001E891B(void *p);
 
 struct S_000BDF30_Config {
     char pad0[0x324];
