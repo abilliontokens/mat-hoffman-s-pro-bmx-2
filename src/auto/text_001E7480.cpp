@@ -59,6 +59,26 @@ void __fastcall func_001E7E60(int n, int x3, int n2, int y, int z) {
     }
 }
 
+#pragma optimize("t", off)
+void func_001E8390(void *p)
+{
+    int hdr;
+    if (p == 0)
+        return;
+    if (D_002FB364 == 3) {
+        func_001EB390(4);
+        __try {
+            hdr = 0;
+        } __finally {
+            func_001EB302(4);
+        }
+        if (hdr != 0)
+            return;
+    }
+    func_001DF59C(func_001DF5B3(), 0, p);
+}
+#pragma optimize("", on)
+
 void func_001E83DF(void) {
     int func_001EB302(...);
     func_001EB302(4);
