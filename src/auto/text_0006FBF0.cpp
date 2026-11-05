@@ -79,6 +79,17 @@ extern S_00070570_Device *D_002EFDB8;
 extern int D_0028F5DC;
 extern double D_00278C40;
 
+struct S_0006FF80_Stats {
+    char pad0[0xa40]; int fa40; char pad_a44[8]; int fa4c; char pad_a50[4]; int fa54, fa58, fa5c;
+    char pad_a60[0x1058 - 0xa60]; int f1058;
+};
+struct S_0006FF80_Mid { char pad0[0x1a8]; S_0006FF80_Stats *f1a8; };
+struct S_0006FF80_Top { char pad0[0x4e0]; S_0006FF80_Mid *f4e0; };
+struct S_0006FF80_Chk { int func_0005B960(int idx, float v); int func_0005B960(int idx, int v); };
+struct S_0006FF80_Own { char pad0[0x64]; S_0006FF80_Top *f64; S_0006FF80_Chk *f68; };
+struct S_0006FF80_Buf { int a, b, c; short d; char e; };
+struct S_0006FF80_Str { char pad0[0x18]; int f18; char pad1c[4]; int f20; char pad24[0x100]; int f124_; int f128; char pad12c[0x5c]; int f188; char pad18c[0xfc4 - 0x18c]; int f1198_dummy; };
+
 struct C_00070360 {
     char pad0[0x6C];
     int unk6C;
@@ -282,6 +293,58 @@ void C_00070360::func_00070450(void) {
         }
         unkF8->func_001D6600();
     }
+}
+
+int C_00070360::func_00070570(void)
+{
+    int w;
+    S_00070570_Viewport * volatile dev;
+    S_00070570_V4 size;
+    S_00070570_Rect24 vp;
+    S_00070570_Rect24 old;
+
+    if (D_002A8490->f274 >= D_002A8490->f270 - 1) {
+        dev = D_002EFDB8->f4;
+        if (D_002A8490->f270 > 1) {
+            vp = dev->rect;
+            vp.x = 0;
+            vp.y = 0;
+            vp.w = 0x280;
+            vp.h = 0x1c0;
+            dev->func_0012B2B0(&vp, &old);
+        }
+        if (unk104 == 0) {
+            if (unk6C != 0) {
+                if ((int)strlen(unkD0->func_001B17F0()) < 0xf) {
+                    w = unkD0->func_001B1800();
+                    unkD0->func_001B19A0(D_0028F5DC);
+                    unkD0->func_001B15F0();
+                    unkD0->func_001B1810(&size);
+                    unkD4->func_001B1A30((float)w + size.x, size.y, 0.0f);
+                    unkD4->func_001B15F0();
+                    unkE8 = (float)w + size.x - D_00275AEC;
+                    unkD8->func_0005E7C0(unkE8, 182.0f);
+                }
+            }
+            unkD4->func_001B1980();
+            unkD0->func_001B1980();
+            unkD0->func_001B19A0(D_0028F5DC);
+            if (unk110 >= D_00278C40) {
+                unkD0->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
+                unkD4->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
+            }
+        } else {
+            unkD0->func_001B1980();
+            unkD4->func_001B1980();
+        }
+        func_00070450();
+        func_00070360();
+        func_00157960();
+        if (D_002A8490->f270 > 1) {
+            dev->func_0012B2B0(&old, 0);
+        }
+    }
+    return 1;
 }
 
 void C_000707C0::func_000707C0(int a0) {
