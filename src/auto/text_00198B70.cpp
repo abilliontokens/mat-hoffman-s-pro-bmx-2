@@ -3,6 +3,12 @@
 #include <xmmintrin.h>
 
 void func_001E891B(void *ptr);
+void func_0011AC30(float *out, float *in);
+void func_0011ACC0(void *a, void *b, float *m);
+
+struct S_00198B70_MatCopy {
+    void func_000264C0(void *m);
+};
 
 struct S_00198B70_Cam {
     void func_00193500(void);
