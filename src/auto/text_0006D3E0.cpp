@@ -42,6 +42,8 @@ struct C_002A8490 {
     char pad0[0x270];
     int f270;
     int f274;
+    char pad278[0x74];
+    LookupObj_0006DD40 *p2EC;
 };
 extern C_002A8490 *D_002A8490;
 
