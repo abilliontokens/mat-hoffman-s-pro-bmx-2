@@ -80,6 +80,35 @@ struct C_00030500 {
     void *func_00030500(unsigned int flags);
 };
 
+/* BmxCameraController: owned sub-objects released in the destructor */
+extern int D_002768FC;
+struct C_00055910 { void func_00055910(void); };
+struct C_0009F9F0 { void func_0009F9F0(void); };
+struct C_001324B0 { void func_001324B0(void); };
+struct C_00194DB0 { void func_00194DB0(void); };
+struct C_00195130 { void func_00195130(void); };
+struct C_00150350 { void func_00150350(void); };
+struct C_00136300 { void func_00136300(void); };
+struct C_0012B580 { void func_0012B580(void); };
+struct S_000308F0_Holder { int f0; C_00030500 *f4; };
+struct C_000308F0 {
+    void *vtbl;
+    char pad4[0x3C];
+    C_00136300 *f40;
+    C_00136300 *f44;
+    C_00136300 *f48;
+    C_00136300 *f4C;
+    C_00055910 *f50;
+    C_0009F9F0 *f54;
+    C_001324B0 *f58;
+    C_00194DB0 *f5C;
+    C_00195130 *f60;
+    C_00150350 *f64;
+    char pad68[0xC];
+    S_000308F0_Holder *f74;
+    void func_000308F0(void);
+};
+
 
 int S_0002FA80_Entry::func_0002FFD0(const char *subName)
 {
@@ -198,13 +227,13 @@ void *C_00030500::func_00030500(unsigned int flags)
         C_00030500 *p = this + i;
 
         while (--i >= 0) {
-            C_00030500_Destroy *o;
             p--;
-            o = p->f0;
-            if (o) {
-                o->v4(1);
+            if (p->f0) {
+                p->f0->v4(1);
+                p->f0 = 0;
+            } else {
+                p->f0 = 0;
             }
-            p->f0 = 0;
             if (p->f8) {
                 func_001E891B(p->f8);
                 p->f8 = 0;
@@ -215,13 +244,12 @@ void *C_00030500::func_00030500(unsigned int flags)
         }
         return base;
     }
-    {
-        C_00030500_Destroy *o = f0;
-        if (o) {
-            o->v4(1);
-        }
+    if (f0) {
+        f0->v4(1);
+        f0 = 0;
+    } else {
+        f0 = 0;
     }
-    f0 = 0;
     if (f8) {
         func_001E891B(f8);
         f8 = 0;
