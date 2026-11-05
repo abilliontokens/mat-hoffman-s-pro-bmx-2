@@ -161,7 +161,7 @@ __declspec(align(16)) struct S_001BBAE0_Mat {
 S_001BBAE0_Mat func_000263B0(void *a, void *b);
 
 struct C_001BBAE0_2DC {
-    void __stdcall func_00197EA0(S_001BBAE0_Mat *dst);
+    void func_00197EA0(S_001BBAE0_Mat *dst);
 };
 
 struct C_001BBAE0_2E4 {
@@ -208,6 +208,55 @@ struct C_001BBAE0 {
     void func_001BBAE0(int a);
 };
 
+
+void func_001BB4F0(S_1BB4F0_Arg1 *a1, int a2, S_1BB4F0_Arg3 *a3, int idx)
+{
+    S_1BB4F0_List *list;
+    S_1BB4F0_Obj *obj;
+    int found;
+    int i;
+
+    if (idx == 0) {
+        return;
+    }
+    if (D_002A8490->f2E0->f4 == 10) {
+        return;
+    }
+    list = D_002A8490->f2A4->f64->f4E0;
+    found = 0;
+    for (i = 0; i < list->f24; i++) {
+        if (found) {
+            break;
+        }
+        obj = list->f1A8[i];
+        if (obj->f1E0 == a1->f64) {
+            found = 1;
+            idx = i;
+        }
+    }
+    if (!found) {
+        return;
+    }
+    if (a3->fE4 == 2) {
+        if (obj->f680 == 0) {
+            return;
+        }
+    } else if (a3->fE4 == 3) {
+        if (obj->f69C == 0) {
+            return;
+        }
+    } else if (a3->fE4 == 0) {
+        if (obj->f1178 != 0) {
+            return;
+        }
+    }
+    if (a3->fF0[idx] == 0) {
+        a3->fF0[idx] = a2;
+    } else if (a3->fF0[idx] != a2) {
+        a3->f110(a1, a3, a3->f114, 1);
+        a3->fE0 = 1;
+    }
+}
 
 void *C_001BB5F0::func_001BB5F0(unsigned int flags)
 {
