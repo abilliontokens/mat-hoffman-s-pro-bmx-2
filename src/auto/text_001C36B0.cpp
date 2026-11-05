@@ -211,6 +211,24 @@ void DXVertexBufferCache::func_001C3980(void)
     }
 }
 
+void DXIndexBufferCache::func_001C39C0(void)
+{
+    DXIndexBuffer *p = (DXIndexBuffer *)f4;
+    if (p != 0) {
+        p->vtbl = &D_0028E30C;
+        if (p->f14 != 0) {
+            func_00201100(p->f14);
+            p->f14 = 0;
+        }
+        p->vtbl = &D_0028E2E8;
+        p->f8 = 0;
+        p->fC = 0;
+        p->f10 = 0;
+        func_001E891B(p);
+        f4 = 0;
+    }
+}
+
 void BufferManager::func_001C3AF0(void)
 {
     f4 = 0;
