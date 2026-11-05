@@ -252,6 +252,42 @@ undefined4 C_001A4500::func_001A4500(int a1, int *a2, int a3)
   return 1;
 }
 
+void C_001A4A20::func_001A4A20(void)
+{
+    if (f24->f28 != 0) {
+        f24->f28->v14();
+    }
+    if (f24->f2c != 0 && f24->f2c != f24->f28) {
+        f24->f2c->v14();
+    }
+}
+
+C_001A46F0::C_001A46F0()
+{
+    V4_001A46F0 t;
+
+    t.x = -3.402823466e+38f;
+    a.x = t.x;
+    t.y = -3.402823466e+38f;
+    a.y = t.y;
+    t.z = -3.402823466e+38f;
+    a.z = t.z;
+    a.w = t.w;
+    b.x = 0.0f;
+    b.y = 0.0f;
+    b.z = 0.0f;
+    t.w = 1.0f;
+    t.x = 0.0f;
+    t.y = 0.0f;
+    t.z = 0.0f;
+    b.w = t.w;
+    f20 = 0.0f;
+    f24 = 0.0f;
+    f28 = 0.0f;
+    f34 = 0.0f;
+    f38 = 0.0f;
+}
+
 void C_001A4B30::func_001A4B30(void)
 {
   int func_00133D80(...);
