@@ -524433,6 +524433,7 @@
  },
  "names": {
   "func_0015B660": "LinearPositionController::LinearPositionController",
+  "func_0015B7A0": "BezierPositionController::BezierPositionController",
   "func_001DDBC1": "MmFreeContiguousMemory",
   "func_001E2EFE": "XcSHAUpdate",
   "func_001E2F04": "XcSHAInit",

@@ -76,14 +76,13 @@ void C_0015B660::func_0015B680() {
     self->vtbl = &D_00287778;
 }
 
-void C_0015B7A0::func_0015B7A0() {
-    C_0015B7A0 *self = this;
-    self->unk4 = 0;
-    self->unk8 = 1;
-    self->unk10 = 0;
-    self->vtbl = &D_002877C0;
-    self->unkC = 0;
-    self->unk14 = 0;
+BezierPositionController::BezierPositionController() {
+    unk4 = 0;
+    unk8 = 1;
+    unk10 = 0;
+    vtbl = &D_002877C0;
+    unkC = 0;
+    unk14 = 0;
 }
 
 void C_0015BAC0::func_0015BAC0(int a0, u32 *a1, int a2) {
