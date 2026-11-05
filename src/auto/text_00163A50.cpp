@@ -208,6 +208,72 @@ struct C_001643A0 {
 };
 
 
+void *C_00163A50::func_00163DC0(C_00163DC0_Parser *parser, const char *section, const char *prefix)
+{
+    int val;
+    char str[0x40];
+    char path[0x104];
+    char name[0x104];
+    char file[0x104];
+    S_00163DC0_Res *res;
+    S_00163DC0_Res *obj;
+
+    parser->func_00169710(section);
+    parser->func_00168BE0(D_00276980, D_00284A98, name, -1);
+    res = func_00162B20(name, 0);
+    if (res != 0) {
+        return res;
+    }
+    obj = (S_00163DC0_Res *)func_001E8A44(0x44);
+    res = obj != 0 ? obj->func_00162790() : 0;
+    res->f40 = 0;
+    f4 += 0x44;
+    res->f0 = (char *)func_001E8A44(strlen(name) + 1);
+    strcpy(res->f0, name);
+    parser->func_00168BE0(D_002764EC, D_00284A98, file, -1);
+    path[0] = 0;
+    strcat(path, prefix);
+    strcat(path, file);
+    parser->func_00168C20(D_00287DA8, 0, &res->f34);
+    parser->func_00168C20(D_00287DA0, 0, &val);
+    res->f24.b0 = val;
+    parser->func_00168C20(D_002764D8, 0xf, &res->f30);
+    parser->func_00168C20(D_00287D8C, 1, &val);
+    res->f24.b1 = val;
+    parser->func_00168C20(D_00287D78, 1, &val);
+    res->f24.b2 = val;
+    if (parser->func_00168550(D_00287D68, str, -1) && func_001EA426(str, D_00287D5C) != 0) {
+        res->f28 = func_001EA426(str, D_00287D50) == 0;
+    } else {
+        res->f28 = 0;
+    }
+    if (parser->func_00168550(D_00287D40, str, -1)) {
+        if (func_001EA426(str, D_00287D38) == 0) {
+            res->f2C = 0;
+        } else {
+            func_001EA426(str, D_00287D30);
+            res->f2C = 1;
+        }
+    } else {
+        res->f2C = 1;
+    }
+    if (parser->func_00168C50(D_00287D10, 0, &res->f3C) == 0) {
+        float t = (float)res->f34 / res->f30 * D_00278C48;
+        res->f3C = t;
+        if (t > D_002755E8) {
+            res->f3C = 0.5f;
+        }
+    }
+    func_00030F30(path, D_00287D28);
+    if (func_00163780(path, res) == 0) {
+        return 0;
+    }
+    f18 = (void **)func_001E83E8(f18, f0 * 4 + 4);
+    f18[f0] = res;
+    f0++;
+    return f18[f0 - 1];
+}
+
 void func_001640D0(C_1640D0_Obj *a1, C_1640D0_Obj *a2, int axis, S_Vec4_1640D0 *out)
 {
     *out = a2->func_00197F70((float *)out);
