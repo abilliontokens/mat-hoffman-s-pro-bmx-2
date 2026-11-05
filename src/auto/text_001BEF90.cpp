@@ -274,10 +274,6 @@ struct S_Vec4f_001BFD00 {
     }
 };
 
-struct S_Vec4f_001BF980 {
-    float x, y, z, w;
-};
-
 struct S_001BF930_Inner {
     void func_00198E60(void);
     void func_0019ABA0(int a, int b);
