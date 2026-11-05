@@ -432,3 +432,42 @@ void C_000ACC40::func_000ACC40(void)
     }
 }
 
+void C_000ACC70::func_000ACC70(void)
+{
+    void *local = (void *)&D_0027CABC;
+    if (field_3B4 == 0) {
+        C_000ACC70_Dyn *p = (C_000ACC70_Dyn *)func_001E8A44(0x2c);
+        if (p != 0) {
+            p = p->func_001B6E70(1);
+        } else {
+            p = 0;
+        }
+        field_3B4 = p;
+    }
+    if (field_3B4->v27(this, field_28, &local, field_550 + 0x124) != 0) {
+        return;
+    }
+    if (field_3B4->field_24 != 0) {
+        return;
+    }
+    field_3B4->v2();
+    field_3B4 = 0;
+}
+
+void C_000ACCF0::func_000ACCF0(void)
+{
+    if (field_538 == 0) {
+        C_000ACCF0_Obj *p = (C_000ACCF0_Obj *)func_001E8A44(0x2c);
+        if (p != 0) {
+            p->func_00157600(1);
+            p->vtbl = (void *)&D_0027C41C;
+            p->field_24 = 0;
+            p->field_28 = 0;
+        } else {
+            p = 0;
+        }
+        field_538 = p;
+    }
+    field_538->func_000A91C0(field_28);
+}
+
