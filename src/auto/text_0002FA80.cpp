@@ -54,6 +54,11 @@ bool C_000300F0::func_000300F0(undefined4 param_1)
   return iVar1 == 0;
 }
 
+void C_0002FA80::func_000301D0(void)
+{
+    ((C_000B5870 *)entries[cur].f0)->func_000B5870();
+}
+
 undefined4 C_00030A10::func_00030A10(byte param_1)
 {
   int func_000308F0(...);
