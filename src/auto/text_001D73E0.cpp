@@ -13,6 +13,67 @@ struct C_001B2400 {
 
 void func_001E891B(void *p);
 
+extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
+
+extern int D_0028F774;
+extern int D_002F0BB8;
+extern float D_00275460;
+
+void func_001FFB70();
+void __cdecl func_001D7E60(float r, float g, float b, char *out);
+void __stdcall func_001FF960(int kind, char *buf);
+void __stdcall func_001FF9F0(void *p);
+void __stdcall func_001FF4E0(int a, void *b, int c, int d, float e, int f);
+
+struct C_00012140 {
+    void func_00012140(void);
+};
+
+struct C_001C3D90 {
+    void func_001C3D90(void);
+};
+
+struct Vec4_001D7DD0 {
+    f32 x, y, z, w;
+};
+
+struct XboxVideoCard_001D7E30 {
+    void func_001D7E30(void);
+};
+
+struct XboxVideoCard_001D7D50 {
+    void *vtbl;
+    char pad4[0x68];
+    int f6C;
+    char pad70[0x5B4 - 0x70];
+    int a5B4[0x40];
+    int f6B4;
+    int f6B8;
+    int f6BC;
+    int f6C0;
+    int f6C4;
+    int f6C8;
+    int f6CC;
+    int f6D0;
+    int a6D4[0xC0];
+    u8 f9D4;
+    char pad9D5[3];
+    int f9D8;
+    XboxVideoCard_001D7D50 *func_001D7D50(void);
+};
+
+struct LightBufs_001D7FB0 {
+    char a[0x100];
+    char b[0x100];
+    char c[0x100];
+};
+
+struct XboxVideoCard_001D7FB0 {
+    char pad0[0x6D4];
+    int f6D4;
+    int func_001D7FB0(float x, float y, float z, int w);
+};
+
 int __stdcall func_001D6CB0(int id);
 void __stdcall func_001FCEA0(void *map, int index, void *out, int a, int b);
 unsigned __stdcall func_001FCFE0(void *map);
