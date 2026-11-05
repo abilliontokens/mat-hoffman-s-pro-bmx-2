@@ -383,6 +383,28 @@ struct FlatElemList_001CF2A0 : SoundElemList_001CF2A0 {
     }
 };
 
+struct PodElemList_001CF2A0 : SoundElemList_001CF2A0 {
+    unsigned char flags;
+    char pad[3];
+
+    void reset()
+    {
+        items = 0;
+        count = 0;
+        growBy = 0;
+        capacity = 0;
+        flags &= 0xfe;
+    }
+
+    void init(int n)
+    {
+        items = (SoundElem_001CF2A0 **)func_001E8A44(n * 4);
+        growBy = 0x10;
+        capacity = n;
+        flags |= 1;
+    }
+};
+
 struct XboxSoundGroup {
     void *vtbl;
     char pad4[0x2c];
