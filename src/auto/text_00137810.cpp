@@ -107,6 +107,56 @@ DrawableCube *DrawableCube::func_00138330(int a)
     return this;
 }
 
+void DrawableCube::func_00138390(void)
+{
+    int i;
+    C_0014A540 *p0;
+    C_00012140 *p1;
+    C_00193500 *p2;
+    DrawableCubeVirt *v;
+
+    vtbl = (void *)&D_00284924;
+    p0 = f7d0;
+    if (p0) {
+        p0->func_0014A540();
+        func_001E891B(p0);
+    }
+    p1 = f7d4;
+    if (p1) {
+        p1->func_00012140();
+        func_001E891B(p1);
+    }
+    if (f7d8) {
+        func_00201100(f7d8);
+    }
+    if (D_002BDE9C) {
+        func_001E8390(D_002BDE9C);
+    }
+    v = f7c0;
+    D_002BDE9C = 0;
+    D_002BDEA0 = 0;
+    if (v) {
+        v->v2();
+    }
+    for (i = 0; i < f7c8; i++) {
+        if (f2c[i]) {
+            f2c[i]->v2();
+        }
+    }
+    p2 = f7c4;
+    if (p2) {
+        p2->func_00193500();
+        func_001E891B(p2);
+    }
+    if (f2c) {
+        func_001E891B(f2c);
+    }
+    if (f3c) {
+        func_001E891B(f3c);
+    }
+    func_00157660();
+}
+
 undefined4 C_00138790::func_00138790(byte param_1)
 {
   int func_00138390(...);
