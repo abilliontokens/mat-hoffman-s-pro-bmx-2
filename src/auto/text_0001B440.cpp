@@ -333,6 +333,17 @@ void C_0001C1E0::func_0001C1E0(int idx, int b, int c, int d)
     }
 }
 
+void C_0001C1E0::func_0001C240(void)
+{
+    int i;
+
+    if (f2c != 0) {
+        for (i = 0; i < f2c->f24; i++) {
+            func_0001C1E0(i, 0, 1, 1);
+        }
+    }
+}
+
 undefined4 C_0001C280::func_0001C280(int param_1)
 {
   int in_ECX = (int)this;
