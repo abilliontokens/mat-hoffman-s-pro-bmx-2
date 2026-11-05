@@ -29,8 +29,7 @@ struct V4_0011EE50 {
 
 static float fabs_0011EE50(float x)
 {
-    volatile int tmp;
-    tmp = *(int *)&x & 0x7fffffff;
+    int tmp = *(int *)&x & 0x7fffffff;
     return *(float *)&tmp;
 }
 
@@ -65,7 +64,10 @@ void func_0011F400(int a0, int a1, int a2, int a3, int a4, int a5)
     float x = *(float *)&a1;
     float y = *(float *)&a2;
     float z = *(float *)&a3;
-    float r = func_0001E960(z * z + y * y + x * x);
+    float xx = x * x;
+    float yy = y * y;
+    float zz = z * z;
+    float r = func_0001E960(xx + yy + zz);
 
     func_0011F010(a0, x * r, y * r, z * r, a5, a4);
 }
@@ -103,8 +105,8 @@ void func_0011F540(S_0011F4B0_V4 *out, S_0011F4B0_V4 pos, float *m)
 
 void func_0011F5A0(void *m, int a, int b, int c, int d, int e)
 {
+    volatile int saved[3];
     __declspec(align(16)) float tmp[16];
-    int saved[3];
     int *mi = (int *)m;
 
     saved[0] = mi[3];
