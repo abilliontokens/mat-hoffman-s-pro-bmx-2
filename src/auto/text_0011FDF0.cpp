@@ -14,6 +14,9 @@ void func_0011F540(S_0011F4B0_V4 *out, S_0011F4B0_V4 pos, float *m);
 void func_0011F0E0(void *a, void *b, void *c, void *indices, void **data);
 int func_0011FF30(S_0011F4B0_V4 *p, void *tri);
 float func_0011FDF0(void *p, void *a, void *b);
+struct S_001206E0_Tri { int pad0[2]; float t; short x, y, z; };
+struct S_001206E0_Hit { int max; int count; float t; };
+extern S_001206E0_Hit *D_002B92EC;
 
 
 float func_0011FDF0(float *p, float *a, float *b)
