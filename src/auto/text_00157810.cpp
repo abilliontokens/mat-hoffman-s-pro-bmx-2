@@ -83,6 +83,8 @@ struct C_00157810 {
     int func_00157B90(int a, int b);
     int func_00157BF0(int a, int b);
     int func_00157C50(int a, int b, int c, int d, int e);
+    void func_00157D40(void *file, int a, int b);
+    void func_00158270(char *name, int a, int b);
 };
 
 /* node with a parent link (f8) and a child link (fC), unlinked by func_00157CB0 */
@@ -156,7 +158,7 @@ struct C_00157CF0 {
     int func_0001E010(void);
 };
 
-int C_00157810::func_00157810(void)
+int S_00157810_Child::func_00157810(void)
 {
     S_00157810_Child *p;
     S_00157810_Child *c;
@@ -171,10 +173,10 @@ int C_00157810::func_00157810(void)
     if (fC != 0) {
         fC->f8 = f8;
     }
-    if (f14 != 0 && f14->f10 == (S_00157810_Child *)this) {
+    if (f14 != 0 && f14->f10 == this) {
         f14->f10 = fC;
     }
-    p = (S_00157810_Child *)this;
+    p = this;
     while (p->f14 != 0) {
         p = p->f14;
     }
