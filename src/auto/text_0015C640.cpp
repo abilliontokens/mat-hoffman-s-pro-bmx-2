@@ -289,6 +289,23 @@ void C_0015CD70::func_0015CD70(S_0015CD70_Vec4 *p)
     f24 = *p;
 }
 
+unsigned int C_0015CF60::func_0015CF60(void)
+{
+    int a, b, c, d;
+    if (f28 == 4) {
+        a = (int)f50;
+        b = (int)f5c;
+        c = (int)f54;
+        d = (int)f58;
+    } else {
+        a = (int)f30;
+        b = (int)f3c;
+        c = (int)f34;
+        d = (int)f38;
+    }
+    return ((((a & 0xff) | (b << 8)) << 8 | (c & 0xff)) << 8) | (d & 0xff);
+}
+
 void C_0015CFE0::func_0015CFE0(undefined4 param_1)
 {
   int __stdcall func_001577A0(int, int);
@@ -299,6 +316,18 @@ void C_0015CFE0::func_0015CFE0(undefined4 param_1)
     func_001577A0((int)(param_1), (int)(0));
   }
   return;
+}
+
+void C_0015CF60::func_0015D000(int a0, int a1, int a2)
+{
+    if (fcc == 0) {
+        fcc = (S_0015CF60_Cell *)func_001E8A44(0x14);
+    }
+    fcc->f0 = a0;
+    fcc->f8 = a1;
+    fcc->f10 = a2;
+    fcc->fc = 0;
+    fcc->f4 = func_0015CF60();
 }
 
 void C_0015D070::func_0015D070(float a0, float a1)
