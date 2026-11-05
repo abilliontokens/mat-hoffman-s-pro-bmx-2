@@ -37,6 +37,12 @@ struct C_0015E0F0 {
 };
 
 
+void C_0015DA60::func_0015DA60(int a, int b, int c)
+{
+    unk6C[a]->func_00192A50(unk6C[b], c);
+    unk6C[b]->func_00192A50(unk6C[a], c);
+}
+
 int C_0015E0F0::func_0015E0F0(int param_1)
 {
   int in_ECX = (int)this;
