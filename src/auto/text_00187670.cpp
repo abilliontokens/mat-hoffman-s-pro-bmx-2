@@ -216,7 +216,26 @@ struct C_00188250 {
     V4_00188250 f270;
     void func_00187F60(void);
     C_00188250 *func_00188250(void);
+    int func_00188300(struct S_00188300_Stream *stream);
 };
+
+struct S_00188300_Stream {
+    int func_00168BE0(void *key, void *def, char *dst, int size);
+    void func_00168C50(void *key, int def, void *dst);
+    void func_00168CB0(void *key, void *def, void *dst);
+};
+extern int D_002764F0;
+extern int D_00283B20;
+extern int D_00289F40;
+extern int D_00289F3C;
+extern int D_00283700;
+extern int D_00289F30;
+extern int D_00289F28;
+extern int D_00289F18;
+extern int D_0028366C;
+extern int D_00289F04;
+extern int D_00289EF0;
+extern int D_00289EE0;
 
 
 /* config record reader (func_00168BE0 reads a string, func_00168C20 an int, func_00168CB0 a vec4) */
