@@ -293,9 +293,13 @@ struct S_001BC310_Ctx {
     S_001BC310_View *f64;
 };
 
+struct M44_001BC310 {
+    float m[16];
+};
+
 struct S_001BC310_Xf {
     char pad0[0xb0];
-    float m[12];
+    M44_001BC310 mat;
 };
 
 struct S_001BC310_Node {
