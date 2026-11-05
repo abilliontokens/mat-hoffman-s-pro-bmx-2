@@ -6,7 +6,7 @@ struct C_00142BF0 {
 };
 
 struct C_00142C70 {
-    undefined4 func_00142C70(void);
+    __declspec(noinline) undefined4 func_00142C70(void);
 };
 
 struct C_00142CF0 {
