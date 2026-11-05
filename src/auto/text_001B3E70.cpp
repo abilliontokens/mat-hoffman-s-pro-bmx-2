@@ -3,6 +3,53 @@
 
 extern int D_002AA8E0;
 extern int D_002AA8C0;
+extern int D_0028CA64;
+extern int D_0028CA7C;
+extern int D_002764F0;
+extern char D_00275680[];
+extern char D_0027CED8[];
+extern char D_0028CA68[];
+
+extern "C" int strlen(const char *s);
+char *func_001E8920(char *dst, const char *src, int n);
+char *func_001E9260(char *str, int ch);
+char *func_001EA3D0(const char *str, const char *ctrl);
+
+struct S_001B4B80_Stream {
+    int func_00168C20(const char *name, int a, int *p);
+};
+
+struct C_001B4A70 {
+    char *f0;
+    char *f4;
+    char *func_001B4A70(char *delims);
+};
+
+/* DynamicModelTempData */
+struct C_001B4AF0 {
+    void *vtbl;
+    char f4[0x104];
+    int f108;
+    int f10C;
+    int f110;
+    int func_001B4B80(S_001B4B80_Stream *stream);
+    C_001B4AF0 *func_001B4AF0(void);
+};
+
+/* ProceduralTempData */
+struct C_001B4BE0 {
+    void *vtbl;
+    char pad4[0x110];
+    char f114[0x104];
+    int f218;
+    int f21C;
+    int f220;
+    int f224;
+    int f228;
+    int f22C;
+    int f230;
+    C_001B4BE0 *func_001B4BE0(void);
+};
 
 /* vtable of the object at TireTrack+0x24 (28..31 are the slots used here) */
 struct S_TireTrackSurf {
@@ -120,17 +167,16 @@ void TireTrack::func_001B4A20()
     ((C_00157960 *)this)->func_00157960();
 }
 
-void C_001B4A40::func_001B4A40(const char *str)
+C_001B4A40Ret *C_001B4A40Ret::func_001B4A40(const char *str)
 {
-    const char *p;
-    const char *first;
+    const char *p = str;
+    const char *first = p + 1;
     char c;
-    p = str;
-    first = p + 1;
     do {
         c = *p++;
     } while (c != 0);
     f4 = (p - first) ? str : 0;
+    return this;
 }
 
 void C_001B4B70::func_001B4B70(void) {
