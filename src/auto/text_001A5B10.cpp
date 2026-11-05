@@ -2,6 +2,13 @@
 #include "common.h"
 
 extern int D_0028BA74;
+extern int D_0028BB74;
+struct LoadMemoryCard {
+    void *vtbl; char pad4[0x20];
+    int f24; int f28; int f2c; int f30; int f34; int f38; int f3c; int f40; int f44; int f48; int f4c; int f50; int f54; int f58; int f5c; int f60; int f64; int f68; int f6c; int f70; int f74; int f78; int f7c; int f80; int f84; int f88; int f8c; int f90; int f94; int f98;
+    void func_00157600(void *);
+    LoadMemoryCard *func_001A61C0(void *);
+};
 extern int D_0028BA50;
 extern int D_00275630;
 
