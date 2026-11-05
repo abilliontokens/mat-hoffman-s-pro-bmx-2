@@ -84,10 +84,11 @@ struct V4_00104A00 {
     float w;
 };
 
-static float fabs2_00104A00(float x, volatile int *tmp)
+static float fabs2_00104A00(volatile float x)
 {
-    *tmp = *(int *)&x & 0x7fffffff;
-    return *(float *)tmp;
+    volatile int tmp;
+    tmp = *(volatile int *)&x & 0x7fffffff;
+    return *(volatile float *)&tmp;
 }
 
 static float fabs_00104A00(float x)
