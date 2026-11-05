@@ -38,6 +38,22 @@ struct S_00024140_Link {
     int f24;
     int f28;
     int f2C;
+    S_00024140_Link *Init(C_00023C30 *a, C_00143580 *b, int c)
+    {
+        f0 = a;
+        fC = 0;
+        f10 = 0;
+        f14 = 0;
+        f18 = 0;
+        f1C = 0;
+        f20 = 0;
+        f24 = 0;
+        f28 = 0;
+        f2C = 0;
+        f4 = b;
+        f8 = c;
+        return this;
+    }
 };
 
 struct AmbientDebris {
@@ -52,6 +68,40 @@ struct AmbientDebris {
 };
 
 extern C_000229C0 *D_002B7E18;
+
+AmbientDebris *AmbientDebris::func_00024140(int a, int b)
+{
+    void *m;
+    S_00024140_Link *link;
+
+    ((C_00157600 *)this)->func_00157600(1);
+    vtbl = &D_00276294;
+    m = func_001E8A44(0x1e0);
+    f2c = m ? ((C_00143580 *)m)->func_00143580(1) : 0;
+    m = func_001E8A44(0x54);
+    f30 = m ? ((C_00023C30 *)m)->func_00023C30(a, b, (int)f2c, *D_002B7E18->f70) : 0;
+    link = (S_00024140_Link *)func_001E8A44(0x30);
+    if (link != 0) {
+        link->f0 = f30;
+        link->fC = 0;
+        link->f10 = 0;
+        link->f14 = 0;
+        link->f18 = 0;
+        link->f1C = 0;
+        link->f20 = 0;
+        link->f24 = 0;
+        link->f28 = 0;
+        link->f2C = 0;
+        link->f4 = f2c;
+        link->f8 = *D_002B7E18->f70;
+    } else {
+        link = 0;
+    }
+    f24 = 0;
+    f28 = 0;
+    f34 = link;
+    return this;
+}
 
 void func_00024360(int a0) {
     D_002B7E18->func_000229C0(a0);
