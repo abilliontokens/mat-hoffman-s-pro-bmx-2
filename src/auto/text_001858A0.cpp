@@ -63,7 +63,6 @@ struct C_00185970 {
     int func_00185970(S_Stream *stream, int n);
 };
 
-#define load func_00185A40
 /* element called through its vtable slot 0 */
 struct S_ZoneInfoItem {
     u32 f4;
