@@ -66,6 +66,19 @@ struct Vec4_0002AF90 {
     {
         *this = Sub(o).Mul(t).Add(o);
     }
+    __forceinline Vec4_0002AF90 Mul(void) const
+    {
+        Vec4_0002AF90 r;
+        r.x = D_002A1178 * x;
+        r.y = y * D_002A1178;
+        r.z = z * D_002A1178;
+        r.w = 1.0f;
+        return r;
+    }
+    __forceinline void Lerp(const Vec4_0002AF90 *o)
+    {
+        *this = Sub(o).Mul().Add(o);
+    }
 };
 
 struct S_0002AF90_Node {
