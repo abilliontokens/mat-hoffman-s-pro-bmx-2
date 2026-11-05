@@ -196,11 +196,14 @@ int XboxVideoCard::func_001D8A10(int a1, int a2, int a3, int a4, int a5, int a6,
 {
     if (D_002F0BB8 == 0)
         return 0;
-    if (a3 == 0x10) {
+    switch (a3) {
+    case 0x10:
         this->f14C = 5;
-    } else if (a3 == 0x20) {
+        break;
+    case 0x20:
         this->f14C = 6;
-    } else {
+        break;
+    default:
         return 0;
     }
     if (a4 == 0)
@@ -217,9 +220,9 @@ int XboxVideoCard::func_001D8A10(int a1, int a2, int a3, int a4, int a5, int a6,
 void XboxVideoCard::func_001D8AA0(void *param_1)
 {
     S_001D8AA0_Local local;
-    if (this->func_001D8140(&local, param_1, this->f44) != 0) {
-        this->func_001D8970(local.fC, local.f10, 0);
-    }
+    if (this->func_001D8140(&local, param_1, this->f44) == 0)
+        return;
+    this->func_001D8970(local.fC, local.f10, 0);
 }
 
 void C_001D8AE0::func_001D8AE0(int p1, int p2, int p3, int p4, int p5)
