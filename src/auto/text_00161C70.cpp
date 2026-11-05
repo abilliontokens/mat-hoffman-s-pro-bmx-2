@@ -202,10 +202,6 @@ void func_001622C0(float *m, void *arg)
     m[15] = 1.0f;
 }
 
-struct S_Matrix44 {
-    float m[16];
-};
-
 /* The part of the projection matrix that doesn't depend on the far plane. */
 static __forceinline void setprojcommon(float *m, float a2, float a3, float a4, float a5, float a6)
 {
