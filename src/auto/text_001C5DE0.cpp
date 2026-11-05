@@ -133,6 +133,7 @@ struct V4_001C6B30 {
 
 struct C_001C6B30_Node {
     void func_001996A0(Vec4 v, int a);
+    void func_001996A0(int a, Vec4 v);
     void func_001994C0(int a, Vec4 *p, Vec4 *q);
     void func_00199A70(int a, Vec4 *out);
     void func_00199110(int a, Vec4 *p, Vec4 *q, int b, int c, int d);
@@ -353,6 +354,87 @@ int C_001C6820::func_001C6820(f32 param_1)
         } while (i < count);
     }
     return result;
+}
+
+void C_001C6870::func_001C6870(C_001C6870_Obj *obj)
+{
+    float lo0;
+    float lo1;
+    float total = obj->f40->f38 * 59.9999962f;
+    int cap = 0;
+    int prevState;
+    float t;
+    int i;
+    Vec4 p;
+
+    f3C->f4->func_001996A0(D_002AB798, 0);
+    f3C->func_001646B0();
+    f3C->func_00164820(obj->f40);
+    p.z = 0;
+    p.y = 0;
+    p.x = 0;
+    p.w = 1.0f;
+    f40->func_00199A70(0, &p);
+    f44->func_00199A70(0, &p);
+    fB4 = p.y;
+    lo0 = 100.0f;
+    lo1 = 100.0f;
+    prevState = 0;
+    f3C->func_001670C0(0.0f, 0, 0);
+    i = 0;
+    if (D_00275544 < total) {
+        do {
+            f40->func_00199A70(0, &p);
+            if (p.y < lo0) {
+                lo0 = p.y;
+            }
+            f44->func_00199A70(0, &p);
+            if (p.y < lo1) {
+                lo1 = p.y;
+            }
+            f3C->func_001670C0(0.016666668f, 0, 0);
+            i++;
+        } while ((float)i < total);
+    }
+    lo0 += 0.100000001f;
+    float th1 = lo1 + 0.100000001f;
+    f3C->func_001646B0();
+    f3C->func_00164820(obj->f40);
+    f3C->func_001670C0(0.0f, 0, 0);
+    i = 0;
+    if (D_00275544 < total) {
+        t = 0;
+        do {
+            int b0 = 0;
+            int b1 = 0;
+            int state;
+            f40->func_00199A70(0, &p);
+            if (p.y < lo0) {
+                b0 = 1;
+            }
+            f44->func_00199A70(0, &p);
+            if (p.y < th1) {
+                b1 = 1;
+            }
+            state = b0 ? (b1 ? 3 : 1) : (b1 ? 2 : 0);
+            if (state != prevState || i == 0) {
+                if (cap < obj->f50 + 1) {
+                    cap += 10;
+                    obj->f4c = (C_001C6870_Item *)func_001E83E8(obj->f4c, cap * 8);
+                }
+                obj->f4c[obj->f50].state = state;
+                obj->f4c[obj->f50].time = t * 0.016666668f;
+                obj->f50++;
+            }
+            prevState = state;
+            f3C->func_001670C0(0.016666668f, 0, 0);
+            i++;
+            t = (float)i;
+        } while (t < total);
+    }
+    if (cap != obj->f50) {
+        obj->f4c = (C_001C6870_Item *)func_001E83E8(obj->f4c, obj->f50 * 8);
+    }
 }
 
 void C_001C6B30::func_001C6B30(V4_001C6B30 target, float maxAngle)
