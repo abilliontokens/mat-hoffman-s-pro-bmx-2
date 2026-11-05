@@ -133,9 +133,9 @@ int C_0017BDE0::func_0017BFB0(void) {
 
 void C_0017C300::func_0017C300(void) {
     D_002EFD80 = this;
-    flags98 &= ~1;
     unk880 = 0;
     unk884 = -1;
+    flags98 &= ~1;
     unk888 = 0;
     unk88C = 0;
     unk890 = 0;
