@@ -433,6 +433,70 @@ C_0013F7B0 *func_0013F7B0(void)
   return 0;
 }
 
+DXVSStreams *C_0013F7D0::func_0013F7D0(int key)
+{
+    void *m = func_001E8A44(0x14);
+    DXVSStreams *s = m ? ((DXVSStreams *)m)->func_00144640() : 0;
+    int *q;
+    int i;
+
+    s->v1(key, D_002AA46C);
+    S_0013F7D0_Stream *st = new S_0013F7D0_Stream;
+    s->f10 = st;
+    s->fC |= 1;
+    f21E4 = func_001FF3C0(0x48);
+    q = func_001FF410(f21E4, 0x10);
+    *q++ = 0;
+    *q++ = 0x3f800000;
+    *q++ = 0;
+    *q++ = 0x3f800000;
+    *q++ = 0x3f800000;
+    *q++ = 0x3f800000;
+    *q++ = 0x3f800000;
+    *q++ = 0x3f800000;
+    *q++ = 0x3f800000;
+    *q++ = 0;
+    *q++ = 0x3f800000;
+    *q++ = 0;
+    *q++ = 0;
+    *q++ = 0x3f800000;
+    *q++ = 0;
+    *q++ = 0;
+    *q++ = 0x3f800000;
+    *q++ = 0;
+    f21E8 = func_001FF3C0(0x48);
+    q = func_001FF410(f21E8, 0x10);
+    *q++ = 0;
+    *q++ = 0;
+    *q++ = 0;
+    *q++ = 0;
+    *q++ = 0;
+    *q++ = 0;
+    *q++ = 0;
+    *q++ = 0x3f800000;
+    *q++ = 0;
+    *q++ = 0;
+    *q++ = 0x3f800000;
+    *q++ = 0;
+    *q++ = 0x3f800000;
+    *q++ = 0x3f800000;
+    *q++ = 0x3f800000;
+    *q++ = 0x3f800000;
+    *q++ = 0;
+    *q++ = 0x3f800000;
+    for (i = 0; i < 3; i++) {
+        f21EC[i] = func_001FF3C0(0x18);
+    }
+    f21F8 = 0;
+    f21FC = 0;
+    f21FE = 1;
+    f2200 = 2;
+    f2202 = 3;
+    f2204 = 4;
+    f2206 = 5;
+    return s;
+}
+
 void *C_0013FA10::func_0013FA10(int a0)
 {
   int __stdcall func_0015B1A0(int);
