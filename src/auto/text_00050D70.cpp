@@ -164,7 +164,7 @@ struct C_00051CB0 {
 };
 
 struct RT_Vec { int a, b, c, d; };
-struct RT_Tex { RT_Tex *func_0013E4F0(int f); void func_0012B410(int a, int b, int c); void func_0012A770(int a, int b); virtual void v0(); virtual void v1(); virtual void rel(); virtual void v3(); virtual void v4(); char pad[0x164]; int f170; char pad174[0xc]; int f180; };
+struct RT_Tex { RT_Tex *func_0013E4F0(int f); void func_0012B410(int a, int b, int c); void func_0012A770(int a, int b); virtual void v0(); virtual void v1(); virtual void rel(); virtual void v3(); virtual void v4(); char pad[0x16c]; int f170; char pad174[0xc]; int f180; };
 struct RT_Spr { RT_Spr *func_0002EF20(int f); void func_000306F0(RT_Tex *t, int a, int b, RT_Vec v, char *c, int d); void func_0002EF70(int a, int b); void func_00030240(int a, int b, int *c, int *d, int e); char pad[0x70]; int f74; virtual void v0(); virtual void v1(); virtual void rel(); virtual void v3(); virtual void v4(); };
 extern "C" void *__cdecl func_001E8A44(unsigned int n);
 struct RT_Root { char pad0[0x124]; int f124; char pad128[0x108]; unsigned char f230; char pad231[0x87]; char f2B8; char pad2B9[0x27]; S_00051BB0_Sub *f2E0; };
