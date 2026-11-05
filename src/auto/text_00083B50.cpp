@@ -22,6 +22,53 @@ struct C_00157600 {
     void func_00157600(int a0);
 };
 
+struct C_000831E0 {
+    void func_000831E0(void);
+};
+
+struct C_001B1980 {
+    void func_001B1980(void);
+};
+
+struct C_000843E0 {
+    char pad0[0x4C];
+    int f4C;
+    int f50;
+    char pad54[0xC8];
+    float f11C;
+    char pad120[8];
+    int f128;
+    int f12C;
+    char pad130[4];
+    int f134;
+    char pad138[4];
+    int f13C;
+    char pad140[0x18];
+    int f158;
+    char pad15C[0x4B4];
+    int f610;
+    char pad614[0x1F4];
+    int f808;
+    int f80C;
+    int f810;
+    int f814;
+    char pad818[0x410];
+    int fC28;
+    char padC2C[0xDC];
+    C_001B1980 *pD08;
+    C_001B1980 *pD0C;
+    char padD10[0x14];
+    int fD24;
+    char padD28[4];
+    int fD2C;
+    int fD30;
+    char padD34[0x60];
+    int fD94;
+    char padD98[8];
+    int fDA0;
+    void func_000843E0(int a);
+};
+
 struct C_00157660 {
     void func_00157660(void);
 };
