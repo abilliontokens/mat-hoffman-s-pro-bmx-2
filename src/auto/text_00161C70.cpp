@@ -48,7 +48,6 @@ struct C_00161F80 {
 extern float D_00287B80;
 extern float D_002755E8;
 float func_0014F590(float x);
-void func_00162530(float *m, float a2, float a3, float a4, float a5, int a6);
 
 struct C_001625A0 {
     void *vtbl;
