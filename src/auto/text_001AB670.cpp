@@ -1,6 +1,20 @@
 /* 14 functions from 0x001AB670 to 0x001AC440, found by Ghidra. */
 #include "common.h"
 #include <stdarg.h>
+#include <xmmintrin.h>
+struct V4_001AB670 { float x, y, z, w; };
+struct Body_001AB670 {
+    char pad_00[0x130];
+    float vel[3];
+    char pad_13C[0x238 - 0x13C];
+    float n[3];
+    void func_00030B20(V4_001AB670 v);
+};
+struct C_001AB670 {
+    char pad_00[0x24];
+    Body_001AB670 *field_24;
+    void func_001AB670(float *v, int a, int b);
+};
 extern int D_0028BFC4;
 extern int D_0028C03C;
 extern int D_0028C0BC;
