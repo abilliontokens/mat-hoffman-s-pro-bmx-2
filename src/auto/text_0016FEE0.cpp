@@ -2,7 +2,7 @@
 #include "common.h"
 #include <xmmintrin.h>
 extern int D_002A8A80, D_002A8A84, D_002A8A88, D_002A8A8C;
-struct S_00170B60_Mat { int m[16]; };
+__declspec(align(16)) struct S_00170B60_Mat { int m[16]; };
 struct C_000264C0 { void func_000264C0(void *src); };
 struct C_00170B60 { void func_00170B60(); };
 struct V_00170B60 { int m[4]; __forceinline void reset() { m[0]=D_002A8A80; m[1]=D_002A8A84; m[2]=D_002A8A88; m[3]=D_002A8A8C; } };
