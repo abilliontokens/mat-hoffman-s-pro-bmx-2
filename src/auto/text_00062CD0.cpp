@@ -50,6 +50,7 @@ struct C_000634D0 {
 extern C_Root_62 *D_002A8490;
 extern char D_00275630[];
 extern char D_002787F0[];
+extern char D_002E2E2E[];
 char *func_001E8920(char *dst, const char *src, int n);
 char *func_001E8AF0(const char *s, const char *pat);
 extern int D_00277038;
