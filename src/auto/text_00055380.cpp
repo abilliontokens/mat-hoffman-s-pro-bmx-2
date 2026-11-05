@@ -230,6 +230,7 @@ struct C_00055380 {
     u32 unk20C, unk210, unk214, unk218, unk21C;
     void func_0012B510(void);
     C_00055380 *func_00055380(void);
+ int func_00055A10(S_00056100_Quat,S_00056100_Quat,S_00056100_Quat,S_00056100_Quat,float);
 };
 
 void C_000559E0_unused();
