@@ -101,6 +101,16 @@ struct C_000F2780 {
 };
 
 
+void *C_000F2720::func_000F2720(int flags) {
+    void func_001E891B(void *);
+    unk0 = (int)&D_0027DF54;
+    func_001BE3F0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 undefined4 *C_000F2750::func_000F2750(byte param_1)
 {
   int func_001BE3F0(...);
