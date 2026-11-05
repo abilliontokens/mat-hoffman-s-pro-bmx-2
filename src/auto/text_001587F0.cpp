@@ -108,6 +108,35 @@ struct C_00159560 {
     C_00159560 *func_00159560(int param_1);
 };
 
+void C_00158A60::func_00158A60(int a) {
+    S_P *p = (S_P *)func_001E8A44(0x218);
+    unk24 = p ? p->func_0016CE80(1) : 0;
+    unk24->func_0016CF10(a, &D_0028745C, 0, 0);
+    unk24->v31();
+    func_001577A0(unk24, -1);
+    for (int i = 0; i < 2; i++) {
+        p = (S_P *)func_001E8A44(0x218);
+        unk28[i] = p ? p->func_0016CE80(1) : 0;
+        unk28[i]->func_0016CF10(a, &D_00287448, 0, 0);
+        unk28[i]->v31();
+        func_001577A0(unk28[i], -1);
+    }
+    p = (S_P *)func_001E8A44(0x218);
+    unk34 = p ? p->func_0016CE80(1) : 0;
+    unk34->func_0016CF10(a, &D_00287438, 0, 0);
+    unk34->v31();
+    func_001577A0(unk34, -1);
+    S_Q *q = (S_Q *)func_001E8A44(0x230);
+    unk38 = q ? q->func_0016D620(1) : 0;
+    unk38->func_0016D6A0(a, &D_00287424, 0, 0);
+    unk38->v31();
+    func_001577A0(unk38, -1);
+    p = (S_P *)func_001E8A44(0x218);
+    unk30 = p ? p->func_0016CE80(1) : 0;
+    unk30->func_0016CF10(a, &D_0027592C, 0, 0);
+    func_001577A0(unk30, 2);
+}
+
 void *C_00158BE0::func_00158BE0(int flags) {
     extern int D_002873B4;
     int func_00157660(...);
