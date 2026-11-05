@@ -30,7 +30,7 @@ struct C_001AFEC0 {
     V_001AFEC0 *unk1C;
     V_001AFEC0 *unk20;
     int unk24;
-    void UpdateItems() {
+    __forceinline void UpdateItems() {
         int i;
         for (i = 0; i < 4; i++) {
             if (items[i]) {
