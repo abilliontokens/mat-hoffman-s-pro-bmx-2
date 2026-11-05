@@ -306,6 +306,27 @@ void BmxVehicle_10DA70::func_0010DCB0() {
     }
 }
 
+void C_0010DD90::func_0010DD90(float a, int b, int c, int d, int e, int f)
+{
+ if(f2010 || !fA38) return;
+ int index=fA2C*4+0x170;
+ int type = -1;
+ if(!(*(C_0010E810Slot **)((char *)D_002A8490->f2A4+index))) return;
+ if(c) {
+  if(fA64->f0 > 0) type = fA64->func_00109580(fA64->f0-1);
+  f1210=f;
+  if(f) f120C=1;
+  if(type==11) {
+   (*(C_0010E810Slot **)((char *)D_002A8490->f2A4+index))->func_00083710(c,f);
+   D_002A8490->f2A4->f170[fA2C]->func_000836C0(a,b);
+   fA64->func_001094F0(d,e);
+  } else {
+   (*(C_0010E810Slot **)((char *)D_002A8490->f2A4+index))->func_0008FB80(c,(int)a,b,f1068,f);
+   fA64->func_00109520(d,e);
+  }
+ } else (*(C_0010E810Slot **)((char *)D_002A8490->f2A4+index))->func_000836A0(a);
+}
+
 void C_0010E260::func_0010E260(void)
 {
   int in_ECX = (int)this;
