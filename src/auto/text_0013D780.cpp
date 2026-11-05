@@ -84,6 +84,8 @@ struct DXCamera {
     int func_0012B470(void);
     void func_0013E580(void);
     int func_0013E610(void);
+    void func_0012B1D0(int *rect);
+    void func_0012B190(int x, int y, int w, int h);
 };
 
 struct C_001D5600 {
