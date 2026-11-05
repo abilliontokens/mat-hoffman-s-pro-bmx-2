@@ -40,6 +40,17 @@ void AIPedFleeState::func_00014EA0()
     }
 }
 
+void AIPedCurseState::func_00015170()
+{
+    *(int *)(*(char **)((char *)owner + 0x3c) + 0x10) = 1;
+    owner->func_001C6DA0(*(int *)((char *)owner + 0x420), 1);
+    if (*(int *)(*(char **)((char *)D_002A8490 + 0x2a4) + 0x1c8) == 0 && *(char *)((char *)owner + 0x3e1) == 0) {
+        if (func_00011260(0, 100) > 0x32) {
+            D_002AF44C->func_00013F50(owner, *(unsigned char *)((char *)owner + 0x3e2), (char *)owner + 0x3e4, *(int *)((char *)owner + 0x3cc));
+        }
+    }
+}
+
 void *AIPedestrian::func_00015960(unsigned int flags)
 {
     func_00014020();
