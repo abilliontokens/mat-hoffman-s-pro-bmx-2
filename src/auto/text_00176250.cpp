@@ -1,6 +1,19 @@
 /* 7 functions from 0x00176250 to 0x00177230, found by Ghidra. */
 #include "common.h"
 
+/* 3-byte palette entry (BGR order); the lookup table is indexed by RGB555 */
+struct Rgb3 {
+  u8 b;
+  u8 g;
+  u8 r;
+};
+
+/* palette object: func_00135400 = palette entries, func_00135410 = RGB555 -> index table */
+struct S_00176250_Pal {
+  int func_00135410(void);
+  int func_00135400(void);
+};
+
 u32 func_00176CD0(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch)
 {
   u8 *d;
