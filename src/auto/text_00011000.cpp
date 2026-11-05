@@ -185,10 +185,7 @@ static inline float sqrt_119D0(float x) {
 }
 static __forceinline float distance_119D0(const float *a, const float *b) {
     float x = a[0]-b[0], y = a[1]-b[1], z = a[2]-b[2];
-    float square = z*z+y*y+x*x;
-    float r;
-    _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&square)));
-    return r;
+    return sqrt_119D0(z*z+y*y+x*x);
 }
 struct C_000119D0 {
     char pad[0x3b0];
