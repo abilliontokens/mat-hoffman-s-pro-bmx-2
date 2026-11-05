@@ -195,6 +195,59 @@ void C_00133020::func_00133020(unsigned int v)
     func_001D3F50();
 }
 
+void C_00133070::func_00133070(void)
+{
+    if (f54 != 0) {
+        func_001E891B(f54);
+        f54 = 0;
+    }
+}
+
+void C_00133070::func_00133090(int a, int b)
+{
+    if (func_00135C70(10, 0, a, 0x80) != 0) {
+        fA4--;
+    }
+    if (func_00135C70(0xb, 0, a, 0x80) != 0) {
+        fA4++;
+    }
+    if (func_00135C70(0x2e, 0, a, 0x80) != 0 && (fA7 & 0x40) != 0) {
+        fA6++;
+        if (fA6 > 7) {
+            fA6 = 0;
+        }
+    }
+    func_00157BF0(a, b);
+}
+
+void C_00133070::func_00133140(int a, int b)
+{
+    float vecB[4];
+    float vecA[4];
+    S_00133140_Cam local;
+    S_00133140_Cam *cam;
+    S_00133140_Cam *p;
+
+    local.func_00193490();
+    if ((fA7 & 8) != 0) {
+        cam = &local;
+    } else {
+        p = (S_00133140_Cam *)func_001E8A44(0x28);
+        cam = f98 = p ? p->func_00193490() : 0;
+    }
+    vecA[2] = 0.0f;
+    vecA[1] = 0.0f;
+    vecA[0] = 0.0f;
+    vecA[3] = 1.0f;
+    vecB[2] = 0.0f;
+    vecB[1] = 0.0f;
+    vecB[0] = 0.0f;
+    vecB[3] = 1.0f;
+    v30(vecA, vecB);
+    cam->func_001938C0(&f24, a, b, vecA, vecB, 0);
+    local.func_00193500();
+}
+
 void C_001332A0::func_001332A0(void)
 {
     int func_001E891B(...);
@@ -258,6 +311,20 @@ void C_001332A0::func_00133580(int item)
     f84 = (int *)func_001E83E8(f84, f88 * 4 + 4);
     f84[f88] = item;
     f88++;
+}
+
+void C_001332A0::func_00133620(int item)
+{
+    int n = f88;
+    int *list = f84;
+    int i;
+
+    for (i = 0; i < n; i++) {
+        if (list[i] == item) {
+            list[i] = 0;
+            return;
+        }
+    }
 }
 
 void C_00133700::func_00133700(void)
