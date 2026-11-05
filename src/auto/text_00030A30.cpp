@@ -103,6 +103,24 @@ struct C_00030E70 {
 
 void __stdcall func_0001C750(V4_00030E70 a, V4_00030E70 b);
 
+void *func_001E8A44(int size);
+void func_001E891B(void *p);
+
+struct C_0009A290 {
+    char pad0[0x194];
+    int f194;
+    C_0009A290 *func_0009A290(void *a0, char *a1, int a2);
+    void func_0009C770(void);
+};
+
+struct C_00031840 {
+    char pad0[0x64];
+    char *f64;
+    char pad68[0x158];
+    C_0009A290 *f1C0;
+    void func_00031840(void);
+};
+
 void func_00030A30(Vec4_00030A30 *out, float x, float y, float z, float w, float *m)
 {
     Vec4_00030A30 r;
@@ -143,6 +161,14 @@ void C_00030B90::func_00030B90(float x, float y, float z, float w)
 
 void C_00030CD0::func_00030CD0(int a0) {
     unk78 = a0;
+}
+
+int C_00030E70::func_00030E70(int a0)
+{
+    S_00030E70_Target *t = f78;
+    V4_00030E70 v(t->f190 + f68, t->f194 + f6c, t->f198 + f70, 1.0f);
+    func_0001C750(f58, v);
+    return 1;
 }
 
 void *C_00030F00::func_00030F00(unsigned int flags)
