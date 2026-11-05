@@ -305,6 +305,67 @@ struct C_000B2C80 {
     void func_000B2C80(S_000B2C80_Arg *a);
 };
 
+struct S_000B2630_Vec {
+    float x, y, z, w;
+};
+
+struct S_000B2630_Pos {
+    S_000B2630_Vec *func_00199B00(S_000B2630_Vec *out, int a);
+};
+
+struct S_000B2630_Sub {
+    char pad0[4];
+    S_000B2630_Pos *f4;
+};
+
+struct S_000B2630_Bike {
+    char pad0[0xA00];
+    S_000B2630_Sub *fA00;
+};
+
+struct S_000B2630_List {
+    char pad0[0x24];
+    int f24;
+    char pad28[0x180];
+    S_000B2630_Bike *f1A8[1];
+};
+
+struct S_000B2630_Game {
+    char pad0[0x4E0];
+    S_000B2630_List *f4E0;
+};
+
+extern S_000B2630_Game *D_002B9120;
+extern float D_00275544;
+extern float D_00275800;
+extern float D_0027CE50;
+extern float D_0027CE40;
+extern float D_0027CE30;
+extern float D_002756D8;
+int func_00011260(int lo, int hi);
+
+struct C_000B2630 {
+    char pad0[0x3C];
+    char *f3C;
+    char pad40[4];
+    S_000B25D0_Top *f44;
+    char pad48[0x10];
+    int f58;
+    int f5C;
+    char pad60[8];
+    int f68;
+    char pad6C[0xC];
+    int f78;
+    float f7C;
+    float f80;
+    float f84;
+    char pad88[0x119];
+    u8 f1A1;
+    char pad1A2[0x108];
+    u8 f2AA;
+    void func_000B2630(void);
+};
+
 struct C_000B2C60 {
     undefined4 func_000B2C60(byte param_1);
 };
