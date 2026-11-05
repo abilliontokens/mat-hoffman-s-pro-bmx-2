@@ -46,6 +46,15 @@ struct C_000979C0 {
     int func_000979C0(undefined4 key, undefined4 *out);
 };
 
+extern int D_002A2400;
+extern int D_002A2404;
+extern int D_002A2408;
+extern int D_002A240C;
+
+struct C_00097A80 {
+    void func_00097A80(void);
+};
+
 struct C_00097C20 {
     int func_00097C20(void);
 };
