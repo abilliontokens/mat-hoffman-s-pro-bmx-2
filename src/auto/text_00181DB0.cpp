@@ -408,6 +408,23 @@ void C_00182830::func_00182830(C_00182830_Target *p)
     }
 }
 
+void C_00182C60::func_00182A80(void)
+{
+    int i;
+    int j;
+
+    if (f3b4 != 0) {
+        for (i = 0; i < f3b4->f24; i++) {
+            for (j = 0; j < f3b4->f28[i]->f8; j++) {
+                C_00182A80Node *node = f3b4->f28[i]->f10c[j];
+                if (node->f4 == 6) {
+                    node->f288->func_001B6590(node->f184);
+                }
+            }
+        }
+    }
+}
+
 void C_00182C60::func_00182C60(void)
 {
     if (f3ac == 0) {
