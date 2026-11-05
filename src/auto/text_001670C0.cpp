@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <xmmintrin.h>
 struct Vec4_165EF0 { float x,y,z,w; };
+struct C_001673B0 { char pad[0x1e0]; int f1e0; int func_001673B0(const char *a, void *b, void *c, void *d, int e); };
 struct C_001648E0_Item {
  virtual void v0(); virtual void v1();
  virtual void v2(float, Vec4_165EF0 *);
