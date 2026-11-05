@@ -217,6 +217,32 @@ struct BmxUIPageOptions {
     void func_001BE3F0(void);
 };
 
+/* BmxUIPageTwoPlayer */
+struct C_000C8290 {
+    void *vtbl;
+    char pad4[0x27C];
+    int f280;
+    int f284;
+    char pad288[8];
+    int f290;
+    char pad294[4];
+    int f298;
+    char pad29C[0x2AC - 0x29C];
+    int f2AC;
+    int f2B0;
+    int f2B4;
+    int f2B8;
+    int f2BC;
+    int f2C0;
+    char pad2C4[0x2D8 - 0x2C4];
+    int f2D8;
+    char pad2DC[0x2E8 - 0x2DC];
+    int f2E8;
+    char pad2EC[8];
+    int f2F4;
+    void func_000C8290(void);
+};
+
 struct C_000C86A0 {
     void *vtbl;
     char pad4[0x120];
