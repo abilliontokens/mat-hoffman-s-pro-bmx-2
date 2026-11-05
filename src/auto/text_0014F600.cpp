@@ -41,6 +41,9 @@ struct S_0014F9A0_Entry {
 };
 
 extern S_0014F9A0_Entry D_002DF748[];
+extern float D_00275544;
+extern float D_002DF740[];
+extern float D_002DF744[];
 extern float D_002DF874;
 extern float *D_002DF87C;
 
@@ -326,13 +329,19 @@ float func_0014FB30(float v)
     } s;
     float ax;
     float r;
+    float sq;
 
     s.x = v;
     s.tmp = *(int *)&s.x & 0x7fffffff;
     ax = *(float *)&s.tmp;
-    r = ax > D_00275460 ? D_002756D4 - ax / (ax * ax + D_00286AC0)
-                        : ax / (ax * ax * D_00286AC0 + D_00275460);
-    if (v < D_00275544) {
+    if (ax > D_00275460) {
+        sq = ax * ax;
+        r = D_002756D4 - ax / (sq + D_00286AC0);
+    } else {
+        sq = ax * ax;
+        r = ax / (sq * D_00286AC0 + D_00275460);
+    }
+    if (*(volatile float *)&v < D_00275544) {
         r = -r;
     }
     return r;
@@ -349,7 +358,7 @@ void func_0014FD80(float *p)
     if (*p > D_002756D0) {
         *p = *p - D_002756B8;
     } else if (*p < D_002756E8) {
-        *p = *p + D_002756B8;
+        *p = D_002756B8 + *p;
     }
 }
 
@@ -471,12 +480,12 @@ void C_00150360::func_00150390(int a, float b, float c, int d)
 
 void C_00150360::func_001503E0(float a, float b, float c)
 {
-    float s = f30;
-    float t = f34;
+    double s;
+    double t;
 
-    f30 = s;
-    f34 = t;
+    f30 = (float)(s = f30);
     f44 = a;
+    f34 = (float)(t = f34);
     f48 = b;
     f4C = c;
     f2C = (a - b) * s + b;
