@@ -31,7 +31,7 @@ struct C_0002CB00 {
     float f580;
     char pad584[4];
     float f588;
-    void func_0002CB00(int unused);
+    void func_0002CB00(float dt);
 };
 
 
