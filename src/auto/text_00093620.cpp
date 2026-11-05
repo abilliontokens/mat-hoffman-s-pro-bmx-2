@@ -264,6 +264,13 @@ int C_00093620::func_00093620(int a)
 {
     C_00092BE0_Str s;
     char buf[0x104];
+    char *mem;
+    char *p;
+    char *q;
+    char c;
+    int *d;
+    int n;
+    int i;
 
     s.func_001D3E30();
     s.func_001D3E60(&f4c);
@@ -275,16 +282,40 @@ int C_00093620::func_00093620(int a)
             s.func_001D3E80(&D_0027A1A4);
             s.func_001D3EA0(3, &D_0027A178, &D_0027A188, &D_0027A198);
             s.func_001D3F20(&D_0027A144, 0xd);
-            if (D_002A8490->f2e0->f2cc->func_001D4380(&s) != 0) {
-                strcpy(f150, s.func_001D3F50());
-                func_001ADCC0(buf, 0x104, &D_0027A168, f150);
-                func_001DD0A9(&D_0027A1DC, buf, 0);
-            }
-        }
-        if (D_002A8490->f2e0->f2cc->func_001D42A0(s.func_001D3F50(), D_00277A0C) != 0) {
-            if (func_00092BE0() == 0) {
+            if (D_002A8490->f2e0->f2cc->func_001D4380(&s) == 0) {
                 return 0;
             }
+            p = s.func_001D3F50();
+            q = f150;
+            do {
+                c = *p;
+                p++;
+                *q = c;
+                q++;
+            } while (c != 0);
+            func_001ADCC0(buf, 0x104, &D_0027A168, f150);
+            func_001DD0A9(&D_0027A1DC, buf, 0);
+        }
+        if (D_002A8490->f2e0->f2cc->func_001D42A0(s.func_001D3F50(), D_00277A0C) != 0) {
+            if (D_002A8490->f2e0->f2cc->func_001D4720((int)f150, (int)D_00277A0C) == 0) {
+                return 0;
+            }
+        }
+        if (D_002A8490->f2e0->f2cc->func_001D4440((int)s.func_001D3F50(), (int)D_00277A0C,
+                D_002A8490->f2e0->f2c0->func_0005C6A0(), 0x80) == 0) {
+            return 0;
+        }
+        mem = (char *)func_001E8A44((int)D_00080000);
+        d = (int *)mem;
+        for (n = (int)&D_00020000; n > 0; n--) {
+            *d++ = 0;
+        }
+        for (i = 0; i < 8; i++) {
+            func_001ADCC0(buf, 0x104, D_00277A04, D_00277A0C, i);
+            D_002A8490->f2e0->f2cc->func_001D4440((int)f150, (int)buf, (int)mem, (int)D_00080000);
+        }
+        if (mem != 0) {
+            func_001E891B(mem);
         }
         return 1;
     }
