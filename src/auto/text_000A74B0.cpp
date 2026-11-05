@@ -480,4 +480,40 @@ struct ObjB_79E0 {
     void **vtbl;
     char pad4[0x64];
     int f68;
+    char pad6c;
+    char f6d;
+    char pad6e[0x32];
+    void (*fA0)(int);
+};
+struct Data_79E0 {
+    int f0;
+    char name[0x104];
+    int f108[4];
+    int f118[4];
+    int f128[4];
+    char pad138[0x10];
+    int f148;
+    unsigned char f14c;
+};
+struct Game_79E0 {
+    char pad0[0x348];
+    int f348;
+    char pad34c[0x60];
+    int *f3b0;
+    char pad3b4[0xf8];
+    int *f4ac;
+};
+struct Hook_79E0 {
+    void func_000216F0(char *a, int b, ObjB_79E0 *c);
+};
+struct Pt_79E0 {
+    void func_001577A0(ObjB_79E0 *o, int f);
+    void func_00133140(ObjB_79E0 *o, int f);
+};
+struct Coll_79E0 {
+    void *vtbl;
+    int f4;
+    ObjB_79E0 *f8;
+    Data_79E0 *fC;
+    int func_000A79E0(Game_79E0 *g);
 };
