@@ -59,6 +59,9 @@ struct C_00038760 {
     char pad68[0x538];       /* 0x68 */
     S_00038760_Arr arr;      /* 0x5A0 */
     S_00038760_Arr arr2;     /* 0x5A8 */
+    int pad5B0;
+    S_00038760_Arr arr3;
+    C_00038850_Item *func_00038850(void *owner, float x, float y, float z, int unused, int allow);
     int *func_000389C0(int param_1);
     int *func_00038A10(int param_1, int *param_2);
     int func_00038A70(void *param_1, void **param_2);
