@@ -505,6 +505,26 @@ S_001EEFBA *S_001EEFBA::func_001EF3D2(BitObj *src)
     return this;
 }
 
+S_001EF577 *S_001EF577::func_001EF577(void *a, char *name, int c, int d, int e)
+{
+    ((S_001EEFBA *)this)->func_001EF3B4();
+    ((S_001EEFBA *)f3C)->func_001EF3B4();
+    D_002F6A2C = name;
+    D_002F6A28 = name;
+    if (a != 0) {
+        D_002F6A34 = c - 1;
+        D_002F6A30 = a;
+    } else {
+        D_002F6A30 = 0;
+        D_002F6A34 = 0;
+    }
+    D_002F6A38 = e;
+    D_002F6A20 = f3C;
+    D_002F6A3C = d;
+    D_002F6A18 = this;
+    return this;
+}
+
 BitObj *__fastcall func_001EF734(BitObj *self, int unused, char c)
 {
     self->f0 = 0;
