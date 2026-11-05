@@ -1,5 +1,6 @@
 /* 41 functions from 0x00094620 to 0x00095620, found by Ghidra. */
 #include "common.h"
+#include <string.h>
 /* one node of the path at +0x50: 0x44 bytes, the part at +0x20 is what
    func_00094810 hands out */
 struct S_00094620_Node {
@@ -406,6 +407,19 @@ void C_00094840::func_000948A0(int a)
     }
 }
 
+int C_00094840::func_00094900(float a, int b, int c)
+{
+    int r;
+
+    if (a == D_00275544) {
+        return 0;
+    }
+    r = unk50->v36((int)a, b, c);
+    unk40 = 1;
+    unk4C = b;
+    return r;
+}
+
 int C_00094A00::func_00094960(int a)
 {
     if (f50->v33(a)) {
@@ -438,13 +452,10 @@ void C_00094A00::func_00094C00(void)
     int i;
 
     for (i = 0; i < f7C; i++) {
-        void *p;
         if (f2C != 0) {
-            p = f84[i];
-            f28->func_001CD7D0(p);
+            f28->func_001CD7D0(f84[i]);
         } else {
-            p = f84[i];
-            f28->func_001CD7D0(p);
+            f28->func_001CD7D0(f84[i]);
         }
         f84[i] = 0;
     }
@@ -570,5 +581,14 @@ int C_00094A00::func_00094EE0(void)
 
 int C_00094F00::func_00094F00(void) {
     return unk7C;
+}
+
+int C_00095160::func_00095160(int index)
+{
+    if (index < 1 || index > f54) {
+        return 0;
+    }
+    Item(index - 1)->f64 = 0;
+    return 1;
 }
 
