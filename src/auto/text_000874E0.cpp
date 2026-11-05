@@ -38,11 +38,44 @@ struct C_000876B0 {
     void func_00087700(void);
 };
 
-C_000876B0 *C_000876B0::func_000876B0(int a0) {
-    int i;
+struct LookupObj_874E0 {
+    int *func_0018C160(int a);
+};
 
+struct GObjRoot_874E0 {
+    char pad0[0x10];
+    int f10;
+    char pad14[0x2ec - 0x14];
+    LookupObj_874E0 *p2EC;
+};
+
+extern GObjRoot_874E0 *D_002A8490;
+
+extern float D_00275AEC;
+extern int D_00278690;
+extern int D_0027958C;
+
+struct ClampObj_874E0 {
+    char pad0[0x10];
+    float f10;
+    float f14;
+};
+
+struct MidObj_874E0 {
+    ClampObj_874E0 *func_0018C070();
+};
+
+/* BestScoreOverlay */
+struct C_000874E0 {
+    char pad0[0x44];
+    int f44;
+    void func_000874E0(void);
+    void func_001578D0(void);
+};
+
+C_000876B0 *C_000876B0::func_000876B0(int a0) {
     ((C_00157600 *)this)->func_00157600(1);
-    vtbl = (void *)&D_002797A4;
+    *(void *volatile *)this = (void *)&D_002797A4;
     f24[0] = 0;
     f24[1] = 0;
     f2C = 0;
@@ -52,8 +85,7 @@ C_000876B0 *C_000876B0::func_000876B0(int a0) {
     f3C = 0;
     f40 = 0;
     fC4 = 0;
-    for (i = 0; i < 0x20; i++)
-        f44[i] = 0;
+    memset(f44, 0, sizeof(f44));
     return this;
 }
 
