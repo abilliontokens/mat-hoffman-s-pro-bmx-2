@@ -81,6 +81,7 @@ struct S_00095880_Array {
     unsigned char owned : 1;
     unsigned char flags : 7;
     S_00095880_Array(int n) { count = 0; owned = 0; data = (int *)func_001E8A44(n * 4); growth = 16; capacity = n; owned = 1; }
+    ~S_00095880_Array() { func_001E891B(data); }
     void func_001CDED0(int n);
 };
 void *func_001E8A44(unsigned int size);
