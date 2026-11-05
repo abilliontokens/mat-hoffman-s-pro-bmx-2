@@ -102,3 +102,19 @@ void func_00054330(void) {
     int func_00031410(...);
     func_00031410();
 }
+
+int C_00054340::func_00054340() {
+ f2d0=0; f2e8=0; func_00034090(); f2d4=0; f2c4=-1;
+ for(int i=0;i<f90;++i) {
+ if(f284[i]) { f284[i]->func_0008BB50(-1); f284[i]->v6(); }
+ if(f2a4[i]) f2a4[i]->v6();
+ }
+ char *entry=(*(char ****)(f64+0x3b4))[0x28/4][f2c8];
+ char *data=*(char **)(entry+4);
+ int index=(*(TagLookup **)(f64+0x484))->func_0001B3C0(&D_00277C9C);
+ char *obj=(*(char ****)(f64+0x3ac))[0x28/4][index];
+ (*(TagObject ***)(obj+0x1a4))[1]->func_00199600(*(TagVector *)(data+0x24));
+ (*(TagObject ***)(obj+0x1a4))[1]->func_0019AC50();
+ return 1;
+}
+
