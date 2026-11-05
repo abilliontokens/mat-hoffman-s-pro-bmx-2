@@ -140,6 +140,26 @@ struct C_001B5790 {
     C_001B5790 *func_001B5790(void);
 };
 
+struct Model_001B58C0 {
+    void *vtbl;
+    int f4;
+};
+
+struct Model1B0_001B58C0 : Model_001B58C0 {
+    Model1B0_001B58C0 *func_001B5110(void);
+};
+
+struct Model60_001B58C0 : C_001B4ED0 {
+    int f58;
+    int f5C;
+};
+
+struct Models_001B58C0 {
+    char pad0[0x28];
+    Model_001B58C0 **f28;
+    void func_001B58C0(int type, int idx);
+};
+
 struct C_001B5750 {
     char pad0[0x60];
     int f60;
