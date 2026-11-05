@@ -6,15 +6,34 @@ struct E_000C5710 {
     unsigned int f38;
     char pad3C[0x1C];
     unsigned char b58;
+    void func_001D5AD0();
 };
 
+struct C_5E40_A;
+struct C_6420_P;
+
 struct BmxUIPageMain {
-    char pad0[0x2D0];
+    char pad0[0x124];
+    C_5E40_A *f124;
+    char pad128[0x18];
+    C_6420_P *f140;
+    char pad144[0x144];
+    int f288;
+    char pad28C[0x14];
+    int f2A0;
+    int f2A4;
+    char pad2A8[0x2D0 - 0x2A8];
     short f2D0;
-    char pad2D2[0x2F0 - 0x2D2];
+    char pad2D2[0x2E0 - 0x2D2];
+    int f2E0;
+    int f2E4;
+    int f2E8;
+    int f2EC;
     int f2F0;
     char pad2F4[4];
     E_000C5710 *f2F8[10];
+    char pad320[0x44];
+    int f364;
     void func_000C4CE0();
     void func_000C4FD0();
     void func_000C5580();
