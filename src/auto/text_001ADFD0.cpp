@@ -31,6 +31,13 @@ struct C_001AE3E0_Vec4 {
     int y;
     int z;
     int w;
+    void Set(int a, int b, int c, int d)
+    {
+        x = a;
+        y = b;
+        z = c;
+        w = d;
+    }
 };
 
 struct C_001AE3E0_Sub {
