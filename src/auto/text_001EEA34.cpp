@@ -276,7 +276,7 @@ unsigned char S_001EF087::func_001EF087(void)
     return t & 0x20;
 }
 
-static char *func_001EF094(char *dst, const char *src, unsigned int count)
+static __declspec(noinline) char *func_001EF094(char *dst, const char *src, unsigned int count)
 {
     char *p = dst;
     char c;
@@ -538,31 +538,20 @@ S_001EF45F *__fastcall func_001EF45F(S_001EF45F *self, int unused, const char *s
 {
     self->f4 = 0;
     self->vtbl = &D_00295BF0;
-    if (len == 0) {
-        if (src == 0) {
-            self->f8 = 0;
-            self->fC = 0;
-            return self;
-        }
-        len = 0;
+    if (len == 0 && src != 0) {
         while (src[len] != 0) {
             len++;
         }
-        if (len == 0) {
-            self->f8 = 0;
-            self->fC = 0;
-            return self;
-        }
     }
-    if (src == 0) {
+    if (len != 0 && src != 0) {
+        self->f8 = (char *)D_002F6A04.func_001EEE62(len, 0);
+        self->fC = len;
+        if (self->f8 != 0) {
+            func_001EF094(self->f8, src, len);
+        }
+    } else {
         self->f8 = 0;
         self->fC = 0;
-        return self;
-    }
-    self->f8 = (char *)D_002F6A04.func_001EEE62(len, 0);
-    self->fC = len;
-    if (self->f8 != 0) {
-        func_001EF094(self->f8, src, len);
     }
     return self;
 }
@@ -637,6 +626,46 @@ BitObj *BitObj::func_001EF613(int a)
     return this;
 }
 
+void BitObj::func_001EF68E(char *p, int n)
+{
+    S_001EF68E_Char *q;
+
+    if (s4 == 1 || s4 == 3) {
+        return;
+    }
+    if (f0 != 0) {
+        func_001EF333(3);
+        return;
+    }
+    if (p == 0 || n == 0) {
+        s4 = 1;
+        return;
+    }
+    switch (n) {
+    case 0:
+        q = 0;
+        break;
+    case 1:
+        q = (S_001EF68E_Char *)D_002F6A04.func_001EEE62(0xc, 0);
+        if (q != 0) {
+            q->f4 = 0;
+            q->vtbl = &D_00295BCC;
+            q->c = *p;
+        }
+        break;
+    default:
+        q = (S_001EF68E_Char *)D_002F6A04.func_001EEE62(0x10, 0);
+        if (q != 0) {
+            q = (S_001EF68E_Char *)((S_001EF45F *)q)->func_001EF45F(p, n);
+        }
+        break;
+    }
+    f0 = (int)q;
+    if (q == 0) {
+        s4 = 3;
+    }
+}
+
 BitObj *__fastcall func_001EF734(BitObj *self, int unused, char c)
 {
     self->f0 = 0;
@@ -665,6 +694,77 @@ BitObj *BitObj::func_001EF759(char *s)
         }
         func_001EF68E(s, n);
     }
+    return this;
+}
+
+BitObj *BitObj::func_001EF789(char **pp, char delim)
+{
+    char *start;
+    char *p;
+    char c;
+    int n;
+
+    ClearFlags();
+    n = 0;
+    f0 = 0;
+    p = *pp;
+    if (p == 0) {
+        s4 = 1;
+        return this;
+    }
+    if (*p == 0) {
+        s4 = 2;
+        return this;
+    }
+    start = p;
+    do {
+        p = *pp;
+        c = *p;
+        if (c == delim) {
+            break;
+        }
+        if (c != '_' && c != '$' && (c < 'a' || c > 'z') && (c < 'A' || c > 'Z') &&
+            (c < '0' || c > '9') && (D_002F6A3A & 1) == 0) {
+            s4 = 1;
+            return this;
+        }
+        n++;
+        p++;
+        *pp = p;
+    } while (*p != 0);
+    func_001EF68E(start, n);
+    p = *pp;
+    c = *p;
+    if (c == 0) {
+        if (s4 == 0) {
+            s4 = 2;
+        }
+        return this;
+    }
+    *pp = p + 1;
+    if (c == delim) {
+        s4 = 0;
+        return this;
+    }
+    s4 = 3;
+    f0 = 0;
+    return this;
+}
+
+BitObj *BitObj::func_001EF848(unsigned int v)
+{
+    char buf[11];
+    char *p;
+
+    f0 = 0;
+    ClearFlags();
+    buf[10] = 0;
+    p = &buf[10];
+    do {
+        *--p = (char)(v % 10) + '0';
+        v /= 10;
+    } while (v != 0);
+    func_001EF68E(p, (int)(&buf[10] - p));
     return this;
 }
 
