@@ -3,9 +3,13 @@
 
 struct S_00097FD0_owner;
 
+extern f32 D_00275544;
+
 struct C_00096870 {
     int f0;
-    char pad4[0x1a4 - 4];
+    char pad4[0x40 - 4];
+    int f40;
+    char pad44[0x1a4 - 0x44];
     f32 f1a4;
     char pad1a8[0xc];
     int f1b4;
