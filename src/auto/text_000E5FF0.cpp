@@ -42,6 +42,20 @@ struct C_000E6D00 {
     void func_000E6E20(void);
 };
 
+void C_000E6D00::func_000E6D00(void)
+{
+    int i;
+
+    for (i = 0; i < f3E4; i++) {
+        f5A0[i]->func_001B1860(0, -1.0f, 0xff, 0.9f, 0, 0, 0, 0, 0.9f, 0, 0.25f, 0, 0);
+    }
+    for (i = 0; i < f504; i++) {
+        f62C[i]->func_001B1860(0, -1.0f, 0, 0.9f, 0, 0, 0, 0xff, 0.9f, 0, 0.25f, 0, 0);
+    }
+    f508 = 1;
+    f500->func_001B1980();
+}
+
 void C_000E6D00::func_000E6DC0(void)
 {
     f124->f268->func_001C4D50(500);
