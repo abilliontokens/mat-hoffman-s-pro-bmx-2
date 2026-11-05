@@ -395,6 +395,81 @@ void C_001BB2C0::func_001BAE30(void)
     ((C_00157660 *)this)->func_00157660();
 }
 
+void C_001BAEC0::func_001BAEC0(void)
+{
+    int i;
+    void **p;
+
+    vtbl = &D_0028CAC8;
+    if (f5C != 0) {
+        for (i = 0; i < f58; i++) {
+            if (f5C[i] != 0) {
+                func_001E891B(f5C[i]);
+            }
+        }
+        func_001E891B(f5C);
+        f5C = 0;
+    }
+    if (f64 != 0) {
+        func_001E891B(f64);
+        f64 = 0;
+    }
+    if (f68 != 0) {
+        for (i = 0; i < f60; i++) {
+            if (f68[i] != 0) {
+                func_001E891B(f68[i]);
+            }
+        }
+        func_001E891B(f68);
+        f68 = 0;
+    }
+    if (f6C != 0) {
+        for (i = 0; i < f60; i++) {
+            if (f6C[i] != 0) {
+                func_001E891B(f6C[i]);
+            }
+        }
+        func_001E891B(f6C);
+        f6C = 0;
+    }
+    if (f70 != 0) {
+        func_001E891B(f70);
+        f70 = 0;
+    }
+    if (f74 != 0) {
+        func_001E891B(f74);
+        f74 = 0;
+    }
+    if (f78 != 0) {
+        func_001E891B(f78);
+        f78 = 0;
+    }
+    if (f94 != 0) {
+        func_001E891B(f94);
+        f94 = 0;
+    }
+    if (f7C != 0) {
+        for (i = 0; i < f60; i++) {
+            if (f7C[i] != 0) {
+                func_001E891B(f7C[i]);
+            }
+        }
+        func_001E891B(f7C);
+        f7C = 0;
+    }
+    p = f1A8;
+    if (p != 0) {
+        *p = &D_0028CA64;
+        func_001E891B(p);
+        f1A8 = 0;
+    }
+    if (f1AC != 0) {
+        func_001E891B(f1AC);
+        f1AC = 0;
+    }
+    func_001B4F90();
+}
+
 void *C_001BB280::func_001BB280(unsigned int flags)
 {
     func_001BA8B0();
