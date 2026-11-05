@@ -71,7 +71,7 @@ void *C_00158BE0::func_00158BE0(int flags) {
     return this;
 }
 
-C_001594F0::C_001594F0(void)
+C_001594F0 *C_001594F0::func_001594F0(void)
 {
     unk3 &= 0xf8;
     unk0 = 0;
@@ -101,6 +101,7 @@ C_001594F0::C_001594F0(void)
     unk1c = 0;
     unk4 = 0;
     unk78 = 0;
+    return this;
 }
 
 C_00159560 *C_00159560::func_00159560(int param_1) {
