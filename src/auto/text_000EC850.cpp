@@ -12,6 +12,27 @@ struct C_000ECD90 {
     void func_000ECD90(void);
 };
 
+extern void *D_00281C8C;
+struct C_000ED0E0_Obj {
+    virtual void Destroy(int flags);
+};
+struct C_000ED0E0 {
+    void *vtbl;
+    char pad4[0x284];
+    C_000ED0E0_Obj *f288;
+    char pad28C[0x138];
+    int f3C4;
+    int f3C8;
+    char pad3CC[0xC];
+    int f3D8;
+    char pad3DC[8];
+    int f3E4[11];
+    char pad410[0xA8];
+    C_000ED0E0_Obj *f4B8[4];
+    C_000ED0E0_Obj *f4C8[2];
+    void func_001BE3F0(void);
+    void func_000ED0E0(void);
+};
 
 void C_000ECD90::func_000ECD90(void) {
     unk380 = 0;
