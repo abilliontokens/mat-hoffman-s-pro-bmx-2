@@ -158,6 +158,23 @@ void C_00075880::func_00075880() {
     unk120->unk1F4 = 0;
 }
 
+void C_00075880::func_000758F0() {
+    unk11C = 0;
+    unk1C0 = 1;
+    v6();
+    unk120->v35();
+    v18(0);
+    unk120->v35();
+    unk120->unk21 &= 0xfb;
+    unk120->unk1F4 = 1;
+    unk1AC = 1;
+    unk1B0 = 1;
+    unk1B8 = 0;
+    unk194 = 0;
+    unk1B4 = 0;
+    unk1A8 = -1;
+}
+
 void *C_00075B20::func_00075B20(int param_1) {
     u32 *p;
     int n;
