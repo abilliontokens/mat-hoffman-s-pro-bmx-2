@@ -1,2 +1,47 @@
 /* 13 functions from 0x000BA9F0 to 0x000BB7C0, found by Ghidra. */
 #include "common.h"
+
+struct UIService {
+    int func_000300C0(const char *name);
+    void func_00030160();
+};
+
+struct UIOwner {
+    char pad0[0x74];
+    UIService *f74;
+};
+
+struct UIItem {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    void func_001577A0(void *p, int n);
+    void *func_000A1990(void *p, int n);
+};
+
+struct C_00157920 {
+    void func_00157920();
+};
+
+struct BmxUIManager {
+    void *vtbl;
+    char pad4[0x11c];
+    void **f120;
+    int f124;
+    char pad128[0x28];
+    UIItem *f150;
+    char pad154[0x104];
+    int f258;
+    UIOwner *f25c;
+    char pad260[8];
+    void *f268;
+    UIItem *f26c;
+    void *f270;
+    void *f274;
+    int func_000BB0C0();
+    void func_000BB340();
+    void func_000BB360();
+    void func_000BB380(const char *name);
+};
