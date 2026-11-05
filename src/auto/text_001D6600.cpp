@@ -35,6 +35,23 @@ XboxTextureMap *XboxTextureMap::func_001D6AD0(void *param)
     return this;
 }
 
+void XboxTextureMap::func_001D6B00(void)
+{
+    vtbl = (void *)&D_0028F644;
+    if (fB8 != 0) {
+        if (D_002A83E0 != 0) {
+            func_001B2910(fA4);
+        }
+        func_00201100(fB8);
+        fB8 = 0;
+    }
+    if (fBC != 0) {
+        func_00201100(fBC);
+        fBC = 0;
+    }
+    func_001B11D0();
+}
+
 int __stdcall func_001D6C40(int a0, int a1) {
     return 1;
 }
