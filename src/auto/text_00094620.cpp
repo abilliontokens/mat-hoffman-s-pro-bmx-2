@@ -14,6 +14,7 @@ struct S_00094620_NodeTail {
 };
 
 struct S_00094620_Node : S_00094620_NodeHead, S_00094620_NodeTail {
+    int *Item(void) { return &unk0; }
 };
 
 /* the path the camera walks: a node array and its length */
@@ -778,8 +779,8 @@ int C_00095060::func_00095520(int n)
 
 int C_00095060::func_000955C0(void *id)
 {
-    int i;
     int n = ids.count;
+    int i;
 
     if (n == 0) {
         return 0;
