@@ -244,6 +244,22 @@ void UIWidgetStaticUserRotate::func_001C33A0(void)
     v5();
 }
 
+void UIWidgetStaticUserRotate::func_001C3440(int p)
+{
+    if (f1E4 != 0) {
+        u32 now = func_001DC974();
+        if (f240 < (float)((now - f244) / 1000)) {
+            f1E0 = func_001C13A0();
+            f1E4 = 0;
+        }
+    }
+    if (f1E0 != 0) {
+        func_001C2F90(p);
+    } else {
+        func_00157A00(p);
+    }
+}
+
 int __stdcall func_001FF3C0(int size);
 void *C_001C34D0::func_001C34D0(int flags)
 {
@@ -251,6 +267,19 @@ void *C_001C34D0::func_001C34D0(int flags)
     if (f68 != 0) {
         f68->Destroy(1);
     }
+    vtbl = &D_0028D804;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
+void *C_001C3510::func_001C3510(int flags)
+{
+    vtbl = &D_0028DFE4;
+    ((C_001D57E0 *)(fCC))->func_001D57E0();
+    ((C_001D57E0 *)(f68))->func_001D57E0();
     vtbl = &D_0028D804;
     func_00157660();
     if (flags & 1) {
