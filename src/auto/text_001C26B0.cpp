@@ -233,6 +233,17 @@ void UIWidgetStaticUserRotate::func_001C32E0(void)
     v7();
 }
 
+void UIWidgetStaticUserRotate::func_001C33A0(void)
+{
+    SyncOff();
+    if (f1E8 != 0 && f1E0 != 0) {
+        f1E0 = (func_001C1490() == 0);
+    }
+    SyncOff();
+    fA4 = 1;
+    v5();
+}
+
 void C_001C35B0::func_001C35B0(void *src, int index, unsigned int count)
 {
     char *dst = (char *)func_001FF410(f14, 0) + fC * index;
