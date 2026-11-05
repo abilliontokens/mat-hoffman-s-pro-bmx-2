@@ -62,7 +62,7 @@ struct C_0017A1D0_Vec4 {
 
 static inline float C_0017A1D0_Dot(const C_0017A1D0_Vec4 &a, const C_0017A1D0_Vec4 &b)
 {
-    return a.x * b.x + a.y * b.y + a.z * b.z;
+    return a.z * b.z + (a.x * b.x + a.y * b.y);
 }
 
 static inline float C_0017A1D0_Fabs(float f)
