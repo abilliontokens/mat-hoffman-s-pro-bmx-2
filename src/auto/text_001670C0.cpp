@@ -315,6 +315,46 @@ struct C_001677C0 {
 };
 
 
+void C_001670C0::func_001670C0(float dt, int remap, int *mask)
+{
+ int finished=0;
+ Vec4_165EF0 v;
+ if (f10 || !f18) return;
+ f34 += dt;
+ if (f18->func_001628A0(f34)) {
+  if (f18->f24 & 1) f34 -= f18->f38;
+  else finished=1;
+ }
+ if (!f30) {
+  int i;
+  for(i=0;i<f18->f20;i++) {
+   if (mask && mask[f18->f18[i]->f4]) continue;
+   f18->f18[i]->v2(f34,&v);
+   if(remap) {
+    func_001641B0(fC,&v);
+    f1EC[f1F0[f18->f18[i]->f4]].f34->func_00199300(&v);
+   } else f1EC[f18->f18[i]->f4].f34->func_00199300(&v);
+  }
+  for(i=0;i<f18->f1C;i++) {
+   if(mask && mask[f18->f14[i]->f4]) continue;
+   v.x=v.y=v.z=0.0f; v.w=1.0f;
+   f18->f14[i]->v3(f34,&v);
+   if(remap) {
+    func_001640D0(f4,f1EC[f1F0[f18->f14[i]->f4]].f34->f170,fC,&v);
+    f1EC[f1F0[f18->f14[i]->f4]].f34->func_00199650(&v);
+   } else f1EC[f18->f14[i]->f4].f34->func_00199650(&v);
+  }
+ } else {
+  f38 += dt;
+  float blend=func_00164220(0.0f,1.0f,(f38-f40-dt)/f44);
+  if(f1C) func_001664C0(blend,mask,remap);
+  else func_00166830(blend,mask,remap);
+  if(f208) for(int i=0;i<f20C;i++) f210[i]->func_001A0C90(f214[i]);
+ }
+ if(f38>=f3C) { f30=0; f38=0; }
+ if(finished) { f10=1; f34=0; f38=0; }
+}
+
 C_001676D0 *C_001676D0::func_001676D0(int n)
 {
     float t;
