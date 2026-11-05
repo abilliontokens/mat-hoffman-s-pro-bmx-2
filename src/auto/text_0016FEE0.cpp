@@ -52,7 +52,8 @@ struct C_001703B0 {
     S_Obj *f158;
     void *f15c;
     void *f160;
-    char pad164[0x170 - 0x164];
+    u32 f164, f168;
+    char pad16c[4];
     S_Obj *f170;
     void func_00157660(void);
     void func_001703B0(void);
