@@ -227,12 +227,35 @@ struct S_Camera28 {
     void func_00193870(void *p);
 };
 
+struct S_002EFDB8V {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10(int *rect, int flags);
+};
+
 struct Camera {
     void *vtbl;
     char pad04[0x20];
     int f24;
     S_Camera28 *f28;
-    char pad2c[0x1e4];
+    char pad2c[0x1b4];
+    int f1e0;
+    int f1e4;
+    int f1e8;
+    int f1ec;
+    char pad1f0[0xc];
+    float f1fc;
+    float f200;
+    char pad204[0x8];
+    int f20c;
     int f210;
     char pad214[0x10];
     int f224;
@@ -240,7 +263,18 @@ struct Camera {
     void func_0012B110(void);
     void func_0012B350(void);
     int func_0012B150(void);
+    void func_0012B470(void);
     void func_001576D0(void);
+    void func_00157920(void);
+};
+
+struct C_0012B5B0 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    char pad04[0x2c];
+    int f30;
+    C_0012B5B0 *func_0012B5B0(int param_1);
 };
 
 extern int D_00284074;
