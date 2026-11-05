@@ -196,7 +196,7 @@ struct C_001BC870_C {
 };
 
 struct C_001BC870 {
-    void *func_001BC870(void *name, C_001BC870_Tbl *t);
+    void *func_001BC870(C_001BC870_Tbl *t, void *name);
     void *func_001577A0(void *child, int b);
 };
 
