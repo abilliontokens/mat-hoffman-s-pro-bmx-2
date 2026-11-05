@@ -64,7 +64,16 @@ struct C_001B1B80 {
                        undefined4 param_4, undefined4 param_5, undefined4 param_6);
 };
 
+struct C_001B22F0_Node {
+    char pad0[0x98];
+    C_001B22F0_Node *next;
+    int f9c;
+};
+
 struct C_001B22F0 {
+    int f0;
+    char pad4[4];
+    C_001B22F0_Node *f8;
     void func_001B22F0(void);
 };
 
@@ -112,6 +121,60 @@ struct C_001B1AB0 {
     int fC0;
     void func_001B1AB0(int a1, int a2);
 };
+
+void C_001B19C0::func_001B19C0(float a1, float a2, float a3)
+{
+    extern float D_00275544;
+    if (fC0 != 0) {
+        return;
+    }
+    f60 = a3;
+    f4C.x = a1;
+    f4C.y = a2;
+    f3C = f2C;
+    f40 = f30;
+    f5C = 0;
+    if (a3 == D_00275544) {
+        *(C_001B19C0_Vec *)&f2C = f4C;
+    }
+}
+
+void C_001B19C0::func_001B1A30(float a1, float a2, float a3)
+{
+    extern float D_00275544;
+    int func_001E8858(float);
+    if (fC0 != 0) {
+        return;
+    }
+    f60 = a3;
+    f5C = 0;
+    *(int *)&f4C.x = func_001E8858(a1);
+    *(int *)&f4C.y = func_001E8858(a2);
+    f3C = f2C;
+    f40 = f30;
+    if (a3 == D_00275544) {
+        *(C_001B19C0_Vec *)&f2C = f4C;
+    }
+}
+
+void C_001B1AB0::func_001B1AB0(int a1, int a2)
+{
+    if (fC0 != 0) {
+        return;
+    }
+    f94 = a2;
+    f90 = 0;
+    f88 = a1;
+    if (a1 > 0xff) {
+        f88 = 0xff;
+        f84 = *(short *)(f24 + 0x4c);
+        return;
+    }
+    if (a1 < 0) {
+        f88 = 0;
+    }
+    f84 = *(short *)(f24 + 0x4c);
+}
 
 int C_001B1B20::func_001B1B20(void)
 {
@@ -219,6 +282,22 @@ C_001B22E0* C_001B22E0::func_001B22E0(void) {
     unk0 = 0;
     unkC = 0;
     return this;
+}
+
+void C_001B22F0::func_001B22F0(void)
+{
+  int *in_ECX = (int *)this;
+  int iVar1;
+
+  iVar1 = *in_ECX;
+  in_ECX[2] = iVar1;
+  while (iVar1 != 0) {
+    iVar1 = *(int *)(in_ECX[2] + 0x98);
+    *(undefined4 *)(in_ECX[2] + 0x98) = 0;
+    *(undefined4 *)(in_ECX[2] + 0x9c) = 0;
+    in_ECX[2] = iVar1;
+  }
+  return;
 }
 
 void C_001B2330::func_001B2330(void) {
