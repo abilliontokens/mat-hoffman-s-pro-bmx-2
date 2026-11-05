@@ -97,14 +97,41 @@ struct C_0018E250 {
 
 struct Vec4_0018EA50 {
     float x, y, z, w;
+    int func_001915A0(int a, int b, int *out);
 };
 
+static __forceinline int StrLen_0018E3E0(const char *s)
+{
+    const char *p = s;
+    while (*p++) {
+    }
+    return p - s - 1;
+}
+
+static __forceinline int Min_0018E3E0(int a, int b)
+{
+    return b > a ? a : b;
+}
+
+/* named value slot: flags (type in byte 1), pointer to the stored value, linked list of slots */
 struct Node_0018EA50 {
-    char pad0[8];
+    unsigned int flags;
+    int f4;
     int state;
-    char padC[4];
+    void *f0C;
     Node_0018EA50 *next;
-    char pad14[0x12C];
+    char pad14[4];
+    int f18;
+    int f1C;
+    char *f20;
+    char f24[0x100];
+    int f124;
+    int f128;
+    int f12C;
+    int f130;
+    int f134;
+    char f138;
+    char pad139[7];
     Vec4_0018EA50 v;
     char pad150[0x40];
     void func_0018E3E0(int a, int b);
