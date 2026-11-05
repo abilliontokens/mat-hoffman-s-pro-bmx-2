@@ -65,6 +65,40 @@ struct C_00135D90 {
 };
 
 /* 5-int record of the pending command list that overlays the ControlInterface from +0x0 */
+struct C_001362A0 {
+    int f0;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    int f14;
+    int f18;
+    int f1C;
+    int f20;
+    float f24;
+    float f28;
+    int f2C;
+    int f30;
+    float f34;
+    float f38;
+    void func_001362A0(int p1, int p2, float p3, int p4, int p5, float p6);
+};
+
+struct S_001367F0_Vec4 {
+    int x;
+    int y;
+    int z;
+    int w;
+};
+
+struct C_001367F0 {
+    char pad0[0x8];
+    S_001367F0_Vec4 f8;
+    S_001367F0_Vec4 f18;
+    S_001367F0_Vec4 f28;
+    int func_001367F0(S_001367F0_Vec4 *a, S_001367F0_Vec4 *b, S_001367F0_Vec4 *c);
+};
+
 struct S_ControlEntry {
     int type;
     int a;
