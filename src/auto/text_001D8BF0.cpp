@@ -27,6 +27,14 @@ void __stdcall func_0021DB47(int a, int b, int c, int d, int e, int f, int g, in
 void __stdcall func_00201150(int a, int b);
 
 
+void *DXVSDataItem::func_001D9930(int flags)
+{
+    vtbl = (void *)&D_00284E94;
+    if (flags & 1)
+        func_001E891B(this);
+    return this;
+}
+
 undefined4 C_001D9950::func_001D9950(byte param_1)
 {
   int func_001D8B70(...);
