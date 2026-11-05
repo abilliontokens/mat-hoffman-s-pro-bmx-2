@@ -95,7 +95,7 @@ extern int D_00277038;
 extern int D_0027A2A8;
 extern float D_0027DE70;
 extern float D_0027ED00;
-void func_001ADCC0(char *buf, int size, char *fmt, int val);
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 
 inline int C_000D2300::Value(int i)
 {
