@@ -140,6 +140,24 @@ void *BoxCollisionObject::func_0012A1C0(unsigned int flags)
     return this;
 }
 
+void Cache_129930::func_0012A2C0(void)
+{
+    if (fC != 0) {
+        CacheNode_129930 *n;
+        CacheList_129930 *l;
+
+        for (n = fC->f4; n != 0; n = n->f8) {
+            ((CacheVCall_129930 *)this)->v1(n->f0);
+        }
+        l = fC;
+        if (l != 0) {
+            l->func_00160B90();
+            func_001E891B(l);
+        }
+        fC = 0;
+    }
+}
+
 void Cache_129930::func_0012A330(void)
 {
     vtbl = (void *)&D_00284008;
