@@ -49,6 +49,7 @@ struct C_00194110 {
 
 Node_00193240 *Node_00193240::func_00193490(void)
 {
+    Pool_00193240 *pool = D_002EFE70;
     u32 *p;
 
     p = (u32 *)&f18;
@@ -56,9 +57,8 @@ Node_00193240 *Node_00193240::func_00193490(void)
     p[1] = 0;
     p[0] = 0;
     p[3] = 0x3f800000;
-    if (D_002EFE70 == 0) {
-        Pool_00193240 *pool = (Pool_00193240 *)func_001E8A44(0x30);
-
+    if (pool == 0) {
+        pool = (Pool_00193240 *)func_001E8A44(0x30);
         D_002EFE70 = pool != 0 ? pool->func_0001E740(0x18, 0x1000) : 0;
     }
     f0 = 0;
