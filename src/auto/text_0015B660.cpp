@@ -180,6 +180,7 @@ struct C_0015C000 {
     u32 unk4;
     int unk8;
     int unkC;
+    int unk10;
     S_0015BF70_Node *unk14;
     void func_0015C000(float t, float *out);
 };
@@ -292,6 +293,30 @@ int func_0015BF70(S_0015BF70_Node *arr, int n, float t)
         }
     }
     return n;
+}
+
+void C_0015C000::func_0015C000(float t, float *out)
+{
+    S_0015BF70_Node *lo;
+    S_0015BF70_Node *hi;
+    int idx;
+
+    if (unk8 != 0 && unkC > 1) {
+        if (func_0015C100(unk14, t, unkC, &lo, &hi, &t)) {
+            out[0] = (hi->f4 - lo->f4) * t + lo->f4;
+            out[1] = (hi->f8 - lo->f8) * t + lo->f8;
+            out[2] = (hi->fC - lo->fC) * t + lo->fC;
+            return;
+        }
+        out[0] = (hi->f4 - lo->f4) * t + hi->f4;
+        out[1] = (hi->f8 - lo->f8) * t + hi->f8;
+        out[2] = (hi->fC - lo->fC) * t + hi->fC;
+        return;
+    }
+    idx = func_0015BF70(unk14, unkC, t);
+    out[0] = unk14[idx - 1].f4;
+    out[1] = unk14[idx - 1].f8;
+    out[0] = unk14[idx - 1].fC;
 }
 
 int func_0015C100(S_0015BF70_Node *arr, float t, int n, S_0015BF70_Node **a, S_0015BF70_Node **b, float *r)
