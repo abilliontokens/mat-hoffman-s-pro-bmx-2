@@ -48,6 +48,15 @@ struct C_0009EDB0 {
     void func_0009F4C0(char param_1);
 };
 
+void *C_0009F4F0::func_0009F4F0(int flags) {
+    unk0 = (int)&D_0027AA3C;
+    func_00169DE0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void *C_0009F550::func_0009F550(int flags) {
     extern int D_0027AB9C;
     void func_001E891B(void *);
