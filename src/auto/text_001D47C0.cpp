@@ -5,6 +5,20 @@ extern int D_0028F578;
 extern int D_00284E94;
 extern int D_0028F584;
 
+static void Init_001D48E0(int *p)
+{
+    p[0x20] = 0x3f800000;
+    p[0x1f] = 0;
+    p[0x1e] = 0;
+    p[0x1d] = 0;
+    for (int i = 0; i < 300; i++) {
+        p[0x25 + i] = 0;
+    }
+    for (int i = 0; i < 300; i++) {
+        p[0x25 + i] = i;
+    }
+}
+
 struct C_001D5640 {
     int func_001D5640(u8 param_1);
 };
