@@ -203,22 +203,24 @@ void C_0015C6C0::func_0015C6C0(int param_1, int param_2)
     func_0015C6F0((float *)unk14, *(float *)&param_1, unkC, (S_0015C6F0_Key *)unk8, (float *)param_2);
 }
 
-void func_0015C6F0(float *base, float v, int n, int up, float *out)
+void func_0015C6F0(float *base, float v, int n, S_0015C6F0_Key *up, float *out)
 {
     int func_0001B1D0(...);
-    float *lo;
+    S_0015C6F0_Key *lo;
     float t;
     float q1[4];
     float q0[4];
+    int found;
 
     if (up != 0 && n > 1) {
-        if (func_0015C9A0(base, v, n, &lo, (float **)&up, &t)) {
-            func_0001B1D0((int)lo + 4, q0);
-            func_0001B1D0(up + 4, q1);
+        found = func_0015C9A0(base, v, n, (float **)&lo, (float **)&up, &t);
+        if (found != 0) {
+            func_0001B1D0(lo->q, q0);
+            func_0001B1D0(up->q, q1);
             func_0015C7D0(q0, q1, out, t);
-            func_0015C930(out, up + 4);
+            func_0015C930(out, (int)up + 4);
         } else {
-            func_0001B1D0(up + 4, out);
+            func_0001B1D0(up->q, out);
         }
     } else {
         func_0001B1D0(base + func_0015C640(base, n, v) * 2 - 1, out);
@@ -523,4 +525,35 @@ void C_0015D1B0::func_0015D250(void)
         f38 = 0;
     }
 }
+struct V4_0015D0A0 {
+    float x, y, z, w;
+};
 
+struct V3_0015D0A0 {
+    float x, y, z;
+};
+
+struct C_001938C0 {
+    char pad0[0x28];
+    C_001938C0 *func_00193490(void);
+    void __stdcall func_001938C0(void *a0, int a1, int a2, V4_0015D0A0 *a3, V4_0015D0A0 *a4, float a5);
+};
+
+extern float D_002755E8;
+
+struct C_0015D0A0 {
+    char pad0[0x24];
+    char f24[0x8];
+    int f2c;
+    char pad30[0x3c];
+    float f6c;
+    float f70;
+    float f74;
+    float f78;
+    char pad7c[0x18];
+    V4_0015D0A0 f94;
+    char padA4[0x20];
+    C_001938C0 *fc4;
+    int fc8;
+    void func_0015D0A0(int a0, int a1);
+};
