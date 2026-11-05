@@ -209,8 +209,8 @@ void C_001B1B30::func_001B1B30(float param_1, undefined4 param_2)
         if (param_1 < 0.0f) {
             f9C = 0;
         }
+        f98 = f24->getF34();
     }
-    f98 = f24->getF34();
 }
 
 void C_001B1B80::func_001B1B80(undefined4 param_1, float param_2, float param_3,
