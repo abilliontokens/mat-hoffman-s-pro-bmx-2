@@ -467,6 +467,46 @@ C_001862E0 *C_001862E0::func_001862E0(void)
     return this;
 }
 
+int Light_186330::func_00186330(int a, int b)
+{
+    u8 fl = f8->flags;
+    if ((fl & 4) || (fl & 0x10)) {
+        ObjA_186330 *o = (ObjA_186330 *)func_001E8A44(0xd0);
+        o = o ? o->func_0015CE00(1) : 0;
+        f4 = o;
+        P_186330 *p = f8;
+        u8 g = p->flags;
+        if (!f4->func_0015E990(p->type, p->v, p->f18, p->f1c, p->f20, p->f28, (g >> 6) & 1, 0, (g & 8) ? p->f54 : 0, a)) {
+            f4->func_vslot2();
+            P_186330 *q = f8;
+            f4 = 0;
+            if (q) { ((C_00186170 *)q)->func_00186210(); func_001E891B(q); }
+            f8 = 0;
+            return 0;
+        }
+        if (f8->type == 3) f4->func_0015D070(f8->f30, f8->f34);
+    }
+    ((ObjA_186330 *)D_002E2930)->func_0015DAA0((int)f4, f8->f24);
+    P_186330 *r = f8;
+    if (r->flags & 0x10) {
+        int c = (int)r->c0 & 0xff;
+        c |= (int)r->c3 << 8;
+        c = (c << 8) | ((int)r->c1 & 0xff);
+        c = (c << 8) | ((int)r->c2 & 0xff);
+        a = c;
+        ObjB_186330 *ob = (ObjB_186330 *)func_001E8A44(0x88);
+        ob = ob ? ob->func_00160860(1) : 0;
+        ob->func_001608E0(f8->f18, &a, f8->fa4, f8->fa8, f8->fe8);
+        ob->func_00160810(((int *)*(int *)(b + 0x4a8))[f8->f24], 1);
+        f4->func_0015CFE0(ob);
+    }
+    if (f8->flags & 0x20) f4->func_0015D000(f8->fec, f8->ff0, f8->ff4);
+    P_186330 *d = f8;
+    if (d) { ((C_00186170 *)d)->func_00186210(); func_001E891B(d); }
+    f8 = 0;
+    return 1;
+}
+
 void C_00186540::func_00186540(int param_1)
 {
   int func_001E8A44(...);
