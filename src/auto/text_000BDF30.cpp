@@ -47,11 +47,6 @@ struct S_000BDF30_Names {
 };
 
 struct C_000BBE30 {
-    int func_000BBE30(int show);
-    void func_000BBA80(int idx, char *buf);
-};
-
-struct C_000BDF30 {
     char pad0[0x150];
     S_000BDF30_Names *f150;
     char pad154[0x128];
@@ -60,6 +55,8 @@ struct C_000BDF30 {
     int f284;
     int f288;
     int f28C;
+    void func_000BBA80(int idx, char *buf);
+    int func_000BBE30(int show);
     int func_000BDF30(int show);
 };
 
