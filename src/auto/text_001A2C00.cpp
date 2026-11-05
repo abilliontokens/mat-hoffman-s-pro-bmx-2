@@ -151,8 +151,8 @@ struct V_001A34D0 {
  virtual void v41();
  virtual void v42();
  virtual int v43(int a);
- virtual void v44();
- virtual void v45(int a, int b, int *c, int *d);
+   virtual int v44(S_001A2C00_Vec pos, int a5, int a6);
+  virtual void v45(int a, int b, int *c, int *d);
  virtual void v46();
  virtual void v47(int a);
 };
