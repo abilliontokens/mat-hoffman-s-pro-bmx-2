@@ -81,6 +81,7 @@ struct BmxUIPageHPHChoice {
     int f2b0;
     S_000F1D90_Obj *unk2b4[4];
     int func_000F2160(int a, int b);
+    int HandleKey(struct C_000F2AD0_Ui *ui, int b);
     void func_001BE4F0(int a, int b, int c);
     BmxUIPageHPHChoice *func_000F1EC0(int a, int b, int c);
     void func_000F1D90(void);
