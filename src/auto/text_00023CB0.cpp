@@ -12,6 +12,7 @@ struct S_00024210_Vec {
 
 struct C_00199B00 {
     S_00024210_Vec func_00199B00(int a);
+    S_00024210_Vec *func_00199B00(S_00024210_Vec *out, int a);
 };
 
 struct C_00198390 {
@@ -144,6 +145,31 @@ AmbientDebris *AmbientDebris::func_00024140(int a, int b)
     f28 = 0;
     f34 = link;
     return this;
+}
+
+int AmbientDebris::func_00024210(int a)
+{
+    if (f24 != 0 && f28 != 0) {
+        const S_00024210_Vec &p = D_002B9120->f4E0->a1A8[D_002A8490->f2A4->f120]->f1E0->f22C->func_00199B00(0);
+        const S_00024210_Vec &q = ((C_00199B00 *)f2c)->func_00199B00(0);
+        S_00024210_Vec d;
+        float len;
+
+        d.x = q.x - p.x;
+        d.y = q.y - p.y;
+        d.z = q.z - p.z;
+        d.w = 1.0f;
+        len = sqrtf(d.z * d.z + d.y * d.y + d.x * d.x);
+        if (len > D_0027554C) {
+            f24 = 0;
+            ((C_00198390 *)f2c)->func_00198390();
+        } else {
+            f30->func_00023CB0(a, d, len);
+            f34->func_00022060(a);
+            return 1;
+        }
+    }
+    return 0;
 }
 
 void func_00024360(int a0) {
