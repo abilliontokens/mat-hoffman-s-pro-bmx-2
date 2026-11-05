@@ -165,6 +165,25 @@ struct C_0012AC20 {
     void func_0012AC20(S_0012AB70Vec *p1, S_0012AB70Vec *p2, S_0012AB70Vec *p3, int *p4, float *p5);
 };
 
+struct C_0012ACC0 {
+    char pad0[0x170];
+    float pos[4];
+    float forward[4];
+    float up[4];
+    char pad1a0[0x70];
+    int stamp;
+    int func_0012ACC0(float x, float y, float z, float w);
+};
+inline void Cross_0012ACC0(float *dst, const float *a, const float *b)
+{
+    __m128 x = _mm_loadu_ps(a);
+    __m128 y = _mm_loadu_ps(b);
+    __m128 p = _mm_mul_ps(x, _mm_shuffle_ps(y, y, 0xc9));
+    __m128 q = _mm_mul_ps(y, _mm_shuffle_ps(x, x, 0xc9));
+    x = _mm_sub_ps(p, q);
+    _mm_storeu_ps(dst, _mm_shuffle_ps(x, x, 0xc9));
+}
+
 struct C_0012B000 {
     char pad0[0x70];
     char f70[0x28];
