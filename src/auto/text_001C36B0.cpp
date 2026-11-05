@@ -416,11 +416,46 @@ void C_001C3D80::func_001C3D80(void) {
     unk14 = unk18;
 }
 
+VideoCard *VideoCard::func_001C3D90(void)
+{
+    vtbl = &D_0028E3A0;
+    f30 = 0;
+    f2C = 0;
+    f34 = 0;
+    f38 = 0;
+    f3C = f3C & 0xfe;
+    f1C = 0;
+    f20 = 0;
+    f4 = 0;
+    f8 = 0;
+    fC = 0;
+    f10 = 0;
+    f24 = 0;
+    f28 = 0;
+    f30 = (int)func_001E8A44(4);
+    f34 = 1;
+    f38 = 1;
+    f3C = f3C | 1;
+    f14 = 2;
+    f18 = 2;
+    return this;
+}
+
 void C_001C3E00::func_001C3E00(void) {
     extern int D_0028E3A0;
     int func_001E891B(...);
     unk0 = (int)&D_0028E3A0;
     func_001E891B(unk30);
+}
+
+void *VideoCard::func_001C3E20(unsigned int flags)
+{
+    vtbl = &D_0028E3A0;
+    func_001E891B((void *)f30);
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
 }
 
 uint C_001C3F10::func_001C3F10(void)
