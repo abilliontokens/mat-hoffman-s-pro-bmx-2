@@ -60,6 +60,17 @@ struct C_0017A1D0_Vec4 {
     float x, y, z, w;
 };
 
+static inline float C_0017A1D0_Dot(const C_0017A1D0_Vec4 &a, const C_0017A1D0_Vec4 &b)
+{
+    return a.x * b.x + a.y * b.y + a.z * b.z;
+}
+
+static inline float C_0017A1D0_Fabs(float f)
+{
+    int bits = *(int *)&f & 0x7fffffff;
+    return *(float *)&bits;
+}
+
 struct C_0017A1D0 {
     char pad0[0x24];
     C_0017A1D0_Vec4 pts[4];
