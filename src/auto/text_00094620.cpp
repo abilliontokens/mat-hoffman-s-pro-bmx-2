@@ -515,8 +515,9 @@ void C_00094A00::func_00094C00(void)
 
 int C_00094A00::func_00094C60(void)
 {
-    int i;
     S_00094A00_Child *p;
+    int i;
+    int r;
 
     if (f24 != 0) {
         f24 = 0;
@@ -531,11 +532,12 @@ int C_00094A00::func_00094C60(void)
     }
     for (i = 0; i < f7C; i++) {
         if (i == 0) {
-            f84[0]->v12(100);
+            r = f84[0]->v12(100);
+            p = f84[0];
         } else {
-            f84[i]->v12(1);
+            r = f84[i]->v12(1);
+            p = f84[i];
         }
-        p = (i == 0) ? f84[0] : f84[i];
         if (!p->v5(0)) {
             return 0;
         }
@@ -651,9 +653,9 @@ void C_00095060::func_00095060(void)
         func_001E891B(tracks.at(i));
     }
     tracks.Clear();
-    func_001E891B(f6C);
     f7C = 0;
     f80 = 0;
+    func_001E891B(f6C);
     func_001E891B(tracks.items);
     ((C_00157660 *)this)->func_00157660();
 }
