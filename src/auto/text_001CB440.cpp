@@ -150,6 +150,8 @@ struct C_001CB610 {
     S_001CB7D0_Com *fb4;
     char padb8[0xc];
     int fc4;
+    /* the entry the stream is playing from */
+    S_001CB610_Entry *Entry(void) { return f34 + fa4; }
     void func_001CB610(int idx, const char *name);
     int func_001CB7D0(void);
     int func_001CB810(int idx);
