@@ -116,7 +116,9 @@ int func_00211163(S_001DC820 *, void *, int);
 int func_0021117A(S_001DC820 *, int);
 int func_00211040(S_001DC820 *);
 
-struct S_WaterVector { int x,y,z,w; S_WaterVector &operator=(const S_WaterVector &b) { x=b.x; y=b.y; z=b.z; w=b.w; return *this; } };
+#pragma optimize("g", off)
+struct S_WaterVector { int x,y,z,w; __forceinline S_WaterVector &operator=(const S_WaterVector &b) { x=b.x; y=b.y; z=b.z; w=b.w; return *this; } };
+#pragma optimize("", on)
 #pragma optimize("", on)
 struct S_WaterVirtual {
 virtual void slot0();
