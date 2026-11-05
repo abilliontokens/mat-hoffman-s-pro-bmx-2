@@ -116,3 +116,33 @@ struct C_00064580 {
     int func_00064580(int idx, int a1, unsigned int a2);
     void func_00064990();
 };
+
+int C_00064580::func_00064580(int idx, int a1, unsigned int a2)
+{
+    if (idx >= 0 && idx < 16) {
+        unk13C[idx]->func_0005E840(a1);
+        if (unk13C[idx]->unk48 != a2) {
+            unk13C[idx]->unk4E |= 8;
+            unk13C[idx]->color.rgb = a2;
+        }
+        unk13C[idx]->func_001D6600();
+    }
+    return idx + 1;
+}
+
+void C_00064580::func_00064990()
+{
+    D_002EFDB8->vf7(1);
+    D_002EFDB8->vf8();
+    unk1C8 = 0;
+    unk1D0->v34();
+    unk1D0->func_00032A40();
+    v4();
+    unk1D0->unk1F4 = 0;
+    unk1D0->unk64->unk4e0->unk1a8->unk95c = 0;
+    if (unk64 != 3 || unk1CC != 5) {
+        unk1D0->unk158->func_001C4D50(1000);
+    }
+    D_002F07B8->func_001C3D40(0);
+}
+
