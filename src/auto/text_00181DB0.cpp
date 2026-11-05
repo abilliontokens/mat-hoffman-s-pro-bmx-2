@@ -234,12 +234,7 @@ struct C_00182B00 {
     char pad239[0x103];
     int f33C, f340, f344, f348, f34C, f350;
     char pad354[0x2c];
-    union {
-        unsigned char f380;
-        struct {
-            unsigned char f380_0 : 1;
-        };
-    };
+    unsigned char f380;
     char pad381[3];
     int f384, f388, f38C, f390, f394, f398, f39C, f3A0, f3A4, f3A8, f3AC;
     char pad3B0[4];
