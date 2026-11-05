@@ -63,19 +63,16 @@ struct C_0008A0A0 {
 
 void C_00089FA0::func_00089FA0(void)
 {
-    if (unk128 == 0) {
-        if (unk12C != 0) {
-            unk24->func_001D6600();
-            unk30->func_001D6600();
-            return;
-        }
-    } else if (unk12C == 0) {
+    if (unk128 == 0 && unk12C != 0) {
+        unk24->func_001D6600();
+        unk30->func_001D6600();
+    } else if (unk128 != 0 && unk12C == 0) {
         unk28->func_001D6600();
         unk2C->func_001D6600();
-        return;
+    } else {
+        unk24->func_001D6600();
+        unk2C->func_001D6600();
     }
-    unk24->func_001D6600();
-    unk2C->func_001D6600();
 }
 
 undefined4 C_0008A000::func_0008A000(int param_1)
