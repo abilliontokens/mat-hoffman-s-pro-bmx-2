@@ -147,6 +147,9 @@ struct C_00092890 {
     int func_00092AC0(void);
     int func_000930D0(void);
     void func_00092D10(void);
+    void *func_000928F0(void);
+    void func_001577A0(void *o, int a);
+    void *func_001D3F50(void);
 };
 
 struct C_000928D0 {
