@@ -52,3 +52,18 @@ struct C_000AC6E0 {
     void *field_538;
     void func_000AC6E0(void);
 };
+
+void C_000ABD80::func_000ABD80(C_000ABD80_P1 *a, void *b)
+{
+    a->func_00168C20(&D_0027C80C, 0, &field_10C);
+    a->func_00168C50(&D_0027C800, 0, &field_110);
+    func_001B5A00(a, b);
+}
+
+C_000ABE10 *C_000ABE10::func_000ABE10()
+{
+    ((C_001B59E0 *)this)->func_001B59E0();
+    vtbl = (void *)&D_0027C818;
+    return this;
+}
+
