@@ -71,6 +71,7 @@ struct C_000E35E0 {
     void func_000E3C90(void);
     void func_000E3AC0(void);
     void func_000E3BA0(void);
+    void func_000E3FC0(void);
     void func_000E40F0(void);
 };
 
