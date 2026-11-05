@@ -48,6 +48,7 @@ struct C_000C8090 {
     int unk344[9];
     float unk368[9];
     void func_000C8090(void);
+    void func_000C7FC0(void);
 };
 
 struct C_000C83E0 {
