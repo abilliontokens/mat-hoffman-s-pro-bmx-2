@@ -74,8 +74,15 @@ struct C_00198B70 {
     virtual void v32();
     virtual void v33();
     virtual void v34(int a, void *b);
-    char pad4[0x20];
-    int f24;
+    char pad4[0x1d];
+    u8 f21;
+    char pad22[2];
+    char f24;
+    char pad25[2];
+    union {
+        u8 f27;
+        S_00198B70_Bits f27b;
+    };
     char pad28[0xb0 - 0x28];
     S_00198B70_Mat fB0;
     S_00198B70_Mat fF0;
