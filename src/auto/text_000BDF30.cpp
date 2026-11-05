@@ -46,18 +46,53 @@ struct S_000BDF30_Names {
     S_000BDF30_Lookup *f484;
 };
 
+struct C_000BA2D0 {
+    void func_000BA2D0();
+};
+
+struct C_00136300 {
+    void func_00136300();
+};
+
+struct C_0013B210 {
+    void func_0013B340();
+};
+
+struct C_0018C120 {
+    void func_0018C120();
+};
+
+struct C_001BCC40 {
+    void func_001BCC40();
+};
+
+struct S_000BE540_Vt {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+};
+
+extern C_0013B210 *D_002BEAAC;
+extern int D_0027D75C;
+
 struct C_000BBE30 {
     char pad0[0x150];
     S_000BDF30_Names *f150;
-    char pad154[0x128];
+    char pad154[0x10C];
+    S_000BE540_Vt *f260;
+    char pad264[0x18];
     S_000BDF30_Entry *f27C;
     int f280;
     int f284;
     int f288;
     int f28C;
+    char pad290[0x20];
+    int f2B0[8];
+    int f2D0[8];
     void func_000BBA80(int idx, char *buf);
     int func_000BBE30(int show);
     int func_000BDF30(int show);
+    void func_000BE540();
 };
 
 struct C_000BEDA0 {
