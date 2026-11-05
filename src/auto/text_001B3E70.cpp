@@ -19,6 +19,10 @@ static inline const int &min_ref(const int &a, const int &b) {
     return (b < a) ? b : a;
 }
 
+template <class T> inline const T &tmin(const T &a, const T &b) {
+    return (b < a) ? b : a;
+}
+
 struct S_001B4B80_Stream {
     int func_00168C20(const char *name, int a, int *p);
 };
