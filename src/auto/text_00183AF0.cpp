@@ -58,6 +58,9 @@ struct BmxSceneMgr {
     Rec12 *objs2;
     float *floats;
     int *ints;
+    Rec12 *Obj2(int i) { return &objs2[i]; }
+    float *Floats(void) { return floats; }
+    int *Ints(void) { return ints; }
 };
 
 struct BmxScene {
@@ -91,6 +94,25 @@ void BmxScene::func_00183D70(void *a0)
     }
 }
 
+int BmxScene::func_00183DD0(int param_1)
+{
+    char buf[0x104];
+    func_001ADCC0(buf, 0x104, D_00289570, f30, pad134);
+    void *mem = func_001E8A44(0x4cc);
+    C_00168280 *obj = mem != 0 ? ((C_00168280 *)mem)->func_00168280() : 0;
+    f2c = obj;
+    if (((C_00169490 *)obj)->func_00169490(buf, 0) == 0) {
+        void *p = f2c;
+        if (p != 0) {
+            ((C_001691E0 *)p)->func_001691E0();
+            func_001E891B(p);
+        }
+        f2c = 0;
+        return 0;
+    }
+    return 1;
+}
+
 void BmxScene::func_00183E90(void)
 {
     void *p = f2c;
@@ -100,3 +122,23 @@ void BmxScene::func_00183E90(void)
         f28 = 0;
     }
 }
+
+int BmxScene::func_00184880(void)
+{
+    int i;
+    for (i = 0; i < f38c->count; i++) {
+        f38c->objs2[i].dummy1(i, this);
+        func_001577A0(f38c->objs2[i].f4, 2);
+    }
+    for (i = 0; i < f340; i++) {
+        float *f = f38c->floats;
+        int *n = f38c->ints;
+        if (f[i * 4] >= D_0028957C) {
+            D_002E2930->func_0015E300(i, (int)&f[i * 4], (int)&n[i]);
+        } else {
+            D_002E2930->func_0015E300(i, 0, (int)&n[i]);
+        }
+    }
+    return 1;
+}
+
