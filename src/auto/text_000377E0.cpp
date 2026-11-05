@@ -57,3 +57,13 @@ undefined4 C_00037820::func_00037820(int param_1)
   return 0;
 }
 
+void *C_000378A0::func_000378A0(int flags)
+{
+    unk0 = (int)&D_00276CE4;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
