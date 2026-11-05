@@ -7,9 +7,11 @@ extern int D_0028F154;
 void func_001E891B(void *p);
 void *func_001E8A44(int size);
 
+struct S_002F07B8;
+
 struct V_002EFDB8 {
     virtual void v0(int a);
-    virtual void v1();
+    virtual int v1(S_002F07B8 *a);
     virtual void v2();
     virtual void v3();
     virtual void v4();
