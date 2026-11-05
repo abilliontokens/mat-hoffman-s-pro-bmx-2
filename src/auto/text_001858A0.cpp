@@ -281,6 +281,7 @@ struct P_186330 {
     int f0; int type; Vec16_186330 v; int f18, f1c, f20, f24, f28; u8 flags; char p2d[3];
     int f30, f34; char p38[0x1c]; char f54[0x40]; float c0, c1, c2, c3; int fa4; char fa8[0x40]; int fe8, fec, ff0, ff4;
 };
+struct C_00186170;
 struct Light_186330 {
     void *vtbl; ObjA_186330 *f4; P_186330 *f8;
     int func_00186330(int a, int b);
