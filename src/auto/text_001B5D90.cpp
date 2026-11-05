@@ -103,11 +103,50 @@ extern int D_0027CB60;
 extern int D_0027CB54;
 extern int D_00182890;
 
+extern int D_0028CD44;
+extern int D_0028CD34;
+extern int D_0028CD2C;
+extern int D_00275AD4;
+extern int D_002AA9F4;
+extern int D_0027CCD8;
+extern int D_0028CAB8;
+extern int D_0028CAB0;
+extern int D_0028CAA8;
+extern int D_0028CDD8;
+extern float D_00275998;
+
 struct S_001B6130_Stream {
     void func_00168550(void *a, void *b, int c);
     void func_00168C20(void *a, int b, void *c);
     void func_00168C50(void *a, float b, void *c);
     void func_00168BE0(void *a, void *b, void *c, int d);
+    void func_00168CB0(void *a, void *b, void *c);
+};
+
+void func_00167FE0(void *a, void *b, float x, float y, float z);
+
+struct C_001B6930 {
+    char f0[0x10];
+    char f10[0x10];
+    char f20[0x10];
+    char f30[0x10];
+    float f40;
+    float f44;
+    float f48;
+    float f4c;
+    int func_001B6930(S_001B6130_Stream *stream, int a1);
+};
+
+/* resource manager held in D_002A829C */
+struct S_002A829C {
+    int func_001617F0(const char *name, int flag);
+};
+extern S_002A829C *D_002A829C;
+
+/* object held at +4 of C_001B6570 */
+struct S_001B6590_Obj {
+    void func_00181DB0(int handle);
+    void func_001820B0(void *fn, void *ctx, int handle);
 };
 
 struct C_001B6130 {
