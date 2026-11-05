@@ -50,7 +50,7 @@ struct XboxMusic {
     virtual void vf20();
     virtual void vf21(int arg);
     virtual void vf22(); virtual void vf23(); virtual void vf24(); virtual void vf25();
-    virtual void vf26(int arg);
+    virtual int vf26(int arg);
     virtual void vf27(); virtual void vf28();
     virtual int vf29(int id);
     char pad04[0x20];
