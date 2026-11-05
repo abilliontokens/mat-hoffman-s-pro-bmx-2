@@ -82,6 +82,20 @@ struct C_000CB480 {
     void func_001BE360(int a0);
 };
 
+static inline void zeroVec2(float *p)
+{
+    p[0] = 0.0f;
+    p[1] = 0.0f;
+}
+
+static inline void zeroVec4(float *p)
+{
+    p[0] = 0.0f;
+    p[1] = 0.0f;
+    p[2] = 0.0f;
+    p[3] = 0.0f;
+}
+
 /* BmxUIPageMemCard */
 struct C_000CB650 {
     void *vtbl;
