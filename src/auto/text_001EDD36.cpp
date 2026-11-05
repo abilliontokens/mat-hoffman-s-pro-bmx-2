@@ -12,6 +12,14 @@ void func_001EB390(int locknum);
 int func_001F44EF(void *cs, unsigned long spinCount);
 extern unsigned int D_002FB240;
 extern int *D_002FB260[];
+extern char *D_002F6A28;
+
+struct S_001EE9AB {
+    int f0;
+    void (__cdecl *f4)(void *);
+    void **f8;
+    void **fC;
+};
 extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
 extern "C" void (__stdcall *_imp__RtlLeaveCriticalSection)(void *cs);
 
@@ -55,23 +63,25 @@ int func_001EE4BD(int fh, int pos, int mthd)
 int func_001EE5BE(void)
 {
     void *func_001E8AA5(int size);
-    char *p;
+    S_Ioinfo *p;
+    S_Ioinfo *q;
     int i;
 
-    p = (char *)func_001E8AA5(0x500);
+    p = (S_Ioinfo *)func_001E8AA5(0x500);
     if (p == 0) {
         return -1;
     }
     D_002FB260[0] = (int *)p;
     D_002FB240 = 0x20;
-    for (; p < (char *)D_002FB260[0] + 0x500; p += 0x28) {
-        p[4] = 0;
-        *(int *)p = -1;
-        *(int *)(p + 8) = 0;
-        p[5] = 10;
+    for (; p < (S_Ioinfo *)D_002FB260[0] + 32; p++) {
+        p->osfile = 0;
+        p->osfhnd = -1;
+        p->lockinitflag = 0;
+        p->pipech = 10;
     }
-    for (i = 0; i < 3; i++) {
-        (*(char **)&D_002FB260[0])[i * 0x28 + 4] = 0xc1;
+    for (i = 0; i < 0x78; i += 0x28) {
+        q = (S_Ioinfo *)((char *)D_002FB260[0] + i);
+        q->osfile = 0xc1;
     }
     return 0;
 }
