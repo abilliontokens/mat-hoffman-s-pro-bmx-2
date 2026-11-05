@@ -67,6 +67,80 @@ struct C_00049C60 {
     void func_000342C0(void);
 };
 
+struct S_4A1A0_Mgr { int f0; };
+struct S_4A1A0_Global {
+    char pad0[0x124];
+    int f124;
+    char pad128[0x2e0 - 0x128];
+    S_4A1A0_Mgr *f2e0;
+};
+extern S_4A1A0_Global *D_002A8490;
+
+struct S_4A1A0_V5C0 {
+    virtual void dummy0();
+    virtual void dummy1();
+    virtual void dummy2();
+    virtual void dummy3();
+    virtual void dummy4();
+    virtual void dummy5(int a);
+};
+struct S_4A1A0_Rider {
+    char pad0[0x578];
+    int f578;
+    char pad57c[0x5c0 - 0x57c];
+    S_4A1A0_V5C0 *f5c0;
+    char pad5c4[0x6d0 - 0x5c4];
+    int f6d0, f6d4, f6d8;
+    void func_00150F80(void);
+};
+struct S_4A1A0_Bike {
+    char pad0[0x770];
+    int f770, f774, f778;
+    void func_00018EB0(void);
+};
+struct S_4A1A0_Obj488 { void func_0016F7B0(void); };
+struct S_4A1A0_PartBase {
+    virtual void dummy0();
+    virtual void dummy1();
+    virtual void dummy2();
+    virtual void dummy3();
+    virtual void dummy4();
+    virtual void dummy5();
+    virtual void dummy6();
+};
+struct S_4A1A0_Part : virtual S_4A1A0_PartBase {
+    C_00198390 *f4;
+};
+struct S_4A1A0_Obj4 { char pad0[0x1a4]; S_4A1A0_Part *f1a4; };
+struct S_4A1A0_Item {
+    char pad0[4];
+    S_4A1A0_Obj4 *f4;
+    char pad8[0x80 - 8];
+    S_4A1A0_PartBase *f80;
+    int f84;
+};
+struct S_4A1A0_List {
+    char pad0[0x488];
+    S_4A1A0_Obj488 *f488;
+    char pad48c[0x4e4 - 0x48c];
+    S_4A1A0_Rider *f4e4[16];
+    S_4A1A0_Item **f524;
+    S_4A1A0_Bike *f528;
+    char pad52c[0x560 - 0x52c];
+    int f560;
+};
+struct C_0004A1A0 {
+    char pad0[0x64];
+    S_4A1A0_List *f64;
+    char pad68[0x1c0 - 0x68];
+    C_00049C60_Obj1C0 *f1C0;
+    char pad1c4[0x2c4 - 0x1c4];
+    int f2C4;
+    char pad2c8[0x2e0 - 0x2c8];
+    int f2E0;
+    int func_0004A1A0(void);
+};
+
 struct C_00049BD0 {
     int unk0;
     int unk4;
