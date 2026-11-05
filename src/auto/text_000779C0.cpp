@@ -24,7 +24,7 @@ struct Sprite_78620 {
     char padC[0x58 - 0xC];
     unsigned char b58;
     /* move the sprite, marking it dirty only when something changed */
-    void SetPos(float x, float y)
+    __forceinline void SetPos(float x, float y)
     {
         if (f4 != x || f8 != y) {
             f4 = x;
@@ -163,6 +163,59 @@ e=&unk64[7]; i=5; do { if(e[-5]) { o=e[-5]->func_001D5AA0(); if (D_00275AEC > o-
 if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000; } if(*e) { o=(*e)->func_001D5AA0(); if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
 if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000; } e++; i--; }while(i);
 func_001578D0();
+}
+
+int C_00078620::func_00078620()
+{
+    Sprite_78620 **e;
+    int i;
+    unk64->func_001D5AD0();
+    unk68->func_001D5AD0();
+    e = arr80;
+    i = 5;
+    do {
+        e[-5]->func_001D5AD0();
+        (*e)->func_001D5AD0();
+        e++;
+        i--;
+    } while (i);
+    if (unk94)
+        unk94->func_001D5AD0();
+    unkB4->SetPos(491.0f, 388.0f);
+    unkAC->SetPos(491.0f, 388.0f);
+    unkB0->SetPos(365.0f, 388.0f);
+    unkA8->SetPos(365.0f, 388.0f);
+    if (unkE4) {
+        unkB4->func_001D5AD0();
+        return 1;
+    }
+    if (unkD4) {
+        unkA8->SetPos(300.0f, 388.0f);
+        unkB0->SetPos(300.0f, 388.0f);
+        if (unkF0) {
+            unkB4->SetPos(D_002A1FEC, 388.0f);
+            unkAC->SetPos(D_002A1FEC, 388.0f);
+            unkB0->SetPos(491.0f, 388.0f);
+            unkA8->SetPos(491.0f, 388.0f);
+        }
+    } else {
+        unkA8->SetPos(491.0f, 388.0f);
+        unkB0->SetPos(491.0f, 388.0f);
+    }
+    if (unkA0)
+        unkA8->func_001D5AD0();
+    else
+        unkB0->func_001D5AD0();
+    if (unkE8 || unkEC) {
+        unkB4->func_001D5AD0();
+        return 1;
+    }
+    float x = (unkD4 && !unkF0) ? 40.0f : 379.0f;
+    unkAC->SetPos(x, 388.0f);
+    unkB4->SetPos(x, 388.0f);
+    if (unkA4)
+        unkAC->func_001D5AD0();
+    return 1;
 }
 
 void C_000788D0::func_000788D0()
