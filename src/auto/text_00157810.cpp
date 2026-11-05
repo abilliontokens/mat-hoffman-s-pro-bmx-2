@@ -70,6 +70,19 @@ int C_00157810::func_00157960(void)
     return 1;
 }
 
+int C_00157810::func_001579B0(void)
+{
+    if (f1C & 0x10) {
+        for (S_00157810_Child *c = f10; c != 0; c = c->fC) {
+            if ((c->f21 & 1) && !(c->f21 & 8) && (c->f18 & 0x10)) {
+                D_002EFDB8->v7(0);
+                c->v17();
+            }
+        }
+    }
+    return 1;
+}
+
 int C_00157810::func_00157AE0(void)
 {
     if (f1C < 0) {
