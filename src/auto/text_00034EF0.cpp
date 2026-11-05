@@ -162,6 +162,11 @@ struct C_00035360 {
     char f294[0x10];
     char f2a4[0x10];
     char f2b4[0x10];
+    char pad2c4[0x27c];
+    S_35560_State *f540;
+    char pad544[8];
+    int f54c;
+    void func_00035560(void);
     void func_00032220(void);
     void func_00035360(void);
 };
