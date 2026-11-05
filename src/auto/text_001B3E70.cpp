@@ -60,8 +60,12 @@ struct TireTrack {
     void func_001B4970();
     void func_001B49B0();
     void func_001B4A20();
+};
+
+struct C_001B4A40 {
+    int unk0;
+    const char *f4;
     void func_001B4A40(const char *str);
-    int f4;
 };
 
 struct C_001B4B70 {
