@@ -118,6 +118,36 @@ struct S_001CDE40_Owner {
     void func_001CBCF0(S_001CDE40_Obj *obj);
 };
 
+extern "C" __declspec(dllimport) void __stdcall RtlInitializeCriticalSection(void *cs);
+
+struct C_001CDC20 {
+    int f0;
+    int f4;
+    int f8;
+    int fC;
+    S_SoundElemList list0;
+    union {
+        u8 f20;
+        S_SoundGroupFlags f20b;
+    };
+    char pad21[3];
+    S_SoundElemList list1;
+    union {
+        u8 f34;
+        S_SoundGroupFlags f34b;
+    };
+    char pad35[3];
+    S_SoundElemList list2;
+    union {
+        u8 f48;
+        S_SoundGroupFlags f48b;
+    };
+    char pad49[3];
+    int f4C;
+    char f50[0x18];
+    C_001CDC20 *func_001CDC20(int a, int b);
+};
+
 
 XboxSoundGroup *XboxSoundGroup::func_001CD770(int a, int b)
 {
