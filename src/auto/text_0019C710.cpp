@@ -60,7 +60,6 @@ struct SoultreeCollisionObject {
     short unk1CE;
     float unk1D0;
     char *unk1D4;
-    float *unk1B0v;
     void func_0019C710(float *src, int a2, short a3, int n);
     void func_0019CB00(void);
     void func_0019CCA0(int param_1);
