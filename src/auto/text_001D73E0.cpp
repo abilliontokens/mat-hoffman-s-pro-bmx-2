@@ -85,7 +85,13 @@ struct XboxVideoCardBF_001D7D50 {
 };
 
 struct XboxVideoCard_001D8310 {
-    void *vtbl;
+    virtual void v0() = 0;
+    virtual void v1() = 0;
+    virtual void v2() = 0;
+    virtual void v3() = 0;
+    virtual void v4() = 0;
+    virtual void v5() = 0;
+    virtual void v6() = 0;
     char pad4[0x9D0];
     u8 f9D4;
     char pad9D5[3];
