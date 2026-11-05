@@ -10,6 +10,25 @@ struct C_0007EAE0 {
     undefined4 func_0007EAE0(byte param_1);
 };
 
+struct C_0007EC80 {
+    undefined4 func_0007EC80(byte param_1);
+};
+
+struct C_0007EE00 {
+    undefined4 func_0007EE00(byte param_1);
+};
+
+struct C_0007EE40 {
+    undefined4 func_0007EE40(byte param_1);
+};
+
+struct C_0007EE20 {
+    void func_00078620(void);
+    void func_000782C0(void);
+    void func_00157960(void);
+    void func_0007EE20(void);
+};
+
 
 undefined4 C_0007EAE0::func_0007EAE0(byte param_1)
 {
