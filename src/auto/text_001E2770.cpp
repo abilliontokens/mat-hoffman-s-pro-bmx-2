@@ -1,5 +1,8 @@
 /* 16 functions from 0x001E2770 to 0x001E2F1C, found by Ghidra. */
 #include "common.h"
+#include <string.h>
+extern u32 D_000417FC;
+extern u32 D_00041808;
 
 struct S_AnsiString {
     u16 length;
@@ -118,6 +121,11 @@ int __stdcall func_001E2835(const char *name)
 int __stdcall func_001E2850(int *section)
 {
     return section[2];
+}
+
+void Class_002901A0::func_001E29C5(unsigned int flags)
+{
+    ((C_00224F6E *)((char *)this - 8))->func_00224F6E(flags);
 }
 
 #pragma optimize("", on)
