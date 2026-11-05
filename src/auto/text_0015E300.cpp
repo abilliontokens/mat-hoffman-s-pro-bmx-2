@@ -140,8 +140,10 @@ void LightEmitter::func_0015E420(float *dir, float *mat, int unk)
         dir[1] = -f34->f70;
         dir[2] = -f34->f74;
         mat[0] = f34->f30;
-        mat[4] = f34->f34;
-        mat[8] = f34->f38;
+        float y = f34->f34;
+        mat[4] = y;
+        float z = f34->f38;
+        mat[8] = z;
     }
     mat[3] = f40;
     mat[7] = f44;
