@@ -17,11 +17,13 @@ extern unsigned int D_002A0C18[];
 
 static inline unsigned int swap32(unsigned int x)
 {
-    unsigned char b0 = (unsigned char)x;
-    unsigned char b1 = (unsigned char)(x >> 8);
-    unsigned char b2 = (unsigned char)(x >> 16);
-    unsigned char b3 = (unsigned char)(x >> 24);
-    return ((b0 << 8 | b1) << 8 | b2) << 8 | b3;
+    unsigned int r = (x & 0xff) << 8;
+    r |= (x >> 8) & 0xff;
+    r <<= 8;
+    r |= (x >> 16) & 0xff;
+    r <<= 8;
+    r |= x >> 24;
+    return r;
 }
 
 struct C_0001E0E0 {
