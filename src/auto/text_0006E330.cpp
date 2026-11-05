@@ -93,3 +93,17 @@ void C_0006E910::func_0006E910()
     unkFC = 0;
     unk19C = 0;
 }
+
+void C_0006E910::func_0006EC60()
+{
+    D_002EFDB8->vf7(1);
+    D_002EFDB8->vf8();
+    unkC0 = 0;
+    unkEC->v34();
+    unkEC->func_00032A40();
+    v4();
+    unkEC->unk1F4 = 0;
+    unkFC = 0;
+    unk19C = 0;
+}
+
