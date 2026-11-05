@@ -187,3 +187,15 @@ void PhysicsBody::func_00172420(void)
     f14C->func_001983A0();
     ((PhysicsBodyVT *)this)->v29();
 }
+
+void PhysicsBody::func_00172460(void)
+{
+    ((C_001576D0 *)this)->func_001576C0();
+    ((C_00171D00_C4VT *)fC4)->v34(0);
+    f14C->func_00198390();
+    f14C->func_00198E60();
+    fD4->func_001332A0();
+    fD8->func_001332A0();
+    fDC->func_001332A0();
+}
+
