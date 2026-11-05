@@ -50,6 +50,7 @@ struct C_000777A0 {
     u32 fF0;
     u32 fF4;
     C_000777A0 *func_000777A0(int a);
+    void func_00077890();
 };
 
 C_000777A0 *C_000777A0::func_000777A0(int a)
