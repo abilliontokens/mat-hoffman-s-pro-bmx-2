@@ -67,9 +67,10 @@ struct C_001AE3E0_Head {
     void *vtbl;
     char pad4[0x20];
     int f24;
-    char pad28[8];
+    int f28;
+    float f2C;
     int f30;
-    char pad34[4];
+    int f34;
     C_001AE3E0_Vec4 *f38;
     C_001AE3E0_Vec4 *f3C;
     C_001AE3E0_Head(int param_1)
