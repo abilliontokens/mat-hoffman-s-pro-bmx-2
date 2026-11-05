@@ -252,6 +252,14 @@ void *C_001B0040::func_001B0130(unsigned int key)
     return unkC;
 }
 
+C_001B0180 *C_001B0180::func_001B0180(void)
+{
+    vtbl = (void *)&D_0028C5E0;
+    unk4 = 0;
+    unk8 = 0;
+    return this;
+}
+
 void C_001B01A0::func_001B01A0(void) {
     extern int D_0028C5E0;
     unk0 = (int)&D_0028C5E0;
