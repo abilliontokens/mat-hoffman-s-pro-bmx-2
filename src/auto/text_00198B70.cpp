@@ -162,6 +162,36 @@ void C_00198B70::func_00198BE0(int a)
     v34(a, this);
 }
 
+void C_00198B70::func_00198C00(C_00198B70 *src, C_00198B70 *dst)
+{
+    char *s=(char *)src+0x28;
+    char *d=(char *)dst+0x28;
+    while((*d++=*s++)!=0) {}
+    ((S_00198B70_MatCopy *)&dst->fB0)->func_000264C0(&src->fB0);
+    dst->f180 &= 0xfe;
+    dst->f27b.b2=src->f27b.b2;
+    dst->f180b.b2=src->f180b.b2;
+    dst->f180b.b5=src->f180b.b5;
+    dst->f130=src->f130;
+    dst->f140=src->f140;
+    dst->f184=src->f184;
+    dst->f150=src->f150;
+    dst->f160=src->f160;
+    dst->f188=src->f188;
+    dst->f180b.b6=src->f180b.b6;
+    if(src->f178) {
+        v29(&dst->f178);
+        dst->f178->f170=dst->f170;
+        dst->f178->f17c=dst;
+        v34((int)src->f178,dst->f178);
+    } else dst->f178=0;
+    if(src->f174) {
+        v29(&dst->f174);
+        dst->f174->f170=dst;
+        v34((int)src->f174,dst->f174);
+    } else dst->f174=0;
+}
+
 void C_00198B70::func_00198DE0(void)
 {
     C_00198B70 * volatile self = this;
