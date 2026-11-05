@@ -165,6 +165,27 @@ struct C_0023EFB0 {
     void func_0023EFB0(void);
 };
 
+/* the pump thread's view of the stream: its fields and the queued-request walker */
+struct C_0023EFB0_Pump {
+    char pad0[0x34];
+    int f34;
+    char pad38[0x14];
+    int f4C;
+    char pad50[0x18];
+    int f68;
+    char f6c[0x1c];
+    char pad88[4];
+    unsigned int f8C;
+    char pad90[4];
+    int f94;
+    char pad98[8];
+    S_0023EA00_Link fA4;
+    void func_0023EFB0(int a0, int a1, int a2);
+    int func_0023EC71(int a0, int a1, void *req);
+};
+
+void __stdcall func_001DE7C2(int a);
+
 struct S_0023ED4C_Src {
     char pad0[0x10];
     int f10;
