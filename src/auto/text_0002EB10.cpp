@@ -4,7 +4,7 @@
 extern int D_002768FC;
 
 struct C_0002F190 {
-    unsigned int m[12];
+    float m[12];
     C_0002F190 *func_0002F190(void);
 };
 
