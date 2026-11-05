@@ -196,10 +196,7 @@ struct S_00018EB0_P {
     char pad0[4];
     C_00199600 *f4;
 };
-struct S_00018EB0_Q {
-    char pad0[4];
-    C_00182530 *f4;
-};
+
 struct C_00018EB0 {
     virtual void v0();
     virtual void v1();
