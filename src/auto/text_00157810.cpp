@@ -124,6 +124,19 @@ int C_00157810::func_00157A50(int a)
     return 1;
 }
 
+int C_00157810::func_00157A90(int a)
+{
+    f21_b2 = a;
+    if (f1C & 0x20) {
+        for (S_00157810_Child *c = f10; c != 0; c = c->fC) {
+            if ((c->f21 & 1) && !(c->f21 & 8) && (c->f18 & 0x20)) {
+                c->v18(a);
+            }
+        }
+    }
+    return 1;
+}
+
 int C_00157810::func_00157AE0(void)
 {
     if (f1C & 0x80) {
