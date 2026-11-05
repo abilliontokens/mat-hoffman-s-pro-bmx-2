@@ -61,12 +61,21 @@ struct S_00161170 {
     int unk8;
 };
 
+struct S_001B2340_Elem {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+};
+
 struct S_001B22E0 {
     int unk0;
     int unk4;
     int unk8;
     int unkC;
     void func_001B22E0();
+    S_001B2340_Elem *func_001B2340();
+    void func_001B2370(S_001B2340_Elem *e);
+    void func_001B22F0();
 };
 
 struct C_00161580 {
@@ -76,6 +85,8 @@ struct C_00161580 {
     int unk18;
     void *func_00161580(void);
     void func_0001DFE0();
+    void func_0001DFF0();
+    void func_001615B0(void);
 };
 
 
