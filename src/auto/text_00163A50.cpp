@@ -164,17 +164,13 @@ int C_001643A0::func_001643A0(void)
 
 unsigned char C_00164650::func_00164650(const char *name)
 {
-    int i = 0;
-    if (f1e8 != 0) {
-        do {
-            if (func_001EA426(f1ec[i].name, name) == 0) {
-                return i;
-            }
-            i++;
-        } while (i != f1e8);
-        return -1;
+    int i;
+    for (i = 0; i != f1e8; i++) {
+        if (func_001EA426(f1ec[i].name, name) == 0) {
+            return i;
+        }
     }
-    return i;
+    return -1;
 }
 
 void C_001646B0::func_001646B0(void)
@@ -218,3 +214,32 @@ void C_00164820::func_00164820(int a0) {
     unk30 = 0;
     unk34 = 0;
 }
+
+void C_00164650::func_00164840(S_00164650_Scale *scale, float time, float a2)
+{
+    float flag = a2;
+    if (*(int *)&a2 != 0) {
+        a2 = f34 / f18->f38 * scale->f38;
+    }
+    if (time != D_00275544) {
+        f44 = time;
+        f3c = time + f34;
+        f40 = f34;
+        f38 = f34;
+        f1c = f18;
+        if (f18 == 0 || f30 != 0) {
+            f1c = 0;
+            func_00164770();
+        }
+        f30 = 1;
+    } else {
+        f30 = 0;
+    }
+    f10 = 0;
+    f18 = scale;
+    f34 = 0;
+    if (*(int *)&flag != 0) {
+        f34 = a2;
+    }
+}
+
