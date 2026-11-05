@@ -65,3 +65,16 @@ void C_000C8F10::func_000C8F10(void) {
     func_000C8D30();
     func_00157960();
 }
+
+void BmxUIPageGameOptions::func_000C9050()
+{
+    vtbl = &D_0027E3F4;
+    for (int i = 0; i < 12; i++) {
+        if (arr334[i] != 0) {
+            arr334[i]->Destroy(1);
+            arr334[i] = 0;
+        }
+    }
+    func_001BE3F0();
+}
+
