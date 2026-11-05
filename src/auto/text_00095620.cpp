@@ -60,7 +60,8 @@ struct C_00095A00 {
     int f38;
     char pad3C[0x14];
     S_00095A00_Vt *f50;
-    char pad54[0x14];
+    int f54;
+    char pad58[0x10];
     S_00095A00_Sub f68;
     int func_00095A00(int n);
     int func_000952F0(void);
