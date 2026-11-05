@@ -94,7 +94,10 @@ struct BmxInGameMenuSub {
     virtual void v32();
     virtual void v33();
     virtual void v34();
-    char pad4[0x154];
+    virtual void v35();
+    char pad4[0x1D];
+    u8 unk21;
+    char pad22[0x136];
     C_001C4D50 *unk158;
     char pad15C[0x98];
     int unk1F4;
