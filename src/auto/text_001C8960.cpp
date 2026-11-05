@@ -60,3 +60,19 @@ struct C_001C96E0 {
     void func_001578D0(void);
     void func_001C96E0(void);
 };
+
+void C_001C96E0::func_001C96E0(void) {
+    int idx = D_002EFDB8->f4->f2c->f3c;
+    C_001C96E0_Node *node;
+
+    if (f108[idx] == 0) {
+        f10C = 0;
+        func_001578D0();
+        return;
+    }
+    f10C = 1;
+    node = D_002A829C->f14[f220[idx].f4].f4;
+    node->func_001B07A0();
+    f224 = D_002F0630->f10[node->fD4];
+    func_001578D0();
+}
