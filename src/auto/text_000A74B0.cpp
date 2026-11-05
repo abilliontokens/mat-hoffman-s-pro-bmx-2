@@ -216,14 +216,60 @@ struct S_A7FE0_Rec {
     char *name;
 };
 struct S_A7FE0_Sub {
-    char pad0[0xa0];
-    char name[0x104];
-    char pad1a4[4];
-    int pad1a8;
-    char padx[0x58 - 0x4c];
+    char pad0[0x58];
     int f58;
+    char pad5c[0xa0 - 0x5c];
+    char name[0x10c];
+    S_A7FE0_Rec **f1ac;
 };
-struct S_A7FE0_Ent;
+struct S_A7FE0_Ent {
+    char pad0[0x28];
+    S_A7FE0_Sub *f28;
+    char pad2c[0x5c - 0x2c];
+    float x;
+    float y;
+    float z;
+    int func_000219E0(int idx);
+};
+struct S_A7FE0_Cam {
+    void func_00198390(void);
+    void func_001983A0(void);
+};
+struct S_A7FE0_Mid {
+    char pad0[4];
+    S_A7FE0_Cam *f4;
+};
+struct S_A7FE0_Item {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    char pad4[0x38];
+    S_A7FE0_Mid *f3c;
+    char pad40[0xc4 - 0x40];
+    int fc4;
+    char padc8[0x42c - 0xc8];
+    char name[1];
+    int func_001C6E30(char *name);
+    void func_001C6DA0(int a, int b);
+};
+struct S_A7FE0_Obj {
+    char pad0[0x24];
+    float x;
+    float y;
+    float z;
+    char pad30[0x2e0 - 0x30];
+    float radius;
+};
+struct S_A7FE0_Req {
+    char pad0[8];
+    char name[0x104];
+    int type;
+    char name2[1];
+};
 struct Hook_000A79E0 {
     char pad0[0x30];
     int f30;
@@ -231,6 +277,7 @@ struct Hook_000A79E0 {
     S_A7FE0_Ent **f60;
     void func_000216F0(char *a, int b, Obj_000A79E0 *c);
 };
+extern "C" int func_001EA426(const char *a, const char *b);
 struct Pt_000A79E0 {
     void func_001577A0(Obj_000A79E0 *o, int f);
     void func_00133140(Obj_000A79E0 *o, int f);
