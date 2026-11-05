@@ -83,6 +83,7 @@ struct S_000BBE30_Audio {
 };
 
 extern S_000BBE30_Audio *D_002EFDB8;
+extern S_000BBE30_Game *D_002A8490;
 
 /* 0x1a8-byte entry of C_000BBE30::f27C */
 struct S_000BBE30_Entry {
@@ -199,12 +200,14 @@ int C_000BBE30::func_000BC0F0(int idx)
 undefined4 C_000BC180::func_000BC130(void)
 {
     S_000BC180_Entry *e;
+    int *tbl;
     if (D_002A8490->f2E0->f324 == 1) {
         e = f27c;
     } else {
         e = &f27c[f284];
     }
-    e->f128 = e->f120[f288];
+    tbl = e->f120;
+    e->f128 = tbl[f288];
     return f288;
 }
 
