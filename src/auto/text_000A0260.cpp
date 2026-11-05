@@ -51,6 +51,7 @@ extern "C" char *__cdecl strcpy(char *dst, const char *src);
 extern char D_002A5558[];
 extern char D_002A5348[];
 extern char D_002A5450[];
+extern char D_00275678[];
 extern char D_002764F0[];
 
 struct C_000A0AE0 {
@@ -202,5 +203,10 @@ C_000A0AE0 *C_000A0AE0::func_000A0AE0(int a)
 void func_000A0B80(void) {
     D_002A829C->func_00161680();
     D_002AA6C0->func_001B2640();
+}
+
+int C_000A0AE0::func_000A10B0(int a)
+{
+    return a;
 }
 
