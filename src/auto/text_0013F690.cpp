@@ -38,6 +38,20 @@ struct C_0013FA90 {
     void *func_0013FA90(int flags);
 };
 
+C_0013F7B0 *func_0013F7B0(void)
+{
+  void *func_001E8A44(int size);
+  extern int D_00284EB8;
+  C_0013F7B0 *p;
+
+  p = (C_0013F7B0 *)func_001E8A44(4);
+  if (p == 0) {
+    return 0;
+  }
+  p->vtbl = (void *)&D_00284EB8;
+  return p;
+}
+
 void *C_0013FA10::func_0013FA10(int a0)
 {
   int __stdcall func_0015B1A0(int);
@@ -48,6 +62,21 @@ void *C_0013FA10::func_0013FA10(int a0)
   return this;
 }
 
+void C_0013FA30::func_0013FA30(void)
+{
+  void *func_001E8A44(int size);
+  extern int D_00284EE4;
+  C_0013FA30_Data *p;
+
+  p = (C_0013FA30_Data *)func_001E8A44(0xc);
+  if (p != 0) {
+    p->func_0015B150();
+    p->vtbl = (void *)&D_00284EE4;
+  }
+  f24 = p;
+  (**(code **)(*(int *)p + 4))();
+}
+
 undefined4 C_0013FA70::func_0013FA70(undefined4 param_1)
 {
   int __stdcall func_0015B210(int);
@@ -55,6 +84,19 @@ undefined4 C_0013FA70::func_0013FA70(undefined4 param_1)
   
   func_0015B210((int)(param_1));
   return in_ECX;
+}
+
+void *C_0013FA90::func_0013FA90(int flags)
+{
+  extern int D_00284EE4;
+  void func_001E891B(void *);
+
+  vtbl = (void *)&D_00284EE4;
+  func_0015B170();
+  if (flags & 1) {
+    func_001E891B(this);
+  }
+  return this;
 }
 
 undefined4 C_00140660::func_00140660(byte param_1)
