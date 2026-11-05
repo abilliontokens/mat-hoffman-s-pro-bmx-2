@@ -313,6 +313,28 @@ int C_001B6410::func_001B6440(S_001B6130_Stream *stream, S_001B6440_Param *param
     return 1;
 }
 
+int C_001B6410::func_001B64C0(S_001B64C0_Param *param, C_001BBAA0 *obj)
+{
+    S_001B64C0_Item *item = param->f3c0->f28[unk10C - 1];
+    switch (item->fc) {
+    case 0:
+    case 1:
+    case 2:
+    case 8:
+    case 9:
+    case 0xb:
+    case 0xc:
+        void *owner = item->f4[unk110 - 1];
+        if (unk114 != 0) {
+            obj->func_001BBAA0(owner, (void *)func_00169C00);
+        } else {
+            obj->func_001BBAA0(owner, &D_00169C30);
+        }
+        break;
+    }
+    return 1;
+}
+
 undefined4 func_001B6560(undefined4 *param_1)
 {
   if (param_1 == (undefined4 *)0x0) {
@@ -346,6 +368,18 @@ void C_001B65D0::func_001B65D0(void) {
 
 void C_001B65E0::func_001B65E0(void) {
     unk0 = 0;
+}
+
+int C_001B6930::func_001B6930(S_001B6130_Stream *stream, int a1)
+{
+    stream->func_00168CB0(&D_00275AD4, &D_002AA9F4, this);
+    stream->func_00168CB0(&D_0027CCD8, &D_002AA9F4, f10);
+    stream->func_00168C50(&D_0028CAB8, 0, &f40);
+    stream->func_00168C50(&D_0028CAB0, 0, &f44);
+    stream->func_00168C50(&D_0028CAA8, 0, &f48);
+    func_00167FE0(f20, f30, f40 * 0.0174532905f, f44 * 0.0174532905f, f48 * 0.0174532905f);
+    stream->func_00168C50(&D_0028CDD8, 0, &f4c);
+    return 1;
 }
 
 void C_001B69F0::func_001B69F0(void) {
