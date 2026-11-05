@@ -175,3 +175,26 @@ void BmxUIPageMedia::func_000EB420(void)
     func_001BE3F0();
 }
 
+void BmxUIPageMedia::func_000EB460(void)
+{
+    unk2B4 = 1;
+    unk29C = 0;
+    unk2B0 = 0;
+    unk2AC = 0;
+    unk298 = 0;
+    unk2A0 = 0;
+    unk2BC = 0;
+    unk2C4 = 0;
+    unk2C0 = 0;
+    unk2C8 = 0;
+    unk2CC = 0;
+    unk2D0 = 0;
+    unk2D4 = 0;
+    unk2D8 = 0;
+    D_002B91AC->f34->func_0005E840(D_002A8490->p2E8->f4->f918);
+    D_002B91AC->func_000BF860(0, 0x1EB, 0x184, 0);
+    D_002B91AC->f38->func_0005E840(D_002A8490->p2E8->f4->f7C8);
+    D_002B91AC->f80->func_0005E840(D_002A8490->p2E8->f4->f900);
+    D_002B91AC->f84->func_0005E840(D_002A8490->p2E8->f4->f978);
+}
+
