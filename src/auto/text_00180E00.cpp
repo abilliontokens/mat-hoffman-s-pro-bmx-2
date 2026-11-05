@@ -189,12 +189,11 @@ int C_00181140::func_00181140(int a1, char *path, int a3)
 {
     char buf[0x104];
     int h;
-    int n2;
+    int v14;
     int ptr;
     int v18;
     int vC;
     int v10;
-    int v14;
     S_00181140_Loaded *p;
     void *m;
 
@@ -218,7 +217,7 @@ int C_00181140::func_00181140(int a1, char *path, int a3)
     if (v18 != 0x4d2 || func_001EA426((char *)&vC, &D_00284638) != 0 || v10 != 1)
         D_002BEAAC->func_0013C110(h);
     func_00132E90(h, &v14);
-    func_00180600(*(volatile int *)&a3, v14);
+    func_00180600(a1, h);
     D_002BEAAC->func_0013C110(h);
     f104 = *(volatile int *)&a3;
     m = func_001E8A44(0x9c);
@@ -229,10 +228,9 @@ int C_00181140::func_00181140(int a1, char *path, int a3)
     p->f88 = func_001E8A44(p->f7c * 4);
     p->f8c = func_001E8A44(p->f7c * 4);
     p->f90 = func_001E8A44(p->f7c * 2);
-    n2 = p->f7c * 2;
-    p->f70 = AllocZero_00181140(n2 * 16, n2);
-    p->f74 = AllocZero_00181140(p->f7c * 16, p->f7c);
-    p->f78 = AllocZero_00181140(p->f7c * 16, p->f7c);
+    p->f70 = AllocZero_00181140(p->f7c * 2, 16);
+    p->f74 = AllocZero_00181140(p->f7c, 16);
+    p->f78 = AllocZero_00181140(p->f7c, 16);
     f54 = p;
     return 1;
 }
