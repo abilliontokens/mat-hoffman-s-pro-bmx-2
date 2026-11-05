@@ -118,6 +118,17 @@ struct C_0017A1D0 {
     void func_00179950();
 };
 
+extern int D_002A8CEC, D_002A8CF0, D_002A8CF4, D_002A8CF8;
+
+/* ProjectedShadow: GameObject (0xb0 bytes) followed by four vec4s and shadow state */
+struct C_0017A4D0 {
+    void *vtbl;
+    char pad4[0xAC];
+    int u[45];
+    C_0017A4D0 *func_0017A4D0(int a0);
+    void func_00157600(int a0);
+};
+
 struct C_0017A860 {
     char pad0[0x138];
     int f138;
