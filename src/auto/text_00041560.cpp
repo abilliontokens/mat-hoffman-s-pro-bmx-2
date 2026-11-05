@@ -86,11 +86,50 @@ struct S_41CF0_Slot31 {
 struct S_41CF0_Obj95C {
     char pad0[0x95c];
     int f95c;
+    void func_0010C090(void *a, void *b, void *c, int d);
 };
 
 struct S_41CF0_Obj1A8 {
     char pad0[0x1a8];
     S_41CF0_Obj95C *f1a8;
+    void func_000A4500(int a, int b);
+};
+
+struct S_41DC0_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+};
+
+struct S_41DC0_Text {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    void func_0008A020(char *s);
+    void func_0008A040(char *s);
+    void func_0008B670(char *s);
+};
+
+struct S_41DC0_Tex {
+    void func_00198390(void);
+};
+
+struct S_41DC0_Gfx {
+    char pad0[4];
+    S_41DC0_Tex *f4;
+};
+
+struct S_41DC0_Btn {
+    char pad0[0x1a4];
+    S_41DC0_Gfx *f1a4;
+};
+
+struct S_41DC0_Menu {
+    void func_0002F450(int a0);
 };
 
 struct S_41CF0_Owner {
@@ -188,7 +227,7 @@ void BmxEventEditor::func_00041CF0()
     int idx = D_002A8490->f2e0->f300;
     if (D_002A8490->f8->arr14[idx]->v16() == 0 && f2c8 == 0) {
         if (f48c != -1 || f564 != 0) {
-            func_0003D910(0.0f);
+            ((S_3D910_Base *)this)->func_0003D910(0);
         }
         v18(1);
         f2c8 = 1;
