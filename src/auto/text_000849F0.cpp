@@ -50,7 +50,8 @@ struct C_00084FF0 {
     char pad0[0x24];
     S_84FF0_Text *f24;
     S_84FF0_Text *f28;
-    char pad2C[8];
+    S_84FF0_Text *f2C;
+    S_84FF0_Text *f30;
     S_84FF0_F34 *f34;
     S_84FF0_F38 *f38;
     char pad3C[4];
