@@ -10,7 +10,7 @@ int func_001E9760(void *f);
 void func_001E8390(void *p);
 int func_001F5059(void *ld, char **end, const char *s, int a, int b, int c, int d);
 
-void func_001F46F0(int a, int b, int c);
+int func_001F46F0(int a, int b, int c);
 short func_001F59DC(int a, void *b);
 
 struct F3Obj {
