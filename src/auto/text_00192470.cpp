@@ -15,7 +15,9 @@ struct C_001926D0 {
 
 
 struct C_00192470 {
-    char pad0[0x28];
+    char pad0[0xE];
+    unsigned char fE;
+    char padF[0x19];
     int f28;
     int f2c;
     int f30;
@@ -26,6 +28,11 @@ struct C_00192470 {
     int *func_00192470(int *param_1);
     void func_001924E0(int a1, int *a2, int a3, int a4);
     int func_00192570();
+    void func_00192610();
+    void func_00192630();
+    void func_00192680();
+    void func_00192840(void *row, void *limit);
+    void func_001927C0(void *row, int limit);
 };
 
 struct C_00192CA0 {
@@ -51,6 +58,49 @@ int *C_00192470::func_00192470(int *param_1)
         }
     }
     return p;
+}
+
+void C_00192470::func_001924E0(int a1, int *a2, int a3, int a4)
+{
+    if (f38 != 0 && a2 == f38) {
+        f38 = (int *)(*(int *)f38 & 0xfffffffc);
+        *a2 = a1;
+    } else {
+        f30++;
+        *a2 = a1;
+    }
+}
+
+int C_00192470::func_00192570()
+{
+    int *row;
+    if (f34 != 0) {
+        int count = f2c;
+        row = f34[f3C];
+        while (f3C < f2c - 1) {
+            while (f40 < f28 && (row[f40] & 2) != 0) {
+                f40++;
+            }
+            if (f40 < f28) {
+                goto found;
+            }
+            f3C++;
+            row = f34[f3C];
+            f40 = 0;
+        }
+        if (f3C < count) {
+            while (f40 < f30 && (row[f40] & 2) != 0) {
+                f40++;
+            }
+            if (f40 < f30) {
+                goto found;
+            }
+            f3C++;
+        }
+    }
+    return 0;
+found:
+    return row[f40++];
 }
 
 undefined4 C_001926D0::func_001926D0(byte param_1)
