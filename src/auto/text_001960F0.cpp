@@ -7,6 +7,10 @@ extern float D_00275544;
 extern float D_00275460;
 extern float D_0028B010;
 
+extern float D_002755E8;
+#include <xmmintrin.h>
+static __forceinline void Trunc_00196560(int * volatile out, float f) { *out = _mm_cvttss_si32(*(__m128 *)&f); }
+
 struct S_001968C0_Hdr {
     float a;
     u32 b;
@@ -143,5 +147,86 @@ void C_00196290::func_00196360(u8 *param_1)
     f54 += 8;
     f68 += 8;
     f64 += 8;
+}
+
+int C_00196290::func_001968C0(void)
+{
+    C_00196290 * volatile self = this;
+    S_001968C0_Hdr h;
+    u32 i;
+    int off;
+    char c;
+    int t;
+
+    h = *(S_001968C0_Hdr *)f58;
+    if (h.a == D_0028B010) {
+        return 1;
+    }
+    f30 = f48;
+    {
+        C_00196290 *p = self;
+        *(S_001968C0_Hdr *)&p->f48 = *(S_001968C0_Hdr *)p->f58;
+    }
+    {
+        C_00196290 *p = self;
+        p->f58 += 8;
+    }
+    if ((self->f4c & 0x80000000) == 0x80000000) {
+        for (i = 0; i < self->f74; i++) {
+            C_00196290 *p = self;
+            int m;
+            off = i * 4;
+            m = *(int *)((char *)p->f80 + off);
+            if (m == 0) {
+                *(int *)((char *)p->f9c + off) = *(int *)((char *)p->fa0 + off);
+                { C_00196290 *q = self; *(int *)((char *)q->fa0 + off) = *(int *)q->f58; }
+                { C_00196290 *q = self; q->f58 += 4; }
+                { C_00196290 *q = self; if ((q->f4c & 0x7fffffff) == 0) *(int *)((char *)q->f9c + off) = *(int *)((char *)q->fa0 + off); }
+            } else if (m == 1) {
+                *(int *)((char *)p->fb0 + off) = *(int *)((char *)p->fb4 + off);
+                { C_00196290 *q = self; *(int *)((char *)q->fb4 + off) = *(int *)q->f58; }
+                { C_00196290 *q = self; q->f58 += 4; }
+                { C_00196290 *q = self; if ((q->f4c & 0x7fffffff) == 0) *(int *)((char *)q->fb0 + off) = *(int *)((char *)q->fb4 + off); }
+            } else if (m == 2) {
+                p->fbc[i] = p->fb8[i];
+                { C_00196290 *q = self; q->fb8[i] = *q->f58; }
+                { C_00196290 *q = self; q->f58 += 1; }
+                { C_00196290 *q = self; if ((q->f4c & 0x7fffffff) == 0) q->fbc[i] = q->fb8[i]; }
+            }
+        }
+    } else {
+        for (i = 0; i < self->f74; i++) {
+            C_00196290 *p = self;
+            int m;
+            off = i * 4;
+            m = *(int *)((char *)p->f80 + off);
+            if (m == 0) {
+                *(int *)((char *)p->f9c + off) = *(int *)((char *)p->fa0 + off);
+                { C_00196290 *q = self; c = *(char *)q->f58; q->f58++; }
+                if (c == 0x7f) {
+                    { C_00196290 *q = self; *(int *)((char *)q->fa0 + off) = *(int *)q->f58; }
+                    { C_00196290 *q = self; q->f58 += 4; }
+                } else {
+                    C_00196290 *q = self;
+                    *(float *)((char *)q->fa0 + off) += (float)c * *(float *)((char *)q->f94 + off);
+                }
+            } else if (m == 1) {
+                *(int *)((char *)p->fb0 + off) = *(int *)((char *)p->fb4 + off);
+                { C_00196290 *q = self; c = *(char *)q->f58; q->f58++; }
+                if (c == 0x7f) {
+                    { C_00196290 *q = self; *(int *)((char *)q->fb4 + off) = *(int *)q->f58; }
+                    { C_00196290 *q = self; q->f58 += 4; }
+                } else {
+                    C_00196290 *q = self;
+                    t = (int)((float)c * *(float *)((char *)q->f94 + off));
+                    { C_00196290 *r = self; *(int *)((char *)r->fb4 + off) += t; }
+                }
+            } else if (m == 2) {
+                { C_00196290 *q = self; q->fb8[i] = *q->f58; }
+                { C_00196290 *q = self; q->f58 += 1; }
+            }
+        }
+    }
+    return 0;
 }
 
