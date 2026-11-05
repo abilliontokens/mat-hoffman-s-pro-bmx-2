@@ -78,8 +78,11 @@ struct XboxMusic {
     void func_001CE920();
     void func_001CEF50();
     int func_001CEFD0(int id);
+    int func_001CF040(int arg);
     void func_0001C9B0();
 };
+
+int func_00011260(int lo, int hi);
 
 void XboxMusic::func_001CE920()
 {
