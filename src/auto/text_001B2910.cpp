@@ -1,7 +1,21 @@
 /* 11 functions from 0x001B2910 to 0x001B35D0, found by Ghidra. */
 #include "common.h"
 
+struct S_001B3560 {
+    char pad0[0x12];
+    char kind;
+    char pad13;
+    void *f14;
+    char pad18[4];
+    char f1c;
+};
+
 int func_001B2910(int param_1);
+S_001B3560 *func_001B33A0(int a, int b);
+int func_001B2CD0(S_001B3560 *item, int a);
+int func_001B2F10(S_001B3560 *item, int a);
+int func_001B3150(S_001B3560 *item, int a);
+void func_001E8390(void *ptr);
 
 int func_001B2B90(int param_1)
 {
