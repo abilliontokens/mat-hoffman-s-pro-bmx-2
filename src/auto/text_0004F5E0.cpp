@@ -200,7 +200,7 @@ struct C_0004FC20 {
     void func_00032A20();
     int func_00157BF0(int *a, int b);
     int func_0004FC20(int *a, int b);
-    void ResetRiders()
+    __forceinline void ResetRiders()
     {
         f64->f4C0->v31(1, 1);
         ((G_4FC20 *)D_002A8490)->f2E0->f2FC->v18(1);
