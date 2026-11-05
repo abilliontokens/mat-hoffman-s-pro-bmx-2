@@ -48,7 +48,7 @@ int __cdecl func_001F48A1(S_CrtFloat *out, char *str);
 
 /* float-to-text converters behind func_001EB786 (_cftoe, _cftof, _cftog) */
 void __cdecl func_001EB5A0(double *arg, char *buffer, int precision, int caps);
-void __cdecl func_001EB6A7(double *arg, char *buffer, int precision);
+char *__cdecl func_001EB6A7(double *arg, char *buffer, int precision);
 void __cdecl func_001EB6F9(double *arg, char *buffer, int precision, int caps);
 
 /* per-thread CRT data (_tiddata), only the fields the startup code touches */
