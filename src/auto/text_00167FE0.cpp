@@ -45,7 +45,7 @@ struct C_00168280 {
     int fc;
     int f10;
     int f14;
-    int f18;
+    char *f18;
     int f1c;
     int f20;
     char f24;
