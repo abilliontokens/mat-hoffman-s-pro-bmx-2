@@ -117,10 +117,54 @@ void __cdecl func_000265C0(void *a, Vec_001BB950 *b, int c, int d, int e, int f)
 int func_00011260(int lo, int hi);
 int func_00135C70(int param_1, int param_2, int *param_3, int param_4);
 
+extern float D_002AAE10;
+
+/* position vector, built z, y, x, w */
+struct V4_001BB680 {
+    float x, y, z, w;
+    void Init()
+    {
+        z = 0.0f;
+        y = 0.0f;
+        x = 0.0f;
+        w = 1.0f;
+    }
+};
+
+/* direction vector, built w, z, y, x */
+struct V4b_001BB680 {
+    float x, y, z, w;
+    void Init()
+    {
+        w = 1.0f;
+        z = 0.0f;
+        y = 0.0f;
+        x = 0.0f;
+    }
+};
+
+/* 4x4 float matrix, 16-byte aligned for movaps */
+__declspec(align(16)) struct S_001BB680_Mat {
+    float m[16];
+};
+
+struct C_000264C0 {
+    void func_000264C0(void *param);
+};
+
+struct C_00157600 {
+    void func_00157600(int a);
+};
+
 struct C_001BBAA0 {
-    char pad0[0x21];
+    void *vtbl;
+    char pad4[0x1D];
     u8 unk21;                         /* 0x21 */
-    char pad22[0x6E];
+    char pad22[2];
+    V4_001BB680 f24;
+    V4b_001BB680 f34;
+    char pad44[0xC];
+    char f50[0x40];
     int unk90;                        /* 0x90 */
     int unk94;                        /* 0x94 */
     int unk98;                        /* 0x98 */
