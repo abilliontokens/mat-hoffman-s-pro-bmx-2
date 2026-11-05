@@ -59,11 +59,13 @@ void ResponseEmitter::func_001A2DD0(int id)
     int i;
 
     for (i = 0; i < list1d8.count; i++) {
-        if (list1d8.at(i)->f0 == id) {
+        S_001A2C00_Elem *e = list1d8.at(i);
+        if (e->f0 == id) {
             list1d8.at(i)->f4->v6(0);
             list1d8.removeAt(i);
         }
     }
+    return;
 }
 
 void ResponseEmitter::func_001A2E80(void)
