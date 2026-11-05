@@ -37,3 +37,12 @@ struct BmxEventPush {
     void func_00034090();
     void func_001578D0();
 };
+
+void *BmxEventPush::func_00050D40(int flags) {
+    vtbl = &D_0027784C;
+    func_00033220();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
