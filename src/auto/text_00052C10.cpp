@@ -221,7 +221,7 @@ extern "C" int __cdecl func_001ADCC0(char *buf, int size, const char *fmt, const
 struct C_52D90_Ui {
     int func_00092BE0();
     void func_00093280(float v);
-    int func_000928D0(...);
+    int func_000928D0();
 };
 struct C_52D90_Net {
     int func_001D4720(int a, int b);
