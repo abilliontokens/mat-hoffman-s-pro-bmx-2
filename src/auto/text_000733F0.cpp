@@ -35,9 +35,14 @@ struct C_00073AE0 {
     u32 unk11C;                  /* 0x11C */
     u32 unk120;                  /* 0x120 */
     u32 unk124;                  /* 0x124 */
-    char pad128[0x6C];           /* 0x128 */
+    char pad128[0x04];           /* 0x128 */
+    u32 unk12C[8];               /* 0x12C */
+    u32 unk14C[8];               /* 0x14C */
+    u32 unk16C[8];               /* 0x16C */
+    char pad18C[0x08];           /* 0x18C */
     u32 unk194;                  /* 0x194 */
-    char pad198[0x10];           /* 0x198 */
+    u32 unk198[2];               /* 0x198 */
+    u32 unk1A0[2];               /* 0x1A0 */
     u32 unk1A8;                  /* 0x1A8 */
     u32 unk1AC;                  /* 0x1AC */
     char pad1B0[0x04];           /* 0x1B0 */
