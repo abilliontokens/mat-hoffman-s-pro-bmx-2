@@ -84,13 +84,9 @@ extern "C" double __cdecl acos(double);
 extern int D_002A7704;
 extern int D_002A7708;
 
-/* arccos lookup table: one entry per power-of-two input range */
-struct AcosEntry {
-    float lo;
-    float scale;
-    float *table;
-};
-extern AcosEntry D_002DF740[25];
+/* arccos lookup tables, 12 bytes per power-of-two input range:
+   float lo; float scale; float *table. D_002DF748 is the first table
+   pointer, D_002DF868 the last one. */
 extern float *D_002DF748;
 extern char D_002DF868;
 extern float D_002756EC;
