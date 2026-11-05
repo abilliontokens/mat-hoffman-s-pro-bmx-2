@@ -93,7 +93,7 @@ struct C_00142C70 {
 
 struct SpriteTweak {
     void *vtbl;
-    void *unk4;
+    C_00144640 *unk4;
     int unk8;
     int unkC;
     C_0014A520 *unk10;
@@ -181,6 +181,26 @@ void func_001ADD80(S_func_001ADD80_arg0 *r)
         r->unk70 = 0x1b0;
         r->unk78 = 0x1c0;
     }
+}
+
+void SpriteTweak::func_001ADDF0(int a)
+{
+    C_00144640 *p = (C_00144640 *)func_001E8A44(0x14);
+    int saved;
+
+    p = p != 0 ? p->func_00144640() : 0;
+    unk4 = p;
+    p->v1(a, D_002AA470);
+    D_002A829C->func_00161680();
+    unk8 = D_002A829C->unk14[p->unk4].unk4->unk54->unk18;
+    unkC = D_002AA6C0->v7((int)&D_0028C1B0, 0);
+    D_002AA6C0->v6(unkC, 0);
+    saved = D_002ABE74;
+    D_002ABE74 = 0;
+    D_002AA6C0->func_001B2640();
+    D_002ABE74 = saved;
+    p->unk10 = this;
+    p->unkC &= 0xfe;
 }
 
 SpriteTweak *SpriteTweak::func_001ADEB0(void)
