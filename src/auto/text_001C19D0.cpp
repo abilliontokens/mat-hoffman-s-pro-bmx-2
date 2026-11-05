@@ -42,6 +42,15 @@ struct C_001C2290 {
 };
 
 
+void C_001C2140::func_001C2140() {
+    if (unk2C != 0) {
+        ((Sub_001D5AD0 *)((char *)this + 0x68))->func_001D5AD0();
+    } else {
+        ((Sub_001D5AD0 *)((char *)this + 0xcc))->func_001D5AD0();
+    }
+    func_00157960();
+}
+
 void C_001C2190::func_001C2190(int a0) {
     func_001BF980(a0);
     func_00157A00(a0);
