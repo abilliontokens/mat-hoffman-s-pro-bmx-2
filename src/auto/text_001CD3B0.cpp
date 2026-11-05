@@ -372,6 +372,63 @@ void XboxSoundGroup::func_001CD8F0(int a)
     func_00157A00(a);
 }
 
+extern "C" void *memset(void *d, int c, unsigned int n);
+#pragma intrinsic(memset)
+int C_001CD940::func_001CD940(S_001CD940_Dev *dev)
+{
+    S_001CD940_Buf *buf;
+    int desc[6];
+    int r;
+
+    r = func_00220B26(dev->f8, &buf, f8);
+    if (r < 0)
+        return r;
+    if (fC != 0) {
+        r = func_00221B47(fC, buf);
+        if (r < 0)
+            return r;
+    } else {
+        memset(desc, 0, sizeof(desc));
+        if (dev->f10C & 8)
+            desc[0] |= 0x10;
+        desc[0] |= (int)&D_00040000;
+        desc[1] = 3;
+        desc[2] = (int)buf;
+        r = func_002228F8(desc, &fC);
+        if (r < 0)
+            return r;
+    }
+    if (f10 == 0) {
+        f10 = func_001DDB7E(0xd800, -1, 0, 0x204);
+        if (f10 == 0)
+            return 0x8007000e;
+    }
+    void (__stdcall *enter)(void *) = _imp__RtlEnterCriticalSection;
+    dev->f1A0 = dev->f19C = buf->f4;
+    enter(D_002F08EC->f138 + 0x50);
+    void (__stdcall *leave)(void *) = _imp__RtlLeaveCriticalSection;
+    dev->f140 = this;
+    f4 = dev;
+    leave(D_002F08EC->f138 + 0x50);
+    if (!dev->v9(dev->f1A8)) {
+        goto fail;
+    }
+    if (!dev->func_001CC4B0(dev->f1B4, dev->f1E8, dev->f1F8, dev->f1D8)) {
+fail:
+        enter(D_002F08EC->f138 + 0x50);
+        dev->f140 = 0;
+        f4 = 0;
+        leave(D_002F08EC->f138 + 0x50);
+        return 0x80004005;
+    }
+    f20 |= 8;
+    enter(D_002F08EC->f138 + 0x50);
+    f4->f208 |= 8;
+    f4->f208 &= 0xbf;
+    leave(D_002F08EC->f138 + 0x50);
+    return 0;
+}
+
 int C_001CDB10::func_001CDB10(void)
 {
     unsigned long status;
