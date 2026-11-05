@@ -143,6 +143,31 @@ struct C_0004EBA0 {
     void func_0004EC40(void);
 };
 
+void C_0004ECC0::func_0004E680(void)
+{
+    extern C_0004ECC0Vec D_002A174C;
+    char buf[0x104];
+    char name[0x104];
+    C_00168280 *obj;
+    void *mem;
+    int i;
+
+    func_001ADCC0(buf, 0x104, D_00277744, D_002A5870, (char *)f64 + 0x134);
+    if (D_002BEAAC->func_0013B1A0(buf) != 0) {
+        mem = func_001E8A44(0x4cc);
+        obj = mem != 0 ? ((C_00168280 *)mem)->func_00168280() : 0;
+        obj->func_00169490(buf, 0);
+        obj->func_00169710(D_00277734);
+        obj->func_00168A10(D_0027771C, &f284);
+        for (i = 0; i < f284; i++) {
+            func_001ADCC0(name, 0x104, D_0027770C, i + 1);
+            obj->func_00168CB0(name, &D_002A174C, &f290[i * 4]);
+            func_001ADCC0(name, 0x104, D_002776F8, i + 1);
+            obj->func_00168550(name, &f3d0[i * 0x78], 0x77);
+        }
+    }
+}
+
 int C_0004EBA0::func_0004EBA0(void)
 {
     fD54 = 0;
