@@ -77,7 +77,7 @@ void C_00146DC0::func_00146DC0()
 C_00146E20 *C_00146E20::func_00146E20()
 {
     ((C_001B0180 *)this)->func_001B0180();
-    vtbl2 = (void *)&D_00284E94;
+    *(void *volatile *)((char *)this + 0xc) = (void *)&D_00284E94;
     vtbl = (void *)&D_0028617C;
     vtbl2 = (void *)&D_00286170;
     unk18 = 0;
