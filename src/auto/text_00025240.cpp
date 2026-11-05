@@ -100,6 +100,57 @@ struct C_00168B90 {
     int func_00168B90(const char *name, void *out);
 };
 
+extern float D_00275544, D_00276520;
+extern char D_002A0F74[];
+int func_001E8858(float f);
+void __stdcall func_0001CE80(void *a, void *b, void *c, float d, float e);
+
+struct S_000255D0_Part {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5(int a);
+};
+
+struct S_000255D0_Id {
+    int id;
+};
+
+/* one bird-like instance held in the manager's list at +0x60 */
+struct S_000255D0_Item {
+    char pad0[4];
+    S_000255D0_Part *f4;
+    char pad8[0x2c];
+    int f34;
+    char pad38[0xc];
+    int f44;
+    char pad48[0x14];
+    float f5c, f60, f64;
+    char pad68[0x10];
+    char f78;
+    char f79;
+    void func_00023340();
+    void func_000235C0();
+};
+
+struct C_000255D0 {
+    char pad0[0x24];
+    float f24;
+    char pad28[8];
+    int f30;
+    char pad34[0xc];
+    int f40;
+    char pad44[0x14];
+    int f58;
+    S_000255D0_Id **f5c;
+    S_000255D0_Item **f60;
+    char pad64[0x10];
+    Vec4_257E0 f74;
+    void func_000255D0(Vec4_257E0 *pos, float radius, float t, int chance);
+};
+
 struct AmbientDebris {
     void *vtbl;
     float unk4;
