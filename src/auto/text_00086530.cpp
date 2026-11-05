@@ -151,8 +151,13 @@ struct BestScoreOverlay {
     u32 f3C;
     u32 f40;
     u32 f44;
-    char pad48[0x3C];
+    char **f48;
+    char pad4c[0x24];
+    int f70;
+    char f74[0xc];
+    int f80;
     int f84;
+    BestScoreOverlay *func_00086530(char **players, int idx);
     BestScoreOverlay *func_00086DC0(int a0);
     void func_00086E00(void);
     void func_00086C40(float a0);
