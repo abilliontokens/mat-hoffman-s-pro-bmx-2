@@ -79,6 +79,25 @@ struct C_001033D0 {
     void func_00103A70();
 };
 
+struct C_001BF6A0 {
+    void func_001BF6A0();
+};
+
+/* BmxUIWidgetOverlayText */
+struct C_00102FD0 {
+    void *vtbl;
+    char pad4[0x16C];
+    int unk170;
+    char pad174[4];
+    int unk178;
+    char pad17C[0x34];
+    C_001B1980 **unk1B0;
+    char pad1B4[0x220];
+    int unk3D4;
+    int unk3D8;
+    void func_00102FD0();
+};
+
 void C_001033D0::func_00103350()
 {
     int i;
