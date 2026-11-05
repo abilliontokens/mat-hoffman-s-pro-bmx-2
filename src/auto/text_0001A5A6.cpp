@@ -191,6 +191,37 @@ void func_0001B020(Quat *q, float *angle, Vec3 *axis) {
     *angle += *angle;
 }
 
+C_0001B0A0 *C_0001B0A0::func_0001B0A0(void) {
+    int i = 0;
+    if (D_00275544 < D_00275B04) {
+        float a = D_00275544;
+        do {
+            float r = a * D_002B7C74;
+            i++;
+            D_002B3C6C[i] = sinf(r);
+            D_002AF46C[i] = cosf(r);
+            a = (float)i;
+        } while (a < D_00275B04);
+    }
+    i = 0;
+    do {
+        float r = (float)i * D_00275B40;
+        i++;
+        D_002B346C[i] = sinf(r);
+        D_002B386C[i] = cosf(r);
+    } while (i < 0x100);
+    return this;
+}
+
+void func_0001B2E0(const S_0001B2E0_In *in, S_0001B2E0_Out *out)
+{
+    u32 idx = in->idx;
+    out->v0 = D_002AF470[idx];
+    out->x = (f32)in->x * D_002B7C70 * D_002B3C70[idx];
+    out->y = (f32)in->y * D_002B7C70 * D_002B3C70[idx];
+    out->z = (f32)in->z * D_002B7C70 * D_002B3C70[idx];
+}
+
 void func_0001B360(int a0, int a1, S_0001B360 *a2, int a3) {
     if (a3 != 0) {
         a2->obj->v5();
