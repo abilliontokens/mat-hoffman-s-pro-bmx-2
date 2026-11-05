@@ -163,6 +163,7 @@ struct BmxGame {
     BmxGame *func_000598E0(void);
     int func_00059950(GameEvent *e, int b);
     int func_00059A00(void);
+    void func_00059F50(void);
     void func_0005A0B0(void);
     void func_00059CC0(void);
     void func_00157420(void);
