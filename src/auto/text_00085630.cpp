@@ -138,6 +138,18 @@ struct MountVertOverlay {
 };
 
 
+struct C_00085BD0 {
+    char pad0[0x84];
+    C_0005E840 *f84, *f88, *f8C, *f90;
+    char pad94[0xC];
+    int fA0;
+    char padA4[0x24];
+    char **fC8;
+    int fCC;
+    int fD0;
+    void func_00085BD0(int a);
+};
+
 void C_00085E50::func_00085E50(int a)
 {
     char buf[0x104];
