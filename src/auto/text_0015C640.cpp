@@ -189,6 +189,9 @@ int func_0015C640(float *param_1, int param_2, float param_3)
 }
 
 void func_0015C6F0(float *base, float v, int n, float *up, float *out);
+void func_0015C7D0(float *a, float *b, float *out, float t);
+void func_0015C930(float *param_1, int param_2);
+int func_0015C9A0(float *base, float v, int n, float **lo, float **up, float *t);
 
 void C_0015C6C0::func_0015C6C0(int param_1, int param_2)
 {
