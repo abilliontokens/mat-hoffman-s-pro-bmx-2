@@ -212,6 +212,75 @@ struct C_001B0DC0 {
     void func_0001DFF0(void);
 };
 
+extern int D_0028C784;
+
+struct TextureMap;
+
+struct TexMgr_002F0670 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28(TextureMap *t);
+    virtual void v29(TextureMap *t);
+};
+extern TexMgr_002F0670 *D_002F0670;
+
+struct C_002BEAAC {
+    void func_0013B210(TextureMap *t);
+};
+extern C_002BEAAC *D_002BEAAC;
+
+struct TextureMap {
+    void *vtbl;
+    char pad4[0x14];
+    char unk18;
+    char pad19[0x7F];
+    int unk98;
+    int unk9C;
+    int unkA0;
+    int unkA4;
+    int unkA8;
+    int unkAC;
+    int unkB0;
+    int unkB4;
+    void func_001B11D0();
+    TextureMap *func_001B1200(int a0);
+    void *func_001B1270(int flags);
+    void func_0001E050();
+    void func_0001DFF0();
+};
+
+struct Terrain {
+    void *vtbl;
+    void *func_001B11A0(int flags);
+    void func_00157660();
+};
+
 struct C_001AFCC0 {
     C_001AFCC0 *func_001AFCC0(void *a0, int a1, int a2, int a3);
 };
