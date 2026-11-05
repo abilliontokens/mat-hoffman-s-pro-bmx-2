@@ -11,6 +11,32 @@ extern int D_0028CF14;
 extern int D_0028CF20;
 extern int D_0028CF24;
 
+extern int D_0028CF30;
+extern int D_002764F0;
+extern "C" int strlen(const char *s);
+char *func_001E8920(char *dst, const char *src, int n);
+
+struct S_001B7480_Quat {
+    u32 x;
+    u32 y;
+    u32 z;
+    u32 w;
+};
+
+extern S_001B7480_Quat D_002AA9F4;
+
+/* ParticleEmitterTempData */
+struct C_001B7480 {
+    void *vtbl;
+    int f4;
+    int f8;
+    char fC[0x104];
+    char f110[0x104];
+    char f214[0x104];
+    S_001B7480_Quat f318;
+    C_001B7480 *func_001B7480(void);
+};
+
 struct C_00157600 {
     void func_00157600(void *param);
 };
@@ -227,9 +253,8 @@ void C_001B6E70::func_001B73C0(C_001B73C0_Arg *arg) {
         for (j = 0; j < f28[i]->f8; j++) {
             C_001B73C0_Node *node = f28[i]->f10C[j];
             if (node->f4 == 4) {
-                int idx = node->f10C;
-                C_001B73C0_Holder *h = arg->f3AC;
-                C_001B73C0_Line *line = h->f28[idx];
+                C_001B73C0_Line **arr = arg->f3AC->f28;
+                C_001B73C0_Line *line = arr[node->f10C];
                 line->f1A4->v7();
             }
         }
