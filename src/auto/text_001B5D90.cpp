@@ -61,6 +61,85 @@ struct C_001B65D0 {
     void func_001B65D0(void);
 };
 
+extern int D_00275630;
+extern int D_0027C4D0;
+extern int D_0028CCBC;
+extern int D_0027B0AC;
+extern int D_0028CC30;
+extern int D_0028B7F4;
+extern int D_0028B80C;
+extern int D_0028CCD4;
+extern int D_0027CB60;
+extern int D_0027CB54;
+extern int D_00182890;
+
+struct S_001B6130_Stream {
+    void func_00168550(void *a, void *b, int c);
+    void func_00168C20(void *a, int b, void *c);
+    void func_00168C50(void *a, float b, void *c);
+    void func_00168BE0(void *a, void *b, void *c, int d);
+};
+
+struct C_001B6130 {
+    char pad0[0x8];
+    char f8[0x104];
+    char f10c[0x78];
+    char f184[0x108];
+    int f28c;
+    int func_001B6130(S_001B6130_Stream *stream, int a1);
+};
+
+struct VT_001B6280 {
+    char pad0[0x174];
+    void (__fastcall *f174)(void *self);
+    void (__fastcall *f178)(void *self);
+};
+
+struct S_001B6280_Sound {
+    int func_001CFE90(int a, void *b, int c, int d, int e, int f);
+};
+
+struct S_001B6280_Mid {
+    char pad0[0xb4];
+    S_001B6280_Sound *fb4;
+};
+
+struct S_001B6280_Root {
+    char pad0[0x4];
+    S_001B6280_Mid *f4;
+};
+
+struct S_001B6280_Param {
+    VT_001B6280 *vtbl;
+    char pad4[0x4bc];
+    int f4c0;
+};
+
+struct C_001BBAA0 {
+    void func_001BBAA0(void *owner, void *fn);
+};
+
+extern S_001B6280_Root *D_002A8490;
+
+struct C_001B61E0 {
+    char pad0[0x8];
+    char f8[0x104];
+    char f10c[0x104];
+    int f210;
+    int f214;
+    int f218;
+    int f21c;
+    int f220;
+    int func_001B61E0(S_001B6130_Stream *stream, int a1);
+    int func_001B6280(S_001B6280_Param *param, C_001BBAA0 *obj);
+};
+
+struct C_001B6570 {
+    int f0;
+    int f4;
+    C_001B6570 *func_001B6570(int a0, int a1);
+};
+
 
 C_001B5EA0* C_001B5EA0::func_001B5EA0(void) {
     extern int D_0028CC9C;
