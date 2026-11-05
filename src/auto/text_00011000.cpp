@@ -200,6 +200,13 @@ struct C_000115F0 {
     int func_000115F0(float *pos, float radius, int start, int dir);
 };
 
+struct C_00011730 {
+    char pad[0x3b4];
+    int pathIdx;
+    float func_00011730(float *pos, int i);
+};
+extern float D_00275544;
+
 float func_00011000(float x) { return sqrtf(x); }
 
 float func_00011020(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
