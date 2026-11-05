@@ -56,14 +56,22 @@ struct S_00157810_Child {
 
 struct C_00157810 {
     void *vtbl;
-    char pad4[0xc];
+    int pad4;
+    S_00157810_Child *f8;
+    S_00157810_Child *fC;
     S_00157810_Child *f10;
-    char pad14[8];
+    S_00157810_Child *f14;
+    char pad18[4];
     int f1C;
     char f20;
     unsigned char f21_b0 : 1;
     unsigned char f21_b1 : 1;
     unsigned char f21_b2 : 1;
+    unsigned char f21_b3 : 1;
+    int func_00157810(void);
+    void func_001578A0(void);
+    int func_001578D0(void);
+    int func_00157920(void);
     int func_00157960(void);
     int func_001579B0(void);
     int func_00157A00(int a);
