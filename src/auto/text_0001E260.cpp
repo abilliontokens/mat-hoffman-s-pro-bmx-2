@@ -40,6 +40,32 @@ struct GR_BitString {
     void func_0001E3F0(u32 *a0, u32 a1, int a2);
     GR_BitString(u32 *a0, u32 a1, int a2);
     void func_0001E460();
+    void *func_0001E6D0(unsigned int flags);
+    void func_0001E710(int a0);
+    void func_0001E5D0(int a0);
+    void D_0001E650(int a0);
+};
+
+struct C_0001EF70 {
+    void *vtbl;
+    void func_00157660();
+    void *func_0001EF70(unsigned int flags);
+};
+
+struct C_0001E740 {
+    void *vtbl;
+    int unk4;
+    int unk8;
+    int unkC;
+    int unk10;
+    int unk14;
+    int unk18;
+    int unk1C;
+    int unk20;
+    int unk24;
+    int unk28;
+    void func_0001DFE0();
+    C_0001E740 *func_0001E740(int a0, int a1);
 };
 
 struct C_0001EF00 {
