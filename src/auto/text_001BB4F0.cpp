@@ -164,6 +164,22 @@ __declspec(align(16)) struct S_001BBAE0_Mat {
 
 S_001BBAE0_Mat func_000263B0(void *a, void *b);
 
+struct C_001BBAE0_Copy {
+    S_001BBAE0_Mat mat;
+    void Load(S_001BBAE0_Mat *src)
+    {
+        __m128 r0 = src->r0;
+        __m128 r1 = src->r1;
+        __m128 r2 = src->r2;
+        __m128 r3 = src->r3;
+
+        mat.r0 = r0;
+        mat.r1 = r1;
+        mat.r2 = r2;
+        mat.r3 = r3;
+    }
+};
+
 struct C_001BBAE0_2DC {
     void func_00197EA0(S_001BBAE0_Mat *dst);
 };
@@ -221,7 +237,6 @@ void func_001BB4F0(S_1BB4F0_Arg1 *a1, int a2, S_1BB4F0_Arg3 *a3, int enable)
     int idx;
     int i;
     int key;
-    int n;
 
     if (enable == 0) {
         return;
@@ -231,9 +246,8 @@ void func_001BB4F0(S_1BB4F0_Arg1 *a1, int a2, S_1BB4F0_Arg3 *a3, int enable)
     }
     list = D_002A8490->f2A4->f64->f4E0;
     key = a1->f64;
-    n = list->f24;
     found = 0;
-    for (i = 0; i < n; i++) {
+    for (i = 0; i < list->f24; i++) {
         if (found) {
             break;
         }
