@@ -259,3 +259,24 @@ void XboxGame_001D0E60::func_001D0E60(void)
     ((C_00156FC0 *)this)->func_00156FC0();
 }
 
+int XboxGame_001D0EC0::func_001D0EC0(void)
+{
+    int r = ((C_00157030 *)this)->func_00157030();
+
+    if (D_002EFDB8 != 0) {
+        D_002EFDB8->destroyObject(1);
+        D_002EFDB8 = 0;
+    }
+    if (D_002F07B8 != 0) {
+        D_002F07B8->v1();
+        if (D_002F07B8 != 0) {
+            D_002F07B8->destroyObject(1);
+        }
+        D_002F07B8 = 0;
+    }
+    if (f2A0 != 0) {
+        f2A0 = 0;
+    }
+    return r;
+}
+
