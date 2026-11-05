@@ -291,8 +291,8 @@ int C_001A4100::func_001A4100(int key, int a1, int a2)
             obj = Item(i)->f4;
             if (obj != 0 && f1BC != obj) {
                 obj->func_001CB560(f1BC);
-                f1BC = obj;
             }
+            f1BC = obj;
         }
     }
     return result;
