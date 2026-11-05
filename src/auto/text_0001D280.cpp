@@ -257,7 +257,7 @@ extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
 extern "C" char *func_001E8AC0(const char *s, int c);
 extern "C" int func_001EA426(const char *a, const char *b);
 
-template <class T> inline T minref(const T &a, const T &b) { return a > b ? b : a; }
+template <class T> inline const T &minref(const T &a, const T &b) { return a > b ? b : a; }
 
 static __forceinline void stripExt(char *dst, const char *src)
 {
