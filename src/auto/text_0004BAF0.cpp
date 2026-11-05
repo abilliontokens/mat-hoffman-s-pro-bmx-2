@@ -86,11 +86,6 @@ struct S_0004C320_Obj {
     S_0004C320_Part *f1a4;
 };
 
-struct S_0004C3F0_Obj {
-    char pad0[0x1a4];
-    S_0004C320_Part &f1a4;
-};
-
 struct S_0004C320_Scene {
     char pad0[0x28];
     S_0004C320_Obj **f28;
