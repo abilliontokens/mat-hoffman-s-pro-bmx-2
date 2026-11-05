@@ -268,6 +268,11 @@ struct S_00192B70_Obj {
 };
 
 extern short D_002EFE50;
+extern int D_002EFE60;
+extern char D_0028AC60[];
+extern char D_0028AC44[];
+struct SearchNode;
+extern SearchNode *D_002EFE4C;
 
 struct S_00192C00_Obj {
     char pad0[0xB0];
