@@ -126,3 +126,17 @@ void C_00109520::func_00109550(int p) {
 int C_00109570::func_00109570(void) {
     return unk0;
 }
+
+void C_00109F30::func_00109F30(void) {
+    fA40 = 0;
+    fA48 = 0;
+    fA4C = 0;
+    fA54 = 0;
+    f1058 = 0;
+    f105C = 0;
+    fA58 = 0;
+    fA5C = 0;
+    fA60->func_001094B0();
+    fA64->func_001094B0();
+}
+
