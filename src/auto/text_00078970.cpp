@@ -68,6 +68,31 @@ struct C_00079790 {
     void func_00078E60(void);
 };
 
+void func_001E891B(void *p);
+
+struct RawBuf_Menu {
+    void func_001D6410();
+};
+
+struct BmxMenuBase {
+    void *vtbl;
+    char pad4[0x5C];
+    S_00079790_Obj *f64[8];
+    char pad84[0x10];
+    S_00079790_Obj *f94[2];
+    char pad9C[0x10];
+    S_00079790_Obj *fAC[5];
+    S_00079790_Obj *fC0[5];
+    S_00079790_Obj *fD4[2];
+    S_00079790_Obj *fDC[2];
+    RawBuf_Menu *fE4[2];
+    RawBuf_Menu *fEC;
+    char padF0[0x1C];
+    S_00079790_Obj *f10C;
+    char pad110[0x14];
+    RawBuf_Menu *f124;
+};
+
 int C_00078D60::func_00078D60(int *param_1, int param_2) {
     int func_001361E0(int, int, int *, int);
     if (fA0 == 0 && fA4 == 0) {
