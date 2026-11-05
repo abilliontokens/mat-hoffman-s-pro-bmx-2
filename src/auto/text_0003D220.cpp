@@ -8,6 +8,6 @@ struct C_3D7B0 {
     char pad2[0x45c - 0x458]; int f45c; int f460;
     char pad3[0x49c - 0x464]; int *f49c;
     char pad4[0x564 - 0x4a0]; int f564;
-    int func_000389C0(int *cell);
+    int func_000389C0(int cell);
     int func_0003D7B0(S_3D7B0_Vec4 v);
 };
