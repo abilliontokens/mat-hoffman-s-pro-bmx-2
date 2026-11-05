@@ -274,14 +274,12 @@ int C_00160A70::func_00160A70(int data)
 
 int C_00160A70::func_00160AD0(int data)
 {
-    S_ListNode_00160A70 *n = (S_ListNode_00160A70 *)func_001E8A44(0xc);
+    void *mem = func_001E8A44(0xc);
+    S_ListNode_00160A70 *n = mem != 0 ? ((S_ListNode_00160A70 *)mem)->init() : 0;
 
     if (n == 0) {
         return 0;
     }
-    n->data = 0;
-    n->prev = 0;
-    n->next = 0;
     n->data = data;
     n->prev = 0;
     n->next = head;
