@@ -1,6 +1,137 @@
 /* 13 functions from 0x0010DA70 to 0x0010E920, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+
+extern const float D_00275998;
+extern int D_00275630;
+
+struct Vec4 {
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 w;
+};
+
+extern Vec4 D_002A3A3C;
+
+struct C_Device {
+    virtual void v0();  virtual void v1();  virtual void v2();  virtual void v3();
+    virtual void v4();  virtual void v5();  virtual void v6();  virtual void v7();
+    virtual void v8();  virtual void v9();  virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35();
+    virtual void v36(); virtual void v37(); virtual void v38(); virtual void v39();
+    virtual void v40(); virtual void v41(); virtual void v42(); virtual void v43();
+    virtual void v44(); virtual void v45(); virtual void v46();
+};
+
+struct C_Button {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6();
+    virtual int v7();
+};
+
+struct C_ButtonSet {
+    C_Button *func_001A2EF0(int index);
+    void func_001A2DD0(int index);
+};
+
+struct V_Slot4 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+};
+
+struct C_00198330 {
+    void func_00199A70(C_00198330 *a0, Vec4 *a1);
+};
+
+struct Owner_10DA70_Info {
+    char pad0[0x124];
+    int f124;
+};
+
+struct Owner_10DA70_4DC {
+    char pad0[0x4DC];
+    Owner_10DA70_Info *f4DC;
+};
+
+struct Obj_10DA70_1E0 {
+    char pad0[0x22C];
+    C_00198330 *f22C;
+};
+
+struct Obj_10DA70_1F0 {
+    char pad0[0x68];
+    int f68;
+};
+
+struct Spring_10DA70 {
+    void func_001A86D0(int a);
+};
+
+struct Obj_10DA70_A00 {
+    int f0;
+    C_00198330 *f4;
+};
+
+struct Blk24_10DA70 {
+    int f0, f4, f8, fC;
+    float f10;
+    int f14;
+};
+
+struct BmxVehicle_10DA70 {
+    void *vtbl;
+    char pad4[0x20];
+    Owner_10DA70_4DC *f24;
+    char pad28[0x1E0 - 0x28];
+    Obj_10DA70_1E0 *f1E0;
+    char pad1E4[0x1F0 - 0x1E4];
+    Obj_10DA70_1F0 *f1F0;
+    Spring_10DA70 *f1F4;
+    char pad1F8[0x468 - 0x1F8];
+    int f468;
+    char pad46C[0x5C8 - 0x46C];
+    int f5C8;
+    char pad5CC[0x79C - 0x5CC];
+    Blk24_10DA70 f79C;
+    char pad7B4[0xA00 - 0x7B4];
+    Obj_10DA70_A00 *fA00;
+    char padA04[4];
+    V_Slot4 *fA08;
+    V_Slot4 *fA0C;
+    V_Slot4 *fA10;
+    V_Slot4 *fA14;
+    char padA18[0x11AC - 0xA18];
+    int f11AC;
+    int f11B0;
+    int f11B4;
+    char pad11B8[0x1244 - 0x11B8];
+    C_Device *f1244;
+    char pad1248[0x1584 - 0x1248];
+    int f1584;
+    char pad1588[0x15A4 - 0x1588];
+    C_ButtonSet *f15A4;
+    int pad15A8;
+    float f15AC;
+    float f15B0;
+    void func_001057A0(void);
+    void func_001058F0(void);
+    void func_001576C0(void);
+    void func_00108510(int *name, Vec4 v);
+    void func_0010DA70(Blk24_10DA70 *p);
+    int func_0010DAB0(void);
+    void func_0010DB70(void);
+    void func_0010DC00(void);
+};
+
 struct C_0010E260 {
     void func_0010E260(void);
 };
