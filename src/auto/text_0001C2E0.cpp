@@ -511,6 +511,16 @@ void *C_0001CA30::func_0001CAB0(unsigned char flags)
     return this;
 }
 
+float func_0001CAF0(float *a, float *b)
+{
+    float dx, dy, dz;
+
+    dx = vec3_abs(a[0] - b[0]);
+    dy = vec3_abs(a[1] - b[1]);
+    dz = vec3_abs(a[2] - b[2]);
+    return sqrtf(dx * dx + dy * dy + dz * dz);
+}
+
 void func_0001CB80(char *s) {
     char *dot = func_001E8AC0(s, '.');
     if (dot != 0) {
@@ -608,12 +618,14 @@ bool C_0001D0B0::func_0001D0B0(int count, int p2)
 void C_0001D200::func_0001D200(void)
 {
     int i;
+    S_0001D200_Slot *s;
 
     vtbl = (void *)&D_00275DFC;
     for (i = 0; i < 4; i++) {
-        if (slots[i] != 0) {
-            slots[i]->func_001A13F0();
-            func_001E891B(slots[i]);
+        s = slots[i];
+        if (s != 0) {
+            s->func_001A13F0();
+            func_001E891B(s);
         }
     }
     if (fB4 != 0) {
