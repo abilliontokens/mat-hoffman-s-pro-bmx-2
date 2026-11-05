@@ -10,6 +10,19 @@ struct C_000DB310_Widget {
     void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, float a11, float a12, int a13);
 };
 
+
+struct C_000DBC40 {
+    char pad0[0x2a0];
+    int f2A0;
+    int f2A4;
+    int f2A8;
+    char pad2AC[8];
+    C_000DB310_Widget *f2B4;
+    char pad2B8[0x58];
+    C_000DB310_Widget *f310[1];
+    void func_000DBC40();
+};
+
 struct S_000DBC00_G {
     char pad0[0x10];
     int f10;
