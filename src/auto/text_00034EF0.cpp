@@ -146,6 +146,47 @@ struct C_00035680 {
     void func_00035680(void);
 };
 
+struct S_35860_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    void func_0008A910(void);
+    void func_0008A080(void);
+};
+
+struct C_00035720 {
+    char pad0[0x24];
+    S_35680_Screen *f24;
+    S_35680_Screen *f28;
+    char pad2c[0x1b0];
+    int f1dc;
+    int f1e0;
+    int f1e4;
+    int f1e8;
+    char pad1ec[0x98];
+    int f284;
+    char pad288[0x40];
+    int f2c8;
+    char pad2cc[0x1a8];
+    int f474;
+    char pad478[0xc8];
+    S_35860_Obj *f540;
+    char pad544[0xc];
+    S_35860_Obj *f550;
+    S_35860_Obj *f554;
+    S_35860_Obj *f558;
+    char pad55c[4];
+    S_35860_Obj *f560;
+    void func_00035720(void);
+    void func_00035860(void);
+    void func_000358E0(void);
+    void func_00035940(void);
+};
+
 void C_00035300::func_00035300(char *name, int n)
 {
     char buf[0x34];
