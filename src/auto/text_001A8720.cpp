@@ -24,6 +24,9 @@ struct C_001A8BC0 {
 };
 
 extern int D_0028BFC4;
+extern int D_002AA24C;
+extern int D_002AA250;
+extern int D_002AA254;
 struct C_00157600 {
     void func_00157600(int a0);
 };
