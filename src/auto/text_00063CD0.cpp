@@ -121,9 +121,10 @@ int C_00064580::func_00064580(int idx, int a1, unsigned int a2)
 {
     if (idx >= 0 && idx < 16) {
         unk13C[idx]->func_0005E840(a1);
-        if (unk13C[idx]->unk48 != a2) {
-            unk13C[idx]->unk4E |= 8;
-            unk13C[idx]->color.rgb = a2;
+        C_00064580_Widget *w = unk13C[idx];
+        if (w->unk48 != a2) {
+            w->unk4E |= 8;
+            w->color.rgb = a2;
         }
         unk13C[idx]->func_001D6600();
     }
