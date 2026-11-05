@@ -315,6 +315,35 @@ u32 func_001DF4BC(void)
     return 0;
 }
 
+char * __stdcall func_001DF4E1(char *dst, const char *src, int n)
+{
+    __try {
+        char *d = dst;
+        const char *s = src;
+        if (n != 0) {
+            while (n != 0 && *s != 0) {
+                *d++ = *s++;
+                n--;
+            }
+            if (n == 0) {
+                d--;
+            }
+            *d = 0;
+        }
+        return dst;
+    } __except (1) {
+    }
+    return 0;
+}
+
+void __stdcall func_001DF546(S_ObjectAttributes *oa, S_AnsiString *name, const char *path)
+{
+    _imp__RtlInitAnsiString(name, path);
+    oa->objectName = name;
+    oa->rootDirectory = (void *)0xfffffffc;
+    oa->attributes = 0x80;
+}
+
 __int64 * __stdcall func_001DF56E(__int64 *out, unsigned int ms)
 {
     if (ms == 0xffffffff) {
