@@ -6,6 +6,11 @@ int func_001EA426(const char *a, const char *b);
 extern float D_00276610;
 extern float D_00275544;
 
+struct S_00133A30_Pair {
+    int a;
+    int b;
+};
+
 struct S_00133A30 {
     char pad0[0x21];
     u8 f21;
@@ -420,6 +425,42 @@ void C_00133700::func_00133700(void)
 void C_00133730::func_00133730(int a0, int a1) {
     unk60 = a0;
     unk68 = a1;
+}
+
+float func_00133A30(float *a, float t, int c, S_00133A30 *s)
+{
+    float d;
+    int loc[2];
+    int i;
+
+    if ((s->f21 & 1) == 0) {
+        return D_00276610;
+    }
+    d = func_0011FDF0(s->f28, a, a + 4);
+    if (d < t + s->f48) {
+        switch (s->f50) {
+        case 0:
+            loc[0] = s->f1C4;
+            loc[1] = s->f1C8;
+            if (func_00123EF0(a, t, c, 0, loc, s->fB0, s->f1B0) != 0) {
+                return D_00275544;
+            }
+            break;
+        case 1:
+            if (func_00122810(s->fA8, s->fB8, a, t, c, s->f130) != 0) {
+                for (i = 0; i < s->f190; i++) {
+                    S_00133A30 *e = s->f1A0[i];
+                    loc[1] = e->f1C8;
+                    loc[0] = e->f1C4;
+                    if (func_00123EF0(a, t, c, 0, loc, e->fB0, e->f1B0) != 0) {
+                        return D_00275544;
+                    }
+                }
+            }
+            break;
+        }
+    }
+    return d;
 }
 
 void func_00133D80(int a0) {
