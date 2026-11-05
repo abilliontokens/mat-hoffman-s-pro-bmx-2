@@ -198,6 +198,23 @@ float C_00017600::func_00017600(const char *name)
     return D_00275460;
 }
 
+void C_00017680::func_00017680(C_00017680_Vec pos)
+{
+    float vecB[4];
+    float vecA[4];
+
+    vecA[2] = 0.0f;
+    vecA[1] = 0.0f;
+    vecA[0] = 0.0f;
+    vecA[3] = 1.0f;
+    vecB[2] = 0.0f;
+    vecB[1] = 0.0f;
+    vecB[0] = 0.0f;
+    vecB[3] = 1.0f;
+    f3C->f4->func_00197B40(vecA, vecB);
+    f3C->f4->func_00199110(0, (float *)&pos, vecB, 0, 1, 0);
+}
+
 void C_00017700::func_00017700(void)
 {
     f4E0++;
