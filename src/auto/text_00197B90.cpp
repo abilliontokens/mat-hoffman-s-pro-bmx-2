@@ -162,10 +162,12 @@ C_00197EC0_Vec4 C_00197EC0::func_00197EC0(float *v)
 void C_00198230::func_00198230(C_00198230 *child)
 {
     C_00198230 *node = this;
+    C_00198230 *next = node->f178;
     C_00198230 **pp = &node->f178;
 
-    while (*pp != 0) {
+    while (next != 0) {
         node = *pp;
+        next = node->f178;
         pp = &node->f178;
     }
     node->f178 = child;
