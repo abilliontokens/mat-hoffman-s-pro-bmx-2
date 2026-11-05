@@ -403,3 +403,12 @@ C_0008ABF0 *C_0008ABF0::func_0008ABF0(int a0) {
     return this;
 }
 
+void C_0008AD60::func_0008AD60() {
+    if ((D_002B9098 & 1) == 0) {
+        D_002B9098 |= 1;
+        D_002B9094 = D_002A7CB8->func_00026500((int)&D_00279CA8, 0);
+    }
+    unk24->func_001D6600();
+    func_00157960();
+}
+
