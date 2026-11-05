@@ -36,6 +36,7 @@ struct C_0008A2E0 {
     int unk4DC;
     C_0008A2E0 *func_0008A2E0(int a0);
     void func_00157600(int a0);
+    void func_00157660();
     void func_0008A350();
     void func_0008A8C0();
 };
