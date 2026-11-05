@@ -39,15 +39,46 @@ struct InputDevice {
     virtual int v5(int a, int b, int c, int d);
 };
 
+struct C_001577A0 {
+    void func_001577A0(int a, int b);
+};
+
 struct S_002A8490 {
     char pad0[8];
     InputDevice *f8;
+    char padC[8];
+    C_001577A0 *f14;
+    char pad18[0x2F0 - 0x18];
+    int f2F0;
 };
 extern S_002A8490 *D_002A8490;
+
+struct Rect_0005A020 {
+    int x, y, w, h;
+};
+
+struct Renderer_002EFDB8 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7(int a);
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12(Rect_0005A020 *r);
+};
+extern Renderer_002EFDB8 *D_002EFDB8;
 
 struct BmxGameObj2A4 {
     char pad0[0x21];
     u8 f21;
+    char pad22[0x154 - 0x22];
+    void *f154;
 };
 
 struct BmxGame {
