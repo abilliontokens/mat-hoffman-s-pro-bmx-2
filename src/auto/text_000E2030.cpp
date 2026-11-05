@@ -24,6 +24,10 @@ struct C_000E2140 {
     DelObjC_000E2 *arr3C0[8];
     DelObjC_000E2 *arr3E0[8];
     DelObjC_000E2 *arr400[8];
+    DelObjC_000E2 *arr420[8];
+    DelObjC_000E2 *arr440[8];
+    C_000E2140 *func_001BE360(int a0);
+    C_000E2140 *func_000E2030(int a0);
     void func_001BE3F0(void);
     void func_000E2140(void);
 };
