@@ -98,9 +98,34 @@ struct C_00168280 {
     C_00168280 *func_00168280(void);
     int func_00169490(char *buf, int flag);
     void func_001691E0(void);
+    int func_00169710(char *buf);
+    int func_00168C20(const char *key, int def, int *out);
+    int func_00168550(const char *key, char *out, int def);
 };
 
+struct C_001A4210_Scene {
+    void func_0001DF80(void *obj, int a);
+};
+struct C_001A4210_Root { char pad0[4]; C_001A4210_Scene *f4; };
+extern C_001A4210_Root *D_002A8490;
+extern char D_0028B824[], D_0028B818[], D_0028B80C[], D_0028B800[], D_0028B7F4[];
+extern char D_0028B7E8[], D_0028B7E0[], D_00289930[];
+extern "C" void *func_001E8A44(unsigned int size);
+
 struct C_001A4210 {
+    char pad0[0x24];
+    int f24;
+    char pad28[0x3c - 0x28];
+    char f3c[0x1a0 - 0x3c];
+    unsigned int f1a0;
+    void *f1a4;
+    char pad1a8[0x1c4 - 0x1a8];
+    int cnt;
+    void **items;
+    int base;
+    int capacity;
+    char pad1d4[0x1ec - 0x1d4];
+    int f1ec;
     int func_001A4210(C_00168280 *obj, int a1, int a2);
 };
 
