@@ -153,6 +153,23 @@ struct C_000223B0 {
 extern "C" int func_00134DE0(Vec4_000223B0 *, Vec4_000223B0 *, Vec4_000223B0 *, int, int, int, int, int, int);
 
 
+extern float D_00275AEC, D_00275994;
+struct Group_00022550 {
+    char pad0[0x10];
+    int count, total;
+    C_00022320 **items;
+    char pad1c[0x18];
+    int f34;
+};
+struct C_00022550 {
+    char pad0[0x44];
+    int count;
+    char pad48[0x28];
+    Group_00022550 **groups;
+    void func_001577A0(Obj_00022320 *, int *);
+    int func_00022550();
+};
+
 Obj_00022320 *C_00022320::func_00022320(int a)
 {
     f2C->v35(a, 1, 0);
