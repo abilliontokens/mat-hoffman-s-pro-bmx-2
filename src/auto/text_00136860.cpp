@@ -146,3 +146,17 @@ void func_00136B60(int a, TokenEntry *out)
     }
 }
 
+int func_001B2810(int id);
+int func_00136460(int id, int i, int j);
+
+extern float D_002BA73C[];
+extern float D_002BDD3C[];
+
+struct C_001376B0 {
+    char pad0[0x28];
+    Cube *f28;
+    char pad2C[0x7C0 - 0x2C];
+    int f7C0;
+    int func_001376B0(Cube *arg);
+};
+
