@@ -135,12 +135,15 @@ struct C_001332A0 {
     char pad80[0x4];
     int *f84;
     int f88;
-    char pad8c[0xc];
+    char pad8c[0x4];
+    int *f90;
+    int f94;
     S_001332A0_Node *f98;
     void func_001332A0(void);
     void func_001334F0(int item);
     void func_00133580(int item);
     void func_00133620(int item);
+    void func_00133660(int item);
 };
 
 
