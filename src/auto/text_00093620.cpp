@@ -59,3 +59,10 @@ struct C_00093140 {
     void func_00093AD0(int a1, int a2, int a3, int a4, int a5, int a6);
     void func_00093CF0(int a1, int a2, int a3, int a4, int a5, int a6);
 };
+
+void C_00093140::func_00093C80(int a1, int a2, int a3, int a4, int a5, int a6)
+{
+    f24->func_001B17D0(D_002A8490->f2e8->f4->fB78);
+    f28->func_001B17D0(D_002A8490->f2e8->f4->fB80);
+    func_00093140(a1, a2, a3, 2, a4, a5, a6);
+}
