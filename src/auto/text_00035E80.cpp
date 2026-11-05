@@ -18,6 +18,7 @@ struct S_00035E80_Stream {
     void func_00168A10(const char *key, int *dst);
     void func_00168550(const char *key, char *dst, int n);
     void func_00168CB0(const char *key, void *def, void *dst);
+    void func_00168CB0(const char *key, const Vec4_000361F0 &def, Vec4_000361F0 &dst);
 };
 
 struct S_00035E80_Line;
@@ -103,6 +104,84 @@ struct C_000361F0 {
     Vec4_000361F0 f52C;
     void func_000361F0(int flag);
 };
+
+int C_00035E80::func_00035E80(int a1, const char *path, S_00035E80_Out *out)
+{
+    Vec4_000361F0 pos0;
+    Vec4_000361F0 pos1;
+    S_00035E80_Stream *stream;
+    void *mem;
+    char buf[0x104];
+    char secName[0x14];
+    char key1[0x1e];
+    char name[0x20];
+    char key2[0x1e];
+    int count;
+    int subCount;
+    int total = 0;
+    int idx = 0;
+    int i, j;
+    volatile int len;
+    volatile int lim;
+    volatile int res;
+    int n;
+    char *dot;
+
+    mem = func_001E8A44(0x4CC);
+    if (mem) {
+        stream = ((S_00035E80_Stream *)mem)->func_00168280();
+    } else {
+        stream = 0;
+    }
+    if (stream->func_00169490(path, 0) == 0) {
+        if (stream) {
+            stream->func_001691E0();
+            func_001E891B(stream);
+        }
+        return 0;
+    }
+    len = strlen(path);
+    lim = 0x103;
+    res = lim > len ? len : lim;
+    n = res;
+    func_001E8920(buf, path, n);
+    buf[n] = 0;
+    dot = func_001E8AC0(buf, '.');
+    if (dot) memset(dot, 0, strlen(dot));
+    stream->func_00169710(D_00276DCC);
+    stream->func_00168A10(D_00276DBC, &count);
+    for (i = 0; i < count; i++) {
+        func_001ADCC0(secName, 0x14, D_00276DB0, i + 1);
+        stream->func_00169710(secName);
+        stream->func_00168A10(D_00276DA4, &subCount);
+        total += subCount - 1;
+    }
+    out->f14 = total;
+    out->f18 = (S_00035E80_Line **)func_001E8A44(total * 4);
+    for (i = 0; i < count; i++) {
+        func_001ADCC0(secName, 0x14, D_00276DB0, i + 1);
+        stream->func_00169710(secName);
+        stream->func_00168550(D_00276D98, name, -1);
+        stream->func_00168A10(D_00276DA4, &subCount);
+        for (j = 0; j < subCount - 1; j++) {
+            Vec4_000361F0 d1;
+            Vec4_000361F0 d2;
+            S_00035E80_Line *line;
+            func_001ADCC0(key1, 0x1e, D_00276D8C, j + 1);
+            func_001ADCC0(key2, 0x1e, D_00276D8C, j + 2);
+            stream->func_00168CB0(key1, &d1, &pos0);
+            stream->func_00168CB0(key2, &d2, &pos1);
+            line = f64->f530->func_00159E90(name, &pos0, &pos1, 0, 0, a1);
+            f64->f530->func_00159C40(line);
+            out->f18[idx++] = line;
+        }
+    }
+    if (stream) {
+        stream->func_001691E0();
+        func_001E891B(stream);
+    }
+    return 1;
+}
 
 void C_000361F0::func_000361F0(int flag)
 {
