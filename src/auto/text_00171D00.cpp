@@ -265,4 +265,5 @@ void PhysicsBody::func_00172460(void)
     fD8->func_001332A0();
     fDC->func_001332A0();
 }
-
+static __forceinline void SqrtR_00171D00(float *r,const float &x) { _mm_store_ss(r,_mm_sqrt_ss(_mm_load_ss(&x))); }
+static __forceinline void MaxR_00171D00(float *r,const float &a,const float &b) { _mm_store_ss(r,_mm_max_ss(_mm_load_ss(&a),_mm_load_ss(&b))); }
