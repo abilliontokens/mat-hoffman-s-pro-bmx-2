@@ -22,6 +22,32 @@ struct C_00164820 {
     void func_00164820(int a0);
 };
 
+extern int D_00287E38[];
+extern int D_00287DCC;
+
+struct C_00157600_164440 {
+    void func_00157600(int a);
+};
+
+struct C_00164440 {
+    int *vbptr;
+    char pad4[0x8];
+    int fC, f10, f14, f18, f1C, f20, f24, f28, f2C, f30, f34, f38;
+    char pad3C[0xC];
+    char f48;
+    char pad49[0x4F];
+    char f98;
+    char pad99[0x4F];
+    char fE8;
+    char padE9[0x4F];
+    char f138;
+    char pad139[0x57];
+    char f190;
+    char pad191[0x4F];
+    int f1E0, f1E4, f1E8, f1EC, f1F0, f1F4, f1F8, f1FC, f200, f204, f208, f20C, f210, f214, f218, f21C;
+    C_00164440 *func_00164440(int a, int mostDerived);
+};
+
 extern int D_00287DBC;
 extern float D_00275544;
 extern float D_00275460;
