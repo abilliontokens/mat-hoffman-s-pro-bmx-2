@@ -16,6 +16,10 @@ struct C_000264C0 {
     void func_000264C0(void *a);
 };
 
+struct S_0019C690_V3 {
+    int a, b, c;
+};
+
 struct S_0019C690_Arg {
     char f0[8];
     s16 f8;
@@ -134,3 +138,22 @@ void C_0019C320::func_0019C320(undefined4 *param_1)
   param_1[2] = *(undefined4 *)(in_ECX + 0x15c);
   return;
 }
+
+void SoultreeCollisionObject::func_0019C690(int a1, S_0019C690_Arg *a2)
+{
+    S_0019C690_Arg *e = a2;
+
+    f1C0 = a1;
+    f1C4 = e->fC;
+    f1C8 = e->f10;
+    f1CC = e->f8;
+    f1CE = e->fA;
+    f1B0 = e->f14;
+    f1B4 = e->f18;
+    f1B8 = e->f1C;
+    f1BC = e->f20;
+    ((C_000264C0 *)fF0)->func_000264C0(e->f30);
+    f1D4 = e;
+    e->f70++;
+}
+
