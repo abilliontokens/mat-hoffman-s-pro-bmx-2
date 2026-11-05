@@ -205,6 +205,22 @@ void C_00182CC0::func_001839F0()
     f3C0 = 0;
 }
 
+void C_00182CC0::func_00183A50()
+{
+    if (f3C4 == 0) {
+        void *mem = func_001E8A44(0x2c);
+        f3C4 = mem != 0 ? ((C_001B9B20 *)mem)->func_001B9B20(1) : 0;
+    }
+    if (f3C4->v27(f28) != 0) {
+        return;
+    }
+    if (f3C4->f24 != 0) {
+        return;
+    }
+    f3C4->v2();
+    f3C4 = 0;
+}
+
 void C_00182CC0::func_00183AB0()
 {
     if (f3BC == 0) {
