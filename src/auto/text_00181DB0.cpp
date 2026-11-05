@@ -5,6 +5,111 @@ struct C_00182810 {
     void func_00182810(void);
 };
 
+extern int D_0028933C;
+
+struct C_001827B0 {
+    void *vtbl;
+    int f4;
+    char pad8[8];
+    int f10;
+    int f14;
+    int f18;
+    char pad1C[8];
+    int f24;
+    char pad28[8];
+    int f30;
+    int f34;
+    int f38;
+    int f3C;
+    int f40;
+    void func_001827B0(void);
+};
+
+struct C_001824E0_Vec {
+    int x;
+    int y;
+    int z;
+    int w;
+};
+
+struct C_001824E0 {
+    char pad0[0x1C0];
+    C_001824E0_Vec f1C0;
+    void func_001824E0(C_001824E0_Vec *out, int x, int y, int z);
+};
+
+struct C_00182750_Global {
+    char pad0[0x284];
+    int f284;
+};
+
+extern C_00182750_Global *D_002A8490;
+
+struct C_00182750 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    virtual void v31();
+    virtual void v32();
+    virtual void v33();
+    virtual void v34();
+    virtual void v35();
+    virtual void v36();
+    virtual void v37();
+    virtual void v38();
+    virtual unsigned char v39();
+    virtual void v40();
+    char pad4[0x23];
+    unsigned char f27;
+    char pad28[0x159];
+    unsigned char f181_0 : 1;
+    int func_00182750(void);
+    void func_00181E10(void);
+};
+
+struct C_00182830_Target {
+    char pad0[0x204];
+    int f204;
+    int f208;
+    void func_0012B390(int a, int b, int c);
+};
+
+struct C_00182830 {
+    int pad0;
+    C_00182830_Target *f4;
+    int f8;
+    int fC;
+    void func_00182830(C_00182830_Target *p);
+};
+
 struct C_00182550 {
     undefined4 func_00182550(byte param_1);
 };
