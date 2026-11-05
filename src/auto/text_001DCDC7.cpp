@@ -49,7 +49,7 @@ extern "C" unsigned char __readfsbyte(unsigned long Offset);
 #pragma intrinsic(__readfsbyte)
 extern int D_002F41D0;
 extern "C" void *(__stdcall *_imp__MmAllocateContiguousMemoryEx)(u32 size, u32 lowest, u32 highest, u32 alignment, u32 protect);
-extern char D_0028FA80;
+extern S_AnsiString D_0028FA80;
 extern char D_00021371;
 int __stdcall func_001DD3A1(void *h, u32 lo, u32 *hi, int method);
 void *__stdcall func_001DF5B9(u32 flags, u32 size);
