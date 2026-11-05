@@ -127,6 +127,7 @@ struct C_0023EC0D {
     C_0023EC0D *func_0023F1AB(void);
 };
 
+#pragma pack(push, 1)
 struct S_0023F119_Wfx {
     unsigned short wFormatTag;
     unsigned short nChannels;
@@ -136,6 +137,7 @@ struct S_0023F119_Wfx {
     unsigned short wBitsPerSample;
     unsigned short cbSize;
 };
+#pragma pack(pop)
 
 struct S_0023F119_Src {
     char pad0[0xc];
@@ -341,6 +343,23 @@ int __stdcall func_0023EF7B(S_0023EF7B_Src *src, S_0023EF7B_Out *out)
     out->f8 = src->f10;
     out->fC = src->f14;
     out->f10 = src->f2C;
+    return 0;
+}
+
+int __stdcall func_0023F119(S_0023F119_Src *src, S_0023F119_Wfx *wfx)
+{
+    unsigned short ch;
+    unsigned short align;
+
+    wfx->wFormatTag = 1;
+    wfx->nSamplesPerSec = src->func_0023EE30(src->fC);
+    ch = src->f10;
+    wfx->cbSize = 0;
+    wfx->nChannels = ch;
+    align = ch << 1;
+    wfx->nBlockAlign = align;
+    wfx->nAvgBytesPerSec = align * wfx->nSamplesPerSec;
+    wfx->wBitsPerSample = 16;
     return 0;
 }
 
