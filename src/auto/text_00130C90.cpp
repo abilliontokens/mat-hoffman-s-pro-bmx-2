@@ -18,6 +18,14 @@ struct C_001313C0 {
 };
 
 
+void C_001313C0::func_001313C0(S_001313C0_Data *src)
+{
+    if (src->w[4] != 0) {
+        f9C = (f9C == 0);
+    }
+    fAC = *src;
+}
+
 void C_001314E0::func_001314E0(undefined4 *param_1)
 {
   int in_ECX = (int)this;
