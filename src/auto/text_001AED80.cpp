@@ -61,6 +61,7 @@ struct C_002A829C {
     virtual void v6(int a0, int a1);
     char pad4[0x10];
     C_002A829C_Sel *arr;
+    int func_001617F0(const char *name, int flag);
     int func_00161850(int a0);
     void func_001B26C0(int a0);
 };
@@ -206,5 +207,35 @@ void C_001AF710::func_001AF710(void)
             func_001E891B(arr[i]);
         }
     }
+}
+
+int C_001AFB00::func_001AFB00(void)
+{
+    unsigned char f = f38;
+    int v;
+
+    if (f & 4) {
+        v = f30 - 1;
+    } else {
+        v = f30 + 1;
+    }
+    f30 = v;
+    if ((f & 2) == 0) {
+        return f30;
+    }
+    if (f & 1) {
+        if (v > 0) {
+            if (v >= f34) {
+                f38 = f | 4;
+                f30 = f34 - 2;
+                return f34 - 2;
+            }
+        } else {
+            f38 = f & 0xfb;
+        }
+    } else if (f30 >= f34) {
+        f30 = 0;
+    }
+    return f30;
 }
 
