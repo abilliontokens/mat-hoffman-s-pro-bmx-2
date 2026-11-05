@@ -139,3 +139,10 @@ C_0008B820 *C_0008B820::func_0008B820(int unused) {
     return this;
 }
 
+void C_0008BB50::func_0008BB50(int param_1) {
+    if (param_1 >= 0 && f30 != param_1) {
+        f34->v5(0);
+    }
+    f30 = param_1;
+}
+
