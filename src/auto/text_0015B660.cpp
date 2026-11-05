@@ -134,6 +134,36 @@ struct C_0015BAC0 {
     void func_0015BAC0(int a0, u32 *a1, int a2);
 };
 
+struct S_0015C190_Vec3 {
+    float x;
+    float y;
+    float z;
+};
+
+struct S_0015C190_Key {
+    float t;
+    S_0015C190_Vec3 pos;
+    S_0015C190_Vec3 in;
+    S_0015C190_Vec3 out;
+};
+
+struct C_0015C190 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7(int n);
+    u32 unk4;
+    u32 unk8;
+    int unkC;
+    int unk10;
+    S_0015C190_Key *unk14;
+    void func_0015C190(S_0015C190_Vec3 *pos, float t);
+};
+
 LinearPositionController::LinearPositionController() {
     unk4 = 0;
     unk8 = 1;
@@ -179,6 +209,15 @@ void ByteAxisRotationController::func_0015B990()
     if (p)
         func_001E8390(p);
     vtbl = &D_002877E4;
+}
+
+void C_0015B9C0::func_0015B9C0(int a0, u32 *a1, int a2) {
+    if (a1 != 0) {
+        *a1 = unk14[a0 * 2];
+    }
+    if (a2 != 0) {
+        func_0001B1D0(&unk14[a0 * 2 + 1], a2);
+    }
 }
 
 void C_0015BA90::func_0015BA90() {
