@@ -10,6 +10,7 @@ struct S_001236A0_Vec3 {
 struct S_001236A0_Vec4 {
     float x, y, z, w;
     S_001236A0_Vec4() {}
+    void Set(float a, float b, float c) { x=a; y=b; z=c; }
     S_001236A0_Vec4(float x_, float y_, float z_, float w_) {
         x = x_;
         y = y_;
@@ -92,10 +93,83 @@ void func_00123940(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a
     func_001237D0(a1, a2, a3, a4, a5, a6, a8);
 }
 
+int func_00123AF0(int a1, int a2, S_00123AF0_Mat *a3, unsigned short a4, S_002B9290 *tree, int a6) {
+    int func_0011AC30(...);
+    int func_0011ACC0(...);
+    int func_00120FF0(...);
+    int func_001217F0(...);
+    S_001236A0_Node *node;
+    int r;
+
+    if (a4 & 0x8000) {
+        S_00123AF0_Mat m = *a3;
+        S_001236A0_Leaf20 *leaf;
+        func_0011AC30(&m, &m);
+        func_0011ACC0(&m, a6, &m);
+        leaf = &tree->leaves[a4 & 0x7fff];
+        return func_001217F0(a1, a2, leaf, &m);
+    } else {
+        S_00123AF0_Mat m = *a3;
+        func_0011AC30(&m, &m);
+        func_0011ACC0(&m, a6, &m);
+        node = &tree->nodes[a4];
+        S_001236A0_Vec4 lo(node->v0);
+        S_001236A0_Vec4 hi(node->v1);
+        if (func_00120FF0(a1, a2, &lo, &hi, &m) != 0) {
+            r = func_00123AF0(a1, a2, a3, node->left, tree, a6);
+            if (r == 0) {
+                return func_00123AF0(a1, a2, a3, node->right, tree, a6);
+            }
+        } else {
+            r = 0;
+        }
+    }
+    return r;
+}
+
 void func_00123C50(int a1, int a2, int a3, int a4, int a5, int a6, int a7) {
     int func_00123AF0(...);
     D_002B92F4 = a7;
     func_00123AF0(a1, a2, a3, a4, a5, a6);
+}
+
+int func_00123C80(int a1, int a2, S_001236A0_Mat *a3, unsigned short a4, S_002B92E8 *tree, int a6) {
+    int func_0011AC30(...);
+    int func_0011ACC0(...);
+    int func_00122090(...);
+    int func_00120FF0(...);
+    int r;
+    __declspec(align(16)) S_001236A0_Mat m;
+    S_001236A0_Vec4 hi, lo;
+    S_001236A0_Node *node;
+    if (a4 & 0x8000) {
+        m = *a3;
+        func_0011AC30(&m, &m);
+        func_0011ACC0(&m, a6, &m);
+        S_001236A0_Leaf32 *leaf = &tree->leaves[a4 & 0x7fff];
+        return func_00122090(a1, a2, &leaf->v0, &leaf->v1, &m);
+    }
+    m = *a3;
+    func_0011AC30(&m, &m);
+    func_0011ACC0(&m, a6, &m);
+    node = &tree->nodes[a4];
+    lo.x = node->v0.x;
+    lo.y = node->v0.y;
+    lo.z = node->v0.z;
+    lo.w = 1.0f;
+    hi.x = node->v1.x;
+    hi.y = node->v1.y;
+    hi.z = node->v1.z;
+    hi.w = 1.0f;
+    if (func_00120FF0(a1, a2, &lo, &hi, &m) != 0) {
+        r = func_00123C80(a1, a2, a3, node->left, tree, a6);
+        if (r == 0) {
+            return func_00123C80(a1, a2, a3, node->right, tree, a6);
+        }
+    } else {
+        r = 0;
+    }
+    return r;
 }
 
 int func_00123DE0(int a1, int a2, int a3, unsigned short a4, S_002B9290 *tree, int a6) {
