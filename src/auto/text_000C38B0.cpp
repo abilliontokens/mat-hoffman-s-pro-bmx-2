@@ -190,48 +190,6 @@ int C_000C40D0::func_000C40D0(int idx)
     return 0;
 }
 
-struct C_000C3C20_Ui {
-    void func_000B9A80(int a, int b);
-};
-
-struct C_000C3C20_Sub {
-    char pad0[0x24];
-    C_000C3C20_Ui *f24;
-};
-
-struct C_000C3C20_Query {
-    int func_00136170(int a, int b, int c);
-};
-
-struct C_000C3C20_Tail {
-    void func_0005C130(int n);
-};
-
-struct C_000C3C20_Mid {
-    char pad0[0x2c0];
-    C_000C3C20_Tail *f2c0;
-};
-
-struct C_000C3C20_Global {
-    char pad0[8];
-    C_000C3C20_Query *f8;
-    char padc[0x2d4];
-    C_000C3C20_Mid *f2e0;
-};
-
-extern C_000C3C20_Global *D_002A8491;
-
-struct C_000C3C20 {
-    char pad0[0x124];
-    C_000C3C20_Sub *f124;
-    char pad128[0x168];
-    int f290;
-    char pad294[4];
-    int f298[20];
-    int func_000C0100(int idx);
-    int func_000C3C20(int idx);
-};
-
 void C_000C4460::func_000C4460(void)
 {
     if (unk288 != 0) {
