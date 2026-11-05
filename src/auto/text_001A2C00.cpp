@@ -53,14 +53,51 @@ struct S_3B10_List {
         return 0;
     }
 };
+struct S_001A33A0_Vec3 {
+    int x;
+    int y;
+    int z;
+};
+struct S_001A33A0_Snd {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual int v5(int a); virtual void v6(); virtual int v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(int a);
+};
+struct S_001A33A0_Elem {
+    S_001A33A0_Snd *snd;
+    int f4;
+    int f8;
+    int fC;
+};
+struct S_001A33A0_List {
+    int count;
+    S_001A33A0_Elem **items;
+    S_001A33A0_Elem *at(int i)
+    {
+        if (count > 0 && items != 0 && i < count) {
+            return items[i];
+        }
+        return 0;
+    }
+};
+struct S_001A33A0_Mgr {
+    void func_0001CE80(S_001A33A0_Snd *snd, S_001A33A0_Vec3 *pos, void *name, int a, int b);
+};
+extern char D_002A9ECC[];
 struct MaterialSoundEmitter {
-    char pad[0x1d4];
+    char pad0[0x1a4];
+    S_001A33A0_Mgr *f1a4;
+    char pad1a8[0x1c0 - 0x1a8];
+    S_001A33A0_List list1c0;
+    char pad1c8[0x1d4 - 0x1c8];
     S_3B10_List a;
     char pad2[0x1e8 - 0x1dc];
     S_3B10_List b;
     char pad3[0x1fc - 0x1f0];
     int f1fc;
     int func_001A3B10(void);
+    int func_001A33A0(int idx, S_001A33A0_Vec3 pos, int a4, int vol);
 };
 
 extern int D_0028B624;
