@@ -86,6 +86,33 @@ struct C_001D3AB0 {
 };
 
 
+void C_001D3AB0::func_001D3AB0(void)
+{
+    vtbl = &D_0028F474;
+    unk48 = 0;
+    D_002F07B8->func_001C3D80();
+    if (unk44 != 0) {
+        func_0025ADD0(unk44);
+        unk44 = 0;
+        if (unk70 != 0) {
+            unk70->Release();
+            unk70 = 0;
+        }
+    }
+    if (unk44 != 0) {
+        func_0025ADD0(unk44);
+        unk44 = 0;
+        if (unk70 != 0) {
+            unk70->Release();
+            unk70 = 0;
+        }
+    }
+    if (unk7C != 0) {
+        func_00201100(unk7C);
+    }
+    ((C_001625D0 *)this)->func_001625D0();
+}
+
 undefined4 C_001D3CA0::func_001D3CA0(byte param_1)
 {
   int func_001D3AB0(...);
