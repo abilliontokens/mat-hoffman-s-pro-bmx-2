@@ -90,21 +90,21 @@ void __stdcall func_000597A0(int a0, int a1) {
 BmxGame *BmxGame::func_000598E0(void)
 {
     ((C_001D0E30 *)this)->func_001D0E30();
+    vtbl = (void *)&D_00277FD4;
     f2A4 = 0;
     f2B0 = 0;
     f2B4 = 0;
     f2B8 = 0;
     f2C7 = 0;
+    f2D8 = 1;
     f2DC = 0;
     f2E0 = 0;
+    f2E4 = 1;
     f2EC = 0;
     f2F0 = 0;
+    f2F4 = 1;
     f2F8 = 0;
     f2FC = 0;
-    vtbl = (void *)&D_00277FD4;
-    f2D8 = 1;
-    f2E4 = 1;
-    f2F4 = 1;
     return this;
 }
 
@@ -122,6 +122,11 @@ int BmxGame::func_00059950(GameEvent *e, int b)
     }
     f2F8 = 1;
     return ((C_001D0F70 *)this)->func_001D0F70(e, b);
+}
+
+int BmxGame::func_00059A00(void)
+{
+    return ((C_001D0EC0 *)this)->func_001D0EC0();
 }
 
 void BmxGame::func_0005A0B0(void)
