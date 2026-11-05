@@ -9,7 +9,10 @@ struct C_001B1580_24 {
     char padC[0x8];
     u32 unk14;                        /* 0x14 */
     float unk18;                      /* 0x18 */
-    char pad1C[0x28];
+    char pad1C[0x18];
+    float unk34;
+    float unk38;
+    char pad3C[8];
     int unk44;                        /* 0x44 */
     char pad48[0x6];
     u8 unk4E;                         /* 0x4E */
