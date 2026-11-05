@@ -39,7 +39,6 @@ struct S_0014B940_Obj {
     void func_0014B940();
 };
 
-#pragma auto_inline(on)
 void S_0014B940_Obj::func_0014B940()
 {
     Vec4 a(0.0f, 0.0f, 0.0f, 1.0f);
