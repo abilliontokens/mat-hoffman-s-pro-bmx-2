@@ -9,6 +9,8 @@ struct S_002A8490 {
 extern S_002A8490 *D_002A8490;
 extern int D_002AB7F0;
 extern float D_002F0BCC;
+extern float D_00275544;
+extern float D_00275460;
 extern int D_0028E864;
 extern char D_002A5A80[];
 extern char D_00275678[];
