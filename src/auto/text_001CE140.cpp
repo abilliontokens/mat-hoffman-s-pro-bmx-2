@@ -60,7 +60,8 @@ struct XboxMusic {
     int state;
     SoundList list3c;
     SoundList list64;
-    char pad8c[0x18];
+    char pad8c[0x14];
+    int fa0;
     int f_a4;
     int f_a8;
     char padac[0xc];
