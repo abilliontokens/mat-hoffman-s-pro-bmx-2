@@ -7,6 +7,41 @@ struct DelObjC_000C {
     virtual void Destroy(int a0);
 };
 
+struct GObj2E0 {
+    char pad0[0x18];
+    int n;
+};
+
+struct GObj930 {
+    char pad0[0x930];
+    char *s;
+};
+
+struct GObj4 {
+    char pad0[4];
+    GObj930 *p930;
+};
+
+struct GObj2E8 {
+    char pad0[4];
+    GObj4 *p4;
+};
+
+struct GObjRoot {
+    char pad0[0x2e0];
+    GObj2E0 *p2E0;
+    char pad2e4[4];
+    GObj2E8 *p2E8;
+};
+
+extern GObjRoot *D_002A8490;
+void func_001ADCC0(char *buf, int size, int fmt, int val);
+
+struct SetterObj {
+    void func_001B1980();
+    void func_001B17D0(char *s);
+};
+
 struct ElemC {
     char pad0[0x38];
     unsigned int f38;
