@@ -330,6 +330,15 @@ void C_001B10D0::func_001B10D0(undefined4 param_1, int param_2)
   return;
 }
 
+void *C_001B1110::func_001B1110(unsigned int flags)
+{
+    func_001B0F70();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 int __stdcall func_001B1190(int a0, int a1, int a2, int a3, int a4, int a5, int a6) {
     return 0;
 }
