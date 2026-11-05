@@ -25,27 +25,53 @@ struct CubeTextureMap {
     void *func_001387B0(int a);
 };
 
+struct DrawableCubeVirt {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+};
+
+struct C_0014A540 {
+    void func_0014A540(void);
+};
+
+struct C_00012140 {
+    void func_00012140(void);
+};
+
+struct C_00193500 {
+    void func_00193500(void);
+};
+
+extern void *D_002BDE9C;
+extern int D_002BDEA0;
+void func_001E891B(void *p);
+void func_001E8390(void *p);
+void __stdcall func_00201100(void *p);
+
 struct DrawableCube {
     void *vtbl;
     char pad4[0x23];
     u8 f27;
     int f28;
-    int f2c;
+    DrawableCubeVirt **f2c;
     int f30;
     int f34;
     int f38;
-    int f3c;
+    void *f3c;
     char pad40[0x780];
-    int f7c0;
-    int f7c4;
+    DrawableCubeVirt *f7c0;
+    C_00193500 *f7c4;
     int f7c8;
     int f7cc;
-    int f7d0;
-    int f7d4;
-    int f7d8;
+    C_0014A540 *f7d0;
+    C_00012140 *f7d4;
+    void *f7d8;
     void func_00136FE0();
     void func_00137810();
+    void func_00157660();
     void func_00192370(int a);
+    void func_00138390(void);
     int func_001382B0(void);
     DrawableCube *func_00138330(int a);
 };
