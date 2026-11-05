@@ -117,8 +117,9 @@ struct CameraController {
 
 void C_0012AAB0::func_0012AAB0(float param)
 {
-    if (param != D_00275544) {
-        f1d0 = param;
+    float v = param;
+    if (v != D_00275544) {
+        f1d0 = v;
     }
     f210 = D_002EFDB8[4] + 1;
 }
@@ -154,6 +155,15 @@ void C_0012AB70R::func_0012AB70(S_0012AB70Vec *param1, int param2, int param3, i
         }
         f210 = D_002EFDB8[4] + 1;
     }
+}
+
+void C_0012AC20::func_0012AC20(S_0012AB70Vec *p1, S_0012AB70Vec *p2, S_0012AB70Vec *p3, int *p4, float *p5)
+{
+    if (p1) *p1 = f170;
+    if (p2) *p2 = f180;
+    if (p3) *p3 = f190;
+    if (p4) *p4 = f1d4;
+    if (p5) *p5 = f1d0;
 }
 
 void func_0012B140(void) {
