@@ -196,6 +196,7 @@ struct C_001D6290 {
     C_001D6290Owner *unk40;
     char pad44[0xc];
     unsigned char unk50;
+    void ftoi(int *out, float f) { *out = _mm_cvttss_si32(_mm_load_ss(&f)); }
     int func_001D6290(void);
 };
 
@@ -309,6 +310,39 @@ int C_001D61E0::func_001D61E0(void)
     } else {
         result = (int)((float)(e->s1A + 1) * unk34);
     }
+    return result;
+}
+
+int C_001D6290::func_001D6290(void)
+{
+    int result;
+    float total = D_00275544;
+    C_001D6290Sub *last = 0;
+    unsigned char n = unk50;
+    int i;
+
+    if (n == 0) {
+        return 0;
+    }
+    for (i = 0; i < n; i++) {
+        C_001D6290Entry *e = unk40->tbl[unk0[i]];
+        if (e == 0) {
+            e = unk40->tbl[0];
+        }
+        if (e != 0) {
+            last = &e->f14;
+            if (last->f8 == 0) {
+                total += e->f8 - e->f4;
+            } else {
+                total += (float)(last->s0 + last->s4);
+            }
+        }
+    }
+    if (last != 0 && last->f8 == 0) {
+        FloatToInt(&result, (float)unk40->func_0018C070()->f8 * unk34 * total);
+        return result;
+    }
+    FloatToInt(&result, total * unk34);
     return result;
 }
 
