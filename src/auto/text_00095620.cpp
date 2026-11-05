@@ -248,6 +248,52 @@ undefined4 C_00095620::func_00095620(byte param_1)
   return in_ECX;
 }
 
+C_00095640 *C_00095640::func_00095640(int a, int b, int c)
+{
+    S_00095640_Config cfg;
+    char buf2[0x104];
+    char buf1[0x104];
+    int n;
+    int count;
+    int i;
+
+    cfg.func_00168280();
+    S_00095640_Obj *obj = (S_00095640_Obj *)func_001E8A44(0x1ac);
+    if (obj != 0)
+        obj = obj->func_001CD090(b, f28, c);
+    else
+        obj = 0;
+    f50 = obj;
+    if (!f50->v28(a)) {
+        cfg.func_001691E0();
+        return 0;
+    }
+    f50->func_001CB610(0, D_0027A2AC);
+    n = f50->v41(0);
+    for (i = 0; i < n; i++) {
+        S_00095640_Track *t = (S_00095640_Track *)func_001E8A44(0x6c);
+        if (i < 12)
+            t->f64 = 0;
+        else
+            t->f64 = i != 0x12;
+        t->f68 = 1;
+        tracks.Add(t);
+    }
+    func_001ADCC0(buf1, 0x104, D_0027A2F4, D_002A48F8);
+    cfg.func_00169490(buf1, 0);
+    if (cfg.func_00169710(D_0027A2EC)) {
+        cfg.func_00168C20(D_0027A2DC, 0, &count);
+        for (i = 1; i <= count; i++) {
+            func_001ADCC0(buf2, 0x104, D_0027A2D4, i);
+            cfg.func_00169710(buf2);
+            cfg.func_00168BE0(D_0027A2CC, D_00275630, tracks.at(i - 1)->name, -1);
+            cfg.func_00168BE0(D_0027A2C4, D_00275630, tracks.at(i - 1)->name2, -1);
+        }
+    }
+    cfg.func_001691E0();
+    return this;
+}
+
 extern "C" void *__cdecl memset(void *dst, int c, unsigned int n);
 #pragma intrinsic(memset)
 int C_00095A00::func_00095A00(int n)
