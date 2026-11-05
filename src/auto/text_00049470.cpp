@@ -5,6 +5,9 @@ extern int D_0027718C;
 
 struct C_00198390 {
     void func_00198390(void);
+    void func_001983A0(void);
+    void func_00198E60(void);
+    void func_0019ABA0(int, int);
 };
 
 struct S_00049A20_Inner {
