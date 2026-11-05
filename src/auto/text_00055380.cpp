@@ -104,6 +104,8 @@ struct S_00056100_Node {
     void func_001A57E0(S_00056100_Quat a0, int a1, int a2);
     void func_0014C1C0(int a0, int a1, int a2);
     void func_0014AC30(S_00056100_Quat *a0, int a1);
+ void func_001A4AE0(S_00056100_Quat *,int);
+ float func_00133F10(int);
 };
 
 struct C_00056100 {
