@@ -57,6 +57,19 @@ struct C_1329F0 {
     void func_00132CA0();
 };
 
+struct C_19AC50_1324B0 {
+    void func_0019AC50();
+};
+
+struct C_198E60_1324B0 {
+    void func_00198E60();
+};
+
+struct C_Item2_1324B0 {
+    void func_00133210();
+    void func_001332A0();
+};
+
 struct C_132CC0 {
     char pad0[4];
     void *f4;
@@ -64,6 +77,8 @@ struct C_132CC0 {
     void *f280;
     int f284;
     void func_00132CC0(int a1, int a2, int a3);
+    void func_00132D20();
+    void func_00132D70();
 };
 
 void CinematographerCam::func_001324B0()
