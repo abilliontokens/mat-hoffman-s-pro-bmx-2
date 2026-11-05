@@ -1,6 +1,19 @@
 /* 29 functions from 0x001F306F to 0x001F3B78, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct D8_001F3805 {
+    u32 lo;
+    u32 hi;
+};
+
+struct ExceptionRaw_001F3805 {
+    int type;
+    char *name;
+    D8_001F3805 arg1;
+    D8_001F3805 arg2;
+    D8_001F3805 retval;
+};
+
 struct Exception_001F3805 {
     int type;
     char *name;
@@ -369,6 +382,97 @@ void func_001F37B0(int code) {
         *func_001ED075() = 0x22;
         break;
     }
+}
+
+int func_001F37D8(u8 status) {
+    if (status & 0x20) {
+        return 5;
+    }
+    if (status & 0x08) {
+        return 1;
+    }
+    if (status & 0x04) {
+        return 2;
+    }
+    if (status & 0x01) {
+        return 3;
+    }
+    return (status & 2) << 1;
+}
+
+double func_001F3805(int type, int fnid, double arg1, double arg2, double retval, u32 cw) {
+    extern int D_002AEC70[];
+    extern char *D_002AEC74[];
+    int func_001F3AFB(u32, u32);
+    int func_001F59D9(Exception_001F3805 *);
+    void func_001F37B0(int);
+    Exception_001F3805 e;
+    char *name = 0;
+    int i;
+
+    for (i = 0; i < 0x1d; i++) {
+        if (D_002AEC70[i * 2] == fnid) {
+            name = D_002AEC74[i * 2];
+            break;
+        }
+    }
+    e.name = name;
+    if (name != 0) {
+        e.arg1 = arg1;
+        e.arg2 = arg2;
+        e.retval = retval;
+        e.type = type;
+        func_001F3AFB(cw, 0xffff);
+        if (func_001F59D9(&e) == 0) {
+            func_001F37B0(type);
+        }
+        return e.retval;
+    }
+    func_001F3AFB(cw, 0xffff);
+    func_001F37B0(type);
+    return retval;
+}
+
+double func_001F38A3(int param_1, double param_2, int param_3) {
+    extern int D_002AF030;
+    double func_001F3805(int, int, double, double, double, int);
+    int *func_001ED075(void);
+    void func_001F3AFB(int, int);
+    if (D_002AF030 != 0) {
+        *func_001ED075() = 0x21;
+        func_001F3AFB(param_3, 0xffff);
+        return param_2;
+    }
+    return func_001F3805(1, param_1, param_2, 0.0, param_2, param_3);
+}
+
+double func_001F38F6(int param_1, int param_2, double param_3, double param_4, int param_5) {
+    extern int D_002AF030;
+    extern char D_0000FFFF;
+    int func_001F35C5(int, double *, int);
+    void func_001F3321(void *, int *, int, int, double *, double *);
+    int func_001F37D8(int);
+    double func_001F3805(int, int, double, double, double, int);
+    void func_001F37B0(int);
+    void func_001F3AFB(int, int);
+    struct __declspec(align(16)) S_001F38F6 {
+        char pad0[0x40];
+        int f40;
+        char pad44[0x2c];
+    };
+    S_001F38F6 rec;
+    int r;
+    if (func_001F35C5(param_1, &param_4, param_5) == 0) {
+        rec.f40 &= ~1;
+        func_001F3321(&rec, &param_5, param_1, param_2, &param_3, &param_4);
+    }
+    r = func_001F37D8(param_1);
+    if (D_002AF030 == 0 && r != 0) {
+        return func_001F3805(r, param_2, param_3, 0.0, param_4, param_5);
+    }
+    func_001F37B0(r);
+    func_001F3AFB(param_5, (int)&D_0000FFFF);
+    return param_4;
 }
 
 #pragma optimize("", on)
