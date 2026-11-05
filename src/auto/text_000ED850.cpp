@@ -81,7 +81,7 @@ struct C_000ED850 {
     int unk450;
     int unk454;
     int unk458;
-    int unk45C;
+    unsigned unk45C;
     float arr460[11];
     int func_000ED850(int a0, int a1);
 };
