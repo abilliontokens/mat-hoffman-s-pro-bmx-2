@@ -69,6 +69,25 @@ struct C_001BD9F0 {
 };
 
 
+undefined4 C_001BD790::func_001BD790(void)
+{
+  int in_ECX = (int)this;
+  int iVar1;
+  int iVar2;
+
+  iVar1 = 0;
+  if (0 < *(int *)(in_ECX + 0x124)) {
+    do {
+      iVar2 = *(int *)(*(int *)(in_ECX + 0x120) + iVar1 * 4);
+      if ((iVar2 != 0) && (*(int *)(iVar2 + 0x14) == 0)) {
+        func_001577A0((void *)iVar2, -1);
+      }
+      iVar1 = iVar1 + 1;
+    } while (iVar1 < *(int *)(in_ECX + 0x124));
+  }
+  return 1;
+}
+
 C_001BD9C0 *C_001BD9C0::func_001BD9C0(int a)
 {
   ((C_00157600 *)this)->func_00157600(a);
