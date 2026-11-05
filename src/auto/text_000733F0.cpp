@@ -90,3 +90,14 @@ void C_000739D0::func_000739D0(void) {
     func_00073620();
     func_00157960();
 }
+
+void C_000739F0::func_000739F0(float param_1) {
+    extern float D_00278500;
+    unk84 += param_1;
+    if (unk6C != 0 && unk84 >= D_00278500) {
+        virt4();
+        unk64->unk190->func_000683F0();
+    }
+    func_0005EA10(param_1);
+}
+
