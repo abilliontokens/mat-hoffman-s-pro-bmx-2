@@ -19,7 +19,9 @@ struct PageObj {
 struct DXRenderableObjectData {
     void *vtbl;
     void func_00181410();
+    void func_00181440();
     DXRenderableObjectData *func_00143520(void);
+    void *func_00143770(int flags);
 };
 
 struct DXRenderableObject;
