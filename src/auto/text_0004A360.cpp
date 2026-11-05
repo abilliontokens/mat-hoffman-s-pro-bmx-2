@@ -238,7 +238,10 @@ struct BmxEventFPS {
     S_Obj1AC *f1ac;
     char pad1b0[0x284 - 0x1b0];
     S_Obj284 *f284;
-    char pad288[0x2d0 - 0x288];
+    char pad288[0x2a4 - 0x288];
+    S_Overlay *f2a4;
+    S_Overlay *f2a8;
+    char pad2ac[0x2d0 - 0x2ac];
     S_Obj2D0 *f2d0;
     int f2d4;
     int f2d8;
