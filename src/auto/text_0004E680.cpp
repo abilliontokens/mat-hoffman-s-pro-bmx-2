@@ -100,6 +100,14 @@ void *C_0004ED80::func_0004ED80(int flags) {
     return this;
 }
 
+void C_0004F5B0::func_0004F5B0(void)
+{
+    func_000314A0();
+    if (f2A8 != 0) {
+        f2A8->v6();
+    }
+}
+
 int func_0004F5D0(void) {
     int func_00031F30(...);
     func_00031F30();
