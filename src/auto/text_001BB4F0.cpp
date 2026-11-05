@@ -92,6 +92,17 @@ void C_001BB860::func_001BB860()
     func_00157660();
 }
 
+int C_001BB900::func_001BB900(void *a1)
+{
+    if (a1) {
+        ((C_001334E0 *)unk2e4)->func_001334E0(1);
+        ((C_001334E0 *)unk2e4)->func_001334F0(a1);
+        ((C_001334E0 *)a1)->func_001334F0(unk2e4);
+        return 1;
+    }
+    return 0;
+}
+
 undefined4 C_001BC020::func_001BC020(byte param_1)
 {
   int func_001BB860(...);
