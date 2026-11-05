@@ -108,3 +108,19 @@ C_00142CF0* C_00142CF0::func_00142CF0(void) {
     unk0 = 0;
     return this;
 }
+
+void C_00142D90::func_00142D90(int param_1)
+{
+    void func_001E891B(int);
+    int value;
+    func_001AC790(param_1);
+    if (unk14[param_1].unkC == 0) {
+        value = unk14[param_1].unk4;
+        if (value != 0) {
+            ((C_00012140 *)value)->func_00012140();
+            func_001E891B(value);
+            unk14[param_1].unk4 = 0;
+        }
+    }
+}
+
