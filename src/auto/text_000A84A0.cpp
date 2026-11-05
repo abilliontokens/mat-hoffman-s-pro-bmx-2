@@ -380,6 +380,21 @@ struct S_000A8A60_Global {
 extern S_000A8A60_Global *D_002A8490;
 int func_00011260(int lo, int hi);
 
+void __cdecl func_000A8A60(void *a0, void *unused, C_000A88A0 *obj, int flag)
+{
+    int i;
+    int r;
+
+    if (flag != 0 && D_002A8490->f2A4->f1C8 == 0) {
+        i = 0;
+        do {
+            r = func_00011260(0, 2);
+            i++;
+        } while (obj->items[r].unk0 == 0 && i < 10);
+        D_002A8490->f2A4->func_000323C0(obj->unk1C0, a0, &obj->items[r]);
+    }
+}
+
 C_000A8AF0 *C_000A8AF0::func_000A8AF0() {
     extern int D_0027C2DC;
     extern float D_002A2734;
