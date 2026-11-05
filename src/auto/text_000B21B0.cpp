@@ -1,6 +1,8 @@
 /* 14 functions from 0x000B21B0 to 0x000B2ED0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <math.h>
+#include <xmmintrin.h>
 extern char D_002764F0[];
 extern char D_00276310[];
 extern char D_0027CEF0[];
