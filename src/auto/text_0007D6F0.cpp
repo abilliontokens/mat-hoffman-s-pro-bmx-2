@@ -5,6 +5,65 @@ struct C_0007E0A0 {
     undefined4 func_0007E0A0(byte param_1);
 };
 
+struct C_0007E1C0 {
+    undefined4 func_0007E1C0(byte param_1);
+};
+
+struct C_0007E200 {
+    undefined4 func_0007E200(byte param_1);
+};
+
+struct C_0007E050_quat {
+    float x, y, z, w;
+};
+
+struct C_0007E050_item {
+    C_0007E050_quat q0, q1, q2;
+    char pad[0x40];
+};
+
+struct C_0007E050 {
+    char pad0[0x30];
+    C_0007E050_item items[0x96];
+    void func_0007E050(void);
+};
+
+struct GObj4_7E {
+    char pad0[0x930];
+    char *p930;
+    char pad934[0x134];
+    char *fA68;
+    char padA6C[0x4a4];
+    char *fF10;
+};
+
+struct GObj2E8_7E {
+    char pad0[4];
+    GObj4_7E *p4;
+};
+
+struct GObjRoot_7E {
+    char pad0[0x2e8];
+    GObj2E8_7E *p2E8;
+};
+
+struct SetterObj_7E {
+    void func_001B17D0(char *s);
+};
+
+struct C_0007E220 {
+    char pad0[0xac];
+    int fAC;
+    char padB0[0x24];
+    SetterObj_7E *fD4;
+    void func_0007E220(void);
+};
+
+extern GObjRoot_7E *D_002A8490;
+extern int D_00277038;
+void func_001ADCC0(char *buf, int size, char *fmt, int val);
+void func_001AC330(char *dest, char *fmt, char *arg);
+
 struct C_0007E1E0 {
     void *func_0007E1E0(unsigned int flags);
     void func_0006E480(void);
