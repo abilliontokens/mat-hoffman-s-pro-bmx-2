@@ -289,7 +289,7 @@ int C_00182750::func_00182750(void)
     return 1;
 }
 
-void C_001827B0::func_001827B0(void)
+C_001827B0::C_001827B0(void)
 {
     vtbl = &D_0028933C;
     f4 = 0;
