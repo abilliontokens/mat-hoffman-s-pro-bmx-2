@@ -57,6 +57,32 @@ struct C_00109570 {
     int func_00109570(void);
 };
 
+struct C_00109400 {
+    char pad0[0x34];
+    int f34;
+    char pad38[0x320];
+    int f358[1];
+    void func_00109400(int param_1);
+};
+
+struct C_001093B0 {
+    char pad0[0x34];
+    int f34;
+    int f38[200];
+    int f358[200];
+    int func_001093B0(int a, int b);
+};
+
+struct C_00109420 {
+    int v[0x100];
+    int func_00109420(void);
+};
+
+struct C_001094F0 {
+    int v[0x55];
+    int func_001094F0(int a, int b);
+};
+
 
 int C_00109370::func_00109370(void)
 {
