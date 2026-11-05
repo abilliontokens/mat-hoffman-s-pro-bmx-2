@@ -41,8 +41,13 @@ struct RenderableObject {
     char pad182[0x1e];
     unsigned char unk1A0;
     unsigned char unk1A1;
-    unsigned char unk1A2;
-    unsigned char unk1A3;
+    union {
+        unsigned short unk1A2;
+        struct {
+            unsigned char pad1A2;
+            unsigned char unk1A3;
+        };
+    };
     int unk1A4;
     int unk1A8;
     int unk1AC;
