@@ -3,6 +3,96 @@
 
 extern int D_0027850C;
 extern int D_00278E6C;
+extern float D_00278500;
+
+struct S_00077450_Slot18 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17();
+    virtual void v18(int a);
+    void func_00094960(int a);
+};
+
+struct S_00077450_Slot31 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30();
+    virtual void v31(int a, int b);
+};
+
+struct S_00077450_Obj120 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35();
+    virtual void v36(); virtual void v37(); virtual void v38();
+    virtual void v39();
+    void func_00032720();
+    void func_00032740();
+};
+
+struct S_00077450_Mgr2A4Owner {
+    char pad0[0x4C0];
+    S_00077450_Slot31 *f4C0;
+};
+
+struct S_00077450_Mgr2A4 {
+    char pad0[0x64];
+    S_00077450_Mgr2A4Owner *f64;
+    char pad68[0xEC];
+    int f154;
+};
+
+struct S_00077450_Mgr2E0 {
+    char pad0[0x2FC];
+    S_00077450_Slot18 *f2FC;
+    char pad300[0x24];
+    int f324;
+};
+
+struct S_00077450_Mgr2F0 {
+    void func_0001EDC0(int a);
+};
+
+struct S_00077450_Global {
+    char pad0[0x2A4];
+    S_00077450_Mgr2A4 *f2A4;
+    char pad2A8[0x38];
+    S_00077450_Mgr2E0 *f2E0;
+    char pad2E4[0xC];
+    S_00077450_Mgr2F0 *f2F0;
+};
+extern S_00077450_Global *D_002A8490;
+
+/* SPFPSResultsScreen / MPFPSResultsScreen, vtable slot 12 */
+struct C_00077450 {
+    char pad0[0x11C];
+    int f11C;
+    S_00077450_Obj120 *f120;
+    float f124;
+    char pad128[0x194 - 0x128];
+    int f194;
+    char pad198[0x1AC - 0x198];
+    int f1AC;
+    char pad1B0[4];
+    int f1B4;
+    int f1B8;
+    void func_00075880();
+    void func_0005EA10(float dt);
+    void func_00077450(float dt);
+};
 
 struct C_000777A0_Base {
     void func_00157600(int a);
