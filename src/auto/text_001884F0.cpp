@@ -31,6 +31,17 @@ struct C_00188VT {
     virtual void v1();
 };
 
+struct S_001884F0_Obj {
+    virtual void v0();
+    S_001884F0_Obj *func_001881C0();
+};
+
+struct C_001884F0 {
+    char pad0[0xC];
+    S_001884F0_Obj *fC;
+    void func_001884F0(void);
+};
+
 struct C_00188750_Obj : C_00188VT {
     char pad4[0x140];
     int unk144;
