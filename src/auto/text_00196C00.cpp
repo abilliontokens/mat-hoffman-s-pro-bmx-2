@@ -117,9 +117,25 @@ struct C_00197AA0 {
     char fF0[0x40];
     char pad130[0x40];
     C_00197AA0 *f170;
-    char pad174[0xC];
+    C_00197AA0 *f174;
+    C_00197AA0 *f178;
+    char pad17C[4];
     u8 f180;
     void func_00197AA0();
+    void func_00197B10();
+};
+
+struct C_00197B40 {
+    char pad0[0xB4];
+    float fB4;
+    float fB8;
+    char padBC[8];
+    float fC4;
+    float fC8;
+    char padCC[8];
+    float fD4;
+    float fD8;
+    void func_00197B40(float *a, float *b);
 };
 
 void func_0011ACC0(void *out, void *a, void *b);
