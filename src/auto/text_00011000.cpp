@@ -58,6 +58,10 @@ void func_000110E0(float *out, float *a, float *b) {
     vec3_set(out, a[0] + b[0], a[1] + b[1], a[2] + b[2]);
 }
 
+void func_00011110(float *out, float *a, float *b) {
+    vec3_set(out, a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+}
+
 void func_000111B0(float *out, float *in) {
     __m128 v = _mm_loadu_ps(in);
     __m128 sq = _mm_mul_ps(v, v);
