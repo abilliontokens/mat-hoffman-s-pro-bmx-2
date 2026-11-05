@@ -42,6 +42,12 @@ struct C_00168B90 {
     int func_00168BE0(int a, const char *src, char *dst, int d);
 };
 
+struct S_00168280_Entry {
+    int f0;
+    int f4;
+    char name[0x408];
+};
+
 struct C_00168280 {
     int f0;
     int f4;
@@ -171,6 +177,66 @@ C_00168280 *C_00168280::func_00168280(void)
     f4c0 = 0;
     f4c4 = 0;
     return this;
+}
+
+int C_00168280::func_00168300(const char *name)
+{
+    char buf[0x400];
+    int lo;
+    int hi;
+    int mid;
+    int i;
+    char *table;
+
+    if (f4 != 0) {
+        if (f4c8 != 0) {
+            char *p = (char *)name;
+            int delta = buf - p;
+            char c;
+
+            do {
+                c = *p;
+                p[delta] = c;
+                p++;
+            } while (c);
+            func_000347F0(buf);
+            lo = 0;
+            hi = f10 - 1;
+            mid = hi >> 1;
+            table = f4c8;
+            do {
+                int cmp = strcmp(buf, table + mid * 0x400);
+
+                if (cmp == 0) {
+                    return mid;
+                }
+                if (cmp < 0) {
+                    hi = mid;
+                } else {
+                    lo = mid;
+                }
+                mid = ((hi - lo) >> 1) + lo;
+            } while (hi - lo > 1);
+            if (strcmp(buf, table + lo * 0x400) == 0) {
+                return lo;
+            }
+            if (strcmp(buf, table + hi * 0x400) == 0) {
+                return hi;
+            }
+        }
+        return -1;
+    }
+    i = 0;
+    if (f10 > 0) {
+        do {
+            if (func_001EA426(name, &f18[i * 0x410 + 8]) == 0) {
+                return i;
+            }
+            i++;
+        } while (i < f10);
+        return -1;
+    }
+    return -1;
 }
 
 void C_001684B0::func_001684B0(void)
