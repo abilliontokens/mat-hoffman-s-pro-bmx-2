@@ -46,6 +46,14 @@ struct C_0012B540 {
 };
 
 
+void C_0012AAB0::func_0012AAB0(float param)
+{
+    if (param != D_00275544) {
+        f1d0 = param;
+    }
+    f210 = D_002EFDB8[4] + 1;
+}
+
 void func_0012B140(void) {
     int func_001576C0(...);
     func_001576C0();
