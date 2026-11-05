@@ -14,6 +14,40 @@ struct S_002B91AC {
 
 extern S_002B91AC *D_002B91AC;
 
+extern int D_0027F5CC;
+
+struct S_000DA320_Obj {
+    virtual void destroying(int flag);
+};
+
+struct BmxUIPageViewVideosTitle {
+    void *vtbl;
+    char pad4[0x314 - 4];
+    S_000DA320_Obj *arr314[4];
+    S_000DA320_Obj *arr324[2];
+    void func_001BE3F0();
+    void func_000DA320();
+};
+
+struct RenderEntryHOF {
+    char pad0[0x38];
+    u32 f38;
+    char pad3C[0x1C];
+    u8 b58;
+};
+
+struct BmxUIPageHOF {
+    void *vtbl;
+    char pad4[0x2B8 - 4];
+    s16 unk2B8;
+    char pad2BA[0x2EC - 0x2BA];
+    RenderEntryHOF *arr2EC[2];
+    RenderEntryHOF *arr2F4[2];
+    RenderEntryHOF *arr2FC[2];
+    void func_001BF000();
+    void func_000DA0C0();
+};
+
 struct C_000DA140 {
     char pad0[0x29C];
     int unk29C;
