@@ -82,6 +82,17 @@ struct C_00160B90 {
     void func_00160B90(void);
 };
 
+struct BMNode {
+    void *f0;
+    int f4;
+    BMNode *f8;
+};
+
+struct BMHead {
+    int f0;
+    BMNode *f4;
+};
+
 struct BufferManager {
     int unk0;
     int f4;
