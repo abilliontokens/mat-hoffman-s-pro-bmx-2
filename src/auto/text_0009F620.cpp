@@ -135,7 +135,7 @@ struct C_0009F7F0 {
     void func_0012B510(void);
 };
 struct CameraBehavior_0009F7F0 {
-    __forceinline CameraBehavior_0009F7F0() { ((C_0009F7F0 *)this)->func_0012B510(); }
+    __forceinline CameraBehavior_0009F7F0() { ((C_0009F7F0 *)this)->func_0012B510(); *(void **)this = &D_0027AD64; }
 };
 struct V4_0009F7F0 {
     float x, y, z, w;
@@ -214,6 +214,38 @@ struct C_000A00A0 {
     int unkB4;
     void func_000A00A0(V4_000A00A0 a0, int a1);
 };
+
+func_0009F7F0::func_0009F7F0()
+{
+    vtbl = &D_0027AD64;
+    unk8 = 0;
+    unkC = 0;
+    unk10 = 0;
+    unk14 = 0;
+    v18 = D_002A25E0;
+    v28 = D_002A25E0;
+    unk38 = 0;
+    unk3C = 80.0f;
+    unk50 = 0;
+    unk54 = 0;
+    unk44 = 0;
+    unk48 = 0;
+    unk4C = 10.0f;
+    unk8C = 0;
+    unk90 = 0;
+    v58 = D_002A25E0;
+    v68 = D_002A25E0;
+    v78 = D_002A2600;
+    unk88 = 3.0f;
+    v94 = D_002A25E0;
+    unkA4 = 0;
+    unkA8 = 0;
+    unkAC = 0;
+    unkB0 = 0;
+    unkB8 = 0;
+    unkB4 = 3.0f;
+    unk40 = 1;
+}
 
 void C_0009F9F0::func_0009F9F0(void)
 {
