@@ -111,6 +111,10 @@ struct C_001092E0 {
     int func_00109340(int p1, int p2);
 };
 
+static __forceinline void zero_mem(void *p, int n) {
+    memset(p, 0, n);
+}
+
 static __forceinline void vec3_set(float *out, float x, float y, float z) {
     out[3] = 1.0f;
     out[0] = x;
