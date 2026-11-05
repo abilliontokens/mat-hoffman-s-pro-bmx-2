@@ -212,6 +212,25 @@ struct C_0005C650 {
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 
 
+void C_0005B8D0::func_0005B8D0(void)
+{
+  extern undefined4 D_002A8490;
+  int i;
+
+  for (i = 0; i < 0x12; i++) {
+    if (pairs[i].a != 0) {
+      ((S_0005B8D0_Root *)D_002A8490)->p2e0->p2fc->func_000951B0(i);
+    } else {
+      ((S_0005B8D0_Root *)D_002A8490)->p2e0->p2fc->func_00095200(i);
+    }
+    if (pairs[i].b != 0) {
+      ((S_0005B8D0_Root *)D_002A8490)->p2e0->p2fc->func_00095110(i);
+    } else {
+      ((S_0005B8D0_Root *)D_002A8490)->p2e0->p2fc->func_00095160(i);
+    }
+  }
+}
+
 int C_0005C020::func_0005C020(int param_1)
 {
   int in_ECX = (int)this;
