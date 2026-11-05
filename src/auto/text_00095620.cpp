@@ -290,3 +290,38 @@ C_00095BC0 *C_00095BC0::func_00095BC0()
     return this;
 }
 
+void C_00096020::func_00096020(S_00096020_Arg *arg)
+{
+ int i=0;
+ if (count <= 0) return;
+ char *name=names+0x5a0;
+ do {
+ char *first=name-0x5a0;
+ if (*first) {
+ int found=0;
+ for(int j=0;j<arg->owner->list->count && !found;++j) {
+ S_00096020_Item *item=arg->owner->list->items[j];
+ if (!func_001EA426(item->name,first)) { arg->owner->manager->func_0001B910(item); found=1; }
+ }
+ }
+ if (*name) {
+ int found=0;
+ for(int j=0;j<arg->owner->list->count && !found;++j) {
+ S_00096020_Item *item=arg->owner->list->items[j];
+ if (!func_001EA426(item->name,name)) { arg->owner->manager->func_0001B820(item); found=1; }
+ }
+ }
+ if (name[0xb40] && name[0x5a0]) {
+ for(int j=0;j<arg->owner->list->count;++j) {
+ S_00096020_Item *item=arg->owner->list->items[j];
+ if (!func_001EA426(item->name,name+0xb40)) {
+ arg->owner->manager->func_0001BDB0(j);
+ arg->owner->manager->func_0001B9E0(item,arg->owner->manager->func_0001B900(item),1);
+ arg->owner->manager->func_0001B910(item);
+ }
+ }
+ }
+ ++i; name+=0x78;
+ } while(i<count);
+}
+
