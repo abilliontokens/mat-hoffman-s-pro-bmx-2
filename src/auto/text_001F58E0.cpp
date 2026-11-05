@@ -109,9 +109,10 @@ void func_001F5B20(S_U12 *p)
 {
     unsigned int l0 = p->l[0];
     unsigned int l1 = p->l[1];
+    unsigned int c0 = l0 >> 31;
 
     p->l[0] = l0 << 1;
-    p->l[1] = (l1 << 1) | (l0 >> 31);
+    p->l[1] = (l1 << 1) | c0;
     p->l[2] = (p->l[2] << 1) | (l1 >> 31);
 }
 
@@ -144,6 +145,5 @@ void func_001F6292(void)
         } __except (1) {
         }
     }
-    _imp__KeBugCheck(0xc0000144);
+    KeBugCheck_001F6292(0xc0000144);
 }
-
