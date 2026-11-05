@@ -63,6 +63,23 @@ struct C_001067B0 {
     void func_00105AA0(void);
 };
 
+void C_001067B0::func_00105AA0(void)
+{
+    f117C = f1178;
+    f116C = f1168;
+    f1164 = f1160;
+    f1160 = f1E8->f64;
+    f1178 = f1E8->f68;
+    f1168 = f1E8->f50;
+    f1170 = f1E8->f54;
+    f1180 = f1E8->f28 != 0 && f1E8->f30 != 0;
+    if (f1178 != 0) {
+        f15AC = 1.0f;
+    } else {
+        f15AC = 0.0f;
+    }
+}
+
 void C_001067B0::func_001067B0(void)
 {
     if (f15A4->func_001A2EF0(3)->v7()) {
