@@ -1,6 +1,17 @@
 /* 35 functions from 0x001B0A20 to 0x001B19C0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_001B1980 {
+    char pad0[0x64];
+    int unk64;
+    char pad68[0x10];
+    int unk78;
+    int unk7C;
+    char pad80[0x40];
+    int unkC0;
+    void func_001B1980(void);
+};
+
 struct C_001B10D0 {
     void func_001B10D0(undefined4 param_1, int param_2);
 };
@@ -59,5 +70,12 @@ undefined4 C_001B17F0::func_001B17F0(void)
   int in_ECX = (int)this;
   
   return **(undefined4 **)(in_ECX + 0x24);
+}
+
+void C_001B1980::func_001B1980(void) {
+    unk64 = 0;
+    unk7C = 0;
+    unk78 = -1082130432;
+    unkC0 = 0;
 }
 
