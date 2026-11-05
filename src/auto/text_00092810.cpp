@@ -206,7 +206,10 @@ int C_00092890::func_00092AC0(void)
 {
     char *d = &f4c;
 
-    if (*d == 0) {
+    if (*d != 0) {
+        return 1;
+    }
+    {
         C_00092BE0_Str s;
         char *p;
         char *q;
@@ -214,19 +217,19 @@ int C_00092890::func_00092AC0(void)
 
         s.func_001D3E30();
         s.func_001D3F20(&D_0027A130, 0xd);
-        if (D_002A8490->f2e0->f2cc->func_001D4200(&s) == 0) {
-            return 0;
+        if (D_002A8490->f2e0->f2cc->func_001D4200(&s) != 0) {
+            p = s.func_001D3F50();
+            q = d;
+            do {
+                c = *p;
+                p++;
+                *q = c;
+                q++;
+            } while (c != 0);
+            return 1;
         }
-        p = s.func_001D3F50();
-        q = d;
-        do {
-            c = *p;
-            p++;
-            *q = c;
-            q++;
-        } while (c != 0);
     }
-    return 1;
+    return 0;
 }
 
 int C_00092890::func_00092B40(int idx)
