@@ -56,6 +56,64 @@ struct C_001C4D50 {
     void func_001C4D50(int a0);
 };
 
+extern float D_002755E0;
+extern float D_00275544;
+
+struct FadeSub_001C4B60 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    char pad4[0x24];
+    f32 f28;
+    f32 f2C;
+    f32 f30;
+    int f34;
+    int f38;
+    int f3C;
+    int f40;
+    int func_001C4180(int a0);
+    int func_001C41E0(int a0);
+};
+
+struct FadeLevel_001C4E70 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    char pad4[0x28];
+    int f2C;
+    f32 f30;
+};
+
+struct VideoCardObj_001C4B60 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4(int a0);
+};
+
+extern VideoCardObj_001C4B60 *D_002F07B8;
+
+struct FadeManager_001C4B60 {
+    char pad0[0x40];
+    FadeSub_001C4B60 *f40;
+    int f44;
+    C_001C4D50_Fx *a48[9];
+    FadeLevel_001C4E70 *f6C;
+    int func_001C4B60(int a0, int a1);
+    int func_001C4BD0(int a0, int a1);
+    void func_001C4D10(int idx, int v);
+    void func_001C4E70(f32 v);
+};
+
 /* ScreenTransition */
 struct C_001C4EA0_Obj {
     virtual void v0(int flags);
