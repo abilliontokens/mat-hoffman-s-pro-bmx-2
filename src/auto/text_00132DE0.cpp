@@ -355,6 +355,27 @@ void C_001332A0::func_00133620(int item)
     }
 }
 
+void C_001332A0::func_00133660(int item)
+{
+    int func_001E83E8(...);
+    int i;
+
+    for (i = 0; i < f94; i++) {
+        if (f90[i] == item) {
+            return;
+        }
+    }
+    for (i = 0; i < f94; i++) {
+        if (f90[i] == 0) {
+            f90[i] = item;
+            return;
+        }
+    }
+    f90 = (int *)func_001E83E8(f90, f94 * 4 + 4);
+    f90[f94] = item;
+    f94++;
+}
+
 void C_00133700::func_00133700(void)
 {
   int func_001E8390(...);
