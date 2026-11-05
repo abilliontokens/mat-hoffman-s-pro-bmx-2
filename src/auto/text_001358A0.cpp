@@ -72,7 +72,7 @@ struct C_00135E00 {
     int fC;
     int f10;
     S_00136110_Dev *f14[8];
-    int f34;
+    S_00136110_Dev *f34;
     S_001358A0_Handler *f38;
     int f3C;
     char pad40[0xc80];
