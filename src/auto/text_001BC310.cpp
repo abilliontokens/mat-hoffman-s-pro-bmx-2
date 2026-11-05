@@ -371,6 +371,19 @@ void *C_UIGlobalManager::func_001BCBE0(void *a1, void *a2, int a3)
     return this;
 }
 
+void C_001BCC40::func_001BCC40()
+{
+    vtbl = (void *)&D_0028D44C;
+    if (f110 != 0) {
+        func_001E8390(f110);
+    }
+    if (f120 != 0) {
+        func_001E8390(f120);
+    }
+    D_002F07B8->f8 = 0;
+    func_00157660();
+}
+
 C_001BCC90 *C_001BCC90::func_001BCC90(void *param_1)
 {
     f24 = param_1;
