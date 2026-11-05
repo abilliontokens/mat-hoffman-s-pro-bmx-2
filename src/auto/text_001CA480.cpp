@@ -16,6 +16,35 @@ void func_001E891B(void *);
 void func_001E8390(void *);
 void func_0001DFF0(void);
 void __stdcall func_0021FC46(int);
+void *func_001E8A44(int size);
+
+struct SndEntry_1CB2D0 {
+    int f0;
+    int f4;
+    int f8;
+    int fC;
+};
+
+struct SndBank_1CB290 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    SndEntry_1CB2D0 *f14;
+    SndBank_1CB290 *func_001AC3A0(void);
+};
+
+struct XboxSndIf_1CB290 {
+    char pad0[0x13C];
+    SndBank_1CB290 *f13C;
+    void func_001CB290(void);
+    void func_001CB2D0(void);
+};
 
 struct C_001CB130 {
     void *vtbl;
@@ -164,14 +193,14 @@ void *WaterObject::func_001CB070(int flags) {
 extern "C" double __cdecl log10(double);
 int func_001CB0A0(int x)
 {
-    float f;
+    volatile float f;
     if (x == 0)
         return -10000;
-    f = (float)log10((double)x * D_002755E0) * D_0028B320;
+    f = log10(x * D_002755E0) * D_0028B320;
     x = (int)f;
     if (x > -2500)
-        x = x > -10000 ? x : -10000;
-    x = x < 0 ? x : 0;
+        x = x < -10000 ? -10000 : x;
+    x = x > 0 ? 0 : x;
     return x;
 }
 
