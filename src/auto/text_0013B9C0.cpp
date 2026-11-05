@@ -1,5 +1,15 @@
 /* 10 functions from 0x0013B9C0 to 0x0013C960, found by Ghidra. */
 #include "common.h"
+int func_001EA426(const char *, const char *);
+extern char D_00010000[];
+extern char D_00020000[];
+extern char D_00040000[];
+extern char D_00080000[];
+extern char D_00100000[];
+extern char D_00140000[];
+extern char D_00180000[];
+extern char D_001C0000[];
+extern char D_00200000[];
 
 void func_00012140(void *p);
 int func_0014FED0(void *a, int b, int c);
