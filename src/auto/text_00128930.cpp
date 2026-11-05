@@ -64,11 +64,72 @@ struct BoxCollisionObject {
 };
 
 
+#pragma optimize("y", off)
+#pragma optimize("y", off)
+int func_00129050(unsigned int a0, unsigned int a1)
+{
+    int func_00128930(...);
+    S_00129050_Leaf20 *leaf;
+    S_00129050_Leaf32 local;
+
+    if (D_002B92E4 != 1) {
+        return 0;
+    }
+    leaf = &D_002B9290->leaves[a1 & 0x7fff];
+    local = D_002B92E8->leaves[a0 & 0x7fff];
+    return func_00128930(leaf, &local, a0, &D_002B9300);
+}
+#pragma optimize("y", on)
+
+#pragma optimize("y", off)
+void func_00129350(int a0, int a1, S_002B92E8 *a2, S_002B9290 *a3, int a4, int a5, int a6, int a7)
+{
+    int func_0011AC30(...);
+    int func_0011ACC0(...);
+    int func_00129110(...);
+    D_002B92F4 = a7;
+    D_002B92E4 = a6;
+    D_002B92A0.func_000264C0(a4);
+    func_0011AC30(&D_002B92A0, &D_002B92A0);
+    func_0011ACC0(&D_002B92A0, a5, &D_002B92A0);
+    D_002B9300.func_000264C0(a5);
+    func_0011AC30(&D_002B9300, &D_002B9300);
+    func_0011ACC0(&D_002B9300, a4, &D_002B9300);
+    D_002B92E8 = a2;
+    D_002B9290 = a3;
+    func_00129110(a0, a1);
+}
+#pragma optimize("y", on)
+
 void func_001294E0(int a0, int a1, int a2, int a3, int a4) {
     extern int D_002B92F4;
     int func_001293F0(...);
     D_002B92F4 = a4;
     func_001293F0(a0, a1, a2, a3);
+}
+
+BoxCollisionObject *BoxCollisionObject::func_00129840(int a0)
+{
+    func_00132EB0(a0);
+    vtbl = (void *)&D_00283F64;
+    fF8 = 0;
+    fF4 = 0;
+    fF0 = 0;
+    fFC = 0x3f800000;
+    f108 = 0;
+    f104 = 0;
+    f100 = 0;
+    f10C = 0x3f800000;
+    fF0 = D_002A3CD8;
+    fF4 = D_002A3CDC;
+    fF8 = D_002A3CE0;
+    fFC = D_002A3CE4;
+    f100 = D_002A3CD8;
+    f104 = D_002A3CDC;
+    f108 = D_002A3CE0;
+    f10C = D_002A3CE4;
+    f50 = 6;
+    return this;
 }
 
 void C_00129900::func_00129900(void)
