@@ -301,20 +301,59 @@ undefined4 C_0013B260::func_0013B260(int param_1)
   return uVar1;
 }
 
+void C_0013AEC0::func_0013B280(int keep)
+{
+    S_0013B340_Buf *first;
+    int count;
+    int i;
+    int idx;
+
+    if (fE0 != -1) {
+        ((S_0013B340_Buf *)((char *)this + 0x80) + fE0)->f4 = -1;
+        ((S_0013B340_Buf *)((char *)this + 0x80) + fE0)->f8 = -0x6000;
+    }
+    first = (S_0013B340_Buf *)((char *)this + 0x80);
+    fE0 = -1;
+    count = 0;
+    for (i = 0; i < 8; i++) {
+        idx = first[i].f4;
+        if (idx != -2 && (idx == -1 || (*(unsigned char *)((int)fE8 + idx * 0x20 + 0x18) & 4) == 0)) {
+            first[i].f8 = -0x6000;
+            first[i].f4 = -1;
+            count++;
+        }
+    }
+    count -= keep;
+    if (count >= 1) {
+        do {
+            if (first->f4 == -1) {
+                first->f4 = -2;
+                count--;
+                func_001E8390((void *)first->f0);
+                first->f0 = 0;
+            }
+            first++;
+        } while (count > 0);
+    }
+}
+
 void C_0013AEC0::func_0013B340(void)
 {
-    S_0013B340_Buf *p = (S_0013B340_Buf *)((char *)this + 0x80);
+    S_0013B340_Buf *p;
+    S_0013B340_Buf *end;
     int r;
 
+    p = (S_0013B340_Buf *)((char *)this + 0x80);
+    end = (S_0013B340_Buf *)((char *)this + 0xd4);
     do {
         if (p->f4 == -2) {
             r = (int)func_001E8AA5(0x6000);
             p->f0 = r;
             p->f8 = -0x6000;
-            p->f4 = (r != 0) - 2;
+            p->f4 = (r != 0) + -2;
         }
         p++;
-    } while (p <= (S_0013B340_Buf *)((char *)this + 0xd4));
+    } while (p <= end);
 }
 
 void C_0013AEC0::func_0013B390(int idx)
@@ -337,22 +376,27 @@ void C_0013AEC0::func_0013B390(int idx)
 
 int C_0013AEC0::func_0013B3E0(S_BufSet *set, unsigned int size)
 {
-    int ok = 1;
+    unsigned int n = size >> 3;
+    int ok;
     int i;
+    void *p;
 
-    size >>= 3;
+    i = 0;
     set->total = 0;
-    for (i = 0; i < 8; i++) {
-        set->bufs[i] = func_001E8AA5(size);
-        if (i == 0 && set->bufs[i] == 0) {
-            set->sizes[0] = size;
+    ok = 1;
+    do {
+        p = func_001E8AA5(n);
+        set->bufs[i] = p;
+        if (i == 0 && p == 0) {
+            set->sizes[0] = n;
             ok = 0;
         }
         if (f2C[i] != 0) {
-            set->total += size;
-            set->sizes[i] = size;
+            set->total += n;
+            set->sizes[i] = n;
         }
-    }
+        i++;
+    } while (i < 8);
     return ok;
 }
 
