@@ -323,3 +323,25 @@ void C_001449B0::func_00144A20(int size)
     D_002BEAAC->func_0013C8A0(id, (void *)f2c, size, 1);
 }
 
+int func_00144AE0(const char *name, int width, int height, int format)
+{
+    if (!D_002A71C0->f8) {
+        D_002A71C0->v1c(D_00285C6C, 0);
+        D_002A71C0->v1c(D_00285C5C, 0);
+        D_002A71C0->v1c(D_00285C40, 0);
+        D_002A71C0->v1c(D_00285C28, 0);
+        D_002A71C0->v1c(D_00285C0C, 0);
+    }
+    int index = D_002A71C0->v1c(name, 0);
+    D_002A71C0->v14(index);
+    if (width && !D_002A71C0->f14[index].f4) {
+        int texture = func_001FCF20(width, height, 1, 1, 1, format, 3);
+        if (((texture != 0) - 1 & (int)0x8007000e) < 0) return 0;
+        int surface = func_001FCE50(texture, 0);
+        if (((surface != 0) - 1 & (int)0x8007000e) < 0) return 0;
+        D_002A71C0->f14[index].f4 = texture;
+        D_002A71C0->f14[index].f8 = surface;
+    }
+    return -index;
+}
+
