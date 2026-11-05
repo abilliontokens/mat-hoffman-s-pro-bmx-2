@@ -17,6 +17,106 @@ int func_001B2F10(S_001B3560 *item, int a);
 int func_001B3150(S_001B3560 *item, int a);
 void func_001E8390(void *ptr);
 
+int func_001B2910(int param_1)
+{
+    if (param_1 <= 0x22b) {
+        if (param_1 != 0x22b) {
+            switch (param_1) {
+            case 0:
+            case 1:
+            case 8:
+            case 0xb:
+            case 0xc:
+            case 0x13:
+            case 0x19:
+            case 0x1b:
+            case 0x1f:
+                return 8;
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 0xe:
+            case 0xf:
+            case 0x10:
+            case 0x11:
+            case 0x16:
+            case 0x17:
+            case 0x1a:
+            case 0x1c:
+            case 0x20:
+            case 0x27:
+            case 0x28:
+            case 0x29:
+            case 0x2c:
+            case 0x2d:
+            case 0x30:
+            case 0x31:
+            case 0x32:
+            case 0x33:
+            case 0x35:
+            case 0x37:
+            case 0x38:
+            case 0x39:
+            case 0x3d:
+            case 0x3e:
+            case 0x65:
+                break;
+            case 6:
+            case 7:
+            case 0x12:
+            case 0x1d:
+            case 0x1e:
+            case 0x24:
+            case 0x25:
+            case 0x2a:
+            case 0x2b:
+            case 0x2e:
+            case 0x2f:
+            case 0x3a:
+            case 0x3b:
+            case 0x3c:
+            case 0x3f:
+            case 0x40:
+            case 0x41:
+                return 0x20;
+            case 0x64:
+                return 0;
+            default:
+                return 0;
+            }
+        }
+    } else if (param_1 <= 0x613) {
+        if (param_1 != 0x613 && param_1 != 0x235) {
+            if (param_1 == 0x378)
+                return 0x18;
+            else
+                return 0;
+        }
+    } else if (param_1 != 0x115c) {
+        if (param_1 == 0x22b8)
+            return 0x20;
+        else
+            return 0;
+    }
+    return 0x10;
+}
+
+extern "C" char D_0000F800, D_0000FF00, D_0000F000;
+void func_001B29F0(int format, int *a, int *r, int *g, int *b)
+{
+    switch (format) {
+    case 0x14c: *a = 0; *r = 0xe0; *g = 0x1c; *b = 3; break;
+    case 8: *a = 0; *r = 0; *g = 0; *b = 0; break;
+    case 0x235: *a = 0; *r = (int)&D_0000F800; *g = 0x7e0; *b = 0x1f; break;
+    case 0x378: *a = 0; *r = 0xff0000; *g = (int)&D_0000FF00; *b = 0xff; break;
+    case 0x613: *a = 0x8000; *r = 0x7c00; *g = 0x3e0; *b = 0x1f; break;
+    case 0x22b8: *a = 0xff000000; *r = 0xff0000; *g = (int)&D_0000FF00; *b = 0xff; break;
+    case 0x208c: *a = (int)&D_0000FF00; *r = 0xe0; *g = 0x1c; *b = 3; break;
+    case 0x115c: *a = (int)&D_0000F000; *r = 0xf00; *g = 0xf0; *b = 0xf; break;
+    }
+}
+
 int func_001B2B90(int param_1)
 {
     switch (param_1) {
