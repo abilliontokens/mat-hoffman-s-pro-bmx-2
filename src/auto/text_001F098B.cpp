@@ -48,6 +48,7 @@ struct S_001EEEE6 {
     S_001EF734 v;
     S_001EEEE6(const S_001EF734 &src);
 };
+inline void *operator new(unsigned int, void *p) { return p; }
 extern char D_00295CBC[];
 extern char D_00295CAC[];
 extern char D_00295CA8[];
