@@ -164,6 +164,55 @@ struct S_001D3C30_Stream {
     int fC;
 };
 
+struct S_001D3CC0_Entry {
+    int f0;
+    void *f4;
+    int f8;
+    int fC;
+};
+
+/* resource manager: lookup by name, create through slot 7, set through slot 6 */
+struct S_001D3CC0_Mgr {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5();
+    virtual void Set(int idx, void *data);
+    virtual int Create(char *name, int a);
+    char pad4[0x10];
+    S_001D3CC0_Entry *f14;
+    int func_001AC7B0(char *name, int a);
+    void func_0014A8A0(void);
+    void func_00142D20(void);
+};
+
+struct S_001D3CC0_C {
+    char pad0[0x30];
+    int f30;
+};
+
+struct S_001D3CC0_B {
+    char pad0[0xb4];
+    S_001D3CC0_C *fB4;
+};
+
+struct S_001D3CC0_A {
+    int f0;
+    S_001D3CC0_B *f4;
+};
+
+extern S_001D3CC0_A *D_002A8490;
+extern S_001D3CC0_Mgr *D_002A751C;
+extern S_001D3CC0_Mgr *D_002A6D84;
+extern char D_0028C1F0[];
+extern char D_0028F4E8[];
+extern char D_002ABC60[];
+extern char D_002F0958[];
+
+void __stdcall func_0025BA60(int a, int b);
+void __stdcall func_0025B9C0(int a);
+void __stdcall func_00258240(void (__stdcall *f)(int), int a);
+void *__stdcall func_001FF3C0(int size);
+void func_0014A7B0(char *dst, char *src);
+
 /* XboxMediaControl */
 struct C_001D3AB0 {
     void *vtbl;
