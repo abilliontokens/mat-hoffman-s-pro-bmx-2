@@ -53,7 +53,13 @@ struct C_001B1580 {
     int unk74;
     char pad78[8];
     int unk80;
-    char pad84[0x3C];
+    int unk84, unk88;
+    char pad8C[0xC];
+    float unk98, unk9C;
+    char padA0[8];
+    float unkA8, unkAC;
+    char padB0[8];
+    float unkB8, unkBC;
     int unkC0;                        /* 0xC0 */
     void func_001B13A0(int a, int b, int c, int len);
     C_001B1580 *func_001B1580(int a, int b, const char *s, int c);
