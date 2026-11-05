@@ -45,6 +45,15 @@ struct C_00145290 {
     int func_00145290(int param_1);
 };
 
+struct C_00144D30_V { float v[4]; };
+struct C_00144D30_E { int obj; C_00144D30_V m; };
+struct C_00144D30_Cnt { char pad[0x40]; int n; };
+struct C_00144D30 {
+    void func_00144D30();
+};
+void __fastcall func_001FEC30(void *self, int, C_00144D30_V *m);
+void __fastcall func_001FEBD0(void *self, int, C_00144D30_V *m);
+
 void *func_001E8A44(int size);
 void func_001E891B(void *p);
 
