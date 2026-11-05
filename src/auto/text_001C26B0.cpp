@@ -130,14 +130,34 @@ struct C_001C3510 {
 };
 
 /* DXVertexBuffer */
+struct S_001C35F0_Src {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void *v4(int a, int b, int c);
+    virtual int v5();
+    char pad4[0x8];
+    int fC;
+};
+
 struct DXVertexBuffer {
-    void *vtbl;
+    virtual void v0();
+    virtual void v1();
+    virtual void *v2(void *buf, int b, int d);
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
     int f4;
     int f8;
     int fC;
     int f10;
     int f14;
     DXVertexBuffer *func_001C3550(int type, int count);
+    void *func_001C35F0(S_001C35F0_Src *src, int b, int c, int d);
+    char *func_001C3650(int index, int count, int flags);
 };
 
 struct UIWidgetMovementControl {
