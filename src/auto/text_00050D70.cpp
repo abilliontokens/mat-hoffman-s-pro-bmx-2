@@ -295,6 +295,15 @@ struct S_000518A0_Owner {
     C_0001B820 *f484;
 };
 struct C_000518A0 { char pad0[0x64]; S_000518A0_Owner *f64; int func_000518A0(void); };
+static inline int find_item_000518A0(S_000518A0_Owner *owner, const char *name)
+{
+    int idx = -1;
+    for (int n = 0; n < owner->f3ac->count && idx == -1; n++) {
+        if (func_001EA426(name, owner->f3ac->items[n]->name) == 0)
+            idx = n;
+    }
+    return idx;
+}
 
 struct C_00051A00Node {
     char pad0[4];
