@@ -157,6 +157,18 @@ void C_00035300::func_00035300(char *name, int n)
     f560->v6();
 }
 
+void C_00035360::func_00035360(void)
+{
+    int i;
+
+    v40();
+    f64->f4e0->objs[0]->func_0010C090(f294, f2a4, f2b4, 1);
+    func_00032220();
+    for (i = 0; i < f64->f4e0->count; i++) {
+        f64->f4e0->objs[i]->f67c = 0;
+    }
+}
+
 void C_00035BE0::func_00035BE0(void)
 {
     if (f1d0 != 0) {
