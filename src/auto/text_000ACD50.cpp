@@ -34,11 +34,20 @@ struct C_00157600 {
     void func_00157600(int param_1);
 };
 
+extern int D_0027C724;
+extern int D_0027C604;
+
 struct C_0027C724 {
     void *vtbl;
     char pad4[0x20];
     int unk24;
     int unk28;
+    C_0027C724(int param_1) {
+        ((C_00157600 *)this)->func_00157600(param_1);
+        vtbl = &D_0027C724;
+        unk24 = 0;
+        unk28 = 0;
+    }
 };
 
 struct C_0027C604 {
@@ -46,6 +55,12 @@ struct C_0027C604 {
     char pad4[0x20];
     int unk24;
     int unk28;
+    C_0027C604(int param_1) {
+        ((C_00157600 *)this)->func_00157600(param_1);
+        vtbl = &D_0027C604;
+        unk24 = 0;
+        unk28 = 0;
+    }
 };
 
 struct C_000AB4F0 {
