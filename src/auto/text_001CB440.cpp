@@ -446,6 +446,28 @@ int C_001CB610::func_001CB810(int idx)
     return func_001DDAEE(e->f0[idx].f10, 0);
 }
 
+unsigned int C_001CB610::func_001CB8A0(void)
+{
+    int desc[5];
+    int idx;
+
+    if (fc4 != -1) {
+        func_001DD13C(fc4);
+        fc4 = -1;
+    }
+    if (fb4 != 0) {
+        fb4->v1();
+        fb4 = 0;
+    }
+    idx = fac;
+    f24 = idx;
+    fc4 = func_001CB810(idx);
+    if (fc4 == -1) {
+        return 0x80004005;
+    }
+    return func_0023F469(0, fc4, 0, &D_00010000, 0x2b, 3, desc, &fb4) >= 0 ? 0 : 0x80004005;
+}
+
 void C_001CB940::func_001CB940(void)
 {
     ((C_001576C0 *)this)->func_001576C0();
