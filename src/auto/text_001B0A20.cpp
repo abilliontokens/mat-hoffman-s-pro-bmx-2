@@ -45,7 +45,8 @@ struct C_001B1580 {
     int unk28;
     int unk2C;                        /* 0x2C */
     int unk30;                        /* 0x30 */
-    char pad34[0x30];
+    int unk34, unk38;
+    char pad3C[0x28];
     int unk64;
     int unk68;                        /* 0x68 */
     char pad6C[8];
