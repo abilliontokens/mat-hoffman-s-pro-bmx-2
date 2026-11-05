@@ -11,7 +11,6 @@ inline void operator delete(void *p) { func_001E891B(p); }
 
 struct C_0013B210 {
     void func_0013B210(void *p);
-    int __stdcall_dummy;
     int func_0013C8A0(int f, void *dst, int size, int count);
 };
 
