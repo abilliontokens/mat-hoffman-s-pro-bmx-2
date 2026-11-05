@@ -5,6 +5,37 @@ struct C_001094B0 {
     undefined4 func_001094B0(void);
 };
 
+/* fixed-size queue of 0x14 entries, parallel arrays */
+struct C_00109520 {
+    int count;
+    int a[0x14];
+    int b[0x14];
+    int c[0x14];
+    int d[0x14];
+    int e[0x14];
+    int func_00109520(int p1, int p2);
+    void func_00109550(int p);
+    int func_00109580(int idx);
+};
+
+struct C_00109F30 {
+    char pad0[0xA40];
+    int fA40;
+    char padA44[4];
+    int fA48;
+    int fA4C;
+    char padA50[4];
+    int fA54;
+    int fA58;
+    int fA5C;
+    C_001094B0 *fA60;
+    C_001094B0 *fA64;
+    char padA68[0x5F0];
+    int f1058;
+    int f105C;
+    void func_00109F30(void);
+};
+
 struct C_001093A0 {
     undefined4 func_001093A0(int param_1);
 };
