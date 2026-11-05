@@ -18,8 +18,12 @@ void func_001E8390(void *ptr);
 int func_00011260(int lo, int hi);
 
 /* global game state */
+struct S_1A060_Fx;
+struct S_1A060_Mgr { void func_0001CE80(S_1A060_Fx *fx, float *pos, void *d, float a, float b); };
 struct S_002A8490 {
-    char pad0[0x238];
+    char pad0[4];
+    S_1A060_Mgr *f4;
+    char pad8[0x230];
     int f238;
 };
 extern S_002A8490 *D_002A8490;
