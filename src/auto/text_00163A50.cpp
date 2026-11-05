@@ -68,10 +68,54 @@ struct C_001646B0 {
     void func_001646B0(void);
 };
 
+struct S_00163DC0_Flags {
+    unsigned char b0 : 1;
+    unsigned char b1 : 1;
+    unsigned char b2 : 1;
+};
+
+struct S_00163DC0_Res {
+    char *f0;
+    char pad4[0x20];
+    S_00163DC0_Flags f24;
+    char pad25[3];
+    int f28;
+    int f2C;
+    int f30;
+    int f34;
+    char pad38[4];
+    float f3C;
+    int f40;
+    S_00163DC0_Res *func_00162790(void);
+};
+
+struct C_00163DC0_Parser {
+    int func_00169710(const char *section);
+    void func_00168BE0(const char *key, const char *def, char *out, int max);
+    void func_00168C20(const char *key, int def, int *out);
+    int func_00168C50(const char *key, int def, float *out);
+    int func_00168550(const char *key, char *out, int max);
+};
+
 struct C_00163A50 {
+    int f0;
+    int f4;
+    char pad8[0x10];
+    void **f18;
     void *func_00163A50(void *a, void *b);
     void func_00162A80(void *p);
+    S_00163DC0_Res *func_00162B20(const char *name, int a);
+    int func_00163780(const char *path, S_00163DC0_Res *res);
+    void *func_00163DC0(C_00163DC0_Parser *parser, const char *section, const char *prefix);
 };
+
+extern char D_00284A98[], D_00276980[], D_002764EC[], D_00287DA8[], D_00287DA0[], D_002764D8[], D_00287D8C[], D_00287D78[], D_00287D68[], D_00287D5C[], D_00287D50[], D_00287D40[], D_00287D38[], D_00287D30[], D_00287D10[], D_00287D28[];
+extern float D_00278C48;
+extern float D_002755E8;
+void *func_001E8A44(unsigned int size);
+void *func_001E83E8(void *p, unsigned int size);
+void func_00030F30(char *dst, const char *src);
+extern "C" char *__cdecl strcat(char *, const char *);
 
 void func_001E891B(void *p);
 void func_001E8390(void *p);
