@@ -36,17 +36,44 @@ struct S_000CEFC0_124 {
 };
 
 struct S_000CEFC0_4F8 {
+    void func_00093120();
     int func_00093620(float v);
+};
+
+struct S_000CEFC0_Record {
+    int f0;
+    int f4;
+};
+
+struct S_000CEFC0_Root {
+    char pad0[0x2e0];
+    S_000CEFC0_Record *f2e0;
+};
+
+extern S_000CEFC0_Root *D_002A8490;
+
+struct S_000CEFC0_Widget {
+    void func_001B1980();
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, float a11, int a12, int a13);
 };
 
 struct BmxUIPageGameOptions {
     char pad0[0x124];
     S_000CEFC0_124 *unk124;
-    char pad128[0x4f8 - 0x128];
+    char pad128[0x480 - 0x128];
+    S_000CEFC0_Widget *unk480;
+    char pad484[8];
+    int unk48c;
+    char pad490[0x4ec - 0x490];
+    int unk4ec;
+    char pad4f0[8];
     S_000CEFC0_4F8 *unk4f8;
-    char pad4fc[0x57c - 0x4fc];
+    char pad4fc[0x568 - 0x4fc];
+    S_000CEFC0_Widget *unk568;
+    char pad56c[0x57c - 0x56c];
     int unk57c;
     int unk580;
+    void func_000CFCD0();
     void func_000CFCA0();
     void func_000CFAC0();
     void func_000CFB20();
