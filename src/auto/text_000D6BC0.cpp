@@ -39,9 +39,24 @@ struct BmxUIPageHOF2 {
     void func_00157960(void);
 };
 
+struct S_000D7900_Widget {
+    void func_001B1980();
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, float a11, int a12, int a13);
+};
+
+struct S_000D7900_Res {
+    void func_00103350();
+};
+
+struct S_000D7900_Owner {
+    S_000D7900_Res *func_000BA9B0(int a);
+};
+
 struct BmxUIPageHOF3 {
     int vtbl;
-    char pad0[0x27c];
+    char pad4[0x124 - 4];
+    S_000D7900_Owner *f124;
+    char pad128[0x280 - 0x128];
     int unk280;
     int unk284;
     int unk288;
