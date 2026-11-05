@@ -36,3 +36,45 @@ struct C_000876B0 {
     C_000876B0 *func_000876B0(int a0);
     void func_00087700(void);
 };
+
+C_000876B0 *C_000876B0::func_000876B0(int a0) {
+    int i;
+
+    ((C_00157600 *)this)->func_00157600(1);
+    vtbl = (void *)&D_002797A4;
+    f24[0] = 0;
+    f24[1] = 0;
+    f2C = 0;
+    f30 = 0;
+    f34 = 0;
+    f38 = 0;
+    f3C = 0;
+    f40 = 0;
+    fC4 = 0;
+    for (i = 0; i < 0x20; i++)
+        f44[i] = 0;
+    return this;
+}
+
+void C_000876B0::func_00087700(void) {
+    int i;
+
+    vtbl = (void *)&D_002797A4;
+    if (f2C != 0) {
+        f2C->Destroy(1);
+        f2C = 0;
+    }
+    if (f30 != 0) {
+        f30->Destroy(1);
+        f30 = 0;
+    }
+    for (i = 0; i < 2; i++) {
+        C_000876B0_Item *p = f24[i];
+        if (p != 0) {
+            p->func_001D6410();
+            func_001E891B(p);
+        }
+    }
+    ((C_00157660 *)this)->func_00157660();
+}
+
