@@ -20,15 +20,31 @@ extern S_002B9120 *D_002B9120;
 
 void func_001E891B(void *p);
 
-struct L_A { int pad[5]; int count; int *items[1]; };
+struct V4_000229C0 {
+    float x, y, z, w;
+};
+struct Item_000229C0 {
+    char pad0[0x24];
+    int f24;
+    void func_000223B0(V4_000229C0 pos, float dy);
+};
+struct L_A { int pad[5]; int count; Item_000229C0 **items; };
 struct L_B { L_A *l; };
+struct Arg_000229C0 {
+    char pad0[0x28];
+    V4_000229C0 pos;
+};
 struct C_000229C0 {
     char pad0[0x28];
     float f28;
     char pad2C[0x44];
     L_B *f70;
-    void func_000229C0(int *arg);
+    void func_000229C0(Arg_000229C0 *arg);
 };
+extern double D_00276088;
+extern float D_002754B0, D_00275460, D_002756B8;
+extern "C" int func_001E8833(void);
+extern "C" void func_00158390(V4_000229C0 a, V4_000229C0 b, float c, V4_000229C0 *out);
 
 struct C_00157660 {
     void func_00157660(void);
