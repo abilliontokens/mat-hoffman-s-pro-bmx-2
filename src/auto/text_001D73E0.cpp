@@ -186,6 +186,8 @@ int func_001D7D40()
 
 XboxVideoCard_001D7D50 *XboxVideoCard_001D7D50::func_001D7D50(void)
 {
+    u8 flags;
+
     ((C_001C3D90 *)this)->func_001C3D90();
     vtbl = (void *)&D_0028F774;
     memset(a5B4, 0, 0x100);
@@ -193,7 +195,9 @@ XboxVideoCard_001D7D50 *XboxVideoCard_001D7D50::func_001D7D50(void)
     f6BC = 0;
     f6C = -1;
     f9D8 = 500;
-    f9D4 &= 0xFC;
+    flags = f9D4;
+    flags &= 0xFC;
+    f9D4 = flags;
     f6C4 = 0;
     f6C8 = 0;
     f6CC = 0;
@@ -226,29 +230,25 @@ void XboxVideoCard_001D7E30::func_001D7E30(void)
 int XboxVideoCard_001D7FB0::func_001D7FB0(float x, float y, float z, int w)
 {
     LightBufs_001D7FB0 bufs;
+    int unused = 0;
 
     bufs.a[0] = 0;
     bufs.b[0] = 0;
     bufs.c[0] = 0;
     func_001D7E60(1.0f, 1.0f, 1.0f, bufs.a);
+    unused = w;
     func_001D7E60(x, y, z, bufs.a);
     func_001FF960(2, bufs.a);
     func_001FF9F0(&f6D4);
     return 1;
 }
 
-struct C_001D8310 {
-    virtual void dummy0();
-    virtual void dummy1();
-    virtual void dummy2();
-    virtual void dummy3();
-    virtual void dummy4();
-    virtual void dummy5();
-    virtual void v6();
+struct XboxVideoCard_001D8310 {
+    void *vtbl;
     char pad4[0x9D0];
-    u8 field_9d4;
-    char pad9d5[3];
-    int field_9d8;
-    void func_001D8310();
+    u8 f9D4;
+    char pad9D5[3];
+    int f9D8;
+    void func_001D8310(void);
 };
 
