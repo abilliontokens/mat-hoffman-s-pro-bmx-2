@@ -422,3 +422,18 @@ void *C_0018C8D0::func_0018C8D0(int flags) {
     return this;
 }
 
+void C_0018C800::func_0018C900(float dt)
+{
+    if (unk24 != -1082130432 && unk2C != -1 && unk30 != -1) {
+        float t = *(float *)&unk24 - dt;
+        *(float *)&unk24 = t;
+        if (t <= D_00275544) {
+            unk28 = 0;
+            if (unk34 != 0) {
+                func_0018C850();
+            }
+        }
+    }
+    func_00157A00(dt);
+}
+
