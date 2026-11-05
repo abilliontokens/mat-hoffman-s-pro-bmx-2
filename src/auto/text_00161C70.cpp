@@ -288,6 +288,22 @@ void C_00162720::func_00162720(undefined4 param_1)
   return;
 }
 
+void *C_00162610::func_00162740(unsigned int flags)
+{
+    vtbl = (void *)&D_00287C24;
+    if (f2C != 0) {
+        func_001E891B(f2C);
+    }
+    if (f24 != 0) {
+        f24->destroyObject(1);
+    }
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 int C_001628A0::func_001628A0(float t)
 {
     if (t > f38) {
