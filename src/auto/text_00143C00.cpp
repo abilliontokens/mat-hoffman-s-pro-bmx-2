@@ -163,20 +163,6 @@ struct C_00143C00 {
     int fEC;
     void *fF0[3];
     int fFC;
-    __forceinline void Fill28(Vtx28_143C00 *p, const Corner_143C00 &c)
-    {
-        p->pos = c.pos;
-        p->u0 = (p->pos.x - f94) / f34;
-        p->v0 = (p->pos.z - f98) / f38;
-        p->u1 = p->u0;
-        p->v1 = p->v0;
-    }
-    __forceinline void Fill20(Vtx20_143C00 *p, const Corner_143C00 &c)
-    {
-        p->pos = c.pos;
-        p->u = (p->pos.x - f94) / f34;
-        p->v = (p->pos.z - f98) / f38;
-    }
     __forceinline float GetScale()
     {
         switch (fAC) {
