@@ -150,6 +150,8 @@ struct C_000724E0 {
     Sprite_724E0 *arr120[5];
     Sprite_724E0 *unk134;
     Sprite_724E0 *unk138;
+    void func_000716F0();
+    void func_00157660();
     void func_000724E0(void);
 };
 
