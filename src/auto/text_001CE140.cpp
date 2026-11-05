@@ -118,6 +118,38 @@ void XboxMusic::func_001CE920()
     func_0001C9B0();
 }
 
+int XboxMusic::func_001CEE50(int a, int b)
+{
+    if (!(fa0 & 1)) {
+        return 0;
+    }
+    if (list3c.count > 0) {
+        list3c.Clear();
+    }
+    int id = a;
+    if (id < 0) {
+        id = vf29(f_a4);
+    } else if (id > vf29(f_a4)) {
+        id = 0;
+    }
+    list3c.func_001CDED0(id);
+    if (b) {
+        if (!vf1E(id, 1)) {
+            state = 6;
+            list3c.func_001CBCF0(id);
+            return 1;
+        }
+        *(unsigned char *)&fa0 |= 2;
+        f_ac = id;
+        state = 2;
+        return 1;
+    }
+    *(unsigned char *)&fa0 |= 2;
+    f_ac = id;
+    state = 6;
+    return 1;
+}
+
 void XboxMusic::func_001CEF50()
 {
     switch (state) {
