@@ -30,6 +30,10 @@ struct C_00188750_Obj : C_00188VT {
     void func_00187F60();
 };
 
+struct C_00188VT2 {
+    virtual int v0();
+};
+
 struct C_001888F0_Obj : C_00188VT {
     C_001888F0_Obj *func_00188250();
 };
@@ -80,6 +84,14 @@ void C_00188700::func_00188750(void)
     }
     unkC = (int)q;
     q->v1();
+}
+
+void C_00188700::func_001888F0(void)
+{
+    C_001888F0_Obj *p = (C_001888F0_Obj *)func_001E8A44(0x280);
+    p = p ? p->func_00188250() : 0;
+    unkC = (int)p;
+    ((C_001888F0_Obj *)unkC)->v0();
 }
 
 CollisionObjects *CollisionObjects::func_00188A80(int a0)
