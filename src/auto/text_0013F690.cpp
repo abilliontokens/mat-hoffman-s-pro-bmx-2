@@ -38,6 +38,16 @@ struct C_0013FA90 {
     void *func_0013FA90(int flags);
 };
 
+void *C_0013FA10::func_0013FA10(int a0)
+{
+  int __stdcall func_0015B1A0(int);
+  extern int D_00284EF4;
+
+  func_0015B1A0(a0);
+  vtbl = (void *)&D_00284EF4;
+  return this;
+}
+
 undefined4 C_0013FA70::func_0013FA70(undefined4 param_1)
 {
   int __stdcall func_0015B210(int);
