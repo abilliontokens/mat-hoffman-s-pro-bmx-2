@@ -543,6 +543,96 @@ struct C_001B0D00 {
 };
 
 
+int C_001B0A20::func_001B0A20(const char *arg)
+{
+    char buf2[0x80];
+    char buf[0x104];
+    int tmp;
+    int k;
+    const char *s;
+    char *d;
+    char *p;
+    char c;
+    int i;
+    C_00168280 *stream;
+    void *mem;
+    int *pCount;
+
+    s = arg;
+    do {
+        c = *s;
+        buf[s - arg] = c;
+        s++;
+    } while (c);
+    for (p = buf; *p != 0; p++) {
+        *p = (char)func_001E8D25(*p);
+    }
+    f48 = D_002A829C->func_001617F0(buf, 1);
+    func_00030F30(buf, D_00286764);
+    s = buf;
+    d = name;
+    do {
+        c = *s;
+        *d = c;
+        s++;
+        d++;
+    } while (c);
+    mem = func_001E8A44(0x4cc);
+    stream = mem ? ((C_00168280 *)mem)->func_00168280() : 0;
+    stream->func_00169490(buf, 0);
+    if (stream->state == -1) {
+        p = func_001E8AC0(buf, '.');
+        if (p) {
+            memset(p, 0, strlen(p));
+        }
+        f50 = 1;
+        mem = func_001E8A44(0x4c);
+        C_00145230 *o = mem ? ((C_00145230 *)mem)->func_00145230() : 0;
+        f54[0] = o;
+        o->v4(buf);
+    } else {
+        if (stream->func_00169710(D_0028C6D0)) {
+            mem = func_001E8A44(0x34);
+            C_00146E20 *o = mem ? ((C_00146E20 *)mem)->func_00146E20() : 0;
+            f4C = o;
+            o->v1(stream);
+        }
+        stream->func_00169710(D_002769F8);
+        pCount = &f50;
+        stream->func_00168C20(D_0028C6BC, 0, pCount);
+        stream->func_00168C20(D_0028C6A8, 1, &tmp);
+        b0 = tmp;
+        stream->func_00168C20(D_0028C690, 0, &tmp);
+        b1 = tmp;
+        i = 0;
+        do {
+            buf2[i] = buf[i];
+        } while (buf[i++]);
+        p = func_001E8AC0(buf2, '\\');
+        if (p) {
+            p[1] = 0;
+        } else {
+            buf2[0] = 0;
+        }
+        for (i = 0; i < *pCount; i++) {
+            mem = func_001E8A44(0x4c);
+            C_00145230 *o = mem ? ((C_00145230 *)mem)->func_00145230() : 0;
+            f54[i] = o;
+            o->func_00148910(buf2, stream, f48, i, *pCount);
+        }
+        if (stream->func_00169710(D_0028C684)) {
+            mem = func_001E8A44(0xc);
+            C_00147280 *o = mem ? ((C_00147280 *)mem)->func_00147280() : 0;
+            f154 = o;
+            o->v1(stream);
+        }
+    }
+    D_002A829C->f14[f48].f4 = this;
+    stream->func_001691E0();
+    func_001E891B(stream);
+    return 1;
+}
+
 void C_001B0D00::func_001B0D00(int param_1)
 {
     void *func_001E8A44(int);
