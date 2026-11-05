@@ -53,7 +53,7 @@ struct S_001A5D80_G1 {
     virtual void v7();
     virtual void v8();
     virtual void v9();
-    char pad28[0x234 - 0x28];
+    char pad0[0x234 - 4];
     int f234;
 };
 
@@ -63,7 +63,7 @@ struct S_001A5D80_G2 {
     virtual void v2();
     virtual void v3();
     virtual void v4(int a, int b, int c, int d);
-    char pad14[0x30 - 0x14];
+    char pad0[0x30 - 4];
     int f30;
 };
 
