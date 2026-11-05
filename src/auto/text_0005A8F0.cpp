@@ -103,14 +103,7 @@ void C_0005B730::func_0005B7C0(void)
 
 void C_0005B850::func_0005B850(char *src)
 {
-    int delta = (int)unkCD0 - (int)src;
-    char c;
-
-    do {
-        c = *src;
-        *(char *)((int)src + delta) = c;
-        src++;
-    } while (c);
+    strcpy(unkCD0, src);
 }
 
 int C_0005B870::func_0005B870(void) {
