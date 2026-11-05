@@ -128,6 +128,7 @@ struct C_000C40D0 {
     int func_000C3F60(int idx);
     int func_000C40D0(int idx);
     int func_000C3C20(int idx);
+    int func_000C3A50(int idx);
     int func_000C38B0(int idx);
 };
 
