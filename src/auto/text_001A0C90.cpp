@@ -46,8 +46,8 @@ struct C_001A13F0 {
     char pad0[4];
     S_001A13F0_Obj *unk4;
     void func_001A13F0(void);
-    bool func_001A1410(void);
-    bool func_001A1450(int a);
+    int func_001A1410(void);
+    int func_001A1450(int a);
 };
 
 /* object held at +0x1BC of C_001A1C70 */
@@ -78,15 +78,15 @@ void C_001A13F0::func_001A13F0(void)
     }
 }
 
-bool C_001A13F0::func_001A1410(void)
+int C_001A13F0::func_001A1410(void)
 {
-    if (unk4 == 0) return false;
+    if (unk4 == 0) return 0;
     return !CheckFailed(unk4->func_001D7D00(), 0x45);
 }
 
-bool C_001A13F0::func_001A1450(int a)
+int C_001A13F0::func_001A1450(int a)
 {
-    if (unk4 == 0) return false;
+    if (unk4 == 0) return 0;
     return !CheckFailed(unk4->func_001D6C40(a, 1), 0x51);
 }
 
