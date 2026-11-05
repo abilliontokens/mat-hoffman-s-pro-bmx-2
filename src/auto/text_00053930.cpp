@@ -5,7 +5,7 @@ struct G_P2 { char pad0[0xa40]; int fa40; char pada44[8]; int fa4c; char pada50[
 struct G_PL { char pad0[0x1a8]; G_P2 *f1a8[1]; };
 struct G_V { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); };
 struct G_C { char pad0[0x4c0]; G_V *f4c0; char pad4c4[0x1c]; G_PL *f4e0; };
-struct G_Rules { int func_0005B960(int, float); int func_0005B960(int, int); void func_0005C330(int); int func_0005C340(int); };
+struct G_Rules { int func_0005B960(int, float); int func_0005B960(int, int); int func_0005C330(int); void func_0005C340(int); };
 struct G_Sub { void func_000707C0(int); void func_0006E970(int); void func_000684B0(); void func_0001D330(); void func_00083A70(int); };
 struct G_Vt { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); };
 struct G_Mode { int mode0; char pad4[0xc]; float f10; char pad14[0xc]; int f20; char pad24[0x16c]; int f190; };
