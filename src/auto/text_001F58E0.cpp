@@ -77,3 +77,14 @@ int func_001F5AA1(unsigned int a, unsigned int b, unsigned int *out)
     *out = sum;
     return overflow;
 }
+
+int func_001F627B(PFN_001F5975 fn)
+{
+    int valid = 1;
+
+    if (func_001F655B(fn) != 0) {
+        valid = 0;
+    }
+    return valid;
+}
+
