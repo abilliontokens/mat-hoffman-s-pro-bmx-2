@@ -34,7 +34,7 @@ struct V4Init_000B6840 : V4_000B6840 {
 
 static inline void Box_000B6840(V4_000B6840 *dst, V4_000B6840 *src, float h)
 {
-    *dst = V4Init_000B6840(src->y + (0.0f - h), src);
+    *dst = V4Init_000B6840(src->x, (0.0f - h) + src->y, src->z, 1.0f);
 }
 
 struct C_000B6840_Mgr;
