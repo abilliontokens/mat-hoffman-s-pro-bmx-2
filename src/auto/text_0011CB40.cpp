@@ -34,7 +34,18 @@ struct C_0011CB40 {
     void func_001D3F50(void);
 };
 
-struct V4_0011CF00 { float x, y, z, w; };
+struct V4_0011CF00 {
+    float x, y, z, w;
+};
+inline V4_0011CF00 MakeV4_0011CF00(float x, float y, float z)
+{
+    V4_0011CF00 v;
+    v.x = x;
+    v.y = y;
+    v.z = z;
+    v.w = 1.0f;
+    return v;
+}
 struct Model_0011CF00 {
     int func_00198330(const char *name);
 };
