@@ -21,6 +21,7 @@ extern int D_002EBE78;
 extern void **D_002EBE7C;
 
 void func_001E891B(void *p);
+void *func_001E8A44(int size);
 int __stdcall func_001DCA56(void *a, void *b);
 void func_001613B0(void);
 
