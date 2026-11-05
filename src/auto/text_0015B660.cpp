@@ -30,6 +30,26 @@ struct C_0015B7A0 {
     void func_0015B7A0();
 };
 
+struct LinearPositionController {
+    void *vtbl;
+    u32 unk4;
+    u32 unk8;
+    u32 unkC;
+    u32 unk10;
+    void *unk14;
+    LinearPositionController();
+};
+
+struct BezierPositionController {
+    void *vtbl;
+    u32 unk4;
+    u32 unk8;
+    u32 unkC;
+    u32 unk10;
+    void *unk14;
+    BezierPositionController();
+};
+
 struct C_0015BAC0 {
     char pad0[0x14];
     u32 *unk14;
@@ -38,12 +58,13 @@ struct C_0015BAC0 {
 };
 
 void C_0015B660::func_0015B660() {
-    unk4 = 0;
-    unk8 = 1;
-    unkC = 0;
-    unk10 = 0;
-    vtbl = &D_0028779C;
-    unk14 = 0;
+    C_0015B660 *self = this;
+    self->unk4 = 0;
+    self->unk8 = 1;
+    self->unkC = 0;
+    self->unk10 = 0;
+    self->vtbl = &D_0028779C;
+    self->unk14 = 0;
 }
 
 void C_0015B660::func_0015B680() {
@@ -57,12 +78,13 @@ void C_0015B660::func_0015B680() {
 }
 
 void C_0015B7A0::func_0015B7A0() {
-    unk4 = 0;
-    unk8 = 1;
-    unk10 = 0;
-    vtbl = &D_002877C0;
-    unkC = 0;
-    unk14 = 0;
+    C_0015B7A0 *self = this;
+    self->unk4 = 0;
+    self->unk8 = 1;
+    self->unk10 = 0;
+    self->vtbl = &D_002877C0;
+    self->unkC = 0;
+    self->unk14 = 0;
 }
 
 void C_0015BAC0::func_0015BAC0(int a0, u32 *a1, int a2) {
