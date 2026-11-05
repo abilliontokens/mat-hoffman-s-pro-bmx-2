@@ -9,6 +9,12 @@ struct S_002A8490 {
 extern S_002A8490 *D_002A8490;
 extern int D_002AB7F0;
 extern float D_002F0BCC;
+extern int D_0028E864;
+extern char D_002A5A80[];
+extern char D_00275678[];
+extern char D_002A5870[];
+extern char D_002A5978[];
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 int func_001B2910(int a0);
 
 /* Water */
@@ -78,16 +84,16 @@ struct C_001CA1C0 {
 };
 
 
-void C_001C9920::func_001C9920(S_001C9920_arg *arg)
+void C_001C9920::func_001C9920(int a)
 {
-    S_001C9920_arg *p = arg;
+    S_001C9920_arg *p = (S_001C9920_arg *)a;
     int rate;
     int v;
-    unkCC = arg;
-    if (arg->unk28 != 0) {
-        unk44 = arg->unk28->v16(0, (int *)&arg, 0x80);
+    unkCC = p;
+    if (p->unk28 != 0) {
+        unk44 = p->unk28->v16(0, &a, 0x80);
         rate = func_001B2910(p->unk28->unkA4);
-        v = ((int)arg << 3) / rate;
+        v = (a << 3) / rate;
         unk21C = rate;
         unkB8 = v;
         unkC4 = (float)v / D_002F0BCC;
