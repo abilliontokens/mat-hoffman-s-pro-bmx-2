@@ -210,6 +210,102 @@ struct C_001D7CE0 {
     void *func_001D7D10(int flags);
 };
 
+int XboxTextureMap::func_001D7910(void *data, int width, int height, int a4, int minDim, int srcFmt, int dxFmt, unsigned int flags, int a9)
+{
+    int x;
+    void *buf;
+    S_001D7910_Rect rect;
+    S_001D7910_Desc desc;
+    char *dst;
+    void *tex;
+    int levels;
+    int kw;
+    int kh;
+    int w;
+    int h;
+    int i;
+    int rowBytes;
+    int rows;
+
+    f8 = width;
+    fC = height;
+    fA0 = minDim;
+    x = D_002ABE74;
+    buf = 0;
+    if (dxFmt != 12) {
+        kw = 0;
+        for (w = width >> 1; w != 0; w >>= 1)
+            kw++;
+        kh = 0;
+        for (h = height >> 1; h != 0; h >>= 1)
+            kh++;
+        if (width - (1 << kw) > 0 || height - (1 << kh) > 0)
+            x = 0;
+        if (x == 0)
+            dxFmt = (dxFmt == 6) ? 0x12 : 0x1c;
+    }
+    fA4 = dxFmt;
+    fA8 = 1;
+    flags &= 2;
+    if (flags) {
+        w = width;
+        h = height;
+        for (;;) {
+            w >>= 1;
+            h >>= 1;
+            if (w < minDim && h < minDim)
+                break;
+            fA8++;
+        }
+    }
+    if (data != 0 && (srcFmt == 0x22b || srcFmt == 0x378 || srcFmt == 0x22b8)) {
+        buf = func_001E8A44(width * height * 4);
+        func_00178C60(buf, data, width, height, width, width, 0x22b8, srcFmt, 0, 0, 0x80, 0, x);
+        data = buf;
+        srcFmt = 0x22b8;
+    }
+    fA0 = width;
+    levels = fA8;
+    tex = (void *)func_001FCF20(width, height, 1, levels, 0, dxFmt, 3);
+    field_b8 = tex;
+    if (((tex != 0) - 1 & (int)0x8007000e) >= 0) {
+        if (data != 0) {
+            func_001FCEA0(*(void * volatile *)&field_b8, 0, &rect, 0, 0);
+            func_001FCE40(field_b8, 0, &desc);
+            rowBytes = func_001B2910(srcFmt) * width >> 3;
+            dst = (char *)rect.bits;
+            if (rowBytes == rect.pitch || (dxFmt >= 12 && dxFmt <= 15)) {
+                memcpy(dst, data, desc.size);
+            } else if (height > 0) {
+                rows = height;
+                do {
+                    memcpy(dst, data, rowBytes);
+                    dst += rect.pitch;
+                    data = (char *)data + rowBytes;
+                } while (--rows != 0);
+            }
+            if (flags) {
+                if (func_0020FE81(field_b8, 0, 0, 4) != 0) {
+                    if (buf != 0)
+                        func_001E891B(buf);
+                    return 0;
+                }
+            }
+        }
+        for (i = 0; i < fA8; i++) {
+            func_001FCEA0(field_b8, i, &rect, 0, 0);
+            arrC0[i] = (u32)rect.bits;
+            arrE8[i] = rect.pitch;
+        }
+        if (buf != 0)
+            func_001E891B(buf);
+        return 1;
+    }
+    if (buf != 0)
+        func_001E891B(buf);
+    return 0;
+}
+
 int XboxTextureMap::func_001D7BF0(int param_1)
 {
     int info[2];
