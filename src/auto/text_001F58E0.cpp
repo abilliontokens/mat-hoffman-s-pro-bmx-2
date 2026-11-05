@@ -23,8 +23,22 @@ PFN_001F5975 __stdcall func_001DE7D4(PFN_001F5975 filter);
 int __stdcall func_001F5975(S_001F5975_Pointers *pointers);
 void func_001F6292(void);
 int func_001F627B(PFN_001F5975 fn);
+int __stdcall func_001F655B(PFN_001F5975 fn);
+
+/* 96-bit unsigned integer, least significant word first */
+struct S_U12 {
+    unsigned int l[3];
+};
+
+int func_001F5AA1(unsigned int a, unsigned int b, unsigned int *out);
 
 #pragma optimize("sy", on)
+#pragma optimize("sy", on)
+unsigned __int64 __stdcall func_001F58E0(unsigned __int64 dividend, unsigned __int64 divisor)
+{
+    return dividend / divisor;
+}
+
 int __stdcall func_001F5975(S_001F5975_Pointers *pointers)
 {
     S_001F5975_Record *rec = pointers->record;
