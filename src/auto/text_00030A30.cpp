@@ -255,6 +255,8 @@ struct Mgr_000317B0 {
 struct Root_000317B0 {
     void *f0;
     Mgr_000317B0 *f4;
+    char pad8[0x2d8];
+    int *f2e0;
 };
 
 extern Root_000317B0 *D_002A8490;
