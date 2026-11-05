@@ -50,6 +50,8 @@ struct C_00157660 {
 
 struct BestScoreOverlay_24 {
     void func_001D6410(void);
+    void func_001D6600(void);
+    void func_0005E840(const char *s);
 };
 
 struct BestScoreOverlay_V {
