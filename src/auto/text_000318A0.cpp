@@ -151,6 +151,26 @@ void BmxEvent::func_00031E20(void)
     }
 }
 
+int BmxEvent::func_00031E80(void)
+{
+    int i;
+
+    v26();
+    if (f158 != 0) {
+        func_001577A0(f158, 10);
+    }
+    if (f64 != 0) {
+        func_001577A0(f64->func_000A1990(f24, f90), -1);
+    }
+    for (i = 0; i < f90; i++) {
+        func_001577A0(f44[i], -1);
+    }
+    if (f1c4 != 0) {
+        func_001577A0(f1c4, -1);
+    }
+    return 1;
+}
+
 int C_00031F10::func_00031F10(int a, int b)
 {
     return func_00157B90(a, b) != 0;
