@@ -82,6 +82,17 @@ struct C_00142C10 {
 void func_00142C10(C_00142C10 *param_1);
 
 
+void C_00142560::func_00142560(void)
+{
+    int i;
+    if (unkA8 != 0 && unk20 > 0) {
+        for (i = 0; i < unk20; i++) {
+            unk14[i].unk0 = 0;
+            unk14[i].unk14 = 100000.0f;
+        }
+    }
+}
+
 undefined4 C_00142BF0::func_00142BF0(byte param_1)
 {
   int func_00142720(...);
@@ -93,6 +104,22 @@ undefined4 C_00142BF0::func_00142BF0(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+void func_00142C10(C_00142C10 *param_1)
+{
+    extern int D_00011101;
+    memset(param_1, 0, 0xf0);
+    param_1->unkD4 = (int)&D_00011101;
+    param_1->unkE0 = 0;
+    param_1->unkD8 = 0;
+    param_1->unkA8 = 0;
+    param_1->unkDC = 0;
+    param_1->unkEC = 0x10;
+    param_1->unkAC = 0;
+    param_1->unkB0 = 0;
+    param_1->unk20 = 0x20;
+    param_1->unk24 = 0x3000;
 }
 
 undefined4 C_00142C70::func_00142C70(void)
