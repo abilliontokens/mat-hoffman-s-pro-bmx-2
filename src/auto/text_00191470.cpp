@@ -71,6 +71,12 @@ void func_00191DA0(int name, C_0018F390 *obj)
     obj->func_0018F390(&D_00275630, 0x500, &value);
 }
 
+void func_00191F20(int name, C_0018F390 *obj)
+{
+    int value = func_001E91F4(name);
+    obj->func_0018F390(&D_00275630, 0x600, &value);
+}
+
 int func_00192300(void) {
     return 0;
 }
