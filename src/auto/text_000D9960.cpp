@@ -23,10 +23,40 @@ struct S_000DA320_Obj {
 
 struct BmxUIPageViewVideosTitle {
     void *vtbl;
-    char pad4[0x314 - 4];
+    char pad4[0x280 - 4];
+    int unk280;
+    int unk284;
+    int unk288;
+    int unk28C;
+    int unk290;
+    int unk294;
+    int unk298;
+    int unk29C;
+    int unk2A0;
+    int unk2A4;
+    int unk2A8;
+    int unk2AC;
+    int unk2B0;
+    int unk2B4;
+    int unk2B8;
+    int unk2BC;
+    int unk2C0;
+    int unk2C4;
+    int unk2C8;
+    int unk2CC;
+    int unk2D0;
+    int unk2D4;
+    int unk2D8;
+    int unk2DC;
+    int unk2E0;
+    int unk2E4;
+    int arr2E8[11];
     S_000DA320_Obj *arr314[4];
     S_000DA320_Obj *arr324[2];
+    int arr32C[11];
+    void func_001BE360(int a0);
     void func_001BE3F0();
+    BmxUIPageViewVideosTitle *func_000DA210(int a0);
     void func_000DA320();
 };
 
