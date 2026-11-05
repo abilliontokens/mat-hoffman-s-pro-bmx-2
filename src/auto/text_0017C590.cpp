@@ -34,6 +34,8 @@ extern S_QuadTreeGlobal *D_002EFD80;
 
 struct S_QuadTreeItem {
     virtual void v0(int flag);
+    virtual void v1(void);
+    virtual S_QuadTreeListNode **v2(int x, int y, S_QuadTreeListNode **r, int cx, int cy, int size);
     void *func_0017CFF0(void *item);
 };
 
