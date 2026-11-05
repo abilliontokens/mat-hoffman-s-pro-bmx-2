@@ -119,6 +119,20 @@ struct C_000A88A0 {
     void func_000A8920(S_TriggerStream *a, void *b);
 };
 
+/* the game manager (D_002A8490->f2A4) */
+struct S_000A8A60_Mgr {
+    char pad0[0x124];
+    int f124;
+    char pad128[0x1c8 - 0x128];
+    int f1C8;
+    void func_000323C0(C_000A88A0_Vec v, void *a, void *b);
+};
+
+struct S_000A8A60_Global {
+    char pad0[0x2a4];
+    S_000A8A60_Mgr *f2A4;
+};
+
 struct C_000A8B70 {
     int func_000A8B70(void *param1, void *param2);
 };
