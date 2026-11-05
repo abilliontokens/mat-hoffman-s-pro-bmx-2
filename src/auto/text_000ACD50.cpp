@@ -102,18 +102,8 @@ void C_000ACD50::func_000ACD50(void) {
 }
 
 void C_000ACDB0::func_000ACDB0(void) {
-    extern int D_0027C604;
-    void *func_001E8A44(...);
-    C_0027C604 *p;
     if (unk54C == 0) {
-        p = (C_0027C604 *)func_001E8A44(0x2c);
-        if (p != 0) {
-            ((C_00157600 *)p)->func_00157600(1);
-            p->vtbl = &D_0027C604;
-            p->unk24 = 0;
-            p->unk28 = 0;
-        }
-        unk54C = p;
+        unk54C = new C_0027C604(1);
     }
     ((C_000AADB0 *)unk54C)->func_000AADB0(unk28);
 }
