@@ -102,6 +102,17 @@ C_0015A910 *C_0015A910::func_0015A910(int a)
     return this;
 }
 
+void C_0015A910::func_0015A940(void)
+{
+    extern int D_00287640;
+    void func_001E8390(void *);
+    vtbl = (void *)&D_00287640;
+    if (f18 != 0) {
+        func_001E8390((void *)f18);
+    }
+    f18 = 0;
+}
+
 undefined4 C_0015ABF0::func_0015ABF0(int param_1)
 {
   int in_ECX = (int)this;
