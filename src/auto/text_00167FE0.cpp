@@ -263,13 +263,13 @@ int C_00168280::func_00168CB0(const char *name, const float *def, float *out)
     return 1;
 }
 
-int __stdcall func_00168D70(void *a, float *out, int count)
+int C_00168280::func_00168D70(const char *name, float *out, int count)
 {
     char buf[0x184];
     char *s;
     int i;
 
-    if (func_00168550(a, buf, 0x80) == 0) {
+    if (func_00168550(name, buf, 0x80) == 0) {
         strcpy(buf, D_00275630);
         return 0;
     }
