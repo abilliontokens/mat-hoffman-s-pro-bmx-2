@@ -111,6 +111,8 @@ struct S_00093620_Cfg {
     int f1200;
     char pad1204[4];
     int f1208;
+    char pad120C[4];
+    int f1210;
 };
 
 struct S_00093620_Mid {
