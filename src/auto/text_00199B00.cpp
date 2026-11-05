@@ -77,7 +77,7 @@ void C_00199BE0::func_00199C90(int a0, int a1, int a2, int a3, int a4, int a5)
     }
 }
 
-void __stdcall func_00199E30(int a0, int a1, int a2, int a3, int a4)
+void C_00199BE0::func_00199E30(int a0, int a1, int a2, int a3, int a4)
 {
     func_00199D70(a0, a1, a2, a4);
 }
