@@ -242,6 +242,18 @@ void C_00104B00::func_00105890(void)
     }
 }
 
+void C_00104B00::func_001058F0(void)
+{
+    f11b0->func_00086C20(0);
+    f11b0->func_00133700();
+    f11b0->func_00133660(D_002BA154);
+    f11b0->func_00133ED0();
+    f11b0->func_00133F10(0);
+    f11b0->func_00086C20(1);
+    f11b0->func_00133700();
+    f11b0->func_00133660(D_002B911C);
+}
+
 void C_00104B00::func_00105970(void)
 {
     int i;
