@@ -33,13 +33,19 @@ struct S_152BA0_Ctl {
 };
 struct S_152BA0_Slot { int f0; int f4; int f8; int fC; char pad10[0x50]; };
 struct S_151F80_Root { char pad0[0x528]; S_152BA0_Hnd *f528; };
-struct S_151F80_Xf { S_151F80_Vec func_00197F70(float *vin); };
+struct S_1528D0_Vec { float x, y, z, w; };
+struct S_151F80_Xf {
+    S_151F80_Vec func_00197F70(float *vin);
+    S_1528D0_Vec *func_00199B00(S_1528D0_Vec *out, int a);
+    void func_00199600(S_1528D0_Vec v);
+};
 struct S_151F80_Mid {
     char pad0[4];
     S_151F80_Xf *f4;
     char pad8[0x2c];
     float f34;
     void func_00166C50(const void *p);
+    void func_00132D20(void);
 };
 struct S_151F80_Cam { char pad0[0x1a4]; S_151F80_Mid *f1a4; };
 struct S_151F80_Tgt { char pad0[0x50]; int f50; char pad54[0x14]; int f68; };
