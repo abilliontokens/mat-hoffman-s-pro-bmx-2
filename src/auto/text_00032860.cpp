@@ -62,6 +62,25 @@ struct C_00032E50 {
     void func_00032E50(float a, float b, float c, float d);
 };
 
+float func_0001C870(float a, int b, float c, float d, float e);
+
+struct C_00032E90 {
+    char pad0[0x210];
+    float f210;
+    float f214;
+    float f218;
+    char pad21C[4];
+    float f220;
+    char pad224[0xC];
+    float f230;
+    void func_00032E90(void);
+};
+
+static inline void RoundToInt(int *out, float f)
+{
+    *out = _mm_cvtss_si32(_mm_load_ss(&f));
+}
+
 struct BmxEvent {
     void func_00032E90();
     void func_00032F50();
