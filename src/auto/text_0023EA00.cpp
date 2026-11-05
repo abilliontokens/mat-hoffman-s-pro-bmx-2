@@ -50,3 +50,10 @@ struct S_0023ED4C_Out {
 struct C_0023ED4C {
     int func_0023ED4C(S_0023ED4C_Src *src, S_0023ED4C_Out *out);
 };
+
+#pragma optimize("y", off)
+void __stdcall func_0023F469(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7)
+{
+    func_0023F3F7(a0, a1, a2, a3, a4, a5, a6, a7);
+}
+#pragma optimize("", on)
