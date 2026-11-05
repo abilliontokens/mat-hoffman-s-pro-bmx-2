@@ -89,7 +89,32 @@ static __forceinline void FreeUnlink_001DF985(S_HeapRoot *root, S_HeapEntry *e)
         _imp__RtlCompareMemoryUlong((unsigned char *)e + 0x18, len, 0xfeeefeee);
     }
 }
+static __forceinline void FreeInsert_001DFD40(S_HeapRoot *root, S_HeapEntry *e, unsigned int n)
+{
+    S_HeapLink *list;
+    S_HeapLink *blink;
+
+    if ((unsigned short)n < 0x80) {
+        list = (S_HeapLink *)((unsigned char *)root + 0x180 + (unsigned short)n * 8);
+        if (list->flink == list) {
+            root->freeMap[e->size >> 3] |= (unsigned char)(1 << (e->size & 7));
+        }
+    } else {
+        S_HeapLink *head = (S_HeapLink *)((unsigned char *)root + 0x180);
+        for (list = head->flink; head != list; list = list->flink) {
+            if ((unsigned short)n <= ((S_HeapEntry *)((unsigned char *)list - 8))->size) {
+                break;
+            }
+        }
+    }
+    blink = list->blink;
+    e->link.flink = list;
+    e->link.blink = blink;
+    blink->flink = &e->link;
+    list->blink = &e->link;
+}
 #pragma optimize("sy", on)
+extern "C" void *__cdecl memset(void *, int, unsigned int);
 void __stdcall func_001DF746(S_HeapBlock *blk, S_FreeNode *node);
 void __stdcall func_001DF767(S_HeapBlock *blk, unsigned int addr, unsigned int size);
 void __stdcall func_001DFC2A(S_HeapRoot *root, unsigned char *blk, int granules);
