@@ -28,8 +28,8 @@ struct QuadTreeRes {
 /* QuadTree */
 struct C_0017C300 {
     void *vtbl;
-    char pad4[0x84];
-    QuadTreeNode *f88;
+    char pad4[0x88];
+    QuadTreeNode *f8C;
     QuadTreeRes *f90;
     QuadTreeRes *f94;
     u32 flags98;
