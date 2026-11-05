@@ -196,6 +196,15 @@ undefined4 func_001B6560(undefined4 *param_1)
   return *param_1;
 }
 
+C_001B6570 *C_001B6570::func_001B6570(int a0, int a1)
+{
+    if (a0 != 0) {
+        f0 = a1;
+        f4 = a0;
+    }
+    return this;
+}
+
 void C_001B65D0::func_001B65D0(void) {
     unk0 = 1;
 }
