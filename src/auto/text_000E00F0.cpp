@@ -44,9 +44,14 @@ struct S_000E0E30_Mid {
     S_000E0E30_Strings *f4;
 };
 
+struct S_000E0F30_Res {
+    void func_0018C160(void *a);
+};
+
 struct S_000E0E30_Root {
     char pad0[0x2E8];
     S_000E0E30_Mid *f2E8;
+    S_000E0F30_Res *f2EC;
 };
 
 extern S_000E0E30_Root *D_002A8490;
