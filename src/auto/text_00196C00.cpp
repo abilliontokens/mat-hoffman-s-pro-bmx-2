@@ -181,6 +181,19 @@ static inline S_00197700_Vec4 *S_00197820_VecInit(S_00197700_Vec4 *v)
     return v;
 }
 
+struct S_00197820_Hdr {
+    u16 f0;
+    u8 f2;
+    u8 f3;
+};
+
+static inline void S_00197820_HdrInit(S_00197820_Hdr *h)
+{
+    h->f0 = 0;
+    h->f2 = 0xff;
+    h->f3 &= 0xf8;
+}
+
 /* SoultreeObject */
 struct C_00197820 {
     void *vtbl;
