@@ -66,6 +66,11 @@ struct S_00104C80_Obj {
 
 struct S_00083A70_Obj {
     void func_00083A70(int a);
+    void func_000847A0(void);
+};
+
+struct TireTrack {
+    void func_001B49B0(void);
 };
 
 struct S_BmxEvent_Scene {
