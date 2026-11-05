@@ -15,6 +15,52 @@ extern "C" unsigned int strlen(const char *s);
 extern "C" int strcmp(const char *a, const char *b);
 char *func_001E8920(char *dst, const char *src, int n);
 
+extern int D_0027850C;
+extern int D_0027857C;
+
+struct C_0005ECA0 {
+    void *vtbl;
+    char pad4[0x14];
+    int unk18;
+    char pad1C[8];
+    int unk24[8];
+    int unk44[8];
+    int unk64[8];
+    int unk84;
+    int unk88;
+    int unk8C;
+    int unk90;
+    int unk94;
+    int unk98;
+    char pad9C[0xAC - 0x9C];
+    int unkAC[5];
+    int unkC0[5];
+    int unkD4[2];
+    int unkDC[2];
+    int unkE4;
+    int unkE8;
+    int unkEC;
+    int unkF0;
+    int unkF4;
+    int unkF8;
+    int unkFC;
+    int unk100;
+    int unk104;
+    int unk108;
+    int unk10C;
+    int unk110;
+    int unk114;
+    int unk118;
+    int unk11C;
+    int unk120;
+    int unk124;
+    char pad128[4];
+    int unk12C;
+    int unk130;
+    void func_00157600(int a0);
+    C_0005ECA0 *func_0005ECA0(int a0);
+};
+
 struct C_0005E840 {
     char *unk0;
     char pad4[0x4A];
@@ -113,6 +159,26 @@ void C_0005E800::func_0005E800(int param_1, int param_2)
     f4 = f1;
     f8 = f2;
     f58 |= 1;
+}
+
+void C_0005E840::func_0005E840(const char *name)
+{
+    int len = strlen(name);
+    C_0005E840 *p;
+    int n;
+
+    if (unk50 == len && strcmp(unk0, name) == 0) {
+        return;
+    }
+    p = this;
+    n = len > p->unk4f ? p->unk4f : len;
+    p->unk50 = n;
+    func_001E8920(p->unk0, name, n);
+    p->unk0[n] = 0;
+    p->unk4e |= 2;
+    p->unk4e |= 4;
+    p->unk4e |= 1;
+    p->unk4e |= 8;
 }
 
 void C_0005E920::func_0005E920(float param_1, float param_2)
