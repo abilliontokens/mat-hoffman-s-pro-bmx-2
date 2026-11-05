@@ -103,6 +103,15 @@ void DXRenderableObject::func_001435D0(void)
     func_00181540();
 }
 
+void *DXRenderableObjectData::func_00143770(int flags)
+{
+    vtbl = (void *)&D_002859D0;
+    func_00181440();
+    if (flags & 1)
+        func_001E891B(this);
+    return this;
+}
+
 undefined4 C_00143BD0::func_00143BD0(byte param_1)
 {
   int func_001439D0(...);
