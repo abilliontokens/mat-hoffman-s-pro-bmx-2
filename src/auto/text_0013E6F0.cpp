@@ -1,6 +1,7 @@
 /* 11 functions from 0x0013E6F0 to 0x0013F690, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <xmmintrin.h>
 
 extern int D_00284DEC;
 extern int D_00284EA0;
