@@ -440,6 +440,15 @@ undefined4 C_0005C6B0::func_0005C6B0(int param_1)
           (in_ECX + (param_1 + 0x525c + *(int *)(*(int *)(D_002A8490 + 0x2e0) + 0x48) * 4) * 4);
 }
 
+void C_0005C6D0::func_0005C6D0(int param_1)
+{
+  extern undefined4 D_002A8490;
+  int in_ECX = (int)this;
+
+  *(undefined4 *)(in_ECX + (param_1 + 0x525c + *(int *)(*(int *)(D_002A8490 + 0x2e0) + 0x48) * 4) * 4) = 1;
+  return;
+}
+
 int C_0005C700::func_0005C700(void) {
     return unkCE8;
 }
