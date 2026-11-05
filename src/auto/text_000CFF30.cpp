@@ -2,6 +2,58 @@
 #include "common.h"
 
 extern int D_0028F5E0;
+extern char D_00277038[];
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+extern "C" int func_001AC330(char *dst, int fmt, char *a, char *b);
+
+struct S_000CFF30_Rec {
+    char pad0[0xC];
+    int fC[8][3][15];
+    int f5AC[8];
+};
+
+struct S_000CFF30_List {
+    S_000CFF30_Rec *func_0005C020(int idx);
+};
+
+struct S_000CFF30_2E0 {
+    char pad0[0x2C0];
+    S_000CFF30_List *f2c0;
+    char pad2C4[0x328 - 0x2C4];
+    int f328;
+};
+
+struct S_000CFF30_Strings {
+    char pad0[0xE78];
+    int fe78;
+};
+
+struct S_000CFF30_2E8 {
+    int pad0;
+    S_000CFF30_Strings *f4;
+};
+
+struct S_000CFF30_Root {
+    char pad0[0x2E0];
+    S_000CFF30_2E0 *f2e0;
+    int pad2E4;
+    S_000CFF30_2E8 *f2e8;
+};
+
+extern S_000CFF30_Root *D_002A8490;
+
+struct C_000CFF30_Text {
+    void func_001B1980();
+    void func_001B17D0(char *s);
+};
+
+struct C_000CFF30 {
+    char pad0[0x48C];
+    int unk48c;
+    char pad490[0x568 - 0x490];
+    C_000CFF30_Text *unk568;
+    void func_000CFF30();
+};
 
 struct C_000D0D_Obj {
     void func_00093120();
