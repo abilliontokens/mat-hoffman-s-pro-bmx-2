@@ -43,6 +43,9 @@ struct C_001C6F90 {
     void func_001C6F90(S_00017CE0_Arg *a, int b, int c);
 };
 
+struct S_00017DA0_Item;
+struct S_00017DA0_Vec;
+
 /* AiTikiGod */
 struct AiTikiGod {
     virtual void v0();
