@@ -221,6 +221,26 @@ struct C_0008ADB0 {
     void func_00157600(int a0);
 };
 
+struct VirtObj_0008 {
+    virtual void v0(int a);
+};
+
+struct C_0008ADF0 {
+    void *vtbl;
+    char pad4[0x20];
+    PtrObj_0008 *unk24;
+    PtrObj_0008 *unk28;
+    PtrObj_0008 *unk2c;
+    PtrObj_0008 *unk30;
+    PtrObj_0008 *unk34;
+    PtrObj_0008 *unk38;
+    VirtObj_0008 *unk3c;
+    VirtObj_0008 *unk40;
+    VirtObj_0008 *unk44;
+    void func_0008ADF0();
+    void func_00157660();
+};
+
 
 C_0008A2E0 *C_0008A2E0::func_0008A2E0(int a0) {
     func_00157600(1);
