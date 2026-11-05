@@ -3,6 +3,16 @@
 
 extern int D_0028BA74;
 struct S_60A0_Ctl { void func_001D37C0(); };
+struct S_60A0_Sub { char pad0[0x24]; int f24; char pad28[0x1b4]; int f1dc; };
+struct S_60A0_Q { int func_0005C0E0(); };
+struct S_60A0_P { char pad0[0x2c0]; S_60A0_Q *f2c0; };
+struct S_60A0_G { char pad0[0x2e0]; S_60A0_P *f2e0; };
+struct C_001A60A0 {
+    void *vtbl; char pad4[0x20];
+    S_60A0_Sub *f24; S_60A0_Ctl *f28; int f2c;
+    void func_001A60A0(int a, int b);
+    void func_00157BF0(int a, int b);
+};
 extern int D_0028BB74;
 struct LoadMemoryCard {
     void *vtbl; char pad4[0x20];
