@@ -39,7 +39,9 @@ struct S_000E3790_Sub {
 struct S_000E35E0_Root {
     char pad0[8];
     S_000E35E0_Obj **f8;
-    char padC[0x2DC];
+    char padC[0x2D4];
+    int *p2E0;
+    char pad2E4[4];
     S_000E3790_Sub *p2E8;
 };
 
