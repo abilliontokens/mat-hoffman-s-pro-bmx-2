@@ -335,14 +335,20 @@ void C_001332A0::func_00133580(int item)
 void C_001332A0::func_00133620(int item)
 {
     int n = f88;
-    int *list = f84;
-    int i;
+    int i = 0;
 
-    for (i = 0; i < n; i++) {
-        if (list[i] == item) {
-            list[i] = 0;
-            return;
-        }
+    if (n > 0) {
+        int *list = f84;
+        int *p = list;
+
+        do {
+            if (*p == item) {
+                list[i] = 0;
+                return;
+            }
+            i++;
+            p++;
+        } while (i < n);
     }
 }
 
