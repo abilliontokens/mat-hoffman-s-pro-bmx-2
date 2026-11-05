@@ -57,9 +57,59 @@ struct C_001BF000_Global {
     virtual void vv2();
     virtual void vv3();
     virtual void v4(int a, void *b, int c, int d);
+    virtual void v5();
+    virtual void v6();
+    virtual void v7(int a);
+    virtual void v8();
 };
 
 extern C_001BF000_Global *D_002EFDB8;
+
+struct VCall8 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+};
+
+struct C_001BF6C0 {
+    void **vtbl;
+    char pad4[0x28];
+    u32 unk2C;
+    void func_001BF6C0(int enable);
+};
+
+struct C_001BF660 {
+    void **vtbl;
+    char pad4[0x28];
+    u32 unk2C;
+    char pad30[0x8];
+    u32 unk38;
+    u32 unk3C;
+    void func_001BF660();
+};
+
+struct S_001BF600_Stream {
+    void func_00168C20(void *key, int def, void *dst);
+};
+
+extern char D_0028D8D4[];
+extern char D_0028D8C4[];
+extern char D_0028D8B0[];
+extern char D_0028D89C[];
+
+struct C_001BF600 {
+    char pad0[0x30];
+    int f30;
+    int f34;
+    int f38;
+    int f3C;
+    C_001BF600 *func_001BF600(S_001BF600_Stream *stream);
+};
 
 struct C_001BF000 {
     char pad0[0x168];
@@ -214,6 +264,34 @@ void *C_001BF430::func_001BF430(int a0, int a1)
         list->head = 0;
     } while (off < 0x20);
     return this;
+}
+
+void C_001BF490::func_001BF490(C_001BF490_Item *a0)
+{
+    int *flag = a0->unk44;
+    int off = 0;
+    do {
+        if (*flag != 0) {
+            S_001BF3C0_List *list = *(S_001BF3C0_List **)((char *)unk2C + off);
+            if (list->head == 0) {
+                S_001BF3C0_Node *node = (S_001BF3C0_Node *)func_001E8A44(0xc);
+                list->head = node;
+                node->unk0 = a0;
+                node->unk8 = 0;
+                node->unk4 = 0;
+                list->tail = node;
+            } else {
+                list->tail->unk8 = (S_001BF3C0_Node *)func_001E8A44(0xc);
+                S_001BF3C0_Node *node = list->tail->unk8;
+                list->tail = node;
+                node->unk0 = a0;
+                list->tail->unk4 = 0;
+                list->tail->unk8 = 0;
+            }
+        }
+        off += 4;
+        flag++;
+    } while (off < 0x20);
 }
 
 undefined4 C_001BF520::func_001BF520(byte param_1)
