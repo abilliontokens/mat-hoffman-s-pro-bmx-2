@@ -113,6 +113,35 @@ struct SceneEntry {
 };
 
 int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+
+struct N_189D40 { virtual void v0(int d); };
+struct M_189D40 {
+    char pad0[0x1c]; 
+};
+struct O_189D40 { char pad[0xb4]; int fb4; char padb8[0x10]; int fc8; char padcc[4]; int fd0; int fd4; };
+struct P_189D40 { char pad[0xc4]; char *unkc4; };
+struct E_189D40 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
+    virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14();
+    virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24();
+    virtual void v25(); virtual void v26();
+    virtual void v27(int a, int b, int c, int d, int e, int f, int g, int h, int i, int j, int k, int l, int m, int n, int o);
+    virtual void v28();
+    char padx[0xd0 - 8];
+    O_189D40 *unkd0;
+    E_189D40 *func_001732E0(int a);
+    void func_001740B0(int a, int b, int c, int d, int e, int f);
+};
+struct W_189D40 { char pad4[0x4]; int kind; E_189D40 *obj; };
+struct X_189D40 { virtual void v0(int f); };
+struct G_189D40 { char pad[0x24]; int count; W_189D40 **items; char pad2[0]; };
+struct R_189D40 { char pad0[0x24]; int cnt; char pad28[0]; };
+struct Q_189D40 { char pad[0x248]; int a248, a24c, a250, a254, a258, a25c, a260, a264, a268, a26c; int a270[4]; };
+extern char D_00289F8C[];
+void func_001577A0(void *l, void *v, int t);
+int func_001E8AF0(void *a, void *b);
 extern char D_0028A388[];
 extern char D_0028A374[];
 extern char D_0028A35C[];
