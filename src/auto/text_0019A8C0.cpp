@@ -86,10 +86,15 @@ struct SoultreeObject {
     char pad28[0x170 - 0x28];
     S_0019A8C0_Mgr *f170;
     S_0019A8C0_Child *f174;
-    char pad178[0x188 - 0x178];
+    char pad178[0x180 - 0x178];
+    u8 f180;
+    char pad181[0x188 - 0x181];
     int f188;
     S_0019A8C0_Cam *f18c;
+    void func_00197AA0(void);
     void func_0019A8C0(void *vecA, void *vecB);
+    void func_0019AD60(SoultreeObject *p, void *m);
+    void func_0019ADF0(SoultreeObject *p);
     void func_0019ABA0(int a1, int a2);
     void func_0019AC50(void);
     void func_0019ACE0(void);
