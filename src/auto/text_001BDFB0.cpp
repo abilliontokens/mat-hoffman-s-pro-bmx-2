@@ -22,6 +22,37 @@ struct UIInputState {
     UIStick *axisB[8];
 };
 
+struct UIControl;
+
+struct UIPageSlot {
+    int index;
+    UIControl *item;
+};
+
+struct UIPageObj {
+    virtual void dummy0();
+    virtual void dummy1();
+    virtual void virt2();
+    void func_001D37C0(void);
+    void func_00157810(void);
+};
+
+struct UIPageVirt {
+    virtual void dummy0();
+    virtual void dummy1();
+    virtual void dummy2();
+    virtual void dummy3();
+    virtual void dummy4();
+    virtual void virt5();
+};
+
+struct S_001BEB00_Global {
+    char pad0[0x30];
+    int f30;
+};
+
+extern S_001BEB00_Global *D_002EFDB8;
+
 struct UIPage {
     void *vtbl;
     char pad04[0x120];
@@ -31,12 +62,12 @@ struct UIPage {
     u32 f130;
     u32 f134;
     void *f138;
-    u32 f13C;
-    void *f140;
-    void *f144;
+    int f13C;
+    UIControl **f140;
+    UIPageSlot **f144;
     u32 f148[8];
     void *f168;
-    void *f16C;
+    UIPageObj *f16C;
     u8 f170;
     char pad171[0x103];
     u32 f274;
@@ -44,6 +75,9 @@ struct UIPage {
     u32 f27C;
     UIPage *func_001BE360(int param_1);
     int func_001BEA50(int param_1);
+    void func_001BEB00(void);
+    void func_001BEB90(int idx);
+    void func_001BEE30(int idx, int arg);
 };
 
 struct UIVirt70 {
