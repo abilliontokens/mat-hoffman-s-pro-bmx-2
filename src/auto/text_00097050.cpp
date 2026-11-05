@@ -45,3 +45,19 @@ bool C_00097700::func_00097700(void)
   
   return *(int *)(in_ECX + 0x18) == 3;
 }
+
+undefined4 C_00097710::func_00097710(int param_1)
+{
+  int in_ECX = (int)this;
+
+  switch (param_1) {
+  case 0:
+    return *(undefined4 *)(in_ECX + 0xc);
+  case 1:
+    return *(undefined4 *)(in_ECX + 0x10);
+  case 2:
+    return *(undefined4 *)(in_ECX + 0x14);
+  }
+  return 0;
+}
+
