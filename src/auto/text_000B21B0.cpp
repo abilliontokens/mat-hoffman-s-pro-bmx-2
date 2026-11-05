@@ -186,6 +186,39 @@ struct VehicleAI {
     void func_000B1F70(void);
 };
 
+/* trigger item of func_000B2930's target list (flag at +0x3e0) */
+struct S_000B2930_Item { char pad0[0x3e0]; };
+void *func_00011E30(S_000B2930_Item *self);
+extern float D_0027CE50;
+extern float D_0027CE40;
+extern float D_0027CE30;
+
+static __forceinline void sub_000B2930(float *out, VehicleAI *a, VehicleAI *b)
+{
+    float *pa = (float *)&a->f78;
+    float *pb = (float *)&b->f78;
+    out[2] = pa[2] - pb[2];
+    out[1] = pa[1] - pb[1];
+    out[0] = pa[0] - pb[0];
+    out[3] = 1.0f;
+}
+
+static __forceinline void norm_000B2930(float *out, float *in)
+{
+    __m128 v = _mm_loadu_ps(in);
+    __m128 sq = _mm_mul_ps(v, v);
+    __m128 len = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
+    len = _mm_add_ss(len, _mm_shuffle_ps(sq, sq, 0xe1));
+    __m128 minv = _mm_load_ss(&D_0027CE50);
+    __m128 cmp = _mm_cmplt_ss(len, minv);
+    len = _mm_add_ss(len, _mm_and_ps(cmp, minv));
+    __m128 r = _mm_rsqrt_ss(len);
+    __m128 t = _mm_mul_ss(_mm_mul_ss(len, r), r);
+    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_0027CE30)), _mm_sub_ss(_mm_load_ss(&D_0027CE40), t));
+    scale = _mm_shuffle_ps(scale, scale, 0);
+    _mm_storeu_ps(out, _mm_mul_ps(scale, v));
+}
+
 struct C_0018C800 {
     void func_0018C800(void);
     void func_0018C890(int a);
