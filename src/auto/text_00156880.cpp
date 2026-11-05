@@ -314,6 +314,14 @@ int Game::func_00157030(void)
     return 1;
 }
 
+int Game::func_001570C0(const char *name, char *out)
+{
+    strcpy(out, f12c);
+    strcat(out, "\\");
+    strcat(out, name);
+    return 1;
+}
+
 int Game::func_00157130(int a, char *out)
 {
     strcpy(out, "No Strings Available");
