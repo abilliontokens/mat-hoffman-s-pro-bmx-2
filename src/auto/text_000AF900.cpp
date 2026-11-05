@@ -45,7 +45,7 @@ struct Obj_B0060 {
  void func_00133140(int, int);
 };
 struct List_B0060 {
- int count; Obj_B0060 **items; int grow, capacity;
+ int count; Obj_B0060 * volatile *items; int grow, capacity;
  int func_0015ACA0(int);
 };
 struct Group_B0060 { void func_001577A0(Obj_B0060 *, int); };
