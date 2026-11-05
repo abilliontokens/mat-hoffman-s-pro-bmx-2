@@ -354,6 +354,23 @@ C_00100720 *C_00100720::func_00100720(int a, int b, int c)
     return this;
 }
 
+void C_001009D0::func_001008E0() {
+ char buf[4];
+ char dest[64];
+ int i;
+ for (i = 0; i < 2; i++)
+  D_002B91AC->arr38[i]->func_001D6600();
+ D_002B91AC->f34->func_001D6600();
+ if (unk2ac) {
+  unk298->func_001B1980();
+  func_001ADCC0(buf,3,&D_00277038,*(int *)((char *)this+0x29c));
+  func_001AC330(dest,*(char **)(*(char **)(*(char **)(D_002A8490+0x2e8)+4)+0xa28),buf);
+  unk298->func_001B17D0(dest);
+  unk298->func_001B1860(0,-1.0f,255,1.15f,0,0,-1082130432,255,1.0f,0,0.0f,0,0);
+  unk2ac=0;
+ }
+}
+
 void C_001009D0::func_001009D0() {
  if (unk2a8 == 0 && unk2b0 == 0 && unk298->func_001B1B20() == 0xff) unk2a8=1;
  if(unk2b0 != 0) {
