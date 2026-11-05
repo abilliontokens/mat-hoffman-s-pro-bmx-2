@@ -1,5 +1,11 @@
 /* 13 functions from 0x00025240 to 0x000261F0, found by Ghidra. */
 #include "common.h"
+struct C_00026120 {
+    char pad0[0x20];
+    int unk20;
+    void func_00026120(int a0);
+};
+
 struct C_00026110 {
     char pad0[0x28];
     float unk28;
@@ -29,5 +35,9 @@ float C_00026100::func_00026100(void) {
 
 float C_00026110::func_00026110(void) {
     return unk28;
+}
+
+void C_00026120::func_00026120(int a0) {
+    unk20 = a0;
 }
 
