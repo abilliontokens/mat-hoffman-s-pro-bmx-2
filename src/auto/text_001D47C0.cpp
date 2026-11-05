@@ -169,6 +169,11 @@ C_001D5480* C_001D5480::func_001D5480(void) {
     return this;
 }
 
+void C_001D54F0::func_001D54F0(void)
+{
+    unk4->func_001446B0(0, 0, -1);
+}
+
 void C_001D5600::func_001D5600(void) {
     int __stdcall func_001D5190(int);
     func_001D5190(unk58);
