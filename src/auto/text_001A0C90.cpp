@@ -118,7 +118,7 @@ int __stdcall func_00157600(int a);
 struct C_001A1680 {
     void *vtbl;
     int u[0x6C];
-    C_001A1680 *func_001A1680(int a0, int a1, int a2, unsigned short a3);
+    C_001A1680 *func_001A1680(int a1, int a2, unsigned short a3, int a0);
 };
 
 struct C_001A1860 {
