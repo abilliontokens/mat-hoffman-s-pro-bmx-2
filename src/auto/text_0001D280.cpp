@@ -262,7 +262,8 @@ template <class T> inline const T &minref(const T &a, const T &b) { return a > b
 static __forceinline void stripExt(char *dst, const char *src)
 {
     int len = strlen(src);
-    int n = minref(0x103, len);
+    int lim = 0x103;
+    int n = minref(lim, len);
     func_001E8920(dst, src, n);
     dst[n] = 0;
     char *p = func_001E8AC0(dst, '.');
