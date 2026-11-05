@@ -129,10 +129,6 @@ C_001AE3E0 *C_001AE3E0::func_001AE3E0(int param_1)
 {
     ((C_00157600 *)this)->func_00157600(param_1);
     vtbl = &D_0028C214;
-    f48 = 0;
-    f44 = 0;
-    f40 = 0;
-    f4C = 0x3f800000;
     f58.Init();
     f6C = -1;
     f74 = -1;
