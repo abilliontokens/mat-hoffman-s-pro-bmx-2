@@ -1,6 +1,23 @@
 /* 23 functions from 0x001BFF40 to 0x001C0F20, found by Ghidra. */
 #include "common.h"
 
+struct S_001C0CB0_Stream {
+    void func_00168C20(int *name, int value, int *out);
+};
+extern int D_0028DDA0;
+extern int D_0028DD94;
+extern int D_0028DD88;
+extern int D_0028DD80;
+extern int D_0028DD74;
+extern int D_0028DD6C;
+extern int D_0028DD64;
+extern int D_0028DD5C;
+extern int D_0028DD54;
+extern int D_0028DD48;
+extern int D_0028DD3C;
+extern int D_0028DD34;
+extern int D_0028DD2C;
+
 extern int D_0028DBA4;
 
 /* UIWidgetStaticUserRotate constructor */
