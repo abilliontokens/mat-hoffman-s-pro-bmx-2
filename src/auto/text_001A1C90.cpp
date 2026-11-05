@@ -315,6 +315,100 @@ struct C_001A22F0 {
     void func_001A22F0(void);
 };
 
+/* sound handle: v22 at +0x58 */
+struct Snd_001A1D20 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22(int a, int b);
+};
+
+struct SndFactory_001A1D20 {
+    Snd_001A1D20 *func_001CFE90(int a1, int a2, int a3, int a4, int a5, int a6);
+};
+
+struct SndHolder_001A1D20 {
+    char pad0[0xb4];
+    SndFactory_001A1D20 *fb4;
+};
+
+extern "C" int strlen(const char *s);
+char *func_001E8920(char *dst, const char *src, int n);
+
+static __inline int Min_001A1D20(int a, int b) { return a > b ? b : a; }
+
+/* object with a sound: v29 at +0x74, v30 at +0x78 */
+struct C_001A1D20 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29(void *a, void *b);
+    virtual void v30(void *a);
+    char pad4[0x1c];
+    int f24;
+    char pad28[0x14];
+    char f3c[0xc];
+    int f48;
+    int f4c;
+    char pad50[0x20];
+    char f70[0x10];
+    char f80[0x10];
+    char pad90[8];
+    u32 f98;
+    char f9c[0x104];
+    u8 f1a0;
+    char pad1a1[3];
+    SndHolder_001A1D20 *f1a4;
+    char pad1a8[0x14];
+    Snd_001A1D20 *f1bc;
+    int func_001A1D20(const char *name, int b);
+};
+
 int C_001A1C90::func_001A1C90(int a0, int a1, S16_1A s, int a2) {
     if (unk1BC == 0) {
         return 0;
