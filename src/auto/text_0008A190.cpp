@@ -450,3 +450,51 @@ C_0008ADB0 *C_0008ADB0::func_0008ADB0(int a0) {
     return this;
 }
 
+void C_0008ADF0::func_0008ADF0()
+{
+    PtrObj_0008 *p = unk24;
+    vtbl = &D_00279D3C;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+    p = unk28;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+    p = unk2c;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+    p = unk30;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+    p = unk34;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+    p = unk38;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+    if (unk3c) {
+        unk3c->v0(1);
+        unk3c = 0;
+    }
+    if (unk40) {
+        unk40->v0(1);
+        unk40 = 0;
+    }
+    if (unk44) {
+        unk44->v0(1);
+        unk44 = 0;
+    }
+    func_00157660();
+}
+
