@@ -7,7 +7,12 @@ struct DelObjTime {
     virtual void Destroy(int a0);
     char pad4[0x24];
     int f28;
-    char pad2C[0x2C];
+    char pad2C[0x10];
+    int f3C;
+    int f40;
+    int f44;
+    int f48;
+    char pad4C[0xC];
     unsigned char f58;
     DelObjTime *func_001D5760(void);
     void func_001D5810(void *a, float b, float c, int d);
