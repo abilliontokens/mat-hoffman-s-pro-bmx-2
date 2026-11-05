@@ -100,6 +100,8 @@ struct C_000831E0 {
     float fCA0;
     char sCA4[0x32];
     char sCD6[0x32];
+    C_001B17F0 *fD08;
+    void func_00083750(int a);
     void func_000831E0(void);
     void func_000836C0(int a, float b);
     void func_00083850(void);
