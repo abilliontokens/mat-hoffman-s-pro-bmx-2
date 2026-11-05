@@ -118,12 +118,12 @@ extern char D_00055290;
 extern S_00056100_Quat D_002A1A64;
 extern S_00056100_Quat D_002A1A84;
 
-static __forceinline void InitQuat_00055380(S_00056100_Quat *q)
+static __forceinline void InitQuat_00055380(S_00056100_Quat *q, int zero)
 {
     u32 *p = (u32 *)q;
-    p[2] = 0;
-    p[1] = 0;
-    p[0] = 0;
+    p[2] = zero;
+    p[1] = zero;
+    p[0] = zero;
     p[3] = 0x3f800000;
 }
 
