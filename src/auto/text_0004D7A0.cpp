@@ -131,6 +131,28 @@ struct C_0004DC70 {
     void *func_0004DC70(int flags);
 };
 
+int C_0004DCA0::func_0004D7A0(int *a, int b)
+{
+    if (f1F4) return func_00157BF0(a, b);
+    if (func_001361E0(23, 2, a, 0x80000000)) {
+        if (D_002A8490->f2E0->f4 && !f15C->fFC && !f190->f168 && !f1A0->f13C) {
+            func_00032A20();
+            C_0004D7A0_Virtual *p = f64->f4C0;
+            p->v31(1, 1);
+            p = D_002A8490->f2E0->f2FC;
+            p->v18(1);
+            for (int i = 0; i < f90; ++i)
+                f64->f4E0->f1A8[i]->f958 = 0.5f;
+            f15C->func_000602B0();
+            f15C->func_00060350(a[2]);
+        }
+        if (!f1A0->f13C) return 1;
+    } else if (func_001361E0(4, 2, a, 0x80000000)) {
+        if (a[2] == f64->f4E0->f1A8[f120]->f970) f2C0 = 1;
+    }
+    return func_00033320(a, b);
+}
+
 void *C_0004DC70::func_0004DC70(int flags) {
     extern int D_002774DC;
     void func_001E891B(void *);
