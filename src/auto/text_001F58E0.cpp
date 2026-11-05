@@ -23,6 +23,14 @@ PFN_001F5975 __stdcall func_001DE7D4(PFN_001F5975 filter);
 int __stdcall func_001F5975(S_001F5975_Pointers *pointers);
 void func_001F6292(void);
 int func_001F627B(PFN_001F5975 fn);
+
+struct S_Ptd_001F6292 {
+    char pad0[0x68];
+    void (__cdecl *pterminate)(void);
+};
+
+S_Ptd_001F6292 *func_001EB7E9(void);
+extern "C" void (__stdcall *_imp__KeBugCheck)(unsigned long code);
 int __stdcall func_001F655B(PFN_001F5975 fn);
 
 /* 96-bit unsigned integer, least significant word first */
@@ -89,6 +97,26 @@ int func_001F5AC2(S_U12 *a, S_U12 *b)
         a->l[2]++;
     }
     return func_001F5AA1(a->l[2], b->l[2], &a->l[2]);
+}
+
+void func_001F5B20(S_U12 *p)
+{
+    unsigned int l0 = p->l[0];
+    unsigned int l1 = p->l[1];
+
+    p->l[0] = l0 << 1;
+    p->l[1] = (l1 << 1) | (l0 >> 31);
+    p->l[2] = (p->l[2] << 1) | (l1 >> 31);
+}
+
+void func_001F5B4E(S_U12 *p)
+{
+    unsigned int l1 = p->l[1];
+    unsigned int l2 = p->l[2];
+
+    p->l[1] = (l1 >> 1) | (l2 << 31);
+    p->l[0] = (p->l[0] >> 1) | (l1 << 31);
+    p->l[2] = l2 >> 1;
 }
 
 int func_001F627B(PFN_001F5975 fn)
