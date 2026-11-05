@@ -420,40 +420,40 @@ unsigned char __fastcall func_001EF235(BitObj *self, int unused)
     return 0;
 }
 
-char *BitObj::func_001EF26D(char *buf, int n)
+char *__fastcall func_001EF26D(BitObj *self, int unused, char *buf, int n)
 {
-    char *dst;
-    S_001EF210_Node *p;
-    int len;
+    if (func_001EF1E7(self, unused) == 0) {
+        int left;
+        char *dst;
+        S_001EF210_Node *p;
+        int len;
 
-    if (func_001EF1E7() == 0) {
         if (buf == 0) {
-            n = func_001EF210() + 1;
+            n = func_001EF210(self, unused) + 1;
             buf = (char *)D_002F6A04.func_001EEE62(n, 0);
             if (buf == 0) {
-                return 0;
+                return buf;
             }
         }
+        left = n;
+        p = (S_001EF210_Node *)self->f0;
         dst = buf;
-        for (p = (S_001EF210_Node *)f0; p != 0 && n > 0; p = p->next) {
+        for (; p != 0 && left > 0; p = p->next) {
             len = p->v0();
             if (len != 0) {
-                if (n - len < 0) {
-                    len = n;
+                if (left - len < 0) {
+                    len = left;
                 }
                 if (p->v2(dst, len) != 0) {
-                    n -= len;
+                    left -= len;
                     dst += len;
                 }
             }
         }
-    } else {
-        dst = buf;
-        if (buf == 0) {
-            return 0;
-        }
+        *dst = 0;
+    } else if (buf != 0) {
+        *buf = 0;
     }
-    *dst = 0;
     return buf;
 }
 
@@ -539,9 +539,11 @@ S_001EF45F *__fastcall func_001EF45F(S_001EF45F *self, int unused, const char *s
     self->f4 = 0;
     self->vtbl = &D_00295BF0;
     if (len == 0 && src != 0) {
-        while (src[len] != 0) {
-            len++;
+        int n = 0;
+        while (src[n] != 0) {
+            n++;
         }
+        len = n;
     }
     if (len != 0 && src != 0) {
         self->f8 = (char *)D_002F6A04.func_001EEE62(len, 0);
