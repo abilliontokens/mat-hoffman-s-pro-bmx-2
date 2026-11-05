@@ -6,3 +6,28 @@ int func_0004F5D0(void) {
     func_00031F30();
     return 1;
 }
+
+struct C_0004ED80 {
+    int unk0;
+    void func_00033220(void);
+    void *func_0004ED80(int flags);
+};
+
+struct C_0004EBA0 {
+    char pad0[0x64];
+    void *f64;
+    char pad68[0x28];
+    int f90;
+    char pad94[0x1f8];
+    int f28c;
+    char pad290[0xaa0];
+    void *fD30[9];
+    int fD54;
+    void *fD58[1];
+    void func_00031640(void);
+    void func_00034090(void);
+    void func_0004EA20(int a);
+    void func_001577A0(void *p, int n);
+    int func_0004EBA0(void);
+    void func_0004EBE0(void);
+};
