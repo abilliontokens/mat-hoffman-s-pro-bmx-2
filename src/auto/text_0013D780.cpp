@@ -254,6 +254,20 @@ struct S_0013E2D0_Elem {
     char pad4F[0x60 - 0x4F];
     void func_0005E840(const char *name);
     void func_001D6600(void);
+    void SetPos(float x, float y) {
+        if (f4 != x || f8 != y) {
+            f4 = x;
+            f8 = y;
+            f4E |= 6;
+        }
+    }
+};
+
+struct S_0013E2D0_Rect {
+    int left;
+    int top;
+    int right;
+    int bottom;
 };
 
 struct C_001617F0 {
@@ -307,6 +321,57 @@ void func_0013E260(int obj, int id, int fmt, ...)
         int n = ++*(int *)(obj + 0x224);
         ((C_0013E170 *)obj)->func_0013E170(n, buf, 1);
     }
+}
+
+int C_0013E2D0::func_0013E2D0(void)
+{
+    int rect[4];
+    int i;
+
+    if (f224 != -1 && f1948 != 0 && f1938 != -1) {
+        D_002BEAF4 = D_002A6A18;
+        if (D_002A8490->f264 != 0) {
+            D_002EFDB8->f4->func_0012B1D0(rect);
+            D_002EFDB8->f4->func_0012B190(0, 0, 0x280, 0x1c0);
+        }
+        D_002A829C->func_001617F0(&D_00284D30, 1);
+        for (i = 0; i <= f224; i++) {
+            S_0013E2D0_Line *line = &lines[i];
+            S_0013E2D0_Elem *e = &f1944[i];
+            e->func_0005E840(line->name);
+            e = &f1944[i];
+            if (line->x != e->f4 || e->f8 != line->y) {
+                e->f4 = line->x;
+                e->f8 = line->y;
+                e->f4E |= 6;
+            }
+            e = &f1944[i];
+            if (line->value == 1) {
+                unsigned int c = e->f48;
+                if (c != 0xffff0000) {
+                    e->f4E |= 8;
+                    e->f48 = (c & 0xffff0000) | 0xff0000;
+                }
+            } else {
+                unsigned int c = e->f48;
+                if (c != 0xffffffff) {
+                    e->f4E |= 8;
+                    e->f48 = c | 0xffffff;
+                }
+            }
+            e = &f1944[i];
+            if (e->f44 != D_0028F5DC) {
+                e->f44 = D_0028F5DC;
+                e->f4E |= 6;
+            }
+            f1944[i].func_001D6600();
+        }
+        f224 = -1;
+        if (D_002A8490->f264 != 0) {
+            D_002EFDB8->f4->func_0012B190(rect[0], rect[1], rect[2] - rect[0], rect[3] - rect[1]);
+        }
+    }
+    return 1;
 }
 
 void func_0013E4A0(void *dst, void *src)
