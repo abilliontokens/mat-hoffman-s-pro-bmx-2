@@ -148,7 +148,7 @@ struct C_001BC6E0 {
 };
 extern C_001BC6E0 *D_002AAEC8;
 
-struct S_00197820_Mat {
+struct __declspec(align(16)) S_00197820_Mat {
     float m[16];
 };
 
