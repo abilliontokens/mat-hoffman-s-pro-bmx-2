@@ -2,6 +2,69 @@
 #include "common.h"
 #include "ghidra.h"
 
+struct O_000F22B0_Btn {
+    char pad0[0x304];
+    float f304x;
+    char pad308[0x294];
+    int f59c;
+    int f5a0;
+    void func_00103260(int a);
+    void func_00103350(void);
+};
+struct O_000F22B0_Hph {
+    char pad0[0x134];
+    int f134;
+    int f138;
+    char pad13c[0x128];
+    int f264;
+    O_000F22B0_Btn *func_000BA9B0(int id);
+    O_000F22B0_Btn *func_000BA9D0(int id);
+    void func_000BB7C0(int v);
+};
+struct O_000F22B0_Sub {
+    int f0;
+    int f4;
+    int f8;
+    int fc;
+    float f10;
+    char pad14[0xc];
+    int f20;
+    char pad24[0x16c];
+    int f190;
+    void func_0005B220(void);
+};
+struct O_000F22B0_Root {
+    char pad0[0x2e0];
+    O_000F22B0_Sub *f2e0;
+};
+struct O_000F22B0_Cur { char pad0[0x3b]; unsigned char b3b; };
+extern float D_002B91C0;
+extern float D_00278C48;
+extern float D_0027DE74;
+#define G22B0 ((O_000F22B0_Root *)D_002A8490)
+struct C_000F22B0 {
+    char pad0[0x124];
+    O_000F22B0_Hph *p124;
+    char pad128[0x158];
+    int f280;
+    int f284;
+    int f288;
+    int f28c;
+    float f290;
+    int pad294;
+    int f298;
+    int f29c;
+    int f2a0;
+    float f2a4;
+    float f2a8;
+    int f2ac;
+    int f2b0;
+    O_000F22B0_Cur *p2b4;
+    void func_001BEE50(int a, int b, int c);
+    int func_001BF050(int a);
+    void func_001BED00(float dt);
+    void func_000F22B0(float dt);
+};
 struct VObj_000F2600 { virtual void v0(int); };
 struct PtrObj_000F2600 { void func_001D6410(); };
 void func_001E891B(void *p);
