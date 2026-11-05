@@ -185,7 +185,7 @@ struct E_B70 {
     V4_B70 a; V4_B70 b; char pad6c[0xc]; char f78, f79, pad7a, f7b;
 };
 struct Row_B70 { int count; int f4; int pad8[2]; int *f10; };
-struct G_B70 { char pad0[0x238]; int f238; char pad23c[0xa4]; struct { char pad[0x10]; float f10; } *f2e0; };
+struct G_B70 { char pad0[0x124]; int f124; char pad128[0x110]; int f238; char pad23c[0xa4]; struct { char pad[0x10]; float f10; } *f2e0; };
 struct W_B70 { char pad[0x64]; T_B70 **ts; };
 extern G_B70 *D_002A8490;
 extern W_B70 *D_002B7E18;
