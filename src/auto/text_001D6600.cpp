@@ -31,7 +31,7 @@ struct XboxTextureMap {
     virtual void slot4();
     virtual void slot5();
     virtual void slot6();
-    virtual void slot7();
+    virtual int func_001D7190(int a1, int a2, int a3);
     virtual int slot8(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9);
     char pad4[4];
     int f8;
@@ -39,9 +39,13 @@ struct XboxTextureMap {
     char pad10[0xa0 - 0x10];
     int fA0;
     int fA4;
-    char padA8[0xb8 - 0xa8];
+    int fA8;
+    int fAC;
+    char padB0[0xb8 - 0xb0];
     void *fB8;
     void *fBC;
+    u32 arrC0[10];
+    u32 arrE8[10];
     void func_001B1200(void *param);
     void func_001B11D0(void);
     XboxTextureMap *func_001D6AD0(void *param);
