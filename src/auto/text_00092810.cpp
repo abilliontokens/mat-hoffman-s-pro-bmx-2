@@ -99,6 +99,7 @@ struct S_00092A10_Sub {
 extern char D_00279100;
 extern char D_0027A130;
 extern char D_0027A140;
+extern char D_0027A1B0;
 
 struct S_00093140_Obj {
     float func_0018C210(void);
