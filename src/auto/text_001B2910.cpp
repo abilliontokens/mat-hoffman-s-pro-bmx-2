@@ -80,3 +80,34 @@ int func_001B2CB0(int param_1)
 {
     return func_001B2910(param_1) / 8;
 }
+
+S_001B3560 *func_001B3560(int param_1, int param_2)
+{
+    S_001B3560 *item;
+    int ok;
+
+    item = func_001B33A0(param_1, param_2);
+    if (item != 0) {
+        if (item->kind == 0x18) {
+            ok = func_001B2CD0(item, param_1);
+        } else if (item->kind == 0x20) {
+            ok = func_001B2F10(item, param_1);
+        } else {
+            if (func_001B3150(item, param_1) != 0) {
+                goto success;
+            }
+            ok = 0;
+        }
+        if (ok != 0) {
+success:
+            item->f1c = 0;
+            return item;
+        }
+        if (item->f14 != 0) {
+            func_001E8390(item->f14);
+        }
+        func_001E8390(item);
+    }
+    return 0;
+}
+
