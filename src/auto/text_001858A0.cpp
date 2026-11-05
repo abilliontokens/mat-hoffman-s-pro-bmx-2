@@ -188,6 +188,23 @@ void C_00186170::func_00186210(void)
     }
 }
 
+int __stdcall func_00186260(const char *s)
+{
+    if (strcmp(s, "Ambient") == 0) {
+        return 4;
+    }
+    if (strcmp(s, "Directional") == 0) {
+        return 2;
+    }
+    if (strcmp(s, "ObjectPoint") == 0) {
+        return 1;
+    }
+    if (strcmp(s, "Spotlight") == 0) {
+        return 3;
+    }
+    return 0;
+}
+
 void C_00186540::func_00186540(int param_1)
 {
   int func_001E8A44(...);
