@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <string.h>
 struct Q_001A1930 { float x,y,z,w; };
+static inline Q_001A1930 Sub_001A1930(const Q_001A1930 &a,const Q_001A1930 &b) { Q_001A1930 q; q.x=a.x-b.x;q.y=a.y-b.y;q.z=a.z-b.z;q.w=1;return q; }
 struct I3_001A1930 { float x,y,z; };
 struct O_001A1930 { char pad[8]; I3_001A1930 pos; char pad14[0x24]; I3_001A1930 vel; };
 struct N_001A1930 { int unk0; O_001A1930 *obj; };
