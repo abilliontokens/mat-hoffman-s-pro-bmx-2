@@ -276,6 +276,7 @@ struct S_0001BE90_Ctx1 {
 };
 
 extern float D_00275BC0;
+#include <string.h>
 
 struct S_0001B910_Anim {
     int pad0;
