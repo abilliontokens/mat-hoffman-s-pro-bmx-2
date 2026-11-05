@@ -1,5 +1,8 @@
 /* 9 functions from 0x001B6A70 to 0x001B7570, found by Ghidra. */
 #include "common.h"
+extern char D_0028CF08[], D_0028CEF4[];
+extern int D_0028CDE4;
+void *func_001E83E8(void *, int);
 
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 void *func_001E8A44(int size);
