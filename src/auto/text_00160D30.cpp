@@ -250,6 +250,118 @@ struct C_00161580 {
 };
 
 
+int C_00161040::func_00160D30(const char *nm, int idx, int flag)
+{
+    char buf[0x104];
+    int D;
+    int A;
+    S_00160D30_Rec *B;
+    int C;
+    void *file;
+    unsigned int n;
+    int sz;
+    const char *s;
+    char *d;
+    char c;
+    int i;
+    char *p;
+    char *end;
+    S_00160C40 *old;
+
+    s = nm;
+    d = name;
+    do {
+        c = *s;
+        *d = c;
+        s++;
+        d++;
+    } while (c);
+    if (idx < 0) {
+        func_001ADCC0(buf, 0x104, D_00287AA0, D_002BA5F0, D_002A65D8, name);
+    } else {
+        func_001ADCC0(buf, 0x104, D_00287A90, D_002BA5F0, D_002A65D8, D_002A817C[idx], name);
+    }
+    file = func_0014FDF0(buf, D_00275FB4);
+    if (file != 0) {
+        func_0014FED0(file, 0x1a, 0);
+        n = func_0014FE60(&count, 2, file);
+        if (count > 0 && n > 0) {
+            func_0014FED0(file, 8, 0);
+            n = func_0014FE60(&A, 4, file);
+            if (n > 0) {
+                sz = count * 8;
+                B = (S_00160D30_Rec *)func_001E8AA5(sz);
+                func_0014FED0(file, A, 0);
+                n = func_0014FE60(B, sz, file);
+                if (n <= 0) {
+                    func_001E8390(B);
+                    func_0014FE50(file);
+                    return 0;
+                }
+                if (entries != 0) {
+                    func_001E891B(entries);
+                }
+                entries = (S_00161040_Entry *)func_001E8A44(count * 8);
+                for (i = 0; i < count; i++) {
+                    entries[i].unk4 = B[i].s4;
+                }
+                if (flag != 0 && count > 0) {
+                    func_0014FED0(file, 4, 0);
+                    if (func_0014FE60(&C, 4, file) != 4) {
+                        goto fail;
+                    }
+                    if (strs != 0) {
+                        func_001E891B(strs);
+                        strs = 0;
+                    }
+                    if (text != 0) {
+                        func_001E891B(text);
+                        text = 0;
+                    }
+                    D = A - C - 1;
+                    if (D <= 0) {
+                        goto fail;
+                    }
+                    text = (char *)func_001E8A44(D);
+                    strs = (char **)func_001E8A44(D * 4);
+                    func_0014FED0(file, C, 0);
+                    if (func_0014FE60(text, D, file) != D) {
+                        goto fail;
+                    }
+                    p = text;
+                    for (i = 0; i < count; i++) {
+                        end = func_001E9260(p, 0);
+                        if (end == 0 || end - p > D) {
+                            func_0014FE50(file);
+                            return 0;
+                        }
+                        strs[i] = p;
+                        p = end + 1;
+                    }
+                    old = cont;
+                    if (old != 0) {
+                        old->func_00160C90();
+                        func_001E891B(old);
+                    }
+                    {
+                        void *mem = func_001E8A44(0x10);
+                        cont = mem ? ((S_00160C40 *)mem)->func_00160C40(count, &D_00135BF0, &D_00135C10) : 0;
+                    }
+                    for (i = 0; i < count; i++) {
+                        cont->func_00160CE0(strs[i], i);
+                    }
+                }
+                func_001E8390(B);
+                func_0014FE50(file);
+                return 1;
+            }
+        }
+fail:
+        func_0014FE50(file);
+    }
+    return 0;
+}
+
 int C_00161040::func_00161040(int index)
 {
     char path[0x104];
