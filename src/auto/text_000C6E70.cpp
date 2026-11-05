@@ -54,6 +54,57 @@ struct BmxUIPageTwoPlayer {
     BmxUIPageTwoPlayer *func_000C77D0(int a);
 };
 
+BmxUIPageTwoPlayer *BmxUIPageTwoPlayer::func_000C77D0(int a)
+{
+    int i;
+
+    func_001BE360(a);
+    vtbl = (void *)&D_0027E28C;
+    unk28C = 0;
+    unk294 = 0;
+    unk284 = 0;
+    unk290 = 0;
+    unk288 = 0;
+    unk280 = 0;
+    unk298 = 0;
+    unk29C = 0;
+    unk2A8 = 0;
+    unk2AC = 0;
+    unk2B4 = 0;
+    unk2B0 = 0;
+    for (i = 0; i < 4; i++) {
+        arr308[i] = 0;
+    }
+    for (i = 0; i < 2; i++) {
+        arr318[i] = 0;
+    }
+    unk2B8 = 0;
+    unk2BC = 0;
+    unk2C0 = 0;
+    unk2C4 = 0;
+    unk2C8 = 0;
+    unk2CC = 0;
+    unk2D0 = 0;
+    unk2D4 = 0;
+    unk2D8 = 0;
+    unk2E4 = -1;
+    unk2E8 = 6;
+    unk2F0 = 1;
+    unk2F4 = 0;
+    unk2EC = 0;
+    unk2FC = 0;
+    unk2F8 = 0;
+    for (i = 0; i < 9; i++) {
+        arr320[i] = 0;
+        arr344[i] = 0;
+        arr368[i] = 0;
+    }
+    unk2DC = 0;
+    unk2E0 = -1;
+    unk304 = 1.0f;
+    return this;
+}
+
 void BmxUIPageTwoPlayer::func_000C7900(void)
 {
     int i;
