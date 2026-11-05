@@ -25,6 +25,53 @@ struct C_000DD130 {
     void func_000DD130();
 };
 
+struct C_000DD030 {
+    void *vtbl;
+    char pad4[0x27C];
+    int unk280;
+    int unk284;
+    int unk288;
+    char unk28C;
+    char pad28D[7];
+    char unk294;
+    char pad295[0x27];
+    int unk2BC;
+    char unk2C0;
+    char pad2C1[0xF];
+    int unk2D0;
+    int unk2D4;
+    int unk2D8;
+    int unk2DC;
+    int unk2E0;
+    int unk2E4;
+    char pad2E8[4];
+    int unk2EC;
+    int unk2F0;
+    int unk2F4;
+    int unk2F8;
+    int unk2FC;
+    int unk300;
+    int unk304;
+    int unk308;
+    int unk30C;
+    int unk310;
+    int unk314;
+    int unk318;
+    int unk31C;
+    int unk320;
+    int unk324;
+    int unk328;
+    int unk32C;
+    int unk330;
+    int unk334;
+    int unk338;
+    int unk33C;
+    int unk340;
+    int unk344;
+    void func_001BE360(int a);
+    C_000DD030 *func_000DD030(int a);
+};
+
 struct C_000DCBF0 {
     char pad0[0x2F0];
     int unk2F0;
