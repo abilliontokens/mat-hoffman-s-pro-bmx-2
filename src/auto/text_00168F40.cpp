@@ -1,5 +1,7 @@
 /* 13 functions from 0x00168F40 to 0x00169E10, found by Ghidra. */
 #include "common.h"
+extern "C" unsigned int strlen(const char *s);
+#pragma intrinsic(strlen)
 extern int D_00288084;
 void func_001E891B(void *p);
 void func_001E8390(void *p);
@@ -152,6 +154,57 @@ int C_00169010::func_00169090(int idx, void *p)
     }
     func_00168210(e[idx].type, e[idx].val, p);
     return 1;
+}
+
+void __stdcall func_001690D0(char *src, char *dst)
+{
+    int len;
+    int i;
+    int j;
+    int depth = 0;
+    int quote = 0;
+    char *p = src;
+    char *q = src + 1;
+    char c;
+    char ch;
+
+    do {
+        c = *p;
+        p++;
+    } while (c != 0);
+    len = p - q;
+    i = 0;
+    j = 0;
+    *dst = c;
+    if (len != 0 && len > 0) {
+        do {
+            ch = src[i];
+            switch (ch) {
+            case '[':
+                depth++;
+                break;
+            case '"':
+                quote = 1 - quote;
+                break;
+            case ']':
+                depth--;
+                break;
+            case '\t':
+            case '\n':
+            case '\r':
+            case ' ':
+                if (depth <= 0 && quote == 0) {
+                    goto next;
+                }
+                break;
+            }
+            dst[j] = ch;
+            j++;
+        next:
+            i++;
+        } while (i < len);
+    }
+    dst[j] = 0;
 }
 
 void C_00168F40::func_001691E0(void)
