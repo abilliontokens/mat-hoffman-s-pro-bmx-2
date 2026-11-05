@@ -169,6 +169,17 @@ void C_00035360::func_00035360(void)
     }
 }
 
+void C_00035680::func_00035680(void)
+{
+    D_002A8490->slot_3c(f24, f28, 0, 0);
+    f24->func_0012B190(0, 0, f24->f204, f24->f208);
+    memcpy(f1dc, &f24->f1e0, 0x18);
+    f1e0 = (int)((float)f1e0 - D_00276CA0);
+    if (f28 != 0) {
+        f28->func_0012B190(0x1c3, 0x14, 0xa0, 0x59);
+    }
+}
+
 void C_00035BE0::func_00035BE0(void)
 {
     if (f1d0 != 0) {
