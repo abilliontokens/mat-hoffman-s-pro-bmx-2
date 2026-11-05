@@ -114,6 +114,55 @@ struct Game_000A82C0 {
 extern Game_000A82C0 *D_002A8490;
 void __stdcall func_00052630(int p);
 
+struct Arg_000A7860 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35();
+    virtual void v36(); virtual void v37(); virtual void v38(); virtual void v39();
+    virtual void v40(); virtual void v41(); virtual void v42(); virtual void v43();
+    virtual void v44(); virtual void v45(); virtual void v46(); virtual void v47();
+    virtual void v48(); virtual void v49(); virtual void v50(); virtual void v51();
+    virtual void v52(); virtual void v53(); virtual void v54(); virtual void v55();
+    virtual void v56(); virtual void v57(); virtual void v58(); virtual void v59();
+    virtual void v60(); virtual void v61(); virtual void v62(); virtual void v63();
+    virtual void v64(); virtual void v65(); virtual void v66(); virtual void v67();
+    virtual void v68(); virtual void v69(); virtual void v70(); virtual void v71();
+    virtual void v72(); virtual void v73(); virtual void v74(); virtual void v75();
+    virtual void v76(); virtual void v77(); virtual void v78(); virtual void v79();
+    virtual void v80(); virtual void v81(); virtual void v82(); virtual void v83();
+    virtual void v84(); virtual void v85(); virtual void v86(); virtual void v87();
+    virtual void v88(); virtual void v89(); virtual void v90(); virtual void v91();
+    virtual void v92(); virtual void v93(); virtual void v94();
+};
+struct Obj_000A7860 {
+    char pad0[0x108];
+    int f108;
+};
+struct Mdl_000A7860 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2(Arg_000A7860 *a);
+    int f4;
+    char pad8[0x54];
+    Obj_000A7860 *f5c;
+    char pad60[0x148];
+    Obj_000A7860 *f1a8;
+};
+extern char D_002A45E0[], D_002A5348[], D_00275678[], D_002A46E8[], D_002A5EA0[], D_002A5FA8[], D_002A60B0[], D_002A4C10[], D_002A5870[];
+void __cdecl func_001ADCC0(char *a, int b, char *c, char *d, ...);
+struct Models_000A7860 {
+    char pad0[0x24];
+    int count;
+    Mdl_000A7860 **models;
+    int func_000A7860(Arg_000A7860 *arg);
+};
+
 struct C_000A7530 {
     void func_000A7530(void);
 };
@@ -220,26 +269,29 @@ int SlotsR_000A74B0::func_000A7570(int state, int arg, int keep)
 void SlotsR_000A74B0::func_000A7650(float t)
 {
     int i;
-    int prev;
     int done;
-    float *f118 = (float *)a118;
+    int prev;
+    float cur;
 
     for (i = 0; i < 10; i++) {
         a28[i] = -2;
         a50[i] = 1;
     }
+    cur = t;
     done = 0;
     prev = -2;
     for (i = 0; i < count - 1; i++) {
+        int state;
         if (done) {
-            return;
+            break;
         }
-        if (a0[i] == -1 || a0[i] == -2) {
-            a28[i] = a0[i];
+        state = a0[i];
+        if (state == -1 || state == -2) {
+            a28[i] = state;
             a50[i] = aF0[i];
         } else {
             int ok = 1;
-            float diff = t - f118[i];
+            float diff = cur - f118[i];
             if (diff > D_002B9120->f52C->hi) {
                 ok = 0;
             }
@@ -249,7 +301,7 @@ void SlotsR_000A74B0::func_000A7650(float t)
             if (a78[i] == 0) {
                 ok = 0;
             }
-            if (prev == a0[i] && aC8[i] == 0) {
+            if (prev == state && aC8[i] == 0) {
                 ok = 0;
             }
             f144 = 0;
@@ -265,9 +317,9 @@ void SlotsR_000A74B0::func_000A7650(float t)
                 a28[i] = a0[i];
                 a50[i] = aF0[i];
                 prev = a0[i];
-                t = f118[i];
+                cur = f118[i];
             } else {
-                a28[i] = a0[i];
+                a28[i] = state;
                 a50[i] = aF0[i];
             }
         }
