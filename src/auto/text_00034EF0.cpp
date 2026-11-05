@@ -265,6 +265,80 @@ struct C_00035720 {
     void func_00035940(void);
 };
 
+void *func_001E8A44(int size);
+extern char D_002A60B0[];
+extern char D_00275678[];
+extern char D_002A5870[];
+extern char D_002A5FA8[];
+
+struct S_359C0_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual int v10();
+};
+struct S_359C0_1D0 : S_359C0_Obj {
+    S_359C0_1D0 *func_00092890(int a);
+};
+struct S_359C0_2C4 : S_359C0_Obj {
+    S_359C0_2C4 *func_000687B0(int a);
+    S_359C0_2C4 *func_0007CA00(void *a);
+};
+struct S_359C0_588 : S_359C0_Obj {
+    S_359C0_588 *func_00069FF0(int a);
+    S_359C0_588 *func_0007D6F0(void *a);
+};
+struct S_359C0_1A0 : S_359C0_Obj {
+    S_359C0_1A0 *func_000715B0(int a);
+    S_359C0_1A0 *func_00071880(void *a);
+};
+struct S_359C0_550 : S_359C0_Obj {
+    S_359C0_550 *func_000891A0(int a);
+    void func_0008A000(void *a);
+};
+struct S_359C0_554 : S_359C0_Obj {
+    S_359C0_554 *func_0008A2E0(int a);
+    void func_0008A8F0(void *a);
+};
+struct S_359C0_558 : S_359C0_Obj {
+    S_359C0_558 *func_0008AAB0(int a);
+    void func_0008AB90(void *a);
+};
+struct S_359C0_55C : S_359C0_Obj {
+    S_359C0_55C *func_0008ABF0(int a);
+    void func_0008AB90(void *a);
+};
+struct S_359C0_560 : S_359C0_Obj {
+    S_359C0_560 *func_0008ADB0(int a);
+};
+
+struct C_000359C0 {
+    void *vtbl;
+    char pad4[0x19c];
+    S_359C0_1A0 *f1a0;
+    char pad1a4[0x2c];
+    S_359C0_1D0 *f1d0;
+    char pad1d4[0xf0];
+    S_359C0_2C4 *f2c4;
+    char pad2c8[0x288];
+    S_359C0_550 *f550;
+    S_359C0_554 *f554;
+    S_359C0_558 *f558;
+    S_359C0_55C *f55c;
+    S_359C0_560 *f560;
+    char pad564[0x24];
+    S_359C0_588 *f588;
+    void func_00031630(void);
+    void func_000359C0(void);
+};
+
 void C_00035300::func_00035300(char *name, int n)
 {
     char buf[0x34];
@@ -286,6 +360,29 @@ void C_00035360::func_00035360(void)
     for (i = 0; i < f64->f4e0->count; i++) {
         f64->f4e0->objs[i]->f67c = 0;
     }
+}
+
+void C_000353F0::func_000353F0(void)
+{
+    if (!(D_002B8F24 & 1)) {
+        D_002B8F24 |= 1;
+        D_002B8F20 = D_002EFDB8->f2c;
+    }
+    if (f284 == 0 && D_002A8490->f10 != 0) {
+        if (f2c8 == 0) {
+            f540->v6();
+            f64->v4();
+            D_002EFDB8->f2c = 0xffc8c8c8;
+            func_001578D0();
+            return;
+        }
+    } else {
+        f540->v4();
+        f64->v6();
+        D_002EFDB8->f2c = D_002B8F20;
+        D_002EFDB8->f30 = 1;
+    }
+    func_001578D0();
 }
 
 void C_00035360::func_00035560(void)
