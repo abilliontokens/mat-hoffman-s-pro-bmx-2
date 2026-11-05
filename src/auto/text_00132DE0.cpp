@@ -239,6 +239,27 @@ void C_00133570::func_00133570(int a0) {
     unk80 = a0;
 }
 
+void C_001332A0::func_00133580(int item)
+{
+    int func_001E83E8(...);
+    int i;
+
+    for (i = 0; i < f88; i++) {
+        if (f84[i] == item) {
+            return;
+        }
+    }
+    for (i = 0; i < f88; i++) {
+        if (f84[i] == 0) {
+            f84[i] = item;
+            return;
+        }
+    }
+    f84 = (int *)func_001E83E8(f84, f88 * 4 + 4);
+    f84[f88] = item;
+    f88++;
+}
+
 void C_00133700::func_00133700(void)
 {
   int func_001E8390(...);
