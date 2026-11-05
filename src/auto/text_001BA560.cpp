@@ -181,6 +181,51 @@ struct C_001BB300 {
 };
 
 
+int C_001BA560::func_001BA560(S_001BA560_arg *arg1, int arg2)
+{
+    int func_001E8A44(...);
+    void func_001BA540();
+    void __stdcall func_001BBAA0(void *a, void *b);
+    int r = arg1->v96(&f10c);
+    S_001BA560_Node *n;
+
+    if (arg2 != 0) {
+        func_001BBAA0(this, (void *)&func_001BA540);
+    }
+    if (r == 0)
+        return 0;
+    n = (S_001BA560_Node *)func_001E8A44(8);
+    if (n != 0) {
+        n->f0 = f28c;
+        n->f4 = r;
+        f288 = n;
+        return 1;
+    }
+    f288 = 0;
+    return 1;
+}
+
+C_001BA5E0 *C_001BA5E0::func_001BA5E0(void)
+{
+    int func_001E8A44(...);
+    vtbl = (void *)&D_0028D200;
+    f4 = 0;
+    f8 = 0;
+    f124 = 0;
+    f118 = 0xa;
+    f11c = (int)&D_000186A0;
+    f120 = 0;
+    f114 = func_001E8A44(0x28);
+    f13c = 0;
+    f130 = 0xa;
+    f134 = (int)&D_000186A0;
+    f138 = 0;
+    f12c = func_001E8A44(0x28);
+    f110 = 0;
+    f144 = 0;
+    return this;
+}
+
 void C_001BA910::func_001BA910(void)
 {
     int func_001E891B(...);
@@ -220,6 +265,23 @@ undefined4 C_001BA9A0::func_001BA9A0(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+C_001BB300 *C_001BB300::func_001BB300(byte flags)
+{
+    int func_001E891B(...);
+    void *p = f5c;
+    vtbl = (void *)&D_0028CB80;
+    if (p != 0) {
+        *(void **)p = (void *)&D_0028CA64;
+        func_001E891B(p);
+        f5c = 0;
+    }
+    ((C_001B4F90 *)this)->func_001B4F90();
+    if ((flags & 1) != 0) {
+        func_001E891B(this);
+    }
+    return this;
 }
 
 void C_001BB4D0::func_001BB4D0(int param_1)
