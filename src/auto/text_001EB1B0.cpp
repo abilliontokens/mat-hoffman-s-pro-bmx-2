@@ -56,6 +56,28 @@ extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
 void __cdecl func_001EB390(int locknum);
 int __cdecl func_001EB314(int locknum);
 
+/* _strflt: result of the float-to-digits conversion */
+struct S_StrFlt {
+    int sign;
+    int decpt;
+    int flag;
+    char *mantissa;
+};
+
+/* "e+000" copied as 4 + 2 bytes */
+struct S_ExpStr {
+    int a;
+    short b;
+};
+extern S_ExpStr D_00295024;
+
+extern "C" S_StrFlt *__cdecl func_001F4A07(double x, S_StrFlt *flt, char *resultstr);
+extern "C" void __cdecl func_001F48CE(char *buf, int digits, S_StrFlt *pflt);
+extern "C" void *__cdecl func_001EA6A0(void *dst, const void *src, unsigned int n);
+extern "C" void __cdecl func_001F4EB7(void);
+extern "C" void __cdecl func_001F4E8B(int rterrnum);
+extern "C" void (__cdecl *D_002AEA2C)(int code);
+
 /* _MCW_PC / _PC_53: the original takes these two by address */
 extern "C" int D_00010000;
 extern "C" int D_00030000;
