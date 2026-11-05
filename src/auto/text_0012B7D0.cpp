@@ -17,6 +17,11 @@ struct Vec_0012BB60 {
  Vec_0012BB60() { z=0; y=0; x=0; w=0x3f800000; }
 };
 struct Triple_0012BB60 { int x,y,z; };
+static inline Vec_0012BB60 *Alloc_0012BB60(int count) {
+ Vec_0012BB60 *p=(Vec_0012BB60 *)func_001E8A44(count*16);
+ if(p) { for(int i=0;i<count;++i) { p[i].z=0; p[i].y=0; p[i].x=0; p[i].w=0x3f800000; } return p; }
+ return 0;
+}
 
 extern int D_00284194;
 extern int D_002A3F00;
