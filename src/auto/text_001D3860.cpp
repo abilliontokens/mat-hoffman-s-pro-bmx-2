@@ -165,15 +165,22 @@ struct S_001D3C30_Stream {
 /* XboxMediaControl */
 struct C_001D3AB0 {
     void *vtbl;
-    char pad4[0x40];
+    char pad4[0x38];
+    float f3C;
+    float f40;
     S_001D3C30_Stream *unk44;
     int unk48;
     int unk4C;
     int unk50;
-    char pad54[0x1C];
+    int unk54;
+    int unk58;
+    int unk5C;
+    int unk60;
+    char pad64[0xC];
     S_001D3AB0_Res *unk70;
     char pad74[8];
     void *unk7C;
+    void func_001D3B20(char *name);
     void func_001D3800(void);
     void func_001D3860(void);
     void func_001D37C0(void);
