@@ -34,6 +34,14 @@ struct C_00103AE0 {
     void *func_00103AE0(unsigned int flags);
 };
 
+/* BmxRotateOverlayText, base destructor */
+struct C_00103B20 {
+    void *vtbl;
+    char pad4[0x1AC];
+    void *unk1B0;
+    void *func_00103B20(unsigned int flags);
+};
+
 struct S_00103_Vec4 {
     float x, y, z, w;
     void Init() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
