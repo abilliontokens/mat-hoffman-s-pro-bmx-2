@@ -43,6 +43,9 @@ struct C_000A8C90 {
     void func_000A8CC0(C_00168550 *a, void *b);
 };
 
+int __stdcall func_001BBAA0(void *a, void *b);
+extern char D_000A8D40;
+
 /* BikeShutdownTriggerAction */
 struct C_000A8D90 {
     void *vtbl;
@@ -131,3 +134,14 @@ C_000A8D70 *C_000A8D70::func_000A8D70()
     vtbl = (void *)&D_0027C310;
     return this;
 }
+
+int __stdcall func_001BBAA0(void *a, void *b);
+extern char D_000A8D40;
+int C_000A8D90::func_000A8D90(void *a, int b)
+{
+    if (b != 0) {
+        func_001BBAA0(this, &D_000A8D40);
+    }
+    return 1;
+}
+
