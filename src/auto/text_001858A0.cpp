@@ -73,7 +73,7 @@ struct S_ZoneInfoItem {
     u32 f14;
     u32 f18;
     u32 f1c;
-    virtual int load(S_Stream *stream);
+    virtual int func_00185A40(S_Stream *stream);
 };
 
 struct S_ZoneInfo {
