@@ -179,6 +179,26 @@ int C_00157810::func_00157B10(void)
     return 1;
 }
 
+int C_00157CF0::func_00157CF0(void)
+{
+    if (D_002DF948 != 0) {
+        return 0;
+    }
+    if (f10 != 0) {
+        f10->func_00157CB0();
+    }
+    if (f8 != 0) {
+        f8->fC = fC;
+    }
+    if (fC != 0) {
+        fC->f8 = f8;
+    }
+    if (f14 != 0 && f14->f10 == this) {
+        f14->f10 = fC;
+    }
+    return func_0001E010();
+}
+
 void *C_00158360::func_00158360(int flags)
 {
     extern int D_002DF94C;
