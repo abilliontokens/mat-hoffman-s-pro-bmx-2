@@ -137,6 +137,8 @@ struct C_000EDF00 {
     void func_000EDF00(void);
     void func_000EE140(void);
     void func_000EE3B0(void);
+    void func_001BE360(int a0);
+    C_000EDF00 *func_000EE230(int a0);
 };
 
 struct C_000EE1F0 {
