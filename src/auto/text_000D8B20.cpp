@@ -133,35 +133,39 @@ BmxUIPageHOF5 *BmxUIPageHOF5::func_000D8C70(int a0)
 {
     func_001BE360(a0);
     vtbl = &D_0027F49C;
+    u32 zero = 0;
     u32 *p = arr2D8;
-    for (int i = 0; i < 5; i++) {
-        p[-5] = 0;
-        *p = 0;
-        p[11] = 0;
+    int n = 5;
+    do {
+        p[-5] = zero;
+        p[0] = zero;
+        p[11] = zero;
         p++;
-    }
-    unk280 = 0;
-    unk290 = 0;
-    unk284 = 0;
-    unk288 = 0;
-    unk28C = 0;
+    } while (--n);
+    unk280 = zero;
+    unk290 = zero;
+    unk284 = zero;
+    unk288 = zero;
+    unk28C = zero;
     p = arr2F4;
-    for (int i = 0; i < 2; i++) {
-        p[-2] = 0;
-        *p = 0;
+    n = 2;
+    do {
+        p[-2] = zero;
+        p[0] = zero;
         p++;
-    }
-    unk29C = 0;
-    unk2A0 = 0;
-    unk2A4 = 0;
-    unk2AC = 0;
-    unk2A8 = 0;
-    arr2FC[1] = arr2FC[0] = 0;
-    unk2B0 = 0;
-    unk2B4 = 0;
-    unk2B8 = 0;
-    unk2BC = 0;
-    unk2C0 = 0;
+    } while (--n);
+    unk29C = zero;
+    unk2A0 = zero;
+    unk2A4 = zero;
+    unk2AC = zero;
+    unk2A8 = zero;
+    arr2FC[0] = 0;
+    arr2FC[1] = 0;
+    unk2B0 = zero;
+    unk2B4 = zero;
+    unk2B8 = zero;
+    unk2BC = zero;
+    unk2C0 = zero;
     return this;
 }
 
