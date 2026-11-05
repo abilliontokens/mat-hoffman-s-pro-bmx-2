@@ -80,6 +80,26 @@ int BmxUIPageDemo::func_000C0CB0(int idx)
     return 0;
 }
 
+int BmxUIPageDemo::func_000C1570(int idx)
+{
+    S_C09B0_Ui *ui = f124->f24;
+    if (idx + 7 <= 20) {
+        if (GetItem(idx) == D_002A8490->f8->func_00136170(3, 2, 0) &&
+            GetItem(idx + 1) == D_002A8490->f8->func_00136170(4, 2, 0) &&
+            GetItem(idx + 2) == D_002A8490->f8->func_00136170(4, 2, 0) &&
+            GetItem(idx + 3) == D_002A8490->f8->func_00136170(4, 2, 0) &&
+            func_000C0100(idx + 4) == D_002A8490->f8->func_00136170(0x29, 2, 0) &&
+            func_000C0100(idx + 5) == D_002A8490->f8->func_00136170(0x29, 2, 0) &&
+            func_000C0100(idx + 6) == D_002A8490->f8->func_00136170(0x29, 2, 0)) {
+            S_BFEE0_Manager *m = D_002A8490->f2e0;
+            m->f2d0 = m->f2d0 == 0;
+            ui->func_000B9A80(6, 1);
+            return 1;
+        }
+    }
+    return 0;
+}
+
 int BmxUIPageDemo::func_000C1710(int idx)
 {
     S_C09B0_Ui *ui = f124->f24;
