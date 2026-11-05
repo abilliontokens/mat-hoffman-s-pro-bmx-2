@@ -36,10 +36,21 @@ struct C_0017F0A0 {
     void func_00133020(int a0);
 };
 
+extern int D_002A8E7C, D_002A8E80, D_002A8E84, D_002A8E88;
+
 struct RadiusLineCollisionObject {
-    char pad_0[0xa6];
+    void *vtbl;
+    char pad4[0x4c];
+    int unk50;
+    char pad54[0x52];
     unsigned char unkA6;
     unsigned char unkA7;
+    char padA8[0x48];
+    int fF0, fF4, fF8, fFC;
+    int f100, f104, f108, f10C;
+    int f110, f114, f118, f11C;
+    RadiusLineCollisionObject *func_0017E620(int a0);
+    void func_00132EB0(int a0);
     void func_0017E8E0(int param_1);
     void func_0017E7C0();
     void func_00157A00(int param_1);
