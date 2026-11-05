@@ -17,6 +17,7 @@ struct C_001D8340 {
     unsigned char b[0x100];
     unsigned char flags;
     void func_001D8340(int amount);
+    void func_001D8500(int amount);
 };
 extern float D_00284758, D_002755E4, D_00275460;
 extern "C" int func_001DC974(void);
