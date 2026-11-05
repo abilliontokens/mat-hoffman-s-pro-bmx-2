@@ -62,3 +62,12 @@ undefined4 C_001AC900::func_001AC900(byte param_1)
   return in_ECX;
 }
 
+void *DynamicStringTable::func_001AC920(int flags)
+{
+    func_001AC830();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
