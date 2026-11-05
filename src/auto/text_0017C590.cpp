@@ -226,6 +226,37 @@ void *QuadTreeNode::func_0017CFF0(void *item)
     return item;
 }
 
+u16 *QuadTree::func_0017D050(void)
+{
+    u16 *item;
+
+    if (!(flagsE & 1)) {
+        return 0;
+    }
+    if (array890 == 0) {
+        D_002EFD80 = (S_QuadTreeGlobal *)this;
+        while (fA0 != 0) {
+            if (fA8 == 0) {
+                fA8 = ((QuadTreeNode *)fA0->slot[0])->f8;
+            }
+            while (fA8 != 0) {
+                while (fA4 < 4) {
+                    item = (u16 *)fA8->slot[fA4];
+                    fA4++;
+                    if (item != 0 && *item != stampC) {
+                        *item = stampC;
+                        return item;
+                    }
+                }
+                fA4 = 0;
+                fA8 = fA8->next;
+            }
+            fA0 = fA0->next;
+        }
+    }
+    return 0;
+}
+
 void QuadTree::func_0017D120(S_QuadTreeListNode *node)
 {
     while (node != 0) {
