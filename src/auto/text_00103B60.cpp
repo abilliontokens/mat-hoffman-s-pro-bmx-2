@@ -84,13 +84,6 @@ struct V4_00104A00 {
     float w;
 };
 
-__forceinline float fabs2_00104A00(float x)
-{
-    int tmp;
-    tmp = *(int *)&x & 0x7fffffff;
-    return *(float *)&tmp;
-}
-
 static float fabs_00104A00(float x)
 {
     volatile int tmp;
