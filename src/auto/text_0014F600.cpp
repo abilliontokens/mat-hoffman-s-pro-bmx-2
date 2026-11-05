@@ -76,7 +76,7 @@ struct S_00150440_Device {
     virtual void v13(int a, int b);
     S_00150440_Renderer *f4;
     char pad8[0x24];
-    float f2C;
+    int f2C;
 };
 
 extern S_00150440_Device *D_002EFDB8;
