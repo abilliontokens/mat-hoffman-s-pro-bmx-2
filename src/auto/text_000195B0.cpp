@@ -155,7 +155,7 @@ extern float D_00275544;
 extern float D_00275AE8;
 extern char D_002A0718;
 static __forceinline float Sqrt_1A060(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
-static __forceinline void Round_1A060(int *out, float f) { *out = _mm_cvtss_si32(_mm_load_ss(&f)); }
+static __forceinline void Round_1A060(int * volatile out, float f) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
 static __forceinline void Cross_1A060(S_1A060_Vec * volatile out, S_1A060_Vec * volatile a, S_1A060_Vec * volatile b)
 {
     S_1A060_Vec *pa = a, *pb = b;
