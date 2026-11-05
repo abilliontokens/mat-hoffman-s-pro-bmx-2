@@ -227,6 +227,23 @@ int __stdcall func_001DF0D2(const char *name)
     }
 }
 
+void __stdcall func_001DF160(const void *key, unsigned int len, void *ctx)
+{
+    unsigned int pad[16];
+    unsigned int i;
+
+    if (len > 0x40) {
+        len = 0x40;
+    }
+    memset(pad, 0, sizeof(pad));
+    memcpy(pad, key, len);
+    for (i = 0; i < 0x10; i++) {
+        pad[i] ^= 0x36363636;
+    }
+    XcSHAInit(ctx);
+    XcSHAUpdate(ctx, pad, 0x40);
+}
+
 int __stdcall func_001DF361(int a0)
 {
     return func_001DF26F(a0, ((int *)D_00010118)[2]);
