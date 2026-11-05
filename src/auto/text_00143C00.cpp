@@ -163,6 +163,21 @@ struct C_00143C00 {
     int fEC;
     void *fF0[3];
     int fFC;
+    __forceinline float GetScale()
+    {
+        switch (fAC) {
+        case 0:
+            return fD8 / D_002EFEA0;
+        case 1:
+        case 2:
+            return fD8;
+        case 3:
+            return D_00275460;
+        }
+    }
+    __forceinline void SetColor(float s);
+    __forceinline void Uv28(Vtx28_143C00 *v, float rw, float rh);
+    __forceinline void Uv20(Vtx20_143C00 *v, float rw, float rh);
     void func_00143C00(Quad_143C00 *arg);
 };
 
@@ -176,6 +191,27 @@ struct Color_143C00 {
         a = w;
     }
 };
+
+__forceinline void C_00143C00::SetColor(float s)
+{
+    const Vec4_143C00 *m = &D_002BECE0[fAC];
+    Color_143C00 col(s * m->x, s * m->y, s * m->z, f58);
+    func_001FEBD0(0x20, &col);
+}
+
+__forceinline void C_00143C00::Uv28(Vtx28_143C00 *v, float rw, float rh)
+{
+    v->u0 = (v->pos.x - f94) * rw;
+    v->v0 = (v->pos.z - f98) * rh;
+    v->u1 = v->u0;
+    v->v1 = v->v0;
+}
+
+__forceinline void C_00143C00::Uv20(Vtx20_143C00 *v, float rw, float rh)
+{
+    v->u = (v->pos.x - f94) * rw;
+    v->v = (v->pos.z - f98) * rh;
+}
 
 
 struct C_001AF300 {
