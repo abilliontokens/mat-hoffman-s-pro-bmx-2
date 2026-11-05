@@ -260,3 +260,24 @@ C_0019B700 *C_0019B700::func_0019B700(int a)
     return this;
 }
 
+void C_0019B760::func_0019B760(void)
+{
+    if (f1d4 != 0) {
+        if (--f1d4->f70 <= 0) {
+            D_002BEAAC->func_0013B210(f1d4);
+            if (f1c4 != 0) { func_001E891B(f1c4); f1c4 = 0; }
+            if (f1c8 != 0) { func_001E891B(f1c8); f1c8 = 0; }
+            if (f1b0 != 0) { func_001E891B(f1b0); f1b0 = 0; }
+            if (f1b4 != 0) { func_001E891B(f1b4); f1b4 = 0; }
+            func_001E8390(f1d4);
+            f1d4 = 0;
+        }
+    } else {
+        if (f1c4 != 0) { func_001E891B(f1c4); f1c4 = 0; }
+        if (f1c8 != 0) { func_001E891B(f1c8); f1c8 = 0; }
+        if (f1b0 != 0) { func_001E891B(f1b0); f1b0 = 0; }
+        if (f1b4 != 0) { func_001E891B(f1b4); f1b4 = 0; }
+    }
+    if (f54 != 0) { func_001E891B(f54); f54 = 0; }
+}
+
