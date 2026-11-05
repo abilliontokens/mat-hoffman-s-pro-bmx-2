@@ -29,7 +29,7 @@ struct C_00171D00_F14C {
 
 struct C_00172460Obj {
     void func_001332A0(void);
-    void __stdcall func_00133140(int a, int b);
+    void func_00133140(int a, int b);
 };
 
 struct C_00171D00_C4VT {
