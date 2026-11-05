@@ -16,7 +16,7 @@ struct C_000EE060 {
     char pad284[0x29C - 0x284];
     int unk29C;
     char pad2A0[0x460 - 0x2A0];
-    float arr460[9];
+    float arr460[11];
     C_001B1980 *arr48C[9];
     void func_000EE060(void);
 };
