@@ -212,6 +212,7 @@ struct C_00188CB0 {
 
 extern int D_0028A154;
 
+extern "C" char *strcpy(char *d, const char *s);
 extern char D_002764F0[5];
 extern int D_002BA160;
 struct __declspec(align(16)) M_001887A0 { float m[16]; };
@@ -314,6 +315,14 @@ struct BasicScene {
 
 extern BasicScene *D_002EFDC8;
 
+
+void C_001884F0::func_001884F0(void)
+{
+    void *mem = func_001E8A44(0x248);
+    S_001884F0_Obj *p = mem ? ((S_001884F0_Obj *)mem)->func_001881C0() : 0;
+    fC = p;
+    p->v0();
+}
 
 C_00188700* C_00188700::func_00188700(void) {
     extern int D_00289F80;
