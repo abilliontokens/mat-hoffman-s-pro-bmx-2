@@ -69,6 +69,42 @@ struct C_00019830 {
     void func_001C75A0(void);
 };
 
+struct S_195B0_Vec { float x, y, z; };
+struct S_195B0_Range { float f0; char pad[0x10]; };
+struct S_195B0_F398 { S_195B0_Vec func_00016E40(void); };
+struct S_195B0_F4 { float func_00182530(float v); };
+struct S_195B0_F3C { char pad0[4]; S_195B0_F4 *f4; };
+struct S_195B0_Owner {
+    char pad0[0x3c];
+    S_195B0_F3C *f3c;
+    char pad40[0x398 - 0x40];
+    S_195B0_F398 *f398;
+    char pad39c[0x49c - 0x39c];
+    S_195B0_Range *f49c;
+    char pad4a0[0x4d4 - 0x4a0];
+    int f4d4;
+    char pad4d8[4];
+    int f4dc;
+    char pad4e0[0x4f4 - 0x4e0];
+    int f4f4;
+    char pad4f8[0x508 - 0x4f8];
+    float f508, f50c, f510;
+    void func_00017700(void);
+    void func_00017D00(void);
+    void func_00017910(void);
+    void func_00017760(void);
+    int func_000192D0(int a, int b);
+};
+struct TikiEvadeState {
+    void *vtbl;
+    char pad4[4];
+    S_195B0_Owner *f8;
+    unsigned int fC;
+    float f10;
+    float f14;
+    int func_000195B0(float dt);
+};
+extern float D_00275804;
 
 void C_00019790::func_00019790(void)
 {
