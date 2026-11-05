@@ -55,7 +55,7 @@ int func_001EA426(const char *a, const char *b);
 extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
 extern "C" char *func_001E8AC0(const char *s, int c);
 
-template <class T> inline T min_ref(const T &a, const T &b)
+template <class T> inline const T &min_ref(const T &a, const T &b)
 {
     return a > b ? b : a;
 }
