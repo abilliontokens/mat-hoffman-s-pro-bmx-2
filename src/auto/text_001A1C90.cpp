@@ -206,7 +206,12 @@ struct C_001A2580 {
     void *f1cc;
     int f1d0;
     int f1d4;
-    u8 f1d8;
+    union {
+        u8 f1d8;
+        struct {
+            u8 b0 : 1;
+        } bits1d8;
+    };
     char pad1d9[0x2d0 - 0x1d9];
     int f2d0;
     char pad2d4[4];
