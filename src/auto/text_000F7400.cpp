@@ -1,6 +1,11 @@
 /* 7 functions from 0x000F7400 to 0x000F83C0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include "ghidra.h"
+struct C_000F83A0 {
+    undefined4 func_000F83A0(byte param_1);
+};
+
 struct C_000F7670 {
     undefined4 func_000F7670(byte param_1);
 };
@@ -18,3 +23,17 @@ undefined4 C_000F7670::func_000F7670(byte param_1)
   }
   return in_ECX;
 }
+
+undefined4 C_000F83A0::func_000F83A0(byte param_1)
+{
+  int func_000CCB10(...);
+  int func_001E891B(...);
+  undefined4 in_ECX = (undefined4)this;
+  
+  func_000CCB10();
+  if ((param_1 & 1) != 0) {
+    func_001E891B(in_ECX);
+  }
+  return in_ECX;
+}
+
