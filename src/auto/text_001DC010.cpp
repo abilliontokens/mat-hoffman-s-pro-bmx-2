@@ -158,6 +158,33 @@ u32 func_001DC974(void)
     return *_imp__KeTickCount;
 }
 
+#pragma intrinsic(memset, memcpy, strlen)
+#pragma optimize("s", on)
+#pragma optimize("y", off)
+long __stdcall func_001DC97C(int a, int b, int c, int d, int e)
+{
+    if (*(S_LaunchDataPage *volatile *)_imp__LaunchDataPage == 0)
+        *_imp__LaunchDataPage = (S_LaunchDataPage *)_imp__MmAllocateContiguousMemory(0x1000);
+    if (*_imp__LaunchDataPage == 0)
+        return 0xC0000017;
+    _imp__MmPersistContiguousMemory(*_imp__LaunchDataPage, 0x1000, 1);
+    if (b == 0) b = (int)&D_0028FA30;
+    char *path = (char *)*_imp__LaunchDataPage + 8;
+    memset(*_imp__LaunchDataPage, 0, 0x1000);
+    (*_imp__LaunchDataPage)->launchType = c;
+    (*_imp__LaunchDataPage)->titleId = d;
+    if (c != -1)
+        memcpy((char *)*_imp__LaunchDataPage + 0x400, (void *)e, 0xC00);
+    if (a) {
+        func_001DF4E1(path, (char *)b, 0x207);
+        unsigned int length = strlen(path);
+        path[length++] = ';';
+        func_001DF4E1(path + length, (char *)a, 0x208 - length);
+    }
+    return 0;
+}
+#pragma optimize("", on)
+
 #pragma intrinsic(memcpy)
 #pragma optimize("sy", on)
 int __stdcall func_001DCA56(int *outType, void *outData)
