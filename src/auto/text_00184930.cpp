@@ -98,7 +98,16 @@ struct S_00184D10_Info {
     int f4;
     char **f8;
     int fc;
-    char name[1];
+    char name[0x31c - 0x10];
+    char f31c[0x104];
+    char pad420[0x538 - 0x420];
+    unsigned int f538;
+    unsigned int f53c;
+    unsigned int f540;
+    unsigned int f544;
+    char pad548[4];
+    unsigned int f54c;
+    unsigned int f550;
 };
 
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
