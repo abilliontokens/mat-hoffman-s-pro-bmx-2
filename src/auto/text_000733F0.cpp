@@ -1,5 +1,50 @@
 /* 9 functions from 0x000733F0 to 0x00073EF0, found by Ghidra. */
 #include "common.h"
+#include <string.h>
+
+extern int D_0027850C;
+extern int D_00278D54;
+
+struct C_00073AE0 {
+    void *vtbl;                  /* 0x00 */
+    char pad04[0x14];            /* 0x04 */
+    u32 unk18;                   /* 0x18 */
+    char pad1C[0x08];            /* 0x1C */
+    u32 unk24[8];                /* 0x24 */
+    u32 unk44[8];                /* 0x44 */
+    char pad64[0x30];            /* 0x64 */
+    u32 unk94;                   /* 0x94 */
+    u32 unk98;                   /* 0x98 */
+    u32 unk9C;                   /* 0x9C */
+    char padA0[0x0C];            /* 0xA0 */
+    u32 unkAC;                   /* 0xAC */
+    u32 unkB0;                   /* 0xB0 */
+    char padB4[0x44];            /* 0xB4 */
+    u32 unkF8;                   /* 0xF8 */
+    u32 unkFC;                   /* 0xFC */
+    u32 unk100;                  /* 0x100 */
+    u32 unk104;                  /* 0x104 */
+    u32 unk108;                  /* 0x108 */
+    u32 unk10C;                  /* 0x10C */
+    u32 unk110;                  /* 0x110 */
+    u32 unk114;                  /* 0x114 */
+    u32 unk118;                  /* 0x118 */
+    u32 unk11C;                  /* 0x11C */
+    u32 unk120;                  /* 0x120 */
+    u32 unk124;                  /* 0x124 */
+    char pad128[0x6C];           /* 0x128 */
+    u32 unk194;                  /* 0x194 */
+    char pad198[0x10];           /* 0x198 */
+    u32 unk1A8;                  /* 0x1A8 */
+    u32 unk1AC;                  /* 0x1AC */
+    char pad1B0[0x04];           /* 0x1B0 */
+    u32 unk1B4;                  /* 0x1B4 */
+    u32 unk1B8;                  /* 0x1B8 */
+    char pad1BC[0x04];           /* 0x1BC */
+    u32 unk1C0;                  /* 0x1C0 */
+    void *func_00073AE0(int param_1);
+    void func_00157600(int a0);
+};
 
 struct C_000739D0 {
     void func_000737A0(void);
@@ -183,7 +228,9 @@ void SPFPSResultsScreen::func_00073C30(void)
         DeleteObj(unk7C[i]);
         DeleteObj(unk88[i]);
     }
-    unkA8 = unkA4 = unkA0 = 0;
+    unkA0 = 0.0f;
+    unkA4 = 0.0f;
+    unkA8 = 0.0f;
     DeleteObj(unkFC);
     DeleteObj(unkF8);
     for (i = 0; i < 2; i++) {
