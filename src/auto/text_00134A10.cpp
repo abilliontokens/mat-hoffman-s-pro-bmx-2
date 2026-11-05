@@ -122,6 +122,17 @@ int C_00135420::func_00135420(void) {
     return (int)&unk8710;
 }
 
+void *C_00135430::func_00135430(int flags)
+{
+    vtbl = (void *)&D_0028472C;
+    D_002BEAAC->func_0013B210(this);
+    ((C_0001DFF0 *)this)->func_0001DFF0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 C_00135850* C_00135850::func_00135850(void) {
     extern int D_002847F0;
     unk0 = (int)&D_002847F0;
