@@ -76,6 +76,10 @@ struct C_000A8B70 {
     int func_000A8B70(void *param1, void *param2);
 };
 
+struct Obj_00168550 {
+    void func_00168550(void *param1, void *param2, int param3);
+};
+
 struct C_000A84A0 {
     void *vtbl;
     int count;
@@ -193,8 +197,9 @@ int __stdcall func_001BBAA0(void *a, void *b);
 extern char D_000A8D40;
 int C_000A8D90::func_000A8D90(void *a, int b)
 {
+    C_000A8D90 *self = this;
     if (b != 0) {
-        func_001BBAA0(this, &D_000A8D40);
+        func_001BBAA0(self, &D_000A8D40);
     }
     return 1;
 }
