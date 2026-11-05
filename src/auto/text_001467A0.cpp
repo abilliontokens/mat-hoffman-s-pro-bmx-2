@@ -1,5 +1,26 @@
 /* 8 functions from 0x001467A0 to 0x00147550, found by Ghidra. */
 #include "common.h"
+struct S_1472_Config {
+ void func_00168C20(const void *, int, int *);
+ void func_00168BE0(const char *, const void *, char *, int);
+};
+struct S_1472_Object {
+ char pad[0xec]; void *fEC;
+ S_1472_Object *func_0014A3A0();
+ void func_00149620(int,int,int,int,int,int);
+ void func_00149E70(int,int,int);
+};
+struct S_1472_Aux {
+ S_1472_Aux *func_00142C70();
+ void func_00142C80(const void *,int);
+};
+extern int D_00286338, D_00286280, D_00286328, D_002862B0, D_0028629C;
+extern int D_00286318, D_00276F28, D_00275630, D_00286304;
+extern int D_002F0BB8;
+extern char *D_002A71C0;
+void func_001ADCC0(char *,int,const void *,const void *);
+int func_00144AE0(char *,int,int,int);
+void *func_001E8A44(int);
 
 extern int D_0028634C;
 extern int D_00284E94;
