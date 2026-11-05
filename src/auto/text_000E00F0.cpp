@@ -5,6 +5,12 @@ extern int D_0027FA0C;
 
 struct DelObjTime {
     virtual void Destroy(int a0);
+    char pad4[0x24];
+    int f28;
+    char pad2C[0x2C];
+    unsigned char f58;
+    DelObjTime *func_001D5760(void);
+    void func_001D5810(void *a, float b, float c, int d);
 };
 
 /* a text label: func_0005E840 sets its string */
