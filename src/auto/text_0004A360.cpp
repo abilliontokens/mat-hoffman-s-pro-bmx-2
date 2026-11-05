@@ -238,6 +238,43 @@ struct BmxEventFPS {
     void func_0004ACB0(void);
 };
 
+void BmxEventFPS::func_0004A360(void)
+{
+    int i;
+    int j;
+
+    for (i = 0; i < D_002A8490->f2e0->f0; i++) {
+        f64->f4e4[i]->dummy4();
+        f64->f4e4[i]->f2c->f1a4->f4->func_00198390();
+        for (j = 0; j < 11; j++) {
+            f64->f4e4[i]->f150[j].f44 = 0;
+            f64->f4e4[i]->f150[j].f0->func_00198390();
+            f64->f4e4[i]->f150[j].f0->dummy4();
+            f64->f4e4[i]->f150[j].f5c->v1f();
+            f64->f4e4[i]->f150[j].f5c->v20();
+            f64->f4e4[i]->f150[j].f5c->v04();
+            f64->f4e4[i]->f150[j].f58->v1f();
+            f64->f4e4[i]->f150[j].f58->v20();
+            f64->f4e4[i]->f150[j].f58->v04();
+            f64->f4e4[i]->f150[j].f54->v1f();
+            f64->f4e4[i]->f150[j].f54->v20();
+            f64->f4e4[i]->f150[j].f54->v04();
+        }
+    }
+    if (D_002B9120->f528 != 0) {
+        D_002B9120->f528->func_00018EB0();
+        D_002B9120->f528->dummy4();
+        D_002B9120->f528->f3c->f4->func_00198390();
+    }
+    if (D_002B9120->f488 != 0)
+        D_002B9120->f488->func_0016F7B0();
+    for (i = 0; i < D_002B9120->f560; i++) {
+        D_002B9120->f524[i]->f80->dummy4();
+        D_002B9120->f524[i]->f4->f1a4->dummy4();
+        D_002B9120->f524[i]->f4->f1a4->f4->func_00198390();
+    }
+}
+
 void BmxEventFPS::func_0004A590(void)
 {
     int i;
