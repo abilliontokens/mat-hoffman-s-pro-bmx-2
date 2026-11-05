@@ -1,5 +1,10 @@
 /* 30 functions from 0x0015A660 to 0x0015B660, found by Ghidra. */
 #include "common.h"
+#include "ghidra.h"
+struct C_0015B4C0 {
+    void func_0015B4C0(void);
+};
+
 struct C_0015B150 {
     int unk0;
     int unk4;
@@ -15,3 +20,17 @@ C_0015B150* C_0015B150::func_0015B150(void) {
     unk8 = 0;
     return this;
 }
+
+void C_0015B4C0::func_0015B4C0(void)
+{
+  extern undefined4 D_002E28F4;
+  int func_001E891B(...);
+  int* in_ECX = (int*)this;
+  
+  D_002E28F4 = 0;
+  if (*in_ECX != 0) {
+    func_001E891B(*in_ECX);
+  }
+  return;
+}
+
