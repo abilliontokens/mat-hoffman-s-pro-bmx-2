@@ -28,12 +28,9 @@ extern int D_002FB104;
 extern int D_002FAFF0;
 extern int D_002FAFE8;
 
-/* CRT run-time error message table */
-struct S_002AEF98 {
-    int num;
-    const char *msg;
-};
-extern S_002AEF98 D_002AEF98[0x12];
+/* CRT run-time error table: {num, msg} pairs, 8 bytes each */
+extern int D_002AEF98[];
+extern const char *D_002AEF9C[];
 
 /* CRT FILE */
 struct S_001F4_FILE {
@@ -74,12 +71,12 @@ void func_001F4E8B(int rterrnum)
     unsigned int i;
 
     for (i = 0; i < 0x12; i++) {
-        if (rterrnum == D_002AEF98[i].num) {
+        if (rterrnum == D_002AEF98[i * 2]) {
             break;
         }
     }
-    if (rterrnum == D_002AEF98[i].num) {
-        func_001DF5F4(D_002AEF98[i].msg);
+    if (rterrnum == D_002AEF98[i * 2]) {
+        func_001DF5F4(D_002AEF9C[i * 2]);
     }
 }
 
