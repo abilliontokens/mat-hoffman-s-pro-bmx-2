@@ -61,6 +61,19 @@ struct S_000EB_unk124 {
 
 /* BmxUIPageMedia */
 struct C_000EBCD0 {
+    char pad0[0x124];
+    S_000EBB_Mgr *f124;
+    char pad128[0x140 - 0x128];
+    S_000EBB_Sel *f140;
+    char pad144[0x280 - 0x144];
+    C_000EBB_Elem *arr280[4];
+    char pad290[0x29C - 0x290];
+    int f29C;
+    char pad2A0[0x2AC - 0x2A0];
+    int f2AC;
+    int f2B0;
+    char pad2B4[0x2D0 - 0x2B4];
+    short f2D0;
     void func_000C5E40();
     void func_000EBB70();
     void func_00157960();
