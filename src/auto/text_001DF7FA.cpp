@@ -22,7 +22,7 @@ struct S_HeapBlock {
     unsigned int tag;           /* 0x10 */
     int f14;                    /* 0x14 */
     S_HeapRoot *root;           /* 0x18 */
-    char pad1c[4];
+    unsigned int f1c;           /* 0x1c */
     unsigned char *base;        /* 0x20 */
     int pages;                  /* 0x24 */
     unsigned char *tail;        /* 0x28 */
