@@ -136,11 +136,17 @@ struct S_00182EB0_Arr {
     int f284;
 };
 
+struct S_00182EB0_Veh {
+    char pad0[0x300];
+    char name[0x10c];
+    S_00182EB0_Sub *f40C;
+};
+
 struct S_00182EB0_Ent {
     char pad0[4];
     int f4;
     char pad8[0x50];
-    char *f58;
+    S_00182EB0_Veh *f58;
     char pad5C[0x44];
     char fA0[1];
     char padA1[0x103];
