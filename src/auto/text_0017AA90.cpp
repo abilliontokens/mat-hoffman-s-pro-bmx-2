@@ -31,8 +31,16 @@ struct C_0017AA90_Node {
 };
 
 struct C_0017AA90_Mgr {
-    char pad0[0x14];
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6(int a, int b);
+    char pad4[0x10];
     C_0017AA90_Node *f14;
+    int func_001617F0(const char *, int);
 };
 
 extern int D_002EFD5C;
@@ -72,6 +80,22 @@ struct C_0017AB70 {
     int func_0017AB70(int param_1);
 };
 
+
+int C_0017AA90::func_0017AA90()
+{
+    if (D_002EFD5C == 0) {
+        D_002EFD5C = 1;
+        return 1;
+    }
+    if (D_002A8CDC != 0 && f150 == 0 && fF4 != 0) {
+        func_000263B0(fFC + 0x250, fFC + 0xb0, fFC + 0x70);
+        D_002A829C->f14[f154].f4->f4C->f18 = f160;
+        for (int i = 0; i < fF4; i++) {
+            fF0[i]->v1(this);
+        }
+    }
+    return 1;
+}
 
 int C_0017AB70::func_0017AB70(int param_1)
 {
