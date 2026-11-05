@@ -127,6 +127,11 @@ static __forceinline void InitQuat_00055380(S_00056100_Quat *q)
     p[3] = 0x3f800000;
 }
 
+static __forceinline void SetU32_00055380(u32 *p, u32 v)
+{
+    *p = v;
+}
+
 /* BmxFollowCamera (base class CameraBehavior) */
 struct C_00055380 {
     u32 unk0;
