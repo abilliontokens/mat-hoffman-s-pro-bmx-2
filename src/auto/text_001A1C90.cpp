@@ -161,6 +161,14 @@ C_001A1FB0 *C_001A1FB0::func_001A1FB0(int a0, int a1, S36_1A s0, S16_1A s1, S16_
     return this;
 }
 
+C_001A2210 *C_001A2210::func_001A2210(int a0, int a1, int a2, int a3) {
+    func_001A1680(a0, a1, a2, a3);
+    unk1C0 = 0;
+    unk1C4 = 0;
+    vtbl = &D_0028B4F4;
+    return this;
+}
+
 void C_001A22E0::func_001A22E0(int a0) {
     unk1C0 = a0;
 }
