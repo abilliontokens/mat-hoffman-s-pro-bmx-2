@@ -204,6 +204,39 @@ int BmxUIManager::func_000BB0C0()
     return 1;
 }
 
+int BmxUIManager::func_000BB180()
+{
+    BmxUIScreens *self = (BmxUIScreens *)this;
+    char path[0x100];
+    char section[0x100];
+    char name[0x100];
+    ConfigFile cfg;
+    int i;
+    cfg.func_00168280();
+    func_001ADCC0(path, 0x100, D_0027D998, D_002A64D0);
+    if (cfg.func_00169490(path, 0) == 0) {
+        func_001ADCC0(path, 0x100, D_0027D98C, D_002A64D0);
+        if (cfg.func_00169490(path, 0) == 0) {
+            cfg.func_001691E0();
+            return 0;
+        }
+    }
+    cfg.func_00169710(D_0027D984);
+    cfg.func_00168C20(D_0027D978, 0, &self->f114);
+    self->f110 = (UIScreen **)func_001E8AA5(self->f114 << 2);
+    self->v35();
+    for (i = 0; i < self->f114; i++) {
+        func_001ADCC0(section, 0x100, D_0027D970, i + 1);
+        cfg.func_00169710(section);
+        cfg.func_00168550(D_0027D964, name, 0x100);
+        func_001ADCC0(path, 0x100, D_00275678, D_002A64D0, name);
+        self->f110[i] = self->v34(i + 1, path);
+        self->f110[i]->v5();
+    }
+    cfg.func_001691E0();
+    return 1;
+}
+
 void BmxUIManager::func_000BB340()
 {
     f150->v4();
