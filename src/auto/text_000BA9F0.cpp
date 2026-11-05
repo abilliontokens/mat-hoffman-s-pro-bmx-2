@@ -135,6 +135,13 @@ extern char D_0027D970[];
 extern char D_0027D964[];
 extern char D_00275678[];
 
+extern char D_002A5FA8[], D_002A5870[], D_002A60B0[], D_002A5D98[], D_002A5EA0[];
+extern char D_0027D90C[], D_002769F8[], D_0027D8FC[], D_0027D8F0[], D_0027A604[], D_0027D8D8[];
+struct BmxMenuItem {
+    void **vtbl;
+    char pad4[0x40];
+    int f44[8];
+};
 struct BmxUIManager {
     void *vtbl;
     char pad4[0x11c];
