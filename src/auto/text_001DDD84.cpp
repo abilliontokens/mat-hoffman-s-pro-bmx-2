@@ -208,6 +208,7 @@ int __stdcall func_001DE625(S_001DE625_Obj *p, int arg)
 
 int __stdcall func_001DE66C(S_001DE66C_Obj *p)
 {
+    int result = 0;
     int h;
 
     switch (p->tag) {
@@ -217,15 +218,18 @@ int __stdcall func_001DE66C(S_001DE66C_Obj *p)
         break;
     case 0x4e49434b:
         func_001DF5D6(p);
-        return 1;
+        result = 1;
+        goto done;
     case 0xbe4bea00:
         h = p->fC;
         break;
     default:
-        return 0;
+        goto done;
     }
     func_001DF5D6(p);
-    return func_001DD13C(h);
+    result = func_001DD13C(h);
+done:
+    return result;
 }
 
 void __stdcall func_001DE6B8(int arg)
