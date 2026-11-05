@@ -71,6 +71,15 @@ void C_00088F60::func_00088F60(int param_1)
   return;
 }
 
+void C_00088F70::func_00089010()
+{
+    f34 = f30;
+    f3C = 0xff;
+    if (f40->v7() != 0) {
+        f40->v6(0);
+    }
+}
+
 bool C_00089040::func_00089040(void)
 {
   int in_ECX = (int)this;
