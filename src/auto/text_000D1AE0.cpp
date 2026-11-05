@@ -73,7 +73,7 @@ void C_000D2860::func_000D2860(void)
     C_Obj_D1 *obj = f124;
 
     obj->f270->func_000BC590();
-    obj->f270->func_000BC4C0(32.0f, D_0027DE70 + D_0027ED00);
+    obj->f270->func_000BC4C0(32.0f, D_0027ED00 + D_0027DE70);
     obj->f270->func_000BC4A0(1.07f, 0.95f);
     obj->f270->f38 = 1;
     obj->f270->f34 = 0;
