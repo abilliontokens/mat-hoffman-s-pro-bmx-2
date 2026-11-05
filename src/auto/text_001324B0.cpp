@@ -178,7 +178,7 @@ void C_1329F0::func_001329F0()
     char *base = (char *)this - 0x294;
     int off;
 
-    *(void **)(base + ((C_Off_1324B0 *)*(void **)base)->f4) = (void *)&D_002845AC;
+    *(void **)((char *)((C_Off_1324B0 *)*(void **)base)->f4 + (int)this - 0x294) = (void *)&D_002845AC;
     off = ((C_Off_1324B0 *)*(void **)base)->f4;
     *(int *)(base + off - 4) = off - 0x294;
     if (*(void **)((char *)this - 0x14) != 0) {
