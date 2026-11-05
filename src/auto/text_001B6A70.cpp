@@ -126,3 +126,15 @@ void C_001B6E70::func_001B7010(C_001B7010_arg *arg) {
     }
 }
 
+int C_001B6E70::func_001B7370(void *param) {
+    int i;
+
+    for (i = 0; i < f24; i++) {
+        if (f28[i]) {
+            f28[i]->vf1(param);
+            func_001577A0(f28[i]->f4, 0x402);
+        }
+    }
+    return 1;
+}
+
