@@ -1,6 +1,24 @@
 /* 26 functions from 0x001D3860 to 0x001D47C0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <string.h>
+
+struct S_001D3F90_Size {
+    unsigned int lo;
+    unsigned int hi;
+};
+
+int __stdcall func_001DE942(char *path, S_001D3F90_Size *a, S_001D3F90_Size *b, S_001D3F90_Size *c);
+int __stdcall func_001D4010(int x);
+
+struct C_001D3F50;
+
+struct C_001D3F90 {
+    int f0;
+    char f4[1];
+    int func_001D3F90(unsigned int *a, unsigned int *b, unsigned int *c);
+};
+
 struct C_001D3E30 {
     char unk0;
     char pad1[0x1E];
