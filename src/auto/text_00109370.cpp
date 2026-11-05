@@ -131,6 +131,35 @@ void C_00109400::func_00109400(int param_1)
     }
 }
 
+int C_00109420::func_00109420(void)
+{
+    int i;
+
+    for (;;) {
+        if (v[0] <= 0 || v[11] != -1) {
+            return 0;
+        }
+        v[12] = v[6];
+        v[11] = v[1];
+        for (i = v[0] - 1; i > 0; i--) {
+            v[i] = v[i + 1];
+            v[i + 5] = v[i + 6];
+        }
+        v[v[0]] = -1;
+        v[v[0] + 5] = 0;
+        v[0]--;
+        if (v[11] < 1000 || v[0] <= 0) {
+            break;
+        }
+        v[11] = -1;
+        v[12] = 0;
+    }
+    if (v[11] < 1000) {
+        v[14 + ++v[13]] = v[11];
+    }
+    return 1;
+}
+
 undefined4 C_001094B0::func_001094B0(void)
 {
   undefined4* in_ECX = (undefined4*)this;
@@ -150,6 +179,16 @@ undefined4 C_001094B0::func_001094B0(void)
     puVar1 = puVar1 + 1;
   } while (iVar2 != 0);
   return *in_ECX;
+}
+
+int C_001094F0::func_001094F0(int a, int b)
+{
+    if (v[0] >= 0x14) {
+        return 0;
+    }
+    v[v[0] + 0x14] = a;
+    v[v[0]] = b;
+    return 1;
 }
 
 int C_00109520::func_00109520(int p1, int p2) {
