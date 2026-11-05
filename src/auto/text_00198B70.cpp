@@ -76,3 +76,9 @@ struct C_00198B70 {
     void func_00198DE0(void);
     void func_00198E60(void);
 };
+
+void C_00198B70::func_00198BE0(int a)
+{
+    f170 = 0;
+    v34(a, this);
+}
