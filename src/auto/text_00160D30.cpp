@@ -102,6 +102,22 @@ struct __declspec(align(16)) S_Matrix16_00161AA0 {
 };
 
 extern float D_00275544;
+
+inline void cross_00161AE0(V4_00161930 *out, V4_00161930 *a, V4_00161930 *b)
+{
+    __m128 va = _mm_loadu_ps(&a->x);
+    __m128 vb = _mm_loadu_ps(&b->x);
+    __m128 sa = va;
+    __m128 sb = vb;
+
+    sa = _mm_shuffle_ps(sa, sa, 0xc9);
+    sb = _mm_shuffle_ps(sb, sb, 0xc9);
+    vb = _mm_mul_ps(vb, sa);
+    va = _mm_mul_ps(va, sb);
+    va = _mm_sub_ps(va, vb);
+    va = _mm_shuffle_ps(va, va, 0xc9);
+    _mm_storeu_ps(&out->x, va);
+}
 void func_00162330(S_Matrix16_00161AA0 *out, V4_00161930 *a, V4_00161930 *b, V4_00161930 *c, V4_00161930 *d);
 S_Matrix16_00161AA0 func_001622C0(float a);
 void func_0011ACC0(S_Matrix16_00161AA0 *out, S_Matrix16_00161AA0 *a, S_Matrix16_00161AA0 *b);
