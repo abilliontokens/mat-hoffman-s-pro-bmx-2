@@ -91,6 +91,45 @@ struct C_001094F0 {
     int func_001094F0(int a, int b);
 };
 
+extern int D_00282AE4;
+void func_001E891B(void *p);
+void func_001E8390(void *p);
+
+struct C_00136300 {
+    void func_00136300(void);
+};
+
+struct C_00109D40_V {
+    virtual void v0();
+    virtual void v1();
+    virtual void Release();
+};
+
+struct C_00109D40 {
+    void *vtbl;
+    char pad4[0x950];
+    void *f954;
+    char pad958[0x90];
+    C_00136300 *f9E8[4];
+    char pad9F8[0x68];
+    void *fA60;
+    void *fA64;
+    char padA68[0x61C];
+    void *f1084;
+    char pad1088[0x1BC];
+    C_00109D40_V *f1244;
+    char pad1248[0x35C];
+    C_00109D40_V *f15A4;
+    C_00109D40_V *f15A8;
+    char pad15AC[8];
+    void *f15B4[7];
+    void *f15D0;
+    void *f15D4;
+    char pad15D8[0xA74];
+    void *f204C[4];
+    void func_00026A90(void);
+    void func_00109D40(void);
+};
 
 int C_00109370::func_00109370(void)
 {
