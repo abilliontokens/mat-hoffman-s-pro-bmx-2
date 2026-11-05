@@ -254,6 +254,34 @@ int func_001F465C(unsigned int *p)
     }
     return 1;
 }
+
+#pragma optimize("sy", on)
+void func_001F4675(unsigned int *x, int n)
+{
+    int w = n / 32;
+    int r = n % 32;
+    unsigned int mask = ~(-1 << r);
+    unsigned int carry = 0;
+    unsigned int v;
+    unsigned int lo;
+    int i;
+
+    for (i = 0; i < 3; i++) {
+        v = x[i];
+        lo = v & mask;
+        x[i] = (v >> r) | carry;
+        carry = lo << (32 - r);
+    }
+    for (i = 2; i >= 0; i--) {
+        if (i < w) {
+            x[i] = 0;
+        } else {
+            x[i] = x[i - w];
+        }
+    }
+}
+#pragma optimize("", on)
+
 #pragma optimize("", on)
 
 int func_001F46F0(...);
@@ -277,6 +305,20 @@ void func_001F48A1(int d, const char *s)
     char *end;
     func_001F5059(ld, &end, s, 0, 0, 0, 0);
     func_001F485E((int)ld, d);
+}
+
+STRFLT *func_001F4A07(double x, STRFLT *flt, char *resultstr)
+{
+    LD10 ld;
+    FOS fos;
+
+    func_001F494D(&ld, (unsigned long *)&x);
+    flt->flag = func_001F5C49(ld, 0x11, 0, &fos);
+    flt->sign = fos.sign;
+    flt->decpt = fos.exp;
+    strcpy(resultstr, fos.man);
+    flt->mantissa = resultstr;
+    return flt;
 }
 
 #pragma optimize("", on)
