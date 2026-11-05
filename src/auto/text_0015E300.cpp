@@ -249,3 +249,35 @@ void LightEmitter::func_0015E920(float *p)
     }
 }
 
+void LightManager::func_0015F080()
+{
+    vtbl = &D_00287934;
+    if (f84 != 0) {
+        func_001E8390(f84);
+        f84 = 0;
+    }
+    if (f50 != 0) {
+        func_001E891B(f50);
+        f50 = 0;
+    }
+    if (f64 != 0) {
+        func_001E891B(f64);
+        f64 = 0;
+    }
+    if (f3C != 0) {
+        func_001E891B(f3C);
+        f3C = 0;
+    }
+    if (f8C != 0) {
+        f8C->v0(1);
+        f8C = 0;
+    }
+    if (f38 != 0) {
+        func_001E891B(f38);
+        f38 = 0;
+    }
+    ((C_0015D250 *)this)->func_0015D250();
+    D_002E2930 = 0;
+    ((C_00157660 *)this)->func_00157660();
+}
+
