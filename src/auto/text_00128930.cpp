@@ -51,11 +51,6 @@ struct C_002B92A0 {
 extern C_002B92A0 D_002B92A0;
 extern C_002B92A0 D_002B9300;
 
-int func_00128930(S_00129050_Leaf20 *leaf, S_00129050_Vec4 *vecs, int idx, C_002B92A0 *obj);
-void func_0011AC30(void *out, void *in);
-void func_0011ACC0(void *out, int a, void *b);
-void func_00129110(int a1, int a2);
-
 /* BoxCollisionObject (run-time type information), base class CollisionObject */
 struct BoxCollisionObject {
     void *vtbl;
