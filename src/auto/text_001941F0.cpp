@@ -62,6 +62,9 @@ struct S_Vec4Int {
     void Get(S_Vec4Int *out) {
         *out = *this;
     }
+    void Assign(S_Vec4Int v) {
+        *this = v;
+    }
 };
 
 struct S_00194E60_Base {
@@ -512,7 +515,7 @@ void C_00194EE0::func_00194F10(S_Vec4Int *out)
 
 void C_00194F60::func_00194F60(int a, int b, int c, int d)
 {
-    f38.Set(a, b, c, d);
+    ((S_Vec4Int *)((char *)this + 0x38))->Set(a, b, c, d);
 }
 
 void C_00194F90::func_00194F90(int a0) {
