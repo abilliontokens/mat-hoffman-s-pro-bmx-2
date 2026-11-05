@@ -32,6 +32,7 @@ struct SlotsR_000A74B0 {
     int a118[10];
     int count;
     SlotsR_000A74B0 *func_000A74B0(void);
+    int func_000A7570(int state, int arg, int keep);
 };
 
 struct Model_000A77C0 {
