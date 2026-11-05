@@ -44,9 +44,23 @@ struct S_00096200_Game { char pad[0x2a4]; S_00096200_Player *player; char pad2a8
 struct C_00095D70 {
  char pad[0x300];
  int count;
- char names[0x1680];
+ union {
+  char names[0x1680];
+  struct {
+   char s304[12][0x78];
+   char s8A4[12][0x78];
+   char sE44[12][0x78];
+   char s13E4[12][0x78];
+  };
+ };
  int f1984[12];
- char f19B4[0xb40];
+ union {
+  char f19B4[0xb40];
+  struct {
+   char s19B4[12][0x78];
+   char s1F54[12][0x78];
+  };
+ };
  int f24F4[12];
  int f2524[12];
  char pad2554[0x6458 - 0x2554];
@@ -450,6 +464,59 @@ C_00095BC0 *C_00095BC0::func_00095BC0()
     *(int *)(fields + 0x2f8) = 0;
     *(int *)(fields + 0x2fc) = 0;
     return this;
+}
+
+void C_00095D70::func_00095D70(void)
+{
+ S_00096200_Player *p = D_002A8490->player;
+ int i = 0;
+ if (count <= 0) return;
+ char *name = names + 0x5a0;
+ do {
+ char *first = name - 0x5a0;
+ if (*first) {
+ int found = 0;
+ for (int j = 0; j < p->owner->list->count && !found; ++j) {
+ S_00096020_Item *item = p->owner->list->items[j];
+ if (!func_001EA426(item->name, first)) { p->owner->manager->func_0001B9E0(item, 0, 0); found = 1; }
+ }
+ }
+ if (*name) {
+ int found = 0;
+ for (int j = 0; j < p->owner->list->count && !found; ++j) {
+ S_00096020_Item *item = p->owner->list->items[j];
+ if (!func_001EA426(item->name, name)) { p->owner->manager->func_0001B820(item); found = 1; }
+ }
+ }
+ if (name[0xb40] && name[0x5a0]) {
+ int found = 0;
+ for (int j = 0; j < p->owner->list->count && !found; ++j) {
+ S_00096020_Item *item = p->owner->list->items[j];
+ if (!func_001EA426(item->name, name + 0xb40)) {
+ p->owner->manager->func_0001BDB0(j);
+ p->owner->manager->func_0001BB00(j, name + 0x5a0, found);
+ found = 1;
+ }
+ }
+ }
+ if (f1984[i] != -1) {
+ D_002A8490->f2e0->f2fc->func_00094E40(f1984[i], 0x64, 1);
+ }
+ if (name[0x1110] && D_002A8490->player->f1c8 == 0) {
+ objs[i]->v5(4);
+ }
+ if (p->f1c8 == 0 && name[0x16b0]) {
+ p->func_00052630(name + 0x16b0);
+ }
+ if (f24F4[i] != -1 && f2524[i] != -1) {
+ S_00095D70_Obj *o = p->owner->f3c0->items[f24F4[i] - 1]->items[f2524[i] - 1];
+ o->v32();
+ o->v30();
+ o->v6();
+ }
+ ++i;
+ name += 0x78;
+ } while (i < count);
 }
 
 void C_00096020::func_00096020(S_00096020_Arg *arg)
