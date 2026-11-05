@@ -140,7 +140,9 @@ struct C_5E40_G {
 extern C_5E40_G *D_002B91AC;
 
 struct C_NumHorse_Lookup { int *func_0018C160(int a); };
-struct C_NumHorse_Root { char pad0[0x2EC]; C_NumHorse_Lookup *p2EC; };
+struct C_5580_Q { char pad0[0x2C0]; struct C_5580_R *f2C0; };
+struct C_5580_R { int func_0005C0E0(); };
+struct C_NumHorse_Root { char pad0[0x2E0]; C_5580_Q *p2E0; char pad2E4[8]; C_NumHorse_Lookup *p2EC; };
 extern C_NumHorse_Root *D_002A8490;
 extern int D_00278690, D_002786A0, D_00278678, D_002786B0;
 extern float D_0027E140;
