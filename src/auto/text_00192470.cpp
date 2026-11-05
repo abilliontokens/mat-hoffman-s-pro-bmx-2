@@ -56,11 +56,6 @@ struct SearchEntry {
     unsigned char f181;
 };
 
-struct S_00192840_Flags {
-    unsigned char b0 : 1;
-    unsigned char b1 : 1;
-};
-
 /* the growable list embedded at +0x10 of C_00192470 */
 struct S_00192840_List {
     int count;
