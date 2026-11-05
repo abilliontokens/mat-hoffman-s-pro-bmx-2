@@ -150,3 +150,16 @@ void C_001D3690::func_001D37C0()
     }
 }
 
+void C_001D3690::func_001D3800()
+{
+    if (f44 != 0) {
+        func_00259060(f44);
+        void *p = f70->fb8;
+        if (p != 0) {
+            int pos[2];
+            func_001FCEA0(p, 0, pos, 0, 0);
+            func_0025AA30(f44, pos[1], pos[0], f44->f4, 0, 0, 3);
+        }
+    }
+}
+
