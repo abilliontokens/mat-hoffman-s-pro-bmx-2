@@ -72,7 +72,7 @@ struct C_000ED850 {
     char pad2AC[0x3C8 - 0x2AC];
     int unk3C8;
     int unk3CC;
-    int unk3D0;
+    unsigned unk3D0;
     int unk3D4;
     char pad3D8[0x444 - 0x3D8];
     int unk444;
