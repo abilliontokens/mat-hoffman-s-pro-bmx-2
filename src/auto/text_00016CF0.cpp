@@ -163,6 +163,13 @@ extern float D_002A073C;
 extern float D_002A0740;
 extern float D_002757F4;
 
+static __forceinline void vec3_set(float *out, float x, float y, float z) {
+    out[3] = 1.0f;
+    out[0] = x;
+    out[1] = y;
+    out[2] = z;
+}
+
 struct C_00017810_Glob {
     char pad0[0x238];
     int f238;
@@ -283,6 +290,29 @@ void C_00017760::func_00017760(void)
     f494->v6();
     f494->v30();
     f494->func_0011CA60(v);
+}
+
+void __stdcall func_00017810(C_00017810_Obj *obj, C_00017680_Vec *pos)
+{
+    C_00017680_Vec t;
+    C_00017680_Vec u;
+
+    u.x = -D_002A0738;
+    u.y = -D_002A073C;
+    u.z = -D_002A0740;
+    t.x = D_002757F4 * u.x;
+    t.y = D_002757F4 * u.y;
+    t.z = D_002757F4 * u.z;
+    t.w = 1.0f;
+    obj->f18 = t;
+    obj->f14 = D_002A8490->f238 + 10000;
+    obj->fC = 1;
+    obj->f10 = 0;
+    obj->f0->v31();
+    obj->f0->v32();
+    obj->f0->func_0011CA60(*pos);
+    obj->f0->v30();
+    obj->f0->func_0011CA60(*pos);
 }
 
 C_00016E40_Vec C_00017A40::func_00017A40(void)
