@@ -136,6 +136,7 @@ struct S_001EF45F {
     char *f8;
     int fC;
     char func_001EF4C6(void);
+    S_001EF45F *func_001EF45F(char *s, int n);
 };
 
 void __stdcall func_001EF68E(char *buf, int n);
@@ -456,12 +457,12 @@ char *BitObj::func_001EF26D(char *buf, int n)
     return buf;
 }
 
-BitObj *BitObj::func_001EF2FE(BitObj *o)
+BitObj *__fastcall func_001EF2FE(BitObj *self, int unused, BitObj *o)
 {
-    if (s4 != 3 && func_001EF1D0(o, 0) == 0) {
-        s4 = o->s4;
+    if (self->s4 != 3 && func_001EF1D0(o, unused) == 0) {
+        self->s4 = o->s4;
     }
-    return this;
+    return self;
 }
 
 BitObj *BitObj::func_001EF333(int mode)
