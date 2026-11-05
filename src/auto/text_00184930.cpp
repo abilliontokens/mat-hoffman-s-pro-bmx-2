@@ -246,6 +246,7 @@ struct C_00184930 {
     void func_00184BB0(void);
     int func_00184C00(void);
     int func_00184C60(void);
+    int func_00185200(void);
     int func_00184CC0(void);
     int func_00184D10(void);
     int func_00185110(int a);
