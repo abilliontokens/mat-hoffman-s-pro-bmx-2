@@ -29,13 +29,8 @@ struct S_00133A30 {
     S_00133A30 **f1A0;
     char pad1a4[0xc];
     char f1B0[0x14];
-    union {
-        S_00133A30_Pair pair;
-        struct {
-            int f1C4;
-            int f1C8;
-        };
-    };
+    int f1C4;
+    int f1C8;
 };
 
 float func_0011FDF0(char *p, float *a, float *b);
