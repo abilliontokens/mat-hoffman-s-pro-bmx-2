@@ -4,7 +4,16 @@
 
 void func_001E891B(void *p);
 
-struct C_001B1B20 { int func_001B1B20(); };
+struct C_001B1B20 {
+ int func_001B1B20();
+ void func_001B1980();
+ void func_001B17D0(char *s);
+ void func_001B1860(int, float, int, float, int, int, int, int, float, int, float, int, int);
+};
+extern char *D_002A8490;
+extern char D_00277038;
+void func_001ADCC0(char *, int, char *, int);
+void func_001AC330(char *, char *, char *);
 struct C_001009D0 {
  char pad0[0x298];
  C_001B1B20 *unk298;
