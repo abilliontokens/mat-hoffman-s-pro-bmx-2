@@ -72,6 +72,12 @@ struct BmxUIPageOptions {
     void func_000C9860();
 };
 
+struct C_000C98D0 {
+    char pad0[0x330];
+    SetterObj *f330;
+    void func_000C98D0();
+};
+
 struct BmxUIPageGameOptions {
     void *vtbl;
     char pad4[0x334 - 4];
