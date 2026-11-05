@@ -91,6 +91,10 @@ struct C_001A7260 {
     void func_001A7260();
 };
 
+struct C_001A7860 {
+    void *func_001A7860(unsigned int flags);
+};
+
 void C_001A6B70::func_001A6B70()
 {
     if (f50 != 0) {
