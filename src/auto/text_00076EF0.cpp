@@ -15,8 +15,7 @@ struct C_000777A0 {
     u32 f24[8];
     u32 f44[8];
     u32 f64;
-    u32 f68;
-    u32 f6C[5];
+    u32 f68;    u32 f6C[5];
     u32 f80[5];
     u32 f94;
     u32 f98;
@@ -43,3 +42,45 @@ struct C_000777A0 {
     u32 fF4;
     C_000777A0 *func_000777A0(int a);
 };
+
+C_000777A0 *C_000777A0::func_000777A0(int a)
+{
+    ((C_000777A0_Base *)this)->func_00157600(a);
+    vtbl = (void *)&D_0027850C;
+    for (int i = 0; i < 8; i++) {
+        f24[i] = 0;
+        f44[i] = 0;
+    }
+    vtbl = (void *)&D_00278E6C;
+    fF4 = 0;
+    fA4 = 0;
+    fA0 = 0;
+    f9C = 0;
+    fC8 = 0;
+    f64 = 0;
+    f68 = 0;
+    for (int i = 0; i < 2; i++) {
+        fA8[i] = 0;
+        fB0[i] = 0;
+    }
+    for (int i = 0; i < 5; i++) {
+        f6C[i] = 0;
+        f80[i] = 0;
+    }
+    f94 = 0;
+    f98 = 0;
+    fC0 = 0;
+    fBC = 0;
+    fC4 = 0;
+    fCC = 0;
+    fD4 = 0;
+    fD8 = 0;
+    fDC = 0;
+    fE0 = 0;
+    fE4 = 0;
+    fE8 = 0;
+    fEC = 0;
+    fF0 = 0;
+    fD0 = 1;
+    return this;
+}
