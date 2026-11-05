@@ -109,3 +109,14 @@ void C_0018C820::func_0018C820(int a0, int a1, int a2, int a3) {
     unk34 = a3;
 }
 
+void *C_0018C8D0::func_0018C8D0(int flags) {
+    extern int D_0028A784;
+    void func_001E891B(void *);
+    unk0 = (int)&D_0028A784;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
