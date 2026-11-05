@@ -43,6 +43,7 @@ struct C_001D5760 {
     char pad59[3];
     C_001D5760_Obj *f5c;
     C_001D5760_Obj *f60;
+    C_001D5760();
     void func_001D5760();
     void func_001D57E0();
 };
@@ -201,6 +202,39 @@ undefined4 C_001D5AA0::func_001D5AA0(void)
           (*(short *)(*(int *)(*(int *)(*(int *)(*(int *)(in_ECX + 0x5c) + 4) * 0x10 + 4 +
                                        *(int *)(D_002A829C + 0x14)) + 0x54) + 0x18) * 0x10 + 4 +
           *(int *)(D_002AA6C0 + 0x14));
+}
+
+void C_001D5E90::func_001D5E90()
+{
+    f34 = 1.0f;
+    f0 = 0;
+    f38 = 0;
+    f3c = 0;
+    f40 = 0;
+    f44 = 0;
+    f48 = -1;
+    f4c = 0xff;
+    f4e &= 0xc0;
+    f4f = 0;
+    f50 = 0;
+    f54 = 0;
+    f5c = 0;
+    f58 = 0;
+}
+
+int C_001D5E90::func_001D5F00(int param)
+{
+    char buf[260];
+    DXVSStreams_001D5760 *m;
+
+    f0 = (char *)func_001E8A44(f4f + 1);
+    strcpy(buf, D_002A60B0);
+    strcpy(D_002A60B0, D_002A5240);
+    m = (DXVSStreams_001D5760 *)func_001E8A44(0x14);
+    f5c = m ? m->func_00144640() : 0;
+    f5c->v1(param, D_002AA470);
+    strcpy(D_002A60B0, buf);
+    return 0;
 }
 
 void C_001D6190::func_001D6190(int a, const char *s, int b)
