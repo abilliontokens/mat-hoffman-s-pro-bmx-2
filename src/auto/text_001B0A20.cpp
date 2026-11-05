@@ -565,6 +565,20 @@ TextureMap *TextureMap::func_001B1200(int a0)
     return this;
 }
 
+void *TextureMap::func_001B1270(int flags)
+{
+    vtbl = (void *)&D_0028C784;
+    if (D_002F0670) {
+        D_002F0670->v29(this);
+    }
+    D_002BEAAC->func_0013B210(this);
+    func_0001DFF0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 float C_001B15E0::func_001B15E0(void) {
     return unk9C;
 }
