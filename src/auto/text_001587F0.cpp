@@ -69,3 +69,51 @@ void *C_00158BE0::func_00158BE0(int flags) {
     }
     return this;
 }
+
+void C_001594F0::func_001594F0(void) {
+    unk0 = 0;
+    unk2 = (char)0xff;
+    unk3 &= 0xf8;
+    unk28 = 0;
+    unk24 = 0;
+    unk20 = 0;
+    unk2c = 0x3f800000;
+    unk38 = 0;
+    unk34 = 0;
+    unk30 = 0;
+    unk3c = 0x3f800000;
+    unk48 = 0;
+    unk44 = 0;
+    unk40 = 0;
+    unk4c = 0x3f800000;
+    unk60 = 0;
+    unk5c = 0;
+    unk58 = 0;
+    unk64 = 0x3f800000;
+    unk70 = 0;
+    unk6c = 0;
+    unk68 = 0;
+    unk74 = 0x3f800000;
+    unk14 = 0;
+    unk18 = 0;
+    unk1c = 0;
+    unk4 = 0;
+    unk78 = 0;
+}
+
+C_00159560 *C_00159560::func_00159560(int param_1) {
+    extern int D_002874B4;
+    void __stdcall func_00157600(int);
+    func_00157600(param_1);
+    unk0 = (int)&D_002874B4;
+    sub40.func_001A46F0();
+    unk24 = 0;
+    unk28 = 0;
+    unk2c = 0;
+    unk30 = 0;
+    unk34 = 0;
+    unk38 = 0;
+    unk3c = 0;
+    return this;
+}
+
