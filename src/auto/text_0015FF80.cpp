@@ -253,6 +253,33 @@ C_00160860 *C_00160860::func_00160860(int a0)
     return this;
 }
 
+void C_001608E0::func_001608E0(V4_001608E0 *a0, int *a1, int a2, int a3, int a4)
+{
+    int local;
+    int i;
+    void *mem;
+    C_001608E0_Obj *obj;
+    local = 4;
+    func_001D3F50();
+    unk80 = a2;
+    unk28 = *a0;
+    unk84 = a4;
+    mem = func_001E8A44(0x60);
+    obj = mem != 0 ? ((C_001608E0_Obj *)mem)->func_00140390(1) : 0;
+    unk78 = obj;
+    obj->v27(a3, 7, 1, &local, 0);
+    func_001577A0(unk78, 8);
+    unk78->v32(0, 0, 0.0f, 0.0f);
+    unk78->v32(0, 1, 0.0f, 1.0f);
+    unk78->v32(0, 2, 1.0f, 0.0f);
+    unk78->v32(0, 3, 1.0f, 1.0f);
+    for (i = 0; i < 4; i++) {
+        unk78->v29(0, i, &D_002A80EC);
+        unk78->v28(0, i, &D_002A80CC);
+    }
+    unk78->v37(*a1);
+}
+
 void *C_00160860::func_00160A00(unsigned int flags)
 {
     vtbl = (void *)&D_002879C4;
