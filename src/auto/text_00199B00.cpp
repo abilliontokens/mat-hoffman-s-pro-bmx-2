@@ -53,6 +53,7 @@ static inline S_0019A680_V4 Scale_0019A680(const S_0019A680_V4 &a, float s) { re
 
 static inline S_00199B00_F4 pVec_0019A680(float x, float y, float z) { S_00199B00_F4 r; r.x = x; r.y = y; r.z = z; r.w = 1.0f; return r; }
 static inline S_00199B00_F4 pAdd_0019A680(const S_00199B00_F4 &a, const S_00199B00_F4 &b) { return pVec_0019A680(a.x + b.x, a.y + b.y, a.z + b.z); }
+static inline S_00199B00_F4 pAddV_0019A680(const volatile S_00199B00_F4 &a, const volatile S_00199B00_F4 &b) { return pVec_0019A680(a.x + b.x, a.y + b.y, a.z + b.z); }
 static inline S_00199B00_F4 pSub_0019A680(const S_00199B00_F4 &a, const S_00199B00_F4 &b) { return pVec_0019A680(a.x - b.x, a.y - b.y, a.z - b.z); }
 static inline S_00199B00_F4 pScale_0019A680(const S_00199B00_F4 &a, float s) { return pVec_0019A680(a.x * s, a.y * s, a.z * s); }
 
@@ -216,26 +217,33 @@ void C_00199BE0::func_0019A210(C_00199BE0 *node)
 void C_00199BE0::func_0019A680(S_0019A680_V4 *center, S_0019A680_V4 *extent)
 {
     func_00197AA0();
-    S_0019A680_V4 a;
-    S_0019A680_V4 b;
-    int flag = 0;
+    S_00199B00_F4 a;
+    S_00199B00_F4 b;
+    int flag;
     C_00199BE0 *p;
 
+    a.z = 0.0f;
+    a.y = 0.0f;
+    a.x = 0.0f;
+    a.w = 1.0f;
+    b.z = 0.0f;
+    b.y = 0.0f;
+    b.x = 0.0f;
+    b.w = 1.0f;
+    flag = 0;
     if (f180 & 4) {
         flag = 1;
-        a = Sub_0019A680(f130, f140);
-        b = Add_0019A680(f130, f140);
+        a = pSub_0019A680(*(S_00199B00_F4 *)&f130, *(S_00199B00_F4 *)&f140);
+        b = pAdd_0019A680(*(S_00199B00_F4 *)&f130, *(S_00199B00_F4 *)&f140);
     }
     for (p = f174; p != 0; p = p->f178) {
-        p->func_001985D0(&flag, &a, &b, fF0, 1);
+        p->func_001985D0(&flag, (S_0019A680_V4 *)&a, (S_0019A680_V4 *)&b, fF0, 1);
     }
     if (center != 0) {
-        S_0019A680_V4 t = Scale_0019A680(Add_0019A680(b, a), D_002755E8);
-        *center = t;
+        *(S_00199B00_F4 *)center = pScale_0019A680(pAdd_0019A680(b, a), D_002755E8);
     }
     if (extent != 0) {
-        S_0019A680_V4 t = Scale_0019A680(Sub_0019A680(b, a), D_002755E8);
-        *extent = t;
+        *(S_00199B00_F4 *)extent = pScale_0019A680(pSub_0019A680(b, a), D_002755E8);
     }
 }
 
