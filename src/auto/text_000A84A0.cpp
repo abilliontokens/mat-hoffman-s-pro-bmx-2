@@ -215,6 +215,19 @@ struct C_000A8EB0 {
     int unk11C;
     int unk120;
     C_000A8EB0 *func_000A8EB0();
+    void func_001B5A00(void *a, void *b);
+    void func_000A8F20(S_TriggerStream *stream, void *b);
+};
+
+/* CustomTriggerAction */
+struct C_000A8FA0 {
+    void *vtbl;
+    char pad4[0x108];
+    int unk10C;
+    char unk110[0x104];
+    C_000A8FA0 *func_000A8FA0();
+    void func_001B5A00(void *a, void *b);
+    void func_000A8FC0(S_TriggerStream *stream, void *b);
 };
 
 void C_000A84A0::func_000A84A0(void *param1, void *param2)
