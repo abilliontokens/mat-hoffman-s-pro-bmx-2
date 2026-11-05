@@ -16,6 +16,8 @@ struct S_000BDF30_Game {
     int f234;
     char pad238[0xa8];
     S_000BDF30_Config *f2E0;
+    char pad2E4[8];
+    void *f2EC;
 };
 
 struct S_000BDF30_Audio {
