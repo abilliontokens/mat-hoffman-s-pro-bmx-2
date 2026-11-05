@@ -49,3 +49,14 @@ void __cdecl func_001DDE3E(int a0, int a1, int a2) {
     void __stdcall func_001DDE10(int, int, int *);
     func_001DDE10(a0, a1, &a2);
 }
+
+int __stdcall func_001DDE64(int param_1)
+{
+    if (param_1 <= 9) {
+        param_1 = param_1 + 0x30;
+    } else {
+        param_1 = param_1 + 0x37;
+    }
+    return param_1;
+}
+
