@@ -108,6 +108,29 @@ struct C_0001EDC0 {
     void func_0001EDC0(int a0);
 };
 
+struct V16_0001E260 {
+    int a, b, c, d;
+};
+
+struct C_0001EF10 {
+    char pad0[0x124];
+    V16_0001E260 unk124;
+    V16_0001E260 func_0001EF10(void);
+};
+
+static __forceinline void vec3_set(float *out, float x, float y, float z) {
+    out[3] = 1.0f;
+    out[0] = x;
+    out[1] = y;
+    out[2] = z;
+}
+
+/* 0.5f, 3.0f and the smallest length the inverse square root accepts */
+extern float D_00275FC0;
+extern float D_00275FC4;
+extern float D_00275FC8;
+float func_0001E960(float lengthSquared);
+
 
 void GR_BitString::func_0001E3F0(u32 *a0, u32 a1, int a2) {
     unk18 = a2 ? -1 : 0;
@@ -310,6 +333,18 @@ void *C_0001E930::func_0001E930(unsigned int flags) {
         func_001E891B(this);
     }
     return this;
+}
+
+void func_0001EAB0(float *out, float *a, float *b)
+{
+    __m128 va = _mm_loadu_ps(a);
+    __m128 vb = _mm_loadu_ps(b);
+    __m128 sa = _mm_shuffle_ps(va, va, 0xc9);
+    __m128 sb = _mm_shuffle_ps(vb, vb, 0xc9);
+    __m128 r = _mm_sub_ps(_mm_mul_ps(va, sb), _mm_mul_ps(vb, sa));
+
+    r = _mm_shuffle_ps(r, r, 0xc9);
+    _mm_storeu_ps(out, r);
 }
 
 void C_0001EDC0::func_0001EDC0(int a0) {
