@@ -181,6 +181,31 @@ struct C_0001D200 {
     void func_0001D200(void);
 };
 extern int D_00275DFC;
+
+/* AuralScape constructor */
+struct C_0001D0F0 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24, f28, f2C, f30;
+    void *f34;
+    int f38, f3C;
+    unsigned char f40;
+    char pad41[3];
+    int f44, f48, f4C, f50, f54, f58, f5C, f60, f64, f68, f6C;
+    int f70, f74, f78, f7C;
+    unsigned char f80;
+    char pad81[3];
+    int f84, f88, f8C, f90;
+    unsigned char f94;
+    char pad95[3];
+    int f98, f9C, fA0, fA4;
+    unsigned char fA8;
+    char padA9[3];
+    int fAC;
+    unsigned char fB0;
+    void func_00157600(int a);
+    C_0001D0F0 *func_0001D0F0(int a);
+};
 char *func_001E8AC0(const char *s, int c);
 int func_00135C70(int a, int b, int c, int d);
 
@@ -471,7 +496,7 @@ void *C_0001C9C0::func_0001C9C0(int flags) {
 C_0001CA30 *C_0001CA30::func_0001C9F0(void)
 {
     extern int D_00275DAC;
-    vtbl = (void *)&D_00275DAC;
+    *(void *volatile *)&vtbl = (void *)&D_00275DAC;
     f8 = 0;
     f4 = 0;
     fC = 0;
