@@ -8,8 +8,27 @@ extern f32 D_002A2038;
 extern f32 D_002A203C;
 extern f32 D_002A2040;
 
+extern int D_002799B0;
+extern int D_002799A8;
+extern char D_002A60B0[];
+extern char D_00275678[];
+extern char D_002A5348[];
+extern char D_002A5870[];
+extern char D_002A5FA8[];
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+void *func_001E8A44(int size);
+
 struct C_00157600 {
     void func_00157600(int a0);
+};
+
+struct C_001D5760 {
+    char pad0[0x34];
+    int f34;
+    char pad38[0x20];
+    unsigned char b58;
+    C_001D5760 *func_001D5760();
+    void func_001D5810(void *a, int b, int c, int d);
 };
 
 struct Sub_00088530 {
