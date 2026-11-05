@@ -186,6 +186,21 @@ struct C_001A5F40 {
     C_001A5F40 *func_001A5F40(void *a, int b);
 };
 
+bool __stdcall func_001A5B10(char *name, void **pp)
+{
+    char buf[260];
+
+    if (*pp != 0) {
+        (*(S_001A5B10_Obj **)pp)->v2();
+    }
+    strcpy(buf, name);
+    func_00030F30(buf, &D_00284C44);
+    D_002BEAAC->func_0013D780(buf, 1, 0, 0, 0, 0, 0, 0);
+    *pp = func_001D6E20(name, 0x22b8, 0);
+    D_002BEAAC->func_0013DFF0(buf, 1);
+    return *pp != 0;
+}
+
 void C_001A5BC0::func_001A5BC0(void)
 {
     if (fB0 != 0) {
