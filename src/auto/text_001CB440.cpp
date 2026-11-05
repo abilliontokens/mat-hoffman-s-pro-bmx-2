@@ -239,7 +239,7 @@ struct C_001CBF20 {
     char pad34[0xa4];
     S_001CBF20_Vec4 fD8;
     int fE8;
-    int fEC;
+    float fEC;
     int func_001CBF20(void);
     int func_001CBF60(void);
     int func_001CBF90(int v);
@@ -710,7 +710,6 @@ void C_001CC0C0::func_001CC140(void)
 int C_001CC0C0::func_001CC320(unsigned int v)
 {
     int r;
-    int line;
 
     if (f13C != 0) {
         if (f19C == v) {
@@ -720,26 +719,25 @@ int C_001CC0C0::func_001CC320(unsigned int v)
             return 0;
         }
         r = func_00221974(f13C, v);
-        if (r >= 0) {
-            f19C = v;
-            return 1;
-        }
-        line = 0x621;
-    } else {
-        if (f140 == 0 || f19C == v) {
-            return 1;
-        }
-        if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
+        if (r < 0) {
+            func_001CBC10(r, &D_0028EECC, 0x621);
             return 0;
         }
-        r = D_00221B4C(f140->fC, v);
-        if (r >= 0) {
-            f19C = v;
-            return 1;
-        }
-        line = 0x630;
+        f19C = v;
+        return 1;
     }
-    func_001CBC10(r, &D_0028EECC, line);
-    return 0;
+    if (f140 == 0 || f19C == v) {
+        return 1;
+    }
+    if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
+        return 0;
+    }
+    r = D_00221B4C(f140->fC, v);
+    if (r < 0) {
+        func_001CBC10(r, &D_0028EECC, 0x630);
+        return 0;
+    }
+    f19C = v;
+    return 1;
 }
 
