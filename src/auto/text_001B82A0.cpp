@@ -7,6 +7,36 @@ extern int D_0028D04C;
 void func_001E891B(void *p);
 int func_001E8AF0(int a, void *b);
 
+extern char D_0028D034[];
+extern char D_0028D020[];
+extern char D_0028D00C[];
+extern int D_0028CF84;
+
+void func_001E83E8(void *p, int size);
+void *func_001E8A44(int size);
+int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+
+struct C_00169710 {
+    int func_00169710(char *name);
+    int func_00168C20(char *name, int a, int *out);
+};
+
+struct C_001B82D0_item {
+    void *vtbl;
+    int f4;
+    int f8;
+    char padc[0xc];
+    C_001B82D0_item() {
+        vtbl = (void *)&D_0028CF84;
+        f4 = 0;
+        f8 = 0;
+    }
+};
+
+struct C_001B82D0_itemv {
+    virtual void Load(C_00169710 *r);
+};
+
 struct C_00157600 {
     void func_00157600(void *param);
 };
