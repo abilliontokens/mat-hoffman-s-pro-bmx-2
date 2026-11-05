@@ -8,9 +8,12 @@ struct S_HeapRoot {
     char pad18[8];
     unsigned int reserveSize;   /* 0x20 */
     unsigned int commitSize;    /* 0x24 */
-    char pad28[0x38];
+    char pad28[8];
+    int freeTotal;              /* 0x30, granules free */
+    char pad34[0x2c];
     unsigned char *bucket[0x40];    /* 0x60, indexed by block bucket */
-    char pad160[0x584 - 0x160];
+    unsigned char freeMap[0x10];    /* 0x160, bit per small free-list size */
+    char pad170[0x584 - 0x170];
     long (__stdcall *commit)(S_HeapRoot *root, unsigned int *base, unsigned int *size); /* 0x584, optional */
 };
 
@@ -61,6 +64,98 @@ void __stdcall func_001DF767(S_HeapBlock *blk, unsigned int addr, unsigned int s
 void __stdcall func_001DFC2A(S_HeapRoot *root, unsigned char *blk, int granules);
 
 #pragma optimize("sy", on)
+#pragma optimize("y", off)
+unsigned char *__stdcall func_001DF7FA(S_HeapRoot *root, S_HeapBlock *blk, unsigned int *size, int a3)
+{
+    S_FreeNode *prev = 0;
+    S_FreeNode **link = &blk->head;
+    S_FreeNode *run;
+    S_FreeNode *n;
+    S_HeapEntry *cur;
+    S_HeapEntry *ent;
+    S_HeapEntry *save;
+    unsigned int addr;
+    long status;
+
+    for (run = *link; run != 0; run = run->next) {
+        if (run->size >= *size && (a3 == 0 || run->addr == (unsigned int)a3)) {
+            addr = run->addr;
+            if (root->commit != 0) {
+                status = root->commit(root, &addr, size);
+            } else {
+                status = __imp__NtAllocateVirtualMemory(&addr, 0, size, 0x1000, 4);
+            }
+            if (status < 0) {
+                return 0;
+            }
+            blk->spare -= *size >> 12;
+            if (blk->f1c == run->size) {
+                blk->f1c = 0;
+            }
+            cur = (S_HeapEntry *)blk->next;
+            ent = (S_HeapEntry *)addr;
+            if ((cur->flags & 0x10) && (unsigned char *)cur + cur->size * 16 == (unsigned char *)run->addr) {
+                goto merge;
+            }
+            if (prev == 0) {
+                cur = (S_HeapEntry *)blk->tail;
+            } else {
+                cur = (S_HeapEntry *)(prev->size + prev->addr);
+            }
+            if (!(cur->flags & 0x10)) {
+                do {
+                    save = cur;
+                    cur = (S_HeapEntry *)((unsigned char *)cur + cur->size * 16);
+                    if ((unsigned char *)cur >= blk->limit || cur->size == 0) {
+                        if ((unsigned int)cur != addr) {
+                            return 0;
+                        }
+                        cur = save;
+                        break;
+                    }
+                } while (!(cur->flags & 0x10));
+            }
+        merge:
+            cur->flags &= ~0x10;
+            run->addr += *size;
+            run->size -= *size;
+            if (run->size == 0) {
+                if (run->addr == (unsigned int)blk->limit) {
+                    ent->flags = 0x10;
+                    blk->next = (unsigned char *)ent;
+                } else {
+                    ent->flags = 0;
+                    blk->next = blk->tail;
+                }
+                *link = run->next;
+                func_001DF746(blk, run);
+                blk->count--;
+            } else {
+                ent->flags = 0x10;
+                blk->next = (unsigned char *)ent;
+            }
+            ent->bucket = cur->bucket;
+            ent->size = (unsigned short)(*size >> 4);
+            ent->prevSize = cur->size;
+            if (!(ent->flags & 0x10)) {
+                *(unsigned short *)((unsigned char *)ent + ent->size * 16 + 2) = ent->size;
+            }
+            if (blk->f1c == 0) {
+                for (n = blk->head; n != 0; n = n->next) {
+                    if (n->size >= blk->f1c) {
+                        blk->f1c = n->size;
+                    }
+                }
+            }
+            return (unsigned char *)ent;
+        }
+        prev = run;
+        link = &run->next;
+    }
+    return 0;
+}
+#pragma optimize("sy", on)
+
 unsigned char *__stdcall func_001DFD24(unsigned char *p)
 {
     unsigned char *r;
@@ -138,12 +233,12 @@ unsigned char __stdcall func_001E016D(S_HeapRoot *root, unsigned int blkAddr, un
 
 unsigned char *__stdcall func_001E028B(S_HeapRoot *heap, unsigned int size)
 {
-    unsigned int allocSize;
     unsigned int pages = (size + 0xfff) >> 12;
     unsigned int bytes = pages << 12;
     unsigned char firstFree = 0x40;
     unsigned char i;
     S_HeapBlock *cur;
+    unsigned int allocSize;
     unsigned int commit;
     long status;
     unsigned char *r;
