@@ -1,5 +1,23 @@
 /* 13 functions from 0x00179B40 to 0x0017AA90, found by Ghidra. */
 #include "common.h"
+struct ShadowPieceTable { char pad0[8]; int count; };
+struct DXRenderableObject { char pad0[0x1a4]; ShadowPieceTable *f1a4; };
+struct Alloc190;
+struct DXShadowCaster {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2(DXRenderableObject *);
+    DXRenderableObject *f4;
+    int f8;
+    Alloc190 *fc;
+    DXShadowCaster *func_00143820(DXRenderableObject *);
+};
+struct C_0017A700 {
+    char pad0[0xf0];
+    DXShadowCaster **fF0;
+    int fF4, fF8;
+    void func_0017A700(DXRenderableObject *owner, int index);
+};
 struct C_0017B9E0 {
     int unk0, unk4;
     void func_001D3F50();
