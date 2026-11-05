@@ -79,6 +79,43 @@ struct C_00056080 {
     void func_00056080(void);
 };
 
+struct S_00056100_Quat {
+    float x, y, z, w;
+    S_00056100_Quat() { x = 0; y = 0; z = 0; w = 1.0f; }
+};
+
+struct S_00056100_Node {
+    char pad0[0x60];
+    void *unk60;
+    char pad64[0x38];
+    void *unk9C;
+    char padA0[7];
+    unsigned char unkA7;
+    S_00056100_Node *func_001A4A50(int a0);
+    S_00056100_Node *func_0014AB30(int a0);
+    void func_00129920(int a0);
+    void func_001334E0(int a0);
+    void func_00133ED0(void);
+    void func_001332A0(void);
+    void func_00133140(int a0, int a1);
+    void func_001A57E0(S_00056100_Quat a0, int a1, int a2);
+    void func_0014C1C0(int a0, int a1, int a2);
+    void func_0014AC30(S_00056100_Quat *a0, int a1);
+};
+
+struct C_00056100 {
+    char pad0[0x14];
+    S_00056100_Node *unk14;
+    S_00056100_Node *unk18;
+    char pad1C[0x200];
+    int unk21C;
+    void func_00056100(S_00056100_Quat a0, int a1);
+};
+
+extern "C" void *func_001E8A44(unsigned int size);
+void func_000551B0();
+extern char D_00055290;
+extern S_00056100_Quat D_002A1A64;
 
 void C_000559E0_unused();
 void C_00055910::func_00055910(void)
