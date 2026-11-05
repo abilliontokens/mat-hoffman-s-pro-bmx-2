@@ -63,12 +63,20 @@ void func_000111B0(float *out, float *in) {
     __m128 sq = _mm_mul_ps(v, v);
     __m128 len = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
     len = _mm_add_ss(len, _mm_shuffle_ps(sq, sq, 0xe1));
-    __m128 cmp = _mm_cmplt_ss(len, _mm_load_ss(&D_002754A0));
-    len = _mm_add_ss(len, _mm_and_ps(cmp, _mm_load_ss(&D_002754A0)));
+    __m128 minv = _mm_load_ss(&D_002754A0);
+    __m128 cmp = _mm_cmplt_ss(len, minv);
+    len = _mm_add_ss(len, _mm_and_ps(cmp, minv));
     __m128 r = _mm_rsqrt_ss(len);
-    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_00275480)), _mm_sub_ss(_mm_load_ss(&D_00275490), _mm_mul_ss(_mm_mul_ss(len, r), r)));
+    __m128 t = _mm_mul_ss(_mm_mul_ss(len, r), r);
+    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_00275480)), _mm_sub_ss(_mm_load_ss(&D_00275490), t));
     scale = _mm_shuffle_ps(scale, scale, 0);
     _mm_storeu_ps(out, _mm_mul_ps(scale, v));
+}
+
+int func_001E8833(void);
+extern float D_002754B0;
+float func_00011240(void) {
+    return func_001E8833() * D_002754B0;
 }
 
 void __stdcall func_00011430(int a0, int a1) {
