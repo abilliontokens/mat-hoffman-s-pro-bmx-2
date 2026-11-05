@@ -52,6 +52,40 @@ struct C_0023ED4C {
 };
 
 #pragma optimize("y", off)
+void C_0023EA00::func_0023EA00(void)
+{
+    while (fA4.next != &fA4) {
+        func_001DDE02(5);
+    }
+}
+
+unsigned int C_0023EC0D::func_0023EC0D(unsigned int a, unsigned int b, int *out)
+{
+    unsigned int end;
+
+    if (f44 != 0) {
+        return f44(f48, a, b, out);
+    }
+    _imp__RtlEnterCriticalSection(f6c);
+    end = f94 + f3c;
+    if (a < end && b <= end - a) {
+        *out = (f34 - f3c) + a;
+        f40 = a;
+        _imp__RtlLeaveCriticalSection(f6c);
+        return b;
+    }
+    return 0;
+}
+
+int __stdcall func_0023ED4C(S_0023ED4C_Src *src, S_0023ED4C_Out *out)
+{
+    out->fC = 0;
+    out->f0 = 3;
+    out->f8 = src->f10 << 12;
+    return 0;
+}
+
+#pragma optimize("y", off)
 void __stdcall func_0023F469(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7)
 {
     func_0023F3F7(a0, a1, a2, a3, a4, a5, a6, a7);
