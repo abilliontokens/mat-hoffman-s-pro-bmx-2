@@ -275,3 +275,4 @@ struct C_000AC760 {
     C_000AB030 *unk54C;
     void func_000AC760();
 };
+/* end */
