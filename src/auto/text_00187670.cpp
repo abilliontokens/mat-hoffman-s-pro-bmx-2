@@ -41,6 +41,33 @@ struct C_001884D0 {
 };
 
 
+int C_001877F0::func_001877F0(C_001877F0Param *param)
+{
+    char buf[0x104];
+    int i;
+    int n;
+    C_00187370 *p;
+
+    param->func_00169710((void *)&D_0027AEE4);
+    param->func_00168C20((void *)&D_00289C80, 0, &f24);
+    n = f24;
+    if (n == 0)
+        return 0;
+    p = (C_00187370 *)func_001E8A44(n * 0xc);
+    if (p != 0) {
+        func_00011FF0(p, 0xc, n, (void *)&func_00186D60);
+    } else {
+        p = 0;
+    }
+    f28 = p;
+    for (i = 0; i < f24; i++) {
+        func_001ADCC0(buf, 0x104, (const char *)&D_00289C70, i + 1);
+        param->func_00169710(buf);
+        f28[i].func_00187390(param);
+    }
+    return 1;
+}
+
 void C_00187AF0::func_00187AF0(void)
 {
   int func_001E891B(...);
