@@ -358,16 +358,16 @@ int C_001C6820::func_001C6820(f32 param_1)
 
 void C_001C6870::func_001C6870(C_001C6870_Obj *obj)
 {
-    float lo0;
-    float lo1;
     float total = obj->f40->f38 * 59.9999962f;
     int cap = 0;
     int prevState;
+    float lo0;
+    float lo1;
     float t;
     int i;
     Vec4 p;
 
-    f3C->f4->func_001996A0(D_002AB798, 0);
+    f3C->f4->func_001996A0(0, D_002AB798);
     f3C->func_001646B0();
     f3C->func_00164820(obj->f40);
     p.z = 0;
@@ -377,9 +377,9 @@ void C_001C6870::func_001C6870(C_001C6870_Obj *obj)
     f40->func_00199A70(0, &p);
     f44->func_00199A70(0, &p);
     fB4 = p.y;
+    prevState = 0;
     lo0 = 100.0f;
     lo1 = 100.0f;
-    prevState = 0;
     f3C->func_001670C0(0.0f, 0, 0);
     i = 0;
     if (D_00275544 < total) {
@@ -396,7 +396,7 @@ void C_001C6870::func_001C6870(C_001C6870_Obj *obj)
             i++;
         } while ((float)i < total);
     }
-    lo0 += 0.100000001f;
+    float th0 = lo0 + 0.100000001f;
     float th1 = lo1 + 0.100000001f;
     f3C->func_001646B0();
     f3C->func_00164820(obj->f40);
@@ -409,7 +409,7 @@ void C_001C6870::func_001C6870(C_001C6870_Obj *obj)
             int b1 = 0;
             int state;
             f40->func_00199A70(0, &p);
-            if (p.y < lo0) {
+            if (p.y < th0) {
                 b0 = 1;
             }
             f44->func_00199A70(0, &p);
@@ -417,7 +417,7 @@ void C_001C6870::func_001C6870(C_001C6870_Obj *obj)
                 b1 = 1;
             }
             state = b0 ? (b1 ? 3 : 1) : (b1 ? 2 : 0);
-            if (state != prevState || i == 0) {
+            if (prevState != state || i == 0) {
                 if (cap < obj->f50 + 1) {
                     cap += 10;
                     obj->f4c = (C_001C6870_Item *)func_001E83E8(obj->f4c, cap * 8);
