@@ -43,6 +43,17 @@ int func_001E912A(void) {
     D_002FB370 = D_002FB374;
     return 0;
 }
+
+void func_001E9184(void) {
+    int func_001EAECC(...);
+    func_001EAECC();
+}
+
+int func_001E918A(int func) {
+    int func_001E9152(int);
+    return (func_001E9152(func) != 0) - 1;
+}
+
 #pragma optimize("", on)
 void func_001E91F4(void) {
     int func_001E919C(...);
