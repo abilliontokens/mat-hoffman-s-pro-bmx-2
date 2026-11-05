@@ -150,3 +150,16 @@ u32 ResponseEmitter::func_001A2FC0(int a, int b, S_001A2C00_Vec v, int d)
     return 1;
 }
 
+void ResponseEmitter::func_001A3050(int a)
+{
+    int i;
+
+    for (i = 0; i < list1d8.count; i++) {
+        S_001A2C00_Snd *s = list1d8.at(i)->f4;
+        if (s != 0 && s->v7() == 0) {
+            list1d8.removeAt(i);
+        }
+    }
+    ((C_00157A00 *)this)->func_00157A00(a);
+}
+
