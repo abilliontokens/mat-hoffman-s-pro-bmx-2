@@ -78,6 +78,14 @@ struct C_00191470 {
     C_00191470_Vec f30;
     void func_00191470(unsigned int a0);
     void func_00191510(const char *a0, unsigned int a1);
+    void SetName(const char *src, int max)
+    {
+        int len = strlen(src);
+        int n = max > len ? len : max;
+
+        func_001E8920(this, src, n);
+        ((char *)this)[n] = 0;
+    }
 };
 
 struct C_001915A0 {
