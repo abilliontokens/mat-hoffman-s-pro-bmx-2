@@ -51,7 +51,7 @@ struct C_00086160 {
     int unkE8;
     int unkEC;
     void func_00086160(float a);
-    bool func_000861C0(int idx);
+    int func_000861C0(int idx);
     void func_00086200(void);
 };
 
@@ -60,10 +60,10 @@ struct MountVertOverlay {
     char pad4[0x24];
     int unk28;
     int unk2C;
-    int unk30;
-    int unk34;
-    int unk38;
-    int unk3C;
+    float unk30;
+    float unk34;
+    float unk38;
+    float unk3C;
     int unk40;
     int unk44;
     int unk48;
@@ -111,12 +111,12 @@ int C_000861A0::func_000861A0(int a0) {
     return 1;
 }
 
-bool C_00086160::func_000861C0(int idx)
+int C_00086160::func_000861C0(int idx)
 {
     int v = unkA4[idx];
 
     if (v > unkE8)
-        return false;
+        return 0;
     v++;
     unkA4[idx] = v;
     return v < unkE8;
@@ -139,10 +139,10 @@ MountVertOverlay *MountVertOverlay::func_00086470(int a)
     unk28 = 0;
     unk2C = 0;
     unk48 = 0;
-    unk30 = 0;
-    unk34 = 0;
-    unk38 = 0;
-    unk3C = 0;
+    unk30 = 0.0f;
+    unk34 = 0.0f;
+    unk38 = 0.0f;
+    unk3C = 0.0f;
     for (i = 0; i < 8; i++)
         unk50[i] = 0;
     unk70 = 0;
@@ -155,4 +155,5 @@ MountVertOverlay *MountVertOverlay::func_00086470(int a)
     unk8C = 0;
     return this;
 }
+
 
