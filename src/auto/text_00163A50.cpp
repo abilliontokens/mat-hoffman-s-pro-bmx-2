@@ -137,6 +137,31 @@ float func_00164220(float a, float b, float c)
     return (D_002755EC - (t + t)) * t * t;
 }
 
+int C_001643A0::func_001643A0(void)
+{
+    char buf[0x50];
+    int i;
+
+    f18 = 0;
+    if (f14 == 0) {
+        return 0;
+    }
+    if (f1e0 != 0) {
+        f1e4 = (int)func_001E8AA5(f14 * 4);
+    }
+    for (i = 0; i < f14; i++) {
+        func_001ADCC0(buf, 0x50, (const char *)&D_00287DBC, i + 1);
+        void *p = D_002EF7D0->func_00163A50(this, buf);
+        if (p != 0) {
+            *(int *)((char *)p + 0x40) += 1;
+            if (f1e0 != 0) {
+                ((void **)f1e4)[i] = p;
+            }
+        }
+    }
+    return 1;
+}
+
 void C_001646B0::func_001646B0(void)
 {
     int i;
