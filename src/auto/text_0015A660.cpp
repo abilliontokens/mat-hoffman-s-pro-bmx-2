@@ -436,6 +436,27 @@ void *C_0015B1A0::func_0015B1A0(int a)
     return this;
 }
 
+void *C_0015B150::func_0015B2C0(unsigned int flags)
+{
+    extern int D_002876E0;
+    void func_001E891B(void *p);
+    int *q;
+
+    unk0 = (int)&D_002876E0;
+    if (unk8 != 0) {
+        q = (int *)unk8 - 1;
+        if (*q != 0) {
+            ((S_0015B150_Elem *)unk8)->v0(3);
+        } else {
+            func_001E891B(q);
+        }
+    }
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void *C_0015B310::func_0015B310(int flags)
 {
     extern int D_002876EC;
