@@ -33,6 +33,31 @@ struct BitObj {
     BitObj *func_001EF8F6(int a0, int a1);
 };
 
+/* ten slots after a count (-1 = none), then two fallback cells */
+struct S_001EEFBA {
+    int count;
+    int *items[10];
+    int f2C;
+    int f30;
+    int f34;
+    int *func_001EEFBA(int idx);
+};
+
+/* singly linked node: the next pointer is at +4 */
+struct S_001EEFE3 {
+    int f0;
+    S_001EEFE3 *next;
+    void func_001EEFE3(S_001EEFE3 *n);
+};
+
+/* virtual object with a mode at +8 (Class_00295BE4 slot 1) */
+struct S_001EF087 {
+    void *vtbl;
+    int f4;
+    int f8;
+    int func_001EF087(void);
+};
+
 int func_001EEE49(int i) {
     int r = D_002955B8[i];
     if (D_002F6A38 & 1) r += 2;
