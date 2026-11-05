@@ -59,6 +59,27 @@ struct C_00089040 {
     bool func_00089040(void);
 };
 
+void func_001E891B(void *p);
+
+struct C_001D6410 {
+    void func_001D6410(void);
+};
+
+struct DelObjC_00089210 {
+    virtual void Destroy(int a0);
+};
+
+/* EditorMenuOverlay */
+struct C_00089210 {
+    void *vtbl;
+    char pad4[0x20];
+    C_001D6410 *arr24[4];
+    DelObjC_00089210 *arr34[26];
+    DelObjC_00089210 *f9C;
+    void func_00157660();
+    void func_00089210();
+};
+
 struct C_00088F60 {
     void func_00088F60(int param_1);
 };
@@ -123,20 +144,14 @@ C_000891A0 *C_000891A0::func_000891A0(int unused)
 {
     ((C_00157600 *)this)->func_00157600(1);
     vtbl = &D_00279A44;
-    f24 = 0;
-    f28 = 0;
-    f2C = 0;
-    f30 = 0;
+    f30 = f2C = f28 = f24 = 0;
     for (int i = 0; i < 16; i++) {
         fA0[i] = 0;
     }
     for (int j = 0; j < 16; j++) {
         fE0[j] = 0;
     }
-    f120 = 0;
-    f124 = 0;
-    f12C = 0;
-    f9C = 0;
+    f9C = f12C = f124 = f120 = 0;
     f128 = 1;
     return this;
 }
