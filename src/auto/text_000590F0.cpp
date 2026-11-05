@@ -7,7 +7,55 @@ void func_001E891B(void *p);
 
 struct C_0018C640 {
     void func_0018C640(void);
+    void func_0018C120(void);
 };
+
+struct S_00059F50_Ctl {
+    int func_00094EE0(void);
+    void func_00094D90(int a);
+    void func_00095200(int a);
+    void func_00094C00(void);
+};
+
+struct S_00059F50_E0 {
+    char pad0[0x2FC];
+    S_00059F50_Ctl *f2FC;
+};
+
+struct S_00059F50_Fb4 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+};
+
+struct S_00059F50_F4 {
+    char pad0[0xB4];
+    S_00059F50_Fb4 *fB4;
+};
+
+struct S_00059F50_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    void func_00157810(void);
+};
+
+struct S_00059F50_Mgr {
+    void func_0013CA50(void);
+};
+extern S_00059F50_Mgr *D_002BEAAC;
 
 struct C_001D0E30 {
     void func_001D0E30(void);
