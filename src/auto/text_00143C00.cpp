@@ -28,6 +28,7 @@ struct C_001449B0 {
     int f28;
     int f2c;
     C_001449B0 *func_001449B0(void *param);
+    void func_001449E0();
 };
 
 struct C_001445C0 {
@@ -163,9 +164,9 @@ void C_00144660::func_00144660()
     ((C_001AF0D0 *)this)->func_001AF0D0();
 }
 
+int __stdcall func_001AF120(int a0, int a1);
 int C_00144690::func_00144690(int a0, int a1)
 {
-    int __stdcall func_001AF120(int, int);
     func_001AF120(a0, a1);
     return 1;
 }
