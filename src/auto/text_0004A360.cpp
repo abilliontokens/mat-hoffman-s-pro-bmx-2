@@ -267,7 +267,7 @@ static __forceinline S_Vec4Pod GetPos_0004A6A0(S_Obj4E4 *o)
 {
     S_Vec4Pod t;
     if (o->f2c == 0)
-        t = D_002A15B0;
+        t.x = 0;
     else
         o->f2c->f1a4->f4->func_00199B00(&t, 0);
     return t;
