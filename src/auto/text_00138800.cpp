@@ -60,6 +60,15 @@ struct C_00139060 {
     void func_00139060(int a0, int a1);
 };
 
+struct S_1390A0_This {
+    char pad0[0x40];
+    void *f40;
+    char pad44[0x58 - 0x44];
+    void *f58;
+    char pad5C[4];
+    void *f60;
+};
+
 struct S_1390A0_Entry {
     char pad0[4];
     int count1;
