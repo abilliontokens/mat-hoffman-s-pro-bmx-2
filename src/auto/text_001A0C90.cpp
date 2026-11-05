@@ -170,6 +170,15 @@ bool C_001A1850::func_001A1850(void)
   return *(int *)(in_ECX + 0x1bc) != 0;
 }
 
+int C_001A1C70::func_001A1B60(S_001A1C70_Obj *obj)
+{
+    if (obj != 0 && unk1BC != obj) {
+        obj->func_001CB560(unk1BC);
+    }
+    unk1BC = obj;
+    return 1;
+}
+
 int C_001A1C70::func_001A1C70(int a)
 {
     if (unk1BC == 0) return 0;
