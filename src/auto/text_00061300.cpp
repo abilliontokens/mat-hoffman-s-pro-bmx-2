@@ -32,6 +32,8 @@ struct C_00061B20_1C0 {
 struct C_00061B20_1D0 {
     char pad0[0x44];
     C_00061B20_44 *unk44;
+    char pad48[0x1C0 - 0x48];
+    C_00061B20_1C0 *unk1C0;
     void func_00032A40();
 };
 
