@@ -260,3 +260,19 @@ undefined4 C_0001C280::func_0001C280(int param_1)
   return *(undefined4 *)(*(int *)(in_ECX + 0x1c) + param_1 * 4);
 }
 
+void C_0001C290::func_0001C290(void)
+{
+    int i;
+
+    if (f1c != 0) {
+        for (i = 0; i < f18; i++) {
+            if (f1c[i] != 0) {
+                f1c[i]->v2();
+            }
+        }
+        func_001E891B(f1c);
+        f1c = 0;
+    }
+    f18 = 0;
+}
+
