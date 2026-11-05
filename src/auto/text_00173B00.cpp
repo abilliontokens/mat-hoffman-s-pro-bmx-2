@@ -67,6 +67,8 @@ struct PhysicsRigidBody {
     Vec4 *func_001744D0(Vec4 *out);
     void *func_00174530(void *a0);
     void func_00173580(int a0, int a1, int a2, int a3, int a4);
+    void func_001577A0(void *a0, int a1);
+    PhysicsRigidBody *func_00173F70(Vec4 a, Vec4 b, Vec4 c, int a12, int a13, int a14, int a15, int a16);
     PhysicsRigidBody *func_001740B0(C_00198330 *a0, int a1, int a2, int a3, int a4, int a5);
     void *func_001744B0(void *a0);
 };
