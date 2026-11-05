@@ -124,6 +124,7 @@ struct S_000255D0_Part {
 
 struct S_000255D0_Id {
     int id;
+    S_000255D0_Part *f4;
 };
 
 /* one bird-like instance held in the manager's list at +0x60 */
