@@ -70,6 +70,13 @@ struct S_I10_Ld12 {
 };
 #pragma pack(pop)
 
+/* the long double the converter takes by value: 10 bytes padded to 12 */
+struct S_I10_Ld {
+    unsigned long lo;
+    unsigned long hi;
+    unsigned long se;
+};
+
 /* the digit string the converter fills in */
 struct S_I10_Fos {
     short exp;
@@ -205,6 +212,136 @@ void func_001F5B4E(S_U12 *p)
     p->l[0] = (p->l[0] >> 1) | (l1 << 31);
     p->l[2] = l2 >> 1;
 }
+
+#pragma optimize("s", on)
+#pragma optimize("y", off)
+int __cdecl func_001F5C49(unsigned long lo, unsigned long hi, unsigned long se, int ndigits, unsigned int flags, S_I10_Fos *fos)
+{
+    unsigned char tenth[12] = { 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xfb, 0x3f };
+    S_I10_Ld12 ld12;
+    S_U12 tmp;
+    char *p;
+    char *r;
+    char *man;
+    int retval;
+    int e;
+    unsigned int n;
+    int cnt;
+    short decexp;
+    unsigned short sign;
+    unsigned short expn;
+
+    retval = 1;
+    sign = (unsigned short)(se & 0x8000);
+    expn = (unsigned short)(se & 0x7fff);
+    if (sign) {
+        fos->sign = '-';
+    } else {
+        fos->sign = ' ';
+    }
+    if (expn == 0 && hi == 0 && lo == 0) {
+        goto zero_digit;
+    }
+    if (expn == 0x7fff) {
+        fos->exp = 1;
+        if ((hi == 0x80000000 && lo == 0) || (hi & 0x40000000)) {
+            if (sign && hi == 0xc0000000 && lo == 0) {
+                strcpy(fos->man, "1#IND");
+                fos->manlen = 5;
+            } else if (hi == 0x80000000 && lo == 0) {
+                strcpy(fos->man, "1#INF");
+                fos->manlen = 5;
+            } else {
+                strcpy(fos->man, "1#QNAN");
+                fos->manlen = 6;
+            }
+        } else {
+            strcpy(fos->man, "1#SNAN");
+            fos->manlen = 6;
+        }
+        retval = 0;
+    } else {
+        ld12.w0 = 0;
+        ld12.lo = lo;
+        ld12.hi = hi;
+        ld12.exp = expn;
+        decexp = (short)(((((expn >> 8) + (int)(hi >> 24) * 2) * 0x4d) + expn * 0x4d10 - 0x134312f4) >> 16);
+        func_001F60E2((S_Ld12_001F60E2 *)&ld12, -decexp, 1);
+        if (ld12.exp >= 0x3fff) {
+            decexp++;
+            func_001F5EC0((S_Ld12_001F60E2 *)&ld12, (S_Ld12_001F60E2 *)tenth);
+        }
+        fos->exp = decexp;
+        if (flags & 1) {
+            ndigits += decexp;
+            if (ndigits <= 0) {
+zero_digit:
+                fos->man[0] = '0';
+                goto zero_tail;
+            }
+        }
+        if (ndigits > 0x15) {
+            ndigits = 0x15;
+        }
+        e = ld12.exp - 0x3ffe;
+        ld12.exp = 0;
+        cnt = 8;
+        do {
+            func_001F5B20((S_U12 *)&ld12);
+        } while (--cnt);
+        if (e < 0) {
+            n = -e & 0xff;
+            while (n != 0) {
+                func_001F5B4E((S_U12 *)&ld12);
+                n--;
+            }
+        }
+        p = fos->man;
+        cnt = ndigits + 1;
+        if (cnt > 0) {
+            do {
+                tmp = *(S_U12 *)&ld12;
+                func_001F5B20((S_U12 *)&ld12);
+                func_001F5B20((S_U12 *)&ld12);
+                func_001F5AC2((S_U12 *)&ld12, &tmp);
+                func_001F5B20((S_U12 *)&ld12);
+                *p++ = *((unsigned char *)&ld12 + 11) + '0';
+                *((unsigned char *)&ld12 + 11) = 0;
+            } while (--cnt);
+        }
+        man = fos->man;
+        r = p - 2;
+        if (*(p - 1) >= '5') {
+            while (r >= man && *r == '9') {
+                *r = '0';
+                r--;
+            }
+            if (r < man) {
+                r++;
+                fos->exp++;
+            }
+            (*r)++;
+        } else {
+            while (r >= man && *r == '0') {
+                r--;
+            }
+            if (r < man) {
+                *man = '0';
+                goto zero_tail;
+            }
+        }
+        fos->manlen = (char)(r - fos->man + 1);
+        fos->man[fos->manlen] = 0;
+    }
+    return retval;
+zero_tail:
+    fos->exp = 0;
+    fos->man[1] = 0;
+    fos->sign = ' ';
+    fos->manlen = 1;
+    return 1;
+}
+#pragma optimize("y", on)
 
 #pragma optimize("s", on)
 void __cdecl func_001F5EC0(S_Ld12_001F60E2 *px, S_Ld12_001F60E2 *py)
