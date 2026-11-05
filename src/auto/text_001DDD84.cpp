@@ -2,6 +2,21 @@
 #include "common.h"
 extern "C" __declspec(dllimport) int __stdcall KeDelayExecutionThread(int a0, int a1, void *a2);
 
+extern int D_0028FB38;
+extern "C" int (__stdcall *_imp__NtSuspendThread)(int a0, int *a1);
+extern "C" void (__stdcall *_imp__KeQuerySystemTime)(void *a0);
+extern "C" int (__stdcall *_imp__NtSetInformationFile)(int a0, void *a1, void *a2, int a3, int a4);
+
+int __stdcall func_001DCC3C(int a0, int a1, int a2, int a3, int a4, int a5, int a6);
+int __stdcall func_001DD3A1(int a0, int a1, int a2, int a3);
+int __stdcall func_001DD15A(int a0, void *a1, int a2, int *a3, int a4);
+int __stdcall func_001DDF0A(int a0, int a1);
+int __stdcall func_001DDF52(int a0, void *a1, char *a2, int a3);
+int func_001EAA3B(char *a0, int a1);
+int __stdcall func_001DD13C(int a0);
+int func_001DD603();
+void __stdcall func_001DD659(int a0);
+
 int __stdcall func_001DDD84(int a0, int a1) {
     void *__stdcall func_001DF56E(void *, int);
     u32 timeout[2];
@@ -60,3 +75,24 @@ int __stdcall func_001DDE64(int param_1)
     return param_1;
 }
 
+#pragma optimize("s", on)
+void __stdcall func_001DDE78(unsigned short *s, char *out, int unused)
+{
+    unsigned __int64 acc;
+    int i;
+    int shift;
+    acc = 0;
+    while (*s != 0) {
+        acc = (acc * 0x10000 + *s) % (((unsigned __int64)0x0000FFFF << 32) | 0xFFFFFFC5);
+        s = s + 1;
+    }
+    i = 11;
+    shift = 0;
+    do {
+        out[i] = (char)func_001DDE64((int)((acc >> shift) & 0xf));
+        shift = shift + 4;
+        i = i - 1;
+    } while (shift <= 0x2c);
+    out[12] = 0;
+}
+#pragma optimize("", on)
