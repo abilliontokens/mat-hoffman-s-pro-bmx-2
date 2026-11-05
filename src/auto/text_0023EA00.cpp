@@ -42,6 +42,7 @@ struct S_0023F23E_Obj {
     S_0023F23E_Link f9c;
     S_0023F23E_Link fA4;
     int fAC;
+    int fB0;
     int fB4;
     int fB8;
 };
