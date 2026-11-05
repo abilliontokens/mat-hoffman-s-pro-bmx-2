@@ -143,6 +143,9 @@ struct C_000321C0 {
     void func_000321C0(void);
     void func_000321F0(void);
     void func_00032220(void);
+    void func_00032410(int tag, int amount);
+    void func_00032460(int tag, int arg);
+    void func_000324E0(int tag);
 };
 
 struct C_00032060 {
