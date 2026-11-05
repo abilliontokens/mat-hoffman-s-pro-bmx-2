@@ -21,7 +21,9 @@ struct S_0005C1D0_Obj {
 };
 
 struct S_002A8490_Mgr {
-    char pad0[0x2c0];
+    char pad0[4];
+    int f4;
+    char pad8[0x2c0 - 8];
     S_0005C1D0_Obj *f2c0;
     int f2c4;
     char pad2c8[0x300 - 0x2c8];
