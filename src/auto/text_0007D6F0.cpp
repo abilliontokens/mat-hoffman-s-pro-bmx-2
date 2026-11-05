@@ -25,7 +25,7 @@ struct C_0007E050_item {
 struct C_0007E050 {
     char pad0[0x30];
     C_0007E050_item items[0x96];
-    void func_0007E050(void);
+    C_0007E050 *func_0007E050(void);
 };
 
 struct GObj4_7E {
