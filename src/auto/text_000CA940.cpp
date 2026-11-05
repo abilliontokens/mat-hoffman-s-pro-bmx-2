@@ -73,6 +73,14 @@ struct DelObjC_CA {
     virtual void Destroy(int a0);
 };
 
+/* BmxUIPageMemCard constructor */
+struct C_000CB480 {
+    void *vtbl;
+    u32 u[0x100];
+    C_000CB480 *func_000CB480(int a0);
+    void func_001BE360(int a0);
+};
+
 /* BmxUIPageMemCard */
 struct C_000CB650 {
     void *vtbl;
