@@ -92,6 +92,6 @@ struct BasicScene {
     SceneGroup **f3a8;
     char pad3ac[0x4a8 - 0x3ac];
     SceneSlot **f4a8;
-    void func_00189720(void);
+    int func_00189720(void);
     int func_00189AA0(void);
 };
