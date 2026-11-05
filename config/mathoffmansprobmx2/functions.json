@@ -524431,6 +524431,7 @@
   "func_00134980": "C_00134980::C_00134980",
   "func_00135470": "PhysicsParticle::PhysicsParticle",
   "func_00142E90": "C_00142E90::C_00142E90",
+  "func_00144710": "DXStripSurfaceData::DXStripSurfaceData",
   "func_00148820": "C_00148820::C_00148820",
   "func_00149380": "C_00149380::C_00149380",
   "func_0015B660": "LinearPositionController::LinearPositionController",

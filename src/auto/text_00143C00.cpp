@@ -341,6 +341,7 @@ struct C_00144960 {
 void C_00143C00::func_00143C00(Quad_143C00 *arg)
 {
     int v;
+    float t;
     if (D_002A99B0 != 0 || fAC != 3) {
         int wide = fE4 != D_00275544;
         {
@@ -350,7 +351,19 @@ void C_00143C00::func_00143C00(Quad_143C00 *arg)
         }
         f94 = f84 + f64;
         f98 = f88 + f6C;
-        SetColor(GetScale());
+        switch (fAC) {
+        case 0:
+            t = fD8 / D_002EFEA0;
+            break;
+        case 1:
+        case 2:
+            t = fD8;
+            break;
+        case 3:
+            t = D_00275460;
+            break;
+        }
+        SetColor(t);
         func_001FEC30(0x18, (void *)(*(int *)(D_002EFDB8 + 4) + 0x290));
         D_0020C6DC |= 0x3000;
         D_0020CA7C = 0;
@@ -452,11 +465,11 @@ void C_00143C00::func_00143C00(Quad_143C00 *arg)
                 v28[3].pos.y = arg->c[3].pos.y;
                 v28[3].pos.z = arg->c[3].pos.z;
                 float invW = D_00275460 / f34;
-                float invH = D_00275460 / f38;
-                Uv28(&v28[0], invW, invH);
-                Uv28(&v28[1], invW, invH);
-                Uv28(&v28[2], invW, invH);
-                Uv28(&v28[3], invW, invH);
+                t = D_00275460 / f38;
+                Uv28(&v28[0], invW, t);
+                Uv28(&v28[1], invW, t);
+                Uv28(&v28[2], invW, t);
+                Uv28(&v28[3], invW, t);
                 func_00200950(6, 6, D_002A7054, v28, 0x1c);
             }
         } else {
@@ -503,11 +516,11 @@ void C_00143C00::func_00143C00(Quad_143C00 *arg)
                 v20[3].pos.y = arg->c[3].pos.y;
                 v20[3].pos.z = arg->c[3].pos.z;
                 float invW = D_00275460 / f34;
-                float invH = D_00275460 / f38;
-                Uv20(&v20[0], invW, invH);
-                Uv20(&v20[1], invW, invH);
-                Uv20(&v20[2], invW, invH);
-                Uv20(&v20[3], invW, invH);
+                t = D_00275460 / f38;
+                Uv20(&v20[0], invW, t);
+                Uv20(&v20[1], invW, t);
+                Uv20(&v20[2], invW, t);
+                Uv20(&v20[3], invW, t);
                 func_00200950(6, 6, D_002A7054, v20, 0x14);
             }
         }
@@ -597,6 +610,63 @@ void C_001446B0::func_001446B0(int a0, int a1, int a2)
         ((C_001474B0 *)D_002A829C->arr[a2].obj)->func_001474B0(this, a0, a1);
     } else {
         ((C_001474B0 *)D_002A829C->arr[f4].obj)->func_001474B0(this, a0, a1);
+    }
+}
+
+DXStripSurfaceData::DXStripSurfaceData(int file)
+{
+    int i4;
+    unsigned short n;
+    unsigned char b;
+    vtbl = &D_00285B58;
+    f8 = 0; fc = 0; f14 = 0; f18 = 0; f1c = 0; f20 = 0; f24 = 0; f28 = 0; f30 = 0; f34 = 0;
+    f10 = (void *)6;
+    D_002BEAAC->func_0013C8A0(file, &flags, 1, 1);
+    D_002BEAAC->func_0013C8A0(file, &b, 1, 1);
+    D_002BEAAC->func_0013C8A0(file, &b, 1, 1);
+    D_002BEAAC->func_0013C8A0(file, &b, 1, 1);
+    D_002BEAAC->func_0013C8A0(file, &i4, 4, 1);
+    D_002BEAAC->func_0013C8A0(file, &n, 2, 1);
+    f8 = n;
+    D_002BEAAC->func_0013C8A0(file, &n, 2, 1);
+    fc = n;
+    f30 = func_001E8A44(fc * 2);
+    D_002BEAAC->func_0013C8A0(file, f30, 2, fc);
+    if (flags & 1) {
+        int c = f8;
+        f14 = func_001FF3C0(c * 12);
+        void *p = func_001FF410(f14, 16);
+        D_002BEAAC->func_0013C8A0(file, p, 12, c);
+    }
+    if (flags & 2) {
+        int c = f8;
+        f18 = func_001FF3C0(c * 12);
+        void *p = func_001FF410(f18, 16);
+        D_002BEAAC->func_0013C8A0(file, p, 12, c);
+    }
+    if (flags & 8) {
+        int c = f8;
+        f1c = func_001FF3C0(c * 4);
+        void *p = func_001FF410(f1c, 16);
+        D_002BEAAC->func_0013C8A0(file, p, 4, c);
+    }
+    if (flags & 4) {
+        int c = f8;
+        f20 = func_001FF3C0(c * 8);
+        void *p = func_001FF410(f20, 16);
+        D_002BEAAC->func_0013C8A0(file, p, 8, c);
+    }
+    if (flags & 16) {
+        int c = f8;
+        f24 = func_001FF3C0(c * 8);
+        void *p = func_001FF410(f24, 16);
+        D_002BEAAC->func_0013C8A0(file, p, 8, c);
+    }
+    if (flags & 64) {
+        int c = f8;
+        f28 = func_001FF3C0(c * 4);
+        void *p = func_001FF410(f28, 16);
+        D_002BEAAC->func_0013C8A0(file, p, 4, c);
     }
 }
 
