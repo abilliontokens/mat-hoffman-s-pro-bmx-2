@@ -143,6 +143,56 @@ struct C_0008BBE0 {
 
 extern int D_0028F5DC;
 
+extern char D_00278690[];
+extern char D_00279E64[];
+extern char D_00279E58[];
+extern int D_0028F5EC;
+extern char D_002A47F0[];
+extern char D_002A5870[];
+extern char D_00275678[];
+extern char D_002A48F8[];
+
+void *func_001E8A44(unsigned int size);
+void func_001ADCC0(char *buf, int size, char *fmt, ...);
+
+struct C_0008B850_Res {
+    void func_0018C780(int a0, void *a1, int a2);
+    int *func_0018C160(void *name);
+};
+
+struct C_0008B850_Text {
+    char pad0[4];
+    int x;
+    int y;
+    char pad0c[0x38];
+    int color;
+    unsigned int argb;
+    char pad4c[2];
+    unsigned char flags;
+    C_0008B850_Text *func_001D5E90();
+    void func_001D5FA0(int a0, char *a1, int a2, char *a3);
+};
+
+struct C_0008B850_Menu {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4(char *name, int a1, int a2, int a3, int a4);
+    C_0008B850_Menu *func_001CF740(int a0, int a1, int a2);
+};
+
+struct C_0008B850 {
+    void *vtbl;
+    char pad4[0x20];
+    C_0008B850_Text *unk24;
+    char *unk28;
+    int unk2c;
+    int pad30;
+    C_0008B850_Menu *unk34;
+    C_0008B850 *func_0008B850(int a1, char *a2);
+};
+
 struct C_0008B710_Text {
     char *str;
     float x;
