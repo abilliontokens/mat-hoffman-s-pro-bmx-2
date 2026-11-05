@@ -32,7 +32,7 @@ struct C_0018A210 {
     int pad110;
     int f114, f118, f11C, f120, f124, f128, f12C;
     C_0018A210_Sub sub;
-    char pad150[0];
+    unsigned char flags;
     void func_0018A210();
 };
 
