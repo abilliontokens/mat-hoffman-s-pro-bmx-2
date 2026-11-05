@@ -154,6 +154,8 @@ struct C_0004DCA0 {
     void func_00032A20(void);
     void func_000342C0(void);
     C_0004DCA0 *func_0004DCA0(void);
+    C_0004DCA0 *func_0004D930(int a);
+    void func_00030F90(int a);
 };
 
 struct C_0004DC70 {
