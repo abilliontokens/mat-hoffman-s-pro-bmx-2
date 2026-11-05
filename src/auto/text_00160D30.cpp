@@ -57,6 +57,20 @@ struct S_00161620_Obj {
     virtual void v2();
     S_00161620_Obj *func_00147490();
     void func_001B0A20(int a);
+    void func_001B0620();
+    void func_001B0650();
+};
+
+struct S_001B0FC0 {
+    void func_001B0FC0();
+};
+extern S_001B0FC0 *D_002F0630;
+extern int D_002EBE98;
+int func_001EA426(const char *a, const char *b);
+void func_00162530(float *m, float a2, float a3, float a4, float a5, int a6);
+
+struct __declspec(align(16)) S_Matrix16_00161AA0 {
+    float m[16];
 };
 
 struct S_00161620_Entry {
@@ -239,5 +253,11 @@ void *C_00161870::func_00161870(unsigned int flags)
         func_001E891B(this);
     }
     return this;
+}
+
+void func_00161910(float a, float *s, float *c)
+{
+    *c = (float)cos(a);
+    *s = (float)sin(a);
 }
 
