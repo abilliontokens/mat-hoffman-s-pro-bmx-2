@@ -232,36 +232,4 @@ struct C_001376B0 {
     int f7C0;
     int func_001376B0(Cube *arg);
 };
-extern char D_00284914[], D_00284908[], D_002848F8[], D_002848EC[];
-extern char D_00276974[], D_00276968[], D_002848DC[], D_002848D0[];
-extern char D_002848BC[], D_002848B0[], D_002848A4[], D_00284894[];
-extern char D_0028488C[], D_0028487C[], D_00275630[];
-void func_00030F30(char *, const char *);
-int func_001ADCC0(char *, int, const char *, ...);
-struct Config136BE0 {
- char data[0x4d0];
- void func_00168280();
- void func_001691E0();
- int func_00169490(char *, int);
- void func_00169710(const char *);
- void func_00168C20(const char *, int, int *);
- void func_00168C50(const char *, float, float *);
- void func_00168BE0(const char *, const char *, char *, int);
-};
-struct Anim136BE0 {
- float start, end;
- int count;
- float fC, f10;
- int f14;
- float f18, f1C, f20;
- unsigned char flags;
- char pad[3];
-};
-struct Group136BE0 { int id, count, entries[3]; };
-struct C_00136BE0 {
- char pad[0x38];
- int count;
- Anim136BE0 *anims;
- Group136BE0 groups[6][16];
- void func_00136BE0(char *);
-};
+
