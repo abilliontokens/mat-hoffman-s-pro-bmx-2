@@ -134,6 +134,15 @@ void C_001C0110::func_001C01B0(void)
     ((C_00157660 *)this)->func_00157660();
 }
 
+void C_001C04D0::func_001C04D0(int idx)
+{
+    if (unk180 != 0) {
+        func_001C03F0(D_002A8490->unk2E8->unk4[idx].unk0);
+    } else {
+        func_001C01E0(D_002A8490->unk2E8->unk4[idx].unk0);
+    }
+}
+
 void C_001C0670::func_001C0670(void)
 {
     unk40 = 0;
