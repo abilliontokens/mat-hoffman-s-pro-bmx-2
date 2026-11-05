@@ -61,6 +61,9 @@ struct C_0013B9C0 {
     char padE4[4];
     S_0013B9C0_Ent20 *fE8;
     int fEC;
+    int func_0013C3D0(const char *name, char *mode, int a2);
+    int func_0013AC40(int a, int b, int c, int d, int e, int f);
+    int f8;
     int func_0013C240(const char *name, unsigned int size);
     int func_0013C1D0(int a);
     int func_0013C110(int a);
