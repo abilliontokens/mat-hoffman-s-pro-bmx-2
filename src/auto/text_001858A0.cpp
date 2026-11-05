@@ -39,8 +39,17 @@ struct PortalInfo {
 struct S_Stream {
     int func_00169710(char *name);
     void func_00168CB0(void *key, void *def, void *dst);
-    void func_00168C20(void *key, int def, void *dst);
+    int func_00168C20(void *key, int def, void *dst);
+    int func_00168C50(void *key, u32 def, void *dst);
 };
+
+extern char D_00289654;
+extern char D_00289664;
+extern char D_00289674;
+extern char D_00289684;
+extern char D_00289694;
+extern char D_002896A4;
+extern char D_00283564;
 
 struct C_00185970 {
     char pad0[4];
