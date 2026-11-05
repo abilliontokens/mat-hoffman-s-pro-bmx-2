@@ -15,6 +15,9 @@ struct C_00157290 {
 struct Obj_00156FC0 {
     virtual void destroyObject(int flags);
     virtual void v1();
+    virtual void update(float);
+    void func_001D0D60();
+    void func_00182810();
 };
 
 extern Obj_00156FC0 *D_002EFDB8;
