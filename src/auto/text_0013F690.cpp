@@ -275,6 +275,36 @@ struct C_0013F7B0 {
     void *vtbl;
 };
 
+extern int D_00284EAC;
+void *__stdcall func_001FF3C0(int size);
+int *__stdcall func_001FF410(void *p, int align);
+
+/* Eco2DDataItem: 0x14 bytes, vtable + vec4 */
+struct S_0013F690_Item {
+    void *vtbl;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+};
+
+struct S_0013F690_Shader {
+    char pad0[0x1b8];
+    int f1B8;
+    int f1BC;
+    int f1C0;
+    int f1C4;
+    int f1C8;
+    char pad1CC[0x3c];
+    void *f208;
+};
+
+struct C_0013F690 {
+    char pad0[0x54];
+    S_0013F690_Shader *shaders[16];
+    S_0013F690_Item *func_0013F690(void);
+};
+
 struct C_0013FA30_Data {
     void *vtbl;
     int f4;
