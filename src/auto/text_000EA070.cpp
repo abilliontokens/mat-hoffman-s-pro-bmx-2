@@ -125,6 +125,39 @@ struct C_000EA910 {
     C_000EA910 *func_000EAB00(int a, int b, int c);
 };
 
+void __fastcall func_001BF000(void *self);
+void __fastcall func_000EA070(void *self)
+{
+    struct E {
+        char pad0[0x38];
+        unsigned int f38;
+        char pad3C[0xC];
+        unsigned int f48;
+        short f4c;
+        unsigned char f4e;
+        char pad4F[9];
+        unsigned char f58;
+    };
+    struct T {
+        char pad0[0x484];
+        short s;
+        char pad486[0x514 - 0x486];
+        E *r[6][5];
+    };
+    T *t = (T *)self;
+    E *p;
+    short v;
+    unsigned int e;
+#define N(k, j) p = t->r[k][j]; p->f38 = (p->f38 & 0xffffff) | (t->s << 24); p->f58 |= 2;
+#define S(j) v = t->s; p = t->r[4][j]; if (p->f4c != v) { e = p->f48; p->f4e |= 8; p->f4c = v; p->f48 = (e & 0xffffff) | (v << 24); }
+    N(0,0) N(1,0) N(2,0) N(3,0) S(0)
+    N(0,1) N(1,1) N(2,1) N(3,1) S(1)
+    N(0,2) N(1,2) N(2,2) N(3,2) S(2)
+    N(0,3) N(1,3) N(2,3) N(3,3) S(3)
+    N(0,4) N(1,4) N(2,4) N(3,4) S(4)
+    func_001BF000(self);
+}
+
 C_000EA910 *C_000EA910::func_000EA910(int a)
 {
     func_001BE360(a);
