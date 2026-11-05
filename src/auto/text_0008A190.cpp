@@ -1,5 +1,11 @@
 /* 27 functions from 0x0008A190 to 0x0008AED0, found by Ghidra. */
 #include "common.h"
+struct C_0008A990 {
+    char pad0[0x4D8];
+    int unk4D8;
+    void func_0008A990(void);
+};
+
 struct C_0008A980 {
     char pad0[0x4D8];
     int unk4D8;
@@ -79,5 +85,9 @@ void C_0008A970::func_0008A970(void) {
 
 void C_0008A980::func_0008A980(void) {
     unk4D8 = 8;
+}
+
+void C_0008A990::func_0008A990(void) {
+    unk4D8 = 9;
 }
 
