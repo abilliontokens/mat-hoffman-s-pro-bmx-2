@@ -9,6 +9,11 @@ extern int D_002A3F0C;
 extern float D_00275460;
 extern float D_002755E8;
 extern float D_002755EC;
+extern float D_00275600;
+
+struct S_0012B950_Vec4 {
+    float x, y, z, w;
+};
 
 void func_001E891B(void *p);
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
