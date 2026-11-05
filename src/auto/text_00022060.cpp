@@ -199,6 +199,46 @@ struct C_B70 {
     void func_00022B70();
 };
 
+/* the engine's file wrapper (D_002BEAAC) */
+struct S_00022730_File {
+    int func_0013C9F0(int name, const char *mode);
+    int func_0013AFB0(int h);
+    char *func_0013C6E0(int h, char *buf, int size);
+    void func_0013AFF0(int h, int off, int mode);
+    void func_0013C110(int h);
+};
+extern S_00022730_File *D_002BEAAC;
+extern char D_00276274[], D_0027626C[], D_00276260[], D_00276234[];
+
+int func_001E8BB0(char *a, char *b, unsigned int n);
+void func_001E8B76(char *str, char *fmt, ...);
+void *func_001E8A44(int size);
+void __stdcall func_00011FF0(void *p, int stride, int count, void *ctor);
+void func_00021720(void);
+
+struct S_00022730_Vec3 {
+    float x, y, z;
+};
+
+/* one 0x18-byte keyframe: two vectors */
+struct S_00022730_Key {
+    S_00022730_Vec3 a;
+    S_00022730_Vec3 b;
+};
+
+struct S_00022730_Anim {
+    char pad0[4];
+    int count;
+    char pad8[0x10];
+    S_00022730_Key *items;
+};
+
+struct C_00022730 {
+    char pad0[0x64];
+    S_00022730_Anim **f64;
+    int func_00022730(int name, int idx);
+};
+
 Obj_00022320 *C_00022320::func_00022320(int a)
 {
     f2C->v35(a, 1, 0);
