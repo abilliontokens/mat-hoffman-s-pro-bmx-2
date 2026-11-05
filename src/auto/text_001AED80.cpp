@@ -163,3 +163,17 @@ void C_001AF320::func_001AF320(void) {
     unk0 = (int)&D_0028C2AC;
     func_00157660();
 }
+
+void *C_001AF330::func_001AF330(int flags)
+{
+    extern int D_0028C2AC;
+    int func_00157660(...);
+    int func_001E891B(...);
+    unk0 = (int)&D_0028C2AC;
+    func_00157660();
+    if ((flags & 1) != 0) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
