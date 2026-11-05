@@ -737,6 +737,63 @@ void C_000AC890::func_000AC890(void)
     }
 }
 
+void C_000AC8F0::func_000AC8F0(void)
+{
+    if (unk28->func_00169710(D_0027CAB0)) {
+        int count;
+        unk28->func_00168A10(D_0027CAA0, &count);
+        if (count > 0) {
+            int start, end;
+            if (!unk56C) {
+                start = 0;
+                end = unk568 = count;
+                unk56C = (C_000AC8F0_Obj **)func_001E8A44(count * 4);
+            } else {
+                start = unk568;
+                end = unk568 = count + start;
+                unk56C = (C_000AC8F0_Obj **)func_001E83E8(unk56C, end * 4);
+            }
+            for (int i = start; i < end; i++) {
+                char section[120];
+                char first[120], second[120];
+                char mode[40];
+                int searching = 1;
+                func_001ADCC0(section, 120, D_00277040, i - start + searching);
+                C_000AC8F0_Obj *obj = (C_000AC8F0_Obj *)func_001E8A44(0x118);
+                if (obj) obj = obj->func_001BB470((void *)1);
+                else obj = 0;
+                unk56C[i] = obj;
+                if (unk28->func_00169710(section)) {
+                    unk28->func_00168550(D_00276980, unk56C[i]->f24, 0x3b);
+                    unk28->func_00168550(D_0027A8C4, unk56C[i]->f60, 0x77);
+                    unk28->func_00168A10(D_0027823C, &unk56C[i]->fDC);
+                    unk28->func_00168550(D_0027CA94, first, 120);
+                    unk28->func_00168550(D_0027CA88, second, 120);
+                    unk56C[i]->fD8 = i;
+                    unk28->func_00168BE0(D_0027CA80, &D_00275630, mode, -1);
+                    if (!func_001EA426(mode, D_0027CA78)) unk56C[i]->fE4 = 1;
+                    else if (!func_001EA426(mode, D_00276D7C)) unk56C[i]->fE4 = 2;
+                    else if (!func_001EA426(mode, D_0027A330)) unk56C[i]->fE4 = 3;
+                    else unk56C[i]->fE4 = 0;
+                    searching = 1;
+                    int n = unk3B4->count;
+                    void *a = 0, *b = 0;
+                    for (int j = 0; j < n && searching; j++) {
+                        char *name = unk3B4->items[j]->name;
+                        if (func_001EA426(name, &D_00275630)) {
+                            if (!func_001EA426(name, first)) a = unk3B4->items[j]->unk4;
+                            else if (!func_001EA426(name, second)) b = unk3B4->items[j]->unk4;
+                            if (a && b) searching = 0;
+                        }
+                    }
+                    if (a && b) unk56C[i]->func_001BB620(a, b, D_000A7E30, 0);
+                }
+            }
+            unk5BC = unk568;
+        }
+    }
+}
+
 void C_000ACC40::func_000ACC40(void)
 {
     C_000ACC40_List *list = field_534;
