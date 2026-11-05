@@ -1,6 +1,12 @@
 /* 7 functions from 0x00127DD0 to 0x00128930, found by Ghidra. */
 #include "common.h"
 
+#include <string.h>
+struct S_00128630_Entry { int data[13]; };
+void func_00126DD0(S_00128630_Entry *,int,void *,void *,void *,float *,float *,int);
+void func_001271E0(S_00128630_Entry *,int,void *,int *,float *);
+void *func_001E8AA5(unsigned int);
+void func_001E8390(void *);
 extern float D_00275544;
 void func_001E891B(void *p);
 
