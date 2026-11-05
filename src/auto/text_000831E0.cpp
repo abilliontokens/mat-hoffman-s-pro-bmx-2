@@ -10,8 +10,10 @@ static void CopyString(char *dst, const char *src)
     char c;
 
     do {
-        c = *src++;
-        *dst++ = c;
+        c = *src;
+        *dst = c;
+        src++;
+        dst++;
     } while (c != 0);
 }
 
@@ -216,18 +218,12 @@ void C_000831E0::func_000838B0(int a0)
 
 void C_000831E0::func_000838F0(const char *name, int flag)
 {
-    char *dst = s19C;
-    char c;
-
-    do {
-        c = *name++;
-        *dst++ = c;
-    } while (c != 0);
+    CopyString(s19C, name);
     f198 = 1;
     f150 = 1;
     if (flag != 0) {
         f15C = 2;
-        f138 = f138 + D_002755E8;
+        f138 = f138 + 0.5f;
     }
 }
 
