@@ -6,8 +6,16 @@ struct S_Obj4_716 {
     char *p930;
     char pad934[0x13C];
     char *fA70;
-    char padA74[0x4A4];
+    char padA74[4];
+    char *fA78;
+    char padA7C[0x424];
+    char *fEA0;
+    char padEA4[0x74];
     char *fF18;
+    char padF1C[0x10C];
+    char *f1028;
+    char pad102C[0xD4];
+    char *f1100;
 };
 
 struct S_Obj2E8_716 {
