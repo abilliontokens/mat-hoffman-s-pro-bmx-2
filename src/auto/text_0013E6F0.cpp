@@ -77,3 +77,10 @@ undefined4 C_0013E900::func_0013E900(byte param_1)
   }
   return in_ECX;
 }
+
+void func_0013E990(void)
+{
+    func_001FD020(&D_0004035C, 0);
+    func_001FD020(&D_00040340, 1);
+}
+
