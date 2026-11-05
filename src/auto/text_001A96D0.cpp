@@ -27,6 +27,44 @@ struct Body_001A96D0 {
     }
 };
 
+/* transform object at frame->f22c */
+struct Xf_001A9990 {
+    V4_001A96D0 func_00198040(V4_001A96D0 *in);
+    V4_001A96D0 func_00197EC0(V4_001A96D0 *in);
+};
+
+/* object at This_001A96D0::f24 as used by func_001A9990 */
+struct Frame_001A9990 {
+    char pad0[0x22c];
+    Xf_001A9990 *f22c;
+    char pad230[8];
+    float f238, f23c, f240;
+    char pad244[0x268 - 0x244];
+    float f268[4];
+};
+
+/* body passed to func_001A9990 (virtual slots 42 and 44 return a V4) */
+struct Other_001A9990 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35();
+    virtual void v36(); virtual void v37(); virtual void v38(); virtual void v39();
+    virtual void v40(); virtual void v41();
+    virtual V4_001A96D0 v42();
+    virtual void v43();
+    virtual V4_001A96D0 v44();
+    char pad4[0x18c];
+    V4_001A96D0 f190;
+    char pad1a0[0x22c - 0x1a0];
+    char *f22c;
+};
+
 struct This_001A96D0 {
     char pad0[0x24];
     Pivot_001A96D0 *f24;
@@ -35,8 +73,15 @@ struct This_001A96D0 {
     int f6c;
     char pad70[0x104 - 0x70];
     float f104, f108, f10c;
+    char pad110[0x114 - 0x110];
+    float f114, f118, f11c;
+    char pad120[4];
+    V4_001A96D0 f124;
     void func_001A96D0(Body_001A96D0 *body, V4_001A96D0 p, V4_001A96D0 q, float s);
+    void func_001A9990(V4_001A96D0 p, Other_001A9990 *other);
 };
+
+void func_00030AC0(V4_001A96D0 *out, V4_001A96D0 *in, float *m);
 
 extern float D_002AA248, D_002AA24C, D_002AA250;
 void func_00030A30(V4_001A96D0 *out, V4_001A96D0 v, float *m);
