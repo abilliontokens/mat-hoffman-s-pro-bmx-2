@@ -177,8 +177,8 @@ int func_001F45CF(unsigned int *x, int bits)
 {
     int ret = 0;
     int pos = bits - 1;
-    int w = (pos + 1) / 32;
     int sh = 31 - (pos + 1) % 32;
+    int w = (pos + 1) / 32;
 
     if (x[w] & (1 << sh)) {
         if (func_001F4550(x, pos + 1) == 0) {
@@ -186,9 +186,8 @@ int func_001F45CF(unsigned int *x, int bits)
         }
     }
     x[w] &= -1 << sh;
-    w++;
-    if (w < 3) {
-        memset(&x[w], 0, (3 - w) * 4);
+    for (w++; w < 3; w++) {
+        x[w] = 0;
     }
     return ret;
 }
