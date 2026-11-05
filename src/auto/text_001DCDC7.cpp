@@ -61,6 +61,32 @@ int __stdcall func_001DD13C(void *a0) {
     }
 }
 
+int __stdcall func_001DD31D(void *a0) {
+    u32 iosb[2];
+    __int64 eof;
+    __int64 alloc;
+    __int64 pos;
+    int result;
+    result = _imp__NtQueryInformationFile(a0, iosb, &pos, 8, 0xe);
+    if (result < 0) {
+        func_001DD659(result);
+        return 0;
+    } else {
+        int (__stdcall *setInfo)(void *, void *, void *, u32, int) = _imp__NtSetInformationFile;
+        alloc = pos;
+        result = setInfo(a0, iosb, &alloc, 8, 0x14);
+        if (result >= 0) {
+            eof = pos;
+            result = setInfo(a0, iosb, &eof, 8, 0x13);
+            if (result >= 0) {
+                return 1;
+            }
+        }
+        func_001DD659(result);
+        return 0;
+    }
+}
+
 void __stdcall func_001DD7F7(undefined4 param_1, undefined4 param_2)
 {
   int __stdcall func_001DD779(int, int, int);
