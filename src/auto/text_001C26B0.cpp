@@ -154,6 +154,25 @@ undefined4 C_001C2F70::func_001C2F70(void)
   return 1;
 }
 
+void UIWidgetStaticUserRotate::func_001C2F90(int p)
+{
+    if (fA4 == 0) {
+        if (f98 != 0) {
+            func_001C0B00(p);
+        }
+        if (f9c != 0) {
+            func_001C0B70(p);
+        }
+        if (fA0 != 0) {
+            func_001C0BE0(p);
+        }
+        if (f68 != 0) {
+            f68->func_00199650(&f6c);
+        }
+    }
+    func_00157A00(p);
+}
+
 void UIWidgetMovementControl::func_001C3000(int p1, int p2, int value, int id)
 {
     switch (id) {
