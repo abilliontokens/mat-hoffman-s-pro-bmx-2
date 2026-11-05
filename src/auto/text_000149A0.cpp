@@ -40,7 +40,13 @@ struct AIPedFleeState {
     AIPedestrian *owner;
     void func_00014EA0();
     void func_00012B00(int arg1);
+    int func_00014EF0(float dt);
 };
+struct PedHelper { int func_00011BE0(int *idx, float *dist); };
+extern float D_002756C8, D_00275460, D_00275600, D_002756C4, D_002756BC, D_00275548;
+int func_000119D0(void *pos);
+void func_0008AB90(int arg);
+void func_000149A0(int idx, float scale);
 
 struct AIPedCurseState {
     char pad_0[8];
