@@ -85,6 +85,28 @@ struct C_00188A40 {
     int func_00188A40(char *name);
 };
 
+struct S_00188C20_Obj {
+    virtual void v0();
+    virtual void v1(int a);
+};
+
+struct C_00188C20 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    S_00188C20_Obj **f28;
+    int func_00188C20(int a);
+};
+
+struct C_00188CB0 {
+    int f0;
+    int f4;
+    int f8;
+    void **fC;
+    void func_00188CB0(void);
+    int func_00188D20(int n);
+};
+
 
 C_00188700* C_00188700::func_00188700(void) {
     extern int D_00289F80;
@@ -155,6 +177,48 @@ void C_00188920::func_00188920(void)
         f28 = 0;
     }
     func_00157660();
+}
+
+void __stdcall func_00188980(int *type, S_00188980_Model **out)
+{
+    S_00188980_Model *p;
+
+    if (*type == 1) {
+        p = (S_00188980_Model *)func_001E8A44(0x10);
+        if (p != 0) {
+            p->f4 = 0;
+            p->vtbl = (void *)&D_00289F70;
+            p->f8 = 0;
+            p->fc = 0;
+        }
+    } else if (*type == 2) {
+        p = (S_00188980_Model *)func_001E8A44(0x10);
+        if (p != 0) {
+            p->f4 = 0;
+            p->vtbl = (void *)&D_00289F8C;
+            p->f8 = 0;
+            p->fc = 0;
+        }
+    } else {
+        p = (S_00188980_Model *)func_001E8A44(0x10);
+        if (p != 0) {
+            p->f4 = 0;
+            p->vtbl = (void *)&D_00289F70;
+            p->f8 = 0;
+            p->fc = 0;
+        }
+        *type = 1;
+    }
+    *out = p;
+    p->f4 = *type;
+}
+
+int C_00188A40::func_00188A40(char *name)
+{
+    if (memcmp(name, D_0028A024, 9) == 0) {
+        return 1;
+    }
+    return memcmp(name, D_0028A014, 14) == 0 ? 2 : 0;
 }
 
 CollisionObjects *CollisionObjects::func_00188A80(int a0)
