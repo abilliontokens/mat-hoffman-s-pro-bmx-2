@@ -72,6 +72,10 @@ struct C_000A88A0 {
     C_000A88A0 *func_000A88A0();
 };
 
+struct C_000A8B70 {
+    int func_000A8B70(void *param1, void *param2);
+};
+
 struct C_000A84A0 {
     void *vtbl;
     int count;
@@ -165,6 +169,17 @@ C_000A8C90 *C_000A8C90::func_000A8C90()
         unk10C[i][0] = 0;
     }
     return this;
+}
+
+void C_000A8C90::func_000A8CC0(C_00168550 *a, void *b)
+{
+    char buf[0x3c];
+    int i;
+    for (i = 0; i < 3; i++) {
+        func_001ADCC0(buf, 0x3c, D_0027C2B4, i + 1);
+        a->func_00168550(buf, unk10C[i], 0x3b);
+    }
+    ((C_001B5A00 *)this)->func_001B5A00(a, b);
 }
 
 C_000A8D70 *C_000A8D70::func_000A8D70()
