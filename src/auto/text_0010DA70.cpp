@@ -253,6 +253,32 @@ void BmxVehicle_10DA70::func_0010DC00(void)
     f15B0 = f15AC;
 }
 
+void BmxVehicle_10DA70::func_0010DCB0() {
+    if (*(int *)((char *)this + 0x454)) {
+        C_0010E8A0 *p = *(C_0010E8A0 **)((char *)this + 0x1084);
+        p->f0 = 0;
+        for (int i = 0; i < 5; ++i) { p->f4[i] = -1; p->f18[i] = 0; }
+        if (p->f4[0] != -1) ++p->f0;
+        if (p->f4[1] != -1) ++p->f0;
+        if (p->f4[2] != -1) ++p->f0;
+        if (p->f4[3] != -1) ++p->f0;
+        if (p->f4[4] != -1) ++p->f0;
+        (*(C_0010E8A0 **)((char *)this + 0x1084))->f2C = -1;
+        *(int *)((char *)this + 0x1134) = -1;
+        *(int *)((char *)this + 0x1158) = -1;
+        *(int *)((char *)this + 0x454) = 0;
+        *(int *)((char *)this + 0xA30) = 1;
+        *(int *)((char *)this + 0x448) = 0;
+        *(int *)((char *)this + 0x44C) = 0;
+        *(int *)((char *)this + 0x450) = 0;
+        *(int *)((char *)this + 0x2084) = 1;
+        *(int *)((char *)this + 0x2088) = 0;
+        *(float *)((char *)this + 0x45C) = 0.2f;
+        fA08->v4(); fA0C->v4(); fA10->v4(); fA14->v4();
+        *(int *)((char *)this + 0x1628) = 1;
+    }
+}
+
 void C_0010E260::func_0010E260(void)
 {
   int in_ECX = (int)this;
