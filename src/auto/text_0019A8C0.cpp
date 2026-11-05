@@ -20,12 +20,52 @@ struct C_0019B6F0 {
     C_0019B6F0 *func_0019B6F0(void);
 };
 
+extern int D_0028B1C4;
+void func_0011ACC0(void *out, void *a, void *b);
+void func_00198EF0(void *a, void *b, void *c);
+
+struct SoultreeObject;
+
 struct S_0019A8C0_Child {
     virtual void v0();
     virtual void v1();
     virtual void v2();
     char pad4[0x174];
     S_0019A8C0_Child *f178;
+    void func_00197B10(void);
+    void func_00198230(SoultreeObject *p);
+};
+
+struct S_0019A8C0_Mat {
+    void func_000264C0(void *m);
+};
+
+struct C_001982F0_19A8C0 {
+    void func_001982F0(void);
+};
+
+struct C_00132EB0_19A8C0 {
+    void func_00132EB0(int a);
+};
+
+struct C_0019B700 {
+    void *vtbl;
+    char pad4[0x4c];
+    int f50;
+    char pad54[0x1b0 - 0x54];
+    int f1b0;
+    int f1b4;
+    char pad1b8[4];
+    u16 f1bc;
+    char pad1be[2];
+    int f1c0;
+    int f1c4;
+    int f1c8;
+    u16 f1cc;
+    u16 f1ce;
+    int f1d0;
+    int f1d4;
+    C_0019B700 *func_0019B700(int a);
 };
 
 struct S_0019A8C0_Cam {
