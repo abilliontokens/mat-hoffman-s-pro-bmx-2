@@ -91,6 +91,58 @@ struct C_0001B3B0 {
     C_0001B3B0* func_0001B3B0(int a0);
 };
 
+struct S_0001B2E0_In {
+    u16 idx;
+    s16 x;
+    s16 y;
+    s16 z;
+};
+
+struct S_0001B2E0_Out {
+    u32 v0;
+    f32 x;
+    f32 y;
+    f32 z;
+};
+
+extern u32 D_002AF470[];
+extern f32 D_002B3C70[];
+extern f32 D_002B7C70;
+
+struct S_0001B250_Block {
+    f32 x, y, z, w;
+};
+
+struct S_0001B250_Out {
+    u32 f0;
+    u32 f2;
+    u16 f6;
+};
+
+extern f32 D_002B7C80;
+void func_0001AFB0(void *a, void *b);
+
+struct S_0001B3C0_Entry {
+    char pad0[4];
+    int f4;
+    char pad8[0x98];
+    char name[8];
+};
+
+struct S_0001B3C0_Table {
+    char pad0[0x24];
+    int count;
+    S_0001B3C0_Entry **entries;
+};
+
+struct C_0001B3C0 {
+    char pad0[0x2C];
+    S_0001B3C0_Table *tbl;
+    int func_0001B3C0(const char *name);
+};
+
+extern "C" int strcmp(const char *, const char *);
+
 
 C_0001AE60* C_0001AE60::func_0001AE60(const Vec3* v) {
     C_0001AE60 * volatile self = this;
