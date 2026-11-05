@@ -496,3 +496,39 @@ void *_func_001F041A(S_001EF734 *o)
     return o;
 }
 
+#pragma optimize("y", on)
+void *_func_001F0886(S_001EF734 *o)
+{
+    if (*D_002F6A28 == '?' && D_002F6A28[1] == '$') {
+        D_002F6A28 += 2;
+        void *saveArg = D_002F6A18;
+        void *saveZName = D_002F6A20;
+        void *saveTemplateArg = D_002F6A24;
+        S_Replicator_001EF3B4 localArg, localZName, localTemplateArg;
+        S_001EF734 name, t1, t2;
+
+        localArg.func_001EF3B4();
+        localZName.func_001EF3B4();
+        localTemplateArg.func_001EF3B4();
+        D_002F6A18 = &localArg;
+        D_002F6A20 = &localZName;
+        D_002F6A24 = &localTemplateArg;
+        _func_001F098B(&name, 1);
+        if (name.func_001EF1E7() != 0) {
+            D_002F6A1C = 1;
+        }
+        name.func_001EF935(_func_001EFCD5(&t2, '<', _func_001F06E9(&t1)));
+        if (name.func_001EF235() == '>') {
+            name.func_001EFB18(' ');
+        }
+        name.func_001EFB18('>');
+        D_002F6A18 = saveArg;
+        D_002F6A20 = saveZName;
+        D_002F6A24 = saveTemplateArg;
+        o->func_001EEEE6(&name);
+    } else {
+        o->func_001EF170(1);
+    }
+    return o;
+}
+#pragma optimize("", on)
