@@ -135,6 +135,46 @@ struct C_0008BBE0 {
     void func_00157660();
 };
 
+extern int D_0028F5DC;
+
+struct C_0008B710_Text {
+    char *str;
+    float x;
+    float y;
+    int func_001D6290();
+};
+
+struct C_0008B710_Item {
+    char pad0[0x44];
+    int unk44;
+    char pad48[6];
+    unsigned char unk4e;
+    void __stdcall_unused();
+    void func_0005E920(float x, float y);
+    void func_001D6600();
+    void func_001D5AD0();
+};
+
+struct C_0008B710 {
+    void *vtbl;
+    char pad4[0x20];
+    C_0008B710_Text *unk24;
+    C_0008B710_Item *unk28;
+    C_0008B710_Item *unk2c;
+    int pad30;
+    C_0008B710_Item *unk34;
+    C_0008B710_Item *unk38;
+    C_0008B710_Item *unk3c;
+    C_0008B710_Item *unk40;
+    C_0008B710_Item *unk44;
+    int pad48;
+    int unk4c;
+    int pad50;
+    int unk54;
+    void func_0008B710();
+    void func_00157960();
+};
+
 void C_0008B670::func_0008B670(int param_1) {
     ((C_0005E840 *)f24)->func_0005E840(param_1);
 }
