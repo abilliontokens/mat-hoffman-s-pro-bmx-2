@@ -72,6 +72,7 @@ struct QuadTree {
     u8 flagsE;
     char padF[0x94 - 0xF];
     S_QuadTreeFx *f94;
+    char pad98[4];
     u32 f9C;
     u32 fA0;
     u32 fA4;
@@ -79,8 +80,8 @@ struct QuadTree {
     u32 fAC;
     char padB0[0x890 - 0xB0];
     void **array890;
-    u32 count898;
-    u32 cap89C;
+    int count898;
+    int cap89C;
     u32 f8A0;
     u32 f8A4;
     u32 f8A8;
@@ -163,12 +164,89 @@ void QuadTreeNode::func_0017CEB0(void *item)
     }
 }
 
+int QuadTreeNode::func_0017CF30(void *item)
+{
+    S_QuadTreeListNode *node = f8;
+    S_QuadTreeListNode *prev = 0;
+    int i;
+
+    if (node != 0) {
+        do {
+            int allEmpty = 1;
+            int found = 0;
+            for (i = 0; i < 4; i++) {
+                if (node->slot[i] == item) {
+                    node->slot[i] = 0;
+                    found = 1;
+                } else if (node->slot[i] != 0) {
+                    allEmpty = 0;
+                }
+            }
+            if (allEmpty) {
+                if (node == f8) {
+                    f8 = node->next;
+                } else {
+                    prev->next = node->next;
+                }
+                D_002EFD80->f90->func_0001E790(node);
+                if (found)
+                    break;
+                prev = node;
+                node = node->next;
+            } else {
+                break;
+            }
+        } while (node != 0);
+    }
+    if (f8 != 0)
+        return 1;
+    if (f4 == 0)
+        return 0;
+    if (f4[0] != 0 || f4[1] != 0 || f4[2] != 0 || f4[3] != 0)
+        return 1;
+    return 0;
+}
+
+void QuadTree::func_0017D120(S_QuadTreeListNode *node)
+{
+    while (node != 0) {
+        int i;
+        for (i = 0; i < 4; i++) {
+            u16 *item = (u16 *)node->slot[i];
+            if (item != 0 && *item != stampC) {
+                *item = stampC;
+                array890[count898] = item;
+                count898++;
+                if (count898 >= cap89C)
+                    return;
+            }
+        }
+        node = node->next;
+    }
+}
+
 void C_0017D190::func_0017D190(void)
 {
     fa0 = f9c;
     fa4 = 0;
     fc++;
     fac = 0;
+}
+
+void QuadTree::func_0017D1B0(void)
+{
+    if (flagsE & 1) {
+        f94->func_0001E860();
+        flagsE &= 0xfe;
+        f9C = 0;
+        fA0 = 0;
+        fA4 = 0;
+        fAC = 0;
+        f8A0 = 0x80000000;
+        f8A4 = 0x80000000;
+        f8A8 = 0x80000000;
+        f8AC = 0x80000000;
+    }
 }
 
 void C_0017D500_Mgr::func_0017D500(S_QuadTreeListNode *node, int flag)
