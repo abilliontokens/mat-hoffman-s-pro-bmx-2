@@ -180,7 +180,7 @@ struct R_B : R_Base { R_B *func_0006E330(int a); R_B *func_0006ECC0(void *o); };
 struct R_C : R_Base { R_C *func_000715B0(int a); R_C *func_00071880(void *o); };
 struct R_D : R_Base { R_D *func_0006D590(int a); R_D *func_0006D750(void *o); };
 struct R_E : R_Base { R_E *func_00082450(int a); R_E *func_0008DB70(void *a, void *b, int c, int d, int e, int f, int g); };
-struct R_F : R_Base { R_F *func_000876B0(int a); R_F *func_00087760(void *a, void *b, int c); };
+struct R_F : R_Base { R_F *func_000876B0(int a); R_F *func_00087760(int a, void *b, int c); };
 struct R_G : R_Ctl2 { R_G *func_00061300(int a); };
 struct R_H { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); R_H *func_00092890(int a); };
 struct R_Items { char pad0[0x38]; void *items[1]; };
