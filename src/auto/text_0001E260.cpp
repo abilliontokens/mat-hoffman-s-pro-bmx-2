@@ -1,6 +1,11 @@
 /* 31 functions from 0x0001E260 to 0x0001EFA0, found by Ghidra. */
 #include "common.h"
 #include <stdlib.h>
+#include "ghidra.h"
+struct C_0001EF40 {
+    undefined4 func_0001EF40(void);
+};
+
 extern int D_00275F9C;
 extern int D_00275F7C;
 extern int D_002B7D54;
@@ -75,7 +80,8 @@ void GR_BitString::func_0001E460() {
 
 #pragma optimize("y", off)
 u32 __stdcall func_0001E550(int a0) {
-    u32 v = D_002A0DAC[a0];
+    u32 *table = D_002A0DAC;
+    u32 v = table[a0];
     u32 cur = D_002B7D50;
     D_002B7D54 += a0;
     if (D_002B7D54 < 0x20) {
@@ -85,7 +91,7 @@ u32 __stdcall func_0001E550(int a0) {
         D_002B7D4C += 1;
         u32 next = *D_002B7D4C;
         v &= cur << D_002B7D54;
-        next = (next >> 24) | ((next >> 8) & 0xff00) | ((next << 8) & 0xff0000) | (next << 24);
+        next = _byteswap_ulong(next);
         D_002B7D50 = next;
         if (D_002B7D54 != 0) {
             v |= next >> (0x20 - D_002B7D54);
@@ -114,5 +120,16 @@ void C_0001EDD0::func_0001EDD0(int a0) {
 
 void C_0001EF00::func_0001EF00(int a0) {
     unkE0 = a0;
+}
+
+undefined4 C_0001EF40::func_0001EF40(void)
+{
+  int in_ECX = (int)this;
+  
+  if (((*(int *)(in_ECX + 0xe0) != 0) && (*(int *)(in_ECX + 0xdc) != 0)) &&
+     (*(int *)(in_ECX + 0x118) != 0)) {
+    return 1;
+  }
+  return 0;
 }
 
