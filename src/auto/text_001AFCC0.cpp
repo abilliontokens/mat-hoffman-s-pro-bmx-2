@@ -99,6 +99,46 @@ struct C_001B01A0 {
     void func_001B01A0(void);
 };
 
+/* RenderPrologue */
+struct C_001B0180 {
+    void *vtbl;
+    int unk4;
+    int unk8;
+    C_001B0180 *func_001B0180(void);
+};
+
+void *func_001E8A44(unsigned int size);
+void *func_001E8AA5(unsigned int size);
+void *func_001E83E8(void *p, unsigned int size);
+
+struct S_001B0040_owner {
+    char pad0[0x28];
+    int unk28;
+};
+
+struct S_001B0040_item {
+    unsigned int key;
+    void *val;
+};
+
+struct S_001B0040_list {
+    int count;
+    S_001B0040_item items[1];
+};
+
+struct C_001AFD90 {
+    void *func_001AFD90(S_001B0040_owner *owner);
+};
+
+struct C_001B0040 {
+    char pad0[0xc];
+    S_001B0040_owner *unkC;
+    S_001B0040_list *unk10;
+    int func_001B0040(unsigned int key);
+    void func_001B0070(unsigned int key);
+    void *func_001B0130(unsigned int key);
+};
+
 
 int C_001AFEC0::func_001AFEC0()
 {
