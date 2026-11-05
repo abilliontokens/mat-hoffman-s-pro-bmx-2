@@ -74,6 +74,35 @@ struct C_0017E6F0 {
     void func_0017E6F0(Vec4_0017E6F0 a, Vec4_0017E6F0 b, float r);
 };
 
+RadiusLineCollisionObject *RadiusLineCollisionObject::func_0017E620(int a0) {
+    func_00132EB0(a0);
+    vtbl = &D_00289134;
+    int *p = &fF0;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = &f100;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    fF0 = D_002A8E7C;
+    fF4 = D_002A8E80;
+    fF8 = D_002A8E84;
+    fFC = D_002A8E88;
+    f100 = D_002A8E7C;
+    f104 = D_002A8E80;
+    f108 = D_002A8E84;
+    f10C = D_002A8E88;
+    f110 = 0;
+    f114 = 0;
+    f118 = 0;
+    f11C = 0;
+    unk50 = 4;
+    return this;
+}
+
 void RadiusLineCollisionObject::func_0017E8E0(int param_1)
 {
     if (unkA6 != 0) {
