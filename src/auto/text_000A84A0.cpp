@@ -137,6 +137,8 @@ struct C_000A9030 {
     char pad4[0x108];
     unsigned char unk10C;
     C_000A9030 *func_000A9030();
+    void func_001B5A00(void *a, void *b);
+    void func_000A9050(S_TriggerStream *stream, void *b);
 };
 
 /* BikeWreckTriggerAction */
