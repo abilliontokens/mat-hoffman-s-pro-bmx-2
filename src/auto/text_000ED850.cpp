@@ -302,6 +302,60 @@ void C_000EE1F0::func_000EE1F0(void) {
     unk440 = 1;
 }
 
+C_000EDF00 *C_000EDF00::func_000EE230(int a0)
+{
+    int i;
+    int *p;
+    func_001BE360(a0);
+    vtbl = &D_00281D24;
+    *((u8 *)this + 0x2bc) = 0;
+    *(int *)((char *)this + 0x284) = 0;
+    *(int *)((char *)this + 0x294) = 0;
+    *(int *)((char *)this + 0x288) = 0;
+    *(int *)((char *)this + 0x280) = 0;
+    *(int *)((char *)this + 0x28c) = 0;
+    *(int *)((char *)this + 0x290) = 0;
+    *(int *)((char *)this + 0x298) = 0;
+    *(int *)((char *)this + 0x2a0) = 0;
+    *(int *)((char *)this + 0x2a4) = 0;
+    *(int *)((char *)this + 0x29c) = 0;
+    *(int *)((char *)this + 0x2a8) = 0;
+    *(int *)((char *)this + 0x2b0) = 0;
+    *(int *)((char *)this + 0x2ac) = 0;
+    *(int *)((char *)this + 0x3c0) = 1;
+    p = (int *)((char *)this + 0x65c);
+    for (i = 9; i; i--, p++) { p[-9] = 0; p[0] = 0; }
+    *(int *)((char *)this + 0x3e0) = -1;
+    *(int *)((char *)this + 0x3c8) = -1;
+    *(int *)((char *)this + 0x3d0) = 0;
+    *(int *)((char *)this + 0x3d4) = 0;
+    *(int *)((char *)this + 0x3d8) = 0;
+    *(int *)((char *)this + 0x3dc) = 1;
+    *(int *)((char *)this + 0x3e4) = 6;
+    *(int *)((char *)this + 0x3cc) = 0;
+    *(int *)((char *)this + 0x3c4) = 0;
+    for (i = 0; i < 2; i++) arr690[i] = 0;
+    for (i = 0; i < 4; i++) arr680[i] = 0;
+    p = (int *)((char *)this + 0x6bc);
+    for (i = 9; i; i--, p++) { p[-9] = 0; p[0] = 0; p[9] = 0; }
+    *(int *)((char *)this + 0x3e8) = 0;
+    *(int *)((char *)this + 0x3ec) = 0;
+    *(int *)((char *)this + 0x3f0) = 0;
+    *(int *)((char *)this + 0x3f4) = 0;
+    *(int *)((char *)this + 0x3f8) = 0;
+    p = (int *)((char *)this + 0x5f0);
+    for (i = 9; i; i--, p++) { p[-9] = 0; p[0] = 0; }
+    *(int *)((char *)this + 0x410) = 1;
+    *(int *)((char *)this + 0x414) = 1;
+    *(int *)((char *)this + 0x418) = 0;
+    *(int *)((char *)this + 0x3fc) = 0;
+    *(int *)((char *)this + 0x400) = 0;
+    *(int *)((char *)this + 0x404) = 0;
+    *(int *)((char *)this + 0x408) = 0;
+    *(int *)((char *)this + 0x40c) = 0;
+    return this;
+}
+
 void C_000EDF00::func_000EE3B0(void)
 {
     int i;
