@@ -2,6 +2,52 @@
 #include "common.h"
 
 extern int D_002884D4;
+extern char D_002A5558[];
+extern "C" char * __cdecl strcpy(char *, const char *);
+extern "C" char * __cdecl strcat(char *, const char *);
+
+struct V4u {
+    u32 x, y, z, w;
+};
+
+struct C_001D3F50 {
+    void func_001D3F50(void);
+};
+
+struct C_0016A330 {
+    int func_0016A330(char *buf);
+};
+
+struct ParticleEmitterResetVT {
+    virtual void v0(); virtual void v1(); virtual void v2();
+};
+
+struct ParticleEmitterLoader {
+    void *vtbl;
+    char pad4[0x40];
+    u32 f44;
+    u32 f48;
+    u32 f4C;
+    u32 f50;
+    char pad54[0x10];
+    void *f64;
+    void *f68;
+    char f6C;
+    char pad6D[0x103];
+    float f170;
+    float f174;
+    float f178;
+    float f17C;
+    char pad180[8];
+    u32 f188;
+    char pad18C[4];
+    u32 f190;
+    char pad194[4];
+    float f198;
+    char pad19C[0xC];
+    u32 f1A8, f1AC;
+    ParticleEmitterLoader *func_0016B7A0(void *a, char *name, void *b, u32 *c);
+};
 
 struct C_00169C50 {
     void func_00169C50(void *param);
