@@ -135,6 +135,36 @@ void func_001F5B4E(S_U12 *p)
     p->l[2] = l2 >> 1;
 }
 
+#pragma optimize("s", on)
+void __cdecl func_001F60E2(S_Ld12_001F60E2 *dst, int pow, unsigned int mult12)
+{
+    S_Ld12_001F60E2 tmp;
+    S_Ld12_001F60E2 *tbl = D_002AF038 - 8;
+    if (pow != 0) {
+        if (pow < 0) {
+            pow = -pow;
+            tbl = D_002AF198 - 8;
+        }
+        if (mult12 == 0) {
+            dst->exp = 0;
+        }
+        while (pow != 0) {
+            int idx = pow & 7;
+            pow >>= 3;
+            tbl += 7;
+            if (idx != 0) {
+                S_Ld12_001F60E2 *p = tbl + idx;
+                if (p->exp >= 0x8000) {
+                    tmp = *p;
+                    *(long *)&tmp.mant[0] -= 1;
+                    p = &tmp;
+                }
+                func_001F5EC0(dst, p);
+            }
+        }
+    }
+}
+
 int func_001F627B(PFN_001F5975 fn)
 {
     int valid = 1;
