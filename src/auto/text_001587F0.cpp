@@ -29,7 +29,7 @@ struct Vec4_587F0 {
     Vec4_587F0() {}
     Vec4_587F0(float ax, float ay, float az) { x = ax; y = ay; z = az; w = 1.0f; }
     Vec4_587F0 operator*(float s) const { return Vec4_587F0(x * s, y * s, z * s); }
-    Vec4_587F0 operator+(const Vec4_587F0 &o) const { return Vec4_587F0(x + o.x, y + o.y, z + o.z); }
+    Vec4_587F0 operator+(const Vec4_587F0 &o) const { Vec4_587F0 r; r.x = x + o.x; r.y = y + o.y; r.z = z + o.z; r.w = 1.0f; return r; }
     Vec4_587F0 operator-(const Vec4_587F0 &o) const { return Vec4_587F0(x - o.x, y - o.y, z - o.z); }
 };
 struct S_R {
