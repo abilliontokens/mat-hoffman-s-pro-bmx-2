@@ -58,6 +58,23 @@ struct C_00193500 {
     void func_00193500(void);
 };
 
+struct V4 { float x, y, z, w; };
+struct GL2;
+struct Xf { V4 *func_00197F70(V4 *out, V4 *in); };
+struct Sh { void func_00193950(GL2 *a, V4 *b, V4 *c, int d); };
+struct GL2 {
+    char pad0[0x20];
+    V4 p0;
+    V4 p1;
+    V4 d;
+    char pad50[4];
+    Xf *xf;
+    V4 s0;
+    V4 s1;
+    char pad78[4];
+    Sh *sh;
+};
+V4 func_00159480(V4 a, V4 b);
 void func_001E891B(void *p);
 int func_001EA426(char *a, char *b);
 
