@@ -82,6 +82,13 @@ struct VCall_1CAFF0 {
 };
 
 
+void *WaterObject::func_001CAFD0(int a0)
+{
+    func_00143580(a0);
+    vtbl = (void *)&D_0028ECAC;
+    return this;
+}
+
 bool C_001CB120::func_001CB120(void)
 {
   int in_ECX = (int)this;
