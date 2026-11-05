@@ -266,6 +266,22 @@ void C_001C0670::func_001C0670(void)
     }
 }
 
+void C_001C05F0::func_001C0690(void)
+{
+    int i;
+
+    unk40 = 1;
+    if (unk1A4 != 0) {
+        for (i = 0; i < unk170; i++) {
+            unk68[i]->func_001B2270(unk1A8);
+        }
+    } else {
+        for (i = 0; i < unk170; i++) {
+            unk68[i]->func_001B1980();
+        }
+    }
+}
+
 void C_001C0E80::func_001C0E80(void)
 {
     unk2C = 1;
