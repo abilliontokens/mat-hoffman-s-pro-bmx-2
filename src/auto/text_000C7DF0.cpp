@@ -368,6 +368,40 @@ void C_000C8140::func_000C8140(void)
     func_001578D0();
 }
 
+void C_000C8290::func_000C8290(void)
+{
+    int z = 0;
+    int i;
+
+    f2B8 = z;
+    for (i = 5; i < 13; i++) {
+        C_000C8290_Obj *o = D_002A8490->f8[i];
+        if (o != 0 && o->v16() == 1) {
+            f2B8++;
+        }
+    }
+    f284 = z;
+    f280 = z;
+    f290 = z;
+    f298 = 1;
+    f2AC = z;
+    f2B4 = z;
+    f2B0 = z;
+    f2C0 = z;
+    f2BC = z;
+    f2D8 = z;
+    D_002B91AC->unk34->func_0005E840(D_002A8490->f2E8->f4->f288);
+    D_002B91AC->func_000BF860(z, 0x1EB, 0x184, z);
+    D_002B91AC->unk38->func_0005E840(D_002A8490->f2E8->f4->f7C8);
+    D_002B91AC->func_000BF860(1, 0x17B, 0x184, z);
+    D_002B91AC->unk3C->func_0005E840(D_002A8490->f2E8->f4->f838);
+    if (f2F4 != z) {
+        if (D_002A8490->f2E0->f2C0->func_0005C0F0() != z && f2F4 != z && f2E8 == 8) {
+            f2F4 = z;
+        }
+    }
+}
+
 void C_000C83E0::func_000C83E0(void) {
     C_001D5AD0 *p;
     C_001D5AD0 **ptr;
