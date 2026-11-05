@@ -153,7 +153,7 @@ struct C_001332E0 {
     int func_001332E0(C_001332E0 *o);
 };
 
-static inline int ListHas(C_001332E0 **list, int n, C_001332E0 *x)
+static __forceinline int ListHas(C_001332E0 **list, int n, C_001332E0 *x)
 {
     int i;
     for (i = 0; i < n; i++) {
