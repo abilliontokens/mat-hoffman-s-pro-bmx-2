@@ -30,10 +30,12 @@ struct C_0004EBA0 {
     void *fD58[1];
     void func_00031640(void);
     void func_00034090(void);
+    void func_00031450(void);
     void func_0004EA20(int a);
     void func_001577A0(void *p, int n);
     int func_0004EBA0(void);
     void func_0004EBE0(void);
+    void func_0004EC40(void);
 };
 
 int C_0004EBA0::func_0004EBA0(void)
