@@ -58,7 +58,9 @@ struct C_000E35E0 {
     char pad0[0x280];
     int f280;
     int f284;
-    char pad288[0x38];
+    int f288;
+    int f28C;
+    char pad290[0x30];
     int f2C0;
     char pad2C4[0x1C];
     C_000E3C90_Widget *f2E0[10];
