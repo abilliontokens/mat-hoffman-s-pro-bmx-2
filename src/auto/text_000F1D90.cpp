@@ -62,6 +62,10 @@ struct S_000F2120_Root {
     S_000F2120_Obj *f34;
     S_000F2120_Obj *f38;
     S_000F2120_Obj *f3c;
+    char pad40[0x10];
+    S_000F1D90_Obj *f50, *f54;
+    char pad58[0x10];
+    S_000F1D90_Obj *f68, *f6c;
     void func_000BF860(int a, int b, int c, int d);
 };
 
