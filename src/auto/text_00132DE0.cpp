@@ -10,3 +10,9 @@ struct C_001334E0 {
 void C_001334E0::func_001334E0(int a0) {
     unk74 = a0;
 }
+
+void func_00133D80(int a0) {
+    extern int D_002B92EC;
+    D_002B92EC = a0;
+}
+
