@@ -206,7 +206,14 @@ int C_001BA560::func_001BA560(S_001BA560_arg *arg1, int arg2)
     f288 = 0;
     return 1;
 }
-C_001BA5E0::C_001BA5E0() : f4(0), f8(0)
+inline void Init_001BA5E0(C_001BA5E0 *p)
+{
+    p->f4 = 0;
+    p->f8 = 0;
+    p->vtbl = (void *)&D_0028D200;
+}
+
+C_001BA5E0::C_001BA5E0()
 {
     void *func_001E8A44(int size);
     vtbl = (void *)&D_0028D200;
