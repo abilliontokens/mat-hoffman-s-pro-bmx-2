@@ -207,7 +207,7 @@ struct C_001491E0 {
     u32 unk14;
     u32 unk18;
     u32 unk1C;
-    void *unk20;
+    Anim_00149120 *unk20;
     void func_001B08F0(C_001491E0 *a0);
     void *func_001491E0(C_001491E0 *a0);
 };
