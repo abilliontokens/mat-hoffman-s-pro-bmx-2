@@ -21,6 +21,15 @@ struct Vec3i {
     }
 };
 
+struct C_00199BE0;
+
+static __forceinline void ResetLink(C_00199BE0 *&ref, C_00199BE0 *value)
+{
+    if (ref != value) {
+        ref = value;
+    }
+}
+
 struct C_00199BE0Mat {
     void func_000264C0(void *m);
 };
