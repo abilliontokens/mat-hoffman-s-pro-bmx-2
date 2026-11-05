@@ -73,6 +73,48 @@ struct C_0017BB10 {
 };
 
 
+int func_0017BA00(QuadV2 *a, QuadV2 *b, QuadV2 *c, QuadV2 *d, QuadV2 *out)
+{
+    f32 ex;
+    f32 ey;
+    f32 dx12;
+    f32 dx43;
+    f32 dy12;
+    f32 dy43;
+    f32 den;
+    f32 t;
+    f32 u;
+
+    ex = d->x - b->x;
+    ey = d->y - b->y;
+    dx12 = a->x - b->x;
+    dx43 = d->x - c->x;
+    dy12 = a->y - b->y;
+    dy43 = d->y - c->y;
+    den = dx12 * dy43 - dy12 * dx43;
+    if (den == D_00275544) {
+        return 0;
+    }
+    den = D_00275460 / den;
+    t = (dy43 * ex - dx43 * ey) * den;
+    if (t < D_00275544) {
+        return 0;
+    }
+    if (t > D_00275460) {
+        return 0;
+    }
+    u = (dx12 * ey - dy12 * ex) * den;
+    if (u < D_00275544) {
+        return 0;
+    }
+    if (u > D_00275460) {
+        return 0;
+    }
+    out->x = t * dx12 + b->x;
+    out->y = t * dy12 + b->y;
+    return 1;
+}
+
 void C_0017BB10::func_0017BB10(undefined4 *param_1)
 {
   undefined4* in_ECX = (undefined4*)this;
