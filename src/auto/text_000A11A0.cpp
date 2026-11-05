@@ -96,3 +96,11 @@ struct C_000A1E90 {
     int f28;
     void func_000A1E90(void);
 };
+
+int C_000A1E60::func_000A1E60(void) {
+    if (f530 != 0) {
+        f530->func_001596C0(f3ac);
+        return 1;
+    }
+    return 0;
+}
