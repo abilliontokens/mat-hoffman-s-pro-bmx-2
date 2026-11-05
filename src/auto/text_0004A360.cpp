@@ -273,13 +273,9 @@ static __forceinline S_Vec4Pod GetPos_0004A6A0(S_Obj4E4 *o)
     return t;
 }
 
-static inline S_Vec4Pod Sub_0004A6A0(const S_Vec4Pod &a, const S_Vec4Pod &b)
+static inline S_Vec4 Sub_0004A6A0(const S_Vec4Pod &a, const S_Vec4Pod &b)
 {
-    S_Vec4Pod r;
-    r.x = a.x - b.x;
-    r.y = a.y - b.y;
-    r.z = a.z - b.z;
-    r.w = 1.0f;
+    S_Vec4 r(a.x - b.x, a.y - b.y, a.z - b.z);
     return r;
 }
 
