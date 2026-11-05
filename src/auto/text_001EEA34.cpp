@@ -57,7 +57,22 @@ struct BitObj {
     BitObj *func_001EF935(BitObj *o);
     BitObj *func_001EF999(char c);
     BitObj *func_001EF9B2(char *s);
+    BitObj *func_001EF759(char *s);
+    BitObj *func_001EF789(char **pp, char delim);
+    BitObj *func_001EF848(unsigned int v);
+    /* the nine flag bits at +4 are cleared as one 16-bit field */
+    void ClearFlags() { ((unsigned short *)this)[2] &= 0xfe00; }
 };
+
+/* the single-character node func_001EF68E builds when the text is one char */
+struct S_001EF68E_Char {
+    void *vtbl;
+    int f4;
+    char c;
+};
+
+extern void *D_00295BCC;
+extern unsigned char D_002F6A3A;
 
 /* a stream position handed to func_001F23B8: an offset and a 9-bit state that
    its callers clear without touching the rest of the word */
