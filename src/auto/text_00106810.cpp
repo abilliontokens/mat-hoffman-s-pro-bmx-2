@@ -21,6 +21,26 @@ struct S_106E30_Cfg {
     char v200[0x10];
     char v210[0x10];
 };
+extern char *D_002A8490;
+extern float D_00275544;
+struct Vec_106B20 { int x,y,z,w; };
+struct Obj_106B20 {
+ char pad0[0x1cc]; unsigned char flags;
+ void func_0011CA60(Vec_106B20);
+ void func_0009DF90(float);
+};
+struct C_00106B20 {
+ char pad0[0x1e8]; char *f1e8; char *f1ec;
+ char pad1f0[0x1c]; char *f20c;
+ char pad210[0x534]; float f744;
+ char pad748[0x90]; Obj_106B20 *f7d8;
+ char pad7dc[0x1c4]; float f9a0;
+ char pad9a4[0x84]; int fa28;
+ char pada2c[0x804]; S_106E30_Fx *f1230; S_106E30_Fx *f1234;
+ char pad1238[0x70]; unsigned char flags;
+ char pad12a9[0x2ef]; Obj_106B20 *f1598;
+ void func_00106B20();
+};
 struct C_00106E30 {
     char pad0[0x950];
     S_106E30_Cfg *f950;
