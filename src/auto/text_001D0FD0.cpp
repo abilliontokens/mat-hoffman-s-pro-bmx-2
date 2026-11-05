@@ -204,6 +204,29 @@ void *XboxGame::func_001D1390(int flags)
     return this;
 }
 
+int XboxGame::func_001D13D0(int param_1)
+{
+    S_001D13D0_Alloc *p;
+
+    unk2A0 = func_00201820(0);
+    if (unk2A0 == 0) {
+        return 0;
+    }
+    p = (S_001D13D0_Alloc *)func_001E8A44(0x9e0);
+    if (p == 0) {
+        D_002F07B8 = 0;
+        return 0;
+    }
+    D_002F07B8 = (S_002F07B8 *)p->func_001D7D50();
+    if (D_002F07B8 == 0) {
+        return 0;
+    }
+    if (D_002F07B8->func_001D87A0(0, unk29C, unk2A0, (unk230 >> 6) & 1) != 0) {
+        return func_001572B0(param_1);
+    }
+    return 0;
+}
+
 void *C_001D1460::func_001D1460(int a0)
 {
     func_0015A910(a0);
@@ -255,11 +278,12 @@ C_001D14C0 *C_001D14C0::func_001D14C0(int a0)
 int C_001D1550::func_001D1550(int a0)
 {
     void *__stdcall func_0026EC54(int, int, int, int);
-    int i, off;
+    int i;
 
     f6B8 = func_0026EC54((int)&D_0026D94C, a0, 0, 0);
     f6C0 = 0;
-    for (i = 0, off = 0; i < f8; i++, off += 0xc) {
+    for (i = 0; i < f8; i++) {
+        int off = i * 0xc;
         f18[off] = 1;
         *(int *)(f18 + off + 4) = 0;
         *(short *)(f18 + off + 8) = 0;
