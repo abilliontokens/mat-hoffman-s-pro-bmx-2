@@ -11,9 +11,15 @@ extern char D_00284878[];
 int func_001E91F4(int p);
 
 struct C_0013B210 {
+    int func_0013AFD0(int a);
     void func_0013AFF0(int a, int b, int c);
+    void func_0013C8A0(int a, void *b, int c, int d);
 };
 extern C_0013B210 *D_002BEAAC;
+
+int func_001B27B0(int format);
+int func_001B2730(int format);
+void *func_001E8A44(int size);
 
 struct C_0001DFE0 {
     void *vtbl;
