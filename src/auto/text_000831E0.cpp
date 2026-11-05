@@ -81,7 +81,7 @@ struct C_000831E0 {
     int fC40;
     int fC44;
     int fC48;
-    int fC4C;
+    float fC4C;
     char padC50[4];
     int fC54;
     int fC58;
