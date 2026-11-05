@@ -342,6 +342,58 @@ undefined4 C_00100010::func_00100010(byte param_1)
   return in_ECX;
 }
 
+void C_00100030::func_00100030(void)
+{
+    S_00100030_V4 size;
+    int w;
+    char *s;
+
+    if (f2F8 != 0) {
+        f33C = 1;
+        f338 = 0;
+        D_000DE220();
+        f30C = 0xff;
+        f310 = 0;
+        f314 = 0;
+        f318 = 0;
+        f31C = 0.25f;
+        f2F8 = 0;
+    }
+    if (f2FC != 0) {
+        func_000DE300();
+        f30C = 0;
+        f310 = 0xff;
+        f314 = 0xff;
+        f318 = 0;
+        f31C = 0.25f;
+        f2FC = 0;
+    }
+    if (f2F8 == 0 && f2FC == 0 && f2F4 != 0 && D_002A8490->f10 == 0) {
+        if (f288 != 0) {
+            s = f328->func_001B17F0();
+            if ((int)strlen(s) < 0xf) {
+                w = f328->func_001B1800();
+                f328->func_001B1810(&size);
+                f32C->func_001B1A30((float)w + size.x, size.y, 0.0f);
+                f32C->func_001B1C10(D_0028F5DC);
+                f2F0 = (float)w + size.x - D_00275AEC;
+                f2EC->func_0005E7C0(f2F0, 175.0f);
+            }
+        }
+        f32C->func_001B1980();
+        f328->func_001B1980();
+        f328->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
+        f32C->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
+    }
+    D_002B91AC->f38->func_001D6600();
+    D_002B91AC->f3C->func_001D6600();
+    D_002B91AC->f48->func_001D6600();
+    D_002B91AC->f4C->func_001D6600();
+    D_002B91AC->f34->func_001D6600();
+    func_000DE3C0();
+    func_00157960();
+}
+
 undefined4 C_00100280::func_00100280(byte param_1)
 {
   int func_000DE650(...);
