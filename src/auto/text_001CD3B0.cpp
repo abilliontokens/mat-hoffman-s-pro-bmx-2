@@ -238,44 +238,6 @@ void XboxSoundGroup::func_001CD8F0(int a)
     func_00157A00(a);
 }
 
-C_001CDC20 *C_001CDC20::func_001CDC20(int a, int b)
-{
-    list0.items = 0;
-    list0.count = 0;
-    list0.growBy = 0;
-    list0.capacity = 0;
-    f20b.b0 = 0;
-    list1.items = 0;
-    list1.count = 0;
-    list1.growBy = 0;
-    list1.capacity = 0;
-    f34b.b0 = 0;
-    list2.items = 0;
-    list2.count = 0;
-    list2.growBy = 0;
-    list2.capacity = 0;
-    f48b.b0 = 0;
-    f0 = -1;
-    f4 = -1;
-    f4C = 0;
-    list0.items = (S_SoundElem **)func_001E8A44(4);
-    f20b.b0 = 1;
-    list0.growBy = 0x10;
-    list0.capacity = 1;
-    list1.items = (S_SoundElem **)func_001E8A44(4);
-    f34b.b0 = 1;
-    list1.growBy = 0x10;
-    list1.capacity = 1;
-    list2.items = (S_SoundElem **)func_001E8A44(4);
-    f48b.b0 = 1;
-    list2.growBy = 0x10;
-    list2.capacity = 1;
-    f8 = b;
-    fC = a;
-    RtlInitializeCriticalSection(f50);
-    return this;
-}
-
 void C_001CDCF0::func_001CDCF0(void)
 {
     if (f4 != -1) {
