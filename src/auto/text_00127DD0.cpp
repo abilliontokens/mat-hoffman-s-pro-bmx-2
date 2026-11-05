@@ -1,5 +1,31 @@
 /* 7 functions from 0x00127DD0 to 0x00128930, found by Ghidra. */
 #include "common.h"
+
+extern float D_00275544;
+void func_001E891B(void *p);
+
+struct S_00127DD0_V4 {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
+struct S_00127DD0_Entry {
+    S_00127DD0_V4 a;
+    S_00127DD0_V4 b;
+};
+
+/* binary tree node: split value, two vec4s of payload, two children */
+struct S_00127DD0_Node {
+    float split;
+    S_00127DD0_V4 a;
+    S_00127DD0_V4 b;
+    int unk24;
+    S_00127DD0_Node *left;
+    S_00127DD0_Node *right;
+};
+
 struct C_00128910 {
     char pad0[0xC];
     int unkC;
