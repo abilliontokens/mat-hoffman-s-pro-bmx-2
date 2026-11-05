@@ -336,6 +336,20 @@ void *C_001F32CC::func_001F32CC(unsigned int flags) {
     }
     return this;
 }
+
+#pragma optimize("sy", on)
+#pragma optimize("", on)
+#pragma optimize("sy", on)
+void __stdcall func_001F32E8(int param_1, int param_2) {
+    extern S_001F32E8 D_00295F2C;
+    void __stdcall func_001DE759(int, int, int, int *);
+    S_001F32E8 s = D_00295F2C;
+    s.f18 = param_1;
+    s.f1C = param_2;
+    func_001DE759(s.f0, s.f4, s.f10, &s.f14);
+}
+#pragma optimize("", on)
+
 #pragma optimize("", on)
 
 #pragma optimize("", on)
