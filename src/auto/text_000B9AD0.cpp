@@ -83,6 +83,19 @@ void *BmxUIMain::func_000BA2A0(unsigned int flags)
     return this;
 }
 
+void C_000BA2D0::func_000BA2D0()
+{
+    if (items) {
+        for (int i = 0; i < count; i++) {
+            func_001E891B(items[i]);
+        }
+        func_001E891B(items);
+    }
+    if (unk120) func_001E891B(unk120);
+    if (unk118) func_001E891B(unk118);
+    if (unk12C) func_001E891B(unk12C);
+}
+
 void __stdcall func_000BA430(int a0, int a1, int a2, int a3) {
 }
 
