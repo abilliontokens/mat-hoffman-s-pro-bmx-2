@@ -62,6 +62,12 @@ struct PageObj {
 };
 
 struct C_000C6CA0_Widget {
+    char pad0[0x184];
+    C_000C6CA0_Widget *func_001B12C0(int a);
+    void func_001B13A0(const char *, const char *, int, int);
+    void func_001B1C10(int a);
+    void func_001B1AB0(int a, int b);
+    void func_001B17D0(const char *s);
     void func_001B1980();
     void func_001B2270(unsigned int color);
     void func_001B1A30(float a1, float a2, float a3);
@@ -268,13 +274,10 @@ void BmxUIPageParkLevel::func_000C6D70()
     s->unk2C->func_001D5AD0();
     s->unk30->func_001D5AD0();
     for (i = 0; i < 6; i++) {
-        if (i == f28c * 2 || i == f28c * 2 + 1) {
-            m2f0[i]->f38 = (m2f0[i]->f38 & 0xffbfa35a) | 0xbfa35a;
-            m2f0[i]->f58 |= 2;
-        } else {
-            m2f0[i]->f38 = (m2f0[i]->f38 & 0xffcccccc) | 0xcccccc;
-            m2f0[i]->f58 |= 2;
-        }
+        if (i == f28c * 2 || i == f28c * 2 + 1)
+            setMatColor(m2f0[i], 0xffbfa35a, 0xbfa35a);
+        else
+            setMatColor(m2f0[i], 0xffcccccc, 0xcccccc);
         m2f0[i]->func_001D5AD0();
     }
 }
