@@ -205,7 +205,7 @@ void UIControl::func_001BE290(void)
             for (j = 0; j < e->f28; j++) {
                 UIControl *c = e->f2c[j];
                 if (c != 0) {
-                    (**(code **)(*(int *)c + 0x88))();
+                    ((UIVirt70 *)c)->virt34();
                 }
             }
         }
@@ -216,7 +216,7 @@ void UIControl::func_001BE290(void)
             for (j = 0; j < e->f28; j++) {
                 UIControl *c = e->f2c[j];
                 if (c != 0) {
-                    (**(code **)(*(int *)c + 0x88))();
+                    ((UIVirt70 *)c)->virt34();
                 }
             }
         }
