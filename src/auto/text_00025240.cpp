@@ -163,6 +163,8 @@ struct C_000255D0 {
 #include <xmmintrin.h>
 static __forceinline float Max_00025E50(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float Min_00025E50(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float MaxR_00025E50(const float &a, const float &b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float MinR_00025E50(const float &a, const float &b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 extern int D_002A1030;
 extern f32 D_00276558, D_00276554, D_00276550, D_00275AF4, D_0027654C, D_00276548;
 extern f32 D_00275800, D_00276544, D_00276540, D_0027653C, D_002756B4, D_00276538;
