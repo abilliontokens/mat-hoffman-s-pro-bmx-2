@@ -61,10 +61,12 @@ struct S_000CEFC0_4F8 {
     void func_00093120();
     int func_00093620(float v);
     int func_00093300(float v);
+    void func_00092E30(int idx);
 };
 
 struct S_000CEFC0_Mgr {
     int *func_0005C020(int idx);
+    void func_0005C3A0(int idx);
 };
 
 struct S_000CEFC0_Record {
