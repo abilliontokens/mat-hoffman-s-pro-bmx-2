@@ -443,3 +443,17 @@ C_001BCC90 *C_001BCC90::func_001BCC90(void *param_1)
     return this;
 }
 
+int C_001BCFE0::func_001BD040(void)
+{
+    int i;
+
+    for (i = 0; i < f114; i++) {
+        S_001BCFE0_Item *item = f110[i];
+        if (item == 0) {
+            return 0;
+        }
+        func_001577A0(item, -1);
+    }
+    return 1;
+}
+
