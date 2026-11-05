@@ -188,6 +188,46 @@ struct C_001701F0 {
 };
 
 
+void C_001703B0::func_0016FEE0(void)
+{
+    V4_0016FEE0 quad[4];
+    quad[0] = V4_0016FEE0(-1.0f, -1.0f, 0.0f, 0.0f);
+    quad[1] = V4_0016FEE0(-1.0f, 1.0f, 0.0f, 0.0f);
+    quad[2] = V4_0016FEE0(1.0f, 1.0f, 0.0f, 0.0f);
+    quad[3] = V4_0016FEE0(1.0f, -1.0f, 0.0f, 0.0f);
+    D_002EFDB8->f6c->func_0014A650(f154);
+    S_001701F0_Inner *g = D_002EFDB8->f4;
+    V4_0016FEE0 v(0.0f, 0.0f, 0.0f, 1.0f);
+    func_001FEBD0(0, &v);
+    func_001FEBD0(2, g->f170);
+    func_001FEBD0(3, D_002EFDB8->f74);
+    func_001FEC30(0x18, g->f250);
+    func_001FEC30(0x22, quad);
+    for (int i = 0; i < 4; i++) {
+        V4_0016FEE0 c;
+        int idx = i;
+        if (i == 2 || i == 3)
+            idx = 2;
+        c.x = lights[idx].col.b[2] * D_002A88C0 * (1.0f / 255.0f);
+        c.y = lights[idx].col.b[1] * D_002A88C0 * (1.0f / 255.0f);
+        c.z = (lights[idx].col.d & 0xff) * D_002A88C0 * (1.0f / 255.0f);
+        c.w = 1.0f;
+        func_001FEBD0(i + 0x26, &c);
+    }
+    if (f164 > 0) {
+        func_001FD020(&D_00040344, 0x302);
+        func_001FD020(&D_00040348, 1);
+        func_001FEE00(0, f160, 0x20);
+        func_00200A90(8, 0, f164 << 2);
+    }
+    if (f168 > 0) {
+        func_001FD020(&D_00040344, 0x302);
+        func_001FD020(&D_00040348, 0x303);
+        func_001FEE00(0, f15c, 0x20);
+        func_00200A90(8, 0, f168 << 2);
+    }
+}
+
 int C_001701F0::func_001701F0(void)
 {
     if (f170 != 0 && f170->fA8 != 0) {
