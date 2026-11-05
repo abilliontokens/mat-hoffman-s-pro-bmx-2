@@ -54,7 +54,7 @@ int func_0014FE60(int a0, int a1, int a2);
 
 /* eight allocated buffers with their sizes (freed by func_0013B440) */
 struct S_BufSet {
-    int bufs[8];
+    void *bufs[8];
     int sizes[8];
     int f40;
     int total;
