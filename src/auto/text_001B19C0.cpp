@@ -146,7 +146,6 @@ struct C_001B1AB0 {
 
 void C_001B19C0::func_001B19C0(float a1, float a2, float a3)
 {
-    extern float D_00275544;
     if (fC0 != 0) {
         return;
     }
@@ -156,7 +155,7 @@ void C_001B19C0::func_001B19C0(float a1, float a2, float a3)
     f3C = f2C;
     f40 = f30;
     f5C = 0;
-    if (a3 == D_00275544) {
+    if (a3 == 0.0f) {
         *(C_001B19C0_Vec *)&f2C = f4C;
     }
 }
