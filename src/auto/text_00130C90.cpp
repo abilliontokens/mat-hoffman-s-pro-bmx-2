@@ -124,9 +124,9 @@ void C_001313C0::func_00131400(S_00131400_In *in, int param_2)
 {
     f14 = in->f0;
     f4 = in->f0;
-    *f80 = f14.x;
-    *f84 = f14.y;
-    *f88 = f14.z;
+    *(f32 *)f80 = f14.x;
+    *(f32 *)f84 = f14.y;
+    *(f32 *)f88 = f14.z;
     S_Vec4 v = in->f10;
     f48 = func_0014F870(-v.y);
     v.y = 0;
