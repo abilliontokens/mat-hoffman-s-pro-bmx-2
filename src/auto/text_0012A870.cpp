@@ -442,6 +442,14 @@ undefined4 C_0012B390::func_0012B390(undefined4 param_1, undefined4 param_2, und
   return 1;
 }
 
+int C_0012AAE0::func_0012B3D0(void)
+{
+    if (f200 != D_0028403C || f1fc != D_00284038) {
+        func_0012AAE0(D_00284038, D_0028403C);
+    }
+    return 1;
+}
+
 C_0012B510R *C_0012B510R::func_0012B510(void)
 {
     extern int D_002840FC;
