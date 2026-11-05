@@ -4,13 +4,23 @@
 struct S_00097FD0_owner;
 
 struct C_00096870 {
-    char pad0[0x1a4];
+    int f0;
+    char pad4[0x1a4 - 4];
     f32 f1a4;
     char pad1a8[0xc];
     int f1b4;
-    char pad1b8[0x48e0 - 0x1b8];
+    int f1b8;
+    char pad1bc[0xc];
+    C_00096870 **f1c8;
+    char pad1cc[0x2554 - 0x1cc];
+    int f2554;
+    char pad2558[0x48e0 - 0x2558];
     int f48e0;
+    char pad48e4[0x63b0 - 0x48e4];
+    f32 f63b0[1];
     void func_00096870(const char *name);
+    void func_00096450(int idx);
+    void func_00096AB0(void);
     void func_00097050(S_00097FD0_owner *owner);
 };
 
