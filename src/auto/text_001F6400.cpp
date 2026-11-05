@@ -1,8 +1,6 @@
 /* 4 functions from 0x001F6400 to 0x001F6569, found by Ghidra. */
 #include "common.h"
 
-extern "C" void (__fastcall *__imp__IofCompleteRequest)(void *irp, char priorityBoost);
-
 extern "C" void (__fastcall *_imp__IofCompleteRequest)(void *irp, char priorityBoost);
 
 struct S_ListEntry_F64 {
