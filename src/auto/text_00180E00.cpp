@@ -108,9 +108,11 @@ struct Mgr {
     virtual void v5();
     virtual void v6(void *a, int b);
     void *func_001617F0(char *name, int f);
+    void func_001B26C0(int a0);
 };
 struct Rd {
     void func_0013C8A0(void *dst, int size, int n);
+    void func_0013B210(void *p);
 };
 extern Rd *D_002BEAAC;
 extern Mgr *D_002A829C;
