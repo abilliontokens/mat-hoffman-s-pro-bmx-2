@@ -239,6 +239,7 @@ struct C_00094A00 {
     void func_00094990(float a);
     void func_000949B0(float a, int b, int c);
     void func_00094C00(void);
+    int HasF2C() { return f2C != 0; }
     int func_00094E10(int idx, int a);
     int func_00094E40(int idx, int a, int b);
     int func_00094E70(int *ids, int count, int a, int b);
@@ -407,11 +408,13 @@ void C_00094760::func_000947F0(int node)
 int *C_00094760::func_00094810(int node)
 {
     S_00094620_Path *path = unk50;
+    S_00094620_Node *n;
 
-    if (node < path->unkA8 && node >= 0) {
-        return &path->Node(node)->unk20;
+    if (node >= path->unkA8 || node < 0) {
+        return 0;
     }
-    return 0;
+    n = path->unk34 + node;
+    return (int *)((char *)n + 0x20);
 }
 
 int C_00094840::func_00094840(void)
@@ -529,11 +532,10 @@ int C_00094A00::func_00094C60(void)
     for (i = 0; i < f7C; i++) {
         if (i == 0) {
             f84[0]->v12(100);
-            p = f84[0];
         } else {
             f84[i]->v12(1);
-            p = f84[i];
         }
+        p = (i == 0) ? f84[0] : f84[i];
         if (!p->v5(0)) {
             return 0;
         }
