@@ -23,6 +23,24 @@ int func_001B2B90(int param_1)
     }
 }
 
+int func_001B2BF0(int param_1)
+{
+    switch (param_1) {
+    case 8:
+        return 0x19;
+    case 0x235:
+        return 5;
+    case 0x613:
+        return 2;
+    case 0x115c:
+        return 4;
+    case 0x22b8:
+        return 6;
+    default:
+        return -1;
+    }
+}
+
 int func_001B2CB0(int param_1)
 {
     return func_001B2910(param_1) / 8;
