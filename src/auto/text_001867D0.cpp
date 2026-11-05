@@ -44,9 +44,22 @@ struct C_00157600 {
     void func_00157600(void *param);
 };
 
+struct S16_1A;
+
+/* BasicSoundTempData */
 struct C_001867D0 {
-    void func_001867D0();
+    void *vtbl;
+    char f4[0x104];
+    int f108[4];
+    int f118, f11C, f120, f124, f128, f12C, f130, f134, f138;
+    int f13C[9];
+    int f160;
+    C_001867D0 *func_001867D0();
 };
+
+extern int D_0028992C;
+extern int D_002764F0;
+extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 
 struct C_00187640 {
     void *vtbl;
