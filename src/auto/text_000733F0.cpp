@@ -12,14 +12,17 @@ struct C_00073AE0 {
     char pad1C[0x08];            /* 0x1C */
     u32 unk24[8];                /* 0x24 */
     u32 unk44[8];                /* 0x44 */
-    char pad64[0x30];            /* 0x64 */
-    u32 unk94;                   /* 0x94 */
-    u32 unk98;                   /* 0x98 */
-    u32 unk9C;                   /* 0x9C */
+    u32 unk64[3];                /* 0x64 */
+    u32 unk70[3];                /* 0x70 */
+    u32 unk7C[3];                /* 0x7C */
+    u32 unk88[3];                /* 0x88 */
+    u32 unk94[3];                /* 0x94 */
     char padA0[0x0C];            /* 0xA0 */
-    u32 unkAC;                   /* 0xAC */
-    u32 unkB0;                   /* 0xB0 */
-    char padB4[0x44];            /* 0xB4 */
+    u32 unkAC[2];                /* 0xAC */
+    u32 unkB4[5];                /* 0xB4 */
+    u32 unkC8[5];                /* 0xC8 */
+    u32 unkDC[6];                /* 0xDC */
+    char padF4[0x04];            /* 0xF4 */
     u32 unkF8;                   /* 0xF8 */
     u32 unkFC;                   /* 0xFC */
     u32 unk100;                  /* 0x100 */
