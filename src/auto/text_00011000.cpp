@@ -99,7 +99,8 @@ struct C_000112E0 {
     void *vtbl;
     char pad4[0x380];
     int f384, f388, f38C, f390, f394, f398, f39C, f3A0, f3A4, f3A8, f3AC, f3B0, f3B4;
-    char pad3B8[8];
+    char pad3B8[4];
+    int f3BC;
     int f3C0, f3C4, f3C8;
     float f3CC, f3D0, f3D4;
     int f3D8;
@@ -108,6 +109,12 @@ struct C_000112E0 {
     u32 v3F4[4];
     u32 v404[4];
     C_000112E0 *func_000112E0(int a);
+    void func_000114D0(int n);
+};
+
+/* audio channel player the pedestrian's sound slots are handed to */
+struct C_0008AB90 {
+    void func_0008AB90(void *a);
 };
 
 struct S_00011D30_Global {
