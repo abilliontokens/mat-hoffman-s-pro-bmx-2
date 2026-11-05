@@ -342,12 +342,12 @@ S_0001C610_V4 func_0001C610(float *a, float *b) {
     return r;
 }
 
-S_0001C610_V4 func_0001C680(S_0001C610_V4 v, float *m) {
+S_0001C610_V4 func_0001C680(float x, float y, float z, float w, float *m) {
     S_0001C610_V4 r;
 
-    r.x = v.z * m[2] + v.y * m[1] + v.x * m[0];
-    r.y = v.z * m[6] + v.y * m[5] + v.x * m[4];
-    r.z = v.z * m[10] + v.y * m[9] + v.x * m[8];
+    r.x = y * m[1] + z * m[2] + x * m[0];
+    r.y = y * m[5] + z * m[6] + x * m[4];
+    r.z = y * m[9] + z * m[10] + x * m[8];
     r.w = 1.0f;
     return r;
 }
@@ -602,17 +602,6 @@ void C_0001CD50::func_0001CD50(void) {
 void C_0001CD60::func_0001CD60(int a, int b) {
     func_00135C70(0x1f, 0, a, 0x30);
     func_00157BF0(a, b);
-}
-
-bool C_0001D0B0::func_0001D0B0(int count, int p2)
-{
-    void *p = func_001E8A44(count * 4);
-
-    f10 |= 1;
-    fC = count;
-    f4 = p;
-    f8 = p2;
-    return p != 0;
 }
 
 void C_0001D200::func_0001D200(void)
