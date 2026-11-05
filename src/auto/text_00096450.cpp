@@ -78,3 +78,21 @@ void C_00096700::func_00096700(void) {
 int C_00096740::func_00096740(void) {
     return unk48E0;
 }
+
+void C_00096870::func_00096870(const char *name) {
+    int i;
+    int j;
+
+    for (i = 0; i < f1b8; i++) {
+        C_00096870_Elem *e = f1c8[i];
+        if (e->f0 == 1) {
+            for (j = 0; j < e->f2554; j++) {
+                if (func_001EA426(f1c8[i]->entries[j].name, name) == 0) {
+                    f1c8[i]->ptrs[j] = 0;
+                }
+                e = f1c8[i];
+            }
+        }
+    }
+}
+
