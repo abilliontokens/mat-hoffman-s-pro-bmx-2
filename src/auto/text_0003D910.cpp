@@ -2,7 +2,7 @@
 #include "common.h"
 struct V4 { float x, y, z, w; };
 struct Blk { char pad[0x358]; int w; int h; int d; int flag; };
-struct Q { char pad[0x28]; };
+struct Q { char pad[0x28]; void func_00197E70(V4*); void func_00197B40(V4*, V4*); };
 struct Sub { int a; int b; Q* q; };
 struct Obj {
     char pad0[0x438];
