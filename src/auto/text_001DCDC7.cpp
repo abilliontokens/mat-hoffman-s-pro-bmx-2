@@ -2,6 +2,14 @@
 #include "common.h"
 #include "ghidra.h"
 #include <string.h>
+struct S_CopyLocals {
+    void *buffer;
+    char padding[3];
+    char remove;
+    u32 input;
+    u32 output;
+    __int64 offset;
+};
 struct S_ObjectAttributes;
 struct S_IoStatusBlock;
 extern char D_00010000;
