@@ -97,7 +97,6 @@ struct Key_0015BB70 {
     float p[3];
     float in[3];
     float out[3];
-    float pad;
 };
 struct Path_0015BB70 {
     int f0;
