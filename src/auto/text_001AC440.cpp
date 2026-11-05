@@ -96,7 +96,7 @@ void C_001AC790::func_001AC790(int param_1)
   return;
 }
 
-int StringTable::func_001AC7B0(const char *name)
+int StringTable::func_001AC7B0(const char *name, int unused)
 {
     int i;
     for (i = 0; i < count; i++) {
@@ -163,5 +163,26 @@ void *DynamicStringTable::func_001AC920(int flags)
         func_001E891B(this);
     }
     return this;
+}
+
+char *__fastcall func_001ACCF0(int flag, int *sign, unsigned value, char *end, int *len)
+{
+    char *p = end;
+    if (flag) {
+        *sign = 0;
+    } else {
+        int neg = value < 0;
+        *sign = neg;
+        if (neg)
+            value = -value;
+    }
+    do {
+        unsigned q = value / 10;
+        p--;
+        *p = (char)(value - q * 10) + '0';
+        value = q;
+    } while (value);
+    *len = (int)(end - p);
+    return p;
 }
 
