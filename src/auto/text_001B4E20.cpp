@@ -84,6 +84,55 @@ struct C_001B59E0 {
 };
 
 
+void C_001B4ED0::func_001B4ED0() {
+    vtbl = (void *)&D_0028CA9C;
+    f10 = f0C = f08 = 0;
+    f14 = 0x3f800000;
+    f20 = f1C = f18 = 0;
+    f24 = 0x3f800000;
+    f30 = f2C = f28 = 0;
+    f34 = 0x3f800000;
+    f44 = 0;
+    f48 = 0;
+    f04 = 0;
+    f08 = D_002AA9F4;
+    f0C = D_002AA9F8;
+    f10 = D_002AA9FC;
+    f14 = D_002AAA00;
+    f18 = D_002AA9F4;
+    f1C = D_002AA9F8;
+    f20 = D_002AA9FC;
+    f24 = D_002AAA00;
+    f28 = D_002AA9F4;
+    f2C = D_002AA9F8;
+    f30 = D_002AA9FC;
+    f34 = D_002AAA00;
+    f38 = 0;
+    f40 = 0;
+    f3C = 0;
+    f4C = 0;
+    f50 = 0;
+    f54 = 0;
+}
+
+void C_001B4ED0::func_001B4F90() {
+    vtbl = (void *)&D_0028CA9C;
+    if (f50 != 0) {
+        for (int i = 0; i < f4C; i++) {
+            void *p = ((void **)f50)[i];
+            if (p != 0) {
+                func_001E891B(p);
+            }
+        }
+        func_001E891B((void *)f50);
+        f50 = 0;
+    }
+    if (f54 != 0) {
+        ((VObj_001B4F90 *)f54)->v2();
+        f54 = 0;
+    }
+}
+
 undefined4 C_001B56F0::func_001B56F0(void)
 {
   int in_ECX = (int)this;
