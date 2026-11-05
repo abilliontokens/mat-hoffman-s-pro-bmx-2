@@ -68,6 +68,24 @@ struct C_000CB650 {
     void func_000CB650();
 };
 
+/* a drawable the page colours: f38 is its colour, b58 its dirty flag */
+struct RenderEntryCB {
+    char pad0[0x38];
+    u32 f38;
+    char pad3C[0x1C];
+    u8 b58;
+};
+
+/* BmxUIPageGameOptions */
+struct BmxUIPageGameOptions {
+    char pad0[0x314];
+    s16 f314;
+    char pad316[0x334 - 0x316];
+    RenderEntryCB *arr334[12];
+    void func_001BF000();
+    void func_000CB2D0();
+};
+
 void C_000CA940::func_000CA940(void)
 {
     f324->func_001B1980();
