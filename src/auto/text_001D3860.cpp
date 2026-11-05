@@ -74,6 +74,9 @@ struct C_001D3F60 : C_001D3F50 {
 };
 
 extern int D_0028F474;
+extern int D_00010000;
+extern int D_00020000;
+extern int D_00040000;
 extern int D_00080000;
 extern char D_00278068[];
 extern char D_0028F0A8[];
