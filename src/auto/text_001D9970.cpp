@@ -81,3 +81,25 @@ struct C_001DA4C0_1D9970 {
     XboxWaterDisplacement **unk4C;
     void func_001DA4C0(int a1);
 };
+
+void XboxWaterDisplacement::func_001D9E60(void *a1, void *a2)
+{
+    char *p = (char *)this;
+    func_001D9820(p + 0x228, D_0028F8C0, 0x20);
+    func_001D9820(p + 0x258, D_0028F8B0, 0x20);
+    func_001D9820(p + 0x240, D_0028F8A0, 0x20);
+    func_001D9820(a1, D_0028F88C, 0x20);
+    func_001D9820(a2, D_0028F878, 0x20);
+}
+
+void C_001DA4C0_1D9970::func_001DA4C0(int a1)
+{
+    XboxWaterDisplacement **list = unk4C;
+    int i;
+    for (i = 0; list[i] != 0; i++) {
+        XboxWaterDisplacement *p = list[i];
+        p->func_00182020(p->unk1B8[0], a1);
+        ((VCall_1D9970 *)p)->v16();
+    }
+    D_002F0630->func_00149480();
+}
