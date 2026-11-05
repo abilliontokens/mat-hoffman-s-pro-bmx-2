@@ -84,6 +84,10 @@ struct C_0004DCA0 {
     char pad2c4[0x3c4];
     C_0004DCA0_Vec f688[8];
     C_0004DCA0_Vec f708[8];
+    int func_0004D7A0(int *a, int b);
+    int func_00157BF0(int *a, int b);
+    int func_00033320(int *a, int b);
+    void func_00032A20(void);
     void func_000342C0(void);
     C_0004DCA0 *func_0004DCA0(void);
 };
