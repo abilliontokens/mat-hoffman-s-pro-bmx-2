@@ -78,6 +78,23 @@ struct C_0001C4C0 {
 };
 
 
+void C_0001C4C0::func_0001C4C0(int *param_1) {
+    int local[3];
+    int i = 0;
+    if (i < unk18) {
+        do {
+            C_0001C4C0_Item *item = unk1C[i];
+            if (item != 0) {
+                item->func_0001C4C0(local);
+                param_1[0] = local[0];
+                param_1[1] += local[1];
+                param_1[2] += local[2];
+            }
+            i++;
+        } while (i < unk18);
+    }
+}
+
 void C_0001C540::func_0001C540(void) {
     unk10 = 0;
     unk14 = 2139095039;
