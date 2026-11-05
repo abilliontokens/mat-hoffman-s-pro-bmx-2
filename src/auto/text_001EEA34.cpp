@@ -61,6 +61,21 @@ struct S_001EF087 {
     unsigned char func_001EF087(void);
 };
 
+/* Class_00295BD8 instance */
+struct S_001EF033 {
+    void *vtbl;
+    int f4;
+    BitObj *f8;
+};
+
+/* Class_00295BE4 instance */
+struct S_001EF062 {
+    void *vtbl;
+    int f4;
+    int f8;
+    int fC;
+};
+
 int func_001EEE49(int i) {
     int r = D_002955B8[i];
     if (D_002F6A38 & 1) r += 2;
@@ -115,6 +130,24 @@ int *S_001EEFBA::func_001EEFBA(int idx)
         return &f34;
     }
     return items[idx];
+}
+
+S_001EEFE3 *S_001EEFE3::func_001EEFE3(S_001EEFE3 *n)
+{
+    S_001EEFE3 *p;
+
+    if (n != 0) {
+        p = next;
+        if (p == 0) {
+            next = n;
+        } else {
+            while (p->next != 0) {
+                p = p->next;
+            }
+            p->next = n;
+        }
+    }
+    return this;
 }
 
 BitObj *BitObj::func_001EF8F6(int a0, int a1) {
