@@ -51,6 +51,42 @@ struct C_001C2210 {
     void func_001C2210();
 };
 
+struct C_001C21F0 {
+    void func_001C21F0(int a0);
+    void __stdcall_dummy();
+    void func_001BFD00(int a0);
+    void func_00157A00(int a0);
+};
+
+extern int D_0028D804;
+extern int D_0028DB04;
+void func_001E891B(void *);
+void func_001E8390(void *);
+
+struct C_001C2160 {
+    void *vtbl;
+    void *func_001C2160(int flags);
+    void func_00157660();
+};
+
+struct C_001C2250 {
+    void **vtbl;
+    char pad4[0x28];
+    u32 unk2C;
+    char pad30[0x8];
+    u32 unk38;
+    u32 unk3C;
+    void func_001C2250();
+};
+
+struct C_001C2670 {
+    void *vtbl;
+    char pad4[0x64];
+    void *unk68;
+    void *func_001C2670(int flags);
+    void func_00157660();
+};
+
 struct C_001C2290 {
     char pad0[0x2C];
     int unk2C;
