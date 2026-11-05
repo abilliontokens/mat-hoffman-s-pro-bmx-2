@@ -56,6 +56,12 @@ extern float D_00282A80;
 extern float D_00282A7C;
 float func_0014FBA0(float a, float b);
 #include <xmmintrin.h>
+static __forceinline float sqrt_00107FB0(const float &x)
+{
+    float r;
+    _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x)));
+    return r;
+}
 
 struct C_00107FB0 {
     char pad0[0x970];
