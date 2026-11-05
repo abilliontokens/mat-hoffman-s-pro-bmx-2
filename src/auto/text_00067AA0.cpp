@@ -128,6 +128,33 @@ struct C_000683F0 {
     void func_000684B0();
 };
 
+struct W_000688C0 {
+    virtual ~W_000688C0();
+};
+
+struct D_000688C0 {
+    void func_001D6410();
+};
+
+void func_001E891B(void *p);
+
+struct C_000688C0 {
+    void *vtbl;
+    char pad4[0x7C];
+    W_000688C0 *unk80[2];
+    char pad88[0x20];
+    D_000688C0 *unkA8[4];
+    W_000688C0 *unkB8[4];
+    W_000688C0 *unkC8[4];
+    W_000688C0 *unkD8[5];
+    W_000688C0 *unkEC[5];
+    W_000688C0 *unk100[14];
+    W_000688C0 *unk138;
+    D_000688C0 *unk13C;
+    void func_00157660();
+    void func_000688C0();
+};
+
 struct C_00067D60 {
     void func_00067D60(int param_1, undefined4 param_2);
 };
@@ -265,5 +292,63 @@ void C_000683F0::func_000684B0()
     unk138 = 0;
     unk164 = 0;
     unk158 = -1;
+}
+
+C_000683F0 *C_000683F0::func_000687B0(int a)
+{
+    extern int D_0027850C;
+    extern int D_0027887C;
+    int *w = (int *)this;
+    int *p;
+    int i;
+
+    func_00157600(a);
+    w[0] = (int)&D_0027850C;
+    p = &w[0x11];
+    for (i = 0; i < 8; i++) {
+        p[-8] = 0;
+        p[0] = 0;
+        p++;
+    }
+    w[0] = (int)&D_0027887C;
+    w[0x50] = 0;
+    w[0x51] = 0;
+    w[6] = -1;
+    w[0x57] = 1;
+    w[0x59] = 0;
+    w[0x5a] = 0;
+    w[0x58] = 0;
+    w[0x5b] = 2;
+    for (i = 0; i < 7; i++) {
+        w[0x19 + i] = 0;
+    }
+    w[0x20] = 0;
+    w[0x21] = 0;
+    p = &w[0x2e];
+    for (i = 0; i < 4; i++) {
+        p[4] = 0;
+        p[0] = 0;
+        p[-4] = 0;
+        p++;
+    }
+    w[0x4f] = 0;
+    w[0x53] = 0;
+    w[0x5e] = 0;
+    w[0x4e] = 0;
+    w[0x55] = 0;
+    w[0x56] = 0;
+    w[0x54] = 0;
+    p = &w[0x3b];
+    for (i = 0; i < 5; i++) {
+        p[-5] = 0;
+        p[0] = 0;
+        p++;
+    }
+    for (i = 0; i < 14; i++) {
+        w[0x40 + i] = 0;
+    }
+    w[0x5c] = -1;
+    w[0x5d] = 0;
+    return this;
 }
 
