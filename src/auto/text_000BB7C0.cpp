@@ -161,6 +161,46 @@ struct C_000BC590 {
     void func_000BC590(void);
 };
 
+extern char D_0027DC10[];
+extern char D_0027DC08[];
+
+void *func_001E8A44(int size);
+void func_00030F30(char *s, void *p);
+int func_001361E0(int a, int b, int c, int d);
+
+/* 0x80-byte stream object of BmxVideoPlayer::f30 */
+struct S_000BC520_Stream {
+    char pad0[0x48];
+    int f48;
+    int f4C;
+    S_000BC520_Stream *func_001D3690(int v);
+    void func_001D3B20(char *name);
+    void func_001D3730(int v);
+    void func_001D3CC0(int v);
+    void func_001D37C0(void);
+};
+
+/* BmxVideoPlayer */
+struct C_000BC520 {
+    char pad0[0x24];
+    int f24;
+    S_000BC590_Owner *f28;
+    int f2C;
+    S_000BC520_Stream *f30;
+    int f34;
+    int f38;
+    int f3C;
+    int f40;
+    int f44;
+    void func_001577A0(void *a, int b);
+    void func_00157A00(int a);
+    void func_00157BF0(int a, int b);
+    C_000BC520 *func_000BC520(int a, S_000BC590_Owner *owner);
+    void func_000BC5D0(int idx, int play);
+    void func_000BC680(int a);
+    void func_000BC700(int a, int b);
+};
+
 
 int C_000BBDF0::func_000BBDF0(void)
 {
