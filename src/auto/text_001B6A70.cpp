@@ -52,6 +52,7 @@ struct S_001B70D0_Mgr {
     char pad8[0x280 - 8];
     S_001B70D0_Slot **f280;
     int f284;
+    S_001B70D0_Slot *&At(int i) { return f280[i]; }
 };
 
 struct S_001B70D0_Lookup {
