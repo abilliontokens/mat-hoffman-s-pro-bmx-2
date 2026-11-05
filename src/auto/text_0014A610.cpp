@@ -105,7 +105,7 @@ void *func_001E8A44(int size);
 void __stdcall func_001FF220(int v);
 void __stdcall func_001FEEF0(int a, int b);
 void __stdcall func_001FEB90(int a, int b);
-int func_0014A6C0(int type);
+static __declspec(noinline) int func_0014A6C0(int type);
 int func_0014A7B0(VSEntry *entries, unsigned int *tokens);
 
 
@@ -144,6 +144,41 @@ void C_0014A610::func_0014A650(C_0014A610 *src)
     unk0 = src->unk4;
     unk4 = src->unk8;
     unk8 = 0;
+}
+
+int func_0014A6C0(int type)
+{
+    switch (type) {
+    case 0x14:
+        return 1;
+    case 0x11:
+    case 0x15:
+    case 0x24:
+        return 2;
+    case 0x34:
+        return 3;
+    case 0x12:
+    case 0x16:
+    case 0x21:
+    case 0x25:
+    case 0x40:
+    case 0x44:
+        return 4;
+    case 0x31:
+    case 0x35:
+        return 6;
+    case 0x22:
+    case 0x41:
+    case 0x45:
+        return 8;
+    case 0x32:
+    case 0x72:
+        return 0xc;
+    case 0x42:
+        return 0x10;
+    default:
+        return 0;
+    }
 }
 
 int func_0014A7B0(VSEntry *entries, unsigned int *tokens)
@@ -279,13 +314,9 @@ void *C_0014AA40::func_0014AA40(int flags) {
 Vec4 *func_0014AA70(Vec4 *out, Vec4 *a, Vec4 *b)
 {
     Vec4 t;
-    float r;
-    _mm_store_ss(&r, _mm_max_ss(_mm_set_ss(a->x), _mm_set_ss(b->x)));
-    t.x = r;
-    _mm_store_ss(&r, _mm_max_ss(_mm_set_ss(a->y), _mm_set_ss(b->y)));
-    t.y = r;
-    _mm_store_ss(&r, _mm_max_ss(_mm_set_ss(a->z), _mm_set_ss(b->z)));
-    t.z = r;
+    _mm_store_ss(&t.x, _mm_max_ss(_mm_set_ss(a->x), _mm_set_ss(b->x)));
+    _mm_store_ss(&t.y, _mm_max_ss(_mm_set_ss(a->y), _mm_set_ss(b->y)));
+    _mm_store_ss(&t.z, _mm_max_ss(_mm_set_ss(a->z), _mm_set_ss(b->z)));
     t.w = 1.0f;
     *out = t;
     return out;
