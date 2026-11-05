@@ -537,6 +537,75 @@ void C_00133730::func_00133730(int a0, int a1) {
     unk68 = a1;
 }
 
+#pragma intrinsic(strcpy, strlen, strcat)
+void *func_00133750(int a0, char *path, int a2)
+{
+    char buf[260];
+    int h;
+    int ptr;
+    int vC;
+    int v10;
+    int v14;
+    void *obj = 0;
+
+    if (D_002A4C10[0] != 0) {
+        strcpy(buf, D_002A4C10);
+        if (D_002A4C0F[strlen(D_002A4C10)] != '\\')
+            func_001E8BF0(buf, D_00284644, 0x7f);
+        strcat(buf, path);
+    } else {
+        strcpy(buf, path);
+    }
+    func_00030F30(buf, D_0028463C);
+    h = -1;
+    ptr = 0;
+    if (D_002BEAAC->func_0013D310(buf, D_00275FB4, &h, &ptr, 1) == 0)
+        return 0;
+    if (ptr != 0) {
+        v14 = *(int *)(ptr + 4);
+    } else {
+        int v18;
+        D_002BEAAC->func_0013C8A0(h, &v18, 1, 4);
+        D_002BEAAC->func_0013C8A0(h, &vC, 4, 1);
+        D_002BEAAC->func_0013C8A0(h, &v10, 4, 1);
+        if (v18 != 0x4d2 || func_001EA426((char *)&vC, D_00284638) != 0 || v10 != 1) {
+            D_002BEAAC->func_0013C110(h);
+            return 0;
+        }
+        func_00132E90(h, &v14);
+    }
+    switch (v14) {
+    case 2: {
+        void *m = func_001E8A44(0x110);
+        C_0017F050 *o = m ? ((C_0017F050 *)m)->func_0017F050(1) : 0;
+        o->func_0017F0A0(a2);
+        o->func_00180600(a0, h);
+        obj = o;
+        break;
+    }
+    case 1: {
+        void *m = func_001E8A44(0x1b0);
+        C_0019DA80 *o = m ? ((C_0019DA80 *)m)->func_0019DA80(1) : 0;
+        o->func_00129920(a2);
+        if (ptr) o->func_0019ECB0(a0, ptr);
+        else o->func_0019F780(a0, h);
+        obj = o;
+        break;
+    }
+    case 0: {
+        void *m = func_001E8A44(0x1e0);
+        C_0019B700 *o = m ? ((C_0019B700 *)m)->func_0019B700(1) : 0;
+        o->func_00129920(a2);
+        if (ptr) o->func_0019C690(a0, ptr);
+        else o->func_0019D6C0(a0, h);
+        obj = o;
+        break;
+    }
+    }
+    D_002BEAAC->func_0013C110(h);
+    return obj;
+}
+
 float func_00133A30(float *a, float t, int c, S_00133A30 *s)
 {
     float d;
