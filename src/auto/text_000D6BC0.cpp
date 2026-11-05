@@ -92,7 +92,7 @@ struct BmxUIPageHOF4 {
     int unk2c4;
     int unk2c8;
     C_000D6D50_Item *unk2cc[5];
-    float unk2e0[5];
+    int unk2e0[5];
     C_000D6D50_Item *unk2f4[2];
     C_000D6D50_Item *unk2fc[2];
     float unk304;
