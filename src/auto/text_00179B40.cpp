@@ -1,5 +1,6 @@
 /* 13 functions from 0x00179B40 to 0x0017AA90, found by Ghidra. */
 #include "common.h"
+#include <string.h>
 struct ShadowPieceTable { char pad0[8]; int count; };
 struct DXRenderableObject { char pad0[0x1a4]; ShadowPieceTable *f1a4; };
 struct Alloc190;
@@ -182,7 +183,6 @@ C_0017A1D0 *C_0017A1D0::func_0017A310(C_0017A1D0_Vec4 *p)
 C_0017A4D0 *C_0017A4D0::func_0017A4D0(int a0)
 {
     int *p;
-    float *fp;
     int i;
     func_00157600(a0);
     vtbl = (void *)&D_00288F84;
@@ -191,8 +191,13 @@ C_0017A4D0 *C_0017A4D0::func_0017A4D0(int a0)
     p = &u[8]; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
     p = &u[12]; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
     u[16] = 0; u[17] = 0; u[18] = 0; u[19] = 0;
-    fp = (float *)&u[21];
-    for (i = 0; i < 4; i++) fp[i] = 0.0f;
+    p = &u[21];
+    i = 0;
+    do {
+        *p = 0;
+        p++;
+        i++;
+    } while (i < 4);
     u[25] = 0; u[35] = 0; u[36] = 0; u[34] = 0;
     u[26] = 1; u[28] = 1;
     u[4] = D_002A8CEC; u[5] = D_002A8CF0; u[6] = D_002A8CF4; u[7] = D_002A8CF8;
