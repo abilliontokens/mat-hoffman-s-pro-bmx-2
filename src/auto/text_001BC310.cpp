@@ -196,6 +196,9 @@ struct C_UIGlobalManager {
     C_UIGlobalManager *func_001BC770(void *param);
     void func_001BC7A0();
     void func_001BC810();
+    void *func_001BCA30(unsigned int flags);
+    void *func_001BCBE0(void *a1, void *a2, int a3);
+    int func_001BCA90();
     void func_00157660();
 };
 
