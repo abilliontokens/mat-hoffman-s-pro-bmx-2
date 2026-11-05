@@ -43,6 +43,7 @@ struct C_000AADB0_Parser {
     void func_00168BE0(const char *, const char *, char *, int);
 };
 struct C_000AADB0_Box {
+    C_000AADB0_Box();
     float f0, f4, f8, fC, f10, f14;
     int f18;
     char **f1C;
