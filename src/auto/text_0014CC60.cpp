@@ -1,6 +1,11 @@
 /* 3 functions from 0x0014CC60 to 0x0014D720, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+static __forceinline void FloatToInt(int *out, float f)
+{
+    int * volatile p = out;
+    *p = _mm_cvttss_si32(*(__m128 *)&f);
+}
 struct C_0013C8A0 {
     void func_0013C8A0(int key, void *out, int size, int flag);
 };
