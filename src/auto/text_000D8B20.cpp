@@ -109,6 +109,28 @@ struct C_000D9750 {
     void func_000D9750();
 };
 
+struct C_000D8BA0 {
+    char pad0[0x29C];
+    int unk29C;
+    int unk2A0;
+    int unk2A4;
+    int unk2A8;
+    int unk2AC;
+    int unk2B0;
+    int unk2B4;
+    int unk2B8;
+    int unk2BC;
+    int unk2C0;
+    int unk2C4;
+    float unk2C8;
+    void func_000D8820();
+    void func_000D8A40();
+    void func_000D85C0();
+    void func_001BEE30(int a, int b);
+    void func_00157960();
+    void func_000D8BA0();
+};
+
 void BmxUIPageHOF4::func_000D8B20()
 {
     RenderEntryHOF **p = arr2F4;
