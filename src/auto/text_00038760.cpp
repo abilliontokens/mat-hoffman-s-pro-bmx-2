@@ -67,11 +67,4 @@ int C_00038760::func_00038A70(void *param_1, void **param_2)
     return -1;
 }
 
-inline void *C_00038760::at(int i)
-{
-    if (count > 0 && items != 0 && i < count)
-        return items[i];
-    return 0;
-}
-
 
