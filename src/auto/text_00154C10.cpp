@@ -1,7 +1,81 @@
 /* 4 functions from 0x00154C10 to 0x00155890, found by Ghidra. */
 #include "common.h"
 
+#include <string.h>
+
 extern int D_00286DD4;
+
+void *func_001E8A44(unsigned int size);
+int func_001ADCC0(char *dst, int size, const char *fmt, ...);
+extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
+
+extern char D_002A5EA0[], D_002A60B0[], D_002A45E0[], D_002A5870[], D_00275678[];
+extern char D_002A5FA8[], D_002A47F0[], D_002A48F8[], D_002A5348[];
+extern char D_002758F0[], D_002758E4[], D_002758D8[], D_002758CC[];
+
+/* the path buffers are saved and restored with a length-clamped copy */
+static __forceinline void CopyPath_001554D0(char *dst, const char *src)
+{
+    volatile int len = strlen(src);
+    volatile int lim = 0x103;
+    volatile int res = lim > len ? len : lim;
+    int n = res;
+    func_001E8920(dst, src, n);
+    dst[n] = 0;
+}
+
+/* menu object (0x20c bytes) created through func_001CF740 */
+struct S_001554D0_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4(const char *s, int a, int b, int c, int d);
+    S_001554D0_Obj *func_001CF740(void *a, int b, int c);
+};
+
+struct S_001554D0_Cam {
+    void func_0019ABA0(int a, int b);
+};
+
+struct S_001554D0_Owner {
+    char pad0[4];
+    S_001554D0_Cam *f4;
+};
+
+struct S_001554D0_Scene {
+    char pad0[0xb4];
+    void *fB4;
+};
+
+struct S_001554D0_Root {
+    char pad0[4];
+    S_001554D0_Scene *f4;
+};
+
+struct S_001554D0_Global {
+    char pad0[0x348];
+    int f348;
+    char pad34C[0x15c];
+    int *f4A8;
+    char pad4AC[0x14];
+    int f4C0;
+};
+
+extern S_001554D0_Global *D_002B9120;
+extern S_001554D0_Root *D_002A8490;
+
+struct C_001554D0 {
+    char pad0[0x3c];
+    S_001554D0_Owner *f3C;
+    char pad40[0x360];
+    S_001554D0_Obj *f3A0[2];
+    S_001554D0_Obj *f3A8[2];
+    char pad3B0[4];
+    S_001554D0_Obj *f3B4;
+    S_001554D0_Obj *f3B8;
+    void func_001554D0(int a0);
+};
 
 struct C_001C7310 {
     void func_001C7310(void *param);
