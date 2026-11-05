@@ -112,8 +112,21 @@ struct C_00167760 {
     void func_001D3F50(void);
 };
 
-struct S_001677C0_Block {
-    u32 w[16];
+struct __declspec(align(16)) S_001677C0_Block {
+    f32 m[16];
+};
+
+struct V4_001677C0 {
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 w;
+    V4_001677C0(f32 x_, f32 y_, f32 z_, f32 w_) {
+        x = x_;
+        y = y_;
+        z = z_;
+        w = w_;
+    }
 };
 
 struct S_001677C0_Src {
@@ -125,10 +138,7 @@ struct C_001677C0_Dst {
     char pad0[0x10];
     S_001677C0_Block blk;
     void *f50;
-    u32 f54;
-    u32 f58;
-    u32 f5c;
-    u32 f60;
+    V4_001677C0 v54;
 };
 
 struct C_001677C0 {
