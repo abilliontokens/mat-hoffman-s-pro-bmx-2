@@ -30,7 +30,8 @@ struct S_001D7190_Tex {
     int f14;
     int f18;
     void *f1C;
-    char pad20[8];
+    int f20;
+    int f24;
 };
 
 int __stdcall func_001FF460(int a);
@@ -200,5 +201,76 @@ void XboxTextureMap::func_001D6D00(Img_001D6D00 *img, Sz_001D6D00 *sz, char *nam
     func_00178C60(mem, sz->p, w, img->f18, w, (sz->w << 3) / func_001B2910(fA4), 0x22b8, fA4, 0, 0, 0x80, 0xff00ff, 1);
     func_001B3A50(mem, img->f14, img->f18, 0, buf, 0x20);
     func_001E8390(mem);
+}
+
+int XboxTextureMap::func_001D7190(int a1, int a2, int a3)
+{
+    S_001D7190_Tex t = {1, -1, 0, 0, 0, 0, 0, 0, {0}};
+    int desc[3] = {0, 0, 0};
+    int dims[2];
+    int fmt;
+    int faces;
+    int levels;
+    int i;
+
+    D_002BEAAC->func_0013C8A0(a1, &t, 0x18, 1);
+    switch (t.f4) {
+    case 0:
+        fmt = 0xc;
+        break;
+    case 1:
+    case 2:
+        fmt = 0xe;
+        break;
+    case 3:
+    case 4:
+        fmt = 0xf;
+        break;
+    case 5:
+        fmt = 0xb;
+        fBC = (void *)func_001FF460(0);
+        {
+            void *p = (void *)func_001FF4C0((int)fBC, 0);
+            D_002BEAAC->func_0013C8A0(a1, p, t.fC * 4, 1);
+        }
+        break;
+    case 6:
+        fmt = 0x13;
+        break;
+    default:
+        fmt = a1;
+        break;
+    }
+    faces = t.f8;
+    if (faces == 0) {
+        faces = 1;
+        t.f8 = 1;
+    }
+    levels = 0;
+    if ((a3 & 2) != 0 && faces == 1) {
+        int size = t.f10 < t.f14 ? t.f10 : t.f14;
+        while (size >= 4) {
+            size >>= 1;
+            levels++;
+        }
+    }
+    fB8 = (void *)func_001FCF20(t.f10, t.f14, 1, levels, 0, fmt, 3);
+    if ((int)(fB8 != 0) - 1 < 0) {
+        return 0;
+    }
+    fA4 = fmt;
+    fA8 = levels;
+    fAC = a3;
+    f8 = t.f10;
+    fC = t.f14;
+    for (i = faces - 1; i >= 0; i--) {
+        func_001FCE40((int)fB8, i, &t.f18);
+        func_001FCEA0(fB8, i, dims, 0, 0);
+        D_002BEAAC->func_0013C8A0(a1, desc, 0xc, 1);
+        D_002BEAAC->func_0013C8A0(a1, (void *)dims[1], desc[2], 1);
+        arrC0[i] = dims[1];
+        arrE8[i] = dims[0];
+    }
+    return 1;
 }
 
