@@ -61,6 +61,12 @@ struct MaterialSoundEmitter {
     int func_001A3B10(void);
 };
 
+extern int D_0028B624;
+void *func_001E8A44(int size);
+struct C_001A1680 {
+    void func_001A1680(int a, int b, int c, int d);
+};
+
 struct C_00157A00 {
     void func_00157A00(int a);
 };
