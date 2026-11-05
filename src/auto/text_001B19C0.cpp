@@ -283,18 +283,20 @@ void C_001B1B80::func_001B1B80(undefined4 param_1, float param_2, float param_3,
 {
   int in_ECX = (int)this;
   int iVar1;
+  float fVar1;
 
   if (*(int *)(in_ECX + 0xc0) == 0) {
     *(undefined4 *)(in_ECX + 0xa8) = param_1;
-    iVar1 = *(int *)(in_ECX + 0x24);
     *(undefined4 *)(in_ECX + 0xb4) = param_6;
     *(undefined4 *)(in_ECX + 0xb0) = 0;
+    iVar1 = *(int *)(in_ECX + 0x24);
     if (*(float *)(iVar1 + 0x24) != param_2 || *(float *)(iVar1 + 0x28) != param_3) {
       *(float *)(iVar1 + 0x24) = param_2;
       *(float *)(iVar1 + 0x28) = param_3;
     }
   }
-  *(undefined4 *)(in_ECX + 0xac) = *(undefined4 *)(*(int *)(in_ECX + 0x24) + 0x38);
+  fVar1 = *(float *)(*(int *)(in_ECX + 0x24) + 0x38);
+  *(float *)(in_ECX + 0xac) = fVar1;
   return;
 }
 
@@ -364,16 +366,15 @@ C_001B22E0* C_001B22E0::func_001B22E0(void) {
 
 void C_001B22F0::func_001B22F0(void)
 {
-  int *in_ECX = (int *)this;
-  int iVar1;
+  C_001B22F0_Node *p;
 
-  iVar1 = *in_ECX;
-  in_ECX[2] = iVar1;
-  while (iVar1 != 0) {
-    iVar1 = *(int *)(in_ECX[2] + 0x98);
-    *(undefined4 *)(in_ECX[2] + 0x98) = 0;
-    *(undefined4 *)(in_ECX[2] + 0x9c) = 0;
-    in_ECX[2] = iVar1;
+  p = (C_001B22F0_Node *)f0;
+  f8 = p;
+  while (p != 0) {
+    p = f8->next;
+    f8->next = 0;
+    f8->f9c = 0;
+    f8 = p;
   }
   return;
 }
@@ -394,6 +395,24 @@ undefined4 C_001B2350::func_001B2350(void)
     *(undefined4 *)(in_ECX + 8) = *(undefined4 *)(*(int *)(in_ECX + 8) + 0x98);
   }
   return *(undefined4 *)(in_ECX + 8);
+}
+
+void C_001B2370::func_001B2370(C_001B2370_Node *node)
+{
+  if (node->prev != 0) {
+    node->prev->next = node->next;
+  }
+  if (node->next != 0) {
+    node->next->prev = node->prev;
+  }
+  if (head == node) {
+    head = node->next;
+  }
+  if (tail == node) {
+    tail = node->prev;
+  }
+  count--;
+  return;
 }
 
 C_001B23D0 *C_001B23D0::func_001B23D0(void)
