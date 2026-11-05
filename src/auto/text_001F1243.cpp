@@ -61,7 +61,7 @@ S_001EF734 *func_001F1C3A(S_001EF734 *out)
      if (ch != '@') goto error1;
      ++D_002F6A28;
     }
-    if ((D_002F6A38.b12) && !special) {
+    if ((D_002F6A39.b4) && !special) {
      b.value = 0;
      *(unsigned short *)&b.flags &= 0xfe00;
      func_001F1243(&d,&b);
