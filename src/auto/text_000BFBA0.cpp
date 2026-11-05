@@ -3,6 +3,29 @@
 
 extern int D_0027E00C;
 
+extern char D_0027DFF0[], D_002A64D0[], D_00275678[], D_0027DFE4[];
+void func_001ADCC0(char *buf, int size, char *a, char *b, char *c);
+struct S_BFBA0_Obj {
+    char pad0[0x34];
+    int f34;
+    int f38;
+    void func_00093280(float a0);
+    void func_000BC4A0(float a0, float a1);
+    void func_000BC4C0(int a0, int a1);
+    void func_000BC5D0(char *a0, int a1);
+    int func_000BC670();
+};
+struct S_BFBA0_Pg { char pad[0x270]; S_BFBA0_Obj *f270; };
+struct S_BFBA0_Chk {
+    int func_0005C360();
+    int func_0005C380();
+    void func_0005C370();
+};
+struct S_BFBA0_Mgr { char pad[0x2c0]; S_BFBA0_Chk *f2c0; };
+struct S_BFBA0_Mgr2 { int f0; int f4; char pad[0x2c0 - 8]; S_BFBA0_Chk *f2c0; };
+struct S_BFBA0_G { char pad[0x2e0]; S_BFBA0_Mgr2 *f2e0; };
+extern S_BFBA0_G *D_002A8490_b;
+
 extern char D_0027958C[];
 extern int D_0028F5E0;
 
