@@ -5,8 +5,8 @@ u32 func_00178210(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
 {
   u8 *srow;
   u8 *drow;
-  u8 *s;
   u8 *d;
+  u8 *s;
   int x;
   int y;
 
@@ -14,12 +14,17 @@ u32 func_00178210(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   drow = dst;
   for (y = height; y > 0; y--) {
     s = srow;
-    for (x = width, d = drow; x > 0; x--) {
-      d[2] = *(u8 *)(pal + *s * 3 + 0x12);
-      d[1] = *(u8 *)(pal + *s * 3 + 0x11);
-      d[0] = *(u8 *)(pal + *s * 3 + 0x10);
-      s++;
-      d += 3;
+    x = width;
+    if (x > 0) {
+      d = drow;
+      do {
+        d[2] = *(u8 *)(pal + *s * 3 + 0x12);
+        d[1] = *(u8 *)(pal + *s * 3 + 0x11);
+        d[0] = *(u8 *)(pal + *s * 3 + 0x10);
+        s++;
+        d += 3;
+        x--;
+      } while (x != 0);
     }
     drow += dstPitch * 3;
     srow += srcPitch;
@@ -79,18 +84,18 @@ u32 func_00178330(u16 *dst, u8 *src, int width, int height, int dstPitch, int sr
 
 u32 func_001783B0(u16 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch)
 {
-  u16 *drow;
   u8 *srow;
-  u16 *d;
+  u16 *drow;
   u8 *s;
+  u16 *d;
   int x;
   int y;
 
-  drow = dst;
   srow = src;
+  drow = dst;
   for (y = height; y > 0; y--) {
     for (x = width, d = drow, s = srow; x > 0; x--) {
-      *d = (u16)(((((u16)(s[2] & 0xf0) << 4) | s[1]) & 0xfff0) | ((s[3] & 0xf0) << 8) |
+      *d = (u16)((((((u16)s[2] & 0xf0) << 4) | s[1]) & 0xfff0) | ((s[3] & 0xf0) << 8) |
                  (s[0] >> 4));
       d++;
       s += 4;
@@ -103,29 +108,31 @@ u32 func_001783B0(u16 *dst, u8 *src, int width, int height, int dstPitch, int sr
 
 u32 func_00178470(u16 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int alphaRef)
 {
-  u16 *d;
   u8 *s;
+  u8 *q;
+  u16 *d;
+  u16 *p;
   u16 c;
   int x;
   int y;
-  int srcStep = srcPitch * 4;
-  int dstStep = dstPitch;
 
+  d = dst;
+  s = src;
   for (y = height; y > 0; y--) {
-    for (d = dst, s = src, x = width; x > 0; x--) {
-      c = s[2];
-      c = (u16)(((c & 0xfff8) << 5) | s[1]);
-      c = (u16)(((c & 0xfff8) << 2) | (s[0] >> 3));
-      *d = c;
-      if (s[3] >= alphaRef) {
+    for (p = d, q = s, x = width; x > 0; x--) {
+      c = q[2];
+      c = (u16)(((c & 0xfff8) << 5) | q[1]);
+      c = (u16)(((c & 0xfff8) << 2) | (q[0] >> 3));
+      *p = c;
+      if (q[3] >= alphaRef) {
         c |= 0x8000;
-        *d = c;
+        *p = c;
       }
-      d++;
-      s += 4;
+      p++;
+      q += 4;
     }
-    src += srcStep;
-    dst += dstStep;
+    s += srcPitch * 4;
+    d += dstPitch;
   }
   return 1;
 }
@@ -134,77 +141,84 @@ u32 func_00178540(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
 {
   u8 *d;
   u8 *s;
+  u8 *p;
+  u8 *q;
   int x;
+  int y;
 
-  for (; height > 0; height--) {
-    for (x = width, d = dst, s = src; x > 0; x--) {
-      d[2] = s[2];
-      d[1] = s[1];
-      d[0] = s[0];
-      d += 3;
-      s += 4;
+  s = src;
+  d = dst;
+  for (y = height; y > 0; y--) {
+    for (p = d, q = s, x = width; x > 0; x--) {
+      p[2] = q[2];
+      p[1] = q[1];
+      p[0] = q[0];
+      p += 3;
+      q += 4;
     }
-    dst += dstPitch * 3;
-    src += srcPitch * 4;
+    s += srcPitch * 4;
+    d += dstPitch * 3;
   }
   return 1;
 }
 
 u32 func_00178990(u16 *dst, u16 *src, int width, int height, int dstPitch, int srcPitch, u32 key)
 {
-  u16 *d;
   u16 *s;
+  u16 *q;
+  u16 *d;
+  u16 *p;
   u16 c;
   int x;
   int y;
-  int srcStep;
-  int dstStep;
 
   c = (u16)(((key & 0xf80000) >> 9) | ((key & 0xf800) >> 6) | ((key & 0xf8) >> 3));
-  srcStep = srcPitch;
-  dstStep = dstPitch;
+  d = dst;
+  s = src;
   for (y = height; y > 0; y--) {
-    for (d = dst, s = src, x = width; x > 0; x--) {
-      *d = *s;
-      if (*s == 0x7c1f) {
-        *d = c;
+    for (p = d, q = s, x = width; x > 0; x--) {
+      *p = *q;
+      if (*q == 0x7c1f) {
+        *p = c;
       } else {
-        *((u8 *)d + 1) |= 0x80;
+        *((u8 *)p + 1) |= 0x80;
       }
-      d++;
-      s++;
+      p++;
+      q++;
     }
-    src += srcStep;
-    dst += dstStep;
+    s += srcPitch;
+    d += dstPitch;
   }
   return 1;
 }
 
 u32 func_00178A40(u16 *dst, u16 *src, int width, int height, int dstPitch, int srcPitch, u32 key)
 {
-  u8 *d;
-  u8 *s;
+  u16 *d;
+  u16 *s;
+  u16 *p;
+  u8 *q;
   u16 c;
   int x;
   int y;
-  int srcStep;
-  int dstStep;
 
   c = (u16)(((key & 0xf80000) >> 9) | ((key & 0xf800) >> 6) | ((key & 0xf8) >> 3));
-  srcStep = srcPitch;
-  dstStep = dstPitch;
+  d = dst;
+  s = src;
   for (y = height; y > 0; y--) {
-    for (d = (u8 *)dst, s = (u8 *)src, x = width; x > 0; x--) {
-      if (s[1] & 0x80) {
-        d[1] &= 0x7f;
+    p = d;
+    q = (u8 *)s;
+    for (x = width; x > 0; x--) {
+      if (q[1] & 0x80) {
+        *((u8 *)p + 1) &= 0x7f;
       } else {
-        *(u16 *)d = c;
+        *p = c;
       }
-      d += 2;
-      s += 2;
+      p++;
+      q += 2;
     }
-    src += srcStep;
-    dst += dstStep;
+    s += srcPitch;
+    d += dstPitch;
   }
   return 1;
 }
