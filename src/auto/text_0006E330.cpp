@@ -138,6 +138,66 @@ struct C_0006E910 {
     void func_0006EC60();
 };
 
+C_0006E330 *C_0006E330::func_0006E330(int a0)
+{
+    int i;
+
+    func_00157600(a0);
+    vtbl = &D_0027850C;
+    for (i = 0; i < 8; i++) {
+        unk24[i] = 0;
+        unk44[i] = 0;
+    }
+    vtbl = &D_00278B14;
+    unk64 = 0;
+    unkD4 = 0;
+    unkDC = 0;
+    unkD0 = 0;
+    for (i = 0; i < 4; i++) {
+        unk140[i] = 0;
+        unk130[i] = 0;
+    }
+    for (i = 0; i < 2; i++) {
+        (&unk128)[i] = 0;
+    }
+    unkD8 = 0;
+    unkE0 = 0;
+    unk74 = 0;
+    unk70 = 0;
+    unkA4 = 0;
+    unkA0 = 0;
+    unkC0 = 0;
+    unkC4 = 0;
+    unkBC = 0;
+    unkC8 = 0;
+    unkCC = 0;
+    unkE8 = 0;
+    unkE4 = 1;
+    unkEC = 0;
+    unk110 = 0;
+    for (i = 0; i < 2; i++) {
+        (&unk150)[i] = 0;
+    }
+    for (i = 0; i < 5; i++) {
+        unk158[i] = 0;
+        unk16C[i] = 0;
+    }
+    unkF0 = 0;
+    unkF4 = 0;
+    unk124 = 0;
+    unk120 = 0;
+    for (i = 0; i < 6; i++) {
+        unk180[i] = 0;
+    }
+    unkF8 = 0;
+    unkFC = 0;
+    unk104 = 0;
+    unk100 = 0;
+    unk108 = 1;
+    unk19C = 0;
+    return this;
+}
+
 void C_0006E910::func_0006E910()
 {
     D_002EFDB8->vf7(1);
