@@ -17,6 +17,9 @@ struct C_0013AFD0 {
 
 extern "C" int func_0014FF00(const char *path, char *drive, char *dir, char *fname, char *ext);
 void func_001E8390(void *p);
+extern "C" void *func_0014FDF0(const char *name, const char *mode);
+extern "C" void func_0014FE50(void *fp);
+extern char D_00275FB4[];
 
 /* one 0x20-byte slot of C_0013AEC0::fE8 */
 struct S_0013AEC0_Slot {
