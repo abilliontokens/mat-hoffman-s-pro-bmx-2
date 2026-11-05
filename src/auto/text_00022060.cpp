@@ -135,6 +135,47 @@ Obj_00022320 *C_00022320::func_00022320(int a)
     return f2C;
 }
 
+int C_000223B0::func_000223B0(Vec4_000223B0 pos, float dy)
+{
+    Vec4_000223B0 result;
+    Vec4_000223B0 hit;
+    Vec4_000223B0 line[2];
+    S_000223B0_State *s;
+    S_000223B0_Zero *z;
+
+    line[0] = pos;
+    line[1] = pos;
+    result.x = result.y = result.z = 0;
+    result.w = 1;
+    hit.x = hit.y = hit.z = 0;
+    hit.w = 1;
+    line[0].y = 200.0f;
+    line[1].y = -200.0f;
+    if (func_00134DE0(line, &hit, &result, 0, 0, 0, -1, 0, 1) == 0) {
+        return 0;
+    }
+    hit.y += dy;
+    f2C->func_00199600(hit);
+    f2C->func_001983A0();
+    s = f30;
+    s->f1c = 0;
+    s->v = D_002A0F74;
+    s->f40 = 0;
+    s->f10 = 1;
+    z = f34;
+    z->f[0] = 0;
+    z->f[1] = 0;
+    z->f[2] = 0;
+    z->f[3] = 0;
+    z->f[4] = 0;
+    z->f[5] = 0;
+    z->f[6] = 0;
+    z->f[7] = 0;
+    z->f[8] = 0;
+    f24 = 1;
+    return 1;
+}
+
 undefined4 C_00022530::func_00022530(byte param_1)
 {
   int func_000214B0(...);
