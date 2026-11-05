@@ -10,6 +10,10 @@ struct C_00199650 {
     void func_00199650(void *p);
 };
 
+struct C_00157A00 {
+    void func_00157A00(int p);
+};
+
 struct UIWidgetStaticUserRotate {
     virtual void v0();
     virtual void v1();
@@ -315,12 +319,12 @@ void *C_001C3510::func_001C3510(int flags)
 
 DXVertexBuffer *DXVertexBuffer::func_001C3550(int type, int count)
 {
-    int ok;
-    int fail;
     switch (type) {
     case 0x112:
     case 0x1c4:
-    case 0x1c6:
+    case 0x1c6: {
+        int ok;
+        int fail;
         f10 = count;
         fC = 0x20;
         f8 = type;
@@ -328,9 +332,9 @@ DXVertexBuffer *DXVertexBuffer::func_001C3550(int type, int count)
         ok = f14 != 0;
         fail = (int)((unsigned)(ok - 1) & 0x8007000E) < 0;
         return (DXVertexBuffer *)((fail - 1) & (int)this);
-    default:
-        return 0;
     }
+    }
+    return 0;
 }
 
 void C_001C35B0::func_001C35B0(void *src, int index, unsigned int count)
