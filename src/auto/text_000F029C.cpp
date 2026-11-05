@@ -137,6 +137,51 @@ void C_000F0910::func_000F0910()
     }
 }
 
+void C_000F0AE0::func_000F0AE0() {
+    C_000F0AE0_Owner *b;
+    C_001D5AD0 *p;
+    S_002B91AC *s;
+    C_001D5AD0 **ptr;
+    float *fp;
+    int count;
+    b = f124->f25c;
+    if (b->f74->func_000301D0() == 0) {
+        p = f280 ? D_002B91AC->unk68 : D_002B91AC->unk50;
+        p->func_001D5AD0();
+        p = f284 ? D_002B91AC->unk6C : D_002B91AC->unk54;
+        p->func_001D5AD0();
+    }
+    s = D_002B91AC;
+    s->unk24->func_001D5AD0();
+    s->unk28->func_001D5AD0();
+    s->unk2C->func_001D5AD0();
+    s->unk30->func_001D5AD0();
+    ptr = arr680; count = 4;
+    do {
+        p = *ptr;
+        p->f38 = (f404 << 24) | (p->f38 & 0xffffff);
+        p->f58 |= 2;
+        (*ptr)->func_001D5AD0();
+        ptr++; count--;
+    } while (count != 0);
+    ptr = arr690; count = 2;
+    do {
+        p = *ptr;
+        p->f38 = (f404 << 24) | (p->f38 & 0xffffff);
+        p->f58 |= 2;
+        (*ptr)->func_001D5AD0();
+        ptr++; count--;
+    } while (count != 0);
+    fp = f614; count = 9;
+    do {
+        if (*fp < D_002823D4 && *fp > D_00275994) {
+            p = ((int *)fp)[0x33] ? ((C_001D5AD0 **)fp)[0x21] : ((C_001D5AD0 **)fp)[0x2a];
+            p->func_001D5AD0();
+        }
+        fp++; count--;
+    } while (count != 0);
+}
+
 C_000F0D20 *C_000F0D20::func_000F0C40(int a)
 {
     int i;
