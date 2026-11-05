@@ -89,6 +89,22 @@ void TireTrack::func_001B4970()
     }
 }
 
+void TireTrack::func_001B49B0()
+{
+    int i;
+    int j;
+    for (i = 0; i < f28; i++) {
+        for (j = 0; j < 16; j++) {
+            f24->v31(i, j, 0);
+            f24->v29(i, j, &D_002AA8E0);
+            f24->v28(i, j, &D_002AA8C0);
+        }
+    }
+    f30 = 0;
+    fa0 = 0;
+    f2c = 0;
+}
+
 void TireTrack::func_001B4A20()
 {
     if (f3c != 0) {
