@@ -19,7 +19,7 @@ void func_001EE782(int fh);
 
 /* _sopen's helper takes shflag in ecx and the rest on the stack, caller cleans up */
 struct S_001F54D0 {
-    int func_001F54D0(int *unlockFlag, int *fh, const char *path, int oflag, int pmode, ...);
+    int func_001F54D0(int *unlockFlag, int *fh, const char *path, int oflag, int pmode);
 };
 
 extern char D_002FB000[0x101];
