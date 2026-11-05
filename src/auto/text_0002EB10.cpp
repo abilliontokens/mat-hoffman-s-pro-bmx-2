@@ -140,6 +140,30 @@ struct BmxCameraController_0002EF20 {
     BmxCameraController_0002EF20 *func_0002EF20(int a0);
 };
 
+int C_0002EE30::func_0002EE30(int a0)
+{
+    if ((D_002B7EAC & 1) == 0) {
+        D_002B7EAC |= 1;
+        D_002B7EA8 = D_002A7CB8->func_00026500((int)&D_002768E4, -1);
+    }
+    ((C_000264C0 *)((char *)this + 0x1a0))->func_000264C0((char *)this + 0x160);
+    ((C_000264C0 *)((char *)this + 0x160))->func_000264C0(f230->f174 + 0xb0);
+    if (f5C8 != 0) {
+        func_0002AAA0(a0);
+    } else if (f470 != 0) {
+        func_0002A6B0(a0);
+    } else if (f704 == 0 && f70C == 0) {
+        func_0002D730(a0);
+    } else {
+        f1E8->func_000B8AD0(0, 0);
+        f21C->v13(a0);
+    }
+    if (D_002A8490->f18 != 0) {
+        func_0002EB10();
+    }
+    return 1;
+}
+
 BmxCameraController_0002EF20 *BmxCameraController_0002EF20::func_0002EF20(int a0)
 {
     func_0012B550(a0);
