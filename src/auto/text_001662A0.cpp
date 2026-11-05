@@ -50,7 +50,7 @@ struct C_00166CA0 {
  char f190[0x50];
  char pad1E0[8];
  int f1E8;
- char pad1EC[0xC];
+ int f1EC, f1F0, f1F4;
  S_00166CA0_Item *f1F8;
  int f1FC;
  void func_001662A0(int);
