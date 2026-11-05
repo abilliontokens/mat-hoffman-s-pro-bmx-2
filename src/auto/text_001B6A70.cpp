@@ -126,6 +126,24 @@ void C_001B6E70::func_001B7010(C_001B7010_arg *arg) {
     }
 }
 
+int C_001B6E70::func_001B72B0(C_00169710 *param) {
+    char buf[0x104];
+    C_001B6850 *obj;
+    int i;
+
+    for (i = 0; i < f24; i++) {
+        func_001ADCC0(buf, 0x104, D_0028CEE8, i + 1);
+        if (param->func_00169710(buf)) {
+            obj = (C_001B6850 *)func_001E8A44(0x50);
+            obj = obj ? obj->func_001B6850() : 0;
+            obj->func_001B6930(param, i);
+            ((C_001BB950 *)f28[i]->f4)->func_001BB950(obj, (char *)obj + 0x10,
+                (char *)obj + 0x20, (char *)obj + 0x30, *(int *)((char *)obj + 0x4C));
+        }
+    }
+    return 1;
+}
+
 int C_001B6E70::func_001B7370(void *param) {
     int i;
 
