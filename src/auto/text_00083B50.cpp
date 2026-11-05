@@ -158,6 +158,85 @@ struct C_000843C0 {
     void func_000843C0(void);
 };
 
+extern int D_00308930;
+extern int D_002795B4;
+extern int D_002795AC;
+
+struct S_000844B0_Text {
+    char pad0[4];
+    u32 f4;
+    u32 f8;
+    char padC[0x34 - 0xC];
+    u32 f34;
+    char pad38[0x48 - 0x38];
+    u32 f48;
+    u16 f4C;
+    u8 f4E;
+    void SetPos(u32 x, u32 y)
+    {
+        if (f4 != x || f8 != y) {
+            f4 = x;
+            f8 = y;
+            f4E |= 6;
+        }
+    }
+    void SetAlpha(void)
+    {
+        if (f4C != 0xff) {
+            f4E |= 8;
+            f4C = 0xff;
+            f48 |= 0xff000000;
+        }
+    }
+    void SetScale(u32 s)
+    {
+        if (f34 != s) {
+            f34 = s;
+            f4E |= 6;
+        }
+    }
+    void func_0005E960(int a, int b);
+    void func_0005E840(void *s);
+};
+
+struct S_000844B0_Sprite {
+    char pad0[0x38];
+    u32 f38;
+    char pad3C[0x58 - 0x3C];
+    u8 f58;
+    void Show(void)
+    {
+        f38 |= 0xff000000;
+        f58 |= 2;
+    }
+};
+
+struct C_001B2270 {
+    void func_001B2270(u32 c);
+};
+
+struct C_000844B0 {
+    char pad0[0x40];
+    int f40;
+    char pad44[0x164 - 0x44];
+    S_000844B0_Sprite *f164;
+    S_000844B0_Sprite *f168;
+    S_000844B0_Text *f16C;
+    S_000844B0_Sprite *f170;
+    S_000844B0_Sprite *f174;
+    S_000844B0_Text *f178;
+    char pad17C[0x208 - 0x17C];
+    S_000844B0_Text *f208;
+    char pad20C[0xC50 - 0x20C];
+    S_000844B0_Text *fC50;
+    char padC54[0xD08 - 0xC54];
+    C_001B2270 *fD08;
+    C_001B2270 *fD0C;
+    char padD10[0xDA0 - 0xD10];
+    int fDA0;
+    void func_000844B0(void);
+};
+
 struct C_000847A0 {
     char pad0[0x120];
     int unk120;
@@ -207,6 +286,56 @@ void C_000843E0::func_000843E0(int a)
 void C_000847A0::func_000847A0(void) {
     unk134 = 0;
     unk120 = 0;
+}
+
+void C_000847B0::func_000847B0(void)
+{
+    C_000847B0 * volatile self = this;
+    int v;
+    int lo;
+    int hi;
+    int i;
+    int x;
+    float t;
+    int * volatile p;
+    S_000847B0_Widget *w;
+
+    i = 1;
+    for (x = 4; x <= 100; x += 4) {
+        p = &v;
+        t = self->fD50 * D_00275994;
+        *p = _mm_cvtss_si32(*(__m128 *)&t);
+        if (v <= x) {
+            lo = i * 5 + 4;
+            hi = i * 5 + 3;
+            break;
+        }
+        i++;
+    }
+    w = self->fD48;
+    if (w->f2C != 0x42000000) {
+        w->f2C = 0x42000000;
+        w->b58 |= 1;
+    }
+    w = self->fD48;
+    if ((float)lo != w->f28) {
+        w->f28 = (float)lo;
+        w->b58 |= 1;
+    }
+    w = self->fD48;
+    w->f3C = w->f4C * D_00275544;
+    w->b58 |= 4;
+    w->f40 = (float)hi * w->f4C;
+    w->f44 = w->f50 * D_00275544;
+    w->f48 = w->f50 * D_002795B8;
+    w = self->fD48;
+    if (self->fD64 > D_00275544) {
+        w->f38 = (w->f38 & 0xff32a539) | 0x32a539;
+        w->b58 |= 2;
+    } else {
+        w->f38 = (w->f38 & 0xff324fa5) | 0x324fa5;
+        w->b58 |= 2;
+    }
 }
 
 void C_000848F0::func_000848F0(void)
