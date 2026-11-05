@@ -61,7 +61,8 @@ struct S_000BBE30_Entry {
     int *f120;
     int f124;
     int f128;
-    char pad12C[0x7c];
+    char pad12C[4];
+    char f130[0x78];
 };
 
 struct S_000BBE30_Lookup {
