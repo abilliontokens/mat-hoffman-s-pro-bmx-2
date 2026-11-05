@@ -92,6 +92,7 @@ struct C_0018D330_List {
     int capacity;
 };
 
+extern "C" void *func_001E83E8(void *, unsigned int);
 extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
 
 struct C_0018D7B0 {
