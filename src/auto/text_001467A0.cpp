@@ -52,3 +52,10 @@ struct C_00146DC0 {
     int unk48;
     void func_00146DC0();
 };
+
+C_00147490 *C_00147490::func_00147490()
+{
+    ((C_001B01D0 *)this)->func_001B01D0();
+    vtbl = (void *)&D_0028634C;
+    return this;
+}
