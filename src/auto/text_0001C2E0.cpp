@@ -111,6 +111,35 @@ struct C_0001C550 {
 };
 
 void func_001E891B(void *p);
+void *func_001E8A44(int size);
+char *func_001E8AC0(const char *s, int c);
+int func_00135C70(int a, int b, int c, int d);
+
+struct C_0001CD60 {
+    int func_00157BF0(int a, int b);
+    void func_0001CD60(int a, int b);
+};
+
+struct C_0001CC00;
+
+struct S_0001CC00_Slot {
+    S_0001CC00_Slot *func_001D5350(void);
+    int func_001A2510(C_0001CC00 *owner, int a, int b);
+    void func_001A13F0(void);
+};
+
+struct C_0001CC00 {
+    char pad0[0x2C];
+    int unk2C;
+    char pad30[0x14];
+    int unk44;
+    char pad48[0x10];
+    int unk58;
+    char pad5C[4];
+    S_0001CC00_Slot *slots[1];
+    int func_0001CC00(int idx, int a, int b);
+    int func_0001CC80(int idx);
+};
 
 struct C_0001CA30 {
     void *vtbl;
@@ -235,12 +264,24 @@ void func_0001C5E0(float *out, float s, float *in) {
     vec3_set(out, s * in[0], s * in[1], s * in[2]);
 }
 
-void func_0001C610(float *out, float *a, float *b) {
-    vec3_set(out, b[2] * a[1] - b[1] * a[2], b[0] * a[2] - b[2] * a[0], b[1] * a[0] - b[0] * a[1]);
+S_0001C610_V4 func_0001C610(float *a, float *b) {
+    S_0001C610_V4 r;
+
+    r.x = b[2] * a[1] - a[2] * b[1];
+    r.y = a[2] * b[0] - b[2] * a[0];
+    r.z = a[0] * b[1] - b[0] * a[1];
+    r.w = 1.0f;
+    return r;
 }
 
-void func_0001C680(float *out, float x, float y, float z, int unused, float *m) {
-    vec3_set(out, y * m[1] + z * m[2] + x * m[0], y * m[5] + z * m[6] + x * m[4], y * m[9] + z * m[10] + x * m[8]);
+S_0001C610_V4 func_0001C680(S_0001C610_V4 v, float *m) {
+    S_0001C610_V4 r;
+
+    r.x = v.y * m[1] + v.z * m[2] + v.x * m[0];
+    r.y = v.y * m[5] + v.z * m[6] + v.x * m[4];
+    r.z = v.y * m[9] + v.z * m[10] + v.x * m[8];
+    r.w = 1.0f;
+    return r;
 }
 
 void C_0001C710::func_0001C710(float a0, float a1, float a2, int a3) {
