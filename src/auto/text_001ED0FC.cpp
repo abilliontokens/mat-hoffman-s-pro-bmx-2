@@ -215,3 +215,13 @@ done:
     return 1;
 }
 
+void func_001EDC7E(int a, S_001EDC7E *p) {
+    if (a != 0 && (p->fD & 0x10) != 0) {
+        func_001E9DE9(p);
+        p->fD &= 0xEE;
+        p->f18 &= 0;
+        p->f0 &= 0;
+        p->f8 &= 0;
+    }
+}
+
