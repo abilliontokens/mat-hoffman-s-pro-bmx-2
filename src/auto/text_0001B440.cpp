@@ -268,6 +268,21 @@ void C_0001BAC0::func_0001BC00(int idx, int slot)
     obj->f90 = -1;
 }
 
+void C_0001BAC0::func_0001BD60(int id, int slot)
+{
+    S_0001BAC0_Obj *obj;
+    int idx;
+
+    idx = func_0001B3C0(id);
+    if (f2c == 0 || idx >= f2c->f24 || idx < 0) {
+        return;
+    }
+    obj = f2c->f28[idx];
+    obj->f78[obj->func_001B5750(slot)] = 0;
+    obj->f88 = -1;
+    obj->f90 = -1;
+}
+
 void C_0001B790::func_0001BE50(void)
 {
     int i;
