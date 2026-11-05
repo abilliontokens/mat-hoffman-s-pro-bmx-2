@@ -110,6 +110,7 @@ struct S_001B5A00_Stream {
 
 struct C_001B5A00 {
     int func_001B5A00(S_001B5A00_Stream *stream, int a1);
+    int func_001B5A30(S_001B5A00_Stream *stream, int a1);
 };
 
 extern int D_0028CAC8;
