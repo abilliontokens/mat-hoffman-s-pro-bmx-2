@@ -66,7 +66,7 @@ struct C_000E35E0 {
     char pad2C4[0x1C];
     C_000E3C90_Widget *f2E0[10];
     char pad308[0x118];
-    int f420[2];
+    int f420[8];
     void func_000E35E0(int param_1);
     void func_000E3790(void);
     void func_000E3C90(void);
