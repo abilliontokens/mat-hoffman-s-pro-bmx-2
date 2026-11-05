@@ -131,6 +131,48 @@ u32 __stdcall func_0001E550(int a0) {
     return v;
 }
 #pragma optimize("", on)
+
+void *GR_BitString::func_0001E6D0(unsigned int flags) {
+    vtbl = &D_00275F7C;
+    if (unk1C == 0 && unk8 != 0) {
+        func_001E891B(unk8);
+    }
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
+void GR_BitString::func_0001E710(int a0) {
+    if (unk8 == 0 || unk4 == 0)
+        return;
+    if (a0 < 0) {
+        func_0001E5D0(-a0);
+        return;
+    }
+    if (a0 > 0) {
+        D_0001E650(a0);
+        return;
+    }
+}
+
+C_0001E740 *C_0001E740::func_0001E740(int a0, int a1) {
+    func_0001DFE0();
+    int n = (a1 - a0) / a0;
+    unk20 = a1;
+    vtbl = &D_00275F9C;
+    unkC = 0;
+    unk10 = 0;
+    unk1C = a0;
+    unk24 = 0;
+    unk28 = 0;
+    unk14 = 0;
+    unk8 = n;
+    unk18 = n;
+    return this;
+}
+
+#pragma optimize("", on)
 void *C_0001E930::func_0001E930(unsigned int flags) {
     vtbl = &D_00275F9C;
     func_0001E800();
