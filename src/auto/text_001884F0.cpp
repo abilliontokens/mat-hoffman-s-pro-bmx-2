@@ -254,17 +254,9 @@ int C_00188C20::func_00188C20(int a)
     return 1;
 }
 
-void __stdcall func_00188C60(int *type, S_00188980_Model **out)
+void __stdcall func_00188C60(int *type, S_00188C60_Model **out)
 {
-    S_00188980_Model *p;
-
-    p = (S_00188980_Model *)func_001E8A44(0x10);
-    if (p != 0) {
-        p->f4 = 0;
-        p->f8 = 0;
-        p->fc = 0;
-        p->vtbl = (void *)&D_00289F80;
-    }
+    S_00188C60_Model *p = new S_00188C60_Model;
     *out = p;
     p->f4 = *type;
 }
