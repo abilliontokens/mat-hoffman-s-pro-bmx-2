@@ -9,7 +9,66 @@ extern int D_0028D244;
 extern int D_0028D2BC;
 
 void func_001E891B(void *p);
-void func_001BB4F0();
+
+struct S_1BB4F0_Arg1 {
+    char pad0[0x64];
+    int f64;
+};
+
+struct S_1BB4F0_Arg3 {
+    char pad0[0xE0];
+    int fE0;
+    int fE4;
+    int fE8;
+    int fEC;
+    int fF0[8];
+    void (*f110)(S_1BB4F0_Arg1 *a, S_1BB4F0_Arg3 *b, int c, int d);
+    int f114;
+};
+
+struct S_1BB4F0_Obj {
+    char pad0[0x1E0];
+    int f1E0;
+    char pad1E4[0x680 - 0x1E4];
+    int f680;
+    char pad684[0x69C - 0x684];
+    int f69C;
+    char pad6A0[0x1178 - 0x6A0];
+    int f1178;
+};
+
+struct S_1BB4F0_List {
+    char pad0[0x24];
+    int f24;
+    char pad28[0x1A8 - 0x28];
+    S_1BB4F0_Obj *f1A8[1];
+};
+
+struct S_1BB4F0_Sub64 {
+    char pad0[0x4E0];
+    S_1BB4F0_List *f4E0;
+};
+
+struct S_1BB4F0_Sub2A4 {
+    char pad0[0x64];
+    S_1BB4F0_Sub64 *f64;
+};
+
+struct S_1BB4F0_Sub2E0 {
+    int f0;
+    int f4;
+};
+
+struct S_1BB4F0_Global {
+    char pad0[0x2A4];
+    S_1BB4F0_Sub2A4 *f2A4;
+    char pad2A8[0x2E0 - 0x2A8];
+    S_1BB4F0_Sub2E0 *f2E0;
+};
+
+extern S_1BB4F0_Global *D_002A8490;
+
+void func_001BB4F0(S_1BB4F0_Arg1 *a1, int a2, S_1BB4F0_Arg3 *a3, int idx);
 
 struct C_001BB5F0 {
     void *vtbl;
