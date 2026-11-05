@@ -158,6 +158,19 @@ struct C_000F2780_Global {
 
 extern C_000F2780_Global *D_002A8490;
 
+struct HPHChoice_124 {
+    char pad0[0x24];
+    struct C_000F2AD0_Ui *f24;
+};
+struct HPHChoice_140_4 {
+    void func_001BDE90(int a);
+    void func_001BDF00(int a);
+};
+struct HPHChoice_140 {
+    int f0;
+    HPHChoice_140_4 *f4;
+};
+
 struct C_000F2780_Ed274 {
     void func_00093120();
 };
