@@ -313,6 +313,76 @@ C_00021720* C_00021720::func_00021720(void) {
     return this;
 }
 
+void C_00021740::func_00021740(S_Stream_000212A0 *stream, int base)
+{
+    int v;
+
+    stream->func_00168CB0(&D_0027618C, &D_002A0F74, &f10);
+    stream->func_00168C20(&D_00276180, 0, &f8);
+    stream->func_00168C20(&D_00276174, -1, &v);
+    fC = v - 1;
+    if (fC < 0) {
+        fC = 0;
+    }
+    stream->func_00168C20(&D_00276164, 0, &v);
+    f0 = v + base - 1;
+    if (f0 < 0) {
+        f0 = 0;
+    }
+    stream->func_00168C20(&D_00276150, 1, &v);
+    f4 = v - 1;
+    if (f4 < 0) {
+        f4 = 0;
+    }
+}
+
+C_000217F0 *C_000217F0::func_000217F0(int a)
+{
+    ((C_00157600 *)this)->func_00157600(a);
+    vtbl = &D_002761A4;
+    f54 = 0;
+    f50 = 0;
+    f4c = 0;
+    f58 = 0x3f800000;
+    f68 = 0x3f800000;
+    f64 = 0;
+    f60 = 0;
+    f5c = 0;
+    f74 = 0;
+    f70 = 0;
+    f6c = 0;
+    f2c = 0;
+    f34 = 0;
+    f40 = 0;
+    f30 = -1;
+    f3c = -1;
+    f38 = 1;
+    f4c = D_002A0F74;
+    f50 = D_002A0F78;
+    f54 = D_002A0F7C;
+    f58 = D_002A0F80;
+    f28 = 0;
+    f24 = 0;
+    f7a = 0;
+    f48 = 0;
+    f7b = 1;
+    f44 = -1;
+    return this;
+}
+
+void C_00021890::func_00021890(S_Stream_000212A0 *stream, int base)
+{
+    void *mem = func_001E8A44(0x1b0);
+    S_000217F0_Model *m = mem != 0 ? ((S_000217F0_Model *)mem)->func_001B5110() : 0;
+
+    f28 = m;
+    f28->f4 = 1;
+    f28->v1(stream);
+    mem = func_001E8A44(0x20);
+    f24 = mem != 0 ? ((C_00021740 *)mem)->init() : 0;
+    f24->func_00021740(stream, base);
+}
+
 void C_000219E0::func_000219E0(int idx)
 {
     C_000219E0_Mgr *mgr = f28->f1a4;
