@@ -201,6 +201,41 @@ struct C_001576D0 {
 
 void __stdcall func_002223E1(int a, int b, int c);
 int __stdcall func_0021FB83(int a);
+
+extern int D_0028EECC;
+void func_001CBC10(int e, void *file, int line);
+int __stdcall func_0022195C(int a);
+int __stdcall func_0022095F(int a, void *b);
+int __stdcall func_002222E5(int a, int b, int c);
+
+struct S_001CBF20_Vec4 {
+    int x;
+    int y;
+    int z;
+    int w;
+};
+
+/* sound voice wrapper: flags at +0x2c, DirectSound buffer at +0x30 */
+struct C_001CBF20 {
+    char pad0[0x2c];
+    unsigned char f2C;
+    char pad2D[3];
+    int f30;
+    char pad34[0xa4];
+    S_001CBF20_Vec4 fD8;
+    int fE8;
+    int fEC;
+    int func_001CBF20(void);
+    int func_001CBF60(void);
+    int func_001CBF90(int v);
+};
+
+/* swap-remove int array */
+struct C_001CBCF0 {
+    int count;
+    int *items;
+    int func_001CBCF0(int value);
+};
 void *func_001E8A44(int size);
 void __stdcall func_00220AE5(void *stream, int a, int b, int c);
 
@@ -395,6 +430,11 @@ void C_001CB940::func_001CB960(void)
 {
     ((C_001576D0 *)this)->func_001576D0();
     v1F(0, 0);
+}
+
+void C_001CB940::func_001CB980(void)
+{
+    func_00157680();
 }
 
 int __stdcall func_001CBEE0(int a0, int a1, int a2, int a3, int a4) {
