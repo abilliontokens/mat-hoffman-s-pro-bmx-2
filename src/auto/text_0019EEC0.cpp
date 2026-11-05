@@ -74,12 +74,45 @@ struct S_0019F500_Xform {
     }
 };
 
+struct S_0019F600_Mat {
+    void func_000264C0(void *src);
+};
+struct S_0019F600_Link {
+    void func_00199C20(int a, void *out);
+};
+void func_0011ACC0(void *out, void *a, void *b);
+struct S_0019F600_Node {
+    char pad0[0xb0];
+    char fB0[0x40];
+    char fF0[0x40];
+    char f130[0x40];
+    S_0019F600_Mat f170;
+    char pad171[0x1c0 - 0x171];
+    S_0019F600_Link *f1C0;
+};
+
 struct SoultreeHierarchyCollisionObject {
     void *vtbl;
-    char pad4[0x50];
+    char pad4[0x24];
+    float f28[4];
+    char pad38[0x10];
+    float f48;
+    char pad4C[0x54 - 0x4C];
     S_0019F500_Xform *unk54;
     char pad58[0xA7 - 0x58];
     unsigned char unkA7;
+    float fA8[4];
+    float fB8, fBC, fC0;
+    char padC4[0xF0 - 0xC4];
+    S_0019F600_Mat fF0;
+    char padF1[0x130 - 0xF1];
+    S_0019F600_Mat f130;
+    char pad131[0x190 - 0x131];
+    int f190;
+    char pad194[0x1A0 - 0x194];
+    S_0019F600_Node **f1A0;
+    void func_0019DEF0();
+    void func_0019F600(float *m);
     void func_0019DC80();
     void func_00133E60();
     void *func_0019FBA0(int flags);
