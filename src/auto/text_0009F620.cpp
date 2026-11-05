@@ -48,7 +48,7 @@ struct C_0009FE80 {
     char pad50[0x3c];
     float unk8C;
     float unk90;
-    float Abs(float v)
+    __forceinline float Abs(float v)
     {
         volatile float t = v;
         int bits = *(volatile int *)&t & 0x7fffffff;
@@ -255,28 +255,28 @@ void C_0009FE80::func_0009FE80(int a0, int a1, int a2, int a3, int a4, int a5, f
 {
     if (unk40 == 0)
         return;
-    if (fabs_0009FE80(a6) > D_00278C58) {
+    if (Abs(a6) > D_00278C58) {
         unk8C = a6 * a10 * D_0027AD80 + unk8C;
         if (unk8C > D_002756D0)
             unk8C = unk8C - D_002756B8;
         else if (unk8C < D_002756E8)
             unk8C = unk8C + D_002756B8;
     }
-    if (fabs_0009FE80(a7) > D_00278C58) {
+    if (Abs(a7) > D_00278C58) {
         unk90 = a7 * a10 * D_0027AD80 + unk90;
         if (unk90 > D_002756D0)
             unk90 = unk90 - D_002756B8;
         else if (unk90 < D_002756E8)
             unk90 = unk90 + D_002756B8;
     }
-    if (fabs_0009FE80(a9) > D_00278C58) {
+    if (Abs(a9) > D_00278C58) {
         unk4C = unk4C - a9 * a10 * D_0027AD7C;
         if (unk4C > D_0027653C)
             unk4C = 15.0f;
         else if (unk4C < D_0027AD78)
             unk4C = 7.0f;
     }
-    if (fabs_0009FE80(a8) > D_00278C58) {
+    if (Abs(a8) > D_00278C58) {
         unk3C = a8 * a10 * D_0027AD74 + unk3C;
         if (unk3C > D_002786B8)
             unk3C = 110.0f;
