@@ -16,6 +16,12 @@ void func_00031400(void) {
     func_001578D0();
 }
 
+int func_00031410(void) {
+    int func_00157960(...);
+    func_00157960();
+    return 1;
+}
+
 void func_00031420(void) {
     int func_001576D0(...);
     func_001576D0();
