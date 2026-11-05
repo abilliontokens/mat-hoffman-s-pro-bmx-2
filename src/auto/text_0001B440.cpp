@@ -49,6 +49,33 @@ struct C_0001B790 {
     int func_0001B790(float dt);
     void func_0001B440(S_0001B790_Obj *obj, int r);
     int func_00157A00(float dt);
+    void func_0001BE50(void);
+    void func_0001B8A0(S_0001B790_Obj *obj);
+};
+
+struct S_0001BAC0_Obj {
+    char pad0[0x78];
+    int *f78;
+    char pad7C[0xc];
+    int f88;
+    char pad8C[0x4];
+    int f90;
+    int func_001B5750(int slot);
+};
+
+struct S_0001BAC0_List {
+    char pad0[0x24];
+    int f24;
+    S_0001BAC0_Obj **f28;
+};
+
+struct C_0001BAC0 {
+    char pad0[0x2c];
+    S_0001BAC0_List *f2c;
+    int func_0001B3C0(int id);
+    void func_0001BAC0(int idx, int slot);
+    void func_0001BC00(int idx, int slot);
+    void func_0001BD60(int id, int slot);
 };
 
 struct S_0001C1E0_List {
@@ -203,10 +230,13 @@ int __stdcall func_0001B900(int param_1)
 
 void C_0001C1E0::func_0001C1E0(int idx, int b, int c, int d)
 {
-    if (f2c == 0) {
+    S_0001C1E0_List *list = f2c;
+
+    if (list != 0) {
+        func_0001BE90(list->f28[idx], b, c, d);
+    } else {
         return;
     }
-    func_0001BE90(f2c->f28[idx], b, c, d);
 }
 
 undefined4 C_0001C280::func_0001C280(int param_1)
