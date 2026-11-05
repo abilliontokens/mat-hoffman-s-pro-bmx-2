@@ -1,6 +1,7 @@
 /* 14 functions from 0x001C26B0 to 0x001C36B0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <string.h>
 extern float D_00275544;
 u32 func_001DC974(void);
 void *__stdcall func_001FF410(void *buffer, int flags);
