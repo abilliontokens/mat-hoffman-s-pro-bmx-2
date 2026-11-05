@@ -1,5 +1,10 @@
 /* 9 functions from 0x00195190 to 0x001960F0, found by Ghidra. */
 #include "common.h"
+
+struct Vec4_195D40 {
+    int x, y, z, w;
+};
+
 struct C_001955D0 {
     char pad0[0x70];
     int unk70;
