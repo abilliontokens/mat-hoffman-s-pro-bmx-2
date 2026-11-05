@@ -30,6 +30,8 @@ struct C_0002B180 {
     void func_0002B180(void);
 };
 
+extern float D_002A1178;
+
 struct Vec4_0002AF90 {
     float x, y, z, w;
     __forceinline void Set(const Vec4_0002AF90 *o) { *this = *o; }
