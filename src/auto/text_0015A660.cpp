@@ -160,6 +160,52 @@ struct C_00135D90 {
     void func_00135D90(int a, int b);
 };
 
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+void func_00030F30(char *dst, const char *src);
+extern char D_00275678[];
+extern char D_002A5EA0[];
+extern char D_0028775C[];
+extern int D_00275FB4;
+
+struct C_0013B210 {
+    int func_0013C9F0(char *name, int *mode);
+    void func_0013C8A0(int h, void *buf, int size, int count);
+    void func_0013C110(int h);
+};
+extern C_0013B210 *D_002BEAAC;
+
+struct C_0015B210 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27(int h);
+    C_0015B210 *func_0015B210(char *name);
+};
+
 /* growable array of pointers */
 struct S_0015A660_List {
     int count;
