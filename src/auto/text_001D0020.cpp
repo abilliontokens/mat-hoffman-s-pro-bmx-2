@@ -173,8 +173,7 @@ void XboxControlInterface_001D0C30::func_001D0D60(void)
     int i;
 
     if (func_0026EBE7((void *)&D_0026D94C, &inserted, &removed) != 0) {
-        bit = 1;
-        for (i = 0; i < 4; i++) {
+        for (i = 0, bit = 1; i < 4; i++, bit <<= 1) {
             ControllerPort_001D14C0 *port = f14[i];
 
             if (removed & bit) {
@@ -185,7 +184,6 @@ void XboxControlInterface_001D0C30::func_001D0D60(void)
                 port->func_001D1550(i);
                 f4++;
             }
-            bit <<= 1;
         }
     }
 }
