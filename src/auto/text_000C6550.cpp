@@ -13,6 +13,13 @@ struct Mat {
     void func_001D6600();
 };
 
+/* set a drawable's colour and mark it dirty */
+static void setMatColor(Mat *m, u32 mask, u32 color)
+{
+    m->f38 = (m->f38 & mask) | color;
+    m->f58 |= 2;
+}
+
 /* the shared drawable table the page draws from */
 struct S_000C6550_Mgr {
     char pad0[0x24];
@@ -237,6 +244,38 @@ void BmxUIPageParkLevel::func_000C6CA0()
             w2e4[i]->func_001B1A30(320.0f, f280[i], 0.0f);
             w2e4[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
         }
+    }
+}
+
+void BmxUIPageParkLevel::func_000C6D70()
+{
+    S_000C6550_Mgr *s;
+    int i;
+
+    if (f290)
+        D_002B91AC->unk68->func_001D5AD0();
+    else
+        D_002B91AC->unk50->func_001D5AD0();
+    if (f294)
+        D_002B91AC->unk6C->func_001D5AD0();
+    else
+        D_002B91AC->unk54->func_001D5AD0();
+    for (i = 0; i < 2; i++)
+        D_002B91AC->arr38[i]->func_001D6600();
+    s = D_002B91AC;
+    s->unk24->func_001D5AD0();
+    s->unk28->func_001D5AD0();
+    s->unk2C->func_001D5AD0();
+    s->unk30->func_001D5AD0();
+    for (i = 0; i < 6; i++) {
+        if (i == f28c * 2 || i == f28c * 2 + 1) {
+            m2f0[i]->f38 = (m2f0[i]->f38 & 0xffbfa35a) | 0xbfa35a;
+            m2f0[i]->f58 |= 2;
+        } else {
+            m2f0[i]->f38 = (m2f0[i]->f38 & 0xffcccccc) | 0xcccccc;
+            m2f0[i]->f58 |= 2;
+        }
+        m2f0[i]->func_001D5AD0();
     }
 }
 
