@@ -101,3 +101,12 @@ int func_001D7D40()
     return ++D_002F0BBC;
 }
 
+struct C_001D8310 {
+    void **vtbl;
+    char pad4[0x9D0];
+    u8 field_9d4;
+    char pad9d5[3];
+    int field_9d8;
+    void func_001D8310();
+};
+
