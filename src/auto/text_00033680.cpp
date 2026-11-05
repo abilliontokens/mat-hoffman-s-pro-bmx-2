@@ -35,7 +35,7 @@ struct E34090_Ev {
     char pad4[0x44 - 4]; E34090_Hold *f44; E34090_Hold *f48; char pad4c[0x64 - 0x4c]; E34090_PP *f64;
     char pad68[0x90 - 0x68]; int f90; char pad94[0xe4 - 0x94]; char *fe4;
     char padE8[0x11c - 0xe8]; int f11c; char pad120[4]; int f124; int f128; int f12c; int f130; int f134;
-    char pad138[0x170 - 0x138]; E34090_Obj *f170[20]; void *f1c0; char pad1c4[4]; int f1c8;
+    char pad138[0x170 - 0x138]; E34090_Obj *f170[20]; E34090_Obj *f1c0; char pad1c4[4]; int f1c8;
     int func_00034090();
 };
 struct C_000342A0 {
