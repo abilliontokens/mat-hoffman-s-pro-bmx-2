@@ -165,6 +165,33 @@ void func_001B3AF0(int a1, u16 a2, u16 a3, int a4, int a5, const char *name, int
     func_001B35D0(&desc, a4, a5, a7);
 }
 
+C_001B3C10 *C_001B3C10::func_001B3C10(int a0)
+{
+    int *u;
+    int *p;
+    ((C_00157600 *)this)->func_00157600(a0);
+    u = (int *)this;
+    u[0] = (int)&D_0028C9A4;
+    p = &u[0x40 / 4]; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    p = &u[0x50 / 4]; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    p = &u[0x60 / 4]; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    p = &u[0x70 / 4]; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    p = &u[0x80 / 4]; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    p = &u[0x90 / 4]; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    u[0x24 / 4] = 0; u[0x28 / 4] = 0; u[0x2C / 4] = 0; u[0x30 / 4] = 0;
+    u[0x34 / 4] = 1; u[0x38 / 4] = 1;
+    u[0x40 / 4] = D_002AA8C0; u[0x44 / 4] = D_002AA8C4; u[0x48 / 4] = D_002AA8C8; u[0x4C / 4] = D_002AA8CC;
+    u[0x60 / 4] = D_002AA8C0; u[0x64 / 4] = D_002AA8C4; u[0x68 / 4] = D_002AA8C8; u[0x6C / 4] = D_002AA8CC;
+    u[0x70 / 4] = D_002AA8C0; u[0x74 / 4] = D_002AA8C4; u[0x78 / 4] = D_002AA8C8; u[0x7C / 4] = D_002AA8CC;
+    u[0x50 / 4] = D_002AA8C0; u[0x54 / 4] = D_002AA8C4; u[0x58 / 4] = D_002AA8C8; u[0x5C / 4] = D_002AA8CC;
+    u[0x80 / 4] = D_002AA8C0; u[0x84 / 4] = D_002AA8C4; u[0x88 / 4] = D_002AA8C8; u[0x8C / 4] = D_002AA8CC;
+    u[0x90 / 4] = D_002AA8C0; u[0x94 / 4] = D_002AA8C4; u[0x98 / 4] = D_002AA8C8; u[0x9C / 4] = D_002AA8CC;
+    u[0xA0 / 4] = 0; u[0xA4 / 4] = 0;
+    ((char *)u)[0xA8] = (char)0x80; ((char *)u)[0xA9] = (char)0x80; ((char *)u)[0xAA] = (char)0x80;
+    u[0x3C / 4] = 1;
+    return this;
+}
+
 C_001B3DC0 *C_001B3DC0::func_001B3DC0(int a1, int a2, int a3, int a4)
 {
     S_001B3DC0_New *p;
