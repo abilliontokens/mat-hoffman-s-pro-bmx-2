@@ -145,6 +145,16 @@ undefined4 C_000BC0B0::func_000BC0B0(void)
   return *(undefined4 *)(*(int *)(in_ECX + 0x284) * 0x1a8 + 0x124 + *(int *)(in_ECX + 0x27c));
 }
 
+void C_000BBE30::func_000BC240(void)
+{
+    f288 = 0;
+    if (D_002A8490->f2E0->f324 == 1) {
+        f27C->f128 = *f27C->f120;
+    } else {
+        f27C[f284].f128 = *f27C[f284].f120;
+    }
+}
+
 void C_000BC4A0::func_000BC4A0(undefined4 param_1, undefined4 param_2)
 {
   int in_ECX = (int)this;
