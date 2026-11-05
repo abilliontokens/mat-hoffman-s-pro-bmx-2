@@ -147,6 +147,17 @@ struct C_00075B20 {
     void func_00157600(int a0);
 };
 
+void C_00075880::func_00075880() {
+    D_002EFDB8->vf7(1);
+    D_002EFDB8->vf8();
+    unk194 = 0;
+    unk1C0 = 0;
+    unk120->v34();
+    unk120->func_00032A40();
+    v4();
+    unk120->unk1F4 = 0;
+}
+
 void *C_00075B20::func_00075B20(int param_1) {
     u32 *p;
     int n;
