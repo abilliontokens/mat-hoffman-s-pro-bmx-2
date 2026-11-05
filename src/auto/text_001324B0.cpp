@@ -36,6 +36,8 @@ struct C_Off_1324B0 {
 struct C_Item_1324B0 {
     void func_00133ED0();
     void func_00133140(int a, int b);
+    void func_00133210();
+    void func_001332A0();
 };
 
 struct C_Dst_1324B0 {
