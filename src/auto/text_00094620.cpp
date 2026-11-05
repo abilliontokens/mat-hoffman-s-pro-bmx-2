@@ -248,6 +248,7 @@ struct C_00094A00 {
     int f7C;
     S_00094A10_Holder *f80;
     S_00094A00_Child *f84[1];
+    int func_00094A10(char *name, void *arg);
     int func_00094C60(void);
     int func_00094D00(void);
     int func_00094D90(int a);
