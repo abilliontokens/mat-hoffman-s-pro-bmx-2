@@ -208,6 +208,24 @@ int QuadTreeNode::func_0017CF30(void *item)
     return 0;
 }
 
+void *QuadTreeNode::func_0017CFF0(void *item)
+{
+    int i;
+
+    for (i = 0; i < 4; i++) {
+        if (f4 != 0 && f4[i] != 0) {
+            item = f4[i]->func_0017CFF0(item);
+        }
+    }
+    if (f8 != 0) {
+        S_QuadTreeListNode *n = D_002EFD80->f94->func_0001E8A0();
+        n->slot[0] = this;
+        n->next = (S_QuadTreeListNode *)item;
+        return n;
+    }
+    return item;
+}
+
 void QuadTree::func_0017D120(S_QuadTreeListNode *node)
 {
     while (node != 0) {
