@@ -106,6 +106,9 @@ struct Path_0015BB70 {
     int f10;
     Key_0015BB70 *keys;
 };
+struct V4_0015BB70 {
+    float x, y, z, w;
+};
 void func_0015BB70(Path_0015BB70 *path);
 
 struct C_0015B660 {
