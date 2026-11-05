@@ -342,14 +342,83 @@ int C_001D4200::func_001D4010(int x)
     }
 }
 
+unsigned C_001D4200::func_001D4060(int a)
+{
+    switch (a) {
+    case 0:
+        return 1;
+    case 1:
+        return 2;
+    case 2:
+        return 4;
+    case 3:
+        return 8;
+    case 4:
+        return 0x10000;
+    case 5:
+        return 0x20000;
+    case 6:
+        return 0x40000;
+    case 7:
+        return 0x80000;
+    }
+    return 0;
+}
+
+int C_001D4200::func_001D40E0(int a)
+{
+    char letter;
+
+    if (a == 8) {
+        unk0 = a;
+        strcpy(unk4, "u:\\");
+        return 1;
+    }
+    if ((func_001D4060(a) & func_0026EBC5(&D_0026D8D0)) != 0 &&
+        func_0026ED5B(func_001D4010(a), a >= 4, &letter) >= 0) {
+        func_001ADCC0(unk4, 4, D_0028F130, letter);
+        unk0 = a;
+        return 1;
+    }
+    return 0;
+}
+
+int C_001D4200::func_001D4170(int a)
+{
+    if (a == 8) {
+        memset(unk4, 0, sizeof(unk4));
+        unk0 = -1;
+        return 1;
+    }
+    if (func_0026EE8D(func_001D4010(a), a >= 4) >= 0) {
+        memset(unk4, 0, sizeof(unk4));
+        unk0 = -1;
+        return 1;
+    }
+    return 0;
+}
+
+int C_001D4200::func_001D41D0(int a)
+{
+    int r;
+
+    if (unk0 != -1) {
+        r = func_001D4170(unk0);
+        if (r == 0) {
+            return r;
+        }
+    }
+    return func_001D40E0(a) != 0;
+}
+
 int C_001D4200::func_001D4200(char *out)
 {
     int func_001E8920(...);
+    int h;
+    int ret;
+    int found;
     S_001D4200_Find find;
     char buf[0x80];
-    int found;
-    int ret;
-    int h;
 
     h = func_001DE51E(&unk4, &find);
     ret = 0;
