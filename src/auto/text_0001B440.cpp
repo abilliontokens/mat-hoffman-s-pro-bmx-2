@@ -113,17 +113,55 @@ struct S_0001C1E0_Aux {
     int f10;
 };
 
+struct S_0001BE90_Virt {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(int a);
+    virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16();
+    virtual void v17(); virtual void v18(); virtual void v19(); virtual void v20();
+    virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24();
+    virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28();
+    virtual void v29(); virtual void v30(); virtual void v31(); virtual void v32();
+    virtual void v33(); virtual void v34(); virtual void v35(); virtual void v36();
+    virtual void v37(); virtual void v38(); virtual void v39(); virtual void v40();
+    virtual void v41(); virtual void v42(); virtual void v43(); virtual void v44();
+    virtual void v45();
+    virtual void v46(int a, int b);
+};
+
+struct S_0001B910_Node;
+struct S_0001B910_Anim;
+struct S_0001B910_Child;
+
 struct S_0001C1E0_Slot {
-    char pad0[0x78];
+    char pad0[4];
+    int f4;
+    char pad8[0x3c];
+    int f44;
+    int f48;
+    int f4C;
+    S_0001B910_Child **f50;
+    char pad54[4];
+    S_0001BE90_Virt *f58;
+    int f5C;
+    int f60;
+    char pad64[0xc];
+    int *f70;
+    int *f74;
     int *f78;
-    char pad7C[8];
+    int f7C;
+    int f80;
     int f84;
     int f88;
     char pad8C[4];
     int f90;
-    char pad94[0x110];
-    S_0001C1E0_Aux *f1A4;
+    char pad94[8];
+    int f9C;
+    char padA0[0x104];
+    S_0001B910_Anim *f1A4;
     int func_001B5750(int a);
+    S_0001B910_Node *func_001B56F0(void);
 };
 
 struct S_0001C1E0_List {
