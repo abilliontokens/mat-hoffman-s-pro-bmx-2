@@ -22,6 +22,16 @@ extern "C" void (__stdcall *_imp__RtlLeaveCriticalSection)(void *cs);
 extern "C" int __cdecl func_001F44EF(void *cs, int spinCount);
 void func_001E8390(void *p);
 
+/* new-handler installed by set_new_handler, called by _callnewh */
+extern "C" int (__cdecl *D_002F69E8)(unsigned int size);
+extern "C" void *__cdecl func_001E8AA5(unsigned int size);
+extern "C" int *__cdecl func_001ED075(void);
+extern "C" void __cdecl func_001EB9F3(int rterrnum);
+extern "C" unsigned int __cdecl func_001F4BC8(unsigned int newv, unsigned int mask);
+extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
+void __cdecl func_001EB390(int locknum);
+int __cdecl func_001EB314(int locknum);
+
 #pragma optimize("sy", on)
 int __cdecl func_001EB290(void)
 {
@@ -59,6 +69,19 @@ void __cdecl func_001EB2D9(void)
 void __cdecl func_001EB302(int locknum)
 {
     _imp__RtlLeaveCriticalSection(((void **)D_002AE8F0)[locknum * 2]);
+}
+
+extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
+extern "C" int (__cdecl *D_002F69E8)(unsigned int size);
+extern "C" void *__cdecl func_001E8AA5(unsigned int size);
+extern "C" int *__cdecl func_001ED075(void);
+extern "C" void __cdecl func_001EB9F3(int rterrnum);
+extern "C" unsigned int __cdecl func_001F4BC8(unsigned int newv, unsigned int mask);
+void __cdecl func_001EB390(int locknum);
+int __cdecl func_001EB314(int locknum);
+void __cdecl func_001EB7D7(void)
+{
+    func_001F4BC8(0x10000, 0x30000);
 }
 
 void func_001EB977(void) {
