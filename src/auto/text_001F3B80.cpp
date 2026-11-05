@@ -258,9 +258,7 @@ int func_001F465C(unsigned int *p)
 #pragma optimize("sy", on)
 void func_001F4675(unsigned int *x, int n)
 {
-    int w = n / 32;
-    int r = n % 32;
-    unsigned int mask = ~(-1 << r);
+    unsigned int mask = ~(-1 << (n % 32));
     unsigned int carry = 0;
     unsigned int v;
     unsigned int lo;
@@ -269,14 +267,14 @@ void func_001F4675(unsigned int *x, int n)
     for (i = 0; i < 3; i++) {
         v = x[i];
         lo = v & mask;
-        x[i] = (v >> r) | carry;
-        carry = lo << (32 - r);
+        x[i] = (v >> (n % 32)) | carry;
+        carry = lo << (32 - n % 32);
     }
     for (i = 2; i >= 0; i--) {
-        if (i < w) {
-            x[i] = 0;
+        if (i >= n / 32) {
+            x[i] = x[i - n / 32];
         } else {
-            x[i] = x[i - w];
+            x[i] = 0;
         }
     }
 }
@@ -305,6 +303,65 @@ void func_001F48A1(int d, const char *s)
     char *end;
     func_001F5059(ld, &end, s, 0, 0, 0, 0);
     func_001F485E((int)ld, d);
+}
+
+void func_001F48CE(char *buf, int digits, STRFLT *pflt)
+{
+    char *pbuf = buf;
+    char *mantissa = pflt->mantissa;
+
+    *pbuf++ = '0';
+    while (digits > 0) {
+        *pbuf++ = (*mantissa) ? *mantissa++ : 0x30;
+        digits--;
+    }
+    *pbuf = '\0';
+    if (digits >= 0 && *mantissa >= '5') {
+        pbuf--;
+        while (*pbuf == '9') {
+            *pbuf = '0';
+            pbuf--;
+        }
+        *pbuf += 1;
+    }
+    if (*buf == '1') {
+        pflt->decpt++;
+    } else {
+        func_001EA6A0(buf, buf + 1, strlen(buf + 1) + 1);
+    }
+}
+
+void func_001F494D(LD10 *dst, unsigned long *src)
+{
+    unsigned short sign_exp = ((unsigned short *)src)[3];
+    unsigned long msb = 0x80000000;
+    unsigned short sign = sign_exp & 0x8000;
+    unsigned short exp = (sign_exp >> 4) & 0x7ff;
+    unsigned long man_hi = src[1] & 0xfffff;
+    unsigned long man_lo = src[0];
+
+    if (exp == 0) {
+        if (man_hi == 0 && man_lo == 0) {
+            dst->hi = 0;
+            dst->lo = 0;
+            dst->se = 0;
+            return;
+        }
+        exp += 0x3c01;
+        msb = 0;
+    } else if (exp == 0x7ff) {
+        exp = 0x7fff;
+    } else {
+        exp += 0x3c00;
+    }
+    dst->hi = (man_lo >> 21) | (man_hi << 11) | msb;
+    dst->lo = man_lo << 11;
+    while ((dst->hi & 0x80000000) == 0) {
+        dst->hi = (dst->hi << 1) | (dst->lo >> 31);
+        dst->lo = dst->lo << 1;
+        exp--;
+    }
+    dst->se = sign | exp;
 }
 
 STRFLT *func_001F4A07(double x, STRFLT *flt, char *resultstr)
