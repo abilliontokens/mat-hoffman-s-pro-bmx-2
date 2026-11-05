@@ -1,6 +1,7 @@
 /* 35 functions from 0x001B0A20 to 0x001B19C0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <string.h>
 struct C_001B0E40 {
     undefined4 func_001B0E40(byte param_1);
 };
@@ -442,7 +443,6 @@ void C_001B0FC0::func_001B0FC0(void)
 int C_001B1010::func_001B1010(C_001B1010_Arg *arg0)
 {
     int index = count;
-    int i;
 
     count = index + 1;
     if (arr[index] == 0) {
@@ -450,7 +450,7 @@ int C_001B1010::func_001B1010(C_001B1010_Arg *arg0)
         arr[index] = p != 0 ? p->func_00149280(arg0->unk14) : 0;
     }
     arr[index]->unk8 = arg0;
-    for (i = 0; i < count - 1; i++) {
+    for (int i = 0; i < count - 1; i++) {
         C_001B1010_Obj *e = arr[i];
         if (e != 0 && e->unk8 != 0) {
             if (arg0->v5(e->unk8) != 0 && e->unk20 > index) {
@@ -499,25 +499,25 @@ void *C_001B1130::func_001B1130(int a0)
 {
     func_00157600(a0);
     vtbl = (void *)&D_0028C70C;
-    unk2C = 0;
-    unk28 = 0;
-    unk24 = 0;
+    unk2C = 0.0f;
+    unk28 = 0.0f;
+    unk24 = 0.0f;
     unk30 = 1.0f;
-    unk3C = 0;
-    unk38 = 0;
-    unk34 = 0;
+    unk3C = 0.0f;
+    unk38 = 0.0f;
+    unk34 = 0.0f;
     unk40 = 1.0f;
-    unk4C = 0;
-    unk48 = 0;
-    unk44 = 0;
+    unk4C = 0.0f;
+    unk48 = 0.0f;
+    unk44 = 0.0f;
     unk50 = 1.0f;
-    unk5C = 0;
-    unk58 = 0;
-    unk54 = 0;
+    unk5C = 0.0f;
+    unk58 = 0.0f;
+    unk54 = 0.0f;
     unk60 = 1.0f;
-    unk6C = 0;
-    unk68 = 0;
-    unk64 = 0;
+    unk6C = 0.0f;
+    unk68 = 0.0f;
+    unk64 = 0.0f;
     unk70 = 1.0f;
     return this;
 }
