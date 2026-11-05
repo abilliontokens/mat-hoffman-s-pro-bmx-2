@@ -145,6 +145,19 @@ void C_00135D70::func_00135D70(int a0, int a1) {
     unk10 = a1;
 }
 
+void C_00135D90::func_00135D90(float a, float b)
+{
+    float v = (a / b) * (f30 - f2C) + f2C;
+
+    if (v >= f34) {
+        f24 = (v - f34) * ((f30 - f28) / (f30 - f34)) + f28;
+    } else if (v <= f38) {
+        f24 = (v - f38) * ((f28 - f2C) / (f38 - f2C)) + f28;
+    } else {
+        f24 = f28;
+    }
+}
+
 int func_00135E80()
 {
     return ++D_002BA700;
