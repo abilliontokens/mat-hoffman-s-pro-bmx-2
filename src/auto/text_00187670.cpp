@@ -234,7 +234,7 @@ struct StaticModelTempData {
     char f4[0x104];
     V4_00188250 f108, f118, f128;
     int f138, f13C, f140;
-    StaticModelTempData();
+    StaticModelTempData *func_00187F60();
 };
 int func_001E9040(char *str, char *control);
 
