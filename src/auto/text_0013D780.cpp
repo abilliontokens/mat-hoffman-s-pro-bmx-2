@@ -320,50 +320,6 @@ int DXCamera::func_0013E610(void)
     return 1;
 }
 
-struct S_0013E2D0_Line {
-    float x;
-    float y;
-    char name[0x50];
-    int value;
-};
-
-struct S_0013E2D0_Elem {
-    char pad0[4];
-    float f4;
-    float f8;
-    char padC[0x44 - 0xC];
-    int f44;
-    unsigned int f48;
-    char pad4C[2];
-    unsigned char f4E;
-    char pad4F[0x60 - 0x4F];
-    void func_0005E840(const char *name);
-    void func_001D6600(void);
-};
-
-struct C_001617F0 {
-    void func_001617F0(void *p, int flag);
-};
-
-struct C_0013E2D0 {
-    char pad0[0x224];
-    int f224;
-    S_0013E2D0_Line lines[64];
-    char pad1928[0x10];
-    int f1938;
-    int f193C;
-    char pad1940[4];
-    S_0013E2D0_Elem *f1944;
-    int f1948;
-    int func_0013E2D0(void);
-};
-
-extern int D_002A6A18;
-extern int D_002BEAF4;
-extern int D_0028F5DC;
-extern int D_00284D30;
-extern C_001617F0 *D_002A829C;
-
 void func_0013E680(void) {
     D_002EFDB8->func_001D5600();
     D_002A8490->func_00156E80();
