@@ -160,39 +160,3 @@ void AmbientDebris::func_00026170(C_00168B90 *cfg)
     cfg->func_00168B90(D_0027656C, &unk38);
     cfg->func_00168B90(D_0027655C, &unk1C);
 }
-struct Vec4_257E0 { float x, y, z, w; };
-struct C_00199B00 { void func_00199B00(Vec4_257E0 *out, int a1); };
-struct C_257E0_1A4 { char pad0[4]; C_00199B00 *unk4; };
-struct C_257E0_28 { char pad0[0x1A4]; C_257E0_1A4 *unk1A4; };
-struct C_0001B440 { void func_0001B440(void *a0, int a1); };
-struct C_002B9120 { char pad0[0x484]; C_0001B440 *unk484; };
-struct C_002B7E18 { char pad0[0x2C]; int unk2C; };
-struct C_002A8490 { char pad0[0x124]; int unk124; };
-extern C_002A8490 *D_002A8490;
-extern C_002B7E18 *D_002B7E18;
-extern C_002B9120 *D_002B9120;
-extern f32 D_00275600;
-int func_00011260(int a0, int a1);
-
-struct AmbientBird {
-    void *vtbl;
-    char pad4[0x24];
-    C_257E0_28 *unk28;
-    char pad2C[0x20];
-    float unk4C;
-    float unk50;
-    float unk54;
-    float unk58;
-    Vec4_257E0 unk5C;
-    u32 unk6C;
-    char pad70[8];
-    u8 unk78;
-    u8 unk79;
-    u8 unk7A;
-    u8 unk7B;
-    void func_00157A00(int a0);
-    void func_00023340(void);
-    void func_000235C0(void);
-    void func_000239F0(int a0);
-    int func_000257E0(int a0);
-};
