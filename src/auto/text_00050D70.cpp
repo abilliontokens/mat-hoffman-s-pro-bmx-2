@@ -182,7 +182,7 @@ struct C_00051420 {
     RT_Tex *f24; RT_Tex *f28;
     char pad2C[0x18];
     RT_Spr *f44; RT_Spr *f48;
-    char pad4C[0x14];
+    char pad4C[0x18];
     RT_P1 *f64;
     int func_00051420(void);
 };
