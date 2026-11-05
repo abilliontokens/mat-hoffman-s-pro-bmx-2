@@ -19,7 +19,7 @@ void func_0011F0E0(S_0019BBD0_Vec *a, S_0019BBD0_Vec *b, S_0019BBD0_Vec *c, void
 void __stdcall func_00011FF0(void *base, int count, int size, void *cmp);
 int func_00011060(const void *a, const void *b);
 struct C_0019BBD0 {
-    void func_0019BBD0(unsigned int idx, S_0019BBD0_Tree *tree, int depth, float *m, void *p);
+    void func_0019BBD0(unsigned short idx, S_0019BBD0_Tree *tree, int depth, float *m, void *p);
 };
 
 void func_00123C50(void *a1, void *a2, void *a3, int a4, void *a5, void *a6, void *a7);
