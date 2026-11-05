@@ -55,6 +55,13 @@ extern "C" double sin(double x);
 #pragma intrinsic(cos, sin)
 int __stdcall func_001DCA56(void *a, void *b);
 void func_001613B0(void);
+char *func_001E95A4(char *str, char *delim);
+extern unsigned int D_00287ABC;
+extern unsigned int D_00287AC0;
+extern unsigned int D_00287AC4;
+extern unsigned short D_00287AC8;
+extern unsigned char D_00287ACA;
+extern char D_002789B8[];
 
 struct S_002A8490 {
     virtual void v0();
