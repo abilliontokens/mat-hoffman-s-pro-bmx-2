@@ -2,7 +2,7 @@
 #include "common.h"
 
 struct S_13910_Vec { float x, y, z, w; };
-struct S_13910_Obj2 { S_13910_Vec func_00199B00(int a); };
+struct S_13910_Obj2 { S_13910_Vec *func_00199B00(S_13910_Vec *out, int a); };
 struct S_13910_Sub { char pad[0xbc]; int fbc; };
 struct S_13910_Ent {
     char pad[0x834]; S_13910_Vec f834;
