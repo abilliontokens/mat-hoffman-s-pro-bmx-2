@@ -413,6 +413,32 @@ void C_000B2C80::func_000B2C80(S_000B2C80_Arg *a)
     }
 }
 
+void VehicleAIMgr::func_000B2D50(int a)
+{
+    int i;
+    VehicleAI *ai;
+
+    for (i = 0; i < f38; i++) {
+        f48[i]->f3C->f4B8 = 0;
+        ai = f48[i];
+        if (ai->f50 != ai->f4C) {
+            ai->func_000B2C20(0, 0);
+        }
+        f48[i]->f3C->v46(0, 1);
+        f48[i]->func_000B1F70();
+        ((C_0018C800 *)f48[i])->func_0018C800();
+        if (a == 1) {
+            ((C_0018C800 *)f48[i])->func_0018C890((int)D_0027CF70);
+        }
+    }
+    for (i = 0; i < f34; i++) {
+        f44[i]->func_0018C800();
+        if (a == 1) {
+            f44[i]->func_0018C890((int)D_0027CF70);
+        }
+    }
+}
+
 void C_000B2E40::func_000B2E40(void)
 {
     int i;
