@@ -25,6 +25,7 @@ struct S_13910_Owner {
     int func_000119D0(S_13910_Vec *v);
     float func_00012510(int *p, int w);
     void func_001C6DA0(int a, int b);
+    void func_00011440(S_13910_Vec v);
 };
 struct S_12B00_G { char pad[0x238]; int f238; };
 extern S_12B00_G *D_002A8490;
