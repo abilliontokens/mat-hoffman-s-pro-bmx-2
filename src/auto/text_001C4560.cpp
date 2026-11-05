@@ -119,6 +119,27 @@ void *C_001C4EA0::func_001C4EA0(int flags)
     return this;
 }
 
+void *C_001C4EE0::func_001C4EE0(int flags)
+{
+    C_001C4EE0_Obj *p = f28;
+
+    vtbl = &D_0028E3D4;
+    if (p != 0) {
+        p->func_001D5360();
+        func_001E891B(p);
+    }
+    p = f2C;
+    if (p != 0) {
+        p->func_001D5360();
+        func_001E891B(p);
+    }
+    ((C_00157660 *)this)->func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 C_001C4F70 *C_001C4F70::func_001C4F70(int a1, int a2, int a3, int a4, int a5, int a6, int a7)
 {
     func_0017C300();
