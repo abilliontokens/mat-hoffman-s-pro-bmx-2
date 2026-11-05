@@ -52,6 +52,43 @@ struct C_0018D900_Entry {
     char pad28[0x10];
 };
 
+struct C_0018D7B0_Rec {
+    int f0;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    int f14;
+};
+
+struct C_0018D7B0_Slot {
+    C_0018D7B0_Rec *recs;
+    int f4;
+};
+
+struct C_0018D7B0_Def {
+    char *name;
+    u8 a;
+    u8 b;
+    char pad6[2];
+    int max;
+    int slot;
+    int f10;
+    int f14;
+    int f18;
+    int f1C;
+    int f20;
+};
+
+struct C_0018D7B0 {
+    char pad0[0x170];
+    C_0018D7B0_Def *defs;
+    int defCount;
+    char pad178[4];
+    C_0018D7B0_Slot *slots;
+    void func_0018D7B0(const char *name, int index, int b, int c, int d);
+};
+
 struct C_0018D580 {
     char pad0[0x158];
     C_0018D970_Entry *named;
@@ -70,12 +107,17 @@ struct C_0018D580 {
 
 int C_0018D580::func_0018D580(unsigned int id)
 {
-    int i;
+    int i = 0;
 
-    for (i = 0; i < idCount; i++) {
-        if (id == (unsigned int)ids[i].pad6[0]) {
-            return i;
-        }
+    if (0 < idCount) {
+        unsigned char *p = (unsigned char *)ids + 4;
+        do {
+            if (id == p[1]) {
+                return i;
+            }
+            i++;
+            p += 0x24;
+        } while (i < idCount);
     }
     return 0;
 }
@@ -115,6 +157,19 @@ int C_0018D580::func_0018DA00(int index, const char *name)
         }
     }
     return -1;
+}
+
+int __stdcall func_0018DDD0(C_0018DDD0_Owner *owner, C_0018DDD0_List *list, const char *name)
+{
+    C_0018DDD0_Node *n;
+
+    for (n = list->head; n != 0; n = n->next) {
+        if (strcmp(name, n->name) == 0) {
+            func_001904E0(owner, owner->f38, n, 0, n->f24);
+            return 1;
+        }
+    }
+    return 0;
 }
 
 void func_0018DE50(void) {
