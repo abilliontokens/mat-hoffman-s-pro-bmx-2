@@ -22,6 +22,46 @@ struct DXVSData {
     int func_001D9760(int a1, int a2, int a3, int a4, int a5, int a6, int a7);
 };
 
+extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
+
+/* the Xbox surface description func_002011F0 fills in */
+struct S_001D9820_Desc {
+    unsigned int Format;
+    unsigned int Type;
+    unsigned int Usage;
+    unsigned int Size;
+    unsigned int MultiSampleType;
+    unsigned int Width;
+    unsigned int Height;
+};
+
+struct S_001D9820_Lock {
+    int Pitch;
+    void *pBits;
+};
+
+/* the 18-byte header of an uncompressed true-colour .tga */
+struct S_001D9820_Tga {
+    unsigned char idLength;
+    unsigned char colorMapType;
+    unsigned char imageType;
+    unsigned char colorMap[5];
+    unsigned short xOrigin;
+    unsigned short yOrigin;
+    unsigned short width;
+    unsigned short height;
+    unsigned char bitsPerPixel;
+    unsigned char descriptor;
+};
+
+extern char D_00282960[];
+void *func_001E8A44(int size);
+void *func_0014FDF0(const char *name, const char *mode);
+int func_0014FE80(const void *buf, int size, int count, void *fp);
+int func_0014FE50(void *fp);
+void __stdcall func_002011F0(void *surface, S_001D9820_Desc *desc);
+void __stdcall func_00201210(void *surface, S_001D9820_Lock *lock, int rect, int flags);
+
 void __stdcall func_0021DB06(int a, int b, int c, int d, int e, int f);
 void __stdcall func_0021DB71(int a, int b, int c, int d, int e, int f);
 void __stdcall func_0021DB47(int a, int b, int c, int d, int e, int f, int g, int h, int i);
@@ -30,22 +70,21 @@ void __stdcall func_00201150(int a, int b);
 
 int DXVSData::func_001D9760(int a1, int a2, int a3, int a4, int a5, int a6, int a7)
 {
-    int size;
     void *buf;
-    int *p;
+    int *desc;
+    int size;
 
     size = a1 * a2 * 4;
     buf = func_001DDB7E(size, -1, 0, 0x404);
-    p = (int *)a5;
     for (int i = 0; i < 6; i++)
-        p[i] = 0;
+        ((int *)a5)[i] = 0;
     func_0021DB06(f304, f308, a4, a5, 0, a3);
-    p = (int *)a6;
-    p[0] = p[1] = p[2] = 0;
-    func_0021DB71(size, 8, 0x40, 1, a6, 0);
+    desc = (int *)a6;
+    memset(desc, 0, 12);
+    func_0021DB71(size, 8, 0x40, 1, (int)desc, 0);
     func_0021DB47(a1, a2, 1, 8, 0x12, 1, a7, 0, a3);
     func_00201150(a5, (int)buf);
-    func_00201150(a6, (int)buf);
+    func_00201150((int)desc, (int)buf);
     func_00201150(a7, (int)buf);
     return 0;
 }
