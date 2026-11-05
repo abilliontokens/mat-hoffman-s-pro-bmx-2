@@ -110,3 +110,22 @@ int C_000861A0::func_000861A0(int a0) {
     return 1;
 }
 
+bool C_00086160::func_000861C0(int idx)
+{
+    int v = unkA4[idx];
+
+    if (v > unkE8)
+        return false;
+    v++;
+    unkA4[idx] = v;
+    return v < unkE8;
+}
+
+void C_00086160::func_00086200(void)
+{
+    int i;
+
+    for (i = 0; i < *(int *)D_002A8490->f2E0; i++)
+        unkA4[i] = 0;
+}
+
