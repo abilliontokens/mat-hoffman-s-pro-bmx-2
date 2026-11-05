@@ -5,6 +5,16 @@ struct C_001CE120 {
     undefined4 func_001CE120(byte param_1);
 };
 
+struct C_001CD590 {
+    void **vtbl;
+    char pad4[0x34];
+    int f38;
+    char pad3c[0x64];
+    unsigned char fA0;
+    int func_001CD450(int a, int b);
+    int func_001CD590(int a, int b);
+};
+
 extern int D_0028F004;
 void *func_001E8A44(int size);
 
