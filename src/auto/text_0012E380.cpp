@@ -13,6 +13,8 @@ struct C_0013B210 {
 };
 extern C_0013B210 *D_002BEAAC;
 extern int D_002843F4;
+extern char D_002764F0[];
+extern "C" int memcmp(const void *a, const void *b, unsigned int n);
 extern f32 D_00275460;
 
 struct C_0012C940 {
