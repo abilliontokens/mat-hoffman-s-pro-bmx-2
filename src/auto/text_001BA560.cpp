@@ -30,6 +30,7 @@ struct C_001BB280 {
 extern int D_0028CE6C;
 extern int D_0028D11C;
 extern int D_0028D110;
+extern int D_0028D244;
 
 struct C_001BB470 {
     void *vtbl;
