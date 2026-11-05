@@ -35,6 +35,7 @@ struct C_000EA910 {
     void func_001BE3F0();
     C_000EA910 *func_000EA910(int a);
     void func_000EA9B0();
+    void func_000EA9F0();
 };
 
 C_000EA910 *C_000EA910::func_000EA910(int a)
