@@ -77,8 +77,70 @@ struct C_00198B70 {
     void func_00198E60(void);
 };
 
+void C_00198B70::func_00198B70(S_00198B70_V4 *out0, S_00198B70_V4 *out1)
+{
+    if (f180 < 0) {
+        if ((f180 & 8) == 0 && (f180 & 0x40) != 0) {
+            func_00197AA0();
+        } else {
+            v31();
+        }
+    }
+    if (out0 != 0) {
+        *out0 = f150;
+    }
+    if (out1 != 0) {
+        *out1 = f160;
+    }
+}
+
 void C_00198B70::func_00198BE0(int a)
 {
     f170 = 0;
     v34(a, this);
 }
+
+void C_00198B70::func_00198DE0(void)
+{
+    C_00198B70 * volatile self = this;
+    S_00198B70_Mat * volatile p;
+    S_00198B70_Mat *q;
+    __m128 *v;
+    unsigned int *iq;
+
+    f180 &= 0xfe;
+    p = &self->fB0;
+    q = p;
+    v = (__m128 *)q;
+    iq = (unsigned int *)q;
+    v[0] = _mm_setzero_ps();
+    v[1] = _mm_setzero_ps();
+    v[2] = _mm_setzero_ps();
+    v[3] = _mm_setzero_ps();
+    iq[0] = 0x3f800000;
+    iq[5] = 0x3f800000;
+    iq[10] = 0x3f800000;
+    iq[15] = 0x3f800000;
+    if (self->f178 != 0) {
+        self->f178->v32();
+    }
+    if (self->f174 != 0) {
+        self->f174->v32();
+    }
+}
+
+void C_00198B70::func_00198E60(void)
+{
+    S_00198B70_Cam *p;
+
+    if (f18c != 0) {
+        f18c->func_00193870(&f24);
+        p = f18c;
+        if (p != 0) {
+            p->func_00193500();
+            func_001E891B(p);
+        }
+        f18c = 0;
+    }
+}
+
