@@ -107,10 +107,11 @@ struct Vec4_0018EA50 {
 
 static __forceinline int StrLen_0018E3E0(const char *s)
 {
-    const char *p = s;
-    while (*p++) {
-    }
-    return p - s - 1;
+    const char *p = s + 1;
+
+    do {
+    } while (*s++);
+    return s - p;
 }
 
 static __forceinline int Min_0018E3E0(int a, int b)
@@ -306,57 +307,93 @@ void C_0018E250::func_0018E250(const char * volatile name, unsigned int flags)
 
 void Node_0018EA50::func_0018E3E0(int a, int b)
 {
+    volatile int slot[4];
+    Node_0018EA50 *p;
+    int v;
+    int k;
+
+    slot[0] = (int)this;
     flags = a;
-    switch ((flags >> 8) & 0xff) {
+    p = (Node_0018EA50 *)slot[0];
+    switch ((p->flags >> 8) & 0xff) {
     case 1:
-        f18 = *(int *)b;
-        f0C = &f18;
-        f4 = D_002EFE08->f12C;
+        p->f18 = *(int *)b;
+        p = (Node_0018EA50 *)slot[0];
+        p->f0C = &p->f18;
+        v = D_002EFE08->f12C;
+        ((Node_0018EA50 *)slot[0])->f4 = v;
         break;
     case 2:
-        f1C = *(int *)b;
-        f0C = &f1C;
-        f4 = D_002EFE08->f130;
+        p->f1C = *(int *)b;
+        p = (Node_0018EA50 *)slot[0];
+        p->f0C = &p->f1C;
+        v = D_002EFE08->f130;
+        ((Node_0018EA50 *)slot[0])->f4 = v;
         break;
     case 3: {
         const char *s = *(const char **)b;
-        int n = Min_0018E3E0(StrLen_0018E3E0(s), 0xff);
 
-        func_001E8920(f24, s, n);
-        f24[n] = 0;
-        f20 = f24;
-        f0C = &f20;
-        f4 = D_002EFE08->f134;
+        slot[1] = StrLen_0018E3E0(s);
+        slot[2] = 0xff;
+        k = slot[2];
+        if (k > slot[1]) {
+            k = slot[1];
+        }
+        slot[3] = k;
+        k = slot[3];
+        func_001E8920(((Node_0018EA50 *)slot[0])->f24, s, k);
+        ((Node_0018EA50 *)slot[0])->f24[k] = 0;
+        p = (Node_0018EA50 *)slot[0];
+        p->f20 = p->f24;
+        p = (Node_0018EA50 *)slot[0];
+        p->f0C = &p->f20;
+        v = D_002EFE08->f134;
+        ((Node_0018EA50 *)slot[0])->f4 = v;
         break;
     }
-    case 4:
-        f130 = *(int *)b;
-        f134 = ((int *)b)[1];
-        f0C = &f130;
-        f4 = D_002EFE08->f138;
+    case 4: {
+        int *src = (int *)b;
+
+        p->f130 = src[0];
+        v = src[1];
+        ((Node_0018EA50 *)slot[0])->f134 = v;
+        p = (Node_0018EA50 *)slot[0];
+        p->f0C = &p->f130;
+        v = D_002EFE08->f138;
+        ((Node_0018EA50 *)slot[0])->f4 = v;
         break;
+    }
     case 5:
-        f138 = *(char *)b;
-        f0C = &f138;
-        f4 = D_002EFE08->f13C;
+        p->f138 = *(char *)b;
+        p = (Node_0018EA50 *)slot[0];
+        p->f0C = &p->f138;
+        v = D_002EFE08->f13C;
+        ((Node_0018EA50 *)slot[0])->f4 = v;
         break;
     case 6:
-        f124 = *(int *)b;
-        f0C = &f124;
-        f4 = D_002EFE08->f140;
+        p->f124 = *(int *)b;
+        p = (Node_0018EA50 *)slot[0];
+        p->f0C = &p->f124;
+        v = D_002EFE08->f140;
+        ((Node_0018EA50 *)slot[0])->f4 = v;
         break;
     case 7:
-        f128 = *(int *)b;
-        f0C = &f128;
-        f4 = D_002EFE08->f144;
+        p->f128 = *(int *)b;
+        p = (Node_0018EA50 *)slot[0];
+        p->f0C = &p->f128;
+        v = D_002EFE08->f144;
+        ((Node_0018EA50 *)slot[0])->f4 = v;
         break;
     case 8:
-        f12C = *(int *)b;
-        f0C = &f12C;
-        f4 = D_002EFE08->f148;
+        p->f12C = *(int *)b;
+        p = (Node_0018EA50 *)slot[0];
+        p->f0C = &p->f12C;
+        v = D_002EFE08->f148;
+        ((Node_0018EA50 *)slot[0])->f4 = v;
         break;
     case 9:
-        f0C = (void *)v.func_001915A0(a, b, &f4);
+        v = p->v.func_001915A0(a, b, &p->f4);
+        ((Node_0018EA50 *)slot[0])->f0C = (void *)v;
         break;
     }
 }
