@@ -210,6 +210,49 @@ int C_001643A0::func_001643A0(void)
     return 1;
 }
 
+C_00164440 *C_00164440::func_00164440(int a, int mostDerived)
+{
+    volatile int local = 0;
+    if (mostDerived != 0) {
+        vbptr = D_00287E38;
+        ((C_00157600_164440 *)((char *)this + 0x220))->func_00157600(a);
+    }
+    *(void **)((char *)this + vbptr[1]) = (void *)&D_00287DCC;
+    f10 = 1;
+    f20 = 1;
+    f24 = 1;
+    f2C = 1;
+    f1E0 = 1;
+    fC = 0;
+    f14 = 0;
+    f18 = 0;
+    f34 = 0;
+    f28 = 0;
+    f1C = 0;
+    f38 = 0;
+    f30 = 0;
+    f48 = 0;
+    f98 = 0;
+    fE8 = 0;
+    f138 = 0;
+    f190 = 0;
+    f1EC = 0;
+    f1F8 = 0;
+    f200 = 0;
+    f204 = 0;
+    f1FC = 0;
+    f1E4 = 0;
+    f1F0 = 0;
+    f1F4 = 0;
+    f208 = 0;
+    f20C = 0;
+    f214 = 0;
+    f210 = 0;
+    f218 = 0;
+    f21C = 0;
+    return this;
+}
+
 unsigned char C_00164650::func_00164650(const char *name)
 {
     int i;
