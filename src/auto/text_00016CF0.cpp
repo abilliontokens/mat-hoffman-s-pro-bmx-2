@@ -402,3 +402,51 @@ C_00016E40_Vec C_00017A40::func_00017A40(void)
     return v;
 }
 
+int __stdcall func_00017AD0(V4_00017AD0 *a, V4_00017AD0 *b, V4_00017AD0 *out, int all)
+{
+    int result = 0;
+    V4_00017AD0 seg[2];
+    float center[4];
+    float half[4];
+    S_00017AD0_Iter iter;
+    S_00017AD0_Node *node;
+
+    seg[0] = *a;
+    center[3] = 1.0f;
+    half[3] = 1.0f;
+    V4_00017AD0 hit;
+    seg[1] = *b;
+    center[0] = (seg[0].x + seg[1].x) * D_002755E8;
+    center[2] = (seg[0].z + seg[1].z) * D_002755E8;
+    center[1] = 0.0f;
+    half[0] = (seg[0].x - seg[1].x) * D_002755E8;
+    half[2] = (seg[0].z - seg[1].z) * D_002755E8;
+    *(int *)&half[1] = 0x7effffff;
+    if (half[0] < D_00275544) {
+        half[0] = -half[0];
+    }
+    if (half[2] < D_00275544) {
+        half[2] = -half[2];
+    }
+    iter.func_001A46F0();
+    iter.func_001A4790(0, 1, center, half, 0, 0, 0);
+    for (node = iter.func_001A4840(); node != 0; node = iter.func_001A4840()) {
+        if (node->f2 == D_002A4330) {
+            int flags = node->f44;
+            char *obj = (char *)node - 0x24;
+            if (!(flags & D_002BA148) && flags != 0) {
+                obj[0xa7] |= 0x10;
+                if (func_00134A10(seg, obj, out, &hit) != 0) {
+                    result = 1;
+                    seg[1] = *out;
+                    if (all == 0) {
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    iter.func_001A4A20();
+    return result;
+}
+
