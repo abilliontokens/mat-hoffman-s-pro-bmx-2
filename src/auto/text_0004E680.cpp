@@ -240,8 +240,8 @@ struct C_0004EDB0 {
 };
 
 struct S_0004E7B0_Vec {
-    float x, y, z, w;
-    S_0004E7B0_Vec() { z = 0; y = 0; x = 0; w = 1.0f; }
+    u32 x, y, z, w;
+    S_0004E7B0_Vec() { z = 0; y = 0; x = 0; w = 0x3f800000; }
 };
 
 /* the viewer's direction filter: hands back a vector through its hidden return slot */
@@ -323,18 +323,10 @@ void C_0004ECC0::func_0004E680(void)
 
 void C_0004E7B0::func_0004E7B0(void)
 {
-    S_0004E7B0_Vec a;
-    S_0004E7B0_Vec b;
     float angle;
+    S_0004E7B0_Vec b;
+    S_0004E7B0_Vec a;
 
-    a.z = 0;
-    a.y = 0;
-    a.x = 0;
-    a.w = 1.0f;
-    b.z = 0;
-    b.y = 0;
-    b.x = 0;
-    b.w = 1.0f;
     a = Sub_0004E7B0(f290[f288], f64->f4e0->f1a8[0]->f834);
     func_0004E410(&a, &a);
     a = f64->f4e0->f1a8[0]->f230->func_00198040(&a);
