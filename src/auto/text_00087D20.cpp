@@ -23,7 +23,14 @@ struct C_00157600 {
 };
 
 struct C_001D5760 {
-    char pad0[0x34];
+    char pad0[4];
+    float f4;
+    float f8;
+    char padC[8];
+    float f14;
+    float f18;
+    char pad1C[0x14];
+    int f30;
     int f34;
     char pad38[0x20];
     unsigned char b58;
