@@ -143,6 +143,22 @@ void C_0015A910::func_0015A940(void)
     f18 = 0;
 }
 
+void *C_0015A910::func_0015A970(unsigned char flags)
+{
+    extern int D_00287640;
+    void func_001E8390(void *);
+    void func_001E891B(void *);
+    vtbl = (void *)&D_00287640;
+    if (f18 != 0) {
+        func_001E8390((void *)f18);
+    }
+    f18 = 0;
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 undefined4 C_0015ABF0::func_0015ABF0(int param_1)
 {
   int in_ECX = (int)this;
