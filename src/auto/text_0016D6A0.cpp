@@ -45,3 +45,33 @@ struct C_0016E2E0 {
     void *f1BC;
     void *func_0016E2E0(unsigned int flags);
 };
+
+void C_0016D8A0::func_0016D8A0(int a, int b, int c, int d)
+{
+    int *p = &f54;
+    p[0] = a;
+    p[1] = b;
+    p[2] = c;
+    p[3] = d;
+}
+
+C_0016DA40 *C_0016DA40::func_0016DA40(void *param)
+{
+    u32 *p;
+    ((C_00169C50 *)this)->func_00169C50(param);
+    vtbl = (void *)&D_00288894;
+    p = (u32 *)&f1F0;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = (u32 *)&f200;
+    p[3] = 0x3f800000;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    f34 = f24;
+    f194 = 0;
+    return this;
+}
+
