@@ -63,6 +63,25 @@ struct C_00017A40 {
     C_00016E40_Vec func_00017A40(void);
 };
 
+struct C_00017910_Entry {
+    float radius;
+    C_00016E40_Vec pos;
+};
+struct C_00017910 {
+    char pad0[0x3c];
+    C_00017A40_M *f3C;
+    char pad40[0x49c-0x40];
+    C_00017910_Entry *f49C;
+    char pad4A0[0x4d8-0x4a0];
+    int f4D8;
+    int f4DC;
+    char pad4E0[0x4f0-0x4e0];
+    int f4F0;
+    char pad4F4[0x508-0x4f4];
+    C_00016E40_Vec f508;
+    void func_00017910();
+};
+
 extern "C" int strcmp(const char *s1, const char *s2);
 extern float D_00275460;
 extern int D_002A0700[];
