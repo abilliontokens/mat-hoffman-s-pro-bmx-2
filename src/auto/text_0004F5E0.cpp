@@ -200,6 +200,13 @@ struct C_0004FC20 {
     void func_00032A20();
     int func_00157BF0(int *a, int b);
     int func_0004FC20(int *a, int b);
+    void ResetRiders()
+    {
+        f64->f4C0->v31(1, 1);
+        ((G_4FC20 *)D_002A8490)->f2E0->f2FC->v18(1);
+        for (int i = 0; i < f90; ++i)
+            f64->f4E0->f1A8[i]->f958 = 0.5f;
+    }
 };
 
 int C_0004F5E0::func_0004F5E0()
