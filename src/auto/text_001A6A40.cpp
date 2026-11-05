@@ -141,6 +141,32 @@ struct C_001A7860 {
     void *func_001A7860(unsigned int flags);
 };
 
+int LoadMemoryCard::func_001A6A40(int a, int b)
+{
+    if (f98) return 0;
+    if (f6c == 3 || f6c == 9 || f6c == 6) {
+        if (func_001361E0(4, 2, a, 0x80000000) || func_001361E0(0x17, 2, a, 0x80000000)) {
+            f90->v9(100);
+            f90->v5(1);
+            f5c = 1;
+            f98 = 1;
+            f64 = 0;
+            f90->v5(1);
+            return 0;
+        }
+        if (f6c == 9 && (func_001361E0(5, 2, a, 0x80000000) || func_001361E0(0x18, 2, a, 0x80000000))) {
+            f90->v9(100);
+            f90->v5(1);
+            f60 = 1;
+            f98 = 1;
+            f64 = 0;
+            f90->v5(1);
+            return 0;
+        }
+    }
+    return func_00157BF0(a, b);
+}
+
 void C_001A6B70::func_001A6B70()
 {
     if (f50 != 0) {
