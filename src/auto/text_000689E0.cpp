@@ -26,3 +26,45 @@ struct C_00069080 {
     void func_001578D0();
 };
 #define CLAMP(p) { Sprite_69 *o = (p)->func_001D5AA0(); if (D_00275AEC > o->f10) o->f10 = 10.0f; if (D_00275AEC < o->f14 || o->f14 > o->f10) o->f14 = 10.0f; }
+
+void C_00069080::func_00069080()
+{
+    int ids[3];
+    int i;
+    Sprite_69 **e;
+    Lookup_69 *lk;
+    ids[0] = (int)D_002786A0;
+    ids[1] = (int)D_00278690;
+    ids[2] = (int)D_00278678;
+    for (i = 0; i < 3; i++) {
+        lk = D_002A8490->f2EC;
+        int *r = lk->func_0018C160(ids[i]);
+        if (r && *r) {
+            Sprite_69 *o = ((Mid_69 *)*r)->func_0018C070();
+            if (D_00275AEC > o->f10) o->f10 = 10.0f;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) o->f14 = 10.0f;
+        }
+    }
+    e = &arr80[0];
+    i = 2;
+    do { CLAMP(*e); e++; i--; } while (i);
+    e = arrC8;
+    i = 4;
+    do {
+        if (e[-4]) CLAMP(e[-4]);
+        if (*e) CLAMP(*e);
+        e++; i--;
+    } while (i);
+    e = arrEC;
+    i = 5;
+    do {
+        if (e[-5]) CLAMP(e[-5]);
+        if (*e) CLAMP(*e);
+        e++; i--;
+    } while (i);
+    e = arr100;
+    i = 14;
+    do { if (*e) CLAMP(*e); e++; i--; } while (i);
+    if (unk138) CLAMP(unk138);
+    func_001578D0();
+}
