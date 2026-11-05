@@ -118,6 +118,24 @@ int __stdcall func_001F44DF(void *cs, int spinCount)
     RtlInitializeCriticalSection(cs);
     return 1;
 }
+
+#pragma optimize("sy", on)
+int func_001F4550(unsigned int *p, int bit)
+{
+    int i;
+
+    i = bit / 32;
+    if (p[i] & ~(~0u << (31 - bit % 32))) {
+        return 0;
+    }
+    for (i++; i < 3; i++) {
+        if (p[i] != 0) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
 #pragma optimize("", on)
 
 #pragma optimize("sy", on)
