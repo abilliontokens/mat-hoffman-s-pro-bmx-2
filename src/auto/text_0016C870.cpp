@@ -1,2 +1,44 @@
 /* 5 functions from 0x0016C870 to 0x0016D6A0, found by Ghidra. */
 #include "common.h"
+
+extern int D_0028877C;
+extern int D_002886E4;
+
+struct C_00169C50 {
+    void func_00169C50(void *param);
+};
+
+struct C_Quad {
+    float a;
+    float b;
+    float c;
+    float d;
+};
+
+struct C_0016CE80 {
+    void *vtbl;
+    char pad4[0x20];
+    C_Quad f24;
+    C_Quad f34;
+    char pad44[0x150];
+    int f194;
+    char pad198[0x24];
+    int f1BC;
+    char pad1C0[0x30];
+    int f1F0, f1F4, f1F8, f1FC, f200, f204, f208, f20C;
+    char pad210[4];
+    int f214;
+    C_0016CE80 *func_0016CE80(void *param);
+};
+
+struct C_0016D620 {
+    void *vtbl;
+    char pad4[0x20];
+    C_Quad f24;
+    C_Quad f34;
+    char pad44[0x150];
+    int f194;
+    char pad198[0x78];
+    int f210, f214, f218, f21C, f220, f224, f228, f22C;
+    C_0016D620 *func_0016D620(void *param);
+};
