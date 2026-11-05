@@ -16,3 +16,20 @@ struct S_001EA_FILE {
 
 int func_001F3C55(S_001EA_FILE *stream, const unsigned short *fmt, va_list args);
 int func_001ED8A7(int ch, S_001EA_FILE *stream);
+
+#pragma optimize("t", off)
+int func_001EAA3B(const unsigned short *src, const unsigned short *dst)
+{
+    int ret = 0;
+    while (!(ret = (int)(*src - *dst)) && *dst) {
+        ++src;
+        ++dst;
+    }
+    if (ret < 0) {
+        ret = -1;
+    } else if (ret > 0) {
+        ret = 1;
+    }
+    return ret;
+}
+#pragma optimize("", on)
