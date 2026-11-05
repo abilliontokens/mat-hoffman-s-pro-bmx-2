@@ -14,7 +14,9 @@ struct C_001926D0 {
 };
 
 
+extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 extern int D_0028AB84;
+extern int D_0028ABD4;
 extern char D_0028AB70[];
 extern char D_0028AA90[];
 
