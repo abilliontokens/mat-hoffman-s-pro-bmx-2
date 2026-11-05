@@ -103,10 +103,6 @@ undefined4 C_0002FA80::func_00030020(const char *name)
     return 0;
 }
 
-bool C_0002FA80::func_000300C0(const char *subName)
-{
-    return entries[cur].func_0002FFD0(subName) != -1;
-}
 
 bool C_000300F0::func_000300F0(undefined4 param_1)
 {
@@ -116,6 +112,14 @@ bool C_000300F0::func_000300F0(undefined4 param_1)
   
   iVar1 = func_001EA426(param_1,*(int *)(in_ECX + 0xc) * 0x118 + 0x14 + *(int *)(in_ECX + 4));
   return iVar1 == 0;
+}
+
+bool C_0002FA80::func_00030120(const char *subName)
+{
+    int func_001EA426(...);
+    S_0002FA80_Entry *e = &entries[cur];
+
+    return func_001EA426(subName, e->subs[e->curSub].name) == 0;
 }
 
 void C_0002FA80::func_000301D0(void)
