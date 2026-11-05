@@ -1,6 +1,13 @@
 /* 24 functions from 0x00157810 to 0x001587F0, found by Ghidra. */
 #include "common.h"
 
+extern int D_002DF95C;
+extern char D_00287354[], D_00276274[], D_002790E0[], D_00287330[], D_00287314[];
+int func_001ADCC0(char *, int, const char *, ...);
+void *func_0014FDF0(char *, const char *);
+void func_0014FE50(void *);
+int func_0014FE90(void *, const char *, ...);
+
 struct S_00157810_Audio {
     virtual void v0();
     virtual void v1();
