@@ -29,8 +29,13 @@ struct S_00133A30 {
     S_00133A30 **f1A0;
     char pad1a4[0xc];
     char f1B0[0x14];
-    int f1C4;
-    int f1C8;
+    union {
+        S_00133A30_Pair pair;
+        struct {
+            int f1C4;
+            int f1C8;
+        };
+    };
 };
 
 float func_0011FDF0(char *p, float *a, float *b);
@@ -430,7 +435,7 @@ void C_00133730::func_00133730(int a0, int a1) {
 float func_00133A30(float *a, float t, int c, S_00133A30 *s)
 {
     float d;
-    int loc[2];
+    S_00133A30_Pair loc;
     int i;
 
     if ((s->f21 & 1) == 0) {
@@ -440,9 +445,9 @@ float func_00133A30(float *a, float t, int c, S_00133A30 *s)
     if (d < t + s->f48) {
         switch (s->f50) {
         case 0:
-            loc[0] = s->f1C4;
-            loc[1] = s->f1C8;
-            if (func_00123EF0(a, t, c, 0, loc, s->fB0, s->f1B0) != 0) {
+            loc.a = s->f1C4;
+            loc.b = s->f1C8;
+            if (func_00123EF0(a, t, c, 0, (int *)&loc, s->fB0, s->f1B0) != 0) {
                 return D_00275544;
             }
             break;
@@ -450,9 +455,11 @@ float func_00133A30(float *a, float t, int c, S_00133A30 *s)
             if (func_00122810(s->fA8, s->fB8, a, t, c, s->f130) != 0) {
                 for (i = 0; i < s->f190; i++) {
                     S_00133A30 *e = s->f1A0[i];
-                    loc[1] = e->f1C8;
-                    loc[0] = e->f1C4;
-                    if (func_00123EF0(a, t, c, 0, loc, e->fB0, e->f1B0) != 0) {
+                    int y = e->f1C8;
+                    int x = e->f1C4;
+                    loc.b = y;
+                    loc.a = x;
+                    if (func_00123EF0(a, t, c, 0, (int *)&loc, e->fB0, e->f1B0) != 0) {
                         return D_00275544;
                     }
                 }
