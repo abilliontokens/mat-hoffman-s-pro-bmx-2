@@ -403,9 +403,10 @@ void C_00160C90::func_00160CE0(int key, int value)
     if (i < 0) {
         i = -i;
     }
+    i = i % f4;
     n = (S_00160C90_Node *)func_001E8A44(0x10);
-    n->next = f0[i % f4];
-    f0[i % f4] = n;
+    n->next = f0[i];
+    f0[i] = n;
     n->hash = h;
     n->key = key;
     n->value = value;
