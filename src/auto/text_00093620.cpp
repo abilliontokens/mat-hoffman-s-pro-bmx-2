@@ -179,6 +179,17 @@ struct C_00093140 {
     void func_000944C0(int a1, int a2, int a3, int a4, int a5, int a6);
 };
 
+void C_00093140::func_00093890(int a1, int a2, int a3, int a4, int a5, int a6)
+{
+    f24->func_001B17D0(D_002A8490->f2e8->f4->fB00);
+    f28->func_001B17D0(D_002A8490->f2e8->f4->fB08);
+    f2c->func_001B17D0(D_002A8490->f2e8->f4->fB10);
+    f30->func_001B17D0(D_002A8490->f2e8->f4->fB18);
+    f34->func_001B17D0(D_002A8490->f2e8->f4->fB20);
+    f38->func_001B17D0(D_002A8490->f2e8->f4->f1180);
+    func_00093140(a1, a2, a3, 6, a4, a5, a6);
+}
+
 void C_00093140::func_00093970(int a1, int a2, int a3, int a4, int a5, int a6)
 {
     f24->func_001B17D0(D_002A8490->f2e8->f4->fD08);
