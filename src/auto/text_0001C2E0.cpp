@@ -1,6 +1,7 @@
 /* 40 functions from 0x0001C2E0 to 0x0001D280, found by Ghidra. */
 #include "common.h"
 #include <math.h>
+#include <string.h>
 struct C_0001C710 {
     char pad0[0x130];
     float unk130;
