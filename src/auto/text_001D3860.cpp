@@ -414,11 +414,11 @@ int C_001D4200::func_001D41D0(int a)
 int C_001D4200::func_001D4200(char *out)
 {
     int func_001E8920(...);
-    int h;
-    int ret;
-    int found;
     S_001D4200_Find find;
     char buf[0x80];
+    int found;
+    int ret;
+    int h;
 
     h = func_001DE51E(&unk4, &find);
     ret = 0;
@@ -477,30 +477,29 @@ int C_001D4200::func_001D4300(unsigned a)
 int C_001D4200::func_001D4380(char *out)
 {
     int func_001E8920(...);
-    char bufB[0x104];
-    char bufA[0x104];
-    char bufC[0x104];
+    char bufs[0x30c];
+    char *bufB = bufs;
+    char *bufA = bufs + 0x104;
     int r;
     int h;
 
-    if (unk0 == -1) {
-        return 0;
-    }
-    r = func_001D4300(unk0);
-    if (r == 2) {
-        h = unk0;
-        if (h == -1 || func_001D4170(h) != 0) {
-            func_001D40E0(h);
+    if (unk0 != -1) {
+        r = func_001D4300(unk0);
+        if (r == 2) {
+            h = unk0;
+            if (h == -1 || func_001D4170(h) != 0) {
+                func_001D40E0(h);
+            }
+        } else if (r != 1) {
+            func_001D4170(unk0);
+            return 0;
         }
-    } else if (r != 1) {
-        func_001D4170(unk0);
-        return 0;
+        func_001DDE3E(bufA, D_0028F510, out + 0x1f);
+        if (func_001DE2BB(&unk4, bufA, 4, 0, bufB, 0x104) == 0) {
+            func_001E8920(out, bufB, 30);
+            return 1;
+        }
     }
-    func_001DDE3E(bufA, D_0028F510, out + 0x1f);
-    if (func_001DE2BB(&unk4, bufA, 4, 0, bufB, 0x104) != 0) {
-        return 0;
-    }
-    func_001E8920(out, bufB, 30);
-    return 1;
+    return 0;
 }
 
