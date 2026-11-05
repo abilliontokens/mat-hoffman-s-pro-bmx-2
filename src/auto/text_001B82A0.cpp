@@ -212,7 +212,8 @@ struct Item_001B8550 {
     int f104;
     char pad108[0x128 - 0x108];
     V4_001B8550 f128;
-    char pad138[0x148 - 0x138];
+    void *f138;
+    char pad13C[0x148 - 0x13c];
     void *f148;
     char pad14C[0x158 - 0x14c];
     void **f158;
