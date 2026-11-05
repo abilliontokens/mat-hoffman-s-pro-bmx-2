@@ -178,6 +178,12 @@ struct C_00011E30 {
     C_00017680_Vec v404;
     C_00017680_Vec func_00011E30(void);
 };
+struct C_000119D0 {
+    char pad[0x3b0];
+    int f3B0;
+    int pathIdx;
+    int func_000119D0(C_00017680_Vec *pos);
+};
 struct C_000115F0 {
     char pad[0x3b4];
     int pathIdx;
