@@ -245,6 +245,27 @@ void C_00104B00::func_00104BE0(void)
     }
 }
 
+int C_00104B00::func_00104C80(int idx)
+{
+    if (idx >= 0 && idx < 8) {
+        if (D_002A8490->f8->a14[f970] != 0) {
+            D_002A8490->f8->a14[f970]->v0(f9e8->f4);
+            D_002A8490->f8->a14[f970]->v0(f9ec->f4);
+            D_002A8490->f8->a14[f970]->v0(f9f0->f4);
+            D_002A8490->f8->a14[f970]->v0(f9f4->f4);
+        }
+        if (D_002A8490->f8->a14[idx] != 0) {
+            f970 = idx;
+            D_002A8490->f8->a14[idx]->func_0015B060(f9e8, 0x3c23d70a, 0x3c23d70a);
+            D_002A8490->f8->a14[f970]->func_0015B060(f9ec, 0x3c23d70a, 0x3c23d70a);
+            D_002A8490->f8->a14[f970]->func_0015B060(f9f0, 0x3c23d70a, 0x3c23d70a);
+            D_002A8490->f8->a14[f970]->func_0015B060(f9f4, 0x3c23d70a, 0x3c23d70a);
+            return 1;
+        }
+    }
+    return 0;
+}
+
 void C_00104B00::func_00104DF0(int a0)
 {
     int color;
