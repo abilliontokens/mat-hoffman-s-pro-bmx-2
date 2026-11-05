@@ -155,11 +155,10 @@ int C_00097FD0::func_00098080(const char *name) {
         for (i = 0; i < count; i++) {
             if (func_001EA426(name, list[i]->nameb4) == 0) {
                 if (unk198->unk170 != 0) {
-                    char *p = list[i]->name3c;
-                    if (*p) {
-                        func_00083A70(p);
+                    if (list[i]->name3c[0]) {
+                        unk198->unk170->func_00083A70(list[i]->name3c);
                     } else {
-                        func_00083A70(list[i]);
+                        unk198->unk170->func_00083A70(list[i]->name0);
                     }
                 }
                 C_00096930 *e = list[i];
