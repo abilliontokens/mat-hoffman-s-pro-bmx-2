@@ -4,7 +4,7 @@
 struct S_BFEE0_Check { int func_0005C1D0(int index); void func_0005C310(int a, int b); };
 struct S_C09B0_Ui { void func_000B9A80(int a, int b); };
 struct S_C09B0_Input { int func_00136170(int a, int b, int c); };
-struct S_BFEE0_Manager { char pad[0x2c0]; S_BFEE0_Check *f2c0; char pad2c4[0x2d4 - 0x2c4]; int f2d4; };
+struct S_BFEE0_Manager { char pad[0x2c0]; S_BFEE0_Check *f2c0; char pad2c4[0x2d0 - 0x2c4]; int f2d0; int f2d4; };
 struct S_BFEE0_Page { char pad[0x24]; S_C09B0_Ui *f24; };
 struct S_C0010_Global {
     char pad[8];
