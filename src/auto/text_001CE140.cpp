@@ -18,14 +18,22 @@ struct SoundIface {
 struct SoundList {
     int count;
     int *data;
-    char pad8[0x10];
-    void *data2;
+    char pad8[0xc];
+    int count2;
+    int *data2;
     char pad1c[0xc];
-    void func_001CDED0(int id);
+    int func_001CDED0(int id);
     void Clear()
     {
         memset(data, 0, count * sizeof(int));
         count = 0;
+    }
+    int Item(int i)
+    {
+        if (count2 > 0 && data2 != 0 && i < count2) {
+            return data2[i];
+        }
+        return 0;
     }
 };
 
