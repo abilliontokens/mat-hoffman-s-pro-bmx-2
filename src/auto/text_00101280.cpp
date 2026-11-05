@@ -32,6 +32,62 @@ struct C_00101A30 {
     void func_00101A30();
 };
 
+/* BmxUIPageEditorLevelSelection */
+struct S_001018F0_Input {
+    int func_000301D0();
+};
+
+struct S_001018F0_Pad {
+    char pad0[0x74];
+    S_001018F0_Input *f74;
+};
+
+struct S_001018F0_Owner {
+    char pad0[0x25C];
+    S_001018F0_Pad *f25C;
+};
+
+struct S_001018F0_Entry {
+    char pad0[0x38];
+    u32 f38;
+    char pad3C[0x1C];
+    u8 b58;
+    void func_001D5AD0();
+};
+
+struct S_001018F0_Cursor {
+    void func_00093A00(int a1, int a2, int a3, int a4, int a5, int a6);
+};
+
+extern int D_0028F5E0;
+
+struct C_001018F0 {
+    char pad0[0x124];
+    S_001018F0_Owner *f124;
+    char pad128[0x288 - 0x128];
+    S_001018F0_Entry *f288;
+    int f28C;
+    char pad290[0x3B8 - 0x290];
+    S_001018F0_Cursor *f3B8;
+    int f3BC;
+    char pad3C0[0x3CC - 0x3C0];
+    int f3CC;
+    char pad3D0[0x3D8 - 0x3D0];
+    int f3D8;
+    char pad3DC[0x42C - 0x3DC];
+    int f42C;
+    int f430;
+    int f434;
+    int f438;
+    float f43C;
+    int f440;
+    void func_000EE1F0();
+    void func_000EE140();
+    void func_000EDF00();
+    void func_00157960();
+    void func_001018F0();
+};
+
 struct C_00101A10 {
     undefined4 func_00101A10(byte param_1);
 };
