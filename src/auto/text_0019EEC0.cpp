@@ -43,7 +43,6 @@ struct D_F780 {
     F3_F780 *f1C; M_F780 *f20; int pad24; short *f28; int f2C;
 };
 void *func_001E8AA5(int size);
-extern "C" int dummy_F780_unused;
 struct C_0019F9B0 {
     char pad0[0x190]; int f190; char pad194[4]; int f198; char *f19C; N_F780 **f1A0; D_F780 *f1A4;
     void func_0019EB10(int h);
