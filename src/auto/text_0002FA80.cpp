@@ -43,6 +43,10 @@ struct C_0002FA80 {
     undefined4 func_00030020(const char *name);
     bool func_000300C0(const char *subName);
     void func_000301D0(void);
+    bool func_00030120(const char *subName);
+    void func_00030160(void);
+    void func_000301A0(void);
+    undefined4 func_000301F0(void);
 };
 
 struct C_000300F0 {
