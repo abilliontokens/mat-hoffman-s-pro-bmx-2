@@ -4,6 +4,7 @@
 struct C_001D5AD0 {
     void func_001D5AD0(void);
     void func_0005E840(int a);
+    void func_001D6600(void);
 };
 
 struct C_00093120 {
