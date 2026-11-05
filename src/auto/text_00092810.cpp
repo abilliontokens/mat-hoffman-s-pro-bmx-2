@@ -46,12 +46,15 @@ struct C_00092890 {
     int f44;
     int f48;
     char f4c;
-    char pad4d[0x103];
+    char pad4d[0x17];
+    int f64;
+    int f68;
+    char pad6c[0x10];
+    int f7c;
+    char pad80[0xd0];
     char f150;
     char pad151[0x103];
     char f254;
-    char pad255[0x4f];
-    int f64_unused_placeholder;
     C_00092890 *func_00092890(int a);
     void func_00093120(void);
     C_00092890 *func_00092810(int a0, int a1, int a2, int a3);
