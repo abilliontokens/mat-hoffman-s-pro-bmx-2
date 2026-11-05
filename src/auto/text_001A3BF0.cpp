@@ -82,6 +82,7 @@ struct V4_001A46F0 {
     float z;
     float w;
     V4_001A46F0() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+    V4_001A46F0(int) { x = 0.0f; y = 0.0f; z = 0.0f; w = 1.0f; }
 };
 
 struct C_001A46F0 {
@@ -335,6 +336,38 @@ int C_001A4640::func_001A4640(int a1, int a2, int a3)
     return r;
 }
 
+void C_001A4790::func_001A4790(void *a1, u32 flags, u32 *a3, u32 *a4, int a5, int a6, int a7)
+{
+    void *mat = a1;
+
+    f3C = a7;
+    if (mat == 0) {
+        mat = D_002EFE78;
+    }
+    f2C = mat;
+    f30 = mat;
+    vec0[0] = a3[0];
+    vec0[1] = a3[1];
+    vec0[2] = a3[2];
+    vec0[3] = a3[3];
+    vec10[0] = a4[0];
+    vec10[1] = a4[1];
+    vec10[2] = a4[2];
+    vec10[3] = a4[3];
+    f34 = a5;
+    f38 = a6;
+    f20 = flags;
+    f24 = ((Mat_001A4790 *)mat)->f4;
+    f28 = 0;
+    if (flags & 1) {
+        f28 = ((Shape_001A4790 *)f24)->f28;
+    }
+    if (f28 == 0 && (flags & 2)) {
+        f28 = ((Shape_001A4790 *)f24)->f2C;
+    }
+    ((VT_001A4790 *)f28)->v11(this, vec10, a5, a6);
+}
+
 void C_001A4A20::func_001A4A20(void)
 {
     if (f24->f28 != 0) {
@@ -342,6 +375,48 @@ void C_001A4A20::func_001A4A20(void)
     }
     if (f24->f2c != 0 && f24->f2c != f24->f28) {
         f24->f2c->v14();
+    }
+}
+
+SphereCollisionObject *SphereCollisionObject::func_001A4A50(int param)
+{
+    u32 *p;
+
+    ((C_00132EB0 *)this)->func_00132EB0(param);
+    vtbl = &D_0028B84C;
+    p = (u32 *)&fA8;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p[0] = D_002A9F40[0];
+    p[1] = D_002A9F40[1];
+    p[2] = D_002A9F40[2];
+    p[3] = D_002A9F40[3];
+    f100 = 0;
+    f104 = 0;
+    f108 = 0;
+    f10C = 0;
+    f110 = 0;
+    f50 = 5;
+    return this;
+}
+
+void SphereCollisionObject::func_001A4AE0(u32 *pos, float *radius)
+{
+    if (pos != 0) {
+        u32 *p = (u32 *)&fA8;
+
+        p[0] = pos[0];
+        p[1] = pos[1];
+        p[2] = pos[2];
+        p[3] = pos[3];
+    }
+    if (radius != 0) {
+        float r = *radius;
+
+        f100 = r;
+        f104 = r * r;
     }
 }
 
@@ -353,9 +428,6 @@ C_001A46F0::C_001A46F0()
     t.y = -3.402823466e+38f;
     t.z = -3.402823466e+38f;
     a = t;
-    b.x = 0.0f;
-    b.y = 0.0f;
-    b.z = 0.0f;
     V4_001A46F0 u;
     b = u;
     f20 = 0.0f;
