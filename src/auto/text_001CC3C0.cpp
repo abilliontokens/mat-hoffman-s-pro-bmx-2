@@ -124,10 +124,22 @@ int C_001CC3C0::func_001CC460(int param_1)
 
 int C_001CC3C0::func_001CCA10(void)
 {
-    if ((int)f154 != -1) {
-        if (f154->v7() != 0)
-            return 1;
+    if ((int)f154 != -1 && f154->v7() != 0)
+        return 1;
+    int c = f118;
+    int b = f144->f8;
+    int a = f13C;
+    if (func_002223E1(a, b, c) != 0)
+        return 0;
+    if (v9(f1A8) == 0)
+        return 0;
+    if (func_001CC4B0(&f1B4, &f1E8, &f1F8, &f1D8) == 0)
+        return 0;
+    f154 = 0;
+    if (f208 & 0x20) {
+        v5(0);
+        f208 &= 0xdf;
     }
-    return 0;
+    return 1;
 }
 
