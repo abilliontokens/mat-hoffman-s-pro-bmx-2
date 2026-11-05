@@ -114,6 +114,7 @@ struct C_132CC0 {
     void func_00132CC0(int a1, int a2, int a3);
     void func_00132D20();
     void func_00132D70();
+    void func_00132A40(int a1, int a2, int a3, int a4, int a5, int a6, int a7);
 };
 
 void CinematographerCam::func_001324B0()
