@@ -1,5 +1,10 @@
 /* 3 functions from 0x001D1BD0 to 0x001D2A40, found by Ghidra. */
 #include "common.h"
+#include <string.h>
+struct LoadingRecord { const char *name; char pad4[0x3C]; float x,y,w,h,value; };
+extern float D_002ABC38, D_002ABC3C;
+extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *);
+extern "C" __declspec(dllimport) void __stdcall RtlLeaveCriticalSection(void *);
 
 int __stdcall func_001DDC28(int a);
 int __stdcall func_001DDDD6(int a, int b);
