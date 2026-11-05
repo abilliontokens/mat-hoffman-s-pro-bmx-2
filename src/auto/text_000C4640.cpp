@@ -115,6 +115,33 @@ struct C_000C4FD0 {
     void func_000C4FD0();
 };
 
+void C_000C4EB0::func_000C4EB0()
+{
+    int i;
+    if (f2E0) {
+        for (i = 0; i < 3; i++) a320[i]->func_001B1980();
+        f2E0 = 0;
+    } else if (f2E4) {
+        for (i = 0; i < 3; i++) a32C[i]->func_001B1980();
+        f2E4 = 0;
+    } else if (f364) {
+        for (i = 0; i < 3; i++) a338[i]->func_001B1980();
+        f364 = 0;
+    } else if (f2EC) {
+        for (i = 0; i < 3; i++) a350[i]->func_001B1980();
+        f2EC = 0;
+    } else if (f2E8) {
+        for (i = 0; i < 3; i++) a344[i]->func_001B1980();
+        f2E8 = 0;
+    }
+    func_001BEF50(1, 1);
+    func_001BEF50(1, 2);
+    func_001BEF50(1, 3);
+    func_001BEF50(1, 4);
+    f288 = 0;
+    v27();
+}
+
 void C_000C4FD0::func_000C4FD0()
 {
     S_000C4FD0_Owner *owner = f124->f25C;
