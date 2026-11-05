@@ -67,6 +67,7 @@ struct C_00196290 {
     int func_001960F0(float param_1, int param_2, int param_3, int param_4, int param_5, int param_6, int param_7);
     void func_00196360(u8 *param_1);
     void func_001963D0(void);
+    void func_00196560(void);
 };
 
 int C_00196290::func_001961E0(int param_1, int param_2, int param_3)
