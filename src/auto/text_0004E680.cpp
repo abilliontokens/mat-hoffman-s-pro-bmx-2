@@ -148,6 +148,54 @@ void C_0004EBA0::func_0004EC40(void)
     func_00031450();
 }
 
+C_0004ECC0 *C_0004ECC0::func_0004ECC0(int a0)
+{
+    extern int D_00277644;
+    extern u32 D_002A174C;
+    extern u32 D_002A1750;
+    extern u32 D_002A1754;
+    extern u32 D_002A1758;
+    u32 *p;
+    u32 *q;
+    char *c;
+    int n;
+    int i;
+
+    func_00030F90(a0);
+    vtbl = (void *)&D_00277644;
+    p = f290;
+    n = 20;
+    do {
+        p[2] = 0;
+        p[1] = 0;
+        p[0] = 0;
+        p[3] = 0x3f800000;
+        p += 4;
+    } while (--n != 0);
+    f288 = -1;
+    f28c = -1;
+    f284 = 0;
+    c = f3d0;
+    q = f290;
+    n = 20;
+    do {
+        *c = 0;
+        q[0] = D_002A174C;
+        q[1] = D_002A1750;
+        q[2] = D_002A1754;
+        q[3] = D_002A1758;
+        c += 0x78;
+        q += 4;
+    } while (--n != 0);
+    fD54 = 0;
+    for (i = 0; i < 8; i++) {
+        fD30[i] = 0;
+        fD58[i] = 0;
+    }
+    fD50 = 0;
+    return this;
+}
+
 void *C_0004ED80::func_0004ED80(int flags) {
     extern int D_00277644;
     unk0 = (int)&D_00277644;
@@ -155,6 +203,28 @@ void *C_0004ED80::func_0004ED80(int flags) {
     if (flags & 1) {
         func_001E891B(this);
     }
+    return this;
+}
+
+C_0004F220 *C_0004F220::func_0004F220(int a0)
+{
+    extern int D_0027777C;
+    int i;
+
+    func_00030F90(a0);
+    vtbl = (void *)&D_0027777C;
+    f2ac = 0;
+    for (i = 0; i < 8; i++) {
+        f2b8[i] = 1;
+        f288[i] = 0;
+    }
+    f284 = 8;
+    f2dc = -1;
+    f2a8 = 0;
+    f2d8 = 0;
+    f2e0 = 0;
+    f2b4 = 0;
+    f2b0 = 1;
     return this;
 }
 
