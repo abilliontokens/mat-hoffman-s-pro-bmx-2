@@ -96,6 +96,7 @@ struct Tgt_00193240 {
     char pad0[0x3c];
     int f3c;
     void func_00192CC0(V8_00193240 *a);
+    void func_001930F0(void);
 };
 struct Link2_00193240 {
     Link2_00193240 *next;
