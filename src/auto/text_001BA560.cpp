@@ -191,7 +191,9 @@ struct C_001BB300 {
     void *vtbl;
     char pad04[0x58];
     void *f5c;
+    void func_001BAEC0();
     C_001BB300 *func_001BB300(byte flags);
+    C_001BB300 *func_001BB2E0(byte flags);
 };
 
 
