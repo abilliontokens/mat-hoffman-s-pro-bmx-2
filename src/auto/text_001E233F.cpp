@@ -14,6 +14,12 @@ extern PVFV D_0029F4EC[];
 extern char D_002F6AE0[];
 extern char D_002F6B00[];
 
+extern int D_002F6B2C;
+
+int __stdcall func_001DF456(int index, unsigned int *type, unsigned int *value, unsigned int length, unsigned int *resultLength);
+
+extern "C" void (__stdcall *_imp__KeInitializeDpc)(void *dpc, void *routine, void *context);
+extern "C" void (__stdcall *_imp__KeInitializeTimerEx)(void *timer, int type);
 extern "C" void (__stdcall *_imp__HalInitiateShutdown)(void);
 extern "C" int (__stdcall *_imp__KeSetTimer)(void *timer, __int64 dueTime, void *dpc);
 
