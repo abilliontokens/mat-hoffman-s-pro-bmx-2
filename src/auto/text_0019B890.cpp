@@ -134,6 +134,7 @@ struct SoultreeCollisionObject {
     void func_0019C690(int a1, S_0019C690_Arg *a2);
     void func_0019C0E0(S_Matrix16 *m);
     void func_0019C210(S_Matrix16 *m);
+    void func_0019C350(struct S_0019C350_V4 *centre, float *extent);
 };
 
 void func_0011ACC0(void *out, void *a, void *b);
@@ -157,18 +158,18 @@ void C_0019BA70::func_0019B890(void)
     if (D_002B92E0 > 0) {
         const float *p = D_002B9448;
         for (i = 0; i < D_002B92E0; i++) {
-            sum[0] += p[-2];
-            sum[1] += p[-1];
-            sum[2] += p[0];
+            sum[0] = p[-2] + sum[0];
+            sum[1] = p[-1] + sum[1];
+            sum[2] = sum[2] + p[0];
             p += 4;
         }
         Normalize_0019B890(sum, sum);
     }
     float t[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
     Normalize_0019B890(t, obj);
-    obj[0] += t[0] * D_0028B248;
-    obj[1] += t[1] * D_0028B248;
-    obj[2] += t[2] * D_0028B248;
+    obj[0] = t[0] * D_0028B248 + obj[0];
+    obj[1] = t[1] * D_0028B248 + obj[1];
+    obj[2] = t[2] * D_0028B248 + obj[2];
 }
 
 void SoultreeCollisionObject::func_0019BB80(void *arg1)
