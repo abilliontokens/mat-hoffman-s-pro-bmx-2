@@ -30,3 +30,18 @@ struct C_0013C960 {
     int func_0013C9F0(int a0, int a1);
     int func_0013C960(int a0, int a1, int a2);
 };
+
+int C_0013C960::func_0013C9F0(int a0, int a1)
+{
+    int local = func_0013B130(a0);
+    if (local == -1) {
+        if (fFC == 0) {
+            return -1;
+        }
+        if (func_0013C3D0(a0, a1, &local) == 0) {
+            return -1;
+        }
+    }
+    func_0013B040(local);
+    return local;
+}
