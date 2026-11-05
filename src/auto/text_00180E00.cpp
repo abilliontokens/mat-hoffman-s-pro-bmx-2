@@ -41,7 +41,7 @@ struct RenderableObject {
     char pad182[0x1e];
     unsigned char unk1A0;
     unsigned char unk1A1;
-    short unk1A2;
+    unsigned char unk1A2;
     unsigned char unk1A3;
     int unk1A4;
     int unk1A8;
@@ -67,3 +67,46 @@ RenderableObjectData *RenderableObjectData::func_00181410(void)
     unkC = 1.0f;
     return this;
 }
+
+void RenderableObjectData::func_00181440(void)
+{
+    vtbl = &D_00289254;
+    for (int i = 0; i < unk8; i++) {
+        VObj *o = unk10[i].unk8;
+        if (o != 0) {
+            if (((int *)o)[-1] == 0) {
+                func_001E891B((int *)o - 1);
+            } else {
+                o->destroyObject(3);
+            }
+        }
+    }
+    if (unk10 != 0) {
+        func_001E8390(unk10);
+    }
+    func_0001DFF0();
+}
+
+RenderableObject *RenderableObject::func_001814B0(int a)
+{
+    func_00197820(a);
+    unk1A2 = 0;
+    unk1A4 = 0;
+    unk1A8 = 0;
+    unk1A0 = 0;
+    unk1AC = 0;
+    unk1B4 = 0;
+    unk1B8 = 0;
+    unk1BC = 0;
+    unk1A3 |= 8;
+    unk1C0 = 1.0f;
+    unk1C4 = 1.0f;
+    unk1C8 = 1.0f;
+    unk1CC = 1.0f;
+    vtbl = &D_0028926C;
+    unk27 |= 3;
+    unk181 &= 0xfe;
+    unk1A1 = 0xff;
+    return this;
+}
+
