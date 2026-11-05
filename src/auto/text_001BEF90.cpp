@@ -255,6 +255,59 @@ struct C_001BF000 {
 
 
 extern int D_0028D78C;
+extern float D_00275544;
+extern float D_002756B8;
+
+struct S_Vec4i_001BF930 {
+    int x, y, z, w;
+};
+
+struct S_Vec4f_001BFD00 {
+    float x, y, z, w;
+    S_Vec4f_001BFD00(float a, float b, float c, float d)
+    {
+        x = a;
+        y = b;
+        z = c;
+        w = d;
+    }
+};
+
+struct S_001BF930_Inner {
+    void func_00198E60(void);
+    void func_0019ABA0(int a, int b);
+};
+
+struct S_001BF930_Node {
+    int pad0;
+    S_001BF930_Inner *f4;
+    void func_00199600(S_Vec4i_001BF930 v);
+    void func_00198F50(char *a, char *b, int c, int d, int e);
+    void func_00199E30(S_Vec4f_001BFD00 v, float angle);
+};
+
+/* UIWidgetSoultree (layout shared with its Lightweight/Character siblings) */
+struct C_001BF930 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    char pad4[0x64];
+    S_001BF930_Node *f68;
+    S_Vec4i_001BF930 f6c;
+    char f7c[0x10];
+    char f8c[0x10];
+    float f9C;
+    float fA0;
+    void func_001BF930(void);
+    void func_001BFCB0(void);
+    void func_001BFD00(float dt);
+    void func_001BFF10(int a, int b);
+};
 
 struct S_001BF3C0_Node {
     void *unk0;
