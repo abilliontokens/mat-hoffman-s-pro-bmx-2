@@ -27,8 +27,48 @@ struct S_00108270_Mgr2A4 {
     S_00108270_Item *arr170[16];
 };
 
+struct V_00107FB0_Input {
+    virtual void vf0();
+    virtual void vf1();
+    virtual void vf2();
+    virtual void vf3();
+    virtual int vf4(int button, int a, int b, int pad);
+};
+
+struct S_00107FB0_Holder {
+    char pad0[8];
+    V_00107FB0_Input *f8;
+};
+
+struct S_00107FB0_Axis {
+    char pad0[0x24];
+    float f24;
+};
+
+extern float D_00279B54;
+extern float D_00282A98;
+extern float D_00282A94;
+extern float D_00282A90;
+extern float D_00282A8C;
+extern float D_00282A88;
+extern float D_00282A84;
+extern float D_00282A80;
+extern float D_00282A7C;
+float func_0014FBA0(float a, float b);
+
+struct C_00107FB0 {
+    char pad0[0x970];
+    int f970;
+    char pad974[0x9e8 - 0x974];
+    S_00107FB0_Axis *f9e8;
+    S_00107FB0_Axis *f9ec;
+    int func_00107FB0(void);
+};
+
 struct S_00107A40_Global {
-    char pad0[0x2a4];
+    char pad0[8];
+    V_00107FB0_Input *f8;
+    char pad0c[0x2a4 - 0xc];
     S_00108270_Mgr2A4 *f2a4;
     char pad2a8[0x2e0 - 0x2a8];
     S_00107A40_Mgr *f2e0;
