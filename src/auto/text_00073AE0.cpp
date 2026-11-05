@@ -176,6 +176,7 @@ struct SPFPSResultsScreen {
 void *C_00073AE0::func_00073AE0(int param_1) {
     u32 *p;
     int n;
+    int i;
 
     func_00157600(param_1);
     vtbl = &D_0027850C;
@@ -192,7 +193,7 @@ void *C_00073AE0::func_00073AE0(int param_1) {
     unk18 = -1;
     unkFC = 0;
     unkF8 = 0;
-    p = (u32 *)((char *)this + 0x70);
+    p = unk70;
     n = 2;
     do {
         p[-3] = 0;
@@ -201,13 +202,14 @@ void *C_00073AE0::func_00073AE0(int param_1) {
         p[6] = 0;
         p++;
     } while (--n != 0);
-    *(u32 *)((char *)this + 0x94) = 0;
-    *(u32 *)((char *)this + 0x98) = 0;
-    *(u32 *)((char *)this + 0x9C) = 0;
-    *(u32 *)((char *)this + 0xAC) = 0;
-    *(u32 *)((char *)this + 0xB0) = 0;
+    for (i = 0; i < 3; i++) {
+        unk94[i] = 0;
+    }
+    for (i = 0; i < 2; i++) {
+        unkAC[i] = 0;
+    }
     unk120 = 0;
-    p = (u32 *)((char *)this + 0x1A0);
+    p = unk1A0;
     n = 2;
     do {
         p[-2] = 0;
@@ -216,7 +218,7 @@ void *C_00073AE0::func_00073AE0(int param_1) {
     } while (--n != 0);
     unk194 = 0;
     unk124 = 0;
-    p = (u32 *)((char *)this + 0x14C);
+    p = unk14C;
     n = 8;
     do {
         p[-8] = 0;
@@ -226,14 +228,16 @@ void *C_00073AE0::func_00073AE0(int param_1) {
     } while (--n != 0);
     unk1AC = 1;
     unk1A8 = -1;
-    p = (u32 *)((char *)this + 0xC8);
+    p = unkC8;
     n = 5;
     do {
         p[-5] = 0;
         p[0] = 0;
         p++;
     } while (--n != 0);
-    memset((char *)this + 0xDC, 0, 0x18);
+    for (i = 0; i < 6; i++) {
+        unkDC[i] = 0;
+    }
     unk100 = 0;
     unk104 = 0;
     unk108 = 0;
