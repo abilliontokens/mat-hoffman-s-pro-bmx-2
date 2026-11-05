@@ -8,6 +8,9 @@ struct C_001B17D0 {
 struct C_5C020Ret_D1 {
     char pad0[4];
     int f4;
+    int f8;
+    int fC[8 * 3 * 15];
+    int f5AC[8];
 };
 
 struct C_0005C020 {
