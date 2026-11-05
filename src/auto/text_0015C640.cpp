@@ -198,9 +198,9 @@ void C_0015CA10::func_0015CA10(Quat_0015CA10 *q, float t)
         v6(f10 + 1);
     }
     func_0001B250(key.q, q);
+    key.t = t;
     n = fC;
     arr = f14;
-    key.t = t;
     pos = func_0015CAB0(arr, n, t);
     for (i = n; i > pos; i++) {
         arr[i] = arr[i - 1];
@@ -332,7 +332,7 @@ void C_0015CF60::func_0015D000(int a0, int a1, int a2)
 
 void C_0015D070::func_0015D070(float a0, float a1)
 {
-    f8c = a0 * D_00275998;
-    f90 = a1 * D_00275998;
+    f8c = D_00275998 * a0;
+    f90 = D_00275998 * a1;
 }
 
