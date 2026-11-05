@@ -313,6 +313,44 @@ struct S_001089C0_Node {
 
 extern char D_00276690[];
 
+struct S_00108B00_Cam {
+    Vec4_00108370 func_00165E20(int a1, float a2, char *a3, void *a4);
+};
+
+struct S_00108B00_Node {
+    Vec4_00108370 func_00197F70(Vec4_00108370 *v);
+    void func_00199A70(int a, Vec4_00108370 *out);
+};
+
+struct S_00108B00_52C { char pad0[0x77e8]; float f77e8[1]; char pad77ec[0x7948 - 0x77ec]; float f7948[1]; };
+struct S_00108B00_Mgr { char pad0[0x52c]; S_00108B00_52C *f52c; };
+
+extern float D_002756DC;
+extern float D_00276E9C;
+
+struct C_00108B00 {
+    char pad0[0x24];
+    char *f24;
+    char pad28[0x230 - 0x28];
+    S_00108B00_Node *f230;
+    char pad234[0x47c - 0x234];
+    int f47c;
+    int f480;
+    char pad484[0x718 - 0x484];
+    int f718;
+    char pad71c[0xa04 - 0x71c];
+    S_00108B00_Cam *fa04;
+    char pada08[0x15d8 - 0xa08];
+    int f15d8;
+    char pad15dc[0x15f4 - 0x15dc];
+    float f15f4;
+    char pad15f8[0x1910 - 0x15f8];
+    int f1910[16];
+    int f1950[1];
+    void func_00108B00(Vec4_00108370 *out);
+    void *func_00029290(void);
+};
+
 struct C_001089C0 {
     char pad0[0x230];
     S_001089C0_Node *f230;
