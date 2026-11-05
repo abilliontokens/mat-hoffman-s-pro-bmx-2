@@ -1,5 +1,7 @@
 /* 19 functions from 0x000ABD80 to 0x000ACD50, found by Ghidra. */
 #include "common.h"
+
+extern int D_0027C824;
 extern int D_0027C818;
 extern int D_0027C80C;
 extern int D_0027C800;
