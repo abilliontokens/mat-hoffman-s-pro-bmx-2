@@ -51,15 +51,19 @@ struct S_001C64A0_Node {
     virtual void v1();
     virtual void v2();
     virtual void v3();
-    virtual void v4(int idx, Vec4 *v, int a, int b, int c);
-    virtual void v5(int idx, Vec4 *v, int a, int b, int c);
-    S_001C64A0_Node *f4;
-    char pad8[4];
+    virtual void v4(int idx, Vec4 *v, float *t, int b, int c);
+    virtual void v5(int idx, Vec4 *v, float *t, int b, int c);
+    virtual void v6();
+    virtual void v7(int count);
+    int f4;
+    int f8;
     int fC;
     char pad10[4];
     S_001C64A0_Node **f14;
     char pad18[4];
     int f1C;
+    char pad20[0xC];
+    int f2C;
     S_001C64A0_Node *findRoot()
     {
         S_001C64A0_Node *root = this;
