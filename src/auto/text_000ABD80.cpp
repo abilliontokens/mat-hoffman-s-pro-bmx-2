@@ -208,6 +208,25 @@ C_000AC6E0 *C_000AC6E0::func_000AC6E0(void)
     }
     return this;
 }
+
+void C_000AC890::func_000AC890(void)
+{
+    if (D_002B9134 == 0) {
+        C_000AC890_Obj *p = (C_000AC890_Obj *)func_001E8A44(0x54);
+        if (p != 0) {
+            p = p->func_000B11C0(1);
+        } else {
+            p = 0;
+        }
+        D_002B9134 = p;
+        p->v10();
+    }
+    D_002B9134->func_000B4850(field_28);
+    if (D_002A8490->field_2E0->field_0 == 1) {
+        func_000A26B0();
+    }
+}
+
 struct C_000AC140 {
     void *vtbl;
     C_000AC140 *func_000AC140();
