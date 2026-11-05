@@ -263,8 +263,11 @@ struct S_002A8490 {
 extern S_002A8490 *D_002A8490;
 
 struct S_Camera28 {
+    int f0;
+    int f4;
     void func_00193500(void);
     void func_00193870(void *p);
+    void func_00193950(void *a, void *b, void *c, int d);
 };
 
 struct S_002EFDB8V {
