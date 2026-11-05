@@ -14,6 +14,19 @@ struct S_001EDC7E {
     int f18;
 };
 
+/* CRT FILE (_iobuf) */
+struct S_001ED_FILE {
+    char *ptr;
+    int cnt;
+    char *base;
+    int flag;
+    int file;
+    int charbuf;
+    int bufsiz;
+};
+
+void func_001F57BB(S_001ED_FILE *stream);
+
 /* The CRT's per-file-handle record: D_002FB260[fh >> 5][fh & 0x1f]. */
 struct S_ioinfo {
     int osfhnd;
@@ -64,7 +77,7 @@ int func_001ED40B(int fh)
     int func_001DD603(...);
     int func_001EE685(...);
     void func_001ED087(unsigned int);
-    extern int *D_002FB260[];
+    extern unsigned char *D_002FB260[];
     int err;
     if (func_001EE6CE(fh) != -1) {
         if (fh == 1 || fh == 2) {
@@ -83,7 +96,7 @@ zero_err:
     err = 0;
 done:
     func_001EE685(fh);
-    *(unsigned char *)((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) &= ~0xff;
+    *(unsigned int *)(D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) &= ~0xffu;
     if (err != 0) {
         func_001ED087(err);
         return -1;
