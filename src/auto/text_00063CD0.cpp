@@ -207,6 +207,9 @@ struct C_00064580 {
     void func_00064990();
 };
 
+struct C_000645E0;
+void C_000645E0_func_000645E0_fwd();
+
 int C_00064580::func_00064580(int idx, int a1, unsigned int a2)
 {
     if (idx >= 0 && idx < 16) {
