@@ -40,9 +40,20 @@ struct C_001C6DA0_Entry {
 };
 
 struct C_001C6DA0 {
-    char pad0[0x3c];
+    virtual void v0();  virtual void v1();  virtual void v2();  virtual void v3();
+    virtual void v4();  virtual void v5();  virtual void v6();  virtual void v7();
+    virtual void v8();  virtual void v9();  virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28();
+    virtual void v29(Vec4 *a, Vec4 *b, int c);
+    char pad4[0x38];
     C_001C6DA0_Mgr *unk3C;
-    char pad40[0x7c];
+    char pad40[0x70];
+    int unkB0;
+    char padB4[8];
     int unkBC;
     C_001C6DA0_Entry *unkC0;
     int unkC4;
