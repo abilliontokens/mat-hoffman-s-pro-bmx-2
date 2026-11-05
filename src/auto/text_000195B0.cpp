@@ -88,6 +88,33 @@ void C_00019790::func_00019790(void)
     }
 }
 
+void C_00019830::func_00019830(void)
+{
+    vtbl = (void *)&D_00275854;
+    if (unk384 != 0) {
+        unk384->dummy2();
+    }
+    if (unk388 != 0) {
+        delete (C_002754B8 *)unk388;
+    }
+    if (unk38C != 0) {
+        delete (C_002754B8 *)unk38C;
+    }
+    if (unk390 != 0) {
+        delete (C_002754B8 *)unk390;
+    }
+    if (unk394 != 0) {
+        delete (C_002754B8 *)unk394;
+    }
+    if (unk49C != 0) {
+        func_001E891B(unk49C);
+    }
+    if (unk4A4 != 0) {
+        func_001E8390(unk4A4);
+    }
+    func_001C75A0();
+}
+
 undefined4 C_0001A3E0::func_0001A3E0(byte param_1)
 {
   int func_00019830(...);
