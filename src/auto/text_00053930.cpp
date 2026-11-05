@@ -54,6 +54,31 @@ void *C_00053C80::func_00053C80(int flags) {
     return this;
 }
 
+C_00053D20 *C_00053D20::func_00053D20(void *param)
+{
+    extern int D_00277B74;
+    int i;
+
+    func_00030F90(param);
+    f2c4 = -1;
+    f2c8 = -1;
+    unk0 = (int)&D_00277B74;
+    f2cc = 0;
+    f2d0 = 0;
+    f2d4 = 0;
+    for (i = 0; i < 8; i++) {
+        f2a4[i] = 0;
+        f284[i] = 0;
+    }
+    f2dc = 1;
+    f1fc = 1;
+    f2d8 = 0.5f;
+    f2e0 = 7.0f;
+    f2e4 = 2.0f;
+    f2e8 = 0;
+    return this;
+}
+
 void func_00054330(void) {
     int func_00031410(...);
     func_00031410();
