@@ -380,3 +380,9 @@ void UIPage::func_001BEF20(int idx)
     f140[idx]->func_001BDB50();
 }
 
+void UIPage::func_001BEF50(int idx, int n)
+{
+    f140[idx]->f2c[n - 1]->func_001BDAB0(1);
+    f140[idx]->f2c[n - 1]->func_001BD9F0();
+}
+
