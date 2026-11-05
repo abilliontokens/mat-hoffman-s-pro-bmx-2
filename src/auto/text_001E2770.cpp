@@ -63,12 +63,14 @@ int __stdcall func_001E27DB(int *section)
 }
 #pragma optimize("", on)
 
+#pragma optimize("y", on)
 int __stdcall func_001E281A(const char *name)
 {
     int result;
     result = func_001E2774(name);
-    if (result == -1) {
-        return 0;
+    if (result != -1) {
+        return func_001E27DB((int *)result);
     }
-    return func_001E27DB((int *)result);
+    return 0;
 }
+#pragma optimize("", on)
