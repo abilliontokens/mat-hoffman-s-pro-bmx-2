@@ -21,3 +21,6 @@ int C_000928E0::func_000928E0(void) {
     return (int)&unk254;
 }
 
+void __stdcall func_00093280(int a0) {
+}
+
