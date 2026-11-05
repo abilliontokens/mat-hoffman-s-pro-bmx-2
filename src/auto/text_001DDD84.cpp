@@ -374,21 +374,29 @@ Callback_001DE6F0 __stdcall func_001DE7D4(Callback_001DE6F0 fn)
     return old;
 }
 
+#pragma optimize("y", on)
 void __stdcall func_001DE7E6(S_002ACBBC_Node *node, int add)
 {
+    S_002ACBBC_Node *tail;
+    S_002ACBBC_Node *next;
+    S_002ACBBC_Node *prev;
+
     _imp__RtlEnterCriticalSection(D_002ACBA0);
     if (add != 0) {
+        tail = D_002ACBC0;
         node->next = &D_002ACBBC;
-        node->prev = D_002ACBC0;
-        D_002ACBC0->next = node;
+        node->prev = tail;
+        tail->next = node;
         D_002ACBC0 = node;
     } else {
-        node->prev->next = node->next;
-        node->next->prev = node->prev;
+        next = node->next;
+        prev = node->prev;
+        prev->next = next;
+        next->prev = prev;
     }
     _imp__RtlLeaveCriticalSection(D_002ACBA0);
 }
-
+#pragma optimize("y", off)
 void func_001DE82F(int (__stdcall *start)(int), int param)
 {
     S_KThread *thread;
