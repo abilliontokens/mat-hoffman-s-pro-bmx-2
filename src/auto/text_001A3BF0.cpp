@@ -259,6 +259,23 @@ C_001A4590 *C_001A4590::func_001A4590(int a0, int a1, int a2, int a3, S36_1A s0,
     return func_001A3DA0(a0) ? this : 0;
 }
 
+int C_001A4640::func_001A4640(int a1, int a2, int a3)
+{
+    char buf[0x104];
+    C_00168280 obj;
+    int r;
+
+    obj.func_00168280();
+    func_001ADCC0(buf, 0x104, D_00275678, D_002A48F8, a1);
+    if (obj.func_00169490(buf, 0) == 0) {
+        obj.func_001691E0();
+        return 0;
+    }
+    r = ((C_001A4210 *)this)->func_001A4210(&obj, a2, a3);
+    obj.func_001691E0();
+    return r;
+}
+
 void C_001A4A20::func_001A4A20(void)
 {
     if (f24->f28 != 0) {
