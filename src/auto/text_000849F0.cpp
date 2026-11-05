@@ -30,7 +30,9 @@ struct S_851C0_List { S_851C0_Item **func_0018C160(const char *); };
 extern char D_00279630[], D_00278690[], D_0027958C[];
 extern float D_00275AEC;
 struct S_84FF0_Global {
-    char pad0[0x240];
+    char pad0[0x10];
+    int f10;
+    char pad14[0x22c];
     float f240;
     char pad244[0x38];
     int f27C;
