@@ -60,7 +60,7 @@ struct C_00166CA0_Base {
 extern char D_002A5EA0[];
 void func_00164270(int, int, int);
 void *func_001E8A44(unsigned int);
-template <class T> inline T min_00166CA0(T a, T b) { return a > b ? b : a; }
+template <class T> inline T min_00166CA0(const T &a, const T &b) { return a > b ? b : a; }
 struct C_00166CA0 {
  int *vbptr;
  C_00166CA0_Obj *f4;
