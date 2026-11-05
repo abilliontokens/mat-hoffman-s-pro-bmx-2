@@ -178,3 +178,13 @@ undefined4 C_0001EF40::func_0001EF40(void)
   return 0;
 }
 
+void *C_0001EF70::func_0001EF70(unsigned int flags)
+{
+    vtbl = (void *)&D_00276004;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
