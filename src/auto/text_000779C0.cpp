@@ -16,6 +16,49 @@ struct C_00078050 {
     void func_00078050();
 };
 
+extern float D_002A1FEC;
+
+struct Sprite_78620 {
+    char pad0[4];
+    float f4, f8;
+    char padC[0x58 - 0xC];
+    unsigned char b58;
+    /* move the sprite, marking it dirty only when something changed */
+    void SetPos(float x, float y)
+    {
+        if (f4 != x || f8 != y) {
+            f4 = x;
+            f8 = y;
+            b58 |= 1;
+        }
+    }
+    void func_001D5AD0();
+};
+
+struct C_00078620 {
+    char pad0[0x64];
+    Sprite_78620 *unk64;
+    Sprite_78620 *unk68;
+    Sprite_78620 *arr6C[5];
+    Sprite_78620 *arr80[5];
+    Sprite_78620 *unk94;
+    char pad98[0xA0 - 0x98];
+    int unkA0;
+    int unkA4;
+    Sprite_78620 *unkA8;
+    Sprite_78620 *unkAC;
+    Sprite_78620 *unkB0;
+    Sprite_78620 *unkB4;
+    char padB8[0xD4 - 0xB8];
+    int unkD4;
+    char padD8[0xE4 - 0xD8];
+    int unkE4;
+    int unkE8;
+    int unkEC;
+    int unkF0;
+    int func_00078620();
+};
+
 struct C_000788D0_Obj {
     virtual void v0();
     virtual void v1();
