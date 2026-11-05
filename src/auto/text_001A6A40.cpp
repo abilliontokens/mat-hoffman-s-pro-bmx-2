@@ -76,3 +76,17 @@ struct C_001A7260 {
     void func_00157660();
     void func_001A7260();
 };
+
+void *C_001A77B0::func_001A77B0(int flags)
+{
+    vtbl = (void *)&D_0028B9E4;
+    if (f28) {
+        f28->destroy8();
+        f28 = 0;
+    }
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
