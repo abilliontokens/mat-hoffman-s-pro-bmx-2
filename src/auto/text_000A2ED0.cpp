@@ -188,6 +188,7 @@ struct C_000A2ED0 {
     char pad598[0x5bc - 0x598];
     int unk5BC;
     void func_000A2ED0(void);
+    void func_000A3170(void);
     void func_000A3B00(int a);
     int func_000A3BA0(C_00169710 *cfg);
     int func_000A3C50(void);
