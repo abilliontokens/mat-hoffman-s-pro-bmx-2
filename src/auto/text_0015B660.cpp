@@ -76,6 +76,14 @@ struct S_0015BF70_Node {
 
 int func_0015BF70(S_0015BF70_Node *arr, int n, float t);
 
+/* LinearPositionController slot 1 forwards its first two arguments to slot 2 */
+struct C_0015B6B0 {
+    virtual void v0();
+    virtual void v1(int a0, int a1, int a2, int a3);
+    virtual void v2(int a0, int a1);
+    void func_0015B6B0(int a0, int a1, int a2, int a3);
+};
+
 struct C_0015B660 {
     void *vtbl;
     u32 unk4;
