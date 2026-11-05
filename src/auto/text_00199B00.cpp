@@ -1,5 +1,7 @@
 /* 12 functions from 0x00199B00 to 0x0019A8C0, found by Ghidra. */
 #include "common.h"
+#include <string.h>
+#include <xmmintrin.h>
 
 void func_00198EF0(void *a, void *b, void *c);
 void func_0011F5A0(void *m, int a, int b, int c, int d, int e);
