@@ -332,6 +332,24 @@ void C_00011440::func_00011440(C_00017680_Vec pos)
     f3C->f4->func_00199110(0, (float *)&pos, vecB, 0, 1, 0);
 }
 
+void C_000112E0::func_000114D0(int n)
+{
+    if (D_002A8490->f2A4 != 0 && D_002A8490->f2A4->f1C8 == 0) {
+        f3BC = n;
+    }
+    switch (n) {
+    case 0: ((C_0008AB90 *)f384)->func_0008AB90((void *)f388); return;
+    case 5: ((C_0008AB90 *)f384)->func_0008AB90((void *)f38C); return;
+    case 6: ((C_0008AB90 *)f384)->func_0008AB90((void *)f390); return;
+    case 1: ((C_0008AB90 *)f384)->func_0008AB90((void *)f394); return;
+    case 2: ((C_0008AB90 *)f384)->func_0008AB90((void *)f398); return;
+    case 3: ((C_0008AB90 *)f384)->func_0008AB90((void *)f39C); return;
+    case 4: ((C_0008AB90 *)f384)->func_0008AB90((void *)f3A0); return;
+    case 7: ((C_0008AB90 *)f384)->func_0008AB90((void *)f3A4); return;
+    case 8: ((C_0008AB90 *)f384)->func_0008AB90((void *)f3A8); return;
+    }
+}
+
 int C_00011D30::func_00011D30(void)
 {
     C_00017680_Vec b;
