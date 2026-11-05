@@ -46,6 +46,7 @@ struct C_000619B0 {
     int unk218;
     void func_000619B0(int mode);
     void func_00061B20();
+    void func_000619F0(const char *name);
 };
 
 void C_000619B0::func_000619B0(int mode)
