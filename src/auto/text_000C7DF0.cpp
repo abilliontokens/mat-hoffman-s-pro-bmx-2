@@ -258,6 +258,52 @@ void C_000C8090::func_000C8090(void) {
     }
 }
 
+void C_000C8140::func_000C8140(void)
+{
+    int ids[3];
+    int i;
+    int *r;
+    C_NumHorse_Clamp *o;
+    C_NumHorse_Sub **e;
+    C_000C87A0_Lookup *lk;
+
+    ids[0] = (int)&D_00278690;
+    ids[1] = (int)&D_002786A0;
+    ids[2] = (int)&D_00278678;
+    for (i = 0; i < 3; i++) {
+        lk = D_002A8490->p2EC;
+        r = lk->func_0018C160(ids[i]);
+        if (r != 0 && *r != 0) {
+            o = ((C_NumHorse_Mid *)*r)->func_0018C070();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+    }
+    e = arr308;
+    i = 4;
+    do {
+        if (*e != 0) {
+            o = (*e)->func_001D5AA0();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+        e++;
+        i--;
+    } while (i != 0);
+    e = arr318;
+    i = 2;
+    do {
+        if (*e != 0) {
+            o = (*e)->func_001D5AA0();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+        e++;
+        i--;
+    } while (i != 0);
+    func_001578D0();
+}
+
 void C_000C83E0::func_000C83E0(void) {
     C_001D5AD0 *p;
     C_001D5AD0 **ptr;
