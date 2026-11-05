@@ -27,15 +27,19 @@ struct GrindLine {
 
 extern int D_002874B4;
 
+struct GL2;
+
 struct GrindLineManager {
     void *vtbl;
     char pad4[0x20];
     int unk24;
     int unk28;
-    char pad2C[8];
+    int unk2C;
+    char pad30[4];
     GrindLine **unk34;
-    char pad38[4];
+    int unk38;
     void *unk3C;
+    void func_00159C40(GL2 *g);
     int func_0015A520(void);
     void func_0015A180(void *arg);
     void func_0015A490(char *a1, int a2, int a3);
