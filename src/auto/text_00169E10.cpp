@@ -49,6 +49,26 @@ struct V4f {
 
 extern int D_002882EC;
 
+void func_001E891B(void *p);
+void *func_001E8A44(int size);
+
+struct C_0016A910 {
+    char pad0[0x24];
+    V4u v24, v34, v44, v54;
+    u32 f64, f68;
+    char name[0x104];
+    u32 f170, f174, f178, f17C;
+    char pad180[4];
+    u32 f184, f188, f18C, f190, f194, f198, f19C, f1A0, f1A4, f1A8, f1AC, f1B0, f1B4, f1B8;
+    int *f1BC;
+    int f1C0;
+    u32 f1C4, f1C8;
+    unsigned char b0 : 1, b1 : 1, b2 : 1;
+    char pad1CD[3];
+    u32 f1D0, f1D4, f1D8, f1DC, f1E0, f1E4, f1E8, f1EC;
+    void func_0016A910(C_0016A910 *src, int flag);
+};
+
 /* SmokeParticleEmitter */
 struct C_0016ABE0 {
     void *vtbl;
