@@ -1,6 +1,7 @@
 /* 13 functions from 0x001A4B60 to 0x001A5B10, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <xmmintrin.h>
 
 extern int D_0028B84C;
 void func_001E891B(void *p);
@@ -134,6 +135,22 @@ void C_SphereCollisionObject::func_001A5370(void)
         ((C_SphereCollisionObjectVT *)this)->func_001A52D0(&m);
     } else {
         ((C_SphereCollisionObjectVT *)this)->func_001A52D0(0);
+    }
+}
+
+void C_001A5730::func_001A5730(void)
+{
+    int i;
+
+    f14 = f18 = f1c = 0.0f;
+    f20 = 1.0f;
+    for (i = 0; i < 3; i++) {
+        arr24[i].x = arr24[i].y = arr24[i].z = 0.0f;
+        arr24[i].w = 1.0f;
+    }
+    for (i = 0; i < 3; i++) {
+        arr54[i].x = arr54[i].y = arr54[i].z = 0.0f;
+        arr54[i].w = 1.0f;
     }
 }
 
