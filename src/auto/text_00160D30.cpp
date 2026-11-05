@@ -109,3 +109,14 @@ undefined4 C_00161850::func_00161850(int param_1)
   return *(undefined4 *)(param_1 * 0x10 + 8 + *(int *)(in_ECX + 0x14));
 }
 
+void *C_00161870::func_00161870(unsigned int flags)
+{
+    vtbl = &D_00287AF4;
+    func_00161620();
+    func_001AC3D0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
