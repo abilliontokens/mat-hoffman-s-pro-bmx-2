@@ -113,7 +113,7 @@ extern int D_0028CAB8;
 extern int D_0028CAB0;
 extern int D_0028CAA8;
 extern int D_0028CDD8;
-extern const float D_00275998;
+extern float D_00275998;
 
 struct S_001B6130_Stream {
     void func_00168550(void *a, void *b, int c);
