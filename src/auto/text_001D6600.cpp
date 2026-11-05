@@ -19,8 +19,8 @@ void *__cdecl func_0014FDF0(char *buf, char *mode);
 void __cdecl func_0014FE50(void *h);
 void *__cdecl func_001E8AA5(int n);
 void __cdecl func_001E8390(void *p);
-void __cdecl func_00178C60(void *a, ...);
-void __cdecl func_001B3A50(void *a, ...);
+void __cdecl func_00178C60(void *a, void *b, int c, int d, int e, int f, int g, int h, int i, int j, int k, int l, int m);
+void __cdecl func_001B3A50(void *a, int b, int c, int d, char *e, int f);
 
 struct XboxTextureMap {
     void func_001D6D00(Img_001D6D00 *img, Sz_001D6D00 *sz, char *name);
