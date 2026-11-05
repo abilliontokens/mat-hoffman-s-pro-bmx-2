@@ -61,7 +61,16 @@ struct BmxUIPageDemo {
     void func_001BE4F0(int a0, int a1, int a2);
     void func_001577A0(void *child, int b);
     BmxUIPageDemo *func_000C0010(int a0, int a1, int a2);
+    int func_000C0480(int idx);
 };
+
+static __forceinline int Item_000C0480(BmxUIPageDemo *p, int idx)
+{
+    if (idx >= p->unk290) {
+        return -1;
+    }
+    return p->items[idx];
+}
 
 BmxUIPageDemo *BmxUIPageDemo::func_000BFE90(int a0)
 {
