@@ -407,15 +407,14 @@ int C_001B0040::func_001B0040(unsigned int key)
 void *C_001AFD90::func_001AFD90(S_001B0040_owner *owner)
 {
     C_001AFD90 *src = (C_001AFD90 *)owner;
-    int active = 0;
     unk1C = 0;
     unk20 = 0;
+    int active = 0;
     for (int i = 0; i < 4; ++i) {
         items[i] = 0;
         if (src->items[i] && src->items[i]->unk18) {
             void *p = func_001E8A44(0x1c);
-            items[i] = p ? (C_001AF360 *)p : 0;
-            if (p) *items[i] = *src->items[i];
+            items[i] = p ? ((C_001AF360 *)p)->copy(*src->items[i]) : 0;
             if (items[i]->unk18) active = 1;
         }
     }
@@ -429,10 +428,10 @@ void *C_001AFD90::func_001AFD90(S_001B0040_owner *owner)
     }
     if (active || unk1C || unk20) unk28 = 1;
     else unk28 = 0;
+    unk24 = src->unk24;
     unk0 = 0;
     unk4 = 0;
     unk8 = -1;
-    unk24 = src->unk24;
     return this;
 }
 
