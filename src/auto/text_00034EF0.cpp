@@ -117,7 +117,7 @@ struct C_00035360 {
     virtual void v38();
     virtual void v39();
     virtual void v40();
-    char pad4[0x5c];
+    char pad4[0x60];
     S_35360_Mgr *f64;
     char pad68[0x22c];
     char f294[0x10];
