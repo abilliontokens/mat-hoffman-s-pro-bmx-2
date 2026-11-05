@@ -19,18 +19,11 @@ void func_000212C0(V4_00023340 *out, V4_00023340 *in);
 
 inline void cross_00023340(float *out, float *a, float *b)
 {
-    __m128 va = _mm_loadu_ps(a);
-    __m128 vb = _mm_loadu_ps(b);
-    __m128 sa = va;
-    __m128 sb = vb;
-
-    sa = _mm_shuffle_ps(sa, sa, 0xc9);
-    sb = _mm_shuffle_ps(sb, sb, 0xc9);
-    vb = _mm_mul_ps(vb, sa);
-    va = _mm_mul_ps(va, sb);
-    va = _mm_sub_ps(va, vb);
-    va = _mm_shuffle_ps(va, va, 0xc9);
-    _mm_storeu_ps(out, va);
+    _mm_storeu_ps(out, _mm_shuffle_ps(
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9))),
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9))), 0xc9));
 }
 
 struct C_00023340_Sub {
