@@ -214,25 +214,26 @@ int func_0015CAB0(S_0015CA10_Key *arr, int n, float t)
     int mid;
     int lo;
 
-    if (n != 0) {
-        if (t >= arr[n - 1].t) {
-            return n;
-        }
-        if (t >= arr[0].t) {
-            lo = 0;
-            do {
-                while (mid = (n + lo) >> 1, t >= arr[mid].t) {
-                    lo = mid;
-                    if (t < arr[mid + 1].t) {
-                        return mid + 1;
-                    }
-                }
-                n = mid;
-            } while (t < arr[mid - 1].t);
-            return mid;
-        }
+    if (n == 0) {
+        return 0;
     }
-    return 0;
+    if (t >= arr[n - 1].t) {
+        return n;
+    }
+    if (t < arr[0].t) {
+        return 0;
+    }
+    lo = 0;
+    do {
+        while (mid = (n + lo) >> 1, t >= arr[mid].t) {
+            lo = mid;
+            if (t < arr[mid + 1].t) {
+                return mid + 1;
+            }
+        }
+        n = mid;
+    } while (t < arr[mid - 1].t);
+    return mid;
 }
 
 void C_0015CB40::func_0015CB40(int a0, int a1) {
@@ -332,7 +333,7 @@ void C_0015CF60::func_0015D000(int a0, int a1, int a2)
 
 void C_0015D070::func_0015D070(float a0, float a1)
 {
-    f8c = D_00275998 * a0;
-    f90 = D_00275998 * a1;
+    f8c = a0 * 0.017453290522098541259765625f;
+    f90 = a1 * 0.017453290522098541259765625f;
 }
 
