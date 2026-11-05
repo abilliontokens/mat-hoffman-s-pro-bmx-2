@@ -107,6 +107,9 @@ struct PhysicsParticle : PhysicsParticleBase {
     PhysicsParticle();
 };
 
+extern char D_0000FFF8;
+extern char D_0000FFFC;
+
 /* palette (256 RGB entries) with its two converted lookup tables */
 struct C_00135020 {
     char pad0[0x10];
@@ -154,6 +157,33 @@ struct C_00135400 {
     int func_00135400(void);
 };
 
+
+void C_00135020::func_00135020(void)
+{
+    int i;
+
+    for (i = 0; i < 256; i += 4) {
+        unsigned short t;
+        unsigned short d;
+
+        t = ((pal[i][2] & 0xFFF8) << 5) | pal[i][1];
+        d = pal[i][0] >> 3;
+        tab555[i] = ((t & 0xFFF8) << 2) | d;
+        tab565[i] = ((t & 0xFFFC) << 3) | d;
+        t = ((pal[i + 1][2] & 0xFFF8) << 5) | pal[i + 1][1];
+        d = pal[i + 1][0] >> 3;
+        tab555[i + 1] = ((t & 0xFFF8) << 2) | d;
+        tab565[i + 1] = ((t & 0xFFFC) << 3) | d;
+        t = ((pal[i + 2][2] & 0xFFF8) << 5) | pal[i + 2][1];
+        d = pal[i + 2][0] >> 3;
+        tab555[i + 2] = ((t & 0xFFF8) << 2) | d;
+        tab565[i + 2] = ((t & 0xFFFC) << 3) | d;
+        t = ((pal[i + 3][2] & 0xFFF8) << 5) | pal[i + 3][1];
+        d = pal[i + 3][0] >> 3;
+        tab555[i + 3] = ((t & 0xFFF8) << 2) | d;
+        tab565[i + 3] = ((t & 0xFFFC) << 3) | d;
+    }
+}
 
 int C_00135400::func_00135400(void) {
     return (int)&unk10;
