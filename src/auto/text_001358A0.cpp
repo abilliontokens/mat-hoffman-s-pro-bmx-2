@@ -62,6 +62,8 @@ struct C_001358A0 {
     S_Body_001358A0 *f14;
     void func_001358A0();
 };
+struct V4_001358A0 { float x, y, z, w; };
+static __forceinline float Sqrt_001358A0(const float &x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
 extern float D_00275544, D_00275460, D_002755E8;
 struct C_00135EE0_Ent {
     int idx;
