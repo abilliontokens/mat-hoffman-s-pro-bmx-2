@@ -13,7 +13,7 @@ int func_001EEE49(int n);
 /* 8-byte value object used by the 'A'..'N' parser helpers. */
 struct S_001EF734 {
     u32 value;      /* +0x0 */
-    u16 flags;      /* +0x4 */
+    u32 flags;      /* +0x4 */
     S_001EF734 *func_001EF734(char c);
     void func_001EEEE6(S_001EF734 *src);
     int func_001EF1E7(void);
@@ -80,10 +80,10 @@ S_001EF734 *S_001EF734::func_001EFAB5(void *ap, void *bp)
     local.func_001EEEE6(this);
     if (local.func_001EF1E7() != 0) {
         local.func_001EEF4F((int)bp);
-    } else if (((S_001EF734 *)bp)->func_001EF1E7() == 0) {
-        local.func_001EF935(bp);
-    } else {
+    } else if (((S_001EF734 *)bp)->func_001EF1E7() != 0) {
         local.func_001EF613(((s32)(((S_001EF734 *)bp)->flags << 28)) >> 28);
+    } else {
+        local.func_001EF935(bp);
     }
     ((S_001EF734 *)ap)->func_001EEEE6(&local);
     return (S_001EF734 *)ap;
