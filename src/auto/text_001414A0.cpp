@@ -123,6 +123,33 @@ int func_00141B60(C_00168BE0 *cfg, const char *key, int def, int &out)
     return out;
 }
 
+int func_00141C10(C_00168BE0 *cfg, const char *key, int def, int &out)
+{
+    char buf[64];
+
+    cfg->func_00168BE0(key, "undefined", buf, 64);
+    if (strcmp(buf, "undefined") == 0) {
+        out = def;
+    } else if (strcmp(buf, "D3DSTENCILOP_KEEP") == 0) {
+        out = 0x1e00;
+    } else if (strcmp(buf, "D3DSTENCILOP_ZERO") == 0) {
+        out = 0;
+    } else if (strcmp(buf, "D3DSTENCILOP_REPLACE") == 0) {
+        out = 0x1e01;
+    } else if (strcmp(buf, "D3DSTENCILOP_INCRSAT") == 0) {
+        out = 0x1e02;
+    } else if (strcmp(buf, "D3DSTENCILOP_DECRSAT") == 0) {
+        out = 0x1e03;
+    } else if (strcmp(buf, "D3DSTENCILOP_INVERT") == 0) {
+        out = 0x150a;
+    } else if (strcmp(buf, "D3DSTENCILOP_INCR") == 0) {
+        out = 0x8507;
+    } else if (strcmp(buf, "D3DSTENCILOP_DECR") == 0) {
+        out = 0x8508;
+    }
+    return out;
+}
+
 int func_00141D70(C_00168BE0 *cfg, const char *key, int def, int &out)
 {
     char buf[64];
