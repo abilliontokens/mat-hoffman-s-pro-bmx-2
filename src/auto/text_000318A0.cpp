@@ -39,6 +39,15 @@ int C_00031F10::func_00031F10(int a, int b)
     return func_00157B90(a, b) != 0;
 }
 
+int C_00032060::func_00032060(int score, char *name)
+{
+    if (unk68->func_0005B960(3, (float)score) != 0) {
+        unk68->func_0005BA80(3, (float)score, name);
+        return 1;
+    }
+    return 0;
+}
+
 void C_00032550::func_00032550(void)
 {
     if (unk1C4 != 0) {
