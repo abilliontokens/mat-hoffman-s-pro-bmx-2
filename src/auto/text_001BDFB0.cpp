@@ -110,6 +110,12 @@ struct UIVirt70 {
     virtual void dummy26();
     virtual void dummy27();
     virtual void virt28();
+    virtual void dummy29();
+    virtual void dummy30();
+    virtual void dummy31();
+    virtual void dummy32();
+    virtual void dummy33();
+    virtual void virt34();
 };
 
 struct UIControl {
