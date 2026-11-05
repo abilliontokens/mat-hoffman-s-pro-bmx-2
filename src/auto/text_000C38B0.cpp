@@ -131,6 +131,7 @@ struct C_000C40D0 {
     int func_000C3DA0(int idx);
     int func_000C3A50(int idx);
     int func_000C38B0(int idx);
+    int func_000C4240(int idx);
 };
 
 int C_000C40D0::func_000C0100(int idx)
