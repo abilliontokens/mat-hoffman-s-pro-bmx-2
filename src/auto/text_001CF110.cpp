@@ -236,6 +236,54 @@ struct XboxSoundInterface {
 
 extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *cs);
 extern "C" __declspec(dllimport) void __stdcall RtlLeaveCriticalSection(void *cs);
+extern "C" void __stdcall D_00220AE0(void *obj, int arg);
+
+struct SoundElem_001CF970 {
+    char pad0[0xc];
+    void *fC;
+};
+
+struct XboxSound_001CF970 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual int v6(int a);
+    virtual int v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    char pad4[0x140 - 4];
+    SoundElem_001CF970 *f140;
+    char pad144[0x208 - 0x144];
+    struct {
+        unsigned char b0 : 1;
+        unsigned char b1 : 1;
+        unsigned char b2 : 1;
+        unsigned char b3 : 1;
+        unsigned char playing : 1;
+        unsigned char b5 : 1;
+        unsigned char b6 : 1;
+        unsigned char b7 : 1;
+    } f208;
+    int func_001CF970(int on);
+    void func_001CE4C0();
+};
 
 struct SoundThreadEx_001CFEF0 : SoundThread_001CFE20 {
     char cs[0x1c];
