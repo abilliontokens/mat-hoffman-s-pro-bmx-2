@@ -2,6 +2,22 @@
 #include "common.h"
 
 extern int D_0027850C;
+struct Clamp_74 { char pad[0x10]; float f10, f14; };
+struct Mid_74 { Clamp_74 *func_0018C070(); };
+struct Lookup_74 { int *func_0018C160(int); };
+struct Global_74 { char pad[0x2ec]; Lookup_74 *p2EC; };
+extern Global_74 *D_002A8490;
+extern float D_00275AEC;
+extern int D_002786A0, D_00278690, D_00278678;
+struct W_74EB0 { Clamp_74 *func_001D5AA0(); };
+struct C_00074EB0 {
+    char pad0[0xac];
+    W_74EB0 *unkAC[19];
+    char padF8[0x198 - 0xf8];
+    W_74EB0 *unk198[3];
+    void func_001578D0();
+    void func_00074EB0();
+};
 extern int D_00278DF4;
 
 struct V_002EFDB8 {
