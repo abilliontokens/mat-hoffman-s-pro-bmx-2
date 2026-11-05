@@ -85,6 +85,9 @@ struct C_0017A1D0 {
     C_0017A1D0_Vec4 pts[4];
     C_0017A1D0_Vec4 normals[5];
     int func_0017A1D0(float *p, float r, float *out);
+    C_0017A1D0 *func_0017A310(C_0017A1D0_Vec4 *p);
+    void func_00179880();
+    void func_00179950();
 };
 
 struct C_0017A860 {
