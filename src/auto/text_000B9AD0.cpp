@@ -60,6 +60,7 @@ extern char D_002A64DA;
 extern char D_0027D68C[], D_0027D684[], D_002A47F0[], D_002A5348[], D_00275678[], D_002A48F8[], D_00275630[], D_0027D674[];
 extern char *D_002A8490;
 extern Block16 D_002A3138;
+extern int D_002A313C, D_002A3140, D_002A3144;
 void func_001ADCC0(void *, int, const char *, const void *, const void *);
 struct C_000BA9D0 {
     undefined4 func_000BA9D0(int param_1);
