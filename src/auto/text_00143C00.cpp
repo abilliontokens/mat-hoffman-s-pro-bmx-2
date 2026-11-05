@@ -177,30 +177,7 @@ struct C_00143C00 {
         p->u = (p->pos.x - f94) / f34;
         p->v = (p->pos.z - f98) / f38;
     }
-    __forceinline float GetScale()
-    {
-        switch (fAC) {
-        case 0:
-            return fD8 / D_002EFEA0;
-        case 1:
-        case 2:
-            return fD8;
-        case 3:
-            return D_00275460;
-        }
-    }
     void func_00143C00(Quad_143C00 *arg);
-};
-
-struct Color_143C00 {
-    float r, g, b, a;
-    Color_143C00(float x, float y, float z, float w)
-    {
-        r = x;
-        g = y;
-        b = z;
-        a = w;
-    }
 };
 
 struct C_001AF300 {
