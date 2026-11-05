@@ -42,6 +42,17 @@ struct S_00038760_Entry {
     void *data;              /* 0x10 */
 };
 
+extern char D_00276E90[];
+extern int D_002B911C;
+int func_001E8AF0(void *, void *);
+struct C_00038850_Item {
+    char pad0[0x68];
+    int f68;
+    char pad6C[0x154];
+    void *owner;
+    void func_0019C320(float *out);
+};
+
 struct C_00038760 {
     char pad0[0x64];
     C_00038760 *f64;         /* 0x64 */
