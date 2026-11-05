@@ -52,6 +52,12 @@ struct C_000DE300 {
     void func_000DE300();
     void func_000DE390();
     void func_000DE3C0();
+    /* inlined away: picks the highlighted or the plain sprite */
+    void DrawPair()
+    {
+        (unk2DC ? D_002B91AC->unk68 : D_002B91AC->unk50)->func_001D5AD0();
+        (unk2E0 ? D_002B91AC->unk6C : D_002B91AC->unk54)->func_001D5AD0();
+    }
 };
 
 /* anything the page owns and frees through its virtual destructor */
@@ -91,6 +97,40 @@ void C_000DE300::func_000DE390()
     e->f38 = ((int)unk314 << 24) | (e->f38 & 0xffffff);
     e->b58 |= 2;
     func_001BF000();
+}
+
+void C_000DE300::func_000DE3C0()
+{
+    S_002B91AC *s;
+    C_000DE_Elem **ptr;
+    C_000DE_Elem *e;
+    int count;
+
+    (unk2DC ? D_002B91AC->unk68 : D_002B91AC->unk50)->func_001D5AD0();
+    (unk2E0 ? D_002B91AC->unk6C : D_002B91AC->unk54)->func_001D5AD0();
+    D_002B91AC->unk60->func_001D5AD0();
+    D_002B91AC->unk64->func_001D5AD0();
+    s = D_002B91AC;
+    s->unk24->func_001D5AD0();
+    s->unk28->func_001D5AD0();
+    s->unk2C->func_001D5AD0();
+    s->unk30->func_001D5AD0();
+    ptr = arr340;
+    count = 2;
+    do {
+        e = *ptr;
+        e->f38 = ((int)unk314 << 24) | (e->f38 & 0xffffff);
+        e->b58 |= 2;
+        e = *ptr;
+        e->f38 = (e->f38 & 0xffbfa35a) | 0xbfa35a;
+        e->b58 |= 2;
+        (*ptr)->func_001D5AD0();
+        ptr++;
+        count--;
+    } while (count != 0);
+    if (unk288) {
+        unk2EC->func_001D5AD0();
+    }
 }
 
 void C_000DE650::func_000DE650()
