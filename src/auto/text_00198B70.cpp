@@ -189,6 +189,27 @@ void C_00198B70::func_00198E60(void)
     }
 }
 
+void C_00198B70::func_00198EA0(void)
+{
+    if ((f21 & 1) == 0) {
+        f27b.b2 = f180b.b1;
+    }
+    func_001576D0();
+}
+
+void func_00198EF0(void *a, C_00198B70 *obj, void *c)
+{
+    __declspec(align(16)) float inv[16];
+
+    if (obj->f170 != 0) {
+        obj->f170->func_00197AA0();
+        func_0011AC30(inv, obj->f170->fF0.m);
+        func_0011ACC0(a, c, inv);
+    } else {
+        ((S_00198B70_MatCopy *)a)->func_000264C0(c);
+    }
+}
+
 void C_00198B70::func_00199650(float *v)
 {
     fB0.m[3] = v[0];
