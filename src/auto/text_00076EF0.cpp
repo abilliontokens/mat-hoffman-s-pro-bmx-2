@@ -9,6 +9,14 @@ struct C_000777A0_Base {
     void func_00157660();
 };
 
+struct S_00077890_Item {
+    virtual ~S_00077890_Item();
+};
+struct S_00077890_Raw {
+    void func_001D6410();
+};
+void func_001E891B(void *p);
+
 /* FPSSaveMenu */
 struct C_000777A0 {
     void *vtbl;
