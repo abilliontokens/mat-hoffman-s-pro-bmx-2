@@ -228,6 +228,20 @@ void *C_001625E0::func_001625E0(int flags)
     return this;
 }
 
+C_00162610 *C_00162610::func_00162610(int a)
+{
+    func_00157600(a);
+    f28 = 0;
+    f2C = 0;
+    f38 = 0;
+    f24 = 0;
+    vtbl = (void *)&D_00287C24;
+    f30 = 1;
+    f34 = 0xff7f7f7f;
+    f39 = (f39 & 0xfd) | 1;
+    return this;
+}
+
 void C_00162610::func_00162660(void)
 {
     vtbl = (void *)&D_00287C24;
