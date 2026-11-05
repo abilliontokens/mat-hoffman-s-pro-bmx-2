@@ -194,14 +194,6 @@ void __cdecl func_001EB496(int flag, char *argument, char *number)
 }
 #pragma optimize("y", on)
 
-extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
-extern "C" int (__cdecl *D_002F69E8)(unsigned int size);
-extern "C" void *__cdecl func_001E8AA5(unsigned int size);
-extern "C" int *__cdecl func_001ED075(void);
-extern "C" void __cdecl func_001EB9F3(int rterrnum);
-extern "C" unsigned int __cdecl func_001F4BC8(unsigned int newv, unsigned int mask);
-void __cdecl func_001EB390(int locknum);
-int __cdecl func_001EB314(int locknum);
 void __cdecl func_001EB7D7(void)
 {
     func_001F4BC8(0x10000, 0x30000);
