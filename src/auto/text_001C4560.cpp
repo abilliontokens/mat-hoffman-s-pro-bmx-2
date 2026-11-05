@@ -185,6 +185,20 @@ int FadeManager_001C4B60::func_001C4BD0(int a0, int a1)
     return 1;
 }
 
+void FadeManager_001C4B60::func_001C4D10(int idx, int v)
+{
+    C_001C4D50_Fx *fx = a48[idx];
+
+    fx->f2C = (f32)v * D_00276098;
+    fx->f28 = 0;
+    if (v == 0) {
+        fx->f30 = 1.0f;
+    } else {
+        fx->f30 = 0.0f;
+    }
+    fx->v6();
+}
+
 void C_001C4D50::func_001C4D50(int a0)
 {
     C_001C4D50_Fx *fx = f58;
