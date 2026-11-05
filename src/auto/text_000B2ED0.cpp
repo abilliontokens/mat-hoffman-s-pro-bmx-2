@@ -98,6 +98,15 @@ struct VehicleAI {
     void func_000B3B40();
 };
 
+struct C_000B31F0 {
+    void func_00167750();
+    void func_000B2ED0(int a);
+    C_000B31F0 *func_000B31F0(const char *name, int a);
+};
+struct C_001884D0 { C_001884D0 *func_001884D0(); };
+struct C_00188700 { C_00188700 *func_00188700(); };
+void *func_001E8920(void *, const void *, unsigned int);
+
 struct C_000B3DF0 {
     undefined4 func_000B3DF0(byte param_1);
 };
