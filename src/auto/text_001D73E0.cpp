@@ -45,6 +45,13 @@ struct C_001D7CE0 {
     void *func_001D7D10(int flags);
 };
 
+C_001D7CE0 *C_001D7CE0::func_001D7CE0()
+{
+    ((C_001B23D0 *)this)->func_001B23D0();
+    vtbl = &D_0028F6DC;
+    return this;
+}
+
 int func_001D7D00(void) {
     return 1;
 }
