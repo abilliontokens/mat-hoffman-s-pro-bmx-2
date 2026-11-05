@@ -17,7 +17,8 @@ struct G_Event {
     char pad0[0x64]; G_C *f64; G_Rules *f68; char pad6c[0x24]; int f90; char pad94[0x90]; float f124; float f128; char pad12c[0x38]; G_Sub *f164; char pad168[8]; G_Sub *f170; char pad174[0x1c]; G_Sub *f190; char pad194[0x24]; G_Vt *f1b8; char pad1bc[0x38]; int f1f4; char pad1f8[0x8c]; int f284; int f288;
     void func_00031260(int); int func_00053930(int);
 };
-void __stdcall func_00157A00(int);
+int __stdcall func_00157A00(int);
+extern char D_000186A0[];
 struct S_00054430_V4 {
     float x, y, z, w;
     S_00054430_V4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
