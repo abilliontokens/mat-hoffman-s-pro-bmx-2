@@ -76,10 +76,10 @@ struct BmxUIPageHOF3 {
     float unk2c0;
     C_000D6D50_Item *unk2c4[2];
     C_000D6D50_Item *unk2cc[2];
-    int unk2d4[5];
-    int unk2e8[5];
+    S_000D7900_Widget *unk2d4[5];
+    S_000D7900_Widget *unk2e8[5];
     C_000D6D50_Item *unk2fc[2];
-    int unk304[5];
+    S_000D7900_Widget *unk304[5];
     BmxUIPageHOF3 *func_000D6C90(int param);
     void func_000D6D50(void);
     void func_000D75D0(void);
