@@ -558,6 +558,31 @@ int C_00051840::func_00051840(void)
     return count;
 }
 
+int C_000518A0::func_000518A0(void)
+{
+  for (int i = 0; i < f64->f3b4->count; i++) {
+    for (int j = 0; j < f64->f3b4->groups[i]->count; j++) {
+      if (f64->f3b4->groups[i]->nodes[j]->type == 0xd) {
+        for (int k = 0; k < f64->f3b4->groups[i]->count; k++) {
+          S_000518A0_Node *node = f64->f3b4->groups[i]->nodes[k];
+          if (node->type == 4) {
+            int idx = -1;
+            for (int n = 0; n < f64->f3ac->count && idx == -1; n++) {
+              char *name = f64->f3ac->items[n]->name;
+              if (!func_001EA426(node->name, name))
+                idx = n;
+            }
+            S_000518A0_Owner *o = f64;
+            S_000518A0_Item *item = o->f3ac->items[idx];
+            o->f484->func_0001B820(item);
+          }
+        }
+      }
+    }
+  }
+  return 1;
+}
+
 int C_00051A00::func_00051A00(void)
 {
     int i;
