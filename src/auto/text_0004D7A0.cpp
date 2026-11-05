@@ -191,6 +191,43 @@ int C_0004DCA0::func_0004D7A0(int *a, int b)
     return func_00033320(a, b);
 }
 
+C_0004D930 *C_0004D930::func_0004D930(int a)
+{
+    struct Q4 { int x, y, z, w; };
+    extern int D_002774DC;
+    extern int D_002A16E8;
+    extern int D_002A1718;
+    int *u;
+    int *p;
+    int i;
+    func_00030F90(a);
+    u = (int *)this;
+    u[0] = (int)&D_002774DC;
+    p = &u[0x688 / 4];
+    i = 8;
+    do { p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000; p += 4; } while (--i);
+    p = &u[0x708 / 4];
+    i = 8;
+    do { p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000; p += 4; } while (--i);
+    u[0x284 / 4] = 0;
+    u[0x288 / 4] = 0;
+    u[0x28c / 4] = 0;
+    u[0x290 / 4] = -1;
+    u[0x29c / 4] = 0x41200000;
+    u[0x294 / 4] = 0;
+    u[0x298 / 4] = 1;
+    for (i = 0; i < 8; i++) u[0x2a0 / 4 + i] = 1;
+    u[0x684 / 4] = 0;
+#define SET(n) \
+    ((Q4 *)&u[0x688 / 4])[n] = *(Q4 *)&D_002A16E8; \
+    ((Q4 *)&u[0x708 / 4])[n] = *(Q4 *)&D_002A1718; \
+    ((char *)this)[0x2c4 + (n) * 0x78] = 0;
+    SET(0) SET(1) SET(2) SET(3) SET(4) SET(5) SET(6) SET(7)
+#undef SET
+    u[0x2c0 / 4] = 0;
+    return this;
+}
+
 void *C_0004DC70::func_0004DC70(int flags) {
     extern int D_002774DC;
     void func_001E891B(void *);
