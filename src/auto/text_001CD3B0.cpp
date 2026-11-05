@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 struct C_001CDC20;
+inline void *operator new(unsigned int, void *p) { return p; }
 struct SoundVec4 { int x,y,z,w; };
 extern SoundVec4 D_002ABA44, D_002ABA74, D_002ABA64;
 extern char D_0028F09C, D_0028EECC;
