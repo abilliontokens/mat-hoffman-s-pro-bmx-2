@@ -65,10 +65,28 @@ extern int D_0028E360;
 extern int D_0028E354;
 extern int D_0028E2C4;
 extern int D_0028E30C;
+extern int D_0028E2A0;
+extern int D_0028E2E8;
+extern int D_0028E384;
+extern int D_0028E330;
 void *func_001E8A44(int size);
 int __stdcall func_001FF380(int size);
+void func_001E891B(void *p);
+int __stdcall func_00201100(int p);
+
+struct C_0012A330 {
+    void func_0012A330(void);
+};
+
+struct C_00160B90 {
+    void func_00160B90(void);
+};
 
 struct BufferManager {
+    int unk0;
+    int f4;
+    void *f8;
+    int fC;
     void func_001C3AF0();
 };
 
