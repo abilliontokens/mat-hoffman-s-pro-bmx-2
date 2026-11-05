@@ -25,9 +25,12 @@ struct V4_0009F7F0 {
     float x, y, z, w;
     V4_0009F7F0() { z = 0; y = 0; x = 0; w = 1.0f; }
 };
-struct C_0009F7F0 {
+struct B_0012B510 {
     int vtbl;
     char pad4[4];
+    B_0012B510();
+};
+struct C_0009F7F0 : B_0012B510 {
     int unk8, unkC, unk10, unk14;
     V4_0009F7F0 v18, v28;
     int unk38; float unk3C; int unk40, unk44, unk48; float unk4C;
