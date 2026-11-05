@@ -17,6 +17,11 @@ struct C_001AF320 {
     void func_001AF320(void);
 };
 
+struct C_001AF330 {
+    int unk0;
+    void *func_001AF330(int flags);
+};
+
 struct C_001AF300 {
     void *vtbl;
     void *func_001AF300(int a0);
