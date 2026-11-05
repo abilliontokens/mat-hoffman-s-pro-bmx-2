@@ -103,6 +103,7 @@ struct C_0013AEC0 {
     char padF4[4];
     int fF8;
     int fFC;
+    int func_0013AC40(const char *key, int a2, int a3, int a4, int *out, int grow);
     int func_0013AFB0(int idx);
     void func_0013B040(int id);
     int func_0013B1A0(const char *key);
