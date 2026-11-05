@@ -147,6 +147,35 @@ struct C_00075B20 {
     void func_00157600(int a0);
 };
 
+struct C_001D5AD0 {
+    void func_001D5AD0(void);
+};
+
+struct S_00075750_Mode {
+    char pad0[0x90];
+    int f90;
+};
+
+struct C_00075750 {
+    char pad0[0xAC];
+    C_001D5AD0 *unkAC[2];
+    C_001D5AD0 *unkB4[5];
+    C_001D5AD0 *unkC8[5];
+    C_001D5AD0 *unkDC[6];
+    C_001D5AD0 *unkF4;
+    char padF8[0x11C - 0xF8];
+    int unk11C;
+    S_00075750_Mode *unk120;
+    char pad124[0x194 - 0x124];
+    int unk194;
+    C_001D5AD0 *unk198[2];
+    C_001D5AD0 *unk1A0[2];
+    char pad1A8[0x1B4 - 0x1A8];
+    int unk1B4;
+    int unk1B8;
+    int func_00075750(void);
+};
+
 void C_00075880::func_00075880() {
     D_002EFDB8->vf7(1);
     D_002EFDB8->vf8();
