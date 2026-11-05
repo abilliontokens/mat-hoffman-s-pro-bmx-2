@@ -407,6 +407,64 @@ void C_00187AF0::func_00187AF0(void)
   return;
 }
 
+int C_00187B10::func_00187B10(C_001877F0Param *param)
+{
+    char buf[0x104];
+    int i;
+    int n;
+    S_00187B10_Elem *p;
+
+    param->func_00169710((void *)&D_0027AEE4);
+    param->func_00168C20((void *)&D_00289E4C, 0, &f24);
+    param->func_00168C20((void *)&D_00289E34, 0, &f2c);
+    if (f24 == 0 && f2c == 0)
+        return 0;
+    n = f24;
+    if (n != 0) {
+        p = (S_00187B10_Elem *)func_001E8A44(n * 0x180);
+        if (p != 0) {
+            func_00011FF0(p, 0x180, n, (void *)&func_00186AB0);
+        } else {
+            p = 0;
+        }
+        f28 = p;
+        for (i = 0; i < f24; i++) {
+            func_001ADCC0(buf, 0x104, (const char *)&D_00289E1C, i + 1);
+            param->func_00169710(buf);
+            f28[i].v0(param);
+        }
+    }
+    n = f2c;
+    if (n != 0) {
+        S_00187B10_Init *q = (S_00187B10_Init *)func_001E8A44(n * 0x180);
+        S_00187B10_Elem *r;
+        if (q != 0) {
+            S_00187B10_Init *e = q;
+            for (i = n - 1; i >= 0; i--) {
+                e->func_001867D0();
+                e->f168 = 0;
+                e->f16c = 0;
+                e->f170 = 0;
+                e->f174 = 0;
+                e->f178 = 0;
+                e->f17c = 0;
+                e->vtbl = (void *)&D_00289998;
+                e++;
+            }
+            r = (S_00187B10_Elem *)q;
+        } else {
+            r = 0;
+        }
+        f30 = r;
+        for (i = 0; i < f2c; i++) {
+            func_001ADCC0(buf, 0x104, (const char *)&D_00289E04, i + 1);
+            param->func_00169710(buf);
+            f30[i].v0(param);
+        }
+    }
+    return 1;
+}
+
 void C_00187EE0::func_00187EE0(void)
 {
     void func_001E891B(void *);
