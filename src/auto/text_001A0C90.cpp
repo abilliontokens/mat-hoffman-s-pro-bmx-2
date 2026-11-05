@@ -2,6 +2,18 @@
 #include "common.h"
 #include "ghidra.h"
 struct Q_001A1930 { float x,y,z,w; };
+struct O_001A1930 { char pad[8]; int pos[3]; char pad14[0x24]; int vel[3]; };
+struct N_001A1930 { int unk0; O_001A1930 *obj; };
+struct E_001A1930 { void **vtbl; };
+struct C_001A1930 {
+ char pad0[0x4c]; float unk4C; char pad50[0x20];
+ Q_001A1930 pos,vel; float distance; N_001A1930 *nearest; int flags;
+ char pad9C[0x104]; unsigned char state; char pad1A1[7]; float range;
+ char pad1AC[0x10]; E_001A1930 *emitter;
+ void func_001A1930(int count, N_001A1930 **nodes);
+};
+extern float D_0028AEAC;
+float func_0001CAF0(Q_001A1930 *,Q_001A1930 *);
 struct C_001A1650 {
     undefined4 func_001A1650(undefined4 *param_1);
 };
