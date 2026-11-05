@@ -100,6 +100,13 @@ void C_001B01A0::func_001B01A0(void) {
     unk0 = (int)&D_0028C5E0;
 }
 
+C_001B01B0 *C_001B01B0::func_001B01B0(void)
+{
+    extern int D_0028C5EC;
+    unk0 = (int)&D_0028C5EC;
+    return this;
+}
+
 void C_001B01C0::func_001B01C0(void) {
     extern int D_0028C5EC;
     unk0 = (int)&D_0028C5EC;
