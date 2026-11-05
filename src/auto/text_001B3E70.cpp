@@ -183,3 +183,12 @@ void C_001B4B70::func_001B4B70(void) {
     extern int D_0028CA64;
     unk0 = (int)&D_0028CA64;
 }
+
+int C_001B4AF0::func_001B4B80(S_001B4B80_Stream *stream) {
+    stream->func_00168C20(D_00275680, 0, &f108);
+    stream->func_00168C20(D_0027CED8, 1, &f10C);
+    stream->func_00168C20(D_0028CA68, 1, &f110);
+    f110--;
+    return 1;
+}
+
