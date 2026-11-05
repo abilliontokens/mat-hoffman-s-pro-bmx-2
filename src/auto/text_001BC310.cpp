@@ -178,6 +178,16 @@ char C_001BC6E0::func_001BC6E0(void *param)
     return count - 1;
 }
 
+C_UIGlobalManager *C_UIGlobalManager::func_001BC770(void *param)
+{
+    ((C_00157600 *)this)->func_00157600(param);
+    f2C = 0;
+    f28 = 0;
+    f24 = 0;
+    vtbl = (void *)&D_0028D3B4;
+    return this;
+}
+
 int C_UIGlobalManager::func_001BC7F0(void *a)
 {
     if (f24 != 0) {
