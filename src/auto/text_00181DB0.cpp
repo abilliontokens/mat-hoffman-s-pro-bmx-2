@@ -109,15 +109,16 @@ int C_00181DB0::func_00182020(int a0, int a1)
 
 void C_00181DB0::func_001820B0(int a0, int a1, int a2)
 {
-  int i;
+  int i = 0;
 
   if (f1B4 > 0) {
-    for (i = 0; i < f1B4; i++) {
+    do {
       int v = f1B8[i];
       if (a2 == -1 || a2 == v) {
         D_002A829C->f14[v].f4->func_001B05A0(a0, a1, this);
       }
-    }
+      i++;
+    } while (i < f1B4);
   }
 }
 
