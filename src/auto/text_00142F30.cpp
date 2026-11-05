@@ -82,7 +82,27 @@ struct Alloc190 {
     Vec4_143660 f160;          /* 0x160 */
     Alloc190 *func_00142E90(DXRenderableObject *owner);
     void func_00142F30(int a);
+    void func_001432B0(void);
 };
+
+struct __declspec(align(16)) Mat_1432B0 {
+    f32 m[16];
+};
+struct C_00197AA0 {
+    char pad0[0xF0];
+    Mat_1432B0 ff0;
+    void func_00197AA0(void);
+};
+void __fastcall func_001FEC30(int n, void *p);
+int __fastcall func_001FEBD0(int n, void *p);
+void __fastcall func_001FEDC0(int n, void *p, int c);
+extern int D_002BECB8;
+extern f32 D_002A6E80;
+extern f32 D_002BECB4;
+extern f32 D_00275AEC;
+extern f32 D_00275F60;
+extern int D_002A6E7C;
+extern int D_002BECB0;
 
 struct S_143660_Prop {
     char pad0[0x24];
