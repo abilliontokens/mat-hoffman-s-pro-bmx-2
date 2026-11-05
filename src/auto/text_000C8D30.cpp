@@ -49,3 +49,9 @@ struct BmxUIPageGameOptions {
     void func_001BE3F0();
     void func_000C9050();
 };
+
+void C_000C8F10::func_000C8F10(void) {
+    func_000C5E40();
+    func_000C8D30();
+    func_00157960();
+}
