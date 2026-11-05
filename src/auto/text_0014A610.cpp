@@ -209,6 +209,30 @@ void *C_0014A960::func_0014A960(void) {
     return this;
 }
 
+void C_0014A8A0::func_0014A9C0(void) {
+    void func_001E8390(void *);
+    void func_001E891B(void *);
+    int i = 0;
+    if (i < f8) {
+        do {
+            int v = f14[i].f4;
+            if (v != 0) {
+                ((C_00012140 *)v)->func_0014A540();
+                func_001E891B((void *)v);
+                f14[i].f4 = 0;
+            }
+            int w = f14[i].f0;
+            if (w != 0) {
+                func_001E8390((void *)w);
+                f14[i].f0 = 0;
+            }
+            f14[i].fC = 0;
+            i++;
+        } while (i < f8);
+    }
+    f8 = 0;
+}
+
 void *C_0014AA40::func_0014AA40(int flags) {
     extern int D_00286894;
     void func_001E891B(void *);
