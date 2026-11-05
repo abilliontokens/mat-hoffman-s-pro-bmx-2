@@ -16,6 +16,38 @@ int func_001EAA3B(char *a0, int a1);
 int __stdcall func_001DD13C(int a0);
 int func_001DD603();
 void __stdcall func_001DD659(int a0);
+int __stdcall func_001DEF3C(int handle, int out);
+int __stdcall func_001DE0DD(int a0, void *a1, int a2);
+int __stdcall func_001DF5D6(void *p);
+
+extern "C" int (__stdcall *_imp__NtYieldExecution)(void);
+extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
+extern "C" void (__stdcall *_imp__RtlLeaveCriticalSection)(void *cs);
+
+extern char D_002ACBA0[];
+
+/* callback list node; D_002ACBBC is the list head */
+struct S_002ACBBC_Node {
+    S_002ACBBC_Node *next;
+    S_002ACBBC_Node *prev;
+    void (__stdcall *fn)(int arg);
+};
+extern S_002ACBBC_Node D_002ACBBC;
+
+/* header shared by the 'CONT'/'KNIC'/'EVBS' objects */
+struct S_001DE66C_Obj {
+    unsigned int tag;
+    int f4;
+    int f8;
+    int fC;
+};
+
+struct S_001DE625_Obj {
+    int f0;
+    int f4;
+    int f8;
+    char fC[1];
+};
 
 int __stdcall func_001DDD84(int a0, int a1) {
     void *__stdcall func_001DF56E(void *, int);
