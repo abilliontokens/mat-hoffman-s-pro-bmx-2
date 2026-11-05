@@ -9,6 +9,7 @@ extern char D_002A5EA0[];
 extern char D_002A46E8[];
 extern char D_002A4C10[];
 extern char D_002A5660[];
+extern char D_002A4A00[];
 extern char D_00276F28[];
 extern char D_0027B208[];
 
