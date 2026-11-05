@@ -79,6 +79,33 @@ struct C_00186B90 {
     C_00186B90 *func_00186B90();
 };
 
+struct C_00187510Param {
+    int func_00169710(void *a);
+    int func_00168C20(void *a, int b, void *c);
+};
+
+struct C_00187370 {
+    virtual void func_00187390(void *a);
+    int f4;
+    int f8;
+};
+
+struct C_00187510 {
+    char pad0[0x24];
+    int f24;
+    C_00187370 *f28;
+    int func_00187510(C_00187510Param *param);
+};
+
+extern int D_0027AEE4;
+extern int D_00289B40;
+extern int D_00289B30;
+extern int D_00187370;
+
+void *func_001E8A44(int size);
+int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+void __stdcall func_00011FF0(void *p, int stride, int count, void *ctor);
+
 C_00186AB0 *C_00186AB0::func_00186AB0()
 {
     ((C_001867D0 *)this)->func_001867D0();
