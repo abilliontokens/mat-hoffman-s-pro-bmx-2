@@ -62,6 +62,16 @@ struct C_0004C560 {
     int func_0004C720(void);
 };
 
+void *C_0004BED0::func_0004BED0(int flags) {
+    extern int D_0027732C;
+    unk0 = (int)&D_0027732C;
+    func_00033220();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void *C_0004C6F0::func_0004C6F0(int flags) {
     unk0 = (int)&D_002773EC;
     func_00033220();
