@@ -58,7 +58,7 @@ struct BmxUIPageHOF3 {
     int unk2b4;
     int unk2b8;
     int unk2bc;
-    int unk2c0;
+    float unk2c0;
     C_000D6D50_Item *unk2c4[2];
     C_000D6D50_Item *unk2cc[2];
     int unk2d4[5];
@@ -67,6 +67,12 @@ struct BmxUIPageHOF3 {
     int unk304[5];
     BmxUIPageHOF3 *func_000D6C90(int param);
     void func_000D6D50(void);
+    void func_000D75D0(void);
+    void func_000D7710(void);
+    void func_000D7900(void);
+    void func_000D79E0(void);
+    void func_001BEE30(int a, int b);
+    void func_00157960(void);
     void func_001BE360(int param);
     void func_001BE3F0(void);
 };
