@@ -152,7 +152,7 @@ struct S_001AEBD0_Sprite : C_001ADFD0_Virt {
     }
 };
 
-static unsigned int MakeColor_001AEBD0(int a, unsigned char r, unsigned char g, unsigned char b)
+static __forceinline unsigned int MakeColor_001AEBD0(int a, unsigned char r, unsigned char g, unsigned char b)
 {
     return (((a << 8 | r) << 8 | g) << 8) | b;
 }
