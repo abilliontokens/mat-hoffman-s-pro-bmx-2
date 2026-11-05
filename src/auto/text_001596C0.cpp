@@ -59,6 +59,19 @@ void C_0015A4F0::func_0015A4F0(int a0, int a1) {
     ((C_0015A4F0*)((char*)this + 64))->func_001A4790(unk3C, 1, a0, a1, 0, 0, 0);
 }
 
+int GrindLineManager::func_0015A520(void)
+{
+    C_001596C0_Sub *sub = (C_001596C0_Sub *)((char *)this + 0x40);
+    int r;
+
+    r = sub->func_001A4840();
+    if (r == 0) {
+        sub->func_001A4A20();
+        r = 0;
+    }
+    return r;
+}
+
 undefined4 C_0015A640::func_0015A640(byte param_1)
 {
   int func_0015A580(...);
