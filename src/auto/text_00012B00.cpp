@@ -14,6 +14,8 @@ struct S_13910_Ent {
 struct S_13910_Pl { char pad[4]; S_13910_Obj2 *f4; };
 struct S_13910_Row { int count; S_13910_Vec *points; float f8; };
 extern void func_000111B0(S_13910_Vec *, S_13910_Vec *);
+extern S_13910_Vec *func_00011140(S_13910_Vec *, S_13910_Vec *, float);
+extern S_13910_Vec *func_000110E0(S_13910_Vec *, S_13910_Vec *, S_13910_Vec *);
 struct S_13910_G {
     char pad[0x4e0]; struct S_13910_Arr *f4e0;
     char pad2[0x588 - 0x4e4]; S_13910_Row **f588;
