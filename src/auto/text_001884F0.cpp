@@ -426,6 +426,26 @@ int C_00188CB0::func_00188E20(int idx, int value)
     return 0;
 }
 
+void C_00188CB0::func_00188E70(void)
+{
+    int i;
+    int j;
+
+    if (fC != 0) {
+        for (i = 0; i < f0; i++) {
+            if (fC[i] != 0) {
+                for (j = 0; j < f4[i]; j++) {
+                    S_00188E70_Obj *obj = ((S_00188E70_Obj **)fC[i])[j];
+                    if (obj != 0) {
+                        obj->v29();
+                        ((S_00188E70_Obj **)fC[i])[j]->fc4->v34(0);
+                    }
+                }
+            }
+        }
+    }
+}
+
 void *C_00188EF0::func_00188EF0(int flags)
 {
     unk0 = (int)&D_00287EE4;
