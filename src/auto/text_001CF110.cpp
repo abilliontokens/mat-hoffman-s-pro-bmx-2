@@ -315,6 +315,28 @@ struct OwnedElemList_001CF2A0 {
     }
 };
 
+struct FlatElemList_001CF2A0 : SoundElemList_001CF2A0 {
+    unsigned char flags;
+    char pad[3];
+
+    FlatElemList_001CF2A0()
+    {
+        items = 0;
+        count = 0;
+        growBy = 0;
+        capacity = 0;
+        flags &= 0xfe;
+    }
+
+    void init(int n)
+    {
+        items = (SoundElem_001CF2A0 **)func_001E8A44(n * 4);
+        growBy = 0x10;
+        capacity = n;
+        flags |= 1;
+    }
+};
+
 struct XboxSoundGroup {
     void *vtbl;
     char pad4[0x2c];
@@ -333,17 +355,20 @@ void XboxMusic::func_001CF110(IntArray *list)
 
 void XboxSoundGroup::func_001CF2A0()
 {
-    OwnedElemList_001CF2A0 copy;
     int i;
-    int j;
+    OwnedElemList_001CF2A0 copy;
 
     if (list.count > 0) {
         copy.init(list.count);
-        for (i = 0; i < list.count; i++) {
+        i = 0;
+        while (i < list.count) {
             copy.list.add(list.at(i));
+            i++;
         }
-        for (j = 0; j < copy.list.count; j++) {
-            copy.list.at(j)->release();
+        i = 0;
+        while (i < copy.list.count) {
+            copy.list.at(i)->release();
+            i++;
         }
     }
     memset(list.items, 0, list.count * sizeof(int));
