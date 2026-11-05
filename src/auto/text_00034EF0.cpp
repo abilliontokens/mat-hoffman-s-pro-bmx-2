@@ -199,6 +199,9 @@ struct C_00035720 {
     S_35860_Obj *f558;
     char pad55c[4];
     S_35860_Obj *f560;
+    void func_001577A0(void *p, int n);
+    void func_00031E80(void);
+    int func_00035780(void);
     void func_00035720(void);
     void func_00035860(void);
     void func_000358E0(void);
