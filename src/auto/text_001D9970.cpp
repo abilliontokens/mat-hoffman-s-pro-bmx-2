@@ -144,6 +144,32 @@ XboxWaterDisplacement *XboxWaterDisplacement::func_001DA0E0()
     return this;
 }
 
+int func_001DA180(void *pixels, const char *path, int bpp, int width, int height)
+{
+    S_001DA180_Tga hdr;
+    void *fp;
+    void *buf;
+
+    memset(&hdr, 0, sizeof(hdr));
+    hdr.idLength = 0;
+    hdr.imageType = 2;
+    hdr.width = (unsigned short)width;
+    hdr.height = (unsigned short)height;
+    hdr.bitsPerPixel = (unsigned char)bpp;
+    hdr.descriptor = 0x28;
+    fp = func_0014FDF0(path, D_00282960);
+    if (fp == 0) {
+        return 0x80004005;
+    }
+    buf = func_001E8A44(width * height * 4);
+    memcpy(buf, pixels, width * height * 4);
+    func_0014FE80(&hdr, 0x12, 1, fp);
+    func_0014FE80(buf, 4, width * height, fp);
+    func_001E891B(buf);
+    func_0014FE50(fp);
+    return 0;
+}
+
 void C_001DA4C0_1D9970::func_001DA4C0(int a1)
 {
     XboxWaterDisplacement **e = unk4C;
