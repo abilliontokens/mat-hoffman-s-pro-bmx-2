@@ -208,6 +208,7 @@ int C_001BA560::func_001BA560(S_001BA560_arg *arg1, int arg2)
     return 1;
 }
 #pragma optimize("", on)
+#pragma optimize("t", off)
 C_001BA5E0::C_001BA5E0() : f4(0), f8(0)
 {
     void *func_001E8A44(int size);
@@ -225,6 +226,7 @@ C_001BA5E0::C_001BA5E0() : f4(0), f8(0)
     f110 = 0;
     f144 = 0;
 }
+#pragma optimize("", on)
 
 void C_001BA910::func_001BA910(void)
 {
