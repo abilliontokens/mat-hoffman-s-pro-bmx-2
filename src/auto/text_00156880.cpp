@@ -6,6 +6,90 @@ struct C_00157290 {
     undefined4 func_00157290(byte param_1);
 };
 
+/* globally owned objects the Game destroys */
+struct Obj_00156FC0 {
+    virtual void destroyObject(int flags);
+    virtual void v1();
+};
+
+extern Obj_00156FC0 *D_002EFDB8;
+extern Obj_00156FC0 *D_002F07B8;
+extern int D_002DF8F4;
+extern int D_002DF8F8;
+extern int D_002DF94C;
+
+struct S_002AA6C0 {
+    void func_00011430(int a, int b);
+};
+extern S_002AA6C0 *D_002AA6C0;
+
+struct S_002BEAAC {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+};
+extern S_002BEAAC *D_002BEAAC;
+
+struct S_002A7CB8 {
+    char pad0[0x24];
+    u8 f24;
+    void func_00157810(void);
+};
+extern S_002A7CB8 *D_002A7CB8;
+
+struct S_00156F30_Iface {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual int v23(int a, int b);
+};
+
+struct Game {
+    void *vtbl;
+    char pad4[4];
+    Obj_00156FC0 *f8;
+    char padC[0xc];
+    int f18;
+    char pad1C[0x214];
+    u8 f230;
+    char pad231[0x47];
+    S_00156F30_Iface *f278;
+    int func_00156F30(int a, int b);
+    void func_00156FC0(void);
+    int func_00157030(void);
+};
+
+struct C_00157660 {
+    void *vtbl;
+    void func_00157660(void);
+    void func_0001DFF0(void);
+};
+
+int func_00135C70(int a, int b, int c, int d);
+void func_001D47C0(void);
+void func_0014FE50(int a);
+void func_0014F9A0(void);
+
 struct C_00156E80 {
     void func_00156E80(void);
 };
