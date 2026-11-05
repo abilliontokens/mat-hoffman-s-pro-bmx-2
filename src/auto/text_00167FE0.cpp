@@ -131,8 +131,6 @@ void func_00168210(int type, int value, char *dst)
 
 C_00168280 *C_00168280::func_00168280(void)
 {
-    int n;
-    int *p;
     f4 = 0;
     f8 = 0;
     fc = 0;
@@ -148,11 +146,7 @@ C_00168280 *C_00168280::func_00168280(void)
     f430 = 0;
     f434 = 0;
     f0 = -1;
-    p = f438;
-    for (n = 32; n != 0; n--) {
-        *p = 0;
-        p++;
-    }
+    memset(f438, 0, sizeof(f438));
     f4c8 = 0;
     f4b8 = 0;
     f4bc = 0;
