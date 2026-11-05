@@ -225,7 +225,6 @@ void C_00051CF0::func_00052AE0(float threshold)
             for (j = 0; j < 5; j++) {
                 float v = unk64->f3B4->f28[i]->f4->fA0[j];
                 if (v < threshold && v >= D_00275544) {
-                    unk64->f4E0->f1A8->f11B0;
                     unk64->f3B4->f28[i]->f4->func_001BBE20(unk64->f4E0->f1A8->f11B0);
                 }
             }
