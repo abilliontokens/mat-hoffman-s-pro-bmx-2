@@ -35,8 +35,15 @@ struct S_0009A100_Mid {
     int f48;
 };
 
+struct S_00099E50_Cfg {
+    char pad0[0x124];
+    int f124;
+};
+
 struct S_0009A1F0_Root {
-    char pad0[0x2e0];
+    char pad0[0x2a4];
+    S_00099E50_Cfg *f2a4;
+    char pad2a8[0x38];
     S_0009A100_Mid *f2e0;
     char pad2e4[4];
     S_0009A1F0_Table *f2e8;
@@ -128,40 +135,14 @@ void C_0009A100::func_0009A100(S_0009A100_Out *out, int slot)
     int count;
     int *dst;
     S_0009A100_Obj **list;
-    int n;
+    volatile int n;
     S_0009A100_Obj *o;
 
     count = 0;
     for (i = 0; i < 3; i++) {
         j = 0;
-        switch (i) {
-        case 0:
-            list = f0;
-            break;
-        case 1:
-            list = f4;
-            break;
-        case 2:
-            list = f8;
-            break;
-        default:
-            list = 0;
-            break;
-        }
-        switch (i) {
-        case 0:
-            n = fC;
-            break;
-        case 1:
-            n = f10;
-            break;
-        case 2:
-            n = f14;
-            break;
-        default:
-            n = j;
-            break;
-        }
+        list = List(i);
+        n = Count(i);
         if (n > j) {
             dst = out->recs[slot * 3 + i].items;
             do {
