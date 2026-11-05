@@ -60,10 +60,6 @@ struct C_00168F40 {
     void *f4C4;
     void *f4C8;
     int func_00168300(int id);
-    int lookup(int k)
-    {
-        return func_00168300(k);
-    }
     int func_00168F40(int id);
     void func_001691E0(void);
 };
