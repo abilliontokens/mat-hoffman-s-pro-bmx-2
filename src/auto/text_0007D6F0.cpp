@@ -107,7 +107,41 @@ struct C_0007E0C0 {
 
 struct SetterObj_7E {
     void func_001B17D0(char *s);
+    void func_001B1980();
+    float func_001B15E0();
+    void func_001B1A30(float x, float y, int z);
+    void func_001B19C0(int x, int y, int z);
+    void func_001B2270(unsigned int color);
+    void func_001B1860(int, float, int, float, float, float, float, int, float, float, float, float, float);
 };
+struct C_7E_Manager {
+    char *func_00094810(int);
+    char *func_00094840();
+    int func_00094890();
+};
+struct C_7E_Sub { char pad[0x2fc]; C_7E_Manager *manager; };
+struct C_7E_Root { char pad[0x2e0]; C_7E_Sub *sub; };
+struct C_7E_Object { void func_001D6600(); };
+struct C_0007E2B0 {
+    char pad0[0x64];
+    int f64, f68, f6c;
+    C_7E_Object *f70, *f74;
+    char pad78[0xc];
+    int f84, f88;
+    char pad8c[0x10];
+    int f9c, fa0, fa4, fa8;
+    char padac[0x10];
+    float fbc;
+    char padc0[0xc];
+    SetterObj_7E *items[4];
+    int ys[4];
+    void func_0007E2B0();
+    void func_0007E220();
+    void func_00072450();
+    void func_00072330();
+};
+extern float D_002755E8;
+extern float D_00275460;
 
 struct C_0007E220 {
     char pad0[0xac];
