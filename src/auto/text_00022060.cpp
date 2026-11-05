@@ -88,6 +88,16 @@ struct C_00022320 {
 };
 
 
+Obj_00022320 *C_00022320::func_00022320(int a)
+{
+    f2C->v35(a, 1, 0);
+    f2C->func_00199600(D_002A0F74);
+    f2C->func_00198F50(D_002A0FA4, D_002A0F94, 0, 1, 0);
+    f2C->func_0019ABA0(*D_002B9120->f4A8, 2);
+    f28 = 1;
+    return f2C;
+}
+
 undefined4 C_00022530::func_00022530(byte param_1)
 {
   int func_000214B0(...);
