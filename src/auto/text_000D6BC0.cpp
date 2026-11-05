@@ -215,6 +215,21 @@ void BmxUIPageHOF3::func_000D6D50(void)
     func_001BE3F0();
 }
 
+void BmxUIPageHOF3::func_000D7900(void)
+{
+    S_000D7900_Owner *owner = f124;
+    int i;
+    for (i = 0; i < 5; i++) {
+        unk2d4[i]->func_001B1980();
+        unk2e8[i]->func_001B1980();
+        unk304[i]->func_001B1980();
+        unk2d4[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
+        unk2e8[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
+        unk304[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
+    }
+    owner->func_000BA9B0(0x1f)->func_00103350();
+}
+
 void BmxUIPageHOF3::func_000D79E0(void)
 {
     if (unk2a4 != 0) {
