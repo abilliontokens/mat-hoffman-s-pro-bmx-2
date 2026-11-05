@@ -87,6 +87,83 @@ struct C_000707C0 {
 };
 
 
+void C_0006FBF0::func_0006FBF0(void)
+{
+    int ids[2];
+    int i;
+    int *r;
+    ClampObj_6FB *o;
+    SubElem_6FB **e;
+    LookupObj_6FB *lk;
+
+    ids[0] = (int)&D_00278690;
+    ids[1] = (int)&D_00278678;
+    for (i = 0; i < 2; i++) {
+        lk = D_002A8490->f2ec;
+        r = lk->func_0018C160(ids[i]);
+        if (r != 0 && *r != 0) {
+            o = ((MidObj_6FB *)*r)->func_0018C070();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+    }
+    e = a140;
+    i = 4;
+    do {
+        if (*e != 0) {
+            o = (*e)->func_001D5AA0();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+        e++;
+        i--;
+    } while (i != 0);
+    e = a128;
+    i = 2;
+    do {
+        if (*e != 0) {
+            o = (*e)->func_001D5AA0();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+        e++;
+        i--;
+    } while (i != 0);
+    if (unkD8 != 0) {
+        o = unkD8->func_001D5AA0();
+        if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+        if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+    }
+    e = a150;
+    i = 2;
+    do {
+        if (*e != 0) {
+            o = (*e)->func_001D5AA0();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+        e++;
+        i--;
+    } while (i != 0);
+    e = a16C;
+    i = 5;
+    do {
+        if (e[-5] != 0) {
+            o = e[-5]->func_001D5AA0();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+        if (*e != 0) {
+            o = (*e)->func_001D5AA0();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+        e++;
+        i--;
+    } while (i != 0);
+    func_001578D0();
+}
+
 char *__stdcall func_0006FE60(int value, char *out)
 {
     char buf[64];
