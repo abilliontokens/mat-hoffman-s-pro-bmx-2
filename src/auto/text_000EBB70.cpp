@@ -62,6 +62,7 @@ struct C_000EBE30 {
     void func_000EBE30();
     void func_000EC4A0();
     void func_000EC580();
+    void func_000EC6F0();
     void func_000EC7E0();
 };
 
