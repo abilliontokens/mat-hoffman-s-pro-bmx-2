@@ -1,5 +1,10 @@
 /* 18 functions from 0x000831E0 to 0x00083B50, found by Ghidra. */
 #include "common.h"
+#include "ghidra.h"
+struct C_00083710 {
+    void func_00083710(undefined4 param_1, undefined4 param_2);
+};
+
 struct C_000836A0 {
     char pad0[0xCC];
     int unkCC;
@@ -30,6 +35,19 @@ struct C_00083950 {
 void C_000836A0::func_000836A0(float a0) {
     unkCC = 1;
     unkD0 = a0 + unkD0;
+}
+
+void C_00083710::func_00083710(undefined4 param_1, undefined4 param_2)
+{
+  int func_001ADCC0(...);
+  extern undefined D_00276F28;
+  int in_ECX = (int)this;
+  
+  func_001ADCC0(in_ECX + 0xca4,0x32,((undefined *)&D_00276F28),param_1);
+  *(undefined4 *)(in_ECX + 0x150) = 1;
+  *(undefined4 *)(in_ECX + 0x58) = 1;
+  *(undefined4 *)(in_ECX + 0x5c) = param_2;
+  return;
 }
 
 void C_00083950::func_00083950(void) {
