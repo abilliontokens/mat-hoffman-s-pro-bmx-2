@@ -54,10 +54,11 @@ void C_0011CA20::func_0011CA20()
 void C_0011CA60::func_0011CA60(int a, int b, int c, int d)
 {
     f34 = f24;
-    f24.x = a;
-    f24.y = b;
-    f24.z = c;
-    f24.w = d;
+    S_0011CA20_V4 *p = &f24;
+    p->x = a;
+    p->y = b;
+    p->z = c;
+    p->w = d;
 }
 
 void C_0011CAA0::func_0011CAA0(void *a)
