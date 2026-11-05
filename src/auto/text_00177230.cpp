@@ -213,6 +213,7 @@ u32 func_00177920(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
 }
 
 extern int func_00176630(void *, int, int, int, int, int, int, void *, int, int, int);
+extern int func_00176630(u8 *, int, int, int, int, int, int, int, u16 *, int, int);
 u32 func_001779C0(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int flag)
 {
  u8 *d; u8 *s; u8 *p; u8 *q; int x; int y;
