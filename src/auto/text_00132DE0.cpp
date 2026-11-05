@@ -115,6 +115,23 @@ struct C_001334E0 {
     void func_001334E0(int a0);
 };
 
+extern float D_002755E8;
+
+struct S_00133B90_Node {
+    char pad0[2];
+    u8 f2;
+    int func_0014CA60(void);
+    S_00133A30 *func_0014CA80(int i);
+};
+
+struct S_00133B90_Iter {
+    char pad0[0x40];
+    void func_001A46F0(void);
+    void func_001A4790(int a, int b, float *c, float *d, int e, int f, int g);
+    S_00133B90_Node *func_001A4840(void);
+    void func_001A4A20(void);
+};
+
 void *func_001E8A44(int size);
 void func_001E891B(void *ptr);
 int func_00135C70(int a, int b, int c, int d);
