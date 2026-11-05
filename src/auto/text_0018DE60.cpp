@@ -5,6 +5,12 @@ struct C_0018E720 {
     undefined4 func_0018E720(byte param_1);
 };
 
+struct C_0018E640 {
+    int unk0;
+    char *next;
+    char *func_0018E640(const char *delim);
+};
+
 extern "C" int strcmp(const char *s1, const char *s2);
 
 struct C_00191400 {
