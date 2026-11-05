@@ -42,3 +42,10 @@ struct BmxUIPageMedia {
     void func_001BE360(void *param_1);
     void func_001BE3F0(void);
 };
+
+void BmxUIPageHOFTitle::func_000EB350(void)
+{
+    func_000C5E40();
+    func_000EB1F0();
+    func_00157960();
+}
