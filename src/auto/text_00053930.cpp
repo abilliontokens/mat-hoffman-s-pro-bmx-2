@@ -19,6 +19,26 @@ struct C_00054340 {
     int func_00054340();
 };
 extern char D_00277C9C;
+extern char D_00277C28[];
+struct C_00053DB0_Obj { void func_00099D40(int); };
+struct C_00053DB0_List { char pad0[0x24]; int count; char **items; };
+struct C_00053DB0_Ctx { char pad0[0x3b4]; C_00053DB0_List *f3b4; };
+struct C_00053DB0 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
+    virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14();
+    virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24();
+    virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29();
+    virtual void v30(); virtual void v31(); virtual void v32(); virtual void v33(); virtual void v34();
+    virtual void v35(); virtual void v36(); virtual void v37(); virtual void v38(); virtual void v39();
+    virtual void v40();
+    char pad4[0x60]; C_00053DB0_Ctx *f64;
+    char pad68[0x158]; C_00053DB0_Obj *f1c0;
+    char pad1c4[0x104]; int f2c8;
+    void func_000342C0();
+    C_00053DB0 *func_00053DB0();
+};
 struct C_00053C60 {
     char pad0[0x284];
     int unk284;
