@@ -11,6 +11,7 @@ struct S_00166C80_Arg {
 int __stdcall func_00164840(S_00166C80_Arg *param_1, int param_2, int param_3);
 
 struct C_00166C80 {
+    void func_00164840(S_00166C80_Arg *param_1, int param_2, int param_3);
     void func_00166C80(S_00166C80_Arg *param_1, int param_2);
 };
 
@@ -55,8 +56,7 @@ void C_00166C50::func_00166C50(int param_1)
 
 void __stdcall func_00166C80(S_00166C80_Arg *param_1, int param_2)
 {
-    int v = param_1->f3c;
-    func_00164840(param_1, v, param_2);
+    func_00164840(param_1, param_1->f3c, param_2);
 }
 
 void *C_00166E70::func_00166E70(int flags)
