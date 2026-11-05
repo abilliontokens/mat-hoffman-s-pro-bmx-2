@@ -73,6 +73,7 @@ struct C_001D5E90 {
     int f54;
     int f58;
     DXVSStreams_001D5760 *f5c;
+    C_001D5E90();
     void func_001D5E90();
     int func_001D5F00(int param);
 };
