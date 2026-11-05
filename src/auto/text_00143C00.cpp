@@ -106,6 +106,16 @@ C_00144640 *C_00144640::func_00144640()
     return this;
 }
 
+void C_00144660::func_00144660()
+{
+    vtbl = (void *)&D_00285B64;
+    if ((fc & 1) != 0 && f10 != 0) {
+        f10->func_v0(1);
+        f10 = 0;
+    }
+    ((C_001AF0D0 *)this)->func_001AF0D0();
+}
+
 C_001449B0 *C_001449B0::func_001449B0(void *param)
 {
     ((C_001AF300 *)this)->func_001AF300(param);
