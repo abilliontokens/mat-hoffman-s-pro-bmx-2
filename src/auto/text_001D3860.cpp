@@ -16,6 +16,7 @@ struct C_001D3E30 {
     char padA3[0x1E];
     char unkC1;
     C_001D3E30* func_001D3E30(void);
+    void func_001D3F20(const char *s, int n);
     void func_001D3E80(const char *s);
     void func_001D3EA0(int n, const char *a, const char *b, const char *c);
 };
