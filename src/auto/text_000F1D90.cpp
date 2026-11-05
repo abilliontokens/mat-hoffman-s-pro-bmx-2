@@ -101,6 +101,19 @@ struct C_000F2780 {
 };
 
 
+void BmxUIPageHPHChoice::func_000F1D90(void)
+{
+    int i;
+    vtbl = (void *)&D_0028248C;
+    for (i = 0; i < 4; i++) {
+        if (unk2b4[i] != 0) {
+            unk2b4[i]->destroying(1);
+            unk2b4[i] = 0;
+        }
+    }
+    func_001BE3F0();
+}
+
 void *C_000F2720::func_000F2720(int flags) {
     void func_001E891B(void *);
     unk0 = (int)&D_0027DF54;
