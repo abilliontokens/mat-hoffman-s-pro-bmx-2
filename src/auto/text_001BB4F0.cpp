@@ -338,6 +338,41 @@ struct C_001BBAE0 {
     void func_001BBAE0(int a);
 };
 
+struct S_001BBBE0_2E4 {
+    char pad0[0x50];
+    int unk50;
+    char pad54[0x30];
+    S_001BBBE0_2E4 **unk84;
+    int unk88;
+    void func_00133EF0(S_001BBAE0_Mat *m);
+    void func_00133ED0(void);
+    int func_001A4B60(S_001BBBE0_2E4 *p);
+    int func_00129A10(S_001BBBE0_2E4 *p);
+    void func_00133620(S_001BBBE0_2E4 *p);
+};
+
+typedef void (*Cb_001BBBE0)(void *a, void *b, void *c, int d);
+
+struct C_001BBBE0 {
+    char pad0[0x50];
+    S_001BBAE0_Mat unk50;
+    char pad90[0x8];
+    int unk98;
+    char pad9C[0x18];
+    void **unkB4;
+    Cb_001BBBE0 *unkB8;
+    char padBC[0xC];
+    float *unkC8;
+    void **unkCC;
+    char padD0[0x20C];
+    char *unk2DC;
+    int unk2E0;
+    S_001BBBE0_2E4 *unk2E4;
+    int unk2E8;
+    u8 unk2EC;
+    void func_00157A00(float a);
+    void func_001BBBE0(float a);
+};
 
 void func_001BB4F0(S_1BB4F0_Arg1 *a1, int a2, S_1BB4F0_Arg3 *a3, int enable)
 {
