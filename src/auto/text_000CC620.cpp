@@ -51,6 +51,16 @@ struct C_000CC6D0 {
 };
 
 
+void BmxUIPageMemCard::func_000CC620()
+{
+    for (int i = 0; i < 4; i++) {
+        ElemC *e = arr2A0[i];
+        e->f38 = ((int)unk3A0 << 24) | (e->f38 & 0xffffff);
+        e->b58 |= 2;
+    }
+    func_001BF000();
+}
+
 void C_000CC6D0::func_000CC6D0(void) {
     unk32C = 0;
     unk330 = 178;
