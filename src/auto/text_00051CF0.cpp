@@ -35,9 +35,52 @@ struct C_00051CF0_Obj {
     C_00051CF0_74 *unk74;
 };
 
+struct C_0001C240 {
+    void func_0001C240(void);
+};
+
+struct C_00052AE0_Obj {
+    char pad0[0xA0];
+    float fA0[5];
+    void func_001BBE20(int a);
+};
+
+struct C_00052AE0_Item {
+    char pad0[4];
+    C_00052AE0_Obj *f4;
+};
+
+struct C_00052AE0_List {
+    char pad0[0x24];
+    int f24;
+    C_00052AE0_Item **f28;
+};
+
+struct C_00052AE0_Inner {
+    char pad0[0x11B0];
+    int f11B0;
+};
+
+struct C_00052AE0_Ctx {
+    char pad0[0x1A8];
+    C_00052AE0_Inner *f1A8;
+};
+
 struct C_00051CF0_64 {
-    char pad0[0x558];
+    char pad0[0x3B4];
+    C_00052AE0_List *f3B4;
+    char pad3B8[0xCC];
+    C_0001C240 *f484;
+    char pad488[0x58];
+    C_00052AE0_Ctx *f4E0;
+    char pad4E4[0x74];
     C_00051CF0_Obj *unk558;
+};
+
+struct C_00051CF0;
+
+struct C_00052AE0_1C0 {
+    void func_00099750(C_00051CF0 *owner, float a);
 };
 
 struct C_00051CF0_2A8490 {
