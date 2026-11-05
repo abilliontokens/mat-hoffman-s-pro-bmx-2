@@ -105,3 +105,18 @@ int C_000A4150::func_000A4400(char *a1) {
     return 1;
 }
 
+void C_000A4500::func_000A4500(int param_1, int param_2)
+{
+    if (param_1 == 0) {
+        if (unk1C8[param_2] == 0) {
+            unk1A8[param_2]->func_00108370();
+            unk1A8[param_2]->v4();
+            unk1C8[param_2] = 1;
+        }
+    } else if (unk1C8[param_2] != 0) {
+        unk1A8[param_2]->func_001083E0();
+        unk1A8[param_2]->v6();
+        unk1C8[param_2] = 0;
+    }
+}
+
