@@ -79,6 +79,11 @@ struct V4u_0016D6A0 {
     u32 x, y, z, w;
 };
 
+struct V4f_0016D6A0 {
+    float x, y, z, w;
+    void Set(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
+};
+
 struct C_001D3F50 {
     void func_001D3F50(void);
 };
@@ -181,7 +186,7 @@ struct C_0016D8D0 {
 
 C_0016D6A0 *C_0016D6A0::func_0016D6A0(void *a, char *name, void *b, u32 *c)
 {
-    volatile int tmp[4];
+    volatile float tmp[4];
 
     ((C_001D3F50 *)this)->func_001D3F50();
     f64 = a;
@@ -193,21 +198,22 @@ C_0016D6A0 *C_0016D6A0::func_0016D6A0(void *a, char *name, void *b, u32 *c)
         f1AC = 0x68;
         f1A8 = 0x68;
         f188 = 0x68;
-        tmp[1] = 0;
-        f210[1] = tmp[1];
-        tmp[0] = 0xbf800000;
+        tmp[1] = 0.0f;
+        float y = tmp[1];
+        tmp[0] = -1.0f;
         f210[0] = tmp[0];
-        tmp[2] = 0xbf800000;
+        f210[1] = y;
+        tmp[2] = -1.0f;
         f210[2] = tmp[2];
-        tmp[3] = 0x3f800000;
+        tmp[3] = 1.0f;
         f210[3] = tmp[3];
-        tmp[0] = 0x3f800000;
+        tmp[0] = 1.0f;
         f220[0] = tmp[0];
-        tmp[1] = 0;
+        tmp[1] = 0.0f;
         f220[1] = tmp[1];
-        tmp[2] = 0x3f800000;
+        tmp[2] = 1.0f;
         f220[2] = tmp[2];
-        tmp[3] = 0x3f800000;
+        tmp[3] = 1.0f;
         f220[3] = tmp[3];
     } else {
         f64 = a;
@@ -218,21 +224,22 @@ C_0016D6A0 *C_0016D6A0::func_0016D6A0(void *a, char *name, void *b, u32 *c)
         }
         strcat(&f6C, name);
         if (((C_0016A330 *)this)->func_0016A330(&f6C)) return this;
-        tmp[1] = 0;
-        f210[1] = tmp[1];
-        tmp[0] = 0xbf800000;
+        tmp[1] = 0.0f;
+        float y = tmp[1];
+        tmp[0] = -1.0f;
         f210[0] = tmp[0];
-        tmp[2] = 0xbf800000;
+        f210[1] = y;
+        tmp[2] = -1.0f;
         f210[2] = tmp[2];
-        tmp[3] = 0x3f800000;
+        tmp[3] = 1.0f;
         f210[3] = tmp[3];
-        tmp[0] = 0x3f800000;
+        tmp[0] = 1.0f;
         f220[0] = tmp[0];
-        tmp[1] = 0;
+        tmp[1] = 0.0f;
         f220[1] = tmp[1];
-        tmp[2] = 0x3f800000;
+        tmp[2] = 1.0f;
         f220[2] = tmp[2];
-        tmp[3] = 0x3f800000;
+        tmp[3] = 1.0f;
         f220[3] = tmp[3];
     }
     f170 = 5000.0f;
