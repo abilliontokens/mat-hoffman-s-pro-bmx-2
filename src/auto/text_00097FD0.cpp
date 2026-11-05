@@ -39,9 +39,13 @@ extern S_00098080_Global *D_002A8490;
 int func_001EA426(const char *a, const char *b);
 void __stdcall func_00083A70(void *p);
 
+struct C_000831E0 {
+    void func_00083A70(const char *name);
+};
+
 struct S_00097FD0_owner {
     char pad0[0x170];
-    int unk170;
+    C_000831E0 *unk170;
     char pad174[0x1c8 - 0x174];
     int unk1c8;
 };
