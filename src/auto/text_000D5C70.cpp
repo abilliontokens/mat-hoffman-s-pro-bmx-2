@@ -13,6 +13,10 @@ struct ElemHOF2 {
 
 struct S_000D6A60_Widget {
     void func_001B1980();
+    void func_001B17D0(char *s);
+    void func_001B1A30(float a, float b, float c);
+    void func_001B19A0(int a);
+    void func_001B1B30(float a, int b);
     void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, float a11, int a12, int a13);
 };
 
