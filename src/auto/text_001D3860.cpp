@@ -279,9 +279,9 @@ C_001D3F60 *C_001D3F60::func_001D3F60(void)
 {
     int func_001D3F50(...);
     func_001D3F50();
-    f4 = 0;
-    f0 = -1;
     f8 = 0;
+    f0 = -1;
+    ClearInt_001D3F60(&f4);
     return this;
 }
 
@@ -336,5 +336,18 @@ int __stdcall func_001D4010(int x)
     default:
         return 0;
     }
+}
+
+int __stdcall func_001D42A0(const char *a, const char *b)
+{
+    char buf[0x104];
+    int attr;
+
+    func_001ADCC0(buf, 0x104, D_00278068, a, b);
+    attr = func_001DEF8D(buf);
+    if (attr != -1 && (attr & 0x10) == 0) {
+        return 1;
+    }
+    return 0;
 }
 
