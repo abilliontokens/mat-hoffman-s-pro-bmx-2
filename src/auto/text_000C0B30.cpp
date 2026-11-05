@@ -78,3 +78,28 @@ int BmxUIPageDemo::func_000C0CB0(int idx)
     }
     return 0;
 }
+
+int BmxUIPageDemo::func_000C1710(int idx)
+{
+    S_C09B0_Ui *ui = f124->f24;
+    int mode;
+    if (idx + 5 <= 20) {
+        if (func_000C0100(idx) == D_002A8490->f8->func_00136170(3, 2, 0) &&
+            func_000C0100(idx + 1) == D_002A8490->f8->func_00136170(5, 2, 0) &&
+            func_000C0100(idx + 2) == D_002A8490->f8->func_00136170(6, 2, 0) &&
+            func_000C0100(idx + 3) == D_002A8490->f8->func_00136170(4, 2, 0) &&
+            func_000C0100(idx + 4) == D_002A8490->f8->func_00136170(7, 2, 0)) {
+            if (D_002A8490->f2e0->f2d4 == 0) {
+                mode = 6;
+                D_002A8490->f2e0->f2d4 = 1;
+            } else {
+                mode = 4;
+                D_002A8490->f2e0->f2d4 = 0;
+            }
+            ui->func_000B9A80(mode, 1);
+            return 1;
+        }
+    }
+    return 0;
+}
+
