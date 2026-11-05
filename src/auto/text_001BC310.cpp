@@ -3,9 +3,117 @@
 
 extern int D_0028D334;
 extern int D_0028D3B4;
+extern int D_0028D44C;
 extern "C" void *memset(void *dst, int c, unsigned int n);
 
 void func_001E8390(void *p);
+void func_001E891B(void *p);
+void *func_001E8A44(int size);
+
+struct S_001BCC90_A84 {
+    char pad0[0x230];
+    u8 flags230;
+};
+
+extern S_001BCC90_A84 *D_002A8490;
+
+struct S_001BCC90_F670 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    virtual void v31();
+    virtual void vf32();
+};
+
+extern S_001BCC90_F670 *D_002F0670;
+
+struct C_001BCC90 {
+    void *vtbl;
+    char pad4[0x20];
+    void *f24;
+    C_001BCC90 *func_001BCC90(void *param_1);
+};
+
+struct S_001BCC40_F7B8 {
+    char pad0[8];
+    u32 f8;
+};
+
+extern S_001BCC40_F7B8 *D_002F07B8;
+
+struct C_001BCC40 {
+    void *vtbl;
+    char pad4[0x10C];
+    void *f110;
+    char pad114[0xC];
+    void *f120;
+    void func_001BCC40();
+    void func_00157660();
+};
+
+struct C_00149380 {
+    void func_00149380();
+};
+
+struct C_UIGlobalManagerVT {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void *vf28(void *a, void *b);
+};
 
 struct S_001BC710_PageObj {
     virtual void destroy(int flags);
