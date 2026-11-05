@@ -59,7 +59,8 @@ struct C_0013C960 {
     char pad74[0x7c - 0x74];
     void *f7C;
     S_0013C960_Ent f80[8];
-    char padE0[0xe8 - 0xe0];
+    char padE0[4];
+    int fE4;
     S_0013C960_Elem *fE8;
     int fEC;
     int fF0;
