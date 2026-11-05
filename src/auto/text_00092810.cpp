@@ -73,9 +73,9 @@ struct C_000928D0 {
 C_00092890 *C_00092890::func_00092810(int a0, int a1, int a2, int a3)
 {
     f64 = a0;
-    f7c = a2;
-    f68 = a3;
-    if (a3 != 0) {
+    f7c = a1;
+    f68 = a2;
+    if (a2 != 0) {
         func_0008BCD0();
     } else if (D_002A8490->f2e0->fc == 2) {
         func_0008C480();
