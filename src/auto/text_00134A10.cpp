@@ -6,6 +6,9 @@ extern int D_00284774;
 
 void func_001E891B(void *p);
 
+/* the game's operator delete is func_001E891B */
+inline void operator delete(void *p) { func_001E891B(p); }
+
 struct C_0013B210 {
     void func_0013B210(void *p);
 };
