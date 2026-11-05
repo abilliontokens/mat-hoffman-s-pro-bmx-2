@@ -335,6 +335,11 @@ struct Root_000317B0 {
 
 extern Root_000317B0 *D_002A8490;
 
+struct Obj_00031260 {
+    char pad0[0x19c];
+    int f19c;
+};
+
 struct BmxEvent_00030A30 {
     char pad0[0x24];
     Obj_000317B0 *f24[16];
