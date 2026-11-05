@@ -42,6 +42,10 @@ struct C_001313C0 {
     void func_00131400(S_00131400_In *in, int param_2);
 };
 
+f32 func_0014F870(f32 a);
+f32 func_0014FBA0(f32 a, f32 b);
+void func_001310E0(S_Vec4 *a, S_Vec4 *b);
+
 
 void C_001313C0::func_001313C0(S_001313C0_Data *src)
 {
