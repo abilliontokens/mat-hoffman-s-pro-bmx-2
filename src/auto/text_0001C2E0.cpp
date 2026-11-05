@@ -1,5 +1,26 @@
 /* 40 functions from 0x0001C2E0 to 0x0001D280, found by Ghidra. */
 #include "common.h"
+#include <math.h>
+struct C_0001CA50 {
+    int unk0;
+    void func_0001DFF0(void);
+    void *func_0001CA50(int flags);
+};
+
+struct C_0001C5B0 {
+    float x;
+    float y;
+    float z;
+    C_0001C5B0 *func_0001C5B0(float *p);
+};
+
+static __forceinline void vec3_set(float *out, float x, float y, float z) {
+    out[3] = 1.0f;
+    out[0] = x;
+    out[1] = y;
+    out[2] = z;
+}
+
 struct C_0001C540 {
     char pad0[0x10];
     int unk10;
