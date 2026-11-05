@@ -190,6 +190,46 @@ void C_00051180::func_00051180(float param_1)
   return;
 }
 
+undefined4 *C_000511A0::func_000511A0(undefined4 param_1)
+{
+  int in_ECX = (int)this;
+  int iVar1;
+
+  ((C_00030F90 *)this)->func_00030F90(param_1);
+  *(undefined4 **)in_ECX = &D_00277934;
+  *(int *)(in_ECX + 0x284) = 1;
+  *(int *)(in_ECX + 0x288) = 0;
+  *(int *)(in_ECX + 0x28c) = 0;
+  *(int *)(in_ECX + 0x2cc) = 0;
+  for (iVar1 = 0; iVar1 < 4; iVar1 = iVar1 + 1) {
+    *(int *)(in_ECX + 0x2b8 + iVar1 * 4) = 0;
+    *(int *)(in_ECX + 0x2d8 + iVar1 * 4) = 0;
+    *(int *)(in_ECX + 0x2e8 + iVar1 * 4) = 0;
+    *(int *)(in_ECX + 0x2f8 + iVar1 * 4) = 0;
+    *(int *)(in_ECX + 0x308 + iVar1 * 4) = 0;
+    *(int *)(in_ECX + 0x318 + iVar1 * 4) = 0;
+    *(int *)(in_ECX + 0x328 + iVar1 * 4) = 0;
+    *(int *)(in_ECX + 0x338 + iVar1 * 4) = 0;
+    *(int *)(in_ECX + 0x348 + iVar1 * 4) = 0;
+  }
+  *(int *)(in_ECX + 0x2d0) = 0;
+  *(int *)(in_ECX + 0x2c8) = 0;
+  *(int *)(in_ECX + 0x2d4) = 0;
+  *(int *)(in_ECX + 0x290) = 0;
+  *(int *)(in_ECX + 0x294) = 0;
+  *(int *)(in_ECX + 0x358) = 0;
+  *(int *)(in_ECX + 0x35c) = 0;
+  *(int *)(in_ECX + 0x298) = 0;
+  *(int *)(in_ECX + 0x29c) = 0;
+  *(int *)(in_ECX + 0x2a0) = 0;
+  *(int *)(in_ECX + 0x2a4) = 0;
+  *(int *)(in_ECX + 0x2a8) = 0;
+  *(int *)(in_ECX + 0x2ac) = 0;
+  *(int *)(in_ECX + 0x2b0) = 0;
+  *(int *)(in_ECX + 0x2b4) = 0;
+  return (undefined4 *)in_ECX;
+}
+
 int C_00051840::func_00051840(void)
 {
     int count = 0;
