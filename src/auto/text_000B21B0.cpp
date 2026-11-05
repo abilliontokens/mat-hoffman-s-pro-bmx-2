@@ -356,6 +356,8 @@ extern float D_0027CE30;
 extern float D_002756D8;
 int func_00011260(int lo, int hi);
 
+static __forceinline float SqrtR_000B2630(const float &x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+
 static __forceinline float Sqrt_000B2630(float x)
 {
     float r;
