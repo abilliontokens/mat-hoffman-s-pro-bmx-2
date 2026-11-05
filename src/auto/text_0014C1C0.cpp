@@ -77,6 +77,16 @@ void C_0014C530::func_0014C530(void) {
     func_0014B260();
 }
 
+void *C_0014C6F0::func_0014C6F0(int flags)
+{
+    vtbl = &D_00286924;
+    func_0014C540();
+    func_00133E60();
+    if (flags & 1)
+        func_001E891B(this);
+    return this;
+}
+
 undefined4 C_0014CA60::func_0014CA60(void)
 {
   extern undefined4 D_002BF250;
