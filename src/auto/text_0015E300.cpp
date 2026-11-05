@@ -266,6 +266,30 @@ void LightEmitter::func_0015E800(float v)
     }
 }
 
+void LightSource::func_0015E850(LS_Vec4 *v)
+{
+    LS_Vec4 *cur = &f94;
+    if (v->x == cur->x && v->y == cur->y && v->z == cur->z) {
+        return;
+    }
+    *cur = *v;
+    if (fC4 != 0) {
+        fC4->func_00193950(f24, cur, D_002A801C, f78);
+    }
+    f60 = *(int *)&cur->x;
+    f64 = *(int *)&f94.y;
+    f68 = *(int *)&f94.z;
+    if (fB4 != 0) {
+        fB4->func_0015CD70(cur);
+    }
+    if (fB8 != 0) {
+        *(LS_Vec4 *)((char *)fB8 + 0x28) = *v;
+    }
+    if (D_002E2930 != 0) {
+        D_002E2930->f68++;
+    }
+}
+
 void LightEmitter::func_0015E920(float *p)
 {
     float *cur = &fA4;
