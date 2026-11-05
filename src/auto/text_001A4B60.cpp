@@ -110,6 +110,33 @@ void C_001A52C0::func_001A52C0(void)
   return;
 }
 
+void C_SphereCollisionObject::func_001A52D0(void *a)
+{
+    if (a == 0) {
+        memset(matrix, 0, 0x40);
+        matrix[0] = 1.0f;
+        matrix[5] = 1.0f;
+        matrix[10] = 1.0f;
+        matrix[15] = 1.0f;
+    } else {
+        ((C_000264C0 *)matrix)->func_000264C0(a);
+    }
+    f28 = fA8;
+    f48 = f100;
+    func_00030AC0((float *)&f28, (float *)&f28, matrix);
+}
+
+void C_SphereCollisionObject::func_001A5370(void)
+{
+    if (f110) {
+        S_Matrix16 m;
+        ((C_00199C20 *)f110)->func_00199C20(0, &m);
+        ((C_SphereCollisionObjectVT *)this)->func_001A52D0(&m);
+    } else {
+        ((C_SphereCollisionObjectVT *)this)->func_001A52D0(0);
+    }
+}
+
 void func_001A5790(void) {
     int func_001A4FC0(...);
     func_001A4FC0();
