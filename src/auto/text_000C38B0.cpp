@@ -4,30 +4,6 @@
 extern int D_0027E0A4;
 void func_001E891B(void *p);
 
-struct C_000C3F60_Query {
-    int func_00136170(int a, int b, int c);
-};
-
-struct C_000C3F60_Ui {
-    void func_000B9A80(int a, int b);
-};
-
-struct C_000C3F60_Cheat {
-    void func_0005C100(void);
-};
-
-struct C_000C3F60_Obj2 {
-    char pad0[0x2C0];
-    C_000C3F60_Cheat *f2c0;
-};
-
-struct C_000C3F60_Global {
-    char pad0[8];
-    C_000C3F60_Query *f8;
-    char padC[0x2E0 - 0xC];
-    C_000C3F60_Obj2 *f2e0;
-};
-
 struct C_001D6410 {
     void func_001D6410(void);
 };
