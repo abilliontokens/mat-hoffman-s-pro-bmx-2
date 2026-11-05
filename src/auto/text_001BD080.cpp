@@ -509,3 +509,32 @@ void C_001BDB50::func_001BDC50(void)
     }
 }
 
+void C_001BDB50::func_001BDD60(int idx)
+{
+    int i, j;
+    S_001BDB50_Group *g;
+    S_001BDB50_Item *it;
+
+    if (f28 != 0) {
+        f30 = idx;
+        f34 = f2c[idx - 1];
+        for (i = 0; i < f28; i++) {
+            g = f2c[i];
+            if (g != 0) {
+                for (j = 0; j < g->f28; j++) {
+                    it = g->f2c[j];
+                    if (it != 0) {
+                        it->v29();
+                    }
+                }
+            }
+        }
+        g = f34;
+        if (g != 0) {
+            for (j = 0; j < g->f28; j++) {
+                g->f2c[j]->v28();
+            }
+        }
+    }
+}
+
