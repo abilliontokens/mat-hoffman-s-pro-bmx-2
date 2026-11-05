@@ -243,18 +243,5 @@ int XboxVideoCard_001D7FB0::func_001D7FB0(float x, float y, float z, int w)
     return 1;
 }
 
-struct XboxVideoCard_001D8310 {
-    virtual void v0();
-    virtual void v1();
-    virtual void v2();
-    virtual void v3();
-    virtual void v4();
-    virtual void v5();
-    virtual void v6();
-    char pad4[0x9D0];
-    u8 f9D4;
-    char pad9D5[3];
-    int f9D8;
-    void func_001D8310(void);
-};
+
 
