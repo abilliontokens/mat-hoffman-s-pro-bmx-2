@@ -247,6 +247,57 @@ void __cdecl func_001EB496(int flag, char *argument, char *number)
     }
 }
 
+static void func_001EB4D4(char *s, int dist)
+{
+    if (dist != 0) {
+        func_001EA6A0(s + dist, s, strlen(s) + 1);
+    }
+}
+
+static char *func_001EB4F7(char *buf, int ndec, int caps, S_StrFlt *pflt, char g_fmt)
+{
+    char *p;
+    int exp;
+
+    if (g_fmt) {
+        func_001EB4D4(buf + (pflt->sign == '-'), ndec > 0);
+    }
+    p = buf;
+    if (pflt->sign == '-') {
+        *p++ = '-';
+    }
+    if (ndec > 0) {
+        *p = *(p + 1);
+        p++;
+        *p = D_002AEA3C;
+    }
+    p += ndec + (g_fmt == 0);
+    *(S_ExpStr *)p = D_00295024;
+    if (caps) {
+        *p = 'E';
+    }
+    p++;
+    if (*pflt->mantissa != '0') {
+        exp = pflt->decpt - 1;
+        if (exp < 0) {
+            exp = -exp;
+            *p = '-';
+        }
+        p++;
+        if (exp >= 100) {
+            *p += (char)(exp / 100);
+            exp %= 100;
+        }
+        p++;
+        if (exp >= 10) {
+            *p += (char)(exp / 10);
+            exp %= 10;
+        }
+        *++p += (char)exp;
+    }
+    return buf;
+}
+
 void __cdecl func_001EB786(double *arg, char *buffer, int format, int precision, int caps)
 {
     if (format == 'e' || format == 'E') {
@@ -268,6 +319,13 @@ void __cdecl func_001EB7D7(void)
 void func_001EB977(void) {
     int func_001EB302(...);
     func_001EB302(13);
+}
+
+void __cdecl func_001EB9F3(int rterrnum)
+{
+    func_001F4EB7();
+    func_001F4E8B(rterrnum);
+    D_002AEA2C(0xff);
 }
 
 int __fastcall func_001EBA41(int unused, S_File *f)
