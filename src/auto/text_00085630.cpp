@@ -36,6 +36,49 @@ struct C_00086180 {
     int func_00086180(void);
 };
 
+struct C_00085630_2A8490 {
+    char pad0[0x2E0];
+    void *f2E0;
+};
+
+extern C_00085630_2A8490 *D_002A8490;
+
+extern int D_002796BC;
+
+struct C_00086160 {
+    char pad0[0xA4];
+    int unkA4[17];
+    int unkE8;
+    int unkEC;
+    void func_00086160(float a);
+    bool func_000861C0(int idx);
+    void func_00086200(void);
+};
+
+struct MountVertOverlay {
+    void *vtbl;
+    char pad4[0x24];
+    int unk28;
+    int unk2C;
+    int unk30;
+    int unk34;
+    int unk38;
+    int unk3C;
+    int unk40;
+    int unk44;
+    int unk48;
+    int unk50[8];
+    int unk70;
+    u8 unk74;
+    char pad75[0xB];
+    int unk80;
+    int unk84;
+    int unk88;
+    int unk8C;
+    void func_00157600(int a);
+    MountVertOverlay *func_00086470(int a);
+};
+
 
 void C_00086130::func_00086130(int a0) {
     unkF0 = a0;
