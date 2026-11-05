@@ -84,6 +84,7 @@ struct C_000DCC20 {
     I_000DCC20_Buf *arr368[4];
     I_000DCC20_Buf *arr378[4];
     int func_000DCC20(void);
+    int func_000DCE10(void);
 };
 
 struct C_001D6410 {
