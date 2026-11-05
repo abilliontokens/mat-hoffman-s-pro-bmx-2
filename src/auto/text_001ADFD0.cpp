@@ -48,7 +48,7 @@ struct C_001AE3E0_Sub {
 };
 
 struct C_001AE3E0 {
-    void *vtbl;
+    void * volatile vtbl;
     char pad4[0x20];
     int f24;
     char pad28[8];
@@ -133,9 +133,7 @@ C_001AE3E0 *C_001AE3E0::func_001AE3E0(int param_1)
     f44 = 0;
     f40 = 0;
     f4C = 0x3f800000;
-    f58.func_001D5480();
-    f58.f8 = 0;
-    f58.vtbl = &D_0028C208;
+    f58.Init();
     f6C = -1;
     f74 = -1;
     f70 = -1;
@@ -177,13 +175,14 @@ void C_001AE3E0::func_001AE460(void)
 
 void C_001AE3E0::func_001AE4D0(int a, int b, int c, int d, int e, int f, int g, int h, int idx)
 {
+    C_001AE3E0_Vec4 *p;
     f84 |= 2;
-    C_001AE3E0_Vec4 *p = &f38[idx];
+    p = f38 + idx;
     p->x = a;
     p->y = b;
     p->z = c;
     p->w = d;
-    p = &f3C[idx];
+    p = f3C + idx;
     p->x = e;
     p->y = f;
     p->z = g;
