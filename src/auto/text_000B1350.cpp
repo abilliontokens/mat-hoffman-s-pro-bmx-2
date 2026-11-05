@@ -109,6 +109,7 @@ struct S_000B1740_Panel { char pad0[0xC]; S_000B1740_Widget *f0C; S_000B1740_Wid
 
 static __inline int Min_000B1740(int a, int b) { return a > b ? b : a; }
 static __inline int Max_000B1740(int a, int b) { return a < b ? b : a; }
+static __inline const int &MinRef_000B2020(const int &a, const int &b) { return (b < a) ? b : a; }
 
 struct S_000B1DA0_Res { void func_00181DB0(int h); void func_001820B0(void *cb, void *ctx, int h); };
 struct S_000B1DA0_Obj { char pad0[8]; S_000B1DA0_Res *f8; };
@@ -269,3 +270,39 @@ void func_000B2010(void) {
     int __stdcall func_0018C890(int);
     func_0018C890((int)&D_0027CF70);
 }
+
+C_000B2020 *C_000B2020::func_000B2020(void) {
+    C_000B2020 * volatile self = this;
+    volatile int limit;
+    volatile int count;
+    ((C_001B4AF0 *)this)->func_001B4AF0();
+    self->vtbl = (void *)&D_0027D004;
+    limit = sizeof(f250) - 1;
+    count = Min_000B1740(limit, 4);
+    func_001E8920(self->f250, (const char *)&D_002764F0, count);
+    self->f250[count] = 0;
+    limit = sizeof(f14C) - 1;
+    count = Min_000B1740(limit, 4);
+    func_001E8920(self->f14C, (const char *)&D_002764F0, count);
+    self->f14C[count] = 0;
+    limit = sizeof(f354) - 1;
+    count = Min_000B1740(limit, 4);
+    func_001E8920(self->f354, (const char *)&D_002764F0, count);
+    self->f354[count] = 0;
+    self->f13C = 1;
+    self->f140 = 1;
+    self->f11C = -1;
+    self->f120 = -1;
+    self->f144 = 0;
+    self->f148 = 0;
+    self->f118 = 0x41100000;
+    self->f114 = 0;
+    self->f124 = 0;
+    self->f12C = 0;
+    self->f130 = 1;
+    self->f134 = 0;
+    self->f128 = 0;
+    self->f138 = 0;
+    return self;
+}
+
