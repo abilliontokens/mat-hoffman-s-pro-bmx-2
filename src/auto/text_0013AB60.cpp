@@ -245,6 +245,23 @@ int C_0013AEC0::func_0013B130(const char *key)
     return -1;
 }
 
+int C_0013AEC0::func_0013B1A0(const char *key)
+{
+    void *fp;
+
+    if (func_0013B130(key) != -1) {
+        return 1;
+    }
+    if (fFC != 0) {
+        fp = func_0014FDF0(key, D_00275FB4);
+        if (fp != 0) {
+            func_0014FE50(fp);
+            return 1;
+        }
+    }
+    return 0;
+}
+
 undefined4 C_0013B1F0::func_0013B1F0(int param_1, undefined4 param_2)
 {
   int in_ECX = (int)this;
