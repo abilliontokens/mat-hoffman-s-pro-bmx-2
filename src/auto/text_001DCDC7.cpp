@@ -8,7 +8,7 @@ extern "C" int (__stdcall *_imp__NtQueryInformationFile)(void *a0, void *a1, voi
 extern "C" int (__stdcall *_imp__NtSetInformationFile)(void *a0, void *a1, void *a2, u32 a3, int a4);
 extern "C" int (__stdcall *_imp__NtFlushBuffersFile)(void *a0, void *a1);
 extern "C" int (__stdcall *_imp__RtlNtStatusToDosError)(int a0);
-void __stdcall func_001DD659(int a0);
+int __stdcall func_001DD659(int a0);
 void __stdcall func_001DD62B(int a0);
 extern "C" unsigned __int64 __rdtsc();
 #pragma intrinsic(__rdtsc)
@@ -124,6 +124,25 @@ int __stdcall func_001DD58A(void *a0, u32 *a1) {
         return 1;
     }
 }
+
+#pragma optimize("y", off)
+u32 __stdcall func_001DD5C8(void *a0, u32 *a1) {
+    int __stdcall func_001DD58A(void *, u32 *);
+    u32 size[2];
+    if (func_001DD58A(a0, size) == 0) {
+        size[0] = 0xffffffff;
+    } else {
+        if (a1 != 0) {
+            a1[0] = size[1];
+        }
+        if (size[0] == 0xffffffff) {
+            func_001DD62B(0);
+        }
+    }
+    return size[0];
+}
+#pragma optimize("y", on)
+
 #pragma optimize("y", on)
 
 #pragma optimize("y", on)
