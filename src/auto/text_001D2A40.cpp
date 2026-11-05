@@ -56,7 +56,7 @@ struct C_001D3690 {
     char pad1c[0x3c - 0x1c];
     float f3c;
     float f40;
-    void *f44;
+    S_001D3690_Handle *f44;
     int f48;
     int f4c;
     int f50;
