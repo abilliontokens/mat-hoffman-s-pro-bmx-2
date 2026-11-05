@@ -268,3 +268,17 @@ void C_00197AA0::func_00197B10()
     }
 }
 
+void C_00197B40::func_00197B40(float *a, float *b)
+{
+    if (a != 0) {
+        a[0] = fB8;
+        a[1] = fC8;
+        a[2] = fD8;
+    }
+    if (b != 0) {
+        b[0] = fB4;
+        b[1] = fC4;
+        b[2] = fD4;
+    }
+}
+
