@@ -348,6 +348,14 @@ void BmxEvent::func_00032280(int id, int a1, int a2, int a3, int a4, int a5)
     }
 }
 
+void BmxEvent::func_00032300(void)
+{
+    if (D_002A8490->f2e0->f2c0->func_0005C1D0(0xf) == 0) {
+        f170->func_00083A70(D_002A8490->f2e8->f4->f1240);
+        D_002A8490->f2e0->f2c0->func_0005C1E0(0xf);
+    }
+}
+
 void BmxEvent::func_000323C0(int id, int a1, int a2, int a3, int a4, int a5)
 {
     int i;
