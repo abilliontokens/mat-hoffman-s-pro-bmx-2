@@ -133,6 +133,8 @@ struct S_000A8A60_Global {
     S_000A8A60_Mgr *f2A4;
 };
 
+extern S_000A8A60_Global *D_002A8490;
+
 struct C_000A8B70 {
     int func_000A8B70(void *param1, void *param2);
 };
