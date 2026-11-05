@@ -54,7 +54,7 @@ struct C_00084FF0 {
     S_84FF0_Text *f30;
     S_84FF0_F34 *f34;
     S_84FF0_F38 *f38;
-    char pad3C[4];
+    int f3C;
     int f40;
     void func_00084FF0(void);
 };
