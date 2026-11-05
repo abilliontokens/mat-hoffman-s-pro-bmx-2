@@ -134,6 +134,10 @@ struct UIControl {
     void func_001BE1B0(int n);
     void func_001BE220(int n);
     void func_001BE290(void);
+    void func_001BDBD0(void);
+    void func_001BDC50(void);
+    void func_001BDC90(void);
+    void func_001BDD60(int a);
 };
 
 void UIControl::func_001BE1B0(int n)
