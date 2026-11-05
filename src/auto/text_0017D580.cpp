@@ -54,6 +54,8 @@ struct C_0017DC00 {
     C_0017DC00 **arr4;
     int f8;
     void func_0017DC00();
+    void *func_0017CFF0(void *item);
+    void *func_0017DAE0(void *item, int x0, int y0, int x1, int y1, int x, int y, int size, int minSize);
     void func_0017D120(int a0);
     void func_0017E1D0(int x0, int y0, int x1, int y1, int x, int y, int size, int minSize);
 };
