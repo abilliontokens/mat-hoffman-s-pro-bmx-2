@@ -105,19 +105,30 @@ void C_001A7260::func_001A7260()
         f24->fb4 = 0;
     }
     {
-        int i;
-        for (i = 0; i < 8; i = i + 1) {
-            if (f34[i] != 0) {
-                f34[i]->func_001D6410();
-                func_001E891B(f34[i]);
-                f34[i] = 0;
+        C_001D6410 **p;
+        int count;
+        p = f34;
+        count = 8;
+        do {
+            C_001D6410 *obj;
+            obj = *p;
+            if (obj != 0) {
+                obj->func_001D6410();
+                func_001E891B(obj);
+                *p = 0;
             }
-        }
+            p = p + 1;
+            count = count - 1;
+        } while (count != 0);
     }
-    if (f30 != 0) {
-        f30->func_001D6410();
-        func_001E891B(f30);
-        f30 = 0;
+    {
+        C_001D6410 *obj;
+        obj = f30;
+        if (obj != 0) {
+            obj->func_001D6410();
+            func_001E891B(obj);
+            f30 = 0;
+        }
     }
     D_002A8490->f2ec->func_0018C120();
     func_00157660();
