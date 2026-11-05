@@ -132,6 +132,30 @@ int C_0018D580::func_0018D580(unsigned int id)
     return 0;
 }
 
+void C_0018D7B0::func_0018D7B0(const char *name, int index, int b, int c, int d)
+{
+    int i;
+    int j;
+    int slot;
+
+    for (i = 0; i < defCount; i++) {
+        if (strcmp(name, defs[i].name) == 0) {
+            if (index > defs[i].max) {
+                return;
+            }
+            slot = defs[i].slot;
+            slots[slot].recs[index].f0 = b;
+            slots[slot].recs[index].f4 = (c << 8) | 1;
+            slots[slot].recs[index].f8 = d;
+            j = findDef(c);
+            slots[slot].recs[index].fC = defs[j].f14;
+            slots[slot].recs[index].f10 = defs[j].f18;
+            slots[slot].recs[index].f14 = defs[j].f1C;
+            return;
+        }
+    }
+}
+
 int C_0018D580::func_0018D900(const char *name)
 {
     int i;
