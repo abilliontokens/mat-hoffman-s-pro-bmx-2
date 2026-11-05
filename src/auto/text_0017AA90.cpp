@@ -11,6 +11,13 @@ struct C_0017B9E0 {
     C_0017B9E0* func_0017B9E0(int a0, int a1);
 };
 
+struct C_0017AB70 {
+    char pad0[0x158];
+    int *unk158;
+    int unk15C;
+    int func_0017AB70(int param_1);
+};
+
 
 undefined4 C_0017ABC0::func_0017ABC0(byte param_1)
 {
