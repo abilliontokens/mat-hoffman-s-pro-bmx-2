@@ -258,12 +258,13 @@ SoundObj_001CFE90 *SoundFactory_001CFE90::func_001CFE90(int a0, int a1, int a2, 
 {
     SoundObj_001CFE90 *p = (SoundObj_001CFE90 *)func_001E8A44(0x20c);
 
-    if (p != 0) {
-        p = p->func_001CF740(this, a0, 1);
-        if (p != 0) {
-            return p->v4(a1, a2, a3, a4, a5) ? p : 0;
-        }
+    if (p == 0) {
+        return 0;
     }
-    return 0;
+    p = p->func_001CF740(this, a0, 1);
+    if (p == 0) {
+        return 0;
+    }
+    return p->v4(a1, a2, a3, a4, a5) ? p : 0;
 }
 
