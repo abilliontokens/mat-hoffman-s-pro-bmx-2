@@ -186,7 +186,7 @@ struct C_0023EFB0_Pump {
     int func_0023EC71(int a0, int a1, void *req);
 };
 
-void __stdcall func_001DE7C2(int a);
+__declspec(noreturn) void __stdcall func_001DE7C2(int a);
 
 struct S_0023ED4C_Src {
     char pad0[0x10];
