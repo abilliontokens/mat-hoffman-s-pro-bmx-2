@@ -1,6 +1,10 @@
 /* 5 functions from 0x0007BAD0 to 0x0007CA00, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_0007C2C0 {
+    undefined4 func_0007C2C0();
+};
+
 struct C_0007C670 {
     undefined4 func_0007C670(byte param_1);
 };
