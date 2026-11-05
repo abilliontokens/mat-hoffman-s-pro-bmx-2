@@ -129,7 +129,9 @@ struct S_00093620_Cfg {
     int f11D0;
     char pad11D4[4];
     int f11D8;
-    char pad11DC[0x14];
+    char pad11DC[4];
+    int f11E0;
+    char pad11E4[0xc];
     int f11F0;
     char pad11F4[4];
     int f11F8;
