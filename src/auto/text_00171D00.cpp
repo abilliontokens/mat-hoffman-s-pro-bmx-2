@@ -154,11 +154,11 @@ __declspec(align(16)) struct S_00172090_Mat {
 
 static __forceinline void Zero_00172090(S_00172090_Mat *&p)
 {
-    S_00172090_Mat *q = p;
-    _mm_store_ps(&q->m[0], _mm_setzero_ps());
-    _mm_store_ps(&q->m[4], _mm_setzero_ps());
-    _mm_store_ps(&q->m[8], _mm_setzero_ps());
-    _mm_store_ps(&q->m[12], _mm_setzero_ps());
+    __m128 *v = (__m128 *)p;
+    v[0] = _mm_setzero_ps();
+    v[1] = _mm_setzero_ps();
+    v[2] = _mm_setzero_ps();
+    v[3] = _mm_setzero_ps();
 }
 
 /* PhysicsBody */
@@ -283,6 +283,74 @@ void PhysicsBody::func_00172000(void)
         vecB[3] = 1.0f;
         f14C->func_0019A8C0(vecA, vecB);
         fB0->func_00193950(&f24, vecA, vecB, 0);
+    }
+}
+
+void PhysicsBody::func_00172090(float a0, float a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, float a9, float a10, float a11, float a12, float a13, float a14, float a15)
+{
+    PhysicsBody * volatile self = this;
+    S_00172090_Mat m;
+    S_00172090_Mat * volatile pm = &m;
+    V4_00172090 a;
+    V4_00172090 b;
+    float s;
+    float r;
+
+    a.z = 0.0f;
+    a.y = 0.0f;
+    a.x = 0.0f;
+    a.w = 1.0f;
+    b.z = 0.0f;
+    b.y = 0.0f;
+    b.x = 0.0f;
+    b.w = 1.0f;
+    f14C->func_0019A680(&a.x, &b.x);
+    b = V4_00172090(b.x + b.x, b.y + b.y, b.z + b.z);
+    s = b.z * b.z + b.y * b.y + b.x * b.x;
+    _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&s));
+    self->f114 = r;
+    {
+        PhysicsBody *p = self;
+        if (p->f114 > D_00275544) {
+            p->f118 = D_00275460 / p->f114;
+        }
+    }
+    {
+        PhysicsBody *p = self;
+        ((C_00171D00_C4VT *)p->fC4)->v28(D_00283A7C * a0);
+    }
+    {
+        S_00172090_Mat *q = pm;
+        __m128 *v = (__m128 *)q;
+        v[0] = _mm_setzero_ps();
+        v[1] = _mm_setzero_ps();
+        v[2] = _mm_setzero_ps();
+        v[3] = _mm_setzero_ps();
+    }
+    {
+        PhysicsBody *p = self;
+        m.m[0] = ((C_00171D00_C4VT *)p->fC4)->f210 * D_00283A78 * (b.y * b.y + b.z * b.z) * a1;
+        m.m[5] = ((C_00171D00_C4VT *)p->fC4)->f210 * D_00283A78 * (b.z * b.z + b.x * b.x) * a1;
+        m.m[15] = 1.0f;
+        m.m[10] = ((C_00171D00_C4VT *)p->fC4)->f210 * D_00283A78 * (b.y * b.y + b.x * b.x) * a1;
+        ((C_00171D00_C4VT *)p->fC4)->v29(&m);
+    }
+    self->fD0->func_001A9110(a2, a3, a4, a5, a6, a8, a8, a8);
+    self->fD0->func_001A9220(0, a7);
+    self->fE0 = a9;
+    self->fE4 = a10;
+    self->fE8 = a11;
+    self->fEC = a12;
+    self->fF0 = a13;
+    self->fF4 = a14;
+    self->fF8 = a15;
+    {
+        PhysicsBody *p = self;
+        p->fFC = *(int *)&p->fE0;
+    }
+    {
+        PhysicsBody *p = self;
+        p->f100 = *(int *)&p->fE4;
     }
 }
 
