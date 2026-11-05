@@ -76,20 +76,88 @@ struct C_00162610 {
     void func_00162610(int a);
 };
 
+struct C_001446B0 {
+    void func_001446B0(int a0, int a1, int a2);
+};
+
+struct C_0013FF50 {
+    void func_0013FF50(int a0);
+};
+
+struct C_00140400_Slot {
+    int f0;
+    int f4;
+};
+
+struct C_00140400_Obj {
+    char pad0[0x24];
+    unsigned char f24;
+};
+
+struct C_00140400_Mgr {
+    char pad0[0x54];
+    C_00140400_Obj *f54;
+};
+
+struct C_00140400_Entry {
+    int f0;
+    C_00140400_Mgr *f4;
+    char pad8[8];
+};
+
+struct C_00140400_Global {
+    char pad0[0x14];
+    C_00140400_Entry *f14;
+};
+
+struct C_00140400_Engine {
+    int f0;
+    int f4;
+};
+
+struct C_00140400_Child {
+    C_001446B0 *obj;
+    int f4;
+};
+
+extern C_00140400_Global *D_002A829C;
+extern C_00140400_Engine *D_002EFDB8;
+
 /* DXMesh */
 struct C_00140390 {
     void *vtbl;
-    char pad4[0x38];
-    void *f3C;
+    char pad4[0x20];
+    C_00140400_Slot *f24;
+    char pad28[0x11];
+    unsigned char f39;
+    char pad3A[2];
+    C_00140400_Child *f3C;
     int f40;
     int f44;
-    void *f48;
+    C_0013FF50 *f48;
     int f4C;
     int f50;
     int f54;
     int f58;
     int f5C;
     C_00140390 *func_00140390(int a);
+    int func_00140400(void);
+    int func_00157960(void);
+};
+
+struct C_00162720 {
+    void func_00162720(unsigned int a0);
+};
+
+extern float D_00284758;
+
+struct C_00140480 {
+    char pad0[0x50];
+    float f50;
+    float f54;
+    float f58;
+    float f5C;
+    void func_00140480(unsigned int color);
 };
 
 struct C_0013FCF0 {
