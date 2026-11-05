@@ -43,7 +43,7 @@ struct C_00196290 {
     int *fb0;
     int *fb4;
     u8 *fb8;
-    char padbc[4];
+    u8 *fbc;
     u8 fc0;
     char padc1[0xc8 - 0xc1];
     u32 fc8;
