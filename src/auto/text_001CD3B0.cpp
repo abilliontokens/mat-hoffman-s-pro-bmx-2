@@ -158,7 +158,8 @@ struct S_Slot {
     int f14;
     int f18;
     int f1C;
-    u8 f20;
+    u8 lo : 3;
+    u8 busy : 1;
 };
 struct S_SlotList {
     int count;
