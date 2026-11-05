@@ -42,6 +42,7 @@ struct C_00026270 {
 };
 
 extern "C" int strcmp(const char *a, const char *b);
+extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
 char *func_001E8BF0(char *dst, const char *src, int n);
 
 struct S_000264C0_Mat {
@@ -126,7 +127,10 @@ undefined4 func_00026300(float *param_1, float *param_2)
 
 C_000264C0 *C_000264C0::func_000264C0(S_000264C0_Mat *src)
 {
-    mat = *src;
+    mat.r0 = src->r0;
+    mat.r1 = src->r1;
+    mat.r2 = src->r2;
+    mat.r3 = src->r3;
     return this;
 }
 
