@@ -32,4 +32,32 @@ int func_001EAA3B(const unsigned short *src, const unsigned short *dst)
     }
     return ret;
 }
+
+#pragma optimize("t", off)
+int func_001EAA6D(unsigned short *buf, int count, const unsigned short *fmt, ...)
+{
+    S_001EA_FILE str;
+    int retval;
+    va_list ap;
+
+    va_start(ap, fmt);
+    str.base = (char *)buf;
+    str.ptr = (char *)buf;
+    str.cnt = count * 2;
+    str.flag = 0x42;
+    retval = func_001F3C55(&str, fmt, ap);
+    if (--str.cnt >= 0) {
+        *str.ptr++ = 0;
+    } else {
+        func_001ED8A7(0, &str);
+    }
+    if (--str.cnt >= 0) {
+        *str.ptr++ = 0;
+    } else {
+        func_001ED8A7(0, &str);
+    }
+    return retval;
+}
+#pragma optimize("", on)
+
 #pragma optimize("", on)
