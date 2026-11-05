@@ -24,7 +24,14 @@ extern "C" void *func_001E8AA5(int);
 extern "C" void *func_001E8A44(int);
 extern int D_00287520;
 
-struct Vec4_587F0 { float x, y, z, w; };
+struct Vec4_587F0 {
+    float x, y, z, w;
+    Vec4_587F0() {}
+    Vec4_587F0(float ax, float ay, float az) { x = ax; y = ay; z = az; w = 1.0f; }
+    Vec4_587F0 operator*(float s) const { return Vec4_587F0(x * s, y * s, z * s); }
+    Vec4_587F0 operator+(const Vec4_587F0 &o) const { return Vec4_587F0(x + o.x, y + o.y, z + o.z); }
+    Vec4_587F0 operator-(const Vec4_587F0 &o) const { return Vec4_587F0(x - o.x, y - o.y, z - o.z); }
+};
 struct S_R {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
     virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
