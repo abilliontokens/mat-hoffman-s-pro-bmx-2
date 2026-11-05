@@ -190,3 +190,16 @@ C_000C85B0 *C_000C85B0::func_000C85B0(int param_1) {
     return this;
 }
 
+void BmxUIPageOptions::func_000C8660(void)
+{
+    int i;
+    vtbl = (void *)&D_0027E334;
+    for (i = 0; i < 4; i++) {
+        if (unk2D8[i] != 0) {
+            unk2D8[i]->destroying(1);
+        }
+        unk2D8[i] = 0;
+    }
+    func_001BE3F0();
+}
+
