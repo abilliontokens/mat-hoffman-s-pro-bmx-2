@@ -303,6 +303,16 @@ C_001B6410* C_001B6410::func_001B6410(void) {
     return this;
 }
 
+int C_001B6410::func_001B6440(S_001B6130_Stream *stream, S_001B6440_Param *param)
+{
+    stream->func_00168C20(&D_0028CD44, 0, &unk10C);
+    stream->func_00168C20(&D_0028CD34, 0, &unk110);
+    stream->func_00168C20(&D_0028CD2C, 1, &unk114);
+    unk10C += param->f3c8;
+    stream->func_00168BE0(&D_0028CC30, &D_00275630, &unk8, 0x103);
+    return 1;
+}
+
 undefined4 func_001B6560(undefined4 *param_1)
 {
   if (param_1 == (undefined4 *)0x0) {
