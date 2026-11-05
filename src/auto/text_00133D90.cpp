@@ -198,6 +198,8 @@ float func_00133DF0(Coll_00133D90 *a, Coll_00133D90 *b)
     return res;
 }
 
+#pragma auto_inline(on)
+
 void C_00133E60::func_00133E60(void)
 {
     C_00193500 *p = f98;
