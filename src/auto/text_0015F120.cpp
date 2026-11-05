@@ -2,6 +2,30 @@
 #include "common.h"
 #include "ghidra.h"
 #include "ghidra.h"
+struct S_0015F470_Row {
+    int x, y, z, w;
+};
+
+struct S_0015F470_Mat {
+    S_0015F470_Row row[4];
+};
+
+/* one entry of the table at +0x24; entry size 0xC8 */
+struct S_0015F470_Entry {
+    int f0;
+    int f4;
+    S_0015F470_Mat m[3];
+};
+
+struct C_0015F470 {
+    char pad0[0x24];
+    S_0015F470_Entry *f24;
+    char pad28[4];
+    int f2C;
+    int func_0015E5B0(void);
+    int func_0015F470(int a, S_0015F470_Mat *m0, S_0015F470_Mat *m1, S_0015F470_Mat *m2);
+};
+
 struct C_0015F860 {
     undefined4 func_0015F860(byte param_1);
 };
