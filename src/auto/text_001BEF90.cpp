@@ -424,3 +424,15 @@ void C_001BF6B0::func_001BF6B0(void)
   (**(code **)(*in_ECX + 0x1c))();
   return;
 }
+
+void C_001BF6C0::func_001BF6C0(int enable)
+{
+    if (enable != 0) {
+        unk2C = 1;
+        ((VCall8 *)this)->v7();
+    } else {
+        unk2C = 0;
+        ((VCall8 *)this)->v5();
+    }
+}
+
