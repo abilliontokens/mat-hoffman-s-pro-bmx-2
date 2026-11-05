@@ -176,3 +176,18 @@ void C_00104900::func_00104930(void)
     unkE8 = 0;
 }
 
+void func_001E891B(void *p);
+void *C_00104120::func_00104960(int flags)
+{
+    int p = unkD4;
+    vtbl = &D_002828F4;
+    if (p != 0) {
+        func_001E891B((void *)p);
+    }
+    func_00195E70();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
