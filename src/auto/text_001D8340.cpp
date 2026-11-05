@@ -225,6 +225,7 @@ C_001D8760 *C_001D8760::func_001D8760(int flags)
 C_001D87A0 *C_001D87A0::func_001D87A0(int a1, int a2, int a3, int a4)
 {
     int r;
+    int hwnd;
     unsigned int i;
 
     f40 = a2;
@@ -251,8 +252,9 @@ C_001D87A0 *C_001D87A0::func_001D87A0(int a1, int a2, int a3, int a4)
     pp[11] = 0;
     pp[12] = 1;
     func_00202950(&D_00100000, 0x8000);
-    if (func_00202970(0, 1, f40, 0x50, pp, &D_002F0BB8) != 0) {
-        v0(1);
+    hwnd = f40;
+    if (func_00202970(0, 1, hwnd, 0x50, pp, &D_002F0BB8) != 0) {
+        ((I_001D87A0_Dtor *)this)->destroy(1);
         return 0;
     }
     f6C = r;
