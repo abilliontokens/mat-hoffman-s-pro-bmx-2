@@ -14,11 +14,14 @@ extern char D_002786A0[], D_00278690[], D_00278678[];
 
 struct C_00069080 {
     char pad0[0x80];
-    Sprite_69 *f80[2];
+    Sprite_69 *arr80[2];
     char pad88[0x30];
-    Sprite_69 *fB8[18];
-    Sprite_69 *f100[14];
-    Sprite_69 *f138;
+    Sprite_69 *arrB8[4];
+    Sprite_69 *arrC8[4];
+    Sprite_69 *arrD8[5];
+    Sprite_69 *arrEC[5];
+    Sprite_69 *arr100[14];
+    Sprite_69 *unk138;
     void func_00069080();
     void func_001578D0();
 };
