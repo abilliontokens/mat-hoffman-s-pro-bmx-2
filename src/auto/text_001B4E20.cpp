@@ -97,6 +97,87 @@ struct C_001B59E0 {
     C_001B59E0* func_001B59E0(void);
 };
 
+extern int D_0028CB80;
+void *func_001E8A44(int size);
+int func_001EA426(void *a, void *b);
+
+struct C_001B5790 {
+    void *vtbl;
+    char pad4[0x54];
+    int f58;
+    int f5C;
+    C_001B5790 *func_001B5790(void);
+};
+
+struct C_001B5750 {
+    char pad0[0x60];
+    int f60;
+    char pad64[0x18];
+    int f7C;
+    int func_001B5750(void *name);
+};
+
+struct C_00187640 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual int v27(void *p);
+    void *func_00187640(int a);
+};
+
+struct C_001B4BE0 {
+    virtual void v0(void *p);
+    C_001B4BE0 *func_001B4BE0(void);
+};
+
+struct C_001B57B0 {
+    char pad0[0x54];
+    void *f54;
+    char pad58[4];
+    void *f5C;
+    void func_001B57B0(void *param);
+};
+
+struct S_001B5860_Obj {
+    virtual void destroy(int a);
+};
+
+struct C_00157660 {
+    void func_00157660(void);
+};
+
+struct C_001B5860 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    int f28;
+    void func_001B5860(void);
+};
+
 
 int C_001B4E20::func_001B4E20(void *param) {
     char buf[0x104];
