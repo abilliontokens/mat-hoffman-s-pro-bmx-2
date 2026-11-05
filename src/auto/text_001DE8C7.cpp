@@ -323,6 +323,12 @@ int __stdcall func_001DF234(int base, void *data, void *out)
     return 1;
 }
 
+int __stdcall func_001DF2EA(int ctx, const void *data, unsigned int len)
+{
+    XcSHAUpdate((void *)(ctx + 8), data, len);
+    return 0;
+}
+
 int __stdcall func_001DF361(int a0)
 {
     return func_001DF26F(a0, ((int *)D_00010118)[2]);
