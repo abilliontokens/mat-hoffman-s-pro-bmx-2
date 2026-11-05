@@ -193,6 +193,47 @@ void C_0013FC00::func_0013FC00()
   vtbl = (void *)&D_00284E94;
 }
 
+void C_0013FC60::func_0013FC60(int count)
+{
+  void *__stdcall func_001FF3C0(int size);
+  void *func_001E8A44(int size);
+  int i;
+
+  f28 = count;
+  f24 = count;
+  f4 = count;
+  f10 = func_001FF3C0(count * 12);
+  f14 = func_001FF3C0(f4 * 12);
+  f18 = func_001FF3C0(f4 * 4);
+  f1c = func_001FF3C0(f4 * 8);
+  f8 = f24;
+  f20 = (short *)func_001E8A44(f24 * 2);
+  for (i = 0; i < f8; i++) {
+    f20[i] = (short)i;
+  }
+  f0c = 6;
+}
+
+void C_0013FCF0::func_0013FCF0()
+{
+  void __stdcall func_001FEE00(int index, void *ptr, int size);
+  void __stdcall func_00200B30(int a, int b, void *c);
+
+  if (f10 != 0) {
+    func_001FEE00(0, f10, 0xc);
+  }
+  if (f14 != 0) {
+    func_001FEE00(1, f14, 0xc);
+  }
+  if (f18 != 0) {
+    func_001FEE00(2, f18, 4);
+  }
+  if (f1c != 0) {
+    func_001FEE00(3, f1c, 8);
+  }
+  func_00200B30(f0c, f8, f20);
+}
+
 undefined4 C_00140660::func_00140660(byte param_1)
 {
   int func_0013FC00(...);
