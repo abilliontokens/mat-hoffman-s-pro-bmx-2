@@ -229,15 +229,14 @@ void func_0001B250(S_0001B250_Out *out, Quat *q)
 {
     float angle;
     S_0001B250_Block v;
-    u32 *p = (u32 *)&v;
-    p[2] = 0;
-    p[1] = 0;
-    p[0] = 0;
-    p[3] = 0x3f800000;
+    v.z = 0;
+    v.y = 0;
+    v.x = 0;
+    v.w = 1.0f;
     func_0001B020(q, &angle, (Vec3 *)&v);
     func_0001AFB0(&v, &v);
     float t = D_002B7C80 * angle;
-    out->f0 = _mm_cvtss_si32(*(__m128 *)&t);
+    out->f0 = (int)t;
     C_0001AF00 obj;
     obj.func_0001AF00((Vec3 *)&v);
     out->f2 = *(u32 *)&obj;
@@ -246,11 +245,12 @@ void func_0001B250(S_0001B250_Out *out, Quat *q)
 
 void func_0001B2E0(const S_0001B2E0_In *in, S_0001B2E0_Out *out)
 {
-    u32 idx = in->idx;
-    out->v0 = D_002AF470[idx];
-    out->x = (f32)in->x * D_002B7C70 * D_002B3C70[idx];
-    out->y = (f32)in->y * D_002B7C70 * D_002B3C70[idx];
-    out->z = (f32)in->z * D_002B7C70 * D_002B3C70[idx];
+    u32 k = (u32)in->idx * 4;
+    f32 s = *(f32 *)((char *)D_002B3C70 + k);
+    out->v0 = *(u32 *)((char *)D_002AF470 + k);
+    out->x = (f32)in->x * D_002B7C70 * s;
+    out->y = (f32)in->y * D_002B7C70 * s;
+    out->z = (f32)in->z * D_002B7C70 * s;
 }
 
 void func_0001B360(int a0, int a1, S_0001B360 *a2, int a3) {
@@ -281,7 +281,7 @@ int C_0001B3C0::func_0001B3C0(const char *name)
     if (tbl != 0) {
         for (i = 0; i < tbl->count; i++) {
             S_0001B3C0_Entry *e = tbl->entries[i];
-            if (e->f4 == 1 && strcmp(e->name, name) == 0)
+            if (e->f4 == 1 && strcmp(name, e->name) == 0)
                 return i;
         }
     }
