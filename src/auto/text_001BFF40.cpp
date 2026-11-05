@@ -241,3 +241,18 @@ void C_001C0670::func_001C0670(void)
         v29();
     }
 }
+
+void C_001C0E80::func_001C0E80(void)
+{
+    unk2C = 1;
+    if (unk30 == 0 || unk34 == 0) {
+        if (unk30 != 0) {
+            v7();
+        }
+        if (unk34 != 0) {
+            v5();
+        }
+    }
+    v7();
+}
+
