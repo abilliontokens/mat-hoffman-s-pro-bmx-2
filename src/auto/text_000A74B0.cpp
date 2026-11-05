@@ -79,6 +79,20 @@ struct GrindTrigger_000A8360 {
     GrindTrigger_000A8360 *func_000A8360(void);
 };
 
+struct Sub_000A82C0 {
+    char pad0[0x1C8];
+    int f1C8;
+    void func_00032410(int a, int b);
+};
+
+struct Game_000A82C0 {
+    char pad0[0x2A4];
+    Sub_000A82C0 *f2A4;
+};
+
+extern Game_000A82C0 *D_002A8490;
+void __stdcall func_00052630(int p);
+
 struct C_000A7530 {
     void func_000A7530(void);
 };
