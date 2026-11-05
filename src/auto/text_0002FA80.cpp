@@ -1,10 +1,24 @@
 /* 18 functions from 0x0002FA80 to 0x00030A30, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_000300F0 {
+    bool func_000300F0(undefined4 param_1);
+};
+
 struct C_00030A10 {
     undefined4 func_00030A10(byte param_1);
 };
 
+
+bool C_000300F0::func_000300F0(undefined4 param_1)
+{
+  int func_001EA426(...);
+  int in_ECX = (int)this;
+  int iVar1;
+  
+  iVar1 = func_001EA426(param_1,*(int *)(in_ECX + 0xc) * 0x118 + 0x14 + *(int *)(in_ECX + 4));
+  return iVar1 == 0;
+}
 
 undefined4 C_00030A10::func_00030A10(byte param_1)
 {
