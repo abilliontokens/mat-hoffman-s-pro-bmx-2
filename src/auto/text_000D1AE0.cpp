@@ -123,6 +123,29 @@ void C_000D2300::func_000D2300(void)
     f202C->func_001B17D0(buf);
 }
 
+void C_000D24B0::func_000D24B0(void)
+{
+    char buf[0x40];
+    int a = 0, b = 0, i = 0, total;
+
+    total = ((C_Mgr_D24B0 *)D_002A8490->f2E0)->f36C[f418];
+    total += ((C_Mgr_D24B0 *)D_002A8490->f2E0)->f34C[f418];
+    for (; i < 100; i++) {
+        C_Mgr_D24B0 *mgr = (C_Mgr_D24B0 *)D_002A8490->f2E0;
+        C_Ret_D24B0 *r = (C_Ret_D24B0 *)mgr->f2C0->func_0005C020(mgr->f2D8);
+        if (r->f1318[f418 * 100 + i] != 0)
+            a++;
+    }
+    for (i = 0; i < 100; i++) {
+        C_Mgr_D24B0 *mgr = (C_Mgr_D24B0 *)D_002A8490->f2E0;
+        C_Ret_D24B0 *r = (C_Ret_D24B0 *)mgr->f2C0->func_0005C020(mgr->f2D8);
+        if (r->f678[f418 * 100 + i] != 0)
+            b++;
+    }
+    func_001ADCC0(buf, 0x40, D_0027EEF4, b + a, D_0027EEFC, total);
+    f2034->func_001B17D0(buf);
+}
+
 void C_000D25A0::func_000D25A0(void)
 {
     char buf[0x40];
