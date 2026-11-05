@@ -61,6 +61,60 @@ struct C_001C3D80 {
     void func_001C3D80(void);
 };
 
+extern int D_0028E360;
+extern int D_0028E354;
+extern int D_0028E2C4;
+extern int D_0028E30C;
+void *func_001E8A44(int size);
+int __stdcall func_001FF380(int size);
+
+struct BufferManager {
+    void func_001C3AF0();
+};
+
+struct VertexBuffer {
+    void *vtbl;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    int f14;
+    void func_001C3550(int a1, int a2);
+};
+
+struct IndexBuffer {
+    IndexBuffer *func_0012A350(int a1, int a2);
+};
+
+struct DXVertexBufferManager {
+    int unk0;
+    void func_001C3BD0(void);
+};
+
+struct DXIndexBuffer {
+    void *vtbl;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    int f14;
+    DXIndexBuffer *func_001C36B0(int type, int count);
+};
+
+struct DXVertexBufferCache {
+    int unk0;
+    void *f4;
+    void *f8;
+    bool func_001C3830(int a1, int a2);
+};
+
+struct DXIndexBufferCache {
+    int unk0;
+    void *f4;
+    void *f8;
+    bool func_001C38D0(int a1, int a2);
+};
+
 
 void C_001C3700::func_001C3700(void)
 {
