@@ -49,6 +49,15 @@ struct S_00156030_Player {
     char pad_3A0[0x3bc - 0x3a0];
     int unk3BC;
     int unk3C0;
+    char pad_3C4[0x3d4 - 0x3c4];
+    int unk3D4;
+    int unk3D8;
+};
+
+struct TikiPlayerFlinchState {
+    char pad_0[8];
+    S_00156030_Player *unk8;
+    void func_001560A0(void);
 };
 
 struct TikiPlayerAirborneState {
