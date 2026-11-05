@@ -53,7 +53,7 @@ struct S_001EEFBA {
 struct S_001EEFE3 {
     int f0;
     S_001EEFE3 *next;
-    void func_001EEFE3(S_001EEFE3 *n);
+    S_001EEFE3 *func_001EEFE3(S_001EEFE3 *n);
 };
 
 /* virtual object with a mode at +8 (Class_00295BE4 slot 1) */
