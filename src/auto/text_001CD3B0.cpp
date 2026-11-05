@@ -119,6 +119,7 @@ struct S_001CDE40_Owner {
 };
 
 extern "C" __declspec(dllimport) void __stdcall RtlInitializeCriticalSection(void *cs);
+extern "C" void (__stdcall *_imp__RtlInitializeCriticalSection)(void *cs);
 
 struct S_OwnedElemList {
     S_SoundElemList list;
