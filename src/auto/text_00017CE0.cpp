@@ -172,6 +172,18 @@ struct TikiEvadeState {
     void func_00018340();
 };
 
+/* TikiHuntState */
+struct TikiHuntState {
+    void *vtbl;
+    char pad4[4];
+    S_TikiOwner *owner;
+    int fc;
+    int f10;
+    int f14;
+    int f18;
+    void func_000180F0();
+};
+
 /* TikiBlockState */
 struct TikiBlockState {
     void *vtbl;
@@ -317,6 +329,16 @@ void TikiEvadeState::func_00018340()
     f14 = 0;
     fc = D_002A8490->f238 + 2000;
     owner->f4f4 = 1;
+}
+
+void TikiBlockState::func_00018390()
+{
+    if (owner->f4d4 > 500) {
+        fc = D_002A8490->f238 + 2000;
+    } else {
+        fc = D_002A8490->f238 + 0xdac;
+    }
+    owner->func_001C6DA0(owner->f73c, 1);
 }
 
 extern int D_00275854;
