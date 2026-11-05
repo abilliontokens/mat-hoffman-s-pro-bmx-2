@@ -244,9 +244,25 @@ void UIWidgetStaticUserRotate::func_001C33A0(void)
     v5();
 }
 
+int __stdcall func_001FF3C0(int size);
+void *C_001C34D0::func_001C34D0(int flags)
+{
+    vtbl = &D_0028DF04;
+    if (f68 != 0) {
+        f68->Destroy(1);
+    }
+    vtbl = &D_0028D804;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void C_001C35B0::func_001C35B0(void *src, int index, unsigned int count)
 {
-    char *dst = (char *)func_001FF410(f14, 0) + fC * index;
+    int offset = fC * index;
+    char *dst = (char *)func_001FF410(f14, 0) + offset;
 
     memcpy(dst, src, count);
 }
