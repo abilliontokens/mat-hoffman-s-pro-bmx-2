@@ -168,10 +168,16 @@ struct C_00194C80 {
 extern int D_0028AED0;
 extern int D_002A9B0C, D_002A9B10, D_002A9B14, D_002A9B18;
 extern int D_002A9AFC, D_002A9B00, D_002A9B04, D_002A9B08;
+/* camera state block exchanged by slot 0 and the function after it */
+struct S_StillCamState {
+ S_Vec4Int p0, p1, p2; int f30, f34, f38, f3C;
+};
 struct SimpleStillCamera {
  void *vtbl; int f4; S_Vec4Int f8, f18, f28, f38; float f48;
  void func_0012B510(void);
  SimpleStillCamera *func_00194CC0(void);
+ void func_00194FA0(S_StillCamState *s, int a);
+ void func_00195010(S_StillCamState *out);
 };
 struct C_00194DC0 {
     int vtbl;
