@@ -428,6 +428,17 @@ void C_00149300::func_00149300(void)
   return;
 }
 
+void C_00149310::func_00149310(int a1, int a2, int a3, int a4)
+{
+    C_00149310 *self = this;
+
+    func_001B0EA0(a1, (void **)&self);
+    Obj_00149310 *o = unk14;
+    o->unk8 = a2;
+    o->unkC = a3;
+    o->unk10 = a4;
+}
+
 void func_00149350(void)
 {
   int __stdcall func_001FF940(int, int);
