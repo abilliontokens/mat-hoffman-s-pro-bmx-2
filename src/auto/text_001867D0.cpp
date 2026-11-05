@@ -189,8 +189,8 @@ struct S_00187400_Desc {
     int f134;
     int f138;
     S36_1A f13C;
-    unsigned short f160;
-    char pad162[6];
+    int f160;
+    char pad164[4];
     int f168;
 };
 
@@ -378,6 +378,29 @@ int C_00186F80::func_00186F80(C_00186AF0Param *stream, int n)
     stream->func_00168BE0(buf, (void *)&D_00276844, f4, -1);
     func_001ADCC0(buf, 0x3c, (const char *)&D_00289A8C, n + 1);
     stream->func_00168C50(buf, 0, &f108);
+    return 1;
+}
+
+int C_00187370::func_00187400(void *a)
+{
+    int mode = 2;
+    C_001A2210 *mem;
+    C_001A2210 *obj;
+
+    if (f8->f120 != 0) {
+        mode = 10;
+    }
+    mem = (C_001A2210 *)func_001E8A44(0x1c8);
+    if (mem != 0) {
+        obj = mem->func_001A2210((int)D_002A8490->f4, (int)a, f8->f160, 1);
+    } else {
+        obj = 0;
+    }
+    f4 = (int)obj;
+    ((C_001A2250 *)f4)->func_001A2250((int)f8->f4, f8->f13C, f8->f108, D_002A90B4, mode, f8->f134, f8->f138, 0, f8->f12C);
+    ((C_001A22E0 *)f4)->func_001A22E0(f8->f168);
+    func_001E891B(f8);
+    f8 = 0;
     return 1;
 }
 
