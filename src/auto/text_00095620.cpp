@@ -205,3 +205,75 @@ void C_00095AB0::func_00095AB0(float a)
     func_00157A00(a);
 }
 
+C_00095BC0 *C_00095BC0::func_00095BC0()
+{
+    *(int *)(fields + 0) = -1;
+    *(int *)(fields + 0x40) = 0;
+    *(int *)(fields + 0x44) = 0;
+    fields[4] = 0;
+    fields[0xc0] = 0;
+    fields[0x138] = 0;
+    fields[0x1b0] = 0;
+    *(int *)(fields + 0x228) = 0;
+    *(int *)(fields + 0x22c) = 0;
+    *(int *)(fields + 0x234) = 0;
+    for (int i = 0; i < 4; i++) {
+        ((int *)(fields + 0x238))[i] = -1;
+        ((int *)(fields + 0x248))[i] = -1;
+        ((int *)(fields + 0x258))[i] = -1;
+    }
+    *(int *)(fields + 0x2e4) = 0;
+    *(int *)(fields + 0x2e8) = 0;
+    *(int *)(fields + 0x2ec) = 1;
+    fields[0x48] = 0;
+    *(int *)(fields + 0x268) = -1;
+    fields[0x26c] = 0;
+    *(int *)(fields + 0x2554) = 0;
+    for (int j = 0; j < 10; j++) {
+        ((int *)(fields + 0x2558))[j] = -1;
+        ((int *)(fields + 0x2580))[j] = 0;
+        ((int *)(fields + 0x25a8))[j] = 0;
+        ((int *)(fields + 0x25d0))[j] = 0;
+        fields[0x25f8 + j*0x78] = 0;
+        ((int *)(fields + 0x2af8))[j] = 0;
+        ((int *)(fields + 0x2b20))[j] = 0;
+        fields[0x2b48 + j*0x78] = 0;
+        fields[0x2ff8 + j*0x78] = 0;
+        fields[0x34a8 + j*0x78] = 0;
+        fields[0x3958 + j*0x78] = 0;
+        fields[0x3e08 + j*0x78] = 0;
+        fields[0x42b8 + j*0x78] = 0;
+        fields[0x4768 + j*0x78] = 0;
+        fields[0x4c18 + j*0x78] = 0;
+        fields[0x50c8 + j*0x78] = 0;
+        fields[0x5578 + j*0x78] = 0;
+        fields[0x5a28 + j*0x78] = 0;
+        fields[0x5ed8 + j*0x78] = 0;
+        ((int *)(fields + 0x6388))[j] = 0;
+        ((float *)(fields + 0x63b0))[j] = -1.0f;
+        ((int *)(fields + 0x2aa8))[j] = -1;
+        ((int *)(fields + 0x2ad0))[j] = -1;
+        ((int *)(fields + 0x6428))[j] = 0;
+        ((int *)(fields + 0x63d8))[j] = 0;
+        ((int *)(fields + 0x6400))[j] = 0;
+    }
+    *(int *)(fields + 0x300) = 0;
+    for (int k = 0; k < 12; k++) {
+        fields[0x304 + k*0x78] = 0;
+        fields[0x8a4 + k*0x78] = 0;
+        fields[0xe44 + k*0x78] = 0;
+        fields[0x13e4 + k*0x78] = 0;
+        ((int *)(fields + 0x1984))[k] = -1;
+        fields[0x1f54 + k*0x78] = 0;
+        ((int *)(fields + 0x24f4))[k] = -1;
+        ((int *)(fields + 0x2524))[k] = -1;
+        fields[0x19b4 + k*0x78] = 0;
+    }
+    *(int *)(fields + 0x6450) = 0;
+    *(int *)(fields + 0x2f0) = 0;
+    *(int *)(fields + 0x2f4) = 0;
+    *(int *)(fields + 0x2f8) = 0;
+    *(int *)(fields + 0x2fc) = 0;
+    return this;
+}
+
