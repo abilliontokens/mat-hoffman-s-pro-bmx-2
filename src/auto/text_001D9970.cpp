@@ -1,5 +1,8 @@
 /* 7 functions from 0x001D9970 to 0x001DA500, found by Ghidra. */
 #include "common.h"
+extern int D_002AC724;
+extern char D_0028F970[];
+int func_001B2910(int);
 struct Global_1D9E { void *vtbl; char *p4; };
 extern Global_1D9E *D_002EFDB8;
 extern char D_002AC63C[], D_002AC64C[], D_002AB85C[], D_002AC61C[], D_002AC62C[], D_002AC65C[];
