@@ -176,7 +176,34 @@ struct C_000A90B0 {
     char pad4[0x108];
     int unk10C;
     C_000A90B0 *func_000A90B0();
+    void func_001B5A00(void *a, void *b);
+    void func_000A90D0(S_TriggerStream *stream, void *b);
 };
+
+struct C_00157660 {
+    void func_00157660(void);
+};
+
+/* the cyclers an entry of ColorCyclers owns */
+struct S_ColorCycler {
+    char pad0[0x108];
+    void *unk108;
+    char pad10C[8];
+    void *unk114;
+    void *unk118;
+    void *unk11C;
+};
+
+/* ColorCyclers */
+struct C_000A9120 {
+    void *vtbl;
+    char pad4[0x20];
+    int count;
+    S_ColorCycler **items;
+    void func_000A9120(void);
+};
+
+void func_001E891B(void *p);
 
 /* ScriptTriggerAction */
 struct C_000A8E20 {
@@ -452,6 +479,18 @@ C_000A8EB0 *C_000A8EB0::func_000A8EB0() {
     return this;
 }
 
+void C_000A8EB0::func_000A8F20(S_TriggerStream *stream, void *b)
+{
+    extern int D_0027C3A8;
+    extern int D_0027C398;
+    extern int D_0027C388;
+    extern float D_002A2734;
+    stream->func_00168CB0(&D_0027C3A8, &D_002A2734, &vec10C);
+    stream->func_00168C50(&D_0027C398, 0, &unk11C);
+    stream->func_00168C50(&D_0027C388, 0, &unk120);
+    func_001B5A00(stream, b);
+}
+
 C_000A8FA0 *C_000A8FA0::func_000A8FA0() {
     extern int D_0027C3BC;
     ((C_001B59E0 *)this)->func_001B59E0();
@@ -461,12 +500,30 @@ C_000A8FA0 *C_000A8FA0::func_000A8FA0() {
     return this;
 }
 
+void C_000A8FA0::func_000A8FC0(S_TriggerStream *stream, void *b)
+{
+    extern int D_0027C3D4;
+    extern int D_0027C3C4;
+    extern int D_00275630;
+    stream->func_00168C20(&D_0027C3D4, 0, &unk10C);
+    stream->func_00168BE0(&D_0027C3C4, &D_00275630, unk110, 0x104);
+    func_001B5A00(stream, b);
+}
+
 C_000A9030 *C_000A9030::func_000A9030() {
     extern int D_0027C3E4;
     ((C_001B59E0 *)this)->func_001B59E0();
     vtbl = (void *)&D_0027C3E4;
     unk10C = 0;
     return this;
+}
+
+void C_000A9030::func_000A9050(S_TriggerStream *stream, void *b)
+{
+    extern int D_0027C3EC;
+    extern int D_0027C3F8;
+    stream->func_00168BE0(&D_0027C3EC, &D_0027C3F8, &unk10C, 0x3b);
+    func_001B5A00(stream, b);
 }
 
 C_000A90B0 *C_000A90B0::func_000A90B0() {
