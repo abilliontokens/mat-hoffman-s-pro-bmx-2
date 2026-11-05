@@ -98,7 +98,7 @@ int C_00157810::func_00157A00(int a)
 
 int C_00157810::func_00157AE0(void)
 {
-    if (f1C < 0) {
+    if (f1C & 0x80) {
         for (S_00157810_Child *c = f10; c != 0; c = c->fC) {
             if (!(c->f21 & 8)) {
                 c->v20();
