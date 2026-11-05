@@ -46,6 +46,7 @@ int __stdcall func_001DDBC7(int a, int b, int c, int d);
 int __stdcall func_001DE8C7(int unused, int threadHandle, void *ctx1, void *ctx2, unsigned flags, unsigned *threadId);
 int __stdcall func_001CFDC0(void *ctx);
 extern char D_0006A000[];
+extern char D_0002B110[];
 
 struct XboxSoundStreams_001D0020 {
     char pad0[0x84];
@@ -199,6 +200,47 @@ struct XboxControlInterface_001D0C30 {
     void func_001D0E00(void);
 };
 
+
+int XboxSoundStreams_001D0020::func_001D0020(void)
+{
+    S_001D0020_Wfx wfx = {0};
+    S_001D0020_StreamDesc desc = {0};
+    int hr;
+
+    wfx.wFormatTag = 1;
+    wfx.nChannels = 2;
+    wfx.nSamplesPerSec = 44100;
+    wfx.nAvgBytesPerSec = 176400;
+    wfx.nBlockAlign = 4;
+    wfx.wBitsPerSample = 16;
+    desc.dwMaxAttachedPackets = 0x2b;
+    desc.lpwfxFormat = &wfx;
+    hr = func_002228F8(&desc, &fB8);
+    if (hr >= 0) {
+        hr = func_002228F8(&desc, &fBC);
+        if (hr >= 0) {
+            S_001D0020_Env env = {0};
+
+            env.dwEnvelopeGenerator = 1;
+            env.dwMode = 2;
+            env.dwRelease = env.dwAttack = (int)(f84 * D_0028F0AC);
+            env.dwSustain = 0xff;
+            D_00220ADB(fB8, &env);
+            D_00220ADB(fBC, &env);
+            fC0 = func_001E8A44((int)D_0006A000);
+            if (fC0 == 0) {
+                return 0x8007000e;
+            }
+            f1A8 = func_001DDBC7(0, 1, 0, 0);
+            if (f1A8 == 0) {
+                return 0x80004005;
+            }
+            f1A4 = func_001DE8C7(0, 0, (void *)&func_001CFDC0, this, 0, 0);
+            return f1A4 != 0 ? 0 : 0x80004005;
+        }
+    }
+    return hr;
+}
 
 XboxSoundGroup_001D0870 *XboxSoundGroup_001D0870::func_001D0870(unsigned int flags)
 {
