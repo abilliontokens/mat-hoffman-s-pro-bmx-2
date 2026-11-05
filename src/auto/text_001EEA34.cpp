@@ -343,6 +343,98 @@ int __fastcall func_001EF210(BitObj *self, int unused)
     return sum;
 }
 
+unsigned char BitObj::func_001EF235(void)
+{
+    S_001EF210_Node *last = 0;
+    S_001EF210_Node *n;
+
+    if (func_001EF1E7() == 0) {
+        for (n = (S_001EF210_Node *)f0; n != 0; n = n->next) {
+            if (n->v0() != 0) {
+                last = n;
+            }
+        }
+        if (last != 0) {
+            return last->v1();
+        }
+    }
+    return 0;
+}
+
+char *BitObj::func_001EF26D(char *buf, int n)
+{
+    char *dst;
+    S_001EF210_Node *p;
+    int len;
+
+    if (func_001EF1E7() == 0) {
+        if (buf == 0) {
+            n = func_001EF210() + 1;
+            buf = (char *)D_002F6A04.func_001EEE62(n, 0);
+            if (buf == 0) {
+                return 0;
+            }
+        }
+        dst = buf;
+        for (p = (S_001EF210_Node *)f0; p != 0 && n > 0; p = p->next) {
+            len = p->v0();
+            if (len != 0) {
+                if (n - len < 0) {
+                    len = n;
+                }
+                if (p->v2(dst, len) != 0) {
+                    n -= len;
+                    dst += len;
+                }
+            }
+        }
+    } else {
+        dst = buf;
+        if (buf == 0) {
+            return 0;
+        }
+    }
+    *dst = 0;
+    return buf;
+}
+
+BitObj *BitObj::func_001EF2FE(BitObj *o)
+{
+    if (s4 != 3 && func_001EF1D0(o, 0) == 0) {
+        s4 = o->s4;
+    }
+    return this;
+}
+
+BitObj *BitObj::func_001EF333(int mode)
+{
+    if (mode == 1 || mode == 3) {
+        f0 = 0;
+        if (s4 != 3) {
+            s4 = mode;
+        }
+    } else if (s4 == 0 || s4 == 2) {
+        S_001EF062 *p;
+        void *mem;
+
+        b4 = 0;
+        b5 = 0;
+        b6 = 0;
+        b7 = 0;
+        mem = (void *)D_002F6A04.func_001EEE62(0x10, 0);
+        if (mem != 0) {
+            p = ((S_001EF062 *)mem)->func_001EF062(mode);
+        } else {
+            p = 0;
+        }
+        f0 = (int)p;
+        if (p == 0) {
+            s4 = 3;
+        }
+    }
+    return this;
+}
+
 BitObj *BitObj::func_001EF8F6(int a0, int a1) {
     BitObj local;
     local.func_001EEEE6(this);
