@@ -316,3 +316,34 @@ void BmxUIManager::func_000BB440(int type)
     }
 }
 
+void BmxUIManager::func_000BB600(int type)
+{
+    int idx = 0;
+    int count = 0;
+    int i;
+    switch (type) {
+    case 0: idx = 0; break;
+    case 2: idx = 1; break;
+    case 4: idx = 2; break;
+    case 5: idx = 3; break;
+    case 7: idx = 4; break;
+    case 9: idx = 5; break;
+    case 10: idx = 6; break;
+    case 11: idx = 7; break;
+    case 13: idx = 8; break;
+    case 14: idx = 9; break;
+    default: return;
+    }
+    for (i = 0; i < ((GoalOwner *)this)->f27c[type].count; i++) {
+        if (((GoalRecord *)D_002A8490->f2E0->f2c0->func_0005C020(idx))->flags[i] == 0)
+            count++;
+    }
+    if (count == ((GoalOwner *)this)->f27c[type].count) {
+        for (i = 0; i < ((GoalOwner *)this)->f27c[type].count; i++) {
+            ((GoalRecord *)D_002A8490->f2E0->f2c0->func_0005C020(idx))->flags[i] = ((GoalOwner *)this)->f27c[type].flags[i] == 0;
+            if (((GoalOwner *)this)->f27c[type].flags[i] == 0)
+                D_002A8490->f2E0->f2c0->func_0005C170(type, i);
+        }
+    }
+}
+
