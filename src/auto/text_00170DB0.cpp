@@ -45,6 +45,15 @@ struct C_001719B0 {
 };
 
 
+void *C_001712A0::func_001712A0(int flags) {
+    unk0 = (int)&D_00288B4C;
+    func_00171980();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void C_001719B0::func_001719B0(int param_1)
 {
   int in_ECX = (int)this;
