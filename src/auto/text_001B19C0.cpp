@@ -55,7 +55,22 @@ struct C_001B22A0 {
     undefined4 *func_001B22A0(byte param_1);
 };
 
+struct C_001B1B30_Obj {
+    char pad0[0x34];
+    float f34;
+    float getF34() { return f34; }
+};
+
 struct C_001B1B30 {
+    char pad0[0x24];
+    C_001B1B30_Obj *f24;
+    char pad28[0x70];
+    float f98;
+    float f9C;
+    int fA0;
+    int fA4;
+    char padA8[0x18];
+    int fC0;
     void func_001B1B30(float param_1, undefined4 param_2);
 };
 
@@ -143,14 +158,13 @@ void C_001B19C0::func_001B19C0(float a1, float a2, float a3)
 void C_001B19C0::func_001B1A30(float a1, float a2, float a3)
 {
     extern float D_00275544;
-    int func_001E8858(float);
     if (fC0 != 0) {
         return;
     }
     f60 = a3;
     f5C = 0;
-    *(int *)&f4C.x = func_001E8858(a1);
-    *(int *)&f4C.y = func_001E8858(a2);
+    *(int *)&f4C.x = (int)a1;
+    *(int *)&f4C.y = (int)a2;
     f3C = f2C;
     f40 = f30;
     if (a3 == D_00275544) {
@@ -186,7 +200,7 @@ int C_001B1B20::func_001B1B20(void)
 
 void C_001B1B30::func_001B1B30(float param_1, undefined4 param_2)
 {
-  extern float D_00275544;
+  extern const float D_00275544;
   int in_ECX = (int)this;
 
   if (*(int *)(in_ECX + 0xc0) == 0) {
@@ -197,7 +211,7 @@ void C_001B1B30::func_001B1B30(float param_1, undefined4 param_2)
       *(undefined4 *)(in_ECX + 0x9c) = 0;
     }
   }
-  *(undefined4 *)(in_ECX + 0x98) = *(undefined4 *)(*(int *)(in_ECX + 0x24) + 0x34);
+  *(float *)(in_ECX + 0x98) = *(float *)(*(int *)(in_ECX + 0x24) + 0x34);
   return;
 }
 
