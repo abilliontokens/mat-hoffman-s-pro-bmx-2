@@ -155,6 +155,8 @@ struct C_00051CF0 {
     char pad2D0[0x88];
     int unk358;                       /* 0x358 */
     void func_00031450();
+    void func_00032860();
+    void func_000529D0();
     int func_00052590(int idx);
     void func_00052630(const char *name);
     void func_000526D0();
