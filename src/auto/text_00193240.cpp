@@ -144,7 +144,7 @@ struct Owner_00193240 {
 };
 struct Args_00193240 {
     char pad0[0x30];
-    int **f30;
+    int *f30;
     int f34;
 };
 extern Root_00193240 *D_002A8490;
