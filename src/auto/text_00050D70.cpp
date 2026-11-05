@@ -230,6 +230,36 @@ undefined4 *C_000511A0::func_000511A0(undefined4 param_1)
   return (undefined4 *)in_ECX;
 }
 
+void C_00051260::func_00051260(void)
+{
+  int func_001E891B(...);
+  int in_ECX = (int)this;
+  I_Deletable *pObj;
+
+  *(undefined4 **)in_ECX = &D_00277934;
+  pObj = *(I_Deletable **)(in_ECX + 0x2a8);
+  if (pObj != (I_Deletable *)0x0) {
+    pObj->scalar_delete(1);
+  }
+  pObj = *(I_Deletable **)(in_ECX + 0x2ac);
+  if (pObj != (I_Deletable *)0x0) {
+    pObj->scalar_delete(1);
+  }
+  pObj = *(I_Deletable **)(in_ECX + 0x2b0);
+  if (pObj != (I_Deletable *)0x0) {
+    pObj->scalar_delete(1);
+  }
+  pObj = *(I_Deletable **)(in_ECX + 0x2b4);
+  if (pObj != (I_Deletable *)0x0) {
+    pObj->scalar_delete(1);
+  }
+  if (*(int *)(in_ECX + 0x294) != 0) {
+    func_001E891B(*(int *)(in_ECX + 0x294));
+  }
+  ((C_00033220 *)this)->func_00033220();
+  return;
+}
+
 int C_00051840::func_00051840(void)
 {
     int count = 0;
