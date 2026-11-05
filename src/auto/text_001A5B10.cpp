@@ -229,6 +229,17 @@ void func_001A5C30(char *text, S_001A5C30_Obj **arr, int width, int maxCount)
     }
 }
 
+void C_001A5CD0::func_001A5CD0(void)
+{
+    int i;
+
+    unk30->func_001D6600();
+    for (i = 0; i < 8; i++) {
+        unk34[i]->func_001D6600();
+    }
+    func_00157960();
+}
+
 C_001A5D50 *C_001A5D50::func_001A5D50(void *param)
 {
     ((C_00157600 *)this)->func_00157600(param);
@@ -237,6 +248,15 @@ C_001A5D50 *C_001A5D50::func_001A5D50(void *param)
     f2c = 0;
     vtbl = (void *)&D_0028B9E4;
     return this;
+}
+
+void C_001A5E20::func_001A5E20(int arg)
+{
+    if (f2c > 5) {
+        f24->f24 = 1;
+    }
+    f2c++;
+    func_00157A00(arg);
 }
 
 C_001A5E40 *C_001A5E40::func_001A5E40(void *param)
