@@ -103,6 +103,88 @@ struct C_00106E30 {
     void func_00106E30(void);
 };
 
+void C_00106810::func_00106810(S_106810_Arg *arg, int mode)
+{
+    int b1;
+    int b2;
+    int b3;
+    S_106810_Vec v;
+    S_106810_Vec v2;
+    S_106810_Node *node;
+
+    if (D_002A8490->f2a4->f1c8 == 0) {
+        f12a8 &= 0x8f;
+    }
+    if ((f468 != 0 || D_002A8490->f2a4->f1c8 != 0) && f470 == 0) {
+        b1 = 0;
+        if (mode == 1 || mode == 4) {
+            b1 = 1;
+        }
+        if (D_002A8490->f2a4->f1c8 != 0) {
+            if (f12a8 & 0x10) {
+                b1 = 1;
+            } else {
+                b1 = 0;
+            }
+        }
+        if (b1) {
+            f1e0->f22c->func_00197F70(&v, &f210->v38);
+            f7dc->func_0011CA60(v);
+            f7dc->func_0009EDB0(1);
+            if (D_002A8490->f2a4->f1c8 == 0) {
+                f12a8 |= 0x10;
+            }
+        }
+        b2 = 0;
+        if (mode == 2 || mode == 4) {
+            b2 = 1;
+        }
+        if (D_002A8490->f2a4->f1c8 != 0) {
+            if (f12a8 & 0x20) {
+                b2 = 1;
+            } else {
+                b2 = 0;
+            }
+        }
+        if (b2) {
+            f1e0->f22c->func_00197F70(&v, &f210->v48);
+            f7e0->func_0011CA60(v);
+            f7e0->func_0009EDB0(1);
+            if (D_002A8490->f2a4->f1c8 == 0) {
+                f12a8 |= 0x20;
+            }
+        }
+        b3 = 0;
+        if (mode == 8) {
+            b3 = 1;
+        }
+        if (D_002A8490->f2a4->f1c8 != 0) {
+            if (f12a8 & 0x40) {
+                b3 = 1;
+            } else {
+                b3 = 0;
+            }
+        }
+        if (b3) {
+            v.x = v.y = v.z = 0.0f;
+            v.w = 1.0f;
+            node = arg->f4->func_00198330(D_00282A5C);
+            node->func_00197E70(&v);
+            f7dc->func_0011CA60(*node->func_00197F70(&v2, &v));
+            f7dc->func_0009EDB0(1);
+            f7e0->func_0009EDB0(0);
+            if (D_002A8490->f2a4->f1c8 == 0) {
+                f12a8 |= 0x40;
+            }
+        }
+        if (D_002A8490->f2a4->f1c8 == 0 || b3 || b2 || b1) {
+            return;
+        }
+    }
+    f7dc->func_0009EDB0(0);
+    f7e0->func_0009EDB0(0);
+}
+
 void C_00106E30::func_00106E30(void)
 {
     float x, y, z;
