@@ -4,3 +4,14 @@
 extern int D_002F6A48;
 int func_001F3B80(const char *a, const char *b);
 int func_001E8D25(int c);
+
+#pragma optimize("t", off)
+#pragma optimize("y", on)
+int func_001EA410(const unsigned short *s)
+{
+    const unsigned short *p = s;
+    while (*p++) {
+    }
+    return (p - s) - 1;
+}
+#pragma optimize("y", off)
