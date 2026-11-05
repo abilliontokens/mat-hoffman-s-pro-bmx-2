@@ -2,9 +2,20 @@
 #include "common.h"
 #include "ghidra.h"
 #include "ghidra.h"
+#include <xmmintrin.h>
 
 extern f32 D_00275544;
 extern f32 D_00275460;
+extern f32 D_00289094;
+extern f32 D_002EFD7C;
+
+static __forceinline f32 Max_0017C360(f32 a, f32 b)
+{
+    f32 r;
+
+    _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b)));
+    return r;
+}
 extern int D_0028909C;
 extern void *D_002EFD80;
 
