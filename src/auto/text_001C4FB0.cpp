@@ -8,8 +8,7 @@ int __stdcall func_001927C0(int a0, int a1);
 
 /* VisibilityQuadTree */
 struct C_001C5AA0 {
-    virtual ~C_001C5AA0();
-    char pad4[0x88C];
+    char pad0[0x890];
     int unk890;
     char pad894[4];
     int unk898;
@@ -24,9 +23,7 @@ struct C_001C5AC0 {
 
 void C_001C5AA0::func_001C5AA0()
 {
-    int a = unk890;
-    int b = unk898;
-    func_001927C0(a, b);
+    func_001927C0(unk890, unk898);
 }
 
 C_001C5AC0 *C_001C5AC0::func_001C5AC0(unsigned int flags)
