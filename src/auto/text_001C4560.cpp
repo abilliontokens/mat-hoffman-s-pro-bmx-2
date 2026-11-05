@@ -82,6 +82,16 @@ struct C_001C4EE0 {
 };
 
 
+C_001C4F40::C_001C4F40(void)
+{
+    func_00192720();
+    vtbl = &D_0028E664;
+    D_002F07E8 = this;
+    f880 = 0;
+    f8C = 0;
+    f8B4 = 0;
+}
+
 C_001C4F70 *C_001C4F70::func_001C4F70(int a1, int a2, int a3, int a4, int a5, int a6, int a7)
 {
     func_0017C300();
