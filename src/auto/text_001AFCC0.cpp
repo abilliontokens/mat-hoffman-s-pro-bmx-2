@@ -357,6 +357,25 @@ C_001B0230 *C_001B0230::func_001B01D0(void)
     return this;
 }
 
+void C_001B0230::func_001B0230(void)
+{
+    int i;
+
+    vtbl = (void *)&D_0028C5F8;
+    for (i = 0; i < 0x20; i++) {
+        if (arr54[i]) {
+            arr54[i]->v2();
+        }
+    }
+    if (unk4C) {
+        unk4C->d0(1);
+    }
+    if (unk154) {
+        unk154->d0(1);
+    }
+    ((C_0001DFE0 *)this)->func_0001DFF0();
+}
+
 void C_001B0620::func_001B0620(void)
 {
   int in_ECX = (int)this;
