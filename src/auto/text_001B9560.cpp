@@ -39,9 +39,6 @@ extern char D_0028D1DC[];
 extern char D_0028D1D0[];
 extern char D_0028D1C0[];
 extern char D_002764F0[];
-extern char D_0028CC18[];
-extern char D_0028CC0C[];
-extern "C" int memcmp(const void *a, const void *b, unsigned int n);
 extern "C" int strcmp(const char *a, const char *b);
 
 struct S_001BA3D0_Elem {
