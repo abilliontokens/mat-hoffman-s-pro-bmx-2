@@ -411,6 +411,40 @@ struct C_001BFA70 {
     void func_00157600(int a0);
 };
 
+/* UIWidgetSoultreeCharacter */
+struct C_001BFDB0 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    int f28;
+    int f2C;
+    int f30;
+    int f34;
+    int f38;
+    int f3C;
+    int f40;
+    int f44[8];
+    int f64;
+    int f68;
+    float f6C;
+    float f70;
+    float f74;
+    float f78;
+    float f7C;
+    float f80;
+    float f84;
+    float f88;
+    float f8C;
+    float f90;
+    float f94;
+    float f98;
+    char pad9C[0x39C - 0x9C];
+    int f39C;
+    int f3A0;
+    void *func_001BFDB0(int a0, int a1);
+    void func_00157600(int a0);
+};
+
 void C_001BEF90::func_001BEF90(int param_1)
 {
   unk140[param_1]->func_001BDDE0(0);
