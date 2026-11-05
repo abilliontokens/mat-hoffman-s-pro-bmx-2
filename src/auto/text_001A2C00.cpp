@@ -527,6 +527,44 @@ int MaterialSoundEmitter::func_001A33A0(int idx, S_001A33A0_Vec3 pos, int a4, in
     return 0;
 }
 
+int MaterialSoundEmitter::func_001A3610(int idx, S_001A2C00_Vec pos, int a5, int a6, int flag)
+{
+    S_3B10_Elem *e;
+    V_001A34D0 *v = (V_001A34D0 *)this;
+    int vol;
+    int pitch;
+
+    if (flag != 0) {
+        if (idx < 1 || idx > a.count) {
+            return 0;
+        }
+    } else {
+        if (idx < 1 || idx > b.count) {
+            return 0;
+        }
+    }
+    if ((f1fc < 0 || f200 != flag || f1fc != idx) && v->v43(f1fc) != 0) {
+        v->v47(f1fc);
+    } else if (f1fc > -1) {
+        return v->v44(pos, a5, a6);
+    }
+    if (flag != 0) {
+        e = a.at(idx - 1);
+    } else {
+        e = b.at(idx - 1);
+    }
+    if (e->snd->v7() != 0) {
+        return 0;
+    }
+    f1fc = idx;
+    f200 = flag;
+    v->v45(idx, a5, &pitch, &vol);
+    e->snd->v12(vol * a6 / 100);
+    e->snd->v14(pitch);
+    f1a4->func_0001CE80((S_001A33A0_Snd *)e->snd, (S_001A33A0_Vec3 *)&pos, D_002A9ECC, e->f24, e->f28);
+    return e->snd->v5(4);
+}
+
 int MaterialSoundEmitter::func_001A3B10(void)
 {
     int i;
