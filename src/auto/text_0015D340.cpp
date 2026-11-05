@@ -32,6 +32,17 @@ struct C_0015DA60 {
     void func_0015DCC0(C_0015DCC0_Item *item);
 };
 
+extern float D_00275460;
+struct V4_15E130 { float x, y, z, w; };
+struct N2_15E130 { char pad[0x24]; struct N_15E130* list; char pad2[0x14]; int idx; };
+struct A_15E130 { int pad; N2_15E130* p; };
+struct C_0017A1D0 { int func_0017A1D0(float a, float b, float* out); };
+struct N_15E130 { N_15E130* next; N2_15E130* p; C_0017A1D0* obj; };
+struct C_0015E130 {
+    char pad[0x38]; int* flags; V4_15E130* b; char pad2[0x10]; V4_15E130* a;
+    void func_0015E130(A_15E130* arg0, float arg1, float arg2, V4_15E130* out, V4_15E130* out2);
+};
+
 struct C_0015E0F0 {
     int func_0015E0F0(int param_1);
 };
