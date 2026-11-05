@@ -140,6 +140,11 @@ struct C_001677C0 {
 C_001676D0 *C_001676D0::func_001676D0(int n)
 {
     float t;
+    float tt;
+    float b2;
+    float s;
+    float c1;
+    float c2;
     void *mem;
     int i;
 
@@ -148,19 +153,14 @@ C_001676D0 *C_001676D0::func_001676D0(int n)
     mem = func_001E8AA5(n * 4);
     t = D_00275544;
     f0 = (int *)mem;
-    i = 0;
-    if (f4 > 0) {
-        do {
-            float sq;
-            float v;
-
-            sq = t * t;
-            i++;
-            v = sq * D_00287EC4 + (D_00275460 - t * D_00287EC8);
-            v = v - sq * t * D_00287EC0;
-            ((float *)f0)[i - 1] = v;
-            t = t + D_002755EC / f4;
-        } while (i < f4);
+    for (i = 0; i < f4; i++) {
+        tt = t * t;
+        b2 = D_00275460 - t * 0.948667f;
+        s = tt * 0.2964f + b2;
+        c1 = tt * t;
+        c2 = c1 * 0.030333f;
+        ((float *)f0)[i] = s - c2;
+        t = t + D_002755EC / f4;
     }
     return this;
 }
