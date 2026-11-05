@@ -431,3 +431,27 @@ void C_001C0E80::func_001C0E80(void)
     v7();
 }
 
+C_001C0EC0 *C_001C0EC0::func_001C0EC0(int a1, int a2)
+{
+    int i;
+
+    ((C_00157600 *)this)->func_00157600(a2);
+    unk24 = a1;
+    unk2C = 0;
+    unk28 = 0;
+    unk30 = 0;
+    unk34 = 0;
+    unk38 = 0;
+    unk3C = 0;
+    unk40 = 0;
+    for (i = 0; i < 8; i++) {
+        unk44[i] = 0;
+    }
+    unk64 = 0;
+    vtbl = &D_0028DDB4;
+    for (i = 0; i < 16; i++) {
+        unk68[i] = 0;
+    }
+    return this;
+}
+
