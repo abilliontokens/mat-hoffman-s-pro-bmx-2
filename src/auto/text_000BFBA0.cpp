@@ -38,7 +38,10 @@ extern S_C0010_Global *D_002A8490;
 
 struct BmxUIPageDemo {
     void *vtbl;
-    char pad4[0x280 - 4];
+    char pad4[0x124 - 4];
+    S_BFEE0_Page *f124;
+    char pad128[0x280-0x128];
+    void func_000BFEE0();
     int unk280;
     int unk284;
     int unk288;
