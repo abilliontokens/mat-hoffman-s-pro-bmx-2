@@ -124,7 +124,7 @@ static __forceinline void InitQuat_00055380(S_00056100_Quat *q)
     p[2] = 0;
     p[1] = 0;
     p[0] = 0;
-    q->w = 1.0f;
+    p[3] = 0x3f800000;
 }
 
 /* BmxFollowCamera (base class CameraBehavior) */
