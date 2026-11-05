@@ -12,6 +12,39 @@ extern float D_002755EC;
 
 void func_001E891B(void *p);
 
+struct S_0012B7D0_Vec {
+    int x, y, z, w;
+};
+
+struct S_0012B7D0_Obj {
+    virtual void v0(void *buf, int a1);
+    virtual void v1(void *buf);
+};
+
+struct S_0012B7D0_Cam28 {
+    char pad0[0x18];
+    S_0012B7D0_Vec f18;
+};
+
+struct S_0012B7D0_Cam {
+    char pad0[0x28];
+    S_0012B7D0_Cam28 *f28;
+    char pad2c[0x144];
+    S_0012B7D0_Vec f170;
+    void func_0012AC20(void *p1, void *p2, void *p3, void *p4, void *p5);
+    void func_0012B350(void);
+    void func_0012A770(int a, int b);
+};
+
+struct C_0012B7D0 {
+    char pad0[0x24];
+    int f24;
+    int f28;
+    S_0012B7D0_Obj **f2C;
+    S_0012B7D0_Cam *f30;
+    int func_0012B7D0(void *id, int a1, int a2, S_0012B7D0_Vec *a3, S_0012B7D0_Vec *a4);
+};
+
 struct C_00157600 {
     void func_00157600(int a0);
 };
@@ -41,9 +74,9 @@ C_0012B8F0 *C_0012B8F0::func_0012B8F0(void) {
     int *p;
 
     ((C_00157600 *)this)->func_00157600(1);
-    vtbl = (void *)&D_00284194;
     p = &f30;
     p[2] = 0;
+    vtbl = (void *)&D_00284194;
     p[1] = 0;
     p[0] = 0;
     p[3] = 0x3f800000;
@@ -59,16 +92,24 @@ C_0012B8F0 *C_0012B8F0::func_0012B8F0(void) {
     return this;
 }
 
-float func_0012BAE0(float t, float p0, float p1, float p2, float p3) {
+float __stdcall func_0012BAE0(float t, float p0, float p1, float p2, float p3) {
     float t2;
     float t3;
+    float m0;
+    float m1;
+    float a;
+    float b;
 
     t2 = t * t;
     t3 = t * t2;
-    return (t2 * D_002755EC - (t3 + t3)) * p2
-         + (((t3 + t3) - t2 * D_002755EC) + D_00275460) * p1
-         + (t3 - t2) * (p3 - p1) * D_002755E8
-         + (p2 - p0) * D_002755E8 * ((t3 - (t2 + t2)) + t);
+    m0 = (p2 - p0) * D_002755E8;
+    m1 = (p3 - p1) * D_002755E8;
+    a = ((t3 + t3) - t2 * D_002755EC) + D_00275460;
+    b = t2 * D_002755EC - (t3 + t3);
+    return m0 * ((t3 - (t2 + t2)) + t)
+         + m1 * (t3 - t2)
+         + a * p1
+         + b * p2;
 }
 
 void C_0012B8F0::func_0012BF10(int idx, u32 *a, u32 *b, u32 *c, int *d) {
