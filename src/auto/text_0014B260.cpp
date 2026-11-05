@@ -32,17 +32,7 @@ struct DynamicRayCollisionObject {
 
 static inline void Vec4Unused(Vec4 *a, Vec4 *b) {}
 
-struct S_0014B940_Obj {
-    char pad_0[0xa8];
-    int unkA8;
-    char padAC[0x10];
-    f32 *unkBC;
-    Vec4 *unkC0;
-    Vec4 *unkC4;
-    void func_0014B940();
-};
-
-void S_0014B940_Obj::func_0014B940()
+void DynamicRayCollisionObject::func_0014B940()
 {
     Vec4 a(0.0f, 0.0f, 0.0f, 1.0f);
     Vec4 b(0.0f, 0.0f, 0.0f, 1.0f);
