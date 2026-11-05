@@ -46,6 +46,26 @@ struct C_00194110 {
     undefined4 func_00194110(byte param_1);
 };
 
+struct V4_00194130 {
+    float x, y, z, w;
+};
+
+extern int D_0028AD8C;
+extern V4_00194130 D_002A9970;
+
+/* SelectiveGravityModel */
+struct C_00194130 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    int f28;
+    float f2c;
+    V4_00194130 f30;
+    int f40;
+    void func_00157600(int a0);
+    C_00194130 *func_00194130(int a0);
+};
+
 
 Node_00193240 *Node_00193240::func_00193490(void)
 {
@@ -89,10 +109,11 @@ void Node_00193240::func_001937F0(void *a1, void *a2, void *a3)
         if (r != 0) {
             h->v7(a1, r, a2, a3);
         }
+        f14 = r;
     } else {
         f8->v8(a1, r, a2, a3);
+        f14 = r;
     }
-    f14 = r;
 }
 
 void Node_00193240::func_00193870(void *a)
