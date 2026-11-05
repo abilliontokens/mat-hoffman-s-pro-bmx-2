@@ -273,6 +273,16 @@ void C_000321C0::func_000321F0(void)
     }
 }
 
+void C_000321C0::func_00032220(void)
+{
+    int i;
+
+    for (i = 0; i < unk90; i++) {
+        unk64->f4E0->items[i]->f1190 = 1;
+        unk64->f4E0->items[i]->func_0010E810();
+    }
+}
+
 void BmxEvent::func_000324C0(int a)
 {
     if (f1c0 != 0) {
