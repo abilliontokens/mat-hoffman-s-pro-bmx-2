@@ -17,7 +17,13 @@ extern AllocObj D_002F6A04;
 
 struct BitObj {
     int f0;
-    unsigned int f4;
+    int s4 : 4;
+    unsigned int b4 : 1;
+    unsigned int b5 : 1;
+    unsigned int b6 : 1;
+    unsigned int b7 : 1;
+    unsigned int b8 : 1;
+    unsigned int rest : 23;
     void func_001EEEE6(BitObj *o);
     int func_001EF1E7(int a);
     void func_001EF333(int a);
