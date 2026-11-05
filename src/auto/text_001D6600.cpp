@@ -31,6 +31,18 @@ struct XboxTextureMap {
     XboxTextureMap *func_001D6B70(void);
 };
 
+struct XboxTextureMapVtbl {
+    virtual void slot0(int flags);
+    virtual void slot1();
+    virtual void slot2();
+    virtual void slot3();
+    virtual void slot4();
+    virtual void slot5();
+    virtual void slot6();
+    virtual void slot7();
+    virtual int slot8(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9);
+};
+
 XboxTextureMap *XboxTextureMap::func_001D6AD0(void *param)
 {
     func_001B1200(param);
