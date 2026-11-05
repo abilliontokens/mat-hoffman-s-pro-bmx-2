@@ -315,6 +315,15 @@ undefined4 C_001BA9A0::func_001BA9A0(byte param_1)
   return in_ECX;
 }
 
+void *C_001BB280::func_001BB280(unsigned int flags)
+{
+    func_001BA8B0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void *C_001BB2A0::func_001BB2A0(int flags)
 {
     func_001BA910();
