@@ -103,3 +103,30 @@ void C_001C96E0::func_001C96E0(void) {
     f224 = D_002F0630->f10[node->fD4];
     func_001578D0();
 }
+
+void C_001C9760::func_001C9760(S_1C9760_Vec *pos, int arg1, int arg2) {
+    float total = D_00275544;
+    float x = pos->x, z = pos->z;
+    if (D_002AB7F0) {
+        for (int i=0; i<count; ++i) {
+            S_1C9760_Layer *layer = &layers[i];
+            int ix = (int)((x-layer->x)*layer->scale);
+            int iz = (int)((z-layer->z)*layer->scale);
+            if (ix>=0 && ix<dimension && iz>=0 && iz<dimension)
+                total += D_002F08AC * layer->data[layer->index][iz*dimension+ix].height * D_0028E858;
+        }
+    }
+    float value;
+    if (map) {
+        int iz = (int)(z*scale) % size;
+        int ix = (int)(x*scale) % size;
+        value = map[((iz*size+ix)*bits)>>3]*D_002F08B0;
+    } else value=0.0f;
+    if (!D_002F0BD0 && value==D_00275544) { pos->y=0.0f; return; }
+    float h = (query->v74(x,z,arg1)+value+total)*D_0028E854;
+    if (value==D_00275544) h+=height;
+    else h+=D_002AC5CC;
+    if (!arg2 && !(h-pos->y>D_002F08A8)) pos->y=h;
+    else pos->y=height;
+}
+
