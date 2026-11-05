@@ -237,3 +237,23 @@ void Cache_129930::func_0012A330(void)
     f8 = 0;
 }
 
+StaticCache_12A350 *StaticCache_12A350::func_0012A350(int a, int b)
+{
+    f4 = 0;
+    f8 = 0;
+    f4 = a;
+    f8 = b;
+    fC = 0;
+    vtbl = (void *)&D_00284018;
+    return this;
+}
+
+void Emitter_12A770::func_0012A770(int a1, int a2)
+{
+    Cam_12A770 *p = (Cam_12A770 *)func_001E8A44(0x28);
+
+    f28 = p ? p->func_00193490() : 0;
+    f2C = a1;
+    f28->func_001938C0(&f24, a1, a2, &f170, &D_002A3E3C, 0);
+}
+
