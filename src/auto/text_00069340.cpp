@@ -132,6 +132,8 @@ struct C_00069FF0 {
  void func_00157600(int a0);
  C_00069FF0 *func_00069FF0(int a0);
 };
+extern int D_002B9020;
+extern int func_001361E0(int, int, int *, unsigned int);
 extern int D_0027850C;
 extern int D_002788EC;
 
