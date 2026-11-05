@@ -53,3 +53,9 @@ struct C_000DB310 {
     void func_000DB310();
     int func_000DBC00();
 };
+
+int C_000DB310::func_000DBC00() {
+    S_000DBC00_A *a = f124;
+    int idx = a->f150->f484->func_0001B3C0(D_0027F7D4);
+    return a->f150->f484->f2c->f28[idx]->f1a4->f10;
+}
