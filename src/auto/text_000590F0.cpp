@@ -235,9 +235,15 @@ struct BmxGameObj2A4 {
     void *f154;
 };
 
+struct C_001A5BC0 {
+    void func_001A5BC0(void);
+};
+
 struct BmxGame {
     void *vtbl;
-    char pad4[0x120];
+    char pad4[0x10];
+    C_001577A0 *f14;
+    char pad18[0x10C];
     int f124;
     int f128;
     char pad12C[0x104];
