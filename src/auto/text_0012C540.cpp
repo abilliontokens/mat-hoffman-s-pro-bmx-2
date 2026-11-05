@@ -3,6 +3,14 @@
 #include "ghidra.h"
 #include <math.h>
 extern int D_00284274;
+extern int D_002A3FD8, D_002A3FDC, D_002A3FE0, D_002A3FE4;
+extern int D_002A3FF8, D_002A3FFC, D_002A4000, D_002A4004;
+
+struct C_0012C940 {
+    void func_00171270(int a0);
+    void func_001719D0(float a0);
+    C_0012C940 *func_0012C940(int a0);
+};
 
 struct C_0013B210 {
     void func_0013B210(void *);
