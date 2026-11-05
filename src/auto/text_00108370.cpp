@@ -388,6 +388,23 @@ float __stdcall func_00108CE0(int idx)
     return D_00275460;
 }
 
+void C_00108D10::func_00108D10(int a, int b) {
+ if (fA88 >= 4) {
+ int old=fA68[0], other=fA78[0];
+ int found=0;
+ for(int i=1;i<4;i++) {
+ if(old == -1) break;
+ if(old==fA68[i] && other==fA78[i]) found=1;
+ }
+ if(!found && old!=-1) {
+ if(b==-1) fAB0[old]=0;
+ else fCE0[b*16+old]=0;
+ }
+ for(int j=0;j<3;j++) { fA68[j]=fA68[j+1]; fA78[j]=fA78[j+1]; }
+ fA68[3]=a; fA78[3]=b;
+ } else { fA68[fA88]=a; fA78[fA88]=b; ++fA88; }
+}
+
 void C_00108F50::func_00108F50(void)
 {
     int i;
