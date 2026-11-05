@@ -15,6 +15,47 @@ extern "C" unsigned __int64 __rdtsc();
 #pragma intrinsic(__rdtsc)
 extern float D_00276278;
 
+struct HMRec {
+    int f00;
+    int f04;
+    float f08;
+    float f0C;
+    float f10;
+    float f14;
+    float f18;
+    float f1C;
+    int pad20;
+    float f24;
+    char f28[0x20];
+    int f48;
+};
+struct HMOwner {
+    char pad0[0x1934];
+    int cnt;
+    int cur;
+};
+struct HMGame {
+    char pad0[0x18];
+    HMOwner *f18;
+    char pad1c[0x254];
+    int f270;
+    int f274;
+};
+extern char D_002875D8[];
+extern char D_002875A0[];
+extern float D_00275544;
+extern float D_00275460;
+void func_0013E260(HMOwner *o, int id, char *fmt);
+void func_0013E1F0(HMOwner *o, int id, char *fmt, char *name, double a, double b, double c, double d, double e);
+struct HiResMeterX {
+    char pad0[0x2C];
+    int count;
+    int pad30;
+    int id;
+    HMRec recs[1];
+    int func_0015A780();
+};
+
 struct C_0015A8E0 {
     int unk0;
     void func_00157660();
@@ -529,6 +570,40 @@ void JoystickDevice::func_0015AE20(void)
         func_001E891B(l->data);
     } while (--i != 0);
     ((C_001D1480 *)this)->func_001D1480();
+}
+
+int JoystickDevice::func_0015AE60(int idx, unsigned int flags, S_0015AE60_Out *out)
+{
+    extern S_0015AC20_Game *D_002A8490;
+    C_0015AC20 *input = D_002A8490->f8->f38;
+
+    if (input != 0) {
+        if (input->func_0015AC20(flags) == 0) {
+            return 0;
+        }
+    } else if (flags != 0 && flags != 0x80000000 && flags != 0x3f) {
+        return 0;
+    }
+    if (ents[idx].a == 1) {
+        if (out != 0) {
+            out->f0 = 1;
+            out->f4 = ents[idx].b;
+            out->f8 = ents[idx].c;
+            out->fC = ents[idx].d;
+            out->f10 = ents[idx].e;
+            out->f14 = ents[idx].f;
+        }
+        return 1;
+    }
+    if (out != 0) {
+        out->f0 = 1;
+        out->f4 = 0;
+        out->f8 = 0;
+        out->fC = 0;
+        out->f10 = 0;
+        out->f14 = 0;
+    }
+    return 0;
 }
 
 void JoystickDevice::func_0015AFC0(int idx, int a, int b)
