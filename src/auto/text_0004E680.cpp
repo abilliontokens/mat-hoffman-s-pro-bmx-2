@@ -123,14 +123,76 @@ struct C_0004ECC0 {
     C_0004ECC0 *func_0004ECC0(int a0);
 };
 
+int func_00011260(int lo, int hi);
+extern char D_00277750[];
+
+struct S_0004EA20_Vec {
+    u32 x, y, z, w;
+};
+
+struct C_00097DA0 {
+    int func_00097DA0(const char *name);
+};
+
+struct C_0001B3C0 {
+    int func_0001B3C0(const char *name);
+};
+
+struct C_0004EA20_Comp {
+    void func_00199600(S_0004EA20_Vec v);
+    void func_0019AC50(void);
+};
+
+struct C_0004EA20_Part {
+    char pad0[4];
+    C_0004EA20_Comp *f4;
+};
+
+struct C_0004EA20_Obj {
+    char pad0[0x1a4];
+    C_0004EA20_Part *f1a4;
+};
+
+struct C_0004EA20_Scene {
+    char pad0[0x28];
+    C_0004EA20_Obj **f28;
+};
+
+struct C_0004EA20_World {
+    char pad0[0x3ac];
+    C_0004EA20_Scene *f3ac;
+    char pad3b0[0xd4];
+    C_0001B3C0 *f484;
+};
+
+struct C_0004EA20_Item {
+    char pad0[0x34];
+    char f34[0x1c];
+    u32 f50, f54;
+    char pad58[8];
+    u32 f60, f64;
+    char pad68[8];
+    u32 f70, f74;
+    char pad78[0x268];
+    u32 f2e0;
+    char pad2e4[8];
+    u8 f2ec;
+    void func_001BB950(S_0004EA20_Vec *a, void *b, u32 *c, u32 *d, u32 e);
+};
+
 struct C_0004EBA0 {
     char pad0[0x64];
-    void *f64;
+    C_0004EA20_World *f64;
     char pad68[0x28];
     int f90;
-    char pad94[0x1f8];
+    char pad94[0x12c];
+    C_00097DA0 *f1c0;
+    char pad1c4[0xc0];
+    int f284;
+    int f288;
     int f28c;
-    char pad290[0xaa0];
+    S_0004EA20_Vec f290[20];
+    char f3d0[0x960];
     void *fD30[9];
     int fD54;
     void *fD58[1];
