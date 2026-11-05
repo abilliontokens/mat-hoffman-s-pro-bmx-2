@@ -500,6 +500,17 @@ void C_001B2690::func_001B2690(int index, int data)
     func_001AC750(index, data | f14[index].data);
 }
 
+void C_001B23D0::func_001B26C0(int idx)
+{
+    func_001AC790(idx);
+    if (f14[idx].fC == 0) {
+        if (f14[idx].f4 != 0) {
+            f14[idx].f4->v2();
+            f14[idx].f4 = 0;
+        }
+    }
+}
+
 void *C_001B2700::func_001B2700(unsigned int flags)
 {
     extern int D_0028C90C;
