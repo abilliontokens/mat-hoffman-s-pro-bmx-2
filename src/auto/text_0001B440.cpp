@@ -265,9 +265,28 @@ struct S_0001B910_Flags {
     unsigned char f24;
 };
 
+struct S_0001BE90_Ctx2 {
+    int pad0;
+    int f4;
+};
+
+struct S_0001BE90_Ctx1 {
+    char pad0[0x18c];
+    S_0001BE90_Ctx2 *f18c;
+};
+
+struct S_0001BE90_Ctx0 {
+    char pad0[4];
+    S_0001BE90_Ctx1 *f4;
+};
+
 struct S_0001B910_Anim {
-    int pad0[4];
+    int pad0;
+    S_0001BE90_Ctx0 *f4;
+    int pad8[2];
     int f10;
+    void func_00132D70(void);
+    void func_00132CC0(int a, int b, int c);
     int pad14;
     S_0001B910_Flags *f18;
     char pad1C[0x18];
