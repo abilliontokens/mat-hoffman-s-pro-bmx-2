@@ -6,6 +6,38 @@ static __forceinline float Min_0011FDF0(float a, float b) { float r; _mm_store_s
 static __forceinline float Max_0011FDF0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 
 extern float D_00275544;
+extern float D_002B9348;
+extern void **D_002B92F4;
+struct S_0011F4B0_V4 { float x, y, z, w; };
+void func_0011F540(S_0011F4B0_V4 *out, S_0011F4B0_V4 pos, float *m);
+void func_0011F0E0(void *a, void *b, void *c, void *indices, void **data);
+int func_0011FF30(S_0011F4B0_V4 *p, void *tri);
+float func_0011FDF0(void *p, void *a, void *b);
+static __forceinline float fabs_00120470(float v)
+{
+    volatile float x = v;
+    volatile int t = *(volatile int *)&x & 0x7fffffff;
+    return *(float *)&t;
+}
+
+float func_0011FDF0(float *p, float *a, float *b)
+{
+    float dx = b[0] - a[0];
+    float dy = b[1] - a[1];
+    float dz = b[2] - a[2];
+    float t = ((p[2] - a[2]) * dz + ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy)) / (dy * dy + dx * dx + dz * dz);
+    float ex;
+    float ey;
+    float ez;
+    float r;
+
+    t = Max_0011FDF0(Min_0011FDF0(t, 1.0f), 0.0f);
+    ex = p[0] - (t * dx + a[0]);
+    ey = p[1] - (dy * t + a[1]);
+    ez = p[2] - (dz * t + a[2]);
+    _mm_store_ss(&r, _mm_sqrt_ss(_mm_set_ss(ez * ez + ey * ey + ex * ex)));
+    return r;
+}
 
 int func_001209F0(float *a, float *b, float *p, float r2)
 {
