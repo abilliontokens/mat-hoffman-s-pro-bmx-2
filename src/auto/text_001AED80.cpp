@@ -13,6 +13,24 @@ struct C_001AF120 {
     int f4;
     int func_001AF120(const char *name, int arg);
 };
+struct S_001AF360_Stream {
+    void func_00168C50(const void *name, int val, void *p);
+    void func_00168C20(const void *name, int val, void *p);
+};
+extern char D_0028C428[], D_0028C40C[], D_0028C3F8[], D_0028C3DC[], D_0028C3C0[];
+extern char D_0028C3A4[], D_0028C384[], D_0028C36C[], D_0028C34C[], D_0028C32C[];
+extern "C" void func_001ADCC0(char *buf, int n, const char *fmt, int idx);
+struct C_001AF360 {
+    float f0;
+    unsigned char b4_0 : 1;
+    unsigned char b4_1 : 1;
+    int f8;
+    int fC;
+    int f10;
+    int f14;
+    int f18;
+    C_001AF360 *func_001AF360(S_001AF360_Stream *stream, int owner, int idx);
+};
 struct C_001AF090 {
     undefined4 func_001AF090(byte param_1);
 };
