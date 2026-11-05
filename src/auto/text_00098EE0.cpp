@@ -161,6 +161,65 @@ void C_00097FD0::func_00099590(void) {
     }
 }
 
+void C_00097FD0::func_00099600(f32 lo, f32 hi) {
+    C_00096870 **list;
+    int count;
+    int i;
+    int j;
+    int k;
+    int m;
+    f32 v;
+
+    if (mode0 <= 3) {
+        for (i = 0; i < 3; i++) {
+            switch (i) {
+            case 0:
+                list = arr0;
+                break;
+            case 1:
+                list = arr1;
+                break;
+            case 2:
+                list = arr2;
+                break;
+            default:
+                list = 0;
+                break;
+            }
+            switch (i) {
+            case 0:
+                count = cnt0;
+                break;
+            case 1:
+                count = cnt1;
+                break;
+            case 2:
+                count = cnt2;
+                break;
+            default:
+                count = 0;
+                break;
+            }
+            for (j = 0; j < count; j++) {
+                v = list[j]->f1a4;
+                if (v < hi && v >= lo) {
+                    list[j]->func_00096AB0();
+                }
+                for (k = 0; k < list[j]->f1b8; k++) {
+                    if (list[j]->f1c8[k]->f0 == 1) {
+                        for (m = 0; m < list[j]->f1c8[k]->f2554; m++) {
+                            v = list[j]->f1c8[k]->f63b0[m];
+                            if (v < hi && v >= lo) {
+                                list[j]->f1c8[k]->func_00096450(m);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 void C_00097FD0::func_000999B0(void) {
     int i;
 
