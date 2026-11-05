@@ -153,7 +153,11 @@ struct C_00182CC0 {
     C_00168280 *f28;
     char pad2C[4];
     char f30[0x104];
-    char pad134[0x3BC - 0x134];
+    char pad134[0x340 - 0x134];
+    int f340;
+    char pad344[0x3A8 - 0x344];
+    S_00183130_Group **f3A8;
+    char pad3AC[0x3BC - 0x3AC];
     C_001B8450 *f3BC;
     C_001B82A0 *f3C0;
     C_001B9B20 *f3C4;
