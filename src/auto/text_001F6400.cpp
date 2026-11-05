@@ -16,11 +16,10 @@ void __stdcall func_001F6400(int a0, S_ListEntry_F64 *head, int a2, int a3)
 {
     S_ListEntry_F64 *e = head->Flink;
     while (e != head) {
-        S_ListEntry_F64 *next = e->Flink;
         char *irp = (char *)e - 0x3c;
+        e = e->Flink;
         *(long *)(irp + 0x10) = 0xc0000120;
         __imp__IofCompleteRequest(irp, 0);
-        e = next;
     }
 }
 
