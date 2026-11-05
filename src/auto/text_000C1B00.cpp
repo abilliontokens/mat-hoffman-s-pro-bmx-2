@@ -134,14 +134,20 @@ int C_000C2810::func_000C24F0(int idx)
     return 0;
 }
 
-int C_000C2680::func_000C2680(int idx)
+int C_000C2810::func_000C2680(int idx)
 {
-    S_000C2680_Owner *owner = f124;
-    S_000C2680_Ui *ui = owner->f24;
+    S_000C2810_Owner *owner = f124;
+    S_000C2810_Ui *ui = owner->f24;
     if (idx + 6 <= 20) {
-        if (func_000C0100(idx) == 3) {
+        if (Item_000C2810(this, idx) == D_002A8490->f8->func_00136170(5, 2, 0) &&
+            Item_000C2810(this, idx + 1) == D_002A8490->f8->func_00136170(1, 2, 0) &&
+            Item_000C2810(this, idx + 2) == D_002A8490->f8->func_00136170(2, 2, 0) &&
+            Item_000C2810(this, idx + 3) == D_002A8490->f8->func_00136170(1, 2, 0) &&
+            func_000C0100(idx + 4) == D_002A8490->f8->func_00136170(2, 2, 0) &&
+            func_000C0100(idx + 5) == D_002A8490->f8->func_00136170(7, 2, 0)) {
             owner->f298 = 1;
             ui->func_000B9A80(6, 1);
+            D_002A8490->f2E0->f2C0->func_0005C1E0(0xc);
             return 1;
         }
     }
