@@ -385,10 +385,10 @@ void C_00160C90::func_00160C90(void)
         S_00160C90_Node *n = f0[i];
 
         while (n != 0) {
-            S_00160C90_Node *next = n->next;
+            S_00160C90_Node *cur = n;
 
-            func_001E891B(n);
-            n = next;
+            n = n->next;
+            func_001E891B(cur);
         }
     }
     func_001E891B(f0);
