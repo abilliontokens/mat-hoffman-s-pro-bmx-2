@@ -109,18 +109,6 @@ struct S_001CB810_Res {
     char pad14[4];
 };
 
-struct S_001CB610_Entry {
-    S_001CB810_Res *f0;
-    char pad4[0x1c];
-    char name[0x1f];
-    char term;
-    unsigned char f40;
-    char pad41[3];
-    /* bit 0 of f40: the resource lives in a file, so it has to be opened by
-       name; otherwise it is already in memory */
-    int Open(int idx, char *path);
-};
-
 /* a COM-style object: the functions in its table take it as their first
    stack argument, so its methods are __stdcall */
 struct S_001CB7D0_Com {
@@ -137,6 +125,24 @@ void __stdcall func_001DD13C(int handle);
 int __stdcall func_001DCC3C(const char *name, unsigned int access, int share,
                             int sa, int disposition, int attributes, int templ);
 int __stdcall func_001DDAEE(void *res, int flags);
+
+struct S_001CB610_Entry {
+    S_001CB810_Res *f0;
+    char pad4[0x1c];
+    char name[0x1f];
+    char term;
+    unsigned char f40;
+    char pad41[3];
+    /* bit 0 of f40: the resource lives in a file of its own, so it has to be
+       opened by name; otherwise it is already in memory */
+    int Open(int idx, char *path) {
+        if (f40 & 1) {
+            func_001ADCC0(path, 0x104, D_0028ED6C, D_002A48F8, f0[idx].name);
+            return func_001DCC3C(path, 0x80000000, 1, 0, 3, 0x80, 0);
+        }
+        return func_001DDAEE(f0[idx].f10, 0);
+    }
+};
 int __stdcall func_0023F469(int a0, int handle, int a2, int *a3, int a4, int a5,
                             int *desc, S_001CB7D0_Com **out);
 
@@ -622,8 +628,7 @@ int C_001CBF20::func_001CBF60(void)
     if (!(f2C & 1)) {
         return 0;
     }
-    e = func_0022195C(f30);
-    if (e < 0) {
+    if ((e = func_0022195C(f30)) < 0) {
         func_001CBC10(e, &D_0028EECC, 0x1f1);
         return 0;
     }
@@ -637,8 +642,7 @@ int C_001CBF20::func_001CBF90(int v)
     if (!(f2C & 1)) {
         return 0;
     }
-    fEC = v;
-    e = func_002222E5(f30, v, 1);
+    e = func_002222E5(f30, fEC = v, 1);
     if (e < 0) {
         func_001CBC10(e, &D_0028EECC, 0x205);
         return 0;
@@ -650,11 +654,13 @@ int C_001CC0C0::func_001CC0C0(int v)
 {
     int r;
     int h;
+    int a;
 
     if (f2C & 1) {
-        fF4 = v;
+        a = v;
+        fF4 = a;
         h = f30;
-        r = func_00222388(h, v, 1);
+        r = func_00222388(h, a, 1);
         if (r < 0) {
             func_001CBC10(r, &D_0028EECC, 0x284);
             return 0;
