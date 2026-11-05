@@ -163,6 +163,40 @@ struct C_Save_7D {
 };
 
 
+undefined4 C_Save_7D::func_0007DDD0(void)
+{
+    if (!(D_002B9058 & 1)) {
+        D_002B9058 |= 1;
+        D_002B9054 = D_002A7CB8->func_00026500((int)&D_00278AF0, 0);
+    }
+    if (D_002A8490->f274 > 0) {
+        return 1;
+    }
+    D_002EFDB8->v8();
+    D_002EFDB8->v7(1);
+    f1a0->func_00093120();
+    if (f164 == 0 && f168 == 0) {
+        switch (f1d8) {
+        case 0: f1a0->func_00093970(320.0f, 100.0f, D_0028F5E0, 0, 0, 0); break;
+        case 1: f1a0->func_00093890(320.0f, 100.0f, D_0028F5E0, 0, 0, 0); break;
+        case 2: f1a0->func_00093C80(320.0f, 100.0f, D_0028F5E0, 0, 0, 0); break;
+        case 3: f1a0->func_00093CF0(320.0f, 100.0f, D_0028F5E0, 0, 0, 0); break;
+        case 4:
+            if (f1fc) f1a0->func_00094690(320.0f, 100.0f, D_0028F5E0, 0, 0, 0);
+            else f1a0->func_000941A0(f1a4, 320.0f, 100.0f, D_0028F5E0, 0, 0, 0);
+            break;
+        case 5: case 14: case 15:
+            f1a0->func_000940D0(321.0f, 100.0f, D_0028F5E0, 0, 0, 0); break;
+        case 11: f1a0->func_00093A00(320.0f, 80.0f, D_0028F5E0, 0, 0, 0); break;
+        case 12: f1a0->func_000942F0(320.0f, 100.0f, D_0028F5E0, 0, 0, 0); break;
+        case 13: f1a0->func_00094410(320.0f, 100.0f, D_0028F5E0, 0, 0, 0); break;
+        }
+    }
+    func_0006B4B0();
+    func_0006AA90();
+    return func_00157960();
+}
+
 C_0007E050 *C_0007E050::func_0007E050(void)
 {
   int i;
