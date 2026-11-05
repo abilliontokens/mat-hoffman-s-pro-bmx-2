@@ -1,5 +1,8 @@
 /* 8 functions from 0x000AADB0 to 0x000ABD80, found by Ghidra. */
 #include "common.h"
+extern char D_0027C7DC[], D_0027C7BC[], D_0027C7A4[], D_0027C4D0[], D_0027C4BC[], D_00275680[], D_0027C790[];
+void * __cdecl func_001E8920(void *, const void *, unsigned int);
+extern "C" unsigned int __cdecl strlen(const char *);
 
 extern int D_0027C7F8;
 extern int D_0027C724;
