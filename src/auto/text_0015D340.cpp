@@ -75,9 +75,10 @@ struct C_0015DA60 {
     C_0017D5A0 **unk74;
     int unk78;
     int unk7C;
-    char pad80[4];
+    int unk80;
     C_0015DCC0_Item **unk84;
     int unk88;
+    void func_0015DAA0(C_0015DCC0_Item *item, int idx);
     void func_0015D250();
     void func_0015D850(int count, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int flag);
     void func_0015DA60(int a, int b, int c);
