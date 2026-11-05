@@ -46,6 +46,8 @@ struct C_00012420 {
 
 struct C_00169710 {
     int func_00169710(const char *name);
+    int func_00168A10(const char *key, int *dst);
+    int func_00168550(const char *key, char *dst, int size);
     int func_00168C20(const char *key, int v, void *dst);
     int func_00168BE0(const char *k1, const char *k2, char *dst, int size);
 };
