@@ -500,12 +500,86 @@ void func_001E9F40(void) {
     func_001EB302(1);
 }
 
+int func_001E9F49(S_001E9714_File *stream)
+{
+    int func_001E9E74(int);
+    int func_001E9E46(S_001E9714_File *);
+    int result;
+
+    if (stream == 0) {
+        return func_001E9E74(0);
+    }
+    func_001EB109(stream);
+    __try {
+        result = func_001E9E46(stream);
+    } __finally {
+        func_001EB15B(stream);
+    }
+    return result;
+}
+
 void func_001E9F99(void) {
     int func_001E9E74(...);
     func_001E9E74(1);
 }
 
-#pragma optimize("s", on)
+#pragma optimize("t", off)
+const char *S_001E9FA2_TypeInfo::func_001E9FA2(void)
+{
+    void func_001EB390(int n);
+    int func_001EB302(...);
+    char *und;
+    char *p;
+    char *dst;
+    char c;
+
+    if (_m_data == 0) {
+        und = func_001F2B32(0, _m_d_name + 1, 0, func_001E8AA5, func_001E8390, 0x2800);
+        if (und == 0) {
+            return 0;
+        }
+        for (p = &und[strlen(und) - 1]; *p == ' '; p--) {
+            *p = '\0';
+        }
+        func_001EB390(0xe);
+        dst = _m_data = (char *)func_001E8AA5(strlen(und) + 1);
+        if (dst != 0) {
+            p = und;
+            do {
+                c = *p++;
+                *dst++ = c;
+            } while (c != 0);
+        }
+        func_001E8390(und);
+        func_001EB302(0xe);
+    }
+    return _m_data;
+}
+#pragma optimize("t", off)
+void *func_001EA1A1(unsigned int num, unsigned int size)
+{
+    unsigned int total = num * size;
+    void *p;
+
+    if (total == 0) {
+        total++;
+    }
+    for (;;) {
+        p = 0;
+        if (total <= 0xffffffe0) {
+            if (D_002FB364 == 3) {
+                total = (total + 0xf) & ~0xf;
+            }
+            p = (void *)func_001E0AE0(func_001DF5B3(), 8, total);
+        }
+        if (p != 0 || D_002F69EC == 0) {
+            return p;
+        }
+        if (func_001EB3BE(total) == 0) {
+            return 0;
+        }
+    }
+}
 char *func_001EA1EE(char *string) {
     char *cp;
 
