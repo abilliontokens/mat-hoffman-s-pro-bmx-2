@@ -100,3 +100,17 @@ int func_0004CCE0(void) {
     func_00033300();
     return 1;
 }
+
+void C_0004D010::func_0004D010(void)
+{
+    int v = *(int *)((char *)f64 + 0x4e0);
+    if (v != 0) {
+        v = *(int *)(v + 0x1a8);
+        if (v != 0) {
+            ((C_0002EF70 *)f44)->func_0002EF70(v, 0);
+        }
+    }
+    ((C_00030240 *)f44)->func_00030240(*(int *)((char *)f64 + 0x3e4), 0, 0, 0, 0);
+    ((C_0012A770 *)f24)->func_0012A770(**(int **)((char *)f64 + 0x4a8), 2);
+}
+
