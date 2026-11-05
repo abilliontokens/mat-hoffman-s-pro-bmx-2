@@ -9,6 +9,26 @@ struct C_000BBDF0 {
     int func_000BBDF0(void);
 };
 
+struct S_000BC180_Config {
+    char pad0[0x324];
+    int f324;
+};
+
+struct S_000BC180_Global {
+    char pad0[0x2e0];
+    S_000BC180_Config *f2e0;
+};
+
+/* one 0x1a8-byte entry of the list at +0x27c */
+struct S_000BC180_Entry {
+    char pad0[0x11c];
+    int f11c;
+    int *f120;
+    int f124;
+    int f128;
+    char pad12c[0x7c];
+};
+
 struct C_000BC4A0 {
     void func_000BC4A0(undefined4 param_1, undefined4 param_2);
 };
