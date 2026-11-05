@@ -10,8 +10,37 @@ struct C_001BB4D0 {
 };
 
 struct C_001BB2C0 {
+    void *vtbl;
+    char pad04[0x20];
+    int f24;
+    void **f28;
     void func_001BAE30();
     void *func_001BB2C0(int flags);
+};
+
+struct C_001BB280 {
+    void *vtbl;
+    void func_001BA8B0();
+    void *func_001BB280(unsigned int flags);
+};
+
+struct C_001BB470 {
+    void *vtbl;
+    char pad04[0x20];
+    u8 f24;
+    char pad25[0x3B];
+    u8 f60;
+    char pad61[0x77];
+    int fD8;
+    int fDC;
+    int fE0;
+    int fE4;
+    int fE8;
+    int fEC;
+    u32 fF0[8];
+    int f110;
+    void func_00157600(int a0);
+    C_001BB470(int a0);
 };
 
 void func_001E891B(void *p);
