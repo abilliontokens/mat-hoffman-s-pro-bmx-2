@@ -344,6 +344,69 @@ void C_000D25A0::func_000D25A0(void)
     f2038->func_001B17D0(buf);
 }
 
+void C_000D25F0::func_000D25F0(void)
+{
+    C_Mgr_D25F0 *mgr = (C_Mgr_D25F0 *)D_002A8490->f2E0;
+    int before = mgr->f2C0->func_0005C020(mgr->f2D8)->f4;
+    int level;
+    int x;
+    int cost = ((C_Mgr_D25F0 *)D_002A8490->f2E0)->f2DC[f418];
+
+    switch (((C_Mgr_D25F0 *)D_002A8490->f2E0)->f190) {
+    case 0: level = 0; goto check;
+    case 2: level = 1; goto check;
+    case 4: level = 2; goto check;
+    case 5: level = 3; goto check;
+    case 7: level = 4; goto check;
+    case 9: level = 5; goto check;
+    case 10: level = 6; goto check;
+    case 11: level = 7; goto check;
+    case 13: level = 8; goto check;
+    case 14: level = 9;
+    check:
+        if (((C_Mgr_D25F0 *)D_002A8490->f2E0)->f2C0->func_0005C2F0(level, f418) == 0) {
+            f1FE0 = 1;
+            ((C_Mgr_D25F0 *)D_002A8490->f2E0)->f2C0->func_0005C310(level, f418);
+        } else {
+            f1FE0 = 0;
+        }
+        break;
+    }
+    mgr = (C_Mgr_D25F0 *)D_002A8490->f2E0;
+    mgr->f2C0->func_0005C020(mgr->f2D8)->f4 = before - cost;
+    ((C_Mgr_D25F0 *)D_002A8490->f2E0)->f2C0->func_0005C130(f418);
+    f3E8[f418] = 1;
+    x = ((C_Mgr_D25F0 *)D_002A8490->f2E0)->f48 + 1;
+    if (x == 5 && f2B8 == 2) f424 = 1;
+    else if (x == 2 && f2B8 == 5) f424 = 1;
+    else if (x == 2 && f2B8 == 7) f42C = 1;
+    else if (x == 7) f42C = 1;
+    else if (x == 2) f430 = 1;
+    else if (x == 3) {
+        if (f2B8 == 2) f430 = 1;
+        else if (f2B8 == 5) f428 = 1;
+        else f434 = 1;
+    }
+    else if (x == 5) f428 = 1;
+    else if (x == 0) {
+        if (f2B8 == 3) f434 = 1;
+        else if (f2B8 == 4) f43C = 1;
+        else f438 = 1;
+    }
+    else if (x == 4) {
+        if (f2B8 == 0) f43C = 1;
+        if (f2B8 == 1) f440 = 1;
+        else f444 = 1;
+    }
+    else if (x == 1) {
+        if (f2B8 == 4) f440 = 1;
+        else if (f2B8 == 0) f438 = 1;
+        else f448 = 1;
+    }
+    else if (f2B8 == 4) f444 = 1;
+    else f448 = 1;
+}
+
 void C_000D2860::func_000D2860(void)
 {
     C_Obj_D1 *obj = f124;
