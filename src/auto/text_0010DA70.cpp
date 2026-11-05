@@ -151,6 +151,10 @@ struct C_0010E8A0 {
 
 struct C_0010E810Slot {
     void func_000848F0(void);
+    void func_00083710(int, int);
+    void func_000836C0(int, float);
+    void func_0008FB80(int, int, int, int, int);
+    void func_000836A0(int);
 };
 
 struct C_0010E810Arr {
