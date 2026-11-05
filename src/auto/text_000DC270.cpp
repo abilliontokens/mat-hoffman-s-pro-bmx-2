@@ -9,6 +9,7 @@ extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
 extern char D_00277A04;
 extern char D_00277A0C;
 extern int D_00080000;
+extern int D_00020000;
 
 /* D_002EFDB8 object */
 struct I_002EFDB8 {
@@ -150,6 +151,51 @@ void C_000DCBF0::func_000DCBF0(void) {
     unk2FC = 0;
     unk300 = 1048576000;
     unk304 = 0;
+}
+
+int C_000DCC20::func_000DCC20(void)
+{
+    char buf[0x104];
+
+    D_002EFDB8->v7(1);
+    D_002EFDB8->v8();
+    unk2D8 = 0;
+    unk2DC = 1;
+    void *mem = 0;
+    int ret = 0;
+    if (unk2D0 != 0) {
+        char *src;
+        mem = func_001E8A44((int)&D_00080000);
+        func_001ADCC0(buf, 0x104, &D_00277A04, &D_00277A0C, unk2D8);
+        src = (char *)mem;
+        if (D_002A8490->f2E0->f2CC->func_001D4590((char *)unk2BC->func_000928D0(), buf, (int)src, (int)&D_00080000) != 1) {
+            unk298 = 0;
+            goto done;
+        }
+        for (int i = 0; i < 4; i++) {
+            void *dst = arr368[i]->v40(0, 0, 0);
+            memcpy(dst, src, 0x20000);
+            src += 0x20000;
+        }
+        func_001ADCC0(buf, 0x104, &D_00277A04, &D_00277A0C, unk2DC);
+        src = (char *)mem;
+        if (D_002A8490->f2E0->f2CC->func_001D4590((char *)unk2BC->func_000928D0(), buf, (int)src, (int)&D_00080000) != 1) {
+            unk298 = 0;
+            goto done;
+        }
+        for (int i = 0; i < 4; i++) {
+            void *dst = arr378[i]->v40(0, 0, 0);
+            memcpy(dst, src, 0x20000);
+            src += 0x20000;
+        }
+        unk298 = 0;
+    }
+    ret = 1;
+done:
+    if (mem != 0) {
+        func_001E891B(mem);
+    }
+    return ret;
 }
 
 C_000DD030 *C_000DD030::func_000DD030(int a)
