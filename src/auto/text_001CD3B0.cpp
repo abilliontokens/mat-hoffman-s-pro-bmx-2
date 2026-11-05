@@ -257,7 +257,7 @@ C_001CDC20::C_001CDC20(int a, int b)
     l2.init(1);
     f8 = b;
     fC = a;
-    RtlInitializeCriticalSection(f50);
+    _imp__RtlInitializeCriticalSection(f50);
 }
 
 void C_001CDCF0::func_001CDCF0(void)
