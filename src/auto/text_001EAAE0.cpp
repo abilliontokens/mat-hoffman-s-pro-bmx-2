@@ -39,6 +39,7 @@ struct S_001EAB_Reg {
 
 extern "C" unsigned long __readfsdword(unsigned long Offset);
 #pragma intrinsic(__readfsdword)
+void __stdcall func_001EAC02(int code);
 int func_001EDD36(S_001EA_FILE *stream, const char *fmt, va_list args);
 int func_001ED8A7(int ch, S_001EA_FILE *stream);
 
@@ -57,7 +58,7 @@ int func_001EABD6(void)
 {
     S_001EAB_Reg *reg = (S_001EAB_Reg *)__readfsdword(0);
     int result = 0;
-    if (reg->handler == (void *)func_001EAB4C && reg->level == reg->frame->tryLevel) {
+    if (reg->handler == (void *)func_001EAB4C && reg->frame->tryLevel == reg->level) {
         result = 1;
     }
     return result;
