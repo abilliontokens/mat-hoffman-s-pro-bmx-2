@@ -1,5 +1,10 @@
 /* 7 functions from 0x0006FBF0 to 0x000707D0, found by Ghidra. */
 #include "common.h"
+#include <string.h>
+
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+extern char D_00277038[];
+
 struct C_001D5AD0 { void func_001D5AD0(void); void func_001D6600(void); void func_0005E840(int a0); };
 struct S_00070450_Data {
     char pad0[0x7b8];
