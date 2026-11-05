@@ -240,18 +240,18 @@ void C_00142D20::func_00142D20() {
 void C_00142DE0::func_00142DE0() {
     void func_001E8390(void *);
     void func_001E891B(void *);
-    int n = unk8;
     int i = 0;
-    if (n > 0) {
+    if (i < unk8) {
         do {
-            C_00142D90_Elem *e = &unk14[i];
-            if (e->unk4 != 0) {
-                ((C_00012140 *)e->unk4)->func_00012140();
-                func_001E891B((void *)e->unk4);
+            int v = unk14[i].unk4;
+            if (v != 0) {
+                ((C_00012140 *)v)->func_00012140();
+                func_001E891B((void *)v);
                 unk14[i].unk4 = 0;
             }
-            if (e->unk0 != 0) {
-                func_001E8390((void *)e->unk0);
+            int w = unk14[i].unk0;
+            if (w != 0) {
+                func_001E8390((void *)w);
                 unk14[i].unk0 = 0;
             }
             unk14[i].unkC = 0;
