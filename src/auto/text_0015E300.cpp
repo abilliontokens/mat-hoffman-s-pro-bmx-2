@@ -48,6 +48,16 @@ void C_0015E300::func_0015E300(int idx, S_0015E300_V3 *pos, int *val)
     }
 }
 
+void C_0015E300::func_0015E360(S_0015E300_V4 *v)
+{
+    int i;
+
+    f40 = *v;
+    for (i = 0; i < f78; i++) {
+        f50[i] = *v;
+    }
+}
+
 int C_0015E300::func_0015E5B0(void)
 {
     unsigned int min = f24[0].f4;
