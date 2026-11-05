@@ -69,6 +69,7 @@ struct C_00157600 {
 
 struct Query_00193530 {
     int func_0017A1D0(void *a, void *b, void **out);
+    int func_0017A010(void *a, void *b, int c);
 };
 
 struct Link_00193530 {
