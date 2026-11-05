@@ -207,3 +207,51 @@ struct C_000AC890 {
     void func_000A26B0();
     void func_000AC890(void);
 };
+struct C_000AC140 {
+    void *vtbl;
+    C_000AC140 *func_000AC140();
+};
+
+struct C_000A9A70 {
+    void func_000A9A70(void *a);
+};
+
+struct C_000AB790 {
+    void func_000AB790(void *a);
+};
+
+struct C_000AB030 {
+    void func_000AB030(void *a);
+};
+
+struct C_002A829C {
+    void func_00161680(void);
+};
+
+struct C_002AA6C0 {
+    void func_001B2640(void);
+};
+
+extern C_002A829C *D_002A829C;
+extern C_002AA6C0 *D_002AA6C0;
+
+struct C_000AC700 {
+    void *vtbl;
+    char pad4[0x53C - 4];
+    C_000A9A70 *unk53C;
+    int func_000AC700();
+};
+
+struct C_000AC730 {
+    void *vtbl;
+    char pad4[0x540 - 4];
+    C_000AB790 *unk540;
+    int func_000AC730();
+};
+
+struct C_000AC760 {
+    void *vtbl;
+    char pad4[0x54C - 4];
+    C_000AB030 *unk54C;
+    void func_000AC760();
+};
