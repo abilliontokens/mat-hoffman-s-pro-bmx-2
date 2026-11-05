@@ -197,6 +197,20 @@ int C_001B61E0::func_001B61E0(S_001B6130_Stream *stream, int a1)
     return 1;
 }
 
+int C_001B61E0::func_001B6280(S_001B6280_Param *param, C_001BBAA0 *obj)
+{
+    if (f218 != 0) {
+        param->vtbl->f174(param);
+    } else {
+        param->vtbl->f178(param);
+    }
+    f210 = D_002A8490->f4->fb4->func_001CFE90(param->f4c0, f10c, 1, 1, 0, 0);
+    if (obj != 0) {
+        obj->func_001BBAA0(this, &D_00182890);
+    }
+    return 1;
+}
+
 C_001B6410* C_001B6410::func_001B6410(void) {
     extern int D_0028CD24;
     unk4 = 0;
