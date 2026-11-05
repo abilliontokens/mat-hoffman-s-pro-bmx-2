@@ -310,5 +310,13 @@ C_001F3280 *C_001F3280::func_001F3280(int param_1) {
     unk0 = (int)&D_00295F24;
     return this;
 }
+
+#pragma optimize("sy", on)
+C_001F3298::C_001F3298(int param_1) : C_001F325D(param_1) {
+    extern int D_00295F24;
+    unk0 = (int)&D_00295F24;
+}
+#pragma optimize("", on)
+
 #pragma optimize("", on)
 

@@ -524449,6 +524449,7 @@
   "func_001EAAE0": "__SEH_prolog",
   "func_001EAB1B": "__SEH_epilog",
   "func_001F325D": "C_001F325D::C_001F325D",
+  "func_001F3298": "C_001F3298::C_001F3298",
   "func_001F656A": "RtlUnwind"
  }
 }
