@@ -196,6 +196,14 @@ float func_0014F7E0(float x)
     return (D_00275460 - f) * D_002DF87C[i] + f * D_002DF87C[i + 1];
 }
 
+float func_0014F870(float x)
+{
+    extern float D_002756D4;
+    float func_0014F7E0(float x);
+
+    return D_002756D4 - func_0014F7E0(x);
+}
+
 float func_0014F990(float x)
 {
     return (float)atan(x);
