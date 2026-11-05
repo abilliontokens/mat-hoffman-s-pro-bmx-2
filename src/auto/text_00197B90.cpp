@@ -72,6 +72,11 @@ void C_00197E70::func_00197E70(undefined4 *param_1)
   return;
 }
 
+void C_00197EA0::func_00197EA0(void *dst)
+{
+    ((C_000264C0 *)dst)->func_000264C0((char *)this + 0xB0);
+}
+
 void C_001982F0::func_001982F0(void)
 {
   int in_ECX = (int)this;
