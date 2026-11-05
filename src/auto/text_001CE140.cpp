@@ -197,7 +197,13 @@ struct TrackSet {
 struct TrackDB {
     char pad0[0x34];
     TrackSet *sets;
+    char pad38[0x18];
+    IntList ids;
+    char pad60[0x48];
+    int count;
     void func_001CE9F0(int idx, int set);
+    int func_001CEB70();
+    void func_001CD260();
 };
 
 static __forceinline float min_ss_001CE660(float a, float b)
