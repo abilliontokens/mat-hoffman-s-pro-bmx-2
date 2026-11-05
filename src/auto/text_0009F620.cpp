@@ -85,6 +85,40 @@ struct C_0009FAD0 {
     void func_0009FAD0(int a0, int a1, float a2);
 };
 
+struct V4_000A00A0 {
+    float x, y, z, w;
+    V4_000A00A0() { x = 0; y = 0; z = 0; w = 1.0f; }
+};
+extern V4_000A00A0 D_002A25E0;
+extern char D_0009F700;
+void func_0009F620(void);
+struct Obj_000A00A0 {
+    char pad0[0x60];
+    void *unk60;
+    char pad64[0x38];
+    void *unk9C;
+    char padA0[7];
+    unsigned char unkA7;
+    Obj_000A00A0 *func_001A4A50(int a0);
+    Obj_000A00A0 *func_0014AB30(int a0);
+    void func_00129920(int a0);
+    void func_001334E0(int a0);
+    void func_001A57E0(V4_000A00A0 a0, int a1, int a2);
+    void func_0014C1C0(int a0, int a1, int a2);
+    void func_0014AC30(V4_000A00A0 *a0, int a1);
+    void func_00133ED0(void);
+    void func_001332A0(void);
+    void func_00133140(int a0, int a1);
+};
+void *func_001E8A44(unsigned int n);
+struct C_000A00A0 {
+    char pad0[0x10];
+    Obj_000A00A0 *unk10;
+    Obj_000A00A0 *unk14;
+    char pad18[0x9C];
+    int unkB4;
+    void func_000A00A0(V4_000A00A0 a0, int a1);
+};
 
 void C_0009F9F0::func_0009F9F0(void)
 {
