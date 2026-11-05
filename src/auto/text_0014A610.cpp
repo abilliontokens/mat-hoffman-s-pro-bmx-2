@@ -7,7 +7,21 @@ struct Vec4 {
     float y;
     float z;
     float w;
+    Vec4() {}
+    Vec4(float x_, float y_, float z_, float w_) {
+        x = x_;
+        y = y_;
+        z = z_;
+        w = w_;
+    }
 };
+
+static __inline float Max(float a, float b)
+{
+    float r;
+    _mm_store_ss(&r, _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b)));
+    return r;
+}
 
 struct C_0014AC30 {
     char pad0[0xA8];
