@@ -280,6 +280,52 @@ void *C_00030500::func_00030500(unsigned int flags)
     return this;
 }
 
+undefined4 C_0002FA80::func_000305C0(const char *path)
+{
+    char buf[0x104];
+    C_00168280 *stream;
+    C_00168280 *mem;
+    S_0002FA80_Entry *arr;
+    int n;
+    int i;
+
+    func_001ADCC0(buf, 0x104, D_00275678, D_002A5870, path);
+    mem = (C_00168280 *)func_001E8A44(0x4CC);
+    if (mem) {
+        stream = mem->func_00168280();
+    } else {
+        stream = 0;
+    }
+    if (stream->func_00169490(buf, 0) == 0) {
+        if (stream) {
+            stream->func_001691E0();
+            func_001E891B(stream);
+        }
+        return 0;
+    }
+    stream->func_00169710(D_002769F8);
+    stream->func_00168C20(D_002769E8, 0, &count);
+    n = count;
+    int *raw = (int *)func_001E8A44(n * 0x118 + 4);
+    if (raw) {
+        S_0002FA80_Entry *t = (S_0002FA80_Entry *)(raw + 1);
+        *raw = n;
+        func_00011FF0(t, 0x118, n, D_0002FDF0);
+        arr = t;
+    } else {
+        arr = 0;
+    }
+    entries = arr;
+    for (i = 0; i < count; i++) {
+        entries[i].func_0002FE10(stream, i);
+    }
+    if (stream) {
+        stream->func_001691E0();
+        func_001E891B(stream);
+    }
+    return 1;
+}
+
 void C_000308F0::func_000308F0(void)
 {
     C_00055910 *p50 = f50;
