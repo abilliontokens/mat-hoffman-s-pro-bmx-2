@@ -140,7 +140,9 @@ struct SoultreeObject {
     int f188;
     S_0019A8C0_Cam *f18c;
     int f190;
+    S_0019B400_Reader *f194;
     int func_0019B1A0(int file, SoultreeObject **arr);
+    void func_0019B400(void);
     void func_00197AA0(void);
     void func_0019A8C0(void *vecA, void *vecB);
     void func_0019AD60(SoultreeObject *p, void *m);
