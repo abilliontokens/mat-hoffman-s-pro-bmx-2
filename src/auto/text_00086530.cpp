@@ -50,6 +50,11 @@ struct C_Mid_00086C80 {
 };
 struct C_Lookup_00086C80 {
     int *func_0018C160(int a);
+    void func_0018C780(int a, void *b, int c);
+};
+struct C_86530_Prof {
+    char pad0[0x254];
+    char name[1];
 };
 C_Clamp_00086C80 *__fastcall func_0018C070(C_Mid_00086C80 *self);
 struct C_86A40_G {
