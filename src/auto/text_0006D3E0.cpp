@@ -102,3 +102,18 @@ void C_0006DF20::func_0006DF20(int param_1)
   in_ECX[0x3e] = param_1;
   return;
 }
+
+int C_0006E2C0::func_0006E2C0(int *param_1, int param_2)
+{
+    if (param_1[2] == unkF8 && unk64 == 0) {
+        if (func_001361E0(5, 2, param_1, -2147483648) == 0 &&
+            func_001361E0(24, 2, param_1, -2147483648) == 0) {
+            return 0;
+        }
+        unkE8->func_00031610(4, 1);
+        unk64 = 1;
+        unkEC = 0;
+    }
+    return 0;
+}
+
