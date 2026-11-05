@@ -229,7 +229,7 @@ inline void Cross_0002A7C0(float *out, float *a, float *b)
         _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
                    _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9))), 0xc9));
 }
-static inline float Sqrt_0002A7C0(const float &x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+static inline float Sqrt_0002A7C0(const float &x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
 struct W_0002A7C0 {
     V4_0002A7C0 *func_00197F70(V4_0002A7C0 *, V4_0002A7C0 *);
     V4_0002A7C0 *func_00198040(V4_0002A7C0 *, V4_0002A7C0 *);
