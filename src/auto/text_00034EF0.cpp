@@ -8,6 +8,8 @@ extern char D_00276D5C;
 extern float D_00276CA0;
 
 struct I_002A8490 {
+    char pad4[0xc];
+    int f10;
     virtual void slot_00(void) = 0;
     virtual void slot_04(void) = 0;
     virtual void slot_08(void) = 0;
