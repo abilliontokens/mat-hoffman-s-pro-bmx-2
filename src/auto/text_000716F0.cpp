@@ -36,6 +36,35 @@ struct C_00072590 {
 };
 
 
+void C_000724E0::func_000724E0(void)
+{
+    int i;
+    Sprite_724E0 *e;
+
+    unk134->func_001D5AD0();
+    unk138->func_001D5AD0();
+    for (i = 0; i < 5; i++) {
+        arr10C[i]->func_001D5AD0();
+        arr120[i]->func_001D5AD0();
+    }
+    if (unk98 != 0) {
+        unk7C->func_001D5AD0();
+    } else {
+        unk78->func_001D5AD0();
+    }
+    if (unk80 != 0) {
+        unk80->func_001D5AD0();
+    }
+    for (i = 0; i < 8; i++) {
+        if (i == unk64 * 2 || i == unk64 * 2 + 1) {
+            e = arrEC[i];
+            e->f38 = (e->f38 & 0xffbfa35a) | 0xbfa35a;
+            e->b58 |= 2;
+            arrEC[i]->func_001D5AD0();
+        }
+    }
+}
+
 void C_00072590::func_00072590(int a0) {
     unkC4 = a0;
     unkC0 = 1;
