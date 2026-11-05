@@ -44,6 +44,18 @@ struct C_001003E0 {
     undefined4 func_001003E0(byte param_1);
 };
 
+struct C_00100FF0 {
+    undefined4 func_00100FF0(byte param_1);
+};
+
+struct C_00101240 {
+    undefined4 func_00101240(byte param_1);
+};
+
+struct C_00101260 {
+    undefined4 func_00101260(byte param_1);
+};
+
 
 undefined4 C_001003E0::func_001003E0(byte param_1)
 {
@@ -76,5 +88,17 @@ void *C_00100AB0::func_00100AB0(unsigned int flags) {
     if (flags & 1)
         func_001E891B(this);
     return this;
+}
+
+void C_00100AD0::func_00100AD0(void) {
+    int off;
+
+    for (off = 0x38; off < 0x40; off += 4)
+        (*(C_001D6600 **)((char *)D_002B91AC + off))->func_001D6600();
+    D_002B91AC->f34->func_001D6600();
+    if (unk2B8) {
+        func_000E3AC0();
+        unk2B8 = 0;
+    }
 }
 
