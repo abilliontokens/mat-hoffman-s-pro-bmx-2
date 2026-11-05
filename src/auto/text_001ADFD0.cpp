@@ -39,6 +39,12 @@ struct C_001AE3E0_Sub {
     C_001ADFD0_Virt *f8;
     void func_001D5480(void);
     void func_001D5490(void);
+    void Init(void)
+    {
+        func_001D5480();
+        f8 = 0;
+        vtbl = &D_0028C208;
+    }
 };
 
 struct C_001AE3E0 {
@@ -167,6 +173,21 @@ void C_001AE3E0::func_001AE460(void)
     }
     f58.func_001D5490();
     ((C_00157660 *)this)->func_00157660();
+}
+
+void C_001AE3E0::func_001AE4D0(int a, int b, int c, int d, int e, int f, int g, int h, int idx)
+{
+    f84 |= 2;
+    C_001AE3E0_Vec4 *p = &f38[idx];
+    p->x = a;
+    p->y = b;
+    p->z = c;
+    p->w = d;
+    p = &f3C[idx];
+    p->x = e;
+    p->y = f;
+    p->z = g;
+    p->w = h;
 }
 
 float __stdcall func_001AE530(float x, float y)
