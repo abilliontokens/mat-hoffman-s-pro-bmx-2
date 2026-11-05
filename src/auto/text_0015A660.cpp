@@ -132,6 +132,7 @@ struct C_0015B310 {
     char pad4[0x20];
     S_0015B310_Owned *f24;
     void *func_0015B310(int flags);
+    void func_0015B1C0(void);
     void func_00157660(void);
 };
 
@@ -435,13 +436,14 @@ void C_0015B4C0::func_0015B4C0(void)
 
 void C_0015B470::func_0015B4E0(const char *name, int value)
 {
+    const char *src = name;
     char *d;
     char c;
 
     at(f11C)->value = value;
     d = at(f11C)->name;
     do {
-        c = *name++;
+        c = *src++;
         *d++ = c;
     } while (c != 0);
     f11C++;
