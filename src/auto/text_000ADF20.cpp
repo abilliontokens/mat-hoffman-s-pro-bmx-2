@@ -32,6 +32,22 @@ struct C_000AE740 {
 };
 
 
+void Grinds::func_000AE6E0() {
+    vtbl = (void *)&D_0027C1EC;
+    if (arr) {
+        for (int i = 0; i < count; i++) {
+            GrindElem *e = arr[i];
+            if (e) {
+                e->func_000A83C0();
+                func_001E891B(e);
+            }
+        }
+        func_001E891B(arr);
+        arr = 0;
+    }
+    func_00157660();
+}
+
 undefined4 C_000AE740::func_000AE740(byte param_1)
 {
   int func_000A9120(...);
