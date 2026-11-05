@@ -100,8 +100,9 @@ struct S_001D4200_Find {
 
 struct C_001D4200 {
     int unk0;
-    int unk4;
+    char unk4[4];
     int unk8;
+    int func_001D4010(int a);
     unsigned func_001D4060(int a);
     int func_001D40E0(int a);
     int func_001D4170(int a);
