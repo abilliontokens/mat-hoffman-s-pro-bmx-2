@@ -30,6 +30,59 @@ struct C_001D3F50 {
     C_001D3F50* func_001D3F50(void);
 };
 
+extern int D_0028F474;
+extern int D_00080000;
+
+void __stdcall func_0025ADD0(void *p);
+void __stdcall func_0025AA70(void *p);
+void __stdcall func_0025AC10(void *p, int a, void *b);
+void __stdcall func_00201100(void *p);
+
+struct C_001C3D80 {
+    void func_001C3D80(void);
+};
+extern C_001C3D80 *D_002F07B8;
+
+struct C_001625D0 {
+    void func_001625D0(void);
+};
+
+struct C_00157920 {
+    void func_00157920(void);
+};
+
+/* object released through virtual slot 2 */
+struct S_001D3AB0_Res {
+    virtual void v0();
+    virtual void v1();
+    virtual void Release();
+};
+
+struct S_001D3C30_Stream {
+    char pad0[8];
+    int f8;
+    int fC;
+};
+
+/* XboxMediaControl */
+struct C_001D3AB0 {
+    void *vtbl;
+    char pad4[0x40];
+    S_001D3C30_Stream *unk44;
+    int unk48;
+    int unk4C;
+    int unk50;
+    char pad54[0x1C];
+    S_001D3AB0_Res *unk70;
+    char pad74[8];
+    void *unk7C;
+    void func_001D3800(void);
+    void func_001D3860(void);
+    void func_001D37C0(void);
+    void func_001D3AB0(void);
+    void func_001D3C30(void);
+};
+
 
 undefined4 C_001D3CA0::func_001D3CA0(byte param_1)
 {
