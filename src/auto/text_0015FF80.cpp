@@ -1,5 +1,11 @@
 /* 19 functions from 0x0015FF80 to 0x00160D30, found by Ghidra. */
 #include "common.h"
+extern float D_002879B8, D_00275544, D_002756D4, D_00286AC4, D_002756D0;
+extern float D_002879B4, D_002879B0, D_002879AC, D_002879A8;
+static inline float atan_poly_0015FF80(float t) {
+    float s = t * t;
+    return t * (((D_002879B0 - D_002879B4 * s) * s - D_002879AC) * s + D_002879A8);
+}
 struct C_00160A60 {
     int unk0;
     int unk4;
