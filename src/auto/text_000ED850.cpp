@@ -71,6 +71,23 @@ struct C_000EE1F0 {
 };
 
 
+void C_000EDF00::func_000EDF00(void)
+{
+    int i;
+    for (i = 0; i < 2; i++) {
+        D_002B91AC->arr38[i]->func_001D6600();
+    }
+    if (unk450 != 0) {
+        func_000EDC70();
+        unk450 = 0;
+        unk444 = 0;
+    } else if (unk444 != 0) {
+        func_000EDDC0();
+        unk444 = 0;
+    }
+    D_002B91AC->unk34->func_001D6600();
+}
+
 void C_000EE1F0::func_000EE1F0(void) {
     unk42C = 178;
     unk430 = 0;
