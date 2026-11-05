@@ -98,6 +98,24 @@ struct S_001F32E8 {
     int f1C;
 };
 
+struct S_001F3321_Rec {
+    unsigned int bits;
+    unsigned int cause;
+    unsigned int enable;
+    unsigned int status;
+    double op1;
+    char pad18[8];
+    unsigned int op1flags;
+    char pad24[0xC];
+    double op2;
+    char pad38[8];
+    unsigned int op2flags;
+    char pad44[0xC];
+    double result;
+    char pad58[8];
+    unsigned int resflags;
+};
+
 struct C_001F318D {
     int unk0;
     char *unk4;
