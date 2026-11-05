@@ -233,6 +233,17 @@ int func_00135E80()
     return ++D_002BA700;
 }
 
+void C_00135E00::func_00135E90(int a0, int a1, int a2, int a3)
+{
+    S_ControlEntry *list = (S_ControlEntry *)pad40;
+    list[f3C].type = a0;
+    list[f3C].b = a3;
+    list[f3C].a = a1;
+    list[f3C].c = a2;
+    ((int *)this)[(f3C + 4) * 5] = 0x3f;
+    f3C++;
+}
+
 int C_00135E00::func_00136110(int a, int idx)
 {
     S_00136110_Dev *dev = f14[idx];
