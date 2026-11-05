@@ -4,6 +4,12 @@
 #include <xmmintrin.h>
 
 extern float D_00275544;
+extern float D_00275BF8;
+static __inline float Abs_001A9110(float x)
+{
+    *(unsigned int *)&x &= 0x7fffffff;
+    return x;
+}
 extern int D_0028BF14;
 
 void func_001E891B(void *p);
