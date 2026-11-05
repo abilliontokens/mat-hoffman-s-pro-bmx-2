@@ -3,7 +3,30 @@
 #include <stdlib.h>
 #include <xmmintrin.h>
 #include "ghidra.h"
-#define SHUF_YZXW(v) _mm_shuffle_ps((v), (v), 0xc9)
+struct Vec4 {
+    float x, y, z, w;
+};
+
+struct C_00198040 {
+    void func_00198040(void *out, void *in);
+    void func_00197EC0(void *out, void *in);
+};
+
+/* Rigid body: accumulates transformed vectors into two vec3 accumulators. */
+struct C_0001EAF0 {
+    char pad0[0x130];
+    float f130;
+    float f134;
+    float f138;
+    char pad13c[4];
+    float f140;
+    float f144;
+    float f148;
+    char pad14c[0xe0];
+    C_00198040 *f22c;
+    void func_0001EAF0(Vec4 v);
+    void func_0001EB50(Vec4 v);
+};
 
 struct C_0001E860 {
     void func_0001E860(void);
@@ -361,20 +384,27 @@ void func_0001E9B0(float *out, float *a, float *b)
 
 void func_0001E9E0(float *out, float *v)
 {
-    float inv;
+    float s;
 
-    inv = func_0001E960(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
-    vec3_set(out, inv * v[0], inv * v[1], inv * v[2]);
+    s = v[0] * v[0] + v[1] * v[1] + v[2] * v[2];
+    s = func_0001E960(s);
+    vec3_set(out, s * v[0], s * v[1], s * v[2]);
 }
 
 void func_0001EAB0(float *out, float *a, float *b)
 {
     __m128 va = _mm_loadu_ps(a);
     __m128 vb = _mm_loadu_ps(b);
-    __m128 r = _mm_sub_ps(_mm_mul_ps(va, _mm_shuffle_ps(vb, vb, 0xc9)),
-                          _mm_mul_ps(vb, _mm_shuffle_ps(va, va, 0xc9)));
+    __m128 sa = va;
+    __m128 sb = vb;
 
-    _mm_storeu_ps(out, _mm_shuffle_ps(r, r, 0xc9));
+    sa = _mm_shuffle_ps(sa, sa, 0xc9);
+    sb = _mm_shuffle_ps(sb, sb, 0xc9);
+    vb = _mm_mul_ps(vb, sa);
+    va = _mm_mul_ps(va, sb);
+    va = _mm_sub_ps(va, vb);
+    va = _mm_shuffle_ps(va, va, 0xc9);
+    _mm_storeu_ps(out, va);
 }
 
 void C_0001EDC0::func_0001EDC0(int a0) {
