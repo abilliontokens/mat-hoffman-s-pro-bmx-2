@@ -74,6 +74,7 @@ struct C_SphereCollisionObject {
     void func_00133E60();
     void func_001A52D0(void *a);
     void func_001A5370(void);
+    void func_001A57E0(int a, int b, int c, int d, f32 r, void *e);
     void *func_001A57A0(unsigned int flags);
 };
 
