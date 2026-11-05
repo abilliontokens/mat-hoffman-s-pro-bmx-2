@@ -827,6 +827,37 @@ char *C_00095060::func_00095430(int index)
     return (char *)tracks.func_00037820(index - 1);
 }
 
+int C_00095060::func_00095490(int index)
+{
+    if (f34 == 0) {
+        if (index < 1 || index > tracks.count) {
+            return 0;
+        }
+        if (func_000952F0() == 0) {
+            return 0;
+        }
+        if (tracks.func_00037820(index - 1)->f64 != 0) {
+            return 0;
+        }
+        if (tracks.func_00037820(index - 1)->f68 == 0) {
+            return 0;
+        }
+    } else {
+        if (index < 1) {
+            return 0;
+        }
+        if (index > f50->v41(f34)) {
+            return 0;
+        }
+    }
+    if (f50->v30(index - 1, 1) == 0) {
+        return 0;
+    }
+    f38 = index;
+    f30 = 1;
+    return 1;
+}
+
 int C_00095060::func_00095520(int n)
 {
     if (f34 == 0) {
