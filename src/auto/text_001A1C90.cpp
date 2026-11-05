@@ -172,3 +172,15 @@ bool C_001A2500::func_001A2500(void)
   return 0 < *(int *)(in_ECX + 0x1d8);
 }
 
+void *C_001A2BD0::func_001A2BD0(unsigned int flags)
+{
+    void func_001E891B(void *);
+
+    vtbl = (void *)&D_0028B3C4;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
