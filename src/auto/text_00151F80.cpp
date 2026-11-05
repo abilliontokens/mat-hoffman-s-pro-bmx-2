@@ -9,6 +9,7 @@ struct S_151F80_Vec {
     float x, y, z, w;
     S_151F80_Vec() { x = y = z = 0.0f; w = 1.0f; }
     S_151F80_Vec(float a, float b, float c) { x = a; y = b; z = c; w = 1.0f; }
+    void Set(float a, float b, float c) { x = a; y = b; z = c; }
     S_151F80_Vec operator+(const S_151F80_Vec &o) const { return S_151F80_Vec(x + o.x, y + o.y, z + o.z); }
     S_151F80_Vec operator-(const S_151F80_Vec &o) const { return S_151F80_Vec(x - o.x, y - o.y, z - o.z); }
     S_151F80_Vec operator*(float s) const { return S_151F80_Vec(x * s, y * s, z * s); }
@@ -52,14 +53,17 @@ struct C_00151F80 {
 void C_00151F80::func_00151F80(int a0)
 {
     if (D_002B9120->f528 != 0) {
-        S_151F80_Vec a(1.0f, 0.0f, 0.0f);
+        S_151F80_Vec a;
+        a.x = 1.0f;
+        a.y = 0.0f;
+        a.z = 0.0f;
         a = f2c->f1a4->f4->func_00197F70(&a.x) - func_00016E40();
         fc4 = 0;
         f94 = D_002A789C;
         f84 = D_002A789C;
         S_151F80_Vec line[2];
         line[0] = func_00016E40();
-        line[1] = line[0] + a * D_00286CA8;
+        line[1] = line[0] + a * 10000.0f;
         fc8 = line[0];
         f78->func_0014AC30(line, 0);
         f78->func_00133ED0();
