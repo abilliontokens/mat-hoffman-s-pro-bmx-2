@@ -101,6 +101,11 @@ struct __declspec(align(16)) S_Matrix16_00161AA0 {
     float m[16];
 };
 
+extern float D_00275544;
+void func_00162330(S_Matrix16_00161AA0 *out, V4_00161930 *a, V4_00161930 *b, V4_00161930 *c, V4_00161930 *d);
+S_Matrix16_00161AA0 func_001622C0(float a);
+void func_0011ACC0(S_Matrix16_00161AA0 *out, S_Matrix16_00161AA0 *a, S_Matrix16_00161AA0 *b);
+
 struct S_00161620_Entry {
     int f0;
     S_00161620_Obj *f4;
@@ -373,6 +378,27 @@ void func_00161930(V3_00161930 *a, V3_00161930 *n, V4_00161930 *out)
     r.z = a->z - v[2];
     *out = r;
     func_001618A0(out, out);
+}
+
+void func_001619D0(V3_00161930 *a, V3_00161930 *b, V3_00161930 *c, V4_00161930 *out, float *d)
+{
+    V4_00161930 v2;
+    V4_00161930 v1;
+    V4_00161930 *n;
+
+    v1.w = 1.0f;
+    v1.x = c->x - a->x;
+    v1.y = c->y - a->y;
+    v1.z = c->z - a->z;
+    v2.w = 1.0f;
+    v2.x = b->x - a->x;
+    v2.y = b->y - a->y;
+    v2.z = b->z - a->z;
+    cross_001619D0((float *)out, (float *)&v2, (float *)&v1);
+    n = func_001618A0(out, out);
+    if (d != 0) {
+        *d = -(n->y * a->y + a->x * n->x + n->z * a->z);
+    }
 }
 
 S_Matrix16_00161AA0 func_00161AA0(float a1, float a2, float a3, float a4)
