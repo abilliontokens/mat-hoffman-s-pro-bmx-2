@@ -196,6 +196,18 @@ struct C_000AC410 {
     void *f5a4;
     int f5a8;
     void **f5ac;
+    void *getItem(int i)
+    {
+        if (f5a8 > 0 && f5ac != 0 && i < f5a8) {
+            return f5ac[i];
+        }
+        return 0;
+    }
+    void clearItems(void)
+    {
+        memset(f5ac, 0, f5a8 * 4);
+        f5a8 = 0;
+    }
     void func_0018B5C0(void);
     void func_000AC410(void);
 };
