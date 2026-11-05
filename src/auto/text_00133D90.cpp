@@ -86,22 +86,31 @@ struct Obj_00133ED0 {
     void func_00133EF0(int a);
 };
 
-/* identity-style unit vector (0, 0, 0, 1) */
+/* (0, 0, 0, 1) vector, stored z, y, x, w */
 struct V4_00134980 {
     float x;
     float y;
     float z;
     float w;
-    V4_00134980() { x = 0.0f; y = 0.0f; z = 0.0f; w = 1.0f; }
+    V4_00134980() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+};
+
+/* (0, 0, 0, 1) vector, stored w, z, y, x */
+struct V4w_00134980 {
+    float x;
+    float y;
+    float z;
+    float w;
+    V4w_00134980() { w = 1.0f; z = 0.0f; y = 0.0f; x = 0.0f; }
 };
 
 struct C_00134980 {
     V4_00134980 a[2];
-    V4_00134980 b;
-    V4_00134980 c;
-    V4_00134980 d;
-    V4_00134980 e;
-    V4_00134980 f;
+    V4w_00134980 b;
+    V4w_00134980 c;
+    V4w_00134980 d;
+    V4w_00134980 e;
+    V4w_00134980 f;
     C_00134980();
 };
 
