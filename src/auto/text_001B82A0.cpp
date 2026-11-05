@@ -57,9 +57,8 @@ int C_001B82A0::func_001B83F0(void *param) {
     int i;
 
     for (i = 0; i < f24; i++) {
-        C_001B83F0_item *e = f28[i];
-        if (func_001E8AF0(*e->f4 + 0x6c, param) != 0 && e->f10 == 1)
-            return *e->f4;
+        if (func_001E8AF0(*f28[i]->f4 + 0x6c, param) != 0 && f28[i]->f10 == 1)
+            return *f28[i]->f4;
     }
     return 0;
 }
