@@ -47,6 +47,9 @@ struct C_0013B9C0 {
     int func_0013C110(int a);
     int func_0013C5D0(S_0013B9C0_Ent28 *a, int b);
     int func_0013C660(int a);
+    int func_0013C8A0(int idx, int a2, int size, int count);
+    int func_0013B760(S_0013B9C0_Ent28 *p, int v);
+    int func_0013BBA0(S_0013B9C0_Ent28 *p, int a1, int a2, int a3);
     void func_0013B440(void *a);
     int func_0013B3E0(void *a, int b);
     void func_0013AEC0(int a);
@@ -143,22 +146,28 @@ int C_0013B9C0::func_0013C660(int arg)
 {
     S_0013B9C0_Ent28 *e;
     S_0013B9C0_Ent28 *end;
-    int *q;
+    int a = arg;
     int result = 1;
     int r;
 
-    end = fC + f10 - 1;
-    for (e = fC; e < end; e++) {
-        if (func_0013C5D0(e, arg) == 0) {
-            result = 0;
-        }
+    e = fC;
+    end = e + f10 - 1;
+    if (f10 > 1) {
+        do {
+            if (func_0013C5D0(e, a) == 0) {
+                result = 0;
+            }
+            e++;
+        } while (e != end);
     }
-    r = func_0013C5D0(e, arg) ? result : 0;
-    q = f24;
-    do {
-        *q = -1;
-        q++;
-    } while (q <= f28);
+    r = func_0013C5D0(e, a) != 0 ? result : 0;
+    {
+        int *q = f24;
+        do {
+            *q = -1;
+            q++;
+        } while (q <= f28);
+    }
     return r;
 }
 
