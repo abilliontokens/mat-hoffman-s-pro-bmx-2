@@ -70,7 +70,19 @@ extern int D_0027F8E4;
 /* BmxUIPageMusicPlaylist: six rows of 18 owned objects, then two more groups */
 struct C_000DE650 {
     void *vtbl;
-    char pad4[0x920];
+    char pad4[0x27c];
+    int u280[0x1d];
+    int a2f4[18];
+    int a33c[18];
+    int a384[18];
+    int a3cc[18];
+    int a414[18];
+    int a45c[18];
+    char pad4a4[0x804 - 0x4a4];
+    int a804[18];
+    int a84c[18];
+    int a894[18];
+    int a8dc[18];
     S_000DE650_Obj *row0[18];
     S_000DE650_Obj *row1[18];
     S_000DE650_Obj *row2[18];
