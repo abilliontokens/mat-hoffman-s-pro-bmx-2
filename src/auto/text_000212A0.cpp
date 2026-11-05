@@ -319,6 +319,19 @@ C_000213F0 *C_000213F0::func_000213F0(int a)
     return this;
 }
 
+int C_00021600::func_00021600(const char *name, char value) {
+ if (f44<=0) return 0;
+ for(int i=0;i<f44;i++) {
+  for(int j=0;j<D_002B9120->f340;j++) {
+   for(int k=0;k<D_002B9120->f3b0[j]->f24;k++) {
+    if(func_001E8AF0(name,D_002B9120->f3b0[j]->f28[k]->fc+4))
+     D_002B9120->f3b0[j]->f28[k]->fc[0x14c]=value;
+   }
+  }
+ }
+ return 1;
+}
+
 void C_000216F0::func_000216F0(int a0, int idx, int val)
 {
     f70[idx - 1]->fc[f70[idx - 1]->f4] = val;
