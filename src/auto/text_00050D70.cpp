@@ -1,6 +1,11 @@
 /* 18 functions from 0x00050D70 to 0x00051CF0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+extern undefined4 D_00277934;
+extern int *D_002A8490;
+extern float D_002B8F98;
+extern float D_002B8FA0;
+
 struct C_00051180 {
     void func_00051180(float param_1);
 };
