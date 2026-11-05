@@ -71,6 +71,7 @@ struct C_001A7260 {
     char pad4[0x20];
     C_Holder24 *f24;
     C_Item8 *f28;
+    char pad2c[4];
     C_001D6410 *f30;
     C_001D6410 *f34[8];
     void func_00157660();
@@ -83,6 +84,43 @@ void C_001A6B70::func_001A6B70()
         D_002EFDB8->v4(0, f50, 0, 0);
     }
     func_00157920();
+}
+
+void C_001A7260::func_001A7260()
+{
+    vtbl = (void *)&D_0028B974;
+    if (D_002F0630 != 0) {
+        D_002F0630->destroyObject(1);
+        D_002F0630 = 0;
+    }
+    if (f28) {
+        f28->destroy8();
+        f28 = 0;
+    }
+    if (f24->fb4 != 0) {
+        C_00160BF0Obj *obj;
+        obj = f24->fb4;
+        obj->func_00160BF0();
+        func_001E891B(obj);
+        f24->fb4 = 0;
+    }
+    {
+        int i;
+        for (i = 0; i < 8; i = i + 1) {
+            if (f34[i] != 0) {
+                f34[i]->func_001D6410();
+                func_001E891B(f34[i]);
+                f34[i] = 0;
+            }
+        }
+    }
+    if (f30 != 0) {
+        f30->func_001D6410();
+        func_001E891B(f30);
+        f30 = 0;
+    }
+    D_002A8490->f2ec->func_0018C120();
+    func_00157660();
 }
 
 void *C_001A77B0::func_001A77B0(int flags)
