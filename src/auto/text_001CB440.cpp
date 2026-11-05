@@ -62,3 +62,13 @@ int __stdcall func_0021FB83(int a);
 int __stdcall func_001CBEE0(int a0, int a1, int a2, int a3, int a4) {
     return -2147467259;
 }
+
+void *C_001CC110::func_001CC110(int flags) {
+    unk0 = (int)&D_0028ED78;
+    func_0001DFF0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
