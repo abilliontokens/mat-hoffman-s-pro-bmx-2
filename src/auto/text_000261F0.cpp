@@ -121,6 +121,12 @@ undefined4 func_00026300(float *param_1, float *param_2)
   return 1;
 }
 
+C_000264C0 *C_000264C0::func_000264C0(S_000264C0_Mat *src)
+{
+    mat = *src;
+    return this;
+}
+
 int C_00026500::func_00026500(const char *name, int value)
 {
     int i;
@@ -130,13 +136,14 @@ int C_00026500::func_00026500(const char *name, int value)
             return i;
         }
     }
-    if (count < 0x96) {
-        entries[count].value = value;
-        func_001E8BF0(entries[count].name, name, 0x1f);
-        f30 = count;
-        return count++;
+    if (count >= 0x96) {
+        return 0x95;
     }
-    return 0x95;
+    entries[i].value = value;
+    func_001E8BF0(entries[count].name, name, 0x1f);
+    f30 = count;
+    count++;
+    return count - 1;
 }
 
 void func_000267F0(float *out, float *v, float *m)
