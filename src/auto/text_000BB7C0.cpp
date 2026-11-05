@@ -1,6 +1,7 @@
 /* 26 functions from 0x000BB7C0 to 0x000BC7B0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <xmmintrin.h>
 struct C_000BC0B0 {
     undefined4 func_000BC0B0(void);
 };
