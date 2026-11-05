@@ -70,6 +70,23 @@ struct S_0002EE30_Global {
 };
 extern S_0002EE30_Global *D_002A8490;
 
+extern int D_002A1194;
+extern char D_002768DC[], D_002768C8[], D_002768B8[], D_002768A8[], D_00276898[], D_0027688C[], D_00276880[], D_00276874[];
+extern char D_0027686C[], D_00276864[], D_0027685C[], D_00276854[], D_0027684C[], D_00276844[], D_00276830[], D_00276828[], D_00276820[], D_00276810[], D_002767F8[], D_002767E0[], D_002767D0[], D_002767BC[];
+extern float D_002768D8;
+struct S_2EB10_Cam { void func_00197E70(float *v); };
+struct S_2EB10_B { char pad[0x28]; float f28; char pad2c[0x20c]; float f238, f23c, f240; };
+struct S_2EB10_C { char pad[0x50]; int f50, f54; };
+struct S_2EB10_D { char pad[0x30]; int f30; };
+struct S_2EB10_G { char pad[0x1934]; int counter; };
+struct S_2EB10_T {
+    char pad0[0x1e0]; S_2EB10_B *f1e0; char pad1e4[4]; S_2EB10_C *f1e8; char pad1ec[4]; S_2EB10_D *f1f0;
+    char pad1f4[0x3c]; S_2EB10_Cam *f230; char pad234[0x23c]; int f470; char pad474[4]; int f478; char pad47c[4]; unsigned f480;
+    char pad484[0x2f4]; float f778; char pad77c[8]; int f784;
+};
+extern "C" void func_0013E260(void *, int, const void *);
+extern "C" void func_0013E1F0(void *, int, const void *, ...);
+
 struct C_000264C0 {
     void func_000264C0(void *src);
 };
