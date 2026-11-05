@@ -7,7 +7,7 @@ struct Vec4 {
     f32 z;
     f32 w;
     Vec4() {}
-    __forceinline Vec4(f32 x_, f32 y_, f32 z_, f32 w_) {
+    Vec4(f32 x_, f32 y_, f32 z_, f32 w_) {
         x = x_;
         y = y_;
         z = z_;
