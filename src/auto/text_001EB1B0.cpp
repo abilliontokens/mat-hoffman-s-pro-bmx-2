@@ -57,9 +57,22 @@ struct S_Tiddata {
     unsigned long thandle;
     char pad8[0xc];
     long holdrand;
-    char pad18[0x3c];
+    char pad18[0xc];
+    void *f24;
+    char pad28[4];
+    void *f2c;
+    char pad30[4];
+    void *f34;
+    char pad38[4];
+    void *f3c;
+    char pad40[4];
+    void *f44;
+    void *f48;
+    char pad4c[8];
     void *pxcptacttab;
-    char pad58[0x2c];
+    char pad58[8];
+    int *ptlocinfo;
+    char pad64[0x20];
 };
 
 extern "C" unsigned long __readfsdword(unsigned long Offset);
@@ -318,9 +331,11 @@ char *__cdecl func_001EB5A0(double *pvalue, char *buf, int ndec, int caps)
     typedef S_StrFlt *(__cdecl *Fltout2Fn)(S_CrtDouble, S_StrFlt *, char *);
     char resultstr[24];
     S_StrFlt flt;
+    int off;
 
     ((Fltout2Fn)func_001F4A07)(*(S_CrtDouble *)pvalue, &flt, resultstr);
-    func_001F48CE(buf + (flt.sign == '-') + (ndec > 0), ndec + 1, &flt);
+    off = (flt.sign == '-') + (ndec > 0);
+    func_001F48CE(buf + off, ndec + 1, &flt);
     func_001EB4F7(buf, ndec, caps, &flt, 0);
     return buf;
 }
@@ -335,8 +350,8 @@ static __declspec(noinline) char *func_001EB600(S_StrFlt *pflt, char *buf, int n
     expo = pflt->decpt - 1;
     if (g_fmt && expo == ndec) {
         p = (char *)((pflt->sign == '-') + expo + buf);
-        *p = '0';
-        p[1] &= 0;
+        *p++ = '0';
+        *p = '\0';
     }
     p = buf;
     if (pflt->sign == '-') {
@@ -390,22 +405,23 @@ void __cdecl func_001EB6F9(double *arg, char *buffer, int precision, int caps)
     char c;
     int oldexpo;
     int expo;
-    char shorter;
+    int shorter;
 
     ((Fltout2Fn)func_001F4A07)(*(S_CrtDouble *)arg, &flt, resultstr);
     oldexpo = flt.decpt - 1;
     p = buffer + (flt.sign == '-');
     func_001F48CE(p, precision, &flt);
     expo = flt.decpt - 1;
-    shorter = (char)(oldexpo < expo);
+    shorter = oldexpo < expo;
     if (expo < -4 || expo >= precision) {
         func_001EB4F7(buffer, precision, caps, &flt, 1);
     } else {
-        if (shorter) {
+        if (shorter != 0) {
             do {
                 c = *p++;
             } while (c != 0);
-            p[-2] &= c;
+            p -= 2;
+            *p = c;
         }
         func_001EB600(&flt, buffer, precision, 1);
     }
