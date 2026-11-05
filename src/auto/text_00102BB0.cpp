@@ -7,7 +7,7 @@ void func_001E891B(void *p);
 
 struct S_00103350_unk24 {
     char pad0[0x34];
-    int unk34;
+    float unk34;
 };
 
 struct C_001B1980 {
