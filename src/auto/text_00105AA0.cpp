@@ -63,6 +63,41 @@ struct C_001067B0 {
     void func_00105AA0(void);
 };
 
+struct Vec4_00105B30 {
+    float x, y, z, w;
+};
+
+extern float D_002A3A3C;
+extern float D_002A3A40;
+extern float D_002A3A44;
+
+struct C_00199A70 {
+    void func_00199A70(int a, Vec4_00105B30 *v);
+    void func_001994C0(int a, Vec4_00105B30 *v, void *b);
+};
+
+struct C_00105B30_1E0 {
+    char pad0[0x26C];
+    int f26C;
+};
+
+void func_00104A90(Vec4_00105B30 *a, Vec4_00105B30 *b);
+
+struct C_00105B30 {
+    char pad0[0x1E0];
+    C_00105B30_1E0 *f1E0;
+    char pad1E4[0x4C];
+    C_00199A70 *f230;
+    char pad234[0x600];
+    Vec4_00105B30 f834;
+    Vec4_00105B30 f844;
+    Vec4_00105B30 f854;
+    Vec4_00105B30 f864;
+    char f874[0x9B8];
+    int f122C;
+    void func_00105B30(int unused);
+};
+
 void C_001067B0::func_00105AA0(void)
 {
     f117C = f1178;
