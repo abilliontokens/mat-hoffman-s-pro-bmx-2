@@ -185,6 +185,19 @@ int C_00198230::func_00198270(void)
     return n + 1;
 }
 
+void C_001982A0::func_001982A0(int *count, C_001982A0 **array)
+{
+    C_001982A0 *p = f174;
+    while (p != 0) {
+        array[*count] = p;
+        p = p->f178;
+        (*count)++;
+    }
+    for (p = f174; p != 0; p = p->f178) {
+        p->func_001982A0(count, array);
+    }
+}
+
 void C_001982F0::func_001982F0(void)
 {
   int in_ECX = (int)this;
@@ -235,6 +248,16 @@ void C_001983A0::func_001983A0(void)
   
   *(byte *)(in_ECX + 0x27) = *(byte *)(in_ECX + 0x27) & 0xfb;
   return;
+}
+
+void C_001983B0::func_001983B0(void **out)
+{
+    C_00197820 *p = (C_00197820 *)func_001E8A44(0x1a0);
+    if (p != 0) {
+        *out = p->func_00197820(1);
+    } else {
+        *out = 0;
+    }
 }
 
 void C_001983E0::func_001983E0(void *out0, void *out1)
