@@ -70,6 +70,20 @@ struct C_000A2ED0 {
 };
 
 
+void C_000A2ED0::func_000A2ED0(void)
+{
+    int i;
+    if (D_002B9134 != 0) {
+        D_002B9134->func_000B2D50(1);
+    }
+    for (i = 0; i < unk578; i++) {
+        unk57C[i]->func_00012420();
+    }
+    if (D_002B7E18 != 0) {
+        D_002B7E18->func_00022B70();
+    }
+}
+
 void C_000A3B60::func_000A3B60(int param_1)
 {
   int in_ECX = (int)this;
