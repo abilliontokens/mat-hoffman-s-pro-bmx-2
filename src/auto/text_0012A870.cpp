@@ -450,6 +450,20 @@ int C_0012AAE0::func_0012B3D0(void)
     return 1;
 }
 
+C_0012B410 *C_0012B410::func_0012B410(int a, int b, int c)
+{
+    func_001D3F50();
+    f204 = b;
+    f208 = c;
+    f1dc = a;
+    func_0012A7C0(0, 0, b, c);
+    vtbl->f70(this);
+    if (f21 & 1) {
+        ((S_002EFDB8 *)D_002EFDB8)->func_00182830(this);
+    }
+    return this;
+}
+
 C_0012B510R *C_0012B510R::func_0012B510(void)
 {
     extern int D_002840FC;
