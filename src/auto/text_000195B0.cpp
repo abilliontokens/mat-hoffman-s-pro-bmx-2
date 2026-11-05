@@ -156,13 +156,19 @@ extern float D_00275AE8;
 extern char D_002A0718;
 static __forceinline float Sqrt_1A060(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
 static __forceinline void Round_1A060(int *out, float f) { *out = _mm_cvtss_si32(_mm_load_ss(&f)); }
-static __forceinline void Cross_1A060(float *out, float *a, float *b)
+static __forceinline void Cross_1A060(S_1A060_Vec * volatile out, S_1A060_Vec * volatile a, S_1A060_Vec * volatile b)
 {
-    _mm_storeu_ps(out, _mm_shuffle_ps(
-        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
-                   _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9))),
-        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
-                   _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9))), 0xc9));
+    S_1A060_Vec *pa = a, *pb = b;
+    __m128 va = _mm_loadu_ps(&pa->x);
+    __m128 vb = _mm_loadu_ps(&pb->x);
+    __m128 sa = va, sb = vb;
+    sa = _mm_shuffle_ps(sa, sa, 0xc9);
+    sb = _mm_shuffle_ps(sb, sb, 0xc9);
+    vb = _mm_mul_ps(vb, sa);
+    va = _mm_mul_ps(va, sb);
+    va = _mm_sub_ps(va, vb);
+    va = _mm_shuffle_ps(va, va, 0xc9);
+    _mm_storeu_ps(&out->x, va);
 }
 static __forceinline float Sqrt2_1A060(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
 
