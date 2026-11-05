@@ -146,6 +146,17 @@ struct C_00035680 {
     void func_00035680(void);
 };
 
+void C_00035300::func_00035300(char *name, int n)
+{
+    char buf[0x34];
+
+    func_001ADCC0(buf, 0x32, &D_00276D5C, name, n);
+    f494 = 0;
+    f560->func_0008B6F0();
+    f560->func_0008B680(buf);
+    f560->v6();
+}
+
 void C_00035BE0::func_00035BE0(void)
 {
     if (f1d0 != 0) {
