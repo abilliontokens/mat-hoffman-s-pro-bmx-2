@@ -72,6 +72,16 @@ struct C_001D8970 {
     int func_001D8970(int a1, int a2, int a3);
 };
 
+void func_001D86C0(char *buf, int size, int adapter)
+{
+    S_AdapterIdentifier ident;
+
+    func_00201830(adapter, 0, &ident);
+    func_001ADCC0(buf, size, D_0028F798, ident.Data1, ident.Data2, ident.Data3,
+                  ident.Data4[0], ident.Data4[1], ident.Data4[2], ident.Data4[3],
+                  ident.Data4[4], ident.Data4[5], ident.Data4[6], ident.Data4[7]);
+}
+
 C_001D8B40 *C_001D8B40::func_001D8B40(void *param)
 {
     ((C_001C99E0_1D8340 *)this)->func_001C99E0(param);
