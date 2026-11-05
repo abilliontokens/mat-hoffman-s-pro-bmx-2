@@ -33,6 +33,9 @@ void __stdcall func_001DD62B(int err);
 void *__stdcall func_001DF5B9(int a0, int size);
 void __stdcall func_001DF4E1(void *dst, const void *src, int n);
 extern char D_0028FB58[];
+extern "C" unsigned int strlen(const char *);
+extern "C" char *strcpy(char *, const char *);
+#pragma intrinsic(strlen, strcpy)
 struct S_001DE51E_Obj {
     unsigned int tag;
     int handle;
