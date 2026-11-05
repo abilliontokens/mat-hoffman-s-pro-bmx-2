@@ -204,6 +204,13 @@ struct S_00185110_Obj {
     int func_001976A0(char *name, float f);
 };
 
+struct S_00184930_Col { void *vtbl; float f4; float f8; float fC; float f10; int f14; int f18; };
+struct S_00184930_Fx { virtual void v0(); virtual void v1(); virtual void v2(); S_00184930_Fx *func_00150360(int a); };
+extern float D_00275F58, D_0028937C, D_00289380;
+int __fastcall func_001E8858(float f);
+void func_001E891B(void *p);
+int __stdcall func_00150810(int a, int b, int c, float d, float e, float f);
+
 /* BasicScene */
 struct C_00184930 {
     void *vtbl;
