@@ -6,6 +6,13 @@ struct C_00129900 {
 };
 
 
+void func_001294E0(int a0, int a1, int a2, int a3, int a4) {
+    extern int D_002B92F4;
+    int func_001293F0(...);
+    D_002B92F4 = a4;
+    func_001293F0(a0, a1, a2, a3);
+}
+
 void C_00129900::func_00129900(void)
 {
   int func_001E891B(...);
