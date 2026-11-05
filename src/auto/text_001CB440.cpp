@@ -580,6 +580,37 @@ void C_001CB9A0::func_001CBBC0(void)
     f20 |= 4;
 }
 
+void func_001CBC10(int hr, int a, int b)
+{
+    char msg[0x100];
+    char text[0x400];
+
+    switch (hr) {
+    case 0x8878001e:
+        func_001ADCC0(msg, 0x100, D_0028EDF8);
+        break;
+    case 0x80004001:
+        func_001ADCC0(msg, 0x100, D_0028EE1C);
+        break;
+    case 0x80004005:
+        func_001ADCC0(msg, 0x100, D_0028EE50);
+        break;
+    case 0x8007000e:
+        func_001ADCC0(msg, 0x100, D_0028EE74);
+        break;
+    case 0x88780032:
+        func_001ADCC0(msg, 0x100, D_0028EDB4);
+        break;
+    case 0x88780078:
+        func_001ADCC0(msg, 0x100, D_0028EDD8);
+        break;
+    default:
+        func_001ADCC0(msg, 0x100, D_0028EDE8);
+        break;
+    }
+    func_001ADCC0(text, 0x400, D_0028ED88, msg, a, b);
+}
+
 int C_001CBCF0::func_001CBCF0(int value)
 {
     int i;
