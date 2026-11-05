@@ -2,9 +2,28 @@
 #include "common.h"
 
 struct C_001877F0Param {
+    char pad0[0x24];
+    char section[0x100];
     int func_00169710(void *a);
     int func_00168C20(void *a, int b, void *c);
 };
+
+/* 0x10-byte element of the ContinuousAnimObjectSounds list, loaded through virtual slot 0 */
+struct S_00187670_Elem {
+    virtual void v0(void *stream);
+    char pad4[0xc];
+};
+
+struct C_00187670 {
+    char pad0[0x24];
+    int f24;
+    S_00187670_Elem *f28;
+    int func_00187670(C_001877F0Param *stream);
+};
+
+extern int D_00289BE0;
+extern int D_00289BD0;
+void func_00187000();
 
 struct C_00187370 {
     virtual void func_00187390(void *a);
