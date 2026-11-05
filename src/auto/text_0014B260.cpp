@@ -9,3 +9,12 @@ struct DynamicRayCollisionObject {
     void func_0014B940();
     void func_00157A00(int param_1);
 };
+
+void DynamicRayCollisionObject::func_0014BA40(int param_1)
+{
+    if (unkA6 != 0) {
+        func_0014B940();
+    }
+    unkA7 = unkA7 & 0xef;
+    func_00157A00(param_1);
+}
