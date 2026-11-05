@@ -57,6 +57,53 @@ struct S_000F75D0_Root {
 };
 
 extern S_000F75D0_Root *D_002B91AC;
+
+struct S_F8010_O { void func_001D5AD0(void); int pad0[14]; int f38; char pad3C[0x1C]; unsigned char f58; };
+struct S_F8010_G {
+    char pad0[0x24];
+    S_F8010_O *f24, *f28, *f2C, *f30;
+    char pad34[0x1C];
+    S_F8010_O *f50, *f54, *f58, *f5C_[3];
+    S_F8010_O *f68, *f6C, *f70;
+    void func_000BF860(int a, int b, int c, int d);
+};
+struct S_F8010_Obj { void func_00093120(void); };
+struct C_000F8010 {
+    char pad0[0x290];
+    int f290;
+    S_F8010_O *f294;
+    char pad298[8];
+    S_F8010_O *f2A0[4];
+    int pad2B0[3];
+    int f2BC;
+    char pad2C0[0x10];
+    int f2D0, f2D4;
+    char pad2D8[0x10];
+    int f2E8, f2EC, f2F0, f2F4;
+    S_F8010_Obj *f2F8;
+    char pad2FC[4];
+    int f300;
+    char pad304[0x1C];
+    int f320, f324, f328, f32C, f330;
+    short f334;
+    short pad336;
+    int f338;
+    float f33C;
+    char pad340[0x10];
+    int f350;
+    char pad354[4];
+    int f358;
+    char pad35C[4];
+    int f360;
+    char pad364[0x10];
+    int f374;
+    char pad378[0x10];
+    int f388, f38C, pad390, f394;
+    char pad398[0x14];
+    int f3AC;
+    void func_000F8010(void);
+    void func_000CC6D0(void);
+};
 extern float D_0027DE74, D_00278C48;
 
 struct BmxUIPageGameOptions {
