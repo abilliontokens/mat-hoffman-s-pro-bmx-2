@@ -306,6 +306,41 @@ int __stdcall func_001D8040(S_001D8040 *p, int (__cdecl *callback)(S_001D8040 *)
  return -1;
 }
 
+extern char D_00010000;
+int __stdcall func_001D8140(S_001D8140 *p, unsigned int index, int h)
+{
+    S_001D8140_Info info;
+    unsigned int base;
+    unsigned int n;
+    unsigned int i;
+    unsigned int j;
+
+    p->f0 = h;
+    n = func_00201860(h);
+    base = 0;
+    for (i = 0; i < 2; i++) {
+        if (index > base + n) {
+            base += n;
+            continue;
+        }
+        func_00201A60(p->f0, D_0028F768[i], &info);
+        for (j = 0; j < n; j++, base++) {
+            if (base == index) {
+                func_00201900(p->f0, j, p->fC);
+                p->f4 = j;
+                p->f8 = D_0028F768[i];
+                if (info.f1C & (unsigned int)&D_00010000)
+                    p->f20 = info.fC4 < 0xfffe0100 ? 0x80 : 0x40;
+                else
+                    p->f20 = 0x20;
+                p->f24 = (info.fC >> 19) & 1;
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
 void XboxVideoCard_001D8310::func_001D8310(void)
 {
     v6();
