@@ -24,9 +24,23 @@ struct S_001EF734 {
     S_001EF734 *func_001EFAB5(void *a, void *b);
     void func_001EF170(int v);
     S_001EF734 *func_001EF170(char c);
-    void func_001EF759(void *p);
+    S_001EF734 *func_001EF759(void *p);
     S_001EF734 *func_001EF759(char c);
+    void func_001EF999(char c);
+    void func_001EFB18(char c);
+    void func_001EFB82(char *s);
+    S_001EF734 *func_001EF8F6(void *out, int v);
+    S_001EF734 *func_001EFD3B(void *out, char c);
+    S_001EF734 *func_001EFD7A(void *out, char *s);
 };
+
+extern char D_00295C58[];
+extern char D_00295C60[];
+extern int D_00278798;
+extern int D_0027D1D8;
+void *_func_001EFBEE(S_001EF734 *o);
+void *_func_001EFD19(void *a, char *b, void *c);
+void *_func_001EFF6E(S_001EF734 *o);
 
 struct C_001EFB18_Child {
     C_001EFB18_Child *func_001EF419(void);
@@ -131,6 +145,56 @@ S_001EF734 *S_001EF734::func_001EFAB5(void *ap, void *bp)
     }
     ((S_001EF734 *)ap)->func_001EEEE6(&local);
     return (S_001EF734 *)ap;
+}
+
+C_001EFB18 *C_001EFB18::func_001EFB18(char param_1)
+{
+    S_001EFB18_Obj *o;
+
+    if (param_1 != 0) {
+        if (func_001EF1E7() != 0) {
+            func_001EF999(param_1);
+        } else {
+            f0 = f0->func_001EF419();
+            if (f0 != 0) {
+                o = (S_001EFB18_Obj *)D_002F6A04->func_001EEE62(0xc, 0);
+                if (o != 0) {
+                    o->f4 = 0;
+                    o->vtbl = &D_00295BCC;
+                    o->f8 = param_1;
+                } else {
+                    o = 0;
+                }
+                f0->func_001EEFE3(o);
+            } else {
+                f4 = (f4 & 0xfffffff3) | 3;
+            }
+        }
+    }
+    return this;
+}
+
+C_001EFB82 *C_001EFB82::func_001EFB82(char *param_1)
+{
+    if (param_1 != 0 && *param_1 != 0) {
+        if (func_001EF1E7() != 0) {
+            func_001EF9B2(param_1);
+        } else {
+            f0 = f0->func_001EF419();
+            if (f0 != 0) {
+                S_001EFB82_Obj *o = (S_001EFB82_Obj *)D_002F6A04->func_001EEE62(0x10, 0);
+                if (o != 0) {
+                    o = o->func_001EF45F(param_1, 0);
+                } else {
+                    o = 0;
+                }
+                f0->func_001EEFE3(o);
+            } else {
+                f4 = (f4 & 0xfffffff3) | 3;
+            }
+        }
+    }
+    return this;
 }
 
 void *_func_001EFCD5(void *a, char b, void *c)
