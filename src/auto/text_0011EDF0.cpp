@@ -6,6 +6,13 @@ float func_0014F550(float x);
 float func_0001E960(float x);
 void func_0011F010(int a0, float x, float y, float z, int a4, int a5);
 void func_0011F400(int a0, int a1, int a2, int a3, int a4, int a5);
+void func_0011ACC0(void *out, void *a, void *b);
+
+struct S_0011F4B0_V4 {
+    float x, y, z, w;
+};
+
+void func_0011F4B0(float *out, S_0011F4B0_V4 *pos, float *m);
 extern float D_002B9348;
 extern float D_002AB30C;
 
