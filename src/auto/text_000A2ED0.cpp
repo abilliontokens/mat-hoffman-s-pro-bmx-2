@@ -86,3 +86,12 @@ void C_000A3B60::func_000A3B60(int param_1)
   }
   return;
 }
+
+int C_000A2ED0::func_000A3C50(void)
+{
+    if (unk594 == 0) {
+        return 0;
+    }
+    return D_002A8490->unk2E0->unk2FC->func_00094A10(unk594, unk4C0) != 0;
+}
+
