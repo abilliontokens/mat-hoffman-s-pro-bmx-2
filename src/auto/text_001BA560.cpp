@@ -171,6 +171,7 @@ struct C_001BA5E0 {
     int f13c;
     char pad140[4];
     int f144;
+    C_001BA5E0();
     C_001BA5E0 *func_001BA5E0(void);
 };
 
@@ -184,7 +185,7 @@ struct C_001BB300 {
 
 int C_001BA560::func_001BA560(S_001BA560_arg *arg1, int arg2)
 {
-    int func_001E8A44(...);
+    void *func_001E8A44(int size);
     void func_001BA540();
     void __stdcall func_001BBAA0(void *a, void *b);
     int r = arg1->v96(&f10c);
@@ -205,23 +206,23 @@ int C_001BA560::func_001BA560(S_001BA560_arg *arg1, int arg2)
     f288 = 0;
     return 1;
 }
-
+#pragma optimize("", on)
 C_001BA5E0 *C_001BA5E0::func_001BA5E0(void)
 {
-    int func_001E8A44(...);
-    vtbl = (void *)&D_0028D200;
+    void *func_001E8A44(int size);
     f4 = 0;
     f8 = 0;
+    vtbl = (void *)&D_0028D200;
     f124 = 0;
     f118 = 0xa;
     f11c = (int)&D_000186A0;
     f120 = 0;
-    f114 = func_001E8A44(0x28);
+    f114 = (int)func_001E8A44(0x28);
     f13c = 0;
     f130 = 0xa;
     f134 = (int)&D_000186A0;
     f138 = 0;
-    f12c = func_001E8A44(0x28);
+    f12c = (int)func_001E8A44(0x28);
     f110 = 0;
     f144 = 0;
     return this;
