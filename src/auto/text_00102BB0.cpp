@@ -64,7 +64,7 @@ struct C_001033D0 {
 void C_001033D0::func_00103350()
 {
     int i;
-    int v;
+    float v;
     for (i = 0; i < unk170; i++) {
         v = unk1B0[i]->unk24->unk34;
         unk1B0[i]->func_001B1980();
