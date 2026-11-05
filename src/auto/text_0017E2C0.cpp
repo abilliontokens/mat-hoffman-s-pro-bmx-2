@@ -64,3 +64,16 @@ void *C_0017EE30::func_0017EE30(unsigned int flags) {
     return this;
 }
 
+C_0017F050 *C_0017F050::func_0017F050(int a0) {
+    func_00132EB0(a0);
+    unkF0 = 0;
+    unkF4 = 0;
+    unkF8 = 0;
+    unkFC = 0;
+    unk100 = 0;
+    unk104 = 0;
+    vtbl = &D_002891C4;
+    unk50 = 2;
+    return this;
+}
+
