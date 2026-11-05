@@ -3,6 +3,7 @@
 
 extern int D_0027718C;
 void func_001E891B(void *p);
+void func_00011260(int a, int b);
 
 struct S_Item2C0 {
     int func_0005C0A0(void);
