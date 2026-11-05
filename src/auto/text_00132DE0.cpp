@@ -59,6 +59,12 @@ struct C_001334E0 {
 };
 
 
+int func_00132E90(int a0, int a1)
+{
+    D_002BEAAC->func_0013C8A0(a0, (void *)a1, 4, 1);
+    return 1;
+}
+
 void C_001334E0::func_001334E0(int a0) {
     unk74 = a0;
 }
