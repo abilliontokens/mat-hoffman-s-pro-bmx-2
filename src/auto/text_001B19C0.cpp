@@ -573,10 +573,13 @@ void C_001B23D0::func_001B25E0(void)
 void C_001B23D0::func_001B2640(void)
 {
     int func_001D6E20(...);
+    int i;
+    int h;
 
-    for (int i = 0; i < f8; i++) {
+    for (i = 0; i < f8; i++) {
         if (f14[i].fC > 0 && f14[i].f4 == 0) {
-            f14[i].f4 = (C_001B23D0_Obj *)func_001D6E20(f14[i].f0, 0x613, f14[i].f8);
+            h = f14[i].f8;
+            f14[i].f4 = (C_001B23D0_Obj *)func_001D6E20(f14[i].f0, 0x613, h);
         }
     }
 }
