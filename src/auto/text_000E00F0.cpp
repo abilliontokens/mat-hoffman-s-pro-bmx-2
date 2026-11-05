@@ -7,6 +7,44 @@ struct DelObjTime {
     virtual void Destroy(int a0);
 };
 
+/* a text label: func_0005E840 sets its string */
+struct S_000E0E30_Text {
+    void func_0005E840(char *s);
+};
+
+/* the HUD object: three labels at +0x34..+0x3C, and func_000BF860 places one */
+struct S_000E0E30_Hud {
+    char pad0[0x34];
+    S_000E0E30_Text *unk34;
+    S_000E0E30_Text *unk38;
+    S_000E0E30_Text *unk3C;
+    void func_000BF860(int a, int b, int c, int d);
+};
+
+extern S_000E0E30_Hud *D_002B91AC;
+
+/* string table of the settings record */
+struct S_000E0E30_Strings {
+    char pad0[0x7C8];
+    char *f7C8;
+    char pad7CC[0x838 - 0x7CC];
+    char *f838;
+    char pad83C[0xA10 - 0x83C];
+    char *fA10;
+};
+
+struct S_000E0E30_Mid {
+    int f0;
+    S_000E0E30_Strings *f4;
+};
+
+struct S_000E0E30_Root {
+    char pad0[0x2E8];
+    S_000E0E30_Mid *f2E8;
+};
+
+extern S_000E0E30_Root *D_002A8490;
+
 /* BmxUIPageTime */
 struct C_000E0D50 {
     void *vtbl;
