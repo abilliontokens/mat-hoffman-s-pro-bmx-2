@@ -2,3 +2,8 @@
 #include "common.h"
 
 int func_001B2910(int param_1);
+
+int func_001B2CB0(int param_1)
+{
+    return func_001B2910(param_1) / 8;
+}
