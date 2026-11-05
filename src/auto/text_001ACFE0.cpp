@@ -6,6 +6,74 @@ extern int D_0028C1DC;
 extern int D_0028C1F0;
 extern int D_002AA2D4;
 extern int D_002EFFD0;
+extern u16 D_001ADCB0;
+extern int D_002AA470;
+extern int D_0028C1B0;
+extern int D_002ABE74;
+
+struct S_001ACFE0_Range {
+    char *cur;
+    char *end;
+};
+
+int func_001ACFE0(const u16 *fmt, S_001ACFE0_Range *range, int a, void *b);
+
+struct S_func_001ADD80_arg0 {
+    char pad0[0x6c];
+    int unk6c;
+    int unk70;
+    int unk74;
+    int unk78;
+};
+
+struct C_00144640 {
+    C_00144640 *func_00144640();
+    virtual void v0();
+    virtual void v1(int a, int b);
+    int unk4;
+    int unk8;
+    u8 unkC;
+    char padD[3];
+    void *unk10;
+};
+
+struct C_002A829C_Y {
+    char pad0[0x18];
+    s16 unk18;
+};
+
+struct C_002A829C_X {
+    char pad0[0x54];
+    C_002A829C_Y *unk54;
+};
+
+struct C_002A829C_Entry {
+    int unk0;
+    C_002A829C_X *unk4;
+    char pad8[8];
+};
+
+struct C_002A829C {
+    void func_00161680(void);
+    char pad0[0x14];
+    C_002A829C_Entry *unk14;
+};
+
+extern C_002A829C *D_002A829C;
+
+struct C_002AA6C0 {
+    void func_001B2640(void);
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6(int a, int b);
+    virtual int v7(int a, int b);
+};
+
+extern C_002AA6C0 *D_002AA6C0;
 
 int __stdcall func_001FCF20(int a, int b, int c, int d, int e, int f, int g);
 int __stdcall func_001FCE50(int a, int b);
