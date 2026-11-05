@@ -194,6 +194,34 @@ void func_00193500(void)
     }
 }
 
+void Node_00193240::func_00193530(void *a1, void *a2, void *a3, void *a4)
+{
+    void *result;
+    Handler_00193240 *h = f8;
+    Link_00193530 *link = ((C_00192B50 *)f4)->f24;
+    while (link != 0) {
+        if (link->query->func_0017A1D0(a2, a4, &result)) {
+            C_00192B50 *owner = link->owner;
+            link->f10 = result;
+            link->fC = result;
+            h = owner->func_00192B50(((int *)h)[2]);
+            int r = h->v6(a2, a3, 0);
+            if (r != 0) {
+                h->v7(a1, r, a2, a3);
+                Node_00193240 *n = D_002EFE70->func_0001E8A0();
+                n->f14 = r;
+                n->f4 = owner;
+                n->f8 = h;
+                n->fC = link->query;
+                n->f10 = result;
+                n->f0 = f0;
+                f0 = n;
+            }
+        }
+        link = link->next;
+    }
+}
+
 void Node_00193240::func_001937F0(void *a1, void *a2, void *a3)
 {
     int r;
