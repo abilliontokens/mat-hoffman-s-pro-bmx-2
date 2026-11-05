@@ -221,7 +221,7 @@ struct V4_0002A7C0 {
     V4_0002A7C0() {}
     V4_0002A7C0(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
 };
-static inline void Cross_0002A7C0(float *out, float *a, float *b)
+inline void Cross_0002A7C0(float *out, float *a, float *b)
 {
     _mm_storeu_ps(out, _mm_shuffle_ps(
         _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
