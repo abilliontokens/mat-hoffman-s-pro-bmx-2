@@ -38,6 +38,11 @@ void func_001DE82F(void);
 void __stdcall func_001DD659(int code);
 void func_001EA4E1(char *buf, const char *fmt, int value);
 
+#pragma intrinsic(memcpy)
+extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
+extern "C" long (__stdcall *_imp__NtQueryDirectoryFile)(void *fileHandle, void *event, void *apcRoutine, void *apcContext, S_IoStatusBlock *iosb, void *fileInfo, u32 length, u32 infoClass, u32 returnSingle, void *fileName);
+extern "C" long (__stdcall *_imp__NtQueryFullAttributesFile)(S_ObjectAttributes *oa, void *info);
+
 #pragma intrinsic(__readfsbyte)
 extern "C" long (__stdcall *_imp__PsCreateSystemThreadEx)(int *threadHandle, u32 extraSize, u32 kernelStackSize, u32 tlsDataSize, u32 *threadId, void *startContext1, void *startContext2, u32 createSuspended, u32 debugStack, void *startRoutine);
 extern "C" void (__stdcall *_imp__RtlInitAnsiString)(S_AnsiString *dst, const char *src);
@@ -78,3 +83,13 @@ int func_001DF5B3(void) {
     extern int D_002F6BB4;
     return D_002F6BB4;
 }
+
+#pragma intrinsic(memcpy)
+extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
+extern "C" long (__stdcall *_imp__NtQueryDirectoryFile)(void *fileHandle, void *event, void *apcRoutine, void *apcContext, S_IoStatusBlock *iosb, void *fileInfo, u32 length, u32 infoClass, u32 returnSingle, void *fileName);
+extern "C" long (__stdcall *_imp__NtQueryFullAttributesFile)(S_ObjectAttributes *oa, void *info);
+void func_001DF622(void)
+{
+  return;
+}
+
