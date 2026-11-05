@@ -1,6 +1,15 @@
 /* 24 functions from 0x0015C640 to 0x0015D340, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_0015CE00 {
+ void *vtbl; char pad4[0x20]; unsigned short f24; unsigned char f26, f27; int u[42];
+ void func_00157600(int a0);
+ C_0015CE00 *func_0015CE00(int a0);
+};
+struct C_001BC6E0 { unsigned char func_001BC6E0(void *p); };
+extern C_001BC6E0 *D_002AAEC8;
+extern int D_002E293C, D_002878B4, D_002878A0;
+extern unsigned char D_002A8010;
 struct V3_0015D0A0 {
     float x, y, z;
     V3_0015D0A0() {}
