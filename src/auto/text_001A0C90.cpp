@@ -25,12 +25,12 @@ extern int D_0028B3A0;
 void func_001CBC10(int e, void *file, int line);
 
 /* returns true (and reports) when hr is a failure code */
-static inline bool CheckFailed(int hr, int line) {
+static inline int CheckFailed(int hr, int line) {
     if (hr < 0) {
         func_001CBC10(hr, &D_0028B3A0, line);
-        return true;
+        return 1;
     }
-    return false;
+    return 0;
 }
 
 /* object held at +4 of C_001A13F0 */
@@ -76,6 +76,18 @@ void C_001A13F0::func_001A13F0(void)
         unk4->v2();
         unk4 = 0;
     }
+}
+
+bool C_001A13F0::func_001A1410(void)
+{
+    if (unk4 == 0) return false;
+    return !CheckFailed(unk4->func_001D7D00(), 0x45);
+}
+
+bool C_001A13F0::func_001A1450(int a)
+{
+    if (unk4 == 0) return false;
+    return !CheckFailed(unk4->func_001D6C40(a, 1), 0x51);
 }
 
 undefined4 C_001A15C0::func_001A15C0(undefined4 *param_1)
