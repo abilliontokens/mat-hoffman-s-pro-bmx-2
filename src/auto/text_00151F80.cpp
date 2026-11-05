@@ -1,6 +1,7 @@
 /* 5 functions from 0x00151F80 to 0x00152E30, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include <math.h>
 struct Vec1521 { float x, y, z, w; Vec1521() { x = y = z = 0; w = 1; } };
 struct C1521 { char pad[0x34]; float height; void func_001521D0(Vec1521*, Vec1521*); };
 extern int D_002B9110, D_002B911C;
@@ -158,6 +159,42 @@ void C1521::func_001521D0(Vec1521* pos, Vec1521* out)
  h = (D_002B911C | D_002B9110) ? hit.y : h;
  if (out) *out = result;
  pos->y = h;
+}
+
+void C_00151F80::func_001528D0(float dt)
+{
+    ffc -= D_00286CAC;
+    if (ff8 == D_00275544 && f100 == D_00275544) {
+        ff8 = fe8.x * D_00275F60;
+        f100 = fe8.z * D_00275F60;
+    }
+    fe8 = S_151F80_Vec(dt * ff8 + fe8.x, dt * ffc + fe8.y, dt * f100 + fe8.z);
+    S_151F80_Vec v = fe8;
+    v.y = 0.0f;
+    float sq = v.z * v.z + v.x * v.x;
+    float len;
+    _mm_store_ss(&len, _mm_sqrt_ss(*(__m128 *)&sq));
+    if (len > D_002A7870) {
+        func_00150890(&v, &v);
+        v = v * D_002A7870;
+        fe8.x = v.x;
+        fe8.z = v.z;
+    }
+    if (fe8.y > D_002A786C) {
+        fe8.y = D_002A786C;
+    }
+    S_1528D0_Vec q;
+    if (f2c == 0) {
+        q = *(S_1528D0_Vec *)&D_002A789C;
+    } else {
+        f2c->f1a4->f4->func_00199B00(&q, 0);
+    }
+    S_1528D0_Vec p = q;
+    p.x += dt * fe8.x;
+    p.y += dt * fe8.y;
+    p.z += dt * fe8.z;
+    f2c->f1a4->f4->func_00199600(p);
+    f2c->f1a4->func_00132D20();
 }
 
 void C_00151F80::func_00152BA0(void)
