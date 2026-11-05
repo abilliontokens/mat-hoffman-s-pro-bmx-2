@@ -173,6 +173,18 @@ void C_001684B0::func_001684B0(void)
   return;
 }
 
+void C_001684B0::func_001684F0(int count)
+{
+    f1c = count;
+    if (count > 0) {
+        f20 = (char **)func_001E8AA5(count << 2);
+        f20[0] = (char *)func_001E8AA5(f1c << 10);
+        for (int i = 1; i < f1c; i++) {
+            f20[i] = f20[i - 1] + 0x400;
+        }
+    }
+}
+
 int __stdcall func_00168550(int a, char *dst, int d);
 int __stdcall func_00168550(void *a, char *dst, int d);
 int __stdcall func_00168BE0(int a, const char *src, char *dst, int d)
