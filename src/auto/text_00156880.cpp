@@ -115,6 +115,23 @@ void C_00156E80::func_00156E80(void)
   return;
 }
 
+int Game::func_00156F30(int a, int b)
+{
+    if (f230 & 8) {
+        return 1;
+    }
+    if (f230 & 4) {
+        if (func_00135C70(0x32, 0, a, 0x80) != 0) {
+            func_001D47C0();
+            D_002AA6C0->func_00011430(1, 0);
+        }
+        if (func_00135C70(0x3d, 0, a, 0x80) != 0) {
+            D_002DF8F8 = 1 - D_002DF8F8;
+        }
+    }
+    return f278->v23(a, b) != 0;
+}
+
 undefined4 C_00157290::func_00157290(byte param_1)
 {
   int func_00156FC0(...);
@@ -126,6 +143,14 @@ undefined4 C_00157290::func_00157290(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+void C_00157660::func_00157660(void)
+{
+    extern int D_0028715C;
+    D_002DF94C--;
+    vtbl = (void *)&D_0028715C;
+    func_0001DFF0();
 }
 
 void C_001576C0::func_001576C0(void)
