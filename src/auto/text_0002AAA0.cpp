@@ -60,7 +60,7 @@ struct Vec4_0002AF90 {
         r.w = 1.0f;
         return r;
     }
-    __forceinline void Lerp(const Vec4_0002AF90 *o, float t)
+    __forceinline void Lerp(const Vec4_0002AF90 *o, const float &t)
     {
         *this = Sub(o).Mul(t).Add(o);
     }
@@ -96,8 +96,8 @@ struct C_0002AF90 {
 void C_0002AF90::func_0002AF90(void)
 {
     Vec4_0002AF90 v;
-    Vec4_0002AF90 *cur = &f13c;
-    Vec4_0002AF90 *tgt = &f14c;
+    Vec4_0002AF90 *cur;
+    Vec4_0002AF90 *tgt;
 
     if ((D_002B7E5C & 1) == 0) {
         D_002B7E5C |= 1;
@@ -107,7 +107,9 @@ void C_0002AF90::func_0002AF90(void)
         D_002B7E4C.w = 1.0f;
     }
     v = f230->func_00197EC0(&D_002B7E4C);
+    tgt = &f14c;
     f230->func_00199A70(0, tgt);
+    cur = &f13c;
     tgt->x += v.x;
     tgt->y += v.y;
     tgt->z += v.z;
@@ -118,7 +120,7 @@ void C_0002AF90::func_0002AF90(void)
     f1f8->func_0014AC30(cur, 0);
     f1f8->func_00133ED0();
     f1f8->func_00133F10(0);
-    *cur = *tgt;
+    f13c = f14c;
 }
 
 void C_0002B140::func_0002B140(C_00168B90 *param_1) {
