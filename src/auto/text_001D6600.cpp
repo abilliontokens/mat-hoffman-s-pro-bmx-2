@@ -48,7 +48,7 @@ XboxTextureMap *XboxTextureMap::func_001D6AD0(void *param)
     func_001B1200(param);
     fB8 = 0;
     fBC = 0;
-    vtbl = (void *)&D_0028F644;
+    *(void **)this = (void *)&D_0028F644;
     return this;
 }
 
@@ -67,6 +67,27 @@ void XboxTextureMap::func_001D6B00(void)
         fBC = 0;
     }
     func_001B11D0();
+}
+
+XboxTextureMap *XboxTextureMap::func_001D6B70(void)
+{
+    int dims[2];
+    XboxTextureMap *p;
+
+    if (fB8 != 0) {
+        func_001FCEA0(fB8, 0, dims, 0, 0x80);
+        p = (XboxTextureMap *)func_001E8A44(0x110);
+        if (p != 0) {
+            p->func_001B1200((void *)1);
+            *(void * volatile *)p = (void *)&D_0028F644;
+            p->fB8 = 0;
+            p->fBC = 0;
+            if (((XboxTextureMapVtbl *)p)->slot8(dims[1], f8, fC, (dims[0] << 3) / func_001B2910(fA4), fA0, fA4, fA4, 0, 0))
+                return p;
+            ((XboxTextureMapVtbl *)p)->slot0(1);
+        }
+    }
+    return 0;
 }
 
 int __stdcall func_001D6C40(int a0, int a1) {
