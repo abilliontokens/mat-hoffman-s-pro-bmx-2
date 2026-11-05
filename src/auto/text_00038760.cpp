@@ -22,6 +22,7 @@ struct C_00038760 {
     int *func_000389C0(int param_1);
     int *func_00038A10(int param_1, int *param_2);
     int func_00038A70(void *param_1, void **param_2);
+    int func_00038760(float x, float y, float z, int unused, int *out);
 };
 
 int *C_00038760::func_000389C0(int param_1)
