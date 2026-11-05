@@ -203,9 +203,11 @@ struct C_0001CA30 {
     void *f1C;
     int f20;
     int f24;
-    unsigned char f28;
+    unsigned char f28 : 1;
+    unsigned char pad28 : 7;
     char pad29[3];
-    unsigned char f2C;
+    unsigned char f2C : 1;
+    unsigned char pad2C : 7;
     char pad2D[3];
     C_0001CA30 *func_0001C9F0(void);
     void func_0001CA30(void);
@@ -349,9 +351,9 @@ S_0001C610_V4 func_0001C610(float *a, float *b) {
 S_0001C610_V4 func_0001C680(float x, float y, float z, float w, float *m) {
     S_0001C610_V4 r;
 
-    r.x = x * m[0] + y * m[1] + z * m[2];
-    r.y = x * m[4] + y * m[5] + z * m[6];
-    r.z = x * m[8] + y * m[9] + z * m[10];
+    r.x = dot3_0001C680(x, y, z, m);
+    r.y = dot3_0001C680(x, y, z, m + 4);
+    r.z = dot3_0001C680(x, y, z, m + 8);
     r.w = 1.0f;
     return r;
 }
