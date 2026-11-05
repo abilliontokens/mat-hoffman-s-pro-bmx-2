@@ -86,6 +86,39 @@ struct C_00083950 {
 };
 
 
+void C_000831E0::func_000831E0(void)
+{
+    int i;
+    memset(sCA4, 0, 0x32);
+    memset(sCD6, 0, 0x32);
+    fD4 = 0;
+    fD8 = 0;
+    f138 = 0;
+    f120 = 0;
+    f124 = 0;
+    fC2C = 0;
+    f2E4 = 0;
+    f2E8 = 0;
+    f64 = 0;
+    fC4C = 0;
+    fD0 = 0;
+    f274 = 0;
+    f54 = 0;
+    f58 = 0;
+    fCC = 0;
+    f198 = 0;
+    f200 = 0;
+    f204 = 0;
+    fC40 = 0;
+    fC44 = 0;
+    fC48 = 0;
+    fC54 = 0;
+    for (i = 0; i < 100; i++) {
+        a2EC[i] = -1;
+        a47C[i] = -1;
+    }
+}
+
 void C_000836A0::func_000836A0(float a0) {
     unkCC = 1;
     unkD0 = a0 + unkD0;
@@ -102,6 +135,13 @@ void C_00083710::func_00083710(undefined4 param_1, undefined4 param_2)
   *(undefined4 *)(in_ECX + 0x58) = 1;
   *(undefined4 *)(in_ECX + 0x5c) = param_2;
   return;
+}
+
+void C_000831E0::func_00083850(void)
+{
+    fC40 = 1;
+    f15C = 2;
+    f138 = f138 + D_002755E8;
 }
 
 void C_00083950::func_00083950(void) {
