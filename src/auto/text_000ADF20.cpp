@@ -26,6 +26,11 @@ struct Grinds {
     void func_00157660();
     void func_000AE6E0();
 };
+struct BMXCameraFacingObjects {
+    void *vtbl;
+    void func_000A99A0();
+    void *func_000AE760(unsigned int flags);
+};
 #include "ghidra.h"
 struct C_000AE740 {
     undefined4 func_000AE740(byte param_1);
