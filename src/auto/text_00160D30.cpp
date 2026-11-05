@@ -11,7 +11,23 @@ struct V3_00161930 {
     float x, y, z;
 };
 
-void func_001618A0(V4_00161930 *out, V4_00161930 *in);
+V4_00161930 *func_001618A0(V4_00161930 *out, V4_00161930 *in);
+
+static __forceinline void cross_001619D0(float *out, float *a, float *b)
+{
+    __m128 va = _mm_loadu_ps(a);
+    __m128 vb = _mm_loadu_ps(b);
+    __m128 sa = va;
+    __m128 sb = vb;
+
+    sa = _mm_shuffle_ps(sa, sa, 0xc9);
+    sb = _mm_shuffle_ps(sb, sb, 0xc9);
+    vb = _mm_mul_ps(vb, sa);
+    va = _mm_mul_ps(va, sb);
+    va = _mm_sub_ps(va, vb);
+    va = _mm_shuffle_ps(va, va, 0xc9);
+    _mm_storeu_ps(out, va);
+}
 
 struct C_00161600 {
     undefined4 func_00161600(byte param_1);
@@ -367,24 +383,18 @@ S_Matrix16_00161AA0 func_00161AA0(float a1, float a2, float a3, float a4)
     return m;
 }
 
-void func_00161BE0(char *dst, char *src, float *m, int count, int dstStride, int srcStride)
+void func_00161BE0(char *dst, char *src, __m128 *m, int count, int dstStride, int srcStride)
 {
-    __m128 r0, r1, r2, r3;
-
     if (count != 0) {
         if (srcStride == 0) {
             srcStride = dstStride;
         }
-        r0 = _mm_load_ps(m);
-        r1 = _mm_load_ps(m + 4);
-        r2 = _mm_load_ps(m + 8);
-        r3 = _mm_load_ps(m + 12);
         do {
             __m128 v = _mm_loadu_ps((float *)src);
-            __m128 t0 = _mm_mul_ps(r0, v);
-            __m128 t2 = _mm_mul_ps(r2, v);
-            __m128 t1 = _mm_mul_ps(r1, v);
-            __m128 t3 = _mm_mul_ps(r3, v);
+            __m128 t0 = _mm_mul_ps(m[0], v);
+            __m128 t2 = _mm_mul_ps(m[2], v);
+            __m128 t1 = _mm_mul_ps(m[1], v);
+            __m128 t3 = _mm_mul_ps(m[3], v);
             __m128 s01 = _mm_add_ps(_mm_unpacklo_ps(t0, t1), _mm_unpackhi_ps(t0, t1));
             __m128 s23 = _mm_add_ps(_mm_unpacklo_ps(t2, t3), _mm_unpackhi_ps(t2, t3));
             __m128 res = _mm_add_ps(_mm_movelh_ps(s01, s23), _mm_movehl_ps(s23, s01));
