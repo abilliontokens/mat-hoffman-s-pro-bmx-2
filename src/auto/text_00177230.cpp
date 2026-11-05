@@ -5,7 +5,11 @@
 struct C_00135420 {
     int func_00135420(void);
 };
+#include <string.h>
 int func_00135410(void);
+u32 func_00175840(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch);
+void *func_001E8AA5(int size);
+void func_001E8390(void *p);
 int func_00176630(u8 *src, int fmt, int width, int height, int srcPitch, int dstPitch, int a6, int a7, int a8, u8 *dst, int a10);
 
 u32 func_00177860(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch)
