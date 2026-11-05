@@ -142,7 +142,8 @@ struct BmxGame {
     u8 f230;
     char pad231[0x73];
     BmxGameObj2A4 *f2A4;
-    char pad2A8[8];
+    char pad2A8[4];
+    S_00059F50_Obj *f2AC;
     int f2B0;
     int f2B4;
     u8 f2B8;
