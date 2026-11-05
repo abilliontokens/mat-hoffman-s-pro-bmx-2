@@ -481,6 +481,15 @@ double func_001F38F6(int param_1, int param_2, double param_3, double param_4, i
     return param_4;
 }
 
+#pragma optimize("s", on)
+double func_001F39A9(double x, int exp)
+{
+    double retval = x;
+
+    *((unsigned short *)&retval + 3) = (*((unsigned short *)&x + 3) & 0x800f) | ((exp + 0x3fe) << 4);
+    return retval;
+}
+
 extern long double D_002AED80;
 extern long double D_002AED8C;
 void func_001F3B1F(unsigned int flags)
