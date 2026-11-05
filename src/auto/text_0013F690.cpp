@@ -326,12 +326,14 @@ void C_001402C0::func_00140360(int n)
 
 C_00140390 *C_00140390::func_00140390(int a)
 {
+    unsigned int *p;
     ((C_00162610 *)this)->func_00162610(a);
     vtbl = (void *)&D_00284F8C;
-    f58 = 0.0f;
-    f54 = 0.0f;
-    f50 = 0.0f;
-    f5C = 1.0f;
+    p = (unsigned int *)&f50;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
     f3C = 0;
     f40 = 0;
     f44 = 0;
