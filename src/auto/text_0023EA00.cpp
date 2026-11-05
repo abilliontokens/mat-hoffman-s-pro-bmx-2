@@ -151,6 +151,12 @@ int __stdcall func_0023ED4C(S_0023ED4C_Src *src, S_0023ED4C_Out *out)
     return 0;
 }
 
+int __stdcall func_0023F160(C_0023EFB0 *p)
+{
+    p->func_0023EFB0();
+    return 0;
+}
+
 #pragma optimize("y", off)
 void __stdcall func_0023F469(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7)
 {
