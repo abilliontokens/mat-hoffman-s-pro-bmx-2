@@ -16,12 +16,30 @@ struct Class_00294F04 {
     void *func_001E88FF(unsigned int flags);
 };
 
+unsigned __int64 func_001E8858(double x) { return (unsigned __int64)x; }
+
 void func_001E88CD(void) {
     int func_001EB9F3(...);
     func_001EB9F3(25);
+}
+
+void Class_00294F04::func_001E88D6() {
+    vtbl = (void *)&D_00294F04;
+    func_001EB390(14);
+    if (field_4) func_001E8390(field_4);
+    func_001EB302(14);
+}
+
+void *Class_00294F04::func_001E88FF(unsigned int flags) {
+    func_001E88D6();
+    if (flags & 1) func_001E891B(this);
+    return this;
 }
 
 void func_001E891B(void) {
     int func_001E8390(...);
     func_001E8390();
 }
+
+void func_001E8A44(int a0) { func_001E8A79(a0, 1); }
+
