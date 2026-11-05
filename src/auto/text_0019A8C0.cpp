@@ -26,6 +26,32 @@ void func_00198EF0(void *a, void *b, void *c);
 
 struct SoultreeObject;
 
+struct C_0019B760_Mgr {
+    void func_0013B210(void *p);
+};
+extern C_0019B760_Mgr *D_002BEAAC;
+void func_001E8390(void *p);
+
+struct C_0019B760_Res {
+    char pad0[0x70];
+    int f70;
+};
+
+struct C_0019B760 {
+    void *vtbl;
+    char pad4[0x50];
+    void *f54;
+    char pad58[0x1b0 - 0x58];
+    void *f1b0;
+    void *f1b4;
+    char pad1b8[0x1c4 - 0x1b8];
+    void *f1c4;
+    void *f1c8;
+    char pad1cc[0x1d4 - 0x1cc];
+    C_0019B760_Res *f1d4;
+    void func_0019B760(void);
+};
+
 struct S_0019A8C0_Child {
     virtual void v0();
     virtual void v1();
