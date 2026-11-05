@@ -1,6 +1,10 @@
 /* 12 functions from 0x001C0F20 to 0x001C19D0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+extern int D_00275AD4, D_00275AC8, D_0027CEE4;
+extern int D_0028DC84, D_0028DC7C, D_0028DC74, D_0028DC6C, D_0028DC60;
+extern int D_0028DC54, D_0028DC48, D_0028DC3C, D_0028DEEC, D_00276F28;
+void func_001ADCC0(void *out, int size, int *format, void *name);
 struct C_001C10D0 {
     virtual void v0();
     virtual void v1();
