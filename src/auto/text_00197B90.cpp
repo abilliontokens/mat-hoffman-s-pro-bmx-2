@@ -84,6 +84,7 @@ struct C_00197EC0 {
     char pad181[3];
     float f184;
     void func_00198440(float *pos, float *maxDist, int recurse);
+    void func_00198440(S_00198440_Args a);
     void func_00197AA0(void);
     C_00197EC0_Vec4 func_00197EC0(float *v);
     C_00197EC0_Vec4 func_00197F70(float *v);
