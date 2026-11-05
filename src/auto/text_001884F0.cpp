@@ -262,7 +262,7 @@ struct C_001887A0 {
     int unk4;
     S_001887A0_Model *unk8;
     S_001887A0_Data *unkC;
-    int BytesEqual(S_001887A0_Arg *p);
+    int func_001887A0(S_001887A0_Arg *p);
 };
 
 struct S_001CD770 {
