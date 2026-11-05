@@ -336,10 +336,16 @@ struct S_000B2630_List {
 struct S_000B2630_Game {
     char pad0[0x4E0];
     S_000B2630_List *f4E0;
+    char pad4E4[0x578 - 0x4E4];
+    int f578;
+    void **f57C;
 };
 
 extern S_000B2630_Game *D_002B9120;
+extern float D_002A2DC4[];
 extern float D_00275544;
+extern float D_00275548;
+extern float D_00278C48;
 extern float D_00275800;
 extern float D_0027CE50;
 extern float D_0027CE40;
