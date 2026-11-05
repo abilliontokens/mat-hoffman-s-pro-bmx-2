@@ -42,6 +42,10 @@ struct C_00168F40 {
     char pad434[0x84];
     S_00168F40_Index *f4B8;
     int func_00168300(int id);
+    int lookup(int k)
+    {
+        return func_00168300(k);
+    }
     int func_00168F40(int id);
 };
 
@@ -77,6 +81,32 @@ struct VT_00169C00 {
     virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
     virtual void v32();
 };
+
+int C_00168F40::func_00168F40(int id)
+{
+    int idx;
+    int key;
+
+    key = id;
+    idx = func_00168300(key);
+    if (func_00168300(key) != -1) {
+        if (f4 != 0) {
+            D_002BEAAC->func_0013AFF0(f0, f4B8[idx].offset, 0);
+            id = 0;
+            D_002BEAAC->func_0013C8A0(f0, &id, 4, 1);
+            f430 = 0;
+            f424 = 1;
+            f42C = id;
+            return id;
+        }
+        D_002BEAAC->func_0013AFF0(f0, f18[idx].offset, 0);
+        f430 = 0;
+        f424 = 1;
+        f42C = f18[idx].size;
+        return f42C;
+    }
+    return 0;
+}
 
 int C_00169010::func_00169010(int idx, float *out)
 {
