@@ -115,6 +115,7 @@ struct C_000DA140 {
     char pad2EC[0x18];
     S_000D9FE0_Widget *a304[5];
     void func_000D9DC0();
+    void func_000D8700(int value, char *buf);
     void func_000D9FE0();
     void func_001BEE30(int a, int b);
     void func_000D5860();
