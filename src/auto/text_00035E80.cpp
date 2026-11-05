@@ -53,17 +53,6 @@ int func_001ADCC0(char *dst, int size, const char *fmt, ...);
 extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
 extern "C" char *func_001E8AC0(const char *s, int c);
 
-static __forceinline void stripExt(char *dst, const char *src)
-{
-    int len = strlen(src);
-    int lim = 0x103;
-    int n = *(lim > len ? &len : &lim);
-    func_001E8920(dst, src, n);
-    dst[n] = 0;
-    char *p = func_001E8AC0(dst, '.');
-    if (p) memset(p, 0, strlen(p));
-}
-
 /* the light/colour object a page owns (f44->f5C) */
 struct S_000361F0_Gfx {
     char pad0[4];
@@ -128,11 +117,7 @@ int C_00035E80::func_00035E80(int a1, const char *path, S_00035E80_Out *out)
     char *dot;
 
     mem = func_001E8A44(0x4CC);
-    if (mem) {
-        stream = ((S_00035E80_Stream *)mem)->func_00168280();
-    } else {
-        stream = 0;
-    }
+    stream = mem != 0 ? ((S_00035E80_Stream *)mem)->func_00168280() : 0;
     if (stream->func_00169490(path, 0) == 0) {
         if (stream) {
             stream->func_001691E0();
@@ -164,13 +149,11 @@ int C_00035E80::func_00035E80(int a1, const char *path, S_00035E80_Out *out)
         stream->func_00168550(D_00276D98, name, -1);
         stream->func_00168A10(D_00276DA4, &subCount);
         for (j = 0; j < subCount - 1; j++) {
-            Vec4_000361F0 d1;
-            Vec4_000361F0 d2;
             S_00035E80_Line *line;
             func_001ADCC0(key1, 0x1e, D_00276D8C, j + 1);
             func_001ADCC0(key2, 0x1e, D_00276D8C, j + 2);
-            stream->func_00168CB0(key1, &d1, &pos0);
-            stream->func_00168CB0(key2, &d2, &pos1);
+            stream->func_00168CB0(key1, Vec4_000361F0(), pos0);
+            stream->func_00168CB0(key2, Vec4_000361F0(), pos1);
             line = f64->f530->func_00159E90(name, &pos0, &pos1, 0, 0, a1);
             f64->f530->func_00159C40(line);
             out->f18[idx++] = line;
