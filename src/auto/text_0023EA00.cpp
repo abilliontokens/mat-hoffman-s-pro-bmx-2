@@ -51,7 +51,6 @@ struct C_0023ED4C {
     int func_0023ED4C(S_0023ED4C_Src *src, S_0023ED4C_Out *out);
 };
 
-#pragma optimize("y", off)
 void C_0023EA00::func_0023EA00(void)
 {
     while (fA4.next != &fA4) {
