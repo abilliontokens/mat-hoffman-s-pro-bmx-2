@@ -36,6 +36,21 @@ int C_0004EBA0::func_0004EBA0(void)
     return 1;
 }
 
+void C_0004EBA0::func_0004EBE0(void)
+{
+    int i;
+
+    func_00031640();
+    for (i = 0; i < f90; i++) {
+        if (fD30[i] != 0) {
+            func_001577A0(fD30[i], -1);
+        }
+        if (fD58[i] != 0) {
+            func_001577A0(fD58[i], -1);
+        }
+    }
+}
+
 void *C_0004ED80::func_0004ED80(int flags) {
     extern int D_00277644;
     unk0 = (int)&D_00277644;
