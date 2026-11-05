@@ -171,6 +171,19 @@ void C_000601B0::func_000601B0(void)
   return;
 }
 
+void BmxInGameMenu::func_000601D0(void)
+{
+    vf6();
+    unkF4 = 0;
+    unkF8 = 0;
+    unk120 = 0;
+    unk108 = 1;
+    unk114 = -1;
+    unk118 = 0;
+    unk128 = 1;
+    unk130 = 0;
+}
+
 void C_00060350::func_00060350(int a0) {
     unk11C = a0;
     unk128 = 1;
