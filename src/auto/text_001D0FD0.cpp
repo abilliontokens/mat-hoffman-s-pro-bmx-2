@@ -39,7 +39,6 @@ struct S_001D13D0_Alloc {
 };
 
 struct Game {
-    virtual void v0();
     void func_00156FC0();
 };
 
