@@ -297,6 +297,27 @@ void C_0013AEC0::func_0013B390(int idx)
     }
 }
 
+int C_0013AEC0::func_0013B3E0(S_BufSet *set, unsigned int size)
+{
+    int ok = 1;
+    int i;
+
+    size >>= 3;
+    set->total = 0;
+    for (i = 0; i < 8; i++) {
+        set->bufs[i] = func_001E8AA5(size);
+        if (i == 0 && set->bufs[i] == 0) {
+            set->sizes[0] = size;
+            ok = 0;
+        }
+        if (f2C[i] != 0) {
+            set->total += size;
+            set->sizes[i] = size;
+        }
+    }
+    return ok;
+}
+
 void __stdcall func_0013B440(int param_1)
 {
   int func_001E8390(...);
@@ -314,5 +335,36 @@ void __stdcall func_0013B440(int param_1)
   } while (iVar2 < 8);
   *(undefined4 *)(param_1 + 0x44) = 0;
   return;
+}
+
+void __stdcall func_0013B480(S_BufSet *set)
+{
+    int i;
+
+    for (i = 0; i < 8; i++) {
+        if (set->bufs[i] != 0) {
+            memset(set->bufs[i], 0, set->sizes[i]);
+        }
+    }
+}
+
+int __stdcall func_0013B4C0(S_BufSet *set, int n, int x)
+{
+    int total = 0;
+    int off;
+    int sz;
+    int cnt;
+
+    for (off = 0; off < 0x20; off += 4) {
+        if (*(int *)((char *)set + off) != 0) {
+            sz = *(int *)((char *)set + off + 0x20);
+            cnt = n < sz ? n : sz;
+            n -= sz;
+            if (cnt > 0) {
+                total += func_0014FE60(*(int *)((char *)set + off), cnt, x);
+            }
+        }
+    }
+    return total;
 }
 
