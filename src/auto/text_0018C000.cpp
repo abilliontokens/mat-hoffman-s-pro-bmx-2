@@ -1,6 +1,16 @@
 /* 25 functions from 0x0018C000 to 0x0018CF40, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_0018C820 {
+    char pad0[0x24];
+    int unk24;
+    int unk28;
+    int unk2C;
+    int unk30;
+    int unk34;
+    void func_0018C820(int a0, int a1, int a2, int a3);
+};
+
 struct C_0018C070 {
     undefined4 func_0018C070(void);
 };
@@ -45,5 +55,13 @@ void C_0018C800::func_0018C800(void) {
     unk2C = -1;
     unk30 = -1;
     unk34 = 0;
+}
+
+void C_0018C820::func_0018C820(int a0, int a1, int a2, int a3) {
+    unk24 = a0;
+    unk2C = a1;
+    unk28 = 1;
+    unk30 = a2;
+    unk34 = a3;
 }
 
