@@ -89,6 +89,38 @@ int DXVSData::func_001D9760(int a1, int a2, int a3, int a4, int a5, int a6, int 
     return 0;
 }
 
+int __stdcall func_001D9820(void *surface, const char *path, int bpp)
+{
+    S_001D9820_Desc desc;
+    S_001D9820_Tga hdr;
+    S_001D9820_Lock lock;
+    void *fp;
+    void *buf;
+    int w;
+
+    func_002011F0(surface, &desc);
+    w = desc.Width;
+    memset(&hdr, 0, sizeof(hdr));
+    hdr.idLength = 0;
+    hdr.imageType = 2;
+    hdr.width = (unsigned short)w;
+    hdr.height = (unsigned short)desc.Height;
+    hdr.bitsPerPixel = (unsigned char)bpp;
+    hdr.descriptor = 0x28;
+    fp = func_0014FDF0(path, D_00282960);
+    if (fp == 0) {
+        return 0x80004005;
+    }
+    func_0014FE80(&hdr, 0x12, 1, fp);
+    func_00201210(surface, &lock, 0, 0x40);
+    buf = func_001E8A44(desc.Height * w * 4);
+    memcpy(buf, lock.pBits, desc.Size);
+    func_0014FE80(buf, 1, (desc.Height * w * bpp) >> 3, fp);
+    func_0014FE50(fp);
+    func_001E891B(buf);
+    return 0;
+}
+
 void *DXVSDataItem::func_001D9930(int flags)
 {
     vtbl = (void *)&D_00284E94;
