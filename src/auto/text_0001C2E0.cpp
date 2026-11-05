@@ -604,6 +604,17 @@ void C_0001CD60::func_0001CD60(int a, int b) {
     func_00157BF0(a, b);
 }
 
+int C_0001D0B0::func_0001D0B0(int count, int p2)
+{
+    void *p = func_001E8A44(count * 4);
+
+    f10 |= 1;
+    fC = count;
+    f4 = p;
+    f8 = p2;
+    return p != 0;
+}
+
 void C_0001D200::func_0001D200(void)
 {
     int i;
