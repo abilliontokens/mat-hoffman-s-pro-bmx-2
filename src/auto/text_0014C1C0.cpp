@@ -221,6 +221,34 @@ struct C_0014CC20 {
 };
 
 
+void C_0014C1C0::func_0014C1C0(int n, V4_0014C1C0 *src, int *ids)
+{
+    int i;
+    Reset();
+    fA8 = n;
+    fAC = (int *)func_001E8A44(n * 8);
+    fB0 = NewV4_0014C1C0(fA8 * 2);
+    fB4 = NewV4_0014C1C0(fA8);
+    fB8 = NewV4_0014C1C0(fA8);
+    fBC = func_001E8A44(fA8 * 4);
+    fC0 = NewV4_0014C1C0(fA8);
+    fC4 = NewV4_0014C1C0(fA8);
+    for (i = 0; i < fA8 * 2; i++) {
+        if (ids) fAC[i] = ids[i]; else fAC[i] = 0;
+        if (src) fB0[i] = src[i]; else fB0[i] = D_002A75A8;
+    }
+    C_00134980 *o = new (func_001E8A44(0x9c)) C_00134980;
+    o->f7C = fA8;
+    o->f84 = func_001E8A44(o->f7C * 4);
+    o->f88 = func_001E8A44(o->f7C * 4);
+    o->f8C = func_001E8A44(o->f7C * 4);
+    o->f90 = func_001E8A44(o->f7C * 2);
+    o->f70 = NewV4_0014C1C0(o->f7C * 2);
+    o->f74 = NewV4_0014C1C0(o->f7C);
+    o->f78 = NewV4_0014C1C0(o->f7C);
+    f54 = o;
+}
+
 void C_0014C530::func_0014C530(void) {
     extern int D_002B9344;
     int func_0014B260(...);
