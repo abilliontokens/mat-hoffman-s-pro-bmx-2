@@ -106,6 +106,7 @@ struct BmxUIPageHOF {
     void func_000D4DD0();
     void func_000D5860();
     void func_000D5B90();
+    void func_000D59A0();
 };
 
 BmxUIPageHOF *BmxUIPageHOF::func_000D4D20(int a0)
