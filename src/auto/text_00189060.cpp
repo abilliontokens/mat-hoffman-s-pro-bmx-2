@@ -8,6 +8,51 @@ struct C_00185B10 {
     C_00185B10 *func_00185B10(void);
 };
 
+struct C_00157600 {
+    void func_00157600(int param_1);
+};
+
+extern int D_00289ABC;
+extern int D_00289BFC;
+extern int D_00289C9C;
+extern int D_00289D8C;
+
+struct SceneSound {
+    virtual void dummy0();
+    virtual void dummy1();
+    virtual void dummy2();
+    virtual void dummy3();
+    virtual void dummy4();
+    virtual void dummy5();
+    virtual void dummy6();
+    virtual void dummy7();
+    virtual void dummy8();
+    virtual void dummy9();
+    virtual void dummy10();
+    virtual void dummy11();
+    virtual void dummy12();
+    virtual void dummy13();
+    virtual void dummy14();
+    virtual void dummy15();
+    virtual void dummy16();
+    virtual void dummy17();
+    virtual void dummy18();
+    virtual void dummy19();
+    virtual void dummy20();
+    virtual void dummy21();
+    virtual void dummy22();
+    virtual void dummy23();
+    virtual void dummy24();
+    virtual void dummy25();
+    virtual void dummy26();
+    virtual int dummy27(int a);
+    char pad4[0x24 - 4];
+    int unk24;
+    int unk28;
+    int unk2C;
+    int unk30;
+};
+
 struct BasicScene;
 
 struct SceneItem {
