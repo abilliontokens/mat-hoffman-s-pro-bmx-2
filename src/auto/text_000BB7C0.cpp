@@ -166,18 +166,17 @@ int C_000BBDF0::func_000BBDF0(void)
                  *(int *)(in_ECX + 0x288) * 4) * 0x120 + *(int *)(in_ECX + 0x280);
 }
 
+extern S_000BBE30_Game *D_002A8490;
+
 undefined4 C_000BC180::func_000BC050(void)
 {
-    extern undefined4 D_002A8490;
-    if (((S_000BC180_Global *)D_002A8490)->f2e0->f324 == 1) {
+    if (D_002A8490->f2E0->f324 == 1) {
         f27c->f124 = f28c;
         return f28c;
     }
     f27c[f284].f124 = f28c;
     return f28c;
 }
-
-extern S_000BBE30_Game *D_002A8490;
 
 undefined4 C_000BC0B0::func_000BC0B0(void)
 {
