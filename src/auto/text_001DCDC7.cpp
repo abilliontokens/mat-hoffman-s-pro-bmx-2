@@ -277,6 +277,27 @@ void __stdcall func_001DD7F7(undefined4 param_1, undefined4 param_2)
   return;
 }
 
+u32 __stdcall func_001DDAEE(u32 id, int flag)
+{
+    char buf[0x104];
+    S_IoStatusBlock iosb;
+    S_AnsiString str;
+    S_ObjectAttributes oa;
+    int status;
+
+    func_001EA4E1(buf, D_0028FAC0, D_0028FA4C, id >> 16, id);
+    _imp__RtlInitAnsiString(&str, buf);
+    oa.rootDirectory = 0;
+    oa.objectName = &str;
+    oa.attributes = 0x40;
+    status = _imp__NtCreateFile(&id, 0x80100080, &oa, &iosb, 0, 0, 1, 1, (flag ? 8 : 0x20) | 0x40);
+    if (status < 0) {
+        func_001DD659(status);
+        return -1;
+    }
+    return id;
+}
+
 int __stdcall func_001DDC28(void *a0) {
     int result = _imp__NtSetEvent(a0, 0);
     if (result >= 0) {
@@ -310,6 +331,32 @@ int __stdcall func_001DDCC0(void *handle, int ms, int alertable)
             return -1;
         }
     } while (alertable != 0 && status == 0x101);
+    return status;
+}
+
+#pragma optimize("y", off)
+int __stdcall func_001DDD04(u32 nCount, void **lpHandles, int bWaitAll, u32 dwMilliseconds, int bAlertable)
+{
+    void *__stdcall func_001DF56E(void *timeOut, u32 ms);
+    void *handles[64];
+    __int64 timeOut;
+    void *pTimeOut;
+    int status;
+
+    if (nCount > 64) {
+        func_001DD659(0xc000000d);
+        return -1;
+    }
+    memcpy(handles, lpHandles, nCount * sizeof(void *));
+    pTimeOut = func_001DF56E(&timeOut, dwMilliseconds);
+    do {
+        status = _imp__NtWaitForMultipleObjectsEx((char)nCount, handles, bWaitAll == 0, 1,
+                                                  bAlertable, pTimeOut);
+        if (status < 0) {
+            func_001DD659(status);
+            return -1;
+        }
+    } while (bAlertable != 0 && status == 0x101);
     return status;
 }
 
