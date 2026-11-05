@@ -1,6 +1,13 @@
 /* 15 functions from 0x001A2C00 to 0x001A3BF0, found by Ghidra. */
 #include "common.h"
 
+struct S_001A2C00_Vec {
+    int x;
+    int y;
+    int z;
+    int w;
+};
+
 struct S_001A2C00_Snd {
     virtual void v0();
     virtual void v1();
@@ -9,6 +16,27 @@ struct S_001A2C00_Snd {
     virtual void v4();
     virtual void v5();
     virtual int v6(int a);
+    virtual int v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23(int a, int b, S_001A2C00_Vec v, int d);
+};
+
+struct C_00157A00 {
+    void func_00157A00(int a);
 };
 
 struct S_001A2C00_Elem {
