@@ -276,3 +276,15 @@ void *C_0014AA40::func_0014AA40(int flags) {
     return this;
 }
 
+void C_0014AC30::func_0014AC30(Vec4 *vecs, int *ints)
+{
+    for (int i = 0; i < fA8 * 2; i++) {
+        if (ints != 0) {
+            fAC[i] = ints[i];
+        } else {
+            fAC[i] = 0;
+        }
+        fB0[i] = vecs[i];
+    }
+}
+
