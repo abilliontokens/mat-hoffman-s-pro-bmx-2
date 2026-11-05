@@ -73,7 +73,7 @@ extern int D_002F41D0;
 extern S_Tiddata *D_002FB360;
 extern char D_002AEDD8[];
 extern char D_002F69F0[];
-extern int D_002F69F8;
+extern volatile int D_002F69F8;
 
 extern "C" S_Tiddata *__cdecl func_001EA1A1(unsigned int num, unsigned int size);
 extern "C" unsigned long __cdecl func_001DE935(void);
@@ -323,6 +323,37 @@ void __cdecl func_001EB7D7(void)
     func_001F4BC8((unsigned int)&D_00010000, (unsigned int)&D_00030000);
 }
 
+S_Tiddata * __cdecl func_001EB7E9(void)
+{
+    S_Tiddata **slot;
+    S_Tiddata *ptd;
+    unsigned long irql;
+
+    irql = __readfsbyte(0x24);
+    if (irql >= 2) {
+        _imp__KeBugCheck(10);
+    }
+    if (*(int *)(__readfsdword(0x28) + 0x28) != 0) {
+        slot = (S_Tiddata **)(*(char **)(D_002F41D0 * 4 + __readfsdword(4)) + 8);
+    } else {
+        slot = &D_002FB360;
+    }
+    ptd = *slot;
+    if (ptd == 0) {
+        ptd = func_001EA1A1(1, 0x84);
+        if (ptd != 0) {
+            *slot = ptd;
+            ptd->pxcptacttab = D_002AEDD8;
+            ptd->holdrand = 1;
+            ptd->tid = func_001DE935();
+            ptd->thandle = (unsigned long)-1;
+        } else {
+            func_001EB9F3(0x10);
+        }
+    }
+    return ptd;
+}
+
 void func_001EB977(void) {
     int func_001EB302(...);
     func_001EB302(13);
@@ -331,13 +362,17 @@ void func_001EB977(void) {
 int __cdecl func_001EB980(void)
 {
     S_Tiddata *ptd;
+    S_Tiddata **tls;
+    int idx;
 
     if (func_001EB290() == 0) {
         func_001EB2D9();
         return 0;
     }
     ptd = func_001EA1A1(1, 0x84);
-    ((S_Tiddata **)((int **)__readfsdword(4))[D_002F41D0])[2] = ptd;
+    idx = D_002F41D0;
+    tls = (S_Tiddata **)((char **)__readfsdword(4))[idx];
+    tls[2] = ptd;
     if (ptd == 0) {
         ptd->pxcptacttab = D_002AEDD8;
         ptd->holdrand = 1;
