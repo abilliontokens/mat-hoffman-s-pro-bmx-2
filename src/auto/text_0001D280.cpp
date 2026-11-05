@@ -377,8 +377,9 @@ C_0001E050 *C_0001E050::func_0001E050(void) {
 }
 
 void *C_0001E080::func_0001E080(int flags) {
+    void func_0001DFF0(...);
     void func_001E891B(void *);
-    ((C_0001DFF0 *)this)->func_0001DFF0();
+    func_0001DFF0();
     if (flags & 1) {
         func_001E891B(this);
     }
