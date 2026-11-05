@@ -360,11 +360,10 @@ int func_001DE7AF(void)
 }
 
 #pragma optimize("y", on)
-__declspec(noreturn) void __stdcall func_001DE7C2(int status)
+void __stdcall func_001DE7C2(int status)
 {
     func_001DE6B8(0);
-    _imp__PsTerminateSystemThread(status);
-    __debugbreak();
+    terminate_thread_1DE7C2(status);
 }
 Callback_001DE6F0 __stdcall func_001DE7D4(Callback_001DE6F0 fn)
 {
