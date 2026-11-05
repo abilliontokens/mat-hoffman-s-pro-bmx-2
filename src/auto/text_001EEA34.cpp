@@ -65,7 +65,7 @@ void __fastcall func_001EEEE6(BitObj *dst, int dummy, BitObj *src) {
 BitObj *BitObj::func_001EF8F6(int a0, int a1) {
     BitObj local;
     local.func_001EEEE6(this);
-    int r = local.func_001EF1E7(0);
+    int r = local.func_001EF1E7();
     if (r != 0) local.func_001EF333(a1);
     else local.func_001EF613(a1);
     ((BitObj *)a0)->func_001EEEE6(&local);
