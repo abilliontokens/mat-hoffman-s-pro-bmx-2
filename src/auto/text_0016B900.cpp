@@ -49,8 +49,8 @@ struct C_0016BEC0 {
     char pad194[0x14];
     u32 f1A8, f1AC;
     char pad1B0[0x44];
-    float f1F4[4];
-    float f204[4];
+    V4f f1F4;
+    V4f f204;
     C_0016BEC0 *func_0016BEC0(void *a, char *name, void *b, u32 *c);
 };
 
