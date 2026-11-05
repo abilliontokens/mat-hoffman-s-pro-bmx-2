@@ -163,6 +163,17 @@ struct C_00160A70 {
     int func_00160A70(void *p);
 };
 
+struct VideoCardFlags {
+    unsigned char bit0 : 1;
+    unsigned char bit1 : 1;
+    unsigned char bit2 : 1;
+    unsigned char bit3 : 1;
+    unsigned char bit4 : 1;
+    unsigned char bit5 : 1;
+    unsigned char bit6 : 1;
+    unsigned char bit7 : 1;
+};
+
 struct VideoCard {
     void *vtbl;
     int f4;
