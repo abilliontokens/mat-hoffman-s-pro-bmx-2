@@ -153,6 +153,17 @@ struct V4b_001BB680 {
 /* 4x4 float matrix, 16-byte aligned for movaps */
 __declspec(align(16)) struct S_001BB680_Mat {
     float m[16];
+    __forceinline void identity(void)
+    {
+        _mm_store_ps(&m[0], _mm_setzero_ps());
+        _mm_store_ps(&m[4], _mm_setzero_ps());
+        _mm_store_ps(&m[8], _mm_setzero_ps());
+        _mm_store_ps(&m[12], _mm_setzero_ps());
+        m[0] = 1.0f;
+        m[5] = 1.0f;
+        m[10] = 1.0f;
+        m[15] = 1.0f;
+    }
 };
 
 struct C_000264C0 {
@@ -475,13 +486,13 @@ C_001BBAA0 *C_001BBAA0::func_001BB680(int a)
     self->unk2EC |= 1;
     self->unk2EC |= 2;
     self->unk2EC |= 4;
-    self->unkB4 = 0;
-    self->unkB8 = 0;
-    self->unk2DC = 0;
-    self->unkBC = 0;
-    self->unkC0 = 0;
-    self->unkC4 = 0;
-    self->unkC8 = 0;
+    *(volatile int *)&self->unkB4 = 0;
+    *(volatile int *)&self->unkB8 = 0;
+    *(volatile int *)&self->unk2DC = 0;
+    *(volatile int *)&self->unkBC = 0;
+    *(volatile int *)&self->unkC0 = 0;
+    *(volatile int *)&self->unkC4 = 0;
+    *(volatile int *)&self->unkC8 = 0;
     self->unk2EC &= 0xf7;
     self->unk2EC &= 0xef;
     self->unk2EC &= 0xdf;
@@ -491,18 +502,21 @@ C_001BBAA0 *C_001BBAA0::func_001BB680(int a)
     self->unk2E0 = 0;
     p = &m;
     v = (__m128 *)p;
-    v[0] = v[1] = v[2] = v[3] = _mm_setzero_ps();
+    v[0] = _mm_setzero_ps();
+    v[1] = _mm_setzero_ps();
+    v[2] = _mm_setzero_ps();
+    v[3] = _mm_setzero_ps();
     ((float *)v)[0] = 1.0f;
     ((float *)v)[5] = 1.0f;
     ((float *)v)[10] = 1.0f;
     ((float *)v)[15] = 1.0f;
     copy = m;
     ((C_000264C0 *)((char *)self + 0x50))->func_000264C0(&copy);
-    self->unk94 = 0;
-    self->unk98 = 0;
-    self->unk2E8 = 0;
-    self->unk9C = 0;
-    self->unkD0 = 0;
+    *(volatile int *)&self->unk94 = 0;
+    *(volatile int *)&self->unk98 = 0;
+    *(volatile int *)&self->unk2E8 = 0;
+    *(volatile int *)&self->unk9C = 0;
+    *(volatile int *)&self->unkD0 = 0;
     for (i = 0xa0; i < 0xb4; i += 4) {
         *(int *)((char *)self + i) = 0xbf800000;
     }
