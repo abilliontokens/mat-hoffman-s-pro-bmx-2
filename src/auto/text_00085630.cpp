@@ -140,6 +140,47 @@ struct MountVertOverlay {
 };
 
 
+struct C_00086240_Item {
+    char pad0[0x48];
+    unsigned int argb;
+    char pad4C[2];
+    unsigned char flags;
+    void func_0005E840(const char *s);
+    void func_001D6600(void);
+    void SetArgb(unsigned int c) {
+        if (argb != c) {
+            flags |= 8;
+            argb = (argb & c) | (c & 0xffffff);
+        }
+    }
+};
+
+extern char D_00277038[];
+char *func_001E8BF0(char *dst, const char *src, int n);
+
+/* HorseOverlay (vtable 0x00279644) */
+struct C_00086240 {
+    void *vtbl;
+    char pad4[0x20];
+    C_00086240_Item *a24[8];
+    C_00086240_Item *a44[8];
+    C_00086240_Item *a64[8];
+    C_00086240_Item *a84[4];
+    C_00086240_Item *f94, *f98, *f9C;
+    int fA0;
+    int aA4[8];
+    int fC4;
+    char padC8[8];
+    int fD0;
+    char fD4[20];
+    int fE8;
+    int fEC;
+    int fF0;
+    int fF4;
+    int func_00086240(void);
+    int func_00157960(void);
+};
+
 struct C_00085BD0 {
     char pad0[0x84];
     C_0005E840 *f84, *f88, *f8C, *f90;
