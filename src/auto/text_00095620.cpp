@@ -3,7 +3,7 @@
 #include "ghidra.h"
 struct C_00095BC0 {
     char fields[0x6454];
-    void func_00095BC0();
+    C_00095BC0 *func_00095BC0();
 };
 struct S_00095A00_Vt {
     virtual void v0();
