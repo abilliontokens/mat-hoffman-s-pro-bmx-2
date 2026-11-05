@@ -106,6 +106,17 @@ struct S_00164650_Obj {
     void func_00197E70(void *p);
 };
 
+struct S_00164270_Node {
+    char pad0[0x28];
+    char name[0x14c];
+    S_00164270_Node *f174, *f178;
+};
+void func_001EA1EE(char *);
+void *func_001E8920(void *, const void *, unsigned int);
+extern "C" unsigned int __cdecl strlen(const char *);
+extern "C" char *__cdecl strcpy(char *, const char *);
+static inline const int &min_164270(const int &a, const int &b) { return a < b ? a : b; }
+
 /* 0x40-byte entry; the name is at +0 */
 struct S_00164650_Item {
     char name[0x34];
