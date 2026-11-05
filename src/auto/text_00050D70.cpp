@@ -393,12 +393,11 @@ int BmxEventRoadTrip::func_00051750(void)
     S_00051750_Rect r;
     int n;
     int top;
-    int right = 0x280;
 
     r.x = (int)(D_00277A00 - D_002B8FA0);
+    r.w = 0x280;
     top = (int)D_00277920;
     r.y = (int)(D_002779FC - D_002B8F98 + top);
-    r.w = right;
     r.h = top + 0x1c0;
     f64->func_000AC780(r);
     v26();
