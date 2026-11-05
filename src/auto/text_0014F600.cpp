@@ -89,7 +89,7 @@ struct C_00157600 {
 struct C_00150360 {
     void *vtbl;
     char pad4[0x20];
-    float f24;
+    int f24;
     float f28;
     float f2C;
     float f30;
@@ -103,6 +103,7 @@ struct C_00150360 {
     int f50;
     C_00150360 *func_00150360(int a0);
     void func_00150390(float a, float b, float c, int d);
+    void func_00150390(int a, float b, float c, int d);
     void func_001503E0(float a, float b, float c);
 };
 
