@@ -283,7 +283,12 @@ struct BmxEvent_00030A30 {
     void *f16c;
     VObj_00031450 *f170[10];
     VObj_00031450 *f198;
-    char pad19c[0x18];
+    void *f19c;
+    void *f1a0;
+    void *f1a4;
+    void *f1a8;
+    void *f1ac;
+    char pad1b0[4];
     Sound_000314F0 *f1b4;
     char pad1b8[0x20];
     Target_00031610 *f1d8;
