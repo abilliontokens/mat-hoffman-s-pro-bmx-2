@@ -70,10 +70,39 @@ void *C_00132DE0::func_00132DE0(int flags)
     return outer;
 }
 
+int C_00132E20::func_00132E20(char *name)
+{
+    int i;
+    char *dst;
+    char c;
+
+    for (i = 0; i < count; i++) {
+        if (func_001EA426(name, names[i]) == 0) {
+            return 1 << i;
+        }
+    }
+    i = count;
+    dst = names[i];
+    do {
+        c = *name++;
+        *dst++ = c;
+    } while (c != 0);
+    count++;
+    return 1 << i;
+}
+
 int func_00132E90(int a0, int a1)
 {
     D_002BEAAC->func_0013C8A0(a0, (void *)a1, 4, 1);
     return 1;
+}
+
+void C_00133020::func_00133020(unsigned int v)
+{
+    extern unsigned char D_002BA040;
+    fA7 = (((((unsigned char)(v >> 3) & 1) << 1 | ((unsigned char)(v >> 2) & 1)) << 1 | ((unsigned char)(v >> 1) & 1)) << 1) | (fA7 & 0xf1);
+    D_002BA040 = 0;
+    func_001D3F50();
 }
 
 void C_001334E0::func_001334E0(int a0) {
