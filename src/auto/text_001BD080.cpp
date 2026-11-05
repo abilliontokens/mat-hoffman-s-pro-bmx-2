@@ -1,6 +1,61 @@
 /* 23 functions from 0x001BD080 to 0x001BDFB0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+
+extern int D_0028D58C;
+
+struct C_00157600 {
+    void func_00157600(int a);
+};
+
+struct C_001BD9C0 {
+    void *vtbl;
+    char pad4[0x24 - 4];
+    int f24;
+    int f28;
+    int f2c;
+    int f30;
+    C_001BD9C0 *func_001BD9C0(int a);
+};
+
+struct C_001BD790 {
+    void func_001577A0(void *a, int b);
+    undefined4 func_001BD790(void);
+};
+
+struct C_001BD7E0_Global {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7(int a);
+    virtual void v8();
+};
+
+extern C_001BD7E0_Global *D_002EFDB8;
+
+struct C_001BD7E0 {
+    undefined4 func_001BD7E0(void);
+};
+
+struct C_002A829C {
+    void func_00161680();
+    void func_001616F0();
+};
+
+struct C_002AA6C0 {
+    void func_001B2640();
+};
+
+extern C_002A829C *D_002A829C;
+extern C_002AA6C0 *D_002AA6C0;
+
+struct C_001BD840 {
+    void func_001BD840(void);
+};
 struct C_001BDA50 {
     void func_001BDA50(void);
 };
