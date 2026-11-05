@@ -55,13 +55,8 @@ extern float D_00282A84;
 extern float D_00282A80;
 extern float D_00282A7C;
 float func_0014FBA0(float a, float b);
-#include <xmmintrin.h>
-static inline float sqrtf(float x)
-{
-    float r;
-    _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x)));
-    return r;
-}
+extern "C" float __cdecl sqrtf(float);
+#pragma intrinsic(sqrtf)
 
 struct C_00107FB0 {
     char pad0[0x970];
