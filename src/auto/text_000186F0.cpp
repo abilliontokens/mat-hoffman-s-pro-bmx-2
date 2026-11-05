@@ -1,2 +1,70 @@
 /* 7 functions from 0x000186F0 to 0x000195B0, found by Ghidra. */
 #include "common.h"
+struct S_002A8490 {
+    char pad0[0x238];
+    u32 f238;
+};
+extern S_002A8490 *D_002A8490;
+struct S_00019520_Dev {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    virtual void v31();
+};
+struct S_00019520_Obj {
+    char pad0[0x24];
+    S_00019520_Dev *f24;
+};
+struct C_0008AB90 {
+    void func_0008AB90(int a);
+};
+struct S_00019520_Owner {
+    char pad0[0x384];
+    C_0008AB90 *f384;
+    char pad388[8];
+    int f390;
+    char pad394[8];
+    S_00019520_Obj *f39c[77];
+    int f4d0;
+    char pad4d4[8];
+    int f4dc;
+    char pad4e0[12];
+    u32 f4ec;
+    int f4f0;
+    int func_000192D0(int a, int b);
+};
+struct TikiHuntState {
+    char pad0[8];
+    S_00019520_Owner *f8;
+    u32 fC;
+    u32 f10;
+    void func_00019520();
+};
