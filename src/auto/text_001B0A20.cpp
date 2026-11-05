@@ -151,19 +151,14 @@ void C_001B0DC0::func_001B0DC0(void)
     void func_001E891B(void *);
     void func_001E8390(void *);
     Elem_001B0DC0 *e;
-    int i;
     vtbl = &D_0028C5BC;
     if (unk10 != 0) {
-        if (unk10->count > 0) {
-            i = 0;
-            do {
-                e = ((Elem_001B0DC0 **)unk10)[i * 2 + 2];
-                if (e != 0) {
-                    e->func_001B0970();
-                    func_001E891B(e);
-                }
-                i++;
-            } while (i < unk10->count);
+        for (int i = 0; i < unk10->count; i++) {
+            e = ((Elem_001B0DC0 **)unk10)[i * 2 + 2];
+            if (e != 0) {
+                e->func_001B0970();
+                func_001E891B(e);
+            }
         }
         func_001E8390(unk10);
     }
