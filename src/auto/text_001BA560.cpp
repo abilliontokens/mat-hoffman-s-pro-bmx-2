@@ -268,6 +268,21 @@ struct S_001BB060_Array {
     }
 };
 
+/* split buf on D_0028803C and store a copy of each token in arr */
+static __forceinline void Split_001BB060(S_001BB060_Array *arr, char *buf)
+{
+    S_001BB060_Tokenizer tok;
+    char *s;
+    int i;
+
+    tok.func_001B4A40(buf);
+    s = tok.func_001B4A70(D_0028803C);
+    for (i = 0; s != 0; i++) {
+        arr->At(i) = func_001E91F4(s);
+        s = tok.func_001B4A70(D_0028803C);
+    }
+}
+
 /* ShaderPassTriggerAction */
 struct C_001BA5E0 {
     void *vtbl;
@@ -519,23 +534,24 @@ void C_001BAEC0::func_001BAEC0(void)
 int C_001BA5E0::func_001BB060(S_001BB060_Stream *stream, int a1)
 {
     char buf[0x80];
-    S_001BB060_Tokenizer tok;
+    S_001BB060_Tokenizer tok2;
+    S_001BB060_Tokenizer tok1;
     char *s;
     int i;
 
     stream->func_00168BE0(D_0028D22C, D_0028514C, buf, 0x80);
-    tok.func_001B4A40(buf);
-    s = tok.func_001B4A70(D_0028803C);
+    tok1.func_001B4A40(buf);
+    s = tok1.func_001B4A70(D_0028803C);
     for (i = 0; s != 0; i++) {
         ((S_001BB060_Array *)&f114)->At(i) = func_001E91F4(s);
-        s = tok.func_001B4A70(D_0028803C);
+        s = tok1.func_001B4A70(D_0028803C);
     }
     stream->func_00168BE0(D_0028D220, D_0028514C, buf, 0x80);
-    tok.func_001B4A40(buf);
-    s = tok.func_001B4A70(D_0028803C);
+    tok2.func_001B4A40(buf);
+    s = tok2.func_001B4A70(D_0028803C);
     for (i = 0; s != 0; i++) {
         ((S_001BB060_Array *)&f12c)->At(i) = func_001E91F4(s);
-        s = tok.func_001B4A70(D_0028803C);
+        s = tok2.func_001B4A70(D_0028803C);
     }
     stream->func_00168BE0(D_0028D208, D_00275630, buf, 0x80);
     if (memcmp(buf, D_0028CD10, 14) == 0) {
