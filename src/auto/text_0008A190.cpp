@@ -127,6 +127,15 @@ C_0008A2E0 *C_0008A2E0::func_0008A2E0(int a0) {
     return this;
 }
 
+void C_0008A2E0::func_0008A8C0() {
+    int i;
+    for (i = 0; i < 5; i++) {
+        if (vals[i] >= 0) {
+            ptrs[i]->func_001D6600();
+        }
+    }
+}
+
 undefined4 C_0008A8F0::func_0008A8F0(int param_1)
 {
   int in_ECX = (int)this;
