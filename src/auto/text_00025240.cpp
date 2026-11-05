@@ -51,7 +51,15 @@ struct C_257E0_28 { char pad0[0x1A4]; C_257E0_1A4 *unk1A4; };
 struct C_0001B440 { void func_0001B440(void *a0, int a1); };
 struct C_002B9120 { char pad0[0x484]; C_0001B440 *unk484; };
 struct C_002B7E18 { char pad0[0x2C]; int unk2C; };
-struct C_002A8490 { char pad0[0x124]; int unk124; };
+struct C_0001CE80 { void func_0001CE80(void *a, void *b, void *c, float d, float e); };
+struct C_002A8490 {
+    char pad0[4];
+    C_0001CE80 *unk4;
+    char pad8[0x124 - 8];
+    int unk124;
+    char pad128[0x238 - 0x128];
+    int unk238;
+};
 extern C_002A8490 *D_002A8490;
 extern C_002B7E18 *D_002B7E18;
 extern C_002B9120 *D_002B9120;
