@@ -256,6 +256,33 @@ void C_00142720::func_00142720(void)
     func_0001DFF0();
 }
 
+int C_00142AF0::func_00142AF0(void)
+{
+    if (D_002A6D38 == 0 || fA8 == 0) {
+        return 1;
+    }
+    func_00142810();
+    C_00142AF0_Node *node = D_002A829C->f14[fC8->f4].f4;
+    node->func_001B07A0();
+    fC4 = D_002F0630->f10[node->fD4];
+    fC8->f10 = fCC;
+    fC4->func_00149310((int)fC8, 0, 0, 0);
+    C_00142AF0_Params *p = fC4->f8;
+    if (p != 0) {
+        for (int i = 0; i < 2; i++) {
+            C_00142AF0_Slot *slot = D_002AA6C0->f14[p->f18[i]].f4;
+            if (slot != 0) {
+                int idx = p->func_001AFF80(i);
+                C_00142AF0_Item *item = slot->v4(idx);
+                if (item != 0) {
+                    fAC[i] = item->fB8;
+                }
+            }
+        }
+    }
+    return 1;
+}
+
 undefined4 C_00142BF0::func_00142BF0(byte param_1)
 {
   int func_00142720(...);
