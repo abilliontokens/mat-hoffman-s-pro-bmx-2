@@ -1,6 +1,7 @@
 /* 24 functions from 0x001ED0FC to 0x001EDD36, found by Ghidra. */
 #include "common.h"
 
+extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *);
 void func_001E9DE9(void *p);
 int func_001ED8A7(int ch, void *stream);
 
@@ -232,6 +233,12 @@ int func_001ED7FC(int fh, void *buffer, unsigned cnt)
         func_001EE782(fh);
     }
     return retval;
+}
+
+void func_001ED883(int fh)
+{
+    int func_001EE782(int);
+    func_001EE782(fh);
 }
 
 int func_001EDBF6(int *param_1)
