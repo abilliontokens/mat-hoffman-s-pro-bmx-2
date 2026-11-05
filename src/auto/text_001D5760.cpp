@@ -191,9 +191,8 @@ struct Tbl_001D5810 {
 };
 struct Size_001D5810 {
     char pad0[0x14];
-    unsigned int w;
-    unsigned int h;
-    char pad1C[4];
+    int w;
+    int h;
 };
 struct Cfg_001D5810 {
     char pad0[0x4c0];
@@ -343,8 +342,8 @@ void C_001D5760::func_001D57E0()
 
 C_001D5810 *C_001D5810::func_001D5810(float a, int b, int c, int d)
 {
-    float w;
     float h;
+    float w;
     int idx;
     int type;
     char name[0x100];
@@ -352,53 +351,60 @@ C_001D5810 *C_001D5810::func_001D5810(float a, int b, int c, int d)
     Size_001D5810 sz;
     C_001D5FA0Obj *p;
     Part_001D5810 *part;
-    Tbl_001D5810 *screens = (Tbl_001D5810 *)D_002A829C;
-    Tbl_001D5810 *surfaces = (Tbl_001D5810 *)D_002AA6C0;
-    Tbl_001D5810 *textures = (Tbl_001D5810 *)D_002A71C0;
     char *src;
     char *dst;
     char ch;
 
     part = (Part_001D5810 *)func_001E8A44(0x14);
     f5C = part ? part->func_00144640() : 0;
-    f5C->vSlot1(a, D_002AA470);
-    screens->func_00161680();
-    surfaces->func_001B2640();
+    f5C->v1(a, D_002AA470);
+    ((Tbl_001D5810 *)D_002A829C)->func_00161680();
+    ((Tbl_001D5810 *)D_002AA6C0)->func_001B2640();
     idx = f5C->f4 * 16;
-    type = screens->f14[f5C->f4].info->f54->f18;
+    type = ((Tbl_001D5810 *)D_002A829C)->f14[f5C->f4].info->f54->f18;
     h = 0;
     w = 0;
-    if (type == -1 || type == -2 || type == -4) {
-        if (type != -3 && type != -4) {
-            cfg.func_00168280();
-            src = *(char **)((char *)screens->f14 + idx);
-            dst = name;
-            do {
-                ch = *src++;
-                *dst++ = ch;
-            } while (ch != 0);
-            func_00030F30(name, &D_00286764);
-            if (cfg.func_00169490(name, 0) != 0) {
-                cfg.func_00169710(&D_0028F624);
-                cfg.func_00168C50(&D_0028F614, 1.0f, &h);
-                cfg.func_00168C50(&D_0028F604, 1.0f, &w);
-            }
-            cfg.func_001691E0();
-        } else {
-            h = 640.0f;
-            w = 448.0f;
-        }
-    } else if (type == -3) {
-        h = 640.0f;
-        w = 448.0f;
-    } else if (type >= 0) {
-        h = (float)surfaces->f14[type].info->f8;
-        w = (float)surfaces->f14[type].info->fC;
+    if (type == -1 || type == -2) {
+        goto L1c8;
+    }
+    if (type == -3) {
+        goto Ldef;
+    }
+    if (type == -4) {
+        goto L1c8;
+    }
+    if (type >= 0) {
+        h = (float)((Tbl_001D5810 *)D_002AA6C0)->f14[type].info->f8;
+        w = (float)((Tbl_001D5810 *)D_002AA6C0)->f14[type].info->fC;
     } else {
-        func_001FCE40(textures->f14[-type].info, 0, &sz);
+        func_001FCE40(((Tbl_001D5810 *)D_002A71C0)->f14[-type].info, 0, &sz);
         h = (float)sz.w;
         w = (float)sz.h;
     }
+    goto Ldone;
+L1c8:
+    if (type == -3 || type == -4) {
+        goto Ldef;
+    }
+    cfg.func_00168280();
+    src = *(char **)((char *)((Tbl_001D5810 *)D_002A829C)->f14 + idx);
+    dst = name;
+    do {
+        ch = *src++;
+        *dst++ = ch;
+    } while (ch != 0);
+    func_00030F30(name, &D_00286764);
+    if (cfg.func_00169490(name, 0) != 0) {
+        cfg.func_00169710(&D_0028F624);
+        cfg.func_00168C50(&D_0028F614, 1.0f, &h);
+        cfg.func_00168C50(&D_0028F604, 1.0f, &w);
+    }
+    cfg.func_001691E0();
+    goto Ldone;
+Ldef:
+    h = 640.0f;
+    w = 448.0f;
+Ldone:
     f28 = h;
     f2C = w;
     f4 = b;
