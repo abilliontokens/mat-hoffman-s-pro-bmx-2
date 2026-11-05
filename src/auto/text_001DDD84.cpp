@@ -264,6 +264,19 @@ void __stdcall func_001DE6B8(int arg)
     _imp__RtlLeaveCriticalSection(D_002ACBA0);
 }
 
+int __stdcall func_001DE6F0(int arg)
+{
+    int r;
+
+    if (D_002F6BBC != 0) {
+        r = D_002F6BBC(arg);
+        if (r == -1) {
+            return r;
+        }
+    }
+    return 0;
+}
+
 #pragma optimize("y", off)
 int __stdcall func_001DE70D(int param)
 {
@@ -296,6 +309,13 @@ int __stdcall func_001DE733(int param)
 int func_001DE7AF(void)
 {
     return _imp__NtYieldExecution() != 0x40000024;
+}
+
+__declspec(noreturn) void __stdcall func_001DE7C2(int status)
+{
+    func_001DE6B8(0);
+    _imp__PsTerminateSystemThread(status);
+    __debugbreak();
 }
 
 #pragma optimize("", on)
