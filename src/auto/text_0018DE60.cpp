@@ -43,6 +43,38 @@ struct C_0018E0E0 {
 };
 
 void *func_001E8A44(int size);
+extern "C" int strlen(const char *s);
+void func_001E8920(void *dst, const void *src, int n);
+
+struct C_00191470 {
+    char f0[0x18];
+    unsigned int f18;
+    int f1C;
+    void func_00191510(const char *name, unsigned int flags);
+};
+
+struct C_002EFE08 {
+    char pad0[0x12C];
+    int f12C;
+    int f130;
+    int f134;
+    int f138;
+    int f13C;
+    int f140;
+    int f144;
+    int f148;
+};
+extern C_002EFE08 *D_002EFE08;
+
+/* named value holder: name[0x18], flags, value; a nested holder at 0x150 */
+struct C_0018E250 {
+    char f0[0x18];
+    unsigned int f18;
+    int f1C;
+    char pad20[0x130];
+    C_00191470 f150;
+    void func_0018E250(const char *name, unsigned int flags);
+};
 
 struct Vec4_0018EA50 {
     float x, y, z, w;
