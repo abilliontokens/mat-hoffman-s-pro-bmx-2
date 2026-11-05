@@ -5,6 +5,12 @@ struct C_00052BB0 {
     undefined4 func_00052BB0(byte param_1);
 };
 
+struct C_00052BF0 {
+    void func_00052BF0(void);
+    void func_000314A0(void);
+    void func_00052740(int param_1);
+};
+
 
 undefined4 C_00052BB0::func_00052BB0(byte param_1)
 {
