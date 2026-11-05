@@ -32,7 +32,7 @@ struct C_001B73C0_Node {
     char pad0[4];
     int f4;
     char pad8[0x10c - 8];
-    int f10C;
+    u32 f10C;
 };
 
 struct C_001B73C0_VB {
@@ -211,5 +211,28 @@ int C_001B6E70::func_001B7370(void *param) {
         }
     }
     return 1;
+}
+
+void C_001B6E70::func_001B73C0(C_001B73C0_Arg *arg) {
+    int i, j;
+
+    for (i = 0; i < f24; i++) {
+        f28[i]->f4->b2EC &= ~0x10;
+        f28[i]->f4->fD0 = 0;
+        if (f28[i]->f10 != 0) {
+            f28[i]->f4->v6();
+        } else {
+            f28[i]->f4->v4();
+        }
+        for (j = 0; j < f28[i]->f8; j++) {
+            C_001B73C0_Node *node = f28[i]->f10C[j];
+            if (node->f4 == 4) {
+                int idx = node->f10C;
+                C_001B73C0_Holder *h = arg->f3AC;
+                C_001B73C0_Line *line = h->f28[idx];
+                line->f1A4->v7();
+            }
+        }
+    }
 }
 
