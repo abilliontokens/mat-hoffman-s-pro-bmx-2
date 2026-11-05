@@ -27,6 +27,7 @@ struct GR_BitString {
     u32 unk18;
     u32 unk1C;
     void func_0001E3F0(u32 *a0, u32 a1, int a2);
+    GR_BitString(u32 *a0, u32 a1, int a2);
     void func_0001E460();
 };
 
@@ -72,29 +73,31 @@ void GR_BitString::func_0001E460() {
 }
 
 u32 __stdcall func_0001E550(int a0) {
+    u32 result;
     u32 v = D_002A0DAC[a0];
     int count = D_002B7D54 + a0;
     u32 cur = D_002B7D50;
     if (count < 0x20) {
         D_002B7D54 = count;
-        v &= cur >> (0x20 - count);
+        result = v & (cur >> (0x20 - count));
     } else {
         u32 *p = D_002B7D4C;
         count -= 0x20;
         D_002B7D54 = count;
         p += 1;
         u32 next = *p;
-        v &= cur << count;
+        u32 t = v & (cur << count);
         next = (next >> 24) | ((next >> 8) & 0xff00) | ((next << 8) & 0xff0000) | (next << 24);
         D_002B7D4C = p;
         D_002B7D50 = next;
+        result = t;
         if (count != 0) {
-            v |= next >> (0x20 - count);
+            result = t | (next >> (0x20 - count));
         }
     }
-    return v;
+    return result;
 }
-
+#pragma optimize("", on)
 void *C_0001E930::func_0001E930(unsigned int flags) {
     vtbl = &D_00275F9C;
     func_0001E800();
