@@ -1,6 +1,7 @@
 /* 16 functions from 0x001BB4F0 to 0x001BC310, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <xmmintrin.h>
 struct C_001BC020 {
     undefined4 func_001BC020(byte param_1);
 };
@@ -209,27 +210,32 @@ struct C_001BBAE0 {
 };
 
 
-void func_001BB4F0(S_1BB4F0_Arg1 *a1, int a2, S_1BB4F0_Arg3 *a3, int idx)
+void func_001BB4F0(S_1BB4F0_Arg1 *a1, int a2, S_1BB4F0_Arg3 *a3, int enable)
 {
     S_1BB4F0_List *list;
     S_1BB4F0_Obj *obj;
     int found;
+    int idx;
     int i;
+    int key;
+    int n;
 
-    if (idx == 0) {
+    if (enable == 0) {
         return;
     }
     if (D_002A8490->f2E0->f4 == 10) {
         return;
     }
     list = D_002A8490->f2A4->f64->f4E0;
+    key = a1->f64;
+    n = list->f24;
     found = 0;
-    for (i = 0; i < list->f24; i++) {
+    for (i = 0; i < n; i++) {
         if (found) {
             break;
         }
         obj = list->f1A8[i];
-        if (obj->f1E0 == a1->f64) {
+        if (obj->f1E0 == key) {
             found = 1;
             idx = i;
         }
@@ -250,11 +256,13 @@ void func_001BB4F0(S_1BB4F0_Arg1 *a1, int a2, S_1BB4F0_Arg3 *a3, int idx)
             return;
         }
     }
-    if (a3->fF0[idx] == 0) {
+    if (a3->fF0[idx] != 0) {
+        if (a3->fF0[idx] != a2) {
+            a3->f110(a1, a3, a3->f114, 1);
+            a3->fE0 = 1;
+        }
+    } else {
         a3->fF0[idx] = a2;
-    } else if (a3->fF0[idx] != a2) {
-        a3->f110(a1, a3, a3->f114, 1);
-        a3->fE0 = 1;
     }
 }
 
@@ -322,6 +330,23 @@ void C_001BBAA0::func_001BBAA0(void *a, void *b)
         unkB4[unk98] = a;
         unkB8[unk98] = b;
         unk98++;
+    }
+}
+
+void C_001BBAE0::func_001BBAE0(int a)
+{
+    if (unk2DC != 0) {
+        S_001BBAE0_Mat t;
+        S_001BBAE0_Mat r;
+
+        unk2DC->func_00197EA0(&t);
+        r = func_000263B0((char *)this + 0x50, &t);
+        t = r;
+        unk2E4->v31(&t);
+        unk2E4->func_00133140(a, 2);
+    } else {
+        unk2E4->v31((S_001BBAE0_Mat *)((char *)this + 0x50));
+        unk2E4->func_00133140(a, 1);
     }
 }
 
