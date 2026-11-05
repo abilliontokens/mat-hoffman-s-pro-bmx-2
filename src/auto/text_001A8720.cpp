@@ -51,6 +51,9 @@ struct S_001A8B80_Leaf {
 struct S_001A8B80_Tree {
     S_001A8B80_Node *nodes;
     S_001A8B80_Leaf *leaves;
+    S_001A8B80_Leaf *GetLeaf(unsigned short handle) {
+        return &leaves[handle & 0x7fff];
+    }
 };
 
 struct C_001A8B80 {
@@ -135,7 +138,8 @@ void C_001A8B80::func_001A93A0(unsigned short idx, S_001A8B80_Tree *tree, int a2
             idx = n->right;
         } while (!(idx & 0x8000));
     }
-    func_001A9240(tree->leaves[idx & 0x7fff].v, a2, a3, 0);
+    char *leaf = (char *)tree->leaves + ((idx & 0x7fff) << 5);
+    func_001A9240(*(V4_001A8B80 *)(leaf + 0x10), a2, a3, 0);
 }
 
 void C_001A8B80::func_001A95B0(V4_001A8B80 a, V4_001A8B80 b, V4_001A8B80 c, V4_001A8B80 d, int e, int f, int g, int h)
