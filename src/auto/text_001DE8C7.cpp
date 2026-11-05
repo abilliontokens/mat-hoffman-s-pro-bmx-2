@@ -131,6 +131,14 @@ extern "C" long (__stdcall *_imp__PsCreateSystemThreadEx)(int *threadHandle, u32
 extern "C" void (__stdcall *_imp__RtlInitAnsiString)(S_AnsiString *dst, const char *src);
 extern "C" long (__stdcall *_imp__IoDeleteSymbolicLink)(S_AnsiString *name);
 extern "C" u32 (__stdcall *_imp__RtlNtStatusToDosError)(long status);
+extern unsigned int D_00010124;
+extern char D_0028FCEC[];
+extern S_AnsiString D_0028FCE4;
+extern "C" long (__stdcall *_imp__IoCreateSymbolicLink)(S_AnsiString *link, S_AnsiString *target);
+long __stdcall func_001DEA36(int a, int *x, int *y);
+int __stdcall func_001E233F(S_AnsiString *s, unsigned int size);
+long __stdcall func_001E1BD7(S_AnsiString *s, unsigned int size);
+int __stdcall func_001DEC61(int a);
 int __stdcall func_001DE8C7(int unused, int threadHandle, void *startContext1, void *startContext2, u32 flags, u32 *threadId)
 {
     int status;
