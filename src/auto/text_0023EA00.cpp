@@ -26,10 +26,38 @@ struct S_0023EA00_Link {
     S_0023EA00_Link *prev;
 };
 
+extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
+
+void func_001E891B(void *p);
+int __stdcall func_001DDC28(int a);
+int __stdcall func_001DDDD6(int a, int b);
+int __stdcall func_001DD13C(int a);
+
+/* Class_0029016C: 12 stdcall virtual functions taking `this` on the stack */
 struct C_0023EA00 {
-    char pad0[0xa4];
+    void *vtbl;
+    char pad4[0x2c];
+    void *f30;
+    void *f34;
+    void *f38;
+    char pad3C[4];
+    unsigned char f40;
+    char pad41[0xb];
+    int f4C;
+    int f50;
+    char pad54[8];
+    unsigned int f5C;
+    char pad60[4];
+    int f64;
+    char pad68[0x20];
+    int f88;
+    int f8C;
+    char pad90[0x14];
     S_0023EA00_Link fA4;
+    int fAC;
     void func_0023EA00(void);
+    void func_0023EED3(void);
+    int func_0023EE81(unsigned int a, unsigned int b, int *out);
 };
 
 typedef unsigned int (__stdcall *PFN_0023EC0D)(void *ctx, unsigned int a, unsigned int b, int *out);
