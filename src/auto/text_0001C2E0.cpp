@@ -154,7 +154,7 @@ struct S36_1A {
     int f8;
     float fC;
     float f10;
-    float f14;
+    int f14;
     float f18;
     float f1C;
     float f20;
@@ -692,17 +692,15 @@ void C_0001CD60::func_0001CD60(int a, int b) {
 void *C_0001CD90::func_0001CD90(int arg)
 {
     void *mem = func_001E8A44(0x204);
+    C_001A30D0 *obj = mem != 0 ? ((C_001A30D0 *)mem)->func_001A30D0(this, arg, 5, 1) : 0;
 
-    if (mem == 0) {
-        return 0;
-    }
-    C_001A30D0 *obj = ((C_001A30D0 *)mem)->func_001A30D0(this, arg, 5, 1);
     if (obj == 0) {
         return 0;
     }
     C_001A23F0 *o = (C_001A23F0 *)obj;
+    S36_1A s = { 0x168, 0x168, 0, 1.0f, 1.0e9f, 0.0f, 0.3048f, 1.0f, 1.0f };
 
-    o->func_001A23F0(S36_0001CD90(), o->f70, o->f80, 2, 0x41a00000, 0x42c80000, 0, 0);
+    o->func_001A23F0(s, o->f70, o->f80, 2, 0x41a00000, 0x42c80000, 0, 0);
     return obj;
 }
 
