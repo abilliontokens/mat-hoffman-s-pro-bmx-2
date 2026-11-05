@@ -635,6 +635,38 @@ void C_00094F10::func_00094F10(void)
     Clear();
 }
 
+void C_00095060::func_00095060(void)
+{
+    int i;
+
+    vtbl = (void *)&D_0027A23C;
+    if (f50->v37()) {
+        f50->v33(0);
+    }
+    if (f50 != 0) {
+        f50->v2();
+        f50 = 0;
+    }
+    for (i = 0; i < tracks.count; i++) {
+        func_001E891B(tracks.at(i));
+    }
+    tracks.Clear();
+    func_001E891B(f6C);
+    f7C = 0;
+    f80 = 0;
+    func_001E891B(tracks.items);
+    ((C_00157660 *)this)->func_00157660();
+}
+
+int C_00095060::func_00095110(int n)
+{
+    if (n >= 1 && n <= tracks.count) {
+        tracks.at(n - 1)->f64 = 1;
+        return 1;
+    }
+    return 0;
+}
+
 int C_00095160::func_00095160(int index)
 {
     if (index < 1 || index > f54) {
