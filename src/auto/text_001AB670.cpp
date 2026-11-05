@@ -126,7 +126,7 @@ void C_001AC150::func_001AC150(int count)
 
 void C_001AC150::func_001AC1A0(int n)
 {
-    if (field_08 < n) {
+    if (n > field_08) {
         func_001AC150((n / 10 + 1) * 10);
     }
     while (field_0C < n) {
