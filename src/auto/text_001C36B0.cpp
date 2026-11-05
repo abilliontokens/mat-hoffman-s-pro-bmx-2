@@ -203,8 +203,45 @@ struct ViewportFade {
 
 extern int D_0028E544;
 extern int D_0028E53C;
+extern int D_0028E5CC;
+extern int D_0028E5C4;
+extern f32 D_0028E3CC;
+extern f32 D_002779FC;
 extern f32 D_00276098;
 extern f32 D_00275460;
+
+struct FadeOut_001C41E0 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    char pad4[0x20];
+    C_001D5760 *unk24;
+    f32 f28;
+    f32 f2C;
+    f32 f30;
+    int f34;
+    int f38;
+    int f3C;
+    int func_001C41E0(int a0);
+};
+
+struct CrossFade_001C44A0 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    char pad4[0x20];
+    C_001D5760 *unk24;
+    char pad28[0xC];
+    int f34;
+    void func_001D3F50();
+    CrossFade_001C44A0 *func_001C44A0(int a0);
+};
 
 struct C_00160A60 {
     int unk0;
