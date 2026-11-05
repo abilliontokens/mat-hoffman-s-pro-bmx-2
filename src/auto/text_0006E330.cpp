@@ -148,6 +148,35 @@ struct C_0006E910 {
     void func_0006EC60();
 };
 
+struct C_001B17D0 {
+    int func_001B1800();
+    void func_001B1980();
+    void func_001B17D0(char *s);
+    int func_001B17F0();
+};
+struct S_0006E620 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    char pad4[0x6C];
+    int unk70;
+    char pad74[0x2C];
+    int unkA0;
+    char unkA4[0x2C];
+    C_001B17D0 *unkD0;
+    C_001B17D0 *unkD4;
+    char padD8[0xC];
+    int unkE4;
+    float unkE8;
+    char padEC[8];
+    int unkF4;
+    void func_0006E620(int a0);
+};
+extern float D_00278BD0;
+
 C_0006E330 *C_0006E330::func_0006E330(int a0)
 {
     int i;
