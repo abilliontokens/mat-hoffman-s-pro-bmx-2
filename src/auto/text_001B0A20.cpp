@@ -1,6 +1,10 @@
 /* 35 functions from 0x001B0A20 to 0x001B19C0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_001B10B0 {
+    void func_001B10B0(undefined4 param_1, int param_2);
+};
+
 struct C_001B17F0 {
     undefined4 func_001B17F0(void);
 };
@@ -20,6 +24,14 @@ struct C_001B0E90 {
 void C_001B0E90::func_001B0E90(void) {
     extern int D_0028C6E8;
     unk0 = (int)&D_0028C6E8;
+}
+
+void C_001B10B0::func_001B10B0(undefined4 param_1, int param_2)
+{
+  int in_ECX = (int)this;
+  
+  *(undefined4 *)(*(int *)(in_ECX + 0x10 + param_2 * 4) + 4) = param_1;
+  return;
 }
 
 int __stdcall func_001B1190(int a0, int a1, int a2, int a3, int a4, int a5, int a6) {
