@@ -354,7 +354,7 @@ int C_00168F40::func_00169490(int name, int flag)
         }
         f428 = 0;
         *(int *)&f8 = 1;
-        *(int *)&padC = 0;
+        *(int *)((char *)this + 0xC) = 0;
         D_002BEAAC->func_0013C8A0(f0, tag, 7, 1);
         tag[6] = 0;
         if (memcmp(tag, D_00288030, 7) == 0) {
