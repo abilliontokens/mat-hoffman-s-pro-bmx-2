@@ -95,6 +95,8 @@ struct S_001A5D80_G1 {
     int f234;
     char pad238[0x2e0 - 0x238];
     void *f2e0;
+    char pad2e4[8];
+    S_6930_Lookup *f2ec;
 };
 
 struct S_001A5D80_G2 {
