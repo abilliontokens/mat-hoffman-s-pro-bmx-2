@@ -126,6 +126,7 @@ struct C_00150350 { void func_00150350(void); };
 struct C_00136300 { void func_00136300(void); };
 struct C_0012B580 { void func_0012B580(void); };
 struct S_000308F0_Holder { void *f0; C_00030500 *f4; int f8; int fC; };
+extern char D_00276A00[];
 struct S_000306F0_Rect { int a, b, c, d; };
 struct C_00055380 { C_00055380 *func_00055380(void); int func_000597B0(S_000306F0_Rect r, int a, const char *s, int b, int c); };
 struct C_0009F7F0 { C_0009F7F0 *func_0009F7F0(void); int func_000A08D0(S_000306F0_Rect r, int a); };
