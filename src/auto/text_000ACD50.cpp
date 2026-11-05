@@ -128,28 +128,39 @@ void *C_000ACE30::func_000ACE30(int flags) {
 
 C_000ACE60 *C_000ACE60::func_000ACE60(int param) {
     extern int D_0027B274;
+    C_000ACE60_s4 *p;
+    int n;
     int i;
 
     ((C_00157600 *)this)->func_00157600(param);
     unk0 = (int)&D_0027B274;
-    for (i = 0; i < 8; i++) {
-        arr1[i].a = 0;
-        arr1[i].b = 1;
-        arr1[i].c = 1;
-        arr1[i].d = 1;
-    }
-    for (i = 0; i < 8; i++) {
-        arr2[i].a = 0;
-        arr2[i].b = 1;
-        arr2[i].c = 1;
-        arr2[i].d = 1;
-    }
-    for (i = 0; i < 8; i++) {
-        arr3[i].a = 0;
-        arr3[i].b = 0;
-        arr3[i].c = 0;
-        arr3[i].d = 0;
-    }
+    p = arr1;
+    n = 8;
+    do {
+        p->a = 0;
+        p->b = 1;
+        p->c = 1;
+        p->d = 1;
+        p++;
+    } while (--n);
+    p = arr2;
+    n = 8;
+    do {
+        p->a = 0;
+        p->b = 1;
+        p->c = 1;
+        p->d = 1;
+        p++;
+    } while (--n);
+    p = arr3;
+    n = 8;
+    do {
+        p->a = 0;
+        p->b = 0;
+        p->c = 0;
+        p->d = 0;
+        p++;
+    } while (--n);
     unk24 = 0;
     for (i = 0; i < 8; i++) {
         arr4[i] = 0;
