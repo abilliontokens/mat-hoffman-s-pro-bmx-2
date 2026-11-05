@@ -117,6 +117,7 @@ struct AmbientDebris {
     C_00023C30 *f30;
     S_00024140_Link *f34;
     AmbientDebris *func_00024140(int a, int b);
+    int func_00024210(int a);
 };
 
 extern C_000229C0 *D_002B7E18;
