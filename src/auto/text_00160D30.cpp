@@ -67,7 +67,7 @@ struct C_00161850 {
 
 extern int D_00287AF4;
 extern int D_00287AD8;
-extern int D_002EB254;
+extern unsigned int D_002EB254;
 extern int D_002E2978;
 extern int D_002EB250;
 extern int D_002EB268;
