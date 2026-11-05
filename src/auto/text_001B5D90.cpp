@@ -226,9 +226,11 @@ struct S_001B6280_Param {
     int f4c0;
 };
 
+#ifndef C_001BBAA0_DEFINED
 struct C_001BBAA0 {
     void func_001BBAA0(void *owner, void *fn);
 };
+#endif
 
 extern S_001B6280_Root *D_002A8490;
 
