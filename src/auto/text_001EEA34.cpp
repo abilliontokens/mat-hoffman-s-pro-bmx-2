@@ -505,6 +505,21 @@ S_001EEFBA *S_001EEFBA::func_001EF3D2(BitObj *src)
     return this;
 }
 
+BitObj *__fastcall func_001EF734(BitObj *self, int unused, char c)
+{
+    self->f0 = 0;
+    self->s4 = 0;
+    self->b4 = 0;
+    self->b5 = 0;
+    self->b6 = 0;
+    self->b7 = 0;
+    self->b8 = 0;
+    if (c != 0) {
+        func_001EF68E(&c, 1);
+    }
+    return self;
+}
+
 BitObj *BitObj::func_001EF88F(long num)
 {
     char buf[11];
