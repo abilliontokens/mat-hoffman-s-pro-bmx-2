@@ -143,6 +143,7 @@ struct C_0001CC00 {
     S_0001CC00_Slot *slots[1];
     int func_0001CC00(int idx, int a, int b);
     int func_0001CC80(int idx);
+    void func_0001CCE0(int idx, int *a, float *b, float *c, int *d);
 };
 
 struct C_0001CA30 {
