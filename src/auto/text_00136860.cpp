@@ -30,7 +30,8 @@ struct CubeSlot {
 
 struct CubeGroup {
     unsigned short mask;
-    CubeSlot *ptrs[0x39];
+    CubeSlot *ptrs[16];
+    char pad44[0xa4];
     unsigned int vec[4];
     int unkF8;
 };
