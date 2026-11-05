@@ -57,7 +57,7 @@ extern float D_00282A7C;
 float func_0014FBA0(float a, float b);
 #include <math.h>
 #include <xmmintrin.h>
-static __forceinline float sqrt_00107FB0(const float &x)
+static __forceinline float sqrt_00107FB0(float x)
 {
     float r;
     _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x)));
