@@ -8,7 +8,7 @@ struct S_002F6A38 {
 };
 extern S_002F6A38 D_002F6A38;
 extern int D_00295C04;
-int func_001EEE49(int n);
+int func_001EEE49(...);
 
 /* 8-byte value object used by the 'A'..'N' parser helpers. */
 struct S_001EF734 {
@@ -35,8 +35,8 @@ void *_func_001EF9D9(S_001EF734 *o)
         D_002F6A28++;
         if ((u32)k <= 0xc) {
             local.value = 0;
-            local.flags &= 0xfe00;
-            if (!D_002F6A38.b1) {
+            *(u16 *)&local.flags &= 0xfe00;
+            if (~((u32)D_002F6A38.b1) & 1) {
                 switch (k & 0xfffffffe) {
                 case 0:  local.func_001EF9B2((char *)func_001EEE49(1)); break;
                 case 2:  local.func_001EF9B2((char *)func_001EEE49(2)); break;
