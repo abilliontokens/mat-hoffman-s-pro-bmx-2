@@ -114,3 +114,17 @@ void func_001A5790(void) {
     int func_001A4FC0(...);
     func_001A4FC0();
 }
+
+void *C_SphereCollisionObject::func_001A57A0(unsigned int flags)
+{
+    vtbl = (void *)&D_0028B84C;
+    if (f54) {
+        func_001E891B(f54);
+        f54 = 0;
+    }
+    func_00133E60();
+    if (flags & 1)
+        func_001E891B(this);
+    return this;
+}
+
