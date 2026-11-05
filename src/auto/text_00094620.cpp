@@ -770,6 +770,63 @@ int C_00095160::func_000952A0(int index)
     return Item(index - 1)->f68;
 }
 
+int C_00095060::func_000952F0(void)
+{
+    int n = 0;
+    int i;
+
+    if (f34 != 0) {
+        return f50->v41(f34);
+    }
+    if (f50->v34() != 0 && f84[0] != 0 && f84[0]->v7() != 0) {
+        return 0;
+    }
+    for (i = 0; i < tracks.count; i++) {
+        if (tracks.at(i)->f64 == 0 && tracks.at(i)->f68 != 0) {
+            n++;
+        }
+    }
+    return n;
+}
+
+char *C_00095060::func_00095390(int index)
+{
+    if (f34 != 0) {
+        S_00094A00_Obj *path = f50;
+        int e = index - 1;
+
+        if (f34 < path->unkA8 && f34 >= 0) {
+            S_00095390_Node *node = &((S_00095390_Node *)path->unk34)[f34];
+
+            if (e < node->count && e >= 0) {
+                return node->entries[e].f4;
+            }
+        }
+        return 0;
+    }
+    if (index < 1 || index > tracks.count) {
+        return D_00275630;
+    }
+    if (tracks.at(index - 1)->f64 != 0) {
+        return D_0027A2A8;
+    }
+    return (char *)tracks.func_00037820(index - 1) + 0x32;
+}
+
+char *C_00095060::func_00095430(int index)
+{
+    if (f34 != 0) {
+        return (char *)f34;
+    }
+    if (index < 1 || index > tracks.count) {
+        return D_00275630;
+    }
+    if (tracks.at(index - 1)->f64 != 0) {
+        return D_0027A2A8;
+    }
+    return (char *)tracks.func_00037820(index - 1);
+}
+
 int C_00095060::func_00095520(int n)
 {
     if (f34 == 0) {
