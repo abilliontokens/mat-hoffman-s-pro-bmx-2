@@ -47,7 +47,7 @@ int __cdecl func_001F4874(S_CrtDouble *out, char *str);
 int __cdecl func_001F48A1(S_CrtFloat *out, char *str);
 
 /* float-to-text converters behind func_001EB786 (_cftoe, _cftof, _cftog) */
-void __cdecl func_001EB5A0(double *arg, char *buffer, int precision, int caps);
+char *__cdecl func_001EB5A0(double *arg, char *buffer, int precision, int caps);
 char *__cdecl func_001EB6A7(double *arg, char *buffer, int precision);
 void __cdecl func_001EB6F9(double *arg, char *buffer, int precision, int caps);
 
