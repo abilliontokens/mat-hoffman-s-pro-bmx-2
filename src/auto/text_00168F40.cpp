@@ -44,10 +44,20 @@ struct S_00168F40_Slot {
     void *ptr;
 };
 
+/* 8-byte string tokenizer state (strtok-like) */
+struct S_00168F40_Tokenizer {
+    double align;
+    void func_001B4A40(const char *str);
+    char *func_001B4A70(const char *delims);
+};
+
+void func_001681A0(const char *s, void *out);
+
 struct C_00168F40 {
     int f0;
     int f4;
-    char pad8[8];
+    int f8;
+    char padC[4];
     int f10;
     char pad14[4];
     S_00168F40_Entry *f18;
