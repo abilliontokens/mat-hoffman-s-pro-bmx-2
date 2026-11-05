@@ -203,6 +203,27 @@ struct Color_143C00 {
     }
 };
 
+static __forceinline void SetColor_143C00(C_00143C00 *w, float s)
+{
+    const Vec4_143C00 *m = &D_002BECE0[w->fAC];
+    Color_143C00 col(s * m->x, s * m->y, s * m->z, w->f58);
+    func_001FEBD0(0x20, &col);
+}
+
+static __forceinline void Uv28_143C00(C_00143C00 *w, Vtx28_143C00 *v, float rw, float rh)
+{
+    v->u0 = (v->pos.x - w->f94) * rw;
+    v->v0 = (v->pos.z - w->f98) * rh;
+    v->u1 = v->u0;
+    v->v1 = v->v0;
+}
+
+static __forceinline void Uv20_143C00(C_00143C00 *w, Vtx20_143C00 *v, float rw, float rh)
+{
+    v->u = (v->pos.x - w->f94) * rw;
+    v->v = (v->pos.z - w->f98) * rh;
+}
+
 struct C_001AF300 {
     void func_001AF300(void *param);
 };
@@ -316,6 +337,8 @@ struct C_00144960 {
 
 void C_00143C00::func_00143C00(Quad_143C00 *arg)
 {
+    float scale;
+    int v;
     if (D_002A99B0 != 0 || fAC != 3) {
         int wide = fE4 != D_00275544;
         {
@@ -326,8 +349,6 @@ void C_00143C00::func_00143C00(Quad_143C00 *arg)
         f94 = f84 + f64;
         f98 = f88 + f6C;
         {
-            float col[4];
-            float scale;
             switch (fAC) {
             case 0:
                 scale = fD8 / D_002EFEA0;
@@ -340,11 +361,9 @@ void C_00143C00::func_00143C00(Quad_143C00 *arg)
                 scale = D_00275460;
                 break;
             }
-            col[0] = scale * D_002BECE0[fAC].x;
-            col[1] = scale * D_002BECE0[fAC].y;
-            col[2] = scale * D_002BECE0[fAC].z;
-            col[3] = f58;
-            func_001FEBD0(0x20, col);
+            const Vec4_143C00 *m = &D_002BECE0[fAC];
+            Color_143C00 col(scale * m->x, scale * m->y, scale * m->z, f58);
+            func_001FEBD0(0x20, &col);
         }
         func_001FEC30(0x18, (void *)(*(int *)(D_002EFDB8 + 4) + 0x290));
         D_0020C6DC |= 0x3000;
@@ -355,27 +374,37 @@ void C_00143C00::func_00143C00(Quad_143C00 *arg)
         func_001FD020(&D_00040348, 1);
         func_00200390(0, f24[f50]->fB8);
         func_00200510(0, f24[f50]->fBC);
+        v = D_0020C6DC;
         D_0020C6E0 = fA4;
-        D_0020C6DC |= 1;
+        v |= 1;
+        D_0020C6DC = v;
         D_0020C6E4 = fA4;
-        D_0020C6DC |= 1;
+        v = D_0020C6DC;
+        v |= 1;
+        D_0020C6DC = v;
+        v = D_0020C6DC;
         D_0020C6EC = 2;
         D_0020C6F0 = 2;
         D_0020C6F4 = 2;
         D_0020C6F8 = fEC;
-        D_0020C6DC |= 1;
+        v |= 1;
+        D_0020C6DC = v;
         if (fE4 != D_00275544) {
             func_00200390(1, f24[f54]->fB8);
             func_00200510(1, f24[f54]->fBC);
-            D_0020C6DC |= 2;
+            v = D_0020C6DC;
+            v |= 2;
+            D_0020C6DC = v;
             D_0020C760 = fA4;
             D_0020C764 = fA4;
-            D_0020C6DC |= 2;
+            v |= 2;
+            D_0020C6DC = v;
             D_0020C76C = 2;
             D_0020C770 = 2;
             D_0020C774 = 2;
+            v |= 2;
+            D_0020C6DC = v;
             D_0020C778 = fEC;
-            D_0020C6DC |= 2;
         }
         Vtx28_143C00 v28[4];
         Vtx20_143C00 v20[4];
@@ -390,69 +419,119 @@ void C_00143C00::func_00143C00(Quad_143C00 *arg)
             ((Slot70_143C00 *)*(void **)(D_002EFDB8 + 0x70))->func_00142D00(arg->fF4);
             if (D_002A6F8C != 0) {
                 Vtx28_143C00 *p = (Vtx28_143C00 *)func_001FF410(fF0[fFC], 0);
-                Fill28(&p[0], arg->c[0]);
-                Fill28(&p[1], arg->c[1]);
-                Fill28(&p[2], arg->c[2]);
-                Fill28(&p[3], arg->c[3]);
+                p[0].pos.x = arg->c[0].pos.x;
+                p[0].pos.y = arg->c[0].pos.y;
+                p[0].pos.z = arg->c[0].pos.z;
+                p[0].u0 = (p[0].pos.x - f94) / f34;
+                p[0].v0 = (p[0].pos.z - f98) / f38;
+                p[0].u1 = p[0].u0;
+                p[0].v1 = p[0].v0;
+                p[1].pos.x = arg->c[1].pos.x;
+                p[1].pos.y = arg->c[1].pos.y;
+                p[1].pos.z = arg->c[1].pos.z;
+                p[1].u0 = (p[1].pos.x - f94) / f34;
+                p[1].v0 = (p[1].pos.z - f98) / f38;
+                p[1].u1 = p[1].u0;
+                p[1].v1 = p[1].v0;
+                p[2].pos.x = arg->c[2].pos.x;
+                p[2].pos.y = arg->c[2].pos.y;
+                p[2].pos.z = arg->c[2].pos.z;
+                p[2].u0 = (p[2].pos.x - f94) / f34;
+                p[2].v0 = (p[2].pos.z - f98) / f38;
+                p[2].u1 = p[2].u0;
+                p[2].v1 = p[2].v0;
+                p[3].pos.x = arg->c[3].pos.x;
+                p[3].pos.y = arg->c[3].pos.y;
+                p[3].pos.z = arg->c[3].pos.z;
+                p[3].u0 = (p[3].pos.x - f94) / f34;
+                p[3].v0 = (p[3].pos.z - f98) / f38;
+                p[3].u1 = p[3].u0;
+                p[3].v1 = p[3].v0;
                 func_001FEE00(0, fF0[fFC], 0x1c);
-            } else {
-                float invW = D_00275460 / f34;
-                v28[0].pos = arg->c[0].pos;
-                v28[1].pos = arg->c[1].pos;
-                v28[2].pos = arg->c[2].pos;
-                v28[3].pos = arg->c[3].pos;
-                float invH = D_00275460 / f38;
-                for (int i = 0; i < 4; i++) {
+                func_00200B30((void *)6, 4, D_002A7054);
+                if (++fFC == 3) {
+                    fFC = 0;
                 }
-                v28[0].u0 = (v28[0].pos.x - f94) * invW;
-                v28[0].v0 = (v28[0].pos.z - f98) * invH;
-                v28[0].u1 = v28[0].u0;
-                v28[0].v1 = v28[0].v0;
-                v28[1].u0 = (v28[1].pos.x - f94) * invW;
-                v28[1].v0 = (v28[1].pos.z - f98) * invH;
-                v28[1].u1 = v28[1].u0;
-                v28[1].v1 = v28[1].v0;
-                v28[2].u0 = (v28[2].pos.x - f94) * invW;
-                v28[2].v0 = (v28[2].pos.z - f98) * invH;
-                v28[2].u1 = v28[2].u0;
-                v28[2].v1 = v28[2].v0;
-                v28[3].u0 = (v28[3].pos.x - f94) * invW;
-                v28[3].v0 = (v28[3].pos.z - f98) * invH;
-                v28[3].u1 = v28[3].u0;
-                v28[3].v1 = v28[3].v0;
-                func_001FEE00(0, v28, 0x1c);
+            } else {
+                v28[0].pos.x = arg->c[0].pos.x;
+                v28[0].pos.y = arg->c[0].pos.y;
+                v28[0].pos.z = arg->c[0].pos.z;
+                v28[1].pos.x = arg->c[1].pos.x;
+                v28[1].pos.y = arg->c[1].pos.y;
+                v28[1].pos.z = arg->c[1].pos.z;
+                v28[2].pos.x = arg->c[2].pos.x;
+                v28[2].pos.y = arg->c[2].pos.y;
+                v28[2].pos.z = arg->c[2].pos.z;
+                v28[3].pos.x = arg->c[3].pos.x;
+                v28[3].pos.y = arg->c[3].pos.y;
+                v28[3].pos.z = arg->c[3].pos.z;
+                float invW = D_00275460 / f34;
+                scale = D_00275460 / f38;
+                v28[0].u1 = v28[0].u0 = (v28[0].pos.x - f94) * invW;
+                v28[0].v1 = v28[0].v0 = (v28[0].pos.z - f98) * scale;
+                v28[1].u1 = v28[1].u0 = (v28[1].pos.x - f94) * invW;
+                v28[1].v1 = v28[1].v0 = (v28[1].pos.z - f98) * scale;
+                v28[2].u1 = v28[2].u0 = (v28[2].pos.x - f94) * invW;
+                v28[2].v1 = v28[2].v0 = (v28[2].pos.z - f98) * scale;
+                v28[3].u1 = v28[3].u0 = (v28[3].pos.x - f94) * invW;
+                v28[3].v1 = v28[3].v0 = (v28[3].pos.z - f98) * scale;
+                func_00200950(6, 6, D_002A7054, v28, 0x1c);
             }
         } else {
             ((Slot6C_143C00 *)*(void **)(D_002EFDB8 + 0x6c))->func_0014A650(arg->fE0);
             ((Slot70_143C00 *)*(void **)(D_002EFDB8 + 0x70))->func_00142D00(arg->fF0);
             if (D_002A6F8C != 0) {
                 Vtx20_143C00 *p = (Vtx20_143C00 *)func_001FF410(fF0[fFC], 0);
-                Fill20(&p[0], arg->c[0]);
-                Fill20(&p[1], arg->c[1]);
-                Fill20(&p[2], arg->c[2]);
-                Fill20(&p[3], arg->c[3]);
+                p[0].pos.x = arg->c[0].pos.x;
+                p[0].pos.y = arg->c[0].pos.y;
+                p[0].pos.z = arg->c[0].pos.z;
+                p[0].u = (p[0].pos.x - f94) / f34;
+                p[0].v = (p[0].pos.z - f98) / f38;
+                p[1].pos.x = arg->c[1].pos.x;
+                p[1].pos.y = arg->c[1].pos.y;
+                p[1].pos.z = arg->c[1].pos.z;
+                p[1].u = (p[1].pos.x - f94) / f34;
+                p[1].v = (p[1].pos.z - f98) / f38;
+                p[2].pos.x = arg->c[2].pos.x;
+                p[2].pos.y = arg->c[2].pos.y;
+                p[2].pos.z = arg->c[2].pos.z;
+                p[2].u = (p[2].pos.x - f94) / f34;
+                p[2].v = (p[2].pos.z - f98) / f38;
+                p[3].pos.x = arg->c[3].pos.x;
+                p[3].pos.y = arg->c[3].pos.y;
+                p[3].pos.z = arg->c[3].pos.z;
+                p[3].u = (p[3].pos.x - f94) / f34;
+                p[3].v = (p[3].pos.z - f98) / f38;
                 func_001FEE00(0, fF0[fFC], 0x14);
+                func_00200B30((void *)6, 4, D_002A7054);
+                if (++fFC == 3) {
+                    fFC = 0;
+                }
             } else {
+                v20[0].pos.x = arg->c[0].pos.x;
+                v20[0].pos.y = arg->c[0].pos.y;
+                v20[0].pos.z = arg->c[0].pos.z;
+                v20[1].pos.x = arg->c[1].pos.x;
+                v20[1].pos.y = arg->c[1].pos.y;
+                v20[1].pos.z = arg->c[1].pos.z;
+                v20[2].pos.x = arg->c[2].pos.x;
+                v20[2].pos.y = arg->c[2].pos.y;
+                v20[2].pos.z = arg->c[2].pos.z;
+                v20[3].pos.x = arg->c[3].pos.x;
+                v20[3].pos.y = arg->c[3].pos.y;
+                v20[3].pos.z = arg->c[3].pos.z;
                 float invW = D_00275460 / f34;
-                v20[0].pos = arg->c[0].pos;
-                v20[1].pos = arg->c[1].pos;
-                v20[2].pos = arg->c[2].pos;
-                v20[3].pos = arg->c[3].pos;
-                float invH = D_00275460 / f38;
+                scale = D_00275460 / f38;
                 v20[0].u = (v20[0].pos.x - f94) * invW;
-                v20[0].v = (v20[0].pos.z - f98) * invH;
+                v20[0].v = (v20[0].pos.z - f98) * scale;
                 v20[1].u = (v20[1].pos.x - f94) * invW;
-                v20[1].v = (v20[1].pos.z - f98) * invH;
+                v20[1].v = (v20[1].pos.z - f98) * scale;
                 v20[2].u = (v20[2].pos.x - f94) * invW;
-                v20[2].v = (v20[2].pos.z - f98) * invH;
+                v20[2].v = (v20[2].pos.z - f98) * scale;
                 v20[3].u = (v20[3].pos.x - f94) * invW;
-                v20[3].v = (v20[3].pos.z - f98) * invH;
-                func_001FEE00(0, v20, 0x14);
+                v20[3].v = (v20[3].pos.z - f98) * scale;
+                func_00200950(6, 6, D_002A7054, v20, 0x14);
             }
-        }
-        func_00200B30((void *)6, 4, D_002A7054);
-        if (++fFC == 3) {
-            fFC = 0;
         }
     }
 }
