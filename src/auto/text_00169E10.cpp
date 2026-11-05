@@ -60,18 +60,12 @@ struct ParticleEmitter {
 };
 
 ParticleEmitter *ParticleEmitter::func_0016A1D0(void *a, void *b, u32 *c) {
-    u32 *d;
-
     ((C_001D3F50 *)this)->func_001D3F50();
     f64 = a;
     if (b != 0) {
         f68 = b;
         if (c != 0) {
-            d = &f44;
-            d[0] = c[0];
-            d[1] = c[1];
-            d[2] = c[2];
-            d[3] = c[3];
+            *(V4u *)&f44 = *(V4u *)c;
         }
     }
     return this;
