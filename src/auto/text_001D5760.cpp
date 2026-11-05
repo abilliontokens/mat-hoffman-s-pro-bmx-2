@@ -1,6 +1,7 @@
 /* 15 functions from 0x001D5760 to 0x001D6600, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <string.h>
 extern int D_0028F5F4;
 extern int D_00284E94;
 
