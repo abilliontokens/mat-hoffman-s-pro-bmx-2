@@ -22,6 +22,30 @@ extern "C" void (__stdcall *_imp__RtlLeaveCriticalSection)(void *cs);
 extern "C" int __cdecl func_001F44EF(void *cs, int spinCount);
 void func_001E8390(void *p);
 
+/* CRT stdio FILE: read pointer and remaining count. */
+struct S_File {
+    char *ptr;
+    int cnt;
+};
+
+/* _CRT_DOUBLE / _CRT_FLOAT: copied by value into scanf's output. */
+struct S_CrtDouble {
+    double x;
+};
+struct S_CrtFloat {
+    float f;
+};
+
+extern int D_002AEA38;
+extern unsigned short *D_002AEA30;
+extern char D_002AEA3C;
+
+int __cdecl func_001ED552(S_File *f);
+int __cdecl func_001E8D25(int c);
+int __cdecl func_001EC5F1(int c, int mask);
+int __cdecl func_001F4874(S_CrtDouble *out, char *str);
+int __cdecl func_001F48A1(S_CrtFloat *out, char *str);
+
 /* new-handler installed by set_new_handler, called by _callnewh */
 extern "C" int (__cdecl *D_002F69E8)(unsigned int size);
 extern "C" void *__cdecl func_001E8AA5(unsigned int size);
