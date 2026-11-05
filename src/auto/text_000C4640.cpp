@@ -121,6 +121,31 @@ struct C_000C4FD0 {
     void func_000C4FD0();
 };
 
+void C_000C4EB0::func_000C4CE0()
+{
+    int i;
+    if (f2E0) {
+        f2F4 = 1;
+        for (i = 0; i < 3; i++) a320[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+    }
+    else if (f2EC) {
+        f2F4 = 1;
+        for (i = 0; i < 3; i++) a350[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+    }
+    else if (f2E4) {
+        f2F4 = 1;
+        for (i = 0; i < 3; i++) a32C[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+    }
+    else if (f364) {
+        f2F4 = 1;
+        for (i = 0; i < 3; i++) a338[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+    }
+    else if (f2E8) {
+        f2F4 = 1;
+        for (i = 0; i < 3; i++) a344[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0, 0);
+    }
+}
+
 void C_000C4EB0::func_000C4EB0()
 {
     int i;
