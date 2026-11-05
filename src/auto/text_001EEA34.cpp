@@ -527,11 +527,11 @@ S_001EF033 *__fastcall func_001EF419(int v, int unused)
     BitObj *raw;
 
     obj = (S_001EF033 *)D_002F6A04.func_001EEE62(0xc, 0);
-    if (obj == 0) {
-        return 0;
+    if (obj != 0) {
+        raw = (BitObj *)D_002F6A04.func_001EEE62(8, 0);
+        return obj->func_001EF033(raw != 0 ? raw->Reset(v) : 0);
     }
-    raw = (BitObj *)D_002F6A04.func_001EEE62(8, 0);
-    return func_001EF033(obj, 0, raw != 0 ? raw->Reset(v) : 0);
+    return 0;
 }
 
 S_001EF45F *__fastcall func_001EF45F(S_001EF45F *self, int unused, const char *src, int len)
