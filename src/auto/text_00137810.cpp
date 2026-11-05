@@ -189,7 +189,7 @@ struct DrawableCube {
     void *vtbl;
     char pad4[0x23];
     u8 f27;
-    int f28;
+    S_137F90_Src *f28;
     DrawableCubeVirt **f2c;
     int f30;
     int f34;
