@@ -252,6 +252,28 @@ void C_00035720::func_00035720(void)
     }
 }
 
+int C_00035720::func_00035780()
+{
+    if (f540) {
+        func_001577A0(f540, -1);
+        ((C_00035720 *)f540)->func_001577A0(f28, -1);
+    }
+    void *p = *(void **)((char *)this + 0x48);
+    if (p) func_001577A0(p, -1);
+    func_00031E80();
+    p = *(void **)((char *)this + 0x2c4);
+    if (p) func_001577A0(p, -1);
+    p = *(void **)((char *)this + 0x588);
+    if (p) func_001577A0(p, -1);
+    if (f550) func_001577A0(f550, -1);
+    if (f554) func_001577A0(f554, -1);
+    if (f558) func_001577A0(f558, -1);
+    p = *(void **)((char *)this + 0x55c);
+    if (p) func_001577A0(p, -1);
+    if (f560) func_001577A0(f560, -1);
+    return 1;
+}
+
 void C_00035720::func_00035860(void)
 {
     if (f284 == 0) {
