@@ -334,6 +334,18 @@ int C_0012B170::func_0012B170(int a, int b)
     return 0;
 }
 
+int C_0012B190::func_0012B190(int x, int y, int w, int h)
+{
+    if (w > f204) {
+        w = f204;
+    }
+    if (h > f208) {
+        h = f208;
+    }
+    func_0012A7C0(x, y, w, h);
+    return 1;
+}
+
 void C_0012B1D0::func_0012B1D0(undefined4 *param_1)
 {
   int in_ECX = (int)this;
