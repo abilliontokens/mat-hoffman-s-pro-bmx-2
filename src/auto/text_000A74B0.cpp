@@ -517,3 +517,4 @@ struct Coll_79E0 {
     Data_79E0 *fC;
     int func_000A79E0(Game_79E0 *g);
 };
+extern int D_002B9118;
