@@ -99,16 +99,40 @@ static inline void RoundToInt(int *out, float f)
 }
 
 struct V4_00032E50;
-struct O_Cam32F50 { V4_00032E50 func_001824E0(float x, float y, float z); };
+struct O_Cam32F50 {
+    char pad0[0x28];
+    char name[0x198];
+    float f1c0;
+    float f1c4;
+    float f1c8;
+    V4_00032E50 func_001824E0(float x, float y, float z);
+};
 struct O_Obj32F50 { char pad0[8]; O_Cam32F50 *f8; };
 extern V4_00032E50 D_002A1460;
 
+struct S_00033090_List {
+    char pad0[0x24];
+    int count;
+    O_Obj32F50 **items;     /* +0x28 */
+};
+
+struct S_00033090_Level {
+    char pad0[0x3a8];
+    S_00033090_List **f3a8;
+};
+
+extern "C" char *func_001E8AC0(const char *s, int c);
+extern "C" int func_001EA426(const char *a, const char *b);
+
 struct BmxEvent {
-    char pad0[0x234];
+    char pad0[0x64];
+    S_00033090_Level *f64;
+    char pad68[0x234 - 0x68];
     O_Obj32F50 *f234[2];
     V4_00032E50 f23C[2];
     V4_00032E50 f25C[2];
     float f27C[2];
+    void func_00033090(const char *name, float x, float y, float z, float w, int flag);
     void func_00032E90();
     void func_00032F50();
     void func_00157920();
