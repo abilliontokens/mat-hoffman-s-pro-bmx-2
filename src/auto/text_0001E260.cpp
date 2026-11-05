@@ -202,6 +202,23 @@ void C_0001E930::func_0001E790(void **elem)
     }
 }
 
+int C_0001E930::func_0001E7B0()
+{
+    void **chunk = (void **)func_001E8AA5(unk20);
+    if (chunk == 0) {
+        return 0;
+    }
+    if (unkC == 0) {
+        unkC = chunk;
+    } else {
+        *unk10 = chunk;
+    }
+    unk10 = chunk;
+    *chunk = 0;
+    unk28 += unk20;
+    return 1;
+}
+
 void C_0001E860::func_0001E860(void)
 {
   int in_ECX = (int)this;
