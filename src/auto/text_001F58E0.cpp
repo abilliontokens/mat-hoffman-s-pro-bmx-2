@@ -78,6 +78,19 @@ int func_001F5AA1(unsigned int a, unsigned int b, unsigned int *out)
     return overflow;
 }
 
+int func_001F5AC2(S_U12 *a, S_U12 *b)
+{
+    if (func_001F5AA1(a->l[0], b->l[0], &a->l[0])) {
+        if (func_001F5AA1(a->l[1], 1, &a->l[1])) {
+            a->l[2]++;
+        }
+    }
+    if (func_001F5AA1(a->l[1], b->l[1], &a->l[1])) {
+        a->l[2]++;
+    }
+    return func_001F5AA1(a->l[2], b->l[2], &a->l[2]);
+}
+
 int func_001F627B(PFN_001F5975 fn)
 {
     int valid = 1;
