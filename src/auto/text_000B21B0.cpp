@@ -356,7 +356,7 @@ int func_00011260(int lo, int hi);
 static __forceinline float Sqrt_000B2630(float x)
 {
     float r;
-    _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x)));
+    _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x));
     return r;
 }
 
