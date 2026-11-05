@@ -92,16 +92,40 @@ struct C_0001BAC0 {
     void func_0001BD60(int id, int slot);
 };
 
+struct S_0001C1E0_Aux {
+    char pad0[0x10];
+    int f10;
+};
+
+struct S_0001C1E0_Slot {
+    char pad0[0x78];
+    int *f78;
+    char pad7C[8];
+    int f84;
+    int f88;
+    char pad8C[4];
+    int f90;
+    char pad94[0x110];
+    S_0001C1E0_Aux *f1A4;
+    int func_001B5750(int a);
+};
+
 struct S_0001C1E0_List {
-    char pad0[0x28];
-    int *f28;
+    char pad0[0x24];
+    int f24;
+    S_0001C1E0_Slot **f28;
 };
 
 struct C_0001C1E0 {
     char pad0[0x2c];
     S_0001C1E0_List *f2c;
+    int func_0001B3C0(int a);
+    void func_0001BDB0(int idx);
+    int func_0001BDF0(int a, int b);
     void func_0001C1E0(int idx, int b, int c, int d);
-    void func_0001BE90(int obj, int b, int c, int d);
+    int func_0001C200(int a, int b, int c, int d);
+    void func_0001C240(void);
+    int func_0001BE90(S_0001C1E0_Slot *obj, int b, int c, int d);
 };
 
 /* objects with a virtual base class that has virtual slots (slot 5 at +0x14, slot 7 at +0x1c) */
