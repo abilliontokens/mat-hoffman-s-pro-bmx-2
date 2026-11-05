@@ -405,6 +405,16 @@ void func_0014FE80(void) {
     func_001E9A0C();
 }
 
+void func_0014FE90(void *stream, const char *fmt, ...)
+{
+    char buf[256];
+    va_list ap;
+
+    va_start(ap, fmt);
+    func_001E9AB6(buf, 0x100, fmt, ap);
+    func_001E9A58(stream, buf);
+}
+
 void func_0014FED0(void)
 {
     int func_001E9B9B(...);
