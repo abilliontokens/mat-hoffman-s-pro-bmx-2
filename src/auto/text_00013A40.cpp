@@ -140,7 +140,20 @@ struct C_00014020 {
     S_00014020_Small *f3A0;
     S_00014020_Small *f3A4;
     S_00014020_Small *f3A8;
+    char pad3AC[4];
+    int f3B0;
+    int f3B4;
+    char pad3B8[4];
+    int f3BC;
+    char pad3C0[0x1C];
+    u8 f3DC;
+    char pad3DD[3];
+    u8 f3E0;
+    char pad3E1[3];
+    S_00014850_Vec4 f3E4;
     void func_00014020();
+    void func_00014850(int arg);
+    int func_00012730(S_00014850_Vec4 *a, S_00014850_Vec4 *b, S_00014850_Vec4 *c, int d, int e);
     void func_001C75A0();
 };
 
