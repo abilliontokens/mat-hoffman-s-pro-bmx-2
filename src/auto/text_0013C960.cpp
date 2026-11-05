@@ -13,7 +13,10 @@ struct S_0013C960_Rec {
     int fC;
     void *f10;
     void *f14;
-    char pad18[0x10];
+    int f18;
+    int f1C;
+    int f20;
+    char f24;
 };
 
 struct S_0013C960_Ent {
