@@ -158,6 +158,57 @@ struct C_001576D0 {
 
 void __stdcall func_002223E1(int a, int b, int c);
 int __stdcall func_0021FB83(int a);
+void *func_001E8A44(int size);
+void __stdcall func_00220AE5(void *stream, int a, int b, int c);
+
+/* a 0x48-byte object created by func_001CB320 */
+struct C_001CB320 {
+    C_001CB320 *func_001CB320(void);
+};
+
+struct C_001CBEF0 {
+    char pad0[0x2c];
+    unsigned char f2C;
+    C_001CB320 *func_001CBEF0(void);
+};
+
+/* XMEDIAPACKET */
+struct S_001CBB50_Packet {
+    char *buffer;
+    unsigned int size;
+    unsigned int *completed;
+    unsigned int *status;
+    void *context;
+    void *timestamp;
+};
+
+struct S_001CBB50_Stream {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual int Process(S_001CBB50_Packet *packet, void *out);
+    virtual void v5();
+};
+
+struct S_001CB9A0_Owner {
+    char pad0[0x208];
+    unsigned char f208;
+};
+
+/* a streaming sound with three queued packets */
+struct C_001CB9A0 {
+    int f0;
+    S_001CB9A0_Owner *f4;
+    int f8;
+    S_001CBB50_Stream *fC;
+    char *f10;
+    unsigned int f14[3];
+    unsigned char f20;
+    void func_001CB9A0(void);
+    int func_001CBB50(int idx);
+    void func_001CBBC0(void);
+};
 
 int C_001CB440::func_001CB440(void)
 {
