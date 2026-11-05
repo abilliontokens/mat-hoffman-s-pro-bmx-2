@@ -28,6 +28,17 @@ void __stdcall func_001DD659(int a0);
 int __stdcall func_001DEF3C(int handle, int out);
 int __stdcall func_001DE0DD(int a0, void *a1, int a2);
 int __stdcall func_001DF5D6(void *p);
+int __stdcall func_001DEE2F(char *path, int a1);
+void __stdcall func_001DD62B(int err);
+void *__stdcall func_001DF5B9(int a0, int size);
+void __stdcall func_001DF4E1(void *dst, const void *src, int n);
+extern char D_0028FB58[];
+struct S_001DE51E_Obj {
+    unsigned int tag;
+    int handle;
+    int len;
+    char path[0x104];
+};
 
 extern "C" int (__stdcall *_imp__NtYieldExecution)(void);
 extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
