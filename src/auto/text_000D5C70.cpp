@@ -165,6 +165,21 @@ void BmxUIPageHOF2::func_000D5E00()
     func_001BE3F0();
 }
 
+void BmxUIPageHOF2::func_000D6A60()
+{
+    S_000D6A60_Owner *owner = f124;
+    int i;
+    for (i = 0; i < 5; i++) {
+        arr2D4[i]->func_001B1980();
+        arr2E8[i]->func_001B1980();
+        arr304[i]->func_001B1980();
+        arr2D4[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
+        arr2E8[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
+        arr304[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
+    }
+    owner->func_000BA9B0(0x1e)->func_00103350();
+}
+
 void BmxUIPageHOF2::func_000D6B40()
 {
     ElemHOF2 **p = arr2C4;
