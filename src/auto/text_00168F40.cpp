@@ -344,7 +344,7 @@ int C_00168F40::func_00169490(int name, int flag)
             return 0;
         }
         *(int *)&f8 = 1;
-        *(int *)&padC = 1;
+        *(int *)((char *)this + 0xC) = 1;
         f428 = 0;
         f4 = 0;
     } else {
