@@ -41,6 +41,14 @@ struct C_001F306F_P1 {
     void func_001EF759(void *param_1);
 };
 
+struct C_001F306F_Ctx {
+    int unk0[2];
+    int unk8;
+    unsigned short unkC;
+    char padE[2];
+    S8_001F unk10;
+};
+
 struct C_001F311D_Ret {
     int func_001EFAB5(void);
 };
@@ -74,16 +82,19 @@ void *func_001F306F(void *param_1, int param_2) {
     int v4[2];
     local.func_001EF11B(param_2);
     char c = *D_002F6A28;
-    if (c == 0) {
+    switch (c) {
+    case 0:
         func_001EFCF7(param_1, 2, &local);
-    } else if (c == '?') {
+        break;
+    case '?':
         D_002F6A28++;
         v2 &= 0xfe00;
         v3 = 0;
-        int result = func_001F23B8(v4, &local, 0, &v3, 0);
-        local.func_001EEF4F(result);
+        local.func_001EEF4F(func_001F23B8(v4, &local, 0, &v3, 0));
+    default:
         func_001F2F3F(param_1, &local);
-    } else if (c == 'X') {
+        break;
+    case 'X':
         D_002F6A28++;
         if (local.func_001EF1E7() == 0) {
             func_001EFD19(param_1, &D_00295CA0, &local);
@@ -91,8 +102,6 @@ void *func_001F306F(void *param_1, int param_2) {
         }
         ((C_001F306F_P1 *)param_1)->func_001EF759(&D_0027D1D8);
         return param_1;
-    } else {
-        func_001F2F3F(param_1, &local);
     }
     return param_1;
 }
@@ -106,9 +115,8 @@ void *func_001F311D(void *param_1, int param_2) {
     int localC[2];
     int localD[2];
     S8_001F *node = 0;
-    void *mem = D_002F6A04->func_001EEE62(8, 0);
-    if (mem != 0) {
-        S8_001F *obj = (S8_001F *)mem;
+    S8_001F *obj = (S8_001F *)D_002F6A04->func_001EEE62(8, (int)node);
+    if (obj != node) {
         obj->unk0 = 0;
         *(unsigned short *)&obj->unk4 &= 0xfe00;
         node = obj;
