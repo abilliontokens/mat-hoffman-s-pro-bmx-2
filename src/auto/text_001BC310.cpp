@@ -316,6 +316,7 @@ struct C_001BCFE0 {
     int f11c;
     void func_001577A0(void *p, int n);
     int func_001BCFE0(int idx);
+    void func_001BCCC0(int idx);
     int func_001BD040(void);
 };
 
