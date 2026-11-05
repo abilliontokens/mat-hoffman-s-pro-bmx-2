@@ -127,8 +127,15 @@ struct C_00168280 {
     void func_001691E0(void);
     int func_00169710(char *buf);
     int func_00168C20(const char *key, int def, int *out);
+    int func_00168C50(const char *key, int def, float *out);
+    int func_00168BE0(const char *key, const char *def, char *dst, int size);
     int func_00168550(const char *key, char *out, int def);
 };
+
+extern "C" int strlen(const char *s);
+char *func_001E8920(char *dst, const char *src, int n);
+extern char D_0028B7CC[], D_00284BE8[], D_0028B7B8[], D_00284AB0[], D_00275630[], D_0027A1F8[];
+extern char D_00287DA0[], D_0028B7B0[], D_0028B7A0[], D_0028B798[], D_0028B78C[];
 
 struct C_001A4210_Scene {
     void func_0001DF80(void *obj, int a);
