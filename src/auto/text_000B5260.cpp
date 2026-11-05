@@ -1,6 +1,7 @@
 /* 12 functions from 0x000B5260 to 0x000B6180, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <math.h>
 struct C_000B6080 {
     void func_000B6080(int param_1);
 };
@@ -61,8 +62,8 @@ void C_000B58B0::func_000B58B0(void)
   float w[4];
   float vec4[4];
   float vec3[4];
-  float row[4];
   float d[4];
+  float row[4];
   int v;
   void func_0001E9E0(float *out, float *in);
 
@@ -72,10 +73,7 @@ void C_000B58B0::func_000B58B0(void)
   d[0] = vec3[0] - *(float *)(v + 0x20);
   d[1] = vec3[1] - *(float *)(v + 0x24);
   d[2] = vec3[2] - *(float *)(v + 0x28);
-  row[0] = *(float *)(v + 0x40);
-  row[1] = *(float *)(v + 0x44);
-  row[2] = *(float *)(v + 0x48);
-  row[3] = *(float *)(v + 0x4c);
+  *(V4_000B5260 *)row = *(V4_000B5260 *)(v + 0x40);
   func_0001E9E0(w, row);
   *(float *)(in_ECX + 0x54) = d[0] * row[0] + d[1] * row[1] + d[2] * row[2];
 }
@@ -84,10 +82,11 @@ int C_000B5950::func_000B5950(void)
 {
   int in_ECX = (int)this;
   float f;
-  float fabsf(float);
+  int tmp;
 
   f = *(float *)((**(code **)(*(int *)in_ECX + 0x6c))() + 0x44);
-  if (fabsf(f) > D_002A2EC8) {
+  tmp = *(int *)&f & 0x7fffffff;
+  if (*(float *)&tmp > D_002A2EC8) {
     return 1;
   }
   return 0;
