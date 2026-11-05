@@ -41,7 +41,7 @@ struct C_0002FA80 {
     int cur;
 
     undefined4 func_00030020(const char *name);
-    bool func_000300C0(const char *subName);
+    int func_000300C0(const char *subName);
     void func_000301D0(void);
     bool func_00030120(const char *subName);
     void func_00030160(void);
@@ -120,6 +120,22 @@ bool C_0002FA80::func_00030120(const char *subName)
     S_0002FA80_Entry *e = &entries[cur];
 
     return func_001EA426(subName, e->subs[e->curSub].name) == 0;
+}
+
+void C_0002FA80::func_00030160(void)
+{
+    S_0002FA80_Entry *e = &entries[cur];
+    S_0002FA80_Sub *s = &e->subs[e->curSub];
+
+    ((C_00194BD0 *)e->f0)->func_00194BD0(s->f104, s->f108, 0);
+}
+
+void C_0002FA80::func_000301A0(void)
+{
+    S_0002FA80_Entry *e = &entries[cur];
+    S_0002FA80_Sub *s = &e->subs[e->curSub];
+
+    ((C_00194BD0 *)e->f0)->func_00194BD0(s->f104, s->f104, 0);
 }
 
 void C_0002FA80::func_000301D0(void)
