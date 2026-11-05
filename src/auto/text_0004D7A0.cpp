@@ -17,8 +17,30 @@ struct C_0004DCA0_Riders {
     void func_000A4500(int a, int b);
 };
 
+struct C_0004D7A0_Virtual { void **vtbl; };
+
+struct C_0004D7A0_Menu {
+    char pad0[0xfc];
+    int fFC;
+    void func_000602B0(void);
+    void func_00060350(int);
+};
+struct C_0004D7A0_State { char pad0[0x13c]; int f13C; };
+struct C_0004D7A0_Other { char pad0[0x168]; int f168; };
+struct C_0004D7A0_GlobalState {
+    int f0;
+    int f4;
+    char pad8[0x2f4];
+    C_0004D7A0_Virtual *f2FC;
+};
+struct C_0004D7A0_Global { char pad0[0x2e0]; C_0004D7A0_GlobalState *f2E0; };
+extern C_0004D7A0_Global *D_002A8490;
+int func_001361E0(int, int, int *, int);
+
 struct C_0004DCA0_World {
-    char pad0[0x4e0];
+    char pad0[0x4c0];
+    C_0004D7A0_Virtual *f4C0;
+    char pad4c4[0x1c];
     C_0004DCA0_Riders *f4E0;
 };
 
