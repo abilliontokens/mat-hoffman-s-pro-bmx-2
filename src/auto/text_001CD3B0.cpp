@@ -120,32 +120,40 @@ struct S_001CDE40_Owner {
 
 extern "C" __declspec(dllimport) void __stdcall RtlInitializeCriticalSection(void *cs);
 
+struct S_OwnedElemList {
+    S_SoundElemList list;
+    u8 flags;
+    char pad[3];
+
+    S_OwnedElemList()
+    {
+        list.items = 0;
+        list.count = 0;
+        list.growBy = 0;
+        list.capacity = 0;
+        flags &= 0xfe;
+    }
+
+    void init(int n)
+    {
+        list.items = (S_SoundElem **)func_001E8A44(n * 4);
+        flags |= 1;
+        list.growBy = 0x10;
+        list.capacity = n;
+    }
+};
+
 struct C_001CDC20 {
     int f0;
     int f4;
     int f8;
     int fC;
-    S_SoundElemList list0;
-    union {
-        u8 f20;
-        S_SoundGroupFlags f20b;
-    };
-    char pad21[3];
-    S_SoundElemList list1;
-    union {
-        u8 f34;
-        S_SoundGroupFlags f34b;
-    };
-    char pad35[3];
-    S_SoundElemList list2;
-    union {
-        u8 f48;
-        S_SoundGroupFlags f48b;
-    };
-    char pad49[3];
+    S_OwnedElemList l0;
+    S_OwnedElemList l1;
+    S_OwnedElemList l2;
     int f4C;
     char f50[0x18];
-    C_001CDC20 *func_001CDC20(int a, int b);
+    C_001CDC20(int a, int b);
 };
 
 
