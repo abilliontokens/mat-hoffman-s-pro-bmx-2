@@ -143,6 +143,17 @@ C_000A89F0 *C_000A89F0::func_000A89F0()
     return this;
 }
 
+C_000A8C90 *C_000A8C90::func_000A8C90()
+{
+    int i;
+    ((C_001B59E0 *)this)->func_001B59E0();
+    vtbl = (void *)&D_0027C304;
+    for (i = 0; i < 3; i++) {
+        unk10C[i][0] = 0;
+    }
+    return this;
+}
+
 C_000A8D70 *C_000A8D70::func_000A8D70()
 {
     ((C_001B59E0 *)this)->func_001B59E0();
