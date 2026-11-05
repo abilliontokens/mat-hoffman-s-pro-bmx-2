@@ -30,6 +30,22 @@ struct C_000AB490 {
     void func_000AB490(void);
 };
 
+void C_000AB490::func_000AB490(void)
+{
+    int func_001E891B(...);
+    int i;
+
+    vtbl = (void *)&D_0027C724;
+    if (f28 != 0) {
+        for (i = 0; i < f24; i++) {
+            func_001E891B(f28[i]->f110);
+            func_001E891B(f28[i]);
+        }
+        func_001E891B(f28);
+    }
+    ((C_00157660 *)this)->func_00157660();
+}
+
 C_000ABD60 *C_000ABD60::func_000ABD60()
 {
     ((C_001B59E0 *)this)->func_001B59E0();
