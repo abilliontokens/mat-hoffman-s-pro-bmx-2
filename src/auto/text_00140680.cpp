@@ -55,8 +55,9 @@ void *C_00140680::func_00140680(unsigned int flags)
 {
     if (flags & 2) {
         int *base = (int *)this - 1;
-        C_00140680 *p = this + *base;
-        for (int i = *base - 1; i >= 0; i--) {
+        int i = *base;
+        C_00140680 *p = this + i;
+        while (--i >= 0) {
             p--;
             if (p->a) p->a->destroyObject(1);
             if (p->b) p->b->destroyObject(1);
@@ -112,10 +113,9 @@ int func_00140890(C_00168BE0 *cfg, const char *key, int def, int *out)
 {
     char *end;
     char buf[64];
-    cfg->func_00168BE0(key, D_0028502C, buf, 64);
-    if (memcmp(buf, D_0028502C, 10) == 0) {
-        *out = def;
-        return def;
+    cfg->func_00168BE0(key, "undefined", buf, 64);
+    if (strcmp(buf, "undefined") == 0) {
+        return *out = def;
     }
     return *out = func_001E9576(buf, &end, 0);
 }
