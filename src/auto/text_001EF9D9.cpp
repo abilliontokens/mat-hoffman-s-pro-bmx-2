@@ -42,7 +42,6 @@ void *_func_001EFBEE(S_001EF734 *o);
 void *_func_001EFD19(void *a, char *b, void *c);
 void *_func_001EFF6E(S_001EF734 *o);
 void *_func_001EFDB9(void *out, int v);
-void *_func_001EFCD5(void *a, char b, void *c);
 
 struct C_001EFB18_Child {
     C_001EFB18_Child *func_001EF419(void);
