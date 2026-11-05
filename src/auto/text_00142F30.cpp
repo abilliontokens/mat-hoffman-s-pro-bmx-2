@@ -190,6 +190,7 @@ struct DXSignatureWave {
     void *fFC;
     DXSignatureWaveObjVT **f100;
     void func_001439D0();
+    int func_00143A40(const char *name, int id);
     DXSignatureWave *func_00143940(S_00143940_V4 a, S_00143940_V4 b, int c1, int c2,
                                    int c3, int c4, int c5, int c6, int c7, int c8,
                                    int c9, int c10);
@@ -259,12 +260,11 @@ void DXRenderableObject::func_00143660(void)
 {
     ShadowPiece *piece;
     int i;
-    int one = 1;
 
-    if (!(f181 & one))
+    if (!(f181 & 1))
         return;
     if (f1d4 == -1)
-        f1d4 = (D_002A829C->f14[*f1b8].f4->f54->f24 >> 3) & one;
+        f1d4 = (D_002A829C->f14[*f1b8].f4->f54->f24 >> 3) & 1;
     ((Alloc190 *)f1d0)->func_00142F30(D_002EFDB8[1]);
     ((Alloc190 *)f1d0)->f160.SetRef(Vec4_143660(f1c0.x, f1c0.y, f1c0.z, f1c0.w));
     piece = &f1a4->pieces[f1a0];
