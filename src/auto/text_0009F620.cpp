@@ -87,7 +87,7 @@ struct C_0009FAD0 {
 
 struct V4_000A00A0 {
     float x, y, z, w;
-    V4_000A00A0() { x = 0; y = 0; z = 0; w = 1.0f; }
+    V4_000A00A0() { z = 0; y = 0; x = 0; w = 1.0f; }
 };
 extern V4_000A00A0 D_002A25E0;
 extern char D_0009F700;
