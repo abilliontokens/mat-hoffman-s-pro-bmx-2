@@ -136,7 +136,9 @@ struct C_000724E0 {
     void *vtbl;
     char pad0[0x60];
     int unk64;
-    char pad68[0x78 - 0x68];
+    char pad68[8];
+    Resource_716F0 *unk70;
+    Resource_716F0 *unk74;
     Sprite_724E0 *unk78;
     Sprite_724E0 *unk7C;
     Sprite_724E0 *unk80;
