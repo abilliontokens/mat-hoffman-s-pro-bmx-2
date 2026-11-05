@@ -6,11 +6,6 @@ int func_001EA426(const char *a, const char *b);
 extern float D_00276610;
 extern float D_00275544;
 
-struct S_00133A30_Pair {
-    int a;
-    int b;
-};
-
 struct S_00133A30 {
     char pad0[0x21];
     u8 f21;
