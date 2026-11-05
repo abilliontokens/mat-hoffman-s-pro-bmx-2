@@ -85,6 +85,7 @@ struct S_000C40D0_Ui {
 struct S_000C40D0_Owner {
     char pad0[0x24];
     S_000C40D0_Ui *f24;
+    char pad28[0x298-0x28]; int f298;
 };
 
 struct S_000C38B0_Slot {
