@@ -327,6 +327,36 @@ void C_001D5360::func_001D5360(void)
     }
 }
 
+void C_001D53A0::func_001D53A0(int a)
+{
+    C_00144640 *p = (C_00144640 *)func_001E8A44(0x14);
+    C_001D48A0 *q;
+
+    unk0 = p != 0 ? p->func_00144640() : 0;
+    unk0->v1(a, D_002AA470);
+    unk0->unkC |= 1;
+    unk0->unkC &= 0xfe;
+    q = (C_001D48A0 *)func_001E8A44(8);
+    if (q != 0) {
+        q->unk0 = (int)&D_0028F578;
+        q->unk4 = (int)func_001E8A44(0x18);
+        unk4 = q;
+        unk0->unk10 = q;
+    } else {
+        q = 0;
+        unk4 = q;
+        unk0->unk10 = q;
+    }
+}
+
+void C_001D53A0::func_001D5430(S_0012B2B0_Rect *in, S_0012B2B0_Rect *out, int c)
+{
+    D_002EFDB8->unk4->func_0012B2B0(in, out);
+    if (unk4 != 0) {
+        *(S_0012B2B0_Rect *)unk4->unk4 = *in;
+    }
+}
+
 void C_001D5470::func_001D5470(void)
 {
     unk0->func_001446B0(unk4, 0, -1);
