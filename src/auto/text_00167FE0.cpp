@@ -25,7 +25,7 @@ extern char D_002869B4[];
 extern char D_002869B8[];
 char *func_001E95A4(char *s, const char *delim);
 
-static inline void parse_int4_00168E70(char *s, int *out)
+static __forceinline void parse_int4_00168E70(char *s, int *out)
 {
     out[0] = func_001E91F4(func_001E95A4(s, D_002869B8));
     out[2] = func_001E91F4(func_001E95A4(0, D_002869B8));
