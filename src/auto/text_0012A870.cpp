@@ -40,6 +40,11 @@ struct C_0012AB70 {
     int f210;
     void func_0012AB70(int *param1, int param2, int param3, int *param4, float *param5);
 };
+struct C_0012B510R {
+    int unk0;
+    C_0012B510R *func_0012B510(void);
+};
+
 struct C_0012B540 {
     int unk0;
     void func_0012B540(void);
@@ -54,9 +59,42 @@ void C_0012AAB0::func_0012AAB0(float param)
     f210 = D_002EFDB8[4] + 1;
 }
 
+void C_0012AB70::func_0012AB70(int *param1, int param2, int param3, int *param4, float *param5)
+{
+    if (param1 != 0) {
+        f170[0] = param1[0];
+        f170[1] = param1[1];
+        f170[2] = param1[2];
+        f170[3] = param1[3];
+    }
+    if (param2 != 0) {
+        func_0012A380((char *)this + 0x180, param2);
+    }
+    if (param3 != 0) {
+        func_0012A380((char *)this + 0x190, param3);
+    }
+    if (param4 != 0) {
+        f1d4 = *param4;
+    }
+    if (param5 != 0) {
+        if (*param5 != D_00275544) {
+            f1d0 = *param5;
+        }
+        f210 = D_002EFDB8[4] + 1;
+    }
+}
+
 void func_0012B140(void) {
     int func_001576C0(...);
     func_001576C0();
+}
+
+void C_0012B510::func_0012B510(void)
+{
+    extern int D_002840FC;
+    C_0012B510 *p;
+    p = this;
+    p->unk0 = (int)&D_002840FC;
 }
 
 void __stdcall func_0012B520(undefined4 *param_1)
