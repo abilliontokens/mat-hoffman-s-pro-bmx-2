@@ -32,6 +32,19 @@ void C_00030CD0::func_00030CD0(int a0) {
     unk78 = a0;
 }
 
+void *C_00030F00::func_00030F00(unsigned int flags)
+{
+    extern int D_00276A24;
+    void func_001E891B(void *);
+
+    vtbl = (void *)&D_00276A24;
+    ((C_00157660 *)this)->func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void func_00031400(void) {
     int func_001578D0(...);
     func_001578D0();
