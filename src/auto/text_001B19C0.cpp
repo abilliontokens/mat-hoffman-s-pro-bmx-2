@@ -202,6 +202,8 @@ struct C_001B23D0 {
     void *func_001B24D0(unsigned int size);
     void *func_001B2520(unsigned int flags);
     void func_001B2580(int *a, int b);
+    void func_001B25E0(void);
+    void func_001B2640(void);
     void func_001B26C0(int idx);
     void func_001AC790(int idx);
     void func_00157BF0(int *a, int b);
