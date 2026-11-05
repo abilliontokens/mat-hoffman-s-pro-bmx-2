@@ -31,7 +31,11 @@ struct PhysicsRigidBody {
     char pad150[0xDC];
     C_00198040 *f22C;
     char pad230[8];
-    int f238;
+    Vec4 f238;
+    char pad248[0x20];
+    Vec4 f268;
+    Vec4 *func_001744D0(Vec4 *out);
+    void *func_00174530(void *a0);
     void func_00173580(int a0, int a1, int a2, int a3, int a4);
     PhysicsRigidBody *func_001740B0(C_00198330 *a0, int a1, int a2, int a3, int a4, int a5);
     void *func_001744B0(void *a0);
