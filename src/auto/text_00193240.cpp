@@ -231,7 +231,7 @@ void Node_00193240::func_001938C0(void *a1, C_00192B50 *a2, int a3, S_00193240_V
 
 void func_00193AF0(S_00193AF0 *p)
 {
-    float v[3];
+    float v[4];
 
     p->f40 -= D_00275BF8;
     v[0] = D_002A98DC * p->f2C;
