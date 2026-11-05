@@ -329,10 +329,9 @@ void C_000B2C80::func_000B2C80(S_000B2C80_Arg *a)
 
     for (i = 0; i < a->f4C; i++) {
         int idx = a->f48[i]->idx;
-        S_000B2C80_Group *g = f4C[idx];
 
-        for (j = 0; j < g->f4; j++) {
-            S_000B2C80_Item *item = g->fC[j];
+        for (j = 0; j < f4C[idx]->f4; j++) {
+            S_000B2C80_Item *item = f4C[idx]->fC[j];
 
             item->f70 = 1;
             if (a->f50 == 2) {
@@ -340,11 +339,10 @@ void C_000B2C80::func_000B2C80(S_000B2C80_Arg *a)
                 int cur = (int)a->f48[i]->f4;
                 int v = item->f3C->f4B8;
 
-                if (v == cur || (v < cur ? v >= cur - range : v <= cur + range)) {
+                if (IsNear(v, cur, range)) {
                     item->func_000B2540(2, 0, 0);
                 }
             }
-            g = f4C[idx];
         }
     }
 }
