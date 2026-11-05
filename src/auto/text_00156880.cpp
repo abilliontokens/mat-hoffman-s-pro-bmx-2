@@ -99,7 +99,14 @@ struct Game {
         u8 f230;
         S_Game_Flags f230bits;
     };
-    char pad231[0x2f];
+    char pad231[3];
+    int f234;
+    unsigned int f238, f23c;
+    char pad240[4];
+    float f244, f248;
+    char pad24c[0x10];
+    float f25c;
+    int func_00157420();
     volatile int f260;
     volatile int f264;
     volatile int f268;
