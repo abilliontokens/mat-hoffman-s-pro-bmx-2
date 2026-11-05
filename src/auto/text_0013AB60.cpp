@@ -270,6 +270,27 @@ undefined4 C_0013B1F0::func_0013B1F0(int param_1, undefined4 param_2)
   return 1;
 }
 
+void C_0013AEC0::func_0013B210(int id)
+{
+    S_0013AEC0_Slot *s;
+    S_0013AEC0_Slot *last;
+
+    if (fE4 != 0 && fEC >= 1) {
+        s = fE8;
+        last = s + (fEC - 1);
+        do {
+            if (s->f1C == id) {
+                s->f1C = 0;
+                return;
+            }
+            s++;
+        } while (s != last);
+        if (s->f1C == id) {
+            s->f1C = 0;
+        }
+    }
+}
+
 undefined4 C_0013B260::func_0013B260(int param_1)
 {
   int in_ECX = (int)this;
