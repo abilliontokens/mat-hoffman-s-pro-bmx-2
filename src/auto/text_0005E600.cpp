@@ -11,6 +11,19 @@ struct C_0005E9F0 {
 
 void func_001E891B(void *p);
 
+extern "C" unsigned int strlen(const char *s);
+extern "C" int strcmp(const char *a, const char *b);
+char *func_001E8920(char *dst, const char *src, int n);
+
+struct C_0005E840 {
+    char *unk0;
+    char pad4[0x4A];
+    u8 unk4e;
+    u8 unk4f;
+    u8 unk50;
+    void func_0005E840(const char *name);
+};
+
 struct C_0005E790 {
     int unk0;
     void func_00157660(void);
