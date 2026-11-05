@@ -5,6 +5,14 @@ extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 void func_001E891B(void *p);
 int func_001EA426(void *p, int a);
 
+extern "C" int strcmp(const char *s1, const char *s2);
+char *func_001E8920(char *dst, const char *src, int n);
+int func_001ADD20(char *buf, int count, int a3, void *a4);
+
+struct C_0013E170 {
+    void func_0013E170(int index, char *name, int value);
+};
+
 extern int D_00284C58;
 extern int D_00100000;
 
