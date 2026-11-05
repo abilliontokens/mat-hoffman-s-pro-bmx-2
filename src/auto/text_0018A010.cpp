@@ -11,3 +11,12 @@ struct C_0018AFD0 {
 
 extern int D_00289ABC;
 void func_001E891B(void *p);
+
+void *C_0018AFD0::func_0018AFD0(unsigned int flags)
+{
+    vtbl = (void *)&D_00289ABC;
+    if (f28) func_001E891B(f28);
+    func_00157660();
+    if (flags & 1) func_001E891B(this);
+    return this;
+}
