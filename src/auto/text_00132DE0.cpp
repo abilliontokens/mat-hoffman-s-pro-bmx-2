@@ -199,8 +199,8 @@ void C_00133070::func_00133070(void)
 {
     if (f54 != 0) {
         func_001E891B(f54);
-        f54 = 0;
     }
+    f54 = 0;
 }
 
 void C_00133070::func_00133090(int a, int b)
