@@ -145,6 +145,38 @@ int func_001F4F45(unsigned short *pwc, const unsigned char *s, unsigned int n)
     return 1;
 }
 
+int func_001F5766(const char *path, int oflag, int shflag, int pmode)
+{
+    int fh;
+    int retval;
+    int unlockFlag = 0;
+
+    __try {
+        retval = ((S_001F54D0 *)shflag)->func_001F54D0(&unlockFlag, &fh, path, oflag, pmode);
+    } __finally {
+        if (unlockFlag) {
+            func_001EE782(fh);
+        }
+    }
+    return retval;
+}
+
+void func_001F57BB(S_001F4_FILE *stream)
+{
+    D_002F6858++;
+    stream->base = (char *)func_001E8AA5(0x1000);
+    if (stream->base != 0) {
+        stream->flag |= 8;
+        stream->bufsiz = 0x1000;
+    } else {
+        stream->flag |= 4;
+        stream->base = (char *)&stream->charbuf;
+        stream->bufsiz = 2;
+    }
+    stream->ptr = stream->base;
+    stream->cnt = 0;
+}
+
 int func_001F57FF(int fh)
 {
     if ((unsigned int)fh >= D_002FB240) {
