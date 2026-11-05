@@ -157,7 +157,9 @@ struct S_0005B8D0_Obj {
 };
 
 struct S_0005B8D0_Mid {
-    char pad0[0x48];
+    char pad0[0x10];
+    float f10;
+    char pad14[0x34];
     int f48;
     char pad4c[0x2b0];
     S_0005B8D0_Obj *p2fc;
@@ -456,12 +458,12 @@ void C_0005C650::func_0005C650(int param_1)
     int lo;
     int hi;
 
-    if (param_1 != 0) {
-        lo = *(int *)(*(int *)(D_002A8490 + 0x2e0) + 0x48);
-        hi = lo;
-    } else {
+    if (param_1 == 0) {
         lo = 0;
         hi = 8;
+    } else {
+        lo = *(int *)(*(int *)(D_002A8490 + 0x2e0) + 0x48);
+        hi = lo;
     }
     if (lo < hi) {
         memset(&slots[lo], 0, (hi - lo) * 16);
