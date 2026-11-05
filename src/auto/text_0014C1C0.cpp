@@ -68,8 +68,25 @@ void func_001E891B(void *p);
 void func_001E8390(void *p);
 void __stdcall func_00201100(void *p);
 
+struct C_0014C540_Sub {
+    char pad0[0x70];
+    void *f70, *f74, *f78;
+    char pad7C[8];
+    void *f84, *f88, *f8C, *f90, *f94;
+};
+struct C_0014C540_Item {
+    char pad0[0xC];
+    void *fC;
+};
 struct C_0014C6F0 {
     void *vtbl;
+    char pad4[0x50];
+    C_0014C540_Sub *f54;
+    char pad58[0x50];
+    int fA8;
+    void *fAC, *fB0, *fB4, *fB8, *fBC, *fC0, *fC4;
+    char padC8[0x28];
+    C_0014C540_Item **fF0;
     void func_0014C540();
     void func_00133E60();
     void *func_0014C6F0(int flags);
