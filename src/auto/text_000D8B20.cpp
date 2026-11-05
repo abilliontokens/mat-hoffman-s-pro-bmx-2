@@ -151,6 +151,35 @@ void BmxUIPageHOF4::func_000D8B20()
     func_001BF000();
 }
 
+void C_000D8BA0::func_000D8BA0()
+{
+    if (unk2AC != 0) {
+        unk2A0 = 1;
+        unk29C = 0;
+        func_000D8820();
+        unk2B8 = 0xff;
+        unk2BC = 0;
+        unk2C0 = 0;
+        unk2C4 = 0;
+        unk2C8 = 0.25f;
+        func_001BEE30(0, 1);
+        unk2AC = 0;
+    }
+    if (unk2B0 != 0) {
+        func_000D8A40();
+        unk2B8 = 0;
+        unk2BC = 0xff;
+        unk2C0 = 0xff;
+        unk2C4 = 0;
+        unk2C8 = 0.25f;
+        unk2B0 = 0;
+    }
+    D_002B91AC->unk34->func_001D6600();
+    D_002B91AC->unk3C->func_001D6600();
+    func_000D85C0();
+    func_00157960();
+}
+
 BmxUIPageHOF5 *BmxUIPageHOF5::func_000D8C70(int a0)
 {
     func_001BE360(a0);
