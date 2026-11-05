@@ -181,13 +181,13 @@ void Game::func_001568A0(int a, int b, int c, int d)
         f270 = 1;
     }
     if (f264 != 0) {
-        f270++;
+        f270 += 1;
     }
     if (f268 != 0) {
-        f270++;
+        f270 += 1;
     }
     if (f26c != 0) {
-        f270++;
+        f270 += 1;
     }
 }
 
@@ -343,14 +343,9 @@ void GameObject::func_001576E0(void)
 
 void GameObject::func_00157740(unsigned int flags)
 {
-    GameObject *p = this;
-    GameObject *q;
-
     f1C |= flags;
-    while (p->f14 != 0) {
-        q = p->f14;
-        q->f1C |= p->f18 | p->f1C;
-        p = q;
+    if (f14 != 0) {
+        f14->func_00157740(f18 | f1C);
     }
 }
 
