@@ -68,6 +68,15 @@ void *C_001712A0::func_001712A0(int flags) {
     return this;
 }
 
+void C_00171980::func_00171980(void) {
+    void *p = (void *)unk230;
+    unk0 = (int)&D_00288C44;
+    if (p != 0) {
+        func_001E891B(p);
+    }
+    func_00157660();
+}
+
 void C_001719B0::func_001719B0(int param_1)
 {
   int in_ECX = (int)this;
