@@ -485,6 +485,45 @@ void C_001CB940::func_001CB980(void)
     func_00157680();
 }
 
+void C_001CB9A0::func_001CB9A0(void)
+{
+    __imp__RtlEnterCriticalSection((void *)(D_002F08EC->f138 + 0x50));
+    f4 = 0;
+    __imp__RtlLeaveCriticalSection((void *)(D_002F08EC->f138 + 0x50));
+    f14[0] = 0;
+    f14[1] = 0;
+    f14[2] = 0;
+    f0 = -1;
+    f20 &= 0xf0;
+}
+
+int C_001CB9A0::func_001CBB50(int idx)
+{
+    S_001CBB50_Packet pkt = {0};
+    int r;
+
+    pkt.buffer = f10 + idx * 0x4800;
+    pkt.size = 0x4800;
+    pkt.status = &f14[idx];
+    r = fC->v4(&pkt, 0);
+    if (r < 0) {
+        return r;
+    }
+    if (f20 & 1) {
+        fC->v5();
+    }
+    return 0;
+}
+
+void C_001CB9A0::func_001CBBC0(void)
+{
+    func_00220AE5(fC, 0, 0, 1);
+    __imp__RtlEnterCriticalSection((void *)(D_002F08EC->f138 + 0x50));
+    f4->f208 |= 0x10;
+    __imp__RtlLeaveCriticalSection((void *)(D_002F08EC->f138 + 0x50));
+    f20 |= 4;
+}
+
 int C_001CBCF0::func_001CBCF0(int value)
 {
     int i;
