@@ -166,6 +166,42 @@ struct C_000F0910 {
     void func_000F0910();
 };
 
+/* BmxUIPagePlayerVideos: widget with a cached float value tagged with 0x43160000 */
+struct C_000F05C0_Widget {
+    char pad0[4];
+    int f4;
+    float f8;
+    char padC[0x58 - 0xC];
+    unsigned char f58;
+};
+
+struct C_000F05C0 {
+    char pad0[0x3D0];
+    int f3D0;
+    char pad3D4[0x420 - 0x3D4];
+    int f420;
+    char pad424[0xC];
+    int f430;
+    char pad434[0xC];
+    int f440;
+    char pad444[0xC];
+    int f450;
+    char pad454[0xC];
+    int f460;
+    char pad464[0xC];
+    int f470;
+    char pad474[0xC];
+    int f480;
+    char pad484[0xC];
+    int f490;
+    char pad494[0xC];
+    int f4A0;
+    char pad4A4[0x698 - 0x4A4];
+    C_000F05C0_Widget *arr698[9];
+    C_000F05C0_Widget *arr6BC[9];
+    int func_000F05C0();
+};
+
 void C_000F029C::func_000F029C()
 {
     int ids[3];
