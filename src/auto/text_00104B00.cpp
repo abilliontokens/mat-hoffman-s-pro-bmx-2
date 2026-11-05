@@ -213,12 +213,10 @@ void C_00104B00::func_00105890(void)
     S_00104B00_Obj *o = D_002A8490->f2a4->f170[fa2c];
     if (o != 0) {
         int r = o->func_000831C0();
-        if (f7cc == 0) {
-            if (r != 0) {
-                f7cc = 1;
-                func_00105800();
-            }
-        } else if (r == 0) {
+        if (f7cc == 0 && r != 0) {
+            f7cc = 1;
+            func_00105800();
+        } else if (f7cc != 0 && r == 0) {
             f7cc = 0;
             func_001057A0();
         }
