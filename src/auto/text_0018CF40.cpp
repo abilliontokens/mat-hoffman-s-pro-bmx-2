@@ -83,8 +83,11 @@ struct C_0018D7B0 {
     char pad0[0x170];
     C_0018D7B0_Def *defs;
     int defCount;
-    char pad178[4];
+    int defCapacity;
     C_0018D7B0_Slot *slots;
+    int slotCount;
+    int slotCapacity;
+    void func_0018D5C0(char *name, int type, int max, int a, int b, int c, int d, int e);
     int findDef(int b)
     {
         int i;
