@@ -68,8 +68,8 @@ void BmxEventPush::func_00050C60() {
         return;
     }
     if (unk290 != 0) {
-        (**(code **)(*(int *)D_002EFDB8 + 0x1c))(1);
-        (**(code **)(*(int *)D_002EFDB8 + 0x20))();
+        D_002EFDB8->vf7(1);
+        D_002EFDB8->vf8();
         if (D_002A8490->unk274 == D_002A8490->unk270 - 1) {
             int s;
             if (unk290 > 0)
