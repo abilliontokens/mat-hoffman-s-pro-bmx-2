@@ -60,6 +60,8 @@ void func_001712D0(float *out, void *in);
 
 static __forceinline float Sqrt_00171BA0(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
 static __forceinline float Max_00171BA0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline void SqrtR_00171BA0(float *r, const float &x) { _mm_store_ss(r, _mm_sqrt_ss(_mm_load_ss(&x))); }
+static __forceinline void MaxR_00171BA0(float *r, const float &a, const float &b) { _mm_store_ss(r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); }
 
 struct V3_00171BA0 {
     float x, y, z;
