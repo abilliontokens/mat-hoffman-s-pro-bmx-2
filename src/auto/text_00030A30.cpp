@@ -274,7 +274,9 @@ struct BmxEvent_00030A30 {
     char pad94[0x170 - 0x94];
     VObj_00031450 *f170[10];
     VObj_00031450 *f198;
-    char pad19c[0x1d8 - 0x19c];
+    char pad19c[0x18];
+    Sound_000314F0 *f1b4;
+    char pad1b8[0x20];
     Target_00031610 *f1d8;
     void func_000314F0(void);
     void func_001577A0(void *, int);
