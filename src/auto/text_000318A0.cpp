@@ -246,6 +246,15 @@ int C_00032060::func_00032150(float value, char *name)
     return 0;
 }
 
+void C_000321C0::func_000321C0(void)
+{
+    int i;
+
+    for (i = 0; i < unk90; i++) {
+        unk64->f4E0->func_000A4500(0, i);
+    }
+}
+
 void BmxEvent::func_000324C0(int a)
 {
     if (f1c0 != 0) {
