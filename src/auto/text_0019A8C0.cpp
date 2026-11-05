@@ -153,19 +153,18 @@ struct S_0019B1A0_VThis {
     virtual void v29(SoultreeObject **out);
 };
 
-static inline void Transpose_0019B1A0(void *dst, void *src)
+static inline void Transpose_0019B1A0(float *src, float *dst)
 {
-    float *d = (float *)dst;
-    float *s = (float *)src;
-    __m128 r0 = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (__m64 *)&s[0]), (__m64 *)&s[4]);
-    __m128 r1 = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (__m64 *)&s[2]), (__m64 *)&s[6]);
-    __m128 r2 = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (__m64 *)&s[8]), (__m64 *)&s[12]);
-    __m128 r3 = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (__m64 *)&s[10]), (__m64 *)&s[14]);
+    __m128 row0 = _mm_load_ps(src);
+    __m128 row1 = _mm_load_ps(src + 4);
+    __m128 row2 = _mm_load_ps(src + 8);
+    __m128 row3 = _mm_load_ps(src + 12);
 
-    *(__m128 *)&d[0] = _mm_shuffle_ps(r0, r2, 0x88);
-    *(__m128 *)&d[4] = _mm_shuffle_ps(r0, r2, 0xdd);
-    *(__m128 *)&d[8] = _mm_shuffle_ps(r1, r3, 0x88);
-    *(__m128 *)&d[12] = _mm_shuffle_ps(r1, r3, 0xdd);
+    _MM_TRANSPOSE4_PS(row0, row1, row2, row3);
+    _mm_store_ps(dst, row0);
+    _mm_store_ps(dst + 4, row1);
+    _mm_store_ps(dst + 8, row2);
+    _mm_store_ps(dst + 12, row3);
 }
 
 void SoultreeObject::func_0019ABA0(int a1, int a2)
@@ -260,6 +259,55 @@ void SoultreeObject::func_0019ADF0(SoultreeObject *p)
     } else {
         f174->func_00198230(p);
     }
+}
+
+void func_0013E4A0(void *dst, void *src);
+int SoultreeObject::func_0019B1A0(int file, SoultreeObject **arr)
+{
+    int *parents;
+    int i;
+
+    D_002BEAAC->func_0013C8A0(file, &f190, 4, 1);
+    *arr = this;
+    parents = (int *)func_001E8A44(f190 * 4);
+    for (i = 0; i < f190; i++) {
+        if (i != 0) {
+            ((S_0019B1A0_VThis *)this)->v29(&arr[i]);
+        }
+        D_002BEAAC->func_0013C8A0(file, &arr[i]->f28, 0x80, 1);
+        D_002BEAAC->func_0013C8A0(file, &arr[i]->fB0, 0x40, 1);
+        func_0013E4A0(&arr[i]->fB0, &arr[i]->fB0);
+        *((u8 *)&arr[i]->f24 + 3) &= 0xfb;
+        arr[i]->f180 |= 0x20;
+        arr[i]->f180 |= 4;
+        D_002BEAAC->func_0013C8A0(file, &arr[i]->f130, 0xc, 1);
+        D_002BEAAC->func_0013C8A0(file, &arr[i]->f140, 0xc, 1);
+        D_002BEAAC->func_0013C8A0(file, &arr[i]->f184, 4, 1);
+        D_002BEAAC->func_0013C8A0(file, &parents[i], 4, 1);
+    }
+    for (i = 0; i < f190; i++) {
+        if (parents[i] != -1) {
+            SoultreeObject *child = arr[i];
+            SoultreeObject *parent = arr[parents[i]];
+            S_0019A8C0_Child *sib;
+
+            if (child->f170 != 0) {
+                parent->f170->func_0019A210(child);
+            }
+            child->f170 = (S_0019A8C0_Mgr *)parent;
+            sib = parent->f174;
+            if (sib == 0) {
+                parent->f174 = (S_0019A8C0_Child *)child;
+            } else if (sib->f178 == 0) {
+                sib->f178 = (S_0019A8C0_Child *)child;
+                child->f17c = sib;
+            } else {
+                sib->f178->func_00198230(child);
+            }
+        }
+    }
+    func_001E891B(parents);
+    return f190;
 }
 
 undefined4 C_0019B6D0::func_0019B6D0(byte param_1)
