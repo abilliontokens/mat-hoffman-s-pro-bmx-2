@@ -163,7 +163,7 @@ extern int **D_002EFDB8;
 int __stdcall func_001FFE40(int);
 int func_00200210();
 void __stdcall func_001FF940(void *, void *);
-void __stdcall func_001FF4E0(int,int,unsigned int,float,int,int);
+void __stdcall func_001FF4E0(int,int,unsigned int,unsigned int,int,int);
 void __stdcall func_00201100(int);
 void __stdcall func_00200230(void *);
 struct C_001DC540 {
