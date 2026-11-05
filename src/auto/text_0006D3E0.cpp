@@ -14,7 +14,13 @@ extern float D_00278500;
 extern int D_002B902C;
 extern int D_002B9030;
 
+struct ClampObj_0006DD40 { char pad0[0x10]; float f10, f14; };
+struct MidObj_0006DD40 { ClampObj_0006DD40 *func_0018C070(); };
+struct LookupObj_0006DD40 { int *func_0018C160(int); };
+extern int D_002786A0, D_00278690, D_00278678;
+extern float D_00275AEC;
 struct C_001D5AD0 {
+    ClampObj_0006DD40 *func_001D5AA0();
     void func_001D5AD0(void);
 };
 
