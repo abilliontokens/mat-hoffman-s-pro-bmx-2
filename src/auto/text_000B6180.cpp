@@ -17,3 +17,15 @@ struct C_000B67C0 {
     int unk6C;
     void func_000B67C0(void);
 };
+
+void *C_000B6810::func_000B6810(int flags)
+{
+    extern int D_0027D4C4;
+    void func_001E891B(void *);
+    unk0 = (int)&D_0027D4C4;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
