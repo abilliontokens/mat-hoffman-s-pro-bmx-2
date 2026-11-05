@@ -172,6 +172,14 @@ undefined4 C_001BF070::func_001BF070(byte param_1)
   return in_ECX;
 }
 
+void *C_001BF3A0::func_001BF3A0(int a0)
+{
+    func_00157600(a0);
+    vtbl = (void *)&D_0028D78C;
+    unk2C = 0;
+    return this;
+}
+
 undefined4 C_001BF520::func_001BF520(byte param_1)
 {
   int func_001BF3C0(...);
