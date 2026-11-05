@@ -54,7 +54,39 @@ struct C_0023EA00 {
     int fAC;
     void func_0023EA00(void);
     void func_0023EED3(void);
+};
+
+/* maps a byte offset into a buffer made of blocks of f50 bytes */
+struct C_0023EE81 {
+    char pad0[0x34];
+    int f34;
+    unsigned int f38;
+    char pad3C[4];
+    unsigned char f40;
+    char pad41[0xb];
+    unsigned int f4C;
+    unsigned int f50;
+    char pad54[8];
+    unsigned int f5C;
     int func_0023EE81(unsigned int a, unsigned int b, int *out);
+};
+
+struct S_0023EF7B_Src {
+    char pad0[8];
+    int f8;
+    int fC;
+    int f10;
+    int f14;
+    char pad18[0x14];
+    int f2C;
+};
+
+struct S_0023EF7B_Out {
+    int f0;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
 };
 
 typedef unsigned int (__stdcall *PFN_0023EC0D)(void *ctx, unsigned int a, unsigned int b, int *out);
