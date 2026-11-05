@@ -61,6 +61,7 @@ static inline f32 QuadCross(f32 a, f32 b, f32 c, f32 d) {
 struct C_0017BDE0 {
     f32 v[8];
     int func_0017BDE0(f32 x, f32 y);
+    void func_0017BE40(void);
     int func_0017BFB0(void);
 };
 
