@@ -42,12 +42,6 @@ struct C_00168B90 {
     int func_00168BE0(int a, const char *src, char *dst, int d);
 };
 
-struct S_00168280_Entry {
-    int f0;
-    int f4;
-    char name[0x408];
-};
-
 struct C_00168280 {
     int f0;
     int f4;
