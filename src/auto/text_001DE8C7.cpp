@@ -143,6 +143,11 @@ int __stdcall func_001DEF8D(const char *name)
     return -1;
 }
 
+int __stdcall func_001DF361(int a0)
+{
+    return func_001DF26F(a0, ((int *)D_00010118)[2]);
+}
+
 int __stdcall func_001DF59C(int a, int b, int c)
 {
     return func_001E1297(a, b, c);
