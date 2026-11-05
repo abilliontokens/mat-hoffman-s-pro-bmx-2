@@ -206,12 +206,9 @@ int C_001B1B20::func_001B1B20(void)
 
 void C_001B1B30::func_001B1B30(float param_1, undefined4 param_2)
 {
-    extern float D_00275544;
     if (fC0 == 0) {
-        fA4 = param_2;
-        f9C = param_1;
-        fA0 = 0;
-        if (param_1 < D_00275544) {
+        setTarget(param_1, param_2);
+        if (param_1 < 0.0f) {
             f9C = 0;
         }
     }
