@@ -65,3 +65,50 @@ void C_000DE300::func_000DE390()
     e->b58 |= 2;
     func_001BF000();
 }
+
+void C_000DE650::func_000DE650()
+{
+    int i;
+
+    vtbl = (void *)&D_0027F8E4;
+    for (i = 0; i < 18; i++) {
+        if (row0[i]) {
+            delete row0[i];
+            row0[i] = 0;
+        }
+        if (row1[i]) {
+            delete row1[i];
+            row1[i] = 0;
+        }
+        if (row2[i]) {
+            delete row2[i];
+            row2[i] = 0;
+        }
+        if (row3[i]) {
+            delete row3[i];
+            row3[i] = 0;
+        }
+        if (row4[i]) {
+            delete row4[i];
+            row4[i] = 0;
+        }
+        if (row5[i]) {
+            delete row5[i];
+            row5[i] = 0;
+        }
+    }
+    for (i = 0; i < 4; i++) {
+        if (group4[i]) {
+            delete group4[i];
+            group4[i] = 0;
+        }
+    }
+    for (i = 0; i < 2; i++) {
+        if (group2[i]) {
+            delete group2[i];
+            group2[i] = 0;
+        }
+    }
+    func_001BE3F0();
+}
+
