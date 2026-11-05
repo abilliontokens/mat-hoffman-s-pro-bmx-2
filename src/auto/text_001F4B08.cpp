@@ -110,7 +110,7 @@ void func_001F4E30(void) {
 int func_001F4E39(void)
 {
     extern int D_002FB378;
-    void func_001F4D18(int a);
+    int func_001F4D18(int a);
 
     if (D_002FB378 == 0) {
         D_002FB104 = -3;
