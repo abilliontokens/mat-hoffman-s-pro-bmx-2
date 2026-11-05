@@ -39,3 +39,19 @@ struct C_000A9A00 {
     int f158;
     C_000A9A00 *func_000A9A00(void);
 };
+
+void C_000A99A0::func_000A99A0(void)
+{
+    int func_001E891B(...);
+    int i;
+
+    vtbl = (void *)&D_0027C51C;
+    if (f28 != 0) {
+        for (i = 0; i < f24; i++) {
+            func_001E891B(f28[i]->f15C);
+            func_001E891B(f28[i]);
+        }
+        func_001E891B(f28);
+    }
+    ((C_00157660 *)this)->func_00157660();
+}
