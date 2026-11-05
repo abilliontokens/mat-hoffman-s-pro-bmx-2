@@ -7,7 +7,7 @@ struct C_0013E4F0 { C_0012B410 *func_0013E4F0(int a); };
 struct C_000306F0;
 struct C_0002EF20 { C_000306F0 *func_0002EF20(int a); };
 struct C_000306F0 { void func_000306F0(void *a, int b, int c, V4_4F5E0 d, int e, int f); };
-struct G_4F5E0_E0 { char pad0[8]; int f8; };
+struct G_4F5E0_E0 { char pad0[8]; int f8; char padC[4]; int f10; };
 struct G_4F5E0 {
     char pad0[0x124]; int f124;
     char pad128[0x108]; unsigned char f230;
