@@ -172,6 +172,18 @@ struct S_001AEBD0_Ref {
     static void *operator new(unsigned int size) { return func_001E8A44(size); }
 };
 
+static void Attach_001AEBD0(C_001AE3E0_Sub *s, C_001AE3E0 *owner, int a)
+{
+    S_001AEBD0_Ref *ref;
+
+    s->func_001D54B0(a);
+    ref = new S_001AEBD0_Ref;
+    s->f8 = (C_001ADFD0_Virt *)ref;
+    ref->f4 = owner;
+    s->f4->fC &= 0xfe;
+    s->f4->f10 = s->f8;
+}
+
 struct C_001AE3E0 : C_001AE3E0_Head {
     C_001AE3E0_Quat f40;
     int f50;
