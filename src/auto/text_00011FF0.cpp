@@ -22,8 +22,20 @@ struct S_11FF0_VtObj {
     virtual unsigned int v17();
 };
 
+struct S_11FF0_Vec4i {
+    int x, y, z, w;
+};
+
+struct S_11FF0_Cam {
+    void func_00198390(void);
+    void func_001983A0(void);
+    void func_00199600(S_11FF0_Vec4i v);
+};
+
 struct S_11FF0_Sub3c {
-    char pad0[0x10];
+    char pad0[4];
+    S_11FF0_Cam *f4;
+    char pad8[8];
     int f10;
 };
 
