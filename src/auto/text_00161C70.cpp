@@ -28,6 +28,10 @@ extern int D_002ED708;
 extern int D_002EEF28[];
 extern float D_002ED710[];
 extern float D_00287B6C;
+extern float D_00287B68;
+extern float D_002EDF18[][2];
+extern float D_002EBEF0[][3];
+int func_001E8833(void);
 extern float D_00275460;
 extern float D_00275544;
 extern float D_002755EC;
@@ -255,7 +259,8 @@ void func_00162530(float *m, float a2, float a3, float a4, float a5, int a6)
 {
     float v;
     float w;
-    w = (v = func_0014F590(a2 * 0.5f) * a4) / a3;
+    v = func_0014F590(a2 * 0.5f) * a4;
+    w = v / a3;
     func_00162470(m, -v, v, -w, w, a4, a5, a6);
 }
 
