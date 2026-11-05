@@ -185,6 +185,7 @@ struct JoystickDevice {
     char pad4[0x638];
     S_0015A660_List lists[6];
     void func_0015AE20(void);
+    void *func_0015B010(unsigned int flags);
     void func_0015AFC0(int idx, int a, int b);
 };
 
