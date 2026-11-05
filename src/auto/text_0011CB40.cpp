@@ -29,7 +29,35 @@ struct C_0011CB40 {
     void func_00157660(void);
     C_0011CB40 *func_0011CBF0(int a0);
     void func_00157600(int a0);
+    void func_0011CF00(struct S_0011CF00_arg *a0);
+    void func_0011B240(int a, float b);
+    void func_001D3F50(void);
 };
+
+struct V4_0011CF00 { float x, y, z, w; };
+struct Model_0011CF00 {
+    int func_00198330(const char *name);
+};
+struct S_0011CF00_arg {
+    int f0;
+    Model_0011CF00 *model;
+};
+struct Res_0011CF00 {
+    int func_00162B20(const char *name, int a);
+};
+struct Node_0011CF00 {
+    Node_0011CF00 *func_0019FD20(int a, int b, int c, V4_0011CF00 v);
+};
+extern Res_0011CF00 *D_002EF7D0;
+extern V4_0011CF00 D_002A3BDC;
+extern V4_0011CF00 D_002A3BCC;
+extern char D_00283F04[], D_00283EFC[], D_00283EE8[], D_00283ED4[], D_00283ECC[];
+extern char D_00283EC4[], D_00283EB4[], D_00283EA4[], D_00283E94[];
+extern char D_00282A40[], D_00282A00[], D_002829C0[], D_002829A8[], D_00283D44[];
+extern char D_00282A48[], D_00282A50[], D_00282A08[], D_00282A10[];
+extern char D_002829C8[], D_002829D0[], D_002829B0[], D_002829B8[];
+extern char D_00283E88[], D_00277CA4[];
+void *func_001E8AA5(unsigned int n);
 
 extern int D_002A3BBC[4];
 
