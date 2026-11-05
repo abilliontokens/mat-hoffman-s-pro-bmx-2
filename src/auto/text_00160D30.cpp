@@ -86,8 +86,13 @@ struct C_00161870 {
     int f8;
     char padC[8];
     S_00161620_Entry *f14;
-    char pad18[0x14];
+    char pad18[8];
+    char f20;
+    char pad21[0xb];
     void *func_00161870(unsigned int flags);
+    void func_001616F0();
+    void func_00161760();
+    int func_001617F0(const char *name, int unused);
     void func_00161620();
     void func_00161680();
     void func_001AC3D0();
