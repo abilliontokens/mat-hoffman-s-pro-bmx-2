@@ -61,7 +61,8 @@ struct C_000C83E0 {
 };
 
 struct C_000C85B0 {
-    char pad0[0x280];
+    void *vtbl;
+    char pad4[0x27C];
     int unk280;
     int unk284;
     int unk288;
@@ -95,8 +96,91 @@ extern float D_00279B50;
 extern float D_00275994;
 extern void *D_0027E334;
 
+void C_000C8090::func_000C8090(void) {
+    int i;
+    int color;
+    C_001B1980 *p;
+    for (i = 0; i < 9; i++) {
+        p = unk320[i];
+        p->func_001B1980();
+        if (unk344[i] != 0) {
+            color = 0xff606060;
+        } else if (i == unk2DC) {
+            color = 0xffbfa35a;
+        } else {
+            color = 0xffcccccc;
+        }
+        p->func_001B2270(color);
+        p->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
+        if (D_00279B50 < unk368[i] || unk368[i] < D_00275994) {
+            p->func_001B1980();
+        }
+    }
+}
+
+void C_000C83E0::func_000C83E0(void) {
+    C_001D5AD0 *p;
+    C_001D5AD0 **ptr;
+    int count;
+    p = unk284 ? D_002B91AC->unk68 : D_002B91AC->unk50;
+    p->func_001D5AD0();
+    p = unk280 ? D_002B91AC->unk6C : D_002B91AC->unk54;
+    p->func_001D5AD0();
+    ptr = unk308;
+    count = 4;
+    do {
+        (*ptr)->func_001D5AD0();
+        ptr++;
+        count--;
+    } while (count != 0);
+    ptr = unk318;
+    count = 2;
+    do {
+        (*ptr)->func_001D5AD0();
+        ptr++;
+        count--;
+    } while (count != 0);
+    p = D_002B91AC->unk24;
+    p->func_001D5AD0();
+    p = D_002B91AC->unk28;
+    p->func_001D5AD0();
+    p = D_002B91AC->unk2C;
+    p->func_001D5AD0();
+    p = D_002B91AC->unk30;
+    p->func_001D5AD0();
+}
+
 void C_000C8590::func_000C8590(void) {
     func_000C7DF0();
     func_000C83E0();
     func_00157960();
 }
+
+C_000C85B0 *C_000C85B0::func_000C85B0(int param_1) {
+    ((C_000BE360 *)this)->func_001BE360(param_1);
+    unk2B8 = 0;
+    unk288 = 0;
+    unk28C = 0;
+    unk284 = 0;
+    unk280 = 0;
+    unk298 = 0;
+    unk294 = 0;
+    unk29C = 0;
+    unk2A0 = 0;
+    unk2A4 = 0;
+    unk2C0 = 0;
+    unk2BC = 0;
+    *(void **)this = &D_0027E334;
+    unk2B0 = 1;
+    unk2D8 = 0;
+    unk2DC = 0;
+    unk2E0 = 0;
+    unk2E4 = 0;
+    unk2C4 = 0;
+    unk2C8 = 0;
+    unk2CC = 0;
+    unk2D0 = 0;
+    unk2D4 = 0;
+    return this;
+}
+
