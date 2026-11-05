@@ -69,6 +69,14 @@ struct S_001DD779_File {
     void *fC;
 };
 
+/* object returned by func_001DD816: signature, 0, sector count, handle */
+struct S_001DD816_Obj {
+    u32 signature;
+    u32 f4;
+    u32 sectors;
+    void *handle;
+};
+
 struct S_001DD779_Out {
     u32 f0;
     u32 f4;
@@ -359,9 +367,7 @@ void *__stdcall func_001DD816(int a0)
     u32 *p = 0;
 
     status = func_001DD713(&h, buf);
-    if (status < 0) {
-        func_001DD62B(_imp__RtlNtStatusToDosError(status));
-    } else {
+    if (status >= 0) {
         p = (u32 *)func_001DF5B9(0, 0x10);
         if (p == 0) {
             func_001DD62B(_imp__RtlNtStatusToDosError(0xc000009a));
@@ -372,6 +378,8 @@ void *__stdcall func_001DD816(int a0)
         p[1] = 0;
         p[2] = buf[1];
         p[3] = h;
+    } else {
+        func_001DD62B(_imp__RtlNtStatusToDosError(status));
     }
     if (status >= 0 && func_001DD779((S_001DD779_Header *)buf, (S_001DD779_File *)p, (S_001DD779_Out *)a0) == 0) {
         _imp__NtClose((void *)h);
