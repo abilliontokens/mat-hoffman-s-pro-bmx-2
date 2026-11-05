@@ -90,3 +90,21 @@ void C_000EBE30::func_000EC580()
     unk338->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0xff, 1.45f, 0, 0.0f, 0.2f, 0);
 }
 
+void C_000EBE30::func_000EC7E0()
+{
+    if (unk330 != 0) {
+        return;
+    }
+    if (unk324 > 0 || unk35C != 0) {
+        D_002B91AC->unk38->func_001D6600();
+        if (unk35C != 0) {
+            return;
+        }
+    }
+    if (unk124->unk138 != 0) {
+        return;
+    }
+    D_002B91AC->unk3C->func_001D6600();
+    D_002B91AC->unk34->func_001D6600();
+}
+
