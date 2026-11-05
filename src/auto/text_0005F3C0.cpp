@@ -61,6 +61,7 @@ struct S_0005F3C0_8490 {
 struct Mid_5F { S_0005FBD0_Obj *func_0018C070(); };
 struct Lookup_5F { int *func_0018C160(int); };
 extern int D_002786A0, D_00278690, D_00278678;
+#define CLAMP(p) { S_0005FBD0_Obj *o = ((C_001D5AA0 *)(p))->func_001D5AA0(); if (D_00275AEC > o->f10) o->f10 = 10.0f; if (D_00275AEC < o->f14 || o->f14 > o->f10) o->f14 = 10.0f; }
 extern S_0005F3C0_8490 *D_002A8490;
 
 struct BmxInGameMenuSub {
