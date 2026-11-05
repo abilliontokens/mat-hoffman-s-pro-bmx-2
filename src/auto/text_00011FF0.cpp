@@ -93,7 +93,7 @@ struct S_11FF0_State3 {
     int f10;
     char pad14[8];
     S_11FF0_VtObj **f1c;
-    void func_00012240(int arg1, float arg2);
+    void func_00012240(void *arg1, float arg2);
 };
 
 struct S_11FF0_StateA {
