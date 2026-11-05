@@ -603,6 +603,42 @@ void UIPage::func_001BEC90(int idx, int target)
     }
 }
 
+int UIPage::func_001BED00(float dt)
+{
+    int i;
+    UIPadObj *pad;
+
+    for (i = 0; i < 8; i++) {
+        if (f148[i] != 0 && (pad = D_002A8490->f8->pads[i]) != 0 && pad->virt17() != 0) {
+            switch (func_001BEA50(i)) {
+            case 4:
+                *(int *)((char *)f124 + 0x140) = 0;
+                ((UIPageVirt70 *)this)->virt28(i, D_002A8490->f8->func_00136170(1, 2, 0));
+                f148[i] = 0;
+                break;
+            case 5:
+                *(int *)((char *)f124 + 0x140) = 0;
+                ((UIPageVirt70 *)this)->virt28(i, D_002A8490->f8->func_00136170(0, 2, 0));
+                f148[i] = 0;
+                break;
+            case 6:
+                *(int *)((char *)f124 + 0x140) = 0;
+                ((UIPageVirt70 *)this)->virt28(i, D_002A8490->f8->func_00136170(2, 2, 0));
+                f148[i] = 0;
+                break;
+            case 7:
+                *(int *)((char *)f124 + 0x140) = 0;
+                ((UIPageVirt70 *)this)->virt28(i, D_002A8490->f8->func_00136170(3, 2, 0));
+                f148[i] = 0;
+                break;
+            }
+        } else if (func_001BEA50(i) == -1) {
+            f148[i] = 1;
+        }
+    }
+    return func_00157A00(dt);
+}
+
 void UIPage::func_001BEE30(int idx, int arg)
 {
     f140[idx]->func_001BDD60(arg);
