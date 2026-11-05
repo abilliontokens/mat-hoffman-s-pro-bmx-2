@@ -79,6 +79,9 @@ struct C_001915A0 {
 
 extern char D_0028AA84;
 extern C_00191470_Vec D_002A97D8;
+extern int D_002A97DC;
+extern int D_002A97E0;
+extern int D_002A97E4;
 
 void func_001E8920(void *dst, const void *src, int n);
 
