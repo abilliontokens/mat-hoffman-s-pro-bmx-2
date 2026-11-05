@@ -1,5 +1,11 @@
 /* 24 functions from 0x00030A30 to 0x000318A0, found by Ghidra. */
 #include "common.h"
+extern "C" char *strcpy(char *dst, const char *src);
+extern "C" char *strcat(char *dst, const char *src);
+#pragma intrinsic(strcpy)
+#pragma intrinsic(strcat)
+char *func_001E8AC0(const char *s, int c);
+
 struct C_00030CD0 {
     char pad0[0x78];
     int unk78;
@@ -343,7 +349,7 @@ void C_00031840::func_00031840(void)
     C_0009A290 *obj = m ? ((C_0009A290 *)m)->func_0009A290(this, f64 + 0x134, 0) : 0;
 
     f1C0 = obj;
-    if (obj->f194 != 0) {
+    if (*(volatile int *)&obj->f194 != 0) {
         if (obj != 0) {
             obj->func_0009C770();
             func_001E891B(obj);
