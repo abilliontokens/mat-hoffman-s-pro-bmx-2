@@ -37,7 +37,7 @@ struct C_CarProceduralExtended {
     char pad448[0x64];
     u32 f4AC;
     char pad4B0[8];
-    u32 f4B8;
+    volatile u32 f4B8;
     char pad4BC[0x2c];
     f32 f4E8;
     char pad4EC[0x24];
