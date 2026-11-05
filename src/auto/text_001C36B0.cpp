@@ -147,7 +147,60 @@ struct DXIndexBufferCache {
     int func_001C38D0(int a1, int a2);
     void func_001C39C0(void);
     void func_001C3A80(void);
+    int func_001C3CA0(int a1, int a2);
 };
+
+struct C_001C3F40_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+};
+
+struct C_001C3F40 {
+    char pad0[0x58];
+    C_001C3F40_Obj *f58;
+    void func_001C3F40();
+};
+
+struct C_001D5760 {
+    char pad0[0x28];
+    int f28;
+    int f2C;
+    char pad30[8];
+    int f38;
+    char pad3C[0x1C];
+    u8 b58;
+    void *func_001D5760();
+    void func_001D5810(void *a, int b, int c, int d);
+};
+
+struct ViewportFade {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    char pad4[0x20];
+    C_001D5760 *unk24;
+    f32 f28;
+    f32 f2C;
+    f32 f30;
+    int f34;
+    int f38;
+    int f3C;
+    void func_001D3F50();
+    void *func_001C40C0(int a0);
+    int func_001C4180(int a0);
+};
+
+extern int D_0028E544;
+extern int D_0028E53C;
+extern f32 D_00276098;
+extern f32 D_00275460;
 
 struct C_00160A60 {
     int unk0;
