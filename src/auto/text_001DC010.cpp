@@ -105,6 +105,7 @@ void func_001DC8A0(int a, int b, int c)
     func_00211040(&s);
 }
 
+#pragma optimize("y", off)
 void __stdcall func_001DC910(S_SystemTime *out)
 {
     S_TimeFields fields;
@@ -120,7 +121,7 @@ void __stdcall func_001DC910(S_SystemTime *out)
     out->second = fields.second;
     out->milliseconds = fields.milliseconds;
 }
-
+#pragma optimize("", on)
 u32 func_001DC974(void)
 {
     return *_imp__KeTickCount;
