@@ -751,6 +751,39 @@ C_001BF6F0 *C_001BF6F0::func_001BF6F0(int a, int b)
     return this;
 }
 
+C_001BF7C0 *C_001BF7C0::func_001BF7C0(int a0, int a1, S_001BF7C0_Stream *stream)
+{
+    S_001BF7C0_Obj *obj;
+    char *p;
+
+    f28 = a0;
+    ((C_001BF600 *)this)->func_001BF600((S_001BF600_Stream *)stream);
+    stream->func_00168CB0(D_00275AD4, S_Vec4f_001BFD00(1.0f, 1.0f, 1.0f, 1.0f), f6C);
+    stream->func_00168CB0(D_00275AC8, S_Vec4f_001BFD00(0.0f, 0.0f, 1.0f, 1.0f), f7C);
+    stream->func_00168CB0(D_0027CEE4, S_Vec4f_001BFD00(0.0f, 0.0f, 1.0f, 1.0f), f8C);
+    stream->func_00168C50(D_0028D9A8, 0, &f9C);
+    p = fA4;
+    if (stream->func_00168550(D_0028D998, p, 100) == 0) {
+        *(int *)p = D_00284A98;
+        p[4] = D_00284A9C;
+    }
+    p = f108;
+    if (stream->func_00168550(D_0028D984, p, 100) == 0) {
+        *(int *)p = D_00284A98;
+        p[4] = D_00284A9C;
+    }
+    obj = (S_001BF7C0_Obj *)func_001E8A44(0x1e0);
+    if (obj != 0) {
+        obj = obj->func_00143580(1);
+    } else {
+        obj = 0;
+    }
+    f68 = obj;
+    obj->v35(a1, 0, 0);
+    func_001577A0(f68, -1);
+    return this;
+}
+
 void C_001BF930::func_001BF930(void)
 {
     v7();
