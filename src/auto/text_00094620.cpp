@@ -792,9 +792,17 @@ int C_00095060::func_000952F0(void)
 
 char *C_00095060::func_00095390(int index)
 {
-    if (f34 != 0) {
-        S_00094A00_Obj *path = f50;
+    if (f34 == 0) {
+        if (index < 1 || index > tracks.count) {
+            return D_00275630;
+        }
+        if (tracks.at(index - 1)->f64 != 0) {
+            return D_0027A2A8;
+        }
+        return (char *)tracks.func_00037820(index - 1) + 0x32;
+    } else {
         int e = index - 1;
+        S_00094A00_Obj *path = f50;
 
         if (f34 < path->unkA8 && f34 >= 0) {
             S_00095390_Node *node = &((S_00095390_Node *)path->unk34)[f34];
@@ -805,13 +813,6 @@ char *C_00095060::func_00095390(int index)
         }
         return 0;
     }
-    if (index < 1 || index > tracks.count) {
-        return D_00275630;
-    }
-    if (tracks.at(index - 1)->f64 != 0) {
-        return D_0027A2A8;
-    }
-    return (char *)tracks.func_00037820(index - 1) + 0x32;
 }
 
 char *C_00095060::func_00095430(int index)
