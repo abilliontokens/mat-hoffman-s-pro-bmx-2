@@ -59,9 +59,9 @@ int *C_00038760::func_00038A10(int param_1, int *param_2)
 int C_00038760::func_00038A70(void *param_1, void **param_2)
 {
     int i;
-    for (i = 0; i < f64->count2; i++) {
-        if (func_001EA426(param_1, f64->at2(i)) == 0) {
-            *param_2 = f64->at2(i);
+    for (i = 0; i < f64->arr2.count; i++) {
+        if (func_001EA426(param_1, f64->arr2.at(i)) == 0) {
+            *param_2 = f64->arr2.at(i);
             return i;
         }
     }
