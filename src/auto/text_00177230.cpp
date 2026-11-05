@@ -2,7 +2,7 @@
 #include "common.h"
 
 int func_00135420(void);
-void func_00176630(u8 *src, int fmt, int width, int height, int srcPitch, int dstPitch, int a6, int a7, int a8, u8 *dst, int a10);
+int func_00176630(u8 *src, int fmt, int width, int height, int srcPitch, int dstPitch, int a6, int a7, int a8, u8 *dst, int a10);
 
 u32 func_00177860(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch)
 {
@@ -50,6 +50,34 @@ u32 func_00177920(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
     }
     s += srcPitch * 2;
     d += dstPitch * 4;
+  }
+  return 1;
+}
+
+u32 func_00177CA0(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int a6, int a7)
+{
+  u8 *d;
+  u8 *s;
+  u8 *p;
+  u8 *q;
+  u8 *tbl;
+  int x;
+  int y;
+  if (a6 != 0 && a7 != 0) {
+    func_00176630(src, 0x235, width, height, srcPitch, dstPitch, 0, 0, 0, dst, a7);
+    return 1;
+  }
+  tbl = (u8 *)func_00135420();
+  s = src;
+  d = dst;
+  for (y = height; y > 0; y--) {
+    for (p = d, q = s, x = width; x > 0; x--) {
+      *p = tbl[*(u16 *)q];
+      p++;
+      q += 2;
+    }
+    s += srcPitch * 2;
+    d += dstPitch;
   }
   return 1;
 }
