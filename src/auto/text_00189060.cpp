@@ -192,6 +192,7 @@ struct BasicScene {
     SceneLoader *f3b4;
     char pad3b8[0x4a8 - 0x3b8];
     SceneSlot **f4a8;
+    void func_001898D0(void);
     int func_00189720(void);
     void func_00189770(void);
     int func_00189AA0(void);
