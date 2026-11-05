@@ -29,6 +29,7 @@ struct ColorMapper : C_0001DFE0 {
     int f8;
     int fC;
     unsigned char pal[256][3];
+    char pad310[0x400];
     unsigned char map555[0x8000];
     unsigned char map565[0x10000];
     ColorMapper *func_00135150(int f);
