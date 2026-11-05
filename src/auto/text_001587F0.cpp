@@ -50,7 +50,8 @@ struct C_001587F0 {
     Vec4_587F0 unk5c;
     Vec4_587F0 unk6c;
     char pad7c[0x9c - 0x7c];
-    int unk9c;
+    unsigned int unk9c_0 : 1;
+    unsigned int unk9c_1 : 1;
     void func_001587F0(int a0, Vec4_587F0 pos, Vec4_587F0 dir);
 };
 extern "C" int func_001E8833(void);
