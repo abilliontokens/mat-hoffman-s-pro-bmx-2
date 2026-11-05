@@ -122,6 +122,43 @@ u32 func_001774E0(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   return 1;
 }
 
+#pragma intrinsic(memcpy)
+u32 func_00176250(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int flags);
+#pragma intrinsic(memcpy)
+u32 func_00177650(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int level, int flags)
+{
+  u8 *buf;
+  int w;
+  int h;
+  int y;
+  int n;
+  if (level == 0) {
+    for (y = 0; y < height; y++) {
+      memcpy(dst + y * dstPitch, src + y * srcPitch, width);
+    }
+    return 1;
+  }
+  if (level == 1) {
+    func_00176250(dst, src, width, height, dstPitch, srcPitch, flags);
+    return 1;
+  }
+  w = width << (level - 1);
+  h = height << (level - 1);
+  buf = (u8 *)func_001E8AA5(h * w);
+  func_00176250(buf, src, w, h, w, srcPitch, flags);
+  if (level > 2) {
+    n = level - 2;
+    do {
+      w /= 2;
+      h /= 2;
+      func_00176250(buf, buf, w, h, w, w * 2, flags);
+      n--;
+    } while (n != 0);
+  }
+  func_00176250(dst, buf, width, height, dstPitch, w, flags);
+  func_001E8390(buf);
+  return 1;
+}
 u32 func_00177860(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch)
 {
   u8 *d;
