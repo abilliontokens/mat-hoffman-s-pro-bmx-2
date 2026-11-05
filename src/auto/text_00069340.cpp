@@ -1,6 +1,15 @@
 /* 9 functions from 0x00069340 to 0x0006A1A0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_00069FD0 {
+    char pad0[0x170];
+    int unk170;
+    int unk174;
+    char pad178[0x4];
+    int unk17C;
+    void func_00069FD0(int a0);
+};
+
 struct C_00069BB0 {
     void func_00069BB0(void);
 };
@@ -29,5 +38,11 @@ void C_00069BB0::func_00069BB0(void)
   in_ECX[0x55] = 0;
   in_ECX[0x5f] = 1;
   return;
+}
+
+void C_00069FD0::func_00069FD0(int a0) {
+    unk170 = a0;
+    unk17C = 1;
+    unk174 = 1;
 }
 
