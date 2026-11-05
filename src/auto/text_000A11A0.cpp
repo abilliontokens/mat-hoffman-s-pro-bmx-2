@@ -126,6 +126,22 @@ int C_000A17E0::func_000A17E0(void) {
     return r;
 }
 
+void C_000A1920::func_000A1830(void)
+{
+    int j;
+    int i;
+
+    if (f3b4 != 0) {
+        for (j = 0; j < f3b4->f24; j++) {
+            for (i = 0; i < D_002A8490->f2e0->f0; i++) {
+                f3b4->f28[j]->f4->func_001BB900(f4e0->arr1a8[i]->f11ac);
+                f3b4->f28[j]->f4->func_001BB900(f4e0->arr1a8[i]->f950->f9c);
+                f3b4->f28[j]->f4->func_001BB900(f4e0->arr1a8[i]->f950->fa0);
+            }
+        }
+    }
+}
+
 void C_000A1920::func_000A1920(C_000A1920_Arg *a0) {
     int i = 0;
     if (D_002A8490->f2e0->f0 > 0) {
