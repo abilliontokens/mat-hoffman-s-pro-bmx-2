@@ -146,6 +146,9 @@ struct BmxUIManager {
     UIItem *f26c;
     void *f270;
     void *f274;
+    int f278;
+    UnlockData *f27c;
+    void func_000BB440(int type);
     int func_000BABF0();
     void func_000BACE0();
     int func_000BB0C0();
