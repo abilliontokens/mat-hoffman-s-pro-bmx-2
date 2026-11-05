@@ -11,6 +11,7 @@ extern float D_002755E8;
 extern float D_002755EC;
 
 void func_001E891B(void *p);
+extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 
 struct S_0012B7D0_Vec {
     int x, y, z, w;
@@ -69,6 +70,30 @@ struct C_0012B8F0 {
     void func_0012BF10(int idx, u32 *a, u32 *b, u32 *c, int *d);
     void func_0012C4E0(void);
 };
+
+int C_0012B7D0::func_0012B7D0(void *id, int a1, int a2, S_0012B7D0_Vec *a3, S_0012B7D0_Vec *a4) {
+    int i;
+
+    for (i = 0; i < f24; i++) {
+        if ((void *)f2C[i] == id) {
+            float buf[24] = {0};
+            if (f28 >= 0) {
+                f2C[f28]->v1(buf);
+            }
+            f30->func_0012AC20(buf, buf + 4, buf + 8, buf + 12, buf + 13);
+            f28 = i;
+            f2C[i]->v0(buf, a1);
+            if (a2 != 0 && a3 != 0 && a4 != 0) {
+                f30->func_0012B350();
+                f30->f170 = *a3;
+                f30->func_0012A770(a2, 2);
+                f30->f28->f18 = *a4;
+            }
+            return 1;
+        }
+    }
+    return 0;
+}
 
 C_0012B8F0 *C_0012B8F0::func_0012B8F0(void) {
     int *p;
