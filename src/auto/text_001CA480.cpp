@@ -58,6 +58,8 @@ struct WaterObject {
     WaterObject *func_001CAFF0(int a0, int a1, int a2);
     void func_00143580(int a0);
     void func_00143540(int a0, int a1, int a2);
+    void func_001435D0();
+    void *func_001CB070(int flags);
 };
 
 struct VCall_1CAFF0 {
@@ -95,6 +97,25 @@ struct VCall_1CAFF0 {
     virtual void v31();
 };
 
+
+WaterDisplacement *WaterDisplacement::func_001CAF20()
+{
+    int i;
+    func_00157600(1);
+    vtbl = (void *)&D_0028EC24;
+    unk54.Identity();
+    unk64.Identity();
+    for (i = 0; i < 4; i++) {
+        unk74[i].Identity();
+    }
+    unkB4.w = 1.0f;
+    unkB4.x = unkB4.y = unkB4.z = 0.0f;
+    unk28 = unk2C = 0;
+    unk30 = 0;
+    unk34 = 0;
+    unk38 = 0;
+    return this;
+}
 
 void *WaterObject::func_001CAFD0(int a0)
 {
