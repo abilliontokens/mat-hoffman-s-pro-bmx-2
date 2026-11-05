@@ -343,7 +343,7 @@ struct C_0001DA00 {
     void func_0001DA00(int a);
 };
 
-struct C_0001DA00;
+struct C_0001DA00_Fwd;
 struct S4 { int a, b, c, d; };
 struct S9 { int v[9]; };
 
