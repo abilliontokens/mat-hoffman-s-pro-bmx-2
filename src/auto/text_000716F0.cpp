@@ -121,7 +121,8 @@ struct C_00072280 {
 
 /* a drawable the page owns: func_001D5AD0 draws it, f38/b58 are its colour and dirty flag */
 struct Sprite_724E0 {
-    char pad0[0x38];
+    virtual ~Sprite_724E0();
+    char pad0[0x34];
     unsigned int f38;
     char pad3C[0x1C];
     unsigned char b58;
