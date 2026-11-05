@@ -59,6 +59,16 @@ struct C_001CB510 {
 void __stdcall func_002223E1(int a, int b, int c);
 int __stdcall func_0021FB83(int a);
 
+int C_001CB440::func_001CB440(void)
+{
+    int v;
+
+    __imp__RtlEnterCriticalSection((void *)(D_002F08EC->f138 + 0x50));
+    v = (f208 >> 4) & 1;
+    __imp__RtlLeaveCriticalSection((void *)(D_002F08EC->f138 + 0x50));
+    return v;
+}
+
 int __stdcall func_001CBEE0(int a0, int a1, int a2, int a3, int a4) {
     return -2147467259;
 }
