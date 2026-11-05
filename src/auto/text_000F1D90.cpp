@@ -41,6 +41,7 @@ struct BmxUIPageHPHChoice {
 
 struct S_000F2120_Obj {
     void func_001D6600(void);
+    void func_0005E840(char *s);
 };
 
 struct S_000F2120_Root {
@@ -48,6 +49,7 @@ struct S_000F2120_Root {
     S_000F2120_Obj *f34;
     S_000F2120_Obj *f38;
     S_000F2120_Obj *f3c;
+    void func_000BF860(int a, int b, int c, int d);
 };
 
 extern S_000F2120_Root *D_002B91AC;
