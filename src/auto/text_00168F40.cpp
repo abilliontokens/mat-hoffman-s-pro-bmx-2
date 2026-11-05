@@ -56,7 +56,7 @@ void func_001681A0(const char *s, void *out);
 struct C_00168F40 {
     int f0;
     int f4;
-    int f8;
+    void *f8;
     char padC[4];
     int f10;
     char pad14[4];
@@ -273,6 +273,9 @@ int C_00168F40::func_00169A50(char *line)
     char *s;
     int i;
 
+    if (f8 == 0) {
+        return 0;
+    }
     if (!CanRead()) {
         return 0;
     }
