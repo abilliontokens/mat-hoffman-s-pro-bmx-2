@@ -174,3 +174,24 @@ void C_0014A540::func_0014A540(void)
   return;
 }
 
+int C_0014A560::func_0014A560(int param_1, int param_2)
+{
+    int id;
+    int words;
+    id = D_002BEAAC->func_0013C9F0(param_1, &D_00275FB4);
+    if (id == -1) {
+        return 0;
+    }
+    D_002BEAAC->func_0013AF40(id, 0, &param_1);
+    words = (param_1 + 3) / 4;
+    unk8 = func_001E8AA5(words * 4);
+    if (unk8 == 0) {
+        D_002BEAAC->func_0013C110(id);
+        return 0;
+    }
+    ((int *)unk8)[words - 1] = 0;
+    D_002BEAAC->func_0013C8A0(id, unk8, param_1, 1);
+    D_002BEAAC->func_0013C110(id);
+    return 1;
+}
+
