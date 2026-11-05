@@ -155,7 +155,7 @@ extern float D_00275490;
 extern float D_002754A0;
 
 struct S_115F0_Path { int count; float *pts; };
-struct S_11BE0_Target { C_00017680_Vec *func_00199B00(C_00017680_Vec *, int); };
+struct S_11BE0_Target { C_00017680_Vec *func_00199B00(C_00017680_Vec *, int); void func_00199600(C_00017680_Vec v); };
 struct S_11BE0_Mid { int f0; S_11BE0_Target *f4; };
 struct S_11BE0_State { char pad[0xbc]; int fBC; };
 struct S_11BE0_Actor { char pad[0x834]; C_00017680_Vec pos; char pad844[0x950-0x844]; S_11BE0_State *state; char pad954[0xa00-0x954]; S_11BE0_Mid *mid; };
