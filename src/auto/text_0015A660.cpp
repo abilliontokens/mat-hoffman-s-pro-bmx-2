@@ -75,8 +75,17 @@ struct C_0015AB70 {
     int func_0015AB70(unsigned int idx);
 };
 
+struct C_0015AC20;
+
+struct S_0015AC20_Mid {
+    char pad0[0x38];
+    C_0015AC20 *f38;
+};
+
 struct S_0015AC20_Game {
-    char pad0[0x230];
+    char pad0[8];
+    S_0015AC20_Mid *f8;
+    char pad0C[0x224];
     unsigned char f230;
 };
 
