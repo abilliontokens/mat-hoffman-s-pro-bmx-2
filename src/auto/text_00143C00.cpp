@@ -10,6 +10,14 @@ void __stdcall func_00201100(void *p);
 void func_001E891B(void *p);
 
 void func_001E8390(void *p);
+void *func_001E8AA5(unsigned int size);
+void *func_001E8A44(int size);
+
+struct C_0013B210 {
+    void func_0013C8A0(int a0, void *a1, int a2, int a3);
+};
+
+extern C_0013B210 *D_002BEAAC;
 
 struct C_001AF300 {
     void func_001AF300(void *param);
