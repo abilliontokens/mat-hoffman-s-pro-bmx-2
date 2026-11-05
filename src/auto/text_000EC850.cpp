@@ -229,6 +229,8 @@ struct C_000EC850 {
     void func_000EC850();
 };
 
+extern float D_00275AEC;
+
 void C_000ECD90::func_000ECD90(void) {
     unk380 = 0;
     unk384 = 255;
