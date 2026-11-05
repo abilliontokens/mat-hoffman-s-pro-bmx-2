@@ -46,6 +46,7 @@ extern float *D_002DF87C;
 
 void func_001E8390(void *p);
 int func_001E9AB6(char *buf, int count, const char *fmt, va_list ap);
+int __cdecl func_001E9A58(void *stream, const char *fmt, ...);
 
 extern int D_00286B04;
 
