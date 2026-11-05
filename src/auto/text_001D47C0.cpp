@@ -1,5 +1,38 @@
 /* 28 functions from 0x001D47C0 to 0x001D5760, found by Ghidra. */
 #include "common.h"
+
+extern int D_0028F578;
+extern int D_00284E94;
+extern int D_0028F584;
+
+struct C_001D5640 {
+    int func_001D5640(u8 param_1);
+};
+
+struct C_001D48A0 {
+    int unk0;
+    int unk4;
+    C_001D48A0* func_001D48A0(u8 param_1);
+};
+
+struct C_001D48E0 {
+    int *func_001D48E0(void);
+};
+
+struct C_0014A630 {
+    void func_0014A630();
+};
+
+struct C_001B65E0 {
+    void func_001B65E0();
+};
+
+struct C_001D4B00 {
+    char pad0[0x6c];
+    C_0014A630 *f6c;
+    C_001B65E0 *f70;
+    int func_001D4B00(void);
+};
 struct C_001D5480 {
     int unk0;
     int unk4;
