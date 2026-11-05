@@ -69,6 +69,32 @@ struct C_000AB340 {
     void func_000AB340(void);
 };
 
+void C_000AB340::func_000AB340(void)
+{
+    C_000AB340_Vec v = D_002EFDB8->f4->f170;
+    int i;
+    int j;
+
+    if (f24 == 0) {
+        func_001578D0();
+        return;
+    }
+    for (i = 0; i < f24; i++) {
+        if (v.x > f28[i].f0 && f28[i].f4 > v.x && f28[i].f10 < v.y && f28[i].f14 > v.y && f28[i].f8 < v.z && f28[i].fC > v.z) {
+            f28[i].f24 = 1;
+            for (j = 0; j < f28[i].f18; j++) {
+                f28[i].f20[j]->func_00198390();
+            }
+        } else if (f28[i].f24 != 0) {
+            f28[i].f24 = 0;
+            for (j = 0; j < f28[i].f18; j++) {
+                f28[i].f20[j]->func_001983A0();
+            }
+        }
+    }
+    func_001578D0();
+}
+
 void C_000AB490::func_000AB490(void)
 {
     int func_001E891B(...);
