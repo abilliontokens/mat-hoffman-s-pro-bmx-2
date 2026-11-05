@@ -30,7 +30,8 @@ void __stdcall func_001DDDE8(int a0, int a1, int a2, int a3) {
     void __stdcall func_001DDD04(int, int, int, int, int);
     func_001DDD04(a0, a1, a2, a3, 0);
 }
-#pragma optimize("", on)
+#pragma optimize("y", on)
+#pragma optimize("s", on)
 void __cdecl func_001DDE3E(int a0, int a1, int a2) {
     void __stdcall func_001DDE10(int, int, int *);
     func_001DDE10(a0, a1, &a2);
