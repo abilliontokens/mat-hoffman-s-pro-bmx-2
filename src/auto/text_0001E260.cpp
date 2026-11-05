@@ -212,6 +212,39 @@ u32 __stdcall func_0001E550(int a0) {
 }
 #pragma optimize("", on)
 
+void GR_BitString::func_0001E5D0(int a0)
+{
+    if (a0 >= 32) {
+        int total = ((int)unk4 + 31) / 32;
+        int skip = a0 / 32;
+        int n = total - skip;
+        u32 *dst;
+        u32 *src;
+
+        a0 -= skip * 32;
+        if (n > 0) {
+            dst = (u32 *)unk8;
+            src = dst + skip;
+            do {
+                *dst++ = *src++;
+            } while (--n);
+            do {
+                *dst++ = unk18;
+            } while (--skip);
+        } else {
+            dst = (u32 *)unk8;
+            do {
+                *dst++ = unk18;
+            } while (--total);
+        }
+    }
+    if (a0 > 0) {
+        func_0001E0E0(a0);
+    }
+}
+
+#pragma optimize("", on)
+
 void *GR_BitString::func_0001E6D0(unsigned int flags) {
     vtbl = &D_00275F7C;
     if (unk1C == 0 && unk8 != 0) {
