@@ -257,6 +257,94 @@ struct C_52D90 {
 };
 #define G ((C_52D90_Game *)D_002A8490)
 
+void *func_001E8A44(int size);
+
+struct C_536F0_2E0 {
+    int pad0;
+    int pad4;
+    int unk8;
+};
+struct C_536F0_Ev {
+    virtual void vf0();
+    virtual void vf1();
+    virtual void vf2();
+    virtual void vf3();
+    virtual void vf4();
+    C_536F0_Ev *func_00088530(int a);
+    C_536F0_Ev *func_00088570(int a);
+};
+struct C_536F0_Ev2 {
+    virtual void vf0();
+    virtual void vf1();
+    virtual void vf2();
+    virtual void vf3();
+    virtual void vf4();
+    C_536F0_Ev2 *func_000876B0(int a);
+    C_536F0_Ev2 *func_00087760(int a, void *b, C_536F0_Ev *c);
+};
+struct C_536F0_A {
+    virtual void vf0(); virtual void vf1(); virtual void vf2(); virtual void vf3(); virtual void vf4();
+    C_536F0_A *func_0005ECA0(int a);
+    C_536F0_A *func_0005EDC0(void *a);
+};
+struct C_536F0_B {
+    virtual void vf0(); virtual void vf1(); virtual void vf2(); virtual void vf3(); virtual void vf4();
+    C_536F0_B *func_000715B0(int a);
+    C_536F0_B *func_00071880(void *a);
+};
+struct C_536F0_C {
+    virtual void vf0(); virtual void vf1(); virtual void vf2(); virtual void vf3(); virtual void vf4();
+    C_536F0_C *func_0006E330(int a);
+    C_536F0_C *func_0006ECC0(void *a);
+};
+struct C_536F0_D {
+    virtual void vf0(); virtual void vf1(); virtual void vf2(); virtual void vf3(); virtual void vf4();
+    C_536F0_D *func_00066C90(int a);
+    C_536F0_D *func_00066FA0(void *a);
+};
+struct C_536F0_F {
+    virtual void vf0(); virtual void vf1(); virtual void vf2(); virtual void vf3(); virtual void vf4();
+    C_536F0_F *func_00072C90(int a);
+    C_536F0_F *func_00072E70(void *a);
+};
+struct C_536F0_E {
+    virtual void vf0(); virtual void vf1(); virtual void vf2(); virtual void vf3(); virtual void vf4();
+    virtual void vf5(); virtual void vf6();
+    C_536F0_E *func_00082450(int a);
+    C_536F0_E *func_0008DB70(void *a, void *b, int c, int d, int e, int f, int g);
+};
+struct C_536F0_List {
+    char pad0[0x1A8];
+    void *items[1];
+};
+struct C_536F0_Owner {
+    char pad0[0x4E0];
+    C_536F0_List *list;
+};
+struct C_536F0 {
+    void *vtbl;                       /* 0x00 */
+    char pad04[0x60];
+    C_536F0_Owner *unk64;             /* 0x64 */
+    char pad68[0x28];
+    int unk90;                        /* 0x90 */
+    char pad94[0x50];
+    C_536F0_Ev *unkE4;                /* 0xE4 */
+    char padE8[0x74];
+    C_536F0_A *unk15C;                /* 0x15C */
+    char pad160[4];
+    C_536F0_C *unk164;                /* 0x164 */
+    char pad168[8];
+    C_536F0_E *unk170[8];             /* 0x170 */
+    C_536F0_D *unk190;                /* 0x190 */
+    char pad194[4];
+    C_536F0_Ev2 *unk198;              /* 0x198 */
+    char pad19C[4];
+    C_536F0_B *unk1A0;                /* 0x1A0 */
+    C_536F0_F *unk1A4;                /* 0x1A4 */
+    void func_000536F0();
+    void func_00031630();
+};
+
 int C_52C10::func_00052C10(int param)
 {
     int i;
