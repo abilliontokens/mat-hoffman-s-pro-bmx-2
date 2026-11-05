@@ -357,6 +357,28 @@ void C_0012B1D0::func_0012B1D0(undefined4 *param_1)
   return;
 }
 
+void C_0012B210::func_0012B210(int *out)
+{
+    float f;
+
+    out[0] = 0;
+    f = (float)f1e8 / D_002A3E34;
+    out[2] = _mm_cvtt_ss2si(_mm_load_ss(&f));
+    out[1] = 0;
+    f = (float)f1ec / D_002A3E38;
+    out[3] = _mm_cvtt_ss2si(_mm_load_ss(&f));
+}
+
+void C_0012B2B0::func_0012B2B0(S_0012B2B0_Rect *in, S_0012B2B0_Rect *out)
+{
+    if (out != 0) {
+        memcpy(out, &f1e0, 0x18);
+        out->f4 = (int)((float)out->f4 - D_00284034);
+    }
+    memcpy(&f1e0, in, 0x18);
+    f1e0.f4 = (int)((float)f1e0.f4 + D_00284034);
+}
+
 undefined4 C_0012B330::func_0012B330(byte param_1)
 {
   int func_0012B060(...);
