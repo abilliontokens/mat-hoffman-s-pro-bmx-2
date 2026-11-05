@@ -185,10 +185,8 @@ int C_00078620::func_00078620()
     unkAC->SetPos(491.0f, 388.0f);
     unkB0->SetPos(365.0f, 388.0f);
     unkA8->SetPos(365.0f, 388.0f);
-    if (unkE4) {
-        unkB4->func_001D5AD0();
+    if (unkE4)
         return 1;
-    }
     if (unkD4) {
         unkA8->SetPos(300.0f, 388.0f);
         unkB0->SetPos(300.0f, 388.0f);
@@ -206,15 +204,19 @@ int C_00078620::func_00078620()
         unkA8->func_001D5AD0();
     else
         unkB0->func_001D5AD0();
-    if (unkE8 || unkEC) {
-        unkB4->func_001D5AD0();
-        return 1;
+    if (unkE8 == 0 && unkEC == 0) {
+        if (unkD4 && !unkF0) {
+            unkAC->SetPos(40.0f, 388.0f);
+            unkB4->SetPos(40.0f, 388.0f);
+        } else {
+            unkAC->SetPos(379.0f, 388.0f);
+            unkB4->SetPos(379.0f, 388.0f);
+        }
+        if (unkA4)
+            unkAC->func_001D5AD0();
+        else
+            unkB4->func_001D5AD0();
     }
-    float x = (unkD4 && !unkF0) ? 40.0f : 379.0f;
-    unkAC->SetPos(x, 388.0f);
-    unkB4->SetPos(x, 388.0f);
-    if (unkA4)
-        unkAC->func_001D5AD0();
     return 1;
 }
 
