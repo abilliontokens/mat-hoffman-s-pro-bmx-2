@@ -61,9 +61,28 @@ struct S_001607B0_Dev {
     virtual void v28(int a, int b, void *c);
 };
 
+void func_001E891B(void *p);
+
 struct S_00160810_Cam {
     S_00160810_Cam *func_00193490(void);
     void func_001938C0(void *a, int b, int c, void *vecA, void *vecB, int d);
+    void func_00193870(void *p);
+    void func_00193500(void);
+};
+
+/* doubly linked list node and list header */
+struct S_ListNode_00160A70 {
+    int data;
+    S_ListNode_00160A70 *prev;
+    S_ListNode_00160A70 *next;
+};
+
+struct C_00160A70 {
+    int count;
+    S_ListNode_00160A70 *head;
+    S_ListNode_00160A70 *tail;
+    int func_00160A70(int data);
+    int func_00160AD0(int data);
 };
 
 /* LightFlare */
