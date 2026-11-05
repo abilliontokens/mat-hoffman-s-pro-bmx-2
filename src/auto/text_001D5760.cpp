@@ -162,7 +162,7 @@ static inline void FloatToInt(int *out, float f)
     *p = _mm_cvttss_si32(*(__m128 *)&f);
 }
 
-static inline void FloatToIntLoad(int *out, float f)
+static __forceinline void FloatToIntLoad(int *out, float f)
 {
     int * volatile p = out;
 
