@@ -9,3 +9,12 @@ struct C_0004C6F0 {
     void func_00033220(void);
     void *func_0004C6F0(int flags);
 };
+
+void *C_0004C6F0::func_0004C6F0(int flags) {
+    unk0 = (int)&D_002773EC;
+    func_00033220();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
