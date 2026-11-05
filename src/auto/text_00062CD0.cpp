@@ -27,7 +27,7 @@ struct C_00062CD0 {
     int pad22C;
     int f230;
     float f234;
-    void __stdcall func_00062CD0(float dt);
+    void func_00062CD0(float dt);
 };
 
 extern float D_002A1D08;
