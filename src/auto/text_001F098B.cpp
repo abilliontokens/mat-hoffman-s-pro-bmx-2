@@ -32,6 +32,8 @@ struct S_001EF734 {
     void func_001EF935(void *v);
     S_001EF734 *func_001EF759(void *p);
     void func_001EFB82(char *s);
+    void func_001EEF4F(S_001EF734 *src);
+    void func_001EF9B2(char *s);
 };
 
 #pragma optimize("t", off)
