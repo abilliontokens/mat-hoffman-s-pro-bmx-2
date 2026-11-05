@@ -31,6 +31,10 @@ struct C_00104190 {
 
 extern int D_002828F4;
 
+struct C_00104170 {
+    void func_00104170(int a0, int a1);
+};
+
 /* BmxVCRController */
 struct C_00104120 {
     void *vtbl;
@@ -73,9 +77,9 @@ C_00104120 *C_00104120::func_00104120(int param_1)
     return this;
 }
 
-void __stdcall func_00104170(int a0, int a1) {
+int __stdcall func_00104170(int a0, int a1) {
     int __stdcall func_001972B0(int, int, int);
-    func_001972B0(a0, a1, 1);
+    return func_001972B0(a0, a1, 1);
 }
 
 void C_00104190::func_00104190(void)
