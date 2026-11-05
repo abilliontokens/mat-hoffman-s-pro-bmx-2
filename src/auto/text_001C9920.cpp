@@ -144,21 +144,25 @@ void func_001C99D0(void) {
 C_001C9920 *C_001C9920::func_001C99E0(int a0)
 {
     int i;
+    unsigned int *p;
 
     func_00192370(a0);
-    vtbl = &D_0028E864;
-    unkD4[2] = 0;
-    unkD4[1] = 0;
-    unkD4[0] = 0;
-    unkD4[3] = 1.0f;
-    unkE4[2] = 0;
-    unkE4[1] = 0;
-    unkE4[0] = 0;
-    unkE4[3] = 1.0f;
-    unkF4[2] = 0;
-    unkF4[1] = 0;
-    unkF4[0] = 0;
-    unkF4[3] = 1.0f;
+    vtbl = (void *)&D_0028E864;
+    p = unkD4;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = unkE4;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = unkF4;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
     unk27 |= 3;
     unk2C = 0;
     unk30 = 0;
