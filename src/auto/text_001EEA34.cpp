@@ -542,13 +542,13 @@ BitObj *__fastcall func_001EF734(BitObj *self, int unused, char c)
 
 BitObj *BitObj::func_001EF88F(long num)
 {
-    char buf[11];
-    char *pBuf = buf + 10;
+    char buf[12];
+    char *pBuf = buf + 11;
     char sign;
 
     *(unsigned short *)((char *)this + 4) &= 0xfe00;
     f0 = 0;
-    buf[10] = 0;
+    buf[11] = 0;
     sign = 0;
     if (num < 0) {
         sign = 1;
@@ -561,7 +561,7 @@ BitObj *BitObj::func_001EF88F(long num)
     if (sign) {
         *--pBuf = '-';
     }
-    func_001EF68E(pBuf, (buf + 10) - pBuf);
+    func_001EF68E(pBuf, (buf + 11) - pBuf);
     return this;
 }
 
