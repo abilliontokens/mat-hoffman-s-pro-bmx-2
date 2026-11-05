@@ -88,6 +88,22 @@ void StateMachine::func_001AC0A0(int a, const char *name)
     func_001D3F50();
 }
 
+void StateMachine::func_001AC0D0(int a)
+{
+    if (field_28 != 0) {
+        if (field_24 != 0) {
+            ((StateObject *)field_24)->vf1();
+        }
+        field_24 = field_28;
+        ((StateObject *)field_28)->vf0();
+        field_28 = 0;
+    }
+    if (field_24 != 0) {
+        ((StateObject *)field_24)->vf2(a);
+    }
+    func_00157A00(a);
+}
+
 StringTable *StringTable::func_001AC3A0()
 {
     func_0001DFE0();
