@@ -1,6 +1,8 @@
 /* 18 functions from 0x00050D70 to 0x00051CF0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
+
 /* the object D_002A8490 points at: only the slot this file calls is known */
 struct I_002A8490 {
     virtual void slot_00(void) = 0;
