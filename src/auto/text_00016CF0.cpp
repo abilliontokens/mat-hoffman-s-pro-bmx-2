@@ -221,10 +221,27 @@ void C_00017700::func_00017700(void)
     if (f4E0 >= 4) {
         f4E0 = 0;
     }
-    if (D_002A0700[f4E0] == 1) {
+    switch (D_002A0700[f4E0]) {
+    case 1:
         f384->func_0008AB90(f388);
-    } else {
+        break;
+    default:
         f384->func_0008AB90(f38C);
+        break;
     }
+}
+
+void C_00017760::func_00017760(void)
+{
+    C_00017680_Vec v = f508;
+
+    v.y = v.y + D_002757F0;
+    f494->v31();
+    f494->v32();
+    f494->v4();
+    f494->func_0011CA60(v);
+    f494->v6();
+    f494->v30();
+    f494->func_0011CA60(v);
 }
 
