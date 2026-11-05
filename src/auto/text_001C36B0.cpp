@@ -324,10 +324,39 @@ struct DXIndexBufferManager {
     void func_001C3C80(void);
 };
 
+struct S_001C3F60_Rect {
+    int x;
+    int y;
+    int w;
+    int h;
+};
+
 struct C_001D5350 {
     char pad0[8];
     C_001D5350 *func_001D5350();
     void func_001D53A0(const char *name);
+    void func_001D5430(S_001C3F60_Rect *a, S_001C3F60_Rect *b, int c);
+    void func_001D5470(void);
+};
+
+/* object behind D_002F07B8: virtual slot 5 takes an int, flag byte at +0x9d4 */
+struct S_001C3F60_Global {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5(int a);
+    char pad4[0x9d0 - 0x18 + 4];
+    unsigned char f9d4;
+};
+
+/* the thing VideoFXManager::unk40 points at */
+struct S_001C3F60_Item {
+    char pad0[0x2c];
+    float f2c;
+    char pad30[0xc];
+    int f3c;
 };
 
 /* VideoFXManager */
