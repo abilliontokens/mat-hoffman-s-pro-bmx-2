@@ -127,3 +127,12 @@ void C_0004D070::func_0004D070(int flag)
     }
 }
 
+void C_0004D610::func_0004D610(void)
+{
+    func_00031450();
+    C_0004D610Obj *p = f288;
+    if (p != 0) {
+        p->func4();
+    }
+}
+
