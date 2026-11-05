@@ -10,6 +10,25 @@ extern int D_0027993C;
 extern int D_002799BC;
 void func_001E891B(void *p);
 
+extern int D_00279DEC;
+
+struct C_0008ADF0 {
+    void func_0008ADF0();
+};
+
+struct C_00092790 {
+    void *vtbl;
+    void *func_00092790(int flags);
+};
+
+struct C_000927B0 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    void func_00157660();
+    void *func_000927B0(int flags);
+};
+
 struct C_001D6410 {
     void func_001D6410();
 };
