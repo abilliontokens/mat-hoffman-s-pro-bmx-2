@@ -430,6 +430,24 @@ int __stdcall func_001DF375(int a)
     return 0;
 }
 
+void func_001DF3E4(void)
+{
+    int *p = (int *)D_00010118;
+    int v = D_00010108 - (int)p + (int)D_00010000;
+    int handle;
+
+    if ((unsigned int)v < (unsigned int)*p) {
+        *p = v;
+    }
+    D_002F6BC0 = ((D_0028FD7C - D_0028FD6C + D_0028FD70 + 0xf) & ~0xf) + 4;
+    *D_0028FD74 = D_002F6BC0 / -4;
+    handle = func_001DE8C7(0, 0, (void *)func_001DF375, 0, 0, 0);
+    if (handle == 0) {
+        func_001E20BF(1, 1, 0);
+    }
+    func_001DD13C(handle);
+}
+
 unsigned long __stdcall func_001DF456(u32 valueIndex, u32 *type, void *value, u32 valueLength, u32 *resultLength)
 {
     return __imp__RtlNtStatusToDosError(ExQueryNonVolatileSetting(valueIndex, type, value, valueLength, resultLength));
