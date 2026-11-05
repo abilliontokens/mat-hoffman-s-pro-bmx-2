@@ -463,6 +463,61 @@ int __stdcall func_0013B4C0(S_BufSet *set, int n, int x)
     return total;
 }
 
+void C_0013AEC0::func_0013B840(S_0013AF80_Row *row)
+{
+    int *p = f24;
+    int *q;
+    int found = 0;
+    int v;
+
+    do {
+        if (*p == row->f0) {
+            q = f28;
+            if (*q != -1) {
+                *p = *q;
+                *f28 = -1;
+                found = 1;
+            } else {
+                do {
+                    q--;
+                    if (*q != -1) {
+                        *p = *q;
+                        *q = -1;
+                        found = 1;
+                    }
+                } while (q != p && !found);
+            }
+        }
+        p++;
+    } while (p <= f28 && !found);
+    v = f6C;
+    if (row->f0 == v && v != -1) {
+        int h = fC[v].f10;
+        if (h != 0) {
+            func_00012140(h);
+        }
+        f74 = -1;
+        f78 = -1;
+        f6C = -1;
+    }
+    *(int *)&pad0[8] = row->f0;
+    if (row->f10 != 0) {
+        func_0014FE50((void *)row->f10);
+        row->f10 = 0;
+    }
+    if (row->f4 != 0) {
+        func_001E8390((void *)row->f4);
+        row->f4 = 0;
+    }
+    row->fC = 1;
+    row->f8 = 0;
+    row->f14 = 0;
+    row->f18 = 0;
+    row->f20 = 0;
+    row->f1C = 0;
+    row->f24 = 0;
+}
+
 int C_0013AEC0::func_0013B930(int idx, void *buf, int size, int count)
 {
     S_0013AEC0_Slot *s = &fE8[idx];
