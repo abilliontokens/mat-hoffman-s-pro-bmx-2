@@ -69,6 +69,37 @@ int C_001CB440::func_001CB440(void)
     return v;
 }
 
+int C_001CB490::func_001CB490(int param_1, int param_2, int param_3)
+{
+    int n = f1a8;
+    float f = (float)param_2 * D_00276098;
+
+    f130 = 0;
+    f128 = n;
+    f12c = f;
+    if (param_3 != 0) {
+        f134 = ((float)param_1 * D_002755E0 * (float)n - (float)n) / f;
+        return 1;
+    }
+    f134 = (float)(param_1 - n) / f;
+    return 1;
+}
+
+void C_001CB510::func_001CB510(void)
+{
+    if (f13c != 0 && f150 == 0) {
+        func_002223E1(f13c, 0, 0);
+        if (f13c != 0) {
+            if (func_0021FB83(f13c) == 0) {
+                f13c = 0;
+            }
+        }
+    }
+    if (f144 != 0) {
+        f144->v2();
+    }
+}
+
 int __stdcall func_001CBEE0(int a0, int a1, int a2, int a3, int a4) {
     return -2147467259;
 }
