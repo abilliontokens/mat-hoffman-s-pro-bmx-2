@@ -318,6 +318,8 @@ struct S_00108B00_Cam {
 };
 
 struct S_00108B00_Node {
+    char pad0[0x174];
+    S_00108B00_Node *f174;
     Vec4_00108370 func_00197F70(Vec4_00108370 *v);
     void func_00199A70(int a, Vec4_00108370 *out);
 };
