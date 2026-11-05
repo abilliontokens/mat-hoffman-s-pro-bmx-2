@@ -36,3 +36,13 @@ struct C_000619B0 {
     void func_000619B0(int mode);
     void func_00061B20();
 };
+
+void C_000619B0::func_000619B0(int mode)
+{
+    unk64 = mode;
+    if (mode == 2 || mode == 6 || mode == 4 || mode == 5) {
+        D_002A8490->f124 = 1;
+    } else {
+        D_002A8490->f124 = 0;
+    }
+}
