@@ -79,6 +79,57 @@ void __stdcall func_001DED66(char c)
     }
     _imp__RtlNtStatusToDosError(status);
 }
+
+#pragma optimize("gsy", on)
+void __stdcall func_001DEDC3(void *info, char *out)
+{
+    *(u32 *)((char *)out) = *(u32 *)((char *)info + 0x38);
+    *(u32 *)((char *)out + 4) = *(u32 *)((char *)info + 0x8);
+    *(u32 *)((char *)out + 8) = *(u32 *)((char *)info + 0xc);
+    *(u32 *)((char *)out + 0xc) = *(u32 *)((char *)info + 0x10);
+    *(u32 *)((char *)out + 0x10) = *(u32 *)((char *)info + 0x14);
+    *(u32 *)((char *)out + 0x14) = *(u32 *)((char *)info + 0x18);
+    *(u32 *)((char *)out + 0x18) = *(u32 *)((char *)info + 0x1c);
+    *(u32 *)((char *)out + 0x1c) = *(u32 *)((char *)info + 0x2c);
+    *(u32 *)((char *)out + 0x20) = *(u32 *)((char *)info + 0x28);
+    memcpy(out + 0x2c, (char *)info + 0x40, *(u32 *)((char *)info + 0x3c));
+    out[0x2c + *(u32 *)((char *)info + 0x3c)] = 0;
+    out[0x130] = 0;
+}
+#pragma optimize("t", off)
+int __stdcall func_001DEF3C(int handle, int out)
+{
+    char buf[0x148];
+    S_IoStatusBlock iosb;
+    long status;
+
+    status = _imp__NtQueryDirectoryFile((void *)handle, 0, 0, 0, &iosb, buf, 0x148, 1, 0, 0);
+    if (status < 0) {
+        func_001DD659(status);
+        return 0;
+    }
+    func_001DEDC3(buf, (char *)out);
+    return 1;
+}
+int func_001DEF8D(const char *name)
+{
+    char info[0x38];
+    S_ObjectAttributes oa;
+    S_AnsiString str;
+    long status;
+
+    _imp__RtlInitAnsiString(&str, name);
+    oa.rootDirectory = (void *)0xfffffffd;
+    oa.objectName = &str;
+    oa.attributes = 0x40;
+    status = _imp__NtQueryFullAttributesFile(&oa, info);
+    if (status < 0) {
+        func_001DD659(status);
+        return -1;
+    }
+    return *(int *)(info + 0x30);
+}
+#pragma optimize("", on)
 int func_001DF5B3(void) {
     extern int D_002F6BB4;
     return D_002F6BB4;
@@ -88,8 +139,7 @@ int func_001DF5B3(void) {
 extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
 extern "C" long (__stdcall *_imp__NtQueryDirectoryFile)(void *fileHandle, void *event, void *apcRoutine, void *apcContext, S_IoStatusBlock *iosb, void *fileInfo, u32 length, u32 infoClass, u32 returnSingle, void *fileName);
 extern "C" long (__stdcall *_imp__NtQueryFullAttributesFile)(S_ObjectAttributes *oa, void *info);
-void func_001DF622(void)
+void __stdcall func_001DF622(int a)
 {
-  return;
 }
 
