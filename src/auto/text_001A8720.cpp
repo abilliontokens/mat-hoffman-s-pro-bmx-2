@@ -127,3 +127,46 @@ void C_001A8B80::func_001A9220(int idx, f32 v)
         fDC[idx] = v;
     }
 }
+
+void C_001A8B80::func_001A93A0(int idx, S_001A8B80_Tree *tree, int a2, int a3)
+{
+    if ((short)idx >= 0) {
+        do {
+            S_001A8B80_Node *n = &tree->nodes[(unsigned short)idx];
+            func_001A93A0(n->left, tree, a2, a3);
+            idx = n->right;
+        } while ((short)idx >= 0);
+    }
+    func_001A9240(tree->leaves[idx & 0x7fff].v, a2, a3, 0);
+}
+
+void C_001A8B80::func_001A95B0(V4_001A8B80 a, V4_001A8B80 b, V4_001A8B80 c, V4_001A8B80 d, int e, int f, int g, int h)
+{
+    if (f88 < f8C) {
+        S_001A8B80_Item *it = (S_001A8B80_Item *)f90 + f88;
+        it->a = a;
+        it->b = b;
+        it->c = c;
+        it->d = d;
+        it->f48 = f;
+        it->f40 = g;
+        it->f44 = e;
+        it->f50 = h;
+        f88++;
+        fD8 = h;
+    }
+}
+
+void C_001A8B80::func_001A9680(void)
+{
+    f88 = 0;
+    f2C = 1;
+    f154 = 0;
+    f30 = 0;
+    f74 = 0;
+    f78 = 0;
+    f34 = 0;
+    f38 = 0;
+    f144 = *(V4_001A8B80 *)&D_002AA248;
+}
+
