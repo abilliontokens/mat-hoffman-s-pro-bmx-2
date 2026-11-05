@@ -1,6 +1,16 @@
 /* 12 functions from 0x0014C1C0 to 0x0014CC60, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+extern char D_002A5EA0[], D_002A4F28[], D_002A60B0[], D_002A5138[];
+extern float D_002755E8, D_00275460;
+struct C_0014C890_Manager {
+    char pad0[0x21C8];
+    int f21C8, f21CC;
+    int func_0013F7D0(char *);
+};
+extern undefined4 D_002BF250;
+void func_0001CB80(char *);
+void *func_001E8A44(int);
 struct __declspec(align(16)) C_0014CA80_Matrix {
     float m[16];
     void func_000264C0(void *);
