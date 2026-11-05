@@ -311,6 +311,48 @@ struct Camera {
     void func_00157920(void);
 };
 
+struct V4_0012A870 {
+    float x, y, z, w;
+};
+
+struct V4Init_0012A870 : V4_0012A870 {
+    V4Init_0012A870(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
+};
+
+struct VT_0012A870 {
+    char pad0[0x70];
+    void (__fastcall *f70)(void *self);
+};
+
+extern int D_002A3E3C;
+float func_0014F7E0(float x);
+
+/* Camera::Update (virtual slot 12): tracks velocity/heading deltas, then ticks timers and the attached camera node */
+struct C_0012A870 {
+    VT_0012A870 *vtbl;
+    char pad04[0x1d];
+    byte f21;
+    char pad22[2];
+    int f24;
+    S_Camera28 *f28;
+    int f2c;
+    char pad30[0x140];
+    V4_0012A870 f170;
+    V4_0012A870 f180;
+    char pad190[0x10];
+    V4_0012A870 f1a0;
+    V4_0012A870 f1b0;
+    V4_0012A870 f1c0;
+    char pad1d0[0x3c];
+    int f20c;
+    int f210;
+    char pad214[0x2c];
+    float f240;
+    float f244;
+    int func_0012A870(int a);
+    void func_00157A00(int a);
+};
+
 struct C_0012B5B0 {
     virtual void v0();
     virtual void v1();
