@@ -118,7 +118,7 @@ struct C_0012EF30 {
     S_0012E5F0 *f414;
     char pad418[0xF8];
     f32 f510;
-    u32 f514;
+    f32 f514;
     S_0012EF60_Ref *f518;
     S_0012EF60_Ref *f51c;
     C_0012EF30 *func_0012EF30(int a);
@@ -224,13 +224,14 @@ C_0012EF30 *C_0012EF30::func_0012F000(int a1, int a2, int a3, int a4, char *name
     }
     if (memcmp(name, D_002764F0, 5) != 0) {
         S_0012EF60_Ref *old = f518;
-        S_0012EF60_Ref *nw = f518;
-        f51c = nw;
+        ((C_0012EF30_Vtbl *)this)->v47(name, (char *)f400 + 0x28);
+        f51c = f518;
         f518 = old;
-        if (nw) {
+        if (f51c) {
             f51c->f14 = a19;
             f51c->f10 = 16.666667f;
-            f514 = a20;
+            int t = a20;
+            f514 = t;
         }
     }
     return this;
