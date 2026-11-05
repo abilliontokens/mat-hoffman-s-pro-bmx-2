@@ -223,3 +223,20 @@ void C_000AF840::func_000AF840(void) {
     f53c->func_000AE780(f28);
 }
 
+void C_000AF8A0::func_000AF8A0(void) {
+    C_0027C594 *p;
+    if (unk548 == 0) {
+        p = (C_0027C594 *)func_001E8A44(0x2c);
+        if (p != 0) {
+            ((C_00157600 *)p)->func_00157600(1);
+            p->vtbl = &D_0027C594;
+            p->unk24 = 0;
+            p->unk28 = 0;
+        } else {
+            p = 0;
+        }
+        unk548 = p;
+    }
+    ((C_000AEC90 *)unk548)->func_000AEC90(unk28);
+}
+
