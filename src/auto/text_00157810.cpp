@@ -244,6 +244,20 @@ int C_00157810::func_00157B90(int a, int b)
     return 0;
 }
 
+int C_00157810::func_00157BF0(int a, int b)
+{
+    if (f1C & 0x400) {
+        for (S_00157810_Child *c = f10; c != 0; c = c->fC) {
+            if ((c->f21 & 1) && !(c->f21 & 8)) {
+                if (c->v23(a, b)) {
+                    return 1;
+                }
+            }
+        }
+    }
+    return 0;
+}
+
 int C_00157CB0::func_00157CB0(void)
 {
     if (D_002DF948 != 0) {
