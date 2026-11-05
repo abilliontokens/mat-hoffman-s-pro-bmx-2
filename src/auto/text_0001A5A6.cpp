@@ -1,6 +1,9 @@
 /* 14 functions from 0x0001A5A6 to 0x0001B440, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
 
+extern float D_00275AFC;
+extern float D_00275B00;
 extern float D_00275460;
 extern float D_00275544;
 
