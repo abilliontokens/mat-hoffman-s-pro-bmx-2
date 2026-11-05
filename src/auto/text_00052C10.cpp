@@ -182,6 +182,40 @@ struct C_000536A0 {
     C_000536A0 *func_000536A0(int param);
 };
 
+int C_52C10::func_00052C10(int param)
+{
+    int i;
+    int start;
+
+    if (param != 0) {
+        unk2C8 = 0;
+    } else if (++unk2C8 >= 4) {
+        unk2C8 = 0;
+    }
+    i = unk2C8;
+    start = i;
+    if (f2B8[i] == D_00275544) {
+        do {
+            unk2C8 = i + 1;
+            if (unk2C8 >= 4) {
+                unk2C8 = 0;
+            }
+            i = unk2C8;
+            if (i == start) {
+                return 0;
+            }
+        } while (f2B8[unk2C8] == D_00275544);
+    }
+    unk44->f54->func_0009FD60(f2D8[unk2C8], f2E8[unk2C8], f2F8[unk2C8], f308[unk2C8]);
+    if (unk1C4 != 0) {
+        unk1C4->fC0 &= ~4;
+        unk1C4->func_00196350(f2B8[unk2C8]);
+        unk1C4->func_00196C00(0);
+    }
+    func_00052AE0(f2B8[unk2C8]);
+    return 1;
+}
+
 void C_52C10::func_00052D20(int *out)
 {
     if (func_00051BB0() == 0) {
