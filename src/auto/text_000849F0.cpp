@@ -8,7 +8,9 @@ extern char D_00279560[];
 extern char D_00279550[];
 extern char D_00277038[];
 
+struct S_851C0_Values;
 struct S_84FF0_Text {
+    S_851C0_Values *func_001D5AA0();
     void func_001D6600(void);
     void func_0005E840(const char *s);
 };
