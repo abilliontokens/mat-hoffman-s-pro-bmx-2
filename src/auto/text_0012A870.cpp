@@ -2,6 +2,10 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+struct C_0012B330 {
+    undefined4 func_0012B330(byte param_1);
+};
+
 
 extern float D_00275544;
 extern int *D_002EFDB8;
@@ -79,20 +83,25 @@ void C_0012AAB0::func_0012AAB0(float param)
     f210 = D_002EFDB8[4] + 1;
 }
 
+void C_0012AAE0::func_0012AAE0(float param1, float param2)
+{
+    float r;
+    _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&D_00284038), _mm_set_ss(param1)));
+    f1fc = r;
+    _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&D_0028403C), _mm_set_ss(param2)));
+    f200 = r;
+}
+
 void C_0012AB70R::func_0012AB70(S_0012AB70Vec *param1, int param2, int param3, int *param4, float *param5)
 {
     if (param1 != 0) {
         f170 = *param1;
     }
     if (param2 != 0) {
-        void *dst;
-        dst = (char *)this + 0x180;
-        func_0012A380(dst, param2);
+        func_0012A380(f180, param2);
     }
     if (param3 != 0) {
-        void *dst;
-        dst = (char *)this + 0x190;
-        func_0012A380(dst, param3);
+        func_0012A380(f190, param3);
     }
     if (param4 != 0) {
         f1d4 = *param4;
@@ -110,6 +119,19 @@ void C_0012AB70R::func_0012AB70(S_0012AB70Vec *param1, int param2, int param3, i
 void func_0012B140(void) {
     int func_001576C0(...);
     func_001576C0();
+}
+
+undefined4 C_0012B330::func_0012B330(byte param_1)
+{
+  int func_0012B060(...);
+  int func_001E891B(...);
+  undefined4 in_ECX = (undefined4)this;
+  
+  func_0012B060();
+  if ((param_1 & 1) != 0) {
+    func_001E891B(in_ECX);
+  }
+  return in_ECX;
 }
 
 C_0012B510R *C_0012B510R::func_0012B510(void)
