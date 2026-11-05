@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <string.h>
+#include <xmmintrin.h>
 #pragma comment(linker, "/alternatename:??0C_00135470@@QAE@XZ=_func_00135470")
 #pragma comment(linker, "/alternatename:??2@YAPAXI@Z=_func_001E8A44")
 void *func_001E8A44(unsigned int size);
