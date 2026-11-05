@@ -124,10 +124,10 @@ struct V4_001BB680 {
     float x, y, z, w;
     void Init() volatile
     {
-        z = 0.0f;
-        y = 0.0f;
-        x = 0.0f;
-        w = 1.0f;
+        *(volatile int *)&z = 0;
+        *(volatile int *)&y = 0;
+        *(volatile int *)&x = 0;
+        *(volatile int *)&w = 0x3f800000;
     }
     void Set(const float &a, const float &b, const float &c, const float &d) volatile
     {
