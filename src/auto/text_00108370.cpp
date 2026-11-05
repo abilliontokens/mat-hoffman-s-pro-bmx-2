@@ -43,6 +43,18 @@ extern float D_00275544;
 extern float D_002755E8;
 extern float D_00275460;
 
+struct C_000AD5C0 {
+    int func_000AD5C0(int a, int *out, int b);
+};
+
+struct C_00109090 {
+    char pad0[0x718];
+    int f718;
+    char pad71C[0x954 - 0x71C];
+    C_000AD5C0 *f954;
+    int func_00109090(void);
+};
+
 struct C_00083B20 {
     void func_00083B20(int arg);
 };
