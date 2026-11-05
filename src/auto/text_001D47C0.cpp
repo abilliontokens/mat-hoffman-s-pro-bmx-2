@@ -257,6 +257,38 @@ struct C_001D5360 {
 };
 
 
+extern "C" int func_001ADCC0(char*, int, const char*, ...);
+extern "C" void* func_0014FDF0(const char*, const char*);
+extern "C" int func_0014FE90(void*, const char*, ...);
+extern "C" int func_0014FE50(void*);
+extern "C" int* D_002A83E0;
+extern "C" int D_002F0A70;
+extern "C" char D_0028F554[], D_00284C4C[], D_0028F54C[], D_0028F540[], D_0028F534[], D_002869B4[], D_0028F52C[], D_0028F520[];
+extern "C" void func_001D47C0()
+{
+    char buf[0x104];
+    void* f;
+    int total;
+    int i;
+    int n;
+    D_002F0A70++;
+    func_001ADCC0(buf, 0x104, D_0028F554, D_002F0A70);
+    f = func_0014FDF0(buf, D_00284C4C);
+    if (f) {
+        func_0014FE90(f, D_0028F54C);
+        func_0014FE90(f, D_0028F540);
+        total = 0;
+        n = D_002A83E0[0];
+        for (i = 0; i < n; i++) {
+            func_0014FE90(f, D_0028F534, ((int**)D_002A83E0)[2][i], ((char**)D_002A83E0)[1] + i * 0x80);
+            total += ((int**)D_002A83E0)[2][i];
+        }
+        func_0014FE90(f, D_002869B4);
+        func_0014FE90(f, D_0028F520, total, D_0028F52C);
+        func_0014FE50(f);
+    }
+}
+
 C_001D48A0* C_001D48A0::func_001D48A0(u8 param_1)
 {
   int func_001E891B(...);
