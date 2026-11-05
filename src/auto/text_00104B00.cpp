@@ -29,19 +29,78 @@ struct S_00104B00_Fx {
     void func_00164820(int a0);
 };
 
+struct S_00104B00_Cam {
+    void func_0001EDD0(float a0);
+};
+
+struct S_00104B00_Pos {
+    char pad0[0x64];
+    float f64;
+    float f68;
+};
+
+struct S_00104B00_Obj {
+    int func_000831C0(void);
+    void func_001BB4D0(int a0);
+};
+
+struct S_00104B00_Plr {
+    char pad0[0x568];
+    int f568;
+    S_00104B00_Obj **f56c;
+};
+
+struct S_00104B00_Mgr {
+    char pad0[0x64];
+    S_00104B00_Plr *f64;
+    char pad68[0x170 - 0x68];
+    S_00104B00_Obj *f170[1];
+};
+
+struct S_00104B00_Global {
+    char pad0[0x2a4];
+    S_00104B00_Mgr *f2a4;
+};
+
+extern S_00104B00_Global *D_002A8490;
+
 struct C_00104B00 {
     char pad0[0x24];
     S_00104B00_Owner *f24;
-    char pad28[0x480 - 0x28];
+    char pad28[0x208 - 0x28];
+    S_00104B00_Pos *f208;
+    char pad20c[0x480 - 0x20c];
     int f480;
-    char pad484[0x7f4 - 0x484];
+    char pad484[0x528 - 0x484];
+    float f528;
+    char pad52c[0x5ec - 0x52c];
+    S_00104B00_Cam *f5ec;
+    S_00104B00_Cam *f5f0;
+    char pad5f4[0x79c - 0x5f4];
+    float f79c;
+    float f7a0;
+    float f7a4;
+    float f7a8;
+    float f7ac;
+    float f7b0;
+    float f7b4;
+    float f7b8;
+    float f7bc;
+    float f7c0;
+    float f7c4;
+    float f7c8;
+    int f7cc;
+    char pad7d0[0x7f4 - 0x7d0];
     V4_00104B00 f7f4;
     V4_00104B00 f804;
     V4_00104B00 f814;
-    char pad824[0xa00 - 0x824];
+    char pad824[0x8a0 - 0x824];
+    float f8a0;
+    char pad8a4[0xa00 - 0x8a4];
     S_00104B00_Fx *fa00;
     S_00104B00_Fx *fa04;
-    char pada08[0xa2c - 0xa08];
+    char pada08[0xa28 - 0xa08];
+    int fa28;
     int fa2c;
     char pada30[0x1110 - 0xa30];
     int f1110;
@@ -99,5 +158,29 @@ void C_00104B00::func_00104BE0(void)
         f804 = f24->f4dc->aA4[fa2c];
         f814 = D_002A3A5C;
     }
+}
+
+void C_00104B00::func_001056E0(void)
+{
+    if (fa00 != 0) {
+        fa00->func_001648E0(f1664, 1.0f, 0, 0, 0);
+        fa00->func_00164820(f1664);
+    }
+    if (fa04 != 0) {
+        fa04->func_001648E0(f1800, 1.0f, 0, 0, 0);
+        fa04->func_00164820(f1800);
+    }
+    f11f4 = 0;
+    f15e4 = 0;
+    f1608 = 0;
+    f160c = 0;
+    f1610 = 0;
+    f1600 = 0;
+    f15ec = 0;
+    f1110 = 0;
+    f15d8 = 1;
+    f15dc = 1;
+    f15f4 = 1.0f;
+    f15f0 = 1.0f;
 }
 
