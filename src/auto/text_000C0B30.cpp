@@ -28,4 +28,13 @@ struct BmxUIPageDemo {
     int items[20];
     int func_000C0100(int idx);
     int func_000C0B30(int idx);
+    int func_000C0CB0(int idx);
 };
+
+int BmxUIPageDemo::func_000C0100(int idx)
+{
+    if (idx >= unk290) {
+        return -1;
+    }
+    return items[idx];
+}
