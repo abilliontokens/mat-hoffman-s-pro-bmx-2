@@ -2,7 +2,7 @@
 #include "common.h"
 #include <string.h>
 
-extern int D_002F47D8;
+extern unsigned int D_002F47D8;
 extern unsigned int D_002F47DC;
 extern int *D_002AE4F4;
 extern int *D_002AE4F0;
