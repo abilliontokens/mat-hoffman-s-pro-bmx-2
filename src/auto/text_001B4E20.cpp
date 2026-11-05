@@ -391,7 +391,7 @@ C_001B5D00* C_001B5D00::func_001B5D00(void) {
     return this;
 }
 
-int C_001B5D30::func_001B5D30(S_001B5A00_Stream *stream)
+int C_001B5D30::func_001B5D30(S_001B5A00_Stream *stream, int a1)
 {
     stream->func_00168BE0(&D_0027AF24, &D_00275630, (char *)this + 0x110, 0x77);
     stream->func_00168BE0(&D_0028CC80, &D_00275630, (char *)this + 0x188, 0x77);
