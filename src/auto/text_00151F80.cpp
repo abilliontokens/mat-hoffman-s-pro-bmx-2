@@ -57,7 +57,7 @@ extern float D_00286CA8;
 extern int D_002BA148;
 extern float D_00275460;
 extern float D_00276288;
-extern float D_002755E8;
+extern const float D_002755E8;
 extern char D_00286CB0;
 extern "C" int func_001DC974(void);
 struct C_00151F80 {
@@ -144,3 +144,59 @@ void C1521::func_001521D0(Vec1521* pos, Vec1521* out)
  if (out) *out = result;
  pos->y = h;
 }
+
+void C_00151F80::func_00152BA0(void)
+{
+    int i;
+
+    if (f574 != 10) {
+        if (f54 < D_00275460) {
+            return;
+        }
+    }
+    if (f574 == 10) {
+        if (f54 < D_00276288) {
+            return;
+        }
+    }
+    f54 = 0.0f;
+    if (f574 <= 0 && f578 <= 0) {
+        f574 = 0;
+        f578 = 0;
+        return;
+    }
+    for (i = 0; i < 10; i++) {
+        if (slots[i].f0 == 0) {
+            break;
+        }
+    }
+    if (slots[i].f0 == 0) {
+        f57c = 1;
+        if (f574 > 5) {
+            f2c->f1a4->func_00166C50(&D_00286CB0);
+            f580 = 0.5f;
+        } else {
+            f2c->f1a4->func_00166C50(&D_00286CB0);
+            f2c->f1a4->f34 = f580;
+            f580 = D_002755E8 + f580;
+        }
+        f574--;
+        f6d4++;
+        slots[i].fC = 0;
+        slots[i].f0 = 1;
+        slots[i].f4 = 1;
+        S_151F80_Vec v1, v2, v3;
+        func_00150900(&v2, &v3);
+        v1 = S_151F80_Vec(1.5f, -2.0f, 6.0f);
+        v1 = f2c->f1a4->f4->func_00197F70(&v1.x);
+        fe0->v6();
+        fe0->v30();
+        fe0->func_0011CA60(v1);
+        fe4 = func_001DC974();
+        if (D_002B9120->f528 != 0) {
+            D_002B9120->f528->func_00017FA0(&v1, &v2);
+        }
+    }
+    f598->v5(0);
+}
+
