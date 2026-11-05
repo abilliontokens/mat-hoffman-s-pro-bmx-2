@@ -169,6 +169,15 @@ struct TikiEvadeState {
     void func_00018340();
 };
 
+/* TikiBlockState */
+struct TikiBlockState {
+    void *vtbl;
+    char pad4[4];
+    S_TikiOwner *owner;
+    int fc;
+    void func_00018390();
+};
+
 extern float D_00275804;
 extern float D_00275800;
 extern float D_002757FC;
