@@ -114,8 +114,60 @@ struct CameraController {
     void *f2c;
     void *f30;
     void func_00157600(int a);
+    void func_00157660(void);
     CameraController *func_0012B550(int a);
+    CameraController *func_0012B790(byte flags);
 };
+
+struct S_002EFDB8 {
+    int f0;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    void func_00182830(void *p);
+};
+
+struct S_002A8490 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15(void *a, void *b, void *c, void *d);
+    virtual void v16(void **p);
+};
+extern S_002A8490 *D_002A8490;
+
+struct S_Camera28 {
+    void func_00193500(void);
+};
+
+struct Camera {
+    void *vtbl;
+    char pad04[0x24];
+    S_Camera28 *f28;
+    char pad2c[0x1e4];
+    int f210;
+    char pad214[0x10];
+    int f224;
+    void func_0012B060(void);
+    void func_0012B110(void);
+    int func_0012B150(void);
+    void func_001576D0(void);
+};
+
+extern int D_00284074;
 
 
 void C_0012AAB0::func_0012AAB0(float param)
