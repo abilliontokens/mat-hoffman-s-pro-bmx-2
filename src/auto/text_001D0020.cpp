@@ -5,6 +5,61 @@ struct C_001D0DE0 {
     undefined4 func_001D0DE0(byte param_1);
 };
 
+#pragma pack(push, 1)
+struct S_001D0020_Wfx {
+    unsigned short wFormatTag;
+    unsigned short nChannels;
+    unsigned int nSamplesPerSec;
+    unsigned int nAvgBytesPerSec;
+    unsigned short nBlockAlign;
+    unsigned short wBitsPerSample;
+    unsigned short cbSize;
+};
+#pragma pack(pop)
+
+struct S_001D0020_StreamDesc {
+    unsigned int dwFlags;
+    unsigned int dwMaxAttachedPackets;
+    S_001D0020_Wfx *lpwfxFormat;
+    void *lpfnCallback;
+    void *lpvContext;
+    void *lpMixBins;
+};
+
+struct S_001D0020_Env {
+    unsigned int dwEnvelopeGenerator;
+    unsigned int dwMode;
+    unsigned int dwDelay;
+    unsigned int dwAttack;
+    unsigned int dwHold;
+    unsigned int dwDecay;
+    unsigned int dwRelease;
+    unsigned int dwSustain;
+    int lPitchScale;
+    int lFilterCutOff;
+};
+
+extern float D_0028F0AC;
+int __stdcall func_002228F8(void *desc, void *outStream);
+extern "C" void __stdcall D_00220ADB(void *stream, void *env);
+int __stdcall func_001DDBC7(int a, int b, int c, int d);
+int __stdcall func_001DE8C7(int unused, int threadHandle, void *ctx1, void *ctx2, unsigned flags, unsigned *threadId);
+int __stdcall func_001CFDC0(void *ctx);
+extern char D_0006A000[];
+
+struct XboxSoundStreams_001D0020 {
+    char pad0[0x84];
+    float f84;
+    char pad88[0xB8 - 0x88];
+    void *fB8;
+    void *fBC;
+    void *fC0;
+    char padC4[0x1A4 - 0xC4];
+    int f1A4;
+    int f1A8;
+    int func_001D0020(void);
+};
+
 extern int D_0028F154;
 extern int D_0028F004;
 extern int D_0028F100;
@@ -282,6 +337,11 @@ void XboxGame_001D0E60::func_001D0E60(void)
     ((C_00156FC0 *)this)->func_00156FC0();
 }
 
+void XboxGame_001D0E80::func_001D0E80(void)
+{
+    ((C_00156840 *)this)->func_00156840();
+}
+
 int XboxGame_001D0EC0::func_001D0EC0(void)
 {
     int r = ((C_00157030 *)this)->func_00157030();
@@ -301,6 +361,14 @@ int XboxGame_001D0EC0::func_001D0EC0(void)
         f2A0 = 0;
     }
     return r;
+}
+
+int XboxGame_001D0F30::func_001D0F30(void)
+{
+    if (f278 != 0) {
+        f278->vtbl->f4c(f278);
+    }
+    return 1;
 }
 
 int XboxGame_001D0EC0::func_001D0F70(int a0, int a1)
