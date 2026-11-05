@@ -31,3 +31,12 @@ struct C_0016B8B0 {
     int f1F0;
     void func_0016B8B0(int a, int b, int c, int d, int e);
 };
+
+C_0016B770 *C_0016B770::func_0016B770(void *param)
+{
+    ((C_00169C50 *)this)->func_00169C50(param);
+    f1F0 = 0;
+    f1F4 = 0;
+    vtbl = (void *)&D_002884D4;
+    return this;
+}
