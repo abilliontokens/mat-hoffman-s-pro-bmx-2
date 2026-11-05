@@ -70,6 +70,21 @@ struct C_000928D0 {
 };
 
 
+C_00092890 *C_00092890::func_00092810(int a0, int a1, int a2, int a3)
+{
+    f64 = a0;
+    f7c = a2;
+    f68 = a3;
+    if (a3 != 0) {
+        func_0008BCD0();
+    } else if (D_002A8490->f2e0->fc == 2) {
+        func_0008C480();
+    } else {
+        func_0008CC50();
+    }
+    return this;
+}
+
 undefined4 C_00092870::func_00092870(byte param_1)
 {
   int func_0008D910(...);
@@ -81,6 +96,21 @@ undefined4 C_00092870::func_00092870(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+C_00092890 *C_00092890::func_00092890(int a)
+{
+    ((C_00157600 *)this)->func_00157600(a);
+    vtbl = &D_0027A0C4;
+    for (int i = 0; i < 8; i++) {
+        f24[i] = 0;
+    }
+    f44 = 0;
+    f48 = 0;
+    f4c = 0;
+    f150 = 0;
+    f254 = 0;
+    return this;
 }
 
 int C_000928D0::func_000928D0(void) {
