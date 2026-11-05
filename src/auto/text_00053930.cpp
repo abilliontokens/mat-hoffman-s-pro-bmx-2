@@ -1,5 +1,23 @@
 /* 11 functions from 0x00053930 to 0x00054680, found by Ghidra. */
 #include "common.h"
+struct TagVector { int x, y, z, w; };
+struct TagObject {
+    void **vtbl;
+    void func_0008BB50(int);
+    void func_00199600(TagVector);
+    void func_0019AC50();
+};
+struct TagLookup { int func_0001B3C0(const char *); };
+struct C_00054340 {
+    char pad0[0x64]; char *f64;
+    char pad68[0x28]; int f90;
+    char pad94[0x1f0]; TagObject *f284[8]; TagObject *f2a4[8];
+    int f2c4, f2c8, f2cc, f2d0, f2d4;
+    char pad2d8[0x10]; int f2e8;
+    void func_00034090();
+    int func_00054340();
+};
+extern char D_00277C9C;
 struct C_00053C60 {
     char pad0[0x284];
     int unk284;
