@@ -34,7 +34,7 @@ struct UIWidgetSoultreeCharacter {
  char **strings;
  void func_001BF600(Config1C22C0 *);
  void func_001577A0(void *,int);
- UIWidgetSoultreeCharacter *func_001C22C0(int,Config1C22C0 *,char *);
+ UIWidgetSoultreeCharacter *func_001C22C0(int,char *,Config1C22C0 *);
 };
 struct C_001C22A0 {
     undefined4 func_001C22A0(byte param_1);
