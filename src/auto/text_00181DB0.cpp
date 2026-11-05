@@ -440,7 +440,3 @@ void C_00182C60::func_00182C60(void)
     f3ac->v2();
     f3ac = 0;
 }
-extern char D_002869B8[];
-extern char D_0027C494[];
-char *func_001E95A4(char *s, const char *delim);
-int func_001E91F4(const char *s);
