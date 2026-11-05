@@ -1,6 +1,7 @@
 /* 13 functions from 0x0019A8C0 to 0x0019B890, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <xmmintrin.h>
 struct C_0019B6D0 {
     undefined4 func_0019B6D0(byte param_1);
 };
