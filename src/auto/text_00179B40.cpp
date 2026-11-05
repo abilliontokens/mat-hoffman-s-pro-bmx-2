@@ -121,6 +121,26 @@ void *C_0017A2E0::func_0017A2E0(unsigned int flags)
     return this;
 }
 
+C_0017A1D0 *C_0017A1D0::func_0017A310(C_0017A1D0_Vec4 *p)
+{
+    pts[0] = p[0];
+    pts[1] = p[1];
+    pts[2] = p[2];
+    pts[3] = p[3];
+    C_0017B9E0 a[4];
+    C_0017B9E0 tmp;
+    for (int i=0;i<4;i++) a[i].func_001D3F50();
+    a[0] = *tmp.func_0017B9E0(0xbf800000,0xbf800000);
+    a[1] = *tmp.func_0017B9E0(0xbf800000,0x3f800000);
+    a[2] = *tmp.func_0017B9E0(0x3f800000,0x3f800000);
+    a[3] = *tmp.func_0017B9E0(0x3f800000,0xbf800000);
+    D_002EFD38.func_0017BB10(a);
+    D_002EFD38.func_0017BE40();
+    func_00179880();
+    func_00179950();
+    return this;
+}
+
 void C_0017A640::func_0017A640()
 {
     int i;
