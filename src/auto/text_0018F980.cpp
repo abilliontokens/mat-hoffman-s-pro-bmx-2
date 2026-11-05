@@ -3,6 +3,60 @@
 struct S { char pad[0x158]; char *p158; };
 int __stdcall func_0018E7D0(int, char *, int *);
 void __stdcall func_0018F4D0(int);
+
+extern char D_0000FF00;
+
+struct C_190200_Rec {
+    char name[0x40];
+    int f40;
+};
+struct C_190200_Src {
+    char pad0[0x1c];
+    int f1c;
+    void *func_0018E1D0(void);
+};
+struct C_190200_Sub {
+    void *func_00191400(void);
+};
+struct C_190200_Dst {
+    void func_000264C0(void *src);
+};
+struct C_190200_Elem {
+    char pad0[0x18];
+    unsigned int f18;
+    int f1c;
+    char pad20[0x130];
+    C_190200_Sub f150;
+    char pad151[0x6f];
+    void func_0018F390(char *n, unsigned int a, void **p);
+};
+struct C_190200_Ent {
+    int f0;
+    char pad4[0x40];
+    int f44;
+    char pad48[0xc];
+    C_190200_Elem *f54;
+    char pad58[8];
+};
+struct C_190200_Cell {
+    int f0;
+    char *f4;
+    unsigned int f8;
+    int fc;
+};
+struct C_190200_Tab {
+    char pad0[0x2c];
+    C_190200_Cell *f2c;
+    char pad30[8];
+};
+struct C_00190200 {
+    char pad0[0x158];
+    C_190200_Ent *named;
+    char pad15c[8];
+    C_190200_Tab *f164;
+    int func_0018E7D0(int kind, C_190200_Rec *buf, int *out);
+    void func_00190200(int a0, int a1, int a2, C_190200_Src *src, C_190200_Rec *rec, unsigned int flags);
+};
 #include <string.h>
 struct Node0018FF10 { char name[0x10c]; Node0018FF10 *next; };
 struct Ent0018FF10 { char pad[0x48]; Node0018FF10 *node; char pad2[0x60 - 0x4c]; };
