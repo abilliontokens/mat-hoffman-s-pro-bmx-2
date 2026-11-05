@@ -308,6 +308,7 @@ struct SearchNode {
     short f90;
     short f92;
     int func_001930F0(void);
+    int func_00192F40(SearchNode *root);
     void func_00192930(void);
     int func_00192990(int a, int b);
     void func_00192A50(int a, int b);
