@@ -107,6 +107,41 @@ void C_CarProceduralExtended::func_0012F600(f32 param_1, int param_2)
     this->f4AC = param_2;
 }
 
+void C_CarProceduralExtended::func_0012FBF0(int param_1)
+{
+    S_0012F518 *t = (S_0012F518 *)func_001E8A44(0x18);
+    this->f518 = t;
+    D_002BEAAC->func_0013C8A0(param_1, t, 4, 1);
+    int n = ((S_0012F518 *)this->f518)->count;
+    u32 *arr;
+    u32 *q = (u32 *)func_001E8A44(n * 0x28);
+    if (q != 0) {
+        int i;
+        if (n - 1 >= 0) {
+            u32 *p = (u32 *)((char *)q + 0xc);
+            for (i = 0; i <= n - 1; i++) {
+                p[1] = 0;
+                p[0] = 0;
+                p[-1] = 0;
+                p[2] = 0x3f800000;
+                p[5] = 0;
+                p[4] = 0;
+                p[3] = 0;
+                p[6] = 0x3f800000;
+                p += 10;
+            }
+        }
+        arr = q;
+    } else {
+        arr = 0;
+    }
+    ((S_0012F518 *)this->f518)->arr = arr;
+    D_002BEAAC->func_0013C8A0(param_1, ((S_0012F518 *)this->f518)->arr, 0x28,
+                              ((S_0012F518 *)this->f518)->count);
+    ((S_0012F518 *)this->f518)->f4 = 1;
+    ((S_0012F518 *)this->f518)->fC = 0;
+}
+
 void C_CarProceduralExtended::func_0012FCB0(int param_1)
 {
     D_002BEAAC->func_0013B930(param_1, this->f518, 4, 1);
