@@ -44,8 +44,8 @@ struct C_00150810 {
 struct Vec4_150900 {
     float x, y, z, w;
 };
-extern Vec4_150900 D_002A78BC;
-extern Vec4_150900 D_002A78CC;
+extern float D_002A78BC;
+extern float D_002A78CC;
 extern float D_002A78C0;
 extern float D_002A78C4;
 extern float D_002A78C8;
