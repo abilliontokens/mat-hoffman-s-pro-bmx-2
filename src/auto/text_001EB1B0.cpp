@@ -102,6 +102,24 @@ int __cdecl func_001EB3BE(unsigned int size)
     return 0;
 }
 
+void __cdecl func_001EB3D9(char *buffer)
+{
+    char ch;
+
+    if (func_001E8D25(*buffer) != 'e') {
+        do {
+            buffer++;
+        } while (D_002AEA38 > 1 ? func_001EC5F1(*buffer, 4) : (*(unsigned char *)&D_002AEA30[*buffer] & 4));
+    }
+    ch = *buffer;
+    *buffer++ = D_002AEA3C;
+    do {
+        char ch2 = *buffer;
+        *buffer = ch;
+        ch = ch2;
+    } while (*buffer++);
+}
+
 extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
 extern "C" int (__cdecl *D_002F69E8)(unsigned int size);
 extern "C" void *__cdecl func_001E8AA5(unsigned int size);
