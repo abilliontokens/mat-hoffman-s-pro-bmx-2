@@ -271,19 +271,17 @@ undefined4 C_00097C60::func_00097C60(void)
 
 int C_00097DA0::func_00097CA0(const char *name)
 {
-    C_00097DA0_Obj **list = List();
-    int n = Count();
-    C_00097DA0_Obj **p = list;
     int i;
     int j;
+    C_00097DA0_Obj **list = List();
+    int n = Count();
 
     for (i = 0; i < n; i++) {
-        for (j = 0; j < (*p)->f1B8; j++) {
-            if (func_001EA426(name, (*p)->f1C8[j]->fC0) == 0) {
+        for (j = 0; j < list[i]->f1B8; j++) {
+            if (func_001EA426(name, list[i]->f1C8[j]->fC0) == 0) {
                 return list[i]->f1C8[j]->f6454;
             }
         }
-        p++;
     }
     return 0;
 }
