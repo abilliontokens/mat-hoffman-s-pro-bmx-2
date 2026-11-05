@@ -39,3 +39,19 @@ void func_001ECACA(unsigned short cw)
     if (cw != 0x27f) {
     }
 }
+
+int func_001ECBB8(double x)
+{
+    double half;
+    if ((func_001EAFB2(x) & 0x90) == 0) {
+        if (func_001F3996(x) == x) {
+            half = x * 0.5;
+            if (func_001F3996(half) == half) {
+                return 2;
+            }
+            return 1;
+        }
+    }
+    return 0;
+}
+
