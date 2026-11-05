@@ -137,6 +137,17 @@ struct S_137F90_RS {
 
 __declspec(align(16)) struct S_137F90_Mat {
     float m[16];
+    void identity(void)
+    {
+        _mm_store_ps(&m[0], _mm_setzero_ps());
+        _mm_store_ps(&m[4], _mm_setzero_ps());
+        _mm_store_ps(&m[8], _mm_setzero_ps());
+        _mm_store_ps(&m[12], _mm_setzero_ps());
+        m[0] = 1.0f;
+        m[5] = 1.0f;
+        m[10] = 1.0f;
+        m[15] = 1.0f;
+    }
 };
 
 static __forceinline void identity_ref_00137F90(S_137F90_Mat *&p)
@@ -261,6 +272,77 @@ void DrawableCube::func_00137E50(float dt)
         }
     }
     func_00157A00(dt);
+}
+
+int DrawableCube::func_00137F90()
+{
+    S_137F90_Mat mat;
+    S_137F90_Mat mat2;
+    S_137F90_Mat *pm;
+    S_137F90_V4 v;
+    unsigned short idx[4];
+    char *g4;
+    int i;
+    int j;
+    int k;
+
+    if (D_002A67D8 != 0) {
+        D_002EFDB8->f6c->func_0014A650(f7d0);
+        D_002EFDB8->f70->func_00142D00(f7d4);
+        g4 = D_002EFDB8->f4;
+        pm = &mat;
+        identity_ref_00137F90(pm);
+        mat.m[3] = f28->f8;
+        mat.m[7] = f28->fC;
+        mat.m[11] = f28->f10;
+        func_000263B0(mat2.m, mat.m, (float *)(g4 + 0x250));
+        func_001FEC30(0x18, mat2.m);
+        v = *(S_137F90_V4 *)(g4 + 0x170);
+        func_001FEBD0(2, &v);
+        func_001FD020(&D_00040304, 0);
+        func_001FD020(&D_00040300, 0);
+        func_001FD020(&D_0004035C, 0);
+        func_001FE490(1);
+        func_001FD020(&D_00040354, 0x203);
+        D_0020C6DC |= 0x2800;
+        D_0020C710 = 2;
+        D_0020C718 = 2;
+        D_0020CA50 = 0;
+        D_0020C720 = 1;
+        for (i = 0; i < 4; i++) {
+            func_00200390(i, 0);
+            D_0020C6E0[i].f0 = 3;
+            D_0020C6E0[i].f4 = 3;
+            D_0020C6E0[i].f8 = 3;
+            D_0020C6DC |= 1 << i;
+        }
+        idx[0] = 0;
+        idx[1] = 1;
+        idx[2] = 2;
+        idx[3] = 3;
+        for (k = 0; k < 6; k++) {
+            for (j = 0; j < 16; j++) {
+                if (((1 << j) & *(unsigned short *)((char *)f28 + k * 0xfc + 0x12c)) != 0 &&
+                    ((1 << j) & *(unsigned short *)((char *)f28 + k * 0xfc + 0x48)) != 0) {
+                    if (((S_137F90_Obj **)f28)[0x13 + k * 0x3f + j]->v11() != 0) {
+                        ((S_137F90_Obj **)f28)[0x13 + k * 0x3f + j]->v21(0);
+                        if (D_002BEA90 != 0) {
+                            void *p = func_001FF410(f7d8, 0);
+                            memcpy(p, &D_002BA728[k * 16 + j], 0x60);
+                            func_001FEE00(0, f7d8, 0x18);
+                            func_00200B30((void *)7, 4, idx);
+                        } else {
+                            func_00200950(7, 4, idx, &D_002BA728[k * 16 + j], 0x18);
+                        }
+                    }
+                }
+            }
+        }
+        func_001FD020(&D_0004035C, 1);
+        func_001FE490(1);
+        func_001FF4E0(0, 0, 3, 0, D_002EFDB8->f28, 0);
+    }
+    return 1;
 }
 
 int DrawableCube::func_001382B0(void)
