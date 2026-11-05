@@ -20,7 +20,7 @@ struct S_13910_G {
 };
 struct S_13910_Arr { char pad[0x1a8]; S_13910_Ent *ents[1]; };
 struct S_13910_Owner {
-    char pad1[0x3b4]; int f3b4; char pad2[0x3d8 - 0x3b8]; int f3d8; char pad3[0x41c - 0x3dc]; int f41c;
+    char pad1[0x3b0]; int f3b0; int f3b4; char pad2[0x3d8 - 0x3b8]; int f3d8; char pad3[8]; S_13910_Vec pos; char pad4[0x41c-0x3f4]; int f41c;
     void func_00011BE0(int *a, int *b);
     int func_000119D0(S_13910_Vec *v);
     float func_00012510(int *p, int w);
