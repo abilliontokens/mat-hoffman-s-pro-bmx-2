@@ -1,5 +1,45 @@
 /* 11 functions from 0x00053930 to 0x00054680, found by Ghidra. */
 #include "common.h"
+struct S_00054430_V4 {
+    float x, y, z, w;
+    S_00054430_V4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+    S_00054430_V4(float px, float py, float pz, float pw) { x = px; y = py; z = pz; w = pw; }
+};
+struct S_00054430_Orient {
+    S_00054430_V4 func_00198040(S_00054430_V4 *v);
+};
+struct S_00054430_Item {
+    char pad0[0x230]; S_00054430_Orient *f230;
+    char pad234[0x834 - 0x234]; S_00054430_V4 f834;
+};
+struct S_00054430_Items {
+    char pad0[0x1a8]; S_00054430_Item *f1a8[2];
+};
+struct S_00054430_Data {
+    char pad0[0x24]; S_00054430_V4 pos;
+};
+struct S_00054430_Entry {
+    int unk0; S_00054430_Data *f4;
+};
+struct S_00054430_List {
+    char pad0[0x28]; S_00054430_Entry **items;
+};
+struct S_00054430_Ctx {
+    char pad0[0x3b4]; S_00054430_List *f3b4;
+    char pad3b8[0x4e0 - 0x3b8]; S_00054430_Items *f4e0;
+};
+struct S_00054430_Arrow {
+    void func_00088A40(int a, S_00054430_V4 *v);
+};
+struct C_00054430 {
+    char pad0[0x64]; S_00054430_Ctx *f64;
+    char pad68[0x2a4 - 0x68]; S_00054430_Arrow *f2a4[8];
+    int f2c4, f2c8;
+    void func_00054430();
+};
+void func_00053CB0(S_00054430_V4 *out, S_00054430_V4 *in);
+float func_0014FBA0(float a, float b);
+extern float D_00277240;
 struct TagVector { int x, y, z, w; };
 struct TagObject {
     virtual void v0(); virtual void v1(); virtual void v2();
