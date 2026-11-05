@@ -43,7 +43,10 @@ struct C_00197EC0 {
     C_00197EC0_Vec4 func_00197EC0(float *v);
     C_00197EC0_Vec4 func_00197F70(float *v);
     C_00197EC0_Vec4 func_00198040(C_00197EC0_Vec4 *v);
+    C_00197EC0_Vec4 func_00198120(float *v);
 };
+
+void func_0011AC30(void *out, void *in);
 
 /* SceneNode: children list at 0x174 (siblings) and 0x178 (first child chain) */
 struct C_00198230 {
