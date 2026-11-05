@@ -300,3 +300,11 @@ void *_func_001F0000(S_001EF734 *o)
     return o;
 }
 
+void *_func_001F01D8(S_001EF734 *o)
+{
+    S_001EF734 local;
+    S_001EF734 tmp;
+    ((S_001EF734 *)_func_001EFCD5(&tmp, '`', _func_001EFDB9(&local, 0)))->func_001EFD3B(o, '\'');
+    return o;
+}
+
