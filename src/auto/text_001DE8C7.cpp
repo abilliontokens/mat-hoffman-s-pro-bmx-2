@@ -111,7 +111,7 @@ int __stdcall func_001DEF3C(int handle, int out)
     func_001DEDC3(buf, (char *)out);
     return 1;
 }
-int func_001DEF8D(const char *name)
+int __stdcall func_001DEF8D(const char *name)
 {
     char info[0x38];
     S_ObjectAttributes oa;
@@ -123,11 +123,11 @@ int func_001DEF8D(const char *name)
     oa.objectName = &str;
     oa.attributes = 0x40;
     status = _imp__NtQueryFullAttributesFile(&oa, info);
-    if (status < 0) {
-        func_001DD659(status);
-        return -1;
+    if (status >= 0) {
+        return *(int *)(info + 0x30);
     }
-    return *(int *)(info + 0x30);
+    func_001DD659(status);
+    return -1;
 }
 #pragma optimize("", on)
 int func_001DF5B3(void) {
