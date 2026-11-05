@@ -556,27 +556,4 @@ int func_0004F5D0(void) {
     func_00031F30();
     return 1;
 }
-struct M_Base { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); };
-struct M_A : M_Base { M_A *func_0005ECA0(int); void func_0005EDC0(void *); };
-struct M_C : M_Base { M_C *func_000715B0(int); void func_00071880(void *); };
-struct M_D : M_Base { M_D *func_00066C90(int); void func_00066FA0(void *); };
-struct M_E : M_Base { M_E *func_00082450(int); void func_0008DB70(void *, void *, int, int, int, int, int); };
-struct M_F { M_F *func_000876B0(int); M_F *func_00087760(int, void *, int); };
-struct M_H { M_H *func_00088530(int); M_H *func_00088570(int); };
-struct M_I { M_I *func_00086470(int); M_I *func_00086530(void *, int); };
-struct M_J : M_Base { M_J *func_0006C380(int); void func_0006C570(void *); };
-struct M_Items { char pad[0x1a8]; void *items[1]; };
-struct M_Level { char pad[0x4e0]; M_Items *f4e0; };
-struct M_State { int count; int pad4; int unk8; };
-struct M_Global { char pad[0x2e0]; M_State *f2e0; };
-struct C_0004F2A0 {
- char pad0[0x64]; M_Level *f64;
- char pad68[0x7c]; M_H *fe4;
- char pade8[0x74]; M_A *f15c;
- char pad160[0x10]; M_E *f170[8];
- M_D *f190; int f194; M_F *f198; int f19c; M_C *f1a0;
- char pad1a4[0xe0]; int f284;
- char pad288[0x20]; M_I *f2a8;
- char pad2ac[0x2c]; M_J *f2d8;
- void func_00031630(); void func_0004F2A0();
-};
+
