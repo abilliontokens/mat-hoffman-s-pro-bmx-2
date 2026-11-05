@@ -310,11 +310,11 @@ C_0018C800 *C_0018C800::func_0018C7B0(int a0)
     extern int D_0028A784;
     ((C_00157600 *)this)->func_00157600(a0);
     unk38 = -1;
-    unk2C = -1;
-    unk30 = -1;
     unk0 = (int)&D_0028A784;
     unk24 = -1082130432;
     unk28 = 0;
+    unk2C = -1;
+    unk30 = -1;
     unk34 = 0;
     return this;
 }
