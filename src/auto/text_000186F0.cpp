@@ -136,6 +136,102 @@ struct S_00019520_Owner {
     int f4f0;
     int func_000192D0(int a, int b);
 };
+struct V4_00018EB0 {
+    float x, y, z, w;
+};
+struct C_00199600 {
+    void func_00199600(V4_00018EB0 v);
+};
+struct C_00182530 {
+    float func_00182530(float a);
+};
+struct S_00018EB0_Dev {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    virtual void v31();
+    virtual void v32();
+};
+struct S_00018EB0_Obj {
+    char pad0[0x24];
+    S_00018EB0_Dev *f24, *f28, *f2c, *f30, *f34, *f38;
+    char pad3c[0x9c - 0x3c];
+    u8 f9c;
+};
+struct S_00018EB0_Slot {
+    S_00018EB0_Obj *o;
+    S_00018EB0_Dev *d;
+    int f8, fc, f10;
+    char pad14[0x28 - 0x14];
+};
+struct S_00018EB0_P {
+    char pad0[4];
+    C_00199600 *f4;
+};
+struct S_00018EB0_Q {
+    char pad0[4];
+    C_00182530 *f4;
+};
+struct C_00018EB0 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    char pad4[0x38];
+    S_00018EB0_P *f3c;
+    char pad40[0x384 - 0x40];
+    C_0008AB90 *f384;
+    char pad388[4];
+    int f38c;
+    char pad390[0x39c - 0x390];
+    S_00018EB0_Obj *f39c[2];
+    S_00018EB0_Slot f3a4[6];
+    S_00018EB0_Dev *f494;
+    char pad498[0x4c4 - 0x498];
+    float f4c4, f4c8;
+    int f4cc;
+    char pad4d0[4];
+    int f4d4;
+    char pad4d8[4];
+    int f4dc, f4e0;
+    char pad4e4[4];
+    u32 f4e8, f4ec;
+    int f4f0, f4f4;
+    V4_00018EB0 f4f8;
+    V4_00018EB0 f508;
+    void func_00018EB0();
+};
 struct S_TikiObj {
     virtual void v0();
     virtual void v1();
