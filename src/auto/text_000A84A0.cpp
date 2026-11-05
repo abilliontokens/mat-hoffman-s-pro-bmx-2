@@ -40,6 +40,8 @@ struct C_000A89F0 {
     char pad4[0x108];
     int unk10C;
     C_000A89F0 *func_000A89F0();
+    void func_001B5A00(void *a, void *b);
+    void func_000A8A10(S_TriggerStream *stream, void *b);
 };
 
 /* BikeWarningTriggerAction */
