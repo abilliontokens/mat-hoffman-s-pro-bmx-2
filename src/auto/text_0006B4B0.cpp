@@ -29,15 +29,15 @@ struct C_0006C380 {
     int unk24[8];
     int unk44[8];
     int unk64[2];
-    int unk6C;
-    int unk70;
+    void *unk6C;
+    void *unk70;
     int unk74[2];
     int unk7C[5];
     int unk90[5];
-    int unkA4;
-    int unkA8;
-    int unkAC;
-    int unkB0;
+    void *unkA4;
+    void *unkA8;
+    void *unkAC;
+    void *unkB0;
     char padB4[4];
     int unkB8;
     int unkBC;
@@ -83,3 +83,46 @@ void C_0006BB90::func_0006BB90(void) {
     }
     vf4();
 }
+
+C_0006C380 *C_0006C380::func_0006C380(int a0)
+{
+    int i;
+
+    func_00157600(a0);
+    vtbl = &D_0027850C;
+    for (i = 0; i < 8; i++) {
+        unk24[i] = 0;
+        unk44[i] = 0;
+    }
+    vtbl = &D_002789F4;
+    unkCC = 0;
+    unkD0 = 0;
+    unk18 = -1;
+    unkC8 = 0;
+    unkC4 = 0;
+    for (i = 0; i < 2; i++) {
+        unk64[i] = 0;
+        unk74[i] = 0;
+    }
+    unkD4 = 0;
+    unkDC = 0.5f;
+    unkB8 = -1;
+    unk6C = 0;
+    unk70 = 0;
+    unkBC = 0;
+    unkC0 = 0;
+    unkE0 = 0;
+    unkD8 = 0;
+    unkE8 = 1;
+    unkE4 = -1;
+    for (i = 0; i < 5; i++) {
+        unk7C[i] = 0;
+        unk90[i] = 0;
+    }
+    unkA4 = 0;
+    unkA8 = 0;
+    unkAC = 0;
+    unkB0 = 0;
+    return this;
+}
+
