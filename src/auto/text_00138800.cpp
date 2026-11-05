@@ -31,8 +31,19 @@ int f84;
 int f88;
 int f8c;
  void func_00157600(int);
+ void func_00157660();
  CutScene *func_00138800(int);
+ void func_00138890();
 };
+struct CutScene_Item {
+    char pad0[0x18];
+    void *f18;
+    struct CutScene_Obj { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(int); } *f1c;
+    void *f20;
+    void *f24;
+};
+extern "C" void func_001E8390(void *);
+extern "C" void func_001E891B(void *);
 struct C_00139080 {
     char pad0[0x88];
     int unk88;
