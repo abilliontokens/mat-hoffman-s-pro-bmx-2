@@ -65,6 +65,7 @@ struct BmxUIPageHOF2 {
     void func_001BEE30(int a, int b);
     void func_00157960();
     void func_000D5C70();
+    void func_000D6710();
 };
 
 struct NodeHOF2 {
