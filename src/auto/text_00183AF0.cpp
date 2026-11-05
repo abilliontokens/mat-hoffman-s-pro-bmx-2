@@ -58,9 +58,6 @@ struct BmxSceneMgr {
     Rec12 *objs2;
     float *floats;
     int *ints;
-    Rec12 *Obj2(int i) { return &objs2[i]; }
-    float *Floats(void) { return floats; }
-    int *Ints(void) { return ints; }
 };
 
 struct BmxScene {
