@@ -44,6 +44,17 @@ extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
 extern "C" long (__stdcall *_imp__NtQueryDirectoryFile)(void *fileHandle, void *event, void *apcRoutine, void *apcContext, S_IoStatusBlock *iosb, void *fileInfo, u32 length, u32 infoClass, u32 returnSingle, void *fileName);
 extern "C" long (__stdcall *_imp__NtQueryFullAttributesFile)(S_ObjectAttributes *oa, void *info);
 
+/* access masks the original passes as the address of the (absolute) symbol */
+extern char D_00010000[];
+extern char D_00100001[];
+extern char D_00110000[];
+extern void *D_00010118;
+extern "C" long (__stdcall *_imp__NtOpenFile)(void **handle, u32 access, S_ObjectAttributes *oa, S_IoStatusBlock *iosb, u32 share, u32 options);
+extern "C" long (__stdcall *_imp__NtCreateFile)(void **handle, u32 access, S_ObjectAttributes *oa, S_IoStatusBlock *iosb, void *allocSize, u32 attrs, u32 share, u32 disposition, u32 options);
+extern "C" long (__stdcall *_imp__NtSetInformationFile)(void *handle, S_IoStatusBlock *iosb, void *info, u32 length, u32 infoClass);
+extern "C" long (__stdcall *_imp__NtClose)(void *handle);
+int __stdcall func_001DF26F(int a, int b);
+
 #pragma intrinsic(__readfsbyte)
 #pragma intrinsic(__readfsdword)
 extern "C" long (__stdcall *_imp__PsCreateSystemThreadEx)(int *threadHandle, u32 extraSize, u32 kernelStackSize, u32 tlsDataSize, u32 *threadId, void *startContext1, void *startContext2, u32 createSuspended, u32 debugStack, void *startRoutine);
