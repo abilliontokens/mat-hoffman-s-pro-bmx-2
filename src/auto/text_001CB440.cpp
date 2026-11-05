@@ -291,6 +291,42 @@ struct C_001CB9A0 {
     void func_001CBBC0(void);
 };
 
+extern char D_0002EDEF;
+extern "C" int __stdcall D_00221B4C(int handle, unsigned int value);
+int __stdcall func_00222388(int handle, int value, int flag);
+int __stdcall func_00221974(int handle, unsigned int value);
+
+struct C_0013B210 {
+    void func_0013B210(void *);
+};
+extern C_0013B210 *D_002BEAAC;
+extern int D_0028EEEC;
+
+/* XboxSound (run-time type information), base class Sound */
+struct C_001CC0C0 {
+    void *vtbl;
+    char pad4[0x28];
+    unsigned char f2C;
+    char pad2D[3];
+    int f30;
+    char pad34[0xc0];
+    int fF4;
+    char padF8[0x14];
+    unsigned int f10C;
+    char pad110[0x2c];
+    int f13C;
+    C_001CB9A0 *f140;
+    char pad144[0x58];
+    unsigned int f19C;
+    char pad1A0[0x68];
+    unsigned char f208;
+    int func_001CC0C0(int v);
+    void func_001CC140(void);
+    int func_001CC320(unsigned int v);
+    void func_001CB510(void);
+    void func_0001C970(void);
+};
+
 int C_001CB440::func_001CB440(void)
 {
     int v;
