@@ -57,6 +57,28 @@ struct C_00030A10 {
     undefined4 func_00030A10(byte param_1);
 };
 
+void func_001E891B(void *p);
+
+struct C_00194C70 {
+    void func_00194C70(void);
+};
+
+struct C_00030500_Destroy {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4(int flags);
+};
+
+struct C_00030500 {
+    C_00030500_Destroy *f0;
+    int f4;
+    void *f8;
+    char padC[0x118 - 0xC];
+    void *func_00030500(unsigned int flags);
+};
+
 
 int S_0002FA80_Entry::func_0002FFD0(const char *subName)
 {
@@ -121,16 +143,20 @@ bool C_000300F0::func_000300F0(undefined4 param_1)
 bool C_0002FA80::func_00030120(const char *subName)
 {
     int func_001EA426(...);
-    S_0002FA80_Entry *e = &entries[cur];
+    S_0002FA80_Entry *base = entries;
+    S_0002FA80_Entry *e = &base[cur];
+    int idx = e->curSub;
+    S_0002FA80_Sub *s = &e->subs[idx];
 
-    return func_001EA426(subName, e->subs[e->curSub].name) == 0;
+    return func_001EA426(subName, s->name) == 0;
 }
 
 void C_0002FA80::func_00030160(void)
 {
     S_0002FA80_Entry *e = &entries[cur];
+    int idx = e->curSub;
     S_0002FA80_Sub *subs = e->subs;
-    S_0002FA80_Sub *s = &subs[e->curSub];
+    S_0002FA80_Sub *s = subs + idx;
 
     ((C_00194BD0 *)e->f0)->func_00194BD0(s->f104, s->f108, 0);
 }
