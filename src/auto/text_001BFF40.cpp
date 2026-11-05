@@ -111,7 +111,18 @@ struct C_001C0670 {
 };
 
 /* element of UIWidgetOverlayText's child array */
+struct S_001C01E0_Font { float func_0018C210(); };
 struct S_001C05F0_Item {
+    virtual void v0(); virtual void v1(); virtual void v2();
+    char pad4[0x24];
+    S_001C01E0_Font *unk28;
+    void func_00157810();
+    S_001C05F0_Item *func_001B12C0(int);
+    void func_001B13A0(void *, void *, int, int);
+    void func_001B1AB0(int, int);
+    void func_001B1BF0(int);
+    void func_001B19A0(int);
+    void func_001B19C0(int, int, int);
     void func_001B2270(int a);
     void func_001B1980(void);
     void func_001B17D0(char *s);
