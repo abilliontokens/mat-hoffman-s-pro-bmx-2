@@ -106,6 +106,23 @@ struct C_00148820 {
 };
 
 
+struct C_00149480 {
+    void *vtbl;
+    int unk4;
+    int unk8;
+    void *unkC;
+    int *unk10;
+    void func_00149480(void);
+};
+extern int D_002BF0AC;
+extern int D_002BF0B4;
+extern int D_002BF0B8;
+extern int D_002BF0BC;
+extern int D_002BF0C0;
+extern int D_002BF0C4;
+extern int D_002BF0D8;
+extern unsigned int D_002BF0DC;
+
 struct C_00149280 {
     void *vtbl;
     void *func_00149280(int a0);
@@ -384,12 +401,12 @@ void *C_00149120::func_00149120(int a0, int a1)
             unk20 = (Anim_00149120 *)p;
         } else {
             p = 0;
-            *(volatile void **)&unk20 = p;
+            unk20 = (Anim_00149120 *)p;
         }
     }
-    for (int i = 0; i < unk8->count; i++) {
-        ((Anim_00149120 *)unk20)[i].a0 = unk8->arr[i].a0;
-        ((Anim_00149120 *)unk20)[i].data = unk8->arr[i].data;
+    for (int i = 0; i < n; i++) {
+        unk20[i].a0 = unk8->arr[i].a0;
+        unk20[i].data = unk8->arr[i].data;
     }
     return this;
 }
@@ -411,8 +428,7 @@ void *C_001491E0::func_001491E0(C_001491E0 *a0)
             func_00011FF0(p, 0x14, n, &D_00144CD0);
             unk20 = (Anim_00149120 *)p;
         } else {
-            p = 0;
-            *(volatile void **)&unk20 = p;
+            unk20 = 0;
         }
     }
     if (unk20 != 0) {
