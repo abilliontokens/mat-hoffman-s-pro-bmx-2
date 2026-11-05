@@ -295,6 +295,37 @@ void C_000F1DD0::func_000F1DD0(void)
     D_002B91AC->f3c->func_0005E840(D_002A8490->f2E8->f4->f838);
 }
 
+BmxUIPageHPHChoice *BmxUIPageHPHChoice::func_000F1EC0(int a, int b, int c)
+{
+    int i;
+    S_000F1D90_Obj *p;
+    S_000F1D90_Obj *o;
+
+    func_001BE4F0(a, b, c);
+    for (i = 0; i < 4; i++) {
+        p = (S_000F1D90_Obj *)func_001E8A44(0x64);
+        p = p != 0 ? p->func_001D5760() : 0;
+        unk2b4[i] = p;
+        if (i % 2 == 0) {
+            p->func_001D5810(&D_002786B0, 100.0f, (float)(i / 2) * D_002757F0 + D_0027E140, 0);
+        } else {
+            p->func_001D5810(&D_002786B0, 321.0f, (float)(i / 2) * D_002757F0 + D_0027E140, 0);
+            o = unk2b4[i];
+            o->f3C = 0x3f800000;
+            o->f40 = 0;
+            o->f44 = 0;
+            o->f48 = 0x3f800000;
+            o->f58 |= 4;
+        }
+        o = unk2b4[i];
+        if (o->f28 != 0x435d0000) {
+            o->f28 = 0x435d0000;
+            o->f58 |= 1;
+        }
+    }
+    return this;
+}
+
 void BmxUIPageHPHChoice::func_000F1FC0(void)
 {
     int i;
