@@ -109,7 +109,7 @@ struct S_001D6E20_Res {
 
 struct S_001D6E20_Obj20 {
     S_001D6E20_Obj20 *func_0001C520(void);
-    void func_0001C2E0(char *name, int key);
+    int func_0001C2E0(char *name, int key);
 };
 
 struct XboxTextureMap {
@@ -347,8 +347,8 @@ void *func_001D6E20(char *name, int arg2, unsigned int flags)
             info = func_001B3560(key, 0);
             if (info == 0)
                 return 0;
-            width = info->w;
             height = info->h;
+            width = info->w;
         }
         XboxTextureMap *p = (XboxTextureMap *)func_001E8A44(0x110);
         obj = p ? p->func_001D6AD0((void *)1) : 0;
