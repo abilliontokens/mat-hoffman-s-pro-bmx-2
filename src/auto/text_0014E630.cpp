@@ -27,7 +27,7 @@ extern TrigEntry *D_002CF6B4;
 float func_00016D60(int x);
 
 static inline void FloatToIndex(int *out, float f) {
-    *out = _mm_cvttss_si32(_mm_load_ss(&f));
+    *out = (int)f;
 }
 
 struct C_0014F170 {
@@ -72,5 +72,13 @@ float func_0014F550(float x) {
     float t = x * x;
 
     return ((((D_002A773C * t + D_002A7738) * t + D_002A7734) * t + D_002A7730) * t + D_00275460) * x;
+}
+
+float func_0014F590(int x) {
+    float f = (func_00016D60(x) + D_002756D0) * D_002DF870;
+
+    FloatToIndex(&x, f);
+    float t = (f - (float)x) * D_002DF874;
+    return (t * D_002CF6B4[x].a + D_002CF6B4[x].b) / (D_002CF6B4[x].a - t * D_002CF6B4[x].b);
 }
 
