@@ -438,9 +438,9 @@ void C_00194EB0::func_00194EB0(S_Vec4Int v)
     f18 = v;
 }
 
-void C_00194EE0::func_00194EE0(int a, int b, int c, int d)
+void C_00194EE0::func_00194EE0(S_Vec4Int v)
 {
-    f28.Set(a, b, c, d);
+    f28 = v;
 }
 
 void C_00194EE0::func_00194F10(S_Vec4Int *out)
