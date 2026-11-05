@@ -21,11 +21,79 @@ struct C_002BEAAC {
     int func_0013D310(char *a, void *b, int *c, int *d, int e);
     void func_0013C8A0(int a, void *b, int c, int d);
     void func_0013C110(int a);
+    void func_0013B1F0(int a, void *b);
 };
 extern C_002BEAAC *D_002BEAAC;
 
+struct C_000264C0 {
+    void func_000264C0(void *m);
+};
+
+struct S_Vec3i {
+    int x, y, z;
+};
+
+struct S_0019D6C0_Obj {
+    int f0;
+    int f4;
+    u16 f8;
+    u16 fA;
+    int fC;
+    int f10;
+    S_Vec3i f14;
+    u16 f20;
+    char pad22[0xE];
+    char f30[0x40];
+    int f70;
+    char pad74[0xC];
+};
+
 struct C_0019D7B0 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    char pad4[0x4C];
+    int f50;
+    char pad54[0x9C];
+    char fF0[0x40];
+    char pad130[0x80];
+    S_Vec3i f1B0;
+    u16 f1BC;
+    u16 pad1BE;
+    char *f1C0;
+    int f1C4;
+    int f1C8;
+    u16 f1CC;
+    u16 f1CE;
+    int pad1D0;
+    S_0019D6C0_Obj *f1D4;
     void func_0019C690(char *path, int *p);
+    void func_0019CCE0(int h);
     void func_0019D6C0(char *path, int h);
     int func_0019D7B0(int a1, char *path);
 };
