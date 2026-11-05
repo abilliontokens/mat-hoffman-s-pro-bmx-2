@@ -135,6 +135,9 @@ struct DXSignatureWave {
     void func_001942C0();
     void func_00194600(S_00143940_V4 a, S_00143940_V4 b, int c1, int c2, int c3, int c4,
                        int c5, int c6, int c7, int c8, int c9, int c10);
+    void func_00194600(int c1, int c2, int c3, int c4, int c5, int c6, int c7, int c8, int c9,
+                       int c10, int c11, int c12, int c13, int c14, int c15, int c16, int c17,
+                       int c18);
 };
 
 
@@ -252,6 +255,20 @@ void *DXShadowCaster::func_00143900(int flags)
     vtbl = (void *)&D_00285A9C;
     if (flags & 1)
         func_001E891B(this);
+    return this;
+}
+
+DXSignatureWave *DXSignatureWave::func_00143940(S_00143940_V4 a, S_00143940_V4 b, int c1, int c2,
+                                                int c3, int c4, int c5, int c6, int c7, int c8,
+                                                int c9, int c10)
+{
+    func_00194600(a, b, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10);
+    f100 = 0;
+    fF0[0] = 0;
+    fF0[1] = 0;
+    fF0[2] = 0;
+    fFC = 0;
+    vtbl = (void *)&D_00285AC4;
     return this;
 }
 
