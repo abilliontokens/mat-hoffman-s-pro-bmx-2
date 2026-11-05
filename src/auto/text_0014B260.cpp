@@ -50,7 +50,6 @@ void S_0014B940_Obj::func_0014B940()
         b = Vec4(a.x + unkBC[i] * unkC4[i].x, a.y + unkBC[i] * unkC4[i].y, a.z + unkBC[i] * unkC4[i].z, 1.0f);
     }
 }
-#pragma inline_depth(0)
 void DynamicRayCollisionObject::func_0014BA40(int param_1)
 {
     if (unkA6 != 0) {
