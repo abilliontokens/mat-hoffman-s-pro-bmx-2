@@ -49,6 +49,22 @@ extern float D_00287B80;
 extern float D_002755E8;
 float func_0014F590(float x);
 
+extern int D_0015B660;
+extern int D_0015B7A0;
+void *func_001E8A44(int size);
+void __stdcall func_00011FF0(void *p, int step, int count, int *ctor);
+
+struct C_001628C0 {
+    char pad0[4];
+    char *f4;
+    char *f8;
+    char padC[8];
+    void **f14;
+    char pad18[0x14];
+    int f2c;
+    void func_001628C0(int count);
+};
+
 struct C_001625A0 {
     void *vtbl;
     char pad4[0x20];
