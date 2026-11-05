@@ -121,8 +121,11 @@ C_000C45E0 *C_000C45E0::func_000C44C0(int a)
     unk364 = 0;
     unk2EC = 0;
     unk2F0 = 0;
-    for (i = 0; i < 12; i++) {
-        ((u32 *)arr320)[i] = 0;
+    for (i = 0; i < 3; i++) {
+        arr320[0][i] = 0;
+        arr320[1][i] = 0;
+        arr320[2][i] = 0;
+        arr320[3][i] = 0;
     }
     unk35C = 0;
     unk360 = 0xffffffff;
