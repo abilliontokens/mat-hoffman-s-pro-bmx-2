@@ -93,7 +93,11 @@ struct SoultreeCollisionObject {
     void func_0019C2F0(void);
     void func_0019C690(int a1, S_0019C690_Arg *a2);
     void func_0019C0E0(S_Matrix16 *m);
+    void func_0019C210(S_Matrix16 *m);
 };
+
+void func_0011ACC0(void *out, void *a, void *b);
+void func_00030AC0(float *out, float *v, float *m);
 
 struct C_0019C320 {
     void func_0019C320(undefined4 *param_1);
