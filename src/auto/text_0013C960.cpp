@@ -116,6 +116,96 @@ int C_0013C960::func_0013C9F0(int a0, int a1)
     return local;
 }
 
+void *func_001E8AA5(int n);
+int C_0013C960::func_0013CA50(void)
+{
+    int ok = 1;
+    int i;
+    int *q;
+
+    if (fC != 0 && fE8 != 0) {
+        func_0013C660(1);
+    }
+    if ((int *)&pad14 != 0) {
+        q = f24;
+        do {
+            *q = -1;
+            q++;
+        } while (q <= f28);
+    }
+    if (fC != 0) {
+        for (i = 0; i < f10; i++) {
+            func_0013B840(&fC[i]);
+        }
+        func_001E8390(fC);
+        fC = 0;
+    }
+    if (fE8 != 0) {
+        for (i = 0; i < fEC; i++) {
+            func_0013AEC0(i);
+        }
+        func_001E8390(fE8);
+        fE8 = 0;
+    }
+    if (f6C != -1 && fC[f6C].f10 != 0) {
+        func_00012140(fC[f6C].f10);
+    }
+    if (fC == 0) {
+        f10 = 1;
+        fC = (S_0013C960_Rec *)func_001E8AA5(0x28);
+        f8 = 0;
+        if (fC == 0) {
+            f10 = 0;
+            f8 = -1;
+            ok = 0;
+        } else {
+            goto init1;
+        }
+    } else {
+init1:
+        for (i = 0; i < f10; i++) {
+            fC[i].fC = 1;
+            fC[i].f4 = 0;
+            fC[i].f8 = 0;
+            fC[i].f14 = 0;
+            fC[i].f10 = 0;
+            fC[i].f0 = i;
+            fC[i].f18 = 0;
+            fC[i].f20 = 0;
+            fC[i].f1C = 0;
+            fC[i].f24 = 0;
+        }
+    }
+    if (fE8 == 0) {
+        fEC = 1;
+        fE8 = (S_0013C960_Elem *)func_001E8AA5(0x20);
+        fE4 = 0;
+        if (fE8 == 0) {
+            fEC = 0;
+            fE4 = -1;
+            ok = 0;
+        } else {
+            goto init;
+        }
+    } else {
+init:
+        for (i = 0; i < fEC; i++) {
+            fE8[i].f18 = 1;
+            fE8[i].f8 = 0;
+            fE8[i].f0 = 0;
+            fE8[i].fC = 0;
+            fE8[i].f10 = 0;
+            fE8[i].f14 = 0;
+            fE8[i].f4 = 0;
+            fE8[i].f1C = 0;
+        }
+    }
+    fF4 = -1;
+    fF8 = -1;
+    f100 = 0;
+    return ok;
+}
+
 int C_0013C960::func_0013D310(int a0, int a1, int *a2, int *a3, int a4)
 {
     S_0013C960_Elem *e;
