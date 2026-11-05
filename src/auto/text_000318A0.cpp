@@ -216,7 +216,9 @@ struct S_32560_Root {
     virtual void v08(); virtual void v09(); virtual void v0A(); virtual void v0B();
     virtual void v0C(); virtual void v0D(); virtual void v0E();
     virtual void v0F(S_32560_Panel *p, int a, int b, int c);
-    char pad4[0x2e0 - 4];
+    char pad4[0x2a8 - 4];
+    int f2a8;
+    char pad2ac[0x2e0 - 0x2ac];
     S_31AF0_Mgr *f2e0;
 };
 
