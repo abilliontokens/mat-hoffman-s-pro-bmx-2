@@ -485,6 +485,44 @@ struct C_001BF7C0 {
     C_001BF7C0 *func_001BFB40(int a0, int a1, S_001BF7C0_Stream *stream);
 };
 
+struct S_001BF220_Ctl {
+    void func_001BE290(void);
+};
+
+struct S_001BF220_Slot {
+    int f0;
+    int f4;
+};
+
+struct S_001BF220_Obj {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26();
+    virtual void v27(int a);
+    void func_001D3B20(char *name);
+};
+
+/* UIPage slot 34 (shared by BmxUIPageIntroMovie/Demo/Main) */
+struct C_001BF220 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    char pad4[0x134];
+    int f13C;
+    S_001BF220_Ctl **f140;
+    S_001BF220_Slot **f144;
+    char pad148[0x20];
+    S_001BF220_Obj *f168;
+    S_001BF220_Obj *f16C;
+    char f170[0x104];
+    int f274;
+    int f278;
+    void func_001BF220(void);
+};
+
 void C_001BEF90::func_001BEF90(int param_1)
 {
   unk140[param_1]->func_001BDDE0(0);
