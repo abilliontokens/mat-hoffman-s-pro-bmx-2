@@ -51,6 +51,7 @@ struct C_000DB310 {
     char pad314[0x18];
     float f32C[11];
     void func_000DB310();
+    void func_000DB3E0();
     int func_000DBC00();
 };
 
