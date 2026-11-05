@@ -1,18 +1,49 @@
 /* 9 functions from 0x00098EE0 to 0x00099E50, found by Ghidra. */
 #include "common.h"
 
+struct S_00097FD0_owner;
+
 struct C_00096870 {
     char pad0[0x1a4];
     f32 f1a4;
     char pad1a8[0xc];
     int f1b4;
+    char pad1b8[0x48e0 - 0x1b8];
+    int f48e0;
     void func_00096870(const char *name);
+    void func_00097050(S_00097FD0_owner *owner);
+};
+
+struct S_00099D40_Slots {
+    int func_0005C040(int a, int b, int c, int d);
+    int func_0005C070(int a, int b, int c);
 };
 
 struct S_00097FD0_owner {
-    char pad0[0x1c8];
+    char pad0[0x68];
+    S_00099D40_Slots *f68;
+    char pad6c[0x1c8 - 0x6c];
     int unk1c8;
 };
+
+struct S_00099D40_Sub {
+    char pad0[0x48];
+    int f48;
+};
+
+struct S_00099D40_Cam {
+    char pad0[0x124];
+    f32 f124;
+};
+
+struct S_00099D40_Global {
+    char pad0[0x2a4];
+    S_00099D40_Cam *f2a4;
+    char pad2a8[0x2e0 - 0x2a8];
+    S_00099D40_Sub *f2e0;
+};
+
+extern S_00099D40_Global *D_002A8490;
 
 struct C_00097FD0 {
     C_00096870 **arr0;
