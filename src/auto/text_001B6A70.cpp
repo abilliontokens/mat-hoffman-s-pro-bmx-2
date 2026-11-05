@@ -88,6 +88,24 @@ static inline const int &min_ref(const int &a, const int &b) {
     return (b < a) ? b : a;
 }
 
+struct C_6A70_Cfg {
+    void func_00168BE0(const void *key, const void *fmt, void *buf, int size);
+    void func_00168C20(const void *key, int def, int *out);
+};
+struct C_6A70 {
+    void *vtbl;
+    void *f4;
+    int f8;
+    int fC;
+    int f10;
+    int f14;
+    char f18[0x78];
+    char pad90[0x78];
+    char pad108[4];
+    void func_001B6A70(C_6A70_Cfg *cfg, void *a, void *b, void *c);
+};
+extern char D_00275630[], D_00276980[], D_0027A84C[], D_00284B7C[], D_0028CE58[], D_0027B0AC[], D_00289948[];
+
 /* ParticleEmitterTempData */
 struct C_001B7480 {
     void *vtbl;
@@ -295,16 +313,16 @@ void C_001B6E70::func_001B70D0(S_001B70D0_Arg *arg) {
                             int id = mgr->f4->func_00198330(
                                 ((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->f1D8);
                             int k = 0;
-                        again:
-                            if (k < mgr->f284) {
+                            while (1) {
+                                if (k >= mgr->f284)
+                                    break;
                                 if (mgr->f280[k]->f1C0 == id) {
                                     ((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->f2DC =
                                         mgr->f280[k]->f64->f22C;
                                     found = 1;
-                                } else {
-                                    k++;
-                                    goto again;
+                                    break;
                                 }
+                                ++k;
                             }
                         }
                     } else {
