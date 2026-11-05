@@ -1,2 +1,30 @@
 /* 14 functions from 0x001A8720 to 0x001A96D0, found by Ghidra. */
 #include "common.h"
+#include <math.h>
+
+extern float D_00275544;
+extern int D_0028BF14;
+
+void func_001E891B(void *p);
+void *func_001E8AA5(int size);
+
+struct C_00157660 {
+    void func_00157660(void);
+};
+
+struct C_001A8B80 {
+    void *vtbl;
+    char pad4[0x50];
+    void *f54;
+    char pad58[0x2C];
+    void *f84;
+    char pad88[4];
+    int f8C;
+    void *f90;
+    char pad94[0x48];
+    f32 fDC[10];
+    void *func_001A8B80(int flags);
+    void func_001A9070(int count);
+    void func_001A9220(int idx, f32 v);
+    void func_001D3F50(void);
+};
