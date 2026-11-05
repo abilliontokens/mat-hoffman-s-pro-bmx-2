@@ -171,3 +171,10 @@ void C_0019DE30::func_0019DE80(int a0)
     func_00157A00(a0);
 }
 
+void C_0019DEC0::func_0019DEC0(void) {
+    S_Matrix16 m;
+
+    f19C->func_00199C20(0, &m);
+    v31(&m);
+}
+
