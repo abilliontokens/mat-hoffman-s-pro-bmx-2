@@ -434,7 +434,6 @@ void C_000ACC40::func_000ACC40(void)
 
 void C_000ACC70::func_000ACC70(void)
 {
-    void *local = (void *)&D_0027CABC;
     if (field_3B4 == 0) {
         C_000ACC70_Dyn *p = (C_000ACC70_Dyn *)func_001E8A44(0x2c);
         if (p != 0) {
@@ -444,6 +443,7 @@ void C_000ACC70::func_000ACC70(void)
         }
         field_3B4 = p;
     }
+    void *local = (void *)&D_0027CABC;
     if (field_3B4->v27(this, field_28, &local, field_550 + 0x124) != 0) {
         return;
     }
