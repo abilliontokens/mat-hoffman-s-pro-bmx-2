@@ -34,6 +34,49 @@ struct UIItem {
     void *func_000A1990(void *p, int n);
 };
 
+struct C_0012B410 {
+    void func_0012B410(int a, int b, int c);
+};
+
+struct C_0013E4F0 {
+    C_0012B410 *func_0013E4F0(int a);
+};
+
+struct C_0002EF20 {
+    UIOwner *func_0002EF20(int a);
+};
+
+struct UIGlobalSub {
+    char pad0[0x324];
+    int f324;
+};
+
+struct UIGlobal {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15(void *a, int b, int c, int d);
+    char pad4[0x2DC];
+    UIGlobalSub *f2E0;
+};
+
+extern UIGlobal *D_002A8490;
+extern char D_0027D934[];
+extern char D_0027D91C[];
+void *func_001E8A44(int size);
+
 struct C_00157920 {
     void func_00157920();
 };
