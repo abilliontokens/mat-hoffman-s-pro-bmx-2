@@ -89,8 +89,33 @@ struct S_002B91AC {
 
 extern S_002B91AC *D_002B91AC;
 
+#include <string.h>
+struct S_9DC0_Q { void func_0005BED0(int a, int b, float *f, char *s); };
+struct S_9DC0_A { char pad[0x2c0]; S_9DC0_Q *q; };
+struct S_9DC0_B { char pad[0x2e0]; S_9DC0_A *a; };
+extern S_9DC0_B *D_002A8490;
+extern float D_00275544, D_0027F2BC, D_00279F74, D_0027F2B8;
+extern char D_00277038[];
+extern int D_0028F5DC;
+extern "C" int func_001ADCC0(char *buf, int n, char *fmt, ...);
+struct S_000D9FE0_Widget {
+    void func_001B1980();
+    void func_001B17D0(char *s);
+    void func_001B1A30(float a, float b, float c);
+    void func_001B19A0(int a);
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, float a11, int a12, int a13);
+};
+struct S_000D9FE0_Res {
+    void func_00103260(int a);
+};
+struct S_000D9FE0_Owner {
+    S_000D9FE0_Res *func_000BA9B0(int a);
+};
+
 struct C_000D9750 {
-    char pad0[0x29C];
+    char pad0[0x124];
+    S_000D9FE0_Owner *f124;
+    char pad128[0x29C - 0x128];
     int unk29C;
     int unk2A0;
     int unk2A4;
@@ -101,6 +126,11 @@ struct C_000D9750 {
     int unk2B8;
     int unk2BC;
     float unk2C0;
+    S_000D9FE0_Widget *a2C4[5];
+    S_000D9FE0_Widget *a2D8[5];
+    char pad2EC[0x18];
+    S_000D9FE0_Widget *a304[5];
+    void func_000D8700(int value, char *buf);
     void func_000D9530();
     void func_000D9FE0();
     void func_001BEE30(int a, int b);
