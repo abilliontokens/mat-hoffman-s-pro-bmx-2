@@ -1,5 +1,6 @@
 /* 14 functions from 0x0013D780 to 0x0013E6F0, found by Ghidra. */
 #include "common.h"
+#include <stdarg.h>
 
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 void func_001E891B(void *p);
