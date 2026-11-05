@@ -24,6 +24,24 @@ extern S_002B91AC *D_002B91AC;
 extern float D_002823D4;
 extern float D_00275994;
 
+struct C_NumHorse_Lookup { int *func_0018C160(int a); };
+struct C_NumHorse_Root { char pad0[0x2EC]; C_NumHorse_Lookup *p2EC; };
+struct C_NumHorse_Clamp { char pad0[0x10]; float f10, f14; };
+struct C_NumHorse_Mid { C_NumHorse_Clamp *func_0018C070(); };
+struct C_NumHorse_Sub { C_NumHorse_Clamp *func_001D5AA0(); };
+extern C_NumHorse_Root *D_002A8490;
+extern float D_00275AEC;
+extern int D_002786A0, D_00278690, D_00278678;
+
+/* page with two rows of nine clampable widgets (real function starts at 0xF02C0) */
+struct C_000F029C {
+    char pad0[0x698];
+    C_NumHorse_Sub *arr698[9];
+    C_NumHorse_Sub *arr6BC[9];
+    void func_000F029C();
+    void func_001578D0();
+};
+
 struct C_000F0AE0_Svc {
     int func_000301D0();
 };
