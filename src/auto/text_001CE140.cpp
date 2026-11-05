@@ -77,6 +77,7 @@ struct XboxMusic {
     void func_001CB650(int arg);
     void func_001CD260();
     int func_001CD450(int a, int b);
+    int func_001CEE50(int a, int b);
     void func_001CE920();
     void func_001CEF50();
     int func_001CEFD0(int id);
