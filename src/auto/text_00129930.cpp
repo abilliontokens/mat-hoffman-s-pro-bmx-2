@@ -165,14 +165,25 @@ struct Camera_12A3F0 {
     Camera_12A3F0 *func_0012A3F0(int a);
 };
 
+struct C_000264C0_129E20 {
+    void func_000264C0(void *src);
+};
+
+void func_00030AC0(Vec4 *out, Vec4 *in, f32 *m);
+
 struct BoxCollisionObject {
     void *vtbl;
-    char pad4[0x50];
+    char pad4[0x24];
+    Vec4 f28;
+    char pad38[0x10];
+    f32 f48;
+    char pad4C[0x8];
     void *f54;
     char pad58[0x58];
     f32 matrix[16];
     Vec4 fF0;
     Vec4 f100;
+    void func_00129E20(void *src);
     void func_00133E60();
     void func_00133090(int a, int b);
     void *func_0012A1C0(unsigned int flags);
