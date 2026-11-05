@@ -1,2 +1,49 @@
 /* 2 functions from 0x001458E0 to 0x001467A0, found by Ghidra. */
 #include "common.h"
+
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+char *func_001E8AF0(const char *s, const char *pat);
+void *func_001E8A44(unsigned int size);
+
+/* (0, 0, 0, 1) vector, stored z, y, x, w */
+struct V4_00146540 {
+    float x, y, z, w;
+    V4_00146540() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+};
+
+/* 0x14-byte element of C_00146540::f34 */
+struct S_00146540_Elem {
+    int id;
+    V4_00146540 v;
+    static void *operator new[](unsigned int size) { return func_001E8A44(size); }
+};
+
+struct S_00146540_Entry {
+    const char *name;
+    int value;
+    int data;
+    int refCount;
+};
+
+struct S_00146540_Table {
+    void *vtbl;
+    int unk4;
+    int count;
+    int capacity;
+    int unk10;
+    S_00146540_Entry *entries;
+    int func_001AC7B0(const char *name, int unused);
+};
+extern S_00146540_Table *D_002A7520;
+
+struct S_00146540_Cfg {
+    int func_00168D70(const char *name, float *out, int count);
+};
+
+struct C_00146540 {
+    char pad0[0x34];
+    S_00146540_Elem *f34;
+    char pad38[8];
+    int f40;
+    void func_00146540(S_00146540_Cfg *cfg);
+};
