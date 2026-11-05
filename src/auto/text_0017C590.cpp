@@ -62,6 +62,29 @@ QuadTreeNode *QuadTreeNode::func_0017CE10(void)
     return this;
 }
 
+void QuadTreeNode::func_0017CE40(void)
+{
+    S_QuadTreeListNode *node = f8;
+    int i;
+
+    vtbl = (void *)&D_002890E8;
+    if (f4 != 0) {
+        for (i = 0; i < 4; i++) {
+            if (f4[i] != 0) {
+                f4[i]->v0(1);
+            }
+        }
+    }
+    if (!(D_002EFD80->f98 & 1)) {
+        while (node != 0) {
+            S_QuadTreeListNode *next = node->next;
+            D_002EFD80->f90->func_0001E790(node);
+            node = next;
+        }
+    }
+    D_002EFD80->f880--;
+}
+
 void C_0017D190::func_0017D190(void)
 {
     fa0 = f9c;
