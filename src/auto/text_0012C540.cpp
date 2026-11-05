@@ -14,6 +14,10 @@ struct C_0012C940 {
 
 struct C_0013B210 {
     void func_0013B210(void *);
+    int func_0013B1A0(char *);
+    int func_0013C9F0(char *, char *);
+    void func_0013C8A0(int, void *, int, int);
+    void func_0013C110(int);
 };
 extern C_0013B210 *D_002BEAAC;
 void func_001E891B(void *);
