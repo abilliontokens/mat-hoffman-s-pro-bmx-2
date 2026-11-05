@@ -47,6 +47,17 @@ struct C_001C4D50 {
     void func_001C4D50(int a);
 };
 
+struct S_0005F3C0_2E0 {
+    int f0;
+    int f4;
+};
+
+struct S_0005F3C0_8490 {
+    char pad0[0x2E0];
+    S_0005F3C0_2E0 *f2E0;
+};
+extern S_0005F3C0_8490 *D_002A8490;
+
 struct BmxInGameMenuSub {
     virtual void v0();
     virtual void v1();
