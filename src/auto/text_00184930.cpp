@@ -71,3 +71,23 @@ struct C_00184930 {
     void func_00184BB0(void);
     int func_00184C00(void);
 };
+
+void C_00184930::func_00184BB0(void)
+{
+    int i;
+
+    for (i = 0; i < f3a8[f348]->f24; i++) {
+        S_00184BB0_Elem *e = f3a8[f348]->f28[i];
+        if (e->f4 == 2) {
+            e->v3(this);
+        }
+    }
+}
+
+int __stdcall func_00185860(char *name)
+{
+    if (memcmp(name, D_002895F4, 9) == 0) {
+        return 2;
+    }
+    return memcmp(name, D_002895EC, 5) == 0;
+}
