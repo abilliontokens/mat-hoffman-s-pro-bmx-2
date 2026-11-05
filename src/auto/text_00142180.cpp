@@ -151,6 +151,54 @@ C_00142CF0* C_00142CF0::func_00142CF0(void) {
     return this;
 }
 
+void *func_001E8A44(int size);
+void __stdcall func_00201350(void *p);
+extern int D_002859C4;
+
+struct C_00142DE0 {
+    char pad0[0x8];
+    int unk8;
+    char padC[0x8];
+    C_00142D90_Elem *unk14;
+    void func_00142DE0();
+};
+
+struct C_00142D00 {
+    int unk0;
+    void func_00142D00(int a0);
+};
+
+struct C_00142D20 {
+    char pad0[0x8];
+    int unk8;
+    char padC[0x8];
+    C_00142D90_Elem *unk14;
+    void func_00142D20();
+};
+
+struct C_00142E90 {
+    void *vtbl;
+    int unk4;
+    char pad8[0x148];
+    int unk150;
+    int unk154;
+    int unk158;
+    f32 unk15C;
+    int unk160;
+    int unk164;
+    int unk168;
+    f32 unk16C;
+    int unk170;
+    int unk174;
+    int unk178;
+    f32 unk17C;
+    int unk180;
+    int unk184;
+    int unk188;
+    f32 unk18C;
+    void func_00142E90(int a0);
+};
+
 void C_00142D90::func_00142D90(int param_1)
 {
     void func_001E891B(int);
