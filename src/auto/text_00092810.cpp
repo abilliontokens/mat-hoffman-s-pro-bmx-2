@@ -44,7 +44,17 @@ struct C_00092BE0_Str {
     void func_001D3F20(char *name, int len);
     char *func_001D3F50(void);
     void func_001D3E60(void *s);
+    void func_001D3E80(void *s);
+    void func_001D3EA0(int n, void *a, void *b, void *c);
 };
+
+extern char D_0027A1A4;
+extern char D_0027A198;
+extern char D_0027A188;
+extern char D_0027A178;
+extern char D_0027A168;
+extern char D_0027A158;
+int __stdcall func_001DD0A9(void *a, char *b, int c);
 
 extern char D_0027A150;
 extern char D_00279100;
