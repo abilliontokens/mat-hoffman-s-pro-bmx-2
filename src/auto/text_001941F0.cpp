@@ -99,13 +99,45 @@ struct S_00194490_Clamp {
 
 /* SignatureWave (run-time type information), slot 14 of its vtable */
 struct SignatureWave {
-    char pad0[0x24];
+    void *vtbl;
+    char pad4[0x20];
     S_00194490_Clamp **f24;
-    char pad28[0x28];
+    int f28;
+    int f2C;
+    int f30;
+    char pad34[0x50 - 0x34];
     int f50;
     int f54;
+    int f58;
+    char pad5C[0x64 - 0x5C];
+    float f64;
+    float f68;
+    float f6C;
+    float f70;
+    float f74;
+    float f78;
+    float f7C;
+    float f80;
+    char pad84[0xAC - 0x84];
+    int fAC;
+    float fB0;
+    float fB4;
+    float fB8;
+    float fBC;
+    char padC0[0xE0 - 0xC0];
+    int fE0;
+    SignatureWave *func_00194600(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11, int a12, int a13, float a14, int a15, int a16, int a17, int a18);
+    void func_00194330(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11, int a12, int a13, float a14, int a15, int a16, int a17, int a18);
     int func_00194490(void);
 };
+
+struct C_00157600 {
+    void func_00157600(int a);
+};
+
+extern float D_002EFEA0;
+extern float D_0027A060;
+extern float D_002AB85C;
 
 struct C_0012B8F0 {
     char pad0[0x30];
@@ -585,6 +617,17 @@ void C_00194F60::func_00194F60(S_Vec4Int v)
 
 void C_00194F90::func_00194F90(int a0) {
     unk48 = a0;
+}
+
+void SimpleStillCamera::func_00194FA0(S_StillCamState *out, int a)
+{
+    out->p0 = f8;
+    out->p1 = f18;
+    out->p2 = f38;
+    out->f34 = *(int *)&f48;
+    out->f30 = 0;
+    out->f38 = 0;
+    out->f3C = 0;
 }
 
 C_00195090 *C_00195090::func_00195090(void)
