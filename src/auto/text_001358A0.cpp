@@ -419,3 +419,18 @@ C_00135E00 *C_00135E00::func_00136320(unsigned int flags)
     return this;
 }
 
+int func_00136460(int param_1, int param_2, int param_3)
+{
+    switch ((param_1 >> (param_2 * 2) >> (param_3 * 8)) & 3) {
+    case 0:
+        return 0x200;
+    case 1:
+        return 0x40;
+    case 2:
+        return 0x80;
+    case 3:
+        return 0x100;
+    }
+    return 0;
+}
+
