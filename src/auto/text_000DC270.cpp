@@ -48,6 +48,17 @@ struct I_000DCC20_Buf {
     virtual void *v40(int a0, int a1, int a2);
 };
 
+/* heap block released when the scope is left */
+struct S_000DCC20_Mem {
+    void *p;
+    S_000DCC20_Mem() { p = 0; }
+    ~S_000DCC20_Mem() {
+        if (p != 0) {
+            func_001E891B(p);
+        }
+    }
+};
+
 struct C_000DCC20 {
     char pad0[0x298];
     int unk298;
