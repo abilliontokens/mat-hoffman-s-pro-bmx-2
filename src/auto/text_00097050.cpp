@@ -116,6 +116,7 @@ struct C_00097DA0 {
         return 0;
     }
 
+    int func_00097CA0(const char *name);
     int func_00097DA0(const char *name);
 };
 
@@ -264,5 +265,24 @@ undefined4 C_00097C60::func_00097C60(void)
     return *(undefined4 *)(in_ECX + 0x14);
   }
   return 0;
+}
+
+int C_00097DA0::func_00097DA0(const char *name)
+{
+    C_00097DA0_Obj **list = List();
+    int n = Count();
+    C_00097DA0_Obj **p = list;
+    int i;
+    int j;
+
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < (*p)->f1B8; j++) {
+            if (func_001EA426(name, (*p)->f1C8[j]->fC0) == 0) {
+                return list[i]->f48E0;
+            }
+        }
+        p++;
+    }
+    return 0;
 }
 
