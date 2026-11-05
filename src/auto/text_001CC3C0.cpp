@@ -77,7 +77,9 @@ struct C_001CC3C0 {
     virtual int v7();
     virtual void v8();
     virtual int v9(int a);
-    char pad0[0x114];       /* 0x04 */
+    char pad0[0x108];
+    int f10C;
+    char pad110[8];
     int f118;               /* 0x118 */
     char pad11C[0x8];       /* 0x11C */
     int f124;               /* 0x124 */
