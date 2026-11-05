@@ -92,6 +92,11 @@ void C_00086150::func_00086150(int a0) {
     unkC4 = a0;
 }
 
+void C_00086160::func_00086160(float a)
+{
+    unkEC = (int)a;
+}
+
 int C_00086180::func_00086180(void) {
     return unkC4;
 }
