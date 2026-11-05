@@ -150,3 +150,14 @@ void AmbientDebris::func_00026130(void)
     unkC = (v + v - D_00275460) * D_002756DC;
 }
 
+void AmbientDebris::func_00026170(C_00168B90 *cfg)
+{
+    cfg->func_00168B90(D_002765C4, &unk8);
+    cfg->func_00168B90(D_002765B8, &unk24);
+    cfg->func_00168B90(D_002765AC, &unk28);
+    cfg->func_00168B90(D_0027659C, &unk2C);
+    cfg->func_00168B90(D_00276580, &unk34);
+    cfg->func_00168B90(D_0027656C, &unk38);
+    cfg->func_00168B90(D_0027655C, &unk1C);
+}
+
