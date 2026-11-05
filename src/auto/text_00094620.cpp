@@ -23,11 +23,6 @@ struct S_00094620_Record {
     int unk468;
 };
 
-struct S_00094620_Globals {
-    char pad0[0x2E0];
-    S_00094620_Record *unk2E0;
-};
-
 struct C_00094760 {
     char pad0[0x34];
     int unk34;
