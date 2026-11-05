@@ -18,10 +18,7 @@ struct C_0003AC20 {
  int func_00038760(S_0003AC20_Vec pos,int *out);
  int func_0003AC20(S_0003AC20_Vec p);
 };
-#pragma optimize("g", off)
 static inline void Round_0003AC20(int *out,float f) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
-static inline void Copy_0003AC20(S_0003AC20_Vec *out,const S_0003AC20_Vec *src) { out->x=src->x; out->y=src->y; out->z=src->z; out->w=src->w; }
-#pragma optimize("", on)
 
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 extern char D_00276EEC[];
