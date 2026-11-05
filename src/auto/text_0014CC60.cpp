@@ -18,3 +18,27 @@ struct C_0014CC60 {
     int *f21D8;
     void func_0014D670(int v);
 };
+
+void C_0014CC60::func_0014D670(int v)
+{
+    int i;
+
+    if (f570 == f584) {
+        f48 = (int *)func_001E83E8(f48, f584 * 4 + 0x50);
+        if (f48 == 0) {
+            return;
+        }
+        f584 += 0x14;
+    }
+    f48[f570] = v;
+    f570++;
+    if (f570 - 1 == f21D4) {
+        f21D8 = (int *)func_001E83E8(f21D8, f21D4 * 4 + 0x50);
+        if (f21D8 != 0) {
+            f21D4 += 0x14;
+            for (i = 0; i < 0x14; i++) {
+                f21D8[f570 + i - 1] = func_0013F650();
+            }
+        }
+    }
+}
