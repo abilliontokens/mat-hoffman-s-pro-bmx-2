@@ -234,7 +234,12 @@ struct C_00182B00 {
     char pad239[0x103];
     int f33C, f340, f344, f348, f34C, f350;
     char pad354[0x2c];
-    unsigned char f380;
+    union {
+        unsigned char f380;
+        struct {
+            unsigned char f380_0 : 1;
+        };
+    };
     char pad381[3];
     int f384, f388, f38C, f390, f394, f398, f39C, f3A0, f3A4, f3A8, f3AC;
     char pad3B0[4];
@@ -470,6 +475,69 @@ void C_00182C60::func_00182A80(void)
             }
         }
     }
+}
+
+void C_00182B00::func_00182B00(void)
+{
+    int z = 0;
+
+    f380 &= 0xfe;
+    f4D8 &= 0xfe;
+    f28 = z;
+    f2C = z;
+    f30 = z;
+    f134 = z;
+    f238 = z;
+    f33C = z;
+    f340 = z;
+    f344 = z;
+    f348 = z;
+    f34C = z;
+    f350 = z;
+    f384 = z;
+    f388 = z;
+    f38C = z;
+    f390 = z;
+    f394 = z;
+    f3A8 = z;
+    f3AC = z;
+    f3C0 = z;
+    f3CC = z;
+    f3D0 = z;
+    f3BC = z;
+    f3DC = z;
+    f3E0 = z;
+    f3E4 = z;
+    f3E8 = z;
+    f3EC = z;
+    f3F0 = z;
+    f488 = z;
+    f484 = z;
+    f3B4 = z;
+    f3D4 = z;
+    f3D8 = z;
+    f48C = z;
+    f490 = z;
+    f498 = z;
+    f49C = z;
+    f4A0 = z;
+    f4A4 = z;
+    f4A8 = z;
+    f4AC = z;
+    f4B0 = z;
+    f4B4 = z;
+    f4B8 = z;
+    f4BC = z;
+    f4C4 = z;
+    f4C8 = z;
+    f4CC = z;
+    f4D0 = z;
+    f4D4 = z;
+    f398 = z;
+    f39C = z;
+    f3A0 = z;
+    f3A4 = z;
+    f3C4 = z;
 }
 
 void C_00182C60::func_00182C60(void)
