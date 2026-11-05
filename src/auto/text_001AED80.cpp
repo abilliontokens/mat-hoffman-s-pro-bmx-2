@@ -147,6 +147,25 @@ int C_001AF100::func_001AF100(int a0, int a1, int a2, int a3)
     return 1;
 }
 
+int C_001AF120::func_001AF120(const char *name, int arg)
+{
+    char path[260];
+    if (D_002A60B0[0]) {
+        int i = 0;
+        do { path[i] = D_002A60B0[i]; } while (D_002A60B0[i++]);
+        if (D_002A60AF[strlen(D_002A60B0)] != '\\')
+            strcat(path, "\\");
+        strcat(path, name);
+    } else {
+        strcpy(path, name);
+    }
+    char *dot = func_001E8AC0(path, '.');
+    if (dot) memset(dot, 0, strlen(dot));
+    f4 = D_002A829C->func_001617F0(path, 1);
+    D_002A829C->v6(f4, arg);
+    return 1;
+}
+
 int C_001AF250::func_001AF250(int a0, int a1)
 {
     if (f4 == a0) {
