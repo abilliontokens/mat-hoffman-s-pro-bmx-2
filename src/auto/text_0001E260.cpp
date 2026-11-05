@@ -193,6 +193,15 @@ C_0001E740 *C_0001E740::func_0001E740(int a0, int a1) {
     return this;
 }
 
+void C_0001E930::func_0001E790(void **elem)
+{
+    if (unk1C > 4) {
+        *elem = unk24;
+        unk24 = elem;
+        unk2C -= unk1C;
+    }
+}
+
 void C_0001E860::func_0001E860(void)
 {
   int in_ECX = (int)this;
