@@ -83,9 +83,9 @@ struct C_001CB560 {
     virtual void v0(); virtual void v1(); virtual void v2();
     virtual void v3(); virtual void v4(); virtual void v5();
     virtual void v6(int a);
-    char pad4[0x104];
-    unsigned int f108;
-    char pad10c[0x30];
+    char pad4[0x108];
+    unsigned int f10C;
+    char pad110[0x2c];
     int f13c;
     char pad140[0x14];
     C_001CB560 *f154;
