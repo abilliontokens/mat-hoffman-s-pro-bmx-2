@@ -176,6 +176,22 @@ void C_000DB4B0::func_000DB4B0() {
     } while (count != 0);
 }
 
+C_000DB5B0 *C_000DB5B0::func_000DB5B0(int a) {
+    int i;
+    ((C_001BE360 *)this)->func_001BE360(a);
+    vtbl = &D_0027F724;
+    f290 = 0; f28C = 0; f280 = 0; f284 = 0; f294 = 0; f288 = 0; f298 = 0; f2A0 = 0; f29C = 0;
+    for (i = 0; i < 10; i++) {
+        a310[i] = 0;
+        a338[i] = 0;
+    }
+    f2A8 = 0; f2AC = 0; f2B0 = 0; f2A4 = 0; f2B4 = 0; f2B8 = 0; f2BC = 0; f2C4 = 0; f2C8 = 0; f2C0 = 0;
+    f2D0 = 0; f2D4 = 0; f2D8 = 0; f2DC = 0; f2E0 = 0; f2E8 = 0; f2E4 = 0; f2EC = 0; f2F0 = 0; f2F4 = 0;
+    f2F8 = 0; f2FC = 0; f300 = 0; f304 = 0; f308 = 0;
+    f2CC = -1;
+    return this;
+}
+
 int C_000DB310::func_000DBC00() {
     S_000DBC00_A *a = f124;
     int idx = a->f150->f484->func_0001B3C0(D_0027F7D4);
