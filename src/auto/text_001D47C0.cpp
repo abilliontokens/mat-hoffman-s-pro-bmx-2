@@ -217,6 +217,30 @@ struct C_001D5600 {
     void func_001D5600(void);
 };
 
+struct C_001C3BD0 { void func_001C3BD0(); };
+struct C_001C3C80 { void func_001C3C80(); };
+struct C_0014A540 { void func_0014A540(); };
+struct C_00012140 { void func_00012140(); };
+struct C_001D5500 {
+    void *vtbl;
+    char pad4[0x50];
+    void *f54, *f58, *f5c;
+    int f60;
+    C_001C3BD0 *f64;
+    C_001C3C80 *f68;
+    C_0014A630 *f6c;
+    C_001B65E0 *f70;
+    char pad74[0x10];
+    C_0014A540 *f84;
+    C_00012140 *f88;
+    void *f8c;
+    void func_001D5500();
+    void func_00182800();
+};
+extern int D_002F0BB8;
+void __stdcall func_00201100(void *);
+void func_001E891B(void *);
+
 extern float D_00275460;
 extern float D_00275F58;
 int func_001B2BF0(int param_1);
