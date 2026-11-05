@@ -105,6 +105,43 @@ struct C_00101CD0 {
 };
 
 
+void C_001018F0::func_001018F0()
+{
+    S_001018F0_Owner *owner = f124;
+
+    if (f28C != 0 && owner->f25C->f74->func_000301D0() == 0) {
+        if (f440 == 0) {
+            func_000EE1F0();
+        } else {
+            S_001018F0_Entry *e = f288;
+
+            e->f38 = ((s16)f434 << 24) | (e->f38 & 0xffffff);
+            e->b58 |= 2;
+            f288->func_001D5AD0();
+        }
+        if (f3D8 == 0) {
+            f3B8->func_00093A00(0x43a00000, 0x42f00000, D_0028F5E0, 1, 0, 0x3e800000);
+            f3D8 = 1;
+        }
+        f3BC = 1;
+    } else {
+        if (owner->f25C->f74->func_000301D0() == 0 && f3CC != 0) {
+            f3CC = 0;
+        }
+    }
+    if (f28C == 0 && f440 != 0) {
+        f42C = 0;
+        f430 = 0xb2;
+        f434 = 0xb2;
+        f438 = 0;
+        f43C = 1.0f;
+        f440 = 0;
+    }
+    func_000EE140();
+    func_000EDF00();
+    func_00157960();
+}
+
 undefined4 C_00101A10::func_00101A10(byte param_1)
 {
   int func_000EE3B0(...);
