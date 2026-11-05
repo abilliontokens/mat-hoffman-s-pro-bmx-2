@@ -74,6 +74,7 @@ struct S_0018C9B0_Node {
     S_0018C9B0_Node *f10C;
 };
 
+extern int D_0028A984;
 struct ScriptFreeNode { char pad0[0x10]; ScriptFreeNode *next; };
 struct ScriptFreeChild { char pad0[0x10]; void *f10; char pad14[8]; };
 struct ScriptFreeGroup { char pad0[0x20]; ScriptFreeChild *f20; int f24; int f28; void *f2C; char pad30[8]; };
