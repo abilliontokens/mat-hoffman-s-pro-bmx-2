@@ -449,6 +449,44 @@ C_001C0C50 *C_001C0C50::func_001C0C50(int a1, int a2)
     return this;
 }
 
+void C_001C0C50::func_001C0DD0(int a, int b, int c)
+{
+    S_001C0DD0_Ctl *ctl = unk24->unk118->unk144[b]->unk4;
+
+    if (ctl != 0) {
+        int v = unk6C[a];
+
+        switch (v) {
+        case -1:
+            ctl->func_001BDE90(0);
+            break;
+        case -2:
+            ctl->func_001BDF00(0);
+            break;
+        case -3:
+            ctl->func_001BDFB0(unk68);
+            break;
+        case -4:
+            ctl->func_001BE0B0(unk68);
+            break;
+        case -5:
+            ctl->func_001BE1B0(unk68);
+            break;
+        case -6:
+            ctl->func_001BE220(unk68);
+            break;
+        default:
+            if (v > 0) {
+                ctl->func_001BDF60(v);
+            }
+            break;
+        }
+        if (v != 0) {
+            unk24->v31(v, 1, 0, 0);
+        }
+    }
+}
+
 void C_001C0E80::func_001C0E80(void)
 {
     unk2C = 1;
