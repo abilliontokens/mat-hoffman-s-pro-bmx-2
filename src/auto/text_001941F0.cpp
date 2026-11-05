@@ -102,10 +102,15 @@ struct SignatureWave {
     void *vtbl;
     char pad4[0x20];
     S_00194490_Clamp **f24;
-    int f28;
+    unsigned f28;
     int f2C;
     int f30;
-    char pad34[0x50 - 0x34];
+    float f34;
+    float f38;
+    float f3C;
+    float f40;
+    char pad44[0x4C - 0x44];
+    int f4C;
     int f50;
     int f54;
     int f58;
@@ -118,14 +123,32 @@ struct SignatureWave {
     float f78;
     float f7C;
     float f80;
-    char pad84[0xAC - 0x84];
+    int f84;
+    int f88;
+    float f8C;
+    float f90;
+    int f94;
+    int f98;
+    int f9C;
+    int fA0;
+    int fA4;
+    int fA8;
     int fAC;
     float fB0;
     float fB4;
     float fB8;
     float fBC;
-    char padC0[0xE0 - 0xC0];
+    char padC0[0xD0 - 0xC0];
+    int fD0;
+    char padD4[4];
+    float fD8;
+    int fDC;
     int fE0;
+    int fE4;
+    int fE8;
+    int fEC;
+    SignatureWave *func_00194600(S_Vec4 *a1, S_Vec4 *a2, int a3, float a4, float a5, float a6, float a7, int a8, int a9, int a10, int a11, int a12, int a13, float a14, int a15, int a16, int a17, int a18);
+    void func_00194330(S_Vec4 *a1, S_Vec4 *a2, int a3, float a4, float a5, float a6, float a7, int a8, int a9, int a10, int a11, int a12, int a13, float a14, int a15, int a16, int a17, int a18);
     SignatureWave *func_00194600(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11, int a12, int a13, float a14, int a15, int a16, int a17, int a18);
     void func_00194330(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11, int a12, int a13, float a14, int a15, int a16, int a17, int a18);
     int func_00194490(void);
@@ -418,6 +441,38 @@ int C_00194520::func_00194520(float dt, int a) {
  f84 = (float)fmod(dt * f8C + f84, f34);
  f88 = (float)fmod(dt * f90 + f88, f38);
  return 1;
+}
+
+SignatureWave *SignatureWave::func_00194600(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11, int a12, int a13, float a14, int a15, int a16, int a17, int a18)
+{
+    ((C_00157600 *)this)->func_00157600(1);
+    vtbl = (void *)&D_0028AE14, f6C = 0.0f, f68 = 0.0f, f64 = 0.0f;
+    f70 = 1.0f;
+    f7C = 0.0f;
+    f78 = 0.0f;
+    f74 = 0.0f;
+    f80 = 1.0f;
+    fB8 = 0.0f;
+    fB4 = 0.0f;
+    fB0 = 0.0f;
+    fBC = 1.0f;
+    if (a12 == 0 && a14 > D_002EFEA0) {
+        D_002EFEA0 = a14;
+        D_002AB85C = a14 * D_0027A060;
+    }
+    f58 = 0;
+    f54 = 0;
+    f50 = 0;
+    fE0 = 0;
+    f24 = 0;
+    fAC = a12;
+    if (D_002A99B0 != 0 || a12 != 3) {
+        f28 = 1;
+        f2C = 0;
+        f30 = 1;
+        func_00194330(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18);
+    }
+    return this;
 }
 
 undefined4 C_00194720::func_00194720(byte param_1)
