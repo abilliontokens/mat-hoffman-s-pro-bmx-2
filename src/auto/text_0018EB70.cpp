@@ -20,7 +20,12 @@ struct C_0018F4D0 {
     char pad141[0x150 - 0x141];
     void func_0018E250(char *a, unsigned int b);
     void func_0018F4D0(unsigned int a);
+    void func_0018F390(char *n, unsigned int a, void **p);
 };
+struct C_00191420 {
+    void func_00191420(char *n, unsigned int a, void **p);
+};
+extern "C" void *func_001E8920(void *d, const void *s, int n);
 struct C_0018F350 {
     char pad0[0x18];
     int unk18;
