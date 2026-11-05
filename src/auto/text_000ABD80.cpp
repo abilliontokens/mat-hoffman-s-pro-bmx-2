@@ -3,10 +3,6 @@
 
 extern int D_0027C824;
 
-struct FooTest {
-    int x;
-    void bar();
-};
 extern int D_0027C818;
 extern int D_0027C80C;
 extern int D_0027C800;
