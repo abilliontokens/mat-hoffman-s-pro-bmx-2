@@ -58,6 +58,19 @@ struct C_001A1C90 {
     int func_001A1C90(int a0, int a1, S16_1A s, int a2);
 };
 
+struct Obj198_1A {
+    int func_00198330(int a0);
+};
+
+struct C_001A1FB0 {
+    void *vtbl;
+    char pad4[0x1BC];
+    int unk1C0;
+    int unk1C4;
+    C_001A1FB0 *func_001A1FB0(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11, int a12, int a13, int a14, int a15, int a16, int a17, int a18, int a19, int a20, int a21, int a22, int a23);
+    void func_001A1860(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11, int a12, int a13, int a14, int a15, int a16, int a17, int a18, int a19, int a20, int a21);
+};
+
 struct C_001A1E60 {
     char pad0[0x1BC];
     ObjV2 *unk1BC;
@@ -74,6 +87,26 @@ struct C_001A22E0 {
     void func_001A22E0(int a0);
 };
 
+
+int C_001A1C90::func_001A1C90(int a0, int a1, S16_1A s, int a2) {
+    if (unk1BC == 0) {
+        return 0;
+    }
+    return unk1BC->v23(a0, a1, s, a2);
+}
+
+void C_001A1E60::func_001A1E60() {
+    ObjV2 *obj = unk1BC;
+    ObjV2 *nullp = 0;
+    if (obj != nullp) {
+        int r = obj->v2();
+        unk1BC = nullp;
+        if (r != 0) {
+            return;
+        }
+    }
+    unk1BC = nullp;
+}
 
 C_001A1F70 *C_001A1F70::func_001A1F70(int a0, int a1, int a2, int a3) {
     func_001A1680(a0, a1, a2, a3);
