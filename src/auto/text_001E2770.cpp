@@ -56,6 +56,53 @@ struct S_func_001E29CD_arg0 {
 
 extern float *D_00252DE8[];
 extern float D_00275600;
+extern float D_002902B8;
+
+struct S_func_001E2B60_arg0 {
+    char pad0[0x30];
+    int f30;
+    char pad34[0x60 - 0x34];
+    int f60;
+    char pad64[0x324 - 0x64];
+    int f324;
+    int f328;
+    char pad32C[0x340 - 0x32C];
+    float f340;
+    int f344;
+    char pad348[0x354 - 0x348];
+    int *f354;
+    char pad358[0x3c4 - 0x358];
+    int f3c4;
+    char pad3c8[0x408 - 0x3c8];
+    int f408;
+    int f40c;
+};
+
+struct S_func_001E2B60_arg1 {
+    short *f0;
+    char pad4[8 - 4];
+    char *f8;
+    float *fc;
+    int *f10;
+    char pad14[0x60 - 0x14];
+    float *f60;
+    char pad64[0x6c - 0x64];
+    float f6c;
+};
+
+float __stdcall func_00243639(int v);
+
+static inline int func_001E2B60_noise(S_func_001E2B60_arg0 *self)
+{
+    int s = self->f40c * 1664525 + 1013904223;
+    int n;
+    self->f40c = s;
+    s >>= 2;
+    s += s >> 2;
+    n = s - self->f408;
+    self->f408 = s;
+    return n;
+}
 
 extern "C" __declspec(dllimport) void __stdcall RtlInitAnsiString(S_AnsiString *dst, const char *src);
 extern "C" __declspec(dllimport) u8 __stdcall RtlEqualString(S_AnsiString *a, S_AnsiString *b, int caseInsensitive);
@@ -223,6 +270,85 @@ int __stdcall func_001E285A(u32 *buffer, u32 *size, u32 value, unsigned int coun
 void Class_002901A0::func_001E29C5(unsigned int flags)
 {
     ((C_00224F6E *)((char *)this - 8))->func_00224F6E(flags);
+}
+
+int __stdcall func_001E29CD(S_func_001E29CD_arg0 *obj)
+{
+    int n = obj->f380;
+    int b = obj->f384;
+    float *p;
+    float *q;
+    int v;
+    int w;
+    double k;
+
+    if (n >= b) {
+        n = b;
+    }
+    switch (n) {
+    case 0x40:
+        v = obj->f424;
+        break;
+    case 0x80:
+        v = obj->f420;
+        break;
+    case 0x100:
+        v = obj->f41C;
+        break;
+    case 0x200:
+        v = obj->f418;
+        break;
+    case 0x400:
+        v = obj->f414;
+        break;
+    case 0x800:
+        v = obj->f410;
+        break;
+    default:
+        return 0x80040002;
+    }
+    obj->f428 = v;
+    p = D_00252DE8[n >> 7];
+    obj->f358 = p[0];
+    obj->f35C = p[1];
+    obj->f360 = -p[0];
+    k = D_00275600;
+    obj->f364 = p[1];
+    obj->f368 = (float)(p[8] * k);
+
+    if (obj->f388 < b) {
+        b = obj->f388;
+    }
+    switch (b) {
+    case 0x40:
+        w = obj->f424 + 0x100;
+        break;
+    case 0x80:
+        w = obj->f420 + 0x200;
+        break;
+    case 0x100:
+        w = obj->f41C + 0x400;
+        break;
+    case 0x200:
+        w = obj->f418 + 0x800;
+        break;
+    case 0x400:
+        w = obj->f414 + 0x1000;
+        break;
+    case 0x800:
+        w = obj->f410 + 0x2000;
+        break;
+    default:
+        return 0x80040002;
+    }
+    obj->f42C = w;
+    q = D_00252DE8[b >> 7];
+    obj->f36C = q[1];
+    obj->f370 = -q[0];
+    obj->f374 = q[1];
+    obj->f378 = q[0];
+    obj->f37C = (float)(q[8] * k);
+    return 0;
 }
 
 #pragma optimize("", on)
