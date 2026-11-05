@@ -15,7 +15,8 @@ struct S_000380B0_Node {
     char pad0[0x14]; int count; void *data;
 };
 struct S_000380B0_Array {
-    volatile int count; void *data; char pad8[0xC];
+    int count; void *data; char pad8[0xC];
+    void clear() { memset(data, 0, count * 4); count = 0; }
 };
 struct S_000380B0_Widget {
     virtual void v0(int); virtual void v1(); virtual void v2();
