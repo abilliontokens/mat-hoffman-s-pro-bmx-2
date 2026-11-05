@@ -86,6 +86,27 @@ struct SoultreeHierarchyCollisionObject {
     void func_0019F500(void);
 };
 
+void SoultreeHierarchyCollisionObject::func_0019F500(void)
+{
+    S_0019F500_Xform *p;
+
+    unkA7 = unkA7 & 0xdf;
+    D_002B92E0 = 0;
+    D_002B92F0 = 0;
+    if (unk54 == 0) {
+        void *m = func_001E8A44(0x38);
+        unk54 = m != 0 ? ((S_0019F500_Xform *)m)->Init() : 0;
+    }
+    func_00133D80(unk54);
+    p = unk54;
+    V4_0019F500 t(0);
+    p->a = t;
+    V4_0019F500 u(0);
+    p->b = u;
+    p->f34 = 0.0f;
+    p->f30 = 1.0f;
+}
+
 int C_0019F9B0::func_0019F9B0(int a1, char *path)
 {
     int h;
