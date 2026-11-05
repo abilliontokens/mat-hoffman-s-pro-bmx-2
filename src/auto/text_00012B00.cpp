@@ -1,5 +1,7 @@
 /* 2 functions from 0x00012B00 to 0x00013A40, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
+#include <math.h>
 
 struct S_13910_Vec { float x, y, z, w; };
 struct S_13910_Obj2 { S_13910_Vec *func_00199B00(S_13910_Vec *out, int a); };
