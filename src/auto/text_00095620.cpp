@@ -156,6 +156,80 @@ struct C_00095AB0 {
     void func_00095AB0(float a);
 };
 
+extern char D_0027A2AC[], D_002A48F8[], D_0027A2F4[], D_0027A2EC[], D_0027A2DC[];
+extern char D_0027A2D4[], D_00275630[], D_0027A2CC[], D_0027A2C4[];
+extern "C" int func_001ADCC0(char *, int, const char *, ...);
+
+/* the config file reader the function keeps on its stack */
+struct S_00095640_Config {
+    int data[0x133];
+    void func_00168280();
+    void func_001691E0();
+    void func_00169490(char *, int);
+    int func_00169710(const char *);
+    void func_00168C20(const char *, int, int *);
+    void func_00168BE0(const char *, const char *, char *, int);
+};
+
+/* one entry of the list at +0x54: two names and two flags */
+struct S_00095640_Track {
+    char name[0x32];
+    char name2[0x32];
+    int f64;
+    int f68;
+};
+
+/* growable array of pointers: count at +0, items at +4 */
+struct S_00095640_List {
+    int count;
+    S_00095640_Track **items;
+    int growth;
+    int capacity;
+    S_00095640_Track *at(int i)
+    {
+        if (count > 0 && items != 0 && i < count) {
+            return items[i];
+        }
+        return 0;
+    }
+    int func_0015ACA0(int n);
+    void Add(S_00095640_Track *t)
+    {
+        if (count < capacity || func_0015ACA0(count + growth)) {
+            items[count++] = t;
+        }
+    }
+};
+
+struct S_00095640_Obj {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual int v28(int a);
+    virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35();
+    virtual void v36(); virtual void v37(); virtual void v38(); virtual void v39();
+    virtual void v40();
+    virtual int v41(int a);
+    char pad4[0x1a8];
+    S_00095640_Obj *func_001CD090(int a, void *b, int c);
+    void func_001CB610(int idx, const char *name);
+};
+
+/* BmxMusicManager */
+struct C_00095640 {
+    char pad0[0x28];
+    void *f28;
+    char pad2C[0x24];
+    S_00095640_Obj *f50;
+    S_00095640_List tracks;
+    C_00095640 *func_00095640(int a, int b, int c);
+};
+
 struct C_00095620 {
     undefined4 func_00095620(byte param_1);
 };
