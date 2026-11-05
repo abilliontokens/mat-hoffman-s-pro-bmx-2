@@ -1,6 +1,36 @@
 /* 8 functions from 0x0015D340 to 0x0015E300, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <xmmintrin.h>
+extern float D_00287890, D_00287880, D_00287870, D_00275544, D_0027A060;
+void func_0011AC30(void*,void*);
+static __forceinline void Normalize_DD80(float *out, const float *in) {
+ __m128 v=_mm_loadu_ps(in), sq=_mm_mul_ps(v,v);
+ __m128 len=_mm_add_ss(_mm_movehl_ps(sq,sq),sq);
+ len=_mm_add_ss(len,_mm_shuffle_ps(sq,sq,0xe1));
+ __m128 minv=_mm_load_ss(&D_00287890);
+ __m128 cmp=_mm_cmplt_ss(len,minv);
+ len=_mm_add_ss(len,_mm_and_ps(cmp,minv));
+ __m128 r=_mm_rsqrt_ss(len);
+ __m128 t=_mm_mul_ss(_mm_mul_ss(len,r),r);
+ __m128 scale=_mm_mul_ss(_mm_mul_ss(r,_mm_load_ss(&D_00287870)),_mm_sub_ss(_mm_load_ss(&D_00287880),t));
+ scale=_mm_shuffle_ps(scale,scale,0);
+ _mm_storeu_ps(out,_mm_mul_ps(scale,v));
+}
+static __forceinline void Xform_DD80(float *out,float *in,float *m) {
+ __m128 v=_mm_loadu_ps(in);
+ _mm_storeh_pi((__m64*)(out+2),v);
+ out[3]=1.0f;
+ v=_mm_loadh_pi(v,(__m64*)(out+2));
+ __m128 r0=_mm_mul_ps(_mm_load_ps(m),v);
+ __m128 r1=_mm_mul_ps(_mm_load_ps(m+4),v);
+ __m128 r2=_mm_mul_ps(_mm_load_ps(m+8),v);
+ __m128 t=_mm_add_ps(_mm_unpacklo_ps(r0,r1),_mm_unpackhi_ps(r0,r1));
+ __m128 u=_mm_add_ps(r2,_mm_movehl_ps(r2,r2));
+ _mm_storeu_ps(out,_mm_add_ps(_mm_movelh_ps(t,u),_mm_shuffle_ps(_mm_movehl_ps(t,t),u,0x14)));
+ out[3]=1.0f;
+}
+
 void func_001E891B(void *p);
 
 void *func_001E8A44(int size);
