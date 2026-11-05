@@ -177,12 +177,11 @@ void func_001BBF90(S_001BBF90_Arg *a, int b)
     if (D_002AADF8 != 0) {
         p = a->unk60;
         if (p->unk21 & 1) {
-            u8 flags = p->unk2EC | 0x20;
-            p->unk2EC = flags;
-            if ((!(flags & 8) || !(flags & 0x10)) &&
-                (p->unk90 == 100 || (!(flags & 0x40) && func_00011260(1, 100) <= p->unk90))) {
-                p->unkD0++;
+            p->unk2EC |= 0x20;
+            if ((!(p->unk2EC & 8) || !(p->unk2EC & 0x10)) &&
+                (p->unk90 == 100 || (!(p->unk2EC & 0x40) && func_00011260(1, 100) <= p->unk90))) {
                 p->unk2EC |= 0x10;
+                p->unkD0++;
                 p->func_001BBE20(b);
                 p->func_001BBA60();
             }
