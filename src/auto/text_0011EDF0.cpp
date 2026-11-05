@@ -45,11 +45,7 @@ struct V3_0011EEE0 {
 
 static float min_0011EEE0(float a, float b)
 {
-    float r;
-    __m128 va = _mm_load_ss(&a);
-    __m128 vb = _mm_load_ss(&b);
-    _mm_store_ss(&r, _mm_min_ss(va, vb));
-    return r;
+    return a < b ? a : b;
 }
 
 struct C_0011EDF0 {
@@ -79,14 +75,14 @@ V4_0011EE50 *func_0011EE50(V4_0011EE50 *out, V4_0011EE50 *in)
     return out;
 }
 
-V4_0011EE50 *func_0011EEE0(V4_0011EE50 *out, V3_0011EEE0 *a, V3_0011EEE0 *b)
+V4_0011EE50 *func_0011EEE0(V4_0011EE50 *out, V4_0011EE50 *a, V4_0011EE50 *b)
 {
-    V4_0011EE50 r;
-    r.x = min_0011EEE0(a->x, b->x);
-    r.y = min_0011EEE0(a->y, b->y);
-    r.z = min_0011EEE0(a->z, b->z);
-    r.w = 1.0f;
-    *out = r;
+    V4_0011EE50 t;
+    _mm_store_ss(&t.x, _mm_min_ss(_mm_set_ss(a->x), _mm_set_ss(b->x)));
+    _mm_store_ss(&t.y, _mm_min_ss(_mm_set_ss(a->y), _mm_set_ss(b->y)));
+    _mm_store_ss(&t.z, _mm_min_ss(_mm_set_ss(a->z), _mm_set_ss(b->z)));
+    t.w = 1.0f;
+    *out = t;
     return out;
 }
 
