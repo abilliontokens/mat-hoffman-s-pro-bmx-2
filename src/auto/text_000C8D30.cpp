@@ -10,6 +10,7 @@ struct DelObjC_000C {
 struct GObj2E0 {
     char pad0[0x18];
     int n;
+    int n2;
 };
 
 struct GObj4 {
