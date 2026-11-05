@@ -361,9 +361,13 @@ struct C_000F2AD0_Snd {
     void func_001C4D50(int ms);
 };
 
+struct C_000F2AD0_Ui {
+    void func_000B9A80(int a, int b);
+};
+
 struct C_000F2AD0_Mgr {
     char pad0[0x24];
-    char f24;
+    C_000F2AD0_Ui *f24;
     char pad25[0x134 - 0x25];
     int f134;
     int f138;
