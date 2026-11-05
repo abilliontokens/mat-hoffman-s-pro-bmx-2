@@ -424,6 +424,16 @@ void C_000BC4A0::func_000BC4A0(undefined4 param_1, undefined4 param_2)
   return;
 }
 
+void C_000BC4C0::func_000BC4C0(float a, float b)
+{
+    int x;
+    int y;
+
+    FloatToInt(&x, a);
+    FloatToInt(&y, b);
+    f30->func_001D3700(x, y);
+}
+
 C_000BC520 *C_000BC520::func_000BC520(int a, S_000BC590_Owner *owner)
 {
     D_002EFDB8->f30 = 0;
@@ -483,10 +493,7 @@ void C_000BC520::func_000BC680(int a)
 {
     if (f34 != 0) {
         f30->f4C = 1;
-        func_00157A00(a);
-        return;
-    }
-    if (f30->f48 == 0) {
+    } else if (f30->f48 == 0) {
         f30->func_001D37C0();
         f24 = 1;
         if (f2C != 0) {
