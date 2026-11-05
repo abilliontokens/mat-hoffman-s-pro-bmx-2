@@ -3,10 +3,6 @@
 #include <xmmintrin.h>
 
 extern int D_00283D5C;
-extern float D_00275544;
-extern float D_002756B8;
-extern float D_002756D0;
-extern float D_002756E8;
 
 void func_001E891B(void *p);
 float func_0014F7E0(float x);
