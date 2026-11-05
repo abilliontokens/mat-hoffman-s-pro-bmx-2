@@ -221,10 +221,10 @@ int __stdcall func_0022195C(int a);
 int __stdcall func_0022095F(int a, void *b);
 
 struct S_001CBF20_Vec4 {
-    int x;
-    int y;
-    int z;
-    int w;
+    float x;
+    float y;
+    float z;
+    float w;
     void CopyFrom(S_001CBF20_Vec4 *src) {
         *this = *src;
     }
