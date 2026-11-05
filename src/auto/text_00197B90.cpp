@@ -61,6 +61,75 @@ struct C_00198390 {
     void func_00198390(void);
 };
 
+struct C_00197820 {
+    void *func_00197820(int a);
+};
+
+struct C_001983B0 {
+    void func_001983B0(void **out);
+};
+
+struct C_001982A0 {
+    char pad0[0x174];
+    C_001982A0 *f174;
+    C_001982A0 *f178;
+    void func_001982A0(int *count, C_001982A0 **array);
+};
+
+struct C_00198330 {
+    char pad0[0x174];
+    C_00198330 *f174;
+    C_00198330 *f178;
+    C_00198330 *func_00198330(void *arg);
+};
+
+struct C_001983E0_V4 {
+    int x;
+    int y;
+    int z;
+    int w;
+};
+
+struct C_001983E0 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    char pad4[0x12C];
+    C_001983E0_V4 f130;
+    C_001983E0_V4 f140;
+    char pad150[0x30];
+    u8 f180;
+    void func_001983E0(void *out0, void *out1);
+};
+
 
 void C_00197E70::func_00197E70(undefined4 *param_1)
 {
@@ -83,9 +152,9 @@ C_00197EC0_Vec4 C_00197EC0::func_00197EC0(float *v)
 
     r.w = 1.0f;
     func_00197AA0();
-    r.x = fF4 * v[1] + fF8 * v[2] + fF0 * v[0];
-    r.y = f104 * v[1] + f100 * v[0] + f108 * v[2];
-    r.z = f114 * v[1] + f110 * v[0] + f118 * v[2];
+    r.x = fF0 * v[0] + (fF4 * v[1] + fF8 * v[2]);
+    r.y = f100 * v[0] + f104 * v[1] + f108 * v[2];
+    r.z = f110 * v[0] + f114 * v[1] + f118 * v[2];
     return r;
 }
 
