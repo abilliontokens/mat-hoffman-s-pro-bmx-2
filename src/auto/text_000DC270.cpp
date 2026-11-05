@@ -128,8 +128,9 @@ C_000DD030 *C_000DD030::func_000DD030(int a)
     unk338 = 0;
     vtbl = &D_0027F84C;
     unk288 = 1;
-    unk340 = 0;
-    unk344 = 0;
+    DelObjC_000DC **p = &unk340;
+    for (int i = 0; i < 2; i++)
+        p[i] = 0;
     unk300 = 0;
     unk308 = 0;
     unk304 = 0;
