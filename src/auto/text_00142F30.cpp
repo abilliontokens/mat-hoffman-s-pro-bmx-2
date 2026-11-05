@@ -5,6 +5,41 @@ struct C_00143BD0 {
     undefined4 func_00143BD0(byte param_1);
 };
 
+extern int D_002859D0;
+extern int D_002859EC;
+void *func_001E8A44(int size);
+
+struct PageObj {
+    virtual void destroy(int flags);
+};
+
+struct DXRenderableObjectData {
+    void *vtbl;
+    void func_00181410();
+    DXRenderableObjectData *func_00143520(void);
+};
+
+struct DXRenderableObject;
+
+struct Alloc190 {
+    Alloc190 *func_00142E90(DXRenderableObject *owner);
+};
+
+struct DXRenderableObject {
+    void *vtbl;
+    char pad4[0x19F];
+    unsigned char f1a3 : 1;
+    char pad1a4[0x2C];
+    PageObj *f1d0;
+    int f1d4;
+    void func_001814B0(int a);
+    int func_001817F0(int a, int b, int c);
+    void func_00181540();
+    DXRenderableObject *func_00143540(int a1, int a2, int a3);
+    DXRenderableObject *func_00143580(int a);
+    void func_001435D0(void);
+};
+
 
 undefined4 C_00143BD0::func_00143BD0(byte param_1)
 {
