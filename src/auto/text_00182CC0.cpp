@@ -107,7 +107,7 @@ struct C_00182CC0 {
     virtual void v54();
     virtual void v55();
     virtual void v56();
-    char pad4[0x20];
+    char pad4[0x24];
     C_00168280 *f28;
     char pad2C[4];
     char f30[0x104];
