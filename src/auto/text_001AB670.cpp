@@ -41,8 +41,11 @@ struct StateMachine {
     char field_2C[1];
     void func_00157600(int a);
     void func_001D3F50();
+    void func_00157A00(int a);
     StateMachine *func_001AC080();
     void func_001AC0A0(int a, const char *name);
+    void func_001AC0D0(int a);
+    void *func_001AC120(unsigned int flags);
 };
 
 struct StringTable {
