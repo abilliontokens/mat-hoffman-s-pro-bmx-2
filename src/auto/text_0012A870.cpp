@@ -92,9 +92,11 @@ struct C_0012AC20 {
 
 struct C_0012B000 {
     char pad0[0x70];
-    char f70[0x40];
+    char f70[0x28];
+    float f98;
+    float f9c;
+    char pada0[0x10];
     char fb0[0x40];
-    char fspan[0x40];
     char ff0[0x10c];
     float f1fc;
     float f200;
