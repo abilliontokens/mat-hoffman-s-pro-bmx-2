@@ -149,9 +149,6 @@ struct S_00094A00_Obj {
     virtual void v35();
     virtual void v36(int a, int b, int c);
     virtual void v37();
-};
-
-struct C_001CD3B0 {
     int func_001CD3B0(int v);
 };
 
