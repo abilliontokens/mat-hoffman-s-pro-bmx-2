@@ -64,7 +64,8 @@ struct BmxUIPageHOF {
     u32 unk288;
     u32 unk28C;
     u32 unk290;
-    char pad294[8];
+    u32 unk294;
+    u32 unk298;
     u32 unk29C;
     u32 unk2A0;
     u32 unk2A4;
