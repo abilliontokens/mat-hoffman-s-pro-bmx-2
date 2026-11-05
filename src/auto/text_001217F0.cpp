@@ -11,7 +11,7 @@ static inline float dot_001225C0(const V4_001225C0 &a, const V4_001225C0 &b)
     return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 
-static inline V4_001225C0 sub_001225C0(const V4_001225C0 *a, const V4_001225C0 *b)
+static __forceinline V4_001225C0 sub_001225C0(const V4_001225C0 *a, const V4_001225C0 *b)
 {
     V4_001225C0 t = { a->x - b->x, a->y - b->y, a->z - b->z, 1.0f };
     return t;
