@@ -505,6 +505,31 @@ S_001EEFBA *S_001EEFBA::func_001EF3D2(BitObj *src)
     return this;
 }
 
+BitObj *BitObj::func_001EF88F(long num)
+{
+    char buf[11];
+    char *pBuf = buf + 10;
+    char sign;
+
+    *(unsigned short *)((char *)this + 4) &= 0xfe00;
+    f0 = 0;
+    buf[10] = 0;
+    sign = 0;
+    if (num < 0) {
+        sign = 1;
+        num = -num;
+    }
+    do {
+        *--pBuf = (char)(num % 10) + '0';
+        num = (unsigned long)num / 10;
+    } while (num != 0);
+    if (sign) {
+        *--pBuf = '-';
+    }
+    func_001EF68E(pBuf, (buf + 10) - pBuf);
+    return this;
+}
+
 BitObj *BitObj::func_001EF8F6(int a0, int a1) {
     BitObj local;
     local.func_001EEEE6(this);
