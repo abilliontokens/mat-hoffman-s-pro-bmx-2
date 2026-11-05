@@ -358,6 +358,32 @@ struct C_001BF490 {
     void func_001BF490(C_001BF490_Item *a0);
 };
 
+extern int D_0028D8EC;
+
+/* UIWidgetSoultree constructor */
+struct C_001BF6F0 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    int f28;
+    int f2C;
+    int f30;
+    int f34;
+    int f38;
+    int f3C;
+    int f40;
+    int arr44[8];
+    int f64;
+    int f68;
+    float f6C, f70, f74, f78;
+    float f7C, f80, f84, f88;
+    float f8C, f90, f94, f98;
+    int f9C;
+    int fA0;
+    void func_00157600(int a);
+    C_001BF6F0 *func_001BF6F0(int a, int b);
+};
+
 void C_001BEF90::func_001BEF90(int param_1)
 {
   unk140[param_1]->func_001BDDE0(0);
