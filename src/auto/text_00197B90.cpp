@@ -2,6 +2,10 @@
 #include "common.h"
 #include "ghidra.h"
 #include "ghidra.h"
+struct C_001982F0 {
+    void func_001982F0(void);
+};
+
 struct C_00197E70 {
     void func_00197E70(undefined4 *param_1);
 };
@@ -22,6 +26,22 @@ void C_00197E70::func_00197E70(undefined4 *param_1)
   *param_1 = *(undefined4 *)(in_ECX + 0xbc);
   param_1[1] = *(undefined4 *)(in_ECX + 0xcc);
   param_1[2] = *(undefined4 *)(in_ECX + 0xdc);
+  return;
+}
+
+void C_001982F0::func_001982F0(void)
+{
+  int in_ECX = (int)this;
+  int iVar1;
+  int *piVar2;
+  
+  *(byte *)(in_ECX + 0x180) = *(byte *)(in_ECX + 0x180) | 0x80;
+  piVar2 = (int *)(in_ECX + 0x170);
+  for (iVar1 = *piVar2; iVar1 != 0; iVar1 = *(int *)(iVar1 + 0x170)) {
+    iVar1 = *piVar2;
+    *(byte *)(iVar1 + 0x180) = *(byte *)(iVar1 + 0x180) | 0x80;
+    piVar2 = (int *)(iVar1 + 0x170);
+  }
   return;
 }
 
