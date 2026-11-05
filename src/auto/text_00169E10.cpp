@@ -137,13 +137,13 @@ int ParticleEmitter::func_00169E10(float dt) {
         V4f &v = *(V4f *)&(*(V4u *)((char *)this + 0x24));
         v.x = p->x + v.x; v.y = p->y + v.y; v.z = p->z + v.z;
     }
-    if (delay > 0.0f) {
+    if (delay > D_00275544) {
         if (flags & 2) delay -= dt;
         return 1;
     }
     if (mode == 1) {
         if (flags & 2) {
-            if (timer > 0.0f) { timer -= dt; return 0; }
+            if (timer > D_00275544) { timer -= dt; return 0; }
             ((ParticleEmitterVT *)this)->v31();
             return 1;
         }
@@ -152,18 +152,18 @@ int ParticleEmitter::func_00169E10(float dt) {
     }
     if (mode == 2) {
         if (flags & 2) {
-            if (timer > 0.0f) {
+            if (timer > D_00275544) {
                 timer -= dt;
-                if (timer <= 0.0f) {
+                if (timer <= D_00275544) {
                     timer = func_00011240() * (high1-low1) + low1;
                     ((ParticleEmitterVT *)this)->v31();
                     return 1;
                 }
                 return 0;
             }
-        } else if (timer > 0.0f) {
+        } else if (timer > D_00275544) {
             timer -= dt;
-            if (timer <= 0.0f) {
+            if (timer <= D_00275544) {
                 timer = func_00011240() * (high0-low0) + low0;
                 ((ParticleEmitterVT *)this)->v30();
                 (*(float *)((char *)this + 0x194)) = 0.0f; return 0;
@@ -173,18 +173,18 @@ int ParticleEmitter::func_00169E10(float dt) {
         }
     } else if (mode == 3) {
         if (flags & 2) {
-            if (timer > 0.0f) {
+            if (timer > D_00275544) {
                 timer -= dt;
-                if (timer <= 0.0f) {
+                if (timer <= D_00275544) {
                     timer = high1;
                     ((ParticleEmitterVT *)this)->v31();
                     return 1;
                 }
                 return 0;
             }
-        } else if (timer > 0.0f) {
+        } else if (timer > D_00275544) {
             timer -= dt;
-            if (timer <= 0.0f) {
+            if (timer <= D_00275544) {
                 timer = high0;
                 ((ParticleEmitterVT *)this)->v30();
                 (*(float *)((char *)this + 0x194)) = 0.0f; return 0;
