@@ -264,3 +264,12 @@ void C_00017760::func_00017760(void)
     f494->func_0011CA60(v);
 }
 
+C_00016E40_Vec C_00017A40::func_00017A40(void)
+{
+    C_00016E40_Vec v = f3C->f4->func_00199B00(0);
+    if ((float)D_002B9120->f4DC->f124 >= v.y) {
+        f3C->f4->func_00199600(f4F8);
+    }
+    return v;
+}
+
