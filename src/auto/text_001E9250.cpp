@@ -248,15 +248,16 @@ double func_001E931E(char *str, char **endptr) {
     return v;
 }
 
+/* strtoxl(nptr, endptr, ibase, flags): flags bit 0 = unsigned */
+unsigned long func_001E93CD(const char *nptr, const char **endptr, int ibase, int flags);
+
 #pragma optimize("s", on)
-void func_001E9576(int a0, int a1, int a2) {
-    int func_001E93CD(int, int, int, int);
-    func_001E93CD(a0, a1, a2, 0);
+long func_001E9576(const char *nptr, const char **endptr, int ibase) {
+    return func_001E93CD(nptr, endptr, ibase, 0);
 }
 #pragma optimize("s", on)
-void func_001E958D(int a0, int a1, int a2) {
-    int func_001E93CD(int, int, int, int);
-    func_001E93CD(a0, a1, a2, 1);
+unsigned long func_001E958D(const char *nptr, const char **endptr, int ibase) {
+    return func_001E93CD(nptr, endptr, ibase, 1);
 }
 #pragma optimize("s", on)
 #pragma optimize("y", off)
