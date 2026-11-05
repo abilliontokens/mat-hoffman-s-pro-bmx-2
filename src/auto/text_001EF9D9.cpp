@@ -87,8 +87,7 @@ void S_001EF734::func_001EFAB5(void *ap, void *bp)
 void *_func_001EFCD5(void *a, char b, void *c)
 {
     S_001EF734 local;
-    S_001EF734 *r = local.func_001EF734(b);
-    r->func_001EFAB5(a, c);
+    local.func_001EF734(b)->func_001EFAB5(a, c);
     return a;
 }
 
