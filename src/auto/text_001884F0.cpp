@@ -112,6 +112,46 @@ struct C_00188C20 {
     int func_00188C20(int a);
 };
 
+struct S_00188E70_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    virtual void v31();
+    virtual void v32();
+    virtual void v33();
+    virtual void v34(int a);
+    char pad4[0xC0];
+    S_00188E70_Obj *fc4;
+};
+
 struct C_00188CB0 {
     int f0;
     int *f4;
@@ -119,7 +159,63 @@ struct C_00188CB0 {
     void **fC;
     void func_00188CB0(void);
     int func_00188D20(int n);
+    int func_00188DB0(int idx, int n);
+    int func_00188E20(int idx, int value);
+    void func_00188E70(void);
 };
+
+extern int D_0028A154;
+
+struct S_001CD770 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    S_001CD770 *func_001CD770(void *a, int b);
+};
+
+struct S_00188F20_Mid {
+    char pad0[0xb4];
+    void *fb4;
+};
+
+struct S_00188F20_Root {
+    char pad0[0x4];
+    S_00188F20_Mid *f4;
+};
+
+extern S_00188F20_Root *D_002A8490;
+
+struct C_00157600_188F20 {
+    void func_00157600(int a0);
+};
+
+struct BasicScene {
+    void *vtbl;
+    char pad4[0x20];
+    u32 f24;
+    char pad28[0x3b0 - 0x28];
+    u32 f3b0;
+    char pad3b4[0x3c8 - 0x3b4];
+    u32 f3c8;
+    char pad3cc[0x3f4 - 0x3cc];
+    u32 f3f4[40];
+    u32 f494;
+    char pad498[0x4c0 - 0x498];
+    S_001CD770 *f4c0;
+    void func_00182B00(void);
+    void func_001577A0(void *obj, int b);
+    BasicScene *func_00188F20(int flags);
+};
+
+extern BasicScene *D_002EFDC8;
 
 
 C_00188700* C_00188700::func_00188700(void) {
