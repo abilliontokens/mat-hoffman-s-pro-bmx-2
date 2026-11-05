@@ -48,6 +48,15 @@ struct ParticleEmitter {
     void *f64;
     void *f68;
     u32 f6C;
+    char pad70[0x104];
+    u32 f174;
+    char pad178[0x10];
+    u32 f188;
+    char pad18C[4];
+    u32 f190;
+    char pad194[0x14];
+    u32 f1A8, f1AC;
+    ParticleEmitter *func_0016AD20(void *a, char *name, void *b, u32 *c);
     ParticleEmitter *func_0016A1D0(void *a, void *b, u32 *c);
     int func_0016A330(char *buf);
     int func_0016A8D0(void);
