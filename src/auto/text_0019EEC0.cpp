@@ -34,7 +34,7 @@ struct M_F780 { void func_000264C0(void *src); char pad[0x40]; };
 struct N_F780 {
     char pad0[0xf0]; char fF0[0x40];
     char pad130[0x1b0 - 0x130];
-    F3_F780 f1B0; char pad1bc2[0x1bc - 0x1b8];
+    F3_F780 f1B0;
     short f1BC; char pad1be[6];
     int f1C4, f1C8; unsigned short f1CC, f1CE;
 };
