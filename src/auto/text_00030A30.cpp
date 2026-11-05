@@ -173,6 +173,7 @@ struct VObj_00031450 {
     virtual void v6();
 };
 
+struct Sound_000314F0;
 struct Target_00031610 {
     void func_001A4100(int a0, int a1, int a2);
 };
