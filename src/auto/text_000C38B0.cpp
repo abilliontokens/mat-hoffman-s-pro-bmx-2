@@ -112,6 +112,7 @@ struct S_000C40D0_Owner {
 };
 
 struct S_000C40D0_Sub {
+    void func_0005C100(void);
     void func_0005C110(void);
 };
 
