@@ -287,6 +287,11 @@ int __stdcall func_001D5110(int param)
     return func_00201B50(b[0], b[1], c[4], 0, 3, param) >= 0;
 }
 
+int C_001D5170::func_001D5170(int param_1)
+{
+    return func_001D5110(func_001B2BF0(param_1));
+}
+
 C_001D5350* C_001D5350::func_001D5350(void) {
     unk0 = 0;
     unk4 = 0;
