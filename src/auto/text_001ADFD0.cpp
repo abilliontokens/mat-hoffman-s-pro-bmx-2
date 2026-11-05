@@ -137,6 +137,38 @@ struct C_001AE810F14 {
 
 extern C_001AE810Mgr *D_002AA6C0;
 
+struct C_001AE700_Obj {
+    char pad0[0x3C];
+    float f3C;
+    float f40;
+    char pad44[0x10];
+    unsigned int f54;
+    unsigned int f58;
+    unsigned int f5C;
+    unsigned int f60;
+    unsigned char f64;
+};
+
+struct C_001AE700 {
+    char pad0[0x28];
+    float f28;
+    float f2C;
+    char pad30[0x24];
+    C_001AE700_Obj *f54;
+    char pad58[0xC];
+    int *f64;
+    float f68;
+    void func_001AE700(void);
+};
+
+extern int D_002AA3F4;
+extern float D_0027A060;
+extern float D_00287B68;
+extern float D_00284758;
+extern float D_00275460;
+extern float D_002AA3F0;
+extern float D_00276E9C;
+
 struct C_001AE810 {
     void *vtbl;
     C_001AEB70Obj *f4;
@@ -194,18 +226,9 @@ void C_001AE3E0::func_001AE460(void)
 
 void C_001AE3E0::func_001AE4D0(int a, int b, int c, int d, int e, int f, int g, int h, int idx)
 {
-    C_001AE3E0_Vec4 *p;
     f84 |= 2;
-    p = f38 + idx;
-    p->x = a;
-    p->y = b;
-    p->z = c;
-    p->w = d;
-    p = f3C + idx;
-    p->x = e;
-    p->y = f;
-    p->z = g;
-    p->w = h;
+    f38[idx].Set(a, b, c, d);
+    f3C[idx].Set(e, f, g, h);
 }
 
 float __stdcall func_001AE530(float x, float y)
