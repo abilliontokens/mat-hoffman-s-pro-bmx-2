@@ -233,7 +233,7 @@ void C_001AE3E0::func_001AE4D0(int a, int b, int c, int d, int e, int f, int g, 
 
 struct C_1AE570_Cam {
     char pad0[0xF0];
-    float mat[28];
+    float mat[32];
     float pos[3];
     float f17C;
     float dir[3];
