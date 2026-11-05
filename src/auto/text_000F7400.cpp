@@ -68,6 +68,7 @@ struct S_F8010_G {
     void func_000BF860(int a, int b, int c, int d);
 };
 struct S_F8010_Obj { void func_00093120(void); };
+#define F8010_G ((S_F8010_G *)D_002B91AC)
 struct C_000F8010 {
     char pad0[0x290];
     int f290;
