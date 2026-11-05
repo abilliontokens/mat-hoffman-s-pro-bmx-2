@@ -149,6 +149,7 @@ struct C_00085BD0 {
     int fCC;
     int fD0;
     void func_00085BD0(int a);
+    void func_00085D00(int a);
 };
 
 void C_00085BD0::func_00085BD0(int a)
