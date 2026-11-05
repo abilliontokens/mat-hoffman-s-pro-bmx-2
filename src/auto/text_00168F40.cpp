@@ -71,7 +71,7 @@ struct C_00168F40 {
     void **f20;
     char pad24[0x400];
     int f424;
-    char pad428[4];
+    int f428;
     int f42C;
     int f430;
     int slotCount;
