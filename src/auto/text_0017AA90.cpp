@@ -148,7 +148,6 @@ struct C_0017AA90 {
     int func_0017AA90();
     int func_0017B800();
     void func_0017AD20();
-    void setRect(int a, int b, int c, int d) { f104=a; f108=b; f10C=c; f110=d; }
     void func_001D3F50();
     C_0017AA90 *func_0017ABE0(const char *name);
     C_0017AA90(const char *name);
