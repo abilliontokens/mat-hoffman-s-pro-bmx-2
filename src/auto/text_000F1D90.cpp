@@ -131,6 +131,15 @@ void BmxUIPageHPHChoice::func_000F1FC0(void)
     func_001578D0();
 }
 
+void BmxUIPageHPHChoice::func_000F2120(void)
+{
+    D_002B91AC->f34->func_001D6600();
+    D_002B91AC->f38->func_001D6600();
+    D_002B91AC->f3c->func_001D6600();
+    func_000F2030();
+    func_00157960();
+}
+
 void *C_000F2720::func_000F2720(int flags) {
     void func_001E891B(void *);
     unk0 = (int)&D_0027DF54;
