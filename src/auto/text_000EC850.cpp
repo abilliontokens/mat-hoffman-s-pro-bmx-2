@@ -107,18 +107,6 @@ struct C_000ECF80 {
     C_000ECF80 *func_000ECF80(int a);
 };
 
-struct S_000ED170_Obj {
-    void func_0005E840(char *s);
-};
-
-struct S_000ED170_Root {
-    char pad0[0x34];
-    S_000ED170_Obj *f34;
-    S_000ED170_Obj *f38;
-    S_000ED170_Obj *f3c;
-    void func_000BF860(int a, int b, int c, int d);
-};
-
 struct S_000ED170_Strings {
     char pad0[0x7C8];
     char *f7C8;
