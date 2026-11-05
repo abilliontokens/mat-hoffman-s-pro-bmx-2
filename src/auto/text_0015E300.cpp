@@ -314,6 +314,40 @@ void LightEmitter::func_0015E600()
     ((C_00157660 *)this)->func_00157660();
 }
 
+void LightSource::func_0015E650(LS_Vec4 v)
+{
+    LS_Vec4 *a = &f30;
+    if (*(int *)(f24 + 4) == 4) {
+        f50 = v;
+        *(int *)&f30.x = 0; *(int *)&f30.y = 0; *(int *)&f30.z = 0; *(int *)&f30.w = 0;
+        *(int *)&f40.x = 0; *(int *)&f40.y = 0; *(int *)&f40.z = 0; *(int *)&f40.w = 0;
+    } else {
+        *a = v;
+        f40 = v;
+        *(int *)&f50.x = 0; *(int *)&f50.y = 0; *(int *)&f50.z = 0; *(int *)&f50.w = 0;
+    }
+    if (fB4) {
+        unsigned int c = (int)(v.x * 255.0f);
+        c = (c | 0xffffff00) << 8;
+        c = (c | ((int)(v.y * 255.0f) & 255)) << 8;
+        c |= (int)(v.z * 255.0f) & 255;
+        fB4->func_0015CD50(c);
+    }
+    if (fB8) {
+        unsigned int c = (int)((float)(v.x * 0.00392156886f) * 255.0f) & 255;
+        c |= (int)((float)(v.w * 0.00392156886f) * 255.0f) << 8;
+        c <<= 8;
+        c = (c | ((int)((float)(v.y * 0.00392156886f) * 255.0f) & 255)) << 8;
+        c |= (int)((float)(v.z * 0.00392156886f) * 255.0f) & 255;
+        *(unsigned int *)&v.x = c;
+        fB8->func_0015FF60((unsigned int *)&v.x);
+    }
+    if (D_002E2930) {
+        D_002E2930->f68++;
+    }
+    *(float *)&fC0_ = f30.z * 0.114f + f30.y * 0.587000012f + f30.x * 0.298999995f;
+}
+
 void LightEmitter::func_0015E800(float v)
 {
     if (v == D_00275544 || v > D_002E293C) {
