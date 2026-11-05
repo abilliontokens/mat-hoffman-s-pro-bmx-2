@@ -376,6 +376,27 @@ void C_001B0230::func_001B0230(void)
     ((C_0001DFE0 *)this)->func_0001DFF0();
 }
 
+void *C_001B03A0::func_001B03A0(void *arg)
+{
+    char buf[0x80];
+    void *obj;
+
+    ((C_00168BE0 *)arg)->func_00168BE0(&D_0028C638, &D_002764F0, buf, -1);
+    if (func_001EA426(buf, &D_002764F0) == 0) {
+        return 0;
+    }
+    obj = func_001E8A44(0x24);
+    if (obj != 0) {
+        obj = ((C_00149120 *)obj)->func_00149120(arg, this);
+    }
+    if (func_001EA426(buf, &D_0028C608) == 0) {
+        ((C_00149120 *)obj)->unk4 = 1;
+        return obj;
+    }
+    D_002AA474->v7(buf, this);
+    return obj;
+}
+
 void C_001B0620::func_001B0620(void)
 {
   int in_ECX = (int)this;
@@ -392,5 +413,14 @@ void C_001B0620::func_001B0620(void)
     } while (iVar1 < *(int *)(in_ECX + 0x50));
   }
   return;
+}
+
+void *C_001B0230::func_001B0A00(unsigned int flags)
+{
+    func_001B0230();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
 }
 
