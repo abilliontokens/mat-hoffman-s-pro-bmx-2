@@ -43,6 +43,7 @@ struct S_001A1B90_Obj {
 struct C_001A1B90 {
     char pad0[0x1B4];
     int f1B4;
+    char pad1B8[4];
     S_001A1B90_Obj *f1BC;
     int func_001A1B90();
 };
@@ -293,6 +294,15 @@ int C_001A1C70::func_001A1B60(S_001A1C70_Obj *obj)
     }
     unk1BC = obj;
     return 1;
+}
+
+int C_001A1B90::func_001A1B90()
+{
+    if (f1BC == 0)
+        return 0;
+    if (f1B4 != 0)
+        return 1;
+    return f1BC->v7();
 }
 
 int C_001A1C70::func_001A1C70(int a)
