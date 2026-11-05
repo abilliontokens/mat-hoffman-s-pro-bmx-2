@@ -102,6 +102,20 @@ BmxUIPageParkEditor *BmxUIPageParkEditor::func_000C58E0(int a)
     return this;
 }
 
+void BmxUIPageParkEditor::func_000C5980(void)
+{
+    int i;
+
+    vtbl = (void *)&D_0027E14C;
+    for (i = 0; i < 4; i++) {
+        if (f2D0[i] != 0) {
+            f2D0[i]->destroy(1);
+            f2D0[i] = 0;
+        }
+    }
+    func_001BE3F0();
+}
+
 void BmxUIPageParkEditor::func_000C5E40(void)
 {
     if (f124->f25C->f74->func_000301D0() == 0) {
