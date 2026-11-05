@@ -244,3 +244,28 @@ int C_00054340::func_00054340() {
  return 1;
 }
 
+void C_00054430::func_00054430()
+{
+    S_00054430_V4 a;
+    S_00054430_V4 b;
+    S_00054430_Data *data = f64->f3b4->items[f2c8]->f4;
+    S_00054430_V4 *q = &f64->f4e0->f1a8[0]->f834;
+    S_00054430_V4 *pos = &data->pos;
+    float ang;
+
+    a = S_00054430_V4(data->pos.x - q->x, pos->y - q->y, pos->z - q->z, 1.0f);
+    func_00053CB0(&a, &a);
+    a = f64->f4e0->f1a8[0]->f230->func_00198040(&a);
+    ang = func_0014FBA0(a.x, a.z) * D_00277240;
+    b = *pos;
+    f2a4[0]->func_00088A40((int)ang, &b);
+
+    q = &f64->f4e0->f1a8[1]->f834;
+    a = S_00054430_V4(pos->x - q->x, pos->y - q->y, pos->z - q->z, 1.0f);
+    func_00053CB0(&a, &a);
+    a = f64->f4e0->f1a8[1]->f230->func_00198040(&a);
+    ang = func_0014FBA0(a.x, a.z) * D_00277240;
+    b = *pos;
+    f2a4[1]->func_00088A40((int)ang, &b);
+}
+
