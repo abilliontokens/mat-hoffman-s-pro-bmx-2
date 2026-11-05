@@ -10,12 +10,42 @@ struct GrindElem {
     void func_000A83C0();
 };
 
+extern char D_0027CC24[], D_0027CC08[], D_0027CBF4[], D_0027CBE8[], D_0027CBDC[];
+extern char D_0027CBCC[], D_0027CBC0[], D_002A2734[];
+extern int D_000AAA50;
+extern float D_00275998;
+void *func_001E83E8(void *block, unsigned int size);
+void *func_001E8A44(int size);
+int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+void __stdcall func_00011FF0(void *p, int stride, int count, void *ctor);
+
+struct Vec4_000AEC90 {
+    float x, y, z, w;
+    Vec4_000AEC90() { x = y = z = 0; w = 1; }
+};
+
+struct C_000AEC90Parser {
+    int func_00169710(void *name);
+    int func_00168C20(void *name, int def, void *out);
+    void func_00168CB0(void *name, void *def, void *out);
+    int func_00168C50(void *name, float def, void *out);
+};
+
+/* one water-inclusion box: min/max corners and two extra floats */
+struct WaterBox {
+    float f0, f4, f8, fc;
+    float f10, f14, f18, f1c;
+    float f20, f24;
+};
+
 struct WaterInclusionBoxes {
     void *vtbl;
-    char pad_04[0x24];
-    void *field_28;
+    char pad_04[0x20];
+    int field_24;
+    WaterBox *field_28;
     void func_00157660();
     void *func_000AEC50(unsigned int flags);
+    void func_000AEC90(C_000AEC90Parser *parser);
 };
 
 struct Grinds {
