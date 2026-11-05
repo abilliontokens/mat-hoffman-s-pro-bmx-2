@@ -17,7 +17,40 @@ struct C_0004DCA0_Riders {
     void func_000A4500(int a, int b);
 };
 
-struct C_0004D7A0_Virtual { void **vtbl; };
+struct C_0004D7A0_Virtual {
+    virtual void v0(void);
+    virtual void v1(void);
+    virtual void v2(void);
+    virtual void v3(void);
+    virtual void v4(void);
+    virtual void v5(void);
+    virtual void v6(void);
+    virtual void v7(void);
+    virtual void v8(void);
+    virtual void v9(void);
+    virtual void v10(void);
+    virtual void v11(void);
+    virtual void v12(void);
+    virtual void v13(void);
+    virtual void v14(void);
+    virtual void v15(void);
+    virtual void v16(void);
+    virtual void v17(void);
+    virtual void v18(int);
+    virtual void v19(void);
+    virtual void v20(void);
+    virtual void v21(void);
+    virtual void v22(void);
+    virtual void v23(void);
+    virtual void v24(void);
+    virtual void v25(void);
+    virtual void v26(void);
+    virtual void v27(void);
+    virtual void v28(void);
+    virtual void v29(void);
+    virtual void v30(void);
+    virtual void v31(int, int);
+};
 
 struct C_0004D7A0_Menu {
     char pad0[0xfc];
