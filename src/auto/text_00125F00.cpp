@@ -25,8 +25,7 @@ static inline void Xform_00126A80(S_00126A80_Vec *out, const S_00126A80_Mat *mat
     __m128 r2 = _mm_mul_ps(mat->m[2], t);
     __m128 lo = _mm_unpacklo_ps(r0, r1);
     __m128 hi = _mm_unpackhi_ps(r0, r1);
-    __m128 junk;
-    junk = _mm_movehl_ps(junk, r2);
+    __m128 junk = _mm_movehl_ps(r2, r2);
     lo = _mm_add_ps(lo, hi);
     r2 = _mm_add_ps(r2, junk);
     hi = _mm_movehl_ps(hi, lo);
