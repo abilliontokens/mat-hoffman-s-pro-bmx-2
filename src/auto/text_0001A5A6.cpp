@@ -33,6 +33,18 @@ struct S_0001B360 {
     VDerived_0001B360 *obj;
 };
 
+/* float rgb -> 8-bit rgb */
+struct C_0001AE60 {
+    s8 r, g, b;
+    C_0001AE60* func_0001AE60(const Vec3* v);
+};
+
+/* float rgb -> 16-bit rgb */
+struct C_0001AF00 {
+    s16 r, g, b;
+    C_0001AF00* func_0001AF00(const Vec3* v);
+};
+
 struct C_0001B3B0 {
     char pad0[0x2C];
     int unk2C;
