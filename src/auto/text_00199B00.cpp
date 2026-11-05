@@ -44,8 +44,12 @@ struct S_0019A680_V4 {
     float x, y, z, w;
     S_0019A680_V4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
     S_0019A680_V4(float px, float py, float pz, float pw) { x = px; y = py; z = pz; w = pw; }
-    S_0019A680_V4(float px, float py, float pz) { x = px * D_002755E8; y = py * D_002755E8; z = pz * D_002755E8; w = 1.0f; }
 };
+
+static inline S_0019A680_V4 Vec_0019A680(float x, float y, float z) { return S_0019A680_V4(x, y, z, 1.0f); }
+static inline S_0019A680_V4 Add_0019A680(const S_0019A680_V4 &a, const S_0019A680_V4 &b) { return Vec_0019A680(a.x + b.x, a.y + b.y, a.z + b.z); }
+static inline S_0019A680_V4 Sub_0019A680(const S_0019A680_V4 &a, const S_0019A680_V4 &b) { return Vec_0019A680(a.x - b.x, a.y - b.y, a.z - b.z); }
+static inline S_0019A680_V4 Scale_0019A680(const S_0019A680_V4 &a, float s) { return Vec_0019A680(a.x * s, a.y * s, a.z * s); }
 
 struct C_00199BE0 {
     char pad0[0xb0];
