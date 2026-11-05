@@ -54,3 +54,32 @@ undefined4 C_000BEDA0::func_000BEDA0(byte param_1)
   }
   return in_ECX;
 }
+
+C_000BEDC0 *C_000BEDC0::func_000BEDC0(void *param)
+{
+    extern int D_0027DE7C;
+    extern C_000BEDC0 *D_002B91AC;
+    int i;
+
+    func_00157600(param);
+    unk0 = (int)&D_0027DE7C;
+    D_002B91AC = this;
+    f24 = 0;
+    f28 = 0;
+    f2c = 0;
+    f30 = 0;
+    f34 = 0;
+    for (i = 0; i < 6; i++) {
+        f38[i] = 0;
+        f50[i] = 0;
+        f68[i] = 0;
+    }
+    f80 = 0;
+    f84 = 0;
+    for (i = 0; i < 2; i++) {
+        f88[i] = 0;
+        f90[i] = 0;
+    }
+    return this;
+}
+
