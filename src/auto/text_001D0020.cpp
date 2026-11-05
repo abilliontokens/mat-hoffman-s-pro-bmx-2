@@ -18,11 +18,31 @@ struct C_00156FC0 {
     void func_00156FC0(void);
 };
 
+struct C_00157150 {
+    void func_00157150(void);
+};
+
 struct XboxGame_001D0E60 {
     void *vtbl;
-    char pad4[0x29C];
+    char pad4[0x290];
+    int f294;
+    int f298;
+    int f29C;
     int f2A0;
+    XboxGame_001D0E60 *func_001D0E30(void);
     void func_001D0E60(void);
+};
+
+extern int D_002ABA84;
+void __stdcall func_0026EBC0(int count, void *types);
+int __stdcall func_0026EBE7(void *type, unsigned *insertions, unsigned *removals);
+
+struct C_00136370 {
+    void func_00136370(void);
+};
+
+struct C_00135E50 {
+    void func_00135E50(void);
 };
 
 struct C_001CF2A0 {
