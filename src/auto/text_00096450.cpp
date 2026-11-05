@@ -96,3 +96,17 @@ void C_00096870::func_00096870(const char *name) {
     }
 }
 
+void C_00096FE0::func_00096FE0(float dt) {
+    int i;
+
+    for (i = 0; i < f1cc; i++) {
+        if (arr3ad0[i] > D_00275544) {
+            arr3ad0[i] -= dt;
+            if (arr3ad0[i] <= D_00275544) {
+                arr3ad0[i] = 0;
+                arr48b0[i]->v5(4);
+            }
+        }
+    }
+}
+
