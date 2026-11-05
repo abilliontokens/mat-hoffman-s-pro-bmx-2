@@ -115,6 +115,7 @@ struct C_00198B70 {
     void func_00199600(float a, float b, float c, float d);
     void func_00198B70(S_00198B70_V4 *out0, S_00198B70_V4 *out1);
     void func_00198BE0(int a);
+    void func_00198F50(float *a, float *b, int c, int d, int e);
     void func_00198DE0(void);
     void func_00198E60(void);
     void func_001982F0(void);
