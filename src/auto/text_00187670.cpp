@@ -173,6 +173,20 @@ void C_00187AF0::func_00187AF0(void)
   return;
 }
 
+void C_00187EE0::func_00187EE0(void)
+{
+    void func_001E891B(void *);
+
+    if (f28 != 0) {
+        func_001E891B(f28);
+        f28 = 0;
+    }
+    if (f30 != 0) {
+        func_001E891B(f30);
+        f30 = 0;
+    }
+}
+
 int __stdcall func_00188230(int a0) {
     int __stdcall func_001880A0(int);
     func_001880A0(a0);
