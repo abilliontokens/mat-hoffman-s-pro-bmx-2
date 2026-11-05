@@ -158,7 +158,7 @@ extern float D_00275544;
 struct C_00094A00 {
     char pad0[0x28];
     C_001CD7D0 *f28;
-    int f2C;
+    void *f2C;
     int f30;
     char pad34[0x10];
     int f44;
