@@ -18,11 +18,13 @@ extern void *D_002A8490;
 int func_00135C70(int param_1, int param_2, int *param_3, int param_4)
 {
     int __stdcall func_0015AC20(int);
+    int *p;
     if ((*param_3 == param_1) && (param_3[1] == param_2)) {
         if (param_2 != 0) {
             return 1;
         }
-        if ((*(int *)(*(int *)((char *)D_002A8490 + 8) + 0x38) != 0) && (func_0015AC20(param_4) != 0)) {
+        p = *(int **)((char *)D_002A8490 + 8);
+        if ((*(int *)((char *)p + 0x38) != 0) && (func_0015AC20(param_4) != 0)) {
             return 1;
         }
     }
@@ -51,6 +53,21 @@ void C_00135CB0::func_00135CB0()
         puVar2 = puVar2 + 1;
         iVar4 = iVar4 - 1;
     } while (iVar4 != 0);
+}
+
+void C_00135CB0::func_00135D00(int param_1, int param_2)
+{
+    int *puVar1;
+    int iVar2;
+    if (param_1 >= 0 && param_1 < 0x4a) {
+        puVar1 = (int *)((char *)this + 0x128 + param_1 * 4);
+        iVar2 = 8;
+        do {
+            *puVar1 = param_2;
+            puVar1 = puVar1 + 0x4a;
+            iVar2 = iVar2 - 1;
+        } while (iVar2 != 0);
+    }
 }
 
 void C_00135D70::func_00135D70(int a0, int a1) {
