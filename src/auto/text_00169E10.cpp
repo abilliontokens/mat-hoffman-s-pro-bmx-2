@@ -33,6 +33,16 @@ struct ParticleEmitterVT {
     virtual void v35(void *a);
 };
 
+struct V4u {
+    u32 x, y, z, w;
+    void Set(const V4u *s) {
+        x = s->x;
+        y = s->y;
+        z = s->z;
+        w = s->w;
+    }
+};
+
 struct ParticleEmitter {
     void *vtbl;
     char pad4[0x40];
