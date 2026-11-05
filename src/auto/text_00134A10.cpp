@@ -208,6 +208,67 @@ struct C_00135400 {
 };
 
 
+int func_00134DE0(V4_00134DE0 *seg, V4_00134DE0 *out, void *hit, int noSub, int count, void **skip, int mask, int a7, int mode)
+{
+    int result = 0;
+    float center[4];
+    float half[4];
+    S_00134DE0_Iter iter;
+    S_00134DE0_Node *node;
+    int type;
+
+    center[3] = 1.0f;
+    half[3] = 1.0f;
+    center[0] = (seg[0].x + seg[1].x) * D_002755E8;
+    center[1] = 0.0f;
+    *(int *)&half[1] = 0x7effffff;
+    center[2] = (seg[0].z + seg[1].z) * D_002755E8;
+    half[0] = (seg[0].x - seg[1].x) * D_002755E8;
+    half[2] = (seg[0].z - seg[1].z) * D_002755E8;
+    if (half[0] < D_00275544) {
+        half[0] = -half[0];
+    }
+    if (half[2] < D_00275544) {
+        half[2] = -half[2];
+    }
+    iter.func_001A46F0();
+    type = 1;
+    if (mode == 1) {
+        type = 3;
+    }
+    iter.func_001A4790(a7, type, center, half, 0, 0, 1);
+    for (node = iter.func_001A4840(); node != 0; node = iter.func_001A4840()) {
+        if (node->f2 == D_002A4330) {
+            char *obj = (char *)node - 0x24;
+            int found = 0;
+            int i;
+            for (i = 0; i < count; i++) {
+                if (obj == skip[i]) {
+                    found = 1;
+                }
+            }
+            if ((*(int *)(obj + 0x68) & mask) && !found) {
+                obj[0xa7] |= 0x10;
+                if (func_00134A10(seg, obj, out, hit) != 0) {
+                    seg[1] = *out;
+                    result = 1;
+                }
+            }
+        } else if (noSub == 0 && node->f2 == D_002A4331) {
+            int i;
+            for (i = 0; i < node->func_0014CA60(); i++) {
+                void *sub = node->func_0014CA80(i);
+                if (func_00134A10(seg, sub, out, hit) != 0) {
+                    seg[1] = *out;
+                    result = 1;
+                }
+            }
+        }
+    }
+    iter.func_001A4A20();
+    return result;
+}
+
 void C_00135020::func_00135020(void)
 {
     int i;
