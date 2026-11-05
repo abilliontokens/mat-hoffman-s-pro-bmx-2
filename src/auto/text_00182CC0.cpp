@@ -162,6 +162,7 @@ struct C_00182CC0 {
     C_001B82A0 *f3C0;
     C_001B9B20 *f3C4;
     int f3C8;
+    void func_00183130();
     void func_001832C0();
     int func_001832F0(char *name);
     int func_001833A0();
