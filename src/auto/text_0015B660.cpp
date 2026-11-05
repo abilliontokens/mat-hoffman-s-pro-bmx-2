@@ -199,6 +199,7 @@ struct C_0015C190 {
     int unk10;
     S_0015C190_Key *unk14;
     void func_0015C190(S_0015C190_Vec3 *pos, float t);
+    void func_0015C2F0(S_0015C190_Vec3 *pos, float t, S_0015C190_Vec3 *a3, S_0015C190_Vec3 *in);
     void func_0015B7F0(int idx, S_0015C190_Vec3 *pos, float *t, S_0015C190_Vec3 *in, S_0015C190_Vec3 *out);
 };
 
