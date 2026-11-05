@@ -9,6 +9,13 @@ struct S_001236A0_Vec3 {
 
 struct S_001236A0_Vec4 {
     float x, y, z, w;
+    S_001236A0_Vec4() {}
+    S_001236A0_Vec4(const S_001236A0_Vec3 &v) {
+        x = v.x;
+        y = v.y;
+        z = v.z;
+        w = 1.0f;
+    }
 };
 
 struct S_001236A0_Node {
