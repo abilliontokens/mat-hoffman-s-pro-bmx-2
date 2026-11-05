@@ -139,6 +139,8 @@ C_00053D20 *C_00053D20::func_00053D20(void *param)
 
 void C_00053D20::func_00054210(float dt) {
     int i;
+    int up;
+    float step;
 
     for (i = 0; i < f90; i++) {
         if (i == f2c4) {
@@ -147,13 +149,15 @@ void C_00053D20::func_00054210(float dt) {
             f64->f4e0->f1a8[i]->fa00->f4->func_001824E0(1.0f, 1.0f, 1.0f);
         }
     }
-    if (f2dc != 0) {
-        f2d8 = (dt + dt) + f2d8;
+    up = f2dc;
+    step = dt + dt;
+    if (up != 0) {
+        f2d8 = step + f2d8;
         if (f2d8 >= D_00276288) {
             f2dc = 0;
         }
     } else {
-        f2d8 = f2d8 - (dt + dt);
+        f2d8 = f2d8 - step;
         if (f2d8 <= D_002755E8) {
             f2dc = 1;
         }
