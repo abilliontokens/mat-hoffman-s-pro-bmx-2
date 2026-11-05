@@ -152,11 +152,15 @@ struct S_00017DA0_Ref {
 struct S_TikiOwner {
     char pad0[0x4d4];
     int f4d4;
-    char pad4d8[0x4f4 - 0x4d8];
+    char pad4d8[0x4f0 - 0x4d8];
+    int f4f0;
     int f4f4;
-    char pad4f8[0x73c - 0x4f8];
+    char pad4f8[0x730 - 0x4f8];
+    int f730;
+    char pad734[0x73c - 0x734];
     int f73c;
     int f740;
+    int f744;
     void func_00017760();
     void func_001C6DA0(int a, int b);
 };
