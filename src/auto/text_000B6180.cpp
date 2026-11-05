@@ -33,7 +33,7 @@ struct V4Init_000B6840 : V4_000B6840 {
 
 static inline void Box_000B6840(V4_000B6840 *dst, V4_000B6840 *src, float h)
 {
-    *dst = V4Init_000B6840(src->x, (0.0f - h) + src->y, src->z, 1.0f);
+    *dst = V4Init_000B6840(src->x, src->y + (0.0f - h), src->z, 1.0f);
 }
 
 struct C_000B6840_Mgr;
@@ -159,20 +159,16 @@ void C_000B6640::func_000B6840(float a0, float a1, C_000B6840_Arg *a2)
     V4Init_000B6840 line[2];
 
     if (f7C == D_00275544) {
-        V4_000B6840 *pA;
-        V4_000B6840 *pB;
         C_000B6840_Node *n = ((C_000B6840_Owner *)unk88)->f22c->func_00198330(D_0027D3F0);
-        pA = &vA;
-        n->func_00199A70(((C_000B6840_Owner *)unk88)->f22c, pA);
-        pA->x = 0;
+        n->func_00199A70(((C_000B6840_Owner *)unk88)->f22c, &vA);
+        vA.x = 0;
         f7C = n->f144;
         f80 = D_00275460 / f7C;
         n = ((C_000B6840_Owner *)unk88)->f22c->func_00198330(D_0027D3FC);
-        pB = &vB;
-        n->func_00199A70(((C_000B6840_Owner *)unk88)->f22c, pB);
-        pB->x = 0;
-        vE0 = V4Init_000B6840(pA->x, (0.0f - f7C) + pA->y, pA->z, 1.0f);
-        vF0 = V4Init_000B6840(pB->x, (0.0f - f7C) + pB->y, pB->z, 1.0f);
+        n->func_00199A70(((C_000B6840_Owner *)unk88)->f22c, &vB);
+        vB.x = 0;
+        Box_000B6840(&vE0, &vA, f7C);
+        Box_000B6840(&vF0, &vB, f7C);
     }
     f78 = a0;
     line[0] = V4Init_000B6840(0.0f, a1, 0.0f, 1.0f);
