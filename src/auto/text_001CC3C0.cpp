@@ -121,6 +121,16 @@ struct S_WaveFormat {
     u16 wSamplesPerBlock;
 };
 
+struct S_WaveFormatEx {
+    u16 wFormatTag;
+    u16 nChannels;
+    u32 nSamplesPerSec;
+    u32 nAvgBytesPerSec;
+    u16 nBlockAlign;
+    u16 wBitsPerSample;
+    u16 cbSize;
+};
+
 struct S_BufferDesc {
     u32 dwSize;
     u32 dwFlags;
