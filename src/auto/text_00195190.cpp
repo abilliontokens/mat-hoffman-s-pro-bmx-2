@@ -80,6 +80,24 @@ int C_001955D0::func_001955D0(int a0, int a1) {
     return 1;
 }
 
+int C_001955F0::func_001955F0(Vec4_195D40 *a, float b, float c, float d, float e, int f, Vec4_195D40 *g, Vec4_195D40 *h, float i)
+{
+    if (f48 >= f44) {
+        return 0;
+    }
+    f40[f48].a = *a;
+    f40[f48].f34 = b;
+    f40[f48].f38 = c;
+    f40[f48].f3c = d;
+    f40[f48].f40 = e;
+    f40[f48].f44 = f;
+    f40[f48].b = *g;
+    f40[f48].c = *h;
+    f40[f48].f30 = i;
+    f48++;
+    return 1;
+}
+
 void func_00195D40(Vec4_195D40 *out, Vec4_195D40 v)
 {
     *out = v;
@@ -125,6 +143,11 @@ SimpleVCR *SimpleVCR::func_00195D90(void)
     fA4 = 0;
     fA8 = 0;
     fB8 = 0;
+    vtbl = &D_0028AFA4;
+    f44 = 1.0f;
+    f4c = -0.0f;
+    f3c = 1.0f;
+    f40 = 0.06666667f;
     return this;
 }
 
