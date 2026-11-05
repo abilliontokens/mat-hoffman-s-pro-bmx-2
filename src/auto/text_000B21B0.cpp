@@ -115,7 +115,9 @@ void VehicleAI::func_000B2450(float arg)
         VehicleAIBody *body = f44->f28->f8;
         if (body->f1A0 & 2) {
             unsigned int u = (unsigned int)(body->f1BC->v17() * D_002755E8);
-            body->func_001A1C70((int)(arg * u + u));
+            float fu = (float)u;
+            float scaled = arg * fu;
+            f44->f28->f8->func_001A1C70((int)(scaled + fu));
         }
     }
 }
