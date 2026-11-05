@@ -73,6 +73,28 @@ struct C_001AF250 {
     int func_001AF250(int a0, int a1);
 };
 
+struct C_001AF2B0 {
+    void *vtbl;
+    int f4;
+    int f8;
+    void *func_001AF2B0(int flags);
+};
+
+struct C_001AF710 {
+    int unk0;
+    char pad4[8];
+    int arr[4];
+    void func_001AF710(void);
+};
+
+struct C_001AFB00 {
+    char pad0[0x30];
+    int f30;
+    int f34;
+    unsigned char f38;
+    int func_001AFB00(void);
+};
+
 
 undefined4 C_001AF090::func_001AF090(byte param_1)
 {
