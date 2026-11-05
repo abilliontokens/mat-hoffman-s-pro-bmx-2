@@ -85,6 +85,55 @@ struct C_00156820 {
 };
 
 
+int TikiPlayerAirborneState::func_00156030(int param_1)
+{
+    S_00156030_Player *p;
+    p = unk8;
+    if (p->unk39C->unk108 != 0) {
+        if (p->unk3C->unk10 == 0) {
+            if (p->unkC4 != p->unk3C0) {
+                func_001C6DA0(p->unk3C0, 1);
+            }
+        } else {
+            p->unk384->func_0008AB90(p->unk388);
+        }
+    }
+    p = unk8;
+    if (p->unk3C->unk10 != 0) {
+        func_001C6DA0(p->unk3BC, 1);
+    }
+    return 1;
+}
+
+void C_00156740::func_00156740(void)
+{
+    vtbl = (void *)&D_00286DD4;
+    if (unk384 != 0) {
+        unk384->dummy2();
+    }
+    if (unk388 != 0) {
+        *(int *)unk388 = (int)&D_002754B8;
+        func_001E891B(unk388);
+    }
+    if (unk38C != 0) {
+        *(int *)unk38C = (int)&D_002754B8;
+        func_001E891B(unk38C);
+    }
+    if (unk390 != 0) {
+        *(int *)unk390 = (int)&D_002754B8;
+        func_001E891B(unk390);
+    }
+    if (unk394 != 0) {
+        *(int *)unk394 = (int)&D_002754B8;
+        func_001E891B(unk394);
+    }
+    if (unk398 != 0) {
+        *(int *)unk398 = (int)&D_002754B8;
+        func_001E891B(unk398);
+    }
+    func_001C75A0();
+}
+
 undefined4 C_001567E0::func_001567E0(byte param_1)
 {
   int func_00156740(...);
@@ -103,5 +152,11 @@ C_00156800 *C_00156800::func_00156800(void)
     ((C_001B59E0 *)this)->func_001B59E0();
     vtbl = (void *)&D_00286F6C;
     return this;
+}
+
+int C_00156820::func_00156820(int param_1, void *param_2)
+{
+    ((S_00156820_Base *)param_2)->func_001BBAA0((char *)this + 0x10c, &D_00150D30);
+    return 1;
 }
 
