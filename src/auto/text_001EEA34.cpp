@@ -187,6 +187,37 @@ S_001EF062 *__fastcall func_001EF062(S_001EF062 *self, int unused, int mode)
     return self;
 }
 
+char *__fastcall func_001EF094(int unused, const char *src, char *dst, unsigned int count)
+{
+    char *p = dst;
+    char c;
+
+    while (count != 0) {
+        c = *src;
+        *p = c;
+        if (c == 0) {
+            break;
+        }
+        p++;
+        src++;
+        count--;
+    }
+    return dst;
+}
+
+void *__cdecl func_001EF0B4(void *a)
+{
+    S_001EF0B4_Pos p1;
+    S_001EF0B4_Pos p2;
+
+    p1.off = 0;
+    p1.state = 0;
+    p2.off = 0;
+    p2.state = 0;
+    func_001F23B8(a, &p2, 0, &p1, 0);
+    return a;
+}
+
 int __fastcall func_001EF1D0(BitObj *self, int unused)
 {
     return self->s4 == 0 || self->s4 == 2;
