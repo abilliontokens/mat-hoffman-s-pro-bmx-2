@@ -134,6 +134,7 @@ struct C_001A5BC0 {
 
 extern int D_0028BB04;
 extern int D_0028BAE0;
+void *func_001E8A44(int size);
 
 struct C_001A5F10 {
     void *vtbl;
@@ -239,17 +240,16 @@ void func_001A5C30(char *text, S_001A5C30_Obj **arr, int width, int maxCount)
     }
     do {
         c = text[start + i];
-        i++;
         if (c == 0) {
             break;
         }
         if (c == ' ') {
-            lastSpace = start + i - 1;
+            lastSpace = start + i;
         }
+        i++;
         if (i == width) {
             text[lastSpace] = 0;
-            arr[count]->func_0005E840(text + start);
-            count++;
+            arr[count++]->func_0005E840(text + start);
             i = i + start - lastSpace - 1;
             start = lastSpace + 1;
         }
@@ -259,12 +259,10 @@ void func_001A5C30(char *text, S_001A5C30_Obj **arr, int width, int maxCount)
         if (count >= maxCount) {
             return;
         }
-        arr[count]->func_0005E840(text + start);
-        count++;
+        arr[count++]->func_0005E840(text + start);
     } else {
         while (count < maxCount) {
-            arr[count]->func_0005E840((char *)&D_00275630);
-            count++;
+            arr[count++]->func_0005E840((char *)&D_00275630);
         }
     }
 }
