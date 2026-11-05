@@ -1,6 +1,10 @@
 /* 11 functions from 0x0002EB10 to 0x0002FA80, found by Ghidra. */
 #include "common.h"
 
+struct S_0002F1C0_Params { int a,b,c,d,e,f; float x,y,z,w; };
+struct S_0002F1C0_Input { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual int query(int,int,int,int); };
+struct S_0002F1C0_Camera { void func_00059290(S_0002F1C0_Params,int); void func_0009FE80(S_0002F1C0_Params,int); };
+struct S_0002F1C0_Virtual { virtual void v0(); virtual void v1(); virtual void update(S_0002F1C0_Params*); };
 extern int D_002768FC;
 extern int D_002768E4;
 extern int D_002B7EA8;
