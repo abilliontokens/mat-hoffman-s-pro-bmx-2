@@ -95,8 +95,11 @@ struct C_0012FE30 {
 };
 
 
-void func_0012FCB0(int param_1)
+void C_CarProceduralExtended::func_0012FCB0(int param_1)
 {
+    D_002BEAAC->func_0013B930(param_1, this->f518, 4, 1);
+    S_0012F518 *t = (S_0012F518 *)this->f518;
+    D_002BEAAC->func_0013B930(param_1, t->arr, 0x28, t->count);
 }
 
 undefined4 C_0012FE30::func_0012FE30(byte param_1)
