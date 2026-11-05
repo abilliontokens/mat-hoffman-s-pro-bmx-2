@@ -41,6 +41,47 @@ struct C_001BE360 {
     void func_001BE360(void *param);
 };
 
+struct ClampObj_000BF930 {
+    char pad0[0x10];
+    float f10;
+    float f14;
+};
+
+struct Elem_000BF930 {
+    ClampObj_000BF930 *func_001D5AA0();
+};
+
+struct Mid_000BF930 {
+    ClampObj_000BF930 *func_0018C070();
+};
+
+struct Lookup_000BF930 {
+    Mid_000BF930 **func_0018C160(int id);
+};
+
+struct Root_000BF930 {
+    char pad0[0x2EC];
+    Lookup_000BF930 *p2EC;
+};
+
+extern Root_000BF930 *D_002A8490;
+extern float D_00275AEC;
+extern char D_002786A0, D_00278678, D_00278690;
+
+struct BmxUIPageGlobal {
+    char pad0[0x2C];
+    Elem_000BF930 *f2C;
+    Elem_000BF930 *f30;
+    char pad34[0x1C];
+    Elem_000BF930 *a50[6];
+    Elem_000BF930 *a68[6];
+    char pad80[8];
+    Elem_000BF930 *a88[2];
+    Elem_000BF930 *a90[2];
+    void func_000BF930(void);
+    void func_001578D0(void);
+};
+
 struct C_000BFB70 {
     void *vtbl;
     char pad4[0x27C];
@@ -51,28 +92,12 @@ struct C_000BFB70 {
 
 void C_000BF860::func_000BF860(int idx, int x, int y, int w)
 {
-    float fx = (float)x;
-    float fy = (float)y;
     S_000BF860_elem *e = a50[idx];
-    if (fx != e->x || e->y != fy) {
-        e->x = fx;
-        e->y = fy;
-        e->f58 |= 1;
-    }
+    e->SetXY58((float)x, (float)y);
     e = a68[idx];
-    if (fx != e->x || e->y != fy) {
-        e->x = fx;
-        e->y = fy;
-        e->f58 |= 1;
-    }
+    e->SetXY58((float)x, (float)y);
     e = a38[idx];
-    float nx = (float)(w + 0x27 + x);
-    float ny = (float)(y + 5);
-    if (nx != e->x || e->y != ny) {
-        e->x = nx;
-        e->y = ny;
-        e->f4E |= 6;
-    }
+    e->SetXY4E((float)(x + 0x27 + w), (float)(y + 5));
 }
 
 C_000BFB70 *C_000BFB70::func_000BFB70(void *param)
