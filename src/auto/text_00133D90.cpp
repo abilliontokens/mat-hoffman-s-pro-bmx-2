@@ -155,14 +155,23 @@ struct Mgr_00134770 {
     virtual void v27();
     virtual void v28();
     virtual int v29(Ent_00134770 *e);
-    virtual void v30();
-    char pad4[0x98];
+    virtual void v30(float *center, float *half);
+    char pad4[0x94];
+    int f98;
     EntCb cb9c;
     char pad_a0[4];
     char pad_a4[3];
     unsigned char flags;
     int func_001332E0(Ent_00134770 *e);
     int func_00134770(Ent_00134770 **list, int count);
+    void func_00134530(int max, int *cnt, Ent_00134770 **list, int type, int noDist, int noSub);
+};
+
+struct S_00134530_Iter {
+    char pad0[0x40];
+    void func_001A46F0(void);
+    void func_001A4790(int a, int b, float *c, float *d, int e, int f, int g);
+    Ent_00134770 *func_001A4840(void);
 };
 extern char D_002A4330;
 extern char D_002A4331;
