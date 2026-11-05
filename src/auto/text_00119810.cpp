@@ -40,6 +40,53 @@ struct BmxWallPlantConstraint {
     void func_0011A550(Vec4 *a, Vec4 *b);
 };
 
+BmxWallPlantConstraint *BmxWallPlantConstraint::func_0011A440(int param_1)
+{
+    u32 *p;
+    ((C_00157600 *)this)->func_00157600(param_1);
+    vtbl = &D_00283D5C;
+    p = (u32 *)&f2C;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = (u32 *)&f3C;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = (u32 *)&f4C;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    f5C = 0.1f;
+    f60 = 0.03490658f;
+    f64 = 0.05f;
+    f68 = 0.01745329f;
+    f70 = 15.707961f;
+    f6C = 10.0f;
+    return this;
+}
+
+void BmxWallPlantConstraint::func_0011A4B0()
+{
+    Vec4 v;
+    v.z = 0.0f;
+    v.y = 0.0f;
+    v.x = 0.0f;
+    v.w = 1.0f;
+    C_00198330 *obj = f28->func_00198330(&D_0027D3F0);
+    obj->func_00199A70(f28, &v);
+    float h = obj->f144;
+    Vec4 t;
+    t.x = 0.0f;
+    t.y = v.y;
+    t.z = v.z + h;
+    t.w = 1.0f;
+    f2C = t;
+}
+
 void BmxWallPlantConstraint::func_0011A550(Vec4 *a, Vec4 *b)
 {
     f3C = *a;
