@@ -12,6 +12,22 @@ int __stdcall func_001DD659(int a0);
 void __stdcall func_001DD62B(int a0);
 extern "C" unsigned __int64 __rdtsc();
 #pragma intrinsic(__rdtsc)
+extern "C" unsigned long __readfsdword(unsigned long Offset);
+extern "C" unsigned char __readfsbyte(unsigned long Offset);
+#pragma intrinsic(__readfsdword)
+#pragma intrinsic(__readfsbyte)
+extern int D_002F41D0;
+int __stdcall func_001DDDD6(void *a0, int a1);
+int __stdcall func_001DD15A(void *a0, void *a1, int a2, void *a3, int a4);
+
+/* OVERLAPPED */
+struct S_001DD670_Overlapped {
+    int Internal;
+    u32 InternalHigh;
+    u32 Offset;
+    u32 OffsetHigh;
+    void *hEvent;
+};
 
 unsigned __int64 __rdtsc();
 #pragma optimize("y", on)
@@ -147,8 +163,7 @@ int __stdcall func_001DD659(int a0) {
     func_001DD62B(err);
     return err;
 }
-
-#pragma optimize("y", on)
+#pragma optimize("y", off)
 
 #pragma optimize("y", on)
 
