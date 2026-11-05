@@ -212,6 +212,13 @@ struct C_0010E810 {
     void func_0010E810(void);
 };
 
+struct C_10E6D0_A64 { void func_001094B0(void); };
+struct C_10E6D0_950 { void func_0011CA20(void); };
+struct C_10E6D0_1E0 { void **vtbl; };
+struct C_10E6D0 {
+    void func_00109F80(void);
+    void func_0010E6D0(void);
+};
 
 void BmxVehicle_10DA70::func_0010DA70(Blk24_10DA70 *p)
 {
