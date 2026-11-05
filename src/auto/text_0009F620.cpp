@@ -21,7 +21,22 @@ struct C_0009FD60 {
 extern const float D_00277D04;
 
 extern int D_0027AD64;
+struct V4_0009F7F0 {
+    float x, y, z, w;
+    V4_0009F7F0() { z = 0; y = 0; x = 0; w = 1.0f; }
+};
 struct C_0009F7F0 {
+    int vtbl;
+    char pad4[4];
+    int unk8, unkC, unk10, unk14;
+    V4_0009F7F0 v18, v28;
+    int unk38; float unk3C; int unk40, unk44, unk48; float unk4C;
+    int unk50, unk54;
+    V4_0009F7F0 v58, v68, v78;
+    float unk88; int unk8C, unk90;
+    V4_0009F7F0 v94;
+    int unkA4, unkA8, unkAC, unkB0; float unkB4; int unkB8;
+    V4_0009F7F0 vBC, vCC;
     void func_0012B510(void);
     C_0009F7F0 *func_0009F7F0(void);
 };
