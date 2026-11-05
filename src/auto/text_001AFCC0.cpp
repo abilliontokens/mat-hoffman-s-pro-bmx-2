@@ -495,6 +495,26 @@ void C_001B0230::func_001B0230(void)
     ((C_0001DFE0 *)this)->func_0001DFF0();
 }
 
+void *C_001B0280::func_001B0280(void *arg, int idx)
+{
+    char buf[0x80];
+    char key[0x80];
+    void *obj = 0;
+    func_001ADCC0(key, 0x80, (const char *)&D_0028C624, idx + 1);
+    ((C_00168BE0 *)arg)->func_00168BE0(key, &D_002764F0, buf, -1);
+    if (idx == 0 && func_001EA426(buf, &D_002764F0) == 0)
+        ((C_00168BE0 *)arg)->func_00168BE0(&D_0028C610, &D_002764F0, buf, -1);
+    if (func_001EA426(buf, &D_002764F0) != 0) {
+        void *p = func_001E8A44(0x1c);
+        obj = p != 0 ? ((C_001AF360 *)p)->func_001AF360(arg, this, idx) : 0;
+        if (func_001EA426(buf, &D_0028C608) == 0)
+            ((C_001AF360 *)obj)->unk18 = 1;
+        else
+            D_002AA474->v7(buf, this);
+    }
+    return obj;
+}
+
 void *C_001B03A0::func_001B03A0(void *arg)
 {
     char buf[0x80];
