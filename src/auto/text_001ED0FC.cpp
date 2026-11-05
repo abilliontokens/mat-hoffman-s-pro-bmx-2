@@ -85,7 +85,7 @@ done:
 
 int func_001ED48C(int fh)
 {
-    void func_001EAAE0(void *, int);
+    void __SEH_prolog(void *, int);
     int func_001EE70F(int);
     int *func_001ED075(void);
     int *func_001ED07E(void);
@@ -96,7 +96,7 @@ int func_001ED48C(int fh)
     extern unsigned int D_002FB240;
     extern int *D_002FB260[];
     int result;
-    func_001EAAE0(&D_002954F0, 0xc);
+    __SEH_prolog(&D_002954F0, 0xc);
     if ((unsigned int)fh < D_002FB240 && (*(unsigned char *)((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) != 0) {
         func_001EE70F(fh);
         if ((*(unsigned char *)((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) == 0) {
@@ -147,7 +147,7 @@ void func_001ED527(int *param_1)
 
 int func_001ED7FC(int fh, int param_2, int param_3)
 {
-    void func_001EAAE0(void *, int);
+    void __SEH_prolog(void *, int);
     int func_001EE70F(int);
     int func_001ED633(int, int, int);
     int *func_001ED075(void);
@@ -158,7 +158,7 @@ int func_001ED7FC(int fh, int param_2, int param_3)
     extern unsigned int D_002FB240;
     extern int *D_002FB260[];
     int result;
-    func_001EAAE0(&D_00295500, 0xc);
+    __SEH_prolog(&D_00295500, 0xc);
     if ((unsigned int)fh < D_002FB240 && (*(unsigned char *)((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) != 0) {
         func_001EE70F(fh);
         if ((*(unsigned char *)((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) == 0) {
