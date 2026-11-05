@@ -1,8 +1,8 @@
 /* 22 functions from 0x0023EA00 to 0x0023F472, found by Ghidra. */
 #include "common.h"
 
-extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
-extern "C" void (__stdcall *_imp__RtlLeaveCriticalSection)(void *cs);
+extern "C" void (__stdcall *const _imp__RtlEnterCriticalSection)(void *cs);
+extern "C" void (__stdcall *const _imp__RtlLeaveCriticalSection)(void *cs);
 extern "C" void (__stdcall *_imp__RtlInitializeCriticalSection)(void *cs);
 extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *cs);
 extern "C" __declspec(dllimport) void __stdcall RtlLeaveCriticalSection(void *cs);
@@ -587,15 +587,15 @@ void C_0023EFB0_Pump::func_0023EFB0(int a0, int a1, int a2)
             if (func_001DDDD6(f4C, 0) == 0) {
                 break;
             }
-            _imp__RtlEnterCriticalSection(f6c);
+            RtlEnterCriticalSection(f6c);
             if (fA4.next != &fA4) {
                 r = func_0023EC71(f34, f94, fA4.next);
-                _imp__RtlLeaveCriticalSection(f6c);
+                RtlLeaveCriticalSection(f6c);
                 if (r == 0x80004004) {
                     break;
                 }
             } else {
-                _imp__RtlLeaveCriticalSection(f6c);
+                RtlLeaveCriticalSection(f6c);
             }
         } while (f8C > 0);
     }
