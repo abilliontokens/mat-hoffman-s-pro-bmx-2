@@ -5,6 +5,18 @@ struct C_001314E0 {
     void func_001314E0(undefined4 *param_1);
 };
 
+struct S_001313C0_Data {
+    int w[10];
+};
+
+struct C_001313C0 {
+    char pad0[0x9C];
+    int f9C;
+    char padA0[0xC];
+    S_001313C0_Data fAC;
+    void func_001313C0(S_001313C0_Data *src);
+};
+
 
 void C_001314E0::func_001314E0(undefined4 *param_1)
 {
