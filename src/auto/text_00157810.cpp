@@ -398,6 +398,26 @@ int C_00157CF0::func_00157CF0(void)
     return func_0001E010();
 }
 
+void C_00157810::func_00158270(char *name, int a, int b)
+{
+    char path[0x104];
+    void *file;
+    func_001ADCC0(path, 0x104, D_00287354, D_002DF95C);
+    file = func_0014FDF0(path, D_00276274);
+    while (file) {
+        func_0014FE50(file);
+        func_001ADCC0(path, 0x104, D_00287354, ++D_002DF95C);
+        file = func_0014FDF0(path, D_00276274);
+    }
+    file = func_0014FDF0(path, D_002790E0);
+    if (file) {
+        if (name) func_0014FE90(file, D_00287330, name);
+        else func_0014FE90(file, D_00287314);
+        func_00157D40(file, a, b);
+        func_0014FE50(file);
+    }
+}
+
 void *C_00158360::func_00158360(int flags)
 {
     extern int D_002DF94C;
