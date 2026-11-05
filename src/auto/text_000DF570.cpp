@@ -75,6 +75,25 @@ struct C_000DFCF0 {
     void func_000DFCF0();
 };
 
+struct S_000DFA80_W {
+    void func_001B1980();
+    void func_001B2270(unsigned int c);
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, float a11, float a12, int a13);
+};
+
+extern float D_00275AF0;
+extern float D_0027F974;
+extern float D_00275994;
+
+struct C_000DFA80 {
+    char pad0[0x280];
+    int unk280;
+    char pad284[0x100];
+    float arr384[18];
+    char pad3cc[0x4c8 - 0x3cc + 0x3cc - 0x3cc];
+    void func_000DFA80();
+};
+
 void C_000DFC00::func_000DFC00()
 {
     S_000DFC00_Widget *w = D_002B91AC->unk44;
