@@ -224,17 +224,61 @@ struct C_00142AF0_Ref {
     int f10;
 };
 
+struct S_00142810_In {
+    char pad0[0x18];
+    float f18;
+    float f1C;
+    char pad20[0x2C - 0x20];
+};
+
+struct S_00142810_Rec {
+    float f0;
+    S_001425B0_V3 f4;
+    S_001425B0_V3 f10;
+    int f1C;
+    int f20;
+    int f24;
+    int f28;
+    int f2C;
+    int f30;
+};
+
 struct C_00142AF0 {
-    char pad0[0xa8];
+    char pad0[0x10];
+    S_00142810_In *f10;
+    S_00142810_Rec *f14;
+    S_00142810_Rec *f18;
+    char pad1C[4];
+    int f20;
+    int f24;
+    int f28[4];
+    int f38[4];
+    int f48;
+    int f4C;
+    int f50;
+    int f54;
+    float f58;
+    char pad5C[4];
+    int f60;
+    S_001425B0_V3 f64;
+    S_001425B0_V3 f70;
+    int f7C;
+    int f80;
+    char pad84[0xa8 - 0x84];
     int fA8;
     int fAC[2];
     char padB4[0xc4 - 0xb4];
     C_00142AF0_Track *fC4;
     C_00142AF0_Ref *fC8;
     int fCC;
+    char padD0[0xEC - 0xD0];
+    int fEC;
+    void func_00142180(int slot, int base, int pos, int count, int flag);
     void func_00142810(void);
     int func_00142AF0(void);
 };
+
+extern float D_00275544;
 
 extern int D_002A6D38;
 extern C_00142AF0_NodeMgr *D_002A829C;
