@@ -4,7 +4,29 @@
 struct Q_001A1930 { float x,y,z,w; };
 struct O_001A1930 { char pad[8]; int pos[3]; char pad14[0x24]; int vel[3]; };
 struct N_001A1930 { int unk0; O_001A1930 *obj; };
-struct E_001A1930 { void **vtbl; };
+struct E_001A1930 {
+virtual void v0();
+virtual void v1();
+virtual void v2();
+virtual void v3();
+virtual void v4();
+virtual void v5();
+virtual void v6();
+virtual void v7();
+virtual void v8();
+virtual void v9();
+virtual void v10();
+virtual void v11();
+virtual void v12();
+virtual void v13();
+virtual void v14();
+virtual void v15();
+virtual void v16();
+virtual void v17();
+virtual void v18();
+virtual void v19();
+virtual void v20(Q_001A1930); virtual void v21(Q_001A1930);
+};
 struct C_001A1930 {
  char pad0[0x4c]; float unk4C; char pad50[0x20];
  Q_001A1930 pos,vel; float distance; N_001A1930 *nearest; int flags;
