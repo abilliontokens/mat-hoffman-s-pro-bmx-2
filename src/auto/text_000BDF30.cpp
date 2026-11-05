@@ -90,6 +90,26 @@ struct C_000BEDC0 {
 };
 
 
+int C_000BBE30::func_000BDF30(int show)
+{
+    char buf[0x104];
+    int idx;
+
+    if (D_002A8490->f2E0->f324 == 1) {
+        return func_000BBE30(show);
+    }
+    func_001ADCC0(buf, 0x104, D_0027DB74, &f27C[f284].f104[0], f28C + 1);
+    if (D_002A8490->f234 != 1) {
+        D_002EFDB8->v7(1);
+        D_002EFDB8->v8();
+    }
+    idx = f150->f484->func_0001B3C0(&f27C[f284]);
+    if (show != 0) {
+        func_000BBA80(idx, buf);
+    }
+    return idx;
+}
+
 void *C_000BE510::func_000BE510(int flags) {
     extern int D_0027DB9C;
     void func_001E891B(void *);
