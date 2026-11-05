@@ -206,6 +206,22 @@ void C_001CB610::func_001CB610(int idx, const char *name)
     }
 }
 
+int C_001CB650::func_001CB650(float a)
+{
+    if (!(fa0 & 1)) {
+        return 0;
+    }
+    if (fc8 != 0 && fcc != 0) {
+        fcc = 0;
+        if (a > D_00275544) {
+            v24(0, a, 0);
+        }
+        D_00220AE0(fb8, 1);
+        D_00220AE0(fbc, 1);
+    }
+    return 1;
+}
+
 void C_001CB940::func_001CB940(void)
 {
     ((C_001576C0 *)this)->func_001576C0();
