@@ -112,6 +112,8 @@ extern "C" void __cdecl func_001F4E8B(int rterrnum);
 extern "C" void (__cdecl *D_002AEA2C)(int code);
 extern "C" unsigned int strlen(const char *s);
 #pragma intrinsic(strlen)
+extern "C" void *memset(void *dst, int c, unsigned int n);
+#pragma intrinsic(memset)
 
 /* _MCW_PC / _PC_53: the original takes these two by address */
 extern "C" int D_00010000;
@@ -305,6 +307,17 @@ char *__cdecl func_001EB4F7(char *buf, int ndec, int caps, S_StrFlt *pflt, char 
     return buf;
 }
 
+char *__cdecl func_001EB5A0(double *pvalue, char *buf, int ndec, int caps)
+{
+    char resultstr[24];
+    S_StrFlt flt;
+
+    func_001F4A07(*pvalue, &flt, resultstr);
+    func_001F48CE(buf + (flt.sign == '-') + (ndec > 0), ndec + 1, &flt);
+    func_001EB4F7(buf, ndec, caps, &flt, 0);
+    return buf;
+}
+
 void __cdecl func_001EB786(double *arg, char *buffer, int format, int precision, int caps)
 {
     if (format == 'e' || format == 'E') {
@@ -363,13 +376,17 @@ int __cdecl func_001EB980(void)
 {
     S_Tiddata *ptd;
     S_Tiddata **tls;
+    unsigned long idx;
+    char **base;
 
     if (func_001EB290() == 0) {
         func_001EB2D9();
         return 0;
     }
     ptd = func_001EA1A1(1, 0x84);
-    tls = (S_Tiddata **)D_002F41D0[(char **)__readfsdword(4)];
+    idx = D_002F41D0;
+    base = (char **)__readfsdword(4);
+    tls = (S_Tiddata **)base[idx];
     tls[2] = ptd;
     if (ptd == 0) {
         ptd->pxcptacttab = D_002AEDD8;
@@ -387,6 +404,21 @@ void __cdecl func_001EB9F3(int rterrnum)
     func_001F4EB7();
     func_001F4E8B(rterrnum);
     D_002AEA2C(0xff);
+}
+
+int __fastcall func_001EBA0F(int unused, int c)
+{
+    int digit;
+
+    if (D_002AEA38 > 1) {
+        digit = func_001EC5F1(c, 4);
+    } else {
+        digit = *(unsigned char *)&D_002AEA30[c] & 4;
+    }
+    if (digit == 0) {
+        c = (c & ~0x20) - 7;
+    }
+    return c;
 }
 
 int __fastcall func_001EBA41(int unused, S_File *f)
