@@ -22,6 +22,16 @@ struct C_00157600 {
 struct C_001D4300 {
     int func_001D4300(int a);
     void func_001D41D0(int a);
+    int func_001D4200(void *s);
+};
+
+extern char D_0027A144;
+
+struct C_00092BE0_Str {
+    char pad0[0xdc];
+    C_00092BE0_Str *func_001D3E30(void);
+    void func_001D3F20(char *name, int len);
+    char *func_001D3F50(void);
 };
 
 struct S_00092A10_Sub {
