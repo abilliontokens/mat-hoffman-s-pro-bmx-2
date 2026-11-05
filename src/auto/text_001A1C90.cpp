@@ -206,12 +206,7 @@ struct C_001A2580 {
     void *f1cc;
     int f1d0;
     int f1d4;
-    union {
-        u8 f1d8;
-        struct {
-            u8 b0 : 1;
-        } bits1d8;
-    };
+    u8 f1d8;
     char pad1d9[0x2d0 - 0x1d9];
     int f2d0;
     char pad2d4[4];
@@ -413,18 +408,15 @@ int C_001A2510::func_001A2510(S_001A2510_Arg *arg, int a1, int a2)
 
 C_001A2580 *C_001A2580::func_001A2580(int a0, int a1, int a2, int a3)
 {
-    u8 t;
-
     func_001A1680(a0, a1, a2, a3);
     f1c0 = 0;
     f1c4 = 0;
     vtbl = &D_0028B58C;
-    t = f1d8 & 0xfe;
     f1cc = 0;
     f1c8 = 0;
     f1d0 = 0;
     f1d4 = 0;
-    f1d8 = t;
+    f1d8 &= 0xfe;
     f1cc = func_001E8A44(4);
     f1d4 = 1;
     f1d0 = 0x10;
