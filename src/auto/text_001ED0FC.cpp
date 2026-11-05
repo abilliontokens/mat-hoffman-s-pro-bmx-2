@@ -2,6 +2,7 @@
 #include "common.h"
 
 void func_001E9DE9(void *p);
+int func_001ED8A7(int ch, void *stream);
 
 struct S_001EDC7E {
     int f0;
