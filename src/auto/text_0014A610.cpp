@@ -177,3 +177,15 @@ void C_0014A8A0::func_0014A8A0(void)
     }
 }
 
+void *C_0014AA40::func_0014AA40(int flags) {
+    extern int D_00286894;
+    void func_001E891B(void *);
+    unk0 = (int)&D_00286894;
+    func_0014A9C0();
+    func_001AC830();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
