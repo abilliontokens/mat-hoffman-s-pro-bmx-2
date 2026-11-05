@@ -137,3 +137,27 @@ C_00147490 *C_00147490::func_00147490()
     vtbl = (void *)&D_0028634C;
     return this;
 }
+
+void C_001474B0::func_001474B0(int a, int b, unsigned int key)
+{
+    int i;
+    for (i = 0; i < f50; i++) {
+        S_001474B0_Elem *e = f54[i];
+        if ((e->f24 & 2) != 0) {
+            S_001474B0_Res *r = e->func_001B0130(key);
+            char *p1 = 0;
+            S_001474B0_Sub *p2 = 0;
+            if (r != 0) {
+                r->func_001AFEC0();
+                if (r->f1C != 0) {
+                    p1 = r->f1C + 0x1c;
+                }
+                if (r->f20 != 0) {
+                    p2 = (S_001474B0_Sub *)((char *)r->f20 + 0xc);
+                }
+            }
+            D_002F0630->f10[fD4[i]]->func_00149310(a, b, (int)p1, (int)p2);
+        }
+    }
+}
+
