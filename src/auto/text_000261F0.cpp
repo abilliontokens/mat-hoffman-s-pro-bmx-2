@@ -216,6 +216,21 @@ S_000267F0_V4 func_00026910(float *m, int col)
     return r;
 }
 
+void C_000269B0::func_000269B0(float a, float b, float c)
+{
+    if (a != D_00276610) {
+        f0 = a;
+    }
+    if (b != D_00276610) {
+        f4 = b;
+        f8 = 1.0f;
+    }
+    if (c != D_00276610) {
+        fC = c;
+        f10 = -c;
+    }
+}
+
 undefined4 C_00026A70::func_00026A70(int param_1)
 {
   int in_ECX = (int)this;
