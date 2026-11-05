@@ -135,6 +135,21 @@ C_001D6380 *C_001D6380::func_001D6380(unsigned int flags)
     return this;
 }
 
+C_001D63D0 *C_001D63D0::func_001D63D0(unsigned int flags)
+{
+    vtbl = (void *)&D_0028F600;
+    if (unk5C != 0) {
+        unk5C->destroy(1);
+    }
+    if (unk60 != 0) {
+        unk60->destroy(1);
+    }
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void C_001D6410::func_001D6410(void)
 {
     if (unk0 != 0) {
