@@ -20,10 +20,15 @@ struct C_001C0730 {
     C_001C0730 *func_001C0730(int a1, int a2);
 };
 
+extern "C" unsigned int strlen(const char *s);
+#pragma intrinsic(strlen)
+
 extern int D_0028DB04;
 extern int D_0028D804;
+extern char D_00275630[];
 
 void func_001E8390(void *p);
+char *func_001E9260(char *str, int ch);
 
 struct C_00157600 {
     void func_00157600(int a);
