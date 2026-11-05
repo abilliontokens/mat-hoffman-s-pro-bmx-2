@@ -209,7 +209,7 @@ struct S_001A6E90_Msg {
     int f4;
     int code;
     int param;
-    char rest[0xBE4];
+    char rest[0xBF0];
 };
 
 extern "C" void __stdcall func_001DCAFF(int a0, void *a1);
@@ -312,6 +312,99 @@ void C_001A6D30::func_001A6D30()
         break;
     }
     func_00157960();
+}
+
+void C_001A6E90::func_001A6E90(float dt)
+{
+    volatile float t;
+    S_001A6E90_Msg msg;
+    float sum;
+
+    sum = dt + f54;
+    f54 = sum;
+    if (sum >= D_002755E8 && f6C != 6) {
+        if (f78->func_00092A10()) {
+            if (f84 != 0) {
+                f78->func_00093120();
+                f84 = 0;
+            }
+            if (f78->func_00092A50(&f8C)) {
+                if (f78->func_00092AC0()) {
+                    f6C = 0;
+                    f7C = 1;
+                } else {
+                    f6C = f8C >= 5 ? 4 : 9;
+                }
+            } else {
+                if (f78->func_00092AC0()) {
+                    f6C = 0;
+                    f7C = 1;
+                } else {
+                    f6C = 4;
+                }
+            }
+        } else {
+            f6C = 3;
+            f7C = 0;
+        }
+        f54 = 0;
+    }
+    D_002EFF78 += dt;
+    if (f6C == 0 || f6C == 4) {
+        if (f78->func_00092A10() && f88 == 0) {
+            D_002EFF78 = 0.0f;
+            f80 = 0;
+            f68 = 1;
+            if (f6C != 0) {
+                goto after_draw;
+            }
+            if (f78->func_00092EF0() == 0) {
+                f6C = 6;
+                D_002A8490->f2e0->f2c0->func_0005CBD0();
+                f88 = 0;
+                f68 = 0;
+            }
+        }
+    }
+    if (D_002EFF78 >= D_00275460 && f68 != 0) {
+        if (f6C == 4) {
+            f78->func_00093A00(0x43a00000, 0x431f0000, D_0028F5E0, 0, 1, 0x3e800000);
+        } else {
+            f78->func_00093B80(0x43a00000, 0x431f0000, D_0028F5E0, 0, 1, 0x3e800000);
+        }
+        f4C->f24 = 9;
+    }
+after_draw:
+    if (f5C != 0 || f60 != 0) {
+        t = dt + f64;
+        f64 = t;
+        if (t >= D_002755E8) {
+            if (f5C != 0) {
+                if (f6C == 3) {
+                    if (f78->func_00092A10() == 0) {
+                        f74 = 1;
+                        f6C = 3;
+                    } else {
+                        f6C = 4;
+                    }
+                } else {
+                    f4C->f24 = 9;
+                    f5C = 0;
+                }
+            } else if (f60 != 0 && t >= D_00278C48) {
+                if (f6C == 9) {
+                    msg.type = 2;
+                    msg.code = 0x55;
+                    msg.param = 5;
+                    func_001DCAFF(0, &msg);
+                } else {
+                    f4C->f24 = 9;
+                }
+                f60 = 0;
+            }
+        }
+    }
+    func_00157A00(dt);
 }
 
 void *C_001A7120::func_001A7120(int flags)
