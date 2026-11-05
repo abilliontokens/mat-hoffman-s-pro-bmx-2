@@ -121,7 +121,7 @@ void *func_001F311D(void *param_1, int param_2) {
     return param_1;
 }
 
-#pragma optimize("y", on)
+#pragma optimize("sy", on)
 C_001F318D *C_001F318D::func_001F318D(char **param_1) {
     extern int D_00295F00;
     char *func_001E8AA5(int);
