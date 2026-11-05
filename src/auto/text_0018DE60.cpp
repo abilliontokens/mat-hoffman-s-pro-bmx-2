@@ -38,7 +38,7 @@ struct C_0018E0E0_Arg {
 };
 
 struct C_0018E0E0 {
-    C_0018DA90_Result func_0018DA90(int kind, int idx, const char *name, unsigned int *out);
+    C_0018DA90_Result func_0018DA90(int kind, int idx, const char *name, const unsigned int &out);
     void func_0018E0E0(C_0018E0E0_Arg *arg, int idx);
 };
 
@@ -76,6 +76,30 @@ struct C_0018E1D0 {
     int func_0018CC00(const char *name);
 };
 
+
+void C_0018E0E0::func_0018E0E0(C_0018E0E0_Arg *arg, int idx)
+{
+    int i;
+    C_0018DA90_Result r;
+    C_0018E0E0_Entry *e;
+
+    for (i = 0; i < arg->f24; i++) {
+        e = &arg->f20[i];
+        if (e->type == 2) {
+            int kind = e->kind;
+            char c = e->name[0];
+            const char *name = e->name;
+            if (c != '$'
+                && (kind == 13 || kind == 14 || kind == 10 || kind == 11 || kind == 12
+                    || kind == 2 || kind == 19 || kind == 20 || kind == 21)) {
+                r = func_0018DA90(2, idx, name, 0);
+                if (r.f40 != -1) {
+                    arg->f20[i].f44 = r.f40;
+                }
+            }
+        }
+    }
+}
 
 void *C_0018E1D0::func_0018E1D0()
 {
