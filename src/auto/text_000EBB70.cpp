@@ -150,6 +150,7 @@ struct C_000EBE30 {
     int unk39C;
     void func_001BE360(int a0);
     C_000EBE30 *func_000EBCF0(int a0);
+    void func_000EC320();
     void func_001BE3F0();
     void func_000EBE30();
     void func_000EC4A0();
