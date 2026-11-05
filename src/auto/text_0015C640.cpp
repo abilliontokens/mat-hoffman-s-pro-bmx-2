@@ -153,6 +153,10 @@ void func_001E891B(void *p);
 extern C_0015D1B0 *D_002E2930;
 
 int func_0015CAB0(float *base, int hi, float v);
+int func_0015CCC0(float *base, float v, int hi, float **lo, float **up, float *t);
+void func_0015CC50(float *param_1, int param_2);
+void func_0001B2E0(void *in, float *out);
+void func_0015C7D0(float *a, float *b, float *out, float t);
 extern float D_00287848;
 extern float D_00287844;
 extern float D_00287840;
