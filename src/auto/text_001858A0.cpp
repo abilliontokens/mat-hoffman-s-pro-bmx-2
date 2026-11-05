@@ -121,7 +121,26 @@ struct C_00185BF0 {
     char f114[0x410];
     int f524, f528, f52c, f530, f534, f538, f53c, f540, f544;
     C_00185BF0 *func_00185BF0(void);
+    int func_00185D60(struct S_Stream3 *stream, int count);
 };
+struct S_Stream3 {
+    int func_00169710(void *name);
+    int func_00168C20(void *key, int def, void *dst);
+    int func_00168C50(void *key, u32 def, void *dst);
+    int func_00168BE0(void *key, void *def, void *dst, int n);
+};
+extern char D_002897EC, D_002897D8, D_002897CC, D_002897BC, D_002897AC, D_00276F28;
+extern char D_002A5870, D_002895A0, D_002897A0;
+extern char D_00289790, D_00289780, D_0028976C, D_00289758, D_00289744, D_0028973C;
+extern char D_00289734, D_0028972C, D_00289724, D_00289714, D_00289704, D_002896F4;
+extern char D_002896E8, D_002896D0;
+extern float D_00278784;
+extern u32 D_00289388, D_0028938C;
+extern "C" char *strchr(const char *s, int c);
+extern "C" int memcmp(const void *a, const void *b, unsigned n);
+extern "C" int strlen(const char *s);
+extern "C" void *memset(void *d, int c, unsigned n);
+extern "C" char *strcpy(char *d, const char *s);
 extern int D_002897FC;
 
 struct V4Z_001858A0 {
