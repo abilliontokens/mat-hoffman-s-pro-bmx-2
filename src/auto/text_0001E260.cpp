@@ -217,11 +217,12 @@ void GR_BitString::func_0001E5D0(int a0)
     if (a0 >= 32) {
         int total = ((int)unk4 + 31) / 32;
         int skip = a0 / 32;
-        int n = total - skip;
+        int n;
         u32 *dst;
         u32 *src;
 
         a0 -= skip * 32;
+        n = total - skip;
         if (n > 0) {
             dst = (u32 *)unk8;
             src = dst + skip;
@@ -232,10 +233,12 @@ void GR_BitString::func_0001E5D0(int a0)
                 *dst++ = unk18;
             } while (--skip);
         } else {
+            int m = total;
+
             dst = (u32 *)unk8;
             do {
                 *dst++ = unk18;
-            } while (--total);
+            } while (--m);
         }
     }
     if (a0 > 0) {
@@ -244,6 +247,40 @@ void GR_BitString::func_0001E5D0(int a0)
 }
 
 #pragma optimize("", on)
+
+/* the twin of func_0001E5D0 that moves the bits the other way (0x1E650; the
+   analysis merged it into func_0001E5D0) */
+void GR_BitString::D_0001E650(int a0)
+{
+    if (a0 >= 32) {
+        int total = ((int)unk4 + 31) / 32;
+        int skip = a0 / 32;
+        int n;
+        u32 *dst;
+        u32 *src;
+
+        a0 -= skip * 32;
+        n = total - skip;
+        if (n > 0) {
+            src = (u32 *)unk8 + n;
+            dst = (u32 *)unk8 + total;
+            do {
+                *--dst = *--src;
+            } while (--n);
+            do {
+                *--dst = unk18;
+            } while (--skip);
+        } else {
+            dst = (u32 *)unk8;
+            do {
+                *dst++ = unk18;
+            } while (--total);
+        }
+    }
+    if (a0 > 0) {
+        func_0001E260(a0);
+    }
+}
 
 void *GR_BitString::func_0001E6D0(unsigned int flags) {
     vtbl = &D_00275F7C;
