@@ -173,6 +173,36 @@ struct C_535C0 {
     int func_000535C0();
 };
 
+struct C_53460_54 {
+    void func_0009FE70(int a);
+    void func_0009FD60(int a, int b, int c, int d);
+};
+struct C_53460_44 {
+    char pad0[0x54];
+    C_53460_54 *f54;
+    void func_0002F6C0();
+};
+struct C_53460 {
+    char pad0[0x44];
+    C_53460_44 *unk44;
+    char pad48[0x1C];
+    C_535C0_64 *unk64;
+    char pad68[0x158];
+    C_535C0_1C0 *unk1C0;
+    void *unk1C4;
+    int unk1C8;
+    char pad1CC[0xFC];
+    int unk2C8;
+    char pad2CC[4];
+    int unk2D0;
+    char pad2D4[4];
+    int m2D8[4][4];
+    int m318[4][4];
+    int func_00053460();
+    int func_00052C10(int param);
+    void func_000518A0();
+};
+
 struct C_000536A0 {
     void *vtbl;                       /* 0x00 */
     char pad04[0x280];
