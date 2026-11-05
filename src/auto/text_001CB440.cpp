@@ -249,7 +249,7 @@ struct C_001CBF20 {
     int func_001CBFE0(S_001CBF20_Vec4 *a, S_001CBF20_Vec4 *b);
 };
 
-int __stdcall func_00222309(int h, int x0, int y0, int z0, int x1, int y1, int z1, int apply);
+int __stdcall func_00222309(int h, float x0, float y0, float z0, float x1, float y1, float z1, int apply);
 
 int __stdcall func_002222E5(int a, float b, int c);
 
@@ -694,6 +694,23 @@ int C_001CBF20::func_001CBF90(float v)
         return 0;
     }
     return 1;
+}
+
+int C_001CBF20::func_001CBFE0(S_001CBF20_Vec4 *a, S_001CBF20_Vec4 *b)
+{
+    int e;
+
+    if (f2C & 1) {
+        fF8 = *a;
+        f108 = *b;
+        e = func_00222309(f30, a->x, a->y, a->z, b->x, b->y, b->z, 1);
+        if (e < 0) {
+            func_001CBC10(e, &D_0028EECC, 0x233);
+            return 0;
+        }
+        return 1;
+    }
+    return 0;
 }
 
 int C_001CC0C0::func_001CC0C0(int v)
