@@ -71,14 +71,14 @@ int C_001CB440::func_001CB440(void)
 
 int C_001CB490::func_001CB490(int param_1, int param_2, int param_3)
 {
-    int n = f1a8;
     float f = (float)param_2 * D_00276098;
-
     f130 = 0;
+    int n = f1a8;
+
     f128 = n;
     f12c = f;
     if (param_3 != 0) {
-        f134 = ((float)param_1 * D_002755E0 * (float)n - (float)n) / f;
+        f134 = (((float)param_1 * D_002755E0) * (float)n - (float)n) / f;
         return 1;
     }
     f134 = (float)(param_1 - n) / f;
