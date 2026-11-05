@@ -170,7 +170,10 @@ struct C_000BC590 {
     void func_000BC590(void);
 };
 
-static inline void FloatToInt(int *out, float f) { *out = (int)f; }
+static inline void FloatToInt(int *out, float f)
+{
+    *out = _mm_cvtt_ss2si(_mm_load_ss(&f));
+}
 
 struct S_000BC4C0_Sub {
     void func_001D3700(int a, int b);
