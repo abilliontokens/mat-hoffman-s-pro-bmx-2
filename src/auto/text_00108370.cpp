@@ -302,6 +302,34 @@ extern float D_00282AC4;
 extern float D_00282AC8;
 float *func_0001E9E0(float *out, float *in);
 
+struct S_001089C0_Cam {
+    Vec4_00108370 func_00165E20(void *a1, float a2, char *a3, void *a4);
+};
+
+struct S_001089C0_Node {
+    Vec4_00108370 func_00197F70(Vec4_00108370 *v);
+    void func_00199A70(int a, Vec4_00108370 *out);
+};
+
+extern char D_00276690[];
+
+struct C_001089C0 {
+    char pad0[0x230];
+    S_001089C0_Node *f230;
+    char pad234[0x704 - 0x234];
+    int f704;
+    char pad708[4];
+    int f70C;
+    char pad710[0x798 - 0x710];
+    float f798;
+    char pad79C[0xA04 - 0x79C];
+    S_001089C0_Cam *fA04;
+    char padA08[0x1874 - 0xA08];
+    void *f1874;
+    void *f1878;
+    void func_001089C0(Vec4_00108370 *out);
+};
+
 void C_00108370::func_00108370()
 {
     f230->func_00198390();
