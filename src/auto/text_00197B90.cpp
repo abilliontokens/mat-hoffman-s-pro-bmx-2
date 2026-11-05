@@ -2,6 +2,10 @@
 #include "common.h"
 #include "ghidra.h"
 #include "ghidra.h"
+struct C_00197E70 {
+    void func_00197E70(undefined4 *param_1);
+};
+
 struct C_001983A0 {
     void func_001983A0(void);
 };
@@ -10,6 +14,16 @@ struct C_00198390 {
     void func_00198390(void);
 };
 
+
+void C_00197E70::func_00197E70(undefined4 *param_1)
+{
+  int in_ECX = (int)this;
+  
+  *param_1 = *(undefined4 *)(in_ECX + 0xbc);
+  param_1[1] = *(undefined4 *)(in_ECX + 0xcc);
+  param_1[2] = *(undefined4 *)(in_ECX + 0xdc);
+  return;
+}
 
 void C_00198390::func_00198390(void)
 {
