@@ -59,6 +59,17 @@ struct C_001334E0 {
 };
 
 
+void *C_00132DE0::func_00132DE0(int flags)
+{
+    C_00132DE0_Outer *outer = (C_00132DE0_Outer *)((char *)this - 0x294);
+    outer->sub294.func_001329F0();
+    outer->sub294.func_00157660();
+    if (flags & 1) {
+        func_001E891B(outer);
+    }
+    return outer;
+}
+
 int func_00132E90(int a0, int a1)
 {
     D_002BEAAC->func_0013C8A0(a0, (void *)a1, 4, 1);
