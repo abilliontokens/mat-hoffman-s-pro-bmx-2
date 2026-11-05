@@ -117,7 +117,8 @@ struct VehicleAI {
     VehicleAIOwner *f3C;
     char pad40[4];
     VehicleAIA *f44;
-    char pad48[8];
+    char pad48[4];
+    s32 f4C;
     s32 f50;
     s32 f54;
     u32 f58;
