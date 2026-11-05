@@ -50,24 +50,54 @@ struct C_0006FBF0 {
     void func_001578D0(void);
 };
 extern S_00070450_Global *D_002A8490;
+
+struct S_00070570_V4 { float x, y, z, w; };
+struct S_00070570_Rect24 { int x, y, w, h, zmin, zmax; };
+struct S_00070570_Text {
+    char *func_001B17F0(void);
+    int func_001B1800(void);
+    void func_001B1810(S_00070570_V4 *out);
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, float a7, int a8, float a9, int a10, int a11, int a12, int a13);
+    void func_001B1980(void);
+    void func_001B1A30(float x, float y, float z);
+    void func_001B19A0(int color);
+    void func_001B15F0(void);
+};
+struct S_00070570_Viewport {
+    char pad0[0x1e0];
+    S_00070570_Rect24 rect;
+    void func_0012B2B0(void *a, void *b);
+};
+struct S_00070570_Device {
+    void *vtbl;
+    S_00070570_Viewport *f4;
+};
+extern S_00070570_Device *D_002EFDB8;
+extern int D_0028F5DC;
+extern double D_00278C40;
+
 struct C_00070360 {
     char pad0[0x6C];
     int unk6C;
     char pad70[0x50];
     int unkC0, unkC4;
     C_001D5AD0 *unkC8, *unkCC;
-    char padD0[8];
+    S_00070570_Text *unkD0, *unkD4;
     C_001D5AD0 *unkD8;
     char padDC[4];
     C_001D5AD0 *unkE0;
-    char padE4[0xc];
+    char padE4[4];
+    float unkE8;
+    char padEC[4];
     C_001D5AD0 *unkF0;
     char padF4[4];
     C_001D5AD0 *unkF8;
     char padFC[4];
     C_001D5AD0 *unk100;
     int unk104;
-    char pad108[0x20];
+    char pad108[8];
+    float unk110;
+    char pad114[0x14];
     C_001D5AD0 *unk128, *unk12C;
     C_001D5AD0 *unk130[3];
     C_001D5AD0 *unk13C;
