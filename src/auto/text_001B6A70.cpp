@@ -50,7 +50,7 @@ struct S_001B70D0_Mgr {
     char pad0[4];
     struct S_001B70D0_Lookup *f4;
     char pad8[0x280 - 8];
-    S_001B70D0_Slot *volatile *f280;
+    S_001B70D0_Slot **volatile f280;
     int f284;
 };
 
@@ -280,7 +280,6 @@ void C_001B6E70::func_001B70D0(S_001B70D0_Arg *arg) {
     char buf[0x40];
     int i, j, found;
     S_001B70D0_Src *src;
-    S_001B70D0_Obj *volatile *objs = (S_001B70D0_Obj *volatile *)0;
 
     for (i = 0; i < f24; i++) {
         if (((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->fD4[0] != 0) {
@@ -293,7 +292,7 @@ void C_001B6E70::func_001B70D0(S_001B70D0_Arg *arg) {
                         if (strcmp(name, e->fA0) == 0) {
                             S_001B70D0_Mgr *mgr = e->f1A4;
                             int id = mgr->f4->func_00198330(
-                                ((S_001B70D0_Obj *)f28[i]->f4)->f1D8);
+                                ((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->f1D8);
                             int k = 0;
                             while (k < mgr->f284) {
                                 if (mgr->f280[k]->f1C0 == id) {
@@ -304,20 +303,21 @@ void C_001B6E70::func_001B70D0(S_001B70D0_Arg *arg) {
                             }
                         }
                     } else {
-                        strcpy(buf, e->f58->f300);
+                        S_001B70D0_Entry *p = arg->f28[j];
+                        strcpy(buf, p->f58->f300);
                         char *dot = func_001E8AC0(buf, '.');
                         if (dot != 0) {
                             memset(dot, 0, strlen(dot));
                         }
                         if (func_001EA426(buf, name) == 0) {
-                            src = e->f58;
+                            src = p->f58;
                             goto hit;
                         }
                     }
                 }
                 continue;
             hit:
-                ((S_001B70D0_Obj *)f28[i]->f4)->f2DC = src->f22C;
+                ((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->f2DC = src->f22C;
                 found = 1;
             }
         }
