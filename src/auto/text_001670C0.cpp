@@ -264,25 +264,29 @@ C_00167AC0 *C_00167AC0::func_00167AC0(void)
 
 C_00167760 *C_00167760::func_00167D10(C_0017A860 *owner, int b)
 {
-    void *m = func_001E8A44(0x14);
-    f34c = m ? ((C_00167760_Stream *)m)->func_00144640() : 0;
-    f34c->v1(b, D_002AA46C);
+    C_00167760_Stream *s = (C_00167760_Stream *)func_001E8A44(0x14);
+    if (s)
+        s = s->func_00144640();
+    else
+        s = 0;
+    f34c = s;
+    s->v1(b, D_002AA46C);
     f354 = f34c->f4;
-    if (owner != 0) {
+    if (owner) {
         func_001D3F50();
         f24 = owner;
         owner->func_0017A860(this);
         C_00167860 *p = (C_00167860 *)func_001E8A44(0x70);
-        if (p != 0) {
+        if (p) {
             p->vtbl = (void *)&D_00287FE4;
-            p->f5c = 0.0f;
-            p->f58 = 0.0f;
-            p->f54 = 0.0f;
+            p->f5c = 0;
+            p->f58 = 0;
+            p->f54 = 0;
             p->f60 = 1.0f;
-            f360 = (C_00167760_Obj *)p;
         } else {
-            f360 = 0;
+            p = 0;
         }
+        f360 = (C_00167760_Obj *)p;
         return this;
     }
     return 0;
