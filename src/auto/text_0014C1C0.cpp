@@ -130,6 +130,11 @@ void C_0014C720::func_0014C7D0()
     D_002BF254 = 0;
 }
 
+f32 C_0014C720::func_0014C830(char param)
+{
+    return (f180 - f184) * param * D_0027A094 + f180;
+}
+
 undefined4 C_0014CA60::func_0014CA60(void)
 {
   extern undefined4 D_002BF250;
