@@ -125,6 +125,88 @@ struct BmxUIPageHPHChoice_000F1D00 {
     BmxUIPageHPHChoice_000F1D00 *func_000F1D00(int a0);
 };
 
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+extern char D_00275678[];
+extern char D_002A64D0[];
+extern char D_0027DFE4[];
+extern char D_00282478[];
+extern char D_0028246C[];
+extern char D_0027DFF0[];
+
+struct S_Prompt_000F1580 {
+    void func_000B9A80(int a, int b);
+};
+
+struct S_Tab_000F1580 {
+    char pad0[0x30];
+    int f30;
+    void func_001BDF00(int a);
+    void func_001BDE90(int a);
+};
+
+struct S_Sel_000F1580 {
+    char pad0[4];
+    S_Tab_000F1580 *f4;
+};
+
+struct S_Text_000F1580 {
+    char pad0[0x34];
+    int f34;
+    int f38;
+    int func_000B5870(void);
+    void func_000BC4A0(float a, float b);
+    void func_000BC4C0(float a, float b);
+    void func_00093280(float v);
+    void func_000BC5D0(char *text, int flag);
+};
+
+struct S_Busy_000F1580 {
+    int func_000301D0(void);
+};
+
+struct S_Owner_000F1580 {
+    char pad0[0x74];
+    S_Busy_000F1580 *f74;
+};
+
+struct S_Ctx_000F1580 {
+    char pad0[0x24];
+    S_Prompt_000F1580 *f24;
+    char pad28[0x134 - 0x28];
+    int f134;
+    int f138;
+    char pad13C[0x25c - 0x13c];
+    S_Owner_000F1580 *f25c;
+    char pad260[0x270 - 0x260];
+    S_Text_000F1580 *f270;
+};
+
+/* BmxUIPageOtherVideos, slot 28 */
+struct C_000F1580 {
+    char pad0[0x124];
+    S_Ctx_000F1580 *f124;
+    char pad128[0x140 - 0x128];
+    S_Sel_000F1580 *f140;
+    char pad144[0x280 - 0x144];
+    int f280;
+    int f284;
+    int f288;
+    int f28C;
+    int f290;
+    int f294;
+    int f298;
+    int f29C;
+    int f2A0;
+    int f2A4;
+    char pad2A8[0x2B8 - 0x2A8];
+    char f2B8[0x104];
+    int f3BC;
+    char pad3C0[0x3D4 - 0x3C0];
+    int f3D4[4];
+    int func_001BF050(int a);
+    int func_000F1580(int a1, int a2);
+};
+
 void C_000F1980::func_000F1980(void)
 {
     int ids[3];
