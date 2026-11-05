@@ -20,6 +20,14 @@ struct C_001D5AD0 {
 extern int D_002B9018;
 int func_001361E0(int a, int b, int *c, unsigned int d);
 struct C_00031610 { void func_00031610(int a, int b); };
+struct Item_60D {
+ void func_001B1980();
+ void func_001B2270(unsigned int);
+ void func_001B19C0(int,int,int);
+ void func_001B1A30(float,float,float);
+ void func_001B1860(float,float,int,float,float,float,float,int,float,float,float,float,float);
+};
+extern float D_00275600;
 
 struct BmxSinglePlayerInGameMenu {
     virtual void vf0();
