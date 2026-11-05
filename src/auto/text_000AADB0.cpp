@@ -53,11 +53,52 @@ struct C_000AADB0_Box {
     int *f20;
     int f24;
 };
+struct S_000AB030_Named {
+    char pad0[0x28];
+    char name[0x100];
+};
+struct S_000AB030_Sub {
+    int f0;
+    S_000AB030_Named *f4;
+};
+struct S_000AB030_ObjA {
+    int f0;
+    int f4;
+    char pad8[0x19C];
+    S_000AB030_Sub *f1A4;
+};
+struct S_000AB030_ObjB {
+    int f0;
+    int f4;
+    S_000AB030_Named *f8;
+};
+struct S_000AB030_ListA {
+    char pad0[0x24];
+    int count;
+    S_000AB030_ObjA **items;
+};
+struct S_000AB030_ListB {
+    char pad0[0x24];
+    int count;
+    S_000AB030_ObjB **items;
+};
+struct S_000AB030_Arg {
+    char pad0[0x3A8];
+    S_000AB030_ListB **f3A8;
+    S_000AB030_ListA *f3AC;
+};
+void func_001E891B(void *p);
+int func_001EA426(const char *a, const char *b);
+char *func_001E8AC0(char *s, int c);
+void func_0014FF00(const char *a, int b, int c, char *d, int e);
+extern "C" void *__cdecl memset(void *, int, unsigned int);
+
 struct C_000AADB0 {
     char pad[0x24];
     int f24;
     C_000AADB0_Box *f28;
     void func_000AADB0(C_000AADB0_Parser *);
+    void func_000AB030(S_000AB030_Arg *arg);
 };
 /* ObjectExclusionBoxes */
 struct C_000AB340_Obj {
