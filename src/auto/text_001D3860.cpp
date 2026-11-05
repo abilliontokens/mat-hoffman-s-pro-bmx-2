@@ -144,10 +144,20 @@ struct S_001D3AB0_Res {
     virtual void v0();
     virtual void v1();
     virtual void Release();
+    char pad4[4];
+    int f8;
+    int fC;
+    char pad10[0xa4 - 0x10];
+    int fA4;
+    int fA8;
+    char padAC[0xb8 - 0xac];
+    void *fB8;
+    S_001D3AB0_Res *func_001D6AD0(void *param);
 };
 
 struct S_001D3C30_Stream {
-    char pad0[8];
+    unsigned int f0;
+    unsigned int f4;
     int f8;
     int fC;
 };
