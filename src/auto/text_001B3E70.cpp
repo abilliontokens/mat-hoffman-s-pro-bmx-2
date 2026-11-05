@@ -68,6 +68,12 @@ struct C_001B4A40 {
     void func_001B4A40(const char *str);
 };
 
+struct C_001B4A40Ret {
+    int unk0;
+    const char *f4;
+    C_001B4A40Ret *func_001B4A40(const char *str);
+};
+
 struct C_001B4B70 {
     int unk0;
     void func_001B4B70(void);
@@ -112,6 +118,19 @@ void TireTrack::func_001B4A20()
         f3c = 0;
     }
     ((C_00157960 *)this)->func_00157960();
+}
+
+void C_001B4A40::func_001B4A40(const char *str)
+{
+    const char *p;
+    const char *first;
+    char c;
+    p = str;
+    first = p + 1;
+    do {
+        c = *p++;
+    } while (c != 0);
+    f4 = (p - first) ? str : 0;
 }
 
 void C_001B4B70::func_001B4B70(void) {
