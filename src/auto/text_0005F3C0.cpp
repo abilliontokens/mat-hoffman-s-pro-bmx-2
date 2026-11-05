@@ -175,6 +175,34 @@ void BmxInGameMenu::func_0005FBD0(void)
     }
 }
 
+int BmxInGameMenu::func_00060110(void)
+{
+    int i;
+    unk94->func_001D5AD0();
+    unk98->func_001D5AD0();
+    for (i = 0; i < 5; i++) {
+        unkAC[i]->func_001D5AD0();
+        unkC0[i]->func_001D5AD0();
+    }
+    if (unkF4 != 0) {
+        unkDC->func_001D5AD0();
+    } else {
+        unkD4->func_001D5AD0();
+    }
+    if (unkF8 != 0) {
+        unkE0->func_001D5AD0();
+    } else {
+        unkD8->func_001D5AD0();
+    }
+    if (unk10C != 0) {
+        unk10C->func_001D5AD0();
+    }
+    if (unk120 == 0) {
+        vf31();
+    }
+    return 1;
+}
+
 void C_000601B0::func_000601B0(void)
 {
   int* in_ECX = (int*)this;
