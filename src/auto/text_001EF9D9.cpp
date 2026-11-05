@@ -53,7 +53,18 @@ struct C_Lex {
     void func_001EEFBA(int d);
     void func_001EF3D2(void *p);
 };
-extern C_Lex *D_002F6A18;
+extern void *D_002F6A18;
+extern void *D_002F6A20;
+extern void *D_002F6A24;
+extern char D_002F6A1C;
+
+/* 60-byte back-reference list (constructor func_001EF3B4). */
+struct S_Replicator_001EF3B4 {
+    char pad[0x3c];
+    void func_001EF3B4(void);
+};
+void *_func_001F098B(void *out, int v);
+void *_func_001F06E9(void *out);
 void func_001F2F3F(void *a, void *b);
 void *_func_001EFD19(void *a, char *b, void *c);
 void *_func_001EFF6E(S_001EF734 *o);
@@ -259,6 +270,70 @@ S_001EF734 *S_001EF734::func_001EFD7A(void *out, char *s)
     }
     ((S_001EF734 *)out)->func_001EEEE6(&local);
     return (S_001EF734 *)out;
+}
+
+void *_func_001EFDB9(void *out, int v)
+{
+    S_001EF734 *o = (S_001EF734 *)out;
+    S_001EF734 slot[3];
+    char *q = 0;
+    char c;
+    unsigned dim;
+
+    if (*D_002F6A28 == 'Q') {
+        q = D_00295C0C;
+        D_002F6A28++;
+    }
+    c = *D_002F6A28;
+    if (c == 0) {
+        o->func_001EF170(2);
+    } else if (c >= '0' && c <= '9') {
+        S_001EF734 *r;
+
+        if (q != 0) {
+            r = (S_001EF734 *)_func_001EFD19(&slot[1], q, slot[2].func_001EF848(*D_002F6A28++ - '/'));
+        } else {
+            r = slot[0].func_001EF848(*D_002F6A28++ - '/');
+        }
+        o->func_001EEEE6(r);
+    } else {
+        S_001EF734 *r;
+
+        dim = 0;
+        while (c != '@') {
+            if (c == 0) {
+                o->func_001EF170(2);
+                return out;
+            }
+            if (c < 'A' || c > 'P') {
+                o->func_001EF170(1);
+                return out;
+            }
+            dim = (dim << 4) + c - 'A';
+            D_002F6A28++;
+            c = *D_002F6A28;
+        }
+        c = *D_002F6A28++;
+        if (c != '@') {
+            o->func_001EF170(1);
+            return out;
+        }
+        if ((char)v != 0) {
+            if (q != 0) {
+                r = (S_001EF734 *)_func_001EFD19(&slot[1], q, slot[0].func_001EF88F(dim));
+            } else {
+                r = slot[2].func_001EF88F(dim);
+            }
+        } else {
+            if (q != 0) {
+                r = (S_001EF734 *)_func_001EFD19(&slot[1], q, slot[0].func_001EF848(dim));
+            } else {
+                r = slot[2].func_001EF848(dim);
+            }
+        }
+        o->func_001EEEE6(r);
+    }
+    return out;
 }
 
 void *_func_001EFE9D(S_001EF734 *o)
