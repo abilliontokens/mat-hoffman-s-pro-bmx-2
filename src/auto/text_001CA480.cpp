@@ -5,6 +5,81 @@ struct C_001CB120 {
     bool func_001CB120(void);
 };
 
+extern int D_0028EC24;
+extern int D_0028ECAC;
+extern char D_002A5EA0[];
+void func_001E891B(void *);
+
+struct Quat_1CAF20 {
+    float x, y, z, w;
+    void Identity() {
+        x = y = z = 0.0f;
+        w = 1.0f;
+    }
+};
+
+struct WaterDisplacement {
+    void *vtbl;
+    char pad4[0x24];
+    int unk28;
+    int unk2C;
+    int unk30;
+    int unk34;
+    int unk38;
+    char pad3C[0x18];
+    Quat_1CAF20 unk54;
+    Quat_1CAF20 unk64;
+    Quat_1CAF20 unk74[4];
+    Quat_1CAF20 unkB4;
+    WaterDisplacement *func_001CAF20();
+    void *func_001CAFA0(int flags);
+    void func_00157600(int a0);
+    void func_00157660();
+};
+
+struct WaterObject {
+    void *vtbl;
+    void *func_001CAFD0(int a0);
+    WaterObject *func_001CAFF0(int a0, int a1, int a2);
+    void func_00143580(int a0);
+    void func_00143540(int a0, int a1, int a2);
+};
+
+struct VCall_1CAFF0 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    virtual void v31();
+};
+
 
 bool C_001CB120::func_001CB120(void)
 {
