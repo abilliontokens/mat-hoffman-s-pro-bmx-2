@@ -33,7 +33,8 @@ int f8c;
  void func_00157600(int);
  void func_00157660();
  CutScene *func_00138800(int);
- void func_00138890();
+   void func_00138890();
+  void func_001394F0(int);
 };
 struct CutScene_Item {
     char pad0[0x18];
