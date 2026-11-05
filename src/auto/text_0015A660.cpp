@@ -108,9 +108,9 @@ struct C_0015B470 {
     int f8;
     int fC;
     int f10;
-    char pad14[0x108];
+    S_0015B470_Entry dflt;
     int f11C;
-    void func_0015B370(int n);
+    int func_0015B370(int n);
     S_0015B470_Entry *at(int i)
     {
         if (i >= f4) {
