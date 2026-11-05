@@ -102,6 +102,35 @@ struct BmxUIPageHOF4 {
     void func_001BE360(int param);
 };
 
+void BmxUIPageHOF2::func_000D6BC0(void)
+{
+    if (unk29c != 0) {
+        unk2b0 = 0xff;
+        unk2b4 = 0;
+        unk2b8 = 0;
+        unk2bc = 0;
+        unk2c0 = 0.25f;
+        func_000D6860();
+        func_001BEE30(0, 1);
+        unk2ac = 1;
+        unk2a8 = 0;
+        unk29c = 0;
+    }
+    if (unk2a0 != 0) {
+        unk2b0 = 0xff;
+        unk2b4 = 0;
+        unk2b8 = 0;
+        unk2bc = 0;
+        unk2c0 = 0.25f;
+        func_000D6A60();
+        unk2a0 = 0;
+    }
+    D_002B91AC->unk34->func_001D6600();
+    D_002B91AC->unk3c->func_001D6600();
+    func_000D6710();
+    func_00157960();
+}
+
 BmxUIPageHOF3 *BmxUIPageHOF3::func_000D6C90(int param) {
     extern int D_0027F36C;
     func_001BE360(param);
