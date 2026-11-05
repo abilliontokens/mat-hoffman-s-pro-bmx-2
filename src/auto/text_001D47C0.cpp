@@ -293,6 +293,11 @@ C_001D5350* C_001D5350::func_001D5350(void) {
     return this;
 }
 
+void C_001D5470::func_001D5470(void)
+{
+    unk0->func_001446B0(unk4, 0, -1);
+}
+
 C_001D5480* C_001D5480::func_001D5480(void) {
     extern int D_0028F5CC;
     unk0 = (int)&D_0028F5CC;
