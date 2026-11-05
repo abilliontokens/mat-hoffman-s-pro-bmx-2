@@ -28,10 +28,66 @@ struct C_001B6850 {
     void func_001B6930(void *a, int b);
 };
 
+struct C_001B73C0_Node {
+    char pad0[4];
+    int f4;
+    char pad8[0x10c - 8];
+    int f10C;
+};
+
+struct C_001B73C0_VB {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+};
+
+struct C_001B73C0_Obj : virtual C_001B73C0_VB {
+    int f0;
+};
+
+struct C_001B73C0_Line {
+    char pad0[0x1a4];
+    C_001B73C0_Obj *f1A4;
+};
+
+struct C_001B73C0_Holder {
+    char pad0[0x28];
+    C_001B73C0_Line **f28;
+};
+
+struct C_001B73C0_Arg {
+    char pad0[0x3ac];
+    C_001B73C0_Holder *f3AC;
+};
+
+struct C_001B73C0_ItemObj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    char pad0[0xd0 - 4];
+    int fD0;
+    char pad1[0x2ec - 0xd4];
+    u8 b2EC;
+};
+
 struct C_001B7370_item {
     virtual void vf0();
     virtual void vf1(void *p);
-    void *f4;
+    C_001B73C0_ItemObj *f4;
+    int f8;
+    char padC[4];
+    int f10;
+    char pad14[0x10c - 0x14];
+    C_001B73C0_Node **f10C;
 };
 
 struct C_001B7010_arg {
