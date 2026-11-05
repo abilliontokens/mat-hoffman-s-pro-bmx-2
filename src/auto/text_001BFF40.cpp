@@ -231,7 +231,7 @@ struct S_001C0DD0_Owner {
 struct C_001C0C50 {
     void *vtbl;
     char pad4[0x20];
-    int unk24;
+    S_001C0DD0_Owner *unk24;
     int unk28;
     int unk2C;
     int unk30;
@@ -412,7 +412,9 @@ void C_001C0A60::func_001C0AB0(void)
 
 void C_001C0A60::func_001C0B00(float dt)
 {
-    fB4 = dt;
+    if (f68 != 0) {
+        ((C_00157600 *)this)->func_00157600(1);
+    }
 }
 
 void C_001C0E80::func_001C0E80(void)
