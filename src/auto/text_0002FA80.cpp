@@ -25,8 +25,20 @@ struct C_00168280 {
     void func_00168C20(const char *key, int def, int *dst);
 };
 
+struct C_00194740 {
+    char pad0[8];
+    float f8;
+    char padC[0x30 - 0xC];
+    C_00194740 *func_00194740(void);
+    void func_001947E0(int a, int b, int c, int d);
+    void func_00194790(char *s, int a, int b);
+};
+extern char D_002769DC[], D_002769D0[], D_002A45E0[], D_002769C4[], D_002769B8[];
+extern char D_002764F0[], D_002769A8[], D_00276998[], D_00276988[], D_00276980[];
+extern char D_00276974[], D_00276968[];
+
 struct S_0002FA80_Entry {
-    void *f0;
+    C_00194740 *f0;
     int subCount;
     S_0002FA80_Sub *subs;
     int curSub;
