@@ -124,3 +124,20 @@ int C_000A1E60::func_000A1E60(void) {
     }
     return 0;
 }
+
+void C_000A1E90::func_000A1E90(void) {
+    if (D_002A8490->f2e0->f0 == 1) {
+        if (D_002B7E18 == 0) {
+            C_000A1E90_Obj *p = (C_000A1E90_Obj *)func_001E8A44(0xa4);
+            if (p != 0) {
+                p = p->func_000213F0(1);
+            } else {
+                p = 0;
+            }
+            D_002B7E18 = p;
+            p->v10();
+        }
+        D_002B7E18->func_00024380(f28);
+    }
+}
+
