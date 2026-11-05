@@ -174,4 +174,19 @@ int __stdcall func_001DE70D(int param)
     }
     return out;
 }
+
+int __stdcall func_001DE733(int param)
+{
+    int result;
+    int out;
+    result = _imp__NtSuspendThread(param, &param);
+    if (result < 0) {
+        func_001DD659(result);
+        out = -1;
+    } else {
+        out = param;
+    }
+    return out;
+}
+
 #pragma optimize("", on)
