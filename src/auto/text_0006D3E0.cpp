@@ -107,6 +107,21 @@ void C_0006DF20::func_0006DF20(int param_1)
   return;
 }
 
+int C_0006D590::func_0006E250(float dt)
+{
+    if (unk64 != 0) {
+        unkEC += dt;
+        if (unkEC >= D_00278500) {
+            unkE4 = 0;
+            ((C_0006D590_V *)this)->v4();
+            unkE8->f160->func_000601D0();
+            unk64 = 0;
+            unkEC = 0;
+        }
+    }
+    return 1;
+}
+
 int C_0006E2C0::func_0006E2C0(int *param_1, int param_2)
 {
     if (param_1[2] == unkF8 && unk64 == 0) {
