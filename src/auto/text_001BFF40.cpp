@@ -69,6 +69,7 @@ struct C_001C0670 {
 struct S_001C05F0_Item {
     void func_001B2270(int a);
     void func_001B1980(void);
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, float a7, int a8, float a9, int a10, int a11, int a12, int a13);
 };
 
 /* UIWidgetOverlayText seen through virtual slots 5 and 7 */
