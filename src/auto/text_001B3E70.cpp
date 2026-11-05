@@ -19,15 +19,6 @@ static inline const int &min_ref(const int &a, const int &b) {
     return (b < a) ? b : a;
 }
 
-struct C_001B4AF0;
-static inline void CopyName(char *dst, int size, const char *src) {
-    int limit = size - 1;
-    int len = strlen(src);
-    int count = (limit > len) ? len : limit;
-    func_001E8920(dst, src, count);
-    dst[count] = 0;
-}
-
 struct S_001B4B80_Stream {
     int func_00168C20(const char *name, int a, int *p);
 };
