@@ -46,7 +46,7 @@ struct S_XboxMusicList {
     u8 flags;
     char pad[3];
 
-    S_XboxMusicList()
+    void reset()
     {
         items = 0;
         count = 0;
