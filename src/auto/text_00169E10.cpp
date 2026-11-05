@@ -48,3 +48,12 @@ struct ParticleEmitter {
     int func_0016A330(char *buf);
     int func_0016A8D0(void);
 };
+
+int ParticleEmitter::func_0016A8D0(void) {
+    void *p = (void *)func_0014FDF0(&f6C, D_00276274);
+    if (p != 0) {
+        func_0014FE50(p);
+        ((ParticleEmitterVT *)this)->v35(&f6C);
+    }
+    return 1;
+}
