@@ -22,6 +22,12 @@ extern char D_00276164;
 extern char D_00276150;
 
 void *func_001E8A44(int size);
+int func_001E8AF0(const char *, const char *);
+struct C_00021600_Item { char pad0[0xc]; char *fc; };
+struct C_00021600_Group { char pad0[0x24]; int f24; C_00021600_Item **f28; };
+struct C_00021600_Global { char pad0[0x340]; int f340; char pad344[0x6c]; C_00021600_Group **f3b0; };
+extern C_00021600_Global *D_002B9120;
+struct C_00021600 { char pad0[0x44]; int f44; int func_00021600(const char *name, char value); };
 
 struct V4_000212A0 {
     float x, y, z, w;
@@ -451,7 +457,7 @@ float func_00021AB0(V4_000212A0 *v, float maxLen)
     V4_000212A0 r;
     float len;
 
-    _mm_store_ss(&len, _mm_sqrt_ss(_mm_set_ss(v->x * v->x + v->y * v->y + v->z * v->z)));
+    len = sqrtf(v->x * v->x + v->y * v->y + v->z * v->z);
     if (len > maxLen) {
         n.z = 0.0f;
         n.y = 0.0f;
