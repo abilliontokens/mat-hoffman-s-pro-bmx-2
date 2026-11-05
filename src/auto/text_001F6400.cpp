@@ -78,30 +78,22 @@ int __stdcall func_001F6427(void *handle)
     unsigned char irql;
     long status;
     S_ListEntry_F64 *e;
-    S_ListEntry_F64 *next;
-    S_ListEntry_F64 *flink;
-    S_ListEntry_F64 *blink;
     S_IrpF64 *irp;
 
-    list.Flink = list.Blink = &list;
+    InitializeListHead(&list);
     status = _imp__ObReferenceObjectByHandle(handle, _imp__IoFileObjectType, &handle);
     if (status < 0) {
         func_001DD659(status);
         return 0;
     }
     irql = _imp__KeRaiseIrqlToDpcLevel();
-    for (e = IDEX_QUEUE->Flink; e != IDEX_QUEUE; e = next) {
+    e = IDEX_QUEUE->Flink;
+    while (e != IDEX_QUEUE) {
         irp = (S_IrpF64 *)((char *)e - 0x3c);
-        next = e->Flink;
+        e = e->Flink;
         if (irp->f60 == handle && (irp->f5 & 0x10) == 0) {
-            blink = irp->ListEntry.Blink;
-            flink = irp->ListEntry.Flink;
-            blink->Flink = flink;
-            flink->Blink = blink;
-            irp->ListEntry.Flink = &list;
-            irp->ListEntry.Blink = list.Blink;
-            list.Blink->Flink = &irp->ListEntry;
-            list.Blink = &irp->ListEntry;
+            RemoveEntryList(&irp->ListEntry);
+            InsertTailList(&list, &irp->ListEntry);
         }
     }
     _imp__KfLowerIrql(irql);
