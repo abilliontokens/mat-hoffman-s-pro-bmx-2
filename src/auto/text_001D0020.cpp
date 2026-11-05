@@ -175,6 +175,56 @@ struct C_00135E00 {
     void func_00135E00(void);
 };
 
+struct SoundVoiceOwner_001D08B0 {
+    char pad0[0x13C];
+    int f13C;
+};
+
+struct SoundVoice_001D08B0 {
+    char pad0[0x124];
+    int f124;
+    char pad128[0x13C - 0x128];
+    int f13C;
+    char pad140[8];
+    SoundVoice_001D08B0 *f148;
+    SoundVoice_001D08B0 *f14C;
+    SoundVoiceOwner_001D08B0 *f150;
+    char pad154[0x1B4 - 0x154];
+    int f1B4;
+    char pad1B8[0x1D8 - 0x1B8];
+    int f1D8;
+    char pad1DC[0x1E8 - 0x1DC];
+    int f1E8;
+    char pad1EC[0x1F8 - 0x1EC];
+    int f1F8;
+    int func_001CFEF0(void);
+    int func_001CC4B0(int *a, int *b, int *c, int *d);
+};
+
+struct SoundEntry_001D08B0 {
+    char pad0[4];
+    SoundVoice_001D08B0 *voice;
+    char pad8[4];
+    int count;
+};
+
+struct SoundMixer_001D08B0 {
+    char pad0[8];
+    int count;
+    char padC[8];
+    SoundEntry_001D08B0 *entries;
+};
+
+struct XboxSoundInterface_001D08B0 {
+    char pad0[0x13C];
+    SoundMixer_001D08B0 *f13C;
+    void func_001D08B0(void);
+};
+
+extern char D_0028F084[];
+void func_001CBC10(int e, void *file, int line);
+int __stdcall func_002209A2(int a, int b);
+
 struct ControllerPort_001D14C0 {
     virtual void v0();
     virtual void v1(int flags);
