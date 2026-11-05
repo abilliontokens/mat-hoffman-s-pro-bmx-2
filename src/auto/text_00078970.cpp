@@ -20,3 +20,15 @@ struct C_00079790 {
     void func_000797C0(void);
     void func_00078E60(void);
 };
+
+C_00079790 *C_00079790::func_00079790(void *param)
+{
+    int i;
+    ((C_0005ECA0 *)this)->func_0005ECA0(param);
+    vtbl = (void *)&D_00278EDC;
+    for (i = 0; i < 10; i++) {
+        f15C[i] = 0;
+    }
+    f184 = 0;
+    return this;
+}
