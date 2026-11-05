@@ -76,21 +76,7 @@ DXMesh *DXMesh::func_00140710(int p1, int p2, int count, int *p4, int p5)
     func_00162690(p1, p2, count, p4, p5);
     f44 = count;
     f40 = count;
-    int *mem = (int *)func_001E8A44(count * 8 + 4);
-    C_00140680 *arr;
-    if (mem) {
-        *mem = count;
-        arr = (C_00140680 *)(mem + 1);
-        C_00140680 *p = arr;
-        for (int i = count - 1; i >= 0; i--) {
-            p->a = 0;
-            p->b = 0;
-            p++;
-        }
-    } else {
-        arr = 0;
-    }
-    f3c = arr;
+    f3c = new C_00140680[count];
     for (int j = 0; j < f44; j++) {
         f3c[j].func_001402C0(p1, p4[j]);
     }
