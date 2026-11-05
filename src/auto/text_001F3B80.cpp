@@ -2,6 +2,13 @@
 #include "common.h"
 
 extern int D_002AEDA4;
+extern void **D_002FB368;
+extern int D_002FB36C;
+void func_001EB390(int n);
+void func_001EB302(int n);
+int func_001E9760(void *f);
+void func_001E8390(void *p);
+int func_001F5059(void *ld, char **end, const char *s, int a, int b, int c, int d);
 
 void func_001F46F0(int a, int b, int c);
 short func_001F59DC(int a, void *b);
@@ -15,16 +22,16 @@ struct F3Obj {
 
 int func_001F3B80(unsigned char *a, unsigned char *b) {
     unsigned char c1, c2;
-    for (;;) {
+    do {
         c1 = *a++;
         c2 = *b++;
         if (c1 != c2) {
-            if (c1 >= 'A' && c1 <= 'Z') c1 += 32;
-            if (c2 >= 'A' && c2 <= 'Z') c2 += 32;
-            if (c1 != c2) return c1 < c2 ? -1 : 1;
+            c1 = (unsigned char)(c1 - 'A' + ((c1 - 'A' < 26) ? ('a' - 'A') : 0) + 'A' - 'A');
+            c2 = (unsigned char)(c2 - 'A' + ((c2 - 'A' < 26) ? ('a' - 'A') : 0));
+            if (c1 != c2) return (c1 > c2) - (c1 < c2);
         }
-        if (c1 == 0) return 0;
-    }
+    } while (c1 != 0);
+    return 0;
 }
 
 #pragma optimize("y", on)
