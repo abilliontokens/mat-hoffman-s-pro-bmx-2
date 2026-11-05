@@ -172,7 +172,17 @@ void C_000BBE30::func_000BE540()
     D_002EFDB8->v7(1);
     D_002EFDB8->v8();
     if (f27C != 0) {
-        delete[] (C_000BA2D0 *)f27C;
+        int n = ((int *)f27C)[-1];
+        void *base = (char *)f27C - 4;
+        C_000BA2D0 *p = (C_000BA2D0 *)((char *)f27C + n * 0x1a8);
+        if (--n >= 0) {
+            int k = n + 1;
+            do {
+                p--;
+                p->func_000BA2D0();
+            } while (--k);
+        }
+        func_001E891B(base);
     }
     if (f280 != 0) {
         func_001E891B((void *)f280);
