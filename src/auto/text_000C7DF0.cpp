@@ -98,22 +98,18 @@ extern void *D_0027E334;
 
 void C_000C8090::func_000C8090(void) {
     int i;
-    float v;
-    C_001B1980 *p;
     for (i = 0; i < 9; i++) {
-        p = unk320[i];
-        p->func_001B1980();
+        unk320[i]->func_001B1980();
         if (unk344[i] != 0) {
-            p->func_001B2270(0xff606060);
+            unk320[i]->func_001B2270(0xff606060);
         } else if (i == unk2DC) {
-            p->func_001B2270(0xffbfa35a);
+            unk320[i]->func_001B2270(0xffbfa35a);
         } else {
-            p->func_001B2270(0xffcccccc);
+            unk320[i]->func_001B2270(0xffcccccc);
         }
-        p->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
-        v = unk368[i];
-        if (v > D_00279B50 || v < D_00275994) {
-            p->func_001B1980();
+        unk320[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
+        if (unk368[i] > D_00279B50 || unk368[i] < D_00275994) {
+            unk320[i]->func_001B1980();
         }
     }
 }
@@ -168,7 +164,7 @@ C_000C85B0 *C_000C85B0::func_000C85B0(int param_1) {
     unk2A4 = 0;
     unk2C0 = 0;
     unk2BC = 0;
-    *(void **)this = &D_0027E334;
+    vtbl = &D_0027E334;
     unk2B0 = 1;
     unk2D8 = 0;
     unk2DC = 0;
