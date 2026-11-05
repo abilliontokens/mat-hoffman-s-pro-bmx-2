@@ -204,7 +204,7 @@ undefined4 C_001D5AA0::func_001D5AA0(void)
           *(int *)(D_002AA6C0 + 0x14));
 }
 
-void C_001D5E90::func_001D5E90()
+C_001D5E90::C_001D5E90()
 {
     f34 = 1.0f;
     f0 = 0;
