@@ -13,6 +13,10 @@ struct S_0011F4B0_V4 {
 };
 
 void func_0011F4B0(float *out, S_0011F4B0_V4 *pos, float *m);
+
+struct S_0011F5A0_V3 {
+    int x, y, z;
+};
 extern float D_002B9348;
 extern float D_002AB30C;
 
@@ -45,6 +49,15 @@ C_0011EDF0 *C_0011EDF0::func_0011EDF0(s16 *p)
     z = (float)p[2] * D_002AB30C * D_002B9348;
     w = 1.0f;
     return this;
+}
+
+void func_0011EE50(V4_0011EE50 *out, V4_0011EE50 *in)
+{
+    in->x = fabs_0011EE50(in->x);
+    in->y = fabs_0011EE50(in->y);
+    in->z = fabs_0011EE50(in->z);
+    in->w = fabs_0011EE50(in->w);
+    *out = *in;
 }
 
 void func_0011F400(int a0, int a1, int a2, int a3, int a4, int a5)
