@@ -48,7 +48,7 @@ struct RawBuf_Menu {
 
 struct BmxMenuBase {
     void *vtbl;
-    char pad4[0x5C];
+    char pad4[0x60];
     S_00079790_Obj *f64[8];
     char pad84[0x10];
     S_00079790_Obj *f94[2];
