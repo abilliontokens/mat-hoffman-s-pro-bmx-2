@@ -13,6 +13,8 @@ struct C_0004ED80 {
     void *func_0004ED80(int flags);
 };
 
+void func_001E891B(void *ptr);
+
 struct C_0004EBA0 {
     char pad0[0x64];
     void *f64;
