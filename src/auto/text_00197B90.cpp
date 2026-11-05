@@ -77,6 +77,44 @@ void C_00197EA0::func_00197EA0(void *dst)
     ((C_000264C0 *)dst)->func_000264C0((char *)this + 0xB0);
 }
 
+C_00197EC0_Vec4 C_00197EC0::func_00197EC0(float *v)
+{
+    C_00197EC0_Vec4 r;
+
+    r.w = 1.0f;
+    func_00197AA0();
+    r.x = fF4 * v[1] + fF8 * v[2] + fF0 * v[0];
+    r.y = f104 * v[1] + f100 * v[0] + f108 * v[2];
+    r.z = f114 * v[1] + f110 * v[0] + f118 * v[2];
+    return r;
+}
+
+void C_00198230::func_00198230(C_00198230 *child)
+{
+    C_00198230 *node = this;
+    C_00198230 **pp = &node->f178;
+
+    while (*pp != 0) {
+        node = *pp;
+        pp = &node->f178;
+    }
+    node->f178 = child;
+    child->f17C = node;
+}
+
+int C_00198230::func_00198270(void)
+{
+    int n = 0;
+
+    if (f178 != 0) {
+        n = f178->func_00198270();
+    }
+    if (f174 != 0) {
+        n += f174->func_00198270();
+    }
+    return n + 1;
+}
+
 void C_001982F0::func_001982F0(void)
 {
   int in_ECX = (int)this;
