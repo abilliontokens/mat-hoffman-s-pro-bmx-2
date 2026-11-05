@@ -37,6 +37,59 @@ struct C_0012B8F0 {
     void func_0012C4E0(void);
 };
 
+C_0012B8F0 *C_0012B8F0::func_0012B8F0(void) {
+    int *p;
+
+    ((C_00157600 *)this)->func_00157600(1);
+    vtbl = (void *)&D_00284194;
+    p = &f30;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    f24 = 0;
+    f28 = 0;
+    f2C = 0;
+    f44 = 0;
+    f40 = 0;
+    p[0] = D_002A3F00;
+    p[1] = D_002A3F04;
+    p[2] = D_002A3F08;
+    p[3] = D_002A3F0C;
+    return this;
+}
+
+float func_0012BAE0(float t, float p0, float p1, float p2, float p3) {
+    float t2;
+    float t3;
+
+    t2 = t * t;
+    t3 = t * t2;
+    return (t2 * D_002755EC - (t3 + t3)) * p2
+         + (((t3 + t3) - t2 * D_002755EC) + D_00275460) * p1
+         + (t3 - t2) * (p3 - p1) * D_002755E8
+         + (p2 - p0) * D_002755E8 * ((t3 - (t2 + t2)) + t);
+}
+
+void C_0012B8F0::func_0012BF10(int idx, u32 *a, u32 *b, u32 *c, int *d) {
+    u32 *s = (u32 *)(f2C + idx * 12);
+    a[0] = s[0];
+    a[1] = s[1];
+    a[2] = s[2];
+    a[3] = 0x3f800000;
+    s = (u32 *)(f24 + idx * 12);
+    b[0] = s[0];
+    b[1] = s[1];
+    b[2] = s[2];
+    b[3] = 0x3f800000;
+    s = (u32 *)(f28 + idx * 12);
+    c[0] = s[0];
+    c[1] = s[1];
+    c[2] = s[2];
+    c[3] = 0x3f800000;
+    *d = f44[idx];
+}
+
 void C_0012B8F0::func_0012C4E0(void) {
     vtbl = (void *)&D_00284194;
     if (f24 != 0) {
