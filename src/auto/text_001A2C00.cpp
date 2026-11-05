@@ -54,6 +54,42 @@ struct ResponseEmitter {
     int func_001A2F70(void);
 };
 
+void ResponseEmitter::func_001A2DD0(int id)
+{
+    int i;
+
+    for (i = 0; i < list1d8.count; i++) {
+        if (list1d8.at(i)->f0 == id) {
+            list1d8.at(i)->f4->v6(0);
+            list1d8.removeAt(i);
+        }
+    }
+}
+
+void ResponseEmitter::func_001A2E80(void)
+{
+    int i;
+
+    for (i = 0; i < list1d8.count; i++) {
+        if (list1d8.at(i)->f4 != 0) {
+            list1d8.at(i)->f4->v6(0);
+        }
+        list1d8.removeAt(i);
+    }
+}
+
+S_001A2C00_Snd *ResponseEmitter::func_001A2EF0(int id)
+{
+    int i;
+
+    for (i = 0; i < list1c4.count; i++) {
+        if (list1c4.at(i)->f0 == id) {
+            return list1c4.at(i)->f4;
+        }
+    }
+    return 0;
+}
+
 int ResponseEmitter::func_001A2F70(void)
 {
     f1c0 = 0;
