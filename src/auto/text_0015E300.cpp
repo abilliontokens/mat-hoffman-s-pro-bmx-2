@@ -33,3 +33,39 @@ struct C_0015E300 {
     void func_0015E3C0(void);
     int func_0015E5B0(void);
 };
+
+void C_0015E300::func_0015E300(int idx, S_0015E300_V3 *pos, int *val)
+{
+    if (idx >= 0 && idx < f78) {
+        if (f3C != 0 && pos != 0) {
+            f3C[idx].x = pos->x;
+            f3C[idx].y = pos->y;
+            f3C[idx].z = pos->z;
+        }
+        if (f38 != 0 && val != 0) {
+            f38[idx] = *val;
+        }
+    }
+}
+
+int C_0015E300::func_0015E5B0(void)
+{
+    unsigned int min = f24[0].f4;
+    int best = 0;
+    int i;
+
+    if (min == 0) {
+        return 0;
+    }
+    for (i = 1; i < f28; i++) {
+        unsigned int v = f24[i].f4;
+        if (v == 0) {
+            return i;
+        }
+        if (v < min) {
+            min = v;
+            best = i;
+        }
+    }
+    return best;
+}
