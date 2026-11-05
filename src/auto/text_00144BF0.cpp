@@ -61,6 +61,31 @@ void C_00144E70::func_00144E70(void)
   memcpy(dst2, *(void **)(src + 0x30), n2 * 8);
 }
 
+C_00145230 *C_00145230::func_00145230(void)
+{
+  int in_ECX = (int)this;
+  int i;
+
+  func_001AFF50();
+  *(int *)in_ECX = (int)&D_00285CB0;
+  for (i = 0; i < 4; i++) {
+    *(short *)(in_ECX + 0x18 + i * 2) = -1;
+    *(unsigned char *)(in_ECX + 0x20 + i) = 0xff;
+  }
+  *(unsigned char *)(in_ECX + 0x24) = 0;
+  *(short *)(in_ECX + 0x26) = 0;
+  *(short *)(in_ECX + 0x28) = 0;
+  *(int *)(in_ECX + 0x2c) = 0;
+  *(int *)(in_ECX + 0x30) = 0;
+  *(int *)(in_ECX + 0x34) = 0;
+  *(int *)(in_ECX + 0x38) = 0;
+  *(int *)(in_ECX + 0x3c) = 0;
+  *(int *)(in_ECX + 0x40) = 0;
+  *(int *)(in_ECX + 0x48) = 0;
+  *(int *)(in_ECX + 0x44) = 0;
+  return (C_00145230 *)in_ECX;
+}
+
 int C_00145290::func_00145290(int param_1)
 {
   int in_ECX = (int)this;
