@@ -42,3 +42,18 @@ struct C_00118380 {
     int func_00118380(int a, int b);
     void func_00118840(int a);
 };
+
+int C_00118380::func_00118380(int a, int b)
+{
+    if (f1218 == 0) {
+        return ((C_00157BF0 *)this)->func_00157BF0(a, b);
+    }
+    if (func_00135C70(0x11, 0, a, 0x80000000) != 0) {
+        ((C_0010E2A0 *)this)->func_0010E2A0();
+        return 1;
+    }
+    if (func_00135C70(0x22, 0, a, 0x80) != 0) {
+        D_002A1030 = (D_002A1030 == 0);
+    }
+    return ((C_00157BF0 *)this)->func_00157BF0(a, b);
+}
