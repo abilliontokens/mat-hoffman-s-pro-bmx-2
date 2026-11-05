@@ -3,6 +3,7 @@
 extern "C" __declspec(dllimport) int __stdcall KeDelayExecutionThread(int a0, int a1, void *a2);
 
 extern int D_0028FB38;
+extern char D_0028FAD0[];
 extern "C" int (__stdcall *_imp__NtSuspendThread)(int a0, int *a1);
 extern "C" void (__stdcall *_imp__KeQuerySystemTime)(void *a0);
 extern "C" int (__stdcall *_imp__NtSetInformationFile)(int a0, void *a1, void *a2, int a3, int a4);
@@ -422,7 +423,7 @@ void func_001DE82F(int (__stdcall *start)(int), int param)
         func_001DE6B8(0);
     } __except (func_001DE6F0(_exception_info())) {
     }
-    _imp__PsTerminateSystemThread(result);
+    terminate_thread(result);
 }
 
 #pragma optimize("", on)
