@@ -589,3 +589,15 @@ void C_0015B470::func_0015B4E0(const char *name, int value)
     f11C++;
 }
 
+int C_0015B470::func_0015B570(const char *name)
+{
+    int i;
+
+    for (i = 0; i < f11C; i++) {
+        if (strcmp(at(i)->name, name) == 0) {
+            return at(i)->value;
+        }
+    }
+    return 0;
+}
+
