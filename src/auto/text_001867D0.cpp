@@ -54,8 +54,60 @@ struct C_00186AB0 {
 };
 
 struct C_00186AF0Param {
+    int func_00168BE0(void *a, void *b, void *c, int d);
     int func_00168C20(void *a, int b, void *c);
     int func_00168C50(void *a, int b, void *c);
+};
+
+extern int D_00289A4C;
+extern int D_00289A3C;
+extern int D_00289A2C;
+extern int D_00275630;
+extern int D_00289A60;
+extern int D_002A8490_unused;
+
+struct C_00186C00 {
+    char pad0[0x168];
+    char f168[0x104];
+    char f26C[0x104];
+    int f370;
+    int func_00186960(void *param);
+    int func_00186C00(C_00186AF0Param *param);
+    int func_00186CE0(C_00186AF0Param *param);
+};
+
+struct SoundObj_00186F50 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual int v5(int a0);
+};
+
+struct Sub_00186F50 {
+    char pad0[0x5C];
+    int f5C;
+};
+
+struct Game_00186F50 {
+    int f0;
+    Sub_00186F50 *f4;
+};
+
+extern Game_00186F50 *D_002A8490;
+
+struct C_00186F50 {
+    char pad0[0x110];
+    SoundObj_00186F50 *f110;
+    int func_00186F50(void);
+};
+
+struct C_00186C70 {
+    void *vtbl;
+    char pad4[0x164];
+    char f168[0x104];
+    C_00186C70 *func_00186C70(void);
 };
 
 struct C_00186AF0 {
