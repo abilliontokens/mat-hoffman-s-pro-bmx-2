@@ -156,8 +156,11 @@ struct C_00184930 {
     S_00184C00_Obj *f3c0;
     char pad3c4[0x3e4 - 0x3c4];
     C_001B1130 *f3e4;
-    char pad3e8[0x484 - 0x3e8];
+    S_00184EF0_Holder *f3e8;
+    S_00184EF0_Obj *f3ec;
+    char pad3f0[0x484 - 0x3f0];
     S_00184C00_Mgr *f484;
+    int func_00184EF0(int a0, int a1);
     void func_00184BB0(void);
     int func_00184C00(void);
     int func_00184C60(void);
