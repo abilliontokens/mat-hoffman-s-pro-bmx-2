@@ -2,7 +2,6 @@
 #include "common.h"
 #include "ghidra.h"
 
-extern const float D_00275998;
 extern int D_00275630;
 
 struct Vec4 {
