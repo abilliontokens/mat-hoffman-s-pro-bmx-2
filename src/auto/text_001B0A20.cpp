@@ -188,16 +188,15 @@ undefined4 C_001B0E40::func_001B0E40(byte param_1)
   return in_ECX;
 }
 
-void C_001B0E60::func_001B0E60(int param_1)
+C_001B0E60::C_001B0E60(int param_1)
 {
-    int zero = 0;
-    unk4 = zero;
-    unkC = zero;
-    unk8 = zero;
-    unk10 = zero;
-    unk14 = zero;
-    unk18 = zero;
-    unk1C = zero;
+    unk4 = 0;
+    unkC = 0;
+    unk8 = 0;
+    unk10 = 0;
+    unk14 = 0;
+    unk18 = 0;
+    unk1C = 0;
     vtbl = &D_0028C6E8;
     unk20 = 0x7fffffff;
     unk24 = param_1;
