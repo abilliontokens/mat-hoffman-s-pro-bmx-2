@@ -165,15 +165,20 @@ struct C_00143C00 {
     int fFC;
     __forceinline float GetScale()
     {
+        float s;
         switch (fAC) {
         case 0:
-            return fD8 / D_002EFEA0;
+            s = fD8 / D_002EFEA0;
+            break;
         case 1:
         case 2:
-            return fD8;
+            s = fD8;
+            break;
         case 3:
-            return D_00275460;
+            s = D_00275460;
+            break;
         }
+        return s;
     }
     __forceinline void SetColor(float s);
     __forceinline void Uv28(Vtx28_143C00 *v, float rw, float rh);
@@ -327,7 +332,6 @@ struct C_00144960 {
 
 void C_00143C00::func_00143C00(Quad_143C00 *arg)
 {
-    float scale;
     int v;
     if (D_002A99B0 != 0 || fAC != 3) {
         int wide = fE4 != D_00275544;
@@ -338,23 +342,7 @@ void C_00143C00::func_00143C00(Quad_143C00 *arg)
         }
         f94 = f84 + f64;
         f98 = f88 + f6C;
-        {
-            switch (fAC) {
-            case 0:
-                scale = fD8 / D_002EFEA0;
-                break;
-            case 1:
-            case 2:
-                scale = fD8;
-                break;
-            case 3:
-                scale = D_00275460;
-                break;
-            }
-            const Vec4_143C00 *m = &D_002BECE0[fAC];
-            Color_143C00 col(scale * m->x, scale * m->y, scale * m->z, f58);
-            func_001FEBD0(0x20, &col);
-        }
+        SetColor(GetScale());
         func_001FEC30(0x18, (void *)(*(int *)(D_002EFDB8 + 4) + 0x290));
         D_0020C6DC |= 0x3000;
         D_0020CA7C = 0;
@@ -456,15 +444,11 @@ void C_00143C00::func_00143C00(Quad_143C00 *arg)
                 v28[3].pos.y = arg->c[3].pos.y;
                 v28[3].pos.z = arg->c[3].pos.z;
                 float invW = D_00275460 / f34;
-                scale = D_00275460 / f38;
-                v28[0].u1 = v28[0].u0 = (v28[0].pos.x - f94) * invW;
-                v28[0].v1 = v28[0].v0 = (v28[0].pos.z - f98) * scale;
-                v28[1].u1 = v28[1].u0 = (v28[1].pos.x - f94) * invW;
-                v28[1].v1 = v28[1].v0 = (v28[1].pos.z - f98) * scale;
-                v28[2].u1 = v28[2].u0 = (v28[2].pos.x - f94) * invW;
-                v28[2].v1 = v28[2].v0 = (v28[2].pos.z - f98) * scale;
-                v28[3].u1 = v28[3].u0 = (v28[3].pos.x - f94) * invW;
-                v28[3].v1 = v28[3].v0 = (v28[3].pos.z - f98) * scale;
+                float invH = D_00275460 / f38;
+                Uv28(&v28[0], invW, invH);
+                Uv28(&v28[1], invW, invH);
+                Uv28(&v28[2], invW, invH);
+                Uv28(&v28[3], invW, invH);
                 func_00200950(6, 6, D_002A7054, v28, 0x1c);
             }
         } else {
@@ -511,15 +495,11 @@ void C_00143C00::func_00143C00(Quad_143C00 *arg)
                 v20[3].pos.y = arg->c[3].pos.y;
                 v20[3].pos.z = arg->c[3].pos.z;
                 float invW = D_00275460 / f34;
-                scale = D_00275460 / f38;
-                v20[0].u = (v20[0].pos.x - f94) * invW;
-                v20[0].v = (v20[0].pos.z - f98) * scale;
-                v20[1].u = (v20[1].pos.x - f94) * invW;
-                v20[1].v = (v20[1].pos.z - f98) * scale;
-                v20[2].u = (v20[2].pos.x - f94) * invW;
-                v20[2].v = (v20[2].pos.z - f98) * scale;
-                v20[3].u = (v20[3].pos.x - f94) * invW;
-                v20[3].v = (v20[3].pos.z - f98) * scale;
+                float invH = D_00275460 / f38;
+                Uv20(&v20[0], invW, invH);
+                Uv20(&v20[1], invW, invH);
+                Uv20(&v20[2], invW, invH);
+                Uv20(&v20[3], invW, invH);
                 func_00200950(6, 6, D_002A7054, v20, 0x14);
             }
         }
