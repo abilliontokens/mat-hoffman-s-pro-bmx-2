@@ -124,6 +124,73 @@ int __stdcall func_001E2850(int *section)
     return section[2];
 }
 
+int __stdcall func_001E285A(u32 *buffer, u32 *size, u32 value, unsigned int count, u16 *data)
+{
+    unsigned int origCount = count;
+    int write = 0;
+    u32 *p = 0;
+    u16 *origData = data;
+    unsigned int pass = 0;
+    do {
+        int n;
+        int pad;
+        u32 old;
+        if (write) { p[0] = (u32)&D_000417FC; p[1] = value; }
+        p += 2;
+        n = 1;
+        if (count > 0xffe) {
+            unsigned int chunks = (count - 0xfff) / 0xffe + 1;
+            n = chunks * 0x7ff + 1;
+            do {
+                if (write) {
+                    p[0] = 0x5ffc1800;
+                    memcpy(p + 1, data, 0x7ff * 4);
+                }
+                data += 0xffe;
+                count -= 0xffe;
+                p += 0x800;
+            } while (--chunks);
+        }
+        {
+            unsigned int dw = count >> 1;
+            if (write) {
+                p[0] = (dw << 18) + 0x1800 | 0x40000000;
+                memcpy(p + 1, data, dw * 4);
+            }
+            data += dw * 2;
+            n += dw;
+            p += dw + 1;
+        }
+        if (count & 1) {
+            if (write) { p[0] = (u32)&D_00041808; p[1] = *data; }
+            p += 2;
+            n++;
+        }
+        if (write) { p[0] = (u32)&D_000417FC; p[1] = 0; }
+        p += 2;
+        pad = 0x9f - n;
+        if (pad > 0) {
+            if (write) {
+                p[0] = (pad << 18) + 0x100 | 0x40000000;
+                memset(p + 1, 0, pad * 4);
+            }
+            p += pad + 1;
+        }
+        if (pass == 0) {
+            old = *size;
+            p++;
+            *size = (u32)p;
+            if (buffer == 0) return 0;
+            if (old < (u32)p) return 0x88760829;
+            p = buffer;
+            count = origCount;
+            write = 1;
+            data = origData;
+        }
+    } while (++pass < 2);
+    return 0;
+}
+
 void Class_002901A0::func_001E29C5(unsigned int flags)
 {
     ((C_00224F6E *)((char *)this - 8))->func_00224F6E(flags);
