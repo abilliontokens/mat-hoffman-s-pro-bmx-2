@@ -169,6 +169,26 @@ void C_001D3E30::func_001D3E80(const char *s)
     func_001E8920(&unk64, s, 30);
 }
 
+void C_001D3E30::func_001D3EA0(int n, const char *a, const char *b, const char *c)
+{
+    int func_001E8920(...);
+
+    unk60 = n;
+    if (n > 0) {
+        func_001E8920(&unk83, a, 30);
+    }
+    if (unk60 > 1) {
+        func_001E8920(&unkA2, b, 30);
+    } else {
+        func_001E8920(&unkA2, a, 30);
+    }
+    if (unk60 > 2) {
+        func_001E8920(&unkC1, c, 30);
+    } else {
+        func_001E8920(&unkC1, a, 30);
+    }
+}
+
 C_001D3F50* C_001D3F50::func_001D3F50(void) {
     return this;
 }
