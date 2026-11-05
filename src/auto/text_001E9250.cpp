@@ -542,6 +542,74 @@ int func_001E9B9B(S_001E9_FILE *stream, long offset, int whence)
     return result;
 }
 
+long func_001E9BE4(S_001E9_FILE *stream) {
+    int *func_001ED075(void);
+    unsigned int offset;
+    long filepos;
+    char *p;
+    char *end;
+    unsigned int rdcnt;
+    int fd = stream->file;
+    if (stream->cnt < 0) {
+        stream->cnt = 0;
+    }
+    if ((filepos = func_001EE52F(fd, 0, 1)) < 0) {
+        return -1;
+    }
+    if (!(stream->flag & 0x108)) {
+        return filepos - stream->cnt;
+    }
+    offset = stream->ptr - stream->base;
+    if (stream->flag & 3) {
+        if (D_002FB260[fd >> 5][(fd & 0x1f) * 40 + 4] & 0x80) {
+            for (p = stream->base; p < stream->ptr; p++) {
+                if (*p == '\n') {
+                    offset++;
+                }
+            }
+        }
+    } else if (!(stream->flag & 0x80)) {
+        *func_001ED075() = 0x16;
+        return -1;
+    }
+    if (filepos == 0) {
+        return offset;
+    }
+    if (stream->flag & 1) {
+        if (stream->cnt == 0) {
+            offset = 0;
+        } else {
+            rdcnt = stream->cnt + (stream->ptr - stream->base);
+            if (D_002FB260[fd >> 5][(fd & 0x1f) * 40 + 4] & 0x80) {
+                if (func_001EE52F(fd, 0, 2) == filepos) {
+                    p = stream->base;
+                    end = p + rdcnt;
+                    for (; p < end; p++) {
+                        if (*p == '\n') {
+                            rdcnt++;
+                        }
+                    }
+                    if (stream->flag & 0x2000) {
+                        rdcnt++;
+                    }
+                } else {
+                    func_001EE52F(fd, filepos, 0);
+                    if (rdcnt <= 0x200 && (stream->flag & 8) && !(stream->flag & 0x400)) {
+                        rdcnt = 0x200;
+                    } else {
+                        rdcnt = stream->bufsiz;
+                    }
+                    if (D_002FB260[fd >> 5][(fd & 0x1f) * 40 + 4] & 4) {
+                        rdcnt++;
+                    }
+                }
+            }
+            filepos -= rdcnt;
+        }
+    }
+    return filepos + offset;
+}
+
 int func_001E9D46(S_001E9714_File *stream) {
     int func_001E9BE4(S_001E9714_File *);
     int result;
