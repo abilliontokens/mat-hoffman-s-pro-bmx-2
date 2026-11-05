@@ -6,6 +6,7 @@ struct S_000DFE50_W {
     char pad3c[0x1c];
     u8 f58;
     void func_001D5AD0();
+    void set_alpha(int a) { f38 = (a << 24) | (f38 & 0xffffff); f58 |= 2; }
 };
 
 struct S_000DFC90_Obj {
