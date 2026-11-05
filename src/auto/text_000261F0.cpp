@@ -45,7 +45,10 @@ extern "C" int strcmp(const char *a, const char *b);
 char *func_001E8BF0(char *dst, const char *src, int n);
 
 struct S_000264C0_Mat {
-    float m[16];
+    __m128 r0;
+    __m128 r1;
+    __m128 r2;
+    __m128 r3;
 };
 
 struct C_000264C0 {
