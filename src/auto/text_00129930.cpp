@@ -21,3 +21,16 @@ struct BoxCollisionObject {
     void func_001299C0(int *p1, int *p2);
     void func_00129DF0(int a, int b);
 };
+
+void *BoxCollisionObject::func_0012A1C0(unsigned int flags)
+{
+    vtbl = (void *)&D_00283F64;
+    if (f54) {
+        func_001E891B(f54);
+        f54 = 0;
+    }
+    func_00133E60();
+    if (flags & 1)
+        func_001E891B(this);
+    return this;
+}
