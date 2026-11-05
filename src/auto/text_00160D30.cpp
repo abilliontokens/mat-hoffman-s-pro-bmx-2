@@ -267,3 +267,40 @@ void func_00161910(float a, float *s, float *c)
     *s = (float)sin(a);
 }
 
+S_Matrix16_00161AA0 func_00161AA0(float a1, float a2, float a3, float a4)
+{
+    S_Matrix16_00161AA0 m;
+
+    func_00162530(m.m, a3, a4, a1, a2, 1);
+    return m;
+}
+
+void func_00161BE0(char *dst, char *src, float *m, int count, int dstStride, int srcStride)
+{
+    __m128 r0, r1, r2, r3;
+
+    if (count != 0) {
+        if (srcStride == 0) {
+            srcStride = dstStride;
+        }
+        r0 = _mm_load_ps(m);
+        r1 = _mm_load_ps(m + 4);
+        r2 = _mm_load_ps(m + 8);
+        r3 = _mm_load_ps(m + 12);
+        do {
+            __m128 v = _mm_loadu_ps((float *)src);
+            __m128 t0 = _mm_mul_ps(r0, v);
+            __m128 t2 = _mm_mul_ps(r2, v);
+            __m128 t1 = _mm_mul_ps(r1, v);
+            __m128 t3 = _mm_mul_ps(r3, v);
+            __m128 s01 = _mm_add_ps(_mm_unpacklo_ps(t0, t1), _mm_unpackhi_ps(t0, t1));
+            __m128 s23 = _mm_add_ps(_mm_unpacklo_ps(t2, t3), _mm_unpackhi_ps(t2, t3));
+            __m128 res = _mm_add_ps(_mm_movelh_ps(s01, s23), _mm_movehl_ps(s23, s01));
+            _mm_storeu_ps((float *)dst, res);
+            src += srcStride;
+            dst += dstStride;
+            count--;
+        } while (count != 0);
+    }
+}
+
