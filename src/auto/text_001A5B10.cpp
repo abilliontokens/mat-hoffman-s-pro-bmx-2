@@ -233,20 +233,20 @@ void func_001A5C30(char *text, S_001A5C30_Obj **arr, int width, int maxCount)
     int lastSpace = -1;
     int count = 0;
     int i = 0;
-    char c;
 
     if (maxCount <= 0) {
         return;
     }
     do {
-        c = text[start + i];
+        int idx = start + i;
+        char c = text[idx];
+        i++;
         if (c == 0) {
             break;
         }
         if (c == ' ') {
-            lastSpace = start + i;
+            lastSpace = idx;
         }
-        i++;
         if (i == width) {
             text[lastSpace] = 0;
             arr[count++]->func_0005E840(text + start);
@@ -260,10 +260,9 @@ void func_001A5C30(char *text, S_001A5C30_Obj **arr, int width, int maxCount)
             return;
         }
         arr[count++]->func_0005E840(text + start);
-    } else {
-        while (count < maxCount) {
-            arr[count++]->func_0005E840((char *)&D_00275630);
-        }
+    }
+    while (count < maxCount) {
+        arr[count++]->func_0005E840((char *)&D_00275630);
     }
 }
 
@@ -285,6 +284,24 @@ C_001A5D50 *C_001A5D50::func_001A5D50(void *param)
     f28 = 0;
     f2c = 0;
     vtbl = (void *)&D_0028B9E4;
+    return this;
+}
+
+C_001A5D80 *C_001A5D80::func_001A5D80(int param)
+{
+    D_002A8490->f234 = 1;
+    D_002EFDB8->f30 = 0;
+    unk24 = param;
+    func_001A5B10((char *)&D_0028BA50, (void **)&unk28);
+    if (unk28 != 0) {
+        D_002EFDB8->v4(0, (int)unk28, 0, 0);
+        D_002A8490->v9();
+        D_002EFDB8->v4(0, (int)unk28, 0, 0);
+        D_002A8490->v9();
+        D_002EFDB8->v4(0, (int)unk28, 0, 0);
+        unk28->v2();
+        unk28 = 0;
+    }
     return this;
 }
 
