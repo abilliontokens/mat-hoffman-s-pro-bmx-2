@@ -150,12 +150,12 @@ void C_00151F80::func_00152BA0(void)
     int i;
 
     if (f574 != 10) {
-        if (f54 < D_00275460) {
+        if (f54 < 1.0f) {
             return;
         }
     }
     if (f574 == 10) {
-        if (f54 < D_00276288) {
+        if (f54 < 1.5f) {
             return;
         }
     }
@@ -178,7 +178,7 @@ void C_00151F80::func_00152BA0(void)
         } else {
             f2c->f1a4->func_00166C50(&D_00286CB0);
             f2c->f1a4->f34 = f580;
-            f580 = D_002755E8 + f580;
+            f580 += 0.5f;
         }
         f574--;
         f6d4++;
