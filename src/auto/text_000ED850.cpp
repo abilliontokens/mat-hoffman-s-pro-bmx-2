@@ -59,9 +59,15 @@ struct C_000EE060 {
     int unk29C;
     char pad2A0[0x3B8 - 0x2A0];
     C_00093120 *unk3B8;
-    char pad3BC[0x460 - 0x3BC];
+    char pad3BC[0x3C0 - 0x3BC];
+    int unk3C0;
+    char pad3C4[0x3E4 - 0x3C4];
+    int arr3E4[11];
+    char pad410[0x460 - 0x410];
     float arr460[11];
-    C_001B1980 *arr48C[9];
+    C_001B1980 *arr48C[11];
+    char pad4B8[0x4D0 - 0x4B8];
+    int arr4D0[11];
     void func_000EDB70(void);
     void func_000EDF70(void);
     void func_000EE060(void);
