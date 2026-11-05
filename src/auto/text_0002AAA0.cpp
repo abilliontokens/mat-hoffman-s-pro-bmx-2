@@ -30,6 +30,36 @@ struct C_0002B180 {
     void func_0002B180(void);
 };
 
+struct Vec4_0002AF90 {
+    float x, y, z, w;
+};
+
+struct S_0002AF90_Node {
+    Vec4_0002AF90 func_00197EC0(Vec4_0002AF90 *v);
+    void func_00199A70(int a, Vec4_0002AF90 *out);
+};
+
+struct S_0002AF90_Obj {
+    void func_0014AC30(Vec4_0002AF90 *v, int a);
+    void func_00133ED0(void);
+    float func_00133F10(int a);
+};
+
+extern int D_002B7E5C;
+extern Vec4_0002AF90 D_002B7E4C;
+extern float D_002A10F0, D_002A10F4, D_002A10F8, D_002A1178;
+
+struct C_0002AF90 {
+    char pad0[0x13c];
+    Vec4_0002AF90 f13c;
+    Vec4_0002AF90 f14c;
+    char pad15c[0x1f8 - 0x15c];
+    S_0002AF90_Obj *f1f8;
+    char pad1fc[0x230 - 0x1fc];
+    S_0002AF90_Node *f230;
+    void func_0002AF90(void);
+};
+
 
 void C_0002B140::func_0002B140(C_00168B90 *param_1) {
     param_1->func_00168B90(D_002766F0, &unk0);
