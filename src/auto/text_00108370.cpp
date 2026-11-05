@@ -39,6 +39,70 @@ struct C_00108660 {
     int func_00108660(void);
 };
 
+extern float D_00275544;
+extern float D_002755E8;
+extern float D_00275460;
+
+struct C_00083B20 {
+    void func_00083B20(int arg);
+};
+
+struct C_00108630_Arr {
+    char pad0[0x170];
+    C_00083B20 *items[1];
+};
+
+struct C_00108630_Mgr {
+    char pad0[0x2A4];
+    C_00108630_Arr *f2A4;
+};
+
+extern C_00108630_Mgr *D_002A8490;
+
+struct C_00198390_Obj {
+    void func_00198390();
+    void func_00198E60();
+};
+
+struct C_001332A0_Obj {
+    void func_001332A0();
+};
+
+struct C_00108370_A00 {
+    char pad0[4];
+    C_00198390_Obj *f4;
+};
+
+struct C_00108370 {
+    char pad0[0x230];
+    C_00198390_Obj *f230;
+    char pad234[0xA00 - 0x234];
+    C_00108370_A00 *fA00;
+    char padA04[0x11AC - 0xA04];
+    C_001332A0_Obj *f11AC;
+    C_001332A0_Obj *f11B0;
+    C_001332A0_Obj *f11B4;
+    C_001332A0_Obj *f11B8;
+    C_001332A0_Obj *f11BC;
+    void func_00108370();
+};
+
+struct C_00108CB0_T {
+    char pad0[0x7A64];
+    float f7A64[1];
+};
+
+struct C_00108CB0_C {
+    char pad0[0x52C];
+    C_00108CB0_T *f52C;
+};
+
+struct C_00108CB0 {
+    char pad0[0x24];
+    C_00108CB0_C *f24;
+    float func_00108CB0(int idx, float v);
+};
+
 struct C_001092E0 {
     int f0;
     int f4[5];
@@ -137,6 +201,7 @@ void C_00108680::func_00108680(int a0) {
 
 void C_00108F50::func_00108F50(void)
 {
+    int *p;
     int i;
     int j;
 
@@ -144,8 +209,9 @@ void C_00108F50::func_00108F50(void)
         fa68[i] = -1;
         fa78[i] = -1;
     }
+    p = fab0;
     fa88 = 0;
-    memset(fab0, 0, sizeof(fab0));
+    memset(p, 0, sizeof(fab0));
     for (j = 0; j < 16; j++) {
         for (i = 0; i < 5; i++) {
             fce0[i][j] = 0;
@@ -166,6 +232,7 @@ void C_00108F50::func_00108F50(void)
 
 void C_00108F50::func_00108FF0(void)
 {
+    int *p;
     int i;
     int j;
 
@@ -173,8 +240,9 @@ void C_00108F50::func_00108FF0(void)
         fa8c[i] = -1;
         fa9c[i] = -1;
     }
+    p = fbc8;
     faac = 0;
-    memset(fbc8, 0, sizeof(fbc8));
+    memset(p, 0, sizeof(fbc8));
     for (j = 0; j < 16; j++) {
         for (i = 0; i < 5; i++) {
             fe20[i][j] = 0;
