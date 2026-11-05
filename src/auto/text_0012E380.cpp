@@ -40,9 +40,8 @@ struct S_0012E5F0_Elem {
     u32 f0;
     u32 f4;
     V4_0012E5F0 v;
+    static void *operator new[](unsigned int size) { return func_001E8A44(size); }
 };
-
-void *operator new[](unsigned int size);
 
 /* CarProceduralExtended */
 struct C_0012EF30 {
