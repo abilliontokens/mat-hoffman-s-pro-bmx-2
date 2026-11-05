@@ -594,20 +594,21 @@ void *func_001EA038(void *inptr)
     S_001EA038_Locator *locator;
 
     if (inptr == 0) {
-        throw func_001F3244("Attempted a typeid of NULL pointer!");
+        func_001F3244 e("Attempted a typeid of NULL pointer!");
+        func_001F32E8(&e, D_0029F4BC);
     }
     __try {
         locator = ((S_001EA038_Locator **)*(void **)inptr)[-1];
         if (!func_001F64F6(locator->typeDescriptor, 8)) {
             return locator->typeDescriptor;
         }
-        throw func_001F3280("Bad read pointer - no RTTI data!");
+        func_001F3280 e("Bad read pointer - no RTTI data!");
+        func_001F32E8(&e, D_0029F4AC);
     } __except (_exception_code() == 0xc0000005) {
-        throw func_001F3280("Access violation - no RTTI data!");
+        func_001F3280 e("Access violation - no RTTI data!");
+        func_001F32E8(&e, D_0029F4AC);
     }
 }
-
-#pragma optimize("t", off)
 void *func_001EA1A1(unsigned int num, unsigned int size)
 {
     unsigned int total = num * size;
