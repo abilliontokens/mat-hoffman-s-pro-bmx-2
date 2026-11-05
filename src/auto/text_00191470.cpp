@@ -82,9 +82,19 @@ extern C_00191470_Vec D_002A97D8;
 
 void func_001E8920(void *dst, const void *src, int n);
 
-static __inline int Min(const int &a, const int &b)
+static __inline const int &Min(const int &a, const int &b)
 {
     return a > b ? b : a;
+}
+
+static __inline void ZeroMatrix(S_00192310_Mat &m)
+{
+    __m128 *v = (__m128 *)&m;
+
+    v[0] = _mm_setzero_ps();
+    v[1] = _mm_setzero_ps();
+    v[2] = _mm_setzero_ps();
+    v[3] = _mm_setzero_ps();
 }
 
 struct C_00157600 {
