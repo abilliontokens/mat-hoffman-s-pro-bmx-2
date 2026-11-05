@@ -75,6 +75,14 @@ void func_000BA290(void) {
     func_000BC7B0();
 }
 
+void *BmxUIMain::func_000BA2A0(unsigned int flags)
+{
+    vtbl = (void *)&D_0027D6AC;
+    func_000BE540();
+    if (flags & 1) func_001E891B(this);
+    return this;
+}
+
 void __stdcall func_000BA430(int a0, int a1, int a2, int a3) {
 }
 
