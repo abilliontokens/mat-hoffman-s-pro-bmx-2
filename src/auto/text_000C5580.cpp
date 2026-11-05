@@ -46,13 +46,33 @@ struct C_5E40_Dst {
     void func_001D6600();
 };
 
+struct C_6420_Elem {
+    char pad0[0x38];
+    unsigned int f38;
+    char pad3C[0x1C];
+    unsigned char b58;
+    void func_001D5AD0();
+};
+
 struct C_5E40_G {
-    char pad0[0x34];
+    char pad0[0x24];
+    C_6420_Elem *f24;
+    C_6420_Elem *f28;
+    C_6420_Elem *f2C;
+    C_6420_Elem *f30;
     C_5E40_Dst *f34;
     C_5E40_Dst *f38;
-    char pad3C[0x44];
+    char pad3C[0x14];
+    C_6420_Elem *f50;
+    char pad54[0x14];
+    C_6420_Elem *f68;
+    char pad6C[0x14];
     C_5E40_Dst *f80;
     C_5E40_Dst *f84;
+    C_6420_Elem *f88;
+    C_6420_Elem *f8C;
+    C_6420_Elem *f90;
+    C_6420_Elem *f94;
 };
 
 extern C_5E40_G *D_002B91AC;
@@ -130,9 +150,10 @@ void BmxUIPageParkEditor::func_000C5980(void)
 
 void BmxUIPageParkEditor::func_000C5E40(void)
 {
-    if (f124->f25C->f74->func_000301D0() != 0)
-        return;
-    D_002B91AC->f38->func_001D6600();
+    C_5E40_B *b = this->f124->f25C;
+
+    if (b->f74->func_000301D0() == 0)
+        D_002B91AC->f38->func_001D6600();
     D_002B91AC->f80->func_001D6600();
     D_002B91AC->f84->func_001D6600();
     D_002B91AC->f34->func_001D6600();
