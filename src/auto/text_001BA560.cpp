@@ -163,6 +163,7 @@ struct C_001BA5E0 {
     int f11c;
     int f120;
     int f124;
+    char pad128[4];
     int f12c;
     int f130;
     int f134;
