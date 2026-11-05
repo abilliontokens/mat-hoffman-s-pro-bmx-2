@@ -86,6 +86,34 @@ V4_0011EE50 *func_0011EEE0(V4_0011EE50 *out, V4_0011EE50 *a, V4_0011EE50 *b)
     return out;
 }
 
+void func_0011F010(int a0, float x, float y, float z, float s, float c)
+{
+    float *m = (float *)a0;
+    float xs = s * x;
+    float ys = s * y;
+    float zs = s * z;
+    float t = 1.0f - c;
+    m[12] = 0.0f;
+    m[13] = 0.0f;
+    m[14] = 0.0f;
+    m[3] = 0.0f;
+    m[7] = 0.0f;
+    m[11] = 0.0f;
+    m[15] = 1.0f;
+    float xt = x * t;
+    m[0] = x * xt + c;
+    m[4] = y * xt + zs;
+    m[8] = z * xt - ys;
+    float yt = y * t;
+    m[1] = x * yt - zs;
+    m[5] = y * yt + c;
+    m[9] = z * yt + xs;
+    s = z * t;
+    m[2] = *(volatile float *)&s * x + ys;
+    m[6] = *(volatile float *)&s * y - xs;
+    m[10] = *(volatile float *)&s * z + c;
+}
+
 void func_0011F400(int a0, int a1, int a2, int a3, int a4, int a5)
 {
     float x = *(float *)&a1;
