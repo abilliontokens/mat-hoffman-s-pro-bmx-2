@@ -83,20 +83,6 @@ struct S_002B91AC {
 
 extern S_002B91AC *D_002B91AC;
 
-/* give a drawable the colour of the page's index and mark it dirty */
-static void setEntryColor(C_000E1_Elem *e, s32 c)
-{
-    e->f38 = (c << 24) | (e->f38 & 0xffffff);
-    e->b58 |= 2;
-}
-
-/* give a drawable a fixed colour and mark it dirty */
-static void setEntryColorMask(C_000E1_Elem *e, u32 mask, u32 color)
-{
-    e->f38 = (e->f38 & mask) | color;
-    e->b58 |= 2;
-}
-
 struct C_000E1650_Sel {
     char pad0[0x30];
     int f30;
