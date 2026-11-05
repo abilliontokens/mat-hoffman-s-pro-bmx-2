@@ -39,6 +39,11 @@ void D_00021290();
 void *func_001E8A44(unsigned int);
 void __stdcall func_00011FF0(void *, int, int, void (*)());
 void func_00030F30(char *,char *);
+static inline Vec12C *alloc_12C(int n) {
+    Vec12C *p=(Vec12C*)func_001E8A44(n*12);
+    if(p) { func_00011FF0(p,12,n,D_00021290); return p; }
+    return 0;
+}
 struct C_0012C8F0 {
     undefined4 func_0012C8F0(byte param_1);
 };
