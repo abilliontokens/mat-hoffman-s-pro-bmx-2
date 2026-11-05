@@ -41,7 +41,25 @@ struct BmxUIPageHOF2 {
     BmxUIPageHOF2 *func_000D5D40(int a0);
     void func_000D5E00();
     void func_000D6B40();
+    void func_000D5860();
+    void func_000D59A0();
+    void func_000D5B90();
+    void func_001BEE30(int a, int b);
+    void func_00157960();
+    void func_000D5C70();
 };
+
+struct NodeHOF2 {
+    void func_001D6600();
+};
+
+struct MgrHOF2 {
+    char pad0[0x34];
+    NodeHOF2 *unk34;
+    char pad38[4];
+    NodeHOF2 *unk3C;
+};
+extern MgrHOF2 *D_002B91AC;
 
 BmxUIPageHOF2 *BmxUIPageHOF2::func_000D5D40(int a0)
 {
