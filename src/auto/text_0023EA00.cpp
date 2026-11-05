@@ -376,6 +376,43 @@ int __stdcall func_0023F160(C_0023EFB0 *p)
     return 0;
 }
 
+S_0023F3F7_Obj *S_0023F3F7_Obj::func_0023F1AB(void)
+{
+    C_0023EC0D *p = (C_0023EC0D *)this;
+    int i;
+
+    p->vtbl = &D_0029016C;
+    p->f4 = 1;
+    p->f30 = 0;
+    for (i = 0; i < 10; i++) {
+        p->f8[i] = 0;
+    }
+    p->f50 = -1;
+    p->f34 = 0;
+    p->f98 = 0;
+    p->f38 = 0;
+    p->fB4 = 0;
+    p->fAC = 0;
+    p->f8C = 0;
+    p->f90 = 0;
+    p->f3c = 0;
+    p->f40 = 0;
+    p->f44 = 0;
+    p->f48 = 0;
+    p->f88 = 0;
+    p->f4c = 0;
+    p->f68 = 0;
+    p->fB8 = 1000;
+    p->fB0 = 1;
+    for (i = 0; i < 5; i++) {
+        p->f54[i] = 0;
+    }
+    _imp__RtlInitializeCriticalSection(p->f6c);
+    p->fA4.prev = &p->fA4;
+    p->fA4.next = &p->fA4;
+    return this;
+}
+
 int __stdcall func_0023F3F7(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7)
 {
     S_0023F3F7_Obj *obj;
