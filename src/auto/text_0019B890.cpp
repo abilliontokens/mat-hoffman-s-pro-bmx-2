@@ -137,6 +137,75 @@ struct SoultreeCollisionObject {
     void func_0019C350(struct S_0019C350_V4 *centre, float *extent);
 };
 
+/* bounding shape of a SoultreeCollisionObject: centre and half extents */
+struct S_0019C350_Shape {
+    char pad0[0xC];
+    float cx;
+    float cy;
+    float cz;
+    float ex;
+    float ey;
+    float ez;
+};
+
+struct S_0019C350_V4 {
+    float x;
+    float y;
+    float z;
+    float w;
+    S_0019C350_V4()
+    {
+        z = 0.0f;
+        y = 0.0f;
+        x = 0.0f;
+        w = 1.0f;
+    }
+    S_0019C350_V4(float a, float b, float c, float d)
+    {
+        x = a;
+        y = b;
+        z = c;
+        w = d;
+    }
+};
+
+struct __declspec(align(16)) S_0019C350_M {
+    __m128 m[4];
+};
+
+void func_0001C680(S_0019C350_V4 *out, S_0019C350_V4 v, float *m);
+
+static __forceinline float Abs_0019C350(float f)
+{
+    unsigned u = *(unsigned *)&f;
+
+    u &= 0x7fffffff;
+    return *(float *)&u;
+}
+
+static __forceinline void Xform_0019C350(S_0019C350_V4 *out, const S_0019C350_M *mat, const float *v)
+{
+    __m128 t = _mm_loadu_ps(v);
+    _mm_storeh_pi((__m64 *)&out->z, t);
+    out->w = 1.0f;
+    t = _mm_loadh_pi(t, (__m64 *)&out->z);
+    __m128 r0 = _mm_mul_ps(mat->m[0], t);
+    __m128 r1 = _mm_mul_ps(mat->m[1], t);
+    __m128 r2 = _mm_mul_ps(mat->m[2], t);
+    __m128 lo = _mm_unpacklo_ps(r0, r1);
+    __m128 hi = _mm_unpackhi_ps(r0, r1);
+    __m128 junk;
+    junk = _mm_movehl_ps(junk, r2);
+    lo = _mm_add_ps(lo, hi);
+    r2 = _mm_add_ps(r2, junk);
+    hi = _mm_movehl_ps(hi, lo);
+    lo = _mm_movelh_ps(lo, r2);
+    hi = _mm_shuffle_ps(hi, r2, 0x14);
+    lo = _mm_add_ps(lo, hi);
+    _mm_storeu_ps(&out->x, lo);
+    out->w = 1.0f;
+}
+
 void func_0011ACC0(void *out, void *a, void *b);
 void func_00030AC0(float *out, float *v, float *m);
 
