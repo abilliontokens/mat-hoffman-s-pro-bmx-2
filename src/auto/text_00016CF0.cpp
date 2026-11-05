@@ -176,6 +176,13 @@ struct C_00017810_Vec3 {
     float z;
 };
 
+static __forceinline void vec3_scale_set(float *out, float x, float y, float z, float s) {
+    out[3] = 1.0f;
+    out[0] = x * s;
+    out[1] = y * s;
+    out[2] = z * s;
+}
+
 static __forceinline C_00017810_Vec3 vec3_neg(float x, float y, float z) {
     C_00017810_Vec3 r;
     r.x = -x;
