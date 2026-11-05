@@ -1,9 +1,36 @@
 /* 7 functions from 0x0019C710 to 0x0019D6C0, found by Ghidra. */
 #include "common.h"
 
+void *func_001E8A44(int size);
+void func_00133D80(void *p);
+extern int D_002B92E0;
+extern int D_002B92F0;
+
+/* (0, 0, 0, 1) vector */
+struct V4_0019CB00 {
+    float x;
+    float y;
+    float z;
+    float w;
+    V4_0019CB00() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+    V4_0019CB00(int) { x = 0.0f; y = 0.0f; z = 0.0f; w = 1.0f; }
+};
+
+/* the 0x38-byte transform stored at +0x54 */
+struct S_0019CB00_Xform {
+    V4_0019CB00 a;
+    V4_0019CB00 b;
+    V4_0019CB00 c;
+    float f30;
+    float f34;
+    static void *operator new(unsigned int size) { return func_001E8A44(size); }
+};
+
 struct SoultreeCollisionObject {
     int vtbl;
-    char pad_0[0xa0];
+    char pad_0[0x50];
+    S_0019CB00_Xform *unk54;
+    char pad_58[0xa4 - 0x58];
     unsigned short unkA4;
     unsigned char unkA6;
     unsigned char unkA7;
