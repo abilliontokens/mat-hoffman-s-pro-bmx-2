@@ -24,9 +24,18 @@ struct C_001D4300 {
     int func_001D4590(char *out, const char *title, int a, int size);
 };
 
+struct C_0005C020 {
+    void func_0005C020(int a);
+    void func_0005C6A0(void);
+};
+
 struct S_000DCC20_Sub {
-    char pad0[0x2CC];
+    char pad0[0x2C0];
+    C_0005C020 *f2C0;
+    char pad2C4[0x8];
     C_001D4300 *f2CC;
+    char pad2D0[0x8];
+    int f2D8;
 };
 
 struct S_000DCC20_Root {
