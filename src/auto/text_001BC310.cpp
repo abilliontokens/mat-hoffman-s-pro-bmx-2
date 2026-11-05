@@ -313,9 +313,9 @@ struct S_001BC310_Pair {
 
 static __forceinline void MulT_001BC310(V4Raw_001BC310 *out, V4_001BC310 *v, float *m)
 {
-    out->x = v->x * m[0] + v->y * m[4] + v->z * m[8];
-    out->y = v->x * m[1] + v->y * m[5] + v->z * m[9];
-    out->z = v->x * m[2] + v->y * m[6] + v->z * m[10];
+    out->x = v->y * m[4] + v->z * m[8] + v->x * m[0];
+    out->y = v->y * m[5] + v->z * m[9] + v->x * m[1];
+    out->z = v->y * m[6] + v->z * m[10] + v->x * m[2];
 }
 
 static __forceinline void Mul_001BC310(V4_001BC310 *out, V4Raw_001BC310 *v, float *m)
