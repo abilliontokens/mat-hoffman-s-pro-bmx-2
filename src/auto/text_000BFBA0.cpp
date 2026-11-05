@@ -46,6 +46,7 @@ struct BmxUIPageDemo {
     S_BFEE0_Page *f124;
     char pad128[0x280-0x128];
     void func_000BFEE0();
+    int func_000C09B0(int idx);
     int unk280;
     int unk284;
     int unk288;
