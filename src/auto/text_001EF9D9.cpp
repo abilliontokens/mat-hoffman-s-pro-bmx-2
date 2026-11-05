@@ -311,24 +311,27 @@ void *_func_001F01D8(S_001EF734 *o)
 void *_func_001F037A(S_001EF734 *o, void *p)
 {
     S_001EF734 local;
-    S_001EF734 tmp;
     local.func_001EF759(p);
     if (*D_002F6A28++ == '@' && *D_002F6A28++ == '_') {
         D_002F6A28++;
-        _func_001EFDB9(&tmp, 0);
-        _func_001EFDB9(&tmp, 0);
-        if (*D_002F6A28 != 0) {
-            while (*D_002F6A28 != 0 && *D_002F6A28 != '@') {
-                D_002F6A28++;
-            }
-            if (*D_002F6A28 != 0) {
-                D_002F6A28++;
-                o->func_001EEEE6(&local);
-                return o;
-            }
+        {
+            S_001EF734 a;
+            _func_001EFDB9(&a, 0);
         }
-        D_002F6A28--;
-        o->func_001EF170(2);
+        {
+            S_001EF734 b;
+            _func_001EFDB9(&b, 0);
+        }
+        while (*D_002F6A28 != 0 && *D_002F6A28 != '@') {
+            D_002F6A28++;
+        }
+        if (*D_002F6A28 == 0) {
+            D_002F6A28--;
+            o->func_001EF170(2);
+        } else {
+            D_002F6A28++;
+            o->func_001EEEE6(&local);
+        }
     } else {
         o->func_001EF170(1);
     }
