@@ -136,6 +136,19 @@ int func_001F4550(unsigned int *p, int bit)
     return 1;
 }
 
+void func_001F4582(unsigned int *p, int bit)
+{
+    int i;
+    int ok;
+
+    i = bit / 32;
+    ok = func_001F5AA1(p[i], 1u << (31 - bit % 32), &p[i]);
+    for (i--; i >= 0 && ok != 0; i--) {
+        ok = func_001F5AA1(p[i], 1, &p[i]);
+    }
+}
+#pragma optimize("", on)
+
 #pragma optimize("", on)
 
 #pragma optimize("sy", on)
