@@ -36,6 +36,16 @@ struct BitObj {
     BitObj *func_001EF8F6(int a0, int a1);
 };
 
+/* a stream position handed to func_001F23B8: an offset and a 9-bit state that
+   its callers clear without touching the rest of the word */
+struct S_001EF0B4_Pos {
+    int off;
+    unsigned int state : 9;
+};
+
+int __fastcall func_001EF1D0(int *a, int b);
+void __cdecl func_001F23B8(void *a, S_001EF0B4_Pos *p1, int b, S_001EF0B4_Pos *p2, int c);
+
 /* ten slots after a count (-1 = none), then two fallback cells */
 struct S_001EEFBA {
     int count;
