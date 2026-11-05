@@ -20,6 +20,15 @@ struct C_00061B20_44 {
     C_00061B20_74 *unk74;
 };
 
+extern const char D_0027876C[];
+extern const char D_00278758[];
+extern const char D_00278744[];
+char *func_001E8920(char *dst, const char *src, int n);
+
+struct C_00061B20_1C0 {
+    int func_000976A0();
+};
+
 struct C_00061B20_1D0 {
     char pad0[0x44];
     C_00061B20_44 *unk44;
