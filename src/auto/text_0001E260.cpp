@@ -2,6 +2,10 @@
 #include "common.h"
 #include <stdlib.h>
 #include "ghidra.h"
+struct C_0001EED0 {
+    void func_0001EED0(void);
+};
+
 struct C_0001EF40 {
     undefined4 func_0001EF40(void);
 };
@@ -116,6 +120,20 @@ void C_0001EDC0::func_0001EDC0(int a0) {
 
 void C_0001EDD0::func_0001EDD0(int a0) {
     unk28 = a0;
+}
+
+void C_0001EED0::func_0001EED0(void)
+{
+  int in_ECX = (int)this;
+  
+  *(undefined4 *)(in_ECX + 0xf4) = 0;
+  *(undefined4 *)(in_ECX + 0xf8) = 0;
+  *(undefined4 *)(in_ECX + 0xfc) = 0;
+  *(undefined4 *)(in_ECX + 0x100) = 0;
+  if (*(int *)(in_ECX + 0x28) != 0) {
+    *(undefined4 *)(*(int *)(in_ECX + 0x28) + 0x490) = 0;
+  }
+  return;
 }
 
 void C_0001EF00::func_0001EF00(int a0) {
