@@ -82,6 +82,20 @@ C_00186AB0 *C_00186AB0::func_00186AB0()
     return this;
 }
 
+int C_00186AF0::func_00186AF0(C_00186AF0Param *param)
+{
+    if (func_00186960(param) == 0) {
+        return 0;
+    }
+    param->func_00168C20((void *)&D_00289A08, 0, &f168);
+    param->func_00168C20((void *)&D_002899F4, 0, &f16c);
+    param->func_00168C20((void *)&D_002899E0, 0, &f170);
+    param->func_00168C20((void *)&D_002899CC, 0, &f174);
+    param->func_00168C20((void *)&D_002899B0, 0, &f178);
+    param->func_00168C50((void *)&D_0028999C, 0, &f17c);
+    return 1;
+}
+
 C_00187640 *C_00187640::func_00187640(void *param)
 {
     ((C_00157600 *)this)->func_00157600(param);
