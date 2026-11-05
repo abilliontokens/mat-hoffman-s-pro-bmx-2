@@ -364,6 +364,45 @@ Vec4 *func_0014AA70(Vec4 *out, Vec4 *a, Vec4 *b)
     return out;
 }
 
+C_0014AB30 *C_0014AB30::func_0014AB30(int a)
+{
+    u32 *p;
+
+    ((C_00132EB0 *)this)->func_00132EB0(a);
+    vtbl = &D_00286924;
+    p = &fC8;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = &fD8;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    fA8 = 0;
+    fAC = 0;
+    fB0 = 0;
+    fB4 = 0;
+    fB8 = 0;
+    fBC = 0;
+    fC0 = 0;
+    fC4 = 0;
+    fC8 = D_002A75A8;
+    fCC = D_002A75AC;
+    fD0 = D_002A75B0;
+    fD4 = D_002A75B4;
+    fD8 = D_002A75A8;
+    fDC = D_002A75AC;
+    fE0 = D_002A75B0;
+    fE4 = D_002A75B4;
+    fE8 = 0;
+    fEC = 0;
+    fF0 = 0;
+    f50 = 3;
+    return this;
+}
+
 void C_0014AC30::func_0014AC30(Vec4 *vecs, int *ints)
 {
     for (int i = 0; i < fA8 * 2; i++) {
