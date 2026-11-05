@@ -2,6 +2,10 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+struct C_0012B750 {
+    undefined4 func_0012B750(undefined4 param_1);
+};
+
 struct C_0012B1D0 {
     void func_0012B1D0(undefined4 *param_1);
 };
@@ -352,6 +356,22 @@ CameraController *CameraController::func_0012B550(int a)
     f30 = 0;
     vtbl = (void *)&D_0028411C;
     return this;
+}
+
+undefined4 C_0012B750::func_0012B750(undefined4 param_1)
+{
+  int func_001E83E8(...);
+  int in_ECX = (int)this;
+  int iVar1;
+  
+  iVar1 = func_001E83E8(*(undefined4 *)(in_ECX + 0x2c),*(int *)(in_ECX + 0x24) * 4 + 4);
+  *(int *)(in_ECX + 0x2c) = iVar1;
+  if (iVar1 == 0) {
+    return 0;
+  }
+  *(undefined4 *)(iVar1 + *(int *)(in_ECX + 0x24) * 4) = param_1;
+  *(int *)(in_ECX + 0x24) = *(int *)(in_ECX + 0x24) + 1;
+  return 1;
 }
 
 CameraController *CameraController::func_0012B790(byte flags)
