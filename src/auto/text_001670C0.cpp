@@ -2,6 +2,22 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+struct C_00167AC0_Sub;
+extern u16 D_002EFE54;
+struct C_00167DD0_Context { int func_00192BD0(int value); };
+struct C_00167DD0_Item { int func_00179B40(C_00167AC0_Sub *out, int value); };
+struct S_00167DD0_Object;
+struct S_00167DD0_Node { S_00167DD0_Node *next; S_00167DD0_Object *value; C_00167DD0_Item *item; };
+struct S_00167DD0_Object {
+ char pad0[0x24]; S_00167DD0_Node *head; void *f28;
+ char pad2c[0x10]; int f3c; char pad40[0x52]; u16 stamp;
+};
+struct C_00167DD0 {
+ char pad0[0x24]; char *f24;
+ void func_00167AF0(void *p);
+ int func_00167DD0(S_00167DD0_Object *, C_00167DD0_Context *, void *);
+};
+int func_0017C060(void *, void *, void *);
 struct C_00167750 {
     undefined4 func_00167750(void);
 };
