@@ -170,6 +170,46 @@ void C_0004C560::func_0004C5D0(void)
     }
 }
 
+C_0004C560 *C_0004C560::func_0004C610(int a0)
+{
+    int i;
+    int j;
+    C_0004C560Item *p;
+
+    func_00030F90(a0);
+    unk0 = (int)&D_002773EC;
+    for (i = 0; i < 50; i++) {
+        p = &items[i];
+        p->a = -1;
+        p->b = 0;
+    }
+    for (i = 0; i < 8; i++) {
+        if (blocks[i].used != 0) {
+            blocks[i].used = 0;
+            for (j = 0; j < 50; j++) {
+                blocks[i].vals[j] = -1;
+            }
+        }
+    }
+    f1250 = 0;
+    for (i = 0; i < 50; i++) {
+        f284[0][i] = -1;
+        f98c[i] = -1;
+        for (j = 1; j < 9; j++) {
+            f284[j][i] = -1;
+        }
+    }
+    f1244 = 0;
+    for (i = 0; i < f1250; i++) {
+        p = &items[i];
+        p->a = -1;
+        p->b = 0;
+    }
+    f1248[0] = 0;
+    f1248[1] = 0;
+    return this;
+}
+
 void *C_0004C6F0::func_0004C6F0(int flags) {
     unk0 = (int)&D_002773EC;
     func_00033220();
