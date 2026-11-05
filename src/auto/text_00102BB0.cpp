@@ -134,6 +134,36 @@ struct C_00102FD0 {
     void func_00103260(int a);
 };
 
+void C_00102E20::func_00102E20()
+{
+    int i;
+    if (unk3D4) {
+        for (i = 0; i < unk170; i++) {
+            unk1B0[i]->func_001B1980();
+            unk1B0[i]->func_001B2270(unk3D8);
+            unk1B0[i]->func_001B19A0(unk178);
+            unk1B0[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0, 0.2f, 0);
+        }
+    } else {
+        unk2C = 0;
+        if (unk3CC) {
+            for (i = 0; i < unk170; i++) {
+                unk1B0[i]->func_001B1980();
+                unk1B0[i]->func_001B2270(unk3C0);
+                unk1B0[i]->func_001B19A0(unk178);
+                unk1B0[i]->func_001B19C0(unk3C4, unk3C8 - 4, 0);
+                if (unk3DC) {
+                    unk1B0[i]->func_001B1980();
+                    unk1B0[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0, 0.2f, 0);
+                } else {
+                    unk1B0[i]->func_001B1980();
+                    unk1B0[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0, 0.2f, 0);
+                }
+            }
+        }
+    }
+}
+
 void C_00102FD0::func_00102FD0()
 {
     int i;
