@@ -87,7 +87,6 @@ struct C_00164650 {
     unsigned char func_00164650(const char *name);
     void func_00164700(void);
     void func_00164770(void);
-    void func_00164840(S_00164650_Scale *scale, float time, float a2);
     void func_00164840(S_00164650_Scale *scale, float time, int rescale);
 };
 
@@ -213,17 +212,18 @@ void C_00164820::func_00164820(int a0) {
     unk34 = 0;
 }
 
-void C_00164650::func_00164840(S_00164650_Scale *scale, float time, float a2)
+void C_00164650::func_00164840(S_00164650_Scale *scale, float time, int rescale)
 {
-    float flag = a2;
-    if (*(int *)&a2 != 0) {
-        a2 = f34 / f18->f38 * scale->f38;
+    float ratio;
+    if (rescale != 0) {
+        float r = f34 / f18->f38;
+        ratio = r * scale->f38;
     }
     if (time != D_00275544) {
         f44 = time;
         f3c = time + f34;
-        f40 = f34;
         f38 = f34;
+        f40 = f34;
         f1c = f18;
         if (f18 == 0 || f30 != 0) {
             f1c = 0;
@@ -236,8 +236,8 @@ void C_00164650::func_00164840(S_00164650_Scale *scale, float time, float a2)
     f10 = 0;
     f18 = scale;
     f34 = 0;
-    if (*(int *)&flag != 0) {
-        f34 = a2;
+    if (rescale != 0) {
+        f34 = ratio;
     }
 }
 
