@@ -86,8 +86,7 @@ struct C_000F8010 {
     int f300;
     char pad304[0x1C];
     int f320, f324, f328, f32C, f330;
-    short f334;
-    short pad336;
+    int f334;
     int f338;
     float f33C;
     char pad340[0x10];
