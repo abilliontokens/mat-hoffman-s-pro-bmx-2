@@ -8,7 +8,7 @@ struct S_002F6A38 {
 };
 extern S_002F6A38 D_002F6A38;
 extern int D_00295C04;
-int func_001EEE49(...);
+int func_001EEE49(int n, ...);
 
 /* 8-byte value object used by the 'A'..'N' parser helpers. */
 struct S_001EF734 {
@@ -43,7 +43,7 @@ void *_func_001EF9D9(S_001EF734 *o)
                 case 4:  local.func_001EF9B2((char *)func_001EEE49(4)); break;
                 case 6:  local.func_001EF9B2((char *)func_001EEE49(3)); break;
                 case 8:  local.func_001EF9B2((char *)func_001EEE49(5)); break;
-                case 12: local.func_001EF9B2((char *)func_001EEE49(6)); break;
+                case 12: { char *s = (char *)func_001EEE49(6); local.func_001EF9B2(s); break; }
                 }
             }
             o->func_001EEEE6(&local);
