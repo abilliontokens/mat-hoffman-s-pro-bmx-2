@@ -292,29 +292,20 @@ struct C_00012590 {
 int S_11FF0_Owner::func_00012730(V4_00012730 *a, V4_00012730 *b, V4_00012730 *out, int mode, int all)
 {
     int result = 0;
-    struct {
-        float x, y, z, w;
-    } seg[2];
+    V4_00012730 seg[2];
     float center[4];
     float half[4];
     S_00012730_Iter iter;
     S_00012730_Node *node;
     int type;
-    int i;
 
-    for (i = 0; i < 2; i++) {
-        seg[i].z = 0;
-        seg[i].y = 0;
-        seg[i].x = 0;
-        seg[i].w = 1.0f;
-    }
-    *(V4_00012730 *)&seg[0] = *a;
+    seg[0] = *a;
     center[3] = 1.0f;
     half[3] = 1.0f;
     V4_00012730 hit;
-    *(V4_00012730 *)&seg[1] = *b;
-    center[0] = (seg[1].x + seg[0].x) * D_002755E8;
-    center[2] = (seg[1].z + seg[0].z) * D_002755E8;
+    seg[1] = *b;
+    center[0] = (seg[0].x + seg[1].x) * D_002755E8;
+    center[2] = (seg[0].z + seg[1].z) * D_002755E8;
     center[1] = 0.0f;
     half[0] = (seg[0].x - seg[1].x) * D_002755E8;
     half[2] = (seg[0].z - seg[1].z) * D_002755E8;
@@ -333,13 +324,12 @@ int S_11FF0_Owner::func_00012730(V4_00012730 *a, V4_00012730 *b, V4_00012730 *ou
     iter.func_001A4790(0, type, center, half, 0, 0, 0);
     for (node = iter.func_001A4840(); node != 0; node = iter.func_001A4840()) {
         if (node->f2 == D_002A4330) {
-            int flags = node->f44;
             char *obj = (char *)node - 0x24;
-            if ((mode != 0 || ((flags & 3) == 0 && (flags & D_002BA15C) == 0)) && flags != 0) {
+            if ((mode != 0 || ((*(int *)(obj + 0x68) & 3) == 0 && (D_002BA15C & *(int *)(obj + 0x68)) == 0)) && *(int *)(obj + 0x68) != 0) {
                 obj[0xa7] |= 0x10;
-                if (func_00134A10((V4_00012730 *)seg, obj, out, &hit) != 0) {
+                if (func_00134A10(seg, obj, out, &hit) != 0) {
+                    seg[1] = *out;
                     result = 1;
-                    *(V4_00012730 *)&seg[1] = *out;
                     if (all == 0) {
                         break;
                     }
