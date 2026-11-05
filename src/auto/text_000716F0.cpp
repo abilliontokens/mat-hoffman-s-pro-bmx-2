@@ -155,6 +155,21 @@ struct C_00072590 {
 };
 
 
+void C_00072450::func_00072450(void)
+{
+    char dest[0x40];
+    char buf[4];
+
+    func_001ADCC0(buf, 0x104, (char *)&D_00277038, fB0);
+    if (fB0 > 0) {
+        func_001AC330(dest, D_002A8490->p2E8->p4->fA70, buf);
+    } else {
+        S_Obj4_716 *p = D_002A8490->p2E8->p4;
+        func_001AC330(dest, p->fF18, p->p930);
+    }
+    fD8->func_001B17D0(dest);
+}
+
 void C_000724E0::func_000724E0(void)
 {
     int i;
