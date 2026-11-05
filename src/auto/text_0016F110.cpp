@@ -27,6 +27,14 @@ struct C_0016FBC0 {
     void func_0016FBC0();
 };
 
+struct O_0016F800 { char pad[0xa8]; int f; };
+struct C_0016F800 {
+    char pad0[0x108]; unsigned frame; void *buckets; int minb, maxb, count, used; int pad124[2]; void **nodes;
+    char pad130[0x14]; unsigned f144; char pad148[0x28]; O_0016F800 *obj170;
+    int func_0016F800(void);
+};
+extern "C" void __fastcall func_001D7D00(void);
+
 struct C_00142560 {
     void func_00142560(void);
 };
