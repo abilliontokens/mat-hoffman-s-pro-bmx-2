@@ -43,6 +43,24 @@ struct DXRenderableObject {
     DXRenderableObject *func_00143540(int a1, int a2, int a3);
     DXRenderableObject *func_00143580(int a);
     void func_001435D0(void);
+    void *func_001437A0(int flags);
+};
+
+struct C_001C5DE0 {
+    void func_001C5DE0(void *a, void *b, void *c, int d);
+};
+
+extern C_001C5DE0 *D_002AB66C;
+
+struct C_00143600 {
+    void func_00143600();
+};
+
+struct C_001437E0 {
+    int unk0;
+    void *unk4;
+    int unk8;
+    void func_001437E0(void *p);
 };
 
 
