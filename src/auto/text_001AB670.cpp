@@ -105,6 +105,14 @@ void StateMachine::func_001AC0D0(int a)
     func_00157A00(a);
 }
 
+void *StateMachine::func_001AC120(unsigned int flags)
+{
+    vtbl = (void *)&D_0028C03C;
+    func_00157660();
+    if (flags & 1) func_001E891B(this);
+    return this;
+}
+
 void C_001AC150::func_001AC150(int count)
 {
     int *p = (int *)func_001E8A44(count * 4);
