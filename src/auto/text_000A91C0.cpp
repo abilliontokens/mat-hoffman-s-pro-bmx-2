@@ -2,6 +2,30 @@
 #include "common.h"
 extern int D_0027C51C;
 
+struct CCElem { void func_001824E0(float *out, float a, float b, float c); };
+struct CCObj {
+    char pad0[0x104];
+    int n;
+    CCElem **elems;
+    int count;
+    int idx;
+    float *r;
+    float *g;
+    float *b;
+    char pad120[4];
+    float dur;
+    float t;
+};
+struct GlobalCC { char pad[0x124]; int flag; };
+extern GlobalCC *D_002A8490;
+struct C_000A9820 {
+    char pad0[0x24];
+    int num;
+    CCObj **objs;
+    void func_00157A00(float dt);
+    void func_000A9820(float dt);
+};
+
 struct C_00157660 {
     void func_00157660(void);
 };
