@@ -50,6 +50,18 @@ struct C_00136370 {
     int func_00136370();
 };
 extern int D_00284768;
+struct S_Vec3_001358A0 { float x, y, z; };
+struct S_Body_001358A0 { char pad[0x1c]; S_Vec3_001358A0 pos; };
+struct C_001358A0 {
+    void *vtbl;
+    int f4;
+    float f8;
+    S_Vec3_001358A0 *fC;
+    S_Body_001358A0 *f10;
+    S_Body_001358A0 *f14;
+    void func_001358A0();
+};
+extern float D_00275544, D_00275460, D_002755E8;
 struct C_00135EE0_Ent {
     int idx;
     int type;
