@@ -414,6 +414,32 @@ void C_001403D0::func_001403D0(int a, int b, int c)
 {
 }
 
+int C_00140390::func_00140400(void)
+{
+    int i;
+
+    if (f4C == -1) {
+        f4C = (D_002A829C->f14[f24->f4].f4->f54->f24 >> 3) & 1;
+    }
+    if (f39 & 2) {
+        return 1;
+    }
+    f48->func_0013FF50(D_002EFDB8->f4);
+    for (i = 0; i < f40; i++) {
+        f3C[i].obj->func_001446B0((int)f48, 0, -1);
+    }
+    return func_00157960();
+}
+
+void C_00140480::func_00140480(unsigned int color)
+{
+    ((C_00162720 *)this)->func_00162720(color);
+    f50 = (float)(color >> 16 & 0xff) * D_00284758;
+    f54 = (float)(color >> 8 & 0xff) * D_00284758;
+    f58 = (float)(color & 0xff) * D_00284758;
+    f5C = (float)(color >> 24) * D_00284758;
+}
+
 undefined4 C_00140660::func_00140660(byte param_1)
 {
   int func_0013FC00(...);
