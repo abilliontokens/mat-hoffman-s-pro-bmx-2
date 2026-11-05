@@ -100,7 +100,7 @@ struct PhysicsBody {
     C_00193490 *fB0;
     char padB4[0x10];
     void *fC4;
-    char padC8[0x164];
+    char padC8[0x64];
     int f12C;
     char pad130[0x1C];
     C_00171D00_F14C *f14C;
@@ -121,3 +121,53 @@ struct S_00171F10_Arg0 {
     S_00171F10_F60 *f60;
     C_00171D00_C4VT *f64;
 };
+
+void *PhysicsBody::func_00171E60(int flags)
+{
+    int p = f230;
+
+    vtbl = (void *)&D_00288C44;
+    if (p != 0) {
+        func_001E891B((void *)p);
+    }
+    ((C_001576D0 *)this)->func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
+void func_00171F10(S_00171F10_Arg0 *arg)
+{
+    if (arg->f60->f28 != 0) {
+        arg->f64->v34(1);
+    }
+}
+
+void PhysicsBody::func_00171F50(int a1, int a2)
+{
+    float vecB[4];
+    float vecA[4];
+    C_00193490 *p = (C_00193490 *)func_001E8A44(0x28);
+
+    fB0 = p != 0 ? p->func_00193490() : 0;
+    vecA[2] = 0.0f;
+    vecA[1] = 0.0f;
+    vecA[0] = 0.0f;
+    vecA[3] = 1.0f;
+    vecB[2] = 0.0f;
+    vecB[1] = 0.0f;
+    vecB[0] = 0.0f;
+    vecB[3] = 1.0f;
+    f14C->func_0019A8C0(vecA, vecB);
+    fB0->func_001938C0(&f24, a1, a2, vecA, vecB, 0);
+}
+
+void PhysicsBody::func_00172420(void)
+{
+    f12C = 0;
+    ((C_001576D0 *)this)->func_001576D0();
+    ((C_00171D00_C4VT *)fC4)->v34(1);
+    f14C->func_001983A0();
+    ((PhysicsBodyVT *)this)->v29();
+}
