@@ -77,6 +77,7 @@ struct C_00092890 {
     void func_00093120(void);
     C_00092890 *func_00092810(int a0, int a1, int a2, int a3);
     int func_00092BE0(void);
+    int func_00092C70(void);
 };
 
 struct C_000928D0 {
