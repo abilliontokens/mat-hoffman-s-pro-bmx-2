@@ -97,6 +97,31 @@ struct C_000DFA80 {
     void func_000DFA80();
 };
 
+void C_000DFA80::func_000DFA80()
+{
+    for (int i = 0; i < 18; i++) {
+        arr894[i]->func_001B1980();
+        arr8dc[i]->func_001B1980();
+        if (i + 1 == unk280) {
+            arr894[i]->func_001B2270(0xffbfa35a);
+            arr8dc[i]->func_001B2270(0xffbfa35a);
+            arr894[i]->func_001B1860(0, -1.0f, 0xff, 0.95f, 0, 0, 0, 0, 0.95f, 0, 0.25f, 0, 0);
+            arr8dc[i]->func_001B1860(0, -1.0f, 0xff, 0.95f, 0, 0, 0, 0, 0.95f, 0, 0.25f, 0, 0);
+        } else {
+            arr894[i]->func_001B2270(0xffcccccc);
+            arr8dc[i]->func_001B2270(0xffcccccc);
+            arr894[i]->func_001B1860(0, -1.0f, 0xff, 0.8f, 0, 0, 0, 0, 0.8f, 0, 0.25f, 0, 0);
+            arr8dc[i]->func_001B1860(0, -1.0f, 0xff, 0.8f, 0, 0, 0, 0, 0.8f, 0, 0.25f, 0, 0);
+        }
+        if (arr3cc[i] > D_00275AF0 || arr3cc[i] < D_0027F974) {
+            arr8dc[i]->func_001B1980();
+        }
+        if (arr384[i] > D_00275AF0 || arr384[i] < D_00275994) {
+            arr894[i]->func_001B1980();
+        }
+    }
+}
+
 void C_000DFC00::func_000DFC00()
 {
     S_000DFC00_Widget *w = D_002B91AC->unk44;
