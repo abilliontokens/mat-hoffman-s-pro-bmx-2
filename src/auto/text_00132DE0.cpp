@@ -41,6 +41,10 @@ extern "C" char *strcpy(char *, const char *);
 extern "C" char *strcat(char *, const char *);
 extern "C" unsigned int strlen(const char *);
 #pragma intrinsic(strcpy, strlen, strcat)
+extern "C" char *strcpy(char *, const char *);
+extern "C" char *strcat(char *, const char *);
+extern "C" unsigned int strlen(const char *);
+#pragma intrinsic(strcpy, strlen, strcat)
 void func_00132E90(int h, int *out);
 void func_00030F30(char *a, char *b);
 void *func_001E8A44(unsigned int size);
