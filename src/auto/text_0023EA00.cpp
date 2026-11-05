@@ -1,2 +1,52 @@
 /* 22 functions from 0x0023EA00 to 0x0023F472, found by Ghidra. */
 #include "common.h"
+
+extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
+extern "C" void (__stdcall *_imp__RtlLeaveCriticalSection)(void *cs);
+
+void __stdcall func_001DDE02(int a0);
+int __stdcall func_0023F3F7(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
+
+struct S_0023EA00_Link {
+    S_0023EA00_Link *next;
+    S_0023EA00_Link *prev;
+};
+
+struct C_0023EA00 {
+    char pad0[0xa4];
+    S_0023EA00_Link fA4;
+    void func_0023EA00(void);
+};
+
+typedef unsigned int (__stdcall *PFN_0023EC0D)(void *ctx, unsigned int a, unsigned int b, int *out);
+
+/* region window: either forwards to a user hook (f44) or maps a offset inside [f3c, f3c+f94) */
+struct C_0023EC0D {
+    char pad0[0x34];
+    int f34;
+    char pad38[4];
+    unsigned int f3c;
+    unsigned int f40;
+    PFN_0023EC0D f44;
+    void *f48;
+    char pad4c[0x20];
+    char f6c[0x28];
+    unsigned int f94;
+    unsigned int func_0023EC0D(unsigned int a, unsigned int b, int *out);
+};
+
+struct S_0023ED4C_Src {
+    char pad0[0x10];
+    int f10;
+};
+
+struct S_0023ED4C_Out {
+    int f0;
+    int pad4;
+    int f8;
+    int fC;
+};
+
+struct C_0023ED4C {
+    int func_0023ED4C(S_0023ED4C_Src *src, S_0023ED4C_Out *out);
+};
