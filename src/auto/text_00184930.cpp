@@ -66,10 +66,13 @@ struct C_00184930 {
     char pad34c[0x3a8 - 0x34c];
     S_00184BB0_List **f3a8;
     S_00184C00_Obj *f3ac;
-    char pad3b0[0x484 - 0x3b0];
+    char pad3b0[0x3c0 - 0x3b0];
+    S_00184C00_Obj *f3c0;
+    char pad3c4[0x484 - 0x3c4];
     S_00184C00_Mgr *f484;
     void func_00184BB0(void);
     int func_00184C00(void);
+    int func_00184C60(void);
 };
 
 void C_00184930::func_00184BB0(void)
