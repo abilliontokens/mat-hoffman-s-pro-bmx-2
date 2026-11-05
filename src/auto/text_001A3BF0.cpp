@@ -150,6 +150,10 @@ extern int D_0028B84C;
 extern u32 D_002A9F40[4];
 extern void *D_002EFE78;
 
+struct V4_001A3BF0 {
+    float x, y, z, w;
+};
+
 struct C_00132EB0 {
     void func_00132EB0(int a);
 };
