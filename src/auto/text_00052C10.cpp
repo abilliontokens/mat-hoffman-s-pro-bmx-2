@@ -293,6 +293,28 @@ void C_52C10::func_000533E0(void)
     }
 }
 
+int C_53460::func_00053460()
+{
+    int i;
+    unk2D0 = 2;
+    unk44->f54->func_0009FE70(0);
+    unk2C8 = 0.0f;
+    unk44->f54->SetCol(m318);
+    for (i = 0; i < 4; i++) {
+        m2D8[i] = m318[i];
+        m2D8[i + 4] = m318[i + 4];
+        m2D8[i + 8] = m318[i + 8];
+        m2D8[i + 12] = m318[i + 12];
+    }
+    if (unk1C4 != 0)
+        func_00052C10(1);
+    if (unk1C0 != 0)
+        unk1C0->func_000981D0(unk64->f3B4, unk64->f534, unk1C8);
+    func_000518A0();
+    unk44->func_0002F6C0();
+    return 1;
+}
+
 C_000536A0 *C_000536A0::func_000536A0(int param)
 {
     func_00030F90(param);
