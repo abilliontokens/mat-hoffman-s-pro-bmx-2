@@ -106,6 +106,10 @@ struct C_000831E0 {
     char sCA4[0x32];
     char sCD6[0x32];
     C_001B17F0 *fD08;
+    C_001B17F0 *fD0C;
+    char padD10[0xD9C - 0xD10];
+    int fD9C;
+    void func_000832A0(void);
     void func_00083750(int a);
     void func_000831E0(void);
     void func_000836C0(int a, float b);
