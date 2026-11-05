@@ -1,5 +1,44 @@
 /* 8 functions from 0x00055380 to 0x000562C0, found by Ghidra. */
 #include "common.h"
+
+extern float D_00277D04;
+
+struct S_000560A0_Inner {
+    char pad0[0x3C];
+    float unk3C;
+};
+
+struct S_000560A0_Owner {
+    char pad0[0x1E0];
+    int unk1E0;
+    char pad1E4[8];
+    S_000560A0_Inner *unk1EC;
+};
+
+struct C_000560A0 {
+    char pad0[4];
+    S_000560A0_Owner *unk4;
+    char pad8[4];
+    int unkC;
+    int unk10;
+    char pad14[0x2C];
+    int unk40;
+    char pad44[0x20];
+    float unk64;
+    int unk68;
+    char pad6C[0x15C];
+    int unk1C8;
+    int unk1CC;
+    int unk1D0;
+    int unk1D4;
+    int unk1D8;
+    char pad1DC[8];
+    int unk1E4;
+    int unk1E8;
+    void func_000559E0(int a0, int a1, float a2);
+    void func_000560A0();
+};
+
 struct C_00056080 {
     char pad0[0x18C];
     int unk18C;
