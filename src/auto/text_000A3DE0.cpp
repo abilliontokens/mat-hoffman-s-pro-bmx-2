@@ -177,6 +177,38 @@ int C_000A4150::func_000A4150(char *a1) {
     return 1;
 }
 
+int C_000A4250::func_000A4250(void) {
+    func_001ADCC0(D_002A60B0, 0x104, D_00276F28, D_002A5660);
+    func_001ADCC0(D_002A5EA0, 0x104, D_00276F28, D_002A5660);
+    func_001ADCC0(D_002A46E8, 0x104, D_00276F28, D_002A5660);
+    func_001ADCC0(D_002A4C10, 0x104, D_00276F28, D_002A5660);
+    if (!unk0) {
+        DXRenderableObject *obj = (DXRenderableObject *)func_001E8A44(0x1e0);
+        unk0 = obj ? obj->func_00143580(1) : 0;
+        unk0->v35(D_0027B25C, 0, 0);
+        unk0->f1a3 &= 0xf7;
+    }
+    if (!unk4) {
+        DXRenderableObject *obj = (DXRenderableObject *)func_001E8A44(0x1e0);
+        unk4 = obj ? obj->func_00143580(1) : 0;
+        unk4->v35(D_0027B244, 0, 0);
+        unk4->f1a3 &= 0xf7;
+    }
+    if (!unk8) {
+        DXRenderableObject *obj = (DXRenderableObject *)func_001E8A44(0x1e0);
+        unk8 = obj ? obj->func_00143580(1) : 0;
+        unk8->v35(D_0027B22C, 0, 0);
+        unk8->f1a3 &= 0xf7;
+    }
+    if (!unkC) {
+        DXRenderableObject *obj = (DXRenderableObject *)func_001E8A44(0x1e0);
+        unkC = obj ? obj->func_00143580(1) : 0;
+        unkC->v35(D_0027B214, 0, 1);
+        unkC->f1a3 &= 0xf7;
+    }
+    return 1;
+}
+
 C_000A43E0* C_000A43E0::func_000A43E0(void) {
     unk0 = 0;
     unk4 = 1;
