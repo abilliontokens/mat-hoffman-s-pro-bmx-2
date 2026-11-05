@@ -1,6 +1,7 @@
 /* 19 functions from 0x001A0C90 to 0x001A1C90, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <string.h>
 struct Q_001A1930 { float x,y,z,w; };
 struct I3_001A1930 { float x,y,z; };
 struct O_001A1930 { char pad[8]; I3_001A1930 pos; char pad14[0x24]; I3_001A1930 vel; };
