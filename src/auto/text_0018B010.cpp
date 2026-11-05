@@ -180,6 +180,25 @@ undefined4 C_0018B3B0::func_0018B3B0(byte param_1)
   return in_ECX;
 }
 
+void Lights::func_0018BEB0()
+{
+    int func_001E891B(...);
+    vtbl = (void *)&D_0028983C;
+    if (unk2C) {
+        unk2C->func_0018AEF0(3);
+        unk2C = 0;
+    }
+    if (unk30) {
+        func_001E891B(unk30);
+        unk30 = 0;
+    }
+    if (unk34) {
+        func_001E891B(unk34);
+        unk34 = 0;
+    }
+    func_00157660();
+}
+
 undefined4 C_0018BF80::func_0018BF80(byte param_1)
 {
   int func_0018B5C0(...);
