@@ -1,6 +1,13 @@
 /* 5 functions from 0x001C4FB0 to 0x001C5DE0, found by Ghidra. */
 #include "common.h"
 
+extern int D_0028E6B0;
+void *func_001E8A44(unsigned int size);
+struct VisibilityQuadTreeNode {
+    void *vtbl;
+    char pad4[0x10];
+    void func_0017CE10();
+};
 extern int D_0028E664;
 extern int D_002F07E8;
 void func_001E891B(void *p);
@@ -24,6 +31,7 @@ struct C_001C5AC0 {
 void C_001C5AA0::func_001C5AA0()
 {
     func_001927C0(unk890, unk898);
+    return;
 }
 
 C_001C5AC0 *C_001C5AC0::func_001C5AC0(unsigned int flags)
