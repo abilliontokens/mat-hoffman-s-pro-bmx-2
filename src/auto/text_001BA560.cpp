@@ -20,9 +20,16 @@ struct C_001BB2C0 {
 
 struct C_001BB280 {
     void *vtbl;
+    char pad04[0x20];
+    int f24;
+    void **f28;
     void func_001BA8B0();
     void *func_001BB280(unsigned int flags);
 };
+
+extern int D_0028CE6C;
+extern int D_0028D11C;
+extern int D_0028D110;
 
 struct C_001BB470 {
     void *vtbl;
