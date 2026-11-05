@@ -16,6 +16,13 @@ extern int D_0028BF14;
 void func_001E891B(void *p);
 void *func_001E8AA5(int size);
 
+struct C_001A8BC0 {
+    char pad0[0x24];
+    int f24;
+    int f28;
+    void func_001A8BC0(int a, int b, int c, int d, int e, int f, int g, int h, int i);
+};
+
 struct C_00157660 {
     void func_00157660(void);
 };
@@ -195,6 +202,45 @@ void C_001A8B80::func_001A93A0(unsigned short idx, S_001A8B80_Tree *tree, int a2
     }
     vp = (V4_001A8B80 *)((char *)(tree->leaves + (idx & 0x7fff)) + 0x10);
     func_001A9240(*vp, a2, a3, 0);
+}
+
+void C_001A8B80::func_001A9430(S_001A9430_Obj *obj, int a, int b)
+{
+    int i;
+
+    if (obj == 0) {
+        return;
+    }
+    switch (obj->f50) {
+    case 0:
+        for (i = 0; i < obj->f1CC; i++) {
+            V4_001A8B80 v;
+            S_001A9430_Elem *e = obj->f1D4;
+            if (e->f1C != 0) {
+                C_0011EDF0_Vec t;
+                t.func_0011EDF0((short *)(e->f14 + i * 6));
+                v = *(V4_001A8B80 *)&t;
+            } else {
+                S_001A9430_V3 *p = (S_001A9430_V3 *)(e->f14 + i * 12);
+                v.x = p->x;
+                v.y = p->y;
+                v.z = p->z;
+                v.w = 1.0f;
+            }
+            func_001A9240(v, a, b, 0.0f);
+        }
+        break;
+    case 2: {
+        S_001A8B80_Tree tree;
+        tree.nodes = (S_001A8B80_Node *)obj->fFC;
+        tree.leaves = (S_001A8B80_Leaf *)obj->f100;
+        func_001A93A0(obj->fF0, &tree, a, b);
+        break;
+    }
+    case 5:
+        func_001A9240(obj->fA8, a, b, *(float *)&obj->f100);
+        break;
+    }
 }
 
 void C_001A8B80::func_001A95B0(V4_001A8B80 a, V4_001A8B80 b, V4_001A8B80 c, V4_001A8B80 d, int e, int f, int g, int h)
