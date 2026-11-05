@@ -1,8 +1,41 @@
 /* 9 functions from 0x00083B50 to 0x000849F0, found by Ghidra. */
 #include "common.h"
 
+#include <xmmintrin.h>
+
 extern int D_002795C4;
+extern float D_00275544;
+extern float D_00275994;
+extern float D_002795B8;
 void func_001E891B(void *p);
+
+static inline void Round_000847B0(int *out, float value) { *out = _mm_cvtss_si32(*(__m128 *)&value); }
+
+struct S_000847B0_Widget {
+    char pad0[0x28];
+    float f28;
+    u32 f2C;
+    char pad30[8];
+    u32 f38;
+    float f3C;
+    float f40;
+    float f44;
+    float f48;
+    float f4C;
+    float f50;
+    char pad54[4];
+    unsigned char b58;
+};
+
+struct C_000847B0 {
+    char pad0[0xD48];
+    S_000847B0_Widget *fD48;
+    char padD4C[4];
+    float fD50;
+    char padD54[0xD64 - 0xD54];
+    float fD64;
+    void func_000847B0(void);
+};
 
 struct S_00083B50_B {
     int f0;
@@ -155,10 +188,10 @@ void C_000843E0::func_000843E0(int a)
     if (a != 0) {
         fC28 = 0;
         f610 = 0;
-        f808 = 0.0f;
-        f80C = 0.0f;
-        f810 = 0.0f;
-        f814 = 0.0f;
+        *(void **)&f808 = 0;
+        *(void **)&f80C = 0;
+        *(void **)&f810 = 0;
+        *(void **)&f814 = 0;
     }
     fDA0 = 1;
     f158 = 0;
