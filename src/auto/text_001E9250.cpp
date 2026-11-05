@@ -1,6 +1,14 @@
 /* 36 functions from 0x001E9250 to 0x001EA23F, found by Ghidra. */
 #include "common.h"
 #include <stdarg.h>
+struct S_001E9_FILE;
+extern int D_002FB36C;
+extern S_001E9_FILE **D_002FB368;
+void func_001EB390(int);
+void func_001E9F40(void);
+void func_001EB138(int, S_001E9_FILE *);
+void func_001EB18A(int, S_001E9_FILE *);
+int func_001E9E46(S_001E9_FILE *);
 
 /* CRT FILE, as the stdio functions in this file use it */
 struct S_001E9_FILE {
@@ -561,7 +569,8 @@ const char *S_001E9FA2_TypeInfo::func_001E9FA2(void)
     void func_001EB390(int n);
     int func_001EB302(...);
     char *und;
-    char *p;
+    char *tail;
+    char *src;
     char *dst;
     char c;
 
@@ -570,15 +579,15 @@ const char *S_001E9FA2_TypeInfo::func_001E9FA2(void)
         if (und == 0) {
             return 0;
         }
-        for (p = &und[strlen(und) - 1]; *p == ' '; p--) {
-            *p = '\0';
+        for (tail = und + strlen(und) - 1; *tail == ' '; tail--) {
+            *tail = 0;
         }
         func_001EB390(0xe);
         dst = _m_data = (char *)func_001E8AA5(strlen(und) + 1);
         if (dst != 0) {
-            p = und;
+            src = und;
             do {
-                c = *p++;
+                c = *src++;
                 *dst++ = c;
             } while (c != 0);
         }
@@ -587,8 +596,6 @@ const char *S_001E9FA2_TypeInfo::func_001E9FA2(void)
     }
     return _m_data;
 }
-
-#pragma optimize("t", off)
 void *func_001EA038(void *inptr)
 {
     S_001EA038_Locator *locator;
