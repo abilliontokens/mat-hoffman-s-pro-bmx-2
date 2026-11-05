@@ -47,3 +47,22 @@ void C_000C4460::func_000C4460(void)
     }
     func_00157960();
 }
+
+void C_000C45E0::func_000C45E0(void)
+{
+    vtbl = &D_0027E0A4;
+    for (int i = 0; i < 10; i++) {
+        if (unk2F8[i] != 0) {
+            unk2F8[i]->Destroy(1);
+        }
+        unk2F8[i] = 0;
+    }
+    C_001D6410 *p = unk2C4;
+    if (p != 0) {
+        p->func_001D6410();
+        func_001E891B(p);
+        unk2C4 = 0;
+    }
+    func_001BE3F0();
+}
+
