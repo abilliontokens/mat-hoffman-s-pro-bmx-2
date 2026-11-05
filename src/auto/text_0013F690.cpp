@@ -167,6 +167,32 @@ void *C_0013FBD0::func_0013FBD0(int flags)
   return this;
 }
 
+void C_0013FC00::func_0013FC00()
+{
+  extern int D_00284F70;
+  extern int D_00284E94;
+  void __stdcall func_00201100(void *);
+  void func_001E891B(void *);
+
+  vtbl = (void *)&D_00284F70;
+  if (f10 != 0) {
+    func_00201100(f10);
+  }
+  if (f14 != 0) {
+    func_00201100(f14);
+  }
+  if (f18 != 0) {
+    func_00201100(f18);
+  }
+  if (f1c != 0) {
+    func_00201100(f1c);
+  }
+  if (f20 != 0) {
+    func_001E891B(f20);
+  }
+  vtbl = (void *)&D_00284E94;
+}
+
 undefined4 C_00140660::func_00140660(byte param_1)
 {
   int func_0013FC00(...);
