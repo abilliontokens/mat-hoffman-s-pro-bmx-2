@@ -21,6 +21,8 @@ struct Pack162B70 {
 };
 
 struct Mgr162B70 {
+    char pad0[0x14];
+    int ready;
     void *func_0013C9F0(int a, void *b);
     void *func_0013B930(void *a, void *b, int c, int d);
     void func_0013C110(void *a);
