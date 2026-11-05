@@ -2,6 +2,46 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
+extern float D_002A3E34;
+extern float D_002A3E38;
+extern float D_00284034;
+
+struct C_0012B170 {
+    int func_00157BF0(int a, int b);
+    int func_0012B170(int a, int b);
+};
+
+struct C_0012B190 {
+    char pad0[0x204];
+    int f204;
+    int f208;
+    void func_0012A7C0(int x, int y, int w, int h);
+    int func_0012B190(int x, int y, int w, int h);
+};
+
+struct C_0012B210 {
+    char pad0[0x1e8];
+    u32 f1e8;
+    u32 f1ec;
+    void func_0012B210(int *out);
+};
+
+struct S_0012B2B0_Rect {
+    u32 f0;
+    u32 f4;
+    u32 f8;
+    u32 fc;
+    u32 f10;
+    u32 f14;
+};
+
+struct C_0012B2B0 {
+    char pad0[0x1e0];
+    S_0012B2B0_Rect f1e0;
+    void func_0012B2B0(S_0012B2B0_Rect *in, S_0012B2B0_Rect *out);
+};
+
 struct C_0012B750 {
     undefined4 func_0012B750(undefined4 param_1);
 };
