@@ -295,6 +295,22 @@ extern float D_0028AD00;
 extern float D_0028ACF0;
 extern float D_0028ACE0;
 extern V4_00193EB0 D_002A9924;
+static inline void Normalize_00193EB0(V4_00193EB0 *out, V4_00193EB0 *in)
+{
+    __m128 x = _mm_loadu_ps(&in->x);
+    __m128 sq = _mm_mul_ps(x, x);
+    __m128 sum = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
+    sq = _mm_shuffle_ps(sq, sq, 0xe1);
+    sum = _mm_add_ss(sum, sq);
+    __m128 eps = _mm_load_ss(&D_0028AD00);
+    sum = _mm_add_ss(sum, _mm_and_ps(_mm_cmplt_ss(sum, eps), eps));
+    __m128 r = _mm_rsqrt_ss(sum);
+    __m128 t = _mm_mul_ss(_mm_mul_ss(sum, r), r);
+    r = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_0028ACE0)),
+                   _mm_sub_ss(_mm_load_ss(&D_0028ACF0), t));
+    r = _mm_shuffle_ps(r, r, 0);
+    _mm_storeu_ps(&out->x, _mm_mul_ps(r, x));
+}
 
 /* growable pointer array (3 methods in one Ghidra symbol at 0x194190) */
 struct C_00194190 {
