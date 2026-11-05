@@ -118,10 +118,24 @@ struct C_0018C000_Item {
     char pad0[0xC];
     float unkC;
     float unk10;
-    char pad14[6];
+    short unk14;
+    short unk16;
+    short unk18;
     short unk1A;
     int unk1C;
+    C_0018C000_Item *func_0018BFC0(int a, int b, int c, int d, int e);
 };
+
+struct S_0018C2D0_File {
+    int func_0013C9F0(char *name, const char *mode);
+    int func_0013C8A0(int h, void *buf, int size, int count);
+    int func_0013AFB0(int h);
+    void func_0013C110(int h);
+};
+extern S_0018C2D0_File *D_002BEAAC;
+extern char D_002A60B0[];
+extern char D_00275678[];
+extern char D_00275FB4[];
 
 struct C_002AA6C0_Obj {
     char pad0[0xC];
