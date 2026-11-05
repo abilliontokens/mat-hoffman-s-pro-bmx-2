@@ -235,8 +235,6 @@ float *func_00162470(float *m, float a2, float a3, float a4, float a5, float a6,
     return m;
 }
 
-/* func_00162530: see the notes on the remaining `add esp, 4` scheduling diff. */
-
 void func_00162530(float *m, float a2, float a3, float a4, float a5, int a6)
 {
     float v;
