@@ -45,6 +45,12 @@ struct C_001719B0 {
 };
 
 
+void C_00171230::func_00171230(int a) {
+    ((C_000264C0 *)((char *)this + 0x2c0))->func_000264C0((char *)this + 0x280);
+    ((C_000264C0 *)((char *)this + 0x280))->func_000264C0((void *)(unk22C + 0xf0));
+    func_00157A00(a);
+}
+
 void *C_001712A0::func_001712A0(int flags) {
     unk0 = (int)&D_00288B4C;
     func_00171980();
