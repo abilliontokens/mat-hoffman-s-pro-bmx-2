@@ -2,6 +2,21 @@
 #include "common.h"
 
 extern int D_0027E1F4;
+extern char D_00278690[], D_002786A0[], D_00278678[], D_002786B0[];
+extern float D_002757F0, D_0027E284, D_0027E140;
+extern int D_0028F5E0;
+void *func_001E8A44(int);
+struct ParkStrings { char pad0[0xA80]; char *names[3][2]; };
+struct ParkData { int pad0; ParkStrings *strings; };
+struct ParkLookup { void *func_0018C160(const char *s); };
+struct ParkManager { char pad0[0x2E8]; ParkData *data; ParkLookup *lookup; };
+extern ParkManager *D_002A8490;
+struct ParkDrawable {
+ char pad0[0x28]; float f28; char pad2c[0x10];
+ float f3c, f40, f44, f48; char pad4c[0xC]; unsigned char f58; char pad59[0xB];
+ ParkDrawable *func_001D5760();
+ void func_001D5810(const char *, float, float, int);
+};
 extern const float D_00276DD4;
 
 struct Mat {
