@@ -96,7 +96,7 @@ struct C_00107070 {
     float f1654;
     char pad1658[0x1fa0 - 0x1658];
     float f1fa0;
-    void func_00107070(void);
+    void func_00107070(float dt);
 };
 struct Vec_106B20 { int x,y,z,w; };
 struct Obj_106B20 {
