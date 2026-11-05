@@ -13,9 +13,9 @@ struct DelObjC_000D0 {
     virtual void Destroy(int a0);
 };
 
-/* std::min-like: takes and returns references, so its operands live in stack temporaries */
+/* min taking references (so its operands live in stack temporaries), returning the value */
 template <class T>
-inline const T &min_ref(const T &a, const T &b)
+inline T min_ref(const T &a, const T &b)
 {
     return b < a ? b : a;
 }
@@ -110,8 +110,11 @@ void C_000D0FD0::func_000D1980()
     for (i = 0; i < (*mgr->f150->f3A8)->count; i++) {
         S_000D1980_Entry *e = (*mgr->f150->f3A8)->items[i];
         if (e != 0 && e->f4 == 1 && e->f8 != 0) {
-            int len = strlen(e->f8->name);
-            int n = len < 0x103 ? len : 0x103;
+            volatile int len = strlen(e->f8->name);
+            volatile int lim = 0x103;
+            int a = lim;
+            int b = len;
+            volatile int n = a > b ? b : a;
             func_001E8920(buf, e->f8->name, n);
             buf[n] = 0;
             char *dot = func_001E8AC0(buf, '.');
