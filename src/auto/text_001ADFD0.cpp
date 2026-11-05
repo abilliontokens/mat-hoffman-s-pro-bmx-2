@@ -54,8 +54,8 @@ struct C_001AE3E0_Sub {
     }
 };
 
-struct C_001AE3E0 {
-    void * volatile vtbl;
+struct C_001AE3E0_Head {
+    void *vtbl;
     char pad4[0x20];
     int f24;
     char pad28[8];
@@ -63,10 +63,29 @@ struct C_001AE3E0 {
     char pad34[4];
     C_001AE3E0_Vec4 *f38;
     C_001AE3E0_Vec4 *f3C;
-    int f40;
-    int f44;
-    int f48;
-    int f4C;
+    C_001AE3E0_Head(int param_1)
+    {
+        ((C_00157600 *)this)->func_00157600(param_1);
+        vtbl = &D_0028C214;
+    }
+};
+
+struct C_001AE3E0_Quat {
+    int x;
+    int y;
+    int z;
+    int w;
+    C_001AE3E0_Quat()
+    {
+        z = 0;
+        y = 0;
+        x = 0;
+        w = 0x3f800000;
+    }
+};
+
+struct C_001AE3E0 : C_001AE3E0_Head {
+    C_001AE3E0_Quat f40;
     int f50;
     C_001ADFD0_Virt *f54;
     C_001AE3E0_Sub f58;
