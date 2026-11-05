@@ -104,7 +104,7 @@ struct SignatureWave {
     void *vtbl;
     char pad4[0x20];
     S_00194490_Clamp **f24;
-    int f28;
+    unsigned f28;
     int f2C;
     int f30;
     float f34;
@@ -420,7 +420,7 @@ void SignatureWave::func_00194330(S_Vec4 *a1, S_Vec4 *a2, int a3, float a4, floa
 {
     float inv4 = D_00275460 / a4;
     float inv5;
-    double v3;
+    float v3;
 
     *(S_Vec4 *)&f64 = *a1;
     *(S_Vec4 *)&f74 = *a2;
@@ -434,7 +434,10 @@ void SignatureWave::func_00194330(S_Vec4 *a1, S_Vec4 *a2, int a3, float a4, floa
     f3C = inv4;
     inv5 = D_00275460 / a5;
     f40 = inv5;
-    v3 = (double)f28;
+    v3 = (float)f28;
+    if (f28 < 0) {
+        v3 = v3 + 4294967296.0f;
+    }
     f9C = a9;
     fA0 = a10;
     fAC = a12;
