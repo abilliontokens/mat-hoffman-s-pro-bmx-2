@@ -24,6 +24,39 @@ extern "C" void *func_001E8AA5(int);
 extern "C" void *func_001E8A44(int);
 extern int D_00287520;
 
+struct Vec4_587F0 { float x, y, z, w; };
+struct S_R {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
+    virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14();
+    virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24();
+    virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29();
+    virtual void v30(); virtual void v31(); virtual void v32();
+    void __stdcall func_0011CA60(Vec4_587F0);
+};
+struct C_001587F0 {
+    char pad0[0x24];
+    S_R *unk24;
+    S_R *unk28;
+    S_R *unk2c;
+    char pad30[4];
+    S_R *unk34;
+    S_R *unk38;
+    char pad3c[8];
+    int unk44;
+    float unk48;
+    Vec4_587F0 unk4c;
+    Vec4_587F0 unk5c;
+    Vec4_587F0 unk6c;
+    char pad7c[0x9c - 0x7c];
+    unsigned char unk9c;
+    void func_001587F0(int a0, Vec4_587F0 pos, Vec4_587F0 dir);
+};
+extern "C" int func_001E8833(void);
+extern "C" void func_001584A0(Vec4_587F0 *, Vec4_587F0 *);
+extern float D_002754B0;
+
 struct S_P {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
     virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
