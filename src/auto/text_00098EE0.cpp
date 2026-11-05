@@ -3,6 +3,32 @@
 
 struct S_00097FD0_owner;
 
+struct S_001B65E0_obj {
+    void func_001B65E0(void);
+    void func_001B65F0(void);
+};
+
+struct S_00099A60_vt {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+};
+struct S_00099A60_ent {
+    char pad0[4];
+    S_00099A60_vt *f4;
+    char pad8[8];
+    int f10;
+};
+struct S_00099A60_arg {
+    char pad0[0x24];
+    int f24;
+    S_00099A60_ent **f28;
+};
+
 extern f32 D_00275544;
 
 struct C_00096870 {
