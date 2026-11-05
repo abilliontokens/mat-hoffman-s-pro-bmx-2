@@ -272,6 +272,44 @@ UIPage *UIPage::func_001BE360(int param_1)
     return this;
 }
 
+void UIPage::func_001BE3F0(void)
+{
+    int func_001E8390(...);
+    int func_001E891B(...);
+    int i;
+
+    vtbl = (void *)&D_0028D604;
+    if (f168 != 0) {
+        f168->virt2();
+    }
+    if (f138 != 0) {
+        for (i = 0; i <= f134; i++) {
+            if (f138[i] != 0) {
+                f138[i]->virt2();
+            }
+            f138[i] = 0;
+        }
+        func_001E8390(f138);
+    }
+    if (f140 != 0) {
+        for (i = 0; i <= f13C; i++) {
+            if (f140[i] != 0) {
+                ((UIPageObj *)f140[i])->virt2();
+            }
+        }
+        func_001E8390(f140);
+    }
+    if (f144 != 0) {
+        for (i = 0; i < 8; i++) {
+            if (f144[i] != 0) {
+                func_001E891B(f144[i]);
+            }
+        }
+        func_001E891B(f144);
+    }
+    func_00157660();
+}
+
 int UIPage::func_001BEA50(int param_1)
 {
     f32 y = f124->axisA[param_1]->value;
