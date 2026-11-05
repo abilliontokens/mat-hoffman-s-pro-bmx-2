@@ -95,6 +95,15 @@ void C_0001C4C0::func_0001C4C0(int *param_1) {
     }
 }
 
+C_0001C520 *C_0001C520::func_0001C520(void) {
+    extern int D_00275BD0;
+    func_0001E050();
+    unk18 = 0;
+    unk1C = 0;
+    unk0 = (int)&D_00275BD0;
+    return this;
+}
+
 void C_0001C540::func_0001C540(void) {
     unk10 = 0;
     unk14 = 2139095039;
