@@ -21,6 +21,8 @@ struct C_00169490 {
 };
 
 struct C_001BB900 {
+    char pad0[0x410];
+    int f410;
     int func_001BB900(void *a1);
 };
 
@@ -74,6 +76,19 @@ struct BmxScene {
     int func_00183DD0(int param_1);
     int func_00184880(void);
 };
+
+void BmxScene::func_00183D70(void *a0)
+{
+    int i = 0;
+    if (((BmxSceneMgr *)f3ac)->count > 0) {
+        do {
+            Elem58 *e = ((BmxSceneMgr *)f3ac)->objs[i];
+            if (e->f4 == 2) {
+            }
+            i++;
+        } while (i < ((BmxSceneMgr *)f3ac)->count);
+    }
+}
 
 void BmxScene::func_00183E90(void)
 {
