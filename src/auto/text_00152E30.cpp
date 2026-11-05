@@ -66,3 +66,49 @@ struct C_00153D30 {
     int unk6CC;
     void func_00153D30(int dt);
 };
+
+void C_001532E0::func_001532E0(void)
+{
+    C_00136300 *p = unk38;
+    vtbl = (void *)&D_00286CBC;
+    if (p != 0) {
+        p->func_00136300();
+        func_001E891B(p);
+    }
+    p = unk3C;
+    if (p != 0) {
+        p->func_00136300();
+        func_001E891B(p);
+    }
+    p = unk40;
+    if (p != 0) {
+        p->func_00136300();
+        func_001E891B(p);
+    }
+    p = unk44;
+    if (p != 0) {
+        p->func_00136300();
+        func_001E891B(p);
+    }
+    ((C_00157660 *)this)->func_00157660();
+}
+
+void C_00153D30::func_00153D30(int dt)
+{
+    if (unk588 == 0) {
+        unk584 -= dt;
+        D_002A8490->unk2A4->slots[unk24]->unk60 = 200;
+        if (unk584 <= 0) {
+            unk584 = 0;
+            unk588 = 1;
+            unk58C = 0;
+            unk590 = 0;
+            unk594 = 0;
+            unk6CC++;
+            arr5B8[func_00011260(0, 1)]->v5(0);
+        } else {
+            arr5A8[func_00011260(0, 3)]->v5(0);
+        }
+    }
+}
+
