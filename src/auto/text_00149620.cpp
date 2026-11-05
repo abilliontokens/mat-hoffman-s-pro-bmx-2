@@ -150,6 +150,47 @@ C_0014A3A0 *C_0014A3A0::func_0014A3A0()
     return this;
 }
 
+void C_0014A3A0::func_0014A420()
+{
+    int func_001E891B(...);
+    int i;
+    vtbl = &D_0028684C;
+    if (unkDC != 0) {
+        func_00201100(unkDC);
+    }
+    unkDC = 0;
+    if (unkE4 != 0) {
+        func_00201100(unkE4);
+    }
+    unkE4 = 0;
+    if (unkE0 != 0) {
+        func_00201100(unkE0);
+    }
+    unkE0 = 0;
+    for (i = 0; i < unk58; i++) {
+        if (unk8[i] != 0) {
+            func_00201100(unk8[i]);
+        }
+        if (unk28[i] != 0) {
+            func_00201100(unk28[i]);
+        }
+    }
+    if (unk4C != 0) {
+        func_00201100(unk4C);
+    }
+    if (unkE8 != 0) {
+        unkE8->func_0014A540();
+        func_001E891B(unkE8);
+        unkE8 = 0;
+    }
+    if (unkEC != 0) {
+        unkEC->func_00012140();
+        func_001E891B(unkEC);
+        unkEC = 0;
+    }
+    func_0001DFF0();
+}
+
 undefined4 C_0014A500::func_0014A500(byte param_1)
 {
   int func_0014A420(...);
@@ -170,6 +211,7 @@ C_0014A520* C_0014A520::func_0014A520(int a0) {
     return this;
 }
 
+#pragma auto_inline(off)
 void C_0014A540::func_0014A540(void)
 {
   int func_001E8390(...);
