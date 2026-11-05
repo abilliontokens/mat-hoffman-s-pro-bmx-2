@@ -1,7 +1,7 @@
 /* 3 functions from 0x001C7EB0 to 0x001C8960, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
-struct Obj { virtual void d0(); virtual void d1(); virtual void d2(); };
+struct Obj { virtual ~Obj(); virtual void d1(); virtual void d2(); };
 struct Pool { int func_001AC7B0(void *p, int n); void func_001B26C0(int h); };
 struct Entry { char pad[0x2c]; void *e2c; void *e30; void *e34; void *e38; void *e3c; int e40; int e44; };
 struct WaterBase { void func_00157660(); };
