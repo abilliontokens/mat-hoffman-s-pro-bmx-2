@@ -16,6 +16,9 @@ int func_0014FED0(void *a, int b, int c);
 char *func_001E9260(char *s, int c);
 extern "C" int D_0014FEE0(void *a);
 void func_0014FE50(void *a);
+void func_001E8390(void *p);
+void *func_001E8AA5(int size);
+int func_0014FE60(void *p, int size, void *file);
 
 static inline int min_i(int a, int b) { return a < b ? a : b; }
 
