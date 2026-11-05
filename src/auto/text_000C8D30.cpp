@@ -12,13 +12,9 @@ struct GObj2E0 {
     int n;
 };
 
-struct GObj930 {
-    char *s;
-};
-
 struct GObj4 {
     char pad0[0x930];
-    GObj930 *p930;
+    char *p930;
 };
 
 struct GObj2E8 {
