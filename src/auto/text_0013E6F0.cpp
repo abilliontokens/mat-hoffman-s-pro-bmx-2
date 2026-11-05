@@ -163,7 +163,7 @@ static __forceinline int Min_0013E9B0(int a, int b)
 struct S_0013E9B0_Arg {
     char pad00[0x10];
     char f10[0x40];
-    float f50[4];
+    float f50[16];
     char f90[0x3C];
     float fCC;
     float fD0[4];
