@@ -109,6 +109,7 @@ struct ObjB_001BC040 : Base_001BC040 {
 };
 
 extern int D_002BA154;
+void *func_001E8A44(int size);
 
 struct C_001BC040 {
     char pad0[0x24];
