@@ -111,6 +111,9 @@ int func_001F46F0(...);
 #pragma optimize("y", on)
 void func_001F4848(int a0, int a1) { func_001F46F0(a0, a1, (int)&D_002AEDA4); }
 
+extern int D_002AEDBC;
+void func_001F485E(int a0, int a1) { func_001F46F0(a0, a1, (int)&D_002AEDBC); }
+
 void func_001F4874(int d, const char *s)
 {
     char ld[12];
