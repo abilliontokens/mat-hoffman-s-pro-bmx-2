@@ -3,10 +3,17 @@
 #include <string.h>
 /* one node of the path at +0x50: 0x44 bytes, the part at +0x20 is what
    func_00094810 hands out */
-struct S_00094620_Node {
+struct S_00094620_NodeHead {
     char pad0[0x20];
-    int unk20;
-    char pad24[0x20];
+};
+
+/* the part of a node func_00094810 hands out, at +0x20 */
+struct S_00094620_NodeTail {
+    int unk0;
+    char pad4[0x20];
+};
+
+struct S_00094620_Node : S_00094620_NodeHead, S_00094620_NodeTail {
 };
 
 /* the path the camera walks: a node array and its length */
@@ -501,18 +508,15 @@ void C_00094A00::func_00094A00(void)
 
 void C_00094A00::func_00094C00(void)
 {
-    int i = 0;
+    int i;
 
-    if (f7C > 0) {
-        do {
-            if (f2C != 0) {
-                f28->func_001CD7D0(f84[i]);
-            } else {
-                f28->func_001CD7D0(f84[i]);
-            }
-            f84[i] = 0;
-            i++;
-        } while (i < f7C);
+    for (i = 0; i < f7C; i++) {
+        if (f2C != 0) {
+            f28->func_001CD7D0(f84[i]);
+        } else {
+            f28->func_001CD7D0(f84[i]);
+        }
+        f84[i] = 0;
     }
     f7C = 0;
     if (f2C != 0) {
