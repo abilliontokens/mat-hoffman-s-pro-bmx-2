@@ -468,6 +468,59 @@ void *C_0015A910::func_0015A970(unsigned char flags)
     return this;
 }
 
+int C_0015A9B0::func_0015A9B0(int a0, int a1, int a2)
+{
+    extern S_0015AC20_Game *D_002A8490;
+    extern float D_00287654;
+    extern float D_00287650;
+    if (a0 < 0) {
+        switch (a0) {
+        case -2:
+            if ((f14 & 1) && f624 < D_00287654) return 1;
+            break;
+        case -3:
+            if ((f14 & 1) && f624 > D_00287650) return 1;
+            break;
+        case -4:
+            if ((f14 & 2) && f628 < D_00287654) return 1;
+            break;
+        case -5:
+            if ((f14 & 2) && f628 > D_00287650) return 1;
+            break;
+        case -6:
+            if ((f14 & 4) && f62C < D_00287654) return 1;
+            break;
+        case -7:
+            if ((f14 & 4) && f62C > D_00287650) return 1;
+            break;
+        case -8:
+            if ((f14 & 8) && f630 < D_00287654) return 1;
+            break;
+        case -9:
+            if ((f14 & 8) && f630 > D_00287650) return 1;
+            break;
+        case -10:
+            if ((f14 & 0x10) && f634 < D_00287654) return 1;
+            break;
+        case -11:
+            if ((f14 & 0x10) && f634 > D_00287650) return 1;
+            break;
+        case -12:
+            if ((f14 & 0x20) && f638 < D_00287654) return 1;
+            break;
+        case -13:
+            if ((f14 & 0x20) && f638 > D_00287650) return 1;
+            break;
+        }
+        return 0;
+    }
+    S_0015A9B0_Map *m = *(S_0015A9B0_Map **)((char *)D_002A8490->f8 + 0xcc0);
+    if (m == 0) return 0;
+    m->func_00135D30(a0, &a0, f320);
+    if (a0 == -1) return 0;
+    return v3(a0, a1, a2);
+}
+
 int C_0015AB70::func_0015AB70(unsigned int idx)
 {
     if (idx < f8) {
