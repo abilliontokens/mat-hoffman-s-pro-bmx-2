@@ -199,6 +199,19 @@ void Lights::func_0018BEB0()
     func_00157660();
 }
 
+undefined4 C_0018BF60::func_0018BF60(byte param_1)
+{
+  int func_0018B540(...);
+  int func_001E891B(...);
+  undefined4 in_ECX = (undefined4)this;
+
+  func_0018B540();
+  if ((param_1 & 1) != 0) {
+    func_001E891B(in_ECX);
+  }
+  return in_ECX;
+}
+
 undefined4 C_0018BF80::func_0018BF80(byte param_1)
 {
   int func_0018B5C0(...);
