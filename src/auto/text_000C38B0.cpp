@@ -62,7 +62,7 @@ struct C_000C45E0 {
     u32 unk2F0;
     u32 unk2F4;
     DelObjC_000C4 *unk2F8[10];
-    u32 arr320[12];
+    u32 arr320[4][3];
     char pad350[0xc];
     u32 unk35C;
     u32 unk360;
