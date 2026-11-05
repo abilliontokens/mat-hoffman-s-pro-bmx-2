@@ -65,6 +65,7 @@ struct C_00168280 {
     int func_00168550(const char *name, char *dst, int size);
     int func_00168C50(const char *name, float def, float *out);
     int func_00168CB0(const char *name, const float *def, float *out);
+    int func_00168D70(const char *name, float *out, int count);
     int func_00168E70(const char *name, const int *def, int *out);
 };
 
@@ -259,6 +260,32 @@ int C_00168280::func_00168CB0(const char *name, const float *def, float *out)
     out[1] = (float)func_001E9649(s);
     s = func_001E95A4(0, D_002869B4);
     out[2] = (float)func_001E9649(s);
+    return 1;
+}
+
+int __stdcall func_00168D70(void *a, float *out, int count)
+{
+    char buf[0x184];
+    char *s;
+    int i;
+
+    if (func_00168550(a, buf, 0x80) == 0) {
+        strcpy(buf, D_00275630);
+        return 0;
+    }
+    if (count > 1) {
+        s = func_001E95A4(buf, D_002869B8);
+        out[0] = (float)func_001E9649(s);
+        for (i = 1; i < count - 1; i++) {
+            s = func_001E95A4(0, D_002869B8);
+            out[i] = (float)func_001E9649(s);
+        }
+        s = func_001E95A4(0, D_002869B8);
+        out[count - 1] = (float)func_001E9649(s);
+    } else {
+        s = func_001E95A4(0, D_002869B8);
+        out[0] = (float)func_001E9649(s);
+    }
     return 1;
 }
 
