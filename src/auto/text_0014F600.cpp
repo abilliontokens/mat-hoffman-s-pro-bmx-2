@@ -12,9 +12,9 @@ struct S_SinCosEntry {
 extern S_SinCosEntry *D_002CF6B4;
 
 /* Truncate towards zero into *out; inlined into its callers. */
-static void storeftoi(int *out, float f)
+static void storeftoi(int * volatile out, float f)
 {
-    *out = (int)f;
+    *out = _mm_cvttss_si32(_mm_load_ss(&f));
 }
 
 /* one entry of the table func_0014F9A0 frees; the table ends where D_002DF874 starts */
