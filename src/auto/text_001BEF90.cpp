@@ -23,6 +23,51 @@ struct C_001BF6B0 {
     void func_001BF6B0(void);
 };
 
+struct C_001BF520 {
+    undefined4 func_001BF520(byte param_1);
+};
+
+struct C_001BEF90_Sub {
+    void func_001BDAB0(int);
+    void func_001BDA20(void);
+};
+
+struct C_001BEF90_Obj {
+    char pad0[0x2c];
+    C_001BEF90_Sub **unk2C;
+    void func_001BDDE0(int);
+    void func_001BDBD0(void);
+};
+
+struct C_001BEF90 {
+    char pad0[0x140];
+    C_001BEF90_Obj **unk140;
+    void func_001BEF90(int param_1);
+};
+
+struct C_001BEFC0 {
+    char pad0[0x140];
+    C_001BEF90_Obj **unk140;
+    void func_001BEFC0(int param_1, int param_2);
+};
+
+struct C_001BF000_Global {
+    virtual void vv0();
+    virtual void vv1();
+    virtual void vv2();
+    virtual void vv3();
+    virtual void v4(int a, void *b, int c, int d);
+};
+
+extern C_001BF000_Global *D_002EFDB8;
+
+struct C_001BF000 {
+    char pad0[0x168];
+    void *unk168;
+    void func_00157920();
+    void func_001BF000();
+};
+
 
 undefined4 C_001BF030::func_001BF030(void)
 {
