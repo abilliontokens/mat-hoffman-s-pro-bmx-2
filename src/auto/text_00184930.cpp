@@ -251,6 +251,7 @@ struct C_00184930 {
     int func_00185110(int a);
     int func_00184DD0(int a0, int a1, int a2);
     int func_00184FC0(void);
+    int func_00184930(float a, float b);
 };
 
 struct S_00185610_Vec4 {
