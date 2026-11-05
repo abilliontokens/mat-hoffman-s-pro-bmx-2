@@ -42,7 +42,9 @@ int f8c;
  void func_00157660();
   CutScene *func_00138800(int);
  void func_00138890();
- void func_001390A0(int index);
+    void func_001390A0(int index);
+   void func_00139360(int oldIndex, int index);
+   void func_00139180(int index);
   void func_001394F0(int);
 };
 struct CutScene_Item {
