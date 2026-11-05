@@ -283,7 +283,7 @@ struct C_001CD940 {
 };
 
 int __stdcall func_00220B26(void *a, S_001CD940_Buf **out, void *c);
-int func_00221B47(void *a, S_001CD940_Buf *b);
+int __stdcall func_00221B47(void *a, S_001CD940_Buf *b);
 int __stdcall func_002228F8(int *desc, void **out);
 int __stdcall func_001DDB7E(int a, int b, int c, int d);
 
