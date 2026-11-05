@@ -83,10 +83,23 @@ struct S_00163DC0_Res {
     int f2C;
     int f30;
     int f34;
-    char pad38[4];
+    float f38;
     float f3C;
     int f40;
     S_00163DC0_Res *func_00162790(void);
+};
+
+/* loader settings: parser at +8, defaults at +0x20.., base path at +0x190 */
+struct S_00163A50_Arg {
+    char pad0[8];
+    struct C_00163DC0_Parser *f8;
+    char padC[0x20 - 0xC];
+    int f20;
+    int f24;
+    int f28;
+    int f2C;
+    char pad30[0x190 - 0x30];
+    char f190[1];
 };
 
 struct C_00163DC0_Parser {
