@@ -46,6 +46,7 @@ struct C_001D5760 {
     C_001D5760_Obj *f60;
     C_001D5760();
     void func_001D57E0();
+    void func_001D5AD0();
 };
 
 struct DXVSStreams_001D5760 {
