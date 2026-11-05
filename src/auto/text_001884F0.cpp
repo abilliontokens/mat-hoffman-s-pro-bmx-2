@@ -47,11 +47,37 @@ struct C_001888F0_Obj : C_00188VT {
     C_001888F0_Obj *func_00188250();
 };
 
+struct S_00188AB0_Parser {
+    int func_00169710(char *name);
+    int func_00168BE0(const char *k1, const char *k2, char *dst, int size);
+};
+struct S_00188AB0_Info {
+    char pad0[8];
+    char f8[0x108];
+    int f110;
+    char pad114[0x14C - 0x114];
+    unsigned char f14c;
+};
+struct S_00188AB0_Reader {
+    virtual void v0(int *out, void *slot);
+    virtual int v1(char *buf);
+};
+struct S_00188AB0_Obj {
+    virtual void v0(S_00188AB0_Parser *parser);
+};
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+extern char D_0027C670[];
+extern char D_0028A0C0[];
+extern char D_002893B4[];
+extern char D_0028A0B4[];
+extern char D_0028A0A8[];
+
 struct CollisionObjects {
     void *vtbl;
     char pad4[0x20];
     int unk24;
-    void *unk28;
+    S_00188AB0_Obj **unk28;
+    int func_00188AB0(S_00188AB0_Parser *a0, S_00188AB0_Info *a1, S_00188AB0_Reader *a2);
     CollisionObjects *func_00188A80(int a0);
     void func_00157600(int a0);
 };
