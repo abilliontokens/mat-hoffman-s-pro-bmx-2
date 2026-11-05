@@ -332,6 +332,19 @@ int C_00194C70::func_00194C70(void) {
     return 1;
 }
 
+void *C_00194C80::func_00194C80(int flags)
+{
+    vtbl = (void *)&D_0028AE90;
+    if (f4 != 0) {
+        f4->v2();
+    }
+    func_0012B540();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void C_00194DB0::func_00194DB0(void) {
     extern int D_0028AED0;
     int func_0012B540(...);
@@ -347,6 +360,11 @@ void C_00194E60::func_00194E60(int a, int b, int c, int d)
 void C_00194E60::func_00194E90(S_Vec4Int *out)
 {
     Get(out);
+}
+
+void C_00194EE0::func_00194EE0(int a, int b, int c, int d)
+{
+    f28.Set(a, b, c, d);
 }
 
 void C_00194F90::func_00194F90(int a0) {
