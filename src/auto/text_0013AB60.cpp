@@ -48,6 +48,13 @@ struct C_0013AEC0 {
 };
 
 
+int C_0013AEC0::func_0013AFB0(int idx)
+{
+    S_0013AEC0_Slot *s = &fE8[idx];
+
+    return (s->f10 < s->f14) - 1;
+}
+
 undefined4 C_0013AFD0::func_0013AFD0(int param_1)
 {
   int in_ECX = (int)this;
