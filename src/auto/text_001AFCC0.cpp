@@ -71,7 +71,7 @@ struct S_001AFF80_list {
     S_001AFF80_entry entries[1];
 };
 
-static inline void FloatToInt(int *out, float f) { *out = _mm_cvtt_ss2si(_mm_load_ss(&f)); }
+static inline void FloatToInt(int *out, float f) { *out = (int)f; }
 
 struct C_001AFF80 {
     char pad0[0xc];
