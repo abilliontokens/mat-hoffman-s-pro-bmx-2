@@ -145,6 +145,11 @@ struct C_001B65E0 {
     void func_001B65E0(void);
 };
 
+/* BasicTriggerActionCreation: maps an action name to its type id */
+struct C_001B6710 {
+    int func_001B6710(const char *name);
+};
+
 struct C_001B65D0 {
     int unk0;
     void func_001B65D0(void);
