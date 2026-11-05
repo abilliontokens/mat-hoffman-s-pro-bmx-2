@@ -10,7 +10,9 @@ extern int D_002AA8C0, D_002AA8C4, D_002AA8C8, D_002AA8CC;
 struct C_001B3C10 {
     C_001B3C10 *func_001B3C10(int a0);
 };
-extern void __fastcall func_00157600(void *self, int a0);
+struct C_00157600 {
+    void func_00157600(int a0);
+};
 void *func_001E8A44(int size);
 void func_001E891B(void *p);
 
