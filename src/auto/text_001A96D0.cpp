@@ -58,8 +58,8 @@ static __forceinline void cross_001A96D0(float *out, float *a, float *b)
     _mm_storeu_ps(out, va);
 }
 
-static __forceinline float Min_001A9FA0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
-static __forceinline float Sqrt_001A9FA0(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+static __forceinline float Min_001A9FA0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(*(__m128 *)&a, *(__m128 *)&b)); return r; }
+static __forceinline float Sqrt_001A9FA0(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
 
 struct Obj_001A9FA0 {
     char pad0[0x204];
@@ -124,3 +124,37 @@ void This_001A96D0::func_001A96D0(Body_001A96D0 *body, V4_001A96D0 p, V4_001A96D
         body->f148 += c.z * s;
     }
 }
+
+void This_001A9FA0::func_001A9FA0(float s, V4_001A96D0 v, V4_001A96D0 q, Obj_001A9FA0 *other, unsigned mask)
+{
+    V4_001A96D0 a;
+    V4_001A96D0 b;
+    float d = v.y * f128 + v.x * f124 + v.z * f12c;
+    V4_001A96D0 t;
+    t.x = f124 - v.x * d;
+    t.y = f128 - v.y * d;
+    t.z = f12c - v.z * d;
+    a = t;
+    func_001A8DC0(&b, &a);
+    V4_001A96D0 nb;
+    nb.x = -b.x;
+    nb.y = -b.y;
+    nb.z = -b.z;
+    b = nb;
+    float m = Min_001A9FA0(Sqrt_001A9FA0(a.y * a.y + a.z * a.z + a.x * a.x) * D_002755E8, 1.0f);
+    float k = m * f24->f210 * s * D_00275BF8;
+    V4_001A96D0 w;
+    w.x = b.x * k;
+    w.y = b.y * k;
+    w.z = b.z * k;
+    if (!(f24->f204 & mask))
+        func_001A96D0(f24, w, q, fc8);
+    if (other && !(f7c & other->f204)) {
+        V4_001A96D0 nw;
+        nw.x = -w.x;
+        nw.y = -w.y;
+        nw.z = -w.z;
+        func_001A96D0(other, nw, q, fc8);
+    }
+}
+
