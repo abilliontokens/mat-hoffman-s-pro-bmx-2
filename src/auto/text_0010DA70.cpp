@@ -155,7 +155,7 @@ int BmxVehicle_10DA70::func_0010DAB0(void)
         v.w = 1.0f;
         f1E0->f22C->func_00199A70(0, &v);
         fA00->f4->func_00199A70(0, &v);
-        if (v.x < (float)f24->f4DC->f124) {
+        if (v.y < (float)f24->f4DC->f124) {
             func_00108510(&D_00275630, D_002A3A3C);
         }
     }
