@@ -31,6 +31,25 @@ struct C_000FF480 {
     undefined4 func_000FF480(byte param_1);
 };
 
+struct C_00100280 {
+    undefined4 func_00100280(byte param_1);
+};
+
+struct C_000FFFA0 {
+    char pad0[0x2C4];
+    int f2c4;
+    int f2c8;
+    char pad2cc[0x18];
+    int f2e4;
+    int f2e8;
+    void func_000DBC40();
+    void func_000DBD20();
+    void func_000DC270();
+    void func_000FFC20();
+    void func_00157960();
+    void func_000FFFA0();
+};
+
 
 undefined4 C_000FF3C0::func_000FF3C0(byte param_1)
 {
