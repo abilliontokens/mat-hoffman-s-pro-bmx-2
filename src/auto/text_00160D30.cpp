@@ -198,6 +198,11 @@ struct S_001611C0_BitReader {
 extern char D_002E2980[];
 extern char D_002E297F[];
 
+struct S_001611C0_State {
+    unsigned int prev;
+    char *out;
+};
+
 struct S_001B2340_Elem {
     virtual void v0();
     virtual void v1();
@@ -269,6 +274,78 @@ void __fastcall func_00161170(int unused, S_00161170 *table)
     D_002EB254 = 0x103;
     D_002E2978 = 9;
     D_002EB250 = 0x1ff;
+}
+
+void func_001611C0(char *out, void *data, int size)
+{
+    register unsigned int prev;
+    char *p = out;
+    S_001611C0_BitReader br;
+    S_00161170 table[1365];
+    unsigned int code;
+    int first;
+    unsigned int len;
+    unsigned int c;
+    unsigned int n;
+    unsigned int idx;
+    unsigned int hi;
+    unsigned int lo;
+    char *sbuf = D_002E2980;
+
+    br.func_0001E3F0((u32 *)data, size * 8, 0);
+    br.func_0001E550(0x20);
+    func_00161170(0, table);
+    prev = br.func_0001E550(D_002E2978);
+    while (prev != 0x100) {
+        *p++ = (char)prev;
+        first = prev;
+        for (;;) {
+            code = br.func_0001E550(D_002E2978);
+            if (code == 0x100) {
+                goto done;
+            }
+            if (code == 0x102) {
+                break;
+            }
+            if (code == 0x101) {
+                D_002E2978++;
+                continue;
+            }
+            if (code >= D_002EB254) {
+                sbuf[0] = (char)first;
+                len = 1;
+                c = prev;
+            } else {
+                len = 0;
+                c = code;
+            }
+            while (c > 0xff) {
+                hi = c >> 8;
+                lo = c & 0xff;
+                idx = (hi << 8) + lo;
+                sbuf[len] = table[idx].unk8;
+                len++;
+                c = table[idx].unk4;
+            }
+            sbuf[len] = (char)c;
+            n = len + 1;
+            first = D_002E297F[n];
+            for (; n > 0; n--) {
+                *p++ = D_002E297F[n];
+            }
+            hi = D_002EB254 >> 8;
+            lo = D_002EB254 & 0xff;
+            idx = (hi << 8) + lo;
+            table[idx].unk4 = prev;
+            table[idx].unk8 = (char)first;
+            D_002EB254++;
+            prev = code;
+        }
+        func_00161170(0, table);
+        prev = br.func_0001E550(D_002E2978);
+    }
+done:
+    br.func_0001E460();
 }
 
 void func_001613B0(void)
