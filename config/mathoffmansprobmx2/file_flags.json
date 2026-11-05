@@ -44,10 +44,6 @@
   "src/auto/text_00131510.cpp": [
     "/Oy-"
   ],
-  "src/auto/text_001324B0.cpp": [
-    "/O1",
-    "/Oy-"
-  ],
   "src/auto/text_0014B260.cpp": [
     "/Oy-"
   ],
@@ -121,7 +117,8 @@
     "/Oy-"
   ],
   "src/auto/text_001F3B80.cpp": [
-    "/Oy-"
+    "/Oy-",
+    "/O1"
   ],
   "src/auto/text_001F58E0.cpp": [
     "/Oy-"
