@@ -94,3 +94,9 @@ extern S_002B91AC *D_002B91AC;
 extern float D_00279B50;
 extern float D_00275994;
 extern void *D_0027E334;
+
+void C_000C8590::func_000C8590(void) {
+    func_000C7DF0();
+    func_000C83E0();
+    func_00157960();
+}
