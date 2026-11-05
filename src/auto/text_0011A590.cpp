@@ -38,3 +38,12 @@ void *C_0011AB60::func_0011AB60(int flags)
     }
     return this;
 }
+
+void C_0011AB90::func_0011AB90(C_0011AB90Arg *arg)
+{
+    f24 = arg;
+    f28 = arg->f22c;
+    func_0011A4B0();
+    func_001D3F50();
+}
+
