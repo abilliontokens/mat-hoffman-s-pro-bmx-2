@@ -132,6 +132,7 @@ struct C_000BBE30 {
     char *func_000BC2E0(void);
     struct S_000BC320_Rec *func_000BC320(void);
     void func_000BC370(struct S_000BC320_Rec *out, int entry, int idx);
+    struct S_000BC320_Rec func_000BC370(int entry, int idx);
     void func_000BC3E0(int idx);
 };
 
