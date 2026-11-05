@@ -121,6 +121,27 @@ int __stdcall func_001F44DF(void *cs, int spinCount)
     return 1;
 }
 
+#pragma optimize("s", on)
+int func_001F44EF(void *a, int b)
+{
+    int r;
+    unsigned long code;
+
+    if (D_002F6A60 == 0) {
+        D_002F6A60 = func_001F44DF;
+    }
+    __try {
+        r = D_002F6A60(a, b);
+    } __except (code = _exception_code(), 1) {
+        if (code == 0xc0000017) {
+            func_001DD62B(8);
+        }
+        r = 0;
+    }
+    return r;
+}
+#pragma optimize("", on)
+
 #pragma optimize("sy", on)
 int func_001F4550(unsigned int *p, int bit)
 {
