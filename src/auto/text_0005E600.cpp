@@ -67,11 +67,13 @@ void C_0005E7C0::func_0005E7C0(float param_1, float param_2)
 
 void C_0005E800::func_0005E800(int param_1, int param_2)
 {
-    if ((float)param_1 == f4 && f8 == (float)param_2) {
+    float f2 = (float)param_2;
+    float f1 = (float)param_1;
+    if (f4 == f1 && f8 == f2) {
         return;
     }
-    f4 = (float)param_1;
-    f8 = (float)param_2;
+    f4 = f1;
+    f8 = f2;
     f58 |= 1;
 }
 
