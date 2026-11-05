@@ -46,6 +46,7 @@ struct S_000E35E0_Root {
 };
 
 extern S_000E35E0_Root *D_002A8490;
+extern char D_0027FC6C[];
 
 struct C_000E3C90_Widget {
     void func_001B1980();
