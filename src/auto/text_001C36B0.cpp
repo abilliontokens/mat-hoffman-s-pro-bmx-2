@@ -4,8 +4,22 @@
 extern char *D_002A8490;
 extern float D_0027A060;
 int func_00157920(void);
+struct FadeSprite {
+    char pad0[4];
+    float f4; float f8;
+    char pad0C[0x1C];
+    float f28; float f2C;
+    char pad30[8];
+    unsigned int f38;
+    char pad3C[0x1C];
+    unsigned char f58;
+    void func_001D5AD0(void);
+};
+struct FadeBuf { char pad[0x1E0]; int r[6]; };
+struct FadeDev { void func_0012B2B0(int *rect, int *out); };
 struct FadeObj {
-    void *vtbl; char pad4[0x2C];
+    void **vtbl; char pad4[0x20];
+    FadeSprite *f24; char pad28[8];
     float f30; int f34; int f38; int f3C; int f40;
     int func_001C4240(void);
 };
