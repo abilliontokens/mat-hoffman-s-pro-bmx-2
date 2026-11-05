@@ -12,6 +12,7 @@ struct DXShadowCaster {
     Alloc190 *fc;
     DXShadowCaster *func_00143820(DXRenderableObject *);
 };
+static inline const int &ShadowMin(const int &a, const int &b) { return a > b ? b : a; }
 struct C_0017A700 {
     char pad0[0xf0];
     DXShadowCaster **fF0;
