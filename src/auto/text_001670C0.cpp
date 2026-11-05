@@ -116,6 +116,10 @@ struct __declspec(align(16)) S_001677C0_Block {
     f32 m[16];
 };
 
+struct M4_001677C0 {
+    __m128 r[4];
+};
+
 struct V4_001677C0 {
     f32 x;
     f32 y;
@@ -204,29 +208,13 @@ void C_001677B0::func_001677B0(int a0) {
 
 void C_001677C0::func_001677C0(C_001677C0_Dst *dst)
 {
-    S_001677C0_Block * volatile src;
-    S_001677C0_Block * volatile dp;
-    volatile u32 a;
-    volatile u32 b;
-    volatile u32 c;
-    volatile u32 d;
-    u32 *p;
+    C_001677C0 * volatile self = this;
 
-    dst->f50 = f24;
-    src = &f24->blk;
-    dp = &dst->blk;
-    *dp = *src;
-    ((u32 *)&dst->blk)[3] = 0x3f000000;
-    ((u32 *)&dst->blk)[7] = 0x3f000000;
-    p = (u32 *)(&dst->f50 + 1);
-    a = 0x3f800000;
-    p[0] = a;
-    b = 0x3f800000;
-    p[1] = b;
-    c = 0x3f800000;
-    p[2] = c;
-    d = 0x3e99999a;
-    p[3] = d;
+    dst->f50 = self->f24;
+    dst->blk = self->f24->blk;
+    dst->blk.m[3] = 0.5f;
+    dst->blk.m[7] = 0.5f;
+    dst->v54 = V4_001677C0(1.0f, 1.0f, 1.0f, 0.3f);
 }
 
 void C_00167860::func_00167860(void)
