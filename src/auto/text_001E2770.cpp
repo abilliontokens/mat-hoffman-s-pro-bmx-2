@@ -79,6 +79,18 @@ int __stdcall func_001E27DB(int *section)
     }
     return section[1];
 }
+
+int __stdcall func_001E27FC(int *section)
+{
+    int result;
+    result = _imp__XeUnloadSection(section);
+    if (result < 0) {
+        func_001DD659(result);
+        return 0;
+    }
+    return 1;
+}
+
 #pragma optimize("", on)
 
 #pragma optimize("y", on)
