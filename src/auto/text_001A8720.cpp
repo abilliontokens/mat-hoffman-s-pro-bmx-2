@@ -81,7 +81,7 @@ struct C_001A8B80 {
     void func_001A9220(int idx, f32 v);
     void func_001D3F50(void);
     void func_001A9680(void);
-    void func_001A93A0(int idx, S_001A8B80_Tree *tree, int a2, int a3);
+    void func_001A93A0(unsigned short idx, S_001A8B80_Tree *tree, int a2, int a3);
     void func_001A9240(V4_001A8B80 v, int a, int b, int c);
     void func_001A95B0(V4_001A8B80 a, V4_001A8B80 b, V4_001A8B80 c, V4_001A8B80 d, int e, int f, int g, int h);
 };
@@ -126,14 +126,14 @@ void C_001A8B80::func_001A9220(int idx, f32 v)
     }
 }
 
-void C_001A8B80::func_001A93A0(int idx, S_001A8B80_Tree *tree, int a2, int a3)
+void C_001A8B80::func_001A93A0(unsigned short idx, S_001A8B80_Tree *tree, int a2, int a3)
 {
-    if ((short)idx >= 0) {
+    if (!(idx & 0x8000)) {
         do {
-            S_001A8B80_Node *n = &tree->nodes[(unsigned short)idx];
+            S_001A8B80_Node *n = &tree->nodes[idx];
             func_001A93A0(n->left, tree, a2, a3);
             idx = n->right;
-        } while ((short)idx >= 0);
+        } while (!(idx & 0x8000));
     }
     func_001A9240(tree->leaves[idx & 0x7fff].v, a2, a3, 0);
 }
