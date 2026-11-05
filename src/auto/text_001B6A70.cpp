@@ -47,6 +47,7 @@ struct C_00157600 {
 
 struct C_00169710 {
     int func_00169710(char *name);
+    void func_00168C20(char *name, int def, int *out);
 };
 
 struct C_001BB950 {
