@@ -10,7 +10,7 @@ struct S_001236A0_Vec3 {
 struct S_001236A0_Vec4 {
     float x, y, z, w;
     S_001236A0_Vec4() {}
-    void Set(float a, float b, float c) { x=a; y=b; z=c; }
+    void Set(const float &a, const float &b, const float &c) { x=a; y=b; z=c; }
     S_001236A0_Vec4(float x_, float y_, float z_, float w_) {
         x = x_;
         y = y_;
