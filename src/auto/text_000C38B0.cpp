@@ -87,7 +87,13 @@ struct S_000C40D0_Owner {
     S_000C40D0_Ui *f24;
 };
 
+struct S_000C38B0_Slot {
+    char pad0[0x624];
+    int f624;
+};
+
 struct S_000C40D0_Sub {
+    S_000C38B0_Slot *func_0005C020(int n);
     void func_0005C100(void);
     void func_0005C110(void);
     void func_0005C130(int n);
