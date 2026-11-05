@@ -16,6 +16,7 @@ struct C_00109520 {
     int func_00109520(int p1, int p2);
     void func_00109550(int p);
     int func_00109580(int idx);
+    int func_00109C70(C_00109520 *src);
 };
 
 struct C_00109F30 {
