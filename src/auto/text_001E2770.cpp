@@ -67,6 +67,7 @@ int __stdcall func_001E2774(const char *name)
 }
 
 extern "C" int (__stdcall *_imp__XeLoadSection)(void *section);
+extern "C" int (__stdcall *_imp__XeUnloadSection)(void *section);
 #pragma optimize("y", on)
 int __stdcall func_001E27DB(int *section)
 {
