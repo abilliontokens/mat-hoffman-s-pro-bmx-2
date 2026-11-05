@@ -378,6 +378,18 @@ void C_00194EE0::func_00194EE0(int a, int b, int c, int d)
     f28.Set(a, b, c, d);
 }
 
+void C_00194EE0::func_00194F10(S_Vec4Int *out)
+{
+    if (f4 == 0) {
+        out->x = D_002A9ADC;
+        out->y = D_002A9AE0;
+        out->z = D_002A9AE4;
+        out->w = D_002A9AE8;
+    } else {
+        *out = f28;
+    }
+}
+
 void C_00194F90::func_00194F90(int a0) {
     unk48 = a0;
 }
