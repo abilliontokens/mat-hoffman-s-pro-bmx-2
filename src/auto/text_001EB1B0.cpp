@@ -103,6 +103,8 @@ extern "C" void *__cdecl func_001EA6A0(void *dst, const void *src, unsigned int 
 extern "C" void __cdecl func_001F4EB7(void);
 extern "C" void __cdecl func_001F4E8B(int rterrnum);
 extern "C" void (__cdecl *D_002AEA2C)(int code);
+extern "C" unsigned int strlen(const char *s);
+#pragma intrinsic(strlen)
 
 /* _MCW_PC / _PC_53: the original takes these two by address */
 extern "C" int D_00010000;
