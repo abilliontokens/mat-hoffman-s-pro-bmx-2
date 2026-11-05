@@ -206,22 +206,31 @@ int __stdcall func_0023EE30(int fmt)
 {
     int rate;
 
-    if (fmt == 0) {
-        rate = 48000;
-    } else if (fmt == 1) {
-        rate = 44100;
-    } else if (fmt == 2) {
-        rate = 32000;
-    } else if (fmt == 3) {
-        rate = 22050;
-    } else if (fmt == 4) {
-        rate = 16000;
-    } else if (fmt == 5) {
-        rate = 11025;
-    } else if (fmt == 6) {
+    switch (fmt) {
+    case 6:
         rate = 8000;
-    } else {
+        break;
+    case 5:
+        rate = 11025;
+        break;
+    case 4:
+        rate = 16000;
+        break;
+    case 3:
+        rate = 22050;
+        break;
+    case 2:
+        rate = 32000;
+        break;
+    case 1:
+        rate = 44100;
+        break;
+    case 0:
+        rate = 48000;
+        break;
+    default:
         rate = 0;
+        break;
     }
     return rate;
 }
