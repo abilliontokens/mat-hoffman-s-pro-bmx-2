@@ -120,7 +120,8 @@ int C_0013B9C0::func_0013C5D0(S_0013B9C0_Ent28 *arg1, int arg2)
     int i;
 
     arg1->fC |= 0x20;
-    for (i = 0; i < fEC; i++) {
+    i = 0;
+    do {
         if (fE8[i].f0 == arg1->f0) {
             if (arg2 != 0) {
                 func_0013AEC0(i);
@@ -130,7 +131,8 @@ int C_0013B9C0::func_0013C5D0(S_0013B9C0_Ent28 *arg1, int arg2)
                 result = 0;
             }
         }
-    }
+        i++;
+    } while (i < fEC);
     if (result != 0) {
         func_0013B840(arg1);
     }
