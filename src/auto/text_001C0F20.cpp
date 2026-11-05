@@ -313,3 +313,26 @@ void C_001C1950::func_001C1950(void)
   ((C_00157960 *)this)->func_00157960();
 }
 
+C_001C1970 *C_001C1970::func_001C1970(int a, int b)
+{
+    int i;
+
+    ((C_00157600 *)this)->func_00157600(b);
+    f24 = a;
+    f2c = 0;
+    f28 = 0;
+    f30 = 0;
+    f34 = 0;
+    f38 = 0;
+    f3c = 0;
+    f40 = 0;
+    for (i = 0; i < 8; i++) {
+        f44[i] = 0;
+    }
+    f64 = 0;
+    vtbl = &D_0028DFE4;
+    sub68.func_001D5760();
+    subCC.func_001D5760();
+    return this;
+}
+
