@@ -61,10 +61,8 @@ int func_00141AA0(C_00168BE0 *cfg, const char *key, int def, int &out)
 
 int DXParticleSimulation::func_00142150(float dt)
 {
-    extern float D_00276278;
-
     if (fA8 != 0) {
-        f58 = dt * D_00276278 + f58;
+        f58 = dt * 1000.0f + f58;
     }
     return 1;
 }
