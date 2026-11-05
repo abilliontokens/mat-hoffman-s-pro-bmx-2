@@ -3,6 +3,46 @@
 
 extern int D_002B92F4;
 
+struct S_001236A0_Vec3 {
+    float x, y, z;
+};
+
+struct S_001236A0_Vec4 {
+    float x, y, z, w;
+};
+
+struct S_001236A0_Node {
+    int unk0;
+    int unk4;
+    unsigned short left;
+    unsigned short right;
+    S_001236A0_Vec3 v0;
+    S_001236A0_Vec3 v1;
+};
+
+struct S_001236A0_Leaf32 {
+    S_001236A0_Vec4 v0;
+    S_001236A0_Vec4 v1;
+};
+
+struct S_001236A0_Leaf20 {
+    int unk[5];
+};
+
+struct S_002B92E8 {
+    S_001236A0_Node *nodes;
+    S_001236A0_Leaf32 *leaves;
+};
+
+struct S_002B9290 {
+    S_001236A0_Node *nodes;
+    S_001236A0_Leaf20 *leaves;
+};
+
+extern S_002B92E8 *D_002B92E8;
+extern S_002B9290 *D_002B9290;
+extern int D_002B9300;
+
 struct C_002B92A0 {
     void func_000264C0(int param_1);
 };
