@@ -214,3 +214,51 @@ void C_00142D90::func_00142D90(int param_1)
     }
 }
 
+void C_00142D00::func_00142D00(int a0) {
+    if (unk0 != a0) {
+        func_00201350((void *)a0);
+        unk0 = a0;
+    }
+}
+
+void C_00142DE0::func_00142DE0() {
+    void func_001E8390(void *);
+    void func_001E891B(void *);
+    int n = unk8;
+    int i = 0;
+    if (n > 0) {
+        do {
+            C_00142D90_Elem *e = &unk14[i];
+            if (e->unk4 != 0) {
+                ((C_00012140 *)e->unk4)->func_00012140();
+                func_001E891B((void *)e->unk4);
+                unk14[i].unk4 = 0;
+            }
+            if (e->unk0 != 0) {
+                func_001E8390((void *)e->unk0);
+                unk14[i].unk0 = 0;
+            }
+            unk14[i].unkC = 0;
+            i++;
+        } while (i < unk8);
+    }
+    unk8 = 0;
+}
+
+void C_00142E90::func_00142E90(int a0) {
+    vtbl = &D_002859C4;
+    unk150 = unk154 = unk158 = 0;
+    unk15C = 1.0f;
+    unk160 = unk164 = unk168 = 0;
+    unk16C = 1.0f;
+    unk170 = unk174 = unk178 = 0;
+    unk17C = 1.0f;
+    unk180 = unk184 = unk188 = 0;
+    unk18C = 1.0f;
+    unk4 = a0;
+    unk160 = 1.0f;
+    unk164 = 1.0f;
+    unk168 = 1.0f;
+    unk16C = 1.0f;
+}
+
