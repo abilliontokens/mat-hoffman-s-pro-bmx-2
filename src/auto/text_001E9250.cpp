@@ -1,5 +1,25 @@
 /* 36 functions from 0x001E9250 to 0x001EA23F, found by Ghidra. */
 #include "common.h"
+#include <stdarg.h>
+
+/* CRT FILE, as the stdio functions in this file use it */
+struct S_001E9_FILE {
+    char *ptr;
+    int cnt;
+    char *base;
+    int flag;
+    int file;
+    int charbuf;
+    int bufsiz;
+    char *tmpfname;
+};
+
+int func_001EDD36(S_001E9_FILE *stream, const char *fmt, va_list args);
+int func_001ED8A7(int ch, S_001E9_FILE *stream);
+int func_001E9DE9(S_001E9_FILE *stream);
+int func_001EE8F1(int fh);
+long func_001E9BE4(S_001E9_FILE *stream);
+long func_001EE52F(int fh, long offset, int whence);
 
 /* the CRT's FILE (only the fields these functions touch) */
 struct S_001E9714_File {
