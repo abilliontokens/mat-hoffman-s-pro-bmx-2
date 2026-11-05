@@ -17,6 +17,29 @@ struct SimpleVCR {
 };
 
 extern int D_0028AFA4;
+extern float D_00275544;
+extern float D_00275460;
+
+struct C_00196000 {
+    char pad0[0x6c];
+    u32 f6c;
+    u32 f70;
+    u32 f74;
+    int *f78;
+    int *f7c;
+    int *f80;
+    int *f84;
+    int *f88;
+    char pad8c[4];
+    float *f90;
+    float *f94;
+    char pad98[0xa4 - 0x98];
+    float *fa4;
+    float *fa8;
+    char padac[0xc0 - 0xac];
+    u8 fc0;
+    int func_00196000(float param_1, int param_2, int param_3, int param_4, float param_5, float param_6, int param_7);
+};
 
 struct Vec4_195D40 {
     int x, y, z, w;
