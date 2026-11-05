@@ -30,6 +30,30 @@ struct C_0011CB40 {
 };
 
 
+void C_0011CB40::func_0011CB40(void)
+{
+    void func_001E891B(void *p);
+    void func_001E8390(void *p);
+
+    vtbl = &D_00283E1C;
+    func_001E891B(fA8);
+    func_001E891B(fAC);
+    func_001E891B(fB0);
+    func_001E891B(fB4);
+    func_001E891B(fF8);
+    func_001E891B(fFC);
+    func_001E891B(f100);
+    func_001E891B(f104);
+    func_001E891B(f108);
+    if (fF0 != 0) {
+        func_001E8390(fF0);
+    }
+    if (fC8 != 0) {
+        func_001E8390(fC8);
+    }
+    func_00157660();
+}
+
 undefined4 C_0011CEE0::func_0011CEE0(byte param_1)
 {
   int func_0011CB40(...);
