@@ -38,7 +38,6 @@ struct C_00016E40 {
 
 extern "C" int strcmp(const char *s1, const char *s2);
 extern float D_00275460;
-extern float D_002757F0;
 extern int D_002A0700[];
 
 struct C_00017600_Entry {
