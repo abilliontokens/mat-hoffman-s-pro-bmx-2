@@ -8,6 +8,39 @@ struct S_00126770_Rec {
     float f[13];
 };
 
+#include <xmmintrin.h>
+extern float D_002755E8;
+
+struct S_00126A80_Vec { float x, y, z, w; };
+struct __declspec(align(16)) S_00126A80_Mat { __m128 m[4]; };
+
+static __forceinline void Xform_00126A80(S_00126A80_Vec *out, const S_00126A80_Mat *mat, const float *v)
+{
+    __m128 t = _mm_loadu_ps(v);
+    _mm_storeh_pi((__m64 *)&out->z, t);
+    out->w = 1.0f;
+    t = _mm_loadh_pi(t, (__m64 *)&out->z);
+    __m128 r0 = _mm_mul_ps(mat->m[0], t);
+    __m128 r1 = _mm_mul_ps(mat->m[1], t);
+    __m128 r2 = _mm_mul_ps(mat->m[2], t);
+    __m128 lo = _mm_unpacklo_ps(r0, r1);
+    __m128 hi = _mm_unpackhi_ps(r0, r1);
+    __m128 junk;
+    junk = _mm_movehl_ps(junk, r2);
+    lo = _mm_add_ps(lo, hi);
+    r2 = _mm_add_ps(r2, junk);
+    hi = _mm_movehl_ps(hi, lo);
+    lo = _mm_movelh_ps(lo, r2);
+    hi = _mm_shuffle_ps(hi, r2, 0x14);
+    lo = _mm_add_ps(lo, hi);
+    _mm_storeu_ps(&out->x, lo);
+    out->w = 1.0f;
+}
+
+static __forceinline float Sqrt_00126A80(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+static __forceinline float Max_00126A80(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float Abs_00126A80(float f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
+
 void func_00126740(int a0, int a1, int a2, int a3, int a4, int a5) {
     extern int D_002B92F4;
     int func_00125F00(...);
