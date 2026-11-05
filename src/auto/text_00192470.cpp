@@ -240,6 +240,27 @@ struct S_00192B70_Obj {
 
 extern short D_002EFE50;
 
+struct S_00192C00_Obj {
+    char pad0[0xB0];
+    char fB0[0x120];
+    float f1D0;
+    char pad1D4[0x24];
+    float f1F8;
+    float f1FC;
+    float f200;
+};
+
+struct S_00192C00_Engine {
+    int pad0;
+    S_00192C00_Obj *f4;
+};
+
+extern S_00192C00_Engine *D_002EFDB8;
+extern float D_0028AC40;
+float func_0014F600(float x);
+void func_00162470(float *m, float a2, float a3, float a4, float a5, float a6, float a7, int a8);
+void func_000263B0(void *a, void *b, void *c);
+
 struct SearchNode {
     void *vtbl;
     char pad4[0x20];
