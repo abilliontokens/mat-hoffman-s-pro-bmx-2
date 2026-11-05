@@ -3,6 +3,18 @@
 #include "ghidra.h"
 #include <string.h>
 
+struct C_0015A660 {
+    char pad0[0x28];
+    float f28;
+    void *func_0015A660();
+};
+void func_001D3F50(void);
+int __stdcall func_001DD128(unsigned __int64 *p);
+int __stdcall func_001DD117(unsigned __int64 *p);
+extern "C" unsigned __int64 __rdtsc();
+#pragma intrinsic(__rdtsc)
+extern float D_00276278;
+
 struct C_0015A8E0 {
     int unk0;
     void func_00157660();
