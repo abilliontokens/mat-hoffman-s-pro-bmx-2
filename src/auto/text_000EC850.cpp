@@ -19,13 +19,21 @@ struct C_001D5AD0 {
     unsigned char f58;
     void func_001D5AD0(void);
 };
+struct S_000ED170_Obj {
+    void func_0005E840(char *s);
+};
+
 struct S_002B91AC {
     char pad0[0x24];
     C_001D5AD0 *unk24;
     C_001D5AD0 *unk28;
     C_001D5AD0 *unk2C;
     C_001D5AD0 *unk30;
-    char pad34[0x1C];
+    S_000ED170_Obj *f34;
+    S_000ED170_Obj *f38;
+    S_000ED170_Obj *f3c;
+    char pad40[0x10];
+    void func_000BF860(int a, int b, int c, int d);
     C_001D5AD0 *unk50;
     C_001D5AD0 *unk54;
     char pad58[0x10];
