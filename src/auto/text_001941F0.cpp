@@ -310,16 +310,16 @@ SimpleCutSceneCamera *SimpleCutSceneCamera::func_00194740(void)
     func_0012B510();
     vtbl = (void *)&D_0028AE90;
     f4 = 0;
-    f8 = 30.0f;
     fC = 0;
     f10 = 80.0f;
     f14 = 0;
+    f2C = 0;
     f18 = 0;
+    f8 = 30.0f;
     f1C = 0;
-    f20 = 0;
     f24 = 1;
     f28 = 1;
-    f2C = 0;
+    f20 = 0;
     return this;
 }
 
