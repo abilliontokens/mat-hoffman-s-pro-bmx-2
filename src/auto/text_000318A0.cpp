@@ -262,6 +262,7 @@ struct BmxEvent {
     char pad190[0x1c0 - 0x190];
     S_BmxEvent_Hook *f1c0;
     void *f1c4;
+    void func_000318A0(void);
     int func_00031AF0(void);
     void func_00031C90(void);
     void func_00032280(int id, int a1, int a2, int a3, int a4, int a5);
