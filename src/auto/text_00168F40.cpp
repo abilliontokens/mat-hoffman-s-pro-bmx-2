@@ -76,6 +76,7 @@ struct C_00168F40 {
     void *f4C4;
     void *f4C8;
     int func_00168300(int id);
+    void func_001692E0(int h);
     int func_00168F40(int id);
     void func_001691E0(void);
     void func_001690D0(char *src, char *dst);
