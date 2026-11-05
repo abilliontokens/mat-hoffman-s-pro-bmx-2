@@ -26,6 +26,14 @@ extern int D_0027E14C;
 
 struct PageObj_5580 {
     virtual void destroy(int flags);
+    char pad4[0x24];
+    int f28;
+    char pad2C[0x10];
+    int f3C, f40, f44, f48;
+    char pad4C[0xC];
+    unsigned char f58;
+    PageObj_5580 *func_001D5760();
+    void func_001D5810(void *, float, float, int);
 };
 
 struct C_5E40_C {
