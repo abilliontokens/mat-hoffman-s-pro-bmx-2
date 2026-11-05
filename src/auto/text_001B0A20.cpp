@@ -164,6 +164,10 @@ undefined4 C_001B17F0::func_001B17F0(void)
   return **(undefined4 **)(in_ECX + 0x24);
 }
 
+void C_001B1800::func_001B1800(int param_1) {
+    ((C_001D6290 *)f24)->func_001D6290(param_1);
+}
+
 void C_001B1840::func_001B1840(int a0, int a1, int a2) {
     unkC0 = a2;
     unk64 = a0;
