@@ -14,7 +14,7 @@ struct C_0013B210 {
     int func_0013C8A0(int f, void *dst, int size, int count);
 };
 
-extern char D_00010000;
+extern char D_00010000[];
 extern char D_00017F2F;
 
 void *func_001E8AA5(unsigned int n);
