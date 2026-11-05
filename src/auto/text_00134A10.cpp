@@ -41,6 +41,7 @@ struct S_Particle {
     virtual ~S_Particle();
     char pad4[0x48];
     void func_00135550(int dt);
+    void func_00135550(float dt);
     static void operator delete[](void *p) { func_001E891B(p); }
     static void operator delete(void *p) { func_001E891B(p); }
 };
