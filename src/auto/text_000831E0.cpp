@@ -72,6 +72,8 @@ struct C_000831E0 {
     void func_000836C0(int a, float b);
     void func_00083850(void);
     void func_00083880(void);
+    int func_000839F0(const char *name, int a, int id);
+    void func_00083A70(const char *name);
 };
 
 struct C_000836A0 {
