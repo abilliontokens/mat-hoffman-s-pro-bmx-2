@@ -73,16 +73,16 @@ void func_0013AC00(unsigned char *p, unsigned int n, unsigned char key)
     unsigned char *last = p + (n - 1);
     unsigned char c;
 
-    if (n < 2) {
+    if (n > 1) {
+        do {
+            c = *p ^ key;
+            key = key + *p;
+            *p = c;
+            p++;
+        } while (p != last);
         *p = *p ^ key;
         return;
     }
-    do {
-        c = *p ^ key;
-        key = key + *p;
-        *p = c;
-        p++;
-    } while (p != last);
     *p = *p ^ key;
 }
 
