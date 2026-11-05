@@ -65,6 +65,10 @@ struct C_001067B0 {
 
 struct Vec4_00105B30 {
     float x, y, z, w;
+    Vec4_00105B30 &operator=(const Vec4_00105B30 &o) {
+        x = o.x; y = o.y; z = o.z; w = o.w;
+        return *this;
+    }
 };
 
 extern float D_002A3A3C;
