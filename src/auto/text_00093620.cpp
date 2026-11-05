@@ -73,7 +73,13 @@ struct S_00093620_Cfg {
     int fCB0;
     char padCB4[4];
     int fCB8;
-    char padCBC[0x4c];
+    char padCBC[4];
+    int fCC0;
+    char padCC4[4];
+    int fCC8;
+    char padCCC[4];
+    int fCD0;
+    char padCD4[0x34];
     int fD08;
     char padD0C[4];
     int fD10;
