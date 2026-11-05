@@ -155,6 +155,7 @@ struct Sprite_724E0 {
     char pad3C[0x1C];
     unsigned char b58;
     void func_001D5AD0();
+    Clamp_716 *func_001D5AA0();
 };
 
 extern int D_00278C64;
