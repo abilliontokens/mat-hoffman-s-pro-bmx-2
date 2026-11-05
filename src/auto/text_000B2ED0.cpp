@@ -43,7 +43,38 @@ struct C_000B2020 {
     void func_000B21B0(int param_1);
 };
 
+struct S_000B3B40_V4 {
+    float x, y, z, w;
+};
+
+/* the vehicle record this AI reads its index from */
+struct S_000B3B40_Owner {
+    char pad0[0x4B8];
+    int f4B8;                /* 0x4B8 */
+};
+
+/* one entry of the table at C_000B2C80::f4C */
+struct S_000B3B40_Item {
+    int f0;                  /* 0x00 */
+    float f4;                /* 0x04 */
+    S_000B3B40_V4 f8;        /* 0x08 */
+};
+
+struct S_000B3B40_Elem {
+    int f0;                  /* 0x00 count */
+    char pad4[4];
+    S_000B3B40_Elem **f8;    /* 0x08 */
+    char padC[0x3C];
+    S_000B3B40_Item **f48;   /* 0x48 */
+    int f4C;                 /* 0x4C count */
+    int f50;                 /* 0x50 */
+};
+
 struct C_000B2C80 {
+    char pad0[0x30];
+    int f30;                 /* 0x30 */
+    char pad34[0x18];
+    S_000B3B40_Elem **f4C;   /* 0x4C */
     void func_000B2C80(void *param_1);
 };
 
