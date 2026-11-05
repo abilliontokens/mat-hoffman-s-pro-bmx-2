@@ -258,6 +258,20 @@ int C_00157810::func_00157BF0(int a, int b)
     return 0;
 }
 
+int C_00157810::func_00157C50(int a, int b, int c, int d, int e)
+{
+    if (f1C & 0x800) {
+        for (S_00157810_Child *ch = f10; ch != 0; ch = ch->fC) {
+            if ((ch->f21 & 2) && !(ch->f21 & 8)) {
+                if (ch->v24(a, b, c, d, e)) {
+                    return 1;
+                }
+            }
+        }
+    }
+    return 0;
+}
+
 int C_00157CB0::func_00157CB0(void)
 {
     if (D_002DF948 != 0) {
