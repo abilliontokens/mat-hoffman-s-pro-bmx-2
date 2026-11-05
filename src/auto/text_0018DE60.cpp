@@ -200,6 +200,11 @@ extern char D_0028A9F4[];
 extern char D_0027CEF0[];
 char *func_001E95A4(char *s, const char *delim);
 
+static inline int MinRef_0018E7D0(const int &a, const int &b)
+{
+    return (b < a) ? b : a;
+}
+
 struct C_0018E7D0 {
     char pad0[0x158];
     C_0018E7D0_Ent *named;
@@ -448,6 +453,60 @@ int C_0018E1D0::func_0018E740(C_0018E740_Out *out, const char *name)
     }
     out->f38 = func_0018CC00(name);
     return 0;
+}
+
+int C_0018E7D0::func_0018E7D0(int kind, C_0018E7D0_Rec *buf, int *out)
+{
+    C_0018E7D0_Rec rec;
+    char tmp[0x100];
+    unsigned int unused;
+    char *tok;
+    char *name;
+    int idx;
+    int val;
+    int n;
+
+    rec = *buf;
+    n = min_0018DE60(0xff, StrLen_0018E3E0(rec.name));
+    func_001E8920(tmp, rec.name, n);
+    tmp[n] = 0;
+    tok = func_001E95A4(tmp, D_0028A9F4);
+    idx = func_0018D970(tok);
+    if (idx == -1) {
+        return 0;
+    }
+    val = named[idx].rec.f40;
+    name = func_001E95A4(0, D_0027CEF0);
+    switch (kind) {
+    case 0:
+        rec = func_0018DA90(1, val, name, &unused);
+        if (rec.f40 == -1) {
+            rec = func_0018DA90(2, idx, name, &unused);
+            if (rec.f40 == -1) {
+                return 0;
+            }
+        }
+        n = min_0018DE60(0x3f, StrLen_0018E3E0(name));
+        func_001E8920(rec.name, name, n);
+        break;
+    case 1:
+        n = func_0018DA00(val, name);
+        if (n == -1) {
+            return 0;
+        }
+        rec.f40 = n;
+        n = min_0018DE60(0x3f, StrLen_0018E3E0(name));
+        func_001E8920(rec.name, name, n);
+        break;
+    case 2:
+        n = min_0018DE60(0x3f, StrLen_0018E3E0(name));
+        func_001E8920(rec.name, name, n);
+        break;
+    }
+    rec.name[n] = 0;
+    *out = idx;
+    *buf = rec;
+    return 1;
 }
 
 void C_0018EA50::func_0018EA50(int a, int b)
