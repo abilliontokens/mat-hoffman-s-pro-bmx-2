@@ -52,6 +52,15 @@ struct SplitScreenSeparator {
     SplitScreenSeparator *func_00088530(int param_1);
 };
 
+extern float D_00275544;
+
+struct S_00088A40_V4 {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
 struct DirectionArrowOverlay {
     void *vtbl;            /* 0x00 */
     char pad04[0x20];      /* 0x04 */
