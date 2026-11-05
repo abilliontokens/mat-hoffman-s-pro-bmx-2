@@ -1,2 +1,37 @@
 /* 6 functions from 0x00022E30 to 0x00023CB0, found by Ghidra. */
 #include "common.h"
+
+extern int D_00276218;
+extern int D_002A0F74;
+extern int D_002A0F78;
+extern int D_002A0F7C;
+extern int D_002A0F80;
+
+void func_001E891B(void *p);
+
+/* AmbientDebrisType */
+struct C_00023BE0 {
+    void *vtbl;
+    int unk4;
+    int unk8;
+    int unkC;
+    int unk10;
+    int unk14;
+    int unk18;
+    int unk1C;
+    int unk20;
+    int unk24;
+    int unk28;
+    float unk2C;
+    int unk30;
+    int unk34;
+    int unk38;
+    float unk3C;
+    int unk40;
+    int unk44;
+    int unk48;
+    int unk4C;
+    int unk50;
+    void *func_00023BE0(int flags);
+    C_00023BE0 *func_00023C30(int a, int b, int c, int d);
+};
