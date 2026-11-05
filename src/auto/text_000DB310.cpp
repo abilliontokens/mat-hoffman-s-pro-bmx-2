@@ -128,6 +128,42 @@ void C_000DB310::func_000DB3E0() {
     }
 }
 
+void C_000DB4B0::func_000DB4B0() {
+    C_001D5AD0 *p;
+    S_002B91AC *s;
+    C_001D5AD0 **ptr;
+    int count;
+    p = unk280 ? D_002B91AC->unk68 : D_002B91AC->unk50;
+    p->func_001D5AD0();
+    p = unk284 ? D_002B91AC->unk6C : D_002B91AC->unk54;
+    p->func_001D5AD0();
+    s = D_002B91AC;
+    s->unk24->func_001D5AD0();
+    s->unk28->func_001D5AD0();
+    s->unk2C->func_001D5AD0();
+    s->unk30->func_001D5AD0();
+    ptr = arr314; count = 4;
+    do {
+        p = *ptr;
+        unsigned int color = (p->f38 & 0xffffff) | (unk2DC << 24);
+        unsigned char flags = p->f58 | 2;
+        p->f38 = color;
+        p->f58 = flags;
+        (*ptr)->func_001D5AD0();
+        ptr++; count--;
+    } while (count != 0);
+    ptr = arr324; count = 2;
+    do {
+        p = *ptr;
+        unsigned int color = (p->f38 & 0xffffff) | (unk2DC << 24);
+        unsigned char flags = p->f58 | 2;
+        p->f38 = color;
+        p->f58 = flags;
+        (*ptr)->func_001D5AD0();
+        ptr++; count--;
+    } while (count != 0);
+}
+
 int C_000DB310::func_000DBC00() {
     S_000DBC00_A *a = f124;
     int idx = a->f150->f484->func_0001B3C0(D_0027F7D4);
