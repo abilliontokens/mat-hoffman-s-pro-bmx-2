@@ -128,6 +128,10 @@ struct C_00104B00 {
     float func_00104BB0(int i);
     void func_00104BE0(void);
     void func_001056E0(void);
+    void func_001057A0(void);
+    void func_00105800(void);
+    void func_00105890(void);
+    void func_00105A40(void);
 };
 
 extern V4_00104B00 D_002A3A5C;
