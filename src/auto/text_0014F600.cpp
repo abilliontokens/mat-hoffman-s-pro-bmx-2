@@ -217,6 +217,33 @@ void func_0014FA70(void)
     D_002CF6F8 = 0xff;
 }
 
+void func_0014FAD0(void)
+{
+    unsigned int i;
+    D_002CF6B0 = 10429.7412109375f;
+    D_002CF738 = 2607.435302734375f;
+    for (i = 0; i < 0x4000; i++) {
+        D_002BF2AC[i + 1] = (float)sin(D_00286ABC * (float)i);
+        D_002CF73C[i + 1] = (float)tan((float)i * D_00286AB8);
+    }
+}
+
+void func_0014FD80(float *p)
+{
+    extern double D_002843A0;
+    extern float D_002756D0;
+    extern float D_002756B8;
+    extern float D_002756E8;
+    double r = fmod(*p, D_002843A0);
+
+    *p = (float)r;
+    if (r > D_002756D0) {
+        *p = (float)(r - D_002756B8);
+    } else if (r < D_002756E8) {
+        *p = (float)(r + D_002756B8);
+    }
+}
+
 void func_0014FDD0(void)
 {
   int func_0014F190(...);
@@ -232,6 +259,30 @@ void func_0014FDD0(void)
   func_0014FA70();
   func_0014FAD0();
   return;
+}
+
+void *func_0014FDF0(const char *path, const char *mode)
+{
+    extern char D_00275678[];
+    extern char D_00286AD0[];
+    int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+    void *func_001E9701(const char *name, const char *mode);
+    char buf[0x100];
+    const char *s;
+    char *d;
+    char c;
+
+    if (path[1] == ':') {
+        s = path;
+        d = buf;
+        do {
+            c = *s++;
+            *d++ = c;
+        } while (c != 0);
+    } else {
+        func_001ADCC0(buf, 0x100, D_00275678, D_00286AD0, path);
+    }
+    return func_001E9701(buf, mode);
 }
 
 void func_0014FE50(void) {
