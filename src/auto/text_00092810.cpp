@@ -97,10 +97,20 @@ extern char D_00279100;
 extern char D_0027A130;
 extern char D_0027A140;
 
+struct S_00093140_Obj {
+    float func_0018C210(void);
+};
+
 struct C_0018C780 {
     void func_0018C780(int a, void *b, int c);
-    void *func_0018C160(void *name);
+    S_00093140_Obj **func_0018C160(void *name);
 };
+
+extern int D_0028F5DC;
+extern int D_0028F5E0;
+extern int D_0028F5E4;
+extern int D_0028F5E8;
+extern int D_0028F5EC;
 
 struct S_00092A10_Root {
     char pad0[0x2e0];
