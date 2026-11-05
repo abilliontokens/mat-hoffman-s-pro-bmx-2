@@ -3,9 +3,14 @@
 
 int func_001EA426(void *a, void *b);
 
-struct S_Probe_38760 {
+struct S_00038760_Arr {
     int count;
     void **items;
+    void *at(int i) {
+        if (count > 0 && items != 0 && i < count)
+            return items[i];
+        return 0;
+    }
 };
 
 struct C_00038760 {
