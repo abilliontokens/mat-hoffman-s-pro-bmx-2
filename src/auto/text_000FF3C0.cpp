@@ -3,6 +3,53 @@
 #include "ghidra.h"
 #include "ghidra.h"
 #include "ghidra.h"
+extern int D_0027F724;
+
+struct PageObj {
+    virtual void destroy(int flags);
+};
+
+struct C_00100010 {
+    undefined4 func_00100010(byte param_1);
+};
+
+struct C_000FF4A0 {
+    char pad0[0x29C];
+    int unk29C;
+    int unk2A0;
+    char pad2A4[4];
+    int unk2A8;
+    int unk2AC;
+    char pad2B0[0x24];
+    int unk2D4;
+    int unk2D8;
+    int unk2DC;
+    int unk2E0;
+    float unk2E4;
+    void func_000DB3E0();
+    void func_000DB310();
+    void func_000DB180();
+    void func_000DB4B0();
+    void func_00157960();
+    void func_000FF4A0();
+};
+
+struct C_000FF550 {
+    void *vtbl;
+    char pad4[0x298];
+    PageObj *f29c;
+    void func_001BE3F0();
+    void *func_000FF550(int flags);
+};
+
+struct C_000FFF70 {
+    char pad0[0x298];
+    int unk298;
+    void func_000DCE10();
+    void func_001BF000();
+    void func_000FFF70();
+};
+
 struct C_000FF3C0 {
     undefined4 func_000FF3C0(byte param_1);
 };
