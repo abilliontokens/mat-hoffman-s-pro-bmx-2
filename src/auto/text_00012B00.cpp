@@ -58,7 +58,7 @@ static __forceinline void cross12(S_13910_Vec *out0,const S_13910_Vec *a0,const 
  vb=_mm_mul_ps(vb,sa);va=_mm_mul_ps(va,sb);
  va=_mm_sub_ps(va,vb);va=_mm_shuffle_ps(va,va,0xc9);_mm_storeu_ps(&out->x,va);
 }
-static __forceinline float sqrt12(float f) { float r; _mm_store_ss(&r,_mm_sqrt_ss(_mm_load_ss(&f))); return r; }
+static __forceinline float sqrt12(float f) { float r; _mm_store_ss(&r,_mm_sqrt_ss(*(__m128 *)&f)); return r; }
 
 void AIPedFightState::func_00012B00(int a0)
 {
