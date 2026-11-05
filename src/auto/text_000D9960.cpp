@@ -3,8 +3,8 @@
 #include <string.h>
 struct S_9DC0_Q { void func_0005BED0(int a, int b, float *f, char *s); };
 struct S_9DC0_A { char pad[0x2c0]; S_9DC0_Q *q; };
-struct S_D9960_P { char pad0[0x928]; int f928; };
-struct S_D9960_Q { char pad0[4]; S_D9960_P *p4; char pad8[0x838-8]; int f838; };
+struct S_D9960_P { char pad0[0x838]; int f838; char pad83c[0x928-0x83c]; int f928; };
+struct S_D9960_Q { char pad0[4]; S_D9960_P *p4; };
 struct S_9DC0_B { char pad[0x2e0]; S_9DC0_A *a; int pad2e4; S_D9960_Q *q; };
 struct S_D9960_Page { char pad[0x280]; int u280, u284, u288, u28C, u290, u294, u298, u29C, u2A0, u2A4, u2A8, u2AC, u2B0, u2B4, u2B8, u2BC, u2C0; void func_000D9960(); };
 extern S_9DC0_B *D_002A8490;
