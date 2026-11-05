@@ -148,6 +148,7 @@ struct C_00093140 {
     C_001B17D0 *f30;
     C_001B17D0 *f34;
     C_001B17D0 *f38;
+    void func_00093890(int a1, int a2, int a3, int a4, int a5, int a6);
     void func_000943A0(int a1, int a2, int a3, int a4, int a5, int a6);
     void func_00094570(int a1, int a2, int a3, int a4, int a5, int a6);
     void func_00093E80(int a1, int a2, int a3, int a4, int a5, int a6);
