@@ -112,6 +112,8 @@ struct S_35560_State {
     }
 };
 extern UIQuad D_002A1514, D_002A1524;
+extern int D_002A1518, D_002A151C, D_002A1520;
+extern int D_002A1528, D_002A152C, D_002A1530;
 
 struct C_00035360 {
     virtual void v0();
