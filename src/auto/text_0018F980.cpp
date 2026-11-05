@@ -49,6 +49,41 @@ struct C_190200_Tab {
     C_190200_Cell *f2c;
     char pad30[8];
 };
+static __forceinline void Store_00190200(char *dst, int hi, unsigned int flags, void *val)
+{
+    switch (hi) {
+    case 1:
+    case 3:
+    case 6:
+    case 8:
+        *(int *)dst = *(int *)val;
+        break;
+    case 2:
+    case 7:
+        *(int *)dst = *(int *)val;
+        break;
+    case 4:
+        *(int *)dst = *(int *)val;
+        ((int *)dst)[1] = ((int *)val)[1];
+        break;
+    case 5:
+        *dst = *(char *)val;
+        break;
+    case 9:
+        switch ((flags >> 16) & 0xff) {
+        case 0:
+            ((int *)dst)[0] = ((int *)val)[0];
+            ((int *)dst)[1] = ((int *)val)[1];
+            ((int *)dst)[2] = ((int *)val)[2];
+            ((int *)dst)[3] = ((int *)val)[3];
+            break;
+        case 1:
+            ((C_190200_Dst *)dst)->func_000264C0(val);
+            break;
+        }
+        break;
+    }
+}
 struct C_00190200 {
     char pad0[0x158];
     C_190200_Ent *named;
@@ -78,74 +113,32 @@ struct C_0018FF10 {
     int func_0018FF10(char *src, char *name, int idx, int *out);
 };
 
-void C_00190200::func_00190200(int a0, int a1, int a2, C_190200_Src *src, C_190200_Rec *rec, unsigned int flags)
+void C_00190200::func_00190200(int a0, int a1, int a2, int a3, int a4, unsigned int a5)
 {
     int tbl;
-    int idx;
-    int hi;
-    int srcType;
-    int loc;
-    int off;
     void *val;
     char *dst;
 
-    if (rec->name[0] == '$') {
-        if (func_0018E7D0(0, rec, &idx) != 1) {
+    if (((C_190200_Rec *)a4)->name[0] == '$') {
+        if (func_0018E7D0(0, (C_190200_Rec *)a4, &a0) != 1) {
             return;
         }
-        tbl = named[idx].f0;
+        tbl = named[a0].f0;
     } else {
         tbl = a0;
-        idx = a1;
+        a0 = a1;
     }
-    hi = (flags >> 8) & 0xff;
-    val = src->func_0018E1D0();
-    srcType = src->f1c;
-    loc = rec->f40;
-    off = (loc >> 16) & 0xff;
-    if ((flags & 0xff) == 1) {
-        C_190200_Cell *cell = &f164[named[idx].f44].f2c[loc & 0xff];
-        dst = cell->f4 + tbl;
-        if ((cell->f8 & (unsigned int)&D_0000FF00) == 0x900 && srcType != cell->fc) {
-            dst += off;
-        }
-        switch (hi) {
-        case 1:
-        case 3:
-        case 6:
-        case 8:
-            *(int *)dst = *(int *)val;
-            return;
-        case 2:
-        case 7:
-            *(int *)dst = *(int *)val;
-            return;
-        case 4:
-            *(int *)dst = *(int *)val;
-            ((int *)dst)[1] = ((int *)val)[1];
-            return;
-        case 5:
-            *dst = *(char *)val;
-            return;
-        case 9:
-            switch ((flags >> 16) & 0xff) {
-            case 0:
-                ((int *)dst)[0] = ((int *)val)[0];
-                ((int *)dst)[1] = ((int *)val)[1];
-                ((int *)dst)[2] = ((int *)val)[2];
-                ((int *)dst)[3] = ((int *)val)[3];
-                break;
-            case 1:
-                ((C_190200_Dst *)dst)->func_000264C0(val);
-                break;
-            }
-            return;
-        }
-    } else if ((flags & 0xff) == 2) {
-        C_190200_Elem *e = named[idx].f54 + (loc & 0xff);
-        if ((e->f18 & (unsigned int)&D_0000FF00) == 0x900 && srcType != e->f1c) {
-            dst = (char *)e->f150.func_00191400() + off;
-            switch (hi) {
+    a1 = (a5 >> 8) & 0xff;
+    val = ((C_190200_Src *)a3)->func_0018E1D0();
+    a3 = ((C_190200_Src *)a3)->f1c;
+    a4 = ((C_190200_Rec *)a4)->f40;
+    switch (a5 & 0xff) {
+    case 2: {
+        C_190200_Elem *arr = named[a0].f54;
+        C_190200_Elem *e = arr + (a4 & 0xff);
+        if ((e->f18 & (unsigned int)&D_0000FF00) == 0x900 && a3 != e->f1c) {
+            dst = (char *)e->f150.func_00191400() + ((a4 >> 16) & 0xff);
+            switch (a1) {
             case 1:
             case 3:
             case 6:
@@ -164,7 +157,7 @@ void C_00190200::func_00190200(int a0, int a1, int a2, C_190200_Src *src, C_1902
                 *dst = *(char *)val;
                 return;
             case 9:
-                switch ((flags >> 16) & 0xff) {
+                switch ((a5 >> 16) & 0xff) {
                 case 0:
                     ((int *)dst)[0] = ((int *)val)[0];
                     ((int *)dst)[1] = ((int *)val)[1];
@@ -178,7 +171,52 @@ void C_00190200::func_00190200(int a0, int a1, int a2, C_190200_Src *src, C_1902
                 return;
             }
         } else {
-            e->func_0018F390((char *)rec, flags, (void **)val);
+            e->func_0018F390((char *)a4, a5, (void **)val);
         }
+        break;
+    }
+    case 1: {
+        C_190200_Cell *cells = f164[named[a0].f44].f2c;
+        C_190200_Cell *cell = &cells[a4 & 0xff];
+        char *base = cell->f4;
+        if ((cell->f8 & (unsigned int)&D_0000FF00) == 0x900 && a3 != cell->fc) {
+            dst = base + ((a4 >> 16) & 0xff) + tbl;
+        } else {
+            dst = base + tbl;
+        }
+        switch (a1) {
+        case 1:
+        case 3:
+        case 6:
+        case 8:
+            *(int *)dst = *(int *)val;
+            return;
+        case 2:
+        case 7:
+            *(int *)dst = *(int *)val;
+            return;
+        case 4:
+            *(int *)dst = *(int *)val;
+            ((int *)dst)[1] = ((int *)val)[1];
+            return;
+        case 5:
+            *dst = *(char *)val;
+            return;
+        case 9:
+            switch ((a5 >> 16) & 0xff) {
+            case 0:
+                ((int *)dst)[0] = ((int *)val)[0];
+                ((int *)dst)[1] = ((int *)val)[1];
+                ((int *)dst)[2] = ((int *)val)[2];
+                ((int *)dst)[3] = ((int *)val)[3];
+                break;
+            case 1:
+                ((C_190200_Dst *)dst)->func_000264C0(val);
+                break;
+            }
+            return;
+        }
+        break;
+    }
     }
 }
