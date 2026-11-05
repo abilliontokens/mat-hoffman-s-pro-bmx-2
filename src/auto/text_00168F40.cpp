@@ -78,6 +78,8 @@ struct C_00168F40 {
     int func_00168300(int id);
     int func_00168F40(int id);
     void func_001691E0(void);
+    void func_001690D0(char *src, char *dst);
+    int func_00169A50(char *line);
 };
 
 struct ParticleEmitter {
