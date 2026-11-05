@@ -374,6 +374,11 @@ struct FlatElemList_001CF2A0 : SoundElemList_001CF2A0 {
         flags &= 0xfe;
     }
 
+    ~FlatElemList_001CF2A0()
+    {
+        func_001E891B(items);
+    }
+
     void init(int n)
     {
         items = (SoundElem_001CF2A0 **)func_001E8A44(n * 4);
@@ -428,11 +433,15 @@ void XboxSoundGroup::func_001CF2A0()
 
     if (list.count > 0) {
         copy.init(list.count);
-        for (i = 0; i < list.count; i++) {
+        i = 0;
+        do {
             copy.add(list.at(i));
-        }
-        for (i = 0; i < copy.count; i++) {
+            i++;
+        } while (i < list.count);
+        i = 0;
+        while (i < copy.count) {
             copy.at(i)->release();
+            i++;
         }
     }
     memset(list.items, 0, list.count * sizeof(int));
