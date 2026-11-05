@@ -6,6 +6,30 @@ extern "C" u32 *_imp__KeTickCount;
 extern "C" void (__stdcall *_imp__KeQuerySystemTime)(void *time);
 extern "C" void (__stdcall *_imp__RtlTimeToTimeFields)(void *time, void *fields);
 
+extern "C" unsigned long __readfsdword(unsigned long Offset);
+extern "C" long (__stdcall *_imp__HalReturnToFirmware)(int mode);
+extern "C" u32 (__stdcall *_imp__RtlNtStatusToDosError)(long status);
+extern "C" void (__stdcall *_imp__MmFreeContiguousMemory)(void *base);
+
+struct S_LaunchDataPage {
+    int launchType;
+    int titleId;
+};
+extern "C" S_LaunchDataPage **_imp__LaunchDataPage;
+
+struct S_XbeCertificate {
+    char pad0[8];
+    int titleId;
+};
+extern S_XbeCertificate *D_00010118;
+
+struct S_Prcb250 {
+    char pad0[0x14];
+    void (__stdcall *fn14)(int a, int b);
+};
+
+long __stdcall func_001DC97C(int a, int b, int c, int d, int e);
+
 extern char D_0028FA24;
 extern char D_001DC7F0;
 extern char D_001DC810;
