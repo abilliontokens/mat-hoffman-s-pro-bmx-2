@@ -56,6 +56,101 @@ struct C_0006C380 {
     C_0006C380 *func_0006C380(int a0);
 };
 
+struct C_001B17D0 {
+    void func_001B17D0(char *s);
+};
+
+struct C_0005E840 {
+    void func_0005E840(void *p);
+};
+
+struct S_0006BBF0_15C {
+    char pad0[0x21];
+    u8 unk21;
+    char pad22[0x1f4 - 0x22];
+    int unk1f4;
+};
+
+struct S_0006BBF0_Res {
+    char pad0[0xed0];
+    int unkED0;
+};
+
+struct S_0006BBF0_2E8 {
+    char pad0[4];
+    S_0006BBF0_Res *unk4;
+};
+
+struct S_0006BBF0_Global {
+    char pad0[0x2e8];
+    S_0006BBF0_2E8 *unk2E8;
+};
+
+extern S_0006BBF0_Global *D_002A8490;
+extern char D_00277038[];
+extern int D_002789B8;
+
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+extern "C" int func_001AC330(char *dst, int src, char *suffix);
+
+struct C_0006BBF0 {
+    virtual void vf0();
+    virtual void vf1();
+    virtual void vf2();
+    virtual void vf3();
+    virtual void vf4();
+    virtual void vf5();
+    virtual void vf6();
+    virtual void vf7();
+    virtual void vf8();
+    virtual void vf9();
+    virtual void vf10();
+    virtual void vf11();
+    virtual void vf12();
+    virtual void vf13();
+    virtual void vf14();
+    virtual void vf15();
+    virtual void vf16();
+    virtual void vf17();
+    virtual void vf18(int a);
+    char pad4[0x64 - 4];
+    C_001B17D0 *unk64[7];
+    char pad80[0x158 - 0x80];
+    int unk158;
+    S_0006BBF0_15C *unk15C;
+    char pad160[4];
+    int unk164;
+    int unk168;
+    int unk16C;
+    int unk170;
+    char pad174[4];
+    C_0005E840 *unk178;
+    char pad17C[0x184 - 0x17C];
+    int unk184;
+    int unk188;
+    char pad18C[0x1a8 - 0x18C];
+    int unk1a8;
+    char pad1AC[0x1b4 - 0x1AC];
+    int unk1b4;
+    int unk1b8;
+    int unk1bc;
+    C_0005E840 *unk1c0;
+    int unk1c4;
+    int unk1c8;
+    int unk1cc;
+    int unk1d0;
+    int unk1d4;
+    int unk1d8;
+    char pad1DC[0x1e4 - 0x1DC];
+    int unk1e4;
+    char pad1E8[4];
+    int unk1ec;
+    int unk1f0;
+    char pad1F4[0x1fc - 0x1F4];
+    int unk1fc;
+    int func_0006BBF0(void);
+};
+
 struct C_0006BB90 {
     virtual void vf0();
     virtual void vf1();
