@@ -161,6 +161,7 @@ struct BmxEvent {
     void func_00032360(int id, int a1, int a2);
     void func_000323C0(int id, int a1, int a2, int a3, int a4, int a5);
     void func_000324C0(int a);
+    void func_00032740(void);
     int func_00031D80(void);
     void func_00031E20(void);
     int func_00031E80(void);
