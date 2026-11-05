@@ -227,6 +227,31 @@ struct C_000F2AD0_Ui {
     void func_000B9A80(int a, int b);
 };
 
+inline int BmxUIPageHPHChoice::HandleKey(C_000F2AD0_Ui *ui, int b)
+{
+    int r = 1;
+    if (b == D_002A8490->f8->func_00136170(4, 2, 0) || b == D_002A8490->f8->func_00136170(0x17, 2, 0)) {
+        f288 = r;
+    } else if (b == D_002A8490->f8->func_00136170(5, 2, 0) || b == D_002A8490->f8->func_00136170(0x18, 2, 0)) {
+        f28c = r;
+    } else if (b == D_002A8490->f8->func_00136170(2, 2, 0)) {
+        ((HPHChoice_140 *)f140)->f4->func_001BDE90(0);
+        ui->func_000B9A80(2, r);
+        return r;
+    } else {
+        if (b == D_002A8490->f8->func_00136170(3, 2, 0)) {
+            ((HPHChoice_140 *)f140)->f4->func_001BDF00(0);
+            ui->func_000B9A80(2, r);
+        }
+        return r;
+    }
+    f290 = 0;
+    f284 = r;
+    f294 = r;
+    ui->func_000B9A80(4, r);
+    return r;
+}
+
 struct C_000F2AD0_Mgr {
     char pad0[0x24];
     C_000F2AD0_Ui *f24;
