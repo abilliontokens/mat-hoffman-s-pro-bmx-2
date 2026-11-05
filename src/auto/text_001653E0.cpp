@@ -191,6 +191,23 @@ extern char D_00287E48[];
 
 static inline int min_165F70(const int &a, const int &b) { return a > b ? b : a; }
 
+/* axis mirror used by func_00165A20: flip one of y/z/w by mode, then negate all three */
+static __forceinline void mirror_165A20(Vec4_165EF0 *v, int mode)
+{
+    float t = v->y;
+
+    if (mode == 0) {
+        t = -t;
+    } else if (mode == 1) {
+        v->z = -v->z;
+    } else if (mode == 2) {
+        v->w = -v->w;
+    }
+    v->y = -t;
+    v->z = -v->w;
+    v->w = -v->z;
+}
+
 struct C_00165F70_Elem {
     char name[0x38];
     int f38;
@@ -254,68 +271,61 @@ void C_00165A20::func_00165A20(C_00165A20_Arg1 *a1, int *unused, f32 a2, int *ma
     int j;
 
     for (i = 0; i < a1->f20; i++) {
-        C_00165A20_Item *item = a1->f18[i];
-        if (mask != 0 && mask[item->f4] != 0) {
+        if (mask != 0 && mask[a1->f18[i]->f4] != 0) {
             continue;
         }
         for (j = 0; j < f218; j++) {
-            if (f21C[j] == item->f4) {
+            if (f21C[j] == a1->f18[i]->f4) {
                 break;
             }
         }
-        item->v2(a2, &v);
+        a1->f18[i]->v2(a2, &v);
         if (a4 != 0) {
-            float y = v.y;
-            float z = v.z;
+            float t = v.y;
             float w = v.w;
             if (fC == 0) {
-                y = -y;
+                t = -t;
             } else if (fC == 1) {
-                z = -z;
+                v.z = -v.z;
             } else if (fC == 2) {
                 w = -w;
             }
-            v.y = -y;
+            v.y = -t;
+            v.w = -v.z;
             v.z = -w;
-            v.w = -z;
-            f1EC[f1F0[item->f4]].f34->func_00199300(&v);
+            f1EC[f1F0[a1->f18[i]->f4]].f34->func_00199300(&v);
         } else {
-            f1EC[item->f4].f34->func_00199300(&v);
+            f1EC[a1->f18[i]->f4].f34->func_00199300(&v);
         }
     }
     for (i = 0; i < a1->f1C; i++) {
-        C_00165A20_Item *item = a1->f14[i];
-        if (mask != 0 && mask[item->f4] != 0) {
+        if (mask != 0 && mask[a1->f14[i]->f4] != 0) {
             continue;
         }
         for (j = 0; j < f218; j++) {
-            if (f21C[j] == item->f4) {
+            if (f21C[j] == a1->f14[i]->f4) {
                 break;
             }
         }
         v.x = v.y = v.z = 0.0f;
         v.w = 1.0f;
-        item->v3(a2, &v);
+        a1->f14[i]->v3(a2, &v);
         if (a4 != 0) {
-            func_001640D0(f4, f1EC[f1F0[item->f4]].f34->f170, (void *)fC, &v);
-            f1EC[f1F0[item->f4]].f34->func_00199650(&v);
+            func_001640D0(f4, f1EC[f1F0[a1->f14[i]->f4]].f34->f170, (void *)fC, &v);
+            f1EC[f1F0[a1->f14[i]->f4]].f34->func_00199650(&v);
         } else {
-            f1EC[item->f4].f34->func_00199650(&v);
+            f1EC[a1->f14[i]->f4].f34->func_00199650(&v);
         }
     }
     for (i = 0; i < f20C; i++) {
-        Vec4_165EF0 d;
         Vec4_165EF0 *p;
         v.x = v.y = v.z = 0.0f;
         v.w = 1.0f;
         f210[i]->f8->func_00199A70(0, &v);
-        d.x = v.x * a2;
-        d.y = v.y * a2;
-        d.z = v.z * a2;
         p = &f214[i];
-        p->x = d.x + p->x;
-        p->y = d.y + p->y;
-        p->z = d.z + p->z;
+        p->x = v.x * a2 + p->x;
+        p->y = v.y * a2 + p->y;
+        p->z = v.z * a2 + p->z;
     }
 }
 
