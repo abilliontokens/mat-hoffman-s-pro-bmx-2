@@ -244,7 +244,7 @@ struct S_001BB060_Stream {
 
 /* 8-byte string tokenizer state (strtok-like) */
 struct S_001BB060_Tokenizer {
-    int state[2];
+    double align;
     void func_001B4A40(const char *str);
     char *func_001B4A70(const char *delims);
 };
