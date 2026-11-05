@@ -1,6 +1,16 @@
 /* 8 functions from 0x000D5C70 to 0x000D6BC0, found by Ghidra. */
 #include "common.h"
 extern int D_0027F2D4;
+struct S_59A0_Q { void func_0005BED0(int a, int b, float *f, char *s); };
+struct S_59A0_A { char pad[0x2c0]; S_59A0_Q *q; };
+struct S_59A0_X { char pad[0xf68]; int v; };
+struct S_59A0_Y { char pad[4]; S_59A0_X *x; };
+struct S_59A0_B { char pad[0x2e0]; S_59A0_A *a; char pad2[4]; S_59A0_Y *b; };
+extern S_59A0_B *D_002A8490;
+extern float D_0027F2BC, D_00279F74, D_0027F2B8;
+extern char D_0027F2C0[];
+extern int D_0028F5DC;
+extern "C" int func_001ADCC0(char *buf, int n, char *fmt, ...);
 
 struct ElemHOF2 {
     virtual void Destroy(int a0);
