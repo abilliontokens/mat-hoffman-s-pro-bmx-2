@@ -106,6 +106,19 @@ int StringTable::func_001AC7B0(const char *name)
     return -1;
 }
 
+DynamicStringTable *DynamicStringTable::func_001AC800()
+{
+    ((C_0001DFE0 *)this)->func_0001DFE0();
+    count = 0;
+    capacity = 0;
+    unk10 = 0;
+    entries = 0;
+    unk18 = 0;
+    unk1C = 0;
+    vtbl = &D_0028C0E0;
+    return this;
+}
+
 undefined4 C_001AC900::func_001AC900(byte param_1)
 {
   int func_001AC3D0(...);
