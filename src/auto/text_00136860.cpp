@@ -90,6 +90,35 @@ void Cube::func_00136A70(void)
     func_0001DFF0();
 }
 
+Cube *Cube::func_00136AD0(void)
+{
+    unsigned int *p;
+    int i;
+    func_0001DFE0();
+    vtbl = &D_00284860;
+    p = (unsigned int *)v08;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = (unsigned int *)v18;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = (unsigned int *)v28;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    for (i = 0; i < 6; i++) {
+        groups[i].vec[0] = groups[i].vec[1] = groups[i].vec[2] = 0;
+        groups[i].vec[3] = 0x3f800000;
+    }
+    func_001364B0();
+    return this;
+}
+
 undefined4 C_00136B40::func_00136B40(byte param_1)
 {
   int func_00136A70(...);
@@ -102,3 +131,18 @@ undefined4 C_00136B40::func_00136B40(byte param_1)
   }
   return in_ECX;
 }
+
+void func_00136B60(int a, TokenEntry *out)
+{
+    TokenizerBuf tok;
+    int i = 0;
+    tok.func_001B4A40(a);
+    for (int n = 0; n < 16; n++) {
+        char *s;
+        while ((s = tok.func_001B4A70(D_00284878)) != 0) {
+            out[i].name = (char *)func_001E91F4((int)s);
+            i++;
+        }
+    }
+}
+
