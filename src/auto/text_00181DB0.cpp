@@ -93,6 +93,19 @@ undefined4 C_00182550::func_00182550(byte param_1)
   return in_ECX;
 }
 
+undefined4 C_00182730::func_00182730(byte param_1)
+{
+  int func_00181540(...);
+  int func_001E891B(...);
+  undefined4 in_ECX = (undefined4)this;
+
+  func_00181540();
+  if ((param_1 & 1) != 0) {
+    func_001E891B(in_ECX);
+  }
+  return in_ECX;
+}
+
 void C_001827E0::func_001827E0(int a0, int a1) {
     unk50 = a1;
     unk4C = a0;
