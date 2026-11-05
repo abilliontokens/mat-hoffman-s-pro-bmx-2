@@ -241,8 +241,31 @@ struct C_001D48A0 {
     C_001D48A0* func_001D48A0(u8 param_1);
 };
 
-struct C_001D48E0 {
+/* RenderTarget base: its constructor is _func_001827B0 */
+struct C_001827B0 {
+    int vtbl;
+    char pad4[0x50];
+    C_001827B0(void);
+};
+
+/* the vtable store lands between the base constructor and the member constructors */
+struct C_001D48E0Base : C_001827B0 {
+    __forceinline C_001D48E0Base() { vtbl = (int)&D_0028F584; }
+};
+
+struct V4_001D48E0 {
+    float x, y, z, w;
+    V4_001D48E0() { z = 0; y = 0; x = 0; w = 1.0f; }
+};
+
+/* XboxRenderTarget */
+struct C_001D48E0 : C_001D48E0Base {
+    int f54, f58, f5C, f60, f64, f68, f6C, f70;
+    V4_001D48E0 v74;
+    int f84, f88, f8C, f90;
+    int idx[300];
     int *func_001D48E0(void);
+    C_001D48E0(void);
 };
 
 struct C_0014A630 {
