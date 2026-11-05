@@ -17,7 +17,7 @@ struct GObj930 {
 };
 
 struct GObj4 {
-    char pad0[4];
+    char pad0[0x930];
     GObj930 *p930;
 };
 
