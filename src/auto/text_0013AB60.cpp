@@ -49,6 +49,9 @@ struct S_0013AF80_Row {
 };
 
 extern "C" int D_0014FEF0(int p);
+extern "C" int D_0014FEE0(int fp);
+int func_0014FED0(int fp, int pos, int whence);
+int func_0014FE80(void *buf, int size, int count, int fp);
 int func_001EA426(const char *a, const char *b);
 void *func_001E8AA5(unsigned int size);
 void func_00012140(int p);
