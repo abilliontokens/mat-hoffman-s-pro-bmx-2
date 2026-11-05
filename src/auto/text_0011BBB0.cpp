@@ -44,6 +44,42 @@ struct C_0011CA20 {
     void func_0011CA20();
 };
 
+struct C_0011C900_A {
+    char pad0[0x18];
+    int f18;
+    char pad1C[0x1E8];
+    S_0011CA20_V4 *f204;
+    void func_00166C80(int a, int b);
+};
+struct C_0011C900_B {
+    void func_00199A70(int a, S_0011CA20_V4 *b);
+};
+struct C_0011C900 {
+    char pad0[0x24];
+    S_0011CA20_V4 f24;
+    S_0011CA20_V4 f34;
+    int f44;
+    S_0011CA20_V4 f48;
+    char pad58[4];
+    S_0011CA20_V4 f5C;
+    S_0011CA20_V4 f6C;
+    int f7C;
+    char pad80[4];
+    C_0011C900_A *f84;
+    C_0011C900_B *f88;
+    int f8C;
+    char pad90[0x28];
+    int fB8;
+    int fBC;
+    int fC0;
+    int fC4;
+    char padC8[0xBC];
+    S_0011CA20_V4 f188;
+    char pad198[0x94];
+    int f12C;
+    void func_0011C900(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11, int a12);
+};
+
 void C_0011CA20::func_0011CA20()
 {
     unk5C = D_002A3BBC;
