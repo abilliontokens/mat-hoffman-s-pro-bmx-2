@@ -25,7 +25,7 @@ struct C_00198330 {
 struct BmxWallPlantConstraint {
     void *vtbl;          /* 0x00 */
     char pad04[0x24];    /* 0x04 */
-    int f28;             /* 0x28 */
+    C_00198330 *f28;     /* 0x28 */
     Vec4 f2C;            /* 0x2C */
     Vec4 f3C;            /* 0x3C */
     Vec4 f4C;            /* 0x4C */
