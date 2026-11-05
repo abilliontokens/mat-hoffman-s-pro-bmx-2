@@ -100,6 +100,25 @@ struct C_00102FD0 {
     void func_00102FD0();
 };
 
+void C_00102FD0::func_00102FD0()
+{
+    int i;
+    ((C_001BF6A0 *)this)->func_001BF6A0();
+    i = 0;
+    if (unk3D4) {
+        for (; i < unk170; i++) {
+            unk1B0[i]->func_001B1980();
+            unk1B0[i]->func_001B2270(unk3D8);
+            unk1B0[i]->func_001B19A0(unk178);
+            unk1B0[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0, 0.2f, 0);
+        }
+    } else {
+        for (; i < unk170; i++) {
+            unk1B0[i]->func_001B1980();
+        }
+    }
+}
+
 void C_001033D0::func_00103350()
 {
     int i;
