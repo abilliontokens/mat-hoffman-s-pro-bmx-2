@@ -55,6 +55,12 @@ struct C_0001B3B0 {
 };
 
 
+void func_0001B360(int a0, int a1, S_0001B360 *a2, int a3) {
+    if (a3 != 0) {
+        a2->obj->v5();
+    }
+}
+
 C_0001B3B0* C_0001B3B0::func_0001B3B0(int a0) {
     unk2C = a0;
     return this;
