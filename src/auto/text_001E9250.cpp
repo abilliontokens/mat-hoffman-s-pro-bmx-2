@@ -324,6 +324,7 @@ int func_001E9A0C(int param_1, int param_2, int param_3, int param_4) {
 }
 
 int func_001E9A58(S_001E9714_File *str, const char *format, ...) {
+    S_001E9714_File *stream = str;
     int buffing;
     int retval;
 
@@ -333,7 +334,7 @@ int func_001E9A58(S_001E9714_File *str, const char *format, ...) {
         retval = func_001EDD36(str, format, (char *)&format + sizeof(format));
         func_001EDC7E(buffing, str);
     } __finally {
-        func_001EB15B(str);
+        func_001EB15B(stream);
     }
     return retval;
 }
