@@ -36,6 +36,14 @@ struct UIVirt70 {
     virtual void virt28();
 };
 
+struct UIControl;
+
+struct UIList {
+    int count;
+    UIControl **data;
+    UIControl *get(int i) { return data[i]; }
+};
+
 struct UIControl {
     void *vtbl;
     char pad04[0x20];
@@ -103,7 +111,7 @@ void UIControl::func_001BE220(int n)
         f34 = cur;
     } while (cur == 0 || cur->f24 == 0);
     for (i = 0; i < cur->f28; i++) {
-        (**(code **)(*(int *)cur->f2c[i] + 0x70))();
+        ((UIVirt70 *)cur->f2c[i])->virt28();
     }
 }
 
