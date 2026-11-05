@@ -237,3 +237,30 @@ void C_00064580::func_00064990()
     D_002F07B8->func_001C3D40(0);
 }
 
+void C_00064A40::func_00064A40()
+{
+    unk1d0->func_000533E0();
+    unk1d0->func_000321C0();
+    unk1d0->v35();
+    unk1d0->func_000533E0();
+    v29();
+    unk274 = 0;
+    unk1d0->unk1f4 = 1;
+    unk1d0->unk64->unk4e0->unk1a8->unk95c = 1;
+    unk27c = -1;
+    unk278 = 1;
+    unk2b0 = 0;
+    unk68 = 1;
+    unk2b8 = 0;
+    if (unk1d0->unk64->unk3b4)
+        unk1d0->unk64->unk3b4->v30(unk1d0->unk64);
+    if (unk1d0->unk64->unk534)
+        unk1d0->unk64->unk534->func_000A84F0();
+    if (unk1d0->unk1c0 && !unk1d0->unk1c0->func_00097700()) {
+        unk1d0->unk1c0->func_000988B0(unk1d0->unk64->unk3b4, unk1d0->unk64->unk534);
+        unk1d0->unk1c0->func_00098EE0(unk1d0->unk64->unk3b4, unk1d0->unk64->unk534);
+        unk1d0->unk1c0->func_000981D0(unk1d0->unk64->unk3b4, unk1d0->unk64->unk534, 0);
+    }
+    D_002F07B8->func_001C3D60(0);
+}
+
