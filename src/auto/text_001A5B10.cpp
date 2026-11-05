@@ -80,6 +80,8 @@ struct S_001A5D80_G1 {
     virtual void v9();
     char pad0[0x234 - 4];
     int f234;
+    char pad238[0x2e0 - 0x238];
+    void *f2e0;
 };
 
 struct S_001A5D80_G2 {
