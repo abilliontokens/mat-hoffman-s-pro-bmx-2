@@ -36,6 +36,10 @@ struct S_84FF0_Global {
     float f240;
     char pad244[0x38];
     int f27C;
+    char pad280[0x60];
+    S_851C0_State *f2E0;
+    char pad2E4[8];
+    S_851C0_List *f2EC;
 };
 
 extern S_84FF0_Global *D_002A8490;
