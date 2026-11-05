@@ -53,6 +53,18 @@ struct C_0013E900 {
 };
 
 
+C_0013E8C0 *C_0013E8C0::func_0013E8C0(int param_1)
+{
+    ((C_001387B0 *)this)->func_001387B0(param_1);
+    vtbl = (void *)&D_00284DEC;
+    f110 = 0;
+    for (int i = 0; i < 6; i++) {
+        f114[i] = 0;
+        f12C[i] = 0;
+    }
+    return this;
+}
+
 undefined4 C_0013E900::func_0013E900(byte param_1)
 {
   int func_0013E6A0(...);
