@@ -62,6 +62,28 @@ struct XboxVideoCard_001D7D50 {
     XboxVideoCard_001D7D50 *func_001D7D50(void);
 };
 
+struct XboxVideoCardBF_001D7D50 {
+    void *vtbl;
+    char pad4[0x68];
+    int f6C;
+    char pad70[0x5B4 - 0x70];
+    int a5B4[0x40];
+    int f6B4;
+    int f6B8;
+    int f6BC;
+    int f6C0;
+    int f6C4;
+    int f6C8;
+    int f6CC;
+    int f6D0;
+    int a6D4[0xC0];
+    u8 f9D4_lo : 2;
+    u8 f9D4_hi : 6;
+    char pad9D5[3];
+    int f9D8;
+    XboxVideoCardBF_001D7D50 *func_001D7D50(void);
+};
+
 struct LightBufs_001D7FB0 {
     char a[0x100];
     char b[0x100];
