@@ -37,6 +37,16 @@ struct S_001EAB_Reg {
     S_001EAB_Frame *frame;
 };
 
+/* NLG (non-local goto) notification block */
+struct S_001EAB_Nlg {
+    int unk_0x0;
+    int dest;
+    int code;
+    int frame;
+};
+
+extern S_001EAB_Nlg D_002AE660;
+
 extern "C" unsigned long __readfsdword(unsigned long Offset);
 #pragma intrinsic(__readfsdword)
 void __stdcall func_001EAC02(int code);
