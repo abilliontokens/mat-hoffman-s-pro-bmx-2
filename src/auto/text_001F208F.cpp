@@ -43,13 +43,11 @@ extern char D_00295E5C[];
 #pragma optimize("t", off)
 char *func_001F28F4(void)
 {
-    S_001EF734 *func_001F1C3A(S_001EF734 *out);
-    S_001EF734 *func_001F0886(S_001EF734 *out);
-    S_001EF734 *func_001EFD19(S_001EF734 *out, char *s, S_001EF734 *n);
+    S_001EF734 func_001F1C3A(void);
+    S_001EF734 func_001F0886(void);
+    S_001EF734 func_001EFD19(char *s, const S_001EF734 &n);
     S_001EF734 result;
     S_001EF734 name;
-    S_001EF734 t1;
-    S_001EF734 t2;
 
     result.value = 0;
     name.value = 0;
@@ -59,49 +57,49 @@ char *func_001F28F4(void)
         if (*D_002F6A2C == '?') {
             if (D_002F6A2C[1] == '@') {
                 D_002F6A28 += 2;
-                result.func_001EEF4F(func_001EFD19(&t1, D_00295E5C, func_001F1C3A(&t2)));
+                result.func_001EEF4F(func_001EFD19(D_00295E5C, func_001F1C3A()));
             } else if (D_002F6A2C[1] == '$') {
-                result.func_001EEF4F(func_001F0886(&t1));
+                result.func_001EEF4F(func_001F0886());
             } else {
-                result.func_001EEF4F(func_001F1C3A(&t1));
+                goto plain;
             }
         } else {
-            result.func_001EEF4F(func_001F1C3A(&t1));
+plain:
+            result.func_001EEF4F(func_001F1C3A());
         }
     }
     int kind = result.kind;
     if (kind == 3) {
         return 0;
     }
-    if ((*D_002F6A28 == 0 || (D_002F6A39 & 0x10)) && kind != 1) {
-        name.func_001EEF4F(&result);
-    } else {
+    if ((*D_002F6A28 != 0 && (D_002F6A39 & 0x10) == 0) || kind == 1) {
         name.func_001EF9B2(D_002F6A2C);
+    } else {
+        name.func_001EEF4F(result);
     }
     if (D_002F6A30 == 0) {
         D_002F6A34 = name.func_001EF210() + 1;
         D_002F6A30 = (char *)D_002F6A04.func_001EEE62(D_002F6A34, 1);
-        if (D_002F6A30 == 0) {
-            return 0;
-        }
     }
-    name.func_001EF26D(D_002F6A30, D_002F6A34);
-    char *p = D_002F6A30;
-    char *d = p;
-    char c;
-    while ((c = *p) != 0) {
-        if (c == ' ') {
-            p++;
-            *d++ = c;
-            while (*p == ' ') {
+    if (D_002F6A30 != 0) {
+        name.func_001EF26D(D_002F6A30, D_002F6A34);
+        char *p = D_002F6A30;
+        char *d = p;
+        char c;
+        while ((c = *p) != 0) {
+            if (c == ' ') {
+                p++;
+                *d++ = c;
+                while (*p == ' ') {
+                    p++;
+                }
+            } else {
+                *d++ = c;
                 p++;
             }
-        } else {
-            *d++ = c;
-            p++;
         }
+        *d = *p;
     }
-    *d = 0;
     return D_002F6A30;
 }
 void func_001F2BC3(void) {
