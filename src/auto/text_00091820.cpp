@@ -171,6 +171,14 @@ void *C_00091860::func_00091860(int flags) {
     return this;
 }
 
+void *C_00091880::func_00091880(int flags) {
+    func_00086E00();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void *C_000918C0::func_000918C0(int flags)
 {
     ((C_001D57E0 *)((char *)this + 0x88))->func_001D57E0();
