@@ -337,3 +337,12 @@ void C_UIGlobalManager::func_001BC810()
     }
 }
 
+C_001BCC90 *C_001BCC90::func_001BCC90(void *param_1)
+{
+    f24 = param_1;
+    if (D_002A8490->flags230 & 0x20) {
+        D_002F0670->vf32();
+    }
+    return this;
+}
+
