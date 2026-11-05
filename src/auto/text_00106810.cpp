@@ -37,7 +37,7 @@ struct C_00106B20 {
  char pad7dc[0x1c4]; float f9a0;
  char pad9a4[0x84]; int fa28;
  char pada2c[0x804]; S_106E30_Fx *f1230; S_106E30_Fx *f1234;
- char pad1238[0x70]; volatile unsigned char flags;
+ char pad1238[0x70]; unsigned char flags;
  char pad12a9[0x2ef]; Obj_106B20 *f1598;
  void func_00106B20();
 };
