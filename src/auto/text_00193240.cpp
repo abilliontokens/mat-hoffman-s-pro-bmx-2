@@ -59,6 +59,7 @@ extern u32 D_002A9904;
 extern u32 D_002A9908;
 extern u32 D_002A990C;
 extern u32 D_002A9910;
+// 193240 helpers
 
 struct V8_00193240 {
     int p[2];
