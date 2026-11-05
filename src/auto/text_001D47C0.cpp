@@ -377,6 +377,14 @@ void C_001D5490::func_001D5490(void)
     }
 }
 
+void C_001D5490::func_001D54B0(int a)
+{
+    C_00144640 *p = (C_00144640 *)func_001E8A44(0x14);
+
+    unk4 = p != 0 ? p->func_00144640() : 0;
+    unk4->v1(a, D_002AA470);
+}
+
 void C_001D54F0::func_001D54F0(void)
 {
     unk4->func_001446B0(0, 0, -1);
