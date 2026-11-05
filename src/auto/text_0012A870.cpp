@@ -197,3 +197,14 @@ void C_0012B540::func_0012B540(void) {
     unk0 = (int)&D_002840FC;
 }
 
+CameraController *CameraController::func_0012B550(int a)
+{
+    func_00157600(a);
+    f24 = 0;
+    f28 = 0;
+    f2c = 0;
+    f30 = 0;
+    vtbl = (void *)&D_0028411C;
+    return this;
+}
+
