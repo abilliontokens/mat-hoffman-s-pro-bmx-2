@@ -249,6 +249,39 @@ BmxEventPush *BmxEventPush::func_00050A10(int a0) {
     return this;
 }
 
+void BmxEventPush::func_00050A50() {
+    int i;
+    func_00031630();
+    void *p = func_001E8A44(0xf4);
+    unke4 = p ? ((O_Ev *)p)->func_00088530(1) : 0;
+    unke4 = unke4->func_00088570(D_002A8490->unk2e0->unk8);
+    p = func_001E8A44(0x134);
+    unk15c = p ? ((O_A *)p)->func_0005ECA0(1) : 0;
+    unk15c->func_0005EDC0(this);
+    unk15c->vf4();
+    p = func_001E8A44(0x140);
+    unk1a0 = p ? ((O_B *)p)->func_000715B0(1) : 0;
+    unk1a0->func_00071880(this);
+    unk1a0->vf4();
+    p = func_001E8A44(0xf0);
+    unk19c = p ? ((O_C *)p)->func_0006C380(1) : 0;
+    unk19c->func_0006C570(this);
+    unk19c->vf4();
+    p = func_001E8A44(0x16c);
+    unk190 = p ? ((O_D *)p)->func_00066C90(1) : 0;
+    unk190->func_00066FA0(this);
+    unk190->vf4();
+    for (i = 0; i < D_002A8490->unk2e0->count; i++) {
+        p = func_001E8A44(0xda4);
+        unk170[i] = p ? ((O_E *)p)->func_00082450(1) : 0;
+        unk170[i]->func_0008DB70(unk64, unk64->list->items[i], D_002A8490->unk2e0->unk8, i, 1, 1, 0);
+        unk170[i]->vf6();
+    }
+    p = func_001E8A44(0xc8);
+    O_Ev2 *q = p ? ((O_Ev2 *)p)->func_000876B0(1) : 0;
+    unk198 = q->func_00087760(D_002A8490->unk2e0->unk8, this, unke4);
+}
+
 void BmxEventPush::func_00050C60() {
     if (unk1f4 != 0) {
         func_001578D0();
