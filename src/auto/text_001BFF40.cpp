@@ -291,6 +291,7 @@ struct C_001C0C50 {
     int unk68;
     int unk6C[16];
     C_001C0C50 *func_001C0C50(int a1, int a2);
+    C_001C0C50 *func_001C0CB0(int a, S_001C0CB0_Stream *stream, S_001C0DD0_Owner *owner);
     void func_001C0DD0(int a, int b, int c);
 };
 
