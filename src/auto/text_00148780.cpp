@@ -278,6 +278,25 @@ void *C_00149040::func_00149040(unsigned int flags)
   return this;
 }
 
+void *C_001490A0::func_001490A0(unsigned int flags)
+{
+    void func_001E891B(void *);
+    extern int D_002862FC;
+    extern int D_002862F0;
+    vtbl = (void *)&D_002862FC;
+    f4 = (u32)&D_002862F0;
+    if (f8) {
+        f8->v2();
+        f8 = 0;
+    }
+    f4 = (u32)&D_00284E94;
+    func_001B01C0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void *C_001490F0::func_001490F0(unsigned int flags)
 {
     void func_001E891B(void *);
