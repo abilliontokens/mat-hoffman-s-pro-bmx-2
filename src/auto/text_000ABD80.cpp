@@ -275,9 +275,18 @@ int C_000AC700::func_000AC700()
     return 0;
 }
 
+int C_000AC730::func_000AC730()
+{
+    if (unk540 != 0) {
+        unk540->func_000AB790(this);
+        D_002A829C->func_00161680();
+        D_002AA6C0->func_001B2640();
+    }
+    return 0;
+}
+
 void C_000AC7F0::func_000AC7F0(void)
 {
-    C_000AC7F0_Dyn *p = 0;
     if (D_002A8490->field_2F0->field_1DC == 0 && D_002A8490->field_2E0->field_48 == 0xd) {
         if (D_002A8490->field_2E0->field_0 != 1) {
             return;
@@ -287,7 +296,7 @@ void C_000AC7F0::func_000AC7F0(void)
         }
     }
     if (field_3AC == 0) {
-        p = (C_000AC7F0_Dyn *)func_001E8A44(0x2c);
+        C_000AC7F0_Dyn *p = (C_000AC7F0_Dyn *)func_001E8A44(0x2c);
         if (p != 0) {
             p->func_001B5830(1);
             *(void **)p = &D_0027AE04;
