@@ -145,7 +145,7 @@ struct C_001BBAA0 {
 
 struct S_001BBE20_2E4 {
     char pad0[0x84];
-    int **unk84;
+    int *unk84;
     int unk88;
     void func_00133580(int a);
 };
