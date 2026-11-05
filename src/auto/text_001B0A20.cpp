@@ -22,6 +22,9 @@ struct C_001B1580_24 {
     void func_00082400(int);
     void func_0005E960(int, int);
     void func_001D6600();
+    void set34(float x) { if (x != unk34) { unk34 = x; unk4E |= 6; } }
+    void set38(float x) { if (x != unk38) unk38 = x; }
+    void set44(int x) { if (unk44 != x) { unk44 = x; unk4E |= 6; } }
 };
 
 struct S_001B1810_Out {
