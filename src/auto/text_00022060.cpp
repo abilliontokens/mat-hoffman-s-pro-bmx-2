@@ -20,6 +20,16 @@ extern S_002B9120 *D_002B9120;
 
 void func_001E891B(void *p);
 
+struct L_A { int pad[5]; int count; int *items[1]; };
+struct L_B { L_A *l; };
+struct C_000229C0 {
+    char pad0[0x28];
+    float f28;
+    char pad2C[0x44];
+    L_B *f70;
+    void func_000229C0(int *arg);
+};
+
 struct C_00157660 {
     void func_00157660(void);
 };
