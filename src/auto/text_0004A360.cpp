@@ -119,3 +119,26 @@ struct BmxEventFPS {
     void func_0004AAD0(void);
     void func_0004ACB0(void);
 };
+
+S_Item80 *__stdcall func_0004AA80(int param_1)
+{
+    int i = 0;
+    if (0 < D_002B9120->f560) {
+        S_Item80 **p = D_002B9120->f524;
+        do {
+            if ((*p)->f80 == param_1) {
+                return D_002B9120->f524[i];
+            }
+            i++;
+            p++;
+        } while (i < D_002B9120->f560);
+    }
+    return 0;
+}
+
+void BmxEventFPS::func_0004AC70(int param_1, int param_2)
+{
+    if (f2d4 != 1 && f2d8 != 1) {
+        func_00033320(param_1, param_2);
+    }
+}
