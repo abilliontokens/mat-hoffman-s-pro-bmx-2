@@ -63,6 +63,67 @@ struct C_00197250 {
     float func_00197250(void);
 };
 
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+extern char D_00275678[];
+extern char D_002A5C90[];
+
+struct S_00197700_Vec4 {
+    float x, y, z, w;
+    S_00197700_Vec4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+};
+
+struct C_0012B3D0 {
+    char pad0[0x170];
+    float f170;
+    float f174;
+    float f178;
+    void func_0012B3D0();
+};
+
+struct V_002EFDB8 {
+    void *vtbl;
+    C_0012B3D0 *f4;
+};
+extern V_002EFDB8 *D_002EFDB8;
+
+struct C_001367F0 {
+    void func_001367F0(void *v, int a, int b);
+};
+
+/* SkyCube */
+struct C_00197700 {
+    void *vtbl;
+    char pad4[0x24];
+    C_001367F0 *f28;
+    char pad2C[0x798];
+    int f7C4;
+    char pad7C8[0x14];
+    float f7DC;
+    void func_00137E50(float z);
+    void func_00137F90();
+    int func_00138480(char *name);
+    void func_00197700(int a0);
+    void func_00197780();
+    C_00197700 *func_001976A0(char *name, float f);
+};
+
+struct C_00197AA0_Mat {
+    void func_000264C0(void *m);
+};
+
+struct C_00197AA0 {
+    char pad0[0xB0];
+    char fB0[0x40];
+    char fF0[0x40];
+    char pad130[0x40];
+    C_00197AA0 *f170;
+    char pad174[0xC];
+    u8 f180;
+    void func_00197AA0();
+};
+
+void func_0011ACC0(void *out, void *a, void *b);
+
 
 float C_00197250::func_00197250(void) {
     return unk2C;
