@@ -182,7 +182,7 @@ void BmxEventFPS::func_0004AB90(int param_1)
         }
     } else {
         ((S_Obj284 **)((char *)this + 0x284))[param_1]->f60 = 200;
-        ((S_Obj1AC **)((char *)this + 0x1a8))[param_1]->func_000758F0();
+        f1a8->func_000758F0();
         D_002A8490->f124 = 1;
         func_00011260(0, D_002A8490->f2e0->f0 - 1);
         D_002B9120->f4e4[param_1]->func_00150F80();
