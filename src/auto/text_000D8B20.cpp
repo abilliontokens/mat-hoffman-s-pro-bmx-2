@@ -57,7 +57,7 @@ struct BmxUIPageHOF5 {
     u32 arr2D8[5];
     u32 arr2EC[2];
     u32 arr2F4[2];
-    float arr2FC[2];
+    void *arr2FC[2];
     u32 arr304[5];
     void func_001BE360(int a0);
     BmxUIPageHOF5 *func_000D8C70(int a0);
@@ -152,8 +152,7 @@ BmxUIPageHOF5 *BmxUIPageHOF5::func_000D8C70(int a0)
     unk2A4 = 0;
     unk2AC = 0;
     unk2A8 = 0;
-    arr2FC[0] = 0;
-    arr2FC[1] = 0;
+    *(__int64 *)arr2FC = 0;
     unk2B0 = 0;
     unk2B4 = 0;
     unk2B8 = 0;
