@@ -805,6 +805,40 @@ void *C_001B12C0::func_001B12C0(int a0)
     return this;
 }
 
+C_001B1580 *C_001B1580::func_001B13A0(int a, int b, int c, int len) {
+    int rect[4];
+    unk80 = c;
+    if (c) {
+        ((C_001B13A0_View *)c)->func_0012B210(rect);
+        c = rect[2] - rect[0];
+        unkB8 = D_00277A00 / c;
+        c = rect[3] - rect[1];
+        unkBC = D_002779FC / c;
+    } else { unkB8 = 1.0f; unkBC = 1.0f; }
+    int x = (int)(D_0028C85C / unkB8);
+    float y = D_0028C858 / unkBC;
+    unk2C = x;
+    unk34 = x + 128;
+    unk30 = (int)y;
+    unk38 = unk30 + 16;
+    c = a;
+    D_002A8490->manager->func_0018C780(1, &c, 0);
+    int *resource = D_002A8490->manager->func_0018C160(a);
+    unk28 = resource ? *resource : 0;
+    C_001B1580_24 *text = new C_001B1580_24;
+    unk24 = text;
+    text->func_001D5FA0(unk28, b, len, D_00275630);
+    unk24->setColour(-1);
+    unk24->setAlpha(255);
+    unkC8 = unk84 = unk88 = unk24->unk4C;
+    unk24->set34(1.0f);
+    unkCC = unk98 = unk9C = unk24->unk34;
+    if (unk24->unk38 != 0.0f) unk24->unk38 = 0.0f;
+    unkD0 = unkAC = unkA8 = unk24->unk38;
+    func_001D3F50();
+    return this;
+}
+
 C_001B1580 *C_001B1580::func_001B1580(int a, int b, const char *s, int c)
 {
     if (s != 0) {
