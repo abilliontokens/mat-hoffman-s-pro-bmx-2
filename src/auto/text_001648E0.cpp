@@ -45,6 +45,7 @@ struct C_001648E0 {
  char pad1F4[0xC];
  Vec4_165EF0 *f200, *f204;
  void func_001648E0(C_001648E0_Arg *, float, int, int *, float);
+ void func_00164BA0(C_001648E0_Arg *, C_001648E0_Arg *, float, float, int, float);
 };
 void func_001641B0(void *, void *);
 void func_001640D0(void *, int, void *, void *);
