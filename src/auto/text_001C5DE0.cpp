@@ -151,6 +151,7 @@ struct C_001C6B30 {
     char pad0[0x3c];
     C_001C6B30_Holder *f3C;
     void func_001C6B30(Vec4 target, float maxAngle);
+    void func_001C6B30(V4_001C6B30 target, float maxAngle);
 };
 
 void *func_001E8A44(unsigned int size);
