@@ -30,6 +30,8 @@ extern float *D_002DF87C;
 
 void func_001E8390(void *p);
 
+extern int D_00286B04;
+
 struct S_00150440_Renderer {
     void func_0012AAE0(float a, int b);
 };
