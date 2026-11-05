@@ -175,6 +175,26 @@ struct C_0015D250 {
     void func_0015D250();
 };
 
+extern float D_00275600, D_00276DD4;
+struct V4_0015E990 { float x, y, z, w; };
+struct C_0015E990 {
+    char pad0[0x28];
+    int f28;
+    int f2C;
+    char pad30[0x50];
+    float f80;
+    float f84;
+    float f88;
+    char pad8C[0x30];
+    int fBC;
+    void func_001D3F50();
+    void func_0015E650(V4_0015E990 v);
+    void func_0015E850(void *p);
+    void func_0015E920(void *p);
+    void func_0015E800(float v);
+    void func_0015E990(int a1, float x, float y, float z, float w, void *p6, void *p7, float *p8, float a9, int a10, int a11, int a12, int a13);
+};
+
 void C_0015E300::func_0015E300(int idx, S_0015E300_V3 *pos, int *val)
 {
     if (idx >= 0 && idx < f78) {
