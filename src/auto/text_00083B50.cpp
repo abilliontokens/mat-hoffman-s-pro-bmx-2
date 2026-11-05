@@ -103,3 +103,18 @@ void C_000848F0::func_000848F0(void)
     }
 }
 
+HuntPointsOverlay *HuntPointsOverlay::func_00084930(int param_1)
+{
+    ((C_00157600 *)this)->func_00157600(1);
+    unk24 = 0;
+    unk28 = 0;
+    unk2C = 0;
+    unk30 = 0;
+    unk34 = 0;
+    unk38 = 0;
+    unk3C = 0;
+    vtbl = &D_002795C4;
+    unk40 = (D_002A8490->f2E0->f4 == 3);
+    return this;
+}
+
