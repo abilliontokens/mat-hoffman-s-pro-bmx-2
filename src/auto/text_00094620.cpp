@@ -334,6 +334,14 @@ void C_00094A00::func_00094C00(void)
     }
 }
 
+int C_00094A00::func_00094EE0(void)
+{
+    if (f84[0] != 0 && f84[0]->v7()) {
+        return 1;
+    }
+    return 0;
+}
+
 int C_00094F00::func_00094F00(void) {
     return unk7C;
 }
