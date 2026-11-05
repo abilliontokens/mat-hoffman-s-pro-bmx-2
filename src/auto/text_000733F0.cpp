@@ -305,9 +305,9 @@ void SPFPSResultsScreen::func_00073C30(void)
         DeleteObj(unk7C[i]);
         DeleteObj(unk88[i]);
     }
-    unkA0 = 0.0f;
-    unkA4 = 0.0f;
-    unkA8 = 0.0f;
+    for (int j = 0; j < 3; j++) {
+        (&unkA0)[j] = 0.0f;
+    }
     DeleteObj(unkFC);
     DeleteObj(unkF8);
     for (i = 0; i < 2; i++) {
@@ -325,17 +325,18 @@ void SPFPSResultsScreen::func_00073C30(void)
     for (i = 0; i < 6; i++) {
         if (unkDC[i]) { unkDC[i]->destroyObject(1); unkDC[i] = 0; }
     }
-    DeleteObj(unk100); unk100 = 0;
-    DeleteObj(unk104); unk104 = 0;
-    DeleteObj(unk108); unk108 = 0;
-    DeleteObj(unk10C); unk10C = 0;
+    if (unk100) { DeleteObj(unk100); unk100 = 0; }
+    if (unk104) { DeleteObj(unk104); unk104 = 0; }
+    if (unk108) { DeleteObj(unk108); unk108 = 0; }
+    if (unk10C) { DeleteObj(unk10C); unk10C = 0; }
     if (unk114) {
-        DeleteObj(unk10C); unk10C = 0;
+        DeleteObj(unk10C);
+        unk10C = 0;
     }
-    DeleteObj(unk110); unk110 = 0;
-    DeleteObj(unk114); unk114 = 0;
-    DeleteObj(unk118); unk118 = 0;
-    DeleteObj(unk1BC); unk1BC = 0;
+    if (unk110) { DeleteObj(unk110); unk110 = 0; }
+    if (unk114) { DeleteObj(unk114); unk114 = 0; }
+    if (unk118) { DeleteObj(unk118); unk118 = 0; }
+    if (unk1BC) { DeleteObj(unk1BC); unk1BC = 0; }
     func_00157660();
 }
 
