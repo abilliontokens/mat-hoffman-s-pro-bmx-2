@@ -80,7 +80,7 @@ struct V_XboxGame {
     virtual int v34();
 };
 
-struct XboxGame {
+struct XboxGame : Game {
     void *vtbl;
     char pad4[0x22C];
     u8 unk230;
