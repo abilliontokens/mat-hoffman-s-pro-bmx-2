@@ -14,6 +14,18 @@ struct C_00157600 {
 extern int D_0027850C;
 extern int D_00278CD4;
 
+extern "C" void __cdecl func_001E891B(void *);
+
+/* a resource released with func_001D6410 and then freed */
+struct Res_72C90 {
+    void func_001D6410();
+};
+
+/* an object with a virtual destructor, deleted through its vtable */
+struct Obj_72C90 {
+    virtual ~Obj_72C90();
+};
+
 /* BmxMenu-derived menu (RunResultsMenu) */
 struct C_00072C90 {
     void *vtbl;
@@ -21,24 +33,22 @@ struct C_00072C90 {
     int a24[8];
     int a44[8];
     int f64;
-    int f68;
+    Res_72C90 *f68;
     int f6C;
-    int f70;
-    int f74;
-    int f78;
-    int f7C;
-    int f80;
+    Obj_72C90 *f70;
+    Obj_72C90 *f74;
+    Obj_72C90 *f78;
+    Obj_72C90 *f7C;
+    Res_72C90 *f80;
     int f84;
-    int f88;
+    Res_72C90 *f88;
     char pad8C[4];
-    int a90[5];
-    int aA4[5];
-    float fB8;
-    float fBC;
-    float fC0;
-    float fC4;
-    float fC8;
+    Obj_72C90 *a90[5];
+    Obj_72C90 *aA4[5];
+    Res_72C90 *aB8[5];
     C_00072C90 *func_00072C90(int flags);
+    void func_00072D30();
+    void func_00157660();
 };
 
 
@@ -66,11 +76,11 @@ C_00072C90 *C_00072C90::func_00072C90(int flags)
     f70 = 0;
     f74 = 0;
     f80 = 0;
-    fB8 = 0.0f;
-    fBC = 0.0f;
-    fC0 = 0.0f;
-    fC4 = 0.0f;
-    fC8 = 0.0f;
+    aB8[0] = 0;
+    aB8[1] = 0;
+    aB8[2] = 0;
+    aB8[3] = 0;
+    aB8[4] = 0;
     f88 = 0;
     return this;
 }
