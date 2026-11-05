@@ -111,7 +111,7 @@ struct C_001B73C0_ItemObj {
 };
 
 struct C_001B7370_item {
-    virtual void vf0();
+    virtual void vf0(C_00169710 *, void *, int, void *, void *);
     virtual void vf1(void *p);
     C_001B73C0_ItemObj *f4;
     int f8;
