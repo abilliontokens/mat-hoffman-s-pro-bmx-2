@@ -361,6 +361,33 @@ void *C_001490F0::func_001490F0(unsigned int flags)
     return this;
 }
 
+void *C_00149120::func_00149120(int a0, int a1)
+{
+    void *func_001E8A44(int);
+    void __stdcall func_00011FF0(void *p, int a1, int a2, int *a3);
+    func_001B07F0(a0, a1);
+    *(volatile u32 *)&unk1C = (u32)&D_00284E94;
+    *(volatile void **)&vtbl = (void *)&D_00285C84;
+    *(volatile u32 *)&unk1C = (u32)&D_00285C78;
+    int n = unk8->count;
+    if (n == 0) {
+        unk20 = 0;
+    } else {
+        void *p = func_001E8A44(n * 0x14);
+        if (p != 0) {
+            func_00011FF0(p, 0x14, n, &D_00144CD0);
+            unk20 = p;
+        } else {
+            p = 0;
+            unk20 = p;
+        }
+    }
+    for (int i = 0; i < unk8->count; i++) {
+        ((Anim_00149120 *)unk20)[i] = unk8->arr[i];
+    }
+    return this;
+}
+
 void *C_00149280::func_00149280(int a0)
 {
   int __stdcall func_001B0E60(int);
@@ -400,6 +427,19 @@ C_00149380::C_00149380()
 void func_001493A0(void) {
     int func_001B1010(...);
     func_001B1010();
+}
+
+void *C_001493B0::func_001493B0(unsigned int flags)
+{
+    void func_001E891B(void *);
+    extern int D_00286808;
+
+    vtbl = (void *)&D_00286808;
+    func_001B0E90();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
 }
 
 void *C_00149450::func_00149450(unsigned int flags)
