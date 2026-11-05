@@ -314,6 +314,23 @@ C_001BD870 *C_001BD870::func_001BD870(int a)
     return this;
 }
 
+void *C_001BD870::func_001BD920(unsigned int flags)
+{
+    vtbl = (void *)&D_0028D44C;
+    if (f110 != 0) {
+        func_001E8390(f110);
+    }
+    if (f120 != 0) {
+        func_001E8390(f120);
+    }
+    D_002F07B8->f8 = 0;
+    ((C_00157600 *)this)->func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 C_001BD9C0 *C_001BD9C0::func_001BD9C0(int a)
 {
   ((C_00157600 *)this)->func_00157600(a);
