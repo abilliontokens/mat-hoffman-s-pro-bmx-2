@@ -322,15 +322,18 @@ C_0008ABA0 *C_0008ABA0::func_0008AAD0() {
     else o = 0;
     unk24 = o;
     o->func_001D5FA0(name, (int)&D_0027958C, 0x4b, (int)&D_00275630);
+    o = unk24;
     if (o->f4 != 0x43a00000 || o->f8 != 0x43a50000) {
         o->f4 = 0x43a00000;
         o->f8 = 0x43a50000;
         o->b4e |= 6;
     }
+    o = unk24;
     if (o->u48 != 0xffff8000) {
         o->b4e |= 8;
         o->u48 = (o->u48 & 0xffff8000) | 0xff8000;
     }
+    o = unk24;
     if (o->f44 != D_0028F5E0) {
         o->f44 = D_0028F5E0;
         o->b4e |= 6;
