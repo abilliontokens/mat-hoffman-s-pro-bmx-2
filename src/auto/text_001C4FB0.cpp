@@ -13,6 +13,13 @@ extern int D_002F07E8;
 void func_001E891B(void *p);
 int __stdcall func_001927C0(int a0, int a1);
 
+struct S_001C5C50_View {
+    char pad0[0x1e8];
+    unsigned int width;
+    unsigned int height;
+};
+extern float D_00275460, D_002755E4, D_002755E8;
+
 /* VisibilityQuadTree */
 struct C_001C5AA0 {
     char pad0[0x890];
