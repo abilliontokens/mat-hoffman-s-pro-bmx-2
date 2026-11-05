@@ -79,6 +79,7 @@ extern char D_00278068[];
 extern char D_0028F0A8[];
 extern char D_0028F510[];
 extern int D_0026D8D0;
+extern char D_0028F130[];
 
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 int __stdcall func_001DEF8D(const char *name);
