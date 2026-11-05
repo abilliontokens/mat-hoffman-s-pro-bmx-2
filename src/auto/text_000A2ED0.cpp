@@ -129,7 +129,9 @@ struct C_000A2ED0 {
     char pad4C4[0x568 - 0x4c4];
     int unk568;
     int *unk56C;
-    char pad570[8];
+    int unk570;
+    C_001BC670 **unk574;
+    void func_000A2F20();
     int unk578;
     C_00012420 **unk57C;
     char pad580[0x594 - 0x580];
