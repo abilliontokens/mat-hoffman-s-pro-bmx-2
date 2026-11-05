@@ -13,6 +13,20 @@ extern char D_00275630[];
 extern char D_0027B168[];
 
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+char *func_001E8920(char *dst, const char *src, int n);
+int func_001EA426(const char *a, const char *b);
+
+template <class T> inline const T &min_ref(const T &a, const T &b)
+{
+    return b < a ? b : a;
+}
+
+inline void str_copy(char *dst, const char *src, int size)
+{
+    int n = min_ref((int)strlen(src), size - 1);
+    func_001E8920(dst, src, n);
+    dst[n] = 0;
+}
 void *func_001E83E8(void *block, unsigned int size);
 void *func_001E8A44(int size);
 
