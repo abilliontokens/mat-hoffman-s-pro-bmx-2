@@ -246,6 +246,56 @@ void C_0023EA00::func_0023EA00(void)
     }
 }
 
+int __stdcall func_0023EB1F(S_0023EB1F_Obj *obj, S_0023EB1F_Req *req)
+{
+    unsigned int total = req->f4 / (obj->f10 << 1);
+    char *buf = req->f0;
+    unsigned int done = 0;
+    unsigned int count = 0;
+    int hr = 0;
+
+    while (done < total) {
+        unsigned int chunk;
+        unsigned int got;
+
+        if (obj->fB0 != 0) {
+            int r;
+
+            obj->fB0 = 0;
+            count++;
+            if (count % obj->fB8 == 0) {
+                func_001DE7AF();
+            }
+            r = func_0023FAA9(obj->f30);
+            if (r != 0) {
+                if (r != 6) {
+                    hr = 0x80004005;
+                }
+                break;
+            }
+        }
+        chunk = total - done;
+        if (chunk > 0x800) {
+            chunk = 0x800;
+        }
+        got = func_0023FC26(obj->f30, buf + obj->f10 * done * 2, 0, chunk);
+        if (got < chunk) {
+            obj->fB0 = 1;
+        }
+        done += got;
+    }
+    if (req->f8 != 0) {
+        *req->f8 = obj->f10 * done * 2;
+    }
+    if (req->f10 != 0) {
+        func_001DDC28(req->f10);
+    }
+    if (req->fC != 0) {
+        *req->fC = hr;
+    }
+    return 0;
+}
+
 unsigned int C_0023EC0D::func_0023EC0D(unsigned int a, unsigned int b, int *out)
 {
     unsigned int end;
@@ -267,6 +317,56 @@ unsigned int C_0023EC0D::func_0023EC0D(unsigned int a, unsigned int b, int *out)
     }
     return 0;
 }
+
+void __stdcall func_0023EB1F(C_0023EC71 *p, int *q);
+extern char D_0000FFFF;
+int C_0023EC71::func_0023EC71(int a0, int a1, S_0023EC71_Req *req)
+{
+    int n;
+    unsigned int old = f3c;
+    S_0023EA00_Link *next;
+    S_0023EA00_Link *prev;
+    S_0023EA00_Link *head;
+    S_0023EA00_Link *first;
+
+    if (f40 - old >= f94 >> 1) {
+        f3c = f40;
+    }
+    if (old != f3c) {
+        int r;
+        func_001DD3A1(f50, f3c, 0, 0);
+        f5c = f3c;
+        r = func_001DD15A(f50, a0, a1, &n, req ? f54 : 0);
+        if (req != 0)
+            goto wait;
+        if (r != 0)
+            goto done;
+        goto err;
+    } else if (req != 0) {
+wait:
+        if (!func_001DD670(f50, f54, &n, 1)) {
+err:
+            if (func_001DD603() <= 0)
+                return func_001DD603();
+            return (func_001DD603() & (int)&D_0000FFFF) | 0x80070000;
+        }
+        ::func_0023EB1F(this, &req->fC);
+        next = req->link.next;
+        prev = req->link.prev;
+        prev->next = next;
+        next->prev = prev;
+        head = &f9c;
+        first = head->next;
+        req->link.next = first;
+        req->link.prev = head;
+        first->prev = &req->link;
+        head->next = &req->link;
+        f90--;
+    }
+done:
+    return 0x10000000;
+}
+
 #pragma optimize("y", on)
 #pragma optimize("s", on)
 int __stdcall func_0023ED4C(S_0023ED4C_Src *src, S_0023ED4C_Out *out)
