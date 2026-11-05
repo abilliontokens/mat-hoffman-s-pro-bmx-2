@@ -137,6 +137,43 @@ struct C_001D8760 {
     C_001D8760 *func_001D8760(int flags);
 };
 
+extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
+extern char D_00100000;
+int func_001D7D40();
+void __stdcall func_00201A60(int adapter, int type, void *caps);
+void __stdcall func_00202950(void *a, int b);
+int __stdcall func_00202970(int a, int b, int c, int d, void *params, int *out);
+void __stdcall func_001FFBC0(int (*cb)());
+int func_001B2B90(int fmt);
+
+/* XboxVideoCard (create device) */
+struct C_001D87A0 {
+    virtual void v0(int flags);
+    int f4;
+    char pad8[0x14];
+    int f1C;
+    int f20;
+    char pad24[0x1C];
+    int f40;
+    int f44;
+    char pad48[4];
+    int f4C;
+    int f50;
+    int f54;
+    char pad58[8];
+    int f60;
+    char pad64[8];
+    int f6C;
+    char caps[0xD4];
+    int pp[0x11];
+    S_AdapterIdentifier ident;
+    char guid[0x100];
+    int f6B4;
+    int func_001D8040(int *a1, void *a2, int a3, int a4, int a5, int a6, int a7);
+    int func_001D7FB0(float x, float y, float z, int w);
+    C_001D87A0 *func_001D87A0(int a1, int a2, int a3, int a4);
+};
+
 struct C_001D8970 {
     char pad0[0x44];
     int f44;
