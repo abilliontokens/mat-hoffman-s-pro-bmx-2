@@ -79,7 +79,7 @@ void C_0014A610::func_0014A650(C_0014A610 *src)
         unk8 = 0;
         return;
     }
-    if (unk4 == src->unk8 && unk8 != 0) {
+    if (unk4 != src->unk8 || unk8 != 0) {
         func_001FEEF0(src->unk8, 0);
     }
     int v = 0;
