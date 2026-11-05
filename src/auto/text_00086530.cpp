@@ -73,6 +73,7 @@ struct BestScoreOverlay {
     BestScoreOverlay *func_00086DC0(int a0);
     void func_00086E00(void);
     void func_00086C40(float a0);
+    void func_000873C0(void);
 };
 
 struct C_00086C70 {
