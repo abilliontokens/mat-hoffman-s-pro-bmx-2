@@ -1,6 +1,35 @@
 /* 9 functions from 0x0006C470 to 0x0006D3E0, found by Ghidra. */
 #include "common.h"
 
+struct Sprite_6D {
+    char pad0[0x38];
+    unsigned int f38;
+    char pad3C[0x1C];
+    unsigned char b58;
+    void func_001D5AD0();
+};
+
+struct C_0006D100 {
+    char pad0[0x6C];
+    Sprite_6D *unk6C;
+    Sprite_6D *unk70;
+    Sprite_6D *arr74[2];
+    Sprite_6D *arr7C[5];
+    Sprite_6D *arr90[5];
+    Sprite_6D *arrA4[4];
+    Sprite_6D *unkB4;
+    char padB8[0x4];
+    Sprite_6D *unkBC;
+    Sprite_6D *unkC0;
+    char padC4[0xC];
+    int unkD0;
+    char padD4[8];
+    float unkDC;
+    Sprite_6D *unkE0;
+    int func_0006D100();
+};
+extern float D_00275544;
+
 struct V_002EFDB8 {
     virtual void vf0();
     virtual void vf1();
