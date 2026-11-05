@@ -72,3 +72,9 @@ undefined4 C_001DC540::func_001DC540(byte param_1)
   }
   return in_ECX;
 }
+
+u32 func_001DC974(void)
+{
+    return *_imp__KeTickCount;
+}
+
