@@ -117,6 +117,15 @@ struct C_001B1860 {
     void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, float a7, int a8, float a9, int a10, float a11, float a12, int a13);
 };
 
+struct C_001B13A0_View { void func_0012B210(int *); };
+struct C_001B13A0_Manager {
+    void func_0018C780(int, int *, int);
+    int *func_0018C160(int);
+};
+struct C_002A8490 { char pad0[0x2EC]; C_001B13A0_Manager *manager; };
+extern C_002A8490 *D_002A8490;
+extern float D_00277A00, D_002779FC, D_0028C85C, D_0028C858;
+extern char D_00275630[];
 extern int *D_002EFDB8;
 extern char D_0004035C;
 void __fastcall func_001FD020(void *, int);
