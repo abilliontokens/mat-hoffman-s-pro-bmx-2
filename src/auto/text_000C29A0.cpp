@@ -36,6 +36,8 @@ struct S_000C29A0_Sub {
 struct S_000C29A0_Obj {
     char pad0[0x2C0];
     S_000C29A0_Sub *f2C0;
+    char pad2C4[0x45C - 0x2C4];
+    int f45C;
 };
 
 struct S_000C29A0_Global {
