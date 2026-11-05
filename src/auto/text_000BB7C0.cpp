@@ -129,6 +129,14 @@ struct C_000BBE30 {
     void func_000BC240(void);
     void func_000BC2A0(void);
     char *func_000BC2E0(void);
+    struct S_000BC320_Rec *func_000BC320(void);
+    void func_000BC370(struct S_000BC320_Rec *out, int entry, int idx);
+    void func_000BC3E0(int idx);
+};
+
+/* 0x14-byte record stored at entry+0x130 (3 of them) and entry+0x16c (3) */
+struct S_000BC320_Rec {
+    float w[5];
 };
 
 struct S_000BC590_Vt {
@@ -428,3 +436,57 @@ undefined4 C_000BC670::func_000BC670(void)
   
   return *(undefined4 *)(*(int *)(in_ECX + 0x30) + 0x48);
 }
+
+void C_000BC520::func_000BC680(int a)
+{
+    if (f34 != 0) {
+        f30->f4C = 1;
+        func_00157A00(a);
+        return;
+    }
+    if (f30->f48 == 0) {
+        f30->func_001D37C0();
+        f24 = 1;
+        if (f2C != 0) {
+            f28->f150->v6();
+            f2C = 0;
+        }
+        if (f44 != 0) {
+            f40 = 1;
+            f44 = 0;
+        }
+    }
+    func_00157A00(a);
+}
+
+void C_000BC520::func_000BC700(int a, int b)
+{
+    if (f38 != 0) {
+        if (f30 != 0) {
+            f30->func_001D37C0();
+            f24 = 1;
+            if (f44 != 0) {
+                f40 = 1;
+                f44 = 0;
+            }
+        }
+        f38 = 0;
+        func_00157BF0(a, b);
+        return;
+    }
+    if (func_001361E0(4, 2, a, 0x80000000) != 0 || func_001361E0(0x17, 2, a, 0x80000000) != 0) {
+        if (f3C != 0) {
+            if (f30 != 0) {
+                f30->func_001D37C0();
+                f24 = 1;
+                if (f44 != 0) {
+                    f40 = 1;
+                    f44 = 0;
+                }
+            }
+            f3C = 0;
+        }
+    }
+    func_00157BF0(a, b);
+}
+
