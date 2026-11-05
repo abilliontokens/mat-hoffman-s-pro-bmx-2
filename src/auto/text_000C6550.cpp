@@ -9,7 +9,30 @@ struct Mat {
     u32 f38;
     char pad3C[0x1C];
     u8 f58;
+    void func_001D5AD0();
+    void func_001D6600();
 };
+
+/* the shared drawable table the page draws from */
+struct S_000C6550_Mgr {
+    char pad0[0x24];
+    Mat *unk24;
+    Mat *unk28;
+    Mat *unk2C;
+    Mat *unk30;
+    char pad34[0x4];
+    Mat *arr38[2];
+    char pad40[0x10];
+    Mat *unk50;
+    Mat *unk54;
+    char pad58[0x8];
+    Mat *unk60;
+    Mat *unk64;
+    Mat *unk68;
+    Mat *unk6C;
+};
+
+extern S_000C6550_Mgr *D_002B91AC;
 
 struct BmxUIPageParkEditor {
     char pad0[0x2C4];
