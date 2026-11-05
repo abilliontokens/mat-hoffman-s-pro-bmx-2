@@ -285,6 +285,28 @@ int C_001C1490::func_001C1490(void)
     return 1;
 }
 
+C_001C14D0 *C_001C14D0::func_001C14D0(int a, int b)
+{
+    int i;
+
+    ((C_00157600 *)this)->func_00157600(b);
+    f24 = a;
+    f2c = 0;
+    f28 = 0;
+    f30 = 0;
+    f34 = 0;
+    f38 = 0;
+    f3c = 0;
+    f40 = 0;
+    for (i = 0; i < 8; i++) {
+        f44[i] = 0;
+    }
+    f64 = 0;
+    vtbl = &D_0028DF04;
+    f68 = 0;
+    return this;
+}
+
 void C_001C1950::func_001C1950(void)
 {
   f68->func_001D5AD0();
