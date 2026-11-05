@@ -178,7 +178,7 @@ struct S_00094A00_Child {
     virtual void v9(int a);
     virtual void v10();
     virtual void v11();
-    virtual void v12(int a);
+    virtual int v12(int a);
     virtual void v13();
     virtual void v14();
     virtual void v15();
@@ -337,6 +337,7 @@ void C_00094A00::func_00094C00(void)
 int C_00094A00::func_00094C60(void)
 {
     int i;
+    S_00094A00_Child *p;
 
     if (f24 != 0) {
         f24 = 0;
@@ -352,10 +353,12 @@ int C_00094A00::func_00094C60(void)
     for (i = 0; i < f7C; i++) {
         if (i == 0) {
             f84[0]->v12(100);
+            p = f84[0];
         } else {
             f84[i]->v12(1);
+            p = f84[i];
         }
-        if (!f84[i]->v5(0)) {
+        if (!p->v5(0)) {
             return 0;
         }
     }
