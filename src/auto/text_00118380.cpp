@@ -94,6 +94,15 @@ struct C_00118380 {
     int func_00118380(int a, int b);
     void func_00118410(int a, int b, int c);
     void func_00118840(int a);
+    void func_001184E0(float dt);
+};
+
+struct C_001091D0 {
+    int func_001091D0();
+};
+
+struct C_000B5950 {
+    int func_000B5950();
 };
 
 int C_00118380::func_00118380(int a, int b)
