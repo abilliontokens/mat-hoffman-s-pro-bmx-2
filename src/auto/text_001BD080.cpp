@@ -486,14 +486,14 @@ void C_001BDA80::func_001BDA80(void)
 {
   int in_ECX = (int)this;
   int iVar1;
-  int iVar2;
+  V_001BDA80 *pvVar2;
 
   iVar1 = 0;
   if (0 < *(int *)(in_ECX + 0x28)) {
     do {
-      iVar2 = *(int *)(*(int *)(in_ECX + 0x2c) + iVar1 * 4);
-      if (iVar2 != 0) {
-        (**(code **)(*(int *)iVar2 + 0x74))();
+      pvVar2 = *(V_001BDA80 **)(*(int *)(in_ECX + 0x2c) + iVar1 * 4);
+      if (pvVar2 != 0) {
+        pvVar2->v29();
       }
       iVar1 = iVar1 + 1;
     } while (iVar1 < *(int *)(in_ECX + 0x28));
