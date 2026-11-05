@@ -116,12 +116,8 @@ WaterDisplacement *WaterDisplacement::func_001CAF20()
         p->Identity();
         p++;
     } while (--n);
-    unkB4.w = 1.0f;
-    unkB4.z = 0.0f;
-    unkB4.y = 0.0f;
-    unkB4.x = 0.0f;
-    unk2C = 0;
-    unk28 = 0;
+    unkB4.Reset();
+    unk28 = unk2C = 0;
     unk30 = 0;
     unk34 = 0;
     unk38 = 0;
