@@ -97,8 +97,17 @@ struct C_CardText {
     void func_001D6600();
     void func_001D5AD0();
 };
+struct C_001A6E90_Sub {
+    void func_0005CBD0();
+};
+struct C_001A6E90_Mgr {
+    char pad0[0x2c0];
+    C_001A6E90_Sub *f2c0;
+};
 struct C_Global2 {
-    char pad0[0x2e8];
+    char pad0[0x2e0];
+    C_001A6E90_Mgr *f2e0;
+    char pad2e4[4];
     C_CardStringsHolder *f2e8;
     C_0018C120Obj *f2ec;
 };
