@@ -24,6 +24,16 @@ struct C_001D6410 {
     void func_001D6410(void);
 };
 
+extern int D_0028F600;
+
+struct C_001D63D0 {
+    void *vtbl;
+    char pad4[0x58];
+    C_001D6410Obj *unk5C;
+    C_001D6410Obj *unk60;
+    C_001D63D0 *func_001D63D0(unsigned int flags);
+};
+
 struct C_001D6380 {
     void *vtbl;
     char pad4[0x10];
