@@ -69,6 +69,15 @@ void *C_0009F4F0::func_0009F4F0(int flags) {
     return this;
 }
 
+void *C_0009F520::func_0009F520(int flags) {
+    unk0 = (int)&D_0027AAEC;
+    func_00169DE0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void *C_0009F550::func_0009F550(int flags) {
     extern int D_0027AB9C;
     void func_001E891B(void *);
