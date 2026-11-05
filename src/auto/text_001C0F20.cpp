@@ -87,6 +87,15 @@ struct C_001C1030_Mid {
     virtual void v29();
     virtual void v30();
     virtual void v31(int a, int b, int c, int d);
+    virtual void v32();
+    virtual void v33();
+    virtual void v34();
+    virtual void v35();
+    virtual void v36();
+    virtual void v37();
+    virtual void v38();
+    virtual void v39();
+    virtual void v40();
     char pad4[0x114];
     C_001C1030_Handler *f118;
 };
@@ -198,33 +207,34 @@ struct C_001C1970 {
 void C_001C1030::func_001C1030(int slot, int value, int key)
 {
   int v = f68[slot];
+  C_001C1030 *self = this;
 
   switch (v) {
   case -2:
-    f24->f118->func_001BEC10(value);
-    f24->v31(v, 1, 0, 0);
+    self->f24->f118->func_001BEC10(value);
+    self->f24->v31(v, 1, 0, 0);
     return;
   case -1:
-    f24->f118->func_001BEB90(value);
-    f24->v31(v, 1, 0, 0);
+    self->f24->f118->func_001BEB90(value);
+    self->f24->v31(v, 1, 0, 0);
     return;
   }
   if (v > 0) {
-    f24->f118->func_001BEC90(value, v);
+    self->f24->f118->func_001BEC90(value, v);
   }
   if (v != 0) {
-    f24->v31(v, 1, 0, 0);
+    self->f24->v31(v, 1, 0, 0);
   }
 }
 
 void C_001C10D0::func_001C10D0(void)
 {
   f2c = 1;
-  if (f30 == 0 || f34 == 0) {
-    if (f30 != 0) {
+  if (!f30 || !f34) {
+    if (f30) {
       v7();
     }
-    if (f34 != 0) {
+    if (f34) {
       v5();
     }
   }
@@ -275,7 +285,7 @@ C_001C1150 *C_001C1150::func_001C1150(int a, int b)
 
 int C_001C1490::func_001C1490(void)
 {
-    if (f68 != 0) {
+    if (f68) {
         f1ec = 1;
         func_00197EA0(&f200);
         f68->func_00157810();
