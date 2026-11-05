@@ -47,3 +47,40 @@ C_0018F350* C_0018F350::func_0018F350(void) {
     unk16C = 0;
     return this;
 }
+
+void C_0018F4D0::func_0018F4D0(unsigned int a)
+{
+    switch ((a >> 8) & 0xff) {
+    case 1:
+        f20 = 0;
+        break;
+    case 2:
+        f24 = 0;
+        break;
+    case 3:
+        f28 = D_00275630;
+        f2C = 0;
+        break;
+    case 4:
+        f138 = 0;
+        f13C = 0;
+        break;
+    case 5:
+        f140 = 0;
+        break;
+    case 6:
+        f12C = 0;
+        break;
+    case 7:
+        f130 = 0;
+        break;
+    case 8:
+        f134 = 0;
+        break;
+    case 9:
+        ((C_00191470 *)((char *)this + 0x150))->func_00191470(a);
+        break;
+    }
+    func_0018E250(D_00275630, a);
+}
+
