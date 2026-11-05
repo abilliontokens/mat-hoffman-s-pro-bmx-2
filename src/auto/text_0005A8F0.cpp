@@ -115,3 +115,14 @@ void C_0005B850::func_0005B850(char *src)
 int C_0005B870::func_0005B870(void) {
     return (int)&unkCD0;
 }
+
+void C_0005B880::func_0005B880(void)
+{
+    int i;
+
+    for (i = 0; i < 0x12; i++) {
+        pairs[i].a = ((C_000952A0 *)D_002A8490->f2E0->f2FC)->func_000952A0(i);
+        pairs[i].b = ((C_00095250 *)D_002A8490->f2E0->f2FC)->func_00095250(i);
+    }
+}
+
