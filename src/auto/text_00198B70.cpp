@@ -214,6 +214,42 @@ void func_00198EF0(void *a, C_00198B70 *obj, void *c)
     }
 }
 
+void C_00198B70::func_001994C0(C_00198B70 *other, S_00198B70_F4 *out0, S_00198B70_F4 *out1)
+{
+    if (other == this) {
+        if (out0 != 0) {
+            out0->x = 0;
+            out0->y = 0;
+            out0->z = 1.0f;
+        }
+        if (out1 != 0) {
+            out1->x = 0;
+            out1->y = 1.0f;
+            out1->z = 0;
+        }
+        return;
+    }
+    func_00197AA0();
+    if (out0 != 0) {
+        out0->x = fF0.m[2];
+        out0->y = fF0.m[6];
+        out0->z = fF0.m[10];
+    }
+    if (out1 != 0) {
+        out1->x = fF0.m[1];
+        out1->y = fF0.m[5];
+        out1->z = fF0.m[9];
+    }
+    if (other != 0) {
+        if (out0 != 0) {
+            *out0 = other->func_00198040(out0);
+        }
+        if (out1 != 0) {
+            *out1 = other->func_00198040(out1);
+        }
+    }
+}
+
 void C_00198B70::func_001995B0(float a, float b, float c)
 {
     fB0.m[3] = a;
