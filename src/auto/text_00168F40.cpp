@@ -31,24 +31,40 @@ struct S_00168F40_Index {
     int unk4;
 };
 
+/* slot row of C_00168F40::slots; kind 2 owns ptr */
+struct S_00168F40_Slot {
+    int kind;
+    void *ptr;
+};
+
 struct C_00168F40 {
     int f0;
     int f4;
-    char pad8[0x10];
+    char pad8[8];
+    int f10;
+    char pad14[4];
     S_00168F40_Entry *f18;
-    char pad1C[0x408];
+    int f1C;
+    void **f20;
+    char pad24[0x400];
     int f424;
     char pad428[4];
     int f42C;
     int f430;
-    char pad434[0x84];
+    int slotCount;
+    S_00168F40_Slot slots[16];
     S_00168F40_Index *f4B8;
+    void *f4BC;
+    void *f4C0;
+    void *f4C4;
+    void *f4C8;
     int func_00168300(int id);
     int lookup(int k)
     {
         return func_00168300(k);
     }
     int func_00168F40(int id);
+    void func_001691E0(void);
 };
 
 struct ParticleEmitter {
