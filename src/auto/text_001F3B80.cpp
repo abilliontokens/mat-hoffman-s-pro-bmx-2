@@ -107,6 +107,20 @@ void func_001F44D6(void) {
     func_001EB302(1);
 }
 
+#pragma optimize("sy", on)
+int func_001F465C(unsigned int *p)
+{
+    int i;
+
+    for (i = 0; i < 3; i++) {
+        if (p[i] != 0) {
+            return 0;
+        }
+    }
+    return 1;
+}
+#pragma optimize("", on)
+
 int func_001F46F0(...);
 #pragma optimize("y", on)
 void func_001F4848(int a0, int a1) { func_001F46F0(a0, a1, (int)&D_002AEDA4); }
