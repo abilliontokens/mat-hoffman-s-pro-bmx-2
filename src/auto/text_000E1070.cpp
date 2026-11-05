@@ -106,3 +106,14 @@ void C_000E1770::func_000E1810()
     }
     func_001BE3F0();
 }
+
+void C_000E1770::func_000E1C20()
+{
+    char dest[0x40];
+    char buf[4];
+
+    func_001ADCC0(buf, 3, (char *)&D_00277038, f29C);
+    func_001AC330(dest, D_002A8490->p2E8->p4->fA28, buf);
+    f298->func_001B17D0(dest);
+}
+
