@@ -29,6 +29,13 @@ struct C_000B9A80 {
 };
 extern int D_0027D5FC;
 
+void C_000B8AD0::func_000B8AD0(int a0, int a1)
+{
+    unk50 = a0;
+    unk54 = a1;
+    func_000B67C0();
+}
+
 void C_000B8C80::func_000B8C80(int a0) {
     unk9C = a0;
 }
