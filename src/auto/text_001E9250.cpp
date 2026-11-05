@@ -359,6 +359,31 @@ int func_001E9A58(S_001E9714_File *str, const char *format, ...) {
     return retval;
 }
 
+int func_001E9B0C(S_001E9_FILE *str, long offset, int whence)
+{
+    int *func_001ED075(void);
+    S_001E9_FILE *stream = str;
+
+    if (!(stream->flag & 0x83) ||
+        ((whence != 0) && (whence != 1) && (whence != 2))) {
+        *func_001ED075() = 0x16;
+        return -1;
+    }
+    stream->flag &= ~0x10;
+    if (whence == 1) {
+        offset += func_001E9BE4(stream);
+        whence = 0;
+    }
+    func_001E9DE9(stream);
+    if (stream->flag & 0x80) {
+        stream->flag &= ~(0x2 | 0x1);
+    } else if ((stream->flag & 0x1) && (stream->flag & 0x8) &&
+               !(stream->flag & 0x400)) {
+        stream->bufsiz = 0x200;
+    }
+    return func_001EE52F(stream->file, offset, whence) == -1 ? -1 : 0;
+}
+
 int func_001E9D46(S_001E9714_File *stream) {
     int func_001E9BE4(S_001E9714_File *);
     int result;
