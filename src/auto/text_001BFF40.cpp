@@ -295,7 +295,6 @@ struct C_001C04D0 {
     char pad174[0x180 - 0x174];
     int unk180;
     void func_001C01E0(int a);
-    void func_001C03F0(int a);
     void func_001C03F0(char *text);
     void func_001C04D0(int idx);
 };
