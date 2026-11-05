@@ -144,3 +144,8 @@ void C_0009DF90::func_0009DF90(float param_1)
   return;
 }
 
+int BmxSmokeParticleEmitter::func_0009E470(void) {
+    ((C_0016A1D0 *)this)->func_0016A330((char *)this + 0x6C);
+    return 1;
+}
+
