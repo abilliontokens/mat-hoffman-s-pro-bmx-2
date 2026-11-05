@@ -505,35 +505,4 @@ int C_00167DD0::func_00167ED0(void)
     }
     return f350 > 0;
 }
-struct Vec4_165EF0 { float x,y,z,w; };
-struct C_001648E0_Item {
- virtual void v0(); virtual void v1();
- virtual void v2(float, Vec4_165EF0 *);
- virtual void v3(float, Vec4_165EF0 *);
- int f4;
-};
-struct C_001670C0_Anim {
- char pad0[0x14]; C_001648E0_Item **f14, **f18;
- int f1C, f20, f24; char pad28[0x10]; float f38;
- int func_001628A0(float);
-};
-struct C_00165D00_Node {
- char pad0[0x170]; int f170;
- void func_00199300(Vec4_165EF0 *);
- void func_00199650(Vec4_165EF0 *);
-};
-struct C_00165D00_Elem { char pad0[0x34]; C_00165D00_Node *f34; char pad38[8]; };
-struct C_001670C0_Slot { void func_001A0C90(Vec4_165EF0); };
-struct C_001670C0 {
- int f0; void *f4; int f8; void *fC; int f10,f14;
- C_001670C0_Anim *f18; int f1C; char pad20[0x10];
- int f30; float f34,f38,f3C,f40,f44;
- char pad48[0x1A4]; C_00165D00_Elem *f1EC; int *f1F0;
- char pad1F4[0x14]; int f208,f20C; C_001670C0_Slot **f210; Vec4_165EF0 *f214;
- void func_001670C0(float, int, int *);
- void func_001664C0(float,int,int *);
- void func_00166830(float,int,int *);
-};
-void func_001641B0(void *, void *);
-void func_001640D0(void *, int, void *, void *);
-float func_00164220(float,float,float);
+
