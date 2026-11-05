@@ -85,6 +85,45 @@ struct C_0015E0F0 {
 };
 
 
+void C_0015DA60::func_0015D850(int count, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int flag)
+{
+    V4_15D850 d = v4_15D850(50.0f, 50.0f, 50.0f);
+    int i;
+
+    unk54 = d;
+    unk40 = d;
+    func_0015D250();
+    unk78 = count;
+    unk6C = (C_00192A50 **)func_001E8A44(count * 4);
+    unk50 = (V4_15D850 *)func_001E8A44(count * 16);
+    unk64 = (V4_15D850 *)func_001E8A44(count * 16);
+    unk3C = (V4_15D850 *)func_001E8A44(count * 16);
+    unk38 = func_001E8A44(count * 4);
+    if (flag != 0) {
+        unk74 = (C_0017D5A0 **)func_001E8A44(count * 4);
+    } else {
+        unk70 = (C_001923F0 **)func_001E8A44(count * 4);
+    }
+    for (i = 0; i < count; i++) {
+        void *m = func_001E8A44(0xa0);
+        unk6C[i] = m ? ((C_00192A50 *)m)->func_00192900(1) : 0;
+        if (flag != 0) {
+            void *m2 = func_001E8A44(0x8b4);
+            unk74[i] = m2 ? ((C_0017D5A0 *)m2)->func_0017D5A0(a1, a2, a3, a4, a5, a6, a7) : 0;
+            unk6C[i]->func_00192A90(unk74[i]);
+            unk6C[i]->func_00192AC0(unk74[i]);
+        } else {
+            void *m3 = func_001E8A44(0x44);
+            unk70[i] = m3 ? ((C_001923F0 *)m3)->func_001923F0(0x400) : 0;
+            unk6C[i]->func_00192A90(unk70[i]);
+            unk6C[i]->func_00192AC0(unk70[i]);
+        }
+        unk6C[i]->unk3C = i;
+        unk64[i] = d;
+        unk50[i] = unk64[i];
+    }
+}
+
 void C_0015DA60::func_0015DA60(int a, int b, int c)
 {
     unk6C[a]->func_00192A50(unk6C[b], c);
