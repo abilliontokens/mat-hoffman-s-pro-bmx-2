@@ -39,14 +39,18 @@ struct C_002A8490 {
 };
 extern C_002A8490 *D_002A8490;
 
-/* LevelObjectivesMenu */
-struct C_0006D590 {
+struct C_0006D590_V {
     virtual void v0();
     virtual void v1();
     virtual void v2();
     virtual void v3();
     virtual void v4();
-    char pad4[0x1C];
+};
+
+/* LevelObjectivesMenu */
+struct C_0006D590 {
+    void *vtbl;
+    char pad4[0x20];
     u32 unk24[8];
     u32 unk44[8];
     int unk64;
