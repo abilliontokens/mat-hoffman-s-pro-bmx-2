@@ -22,6 +22,7 @@ extern I_002EFDB8 *D_002EFDB8;
 
 struct C_001D4300 {
     int func_001D4590(char *out, const char *title, int a, int size);
+    int func_001D4440(char *out, const char *title, int a, int size);
 };
 
 struct C_0005C020 {
