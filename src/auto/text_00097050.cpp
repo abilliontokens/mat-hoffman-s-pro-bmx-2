@@ -62,7 +62,9 @@ template <class T> inline T min_ref(const T &a, const T &b)
 
 inline void str_copy(char *dst, const char *src, int size)
 {
-    int n = min_ref((int)strlen(src), size - 1);
+    int len = strlen(src);
+    int max = size - 1;
+    const int &n = min_ref(max, len);
     func_001E8920(dst, src, n);
     dst[n] = 0;
 }
