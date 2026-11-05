@@ -36,3 +36,16 @@ struct C_000EA910 {
     C_000EA910 *func_000EA910(int a);
     void func_000EA9B0();
 };
+
+void C_000EA910::func_000EA9B0()
+{
+    int i;
+    vtbl = &D_00281A74;
+    for (i = 0; i < 12; i++) {
+        if (arr2D0[i] != 0) {
+            arr2D0[i]->Destroy(1);
+            arr2D0[i] = 0;
+        }
+    }
+    func_001BE3F0();
+}
