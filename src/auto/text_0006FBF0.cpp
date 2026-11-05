@@ -29,6 +29,30 @@ struct C_000707C0 {
 };
 
 
+void C_00070360::func_00070360(void) {
+    int i;
+    unkC8->func_001D5AD0();
+    unkCC->func_001D5AD0();
+    for (i = 0; i < 5; i++) {
+        unk158[i]->func_001D5AD0();
+        unk16C[i]->func_001D5AD0();
+    }
+    if (!unk104) {
+        for (i = 0; i < 2; i++) unk150[i]->func_001D5AD0();
+    }
+    if (unkC0) unk128->func_001D5AD0();
+    else unk140->func_001D5AD0();
+    if (unk104) {
+        if (unkC4) unk12C->func_001D5AD0();
+        else unk14C->func_001D5AD0();
+    } else {
+        unk144->func_001D5AD0();
+        unk148->func_001D5AD0();
+    }
+    if (unk6C && !unk104) unkD8->func_001D5AD0();
+    if (unkF0) unkF0->func_001D5AD0();
+}
+
 void C_000707C0::func_000707C0(int a0) {
     unkFC = a0;
 }
