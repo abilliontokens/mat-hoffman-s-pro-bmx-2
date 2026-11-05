@@ -92,8 +92,39 @@ struct C_000A3C90 : C_001B9D60 {
     int func_000A3C90(int a);
 };
 
+struct C_001BC640 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    int f28;
+    C_001BC640 *func_001BC640(void *param);
+};
+struct C_001BC670 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    int f28;
+    void func_001D3F50();
+    void func_001BC670(void *a1, void *a2);
+};
+struct S_000A2F20_Item {
+    int unk0;
+    void *unk4;
+    char pad8[0x10];
+    char name[1];
+};
+struct S_000A2F20_List {
+    char pad0[0x24];
+    int count;
+    S_000A2F20_Item **items;
+};
+extern char D_0027B154[], D_0027B144[], D_0027B13C[], D_0027B12C[], D_0027B11C[];
 struct C_000A2ED0 {
-    char pad0[0x4c0];
+    char pad0[0x28];
+    C_00169710 *unk28;
+    char pad2C[0x3b4 - 0x2c];
+    S_000A2F20_List *unk3B4;
+    char pad3B8[0x4c0 - 0x3b8];
     void *unk4C0;
     char pad4C4[0x568 - 0x4c4];
     int unk568;
