@@ -87,6 +87,20 @@ struct S_001DD779_Out {
     unsigned short fC[16];
 };
 
+/* cached sector table: header words, then two 6-entry tables and six 32-char names */
+struct S_001DD8C5_Table {
+    u32 signature;
+    u32 id;
+    u32 index;
+    u32 pad;
+    u32 t1[6];
+    u32 t2[6];
+    unsigned short names[6][0x20];
+};
+
+extern S_001DD8C5_Table D_002AC840;
+extern u32 D_002ACA0C[];
+extern char D_00031073;
 extern S_001DD779_Header D_002ACA00;
 extern u32 D_002ACA04;
 extern u32 D_002ACA08;
@@ -182,6 +196,86 @@ int __stdcall func_001DD31D(void *a0) {
 }
 
 #pragma optimize("y", off)
+int __stdcall func_001DD3A1(void *h, u32 lo, u32 *hi, int method)
+{
+    struct NetworkOpenInfo {
+        __int64 creationTime;
+        __int64 lastAccessTime;
+        __int64 lastWriteTime;
+        __int64 changeTime;
+        __int64 allocationSize;
+        __int64 endOfFile;
+        u32 fileAttributes;
+    };
+    union Large {
+        __int64 q;
+        struct {
+            u32 lo;
+            long hi;
+        } s;
+    };
+    NetworkOpenInfo info;
+    u32 iosb[2];
+    Large pos;
+    Large off;
+    int status;
+
+    if (hi != 0) {
+        off.s.hi = *hi;
+        off.s.lo = lo;
+    } else {
+        off.q = (long)lo;
+    }
+    switch (method) {
+    case 0:
+        pos = off;
+        break;
+    default:
+        goto current;
+    case 1:
+    current:
+        status = _imp__NtQueryInformationFile(h, iosb, &pos, 8, 0xe);
+        if (status < 0) {
+        queryFailed:
+            func_001DD659(status);
+        fail:
+            return -1;
+        }
+        pos.q += off.q;
+        break;
+    case 2:
+        status = _imp__NtQueryInformationFile(h, iosb, &info, 0x38, 0x22);
+        if (status < 0) {
+            goto queryFailed;
+        }
+        pos.q = info.endOfFile + off.q;
+        break;
+    }
+    if (pos.q < 0) {
+        func_001DD62B(0x83);
+        goto fail;
+    }
+    if (hi == 0 && (pos.s.hi & 0x7fffffff) != 0) {
+        func_001DD62B(0x57);
+        goto fail;
+    }
+    status = _imp__NtSetInformationFile(h, iosb, &pos, 8, 0xe);
+    if (status >= 0) {
+        if (hi != 0) {
+            *hi = pos.s.hi;
+        }
+        if (pos.s.lo == 0xffffffff) {
+            func_001DD62B(0);
+        }
+        return pos.s.lo;
+    }
+    func_001DD659(status);
+    pos.s.lo = -1;
+    if (hi != 0) {
+        *hi = pos.s.lo;
+    }
+    return pos.s.lo;
+}
 int __stdcall func_001DD563(void *a0) {
     u32 iosb[2];
     int result = _imp__NtFlushBuffersFile(a0, iosb);
