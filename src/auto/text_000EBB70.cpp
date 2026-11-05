@@ -13,12 +13,39 @@ struct C_001D6600 {
     void func_001D6600();
 };
 
+struct C_000EBB_Elem {
+    char pad0[0x38];
+    int f38;
+    char pad3C[0x58 - 0x3C];
+    unsigned char b58;
+    void func_001D5AD0();
+};
+
 struct S_002B91AC {
-    char pad0[0x34];
+    char pad0[0x24];
+    C_000EBB_Elem *unk24;
+    C_000EBB_Elem *unk28;
+    C_000EBB_Elem *unk2C;
+    C_000EBB_Elem *unk30;
     C_001D6600 *unk34;
     C_001D6600 *unk38;
     C_001D6600 *unk3C;
+    char pad40[0x50 - 0x40];
+    C_000EBB_Elem *unk50;
+    char pad54[0x68 - 0x54];
+    C_000EBB_Elem *unk68;
+    char pad6C[0x88 - 0x6C];
+    C_000EBB_Elem *unk88;
+    C_000EBB_Elem *unk8C;
+    C_000EBB_Elem *unk90;
+    C_000EBB_Elem *unk94;
 };
+
+struct S_000EBB_Svc { int func_000301D0(); };
+struct S_000EBB_Owner { char pad0[0x74]; S_000EBB_Svc *f74; };
+struct S_000EBB_Mgr { char pad0[0x25C]; S_000EBB_Owner *f25C; };
+struct S_000EBB_Page { int f0; int pad4[11]; int f30; };
+struct S_000EBB_Sel { int f0; S_000EBB_Page *f4; };
 extern S_002B91AC *D_002B91AC;
 
 struct C_000EB_Widget {
