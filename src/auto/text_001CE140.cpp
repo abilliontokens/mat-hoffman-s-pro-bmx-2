@@ -1,8 +1,10 @@
 /* 11 functions from 0x001CE140 to 0x001CF110, found by Ghidra. */
 #include "common.h"
 #include <string.h>
+#include <xmmintrin.h>
 
 extern int D_0028EF54;
+extern float D_00275544;
 
 void func_001E891B(void *p);
 int __stdcall func_001DDC28(int a);
