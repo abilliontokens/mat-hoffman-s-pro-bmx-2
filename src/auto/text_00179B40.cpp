@@ -113,3 +113,20 @@ void C_0017A6F0::func_0017A6F0(int a0) {
 void C_0017A850::func_0017A850(void) {
     unkF4 = 0;
 }
+
+void C_0017A860::func_0017A860(int value)
+{
+    int *func_001E8AA5(...);
+    int *func_001E83E8(...);
+
+    if (f140 == 0) {
+        f140 = func_001E8AA5(f13C * 4 + 4);
+        f138 = f13C + 1;
+    } else if (f138 < f13C + 1) {
+        f140 = func_001E83E8(f140, f13C * 4 + 4);
+        f138 = f13C + 1;
+    }
+    f140[f13C] = value;
+    f13C++;
+}
+
