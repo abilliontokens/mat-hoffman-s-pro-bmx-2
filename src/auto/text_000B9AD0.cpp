@@ -55,6 +55,13 @@ struct C_000BA2D0 {
 };
 
 
+BmxUIMain *BmxUIMain::func_000B9D30(int a)
+{
+    func_000BA360(a);
+    vtbl = (void *)&D_0027D6AC;
+    return this;
+}
+
 void func_000BA290(void) {
     int func_000BC7B0(...);
     func_000BC7B0();
