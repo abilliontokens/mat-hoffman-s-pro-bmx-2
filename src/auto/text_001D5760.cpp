@@ -148,6 +148,19 @@ struct C_001D61E0 {
     int func_001D61E0(void);
 };
 
+struct C_001D5FA0Obj {
+    void *vtbl;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    int f14;
+    char pad18[0x4c];
+    int f64;
+    char pad68[8];
+    void __stdcall func_001D5660(int a, int b);
+};
+
 struct C_001D6190 {
     void func_001D5FA0(int a, int b, int c, int d);
     void func_001D6190(int a, const char *s, int b);
