@@ -86,6 +86,12 @@ struct S_00156820_Base {
     void func_001BBAA0(void *param_1, int *param_2);
 };
 
+struct C_001D0C30 {
+    virtual void dummy0();
+    virtual int dummy1();
+    C_001D0C30 *func_001D0C30(void);
+};
+
 void *func_001E8A44(int size);
 
 struct C_00156820 {
