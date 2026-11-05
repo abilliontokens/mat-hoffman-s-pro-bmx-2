@@ -24,6 +24,7 @@ struct S_000C2810_Entry {
     char pad638[4];
     int f63C;
     int f640;
+    int f644;
 };
 
 struct S_000C2810_Sub {
