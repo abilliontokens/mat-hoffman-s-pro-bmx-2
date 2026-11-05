@@ -22,6 +22,21 @@ struct C_001877F0 {
 extern int D_0027AEE4;
 extern int D_00289C80;
 extern int D_00289C70;
+extern int D_00289D30;
+extern int D_00289D14;
+void func_001867D0();
+
+struct C_00187950Elem {
+    virtual void func_00187950(void *a);
+    char pad4[0x164];
+};
+
+struct C_00187950 {
+    char pad0[0x24];
+    int f24;
+    C_00187950Elem *f28;
+    int func_00187950(C_001877F0Param *param);
+};
 
 void func_00186D60();
 void *func_001E8A44(int size);
