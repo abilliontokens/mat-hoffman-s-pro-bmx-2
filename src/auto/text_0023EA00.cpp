@@ -248,15 +248,16 @@ void C_0023EA00::func_0023EA00(void)
 
 int __stdcall func_0023EB1F(S_0023EB1F_Obj *obj, S_0023EB1F_Req *req)
 {
-    unsigned int total = req->f4 / (obj->f10 << 1);
-    char *buf = req->f0;
-    unsigned int done = 0;
     unsigned int count = 0;
+    unsigned int total = req->f4 / (obj->f10 << 1);
     int hr = 0;
+    unsigned int done = 0;
+    char *buf = req->f0;
 
     while (done < total) {
         unsigned int chunk;
         unsigned int got;
+        char *dst;
 
         if (obj->fB0 != 0) {
             int r;
@@ -274,11 +275,12 @@ int __stdcall func_0023EB1F(S_0023EB1F_Obj *obj, S_0023EB1F_Req *req)
                 break;
             }
         }
+        dst = buf + obj->f10 * done * 2;
         chunk = total - done;
         if (chunk > 0x800) {
             chunk = 0x800;
         }
-        got = func_0023FC26(obj->f30, buf + obj->f10 * done * 2, 0, chunk);
+        got = func_0023FC26(obj->f30, dst, 0, chunk);
         if (got < chunk) {
             obj->fB0 = 1;
         }
