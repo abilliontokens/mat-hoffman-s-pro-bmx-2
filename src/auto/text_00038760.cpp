@@ -11,6 +11,12 @@ struct S_00038760_Arr {
             return items[i];
         return 0;
     }
+    void *atv(int i) {
+        int n = *(volatile int *)&count;
+        if (n > 0 && items != 0 && i < n)
+            return items[i];
+        return 0;
+    }
 };
 
 struct S_00038760_Vec {
@@ -47,6 +53,37 @@ struct C_00038760 {
     int func_00038A70(void *param_1, void **param_2);
     int func_00038760(float x, float y, float z, int unused, int *out);
 };
+
+int C_00038760::func_00038760(float x, float y, float z, int unused, int *out)
+{
+    int n = arr.count;
+    int i;
+    int j;
+
+    for (i = 0; i < n; i++) {
+        S_00038760_Entry *e = (S_00038760_Entry *)arr.at(i);
+        if (e->type == 1) {
+            S_00038760_Vec *v = &((S_00038760_Data *)e->data)->pos;
+            if (x == v->x && y == v->y && z == v->z) {
+                for (j = 0; j < n; j++) {
+                    S_00038760_Entry *e2 = (S_00038760_Entry *)arr.at(j);
+                    if (e2->type == 2) {
+                        if (e2->owner->fE8 == e->data) {
+                            *out = j;
+                            return 1;
+                        }
+                        if (e2->owner->fEC == e->data) {
+                            *out = j;
+                            return 1;
+                        }
+                    }
+                }
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
 
 int *C_00038760::func_000389C0(int param_1)
 {
