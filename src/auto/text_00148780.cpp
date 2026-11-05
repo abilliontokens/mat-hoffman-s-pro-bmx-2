@@ -398,6 +398,26 @@ void *C_00149280::func_00149280(int a0)
   return this;
 }
 
+void C_001492A0::func_001492A0()
+{
+    AnimSrc_001487D0 *owner = unk8;
+
+    owner->func_001467A0();
+    Node_001492A0 *n = unk10;
+    while (n != 0) {
+        char *p = n->unk4;
+        if (n->unk8)
+            n->unk8->f1();
+        if (n->unkC)
+            n->unkC->f1();
+        if (n->unk10)
+            n->unk10->f1();
+        (*(VObj_00148780 **)(p + 0x10))->f1();
+        n = n->next;
+    }
+    owner->func_00146DC0();
+}
+
 void C_00149300::func_00149300(void)
 {
   int* in_ECX = (int*)this;
