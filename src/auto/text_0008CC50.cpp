@@ -70,3 +70,44 @@ void C_0008D550::func_0008D550(void)
     unk5C = 1;
     unk60 = 0;
 }
+
+void C_0008D910::func_0008D910()
+{
+    int i;
+    D_8D910 *p;
+    vtbl = (void *)&D_0027915C;
+    for (i = 0; i < 4; i++) {
+        p = unk24[i];
+        if (p) { p->func_001D6410(); func_001E891B(p); unk24[i] = 0; }
+    }
+    if (unk164) { delete unk164; unk164 = 0; }
+    if (unk168) { delete unk168; unk168 = 0; }
+    if (unk170) { delete unk170; unk170 = 0; }
+    if (unk174) { delete unk174; unk174 = 0; }
+    p = unk16C;
+    if (p) { p->func_001D6410(); func_001E891B(p); unk16C = 0; }
+    p = unk178;
+    if (p) { p->func_001D6410(); func_001E891B(p); unk178 = 0; }
+    if (unk188) { delete unk188; unk188 = 0; }
+    p = unk18C;
+    if (p) { p->func_001D6410(); func_001E891B(p); unk18C = 0; }
+    p = unk208;
+    if (p) { p->func_001D6410(); func_001E891B(p); unk208 = 0; }
+    p = unkC50;
+    if (p) { p->func_001D6410(); func_001E891B(p); unkC50 = 0; }
+    if (unkD10) { delete unkD10; unkD10 = 0; }
+    if (unkD14) { delete unkD14; unkD14 = 0; }
+    if (unk194) { delete unk194; unk194 = 0; }
+    if (unkD3C) { delete unkD3C; unkD3C = 0; }
+    if (unkD40) { delete unkD40; unkD40 = 0; }
+    if (unkD44) { delete unkD44; unkD44 = 0; }
+    if (unkD48) { delete unkD48; unkD48 = 0; }
+    p = unkD7C;
+    if (p) { p->func_001D6410(); func_001E891B(p); }
+    p = unkD80;
+    if (p) { p->func_001D6410(); func_001E891B(p); }
+    if (unkD84) { delete unkD84; unkD84 = 0; }
+    if (unkD88) { delete unkD88; unkD88 = 0; }
+    func_00157660();
+}
+
