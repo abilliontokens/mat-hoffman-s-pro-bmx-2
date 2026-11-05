@@ -1,6 +1,7 @@
 /* 31 functions from 0x0001E260 to 0x0001EFA0, found by Ghidra. */
 #include "common.h"
 #include <stdlib.h>
+#include <xmmintrin.h>
 #include "ghidra.h"
 struct C_0001E860 {
     void func_0001E860(void);
@@ -273,13 +274,11 @@ void *C_0001E930::func_0001E8A0()
         unk18 = n;
     } else {
         elem = unk24;
-        if (elem == 0) {
+        if (elem != 0) {
+            unk24 = (void **)*elem;
+        } else {
             elem = unk14;
-            if (elem == 0) {
-                if (func_0001E7B0() == 0) {
-                    return 0;
-                }
-            } else {
+            if (elem != 0) {
                 if (unkC == 0) {
                     unkC = elem;
                 } else {
@@ -288,11 +287,13 @@ void *C_0001E930::func_0001E8A0()
                 unk10 = unk14;
                 unk14 = (void **)*unk10;
                 *unk10 = 0;
+            } else {
+                if (func_0001E7B0() == 0) {
+                    return 0;
+                }
             }
             elem = (void **)((char *)unk10 + unk1C);
             unk18 = 1;
-        } else {
-            unk24 = (void **)*elem;
         }
     }
     if (elem != 0) {
