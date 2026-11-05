@@ -642,6 +642,33 @@ C_0012B5B0 *C_0012B5B0::func_0012B5B0(int param_1)
     return 0;
 }
 
+void CameraController::func_0012B5E0(int a)
+{
+    S_0012AB70Vec pos;
+    S_0012AB70Vec up;
+    S_0012AB70Vec tgt;
+    S_0012AB70Vec out;
+    int flag;
+    int roll;
+    float fov;
+
+    *(float *)&pos.v2 = 0.0f; *(float *)&pos.v1 = 0.0f; *(float *)&pos.v0 = 0.0f; *(float *)&pos.v3 = 1.0f;
+    *(float *)&up.v2 = 0.0f; *(float *)&up.v1 = 0.0f; *(float *)&up.v0 = 0.0f; *(float *)&up.v3 = 1.0f;
+    *(float *)&tgt.v2 = 0.0f; *(float *)&tgt.v1 = 0.0f; *(float *)&tgt.v0 = 0.0f; *(float *)&tgt.v3 = 1.0f;
+    *(float *)&out.v2 = 0.0f; *(float *)&out.v1 = 0.0f; *(float *)&out.v0 = 0.0f; *(float *)&out.v3 = 1.0f;
+    flag = 1;
+    ((S_0012B5E0_Cam *)f30)->func_0012AC20(&pos, &tgt, &up, &roll, &fov);
+    ((S_0012B5E0_Ctl **)f2c)[f28]->v3(a, &flag, &pos, &out, &fov, &tgt, &up, &roll);
+    if (flag) {
+        ((S_0012B5E0_Cam *)f30)->func_0012AB70(&pos, 0, &up, &roll, &fov);
+        ((S_0012B5E0_Cam *)f30)->v30(out);
+    } else {
+        ((S_0012B5E0_Cam *)f30)->func_0012AB70(&pos, &tgt, &up, &roll, &fov);
+    }
+    ((S_0012B5E0_Cam *)f30)->v12(a);
+    func_00157A00(a);
+}
+
 undefined4 C_0012B750::func_0012B750(undefined4 param_1)
 {
   int func_001E83E8(...);
