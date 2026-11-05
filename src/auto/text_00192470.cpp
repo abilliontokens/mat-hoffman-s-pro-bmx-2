@@ -335,6 +335,10 @@ struct C_00179B40 {
 };
 int func_0017C060(float *pts, void *a, void *b);
 
+struct S_00192CC0_Quad {
+    S_001D3F50 v[4];
+};
+
 int *C_00192470::func_00192470(int *param_1)
 {
     void *func_001E83E8(void *, int);
