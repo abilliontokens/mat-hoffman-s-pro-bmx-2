@@ -32,6 +32,53 @@ struct C_0018AEF0 {
     void *func_0018AEF0(unsigned int flags);
 };
 
+void *C_0018AEF0::func_0018AEF0(unsigned int flags)
+{
+    if (flags & 2) {
+        int *base = (int *)this - 1;
+        int i = *base;
+        C_0018AEF0 *p = this + i;
+        while (--i >= 0) {
+            S_LightTemp_AEF0 *t;
+            p--;
+            t = p->f8;
+            p->vtbl = &D_00289830;
+            if (t != 0) {
+                t->vtbl = &D_002897FC;
+                if (t->f18 != 0) {
+                    func_001E891B(t->f18);
+                    t->f18 = 0;
+                }
+                if (t->f1c != 0) {
+                    func_001E891B(t->f1c);
+                    t->f1c = 0;
+                }
+                if (t->f20 != 0) {
+                    func_001E891B(t->f20);
+                    t->f20 = 0;
+                }
+                func_001E891B(t);
+                p->f8 = 0;
+            }
+        }
+        if (flags & 1) {
+            func_001E891B(base);
+        }
+        return base;
+    }
+    S_LightTemp_AEF0 *t = f8;
+    vtbl = &D_00289830;
+    if (t != 0) {
+        t->func_00186210();
+        func_001E891B(t);
+        f8 = 0;
+    }
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void *C_0018AFD0::func_0018AFD0(unsigned int flags)
 {
     vtbl = (void *)&D_00289ABC;
