@@ -3,7 +3,10 @@
 #include "ghidra.h"
 #include <string.h>
 extern char D_002869B8[];
-extern char D_0027C494[];
+extern char D_0027C494[6];
+struct S_00182980 {
+    float v[4];
+};
 char *func_001E95A4(char *s, const char *delim);
 int func_001E91F4(const char *s);
 struct C_00182810 {
