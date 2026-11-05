@@ -160,3 +160,12 @@ void func_001EB138(int i, char *s) {
     }
 }
 
+void _func_001EB18A(int i, char *s) {
+    int func_001EB302(...);
+    if (i < 20) {
+        func_001EB302(i + 16);
+    } else {
+        __imp__RtlLeaveCriticalSection(s + 0x20);
+    }
+}
+
