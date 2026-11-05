@@ -52,10 +52,15 @@ struct C_001033D0 {
     char pad3C4[8];
     int unk3CC;
     int unk3D0;
-    float unk3D4;
-    float unk3D8;
-    float unk3DC;
-    float unk3E0;
+    union {
+        struct {
+            float unk3D4;
+            float unk3D8;
+            float unk3DC;
+            float unk3E0;
+        };
+        S_00103_Vec4 vec3D4;
+    };
     char pad3E4[4];
     int unk3E8;
     int unk3EC;
