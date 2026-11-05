@@ -258,6 +258,52 @@ S_001EF734 *S_001EF734::func_001EFD7A(void *out, char *s)
     return (S_001EF734 *)out;
 }
 
+void *_func_001EFE9D(S_001EF734 *o)
+{
+    S_001EF734 local;
+    S_001EF734 tmp;
+    char c = *D_002F6A28;
+
+    local.value = 0;
+    *(u16 *)&local.flags &= 0xfe00;
+    if (c != 0) {
+        switch (c) {
+        case '0':
+        case '1':
+            local.func_001EF9B2(D_00295C50);
+            break;
+        case '2':
+        case '3':
+            local.func_001EF9B2(D_00295C48);
+            break;
+        case '4':
+            break;
+        case '5':
+            local.func_001EF9B2(D_00295C40);
+            break;
+        case '6':
+        case '7':
+            local.func_001EF9B2(D_00295C38);
+            break;
+        default:
+            o->func_001EF170(1);
+            return o;
+        }
+        switch (*D_002F6A28++) {
+        case '1':
+        case '3':
+        case '5':
+        case '7':
+            local.func_001EEF4F((int)_func_001EFD19(&tmp, D_00295C2C, &local));
+            break;
+        }
+        o->func_001EEEE6(&local);
+    } else {
+        o->func_001EF170(2);
+    }
+    return o;
+}
+
 void *_func_001EFF6E(S_001EF734 *o)
 {
     S_001EF734 local;
