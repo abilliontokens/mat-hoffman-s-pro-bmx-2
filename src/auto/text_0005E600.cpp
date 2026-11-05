@@ -26,12 +26,8 @@ struct C_0005ECA0 {
     int unk24[8];
     int unk44[8];
     int unk64[8];
-    int unk84;
-    int unk88;
-    int unk8C;
-    int unk90;
-    int unk94;
-    int unk98;
+    int unk84[4];
+    int unk94[2];
     char pad9C[0xAC - 0x9C];
     int unkAC[5];
     int unkC0[5];
