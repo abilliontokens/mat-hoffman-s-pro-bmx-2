@@ -48,6 +48,8 @@ struct C_001AE3E0_Entry {
     C_001ADFD0_Virt *f10;
 };
 
+struct C_001AE3E0;
+
 struct C_001AE3E0_Sub {
     void *vtbl;
     C_001AE3E0_Entry *f4;
@@ -55,6 +57,7 @@ struct C_001AE3E0_Sub {
     void func_001D5480(void);
     void func_001D5490(void);
     void func_001D54B0(int a);
+    void Attach(C_001AE3E0 *owner, int a);
     void Init(void)
     {
         func_001D5480();
