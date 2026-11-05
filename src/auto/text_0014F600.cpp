@@ -1,5 +1,10 @@
 /* 30 functions from 0x0014F600 to 0x00150480, found by Ghidra. */
 #include "common.h"
+struct C_00150350 {
+    int unk0;
+    void func_00150350(void);
+};
+
 
 void func_0014FE50(void) {
     int func_001E9760(...);
@@ -9,5 +14,12 @@ void func_0014FE50(void) {
 void func_0014FE80(void) {
     int func_001E9A0C(...);
     func_001E9A0C();
+}
+
+void C_00150350::func_00150350(void) {
+    extern int D_00286AE8;
+    int func_0012B540(...);
+    unk0 = (int)&D_00286AE8;
+    func_0012B540();
 }
 
