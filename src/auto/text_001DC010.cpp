@@ -154,3 +154,37 @@ u32 func_001DC974(void)
     return *_imp__KeTickCount;
 }
 
+#pragma intrinsic(memcpy)
+#pragma intrinsic(__readfsdword)
+#pragma optimize("sy", on)
+int __stdcall func_001DCA56(int *outType, void *outData)
+{
+    S_LaunchDataPage *page = *_imp__LaunchDataPage;
+    int type;
+
+    if (page != 0) {
+        type = page->launchType;
+        if (type == 2 || type == 3 || page->titleId == D_00010118->titleId) {
+            *outType = type;
+            memcpy(outData, (char *)*_imp__LaunchDataPage + 0x400, 0xC00);
+            page = *_imp__LaunchDataPage;
+            *_imp__LaunchDataPage = 0;
+            _imp__MmFreeContiguousMemory(page);
+            return 0;
+        }
+    }
+    return 0x490;
+}
+#pragma optimize("sy", on)
+u32 __stdcall func_001DCABA(int a, int b, int c, int d, int e)
+{
+    long status = func_001DC97C(a, b, c, d, e);
+
+    if (status >= 0) {
+        S_Prcb250 *p = *(S_Prcb250 **)(__readfsdword(0x20) + 0x250);
+        if (p != 0)
+            p->fn14(2, 0);
+        status = _imp__HalReturnToFirmware(2);
+    }
+    return _imp__RtlNtStatusToDosError(status);
+}
