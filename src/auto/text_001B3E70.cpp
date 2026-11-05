@@ -40,6 +40,13 @@ struct C_001B4AF0 {
     C_001B4AF0 *func_001B4AF0(void);
 };
 
+static inline void set_name(C_001B4AF0 *&self, int limit)
+{
+    int count = limit > (int)strlen("none") ? (int)strlen("none") : limit;
+    func_001E8920(self->f4, (const char *)&D_002764F0, count);
+    self->f4[count] = 0;
+}
+
 static inline void copy_name(C_001B4AF0 *&self, const int &limit, int &count)
 {
     count = limit > strlen("none") ? strlen("none") : limit;
@@ -216,18 +223,19 @@ char *C_001B4A70::func_001B4A70(char *delims) {
 }
 
 C_001B4AF0 *C_001B4AF0::func_001B4AF0(void) {
-    int limit;
+    C_001B4AF0 * volatile self = this;
+    volatile int limit;
     int count;
 
-    vtbl = (void *)&D_0028CA64;
+    self->vtbl = (void *)&D_0028CA64;
     limit = sizeof(f4) - 1;
-    count = strlen("none") > limit ? limit : strlen("none");
-    func_001E8920(f4, (const char *)&D_002764F0, count);
-    f4[count] = 0;
-    f108 = 0;
-    f10C = 1;
-    f110 = 1;
-    return this;
+    count = limit > strlen("none") ? strlen("none") : limit;
+    func_001E8920(self->f4, (const char *)&D_002764F0, count);
+    self->f4[count] = 0;
+    self->f108 = 0;
+    self->f10C = 1;
+    self->f110 = 1;
+    return self;
 }
 
 void C_001B4B70::func_001B4B70(void) {
