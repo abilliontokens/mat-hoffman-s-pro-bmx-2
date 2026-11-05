@@ -117,13 +117,13 @@ struct C_Cache120 {
 struct C_0007EB20 {
     void *vtbl;
     char pad4[0xF8];
-    int fFC;
+    C_5E840 *fFC;
     char pad100[0x20];
     C_Cache120 *f120;
     char pad124[0x90];
     int f1B4;
     int f1B8;
-    int f1BC;
+    C_Node *f1BC;
     undefined4 func_0007EB20(void);
     void func_00075750(void);
     void func_00075170(void);
@@ -159,15 +159,15 @@ undefined4 C_0007EB00::func_0007EB00(byte param_1)
 
 undefined4 C_0007EB20::func_0007EB20(void)
 {
-    C_12B2B0 *vb;
-    C_Rect24 r;
-    C_Rect24 out;
-
     if ((D_002B9068 & 1) == 0) {
         D_002B9068 |= 1;
         D_002B9064 = D_002A7CB8->func_00026500((int)&D_00278AF0, 0);
     }
     if (D_002A8490->f274 >= D_002A8490->f270 - 1) {
+        C_12B2B0 *vb;
+        C_Rect24 r;
+        C_Rect24 out;
+
         D_002EFDB8->v8();
         D_002EFDB8->v7(1);
         vb = (C_12B2B0 *)D_002EFDB8->f4;
