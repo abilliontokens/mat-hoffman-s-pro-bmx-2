@@ -1,6 +1,7 @@
 /* 10 functions from 0x00133D90 to 0x00134A10, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <math.h>
 #include <xmmintrin.h>
 
 extern float D_00275544;
