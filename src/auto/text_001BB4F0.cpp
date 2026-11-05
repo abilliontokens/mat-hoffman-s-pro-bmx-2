@@ -83,6 +83,31 @@ struct V4_001BC040 {
     }
 };
 
+struct C_001BC040;
+
+struct Base_001BC040 {
+    char pad0[0x60];
+    C_001BC040 *f60;
+    char pad64[4];
+    int f68;
+    char pad6C[0x34];
+    void *fA0;
+    void func_00129920(int a);
+    void func_00133570(int a);
+};
+
+struct ObjA_001BC040 : Base_001BC040 {
+    ObjA_001BC040 *func_001A4A50(int a);
+    void func_001A57E0(V4_001BC040 v, float e, int z);
+    void func_001A52C0(void);
+};
+
+struct ObjB_001BC040 : Base_001BC040 {
+    ObjB_001BC040 *func_00129840(int a);
+    void func_00129930(V4_001BC040 a, V4_001BC040 b);
+    void func_00129E10(void);
+};
+
 struct C_001BB5F0 {
     void *vtbl;
     void func_00157660();
