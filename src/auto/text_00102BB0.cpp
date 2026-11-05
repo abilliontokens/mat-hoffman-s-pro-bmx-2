@@ -47,9 +47,9 @@ struct C_001033D0 {
     char pad3C4[8];
     int unk3CC;
     int unk3D0;
-    int unk3D4;
-    int unk3D8;
-    int unk3DC;
+    float unk3D4;
+    float unk3D8;
+    float unk3DC;
     float unk3E0;
     char pad3E4[4];
     int unk3E8;
