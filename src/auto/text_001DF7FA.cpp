@@ -33,6 +33,9 @@ struct S_HeapBlock {
 };
 
 extern "C" long (__stdcall *__imp__NtAllocateVirtualMemory)(void *baseAddress, unsigned int zeroBits, unsigned int *size, unsigned int allocType, unsigned int protect);
+extern "C" long (__stdcall *__imp__NtFreeVirtualMemory)(void **baseAddress, unsigned int *size, unsigned int freeType);
+unsigned char *__stdcall func_001DF7FA(S_HeapRoot *root, S_HeapBlock *blk, unsigned int *size, int a3);
+unsigned char *__stdcall func_001DF985(S_HeapRoot *root, unsigned char *entry, unsigned int *size, int a3);
 void __stdcall func_001DF767(S_HeapBlock *blk, unsigned int addr, unsigned int size);
 void __stdcall func_001DFC2A(S_HeapRoot *root, unsigned char *blk, int granules);
 
