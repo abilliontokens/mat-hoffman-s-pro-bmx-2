@@ -1,6 +1,39 @@
 /* 14 functions from 0x000B21B0 to 0x000B2ED0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+extern char D_002764F0[];
+extern char D_00276310[];
+extern char D_0027CEF0[];
+extern char D_0027D0CC[];
+extern char D_002769A8[];
+extern char D_0027D0C0[];
+extern char D_0027D0AC[];
+extern char D_002764EC[];
+extern char D_0027D09C[];
+extern char D_0027D090[];
+extern char D_0027D088[];
+extern char D_0027D078[];
+extern char D_0027D06C[];
+extern char D_002764D8[];
+extern char D_0027D060[];
+extern char D_0027D050[];
+extern char D_0027D044[];
+extern char D_0027D030[];
+extern char D_0027D020[];
+extern char D_0027D008[];
+struct S_000B21B0_Stream {
+ void func_00168BE0(const char *, const char *, char *, int);
+ void func_00168C20(const char *, int, void *);
+ void func_00168C50(const char *, float, void *);
+};
+struct C_000B21B0 {
+ char data[0x458];
+ void func_001B4B80(S_000B21B0_Stream *);
+ void func_000B21B0(S_000B21B0_Stream *);
+};
+int func_001E9040(char *, char *);
+char *func_001E8920(char *, const char *, int);
+
 
 extern float D_002755E8;
 extern char D_0027D0D8[];
