@@ -2,6 +2,29 @@
 #include "common.h"
 
 extern int D_002768FC;
+struct S_0002F6C0_Global {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6();
+    virtual void v7(int); virtual void v8();
+};
+extern S_0002F6C0_Global *D_002EFDB8;
+struct S_0002F6C0_Obj {
+    virtual void v0(void *, int);
+    virtual void v1(void *);
+};
+struct S_0002F6C0_Camera {
+    void func_0012AC20(void *, void *, void *, void *, void *);
+};
+struct C_0002F6C0 {
+    char pad0[0x30];
+    S_0002F6C0_Camera *f30;
+    char pad34[0x20];
+    S_0002F6C0_Obj *f54;
+    char pad58[0x14];
+    int f6c;
+    void func_0012B7D0(void *, int, int, int, int);
+    void func_0002F6C0();
+};
 
 struct C_0002F190 {
     float m[12];
