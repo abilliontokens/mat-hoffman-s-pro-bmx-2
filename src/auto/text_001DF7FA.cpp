@@ -66,7 +66,7 @@ extern "C" long (__stdcall *__imp__NtFreeVirtualMemory)(void **baseAddress, unsi
 unsigned char *__stdcall func_001DF7FA(S_HeapRoot *root, S_HeapBlock *blk, unsigned int *size, int a3);
 unsigned char *__stdcall func_001DF985(S_HeapRoot *root, unsigned char *entry, unsigned int *size, char a3);
 extern char D_0000FF00;
-extern "C" unsigned long (__stdcall *__imp__RtlCompareMemoryUlong)(void *source, unsigned long length, unsigned long pattern);
+extern "C" unsigned long (__stdcall *_imp__RtlCompareMemoryUlong)(void *source, unsigned long length, unsigned long pattern);
 
 #pragma optimize("sy", on)
 #pragma optimize("y", off)
@@ -86,7 +86,7 @@ static __forceinline void FreeUnlink_001DF985(S_HeapRoot *root, S_HeapEntry *e)
         if ((e->flags & 2) && len > 4) {
             len -= 4;
         }
-        __imp__RtlCompareMemoryUlong((unsigned char *)e + 0x18, len, 0xfeeefeee);
+        _imp__RtlCompareMemoryUlong((unsigned char *)e + 0x18, len, 0xfeeefeee);
     }
 }
 #pragma optimize("sy", on)
