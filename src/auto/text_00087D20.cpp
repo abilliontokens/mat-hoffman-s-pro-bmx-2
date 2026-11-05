@@ -98,3 +98,33 @@ DirectionArrowOverlay *DirectionArrowOverlay::func_000888D0(int param_1)
     return this;
 }
 
+DirectionArrowOverlay *DirectionArrowOverlay::func_00088950(int a0, int a1)
+{
+    C_001D5760 *o;
+    C_001D5760 *p;
+
+    f24 = a0;
+    f44 = a1;
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
+    p = (C_001D5760 *)func_001E8A44(0x64);
+    p = p != 0 ? p->func_001D5760() : 0;
+    f28 = p;
+    p->func_001D5810(&D_002799B0, 0, 0, 0);
+    o = f28;
+    if (o->f34 != 0x40c00000) {
+        o->f34 = 0x40c00000;
+        o->b58 |= 1;
+    }
+    p = (C_001D5760 *)func_001E8A44(0x64);
+    p = p != 0 ? p->func_001D5760() : 0;
+    f2C = p;
+    p->func_001D5810(&D_002799A8, 0, 0, 0);
+    o = f2C;
+    if (o->f34 != 0x40c00000) {
+        o->f34 = 0x40c00000;
+        o->b58 |= 1;
+    }
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+    return this;
+}
+
