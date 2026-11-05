@@ -353,3 +353,59 @@ C_000683F0 *C_000683F0::func_000687B0(int a)
     return this;
 }
 
+void C_000688C0::func_000688C0()
+{
+    int i;
+    D_000688C0 *p;
+    vtbl = (void *)&D_0027887C;
+    for (i = 0; i < 2; i++) {
+        if (unk80[i]) {
+            delete unk80[i];
+            unk80[i] = 0;
+        }
+    }
+    for (i = 0; i < 4; i++) {
+        if (unkC8[i]) {
+            delete unkC8[i];
+            unkC8[i] = 0;
+        }
+        if (unkB8[i]) {
+            delete unkB8[i];
+            unkB8[i] = 0;
+        }
+        p = unkA8[i];
+        if (p) {
+            p->func_001D6410();
+            func_001E891B(p);
+            unkA8[i] = 0;
+        }
+    }
+    if (unk138) {
+        delete unk138;
+        unk138 = 0;
+    }
+    p = unk13C;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+        unk13C = 0;
+    }
+    for (i = 0; i < 5; i++) {
+        if (unkD8[i]) {
+            delete unkD8[i];
+            unkD8[i] = 0;
+        }
+        if (unkEC[i]) {
+            delete unkEC[i];
+            unkEC[i] = 0;
+        }
+    }
+    for (i = 0; i < 14; i++) {
+        if (unk100[i]) {
+            delete unk100[i];
+            unk100[i] = 0;
+        }
+    }
+    func_00157660();
+}
+
