@@ -140,6 +140,27 @@ int Game::func_00156880(void)
     return p != 0;
 }
 
+void Game::func_001568A0(int a, int b, int c, int d)
+{
+    f260 = a;
+    f264 = b;
+    f268 = c;
+    f26c = d;
+    f270 = 0;
+    if (f260 != 0) {
+        f270 = 1;
+    }
+    if (f264 != 0) {
+        f270++;
+    }
+    if (f268 != 0) {
+        f270++;
+    }
+    if (f26c != 0) {
+        f270++;
+    }
+}
+
 void C_00156E80::func_00156E80(void)
 {
   int func_001DC974(...);
@@ -150,6 +171,21 @@ void C_00156E80::func_00156E80(void)
   *(undefined4 *)(in_ECX + 0x23c) = uVar1;
   *(undefined4 *)(in_ECX + 0x238) = uVar1;
   return;
+}
+
+int Game::func_00156EA0(int v)
+{
+    f230bits.b3 = v;
+    f278->v18(v);
+    return 1;
+}
+
+int Game::func_00156F00(int a, int b)
+{
+    if (f230 & 8) {
+        return 1;
+    }
+    return f278->v22(a, b) != 0;
 }
 
 int Game::func_00156F30(int a, int b)
