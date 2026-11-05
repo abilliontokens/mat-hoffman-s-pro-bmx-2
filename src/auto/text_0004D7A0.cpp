@@ -158,6 +158,11 @@ struct C_0004DCA0 {
     void func_00030F90(int a);
 };
 
+struct C_0004D930 {
+    void func_00030F90(int a);
+    C_0004D930 *func_0004D930(int a);
+};
+
 struct C_0004DC70 {
     int unk0;
     void func_00033220(void);
