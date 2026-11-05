@@ -1,5 +1,15 @@
 /* 13 functions from 0x00179B40 to 0x0017AA90, found by Ghidra. */
 #include "common.h"
+struct C_0017B9E0 {
+    int unk0, unk4;
+    void func_001D3F50();
+    C_0017B9E0 *func_0017B9E0(int a0, int a1);
+};
+struct C_0017BB10 {
+    void func_0017BB10(C_0017B9E0 *p);
+    void func_0017BE40();
+};
+extern C_0017BB10 D_002EFD38;
 struct C_0017A6F0 {
     char pad0[0x134];
     int unk134;
