@@ -75,6 +75,27 @@ struct C_0013DFF0 {
     int func_0013C5D0(C_0013DFF0_elem *e, int a2);
 };
 
+int C_0013DFF0::func_0013DFF0(int a1, int a2) {
+    C_0013DFF0_elem *p = unkC;
+    C_0013DFF0_elem *end;
+    int count;
+
+    if (!p)
+        return 0;
+    count = unk10;
+    end = p + count - 1;
+    if (count > 1) {
+        do {
+            if (p->f4 && func_001EA426(p->f4, a1) == 0)
+                return func_0013C5D0(p, a2);
+            p++;
+        } while (p != end);
+    }
+    if (p->f4 && func_001EA426(p->f4, a1) == 0)
+        return func_0013C5D0(p, a2);
+    return 0;
+}
+
 void func_0013E680(void) {
     D_002EFDB8->func_001D5600();
     D_002A8490->func_00156E80();
