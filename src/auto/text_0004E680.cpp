@@ -28,6 +28,16 @@ struct C_0004EBA0 {
     void func_0004EBE0(void);
 };
 
+void *C_0004ED80::func_0004ED80(int flags) {
+    extern int D_00277644;
+    unk0 = (int)&D_00277644;
+    func_00033220();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 int func_0004F5D0(void) {
     int func_00031F30(...);
     func_00031F30();
