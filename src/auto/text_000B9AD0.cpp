@@ -137,6 +137,42 @@ void C_000BA2D0::func_000BA2D0()
     if (unk12C) func_001E891B(unk12C);
 }
 
+BmxUIMain *BmxUIMain::func_000BA360(int a)
+{
+    int i;
+    ((C_001BD870 *)this)->func_001BD870(a);
+    vtbl = (void *)&D_0027D75C;
+    f26C = 0;
+    f150 = 0;
+    f154 = 0;
+    f258 = 0;
+    f260 = 0;
+    f264 = 0;
+    f268 = 0;
+    f270 = 0;
+    f278 = 0;
+    f27C = 0;
+    f280 = 0;
+    f284 = 0;
+    f288 = 0;
+    f28C = 0;
+    f290 = 0;
+    f294 = 0;
+    f140 = 0;
+    f298 = 0;
+    f29C = 0;
+    f2A0 = 0;
+    for (i = 0; i < 8; i++) {
+        f2B0[i] = 0;
+        f2D0[i] = 0;
+    }
+    f2A4 = 0;
+    f2A8 = 0;
+    f2AC = 0;
+    D_002F07B8->func_001C3D60(0);
+    return this;
+}
+
 void __stdcall func_000BA430(int a0, int a1, int a2, int a3) {
 }
 
