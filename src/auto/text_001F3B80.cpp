@@ -122,6 +122,14 @@ void func_001F4874(int d, const char *s)
     func_001F4848((int)ld, d);
 }
 
+void func_001F48A1(int d, const char *s)
+{
+    char ld[12];
+    char *end;
+    func_001F5059(ld, &end, s, 0, 0, 0, 0);
+    func_001F485E((int)ld, d);
+}
+
 #pragma optimize("", on)
 void func_001F4A6D(void) {
     int func_001EB9F3(...);
