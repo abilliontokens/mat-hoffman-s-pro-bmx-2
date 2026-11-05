@@ -155,6 +155,16 @@ void *func_001E8A44(int size);
 void __stdcall func_00201350(void *p);
 extern int D_002859C4;
 
+extern int D_00285998;
+void func_001E891B(void *p);
+
+struct C_00142E60 {
+    void *vtbl;
+    void func_00142DE0();
+    void func_001AC830();
+    void *func_00142E60(int flags);
+};
+
 struct C_00142DE0 {
     char pad0[0x8];
     int unk8;
