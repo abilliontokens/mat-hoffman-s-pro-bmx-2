@@ -207,6 +207,115 @@ struct C_00064580 {
     void func_00064990();
 };
 
+struct C_000645E0_74 {
+    void func_00030210();
+    void func_000301F0();
+};
+
+struct S_000645E0_44 {
+    char pad0[0x74];
+    C_000645E0_74 *unk74;
+};
+
+struct C_000645E0_1C0 {
+    int func_00097FD0();
+    void func_0009A0E0(int a);
+    void func_000976C0();
+    int func_00097700();
+    void func_000988B0(C_00064A40_3B4 *a, C_00064A40_534 *b);
+    void func_00098EE0(C_00064A40_3B4 *a, C_00064A40_534 *b);
+    void func_000981D0(C_00064A40_3B4 *a, C_00064A40_534 *b, int c);
+    void func_0009A100(int a, int b);
+};
+
+struct C_000645E0_1D0 {
+    char pad0[0x44];
+    S_000645E0_44 *unk44;
+    char pad48[0x64 - 0x48];
+    S_00064A40_64 *unk64;
+    char pad68[0x158 - 0x68];
+    C_001C4D50 *unk158;
+    char pad15c[0x1c0 - 0x15c];
+    C_000645E0_1C0 *unk1c0;
+    char pad1c4[0x35c - 0x1c4];
+    int unk35c;
+    int func_00051840();
+    void func_00053460();
+};
+
+struct C_000645E0_250 {
+    int func_00092A10();
+    int func_00092A50(int *a);
+};
+
+struct C_000645E0_2C0 {
+    int func_0005C020(int a);
+};
+
+struct S_000645E0_2E0 {
+    char pad0[0x48];
+    int unk48;
+    char pad4c[0x2c0 - 0x4c];
+    C_000645E0_2C0 *unk2c0;
+    char pad2c4[0x2d8 - 0x2c4];
+    int unk2d8;
+};
+
+struct S_002A8490 {
+    char pad0[0x2e0];
+    S_000645E0_2E0 *unk2e0;
+};
+extern S_002A8490 *D_002A8490;
+
+struct C_000645E0 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6();
+    char pad4[0x60];
+    int unk64;
+    int unk68;
+    char pad6c[0x1c8 - 0x6c];
+    int unk1c8;
+    int unk1cc;
+    C_000645E0_1D0 *unk1d0;
+    char pad1d4[4];
+    int unk1d8;
+    float unk1dc;
+    int unk1e0;
+    char pad1e4[0x214 - 0x1e4];
+    int unk214;
+    int unk218;
+    int unk21c;
+    int unk220;
+    int unk224;
+    int unk228;
+    int unk22c;
+    int pad230;
+    int unk234;
+    int unk238;
+    int pad23c;
+    int unk240;
+    int unk244;
+    char pad248[0x250 - 0x248];
+    C_000645E0_250 *unk250;
+    int unk254;
+    char pad258[0x268 - 0x258];
+    int unk268;
+    char pad26c[0x274 - 0x26c];
+    int unk274;
+    int unk278;
+    int unk27c;
+    char pad280[0x288 - 0x280];
+    int unk288;
+    int unk28c;
+    char pad290[0x2b0 - 0x290];
+    int unk2b0;
+    int pad2b4;
+    int unk2b8;
+    char pad2bc[0x2c4 - 0x2bc];
+    int unk2c4;
+    void func_000645E0();
+};
+
 int C_00064580::func_00064580(int idx, int a1, unsigned int a2)
 {
     if (idx >= 0 && idx < 16) {
