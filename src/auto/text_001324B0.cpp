@@ -212,6 +212,16 @@ void C_132CC0::func_00132CC0(int a1, int a2, int a3)
     }
 }
 
+void C_132CC0::func_00132D70()
+{
+    int i;
+
+    ((C_198E60_1324B0 *)f4)->func_00198E60();
+    for (i = 0; i < f284; i++) {
+        ((C_Item_1324B0 **)f280)[i]->func_001332A0();
+    }
+}
+
 void Class_002845AC::func_00132DB0()
 {
     ((Class_002845AC *)((char *)this - *(int *)((char *)this - 4)))->func_00132DE0();
