@@ -57,3 +57,13 @@ extern int D_00277038;
 extern float D_0027DE70;
 extern float D_0027ED00;
 void func_001ADCC0(char *buf, int size, char *fmt, int val);
+
+void C_000D25A0::func_000D25A0(void)
+{
+    char buf[0x40];
+    C_Mgr_D1 *mgr = D_002A8490->f2E0;
+
+    func_001ADCC0(buf, 0x40, (char *)&D_00277038,
+                  mgr->f2C0->func_0005C020(mgr->f2D8)->f4);
+    f2038->func_001B17D0(buf);
+}
