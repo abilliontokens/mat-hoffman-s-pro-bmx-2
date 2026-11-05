@@ -185,6 +185,22 @@ void C_00085F40::func_00085F40(int a)
     fA0 = a;
 }
 
+void C_00086030::func_00086030(int a)
+{
+    char buf[0x104];
+    if (a) {
+        func_001ADCC0(buf, 0x104, D_00279058, D_002A8490->f2E8->f4->f1058, fC4);
+        f84->func_0005E840(buf);
+        func_001ADCC0(buf, 0x104, D_002A8490->f2E8->f4->f1048);
+        f88->func_0005E840(buf);
+        func_001ADCC0(buf, 0x104, D_00275630);
+        f8C->func_0005E840(buf);
+        func_001ADCC0(buf, 0x104, D_00275630);
+        f90->func_0005E840(buf);
+    }
+    fA0 = a;
+}
+
 void C_00086130::func_00086130(int a0) {
     unkF0 = a0;
 }
