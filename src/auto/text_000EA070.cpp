@@ -3,6 +3,26 @@
 
 extern int D_00281A74;
 
+struct S_000EA070_Elem {
+    char pad0[0x38];
+    unsigned int f38;
+    char pad3C[0xC];
+    unsigned int f48;
+    short f4c;
+    unsigned char f4e;
+    char pad4F[9];
+    unsigned char f58;
+};
+
+struct C_000EA070 {
+    char pad0[0x484];
+    short f484;
+    char pad486[0x514 - 0x486];
+    S_000EA070_Elem *r[6][5];
+    void func_001BF000(void);
+    void func_000EA070(void);
+};
+
 struct DelObjHOFTitle {
     virtual void Destroy(int a0);
     char pad4[0x24];
