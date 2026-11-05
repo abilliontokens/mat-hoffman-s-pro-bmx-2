@@ -43,6 +43,30 @@ struct C_0018D580 {
     int func_0018DA00(int index, const char *name);
 };
 
+int C_0018D580::func_0018D580(unsigned int id)
+{
+    int i;
+
+    for (i = 0; i < idCount; i++) {
+        if (id == ids[i].f5) {
+            return i;
+        }
+    }
+    return 0;
+}
+
+int C_0018D580::func_0018D900(const char *name)
+{
+    int i;
+
+    for (i = 0; i < entryCount; i++) {
+        if (strcmp(entries[i].name, name) == 0) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 void func_0018DE50(void) {
     int func_00157A00(...);
     func_00157A00();
