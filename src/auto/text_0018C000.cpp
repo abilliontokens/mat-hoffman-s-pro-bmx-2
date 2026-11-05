@@ -1,6 +1,9 @@
 /* 25 functions from 0x0018C000 to 0x0018CF40, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+
+void *func_001E8A44(int size);
+void func_001E891B(void *p);
 struct C_0018C820 {
     char pad0[0x24];
     int unk24;
@@ -75,6 +78,32 @@ struct C_0018C120 {
 };
 
 
+void *C_0018C000::func_0018C000(char *param) {
+    extern int D_0028A768;
+    int i;
+    char *p;
+    char *base;
+    char *dest;
+    char c;
+    vtbl = (int)&D_0028A768;
+    unk4 = 0;
+    for (i = 0; i < 0x100; i++)
+        unk58[i] = 0;
+    unk458 = -1;
+    p = param;
+    base = p + 1;
+    do {
+        c = *p;
+        p++;
+    } while (c != 0);
+    dest = (char *)func_001E8A44((int)(p - base) + 1);
+    unk4 = dest;
+    p = param;
+    while ((*dest++ = *p++) != 0)
+        ;
+    return this;
+}
+
 undefined4 C_0018C070::func_0018C070(void)
 {
   extern undefined4 D_002AA6C0;
@@ -84,6 +113,47 @@ undefined4 C_0018C070::func_0018C070(void)
     return 0;
   }
   return *(undefined4 *)(*(int *)(in_ECX + 0x458) * 0x10 + 4 + *(int *)(D_002AA6C0 + 0x14));
+}
+
+void C_0018C090::func_0018C090(int value) {
+    C_0018C090_Node *tail;
+    C_0018C090_Node *n;
+    tail = 0;
+    if (head != 0) {
+        tail = head;
+        while (tail->next != 0)
+            tail = tail->next;
+    }
+    if (tail == 0) {
+        n = (C_0018C090_Node *)func_001E8A44(8);
+        if (n != 0) {
+            n->value = value;
+            n->next = 0;
+        }
+        head = n;
+        count++;
+    } else {
+        n = (C_0018C090_Node *)func_001E8A44(8);
+        if (n != 0) {
+            n->value = value;
+            n->next = 0;
+        }
+        tail->next = n;
+        count++;
+    }
+}
+
+void C_0018C120::func_0018C120(void) {
+    C_0018C120_Node *n;
+    while (head != 0) {
+        n = head;
+        head = n->next;
+        if (n->value != 0) {
+            ((V_0018C120 *)n->value)->vf0(1);
+        }
+        func_001E891B(n);
+        count--;
+    }
 }
 
 void C_0018C7F0::func_0018C7F0(void) {
