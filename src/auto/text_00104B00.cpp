@@ -198,3 +198,13 @@ void C_00104B00::func_001057A0(void)
     f528 = f7b0;
 }
 
+void C_00104B00::func_00105800(void)
+{
+    f5ec->func_0001EDD0(f7b4 + f79c);
+    f5f0->func_0001EDD0(f7b8 + f7a0);
+    f208->f64 = f7bc + f7a4;
+    f208->f68 = f7c0 + f7a8;
+    f8a0 = f7c4 + f7ac;
+    f528 = f7c8 + f7b0;
+}
+
