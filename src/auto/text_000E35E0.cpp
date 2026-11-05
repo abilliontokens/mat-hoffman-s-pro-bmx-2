@@ -62,6 +62,7 @@ struct C_000E3D30_Item {
     char pad3C[0x1C];
     unsigned char flags;
     void func_00051120(unsigned short v);
+    void func_001D5AD0();
 };
 
 struct C_000E3D30_Btn {
