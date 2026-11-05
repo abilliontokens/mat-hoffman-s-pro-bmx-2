@@ -26,7 +26,6 @@ struct S_001C0820_Vec4 {
 struct S_001C0CB0_Stream {
     void func_00168C20(int *name, int value, int *out);
     void func_00168C50(int *name, float value, float *out);
-    int func_00168CB0(int *name, S_001C0820_Vec4 *def, S_001C0820_Vec4 *out);
     int func_00168CB0(int *name, const S_001C0820_Vec4 &def, S_001C0820_Vec4 *out);
 };
 extern int D_0028DDA0;
