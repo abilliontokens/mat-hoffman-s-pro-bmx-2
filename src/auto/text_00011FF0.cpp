@@ -19,7 +19,7 @@ struct S_11FF0_VtObj {
     virtual void v14();
     virtual void v15();
     virtual void v16();
-    virtual int v17();
+    virtual unsigned int v17();
 };
 
 struct S_11FF0_Sub3c {
