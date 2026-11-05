@@ -65,6 +65,12 @@ struct Vec4_00023C30 {
         x = y = z = 0;
         w = 1.0f;
     }
+    void Set(int nx, int ny, int nz, int nw) {
+        x = nx;
+        y = ny;
+        z = nz;
+        *(int *)&w = nw;
+    }
 };
 
 struct C_00023C30 {
