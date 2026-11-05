@@ -47,6 +47,17 @@ extern C_NumHorse_Root *D_002A8490;
 struct C_5E40_A;
 struct C_6420_P;
 
+struct S59_Base { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); };
+struct S59_Obj : virtual S59_Base { };
+struct S59_Arr { char pad0[0x28]; S59_Obj **f28; };
+struct S59_Hold { char pad0[0x2C]; S59_Arr *f2C; };
+struct S59_Mgr { int func_0001B3C0(int); };
+struct S59_Page2 { char pad0[0x1A4]; S59_Obj *f1A4; };
+struct S59_Ent { char pad0[0x484]; void *f484; };
+struct S59_Ctl { int func_0005C1D0(int); void func_0005C1E0(int); };
+struct S59_Sub { char pad0[0x2C0]; S59_Ctl *f2C0; };
+struct S59_Reg { char pad0[4]; int f4; char pad8[0x2D8]; S59_Sub *f2E0_dummy; };
+
 struct BmxUIPageMain {
     char pad0[0x124];
     S5580_A *f124;
