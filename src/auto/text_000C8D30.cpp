@@ -79,8 +79,6 @@ struct C_000C98D0 {
     void func_000C98D0();
 };
 
-extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
-
 struct BmxUIPageGameOptions {
     void *vtbl;
     char pad4[0x280 - 4];
