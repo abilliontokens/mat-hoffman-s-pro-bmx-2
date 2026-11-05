@@ -1,6 +1,16 @@
 /* 7 functions from 0x0017AA90 to 0x0017BA00, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+extern char D_002A60B0[];
+extern char D_00284644[];
+extern int D_002A8D2C, D_002A8D30, D_002A8D34;
+extern float D_002A8D38;
+extern int D_00288FF4;
+extern int D_002AA46C;
+extern "C" void *func_001E8A44(unsigned int);
+extern "C" char *strcpy(char *, const char *);
+extern "C" char *strcat(char *, const char *);
+extern "C" unsigned int strlen(const char *);
 struct C_0017AA90;
 
 struct C_0017AA90_Child {
