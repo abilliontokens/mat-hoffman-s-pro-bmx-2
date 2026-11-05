@@ -92,20 +92,15 @@ struct C_00156820 {
 
 int TikiPlayerAirborneState::func_00156030(int param_1)
 {
-    S_00156030_Player *p;
-    p = unk8;
-    if (p->unk39C->unk108 != 0) {
-        if (p->unk3C->unk10 == 0) {
-            if (p->unkC4 != p->unk3C0) {
-                func_001C6DA0(p->unk3C0, 1);
-            }
-        } else {
-            p->unk384->func_0008AB90(p->unk388);
+    if (unk8->unk39C->unk108 != 0) {
+        if (unk8->unk3C->unk10 != 0) {
+            unk8->unk384->func_0008AB90(unk8->unk388);
+        } else if (unk8->unkC4 != unk8->unk3C0) {
+            func_001C6DA0(unk8->unk3C0, 1);
         }
     }
-    p = unk8;
-    if (p->unk3C->unk10 != 0) {
-        func_001C6DA0(p->unk3BC, 1);
+    if (unk8->unk3C->unk10 != 0) {
+        func_001C6DA0(unk8->unk3BC, 1);
     }
     return 1;
 }
@@ -117,24 +112,19 @@ void C_00156740::func_00156740(void)
         unk384->dummy2();
     }
     if (unk388 != 0) {
-        *(int *)unk388 = (int)&D_002754B8;
-        func_001E891B(unk388);
+        delete (C_002754B8 *)unk388;
     }
     if (unk38C != 0) {
-        *(int *)unk38C = (int)&D_002754B8;
-        func_001E891B(unk38C);
+        delete (C_002754B8 *)unk38C;
     }
     if (unk390 != 0) {
-        *(int *)unk390 = (int)&D_002754B8;
-        func_001E891B(unk390);
+        delete (C_002754B8 *)unk390;
     }
     if (unk394 != 0) {
-        *(int *)unk394 = (int)&D_002754B8;
-        func_001E891B(unk394);
+        delete (C_002754B8 *)unk394;
     }
     if (unk398 != 0) {
-        *(int *)unk398 = (int)&D_002754B8;
-        func_001E891B(unk398);
+        delete (C_002754B8 *)unk398;
     }
     func_001C75A0();
 }
