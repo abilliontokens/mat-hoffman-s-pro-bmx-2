@@ -46,3 +46,15 @@ void C_000619B0::func_000619B0(int mode)
         D_002A8490->f124 = 0;
     }
 }
+
+void C_000619B0::func_00061B20()
+{
+    unk1D0->func_00032A40();
+    unk218 = 1;
+    if (unk1D0->unk44->unk74->func_00030020(D_0027877C) != 0) {
+        if (unk1D0->unk44->unk74->func_000300C0(D_0027877C) != 0) {
+            unk1D0->unk44->unk74->func_00030160();
+        }
+    }
+}
+
