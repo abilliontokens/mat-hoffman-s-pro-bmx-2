@@ -234,3 +234,21 @@ void CutScene::func_001390A0(int index)
     }
 }
 
+void CutScene::func_001394F0(int arg) {
+    f24 = arg; f34 = 0; f28 = 0;
+    int i, j;
+    for (i = 0; i < f3c; i++) {
+        ((ResetItem *)f40)[i].obj->fc = 0;
+        if (((ResetItem *)f40)[i].values) {
+            if (f74 == 1) ((ResetItem *)f40)[i].values->f4 = ((ResetItem *)f40)[i].values->f8;
+            else for (j = 0; j < ((ResetItem *)f40)[i].count; j++)
+                ((ResetItem *)f40)[i].values[j].f4 = ((ResetItem *)f40)[i].values[j].f8;
+        }
+    }
+    if (f60) for (i = 0; i < ((ResetGroups *)f60)->count; i++) {
+        ResetGroup *g = ((ResetGroups *)f60)->groups[i];
+        for (j = 0; j < g->count; j++) g->children[j]->v32();
+    }
+    D_002A8490->v15(f44, 0, 0, 0);
+}
+
