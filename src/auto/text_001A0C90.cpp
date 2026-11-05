@@ -2,7 +2,8 @@
 #include "common.h"
 #include "ghidra.h"
 struct Q_001A1930 { float x,y,z,w; };
-struct O_001A1930 { char pad[8]; int pos[3]; char pad14[0x24]; int vel[3]; };
+struct I3_001A1930 { int x,y,z; };
+struct O_001A1930 { char pad[8]; I3_001A1930 pos; char pad14[0x24]; I3_001A1930 vel; };
 struct N_001A1930 { int unk0; O_001A1930 *obj; };
 struct E_001A1930 {
 virtual void v0();
