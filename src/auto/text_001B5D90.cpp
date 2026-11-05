@@ -269,6 +269,35 @@ struct C_001B69F0 {
     void func_001B69F0(void);
 };
 
+int C_001B5D90::func_001B5D90(S_001B5D90_Param *param, C_001BBAA0 *obj) {
+    int idx = -1;
+    if (f10c == -1) {
+        S_001B5D90_List *list = param->f3ac;
+        int n = list->f24;
+        for (int i = 0; i < n; i++) {
+            S_001B5D90_Item *it = list->f28[i];
+            if (it->f4 == 1 && strcmp(f110, it->fa0) == 0)
+                idx = i;
+        }
+    } else {
+        idx = f10c - 1;
+    }
+    S_001B5D90_Item *item = param->f3ac->f28[idx];
+    const char *s = item->fa0;
+    char *d = f110;
+    char c;
+    do {
+        c = *s++;
+        *d++ = c;
+    } while (c);
+    f10c = idx;
+    *item->f78 = 0;
+    f200 = param->f3b4;
+    if (obj)
+        obj->func_001BBAA0(this, &D_0001C0B0);
+    return 1;
+}
+
 C_001B5EA0* C_001B5EA0::func_001B5EA0(void) {
     extern int D_0028CC9C;
     unk4 = 0;
