@@ -1,6 +1,15 @@
 /* 24 functions from 0x0015C640 to 0x0015D340, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_0015CB40 {
+    char pad0[0x8];
+    int unk8;
+    int unkC;
+    char pad10[0x4];
+    int unk14;
+    void func_0015CB40(int a0, int a1);
+};
+
 struct C_0015CFE0 {
     void func_0015CFE0(undefined4 param_1);
 };
@@ -78,6 +87,11 @@ void func_0015C930(float *param_1, int param_2)
         param_1[3] = -param_1[3];
         *param_1 = -*param_1;
     }
+}
+
+void C_0015CB40::func_0015CB40(int a0, int a1) {
+    int func_0015CB70(...);
+    func_0015CB70(unk14, a0, unkC, unk8, a1);
 }
 
 void func_0015CC50(float *param_1, int param_2)
