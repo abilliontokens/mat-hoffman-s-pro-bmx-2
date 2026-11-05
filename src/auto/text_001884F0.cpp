@@ -175,6 +175,57 @@ struct C_00188CB0 {
 
 extern int D_0028A154;
 
+extern char D_002764F0[];
+extern int D_002BA160;
+struct __declspec(align(16)) M_001887A0 { float m[16]; };
+void func_000265C0(M_001887A0 *out, void *a, void *b, void *c, int d, int e);
+struct S_001887A0_Data {
+    char pad0[4];
+    char name[0x104];
+    char v108[0x10];
+    char v118[0x10];
+    char v128[0x10];
+    char pad138[0xc];
+    char unk144;
+    char pad145[3];
+    int unk148;
+};
+struct S_001887A0_Model {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30();
+    virtual void v31(M_001887A0 *m);
+    char pad4[0x64];
+    int unk68;
+    char unk6C;
+    char unk6D;
+    void func_00133140(void *a, int b);
+};
+S_001887A0_Model *func_00133750(int a, char *name, int b);
+struct S_001887A0_Scene {
+    void func_001577A0(S_001887A0_Model *m, int b);
+};
+struct S_001887A0_Arg {
+    char pad0[0x348];
+    int idx;
+    char pad34C[0x64];
+    S_001887A0_Scene **scenes;
+    char pad3B4[0xf8];
+    void **unk4AC;
+};
+struct C_001887A0 {
+    void *vtbl;
+    int unk4;
+    S_001887A0_Model *unk8;
+    S_001887A0_Data *unkC;
+    int func_001887A0(S_001887A0_Arg *p);
+};
+
 struct S_001CD770 {
     virtual void v0();
     virtual void v1();
