@@ -29,6 +29,17 @@ struct C_001A3BF0 {
     char pad0[0x1c0];
     int f1c0;
     S_001A3BF0_Item **f1c4;
+
+    S_001A3BF0_Item *Item(int i)
+    {
+        int n = *(volatile int *)&f1c0;
+
+        if (n > 0 && f1c4 != 0 && i < n) {
+            return f1c4[i];
+        }
+        return 0;
+    }
+
     int func_001A3BF0(int idx);
 };
 
@@ -272,6 +283,28 @@ struct C_001A4790 {
     void func_001A4790(void *a1, u32 flags, u32 *a3, u32 *a4, int a5, int a6, int a7);
 };
 
+
+int C_001A3BF0::func_001A3BF0(int idx)
+{
+    S_001A3BF0_Item *item;
+    S_001A3BF0_Obj *obj;
+    int i;
+
+    if (idx < 1 || idx > f1c0) {
+        return 0;
+    }
+    i = idx - 1;
+    if (f1c0 > 0 && f1c4 != 0 && i < f1c0) {
+        item = f1c4[i];
+    } else {
+        item = 0;
+    }
+    obj = item->obj;
+    if (obj->v7()) {
+        return obj->v6(0);
+    }
+    return 1;
+}
 
 undefined4 C_001A3D80::func_001A3D80(byte param_1)
 {
