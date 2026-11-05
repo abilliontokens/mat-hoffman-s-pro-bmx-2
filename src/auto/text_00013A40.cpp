@@ -48,8 +48,8 @@ struct C_00013F50 {
     int f10;
     int f14;
     int f18;
-    int **f1c;
-    int **f20;
-    int **f24;
+    int *f1c;
+    int *f20;
+    int *f24;
     void func_00013F50(C_00013F50_Dst *dst, int kind, void *arg1, float arg2);
 };
