@@ -150,6 +150,36 @@ ParticleSystem *ParticleSystem::func_00135700(int a)
     return this;
 }
 
+void ParticleSystem::func_001357A0(int dt)
+{
+    int i;
+    int j;
+    int k;
+    S_Particle *p;
+    S_Particle *end;
+
+    for (i = 0; i < f28; i++) {
+        f38[i]->v1();
+    }
+    p = f34;
+    end = p + f24;
+    for (; p < end; p++) {
+        if (f44 != 0) {
+            f44(p, this);
+        }
+        p->func_00135550(dt);
+    }
+    for (j = 0; j < f30; j++) {
+        for (k = 0; k < f2c; k++) {
+            f3c[k]->v1();
+        }
+    }
+    if (f48 != 0) {
+        f48(this, f40);
+    }
+    ((C_00157A00 *)this)->func_00157A00(dt);
+}
+
 C_00135850* C_00135850::func_00135850(void) {
     extern int D_002847F0;
     unk0 = (int)&D_002847F0;
