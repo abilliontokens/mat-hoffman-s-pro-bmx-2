@@ -98,7 +98,8 @@ static inline void RoundToInt(int *out, float f)
     *out = _mm_cvtss_si32(_mm_load_ss(&f));
 }
 
-struct O_Cam32F50 { void func_001824E0(float *out, float x, float y, float z); };
+struct V4_00032E50;
+struct O_Cam32F50 { V4_00032E50 func_001824E0(float x, float y, float z); };
 struct O_Obj32F50 { char pad0[8]; O_Cam32F50 *f8; };
 extern V4_00032E50 D_002A1460;
 
