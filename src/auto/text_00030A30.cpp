@@ -349,10 +349,16 @@ struct BmxEvent_00030A30 {
     int f90;
     char pad94[0x50];
     void *fe4;
-    char pade8[0x74];
+    char pade8[0x110 - 0xe8];
+    int f110;
+    int f114;
+    char pad118[0x124 - 0x118];
+    float f124;
+    float f128;
+    char pad12c[0x15c - 0x12c];
     void *f15c;
     void *f160;
-    void *f164;
+    Obj_00031260 *f164;
     void *f168;
     void *f16c;
     VObj_00031450 *f170[10];
