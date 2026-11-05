@@ -75,7 +75,9 @@ struct S_00094620_Mid {
 };
 
 struct S_00094620_Root {
-    char pad0[0x2e8];
+    char pad0[0x2e0];
+    S_00094620_Record *f2e0;
+    char pad2e4[4];
     S_00094620_Mid *f2e8;
 };
 
@@ -232,6 +234,24 @@ void C_00094A00::func_000949B0(float a, int b, int c)
 void C_00094A00::func_00094A00(void)
 {
     f50->v37();
+}
+
+void C_00094A00::func_00094C00(void)
+{
+    int i;
+
+    for (i = 0; i < f7C; i++) {
+        if (f2C != 0) {
+            f28->func_001CD7D0(f84[i]);
+        } else {
+            f28->func_001CD7D0(f84[i]);
+        }
+        f84[i] = 0;
+    }
+    f7C = 0;
+    if (f2C != 0) {
+        f2C = 0;
+    }
 }
 
 int C_00094F00::func_00094F00(void) {
