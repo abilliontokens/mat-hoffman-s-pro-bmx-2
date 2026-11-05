@@ -153,6 +153,40 @@ void C_0014C530::func_0014C530(void) {
     func_0014B260();
 }
 
+void C_0014C6F0::func_0014C540()
+{
+    if (fAC) func_001E891B(fAC);
+    if (fB0) func_001E891B(fB0);
+    if (fB4) func_001E891B(fB4);
+    if (fB8) func_001E891B(fB8);
+    if (fBC) func_001E891B(fBC);
+    if (fC0) func_001E891B(fC0);
+    if (fC4) func_001E891B(fC4);
+    C_0014C540_Sub *p = f54;
+    if (p) {
+        if (p->f8C) { func_001E891B(p->f8C); p->f94 = 0; }
+        if (p->f70) { func_001E891B(p->f70); p->f70 = 0; }
+        if (p->f90) { func_001E891B(p->f90); p->f90 = 0; }
+        if (p->f74) { func_001E891B(p->f74); p->f74 = 0; }
+        if (p->f88) { func_001E891B(p->f88); p->f88 = 0; }
+        if (p->f84) { func_001E891B(p->f84); p->f84 = 0; }
+        if (p->f78) { func_001E891B(p->f78); p->f78 = 0; }
+        func_001E891B(f54);
+        f54 = 0;
+    }
+    if (fF0) {
+        for (int i = 0; i < fA8; ++i) {
+            C_0014C540_Item *item = fF0[i];
+            if (item) {
+                if (item->fC) func_001E8390(item->fC);
+                func_001E891B(item);
+            }
+        }
+        func_001E8390(fF0);
+        fF0 = 0;
+    }
+}
+
 void *C_0014C6F0::func_0014C6F0(int flags)
 {
     vtbl = &D_00286924;
