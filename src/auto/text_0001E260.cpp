@@ -49,6 +49,52 @@ struct C_0001EDC0 {
 };
 
 
+void GR_BitString::func_0001E3F0(u32 *a0, u32 a1, int a2) {
+    unk18 = a2 ? -1 : 0;
+    unk4 = a1;
+    unk14 = 0;
+    vtbl = &D_00275F7C;
+    unk8 = a0;
+    unk1C = 1;
+    unkC = a0;
+    unk10 = 0x80;
+    D_002B7D54 = 0;
+    D_002B7D4C = a0;
+    u8 *b = (u8 *)a0;
+    D_002B7D50 = (u32)((b[0] << 24) | (b[1] << 16) | (b[2] << 8) | b[3]);
+}
+
+void GR_BitString::func_0001E460() {
+    vtbl = &D_00275F7C;
+    if (unk1C == 0 && unk8 != 0) {
+        func_001E891B(unk8);
+    }
+}
+
+u32 __stdcall func_0001E550(int a0) {
+    u32 v = D_002A0DAC[a0];
+    int count = D_002B7D54 + a0;
+    u32 cur = D_002B7D50;
+    if (count < 0x20) {
+        D_002B7D54 = count;
+        v &= cur >> (0x20 - count);
+    } else {
+        u32 *p = D_002B7D4C;
+        count -= 0x20;
+        D_002B7D54 = count;
+        p += 1;
+        u32 next = *p;
+        v &= cur << count;
+        next = (next >> 24) | ((next >> 8) & 0xff00) | ((next << 8) & 0xff0000) | (next << 24);
+        D_002B7D4C = p;
+        D_002B7D50 = next;
+        if (count != 0) {
+            v |= next >> (0x20 - count);
+        }
+    }
+    return v;
+}
+
 void *C_0001E930::func_0001E930(unsigned int flags) {
     vtbl = &D_00275F9C;
     func_0001E800();
