@@ -132,6 +132,27 @@ struct S_00133B90_Iter {
     void func_001A4A20(void);
 };
 
+struct C_001332E0 {
+    char pad0[0x21];
+    u8 f21;
+    char pad22[0x46];
+    int f68;
+    char pad6c[4];
+    int f70;
+    int f74;
+    C_001332E0 **f78;
+    int f7c;
+    int f80;
+    C_001332E0 **f84;
+    int f88;
+    int f8c;
+    int *f90;
+    int f94;
+    char pad98[0xf];
+    u8 fA7;
+    int func_001332E0(C_001332E0 *o);
+};
+
 void *func_001E8A44(int size);
 void func_001E891B(void *ptr);
 int func_00135C70(int a, int b, int c, int d);
