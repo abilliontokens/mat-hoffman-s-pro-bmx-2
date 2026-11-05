@@ -90,7 +90,7 @@ struct C_00028070 {
     int unk484;
     int unk488;
     char pad48C[0x160];
-    int unk5EC;
+    C_000262B0 *unk5EC;
     char pad5F0[0x130];
     S_28070_Sound *unk720;
     char pad724[0x18];
