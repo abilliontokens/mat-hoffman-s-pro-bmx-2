@@ -62,3 +62,14 @@ struct C_001067B0 {
     void func_001067B0(void);
     void func_00105AA0(void);
 };
+
+void C_001067B0::func_001067B0(void)
+{
+    if (f15A4->func_001A2EF0(3)->v7()) {
+        f15A4->func_001A2DD0(3);
+    }
+    if (f15A4->func_001A2EF0(2)->v7()) {
+        f15A4->func_001A2DD0(2);
+    }
+    f1244->v46();
+}
