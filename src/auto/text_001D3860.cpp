@@ -218,6 +218,51 @@ void C_001D3AB0::func_001D3AB0(void)
     ((C_001625D0 *)this)->func_001625D0();
 }
 
+void C_001D3AB0::func_001D3B20(char *name)
+{
+    S_001D3C30_Stream *__stdcall func_00259AF0(char *name, void *flags);
+    int z = 0;
+    S_001D3AB0_Res *obj;
+    unsigned int w;
+    unsigned int h;
+
+    if (unk48 != 0) {
+        unk48 = 0;
+        D_002F07B8->func_001C3D80();
+        if (unk44 != 0) {
+            func_0025ADD0(unk44);
+            unk44 = 0;
+            if (unk70 != 0) {
+                unk70->Release();
+                unk70 = 0;
+            }
+        }
+    }
+    unk44 = func_00259AF0(name, &D_00080000);
+    if (unk44 != 0) {
+        if (unk70 != 0) {
+            unk70->Release();
+            unk70 = 0;
+        }
+        w = unk44->f0;
+        h = unk44->f4;
+        void *mem = func_001E8A44(0x110);
+        if (mem != 0) {
+            obj = ((S_001D3AB0_Res *)mem)->func_001D6AD0((void *)z);
+        } else {
+            obj = 0;
+        }
+        unk70 = obj;
+        obj->fB8 = func_001FCF20(w, h, 1, 1, 0, 0x12, 3);
+        unk70->f8 = w;
+        unk70->fC = h;
+        unk70->fA4 = 0x12;
+        unk70->fA8 = 1;
+        unk5C = (int)((float)unk44->f0 * f3C) + unk54;
+        unk60 = (int)((float)unk44->f4 * f40) + unk58;
+    }
+}
+
 void C_001D3AB0::func_001D3C30(void)
 {
     if (unk48 != 0) {
