@@ -174,8 +174,18 @@ struct SoundVoiceList {
     int func_001CDE90(SoundVoice *voice);
 };
 
-struct C_001CF3C0 {
+extern "C" void __stdcall MmFreeContiguousMemory(void *p);
+
+struct SoundObj_001CF590 {
     char pad0[8];
+    SoundIface_001CFDC0 *f8;
+    SoundIface_001CFDC0 *fC;
+    void *f10;
+};
+
+struct C_001CF3C0 {
+    char pad0[4];
+    int f4;
     int f8;
     int fc;
     char f10[0x14];
