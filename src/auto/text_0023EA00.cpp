@@ -93,7 +93,9 @@ typedef unsigned int (__stdcall *PFN_0023EC0D)(void *ctx, unsigned int a, unsign
 
 /* region window: either forwards to a user hook (f44) or maps a offset inside [f3c, f3c+f94) */
 struct C_0023EC0D {
-    char pad0[0x34];
+    char pad0[4];
+    int f4;
+    char pad8[0x2c];
     int f34;
     char pad38[4];
     unsigned int f3c;
