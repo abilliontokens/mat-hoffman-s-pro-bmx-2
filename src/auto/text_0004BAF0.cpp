@@ -76,8 +76,14 @@ struct S_0004C320_World {
     S_0004C320_Scene *f3ac;
 };
 
+struct C_0004C560Block {
+    int used;
+    int vals[50];
+};
+
 struct C_0004C560 {
-    char pad0[0x64];
+    int unk0;
+    char pad4[0x60];
     S_0004C320_World *f64;
     char pad68[0x158];
     C_0004C560Obj1C0 *f1c0;
@@ -109,6 +115,29 @@ void *C_0004BED0::func_0004BED0(int flags) {
         func_001E891B(this);
     }
     return this;
+}
+
+void C_0004C560::func_0004C320(void)
+{
+    int i;
+    int j;
+    int idx;
+    S_0004C320_Part *p;
+    S_0004C320_Obj *o;
+    float v[4];
+
+    for (i = 0; i < f1250; i++) {
+        for (j = 1; j < 9; j++) {
+            idx = f284[j][i];
+            if (idx >= 0) {
+                p = f64->f3ac->f28[idx]->f1a4;
+                p->v5();
+            }
+        }
+        o = f64->f3ac->f28[f284[0][i]];
+        o->f1a4->v7();
+        o->f1a4->f4->func_001824E0(v, 1.0f, 1.0f, 1.0f);
+    }
 }
 
 int C_0004C560::func_0004C560(void)
