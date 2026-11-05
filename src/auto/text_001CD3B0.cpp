@@ -57,7 +57,10 @@ struct XboxSoundGroup {
     int f28;
     char pad2c[4];
     S_SoundElemList list;
-    u8 f40;
+    union {
+        u8 f40;
+        S_SoundGroupFlags f40b;
+    };
     char pad41[3];
     int f44;
     void func_0001C8F0(int a);
