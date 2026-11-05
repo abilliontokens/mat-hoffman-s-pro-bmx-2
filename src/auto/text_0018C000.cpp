@@ -89,7 +89,7 @@ struct C_0018C960 {
     int f158;
     int f15C;
     int f160;
-    int f164;
+    ScriptFreeGroup *f164;
     int f168;
     int f16C;
     int f170;
