@@ -65,12 +65,11 @@ static inline float C_0017A1D0_Dot(const C_0017A1D0_Vec4 &a, const C_0017A1D0_Ve
     return a.z * b.z + (a.x * b.x + a.y * b.y);
 }
 
-static inline float C_0017A1D0_Fabs(float f)
+static inline float C_0017A1D0_Fabs(const float &f)
 {
-    union { float f; int i; } u;
-    u.f = f;
-    u.i &= 0x7fffffff;
-    return u.f;
+    int i = *(int *)&f;
+    i &= 0x7fffffff;
+    return *(float *)&i;
 }
 
 struct C_0017A1D0 {
