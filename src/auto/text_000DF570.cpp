@@ -53,6 +53,7 @@ struct C_000DFC00 {
     int unk338[19];
     void func_000DFC00();
     void func_000DFC90();
+    void func_000DFE50();
 };
 
 struct S_000DFCF0_W {
