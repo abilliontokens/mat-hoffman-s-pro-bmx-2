@@ -84,6 +84,74 @@ struct UIPage {
     void func_001BEE30(int idx, int arg);
     void func_001BEF20(int idx);
     void func_001BEF50(int idx, int n);
+    int func_001BED00(float dt);
+    int func_00157A00(float dt);
+};
+
+struct UIPadObj {
+    virtual void dummy0();
+    virtual void dummy1();
+    virtual void dummy2();
+    virtual void dummy3();
+    virtual void dummy4();
+    virtual void dummy5();
+    virtual void dummy6();
+    virtual void dummy7();
+    virtual void dummy8();
+    virtual void dummy9();
+    virtual void dummy10();
+    virtual void dummy11();
+    virtual void dummy12();
+    virtual void dummy13();
+    virtual void dummy14();
+    virtual void dummy15();
+    virtual void dummy16();
+    virtual int virt17();
+};
+
+struct UIInputMgr {
+    char pad00[0x14];
+    UIPadObj *pads[8];
+    int func_00136170(int a, int b, int c);
+};
+
+struct UIGlobal {
+    char pad00[0x8];
+    UIInputMgr *f8;
+};
+
+extern UIGlobal *D_002A8490;
+
+struct UIPageVirt70 {
+    virtual void dummy0();
+    virtual void dummy1();
+    virtual void dummy2();
+    virtual void dummy3();
+    virtual void dummy4();
+    virtual void dummy5();
+    virtual void dummy6();
+    virtual void dummy7();
+    virtual void dummy8();
+    virtual void dummy9();
+    virtual void dummy10();
+    virtual void dummy11();
+    virtual void dummy12();
+    virtual void dummy13();
+    virtual void dummy14();
+    virtual void dummy15();
+    virtual void dummy16();
+    virtual void dummy17();
+    virtual void dummy18();
+    virtual void dummy19();
+    virtual void dummy20();
+    virtual void dummy21();
+    virtual void dummy22();
+    virtual void dummy23();
+    virtual void dummy24();
+    virtual void dummy25();
+    virtual void dummy26();
+    virtual void dummy27();
+    virtual void virt28(int idx, int v);
 };
 
 struct UIVirt70 {
