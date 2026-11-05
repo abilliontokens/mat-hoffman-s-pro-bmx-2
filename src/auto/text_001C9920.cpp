@@ -77,6 +77,14 @@ struct C_001CA1C0 {
 };
 
 
+int C_001C99A0::func_001C99A0(int a0)
+{
+    if (D_002A8490->unk124 == 0 && D_002AB7F0 == 0) {
+        return func_00157A00(a0);
+    }
+    return 1;
+}
+
 void func_001C99D0(void) {
     int func_00157BF0(...);
     func_00157BF0();
