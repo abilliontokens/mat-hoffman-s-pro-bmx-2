@@ -164,8 +164,32 @@ struct C_001CD7D0 {
 
 extern float D_00275544;
 
+/* element of C_00094A00::f84, called through vtable slots 5, 6, 7, 9, 12, 16 */
+struct S_00094A00_Child {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual int v5(int a);
+    virtual int v6(int a);
+    virtual int v7(void);
+    virtual void v8();
+    virtual void v9(int a);
+    virtual void v10();
+    virtual void v11();
+    virtual void v12(int a);
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual int v16(int a, int b, int c);
+    char pad4[0x1a8];
+    int f1AC;
+};
+
 struct C_00094A00 {
-    char pad0[0x28];
+    char pad0[0x24];
+    int f24;
     C_001CD7D0 *f28;
     void *f2C;
     int f30;
@@ -176,7 +200,11 @@ struct C_00094A00 {
     char pad54[0x28];
     int f7C;
     char pad80[4];
-    void *f84[1];
+    S_00094A00_Child *f84[1];
+    int func_00094C60(void);
+    int func_00094D00(void);
+    int func_00094D90(int a);
+    int func_00094EE0(void);
     void func_00094A00(void);
     int func_00094960(int a);
     void func_00094990(float a);
@@ -249,7 +277,7 @@ int *C_00094760::func_00094810(int node)
     S_00094620_Path *path = unk50;
 
     if (node < path->unkA8 && node >= 0) {
-        return &path->unk34[node].unk20;
+        return &path->Node(node)->unk20;
     }
     return 0;
 }
