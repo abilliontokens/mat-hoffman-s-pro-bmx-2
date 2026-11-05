@@ -82,6 +82,8 @@ struct C_0006D590 {
     void func_0006D640();
     int func_00157960();
     void func_0006DFC0();
+    void func_0006DD40();
+    void func_001578D0();
     C_0006D590 *func_0006D590(int a0);
     void func_0006DF50();
     int func_0006E1E0();
