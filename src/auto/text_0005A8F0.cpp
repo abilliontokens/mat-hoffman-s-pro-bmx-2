@@ -11,6 +11,60 @@ struct C_0005B870 {
     int func_0005B870(void);
 };
 
+struct S_2E0 {
+    char pad0[0xC];
+    int fC;
+    char pad10[8];
+    int f18;
+    int f1C;
+    char pad20[0x2DC];
+    int f2FC;
+    char pad300[0x8C];
+    int f38C;
+    char pad390[0xD0];
+    int f460;
+    int f464;
+};
+
+struct S_2A8490 {
+    char pad0[0x2E0];
+    S_2E0 *f2E0;
+};
+
+extern S_2A8490 *D_002A8490;
+
+struct C_000952A0 {
+    int func_000952A0(int i);
+};
+
+struct C_00095250 {
+    int func_00095250(int i);
+};
+
+struct C_0005B850 {
+    char pad0[0xCD0];
+    char unkCD0[1];
+    void func_0005B850(char *src);
+};
+
+struct C_0005B730 {
+    char pad0[0x258];
+    int f258, f25C, f260, f264, f268, f26C;
+    void func_0005B730(void);
+    void func_0005B7C0(void);
+};
+
+struct S_Pair {
+    int a;
+    int b;
+};
+
+struct C_0005B880 {
+    char pad0[0xCF0];
+    S_Pair pairs[0x12];
+    void func_0005B880(void);
+};
+
 
 void C_0005B220::func_0005B220(void)
 {
