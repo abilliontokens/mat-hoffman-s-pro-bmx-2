@@ -34,10 +34,56 @@ struct StringTable {
 };
 
 struct DynamicStringTable {
+    void *vtbl;
+    int unk4;
+    int count;
+    int capacity;
+    int unk10;
+    StringTableEntry *entries;
+    int unk18;
+    int unk1C;
     void func_001AC830();
     void *func_001AC920(int flags);
+    DynamicStringTable *func_001AC800();
+    int func_001AC870(const char *name, int value);
+    int func_001AC680(const char *name, int value);
+    void func_001AC3D0();
 };
 
+struct C_0001DFE0 {
+    void func_0001DFE0();
+};
+
+extern int D_0028C0E0;
+void func_001E8390(void *p);
+void *func_001E8AA5(unsigned int size);
+
+
+int StringTable::func_001AC680(const char *name, int value)
+{
+    if (entries == 0) {
+        entries = (StringTableEntry *)func_001E8A44(0x100);
+        capacity = 16;
+        count = 0;
+    } else if (count >= capacity) {
+        StringTableEntry *newEntries = (StringTableEntry *)func_001E8A44((capacity + 16) * sizeof(StringTableEntry));
+        memcpy(newEntries, entries, capacity * sizeof(StringTableEntry));
+        func_001E891B(entries);
+        entries = newEntries;
+        capacity += 16;
+    }
+    entries[count].name = name;
+    entries[count].value = value;
+    entries[count].data = 0;
+    entries[count].refCount = 0;
+    return count++;
+}
+
+void StringTable::func_001AC750(int index, int data)
+{
+    entries[index].refCount++;
+    entries[index].data = data;
+}
 
 void C_001AC790::func_001AC790(int param_1)
 {
@@ -47,6 +93,17 @@ void C_001AC790::func_001AC790(int param_1)
   piVar1 = (int *)(param_1 * 0x10 + 0xc + *(int *)(in_ECX + 0x14));
   *piVar1 = *piVar1 + -1;
   return;
+}
+
+int StringTable::func_001AC7B0(const char *name)
+{
+    int i;
+    for (i = 0; i < count; i++) {
+        if (func_001EA426(name, entries[i].name) == 0) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 undefined4 C_001AC900::func_001AC900(byte param_1)
