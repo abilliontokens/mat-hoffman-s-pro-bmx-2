@@ -130,7 +130,7 @@ void func_001EB109(char *p) {
     if (p >= D_002AE670 && p <= D_002AE8D0) {
         func_001EB390(((int)(p - D_002AE670) >> 5) + 16);
     } else {
-        RtlEnterCriticalSection(p + 0x20);
+        __imp__RtlEnterCriticalSection(p + 0x20);
     }
 }
 
