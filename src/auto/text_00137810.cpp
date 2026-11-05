@@ -14,6 +14,22 @@ struct C_001387D0 {
     C_001387D0* func_001387D0(int a0);
 };
 
+struct FileSys {
+    int func_0013C9F0(int name, void *mode);
+    int func_0013C8A0(int h, void *buf, int size, int count);
+    int func_0013AFD0(int h);
+    int func_0013AFF0(int h, int pos, int whence);
+    void func_0013C110(int h);
+};
+struct CubeSub { CubeSub *func_00136AD0(); void func_001365B0(int h, int a); };
+struct CubeSub2 { void func_0014A520(void *p); void func_0014A560(void *p, int a); };
+struct CubeSub3 { CubeSub3 *func_00142C70(); void func_00142C80(void *p, int a); };
+struct CubeSub4 { void func_00135150(int h); };
+extern FileSys *D_002BEAAC;
+extern char D_00275FB4[], D_00018B10[], D_002A67B4[], D_002BDD28[], D_0028499C[], D_00284990[];
+void *func_001E8A44(int size);
+void func_0014A7B0(void *a, void *b);
+void *__stdcall func_001FF3C0(int size);
 extern int D_002849BC;
 extern int D_00284924;
 extern int D_002A67D8;
