@@ -112,16 +112,20 @@ void func_001294E0(int a0, int a1, int a2, int a3, int a4) {
 
 BoxCollisionObject *BoxCollisionObject::func_00129840(int a0)
 {
+    u32 *p;
+
     func_00132EB0(a0);
     vtbl = (void *)&D_00283F64;
-    fF8 = 0;
-    fF4 = 0;
-    fF0 = 0;
-    fFC = 0x3f800000;
-    f108 = 0;
-    f104 = 0;
-    f100 = 0;
-    f10C = 0x3f800000;
+    p = &fF0;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = &f100;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
     fF0 = D_002A3CD8;
     fF4 = D_002A3CDC;
     fF8 = D_002A3CE0;
