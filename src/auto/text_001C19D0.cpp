@@ -17,6 +17,17 @@ struct C_001C2140 {
     void func_00157960();
 };
 
+struct VCall8 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+};
+
 struct C_001C21B0 {
     void **vtbl;
     char pad4[0x28];
