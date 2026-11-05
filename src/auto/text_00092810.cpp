@@ -29,7 +29,8 @@ struct C_001D4300 {
     void func_001D41D0(int a);
     int func_001D4200(void *s);
     void func_001D7D00(void);
-    void func_001D4720(void *a, void *b);
+    int func_001D4720(void *a, void *b);
+    int func_001D4440(int a, int b, int c, int d);
     int func_001D3F90(int a, int b, int *out);
     int func_001D42A0(const char *path, const char *name);
     int func_001D4590(char *out, const char *title, int a, int size);
