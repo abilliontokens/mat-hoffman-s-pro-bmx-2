@@ -1,6 +1,37 @@
 /* 7 functions from 0x0004D7A0 to 0x0004E680, found by Ghidra. */
 #include "common.h"
 
+void *func_001E8A44(unsigned int);
+struct C_0004E480_Object {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    C_0004E480_Object *func_00088530(int);
+    C_0004E480_Object *func_00088570(void *);
+    C_0004E480_Object *func_0005ECA0(int);
+    void func_0005EDC0(void *);
+    C_0004E480_Object *func_000715B0(int);
+    void func_00071880(void *);
+    C_0004E480_Object *func_00066C90(int);
+    void func_00066FA0(void *);
+    C_0004E480_Object *func_00084930(int);
+    void func_000849F0(void *, void *, int, int);
+    C_0004E480_Object *func_000876B0(int);
+    C_0004E480_Object *func_00087760(void *, void *, int);
+    C_0004E480_Object *func_000888D0(int);
+    void func_00088950(void *, int);
+};
+struct C_0004E480 {
+    char pad0[0x64]; void *f64;
+    char pad68[0x28]; int f90;
+    char pad94[0x50]; C_0004E480_Object *fE4;
+    char padE8[0x74]; C_0004E480_Object *f15C;
+    char pad160[0x30]; C_0004E480_Object *f190;
+    int f194; C_0004E480_Object *f198; int f19C; C_0004E480_Object *f1A0;
+    char pad1A4[0xb8c]; C_0004E480_Object *fD30[10];
+    C_0004E480_Object *fD58[1];
+    void func_00031630();
+    void func_0004E480();
+};
+
 struct C_0004DCA0_Rider {
     char pad0[0x958];
     float f958;
