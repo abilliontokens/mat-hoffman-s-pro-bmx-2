@@ -206,11 +206,36 @@ C_00197700 *C_00197700::func_001976A0(char *name, float f)
     return 0;
 }
 
+void C_00197700::func_00197700(int a0)
+{
+    S_00197700_Vec4 v;
+
+    v.x = D_002EFDB8->f4->f170;
+    v.y = f7DC + D_002EFDB8->f4->f174;
+    v.z = D_002EFDB8->f4->f178;
+    f28->func_001367F0(&v, 0, 0);
+    func_00137E50(v.z);
+}
+
 void C_00197700::func_00197780()
 {
     if (f7C4 != 0) {
         D_002EFDB8->f4->func_0012B3D0();
     }
     func_00137F90();
+}
+
+void C_00197AA0::func_00197AA0()
+{
+    if (!(f180 & 1)) {
+        if (f170 != 0) {
+            f170->func_00197AA0();
+            func_0011ACC0(fF0, fB0, f170->fF0);
+            f180 |= 1;
+        } else {
+            ((C_00197AA0_Mat *)fF0)->func_000264C0(fB0);
+            f180 |= 1;
+        }
+    }
 }
 
