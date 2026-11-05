@@ -35,6 +35,34 @@ struct C_00094760 {
     int *func_00094810(int node);
 };
 
+/* an item of the list at +0x58; the accessors below reach its two flags */
+struct S_00095160_Item {
+    char pad0[0x64];
+    int f64;
+    int f68;
+};
+
+/* f54 is how many items the list has, f58 the array of pointers; Item() is the
+   bounds-checked accessor the four accessors inline */
+struct C_00095160 {
+    char pad0[0x34];
+    int f34;
+    char pad38[0x1c];
+    int f54;
+    S_00095160_Item **f58;
+    S_00095160_Item *Item(int i)
+    {
+        if (f54 > 0 && f58 != 0 && i < f54) {
+            return f58[i];
+        }
+        return 0;
+    }
+    int func_00095160(int index);
+    int func_00095200(int index);
+    int func_00095250(int index);
+    int func_000952A0(int index);
+};
+
 struct C_00094F00 {
     char pad0[0x7C];
     int unk7C;
