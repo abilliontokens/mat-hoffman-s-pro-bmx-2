@@ -268,6 +268,7 @@ struct C_1AE570 {
     int func_001578D0(void);
 };
 
+#pragma auto_inline(off)
 float __stdcall func_001AE530(float x, float y)
 {
     extern float D_00278788;
