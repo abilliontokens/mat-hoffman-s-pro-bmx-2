@@ -37,6 +37,43 @@ struct C_0004FE30 {
     void func_0004FA60(int id);
 };
 
+struct C_0004F6E0_Data {
+    int unk0[6];
+};
+
+struct C_0004F6E0_Mgr {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15(void *a, int b, int c, int d);
+};
+
+extern C_0004F6E0_Mgr *D_002A8490;
+void __stdcall func_0012B190(int a, int b, int c, int d);
+
+struct C_0004F6E0 {
+    char pad0[0x24];
+    void *f24;
+    char pad28[0x1B4];
+    C_0004F6E0_Data unk1DC;
+    char pad1F4[0x90];
+    int f284;
+    void func_000318A0();
+    void func_0004F6E0();
+};
+
 void C_0004FE30::func_0004F7B0(void)
 {
     if (f284 == 9) {
