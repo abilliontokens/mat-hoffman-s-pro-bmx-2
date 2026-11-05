@@ -147,6 +147,30 @@ void AIPedTurningBackState::func_000121E0()
     }
 }
 
+void S_11FF0_StateA::func_000122E0(void *arg1, float arg2)
+{
+    if (++f8 >= f14) {
+        f8 = 0;
+    }
+    if (D_002A8490->f4->func_0001CE80(f20[f8], arg1, D_002A04FC, 15.0f, 50.0f)) {
+        int v = (int)((float)f20[f8]->v17() * (arg2 * 0.01f));
+        f20[f8]->v8(v);
+        f20[f8]->v5(4);
+    }
+}
+
+void S_11FF0_StateB::func_00012380(void *arg1, float arg2)
+{
+    if (++fC >= f18) {
+        fC = 0;
+    }
+    if (D_002A8490->f4->func_0001CE80(f24[fC], arg1, D_002A04FC, 15.0f, 50.0f)) {
+        int v = (int)((float)f24[fC]->v17() * (D_002755E0 * arg2));
+        f24[fC]->v8(v);
+        f24[fC]->v5(4);
+    }
+}
+
 float S_11FF0_Owner::func_00012510(float *p, int start)
 {
     int *list = D_002B9120->f588[f3b4];
