@@ -82,15 +82,20 @@ extern C_000B2C80 *D_002B9134;
 
 struct VehicleAI {
     void *vtbl;
-    char pad4[0x3c];
+    char pad4[0x38];
+    S_000B3B40_Owner *f3C;
     C_000B2020 *f40;
     C_00187640 *f44;
     char pad48[8];
     int f50;
+    char pad54[0x1C];
+    int f70;
     void func_0018C7F0(void);
     void func_000B3330(int param_1);
     void *func_000B3350(int flags);
     void func_000B3390(int param_1);
+    void func_000B2540(int mode, int a, S_000B3B40_V4 *p);
+    void func_000B3B40();
 };
 
 struct C_000B3DF0 {
