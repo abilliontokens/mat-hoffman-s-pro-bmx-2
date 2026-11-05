@@ -240,6 +240,42 @@ int C_00188C20::func_00188C20(int a)
     return 1;
 }
 
+void __stdcall func_00188C60(int *type, S_00188980_Model **out)
+{
+    S_00188980_Model *p;
+
+    p = (S_00188980_Model *)func_001E8A44(0x10);
+    if (p != 0) {
+        p->f4 = 0;
+        p->f8 = 0;
+        p->fc = 0;
+        p->vtbl = (void *)&D_00289F80;
+    }
+    *out = p;
+    p->f4 = *type;
+}
+
+void C_00188CB0::func_00188CB0(void)
+{
+    int i;
+
+    if (fC != 0) {
+        for (i = 0; i < f0; i++) {
+            func_001E891B(fC[i]);
+        }
+        func_001E891B(fC);
+        fC = 0;
+    }
+    if (f4 != 0) {
+        func_001E891B(f4);
+        f4 = 0;
+    }
+    if (f8 != 0) {
+        func_001E891B(f8);
+        f8 = 0;
+    }
+}
+
 void *C_00188EF0::func_00188EF0(int flags)
 {
     unk0 = (int)&D_00287EE4;
