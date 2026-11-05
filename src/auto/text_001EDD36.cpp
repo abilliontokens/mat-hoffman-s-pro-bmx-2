@@ -15,6 +15,8 @@ extern int *D_002FB260[];
 extern char *D_002F6A28;
 
 int __stdcall func_001DD563(int h);
+int func_001EE70F(int fh);
+void func_001EE782(int fh);
 
 struct S_001EE9AB {
     int f0;
@@ -150,12 +152,43 @@ void func_001EE782(int fh)
     _imp__RtlLeaveCriticalSection((char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 0xc);
 }
 
+int func_001EE8F1(int fh)
+{
+    int retval;
+
+    if ((unsigned int)fh >= D_002FB240 ||
+        (*((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) == 0) {
+        *func_001ED075() = 9;
+        return -1;
+    }
+    func_001EE70F(fh);
+    __try {
+        if (*((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) {
+            if (func_001DD563(func_001EE6CE(fh)) == 0) {
+                retval = func_001DD603();
+            } else {
+                retval = 0;
+            }
+            if (retval == 0) {
+                goto done;
+            }
+            *func_001ED07E() = retval;
+        }
+        *func_001ED075() = 9;
+        retval = -1;
+done:
+        ;
+    } __finally {
+        func_001EE782(fh);
+    }
+    return retval;
+}
+
 int func_001EE997(void)
 {
     void func_001EAB1B(void);
     *func_001ED075() = 9;
-    func_001EAB1B();
-    return -1;
+    return (func_001EAB1B(), -1);
 }
 
 void __fastcall func_001EE9AB(S_001EE9AB *list, int unused)
@@ -166,5 +199,31 @@ void __fastcall func_001EE9AB(S_001EE9AB *list, int unused)
             list->f4(list->fC);
         }
     }
+}
+
+int func_001EE9D1(void)
+{
+    int value;
+
+    if (*D_002F6A28 == 0) {
+        return 0;
+    }
+    if (*D_002F6A28 >= '0' && *D_002F6A28 <= '9') {
+        return *D_002F6A28++ - '0' + 1;
+    }
+    value = 0;
+    while (*D_002F6A28 != '@') {
+        if (*D_002F6A28 == 0) {
+            return 0;
+        }
+        if (*D_002F6A28 < 'A' || *D_002F6A28 > 'P') {
+            return -1;
+        }
+        value = (value << 4) + (*D_002F6A28++ - 'A');
+    }
+    if (*D_002F6A28++ != '@') {
+        return -1;
+    }
+    return value;
 }
 
