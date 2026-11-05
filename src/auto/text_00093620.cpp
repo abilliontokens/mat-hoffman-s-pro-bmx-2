@@ -81,7 +81,15 @@ struct S_00093620_Cfg {
     int fC48;
     char padC4C[4];
     int fC50;
-    char padC54[0x24];
+    char padC54[4];
+    int fC58;
+    char padC5C[4];
+    int fC60;
+    char padC64[4];
+    int fC68;
+    char padC6C[4];
+    int fC70;
+    char padC74[4];
     int fC78;
     char padC7C[4];
     int fC80;
