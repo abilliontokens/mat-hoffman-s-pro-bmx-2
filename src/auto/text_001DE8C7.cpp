@@ -604,8 +604,6 @@ int __stdcall func_001DF5D6(int a)
 
 #pragma intrinsic(memcpy)
 extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
-extern "C" long (__stdcall *_imp__NtQueryDirectoryFile)(void *fileHandle, void *event, void *apcRoutine, void *apcContext, S_IoStatusBlock *iosb, void *fileInfo, u32 length, u32 infoClass, u32 returnSingle, void *fileName);
-extern "C" long (__stdcall *_imp__NtQueryFullAttributesFile)(S_ObjectAttributes *oa, void *info);
 void __stdcall func_001DF622(int a)
 {
 }
