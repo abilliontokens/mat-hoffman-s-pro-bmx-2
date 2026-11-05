@@ -134,6 +134,22 @@ void C_0013AEC0::func_0013AEC0(int idx)
     fE4 = idx;
 }
 
+int C_0013AEC0::func_0013AF40(int idx, int *a, unsigned int *b)
+{
+    if (a == 0) {
+        if (b == 0) {
+            return -1;
+        }
+    } else {
+        *a = 0;
+        if (b == 0) {
+            return 0;
+        }
+    }
+    *b = fE8[idx].f14;
+    return 0;
+}
+
 int C_0013AEC0::func_0013AF80(int idx)
 {
     int v = fC[fE8[idx].f0].f10;
