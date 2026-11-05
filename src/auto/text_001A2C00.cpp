@@ -187,3 +187,22 @@ void ResponseEmitter::func_001A3050(int a)
     ((C_00157A00 *)this)->func_00157A00(a);
 }
 
+int MaterialSoundEmitter::func_001A3B10(void)
+{
+    int i;
+    for (i = 1; i <= a.count; i++) {
+        S_3B10_Snd *s = a.at(i - 1)->snd;
+        if (s->v7()) {
+            s->v6(0);
+        }
+    }
+    for (i = 1; i <= b.count; i++) {
+        S_3B10_Snd *s = b.at(i - 1)->snd;
+        if (s->v7()) {
+            s->v6(0);
+        }
+    }
+    f1fc = -1;
+    return 1;
+}
+
