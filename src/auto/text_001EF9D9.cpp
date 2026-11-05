@@ -218,3 +218,16 @@ void *_func_001EFD19(void *a, char b, void *c)
     return a;
 }
 
+S_001EF734 *S_001EF734::func_001EFD3B(void *out, char c)
+{
+    S_001EF734 local;
+    local.func_001EEEE6(this);
+    if (local.func_001EF1E7() != 0) {
+        local.func_001EF999(c);
+    } else {
+        local.func_001EFB18(c);
+    }
+    ((S_001EF734 *)out)->func_001EEEE6(&local);
+    return (S_001EF734 *)out;
+}
+
