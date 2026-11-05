@@ -84,8 +84,11 @@ struct C_00168F40 {
     S_00168F40_Index *f4B8;
     int f4BC;
     void *f4C0;
-    void *f4C4;
+    unsigned f4C4;
     void *f4C8;
+    int func_00169710(char *name);
+    void func_001684B0(void);
+    void func_001684F0(int count);
     int func_00168300(int id);
     int func_00169490(int name, int flag);
     void func_001692E0(int h);
