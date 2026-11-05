@@ -383,6 +383,29 @@ void C_001B0E90::func_001B0E90(void) {
     unk0 = (int)&D_0028C6E8;
 }
 
+void C_001B0E60::func_001B0EA0(int value, C_001B0E60 **first)
+{
+    C_001B0E60 *p = this;
+    ShaderNode *node;
+    while (p->unk1C != 0) {
+        if (*first == 0) {
+            *first = p;
+        }
+        p = p->unk1C;
+    }
+    node = D_002F0630->pool->func_0001E8A0();
+    node->next = 0;
+    node->value = value;
+    if (p->unk18 != D_002F0630->frame) {
+        p->unk18 = D_002F0630->frame;
+        p->unk10 = node;
+        p->unk14 = node;
+    } else {
+        p->unk14->next = node;
+        p->unk14 = node;
+    }
+}
+
 void C_001B0FC0::func_001B0FC0(void)
 {
     int i;
@@ -455,6 +478,33 @@ void *C_001B1110::func_001B1110(unsigned int flags)
     return this;
 }
 
+void *C_001B1130::func_001B1130(int a0)
+{
+    func_00157600(a0);
+    vtbl = (void *)&D_0028C70C;
+    unk2C = 0;
+    unk28 = 0;
+    unk24 = 0;
+    unk30 = 1.0f;
+    unk3C = 0;
+    unk38 = 0;
+    unk34 = 0;
+    unk40 = 1.0f;
+    unk4C = 0;
+    unk48 = 0;
+    unk44 = 0;
+    unk50 = 1.0f;
+    unk5C = 0;
+    unk58 = 0;
+    unk54 = 0;
+    unk60 = 1.0f;
+    unk6C = 0;
+    unk68 = 0;
+    unk64 = 0;
+    unk70 = 1.0f;
+    return this;
+}
+
 int __stdcall func_001B1190(int a0, int a1, int a2, int a3, int a4, int a5, int a6) {
     return 0;
 }
@@ -467,6 +517,16 @@ void *Terrain::func_001B11A0(int flags)
         func_001E891B(this);
     }
     return this;
+}
+
+void TextureMap::func_001B11D0()
+{
+    vtbl = (void *)&D_0028C784;
+    if (D_002F0670) {
+        D_002F0670->v29(this);
+    }
+    D_002BEAAC->func_0013B210(this);
+    func_0001DFF0();
 }
 
 float C_001B15E0::func_001B15E0(void) {
