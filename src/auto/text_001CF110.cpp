@@ -146,11 +146,19 @@ struct MusicTrack {
 };
 
 struct XboxMusic {
-    char pad0[0x34];
+    char pad0[0x24];
+    int current;
+    char pad28[0xc];
     MusicTrack *tracks;
-    char pad38[0x6c];
+    int state;
+    IntArray history;
+    char pad4c[0x54];
+    int flags;
     int currentTrack;
     void func_001CF110(IntArray *list);
+    int func_001CFB00(int arg);
+    int func_001CF040(int arg);
+    int func_001CD450(int id, int arg);
 };
 
 struct SoundVoice {
