@@ -107,6 +107,17 @@ struct C_00157660_19A8C0 {
     void func_00157660(void);
 };
 
+struct S_0019B400_Reader {
+    int func_00168F40(void *name);
+    void func_00169A50(int a);
+    void func_00169090(int idx, void *buf);
+    void func_00169010(int idx, void *val);
+};
+
+extern char D_0028B170[];
+extern char D_00284A98[];
+int func_001EA426(const char *a, const char *b);
+
 struct SoultreeObject {
     void *vtbl;
     char pad4[0x20];
