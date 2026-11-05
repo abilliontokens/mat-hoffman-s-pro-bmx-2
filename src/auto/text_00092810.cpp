@@ -91,6 +91,13 @@ int C_000928E0::func_000928E0(void) {
     return (int)&unk254;
 }
 
+void C_00092890::func_00093120(void)
+{
+    for (int i = 0; i < 8; i++) {
+        f24[i]->func_001B1980();
+    }
+}
+
 void __stdcall func_00093280(int a0) {
 }
 
