@@ -81,6 +81,7 @@ struct QuadTree {
     u32 fAC;
     char padB0[0x890 - 0xB0];
     void **array890;
+    char pad894[4];
     int count898;
     int cap89C;
     u32 f8A0;
