@@ -57,9 +57,36 @@ struct S_00150440_Device {
     virtual void v12();
     virtual void v13(int a, int b);
     S_00150440_Renderer *f4;
+    char pad8[0x24];
+    float f2C;
 };
 
 extern S_00150440_Device *D_002EFDB8;
+
+struct C_00157600 {
+    void func_00157600(int a0);
+};
+
+/* Fog: a GameObject (0x24 bytes) followed by the fog blend state */
+struct C_00150360 {
+    void *vtbl;
+    char pad4[0x20];
+    float f24;
+    float f28;
+    float f2C;
+    float f30;
+    float f34;
+    int f38;
+    int f3C;
+    int f40;
+    float f44;
+    float f48;
+    float f4C;
+    int f50;
+    C_00150360 *func_00150360(int a0);
+    void func_00150390(float a, float b, float c, int d);
+    void func_001503E0(float a, float b, float c);
+};
 
 struct C_00150440 {
     char pad0[0x28];
