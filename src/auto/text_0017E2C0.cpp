@@ -56,6 +56,24 @@ struct RadiusLineCollisionObject {
     void func_00157A00(int param_1);
 };
 
+struct Vec4_0017E6F0 { float x, y, z, w; };
+
+struct C_0017E6F0 {
+    virtual void v00(); virtual void v04(); virtual void v08(); virtual void v0C();
+    virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1C();
+    virtual void v20(); virtual void v24(); virtual void v28(); virtual void v2C();
+    virtual void v30(); virtual void v34(); virtual void v38(); virtual void v3C();
+    virtual void v40(); virtual void v44(); virtual void v48(); virtual void v4C();
+    virtual void v50(); virtual void v54(); virtual void v58(); virtual void v5C();
+    virtual void v60(); virtual void v64(); virtual void v68(); virtual void v6C();
+    char pad4[0xAC];
+    float mB0[16];
+    Vec4_0017E6F0 fF0;
+    Vec4_0017E6F0 f100;
+    float f110, f114, f118, f11C;
+    void func_0017E6F0(Vec4_0017E6F0 a, Vec4_0017E6F0 b, float r);
+};
+
 void RadiusLineCollisionObject::func_0017E8E0(int param_1)
 {
     if (unkA6 != 0) {
