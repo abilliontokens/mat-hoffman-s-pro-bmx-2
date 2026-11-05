@@ -135,7 +135,7 @@ struct S_00189B60_Vec4 {
     }
 };
 
-static inline void SetVec4_00189B60(S_00189B60_Vec4 *v, float a, float b, float c, float d)
+static __forceinline void SetVec4_00189B60(S_00189B60_Vec4 *v, float a, float b, float c, float d)
 {
     v->x = a;
     v->y = b;
@@ -373,10 +373,12 @@ int BasicScene::func_00189B60(int n)
 {
     char nameB[0x80];
     char nameA[0x80];
-    S_00189B60_Vec4 hi(1000.0f, 1000.0f, 1000.0f, 1.0f);
-    S_00189B60_Vec4 lo(-0.3f, -0.3f, -0.3f, 1.0f);
+    S_00189B60_Vec4 hi;
+    S_00189B60_Vec4 lo;
     int i;
 
+    SetVec4_00189B60(&hi, 1000.0f, 1000.0f, 1000.0f, 1.0f);
+    SetVec4_00189B60(&lo, -0.3f, -0.3f, -0.3f, 1.0f);
     f494 = n;
     D_002E2930->func_0015E0F0(2);
     for (i = 0; i < n; i++) {
