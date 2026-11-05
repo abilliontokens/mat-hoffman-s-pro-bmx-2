@@ -43,6 +43,7 @@ struct BitObj {
     BitObj *func_001EF2FE(BitObj *o);
     void func_001EF68E(char *p, int mode);
     BitObj *func_001EF999(char c);
+    BitObj *func_001EF9B2(char *s);
 };
 
 /* a stream position handed to func_001F23B8: an offset and a 9-bit state that
