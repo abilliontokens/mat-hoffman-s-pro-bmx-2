@@ -243,6 +243,64 @@ void C_0005B8D0::func_0005B8D0(void)
   }
 }
 
+int C_0005B960::func_0005B960(int sel, float val)
+{
+    extern undefined4 D_002A8490;
+    int iv = (int)val;
+    int i;
+
+    switch (sel) {
+    case 3:
+        for (i = 0; i < 5; i++) {
+            if (iv > i190[i]) {
+                goto found;
+            }
+        }
+        return 0;
+    case 4:
+        if (((S_0005B8D0_Root *)D_002A8490)->p2e0->f10 <= 120.0f) {
+            for (i = 0; i < 5; i++) {
+                if (iv > i12C[i]) {
+                    goto found;
+                }
+            }
+        }
+        return 0;
+    case 0:
+        for (i = 0; i < 5; i++) {
+            if (val > f0[i]) {
+                goto found;
+            }
+        }
+        return 0;
+    case 1:
+        for (i = 0; i < 5; i++) {
+            if (val > f64[i]) {
+                goto found;
+            }
+        }
+        return 0;
+    case 2:
+        for (i = 0; i < 5; i++) {
+            if (val > fC8[i]) {
+                goto found;
+            }
+        }
+        return 0;
+    case 5:
+        for (i = 0; i < 5; i++) {
+            if (iv > i1F4[i]) {
+                goto found;
+            }
+        }
+        return 0;
+    default:
+        return 0;
+    }
+found:
+    return 1;
+}
+
 int C_0005C020::func_0005C020(int param_1)
 {
   int in_ECX = (int)this;
