@@ -21,7 +21,9 @@ struct S_C0010_2EC {
     void func_0018C780(int a0, void *a1, int a2);
     void func_0018C160(char *a0);
 };
-struct S_BFEE0_Check { int func_0005C1D0(int index); };
+struct S_BFEE0_Check { int func_0005C1D0(int index); void func_0005C310(int a, int b); };
+struct S_C09B0_Ui { void func_000B9A80(int a, int b); };
+struct S_C09B0_Input { int func_00136170(int a, int b, int c); };
 struct S_BFEE0_Manager { char pad[0x2c0]; S_BFEE0_Check *f2c0; };
 struct S_BFEE0_List { int func_0001B3C0(char *name); char pad[0x2c]; char *f2c; };
 struct S_BFEE0_Owner { char pad[0x484]; S_BFEE0_List *f484; };
