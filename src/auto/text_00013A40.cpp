@@ -60,11 +60,55 @@ extern int D_002754B8;
 void func_001E891B(void *p);
 
 /* an owned component with a virtual teardown at slot 2 */
+struct S_00014850_State {
+    char pad0[4];
+    int f4;
+};
+
 struct S_00014020_Part {
     virtual void vf0();
     virtual void vf1();
     virtual void vf2();
+    char pad4[0x20];
+    S_00014850_State *f24;
+    void func_0008AB90(void *a);
 };
+
+struct S_00014850_Vec4 {
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 w;
+};
+
+/* a vector that starts as (0, 0, 0, 1) */
+struct V4_00014850 : S_00014850_Vec4 {
+    V4_00014850() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+};
+
+struct S_00014850_Track {
+    int count;
+    S_00014850_Vec4 *entries;
+};
+
+struct S_00014850_Globals {
+    char pad0[0x588];
+    S_00014850_Track **f588;
+};
+
+struct S_00014850_Player {
+    char pad0[0x1C8];
+    int f1c8;
+};
+
+struct S_00014850_Root {
+    char pad0[0x2A4];
+    S_00014850_Player *f2a4;
+};
+
+extern S_00014850_Globals *D_002B9120;
+extern S_00014850_Root *D_002A8490;
+extern f32 D_00275600;
 
 /* a small heap object whose destructor only resets its vtable */
 struct S_00014020_Small {
