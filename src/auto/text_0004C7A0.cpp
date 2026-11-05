@@ -136,6 +136,65 @@ struct C_0004D230 {
     void func_0004D230();
 };
 
+struct S_4D0E0_Obj {
+    void func_0010C090(void *a, void *b, int c, int d);
+    void func_0010E810();
+};
+
+struct S_4D0E0_Tbl {
+    char pad0[0x1a8];
+    S_4D0E0_Obj *objs[1];
+    void func_000A4500(int a, int idx);
+};
+
+struct S_4D0E0_Mgr {
+    char pad0[0x4e0];
+    S_4D0E0_Tbl *f4e0;
+};
+
+struct S_4D0E0_A {
+    void func_001C4D50(int a);
+};
+
+struct S_4D0E0_B {
+    void func_000861A0(int idx);
+};
+
+struct S_4D0E0_C {
+    void func_00056080();
+};
+
+struct S_4D0E0_D {
+    char pad0[0x50];
+    S_4D0E0_C *f50;
+};
+
+struct S_4D0E0_E {
+    void func_00086C30(int a);
+    void func_000847A0();
+};
+
+struct C_0004D0E0 {
+    char pad0[0x44];
+    S_4D0E0_D *f44;
+    char pad48[0x1c];
+    S_4D0E0_Mgr *f64;
+    char pad68[0x28];
+    int f90;
+    char pad94[0x8c];
+    int f120;
+    char pad124[0x34];
+    S_4D0E0_A *f158;
+    char pad15c[0x14];
+    S_4D0E0_E *f170;
+    char pad174[0x114];
+    S_4D0E0_B *f288;
+    int f28c;
+    char pad290[0x10];
+    int f2a0[1];
+    void func_0004D0E0();
+};
+
 void C_0004CC60::func_0004CC60(int id, int a1, int a2, int a3, int a4, int a5)
 {
     for (int i = 0; i < f90; i++) {
@@ -193,9 +252,9 @@ void C_0004D230::func_0004D230()
         p = (char *)this + f28c * 0x78 + 0x2c4;
     } while (*p != 0 && f1c0 != 0 && func_00097DA0(p) == 0);
 
-    int idx = f28c;
-    char *base = (char *)this + idx * 0x10;
-    ((S_4D230_Obj **)(f64->f4e0 + 0x1a8))[f120]->func_0010C090(base + 0x688, base + 0x708, 0, 1);
+    char *base = (char *)this + f28c * 0x10;
+    S_4D230_Mgr *m = f64;
+    m->f4e0->objs[f120]->func_0010C090(base + 0x688, base + 0x708, 0, 1);
 }
 
 void C_0004D5F0::func_0004D5F0()
