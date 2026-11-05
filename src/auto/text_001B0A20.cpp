@@ -676,6 +676,46 @@ void *TextureMap::func_001B1270(int flags)
     return this;
 }
 
+void *C_001B12C0::func_001B12C0(int a0)
+{
+    func_00157600(a0);
+    f24 = 0;
+    f28 = 0;
+    vtbl = (void *)&D_0028C7EC;
+    f68 = D_0028F5E8;
+    f74 = 1;
+    f78 = -1.0f;
+    fB8 = 1.0f;
+    fBC = 1.0f;
+    fC4 = -1.0f;
+    f64 = 0;
+    f70 = 0;
+    f6C = 0;
+    f7C = 0;
+    f80 = 0;
+    f5C = 0;
+    f90 = 0;
+    fA0 = 0;
+    fB0 = 0;
+    f60 = 0;
+    f8C = 0;
+    f94 = 0;
+    fA4 = 0;
+    fB4 = 0;
+    fC0 = 0;
+    fD8 = 0;
+    fDC = 0;
+    fE0 = 0;
+    fD4 = 0;
+    fE4 = 0;
+    f124 = 0;
+    f174 = 0;
+    f178 = 0;
+    f17C = 0;
+    f180 = 0;
+    return this;
+}
+
 C_001B1580 *C_001B1580::func_001B1580(int a, int b, const char *s, int c)
 {
     if (s != 0) {
