@@ -43,6 +43,40 @@ void C_0015DA60::func_0015DA60(int a, int b, int c)
     unk6C[b]->func_00192A50(unk6C[a], c);
 }
 
+void C_0015DA60::func_0015DCC0(C_0015DCC0_Item *item)
+{
+    int found = 0;
+    int i = 0;
+    if (0 < unk7C) {
+        do {
+            C_0015DCC0_Item *cur = unk84[i];
+            if (cur == item) {
+                found = 1;
+            } else if (found) {
+                unk84[i - 1] = cur;
+            }
+            i++;
+        } while (i < unk7C);
+    }
+    unk7C--;
+    if (item->unk28 == 1 && item->unkC4 != 0) {
+        item->unkC4->func_00193870(&item->unk24);
+        C_00193500 *sub = item->unkC4;
+        if (sub != 0) {
+            sub->func_00193500();
+            func_001E891B(sub);
+        }
+        item->unkC4 = 0;
+    }
+    unk88 = 0;
+    for (i = 0; i < unk7C; i++) {
+        if (unk84[i]->unk28 == 2) {
+            unk88 = 1;
+            return;
+        }
+    }
+}
+
 int C_0015E0F0::func_0015E0F0(int param_1)
 {
   int in_ECX = (int)this;
