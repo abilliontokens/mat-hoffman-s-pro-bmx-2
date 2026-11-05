@@ -1,6 +1,24 @@
 /* 4 functions from 0x0003A990 to 0x0003B0A0, found by Ghidra. */
 #include "common.h"
 #include <string.h>
+#include <xmmintrin.h>
+extern float D_00275548;
+struct S_0003AC20_Vec { float x,y,z,w; };
+struct S_0003AC20_Data { char pad0[0x34]; S_0003AC20_Vec pos; };
+struct S_0003AC20_Owner { char pad0[0xE8]; S_0003AC20_Data *fE8; };
+struct S_0003AC20_Entry { int type; S_0003AC20_Owner *owner; };
+struct C_0003AC20 {
+ char pad0[0x2D4]; int f2D4;
+ char pad2D8[0x440-0x2D8]; float f440;
+ char pad444[0x450-0x444]; int f450;
+ char pad454[8]; int f45C;
+ char pad460[0x574-0x460]; S_0003AC20_Entry *f574; int f578;
+ char pad57C[0x5A0-0x57C]; int count; S_0003AC20_Entry **items;
+ S_0003AC20_Entry *at(int i) { if(count>0 && items && i<count) return items[i]; return 0; }
+ int func_00038760(float x,float y,float z,int unused,int *out);
+ int func_0003AC20(float x,float y,float z,int unused);
+};
+static inline void Round_0003AC20(int *out,float f) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
 
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 extern char D_00276EEC[];
