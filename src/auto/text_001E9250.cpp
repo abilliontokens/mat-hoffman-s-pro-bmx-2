@@ -353,17 +353,17 @@ int func_001E9D46(S_001E9714_File *stream) {
 
 int func_001E9D87(int fh, int mode) {
     int *func_001ED075(void);
-    unsigned char *p = D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4;
-    unsigned char old = *p;
+    unsigned char *pfh = D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4;
+    int oldmode = *pfh & 0x80;
     if (mode == 0x8000) {
-        *p = old & 0x7f;
+        *pfh &= 0x7f;
     } else if (mode == 0x4000) {
-        *p = old | 0x80;
+        *pfh |= 0x80;
     } else {
         *func_001ED075() = 0x16;
         return -1;
     }
-    return (old & 0x80) ? 0x4000 : 0x8000;
+    return oldmode ? 0x4000 : 0x8000;
 }
 
 int func_001E9DE9(S_001E9714_File *stream) {
@@ -397,17 +397,15 @@ void func_001E9F99(void) {
     func_001E9E74(1);
 }
 
-char *func_001EA1EE(char *s) {
-    char *p = s;
+char *func_001EA1EE(char *string) {
+    char *cp;
 
-    while (*p) {
-        char c = *p;
-        if (c >= 'a' && c <= 'z') {
-            *p = c - 0x20;
+    for (cp = string; *cp; ++cp) {
+        if ('a' <= *cp && *cp <= 'z') {
+            *cp += 'A' - 'a';
         }
-        p++;
     }
-    return s;
+    return string;
 }
 
 int func_001EA211(int c) {
@@ -416,4 +414,4 @@ int func_001EA211(int c) {
     }
     return D_002AEA30[c] & 0x103;
 }
-
+#pragma optimize("", on)
