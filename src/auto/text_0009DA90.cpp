@@ -85,6 +85,7 @@ struct C_0009E590 {
     int f214;
     int f218;
     C_0009E590 *func_0009E590(int a1, int a2, int a3);
+    C_0009E590 *func_0009E480(int param_1);
     int func_0009E5F0(S_0009E5F0_Stream *stream);
 };
 
