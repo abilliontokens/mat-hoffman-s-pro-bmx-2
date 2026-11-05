@@ -242,6 +242,10 @@ void *C_0001CA80::func_0001CA80(int flags) {
     return this;
 }
 
+int C_0001CBF0::func_0001CBF0(void) {
+    return ++unk44 - 1;
+}
+
 void C_0001CD40::func_0001CD40(void) {
     unk5C = 0;
 }
