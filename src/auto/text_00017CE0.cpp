@@ -83,6 +83,15 @@ struct TikiEvadeState {
     void func_00018340();
 };
 
+void AiTikiGod::func_00017CE0(S_00017CE0_Arg *a, int b, int c)
+{
+    if (f4f0 == 0) {
+        a->f4 = f50c;
+        return;
+    }
+    ((C_001C6F90 *)this)->func_001C6F90(a, b, c);
+}
+
 void AiTikiGod::func_00017D00()
 {
     D_002A8490->f2a4->func_0004AAD0();
