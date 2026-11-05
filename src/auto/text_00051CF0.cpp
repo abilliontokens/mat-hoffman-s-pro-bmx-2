@@ -142,6 +142,7 @@ struct C_00051CF0 {
     void func_000526D0();
     void func_00052740(int a);
     void func_00052BD0();
+    void func_00052AE0(float threshold);
 };
 
 struct C_00052BB0 {
