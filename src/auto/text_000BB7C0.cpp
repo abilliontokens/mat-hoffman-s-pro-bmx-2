@@ -196,6 +196,14 @@ int C_000BBE30::func_000BC0F0(int idx)
     return f27C[idx].f10C;
 }
 
+undefined4 C_000BC180::func_000BC180(void)
+{
+    if (D_002A8490->f2E0->f324 == 1) {
+        return f27c->f128;
+    }
+    return f27c[f284].f128;
+}
+
 void C_000BBE30::func_000BC240(void)
 {
     f288 = 0;
