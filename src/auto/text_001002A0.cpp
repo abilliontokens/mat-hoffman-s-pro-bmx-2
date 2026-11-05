@@ -57,3 +57,10 @@ undefined4 C_001003E0::func_001003E0(byte param_1)
   }
   return in_ECX;
 }
+
+void C_001006E0::func_001006E0(void) {
+    func_000F1B60();
+    func_000E1650();
+    func_00157960();
+}
+
