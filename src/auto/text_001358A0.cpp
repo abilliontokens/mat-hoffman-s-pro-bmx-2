@@ -30,15 +30,17 @@ extern S_Game_001358A0 *D_002A8490;
 extern int D_00284834;
 void func_001E891B(void *p);
 
-struct S_001358A0_Handler {
-    int func_0015AC20(int a);
-};
-
 struct S_00136110_Dev {
     virtual int v0(int a, int b, int c);
     virtual int v1(int a, int b, int c);
     virtual int v2(int a, int b, int c);
     virtual int v3(int a, int b, int c);
+    virtual int v4(int a, int b, int c);
+    virtual int v5(int a, int b, int c);
+};
+
+struct S_001358A0_Handler : S_00136110_Dev {
+    int func_0015AC20(int a);
 };
 
 struct S_00136300_Target {
