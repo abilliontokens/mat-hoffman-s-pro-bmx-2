@@ -326,7 +326,7 @@ struct C_00095060 {
     int f30;
     int f34;
     int f38;
-    char pad3C[4];
+    int f3C;
     int f40;
     int f44;
     int f48;
@@ -729,6 +729,11 @@ int C_00094F00::func_00094F00(void) {
 void C_00094F10::func_00094F10(void)
 {
     Clear();
+}
+
+void *C_00095060::func_00094F40(void *arg)
+{
+    return this;
 }
 
 void C_00095060::func_00095060(void)
