@@ -71,6 +71,10 @@ struct BmxScene {
     BmxSceneMgr *f38c;
     char pad390[0x3ac - 0x390];
     BmxSceneMgr *f3ac;
+    char pad3b0[0x3d4 - 0x3b0];
+    int f3d4;
+    int *f3d8;
+    void func_00183AF0(void);
     void func_00183E90(void);
     void func_00183D70(void *a0);
     int func_00183DD0(int param_1);
