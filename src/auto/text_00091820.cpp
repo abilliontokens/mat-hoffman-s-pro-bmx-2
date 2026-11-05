@@ -9,6 +9,11 @@ extern int D_00279C3C;
 extern int D_0027993C;
 extern int D_002799BC;
 void func_001E891B(void *p);
+void func_0008BBE0();
+
+struct C_000927F0 {
+    void *func_000927F0(unsigned int flags);
+};
 
 extern int D_00279DEC;
 
