@@ -9,6 +9,36 @@ struct __declspec(align(16)) S_Matrix16 {
     f32 m[16];
 };
 
+void func_00030AC0(float *out, float *v, float *m);
+
+struct Vec4_0017F2B0 {
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 w;
+};
+
+struct S_0017FDB0_Node {
+    char pad0[8];
+    u16 f8;
+    u16 fA;
+    char padC[0x18];
+};
+
+struct S_0017FDB0_Leaf {
+    Vec4_0017F2B0 min;
+    Vec4_0017F2B0 max;
+};
+
+struct S_0017FDB0_Tree {
+    S_0017FDB0_Node *nodes;
+    S_0017FDB0_Leaf *leaves;
+};
+
+struct C_0017FDB0 {
+    void func_0017FDB0(u16 idx, S_0017FDB0_Tree *tree, float *m);
+};
+
 struct RayCollisionObject {
     virtual void v0();
     virtual void v1();
