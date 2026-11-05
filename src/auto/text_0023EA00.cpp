@@ -178,7 +178,7 @@ struct C_0023EFB0_Pump {
     unsigned int f8C;
     char pad90[4];
     int f94;
-    char pad98[8];
+    char pad98[0xc];
     S_0023EA00_Link fA4;
     void func_0023EFB0(int a0, int a1, int a2);
     int func_0023EC71(int a0, int a1, void *req);
@@ -574,6 +574,31 @@ int __stdcall func_0023EF7B(S_0023EF7B_Src *src, S_0023EF7B_Out *out)
     out->fC = src->f14;
     out->f10 = src->f2C;
     return 0;
+}
+
+void C_0023EFB0_Pump::func_0023EFB0(int a0, int a1, int a2)
+{
+    int r;
+
+    if (f8C > 0) {
+        do {
+            if (func_001DDDD6(f4C, 0) == 0) {
+                break;
+            }
+            _imp__RtlEnterCriticalSection(f6c);
+            if (fA4.next != &fA4) {
+                r = func_0023EC71(f34, f94, fA4.next);
+                _imp__RtlLeaveCriticalSection(f6c);
+                if (r == 0x80004004) {
+                    break;
+                }
+            } else {
+                _imp__RtlLeaveCriticalSection(f6c);
+            }
+        } while (f8C > 0);
+    }
+    f68 = 0;
+    func_001DE7C2(0);
 }
 
 unsigned int __stdcall func_0023F0F4(int p1, C_0023EC0D *obj, unsigned int a, unsigned int b, int *out)
