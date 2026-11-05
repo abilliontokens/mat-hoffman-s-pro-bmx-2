@@ -12,18 +12,31 @@ struct C_0005DA40 {
     void func_0005DA40(int a0);
 };
 
+struct S_0005DA50_rec {
+    int d0;
+    int d1;
+    int d2;
+    int d3;
+};
+
 struct C_0005DA50 {
     char pad0[0x38];
-    int unk38[4];
-    char pad48[0x30];
+    S_0005DA50_rec rec[4];
     int unk78;
     void func_0005DA50(int a0);
 };
 
+struct S_0005DA80_rec {
+    int d0;
+    int d1;
+    int d2;
+    int d3;
+};
+
 struct C_0005DA80 {
     char pad0[0x48];
-    int unk48[4];
-    char pad58[0x24];
+    S_0005DA80_rec rec[3];
+    char pad78[4];
     int unk7C;
     void func_0005DA80(int a0);
 };
@@ -38,3 +51,14 @@ void C_0005DA30::func_0005DA30(int a0) {
 void C_0005DA40::func_0005DA40(int a0) {
     unk34 = a0;
 }
+
+void C_0005DA50::func_0005DA50(int a0) {
+    unk78 = a0;
+    rec[0] = rec[a0 + 8];
+}
+
+void C_0005DA80::func_0005DA80(int a0) {
+    unk7C = a0;
+    rec[0] = rec[a0 + 8];
+}
+
