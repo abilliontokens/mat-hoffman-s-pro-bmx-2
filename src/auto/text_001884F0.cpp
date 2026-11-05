@@ -397,6 +397,20 @@ int C_00188CB0::func_00188D20(int n)
     return 0;
 }
 
+int C_00188CB0::func_00188E20(int idx, int value)
+{
+    int k;
+    int *arr;
+
+    if (idx >= 0 && idx < f0 && (k = f8[idx]) >= 0 && k < f4[idx] &&
+        (arr = (int *)fC[idx]) != 0) {
+        arr[k] = value;
+        f8[idx]++;
+        return 1;
+    }
+    return 0;
+}
+
 void *C_00188EF0::func_00188EF0(int flags)
 {
     unk0 = (int)&D_00287EE4;
