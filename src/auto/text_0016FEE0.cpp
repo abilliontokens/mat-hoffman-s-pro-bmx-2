@@ -39,7 +39,8 @@ struct C_001703B0 {
     void *f104;
     u32 f108, f10c;
     void *f110;
-    char pad114[0x128 - 0x114];
+    char pad114[8];
+    u32 f11c, f120, f124;
     S_Obj *f128;
     void *f12c;
     void *f130;
