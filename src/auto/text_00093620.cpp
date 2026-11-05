@@ -213,7 +213,7 @@ struct C_001D4300 {
     void func_001D41D0(int a);
     int func_001D4380(void *s);
     int func_001D42A0(const char *path, const char *name);
-    void func_001D4720(void *a, void *b);
+    int func_001D4720(int a, int b);
     int func_001D4440(int a, int b, int c, int d);
 };
 
@@ -258,6 +258,38 @@ struct C_00093140 {
     void func_000944C0(int a1, int a2, int a3, int a4, int a5, int a6);
     void func_000941A0(int a0, int a1, int a2, int a3, int a4, int a5, int a6);
 };
+
+extern "C" char *strcpy(char *d, const char *s);
+int C_00093620::func_00093620(int a)
+{
+    C_00092BE0_Str s;
+    char buf[0x104];
+
+    s.func_001D3E30();
+    s.func_001D3E60(&f4c);
+    s.func_001D3F20(&D_0027A130, 0xd);
+    if (D_002A8490->f2e0->f2cc->func_001D4300(8) == 1) {
+        D_002A8490->f2e0->f2cc->func_001D41D0(8);
+        if (func_00092BE0() == 0) {
+            s.func_001D3E60(&f150);
+            s.func_001D3E80(&D_0027A1A4);
+            s.func_001D3EA0(3, &D_0027A178, &D_0027A188, &D_0027A198);
+            s.func_001D3F20(&D_0027A144, 0xd);
+            if (D_002A8490->f2e0->f2cc->func_001D4380(&s) != 0) {
+                strcpy(f150, s.func_001D3F50());
+                func_001ADCC0(buf, 0x104, &D_0027A168, f150);
+                func_001DD0A9(&D_0027A1DC, buf, 0);
+            }
+        }
+        if (D_002A8490->f2e0->f2cc->func_001D42A0(s.func_001D3F50(), D_00277A0C) != 0) {
+            if (func_00092BE0() == 0) {
+                return 0;
+            }
+        }
+        return 1;
+    }
+    return 0;
+}
 
 void C_00093140::func_00093890(int a1, int a2, int a3, int a4, int a5, int a6)
 {
