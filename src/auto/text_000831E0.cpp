@@ -238,27 +238,21 @@ void C_00083960::func_00083960(void) {
 int C_000831E0::func_00083970(const char *name, int a1, int key)
 {
     int i;
-    char *dst;
-    char c;
 
-    if (*name == 0) {
-        return 0;
-    }
-    for (i = 0; i < f2E4; i++) {
-        if (a2EC[i] == key) {
-            return 0;
+    if (*name != 0) {
+        for (i = 0; i < f2E4; i++) {
+            if (a2EC[i] == key) {
+                return 0;
+            }
         }
+        a2EC[f2E4] = key;
+        f2E4++;
+        CopyString(s210, name);
+        f274 = a1;
+        f20C = 1;
+        return 1;
     }
-    a2EC[f2E4] = key;
-    f2E4++;
-    dst = s210;
-    do {
-        c = *name++;
-        *dst++ = c;
-    } while (c != 0);
-    f274 = a1;
-    f20C = 1;
-    return 1;
+    return 0;
 }
 
 int C_000831E0::func_000839F0(const char *name, int a, int id)
