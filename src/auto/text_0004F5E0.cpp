@@ -209,6 +209,26 @@ struct C_0004FC20 {
     }
 };
 
+struct S_4F820_Control {
+ void func_00086C10(int); void func_00086C20(int);
+ void func_000867F0(int); void func_00086910(int);
+ void func_00086A40(int); void func_00086B20(int);
+};
+struct S_4F820_Sub {
+ char pad0[0xB8]; int fB8;
+ void func_0006D280();
+};
+struct C_0004F820 {
+ char pad0[0x64]; M_4FC20 *f64;
+ char pad68[0xA8]; int f110;
+ char pad114[0xC]; int f120;
+ char pad124[0x184]; S_4F820_Control *f2A8;
+ char pad2AC[8]; int f2B4;
+ char pad2B8[0x20]; S_4F820_Sub *f2D8; int f2DC;
+ void func_00032A20();
+ void func_0004F820(unsigned int state);
+};
+
 int C_0004F5E0::func_0004F5E0()
 {
     if (f284 == 9) {
