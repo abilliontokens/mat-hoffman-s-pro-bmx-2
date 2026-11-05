@@ -2,6 +2,14 @@
 #include "common.h"
 #include "ghidra.h"
 #include <math.h>
+/* One entry of the sine/cosine table func_0014F6E0 interpolates in. */
+struct S_SinCosEntry {
+    float a;
+    float b;
+};
+
+extern S_SinCosEntry *D_002CF6B4;
+
 struct C_00150350 {
     int unk0;
     void func_00150350(void);
