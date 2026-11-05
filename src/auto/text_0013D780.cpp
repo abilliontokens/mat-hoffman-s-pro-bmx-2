@@ -93,6 +93,8 @@ struct C_001D5600 {
 };
 
 struct C_00156E80 {
+    char pad0[0x264];
+    int f264;
     void func_00156E80(void);
 };
 
@@ -222,11 +224,11 @@ void *C_0013E080::func_0013E140(unsigned int flags) {
 void C_0013E170::func_0013E170(int index, char *name, int value)
 {
     if (index < *(int *)((int)this + 0x193c)) {
-        char *base = (char *)((int)this + index * 0x5c);
-        if (strcmp(base + 0x230, name) != 0) {
-            func_001E8920(base + 0x230, name, 0x4f);
-            *(unsigned char *)(base + 0x27f) = 0;
-            *(int *)(base + 0x280) = value;
+        S_0013E170_Entry *e = (S_0013E170_Entry *)((char *)this + index * 0x5c);
+        if (strcmp(e->name, name) != 0) {
+            func_001E8920(e->name, name, 0x4f);
+            e->name[0x4f] = 0;
+            e->value = value;
         }
     }
 }
@@ -259,6 +261,21 @@ void func_0013E260(int obj, int id, int fmt, ...)
         int n = ++*(int *)(obj + 0x224);
         ((C_0013E170 *)obj)->func_0013E170(n, buf, 1);
     }
+}
+
+void func_0013E4A0(void *dst, void *src)
+{
+    float *d = (float *)dst;
+    float *s = (float *)src;
+    __m128 r0 = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (__m64 *)&s[0]), (__m64 *)&s[4]);
+    __m128 r1 = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (__m64 *)&s[2]), (__m64 *)&s[6]);
+    __m128 r2 = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (__m64 *)&s[8]), (__m64 *)&s[12]);
+    __m128 r3 = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (__m64 *)&s[10]), (__m64 *)&s[14]);
+
+    *(__m128 *)&d[0] = _mm_shuffle_ps(r0, r2, 0x88);
+    *(__m128 *)&d[4] = _mm_shuffle_ps(r0, r2, 0xdd);
+    *(__m128 *)&d[8] = _mm_shuffle_ps(r1, r3, 0x88);
+    *(__m128 *)&d[12] = _mm_shuffle_ps(r1, r3, 0xdd);
 }
 
 DXCamera *DXCamera::func_0013E4F0(int a)
