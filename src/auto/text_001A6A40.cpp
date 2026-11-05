@@ -182,6 +182,21 @@ void *C_001A77B0::func_001A77B0(int flags)
     return this;
 }
 
+void *C_001A77F0::func_001A77F0(int flags)
+{
+    extern int D_0028BA74;
+    vtbl = (void *)&D_0028BA74;
+    if (f28) {
+        f28->destroy8();
+        f28 = 0;
+    }
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void *C_001A7830::func_001A7830(int flags)
 {
     vtbl = (void *)&D_0028BB04;
