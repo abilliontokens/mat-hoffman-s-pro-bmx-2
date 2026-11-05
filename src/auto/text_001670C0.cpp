@@ -389,7 +389,6 @@ int C_00167DD0::func_00167DD0(S_00167DD0_Object *contextArg, C_00167DD0_Context 
  return 1;
 }
 
-extern char *D_002EFDB8;
 extern int D_002A85D8;
 extern char D_002EFD38[];
 int C_00167DD0::func_00167ED0(void)
