@@ -148,6 +148,10 @@ int __stdcall func_00202970(int a, int b, int c, int d, void *params, int *out);
 void __stdcall func_001FFBC0(int (*cb)());
 int func_001B2B90(int fmt);
 
+struct I_001D87A0_Dtor {
+    virtual void destroy(int flags);
+};
+
 /* XboxVideoCard (create device) */
 struct C_001D87A0 {
     virtual void v0(int flags);
@@ -221,7 +225,6 @@ C_001D8760 *C_001D8760::func_001D8760(int flags)
 C_001D87A0 *C_001D87A0::func_001D87A0(int a1, int a2, int a3, int a4)
 {
     int r;
-    int hr;
     unsigned int i;
 
     f40 = a2;
@@ -248,8 +251,7 @@ C_001D87A0 *C_001D87A0::func_001D87A0(int a1, int a2, int a3, int a4)
     pp[11] = 0;
     pp[12] = 1;
     func_00202950(&D_00100000, 0x8000);
-    hr = func_00202970(0, 1, f40, 0x50, pp, &D_002F0BB8);
-    if (hr != 0) {
+    if (func_00202970(0, 1, f40, 0x50, pp, &D_002F0BB8) != 0) {
         v0(1);
         return 0;
     }
