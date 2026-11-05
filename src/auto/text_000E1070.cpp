@@ -67,6 +67,33 @@ struct C_000E1770 {
     void func_000E1EA0();
 };
 
+C_000E1770 *C_000E1770::func_000E1770(int a)
+{
+    func_001BE360(a);
+    vtbl = &D_0027FAA4;
+    f28C = 0;
+    f290 = 0;
+    f288 = 0;
+    f294 = 0;
+    f280 = 0;
+    f284 = 0;
+    f298 = 0;
+    f29C = 2;
+    f2AC = 0;
+    f2A8 = 0;
+    f2BC = 0;
+    f2B8 = 0;
+    for (int i = 0; i < 2; i++) {
+        arr2D4[i] = 0;
+    }
+    f2C0 = 0;
+    f2C4 = 0;
+    f2C8 = 0;
+    f2CC = 0;
+    f2D0 = 0;
+    return this;
+}
+
 void C_000E1770::func_000E1810()
 {
     int i;
