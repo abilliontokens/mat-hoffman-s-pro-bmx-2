@@ -155,6 +155,16 @@ struct ListEntry_12A200 {
     int f4;
 };
 
+extern float D_00284038;
+extern float D_0028403C;
+extern int D_00284074;
+extern int D_002A3E40, D_002A3E44, D_002A3E48;
+
+struct Camera_12A3F0 {
+    void func_00157600(int a);
+    Camera_12A3F0 *func_0012A3F0(int a);
+};
+
 struct BoxCollisionObject {
     void *vtbl;
     char pad4[0x50];
