@@ -63,6 +63,7 @@ struct C_001C6DA0 {
     S_001C6DA0_V4 unkD4;
     int func_001C6E30(const char *name);
     void func_001C6DA0(int idx, int arg);
+    void func_001C6EA0(C_00198330 *obj, Vec4 *out, int unused);
 };
 
 struct C_001C65E0 {
