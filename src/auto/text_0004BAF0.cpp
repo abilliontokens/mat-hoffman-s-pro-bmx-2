@@ -91,8 +91,9 @@ struct C_0004C560 {
     int f208;
     char pad20c[0x78];
     int f284[9][50];
-    char pad98c[0xc8];
-    C_0004C560Item items[254];
+    int f98c[50];
+    C_0004C560Item items[50];
+    C_0004C560Block blocks[8];
     int f1244;
     C_0004C560Tracker *f1248[2];
     int f1250;
