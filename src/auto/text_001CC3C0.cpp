@@ -110,6 +110,45 @@ struct XboxMusic {
     XboxMusic(int a, S_XboxMusicArg *b, int c);
 };
 
+struct S_WaveFormat {
+    u16 wFormatTag;
+    u16 nChannels;
+    u32 nSamplesPerSec;
+    u32 nAvgBytesPerSec;
+    u16 nBlockAlign;
+    u16 wBitsPerSample;
+    u16 cbSize;
+    u16 wSamplesPerBlock;
+};
+
+struct S_BufferDesc {
+    u32 dwSize;
+    u32 dwFlags;
+    u32 dwBufferBytes;
+    S_WaveFormat *lpwfxFormat;
+    void *lpMixBins;
+    u32 dwInputMixBin;
+};
+
+struct S_001CCC50_Global {
+    char pad0[0x30];
+    int f30;
+};
+extern S_001CCC50_Global *D_002F08EC;
+extern int D_00040000;
+int __stdcall func_002226F7(int a, S_BufferDesc *desc, int *out, int d);
+
+struct C_001CCC50 {
+    char pad0[0x110];
+    int f110;
+    char pad114[0x84];
+    s16 f198;
+    char pad19A[2];
+    int f19C;
+    int f1A0;
+    int func_001CCC50(int *out, u32 bytes, u32 rate, u16 bits, u32 align, s16 tag, int stereo, int a7, int a8, u32 flags);
+};
+
 struct C_001CD220 {
     char pad0[0xCC];
     int fCC;
