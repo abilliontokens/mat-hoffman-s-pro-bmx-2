@@ -9,6 +9,14 @@ struct C_0004ED80 {
 
 void func_001E891B(void *ptr);
 
+struct C_0004EC40Item {
+    virtual void dummy0();
+    virtual void dummy1();
+    virtual void dummy2();
+    virtual void dummy3();
+    virtual void func_0004EC40(void);
+};
+
 struct C_0004EBA0 {
     char pad0[0x64];
     void *f64;
