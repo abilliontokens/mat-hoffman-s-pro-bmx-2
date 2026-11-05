@@ -66,3 +66,16 @@ struct C_000E1770 {
     void func_000E1C20();
     void func_000E1EA0();
 };
+
+void C_000E1770::func_000E1810()
+{
+    int i;
+    vtbl = &D_0027FAA4;
+    for (i = 0; i < 2; i++) {
+        if (arr2D4[i] != 0) {
+            arr2D4[i]->Destroy(1);
+            arr2D4[i] = 0;
+        }
+    }
+    func_001BE3F0();
+}
