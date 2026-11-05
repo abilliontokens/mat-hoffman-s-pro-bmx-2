@@ -665,6 +665,7 @@ void func_001F3B1F(unsigned int flags)
         d = 3.14159265358979323846;
     }
 }
+#pragma auto_inline(on)
 
 #pragma optimize("", on)
 
