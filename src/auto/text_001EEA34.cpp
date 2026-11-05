@@ -505,6 +505,19 @@ S_001EEFBA *S_001EEFBA::func_001EF3D2(BitObj *src)
     return this;
 }
 
+S_001EF033 *__fastcall func_001EF419(int v, int unused)
+{
+    S_001EF033 *obj;
+    BitObj *raw;
+
+    obj = (S_001EF033 *)D_002F6A04.func_001EEE62(0xc, 0);
+    if (obj == 0) {
+        return 0;
+    }
+    raw = (BitObj *)D_002F6A04.func_001EEE62(8, 0);
+    return func_001EF033(obj, 0, raw != 0 ? raw->Reset(v) : 0);
+}
+
 S_001EF577 *S_001EF577::func_001EF577(void *a, char *name, int c, int d, int e)
 {
     ((S_001EEFBA *)this)->func_001EF3B4();
@@ -523,6 +536,19 @@ S_001EF577 *S_001EF577::func_001EF577(void *a, char *name, int c, int d, int e)
     D_002F6A3C = d;
     D_002F6A18 = this;
     return this;
+}
+
+void *func_001EF5E4(BitObj *self, BitObj *p)
+{
+    void *func_001F306F(void *, BitObj *);
+
+    if (*D_002F6A28 == '@') {
+        D_002F6A28++;
+        self->func_001EF11B(p);
+    } else {
+        func_001F306F(self, p);
+    }
+    return self;
 }
 
 BitObj *__fastcall func_001EF734(BitObj *self, int unused, char c)
