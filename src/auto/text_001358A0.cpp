@@ -8,6 +8,8 @@ struct C_00135470 {
     int f4;
     char pad8[0x44];
     void func_00135470();
+    C_00135470();
+    ~C_00135470();
 };
 struct C_00135A80 {
     char pad0[0x24];
