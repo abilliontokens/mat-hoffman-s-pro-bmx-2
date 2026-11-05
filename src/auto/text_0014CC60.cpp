@@ -16,6 +16,7 @@ struct C_0014CC60 {
     char pad588[0x1C4C];
     int f21D4;
     int *f21D8;
+    int func_0014D360(int handle, int flag);
     void func_0014D670(int v);
 };
 
