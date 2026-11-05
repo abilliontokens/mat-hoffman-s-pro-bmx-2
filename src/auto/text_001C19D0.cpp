@@ -1,5 +1,40 @@
 /* 12 functions from 0x001C19D0 to 0x001C26B0, found by Ghidra. */
 #include "common.h"
+struct C_001C2190 {
+    void func_001C2190(int a0);
+    void func_001BF980(int a0);
+    void func_00157A00(int a0);
+};
+
+struct Sub_001D5AD0 {
+    void func_001D5AD0();
+};
+
+struct C_001C2140 {
+    char pad0[0x2C];
+    u32 unk2C;
+    void func_001C2140();
+    void func_00157960();
+};
+
+struct C_001C21B0 {
+    void **vtbl;
+    char pad4[0x28];
+    u32 unk2C;
+    u32 unk30;
+    u32 unk34;
+    void func_001C21B0();
+};
+
+struct C_001C2210 {
+    void **vtbl;
+    char pad4[0x28];
+    u32 unk2C;
+    u32 unk30;
+    u32 unk34;
+    void func_001C2210();
+};
+
 struct C_001C2290 {
     char pad0[0x2C];
     int unk2C;
