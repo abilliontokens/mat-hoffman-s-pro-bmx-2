@@ -127,6 +127,51 @@ int C_001955F0::func_001955F0(Vec4_195D40 *a, float b, float c, float d, float e
     return 1;
 }
 
+int C_001956F0::func_001956F0(const char *name)
+{
+    Ini_001956F0 ini;
+    char path[0x104];
+    ini.func_00168280();
+    func_001ADCC0(path, 0x104, D_0028AF84, name);
+    if (ini.func_00169490(path, 0) == 0) {
+        ini.func_001691E0();
+        return 0;
+    }
+    ini.func_00169710(D_0028AF74);
+    ini.func_00168C20(D_002769E8, 0, &f44);
+    if (f44 < 1) {
+        ini.func_001691E0();
+        return 0;
+    }
+    f40 = (Item_001955F0 *)func_001E8AA5(f44 * sizeof(Item_001955F0));
+    for (int i = 0; i < f44; i++) {
+        char sect[0x10];
+        float a, b, c, d, f;
+        int e;
+        V4f_001956F0 pos;
+        func_001ADCC0(sect, 0x10, D_002769DC, i + 1);
+        ini.func_00169710(sect);
+        ini.func_00168CB0(D_00275AD4, &V4f_001956F0(0.0f, 0.0f, 0.0f, 1.0f), &pos);
+        ini.func_00168C50(D_00277F20, -1.0f, &a);
+        if (a == D_00275F58) {
+            ini.func_00168C50(D_0028AEB4, 50.0f, &a);
+            ini.func_00168C50(D_0028AEBC, 7.0f, &b);
+        } else {
+            b = a;
+        }
+        ini.func_00168C50(D_0028AF64, 250.0f, &c);
+        ini.func_00168C50(D_0028AF54, 5.0f, &d);
+        ini.func_00168C20(D_00289510, -1, &e);
+        V4f_001956F0 v1, v2;
+        ini.func_00168CB0(D_0027CB30, &D_002A9B44, &v1);
+        ini.func_00168CB0(D_0027CB2C, &D_002A9B44, &v2);
+        ini.func_00168C50(D_0028AF48, 0.0f, &f);
+        ((C_001955F0 *)this)->func_001955F0((Vec4_195D40 *)&pos, a, b, c, d, e, (Vec4_195D40 *)&v1, (Vec4_195D40 *)&v2, f);
+    }
+    ini.func_001691E0();
+    return 1;
+}
+
 void func_00195D40(Vec4_195D40 *out, Vec4_195D40 v)
 {
     *out = v;
