@@ -48,6 +48,31 @@ DXRenderableObjectData *DXRenderableObjectData::func_00143520(void)
     return this;
 }
 
+DXRenderableObject *DXRenderableObject::func_00143540(int a1, int a2, int a3)
+{
+    if (func_001817F0(a1, a2, 0) != 0) {
+        f1a3 = a3;
+        return this;
+    }
+    return 0;
+}
+
+DXRenderableObject *DXRenderableObject::func_00143580(int a)
+{
+    Alloc190 *p;
+
+    func_001814B0(a);
+    vtbl = (void *)&D_002859EC;
+    p = (Alloc190 *)func_001E8A44(0x190);
+    if (p)
+        p = p->func_00142E90(this);
+    else
+        p = 0;
+    f1d0 = (PageObj *)p;
+    f1d4 = -1;
+    return this;
+}
+
 undefined4 C_00143BD0::func_00143BD0(byte param_1)
 {
   int func_001439D0(...);
