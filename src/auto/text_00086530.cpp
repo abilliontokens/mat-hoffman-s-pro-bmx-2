@@ -100,6 +100,31 @@ struct C_00086C60 {
 };
 
 
+void C_00086A40::func_00086A40(int a)
+{
+    char buf[0x104];
+
+    if (a) {
+        char *src = D_002A8490->f2E8->f4->f1050;
+        char *dst = buf;
+        char c;
+        do {
+            c = *src;
+            *dst = c;
+            src++;
+            dst++;
+        } while (c);
+        f30->func_0005E840(buf);
+        func_001ADCC0(buf, 0x104, D_002A8490->f2E8->f4->f1048);
+        f34->func_0005E840(buf);
+        func_001ADCC0(buf, 0x104, D_00275630);
+        f38->func_0005E840(buf);
+        func_001ADCC0(buf, 0x104, D_00275630);
+        f3C->func_0005E840(buf);
+    }
+    f40 = a;
+}
+
 void C_00086C10::func_00086C10(int a0) {
     unk88 = a0;
 }
