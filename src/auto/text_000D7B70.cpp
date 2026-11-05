@@ -57,7 +57,14 @@ struct BmxUIPageHOF4D {
     void *vtbl;
     char pad4[0x124 - 4];
     S_000D8A40_Owner *f124;
-    char pad128[0x2CC - 0x128];
+    char pad128[0x280 - 0x128];
+    int f280;
+    char pad284[0x294 - 0x284];
+    int f294;
+    int f298;
+    char pad29C[0x2C0 - 0x29C];
+    short f2C0;
+    char pad2C2[0x2CC - 0x2C2];
     S_000D8A40_Widget *arr2CC[5];
     S_000D8A40_Widget *arr2E0[5];
     DelObjHOF4 *arr2F4[2];
