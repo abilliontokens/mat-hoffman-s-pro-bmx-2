@@ -89,6 +89,39 @@ struct C_000BBE30 {
     int func_000BBED0(int show);
     void func_000BBF90(const char *name);
     int func_000BC0F0(int idx);
+    void func_000BC240(void);
+    void func_000BC2A0(void);
+    char *func_000BC2E0(void);
+};
+
+struct S_000BC590_Vt {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+};
+
+struct S_000BC590_Owner {
+    char pad0[0x150];
+    S_000BC590_Vt *f150;
+};
+
+struct S_000BC590_Sub {
+    void func_001D37C0(void);
+};
+
+struct C_000BC590 {
+    char pad0[0x24];
+    int f24;
+    S_000BC590_Owner *f28;
+    int f2C;
+    S_000BC590_Sub *f30;
+    char pad34[0xc];
+    int f40;
+    void func_000BC590(void);
 };
 
 
