@@ -90,3 +90,16 @@ void C_000847A0::func_000847A0(void) {
     unk134 = 0;
     unk120 = 0;
 }
+
+void C_000848F0::func_000848F0(void)
+{
+    if (D_002A8490->f2E0->f2D0 == 0) {
+        unkD64 = 0;
+        unkD54 = 0;
+        unkD50 = 0;
+        unkD58 = 0;
+        unkD5C = 0;
+        unkD74 = 0;
+    }
+}
+
