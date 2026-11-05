@@ -93,6 +93,15 @@ void C_001445C0::func_001445C0()
     vtbl = (void *)&D_00284E94;
 }
 
+C_00144640 *C_00144640::func_00144640()
+{
+    ((C_001AF0B0 *)this)->func_001AF0B0();
+    fc = fc & 0xfe;
+    vtbl = (void *)&D_00285B64;
+    f10 = 0;
+    return this;
+}
+
 C_001449B0 *C_001449B0::func_001449B0(void *param)
 {
     ((C_001AF300 *)this)->func_001AF300(param);
