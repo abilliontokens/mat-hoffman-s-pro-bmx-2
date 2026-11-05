@@ -15,6 +15,43 @@ struct C_5C020Ret_D1 {
 
 struct C_0005C020 {
     C_5C020Ret_D1 *func_0005C020(int param);
+    int func_0005C2F0(int a, int b);
+    void func_0005C310(int a, int b);
+    void func_0005C130(int a);
+};
+
+struct C_Mgr_D25F0 {
+    char pad0[0x48];
+    int f48;
+    char pad4C[0x190 - 0x4C];
+    int f190;
+    char pad194[0x2C0 - 0x194];
+    C_0005C020 *f2C0;
+    char pad2C4[0x14];
+    int f2D8;
+    int f2DC[8];
+};
+
+struct C_000D25F0 {
+    char pad0[0x2B8];
+    int f2B8;
+    char pad2BC[0x3E8 - 0x2BC];
+    int f3E8[12];
+    int f418;
+    char pad41C[0x424 - 0x41C];
+    int f424;
+    int f428;
+    int f42C;
+    int f430;
+    int f434;
+    int f438;
+    int f43C;
+    int f440;
+    int f444;
+    int f448;
+    char pad44C[0x1FE0 - 0x44C];
+    int f1FE0;
+    void func_000D25F0(void);
 };
 
 struct C_Mgr_D1 {
