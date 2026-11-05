@@ -158,6 +158,18 @@ void XboxSoundGroup::func_001CD840(int a)
     }
 }
 
+int XboxSoundGroup::func_001CD890(int a)
+{
+    int i;
+
+    f44 = a;
+    func_00157A90(a);
+    for (i = 0; i < list.count; i++) {
+        list.at(i)->v18(a);
+    }
+    return 1;
+}
+
 void XboxSoundGroup::func_001CD8F0(int a)
 {
     int i;
@@ -166,6 +178,23 @@ void XboxSoundGroup::func_001CD8F0(int a)
         list.at(i)->v19(a);
     }
     func_00157A00(a);
+}
+
+void C_001CDCF0::func_001CDCF0(void)
+{
+    if (f4 != -1) {
+        func_001DDC28(f4);
+    }
+    if (f0 != -1) {
+        func_001DDDD6(f0, -1);
+        func_001DD13C(f0);
+    }
+    if (f4 != -1) {
+        func_001DD13C(f4);
+    }
+    func_001E891B(f3C);
+    func_001E891B(f28);
+    func_001E891B(f14);
 }
 
 int S_SoundElemList::func_001CDE90(S_SoundElem *elem)
