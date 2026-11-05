@@ -136,6 +136,29 @@ int C_00185970::func_00185970(S_Stream *stream, int n)
     return 1;
 }
 
+C_00185B10 *C_00185B10::func_00185B10(void)
+{
+    S_ZoneInfo *p;
+    int n;
+
+    vtbl = &D_002896B4;
+    p = elems;
+    n = 10;
+    do {
+        p->vtbl = (u32)&D_00289650;
+        p->f8 = 0;
+        p->f4 = 0x3f800000;
+        p->fc = 0x3f800000;
+        p->f10 = 0x3f800000;
+        p->f14 = 0x3f800000;
+        p->f18 = 1;
+        p->f1c = 1;
+        p++;
+    } while (--n != 0);
+    f4 = 0;
+    return this;
+}
+
 int C_00185B10::func_00185B60(S_Stream *stream)
 {
     char buf[0x104];
