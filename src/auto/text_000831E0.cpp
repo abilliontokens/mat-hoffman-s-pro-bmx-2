@@ -63,7 +63,8 @@ struct C_000831E0 {
     float f138;
     char pad13C[0x150 - 0x13C];
     int f150;
-    char pad154[0x15C - 0x154];
+    int f154;
+    char pad158[4];
     int f15C;
     char pad160[0x198 - 0x160];
     int f198;
