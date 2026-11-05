@@ -15,6 +15,16 @@ extern int *D_002FB260[];
 extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
 extern "C" void (__stdcall *_imp__RtlLeaveCriticalSection)(void *cs);
 
+/* lowio handle table entry (__pioinfo element), 0x28 bytes */
+struct S_Ioinfo {
+    int osfhnd;
+    unsigned char osfile;
+    unsigned char pipech;
+    char pad6[2];
+    int lockinitflag;
+    char padC[0x1c];
+};
+
 #pragma optimize("s", on)
 
 int func_001EE4BD(int fh, int pos, int mthd)
@@ -40,6 +50,30 @@ int func_001EE4BD(int fh, int pos, int mthd)
     }
     *((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) &= 0xfd;
     return newpos;
+}
+
+int func_001EE5BE(void)
+{
+    void *func_001E8AA5(int size);
+    char *p;
+    int i;
+
+    p = (char *)func_001E8AA5(0x500);
+    if (p == 0) {
+        return -1;
+    }
+    D_002FB260[0] = (int *)p;
+    D_002FB240 = 0x20;
+    for (; p < (char *)D_002FB260[0] + 0x500; p += 0x28) {
+        p[4] = 0;
+        *(int *)p = -1;
+        *(int *)(p + 8) = 0;
+        p[5] = 10;
+    }
+    for (i = 0; i < 3; i++) {
+        (*(char **)&D_002FB260[0])[i * 0x28 + 4] = 0xc1;
+    }
+    return 0;
 }
 
 int func_001EE63F(int fh, int value)
