@@ -23,3 +23,19 @@ struct C_001D27F0 {
     C_001D27F0_Obj *unk50;
     void func_001D27F0(void);
 };
+
+void C_001D27F0::func_001D27F0(void)
+{
+    unk18 = 0;
+    func_001DDC28(unk24);
+    func_001DDDD6(unk1C, -1);
+    func_001DD13C(unk1C);
+    unk20 = 0;
+    func_001DD13C(unk24);
+    unk28 = 0;
+    unk2C = 0;
+    if (unk50 != 0) {
+        unk50->v2();
+        unk50 = 0;
+    }
+}
