@@ -1,6 +1,12 @@
 /* 42 functions from 0x0005B8D0 to 0x0005C720, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_0005C390 {
+    char pad0[0xCE4];
+    int unkCE4;
+    void func_0005C390(void);
+};
+
 struct C_0005C370 {
     char pad0[0xCE0];
     int unkCE0;
@@ -100,6 +106,10 @@ void C_0005C370::func_0005C370(void) {
 
 int C_0005C380::func_0005C380(void) {
     return unkCE4;
+}
+
+void C_0005C390::func_0005C390(void) {
+    unkCE4 = 1;
 }
 
 undefined * C_0005C6A0::func_0005C6A0(void)
