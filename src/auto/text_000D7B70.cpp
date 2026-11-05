@@ -1,7 +1,14 @@
 /* 6 functions from 0x000D7B70 to 0x000D8B20, found by Ghidra. */
 #include "common.h"
+#include <string.h>
 extern int D_0027F404;
 extern char D_00277038[];
+struct S_8820_Q { void func_0005BED0(int a, int b, float *f, char *s); };
+struct S_8820_A { char pad[0x2c0]; S_8820_Q *q; };
+struct S_8820_B { char pad[0x2e0]; S_8820_A *a; };
+extern S_8820_B *D_002A8490;
+extern float D_00275544, D_0027F2BC, D_0027F2B8;
+extern int D_0028F5DC;
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 
 static inline int StrLen(const char *s)
