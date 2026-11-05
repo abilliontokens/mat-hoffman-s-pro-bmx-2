@@ -344,6 +344,89 @@ struct C_001A22F0 {
     void func_001A22F0(void);
 };
 
+/* KeyFramedAnimSoundEmitter::func_001A2690 (per-frame update) */
+struct KfBase_1A2690 {
+    char pad0[0x21];
+    u8 flags;
+};
+
+/* animation object behind +0x2cc: virtual base carries the flag byte at +0x21 */
+struct KfAnim_1A2690 : virtual KfBase_1A2690 {
+    char pad4[0xC];
+    int f10;
+    char pad14[0x20];
+    float f34;
+};
+
+struct KfEntry_1A2690 {
+    int a;
+    float t;
+    int done;
+};
+
+struct KeyFramedAnimSoundEmitter_1A2690 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual int v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    virtual void v31();
+    virtual void v32();
+    virtual void v33();
+    char pad4[0x24];
+    V4_1A f28;
+    char pad38[0x10];
+    int f48;
+    int f4c;
+    char pad50[0x20];
+    V4_1A f70;
+    V4_1A f80;
+    char pad90[8];
+    u8 f98;
+    char pad99[0x1a4 - 0x99];
+    S_0001CE80 *f1a4;
+    char pad1a8[0x1bc - 0x1a8];
+    Obj_001A2480 *f1bc;
+    Obj199_1A *f1c0;
+    Obj199_1A *f1c4;
+    ItemList_1A items;
+    char pad1d0[0x1dc - 0x1d0];
+    KfEntry_1A2690 entries[20];
+    KfAnim_1A2690 *f2cc;
+    float f2d0;
+    int f2d4;
+    int f2d8;
+    void func_001A1B60(Obj_001A2480 *obj);
+    void func_00157A00(float dt);
+    void func_001A2690(float dt);
+};
+
 /* sound handle: v22 at +0x58 */
 struct Snd_001A1D20 {
     virtual void v0();
