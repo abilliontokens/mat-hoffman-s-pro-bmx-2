@@ -2,6 +2,32 @@
 #include "common.h"
 #include "ghidra.h"
 #include "ghidra.h"
+struct S_000B0340_B {
+    int unk0;
+    int unk4;
+};
+
+struct S_000B0340_A {
+    char pad0[0x2E0];
+    S_000B0340_B *unk2E0;
+};
+
+extern S_000B0340_A *D_002A8490;
+
+struct C_000B0340 {
+    void func_000AC8F0(void);
+    void func_000A2F20(void);
+    void func_000AF7D0(void);
+    void func_000AC890(void);
+    void func_000A1E90(void);
+    void func_000ACCF0(void);
+    void func_000ACD50(void);
+    void func_000AF8A0(void);
+    void func_000ACDB0(void);
+    void func_000A1EF0(void);
+    void func_000B0340(void);
+};
+
 struct C_000B0320 {
     undefined4 func_000B0320(byte param_1);
 };
