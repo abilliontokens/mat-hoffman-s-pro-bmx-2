@@ -289,6 +289,17 @@ void C_00035720::func_00035940(void)
     }
 }
 
+void C_00035980::func_00035980(int enable)
+{
+    if (enable != 0) {
+        f588->func_0006BB90();
+        f2c4->func_00069BB0();
+    } else {
+        f2c4->func_00069BA0();
+        f588->func_0006BBF0();
+    }
+}
+
 void C_00035BE0::func_00035BE0(void)
 {
     if (f1d0 != 0) {
