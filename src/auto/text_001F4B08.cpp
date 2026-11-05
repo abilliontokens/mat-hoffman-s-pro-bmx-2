@@ -3,6 +3,16 @@
 
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 
+/* the CRT's per-handle table: 0x28 bytes an entry, osfile flags at +4 */
+struct ioinfo {
+    int osfhnd;
+    char osfile;
+    char pipech;
+    char pad6[0x22];
+};
+
+extern ioinfo *D_002FB260[64];
+
 extern char D_002FB000[0x101];
 extern char D_002FB120[0x18];
 extern int D_002FB104;
@@ -74,5 +84,38 @@ void func_001F4EB7(void)
         D_002F6A68();
     }
     func_001F4E8B(0xff);
+}
+
+int func_001F4ED9(int ch, S_001F4_FILE *stream)
+{
+    void func_001F57BB(S_001F4_FILE *stream);
+
+    if (ch == -1) {
+        return -1;
+    }
+    if (!((stream->flag & 1) || ((stream->flag & 0x80) && !(stream->flag & 2)))) {
+        return -1;
+    }
+    if (stream->base == 0) {
+        func_001F57BB(stream);
+    }
+    if (stream->ptr == stream->base) {
+        if (stream->cnt) {
+            return -1;
+        }
+        stream->ptr++;
+    }
+    if (stream->flag & 0x40) {
+        if (*--stream->ptr != (char)ch) {
+            ++stream->ptr;
+            return -1;
+        }
+    } else {
+        *--stream->ptr = (char)ch;
+    }
+    stream->cnt++;
+    stream->flag &= ~0x10;
+    stream->flag |= 1;
+    return ch & 0xff;
 }
 
