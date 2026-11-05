@@ -105,7 +105,9 @@ struct VehicleAIOwner {
 };
 
 struct C_002B9134 {
-    char pad0[0x3C];
+    char pad0[0x24];
+    float f24;
+    char pad28[0x3C - 0x28];
     int f3C;
 };
 
