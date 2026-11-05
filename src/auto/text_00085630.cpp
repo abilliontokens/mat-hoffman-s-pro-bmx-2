@@ -55,6 +55,16 @@ struct C_00086160 {
     void func_00086200(void);
 };
 
+void func_001E891B(void *p);
+
+struct S_000864D0_Obj {
+    void func_001D6410(void);
+};
+
+struct C_00157660 {
+    void func_00157660(void);
+};
+
 struct MountVertOverlay {
     void *vtbl;
     char pad4[0x24];
