@@ -409,6 +409,14 @@ int C_00094A00::func_00094D90(int a)
     return 1;
 }
 
+int C_00094A00::func_00094E10(int idx, int a)
+{
+    if (idx > f7C) {
+        return 0;
+    }
+    return f84[idx - 1]->v12(a);
+}
+
 int C_00094A00::func_00094EE0(void)
 {
     if (f84[0] != 0 && f84[0]->v7()) {
