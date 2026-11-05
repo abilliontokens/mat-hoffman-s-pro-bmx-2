@@ -2,6 +2,8 @@
 #include "common.h"
 extern int D_00284F8C;
 extern char D_0028502C[];
+extern char D_002850C4[];
+char *func_001E95A4(char *s, const char *delim);
 
 extern "C" int memcmp(const void *a, const void *b, unsigned int n);
 void func_001E891B(void *p);
