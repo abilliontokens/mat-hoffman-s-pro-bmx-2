@@ -88,6 +88,30 @@ undefined4 C_001BD790::func_001BD790(void)
   return 1;
 }
 
+undefined4 C_001BD7E0::func_001BD7E0(void)
+{
+  int in_ECX = (int)this;
+  int iVar1;
+
+  D_002EFDB8->v7(1);
+  D_002EFDB8->v8();
+  iVar1 = 0;
+  if (0 < *(int *)(in_ECX + 0x124)) {
+    do {
+      (**(code **)(**(int **)(*(int *)(in_ECX + 0x120) + iVar1 * 4) + 0x94))();
+      iVar1 = iVar1 + 1;
+    } while (iVar1 < *(int *)(in_ECX + 0x124));
+  }
+  return 1;
+}
+
+void C_001BD840::func_001BD840(void)
+{
+  D_002A829C->func_00161680();
+  D_002AA6C0->func_001B2640();
+  D_002A829C->func_001616F0();
+}
+
 C_001BD9C0 *C_001BD9C0::func_001BD9C0(int a)
 {
   ((C_00157600 *)this)->func_00157600(a);
