@@ -50,3 +50,26 @@ void C_0011CA20::func_0011CA20()
     unkBC = 0;
     unk12C = 0;
 }
+
+void C_0011CA60::func_0011CA60(int a, int b, int c, int d)
+{
+    f34 = f24;
+    f24.x = a;
+    f24.y = b;
+    f24.z = c;
+    f24.w = d;
+}
+
+void C_0011CAA0::func_0011CAA0(void *a)
+{
+    f9C->func_001334E0(1);
+    f9C->func_001334F0(a);
+    fA0->func_001334E0(1);
+    fA0->func_001334F0(a);
+    fA4->func_001334E0(1);
+    fA4->func_001334F0(a);
+    fF0 = (void **)func_001E83E8(fF0, fF4 * 4 + 4);
+    fF0[fF4] = a;
+    fF4++;
+}
+
