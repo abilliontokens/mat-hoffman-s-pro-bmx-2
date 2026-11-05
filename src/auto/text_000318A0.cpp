@@ -61,6 +61,7 @@ struct S_00104C80_Obj {
     void func_00108360(void);
     void func_00108510(int a, S_00108510_Vec v);
     void func_00108610(int a, int b);
+    void func_00109F30(void);
 };
 
 struct S_00083A70_Obj {
