@@ -158,6 +158,8 @@ struct C_001C05F0 {
     int unk1A0;
     int unk1A4;
     int unk1A8;
+    void func_001C01E0(char *text);
+    void func_001577A0(S_001C05F0_Item *, int);
     void func_001C0520(void);
     void func_001C05F0(void);
     void func_001C0690(void);
