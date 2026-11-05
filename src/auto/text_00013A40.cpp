@@ -86,6 +86,13 @@ struct V4_00014850 : S_00014850_Vec4 {
     V4_00014850() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
 };
 
+/* copy a point and lift it by two units */
+static void raisedCopy(S_00014850_Vec4 *dst, S_00014850_Vec4 *src)
+{
+    *dst = *src;
+    dst->y += 2.0f;
+}
+
 struct S_00014850_Track {
     int count;
     S_00014850_Vec4 *entries;
@@ -249,5 +256,35 @@ void C_00014020::func_00014020()
         D_002AF44C = 0;
     }
     func_001C75A0();
+}
+
+void C_00014020::func_00014850(int arg)
+{
+    S_00014850_State *st = f384->f24;
+
+    if ((st == 0 || st->f4 != 7) && arg == 1) {
+        int next = f3B0 + 1;
+        S_00014850_Player *p;
+
+        if (next >= D_002B9120->f588[f3B4]->count) {
+            next = 0;
+        }
+        V4_00014850 zero;
+        S_00014850_Vec4 from;
+        S_00014850_Vec4 to;
+        from = f3E4;
+        from.y += 2.0f;
+        to = D_002B9120->f588[f3B4]->entries[next];
+        to.y += 2.0f;
+        if (func_00012730(&from, &to, &zero, 1, 0) == 0) {
+            f3DC = 0;
+            f3E0 = 1;
+            p = D_002A8490->f2a4;
+            if (p != 0 && p->f1c8 == 0) {
+                f3BC = 1;
+            }
+            f384->func_0008AB90(f394);
+        }
+    }
 }
 
