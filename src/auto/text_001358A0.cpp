@@ -282,25 +282,29 @@ void C_00135E00::func_00135E90(int a0, int a1, int a2, int a3)
 int C_00135E00::func_00135FF0(int a0, int kind, int a2, int idx)
 {
     S_00136110_Dev *dev;
+    int r;
     switch (kind) {
     case 2:
         dev = f14[idx];
-        if (dev != 0 && dev->v3(a0, a2, 0) != 0) {
-            return 1;
+        if (dev == 0) {
+            break;
         }
-        break;
+        r = dev->v3(a0, a2, 0);
+        goto check;
     case 1:
         dev = f34;
-        if (dev != 0 && dev->v5(a0, a2, 0) != 0) {
-            return 1;
-        }
-        break;
+        goto call;
     case 0:
         dev = f38;
-        if (dev != 0 && dev->v5(a0, a2, 0) != 0) {
+    call:
+        if (dev == 0) {
+            break;
+        }
+        r = dev->v5(a0, a2, 0);
+    check:
+        if (r != 0) {
             return 1;
         }
-        break;
     }
     return 0;
 }
