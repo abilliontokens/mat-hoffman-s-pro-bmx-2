@@ -89,6 +89,43 @@ struct XboxMusic {
 
 int func_00011260(int lo, int hi);
 
+extern char D_0028F0A8[];
+extern char D_002843B0[];
+int __stdcall func_001DD8C5(int h, int idx, void *a, void *b, unsigned short *name, int len);
+int func_001EA410(unsigned short *s);
+int func_001DDE51(char *dst, const char *fmt, ...);
+void *func_001E8AA5(int size);
+int func_001ADCC0(char *dst, int size, const char *fmt, ...);
+
+struct TrackRec {
+    int f0;
+    char *name;
+    char pad8[8];
+    char f10[8];
+};
+
+struct IntList {
+    int count;
+    int *data;
+    int grow;
+    int cap;
+    int func_0015ACA0(int n);
+};
+
+struct TrackSet {
+    TrackRec *recs;
+    char pad4[4];
+    int handle;
+    IntList ids;
+    char pad1c[0x28];
+};
+
+struct TrackDB {
+    char pad0[0x34];
+    TrackSet *sets;
+    void func_001CE9F0(int idx, int set);
+};
+
 static __forceinline float min_ss_001CE660(float a, float b)
 {
     float r;
@@ -114,6 +151,33 @@ struct XboxSound {
     int func_001CCA10();
     int func_001CE660(float dt);
 };
+
+int XboxSound::func_001CE660(float dt)
+{
+    XboxSound * volatile self = this;
+    int x;
+    int * volatile p;
+    float t;
+
+    if (f154 != 0) {
+        func_001CCA10();
+    }
+    if (self->v07() != 0) {
+        self->f120 += dt;
+    }
+    if (self->f12c > D_00275544) {
+        self->f130 += dt;
+        t = min_ss_001CE660(self->f12c, self->f130) * self->f134;
+        p = &x;
+        *p = _mm_cvttss_si32(*(__m128 *)&t);
+        self->v09(self->f128 + x);
+        if (self->f130 >= self->f12c) {
+            self->f12c = 0;
+            self->f130 = self->f12c;
+        }
+    }
+    return 1;
+}
 
 void XboxMusic::func_001CE920()
 {
