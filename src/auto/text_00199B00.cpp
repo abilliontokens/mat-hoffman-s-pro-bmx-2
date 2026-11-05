@@ -81,6 +81,20 @@ void C_00199BE0::func_00199C90(int a0, int a1, int a2, int a3, int a4, int a5)
     }
 }
 
+void C_00199BE0::func_00199CF0(int a0, int a1, int a2, int a3, float angle)
+{
+    float s = func_0014F510(angle);
+    float c = func_0014F550(angle);
+    func_0011F5A0((char *)this + 0xb0, a0, a1, a2, *(int *)&s, *(int *)&c);
+    func_001982F0();
+    if (f180 & 1) {
+        f180 &= 0xfe;
+        if (f174 != 0) {
+            f174->func_00197B10();
+        }
+    }
+}
+
 void C_00199BE0::func_00199E30(int a0, int a1, int a2, int a3, int a4)
 {
     func_00199D70(a0, a1, a2, a4);
