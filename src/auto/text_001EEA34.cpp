@@ -92,9 +92,12 @@ struct S_001EF062 {
     S_001EF062 *func_001EF062(int mode);
 };
 
-/* element of the list BitObj::f0 heads: vtable slot 0 yields a size, next at +4 */
+/* element of the list BitObj::f0 heads: vtable slot 0 yields a size, slot 1
+   a flag, slot 2 copies out that many bytes; next at +4 */
 struct S_001EF210_Node {
     virtual int v0();
+    virtual unsigned char v1();
+    virtual int v2(char *dst, int n);
     S_001EF210_Node *next;
 };
 
@@ -312,12 +315,25 @@ int __fastcall func_001EF1E7(int *a, int b)
     return 1;
 }
 
-int BitObj::func_001EF1FC(void)
+int __fastcall func_001EF1FC(BitObj *self, int unused)
 {
-    if (func_001EF1E7() == 0 && b5) {
+    if (func_001EF1E7((int *)self, unused) == 0 && self->b5) {
         return 1;
     }
     return 0;
+}
+
+int __fastcall func_001EF210(BitObj *self, int unused)
+{
+    int sum = 0;
+    S_001EF210_Node *n;
+
+    if (func_001EF1E7((int *)self, unused) == 0) {
+        for (n = (S_001EF210_Node *)self->f0; n != 0; n = n->next) {
+            sum += n->v0();
+        }
+    }
+    return sum;
 }
 
 BitObj *BitObj::func_001EF8F6(int a0, int a1) {
