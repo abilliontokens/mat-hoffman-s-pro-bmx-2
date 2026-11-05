@@ -26,6 +26,14 @@ struct C_001B5A00 {
     void func_001B5A00(void *a, void *b);
 };
 
+/* the stream/config reader passed to the trigger actions' load methods */
+struct S_TriggerStream {
+    void func_00168C20(void *key, int def, void *dst);
+    void func_00168C50(void *key, int def, void *dst);
+    void func_00168CB0(void *key, void *def, void *dst);
+    void func_00168BE0(void *key, void *def, void *dst, int size);
+};
+
 /* BikeRumbleTriggerAction */
 struct C_000A89F0 {
     void *vtbl;
@@ -395,6 +403,37 @@ C_000A8E20 *C_000A8E20::func_000A8E20() {
     unk10C = 0;
     unk148 = 0;
     vtbl = (void *)&D_0027C334;
+    return this;
+}
+
+void C_000A8E40::func_000A8E40(void *a, void *b) {
+    extern int D_0027C35C;
+    extern int D_0027C368;
+    extern int D_0027C33C;
+    extern int D_0027C348;
+    ((C_000A8E40_P1 *)a)->func_00168BE0(&D_0027C35C, &D_0027C368, &unk10C, 0x3b);
+    ((C_000A8E40_P1 *)a)->func_00168BE0(&D_0027C33C, &D_0027C348, &unk148, 0x3b);
+    ((C_001B5A00 *)this)->func_001B5A00(a, b);
+}
+
+C_000A8EB0 *C_000A8EB0::func_000A8EB0() {
+    extern int D_0027C380;
+    extern float D_002A2734;
+    extern float D_002A2738;
+    extern float D_002A273C;
+    extern float D_002A2740;
+    ((C_001B59E0 *)this)->func_001B59E0();
+    vtbl = (void *)&D_0027C380;
+    vec10C[3] = 1.0f;
+    vec10C[2] = 0.0f;
+    vec10C[1] = 0.0f;
+    vec10C[0] = 0.0f;
+    vec10C[0] = D_002A2734;
+    vec10C[1] = D_002A2738;
+    vec10C[2] = D_002A273C;
+    vec10C[3] = D_002A2740;
+    unk11C = 0;
+    unk120 = 0;
     return this;
 }
 
