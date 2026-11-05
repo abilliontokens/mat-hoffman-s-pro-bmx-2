@@ -75,6 +75,11 @@ struct GL2 {
     Sh *sh;
 };
 V4 func_00159480(V4 a, V4 b);
+static inline V4 v4(float x, float y, float z) { V4 r; r.x = x; r.y = y; r.z = z; r.w = 1.0f; return r; }
+static inline V4 v4sub(const V4 &a, const V4 &b) { return v4(a.x - b.x, a.y - b.y, a.z - b.z); }
+static inline V4 v4add(const V4 &a, const V4 &b) { return v4(a.x + b.x, a.y + b.y, a.z + b.z); }
+static inline V4 v4scale(const V4 &a, float s) { return v4(a.x * s, a.y * s, a.z * s); }
+extern float D_002755E8;
 void func_001E891B(void *p);
 int func_001EA426(char *a, char *b);
 
