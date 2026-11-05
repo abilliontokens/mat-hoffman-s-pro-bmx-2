@@ -104,6 +104,7 @@ struct C_0001BAC0 {
     void func_0001BAC0(int idx, int slot);
     void func_0001BB00(int idx, int slot, int flag);
     void func_0001BC00(int idx, int slot);
+    void func_0001BC50(int id, int slot, int flag);
     void func_0001BD60(int id, int slot);
 };
 
