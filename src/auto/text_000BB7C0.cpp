@@ -267,6 +267,14 @@ void C_000BBE30::func_000BBF90(const char *name)
 
 extern S_000BBE30_Game *D_002A8490;
 
+S_000BC180_Entry *C_000BC180::cur(void)
+{
+    if (D_002A8490->f2E0->f324 == 1) {
+        return f27c;
+    }
+    return &f27c[f284];
+}
+
 undefined4 C_000BC180::func_000BC050(void)
 {
     if (D_002A8490->f2E0->f324 == 1) {
