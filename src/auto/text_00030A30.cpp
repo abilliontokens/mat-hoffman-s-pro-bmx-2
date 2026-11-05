@@ -176,6 +176,8 @@ struct VObj_00031450 {
 struct Sound_000314F0;
 struct Target_00031610 {
     void func_001A4100(int a0, int a1, int a2);
+    Target_00031610 *func_001A2C00(void *, Sound_000314F0 *, int, int);
+    void func_001A4640(void *, void *, int);
 };
 
 struct Obj_000317B0 {
