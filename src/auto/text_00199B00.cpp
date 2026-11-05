@@ -34,8 +34,15 @@ struct C_00199BE0Mat {
     void func_000264C0(void *m);
 };
 
+struct S_00199B00_F4 {
+    float x, y, z, w;
+};
+
 struct C_00199BE0 {
-    char pad0[0x170];
+    char pad0[0xb0];
+    float fB0[16];
+    float fF0[16];
+    char pad130[0x170 - 0x130];
     C_00199BE0 *f170;
     C_00199BE0 *f174;
     C_00199BE0 *f178;
