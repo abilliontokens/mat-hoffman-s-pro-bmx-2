@@ -43,6 +43,18 @@ struct S_002A8490 {
 
 extern S_002A8490 *D_002A8490;
 
+struct C_NumHorse_Clamp { char pad0[0x10]; float f10, f14; };
+struct C_NumHorse_Mid { C_NumHorse_Clamp *func_0018C070(); };
+struct C_NumHorse_Sub { C_NumHorse_Clamp *func_001D5AA0(); };
+struct C_000C8140 {
+    char pad0[0x308];
+    C_NumHorse_Sub *arr308[4];
+    C_NumHorse_Sub *arr318[2];
+    void func_000C8140(void);
+    void func_001578D0(void);
+};
+extern float D_00275AEC;
+
 struct C_001B1980 {
     char pad0[0x24];
     int unk24;
