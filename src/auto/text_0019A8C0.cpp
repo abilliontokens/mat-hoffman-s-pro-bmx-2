@@ -68,3 +68,12 @@ undefined4 C_0019B6D0::func_0019B6D0(byte param_1)
   }
   return in_ECX;
 }
+
+C_0019B6F0 *C_0019B6F0::func_0019B6F0(void)
+{
+    f4 = 0;
+    f2 = 0;
+    f0 = 0;
+    return this;
+}
+
