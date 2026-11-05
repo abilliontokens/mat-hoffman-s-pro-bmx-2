@@ -29,6 +29,8 @@ struct DynamicRayCollisionObject {
     void func_00157A00(int param_1);
 };
 
+static inline void Vec4Unused(Vec4 *a, Vec4 *b) {}
+
 struct S_0014B940_Obj {
     char pad_0[0xa8];
     int unkA8;
