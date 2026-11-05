@@ -68,6 +68,16 @@ static C_001C65E0 *init_001C7250(C_001C65E0 *p)
     return p;
 }
 
+int C_001C6DA0::func_001C6E30(const char *name)
+{
+    for (int i = 0; i < unkBC; i++) {
+        if (func_001EA426(name, unkC0[i].name) == 0) {
+            return i;
+        }
+    }
+    return 0;
+}
+
 void func_001C6E90(void) {
     int func_00157960(...);
     func_00157960();
