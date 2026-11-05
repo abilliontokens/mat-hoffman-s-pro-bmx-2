@@ -99,6 +99,7 @@ struct XboxGame : Game {
     int func_001D0FD0(int a0);
     void *func_001D1390(int flags);
     int func_001D13D0(int a0);
+    V_002EFDB8 *func_001D1290();
 };
 
 struct C_001D1460 {
