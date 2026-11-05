@@ -26,6 +26,43 @@ struct C_00147490 {
     C_00147490 *func_00147490();
 };
 
+struct S_001474B0_Sub {
+    char pad0[0xC];
+    int fC;
+};
+
+struct S_001474B0_Res {
+    char pad0[0x1C];
+    char *f1C;
+    S_001474B0_Sub *f20;
+    void func_001AFEC0();
+};
+
+struct S_001474B0_Elem {
+    char pad0[0x24];
+    unsigned char f24;
+    S_001474B0_Res *func_001B0130(unsigned int key);
+};
+
+struct S_001474B0_Target {
+    void func_00149310(int a, int b, int c, int d);
+};
+
+struct S_001474B0_Tbl {
+    char pad0[0x10];
+    S_001474B0_Target *f10[1];
+};
+
+extern S_001474B0_Tbl *D_002F0630;
+
+struct C_001474B0 {
+    char pad0[0x50];
+    int f50;
+    S_001474B0_Elem *f54[32];
+    int fD4[32];
+    void func_001474B0(int a, int b, unsigned int key);
+};
+
 struct C_00146E20 {
     void *vtbl;
     char pad4[0x8];
