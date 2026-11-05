@@ -32,6 +32,7 @@ struct C_00104190 {
 extern int D_002828F4;
 
 struct C_00104170 {
+    void func_001972B0(int a0, int a1, int a2);
     void func_00104170(int a0, int a1);
 };
 
