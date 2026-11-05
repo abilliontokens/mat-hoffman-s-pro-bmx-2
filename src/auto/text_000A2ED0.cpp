@@ -84,6 +84,16 @@ void C_000A2ED0::func_000A2ED0(void)
     }
 }
 
+void C_000A2ED0::func_000A3B00(int a)
+{
+    if (unk568 >= unk5BC) {
+        unk56C = (int *)func_001E83E8(unk56C, unk5BC * 4 + 0x28);
+        unk5BC += 10;
+    }
+    unk56C[unk568] = a;
+    unk568++;
+}
+
 void C_000A3B60::func_000A3B60(int param_1)
 {
   int in_ECX = (int)this;
