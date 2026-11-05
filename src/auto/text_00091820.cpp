@@ -72,6 +72,26 @@ struct C_00091950 {
     void *func_00091950(int flags);
 };
 
+struct C_00091840 {
+    void func_00085520();
+    void *func_00091840(int flags);
+};
+
+struct C_00091880 {
+    void func_00086E00();
+    void *func_00091880(int flags);
+};
+
+struct C_000918A0 {
+    void func_00087700();
+    void *func_000918A0(int flags);
+};
+
+struct C_00091990 {
+    void func_00089210();
+    void *func_00091990(int flags);
+};
+
 
 undefined4 C_00091820::func_00091820(byte param_1)
 {
