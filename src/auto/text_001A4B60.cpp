@@ -117,6 +117,7 @@ struct S_001A5730_Item {
     f32 x, y, z, w;
 };
 
+struct C_001A5730;
 struct C_001A5730 {
     char pad0[0x14];
     f32 f14;
