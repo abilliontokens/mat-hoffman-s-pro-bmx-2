@@ -76,7 +76,11 @@ struct C_0017AA90 {
     int fF4;
     char padF8[4];
     char *fFC;
-    char pad100[0x50];
+    int f100, f104, f108, f10C, f110, f114;
+    char pad118[0x24];
+    int f13C;
+    struct ShadowObject **f140;
+    int f144, f148, f14C;
     int f150;
     int f154;
     char pad158[8];
