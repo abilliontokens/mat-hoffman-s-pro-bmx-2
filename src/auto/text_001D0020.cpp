@@ -165,6 +165,16 @@ undefined4 C_001D0DE0::func_001D0DE0(byte param_1)
   return in_ECX;
 }
 
+XboxGame_001D0E60 *XboxGame_001D0E60::func_001D0E30(void)
+{
+    ((C_00157150 *)this)->func_00157150();
+    f298 = 0;
+    f29C = 0;
+    f2A0 = 0;
+    vtbl = (void *)&D_0028F154;
+    return this;
+}
+
 void XboxGame_001D0E60::func_001D0E60(void)
 {
     vtbl = (void *)&D_0028F154;
