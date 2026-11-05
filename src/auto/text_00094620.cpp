@@ -703,7 +703,7 @@ void C_00095060::func_00095060(void)
     tracks.Clear();
     f7C = 0;
     f80 = 0;
-    func_001E891B(*(void **)((char *)this + 0x6c));
+    func_001E891B(ids.items);
     func_001E891B(tracks.items);
     ((C_00157660 *)this)->func_00157660();
 }
