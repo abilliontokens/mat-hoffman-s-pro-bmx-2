@@ -77,9 +77,9 @@ struct C_001C9920 {
     char padC8[4];
     S_001C9920_arg *unkCC;
     int unkD0;
-    float unkD4[4];
-    float unkE4[4];
-    float unkF4[4];
+    unsigned int unkD4[4];
+    unsigned int unkE4[4];
+    unsigned int unkF4[4];
     char pad104[4];
     int unk108;
     char pad10C[0x108];
