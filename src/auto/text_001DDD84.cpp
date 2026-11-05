@@ -192,6 +192,20 @@ void __stdcall func_001DE25F(int param)
     }
 }
 
+int __stdcall func_001DE625(S_001DE625_Obj *p, int arg)
+{
+    int r;
+
+    r = func_001DEF3C(p->f4, arg);
+    while (r != 0) {
+        if (func_001DE0DD(arg, p->fC, p->f8) != 0) {
+            break;
+        }
+        r = func_001DEF3C(p->f4, arg);
+    }
+    return r;
+}
+
 #pragma optimize("y", off)
 int __stdcall func_001DE70D(int param)
 {
