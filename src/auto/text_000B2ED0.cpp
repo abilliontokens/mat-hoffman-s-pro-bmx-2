@@ -3,6 +3,35 @@
 #include "ghidra.h"
 
 extern int D_0027CF8C;
+struct S_2ED0_Rd {
+    void func_00168550(const void *k, char *buf, int n);
+    void func_00168BE0(const void *k, const void *k2, char *buf, int n);
+    void func_00168C20(const void *k, int z, void *p);
+    void func_00168C50(const void *k, int z, void *p);
+};
+struct S_2ED0_Own {
+    char pad0[8];
+    int f8;
+    char pad[0x37C];
+    char f384[1];
+    void func_000B1A40(S_2ED0_Rd *rd);
+};
+struct S_2ED0_Item {
+    int f0;
+    char pad[0x14];
+};
+struct C_000B2ED0 {
+    char pad0[0x3C];
+    S_2ED0_Own *f3C;
+    char pad40[8];
+    S_2ED0_Item **f48;
+    int f4C;
+    int f50;
+    void func_000B2ED0(S_2ED0_Rd *rd);
+};
+extern char D_0027D160[], D_002A5FA8[], D_002A5348[], D_002A5870[], D_0027D158[], D_0027D14C[], D_0027D144[], D_0027D138[], D_0027D124[], D_0027D114[], D_0027D104[], D_0027D0F4[];
+int func_001ADCC0(char *dst, int n, const char *fmt, ...);
+void func_001E8920(void *dst, void *src, int n);
 void func_001E891B(void *p);
 void *func_001E8A44(int size);
 
