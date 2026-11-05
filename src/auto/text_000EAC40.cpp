@@ -49,3 +49,46 @@ void BmxUIPageHOFTitle::func_000EB350(void)
     func_000EB1F0();
     func_00157960();
 }
+
+BmxUIPageMedia *BmxUIPageMedia::func_000EB370(void *param_1)
+{
+    func_001BE360(param_1);
+    unk298 = 0;
+    unk29C = 0;
+    unk2A0 = 0;
+    unk2A4 = 0;
+    unk2A8 = 0;
+    unk2AC = 0;
+    unk2B0 = 0;
+    unk2B4 = 0;
+    unk2B8 = 0;
+    unk2BC = 0;
+    unk2C0 = 0;
+    unk2C4 = 0;
+    vtbl = (void *)&D_00281B34;
+    unk290 = 1;
+    unk280[0] = 0;
+    unk280[1] = 0;
+    unk280[2] = 0;
+    unk280[3] = 0;
+    unk2C8 = 0;
+    unk2CC = 0;
+    unk2D0 = 0;
+    unk2D4 = 0;
+    unk2D8 = 0;
+    return this;
+}
+
+void BmxUIPageMedia::func_000EB420(void)
+{
+    int i;
+    vtbl = (void *)&D_00281B34;
+    for (i = 0; i < 4; i++) {
+        if (unk280[i] != 0) {
+            unk280[i]->destroying(1);
+            unk280[i] = 0;
+        }
+    }
+    func_001BE3F0();
+}
+
