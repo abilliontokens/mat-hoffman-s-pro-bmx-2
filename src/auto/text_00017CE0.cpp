@@ -109,3 +109,12 @@ void AiTikiGod::func_00017D20(int param_1)
     }
 }
 
+void TikiEvadeState::func_00018340()
+{
+    owner->func_00017760();
+    owner->func_001C6DA0(owner->f740, 1);
+    f14 = 0;
+    fc = D_002A8490->f238 + 2000;
+    owner->f4f4 = 1;
+}
+
