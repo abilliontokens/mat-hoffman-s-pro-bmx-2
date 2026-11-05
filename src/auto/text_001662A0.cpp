@@ -5,6 +5,34 @@
 void func_001E891B(void *p);
 void *func_001E8920(void *, const void *, unsigned int);
 void *func_001E8AA5(unsigned int);
+struct C_00166EB0_Config {
+ void func_00169710(const char *);
+ int func_00168BE0(const char *,const char *,char *,int);
+ void func_00168C20(const char *,int,int *);
+ int func_00168550(const char *,char *,int);
+};
+extern char D_00287E90[];
+extern char D_00275630[];
+extern char D_00277274[];
+extern char D_002A46E8[];
+extern char D_00284644[];
+extern char D_00287E84[];
+extern char D_00287E78[];
+extern char D_00277288[];
+extern char D_00287D8C[];
+extern char D_00287D78[];
+extern char D_00287D68[];
+extern char D_00287D5C[];
+extern char D_00287D50[];
+extern char D_00287D40[];
+extern char D_00287D38[];
+extern char D_00287D30[];
+extern char D_00287E6C[];
+extern char D_00287E64[];
+extern char D_00287E5C[];
+extern char D_00287E54[];
+int func_001EA426(const char *,const char *);
+
 struct S_00166CA0_Item {
  char data[0x40];
  void func_000264C0(S_00166CA0_Item *);
