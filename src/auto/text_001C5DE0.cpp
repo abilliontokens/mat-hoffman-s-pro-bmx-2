@@ -152,9 +152,9 @@ struct C_001C6B30_Holder {
     void func_001670C0(float dt, int a, int b);
 };
 
-extern float D_00277EA8;
-extern float D_002756DC;
-extern float D_0028E740;
+extern const float D_00277EA8;
+extern const float D_002756DC;
+extern const float D_0028E740;
 extern Vec4 D_002AB798;
 void *func_001E83E8(void *p, unsigned int size);
 
