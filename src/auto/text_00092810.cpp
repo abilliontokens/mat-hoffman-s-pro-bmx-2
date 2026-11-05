@@ -400,6 +400,38 @@ void C_00092890::func_00093120(void)
     }
 }
 
+void C_00092890::func_00093140(float a1, float a2, int a3, int count, int a5, int a6, float a7)
+{
+    S_00093140_Obj **p;
+    S_00093140_Obj *obj;
+    int i;
+    int sel;
+
+    p = D_002A8490->f2ec->func_0018C160(&D_0027958C);
+    if (p != 0) {
+        obj = *p;
+    } else {
+        obj = 0;
+    }
+    for (i = 0; i < count; i++) {
+        f24[i]->func_001B1980();
+        f24[i]->func_001B1A30(a1, obj->func_0018C210() * i + a2, 0);
+        sel = (a3 == D_0028F5E0) ? D_0028F5E0
+            : (a3 == D_0028F5E4) ? D_0028F5E4
+            : (a3 == D_0028F5E8) ? D_0028F5E8
+            : (a3 == D_0028F5EC) ? D_0028F5EC
+            : D_0028F5DC;
+        f24[i]->func_001B19A0(sel);
+        if (a5 != 0) {
+            f24[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, a7, 0, 0);
+        } else if (a6 != 0) {
+            f24[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, -1.0f, 0, 1.15f, 0, a7, 0, 0);
+        } else {
+            f24[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
+        }
+    }
+}
+
 void __stdcall func_00093280(int a0) {
 }
 
