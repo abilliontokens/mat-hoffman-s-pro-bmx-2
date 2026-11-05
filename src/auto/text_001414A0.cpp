@@ -59,6 +59,22 @@ int func_00141AA0(C_00168BE0 *cfg, const char *key, int def, int &out)
     return out;
 }
 
+int func_00141B60(C_00168BE0 *cfg, const char *key, int def, int &out)
+{
+    char buf[64];
+    cfg->func_00168BE0(key, "undefined", buf, 64);
+    if (strcmp(buf, "undefined") == 0) {
+        out = def;
+    } else if (strcmp(buf, "D3DZB_FALSE") == 0) {
+        out = 0;
+    } else if (strcmp(buf, "D3DZB_TRUE") == 0) {
+        out = 1;
+    } else if (strcmp(buf, "D3DZB_USEW") == 0) {
+        out = 2;
+    }
+    return out;
+}
+
 int func_00141D70(C_00168BE0 *cfg, const char *key, int def, int &out)
 {
     char buf[64];
