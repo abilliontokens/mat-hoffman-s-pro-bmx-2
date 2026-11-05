@@ -1,5 +1,6 @@
 /* 12 functions from 0x00032860 to 0x00033680, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
 struct S_002A8490 {
     char pad0[0x124];
     int f124;
@@ -96,7 +97,11 @@ void C_00032A20::func_00032A40(void)
 void C_00032E50::func_00032E50(float a, float b, float c, float d)
 {
     if (D_002F08BC != 0) {
-        f210.Set(a, b, c, d);
+        float *p = &f210.x;
+        p[0] = a;
+        p[1] = b;
+        p[2] = c;
+        p[3] = d;
         f230 = 0.0f;
     }
 }
