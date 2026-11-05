@@ -22,6 +22,9 @@ struct C_CarProceduralExtended {
     f32 f510;
     u32 f514;
     void *f518;
+    void func_0012F600(f32 param_1, int param_2);
+    void func_0012FBF0(int param_1);
+    void func_0012FCB0(int param_1);
 };
 
 struct C_CarProceduralExtendedVT {
@@ -91,6 +94,10 @@ struct C_0012FE30 {
     undefined4 func_0012FE30(byte param_1);
 };
 
+
+void func_0012FCB0(int param_1)
+{
+}
 
 undefined4 C_0012FE30::func_0012FE30(byte param_1)
 {
