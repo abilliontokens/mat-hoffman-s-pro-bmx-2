@@ -100,20 +100,77 @@ struct C_001B0DC0 {
 };
 
 struct C_001AFCC0 {
-    void *func_001AFCC0(int *a0, int a1, int a2, int a3);
+    C_001AFCC0 *func_001AFCC0(void *a0, int a1, int a2, int a3);
 };
 
 struct C_001B0D00 {
     char pad0[0xA];
     u8 unkA;
     char padB[1];
-    void *unkC;
+    C_001AFCC0 *unkC;
     int func_001B0280(int a0, int a1);
     int func_001B03A0(int a0);
     int func_001B0460(int a0);
     void func_001B0D00(int param_1);
 };
 
+
+void C_001B0D00::func_001B0D00(int param_1)
+{
+    void *func_001E8A44(int);
+    int arr[4];
+    int flag = 0;
+    int i = 0;
+    if (unkA > 0) {
+        do {
+            arr[i] = func_001B0280(param_1, i);
+            if (arr[i] != 0) {
+                flag = 1;
+            }
+            i++;
+        } while (i < unkA);
+    }
+    for (; i < 4; i++) {
+        arr[i] = 0;
+    }
+    int a = func_001B03A0(param_1);
+    int b = func_001B0460(param_1);
+    if (flag != 0 || a != 0 || b != 0) {
+        void *obj = func_001E8A44(0x2c);
+        if (obj != 0) {
+            unkC = ((C_001AFCC0 *)obj)->func_001AFCC0(arr, a, b, param_1);
+            return;
+        }
+    }
+    unkC = 0;
+}
+
+void C_001B0DC0::func_001B0DC0(void)
+{
+    void func_001E891B(void *);
+    void func_001E8390(void *);
+    vtbl = &D_0028C5BC;
+    if (unk10 != 0) {
+        if (0 < unk10->count) {
+            int i = 0;
+            do {
+                Elem_001B0DC0 *e = ((Elem_001B0DC0 **)unk10)[i * 2 + 2];
+                if (e != 0) {
+                    e->func_001B0970();
+                    func_001E891B(e);
+                }
+                i++;
+            } while (i < unk10->count);
+        }
+        func_001E8390(unk10);
+    }
+    Elem_001B0DC0 *e2 = unkC;
+    if (e2 != 0) {
+        e2->func_001B0970();
+        func_001E891B(e2);
+    }
+    func_0001DFF0();
+}
 
 undefined4 C_001B0E40::func_001B0E40(byte param_1)
 {
@@ -126,6 +183,21 @@ undefined4 C_001B0E40::func_001B0E40(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+void C_001B0E60::func_001B0E60(int param_1)
+{
+    int zero = 0;
+    unk4 = zero;
+    unkC = zero;
+    unk8 = zero;
+    unk10 = zero;
+    unk14 = zero;
+    unk18 = zero;
+    unk1C = zero;
+    vtbl = &D_0028C6E8;
+    unk20 = 0x7fffffff;
+    unk24 = param_1;
 }
 
 void C_001B0E90::func_001B0E90(void) {
