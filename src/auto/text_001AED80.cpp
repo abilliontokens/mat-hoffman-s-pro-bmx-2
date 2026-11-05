@@ -103,6 +103,12 @@ void C_001AF0D0::func_001AF0D0()
     }
 }
 
+int C_001AF100::func_001AF100(int a0, int a1, int a2, int a3)
+{
+    D_002BEAAC->func_0013C8A0(a0, (char *)this + 4, 4, 1);
+    return 1;
+}
+
 void *C_001AF300::func_001AF300(int a0)
 {
     extern int D_0028C2AC;
