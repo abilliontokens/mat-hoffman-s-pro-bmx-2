@@ -89,3 +89,13 @@ struct C_001C04D0 {
     void func_001C03F0(int a);
     void func_001C04D0(int idx);
 };
+
+void C_001C0670::func_001C0670(void)
+{
+    unk40 = 0;
+    if (unk2C != 0) {
+        v28();
+    } else {
+        v29();
+    }
+}
