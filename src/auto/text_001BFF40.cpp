@@ -417,6 +417,13 @@ void C_001C0A60::func_001C0B00(float dt)
     }
 }
 
+void C_001C0BE0::func_001C0BE0(float dt)
+{
+    if (unk68 != 0) {
+        unk68->func_00199CF0(S_001C0B00_Vec4(0.0f, 0.0f, 1.0f, 1.0f), unkB4 * unk94 * dt);
+    }
+}
+
 void C_001C0E80::func_001C0E80(void)
 {
     unk2C = 1;
