@@ -62,6 +62,7 @@ extern char D_002ACC14[];
 
 extern "C" int __cdecl func_001EA4E1(void *a0, void *a1, int a2);
 extern "C" int __stdcall func_001E1D36(void *a0, void *a1, void *a2, int a3, int a4, int a5);
+#define func_001E1D36_cast(a, b, c, d, e, f) func_001E1D36(a, b, c, d, e, f)
 extern "C" void __stdcall func_001DCAFF(int a0, void *a1);
 extern "C" long __stdcall func_001E1BD7(S_AnsiString_1E148B *name, int size);
 
@@ -117,6 +118,42 @@ long __stdcall func_001E1BD7(S_AnsiString_1E148B *name, int size)
     return st;
 }
 
+long __stdcall func_001E1C4F(int a1, char *path, int size, const char *name)
+{
+    S_IoStatusBlock_1E148B iosb;
+    S_AnsiString_1E148B ansi;
+    S_ObjectAttributes_1E148B oa;
+    S_FileNetworkOpenInfo_1E148B info;
+    unsigned int len;
+    char *end;
+    void *buf;
+    long st;
+
+    len = strlen(path);
+    end = path + len;
+    func_001DF4E1(end, name, size - len);
+    _imp__RtlInitAnsiString(&ansi, path);
+    oa.RootDirectory = 0;
+    oa.ObjectName = &ansi;
+    oa.Attributes = 0x40;
+    st = _imp__NtCreateFile((void **)&path, 0x40100000, &oa, &iosb, 0, 4, 1, 3, 0x22);
+    *end = 0;
+    if (st >= 0) {
+        st = _imp__NtQueryInformationFile(path, &iosb, &info, 0x38, 0x22);
+        if (st >= 0 && info.EndOfFileLow == 0 && info.EndOfFileHigh == 0) {
+            buf = func_001E27DB(a1);
+            if (buf != 0) {
+                st = _imp__NtWriteFile(path, 0, 0, 0, &iosb, buf, func_001E2850(a1), 0);
+                func_001E27FC(a1);
+            }
+        }
+        _imp__NtClose(path);
+    } else if (st == 0xC0000035) {
+        st = 0;
+    }
+    return st;
+}
+
 void __stdcall func_001E206A(int a1, int a2)
 {
     char local[12];
@@ -146,17 +183,18 @@ void __stdcall func_001E20BF(int a1, int a2, int a3)
 
 long __stdcall func_001E2124(void)
 {
+    int i;
     S_ScsiPassThroughDirect_1E148B spt;
     u8 buf[0x1c];
     S_ObjectAttributes_1E148B oa;
     S_IoStatusBlock_1E148B iosb;
     void *handle;
     long st;
-    int i;
+    long result;
 
     oa.RootDirectory = 0;
-    oa.ObjectName = (S_AnsiString_1E148B *)D_002ACBEC;
     oa.Attributes = 0x40;
+    oa.ObjectName = (S_AnsiString_1E148B *)D_002ACBEC;
     st = _imp__NtOpenFile(&handle, 0x80100000, &oa, &iosb, 1, 0x20);
     if (st < 0)
         return st;
@@ -172,22 +210,22 @@ long __stdcall func_001E2124(void)
     *(u16 *)&spt.Cdb[7] = 0x1c00;
     memset(buf, 0, sizeof(buf));
 
-    for (i = 0; i < 5; i++) {
-        st = _imp__NtDeviceIoControlFile(handle, 0, 0, 0, &iosb, D_0004D014, &spt, sizeof(spt), 0, 0);
-        if (st < 0)
+    i = 0;
+    result = 0;
+    for (; i < 5; i++) {
+        result = _imp__NtDeviceIoControlFile(handle, 0, 0, 0, &iosb, (u32)&D_0004D014, &spt, sizeof(spt), 0, 0);
+        if (result < 0)
             break;
         if (buf[0xb] != 1) {
-            st = 0xC0000014;
+            result = 0xC0000014;
             continue;
         }
-        if (buf[0xa] != 0 && buf[0xc] != 0) {
-            st = 0;
+        if (buf[0xa] != 0 && buf[0xc] != 0)
             break;
-        }
-        st = 0xC0000001;
+        result = 0xC0000001;
     }
     _imp__NtClose(handle);
-    return st;
+    return result;
 }
 
 #pragma optimize("y", on)
