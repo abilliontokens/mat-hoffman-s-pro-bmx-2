@@ -206,6 +206,68 @@ int C_00184930::func_00184C60(void)
     return 1;
 }
 
+int C_00184930::func_00184CC0(void)
+{
+    int i;
+
+    if (f3b0 != 0) {
+        for (i = 0; i < f340; i++) {
+            f348 = i;
+            S_00184CC0_Item *item = f3b0[i];
+            if (item->f24 > 0) {
+                item->v28(this);
+            }
+        }
+    }
+    return 1;
+}
+
+int C_00184930::func_00184D10(void)
+{
+    char buf[0x104];
+
+    if (f388 != 0) {
+        func_001ADCC0(buf, 0x104, D_00275678, f30, f388->name);
+        func_00030F30(buf, D_00289580);
+        if (D_002BEAAC->func_0013B1A0(buf) == 0) {
+            return 0;
+        }
+        void *mem = func_001E8A44(0xe00);
+        C_001B1130 *obj = mem != 0 ? ((C_001B1130 *)mem)->func_001B1130(1) : 0;
+        f3e4 = obj;
+        f3e4 = obj->func_001B1190(buf, 1, 8, 0, 0, 0, 0);
+    }
+    return 1;
+}
+
+C_00185790 *C_00185790::func_00185790(void)
+{
+    vtbl = &D_002895B0;
+    f4 = f8 = fC = 0;
+    f10 = 1.0f;
+    f14 = f18 = f1C = 0;
+    f20 = 1.0f;
+    f4 = D_002A90B4;
+    f8 = D_002A90B8;
+    fC = D_002A90BC;
+    f10 = D_002A90C0;
+    f14 = D_002A90E4;
+    f18 = D_002A90E8;
+    f1C = D_002A90EC;
+    f20 = D_002A90F0;
+    return this;
+}
+
+int C_00185790::func_00185800(S_Stream *stream)
+{
+    if (stream->func_00169710(D_0027B1FC) == 0) {
+        return 0;
+    }
+    stream->func_00168CB0(D_002895CC, &D_002A90B4, &f4);
+    stream->func_00168CB0(D_002895B4, &D_002A90E4, &f14);
+    return 1;
+}
+
 int __stdcall func_00185860(char *name)
 {
     if (memcmp(name, D_002895F4, 9) == 0) {
