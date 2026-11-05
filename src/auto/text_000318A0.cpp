@@ -54,14 +54,31 @@ struct S_00108510_Vec {
 };
 
 /* a rider/player object; f11b0 is its id */
+struct TireTrack;
+extern float D_002A1480[4];
+
 struct S_00104C80_Obj {
-    char pad0[0x11b0];
+    char pad0[0x7f4];
+    float f7f4[4];
+    float f804[4];
+    char pad814[0x11b0 - 0x814];
     int f11b0;
+    char pad11b4[0x1230 - 0x11b4];
+    TireTrack *f1230;
+    TireTrack *f1234;
+    TireTrack *f1238;
+    TireTrack *f123c;
+    TireTrack *f1240;
     void func_00104C80(void *a);
+    void func_00104BE0(void);
+    void func_001067B0(void);
     void func_00108360(void);
     void func_00108510(int a, S_00108510_Vec v);
     void func_00108610(int a, int b);
     void func_00109F30(void);
+    void func_00109F80(void);
+    void func_0010C090(void *a, void *b, void *c, int d);
+    void func_0010E6D0(void);
 };
 
 struct S_00083A70_Obj {
