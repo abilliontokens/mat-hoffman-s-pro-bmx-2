@@ -511,6 +511,26 @@ void *C_001B23D0::func_001B24D0(unsigned int size)
     return f2c;
 }
 
+void *C_001B23D0::func_001B2520(unsigned int flags)
+{
+    vtbl = &D_0028C87C;
+    if (f24 != 0) {
+        f24->v2();
+        f24 = 0;
+    }
+    if (f28 != 0) {
+        func_001E8390(f28);
+    }
+    if (f2c != 0) {
+        func_001E8390(f2c);
+    }
+    ((C_00157660 *)this)->func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void C_001B2690::func_001B2690(int index, int data)
 {
     func_001AC750(index, data | f14[index].data);
