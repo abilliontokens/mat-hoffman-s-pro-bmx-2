@@ -125,6 +125,43 @@ struct C_00182CC0_Scene {
     void func_00182CC0();
 };
 
+struct S_00182EB0_Sub {
+    char pad0[0x6d];
+    char f6d;
+};
+
+struct S_00182EB0_Arr {
+    char pad0[0x280];
+    S_00182EB0_Sub **f280;
+    int f284;
+};
+
+struct S_00182EB0_Ent {
+    char pad0[4];
+    int f4;
+    char pad8[0x50];
+    char *f58;
+    char pad5C[0x44];
+    char fA0[1];
+    char padA1[0x103];
+    S_00182EB0_Arr *f1A4;
+};
+
+struct S_00182EB0_Grp {
+    char pad0[0x24];
+    int f24;
+    S_00182EB0_Ent **f28;
+};
+
+struct C_00182EB0_Scene {
+    char pad0[0x2c];
+    C_00168280 *f2C;
+    char pad30[0x3ac - 0x30];
+    S_00182EB0_Grp *f3AC;
+    void func_00182EB0();
+};
+extern char D_0027AEA8[];
+
 /* BmxScene */
 struct C_00182CC0 {
     virtual void v0();
