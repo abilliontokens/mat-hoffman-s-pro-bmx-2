@@ -187,6 +187,33 @@ struct C_00182750 {
     void func_00181E10(void);
 };
 
+struct C_00182110_Elem {
+    void func_00198440(float *a, V4_00181E10 *b, int c);
+    void func_001985D0(V4_00181E10 *a, V4_00181E10 *b, V4_00181E10 *c, void *d, int e);
+};
+V4_00181E10 * __stdcall func_00197F70(V4_00181E10 *out, V4_00181E10 *in);
+V4_00181E10 * __stdcall func_00198120(V4_00181E10 *out, V4_00181E10 *in);
+void func_00197AA0(void);
+extern float D_002755E8;
+extern float D_00275544;
+struct C_00182110 {
+    char pad0[0xF0];
+    char fF0[0x40];
+    V4_00181E10 f130;
+    V4_00181E10 f140;
+    V4_00181E10 f150;
+    V4_00181E10 f160;
+    char pad170[0x10];
+    unsigned int f180;
+    float f184;
+    float f188;
+    char pad18C[4];
+    int f190;
+    char pad194[0x18];
+    C_00182110_Elem **f1AC;
+    void func_00182110(void);
+};
+
 struct C_00182830_Target {
     char pad0[0x204];
     int f204;
@@ -424,11 +451,17 @@ void C_00181DB0::func_00181DB0(int a0)
 
 void C_00182750::func_00181E10(void)
 {
+    C_00182750 * volatile self = this;
     float threshold;
     const V4_00181E10 *p;
-    unsigned char lvl;
+    V4_00181E10 d;
+    int lvl;
     int i;
     int n;
+    float len;
+    float inv;
+    float t1;
+    float val2;
     S_00181E10_Tbl *tbl;
     S_00181E10_Ent *ent;
 
@@ -438,13 +471,14 @@ void C_00182750::func_00181E10(void)
         threshold = f188;
     }
     p = (f190 == 1) ? &f130 : &f150;
-    V4_00181E10 d = *p - D_002EFDB8->f4->f170;
-    f1B0 = Sqrt_00181E10((d.z + fDC) * (d.z + fDC) + (d.y + fCC) * (d.y + fCC) + (d.x + fBC) * (d.x + fBC));
-    float inv = D_00275460 / Max_00181E10(0.1f, f1B0 - threshold);
-    float t1 = inv * D_002EFDB8->f4->f1d8;
-    float val2 = inv * D_002EFDB8->f4->f1d8 * D_002A8F40 * threshold;
+    d = *p - D_002EFDB8->f4->f170;
+    _mm_store_ss(&len, _mm_sqrt_ss(_mm_set_ss((d.z + fDC) * (d.z + fDC) + (d.y + fCC) * (d.y + fCC) + (d.x + fBC) * (d.x + fBC))));
+    self->f1B0 = len;
+    inv = D_00275460 / Max_00181E10(0.1f, self->f1B0 - threshold);
+    t1 = inv * D_002EFDB8->f4->f1d8;
+    val2 = inv * D_002EFDB8->f4->f1d8 * D_002A8F40 * threshold;
     val2 = val2 + val2;
-    tbl = f1A4;
+    tbl = self->f1A4;
     lvl = 0;
     n = tbl->f8 - 1;
     for (i = 0; i < n; i++) {
@@ -452,10 +486,10 @@ void C_00182750::func_00181E10(void)
             lvl = i + 1;
         }
     }
-    f1A0 = lvl;
-    ent = &f1A4->f10[f1A0];
+    self->f1A0 = lvl;
+    ent = &self->f1A4->f10[self->f1A0];
     for (i = 0; i < ent->count; i++) {
-        ent->f8[i].v2(&f1A8[i], val2, t1, f1B8[i]);
+        ent->f8[i].v2(&self->f1A8[i], val2, t1, self->f1B8[i]);
     }
 }
 
