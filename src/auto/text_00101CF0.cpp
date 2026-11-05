@@ -32,3 +32,22 @@ struct C_00102B30 {
     C_00102B30 *func_00102B30(void *a, void *b);
 };
 
+C_00102B30 *C_00102B30::func_00102B30(void *a, void *b)
+{
+    ((C_001C0110 *)this)->func_001C0110(a, b);
+    unk1B0 = 0;
+    unk170 = 0;
+    unk3C0 = 0;
+    unk3CC = 0;
+    unk3D0 = 0;
+    unk3D8 = 0;
+    unk3D4 = 0;
+    unk3DC = 0;
+    unk3EC = 0;
+    unk3F8 = 0;
+    unk3F4 = 0;
+    unk3E0 = 0;
+    vtbl = (void *)&D_002826B4;
+    unk3F0 = 0xff;
+    return this;
+}
