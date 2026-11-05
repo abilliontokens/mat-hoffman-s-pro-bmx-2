@@ -244,3 +244,57 @@ S_001EF734 *S_001EF734::func_001EFD7A(void *out, char *s)
     return (S_001EF734 *)out;
 }
 
+void *_func_001EFF6E(S_001EF734 *o)
+{
+    S_001EF734 local;
+    S_001EF734 tmp;
+    switch (*D_002F6A28) {
+    case 'X':
+        D_002F6A28++;
+        o->func_001EF759(&D_0027D1D8);
+        break;
+    case 'Z':
+        D_002F6A28++;
+        o->func_001EF759(&D_00278798);
+        break;
+    default:
+        _func_001EFBEE(&local);
+        if ((local.flags & 0xf) == 0 && *D_002F6A28 != 0) {
+            char c = *D_002F6A28;
+            if (c == '@') {
+                D_002F6A28++;
+            } else if (c == 'Z') {
+                D_002F6A28++;
+                o->func_001EEEE6(local.func_001EFD7A(&tmp, D_00295C58));
+                break;
+            } else {
+                o->func_001EF170(1);
+                break;
+            }
+        }
+        o->func_001EEEE6(&local);
+        break;
+    }
+    return o;
+}
+
+void *_func_001F0000(S_001EF734 *o)
+{
+    S_001EF734 local;
+    S_001EF734 tmp;
+    char c = *D_002F6A28;
+    if (c != 0) {
+        if (c == 'Z') {
+            D_002F6A28++;
+            local.value = 0;
+            *(u16 *)&local.flags &= 0xfe00;
+            o->func_001EEEE6(&local);
+            return o;
+        }
+        ((S_001EF734 *)_func_001EFD19(&tmp, D_00295C60, _func_001EFF6E(&local)))->func_001EFD3B(o, ')');
+    } else {
+        local.func_001EF759((void *)D_00295C60)->func_001EF8F6(&tmp, 2)->func_001EFD3B(o, ')');
+    }
+    return o;
+}
+
