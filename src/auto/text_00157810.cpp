@@ -27,7 +27,7 @@ struct S_00157810_Child {
     virtual void v8();
     virtual void v9();
     virtual void v10();
-    virtual void v11();
+    virtual void v11(int a);
     virtual void v12(int a);
     virtual void v13();
     virtual void v14();
