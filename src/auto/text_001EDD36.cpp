@@ -53,6 +53,11 @@ int func_001EE63F(int fh, int value)
     return -1;
 }
 
+void func_001EE782(int fh)
+{
+    _imp__RtlLeaveCriticalSection((char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 0xc);
+}
+
 int func_001EE997(void)
 {
     void func_001EAB1B(void);
