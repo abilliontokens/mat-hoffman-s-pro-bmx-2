@@ -15,6 +15,10 @@ char *func_001E8920(char *dst, const char *src, int n);
 char *func_001E9260(char *str, int ch);
 char *func_001EA3D0(const char *str, const char *ctrl);
 
+static inline const int &min_ref(const int &a, const int &b) {
+    return (b < a) ? b : a;
+}
+
 struct S_001B4B80_Stream {
     int func_00168C20(const char *name, int a, int *p);
 };
@@ -179,6 +183,51 @@ C_001B4A40Ret *C_001B4A40Ret::func_001B4A40(const char *str)
     return this;
 }
 
+char *C_001B4A70::func_001B4A70(char *delims) {
+    char *p = f4;
+    char c;
+    if (p == 0) {
+        return 0;
+    }
+    f0 = p;
+    p = func_001EA3D0(p, delims);
+    f4 = p;
+    if (p != 0) {
+        *p = 0;
+        f4++;
+        c = *f4;
+        if (c == 0) {
+            f4 = 0;
+            return f0;
+        }
+        if (func_001E9260(delims, c) != 0) {
+            while (func_001E9260(delims, *++f4) != 0) {
+            }
+        }
+    }
+    return f0;
+}
+
+C_001B4AF0 *C_001B4AF0::func_001B4AF0(void) {
+    C_001B4AF0 *self;
+    int limit;
+    int count;
+    self = this;
+    self->vtbl = (void *)&D_0028CA64;
+    limit = sizeof(f4) - 1;
+    if (limit > strlen("none")) {
+        count = strlen("none");
+    } else {
+        count = limit;
+    }
+    func_001E8920(self->f4, (const char *)&D_002764F0, count);
+    self->f4[count] = 0;
+    self->f108 = 0;
+    self->f10C = 1;
+    self->f110 = 1;
+    return self;
+}
+
 void C_001B4B70::func_001B4B70(void) {
     extern int D_0028CA64;
     unk0 = (int)&D_0028CA64;
@@ -190,5 +239,30 @@ int C_001B4AF0::func_001B4B80(S_001B4B80_Stream *stream) {
     stream->func_00168C20(D_0028CA68, 1, &f110);
     f110--;
     return 1;
+}
+
+C_001B4BE0 *C_001B4BE0::func_001B4BE0(void) {
+    C_001B4BE0 *self;
+    int limit;
+    int count;
+    self = this;
+    ((C_001B4AF0 *)self)->func_001B4AF0();
+    self->vtbl = (void *)&D_0028CA7C;
+    limit = sizeof(f114) - 1;
+    if (limit > strlen("none")) {
+        count = strlen("none");
+    } else {
+        count = limit;
+    }
+    func_001E8920(self->f114, (const char *)&D_002764F0, count);
+    self->f114[count] = 0;
+    self->f218 = 0;
+    self->f21C = 0;
+    self->f220 = 0;
+    self->f224 = 1;
+    self->f228 = 1;
+    self->f22C = 0;
+    self->f230 = 0;
+    return self;
 }
 
