@@ -62,6 +62,28 @@ void C_000CC2B0::func_000CC0B0()
     }
 }
 
+void C_000CC1B0::func_000CC1B0()
+{
+    int i;
+
+    f2F8->func_00093120();
+    for (i = 0; i < 2; i++) {
+        f298[i]->func_001B1980();
+        f298[i]->func_001B19A0(D_0028F5E0);
+        if (i == f2BC) {
+            f298[i]->func_001B2270(0xffbfa35a);
+            f298[i]->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
+            f298[i]->func_001B1AB0(0xff, 0.25f);
+            f298[i]->func_001B1B30(1.45f, 0.2f);
+        } else {
+            f298[i]->func_001B2270(0xffcccccc);
+            f298[i]->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
+            f298[i]->func_001B1AB0(0xff, 0.25f);
+            f298[i]->func_001B1B30(1.15f, 0.2f);
+        }
+    }
+}
+
 void C_000CC2B0::func_000CC2B0()
 {
     int i;
