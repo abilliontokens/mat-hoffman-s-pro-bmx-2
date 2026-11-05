@@ -234,3 +234,35 @@ C_001D3F60 *C_001D3F60::func_001D3F60(void)
     return this;
 }
 
+int C_001D3F90::func_001D3F90(unsigned int *a, unsigned int *b, unsigned int *c)
+{
+    S_001D3F90_Size total;
+    S_001D3F90_Size totalFree;
+    S_001D3F90_Size avail;
+    unsigned int v;
+
+    func_001DE942(f4, &avail, &total, &totalFree);
+    if (a != 0) {
+        v = total.lo;
+        if (v > 0x7fffffff) {
+            v = 0x7fffffff;
+        }
+        *a = v >> 10;
+    }
+    if (b != 0) {
+        v = totalFree.lo;
+        if (v > 0x7fffffff) {
+            v = 0x7fffffff;
+        }
+        *b = v >> 10;
+    }
+    if (c != 0) {
+        v = avail.lo;
+        if (v > 0x7fffffff) {
+            v = 0x7fffffff;
+        }
+        *c = v >> 10;
+    }
+    return 1;
+}
+
