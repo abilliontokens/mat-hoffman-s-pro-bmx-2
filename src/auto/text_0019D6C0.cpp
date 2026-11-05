@@ -60,7 +60,7 @@ int C_0019D7B0::func_0019D7B0(int a1, char *path)
 
     if (D_002A4C10[0] != 0) {
         strcpy(buf, D_002A4C10);
-        if (D_002A4C10[strlen(D_002A4C10) - 1] != '\\')
+        if (D_002A4C0F[strlen(D_002A4C10)] != '\\')
             func_001E8BF0(buf, &D_00284644, 0x7f);
         strcat(buf, path);
     } else {
