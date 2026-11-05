@@ -158,7 +158,7 @@ struct C_001D5FA0Obj {
     char pad18[0x4c];
     int f64;
     char pad68[8];
-    void __stdcall func_001D5660(int a, int b);
+    void func_001D5660(int a, int b);
 };
 
 struct C_001D6190 {
