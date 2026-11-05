@@ -173,6 +173,7 @@ struct C_00097DA0 {
 
     int func_00097CA0(const char *name);
     int func_00097DA0(const char *name);
+    int func_00097E90(const char *a, const char *b);
 };
 
 
