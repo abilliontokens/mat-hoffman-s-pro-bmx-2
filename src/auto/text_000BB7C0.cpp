@@ -133,12 +133,13 @@ int C_000BBDF0::func_000BBDF0(void)
                  *(int *)(in_ECX + 0x288) * 4) * 0x120 + *(int *)(in_ECX + 0x280);
 }
 
+extern S_000BBE30_Game *D_002A8490;
+
 undefined4 C_000BC0B0::func_000BC0B0(void)
 {
-  extern undefined4 D_002A8490;
   int in_ECX = (int)this;
   
-  if (*(int *)(*(int *)(D_002A8490 + 0x2e0) + 0x324) == 1) {
+  if (D_002A8490->f2E0->f324 == 1) {
     return *(undefined4 *)(*(int *)(in_ECX + 0x27c) + 0x124);
   }
   return *(undefined4 *)(*(int *)(in_ECX + 0x284) * 0x1a8 + 0x124 + *(int *)(in_ECX + 0x27c));
