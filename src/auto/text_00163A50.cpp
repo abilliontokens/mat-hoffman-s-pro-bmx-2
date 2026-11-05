@@ -162,12 +162,38 @@ int C_001643A0::func_001643A0(void)
     return 1;
 }
 
+unsigned char C_00164650::func_00164650(const char *name)
+{
+    int i = 0;
+    if (f1e8 != 0) {
+        do {
+            if (func_001EA426(f1ec[i].name, name) == 0) {
+                return i;
+            }
+            i++;
+        } while (i != f1e8);
+        return -1;
+    }
+    return i;
+}
+
 void C_001646B0::func_001646B0(void)
 {
     int i;
     for (i = 0; i < f1e8; i++) {
         C_00199BE0 *p = *(C_00199BE0 **)(f1ec + i * 0x40 + 0x34);
         p->func_00199BE0((void *)(f1f8 + i * 0x40));
+    }
+}
+
+void C_00164650::func_00164700(void)
+{
+    int i;
+    if (f1f8 == 0) {
+        f1f8 = (M16_00164650 *)func_001E8AA5(f1e8 << 6);
+    }
+    for (i = 0; i < f1e8; i++) {
+        f1ec[i].f34->func_00197EA0(&f1f8[i]);
     }
 }
 
