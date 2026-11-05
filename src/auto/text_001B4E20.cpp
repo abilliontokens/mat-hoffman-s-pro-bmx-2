@@ -104,6 +104,14 @@ undefined4 C_001B5720::func_001B5720(void)
                   *(int *)(in_ECX + 0x90) * 4) * 4);
 }
 
+C_001B5830 *C_001B5830::func_001B5830(void *a) {
+    ((C_001B57600 *)this)->func_00157600(a);
+    f24 = 0;
+    f28 = 0;
+    vtbl = (void *)&D_0028CB94;
+    return this;
+}
+
 C_001B59E0* C_001B59E0::func_001B59E0(void) {
     extern int D_0028CC28;
     unk0 = (int)&D_0028CC28;
