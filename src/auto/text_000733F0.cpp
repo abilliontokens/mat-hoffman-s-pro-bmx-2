@@ -67,6 +67,24 @@ struct C_00073A50 {
     int func_00073A50(int *param_1, int param_2);
 };
 
+void C_00073620::func_00073620(void) {
+    unk78->func_001D5AD0();
+    unk7C->func_001D5AD0();
+    C_001D5AD0 **ptr = &unkA4[0];
+    int count = 5;
+    do {
+        (*(ptr - 5))->func_001D5AD0();
+        (*ptr)->func_001D5AD0();
+        ptr++;
+        count--;
+    } while (count != 0);
+    if (unk6C != 0) {
+        unk74->func_001D5AD0();
+        return;
+    }
+    unk70->func_001D5AD0();
+}
+
 void C_000739D0::func_000739D0(void) {
     func_000737A0();
     func_00073620();
