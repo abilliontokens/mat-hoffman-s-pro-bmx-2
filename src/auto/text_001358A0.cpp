@@ -1,6 +1,24 @@
 /* 28 functions from 0x001358A0 to 0x00136860, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <string.h>
+void *func_001E8A44(unsigned int size);
+struct C_00135470 {
+    int f0;
+    int f4;
+    char pad8[0x44];
+    void func_00135470();
+};
+struct C_00135A80 {
+    char pad0[0x24];
+    int f24, f28, f2C, f30;
+    C_00135470 *f34;
+    int *f38;
+    int *f3C;
+    int f40;
+    void func_001D3F50();
+    void func_00135A80(int count, int n1, int *p1, int n2, int *p2, int a6);
+};
 struct C_00135A60 {
     undefined4 func_00135A60(byte param_1);
 };
@@ -282,29 +300,25 @@ void C_00135E00::func_00135E90(int a0, int a1, int a2, int a3)
 int C_00135E00::func_00135FF0(int a0, int kind, int a2, int idx)
 {
     S_00136110_Dev *dev;
-    int r;
     switch (kind) {
     case 2:
         dev = f14[idx];
-        if (dev == 0) {
-            break;
-        }
-        r = dev->v3(a0, a2, 0);
-        goto check;
-    case 1:
-        dev = f34;
-        goto call;
-    case 0:
-        dev = f38;
-    call:
-        if (dev == 0) {
-            break;
-        }
-        r = dev->v5(a0, a2, 0);
-    check:
-        if (r != 0) {
+        if (dev != 0 && dev->v3(a0, a2, 0) != 0) {
             return 1;
         }
+        break;
+    case 1:
+        dev = f34;
+        if (dev != 0 && dev->v5(a0, a2, 0) != 0) {
+            return 1;
+        }
+        break;
+    case 0:
+        dev = f38;
+        if (dev != 0 && dev->v5(a0, a2, 0) != 0) {
+            return 1;
+        }
+        break;
     }
     return 0;
 }
