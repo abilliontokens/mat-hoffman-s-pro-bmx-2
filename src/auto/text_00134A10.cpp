@@ -54,7 +54,10 @@ struct S_Vec4 {
     float y;
     float z;
     float w;
-    S_Vec4() { x = y = z = 0.0f; w = 1.0f; }
+    S_Vec4() { w = 1.0f; }
+    S_Vec4 operator+(const S_Vec4 &o) const { S_Vec4 r; r.x = x + o.x; r.y = y + o.y; r.z = z + o.z; return r; }
+    S_Vec4 operator-(const S_Vec4 &o) const { S_Vec4 r; r.x = x - o.x; r.y = y - o.y; r.z = z - o.z; return r; }
+    S_Vec4 operator*(float s) const { S_Vec4 r; r.x = x * s; r.y = y * s; r.z = z * s; return r; }
 };
 
 /* the particle's verlet state: previous and current position, velocity, acceleration */
@@ -249,6 +252,34 @@ PhysicsParticle::PhysicsParticle()
     m3.y = D_002A4438;
     m3.z = D_002A443C;
     m3.w = D_002A4440;
+}
+
+void S_Particle::func_00135550(float dt)
+{
+    S_ParticleData *p = (S_ParticleData *)this;
+    S_Vec4 vel;
+    S_Vec4 next;
+    float inv;
+
+    if (dt != D_00275544) {
+        if (p->prev.x == D_002A4434 && p->prev.y == D_002A4438 && p->prev.z == D_002A443C) {
+            p->prev = p->cur;
+        }
+        next.x = (p->cur.x + p->cur.x) - p->prev.x + dt * p->acc.x * dt;
+        next.y = (p->cur.y + p->cur.y) - p->prev.y + dt * p->acc.y * dt;
+        next.z = (p->cur.z + p->cur.z) - p->prev.z + dt * p->acc.z * dt;
+        inv = D_00275460 / dt;
+        vel.x = (p->cur.x - p->prev.x) * inv;
+        vel.y = (p->cur.y - p->prev.y) * inv;
+        vel.z = (p->cur.z - p->prev.z) * inv;
+        p->vel = vel;
+        p->prev = p->cur;
+        p->cur = next;
+        p->acc.x = D_002A4434;
+        p->acc.y = D_002A4438;
+        p->acc.z = D_002A443C;
+        p->acc.w = D_002A4440;
+    }
 }
 
 ParticleSystem *ParticleSystem::func_00135700(int a)
