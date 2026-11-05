@@ -9,6 +9,7 @@ extern float D_00275544;
 extern float D_002B9348;
 extern void **D_002B92F4;
 struct S_0011F4B0_V4 { float x, y, z, w; };
+struct S_00120470_Triangle { S_0011F4B0_V4 a, n, b, c; };
 static __forceinline S_0011F4B0_V4 sub_00120470(S_0011F4B0_V4 &a, S_0011F4B0_V4 &b)
 {
     S_0011F4B0_V4 r;
