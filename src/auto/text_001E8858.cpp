@@ -3,6 +3,12 @@
 #include "ghidra.h"
 
 extern int D_00294F04;
+extern int D_002FB364;
+
+int func_001DF5B3(void);
+int func_001E8A52(unsigned int size);
+int func_001EB3BE(unsigned int size);
+int __stdcall func_001E0AE0(int heap, unsigned int flags, unsigned int size);
 
 void func_001E891B(void *p);
 void func_001E8390(void *p);
