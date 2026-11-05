@@ -21,6 +21,7 @@ void __stdcall func_00011FF0(void *p, int stride, int count, void *ctor);
 
 struct Vec4_000AEC90 {
     float x, y, z, w;
+    Vec4_000AEC90() { x = y = z = 0; w = 1; }
 };
 
 struct C_000AEC90Parser {
