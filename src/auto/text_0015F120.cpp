@@ -2,6 +2,54 @@
 #include "common.h"
 #include "ghidra.h"
 #include "ghidra.h"
+#include <xmmintrin.h>
+#include <string.h>
+extern float D_00275460;
+extern float D_00287890;
+extern float D_00287880;
+extern float D_00287870;
+struct V4_0015F120 { float x, y, z, w; };
+struct L_0015F120 {
+    float f0, f4, f8, fC, f10, f14, f18, f1C;
+    char pad20[0x20];
+    float f40, f44, f48;
+    char pad4C[8];
+    float f54, f58, f5C;
+};
+struct E_0015F120 {
+    char pad0[0x28];
+    int type;
+    L_0015F120 l;
+    char pad8C[0x8];
+    float px, py, pz;
+};
+float __stdcall func_0015E4B0(float s, V4_0015F120 v, E_0015F120 *e);
+static __forceinline void Normalize_0015F120(float *out, const float *in)
+{
+    __m128 v = _mm_loadu_ps(in);
+    __m128 sq = _mm_mul_ps(v, v);
+    __m128 len = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
+    len = _mm_add_ss(len, _mm_shuffle_ps(sq, sq, 0xe1));
+    __m128 minv = _mm_load_ss(&D_00287890);
+    __m128 cmp = _mm_cmplt_ss(len, minv);
+    len = _mm_add_ss(len, _mm_and_ps(cmp, minv));
+    __m128 r = _mm_rsqrt_ss(len);
+    __m128 t = _mm_mul_ss(_mm_mul_ss(len, r), r);
+    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_00287870)), _mm_sub_ss(_mm_load_ss(&D_00287880), t));
+    scale = _mm_shuffle_ps(scale, scale, 0);
+    _mm_storeu_ps(out, _mm_mul_ps(scale, v));
+}
+struct C_0015F120 {
+    char pad0[0x38];
+    int *f38;
+    char pad3C[0x14];
+    V4_0015F120 *f50;
+    char pad54[0x28];
+    int f7C;
+    char pad80[4];
+    E_0015F120 **f84;
+    void func_0015F120(int a, float x, float y, float z, float *m0, float *m1, float *m2);
+};
 struct S_0015F470_Row {
     int x, y, z, w;
 };
