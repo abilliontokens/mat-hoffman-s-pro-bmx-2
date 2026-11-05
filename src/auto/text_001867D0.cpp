@@ -117,7 +117,7 @@ struct C_00186C70 {
 
 static __forceinline int clamp_len_00186C70(int limit, int len)
 {
-    return limit > len ? len : limit;
+    return len < limit ? len : limit;
 }
 
 struct C_00186AF0 {
