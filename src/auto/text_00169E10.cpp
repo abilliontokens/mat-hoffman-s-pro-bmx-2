@@ -49,6 +49,39 @@ struct ParticleEmitter {
     int func_0016A8D0(void);
 };
 
+ParticleEmitter *ParticleEmitter::func_0016A1D0(void *a, void *b, u32 *c) {
+    u32 *d;
+
+    ((C_001D3F50 *)this)->func_001D3F50();
+    f64 = a;
+    if (b != 0) {
+        f68 = b;
+        if (c != 0) {
+            d = &f44;
+            d[0] = c[0];
+            d[1] = c[1];
+            d[2] = c[2];
+            d[3] = c[3];
+        }
+    }
+    return this;
+}
+
+int ParticleEmitter::func_0016A330(char *buf) {
+    C_00168280 obj;
+
+    if (buf != 0) {
+        obj.func_00168280();
+        if (obj.func_00169490(buf, 0) != 0) {
+            ((ParticleEmitterVT *)this)->v34(&obj);
+            obj.func_001691E0();
+            return 1;
+        }
+        obj.func_001691E0();
+    }
+    return 0;
+}
+
 int ParticleEmitter::func_0016A8D0(void) {
     void *p = (void *)func_0014FDF0(&f6C, D_00276274);
     if (p != 0) {
