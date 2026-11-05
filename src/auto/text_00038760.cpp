@@ -194,4 +194,60 @@ int C_00038760::func_00038A70(void *param_1, void **param_2)
     return -1;
 }
 
+int C_00038760::func_000392B0()
+{
+    S_000392B0_Vec4 a;
+    S_000392B0_Vec4 b;
+    S_000392B0_Vec4 c;
+    int px, py, pz;
+    S_000392B0_Block *blk;
+    int w, h, d;
+    int i, j, k;
+    int idx, idx2;
+    S_000392B0_Obj **grid;
+
+    if (f564 == 0)
+        return 0;
+    if (f564->type == 0 || f564->type >= 3) {
+        f564->obj->func_00197E70(&a);
+        f564->obj->func_00197B40(&b, &c);
+        if (func_00038B10(&f564->obj->f28, a, b, &px, &py, &pz, 1) == 0)
+            return 0;
+        blk = 0;
+        func_00038A70(&f564->obj->f28, (void **)&blk);
+        w = blk->w;
+        h = blk->h;
+        d = blk->d;
+        if (d > f45C)
+            d = f45C;
+        for (i = 0; i < h; i++) {
+            for (j = 0; j < w; j++) {
+                for (k = 0; k < d; k++) {
+                    if (b.x > D_00276E9C || b.x < D_00276E98) {
+                        idx = ((i + px) * f45C + k + py) * f460 + j + pz;
+                        idx2 = ((i + px) * f45C + k + py - 1) * f460 + j + pz;
+                    } else {
+                        idx = ((j + px) * f45C + k + py) * f460 + i + pz;
+                        idx2 = ((j + px) * f45C + k + py - 1) * f460 + i + pz;
+                    }
+                    grid = f49C;
+                    if (grid[idx] != 0) {
+                        f558->func_0008B670(D_00276EC8);
+                        f490 = 0;
+                        f558->v6();
+                        return 0;
+                    }
+                    if (py != f450 && k == 0 && grid[idx2] == 0) {
+                        f558->func_0008B670(D_00276EA0);
+                        f490 = 0;
+                        f558->v6();
+                        return 0;
+                    }
+                    grid[idx] = f564->obj;
+                }
+            }
+        }
+    }
+    return 1;
+}
 
