@@ -178,3 +178,16 @@ C_0009E590 *C_0009E590::func_0009E590(int a1, int a2, int a3) {
     return this;
 }
 
+int C_0009E590::func_0009E5F0(S_0009E5F0_Stream *stream) {
+    ((C_0016A1D0 *)this)->func_0016A3A0(stream);
+    if (stream != 0) {
+        stream->func_00169710(D_00277298);
+        stream->func_00168C50(D_0027AC68, f20C, &f20C);
+        stream->func_00168C50(D_0027AC58, f210, &f210);
+        stream->func_00168C50(D_0027AC48, f214, &f214);
+        stream->func_00168C50(D_0027AC30, f218, &f218);
+        return 1;
+    }
+    return 0;
+}
+
