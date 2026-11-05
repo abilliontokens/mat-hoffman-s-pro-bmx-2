@@ -14,6 +14,12 @@ struct C_0013E170 {
     void func_0013E170(int index, char *name, int value);
 };
 
+struct S_0013E170_Entry {
+    char pad0[0x230];
+    char name[0x50];
+    int value;
+};
+
 extern int D_00284C58;
 extern int D_00100000;
 
