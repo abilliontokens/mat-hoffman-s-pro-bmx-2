@@ -76,6 +76,21 @@ struct C_00158360 {
 
 void func_001E891B(void *p);
 
+extern int D_002DF948;
+
+/* node of the GameObject tree: prev/next siblings, first child, parent */
+struct C_00157CF0 {
+    void *vtbl;
+    int refs;
+    C_00157CF0 *f8;
+    C_00157CF0 *fC;
+    C_00157CF0 *f10;
+    C_00157CF0 *f14;
+    int func_00157CB0(void);
+    int func_00157CF0(void);
+    int func_0001E010(void);
+};
+
 int C_00157810::func_00157960(void)
 {
     if (f1C & 8) {
