@@ -48,6 +48,15 @@ struct C_001B82A0 {
     C_001B82A0 *func_001B82A0(int a);
 };
 
+struct C_001B9B20 : C_001B82A0 {
+    C_001B9B20 *func_001B9B20(int a);
+};
+
+struct C_001B8450 {
+    C_001B8450 *func_001B8450(int a);
+    void func_001BA9C0(C_00168280 *a);
+};
+
 /* BmxScene */
 struct C_00182CC0 {
     virtual void v0();
