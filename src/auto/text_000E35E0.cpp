@@ -55,6 +55,29 @@ struct C_000E3C90_Widget {
     void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, float a11, float a12, int a13);
 };
 
+struct C_000E3D30_Item {
+    char pad0[0x38];
+    unsigned lo : 24;
+    int hi : 8;
+    char pad3C[0x1C];
+    unsigned char flags;
+    void func_00051120(unsigned short v);
+};
+
+struct C_000E3D30_Btn {
+    void func_001D5AD0();
+};
+
+struct S_002B91AC {
+    char pad0[0x24];
+    C_000E3D30_Btn *f24, *f28, *f2C, *f30;
+    char pad34[0x1C];
+    C_000E3D30_Btn *f50, *f54;
+    char pad58[0x10];
+    C_000E3D30_Btn *f68, *f6C;
+};
+extern S_002B91AC *D_002B91AC;
+
 struct C_000E35E0 {
     char pad0[0x280];
     int f280;
