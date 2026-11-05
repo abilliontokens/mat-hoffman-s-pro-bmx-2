@@ -420,6 +420,19 @@ int C_001CB650::func_001CB780(unsigned int *out, unsigned int idx)
     return 0;
 }
 
+int C_001CB610::func_001CB7D0(void)
+{
+    if (fc4 != -1) {
+        func_001DD13C(fc4);
+        fc4 = -1;
+    }
+    if (fb4 != 0) {
+        fb4->v1();
+        fb4 = 0;
+    }
+    return 0;
+}
+
 void C_001CB940::func_001CB940(void)
 {
     ((C_001576C0 *)this)->func_001576C0();
