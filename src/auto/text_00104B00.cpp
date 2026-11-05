@@ -146,6 +146,9 @@ struct C_00104B00 {
     void func_001057A0(void);
     void func_00105800(void);
     void func_00105890(void);
+    void func_001058F0(void);
+    void func_00105970(void);
+    void func_001059E0(void);
     void func_00105A40(void);
 };
 
