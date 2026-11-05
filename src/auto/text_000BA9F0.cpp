@@ -46,8 +46,16 @@ struct C_0002EF20 {
     UIOwner *func_0002EF20(int a);
 };
 
+struct UnlockRecord { char pad0[0x638]; int flags[1]; };
+struct UnlockService {
+    UnlockRecord *func_0005C020(int index);
+    void func_0005C1B0(int type, int index);
+};
+struct UnlockData { char pad0[0x110]; int count; int unk114; int *flags; char pad11c[0x8c]; };
 struct UIGlobalSub {
-    char pad0[0x324];
+    char pad0[0x2c0];
+    UnlockService *f2c0;
+    char pad2c4[0x60];
     int f324;
 };
 
