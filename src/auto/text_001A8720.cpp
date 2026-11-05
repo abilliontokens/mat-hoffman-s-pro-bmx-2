@@ -95,7 +95,7 @@ struct S_001A9430_Obj {
     unsigned short fF0;
     char padF2[0xFC - 0xF2];
     int fFC;
-    float f100;
+    int f100;
     char pad104[0x1CC - 0x104];
     unsigned short f1CC;
     char pad1CE[0x1D4 - 0x1CE];
