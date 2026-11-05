@@ -21,6 +21,13 @@ struct V4_0012FCF0 {
     f32 w;
 };
 
+static inline void Swap_0012FCF0(S_0012F518 *&a, S_0012F518 *&b)
+{
+    S_0012F518 *t = a;
+    a = b;
+    b = t;
+}
+
 /* CarProceduralExtended */
 struct C_CarProceduralExtended {
     void *vtbl;
@@ -167,6 +174,37 @@ void C_CarProceduralExtended::func_0012FCB0(int param_1)
     D_002BEAAC->func_0013B930(param_1, this->f518, 4, 1);
     S_0012F518 *t = (S_0012F518 *)this->f518;
     D_002BEAAC->func_0013B930(param_1, t->arr, 0x28, t->count);
+}
+
+int C_CarProceduralExtended::func_0012FCF0(u32 param_1, f32 param_2)
+{
+    S_0012F518 *p = f51C;
+    if (p == 0) {
+        return 0;
+    }
+    if (param_1 != 0xffffffff) {
+        if (param_1 > p->count) {
+            return 0;
+        }
+    } else if (f4B8 > p->count) {
+        return 0;
+    }
+    f51C = f518;
+    f518 = p;
+    if (param_1 != 0xffffffff) {
+        f4B8 = param_1;
+        f510 = param_2;
+        f4AC = 1;
+        f518->f10 = f51C->f10;
+        if (f4E8 > D_00275544) {
+            f510 = ((C_CarProceduralExtendedVT *)this)->func_0012F670(f510, f4E8);
+        }
+        f438 = ((C_CarProceduralExtendedVT *)this)->v52(f510);
+        f428 = ((C_CarProceduralExtendedVT *)this)->v52(f510 - D_00276544);
+        return 1;
+    }
+    f518->f10 = f51C->f10;
+    return 1;
 }
 
 undefined4 C_0012FE30::func_0012FE30(byte param_1)
