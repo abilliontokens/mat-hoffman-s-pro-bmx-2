@@ -12,8 +12,6 @@ int func_001F5059(void *ld, char **end, const char *s, int a, int b, int c, int 
 
 void func_001F46F0(int a, int b, int c);
 short func_001F59DC(int a, void *b);
-extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
-#pragma intrinsic(memset)
 
 struct F3Obj {
     char pad_00[0x8];
