@@ -127,7 +127,7 @@ struct C_00104B00 {
     int f1800;
     float func_00104BB0(int i);
     void func_00104BE0(void);
-    void func_001056E0(void);
+    int func_001056E0(void);
     void func_001057A0(void);
     void func_00105800(void);
     void func_00105890(void);
@@ -164,7 +164,7 @@ void C_00104B00::func_00104BE0(void)
     }
 }
 
-void C_00104B00::func_001056E0(void)
+int C_00104B00::func_001056E0(void)
 {
     if (fa00 != 0) {
         fa00->func_001648E0(f1664, 1.0f, 0, 0, 0);
@@ -186,6 +186,7 @@ void C_00104B00::func_001056E0(void)
     f15dc = 1;
     f15f4 = 1.0f;
     f15f0 = 1.0f;
+    return 1;
 }
 
 void C_00104B00::func_001057A0(void)
