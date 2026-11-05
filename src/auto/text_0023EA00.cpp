@@ -53,7 +53,10 @@ struct C_0023ED4C {
 
 void C_0023EA00::func_0023EA00(void)
 {
-    while (fA4.next != &fA4) {
+    for (;;) {
+        if (fA4.next == &fA4) {
+            break;
+        }
         func_001DDE02(5);
     }
 }
@@ -61,21 +64,25 @@ void C_0023EA00::func_0023EA00(void)
 unsigned int C_0023EC0D::func_0023EC0D(unsigned int a, unsigned int b, int *out)
 {
     unsigned int end;
+    unsigned int r;
 
     if (f44 != 0) {
-        return f44(f48, a, b, out);
+        r = f44(f48, a, b, out);
+    } else {
+        _imp__RtlEnterCriticalSection(f6c);
+        end = f94 + f3c;
+        if (end > a && b <= end - a) {
+            *out = (f34 - f3c) + a;
+            f40 = a;
+            _imp__RtlLeaveCriticalSection(f6c);
+            r = b;
+        } else {
+            r = 0;
+        }
     }
-    _imp__RtlEnterCriticalSection(f6c);
-    end = f94 + f3c;
-    if (a < end && b <= end - a) {
-        *out = (f34 - f3c) + a;
-        f40 = a;
-        _imp__RtlLeaveCriticalSection(f6c);
-        return b;
-    }
-    return 0;
+    return r;
 }
-
+#pragma optimize("y", on)
 int __stdcall func_0023ED4C(S_0023ED4C_Src *src, S_0023ED4C_Out *out)
 {
     out->fC = 0;
