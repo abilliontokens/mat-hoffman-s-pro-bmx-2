@@ -20,7 +20,8 @@ struct S_000C2810_Owner {
 struct S_000C2810_Entry {
     char pad0[0x630];
     int f630;
-    char pad634[8];
+    int f634;
+    char pad638[4];
     int f63C;
     int f640;
 };
