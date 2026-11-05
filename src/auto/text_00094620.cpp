@@ -227,6 +227,13 @@ struct S_00094A00_Child {
     int f1AC;
 };
 
+struct S_00094A10_Manager {
+    S_00094A00_Child *func_001CFE90(void *, char *, int, int, int, int);
+};
+struct S_00094A10_Holder {
+    char pad0[0xb4];
+    S_00094A10_Manager *fB4;
+};
 struct C_00094A00 {
     char pad0[0x24];
     int f24;
