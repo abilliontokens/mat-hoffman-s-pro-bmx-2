@@ -15,6 +15,8 @@ extern char D_002A0FA4[];
 struct S_002B9120 {
     char pad0[0x4A8];
     int *f4A8;
+    char pad4AC[0x30];
+    char *f4DC;
 };
 extern S_002B9120 *D_002B9120;
 
