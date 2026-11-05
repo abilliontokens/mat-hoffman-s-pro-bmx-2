@@ -66,6 +66,11 @@ struct C_00199BE0 {
 
 void func_001977B0(S_00199B00_F4 *out, const S_00199B00_F4 *in);
 
+static inline void Xform4(S_00199B00_F4 &out, const S_00199B00_F4 &in)
+{
+    func_001977B0(&out, &in);
+}
+
 struct C_00199C20Mat {
     void func_000264C0(void *m);
 };
