@@ -1,6 +1,91 @@
 /* 14 functions from 0x001C26B0 to 0x001C36B0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+extern float D_00275544;
+u32 func_001DC974(void);
+void *__stdcall func_001FF410(void *buffer, int flags);
+
+struct C_00199650 {
+    void func_00199650(void *p);
+};
+
+struct UIWidgetStaticUserRotate {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    char pad4[0x28];
+    int f2c;
+    int f30;
+    int f34;
+    int f38;
+    int f3c;
+    char pad40[0x28];
+    C_00199650 *f68;
+    int f6c;
+    char pad70[0x28];
+    int f98;
+    int f9c;
+    int fA0;
+    int fA4;
+    char padA8[0x138];
+    int f1E0;
+    int f1E4;
+    int f1E8;
+    char pad1EC[0x54];
+    float f240;
+    u32 f244;
+    void func_001C0B00(int p);
+    void func_001C0B70(int p);
+    void func_001C0BE0(int p);
+    void func_00157A00(int p);
+    int func_001C13A0(void);
+    int func_001C1490(void);
+    void func_001C2F90(int p);
+    void func_001C32E0(void);
+    void func_001C33A0(void);
+
+    void SyncOn(void)
+    {
+        f2c = 1;
+        if (f30 == 0 || f34 == 0) {
+            if (f30 != 0) {
+                v7();
+            }
+            if (f34 != 0) {
+                v5();
+            }
+        }
+    }
+
+    void SyncOff(void)
+    {
+        f2c = 0;
+        if (f38 == 0 || f3c == 0) {
+            if (f38 != 0) {
+                v7();
+            }
+            if (f3c != 0) {
+                v5();
+            }
+        }
+    }
+};
+
+struct C_001C35B0 {
+    void *vtbl;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    void *f14;
+    void func_001C35B0(void *src, int index, unsigned int count);
+};
+
 struct C_001C2F70 {
     undefined4 func_001C2F70(void);
 };
