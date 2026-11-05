@@ -10,6 +10,50 @@ struct C_000BA9B0 {
     undefined4 func_000BA9B0(int param_1);
 };
 
+extern int D_0027D6AC;
+void func_001E891B(void *p);
+void *func_001E8A44(unsigned int size);
+
+struct V_000B9D50 {
+    virtual void vf00();
+    virtual void vf04();
+    virtual void vf08();
+    virtual void vf0C();
+    virtual void vf10();
+    virtual void vf14();
+    virtual void vf18();
+    virtual void vf1C();
+    virtual void vf20();
+    virtual void vf24();
+    virtual void vf28();
+};
+
+struct C_000BEDC0 {
+    V_000B9D50 *func_000BEDC0(int a);
+};
+
+struct BmxUIMain {
+    void *vtbl;
+    void func_000BA360(int a);
+    void func_000BE540();
+    void func_001577A0(V_000B9D50 *obj, int flags);
+    BmxUIMain *func_000B9D30(int a);
+    void func_000B9D50();
+    void *func_000BA2A0(unsigned int flags);
+};
+
+struct C_000BA2D0 {
+    char pad0[0x110];
+    int count;
+    void **items;
+    void *unk118;
+    int pad11C;
+    void *unk120;
+    char pad124[0x8];
+    void *unk12C;
+    void func_000BA2D0();
+};
+
 
 void func_000BA290(void) {
     int func_000BC7B0(...);
