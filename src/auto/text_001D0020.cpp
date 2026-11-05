@@ -86,6 +86,9 @@ struct XboxControlInterface_001D0C30 {
     int fD0C[4];
     XboxControlInterface_001D0C30 *func_001D0C30(void);
     int func_001D0C70(int unused);
+    void func_001D0D30(void);
+    void func_001D0D60(void);
+    void func_001D0E00(void);
 };
 
 
