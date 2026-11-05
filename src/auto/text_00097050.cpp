@@ -28,6 +28,10 @@ struct C_000979C0 {
     int func_000979C0(undefined4 key, undefined4 *out);
 };
 
+struct C_00097C20 {
+    int func_00097C20(void);
+};
+
 
 undefined4 C_000976A0::func_000976A0(void)
 {
