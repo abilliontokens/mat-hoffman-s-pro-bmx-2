@@ -1,5 +1,6 @@
 /* 3 functions from 0x001648E0 to 0x001653E0, found by Ghidra. */
 #include "common.h"
+#include <string.h>
 struct Vec4_165EF0 {
  float x,y,z,w;
  __forceinline Vec4_165EF0 operator-(const Vec4_165EF0 &b) const { Vec4_165EF0 r; r.x=x-b.x; r.y=y-b.y; r.z=z-b.z; r.w=1.0f; return r; }
