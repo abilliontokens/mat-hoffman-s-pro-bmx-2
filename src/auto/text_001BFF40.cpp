@@ -124,6 +124,16 @@ C_001C0110 *C_001C0110::func_001C0110(int a1, int a2)
     return this;
 }
 
+void C_001C0110::func_001C01B0(void)
+{
+    vtbl = &D_0028DB04;
+    if (unk68 != 0) {
+        func_001E8390(unk68);
+    }
+    vtbl = &D_0028D804;
+    ((C_00157660 *)this)->func_00157660();
+}
+
 void C_001C0670::func_001C0670(void)
 {
     unk40 = 0;
