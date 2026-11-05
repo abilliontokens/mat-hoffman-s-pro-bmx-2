@@ -1,6 +1,27 @@
 /* 12 functions from 0x0014C1C0 to 0x0014CC60, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct V4_0014C1C0 { int x, y, z, w; V4_0014C1C0() { z = 0; y = 0; x = 0; w = 0x3f800000; } };
+void *func_001E8A44(int);
+inline void *operator new(unsigned int, void *p) { return p; }
+static inline V4_0014C1C0 *NewV4_0014C1C0(int n) {
+    void *m = func_001E8A44(n * 16);
+    if (m) {
+        V4_0014C1C0 *p = (V4_0014C1C0 *)m;
+        for (int i = n - 1; i >= 0; i--) { new (p) V4_0014C1C0; p++; }
+        return (V4_0014C1C0 *)m;
+    }
+    return 0;
+}
+struct C_00134980 { char pad0[0x70]; V4_0014C1C0 *f70, *f74, *f78; int f7C; char pad80[4]; void *f84, *f88, *f8C, *f90; char pad94[8]; C_00134980(); };
+struct C_0014C1C0 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26();
+    virtual void Reset();
+    char pad4[0x50]; C_00134980 *f54; char pad58[0x50];
+    int fA8; int *fAC; V4_0014C1C0 *fB0, *fB4, *fB8; void *fBC; V4_0014C1C0 *fC0, *fC4;
+    void func_0014C1C0(int n, V4_0014C1C0 *src, int *ids);
+};
+extern V4_0014C1C0 D_002A75A8;
 extern char D_002A5EA0[], D_002A4F28[], D_002A60B0[], D_002A5138[];
 extern float D_002755E8, D_00275460;
 struct C_0014C890_Manager {
