@@ -83,6 +83,37 @@ struct C_001A1C70 {
     int func_001A1B60(S_001A1C70_Obj *obj);
 };
 
+struct S_001A1860_Buf {
+    int a[9];
+};
+
+struct S_001A1860_Quad {
+    int a[4];
+};
+
+int func_001D3F50(void);
+
+struct C_001A1860 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    char pad4[0x38];
+    S_001A1860_Buf unk3C;
+    char pad60[0x10];
+    S_001A1860_Quad unk70;
+    S_001A1860_Quad unk80;
+    char pad90[0x8];
+    int unk98;
+    char pad9C[0x104];
+    u8 unk1A0;
+    char pad1A1[0x3];
+    int unk1A4;
+    int unk1A8;
+    int unk1AC;
+    int func_001A1860(S_001A1860_Buf buf, S_001A1860_Quad q70, S_001A1860_Quad q80,
+                      int a18, int a19, int a20, int a21, int a22);
+};
+
 
 void C_001A13F0::func_001A13F0(void)
 {
