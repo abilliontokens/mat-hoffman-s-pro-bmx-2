@@ -81,7 +81,20 @@ struct O_E {
 /* BmxEventPush */
 struct BmxEventPush {
     void *vtbl;
-    char pad4[0x1f0];
+    char pad4[0x60];
+    struct S_000508C0_Owner *unk64;
+    char pad68[0x7c];
+    O_Ev *unke4;
+    char pade8[0x74];
+    O_A *unk15c;
+    char pad160[0x10];
+    O_E *unk170[8];
+    O_D *unk190;
+    char pad194[4];
+    O_Ev2 *unk198;
+    O_C *unk19c;
+    O_B *unk1a0;
+    char pad1a4[0x50];
     int unk1f4;
     char pad1f8[0x8c];
     int unk284;
