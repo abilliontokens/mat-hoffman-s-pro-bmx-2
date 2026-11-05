@@ -83,8 +83,8 @@ int C_0015E300::func_0015E5B0(void)
             return i;
         }
         if (v < min) {
-            min = v;
             best = i;
+            min = v;
         }
     }
     return best;
