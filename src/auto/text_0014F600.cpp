@@ -14,7 +14,7 @@ extern S_SinCosEntry *D_002CF6B4;
 /* Truncate towards zero into *out; inlined into its callers. */
 static void storeftoi(int *out, float f)
 {
-    *out = _mm_cvtt_ss2si(_mm_load_ss(&f));
+    *out = (int)f;
 }
 
 struct C_00150350 {
