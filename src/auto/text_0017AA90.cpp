@@ -61,6 +61,8 @@ struct C_0017AA90 {
     char pad158[8];
     int f160;
     int func_0017AA90();
+    void func_001D3F50();
+    C_0017AA90 *func_0017ABE0(const char *name);
 };
 
 struct C_0017ABC0 {
