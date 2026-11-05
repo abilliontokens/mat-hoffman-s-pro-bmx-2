@@ -166,6 +166,28 @@ struct C_00101260 {
 };
 
 
+void C_001002A0::func_001002A0() {
+ if (unk2b8) { func_000DFC00(); func_000DFC90(); unk2b8=0; }
+ if (unk2c0 == 0 && unk2e4 == 0 && unk894->func_001B1B20() == 0xff) unk2e4=1;
+ if (unk2c0) {
+ unk2f0[0]=1; unk2ec=0;
+ func_000DF8C0();
+ unk2d0=0xff; unk2d4=0; unk2d8=0; unk2dc=0; unk2e0=0.25f; unk2c0=0;
+ if(unk2c8) unk2c8=0;
+ }
+ if(unk2c4) {
+ func_000DFA80();
+ unk2d0=0; unk2d4=0xff; unk2d8=0xff; unk2dc=0; unk2e0=0.25f; unk2c4=0;
+ }
+ D_002B91AC->f3C->func_001D6600();
+ if(unk2f0[unk280]==0) {
+ D_002B91AC->f44->func_001D6600();
+ D_002B91AC->f40->func_001D6600();
+ }
+ D_002B91AC->f34->func_001D6600();
+ func_000DFE50(); func_00157960();
+}
+
 undefined4 C_001003E0::func_001003E0(byte param_1)
 {
   int func_000E0DF0(...);
