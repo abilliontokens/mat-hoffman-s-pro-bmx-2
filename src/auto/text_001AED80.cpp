@@ -30,8 +30,8 @@ struct C_001AF360 {
     int f18;
     C_001AF360 *func_001AF360(S_001AF360_Stream *stream, int owner, int idx);
 };
-struct S_001AF530_Anim { int pad[0x14 / 4]; int len; };
-struct S_001AF530_Entry { int pad[3]; S_001AF530_Anim *anim; int pad2; };
+struct S_001AF530_Anim { int pad[0x18 / 4]; int len; };
+struct S_001AF530_Entry { int pad; S_001AF530_Anim *anim; int pad2[2]; };
 struct S_001AF530_Tbl { char pad[0x14]; S_001AF530_Entry *arr; };
 struct S_001AF530_Owner { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual int v7(int a); };
 struct S_001AF530_Time { char pad[0x238]; unsigned int t; };
