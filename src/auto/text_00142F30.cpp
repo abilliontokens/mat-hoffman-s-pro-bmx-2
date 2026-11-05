@@ -27,7 +27,7 @@ struct DXRenderableObjectData {
 struct DXRenderableObject;
 
 struct Alloc190 {
-    char pad0[4];
+    virtual void destroy(int flags);
     DXRenderableObject *f4;
     Alloc190 *func_00142E90(DXRenderableObject *owner);
     void func_00142F30(int a);
