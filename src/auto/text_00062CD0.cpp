@@ -38,6 +38,7 @@ extern float D_002A1E18, D_002A1E1C, D_002A1E20;
 extern float D_00278784;
 
 struct S_func_000639B0_arg1 { int f0; };
+struct C_Elem_62;
 
 struct C_0005E840 {
     void func_0005E840(char *s);
