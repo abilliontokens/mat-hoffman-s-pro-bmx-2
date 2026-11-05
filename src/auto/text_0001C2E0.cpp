@@ -79,7 +79,7 @@ struct Node_1CE80 {
 };
 float func_0001CAF0(V4_1CE80 *a, float *b);
 struct C_0001CE80 {
- char pad0[0x58]; int count; Node_1CE80 *nodes[1];
+ char pad0[0x58]; int count; int pad5c; Node_1CE80 *nodes[1];
  int func_0001CE80(Obj_1CE80 *obj, float *p, float *q, int unused, float maxd);
 };
 extern float D_00275544;
