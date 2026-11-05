@@ -11,8 +11,18 @@ struct CreatorObj {
 };
 extern CreatorObj *D_002A7CB8;
 
+struct S_0002EF70_Item {
+    void func_0015B060(int a, float b, float c);
+};
+struct S_0002EF70_Mgr {
+    char pad0[0x14];
+    S_0002EF70_Item *items[1];
+    void *func_00135E80();
+};
 struct S_0002EE30_Global {
-    char pad0[0x18];
+    char pad0[8];
+    S_0002EF70_Mgr *f8;
+    char padC[0xc];
     int f18;
 };
 extern S_0002EE30_Global *D_002A8490;
