@@ -152,6 +152,19 @@ int XboxControlInterface_001D0C30::func_001D0C70(int unused)
     return 1;
 }
 
+void XboxControlInterface_001D0C30::func_001D0D30(void)
+{
+    int i;
+
+    vtbl = (void *)&D_0028F100;
+    for (i = 0; i < 4; i++) {
+        if (f14[i] != 0) {
+            f14[i]->v1(1);
+        }
+    }
+    ((C_00135E50 *)this)->func_00135E50();
+}
+
 undefined4 C_001D0DE0::func_001D0DE0(byte param_1)
 {
   int func_001D0D30(...);
