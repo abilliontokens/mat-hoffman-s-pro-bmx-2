@@ -73,10 +73,10 @@ struct C_0011C900 {
     int fBC;
     int fC0;
     int fC4;
-    char padC8[0xC0];
-    S_0011CA20_V4 f188;
-    char pad198[0x94];
+    char padC8[0x64];
     int f12C;
+    char pad130[0x58];
+    S_0011CA20_V4 f188;
     void func_0011C900(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11, int a12);
 };
 
