@@ -98,21 +98,21 @@ extern void *D_0027E334;
 
 void C_000C8090::func_000C8090(void) {
     int i;
-    int color;
+    float v;
     C_001B1980 *p;
     for (i = 0; i < 9; i++) {
         p = unk320[i];
         p->func_001B1980();
         if (unk344[i] != 0) {
-            color = 0xff606060;
+            p->func_001B2270(0xff606060);
         } else if (i == unk2DC) {
-            color = 0xffbfa35a;
+            p->func_001B2270(0xffbfa35a);
         } else {
-            color = 0xffcccccc;
+            p->func_001B2270(0xffcccccc);
         }
-        p->func_001B2270(color);
         p->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0, 0);
-        if (D_00279B50 < unk368[i] || unk368[i] < D_00275994) {
+        v = unk368[i];
+        if (v > D_00279B50 || v < D_00275994) {
             p->func_001B1980();
         }
     }
@@ -121,6 +121,7 @@ void C_000C8090::func_000C8090(void) {
 void C_000C83E0::func_000C83E0(void) {
     C_001D5AD0 *p;
     C_001D5AD0 **ptr;
+    S_002B91AC *s;
     int count;
     p = unk284 ? D_002B91AC->unk68 : D_002B91AC->unk50;
     p->func_001D5AD0();
@@ -140,14 +141,11 @@ void C_000C83E0::func_000C83E0(void) {
         ptr++;
         count--;
     } while (count != 0);
-    p = D_002B91AC->unk24;
-    p->func_001D5AD0();
-    p = D_002B91AC->unk28;
-    p->func_001D5AD0();
-    p = D_002B91AC->unk2C;
-    p->func_001D5AD0();
-    p = D_002B91AC->unk30;
-    p->func_001D5AD0();
+    s = D_002B91AC;
+    s->unk24->func_001D5AD0();
+    s->unk28->func_001D5AD0();
+    s->unk2C->func_001D5AD0();
+    s->unk30->func_001D5AD0();
 }
 
 void C_000C8590::func_000C8590(void) {
