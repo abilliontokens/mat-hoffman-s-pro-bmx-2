@@ -117,26 +117,29 @@ static __forceinline float Max_001C6B30(float a, float b)
     return r;
 }
 
-static __forceinline void cross_001C6B30(float *out, float *a, float *b)
+inline void cross_001C6B30(float *out, float *a, float *b)
 {
-    __m128 va = _mm_loadu_ps(a);
-    __m128 vb = _mm_loadu_ps(b);
-    __m128 sa = va;
-    __m128 sb = vb;
-    sa = _mm_shuffle_ps(sa, sa, 0xc9);
-    sb = _mm_shuffle_ps(sb, sb, 0xc9);
-    vb = _mm_mul_ps(vb, sa);
-    va = _mm_mul_ps(va, sb);
-    va = _mm_sub_ps(va, vb);
-    va = _mm_shuffle_ps(va, va, 0xc9);
-    _mm_storeu_ps(out, va);
+    _mm_storeu_ps(out, _mm_shuffle_ps(
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9))),
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9))), 0xc9));
 }
+
+struct V4_001C6B30 {
+    float x, y, z, w;
+    V4_001C6B30() { x = y = z = 0; w = 1.0f; }
+};
 
 struct C_001C6B30_Node {
     void func_001994C0(int a, Vec4 *p, Vec4 *q);
     void func_00199A70(int a, Vec4 *out);
     void func_00199110(int a, Vec4 *p, Vec4 *q, int b, int c, int d);
     void func_00199CF0(Vec4 axis, float angle);
+    void func_001994C0(int a, V4_001C6B30 *p, V4_001C6B30 *q);
+    void func_00199A70(int a, V4_001C6B30 *out);
+    void func_00199110(int a, V4_001C6B30 *p, V4_001C6B30 *q, int b, int c, int d);
+    void func_00199CF0(V4_001C6B30 axis, float angle);
 };
 
 struct C_001C6B30_Holder {
@@ -315,3 +318,56 @@ int C_001C6820::func_001C6820(f32 param_1)
     }
     return result;
 }
+
+void C_001C6B30::func_001C6B30(Vec4 target, float maxAngle)
+{
+    Vec4 S;
+    Vec4 P;
+    Vec4 Q;
+    Vec4 R;
+    Vec4 T;
+    float sign;
+    float ang;
+    float d;
+
+    P.z = 0;
+    P.y = 0;
+    P.x = 0;
+    P.w = 1.0f;
+    Q.z = 0;
+    Q.y = 0;
+    Q.x = 0;
+    Q.w = 1.0f;
+    R.z = 0;
+    R.y = 0;
+    R.x = 0;
+    R.w = 1.0f;
+    S.z = 0;
+    S.y = 0;
+    S.x = 0;
+    S.w = 1.0f;
+    f3C->f4->func_001994C0(0, &Q, &R);
+    f3C->f4->func_00199A70(0, &P);
+    target.y = P.y;
+    T.x = target.x - P.x;
+    T.y = 0;
+    T.z = target.z - P.z;
+    T.w = 1.0f;
+    func_001C6380(&T, &T);
+    cross_001C6B30(&S.x, &Q.x, &R.x);
+    sign = -1.0f;
+    if (T.x * S.x + T.y * S.y + T.z * S.z <= D_00275544) {
+        sign = 1.0f;
+    }
+    d = T.x * Q.x + T.y * Q.y + T.z * Q.z;
+    if (d == D_00275544) {
+        f3C->f4->func_00199110(0, &T, &R, 0, 1, 0);
+        return;
+    }
+    ang = func_0014F7E0(Max_001C6B30(-1.0f, Min_001C6B30(1.0f, d)));
+    if (ang > maxAngle) {
+        ang = maxAngle;
+    }
+    f3C->f4->func_00199CF0(R, ang * sign);
+}
+
