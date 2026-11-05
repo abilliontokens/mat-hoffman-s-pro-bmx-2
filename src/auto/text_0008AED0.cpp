@@ -283,6 +283,41 @@ C_0008B820 *C_0008B820::func_0008B820(int unused) {
     return this;
 }
 
+C_0008B850 *C_0008B850::func_0008B850(int a1, char *a2)
+{
+    unk2c = a1;
+    unk28 = a2;
+    void *name = D_00278690;
+    ((C_0008B850_Res *)((int *)D_002A8490)[0x2ec / 4])->func_0018C780(1, &name, 0);
+    int *res = ((C_0008B850_Res *)((int *)D_002A8490)[0x2ec / 4])->func_0018C160(D_00278690);
+    int font = res ? *res : 0;
+    void *mem = func_001E8A44(0x60);
+    unk24 = mem ? ((C_0008B850_Text *)mem)->func_001D5E90() : 0;
+    unk24->func_001D5FA0(font, D_00278690, 100, D_00279E64);
+    if (*(int *)(((int *)D_002A8490)[0x2e0 / 4] + 8) == 2) {
+        if (a1 != 0) {
+            unk24->SetPos(0x441b0000, 0x43aa0000);
+            unk24->SetColor(D_0028F5EC);
+        } else {
+            unk24->SetPos(0x41a00000, 0x43aa0000);
+            unk24->SetColor(D_0028F5DC);
+        }
+    } else {
+        if (a1 == 0) {
+            unk24->SetPos(0x41a00000, 0x433e0000);
+        } else {
+            unk24->SetPos(0x41a00000, 0x43cf0000);
+        }
+        unk24->SetColor(D_0028F5DC);
+    }
+    unk24->SetArgb(0xffcccccc);
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5870, D_002A47F0);
+    mem = func_001E8A44(0x20c);
+    unk34 = mem ? ((C_0008B850_Menu *)mem)->func_001CF740(*(int *)(((int *)D_002A8490)[1] + 0xb4), *(int *)(*(int *)(unk28 + 0x64) + 0x4c0), 1) : 0;
+    unk34->v4(D_00279E58, 1, 1, 0, 0);
+    return this;
+}
+
 void C_0008BB50::func_0008BB50(int param_1) {
     if (param_1 >= 0 && f30 != param_1) {
         f34->v5(0);
