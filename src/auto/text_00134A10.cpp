@@ -96,7 +96,7 @@ struct PhysicsParticle {
     V4_00135470 m1;
     V4_00135470 m2;
     V4_00135470 m3;
-    void func_00135470();
+    PhysicsParticle();
 };
 
 struct C_00135870 {
