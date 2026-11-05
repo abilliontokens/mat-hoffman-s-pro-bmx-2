@@ -7,7 +7,7 @@ struct G_V { virtual void v0(); virtual void v1(); virtual void v2(); virtual vo
 struct G_C { char pad0[0x4c0]; G_V *f4c0; char pad4c4[0x1c]; G_PL *f4e0; };
 struct G_Rules { int func_0005B960(int, float); int func_0005B960(int, int); int func_0005C330(int); void func_0005C340(int); };
 struct G_Sub { void func_000707C0(int); void func_0006E970(int); void func_000684B0(); void func_0001D330(); void func_00083A70(int); };
-struct G_Vt { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); };
+struct G_Vt { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(int); };
 struct G_Mode { int mode0; char pad4[0xc]; float f10; char pad14[0xc]; int f20; char pad24[0x16c]; int f190; };
 struct G_Obj3 { char pad0[0x1228]; int f1228; };
 struct G_Obj2 { char pad0[4]; G_Obj3 *f4; };
