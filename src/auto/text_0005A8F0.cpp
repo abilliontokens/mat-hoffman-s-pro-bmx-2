@@ -21,6 +21,20 @@ struct C_0005B240 {
     int v[8];
     void func_0005B240(void);
 };
+struct C_0005B3F0 {
+    char pad0[0x48];
+    int f48;
+    char name[9];
+    char pad55[0x99 - 0x55];
+    int f99;
+    char pad9D[0x9F - 0x9D];
+    short f9D;
+    char f9F;
+    char padA0[0xE6 - 0xA0];
+    int fE6;
+    void func_0005B3F0(void);
+};
+
 struct C_0005B220 {
     void func_0005B220(void);
 };
