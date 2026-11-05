@@ -116,7 +116,11 @@ struct S_00017DA0_Item {
     S_00017DA0_Dev *f24;
     char pad28[0x74];
     u8 f9c;
+    void func_001587F0(float t, S_00017DA0_Vec a, S_00017DA0_Vec b);
 };
+
+extern float D_002757F4;
+extern float *func_00016DD0(float *dst, float *src);
 
 struct S_00017DA0_Ref {
     void func_00199A70(int a, S_00017DA0_Vec *out);
