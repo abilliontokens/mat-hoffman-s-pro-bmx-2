@@ -113,16 +113,10 @@ struct S_0015A660_List {
     int func_0015ACA0(int n);
     __forceinline void *at(int i)
     {
-        if (count <= 0) {
-            return 0;
+        if (count > 0 && data != 0 && i < count) {
+            return data[i];
         }
-        if (data == 0) {
-            return 0;
-        }
-        if (i >= count) {
-            return 0;
-        }
-        return data[i];
+        return 0;
     }
 };
 
