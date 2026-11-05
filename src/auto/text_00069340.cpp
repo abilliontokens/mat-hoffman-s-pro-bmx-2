@@ -40,8 +40,7 @@ struct C_00069FF0 {
  int unk8C;
  int unk90;
  int unk94;
- int unk98;
- int unk9C;
+ double unk98;
  int unkA0;
  int unkA4;
  int unkA8;
