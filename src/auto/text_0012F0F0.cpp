@@ -96,6 +96,7 @@ struct C_CarProceduralExtendedVT {
     virtual void v49();
     virtual void v50();
     virtual f32 func_0012F670(f32 a, f32 b);
+    virtual V4_0012FCF0 v52(f32 t);
 };
 
 /* the 0x18-byte block CarProceduralExtended::f518 points to */
