@@ -150,6 +150,29 @@ int C_001701F0::func_001701F0(void)
     return 1;
 }
 
+void C_001703B0::func_001703B0(void)
+{
+    vtbl = (void *)&D_00288A94;
+    if (f128) f128->v8();
+    if (f12c) func_001E891B(f12c);
+    if (f130) func_001E891B(f130);
+    if (f104) func_001E891B(f104);
+    if (f134) func_001E891B(f134);
+    if (f148) f148->v0(1);
+    if (f110) func_001E891B(f110);
+    if (f170) f170->v8();
+    S_Obj154 *p = f154;
+    if (p) {
+        p->func_0014A540();
+        func_001E891B(p);
+        f154 = 0;
+    }
+    if (f158) f158->v0(1);
+    if (f15c) func_00201100(f15c);
+    if (f160) func_00201100(f160);
+    func_00157660();
+}
+
 void *C_00170AD0::func_00170AD0(unsigned int flags)
 {
     unk4 = 0;
