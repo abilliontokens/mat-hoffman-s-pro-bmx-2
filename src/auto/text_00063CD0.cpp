@@ -74,5 +74,45 @@ struct C_00064990_1D0 {
     virtual void v32();
     virtual void v33();
     virtual void v34();
-    char pad90[0x64 - 0x90 + 0x90];
+    char pad4[0x60];
+    S_00064990_64 *unk64;
+    char pad68[0xF0];
+    C_001C4D50 *unk158;
+    char pad15C[0x98];
+    int unk1F4;
+    void func_00032A40();
+};
+
+/* widget with a 24-bit colour in the low bits of its dword at +0x48 */
+struct C_00064580_Widget {
+    char pad0[0x48];
+    union {
+        unsigned int unk48;
+        struct {
+            unsigned int rgb : 24;
+            unsigned int alpha : 8;
+        } color;
+    };
+    char pad4C[2];
+    unsigned char unk4E;
+    void func_0005E840(int a);
+    void func_001D6600();
+};
+
+struct C_00064580 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    char pad4[0x60];
+    int unk64;
+    char pad68[0xD4];
+    C_00064580_Widget *unk13C[16];
+    char pad17C[0x4C];
+    int unk1C8;
+    int unk1CC;
+    C_00064990_1D0 *unk1D0;
+    int func_00064580(int idx, int a1, unsigned int a2);
+    void func_00064990();
 };
