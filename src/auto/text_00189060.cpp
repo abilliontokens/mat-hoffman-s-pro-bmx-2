@@ -385,9 +385,9 @@ int BasicScene::func_00189B60(int n)
     S_00189B60_Vec4 lo;
     int i;
 
-    SetVec4_00189B60(&hi, 1000.0f, 1000.0f, 1000.0f, 1.0f);
-    SetVec4_00189B60(&lo, -0.3f, -0.3f, -0.3f, 1.0f);
+    hi = S_00189B60_Vec4(1000.0f, 1000.0f, 1000.0f, 1.0f);
     f494 = n;
+    lo = S_00189B60_Vec4(-0.3f, -0.3f, -0.3f, 1.0f);
     D_002E2930->func_0015E0F0(2);
     for (i = 0; i < n; i++) {
         void *mem = func_001E8A44(0x170);
