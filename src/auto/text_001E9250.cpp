@@ -351,6 +351,41 @@ int func_001E9D46(S_001E9714_File *stream) {
     return result;
 }
 
+int func_001E9D87(int fh, int mode) {
+    int *func_001ED075(void);
+    unsigned char *p = D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4;
+    unsigned char old = *p;
+    if (mode == 0x8000) {
+        *p = old & 0x7f;
+    } else if (mode == 0x4000) {
+        *p = old | 0x80;
+    } else {
+        *func_001ED075() = 0x16;
+        return -1;
+    }
+    return (old & 0x80) ? 0x4000 : 0x8000;
+}
+
+int func_001E9DE9(S_001E9714_File *stream) {
+    int rc = 0;
+    int nchar;
+    if ((stream->_flag & 3) == 2 && (stream->_flag & 0x108) != 0) {
+        nchar = stream->_ptr - stream->_base;
+        if (nchar > 0) {
+            if (func_001EDB4B(stream->_file, stream->_base, nchar) == nchar) {
+                if (stream->_flag & 0x80)
+                    stream->_flag &= ~2;
+            } else {
+                stream->_flag |= 0x20;
+                rc = -1;
+            }
+        }
+    }
+    stream->_ptr = stream->_base;
+    stream->_cnt = 0;
+    return rc;
+}
+
 #pragma optimize("", on)
 void func_001E9F40(void) {
     int func_001EB302(...);
