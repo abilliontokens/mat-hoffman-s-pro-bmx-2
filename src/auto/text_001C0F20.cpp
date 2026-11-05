@@ -36,6 +36,8 @@ struct C_001C1110 {
 
 struct S_001C0F20_Stream {
     void func_00168C20(int *name, int value, int *out);
+    void func_00168C50(int *name, float value, void *out);
+    int func_00168CB0(int *name, void *value, void *out);
 };
 
 extern int D_0028DD94;
