@@ -10,7 +10,12 @@ struct DelObjC_000E2 {
 /* BmxUIPageHorseController */
 struct C_000E2140 {
     void *vtbl;
-    char pad4[0x320 - 4];
+    char pad4[0x280 - 4];
+    int f280, f284, f288, f28C, f290, f294, f298, f29C;
+    int f2A0, f2A4, f2A8, f2AC, f2B0, f2B4, f2B8, f2BC;
+    int f2C0, f2C4, f2C8, f2CC, f2D0, f2D4, f2D8, f2DC;
+    DelObjC_000E2 *arr2E0[8];
+    DelObjC_000E2 *arr300[8];
     DelObjC_000E2 *arr320[8];
     DelObjC_000E2 *arr340[8];
     DelObjC_000E2 *arr360[8];
