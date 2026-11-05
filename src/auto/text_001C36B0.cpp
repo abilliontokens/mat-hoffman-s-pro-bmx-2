@@ -374,9 +374,11 @@ struct VideoFXManager {
     int arr5C[4];
     int unk6C;
     void func_00157600(int a);
+    void func_00157960();
     void func_001D3F50();
     VideoFXManager *func_001C3E50(int a);
     void func_001C3EA0(int n);
+    void func_001C3F60();
 };
 
 
