@@ -10,7 +10,8 @@ struct C_00196290 {
     char pad0[0x24];
     int f24;
     int f28;
-    char pad2c[0x34 - 0x2c];
+    char pad2c[4];
+    int f30;
     int f34;
     int f38;
     char pad3c[0x48 - 0x3c];
