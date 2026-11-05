@@ -60,9 +60,14 @@ struct S_000EA9F0_Mid {
     S_000EA9F0_Strings *f4;
 };
 
+struct S_000EAB00_Res {
+    void func_0018C160(void *a);
+};
+
 struct S_000EA9F0_Root {
     char pad0[0x2E8];
     S_000EA9F0_Mid *f2E8;
+    S_000EAB00_Res *f2EC;
 };
 
 extern S_000EA9F0_Root *D_002A8490;
