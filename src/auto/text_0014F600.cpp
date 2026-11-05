@@ -129,6 +129,22 @@ struct C_0012B510R {
     C_0012B510R *func_0012B510(void);
 };
 
+struct V_1500 { float x,y,z,w; };
+struct T_1500 {
+ V_1500 *func_00199B00(V_1500 *, int);
+ void func_00197B40(V_1500 *, V_1500 *);
+};
+void func_0011F400(void *, float, float, float, float, float);
+void func_000263B0(void *, void *, void *);
+void func_00030AC0(void *, void *, void *);
+float func_0014F510(float);
+float func_0014F550(float);
+static void cross_1500(V_1500 * volatile out, V_1500 * volatile a, V_1500 * volatile b) {
+ __m128 x = _mm_loadu_ps(&a->x), y = _mm_loadu_ps(&b->x);
+ __m128 p = _mm_shuffle_ps(x,x,0xc9), q = _mm_shuffle_ps(y,y,0xc9);
+ x = _mm_sub_ps(_mm_mul_ps(x,q),_mm_mul_ps(y,p));
+ _mm_storeu_ps(&out->x,_mm_shuffle_ps(x,x,0xc9));
+}
 /* FirstPersonCam */
 struct C_001500A0 {
     void *vtbl;
@@ -346,6 +362,70 @@ float func_0014FB30(float v)
         r = -r;
     }
     return r;
+}
+
+float func_0014FBA0(volatile float y, volatile float x)
+{
+    extern float D_002756D0;
+    extern float D_002756D4;
+    extern float D_00286AC0;
+    extern float D_00286AC4;
+    float q;
+    float d;
+
+    if (x != D_00275544) {
+        if (y == D_00275544) {
+            if (x > D_00275544) {
+                return D_00275544;
+            }
+            return D_002756D0;
+        }
+        if (y > D_00275544) {
+            if (x > D_00275544) {
+                q = y / x;
+                *(int *)&x = *(int *)&q & 0x7fffffff;
+                if (x > D_00275460) {
+                    d = x * x + D_00286AC0;
+                    return D_002756D4 - x / d;
+                }
+                d = x * x * D_00286AC0 + D_00275460;
+                return x / d;
+            }
+            q = y / x;
+            *(int *)&x = *(int *)&q & 0x7fffffff;
+            if (x > D_00275460) {
+                d = x * x + D_00286AC0;
+                return x / d + D_002756D4;
+            }
+            d = x * x * D_00286AC0 + D_00275460;
+            return D_002756D0 - x / d;
+        }
+        if (x > D_00275544) {
+            q = y / x;
+            *(int *)&x = *(int *)&q & 0x7fffffff;
+            if (x > D_00275460) {
+                d = x * x + D_00286AC0;
+                return x / d - D_002756D4;
+            }
+            d = x * x * D_00286AC0 + D_00275460;
+            return -(x / d);
+        }
+        q = y / x;
+        *(int *)&x = *(int *)&q & 0x7fffffff;
+        if (x > D_00275460) {
+            d = x * x + D_00286AC0;
+            return D_00286AC4 - x / d;
+        }
+        d = x * x * D_00286AC0 + D_00275460;
+        return x / d - D_002756D0;
+    }
+    if (y > D_00275544) {
+        return D_002756D4;
+    }
+    if (y < D_00275544) {
+        return D_00286AC4;
+    }
+    return D_00275544;
 }
 
 void func_0014FD80(float *p)
