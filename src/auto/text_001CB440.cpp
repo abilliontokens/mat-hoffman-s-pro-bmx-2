@@ -116,6 +116,14 @@ struct S_001CB7D0_Com {
     virtual void __stdcall v1();
 };
 
+extern char D_0028ED88[];
+extern char D_0028EDB4[];
+extern char D_0028EDD8[];
+extern char D_0028EDE8[];
+extern char D_0028EDF8[];
+extern char D_0028EE1C[];
+extern char D_0028EE50[];
+extern char D_0028EE74[];
 extern char D_0028ED6C[];
 extern char D_002A48F8[];
 extern int D_00010000;
@@ -655,13 +663,11 @@ int C_001CC0C0::func_001CC0C0(int v)
 {
     int r;
     int h;
-    int a;
 
     if (f2C & 1) {
-        a = v;
-        fF4 = a;
+        fF4 = v;
         h = f30;
-        r = func_00222388(h, a, 1);
+        r = func_00222388(h, v, 1);
         if (r < 0) {
             func_001CBC10(r, &D_0028EECC, 0x284);
             return 0;
@@ -714,6 +720,7 @@ int C_001CC0C0::func_001CC320(unsigned int v)
                 return 0;
             }
             f19C = v;
+            return 1;
         }
     } else if (f140 != 0) {
         if (f19C != v) {
