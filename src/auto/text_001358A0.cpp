@@ -173,6 +173,26 @@ undefined4 C_00135A60::func_00135A60(byte param_1)
   return in_ECX;
 }
 
+void C_00135A80::func_00135A80(int count, int n1, int *p1, int n2, int *p2, int a6)
+{
+    f24 = count;
+    C_00135470 *arr = new C_00135470[count];
+    f34 = arr;
+    for (int i = 0; i < f24; ++i) f34[i].f4 = i;
+    f28 = n1;
+    if (n1 > 0) {
+        f38 = (int *)func_001E8A44(n1 * 4);
+        memcpy(f38, p1, f28 * 4);
+    }
+    f2C = n2;
+    if (n2 > 0) {
+        f3C = (int *)func_001E8A44(n2 * 4);
+        memcpy(f3C, p2, f2C * 4);
+    }
+    f40 = a6;
+    func_001D3F50();
+}
+
 int func_00135C70(int param_1, int param_2, int *param_3, int param_4)
 {
     int __stdcall func_0015AC20(int);
