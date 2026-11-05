@@ -147,6 +147,20 @@ struct C_0002F6C0 {
     void func_0002F990();
 };
 
+struct C_0002F450 {
+    char pad0[0x30];
+    S_0002F6C0_Camera *f30;
+    char pad34[0x1c];
+    S_0002F6C0_Obj *f50;
+    char pad54[4];
+    S_0002F6C0_Obj *f58;
+    S_0002F6C0_Obj *f5c;
+    char pad60[0xc];
+    int f6c;
+    void func_0012B7D0(void *, int, int, int, int);
+    void func_0002F450(int a0);
+};
+
 struct C_0002F8A0 {
     char pad0[0x30];
     S_0002F6C0_Camera *f30;
