@@ -219,6 +219,32 @@ int C_0001E930::func_0001E7B0()
     return 1;
 }
 
+void C_0001E930::func_0001E800()
+{
+    void **p;
+    void **cur;
+
+    p = unkC;
+    while (p != 0) {
+        cur = p;
+        p = (void **)*p;
+        func_001E8390(cur);
+    }
+    p = unk14;
+    while (p != 0) {
+        cur = p;
+        p = (void **)*p;
+        func_001E8390(cur);
+    }
+    unkC = 0;
+    unk10 = 0;
+    unk24 = 0;
+    unk28 = 0;
+    unk2C = 0;
+    unk14 = 0;
+    unk18 = unk8;
+}
+
 void C_0001E860::func_0001E860(void)
 {
   int in_ECX = (int)this;
@@ -235,6 +261,44 @@ void C_0001E860::func_0001E860(void)
   *(undefined4 *)(in_ECX + 0x24) = 0;
   *(undefined4 *)(in_ECX + 0x18) = *(undefined4 *)(in_ECX + 8);
   return;
+}
+
+void *C_0001E930::func_0001E8A0()
+{
+    void **elem;
+
+    if (unk18 < unk8) {
+        int n = unk18 + 1;
+        elem = (void **)((char *)unk10 + unk1C * n);
+        unk18 = n;
+    } else {
+        elem = unk24;
+        if (elem == 0) {
+            elem = unk14;
+            if (elem == 0) {
+                if (func_0001E7B0() == 0) {
+                    return 0;
+                }
+            } else {
+                if (unkC == 0) {
+                    unkC = elem;
+                } else {
+                    *unk10 = elem;
+                }
+                unk10 = unk14;
+                unk14 = (void **)*unk10;
+                *unk10 = 0;
+            }
+            elem = (void **)((char *)unk10 + unk1C);
+            unk18 = 1;
+        } else {
+            unk24 = (void **)*elem;
+        }
+    }
+    if (elem != 0) {
+        unk2C += unk1C;
+    }
+    return elem;
 }
 
 void *C_0001E930::func_0001E930(unsigned int flags) {
