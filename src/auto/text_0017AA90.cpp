@@ -130,3 +130,13 @@ C_0017B9E0* C_0017B9E0::func_0017B9E0(int a0, int a1) {
     unk4 = a1;
     return this;
 }
+extern char D_002A60B0[];
+extern char D_00284644[];
+extern int D_002A8D2C, D_002A8D30, D_002A8D34;
+extern float D_002A8D38;
+extern int D_00288FF4;
+extern int D_002AA46C;
+extern "C" void *func_001E8A44(unsigned int);
+extern "C" char *strcpy(char *, const char *);
+extern "C" char *strcat(char *, const char *);
+extern "C" unsigned int strlen(const char *);
