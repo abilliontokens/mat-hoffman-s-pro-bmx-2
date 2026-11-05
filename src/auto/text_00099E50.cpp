@@ -115,7 +115,9 @@ struct C_0009A100 {
         }
         return 0;
     }
+    void func_00098E80(int which);
     void func_0009A100(S_0009A100_Out *out, int slot);
+    void func_00099E50(S_0009A100_Out *out, int slot);
 };
 
 extern S_0009A1F0_Root *D_002A8490;
