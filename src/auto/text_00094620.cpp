@@ -241,7 +241,6 @@ struct C_00094A00 {
     void func_00094990(float a);
     void func_000949B0(float a, int b, int c);
     void func_00094C00(void);
-    int HasF2C() { return f2C != 0; }
     int func_00094E10(int idx, int a);
     int func_00094E40(int idx, int a, int b);
     int func_00094E70(int *ids, int count, int a, int b);
@@ -421,12 +420,15 @@ int *C_00094760::func_00094810(int node)
 
 int C_00094840::func_00094840(void)
 {
-    int i = unk34;
+    int node = unk34;
+    S_00094A00_Obj *path = unk50;
+    S_00094620_Node *n;
 
-    if (i < unk50->unkA8 && i >= 0) {
-        return (int)&unk50->unk34[i].unk20;
+    if (node >= path->unkA8 || node < 0) {
+        return 0;
     }
-    return 0;
+    n = path->unk34 + node;
+    return (int)((char *)n + 0x20);
 }
 
 int C_00094840::func_00094870(void)
