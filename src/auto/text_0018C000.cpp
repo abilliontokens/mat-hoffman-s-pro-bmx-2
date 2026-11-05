@@ -193,13 +193,14 @@ void C_0018C120::func_0018C120(void) {
 
 C_0018C120_Node *C_0018C120::func_0018C160(const char *name)
 {
-    C_0018C120_Node *n;
-    for (n = head; n != 0; n = n->next) {
+    C_0018C120_Node *n = head;
+    while (n != 0) {
         if (strcmp(name, ((C_0018C000 *)n->value)->unk4) == 0) {
-            return n;
+            break;
         }
+        n = n->next;
     }
-    return 0;
+    return n;
 }
 
 void C_0018C000::func_0018C1C0(void)
@@ -215,6 +216,34 @@ void C_0018C000::func_0018C1C0(void)
         D_002AA6C0->func_001B26C0(unk458);
         unk458 = -1;
     }
+}
+
+float C_0018C000::func_0018C210(void)
+{
+    extern float D_00275F58;
+    int i;
+    C_002AA6C0_Obj *obj;
+    C_0018C000_Item *item;
+
+    for (i = 0; i < 0x100; i += 8) {
+        if (unk58[i] != 0) break;
+        if (unk58[i + 1] != 0) { i += 1; break; }
+        if (unk58[i + 2] != 0) { i += 2; break; }
+        if (unk58[i + 3] != 0) { i += 3; break; }
+        if (unk58[i + 4] != 0) { i += 4; break; }
+        if (unk58[i + 5] != 0) { i += 5; break; }
+        if (unk58[i + 6] != 0) { i += 6; break; }
+        if (unk58[i + 7] != 0) { i += 7; break; }
+    }
+    obj = func_0018C070();
+    if (i < 0x100) {
+        item = unk58[i];
+        if (item->unk1C != 0) {
+            return item->unk1A;
+        }
+        return (item->unk10 - item->unkC) * obj->unkC;
+    }
+    return D_00275F58;
 }
 
 void C_0018C120::func_0018C640(void)
