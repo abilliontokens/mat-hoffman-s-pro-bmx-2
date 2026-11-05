@@ -2,6 +2,8 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+#include <math.h>
+#include <string.h>
 struct C_00162720 {
     void func_00162720(undefined4 param_1);
 };
