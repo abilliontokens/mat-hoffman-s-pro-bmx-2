@@ -256,7 +256,7 @@ struct C_00012590 {
     char f3f4[0x10];
     void func_000114D0(int a);
     S_11FF0_Vec4i func_00011E30(void);
-    void func_001C7EB0(int a);
+    void func_001C7EB0(void);
     int func_00012590(int a);
 };
 
