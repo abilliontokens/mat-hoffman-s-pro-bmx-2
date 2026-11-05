@@ -222,6 +222,34 @@ void C_0004FE30::func_0004FA60(int id)
     func_000324E0(id);
 }
 
+void C_0004FE30::func_0004FAC0(void)
+{
+    int i;
+
+    f64->f4E0->objs[f120]->v5();
+    do {
+        if (++f120 >= f90) {
+            f120 = 0;
+        }
+    } while (f2B8[f120] == 0);
+    ((C_0002EF70 *)f44)->func_0002EF70((int)f64->f4E0->objs[f120], 0);
+    f64->f4E0->objs[f120]->func_0010C090(f64->f4DC + 0x24, f64->f4DC + 0xA4, 0, 1);
+    f64->f4E0->objs[f120]->v7();
+    f64->f4E0->objs[f120]->func_0010E810();
+    f2A8->func_00086C70(f120);
+    if (f170 != 0) {
+        f170->func_00086C30((int)f64->f4E0->objs[f120]);
+        f170->func_000847A0();
+    }
+    f2B0 = 1;
+    for (i = 0; i < 8; i++) {
+        (&f288)[i] = 0;
+    }
+    f2AC = 0;
+    f128 = ((G_4F5E0 *)D_002A8490)->f2E0->f10;
+    f124 = 0;
+}
+
 void *C_0004FE30::func_0004FE30(int flags) {
     extern int D_0027777C;
     void func_001E891B(void *);
