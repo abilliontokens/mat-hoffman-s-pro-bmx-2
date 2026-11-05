@@ -155,10 +155,12 @@ __declspec(align(16)) struct S_001BB680_Mat {
     float m[16];
     __forceinline void identity(void)
     {
-        _mm_store_ps(&m[0], _mm_setzero_ps());
-        _mm_store_ps(&m[4], _mm_setzero_ps());
-        _mm_store_ps(&m[8], _mm_setzero_ps());
-        _mm_store_ps(&m[12], _mm_setzero_ps());
+        __m128 *v = (__m128 *)m;
+
+        v[0] = _mm_setzero_ps();
+        v[1] = _mm_setzero_ps();
+        v[2] = _mm_setzero_ps();
+        v[3] = _mm_setzero_ps();
         m[0] = 1.0f;
         m[5] = 1.0f;
         m[10] = 1.0f;
