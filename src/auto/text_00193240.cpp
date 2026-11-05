@@ -61,7 +61,13 @@ extern u32 D_002A990C;
 extern u32 D_002A9910;
 
 void func_001E8390(void *p);
-float sqrtf(float x);
+#include <xmmintrin.h>
+static inline float sqrtf(float x)
+{
+    float r;
+    _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x)));
+    return r;
+}
 
 struct C_00157600 {
     void func_00157600(int a0);
