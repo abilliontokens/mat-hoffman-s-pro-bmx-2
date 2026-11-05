@@ -13,6 +13,7 @@ struct Vec4 {
 
 struct C_00198040 {
     void func_00198040(void *a0, void *a1);
+    void func_00197EC0(void *a0, void *a1);
 };
 
 struct C_00198330 {
@@ -55,6 +56,39 @@ PhysicsRigidBody *PhysicsRigidBody::func_001740B0(C_00198330 *a0, int a1, int a2
     f14C->func_001994C0(0, &f54, &f64);
     func_00173580(a1, a2, a3, a4, a5);
     return this;
+}
+
+Vec4 *func_00174110(Vec4 *dst, Vec4 *src)
+{
+    Vec4 r;
+    float sum = LengthSq(src->x, src->y, src->z, src->w);
+    if (sum != D_00275544) {
+        float len;
+        _mm_store_ss(&len, _mm_sqrt_ss(_mm_set_ss(sum)));
+        float inv = D_00275460 / len;
+        r.x = inv * src->x;
+        r.y = inv * src->y;
+        r.z = inv * src->z;
+        r.w = inv * src->w;
+    } else {
+        r.x = 0.0f;
+        r.y = 0.0f;
+        r.z = 0.0f;
+        r.w = 0.0f;
+    }
+    *dst = r;
+    return dst;
+}
+
+Vec4 *func_001742F0(Vec4 *dst, Vec4 *a, Vec4 *b)
+{
+    Vec4 r;
+    r.x = (a->z * b->y + b->z * a->w + a->y * b->x) * D_00277FBC;
+    r.y = (a->x * b->x + a->z * b->z - a->w * b->y) * D_002755E8;
+    r.z = (a->x * b->y + b->x * a->w - a->y * b->z) * D_002755E8;
+    r.w = (a->y * b->y + b->z * a->x - a->z * b->x) * D_002755E8;
+    *dst = r;
+    return dst;
 }
 
 void *PhysicsRigidBody::func_001744B0(void *a0)
