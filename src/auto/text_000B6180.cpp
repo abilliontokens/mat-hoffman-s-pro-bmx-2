@@ -17,18 +17,62 @@ struct C_000B6640_Obj {
     C_000B6640_Obj *func_0017F050(int a0);
     void func_0017F0A0(int a0);
     void func_00133660(int a0);
+    void func_00180E00(int a0, void *a1, int a2, int a3);
+    void func_00133140(int a0, int a1);
 };
 
+struct V4_000B6840 {
+    float x, y, z, w;
+    void Set(float px, float py, float pz, float pw) { x = px; y = py; z = pz; w = pw; }
+};
+
+struct V4Init_000B6840 : V4_000B6840 {
+    V4Init_000B6840() { x = y = z = 0; w = 1; }
+};
+
+struct C_000B6840_Mgr;
+struct C_000B6840_Node {
+    char pad0[0x144];
+    float f144;
+    void func_00199A70(C_000B6840_Mgr *m, V4_000B6840 *out);
+};
+struct C_000B6840_Mgr {
+    C_000B6840_Node *func_00198330(char *name);
+};
+struct C_000B6840_Owner {
+    char pad0[0x22c];
+    C_000B6840_Mgr *f22c;
+};
+struct C_000B6840_Arg {
+    char pad0[0x4ac];
+    int *f4ac;
+};
+extern float D_00275544;
+extern float D_00275460;
+extern char D_0027D3F0[];
+extern char D_0027D3FC[];
+
 struct C_000B6640 {
-    char pad0[0x88];
+    char pad0[0x78];
+    float f78;
+    float f7C;
+    float f80;
+    char pad84[4];
     int unk88;
     char pad8C[4];
     int unk90;
-    char pad94[0x13C];
+    char pad94[0xC];
+    V4_000B6840 vA;
+    V4_000B6840 vB;
+    char padC0[0x20];
+    V4_000B6840 vE0;
+    V4_000B6840 vF0;
+    char pad100[0xD0];
     C_000B6640_Obj *unk1D0;
     C_000B6640_Obj *unk1D4;
     C_000B6640 *func_000B6640(int a0, int a1);
     void func_001577A0(C_000B6640_Obj *child, int a1);
+    void func_000B6840(float a0, float a1, C_000B6840_Arg *a2);
 };
 
 struct C_000B6810 {
