@@ -4,7 +4,10 @@
 
 void *func_001E8A44(int size);
 
+void func_001E891B(void *p);
+
 struct C_0013B210 {
+    void func_0013B210(void *a);
     int func_0013B930(int a, void *b, int c, int d);
     void func_0013C8A0(int a, void *b, int c, int d);
 };
