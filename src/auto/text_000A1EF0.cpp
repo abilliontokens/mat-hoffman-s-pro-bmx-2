@@ -63,3 +63,21 @@ void func_000A25E0(void)
         }
     }
 }
+
+void C_000A2620::func_000A2620(void)
+{
+    int i;
+    if (D_002B9134 != 0 && D_002B9134->func_000B5020() == 0) {
+        D_002B9134->vfunc8();
+        D_002B9134 = 0;
+    }
+    if (*D_002A8490->f2E0 == 1) {
+        for (i = 0; i < f578; i++) {
+            C_000A2620_Child *child = f57C[i];
+            func_001577A0(child, -1);
+            child->f3C->f4->func_0019ABA0(*f4A8, 2);
+            child->func_000114D0(1);
+        }
+    }
+}
+
