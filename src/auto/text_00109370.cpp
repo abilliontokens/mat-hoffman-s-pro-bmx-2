@@ -112,6 +112,13 @@ undefined4 C_001093A0::func_001093A0(int param_1)
   return *(undefined4 *)(in_ECX + 0x358 + param_1 * 4);
 }
 
+void C_00109400::func_00109400(int param_1)
+{
+    if (f34 >= 0) {
+        f358[f34] = param_1;
+    }
+}
+
 undefined4 C_001094B0::func_001094B0(void)
 {
   undefined4* in_ECX = (undefined4*)this;
