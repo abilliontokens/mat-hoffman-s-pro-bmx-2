@@ -182,20 +182,23 @@ int C_00092890::func_00092C70(void)
     if (f254 == 0) {
         char *p;
         char c;
+        char *q;
 
         s.func_001D3E30();
         s.func_001D3F20(&D_0027A150, 0xd);
         s.func_001D3E60(&D_00279100);
-        if (D_002A8490->f2e0->f2cc->func_001D4200(&s) == 0) {
+        if (D_002A8490->f2e0->f2cc->func_001D4200(&s) != 0) {
+            p = s.func_001D3F50();
+            q = d;
+            do {
+                c = *p;
+                p++;
+                *q = c;
+                q++;
+            } while (c != 0);
+        } else {
             return 0;
         }
-        p = s.func_001D3F50();
-        do {
-            c = *p;
-            p++;
-            *d = c;
-            d++;
-        } while (c != 0);
     }
     return 1;
 }
