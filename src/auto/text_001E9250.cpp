@@ -10,6 +10,11 @@ struct S_001E9714_File {
     char *_tmpfname;
 };
 
+extern int D_002AEA38;
+extern unsigned short *D_002AEA30;
+extern unsigned char *D_002FB260[];
+int func_001EC5F1(int, int);
+int func_001EDB4B(int fh, char *buf, int cnt);
 int func_001E9DE9(S_001E9714_File *stream);
 void func_001ED527(S_001E9714_File *stream);
 int func_001ED48C(int fh);
@@ -271,6 +276,22 @@ int func_001E9714(S_001E9714_File *stream) {
     return result;
 }
 
+int func_001E9760(S_001E9714_File *stream) {
+    int result = -1;
+
+    if (stream->_flag & 0x40) {
+        stream->_flag = 0;
+    } else {
+        func_001EB109(stream);
+        __try {
+            result = func_001E9714(stream);
+        } __finally {
+            func_001EB15B(stream);
+        }
+    }
+    return result;
+}
+
 #pragma optimize("t", off)
 int func_001E98A9(int param_1, int param_2, int param_3, int param_4) {
     int func_001EB109(int);
@@ -298,6 +319,21 @@ int func_001E9A0C(int param_1, int param_2, int param_3, int param_4) {
         func_001EB15B(param_4);
     }
     return result;
+}
+
+int func_001E9A58(S_001E9714_File *str, const char *format, ...) {
+    int buffing;
+    int retval;
+
+    func_001EB109(str);
+    __try {
+        buffing = func_001EDBF6(str);
+        retval = func_001EDD36(str, format, (char *)&format + sizeof(format));
+        func_001EDC7E(buffing, str);
+    } __finally {
+        func_001EB15B(str);
+    }
+    return retval;
 }
 
 #pragma optimize("", on)
