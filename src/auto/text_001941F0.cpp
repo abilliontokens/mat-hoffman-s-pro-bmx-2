@@ -96,7 +96,8 @@ struct SignatureWave {
 };
 
 struct C_0012B8F0 {
-    char pad0[0x40];
+    char pad0[0x30];
+    S_Vec4 f30;
     int f40;
     C_0012B8F0 *func_0012B8F0(void);
     void func_0012C910(void *a, int b);
