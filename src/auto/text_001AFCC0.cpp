@@ -339,6 +339,24 @@ void C_001B01C0::func_001B01C0(void) {
     unk0 = (int)&D_0028C5EC;
 }
 
+C_001B0230 *C_001B0230::func_001B01D0(void)
+{
+    int i;
+
+    ((C_0001DFE0 *)this)->func_0001DFE0();
+    vtbl = (void *)&D_0028C5F8;
+    unk48 = -1;
+    unk50 = 0;
+    for (i = 0; i < 0x20; i++) {
+        arr54[i] = 0;
+        arrD4[i] = -1;
+    }
+    unk158 = (unk158 & 0xfd) | 1;
+    unk4C = 0;
+    unk154 = 0;
+    return this;
+}
+
 void C_001B0620::func_001B0620(void)
 {
   int in_ECX = (int)this;
