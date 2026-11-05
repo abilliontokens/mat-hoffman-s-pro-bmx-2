@@ -297,7 +297,7 @@ struct BmxGame {
     int f2E4;
     char pad2E8[4];
     C_0018C640 *f2EC;
-    int f2F0;
+    C_001A5BC0 *f2F0;
     int f2F4;
     int f2F8;
     int f2FC;
