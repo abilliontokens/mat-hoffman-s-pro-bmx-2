@@ -340,6 +340,54 @@ C_00192800 *C_00192800::func_00192800(unsigned int flags)
     return this;
 }
 
+void C_00192470::func_00192840(int *row, int *limit)
+{
+    S_00192840_List *list = (S_00192840_List *)&f10;
+    int i;
+
+    memset(list->items, 0, list->count * 4);
+    list->count = 0;
+    for (i = 0; i < *limit; i++) {
+        unsigned int e = row[i];
+        if ((e & 2) == 0) {
+            unsigned char *p = (unsigned char *)(e & ~1);
+            if ((p[3] & 1) != 0 && (p[3] & 4) == 0) {
+                if (p[2] == f24) {
+                    if ((p[-3] & 1) != 0) {
+                        SearchEntry *obj = (SearchEntry *)(p - 0x24);
+                        obj->v14();
+                        if ((obj->f181 & 1) != 0) {
+                            list->func_001CDE90(obj);
+                        }
+                    }
+                } else if (p[2] == f25) {
+                    if ((p[-3] & 1) != 0) {
+                        SearchEntry *obj = (SearchEntry *)(p - 0x24);
+                        obj->v14();
+                        if ((p[3] & 2) != 0) {
+                            list->func_001CDE90(obj);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+C_00192900 *C_00192900::func_00192900(int a)
+{
+    ((C_00157600 *)this)->func_00157600(a);
+    f24 = 0;
+    f28 = 0;
+    f2c = 0;
+    f3c = 0;
+    f30 = 0;
+    f34 = 0;
+    f38 = 0;
+    vtbl = &D_0028ABD4;
+    return this;
+}
+
 void SearchNode::func_00192930(void)
 {
     extern int D_0028ABD4;
