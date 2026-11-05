@@ -164,8 +164,56 @@ struct S_00093620_Root {
 extern S_00093620_Root *D_002A8490;
 extern char D_00275630[];
 extern int D_00277038;
-void func_001ADCC0(char *buf, int size, char *fmt, int val);
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 void func_001AC330(char *dest, int fmt, char *arg);
+
+extern char D_0027A130;
+extern char D_0027A144;
+extern char D_0027A168;
+extern char D_0027A178;
+extern char D_0027A188;
+extern char D_0027A198;
+extern char D_0027A1A4;
+extern char D_0027A1DC;
+extern char D_00277A04[];
+extern char D_00277A0C[];
+extern char D_00080000[];
+extern char D_00020000;
+extern "C" void *func_001E8A44(unsigned int size);
+void func_001E891B(void *p);
+int __stdcall func_001DD0A9(void *a, char *b, int c);
+
+/* string builder (same as C_00092BE0_Str in text_00092810.cpp) */
+struct C_00092BE0_Str {
+    char pad0[0xe0];
+    C_00092BE0_Str *func_001D3E30(void);
+    void func_001D3F20(char *name, int len);
+    char *func_001D3F50(void);
+    void func_001D3E60(void *s);
+    void func_001D3E80(void *s);
+    void func_001D3EA0(int n, void *a, void *b, void *c);
+};
+
+/* save/load object at +0x2cc */
+struct C_001D4300 {
+    int func_001D4300(int a);
+    void func_001D41D0(int a);
+    int func_001D4380(void *s);
+    int func_001D42A0(const char *path, const char *name);
+    void func_001D4720(void *a, void *b);
+    int func_001D4440(int a, int b, int c, int d);
+};
+
+struct S_00093620_Pl {
+    int func_0005C6A0(void);
+};
+
+struct S_00093620_Mgr {
+    char pad0[0x2c0];
+    S_00093620_Pl *f2c0;
+    char pad2c4[8];
+    C_001D4300 *f2cc;
+};
 
 struct C_00093140 {
     char pad0[0x24];
