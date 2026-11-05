@@ -127,6 +127,27 @@ void C_00148780::func_001487D0()
     }
 }
 
+void *C_00148850::func_00148850(unsigned int flags)
+{
+  void func_001E891B(void *);
+  extern int D_00285C00;
+
+  vtbl = (void *)&D_00285CA0;
+  unkC = (u32)&D_00285C94;
+  if (unk10 != 0) {
+    func_001E891B((void *)unk10);
+  }
+  if (unk14 != 0) {
+    func_001E891B((void *)unk14);
+  }
+  unkC = (u32)&D_00284E94;
+  vtbl = (void *)&D_00285C00;
+  if (flags & 1) {
+    func_001E891B(this);
+  }
+  return this;
+}
+
 C_00148820::C_00148820(int a1, void *a2)
 {
     *(volatile u32 *)&unk4 = 0;
