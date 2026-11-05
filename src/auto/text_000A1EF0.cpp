@@ -55,8 +55,7 @@ struct C_000A2440 {
     int f488;
     char pad48C[0x58];
     C_00151130 *f4E4[8];
-    C_001554D0 *f504;
-    char pad508[0x1C];
+    C_001554D0 *f504[8];
     C_Item **f524;
     C_000186F0 *f528;
     char pad52C[0x24];
