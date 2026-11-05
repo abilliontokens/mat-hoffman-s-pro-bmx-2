@@ -217,7 +217,7 @@ void FadeManager_001C4B60::func_001C4E70(f32 v)
 {
     FadeLevel_001C4E70 *p = f6C;
 
-    v = v * D_002755E0;
+    v = v * 0.01f;
     p->f2C = 0;
     p->f30 = v;
     if (v > D_00275544) {
