@@ -79,3 +79,13 @@ undefined4 C_001D0DE0::func_001D0DE0(byte param_1)
   }
   return in_ECX;
 }
+
+void XboxGame_001D0E60::func_001D0E60(void)
+{
+    vtbl = (void *)&D_0028F154;
+    if (f2A0 != 0) {
+        f2A0 = 0;
+    }
+    ((C_00156FC0 *)this)->func_00156FC0();
+}
+
