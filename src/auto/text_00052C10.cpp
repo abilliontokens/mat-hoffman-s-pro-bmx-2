@@ -229,7 +229,7 @@ struct C_52D90_Net {
 };
 struct C_52D90_Pl {
     void func_0005C6D0(int a);
-    int func_0005C6A0(int a);
+    int func_0005C6A0();
     void func_0005C650(int a);
 };
 struct C_52D90_Mgr {
