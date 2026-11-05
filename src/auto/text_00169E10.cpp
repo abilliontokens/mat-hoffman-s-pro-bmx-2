@@ -66,6 +66,7 @@ struct ParticleEmitter {
     ParticleEmitter *func_0016A1D0(void *a, void *b, u32 *c);
     int func_0016A330(char *buf);
     int func_0016A8D0(void);
+    void func_0016A220(void *a, u32 *b);
 };
 
 ParticleEmitter *ParticleEmitter::func_0016A1D0(void *a, void *b, u32 *c) {
