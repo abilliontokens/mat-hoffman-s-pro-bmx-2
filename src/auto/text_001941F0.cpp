@@ -52,11 +52,12 @@ struct S_Vec4Int {
     int y;
     int z;
     int w;
-    void Set(int a, int b, int c, int d) {
+    S_Vec4Int *Set(int a, int b, int c, int d) {
         x = a;
         y = b;
         z = c;
         w = d;
+        return this;
     }
 };
 
