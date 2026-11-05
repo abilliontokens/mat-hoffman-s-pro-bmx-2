@@ -143,6 +143,39 @@ struct C_0004EBA0 {
     void func_0004EC40(void);
 };
 
+struct C_0004EDB0Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4(const char *s, int a, int b, int c, int d);
+    virtual void v5();
+    virtual void v6();
+    C_0004EDB0Obj *func_001CF740(void *a, int b, int c);
+};
+
+struct C_0004EDB0Sub {
+    void func_00099D40(int a);
+};
+
+struct C_0004EDB0 {
+    char pad0[0x64];
+    char *f64;
+    char pad68[0x28];
+    int f90;
+    char pad94[0x12c];
+    C_0004EDB0Sub *f1C0;
+    char pad1c4[0x40];
+    int f204;
+    char pad208[0x84];
+    int f28c;
+    char pad290[0xac0];
+    C_0004EDB0Obj *fD50;
+    void func_000342C0(void);
+    void func_0004EA20(int a);
+    C_0004EDB0 *func_0004EDB0(void);
+};
+
 void C_0004ECC0::func_0004E680(void)
 {
     extern C_0004ECC0Vec D_002A174C;
