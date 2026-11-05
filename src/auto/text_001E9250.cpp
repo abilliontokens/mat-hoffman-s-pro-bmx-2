@@ -47,6 +47,21 @@ int func_001E9714(S_001E9714_File *stream);
 int func_001EDBF6(S_001E9714_File *stream);
 int func_001EDD36(S_001E9714_File *stream, const char *format, char *arglist);
 void func_001EDC7E(int buffing, S_001E9714_File *stream);
+extern int D_002FB364;
+extern int D_002F69EC;
+int __stdcall func_001E0AE0(int heap, unsigned int flags, unsigned int size);
+int func_001DF5B3(void);
+int func_001EB3BE(unsigned int size);
+void *func_001E8AA5(unsigned int size);
+char *func_001F2B32(char *out, const char *name, int len, void *(*alloc)(unsigned int), void (*release)(void *), unsigned int flags);
+
+/* std::type_info as the CRT lays it out */
+struct S_001E9FA2_TypeInfo {
+    void *vtbl;
+    char *_m_data;
+    char _m_d_name[1];
+    const char *func_001E9FA2(void);
+};
 #include <string.h>
 
 int __fastcall func_001E9250(int param_1, int param_2) {
