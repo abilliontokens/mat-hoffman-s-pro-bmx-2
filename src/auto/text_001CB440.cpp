@@ -234,7 +234,6 @@ struct C_001CBF20 {
     float fEC;
     int func_001CBF20(void);
     int func_001CBF60(void);
-    int func_001CBF90(int v);
     int func_001CBF90(float v);
 };
 
