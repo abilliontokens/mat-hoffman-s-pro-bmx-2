@@ -141,6 +141,68 @@ struct C_00197B40 {
 
 void func_0011ACC0(void *out, void *a, void *b);
 
+extern int D_0028B0E4;
+extern char D_0028AB70[];
+struct C_001BC6E0 {
+    char func_001BC6E0(char *name);
+};
+extern C_001BC6E0 *D_002AAEC8;
+
+struct S_00197820_Mat {
+    __m128 r[4];
+};
+
+static inline void S_00197820_Identity(S_00197820_Mat *m)
+{
+    m->r[0] = _mm_setzero_ps();
+    m->r[1] = _mm_setzero_ps();
+    m->r[2] = _mm_setzero_ps();
+    m->r[3] = _mm_setzero_ps();
+    ((float *)m)[0] = 1.0f;
+    ((float *)m)[5] = 1.0f;
+    ((float *)m)[10] = 1.0f;
+    ((float *)m)[15] = 1.0f;
+}
+
+static inline void S_00197820_Zero(S_00197820_Mat *m)
+{
+    m->r[0] = _mm_setzero_ps();
+    m->r[1] = _mm_setzero_ps();
+    m->r[2] = _mm_setzero_ps();
+    m->r[3] = _mm_setzero_ps();
+}
+
+/* SoultreeObject */
+struct C_00197820 {
+    void *vtbl;
+    char pad4[0x1C];
+    u8 f20;
+    char pad21[3];
+    u16 f24;
+    u8 f26;
+    u8 f27;
+    u8 f28;
+    char pad29[0xB0 - 0x29];
+    S_00197820_Mat fB0;
+    S_00197820_Mat fF0;
+    S_00197700_Vec4 f130;
+    S_00197700_Vec4 f140;
+    S_00197700_Vec4 f150;
+    S_00197700_Vec4 f160;
+    int f170;
+    int f174;
+    int f178;
+    int f17C;
+    u8 f180;
+    u8 f181;
+    char pad182[0x18C - 0x182];
+    int f18C;
+    int f190;
+    int f194;
+    void func_00157600(int a0);
+    C_00197820 *func_00197820(int a0);
+};
+
 
 float C_00197250::func_00197250(void) {
     return unk2C;
