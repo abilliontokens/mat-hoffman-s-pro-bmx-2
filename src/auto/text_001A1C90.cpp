@@ -389,7 +389,7 @@ struct C_001A1D20 {
     virtual void v28();
     virtual void v29(void *a, void *b);
     virtual void v30(void *a);
-    char pad4[0x1c];
+    char pad4[0x20];
     int f24;
     char pad28[0x14];
     char f3c[0xc];
