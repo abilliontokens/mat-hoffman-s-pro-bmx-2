@@ -12,10 +12,9 @@ struct Body {
     float cur;
     float len;
     float rate;
-    float pad38b;
     float gravity_acc;
+    float pad3c;
     float scale;
-    float pad44;
     unsigned flags;
     Owner *owner;
 };
