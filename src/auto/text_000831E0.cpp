@@ -5,6 +5,17 @@
 
 extern float D_00275544;
 
+static inline void CopyName(char *dst, const char *src)
+{
+    char c;
+    do {
+        c = *src;
+        *dst = c;
+        src++;
+        dst++;
+    } while (c != 0);
+}
+
 struct C_00083710 {
     void func_00083710(undefined4 param_1, undefined4 param_2);
 };
@@ -185,6 +196,31 @@ void C_000831E0::func_00083880(void)
     f138 = f138 + 0.5f;
 }
 
+void C_000831E0::func_000838B0(int a0)
+{
+    fC54 = 1;
+    fC58 = a0;
+    f15C = 2;
+    f138 = f138 + D_002755E8;
+}
+
+void C_000831E0::func_000838F0(const char *name, int flag)
+{
+    char *dst = s19C;
+    char c;
+
+    do {
+        c = *name++;
+        *dst++ = c;
+    } while (c != 0);
+    f198 = 1;
+    f150 = 1;
+    if (flag != 0) {
+        f15C = 2;
+        f138 = f138 + D_002755E8;
+    }
+}
+
 void C_00083950::func_00083950(void) {
     unk200 = 1;
 }
@@ -193,8 +229,47 @@ void C_00083960::func_00083960(void) {
     unk204 = 1;
 }
 
+int C_000831E0::func_00083970(const char *name, int a1, int key)
+{
+    int i;
+    char *dst;
+    char c;
+
+    if (*name == 0) {
+        return 0;
+    }
+    for (i = 0; i < f2E4; i++) {
+        if (a2EC[i] == key) {
+            return 0;
+        }
+    }
+    a2EC[f2E4] = key;
+    f2E4++;
+    dst = s210;
+    do {
+        c = *name++;
+        *dst++ = c;
+    } while (c != 0);
+    f274 = a1;
+    f20C = 1;
+    return 1;
+}
+
 void C_00083B00::func_00083B00(int a0) {
     unk17C = 1;
     unk180 = a0;
+}
+
+void C_000831E0::func_00083B20(const char *name)
+{
+    char *dst = sC64;
+    char c;
+
+    fC5C = 1;
+    do {
+        c = *name++;
+        *dst++ = c;
+    } while (c != 0);
+    fCA0 = 1.0f;
 }
 
