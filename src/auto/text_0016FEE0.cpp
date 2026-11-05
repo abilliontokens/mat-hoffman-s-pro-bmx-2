@@ -9,7 +9,7 @@ struct V_00170B60 { int m[4]; __forceinline void reset() { m[0]=D_002A8A80; m[1]
 static inline void Copy_00170B60(int *p) {
  p[0]=D_002A8A80; p[1]=D_002A8A84; p[2]=D_002A8A88; p[3]=D_002A8A8C;
 }
-static inline void Identity_00170B60(S_00170B60_Mat * volatile p) {
+static inline void Identity_00170B60(S_00170B60_Mat *p) {
     __m128 z = _mm_setzero_ps();
     ((__m128 *)p->m)[0]=z; ((__m128 *)p->m)[1]=z;
     ((__m128 *)p->m)[2]=z; ((__m128 *)p->m)[3]=z;
