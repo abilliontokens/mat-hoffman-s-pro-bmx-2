@@ -246,6 +246,7 @@ struct C_001B6E70 {
     C_001B7370_item **f28;
     C_001B6E70 *func_001B6E70(void *param);
     void func_001B7010(C_001B7010_arg *arg);
+    void func_001B70D0(S_001B70D0_Arg *arg);
     int func_001B72B0(C_00169710 *param);
     int func_001B6EA0(void *a, C_00169710 *param, void *b, void *c);
     int func_001B7370(void *param);
