@@ -36,7 +36,7 @@ struct C_000BC180 {
     int f284;
     int f288;
     int f28c;
-    S_000BC180_Entry *cur(void);
+    __forceinline S_000BC180_Entry *cur(void);
     undefined4 func_000BC180(void);
     undefined4 func_000BC050(void);
     undefined4 func_000BC130(void);
