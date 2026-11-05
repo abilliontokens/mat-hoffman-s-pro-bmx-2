@@ -35,6 +35,8 @@ struct C_00088F70 {
     C_00088F70 *func_00088DA0(int a0);
     void func_00088F70(int a, int b);
     void func_00089010();
+    void func_00089050(float dt);
+    void func_00157A00(float dt);
 };
 
 struct C_000891A0 {
@@ -143,15 +145,17 @@ bool C_00089040::func_00089040(void)
 C_000891A0 *C_000891A0::func_000891A0(int unused)
 {
     ((C_00157600 *)this)->func_00157600(1);
-    vtbl = &D_00279A44;
-    f30 = f2C = f28 = f24 = 0;
-    for (int i = 0; i < 16; i++) {
-        fA0[i] = 0;
-    }
-    for (int j = 0; j < 16; j++) {
-        fE0[j] = 0;
-    }
-    f9C = f12C = f124 = f120 = 0;
+    *(void *volatile *)this = (void *)&D_00279A44;
+    f24 = 0;
+    f28 = 0;
+    f2C = 0;
+    f30 = 0;
+    memset(fA0, 0, sizeof(fA0));
+    memset(fE0, 0, sizeof(fE0));
+    f120 = 0;
+    f124 = 0;
+    f12C = 0;
+    f9C = 0;
     f128 = 1;
     return this;
 }
