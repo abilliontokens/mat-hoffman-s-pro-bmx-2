@@ -51,6 +51,7 @@ struct C_00053D20 {
     int f2e8;
     void func_00030F90(void *param);
     C_00053D20 *func_00053D20(void *param);
+    void func_00054210(float dt);
 };
 
 
