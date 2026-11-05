@@ -7,6 +7,17 @@ struct S_AnsiString {
     char *buffer;
 };
 
+struct S_IoStatusBlock {
+    long status;
+    u32 information;
+};
+
+struct S_ObjectAttributes {
+    void *rootDirectory;
+    S_AnsiString *objectName;
+    u32 attributes;
+};
+
 extern int D_00010130;
 extern int D_002F6BC0;
 extern u8 D_002F41C8;
@@ -27,23 +38,27 @@ void func_001DE82F(void);
 void __stdcall func_001DD659(int code);
 void func_001EA4E1(char *buf, const char *fmt, int value);
 
+#pragma intrinsic(__readfsbyte)
+extern "C" long (__stdcall *_imp__PsCreateSystemThreadEx)(int *threadHandle, u32 extraSize, u32 kernelStackSize, u32 tlsDataSize, u32 *threadId, void *startContext1, void *startContext2, u32 createSuspended, u32 debugStack, void *startRoutine);
+extern "C" void (__stdcall *_imp__RtlInitAnsiString)(S_AnsiString *dst, const char *src);
+extern "C" long (__stdcall *_imp__IoDeleteSymbolicLink)(S_AnsiString *name);
+extern "C" u32 (__stdcall *_imp__RtlNtStatusToDosError)(long status);
 int __stdcall func_001DE8C7(int unused, int threadHandle, void *startContext1, void *startContext2, u32 flags, u32 *threadId)
 {
-    long status;
+    int status;
 
-    status = PsCreateSystemThreadEx((int *)&threadHandle, 0, threadHandle ? threadHandle : D_00010130, D_002F6BC0, threadId, startContext1, startContext2, (flags >> 2) & 0xffffff01, 0, func_001DE82F);
-    if (status < 0 && __readfsbyte(0x24) < 2 && *(int *)(*(int *)__readfsdword(0x28) + 0x28) != 0) {
+    status = _imp__PsCreateSystemThreadEx((int *)&threadHandle, 0, threadHandle ? threadHandle : D_00010130, D_002F6BC0, threadId, startContext1, startContext2, (flags >> 2) & 0xffffff01, 0, (void *)func_001DE82F);
+    if (status < 0 && __readfsbyte(0x24) < 2 && *(int *)(__readfsdword(0x28) + 0x28) != 0) {
         func_001DD659(status);
         threadHandle = 0;
     }
     return threadHandle;
 }
-
-#pragma intrinsic(__readfsdword)
 int func_001DE935(void)
 {
     return *(int *)(__readfsdword(0x28) + 0x12c);
 }
+#pragma intrinsic(__readfsbyte)
 void __stdcall func_001DED66(char c)
 {
     char buf[260];
@@ -52,14 +67,13 @@ void __stdcall func_001DED66(char c)
 
     c &= 0xdf;
     func_001EA4E1(buf, &D_0028FD54, c);
-    RtlInitAnsiString(&name, buf);
-    status = IoDeleteSymbolicLink(&name);
+    _imp__RtlInitAnsiString(&name, buf);
+    status = _imp__IoDeleteSymbolicLink(&name);
     if (c == 'X' && status >= 0) {
         D_002F41C8 = 0;
     }
-    RtlNtStatusToDosError(status);
+    _imp__RtlNtStatusToDosError(status);
 }
-
 int func_001DF5B3(void) {
     extern int D_002F6BB4;
     return D_002F6BB4;
