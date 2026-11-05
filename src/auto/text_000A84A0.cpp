@@ -59,6 +59,19 @@ struct C_000A8BC0 {
     C_000A8BC0 *func_000A8BC0();
 };
 
+struct C_000A88A0_Item {
+    unsigned char unk0;
+    char pad1[0x3B];
+};
+
+struct C_000A88A0 {
+    void *vtbl;
+    char pad4[0x108];
+    C_000A88A0_Item items[3];
+    float unk1C0[4];
+    C_000A88A0 *func_000A88A0();
+};
+
 struct C_000A84A0 {
     void *vtbl;
     int count;
