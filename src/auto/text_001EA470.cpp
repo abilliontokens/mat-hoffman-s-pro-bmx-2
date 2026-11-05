@@ -41,5 +41,30 @@ unsigned short *func_001EA4A4(unsigned short *dest, const unsigned short *source
     }
     return start;
 }
+
+#pragma optimize("t", off)
+int func_001EA4E1(char *buf, const char *fmt, ...)
+{
+    S_001EA_FILE str;
+    int retval;
+    va_list ap;
+
+    va_start(ap, fmt);
+    str.cnt = 0x7fffffff;
+    str.flag = 0x42;
+    str.base = buf;
+    str.ptr = buf;
+    retval = func_001EDD36(&str, fmt, ap);
+    if (buf) {
+        if (--str.cnt >= 0) {
+            *str.ptr++ = 0;
+        } else {
+            func_001ED8A7(0, &str);
+        }
+    }
+    return retval;
+}
+#pragma optimize("", on)
+
 #pragma optimize("", on)
 
