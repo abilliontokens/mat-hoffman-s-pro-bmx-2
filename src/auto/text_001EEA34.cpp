@@ -342,9 +342,9 @@ int __fastcall func_001EF1D0(BitObj *self, int unused)
     return self->s4 == 0 || self->s4 == 2;
 }
 
-int __fastcall func_001EF1E7(int *a, int b)
+int __fastcall func_001EF1E7(BitObj *a, int b)
 {
-    if (*a != 0 && func_001EF1D0(a, b) != 0) {
+    if (a->f0 != 0 && func_001EF1D0(a, b) != 0) {
         return 0;
     }
     return 1;
@@ -352,7 +352,7 @@ int __fastcall func_001EF1E7(int *a, int b)
 
 int __fastcall func_001EF1FC(BitObj *self, int unused)
 {
-    if (func_001EF1E7((int *)self, unused) == 0 && self->b5) {
+    if (func_001EF1E7(self, unused) == 0 && self->b5) {
         return 1;
     }
     return 0;
@@ -363,7 +363,7 @@ int __fastcall func_001EF210(BitObj *self, int unused)
     int sum = 0;
     S_001EF210_Node *n;
 
-    if (func_001EF1E7((int *)self, unused) == 0) {
+    if (func_001EF1E7(self, unused) == 0) {
         for (n = (S_001EF210_Node *)self->f0; n != 0; n = n->next) {
             sum += n->v0();
         }
