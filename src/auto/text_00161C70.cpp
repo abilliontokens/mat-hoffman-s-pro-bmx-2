@@ -37,7 +37,7 @@ int func_001E8833(void);
 extern float D_00275460;
 extern float D_00275544;
 extern float D_002755EC;
-int func_00162020(float *a, float *b, int c);
+void func_00162020(float *a, float *b, int c);
 int func_0014F6E0(void *a, void *b, void *c);
 void func_001622C0(float *m, void *arg);
 
