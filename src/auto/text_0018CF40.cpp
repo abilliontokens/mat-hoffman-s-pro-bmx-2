@@ -5,6 +5,10 @@ extern "C" int strcmp(const char *s1, const char *s2);
 extern "C" unsigned int strlen(const char *);
 extern "C" char *func_001E95A4(char *, const char *);
 extern char D_0027CEF0[];
+extern char D_0028A9F0[];
+extern "C" void *func_001E8AA5(unsigned int);
+extern "C" void *func_001E83E8(void *, unsigned int);
+extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
 
 struct C_0018D580_Sub {
     u8 a;
