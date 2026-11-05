@@ -42,6 +42,11 @@ struct C_000AC8F0 {
     int unk5BC;
     void func_000AC8F0(void);
 };
+extern char D_0027CAB0[], D_0027CAA0[], D_00277040[], D_00276980[], D_0027A8C4[], D_0027823C[];
+extern char D_0027CA94[], D_0027CA88[], D_0027CA80[], D_0027CA78[], D_00276D7C[], D_0027A330[];
+extern char D_000A7E30[];
+int func_001EA426(const char *a, const char *b);
+void *func_001E83E8(void *block, unsigned int size);
 
 struct C_000AC140 {
     void *vtbl;
