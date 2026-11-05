@@ -277,8 +277,8 @@ static __declspec(noinline) void shift_tmp(char *s, int dist)
 
 static __declspec(noinline) char *func_001EB4F7(char *buf, int ndec, int caps, S_StrFlt *pflt, char g_fmt)
 {
-    char *p;
     int expo;
+    char *p;
 
     if (g_fmt) {
         shift_tmp(buf + (pflt->sign == '-'), ndec > 0);
@@ -292,7 +292,7 @@ static __declspec(noinline) char *func_001EB4F7(char *buf, int ndec, int caps, S
         p++;
         *p = D_002AEA3C;
     }
-    p += ndec + (g_fmt == 0);
+    p = p + (g_fmt == 0) + ndec;
     *(S_ExpStr *)p = D_00295024;
     if (caps) {
         *p = 'E';
@@ -335,9 +335,12 @@ static __declspec(noinline) char *func_001EB600(S_StrFlt *pflt, char *buf, int n
 {
     char *p;
     int dist;
+    int expo;
+    int pad;
 
-    if (g_fmt && pflt->decpt - 1 == ndec) {
-        p = (char *)((pflt->sign == '-') + (pflt->decpt - 1) + buf);
+    expo = pflt->decpt - 1;
+    if (g_fmt && expo == ndec) {
+        p = (char *)((pflt->sign == '-') + expo + buf);
         *p = '0';
         p[1] = 0;
     }
@@ -358,9 +361,11 @@ static __declspec(noinline) char *func_001EB600(S_StrFlt *pflt, char *buf, int n
         func_001EB4D4(p, dist);
         *p = D_002AEA3C;
         p++;
-        if (pflt->decpt < 0) {
-            if (g_fmt || ndec >= -pflt->decpt) {
-                ndec = -pflt->decpt;
+        pad = pflt->decpt;
+        if (pad < 0) {
+            pad = -pad;
+            if (g_fmt || ndec >= pad) {
+                ndec = pad;
             }
             dist = ndec;
             func_001EB4D4(p, dist);
@@ -372,11 +377,12 @@ static __declspec(noinline) char *func_001EB600(S_StrFlt *pflt, char *buf, int n
 
 char *__cdecl func_001EB6A7(double *arg, char *buffer, int precision)
 {
+    typedef S_StrFlt *(__cdecl *Fltout2Fn)(S_CrtDouble, S_StrFlt *, char *);
     S_StrFlt flt;
     char resultstr[24];
 
-    func_001F4A07(*arg, &flt, resultstr);
-    func_001F48CE((char *)((flt.sign == '-') + buffer), flt.decpt + precision, &flt);
+    ((Fltout2Fn)func_001F4A07)(*(S_CrtDouble *)arg, &flt, resultstr);
+    func_001F48CE(buffer + (flt.sign == '-'), flt.decpt + precision, &flt);
     func_001EB600(&flt, buffer, precision, 0);
     return buffer;
 }
@@ -426,14 +432,16 @@ S_Tiddata * __cdecl func_001EB7E9(void)
 {
     S_Tiddata **slot;
     S_Tiddata *ptd;
-    unsigned long irql;
+    S_TlsBlock **base;
+    unsigned long idx;
 
-    irql = __readfsbyte(0x24);
-    if (irql >= 2) {
+    if (__readfsbyte(0x24) >= 2) {
         _imp__KeBugCheck(10);
     }
     if (*(int *)(__readfsdword(0x28) + 0x28) != 0) {
-        slot = (S_Tiddata **)(*(char **)(D_002F41D0 * 4 + __readfsdword(4)) + 8);
+        idx = D_002F41D0;
+        base = (S_TlsBlock **)__readfsdword(4);
+        slot = &base[idx]->ptd;
     } else {
         slot = &D_002FB360;
     }
@@ -461,9 +469,9 @@ void func_001EB977(void) {
 int __cdecl func_001EB980(void)
 {
     S_Tiddata *ptd;
-    S_Tiddata **tls;
+    int *tls;
     unsigned long idx;
-    char **base;
+    int **base;
 
     if (func_001EB290() == 0) {
         func_001EB2D9();
@@ -471,9 +479,9 @@ int __cdecl func_001EB980(void)
     }
     ptd = func_001EA1A1(1, 0x84);
     idx = D_002F41D0;
-    base = (char **)__readfsdword(4);
-    tls = (S_Tiddata **)base[idx];
-    tls[2] = ptd;
+    base = (int **)__readfsdword(4);
+    tls = base[idx];
+    tls[2] = (int)ptd;
     if (ptd == 0) {
         ptd->pxcptacttab = D_002AEDD8;
         ptd->holdrand = 1;
