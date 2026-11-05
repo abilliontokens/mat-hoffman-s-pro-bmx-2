@@ -50,7 +50,7 @@ struct S_001B70D0_Mgr {
     char pad0[4];
     struct S_001B70D0_Lookup *f4;
     char pad8[0x280 - 8];
-    S_001B70D0_Slot **f280;
+    S_001B70D0_Slot *volatile *f280;
     int f284;
 };
 
