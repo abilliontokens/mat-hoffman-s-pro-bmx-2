@@ -307,6 +307,31 @@ void C_001084E0::func_001084E0(void)
   return;
 }
 
+void C_00108510::func_00108510(const char *name, S_00108510_Vec4 v)
+{
+    if (f15A4->func_001A2EF0(3)->v7()) {
+        f15A4->func_001A2DD0(3);
+    }
+    if (f15A4->func_001A2EF0(2)->v7()) {
+        f15A4->func_001A2DD0(2);
+    }
+    f1244->v46();
+    f1584 = 0;
+    if (name != 0) {
+        strcpy(f1FC4, name);
+    }
+    f2000 = v;
+    if (D_002A8490->f2A4 != 0) {
+        if (D_002A8490->f2A4->items[fA2C] != 0) {
+            D_002A8490->f2A4->items[fA2C]->func_000848F0();
+            D_002A8490->f2A4->items[fA2C]->func_000843E0(0);
+        }
+    }
+    if (f11F4 == 1) {
+        f1FC0 = 1;
+    }
+}
+
 void C_00108610::func_00108610(int a0, int a1) {
     unk20B4 = a1;
     unk20B8 = a0;
