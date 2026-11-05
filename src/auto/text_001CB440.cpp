@@ -399,7 +399,7 @@ int C_001CB650::func_001CB720(int a, int b, int c)
     if (c == 0) {
         f8c = a;
     } else {
-        f8c = (int)((float)a * D_002755E0 * f98);
+        f8c = (int)(f98 * ((float)a * D_002755E0));
     }
     f90 = f98;
     f88 = (float)f98;
@@ -485,8 +485,33 @@ void C_001CB940::func_001CB980(void)
     func_00157680();
 }
 
+int C_001CBCF0::func_001CBCF0(int value)
+{
+    int i;
+
+    for (i = 0; i < count; i++) {
+        if (items[i] == value) {
+            items[i] = items[count - 1];
+            count--;
+            return 1;
+        }
+    }
+    return 0;
+}
+
 int __stdcall func_001CBEE0(int a0, int a1, int a2, int a3, int a4) {
     return -2147467259;
+}
+
+int C_001CBF20::func_001CBF20(void)
+{
+    S_001CBF20_Vec4 *p = &fD8;
+
+    if (func_0022095F(f30, p) == 0) {
+        *p = *p;
+        return 1;
+    }
+    return 0;
 }
 
 void *C_001CC110::func_001CC110(int flags) {
