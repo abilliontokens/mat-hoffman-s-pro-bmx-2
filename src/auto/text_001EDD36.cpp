@@ -14,6 +14,8 @@ extern unsigned int D_002FB240;
 extern int *D_002FB260[];
 extern char *D_002F6A28;
 
+int __stdcall func_001DD563(int h);
+
 struct S_001EE9AB {
     int f0;
     void (__cdecl *f4)(void *);
@@ -64,7 +66,7 @@ int func_001EE5BE(void)
 {
     void *func_001E8AA5(int size);
     S_Ioinfo *p;
-    S_Ioinfo *q;
+    char *r;
     int i;
 
     p = (S_Ioinfo *)func_001E8AA5(0x500);
@@ -79,10 +81,12 @@ int func_001EE5BE(void)
         p->lockinitflag = 0;
         p->pipech = 10;
     }
-    for (i = 0; i < 0x78; i += 0x28) {
-        q = (S_Ioinfo *)((char *)D_002FB260[0] + i);
-        q->osfile = 0xc1;
-    }
+    i = 0;
+    do {
+        r = (char *)D_002FB260[0] + i;
+        i += 0x28;
+        r[4] = 0xc1;
+    } while (i < 0x78);
     return 0;
 }
 
