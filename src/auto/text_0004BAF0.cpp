@@ -59,6 +59,20 @@ struct S_0004C320_Comp {
 
 struct S_0004C320_Part : virtual S_0004C320_Base {
     S_0004C320_Comp *f4;
+
+    void func_0004C3F0_Highlight(int on, float x, float y, float z)
+    {
+        float v1[4];
+        float v2[4];
+
+        if (on) {
+            v7();
+            f4->func_001824E0(v1, x, y, z);
+        } else {
+            v5();
+            f4->func_001824E0(v2, 1.0f, 1.0f, 1.0f);
+        }
+    }
 };
 
 /* S_0004C320_Part seen without its virtual inheritance: vbptr first, then f4 */
@@ -159,9 +173,9 @@ void C_0004C560::func_0004C3F0(int idx, int sel, int mode)
     float v1[4];
     float v2[4];
     int j;
-    S_0004C320_Obj *o;
+    S_0004C3F0_Obj *o;
 
-    f64->f3ac->f28[f284[0][idx]]->f1a4->v5();
+    ((S_0004C3F0_Obj *)f64->f3ac->f28[f284[0][idx]])->f1a4.v5();
     x = 1.0f;
     y = 1.0f;
     z = 1.0f;
@@ -188,14 +202,14 @@ void C_0004C560::func_0004C3F0(int idx, int sel, int mode)
         break;
     }
     for (j = 0; j < f90; j++) {
-        o = f64->f3ac->f28[f284[j + 1][idx]];
-        S_0004C320_Base &b = *o->f1a4;
+        o = (S_0004C3F0_Obj *)f64->f3ac->f28[f284[j + 1][idx]];
+        S_0004C320_Base &b = o->f1a4;
         if (j == sel) {
             b.v7();
-            o->f1a4->f4->func_001824E0(v1, x, y, z);
+            o->f1a4.f4->func_001824E0(v1, x, y, z);
         } else {
             b.v5();
-            o->f1a4->f4->func_001824E0(v2, 1.0f, 1.0f, 1.0f);
+            o->f1a4.f4->func_001824E0(v2, 1.0f, 1.0f, 1.0f);
         }
     }
 }
