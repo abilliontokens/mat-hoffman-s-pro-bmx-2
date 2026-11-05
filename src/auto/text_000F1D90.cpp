@@ -35,7 +35,7 @@ struct C_000F2780_Ed274 {
 struct C_000F2780_Ed {
     char pad0[0x274];
     C_000F2780_Ed274 *f274;
-    void func_000BB3F0(int a0, int a1);
+    int func_000BB3F0(int a0, int a1);
     void func_000BB3B0(int a0, int a1);
 };
 
