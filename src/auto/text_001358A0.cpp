@@ -64,6 +64,15 @@ struct C_00135D90 {
     void func_00135D90(float a, float b);
 };
 
+/* 5-int record of the pending command list that overlays the ControlInterface from +0x0 */
+struct S_ControlEntry {
+    int type;
+    int a;
+    int b;
+    int c;
+    int d;
+};
+
 /* ControlInterface */
 struct C_00135E00 {
     void *vtbl;
