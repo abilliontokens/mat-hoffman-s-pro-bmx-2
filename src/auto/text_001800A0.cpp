@@ -6,6 +6,24 @@ struct C_001805F0 {
     void func_001805F0(void);
 };
 
+struct C_00180DD0 {
+    void *vtbl;
+    void func_0017F0B0();
+    void func_00133E60();
+    void *func_00180DD0(unsigned int flags);
+};
+
+struct C_001804F0 {
+    short unk0;
+    short unk2;
+    short unk4;
+    C_001804F0 *func_001804F0(float *p);
+};
+
+struct C_001805C0 {
+    void func_001805C0(void);
+};
+
 
 void C_001805F0::func_001805F0(void) {
     extern int D_002B9344;
