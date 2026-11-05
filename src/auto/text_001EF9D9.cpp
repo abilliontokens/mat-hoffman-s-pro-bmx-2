@@ -550,6 +550,82 @@ void *_func_001F041A(S_001EF734 *o)
 }
 
 #pragma optimize("y", on)
+void *_func_001F046A(S_001EF734 *o)
+{
+    S_001EF734 tQ, tAmp, tD, tRest, t4c, t54;
+
+    switch (*D_002F6A28++) {
+    default:
+        o->func_001EF170(1);
+        return o;
+    case 0:
+        D_002F6A28--;
+        o->func_001EF170(2);
+        return o;
+    case '0':
+        _func_001F041A(o);
+        return o;
+    case '1':
+        if (*D_002F6A28 == '@') {
+            D_002F6A28++;
+            o->func_001EF759(D_00295C78);
+            return o;
+        }
+        tAmp.func_001EF759(D_00295B18)->func_001EFAB5(o, func_001F1C3A(&tRest));
+        return o;
+    case '2': {
+        S_001EF734 mantissa, exponent;
+        char buf[100];
+        _func_001F041A(&mantissa);
+        _func_001F041A(&exponent);
+        if (mantissa.func_001EF1D0() && exponent.func_001EF1D0()) {
+            if (!mantissa.func_001EF26D(&buf[1], 100)) {
+                o->func_001EF170(1);
+                return o;
+            }
+            buf[0] = buf[1];
+            if (buf[1] == '-') {
+                buf[1] = buf[2];
+                buf[2] = '.';
+            } else {
+                buf[1] = '.';
+            }
+            t4c.func_001EF759(buf)->func_001EFD3B(&t54, 'e')->func_001EFAB5(o, &exponent);
+            return o;
+        }
+        o->func_001EF170(2);
+        return o;
+    }
+    case 'E':
+        func_001F1C3A(o);
+        return o;
+    case 'D':
+    case 'Q': {
+        S_001EF734 dim;
+        char buf16[16];
+        _func_001F041A(&dim);
+        if (D_002F6A39 & 0x40) {
+            char *p;
+            dim.func_001EF26D(buf16, 16);
+            p = D_002F6A3C(func_001E919C(buf16));
+            if (p != 0) {
+                o->func_001EF759(p);
+                return o;
+            }
+        }
+        if (*D_002F6A28 == 'D') {
+            ((S_001EF734 *)_func_001EFD19(&tD, D_00295C80, &dim))->func_001EFD7A(o, D_00295C94);
+            return o;
+        } else {
+            ((S_001EF734 *)_func_001EFD19(&tQ, D_00295C0C, &dim))->func_001EFD7A(o, D_00295C94);
+            return o;
+        }
+    }
+    }
+}
+#pragma optimize("", on)
+
+#pragma optimize("y", on)
 void *_func_001F0886(S_001EF734 *o)
 {
     if (*D_002F6A28 == '?' && D_002F6A28[1] == '$') {
