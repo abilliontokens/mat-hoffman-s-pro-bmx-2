@@ -23,6 +23,7 @@ struct C_001827B0 {
     int f3C;
     int f40;
     void func_001827B0(void);
+    C_001827B0(void);
 };
 
 struct C_001824E0_Vec {
