@@ -127,6 +127,41 @@ struct C_000E1770 {
     void func_000E1F60();
 };
 
+void C_000E1550::func_000E1550(void)
+{
+    int ids[3];
+    int i;
+    int *r;
+    C_NumHorse_Clamp *o;
+    C_NumHorse_Sub **e;
+    C_NumHorse_Lookup *lk;
+
+    ids[0] = (int)&D_002786A0;
+    ids[1] = (int)&D_00278690;
+    ids[2] = (int)&D_00278678;
+    for (i = 0; i < 3; i++) {
+        lk = D_002A8490->p2EC;
+        r = lk->func_0018C160(ids[i]);
+        if (r != 0 && *r != 0) {
+            o = ((C_NumHorse_Mid *)*r)->func_0018C070();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+    }
+    e = ptrs;
+    i = 8;
+    do {
+        if (*e != 0) {
+            o = (*e)->func_001D5AA0();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+        e++;
+        i--;
+    } while (i != 0);
+    func_001578D0();
+}
+
 C_000E1770 *C_000E1770::func_000E1770(int a)
 {
     func_001BE360(a);
