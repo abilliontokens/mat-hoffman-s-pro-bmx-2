@@ -165,10 +165,7 @@ void C_00191470::func_00191470(unsigned int a0)
 
         p = &m;
         v = (__m128 *)p;
-        v[0] = _mm_setzero_ps();
-        v[1] = _mm_setzero_ps();
-        v[2] = _mm_setzero_ps();
-        v[3] = _mm_setzero_ps();
+        v[3] = v[2] = v[1] = v[0] = _mm_setzero_ps();
         copy = m;
         ((C_000264C0 *)((char *)self + 0x30))->func_000264C0(&copy);
         break;
@@ -197,11 +194,14 @@ void C_00191470::func_00191510(const char * volatile a0, unsigned int a1)
     slot[2] = 0x17;
     a = slot[2];
     b = slot[1];
-    c = a > b ? b : a;
+    c = a;
+    if (c > b) {
+        c = b;
+    }
     slot[3] = c;
     k = slot[3];
     func_001E8920((void *)slot[0], a0, k);
-    *(char *)(k + slot[0]) = 0;
+    ((volatile char *)slot[0])[k] = 0;
     ((C_00191470 *)slot[0])->f18 = a1;
 }
 
@@ -249,6 +249,46 @@ void func_00191640(C_00191640_Node *a, C_00191640_Node *b, int op, C_0018F390 *o
         break;
     }
     obj->func_0018F390(&D_00275630, 0x100, &r);
+}
+
+int func_001916E0(C_00191640_Node *a, C_00191640_Node *b, int op)
+{
+    float x = a->unk20;
+    float y = b->unk20;
+
+    switch (op) {
+    case 0x20:
+        if (x == y) {
+            return 1;
+        }
+        break;
+    case 0x40:
+        if (x != y) {
+            return 1;
+        }
+        break;
+    case 2:
+        if (x < y) {
+            return 1;
+        }
+        break;
+    case 8:
+        if (x > y) {
+            return 1;
+        }
+        break;
+    case 4:
+        if (x <= y) {
+            return 1;
+        }
+        break;
+    case 0x10:
+        if (x >= y) {
+            return 1;
+        }
+        break;
+    }
+    return 0;
 }
 
 void func_001917E0(int name, C_0018F390 *obj)
