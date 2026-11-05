@@ -76,6 +76,22 @@ void *C_000918C0::func_000918C0(int flags)
     return this;
 }
 
+void *C_00091900::func_00091900(int flags)
+{
+    vtbl = (void *)&D_0027993C;
+    if (f28) {
+        f28->destroyObject(1);
+        f28 = 0;
+    }
+    if (f2c) {
+        f2c->destroyObject(1);
+        f2c = 0;
+    }
+    func_00157660();
+    if (flags & 1) func_001E891B(this);
+    return this;
+}
+
 void *C_00092710::func_00092710(int flags)
 {
     vtbl = (void *)&D_00279C3C;
