@@ -451,6 +451,22 @@ void BmxEvent_00030A30::func_000314A0(void)
     }
 }
 
+void BmxEvent_00030A30::func_000314F0(void)
+{
+    void *m = func_001E8A44(0x4c);
+    f1b4 = m ? ((Sound_000314F0 *)m)->func_001CD770(D_002A8490->f4->fb4, 1) : 0;
+    f1b4->v10();
+    func_001577A0(f1b4, 2);
+    m = func_001E8A44(0x1f0);
+    f1d8 = m ? ((Target_00031610 *)m)->func_001A2C00(D_002A8490->f4, f1b4, 6, 1) : 0;
+    f1b4->v30(D_002A8490->f2e0[7]);
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5348, D_002A47F0);
+    f1d8->func_001A4640(D_00276B78, D_00275630, -1);
+    D_002A8490->f4->fb4->v6();
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5870, D_002A47F0);
+    D_002A8490->f4->v6();
+}
+
 void BmxEvent_00030A30::func_00031610(int a0, int a1)
 {
     if (f1d8 != 0) {
