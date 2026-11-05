@@ -230,6 +230,31 @@ undefined4 C_0018B3B0::func_0018B3B0(byte param_1)
   return in_ECX;
 }
 
+void C_0018B540::func_0018B540(void)
+{
+  int func_001E891B(...);
+  int i;
+
+  vtbl = (void *)&D_0028A034;
+  if (f28 != 0) {
+    for (i = 0; i < f24; i++) {
+      S_0018B540_Elem *e = f28[i];
+      if (e != 0) {
+        e->vtbl = (void *)&D_00289F80;
+        if (e->f0c != 0) {
+          func_001E891B(e->f0c);
+          e->f0c = 0;
+        }
+        func_001E891B(e);
+        f28[i] = 0;
+      }
+    }
+    func_001E891B(f28);
+    f28 = 0;
+  }
+  ((C_00157660 *)this)->func_00157660();
+}
+
 void Lights::func_0018BEB0()
 {
     int func_001E891B(...);
