@@ -5,6 +5,18 @@ struct C_00101A10 {
     undefined4 func_00101A10(byte param_1);
 };
 
+struct C_00101B20 {
+    undefined4 func_00101B20(byte param_1);
+};
+
+struct C_00101CB0 {
+    undefined4 func_00101CB0(byte param_1);
+};
+
+struct C_00101CD0 {
+    undefined4 func_00101CD0(byte param_1);
+};
+
 
 undefined4 C_00101A10::func_00101A10(byte param_1)
 {
