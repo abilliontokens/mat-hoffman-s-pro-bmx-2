@@ -42,6 +42,15 @@ void C_000D0DD0::func_000D0D20(void)
     unk4F8->func_00094620(0x43a00000, 0x42c80000, D_0028F5E0, 0, 0, 0);
 }
 
+void C_000D0DD0::func_000D0D60(void)
+{
+    unk4BC = 1;
+    unk594->func_001B1980();
+    unk594->func_001B2270(0xffcccccc);
+    unk594->func_001B1860(0, -1.0f, 0, 1.0f, 0, 0, 0, 0xff, 1.0f, 0, 0.0f, 0.2f, 0);
+    unk598 = 1;
+}
+
 void C_000D0DD0::func_000D0DD0(void) {
     unk53C = 0;
     unk540 = 178;
