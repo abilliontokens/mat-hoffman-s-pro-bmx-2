@@ -249,6 +249,31 @@ void CutScene::func_001390A0(int index)
     }
 }
 
+void CutScene::func_00139180(int index) {
+ int off=index*0x2c;
+ int value=((SceneBank *)f4c)->values[((SceneEntry *)((char *)f40+off))->id];
+ int i,j,k;
+ for(i=0;i<((SceneEntry *)((char *)f40+off))->count1;i++){
+ int id=((SceneEntry *)((char *)f40+off))->tracks[i].id;
+ ((SceneActor **)f58)[id]->camera->func_001983A0();
+ ((SceneActor **)f58)[id]->func_00164820(((SceneEntry *)((char *)f40+off))->tracks[i].value);
+ ((SceneActor **)f58)[id]->f34=f28;
+ ((SceneActor **)f58)[id]->camera->func_00199600(((SceneEntry *)((char *)f40+off))->tracks[i].vector);
+ ((SceneActor **)f58)[id]->camera->func_00198E60();
+ ((SceneActor **)f58)[id]->camera->func_0019ABA0(value,2);
+ }
+ for(i=0;i<((SceneEntry *)((char *)f40+off))->count2;i++){
+ if(*(float *)(((SceneEntry *)((char *)f40+off))->groups+i*16+4)==D_00275544){
+ ResetGroup *g=((ResetGroups *)f60)->groups[*(int *)(((SceneEntry *)((char *)f40+off))->groups+i*16)];
+ for(k=0;k<g->count;k++){g->children[k]->v31();g->children[k]->v32();g->children[k]->v30();g->children[k]->v6();}
+ }
+ }
+ ((SceneEntry *)((char *)f40+off))->target->func_00194B40(0);
+ ((SceneEntry *)((char *)f40+off))->target->fc=f28;
+ ((SceneOutput *)f44)->func_0012B350();
+ ((SceneOutput *)f44)->func_0012A770(value,2);
+}
+
 void CutScene::func_00139360(int oldIndex, int index)
 {
  if(index==0 && f64!=-1 && ((CutSceneRoot *)D_002A8490)->world && f78){
