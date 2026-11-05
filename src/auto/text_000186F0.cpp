@@ -115,6 +115,22 @@ struct TikiHuntState {
     void func_00019520();
 };
 
+void AiTikiGod::func_00019480()
+{
+    f4d4 = 0;
+    f4f4 = 1;
+    D_002A8490->f4->func_0001CE80(f4bc, f508, &D_002A0718, 10.0f, 1000.0f);
+    f4bc->v5(4);
+    f76c++;
+    if (f4dc != 0) {
+        f4dc = 0;
+        f384->func_0008AB90(f390);
+        return;
+    }
+    D_002A8490->f2a4->func_0004AAD0();
+    v4();
+}
+
 void TikiHuntState::func_00019520()
 {
     if (f8->f4f0 == 1 && D_002A8490->f238 > f8->f4ec) {
