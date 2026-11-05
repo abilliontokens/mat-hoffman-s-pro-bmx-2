@@ -248,7 +248,7 @@ struct BmxUIManager {
     int f124;
     char pad128[0x28];
     UIItem *f150;
-    char pad154[0x104];
+    char f154[0x104];
     int f258;
     UIOwner *f25c;
     char pad260[8];
