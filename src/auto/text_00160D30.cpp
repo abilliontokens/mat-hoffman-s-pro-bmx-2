@@ -184,9 +184,19 @@ struct C_00161870 {
 
 struct S_00161170 {
     int unk0;
-    int unk4;
-    int unk8;
+    unsigned int unk4;
+    char unk8;
 };
+
+/* bit reader built on the stack by the decompressor (see GR_BitString in text_0001E260.cpp) */
+struct S_001611C0_BitReader {
+    char pad0[0x20];
+    void func_0001E3F0(u32 *data, u32 bits, int a2);
+    void func_0001E460();
+    u32 func_0001E550(int bits);
+};
+extern char D_002E2980[];
+extern char D_002E297F[];
 
 struct S_001B2340_Elem {
     virtual void v0();
