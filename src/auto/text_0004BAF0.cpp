@@ -60,7 +60,7 @@ struct S_0004C320_Comp {
 struct S_0004C320_Part : virtual S_0004C320_Base {
     S_0004C320_Comp *f4;
 
-    void func_0004C3F0_Highlight(int on, float x, float y, float z)
+    __forceinline void func_0004C3F0_Highlight(int on, float x, float y, float z)
     {
         float v1[4];
         float v2[4];
@@ -173,9 +173,10 @@ void C_0004C560::func_0004C3F0(int idx, int sel, int mode)
     float v1[4];
     float v2[4];
     int j;
-    S_0004C3F0_Obj *o;
+    S_0004C320_Obj *o;
 
-    ((S_0004C3F0_Obj *)f64->f3ac->f28[f284[0][idx]])->f1a4.v5();
+    o = f64->f3ac->f28[f284[0][idx]];
+    o->f1a4->v5();
     x = 1.0f;
     y = 1.0f;
     z = 1.0f;
@@ -202,14 +203,16 @@ void C_0004C560::func_0004C3F0(int idx, int sel, int mode)
         break;
     }
     for (j = 0; j < f90; j++) {
-        o = (S_0004C3F0_Obj *)f64->f3ac->f28[f284[j + 1][idx]];
-        S_0004C320_Base &b = o->f1a4;
+        o = f64->f3ac->f28[f284[j + 1][idx]];
+        S_0004C320_PartRaw *raw = (S_0004C320_PartRaw *)o->f1a4;
+        int off = raw->vbptr[1];
+        S_0004C320_Base *b = (S_0004C320_Base *)((char *)raw + off);
         if (j == sel) {
-            b.v7();
-            o->f1a4.f4->func_001824E0(v1, x, y, z);
+            b->v7();
+            o->f1a4->f4->func_001824E0(v1, x, y, z);
         } else {
-            b.v5();
-            o->f1a4.f4->func_001824E0(v2, 1.0f, 1.0f, 1.0f);
+            b->v5();
+            o->f1a4->f4->func_001824E0(v2, 1.0f, 1.0f, 1.0f);
         }
     }
 }
