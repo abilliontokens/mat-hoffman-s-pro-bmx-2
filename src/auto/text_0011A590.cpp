@@ -112,3 +112,22 @@ void func_0011ADA0(void *a, void *b, float *m)
     func_0011ACC0(a, b, inv);
 }
 
+float func_0011B180(float a, float b)
+{
+    float r = func_0014F7E0(b);
+    if (!(a > D_00275544)) {
+        r = D_002756B8 - r;
+    }
+    return r;
+}
+
+void func_0011B1B0(Vec4 *out, float angle)
+{
+    if (angle > D_002756D0) {
+        angle -= D_002756B8;
+    } else if (angle < D_002756E8) {
+        angle += D_002756B8;
+    }
+    *out = Vec4(func_0014F550(angle), 0.0f, func_0014F510(angle), 1.0f);
+}
+
