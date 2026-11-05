@@ -35,6 +35,61 @@ struct C_00163A50 {
     void *func_00163A50(void *a, void *b);
 };
 
+int func_001EA426(const char *a, const char *b);
+
+struct V4_00164650 {
+    float x, y, z, w;
+};
+
+struct M16_00164650 {
+    float m[16];
+};
+
+struct S_00164650_Scale {
+    char pad0[0x38];
+    float f38;
+};
+
+struct S_00164650_Obj {
+    void func_00197EA0(void *p);
+    void func_00197B90(void *p);
+    void func_00197E70(void *p);
+};
+
+/* 0x40-byte entry; the name is at +0 */
+struct S_00164650_Item {
+    char name[0x34];
+    S_00164650_Obj *f34;
+    char pad38[8];
+};
+
+struct C_00164650 {
+    char pad0[0x10];
+    int f10;
+    char pad14[4];
+    S_00164650_Scale *f18;
+    S_00164650_Scale *f1c;
+    char pad20[0x10];
+    int f30;
+    float f34;
+    float f38;
+    float f3c;
+    float f40;
+    float f44;
+    char pad48[0x1e8 - 0x48];
+    int f1e8;
+    S_00164650_Item *f1ec;
+    char pad1f0[8];
+    M16_00164650 *f1f8;
+    char pad1fc[4];
+    V4_00164650 *f200;
+    V4_00164650 *f204;
+    unsigned char func_00164650(const char *name);
+    void func_00164700(void);
+    void func_00164770(void);
+    void func_00164840(S_00164650_Scale *scale, float time, float a2);
+};
+
 extern C_00163A50 *D_002EF7D0;
 
 struct C_001643A0 {
