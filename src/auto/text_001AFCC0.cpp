@@ -99,6 +99,8 @@ struct C_001B01A0 {
     void func_001B01A0(void);
 };
 
+extern int D_0028C5E0;
+
 /* RenderPrologue */
 struct C_001B0180 {
     void *vtbl;
