@@ -143,3 +143,13 @@ undefined4 C_0018BF80::func_0018BF80(byte param_1)
   return in_ECX;
 }
 
+void *Lights::func_0018BFA0(int flags)
+{
+    int func_001E891B(...);
+    func_0018BEB0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
