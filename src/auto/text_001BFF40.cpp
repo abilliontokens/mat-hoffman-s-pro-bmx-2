@@ -323,6 +323,29 @@ void C_001C04D0::func_001C04D0(int idx)
     }
 }
 
+void C_001C05F0::func_001C0520(void)
+{
+    int i;
+
+    unk2C = 1;
+    if (unk30 == 0 || unk34 == 0) {
+        if (unk30 != 0) {
+            v7();
+        }
+        if (unk34 != 0) {
+            v5();
+        }
+    }
+    if (unk19C != 0) {
+        for (i = 0; i < unk170; i++) {
+            unk68[i]->func_001B2270(unk1A0);
+        }
+    }
+    for (i = 0; i < unk170; i++) {
+        unk68[i]->func_001B1860(0, -1.0f, unk194, 1.0f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
+    }
+}
+
 void C_001C05F0::func_001C05F0(void)
 {
     int i;
