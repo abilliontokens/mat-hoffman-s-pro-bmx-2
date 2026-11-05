@@ -2,6 +2,16 @@
 #include "common.h"
 #include <xmmintrin.h>
 #include "ghidra.h"
+extern int D_0028C624;
+extern int D_0028C610;
+struct C_001AF360 {
+    char pad0[0x18];
+    int unk18;
+    void *func_001AF360(void *arg, void *self, int idx);
+};
+struct C_001B0280 {
+    void *func_001B0280(int idx, void *arg);
+};
 struct C_001B0560 {
     void func_001B0560(undefined4 param_1, undefined4 param_2);
 };
