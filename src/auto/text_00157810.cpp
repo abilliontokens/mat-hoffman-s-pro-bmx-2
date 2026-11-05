@@ -41,12 +41,17 @@ struct S_00157810_Child {
     virtual int v22(int a, int b);
     virtual int v23(int a, int b);
     virtual int v24(int a, int b, int c, int d, int e);
-    char pad4[8];
+    virtual void v25();
+    int pad4;
+    S_00157810_Child *f8;
     S_00157810_Child *fC;
-    char pad10[8];
-    unsigned char f18;
-    char pad19[8];
+    S_00157810_Child *f10;
+    S_00157810_Child *f14;
+    unsigned int f18;
+    unsigned int f1C;
+    char pad20;
     unsigned char f21;
+    unsigned int func_00157770(void);
 };
 
 struct C_00157810 {
