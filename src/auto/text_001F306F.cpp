@@ -59,6 +59,7 @@ struct C_001EEE62 {
 };
 
 
+#pragma optimize("s", on)
 void *func_001F306F(void *param_1, int param_2) {
     extern char *D_002F6A28;
     extern int D_0027D1D8;
@@ -95,7 +96,7 @@ void *func_001F306F(void *param_1, int param_2) {
     }
     return param_1;
 }
-
+#pragma optimize("", on)
 void *func_001F311D(void *param_1, int param_2) {
     extern C_001EEE62 *D_002F6A04;
     void *func_001F306F(void *, int);
