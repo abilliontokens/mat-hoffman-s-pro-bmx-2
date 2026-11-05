@@ -103,6 +103,19 @@ undefined4 C_000FF420::func_000FF420(byte param_1)
   return in_ECX;
 }
 
+undefined4 C_000FF440::func_000FF440(byte param_1)
+{
+  int func_000D8D30(...);
+  int func_001E891B(...);
+  undefined4 in_ECX = (undefined4)this;
+  
+  func_000D8D30();
+  if ((param_1 & 1) != 0) {
+    func_001E891B(in_ECX);
+  }
+  return in_ECX;
+}
+
 undefined4 C_00100280::func_00100280(byte param_1)
 {
   int func_000DE650(...);
