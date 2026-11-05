@@ -1,5 +1,10 @@
 /* 12 functions from 0x001C19D0 to 0x001C26B0, found by Ghidra. */
 #include "common.h"
+#include "ghidra.h"
+struct C_001C22A0 {
+    undefined4 func_001C22A0(byte param_1);
+};
+
 struct C_001C2190 {
     void func_001C2190(int a0);
     void func_001BF980(int a0);
@@ -81,14 +86,30 @@ void C_001C21B0::func_001C21B0() {
 
 void C_001C2210::func_001C2210() {
     unk2C = 1;
-    if (unk30 != 0) {
-        if (unk30 != 0 && unk34 == 0) {
+    if (unk30 == 0 || unk34 == 0) {
+        if (unk30 != 0) {
             ((VCall8 *)this)->v7();
         }
-        ((VCall8 *)this)->v5();
+        if (unk34 != 0) {
+            ((VCall8 *)this)->v5();
+        }
     }
 }
 
 void C_001C2290::func_001C2290(void) {
     unk2C = 0;
 }
+
+undefined4 C_001C22A0::func_001C22A0(byte param_1)
+{
+  int func_001BFE80(...);
+  int func_001E891B(...);
+  undefined4 in_ECX = (undefined4)this;
+  
+  func_001BFE80();
+  if ((param_1 & 1) != 0) {
+    func_001E891B(in_ECX);
+  }
+  return in_ECX;
+}
+
