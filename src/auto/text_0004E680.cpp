@@ -239,6 +239,63 @@ struct C_0004EDB0 {
     C_0004EDB0 *func_0004EDB0(void);
 };
 
+struct S_0004E7B0_Vec {
+    float x, y, z, w;
+};
+
+/* the viewer's direction filter: hands back a vector through its hidden return slot */
+struct S_0004E7B0_Filter {
+    S_0004E7B0_Vec func_00198040(S_0004E7B0_Vec *in);
+};
+
+struct S_0004E7B0_Cam {
+    char pad0[0x230];
+    S_0004E7B0_Filter *f230;
+    char pad234[0x600];
+    S_0004E7B0_Vec f834;
+};
+
+struct S_0004E7B0_Cams {
+    char pad0[0x1a8];
+    S_0004E7B0_Cam *f1a8[2];
+};
+
+struct S_0004E7B0_Scene {
+    char pad0[0x4e0];
+    S_0004E7B0_Cams *f4e0;
+};
+
+/* the arrow overlay of one player (DirectionArrowOverlay) */
+struct S_0004E7B0_Overlay {
+    void func_00088A40(int a, S_0004E7B0_Vec *v);
+};
+
+struct C_0004E7B0 {
+    char pad0[0x64];
+    S_0004E7B0_Scene *f64;
+    char pad68[0x220];
+    int f288;
+    char pad28c[4];
+    S_0004E7B0_Vec f290[1];
+    char pad2a0[0xa90];
+    S_0004E7B0_Overlay *fD30[2];
+    void func_0004E7B0(void);
+};
+
+extern float D_00277240;
+void func_0004E410(S_0004E7B0_Vec *out, S_0004E7B0_Vec *in);
+float func_0014FBA0(float x, float z);
+
+static inline S_0004E7B0_Vec Sub_0004E7B0(const S_0004E7B0_Vec &a, const S_0004E7B0_Vec &b)
+{
+    S_0004E7B0_Vec r;
+    r.x = a.x - b.x;
+    r.y = a.y - b.y;
+    r.z = a.z - b.z;
+    r.w = 1.0f;
+    return r;
+}
+
 void C_0004ECC0::func_0004E680(void)
 {
     extern C_0004ECC0Vec D_002A174C;
@@ -262,6 +319,47 @@ void C_0004ECC0::func_0004E680(void)
             obj->func_00168550(name, &f3d0[i * 0x78], 0x77);
         }
     }
+}
+
+void C_0004EBA0::func_0004EA20(int a)
+{
+    S_0004EA20_Vec v;
+    float xs[4];
+    float ys[4];
+    C_0004EA20_Item *item;
+    C_0004EA20_Obj *obj;
+    char *c;
+    int i;
+    bool bad;
+
+    v.z = 0;
+    v.y = 0;
+    v.x = 0;
+    v.w = 0x3f800000;
+    do {
+        i = func_00011260(0, f284 - 1);
+        v = f290[i];
+        c = &f3d0[i * 0x78];
+        bad = false;
+        if (*c != 0 && f1c0 != 0 && f1c0->func_00097DA0(c) == 0) {
+            bad = true;
+        }
+    } while (f288 == i || bad);
+    item = (C_0004EA20_Item *)a;
+    f288 = i;
+    xs[0] = *(float *)&item->f50;
+    xs[1] = *(float *)&item->f60;
+    xs[2] = *(float *)&item->f70;
+    xs[3] = 1.0f;
+    ys[0] = *(float *)&item->f54;
+    ys[1] = *(float *)&item->f64;
+    ys[2] = *(float *)&item->f74;
+    ys[3] = 1.0f;
+    item->f2ec &= 0xef;
+    item->func_001BB950(&v, item->f34, (u32 *)xs, (u32 *)ys, item->f2e0);
+    obj = f64->f3ac->f28[f64->f484->func_0001B3C0(D_00277750)];
+    obj->f1a4->f4->func_00199600(v);
+    obj->f1a4->f4->func_0019AC50();
 }
 
 int C_0004EBA0::func_0004EBA0(void)
