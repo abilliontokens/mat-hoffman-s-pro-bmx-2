@@ -246,7 +246,7 @@ struct C_00094A00 {
     S_00094A00_Obj *f50;
     char pad54[0x28];
     int f7C;
-    char pad80[4];
+    S_00094A10_Holder *f80;
     S_00094A00_Child *f84[1];
     int func_00094C60(void);
     int func_00094D00(void);
