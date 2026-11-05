@@ -345,6 +345,18 @@ struct C_001A22F0 {
 };
 
 /* KeyFramedAnimSoundEmitter::func_001A2690 (per-frame update) */
+extern float D_002A9ED0;
+extern float D_002A9ED4;
+extern float D_002A9ED8;
+
+struct V4K_1A {
+    float x, y, z, w;
+    V4K_1A() {}
+    V4K_1A(float a, float b, float c) { x = a; y = b; z = c; w = 1.0f; }
+    V4K_1A operator-(V4K_1A o) const { return V4K_1A(x - o.x, y - o.y, z - o.z); }
+    V4K_1A operator*(float s) const { return V4K_1A(x * s, y * s, z * s); }
+};
+
 struct KfBase_1A2690 {
     char pad0[0x21];
     u8 flags;
@@ -709,6 +721,83 @@ void C_001A2620::func_001A2620()
     func_001E891B(items.data);
     vtbl = &D_0028B3C4;
     func_00157660();
+}
+
+void KeyFramedAnimSoundEmitter_1A2690::func_001A2690(float dt)
+{
+    V4_1A v = D_002A9ECC;
+    int i;
+    Item_1A *item;
+    float t;
+    KfAnim_1A2690 *anim;
+
+    if (f1c0) {
+        f1c0->func_00199A70(0, &v);
+    } else if (f1c4) {
+        f1c4->func_00199A70(0, &v);
+    } else {
+        v = f70;
+    }
+    V4_1A *cur = &f70;
+    V4_1A *prev = &f28;
+    *prev = *cur;
+    *cur = v;
+    if (!(f98 & 2)) {
+        V4_1A o = *prev;
+        V4_1A d;
+        d.x = cur->x - o.x;
+        d.y = cur->y - o.y;
+        d.z = cur->z - o.z;
+        d.w = o.w;
+        if (dt > D_00275544) {
+            float inv = D_00275460 / dt;
+            o.x = d.x * inv;
+            o.y = d.y * inv;
+            o.z = d.z * inv;
+            o.w = 1.0f;
+            f80 = o;
+        }
+    }
+    if (f2d8 != 0 && f1a4->f5c != 0) {
+        anim = f2cc;
+        if (anim != 0 && (anim->flags & 1) && anim->f10 == 0) {
+            t = anim->f34;
+            if (t < f2d0) {
+                for (i = 0; i < f2d4; i++) {
+                    entries[i].done = 0;
+                }
+            }
+            for (i = 0; i < f2d4; i++) {
+                if (entries[i].t < t && entries[i].done == 0) {
+                    item = items.Get(entries[i].a - 1);
+                    if (item->f8 != 0) {
+                        if (v27() != 0) {
+                            v33();
+                        }
+                        func_001A1B60(item->obj);
+                        entries[i].done = 1;
+                    } else if (f1bc != 0 && f1bc->v7() != 0) {
+                        if (f1a4->func_0001CE80(item->obj, &f70, &f80, f48, f4c) != 0) {
+                            item->obj->v5(4);
+                        }
+                        entries[i].done = 1;
+                    }
+                }
+            }
+            f2d0 = t;
+        } else {
+            if (f1bc != 0 && v27() != 0) {
+                v33();
+            }
+        }
+    }
+    for (i = 0; i < items.count; i++) {
+        item = items.Get(i);
+        if (item->f4 == 0 && item->obj->v7() != 0) {
+            f1a4->func_0001CE80(item->obj, &f70, &f80, f48, f4c);
+        }
+    }
+    func_00157A00(dt);
 }
 
 int C_001A2A10::func_001A2A10(int a0)
