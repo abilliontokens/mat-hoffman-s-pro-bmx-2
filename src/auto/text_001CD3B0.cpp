@@ -40,6 +40,17 @@ struct S_SoundElemList {
     }
 };
 
+struct S_SoundGroupFlags {
+    u8 b0 : 1;
+    u8 b1 : 1;
+    u8 b2 : 1;
+    u8 b3 : 1;
+    u8 b4 : 1;
+    u8 b5 : 1;
+    u8 b6 : 1;
+    u8 b7 : 1;
+};
+
 struct XboxSoundGroup {
     void *vtbl;
     char pad4[0x24];
