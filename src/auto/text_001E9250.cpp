@@ -1,5 +1,6 @@
 /* 36 functions from 0x001E9250 to 0x001EA23F, found by Ghidra. */
 #include "common.h"
+#include <string.h>
 
 int __fastcall func_001E9250(int param_1, int param_2) {
     return param_2 - 1;
@@ -189,6 +190,8 @@ double func_001E9649(char *str) {
     };
     char *p = str;
     char *s;
+    char c;
+    char *q;
     struct Res res;
     void *r;
 
@@ -205,9 +208,12 @@ double func_001E9649(char *str) {
         p++;
     }
     s = p;
-    while (*s++ != 0) {
-    }
-    r = func_001ED0FC(&res, p, (int)(s - p - 1), 0, 0);
+    q = s + 1;
+    do {
+        c = *s;
+        s++;
+    } while (c != 0);
+    r = func_001ED0FC(&res, p, (int)(s - q), 0, 0);
     return *(double *)((char *)r + 0x10);
 }
 int func_001E96A5(int a0, int a1, int a2) {
