@@ -1,6 +1,36 @@
 /* 10 functions from 0x0009E680 to 0x0009F620, found by Ghidra. */
 #include "common.h"
 
+extern int D_0027AC78;
+extern int D_002A5558;
+extern int D_002A2528;
+extern int D_002A252C;
+extern int D_002A2530;
+extern int D_002A2534;
+extern int D_0027AC8C;
+void func_001ADCC0(void *dst, void *src, int n, void *x);
+
+struct C_0009EDF0 {
+    int vtbl;
+    char pad4[0x68];
+    char f6c[0x104];
+    float f170, f174, f178, f17c;
+    char pad180[8];
+    int f188;
+    char pad18c[4];
+    int f190;
+    char pad194[0x14];
+    int f1a8, f1ac;
+    char pad1b0[0x1c];
+    unsigned char f1cc;
+    char pad1cd[0x23];
+    float f1f0;
+    int f1f4, f1f8, f1fc, f200, f204, f208;
+    float f20c, f210, f214, f218;
+    C_0009EDF0 *func_0009EDF0(int a);
+    void func_00169C50(int a);
+};
+
 struct C_0009F580 {
     int unk0;
     void func_00169DE0(void);
