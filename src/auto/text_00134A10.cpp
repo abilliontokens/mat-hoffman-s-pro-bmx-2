@@ -57,7 +57,7 @@ struct S_Vec4 {
     S_Vec4() { w = 1.0f; }
     S_Vec4 operator+(const S_Vec4 &o) const { S_Vec4 r; r.x = x + o.x; r.y = y + o.y; r.z = z + o.z; return r; }
     S_Vec4 operator-(const S_Vec4 &o) const { S_Vec4 r; r.x = x - o.x; r.y = y - o.y; r.z = z - o.z; return r; }
-    S_Vec4 operator*(float s) const { S_Vec4 r; r.x = x * s; r.y = y * s; r.z = z * s; return r; }
+    S_Vec4 operator*(float s) const { S_Vec4 r; r.x = s * x; r.y = s * y; r.z = s * z; return r; }
 };
 
 /* the particle's verlet state: previous and current position, velocity, acceleration */
@@ -259,11 +259,12 @@ void S_Particle::func_00135550(float dt)
     S_ParticleData *p = (S_ParticleData *)this;
 
     if (dt != D_00275544) {
-        if (p->prev.x == D_002A4434 && p->prev.y == D_002A4438 && p->prev.z == D_002A443C) {
+        float *pf = &p->prev.x;
+        if (pf[0] == D_002A4434 && pf[1] == D_002A4438 && pf[2] == D_002A443C) {
             p->prev = p->cur;
         }
         S_Vec4 next = (p->cur * 2.0f - p->prev) + p->acc * dt * dt;
-        p->vel = (p->cur - p->prev) * (D_00275460 / dt);
+        p->vel = (p->cur - p->prev) * (dt = D_00275460 / dt);
         p->prev = p->cur;
         p->cur = next;
         p->acc = (S_Vec4 &)D_002A4434;
