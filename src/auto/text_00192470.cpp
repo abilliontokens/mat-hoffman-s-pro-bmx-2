@@ -98,6 +98,53 @@ struct C_00192CA0 {
     C_00192CA0 *func_00192CA0(unsigned int flags);
 };
 
+/* SearchNode */
+struct S_00192930_Node {
+    S_00192930_Node *next;
+    int a;
+    int b;
+    int c;
+    int d;
+};
+
+struct S_00192930_Iface {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    int pad4;
+    int f8;
+};
+
+struct C_00157660 {
+    void func_00157660(void);
+};
+
+struct C_00157BF0 {
+    int func_00157BF0(int a, int b);
+};
+
+extern int D_002EFE58;
+extern int D_002A986C;
+extern int D_002EFE5C;
+
+int func_00135C70(int a, int b, int c, int d);
+void func_001E8390(void *p);
+void *func_001E8AA5(int size);
+void func_001E891B(void *p);
+
+struct SearchNode {
+    void *vtbl;
+    char pad4[0x20];
+    S_00192930_Node *f24;
+    S_00192930_Iface *f28;
+    S_00192930_Iface *f2C;
+    void *f30;
+    void func_00192930(void);
+    int func_00192990(int a, int b);
+    void func_00192A50(int a, int b);
+    int func_00192AC0(S_00192930_Iface *obj);
+};
+
 int *C_00192470::func_00192470(int *param_1)
 {
     void *func_001E83E8(void *, int);
@@ -203,6 +250,26 @@ undefined4 C_001926D0::func_001926D0(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+C_00192470 *C_00192470::func_00192720(void)
+{
+    void *func_001E8A44(int);
+    func_0001DFE0();
+    vtbl = (void *)&D_0028AB84;
+    f14 = 0;
+    f10 = 0;
+    f18 = 0;
+    f1C = 0;
+    f20 &= 0xfe;
+    f8 = 0;
+    f14 = (SearchEntry **)func_001E8A44(0x78);
+    f18 = 0x1e;
+    f1C = 0x1e;
+    f20 |= 1;
+    f24 = D_002AAEC8->func_001BC6E0(D_0028AB70);
+    f25 = D_002AAEC8->func_001BC6E0(D_0028AA90);
+    return this;
 }
 
 void C_00192470::func_001927A0(void)
