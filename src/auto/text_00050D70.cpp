@@ -145,6 +145,22 @@ int C_00051840::func_00051840(void)
     return count;
 }
 
+int C_00051A00::func_00051A00(void)
+{
+    int i;
+    int j;
+
+    for (i = 0; i < f64->f3b4->f24; i++) {
+        for (j = 0; j < f64->f3b4->f28[i]->f8; j++) {
+            C_00051A00Node *node = f64->f3b4->f28[i]->f10c[j];
+            if (node->f4 == 0xd) {
+                f64->f3b4->f28[i]->f4->v7();
+            }
+        }
+    }
+    return 1;
+}
+
 int C_00051A90::func_00051A90(int flag)
 {
     if (flag != 0) {
