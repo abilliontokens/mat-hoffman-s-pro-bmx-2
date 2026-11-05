@@ -34,6 +34,7 @@ extern S_QuadTreeGlobal *D_002EFD80;
 
 struct S_QuadTreeItem {
     virtual void v0(int flag);
+    void *func_0017CFF0(void *item);
 };
 
 struct C_0017D500_Mgr {
@@ -167,7 +168,7 @@ void QuadTreeNode::func_0017CEB0(void *item)
 int QuadTreeNode::func_0017CF30(void *item)
 {
     S_QuadTreeListNode *node = f8;
-    S_QuadTreeListNode *prev = 0;
+    S_QuadTreeListNode *prev;
     int i;
 
     if (node != 0) {
