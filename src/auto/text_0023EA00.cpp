@@ -34,7 +34,8 @@ struct S_0023F23E_Obj {
     int f50;
     char pad54[0x10];
     int f64;
-    char pad68[0x20];
+    int f68;
+    char pad6C[0x1c];
     int f88;
     char pad8C[8];
     unsigned int f94;
