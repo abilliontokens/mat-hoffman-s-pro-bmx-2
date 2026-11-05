@@ -89,6 +89,7 @@ struct C_001B4BE0 {
     int f22C;
     int f230;
     C_001B4BE0 *func_001B4BE0(void);
+    int func_001B4C90(S_001B4C90_Stream *stream);
 };
 
 /* vtable of the object at TireTrack+0x24 (28..31 are the slots used here) */
