@@ -1,6 +1,7 @@
 /* 30 functions from 0x0014F600 to 0x00150480, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <math.h>
 struct C_00150350 {
     int unk0;
     void func_00150350(void);
