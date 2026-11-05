@@ -3,6 +3,53 @@
 #include "ghidra.h"
 #include <string.h>
 #include <math.h>
+struct C_001446B0 {
+    void func_001446B0(int a, int b, int c);
+};
+struct C_001D54F0 {
+    void func_001D54F0(void);
+};
+struct C_00157960 {
+    int func_00157960(void);
+};
+struct S_001AED80_Sub {
+    char pad0[4];
+    C_001446B0 *f4;
+    char pad8[0x24];
+    int f2C;
+    int f30;
+    int f34;
+    int f38;
+    float f3C;
+    float f40;
+    char pad44[0x10];
+    unsigned int f54;
+    unsigned int f58;
+    unsigned int f5C;
+    unsigned int f60;
+    unsigned char f64;
+};
+struct C_001AED80 {
+    void *vtbl;
+    char pad4[0x28];
+    float f2C;
+    float f30;
+    char pad34[0x1C];
+    int f50;
+    S_001AED80_Sub *f54;
+    char pad58[0x10];
+    float f68;
+    int f6C;
+    int f70;
+    int f74;
+    int f78;
+    float f7C;
+    float f80;
+    unsigned char f84;
+    int func_001AED80(void);
+};
+extern int D_002F00D0;
+extern float D_002755E8, D_00279B54, D_00275460, D_002AA3F8, D_00276E9C, D_0027A060, D_00284758;
 struct C_002A8490 { char pad[0x244]; float f244; };
 extern char D_002A60B0[];
 extern char D_002A60AF[];
