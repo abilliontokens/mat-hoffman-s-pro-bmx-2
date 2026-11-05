@@ -57,6 +57,11 @@ struct TikiPlayerAirborneState {
     int func_00156030(int param_1);
 };
 
+struct C_002754B8 {
+    void *vtbl;
+    ~C_002754B8() { vtbl = (void *)&D_002754B8; }
+};
+
 struct S_00156740_Sub {
     virtual void dummy0();
     virtual void dummy1();
