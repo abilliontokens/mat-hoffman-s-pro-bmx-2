@@ -88,6 +88,30 @@ extern "C" long (__stdcall *_imp__NtSetInformationFile)(void *handle, S_IoStatus
 extern "C" long (__stdcall *_imp__NtClose)(void *handle);
 int __stdcall func_001DF26F(int a, int b);
 
+/* the loaded image's header: its title signature key at +8 and the 16
+   alternate title ids it may be signed with at +0x5c */
+struct S_001DF26F_Image {
+    char pad0[8];
+    int titleId;
+    char padC[0x50];
+    int altTitleIds[0x10];
+};
+
+extern "C" void *_imp__XboxSignatureKey;
+extern "C" void *_imp__XboxAlternateSignatureKeys[0x10];
+extern int D_002F41D0;
+
+void __stdcall func_001DD62B(int code);
+int __stdcall func_001DF5B9(int a, int size);
+int __stdcall func_001DF234(void *a, void *digest, void *b);
+void __stdcall func_001DF5D6(void *a);
+int func_001DD603(void);
+void func_001E2213(void);
+void func_001E26AD(void);
+void func_001E2655(void);
+void func_001614C0(int a, int b, int c);
+void __stdcall func_001E20BF(int a, int b, int c);
+
 #pragma intrinsic(__readfsbyte)
 #pragma intrinsic(__readfsdword)
 extern "C" long (__stdcall *_imp__PsCreateSystemThreadEx)(int *threadHandle, u32 extraSize, u32 kernelStackSize, u32 tlsDataSize, u32 *threadId, void *startContext1, void *startContext2, u32 createSuspended, u32 debugStack, void *startRoutine);
