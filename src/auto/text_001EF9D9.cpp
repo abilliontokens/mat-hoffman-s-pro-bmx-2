@@ -70,6 +70,8 @@ void func_001F2F3F(void *a, void *b);
 void *_func_001EFD19(void *a, char *b, void *c);
 void *_func_001EFF6E(S_001EF734 *o);
 void *_func_001EFDB9(void *out, int v);
+int func_001EE9D1(void);
+void *func_001F2BCC(void *a, void *b);
 
 struct C_001EFB18_Child {
     C_001EFB18_Child *func_001EF419(void);
