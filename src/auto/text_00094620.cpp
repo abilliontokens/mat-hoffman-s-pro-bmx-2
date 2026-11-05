@@ -209,6 +209,16 @@ void *C_00094710::func_00094710(unsigned int flags)
     return this;
 }
 
+int C_00094760::func_00094760(void)
+{
+    if (++unk34 >= unk50->unkA8) {
+        unk34 = 0;
+    }
+    D_002A8490->f2e0->unk468 = unk34;
+    unk50->func_001CEFD0(unk34);
+    return unk34;
+}
+
 void C_00094760::func_000947F0(int node)
 {
     unk34 = node;
