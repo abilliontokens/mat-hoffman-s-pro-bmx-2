@@ -113,15 +113,18 @@ int func_001EB04C(void) {
             return 0x1a;
         }
     }
-    for (i = 0, p = (int)D_002AE670; p < (int)D_002AE8F0; p += 0x20, i++) {
-        ((int *)D_002FB368)[i] = p;
+    for (i = 0; i < 20; i++) {
+        ((int *)D_002FB368)[i] = (int)D_002AE670 + i * 0x20;
     }
-    for (i = 0, p = (int)D_002AE680; p < (int)D_002AE6E0; p += 0x20, i++) {
-        LockEntry *e = &D_002FB260[i >> 5][i & 0x1f];
-        if (e->f0 == -1 || e->f0 == 0) {
+    i = 0;
+    p = (int)D_002AE680;
+    do {
+        if (D_002FB260[i >> 5][i & 0x1f].f0 == -1 || D_002FB260[i >> 5][i & 0x1f].f0 == 0) {
             *(int *)p = -1;
         }
-    }
+        p += 0x20;
+        i++;
+    } while (p < (int)D_002AE6E0);
     return 0;
 }
 
