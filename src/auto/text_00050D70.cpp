@@ -237,3 +237,12 @@ int C_00051A90::func_00051A90(int flag)
     return 1;
 }
 
+undefined4 C_00051CB0::func_00051CB0(void *param_1)
+{
+  int in_ECX = (int)this;
+
+  ((C_00051BB0 *)this)->func_00051BB0();
+  memcpy((void *)(*(int *)(in_ECX + 0x2c8) * 0x20000 + *(int *)(in_ECX + 0x294)), param_1, 0x20000);
+  return 1;
+}
+
