@@ -137,6 +137,7 @@ struct DXVertexBufferCache {
     int func_001C3830(int a1, int a2);
     void func_001C3980(void);
     void func_001C3A10(void);
+    int func_001C3BF0(int a1, int a2);
 };
 
 struct DXIndexBufferCache {
