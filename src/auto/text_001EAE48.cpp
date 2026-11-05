@@ -6,10 +6,15 @@ extern char D_002AE8D0[];
 extern char D_002AE680[];
 extern char D_002AE6E0[];
 extern char D_002AE8F0[];
-extern int *D_002FB260[];
+struct LockEntry {
+    int f0;
+    char pad4[0x24];
+};
+extern LockEntry *D_002FB260[];
 extern int D_002FB36C;
 extern int *D_002FB368;
 extern double D_002766A8;
+extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *cs);
 
 void func_001EAEC3(void) {
     int func_001EB390(...);
@@ -66,6 +71,57 @@ double func_001EAF91(double x, double y) {
     double r = x;
     ((unsigned int *)&r)[1] = (((unsigned int *)&r)[1] ^ ((unsigned int *)&y)[1]) & 0x7fffffff ^ ((unsigned int *)&y)[1];
     return r;
+}
+
+int func_001EAFB2(double x) {
+    int func_001F39D3(...);
+    unsigned short e = ((unsigned short *)&x)[3];
+    unsigned int sign = e & 0x8000;
+    if ((e & 0x7ff0) == 0x7ff0) {
+        int t = func_001F39D3(x);
+        if (t == 1) return 0x200;
+        if (t == 2) return 4;
+        if (t == 3) return 2;
+        return 1;
+    }
+    if ((e & 0x7ff0) == 0
+        && ((((unsigned int *)&x)[1] & 0xfffff) != 0 || ((unsigned int *)&x)[0] != 0)) {
+        return sign ? 0x10 : 0x80;
+    }
+    if (x == D_002766A8) {
+        return sign ? 0x20 : 0x40;
+    }
+    return sign ? 0x8 : 0x100;
+}
+
+int func_001EB04C(void) {
+    int *func_001EA1A1(...);
+    int n, i, p;
+    n = D_002FB36C;
+    if (n == 0) {
+        n = 0x200;
+    } else if (n < 20) {
+        n = 20;
+    }
+    D_002FB36C = n;
+    D_002FB368 = func_001EA1A1(n, 4);
+    if (D_002FB368 == 0) {
+        D_002FB36C = 20;
+        D_002FB368 = func_001EA1A1(20, 4);
+        if (D_002FB368 == 0) {
+            return 0x1a;
+        }
+    }
+    for (i = 0, p = (int)&D_002AE670; p < (int)&D_002AE8F0; p += 0x20, i++) {
+        ((int *)D_002FB368)[i] = p;
+    }
+    for (i = 0, p = (int)&D_002AE680; p < (int)&D_002AE6E0; p += 0x20, i++) {
+        int *q = (int *)((char *)D_002FB260[i >> 5] + (i & 0x1f) * 0x28);
+        if (*q == -1 || *q == 0) {
+            *(int *)p = -1;
+        }
+    }
+    return 0;
 }
 
 void func_001EB109(char *p) {
