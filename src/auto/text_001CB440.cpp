@@ -240,10 +240,16 @@ struct C_001CBF20 {
     S_001CBF20_Vec4 fD8;
     int fE8;
     float fEC;
+    char padF0[8];
+    S_001CBF20_Vec4 fF8;
+    S_001CBF20_Vec4 f108;
     int func_001CBF20(void);
     int func_001CBF60(void);
     int func_001CBF90(float v);
+    int func_001CBFE0(S_001CBF20_Vec4 *a, S_001CBF20_Vec4 *b);
 };
+
+int __stdcall func_00222309(int h, int x0, int y0, int z0, int x1, int y1, int z1, int apply);
 
 int __stdcall func_002222E5(int a, float b, int c);
 
