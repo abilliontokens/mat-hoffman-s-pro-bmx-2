@@ -12,10 +12,16 @@ struct C_001D5AD0 {
     void func_001D5AD0();
 };
 
+struct C_001D6600 {
+    void func_001D6600();
+};
+
 struct S_002B91AC {
     char pad0[0x24];
     C_001D5AD0 *unk24, *unk28, *unk2C, *unk30;
-    char pad34[0x1c];
+    C_001D6600 *unk34;
+    C_001D6600 *arr38[2];
+    char pad40[0x10];
     C_001D5AD0 *unk50, *unk54;
     char pad58[0x10];
     C_001D5AD0 *unk68, *unk6C;
