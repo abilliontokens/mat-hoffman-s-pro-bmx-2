@@ -59,6 +59,13 @@ struct S_00026500_Entry {
     char pad[0x2c];
 };
 
+struct S_000267F0_V4 {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
 struct C_00026500 {
     char pad0[0x2c];
     int count;
@@ -112,6 +119,40 @@ undefined4 func_00026300(float *param_1, float *param_2)
     return 0;
   }
   return 1;
+}
+
+int C_00026500::func_00026500(const char *name, int value)
+{
+    int i;
+    for (i = 0; i < count; i++) {
+        if (strcmp(entries[i].name, name) == 0) {
+            f30 = i;
+            return i;
+        }
+    }
+    if (count < 0x96) {
+        entries[count].value = value;
+        func_001E8BF0(entries[count].name, name, 0x1f);
+        f30 = count;
+        return count++;
+    }
+    return 0x95;
+}
+
+void func_000267F0(float *out, float *v, float *m)
+{
+    out[0] = m[1] * v[1] + m[2] * v[2] + m[0] * v[0];
+    out[1] = m[5] * v[1] + m[4] * v[0] + m[6] * v[2];
+    out[2] = m[9] * v[1] + m[8] * v[0] + m[10] * v[2];
+    out[3] = 1.0f;
+}
+
+void func_00026880(float *out, float *v, float *m)
+{
+    out[0] = m[8] * v[2] + m[4] * v[1] + m[0] * v[0];
+    out[1] = m[9] * v[2] + m[5] * v[1] + m[1] * v[0];
+    out[2] = m[10] * v[2] + m[6] * v[1] + m[2] * v[0];
+    out[3] = 1.0f;
 }
 
 undefined4 C_00026A70::func_00026A70(int param_1)
