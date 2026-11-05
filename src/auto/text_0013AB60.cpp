@@ -46,7 +46,12 @@ struct S_0013AF80_Row {
     int f8;
     int fC;
     int f10;
-    char pad14[0x14];
+    int f14;
+    int f18;
+    int f1C;
+    int f20;
+    char f24;
+    char pad25[3];
 };
 
 extern "C" int D_0014FEF0(int p);
