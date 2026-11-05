@@ -81,6 +81,21 @@ struct S_001EEFBA {
     S_001EEFBA *func_001EF3D2(BitObj *src);
 };
 
+/* the undecorator's parse context: two S_001EEFBA argument lists back to back */
+struct S_001EF577 {
+    char pad0[0x3c];
+    char f3C[0x3c];
+    S_001EF577 *func_001EF577(void *a, char *name, int c, int d, int e);
+};
+
+extern char *D_002F6A28;
+extern char *D_002F6A2C;
+extern void *D_002F6A30;
+extern int D_002F6A34;
+extern int D_002F6A3C;
+extern void *D_002F6A20;
+extern void *D_002F6A18;
+
 /* singly linked node: the next pointer is at +4 */
 struct S_001EEFE3 {
     int f0;
