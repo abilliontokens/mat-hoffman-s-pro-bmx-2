@@ -12,6 +12,7 @@ struct C_0001EF40 {
 
 extern int D_00275F9C;
 extern int D_00275F7C;
+extern int D_00276004;
 extern int D_002B7D54;
 extern u32 *D_002B7D4C;
 extern u32 D_002B7D50;
