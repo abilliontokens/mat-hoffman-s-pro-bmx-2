@@ -64,6 +64,15 @@ struct C_00150900 {
     void func_00150900(Vec4_150900 *a0, Vec4_150900 *a1);
 };
 
+void *C_001507E0::func_001507E0(int flags) {
+    vtbl = (void *)&D_00286B04;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void C_00150F60::func_00150F60(int a0, int a1) {
     int func_001D3F50(...);
     unk24 = a0;
