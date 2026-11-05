@@ -204,3 +204,20 @@ void C_00198B70::func_00199900(float *v)
     }
 }
 
+void C_00198B70::func_00199A70(C_00198B70 *other, S_00198B70_F4 *out)
+{
+    if (other == this) {
+        out->x = fB0.m[3];
+        out->y = fB0.m[7];
+        out->z = fB0.m[11];
+        return;
+    }
+    func_00197AA0();
+    out->x = fF0.m[3];
+    out->y = fF0.m[7];
+    out->z = fF0.m[11];
+    if (other != 0) {
+        *out = other->func_00198120(out);
+    }
+}
+
