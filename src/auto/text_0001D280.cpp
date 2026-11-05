@@ -311,19 +311,22 @@ void *C_0001D690::func_0001D690(unsigned char param_1)
 
 int C_0001DF80::func_0001DF80(int param_1, int param_2)
 {
+  C_0001DF80_Arr *a;
+
   if (param_1 == 0) {
     return 0;
   }
   if (param_2 != 0) {
     sub30.func_001CDED0(param_1);
   }
-  if (sub70.n >= sub70.cap) {
-    if (sub70.func_0015ACA0(sub70.base + sub70.n) == 0) {
+  a = &sub70;
+  if (a->n >= a->cap) {
+    if (a->func_0015ACA0(a->base + a->n) == 0) {
       return 0;
     }
   }
-  sub70.arr[sub70.n] = param_1;
-  sub70.n++;
+  a->arr[a->n] = param_1;
+  a->n++;
   return 1;
 }
 
@@ -359,6 +362,17 @@ void *C_0001E030::func_0001E030(int flags) {
     if (flags & 1) {
         func_001E891B(this);
     }
+    return this;
+}
+
+C_0001E050 *C_0001E050::func_0001E050(void) {
+    extern int D_00275F34;
+    ((C_0001DFE0 *)this)->func_0001DFE0();
+    unk8 = 0;
+    unkC = 0;
+    unk10 = 0;
+    unk0 = (int)&D_00275F34;
+    unk14 = 0x7f7fffff;
     return this;
 }
 
