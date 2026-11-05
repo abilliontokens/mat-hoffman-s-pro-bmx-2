@@ -66,6 +66,7 @@ struct C_001425B0 {
     int fEC;
     void func_0001DFE0(void);
     C_001425B0 *func_001425B0(void);
+    void func_00142180(int buffer, int dst, int src, int count, int clear);
 };
 
 extern int D_002A6D30;
@@ -411,6 +412,94 @@ void C_00142720::func_00142720(void)
     }
     fA8 = 0;
     func_0001DFF0();
+}
+
+void C_00142AF0::func_00142810(void)
+{
+    int pos;
+    int i;
+    int remaining;
+    int chunk;
+    int slot;
+    int flag;
+    int n;
+    float t;
+    float maxv;
+    int off;
+
+    pos = 0;
+    i = 0;
+    if (i < f50) {
+        off = 0;
+        do {
+            remaining = *(int *)((char *)f18 + off + 0x2C) - *(int *)((char *)f18 + off + 0x28) + 1;
+            f48 = *(int *)((char *)f18 + off + 0x24);
+            f64 = *(S_001425B0_V3 *)((char *)f18 + off + 4);
+            f70 = *(S_001425B0_V3 *)((char *)f18 + off + 0x10);
+            f7C = *(int *)((char *)f18 + off + 0x1C);
+            f80 = *(int *)((char *)f18 + off + 0x20);
+            fEC = *(int *)((char *)f18 + off + 0x30);
+            while (remaining > 0) {
+                if (f38[f48] + remaining > f24)
+                    chunk = f24 - f38[f48];
+                else
+                    chunk = remaining;
+                slot = f28[f48];
+                flag = 0;
+                if (*(int *)((char *)f14 + slot * 0x34 + 0x24) != f48)
+                    flag = 1;
+                *(int *)((char *)f14 + slot * 0x34 + 0x24) = f48;
+                *(S_001425B0_V3 *)((char *)f14 + slot * 0x34 + 4) = f64;
+                *(S_001425B0_V3 *)((char *)f14 + slot * 0x34 + 0x10) = f70;
+                *(int *)((char *)f14 + slot * 0x34 + 0x1C) = f7C;
+                *(int *)((char *)f14 + slot * 0x34 + 0x20) = f80;
+                *(int *)((char *)f14 + slot * 0x34 + 0x30) = fEC;
+                func_00142180(slot, f38[f48], pos, chunk, flag);
+                maxv = D_00275544;
+                n = 0;
+                if (chunk >= 4) {
+                    do {
+                        t = f10[pos + n].f1C + f10[pos + n].f18;
+                        if (maxv < t)
+                            maxv = t;
+                        t = f10[pos + n + 1].f1C + f10[pos + n + 1].f18;
+                        if (maxv < t)
+                            maxv = t;
+                        t = f10[pos + n + 2].f1C + f10[pos + n + 2].f18;
+                        if (maxv < t)
+                            maxv = t;
+                        t = f10[pos + n + 3].f1C + f10[pos + n + 3].f18;
+                        if (maxv < t)
+                            maxv = t;
+                        n += 4;
+                    } while (n + 3 < chunk);
+                }
+                for (; n < chunk; n++) {
+                    t = f10[pos + n].f1C + f10[pos + n].f18;
+                    if (maxv < t)
+                        maxv = t;
+                }
+                if (*(float *)((char *)f14 + slot * 0x34) < maxv + f58)
+                    *(float *)((char *)f14 + slot * 0x34) = maxv + f58;
+                f38[f48] += chunk;
+                if (f38[f48] >= f24) {
+                    f38[f48] = 0;
+                    f4C++;
+                    if (f4C >= f20)
+                        f4C = 0;
+                    f28[f48] = f4C;
+                }
+                remaining -= chunk;
+                pos += chunk;
+            }
+            i++;
+            off += sizeof(S_00142810_Rec);
+        } while (i < f50);
+    }
+    f60 = 0;
+    f48 = 0;
+    f50 = 0;
+    f54 = 0;
 }
 
 int C_00142AF0::func_00142AF0(void)
