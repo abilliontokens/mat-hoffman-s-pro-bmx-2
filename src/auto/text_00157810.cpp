@@ -51,11 +51,27 @@ struct C_00157810 {
     S_00157810_Child *f10;
     char pad14[8];
     char f1C;
+    char pad1D[3];
+    char f20;
+    unsigned char f21_b0 : 1;
+    unsigned char f21_b1 : 1;
+    unsigned char f21_b2 : 1;
     int func_00157960(void);
     int func_001579B0(void);
     int func_00157A00(int a);
+    int func_00157A50(int a);
+    int func_00157A90(int a);
     int func_00157AE0(void);
+    int func_00157B10(void);
 };
+
+struct C_00158360 {
+    void *vtbl;
+    void func_0001DFF0(void);
+    void *func_00158360(int flags);
+};
+
+void func_001E891B(void *p);
 
 int C_00157810::func_00157960(void)
 {
