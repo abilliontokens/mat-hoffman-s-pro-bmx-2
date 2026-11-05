@@ -54,6 +54,52 @@ struct C_00013F50 {
     void func_00013F50(C_00013F50_Dst *dst, int kind, void *arg1, float arg2);
 };
 
+extern int D_002754CC;
+extern int D_002754B8;
+
+void func_001E891B(void *p);
+
+/* an owned component with a virtual teardown at slot 2 */
+struct S_00014020_Part {
+    virtual void vf0();
+    virtual void vf1();
+    virtual void vf2();
+};
+
+/* a small heap object whose destructor only resets its vtable */
+struct S_00014020_Small {
+    void *vtbl;
+};
+
+/* the ref-counted block shared by every instance */
+struct S_00014020_Shared {
+    int refs;
+    char pad4[0x18];
+    void *f1c;
+    void *f20;
+    void *f24;
+};
+
+extern S_00014020_Shared *D_002AF44C;
+
+/* AIPedestrian */
+struct C_00014020 {
+    void *vtbl;
+    char pad4[0x380];
+    S_00014020_Part *f384;
+    S_00014020_Small *f388;
+    S_00014020_Small *f38C;
+    S_00014020_Small *f390;
+    S_00014020_Small *f394;
+    S_00014020_Small *f398;
+    S_00014020_Small *f39C;
+    S_00014020_Small *f3A0;
+    S_00014020_Small *f3A4;
+    S_00014020_Small *f3A8;
+    void func_00014020();
+    void func_001C75A0();
+};
+
 void C_00013F50::func_00013F50(C_00013F50_Dst *dst, int kind, void *arg1, float arg2)
 {
     dst->f3ac = 0;
