@@ -429,7 +429,6 @@ void C_00162A80::func_00162A80(C_00162790 *item)
 {
     int idx = 0;
     int i;
-    int n;
 
     for (i = 0; i < unk0; i++) {
         if (unk18[i] == item) {
@@ -444,9 +443,21 @@ void C_00162A80::func_00162A80(C_00162790 *item)
         for (i = idx; i < unk0 - 1; i++) {
             unk18[i] = unk18[i + 1];
         }
-        n = unk0 - 1;
-        unk0 = n;
-        unk18 = (C_00162790 **)func_001E83E8(unk18, n * 4);
+        idx = unk0 - 1;
+        unk0 = idx;
+        unk18 = (C_00162790 **)func_001E83E8(unk18, idx * 4);
     }
+}
+
+C_00162790 *C_00162A80::func_00162B20(const char *name, int unused)
+{
+    int i;
+
+    for (i = 0; i < unk0; i++) {
+        if (func_001EA426(unk18[i]->unk0, name) == 0) {
+            return unk18[i];
+        }
+    }
+    return 0;
 }
 
