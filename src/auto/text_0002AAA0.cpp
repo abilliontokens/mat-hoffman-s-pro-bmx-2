@@ -43,3 +43,8 @@ void C_0002B180::func_0002B180(void)
   *(int *)(in_ECX + 0xc) = *(int *)(in_ECX + 4);
   return;
 }
+
+int C_0002B1A0::func_0002B1A0(void) {
+    return unkC >= unk4;
+}
+
