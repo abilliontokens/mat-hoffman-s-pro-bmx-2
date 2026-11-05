@@ -207,6 +207,110 @@ struct C_000F1580 {
     int func_000F1580(int a1, int a2);
 };
 
+int C_000F1580::func_000F1580(int a1, int a2)
+{
+    S_Ctx_000F1580 *ctx = f124;
+    S_Prompt_000F1580 *q = ctx->f24;
+
+    if (ctx->f25c->f74->func_000301D0() != 0) {
+        return 0;
+    }
+    if ((f280 != 0 || f284 != 0) && f288 == 0) {
+        return 0;
+    }
+    if (ctx->f270->func_000B5870() == 0) {
+        return 0;
+    }
+    if (f2A4 == 0) {
+        return 0;
+    }
+    if (a2 == ((GObjRoot_000F1980 *)D_002A8490)->f8->func_00136170(2, 2, 0)) {
+        if (f140->f4->f30 == 1) {
+            goto done;
+        }
+        q->func_000B9A80(2, 1);
+        f140->f4->func_001BDF00(0);
+        f3BC = f140->f4->f30;
+        goto done;
+    }
+    if (a2 == D_002A8490->f8->func_00136170(3, 2, 0)) {
+        if (f140->f4->f30 == 5) {
+            goto done;
+        }
+        q->func_000B9A80(2, 1);
+        f140->f4->func_001BDE90(0);
+        f3BC = f140->f4->f30;
+        goto done;
+    }
+    if (a2 != D_002A8490->f8->func_00136170(4, 2, 0) &&
+        a2 != D_002A8490->f8->func_00136170(0x17, 2, 0)) {
+        if (a2 == D_002A8490->f8->func_00136170(5, 2, 0) ||
+            a2 == D_002A8490->f8->func_00136170(0x18, 2, 0)) {
+            if (f284 != 0) {
+                q->func_000B9A80(1, 1);
+                D_002A8490->f2E0->f2fc->func_00094E40(2, 1, 500);
+                f2A0 = 1;
+            }
+            f290 = a1;
+            f284 = 1;
+            f294 = 0;
+            f28C = a2;
+            if (f288 == 0) {
+                return 0;
+            }
+            f124->f138 = 7;
+            f124->f134 = 0xb;
+            goto done;
+        }
+        goto done;
+    }
+    if (f280 == 0) {
+        if (f3D4[func_001BF050(1)] == 0) {
+            return 0;
+        }
+        q->func_000B9A80(4, 1);
+        f2A0 = 1;
+    }
+    f290 = a1;
+    f280 = 1;
+    f294 = 0;
+    f28C = a2;
+    f298 = 1;
+    if (f288 == 0) {
+        return 1;
+    }
+    switch (func_001BF050(1)) {
+    case 1:
+        func_001ADCC0(f2B8, 0x104, D_00275678, D_002A64D0, D_0027DFE4);
+        break;
+    case 2:
+        func_001ADCC0(f2B8, 0x104, D_00275678, D_002A64D0, D_00282478);
+        break;
+    case 3:
+        func_001ADCC0(f2B8, 0x104, D_00275678, D_002A64D0, D_0028246C);
+        break;
+    case 4:
+        func_001ADCC0(f2B8, 0x104, D_00275678, D_002A64D0, D_0027DFF0);
+        break;
+    }
+    f280 = 0;
+    f288 = 0;
+    ctx->f270->f34 = 0;
+    ctx->f270->f38 = 1;
+    if (func_001BF050(1) != 4 && D_002A8490->f2E0->f464 == 0) {
+        ctx->f270->func_000BC4A0(0.592f, 0.5625f);
+        ctx->f270->func_000BC4C0(133.0f, 105.0f);
+        ctx->f270->func_00093280(1.0f);
+    } else {
+        ctx->f270->func_000BC4A0(1.0f, 1.0f);
+        ctx->f270->func_000BC4C0(0.0f, 0.0f);
+        ctx->f270->func_00093280(0.0f);
+    }
+    ctx->f270->func_000BC5D0(f2B8, 1);
+done:
+    return 1;
+}
+
 void C_000F1980::func_000F1980(void)
 {
     int ids[3];
