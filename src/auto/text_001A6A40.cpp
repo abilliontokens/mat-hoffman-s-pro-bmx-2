@@ -203,6 +203,45 @@ struct C_001A6D30 {
     void func_001A6D30();
 };
 
+/* LoadMemoryCard (update, virtual slot 12) */
+struct S_001A6E90_Msg {
+    int type;
+    int f4;
+    int code;
+    int param;
+    char rest[0xBE4];
+};
+
+extern "C" void __stdcall func_001DCAFF(int a0, void *a1);
+extern float D_002755E8;
+extern float D_002EFF78;
+extern float D_00275460;
+extern float D_00278C48;
+
+struct C_001A6E90 {
+    void *vtbl;
+    char pad4[0x48];
+    C_001A6D30_Obj4C *f4C;
+    char pad50[4];
+    float f54;
+    char pad58[4];
+    int f5C;
+    int f60;
+    float f64;
+    int f68;
+    int f6C;
+    char pad70[4];
+    int f74;
+    C_001A6D30_Menu *f78;
+    int f7C;
+    int f80;
+    int f84;
+    int f88;
+    int f8C;
+    void func_00157A00(float dt);
+    void func_001A6E90(float dt);
+};
+
 int LoadMemoryCard::func_001A6A40(int a, int b)
 {
     if (f98) return 0;
