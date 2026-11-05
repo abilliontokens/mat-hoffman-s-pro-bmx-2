@@ -4,16 +4,20 @@
 extern int D_0028F644;
 extern int D_002A83E0;
 
-void __cdecl func_001B2910(int a0);
+int __cdecl func_001B2910(int a0);
 unsigned int __stdcall func_00201100(void *p);
 int __stdcall func_00200390(void *a0, void *a1);
 int __stdcall func_001FCFE0(int a0);
+void *__cdecl func_001E8A44(int size);
+void __stdcall func_001FCEA0(void *map, int index, void *out, int a, int b);
 
 struct XboxTextureMap {
     void *vtbl;
     char pad4[4];
     int f8;
-    char padC[0xa4 - 0xc];
+    int fC;
+    char pad10[0xa0 - 0x10];
+    int fA0;
     int fA4;
     char padA8[0xb8 - 0xa8];
     void *fB8;
@@ -24,6 +28,7 @@ struct XboxTextureMap {
     void func_001D6B00(void);
     void func_001D6C50(void *param);
     int func_001D6CB0(int param);
+    XboxTextureMap *func_001D6B70(void);
 };
 
 XboxTextureMap *XboxTextureMap::func_001D6AD0(void *param)
