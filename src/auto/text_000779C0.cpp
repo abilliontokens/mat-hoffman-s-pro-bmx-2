@@ -1,5 +1,33 @@
 /* 5 functions from 0x000779C0 to 0x00078970, found by Ghidra. */
 #include "common.h"
+extern int D_0028F5E0;
+struct Text_782C0 {
+    int pad0, x, y;
+    char padC[0x42];
+    unsigned char flags;
+    void func_0005E840(int);
+    void func_0005E920(float, float);
+    void func_001D6600();
+};
+struct Sub_782C0 {
+    void func_00093120();
+    void func_00094690(float,float,int,int,int,int);
+    void func_000941A0(int,float,float,int,int,int,int);
+    void func_000942F0(float,float,int,int,int,int);
+    void func_00094410(float,float,int,int,int,int);
+    void func_00093A00(float,float,int,int,int,int);
+    void func_00093CF0(float,float,int,int,int,int);
+    void func_00093C80(float,float,int,int,int,int);
+};
+struct C_000782C0 {
+    char pad0[0x98];
+    Text_782C0 *f98;
+    char pad9C[0x20];
+    Text_782C0 *fbc, *fc0, *fc4;
+    Sub_782C0 *fc8;
+    int fcc, fd0, fd4, fd8, fdc, fe0, fe4, fe8, fec, ff0;
+    void func_000782C0();
+};
 struct Clamp_6A { char pad[0x10]; float f10, f14; };
 struct Mid_6A { Clamp_6A *func_0018C070(); };
 struct Lookup_6A { int *func_0018C160(int); };
