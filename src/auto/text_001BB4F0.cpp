@@ -143,10 +143,10 @@ struct V4b_001BB680 {
     float x, y, z, w;
     void Init() volatile
     {
-        w = 1.0f;
-        z = 0.0f;
-        y = 0.0f;
-        x = 0.0f;
+        *(volatile int *)&w = 0x3f800000;
+        *(volatile int *)&z = 0;
+        *(volatile int *)&y = 0;
+        *(volatile int *)&x = 0;
     }
 };
 
@@ -476,7 +476,6 @@ C_001BBAA0 *C_001BBAA0::func_001BB680(int a)
     S_001BB680_Mat m;
     S_001BB680_Mat copy;
     S_001BB680_Mat * volatile p;
-    __m128 *v;
     int i;
 
     ((C_00157600 *)this)->func_00157600(a);
@@ -498,18 +497,10 @@ C_001BBAA0 *C_001BBAA0::func_001BB680(int a)
     self->unk2EC &= 0xdf;
     self->unk2EC &= 0xbf;
     self->unk90 = 100;
-    self->f24 = (V4_001BB680 &)D_002AAE04;
+    self->f24.Set(D_002AAE04, D_002AAE08, D_002AAE0C, D_002AAE10);
     self->unk2E0 = 0;
     p = &m;
-    v = (__m128 *)p;
-    v[0] = _mm_setzero_ps();
-    v[1] = _mm_setzero_ps();
-    v[2] = _mm_setzero_ps();
-    v[3] = _mm_setzero_ps();
-    ((float *)v)[0] = 1.0f;
-    ((float *)v)[5] = 1.0f;
-    ((float *)v)[10] = 1.0f;
-    ((float *)v)[15] = 1.0f;
+    p->identity();
     copy = m;
     ((C_000264C0 *)((char *)self + 0x50))->func_000264C0(&copy);
     *(volatile int *)&self->unk94 = 0;
