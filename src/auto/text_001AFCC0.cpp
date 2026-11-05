@@ -116,6 +116,9 @@ struct C_001B0230 {
     void func_001B0230(void);
     void func_001B0520(unsigned int key);
     void func_001B05A0(int a, int b, unsigned int key);
+    void func_001B0650(void);
+    int func_001B0710(void *arg);
+    void func_001B07A0(void);
     int func_001B07D0(int idx, void *arg);
     void *func_001B0A00(unsigned int flags);
 };
