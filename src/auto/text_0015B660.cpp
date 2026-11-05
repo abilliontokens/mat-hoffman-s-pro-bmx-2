@@ -6,7 +6,14 @@ extern int D_002877C0;
 extern int D_00287824;
 extern int D_002877E4;
 void func_001E8390(void *p);
+void func_001E891B(void *p);
 void func_0001B2E0(void *p, int a);
+
+/* PositionController: scalar deleting destructor in vtable slot 0 */
+struct C_0015BDB0 {
+    void *vtbl;
+    void *func_0015BDB0(unsigned char flags);
+};
 
 extern int D_00287804;
 extern int D_002877E4;
@@ -227,6 +234,28 @@ void C_0015B7C0::func_0015B7C0() {
         func_001E8390(p);
     }
     self->vtbl = &D_00287778;
+}
+
+void C_0015C190::func_0015B7F0(int idx, S_0015C190_Vec3 *pos, float *t, S_0015C190_Vec3 *in, S_0015C190_Vec3 *out)
+{
+    if (pos != 0) {
+        unk14[idx].pos.x = pos->x;
+        unk14[idx].pos.y = pos->y;
+        unk14[idx].pos.z = pos->z;
+    }
+    if (t != 0) {
+        unk14[idx].t = *t;
+    }
+    if (in != 0) {
+        unk14[idx].in.x = in->x;
+        unk14[idx].in.y = in->y;
+        unk14[idx].in.z = in->z;
+    }
+    if (out != 0) {
+        unk14[idx].out.x = out->x;
+        unk14[idx].out.y = out->y;
+        unk14[idx].out.z = out->z;
+    }
 }
 
 void ByteAxisRotationController::func_0015B990()
