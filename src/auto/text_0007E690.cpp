@@ -22,6 +22,10 @@ struct C_0007EE40 {
     undefined4 func_0007EE40(byte param_1);
 };
 
+struct C_0007EE60 {
+    undefined4 func_0007EE60(byte param_1);
+};
+
 struct C_0007EE20 {
     void func_00078620(void);
     void func_000782C0(void);
@@ -156,6 +160,8 @@ undefined4 C_0007EB00::func_0007EB00(byte param_1)
 undefined4 C_0007EB20::func_0007EB20(void)
 {
     C_12B2B0 *vb;
+    C_Rect24 r;
+    C_Rect24 out;
 
     if ((D_002B9068 & 1) == 0) {
         D_002B9068 |= 1;
@@ -165,6 +171,16 @@ undefined4 C_0007EB20::func_0007EB20(void)
         D_002EFDB8->v8();
         D_002EFDB8->v7(1);
         vb = (C_12B2B0 *)D_002EFDB8->f4;
+        if (f120->f90 > 1) {
+            r = vb->rect;
+            r.x = 0;
+            r.y = 0;
+            r.w = 0x280;
+            r.h = 0x1c0;
+            vb->func_0012B2B0(&r, &out);
+        }
+        func_00075750();
+        func_00075170();
         if (f1B4 != 0) {
             ((C_5E840 *)fFC)->func_0005E840(D_002A8490->f2e8->f4->f7b8);
             ((C_Node *)f1BC)->func_001D6600();
@@ -173,6 +189,9 @@ undefined4 C_0007EB20::func_0007EB20(void)
             ((C_Node *)fFC)->func_001D6600();
         }
         func_00157960();
+        if (f120->f90 > 1) {
+            vb->func_0012B2B0(&out, 0);
+        }
     }
     return 1;
 }
