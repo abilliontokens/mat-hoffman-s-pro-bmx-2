@@ -57,7 +57,7 @@ struct BmxUIPageHOF5 {
     u32 arr2D8[5];
     u32 arr2EC[2];
     u32 arr2F4[2];
-    void *arr2FC[2];
+    float arr2FC[2];
     u32 arr304[5];
     void func_001BE360(int a0);
     BmxUIPageHOF5 *func_000D8C70(int a0);
@@ -133,39 +133,32 @@ BmxUIPageHOF5 *BmxUIPageHOF5::func_000D8C70(int a0)
 {
     func_001BE360(a0);
     vtbl = &D_0027F49C;
-    u32 zero = 0;
-    u32 *p = arr2D8;
-    int n = 5;
-    do {
-        p[-5] = zero;
-        p[0] = zero;
-        p[11] = zero;
-        p++;
-    } while (--n);
-    unk280 = zero;
-    unk290 = zero;
-    unk284 = zero;
-    unk288 = zero;
-    unk28C = zero;
-    p = arr2F4;
-    n = 2;
-    do {
-        p[-2] = zero;
-        p[0] = zero;
-        p++;
-    } while (--n);
-    unk29C = zero;
-    unk2A0 = zero;
-    unk2A4 = zero;
-    unk2AC = zero;
-    unk2A8 = zero;
+    for (int i = 0; i < 5; i++) {
+        arr2C4[i] = 0;
+        arr2D8[i] = 0;
+        arr304[i] = 0;
+    }
+    unk280 = 0;
+    unk290 = 0;
+    unk284 = 0;
+    unk288 = 0;
+    unk28C = 0;
+    for (int j = 0; j < 2; j++) {
+        arr2EC[j] = 0;
+        arr2F4[j] = 0;
+    }
+    unk29C = 0;
+    unk2A0 = 0;
+    unk2A4 = 0;
+    unk2AC = 0;
+    unk2A8 = 0;
     arr2FC[0] = 0;
     arr2FC[1] = 0;
-    unk2B0 = zero;
-    unk2B4 = zero;
-    unk2B8 = zero;
-    unk2BC = zero;
-    unk2C0 = zero;
+    unk2B0 = 0;
+    unk2B4 = 0;
+    unk2B8 = 0;
+    unk2BC = 0;
+    unk2C0 = 0;
     return this;
 }
 
