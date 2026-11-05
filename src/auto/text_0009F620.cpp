@@ -9,7 +9,7 @@ static __forceinline float Max(float a, float b) {
 }
 static __forceinline float Min(float a, float b) {
     float r;
-    _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b)));
+    _mm_store_ss(&r, _mm_min_ss(_mm_set_ss(a), _mm_set_ss(b)));
     return r;
 }
 struct C_0009FD60 {
