@@ -95,6 +95,13 @@ void __cdecl func_001EB302(int locknum)
     _imp__RtlLeaveCriticalSection(((void **)D_002AE8F0)[locknum * 2]);
 }
 
+int __cdecl func_001EB3BE(unsigned int size)
+{
+    if (D_002F69E8 != 0 && (*D_002F69E8)(size) != 0)
+        return 1;
+    return 0;
+}
+
 extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
 extern "C" int (__cdecl *D_002F69E8)(unsigned int size);
 extern "C" void *__cdecl func_001E8AA5(unsigned int size);
