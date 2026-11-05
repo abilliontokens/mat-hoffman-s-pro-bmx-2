@@ -2,6 +2,7 @@
 #include "common.h"
 #include <stdarg.h>
 #include <xmmintrin.h>
+static inline float Min_001AB670(float a, float b) { return _mm_min_ss(_mm_set_ss(a), _mm_set_ss(b)).m128_f32[0]; }
 struct V4_001AB670 { float x, y, z, w; };
 struct Body_001AB670 {
     char pad_00[0x130];
