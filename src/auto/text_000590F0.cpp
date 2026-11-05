@@ -86,3 +86,15 @@ void __stdcall func_000597A0(int a0, int a1) {
     int func_000560A0(...);
     func_000560A0();
 }
+
+void BmxGame::func_0005A0B0(void)
+{
+    C_0018C640 *p = f2EC;
+    vtbl = (void *)&D_00277FD4;
+    if (p != 0) {
+        p->func_0018C640();
+        func_001E891B(p);
+    }
+    ((C_001D0E60 *)this)->func_001D0E60();
+}
+
