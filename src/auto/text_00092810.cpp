@@ -11,6 +11,52 @@ struct C_000928E0 {
     int func_000928E0(void);
 };
 
+struct C_001B1980 {
+    void func_001B1980(void);
+};
+
+struct C_00157600 {
+    void func_00157600(int a);
+};
+
+struct C_001D4300 {
+    int func_001D4300(int a);
+    void func_001D41D0(int a);
+};
+
+struct S_00092A10_Sub {
+    char pad0[0xc];
+    int fc;
+    char pad10[0x2bc];
+    C_001D4300 *f2cc;
+};
+
+struct S_00092A10_Root {
+    char pad0[0x2e0];
+    S_00092A10_Sub *f2e0;
+};
+
+extern S_00092A10_Root *D_002A8490;
+extern int D_0027A0C4;
+
+struct C_00092890 {
+    void *vtbl;
+    char pad4[0x20];
+    C_001B1980 *f24[8];
+    int f44;
+    int f48;
+    char f4c;
+    char pad4d[0x103];
+    char f150;
+    char pad151[0x103];
+    char f254;
+    char pad255[0x4f];
+    int f64_unused_placeholder;
+    C_00092890 *func_00092890(int a);
+    void func_00093120(void);
+    C_00092890 *func_00092810(int a0, int a1, int a2, int a3);
+};
+
 struct C_000928D0 {
     char pad0[0x150];
     int unk150;
