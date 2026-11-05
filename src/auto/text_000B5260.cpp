@@ -48,6 +48,39 @@ struct C_00197F70 {
     float *func_00197F70(float *param_1, float *param_2);
 };
 
+struct C_000B5990 {
+    int vtbl;
+    char pad0[0x54];
+    float unk58;
+    float unk5c;
+    float unk60;
+    float unk64;
+    float unk68;
+    float unk6c;
+    C_000B5990 *func_000B5990(int param_1);
+};
+
+struct C_000B5120 {
+    void func_000B5120(void);
+};
+
+struct C_000B51C0 {
+    void func_000B51C0(void);
+};
+
+struct C_001D3F50 {
+    void func_001D3F50(void);
+};
+
+struct C_000B6050 {
+    char pad0[0x2c];
+    int unk2c;
+    int unk30;
+    void func_000B6050(int param_1);
+};
+
+extern int D_0027D40C;
+
 extern int D_0027D37C;
 extern float D_002A2EC8;
 
@@ -71,13 +104,13 @@ void C_000B58B0::func_000B58B0(void)
   float w[4];
   float vec4[4];
   float vec3[4];
-  float d[4];
   float row[4];
+  float d[4];
   int v;
   void func_0001E9E0(float *out, float *in);
 
-  v = (**(code **)(*(int *)in_ECX + 0x6c))();
-  (**(code **)(*(int *)in_ECX + 0x70))(vec4);
+  v = (int)v27();
+  v28(vec4);
   ((C_00197F70 *)*(int *)(in_ECX + 0x30))->func_00197F70(vec3, vec4);
   d[0] = vec3[0] - *(float *)(v + 0x20);
   d[1] = vec3[1] - *(float *)(v + 0x24);
@@ -90,12 +123,16 @@ void C_000B58B0::func_000B58B0(void)
 int C_000B5950::func_000B5950(void)
 {
   int in_ECX = (int)this;
-  float f;
-  int tmp;
+  struct {
+    volatile int self;
+    volatile float f;
+    volatile int tmp;
+  } s;
 
-  f = *(float *)((**(code **)(*(int *)in_ECX + 0x6c))() + 0x44);
-  tmp = *(int *)&f & 0x7fffffff;
-  if (*(float *)&tmp > D_002A2EC8) {
+  s.self = in_ECX;
+  s.f = *(float *)((**(code **)(*(int *)in_ECX + 0x6c))() + 0x44);
+  s.tmp = *(int *)&s.f & 0x7fffffff;
+  if (*(float *)&s.tmp > D_002A2EC8) {
     return 1;
   }
   return 0;
