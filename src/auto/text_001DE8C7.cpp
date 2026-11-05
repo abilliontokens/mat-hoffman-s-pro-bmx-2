@@ -302,6 +302,16 @@ int __stdcall func_001DF361(int a0)
     return func_001DF26F(a0, ((int *)D_00010118)[2]);
 }
 
+__int64 * __stdcall func_001DF56E(__int64 *out, unsigned int ms)
+{
+    if (ms == 0xffffffff) {
+        return 0;
+    }
+    *out = (unsigned __int64)ms * 10000;
+    *out = -*out;
+    return out;
+}
+
 int __stdcall func_001DF59C(int a, int b, int c)
 {
     return func_001E1297(a, b, c);
@@ -320,4 +330,14 @@ extern "C" long (__stdcall *_imp__NtQueryFullAttributesFile)(S_ObjectAttributes 
 void __stdcall func_001DF622(int a)
 {
 }
+
+#pragma optimize("s", on)
+void __stdcall func_001DF746(S_Heap *heap, S_FreeNode *node)
+{
+    node->next = heap->pool->freeNodes;
+    heap->pool->freeNodes = node;
+    node->addr = 0;
+    node->size = 0;
+}
+#pragma optimize("", on)
 
