@@ -11,6 +11,20 @@ extern struct S_002A8490_Root {
 } *D_002A8490;
 
 int func_00011260(int lo, int hi);
+void func_001E891B(void *p);
+
+struct S_0001C290_Item {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+};
+
+struct C_0001C290 {
+    char pad0[0x18];
+    int f18;
+    S_0001C290_Item **f1c;
+    void func_0001C290(void);
+};
 
 struct S_0001B790_Virt {
     virtual void v0();
