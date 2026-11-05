@@ -55,7 +55,7 @@ extern int D_002A2408;
 extern int D_002A240C;
 
 struct C_00097A80 {
-    void func_00097A80(void);
+    C_00097A80 *func_00097A80(void);
 };
 
 struct C_00097C20 {
