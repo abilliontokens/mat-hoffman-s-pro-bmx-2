@@ -9,3 +9,12 @@ struct RadiusLineCollisionObject {
     void func_0017E7C0();
     void func_00157A00(int param_1);
 };
+
+void RadiusLineCollisionObject::func_0017E8E0(int param_1)
+{
+    if (unkA6 != 0) {
+        func_0017E7C0();
+    }
+    unkA7 = unkA7 & 0xef;
+    func_00157A00(param_1);
+}
