@@ -104,6 +104,18 @@ static inline int func_001E2B60_noise(S_func_001E2B60_arg0 *self)
     return n;
 }
 
+static inline int dither_noise(S_func_001E2B60_arg0 *self)
+{
+    int s = self->f40c * 1664525 + 1013904223;
+    int n;
+    self->f40c = s;
+    s >>= 2;
+    s += s >> 2;
+    n = s - self->f408;
+    self->f408 = s;
+    return n;
+}
+
 extern "C" __declspec(dllimport) void __stdcall RtlInitAnsiString(S_AnsiString *dst, const char *src);
 extern "C" __declspec(dllimport) u8 __stdcall RtlEqualString(S_AnsiString *a, S_AnsiString *b, int caseInsensitive);
 extern "C" __declspec(dllimport) int __stdcall XeLoadSection(void *section);
