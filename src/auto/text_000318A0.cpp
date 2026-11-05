@@ -65,6 +65,7 @@ struct BmxEvent {
     virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
     virtual void v24(); virtual void v25();
     virtual void v26();
+    char pad4[0x20];
     int f24[8];
     void *f44[8];
     S_BmxEvent_Level *f64;
