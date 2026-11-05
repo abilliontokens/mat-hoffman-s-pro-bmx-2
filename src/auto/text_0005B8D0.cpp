@@ -260,7 +260,7 @@ int C_0005B960::func_0005B960(int sel, float val)
         }
         return 0;
     case 4:
-        if (((S_0005B8D0_Root *)D_002A8490)->p2e0->f10 <= 120.0f) {
+        if (((S_0005B8D0_Root *)D_002A8490)->p2e0->f10 <= D_002782A8) {
             for (i = 0; i < 5; i++) {
                 if (iv > i12C[i]) {
                     goto found;
