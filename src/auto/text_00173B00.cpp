@@ -97,6 +97,40 @@ Vec4 *func_00174110(Vec4 *dst, Vec4 *src)
     return dst;
 }
 
+Mat4_001741C0 func_001741C0(const float *q)
+{
+    Mat4_001741C0 r;
+    float b2 = q[1] + q[1];
+    float c2 = q[2] + q[2];
+    float d2 = q[3] + q[3];
+    float ab = b2 * q[0];
+    float ac = c2 * q[0];
+    float ad = d2 * q[0];
+    float bc = c2 * q[1];
+    float bd = d2 * q[1];
+    float cd = d2 * q[2];
+    float bb = b2 * q[1];
+    float cc = c2 * q[2];
+    float dd = d2 * q[3];
+    r.m[12] = 0.0f;
+    r.m[13] = 0.0f;
+    r.m[14] = 0.0f;
+    r.m[3] = 0.0f;
+    r.m[7] = 0.0f;
+    r.m[11] = 0.0f;
+    r.m[15] = 1.0f;
+    r.m[0] = D_00275460 - (dd + cc);
+    r.m[4] = bc + ad;
+    r.m[8] = bd - ac;
+    r.m[1] = bc - ad;
+    r.m[5] = D_00275460 - (dd + bb);
+    r.m[9] = cd + ab;
+    r.m[2] = bd + ac;
+    r.m[6] = cd - ab;
+    r.m[10] = D_00275460 - (cc + bb);
+    return r;
+}
+
 Vec4 *func_001742F0(Vec4 *dst, Vec4 *a, Vec4 *b)
 {
     Vec4 r;
