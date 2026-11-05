@@ -428,9 +428,10 @@ void *C_0015B310::func_0015B310(int flags)
 C_0015B470 *C_0015B470::func_0015B470(void)
 {
     extern undefined4 D_002E28F4;
+    extern char D_000186A0;
     f10 = 0;
     f4 = 10;
-    f8 = 100000;
+    f8 = (int)&D_000186A0;
     fC = 0;
     f0 = (S_0015B470_Entry *)func_001E8A44(0xa50);
     D_002E28F4 = (undefined4)this;
