@@ -276,6 +276,8 @@ struct S_6E970 {
 };
 extern char *func_0005B870(int p);
 extern char D_002789B8[2];
+extern S_6E970_G1 *D_002A8490;
+#include <string.h>
 
 C_0006E330 *C_0006E330::func_0006E330(int a0)
 {
