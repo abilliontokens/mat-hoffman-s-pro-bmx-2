@@ -91,6 +91,49 @@ struct C_001C2F70 {
     undefined4 func_001C2F70(void);
 };
 
+extern int D_0028DF04;
+extern int D_0028D804;
+extern int D_0028DFE4;
+void func_001E891B(void *p);
+
+struct DelObj_001C34D0 {
+    virtual void Destroy(int a0);
+};
+
+/* UIWidgetIcon */
+struct C_001C34D0 {
+    void *vtbl;
+    char pad4[0x68 - 4];
+    DelObj_001C34D0 *f68;
+    void func_00157660(void);
+    void *func_001C34D0(int flags);
+};
+
+struct C_001D57E0 {
+    void func_001D57E0(void);
+};
+
+/* UIWidgetSelectableIcon */
+struct C_001C3510 {
+    void *vtbl;
+    char pad4[0x68 - 4];
+    char f68[0x64];
+    char fCC[1];
+    void func_00157660(void);
+    void *func_001C3510(int flags);
+};
+
+/* DXVertexBuffer */
+struct DXVertexBuffer {
+    void *vtbl;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    int f14;
+    DXVertexBuffer *func_001C3550(int type, int count);
+};
+
 struct UIWidgetMovementControl {
     void func_001C0DD0(int slot, int value, int key);
     void func_001C1030(int slot, int value, int key);
@@ -152,5 +195,12 @@ void UIWidgetMovementControl::func_001C3170(int p1, int p2, int value, int id)
     case 0x3a: func_001C1030(14, value, 13); break;
     case 0x3b: func_001C1030(15, value, 12); break;
     }
+}
+
+void C_001C35B0::func_001C35B0(void *src, int index, unsigned int count)
+{
+    char *dst = (char *)func_001FF410(f14, 0) + fC * index;
+
+    memcpy(dst, src, count);
 }
 
