@@ -125,6 +125,8 @@ void __stdcall func_0025ADD0(void *p);
 void __stdcall func_0025AA70(void *p);
 void __stdcall func_0025AC10(void *p, int a, void *b);
 void __stdcall func_00201100(void *p);
+void *func_001E8A44(int size);
+void *__stdcall func_001FCF20(int w, int h, int levels, int depth, int usage, int format, int type);
 
 struct C_001C3D80 {
     void func_001C3D80(void);
