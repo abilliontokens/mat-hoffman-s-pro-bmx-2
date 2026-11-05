@@ -57,6 +57,8 @@ struct C_00084FF0 {
     int f3C;
     int f40;
     void func_00084FF0(void);
+    void func_000851C0();
+    void func_001578D0();
 };
 
 struct C_001D6410 { void func_001D6410(); };
