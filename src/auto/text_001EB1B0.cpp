@@ -120,6 +120,44 @@ void __cdecl func_001EB3D9(char *buffer)
     } while (*buffer++);
 }
 
+void __cdecl func_001EB431(char *buf)
+{
+    char *stop;
+
+    while (*buf && *buf != D_002AEA3C) {
+        buf++;
+    }
+    if (*buf++) {
+        while (*buf && *buf != 'e' && *buf != 'E') {
+            buf++;
+        }
+        stop = buf--;
+        while (*buf == '0') {
+            buf--;
+        }
+        if (*buf == D_002AEA3C) {
+            buf--;
+        }
+        while ((*++buf = *stop++) != '\0') {
+        }
+    }
+}
+
+void __cdecl func_001EB496(int flag, char *argument, char *number)
+{
+    S_CrtDouble dblval;
+    S_CrtFloat fltval;
+
+    if (flag) {
+        func_001F4874(&dblval, number);
+        *(S_CrtDouble *)argument = dblval;
+    } else {
+        func_001F48A1(&fltval, number);
+        *(S_CrtFloat *)argument = fltval;
+    }
+}
+#pragma optimize("y", on)
+
 extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
 extern "C" int (__cdecl *D_002F69E8)(unsigned int size);
 extern "C" void *__cdecl func_001E8AA5(unsigned int size);
