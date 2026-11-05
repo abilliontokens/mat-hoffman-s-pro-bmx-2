@@ -24,7 +24,19 @@ struct S_000EB460_Mid {
 struct C_NumHorse_Root { char pad0[0x2E8]; S_000EB460_Mid *p2E8; C_NumHorse_Lookup *p2EC; };
 struct C_NumHorse_Clamp { char pad0[0x10]; float f10, f14; };
 struct C_NumHorse_Mid { C_NumHorse_Clamp *func_0018C070(); };
-struct C_NumHorse_Sub { C_NumHorse_Clamp *func_001D5AA0(); };
+struct C_NumHorse_Sub {
+    char pad0[0x38];
+    int f38;
+    char pad3C[0x58 - 0x3C];
+    unsigned char b58;
+    C_NumHorse_Clamp *func_001D5AA0();
+    void func_001D5AD0();
+};
+struct S_000EB1F0_Svc { int func_000301D0(); };
+struct S_000EB1F0_Owner { char pad0[0x74]; S_000EB1F0_Svc *f74; };
+struct S_000EB1F0_Mgr { char pad0[0x25C]; S_000EB1F0_Owner *f25C; };
+struct S_000EB1F0_Page { int f0; int pad4[11]; int f30; };
+struct S_000EB1F0_Sel { int f0; S_000EB1F0_Page *f4; };
 extern C_NumHorse_Root *D_002A8490;
 
 /* the HUD: text labels at +0x34/+0x38/+0x80/+0x84, func_000BF860 places one */
