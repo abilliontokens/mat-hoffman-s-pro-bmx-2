@@ -166,3 +166,40 @@ C_0016C5B0 *C_0016C5B0::func_0016C5B0(void *param)
     return this;
 }
 
+C_0016C640 *C_0016C640::func_0016C640(void *a, char *name, void *b, u32 *c)
+{
+    ((C_001D3F50 *)this)->func_001D3F50();
+    f64 = a;
+    if (b) {
+        f68 = b;
+        if (c) *(V4u *)&f44 = *(V4u *)c;
+    }
+    if (!a) {
+        f1A8 = 0x30;
+        f188 = 0x30;
+        f1F0 = V4f(-1.0f, 0.0f, -1.0f, 1.0f);
+        f1AC = 0x44;
+        f200 = V4f(1.0f, 0.0f, 1.0f, 1.0f);
+    } else {
+        f64 = a;
+        strcpy(&f6C, D_002A5558);
+        if (!name) {
+            ((ParticleEmitterResetVT *)this)->v2();
+            return 0;
+        }
+        strcat(&f6C, name);
+        if (((C_0016A330 *)this)->func_0016A330(&f6C)) return this;
+        f1F0 = V4f(-1.0f, 0.0f, -1.0f, 1.0f);
+        f200 = V4f(1.0f, 0.0f, 1.0f, 1.0f);
+    }
+    f190 |= 4;
+    f170 = 750.0f;
+    f178 = 1.0f;
+    f17C = 350.0f;
+    f210 = 10.0f;
+    f1C4 = 1;
+    f1C8 = 1;
+    f1B4 = 7.0f;
+    return this;
+}
+
