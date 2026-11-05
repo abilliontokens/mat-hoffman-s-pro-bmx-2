@@ -48,6 +48,12 @@ struct C_00174550 {
 };
 
 
+void *PhysicsRigidBody::func_001744B0(void *a0)
+{
+    f22C->func_00198040(a0, &f238);
+    return a0;
+}
+
 void C_00174550::func_00174550(int a0, int a1, int a2) {
     unk28C = a0;
     unk290 = a1;
