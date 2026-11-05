@@ -85,6 +85,8 @@ struct BmxSmokeParticleEmitter {
     f32 f604;
     f32 f608;
     BmxSmokeParticleEmitter *func_0009DB00(int param_1);
+    int func_0009E400(int param_1);
+    int func_0009E470(void);
 };
 
 BmxSmokeParticleEmitter *BmxSmokeParticleEmitter::func_0009DB00(int param_1)
