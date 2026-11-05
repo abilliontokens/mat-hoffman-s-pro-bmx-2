@@ -104,7 +104,9 @@ struct S_000C40D0_Sub {
 struct S_000C40D0_Obj {
     char pad0[0x2C0];
     S_000C40D0_Sub *f2C0;
-    char pad2C4[0x458 - 0x2C4];
+    char pad2C4[0x390 - 0x2C4];
+    int f390;
+    char pad394[0x458 - 0x394];
     int f458;
 };
 
