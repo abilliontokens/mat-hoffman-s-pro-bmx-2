@@ -1,6 +1,25 @@
 /* 16 functions from 0x000F1D90 to 0x000F2CC0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+
+struct VObj_000F2600 { virtual void v0(int); };
+struct PtrObj_000F2600 { void func_001D6410(); };
+void func_001E891B(void *p);
+extern int D_0027DE7C;
+struct C_000F2600 {
+    void *vtbl;
+    char pad4[0x20];
+    VObj_000F2600 *f24, *f28, *f2C, *f30;
+    PtrObj_000F2600 *f34;
+    PtrObj_000F2600 *f38[6];
+    VObj_000F2600 *f50[6];
+    VObj_000F2600 *f68[6];
+    PtrObj_000F2600 *f80, *f84;
+    VObj_000F2600 *f88[2];
+    VObj_000F2600 *f90[2];
+    void func_000F2600();
+    void func_00157660();
+};
 struct C_000F2CA0 {
     undefined4 func_000F2CA0(byte param_1);
 };
