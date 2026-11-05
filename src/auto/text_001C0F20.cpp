@@ -344,6 +344,25 @@ C_001C1150 *C_001C1150::func_001C1150(int a, int b)
     return this;
 }
 
+int C_001C13A0::func_001C13A0()
+{
+    int result = 1;
+    void *mem = func_001E8A44(0x1e0);
+    f68 = mem ? ((C_001C13A0_Obj *)mem)->func_00143580(result) : 0;
+    if (!func_001577A0(f68->v35(fdc, 0, 0), -1)) {
+        result = 0;
+    } else {
+    if (f1f0) f68->func_00199650(f6c);
+    else f68->func_00197E70(f6c);
+    if (f1f4) f68->func_00198F50(fbc, fcc, 1, 0, 0);
+    else f68->func_00197B40(fbc, fcc);
+    if (f1ec) f68->func_00199BE0(&f200);
+    f1ec = 0;
+    }
+    f24->v40();
+    return result;
+}
+
 int C_001C1490::func_001C1490(void)
 {
     if (f68) {
