@@ -124,7 +124,21 @@ struct S_001AEBD0_Sprite : C_001ADFD0_Virt {
     unsigned char f64;
     S_001AEBD0_Sprite *func_001ADEB0(void);
     void func_001ADF30(int a, int b);
+    void SetAlpha(unsigned char alpha)
+    {
+        unsigned int c = (unsigned int)alpha << 24;
+        f64 = alpha;
+        col[0].rgba = (col[0].rgba & 0xffffff) | c;
+        col[1].rgba = (col[1].rgba & 0xffffff) | c;
+        col[2].rgba = (col[2].rgba & 0xffffff) | c;
+        col[3].rgba = (col[3].rgba & 0xffffff) | c;
+    }
 };
+
+static unsigned int MakeColor_001AEBD0(int a, unsigned char r, unsigned char g, unsigned char b)
+{
+    return (((a << 8 | r) << 8 | g) << 8) | b;
+}
 
 struct C_001AE3E0;
 
