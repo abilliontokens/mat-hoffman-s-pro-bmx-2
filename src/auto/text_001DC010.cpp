@@ -32,8 +32,29 @@ long __stdcall func_001DC97C(int a, int b, int c, int d, int e);
 
 extern "C" void *(__stdcall *_imp__MmAllocateContiguousMemory)(unsigned int);
 extern "C" void (__stdcall *_imp__MmPersistContiguousMemory)(void *, unsigned int, int);
-extern char D_0028FA30;
+extern char D_0028FA30[];
 void __stdcall func_001DF4E1(char *, const char *, unsigned int);
+
+struct S_AnsiString {
+    unsigned short Length;
+    unsigned short MaximumLength;
+    char *Buffer;
+};
+
+struct S_ObjectAttributes {
+    void *RootDirectory;
+    S_AnsiString *ObjectName;
+    unsigned long Attributes;
+};
+
+extern S_AnsiString D_0028FA28;
+extern "C" long (__stdcall *_imp__NtOpenSymbolicLinkObject)(void **handle, S_ObjectAttributes *oa);
+extern "C" long (__stdcall *_imp__NtQuerySymbolicLinkObject)(void *handle, S_AnsiString *target, unsigned long *returnedLength);
+extern "C" long (__stdcall *_imp__NtClose)(void *handle);
+
+typedef u32 (__stdcall *PFN_LaunchCallback)(const char *path, void *data);
+extern PFN_LaunchCallback D_002A0440[];
+extern PFN_LaunchCallback D_002A0444[];
 extern char D_0028FA24;
 extern char D_001DC7F0;
 extern char D_001DC810;
