@@ -23,6 +23,8 @@ struct C_00199BE0 {
     void func_00199BE0(void *m);
     void func_00199C20(C_00199BE0 *p, void *m);
     void func_00199C90(int a0, int a1, int a2, int a3, int a4, int a5);
+    void func_00199D70(int a0, int a1, int a2, int a3);
+    void func_00199E30(int a0, int a1, int a2, int a3, int a4);
 };
 
 struct C_00199C20Mat {
