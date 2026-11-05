@@ -107,6 +107,16 @@ undefined4 C_001094B0::func_001094B0(void)
   return *in_ECX;
 }
 
+int C_00109520::func_00109520(int p1, int p2) {
+    if (count >= 0x14) {
+        return 0;
+    }
+    b[count] = p1;
+    a[count] = p2;
+    count++;
+    return 1;
+}
+
 int C_00109570::func_00109570(void) {
     return unk0;
 }
