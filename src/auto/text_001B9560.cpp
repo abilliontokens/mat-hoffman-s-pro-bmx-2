@@ -267,6 +267,55 @@ undefined4 C_001B9D40::func_001B9D40(byte param_1)
   return in_ECX;
 }
 
+int ProceduralModel::func_001BA1B0(S_001BA1B0_Owner *p)
+{
+    char bufB[0x104];
+    char bufA[0x104];
+    void *m;
+    S_001BA1B0_Temp *t;
+
+    func_001ADCC0(bufA, 0x104, D_0027C588, f5c->name);
+    func_001ADCC0(bufB, 0x104, D_0027D170, f5c->name);
+    f44 = p->f4a8[f5c->f110];
+    f48 = p->f4ac[f5c->f110];
+    m = func_001E8A44(0x510);
+    f58 = m ? ((S_001BA1B0_Obj *)m)->func_0012C940(1) : 0;
+    t = f5c;
+    if (f58->v45(bufA, bufB, 0, t->f114, f8, t->f218, t->f224, t->f220,
+                 (float)t->f21c, 1.0f, t->f22c, 0, 0, 0, t->f228, t->f230) == 0) {
+        func_00012140();
+        f58->v2();
+        f58 = 0;
+        t = f5c;
+        if (t) {
+            t->vtbl = &D_0028CA64;
+            func_001E891B(t);
+        }
+        f5c = 0;
+        return 0;
+    }
+    S_001BA1B0_Skel *s = f58->f400;
+    s->func_0019ABA0(f44, 2);
+    f58->f40c->v32();
+    S_001BA1B0_Mesh *ms = f58->f40c;
+    ms->func_00133140(f48, 2);
+    if (f58->f410) {
+        f58->f410->v32();
+        ms = f58->f410;
+        ms->func_00133140(f48, 2);
+    }
+    p->f3ac->func_001577A0(f58, 0);
+    if (f54)
+        f54->v28(p, f58->f400, 0, p->f4c0);
+    t = f5c;
+    if (t) {
+        t->vtbl = &D_0028CA64;
+        func_001E891B(t);
+    }
+    f5c = 0;
+    return 1;
+}
+
 undefined4 C_001BA3B0::func_001BA3B0(byte param_1)
 {
   int func_001B5860(...);
