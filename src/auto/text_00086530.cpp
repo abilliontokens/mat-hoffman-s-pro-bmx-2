@@ -1,6 +1,9 @@
 /* 17 functions from 0x00086530 to 0x000874E0, found by Ghidra. */
 #include "common.h"
+#include <string.h>
 
+extern int D_0028F5E0;
+void *func_001E8A44(unsigned int size);
 extern char D_00279058[];
 struct C_0005E840;
 struct C_000867F0 {
