@@ -37,6 +37,10 @@ struct S_00157810_Child {
     virtual void v18(int a);
     virtual void v19();
     virtual void v20();
+    virtual void v21();
+    virtual int v22(int a, int b);
+    virtual int v23(int a, int b);
+    virtual int v24(int a, int b, int c, int d, int e);
     char pad4[8];
     S_00157810_Child *fC;
     char pad10[8];
