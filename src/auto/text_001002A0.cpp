@@ -249,6 +249,51 @@ void *C_00100700::func_00100700(unsigned int flags) {
     return this;
 }
 
+extern "C" unsigned int strlen(const char *);
+C_00100720 *C_00100720::func_00100720(int a, int b, int c)
+{
+    int i;
+    C_00100720_Text *t;
+    C_00100720_Spr *p;
+
+    func_001BE4F0(a, b, c);
+    ((C_00100720_Game *)D_002A8490)->p2EC->func_0018C160((int)&D_00278690);
+    ((C_00100720_Game *)D_002A8490)->p2EC->func_0018C160((int)&D_002786A0);
+    ((C_00100720_Game *)D_002A8490)->p2EC->func_0018C160((int)&D_00278678);
+    t = (C_00100720_Text *)func_001E8A44(0x184);
+    t = t != 0 ? t->func_001B12C0(1) : 0;
+    unk298 = t;
+    t->func_001B13A0(&D_002786A0, &D_002786A0, 0,
+        strlen(((C_00100720_Game *)D_002A8490)->p2E8->f4->s9c0) + 4);
+    unk298->func_001B1A30(320.0f, 157.0f, 0);
+    unk298->func_001B2270(0xffbfa35a);
+    unk298->func_001B19A0(D_0028F5E0);
+    func_000E1C20();
+    func_001577A0(unk298, -1);
+    for (i = 0; i < 2; i++) {
+        p = (C_00100720_Spr *)func_001E8A44(0x64);
+        p = p != 0 ? p->func_001D5760() : 0;
+        unk2d4[i] = p;
+        if (i % 2 == 0) {
+            p->func_001D5810(&D_002786B0, 100.0f, 150.0f, 0);
+        } else {
+            p->func_001D5810(&D_002786B0, 321.0f, 150.0f, 0);
+            p = unk2d4[i];
+            p->f3C = 0x3f800000;
+            p->f40 = 0;
+            p->f44 = 0;
+            p->f48 = 0x3f800000;
+            p->f58 |= 4;
+        }
+        p = unk2d4[i];
+        if (p->f28 != 0x435d0000) {
+            p->f28 = 0x435d0000;
+            p->f58 |= 1;
+        }
+    }
+    return this;
+}
+
 void C_001009D0::func_001009D0() {
  if (unk2a8 == 0 && unk2b0 == 0 && unk298->func_001B1B20() == 0xff) unk2a8=1;
  if(unk2b0 != 0) {
