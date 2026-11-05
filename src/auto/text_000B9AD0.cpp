@@ -32,9 +32,50 @@ struct C_000BEDC0 {
     V_000B9D50 *func_000BEDC0(int a);
 };
 
+extern int D_0027D75C;
+
+struct C_001BD870 {
+    void func_001BD870(int a);
+};
+
+struct C_001C3D60 {
+    void func_001C3D60(int a);
+};
+extern C_001C3D60 *D_002F07B8;
+
 struct BmxUIMain {
     void *vtbl;
-    void func_000BA360(int a);
+    char pad4[0x13C];
+    int f140;
+    char pad144[0xC];
+    int f150;
+    u8 f154;
+    char pad155[0x103];
+    int f258;
+    int pad25C;
+    int f260;
+    int f264;
+    int f268;
+    int f26C;
+    int f270;
+    int pad274;
+    int f278;
+    int f27C;
+    int f280;
+    int f284;
+    int f288;
+    int f28C;
+    int f290;
+    int f294;
+    int f298;
+    int f29C;
+    int f2A0;
+    int f2A4;
+    int f2A8;
+    int f2AC;
+    int f2B0[8];
+    int f2D0[8];
+    BmxUIMain *func_000BA360(int a);
     void func_000BE540();
     void func_001577A0(V_000B9D50 *obj, int flags);
     BmxUIMain *func_000B9D30(int a);
