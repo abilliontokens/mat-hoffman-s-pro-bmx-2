@@ -5,6 +5,15 @@
 float func_0014F510(float x);
 float func_0014F550(float x);
 float func_0001E960(float x);
+
+static __forceinline float Len2_0011F400(float x, float y, float z)
+{
+    float s = x * x;
+
+    s += y * y;
+    s += z * z;
+    return s;
+}
 void func_0011F010(int a0, float x, float y, float z, float a4, float a5);
 void func_0011F400(int a0, int a1, int a2, int a3, int a4, int a5);
 void func_0011ACC0(void *out, void *a, void *b);
