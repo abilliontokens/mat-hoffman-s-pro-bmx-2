@@ -89,7 +89,12 @@ struct C_00199BE0 {
     void func_0019A0A0(float sx, float sy, float sz);
     void func_001985D0(int *flag, S_0019A680_V4 *a, S_0019A680_V4 *b, float *m, int n);
     void func_0019A680(S_0019A680_V4 *center, S_0019A680_V4 *extent);
+    S_00199B00_F4 func_00197F70(S_00199B00_F4 *p);
+    void func_00198440(S_00199B00_F4 *center, float *radius, int n);
+    void func_0019A2D0(void);
 };
+
+extern float D_00275544;
 
 void func_001977B0(S_00199B00_F4 *out, const S_00199B00_F4 *in);
 
