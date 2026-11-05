@@ -37,6 +37,7 @@ struct BmxUIPageRider {
     DelObjC_000CC *unk550;
     void func_001BE3F0();
     void func_000CCB10();
+    BmxUIPageRider *func_000CC700(void *a);
 };
 
 struct C_000CC6D0 {
