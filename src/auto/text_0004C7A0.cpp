@@ -114,6 +114,41 @@ struct C_0004D480 {
 };
 extern char D_00275630;
 
+struct H2_Ctl {
+    void func_00086130(int a);
+    void func_00086140(int a);
+    void func_00085BD0(int a);
+    void func_00085D00(int a);
+    void func_00085E50(int a);
+    void func_00085F40(int a);
+    void func_00086030(int a);
+};
+struct H2_Item { char pad0[0x95c]; int unk95c; };
+struct H2_Owner {
+    char pad0[0x4e0];
+    struct { char pad[0x1a8]; H2_Item *items[1]; } *unk4e0;
+};
+struct H2_Obj19c { char pad0[0xb8]; int unkb8; void func_0006D280(); };
+struct H2_Event {
+    char pad0[0x64];
+    H2_Owner *unk64;
+    char pad68[0xb8];
+    int unk120;
+    char pad124[0x10];
+    int unk134;
+    char pad138[0x64];
+    H2_Obj19c *unk19c;
+    char pad1a0[0xe8];
+    H2_Ctl *unk288;
+    char pad28c[4];
+    int unk290;
+    int unk294;
+    char pad298[4];
+    float unk29c;
+    void func_00032A20();
+    int func_0004CCF0(int state);
+};
+
 struct H_Obj {
     virtual void vf0(); virtual void vf1(); virtual void vf2(); virtual void vf3(); virtual void vf4();
     virtual void vf5(); virtual void vf6();
