@@ -1,6 +1,39 @@
 /* 18 functions from 0x001A3BF0 to 0x001A4B60, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+
+struct C_001A40E0 {
+    undefined4 func_001A40E0(byte param_1);
+};
+
+struct C_001A4420 {
+    undefined4 func_001A4420(byte param_1);
+};
+
+struct C_001CFE90 {
+    int func_001CFE90(int a1, int a2, int a3, int a4, int a5, int a6);
+};
+
+struct C_001A4440_Holder {
+    char pad0[0xb4];
+    C_001CFE90 *fb4;
+};
+
+struct C_001A4440_List {
+    int count;
+    void **items;
+    int base;
+    int capacity;
+    int func_0015ACA0(int a);
+};
+
+struct C_001A4440 {
+    undefined4 func_001A4440(int a1, int a2, int *a3);
+};
+
+struct C_001A4500 {
+    undefined4 func_001A4500(int a1, int *a2, int a3);
+};
 struct C_001A4B30 {
     void func_001A4B30(void);
 };
