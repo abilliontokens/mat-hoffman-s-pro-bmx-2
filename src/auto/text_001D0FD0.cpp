@@ -97,6 +97,7 @@ struct XboxGame : Game {
     int func_001572B0(int a0);
     void func_00156FC0();
     int func_001D0FD0(int a0);
+    int func_001D1060(void);
     void *func_001D1390(int flags);
     int func_001D13D0(int a0);
     V_002EFDB8 *func_001D1290();
@@ -215,6 +216,26 @@ int XboxGame::func_001D0FD0(int param_1)
         D_002EFDB8->v12(saved + 0x1e0);
     }
     return 1;
+}
+
+V_002EFDB8 *XboxGame::func_001D1290()
+{
+    S_001D1290_Alloc *p;
+
+    p = (S_001D1290_Alloc *)func_001E8A44(0x544);
+    if (p != 0) {
+        D_002EFDB8 = p->func_001D48E0();
+    } else {
+        D_002EFDB8 = 0;
+    }
+    if (D_002EFDB8 == 0) {
+        return 0;
+    }
+    if (D_002EFDB8->v1(D_002F07B8) == 0) {
+        return 0;
+    }
+    ((V_XboxGame *)this)->v7();
+    return D_002EFDB8;
 }
 
 void *XboxGame::func_001D1390(int flags)
