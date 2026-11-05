@@ -167,6 +167,156 @@ int func_001F4F45(unsigned short *pwc, const unsigned char *s, unsigned int n)
     return 1;
 }
 
+static int func_001F54D0(int *punlock_flag, int *pfh, const char *path, int oflag, int shflag, int pmode)
+{
+    int fh;
+    int filepos;
+    char fileflags;
+    char isdev;
+    char ch;
+    int osfh;
+    unsigned int fileaccess;
+    unsigned int fileshare;
+    unsigned int filecreate;
+    unsigned int fileattrib;
+
+    fileflags = 0;
+    if ((oflag & 0x8000) == 0) {
+        if (oflag & 0x4000) {
+            fileflags |= 0x80;
+        } else if (D_002F6A84 != 0x8000) {
+            fileflags |= 0x80;
+        }
+    }
+
+    switch (oflag & 3) {
+    case 0:
+        fileaccess = 0x80000000;
+        break;
+    case 1:
+        fileaccess = 0x40000000;
+        break;
+    case 2:
+        fileaccess = 0xc0000000;
+        break;
+    default:
+        *func_001ED075() = 0x16;
+        *func_001ED07E() = 0;
+        return -1;
+    }
+
+    switch (shflag) {
+    case 0x10:
+        fileshare = 0;
+        break;
+    case 0x20:
+        fileshare = 1;
+        break;
+    case 0x30:
+        fileshare = 2;
+        break;
+    case 0x40:
+        fileshare = 3;
+        break;
+    default:
+        *func_001ED075() = 0x16;
+        *func_001ED07E() = 0;
+        return -1;
+    }
+
+    switch (oflag & 0x700) {
+    case 0:
+    case 0x400:
+        filecreate = 3;
+        break;
+    case 0x100:
+        filecreate = 4;
+        break;
+    case 0x500:
+    case 0x700:
+        filecreate = 1;
+        break;
+    case 0x200:
+    case 0x600:
+        filecreate = 5;
+        break;
+    case 0x300:
+        filecreate = 2;
+        break;
+    default:
+        *func_001ED075() = 0x16;
+        *func_001ED07E() = 0;
+        return -1;
+    }
+
+    fileattrib = 0x80;
+    if (oflag & 0x100) {
+        if (!((pmode & ~D_002F6848) & 0x80)) {
+            fileattrib = 1;
+        }
+    }
+    if (oflag & 0x40) {
+        fileattrib |= 0x4000000;
+        fileaccess |= 0x10000;
+        fileshare |= 4;
+    }
+    if (oflag & 0x1000) {
+        fileattrib |= 0x100;
+    }
+    if (oflag & 0x20) {
+        fileattrib |= 0x8000000;
+    } else if (oflag & 0x10) {
+        fileattrib |= 0x10000000;
+    }
+
+    fh = func_001EE7A4();
+    if (fh == -1) {
+        *func_001ED075() = 0x18;
+        *func_001ED07E() = 0;
+        return -1;
+    }
+
+    *punlock_flag = 1;
+    *pfh = fh;
+    osfh = func_001DCC3C(path, fileaccess, fileshare, 0, filecreate, fileattrib, 0);
+    if (osfh == -1) {
+        func_001ED087(func_001DD603());
+        return -1;
+    }
+    func_001EE63F(fh, osfh);
+
+    fileflags |= 1;
+    isdev = fileflags & 0x48;
+    D_002FB260[fh >> 5][fh & 0x1f].osfile = fileflags;
+
+    if (!isdev && (fileflags & 0x80) && (oflag & 2)) {
+        filepos = func_001EE4BD(fh, -1, 2);
+        if (filepos == -1) {
+            if (*func_001ED07E() != 0x83) {
+                func_001ED40B(fh);
+                return -1;
+            }
+        } else {
+            ch = 0;
+            if (func_001ED633(fh, &ch, 1) == 0 && ch == 26) {
+                if (func_001F6158(fh, filepos) == -1) {
+                    func_001ED40B(fh);
+                    return -1;
+                }
+            }
+            if (func_001EE4BD(fh, 0, 0) == -1) {
+                func_001ED40B(fh);
+                return -1;
+            }
+        }
+    }
+
+    if (!isdev && (oflag & 8)) {
+        D_002FB260[fh >> 5][fh & 0x1f].osfile |= 0x20;
+    }
+    return fh;
+}
+
 int func_001F5766(const char *path, int oflag, int shflag, int pmode)
 {
     int fh;
@@ -174,7 +324,7 @@ int func_001F5766(const char *path, int oflag, int shflag, int pmode)
     int unlockFlag = 0;
 
     __try {
-        retval = ((S_001F54D0 *)shflag)->func_001F54D0(&unlockFlag, &fh, path, oflag, pmode);
+        retval = func_001F54D0(&unlockFlag, &fh, path, oflag, shflag, pmode);
     } __finally {
         if (unlockFlag) {
             func_001EE782(fh);
