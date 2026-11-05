@@ -27,14 +27,44 @@ struct DXRenderableObjectData {
 struct DXRenderableObject;
 
 struct Alloc190 {
+    char pad0[4];
+    DXRenderableObject *f4;
     Alloc190 *func_00142E90(DXRenderableObject *owner);
+    void func_00142F30(int a);
+};
+
+struct C_001446B0 {
+    char pad0[4];
+    int f4;
+    char pad8[0xC];
+    void func_001446B0(int a0, int a1, int a2);
+};
+
+struct ShadowPiece {
+    int count;
+    int unk4;
+    C_001446B0 *items;
+};
+
+struct ShadowPieceTable {
+    char pad0[0x10];
+    ShadowPiece *pieces;
+};
+
+struct ShadowTarget {
+    char pad0[0xFC];
+    int ffc;
+    char pad100[0x54];
+    int f154;
+    int func_0017AB70(int a);
 };
 
 struct DXRenderableObject {
     void *vtbl;
     char pad4[0x19F];
     unsigned char f1a3 : 1;
-    char pad1a4[0x2C];
+    ShadowPieceTable *f1a4;
+    char pad1a8[0x28];
     PageObj *f1d0;
     int f1d4;
     void func_001814B0(int a);
@@ -132,6 +162,12 @@ void *DXRenderableObject::func_001437A0(int flags)
     if (flags & 1)
         func_001E891B(this);
     return this;
+}
+
+void C_001437E0::func_001437E0(void *p)
+{
+    unk4 = p;
+    unk8 = 0;
 }
 
 undefined4 C_00143BD0::func_00143BD0(byte param_1)
