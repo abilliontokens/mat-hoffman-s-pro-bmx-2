@@ -88,7 +88,7 @@ DXMesh *DXMesh::func_00140710(int p1, int p2, int count, int *p4, int p5)
 void *DXMesh::func_001407D0(unsigned int flags)
 {
     vtbl = (void *)&D_00284F8C;
-    if (f3c) f3c->func_00140680(3);
+    if (f3c) ((C_00140680Array *)f3c)->func_00140680(3);
     if (f48) f48->destroyObject(1);
     func_00162660();
     if (flags & 1) func_001E891B(this);
