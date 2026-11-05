@@ -126,7 +126,7 @@ void QuadTreeNode::func_0017CEB0(void *item)
 void C_0017D190::func_0017D190(void)
 {
     fa0 = f9c;
-    fc++;
     fa4 = 0;
+    fc++;
     fac = 0;
 }
