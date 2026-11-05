@@ -182,6 +182,17 @@ void *C_0001C9C0::func_0001C9C0(int flags) {
     return this;
 }
 
+void *C_0001CA50::func_0001CA50(int flags) {
+    extern int D_00275C94;
+    void func_001E891B(void *);
+    unk0 = (int)&D_00275C94;
+    func_0001DFF0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void *C_0001CA80::func_0001CA80(int flags) {
     extern int D_00275CFC;
     void func_001E891B(void *);
