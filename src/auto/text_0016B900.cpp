@@ -42,3 +42,24 @@ struct C_0016C5B0 {
     int f218;
     C_0016C5B0 *func_0016C5B0(void *param);
 };
+
+C_0016BE40 *C_0016BE40::func_0016BE40(void *param)
+{
+    u32 *p;
+    ((C_00169C50 *)this)->func_00169C50(param);
+    vtbl = (void *)&D_0028856C;
+    p = (u32 *)&f1F4;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = (u32 *)&f204;
+    p[3] = 0x3f800000;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    f34 = f24;
+    f194 = 0;
+    f1F0 = 0;
+    return this;
+}
