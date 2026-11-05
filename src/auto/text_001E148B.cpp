@@ -28,6 +28,25 @@ struct S_FsSizeInfo_1E148B {
 extern "C" long (__stdcall *_imp__NtOpenFile)(void **handle, u32 access, S_ObjectAttributes_1E148B *oa, S_IoStatusBlock_1E148B *iosb, u32 share, u32 options);
 extern "C" long (__stdcall *_imp__NtQueryVolumeInformationFile)(void *handle, S_IoStatusBlock_1E148B *iosb, void *info, u32 len, u32 cls);
 extern "C" long (__stdcall *_imp__NtClose)(void *handle);
+extern "C" long (__stdcall *_imp__NtDeviceIoControlFile)(void *handle, void *event, void *apc, void *apcctx, S_IoStatusBlock_1E148B *iosb, u32 ioctl, void *in, u32 inlen, void *out, u32 outlen);
+extern "C" void *__cdecl memset(void *dst, int c, unsigned int n);
+#pragma intrinsic(memset)
+
+struct S_ScsiPassThroughDirect_1E148B {
+    u16 Length;
+    u8 ScsiStatus;
+    u8 PathId;
+    u8 TargetId;
+    u8 Lun;
+    u8 CdbLength;
+    u8 SenseInfoLength;
+    u8 DataIn;
+    u32 DataTransferLength;
+    u32 TimeOutValue;
+    void *DataBuffer;
+    u32 SenseInfoOffset;
+    u8 Cdb[16];
+};
 typedef __declspec(noreturn) void (__stdcall *HalReturnToFirmware_t)(int);
 extern "C" HalReturnToFirmware_t _imp__HalReturnToFirmware;
 
