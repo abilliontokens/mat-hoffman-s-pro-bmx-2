@@ -147,6 +147,7 @@ struct C_0018C000 {
     int unk458;
     void *func_0018C000(char *param);
     void *func_0018C650(int flags);
+    int func_0018C2D0(char *a, char *b, int c);
     C_002AA6C0_Obj *func_0018C070(void);
     void func_0018C1C0(void);
     float func_0018C210(void);
