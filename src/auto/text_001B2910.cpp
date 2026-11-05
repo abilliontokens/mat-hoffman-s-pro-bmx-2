@@ -25,6 +25,11 @@ struct S_001B3560 {
     int f124;
 };
 
+struct S_001B2CD0_Px {
+    unsigned short lo;
+    unsigned char hi;
+};
+
 struct C_001B33A0_Loader {
     int func_0013C8A0(int handle, void *buf, int size, int count);
 };
