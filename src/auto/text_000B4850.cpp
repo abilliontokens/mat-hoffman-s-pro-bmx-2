@@ -19,6 +19,14 @@ struct Vec4 {
     }
 };
 
+static inline void SetVec4(Vec4 *d, f32 x, f32 y, f32 z, f32 w)
+{
+    d->x = x;
+    d->y = y;
+    d->z = z;
+    d->w = w;
+}
+
 struct C_00157600 {
     void func_00157600(int a0);
 };
@@ -128,12 +136,7 @@ void BmxStallConstraint::func_000B5120(void)
     v.w = 1.0f;
     C_00198330 *obj = f30->func_00198330(&D_0027D3F0);
     obj->func_00199A70(f30, &v);
-    Vec4 t;
-    t.x = 0.0f;
-    t.y = -obj->f144 + v.y;
-    t.z = v.z;
-    t.w = 1.0f;
-    f34 = t;
+    f34 = Vec4(0.0f, -obj->f144 + v.y, v.z, 1.0f);
 }
 
 void BmxStallConstraint::func_000B51C0(void)
