@@ -33,7 +33,11 @@ struct C_00092BE0_Str {
     C_00092BE0_Str *func_001D3E30(void);
     void func_001D3F20(char *name, int len);
     char *func_001D3F50(void);
+    void func_001D3E60(void *s);
 };
+
+extern char D_0027A150;
+extern char D_00279100;
 
 struct S_00092A10_Sub {
     char pad0[0xc];
