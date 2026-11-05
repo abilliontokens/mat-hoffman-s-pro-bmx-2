@@ -56,3 +56,28 @@ struct C_00157810 {
     int func_00157A00(int a);
     int func_00157AE0(void);
 };
+
+int C_00157810::func_00157960(void)
+{
+    if (f1C & 8) {
+        for (S_00157810_Child *c = f10; c != 0; c = c->fC) {
+            if ((c->f21 & 1) && !(c->f21 & 8) && (c->f18 & 8)) {
+                D_002EFDB8->v7(0);
+                c->v16();
+            }
+        }
+    }
+    return 1;
+}
+
+int C_00157810::func_00157AE0(void)
+{
+    if (f1C < 0) {
+        for (S_00157810_Child *c = f10; c != 0; c = c->fC) {
+            if (!(c->f21 & 8)) {
+                c->v20();
+            }
+        }
+    }
+    return 1;
+}
