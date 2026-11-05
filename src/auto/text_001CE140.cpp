@@ -143,7 +143,7 @@ struct Voice {
     int func_001CE4C0();
     int func_001CE770(int buf);
     int func_001CCAC0(int buf, int handle, int zero, unsigned int size);
-    int func_001CCC50(int *out, int a, unsigned int b, unsigned short c, unsigned short d,
+    int func_001CCC50(int *out, int a, unsigned int b, int c, int d,
                       short e, int f, int g, int h, unsigned int i);
 };
 
@@ -248,6 +248,58 @@ int XboxSound::func_001CE660(float dt)
         }
     }
     return 1;
+}
+
+int Voice::func_001CE770(int buf)
+{
+    int handle = -1;
+
+    if (f144 == 0) {
+        handle = D_002BEAAC->func_0013C9F0(path, &D_00275FB4);
+        if (handle == -1) {
+            return 0;
+        }
+        int r = D_002BEAAC->func_0013C8A0(handle, f158, 0x2c, 1);
+        if (r != 1) {
+            D_002BEAAC->func_0013C110(handle);
+            return 0;
+        }
+        if (f16c == 0x69) {
+            if (D_002BEAAC->func_0013C8A0(handle, f184, 0x10, 1) != 1) {
+                D_002BEAAC->func_0013C110(handle);
+                return 0;
+            }
+        }
+    }
+    if (f16c == 0x69) {
+        f118 = f190;
+    } else {
+        f118 = f180;
+    }
+    f11c = (float)f118 / (float)f174;
+    if ((f10c & 0x100) && f150) {
+        f19c = f170;
+        f1a0 = f170;
+    } else {
+        if (!func_001CCC50(&f13c, 0, f170, f17a, f178, f16c, (flags >> 1) & 1,
+                           (f10c & 8) == 8, 1, f110)) {
+            if (handle != -1) {
+                D_002BEAAC->func_0013C110(handle);
+            }
+            return 0;
+        }
+        buf = f13c;
+    }
+    if (func_001CCAC0(buf, handle, 0, f118)) {
+        if (handle != -1) {
+            D_002BEAAC->func_0013C110(handle);
+        }
+        return 1;
+    }
+    if (handle != -1) {
+        D_002BEAAC->func_0013C110(handle);
+    }
+    return 0;
 }
 
 void XboxMusic::func_001CE920()
