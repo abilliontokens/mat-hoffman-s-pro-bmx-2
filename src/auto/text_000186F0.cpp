@@ -150,6 +150,38 @@ struct TikiHuntState {
     void func_00019520();
 };
 
+void C_00018D40::func_00018D40(C_00018D40Param *param)
+{
+    int count;
+    int i;
+    param->func_00169710(D_00275984);
+    param->func_00168C20(D_00275978, 0, &count);
+    f4d8 = count;
+    if (count > 0) {
+        Vec4_00018D40 v;
+        char buf[0x40];
+        float fval;
+        int n = count;
+        C_00018D40Elem *p = (C_00018D40Elem *)func_001E8A44(n * 0x14);
+        if (p != 0) {
+            func_00011FF0(p, 0x14, n, &D_00144CD0);
+        } else {
+            p = 0;
+        }
+        f49c = p;
+        for (i = 0; i < f4d8; i++) {
+            func_001ADCC0(buf, 0x40, D_00275968, i + 1);
+            param->func_00169710(buf);
+            func_001ADCC0(buf, 0x40, D_0027595C, i + 1);
+            param->func_00168CB0(buf, &D_002A0718, &v);
+            f49c[i].f4 = v;
+            func_001ADCC0(buf, 0x40, D_00275950, i + 1);
+            param->func_00168C50(buf, 8.0f, &fval);
+            f49c[i].f0 = fval;
+        }
+    }
+}
+
 void AiTikiGod::func_00019480()
 {
     f4d4 = 0;
