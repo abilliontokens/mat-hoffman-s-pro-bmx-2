@@ -160,6 +160,20 @@ void *C_00100700::func_00100700(unsigned int flags) {
     return this;
 }
 
+void C_001009D0::func_001009D0() {
+ if (unk2a8 == 0 && unk2b0 == 0 && unk298->func_001B1B20() == 0xff) unk2a8=1;
+ if(unk2b0 != 0) {
+ unk2bc=1; unk2b8=0;
+ func_000E1EA0();
+ unk2c0=0xff; unk2c4=0; unk2c8=0; unk2cc=0; unk2d0=0.25f; unk2b0=0;
+ }
+ if(unk2b4 != 0) {
+ func_000E1F00();
+ unk2c0=0; unk2c4=0xff; unk2c8=0xff; unk2cc=0; unk2d0=0.25f; unk2b4=0;
+ }
+ func_001008E0(); func_000E1F60(); func_00157960();
+}
+
 void *C_00100AB0::func_00100AB0(unsigned int flags) {
     func_000E2140();
     if (flags & 1)
