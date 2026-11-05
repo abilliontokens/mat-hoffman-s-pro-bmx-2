@@ -103,6 +103,25 @@ found:
     return row[f40++];
 }
 
+void C_00192470::func_00192610()
+{
+    fE |= 1;
+    f3C = 0;
+    f40 = 0;
+}
+
+void C_00192470::func_00192630()
+{
+    int i;
+    if (f34 == 0) {
+        return;
+    }
+    for (i = 0; i < f2c - 1; i++) {
+        func_00192840(f34[i], &f28);
+    }
+    func_00192840(f34[i], &f30);
+}
+
 undefined4 C_001926D0::func_001926D0(byte param_1)
 {
   int func_00192420(...);
