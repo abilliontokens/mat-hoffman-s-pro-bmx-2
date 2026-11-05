@@ -162,12 +162,12 @@ struct C_001AE700 {
 };
 
 extern int D_002AA3F4;
-extern float D_0027A060;
-extern float D_00287B68;
-extern float D_00284758;
-extern float D_00275460;
-extern float D_002AA3F0;
-extern float D_00276E9C;
+extern const float D_0027A060;
+extern const float D_00287B68;
+extern const float D_00284758;
+extern const float D_00275460;
+extern const float D_002AA3F0;
+extern const float D_00276E9C;
 
 struct C_001AE810 {
     void *vtbl;
@@ -239,6 +239,39 @@ float __stdcall func_001AE530(float x, float y)
     float dy = y - D_0028AC88;
 
     return sqrtf(dx * dx + dy * dy);
+}
+
+void C_001AE700::func_001AE700(void)
+{
+    int n = D_002AA3F4;
+    int *p = f64;
+    float step = (float)D_002AA3F4 * D_0027A060 * D_00287B68;
+    int i = 0;
+    C_001AE700_Obj *obj;
+    float v;
+    unsigned char b;
+    unsigned int c;
+
+    do {
+        if (*p == 0) {
+            f68 = step + f68;
+        }
+        i += n;
+        p += n;
+    } while (i < 0x100);
+    obj = f54;
+    v = (f2C - f28) * (D_00284758 * f68) + f28;
+    v = D_002AA3F0 * obj->f3C + (D_00275460 - D_002AA3F0) * v;
+    obj->f3C = v;
+    obj->f40 = v;
+    b = (unsigned char)(D_00276E9C * f68);
+    obj = f54;
+    obj->f64 = b;
+    c = (unsigned int)b << 24;
+    obj->f54 = (obj->f54 & 0xffffff) | c;
+    obj->f58 = (obj->f58 & 0xffffff) | c;
+    obj->f5C = (obj->f5C & 0xffffff) | c;
+    obj->f60 = (obj->f60 & 0xffffff) | c;
 }
 
 void *C_001AE7D0::func_001AE7D0(int flags)
