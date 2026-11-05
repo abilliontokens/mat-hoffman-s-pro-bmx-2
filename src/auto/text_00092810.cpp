@@ -121,6 +121,15 @@ int C_000928E0::func_000928E0(void) {
     return (int)&unk254;
 }
 
+int func_00092A10(void)
+{
+    if (D_002A8490->f2e0->f2cc->func_001D4300(8) != 0) {
+        D_002A8490->f2e0->f2cc->func_001D41D0(8);
+        return 1;
+    }
+    return 0;
+}
+
 void C_00092890::func_00093120(void)
 {
     for (int i = 0; i < 8; i++) {
