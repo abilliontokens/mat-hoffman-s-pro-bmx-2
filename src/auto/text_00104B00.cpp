@@ -215,6 +215,29 @@ void C_00104B00::func_00104BE0(void)
     }
 }
 
+void C_00104B00::func_00104DF0(int a0)
+{
+    int color;
+    S_00104DF0_Tex *t;
+
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
+    func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5348, D_002A5D98);
+    color = 0;
+    if (((S_00104DF0_G *)D_002A8490)->f2e0->f190[fa28] == 3) {
+        color = 0x808080;
+    } else if (func_001EA426(((S_00104DF0_G *)D_002A8490)->f2e0->f1f4[fa28], D_002829A0) == 0) {
+        color = (int)D_0010103F;
+    }
+    t = (S_00104DF0_Tex *)func_001E8A44(0xac);
+    f1234 = t ? t->func_001B3C10(1) : 0;
+    f1234->func_001B3DC0(a0, 4, 0.02f, color);
+    func_001577A0(f1234, 8);
+    t = (S_00104DF0_Tex *)func_001E8A44(0xac);
+    f1230 = t ? t->func_001B3C10(1) : 0;
+    f1230->func_001B3DC0(a0, 0x20, 0.02f, color);
+    func_001577A0(f1230, 8);
+}
+
 int C_00104B00::func_001056E0(void)
 {
     if (fa00 != 0) {
