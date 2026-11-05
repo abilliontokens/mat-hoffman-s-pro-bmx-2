@@ -20,6 +20,17 @@ struct S_00198B70_Mat {
     float m[16];
 };
 
+struct S_00198B70_Bits {
+    u8 b0 : 1;
+    u8 b1 : 1;
+    u8 b2 : 1;
+    u8 b3 : 1;
+    u8 b4 : 1;
+    u8 b5 : 1;
+    u8 b6 : 1;
+    u8 b7 : 1;
+};
+
 struct S_00198B70_F4 {
     float x;
     float y;
