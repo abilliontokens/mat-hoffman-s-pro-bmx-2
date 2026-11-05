@@ -228,6 +228,29 @@ struct C_001B0040 {
 };
 
 
+/* RenderPrologue */
+struct C_001B09C0 {
+    void *vtbl;
+    void *func_001B09C0(unsigned int flags);
+};
+
+struct S_001B08F0_Item {
+    int d[15];
+};
+
+/* VertexAnimationData */
+struct C_001B08B0 {
+    void *vtbl;
+    int unk4;
+    int unk8;
+    S_001B08F0_Item *items[4];
+    S_001B0230_Owned *unk1C;
+    S_001B0230_Owned *unk20;
+    void *func_001B08B0(unsigned int flags);
+    C_001B08B0 *func_001B08F0(C_001B08B0 *src);
+    void func_001B0970(void);
+};
+
 int C_001AFEC0::func_001AFEC0()
 {
     if (D_002A8490->unk238 != unk8) {
