@@ -109,19 +109,51 @@ struct Voice {
     virtual void v0C(); virtual void v0D(); virtual void v0E(); virtual void v0F();
     virtual void v10(); virtual void v11();
     virtual void v48(int a);
-    char pad04[0x11c];
+    char pad04[4];
+    char path[0x104];
+    unsigned int f10c;
+    unsigned int f110;
+    char pad114[4];
+    unsigned int f118;
+    float f11c;
     int f120;
     char pad124[0x18];
     int f13c;
     int f140;
-    char pad144[0x10];
+    int f144;
+    char pad148[8];
+    int f150;
     int f154;
-    char pad158[0x48];
+    char f158[0x14];
+    short f16c;
+    char pad16e[2];
+    unsigned int f170;
+    unsigned int f174;
+    unsigned short f178;
+    unsigned short f17a;
+    char pad17c[4];
+    unsigned int f180;
+    unsigned int f184[3];
+    unsigned int f190;
+    char pad194[8];
+    unsigned int f19c;
     int f1a0;
     char pad1a4[0x64];
     unsigned char flags;
     int func_001CE4C0();
+    int func_001CE770(int buf);
+    int func_001CCAC0(int buf, int handle, int zero, unsigned int size);
+    int func_001CCC50(int *out, int a, unsigned int b, unsigned short c, unsigned short d,
+                      short e, int f, int g, int h, unsigned int i);
 };
+
+struct S_Loader_001CE770 {
+    int func_0013C9F0(char *name, char *mode);
+    int func_0013C8A0(int handle, void *dst, int size, int count);
+    void func_0013C110(int handle);
+};
+extern S_Loader_001CE770 *D_002BEAAC;
+extern char D_00275FB4;
 
 extern char D_0028F0A8[];
 extern char D_002843B0[];
