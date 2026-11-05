@@ -75,9 +75,9 @@ struct QuadTree {
     S_QuadTreeFx *f94;
     char pad98[4];
     u32 f9C;
-    u32 fA0;
-    u32 fA4;
-    char padA8[4];
+    S_QuadTreeListNode *fA0;
+    int fA4;
+    S_QuadTreeListNode *fA8;
     u32 fAC;
     char padB0[0x890 - 0xB0];
     void **array890;
@@ -88,6 +88,7 @@ struct QuadTree {
     u32 f8A4;
     u32 f8A8;
     u32 f8AC;
+    u16 *func_0017D050(void);
     void func_0017D120(S_QuadTreeListNode *node);
     void func_0017D1B0(void);
 };
@@ -193,11 +194,9 @@ int QuadTreeNode::func_0017CF30(void *item)
                 D_002EFD80->f90->func_0001E790(node);
                 if (found)
                     break;
-                prev = node;
-                node = node->next;
-            } else {
-                break;
             }
+            prev = node;
+            node = node->next;
         } while (node != 0);
     }
     if (f8 != 0)
