@@ -82,6 +82,7 @@ struct C_000C4EB0 {
     virtual void v25();
     virtual void v26();
     virtual void v27();
+    char pad4[0x288 - 4];
 
     int f288;
     char pad28C[0x2E0 - 0x28C];
