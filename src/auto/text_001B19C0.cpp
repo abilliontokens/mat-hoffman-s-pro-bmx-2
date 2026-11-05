@@ -156,25 +156,53 @@ struct C_00161580 {
     C_00161580 *func_00161580(void);
 };
 
+void func_001E891B(void *p);
+int func_00135C70(int a, int b, int *c, int d);
+
+struct C_001B2580_Iter {
+    int f0;
+    int f4;
+    int f8;
+    int func_001B2330(void);
+    int func_001B2350(void);
+};
+
 struct C_001B23D0_Obj {
+    char pad4[4];
+    C_001B2580_Iter iter;
     virtual void v0();
     virtual void v1();
     virtual void v2();
 };
 
+struct S_001B26C0_Entry {
+    int f0;
+    C_001B23D0_Obj *f4;
+    int f8;
+    int fC;
+};
+
 /* TextureMapManager */
 struct C_001B23D0 {
     void *vtbl;
-    char pad4[0x20];
+    char pad4[0x10];
+    S_001B26C0_Entry *f14;
+    char pad18[0xc];
     C_001B23D0_Obj *f24;
     void *f28;
     void *f2c;
     unsigned int f30;
-    int f34;
+    unsigned int f34;
     C_001B23D0 *func_001B23D0(void);
     void func_001B2400(void);
     void func_001B2450(void);
     void *func_001B2480(unsigned int size);
+    void *func_001B24D0(unsigned int size);
+    void *func_001B2520(unsigned int flags);
+    void func_001B2580(int *a, int b);
+    void func_001B26C0(int idx);
+    void func_001AC790(int idx);
+    void func_00157BF0(int *a, int b);
 };
 
 struct C_001B19C0 {
