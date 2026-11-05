@@ -1,6 +1,37 @@
 /* 8 functions from 0x00101280 to 0x00101CF0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_00101A30_Widget {
+    void func_001B1980();
+};
+
+struct C_00101A30 {
+    char pad0[0x2A0];
+    int f2A0;
+    int f2A4;
+    char pad2A8[4];
+    int f2AC;
+    int f2B0;
+    char pad2B4[0x3EC - 0x2B4];
+    int f3EC;
+    char pad3F0[0x3FC - 0x3F0];
+    int f3FC;
+    int f400;
+    int f404;
+    int f408;
+    float f40C;
+    int f410;
+    int f414;
+    char pad418[0x638 - 0x418];
+    C_00101A30_Widget *f638[9];
+    void func_000F0910();
+    void func_000F0A00();
+    void func_000F0400();
+    void func_000F0AE0();
+    void func_00157960();
+    void func_00101A30();
+};
+
 struct C_00101A10 {
     undefined4 func_00101A10(byte param_1);
 };
