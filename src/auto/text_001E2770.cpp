@@ -92,7 +92,7 @@ struct S_func_001E2B60_arg1 {
 
 float __stdcall func_00243639(int v);
 
-extern char D_0019660D;
+extern int D_0019660D;
 
 static __forceinline int dither_noise_step(int &seed, int &prev)
 {
@@ -363,8 +363,8 @@ int __stdcall mix_dither_block(S_func_001E2B60_arg0 *self, S_func_001E2B60_arg1 
     short *src = arg->f0;
     float *dst = arg->f60;
     char *flags = arg->f8;
-    float *pa = arg->fc;
-    int *pb = arg->f10;
+    float *a = arg->fc;
+    int *b = arg->f10;
     int i = 0;
     int seg = 0;
     int j = 0;
@@ -378,6 +378,7 @@ int __stdcall mix_dither_block(S_func_001E2B60_arg0 *self, S_func_001E2B60_arg1 
     } else {
         float amp = self->f340 * D_002902B8;
         int n = self->f324;
+        int k = 0;
         int end;
         float t;
         for (i = 0; i < n; i++) {
@@ -401,12 +402,11 @@ int __stdcall mix_dither_block(S_func_001E2B60_arg0 *self, S_func_001E2B60_arg1 
                 end = self->f328;
             }
             if (flags[seg] == 1) {
-                float g = func_00243639(*pb) * *pa * inv * D_002902B8;
+                float g = func_00243639(b[k]) * a[k] * inv * D_002902B8;
                 for (; i < end; i++) {
                     dst[i] = dither_noise(self) * gains[i] * g;
                 }
-                pa++;
-                pb++;
+                k++;
             } else {
                 if (self->f328 < end) {
                     end = self->f328;
