@@ -37,7 +37,26 @@ struct C_0018E0E0_Arg {
     int f24;
 };
 
+struct C_0018DE60_Entry {
+    int idx;
+    char name[0x40];
+    int f44;
+    int type;
+    int kind;
+};
+
+struct C_0018DE60_Arg {
+    char pad0[0x20];
+    C_0018DE60_Entry *f20;
+};
+
+extern char *D_002A96A4[];
+int func_001E91F4(const char *s);
+
 struct C_0018E0E0 {
+    int func_0018D900(int a);
+    int func_0018DA00(int a, const char *name);
+    void func_0018DE60(int a, C_0018DE60_Arg *arg, int idx, int kind, const char *name, int type);
     C_0018DA90_Result func_0018DA90(int kind, int idx, const char *name, unsigned int *out);
     void func_0018E0E0(C_0018E0E0_Arg *arg, int idx);
 };
@@ -182,6 +201,75 @@ void *C_0018E1D0::func_0018E1D0()
         return f150.func_00191400();
     }
     return r;
+}
+
+void C_0018E250::func_0018E250(const char * volatile name, unsigned int flags)
+{
+    volatile int slot[4];
+    int a;
+    int b;
+    int c;
+    int k;
+    int v;
+    unsigned int f;
+    C_0018E250 *self;
+    const char *s = name;
+
+    slot[0] = (int)this;
+    slot[1] = strlen(s);
+    slot[2] = 0x17;
+    a = slot[2];
+    b = slot[1];
+    c = a;
+    if (c > b) {
+        c = b;
+    }
+    slot[3] = c;
+    k = slot[3];
+    func_001E8920((void *)slot[0], name, k);
+    ((volatile char *)slot[0])[k] = 0;
+    ((C_0018E250 *)slot[0])->f18 = *(volatile unsigned int *)&flags;
+    f = *(volatile unsigned int *)&flags;
+
+    switch ((f >> 8) & 0xff) {
+    case 1:
+        v = D_002EFE08->f12C;
+        ((C_0018E250 *)slot[0])->f1C = v;
+        break;
+    case 2:
+        v = D_002EFE08->f130;
+        ((C_0018E250 *)slot[0])->f1C = v;
+        break;
+    case 3:
+        v = D_002EFE08->f134;
+        ((C_0018E250 *)slot[0])->f1C = v;
+        break;
+    case 6:
+        v = D_002EFE08->f140;
+        ((C_0018E250 *)slot[0])->f1C = v;
+        break;
+    case 7:
+        v = D_002EFE08->f144;
+        ((C_0018E250 *)slot[0])->f1C = v;
+        break;
+    case 8:
+        v = D_002EFE08->f148;
+        ((C_0018E250 *)slot[0])->f1C = v;
+        break;
+    case 4:
+        v = D_002EFE08->f138;
+        ((C_0018E250 *)slot[0])->f1C = v;
+        break;
+    case 5:
+        v = D_002EFE08->f13C;
+        ((C_0018E250 *)slot[0])->f1C = v;
+        break;
+    case 9:
+        ((C_0018E250 *)slot[0])->f150.func_00191510(name, f);
+        self = (C_0018E250 *)slot[0];
+        self->f1C = self->f150.f1C;
+        break;
+    }
 }
 
 undefined4 C_0018E720::func_0018E720(byte param_1)
