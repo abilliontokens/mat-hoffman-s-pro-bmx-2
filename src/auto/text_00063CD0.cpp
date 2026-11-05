@@ -20,6 +20,96 @@ struct C_001C4D50 {
 
 struct C_001C3D40 {
     void func_001C3D40(int a);
+    void func_001C3D60(int a);
+};
+
+struct S_00064A40_64;
+
+struct C_00064A40_3B4 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29();
+    virtual void v30(S_00064A40_64 *a);
+};
+
+struct C_00064A40_534 {
+    void func_000A84F0();
+};
+
+struct S_00064A40_1a8 {
+    char pad0[0x95c];
+    int unk95c;
+};
+
+struct S_00064A40_4e0 {
+    char pad0[0x1a8];
+    S_00064A40_1a8 *unk1a8;
+};
+
+struct S_00064A40_64 {
+    char pad0[0x3b4];
+    C_00064A40_3B4 *unk3b4;
+    char pad3b8[0x4e0 - 0x3b8];
+    S_00064A40_4e0 *unk4e0;
+    char pad4e4[0x534 - 0x4e4];
+    C_00064A40_534 *unk534;
+};
+
+struct C_00064A40_1C0 {
+    int func_00097700();
+    void __stdcall_dummy();
+    void func_000988B0(C_00064A40_3B4 *a, C_00064A40_534 *b);
+    void func_00098EE0(C_00064A40_3B4 *a, C_00064A40_534 *b);
+    void func_000981D0(C_00064A40_3B4 *a, C_00064A40_534 *b, int c);
+};
+
+struct C_00064A40_1D0 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35();
+    char pad4[0x60];
+    S_00064A40_64 *unk64;
+    char pad68[0x1c0 - 0x68];
+    C_00064A40_1C0 *unk1c0;
+    char pad1c4[0x1f4 - 0x1c4];
+    int unk1f4;
+    void func_000533E0();
+    void func_000321C0();
+};
+
+struct C_00064A40 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29();
+    char pad4[0x64];
+    int unk68;
+    char pad6c[0x1d0 - 0x6c];
+    C_00064A40_1D0 *unk1d0;
+    char pad1d4[0x274 - 0x1d4];
+    int unk274;
+    int unk278;
+    int unk27c;
+    char pad280[0x2b0 - 0x280];
+    int unk2b0;
+    int unk2b4;
+    int unk2b8;
+    void func_00064A40();
 };
 extern C_001C3D40 *D_002F07B8;
 
