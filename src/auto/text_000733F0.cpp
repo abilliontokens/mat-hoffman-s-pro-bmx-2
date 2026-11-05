@@ -94,9 +94,9 @@ struct SPFPSResultsScreen {
     C_001D6410 *unk7C[3];
     C_001D6410 *unk88[3];
     char pad94[0xC];
-    int unkA0;
-    int unkA4;
-    int unkA8;
+    float unkA0;
+    float unkA4;
+    float unkA8;
     C_00073C30_V *unkAC[2];
     C_00073C30_V *unkB4[5];
     C_00073C30_V *unkC8[5];
@@ -178,16 +178,14 @@ void SPFPSResultsScreen::func_00073C30(void)
     int i;
     vtbl = &D_00278D54;
     for (i = 0; i < 2; i++) {
-        if (unk64[i]) { unk64[i]->func_001D6410(); func_001E891B(unk64[i]); }
-        if (unk70[i]) { unk70[i]->func_001D6410(); func_001E891B(unk70[i]); }
-        if (unk7C[i]) { unk7C[i]->func_001D6410(); func_001E891B(unk7C[i]); }
-        if (unk88[i]) { unk88[i]->func_001D6410(); func_001E891B(unk88[i]); }
+        DeleteObj(unk64[i]);
+        DeleteObj(unk70[i]);
+        DeleteObj(unk7C[i]);
+        DeleteObj(unk88[i]);
     }
-    unkA0 = 0;
-    unkA4 = 0;
-    unkA8 = 0;
-    if (unkFC) { unkFC->func_001D6410(); func_001E891B(unkFC); }
-    if (unkF8) { unkF8->func_001D6410(); func_001E891B(unkF8); }
+    unkA8 = unkA4 = unkA0 = 0;
+    DeleteObj(unkFC);
+    DeleteObj(unkF8);
     for (i = 0; i < 2; i++) {
         if (unkAC[i]) { unkAC[i]->destroyObject(1); unkAC[i] = 0; }
     }
@@ -203,17 +201,17 @@ void SPFPSResultsScreen::func_00073C30(void)
     for (i = 0; i < 6; i++) {
         if (unkDC[i]) { unkDC[i]->destroyObject(1); unkDC[i] = 0; }
     }
-    if (unk100) { unk100->func_001D6410(); func_001E891B(unk100); unk100 = 0; }
-    if (unk104) { unk104->func_001D6410(); func_001E891B(unk104); unk104 = 0; }
-    if (unk108) { unk108->func_001D6410(); func_001E891B(unk108); unk108 = 0; }
-    if (unk10C) { unk10C->func_001D6410(); func_001E891B(unk10C); unk10C = 0; }
+    DeleteObj(unk100); unk100 = 0;
+    DeleteObj(unk104); unk104 = 0;
+    DeleteObj(unk108); unk108 = 0;
+    DeleteObj(unk10C); unk10C = 0;
     if (unk114) {
-        if (unk10C) { unk10C->func_001D6410(); func_001E891B(unk10C); unk10C = 0; }
+        DeleteObj(unk10C); unk10C = 0;
     }
-    if (unk110) { unk110->func_001D6410(); func_001E891B(unk110); unk110 = 0; }
-    if (unk114) { unk114->func_001D6410(); func_001E891B(unk114); unk114 = 0; }
-    if (unk118) { unk118->func_001D6410(); func_001E891B(unk118); unk118 = 0; }
-    if (unk1BC) { unk1BC->func_001D6410(); func_001E891B(unk1BC); unk1BC = 0; }
+    DeleteObj(unk110); unk110 = 0;
+    DeleteObj(unk114); unk114 = 0;
+    DeleteObj(unk118); unk118 = 0;
+    DeleteObj(unk1BC); unk1BC = 0;
     func_00157660();
 }
 
