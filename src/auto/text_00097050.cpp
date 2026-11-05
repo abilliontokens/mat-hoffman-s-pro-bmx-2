@@ -60,6 +60,13 @@ template <class T> inline const T &min_ref(const T &a, const T &b)
     return b < a ? b : a;
 }
 
+inline void str_copy(char *dst, const char *src, int size)
+{
+    int n = min_ref((int)strlen(src), size - 1);
+    func_001E8920(dst, src, n);
+    dst[n] = 0;
+}
+
 struct C_00097770_Named {
     char pad0[0x28];
     char name[1];
