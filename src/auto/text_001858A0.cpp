@@ -106,7 +106,7 @@ struct C_00185D00 {
 struct C_00186170 {
     void *vtbl;
     int f4;
-    u32 f8[4];
+    V4Z_001858A0 f8;
     u32 f18;
     u32 f1c;
     u32 f20;
@@ -114,14 +114,12 @@ struct C_00186170 {
     u32 f28;
     u8 f2c;
     char pad2d[0x38 - 0x2d];
-    u32 f38;
-    u8 f3c;
-    char pad3d[0x40 - 0x3d];
-    u32 f40[4];
+    IB_001858A0 f38;
+    V4Z_001858A0 f40;
     u32 f50;
     u8 f54;
     char pad55[0x94 - 0x55];
-    u32 f94[4];
+    V4Z_001858A0 f94;
     u32 fa4;
     char pada8[0xe8 - 0xa8];
     int fe8;
