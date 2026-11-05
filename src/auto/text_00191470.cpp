@@ -49,6 +49,39 @@ __declspec(align(16)) struct S_00192310_Mat {
 };
 
 
+struct C_000264C0 {
+    void func_000264C0(void *param);
+};
+
+struct C_00191470_Vec {
+    int x;
+    int y;
+    int z;
+    int w;
+};
+
+/* the value holder: name[0x18], flags, size, then a vector / matrix slot */
+struct C_00191470 {
+    char f0[0x18];
+    unsigned int f18;
+    int f1C;
+    C_00191470_Vec f20;
+    C_00191470_Vec f30;
+    void func_00191470(unsigned int a0);
+    void func_00191510(const char *a0, unsigned int a1);
+};
+
+struct C_001915A0 {
+    C_00191470_Vec f0;
+    C_00191470_Vec f10;
+    void *func_001915A0(unsigned int a0, C_00191470_Vec *a1, int *a2);
+};
+
+extern char D_0028AA84;
+extern C_00191470_Vec D_002A97D8;
+
+void func_001E8920(void *dst, const void *src, int n);
+
 struct C_00157600 {
     void func_00157600(int a);
 };
@@ -188,12 +221,9 @@ undefined4 C_001923D0::func_001923D0(byte param_1)
 C_001923F0 *C_001923F0::func_001923F0(int a)
 {
     func_00192720();
-    unk28 = a;
-    unk30 = a;
+    unk30 = unk28 = a;
     vtbl = &D_0028AB24;
-    unk34 = 0;
-    unk2C = 0;
-    unk38 = 0;
+    unk38 = unk2C = unk34 = 0;
     return this;
 }
 
