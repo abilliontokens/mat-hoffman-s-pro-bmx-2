@@ -42,6 +42,7 @@ extern char D_002764F0[];
 extern char D_0028CC18[];
 extern char D_0028CC0C[];
 extern "C" int memcmp(const void *a, const void *b, unsigned int n);
+extern "C" int strcmp(const char *a, const char *b);
 
 struct S_001BA3D0_Elem {
     virtual void v0();
@@ -188,6 +189,43 @@ undefined4 C_001BA3B0::func_001BA3B0(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+int C_001BA3D0::func_001BA3D0(S_001B9B50_Stream *stream)
+{
+    char buf[0x104];
+    char type[0x104];
+    int count;
+    int i;
+    int end;
+    int start;
+
+    if (stream->func_00169710(D_0028D1F0) == 0) {
+        return 0;
+    }
+    stream->func_00168C20(D_0028D1DC, 0, &count);
+    if (count > 0) {
+        if (f28 != 0) {
+            start = f24;
+            f24 = start + count;
+            end = f24;
+            f28 = (S_001BA3D0_Elem **)func_001E83E8(f28, f24 * 4);
+        } else {
+            start = 0;
+            f24 = count;
+            end = f24;
+            f28 = (S_001BA3D0_Elem **)func_001E8A44(f24 * 4);
+        }
+        for (i = start; i < end; i++) {
+            func_001ADCC0(buf, 0x104, D_0028D1D0, i - start + 1);
+            if (stream->func_00169710(buf) != 0) {
+                stream->func_00168BE0(D_0028D1C0, D_002764F0, type, 0x104);
+                v28(memcmp(type, D_0028CC18, 10) == 0 ? 1 : (memcmp(type, D_0028CC0C, 11) == 0 ? 2 : 0), i);
+                f28[i]->v1(stream);
+            }
+        }
+    }
+    return 1;
 }
 
 void func_001BA540(undefined4 param_1, undefined4 param_2, int param_3, int param_4)
