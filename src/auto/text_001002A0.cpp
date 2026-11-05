@@ -30,6 +30,51 @@ struct C_001009D0 {
  void func_00157960();
 };
 
+struct W_101010 {
+    void func_00103260(int a);
+    void func_00103350(void);
+};
+struct Q_101010 {
+    int func_000301D0(void);
+};
+struct R_101010 {
+    char pad0[0x74];
+    Q_101010 *p74;
+};
+struct O_101010 {
+    char pad0[0x25c];
+    R_101010 *p25C;
+    char pad260[0x2a4 - 0x260];
+    int f2A4;
+    W_101010 *func_000BA9B0(int id);
+};
+struct M_101010 {
+    char pad0[0x3b];
+    u8 b3B;
+};
+extern float D_00278C48;
+extern float D_0027DE74;
+int func_001E8858(float f);
+struct C_00101010 {
+    void **vtbl;
+    char pad4[0x120];
+    O_101010 *p124;
+    char pad128[0x280 - 0x128];
+    M_101010 *p280;
+    char pad284[0xc];
+    int f290;
+    char pad294[4];
+    float f298;
+    int f29C, f2A0, f2A4, f2A8, f2AC, f2B0, f2B4, f2B8, f2BC;
+    float f2C0;
+    int f2C4, f2C8, f2CC, f2D0;
+    float f2D4, f2D8;
+    void func_00101010(float dt);
+    void func_001BED00(float dt);
+    void func_001BEE50(int a, int b, int c);
+    void v70(int a, int b);
+};
+
 struct C_001D6600 {
     void func_001D6600(void);
 };
