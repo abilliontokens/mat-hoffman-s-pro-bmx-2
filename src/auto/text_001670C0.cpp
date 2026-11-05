@@ -80,6 +80,10 @@ struct C_00167760_Stream {
 };
 
 struct C_0017A860 {
+    char pad0[0xf4];
+    int fF4;
+    char padF8[0x150 - 0xf8];
+    int f150;
     void func_0017A860(void *owner);
 };
 
