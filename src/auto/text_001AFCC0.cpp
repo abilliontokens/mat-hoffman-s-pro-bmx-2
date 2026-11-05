@@ -65,6 +65,9 @@ struct C_001B0230 {
     u8 unk158;
     C_001B0230 *func_001B01D0(void);
     void func_001B0230(void);
+    void func_001B0520(unsigned int key);
+    void func_001B05A0(int a, int b, unsigned int key);
+    int func_001B07D0(int idx, void *arg);
     void *func_001B0A00(unsigned int flags);
 };
 
