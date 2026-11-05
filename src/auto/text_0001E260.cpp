@@ -172,7 +172,6 @@ C_0001E740 *C_0001E740::func_0001E740(int a0, int a1) {
     return this;
 }
 
-#pragma optimize("", on)
 void *C_0001E930::func_0001E930(unsigned int flags) {
     vtbl = &D_00275F9C;
     func_0001E800();
