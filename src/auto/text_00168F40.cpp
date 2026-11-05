@@ -68,8 +68,8 @@ void func_001681A0(const char *s, void *out);
 struct C_00168F40 {
     int f0;
     int f4;
-    void *f8;
-    char padC[4];
+    int f8;
+    int fC;
     int f10;
     int f14;
     S_00168F40_Entry *f18;
