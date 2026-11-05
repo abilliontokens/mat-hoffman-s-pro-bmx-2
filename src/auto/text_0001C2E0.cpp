@@ -524,6 +524,22 @@ int C_0001CC00::func_0001CC80(int idx) {
     return 0;
 }
 
+void C_0001CC00::func_0001CCE0(int idx, int *a, float *b, float *c, int *d)
+{
+    if (slots[idx] != 0) {
+        if (a != 0) {
+            slots[idx]->func_001A15F0(a);
+            unk2C++;
+        }
+        if (b != 0 && c != 0) {
+            slots[idx]->func_001A1580(b, c);
+        }
+        if (d != 0) {
+            slots[idx]->func_001A1650(d);
+        }
+    }
+}
+
 void C_0001CD40::func_0001CD40(void) {
     unk5C = 0;
 }
@@ -535,5 +551,16 @@ void C_0001CD50::func_0001CD50(void) {
 void C_0001CD60::func_0001CD60(int a, int b) {
     func_00135C70(0x1f, 0, a, 0x30);
     func_00157BF0(a, b);
+}
+
+bool C_0001D0B0::func_0001D0B0(int count, int p2)
+{
+    void *p = func_001E8A44(count * 4);
+
+    f10 |= 1;
+    fC = count;
+    f4 = p;
+    f8 = p2;
+    return p != 0;
 }
 
