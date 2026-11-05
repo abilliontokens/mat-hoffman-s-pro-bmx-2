@@ -89,7 +89,7 @@ struct LightEmitter {
     C_00193500 *fC4;
     char padC8[0x4];
     void *fCC;
-    void func_0015E420(float *dir, float *mat);
+    void func_0015E420(float *dir, float *mat, int unk);
     void func_0015E600();
     void func_0015E800(float v);
     void func_0015E920(float *p);
