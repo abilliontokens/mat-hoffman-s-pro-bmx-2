@@ -94,10 +94,14 @@ struct V_0018C120 {
     virtual void vf0(int a);
 };
 
+extern "C" int strcmp(const char *s1, const char *s2);
+
 struct C_0018C120 {
     C_0018C120_Node *head;
     int count;
     void func_0018C120(void);
+    C_0018C120_Node *func_0018C160(const char *name);
+    void func_0018C640(void);
 };
 
 
