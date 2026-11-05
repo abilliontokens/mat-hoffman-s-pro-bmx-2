@@ -2,7 +2,7 @@
 #include "common.h"
 extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
-extern "C" unsigned __int64 func_001E8858(double x);
+extern "C" unsigned __int64 __ftol2(double x);
 
 extern char D_00276D5C;
 extern float D_00276CA0;

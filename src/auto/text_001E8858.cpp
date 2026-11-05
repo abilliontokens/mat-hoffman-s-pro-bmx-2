@@ -23,7 +23,7 @@ struct Class_00294F04 {
     void *func_001E88FF(unsigned int flags);
 };
 
-unsigned __int64 func_001E8858(double x) { return (unsigned __int64)x; }
+unsigned __int64 __ftol2(double x) { return (unsigned __int64)x; }
 
 void func_001E88CD(void) {
     int func_001EB9F3(...);

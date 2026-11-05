@@ -524458,6 +524458,7 @@
   "func_001E2F0A": "XcSHAFinal",
   "func_001E2F10": "ExQueryNonVolatileSetting",
   "func_001E2F16": "DbgPrint",
+  "func_001E8858": "__ftol2",
   "func_001EAAE0": "__SEH_prolog",
   "func_001EAB1B": "__SEH_epilog",
   "func_001F325D": "C_001F325D::C_001F325D",
