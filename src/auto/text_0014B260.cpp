@@ -16,6 +16,7 @@ struct Vec4 {
     }
 };
 
+#pragma auto_inline(off)
 struct DynamicRayCollisionObject {
     char pad_0[0xa6];
     unsigned char unkA6;
@@ -29,6 +30,17 @@ struct DynamicRayCollisionObject {
     __declspec(noinline) void func_0014B940();
     void func_00157A00(int param_1);
 };
+
+void DynamicRayCollisionObject::func_0014B940()
+{
+    Vec4 a(0.0f, 0.0f, 0.0f, 1.0f);
+    Vec4 b(0.0f, 0.0f, 0.0f, 1.0f);
+    int i;
+    for (i = 0; i < unkA8; i++) {
+        a = unkC0[i];
+        b = Vec4(a.x + unkBC[i] * unkC4[i].x, a.y + unkBC[i] * unkC4[i].y, a.z + unkBC[i] * unkC4[i].z, 1.0f);
+    }
+}
 
 void DynamicRayCollisionObject::func_0014BA40(int param_1)
 {
