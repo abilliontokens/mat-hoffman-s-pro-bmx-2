@@ -85,6 +85,68 @@ extern char D_00277A04;
 extern char D_00277A0C;
 extern int D_00080000;
 
+struct C_0005C020 { char *func_0005C020(int a); };
+struct C_00012140 { void func_00012140(void); };
+struct C_00064A40 { void func_00064A40(void); };
+struct C_00099D40 {
+    void func_00099D40(int a);
+    int func_00097700(void);
+    void func_00099E50(char *p, int i);
+    void func_000999B0(void);
+};
+struct C_0013B280 { void func_0013B280(int a); void func_0013B260(int a); };
+extern C_0013B280 *D_002BEAAC;
+struct S_000512D0_Sub {
+    char pad0[0x48];
+    int f48;
+    char pad4C[0x274];
+    C_0005C020 *f2C0;
+    char pad2C4[0x14];
+    int f2D8;
+};
+struct S_000512D0_Root {
+    char pad0[0x2E0];
+    S_000512D0_Sub *f2E0;
+};
+struct S_000512D0_534 { char pad0[0x24]; int f24; };
+struct S_000512D0_64 {
+    char pad0[0x534];
+    S_000512D0_534 *f534;
+    char pad538[0x30];
+    int f568;
+};
+struct C_000512D0 {
+    virtual void v00(); virtual void v04(); virtual void v08(); virtual void v0C();
+    virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1C();
+    virtual void v20(); virtual void v24(); virtual void v28(); virtual void v2C();
+    virtual void v30(); virtual void v34(); virtual void v38(); virtual void v3C();
+    virtual void v40(); virtual void v44(); virtual void v48(); virtual void v4C();
+    virtual void v50(); virtual void v54(); virtual void v58(); virtual void v5C();
+    virtual void v60(); virtual void v64(); virtual void v68(); virtual void v6C();
+    virtual void v70(); virtual void v74(); virtual void v78(); virtual void v7C();
+    virtual void v80(); virtual void v84(); virtual void v88(); virtual void v8C();
+    virtual void v90(); virtual void v94(); virtual void v98(); virtual void v9C();
+    char pad4[0x60];
+    S_000512D0_64 *f64;
+    char pad68[0x104];
+    C_00064A40 *f16C;
+    char pad170[0x50];
+    C_00099D40 *f1C0;
+    char pad1C4[0xC];
+    C_00012140 *f1D0;
+    char pad1D4[0x24];
+    int f1F8;
+    int pad1FC;
+    int f200;
+    char pad204[0x8C];
+    char *f290;
+    void func_000342C0(void);
+    void func_000321C0(void);
+    void func_00032720(void);
+    void func_00032740(void);
+    C_000512D0 *func_000512D0(void);
+};
+
 struct C_000511A0 {
     undefined4 *func_000511A0(undefined4 param_1);
 };
