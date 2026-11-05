@@ -61,3 +61,16 @@ void C_00165980::func_00165980(int **out, int value)
         (*out)[i] = value;
     }
 }
+
+void C_001659D0::func_001659D0(int *a, int b, int c)
+{
+    int idx = f4->func_00198330(b);
+    int i;
+    for (i = 0; i < f1E8; i++) {
+        if (f1EC[i].f34 == idx) {
+            a[i] = c;
+            return;
+        }
+    }
+}
+
