@@ -3,8 +3,45 @@
 
 extern int D_00281D24;
 
+/* the three fixed labels live in the globals block at +0xF98 of D_002A8490->f2e8->f4 */
+struct S_000EDB70_Labels {
+    char pad0[0xF98];
+    char *fF98;
+    char padF9C[4];
+    char *fFA0;
+    char padFA4[4];
+    char *fFA8;
+};
+
+struct S_000EDB70_Globals {
+    char pad0[4];
+    S_000EDB70_Labels *f4;
+};
+
+/* one entry per extra slot: an enable flag, a 0x32-byte name and a value */
+struct S_000EDB70_Slots {
+    u8 flags[0x10];
+    char names[8][0x32];
+    u8 values[8];
+};
+
+struct S_000EDB70_Game {
+    char pad0[0x2C8];
+    S_000EDB70_Slots *f2C8;
+};
+
+struct S_000EDB70_Mgr {
+    char pad0[0x2E0];
+    S_000EDB70_Game *f2E0;
+    char pad2E4[4];
+    S_000EDB70_Globals *f2E8;
+};
+
+extern S_000EDB70_Mgr *D_002A8490;
+
 struct C_001B1980 {
     void func_001B1980(void);
+    void func_001B17D0(char *name);
     void func_001B2270(int a0);
     void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, float a11, float a12, int a13);
 };
