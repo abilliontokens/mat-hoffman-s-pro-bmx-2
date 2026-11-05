@@ -3,9 +3,14 @@
 
 extern "C" int strcmp(const char *s1, const char *s2);
 
+struct C_0018D580_Sub {
+    u8 a;
+    u8 b;
+};
+
 struct C_0018D580_Id {
-    char pad0[5];
-    u8 f5;
+    char pad0[4];
+    C_0018D580_Sub sub;
     char pad6[0x1E];
 };
 
