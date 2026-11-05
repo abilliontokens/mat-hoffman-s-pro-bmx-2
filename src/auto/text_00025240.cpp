@@ -86,6 +86,24 @@ struct AmbientDebris {
 };
 
 
+void *AmbientDebris::func_00025920(unsigned int flags)
+{
+    vtbl = &D_00276294;
+    if (unk30 != 0) {
+        func_001E891B(unk30);
+    }
+    unk30 = 0;
+    if (unk34 != 0) {
+        func_001E891B(unk34);
+    }
+    unk34 = 0;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 C_00025E10* C_00025E10::func_00025E10(void) {
     extern int D_00276534;
     unk0 = (int)&D_00276534;
