@@ -22,6 +22,8 @@ struct S_000C29A0_Item {
     int f610;
     char pad614[4];
     int f618;
+    char pad61C[4];
+    int f620;
     int f61C;
 };
 
