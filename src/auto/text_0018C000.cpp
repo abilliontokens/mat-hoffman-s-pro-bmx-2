@@ -191,6 +191,12 @@ void C_0018C120::func_0018C120(void) {
     }
 }
 
+void C_0018C120::func_0018C640(void)
+{
+    func_0018C120();
+    func_0018C120();
+}
+
 void C_0018C7F0::func_0018C7F0(void) {
     extern int D_0028A784;
     int func_00157660(...);
