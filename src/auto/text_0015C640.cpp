@@ -536,7 +536,7 @@ struct V3_0015D0A0 {
 struct C_001938C0 {
     char pad0[0x28];
     C_001938C0 *func_00193490(void);
-    void __stdcall func_001938C0(void *a0, int a1, int a2, V4_0015D0A0 *a3, V4_0015D0A0 *a4, float a5);
+    void func_001938C0(void *a0, int a1, int a2, V4_0015D0A0 *a3, V4_0015D0A0 *a4, float a5);
 };
 
 extern float D_002755E8;
