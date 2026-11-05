@@ -85,6 +85,20 @@ struct C_00188A40 {
     int func_00188A40(char *name);
 };
 
+struct S_00188C60_Model {
+    void *vtbl;
+    int f4;
+    int f8;
+    int fc;
+    S_00188C60_Model() {
+        f4 = 0;
+        f8 = 0;
+        fc = 0;
+        vtbl = (void *)&D_00289F80;
+    }
+    static void *operator new(unsigned int size) { return func_001E8A44(size); }
+};
+
 struct S_00188C20_Obj {
     virtual void v0();
     virtual void v1(int a);
