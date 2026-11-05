@@ -315,6 +315,28 @@ void func_00031630(void) {
     func_000314F0();
 }
 
+void BmxEvent_00030A30::func_000317B0(int flag)
+{
+    int i;
+
+    for (i = 0; i < f90; i++) {
+        int id = f6c[i];
+
+        if (id != -1) {
+            void *extra;
+            Obj_000317B0 *obj;
+
+            if (flag != 0) {
+                extra = &f64->f4e0->f1a8[i]->f1e0->f238;
+            } else {
+                extra = 0;
+            }
+            obj = f24[i];
+            D_002A8490->f4->func_0001CCE0(id, &obj->f170, &obj->f180, &obj->f190, extra);
+        }
+    }
+}
+
 void C_00031840::func_00031840(void)
 {
     void *m = func_001E8A44(0x19c);
