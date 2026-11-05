@@ -226,6 +226,112 @@ void C_00097FD0::func_00099600(f32 lo, f32 hi) {
     }
 }
 
+void C_00097FD0::func_00099750(S_00097FD0_owner *owner, f32 hi) {
+    C_00096870 **list;
+    int count;
+    int i;
+    int j;
+    int k;
+    int m;
+    int flag;
+    int mode;
+    f32 v;
+
+    if (mode0 < 3) {
+        flag = unk198->unk1c8;
+        mode = flag ? mode1 : mode0;
+        switch (mode) {
+        case 0:
+            list = arr0;
+            break;
+        case 1:
+            list = arr1;
+            break;
+        case 2:
+            list = arr2;
+            break;
+        default:
+            list = 0;
+            break;
+        }
+        mode = flag ? mode1 : mode0;
+        switch (mode) {
+        case 0:
+            count = cnt0;
+            break;
+        case 1:
+            count = cnt1;
+            break;
+        case 2:
+            count = cnt2;
+            break;
+        default:
+            count = 0;
+            break;
+        }
+        for (j = 0; j < count; j++) {
+            v = list[j]->f1a4;
+            if ((v < hi && v >= D_00275544) || (list[j]->f48e0 != 0 && list[j]->f1b4 == 0)) {
+                list[j]->func_00097050(owner);
+            }
+            for (k = 0; k < list[j]->f1b8; k++) {
+                if (list[j]->f1c8[k]->f0 == 1) {
+                    for (m = 0; m < list[j]->f1c8[k]->f2554; m++) {
+                        v = list[j]->f1c8[k]->f63b0[m];
+                        if ((v < hi && v >= D_00275544) || list[j]->f1c8[k]->f40 != 0) {
+                            list[j]->f1c8[k]->func_00096200(m);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for (i = 0; i < 3; i++) {
+        if (i != mode0) {
+            switch (i) {
+            case 0:
+                list = arr0;
+                break;
+            case 1:
+                list = arr1;
+                break;
+            case 2:
+                list = arr2;
+                break;
+            default:
+                list = 0;
+                break;
+            }
+            switch (i) {
+            case 0:
+                count = cnt0;
+                break;
+            case 1:
+                count = cnt1;
+                break;
+            case 2:
+                count = cnt2;
+                break;
+            default:
+                count = 0;
+                break;
+            }
+            for (j = 0; j < count; j++) {
+                if (list[j]->f48e0 != 0) {
+                    list[j]->func_00097050(owner);
+                    for (k = 0; k < list[j]->f1b8; k++) {
+                        if (list[j]->f1c8[k]->f0 == 1) {
+                            for (m = 0; m < list[j]->f1c8[k]->f2554; m++) {
+                                list[j]->f1c8[k]->func_00096200(m);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 void C_00097FD0::func_000999B0(void) {
     int i;
 
