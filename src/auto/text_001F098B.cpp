@@ -19,7 +19,7 @@ struct S_001EF734 {
     S_001EF734 *func_001EFD7A(void *out, char *s);
     S_001EF734 *func_001EFAB5(void *out, S_001EF734 *p);
     void func_001EEEE6(S_001EF734 *src);
-    void func_001EF170(int v);
+    S_001EF734 *func_001EF170(int v);
     void func_001EF613(int v);
     void func_001EF935(void *v);
     S_001EF734 *func_001EF759(void *p);
