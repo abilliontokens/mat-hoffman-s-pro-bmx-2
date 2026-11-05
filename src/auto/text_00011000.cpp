@@ -148,7 +148,13 @@ extern float D_00275490;
 extern float D_002754A0;
 
 struct S_115F0_Path { int count; float *pts; };
-struct S_115F0_Mgr { char pad[0x588]; S_115F0_Path **paths; };
+struct S_11BE0_Target { C_00017680_Vec *func_00199B00(C_00017680_Vec *, int); };
+struct S_11BE0_Mid { int f0; S_11BE0_Target *f4; };
+struct S_11BE0_State { char pad[0xbc]; int fBC; };
+struct S_11BE0_Actor { char pad[0x834]; C_00017680_Vec pos; char pad844[0x950-0x844]; S_11BE0_State *state; char pad954[0xa00-0x954]; S_11BE0_Mid *mid; };
+struct S_11BE0_List { char pad[0x24]; int count; char pad28[0x1a8-0x28]; S_11BE0_Actor *actors[1]; };
+struct S_115F0_Mgr { char pad[0x4e0]; S_11BE0_List *list; char pad4e4[0x588-0x4e4]; S_115F0_Path **paths; };
+struct C_00011BE0 { char pad[0x3e4]; C_00017680_Vec pos; void func_00011BE0(int *, float *); };
 extern S_115F0_Mgr *D_002B9120;
 struct C_000115F0 {
     char pad[0x3b4];
@@ -234,6 +240,58 @@ int func_00011260(int lo, int hi)
     }
     float v = (float)func_001E8833() * D_002754B0;
     return lo + (int)((double)v * (double)(hi - lo + 1));
+}
+
+C_000112E0 *C_000112E0::func_000112E0(int a)
+{
+    u32 *p;
+
+    ((C_001C7310 *)this)->func_001C7310(a);
+    vtbl = (void *)&D_002754CC;
+    p = v3E4;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = v3F4;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = v404;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    f384 = 0;
+    f388 = 0;
+    f38C = 0;
+    f390 = 0;
+    f394 = 0;
+    f398 = 0;
+    f39C = 0;
+    f3A0 = 0;
+    f3A4 = 0;
+    f3A8 = 0;
+    f3AC = 0;
+    f3B0 = 0;
+    f3C4 = 0;
+    f3C8 = 0;
+    f3D8 = 0;
+    f3CC = 100.0f;
+    f3B4 = -1;
+    f3D0 = 4.0f;
+    f3D4 = 8.0f;
+    f3DC = 0;
+    f3DD = 0;
+    f3DF = 0;
+    f3E0 = 0;
+    f3E1 = 0;
+    f3E2 = 0;
+    f3C0 = D_002A8490->f238;
+    f3DE = 1;
+    f3E3 = 1;
+    return this;
 }
 
 int C_00011410::func_00011410(void)
