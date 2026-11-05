@@ -155,6 +155,45 @@ struct C_001D5600 {
     void func_001D5600(void);
 };
 
+extern float D_00275460;
+extern float D_00275F58;
+int func_001B2BF0(int param_1);
+
+struct C_001D5470 {
+    C_001446B0 *unk0;
+    int unk4;
+    void func_001D5470(void);
+};
+
+struct C_001D5170 {
+    int func_001D5110(int param);
+    int func_001D5170(int param_1);
+};
+
+struct C_001D52F0 {
+    char pad0[0x28];
+    float unk28;
+    char pad2C[0x4c - 0x2c];
+    float unk4C;
+    float unk50;
+    char pad54[0x74 - 0x54];
+    float unk74;
+    float unk78;
+    void func_001D52F0(float a, float b);
+};
+
+struct S_001D5360_Obj {
+    virtual void Destroy(int flag);
+    char pad4[8];
+    unsigned char flagsC;
+};
+
+struct C_001D5360 {
+    S_001D5360_Obj *unk0;
+    S_001D5360_Obj *unk4;
+    void func_001D5360(void);
+};
+
 
 C_001D48A0* C_001D48A0::func_001D48A0(u8 param_1)
 {
