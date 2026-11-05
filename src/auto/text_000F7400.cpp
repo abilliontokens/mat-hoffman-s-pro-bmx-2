@@ -97,7 +97,8 @@ struct BmxUIPageGameOptions {
     char pad294[4];
     S_000F7F80_Widget *unk298;
     S_000F7F80_Widget *unk29c;
-    char pad2a0[0x2b0 - 0x2a0];
+    char pad2a0[0x2ac - 0x2a0];
+    int unk2ac;
     int unk2b0;
     char pad2b4[0x2bc - 0x2b4];
     int unk2bc;
