@@ -221,6 +221,13 @@ void C_00100C20::func_00100C20() {
     func_00157960();
 }
 
+void *C_00100CD0::func_00100CD0(unsigned int flags) {
+    func_000EA9B0();
+    if (flags & 1)
+        func_001E891B(this);
+    return this;
+}
+
 undefined4 C_00100FF0::func_00100FF0(byte param_1)
 {
   int func_000EB420(...);
