@@ -75,7 +75,7 @@ struct C_00023340 {
     V4_00023340 f5c;
     float f6c;
     float f70;
-    __forceinline void Wrap()
+    inline void Wrap()
     {
         if (f34 < 0 || f34 >= f2c->count) {
             f34 = 0;
@@ -114,6 +114,58 @@ struct C_00023BE0 {
     void *func_00023BE0(int flags);
     C_00023BE0 *func_00023C30(int a, int b, int c, int d);
 };
+
+void C_00023340::func_00023340()
+{
+    f34++;
+    Wrap();
+    if (f2c->f2c == 1 || f2c->f2f == 1) {
+        C_00023340_Elem *e = &f2c->elems[f38];
+        V4_00023340 p;
+        V4_00023340 dir;
+        V4_00023340 cr;
+        V4_00023340 up;
+        V4_00023340 t;
+
+        p.x = e->px;
+        p.y = e->py + f70;
+        p.z = e->pz;
+        dir.x = p.x - f5c.x;
+        dir.y = p.y - f5c.y;
+        dir.z = p.z - f5c.z;
+        func_000212C0(&dir, &dir);
+        e = &f2c->elems[f38];
+        up.x = e->dx;
+        up.y = e->dy;
+        up.z = e->dz;
+        cross_00023340(&cr.x, &up.x, &dir.x);
+        t.x = cr.x * f6c + p.x;
+        t.y = cr.y * f6c + p.y;
+        t.z = cr.z * f6c + p.z;
+        f4c = t;
+    } else {
+        C_00023340_Elem *e = &f2c->elems[f38];
+        f4c.x = e->px;
+        f4c.y = e->py;
+        f4c.z = e->pz;
+        f4c.w = 1.0f;
+    }
+    {
+        V4_00023340 v;
+        V4_00023340 up2;
+        C_00023340_Elem *e2;
+
+        v.x = f4c.x - f5c.x;
+        v.y = f4c.y - f5c.y;
+        v.z = f4c.z - f5c.z;
+        e2 = &f2c->elems[f34];
+        up2.x = e2->dx;
+        up2.y = e2->dy;
+        up2.z = e2->dz;
+        func_000212C0(&v, &v);
+        f28->f1a4->f4->func_00198F50(&v, &up2, 0, 1, 0);
+    }
+}
 
 void *C_00023BE0::func_00023BE0(int flags)
 {
