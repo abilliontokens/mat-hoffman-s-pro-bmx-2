@@ -33,6 +33,26 @@ struct C_00192CA0 {
     C_00192CA0 *func_00192CA0(unsigned int flags);
 };
 
+int *C_00192470::func_00192470(int *param_1)
+{
+    void *func_001E83E8(void *, int);
+    void *func_001E8AA5(int);
+    int *p = param_1;
+    if (p == 0) {
+        p = f38;
+        if (p == 0) {
+            if (f30 == f28) {
+                f34 = (int **)func_001E83E8(f34, f2c * 4 + 4);
+                f34[f2c] = (int *)func_001E8AA5(f28 * 4);
+                f2c++;
+                f30 = 0;
+            }
+            p = f34[f2c - 1] + f30;
+        }
+    }
+    return p;
+}
+
 undefined4 C_001926D0::func_001926D0(byte param_1)
 {
   int func_00192420(...);
