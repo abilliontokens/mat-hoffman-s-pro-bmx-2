@@ -76,7 +76,17 @@ struct SoultreeHierarchyCollisionObject {
     void func_0019E860(float *m, float *ext);
 };
 
-#include <math.h>
+struct V4_0019E860 {
+    float x, y, z, w;
+    V4_0019E860() { x = 0.0f; y = 0.0f; z = 0.0f; w = 1.0f; }
+    V4_0019E860(float ax, float ay, float az, float aw) { x = ax; y = ay; z = az; w = aw; }
+};
+
+static inline float fabs_0019E860(float f)
+{
+    int i = *(int *)&f & 0x7fffffff;
+    return *(float *)&i;
+}
 
 extern S_0019EB10_Loader *D_002BEAAC;
 void *func_001E8A44(int size);
