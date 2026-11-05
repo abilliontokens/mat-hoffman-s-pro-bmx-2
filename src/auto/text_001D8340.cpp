@@ -96,6 +96,33 @@ C_001D8760 *C_001D8760::func_001D8760(int flags)
     return this;
 }
 
+int C_001D8970::func_001D8970(int a1, int a2, int a3)
+{
+    unsigned int i;
+    int r;
+
+    if (D_002F0BB8 == 0) {
+        return 0;
+    }
+    r = func_001D8040(&f44, &D_001D0E90, f44, a1, a2, f60, 0);
+    if (r == -1) {
+        return 0;
+    }
+    f6c = r;
+    f170 = a3;
+    f174 = 1;
+    if (func_001FFD90(&f144) != 0) {
+        return 0;
+    }
+    i = 0;
+    do {
+        func_001FF4E0(0, 0, 0xf3, 0, 0, 0);
+        func_002025D0(0);
+        i++;
+    } while (i <= f150);
+    return 1;
+}
+
 C_001D8B40 *C_001D8B40::func_001D8B40(void *param)
 {
     ((C_001C99E0_1D8340 *)this)->func_001C99E0(param);
