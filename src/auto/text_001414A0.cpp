@@ -28,6 +28,46 @@ struct DXParticleSimulation {
     int func_00142150(float dt);
 };
 
+int func_001414A0(C_00168BE0 *cfg, const char *key, int def, int &out)
+{
+    char buf[64];
+    cfg->func_00168BE0(key, "undefined", buf, 64);
+    if (strcmp(buf, "undefined") == 0) {
+        out = def;
+    } else if (strcmp(buf, "D3DBLEND_ZERO") == 0) {
+        out = 0;
+    } else if (strcmp(buf, "D3DBLEND_ONE") == 0) {
+        out = 1;
+    } else if (strcmp(buf, "D3DBLEND_SRCCOLOR") == 0) {
+        out = 0x300;
+    } else if (strcmp(buf, "D3DBLEND_INVSRCCOLOR") == 0) {
+        out = 0x301;
+    } else if (strcmp(buf, "D3DBLEND_SRCALPHA") == 0) {
+        out = 0x302;
+    } else if (strcmp(buf, "D3DBLEND_INVSRCALPHA") == 0) {
+        out = 0x303;
+    } else if (strcmp(buf, "D3DBLEND_DESTALPHA") == 0) {
+        out = 0x304;
+    } else if (strcmp(buf, "D3DBLEND_INVDESTALPHA") == 0) {
+        out = 0x305;
+    } else if (strcmp(buf, "D3DBLEND_DESTCOLOR") == 0) {
+        out = 0x306;
+    } else if (strcmp(buf, "D3DBLEND_INVDESTCOLOR") == 0) {
+        out = 0x307;
+    } else if (strcmp(buf, "D3DBLEND_SRCALPHASAT") == 0) {
+        out = 0x308;
+    } else if (strcmp(buf, "D3DBLEND_CONSTANTCOLOR") == 0) {
+        out = 0x8001;
+    } else if (strcmp(buf, "D3DBLEND_INVCONSTANTCOLOR") == 0) {
+        out = 0x8002;
+    } else if (strcmp(buf, "D3DBLEND_CONSTANTALPHA") == 0) {
+        out = 0x8003;
+    } else if (strcmp(buf, "D3DBLEND_INVCONSTANTALPHA") == 0) {
+        out = 0x8004;
+    }
+    return out;
+}
+
 int func_001416E0(C_00168BE0 *cfg, const char *key, int def, int &out)
 {
     char buf[64];
