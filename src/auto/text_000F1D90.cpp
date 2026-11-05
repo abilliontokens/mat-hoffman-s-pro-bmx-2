@@ -114,6 +114,23 @@ void BmxUIPageHPHChoice::func_000F1D90(void)
     func_001BE3F0();
 }
 
+void BmxUIPageHPHChoice::func_000F1FC0(void)
+{
+    int i;
+    for (i = 0; i < 4; i++) {
+        if (unk2b4[i] != 0) {
+            S_000F1FC0_Obj *p = unk2b4[i]->func_001D5AA0();
+            if (D_00275AEC > p->f10) {
+                p->f10 = 10.0f;
+            }
+            if (D_00275AEC < p->f14 || p->f14 > p->f10) {
+                p->f14 = 10.0f;
+            }
+        }
+    }
+    func_001578D0();
+}
+
 void *C_000F2720::func_000F2720(int flags) {
     void func_001E891B(void *);
     unk0 = (int)&D_0027DF54;
