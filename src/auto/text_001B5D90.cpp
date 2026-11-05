@@ -323,14 +323,27 @@ int C_001B6410::func_001B64C0(S_001B64C0_Param *param, C_001BBAA0 *obj)
     case 8:
     case 9:
     case 0xb:
-    case 0xc:
+    case 0xc: {
         void *owner = item->f4[unk110 - 1];
         if (unk114 != 0) {
             obj->func_001BBAA0(owner, (void *)func_00169C00);
-        } else {
-            obj->func_001BBAA0(owner, &D_00169C30);
+            return 1;
         }
-        break;
+        obj->func_001BBAA0(owner, &D_00169C30);
+        return 1;
+    }
+    case 3:
+        return 1;
+    case 4:
+        return 1;
+    case 5:
+        return 1;
+    case 6:
+        return 1;
+    case 7:
+        return 1;
+    case 0xa:
+        return 1;
     }
     return 1;
 }
