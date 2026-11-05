@@ -45,6 +45,14 @@ void *C_001A8B80::func_001A8B80(int flags)
     return this;
 }
 
+void C_001A8B80::func_001A9070(int count)
+{
+    f8C = count;
+    f84 = func_001E8AA5(count * 0x58);
+    f90 = func_001E8AA5(f8C * 0x58);
+    func_001D3F50();
+}
+
 void C_001A8B80::func_001A9220(int idx, f32 v)
 {
     if (idx >= 0 && idx < 10) {
