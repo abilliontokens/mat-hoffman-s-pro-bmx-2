@@ -8,6 +8,7 @@ struct Pool_00193240 {
     virtual void v2();
     Pool_00193240 *func_0001E740(u32 size, u32 count);
     void func_0001E790(void *p);
+    struct Node_00193240 *func_0001E8A0(void);
 };
 
 extern Pool_00193240 *D_002EFE70;
