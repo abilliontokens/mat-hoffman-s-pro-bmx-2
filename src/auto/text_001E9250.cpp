@@ -500,6 +500,7 @@ void func_001E9F40(void) {
     func_001EB302(1);
 }
 
+#pragma optimize("t", off)
 int func_001E9F49(S_001E9714_File *stream)
 {
     int func_001E9E74(int);
@@ -517,7 +518,6 @@ int func_001E9F49(S_001E9714_File *stream)
     }
     return result;
 }
-
 void func_001E9F99(void) {
     int func_001E9E74(...);
     func_001E9E74(1);
