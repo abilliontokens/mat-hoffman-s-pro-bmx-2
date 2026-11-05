@@ -31,8 +31,48 @@ struct S_8490 {
 };
 extern S_8490 *D_002A8490;
 
+struct S_000A3170_Val8 {
+    char pad0[0x8];
+    int unk8;
+};
+struct S_000A3170_Ent44 {
+    char pad0[0x38];
+    int unk38;
+    char pad3C[0x4];
+    S_000A3170_Val8 *unk40;
+};
+struct S_000A3170_Val22C {
+    char pad0[0x22c];
+    int unk22C;
+};
+struct S_000A3170_Ent48 {
+    char pad0[0x3c];
+    S_000A3170_Val22C *unk3C;
+    char pad40[0x1a3 - 0x40];
+    char name[1];
+};
 struct C_000B2D50 {
+    char pad0[0x34];
+    int unk34;
+    int unk38;
+    char pad3C[0x44 - 0x3c];
+    S_000A3170_Ent44 **unk44;
+    S_000A3170_Ent48 **unk48;
     void func_000B2D50(int a);
+};
+struct S_000A3170_Rec60 {
+    int unk0;
+    char name[0x5c];
+};
+struct S_000A3170_EFE08 {
+    char pad0[0x158];
+    S_000A3170_Rec60 *unk158;
+};
+extern S_000A3170_EFE08 *D_002EFE08;
+struct S_000A3170_Obj {
+    char pad0[0xd4];
+    char name[0x2dc - 0xd4];
+    int unk2DC;
 };
 extern C_000B2D50 *D_002B9134;
 
