@@ -72,7 +72,7 @@ struct C_00049C60 {
     void func_000342C0(void);
 };
 
-struct S_4A1A0_Mgr { int f0; };
+struct S_4A1A0_Mgr { int f0; int pad4; void *f8; };
 struct S_4A1A0_Global {
     char pad0[0x124];
     int f124;
