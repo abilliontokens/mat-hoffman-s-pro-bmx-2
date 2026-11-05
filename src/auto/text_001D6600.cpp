@@ -54,7 +54,7 @@ XboxTextureMap *XboxTextureMap::func_001D6AD0(void *param)
 
 void XboxTextureMap::func_001D6B00(void)
 {
-    vtbl = (void *)&D_0028F644;
+    *(void **)this = (void *)&D_0028F644;
     if (fB8 != 0) {
         if (D_002A83E0 != 0) {
             func_001B2910(fA4);
