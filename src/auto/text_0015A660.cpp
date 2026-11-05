@@ -99,6 +99,61 @@ struct C_0015ABF0 {
     undefined4 func_0015ABF0(int param_1);
 };
 
+void func_001E891B(void *p);
+void *func_001E8A44(int size);
+
+/* one 0x108-byte entry of C_0015B470::f0 */
+struct S_0015B470_Entry {
+    char name[0x104];
+    int value;
+};
+
+/* growable list of named entries */
+struct C_0015B470 {
+    S_0015B470_Entry *f0;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    char pad14[0x108];
+    int f11C;
+    void grow(int n);
+    S_0015B470_Entry *at(int i)
+    {
+        if (i >= f4) {
+            grow(i * 2 + 2);
+        }
+        if (fC < i + 1) {
+            fC = i + 1;
+        }
+        return &f0[i];
+    }
+    C_0015B470 *func_0015B470(void);
+    void func_0015B4E0(const char *name, int value);
+};
+
+/* element of the array owned by S_0015B310_Owned (virtual destructor in slot 0) */
+struct S_0015B310_Elem {
+    virtual ~S_0015B310_Elem();
+    static void operator delete[](void *p) { func_001E891B(p); }
+    static void operator delete(void *p) { func_001E891B(p); }
+};
+
+struct S_0015B310_Owned {
+    virtual ~S_0015B310_Owned();
+    int f4;
+    S_0015B310_Elem *f8;
+    static void operator delete(void *p) { func_001E891B(p); }
+};
+
+struct C_0015B310 {
+    void *vtbl;
+    char pad4[0x20];
+    S_0015B310_Owned *f24;
+    void *func_0015B310(int flags);
+    void func_00157660(void);
+};
+
 struct C_0015B4C0 {
     void func_0015B4C0(void);
 };
