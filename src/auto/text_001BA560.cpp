@@ -73,6 +73,29 @@ struct C_001B4F90 {
     void func_001B4F90(void);
 };
 
+extern int D_0028CAC8;
+
+struct C_001BAEC0 : C_001B4F90 {
+    void *vtbl;
+    char pad04[0x54];
+    int f58;
+    void **f5C;
+    int f60;
+    void *f64;
+    void **f68;
+    void **f6C;
+    void *f70;
+    void *f74;
+    void *f78;
+    void **f7C;
+    char pad80[0x14];
+    void *f94;
+    char pad98[0x110];
+    void **f1A8;
+    void *f1AC;
+    void func_001BAEC0(void);
+};
+
 struct S_001BA910_Elem {
     void *vtbl;
     int f4;
