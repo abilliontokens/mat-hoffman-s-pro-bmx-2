@@ -25,6 +25,9 @@ struct S_151F80_Line {
 };
 extern S_151F80_Root *D_002B9120;
 extern S_151F80_Vec D_002A789C;
+extern float D_002A78A0;
+extern float D_002A78A4;
+extern float D_002A78A8;
 extern float D_00286CA8;
 extern int D_002BA148;
 struct C_00151F80 {
@@ -45,6 +48,29 @@ struct C_00151F80 {
     S_151F80_Vec func_00016E40(void);
     void func_00151F80(int a0);
 };
+
+void C_00151F80::func_00151F80(int a0)
+{
+    if (D_002B9120->f528 != 0) {
+        S_151F80_Vec a(1.0f, 0.0f, 0.0f);
+        a = f2c->f1a4->f4->func_00197F70(&a.x) - func_00016E40();
+        fc4 = 0;
+        f94 = D_002A789C;
+        f84 = D_002A789C;
+        S_151F80_Vec line[2];
+        line[0] = func_00016E40();
+        line[1] = line[0] + a * D_00286CA8;
+        fc8 = line[0];
+        f78->func_0014AC30(line, 0);
+        f78->func_00133ED0();
+        f78->func_00133F10(0);
+        if (fc4 != 0 && f64->f50 == 1 && f64->f68 == D_002BA148 && D_002B9120->f528 != 0) {
+            f570 = 1;
+        } else {
+            f570 = 0;
+        }
+    }
+}
 
 void C1521::func_001521D0(Vec1521* pos, Vec1521* out)
 {
