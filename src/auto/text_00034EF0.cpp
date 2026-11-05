@@ -28,6 +28,24 @@ struct I_002A8490 {
 
 extern I_002A8490 *D_002A8490;
 
+struct S_35980_A {
+    void func_00069BB0(void);
+    void func_00069BA0(void);
+};
+
+struct S_35980_B {
+    void func_0006BB90(void);
+    void func_0006BBF0(void);
+};
+
+struct C_00035980 {
+    char pad0[0x2c4];
+    S_35980_A *f2c4;
+    char pad2c8[0x2c0];
+    S_35980_B *f588;
+    void func_00035980(int enable);
+};
+
 struct C_00035BE0 {
     char pad0[0x1a0];
     void *f1a0;
@@ -233,15 +251,7 @@ void C_00035720::func_00035720(void)
 
 void C_00035720::func_00035860(void)
 {
-    void *screen2;
-
-    if (f284 == 0) {
-        f540->v6();
-        screen2 = f28;
-    } else {
-        screen2 = 0;
-    }
-    D_002A8490->slot_3c(f24, screen2, 0, 0);
+    D_002A8490->slot_3c(f24, f284 == 0 ? (f540->v6(), f28) : 0, 0, 0);
     if (f550 != 0) {
         f550->v6();
     }
