@@ -96,6 +96,34 @@ struct C_001701F0 {
 };
 
 
+int C_001701F0::func_001701F0(void)
+{
+    if (f170 != 0 && f170->fA8 != 0) {
+        float v = D_002EFDB8->f4->f1d8;
+        f170->fA0 = v;
+        f170->func_00142AF0();
+    }
+    if (f11c > 0 && f120 > 0) {
+        func_0016FBC0();
+        S_001701F0_Node *node = D_002A829C->f14[f148->f4].f4;
+        node->func_001B07A0();
+        f144 = D_002F0630->f10[node->fD4];
+        f148->f10 = f158;
+        f144->func_00149310((int)f148, 0, 0, 0);
+    }
+    return 1;
+}
+
+void *C_00170AD0::func_00170AD0(unsigned int flags)
+{
+    unk4 = 0;
+    vtbl = (void *)&D_00284E94;
+    if ((flags & 1) != 0) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 undefined4 C_00170B10::func_00170B10(byte param_1)
 {
   int func_001703B0(...);
