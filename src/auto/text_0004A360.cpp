@@ -136,6 +136,27 @@ S_Item80 *__stdcall func_0004AA80(int param_1)
     return 0;
 }
 
+void BmxEventFPS::func_0004AAD0(void)
+{
+    S_Mgr2E0 *m = D_002A8490->f2e0;
+    if (m->f0 <= 1) {
+        if (m->f2c0->func_0005C0A0() == 0) {
+            func_0004A360();
+            dummy35();
+            f2d8 = 1;
+            f2d0->dummy6();
+            f2d0->func_001394F0(-1);
+            D_002A8490->f2e0->f2c0->func_0005C1E0(8);
+            D_002A8490->f2e0->f2c0->func_0005C090();
+        } else {
+            func_0004A590();
+            f284->f60 = 200;
+            f1ac->func_000758F0();
+            D_002A8490->f124 = 1;
+        }
+    }
+}
+
 void BmxEventFPS::func_0004AC70(int param_1, int param_2)
 {
     if (f2d4 != 1 && f2d8 != 1) {
