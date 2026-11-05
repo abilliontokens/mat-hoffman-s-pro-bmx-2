@@ -141,6 +141,7 @@ struct C_001C3720 {
     int f10;
     S_001C3720_Data *f14;
     int func_001C3720(int offset, int count);
+    int func_001C3720(int offset, int count, int a2);
 };
 
 struct DXVertexBufferCache {
@@ -377,6 +378,17 @@ void C_001C3700::func_001C3700(void)
     *(undefined4 *)(in_ECX + 0x14) = 0;
   }
   return;
+}
+
+int C_001C3720::func_001C3720(int offset, int count)
+{
+    if (count == 0) {
+        count = f10 - offset;
+    }
+    if (offset >= 0 && offset < f10 && offset + count <= f10) {
+        return fC * offset + f14->f4;
+    }
+    return 0;
 }
 
 C_001C37F0* C_001C37F0::func_001C37F0(int a0) {
