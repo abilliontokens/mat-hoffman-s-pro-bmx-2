@@ -68,3 +68,18 @@ struct TikiHuntState {
     u32 f10;
     void func_00019520();
 };
+
+void TikiHuntState::func_00019520()
+{
+    if (f8->f4f0 == 1 && D_002A8490->f238 > f8->f4ec) {
+        int result = f8->func_000192D0(0, 0);
+        if (result != -1) {
+            f8->f4dc = result;
+            f8->f384->func_0008AB90(f8->f390);
+            f8->f4ec = D_002A8490->f238 + 12000;
+        }
+    }
+    if (fC == 1 && f10 == 0) {
+        f8->f39c[f8->f4d0]->f24->v31();
+    }
+}
