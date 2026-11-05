@@ -259,7 +259,7 @@ extern "C" int func_001EA426(const char *a, const char *b);
 
 template <class T> inline const T &minref(const T &a, const T &b) { return b < a ? b : a; }
 
-static inline void stripExt(char *dst, const char *src)
+static __forceinline void stripExt(char *dst, const char *src)
 {
     int len = strlen(src);
     int n = minref(0x103, len);
