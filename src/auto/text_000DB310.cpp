@@ -93,3 +93,14 @@ int C_000DB310::func_000DBC00() {
     int idx = a->f150->f484->func_0001B3C0(D_0027F7D4);
     return a->f150->f484->f2c->f28[idx]->f1a4->f10;
 }
+struct C_000DBC40 {
+    char pad0[0x2a0];
+    int f2A0;
+    int f2A4;
+    int f2A8;
+    char pad2AC[8];
+    C_000DB310_Widget *f2B4;
+    char pad2B8[0x58];
+    C_000DB310_Widget *f310[1];
+    void func_000DBC40();
+};
