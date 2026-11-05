@@ -145,6 +145,37 @@ struct C_000308F0 {
 };
 
 
+void S_0002FA80_Entry::func_0002FE10(C_00168280 *stream, int index)
+{
+    char buf[0x104];
+    char str[0x104];
+    int tmp;
+    int i;
+
+    id = index;
+    func_001ADCC0(buf, 0x104, D_002769DC, index + 1);
+    stream->func_00169710(buf);
+    void *mem = func_001E8A44(0x30);
+    C_00194740 *obj = mem ? ((C_00194740 *)mem)->func_00194740() : 0;
+    f0 = obj;
+    obj->func_001947E0(0, 0, 0, 1);
+    stream->func_00168550(D_002769D0, str, -1);
+    func_001ADCC0(buf, 0x104, D_002769C4, D_002A5870, D_002A45E0, str);
+    f0->func_00194790(buf, 0, 0);
+    stream->func_00168A10(D_002769B8, &tmp);
+    f0->f8 = (float)tmp;
+    stream->func_00168BE0(D_002769A8, D_002764F0, name, -1);
+    stream->func_00168C20(D_00276998, 0, &subCount);
+    subs = (S_0002FA80_Sub *)func_001E8A44(subCount * 0x10c);
+    for (i = 0; i < subCount; i++) {
+        func_001ADCC0(buf, 0x104, D_00276988, id + 1, i + 1);
+        stream->func_00169710(buf);
+        stream->func_00168BE0(D_00276980, D_002764F0, subs[i].name, -1);
+        stream->func_00168C20(D_00276974, 0, &subs[i].f104);
+        stream->func_00168C20(D_00276968, 0, &subs[i].f108);
+    }
+}
+
 int S_0002FA80_Entry::func_0002FFD0(const char *subName)
 {
     int func_001EA426(...);
