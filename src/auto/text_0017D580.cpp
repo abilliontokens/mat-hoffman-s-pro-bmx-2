@@ -38,6 +38,7 @@ struct C_0017DC00 {
     int f8;
     void func_0017DC00();
     void func_0017D120(int a0);
+    void func_0017E1D0(int x0, int y0, int x1, int y1, int x, int y, int size, int minSize);
 };
 
 
@@ -84,5 +85,19 @@ undefined4 C_0017DAC0::func_0017DAC0(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+void C_0017DC00::func_0017DC00()
+{
+  int i;
+
+  for (i = 0; i < 4; i++) {
+    if (arr4 && arr4[i]) {
+      arr4[i]->func_0017DC00();
+    } else {
+      break;
+    }
+  }
+  ((C_0017DC00 *)D_002EFD80)->func_0017D120(f8);
 }
 
