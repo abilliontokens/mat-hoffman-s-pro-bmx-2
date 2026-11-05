@@ -323,16 +323,41 @@ int C_0015AC20::func_0015AC20(unsigned int flags)
     return (f1898 & flags) != 0;
 }
 
+int S_0015A660_List::func_0015ACA0(int n)
+{
+    void *func_001E8A44(int size);
+    void func_001E891B(void *p);
+    void **p;
+    void **old;
+
+    if (n > capacity) {
+        p = (void **)func_001E8A44(n * 4);
+        if (p != 0) {
+            memcpy(p, data, capacity * 4);
+            old = data;
+            data = p;
+            func_001E891B(old);
+            capacity = n;
+            return 1;
+        }
+    }
+    return 0;
+}
+
 void JoystickDevice::func_0015AE20(void)
 {
     extern int D_00287674;
     void func_001E891B(void *p);
+    S_0015A660_List *l;
     int i;
 
     vtbl = (void *)&D_00287674;
-    for (i = 5; i >= 0; i--) {
-        func_001E891B(lists[i].data);
-    }
+    l = &lists[6];
+    i = 6;
+    do {
+        l--;
+        func_001E891B(l->data);
+    } while (--i != 0);
     ((C_001D1480 *)this)->func_001D1480();
 }
 
