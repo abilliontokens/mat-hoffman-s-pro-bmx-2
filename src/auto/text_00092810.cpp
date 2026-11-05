@@ -117,6 +117,8 @@ struct C_00092890 {
     int func_00092C70(void);
     int func_00092B40(int idx);
     int func_00092E30(int idx);
+    int func_00092AC0(void);
+    int func_000930D0(void);
 };
 
 struct C_000928D0 {
