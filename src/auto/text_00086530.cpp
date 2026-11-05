@@ -88,6 +88,10 @@ void C_00086C30::func_00086C30(int a0) {
     unk44 = a0;
 }
 
+void BestScoreOverlay::func_00086C40(float a0) {
+    f84 = (int)a0;
+}
+
 int C_00086C60::func_00086C60(void) {
     return unk44;
 }
