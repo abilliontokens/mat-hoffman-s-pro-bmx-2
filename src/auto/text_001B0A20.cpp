@@ -7,7 +7,7 @@ struct C_001B1580_24 {
     float unk4;                       /* 0x04 */
     float unk8;                       /* 0x08 */
     char padC[0x8];
-    float unk14;                      /* 0x14 */
+    u32 unk14;                        /* 0x14 */
     float unk18;                      /* 0x18 */
     char pad1C[0x28];
     int unk44;                        /* 0x44 */
