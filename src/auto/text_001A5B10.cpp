@@ -186,6 +186,49 @@ struct C_001A5F40 {
     C_001A5F40 *func_001A5F40(void *a, int b);
 };
 
+void func_001A5C30(char *text, S_001A5C30_Obj **arr, int width, int maxCount)
+{
+    int start = 0;
+    int lastSpace = -1;
+    int count = 0;
+    int i = 0;
+    char c;
+
+    if (maxCount <= 0) {
+        return;
+    }
+    do {
+        c = text[start + i];
+        i++;
+        if (c == 0) {
+            break;
+        }
+        if (c == ' ') {
+            lastSpace = start + i - 1;
+        }
+        if (i == width) {
+            text[lastSpace] = 0;
+            arr[count]->func_0005E840(text + start);
+            count++;
+            i = i + start - lastSpace - 1;
+            start = lastSpace + 1;
+        }
+    } while (count < maxCount);
+
+    if (i > 0) {
+        if (count >= maxCount) {
+            return;
+        }
+        arr[count]->func_0005E840(text + start);
+        count++;
+    } else {
+        while (count < maxCount) {
+            arr[count]->func_0005E840((char *)&D_00275630);
+            count++;
+        }
+    }
+}
+
 C_001A5E40 *C_001A5E40::func_001A5E40(void *param)
 {
     ((C_00157600 *)this)->func_00157600(param);
@@ -195,3 +238,14 @@ C_001A5E40 *C_001A5E40::func_001A5E40(void *param)
     vtbl = (void *)&D_0028BA74;
     return this;
 }
+
+C_001A5F10 *C_001A5F10::func_001A5F10(void *param)
+{
+    ((C_00157600 *)this)->func_00157600(param);
+    f24 = 0;
+    f28 = 0;
+    f2c = 0;
+    vtbl = (void *)&D_0028BB04;
+    return this;
+}
+
