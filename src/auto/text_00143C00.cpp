@@ -78,6 +78,7 @@ void __fastcall func_001FEC30(int n, void *p);
 void __fastcall func_001FD020(void *p, int v);
 void __stdcall func_00200390(int index, int value);
 void __stdcall func_00200510(int index, int value);
+void __stdcall func_00200950(int a, int b, void *c, void *d, int e);
 
 struct Vec4_143C00 {
     float x, y, z, w;
