@@ -350,8 +350,8 @@ struct Obj_00031260 {
     int f19c;
 };
 
-struct BmxEvent_00030A30 {
-    char pad0[0x24];
+struct BmxEvent_00030A30 : VT_00031260 {
+    char pad4[0x20];
     Obj_000317B0 *f24[16];
     Holder_000317B0 *f64;
     char pad68[4];
@@ -508,6 +508,46 @@ void func_00030F30(char *dst, const char *src)
     } else {
         strcat(dst, src);
     }
+}
+
+int BmxEvent_00030A30::func_00031260(float dt)
+{
+    if (f124 > D_002756DC) {
+        if (f164 != 0) {
+            if (f164->f19c == 0) {
+                ((VT_00031260 *)this)->v44();
+            }
+        } else {
+            ((VT_00031260 *)this)->v44();
+        }
+    }
+    if (f114 != 0) {
+        D_002A8490->f2e0->f2fc->func_000947F0(D_002A8490->f2e0->f468);
+        D_002A8490->f2e0->f2fc->f28->v30(D_002A8490->f2e0->f18);
+        f64->f4c0->v30(D_002A8490->f2e0->f1c);
+        if (D_002A8490->f2e0->f4 != 10) {
+            D_002A8490->f2e0->f2fc->func_00095880();
+        }
+        D_002A8490->f4->v6();
+        f114 = 0;
+    }
+    if (f1f4 != 0) {
+        return func_00157A00(dt);
+    }
+    if ((D_002B8F1C & 1) == 0) {
+        D_002B8F1C |= 1;
+        D_002B8F18 = D_002A7CB8->func_00026500((int)&D_00276B68, -1);
+    }
+    if (D_002A8490->f4 != 0) {
+        int flag = D_002A8490->f2e0->f4 != 10;
+        ((VT_00031260 *)this)->v30(flag);
+    }
+    func_00157A00(dt);
+    if (D_002A8490->f124 == 0 && f110 != 0) {
+        f128 = f128 - dt;
+        f124 = dt + f124;
+    }
+    return 1;
 }
 
 void func_00031400(void) {
