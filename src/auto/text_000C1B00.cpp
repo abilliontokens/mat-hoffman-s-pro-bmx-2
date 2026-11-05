@@ -9,6 +9,22 @@ struct S_000C2680_Ui {
     void func_000B9A80(int a, int b);
 };
 
+struct S_000C2680_Owner {
+    char pad0[0x24];
+    S_000C2680_Ui *f24;
+    char pad28[0x298 - 0x28];
+    int f298;
+};
+
+struct S_000C2680_Sub {
+    void func_0005C1E0(int n);
+};
+
+struct S_000C2680_Obj {
+    char pad0[0x2C0];
+    S_000C2680_Sub *f2C0;
+};
+
 struct C_000C2680 {
     char pad0[0x124];
     void *f124;
