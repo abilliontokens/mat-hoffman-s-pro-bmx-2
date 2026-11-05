@@ -34,6 +34,62 @@ struct C_0004F5B0 {
     void func_0004F5B0(void);
 };
 
+struct C_0004F590Obj {
+    virtual void dummy0();
+    virtual void dummy1();
+    virtual void dummy2();
+    virtual void dummy3();
+    virtual void func4(void);
+};
+
+struct C_0004F590 {
+    char pad0[0x2a8];
+    C_0004F590Obj *f2a8;
+    void func_00031450(void);
+    void func_0004F590(void);
+};
+
+struct C_0004F550 {
+    char pad0[0x2a8];
+    void *f2a8;
+    char pad2ac[0x2c];
+    void *f2d8;
+    void func_00031640(void);
+    void func_001577A0(void *p, int n);
+    void func_0004F550(void);
+};
+
+struct C_0004F220 {
+    void *vtbl;
+    char pad4[0x280];
+    int f284;
+    int f288[8];
+    void *f2a8;
+    int f2ac;
+    int f2b0;
+    int f2b4;
+    int f2b8[8];
+    void *f2d8;
+    int f2dc;
+    int f2e0;
+    C_0004F220 *func_0004F220(int a0);
+};
+
+struct C_0004ECC0 {
+    void *vtbl;
+    char pad4[0x280];
+    int f284;
+    int f288;
+    int f28c;
+    u32 f290[80];
+    char f3d0[0x960];
+    void *fD30[8];
+    int fD50;
+    int fD54;
+    void *fD58[8];
+    C_0004ECC0 *func_0004ECC0(int a0);
+};
+
 struct C_0004EBA0 {
     char pad0[0x64];
     void *f64;
