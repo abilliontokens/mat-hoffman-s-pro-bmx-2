@@ -34,7 +34,8 @@ struct C_0017AA90_Xform {
 };
 
 struct C_0017AA90_Dest {
-    char pad0[0x18];
+    int f0, f4, f8;
+    char padC[0xC];
     int f18;
 };
 
