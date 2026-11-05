@@ -100,30 +100,35 @@ int __stdcall func_001DDF0A(int handle, int param2)
 {
     int local;
     int result;
+    int out;
     if (param2 != 0) {
         func_001DD3A1(handle, 0, 0, 0);
     }
     result = func_001DD15A(handle, (u16 *)((char *)&param2 + 2), 2, &local, 0);
     if (result == 0 || local == 2 || *(u16 *)((char *)&param2 + 2) == 0xFEFF) {
-        return 1;
+        out = 1;
+    } else {
+        out = 0;
     }
-    return 0;
+    return out;
 }
 
 int __stdcall func_001DE1DF(int param1, int param2)
 {
-    char buffer[256];
     int result;
     int handle;
+    char buffer[256];
+    result = func_001DCC3C(param1, 0x80100000, 0, 0, 4, 4, 0);
+    handle = result;
     result = 0;
-    handle = func_001DCC3C(param1, 0x80100000, 0, 0, 4, 4, 0);
-    if (handle == -1) {
-        return func_001DD603();
+    if (handle != -1) {
+        if (func_001DDF0A(handle, 1) == 0 || func_001DDF52(handle, (void *)&D_0028FB38, buffer, 0x80) == 0 || func_001EAA3B(buffer, param2) != 0) {
+            result = 0x491;
+        }
+        func_001DD13C(handle);
+    } else {
+        result = func_001DD603();
     }
-    if (func_001DDF0A(handle, 1) == 0 || func_001DDF52(handle, (void *)&D_0028FB38, buffer, 0x80) == 0 || func_001EAA3B(buffer, param2) != 0) {
-        result = 0x491;
-    }
-    func_001DD13C(handle);
     return result;
 }
 
