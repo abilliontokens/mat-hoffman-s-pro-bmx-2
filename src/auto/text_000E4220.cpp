@@ -1,5 +1,6 @@
 /* 6 functions from 0x000E4220 to 0x000E51B0, found by Ghidra. */
 #include "common.h"
+#include "string.h"
 
 extern int D_0027FC74;
 void func_001E891B(void *p);
@@ -57,6 +58,90 @@ struct C_000E5150_Global {
 };
 
 extern C_000E5150_Global *D_002A8490;
+
+extern int D_002A3398, D_002A339C, D_002A33A0, D_002A33A4;
+C_000E4AB0 *C_000E4AB0::func_000E4830(int a0)
+{
+ int *w = (int *)this;
+ int *p; int i;
+ func_001BE360(a0);
+ ((volatile int *)w)[0]=(int)&D_0027FC74;
+ ((volatile int *)w)[318]=0;
+ ((volatile int *)w)[317]=0;
+ ((volatile int *)w)[316]=0;
+ ((volatile int *)w)[319]=0x3f800000;
+ ((volatile int *)w)[208]=0;
+ ((volatile int *)w)[209]=0;
+ ((volatile int *)w)[210]=0;
+ w[160]=0;
+ w[161]=0;
+ w[481]=0;
+ w[482]=0;
+ w[483]=0;
+ w[163]=-1;
+ w[162]=-1;
+ w[168]=0;
+ w[169]=0;
+ w[166]=0;
+ w[170]=0;
+ w[164]=0;
+ w[165]=0;
+ p=&w[0x62c/4]; i=35;
+ do { p[-0x8c/4]=0; p[0]=0; p[-0x378/4]=0; p[-0x2d4/4]=0; p[0xc4/4]=255; ++p; } while(--i);
+ w[0x50c/4]=0;
+ p=&w[0x528/4]; i=5;
+ do { p[-5]=0; p[0]=0; p[5]=0; p[10]=0; p[15]=0; ++p; } while(--i);
+ p=&w[0x428/4]; i=16;
+ do { p[-16]=0; p[0]=0; ++p; } while(--i);
+ w[308]=-1;
+ w[309]=-1;
+ w[294]=0;
+ w[293]=0;
+ w[295]=0;
+ w[292]=0;
+ w[249]=0;
+ w[213]=0;
+ w[167]=0;
+ w[282]=0;
+ w[283]=0;
+ w[284]=0;
+ w[296]=0;
+ w[287]=0;
+ w[288]=0;
+ w[289]=0;
+ w[290]=0;
+ w[291]=0;
+ w[285]=0;
+ w[305]=0;
+ w[310]=0;
+ ((volatile int *)w)[306]=1;
+ ((volatile int *)w)[307]=1;
+ memset(&w[0x6b8/4],0,24);
+ for(i=0;i<4;i++) a6E0[i]=0;
+ for(i=0;i<4;i++) a6D0[i]=0;
+ w[311]=0;
+ w[312]=0;
+ w[314]=0;
+ w[313]=0;
+ w[315]=0;
+ w[297]=0;
+ w[298]=0;
+ w[299]=0;
+ w[300]=0;
+ w[301]=0;
+ w[302]=0;
+ w[0x4f0/4]=D_002A3398;
+ w[0x4f4/4]=D_002A339C;
+ w[0x4f8/4]=D_002A33A0;
+ w[0x4fc/4]=D_002A33A4;
+ w[211]=0;
+ w[212]=0;
+ w[320]=0;
+ w[321]=0;
+ w[322]=0;
+ w[324]=0;
+ return this;
+}
 
 void C_000E4AB0::func_000E4AB0()
 {
