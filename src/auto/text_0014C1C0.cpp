@@ -87,6 +87,49 @@ void *C_0014C6F0::func_0014C6F0(int flags)
     return this;
 }
 
+void C_0014C720::func_0014C720()
+{
+    b0 = 0;
+    b80 = 0;
+    b100 = 0;
+    f180 = 0;
+    f184 = 0;
+    f188 = 0;
+    f18C = 0;
+    f190 = 0;
+    f194 = 0;
+    f198 = 0;
+    f19C = 0;
+    f1A0 = 0;
+    f1A4 = 0;
+    f1A8 = 0;
+    f1AC = 0;
+    f1B0 = 0;
+    f1B4 = 0;
+    f1B8 = 0;
+    f1BC = 1.0f;
+    f1C0 = 1.0f;
+    f1C4 = 0;
+    f1C8 = 0.5f;
+    f1EC = 0;
+    f1F4 = 0;
+    f1F0 = 0;
+    f1F8 = 0;
+}
+
+void C_0014C720::func_0014C7D0()
+{
+    if (f1F8)
+        f1F8->v2();
+    if (f1F0)
+        func_001E8390((void *)f1F0);
+    if (f1F4)
+        func_001E8390((void *)f1F4);
+    if (f208)
+        func_00201100(f208);
+    D_002BF254 = 0;
+}
+
 undefined4 C_0014CA60::func_0014CA60(void)
 {
   extern undefined4 D_002BF250;
