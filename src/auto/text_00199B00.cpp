@@ -51,6 +51,11 @@ static inline S_0019A680_V4 Add_0019A680(const S_0019A680_V4 &a, const S_0019A68
 static inline S_0019A680_V4 Sub_0019A680(const S_0019A680_V4 &a, const S_0019A680_V4 &b) { return Vec_0019A680(a.x - b.x, a.y - b.y, a.z - b.z); }
 static inline S_0019A680_V4 Scale_0019A680(const S_0019A680_V4 &a, float s) { return Vec_0019A680(a.x * s, a.y * s, a.z * s); }
 
+static inline S_00199B00_F4 pVec_0019A680(float x, float y, float z) { S_00199B00_F4 r; r.x = x; r.y = y; r.z = z; r.w = 1.0f; return r; }
+static inline S_00199B00_F4 pAdd_0019A680(const S_00199B00_F4 &a, const S_00199B00_F4 &b) { return pVec_0019A680(a.x + b.x, a.y + b.y, a.z + b.z); }
+static inline S_00199B00_F4 pSub_0019A680(const S_00199B00_F4 &a, const S_00199B00_F4 &b) { return pVec_0019A680(a.x - b.x, a.y - b.y, a.z - b.z); }
+static inline S_00199B00_F4 pScale_0019A680(const S_00199B00_F4 &a, float s) { return pVec_0019A680(a.x * s, a.y * s, a.z * s); }
+
 struct C_00199BE0 {
     char pad0[0xb0];
     float fB0[16];
@@ -218,17 +223,19 @@ void C_00199BE0::func_0019A680(S_0019A680_V4 *center, S_0019A680_V4 *extent)
 
     if (f180 & 4) {
         flag = 1;
-        a = S_0019A680_V4(f130.x - f140.x, f130.y - f140.y, f130.z - f140.z, 1.0f);
-        b = S_0019A680_V4(f140.x + f130.x, f140.y + f130.y, f140.z + f130.z, 1.0f);
+        a = Sub_0019A680(f130, f140);
+        b = Add_0019A680(f130, f140);
     }
     for (p = f174; p != 0; p = p->f178) {
         p->func_001985D0(&flag, &a, &b, fF0, 1);
     }
     if (center != 0) {
-        *center = Scale_0019A680(Add_0019A680(b, a), D_002755E8);
+        S_0019A680_V4 t = Scale_0019A680(Add_0019A680(b, a), D_002755E8);
+        *center = t;
     }
     if (extent != 0) {
-        *extent = Scale_0019A680(Sub_0019A680(b, a), D_002755E8);
+        S_0019A680_V4 t = Scale_0019A680(Sub_0019A680(b, a), D_002755E8);
+        *extent = t;
     }
 }
 
