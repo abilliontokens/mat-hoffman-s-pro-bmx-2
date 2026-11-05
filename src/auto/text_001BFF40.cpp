@@ -1,6 +1,25 @@
 /* 23 functions from 0x001BFF40 to 0x001C0F20, found by Ghidra. */
 #include "common.h"
 
+extern int D_0028DBA4;
+
+/* UIWidgetStaticUserRotate constructor */
+struct C_001C0730 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24, f28, f2C, f30, f34, f38, f3C, f40;
+    int f44[8];
+    int f64, f68;
+    float f6C, f70, f74, f78;
+    float f7C, f80, f84, f88;
+    float f8C, f90, f94;
+    float f98, f9C, fA0;
+    int fA4;
+    float fA8, fAC, fB0;
+    float fB4;
+    C_001C0730 *func_001C0730(int a1, int a2);
+};
+
 extern int D_0028DB04;
 extern int D_0028D804;
 
