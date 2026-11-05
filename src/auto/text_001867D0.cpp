@@ -358,6 +358,17 @@ int C_00187510::func_00187510(C_00187510Param *param)
     return 1;
 }
 
+int C_001875F0::func_001875F0(void *param)
+{
+    int i;
+
+    for (i = 0; i < f24; i++) {
+        f28[i].func_00187400(param);
+        func_001577A0((void *)f28[i].f4, 2);
+    }
+    return 1;
+}
+
 C_00187640 *C_00187640::func_00187640(void *param)
 {
     ((C_00157600 *)this)->func_00157600(param);
