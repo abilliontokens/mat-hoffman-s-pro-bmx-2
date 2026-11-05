@@ -197,8 +197,8 @@ struct C_53460 {
     char pad2CC[4];
     int unk2D0;
     char pad2D4[4];
-    int m2D8[4][4];
-    int m318[4][4];
+    C_53460_V4 m2D8[4];
+    C_53460_V4 m318[4];
     int func_00053460();
     int func_00052C10(int param);
     void func_000518A0();
