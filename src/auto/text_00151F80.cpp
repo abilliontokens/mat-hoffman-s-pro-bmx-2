@@ -110,7 +110,6 @@ struct C_00151F80 {
     void func_00151F80(int a0);
     void func_00152BA0(void);
     void func_001528D0(float dt);
-    void Integrate(float dt);
 };
 
 void C_00151F80::func_00151F80(int a0)
