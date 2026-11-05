@@ -74,6 +74,7 @@ extern "C" void *func_001E8A44(unsigned size);
 extern "C" void *__cdecl memset(void *, int, unsigned int);
 #pragma intrinsic(memset)
 
+/* 001972B0 */
 struct C_00197290 {
     undefined4 func_00197290(byte param_1);
 };
