@@ -387,6 +387,8 @@ int __stdcall func_0023F3F7(int a0, int a1, int a2, int a3, int a4, int a5, int 
     }
     mem = (S_0023F3F7_Obj *)func_001E8A44(0xbc);
     obj = mem != 0 ? mem->func_0023F1AB() : 0;
+
+    /* allocation failed: E_OUTOFMEMORY */
     if (obj == 0) {
         return 0x8007000e;
     }
