@@ -59,6 +59,7 @@ struct C_001A13F0 {
     int func_001A14A0(int a);
     int func_001A14F0(int a);
     int func_001A1540(V3_001A1540 *a, V3_001A1540 *b);
+    int func_001A1580(V3_001A1540 *a, V3_001A1540 *b);
 };
 
 /* object held at +0x1BC of C_001A1C70 */
