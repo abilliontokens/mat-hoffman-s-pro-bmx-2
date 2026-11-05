@@ -90,8 +90,14 @@ struct C_000F1DD0_Mid {
     C_000F1DD0_Strings *f4;
 };
 
+struct C_000F2AD0_Query {
+    int func_00136170(int a, int b, int c);
+};
+
 struct C_000F2780_Global {
-    char pad0[0x2E0];
+    char pad0[8];
+    C_000F2AD0_Query *f8;
+    char pad0C[0x2E0 - 0xC];
     C_000F2780_Obj2 *f2e0;
     char pad2E4[4];
     C_000F1DD0_Mid *f2E8;
