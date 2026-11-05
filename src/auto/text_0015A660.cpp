@@ -406,6 +406,38 @@ void *C_0015B1A0::func_0015B1A0(int a)
     return this;
 }
 
+void *C_0015B310::func_0015B310(int flags)
+{
+    extern int D_002876EC;
+    vtbl = (void *)&D_002876EC;
+    if (f24 != 0) {
+        if (f24->f8 != 0) {
+            delete[] f24->f8;
+        }
+        if (f24 != 0) {
+            delete f24;
+        }
+    }
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
+C_0015B470 *C_0015B470::func_0015B470(void)
+{
+    extern undefined4 D_002E28F4;
+    f10 = 0;
+    f4 = 10;
+    f8 = 100000;
+    fC = 0;
+    f0 = (S_0015B470_Entry *)func_001E8A44(0xa50);
+    D_002E28F4 = (undefined4)this;
+    f11C = 0;
+    return this;
+}
+
 void C_0015B4C0::func_0015B4C0(void)
 {
   extern undefined4 D_002E28F4;
