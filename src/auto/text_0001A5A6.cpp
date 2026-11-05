@@ -55,6 +55,44 @@ struct C_0001B3B0 {
 };
 
 
+C_0001AE60* C_0001AE60::func_0001AE60(const Vec3* v) {
+    int t;
+    t = _mm_cvtss_si32(_mm_set_ss(D_00275AFC * v->x));
+    r = (s8)t;
+    t = _mm_cvtss_si32(_mm_set_ss(D_00275AFC * v->y));
+    g = (s8)t;
+    t = _mm_cvtss_si32(_mm_set_ss(D_00275AFC * v->z));
+    b = (s8)t;
+    return this;
+}
+
+C_0001AF00* C_0001AF00::func_0001AF00(const Vec3* v) {
+    int t;
+    t = _mm_cvtss_si32(_mm_set_ss(D_00275B00 * v->x));
+    r = (s16)t;
+    t = _mm_cvtss_si32(_mm_set_ss(D_00275B00 * v->y));
+    g = (s16)t;
+    t = _mm_cvtss_si32(_mm_set_ss(D_00275B00 * v->z));
+    b = (s16)t;
+    return this;
+}
+
+void func_0001B020(Quat *q, float *angle, Vec3 *axis) {
+    float t = func_0014F890(q->w);
+    *angle = t;
+    if (t != D_00275544) {
+        float s = D_00275460 / func_0014F450(t);
+        axis->x = s * q->x;
+        axis->y = s * q->y;
+        axis->z = s * q->z;
+    } else {
+        axis->x = 1.0f;
+        axis->y = 0.0f;
+        axis->z = 0.0f;
+    }
+    *angle += *angle;
+}
+
 void func_0001B360(int a0, int a1, S_0001B360 *a2, int a3) {
     if (a3 != 0) {
         a2->obj->v5();
