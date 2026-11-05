@@ -119,7 +119,7 @@ struct C_00163A50 {
     void func_00162A80(void *p);
     S_00163DC0_Res *func_00162B20(const char *name, int a);
     int func_00163780(const char *path, S_00163DC0_Res *res);
-    int func_00162FB0(S_00163A50_Arg *a1, const char *path, S_00163DC0_Res *res);
+    void *func_00162FB0(S_00163A50_Arg *a1, const char *path, S_00163DC0_Res *res);
     void func_00162B70(const char *path, S_00163DC0_Res *res);
     void *func_00163DC0(C_00163DC0_Parser *parser, const char *section, const char *prefix);
 };
@@ -223,6 +223,85 @@ struct C_001643A0 {
     int func_001643A0(void);
 };
 
+
+void *C_00163A50::func_00163A50(void *a, void *b)
+{
+    S_00163A50_Arg *a1 = (S_00163A50_Arg *)a;
+    const char *section = (const char *)b;
+    int val;
+    char str[0x40];
+    char path[0x104];
+    char name[0x104];
+    char file[0x104];
+    S_00163DC0_Res *res;
+    S_00163DC0_Res *obj;
+
+    a1->f8->func_00169710(section);
+    a1->f8->func_00168BE0(D_00276980, D_00284A98, name, -1);
+    res = func_00162B20(name, 0);
+    if (res != 0) {
+        return res;
+    }
+    obj = (S_00163DC0_Res *)func_001E8A44(0x44);
+    res = obj != 0 ? obj->func_00162790() : 0;
+    res->f40 = 0;
+    f4 += 0x44;
+    res->f0 = (char *)func_001E8A44(strlen(name) + 1);
+    strcpy(res->f0, name);
+    a1->f8->func_00168BE0(D_002764EC, D_00284A98, file, -1);
+    path[0] = 0;
+    strcat(path, a1->f190);
+    strcat(path, file);
+    a1->f8->func_00168C20(D_00287DA8, 0, &res->f34);
+    a1->f8->func_00168C20(D_00287DA0, 0, &val);
+    res->f24.b0 = val;
+    a1->f8->func_00168C20(D_002764D8, 0xf, &res->f30);
+    a1->f8->func_00168C20(D_00287D8C, a1->f20, &val);
+    res->f24.b1 = val;
+    a1->f8->func_00168C20(D_00287D78, a1->f24, &val);
+    res->f24.b2 = val;
+    if (a1->f8->func_00168550(D_00287D68, str, -1)) {
+        if (func_001EA426(str, D_00287D5C) == 0) {
+            res->f28 = 0;
+        } else if (func_001EA426(str, D_00287D50) == 0) {
+            res->f28 = 1;
+        } else {
+            res->f28 = a1->f28;
+        }
+    } else {
+        res->f28 = a1->f28;
+    }
+    if (a1->f8->func_00168550(D_00287D40, str, -1)) {
+        if (func_001EA426(str, D_00287D38) == 0) {
+            res->f2C = 0;
+        } else if (func_001EA426(str, D_00287D30) == 0) {
+            res->f2C = 1;
+        } else {
+            res->f2C = a1->f2C;
+        }
+    } else {
+        res->f2C = a1->f2C;
+    }
+    func_00030F30(path, D_00287D28);
+    if (func_00163780(path, res) == 0) {
+        func_00030F30(path, D_00287D20);
+        if (func_00162FB0(a1, path, res) != 0) {
+            func_00030F30(path, D_00287D28);
+            func_00162B70(path, res);
+        }
+    }
+    if (a1->f8->func_00168C50(D_00287D10, 0, &res->f3C) == 0) {
+        float t = res->f38 * D_00278C48;
+        res->f3C = t;
+        if (t > D_002755E8) {
+            res->f3C = 0.5f;
+        }
+    }
+    f18 = (void **)func_001E83E8(f18, f0 * 4 + 4);
+    f18[f0] = res;
+    f0++;
+    return f18[f0 - 1];
+}
 
 void *C_00163A50::func_00163DC0(C_00163DC0_Parser *parser, const char *section, const char *prefix)
 {
