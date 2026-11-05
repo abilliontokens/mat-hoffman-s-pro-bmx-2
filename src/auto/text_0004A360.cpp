@@ -50,10 +50,14 @@ struct S_Obj12140 {
     void func_00012140(void);
 };
 
-struct S_Vec4 {
+struct S_Vec4Pod {
     float x, y, z, w;
+};
+
+struct S_Vec4 : S_Vec4Pod {
     S_Vec4() { z = 0; y = 0; x = 0; w = 1.0f; }
     S_Vec4(float nx, float ny, float nz) { x = nx; y = ny; z = nz; w = 1.0f; }
+    S_Vec4 &operator=(const S_Vec4Pod &p) { x = p.x; y = p.y; z = p.z; w = p.w; return *this; }
 };
 
 struct S_Overlay {
