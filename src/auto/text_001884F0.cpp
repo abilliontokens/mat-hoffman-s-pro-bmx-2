@@ -11,6 +11,15 @@ struct C_00188700 {
     void func_001888F0(void);
 };
 
+extern void *D_002895E8;
+struct C_00188FD0 {
+    void *vtbl;
+    char pad4[0x120];
+    void *unk124;
+    char pad128[0x38];
+    void *func_00188FD0(unsigned int flags);
+};
+
 extern int D_00289F80;
 extern int D_00289F54;
 extern int D_0028A034;
