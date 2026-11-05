@@ -53,10 +53,6 @@ static inline S_0019A680_V4 Scale_0019A680(const S_0019A680_V4 &a, float s) { re
 
 static inline S_00199B00_F4 pVec_0019A680(float x, float y, float z) { S_00199B00_F4 r; r.x = x; r.y = y; r.z = z; r.w = 1.0f; return r; }
 static inline S_00199B00_F4 pAdd_0019A680(const S_00199B00_F4 &a, const S_00199B00_F4 &b) { return pVec_0019A680(a.x + b.x, a.y + b.y, a.z + b.z); }
-struct S_0019A680_Out {
-    float x, y, z, w;
-    S_0019A680_Out &operator=(const S_00199B00_F4 &o) { x = o.x; y = o.y; z = o.z; w = o.w; return *this; }
-};
 static inline S_00199B00_F4 pSub_0019A680(const S_00199B00_F4 &a, const S_00199B00_F4 &b) { return pVec_0019A680(a.x - b.x, a.y - b.y, a.z - b.z); }
 static inline S_00199B00_F4 pScale_0019A680(const S_00199B00_F4 &a, float s) { return pVec_0019A680(a.x * s, a.y * s, a.z * s); }
 
