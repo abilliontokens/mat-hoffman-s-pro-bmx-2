@@ -139,6 +139,18 @@ int BmxEvent::func_00031D80(void)
     return 1;
 }
 
+void BmxEvent::func_00031E20(void)
+{
+    int i = 0;
+
+    if (f64->f4e0->f24 > 0) {
+        do {
+            f64->f4e0->arr1a8[i]->func_00104C80(D_002A8490->f2e0->arr300[i]);
+            i++;
+        } while (i < f64->f4e0->f24);
+    }
+}
+
 int C_00031F10::func_00031F10(int a, int b)
 {
     return func_00157B90(a, b) != 0;
