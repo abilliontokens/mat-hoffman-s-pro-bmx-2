@@ -20,6 +20,37 @@ struct C_0009FD60 {
 };
 extern const float D_00277D04;
 
+static float fabs_0009FE80(float x)
+{
+    volatile int tmp;
+    tmp = *(int *)&x & 0x7fffffff;
+    return *(float *)&tmp;
+}
+
+extern float D_00278C58;
+extern float D_0027AD80;
+extern float D_002756D0;
+extern float D_002756B8;
+extern float D_002756E8;
+extern float D_0027AD7C;
+extern float D_0027653C;
+extern float D_0027AD78;
+extern float D_0027AD74;
+extern float D_002786B8;
+extern float D_00276558;
+
+struct C_0009FE80 {
+    char pad0[0x3c];
+    float unk3C;
+    int unk40;
+    char pad44[8];
+    float unk4C;
+    char pad50[0x3c];
+    float unk8C;
+    float unk90;
+    void func_0009FE80(int a0, int a1, int a2, int a3, int a4, int a5, float a6, float a7, float a8, float a9, float a10);
+};
+
 extern int D_0027AD64;
 struct V4_0009F7F0 {
     float x, y, z, w;
@@ -216,5 +247,47 @@ void C_0009FE70::func_0009FE70(int a0) {
 
 void C_000A0090::func_000A0090(int a0, int a1) {
     unk38 = 1;
+}
+
+void C_000A00A0::func_000A00A0(V4_000A00A0 a0, int a1)
+{
+    if (unk10 == 0) {
+        Obj_000A00A0 *p = (Obj_000A00A0 *)func_001E8A44(0x120);
+        if (p != 0)
+            p = p->func_001A4A50(1);
+        else
+            p = 0;
+        unk10 = p;
+        p->func_00129920(2);
+        unk10->unk60 = this;
+        unk10->unk9C = (void *)func_0009F620;
+        unk10->func_001334E0(1);
+        unk10->unkA7 |= 1;
+        unk10->func_001A57E0(D_002A25E0, unkB4, 0);
+        unk10->func_00133ED0();
+        unk10->func_001332A0();
+        unk10->func_00133140(a1, 2);
+    }
+    if (unk14 == 0) {
+        Obj_000A00A0 *p = (Obj_000A00A0 *)func_001E8A44(0xf4);
+        if (p != 0)
+            p = p->func_0014AB30(1);
+        else
+            p = 0;
+        unk14 = p;
+        p->func_00129920(2);
+        unk14->unk60 = this;
+        unk14->unk9C = &D_0009F700;
+        unk14->func_001334E0(1);
+        unk14->unkA7 |= 1;
+        unk14->func_0014C1C0(1, 0, 0);
+        V4_000A00A0 v[2];
+        v[1] = a0;
+        v[0] = a0;
+        unk14->func_0014AC30(v, 0);
+        unk14->func_00133ED0();
+        unk14->func_001332A0();
+        unk14->func_00133140(a1, 2);
+    }
 }
 
