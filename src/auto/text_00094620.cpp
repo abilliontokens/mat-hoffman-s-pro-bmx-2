@@ -123,6 +123,11 @@ int C_00094890::func_00094890(void) {
     return unk38;
 }
 
+void C_00094A00::func_00094A00(void)
+{
+    f50->v37();
+}
+
 int C_00094F00::func_00094F00(void) {
     return unk7C;
 }
