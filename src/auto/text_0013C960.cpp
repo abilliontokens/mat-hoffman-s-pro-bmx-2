@@ -145,6 +145,7 @@ int C_0013C960::func_0013D310(int a0, int a1, int *a2, int *a3, int a4)
 
 void C_0013C960::func_0013D400(void)
 {
+    S_0013C960_BufSet *set;
     int i;
     int *q;
 
@@ -175,13 +176,14 @@ void C_0013C960::func_0013D400(void)
     if (f6C != -1 && fC[f6C].f10 != 0) {
         func_00012140(fC[f6C].f10);
     }
+    set = (S_0013C960_BufSet *)((char *)this + 0x2c);
     for (i = 0; i < 8; i++) {
-        if (f2C[i] != 0) {
-            func_001E8390((void *)f2C[i]);
-            f2C[i] = 0;
+        if (set->bufs[i] != 0) {
+            func_001E8390(set->bufs[i]);
+            set->bufs[i] = 0;
         }
     }
-    f70 = 0;
+    set->total = 0;
     if (f7C != 0) {
         func_001E8390(f7C);
         f7C = 0;
