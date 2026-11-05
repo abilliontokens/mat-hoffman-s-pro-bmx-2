@@ -105,7 +105,7 @@ struct C_001B1010 {
     int count;
     char pad8[0x8];
     C_001B1010_Obj *arr[1];
-    int func_001B1010(C_001B1010_Arg *arg0);
+    int func_001B1010(C_001B1010_Arg *arg0, int arg1);
 };
 
 struct C_001B1130 {
