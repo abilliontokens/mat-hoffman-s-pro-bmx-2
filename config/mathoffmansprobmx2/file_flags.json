@@ -2,9 +2,6 @@
   "src/auto/text_00028130.cpp": [
     "/Oy-"
   ],
-  "src/auto/text_0002B1C0.cpp": [
-    "/Oy-"
-  ],
   "src/auto/text_0002CBC0.cpp": [
     "/Oy-"
   ],
@@ -15,6 +12,9 @@
     "/Oy-"
   ],
   "src/auto/text_00043F00.cpp": [
+    "/Oy-"
+  ],
+  "src/auto/text_000733F0.cpp": [
     "/Oy-"
   ],
   "src/auto/text_0007EE80.cpp": [
@@ -47,10 +47,16 @@
   "src/auto/text_001755A0.cpp": [
     "/Oy-"
   ],
+  "src/auto/text_001C36B0.cpp": [
+    "/O1"
+  ],
   "src/auto/text_001C76B0.cpp": [
     "/Oy-"
   ],
   "src/auto/text_001DCDC7.cpp": [
+    "/Oy-"
+  ],
+  "src/auto/text_001DDD84.cpp": [
     "/Oy-"
   ],
   "src/auto/text_001DE8C7.cpp": [
