@@ -12,7 +12,7 @@ struct R_Reader {
 extern "C" char *strcat(char *, const char *);
 extern char D_002A5348[];
 struct S_Str15 { char c[15]; };
-extern char D_00278250[15];
+extern S_Str15 D_00278250;
 extern char D_00278244[], D_0027823C[], D_00278234[], D_00278228[], D_0027821C[], D_00278210[], D_00278204[], D_002781FC[], D_002781F4[];
 extern void *func_001E8A44(int);
 extern void func_001E891B(void *);
