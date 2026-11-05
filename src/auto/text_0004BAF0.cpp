@@ -55,6 +55,10 @@ struct C_0004BF00_Object {
     C_0004BF00_Object *func_00087760(void *, void *, int);
     C_0004BF00_Object *func_00088DA0(int);
     void func_00088DD0(void *, int, void *);
+    C_0004BF00_Object *func_0006E330(int);
+    void func_0006ECC0(void *);
+    C_0004BF00_Object *func_00086DC0(int);
+    void func_00086E60(void *, void *, int);
 };
 
 struct C_0004BF00_Riders {
