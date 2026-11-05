@@ -187,6 +187,14 @@ S_001EF062 *__fastcall func_001EF062(S_001EF062 *self, int unused, int mode)
     return self;
 }
 
+unsigned char S_001EF087::func_001EF087(void)
+{
+    unsigned char t = (f8 != 2);
+
+    t--;
+    return t & 0x20;
+}
+
 char *__fastcall func_001EF094(int unused, const char *src, char *dst, unsigned int count)
 {
     char *p = dst;
