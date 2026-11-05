@@ -212,6 +212,28 @@ void C_00051CF0::func_000526D0()
     }
 }
 
+void C_00051CF0::func_00052AE0(float threshold)
+{
+    int i;
+    int j;
+
+    if (unk1C8 != 0) {
+        if (unk64->f484 != 0) {
+            unk64->f484->func_0001C240();
+        }
+        for (i = 0; i < unk64->f3B4->f24; i++) {
+            for (j = 0; j < 5; j++) {
+                float v = unk64->f3B4->f28[i]->f4->fA0[j];
+                if (v < threshold && v >= D_00275544) {
+                    unk64->f4E0->f1A8->f11B0;
+                    unk64->f3B4->f28[i]->f4->func_001BBE20(unk64->f4E0->f1A8->f11B0);
+                }
+            }
+        }
+        unk1C0->func_00099750(this, threshold);
+    }
+}
+
 undefined4 C_00052BB0::func_00052BB0(byte param_1)
 {
   int func_00051260(...);
