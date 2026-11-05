@@ -230,17 +230,19 @@ int __stdcall func_001CFDC0(SoundThread_001CFDC0 *p)
 
 int SoundThread_001CFE20::func_001CFE20(void)
 {
-    if (f4C == 0) {
-        f4 = func_001DDBC7(0, 1, 0, 0);
-        if (f4 != 0) {
-            f0 = func_001DE8C7(0, 0, (void *)&func_001CF590, this, 0, 0);
-            if (f0 != 0) {
-                f4C = 1;
-                return 0;
-            }
-        }
+    if (f4C != 0) {
+        return 0x80004005;
     }
-    return 0x80004005;
+    f4 = func_001DDBC7(0, 1, 0, 0);
+    if (f4 == 0) {
+        return 0x80004005;
+    }
+    f0 = func_001DE8C7(0, 0, (void *)&func_001CF590, this, 0, 0);
+    if (f0 == 0) {
+        return 0x80004005;
+    }
+    f4C = 1;
+    return 0;
 }
 
 void *XboxSoundInterface::func_001CFE70(int flags)
@@ -250,5 +252,18 @@ void *XboxSoundInterface::func_001CFE70(int flags)
         func_001E891B(this);
     }
     return this;
+}
+
+SoundObj_001CFE90 *SoundFactory_001CFE90::func_001CFE90(int a0, int a1, int a2, int a3, int a4, int a5)
+{
+    SoundObj_001CFE90 *p = (SoundObj_001CFE90 *)func_001E8A44(0x20c);
+
+    if (p != 0) {
+        p = p->func_001CF740(this, a0, 1);
+        if (p != 0) {
+            return p->v4(a1, a2, a3, a4, a5) ? p : 0;
+        }
+    }
+    return 0;
 }
 
