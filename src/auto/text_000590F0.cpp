@@ -51,6 +51,8 @@ struct C_0018C640 {
 };
 
 struct S_00059F50_Ctl {
+    void func_00094960(int a);
+    void func_000947F0(int a);
     int func_00094EE0(void);
     void func_00094D90(int a);
     void func_00095200(int a);
