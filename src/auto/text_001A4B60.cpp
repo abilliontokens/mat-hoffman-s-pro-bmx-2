@@ -57,6 +57,7 @@ struct SplashScreenManager {
     int f1DC;
     SplashScreenManager *func_001A58D0(void *a);
     void func_001A5950(void);
+    void func_001A59F0(void);
 };
 
 struct Vec4 {
