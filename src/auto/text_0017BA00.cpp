@@ -26,15 +26,66 @@ struct QuadTreeRes {
     virtual void Release();
 };
 
+/* virtual slots of the QuadTree object; slot 17 returns the root node */
+struct QuadTreeVt {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual QuadTreeNode *v17();
+};
+
+/* pool allocator: constructed in place by func_0001E740(elemSize, count) */
+struct Pool_0017C360 {
+    Pool_0017C360 *func_0001E740(int size, int count);
+};
+
+void *func_001E8A44(int size);
+
 /* QuadTree */
 struct C_0017C300 {
     void *vtbl;
-    char pad4[0x88];
+    char pad4[8];
+    u16 fC;
+    u8 fE;
+    char padF;
+    char pad10[0x18];
+    f32 f28;
+    f32 f2C;
+    f32 f30;
+    f32 f34;
+    char pad38[8];
+    f32 f40;
+    f32 f44;
+    char pad48[4];
+    s32 f4C;
+    s32 f50;
+    f32 f54;
+    s32 f58[12];
+    char pad88[4];
     QuadTreeNode *f8C;
     QuadTreeRes *f90;
     QuadTreeRes *f94;
     u32 flags98;
-    char pad9C[0x7E4];
+    u32 f9C;
+    u32 fA0;
+    u32 fA4;
+    u32 padA8;
+    u32 fAC;
+    char padB0[0x7D0];
     u32 unk880;
     s32 unk884;
     u32 unk888;
