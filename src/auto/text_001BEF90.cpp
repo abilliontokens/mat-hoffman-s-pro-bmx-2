@@ -69,6 +69,54 @@ struct C_001BF000 {
 };
 
 
+extern int D_0028D78C;
+
+struct S_001BF3C0_Node {
+    void *unk0;
+    S_001BF3C0_Node *unk4;
+    S_001BF3C0_Node *unk8;
+};
+
+struct S_001BF3C0_List {
+    S_001BF3C0_Node *head;
+    S_001BF3C0_Node *tail;
+};
+
+struct C_001BF3A0 {
+    void *vtbl;
+    char pad4[0x28];
+    char *unk2C;
+    void *func_001BF3A0(int a0);
+    void func_00157600(int a0);
+};
+
+struct C_001BF3C0 {
+    void *vtbl;
+    char pad4[0x28];
+    char *unk2C;
+    void func_001BF3C0(void);
+    void func_00157660(void);
+};
+
+struct C_001BF430 {
+    char pad0[0x24];
+    int unk24;
+    int unk28;
+    char *unk2C;
+    void *func_001BF430(int a0, int a1);
+};
+
+struct C_001BF490_Item {
+    char pad0[0x44];
+    int unk44[8];
+};
+
+struct C_001BF490 {
+    char pad0[0x2C];
+    char *unk2C;
+    void func_001BF490(C_001BF490_Item *a0);
+};
+
 void C_001BEF90::func_001BEF90(int param_1)
 {
   unk140[param_1]->func_001BDDE0(0);
