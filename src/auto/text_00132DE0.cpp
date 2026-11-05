@@ -58,6 +58,28 @@ struct C_001334E0 {
     void func_001334E0(int a0);
 };
 
+struct S_001332A0_Node {
+    void func_00193500(void);
+    void func_00193870(void *p);
+};
+
+struct C_001332A0 {
+    char pad0[0x24];
+    int f24;
+    char pad28[0x50];
+    int *f78;
+    int f7c;
+    char pad80[0x4];
+    int *f84;
+    int f88;
+    char pad8c[0xc];
+    S_001332A0_Node *f98;
+    void func_001332A0(void);
+    void func_001334F0(int item);
+    void func_00133580(int item);
+    void func_00133620(int item);
+};
+
 
 void *C_00132DE0::func_00132DE0(int flags)
 {
@@ -73,22 +95,27 @@ void *C_00132DE0::func_00132DE0(int flags)
 int C_00132E20::func_00132E20(char *name)
 {
     int i;
+    char *p;
+    char *src;
     char *dst;
     char c;
+    int bit;
 
-    for (i = 0; i < count; i++) {
-        if (func_001EA426(name, names[i]) == 0) {
+    p = names[0];
+    for (i = 0; i < count; p += 0x20, i++) {
+        if (func_001EA426(name, p) == 0) {
             return 1 << i;
         }
     }
-    i = count;
-    dst = names[i];
+    bit = 1 << count;
+    dst = names[count];
+    src = name;
     do {
-        c = *name++;
+        c = *src++;
         *dst++ = c;
     } while (c != 0);
-    count++;
-    return 1 << i;
+    count = count + 1;
+    return bit;
 }
 
 int func_00132E90(int a0, int a1)
