@@ -275,6 +275,13 @@ void C_00031430::func_00031430(void)
     ((C_001576C0 *)this)->func_001576C0();
 }
 
+void BmxEvent_00030A30::func_00031610(int a0, int a1)
+{
+    if (f1d8 != 0) {
+        f1d8->func_001A4100(a0, a1, 0);
+    }
+}
+
 void func_00031630(void) {
     int func_000314F0(...);
     func_000314F0();
