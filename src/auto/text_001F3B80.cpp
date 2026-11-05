@@ -136,7 +136,7 @@ int func_001F4550(unsigned int *p, int bit)
     return 1;
 }
 
-void func_001F4582(unsigned int *p, int bit)
+int func_001F4582(unsigned int *p, int bit)
 {
     int i;
     int ok;
@@ -146,6 +146,7 @@ void func_001F4582(unsigned int *p, int bit)
     for (i--; i >= 0 && ok != 0; i--) {
         ok = func_001F5AA1(p[i], 1, &p[i]);
     }
+    return ok;
 }
 #pragma optimize("", on)
 
@@ -155,9 +156,11 @@ void func_001F4582(unsigned int *p, int bit)
 void func_001F4641(unsigned int *dst, unsigned int *src)
 {
     int i;
+    unsigned int t;
 
     for (i = 0; i < 3; i++) {
-        dst[i] = src[i];
+        t = src[i];
+        dst[i] = t;
     }
 }
 #pragma optimize("", on)
