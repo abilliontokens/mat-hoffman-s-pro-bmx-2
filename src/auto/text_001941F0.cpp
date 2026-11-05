@@ -219,6 +219,60 @@ struct C_00194F90 {
     void func_00194F90(int a0);
 };
 
+struct C_00194F60 {
+    char pad0[0x38];
+    S_Vec4Int f38;
+    void func_00194F60(int a, int b, int c, int d);
+};
+
+extern u32 D_002A9B44;
+extern u32 D_002A9B48;
+extern u32 D_002A9B4C;
+extern u32 D_002A9B50;
+extern int D_0028AF24;
+extern float D_00277D04;
+void func_001E8390(void *p);
+
+/* SimpleTVCamera (run-time type information), base class CameraBehavior */
+struct C_00195090 {
+    void *vtbl;
+    float f4;
+    float f8;
+    int fC;
+    u32 f10;
+    u32 f14;
+    u32 f18;
+    u32 f1C;
+    u32 f20;
+    u32 f24;
+    u32 f28;
+    u32 f2C;
+    u32 f30;
+    u32 f34;
+    u32 f38;
+    u32 f3C;
+    void *f40;
+    u32 f44;
+    u32 f48;
+    u32 f4C;
+    u32 f50;
+    u32 f54;
+    u32 f58;
+    u32 f5C;
+    u32 f60;
+    u32 f64;
+    u32 f68;
+    u32 f6C;
+    u32 f70;
+    u32 f74;
+    u32 f78;
+    void func_0012B510(void);
+    void func_0012B540(void);
+    C_00195090 *func_00195090(void);
+    void func_00195130(void);
+    void func_00195160(int a0, int a1, float a2);
+};
+
 struct C_00194DB0 {
     int unk0;
     void func_00194DB0(void);
