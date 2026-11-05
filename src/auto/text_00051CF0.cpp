@@ -1,6 +1,104 @@
 /* 12 functions from 0x00051CF0 to 0x00052C10, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+extern float D_00275544;
+
+struct C_00051CF0_74 {
+    int func_00030020(const char *name);
+    int func_000300C0(const char *name);
+    void func_00030160();
+    int func_000301D0();
+    void func_00030210();
+};
+
+struct C_00051CF0_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18(int a);
+    char pad4[0x6C];
+    C_00051CF0_74 *unk74;
+};
+
+struct C_00051CF0_64 {
+    char pad0[0x558];
+    C_00051CF0_Obj *unk558;
+};
+
+struct C_00051CF0_2A8490 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15(void *a, void *b, int c, int d);
+};
+extern C_00051CF0_2A8490 *D_002A8490;
+
+struct C_00051CF0_2EFDB8 {
+    char pad0[0x30];
+    int f30;
+};
+extern C_00051CF0_2EFDB8 *D_002EFDB8;
+
+struct C_00051CF0_170 {
+    void func_00083B00(int a);
+};
+
+struct C_00051CF0 {
+    void *vtbl;                       /* 0x00 */
+    char pad04[0x20];
+    void *unk24;                      /* 0x24 */
+    C_00051CF0_Obj *unk28;            /* 0x28 */
+    char pad2C[0x1C];
+    C_00051CF0_Obj *unk48;            /* 0x48 */
+    char pad4C[0x18];
+    C_00051CF0_64 *unk64;             /* 0x64 */
+    char pad68[0xBC];
+    float unk124;                     /* 0x124 */
+    char pad128[0x48];
+    C_00051CF0_170 *unk170;           /* 0x170 */
+    char pad174[0x54];
+    int unk1C8;                       /* 0x1C8 */
+    char pad1CC[0xEC];
+    float unk2B8[4];                  /* 0x2B8 */
+    char pad2C8[4];
+    int unk2CC;                       /* 0x2CC */
+    char pad2D0[0x88];
+    int unk358;                       /* 0x358 */
+    void func_00031450();
+    int func_00052590(int idx);
+    void func_00052630(const char *name);
+    void func_000526D0();
+    void func_00052740(int a);
+    void func_00052BD0();
+};
+
 struct C_00052BB0 {
     undefined4 func_00052BB0(byte param_1);
 };
