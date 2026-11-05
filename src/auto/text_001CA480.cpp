@@ -9,6 +9,7 @@ struct C_001CB120 {
 extern int D_0028EC24;
 extern int D_0028ECAC;
 extern int D_0028ED5C;
+extern int D_002F08EC;
 extern float D_002755E0;
 extern float D_0028B320;
 extern char D_002A5EA0[];
@@ -237,9 +238,7 @@ void XboxSndIf_1CB290::func_001CB290(void)
         f13C->v2();
     }
     p = (SndBank_1CB290 *)func_001E8A44(0x20);
-    p = p != 0 ? p->func_001AC3A0() : 0;
-    f13C = p;
-    p->v4();
+    (f13C = (p != 0 ? p->func_001AC3A0() : 0))->v4();
 }
 
 void XboxSndIf_1CB290::func_001CB2D0(void)
