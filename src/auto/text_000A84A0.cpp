@@ -303,3 +303,11 @@ int C_000A8D90::func_000A8D90(void *a, int b)
     return 1;
 }
 
+C_000A9030 *C_000A9030::func_000A9030() {
+    extern int D_0027C3E4;
+    ((C_001B59E0 *)this)->func_001B59E0();
+    vtbl = (void *)&D_0027C3E4;
+    unk10C = 0;
+    return this;
+}
+
