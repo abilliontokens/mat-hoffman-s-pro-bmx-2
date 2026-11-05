@@ -85,7 +85,7 @@ struct Cache_129930 {
 
 extern int D_00284018;
 extern int D_002A3E3C;
-extern float D_00284034;
+static const float D_00284034 = 16.0f;
 
 struct StaticCache_12A350 {
     void *vtbl;
