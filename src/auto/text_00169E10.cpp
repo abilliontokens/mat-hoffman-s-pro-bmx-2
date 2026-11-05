@@ -152,6 +152,59 @@ int ParticleEmitter::func_0016A8D0(void) {
     return 1;
 }
 
+void C_0016A910::func_0016A910(C_0016A910 *s, int flag) {
+    if (flag) {
+        v24 = s->v24;
+        v34 = s->v34;
+        v44 = s->v44;
+        f68 = s->f68;
+    }
+    v54 = s->v54;
+    b0 = s->b0;
+    f64 = s->f64;
+    strcpy(name, s->name);
+    f170 = s->f170;
+    f174 = s->f174;
+    f178 = s->f178;
+    f17C = s->f17C;
+    f184 = s->f184;
+    b1 = s->b1;
+    f1C4 = s->f1C4;
+    f1C8 = s->f1C8;
+    f188 = s->f188;
+    b2 = s->b2;
+    f18C = s->f18C;
+    f190 = s->f190;
+    f194 = s->f194;
+    f198 = s->f198;
+    f1A8 = s->f1A8;
+    f1AC = s->f1AC;
+    f1B0 = s->f1B0;
+    f19C = s->f19C;
+    f1A0 = s->f1A0;
+    f1A4 = s->f1A4;
+    f1D0 = s->f1D0;
+    f1D4 = s->f1D4;
+    f1D8 = s->f1D8;
+    f1DC = s->f1DC;
+    f1E0 = s->f1E0;
+    f1E4 = s->f1E4;
+    f1E8 = s->f1E8;
+    f1EC = s->f1EC;
+    f1B4 = s->f1B4;
+    f1B8 = s->f1B8;
+    f1C0 = s->f1C0;
+    if (f1BC) {
+        func_001E891B(f1BC);
+        f1BC = 0;
+    }
+    if (f1C0 > 0) {
+        f1BC = (int *)func_001E8A44(f1C0 * 4);
+        for (int i = 0; i < f1C0; i++)
+            f1BC[i] = s->f1BC[i];
+    }
+}
+
 C_0016ABE0 *C_0016ABE0::func_0016ABE0(int a)
 {
     unsigned int *p;
