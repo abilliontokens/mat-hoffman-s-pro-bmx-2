@@ -14,22 +14,9 @@ struct C_00066C90 {
     int unk64[2];
     int unk6C[2];
     char pad74[4];
-    union {
-        struct {
-            int unk78;
-            int unk7C;
-            int unk80;
-        };
-        int a78[3];
-    };
+    int a78[3];
     char pad84[0xC];
-    union {
-        struct {
-            int unk90;
-            int unk94;
-        };
-        int a90[2];
-    };
+    int a90[2];
     int unk98[5];
     int unkAC[5];
     int unkC0[6];
