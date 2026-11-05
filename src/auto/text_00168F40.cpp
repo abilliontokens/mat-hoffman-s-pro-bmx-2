@@ -87,6 +87,8 @@ struct ParticleEmitter {
     char pad4[0x1b8];
     void *unk1BC;
     void func_00169DE0(void);
+    void func_00157600(int a);
+    ParticleEmitter *func_00169C50(int a);
 };
 
 struct Entry_00169010 {
