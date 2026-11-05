@@ -8,7 +8,7 @@ struct V3_00171BA0 {
  float x,y,z,w;
  V3_00171BA0() {}
  V3_00171BA0(float a,float b,float c):x(a),y(b),z(c) {}
- V3_00171BA0 operator*(float s) const { return V3_00171BA0(x*s,y*s,z*s); }
+ V3_00171BA0 operator*(const float &s) const { return V3_00171BA0(x*s,y*s,z*s); }
  V3_00171BA0 operator+(const V3_00171BA0 &o) const { return V3_00171BA0(x+o.x,y+o.y,z+o.z); }
  V3_00171BA0 operator-(const V3_00171BA0 &o) const { return V3_00171BA0(x-o.x,y-o.y,z-o.z); }
  void operator+=(const V3_00171BA0 &o) { x+=o.x; y+=o.y; z+=o.z; }
