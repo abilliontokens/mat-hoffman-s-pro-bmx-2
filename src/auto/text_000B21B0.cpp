@@ -267,6 +267,22 @@ void VehicleAI::func_000B2540(int mode, int a, VehicleV4 *p)
     }
 }
 
+void C_000B25D0::func_000B25D0(void)
+{
+    f68 = 1.0f;
+    f2A8 = 0;
+    if (f5C != 0) {
+        f1A1 = 1;
+        f58 = 0;
+    }
+    if (f78 != 0) {
+        f44->f28->f8->func_001A2AA0(1);
+        if (f78 != 0) {
+            f44->f28->f8->func_001A2B40(3);
+        }
+    }
+}
+
 void VehicleAI::func_000B2C20(int a, int b)
 {
     if (f54 >= 0 && f54 < D_002B9134->f3C) {
