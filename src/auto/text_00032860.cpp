@@ -142,6 +142,25 @@ struct BmxEvent {
     int func_00157BF0(void *a, int b);
 };
 
+struct O_33320 {
+ void func_000602B0();
+ void func_00060350(int);
+ int func_00094EE0();
+ void func_00087D20();
+ void func_00082790();
+ void func_00161760();
+ void func_001B2640();
+};
+struct V_33320 {
+ virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+ virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+ virtual void v16(); virtual void v17(); virtual void v18(int);
+ virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31(int,int);
+};
+extern O_33320 *D_002A829C;
+extern O_33320 *D_002AA6C0;
+int func_001361E0(int, int, void *, unsigned int);
+int func_00135C70(int, int, void *, int);
 struct O_32860Ctl { void func_0001C240(); };
 struct O_32860Vt { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29(); virtual void v30(void *p); };
 struct S_00032860_Level {
