@@ -82,6 +82,9 @@ struct C_00056080 {
 struct S_00056100_Quat {
     float x, y, z, w;
     S_00056100_Quat() { z = 0; y = 0; x = 0; w = 1.0f; }
+ S_00056100_Quat operator*(float s) const { S_00056100_Quat r; r.x=x*s;r.y=y*s;r.z=z*s;return r; }
+ S_00056100_Quat operator+(const S_00056100_Quat &b) const { S_00056100_Quat r; r.x=x+b.x;r.y=y+b.y;r.z=z+b.z;return r; }
+ S_00056100_Quat operator-(const S_00056100_Quat &b) const { S_00056100_Quat r; r.x=x-b.x;r.y=y-b.y;r.z=z-b.z;return r; }
 };
 
 struct S_00056100_Node {
@@ -231,7 +234,7 @@ void C_000559E0_unused();
 C_00055380 *C_00055380::func_00055380(void)
 {
     func_0012B510();
-    unk0 = (u32)&D_00277CF4;
+    *(volatile u32 *)&unk0 = (u32)&D_00277CF4;
     q1C.z = 0; q1C.y = 0; q1C.x = 0; q1C.w = 1.0f;
     q2C.z = 0; q2C.y = 0; q2C.x = 0; q2C.w = 1.0f;
     q6C.z = 0; q6C.y = 0; q6C.x = 0; q6C.w = 1.0f;
