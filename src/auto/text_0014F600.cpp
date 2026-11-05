@@ -140,7 +140,7 @@ void func_000263B0(void *, void *, void *);
 void func_00030AC0(void *, void *, void *);
 float func_0014F510(float);
 float func_0014F550(float);
-static void cross_1500(V_1500 * volatile out, V_1500 * volatile a, V_1500 * volatile b) {
+static __forceinline void cross_1500(V_1500 *out, V_1500 *a, V_1500 *b) {
  V_1500 *pa=a, *pb=b;
  __m128 va = _mm_loadu_ps(&pa->x);
  __m128 vb = _mm_loadu_ps(&pb->x);
