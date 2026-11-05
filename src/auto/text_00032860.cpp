@@ -101,3 +101,11 @@ void C_00032E50::func_00032E50(float a, float b, float c, float d)
     }
 }
 
+int BmxEvent::func_00033300(void)
+{
+    func_00032E90();
+    func_00032F50();
+    func_00157920();
+    return 1;
+}
+
