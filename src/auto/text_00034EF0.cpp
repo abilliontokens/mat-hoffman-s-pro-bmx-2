@@ -130,8 +130,7 @@ struct C_00035360 {
 struct S_35680_Screen {
     char pad0[0x1e0];
     u32 f1e0;
-    char pad1e4[0x1c];
-    int f200;
+    char pad1e4[0x20];
     int f204;
     int f208;
     void func_0012B190(int x, int y, int w, int h);
