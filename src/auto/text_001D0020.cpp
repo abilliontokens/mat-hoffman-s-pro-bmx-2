@@ -39,6 +39,8 @@ struct S_001D0020_Env {
     int lFilterCutOff;
 };
 
+extern "C" void *memset(void *dst, int c, unsigned int n);
+#pragma intrinsic(memset)
 extern float D_0028F0AC;
 int __stdcall func_002228F8(void *desc, void *outStream);
 extern "C" void __stdcall D_00220ADB(void *stream, void *env);
@@ -210,36 +212,37 @@ int XboxSoundStreams_001D0020::func_001D0020(void)
     wfx.wFormatTag = 1;
     wfx.nChannels = 2;
     wfx.nSamplesPerSec = 44100;
-    wfx.nAvgBytesPerSec = 176400;
-    wfx.nBlockAlign = 4;
     wfx.wBitsPerSample = 16;
+    wfx.nBlockAlign = 4;
+    wfx.nAvgBytesPerSec = (unsigned int)D_0002B110;
     desc.dwMaxAttachedPackets = 0x2b;
     desc.lpwfxFormat = &wfx;
     hr = func_002228F8(&desc, &fB8);
-    if (hr >= 0) {
-        hr = func_002228F8(&desc, &fBC);
-        if (hr >= 0) {
-            S_001D0020_Env env = {0};
-
-            env.dwEnvelopeGenerator = 1;
-            env.dwMode = 2;
-            env.dwRelease = env.dwAttack = (int)(f84 * D_0028F0AC);
-            env.dwSustain = 0xff;
-            D_00220ADB(fB8, &env);
-            D_00220ADB(fBC, &env);
-            fC0 = func_001E8A44((int)D_0006A000);
-            if (fC0 == 0) {
-                return 0x8007000e;
-            }
-            f1A8 = func_001DDBC7(0, 1, 0, 0);
-            if (f1A8 == 0) {
-                return 0x80004005;
-            }
-            f1A4 = func_001DE8C7(0, 0, (void *)&func_001CFDC0, this, 0, 0);
-            return f1A4 != 0 ? 0 : 0x80004005;
-        }
+    if (hr < 0) {
+        return hr;
     }
-    return hr;
+    hr = func_002228F8(&desc, &fBC);
+    if (hr < 0) {
+        return hr;
+    }
+    S_001D0020_Env env = {0};
+
+    env.dwEnvelopeGenerator = 1;
+    env.dwMode = 2;
+    env.dwRelease = env.dwAttack = (int)(f84 * 93.75f);
+    env.dwSustain = 0xff;
+    D_00220ADB(fB8, &env);
+    D_00220ADB(fBC, &env);
+    fC0 = func_001E8A44((int)D_0006A000);
+    if (fC0 == 0) {
+        return 0x8007000e;
+    }
+    f1A8 = func_001DDBC7(0, 1, 0, 0);
+    if (f1A8 == 0) {
+        return 0x80004005;
+    }
+    f1A4 = func_001DE8C7(0, 0, (void *)&func_001CFDC0, this, 0, 0);
+    return f1A4 != 0 ? 0 : 0x80004005;
 }
 
 XboxSoundGroup_001D0870 *XboxSoundGroup_001D0870::func_001D0870(unsigned int flags)
