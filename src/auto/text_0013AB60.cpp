@@ -13,6 +13,40 @@ struct C_0013AFD0 {
     undefined4 func_0013AFD0(int param_1);
 };
 
+#include <string.h>
+
+extern "C" int func_0014FF00(const char *path, char *drive, char *dir, char *fname, char *ext);
+void func_001E8390(void *p);
+
+/* one 0x20-byte slot of C_0013AEC0::fE8 */
+struct S_0013AEC0_Slot {
+    int f0;
+    int f4;
+    void *f8;
+    int fC;
+    unsigned int f10;
+    unsigned int f14;
+    int f18;
+    int f1C;
+};
+
+struct S_0013AEC0_Ent {
+    int f0;
+    int f4;
+    int f8;
+};
+
+struct C_0013AEC0 {
+    char pad0[0x84];
+    S_0013AEC0_Ent ents[7];
+    char padD8[8];
+    int fE0;
+    int fE4;
+    S_0013AEC0_Slot *fE8;
+    int func_0013AFB0(int idx);
+    void func_0013AEC0(int idx);
+};
+
 
 undefined4 C_0013AFD0::func_0013AFD0(int param_1)
 {
