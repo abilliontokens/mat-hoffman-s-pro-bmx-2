@@ -161,6 +161,11 @@ int func_001325D0(float *param_1)
     return bVar3;
 }
 
+void C_1329F0::func_00132CA0()
+{
+    ((C_Dst_1324B0 *)((char *)this - 0x294 + ((C_Off_1324B0 *)*(void **)((char *)this - 0x294))->f4))->func_00157960();
+}
+
 void Class_002845AC::func_00132DB0()
 {
     ((Class_002845AC *)((char *)this - *(int *)((char *)this - 4)))->func_00132DE0();
