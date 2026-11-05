@@ -279,3 +279,18 @@ CameraController *CameraController::func_0012B550(int a)
     return this;
 }
 
+CameraController *CameraController::func_0012B790(byte flags)
+{
+    int func_001E8390(...);
+    int func_001E891B(...);
+    vtbl = (void *)&D_0028411C;
+    if (f2c != 0) {
+        func_001E8390(f2c);
+    }
+    func_00157660();
+    if ((flags & 1) != 0) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
