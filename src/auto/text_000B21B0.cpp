@@ -96,6 +96,101 @@ struct VehicleAI {
     void func_000B2540(int mode, int a, VehicleV4 *p);
     void func_000B2C20(int a, int b);
 };
+extern int D_0027CEFC;
+void func_001E891B(void *p);
+void func_0018C7F0(void);
+
+struct S_000B25D0_Leaf {
+    void __stdcall func_001A2AA0(int a);
+    void __stdcall func_001A2B40(int a);
+};
+
+struct S_000B25D0_Mid {
+    char pad0[8];
+    S_000B25D0_Leaf *f8;
+};
+
+struct S_000B25D0_Top {
+    char pad0[0x28];
+    S_000B25D0_Mid *f28;
+};
+
+struct C_000B25D0 {
+    char pad0[0x44];
+    S_000B25D0_Top *f44;
+    char pad48[0x10];
+    int f58;
+    int f5C;
+    char pad60[8];
+    float f68;
+    char pad6C[0xC];
+    int f78;
+    char pad7C[0x125];
+    u8 f1A1;
+    char pad1A2[0x106];
+    u8 f2A8;
+    void func_000B25D0(void);
+};
+
+struct S_000B2E40_Obj {
+    virtual void Destroy(int a);
+};
+
+struct S_000B2E40_Buf {
+    void func_00188720(void);
+};
+
+struct C_000B2E40 {
+    void *vtbl;
+    char pad4[0x3C];
+    S_000B2E40_Obj *f40;
+    S_000B2E40_Buf *f44;
+    void **f48;
+    int f4C;
+    void func_000B2E40(void);
+    void func_0018C7F0(void);
+};
+
+struct S_000B2C80_Owner {
+    char pad0[0x4B8];
+    int f4B8;
+};
+
+struct S_000B2C80_Item {
+    char pad0[0x3C];
+    S_000B2C80_Owner *f3C;
+    char pad40[0x30];
+    int f70;
+    void func_000B2540(int a, int b, int c);
+};
+
+struct S_000B2C80_Group {
+    int f0;
+    int f4;
+    int f8;
+    S_000B2C80_Item **fC;
+};
+
+struct S_000B2C80_Entry {
+    int idx;
+    float f4;
+};
+
+struct S_000B2C80_Arg {
+    char pad0[0x48];
+    S_000B2C80_Entry **f48;
+    int f4C;
+    int f50;
+};
+
+struct C_000B2C80 {
+    char pad0[0x30];
+    int f30;
+    char pad34[0x18];
+    S_000B2C80_Group **f4C;
+    void func_000B2C80(S_000B2C80_Arg *a);
+};
+
 struct C_000B2C60 {
     undefined4 func_000B2C60(byte param_1);
 };
