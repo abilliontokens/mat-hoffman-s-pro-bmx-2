@@ -29,7 +29,7 @@ struct C_001D4300 {
 extern char D_0027A144;
 
 struct C_00092BE0_Str {
-    char pad0[0xdc];
+    char pad0[0xe0];
     C_00092BE0_Str *func_001D3E30(void);
     void func_001D3F20(char *name, int len);
     char *func_001D3F50(void);
