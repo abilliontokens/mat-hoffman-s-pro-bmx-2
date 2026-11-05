@@ -1,6 +1,48 @@
 /* 23 functions from 0x0013F690 to 0x00140680, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_0013C8A0 {
+    void func_0013C8A0(int key, void *out, int size, int flag);
+};
+extern C_0013C8A0 *D_002BEAAC;
+struct C_001449B0 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void load(int key);
+    char pad4[0x2c];
+    void func_001449B0(int flag);
+};
+struct DXInstanceData {
+    void *vtbl;
+    int count;
+    C_001449B0 *items;
+    void func_0013FAC0(int key);
+};
 
 void __fastcall func_001FEC30(int n, void *p);
 int __fastcall func_001FEBD0(int n, void *p);
