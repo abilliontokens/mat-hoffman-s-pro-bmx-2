@@ -56,3 +56,16 @@ void C_000B6080::func_000B6080(int param_1)
   return;
 }
 
+void *C_000B60A0::func_000B60A0(int flags)
+{
+  void func_00157660();
+  void func_001E891B(void *);
+
+  unk0 = (int)&D_0027D37C;
+  func_00157660();
+  if (flags & 1) {
+    func_001E891B(this);
+  }
+  return this;
+}
+
