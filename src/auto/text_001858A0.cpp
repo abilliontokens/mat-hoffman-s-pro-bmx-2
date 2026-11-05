@@ -453,6 +453,46 @@ void C_00186540::func_00186540(int param_1)
   return;
 }
 
+int C_00186580::func_00186580(S_LightStream *stream)
+{
+    char buf2[0x40];
+    char buf[0x40];
+    char tmp[0x10];
+    int i;
+    int n;
+
+    if (!stream->func_00169710(&D_002898F0)) {
+        return 0;
+    }
+    stream->func_00168C20(&D_0027D280, 0, &f24);
+    n = f24;
+    int *raw = (int *)func_001E8A44(n * 12 + 4);
+    S_LightEntry *arr;
+    if (raw) {
+        arr = (S_LightEntry *)(raw + 1);
+        *raw = n;
+        func_00011FF0(arr, 12, n, func_001862E0);
+    } else {
+        arr = 0;
+    }
+    f2c = arr;
+    for (i = 0; i < f28; i++) {
+        func_001ADCC0(buf, 0x40, &D_002867E8, &D_002898D0, i + 1);
+        if (stream->func_00168BE0(buf, &D_0027C494, buf2, -1)) {
+            V4_186720 t = *func_00182980(tmp, buf2);
+            f30[i] = t;
+        } else {
+            f30[i].a = 0xc3800000;
+        }
+        func_001ADCC0(buf, 0x40, &D_002867E8, &D_002898B0, i + 1);
+        stream->func_00168C20(buf, 1, &f34[i]);
+    }
+    for (i = 0; i < f24; i++) {
+        f2c[i].func_vslot0(stream, i);
+    }
+    return 1;
+}
+
 int C_00186720::func_00186720(S_Stream2 *stream)
 {
     char buf[0x104];
