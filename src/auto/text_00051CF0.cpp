@@ -145,9 +145,10 @@ struct C_00051CF0 {
     C_00051CF0_170 *unk170;           /* 0x170 */
     char pad174[0x4C];
     C_00052AE0_1C0 *unk1C0;           /* 0x1C0 */
-    char pad1C4[4];
+    C_000529D0_1C4 *unk1C4;           /* 0x1C4 */
     int unk1C8;                       /* 0x1C8 */
-    char pad1CC[0xEC];
+    int unk1CC;                       /* 0x1CC */
+    char pad1D0[0xE8];
     float unk2B8[4];                  /* 0x2B8 */
     char pad2C8[4];
     int unk2CC;                       /* 0x2CC */
