@@ -31,3 +31,16 @@ void C_001805F0::func_001805F0(void) {
     D_002B9344 = unk104;
     func_0017F550();
 }
+
+void *C_00180DD0::func_00180DD0(unsigned int flags) {
+    extern int D_002891C4;
+    void func_001E891B(void *);
+    vtbl = (void *)&D_002891C4;
+    func_0017F0B0();
+    func_00133E60();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
