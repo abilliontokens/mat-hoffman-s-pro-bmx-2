@@ -50,11 +50,11 @@ C_0013F7B0 *func_0013F7B0(void)
   C_0013F7B0 *p;
 
   p = (C_0013F7B0 *)func_001E8A44(4);
-  if (p == 0) {
-    return 0;
+  if (p != 0) {
+    p->vtbl = (void *)&D_00284EB8;
+    return p;
   }
-  p->vtbl = (void *)&D_00284EB8;
-  return p;
+  return 0;
 }
 
 void *C_0013FA10::func_0013FA10(int a0)
