@@ -53,6 +53,67 @@ struct C_001B0E90 {
     void func_001B0E90(void);
 };
 
+extern int D_0028C5BC;
+extern int D_0028C6E8;
+
+struct C_001D6290 {
+    void func_001D6290(int param_1);
+};
+
+struct C_001B1800 {
+    char pad0[0x24];
+    int f24;
+    void func_001B1800(int param_1);
+};
+
+struct C_001B0E60 {
+    void *vtbl;
+    u32 unk4;
+    u32 unk8;
+    u32 unkC;
+    u32 unk10;
+    u32 unk14;
+    u32 unk18;
+    u32 unk1C;
+    u32 unk20;
+    u32 unk24;
+    void func_001B0E60(int param_1);
+};
+
+struct Elem_001B0DC0 {
+    void func_001B0970(void);
+};
+
+struct Arr_001B0DC0 {
+    int count;
+    int unk4;
+    Elem_001B0DC0 *elems[1];
+};
+
+struct C_001B0DC0 {
+    void *vtbl;
+    char pad4[8];
+    Elem_001B0DC0 *unkC;
+    Arr_001B0DC0 *unk10;
+    void func_001B0DC0(void);
+    void func_0001DFF0(void);
+};
+
+struct C_001AFCC0 {
+    void *func_001AFCC0(int *a0, int a1, int a2, int a3);
+};
+
+struct C_001B0D00 {
+    char pad0[0xA];
+    u8 unkA;
+    char padB[1];
+    void *unkC;
+    int func_001B0280(int a0, int a1);
+    int func_001B03A0(int a0);
+    int func_001B0460(int a0);
+    void func_001B0D00(int param_1);
+};
+
 
 undefined4 C_001B0E40::func_001B0E40(byte param_1)
 {
