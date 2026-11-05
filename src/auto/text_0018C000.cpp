@@ -305,6 +305,20 @@ void C_0018C800::func_0018C780(int count, int *arr, int c)
     }
 }
 
+C_0018C800 *C_0018C800::func_0018C7B0(int a0)
+{
+    extern int D_0028A784;
+    ((C_00157600 *)this)->func_00157600(a0);
+    unk38 = -1;
+    unk2C = -1;
+    unk30 = -1;
+    unk0 = (int)&D_0028A784;
+    unk24 = -1082130432;
+    unk28 = 0;
+    unk34 = 0;
+    return this;
+}
+
 void C_0018C7F0::func_0018C7F0(void) {
     extern int D_0028A784;
     int func_00157660(...);
@@ -326,6 +340,19 @@ void C_0018C820::func_0018C820(int a0, int a1, int a2, int a3) {
     unk28 = 1;
     unk30 = a2;
     unk34 = a3;
+}
+
+void C_0018C800::func_0018C850(void)
+{
+    int a = unk2C;
+    int b;
+    if (a != -1 && (b = unk30) != -1) {
+        int c = unk34;
+        unk2C = -1;
+        unk30 = -1;
+        unk34 = 0;
+        D_002EFE08->func_001904E0(this, unk38, c, a, b);
+    }
 }
 
 void *C_0018C8D0::func_0018C8D0(int flags) {
