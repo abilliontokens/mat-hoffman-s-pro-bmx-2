@@ -90,6 +90,42 @@ struct C_000A2620 {
     void func_000A2620(void);
 };
 
+void C_000A2440::func_000A2440(void)
+{
+    int i;
+    char buf[16];
+    for (i = 0; i < f560; i++) {
+        int idx = f484->func_0001B3C0(f524[i]->f8);
+        if (idx > -1) {
+            f524[i]->f4 = f484->f2C->f28[idx];
+        }
+    }
+    for (i = 0; i < *D_002A8490->f2E0; i++) {
+        if (f4E4[i] != 0) {
+            func_001ADCC0(buf, 16, D_0027AFF0, i + 1);
+            int idx = f484->func_0001B3C0(buf);
+            if (idx > -1) {
+                f4E4[i]->func_00151130(((C_Obj64 *)*(int *)(f550 + i * 4 + 0x44))->f64, f484->f2C->f28[idx], f488);
+            } else {
+                if (f4E4[i]) {
+                    f4E4[i]->vdtor(1);
+                }
+                f4E4[i] = 0;
+            }
+            if (f504[i]) f504[i]->func_001554D0(f488);
+        }
+    }
+    if (*D_002A8490->f2E0 == 1) {
+        int idx = f484->func_0001B3C0(D_0027AFE4);
+        if (idx > -1) {
+            ((S_Ent *)f484->f2C->f28[idx])->f1A4->f4->func_00198390();
+        }
+    }
+    if (f528) f528->func_000186F0(f488);
+    D_002A829C->func_00161680();
+    D_002AA6C0->func_001B2640();
+}
+
 void func_000A25E0(void)
 {
     if (D_002B7E18) {
