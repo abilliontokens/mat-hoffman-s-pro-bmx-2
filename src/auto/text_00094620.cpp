@@ -464,7 +464,7 @@ int C_00094840::func_00094900(float a, int b, int c)
     }
     r = unk50->v36((int)a, b, c);
     unk40 = 1;
-    unk4C = b;
+    unk4C = *(float *)&b;
     return r;
 }
 
