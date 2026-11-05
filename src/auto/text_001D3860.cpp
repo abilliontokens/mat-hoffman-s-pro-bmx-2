@@ -121,6 +121,13 @@ struct C_001D4200 {
 };
 
 int __stdcall func_001DEFD8(const char *name);
+int __stdcall func_001DCC3C(const char *path, unsigned int access, unsigned int share, void *sa,
+                            unsigned int create, unsigned int attr, void *tmpl);
+int __stdcall func_001DD247(int h, const void *buf, unsigned int size, unsigned int *written, void *ovl);
+int __stdcall func_001DF361(int a);
+int __stdcall func_001DF2EA(int ctx, const void *data, unsigned int len);
+int __stdcall func_001DF304(int ctx, void *out);
+int __stdcall func_001DD13C(int h);
 
 void __stdcall func_0025ADD0(void *p);
 void __stdcall func_0025AA70(void *p);
