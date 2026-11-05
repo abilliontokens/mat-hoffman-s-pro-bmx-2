@@ -142,7 +142,27 @@ struct S_001BC810_Item {
     virtual void v3();
     virtual void v4();
     virtual void v5();
+    char pad4[0x3C];
+    int f44[8];
 };
+
+/* local scratch parser object built on the stack (size 0x4cc) */
+struct C_00168280 {
+    char data[0x4cc];
+    C_00168280 *func_00168280(void);
+    int func_00169490(char *name, int flag);
+    int func_00169710(char *name);
+    int func_00168C20(char *key, int def, void *dst);
+    void func_001691E0(void);
+};
+
+extern char D_0028D42C[];
+extern char D_002769F8[];
+extern char D_0027D8FC[];
+extern char D_0027D8F0[];
+extern char D_0027D8D8[];
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+void *func_001E8AA5(unsigned int size);
 
 struct S_001BC710_F24 {
     virtual void v0();
