@@ -18,6 +18,11 @@ struct ShadowPreambleDataItem {
     ShadowPreambleDataItem(C_0017AA90 *p);
 };
 
+inline ShadowPreambleDataItem::ShadowPreambleDataItem(C_0017AA90 *p) {
+    vtbl = &D_00288FF4;
+    owner = p;
+}
+
 struct C_0017AA90_Child {
     virtual void v0();
     virtual void v1(C_0017AA90 *owner);
