@@ -200,6 +200,47 @@ void C_000E1550::func_000E1550(void)
     func_001578D0();
 }
 
+void C_000E1650::func_000E1650(void)
+{
+    C_000E1_Elem *m;
+    C_000E1_Elem *e;
+    S_002B91AC *s;
+    int n;
+    int i;
+
+    if (f28C)
+        m = D_002B91AC->unk68;
+    else
+        m = D_002B91AC->unk50;
+    m->func_001D5AD0();
+    if (f290)
+        m = D_002B91AC->unk6C;
+    else
+        m = D_002B91AC->unk54;
+    m->func_001D5AD0();
+    n = f140->f4->f30 - 1;
+    for (i = 0; i < 8; i++) {
+        e = arr2D0[i];
+        e->f38 = ((int)f2C0 << 24) | (e->f38 & 0xffffff);
+        e->b58 |= 2;
+        if (i == n * 2 || i == n * 2 + 1) {
+            e = arr2D0[i];
+            e->f38 = (e->f38 & 0xffbfa35a) | 0xbfa35a;
+            e->b58 |= 2;
+            arr2D0[i]->func_001D5AD0();
+        } else {
+            e = arr2D0[i];
+            e->f38 = (e->f38 & 0xffcccccc) | 0xcccccc;
+            e->b58 |= 2;
+        }
+    }
+    s = D_002B91AC;
+    s->unk24->func_001D5AD0();
+    s->unk28->func_001D5AD0();
+    s->unk2C->func_001D5AD0();
+    s->unk30->func_001D5AD0();
+}
+
 C_000E1770 *C_000E1770::func_000E1770(int a)
 {
     func_001BE360(a);
