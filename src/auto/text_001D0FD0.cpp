@@ -91,6 +91,28 @@ void *C_001D1490::func_001D1490(unsigned int flags)
     return this;
 }
 
+C_001D14C0 *C_001D14C0::func_001D14C0(int a0)
+{
+    void *func_001E8AA5(...);
+
+    func_0015AD10(a0);
+    vtbl = &D_0028F204;
+    f8 = 0x20;
+    f6BC = 0;
+    f18 = func_001E8AA5(0x180);
+    f6CC = 200.0f;
+    f6D0 = 200.0f;
+    f6B8 = 0;
+    f6C4 = 0;
+    f6C8 = 0;
+    f6D8 = 0;
+    f6DC = 0;
+    f6E0 = 0;
+    f6E2 = 0;
+    f6B4 |= 6;
+    return this;
+}
+
 undefined4 C_001D15B0::func_001D15B0(void)
 {
   int __stdcall func_0026ECAA(int);
