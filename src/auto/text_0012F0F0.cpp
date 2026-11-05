@@ -44,7 +44,7 @@ struct C_CarProceduralExtended {
     f32 f510;
     u32 f514;
     S_0012F518 *f518;
-    S_0012F518 *volatile f51C;
+    S_0012F518 *f51C;
     void func_0012F600(f32 param_1, int param_2);
     int func_0012FCF0(u32 param_1, f32 param_2);
     void func_0012FBF0(int param_1);
@@ -193,9 +193,11 @@ int C_CarProceduralExtended::func_0012FCF0(u32 param_1, f32 param_2)
     f518 = p;
     if (param_1 != 0xffffffff) {
         f4B8 = param_1;
+        S_0012F518 *q = f51C;
         f510 = param_2;
         f4AC = 1;
-        p->f10 = f51C->f10;
+        u32 t = q->f10;
+        p->f10 = t;
         if (f4E8 > D_00275544) {
             f510 = ((C_CarProceduralExtendedVT *)this)->func_0012F670(f510, f4E8);
         }
