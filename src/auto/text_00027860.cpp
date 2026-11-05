@@ -22,6 +22,34 @@ struct C_00027D40 {
 };
 
 
+struct C_00197B40 {
+    void func_00197B40(float *a, float *b);
+};
+
+struct V4_00027C50 {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
+extern float D_00275544;
+extern float D_00275F58;
+
+struct C_00027C50 {
+    char pad0[0x230];
+    C_00197B40 *unk230;
+    char pad234[0x338];
+    int unk56C;
+    char pad570[0x10];
+    float unk580;
+    int unk584;
+    int unk588;
+    void func_00027C50(float scale);
+};
+
+float *func_0001E9E0(float *out, float *in);
+
 struct S_28070_Sound {
     char pad0[0x7C];
     void (*unk7C)(int, S_28070_Sound *, int, int);
