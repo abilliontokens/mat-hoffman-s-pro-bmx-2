@@ -686,3 +686,38 @@ C_00192CA0 *C_00192CA0::func_00192CA0(unsigned int flags)
     return this;
 }
 
+int SearchNode::func_001930F0(void)
+{
+    S_00192930_Node *n = f24;
+    S_001D3F50 a[4];
+    S_001D3F50 b[4];
+    int i;
+    for (i = 0; i < 4; i++) a[i].func_001D3F50();
+    for (i = 0; i < 4; i++) b[i].func_001D3F50();
+    if (f92 == D_002EFE54) {
+        return 0;
+    }
+    f92 = D_002EFE54;
+    if (f90 == D_002EFE50) {
+        func_00192C00(f40, f44, f48, f4c, f50);
+        int t = D_002A8490->f18;
+        if (t != 0) {
+            func_0013E1F0(t, D_002A9868, D_0028AC8C, f3c + 1,
+                          (int)((f40 + 1.0f) * D_00278788),
+                          (int)(224.0f - f4c * 224.0f),
+                          (int)((f44 + 1.0f) * D_00278788),
+                          (int)(224.0f - f48 * 224.0f));
+        }
+        if (f28 != 0) {
+            f28->v15();
+        }
+        if (f2C != 0 && f2C != f28) {
+            f2C->v15();
+        }
+        for (; n != 0; n = n->next) {
+            ((SearchNode *)n->a)->func_001930F0();
+        }
+    }
+    return 1;
+}
+
