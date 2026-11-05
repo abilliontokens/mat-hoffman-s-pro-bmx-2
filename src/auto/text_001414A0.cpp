@@ -43,6 +43,22 @@ int func_00141A00(C_00168BE0 *cfg, const char *key, int def, int &out)
     return out;
 }
 
+int func_00141AA0(C_00168BE0 *cfg, const char *key, int def, int &out)
+{
+    char buf[64];
+    cfg->func_00168BE0(key, "undefined", buf, 64);
+    if (strcmp(buf, "undefined") == 0) {
+        out = def;
+    } else if (strcmp(buf, "D3DFILL_POINT") == 0) {
+        out = 0x1b00;
+    } else if (strcmp(buf, "D3DFILL_WIREFRAME") == 0) {
+        out = 0x1b01;
+    } else if (strcmp(buf, "D3DFILL_SOLID") == 0) {
+        out = 0x1b02;
+    }
+    return out;
+}
+
 int DXParticleSimulation::func_00142150(float dt)
 {
     extern float D_00276278;
