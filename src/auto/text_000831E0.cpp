@@ -124,6 +124,17 @@ void C_000836A0::func_000836A0(float a0) {
     unkD0 = a0 + unkD0;
 }
 
+void C_000831E0::func_000836C0(int a, float b)
+{
+    f138 = b + f138;
+    if (b > D_00275544) {
+        f15C = 2;
+    }
+    f128 = 1;
+    fD0 = a;
+    fCC = 1;
+}
+
 void C_00083710::func_00083710(undefined4 param_1, undefined4 param_2)
 {
   int func_001ADCC0(...);
