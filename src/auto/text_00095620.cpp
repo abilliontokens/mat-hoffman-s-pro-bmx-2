@@ -1,6 +1,19 @@
 /* 9 functions from 0x00095620 to 0x00096450, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct S_00096020_Item { char pad[0xa0]; char name[1]; };
+struct S_00096020_List { char pad[0x24]; int count; S_00096020_Item **items; };
+struct S_00096020_Manager {
+ void func_0001B910(S_00096020_Item *);
+ void func_0001B820(S_00096020_Item *);
+ void func_0001BDB0(int);
+ int func_0001B900(S_00096020_Item *);
+ void func_0001B9E0(S_00096020_Item *, int, int);
+};
+struct S_00096020_Owner { char pad[0x3ac]; S_00096020_List *list; char pad3b0[0xd4]; S_00096020_Manager *manager; };
+struct S_00096020_Arg { char pad[0x64]; S_00096020_Owner *owner; };
+struct C_00096020 { char pad[0x300]; int count; char names[0x1680]; void func_00096020(S_00096020_Arg *arg); };
+int func_001EA426(const char *, const char *);
 struct C_00095BC0 {
     char fields[0x6454];
     C_00095BC0 *func_00095BC0();
