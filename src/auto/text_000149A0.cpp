@@ -30,6 +30,16 @@ extern Obj13F50 *D_002AF44C;
 void func_001E891B(void *ptr);
 int func_00011260(int arg1, int arg2);
 
+void AIPedFleeState::func_00014EA0()
+{
+    owner->func_001C6DA0(*(int *)((char *)owner + 0x41c), 1);
+    if (*(int *)(*(char **)((char *)D_002A8490 + 0x2a4) + 0x1c8) == 0) {
+        *(unsigned char *)((char *)owner + 0x3df) = 1;
+        *(unsigned char *)((char *)owner + 0x3e0) = 1;
+        func_00012B00(1);
+    }
+}
+
 void *AIPedestrian::func_00015960(unsigned int flags)
 {
     func_00014020();
