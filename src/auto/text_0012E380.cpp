@@ -136,7 +136,16 @@ struct C_0012EF30 {
     void func_0012CCA0();
     void func_0012E5F0(int a);
     void func_0012E6B0(int a);
+    float func_0012E380(float time, float dist);
 };
+
+/* S_0012E5F0_Elem read as a key: time, length */
+struct K_0012E380 {
+    f32 t;
+    f32 len;
+    u32 pad[4];
+};
+extern f32 D_00275544;
 
 struct C_0012E6F0 {
     undefined4 func_0012E6F0(byte param_1);
