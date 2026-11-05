@@ -71,6 +71,20 @@ extern u32 D_002A2DE4;
 int func_001E9040(char *str, char *control);
 char *func_001E8920(char *dst, const char *src, int n);
 
+extern char D_0027CED0[];
+extern u32 D_002A2DE8, D_002A2DEC, D_002A2DF0, D_002A2DF8, D_002A2DFC, D_002A2E00;
+struct C_000B1860 {
+    int f0, f4, f8;
+    u32 fC[4];
+    u32 f1C[4];
+    u32 f2C[4];
+    char f3C[0x104];
+    char f140[0x104];
+    char f244[0x104];
+    char f348[0x3C];
+    C_000B1860 *func_000B1860(void);
+};
+
 struct C_0018C7B0 {
     void func_0018C7B0(int a0);
 };
@@ -276,7 +290,7 @@ C_000B2020 *C_000B2020::func_000B2020(void) {
     volatile int limit;
     int count;
     ((C_001B4AF0 *)this)->func_001B4AF0();
-    this->vtbl = (void *)&D_0027D004;
+    self->vtbl = (void *)&D_0027D004;
     limit = sizeof(f250) - 1;
     count = Min_000B1740(limit, 4);
     func_001E8920(self->f250, (const char *)&D_002764F0, count);
