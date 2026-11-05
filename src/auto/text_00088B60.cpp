@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+#include <string.h>
 
 extern int D_002799BC;
 extern int D_00279A44;
@@ -84,6 +85,24 @@ void C_00088F60::func_00088F60(int param_1)
   return;
 }
 
+void C_00088F70::func_00088F70(int a, int b)
+{
+    if ((float)a > f34 && b == 0) {
+        if (f40->v7() == 0) {
+            f40->v5(0);
+        }
+    }
+    f34 = (float)a;
+    if (b != 0) {
+        float t = f34 / f30;
+        int r = _mm_cvtss_si32(_mm_load_ss(&t));
+        f3C = r;
+        if (f40->v7() != 0) {
+            f40->v6(0);
+        }
+    }
+}
+
 void C_00088F70::func_00089010()
 {
     f34 = f30;
@@ -98,5 +117,27 @@ bool C_00089040::func_00089040(void)
   int in_ECX = (int)this;
   
   return *(int *)(in_ECX + 0x3c) == 0xff;
+}
+
+C_000891A0 *C_000891A0::func_000891A0(int unused)
+{
+    ((C_00157600 *)this)->func_00157600(1);
+    vtbl = &D_00279A44;
+    f24 = 0;
+    f28 = 0;
+    f2C = 0;
+    f30 = 0;
+    for (int i = 0; i < 16; i++) {
+        fA0[i] = 0;
+    }
+    for (int j = 0; j < 16; j++) {
+        fE0[j] = 0;
+    }
+    f120 = 0;
+    f124 = 0;
+    f12C = 0;
+    f9C = 0;
+    f128 = 1;
+    return this;
 }
 
