@@ -386,6 +386,51 @@ C_000AC140 *C_000AC140::func_000AC140()
     return this;
 }
 
+C_000AC2C0 *C_000AC2C0::func_000AC2C0(int flags)
+{
+    int i;
+    S_AC2C0_Block *l0 = (S_AC2C0_Block *)&count;
+    func_00188F20(flags);
+    vtbl = (void *)&D_0027C8E4;
+    l0->init();
+    f4e0 = 0;
+    for (i = 0; i < 8; i++) {
+        f4e4[i] = 0;
+        f504[i] = 0;
+    }
+    *(int *)((char *)this + 0x528) = 0;
+    *(int *)((char *)this + 0x530) = 0;
+    *(int *)((char *)this + 0x534) = 0;
+    *(int *)((char *)this + 0x564) = 0;
+    *(int *)((char *)this + 0x524) = 0;
+    *(int *)((char *)this + 0x560) = 0;
+    *(int *)((char *)this + 0x52c) = 0;
+    *(int *)((char *)this + 0x568) = 0;
+    *(int *)((char *)this + 0x56c) = 0;
+    *(int *)((char *)this + 0x598) = 0;
+    *(int *)((char *)this + 0x59c) = 0;
+    *(int *)((char *)this + 0x570) = 0;
+    *(int *)((char *)this + 0x578) = 0;
+    *(int *)((char *)this + 0x580) = 0;
+    *(int *)((char *)this + 0x544) = 0;
+    *(int *)((char *)this + 0x55c) = 0;
+    *(int *)((char *)this + 0x588) = 0;
+    *(int *)((char *)this + 0x57c) = 0;
+    *(int *)((char *)this + 0x584) = 0;
+    *(int *)((char *)this + 0x58c) = 0;
+    *(int *)((char *)this + 0x590) = 0;
+    *(int *)((char *)this + 0x5a0) = -1;
+    *(int *)((char *)this + 0x5a4) = 0;
+    l0->alloc();
+    D_002B9120 = this;
+    f5bc = 0;
+    *(int *)((char *)this + 0x548) = 0;
+    *(int *)((char *)this + 0x594) = 0;
+    *(int *)((char *)this + 0x558) = 0;
+    *(int *)((char *)this + 0x554) = 1;
+    return this;
+}
+
 int C_000AC680::func_000AC680(void)
 {
     C_000AC680_Alloc *p = (C_000AC680_Alloc *)func_001E8A44(0x128);
