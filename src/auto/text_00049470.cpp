@@ -13,6 +13,7 @@ struct C_00198390 {
 struct S_00049A20_Inner {
     int unk0;
     C_00198390 *f4;
+    void func_00164820(int);
 };
 
 struct S_00049A20_Holder {
