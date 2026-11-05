@@ -231,3 +231,16 @@ S_001EF734 *S_001EF734::func_001EFD3B(void *out, char c)
     return (S_001EF734 *)out;
 }
 
+S_001EF734 *S_001EF734::func_001EFD7A(void *out, char *s)
+{
+    S_001EF734 local;
+    local.func_001EEEE6(this);
+    if (local.func_001EF1E7() != 0) {
+        local.func_001EF9B2(s);
+    } else {
+        local.func_001EFB82(s);
+    }
+    ((S_001EF734 *)out)->func_001EEEE6(&local);
+    return (S_001EF734 *)out;
+}
+
