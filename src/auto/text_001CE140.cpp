@@ -45,7 +45,7 @@ struct XboxMusic {
     virtual void vf10(); virtual void vf11(); virtual void vf12(); virtual void vf13();
     virtual void vf14(); virtual void vf15(); virtual void vf16(); virtual void vf17();
     virtual void vf18(); virtual void vf19(); virtual void vf1A(); virtual void vf1B();
-    virtual void vf1C(); virtual void vf1D(); virtual void vf1E();
+    virtual void vf1C(); virtual void vf1D(); virtual int vf1E(int id, int arg);
     virtual void vf1F(int id, int arg);
     virtual void vf20();
     virtual void vf21(int arg);
