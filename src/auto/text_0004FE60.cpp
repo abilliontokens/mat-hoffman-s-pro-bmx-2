@@ -3,7 +3,19 @@
 #include "ghidra.h"
 
 extern int D_0027784C;
-extern void *D_002EFDB8;
+
+struct V_002EFDB8 {
+    virtual void vf0();
+    virtual void vf1();
+    virtual void vf2();
+    virtual void vf3();
+    virtual void vf4();
+    virtual void vf5();
+    virtual void vf6();
+    virtual void vf7(int a);
+    virtual void vf8();
+};
+extern V_002EFDB8 *D_002EFDB8;
 
 void func_001E891B(void *p);
 
