@@ -9,8 +9,14 @@ extern int D_00285B64;
 void __stdcall func_00201100(void *p);
 void func_001E891B(void *p);
 
+void func_001E8390(void *p);
+
 struct C_001AF300 {
     void func_001AF300(void *param);
+};
+
+struct C_001AF320 {
+    void func_001AF320();
 };
 
 struct C_001AF0B0 {
