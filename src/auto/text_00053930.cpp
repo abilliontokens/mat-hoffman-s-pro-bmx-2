@@ -1,5 +1,23 @@
 /* 11 functions from 0x00053930 to 0x00054680, found by Ghidra. */
 #include "common.h"
+struct G_P2 { char pad0[0xa40]; int fa40; char pada44[8]; int fa4c; char pada50[4]; int fa54; int fa58; int fa5c; char pada60[0x1058 - 0xa60]; int f1058; char pad105c[0x11f4 - 0x105c]; int f11f4;
+    int func_00108660(); void func_001084E0(); };
+struct G_PL { char pad0[0x1a8]; G_P2 *f1a8[1]; };
+struct G_V { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); };
+struct G_C { char pad0[0x4c0]; G_V *f4c0; char pad4c4[0x1c]; G_PL *f4e0; };
+struct G_Rules { int func_0005B960(int, float); int func_0005B960(int, int); void func_0005C330(int); int func_0005C340(int); };
+struct G_Sub { void func_000707C0(int); void func_0006E970(int); void func_000684B0(); void func_0001D330(); void func_00083A70(int); };
+struct G_Vt { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); };
+struct G_Mode { int mode0; char pad4[0xc]; float f10; char pad14[0xc]; int f20; char pad24[0x16c]; int f190; };
+struct G_Obj3 { char pad0[0x1228]; int f1228; };
+struct G_Obj2 { char pad0[4]; G_Obj3 *f4; };
+struct G_Glob { char pad0[4]; G_Sub *f4; char pad8[0x11c]; int f124; char pad128[0x1b8]; G_Mode *f2e0; char pad2e4[4]; G_Obj2 *f2e8; };
+#define G_GLOB ((G_Glob *)D_002A8490)
+struct G_Event {
+    char pad0[0x64]; G_C *f64; G_Rules *f68; char pad6c[0x24]; int f90; char pad94[0x90]; float f124; float f128; char pad12c[0x38]; G_Sub *f164; char pad168[8]; G_Sub *f170; char pad174[0x1c]; G_Sub *f190; char pad194[0x24]; G_Vt *f1b8; char pad1bc[0x38]; int f1f4; char pad1f8[0x8c]; int f284; int f288;
+    void func_00031260(int); void func_00053930(int);
+};
+void __stdcall func_00157A00(int);
 struct S_00054430_V4 {
     float x, y, z, w;
     S_00054430_V4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
