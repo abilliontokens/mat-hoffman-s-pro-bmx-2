@@ -137,18 +137,54 @@ struct V_001A34D0 {
  virtual void v46();
  virtual void v47(int a);
 };
+extern int D_0028B6BC;
 struct MaterialSoundEmitter {
-    char pad0[0x1a4];
+    void *vtbl;
+    char pad4[0x1a0];
     S_001A33A0_Mgr *f1a4;
     char pad1a8[0x1c0 - 0x1a8];
     S_001A33A0_List list1c0;
-    char pad1c8[0x1d4 - 0x1c8];
+    int f1c8;
+    int f1cc;
+    u8 f1d0;
+    char pad1d1[0x1d4 - 0x1d1];
     S_3B10_List a;
-    char pad2[0x1e8 - 0x1dc];
+    int f1dc;
+    int f1e0;
+    u8 f1e4;
+    char pad1e5[0x1e8 - 0x1e5];
     S_3B10_List b;
-    char pad3[0x1fc - 0x1f0];
+    int f1f0;
+    int f1f4;
+    u8 f1f8;
+    char pad1f9[0x1fc - 0x1f9];
     int f1fc;
     int f200;
+    MaterialSoundEmitter(int arg0, int arg1, int arg2, int arg3);
+    void initA(void)
+    {
+        list1c0.items = 0;
+        list1c0.count = 0;
+        f1c8 = 0;
+        f1cc = 0;
+        f1d0 &= 0xfe;
+    }
+    void initB(void)
+    {
+        a.items = 0;
+        a.count = 0;
+        f1dc = 0;
+        f1e0 = 0;
+        f1e4 &= 0xfe;
+    }
+    void initC(void)
+    {
+        b.items = 0;
+        b.count = 0;
+        f1f0 = 0;
+        f1f4 = 0;
+        f1f8 &= 0xfe;
+    }
     int func_001A34D0(int idx, S_001A33A0_Vec3 pos, int a5, int a6, int vol, int flag);
     int func_001A3B10(void);
     int func_001A33A0(int idx, S_001A33A0_Vec3 pos, int a4, int vol);
