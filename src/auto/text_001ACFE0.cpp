@@ -160,6 +160,29 @@ int func_001ADD20(char *buf, int count, int a3, void *a4)
     return n;
 }
 
+void func_001ADD80(S_func_001ADD80_arg0 *r)
+{
+    if (r == 0) {
+        return;
+    }
+    if (r->unk6c < 0 || r->unk74 < 0) {
+        r->unk6c = 0;
+        r->unk74 = 0x10;
+    }
+    if (r->unk6c > 0x280 || r->unk74 > 0x280) {
+        r->unk6c = 0x270;
+        r->unk74 = 0x280;
+    }
+    if (r->unk70 < 0 || r->unk78 < 0) {
+        r->unk70 = 0;
+        r->unk78 = 0x10;
+    }
+    if (r->unk70 > 0x1c0 || r->unk78 > 0x1c0) {
+        r->unk70 = 0x1b0;
+        r->unk78 = 0x1c0;
+    }
+}
+
 SpriteTweak *SpriteTweak::func_001ADEB0(void)
 {
     unk4 = 0;
