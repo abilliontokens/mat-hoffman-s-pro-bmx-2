@@ -58,6 +58,32 @@ static __forceinline void cross_001A96D0(float *out, float *a, float *b)
     _mm_storeu_ps(out, va);
 }
 
+static __forceinline float Min_001A9FA0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float Sqrt_001A9FA0(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+
+struct Obj_001A9FA0 {
+    char pad0[0x204];
+    unsigned f204;
+    char pad208[8];
+    float f210;
+};
+
+struct This_001A9FA0 {
+    char pad0[0x24];
+    Obj_001A9FA0 *f24;
+    char pad28[0x7C - 0x28];
+    unsigned f7c;
+    char pad80[0xC8 - 0x80];
+    float fc8;
+    char padCC[0x124 - 0xCC];
+    float f124, f128, f12c;
+    void func_001A96D0(Obj_001A9FA0 *o, V4_001A96D0 p, V4_001A96D0 q, float s);
+    void func_001A9FA0(float s, V4_001A96D0 v, V4_001A96D0 q, Obj_001A9FA0 *other, unsigned mask);
+};
+
+void func_001A8DC0(V4_001A96D0 *out, V4_001A96D0 *in);
+extern float D_002755E8, D_00275BF8;
+
 struct V4 { float x, y, z, w; };
 struct Other { char pad[0x204]; unsigned flags; char pad2[8]; float a; float b; };
 struct Body {
@@ -66,3 +92,35 @@ struct Body {
     void func_001A9D20(Other* other, unsigned mask, V4 p4, V4 p5, float f);
 };
 void __stdcall func_001A96D0(Other* o, int a, V4 b, V4 c);
+
+void This_001A96D0::func_001A96D0(Body_001A96D0 *body, V4_001A96D0 p, V4_001A96D0 q, float s)
+{
+    body->AddPos(p);
+    if (q.x != D_002AA248 || q.y != D_002AA24C || q.z != D_002AA250) {
+        V4_001A96D0 b;
+        V4_001A96D0 a;
+        func_00030A30(&b, p, (float *)(body->f22c + 0xf0));
+        func_0011F540(&a, q, (float *)(body->f22c + 0xf0));
+        V4_001A96D0 t;
+        if (f6c) {
+            t.x = a.x - f104;
+            t.y = a.y - f108;
+            t.z = a.z - f10c;
+            a = t;
+        } else {
+            t.x = a.x - f24->f190;
+            t.y = a.y - f24->f194;
+            t.z = a.z - f24->f198;
+            a = t;
+        }
+        V4_001A96D0 c;
+        cross_001A96D0(&c.x, &a.x, &b.x);
+        if (f68) {
+            c.x = 0.0f;
+            c.z = 0.0f;
+        }
+        body->f140 += c.x * s;
+        body->f144 += c.y * s;
+        body->f148 += c.z * s;
+    }
+}
