@@ -29,6 +29,12 @@ struct C_00192420 {
 };
 
 
+void func_00191C20(int name, C_0018F390 *obj)
+{
+    int value = func_001E91F4(name);
+    obj->func_0018F390(&D_00275630, 0x700, &value);
+}
+
 int func_00192300(void) {
     return 0;
 }
