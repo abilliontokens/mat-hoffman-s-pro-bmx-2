@@ -42,7 +42,7 @@ struct Vec4_0002AF90 {
         r.w = 1.0f;
         return r;
     }
-    __forceinline Vec4_0002AF90 Mul(float t) const
+    __forceinline Vec4_0002AF90 Mul(const float &t) const
     {
         Vec4_0002AF90 r;
         r.x = x * t;
