@@ -117,6 +117,12 @@ static inline float V3Dot_0017A010(const V3_0017A010 &a, const V3_0017A010 &b)
 {
     return a.z * b.z + (a.x * b.x + a.y * b.y);
 }
+static inline void V3Sub_0017A010(V3_0017A010 &r, const V3_0017A010 &a, const V3_0017A010 &b)
+{
+    r.x = a.x - b.x;
+    r.y = a.y - b.y;
+    r.z = a.z - b.z;
+}
 int func_001793E0(C_0017A1D0_Vec4 *p, V3_0017A010 *n, V3_0017A010 *o, V3_0017A010 *a, V3_0017A010 *b, V3_0017A010 *c);
 struct C_0017A010 {
     char pad0[0x24];
