@@ -72,6 +72,7 @@ struct C_00095A00 {
     int func_000955C0(int n);
 };
 void *func_001E8A44(unsigned int size);
+int func_001E891B(...);
 struct S_00095880_Array {
     int count;
     int *data;
