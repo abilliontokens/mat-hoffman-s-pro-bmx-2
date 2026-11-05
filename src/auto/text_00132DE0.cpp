@@ -1,6 +1,39 @@
 /* 23 functions from 0x00132DE0 to 0x00133D90, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+void func_001E891B(void *p);
+int func_001EA426(const char *a, const char *b);
+
+struct C_0013B210 {
+    void func_0013C8A0(int a, void *b, int c, int d);
+};
+extern C_0013B210 *D_002BEAAC;
+
+/* name table: count followed by 0x20-byte name slots */
+struct C_00132E20 {
+    int count;
+    char names[1][0x20];
+    int func_00132E20(char *name);
+};
+
+struct C_00132DE0 {
+    void func_001329F0(void);
+    void func_00157660(void);
+    void *func_00132DE0(int flags);
+};
+
+struct C_00132DE0_Outer {
+    char pad0[0x294];
+    C_00132DE0 sub294;
+};
+
+struct C_00133020 {
+    char pad0[0xa7];
+    unsigned char fA7;
+    void func_001D3F50(void);
+    void func_00133020(unsigned int v);
+};
+
 struct C_00133700 {
     void func_00133700(void);
 };
