@@ -79,7 +79,7 @@ struct BasicScene {
     virtual void dummy42();
     virtual void dummy43();
     virtual void dummy44();
-    virtual void dummy45();
+    virtual int dummy45();
     char pad4[0x28 - 4];
     int f28;
     char pad2c[0x340 - 0x2c];
