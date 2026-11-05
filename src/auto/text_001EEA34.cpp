@@ -245,7 +245,7 @@ unsigned char S_001EF087::func_001EF087(void)
     return t & 0x20;
 }
 
-char *__fastcall func_001EF094(int unused, const char *src, char *dst, unsigned int count)
+static char *func_001EF094(char *dst, const char *src, unsigned int count)
 {
     char *p = dst;
     char c;
