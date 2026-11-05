@@ -58,7 +58,13 @@ struct C_00191470_Vec {
     int y;
     int z;
     int w;
-    void Set(int a, int b, int c, int d) { x = a; y = b; z = c; w = d; }
+    void Set(const int &a, const int &b, const int &c, const int &d)
+    {
+        x = a;
+        y = b;
+        z = c;
+        w = d;
+    }
 };
 
 /* the value holder: name[0x18], flags, size, then a vector / matrix slot */
@@ -159,8 +165,11 @@ void C_00191470::func_00191470(unsigned int a0)
 
 void C_00191470::func_00191510(const char *a0, unsigned int a1)
 {
-    int len;
-    int n;
+    C_00191470 * volatile self = this;
+    volatile int len;
+    volatile int lim;
+    volatile int n;
+    int k;
 
     switch ((a1 >> 16) & 0xff) {
     case 0:
@@ -171,10 +180,12 @@ void C_00191470::func_00191510(const char *a0, unsigned int a1)
         break;
     }
     len = strlen(a0);
-    n = Min(0x17, len);
-    func_001E8920(f0, a0, n);
-    f0[n] = 0;
-    f18 = a1;
+    lim = 0x17;
+    n = lim > len ? len : lim;
+    k = n;
+    func_001E8920(self, a0, k);
+    ((char *)self)[k] = 0;
+    self->f18 = a1;
 }
 
 void *C_001915A0::func_001915A0(unsigned int a0, C_00191470_Vec *a1, int *a2)
