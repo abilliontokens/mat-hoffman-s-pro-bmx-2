@@ -174,6 +174,56 @@ struct C_001B1130 {
     void func_00157600(int a0);
 };
 
+extern int D_0028C7EC;
+extern int D_0028F5E8;
+
+struct C_001B12C0 {
+    void *vtbl;                  /* 0x00 */
+    char pad04[0x20];
+    int f24;                     /* 0x24 */
+    int f28;                     /* 0x28 */
+    char pad2C[0x30];
+    int f5C;                     /* 0x5C */
+    int f60;
+    int f64;
+    int f68;
+    int f6C;
+    int f70;
+    int f74;
+    float f78;
+    int f7C;
+    int f80;
+    char pad84[8];
+    int f8C;
+    int f90;
+    int f94;
+    char pad98[8];
+    int fA0;
+    int fA4;
+    char padA8[8];
+    int fB0;
+    int fB4;
+    float fB8;
+    float fBC;
+    int fC0;
+    float fC4;
+    char padC8[0xC];
+    int fD4;
+    int fD8;
+    int fDC;
+    int fE0;
+    u8 fE4;
+    char padE5[0x3F];
+    u8 f124;
+    char pad125[0x4F];
+    int f174;
+    int f178;
+    int f17C;
+    int f180;
+    void func_00157600(int a0);
+    void *func_001B12C0(int a0);
+};
+
 struct C_001D6290 {
     void func_001D6290(int param_1);
 };
