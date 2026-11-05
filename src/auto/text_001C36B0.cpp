@@ -146,7 +146,47 @@ struct DXIndexBufferCache {
     void *f8;
     int func_001C38D0(int a1, int a2);
     void func_001C39C0(void);
+    void func_001C3A80(void);
 };
+
+struct C_00160A60 {
+    int unk0;
+    int unk4;
+    int unk8;
+    C_00160A60 *func_00160A60(void);
+};
+
+struct C_00160A70 {
+    int count;
+    void *head;
+    void *tail;
+    int func_00160A70(void *p);
+};
+
+struct VideoCard {
+    void *vtbl;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    int f14;
+    int f18;
+    int f1C;
+    int f20;
+    int f24;
+    int f28;
+    int f2C;
+    int f30;
+    int f34;
+    int f38;
+    unsigned char f3C;
+    VideoCard *func_001C3D90(void);
+    void *func_001C3E20(unsigned int flags);
+};
+
+extern int D_0028E33C;
+extern int D_0028E348;
+extern int D_0028E3A0;
 
 
 DXIndexBuffer *DXIndexBuffer::func_001C36B0(int type, int count)
