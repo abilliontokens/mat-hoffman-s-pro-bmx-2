@@ -58,6 +58,9 @@ struct C_001719D0 {
 
 void func_001712D0(float *out, void *in);
 
+static __forceinline float Sqrt_00171BA0(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+static __forceinline float Max_00171BA0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+
 struct C_00171BA0 {
     char pad0[0x150];
     float f150;
