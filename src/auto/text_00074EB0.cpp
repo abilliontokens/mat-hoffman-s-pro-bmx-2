@@ -98,6 +98,8 @@ struct C_00075880 {
     int unk1C0;
     void func_00075880();
     void func_000758F0();
+    int func_00075980(int *, int);
+    int func_00157BF0(int *, int);
 };
 
 struct C_00075B20 {
