@@ -136,15 +136,17 @@ struct C_000C40D0 {
     int f290;
     char pad294[4];
     int arr298[20];
-    int func_000C0100(int idx)
-    {
-        if (idx >= f290) {
-            return -1;
-        }
-        return arr298[idx];
-    }
+    int func_000C0100(int idx);
     int func_000C40D0(int idx);
 };
+
+int C_000C40D0::func_000C0100(int idx)
+{
+    if (idx >= f290) {
+        return -1;
+    }
+    return arr298[idx];
+}
 
 static __forceinline int Item_000C40D0(C_000C40D0 *p, int idx)
 {
