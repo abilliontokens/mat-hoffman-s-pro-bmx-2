@@ -374,6 +374,92 @@ void __stdcall func_001F32E8(int param_1, int param_2) {
     func_001DE759(s.f0, s.f4, s.f10, &s.f14);
 }
 
+#pragma optimize("", on)
+double func_001F3A2E(double x, int *expptr);
+void func_001F3B1F(unsigned int flags);
+int func_001F35C5(unsigned int flags, double *presult, unsigned int cw)
+{
+    extern double D_002AED58;
+    extern double D_002AED68;
+    unsigned int result = flags & 0x1f;
+    int sticky;
+    int exp;
+    double ld;
+    union {
+        double d;
+        unsigned long w[2];
+        unsigned char b[8];
+        unsigned short s[4];
+    } m;
+
+    if ((flags & 8) && (cw & 1)) {
+        func_001F3B1F(1);
+        result &= ~8;
+    } else if ((flags & 4) && (cw & 4)) {
+        func_001F3B1F(4);
+        result &= ~4;
+    } else if ((flags & 1) && (cw & 8)) {
+        func_001F3B1F(8);
+        switch (cw & 0xc00) {
+        case 0:
+            *presult = (*presult > D_002766A8) ? D_002AED58 : -D_002AED58;
+            break;
+        case 0x400:
+            *presult = (*presult > D_002766A8) ? D_002AED68 : -D_002AED58;
+            break;
+        case 0x800:
+            *presult = (*presult > D_002766A8) ? D_002AED58 : -D_002AED68;
+            break;
+        case 0xc00:
+            *presult = (*presult > D_002766A8) ? D_002AED68 : -D_002AED68;
+            break;
+        }
+        result &= ~1;
+    } else if ((flags & 2) && (cw & 0x10)) {
+        sticky = 0;
+        if (flags & 0x10) {
+            sticky = 1;
+        }
+        if (*presult != D_002766A8) {
+            ld = func_001F3A2E(*presult, &exp);
+            m.d = ld;
+            exp -= 0x600;
+            if (exp < -0x432) {
+                *presult = ld * D_002766A8;
+                sticky = 1;
+            } else {
+                int neg = ld < D_002766A8;
+                m.s[3] = (m.b[6] & 0xf) | 0x10;
+                if (exp < -0x3fd) {
+                    int n = -0x3fd - exp;
+                    do {
+                        if ((m.w[0] & 1) && !sticky) {
+                            sticky = 1;
+                        }
+                        m.w[0] >>= 1;
+                        if (m.w[1] & 1) {
+                            m.b[3] |= 0x80;
+                        }
+                        m.w[1] >>= 1;
+                    } while (--n);
+                }
+                *presult = neg ? -m.d : m.d;
+            }
+        } else {
+            sticky = 1;
+        }
+        if (sticky) {
+            func_001F3B1F(0x10);
+        }
+        result &= ~2;
+    }
+    if ((flags & 0x10) && (cw & 0x20)) {
+        func_001F3B1F(0x20);
+        result &= ~0x10;
+    }
+    return result == 0;
+}
+
 #pragma optimize("sy", on)
 void func_001F37B0(int code) {
     int *func_001ED075(void);
@@ -557,6 +643,7 @@ double func_001F3A2E(double x, int *expptr)
 
 extern long double D_002AED80;
 extern long double D_002AED8C;
+#pragma auto_inline(off)
 void func_001F3B1F(unsigned int flags)
 {
     double d;
