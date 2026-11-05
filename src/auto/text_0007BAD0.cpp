@@ -5,6 +5,10 @@ struct C_0007C670 {
     undefined4 func_0007C670(byte param_1);
 };
 
+struct C_0007C9E0 {
+    undefined4 func_0007C9E0(byte param_1);
+};
+
 
 undefined4 C_0007C670::func_0007C670(byte param_1)
 {
