@@ -43,7 +43,9 @@ struct S_11FF0_Mgr {
 struct S_11FF0_Global {
     char pad0[4];
     S_11FF0_Coll *f4;
-    char pad8[0x29c];
+    char pad8[0x230];
+    int f238;
+    char pad23c[0x68];
     S_11FF0_Mgr *f2a4;
 };
 
@@ -138,17 +140,16 @@ void func_00012140(void) {
 
 int AIPedFallState::func_00012150(int arg)
 {
-    if (D_002A8490->f2a4->f1c8 == 1) {
+    S_11FF0_Mgr *mgr = D_002A8490->f2a4;
+    int state = mgr->f1c8;
+    if (state != 1 && owner->f3c->f10 == 1) {
+        if (mgr != 0 && state == 0) {
+            owner->f3bc = 3;
+        }
+        owner->f384->func_0008AB90(owner->f39c);
         return 1;
     }
-    if (owner->f3c->f10 != 1) {
-        return 1;
-    }
-    if (D_002A8490->f2a4 != 0 && D_002A8490->f2a4->f1c8 == 0) {
-        owner->f3bc = 3;
-    }
-    owner->f384->func_0008AB90(owner->f39c);
-    return 1;
+    owner->func_001C6DA0(owner->f418, 1);
 }
 
 void AIPedTurningBackState::func_000121E0()
