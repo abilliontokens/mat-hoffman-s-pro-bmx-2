@@ -7,19 +7,6 @@ extern int D_0027B1A4;
 extern int D_0027C1E4;
 void *func_001E8A44(int size);
 
-struct Slots_000A74B0 {
-    int a0[10];
-    int a28[10];
-    int a50[10];
-    int a78[10];
-    int aA0[10];
-    int aC8[10];
-    int aF0[10];
-    int a118[10];
-    int count;
-    void func_000A74B0(void);
-};
-
 struct SlotsR_000A74B0 {
     int a0[10];
     int a28[10];
