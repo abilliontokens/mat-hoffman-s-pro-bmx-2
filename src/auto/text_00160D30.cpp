@@ -217,6 +217,37 @@ struct C_00161580 {
 };
 
 
+int C_00161040::func_00161040(int index)
+{
+    char path[0x104];
+    if (D_002EFDB8) {
+        D_002EFDB8->v7(1);
+        D_002EFDB8->v8();
+    }
+    func_001ADCC0(path, 0x104, D_00287A80, D_002BA5F0, D_002A65D8, name, D_002A8184[index]);
+    void *file = func_0014FDF0(path, D_00275FB4);
+    if (!file) return 0;
+    func_0014FED0(file, 0, 2);
+    int size = D_0014FEE0(file);
+    if (size <= 0) {
+        func_0014FE50(file);
+        return 0;
+    }
+    if (data) func_001E8390(data);
+    data = (char *)func_001E8AA5(size);
+    data[size - 1] = 0;
+    func_0014FED0(file, 0, 0);
+    func_0014FE60(data, size, file);
+    func_0014FE50(file);
+    char *p = data;
+    for (int i = 0; i < count;) {
+        if (p >= data + size) break;
+        entries[i++].text = p;
+        p = func_001E9260(p, 0) + 1;
+    }
+    return count;
+}
+
 void __fastcall func_00161170(int unused, S_00161170 *table)
 {
     unsigned int i;
