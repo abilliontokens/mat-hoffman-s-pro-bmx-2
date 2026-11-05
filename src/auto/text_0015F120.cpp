@@ -20,10 +20,23 @@ struct S_0015F470_Entry {
 struct C_0015F470 {
     char pad0[0x24];
     S_0015F470_Entry *f24;
-    char pad28[4];
+    int f28;
     int f2C;
     int func_0015E5B0(void);
     int func_0015F470(int a, S_0015F470_Mat *m0, S_0015F470_Mat *m1, S_0015F470_Mat *m2);
+    int func_0015F640(int a, S_0015F470_Mat *m0, S_0015F470_Mat *m1, S_0015F470_Mat *m2);
+
+    /* index of the entry whose f0 is id, or -1 */
+    int FindEntry(int id)
+    {
+        int i;
+        for (i = 0; i < f28; i++) {
+            if (f24[i].f0 == id) {
+                return i;
+            }
+        }
+        return -1;
+    }
 };
 
 struct C_0015F860 {
