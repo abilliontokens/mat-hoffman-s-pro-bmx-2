@@ -277,7 +277,7 @@ int C_0005B960::func_0005B960(int sel, float val)
     switch (sel) {
     case 3:
         for (i = 0; i < 5; i++) {
-            if (iv > i190[i]) {
+            if (iv > g4.val[i]) {
                 goto found;
             }
         }
@@ -285,7 +285,7 @@ int C_0005B960::func_0005B960(int sel, float val)
     case 4:
         if (((S_0005B8D0_Root *)D_002A8490)->p2e0->f10 <= D_002782A8) {
             for (i = 0; i < 5; i++) {
-                if (iv > i12C[i]) {
+                if (iv > g3.val[i]) {
                     goto found;
                 }
             }
@@ -293,28 +293,28 @@ int C_0005B960::func_0005B960(int sel, float val)
         return 0;
     case 0:
         for (i = 0; i < 5; i++) {
-            if (val > f0[i]) {
+            if (val > g0.val[i]) {
                 goto found;
             }
         }
         return 0;
     case 1:
         for (i = 0; i < 5; i++) {
-            if (val > f64[i]) {
+            if (val > g1.val[i]) {
                 goto found;
             }
         }
         return 0;
     case 2:
         for (i = 0; i < 5; i++) {
-            if (val > fC8[i]) {
+            if (val > g2.val[i]) {
                 goto found;
             }
         }
         return 0;
     case 5:
         for (i = 0; i < 5; i++) {
-            if (iv > i1F4[i]) {
+            if (iv > g5.val[i]) {
                 goto found;
             }
         }
