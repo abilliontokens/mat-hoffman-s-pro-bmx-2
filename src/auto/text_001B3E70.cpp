@@ -74,6 +74,15 @@ struct C_001B4B70 {
 };
 
 
+void TireTrack::func_001B4A20()
+{
+    if (f3c != 0) {
+        func_001B49B0();
+        f3c = 0;
+    }
+    ((C_00157960 *)this)->func_00157960();
+}
+
 void C_001B4B70::func_001B4B70(void) {
     extern int D_0028CA64;
     unk0 = (int)&D_0028CA64;
