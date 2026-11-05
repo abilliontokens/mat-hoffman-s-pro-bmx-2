@@ -240,7 +240,8 @@ float *func_00021330(V4_000212A0 *out, V4_000212A0 *a, V4_000212A0 *b)
     V4_000212A0 r;
     float d;
 
-    d = b->y * a->y + a->x * b->x;
+    d = b->y * a->y;
+    d = d + a->x * b->x;
     d = d + b->z * a->z;
     v[0] = d * b->x;
     v[1] = d * b->y;
@@ -320,22 +321,23 @@ C_00021720* C_00021720::func_00021720(void) {
 
 void C_00021740::func_00021740(S_Stream_000212A0 *stream, int base)
 {
-    int v;
+    int a;
+    int b;
 
     stream->func_00168CB0(&D_0027618C, &D_002A0F74, &f10);
     stream->func_00168C20(&D_00276180, 0, &f8);
-    stream->func_00168C20(&D_00276174, -1, &v);
-    fC = v - 1;
+    stream->func_00168C20(&D_00276174, -1, &a);
+    fC = a - 1;
     if (fC < 0) {
         fC = 0;
     }
-    stream->func_00168C20(&D_00276164, 0, &v);
-    f0 = v + base - 1;
+    stream->func_00168C20(&D_00276164, 0, &b);
+    f0 = b - 1 + base;
     if (f0 < 0) {
         f0 = 0;
     }
-    stream->func_00168C20(&D_00276150, 1, &v);
-    f4 = v - 1;
+    stream->func_00168C20(&D_00276150, 1, &b);
+    f4 = b - 1;
     if (f4 < 0) {
         f4 = 0;
     }
@@ -343,16 +345,20 @@ void C_00021740::func_00021740(S_Stream_000212A0 *stream, int base)
 
 C_000217F0 *C_000217F0::func_000217F0(int a)
 {
+    u32 *p;
+
     ((C_00157600 *)this)->func_00157600(a);
     vtbl = &D_002761A4;
-    f54 = 0;
-    f50 = 0;
-    f4c = 0;
-    f58 = 0x3f800000;
-    f68 = 0x3f800000;
-    f64 = 0;
-    f60 = 0;
-    f5c = 0;
+    p = &f4c;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = &f5c;
+    p[3] = 0x3f800000;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
     f74 = 0;
     f70 = 0;
     f6c = 0;
