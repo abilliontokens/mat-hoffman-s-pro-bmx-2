@@ -15,14 +15,31 @@ struct C_00135D70 {
 
 /* binding table: 9 rows of 0x4a entries; rows 1..8 are the per-player ones */
 struct C_00135CB0 {
-    int tbl[9][0x4a];
+    int tbl[10][0x4a];
     void func_00135CB0();
     void func_00135D00(int a0, int a1);
     void func_00135D30(int idx, int *out, int row);
 };
 extern int D_002BA700;
-extern void *D_002A8490;
+struct C_00135E00;
+struct S_Game_001358A0 {
+    char pad0[8];
+    C_00135E00 *f8;
+};
+extern S_Game_001358A0 *D_002A8490;
 extern int D_00284834;
+void func_001E891B(void *p);
+
+struct S_001358A0_Handler {
+    int func_0015AC20(int a);
+};
+
+struct S_00136110_Dev {
+    virtual int v0(int a, int b, int c);
+    virtual int v1(int a, int b, int c);
+    virtual int v2(int a, int b, int c);
+    virtual int v3(int a, int b, int c);
+};
 
 struct S_00136300_Target {
     virtual void v0(int a);
