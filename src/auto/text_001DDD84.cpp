@@ -38,6 +38,12 @@ extern char *D_0028FD6C;
 extern char *D_0028FD70;
 extern unsigned int D_0028FD7C;
 
+/* PsTerminateSystemThread never returns: the compiler emits no epilogue after it */
+__declspec(noreturn) static void terminate_thread(int status)
+{
+    _imp__PsTerminateSystemThread(status);
+}
+
 /* kernel thread object: only the TLS data pointer is used */
 struct S_KThread {
     char pad0[0x28];
