@@ -379,6 +379,23 @@ void C_000BC4A0::func_000BC4A0(undefined4 param_1, undefined4 param_2)
   return;
 }
 
+C_000BC520 *C_000BC520::func_000BC520(int a, S_000BC590_Owner *owner)
+{
+    D_002EFDB8->f30 = 0;
+    f24 = 1;
+    f28 = owner;
+    if (f30 == 0) {
+        S_000BC520_Stream *p = (S_000BC520_Stream *)func_001E8A44(0x80);
+        f30 = p ? p->func_001D3690(1) : 0;
+        if (f30 != 0) {
+            func_001577A0(f30, -1);
+            f30->func_001D3CC0(0);
+            return this;
+        }
+    }
+    return 0;
+}
+
 void C_000BC590::func_000BC590(void)
 {
     f30->func_001D37C0();
