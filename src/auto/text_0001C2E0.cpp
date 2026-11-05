@@ -274,6 +274,17 @@ float func_0001C870(float a, float b, float c, float d, float e) {
     return r;
 }
 
+void *C_0001C8F0::func_0001C8F0(int a)
+{
+    extern int D_00275C0C;
+    func_00157600(a);
+    f24 |= 1;
+    f28 = 0;
+    f2C = 0;
+    vtbl = (void *)&D_00275C0C;
+    return this;
+}
+
 void C_0001C920::func_0001C920(void) {
     extern int D_00275C0C;
     int func_00157660(...);
