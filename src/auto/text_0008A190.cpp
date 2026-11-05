@@ -99,6 +99,11 @@ struct C_0008AC10 {
     C_0008AC10 *func_0008AC10();
 };
 
+struct C_0008ACF0 {
+    void func_001578D0();
+    void func_0008ACF0();
+};
+
 struct PtrObj_0008 {
     void func_001D6410();
     void func_001D6600();
@@ -450,6 +455,37 @@ C_0008ABF0 *C_0008ABF0::func_0008ABF0(int a0) {
     func_00157600(1);
     vtbl = &D_00279CCC;
     unk24 = 0;
+    return this;
+}
+
+C_0008AC10 *C_0008AC10::func_0008AC10()
+{
+    int local = (int)&D_0027958C;
+    D_002A8490->lookup->func_0018C780(1, &local, 0);
+    int *r = D_002A8490->lookup->func_0018C160((int)&D_0027958C);
+    int name = r ? *r : 0;
+    void *mem = func_001E8A44(0x60);
+    NodeObj *o;
+    if (mem) o = ((AllocObj8 *)mem)->func_001D5E90();
+    else o = 0;
+    unk24 = o;
+    o->func_001D5FA0(name, (int)&D_0027958C, 0x4b, (int)&D_00275630);
+    o = unk24;
+    if (o->f4 != 0x43a00000 || o->f8 != 0x43b18000) {
+        o->f4 = 0x43a00000;
+        o->f8 = 0x43b18000;
+        o->b4e |= 6;
+    }
+    o = unk24;
+    if (o->u48 != 0xffff8000) {
+        o->b4e |= 8;
+        o->u48 = (o->u48 & 0xffff8000) | 0xff8000;
+    }
+    o = unk24;
+    if (o->f44 != D_0028F5E0) {
+        o->f44 = D_0028F5E0;
+        o->b4e |= 6;
+    }
     return this;
 }
 
