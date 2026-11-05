@@ -20,11 +20,11 @@ struct C_0009FD60 {
 };
 extern const float D_00277D04;
 
-static inline float fabs_0009FE80(float v)
+static __forceinline float fabs_0009FE80(float v)
 {
     volatile float t = v;
-    int bits = *(volatile int *)&t & 0x7fffffff;
-    return *(float *)&bits;
+    volatile int bits = *(volatile int *)&t & 0x7fffffff;
+    return *(volatile float *)&bits;
 }
 
 extern float D_00278C58;
