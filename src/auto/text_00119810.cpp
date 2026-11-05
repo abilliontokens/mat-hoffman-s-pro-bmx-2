@@ -39,3 +39,9 @@ struct BmxWallPlantConstraint {
     void func_0011A4B0();
     void func_0011A550(Vec4 *a, Vec4 *b);
 };
+
+void BmxWallPlantConstraint::func_0011A550(Vec4 *a, Vec4 *b)
+{
+    f3C = *a;
+    f4C = *b;
+}
