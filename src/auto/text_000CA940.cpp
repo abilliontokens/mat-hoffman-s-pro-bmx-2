@@ -68,6 +68,19 @@ struct C_000CB650 {
     void func_000CB650();
 };
 
+void C_000CA940::func_000CA940(void)
+{
+    f324->func_001B1980();
+    switch (f320) {
+    case 0:
+        f324->func_001B17D0(D_002A8490->p2E8->p4->f930);
+        break;
+    case 1:
+        f324->func_001B17D0(D_002A8490->p2E8->p4->fF70);
+        break;
+    }
+}
+
 void C_000CB650::func_000CB650()
 {
     vtbl = &D_0027E49C;
