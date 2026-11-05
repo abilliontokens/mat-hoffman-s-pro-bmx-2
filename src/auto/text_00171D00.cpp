@@ -214,6 +214,24 @@ void PhysicsBody::func_00172000(void)
     }
 }
 
+void PhysicsBody::func_00172330(void)
+{
+    f14C->func_00198E60();
+    fD8->func_001332A0();
+    fD4->func_001332A0();
+    fDC->func_001332A0();
+    f14C->func_00199790(0, (char *)this + 0x44);
+    f14C->func_00199110(0, (char *)this + 0x54, (char *)this + 0x64, 0, 1, 0);
+    ((C_00171D00_C4VT *)fD8)->v32();
+    ((C_00171D00_C4VT *)fD4)->v32();
+    f14C->func_0019ABA0(*(int *)((char *)this + 0xa8), 2);
+    fD8->func_00133140(*(int *)((char *)this + 0xac), 2);
+    fD4->func_00133140(*(int *)((char *)this + 0xac), 2);
+    fDC->func_00133140(*(int *)((char *)this + 0xac), 2);
+    ((C_00171D00_C4VT *)fC4)->v34(0);
+    ((C_00171D00_C4VT *)fC4)->v45();
+}
+
 void PhysicsBody::func_00172420(void)
 {
     f12C = 0;
