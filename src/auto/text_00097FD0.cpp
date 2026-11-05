@@ -10,7 +10,7 @@ struct S_00098080_Sub {
 };
 
 struct C_00096930 {
-    char pad0[0x3c];
+    char name0[0x3c];
     char name3c[0xb4 - 0x3c];
     char nameb4[0x1a4 - 0xb4];
     int unk1a4;
@@ -109,6 +109,73 @@ int C_00097FD0::func_00097FD0(void) {
         }
     }
     return 1;
+}
+
+int C_00097FD0::func_00098080(const char *name) {
+    int mode;
+    int i;
+    int j;
+    int k;
+    C_00096930 **list;
+    int count;
+
+    for (mode = 0; mode < 3; mode++) {
+        switch (mode) {
+        case 0:
+            list = arr0;
+            break;
+        case 1:
+            list = arr1;
+            break;
+        case 2:
+            list = arr2;
+            break;
+        default:
+            list = 0;
+            break;
+        }
+        switch (mode) {
+        case 0:
+            count = cnt0;
+            break;
+        case 1:
+            count = cnt1;
+            break;
+        case 2:
+            count = cnt2;
+            break;
+        default:
+            count = 0;
+            break;
+        }
+        for (i = 0; i < count; i++) {
+            if (func_001EA426(name, list[i]->nameb4) == 0) {
+                if (unk198->unk170 != 0) {
+                    char *p = list[i]->name3c;
+                    if (*p) {
+                        func_00083A70(p);
+                    } else {
+                        func_00083A70(list[i]);
+                    }
+                }
+                C_00096930 *e = list[i];
+                e->unk48e0 = 1;
+                e->unk1b4 = 1;
+                if (D_002A8490->unk2a4 != 0) {
+                    e->unk1a4 = D_002A8490->unk2a4->unk124;
+                }
+                for (j = 0; j < list[i]->cnt1b8; j++) {
+                    if (list[i]->arr1c8[j]->unk0 == 1) {
+                        for (k = 0; k < list[i]->arr1c8[j]->cnt2554; k++) {
+                            list[i]->arr1c8[j]->arr6388[k] = 1;
+                        }
+                    }
+                }
+                return 1;
+            }
+        }
+    }
+    return 0;
 }
 
 void C_00097FD0::func_00098E80(int idx) {
