@@ -75,6 +75,18 @@ struct C_001B03A0 {
     void *func_001B03A0(void *arg);
 };
 
+extern int D_0028C648;
+
+struct C_00148820 {
+    int unk0;
+    int unk4;
+    void *func_00148820(void *a0, void *a1);
+};
+
+struct C_001B0460 {
+    void *func_001B0460(void *arg);
+};
+
 struct C_001B0620 {
     void func_001B0620(void);
 };
