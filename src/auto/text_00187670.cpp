@@ -24,6 +24,7 @@ struct C_00187670 {
 extern int D_00289BE0;
 extern int D_00289BD0;
 void func_00187000();
+extern "C" char *strcpy(char *dst, const char *src);
 
 struct C_00187370 {
     virtual void func_00187390(void *a);
