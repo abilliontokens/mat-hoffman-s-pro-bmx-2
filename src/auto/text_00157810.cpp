@@ -263,3 +263,17 @@ void *C_00158360::func_00158360(int flags)
     return this;
 }
 
+void func_00158510(S_00158510_Arg0 *a, S_00158510_Arg1 *b)
+{
+    int v = b->f68;
+
+    if ((v == D_002BA160 || v == D_002B9118 || v == D_002B9108) && v != D_002BA148) {
+        S_00158510_Dst *dst = a->f60;
+        S_00158510_Src *src = a->f54;
+
+        dst->f7C = *src->f78;
+        dst->f8C = src->f20;
+        dst->f9C |= 1;
+    }
+}
+
