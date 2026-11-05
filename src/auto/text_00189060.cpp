@@ -188,7 +188,9 @@ struct BasicScene {
     SceneSound *f3a0;
     SceneSound *f3a4;
     SceneGroup **f3a8;
-    char pad3ac[0x4a8 - 0x3ac];
+    char pad3ac[0x3b4 - 0x3ac];
+    SceneLoader *f3b4;
+    char pad3b8[0x4a8 - 0x3b8];
     SceneSlot **f4a8;
     int func_00189720(void);
     void func_00189770(void);
