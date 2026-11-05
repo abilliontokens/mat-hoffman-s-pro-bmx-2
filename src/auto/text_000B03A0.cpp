@@ -15,6 +15,15 @@ struct C_000B1320 {
     int func_000B1320(float dt);
 };
 
+struct C_000B1200_Entry {
+    int unk0;
+    int unk4;
+    void *unk8;
+    void *unkC;
+};
+
+extern "C" void func_001E891B(void *p);
+
 struct C_000B11C0 {
     void *vtbl;
     char pad04[0x30];
@@ -44,9 +53,9 @@ C_000B11C0 *C_000B11C0::func_000B11C0(int param_1) {
     return this;
 }
 
-int __stdcall func_000B1320(int param_1) {
+int __fastcall func_000B1320(int unused1, int unused2, float dt) {
     if (D_002A8490->f124 == 0) {
-        func_00157A00(param_1);
+        func_00157A00(dt);
     }
     return 1;
 }
