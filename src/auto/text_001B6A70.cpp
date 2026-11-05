@@ -104,3 +104,11 @@ struct C_001B6E70 {
     int func_001B7370(void *param);
     void func_001577A0(void *p, int v);
 };
+
+C_001B6E70 *C_001B6E70::func_001B6E70(void *param) {
+    ((C_00157600 *)this)->func_00157600(param);
+    f24 = 0;
+    f28 = 0;
+    vtbl = (void *)&D_0028CE6C;
+    return this;
+}
