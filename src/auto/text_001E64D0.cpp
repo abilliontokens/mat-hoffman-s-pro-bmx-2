@@ -93,7 +93,7 @@ void func_001E7170(float *a, float *b, int n, int step)
 void func_001E5F20(float *dst, float *src);
 void func_001E64D0(float *dst, float *src);
 void func_001E6B50(float *dst, float *src);
-void func_001E6D40(float *dst, float *src);
+void __fastcall func_001E6D40(float *tw, float *x);
 void func_001E7410(int n, float *a, float *b, int k)
 {
     if (n == 0x80) {
