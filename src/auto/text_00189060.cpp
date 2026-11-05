@@ -228,7 +228,15 @@ struct BasicScene {
     SceneGroup **f3a8;
     char pad3ac[0x3b4 - 0x3ac];
     SceneLoader *f3b4;
-    char pad3b8[0x4a8 - 0x3b8];
+    char pad3b8[0x3e4 - 0x3b8];
+    int f3e4;
+    char pad3e8[0x3f4 - 0x3e8];
+    C_00189B60_Node *arr3f4[12];
+    C_00167760 *arr424[12];
+    int arr454[12];
+    char pad484[0x494 - 0x484];
+    int f494;
+    char pad498[0x4a8 - 0x498];
     SceneSlot **f4a8;
     void func_001898D0(void);
     int func_00189720(void);
