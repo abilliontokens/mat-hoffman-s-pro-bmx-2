@@ -120,3 +120,24 @@ int C_000979C0::func_000979C0(undefined4 key, undefined4 *out)
   return 0;
 }
 
+int C_00097C20::func_00097C20(void)
+{
+  int in_ECX = (int)this;
+  int v;
+
+  if (*(int *)(*(int *)(in_ECX + 0x198) + 0x1c8) != 0) {
+    v = *(int *)(in_ECX + 0x1c);
+  } else {
+    v = *(int *)(in_ECX + 0x18);
+  }
+  switch (v) {
+  case 0:
+    return *(int *)(in_ECX + 0);
+  case 1:
+    return *(int *)(in_ECX + 4);
+  case 2:
+    return *(int *)(in_ECX + 8);
+  }
+  return 0;
+}
+
