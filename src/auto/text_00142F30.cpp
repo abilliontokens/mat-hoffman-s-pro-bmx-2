@@ -139,7 +139,6 @@ struct DXRenderableObject {
     Vec4_143660 f1c0;          /* 0x1C0 */
     PageObj *f1d0;
     int f1d4;
-    int TestFlag(int mask) { return f181 & mask; }
     void func_00143660(void);
     void func_00157960(void);
     void func_001814B0(int a);
@@ -260,11 +259,12 @@ void DXRenderableObject::func_00143660(void)
 {
     ShadowPiece *piece;
     int i;
+    int one = 1;
 
-    if (!f181)
+    if (!(f181 & one))
         return;
     if (f1d4 == -1)
-        f1d4 = (D_002A829C->f14[*f1b8].f4->f54->f24 >> 3) & 1;
+        f1d4 = (D_002A829C->f14[*f1b8].f4->f54->f24 >> 3) & one;
     ((Alloc190 *)f1d0)->func_00142F30(D_002EFDB8[1]);
     ((Alloc190 *)f1d0)->f160.SetRef(Vec4_143660(f1c0.x, f1c0.y, f1c0.z, f1c0.w));
     piece = &f1a4->pieces[f1a0];
