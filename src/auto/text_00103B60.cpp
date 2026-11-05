@@ -48,7 +48,9 @@ struct C_00104120 {
     int unkE4;
     int unkE8;
     void func_00195D90(void);
+    void func_00195E70(void);
     C_00104120 *func_00104120(int param_1);
+    void *func_00104960(int flags);
 };
 
 struct C_00104900 {
@@ -56,11 +58,38 @@ struct C_00104900 {
     int unk74;
     char pad78[0x8C - 0x78];
     int *unk8C;
-    char pad90[0xE8 - 0x90];
+    char pad90[0xC0 - 0x90];
+    u8 unkC0;
+    char padC1[0xDC - 0xC1];
+    int unkDC;
+    char padE0[0xE8 - 0xE0];
     int unkE8;
+    int func_00197610(int param_1);
+    void func_00197260(int param_1, char *param_2);
     void func_00104900(void);
     void func_00104930(void);
+    int func_001049A0(int param_1);
 };
+
+struct V3_00104A00 {
+    float x;
+    float y;
+    float z;
+};
+
+struct V4_00104A00 {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
+static float fabs_00104A00(float x)
+{
+    int tmp;
+    tmp = *(int *)&x & 0x7fffffff;
+    return *(float *)&tmp;
+}
 
 
 C_00104120 *C_00104120::func_00104120(int param_1)
@@ -77,9 +106,9 @@ C_00104120 *C_00104120::func_00104120(int param_1)
     return this;
 }
 
-int __stdcall func_00104170(int a0, int a1) {
+void C_00104170::func_00104170(int a0, int a1) {
     int __stdcall func_001972B0(int, int, int);
-    return func_001972B0(a0, a1, 1);
+    func_001972B0(a0, a1, 1);
 }
 
 void C_00104190::func_00104190(void)
