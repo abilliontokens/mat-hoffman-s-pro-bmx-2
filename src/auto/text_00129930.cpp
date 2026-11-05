@@ -284,8 +284,8 @@ void Emitter_12A770::func_0012A770(int a1, int a2)
 
 int Emitter_12A7C0::func_0012A7C0(int a, int b, int c, int d)
 {
-    f1E4 = (int)D_00284034 + b;
     f1E0 = a;
+    f1E4 = (int)D_00284034 + b;
     f1E8 = c;
     f1EC = d;
     f1F0 = 0;
