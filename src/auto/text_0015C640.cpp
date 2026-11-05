@@ -213,6 +213,7 @@ int func_0015CAB0(S_0015CA10_Key *arr, int n, float t)
 {
     int mid;
     int lo;
+    int hi;
 
     if (n == 0) {
         return 0;
@@ -224,8 +225,9 @@ int func_0015CAB0(S_0015CA10_Key *arr, int n, float t)
         return 0;
     }
     lo = 0;
+    hi = n;
     for (;;) {
-        mid = (lo + n) >> 1;
+        mid = (hi + lo) >> 1;
         if (t >= arr[mid].t) {
             if (t < arr[mid + 1].t) {
                 return mid + 1;
@@ -235,7 +237,7 @@ int func_0015CAB0(S_0015CA10_Key *arr, int n, float t)
             if (t >= arr[mid - 1].t) {
                 return mid;
             }
-            n = mid;
+            hi = mid;
         }
     }
 }
