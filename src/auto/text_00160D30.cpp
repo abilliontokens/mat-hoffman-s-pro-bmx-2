@@ -280,6 +280,19 @@ void C_00161870::func_00161760()
     f20++;
 }
 
+int C_00161870::func_001617F0(const char *name, int unused)
+{
+    int i;
+
+    for (i = 0; i < f8; i++) {
+        if (func_001EA426(name, (const char *)f14[i].f0) == 0) {
+            return i;
+        }
+    }
+    D_002EBE98 = 1;
+    return 0;
+}
+
 void func_00161840(void) {
     int func_001AC750(...);
     func_001AC750();
