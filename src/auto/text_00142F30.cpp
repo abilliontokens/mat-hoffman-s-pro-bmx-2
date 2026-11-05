@@ -255,6 +255,26 @@ void *DXShadowCaster::func_00143900(int flags)
     return this;
 }
 
+void DXSignatureWave::func_001439D0()
+{
+    u32 i;
+
+    vtbl = (void *)&D_00285AC4;
+    if (f100 != 0) {
+        for (i = 0; i < f4C; i++) {
+            DXSignatureWaveObjVT *obj = f100[i];
+            if (obj != 0)
+                obj->v2();
+        }
+        func_001E891B(f100);
+    }
+    for (i = 0; i < 3; i++) {
+        if (fF0[i] != 0)
+            func_00201100(fF0[i]);
+    }
+    func_001942C0();
+}
+
 undefined4 C_00143BD0::func_00143BD0(byte param_1)
 {
   int func_001439D0(...);
