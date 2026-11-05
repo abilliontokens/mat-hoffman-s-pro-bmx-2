@@ -60,6 +60,16 @@ struct C_0001DFE0 {
     void func_0001DFE0();
 };
 
+struct StringTableFileManager {
+    int func_0013C9F0(const char *, const char *);
+    int func_0013AF40(int, int *, int *);
+    int func_0013C8A0(int, void *, int, int);
+    int func_0013C110(int);
+};
+extern StringTableFileManager *D_002BEAAC;
+extern char D_00275FB4[];
+int func_001E8D25(int);
+void func_001F65C5(char *);
 extern int D_0028C0E0;
 void func_001E8390(void *p);
 void *func_001E8AA5(unsigned int size);
