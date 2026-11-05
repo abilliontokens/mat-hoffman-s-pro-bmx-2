@@ -107,6 +107,56 @@ void C_000EBCD0::func_000EBCD0()
     func_00157960();
 }
 
+C_000EBE30 *C_000EBE30::func_000EBCF0(int a0)
+{
+    func_001BE360(a0);
+    vtbl = &D_00281BF4;
+    unk300 = 0;
+    unk30C = 0;
+    unk310 = 0;
+    unk308 = 0;
+    unk31C = 0;
+    unk318 = 0;
+    unk314 = 0;
+    if (unk320 != 0) {
+        unk320 = 0;
+    }
+    unk324 = 0;
+    memset(unk280, 0, sizeof(unk280));
+    unk328 = 0;
+    unk32C = 0;
+    unk330 = 0;
+    unk394 = 0;
+    unk334 = 0;
+    unk340 = 0;
+    unk348 = 0;
+    unk338 = 0;
+    unk33C = 0;
+    unk344 = 0;
+    unk34C = 0;
+    unk350 = 0;
+    unk354 = 0;
+    unk360 = 0;
+    unk364 = 0;
+    unk368 = 0;
+    unk36C = 0;
+    unk370 = 0;
+    unk374 = 0;
+    unk378 = 0;
+    unk358 = 0;
+    unk37C = -1;
+    unk39C = 0;
+    unk398 = 0;
+    memset(arr2A0, 0, sizeof(arr2A0));
+    unk380 = 0;
+    unk384 = 0;
+    unk388 = 0;
+    unk38C = 0;
+    unk390 = 0;
+    memset(arr2E0, 0, sizeof(arr2E0));
+    return this;
+}
+
 void C_000EBE30::func_000EBE30()
 {
     vtbl = &D_00281BF4;
