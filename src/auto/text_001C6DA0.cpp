@@ -70,6 +70,7 @@ struct C_001C6DA0 {
     int func_001C6E30(const char *name);
     void func_001C6DA0(int idx, int arg);
     void func_001C6EA0(C_00198330 *obj, Vec4 *out, int unused);
+    C_001C6DA0 *func_001C7310(int a0);
     void func_001C75A0();
     void func_0018C7F0();
 };
