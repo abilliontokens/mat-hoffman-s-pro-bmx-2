@@ -71,7 +71,6 @@ extern "C" void *func_001E8A44(unsigned int);
 extern "C" char *strcpy(char *, const char *);
 extern "C" char *strcat(char *, const char *);
 extern "C" unsigned int strlen(const char *);
-struct ShadowBounds { int right, bottom; };
 struct C_0017AA90;
 struct ShadowPreambleDataItem {
     void *vtbl;
