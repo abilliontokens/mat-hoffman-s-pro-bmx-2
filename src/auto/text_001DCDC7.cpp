@@ -160,18 +160,26 @@ u32 __stdcall func_001DD5C8(void *a0, u32 *a1) {
 
 int func_001DD603(void)
 {
+    unsigned long thread;
+    int idx;
+
     if (__readfsbyte(0x24) < 2) {
-        __readfsdword(0x28);
+        thread = __readfsdword(0x28);
     }
-    return ((int **)__readfsdword(4))[D_002F41D0][1];
+    idx = D_002F41D0;
+    return ((int **)__readfsdword(4))[idx][1];
 }
 
 void __stdcall func_001DD62B(int a0)
 {
+    unsigned long thread;
+    int idx;
+
     if (__readfsbyte(0x24) < 2) {
-        __readfsdword(0x28);
+        thread = __readfsdword(0x28);
     }
-    ((int **)__readfsdword(4))[D_002F41D0][1] = a0;
+    idx = D_002F41D0;
+    ((int **)__readfsdword(4))[idx][1] = a0;
 }
 
 #pragma optimize("y", on)
@@ -204,11 +212,11 @@ int __stdcall func_001DD670(void *a0, S_001DD670_Overlapped *a1, u32 *a2, int a3
         }
     }
     *a2 = a1->InternalHigh;
-    if (a1->Internal < 0) {
-        func_001DD659(a1->Internal);
-        return 0;
+    if (a1->Internal >= 0) {
+        return 1;
     }
-    return 1;
+    func_001DD659(a1->Internal);
+    return 0;
 }
 
 int __stdcall func_001DD6D5(void *a0, u32 *a1, u32 a2)
