@@ -261,6 +261,11 @@ void C_00194E60::func_00194E60(int a, int b, int c, int d)
     Set(a, b, c, d);
 }
 
+void C_00194E60::func_00194E90(S_Vec4Int *out)
+{
+    Get(out);
+}
+
 void C_00194F90::func_00194F90(int a0) {
     unk48 = a0;
 }
