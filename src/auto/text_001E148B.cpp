@@ -88,13 +88,19 @@ void __stdcall func_001E206A(int a1, int a2)
 
 void __stdcall func_001E20BF(int a1, int a2, int a3)
 {
-    if (((u32 *)D_00010118)[2] == 0xfffe0000) {
-        _imp__HalReturnToFirmware(4);
-        __debugbreak();
-    }
-    {
-        u32 buf[0x300] = {a1, 0, a2, a3};
+    u32 buf[0x300];
+    int i;
+
+    if (((u32 *)D_00010118)[2] != 0xfffe0000) {
+        for (i = 0; i < 0x300; i++)
+            buf[i] = 0;
+        buf[0] = a1;
+        buf[1] = 0;
+        buf[2] = a2;
+        buf[3] = a3;
         func_001DCAFF(0, buf);
+    } else {
+        reboot_1E148B(4);
     }
 }
 
