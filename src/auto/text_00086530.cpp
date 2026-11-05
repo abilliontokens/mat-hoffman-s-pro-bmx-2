@@ -2,6 +2,30 @@
 #include "common.h"
 
 extern int D_00279734;
+struct C_0005E840 { void func_0005E840(const char *s); };
+extern char D_00275630[];
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+struct C_86A40_Obj4 {
+    char pad0[0x1048];
+    char *f1048;
+    char pad104C[4];
+    char *f1050;
+};
+struct C_86A40_Obj2E8 {
+    char pad0[4];
+    C_86A40_Obj4 *f4;
+};
+struct C_86A40_G {
+    char pad0[0x2E8];
+    C_86A40_Obj2E8 *f2E8;
+};
+extern C_86A40_G *D_002A8490;
+struct C_00086A40 {
+    char pad0[0x30];
+    C_0005E840 *f30, *f34, *f38, *f3C;
+    int f40;
+    void func_00086A40(int a);
+};
 void func_001E891B(void *p);
 
 struct C_00157600 {
