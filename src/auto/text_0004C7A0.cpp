@@ -80,6 +80,21 @@ struct C_0004D070 {
 extern S_0004D070_Global *D_002A8490;
 extern char D_00275630;
 
+void C_0004CC60::func_0004CC60(int id, int a1, int a2, int a3, int a4, int a5)
+{
+    for (int i = 0; i < f90; i++) {
+        C_0004CC60Item *item = *(C_0004CC60Item **)(*(int *)((char *)f64 + 0x4e0) + 0x1a8 + i * 4);
+        if (item != 0 && item->f11b0 == id) {
+            C_0004CC60Vec v;
+            v.x = a2;
+            v.y = a3;
+            v.z = a4;
+            v.w = a5;
+            item->func_00108510(&D_00275630, v);
+        }
+    }
+}
+
 int func_0004CCE0(void) {
     int func_00033300(...);
     func_00033300();
