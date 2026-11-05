@@ -62,6 +62,13 @@ StateMachine *StateMachine::func_001AC080()
     return this;
 }
 
+void StateMachine::func_001AC0A0(int a, const char *name)
+{
+    strcpy(field_2C, name);
+    field_28 = a;
+    func_001D3F50();
+}
+
 StringTable *StringTable::func_001AC3A0()
 {
     func_0001DFE0();
