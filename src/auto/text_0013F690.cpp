@@ -152,9 +152,40 @@ struct C_0013FC60 {
 struct DXVSStreams {
     virtual void v0(int flags);
     virtual void v1(int arg, int d);
-    char pad4[0xC];
-    C_0013FC60 *f10;
+    char pad4[8];
+    unsigned char fC;
+    char padD[3];
+    void *f10;
     DXVSStreams *func_00144640();
+};
+
+extern int D_00284EC4;
+void *__stdcall func_001FF3C0(int size);
+int *__stdcall func_001FF410(void *p, int align);
+
+/* 0xC-byte object stored in DXVSStreams::f10 by func_0013F7D0 */
+struct S_0013F7D0_Stream {
+    void *vtbl;
+    int f4;
+    int f8;
+    S_0013F7D0_Stream() { vtbl = (void *)&D_00284EC4; }
+    static void *operator new(unsigned int size) { return func_001E8A44(size); }
+};
+
+/* Eco2DSurfaceDataItem */
+struct C_0013F7D0 {
+    char pad0[0x21E4];
+    void *f21E4;
+    void *f21E8;
+    void *f21EC[3];
+    int f21F8;
+    short f21FC;
+    short f21FE;
+    short f2200;
+    short f2202;
+    short f2204;
+    short f2206;
+    DXVSStreams *func_0013F7D0(int key);
 };
 
 /* DXMeshSurfaceData */
