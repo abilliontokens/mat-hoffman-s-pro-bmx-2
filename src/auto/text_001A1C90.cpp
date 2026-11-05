@@ -171,7 +171,7 @@ C_001A2210 *C_001A2210::func_001A2210(int a0, int a1, int a2, int a3) {
 
 C_001A2250 *C_001A2250::func_001A2250(int a0, S36_1A s0, S16_1A s1, S16_1A s2, int a18, int a19, int a20, int a21, int a22) {
     func_001A1860(s0, s1, s2, a18, a19, a20, a21, a22);
-    func_001A1D20(s0.f[4], 0);
+    func_001A1D20(a0, 0);
     return this;
 }
 
