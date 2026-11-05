@@ -23,6 +23,7 @@ struct C_001D4300 {
     int func_001D4300(int a);
     void func_001D41D0(int a);
     int func_001D4200(void *s);
+    void func_001D7D00(void);
 };
 
 extern char D_0027A144;
@@ -139,6 +140,31 @@ int func_00092A10(void)
         return 1;
     }
     return 0;
+}
+
+int C_00092890::func_00092BE0(void)
+{
+    C_00092BE0_Str s;
+    char *d = &f150;
+
+    if (f150 == 0) {
+        char *p;
+        char c;
+
+        s.func_001D3E30();
+        s.func_001D3F20(&D_0027A144, 0xd);
+        if (D_002A8490->f2e0->f2cc->func_001D4200(&s) == 0) {
+            return 0;
+        }
+        p = s.func_001D3F50();
+        do {
+            c = *p;
+            p++;
+            *d = c;
+            d++;
+        } while (c != 0);
+    }
+    return 1;
 }
 
 void C_00092890::func_00093120(void)
