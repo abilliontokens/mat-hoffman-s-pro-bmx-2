@@ -68,6 +68,133 @@ void func_001ED0FC(unsigned int *param_1, int param_2)
     param_1[4] = locals[3];
     param_1[5] = locals[4];
 }
+
+void *func_001ED181(const char *path, const char *mode, int shflag, int *out)
+{
+    unsigned int flags;
+    unsigned int fmode;
+    char c;
+    int ok;
+    int seen[2];
+    int fd;
+
+    fmode = D_002F6A6C;
+    c = *mode;
+    seen[0] = 0;
+    seen[1] = 0;
+    if (c != 'a') {
+        if (c != 'r') {
+            if (c != 'w') {
+                return 0;
+            }
+            flags = 0x301;
+            fmode |= 2;
+        } else {
+            flags = 0;
+            fmode |= 1;
+        }
+    } else {
+        flags = 0x109;
+        fmode |= 2;
+    }
+    ok = 1;
+    for (;;) {
+        mode++;
+        c = *mode;
+        if (c == 0 || ok == 0) {
+            break;
+        }
+        switch (c) {
+        case 'S':
+            if (seen[1] == 0) {
+                seen[1] = 1;
+                flags |= 0x20;
+            } else {
+                ok = 0;
+            }
+            break;
+        case 'R':
+            if (seen[1] == 0) {
+                seen[1] = 1;
+                flags |= 0x10;
+            } else {
+                ok = 0;
+            }
+            break;
+        case 'D':
+            if ((flags & 0x40) == 0) {
+                flags |= 0x40;
+            } else {
+                ok = 0;
+            }
+            break;
+        case '+':
+            if ((flags & 2) == 0) {
+                flags &= 0xfffffffe;
+                fmode &= 0xfffffffc;
+                flags |= 2;
+                fmode |= 0x80;
+            } else {
+                ok = 0;
+            }
+            break;
+        case 'T':
+            if ((flags & 0x1000) == 0) {
+                flags |= 0x1000;
+            } else {
+                ok = 0;
+            }
+            break;
+        default:
+            ok = 0;
+            break;
+        case 't':
+            if ((flags & 0xc000) == 0) {
+                flags |= 0x4000;
+            } else {
+                ok = 0;
+            }
+            break;
+        case 'n':
+            if (seen[0] == 0) {
+                seen[0] = 1;
+                fmode &= 0xffffbfff;
+            } else {
+                ok = 0;
+            }
+            break;
+        case 'c':
+            if (seen[0] == 0) {
+                seen[0] = 1;
+            } else {
+                ok = 0;
+                break;
+            }
+            fmode |= 0x4000;
+            break;
+        case 'b':
+            if ((flags & 0xc000) == 0) {
+                flags |= 0x8000;
+            } else {
+                ok = 0;
+            }
+            break;
+        }
+    }
+    fd = func_001F5766(path, flags, shflag, 0x1a4);
+    if (fd < 0) {
+        return 0;
+    }
+    D_002F6858++;
+    out[3] = fmode;
+    out[1] = 0;
+    out[0] = 0;
+    out[2] = 0;
+    out[7] = 0;
+    out[4] = fd;
+    return out;
+}
+
 #pragma optimize("", on)
 void func_001ED402(void) {
     int func_001EB302(...);
@@ -303,6 +430,82 @@ int func_001ED8A7(int ch, void *str)
         return -1;
     }
     return ch & 0xff;
+}
+
+int func_001ED9C0(int fh, const void *buf, unsigned cnt)
+{
+    int func_001F5829(int, int, int, int);
+    int __stdcall func_001DD247(int, const void *, int, int *, int);
+    int func_001DD603(void);
+    int *func_001ED075(void);
+    int *func_001ED07E(void);
+    void func_001ED087(unsigned int);
+    extern S_ioinfo *D_002FB260[];
+    int lfcount;
+    int charcount;
+    int written;
+    unsigned long dosretval;
+    char ch;
+    char *p;
+    char *q;
+    char lfbuf[1025];
+
+    lfcount = charcount = 0;
+    if (cnt == 0) {
+        return 0;
+    }
+    if (D_002FB260[fh >> 5][fh & 0x1f].osfile & 0x20) {
+        func_001F5829(fh, 0, 0, 2);
+    }
+    if (D_002FB260[fh >> 5][fh & 0x1f].osfile & 0x80) {
+        p = (char *)buf;
+        dosretval = 0;
+        while ((unsigned)(p - (char *)buf) < cnt) {
+            q = lfbuf;
+            while (q - lfbuf < 1024 && (unsigned)(p - (char *)buf) < cnt) {
+                ch = *p++;
+                if (ch == '\n') {
+                    ++lfcount;
+                    *q++ = '\r';
+                }
+                *q++ = ch;
+            }
+            if (func_001DD247(D_002FB260[fh >> 5][fh & 0x1f].osfhnd, lfbuf, (int)(q - lfbuf), &written, 0)) {
+                charcount += written;
+                if (written < q - lfbuf) {
+                    break;
+                }
+            } else {
+                dosretval = func_001DD603();
+                break;
+            }
+        }
+    } else {
+        if (func_001DD247(D_002FB260[fh >> 5][fh & 0x1f].osfhnd, buf, cnt, &written, 0)) {
+            dosretval = 0;
+            charcount = written;
+        } else {
+            dosretval = func_001DD603();
+        }
+    }
+    if (charcount == 0) {
+        if (dosretval != 0) {
+            if (dosretval == 5) {
+                *func_001ED075() = 9;
+                *func_001ED07E() = dosretval;
+            } else {
+                func_001ED087(dosretval);
+            }
+            return -1;
+        } else if ((D_002FB260[fh >> 5][fh & 0x1f].osfile & 0x40) && *(char *)buf == 0x1a) {
+            return 0;
+        } else {
+            *func_001ED075() = 0x1c;
+            *func_001ED07E() = 0;
+            return -1;
+        }
+    }
+    return charcount - lfcount;
 }
 
 int func_001EDBF6(int *param_1)
