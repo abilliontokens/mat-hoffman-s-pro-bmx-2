@@ -62,10 +62,10 @@ struct GrindElem_000A8360 {
 struct GrindTrigger_000A8360 {
     void *vtbl;
     int f4;
-    int f8;
-    int fC;
-    int f10;
-    int f14;
+    Node_000A8450 **f8;
+    void *fC;
+    void *f10;
+    void *f14;
     int f18;
     int f1C;
     int f20;
