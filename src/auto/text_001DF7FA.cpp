@@ -9,7 +9,24 @@ struct S_HeapRoot {
     unsigned int reserveSize;   /* 0x20 */
     unsigned int commitSize;    /* 0x24 */
     char pad28[0x38];
-    unsigned char *bucket[1];   /* 0x60, indexed by block bucket */
+    unsigned char *bucket[0x40];    /* 0x60, indexed by block bucket */
+    char pad160[0x584 - 0x160];
+    long (__stdcall *commit)(S_HeapRoot *root, unsigned int *base, unsigned int *size); /* 0x584, optional */
+};
+
+/* free-region list node of the kernel heap (address, size, next) */
+struct S_FreeNode {
+    S_FreeNode *next;
+    unsigned int addr;
+    unsigned int size;
+};
+
+/* chunk header inside a heap block (16-byte granules) */
+struct S_HeapEntry {
+    unsigned short size;
+    unsigned short prevSize;
+    unsigned char bucket;
+    unsigned char flags;
 };
 
 /* kernel heap block header (16-byte granules) */
@@ -118,17 +135,15 @@ unsigned char __stdcall func_001E016D(S_HeapRoot *root, unsigned int blkAddr, un
 
 unsigned char *__stdcall func_001E028B(S_HeapRoot *heap, unsigned int size)
 {
+    unsigned int allocSize;
     unsigned int pages = (size + 0xfff) >> 12;
     unsigned int bytes = pages << 12;
     unsigned char firstFree = 0x40;
     unsigned char i;
     S_HeapBlock *cur;
-    unsigned int newSize;
-    unsigned int allocSize;
     unsigned int commit;
     long status;
     unsigned char *r;
-    long (__stdcall *alloc)(void *, unsigned int, unsigned int *, unsigned int, unsigned int);
 
     for (i = 0; i < 0x40; i++) {
         cur = (S_HeapBlock *)heap->bucket[i];
@@ -152,32 +167,30 @@ unsigned char *__stdcall func_001E028B(S_HeapRoot *heap, unsigned int size)
         return 0;
     }
     cur = 0;
-    newSize = size + 0x1000;
-    allocSize = newSize;
-    if (newSize <= heap->reserveSize) {
+    size = allocSize = size + 0x1000;
+    if (size <= heap->reserveSize) {
         allocSize = heap->reserveSize;
     }
-    alloc = __imp__NtAllocateVirtualMemory;
-    status = alloc(&cur, 0, &allocSize, 0x2000, 4);
+    status = NtAllocateVirtualMemory(&cur, 0, &allocSize, 0x2000, 4);
     while (status < 0) {
-        if (allocSize == newSize) {
+        if (allocSize == size) {
             break;
         }
         allocSize >>= 1;
-        if (allocSize < newSize) {
-            allocSize = newSize;
+        if (allocSize < size) {
+            allocSize = size;
         }
-        status = alloc(&cur, 0, &allocSize, 0x2000, 4);
+        status = NtAllocateVirtualMemory(&cur, 0, &allocSize, 0x2000, 4);
     }
     if (status < 0) {
         return 0;
     }
     heap->reserveSize += allocSize;
-    commit = newSize;
-    if (newSize <= heap->commitSize) {
+    commit = size;
+    if (size <= heap->commitSize) {
         commit = heap->commitSize;
     }
-    status = alloc(&cur, 0, &commit, 0x1000, 4);
+    status = NtAllocateVirtualMemory(&cur, 0, &commit, 0x1000, 4);
     if (status >= 0) {
         if (!func_001E016D(heap, (unsigned int)cur, firstFree, 0, (unsigned char *)cur, (unsigned int)cur + commit, (unsigned int)cur + allocSize)) {
             status = 0xc0000017;
