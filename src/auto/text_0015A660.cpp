@@ -163,6 +163,15 @@ C_0015B150* C_0015B150::func_0015B150(void) {
     return this;
 }
 
+void *C_0015B1A0::func_0015B1A0(int a)
+{
+    extern int D_002876EC;
+    func_00157600(a);
+    vtbl = (void *)&D_002876EC;
+    f24 = 0;
+    return this;
+}
+
 void C_0015B4C0::func_0015B4C0(void)
 {
   extern undefined4 D_002E28F4;
