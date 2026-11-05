@@ -97,10 +97,37 @@ struct S_001A2C00_List {
             count--;
         }
     }
+
+    void Clear()
+    {
+        memset(items, 0, count * 4);
+        count = 0;
+    }
 };
 
+extern int D_0028B624;
+extern int D_0028B3C4;
+
+struct C_00157660 {
+    void func_00157660(void);
+};
+
+struct S_001A2CF0_Mgr {
+    void func_0001D420(void *emitter);
+};
+
+struct S_001A2CF0_Global {
+    char pad0[4];
+    S_001A2CF0_Mgr *f4;
+};
+
+extern S_001A2CF0_Global *D_002A8490;
+
+void func_001E891B(void *p);
+
 struct ResponseEmitter {
-    char pad0[0x1a0];
+    void *vtbl;
+    char pad4[0x19c];
     u8 f1a0;
     char pad1a1[0x1b4 - 0x1a1];
     int f1b4;
