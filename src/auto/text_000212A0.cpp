@@ -275,10 +275,13 @@ float *func_00021330(V4_000212A0 *out, V4_000212A0 *a, V4_000212A0 *b)
     float v[4];
     V4_000212A0 r;
     float d;
+    float p0, p1, p2;
 
-    d = b->y * a->y;
-    d = d + a->x * b->x;
-    d = d + b->z * a->z;
+    p0 = a->x * b->x;
+    p1 = b->y * a->y;
+    d = p0 + p1;
+    p2 = b->z * a->z;
+    d = d + p2;
     v[0] = d * b->x;
     v[1] = d * b->y;
     v[2] = d * b->z;
