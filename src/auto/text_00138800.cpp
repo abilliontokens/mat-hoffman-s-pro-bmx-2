@@ -60,6 +60,71 @@ struct C_00139060 {
     void func_00139060(int a0, int a1);
 };
 
+struct S_1390A0_Entry {
+    char pad0[4];
+    int count1;
+    int count2;
+    char padC[0x14];
+    char *list1;
+    char *list2;
+};
+
+struct S_1390A0_Cam {
+    void func_00198390(void);
+};
+
+struct S_1390A0_A {
+    char pad0[4];
+    S_1390A0_Cam *f4;
+};
+
+struct S_1390A0_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    virtual void v31();
+};
+
+struct S_1390A0_Q {
+    char pad0[4];
+    S_1390A0_Obj **f4;
+    char pad8[8];
+    int f10;
+};
+
+struct S_1390A0_60 {
+    char pad0[0x28];
+    void **f28;
+};
+
 
 CutScene *CutScene::func_00138800(int arg) {
 func_00157600(arg);
