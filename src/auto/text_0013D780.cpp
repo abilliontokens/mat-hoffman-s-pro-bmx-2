@@ -255,6 +255,38 @@ void func_0013E260(int obj, int id, int fmt)
     }
 }
 
+DXCamera *DXCamera::func_0013E4F0(int a)
+{
+    func_0012A3F0(a);
+    vtbl = &D_00284D5C;
+    f250.Identity();
+    f290.Identity();
+    return this;
+}
+
+void DXCamera::func_0013E580(void)
+{
+    __declspec(align(16)) Mat4_0013E4F0 m;
+
+    func_0012AEC0();
+    func_000263B0(&f250, &f290 - 0 + 0, 0);
+}
+
+int DXCamera::func_0013E610(void)
+{
+    __declspec(align(16)) Mat4_0013E4F0 m;
+
+    if (!func_0012B470())
+        return 0;
+    if (D_002EFDB8->f4 == this) {
+        func_0013E4A0(&m, (char *)this + 0xb0);
+        func_001FFA20(0, &m);
+        func_0013E4A0(&m, (char *)this + 0x70);
+        func_001FFA20(1, &m);
+    }
+    return 1;
+}
+
 void func_0013E680(void) {
     D_002EFDB8->func_001D5600();
     D_002A8490->func_00156E80();
