@@ -51,6 +51,13 @@ struct C_001D3F50 {
     C_001D3F50* func_001D3F50(void);
 };
 
+struct C_001D3F60 : C_001D3F50 {
+    int f0;
+    int f4;
+    int f8;
+    C_001D3F60 *func_001D3F60(void);
+};
+
 extern int D_0028F474;
 extern int D_00080000;
 
