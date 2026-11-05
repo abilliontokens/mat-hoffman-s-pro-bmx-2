@@ -69,6 +69,7 @@ struct S_002ACBBC_Node {
     void (__stdcall *fn)(int arg);
 };
 extern S_002ACBBC_Node D_002ACBBC;
+extern S_002ACBBC_Node *D_002ACBC0;
 
 /* header shared by the 'CONT'/'KNIC'/'EVBS' objects */
 struct S_001DE66C_Obj {
