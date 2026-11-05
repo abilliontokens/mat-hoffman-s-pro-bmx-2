@@ -228,7 +228,9 @@ struct S_002A8490 {
     InputDevice *f8;
     char padC[8];
     C_001577A0 *f14;
-    char pad18[0x2AC - 0x18];
+    char pad18[0x2A4 - 0x18];
+    Obj_00059CC0 *f2A4;
+    char pad2A8[4];
     S_00059E10_Scene *f2AC;
     char pad2B0[0x2E0 - 0x2B0];
     S_00059F50_E0 *f2E0;
