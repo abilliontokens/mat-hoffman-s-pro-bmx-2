@@ -97,3 +97,12 @@ C_00049C00 *C_00049C00::func_00049C00(int param_1) {
     return this;
 }
 
+C_00049C60 *C_00049C60::func_00049C60(void)
+{
+    f20C = 1;
+    func_000342C0();
+    if (f1C0 != 0)
+        f1C0->func_00099D40(-1);
+    return this;
+}
+
