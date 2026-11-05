@@ -80,15 +80,57 @@ struct C_00157660 {
     void func_00157660(void);
 };
 
-struct BestScoreOverlay_24 {
+struct BestScoreOverlay_Text {
+    virtual void Destroy(int flag);
+    int x;
+    int y;
+    char padC[0x30];
+    int scale;
+    char pad40[4];
+    int color;
+    unsigned int argb;
+    char pad4C[2];
+    unsigned char flags;
+    void SetPos(int nx, int ny) {
+        if (x != nx || y != ny) {
+            x = nx;
+            y = ny;
+            flags |= 6;
+        }
+    }
+    void SetPosY(int nx, float ny) {
+        if (x != nx || *(float *)&y != ny) {
+            x = nx;
+            *(float *)&y = ny;
+            flags |= 6;
+        }
+    }
+    void SetScale(int s) {
+        if (scale != s) {
+            scale = s;
+            flags |= 4;
+        }
+    }
+    void SetColor(int c) {
+        if (color != c) {
+            color = c;
+            flags |= 6;
+        }
+    }
+    void SetArgb(unsigned int c) {
+        if (argb != c) {
+            flags |= 8;
+            argb = (argb & c) | (c & 0xffffff);
+        }
+    }
+    BestScoreOverlay_Text *func_001D5E90(void);
+    void func_001D5FA0(int font, void *name, int a, int b);
     void func_001D6410(void);
     void func_001D6600(void);
     void func_0005E840(const char *s);
 };
-
-struct BestScoreOverlay_V {
-    virtual void Destroy(int flag);
-};
+typedef BestScoreOverlay_Text BestScoreOverlay_24;
+typedef BestScoreOverlay_Text BestScoreOverlay_V;
 
 struct BestScoreOverlay {
     void *vtbl;
@@ -254,12 +296,9 @@ int C_00086C70::func_00086C70(int a0) {
 
 void C_00086C80::func_00086C80()
 {
-    C_Mid_00086C80 *m = (C_Mid_00086C80 *)D_002A8490->f2EC->func_0018C160((int)&D_00278690);
-    if (m != 0) {
-        m = *(C_Mid_00086C80 **)m;
-    }
-    if (m != 0) {
-        C_Clamp_00086C80 *o = m->func_0018C070();
+    int *r = D_002A8490->f2EC->func_0018C160((int)&D_00278690);
+    if (r != 0 && *r != 0) {
+        C_Clamp_00086C80 *o = func_0018C070((C_Mid_00086C80 *)*r);
         if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
         if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
     }
