@@ -1,6 +1,6 @@
 /* 7 functions from 0x0006FBF0 to 0x000707D0, found by Ghidra. */
 #include "common.h"
-struct C_001D5AD0 { void func_001D5AD0(void); void func_0005E840(int a0); };
+struct C_001D5AD0 { void func_001D5AD0(void); void func_001D6600(void); void func_0005E840(int a0); };
 struct S_00070450_Data {
     char pad0[0x7b8];
     int f7b8;
@@ -79,6 +79,33 @@ void C_00070360::func_00070360(void) {
     }
     if (unk6C && !unk104) unkD8->func_001D5AD0();
     if (unkF0) unkF0->func_001D5AD0();
+}
+
+void C_00070360::func_00070450(void) {
+    int i;
+    int n;
+
+    if (unk104) {
+        unk130[0]->func_0005E840(D_002A8490->f2e8->f4->f7b8);
+        unk130[0]->func_001D5AD0();
+        unk13C->func_0005E840(D_002A8490->f2e8->f4->f7c0);
+        unk13C->func_001D5AD0();
+    } else {
+        for (i = 0; i < 3; i++) {
+            unk130[i]->func_001D5AD0();
+        }
+    }
+    unkE0->func_0005E840(unk104 ? D_002A8490->f2e8->f4->fec0 : D_002A8490->f2e8->f4->fee8);
+    unkE0->func_001D5AD0();
+    if (unk104) {
+        unk100->func_001D5AD0();
+    } else {
+        n = func_0006FF80();
+        for (i = 0; i < n; i++) {
+            unk180[i]->func_001D5AD0();
+        }
+        unkF8->func_001D5AD0();
+    }
 }
 
 void C_000707C0::func_000707C0(int a0) {
