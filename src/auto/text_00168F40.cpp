@@ -271,6 +271,42 @@ void C_00168F40::func_001691E0(void)
     }
 }
 
+void C_00168F40::func_001692E0(int h)
+{
+ char name[0x400];
+ char clean[0x400];
+ char line[0x400];
+ int n=0;
+ if (D_002BEAAC->func_0013C6E0(h,line,0x400)) {
+  do {
+   func_001690D0(line,clean);
+   if(clean[0]=='[') {
+    int len=func_001E9040(clean+1,D_0028802C);
+    func_001E8920(name,clean+1,len);
+    name[len]=0;
+    if(func_00168300((int)name)==-1) {
+     if(f18) {
+      if(f10>=f14) {
+       f14+=10;
+       f18=(S_00168F40_Entry *)func_001E83E8(f18,f14*0x410);
+      }
+     } else {
+      f18=(S_00168F40_Entry *)func_001E8AA5(0x28a0);
+      f14=10;
+     }
+     strcpy(f18[f10].pad8,name);
+     f18[f10].offset=D_002BEAAC->func_0013AFD0(h);
+     f18[f10].size=n;
+     if(f10>0) f18[f10-1].size=n-f18[f10-1].size-1;
+     f10++;
+    }
+   }
+   n++;
+  } while(D_002BEAAC->func_0013C6E0(h,line,0x400));
+ }
+ if(f10>0) f18[f10-1].size=n-f18[f10-1].size-1;
+}
+
 int C_00168F40::func_00169A50(char *line)
 {
     char clean[0x400];
