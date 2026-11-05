@@ -9,6 +9,41 @@ struct C_0005E9F0 {
     void func_0005E9F0(int param_1);
 };
 
+void func_001E891B(void *p);
+
+struct C_0005E790 {
+    int unk0;
+    void func_00157660(void);
+    void *func_0005E790(int flags);
+};
+
+struct C_0005E7C0 {
+    char pad0[4];
+    float f4;
+    float f8;
+    char padC[0x4c];
+    unsigned char f58;
+    void func_0005E7C0(float param_1, float param_2);
+};
+
+struct C_0005E800 {
+    char pad0[4];
+    float f4;
+    float f8;
+    char padC[0x4c];
+    unsigned char f58;
+    void func_0005E800(int param_1, int param_2);
+};
+
+struct C_0005E920 {
+    char pad0[4];
+    float f4;
+    float f8;
+    char padC[0x42];
+    unsigned char f4e;
+    void func_0005E920(float param_1, float param_2);
+};
+
 
 void C_0005E9D0::func_0005E9D0(float param_1)
 {
