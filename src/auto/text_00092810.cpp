@@ -166,6 +166,7 @@ struct C_00092890 {
     int func_00092B40(int idx);
     int func_00092E30(int idx);
     int func_00092AC0(void);
+    int func_00093300(int a);
     int func_000930D0(void);
     int func_00092EF0(void);
     void func_00092D10(void);
