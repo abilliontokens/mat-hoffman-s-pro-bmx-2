@@ -27,7 +27,11 @@ struct C_0011CB40 {
     void *f108;
     void func_0011CB40(void);
     void func_00157660(void);
+    C_0011CB40 *func_0011CBF0(int a0);
+    void func_00157600(int a0);
 };
+
+extern int D_002A3BBC[4];
 
 
 void C_0011CB40::func_0011CB40(void)
