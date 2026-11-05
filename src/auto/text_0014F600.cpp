@@ -11,6 +11,11 @@ void func_0014FE50(void) {
     func_001E9760();
 }
 
+void func_0014FE60(int a0, int a1, int a2) {
+    int func_001E98A9(...);
+    func_001E98A9(a0, 1, a1, a2);
+}
+
 void func_0014FE80(void) {
     int func_001E9A0C(...);
     func_001E9A0C();
