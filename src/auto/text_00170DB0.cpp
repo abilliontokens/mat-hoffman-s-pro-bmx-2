@@ -61,6 +61,16 @@ void func_001712D0(float *out, void *in);
 static __forceinline float Sqrt_00171BA0(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
 static __forceinline float Max_00171BA0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 
+struct V3_00171BA0 {
+    float x, y, z;
+    V3_00171BA0() {}
+    V3_00171BA0(float a, float b, float c) : x(a), y(b), z(c) {}
+    V3_00171BA0 operator*(float s) const { return V3_00171BA0(x * s, y * s, z * s); }
+    V3_00171BA0 operator+(const V3_00171BA0 &o) const { return V3_00171BA0(x + o.x, y + o.y, z + o.z); }
+    V3_00171BA0 operator-(const V3_00171BA0 &o) const { return V3_00171BA0(x - o.x, y - o.y, z - o.z); }
+    void operator+=(const V3_00171BA0 &o) { x += o.x; y += o.y; z += o.z; }
+};
+
 struct C_00171BA0 {
     char pad0[0x150];
     float f150;
