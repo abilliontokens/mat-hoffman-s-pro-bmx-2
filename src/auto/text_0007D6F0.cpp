@@ -129,6 +129,39 @@ struct C_0007E1E0 {
 
 void func_001E891B(void *ptr);
 
+struct C_Panel_7D {
+    void func_00093120(void);
+    void func_00093970(float a, float b, int c, int d, int e, int f);
+    void func_00093890(float a, float b, int c, int d, int e, int f);
+    void func_00093C80(float a, float b, int c, int d, int e, int f);
+    void func_00093CF0(float a, float b, int c, int d, int e, int f);
+    void func_00094690(float a, float b, int c, int d, int e, int f);
+    void func_000941A0(int g, float a, float b, int c, int d, int e, int f);
+    void func_000940D0(float a, float b, int c, int d, int e, int f);
+    void func_00093A00(float a, float b, int c, int d, int e, int f);
+    void func_000942F0(float a, float b, int c, int d, int e, int f);
+    void func_00094410(float a, float b, int c, int d, int e, int f);
+};
+extern int D_002B9058;
+extern int D_002B9054;
+extern int D_0028F5E0;
+struct C_Save_7D {
+    char pad0[0x164];
+    int f164;
+    int f168;
+    char pad16C[0x34];
+    C_Panel_7D *f1a0;
+    int f1a4;
+    char pad1A8[0x30];
+    int f1d8;
+    char pad1DC[0x20];
+    int f1fc;
+    undefined4 func_0007DDD0(void);
+    void func_0006B4B0(void);
+    void func_0006AA90(void);
+    void func_00157960(void);
+};
+
 
 C_0007E050 *C_0007E050::func_0007E050(void)
 {
