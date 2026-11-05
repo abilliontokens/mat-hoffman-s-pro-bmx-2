@@ -41,6 +41,7 @@ struct C_001CBD40 {
     struct Vec {
         int v[4];
         Vec() { v[0] = 0; v[1] = 0; v[2] = 0; v[3] = 0; }
+        void init() { v[0] = 0; v[1] = 0; v[2] = 0; v[3] = 0; }
     };
     struct Sub {
         Vec a;
