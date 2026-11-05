@@ -97,6 +97,36 @@ int C_00096740::func_00096740(void) {
     return unk48E0;
 }
 
+void C_00096750::func_00096750(void) {
+    int i;
+    int j;
+
+    for (i = 0; i < f1b8; i++) {
+        C_00096750_Elem *e = f1c8[i];
+        if (e->f0 == 1) {
+            int ok = 1;
+            for (j = 0; j < f1c8[i]->f2554; j++) {
+                if (e->ptrs[j] == 0) {
+                    ok = 0;
+                }
+            }
+            if (!ok) {
+                f48e0 = 0;
+                f1c8[i]->ptrs[0] = 0;
+                f1c8[i]->ptrs[1] = 0;
+                f1c8[i]->ptrs[2] = 0;
+                f1c8[i]->ptrs[3] = 0;
+                f1c8[i]->ptrs[4] = 0;
+                f1c8[i]->ptrs[5] = 0;
+                f1c8[i]->ptrs[6] = 0;
+                f1c8[i]->ptrs[7] = 0;
+                f1c8[i]->ptrs[8] = 0;
+                f1c8[i]->ptrs[9] = 0;
+            }
+        }
+    }
+}
+
 void C_00096870::func_00096870(const char *name) {
     int i;
     int j;
