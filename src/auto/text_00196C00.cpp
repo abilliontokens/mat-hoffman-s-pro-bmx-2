@@ -70,6 +70,10 @@ struct C_001972B0 {
     C_001972B0 *func_001972B0(unsigned a, unsigned b, u8 c);
 };
 
+extern "C" void *func_001E8A44(unsigned size);
+extern "C" void *__cdecl memset(void *, int, unsigned int);
+#pragma intrinsic(memset)
+
 struct C_00197290 {
     undefined4 func_00197290(byte param_1);
 };
