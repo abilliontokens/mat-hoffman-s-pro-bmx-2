@@ -212,6 +212,25 @@ u32 func_00177920(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   return 1;
 }
 
+extern int func_00176630(void *, int, int, int, int, int, int, void *, int, int, int);
+u32 func_001779C0(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int flag)
+{
+ u8 *d; u8 *s; u8 *p; u8 *q; int x; int y;
+ if (flag) {
+  func_00176630(src, 0x378, width, height, srcPitch, dstPitch, 0, dst, 0, 0, 0);
+  return 1;
+ }
+ s = src; d = dst;
+ for (y = height; y > 0; y--) {
+  for (p = d, q = s, x = width; x > 0; x--) {
+   *(u16 *)p = (((((u16)q[2] & 0xfff8) << 5) | (u16)q[1]) & 0xfffc) << 3 | (u16)(q[0] >> 3);
+   p += 2; q += 3;
+  }
+  s += srcPitch * 3; d += dstPitch * 2;
+ }
+ return 1;
+}
+
 u32 func_00177CA0(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int a6, C_00135420 *pal)
 {
   u8 *d;
@@ -270,6 +289,8 @@ u32 func_00177F50(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   }
   return 1;
 }
+
+extern int func_00176630(u8 *, int, int, int, int, int, int, int, u16 *, int, int);
 
 u32 func_00178040(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch)
 {
