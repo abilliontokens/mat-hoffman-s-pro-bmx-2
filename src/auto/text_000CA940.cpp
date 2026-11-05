@@ -107,6 +107,11 @@ static void setEntryColorMask(RenderEntryCB *e, u32 mask, u32 color)
     e->b58 |= 2;
 }
 
+/* a text label the page sets the string of */
+struct TextEntryCA {
+    void func_0005E840(int a0);
+};
+
 /* the shared drawable table the page draws from */
 struct S_000CB3B0_Mgr {
     char pad0[0x24];
@@ -114,10 +119,14 @@ struct S_000CB3B0_Mgr {
     RenderEntryCB *unk28;
     RenderEntryCB *unk2C;
     RenderEntryCB *unk30;
-    char pad34[0x54 - 0x34];
+    TextEntryCA *unk34;
+    char pad38[4];
+    TextEntryCA *unk3C;
+    char pad40[0x54 - 0x40];
     RenderEntryCB *unk54;
     char pad58[0x6C - 0x58];
     RenderEntryCB *unk6C;
+    void func_000BF860(int a0, int a1, int a2, int a3);
 };
 
 extern S_000CB3B0_Mgr *D_002B91AC;
