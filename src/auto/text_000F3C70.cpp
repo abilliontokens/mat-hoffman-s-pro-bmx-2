@@ -87,6 +87,65 @@ struct BmxUIPageParkEditor {
     void func_001BED00(float dt);
 };
 
+struct VObj_002A8490 {
+    virtual void v00(); virtual void v04(); virtual void v08(); virtual void v0C();
+    virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1C();
+    virtual void v20(); virtual void v24(); virtual void v28(); virtual void v2C();
+    virtual void v30(); virtual void v34(); virtual void v38(); virtual void v3C();
+    virtual int v40();
+};
+
+struct Data_002A8490 {
+    char pad0[8];
+    VObj_002A8490 **arr;
+};
+
+extern Data_002A8490 *D_002A8490;
+extern float D_00278C58;
+extern float D_00275460;
+
+struct BmxUIPageTwoPlayer {
+    void **vtbl;
+    char pad4[0x120];
+    Owner_000F3C70 *p124;
+    char pad128[0x158];
+    int f280;
+    int f284;
+    float f288;
+    int f28C;
+    int f290;
+    int f294;
+    int f298;
+    int f29C;
+    char pad2A0[8];
+    int f2A8;
+    int f2AC;
+    float f2B0;
+    int f2B4;
+    int f2B8;
+    int f2BC;
+    float f2C0;
+    int f2C4;
+    int f2C8;
+    int f2CC;
+    float f2D0;
+    float f2D4;
+    int f2D8;
+    int f2DC;
+    int f2E0;
+    char pad2E4[0x18];
+    float f2FC;
+    int f300;
+    float f304;
+    Data_000F3C70_2D0 *p308;
+    char pad30C[0x38];
+    int a344[9];
+    void func_000F4860(float dt);
+    void func_000C7FC0();
+    void func_000C8090();
+    void func_001BED00(float dt);
+};
+
 void BmxUIPageParkEditor::func_000F3C70(float dt)
 {
     Owner_000F3C70 *owner = p124;
