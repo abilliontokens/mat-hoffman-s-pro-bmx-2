@@ -216,3 +216,62 @@ void BmxUIPageGameOptions::func_000CFCD0()
     }
 }
 
+void BmxUIPageGameOptions::func_000CFDA0()
+{
+    int idx;
+    S_000CEFC0_124 *p = unk124;
+
+    switch (unk48c) {
+    case 1:
+        idx = 0;
+        break;
+    case 3:
+        idx = 1;
+        break;
+    case 5:
+        idx = 2;
+        break;
+    case 6:
+        idx = 3;
+        break;
+    case 8:
+        idx = 4;
+        break;
+    case 10:
+        idx = 5;
+        break;
+    case 11:
+        idx = 6;
+        break;
+    case 12:
+        idx = 7;
+        break;
+    case 14:
+        idx = 8;
+        break;
+    case 15:
+        idx = 9;
+        break;
+    default:
+        goto skip;
+    }
+    unk4f8->func_00092E30(idx);
+    D_002A8490->f2e0->f2c0->func_0005C3A0(idx);
+skip:
+    unk56c = 1;
+    unk55c = 0;
+    unk558 = 0;
+    unk574 = 1;
+    unk570 = 0;
+    unk560 = 0;
+    p->func_000BB440(unk48c - 1);
+    p->func_000BB600(unk48c - 1);
+    p->f28c = 0;
+    p->func_000BC2A0();
+    p->f150->f484->func_0001B3C0(p->f27c + (unk48c - 1) * 0x1a8);
+    p->func_000BDF30(1);
+    p->f150->f484->func_0001B3C0(p->f280 + (unk48c - 1) * 0x120);
+    p->func_000BC240();
+    p->func_000BE020(1);
+}
+
