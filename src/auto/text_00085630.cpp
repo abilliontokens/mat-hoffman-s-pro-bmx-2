@@ -147,6 +147,31 @@ void C_00085E50::func_00085E50(int a)
     fA0 = a;
 }
 
+void C_00085F40::func_00085F40(int a)
+{
+    char buf[0x104];
+
+    if (a) {
+        char *src = D_002A8490->f2E8->f4->f1050;
+        char *dst = buf;
+        char c;
+        do {
+            c = *src;
+            *dst = c;
+            src++;
+            dst++;
+        } while (c);
+        f84->func_0005E840(buf);
+        func_001ADCC0(buf, 0x104, D_002A8490->f2E8->f4->f1048);
+        f88->func_0005E840(buf);
+        func_001ADCC0(buf, 0x104, D_00275630);
+        f8C->func_0005E840(buf);
+        func_001ADCC0(buf, 0x104, D_00275630);
+        f90->func_0005E840(buf);
+    }
+    fA0 = a;
+}
+
 void C_00086130::func_00086130(int a0) {
     unkF0 = a0;
 }
