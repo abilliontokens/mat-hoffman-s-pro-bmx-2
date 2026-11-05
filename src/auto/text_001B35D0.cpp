@@ -38,6 +38,8 @@ struct S_001B35D0_Desc {
 };
 
 int func_001B35D0(S_001B35D0_Desc *desc, int a1, int a2, int a3);
+#define PW (*(short *)&desc->f2)
+#define PH (*(short *)&desc->f10)
 
 struct V_001B3DC0_Obj {
     virtual void v0();
