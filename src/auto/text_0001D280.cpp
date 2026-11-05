@@ -17,7 +17,9 @@ extern unsigned int D_002A0C18[];
 
 static inline unsigned int swap32(unsigned int x)
 {
-    return (((x & 0xff) << 8 | (x >> 8 & 0xff)) << 8 | (x >> 16 & 0xff)) << 8 | (x >> 24 & 0xff);
+    unsigned short lo = (unsigned short)x;
+    unsigned short hi = (unsigned short)(x >> 16);
+    return (((lo & 0xff) << 8 | lo >> 8) << 8 | (hi & 0xff)) << 8 | hi >> 8;
 }
 
 #define SWAP32(x) (((((x) & 0xff) << 8 | ((x) >> 8) & 0xff) << 8 | ((x) >> 16) & 0xff) << 8 | ((x) >> 24))
