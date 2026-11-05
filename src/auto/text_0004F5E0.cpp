@@ -183,7 +183,7 @@ struct M_4FC20 { char pad0[0x4C0]; V_4FC20 *f4C0; char pad4C4[0x1C]; T_4FC20 *f4
 struct P_4FC20_15C {
     char pad0[0xFC]; int fFC;
     void func_000602B0();
-    void __stdcall func_00060350(int a);
+    void func_00060350(int a);
 };
 struct P_4FC20_190 { char pad0[0x168]; int f168; };
 struct P_4FC20_1A0 { char pad0[0x13C]; int f13C; };
