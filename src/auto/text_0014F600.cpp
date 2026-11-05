@@ -84,6 +84,24 @@ void func_0014F6E0(float a, float *s, float *c)
     *c = D_002CF6B4[i].a - f * D_002CF6B4[i].b;
 }
 
+void func_0014F760(float x, float *num, float *den, float *q)
+{
+    extern float D_002A773C;
+    extern float D_002A7738;
+    extern float D_002A7734;
+    extern float D_002A7730;
+    extern float D_00275460;
+    extern float D_002A7720;
+    extern float D_002A771C;
+    extern float D_002A7718;
+    extern float D_002A7714;
+    extern float D_002A7710;
+    float x2 = x * x;
+    *num = ((((D_002A773C * x2 + D_002A7738) * x2 + D_002A7734) * x2 + D_002A7730) * x2 + D_00275460) * x;
+    *den = (((((D_002A7720 * x2 + D_002A771C) * x2 + D_002A7718) * x2 + D_002A7714) * x2 + D_002A7710) * x2 + D_00275460);
+    *q = *num / *den;
+}
+
 float func_0014F990(float x)
 {
     return (float)atan(x);
