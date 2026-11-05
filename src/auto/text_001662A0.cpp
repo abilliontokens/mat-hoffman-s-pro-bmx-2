@@ -84,6 +84,8 @@ struct C_00166CA0 {
  void func_00166EB0(int);
  void func_00164700();
  void func_001643A0();
+ void func_00166190();
+ void func_00165F70();
 };
 
 struct S_00166C80_Arg {
