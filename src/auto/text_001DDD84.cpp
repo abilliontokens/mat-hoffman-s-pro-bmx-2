@@ -62,6 +62,12 @@ typedef __declspec(noreturn) void (__stdcall *PsTerminateSystemThread_t)(int sta
 extern "C" PsTerminateSystemThread_t _imp__PsTerminateSystemThread;
 void __stdcall func_001DE759(unsigned int code, unsigned int flags, unsigned int nargs, const unsigned int *args);
 
+static __declspec(noreturn) void __stdcall terminate_thread_1DE7C2(int status)
+{
+    _imp__PsTerminateSystemThread(status);
+    __debugbreak();
+}
+
 /* callback list node; D_002ACBBC is the list head */
 struct S_002ACBBC_Node {
     S_002ACBBC_Node *next;
@@ -353,13 +359,13 @@ int func_001DE7AF(void)
     return _imp__NtYieldExecution() != 0x40000024;
 }
 
+#pragma optimize("y", on)
 __declspec(noreturn) void __stdcall func_001DE7C2(int status)
 {
     func_001DE6B8(0);
     _imp__PsTerminateSystemThread(status);
     __debugbreak();
 }
-
 Callback_001DE6F0 __stdcall func_001DE7D4(Callback_001DE6F0 fn)
 {
     Callback_001DE6F0 old = D_002F6BBC;
