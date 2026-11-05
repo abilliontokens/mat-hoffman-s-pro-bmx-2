@@ -84,6 +84,15 @@ struct XboxVideoCardBF_001D7D50 {
     XboxVideoCardBF_001D7D50 *func_001D7D50(void);
 };
 
+struct XboxVideoCard_001D8310 {
+    void *vtbl;
+    char pad4[0x9D0];
+    u8 f9D4;
+    char pad9D5[3];
+    int f9D8;
+    void func_001D8310(void);
+};
+
 struct LightBufs_001D7FB0 {
     char a[0x100];
     char b[0x100];
