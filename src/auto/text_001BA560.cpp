@@ -9,6 +9,13 @@ struct C_001BB4D0 {
     void func_001BB4D0(int param_1);
 };
 
+void func_001E891B(void *p);
+
+struct C_001BB2A0 {
+    void func_001BA910(void);
+    void *func_001BB2A0(int flags);
+};
+
 extern int D_0028CF94;
 extern int D_0028CF84;
 extern int D_0028D200;
@@ -185,7 +192,7 @@ struct C_001BB300 {
 
 int C_001BA560::func_001BA560(S_001BA560_arg *arg1, int arg2)
 {
-    void *func_001E8A44(int size);
+    int func_001E8A44(...);
     void func_001BA540();
     void __stdcall func_001BBAA0(void *a, void *b);
     int r = arg1->v96(&f10c);
@@ -216,7 +223,7 @@ inline void Init_001BA5E0(C_001BA5E0 *p)
 C_001BA5E0::C_001BA5E0()
 {
     void *func_001E8A44(int size);
-    vtbl = (void *)&D_0028D200;
+    Init_001BA5E0(this);
     f124 = 0;
     f118 = 0xa;
     f11c = (int)&D_000186A0;
