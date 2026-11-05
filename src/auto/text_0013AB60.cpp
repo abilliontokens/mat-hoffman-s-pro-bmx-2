@@ -173,6 +173,19 @@ undefined4 C_0013AFD0::func_0013AFD0(int param_1)
   return *(undefined4 *)(*(int *)(in_ECX + 0xe8) + 0x10 + param_1 * 0x20);
 }
 
+int C_0013AEC0::func_0013AFF0(int idx, int v, int mode)
+{
+    S_0013AEC0_Slot *s = &fE8[idx];
+
+    if (mode == 0) {
+        s->f10 = 0;
+    } else if (mode == 2) {
+        s->f10 = s->f14;
+    }
+    s->f10 += v;
+    return 0;
+}
+
 undefined4 C_0013B1F0::func_0013B1F0(int param_1, undefined4 param_2)
 {
   int in_ECX = (int)this;
