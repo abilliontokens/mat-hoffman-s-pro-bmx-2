@@ -1,6 +1,13 @@
 /* 17 functions from 0x00103B60 to 0x00104B00, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_001046B0 {
+ void func_001046B0();
+ void func_001960F0(float, void *, int, int, int, int, int);
+ void func_00196000(float, void *, int, int, int, int, int);
+};
+extern char *D_002B9134;
+extern char *D_002B9120;
 struct C_001041C0 {
     void func_001041C0(void);
 };
