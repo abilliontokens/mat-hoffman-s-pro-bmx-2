@@ -1,6 +1,10 @@
 /* 19 functions from 0x001A0C90 to 0x001A1C90, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_001A1650 {
+    undefined4 func_001A1650(undefined4 *param_1);
+};
+
 struct C_001A1620 {
     undefined4 func_001A1620(undefined4 *param_1);
 };
@@ -60,6 +64,21 @@ undefined4 C_001A1620::func_001A1620(undefined4 *param_1)
   *param_1 = *(undefined4 *)(iVar1 + 0x38);
   param_1[1] = *(undefined4 *)(iVar1 + 0x3c);
   param_1[2] = *(undefined4 *)(iVar1 + 0x40);
+  return 1;
+}
+
+undefined4 C_001A1650::func_001A1650(undefined4 *param_1)
+{
+  int in_ECX = (int)this;
+  int iVar1;
+  
+  iVar1 = *(int *)(in_ECX + 4);
+  if (iVar1 == 0) {
+    return 0;
+  }
+  *(undefined4 *)(iVar1 + 0x38) = *param_1;
+  *(undefined4 *)(iVar1 + 0x3c) = param_1[1];
+  *(undefined4 *)(iVar1 + 0x40) = param_1[2];
   return 1;
 }
 
