@@ -242,7 +242,7 @@ struct C_0004EDB0 {
 struct S_0004E7B0_Vec {
     float x, y, z, w;
     S_0004E7B0_Vec() { z = 0; y = 0; x = 0; w = 1.0f; }
-    S_0004E7B0_Vec(float nx, float ny, float nz) { w = 1.0f; x = nx; y = ny; z = nz; }
+    S_0004E7B0_Vec(float nx, float ny, float nz) { x = nx; y = ny; z = nz; w = 1.0f; }
 };
 
 /* the viewer's direction filter: hands back a vector through its hidden return slot */
