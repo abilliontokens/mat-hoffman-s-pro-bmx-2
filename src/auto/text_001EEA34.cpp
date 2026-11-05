@@ -27,6 +27,17 @@ struct BitObj {
     unsigned int b7 : 1;
     unsigned int b8 : 1;
     unsigned int rest : 23;
+    /* clears the 9-bit state and takes a new value */
+    BitObj *Reset(int v) {
+        s4 = 0;
+        b4 = 0;
+        b5 = 0;
+        b6 = 0;
+        b7 = 0;
+        b8 = 0;
+        f0 = v;
+        return this;
+    }
     BitObj *func_001EEEE6(BitObj *o);
     BitObj *func_001EEF4F(BitObj *o);
     int func_001EF1E7(int a);
