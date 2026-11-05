@@ -186,6 +186,55 @@ int func_0015C9A0(float *base, float v, int n, float **lo, float **up, float *t)
     return 0;
 }
 
+void C_0015CA10::func_0015CA10(Quat_0015CA10 *q, float t)
+{
+    S_0015CA10_Key key;
+    S_0015CA10_Key *arr;
+    int n;
+    int pos;
+    int i;
+
+    if (fC >= f10) {
+        v6(f10 + 1);
+    }
+    func_0001B250(key.q, q);
+    n = fC;
+    arr = f14;
+    key.t = t;
+    pos = func_0015CAB0(arr, n, t);
+    for (i = n; i > pos; i++) {
+        arr[i] = arr[i - 1];
+    }
+    arr[pos] = key;
+    fC++;
+}
+
+int func_0015CAB0(S_0015CA10_Key *arr, int n, float t)
+{
+    int mid;
+    int lo;
+
+    if (n != 0) {
+        if (t >= arr[n - 1].t) {
+            return n;
+        }
+        if (t >= arr[0].t) {
+            lo = 0;
+            do {
+                while (mid = (n + lo) >> 1, t >= arr[mid].t) {
+                    lo = mid;
+                    if (t < arr[mid + 1].t) {
+                        return mid + 1;
+                    }
+                }
+                n = mid;
+            } while (t < arr[mid - 1].t);
+            return mid;
+        }
+    }
+    return 0;
+}
+
 void C_0015CB40::func_0015CB40(int a0, int a1) {
     int func_0015CB70(...);
     func_0015CB70(unk14, a0, unkC, unk8, a1);
@@ -207,6 +256,24 @@ void func_0015CC50(float *param_1, int param_2)
         param_1[3] = -param_1[3];
         *param_1 = -*param_1;
     }
+}
+
+int func_0015CCC0(float *base, float v, int hi, float **lo, float **up, float *t)
+{
+    int i = func_0015CAB0(base, hi, v);
+    if (i != hi) {
+        float *a = &base[i * 3];
+        float *b = &base[(i - 1) * 3];
+        *lo = b;
+        *up = a;
+        *t = (v - b[0]) / (a[0] - b[0]);
+        return 1;
+    }
+    *lo = &base[(hi - 2) * 3];
+    float *p = &base[(hi - 1) * 3];
+    *up = p;
+    *t = (v - p[0]) / (base[(i - 1) * 3] - base[(i - 2) * 3]);
+    return 0;
 }
 
 void C_0015CD50::func_0015CD50(uint param_1)
@@ -232,5 +299,11 @@ void C_0015CFE0::func_0015CFE0(undefined4 param_1)
     func_001577A0((int)(param_1), (int)(0));
   }
   return;
+}
+
+void C_0015D070::func_0015D070(float a0, float a1)
+{
+    f8c = a0 * D_00275998;
+    f90 = a1 * D_00275998;
 }
 
