@@ -31,6 +31,12 @@ struct S_Ptd_001F6292 {
 
 S_Ptd_001F6292 *func_001EB7E9(void);
 extern "C" void (__stdcall *_imp__KeBugCheck)(unsigned long code);
+
+static __declspec(noreturn) void KeBugCheck_001F6292(unsigned long code)
+{
+    _imp__KeBugCheck(code);
+    __debugbreak();
+}
 int __stdcall func_001F655B(PFN_001F5975 fn);
 
 /* 96-bit unsigned integer, least significant word first */
@@ -127,5 +133,17 @@ int func_001F627B(PFN_001F5975 fn)
         valid = 0;
     }
     return valid;
+}
+
+#pragma optimize("sy", on)
+void func_001F6292(void)
+{
+    if (func_001EB7E9()->pterminate != 0) {
+        __try {
+            func_001EB7E9()->pterminate();
+        } __except (1) {
+        }
+    }
+    _imp__KeBugCheck(0xc0000144);
 }
 
