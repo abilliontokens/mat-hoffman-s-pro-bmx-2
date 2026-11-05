@@ -140,3 +140,10 @@ void *_func_001EFCD5(void *a, char b, void *c)
     return a;
 }
 
+void *_func_001EFCF7(void *a, char b, void *c)
+{
+    S_001EF734 local;
+    local.func_001EF170(b)->func_001EFAB5(a, c);
+    return a;
+}
+
