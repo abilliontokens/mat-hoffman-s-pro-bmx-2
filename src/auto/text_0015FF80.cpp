@@ -198,6 +198,27 @@ C_00160860 *C_00160860::func_00160860(int a0)
     return this;
 }
 
+void *C_00160860::func_00160A00(unsigned int flags)
+{
+    vtbl = (void *)&D_002879C4;
+    if (f7c != 0) {
+        S_00160810_Cam *cam;
+
+        f7c->func_00193870((char *)this + 0x24);
+        cam = f7c;
+        if (cam != 0) {
+            cam->func_00193500();
+            func_001E891B(cam);
+        }
+        f7c = 0;
+    }
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 C_00160A60* C_00160A60::func_00160A60(void) {
     unk0 = 0;
     unk4 = 0;
