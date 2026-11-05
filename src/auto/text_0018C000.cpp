@@ -191,6 +191,32 @@ void C_0018C120::func_0018C120(void) {
     }
 }
 
+C_0018C120_Node *C_0018C120::func_0018C160(const char *name)
+{
+    C_0018C120_Node *n;
+    for (n = head; n != 0; n = n->next) {
+        if (strcmp(name, ((C_0018C000 *)n->value)->unk4) == 0) {
+            return n;
+        }
+    }
+    return 0;
+}
+
+void C_0018C000::func_0018C1C0(void)
+{
+    int i;
+    for (i = 0; i < 0x100; i++) {
+        if (unk58[i] != 0) {
+            func_001E891B(unk58[i]);
+            unk58[i] = 0;
+        }
+    }
+    if (unk458 != -1) {
+        D_002AA6C0->func_001B26C0(unk458);
+        unk458 = -1;
+    }
+}
+
 void C_0018C120::func_0018C640(void)
 {
     func_0018C120();
