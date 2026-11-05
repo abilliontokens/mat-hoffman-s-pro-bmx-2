@@ -35,7 +35,7 @@ struct S_Vt_0002A6B0 {
     virtual void v24();
     virtual void v25();
     virtual void v26();
-    virtual void v27();
+    virtual S_Cb_0002A6B0 *v27();
     virtual void v28();
     virtual void v29();
     virtual void v30();
