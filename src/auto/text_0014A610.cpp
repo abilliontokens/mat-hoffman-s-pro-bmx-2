@@ -18,9 +18,7 @@ struct Vec4 {
 
 static __inline float Max(float a, float b)
 {
-    float r;
-    _mm_store_ss(&r, _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b)));
-    return r;
+    return a > b ? a : b;
 }
 
 struct C_0014AC30 {
@@ -274,6 +272,21 @@ void *C_0014AA40::func_0014AA40(int flags) {
         func_001E891B(this);
     }
     return this;
+}
+
+Vec4 *func_0014AA70(Vec4 *out, Vec4 *a, Vec4 *b)
+{
+    Vec4 t;
+    float r;
+    _mm_store_ss(&r, _mm_max_ss(_mm_set_ss(a->x), _mm_set_ss(b->x)));
+    t.x = r;
+    _mm_store_ss(&r, _mm_max_ss(_mm_set_ss(a->y), _mm_set_ss(b->y)));
+    t.y = r;
+    _mm_store_ss(&r, _mm_max_ss(_mm_set_ss(a->z), _mm_set_ss(b->z)));
+    t.z = r;
+    t.w = 1.0f;
+    *out = t;
+    return out;
 }
 
 void C_0014AC30::func_0014AC30(Vec4 *vecs, int *ints)
