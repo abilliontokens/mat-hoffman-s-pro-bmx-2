@@ -30,7 +30,9 @@ struct S_BFEE0_Owner { char pad[0x484]; S_BFEE0_List *f484; };
 struct S_BFEE0_Page { char pad[0x24]; S_C09B0_Ui *f24; char pad28[0x150-0x28]; S_BFEE0_Owner *f150; char pad154[0x27c-0x154]; char *f27c; };
 struct S_BFEE0_Virtual { virtual void v0(); virtual void v4(); virtual void v8(); virtual void vc(); virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1c(); };
 struct S_C0010_Global {
-    char pad[0x2e0];
+    char pad[8];
+    S_C09B0_Input *f8;
+    char padc[0x2e0-0xc];
     S_BFEE0_Manager *f2e0;
     char pad2e4[4];
     S_C0010_2E8 *f2e8;
