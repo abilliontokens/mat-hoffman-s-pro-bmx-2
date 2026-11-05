@@ -31,3 +31,13 @@ struct C_00097FD0 {
     void func_00099590(void);
     void func_000999E0(void);
 };
+
+void C_00097FD0::func_000999B0(void) {
+    int i;
+
+    if (unk198->unk1c8 == 0) {
+        for (i = 0; i < 3; i++) {
+            func_00098E80(i);
+        }
+    }
+}
