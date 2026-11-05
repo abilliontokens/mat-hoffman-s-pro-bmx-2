@@ -17,6 +17,23 @@ struct C_0004EC40Item {
     virtual void func_0004EC40(void);
 };
 
+struct C_0004F5B0_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+};
+
+struct C_0004F5B0 {
+    char pad0[0x2A8];
+    C_0004F5B0_Obj *f2A8;
+    void func_000314A0(void);
+    void func_0004F5B0(void);
+};
+
 struct C_0004EBA0 {
     char pad0[0x64];
     void *f64;
@@ -59,6 +76,18 @@ void C_0004EBA0::func_0004EBE0(void)
             func_001577A0(fD58[i], -1);
         }
     }
+}
+
+void C_0004EBA0::func_0004EC40(void)
+{
+    int i;
+
+    for (i = 0; i < f90; i++) {
+        if (fD58[i] != 0) {
+            ((C_0004EC40Item *)fD58[i])->func_0004EC40();
+        }
+    }
+    func_00031450();
 }
 
 void *C_0004ED80::func_0004ED80(int flags) {
