@@ -43,7 +43,8 @@ struct C_000EBE30 {
     void *vtbl;
     char pad4[0x120];
     S_000EB_unk124 *unk124;
-    char pad128[0x178];
+    char pad128[0x158];
+    C_000EB_Widget *unk280[8];
     DelObjC_000EB *arr2A0[16];
     char pad2E0[0x40];
     DelObjC_000EB *unk320;
@@ -52,10 +53,14 @@ struct C_000EBE30 {
     int unk330;
     char pad334[4];
     C_000EB_Widget *unk338;
-    char pad33C[0x20];
+    int unk33C;
+    char pad340[0x1C];
     int unk35C;
+    char pad360[0x1C];
+    int unk37C;
     void func_001BE3F0();
     void func_000EBE30();
+    void func_000EC4A0();
     void func_000EC580();
     void func_000EC7E0();
 };
