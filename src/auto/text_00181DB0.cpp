@@ -408,3 +408,19 @@ void C_00182830::func_00182830(C_00182830_Target *p)
     }
 }
 
+void C_00182C60::func_00182C60(void)
+{
+    if (f3ac == 0) {
+        void *mem = func_001E8A44(0x2c);
+        f3ac = mem != 0 ? ((C_00182C60Scene *)mem)->func_001B5830(1) : 0;
+    }
+    if (f3ac->v27(f28) != 0) {
+        return;
+    }
+    if (f3ac->f24 != 0) {
+        return;
+    }
+    f3ac->v2();
+    f3ac = 0;
+}
+
