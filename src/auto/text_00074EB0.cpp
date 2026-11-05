@@ -84,8 +84,7 @@ struct C_00075880 {
     char pad4[0x118];
     int unk11C;
     C_00075880_Obj *unk120;
-    char pad124[0x6C];
-    int unk190;
+    char pad124[0x70];
     int unk194;
     char pad198[0x10];
     int unk1A8;
