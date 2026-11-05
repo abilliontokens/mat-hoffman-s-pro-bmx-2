@@ -29,6 +29,19 @@ struct S_000BC180_Entry {
     char pad12c[0x7c];
 };
 
+struct C_000BC180 {
+    char pad0[0x27c];
+    S_000BC180_Entry *f27c;
+    int f280;
+    int f284;
+    int f288;
+    int f28c;
+    undefined4 func_000BC180(void);
+    undefined4 func_000BC050(void);
+    undefined4 func_000BC130(void);
+    undefined4 func_000BC1C0(void);
+};
+
 struct C_000BC4A0 {
     void func_000BC4A0(undefined4 param_1, undefined4 param_2);
 };
