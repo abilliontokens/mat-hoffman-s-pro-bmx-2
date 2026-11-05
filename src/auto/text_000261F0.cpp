@@ -152,10 +152,15 @@ undefined4 func_00026300(float *param_1, float *param_2)
 
 C_000264C0 *C_000264C0::func_000264C0(S_000264C0_Mat *src)
 {
-    mat.r0 = src->r0;
-    mat.r1 = src->r1;
-    mat.r2 = src->r2;
-    mat.r3 = src->r3;
+    __m128 r0 = src->r0;
+    __m128 r1 = src->r1;
+    __m128 r2 = src->r2;
+    __m128 r3 = src->r3;
+
+    mat.r0 = r0;
+    mat.r1 = r1;
+    mat.r2 = r2;
+    mat.r3 = r3;
     return this;
 }
 
@@ -196,6 +201,17 @@ S_000267F0_V4 func_00026880(float *v, float *m)
     r.x = m[8] * v[2] + m[4] * v[1] + m[0] * v[0];
     r.y = m[9] * v[2] + m[5] * v[1] + m[1] * v[0];
     r.z = m[10] * v[2] + m[6] * v[1] + m[2] * v[0];
+    r.w = 1.0f;
+    return r;
+}
+
+S_000267F0_V4 func_00026910(float *m, int col)
+{
+    S_000267F0_V4 r;
+
+    r.x = m[col];
+    r.y = m[col + 4];
+    r.z = m[col + 8];
     r.w = 1.0f;
     return r;
 }
