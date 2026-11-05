@@ -186,6 +186,41 @@ int C_001CC3C0::func_001CCA10(void)
     return 1;
 }
 
+int C_001CC3C0::func_001CCAC0(int a, int b, int c, int d)
+{
+ int fresh = f144 == 0;
+ if (fresh) {
+  if (b == -1) return 0;
+  C_001CC3C0_144 *p = (C_001CC3C0_144 *)func_001E8A44(12);
+  if (p) {
+   int n = f118;
+   p->func_0001DFE0();
+   *(void **)p = &D_0028ED5C;
+   p->f8 = func_001E8AA5(n);
+  } else p = 0;
+  f144 = p;
+ }
+ if (!f144 || !f144->f8) return 0;
+ if (fresh) {
+  if (D_002BEAAC->func_0013AFB0(b))
+   D_002BEAAC->func_0013AFF0(b,44,0);
+  D_002BEAAC->func_0013C8A0(b,f144->f8,f118,1);
+ } else f144->v1();
+ f208 |= 8;
+ f124 = func_001CB0A0(f1A8);
+ if (!f150 || !(f10C & 0x100)) {
+  if (!a) return 0;
+  int n = f118;
+  int buffer = f144->f8;
+  if (func_002223E1(a,buffer,n)) return 0;
+  func_00220A8A(a,c);
+  func_00220A36(a);
+  if (!v9(f1A8)) return 0;
+  if (!func_001CC4B0(&f1B4,&f1E8,&f1F8,&f1D8)) return 0;
+ }
+ return 1;
+}
+
 bool C_001CD220::func_001CD220(void)
 {
     return fCC == 1;
