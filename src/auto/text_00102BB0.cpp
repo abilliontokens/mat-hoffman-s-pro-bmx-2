@@ -15,6 +15,7 @@ struct C_001B1980 {
     S_00103350_unk24 *unk24;
     void func_001B1980();
     void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, float a11, int a12, int a13);
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, int a11, float a12, int a13);
     void func_001B2270(int a);
     void func_001B19A0(int a);
 };
