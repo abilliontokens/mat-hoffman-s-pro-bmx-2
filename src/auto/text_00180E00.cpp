@@ -140,9 +140,9 @@ void func_00132E90(int h, void *out);
 void __stdcall func_00011FF0(void *mem, int a, int b, void *cb);
 void func_00011060(void);
 
-static __forceinline void *AllocZero_00181140(int size, int count)
+static __forceinline void *AllocZero_00181140(int count, int mul)
 {
-    void *m = (void *)func_001E8A44(size);
+    void *m = (void *)func_001E8A44(count * mul);
 
     if (m != 0) {
         func_00011FF0(m, 0x10, count, func_00011060);
@@ -187,15 +187,16 @@ struct Loader {
 
 int C_00181140::func_00181140(int a1, char *path, int a3)
 {
+    char buf[0x104];
     int h;
+    int n2;
     int ptr;
     int v18;
     int vC;
     int v10;
     int v14;
-    char buf[0x104];
     S_00181140_Loaded *p;
-    int n;
+    void *m;
 
     if (D_002A4C10[0] != 0) {
         strcpy(buf, D_002A4C10);
@@ -217,19 +218,19 @@ int C_00181140::func_00181140(int a1, char *path, int a3)
     if (v18 != 0x4d2 || func_001EA426((char *)&vC, &D_00284638) != 0 || v10 != 1)
         D_002BEAAC->func_0013C110(h);
     func_00132E90(h, &v14);
-    func_00180600(a3, v14);
+    func_00180600(*(volatile int *)&a3, v14);
     D_002BEAAC->func_0013C110(h);
-    f104 = a3;
-    p = (S_00181140_Loaded *)func_001E8A44(0x9c);
-    if (p != 0)
-        p = p->func_00134980();
-    n = fF8;
-    p->f7c = n;
+    f104 = *(volatile int *)&a3;
+    m = func_001E8A44(0x9c);
+    if (m != 0)
+        p = ((S_00181140_Loaded *)m)->func_00134980();
+    p->f7c = fF8;
     p->f84 = func_001E8A44(p->f7c * 4);
     p->f88 = func_001E8A44(p->f7c * 4);
     p->f8c = func_001E8A44(p->f7c * 4);
     p->f90 = func_001E8A44(p->f7c * 2);
-    p->f70 = AllocZero_00181140(p->f7c * 32, p->f7c * 2);
+    n2 = p->f7c * 2;
+    p->f70 = AllocZero_00181140(n2 * 16, n2);
     p->f74 = AllocZero_00181140(p->f7c * 16, p->f7c);
     p->f78 = AllocZero_00181140(p->f7c * 16, p->f7c);
     f54 = p;
