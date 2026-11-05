@@ -120,6 +120,12 @@ static __forceinline int clamp_len_00186C70(int limit, int len)
     return len < limit ? len : limit;
 }
 
+template <class T>
+static __forceinline const T &min_ref_00186C70(const T &a, const T &b)
+{
+    return b < a ? b : a;
+}
+
 struct C_00186AF0 {
     char pad0[0x168];
     int f168;
