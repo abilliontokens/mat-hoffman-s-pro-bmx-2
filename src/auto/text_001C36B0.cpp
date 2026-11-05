@@ -105,14 +105,14 @@ struct DXVertexBufferCache {
     int unk0;
     void *f4;
     void *f8;
-    bool func_001C3830(int a1, int a2);
+    int func_001C3830(int a1, int a2);
 };
 
 struct DXIndexBufferCache {
     int unk0;
     void *f4;
     void *f8;
-    bool func_001C38D0(int a1, int a2);
+    int func_001C38D0(int a1, int a2);
 };
 
 
