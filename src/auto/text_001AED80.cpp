@@ -474,6 +474,70 @@ void C_001AF710::func_001AF710(void)
     }
 }
 
+C_001AF740 *C_001AF740::func_001AF740(S_001AF360_Stream *stream, int idx)
+{
+    char buf[0x80];
+    int a, b;
+    idx++;
+    f8 = 0;
+    fC = 0;
+    f20 = 0;
+    f2C = 0;
+    f18 = 1.0f;
+    f1C = 1.0f;
+    f10 = 0;
+    f14 = 0;
+    f24 = 0;
+    f28 = 0;
+    a = 0;
+    b = 0;
+    if (idx == 1) {
+        stream->func_00168C50(D_0028C59C, 0, &f20);
+        stream->func_00168C50(D_0028C590, f8, &f8);
+        stream->func_00168C50(D_0028C584, fC, &fC);
+        stream->func_00168C50(D_0028C574, f2C, &f2C);
+        stream->func_00168C50(D_0028C56C, *(int *)&f18, &f18);
+        stream->func_00168C50(D_0028C564, *(int *)&f1C, &f1C);
+        stream->func_00168C50(D_0028C55C, f10, &f10);
+        stream->func_00168C50(D_0028C554, f14, &f14);
+        stream->func_00168C50(D_0028C548, f24, &f24);
+        stream->func_00168C50(D_0028C53C, f28, &f28);
+        stream->func_00168C20(D_0028C530, f34, &f34);
+        stream->func_00168C20(D_0028C524, a, &a);
+        stream->func_00168C20(D_0028C510, b, &b);
+    }
+    func_001ADCC0(buf, 0x80, D_0028C504, idx);
+    stream->func_00168C50(buf, f20, &f20);
+    func_001ADCC0(buf, 0x80, D_0028C4F8, idx);
+    stream->func_00168C50(buf, f8, &f8);
+    func_001ADCC0(buf, 0x80, D_0028C4EC, idx);
+    stream->func_00168C50(buf, fC, &fC);
+    func_001ADCC0(buf, 0x80, D_0028C4D8, idx);
+    stream->func_00168C50(buf, f2C, &f2C);
+    func_001ADCC0(buf, 0x80, D_0028C4CC, idx);
+    stream->func_00168C50(buf, *(int *)&f18, &f18);
+    func_001ADCC0(buf, 0x80, D_0028C4C0, idx);
+    stream->func_00168C50(buf, *(int *)&f1C, &f1C);
+    func_001ADCC0(buf, 0x80, D_0028C4B4, idx);
+    stream->func_00168C50(buf, f10, &f10);
+    func_001ADCC0(buf, 0x80, D_0028C4A8, idx);
+    stream->func_00168C50(buf, f14, &f14);
+    func_001ADCC0(buf, 0x80, D_0028C498, idx);
+    stream->func_00168C50(buf, f24, &f24);
+    func_001ADCC0(buf, 0x80, D_0028C488, idx);
+    stream->func_00168C50(buf, f28, &f28);
+    func_001ADCC0(buf, 0x80, D_0028C478, idx);
+    stream->func_00168C20(buf, f34, &f34);
+    func_001ADCC0(buf, 0x80, D_0028C468, idx);
+    stream->func_00168C20(buf, a, &a);
+    func_001ADCC0(buf, 0x80, D_0028C450, idx);
+    stream->func_00168C20(buf, b, &b);
+    f0 = f8;
+    f4 = fC;
+    f38 = ((a & 1) << 1) | (f38 & 0xf8) | (b & 1);
+    return this;
+}
+
 int C_001AFB00::func_001AFB00(void)
 {
     unsigned char f = f38;
