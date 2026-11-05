@@ -863,6 +863,40 @@ void *C_001BFA70::func_001BFA70(int a0, int a1)
     return this;
 }
 
+C_001BF7C0 *C_001BF7C0::func_001BFB40(int a0, int a1, S_001BF7C0_Stream *stream)
+{
+    S_001BF7C0_Obj *obj;
+    void *mem;
+    char *q;
+
+    f28 = a0;
+    func_001BF600(stream);
+    stream->func_00168CB0(D_00275AD4, S_Vec4f_001BFD00(1.0f, 1.0f, 1.0f, 1.0f), f6C);
+    stream->func_00168CB0(D_00275AC8, S_Vec4f_001BFD00(0.0f, 0.0f, 1.0f, 1.0f), f7C);
+    stream->func_00168CB0(D_0027CEE4, S_Vec4f_001BFD00(0.0f, 0.0f, 1.0f, 1.0f), f8C);
+    stream->func_00168C50(D_0028D9A8, 0, &f9C);
+    q = fA4;
+    if (stream->func_00168550(D_0028D998, q, 0x64) == 0) {
+        *(int *)q = D_00284A98;
+        q[4] = D_00284A9C;
+    }
+    q = f108;
+    if (stream->func_00168550(D_0028D984, q, 0x64) == 0) {
+        *(int *)q = D_00284A98;
+        q[4] = D_00284A9C;
+    }
+    mem = func_001E8A44(0x1e0);
+    if (mem != 0) {
+        obj = ((S_001BF7C0_Obj *)mem)->func_00143580(1);
+    } else {
+        obj = 0;
+    }
+    f68 = obj;
+    obj->v35(a1, 0, 0);
+    func_001577A0(f68, 0);
+    return this;
+}
+
 void C_001BF930::func_001BFCB0(void)
 {
     v7();
