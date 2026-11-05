@@ -39,6 +39,19 @@ struct C_000A8520 {
     int func_000A8520(char *param);
 };
 
+void C_000A84A0::func_000A84A0(void *param1, void *param2)
+{
+    int i;
+    i = 0;
+    field20 = param1;
+    if (0 < count) {
+        do {
+            funcs[i](param1, this, args[i], param2);
+            i = i + 1;
+        } while (i < count);
+    }
+}
+
 C_000A8D70 *C_000A8D70::func_000A8D70()
 {
     ((C_001B59E0 *)this)->func_001B59E0();
