@@ -186,6 +186,8 @@ extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
 extern "C" void (__stdcall *_imp__RtlLeaveCriticalSection)(void *cs);
 
 int __stdcall func_00220AE5(void *obj, int a, int b, int c);
+extern char D_00040000;
+extern char D_00010000;
 
 struct S_001CDB10_Iface {
     virtual unsigned long __stdcall v0();
@@ -275,6 +277,63 @@ void XboxSoundGroup::func_001CD8F0(int a)
         list.at(i)->v19(a);
     }
     func_00157A00(a);
+}
+
+int C_001CDB10::func_001CDB10(void)
+{
+    unsigned long status;
+    unsigned int i;
+    unsigned long *p;
+
+    if (f20 & 4) {
+        func_00220AE5(fC, 0, 0, 1);
+        f8->Release();
+        f8 = 0;
+        _imp__RtlEnterCriticalSection(D_002F08EC->f138 + 0x50);
+        if (f4 != 0) {
+            f4->f140 = 0;
+            f4->f208 &= 0xf7;
+        }
+        _imp__RtlLeaveCriticalSection(D_002F08EC->f138 + 0x50);
+        func_001CB9A0();
+        f20 &= 0xfb;
+        return 0;
+    }
+    if ((f20 & 2) || f4->func_001CB440() != 0 || (f4->f208 & 8) == 0) {
+        return 0;
+    }
+    for (;;) {
+        i = 0;
+        p = f14;
+        do {
+            if (*p != 0x8000000a) {
+                goto mismatch;
+            }
+            i++;
+            p++;
+        } while (i < 3);
+        if ((f20 & 1) == 0) {
+            return 0;
+        }
+        goto done;
+mismatch:
+        if (f20 & 1) {
+            goto done;
+        }
+        if (func_001CB9F0(i) < 0) {
+            return 0x80004005;
+        }
+        if (func_001CBB50(i) < 0) {
+            return 0x80004005;
+        }
+    }
+done:
+    fC->GetStatus(&status);
+    if ((status & 0x40000) == 0 && (status & 0x10000) != 0) {
+        return 0;
+    }
+    f20 |= 6;
+    return 0;
 }
 
 C_001CDC20::C_001CDC20(int a, int b)
