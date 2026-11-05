@@ -84,6 +84,15 @@ void func_0013E990(void)
     func_001FD020(&D_00040340, 1);
 }
 
+void C_0013ECA0::func_0013ECA0(void)
+{
+    func_001FEC30(0x18, f10);
+    func_001FEBD0(2, fD0);
+    func_001FEC30(4, f50);
+    func_001FEC30(8, f90);
+    func_001FD020(&D_00040340, fE0);
+}
+
 void C_0013ECF0::func_0013ECF0(int a1, int a2, C_0013ECF0_Arg *a3, int a4, int a5)
 {
     int *p = a3->f10;
