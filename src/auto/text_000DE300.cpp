@@ -11,20 +11,47 @@ struct C_000DE_Elem {
     unsigned int f38;
     char pad3c[0x1c];
     unsigned char b58;
+    void func_001D5AD0();
 };
+
+struct S_002B91AC {
+    char pad0[0x24];
+    C_000DE_Elem *unk24;
+    C_000DE_Elem *unk28;
+    C_000DE_Elem *unk2C;
+    C_000DE_Elem *unk30;
+    char pad34[0x50 - 0x34];
+    C_000DE_Elem *unk50;
+    C_000DE_Elem *unk54;
+    char pad58[0x60 - 0x58];
+    C_000DE_Elem *unk60;
+    C_000DE_Elem *unk64;
+    C_000DE_Elem *unk68;
+    C_000DE_Elem *unk6C;
+};
+
+extern S_002B91AC *D_002B91AC;
 
 /* BmxUIPageHorseWord */
 struct C_000DE300 {
-    char pad0[0x2EC];
+    char pad0[0x288];
+    int unk288;
+    char pad28C[0x2DC - 0x28C];
+    int unk2DC;
+    int unk2E0;
+    char pad2E4[0x2EC - 0x2E4];
     C_000DE_Elem *unk2EC;
     char pad2F0[0x314 - 0x2F0];
     short unk314;
     char pad316[0x328 - 0x316];
     C_000DE_Widget *unk328;
     C_000DE_Widget *unk32C;
+    char pad330[0x340 - 0x330];
+    C_000DE_Elem *arr340[2];
     void func_001BF000();
     void func_000DE300();
     void func_000DE390();
+    void func_000DE3C0();
 };
 
 /* anything the page owns and frees through its virtual destructor */
