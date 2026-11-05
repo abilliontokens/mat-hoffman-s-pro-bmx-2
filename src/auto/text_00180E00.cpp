@@ -66,6 +66,36 @@ struct RenderableObject {
     RenderableObject *func_001814B0(int a);
 };
 
+struct Mgr {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6(void *a, int b);
+    void *func_001617F0(char *name, int f);
+};
+struct Rd {
+    void func_0013C8A0(void *dst, int size, int n);
+};
+extern Rd *D_002BEAAC;
+extern Mgr *D_002A829C;
+extern char D_002A60B0[];
+extern char D_00284644[];
+extern int D_002AA46C;
+void *func_001E8AA5(unsigned int n);
+extern "C" char *strcpy(char *, const char *);
+extern "C" char *strcat(char *, const char *);
+extern "C" unsigned int strlen(const char *);
+
+struct Loader {
+    char pad[0x1b4];
+    int count;
+    void **items;
+    void func_001816A0(void *stream);
+};
+
 RenderableObjectData *RenderableObjectData::func_00181410(void)
 {
     func_0001DFE0();
