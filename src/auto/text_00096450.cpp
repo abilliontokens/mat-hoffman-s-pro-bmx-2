@@ -9,6 +9,28 @@ struct C_00012140 {
     void func_00012140(void);
 };
 
+struct Q_Obj { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(int a); };
+struct Q_Click { void func_001B65D0(void); };
+struct Q_Sub {
+    void func_0001B9E0(void *e, int a, int b);
+    void func_0001B820(void *e);
+    void func_0001BDB0(int i);
+    void func_0001BB00(int i, char *s, int f);
+};
+struct Q_List { char pad0[0x24]; int count; char **items; };
+struct Q_P64 { char pad0[0x3ac]; Q_List *f3AC; char pad3B0[0xd4]; Q_Sub *f484; };
+struct Q_Mgr { char pad0[0x64]; Q_P64 *f64; char pad68[0x160]; int f1C8; };
+struct Q_Root { char pad0[0x2a4]; Q_Mgr *f2A4; };
+extern Q_Root *D_002A8490;
+void __stdcall func_00052630(char *s);
+struct C_00096450 {
+    char pad0[0x63d8];
+    Q_Click *a63d8[10];
+    Q_Click *a6400[10];
+    Q_Obj *a6428[10];
+    void func_00096450(int idx);
+};
+
 struct C_00096700 {
     char pad0[0x4880];
     C_00012140 *arr4880[12];
