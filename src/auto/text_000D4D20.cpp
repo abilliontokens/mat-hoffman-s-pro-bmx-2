@@ -48,6 +48,7 @@ struct S_000D5B90_Widget {
 
 struct S_000D5B90_Res {
     void func_00103350();
+    void func_00103260(int a);
 };
 
 struct S_000D5B90_Owner {
