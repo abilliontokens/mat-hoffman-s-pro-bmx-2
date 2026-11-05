@@ -1,6 +1,27 @@
 /* 17 functions from 0x001CF110 to 0x001D0020, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct S_001CF1B0_Packet {
+    char *buffer;
+    u32 size;
+    u32 *completed;
+    u32 rest[3];
+};
+struct C_001CF1B0 {
+    void **vtbl;
+    char pad4[0x34];
+    int state;
+    char pad3c[0x74];
+    int index;
+    void *stream;
+    void *handles[2];
+    char *buffer;
+    int func_001CF1B0(int block, S_001CF1B0_Packet *packet);
+    void func_001CB7D0();
+    void func_001CEF50();
+    void func_001CB8A0();
+};
+int __stdcall func_00220AE5(void *, int, int, int);
 struct C_001CFAE0 {
     undefined4 func_001CFAE0(byte param_1);
 };
