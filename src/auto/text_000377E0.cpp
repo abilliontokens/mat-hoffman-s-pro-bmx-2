@@ -47,6 +47,16 @@ int C_000377E0::func_000377E0(void)
   return *(int *)(in_ECX + 0x5a0) - *(int *)(in_ECX + 0x484);
 }
 
+undefined4 C_000377F0::func_000377F0(int param_1)
+{
+    if (((0 < count) && (items != 0)) && (param_1 < count)) {
+        items[param_1] = items[count - 1];
+        count--;
+        return 1;
+    }
+    return 0;
+}
+
 undefined4 C_00037820::func_00037820(int param_1)
 {
   int* in_ECX = (int*)this;
