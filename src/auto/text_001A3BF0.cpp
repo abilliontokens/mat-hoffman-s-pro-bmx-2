@@ -10,6 +10,28 @@ struct C_001A40E0 {
     undefined4 func_001A40E0(byte param_1);
 };
 
+struct S_001A3BF0_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual int v6(int a);
+    virtual int v7();
+};
+
+struct S_001A3BF0_Item {
+    S_001A3BF0_Obj *obj;
+};
+
+struct C_001A3BF0 {
+    char pad0[0x1c0];
+    int f1c0;
+    S_001A3BF0_Item **f1c4;
+    int func_001A3BF0(int idx);
+};
+
 struct Obj_001A4A20 {
     virtual void v0();
     virtual void v1();
