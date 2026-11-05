@@ -49,7 +49,7 @@ struct S_00184C00_Obj {
     virtual void v25();
     virtual void v26();
     virtual void v27();
-    virtual void v28();
+    virtual void v28(void *scene);
     virtual void v29(void *scene);
 };
 
@@ -97,8 +97,8 @@ int C_00184930::func_00184C00(void)
 
 int __stdcall func_00185860(char *name)
 {
-    if (memcmp(name, D_002895F4, 9) == 0) {
+    if (memcmp(name, "abcdefghi", 9) == 0) {
         return 2;
     }
-    return memcmp(name, D_002895EC, 5) == 0;
+    return memcmp(name, "abcde", 5) == 0;
 }
