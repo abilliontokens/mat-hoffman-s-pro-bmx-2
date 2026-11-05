@@ -509,4 +509,15 @@ void C_001D5660::func_001D5660(int count, int arg2)
     q->m[15] = 1.0f;
 }
 
+void C_001D5660::func_001D5720(void)
+{
+    void __fastcall func_001FEC30(int n, void *p);
+    void __stdcall func_00200B30(int a, int b, void *c);
+    func_001FEC30(0x22, &f20);
+    func_001FEE00(0, (int)f14, 0x18);
+    if (fC > 0) {
+        func_00200B30(f10, fC, f64);
+    }
+}
+
 /* end */
