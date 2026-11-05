@@ -137,9 +137,9 @@ struct S_OwnedElemList {
     void init(int n)
     {
         list.items = (S_SoundElem **)func_001E8A44(n * 4);
-        flags |= 1;
         list.growBy = 0x10;
         list.capacity = n;
+        flags |= 1;
     }
 };
 
@@ -244,6 +244,19 @@ void XboxSoundGroup::func_001CD8F0(int a)
         list.at(i)->v19(a);
     }
     func_00157A00(a);
+}
+
+C_001CDC20::C_001CDC20(int a, int b)
+{
+    f0 = -1;
+    f4 = -1;
+    f4C = 0;
+    l0.init(1);
+    l1.init(1);
+    l2.init(1);
+    f8 = b;
+    fC = a;
+    RtlInitializeCriticalSection(f50);
 }
 
 void C_001CDCF0::func_001CDCF0(void)
