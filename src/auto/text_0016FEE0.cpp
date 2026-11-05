@@ -92,9 +92,10 @@ struct C_001703B0 {
     S_Obj *f158;
     void *f15c;
     void *f160;
-    u32 f164, f168;
+    int f164, f168;
     char pad16c[4];
     S_Obj *f170;
+    void func_0016FEE0(void);
     void func_00157660(void);
     void func_00157600(int a);
     C_001703B0 *func_001702B0(int a);
