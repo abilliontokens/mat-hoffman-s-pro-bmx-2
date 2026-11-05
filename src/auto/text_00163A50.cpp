@@ -266,6 +266,43 @@ C_00164440 *C_00164440::func_00164440(int a, int mostDerived)
     return this;
 }
 
+void C_00164520::func_00164520(void)
+{
+    int *p = (int *)this;
+    int i;
+    *(void **)((char *)this - 0x220 + ((int *)p[-0x88])[1]) = (void *)&D_00287DCC;
+    p[-0x82] = 0;
+    if (p[-0xC] != 0)
+        func_001E891B((void *)p[-0xC]);
+    if (p[-0xA] != 0)
+        func_001E8390((void *)p[-0xA]);
+    if (p[-8] != 0)
+        func_001E8390((void *)p[-8]);
+    if (p[-7] != 0)
+        func_001E8390((void *)p[-7]);
+    if (p[-0xF] != 0) {
+        for (i = 0; i < p[-0x83]; i++)
+            D_002EF7D0->func_00162A80(((void **)p[-0xF])[i]);
+        func_001E8390((void *)p[-0xF]);
+    }
+    if (p[-4] != 0) {
+        for (i = 0; i < p[-5]; i++)
+            func_001E891B(((void **)p[-4])[i]);
+        func_001E8390((void *)p[-4]);
+        p[-4] = 0;
+    }
+    p[-5] = 0;
+    if (p[-3] != 0)
+        func_001E8390((void *)p[-3]);
+    if (p[-1] != 0) {
+        func_001E8390((void *)p[-1]);
+        p[-1] = 0;
+    }
+    if (p[-0xD] != 0)
+        func_001E891B((void *)p[-0xD]);
+    D_002BEAAC->func_0013B210((char *)this - 0x220);
+}
+
 unsigned char C_00164650::func_00164650(const char *name)
 {
     int i;
