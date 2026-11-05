@@ -352,6 +352,17 @@ void C_00194DB0::func_00194DB0(void) {
     func_0012B540();
 }
 
+void C_00194DC0::func_00194DC0(int a0, int *a1, S_Vec4Int *a2, S_Vec4Int *a3, int *a4, S_Vec4Int *a5, S_Vec4Int *a6, int *a7)
+{
+    *a2 = f8;
+    *a5 = f18;
+    *a3 = f28;
+    *a6 = f38;
+    *a4 = f48;
+    *a7 = 0;
+    *a1 = f4;
+}
+
 void C_00194E60::func_00194E60(int a, int b, int c, int d)
 {
     Set(a, b, c, d);
