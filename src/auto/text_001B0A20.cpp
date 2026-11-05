@@ -40,7 +40,11 @@ struct C_001B1580 {
     char pad34[0x30];
     int unk64;
     int unk68;                        /* 0x68 */
-    char pad6C[0x54];
+    char pad6C[8];
+    int unk74;
+    char pad78[8];
+    int unk80;
+    char pad84[0x3C];
     int unkC0;                        /* 0xC0 */
     void func_001B13A0(int a, int b, int c, int len);
     C_001B1580 *func_001B1580(int a, int b, const char *s, int c);
