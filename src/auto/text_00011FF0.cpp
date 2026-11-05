@@ -68,6 +68,33 @@ struct S_11FF0_Global2 {
     int **f588;
 };
 
+/* (0, 0, 0, 1) vector, stored z, y, x, w */
+struct V4_00012730 {
+    float x, y, z, w;
+    V4_00012730() { z = 0; y = 0; x = 0; w = 1.0f; }
+};
+
+struct S_00012730_Node {
+    char pad0[2];
+    unsigned char f2;
+    char pad3[0x41];
+    int f44;
+};
+
+struct S_00012730_Iter {
+    char pad0[0x40];
+    void func_001A46F0(void);
+    void func_001A4790(int a, int b, float *c, float *d, int e, int f, int g);
+    S_00012730_Node *func_001A4840(void);
+    void func_001A4A20(void);
+};
+
+extern float D_002755E8;
+extern float D_00275544;
+extern unsigned char D_002A4330;
+extern int D_002BA15C;
+int func_00134A10(V4_00012730 *seg, void *obj, V4_00012730 *out, V4_00012730 *hit);
+
 struct S_11FF0_Owner {
     char pad0[0x3c];
     S_11FF0_Sub3c *f3c;
