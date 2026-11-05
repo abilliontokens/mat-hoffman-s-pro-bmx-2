@@ -207,6 +207,33 @@ int C_001B0040::func_001B0040(unsigned int key)
     return i;
 }
 
+void C_001B0040::func_001B0070(unsigned int key)
+{
+    if (unkC->unk28) {
+        S_001B0040_list *l = unk10;
+        int idx;
+        if (l == 0) {
+            l = (S_001B0040_list *)func_001E8AA5(12);
+            unk10 = l;
+            l->count = 0;
+            idx = 0;
+        } else {
+            idx = func_001B0040(key);
+            if (idx < l->count && l->items[idx].key == key) {
+                return;
+            }
+            unk10 = (S_001B0040_list *)func_001E83E8(l, l->count * 8 + 12);
+            for (int j = unk10->count; j > idx; j--) {
+                unk10->items[j] = unk10->items[j - 1];
+            }
+        }
+        unk10->items[idx].key = key;
+        void *m = func_001E8A44(0x2c);
+        unk10->items[idx].val = m ? ((C_001AFD90 *)m)->func_001AFD90(unkC) : 0;
+        unk10->count++;
+    }
+}
+
 void C_001B01A0::func_001B01A0(void) {
     extern int D_0028C5E0;
     unk0 = (int)&D_0028C5E0;
