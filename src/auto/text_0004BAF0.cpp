@@ -60,7 +60,7 @@ struct S_0004C320_Comp {
 struct S_0004C320_Part : virtual S_0004C320_Base {
     S_0004C320_Comp *f4;
 
-    __forceinline void func_0004C3F0_Highlight(int on, float x, float y, float z)
+    __forceinline void SetHighlight(int on, float x, float y, float z)
     {
         float v1[4];
         float v2[4];
