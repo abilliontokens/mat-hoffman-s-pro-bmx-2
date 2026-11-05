@@ -193,6 +193,15 @@ void C_000C83E0::func_000C83E0(void) {
     s->unk30->func_001D5AD0();
 }
 
+void C_000C8490::func_000C8490(void) {
+    for (int i = 0; i < 6; i++) {
+        E_000C8490 *e = unk308[i];
+        e->unk38 = ((int)unk2CC << 24) | (e->unk38 & 0xffffff);
+        e->unk58 |= 2;
+    }
+    func_001BF000();
+}
+
 void C_000C8590::func_000C8590(void) {
     func_000C7DF0();
     func_000C83E0();
