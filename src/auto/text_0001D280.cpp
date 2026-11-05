@@ -288,6 +288,15 @@ int C_0001D370::func_0001D370(void) {
     return 1;
 }
 
+int C_0001D420::func_0001D420(int param)
+{
+  if (param == 0) {
+    return 0;
+  }
+  sub30.func_001CBCF0(param);
+  return sub70.func_001CBCF0(param);
+}
+
 void *C_0001D690::func_0001D690(unsigned char param_1)
 {
   int func_0001D200(...);
@@ -309,6 +318,15 @@ void *C_0001E030::func_0001E030(int flags) {
     extern int D_00275F18;
     void func_001E891B(void *);
     unk0 = (int)&D_00275F18;
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
+void *C_0001E080::func_0001E080(int flags) {
+    void func_001E891B(void *);
+    ((C_0001DFF0 *)this)->func_0001DFF0();
     if (flags & 1) {
         func_001E891B(this);
     }
