@@ -89,10 +89,11 @@ void C_00181DB0::func_00181DB0(int a0)
 int C_00181DB0::func_00182020(int a0, int a1)
 {
   int i;
-  int result = a0;
+  int result;
 
   f1A1 = D_002A829C->f20 - 1;
   f1BC = 0;
+  result = a0;
   if (f1B4 > 0) {
     for (i = 0; i < f1B4; i++) {
       if (f1B8[i] == a0) {
