@@ -66,6 +66,32 @@ struct C_00150350 {
     void func_00150350(void);
 };
 
+/* CameraBehavior, the base of FirstPersonCam */
+struct C_0012B510R {
+    void *vtbl;
+    C_0012B510R *func_0012B510(void);
+};
+
+/* FirstPersonCam */
+struct C_001500A0 {
+    void *vtbl;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    float f14;
+    C_001500A0 *func_001500A0(void);
+};
+
+static float fabs_0014FB30(float v)
+{
+    volatile float x;
+    volatile int tmp;
+    x = v;
+    tmp = *(volatile int *)&x & 0x7fffffff;
+    return *(float *)&tmp;
+}
+
 extern float D_00275460;
 extern float D_002755E4;
 extern float D_00286AB8;
