@@ -44,6 +44,8 @@ struct Cube : C_0001DFE0 {
     char unk40;
     char pad41[7];
     CubeGroup groups[6];
+    char pad5C0[0x6c];
+    int unk62C;
     void func_001364B0(void);
     void func_00136860(int i, int j, int a);
     void func_00136A70(void);
