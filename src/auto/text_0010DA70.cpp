@@ -145,7 +145,7 @@ struct C_0010E8A0 {
     int f38[100];
     int f1C8[100];
     int f358[100];
-    void func_0010E8A0(void);
+    C_0010E8A0 *func_0010E8A0(void);
 };
 
 struct C_0010E810Slot {
