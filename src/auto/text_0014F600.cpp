@@ -35,6 +35,19 @@ struct C_00150350 {
     void func_00150350(void);
 };
 
+extern float D_00275460;
+extern float D_002755E4;
+extern float D_00286AB8;
+extern float D_00286ABC;
+extern float D_002BF2AC[];
+extern float D_002CF6B0;
+extern float D_002CF738;
+extern float D_002CF73C[];
+extern unsigned char D_002CF6B8[];
+extern unsigned char D_002CF6F8;
+extern unsigned int D_002CF2B0[];
+extern unsigned int D_002CF4B0[];
+
 
 float func_0014F600(float x)
 {
@@ -102,9 +115,51 @@ void func_0014F760(float x, float *num, float *den, float *q)
     *q = *num / *den;
 }
 
+float func_0014F7E0(float x)
+{
+    extern float D_00275460;
+    extern float D_00275F58;
+    extern float D_002DF86C;
+    int i;
+    float t;
+    int * volatile p = &i;
+    float v;
+    float f;
+
+    v = x;
+    if (x > D_00275460) {
+        v = D_00275460;
+    } else if (x < D_00275F58) {
+        v = D_00275F58;
+    }
+    v = (v + D_00275460) * D_002DF86C;
+    t = v;
+    *p = _mm_cvttss_si32(*(__m128 *)&t);
+    f = v - (float)i;
+    return (D_00275460 - f) * D_002DF87C[i] + f * D_002DF87C[i + 1];
+}
+
 float func_0014F990(float x)
 {
     return (float)atan(x);
+}
+
+void func_0014F9A0(void)
+{
+    extern float *D_002CF6B4_ptr;
+    S_0014F9A0_Entry *p;
+
+    if (D_002DF87C != 0) {
+        func_001E8390(D_002DF87C);
+    }
+    for (p = D_002DF748; p < (S_0014F9A0_Entry *)&D_002DF874; p++) {
+        if (p->f0 != 0) {
+            func_001E8390(p->f0);
+        }
+    }
+    if (D_002CF6B4 != 0) {
+        func_001E8390(D_002CF6B4);
+    }
 }
 
 void func_0014FDD0(void)
