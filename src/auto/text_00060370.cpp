@@ -89,7 +89,10 @@ struct BmxSinglePlayerInGameMenu {
     char pad124[0x4];
     int unk128;
     int unk12C;
-    char pad130[0x2c];
+    char pad130[4];
+    Item_60D *items[5];
+    int positions[5];
+    void func_00060DE0();
     C_001D5AA0 *unk15c[10];
     void func_00060D80(void);
     int func_00061030(void);
