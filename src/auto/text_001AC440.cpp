@@ -136,9 +136,8 @@ int DynamicStringTable::func_001AC870(const char *name, int value)
             return i;
     }
     int index = func_001AC680(name, value);
-    char *p = (char *)func_001E8AA5(strlen(name) + 1);
-    entries[index].name = p;
-    strcpy(p, name);
+    entries[index].name = (char *)func_001E8AA5(strlen(name) + 1);
+    strcpy((char *)entries[index].name, name);
     return index;
 }
 
