@@ -230,6 +230,9 @@ int __stdcall func_001DD3A1(int h, int a, int b, int c);
 int __stdcall func_001DD15A(int h, int buf, int len, int *n, void *ovl);
 int __stdcall func_001DD670(int h, void *ovl, int *n, int wait);
 int func_001DD603(void);
+int __stdcall func_0023F724(void *p, void *self);
+int __stdcall func_0024001F(void *h);
+int __stdcall func_0023F770(void *h, int *p);
 
 struct C_0023ED4C {
     int func_0023ED4C(S_0023ED4C_Src *src, S_0023ED4C_Out *out);
