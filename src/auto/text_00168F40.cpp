@@ -314,6 +314,92 @@ void C_00168F40::func_001692E0(int h)
  if(f10>0) f18[f10-1].size=n-f18[f10-1].size-1;
 }
 
+int C_00168F40::func_00169490(int name, int flag)
+{
+    char tag[7];
+    unsigned int count;
+    char *p;
+    int i;
+
+    if (f18 != 0) {
+        func_001E8390(f18);
+        f18 = 0;
+        f10 = 0;
+    }
+    if (f0 != -1) {
+        D_002BEAAC->func_0013C110(f0);
+        f0 = -1;
+    }
+    if (f4B8 != 0) {
+        func_001E8390(f4B8);
+        f4B8 = 0;
+    }
+    if (f4C0 != 0) {
+        func_001E8390(f4C0);
+        f4C0 = 0;
+    }
+    if (flag != 0) {
+        f0 = D_002BEAAC->func_0013C9F0(name, D_00288038);
+        if (f0 == -1) {
+            return 0;
+        }
+        f8 = (void *)1;
+        *(int *)padC = 1;
+        f428 = 0;
+        f4 = 0;
+    } else {
+        f0 = D_002BEAAC->func_0013C9F0(name, D_00275FB4);
+        if (f0 == -1) {
+            return 0;
+        }
+        f428 = 0;
+        *(int *)&f8 = 1;
+        *(int *)&padC = 0;
+        D_002BEAAC->func_0013C8A0(f0, tag, 7, 1);
+        tag[6] = 0;
+        if (memcmp(tag, D_00288030, 7) == 0) {
+            f4 = 1;
+            D_002BEAAC->func_0013C8A0(f0, &flag, 4, 1);
+            if (flag != 1) {
+                D_002BEAAC->func_0013C110(f0);
+                f0 = -1;
+                return 0;
+            }
+            D_002BEAAC->func_0013C8A0(f0, &count, 4, 1);
+            if (count < 1) {
+                D_002BEAAC->func_0013C110(f0);
+                f0 = -1;
+                return 0;
+            }
+            f10 = count;
+            f4C8 = func_001E8AA5(count << 10);
+            if (f4C8 == 0) {
+                D_002BEAAC->func_0013C110(f0);
+                f0 = -1;
+                return 0;
+            }
+            p = (char *)f4C8;
+            i = 0;
+            do {
+                name = 0;
+                D_002BEAAC->func_0013C8A0(f0, &name, 4, 1);
+                D_002BEAAC->func_0013C8A0(f0, p, name, 1);
+                p += 0x400;
+                i++;
+            } while (i != f10);
+            f4BC = f10 << 3;
+            f4B8 = (S_00168F40_Index *)func_001E8AA5(f4BC);
+            D_002BEAAC->func_0013C8A0(f0, f4B8, f4BC, 1);
+            return 1;
+        }
+        f4 = 0;
+        D_002BEAAC->func_0013AFF0(f0, 0, 0);
+    }
+    func_001692E0(f0);
+    f424 = 0;
+    return 1;
+}
+
 int C_00168F40::func_00169A50(char *line)
 {
     char clean[0x400];
