@@ -449,6 +449,41 @@ void *JoystickDevice::func_0015B010(unsigned int flags)
     return this;
 }
 
+int JoystickDevice::func_0015B060(C_00135D70 *p, int a, int b)
+{
+    S_0015A660_List *l;
+
+    p->f1C = a;
+    p->f0 = this;
+    p->f20 = b;
+    l = &lists[p->f8];
+    if (l->count < l->capacity || l->func_0015ACA0(l->f8 + l->count)) {
+        l->data[l->count] = p;
+        l->count++;
+    }
+    switch (p->f8) {
+    case 0:
+        p->func_00135D70(-2, -3);
+        break;
+    case 1:
+        p->func_00135D70(-5, -4);
+        break;
+    case 2:
+        p->func_00135D70(-7, -6);
+        break;
+    case 3:
+        p->func_00135D70(-9, -8);
+        break;
+    case 4:
+        p->func_00135D70(-11, -10);
+        break;
+    case 5:
+        p->func_00135D70(-13, -12);
+        break;
+    }
+    return 1;
+}
+
 C_0015B150* C_0015B150::func_0015B150(void) {
     extern int D_002876E0;
     unk0 = (int)&D_002876E0;
