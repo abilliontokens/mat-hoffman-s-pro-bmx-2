@@ -1,6 +1,9 @@
 /* 7 functions from 0x000195B0 to 0x0001A5A6, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct S_1A400_Pos { char pad[0x24]; float x, y, z; float w; };
+struct S_1A400_Arg { S_1A400_Pos *p; char pad[4]; float f8; char pad2[0xC]; float f18, f1C, f20; };
+struct C_1A400 { void func_0001A400(S_1A400_Arg *a, float t); };
 struct C_0001A3E0 {
     undefined4 func_0001A3E0(byte param_1);
 };
