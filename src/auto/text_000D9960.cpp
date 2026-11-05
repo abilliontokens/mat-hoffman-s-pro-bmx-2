@@ -248,11 +248,4 @@ void BmxUIPageViewVideosTitle::func_000DA320()
     }
     func_001BE3F0();
 }
-struct S_9DC0_Q { void func_0005BED0(int a, int b, float *f, char *s); };
-struct S_9DC0_A { char pad[0x2c0]; S_9DC0_Q *q; };
-struct S_9DC0_B { char pad[0x2e0]; S_9DC0_A *a; };
-extern S_9DC0_B *D_002A8490;
-extern float D_00275544, D_0027F2BC, D_00279F74, D_0027F2B8;
-extern char D_00277038[];
-extern int D_0028F5DC;
-extern "C" int func_001ADCC0(char *buf, int n, char *fmt, ...);
+
