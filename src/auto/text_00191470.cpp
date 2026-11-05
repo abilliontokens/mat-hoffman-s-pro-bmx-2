@@ -107,9 +107,9 @@ static __inline const int &Min(const int &a, const int &b)
     return a > b ? b : a;
 }
 
-static __inline void ZeroMatrix(S_00192310_Mat &m)
+static __inline void ZeroMatrix(S_00192310_Mat *&p)
 {
-    __m128 *v = (__m128 *)&m;
+    __m128 *v = (__m128 *)p;
 
     v[0] = _mm_setzero_ps();
     v[1] = _mm_setzero_ps();
