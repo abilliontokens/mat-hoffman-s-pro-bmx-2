@@ -431,6 +431,11 @@ int __stdcall func_001DF375(int a)
     return 0;
 }
 
+unsigned long __stdcall func_001DF456(u32 valueIndex, u32 *type, void *value, u32 valueLength, u32 *resultLength)
+{
+    return __imp__RtlNtStatusToDosError(ExQueryNonVolatileSetting(valueIndex, type, value, valueLength, resultLength));
+}
+
 u32 func_001DF4BC(void)
 {
     u32 type;
@@ -492,6 +497,11 @@ int func_001DF5B3(void) {
     return D_002F6BB4;
 }
 
+void __stdcall func_001DF5B9(unsigned int a, int b)
+{
+    func_001E0AE0(D_002F6BB4, (a >> 3) & 8, b);
+}
+
 int __stdcall func_001DF5D6(int a)
 {
     return func_001E1297(D_002F6BB4, 0, a) ? 0 : a;
@@ -513,7 +523,6 @@ void __stdcall func_001DF746(S_Heap *heap, S_FreeNode *node)
     node->addr = 0;
     node->size = 0;
 }
-#pragma optimize("s", on)
 #pragma optimize("y", off)
 void __stdcall func_001DF767(S_Heap *heap, unsigned int addr, unsigned int size)
 {
@@ -525,7 +534,7 @@ void __stdcall func_001DF767(S_Heap *heap, unsigned int addr, unsigned int size)
         if (n == 0) {
             break;
         }
-        if (n->addr > addr) {
+        if (addr < n->addr) {
             if (addr + size == n->addr) {
                 n->size += size;
                 n->addr = addr;
@@ -536,7 +545,7 @@ void __stdcall func_001DF767(S_Heap *heap, unsigned int addr, unsigned int size)
             }
             break;
         }
-        if (n->addr + n->size == addr) {
+        if (addr == n->addr + n->size) {
             size += n->size;
             addr = n->addr;
             *link = n->next;
