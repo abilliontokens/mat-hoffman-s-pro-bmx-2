@@ -4,7 +4,8 @@
 #include <xmmintrin.h>
 extern float D_00287890, D_00287880, D_00287870, D_00275544, D_0027A060;
 void func_0011AC30(void*,void*);
-static __forceinline void Normalize_DD80(float *volatile out, const float *volatile in) {
+static __forceinline void Normalize_DD80(float *volatile outArg, const float *volatile inArg) {
+ const float *in=inArg; float *out=outArg;
  __m128 v=_mm_loadu_ps(in), sq=_mm_mul_ps(v,v);
  __m128 len=_mm_add_ss(_mm_movehl_ps(sq,sq),sq);
  len=_mm_add_ss(len,_mm_shuffle_ps(sq,sq,0xe1));
