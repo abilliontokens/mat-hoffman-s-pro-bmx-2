@@ -150,6 +150,16 @@ undefined4 C_001488F0::func_001488F0(byte param_1)
   return in_ECX;
 }
 
+void *C_00149280::func_00149280(int a0)
+{
+  int __stdcall func_001B0E60(int);
+  extern int D_00286808;
+
+  func_001B0E60(a0);
+  vtbl = (void *)&D_00286808;
+  return this;
+}
+
 void C_00149300::func_00149300(void)
 {
   int* in_ECX = (int*)this;
