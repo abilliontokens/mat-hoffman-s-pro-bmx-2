@@ -90,7 +90,7 @@ struct C_000ABBC0_Sub {
 struct C_000ABBC0_Obj {
     char pad0[0x104];
     int f104;
-    char pad108[4];
+          int f108;
     int f10C;
     C_000ABBC0_Sub **f110;
 };
