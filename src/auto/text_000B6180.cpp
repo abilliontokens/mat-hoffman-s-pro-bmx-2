@@ -22,13 +22,12 @@ struct C_000B6640_Obj {
 };
 
 struct V4_000B6840 {
-    int x;
-    float y, z, w;
+    float x, y, z, w;
 };
 
 struct V4Init_000B6840 : V4_000B6840 {
-    V4Init_000B6840() { x = 0; y = z = 0; w = 1; }
-    V4Init_000B6840(int a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
+    V4Init_000B6840() { x = y = z = 0; w = 1; }
+    V4Init_000B6840(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
 };
 
 struct C_000B6840_Mgr;
