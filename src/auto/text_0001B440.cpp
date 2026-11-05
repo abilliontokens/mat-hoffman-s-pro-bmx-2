@@ -67,14 +67,28 @@ struct C_0001B790 {
     void func_0001B8A0(S_0001B790_Obj *obj);
 };
 
+struct S_0001B910_Node;
+struct S_0001B910_Anim;
+
 struct S_0001BAC0_Obj {
-    char pad0[0x78];
+    char pad0[0x64];
+    int *f64;
+    char pad68[8];
+    int *f70;
+    char pad74[4];
     int *f78;
-    char pad7C[0xc];
+    char pad7C[8];
+    int f84;
     int f88;
-    char pad8C[0x4];
+    int f8C;
     int f90;
+    int *f94;
+    char pad98[4];
+    int f9C;
+    char padA0[0x104];
+    S_0001B910_Anim *f1A4;
     int func_001B5750(int slot);
+    S_0001B910_Node *func_001B56F0(void);
 };
 
 struct S_0001BAC0_List {
