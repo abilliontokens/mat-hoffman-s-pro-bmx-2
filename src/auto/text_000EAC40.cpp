@@ -4,7 +4,24 @@
 extern int D_00281B34;
 
 struct C_NumHorse_Lookup { int *func_0018C160(int a); };
-struct C_NumHorse_Root { char pad0[0x2E8]; void *p2E8; C_NumHorse_Lookup *p2EC; };
+/* string table of the settings record */
+struct S_000EB460_Strings {
+    char pad0[0x7C8];
+    char *f7C8;
+    char pad7CC[0x900 - 0x7CC];
+    char *f900;
+    char pad904[0x918 - 0x904];
+    char *f918;
+    char pad91C[0x978 - 0x91C];
+    char *f978;
+};
+
+struct S_000EB460_Mid {
+    int f0;
+    S_000EB460_Strings *f4;
+};
+
+struct C_NumHorse_Root { char pad0[0x2E8]; S_000EB460_Mid *p2E8; C_NumHorse_Lookup *p2EC; };
 struct C_NumHorse_Clamp { char pad0[0x10]; float f10, f14; };
 struct C_NumHorse_Mid { C_NumHorse_Clamp *func_0018C070(); };
 struct C_NumHorse_Sub { C_NumHorse_Clamp *func_001D5AA0(); };
