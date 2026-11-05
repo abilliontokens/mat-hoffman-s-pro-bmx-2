@@ -1,6 +1,19 @@
 /* 13 functions from 0x0005E600 to 0x0005F3C0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+extern "C" void *memset(void *dst, int c, unsigned int n);
+extern int D_00278484;
+extern int D_002A1CB0;
+extern int D_002A1CB4;
+extern int D_002A1CB8;
+extern int D_002A1CBC;
+
+struct C_0005E600 {
+    int w[0x38];
+    void func_00157600(int a0);
+    C_0005E600 *func_0005E600(int a0);
+};
+
 struct C_0005E9D0 {
     void func_0005E9D0(float param_1);
 };
