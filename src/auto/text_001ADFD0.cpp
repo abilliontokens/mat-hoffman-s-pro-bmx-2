@@ -152,7 +152,14 @@ struct C_001AE3E0 : C_001AE3E0_Head {
     int f74;
     int f78;
     char pad7C[8];
-    unsigned char f84;
+    union {
+        unsigned char f84;
+        struct {
+            unsigned char f84_0 : 1;
+            unsigned char f84_1 : 1;
+            unsigned char f84_2 : 1;
+        };
+    };
     C_001AE3E0(int param_1);
     void func_001AE460(void);
     void func_001AE4D0(int a, int b, int c, int d, int e, int f, int g, int h, int idx);
@@ -442,3 +449,55 @@ undefined4 C_001AEBB0::func_001AEBB0(byte param_1)
   }
   return in_ECX;
 }
+
+C_001AE3E0 *C_001AE3E0::func_001AEBD0(int a1, int a2, float *a3, int a4, float a5, int a6, int a7, int a8, float a9, float a10, float a11, int a12, char a13)
+{
+    float tmp[4];
+    void *mem;
+    S_001AEBD0_Ref *ref;
+    unsigned char r;
+    unsigned char g;
+    unsigned char b;
+    unsigned int color;
+
+    f24 = a8;
+    f40 = *(C_001AE3E0_Quat *)func_0001E9E0(tmp, a3);
+    f2C = a5;
+    f28 = a4;
+    f84 ^= (f84 ^ (a13 << 2)) & 4;
+    mem = func_001E8A44(0x6c);
+    f54 = mem ? ((S_001AEBD0_Sprite *)mem)->func_001ADEB0() : 0;
+    f54->func_001ADF30(a1, (int)this);
+    f54->f3C = f54->f40 = f2C;
+    f54->f64 = 0;
+    f54->col[0].c.a = 0;
+    f54->col[1].c.a = 0;
+    f54->col[2].c.a = 0;
+    f54->col[3].c.a = 0;
+    r = (unsigned char)a9;
+    g = (unsigned char)a10;
+    b = (unsigned char)a11;
+    color = ((((0xffffff00 | r) << 8) | g) << 8) | b;
+    f54->col[0].rgba = color;
+    f54->col[1].rgba = color;
+    f54->col[2].rgba = color;
+    f54->col[3].rgba = color;
+    f54->f34 = a6;
+    f54->f38 = a7;
+    f54->f2C = 0;
+    f54->f30 = 0;
+    f58.func_001D54B0(a2);
+    ref = new S_001AEBD0_Ref;
+    f58.f8 = (C_001ADFD0_Virt *)ref;
+    ref->f4 = this;
+    f58.f4->fC &= 0xfe;
+    f58.f4->f10 = f58.f8;
+    f38 = (C_001AE3E0_Vec4 *)func_001E8A44(f24 << 4);
+    f3C = (C_001AE3E0_Vec4 *)func_001E8A44(f24 << 4);
+    f64 = func_001E8AA5(0x400);
+    if (D_002EFDB8 == 0 || D_002EFDB8->cam == 0) {
+        f34 = 0;
+    }
+    return this;
+}
+
