@@ -285,7 +285,20 @@ struct S_001B0040_list {
     S_001B0040_item items[1];
 };
 
+struct C_001491E0 {
+    int unk0, unk4;
+    C_001491E0 *func_001491E0(void *src);
+};
+struct C_001488B0 {
+    int unk0, unk4;
+    C_001488B0 *func_001488B0(void *src);
+};
 struct C_001AFD90 {
+    int unk0, unk4, unk8;
+    C_001AF360 *items[4];
+    C_001491E0 *unk1C;
+    C_001488B0 *unk20;
+    int unk24, unk28;
     void *func_001AFD90(S_001B0040_owner *owner);
 };
 
