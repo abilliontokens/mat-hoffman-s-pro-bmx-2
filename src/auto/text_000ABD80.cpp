@@ -1,6 +1,48 @@
 /* 19 functions from 0x000ABD80 to 0x000ACD50, found by Ghidra. */
 #include "common.h"
 
+struct C_000AC8F0_Cfg {
+    int func_00169710(const char *name);
+    int func_00168A10(const char *key, int *dst);
+    int func_00168550(const char *key, char *dst, int size);
+    int func_00168BE0(const char *k1, const char *k2, char *dst, int size);
+};
+struct C_000AC8F0_Obj {
+    char pad0[0x24];
+    char f24[0x3c];
+    char f60[0x78];
+    int fD8;
+    int fDC;
+    int fE0;
+    int fE4;
+    char pad[0x118 - 0xe8];
+    C_000AC8F0_Obj *func_001BB470(void *param);
+    void func_001BB620(void *a, void *b, const char *c, int d);
+};
+struct C_000AC8F0_Item {
+    int unk0;
+    void *unk4;
+    char pad8[0x10];
+    char name[1];
+};
+struct C_000AC8F0_List {
+    char pad0[0x24];
+    int count;
+    C_000AC8F0_Item **items;
+};
+struct C_000AC8F0 {
+    char pad0[0x28];
+    C_000AC8F0_Cfg *unk28;
+    char pad2C[0x3b4 - 0x2c];
+    C_000AC8F0_List *unk3B4;
+    char pad3B8[0x568 - 0x3b8];
+    int unk568;
+    C_000AC8F0_Obj **unk56C;
+    char pad570[0x5bc - 0x570];
+    int unk5BC;
+    void func_000AC8F0(void);
+};
+
 struct C_000AC140 {
     void *vtbl;
     C_000AC140 *func_000AC140();
