@@ -6,6 +6,7 @@ struct C_0013C8A0 {
     void func_0013C8A0(int key, void *out, int size, int flag);
 };
 extern C_0013C8A0 *D_002BEAAC;
+void *func_001E8A44(int size);
 struct C_001449B0 {
     virtual void v0();
     virtual void v1();
