@@ -132,3 +132,13 @@ struct C_001A5F40 {
     void func_001577A0(void *a, int b);
     C_001A5F40 *func_001A5F40(void *a, int b);
 };
+
+C_001A5E40 *C_001A5E40::func_001A5E40(void *param)
+{
+    ((C_00157600 *)this)->func_00157600(param);
+    f24 = 0;
+    f28 = 0;
+    f2c = 0;
+    vtbl = (void *)&D_0028BA74;
+    return this;
+}
