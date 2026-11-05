@@ -69,5 +69,3 @@ int func_00126770(S_00126770_Rec *src, S_00126770_Rec *outA, S_00126770_Rec *out
     }
     return 0;
 }
-struct S_001268E0_Vec { float f[4]; };
-struct S_001268E0_Rec { S_001268E0_Vec a, b; };
