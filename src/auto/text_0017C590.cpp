@@ -50,3 +50,22 @@ struct C_0017D190 {
     int fac;
     void func_0017D190(void);
 };
+
+QuadTreeNode *QuadTreeNode::func_0017CE10(void)
+{
+    vtbl = (void *)&D_002890E8;
+    f8 = 0;
+    f4 = 0;
+    D_002EFD80->f880++;
+    fc = 0;
+    f10 = 0xff7fffff;
+    return this;
+}
+
+void C_0017D190::func_0017D190(void)
+{
+    fa0 = f9c;
+    fc++;
+    fa4 = 0;
+    fac = 0;
+}
