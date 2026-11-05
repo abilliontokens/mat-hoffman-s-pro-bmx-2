@@ -144,20 +144,54 @@ struct C_001B1800 {
     void func_001B1800(int param_1);
 };
 
+struct ShaderNode {
+    ShaderNode *next;
+    int value;
+};
+
+struct ShaderNodePool {
+    virtual void vv0();
+    virtual void vv1();
+    virtual void release();
+    ShaderNodePool *func_0001E740(int size, int count);
+    ShaderNode *func_0001E8A0();
+};
+
 struct C_001B0E60 {
     void *vtbl;
     u32 unk4;
     u32 unk8;
     u32 unkC;
-    u32 unk10;
-    u32 unk14;
-    u32 unk18;
-    u32 unk1C;
+    ShaderNode *unk10;
+    ShaderNode *unk14;
+    int unk18;
+    C_001B0E60 *unk1C;
     u32 unk20;
     u32 unk24;
     C_001B0E60(int param_1);
     void func_001B0E60(int param_1);
+    void func_001B0EA0(int value, C_001B0E60 **first);
+    void *func_001B10F0(int flags);
 };
+
+struct SurfaceShaderObj {
+    virtual void destroy(int flags);
+};
+
+struct SurfaceShaderList {
+    void *vtbl;
+    int count;
+    int frame;
+    ShaderNodePool *pool;
+    SurfaceShaderObj *shaders[0x1000];
+    SurfaceShaderList *func_001B0F10();
+    void func_001B0F70();
+};
+
+extern SurfaceShaderList *D_002F0630;
+extern int D_0028C6F8;
+void *func_001E8A44(unsigned int size);
+void func_001E891B(void *p);
 
 struct Elem_001B0DC0 {
     void func_001B0970(void);
