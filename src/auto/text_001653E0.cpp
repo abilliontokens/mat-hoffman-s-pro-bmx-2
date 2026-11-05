@@ -87,6 +87,32 @@ struct C_00165E20 {
 };
 
 void *func_001E8AA5(unsigned int size);
+void *func_001E8A44(unsigned int size);
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+char *func_001EA1EE(char *str);
+char *func_001E95A4(char *s, const char *delim);
+extern char D_00275678[];
+extern char D_00287E50[];
+extern char D_00287E40[];
+extern int D_00276274;
+
+struct C_0013B210 {
+    int func_0013C9F0(char *name, int *mode);
+    int func_0013C6E0(int h, char *buf, int size);
+    void func_0013C110(int h);
+};
+extern C_0013B210 *D_002BEAAC;
+
+struct C_00166190 {
+    char pad0[0xE8];
+    char fE8[0xA8];            /* 0xE8 */
+    char f190[0x58];           /* 0x190 */
+    int f1E8;                  /* 0x1E8 */
+    char pad1EC[4];
+    int *f1F0;                 /* 0x1F0 */
+    unsigned char func_00164650(const char *name);
+    void func_00166190(void);
+};
 
 struct C_00165980 {
     char pad0[0x1e8];
