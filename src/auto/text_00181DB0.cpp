@@ -25,6 +25,50 @@ struct C_00182800 {
     void func_00182800(void);
 };
 
+struct C_00182730 {
+    undefined4 func_00182730(byte param_1);
+};
+
+struct C_00181DB0_Mgr {
+    void func_001B0520(void *a0);
+    void func_001B05A0(int a0, int a1, void *a2);
+};
+
+struct C_00181DB0_Entry {
+    int f0;
+    C_00181DB0_Mgr *f4;
+};
+
+struct C_00181DB0_Global {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6(int a0, int a1);
+    char pad4[0x10];
+    C_00181DB0_Entry *f14;
+    char pad18[8];
+    char f20;
+    int func_00161850(int a0);
+    void func_001B26C0(int a0);
+};
+
+extern C_00181DB0_Global *D_002A829C;
+
+struct C_00181DB0 {
+    char pad0[0x1A1];
+    char f1A1;
+    char pad1A2[0x12];
+    int f1B4;
+    int *f1B8;
+    int f1BC;
+    void func_00181DB0(int a0);
+    int func_00182020(int a0, int a1);
+    void func_001820B0(int a0, int a1, int a2);
+};
+
 
 longdouble C_00182530::func_00182530(undefined4 param_1)
 {
