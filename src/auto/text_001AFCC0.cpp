@@ -580,6 +580,15 @@ void C_001B0620::func_001B0620(void)
   return;
 }
 
+void C_001B0230::func_001B07A0(void)
+{
+    int i;
+
+    for (i = 0; i < unk50; i++) {
+        arr54[i]->v6();
+    }
+}
+
 int C_001B0230::func_001B07D0(int idx, void *arg)
 {
     if (arr54[idx] != 0) {
