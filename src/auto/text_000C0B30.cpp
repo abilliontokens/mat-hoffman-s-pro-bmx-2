@@ -30,6 +30,7 @@ struct BmxUIPageDemo {
     int GetItem(int i) { return i >= unk290 ? -1 : items[i]; }
     int func_000C0B30(int idx);
     int func_000C0CB0(int idx);
+    int func_000C1710(int idx);
 };
 
 int BmxUIPageDemo::func_000C0100(int idx)
