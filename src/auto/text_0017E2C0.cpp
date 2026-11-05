@@ -53,3 +53,14 @@ void RadiusLineCollisionObject::func_0017E8E0(int param_1)
     unkA7 = unkA7 & 0xef;
     func_00157A00(param_1);
 }
+
+void *C_0017EE30::func_0017EE30(unsigned int flags) {
+    vtbl = &D_00289134;
+    func_00133070();
+    func_00133E60();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
