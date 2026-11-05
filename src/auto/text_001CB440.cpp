@@ -624,11 +624,14 @@ int C_001CBF20::func_001CBF20(void)
 int C_001CBF20::func_001CBF60(void)
 {
     int e;
+    int h;
 
     if (!(f2C & 1)) {
         return 0;
     }
-    if ((e = func_0022195C(f30)) < 0) {
+    h = f30;
+    e = func_0022195C(h);
+    if (e < 0) {
         func_001CBC10(e, &D_0028EECC, 0x1f1);
         return 0;
     }
