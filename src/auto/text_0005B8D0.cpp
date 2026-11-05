@@ -175,6 +175,16 @@ struct S_0005B8D0_Pair {
     int b;
 };
 
+struct C_0005B960 {
+    float f0[25];
+    float f64[25];
+    float fC8[25];
+    int i12C[25];
+    int i190[25];
+    int i1F4[25];
+    int func_0005B960(int sel, float val);
+};
+
 struct C_0005B8D0 {
     char pad0[0xCF0];
     S_0005B8D0_Pair pairs[0x12];
