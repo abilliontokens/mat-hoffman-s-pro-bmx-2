@@ -501,6 +501,38 @@ int C_001D5170::func_001D5170(int param_1)
     return func_001D5110(func_001B2BF0(param_1));
 }
 
+void __stdcall func_001D5190(int surface)
+{
+    char path[0x104];
+    int mr;
+    int mb;
+    int ma;
+    S_001D5190_Desc desc;
+    int mg;
+    S_001D5190_Lock lock;
+    void *file;
+    int bpp;
+
+    func_001ADCC0(path, 0x104, D_0028F5BC, D_002F0B8C);
+    file = func_0014FDF0(path, D_00276274);
+    while (file) {
+        func_0014FE50(file);
+        func_001ADCC0(path, 0x104, D_0028F5BC, ++D_002F0B8C);
+        file = func_0014FDF0(path, D_00276274);
+    }
+    func_002011F0(surface, &desc);
+    func_00201210(surface, &lock, 0, 0x40);
+    bpp = func_001B2B90(desc.Format);
+    if (bpp == 0x10) {
+        func_001B29F0(func_001B2C40(desc.Format), &ma, &mr, &mg, &mb);
+        func_001B3AF0(lock.pBits, desc.Width, desc.Height, lock.Pitch, mg, path, 0x20);
+    } else if (bpp == 0x18) {
+        func_001B39B0(lock.pBits, desc.Width, desc.Height, lock.Pitch, path, 0x20);
+    } else if (bpp == 0x20) {
+        func_001B3A50(lock.pBits, desc.Width, desc.Height, lock.Pitch, path, bpp);
+    }
+}
+
 void C_001D52F0::func_001D52F0(float a, float b)
 {
     float r;
