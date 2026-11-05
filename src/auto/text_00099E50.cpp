@@ -86,7 +86,8 @@ struct C_0009A100 {
     int fC;
     int f10;
     int f14;
-    char pad18[0x180];
+    int f18;
+    char pad1C[0x17C];
     S_0009A100_Holder *f198;
     /* the three lists and their lengths, by index */
     S_0009A100_Obj **List(int which) {
