@@ -56,7 +56,7 @@ float func_00016D20(float x)
         return x - D_002756B8;
     }
     if (x < D_002756E8) {
-        return x + D_002756B8;
+        return x + 6.2831855f;
     }
     return x;
 }
