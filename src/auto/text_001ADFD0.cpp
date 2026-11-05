@@ -124,6 +124,11 @@ struct S_001AEBD0_Sprite : C_001ADFD0_Virt {
     unsigned char f64;
     S_001AEBD0_Sprite *func_001ADEB0(void);
     void func_001ADF30(int a, int b);
+    void SetScale(float s)
+    {
+        f3C = s;
+        f40 = s;
+    }
     void SetAlpha(unsigned char alpha)
     {
         unsigned int c = (unsigned int)alpha << 24;
@@ -469,29 +474,22 @@ C_001AE3E0 *C_001AE3E0::func_001AEBD0(int a1, int a2, float *a3, int a4, float a
     float tmp[4];
     void *mem;
     S_001AEBD0_Ref *ref;
-    unsigned char r;
-    unsigned char g;
-    unsigned char b;
     unsigned int color;
+    float v;
 
     f24 = a8;
     f40 = *(C_001AE3E0_Quat *)func_0001E9E0(tmp, a3);
     f2C = a5;
     f28 = a4;
-    f84 ^= (f84 ^ (a13 << 2)) & 4;
+    f84_2 = a13;
     mem = func_001E8A44(0x6c);
     f54 = mem ? ((S_001AEBD0_Sprite *)mem)->func_001ADEB0() : 0;
     f54->func_001ADF30(a1, (int)this);
-    f54->f3C = f54->f40 = f2C;
-    f54->f64 = 0;
-    f54->col[0].c.a = 0;
-    f54->col[1].c.a = 0;
-    f54->col[2].c.a = 0;
-    f54->col[3].c.a = 0;
-    r = (unsigned char)a9;
-    g = (unsigned char)a10;
-    b = (unsigned char)a11;
-    color = ((((0xffffff00 | r) << 8) | g) << 8) | b;
+    v = f2C;
+    f54->f3C = v;
+    f54->f40 = v;
+    f54->SetAlpha(0);
+    color = MakeColor_001AEBD0(-1, (unsigned char)a9, (unsigned char)a10, (unsigned char)a11);
     f54->col[0].rgba = color;
     f54->col[1].rgba = color;
     f54->col[2].rgba = color;
