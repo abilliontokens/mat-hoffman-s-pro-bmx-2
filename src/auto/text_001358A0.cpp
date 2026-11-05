@@ -13,12 +13,55 @@ struct C_00135D70 {
 };
 
 
+/* binding table: 9 rows of 0x4a entries; rows 1..8 are the per-player ones */
 struct C_00135CB0 {
+    int tbl[9][0x4a];
     void func_00135CB0();
     void func_00135D00(int a0, int a1);
+    void func_00135D30(int idx, int *out, int row);
 };
 extern int D_002BA700;
 extern void *D_002A8490;
+extern int D_00284834;
+
+struct S_00136300_Target {
+    virtual void v0(int a);
+};
+
+struct C_00136300 {
+    S_00136300_Target *f0;
+    int f4;
+    void func_00136300(void);
+};
+
+struct C_00135D90 {
+    char pad0[0x24];
+    float f24;
+    float f28;
+    float f2C;
+    float f30;
+    float f34;
+    float f38;
+    void func_00135D90(float a, float b);
+};
+
+/* ControlInterface */
+struct C_00135E00 {
+    void *vtbl;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    int f14[8];
+    int f34;
+    int f38;
+    int f3C;
+    char pad40[0xc80];
+    int fCC0;
+    int fCC4[8];
+    int fCE4[8];
+    C_00135E00 *func_00135E00(void);
+};
 
 undefined4 C_00135A60::func_00135A60(byte param_1)
 {
