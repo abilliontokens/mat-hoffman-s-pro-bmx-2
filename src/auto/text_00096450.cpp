@@ -61,6 +61,23 @@ struct C_00096740 {
     int func_00096740(void);
 };
 
+struct C_00096930_Elem {
+    int f0;
+    char pad4[0x3c];
+    int f40;
+    char pad44[0x6388 - 0x44];
+    void *ptrs[10];
+    float vals[10];
+};
+
+struct C_00096930 {
+    char pad0[0x1b8];
+    int f1b8;
+    char pad1bc[0x1c8 - 0x1bc];
+    C_00096930_Elem **f1c8;
+    void func_00096930(void);
+};
+
 struct C_00096750_Elem {
     int f0;
     char pad4[0x2550];
