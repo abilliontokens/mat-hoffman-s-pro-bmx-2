@@ -45,7 +45,68 @@ struct ElemC {
     unsigned char b58;
 };
 
+struct RenderEntryC8 {
+    char pad0[0x38];
+    u32 f38;
+    char pad3C[0x1C];
+    u8 b58;
+    void func_001D5AD0();
+};
+
+struct MgrC8 {
+    char pad0[0x24];
+    RenderEntryC8 *unk24;
+    RenderEntryC8 *unk28;
+    RenderEntryC8 *unk2C;
+    RenderEntryC8 *unk30;
+    char pad34[0x50 - 0x34];
+    RenderEntryC8 *unk50;
+    char pad54[0x68 - 0x54];
+    RenderEntryC8 *unk68;
+    char pad6C[0x88 - 0x6C];
+    RenderEntryC8 *unk88;
+    RenderEntryC8 *unk8C;
+    RenderEntryC8 *unk90;
+    RenderEntryC8 *unk94;
+};
+extern MgrC8 *D_002B91AC;
+
+struct ObjC8_301D0 {
+    int func_000301D0();
+};
+struct ObjC8_B {
+    char pad0[0x74];
+    ObjC8_301D0 *f74;
+};
+struct ObjC8_A {
+    char pad0[0x25C];
+    ObjC8_B *f25C;
+};
+struct ObjC8_Sel {
+    char pad0[4];
+    struct ObjC8_Sel2 *f4;
+};
+struct ObjC8_Sel2 {
+    char pad0[0x30];
+    int f30;
+};
+struct ObjC8_Sel3 {
+    char pad0[4];
+    ObjC8_Sel2 *f4;
+};
+
 struct C_000C8D30 {
+    char pad0[0x124];
+    ObjC8_A *f124;
+    char pad128[0x140 - 0x128];
+    ObjC8_Sel3 *f140;
+    char pad144[0x280 - 0x144];
+    int f280;
+    char pad284[0x294 - 0x284];
+    int f294;
+    int f298;
+    char pad29C[0x2D8 - 0x29C];
+    RenderEntryC8 *arr2D8[4];
     void func_000C8D30();
 };
 
