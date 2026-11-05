@@ -111,6 +111,9 @@ struct BmxUIPageParkLevel {
         PageObj *f2f0[6];
         Mat *m2f0[6];
     };
+    BmxUIPageParkLevel *func_000C6720(int a, int b, int c);
+    void func_001BE4F0(int a, int b, int c);
+    void func_001577A0(C_000C6CA0_Widget *w, int a);
     void func_001BE360(int a);
     void func_001BE3F0();
     BmxUIPageParkLevel *func_000C6620(int a);
