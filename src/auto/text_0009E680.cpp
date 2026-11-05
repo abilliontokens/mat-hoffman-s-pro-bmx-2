@@ -48,6 +48,13 @@ struct C_0009EDB0 {
     void func_0009F4C0(char param_1);
 };
 
+void C_0009EDB0::func_0009EDB0(char param_1) {
+    if (!(b1)) {
+        v34 = v24;
+    }
+    b1 = param_1;
+}
+
 void *C_0009F4F0::func_0009F4F0(int flags) {
     unk0 = (int)&D_0027AA3C;
     func_00169DE0();
