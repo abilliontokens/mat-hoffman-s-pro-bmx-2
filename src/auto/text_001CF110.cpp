@@ -102,6 +102,15 @@ struct XboxSoundInterface {
 };
 
 
+void XboxMusic::func_001CF110(IntArray *list)
+{
+    int i;
+    tracks[currentTrack].list.Clear();
+    for (i = 0; i < list->count; i++) {
+        tracks[currentTrack].list.Add(list->Get(i));
+    }
+}
+
 undefined4 C_001CFAE0::func_001CFAE0(byte param_1)
 {
   int func_001CE920(...);
