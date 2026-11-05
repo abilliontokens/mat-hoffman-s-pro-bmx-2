@@ -11,6 +11,7 @@ struct BmxUIPageMain {
     void func_000C58A0(void);
 };
 
+void func_000C58A0_test(void);
 extern int D_0027E14C;
 
 struct PageObj_5580 {
