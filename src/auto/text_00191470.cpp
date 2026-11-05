@@ -26,6 +26,11 @@ struct C_0018F390 {
     void func_0018F390(char *name, int id, float *value);
 };
 
+struct C_00191DD0_Node {
+    char pad0[0x140];
+    unsigned char unk140;
+};
+
 struct C_00191640_Node {
     char pad0[0x20];
     float unk20;
@@ -312,6 +317,31 @@ void func_00191C20(int name, C_0018F390 *obj)
 {
     int value = func_001E91F4(name);
     obj->func_0018F390(&D_00275630, 0x700, &value);
+}
+
+void func_00191C50(C_00191C50_Node *a, C_00191C50_Node *b, int op, C_0018F390 *obj)
+{
+    unsigned int x = a->unk130;
+    unsigned int y = b->unk130;
+    unsigned int r = 0;
+
+    switch (op) {
+    case 0x16:
+        r = y + x;
+        break;
+    case 0x17:
+        r = x - y;
+        break;
+    case 0x18:
+        r = y * x;
+        break;
+    case 0x19:
+        if (y != 0) {
+            r = x / y;
+        }
+        break;
+    }
+    obj->func_0018F390(&D_00275630, 0x700, (int *)&r);
 }
 
 void func_00191DA0(int name, C_0018F390 *obj)
