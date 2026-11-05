@@ -119,6 +119,16 @@ DynamicStringTable *DynamicStringTable::func_001AC800()
     return this;
 }
 
+void DynamicStringTable::func_001AC830()
+{
+    vtbl = &D_0028C0E0;
+    for (int i = 0; i < count; i++) {
+        if (entries[i].name)
+            func_001E8390((void *)entries[i].name);
+    }
+    func_001AC3D0();
+}
+
 undefined4 C_001AC900::func_001AC900(byte param_1)
 {
   int func_001AC3D0(...);
