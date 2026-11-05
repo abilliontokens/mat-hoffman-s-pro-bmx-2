@@ -532,6 +532,90 @@ int BmxUIPageHPHChoice::func_000F2160(int a, int b)
     return HandleKey(ui, b);
 }
 
+void C_000F22B0::func_000F22B0(float dt)
+{
+    O_000F22B0_Hph *owner = p124;
+    if (f298 != p2b4->b3b) {
+        if (f2a4 >= f2a8) {
+            f2a0 = f298;
+        } else {
+            f2a0 = (int)((float)(f298 - f29c) * (f2a4 / f2a8)) + f29c;
+            f2a4 += dt;
+        }
+    }
+    if (f2ac != 0 && f2b0 == 0) {
+        D_002B91C0 += dt;
+        if (D_002B91C0 >= D_00278C48) {
+            f2b0 = 1;
+            f2ac = 0;
+        }
+    }
+    if (f280 != 0) {
+        f2ac = 1;
+        owner->func_000BA9B0(0x31)->func_00103260(0);
+        owner->func_000BA9B0(0x32)->func_00103260(0);
+        f298 = 0xff;
+        f29c = 0;
+        f2a0 = 0;
+        f2a4 = 0.0f;
+        f2a8 = 0.25f;
+        func_001BEE50(1, 1, 0);
+        f280 = 0;
+    }
+    if (f284 != 0) {
+        O_000F22B0_Hph *o = p124;
+        o->func_000BA9B0(0x31)->func_00103350();
+        o->func_000BA9B0(0x32)->func_00103350();
+        f298 = 0;
+        f29c = 0xff;
+        f2a0 = 0xff;
+        f2a4 = 0.0f;
+        f2a8 = 0.25f;
+        f284 = 0;
+    }
+    if (f288 != 0) {
+        f290 += dt;
+        if (f290 >= D_0027DE74) {
+            switch (func_001BF050(1)) {
+            case 1:
+                G22B0->f2e0->f8 = 0;
+                G22B0->f2e0->f4 = 9;
+                G22B0->f2e0->f20 = 0;
+                G22B0->f2e0->f10 = 60.0f;
+                p124->f138 = 7;
+                p124->f134 = 0x14;
+                break;
+            case 2:
+                G22B0->f2e0->f8 = G22B0->f2e0->fc;
+                G22B0->f2e0->f20 = 0;
+                G22B0->f2e0->f10 = 60.0f;
+                G22B0->f2e0->f4 = 8;
+                owner->f264 = 1;
+                owner->f138 = 7;
+                owner->f134 = 3;
+                G22B0->f2e0->func_0005B220();
+                G22B0->f2e0->f0 = 2;
+                O_000F22B0_Btn *b = owner->func_000BA9D0(3);
+                b->f59c = 1;
+                b->f5a0 = 0;
+                owner->func_000BB7C0(G22B0->f2e0->f190);
+                break;
+            }
+            f288 = 0;
+        }
+    }
+    if (f28c != 0) {
+        f290 += dt;
+        if (f290 >= D_0027DE74) {
+            owner->f138 = 7;
+            owner->func_000BA9D0(10)->f304x = 1.0f;
+            owner->f134 = 10;
+            f28c = 0;
+        }
+    }
+    func_001BED00(dt);
+}
+
 void C_000F2600::func_000F2600()
 {
     int i;
