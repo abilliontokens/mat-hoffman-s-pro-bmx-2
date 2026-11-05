@@ -374,6 +374,36 @@ void C_0004D230::func_0004D230()
     m->f4e0->objs[f120]->func_0010C090(base + 0x688, base + 0x708, 0, 1);
 }
 
+void BmxEventHorse::func_0004D2C0() {
+    func_00031630();
+    void *p = func_001E8A44(0xf4);
+    unke4 = p ? ((H_Obj *)p)->func_00088530(1) : 0;
+    unke4 = unke4->func_00088570(((H_Global *)D_002A8490)->unk2e0->unk8);
+    p = func_001E8A44(0x134);
+    unk15c = p ? ((H_Obj *)p)->func_0005ECA0(1) : 0;
+    unk15c->func_0005EDC0(this);
+    unk15c->vf4();
+    p = func_001E8A44(0x140);
+    unk1a0 = p ? ((H_Obj *)p)->func_000715B0(1) : 0;
+    unk1a0->func_00071880(this);
+    unk1a0->vf4();
+    p = func_001E8A44(0x16c);
+    unk190 = p ? ((H_Obj *)p)->func_00066C90(1) : 0;
+    unk190->func_00066FA0(this);
+    unk190->vf4();
+    p = func_001E8A44(0xda4);
+    unk170 = p ? ((H_Obj *)p)->func_00082450(1) : 0;
+    unk170->func_0008DB70(unk64, unk64->unk4e0->unk1a8, ((H_Global *)D_002A8490)->unk2e0->unk8, 0, 0, 1, 1);
+    unk170->vf6();
+    p = func_001E8A44(0xf0);
+    unk19c = p ? ((H_Obj *)p)->func_0006C380(1) : 0;
+    unk19c->func_0006C570(this);
+    unk19c->vf4();
+    p = func_001E8A44(0xf8);
+    H_Obj *q = p ? ((H_Obj *)p)->func_00085470(1) : 0;
+    unk288 = q->func_00085630((int)unk64->unk4e0, 0);
+}
+
 void C_0004D5F0::func_0004D5F0()
 {
     if (f288 != 0) {
