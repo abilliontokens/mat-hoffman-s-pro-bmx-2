@@ -65,6 +65,18 @@ struct C_0017A860 {
 };
 
 
+void *C_0017A2E0::func_0017A2E0(unsigned int flags)
+{
+    void func_001E891B(void *);
+
+    vtbl = &D_00288ED4;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void C_0017A6F0::func_0017A6F0(int a0) {
     unk134 = a0;
 }
