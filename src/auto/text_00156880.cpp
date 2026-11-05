@@ -154,6 +154,34 @@ void Game::func_00156FC0(void)
     func_0014F9A0();
 }
 
+int Game::func_00157030(void)
+{
+    if (D_002EFDB8 != 0) {
+        D_002EFDB8->destroyObject(1);
+        D_002EFDB8 = 0;
+    }
+    if (D_002F07B8 != 0) {
+        D_002F07B8->v1();
+        if (D_002F07B8 != 0) {
+            D_002F07B8->destroyObject(1);
+        }
+        D_002F07B8 = 0;
+    }
+    f230 |= 0x10;
+    if (D_002A7CB8 != 0 && f18 != 0 && D_002A7CB8->f24 != 0) {
+        D_002A7CB8->func_00157810();
+    }
+    if (f278 != 0) {
+        f278->v2();
+        f278 = 0;
+    }
+    if (f8 != 0) {
+        f8->destroyObject(1);
+        f8 = 0;
+    }
+    return 1;
+}
+
 undefined4 C_00157290::func_00157290(byte param_1)
 {
   int func_00156FC0(...);
