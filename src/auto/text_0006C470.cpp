@@ -213,6 +213,38 @@ void C_0006C470::func_0006C470()
     func_00157660();
 }
 
+int C_0006D100::func_0006D100()
+{
+    int i;
+    Sprite_6D *e;
+
+    unk6C->func_001D5AD0();
+    unk70->func_001D5AD0();
+    if (unkB4 != 0) {
+        unkB4->func_001D5AD0();
+    }
+    for (i = 0; i < 5; i++) {
+        arr7C[i]->func_001D5AD0();
+        arr90[i]->func_001D5AD0();
+    }
+    if (!(unkDC > D_00275544)) {
+        for (i = 0; i < 4; i++) {
+            if (i == unkD0 * 2 || i == unkD0 * 2 + 1) {
+                e = arrA4[i];
+                e->f38 = (e->f38 & 0xffbfa35a) | 0xbfa35a;
+                e->b58 |= 2;
+                arrA4[i]->func_001D5AD0();
+            }
+        }
+        if (unkE0 != 0) {
+            unkC0->func_001D5AD0();
+            return 1;
+        }
+        unkBC->func_001D5AD0();
+    }
+    return 1;
+}
+
 void C_0006D1D0::func_0006D1D0() {
     unkCC = 1;
     unkE0 = 0;
