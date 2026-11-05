@@ -4,6 +4,17 @@
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 void *func_001E8A44(int size);
 
+extern "C" char * __cdecl strcat(char *, const char *);
+extern char D_0027B524[2];
+extern char D_0027B520[3];
+extern char D_0027B51C[2];
+extern char D_0027B518[3];
+extern char D_0027B514[2];
+extern char D_0027B510[3];
+extern char D_00279258[2];
+extern char D_0027B50C[3];
+extern char D_0027B508[2];
+
 extern char D_002A60B0[];
 extern char D_002A5EA0[];
 extern char D_002A46E8[];
