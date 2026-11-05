@@ -45,6 +45,7 @@ extern float D_002DF874;
 extern float *D_002DF87C;
 
 void func_001E8390(void *p);
+int func_001E9AB6(char *buf, int count, const char *fmt, va_list ap);
 
 extern int D_00286B04;
 
@@ -318,12 +319,13 @@ float func_0014FB30(float x)
     extern float D_002756D4;
     extern float D_00275544;
     float ax = fabs_0014FB30(x);
+    float sq = ax * ax;
     float r;
 
     if (ax > D_00275460) {
-        r = D_002756D4 - ax / (ax * ax + D_00286AC0);
+        r = D_002756D4 - ax / (sq + D_00286AC0);
     } else {
-        r = ax / (ax * ax * D_00286AC0 + D_00275460);
+        r = ax / (sq * D_00286AC0 + D_00275460);
     }
     if (x < D_00275544) {
         r = -r;
@@ -337,13 +339,12 @@ void func_0014FD80(float *p)
     extern float D_002756D0;
     extern float D_002756B8;
     extern float D_002756E8;
-    float r = (float)fmod(*p, D_002843A0);
 
-    *p = r;
-    if (r > D_002756D0) {
-        *p = r - D_002756B8;
-    } else if (r < D_002756E8) {
-        *p = r + D_002756B8;
+    *p = (float)fmod(*p, D_002843A0);
+    if (*p > D_002756D0) {
+        *p = *p - D_002756B8;
+    } else if (*p < D_002756E8) {
+        *p = *p + D_002756B8;
     }
 }
 
