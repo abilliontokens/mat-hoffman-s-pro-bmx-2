@@ -122,7 +122,7 @@ struct Voice {
     int f140;
     int f144;
     char pad148[8];
-    int f150;
+    void *f150;
     int f154;
     char f158[0x14];
     short f16c;
@@ -277,29 +277,30 @@ int Voice::func_001CE770(int buf)
         f118 = f180;
     }
     f11c = (float)f118 / (float)f174;
-    if ((f10c & 0x100) && f150) {
-        f19c = f170;
-        f1a0 = f170;
-    } else {
-        if (!func_001CCC50(&f13c, 0, f170, f17a, f178, f16c, (flags >> 1) & 1,
-                           (f10c & 8) == 8, 1, f110)) {
-            if (handle != -1) {
-                D_002BEAAC->func_0013C110(handle);
-            }
-            return 0;
-        }
-        buf = f13c;
+    if (!((f10c & 0x100) && f150)) {
+        goto build;
     }
+    f19c = f170;
+    f1a0 = f170;
+join:
     if (func_001CCAC0(buf, handle, 0, f118)) {
         if (handle != -1) {
             D_002BEAAC->func_0013C110(handle);
         }
         return 1;
     }
+fail:
     if (handle != -1) {
         D_002BEAAC->func_0013C110(handle);
     }
     return 0;
+build:
+    if (!func_001CCC50(&f13c, 0, f170, f17a, f178, f16c, (flags >> 1) & 1,
+                       (f10c & 8) == 8, 1, f110)) {
+        goto fail;
+    }
+    buf = f13c;
+    goto join;
 }
 
 void XboxMusic::func_001CE920()
