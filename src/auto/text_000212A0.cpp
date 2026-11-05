@@ -1,6 +1,7 @@
 /* 17 functions from 0x000212A0 to 0x00022060, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include <math.h>
 
 extern float D_00275544;
 extern float D_00275994, D_0027554C, D_00275818, D_00276210;
@@ -442,5 +443,28 @@ int C_00021A50::func_00021A50(int idx, int v)
         return 1;
     }
     return 0;
+}
+
+float func_00021AB0(V4_000212A0 *v, float maxLen)
+{
+    V4_000212A0 n;
+    V4_000212A0 r;
+    float len;
+
+    _mm_store_ss(&len, _mm_sqrt_ss(_mm_set_ss(v->x * v->x + v->y * v->y + v->z * v->z)));
+    if (len > maxLen) {
+        n.z = 0.0f;
+        n.y = 0.0f;
+        n.x = 0.0f;
+        n.w = 1.0f;
+        func_000212C0(&n, v);
+        r.x = n.x * maxLen;
+        r.y = n.y * maxLen;
+        r.z = n.z * maxLen;
+        r.w = 1.0f;
+        *v = r;
+        return len - maxLen;
+    }
+    return D_00275544;
 }
 
