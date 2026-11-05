@@ -49,6 +49,9 @@ struct STRFLT {
     char *mantissa;
 };
 
+extern char D_000FFFFF;
+extern char D_0000FFFF;
+
 void func_001F494D(LD10 *dst, unsigned long *src);
 int func_001F5C49(LD10 ld, int ndigits, int flags, FOS *fos);
 
@@ -331,35 +334,39 @@ void func_001F48CE(char *buf, int digits, STRFLT *pflt)
 
 void func_001F494D(LD10 *dst, unsigned long *src)
 {
-    unsigned short sign_exp = ((unsigned short *)src)[3];
+    unsigned short *pus = (unsigned short *)src;
     unsigned long msb = 0x80000000;
-    unsigned short sign = sign_exp & 0x8000;
-    unsigned short exp = (sign_exp >> 4) & 0x7ff;
+    unsigned short exp = (pus[3] >> 4) & 0x7ff;
+    unsigned int sign = pus[3] & 0x8000;
     unsigned long man_hi = src[1] & 0xfffff;
     unsigned long man_lo = src[0];
+    unsigned short newexp;
+    unsigned int e = exp;
 
-    if (exp == 0) {
+    if (e != 0) {
+        if (e != 0x7ff) {
+            newexp = exp + 0x3c00;
+        } else {
+            newexp = 0x7fff;
+        }
+    } else {
         if (man_hi == 0 && man_lo == 0) {
             dst->hi = 0;
             dst->lo = 0;
             dst->se = 0;
             return;
         }
-        exp += 0x3c01;
+        newexp = exp + 0x3c01;
         msb = 0;
-    } else if (exp == 0x7ff) {
-        exp = 0x7fff;
-    } else {
-        exp += 0x3c00;
     }
     dst->hi = (man_lo >> 21) | (man_hi << 11) | msb;
     dst->lo = man_lo << 11;
     while ((dst->hi & 0x80000000) == 0) {
         dst->hi = (dst->hi << 1) | (dst->lo >> 31);
         dst->lo = dst->lo << 1;
-        exp--;
+        newexp--;
     }
-    dst->se = sign | exp;
+    dst->se = sign | newexp;
 }
 
 STRFLT *func_001F4A07(double x, STRFLT *flt, char *resultstr)
