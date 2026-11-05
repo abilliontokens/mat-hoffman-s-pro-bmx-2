@@ -49,6 +49,21 @@ void func_001F4E30(void) {
     func_001EB302(13);
 }
 
+void func_001F4E8B(int rterrnum)
+{
+    void __stdcall func_001DF5F4(const char *msg);
+    unsigned int i;
+
+    for (i = 0; i < 0x12; i++) {
+        if (rterrnum == D_002AEF98[i].num) {
+            break;
+        }
+    }
+    if (rterrnum == D_002AEF98[i].num) {
+        func_001DF5F4(D_002AEF98[i].msg);
+    }
+}
+
 void func_001F4EB7(void)
 {
     extern void (*D_002F6A68)(void);
