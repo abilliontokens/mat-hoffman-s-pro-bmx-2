@@ -3,6 +3,34 @@
 #include "ghidra.h"
 void func_001E891B(void *p);
 int func_001EA426(const char *a, const char *b);
+extern float D_00276610;
+extern float D_00275544;
+
+struct S_00133A30 {
+    char pad0[0x21];
+    u8 f21;
+    char pad22[6];
+    char f28[0x20];
+    float f48;
+    char pad4c[4];
+    int f50;
+    char pad54[0x54];
+    char fA8[8];
+    char fB0[8];
+    char fB8[0x78];
+    char f130[0x60];
+    int f190;
+    char pad194[0xc];
+    S_00133A30 **f1A0;
+    char pad1a4[0xc];
+    char f1B0[0x14];
+    int f1C4;
+    int f1C8;
+};
+
+float func_0011FDF0(char *p, float *a, float *b);
+int func_00122810(char *a, char *b, float *c, float d, int e, char *f);
+int func_00123EF0(float *a, float b, int c, int d, int *e, char *f, char *g);
 
 struct C_0013B210 {
     void func_0013C8A0(int a, void *b, int c, int d);
