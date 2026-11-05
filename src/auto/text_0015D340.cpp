@@ -47,13 +47,24 @@ struct C_0015DCC0_Item {
 };
 
 struct C_0015DA60 {
-    char pad0[0x6c];
+    char pad0[0x38];
+    void *unk38;
+    V4_15D850 *unk3C;
+    V4_15D850 unk40;
+    V4_15D850 *unk50;
+    V4_15D850 unk54;
+    V4_15D850 *unk64;
+    char pad68[4];
     C_00192A50 **unk6C;
-    char pad70[0xC];
+    C_001923F0 **unk70;
+    C_0017D5A0 **unk74;
+    int unk78;
     int unk7C;
     char pad80[4];
     C_0015DCC0_Item **unk84;
     int unk88;
+    void func_0015D250();
+    void func_0015D850(int count, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int flag);
     void func_0015DA60(int a, int b, int c);
     void func_0015DCC0(C_0015DCC0_Item *item);
 };
