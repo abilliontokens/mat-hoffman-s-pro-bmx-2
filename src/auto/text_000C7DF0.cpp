@@ -99,6 +99,7 @@ struct C_001B1980 {
     float unk48;
     void func_001B1980(void);
     void func_001B2270(int color);
+    void func_001B1A30(float, float, float);
     void func_001B1860(int, float, int, float, int, int, int, int, float, int, float, float, int);
 };
 
