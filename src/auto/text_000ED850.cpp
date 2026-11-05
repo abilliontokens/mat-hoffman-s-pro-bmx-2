@@ -59,7 +59,7 @@ struct S_000ED850_Sub {
 
 struct C_000ED850 {
     char pad0[0x124];
-    C_000B9A80 *unk124;
+    S_000ED850_Sub *unk124;
     char pad128[0x280 - 0x128];
     int unk280;
     char pad284[0x28C - 0x284];
