@@ -178,6 +178,63 @@ struct C_000A7560 {
 };
 
 
+struct Obj_000A79E0 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31(float *a);
+    char pad4[0x64];
+    int f68;
+    char pad6c;
+    char f6d;
+    char pad6e[0x32];
+    void (*fA0)();
+};
+struct Data_000A79E0 {
+    int f0;
+    char name[0x104];
+    int f108[4];
+    int f118[4];
+    int f128[4];
+    char pad138[0x10];
+    int f148;
+    unsigned char f14c;
+};
+struct Game_000A79E0 {
+    char pad0[0x348];
+    int f348;
+    char pad34c[0x60];
+    int *f3b0;
+    char pad3b4[0xf8];
+    int *f4ac;
+};
+struct Hook_000A79E0 {
+    void func_000216F0(char *a, int b, Obj_000A79E0 *c);
+};
+struct Pt_000A79E0 {
+    void func_001577A0(Obj_000A79E0 *o, int f);
+    void func_00133140(Obj_000A79E0 *o, int f);
+};
+extern char D_002764F0[], D_00276688[], D_0027ADEC[], D_0027ADE4[], D_0027ADDC[], D_0027ADD4[], D_0027B1B0[];
+extern int D_002B9118, D_002B9108, D_002B910C, D_002B911C, D_002B9114, D_002B9110, D_002BA160;
+extern Hook_000A79E0 *D_002B7E18;
+void __cdecl func_001EA1EE(char *s);
+Obj_000A79E0 *__cdecl func_00133750(int a, char *s, int n);
+char *__cdecl func_001E8AF0(char *a, char *b);
+void __cdecl func_00024360();
+void __cdecl func_000265C0(float *out, int *a, int *b, int *c, int d, int e);
+struct Coll_000A79E0 {
+    void *vtbl;
+    int f4;
+    Obj_000A79E0 *f8;
+    Data_000A79E0 *fC;
+    int func_000A79E0(Game_000A79E0 *g);
+};
+
 SlotsR_000A74B0 *SlotsR_000A74B0::func_000A74B0(void)
 {
     int i;
@@ -301,7 +358,7 @@ void SlotsR_000A74B0::func_000A7650(float t)
             if (a78[i] == 0) {
                 ok = 0;
             }
-            if (prev == state && aC8[i] == 0) {
+            if (prev == a0[i] && aC8[i] == 0) {
                 ok = 0;
             }
             f144 = 0;
