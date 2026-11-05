@@ -252,6 +252,46 @@ struct C_0001D370 {
     int func_0001D370(void);
 };
 
+#include <string.h>
+extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
+extern "C" char *func_001E8AC0(const char *s, int c);
+extern "C" int func_001EA426(const char *a, const char *b);
+
+template <class T> inline const T &minref(const T &a, const T &b) { return b < a ? b : a; }
+
+static inline void stripExt(char *dst, const char *src)
+{
+    int len = strlen(src);
+    int n = minref(0x103, len);
+    func_001E8920(dst, src, n);
+    dst[n] = 0;
+    char *p = func_001E8AC0(dst, '.');
+    if (p) memset(p, 0, strlen(p));
+}
+
+struct C_0001D450_Sub {
+    char pad0[8];
+    char name[1];
+};
+
+struct C_0001D450_Item {
+    char pad0[0x9c];
+    char name[0x120];
+    C_0001D450_Sub *unk1BC;
+};
+
+struct C_0001D450 {
+    char pad0[0x70];
+    int unk70;
+    C_0001D450_Item **unk74;
+    C_0001D450_Item *itemAt(int i) {
+        if (unk70 > 0 && unk74 != 0 && i < unk70) {
+            return unk74[i];
+        }
+        return 0;
+    }
+    C_0001D450_Item *func_0001D450(const char *name);
+};
 
 struct S4 { int a, b, c, d; };
 struct S9 { int v[9]; };
