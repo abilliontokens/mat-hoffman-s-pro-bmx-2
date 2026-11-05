@@ -95,6 +95,7 @@ struct C_000C2810 {
     int func_000C0100(int idx);
     int func_000C2810(int idx);
     int func_000C24F0(int idx);
+    int func_000C2680(int idx);
 };
 
 int C_000C2810::func_000C0100(int idx)
@@ -132,3 +133,18 @@ int C_000C2810::func_000C24F0(int idx)
     }
     return 0;
 }
+
+int C_000C2680::func_000C2680(int idx)
+{
+    S_000C2680_Owner *owner = f124;
+    S_000C2680_Ui *ui = owner->f24;
+    if (idx + 6 <= 20) {
+        if (func_000C0100(idx) == 3) {
+            owner->f298 = 1;
+            ui->func_000B9A80(6, 1);
+            return 1;
+        }
+    }
+    return 0;
+}
+
