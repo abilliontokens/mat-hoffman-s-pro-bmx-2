@@ -118,6 +118,26 @@ struct C_0004F6E0 {
     void func_0004F6E0();
 };
 
+int C_0004F5E0::func_0004F5E0()
+{
+    if (f284 == 9) {
+        G_4F5E0 *g = (G_4F5E0 *)D_002A8490;
+        g->f230 |= 1;
+        ((G_4F5E0 *)D_002A8490)->f124 = 0;
+        C_0013E4F0 *p = (C_0013E4F0 *)func_001E8A44(0x2d0);
+        f24 = p ? p->func_0013E4F0(1) : 0;
+        f24->func_0012B410(0x3f9f49f5, 0x280, 0x1c0);
+        C_0002EF20 *q = (C_0002EF20 *)func_001E8A44(0x78);
+        f44 = q ? q->func_0002EF20(1) : 0;
+        f44->func_000306F0(f24, ((G_4F5E0 *)D_002A8490)->f2E0->f8, *f64->f4AC, f64->f4DC->f24, 0, 0);
+        v27();
+        v28();
+        return 1;
+    }
+    func_00031AF0();
+    return 1;
+}
+
 void C_0004F6E0::func_0004F6E0()
 {
     if (f284 == 9) {
