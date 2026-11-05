@@ -70,12 +70,19 @@ struct C_001425B0 {
 
 extern int D_002A6D30;
 
-static inline void SetV4_001425B0(S_001425B0_V4 *v, const float &x, const float &y, const float &z, const float &w)
+static inline void SetV4_001425B0(S_001425B0_V4 *v, float x, float y, float z, float w)
 {
     *(float *)&v->x = x;
     *(float *)&v->y = y;
     *(float *)&v->z = z;
     *(float *)&v->w = w;
+}
+
+static inline void InitV3_001425B0(S_001425B0_V3 *v)
+{
+    v->z = 0;
+    v->y = 0;
+    v->x = 0;
 }
 
 struct C_00142BF0 {
