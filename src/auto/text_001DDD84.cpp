@@ -221,4 +221,9 @@ int __stdcall func_001DE733(int param)
     return out;
 }
 
+int func_001DE7AF(void)
+{
+    return _imp__NtYieldExecution() != 0x40000024;
+}
+
 #pragma optimize("", on)
