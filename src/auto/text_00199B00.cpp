@@ -41,7 +41,18 @@ struct C_00199BE0 {
     C_00199BE0 *f178;
     C_00199BE0 *f17c;
     u8 f180;
-    void func_00197B10(void);
+    void func_00197B10(void)
+    {
+        if (f178 != 0) {
+            f178->func_00197B10();
+        }
+        if (f180 & 1) {
+            f180 &= 0xfe;
+            if (f174 != 0) {
+                f174->func_00197B10();
+            }
+        }
+    }
     void func_001982F0(void);
     void func_00197AA0(void);
     void func_00199CF0(int a0, int a1, int a2, int a3, float angle);
@@ -144,11 +155,10 @@ void C_00199BE0::func_00199E30(int a0, int a1, int a2, int a3, int a4)
 void C_00199BE0::func_0019A210(C_00199BE0 *node)
 {
     C_00199BE0 *p;
-    C_00199BE0 *zero = 0;
     node->func_001982F0();
     if (node->f180 & 1) {
         node->f180 &= 0xfe;
-        if (node->f174 != zero) {
+        if (node->f174 != 0) {
             node->f174->func_00197B10();
         }
     }
@@ -157,20 +167,14 @@ void C_00199BE0::func_0019A210(C_00199BE0 *node)
     if (p == f174) {
         f174 = p->f178;
     }
-    if (p->f178 != zero) {
+    if (p->f178 != 0) {
         p->f178->f17c = p->f17c;
     }
-    if (p->f17c != zero) {
+    if (p->f17c != 0) {
         p->f17c->f178 = p->f178;
     }
-    if (p->f170 != zero) {
-        p->f170 = zero;
-    }
-    if (p->f178 != zero) {
-        p->f178 = zero;
-    }
-    if (p->f17c != zero) {
-        p->f17c = zero;
-    }
+    ResetLink(p->f170, 0);
+    ResetLink(p->f178, 0);
+    ResetLink(p->f17c, 0);
 }
 
