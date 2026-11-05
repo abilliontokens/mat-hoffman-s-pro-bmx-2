@@ -64,6 +64,27 @@ struct C_000F0910 {
     void func_000F0910();
 };
 
+void C_000F0910::func_000F0910()
+{
+    int i;
+
+    for (i = 0; i < 9; i++) {
+        f638[i]->func_001B1980();
+        if (i == f3C4) {
+            f638[i]->func_001B19A0(D_0028F5DC);
+            f638[i]->func_001B2270(0xffbfa35a);
+            f638[i]->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 0xff, 1.45f, 0, 0.25f, 0.2f, 0);
+        } else {
+            f638[i]->func_001B19A0(D_0028F5DC);
+            f638[i]->func_001B2270(0xffcccccc);
+            f638[i]->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0, 0xff, 1.15f, 0, 0.25f, 0.2f, 0);
+        }
+        if ((float)f65C[i] > D_00279B50 || (float)f65C[i] < D_0027F718) {
+            f638[i]->func_001B1980();
+        }
+    }
+}
+
 C_000F0D20 *C_000F0D20::func_000F0C40(int a)
 {
     int i;
