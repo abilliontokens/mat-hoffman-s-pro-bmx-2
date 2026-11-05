@@ -60,9 +60,11 @@ struct C_0012EF30 {
     char pad418[0xF8];
     f32 f510;
     u32 f514;
-    void *f518;
-    void *f51c;
+    S_0012EF60_Ref *f518;
+    S_0012EF60_Ref *f51c;
     C_0012EF30 *func_0012EF30(int a);
+    void func_0012EF60();
+    void func_0012CCA0();
     void func_0012E5F0(int a);
     void func_0012E6B0(int a);
 };
