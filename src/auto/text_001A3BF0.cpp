@@ -2,8 +2,99 @@
 #include "common.h"
 #include "ghidra.h"
 
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+extern char D_00275678[];
+extern char D_002A48F8[];
+
 struct C_001A40E0 {
     undefined4 func_001A40E0(byte param_1);
+};
+
+struct Obj_001A4A20 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+};
+
+struct Inner_001A4A20 {
+    char pad0[0x28];
+    Obj_001A4A20 *f28;
+    Obj_001A4A20 *f2c;
+};
+
+struct C_001A4A20 {
+    char pad0[0x24];
+    Inner_001A4A20 *f24;
+    void func_001A4A20(void);
+};
+
+struct S36_1A {
+    int f[9];
+};
+
+struct S16_1A {
+    int a;
+    int b;
+    int c;
+    int d;
+};
+
+struct C_001A4590 {
+    char pad0[0x2cc];
+    int f2cc;
+    void func_001A1FB0(int a0, int a1, S36_1A s0, S16_1A s1, S16_1A s2, int a19, int a20, int a21, int a22, int a23);
+    int func_001A3DA0(int a0);
+    C_001A4590 *func_001A4590(int a0, int a1, int a2, int a3, S36_1A s0, S16_1A s1, S16_1A s2, int a21, int a22, int a23, int a24, int a25);
+};
+
+/* local scratch object built on the stack (size 0x4cc) */
+struct C_00168280 {
+    char data[0x4cc];
+    C_00168280 *func_00168280(void);
+    int func_00169490(char *buf, int flag);
+    void func_001691E0(void);
+};
+
+struct C_001A4210 {
+    int func_001A4210(C_00168280 *obj, int a1, int a2);
+};
+
+struct C_001A4640 {
+    int func_001A4640(int a1, int a2, int a3);
+};
+
+/* (0, 0, 0, 1) vector, stored z, y, x, w */
+struct V4_001A46F0 {
+    float x;
+    float y;
+    float z;
+    float w;
+    V4_001A46F0() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+};
+
+struct C_001A46F0 {
+    V4_001A46F0 a;
+    V4_001A46F0 b;
+    float f20;
+    float f24;
+    float f28;
+    float f2c;
+    float f30;
+    float f34;
+    float f38;
+    C_001A46F0();
 };
 
 struct C_001A4420 {
