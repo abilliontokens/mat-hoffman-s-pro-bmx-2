@@ -24,6 +24,14 @@ struct C_001A77B0 {
     void *func_001A77B0(int flags);
 };
 
+struct C_001A77F0 {
+    void *vtbl;
+    char pad4[0x24];
+    C_Item8 *f28;
+    void func_00157660();
+    void *func_001A77F0(int flags);
+};
+
 struct C_GlobalObj {
     virtual void vv0();
     virtual void vv1();
