@@ -158,7 +158,6 @@ void *C_000B6810::func_000B6810(int flags)
     return this;
 }
 
-#pragma optimize("a", on)
 void C_000B6640::func_000B6840(float a0, float a1, C_000B6840_Arg *a2)
 {
     V4Init_000B6840 line[2];
