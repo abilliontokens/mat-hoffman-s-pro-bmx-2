@@ -1,5 +1,6 @@
 /* 10 functions from 0x001E8858 to 0x001E8AB7, found by Ghidra. */
 #include "common.h"
+#include "ghidra.h"
 
 extern int D_00294F04;
 
@@ -42,4 +43,11 @@ void func_001E891B(void) {
 }
 
 void func_001E8A44(int a0) { func_001E8A79(a0, 1); }
+
+void func_001E8AA5(undefined4 param_1)
+{
+  extern undefined4 D_002F69EC;
+  func_001E8A79(param_1,D_002F69EC);
+  return;
+}
 
