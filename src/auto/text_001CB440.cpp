@@ -503,6 +503,20 @@ int __stdcall func_001CBEE0(int a0, int a1, int a2, int a3, int a4) {
     return -2147467259;
 }
 
+C_001CB320 *C_001CBEF0::func_001CBEF0(void)
+{
+    if (f2C & 1) {
+        C_001CB320 *p = (C_001CB320 *)func_001E8A44(0x48);
+        if (p != 0) {
+            p = p->func_001CB320();
+            if (p != 0) {
+                return p;
+            }
+        }
+    }
+    return 0;
+}
+
 int C_001CBF20::func_001CBF20(void)
 {
     S_001CBF20_Vec4 *p = &fD8;
