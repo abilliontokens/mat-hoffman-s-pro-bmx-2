@@ -330,6 +330,94 @@ int C_00064580::func_00064580(int idx, int a1, unsigned int a2)
     return idx + 1;
 }
 
+void C_000645E0::func_000645E0()
+{
+    int r;
+    unk1c8 = 1;
+    unk1e0 = 0;
+    v6();
+    unk2c4 = 0;
+    unk214 = 0;
+    unk228 = 0;
+    unk22c = 0;
+    unk234 = 0;
+    unk238 = 0;
+    unk224 = unk1d0->func_00051840();
+    unk240 = 0;
+    unk244 = 0;
+    unk218 = 0;
+    unk214 = 0;
+    unk21c = -1;
+    unk1d8 = 0;
+    unk1dc = 1.0f;
+    unk27c = -1;
+    unk278 = 1;
+    unk254 = unk250->func_00092A10();
+    unk288 = 0;
+    unk28c = 0;
+    unk1d0->unk35c = 0;
+    unk2b0 = 0;
+    unk68 = 1;
+    unk2b8 = 0;
+    r = D_002A8490->unk2e0->unk2c0->func_0005C020(D_002A8490->unk2e0->unk2d8);
+    switch (unk64) {
+    case 0:
+        if (unk1d0->unk1c0->func_00097FD0() == 1) {
+            unk1d0->unk1c0->func_0009A0E0(r);
+            unk1d0->unk1c0->func_000976C0();
+            if (!unk1d0->unk1c0->func_00097700()) {
+                unk1d0->unk1c0->func_000988B0(unk1d0->unk64->unk3b4, unk1d0->unk64->unk534);
+                unk1d0->unk1c0->func_00098EE0(unk1d0->unk64->unk3b4, unk1d0->unk64->unk534);
+                unk1d0->unk1c0->func_000981D0(unk1d0->unk64->unk3b4, unk1d0->unk64->unk534, 0);
+            }
+        }
+        unk1d0->unk44->unk74->func_00030210();
+        unk214 = 1;
+        break;
+    case 1:
+        unk1d0->unk44->unk74->func_00030210();
+        unk218 = 1;
+        unk1d0->unk1c0->func_0009A100(r, D_002A8490->unk2e0->unk48);
+        break;
+    case 2:
+        if (!unk250->func_00092A50(&unk268))
+            unk268 = 8000;
+        unk1d0->unk44->unk74->func_000301F0();
+        break;
+    case 3:
+        if (unk1d0->unk1c0->func_00097FD0() == 1) {
+            unk1d0->unk1c0->func_0009A0E0(r);
+            unk1d0->unk1c0->func_000976C0();
+            if (!unk1d0->unk1c0->func_00097700()) {
+                unk1d0->unk1c0->func_000988B0(unk1d0->unk64->unk3b4, unk1d0->unk64->unk534);
+                unk1d0->unk1c0->func_00098EE0(unk1d0->unk64->unk3b4, unk1d0->unk64->unk534);
+                unk1d0->unk1c0->func_000981D0(unk1d0->unk64->unk3b4, unk1d0->unk64->unk534, 0);
+            }
+        }
+        unk1cc = 0;
+        if (unk224 && !unk274)
+            unk220 = 1;
+        else
+            unk220 = 0;
+        unk218 = 1;
+        break;
+    case 4:
+        unk1d0->unk44->unk74->func_00030210();
+        unk1d0->func_00053460();
+        break;
+    case 7:
+        unk1d0->unk44->unk74->func_00030210();
+        unk1dc = 2.0f;
+        break;
+    case 8:
+    case 9:
+        unk218 = 1;
+        break;
+    }
+    if (unk64 != 4)
+        unk1d0->unk158->func_001C4D50(1000);
+}
+
 void C_00064580::func_00064990()
 {
     D_002EFDB8->vf7(1);
