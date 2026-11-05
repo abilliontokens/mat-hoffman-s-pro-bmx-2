@@ -17,6 +17,31 @@ struct C_00191400 {
     void *func_00191400(void);
 };
 
+struct C_0018DA90_Result {
+    int pad0[16];
+    int f40;
+};
+
+struct C_0018E0E0_Entry {
+    char pad0[4];
+    char name[0x40];
+    int f44;
+    char type;
+    char pad49[3];
+    int kind;
+};
+
+struct C_0018E0E0_Arg {
+    char pad0[0x20];
+    C_0018E0E0_Entry *f20;
+    int f24;
+};
+
+struct C_0018E0E0 {
+    C_0018DA90_Result func_0018DA90(int kind, int idx, const char *name, unsigned int *out);
+    void func_0018E0E0(C_0018E0E0_Arg *arg, int idx);
+};
+
 struct C_0018E1D0_Entry {
     char name[0x20];
     char pad20[0x18];
