@@ -38,6 +38,7 @@ struct S_001EAB_Reg {
 };
 
 extern "C" unsigned long __readfsdword(unsigned long Offset);
+#pragma intrinsic(__readfsdword)
 int func_001EDD36(S_001EA_FILE *stream, const char *fmt, va_list args);
 int func_001ED8A7(int ch, S_001EA_FILE *stream);
 
@@ -48,6 +49,16 @@ int func_001EAB4C(volatile unsigned int *record, void *frame, void *context, voi
     if (record[1] & 6) {
         *dispatcher = frame;
         result = 3;
+    }
+    return result;
+}
+
+int func_001EABD6(void)
+{
+    S_001EAB_Reg *reg = (S_001EAB_Reg *)__readfsdword(0);
+    int result = 0;
+    if (reg->handler == (void *)func_001EAB4C && reg->level == reg->frame->tryLevel) {
+        result = 1;
     }
     return result;
 }
