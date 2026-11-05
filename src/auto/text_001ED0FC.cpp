@@ -164,6 +164,45 @@ void func_001ED527(int *param_1)
     }
 }
 
+int func_001ED552(S_001ED_FILE *stream)
+{
+    int func_001ED7FC(int fh, void *buffer, unsigned cnt);
+    extern char *D_002FB260[];
+    extern char D_002AEC40[];
+    char *info;
+
+    if ((stream->flag & 0x83) == 0 || (stream->flag & 0x40) != 0) {
+        return -1;
+    }
+    if ((stream->flag & 2) != 0) {
+        stream->flag |= 0x20;
+        return -1;
+    }
+    stream->flag |= 1;
+    if ((stream->flag & 0x10c) == 0) {
+        func_001F57BB(stream);
+    } else {
+        stream->ptr = stream->base;
+    }
+    stream->cnt = func_001ED7FC(stream->file, stream->base, stream->bufsiz);
+    if (stream->cnt == 0 || stream->cnt == -1) {
+        stream->flag |= stream->cnt ? 0x20 : 0x10;
+        stream->cnt = 0;
+        return -1;
+    }
+    if ((stream->flag & 0x82) == 0) {
+        info = stream->file != -1 ? D_002FB260[stream->file >> 5] + (stream->file & 0x1f) * 0x28 : D_002AEC40;
+        if ((info[4] & 0x82) == 0x82) {
+            stream->flag |= 0x2000;
+        }
+    }
+    if (stream->bufsiz == 0x200 && (stream->flag & 8) != 0 && (stream->flag & 0x400) == 0) {
+        stream->bufsiz = 0x1000;
+    }
+    stream->cnt--;
+    return (unsigned char)*stream->ptr++;
+}
+
 int func_001ED7FC(int fh, void *buffer, unsigned cnt)
 {
     int func_001EE70F(int);
