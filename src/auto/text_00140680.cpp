@@ -7,6 +7,7 @@ extern "C" int memcmp(const void *a, const void *b, unsigned int n);
 void func_001E891B(void *p);
 void *func_001E8A44(unsigned int size);
 int func_001E9576(const char *s, char **end, int base);
+double func_001E931E(const char *s, char **end);
 
 struct VObj {
     virtual void destroyObject(int flags);
