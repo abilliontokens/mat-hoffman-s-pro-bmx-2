@@ -47,6 +47,8 @@ extern int D_0028F774;
 extern int D_002F0BB8;
 extern float D_00275460;
 
+template <class T> inline const T &min_001D7E60(const T &a, const T &b) { return b < a ? b : a; }
+
 void func_001FFB70();
 void __cdecl func_001D7E60(float r, float g, float b, char *out);
 void __stdcall func_001FF960(int kind, char *buf);
