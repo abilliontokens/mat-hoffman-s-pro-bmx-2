@@ -106,6 +106,34 @@ undefined4 C_0017DAC0::func_0017DAC0(byte param_1)
   return in_ECX;
 }
 
+void *C_0017DC00::func_0017DAE0(void *item, int x0, int y0, int x1, int y1, int x, int y, int size, int minSize)
+{
+    int i;
+    if (size >= minSize) {
+        for (i = 0; i < 4; i++) {
+            C_0017DC00 *child;
+            if (arr4 && (child = arr4[i]) != 0) {
+                int cx = x + ((i & 2) ? size : 0);
+                int cy = y + ((i & 1) ? size : 0);
+                if (x0 <= cx + size && x1 >= cx && y0 <= cy + size && y1 >= cy) {
+                    if (cx < x0 || cx + size > x1 || cy < y0 || cy + size > y1) {
+                        item = child->func_0017DAE0(item, x0, y0, x1, y1, cx, cy, size >> 1, minSize);
+                    } else {
+                        item = child->func_0017CFF0(item);
+                    }
+                }
+            }
+        }
+    }
+    if (f8) {
+        S_QuadTreeListNode *n = ((S_QuadTreeGlobal *)D_002EFD80)->f94->func_0001E8A0();
+        n->slot[0] = this;
+        n->next = (S_QuadTreeListNode *)item;
+        return n;
+    }
+    return item;
+}
+
 void C_0017DC00::func_0017DC00()
 {
   int i;
