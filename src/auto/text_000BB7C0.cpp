@@ -396,13 +396,12 @@ S_000BC320_Rec *C_000BBE30::func_000BC320(void)
     return (S_000BC320_Rec *)f27C[f284].f130 + f288;
 }
 
-void C_000BBE30::func_000BC370(S_000BC320_Rec *out, int entry, int idx)
+S_000BC320_Rec C_000BBE30::func_000BC370(int entry, int idx)
 {
     if (D_002A8490->f2E0->f324 == 1) {
-        *out = ((S_000BC320_Rec *)(f27C->f130 + 0x3c))[idx];
-    } else {
-        *out = ((S_000BC320_Rec *)(f27C[entry].f130 + 0x3c))[idx];
+        return ((S_000BC320_Rec *)(f27C->f130 + 0x3c))[idx];
     }
+    return ((S_000BC320_Rec *)(f27C[entry].f130 + 0x3c))[idx];
 }
 
 void C_000BBE30::func_000BC3E0(int idx)
