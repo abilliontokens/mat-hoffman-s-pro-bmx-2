@@ -8,7 +8,10 @@ struct C_0019B6D0 {
 extern int D_0028B0E4;
 void *func_001E8A44(int size);
 void func_001E891B(void *ptr);
-void __stdcall func_0019A210(void *self);
+
+struct S_0019A8C0_Mgr {
+    void func_0019A210(void *self);
+};
 
 struct C_0019B6F0 {
     u16 f0;
