@@ -64,6 +64,7 @@ struct C_001B82A0 {
     C_001B83F0_item **f28;
     C_001B82A0 *func_001B82A0(void *param);
     int func_001B83F0(void *param);
+    int func_001B82D0(C_00169710 *r);
 };
 
 struct C_001B8450 {
