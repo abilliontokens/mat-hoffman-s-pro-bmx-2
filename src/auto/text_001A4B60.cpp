@@ -162,6 +162,13 @@ struct C_001A5730 {
         C_001A5730 *func_001A5730(void);
 };
 
+extern char *D_002B92EC;
+int func_001225C0(void *, void *, void *, int, int, void *);
+int func_00123940(void *, int, int, int, void *, void *, void *, int);
+void func_0001C680(void *, Vec4, void *);
+struct C_001A4FC0 {
+    int func_001A4FC0(char *a);
+};
 struct C_001A52C0 {
     void func_001A52C0(void);
 };
