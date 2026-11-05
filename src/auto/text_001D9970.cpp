@@ -190,6 +190,55 @@ int func_001DA180(void *pixels, const char *path, int bpp, int width, int height
     return 0;
 }
 
+float XboxWaterDisplacement::func_001DA250(float x, float y, int *out)
+{
+ float a=0.0f, b=0.0f;
+ if(out) *out=0;
+ float scratch;
+ int i=0;
+ char *s=(*(char ***)((char *)this+0x44))[0];
+ while(s) {
+  if(!*(int *)(s+0xac)) {
+   if(!*(int *)(s+0xa8)) {
+    float dx=x-*(float *)(s+0x94);
+    scratch=y-*(float *)(s+0x98);
+    if(!(dx>=0.0f && dx<=*(float *)(s+0x34) && scratch>=0.0f && scratch<=*(float *)(s+0x38))) goto next;
+   }
+   {
+    char **table=*(char ***)(s+0x100);
+    char *t=table[*(int *)(s+0x50)];
+    unsigned char *p=*(unsigned char **)(t+0xc0);
+    unsigned char *q=*(unsigned char **)(table[*(int *)(s+0x54)]+0xc0);
+    int stride=*(int *)(t+0xe8);
+    int bytes=func_001B2910(*(int *)(t+0xa4))/8;
+    unsigned int n=stride/bytes;
+    scratch=(y-*(float *)(s+0x98)) * *(float *)(s+0x40) * n;
+    int ix=(unsigned int)((x-*(float *)(s+0x94))* *(float *)(s+0x3c)*n)%n;
+    if(ix<0) ix+=n;
+    int iy=(unsigned int)scratch%n;
+    if(iy<0) iy+=n;
+    int offset=ix*bytes+iy*stride;
+    if(i==D_002AC724) {
+      D_002AC724=-1;
+      func_001DA180(p,D_0028F970,32,n,n);
+    }
+    
+    if(*(int *)(s+0xdc)) {
+     a+=(float)p[offset]* *(float *)(s+0xd8)* *(float *)(s+0x58);
+     b+=(float)q[offset]*(1.0f-*(float *)(s+0x58))* *(float *)(s+0xd8);
+    } else {
+     a-=(float)p[offset]* *(float *)(s+0xd8)* *(float *)(s+0x58);
+     b-=(float)q[offset]*(1.0f-*(float *)(s+0x58))* *(float *)(s+0xd8);
+    }
+    if(out && *(int *)(s+0xd0)) *out=*(int *)(s+0xd0);
+   }
+  }
+next:
+  s=(*(char ***)((char *)this+0x44))[++i];
+ }
+ return a+b;
+}
+
 void C_001DA4C0_1D9970::func_001DA4C0(int a1)
 {
     XboxWaterDisplacement **e = unk4C;
