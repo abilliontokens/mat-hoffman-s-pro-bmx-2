@@ -226,6 +226,19 @@ C_00160A60* C_00160A60::func_00160A60(void) {
     return this;
 }
 
+C_00160BD0 *C_00160BD0::func_00160BD0(void)
+{
+    extern int D_00287A44;
+    unk0 = (int)&D_00287A44;
+    unk4 = 0;
+    unk8 = 0;
+    unkC = 1;
+    unk14 = 0;
+    unk10 = 0;
+    unk18 = 0;
+    return this;
+}
+
 void C_00160BF0::func_00160BF0(void) {
     extern int D_00287A44;
     unk0 = (int)&D_00287A44;
