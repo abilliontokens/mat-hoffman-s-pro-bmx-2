@@ -1,5 +1,60 @@
 /* 8 functions from 0x00096450 to 0x00097050, found by Ghidra. */
 #include "common.h"
+
+void func_001E891B(void *p);
+int func_001EA426(const char *a, const char *b);
+extern float D_00275544;
+
+struct C_00012140 {
+    void func_00012140(void);
+};
+
+struct C_00096700 {
+    char pad0[0x4880];
+    C_00012140 *arr4880[12];
+    void func_00096700(void);
+};
+
+struct C_00096870_Entry {
+    char name[0x78];
+};
+
+struct C_00096870_Elem {
+    int f0;
+    char pad4[0x2550];
+    int f2554;
+    char pad2558[0xa0];
+    C_00096870_Entry entries[131];
+    char pad6360[0x28];
+    void *ptrs[1];
+};
+
+struct C_00096870 {
+    char pad0[0x1b8];
+    int f1b8;
+    char pad1bc[0x1c8 - 0x1bc];
+    C_00096870_Elem **f1c8;
+    void func_00096870(const char *name);
+};
+
+struct C_00096FE0_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5(int a);
+};
+
+struct C_00096FE0 {
+    char pad0[0x1cc];
+    int f1cc;
+    char pad1d0[0x3ad0 - 0x1d0];
+    float arr3ad0[0x378];
+    C_00096FE0_Obj *arr48b0[1];
+    void func_00096FE0(float dt);
+};
+
 struct C_00096740 {
     char pad0[0x48E0];
     int unk48E0;
