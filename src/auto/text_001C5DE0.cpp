@@ -146,6 +146,40 @@ struct C_001C6B30_Node {
 struct C_001C6B30_Holder {
     int unk0;
     C_001C6B30_Node *f4;
+    void func_001646B0(void);
+    void func_00164820(void *p);
+    void func_001670C0(float dt, int a, int b);
+};
+
+extern float D_00277EA8;
+extern float D_002756DC;
+extern float D_0028E740;
+extern Vec4 D_002AB798;
+void *func_001E83E8(void *p, unsigned int size);
+
+struct C_001C6870_Dur {
+    char pad0[0x38];
+    float f38;
+};
+struct C_001C6870_Item {
+    float time;
+    int state;
+};
+struct C_001C6870_Obj {
+    char pad0[0x40];
+    C_001C6870_Dur *f40;
+    char pad44[8];
+    C_001C6870_Item *f4c;
+    int f50;
+};
+struct C_001C6870 {
+    char pad0[0x3c];
+    C_001C6B30_Holder *f3C;
+    C_001C6B30_Node *f40;
+    C_001C6B30_Node *f44;
+    char pad48[0x6c];
+    float fB4;
+    void func_001C6870(C_001C6870_Obj *obj);
 };
 
 struct C_001C6B30 {
