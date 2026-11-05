@@ -279,6 +279,41 @@ struct C_0012B5B0 {
 
 extern int D_00284074;
 
+extern float D_002755E8;
+extern float D_00275998;
+float func_0014F600(float x);
+
+struct S_0012AEC0_Mat {
+    float m[16];
+    void func_000264C0(const S_0012AEC0_Mat &src);
+};
+
+S_0012AEC0_Mat func_00161AE0(S_0012AB70Vec a, S_0012AB70Vec b, S_0012AB70Vec c, int angle);
+S_0012AEC0_Mat func_00161AA0(float a1, float a2, float a3, float a4);
+
+/* Camera: rebuilds the view/projection matrices and the field-of-view factor */
+struct C_0012AEC0 {
+    char pad0[0x70];
+    S_0012AEC0_Mat f70;
+    S_0012AEC0_Mat fb0;
+    S_0012AEC0_Mat ff0;
+    char pad130[0x40];
+    S_0012AB70Vec f170;
+    S_0012AB70Vec f180;
+    S_0012AB70Vec f190;
+    char pad1a0[0x30];
+    float f1d0;
+    int f1d4;
+    float f1d8;
+    char pad1dc[0xc];
+    unsigned int f1e8;
+    char pad1ec[0xc];
+    float f1f8;
+    float f1fc;
+    float f200;
+    void func_0012AEC0(void);
+};
+
 
 void C_0012AAB0::func_0012AAB0(float param)
 {
