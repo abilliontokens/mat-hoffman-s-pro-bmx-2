@@ -30,7 +30,7 @@ S_001EF734 *func_001F1C3A(S_001EF734 *out)
  S_001EF734 a, b, c, d;
  int special;
  if (D_002F6A38.b13) {
-  D_002F6A38.b13 = 0;
+  D_002F6A39.b5 = 0;
   func_001F306F(&b,0);
   D_002F6A38.b13 = 1;
   goto copy_b;
