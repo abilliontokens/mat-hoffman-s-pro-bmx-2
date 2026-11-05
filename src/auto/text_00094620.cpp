@@ -244,6 +244,51 @@ struct C_00094A00 {
     int func_00094E70(int *ids, int count, int a, int b);
 };
 
+/* one entry of BmxMusicManager's list at +0x54: the flags at +0x64/+0x68 are what
+   func_00095110 / func_000951B0 set */
+struct S_00095060_Track {
+    char pad0[0x64];
+    int f64;
+    int f68;
+};
+
+/* growable array of pointers: count at +0, items at +4 */
+struct C_00094F10 {
+    int count;
+    S_00095060_Track **items;
+    S_00095060_Track *at(int i)
+    {
+        if (count > 0 && items != 0 && i < count) {
+            return items[i];
+        }
+        return 0;
+    }
+    void Clear()
+    {
+        memset(items, 0, count * 4);
+        count = 0;
+    }
+    void func_00094F10(void);
+};
+
+extern int D_0027A23C;
+
+/* BmxMusicManager */
+struct C_00095060 {
+    void *vtbl;
+    char pad4[0x4c];
+    S_00094A00_Obj *f50;
+    C_00094F10 tracks;
+    char pad5C[0x10];
+    void *f6C;
+    char pad70[0xc];
+    int f7C;
+    int f80;
+    void func_00095060(void);
+    int func_00095110(int n);
+    int func_000951B0(int n);
+};
+
 /* object at C_00094840::unk28, called through vtable slot 31 */
 struct S_00094840_Sub {
     virtual void v0();
@@ -590,5 +635,36 @@ int C_00095160::func_00095160(int index)
     }
     Item(index - 1)->f64 = 0;
     return 1;
+}
+
+int C_00095160::func_00095200(int index)
+{
+    if (index < 1 || index > f54) {
+        return 0;
+    }
+    Item(index - 1)->f68 = 0;
+    return 1;
+}
+
+int C_00095160::func_00095250(int index)
+{
+    if (f34 != 0) {
+        return 0;
+    }
+    if (index < 1 || index > f54) {
+        return 1;
+    }
+    return Item(index - 1)->f64;
+}
+
+int C_00095160::func_000952A0(int index)
+{
+    if (f34 != 0) {
+        return 1;
+    }
+    if (index < 1 || index > f54) {
+        return 0;
+    }
+    return Item(index - 1)->f68;
 }
 
