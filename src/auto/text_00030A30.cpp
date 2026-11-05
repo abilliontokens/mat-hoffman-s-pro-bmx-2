@@ -35,14 +35,82 @@ struct Vec4_00030A30 {
     float w;
 };
 
-Vec4_00030A30 func_00030A30(float x, float y, float z, float w, float *m)
+struct C_00030B90 {
+    char pad0[0x180];
+    float f180;
+    float f184;
+    float f188;
+    char pad18c[0xdc];
+    float f268;
+    float f26c;
+    float f270;
+    void func_00030B90(float x, float y, float z, float w);
+};
+
+struct V_00031430 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+};
+
+extern V_00031430 *D_002EFDB8;
+
+struct C_001576C0 {
+    void func_001576C0(void);
+};
+
+struct C_00031430 {
+    void func_00031430(void);
+};
+
+struct V4_00030E70 {
+    float x;
+    float y;
+    float z;
+    float w;
+    V4_00030E70() {}
+    V4_00030E70(float x_, float y_, float z_, float w_) {
+        x = x_;
+        y = y_;
+        z = z_;
+        w = w_;
+    }
+};
+
+struct S_00030E70_Target {
+    char pad0[0x190];
+    float f190;
+    float f194;
+    float f198;
+};
+
+struct C_00030E70 {
+    char pad0[0x58];
+    V4_00030E70 f58;
+    float f68;
+    float f6c;
+    float f70;
+    char pad74[4];
+    S_00030E70_Target *f78;
+    int func_00030E70(int a0);
+};
+
+void __stdcall func_0001C750(V4_00030E70 a, V4_00030E70 b);
+
+void func_00030A30(Vec4_00030A30 *out, float x, float y, float z, float w, float *m)
 {
     Vec4_00030A30 r;
     r.x = x * m[0] + (y * m[4] + z * m[8]);
     r.y = x * m[1] + (y * m[5] + z * m[9]);
     r.z = x * m[2] + (y * m[6] + z * m[10]);
     r.w = 1.0f;
-    return r;
+    *out = r;
 }
 
 void func_00030AC0(float *out, float *v, float *m)
