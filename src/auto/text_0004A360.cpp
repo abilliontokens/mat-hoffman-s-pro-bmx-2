@@ -252,6 +252,7 @@ struct BmxEventFPS {
     void func_00033320(int param_1, int param_2);
     void func_0004A360(void);
     void func_0004A590(void);
+    void func_0004A6A0(void);
     void func_0004AC70(int param_1, int param_2);
     void func_0004AAD0(void);
     void func_0004AB90(int param_1);
