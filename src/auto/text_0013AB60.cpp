@@ -339,21 +339,18 @@ void C_0013AEC0::func_0013B280(int keep)
 
 void C_0013AEC0::func_0013B340(void)
 {
-    S_0013B340_Buf *p;
-    S_0013B340_Buf *end;
+    S_0013B340_Buf *p = (S_0013B340_Buf *)((char *)this + 0x80);
     int r;
 
-    p = (S_0013B340_Buf *)((char *)this + 0x80);
-    end = (S_0013B340_Buf *)((char *)this + 0xd4);
     do {
         if (p->f4 == -2) {
             r = (int)func_001E8AA5(0x6000);
             p->f0 = r;
             p->f8 = -0x6000;
-            p->f4 = (r != 0) + -2;
+            p->f4 = r != 0 ? -1 : -2;
         }
         p++;
-    } while (p <= end);
+    } while (p <= (S_0013B340_Buf *)((char *)this + 0xd4));
 }
 
 void C_0013AEC0::func_0013B390(int idx)
