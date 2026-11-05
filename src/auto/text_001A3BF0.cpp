@@ -171,7 +171,9 @@ struct C_001A4100 {
 
     C_001A4100_Item *Item(int i)
     {
-        if (f1C4 > 0 && f1C8 != 0 && i < f1C4) {
+        int n = *(volatile int *)&f1C4;
+
+        if (n > 0 && f1C8 != 0 && i < n) {
             return f1C8[i];
         }
         return 0;
@@ -273,6 +275,27 @@ undefined4 C_001A40E0::func_001A40E0(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+int C_001A4100::func_001A4100(int key, int a1, int a2)
+{
+    int result = 0;
+    int i;
+
+    for (i = 0; i < f1C4; i++) {
+        if (Item(i)->f0 == key) {
+            C_001A4100_Obj *obj;
+
+            result = func_001A2480(Item(i)->f4, a1, a2);
+            f1D8.func_001CDED0(Item(i));
+            obj = Item(i)->f4;
+            if (obj != 0 && f1BC != obj) {
+                obj->func_001CB560(f1BC);
+                f1BC = obj;
+            }
+        }
+    }
+    return result;
 }
 
 undefined4 C_001A4420::func_001A4420(byte param_1)
