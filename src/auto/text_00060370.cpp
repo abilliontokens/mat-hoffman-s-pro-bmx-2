@@ -73,6 +73,8 @@ struct BmxSinglePlayerInGameMenu {
     C_001D5AA0 *unk15c[10];
     void func_00060D80(void);
     int func_00061030(void);
+    int func_00157BF0(int *a, int b);
+    int func_000610D0(int *a, int b);
 };
 
 void BmxSinglePlayerInGameMenu::func_00060D80(void) {
