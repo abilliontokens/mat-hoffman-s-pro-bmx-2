@@ -121,7 +121,7 @@ int func_001EA426(const char *a, const char *b);
 struct SoultreeObject {
     void *vtbl;
     char pad4[0x20];
-    int f24;
+    union { int f24; struct { char f24_bytes[3]; unsigned char f27_low:2, f27_bit2:1, f27_high:5; }; };
     char f28[0x80];
     char padA8[0xb0 - 0xa8];
     float fB0[16];
