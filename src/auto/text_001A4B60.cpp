@@ -117,6 +117,18 @@ struct S_001A5730_Item {
     f32 x, y, z, w;
 };
 
+static inline void SetIdentity(f32 *m)
+{
+    __m128 z = _mm_setzero_ps();
+    _mm_store_ps(m, z);
+    _mm_store_ps(m + 4, z);
+    _mm_store_ps(m + 8, z);
+    _mm_store_ps(m + 12, z);
+    m[0] = 1.0f;
+    m[5] = 1.0f;
+    m[10] = 1.0f;
+    m[15] = 1.0f;
+}
 struct C_001A5730;
 struct C_001A5730 {
     char pad0[0x14];
