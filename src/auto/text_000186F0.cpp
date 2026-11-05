@@ -1,10 +1,21 @@
 /* 7 functions from 0x000186F0 to 0x000195B0, found by Ghidra. */
 #include "common.h"
+struct C_0004AAD0 {
+    void func_0004AAD0();
+};
+struct C_0001CE80 {
+    void func_0001CE80(void *a, void *b, void *c, float d, float e);
+};
 struct S_002A8490 {
-    char pad0[0x238];
+    char pad0[4];
+    C_0001CE80 *f4;
+    char pad8[0x230];
     u32 f238;
+    char pad23c[0x68];
+    C_0004AAD0 *f2a4;
 };
 extern S_002A8490 *D_002A8490;
+extern int D_002A0718;
 struct S_00019520_Dev {
     virtual void v0();
     virtual void v1();
