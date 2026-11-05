@@ -7,8 +7,9 @@ extern float D_00275544;
 extern float D_00275BF8;
 static __inline float Abs_001A9110(float x)
 {
-    *(unsigned int *)&x &= 0x7fffffff;
-    return x;
+    volatile float result;
+    *(unsigned int *)&result = *(unsigned int *)&x & 0x7fffffff;
+    return result;
 }
 extern int D_0028BF14;
 
