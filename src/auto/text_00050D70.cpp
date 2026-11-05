@@ -186,6 +186,8 @@ struct C_00051420 {
     RT_P1 *f64;
     int func_00051420(void);
 };
+extern char D_00276B88[];
+extern char D_002779E8[];
 extern undefined4 D_00277934;
 extern S_00051BB0_Root *D_002A8490;
 extern float D_002B8F98;
