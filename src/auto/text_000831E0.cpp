@@ -1,8 +1,62 @@
 /* 18 functions from 0x000831E0 to 0x00083B50, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <string.h>
+
+extern float D_00275544;
+extern float D_002755E8;
+
 struct C_00083710 {
     void func_00083710(undefined4 param_1, undefined4 param_2);
+};
+
+struct C_000831E0 {
+    char pad0[0x54];
+    int f54;
+    int f58;
+    char pad5C[8];
+    int f64;
+    char pad68[0xCC - 0x68];
+    int fCC;
+    int fD0;
+    int fD4;
+    int fD8;
+    char padDC[0x120 - 0xDC];
+    int f120;
+    int f124;
+    int f128;
+    char pad12C[0x138 - 0x12C];
+    float f138;
+    char pad13C[0x15C - 0x13C];
+    int f15C;
+    char pad160[0x198 - 0x160];
+    int f198;
+    char pad19C[0x200 - 0x19C];
+    int f200;
+    int f204;
+    char pad208[0x274 - 0x208];
+    int f274;
+    char pad278[0x2E4 - 0x278];
+    int f2E4;
+    int f2E8;
+    int a2EC[100];
+    int a47C[100];
+    char pad60C[0xC2C - 0x60C];
+    int fC2C;
+    char padC30[0xC40 - 0xC30];
+    int fC40;
+    int fC44;
+    int fC48;
+    int fC4C;
+    char padC50[4];
+    int fC54;
+    char padC58[0xCA4 - 0xC58];
+    char sCA4[0x32];
+    char sCD6[0x32];
+    void func_000831E0(void);
+    void func_000836C0(int a, float b);
+    void func_00083850(void);
+    void func_00083880(void);
 };
 
 struct C_000836A0 {
