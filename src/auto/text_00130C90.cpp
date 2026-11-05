@@ -37,8 +37,8 @@ static S_KeyNode *initKeyNode(S_KeyNode *n, f32 value, int time)
 {
     n->f0 = value;
     n->f4 = time;
-    n->fC = 3.4028235e38f;
-    n->f10 = -3.4028235e38f;
+    n->fC = 3.40282347e+38f;
+    n->f10 = -3.40282347e+38f;
     n->f8 = 1.0f;
     return n;
 }
@@ -133,6 +133,30 @@ C_001313C0 *C_001313C0::func_00131150(void)
     f54 = 0;
     f58 = 0;
     return this;
+}
+
+int C_001313C0::func_00131260(int a1, int a2, int a3, int a4, f32 a5, f32 a6, int a7, int a8, int a9)
+{
+    S_KeyNode *n;
+
+    n = (S_KeyNode *)func_001E8A44(0x14);
+    f80 = n ? initKeyNode(n, f4.x, a8) : 0;
+    n = (S_KeyNode *)func_001E8A44(0x14);
+    f88 = n ? initKeyNode(n, f4.z, a8) : 0;
+    n = (S_KeyNode *)func_001E8A44(0x14);
+    f84 = n ? initKeyNode(n, f4.y, a9) : 0;
+    n = (S_KeyNode *)func_001E8A44(0x14);
+    f8C = n ? initKeyNode(n, f48, a7) : 0;
+    n = (S_KeyNode *)func_001E8A44(0x14);
+    f90 = n ? initKeyNode(n, f4C, a7) : 0;
+    n = (S_KeyNode *)func_001E8A44(0x14);
+    f94 = n ? initKeyNode(n, fA0, a2) : 0;
+    fA8 = a4;
+    fA4 = a3;
+    f5C = a5;
+    f74 = a1;
+    f60 = a6;
+    return 1;
 }
 
 void C_001313C0::func_001313C0(S_001313C0_Data *src)
