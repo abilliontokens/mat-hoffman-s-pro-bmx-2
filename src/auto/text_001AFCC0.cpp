@@ -403,6 +403,38 @@ int C_001B0040::func_001B0040(unsigned int key)
     return i;
 }
 
+void *C_001AFD90::func_001AFD90(S_001B0040_owner *owner)
+{
+    C_001AFD90 *src = (C_001AFD90 *)owner;
+    int active = 0;
+    unk1C = 0;
+    unk20 = 0;
+    for (int i = 0; i < 4; ++i) {
+        items[i] = 0;
+        if (src->items[i] && src->items[i]->unk18) {
+            void *p = func_001E8A44(0x1c);
+            items[i] = p ? (C_001AF360 *)p : 0;
+            if (p) *items[i] = *src->items[i];
+            if (items[i]->unk18) active = 1;
+        }
+    }
+    if (src->unk1C && src->unk1C->unk4) {
+        void *p = func_001E8A44(0x24);
+        unk1C = p ? ((C_001491E0 *)p)->func_001491E0(src->unk1C) : 0;
+    }
+    if (src->unk20 && src->unk20->unk4) {
+        void *p = func_001E8A44(0x18);
+        unk20 = p ? ((C_001488B0 *)p)->func_001488B0(src->unk20) : 0;
+    }
+    if (active || unk1C || unk20) unk28 = 1;
+    else unk28 = 0;
+    unk0 = 0;
+    unk4 = 0;
+    unk8 = -1;
+    unk24 = src->unk24;
+    return this;
+}
+
 void C_001B0040::func_001B0070(unsigned int key)
 {
     if (unkC->unk28) {
