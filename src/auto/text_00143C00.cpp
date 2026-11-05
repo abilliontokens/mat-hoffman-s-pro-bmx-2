@@ -83,6 +83,11 @@ struct C_001474B0 {
 struct Sel_001446B0 {
     char pad0[4];
     C_001474B0 *obj;
+    char pad8[8];
+};
+
+struct C_00144690 {
+    int func_00144690(int a0, int a1);
 };
 
 struct Mgr_002A829C {
@@ -157,6 +162,22 @@ void C_00144660::func_00144660()
     ((C_001AF0D0 *)this)->func_001AF0D0();
 }
 
+int __stdcall func_00144690(int a0, int a1)
+{
+    int __stdcall func_001AF120(int, int);
+    func_001AF120(a0, a1);
+    return 1;
+}
+
+void C_001446B0::func_001446B0(int a0, int a1, int a2)
+{
+    if (a2 != -1) {
+        ((C_001474B0 *)D_002A829C->arr[a2].obj)->func_001474B0(this, a0, a1);
+    } else {
+        ((C_001474B0 *)D_002A829C->arr[f4].obj)->func_001474B0(this, a0, a1);
+    }
+}
+
 void *C_00144940::func_00144940(unsigned int flags)
 {
     ((C_001445C0 *)this)->func_001445C0();
@@ -164,6 +185,20 @@ void *C_00144940::func_00144940(unsigned int flags)
         func_001E891B(this);
     }
     return this;
+}
+
+void C_00144960::func_00144960(int a0, int a1, int a2, int a3)
+{
+    void *func_001E8A44(int);
+    func_001AF100(a0, a1, a2, a3);
+    C_00144710 *p = (C_00144710 *)func_001E8A44(0x38);
+    if (p != 0) {
+        p = p->func_00144710(a0);
+    } else {
+        p = 0;
+    }
+    f10 = p;
+    fc |= 1;
 }
 
 C_001449B0 *C_001449B0::func_001449B0(void *param)
