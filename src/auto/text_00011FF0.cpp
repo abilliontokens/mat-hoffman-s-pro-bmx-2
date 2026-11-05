@@ -114,7 +114,7 @@ struct S_11FF0_Owner {
     float func_00011730(float *p, int idx);
     float func_00012510(float *p, int start);
     void func_00012960(float *p, int a, int b);
-    int func_00012730(void *a, void *b, void *c, int d, int e);
+    int func_00012730(V4_00012730 *a, V4_00012730 *b, V4_00012730 *out, int mode, int all);
 };
 
 struct C_00012420 {
