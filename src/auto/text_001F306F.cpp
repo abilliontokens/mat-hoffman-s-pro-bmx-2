@@ -390,19 +390,20 @@ void func_001F37B0(int code) {
 
 #pragma optimize("sy", on)
 int func_001F37D8(int status) {
-    if ((u8)status & 0x20) {
+    u8 bits = (u8)status;
+    if (bits & 0x20) {
         return 5;
     }
-    if ((u8)status & 0x08) {
+    if (bits & 0x08) {
         return 1;
     }
-    if ((u8)status & 0x04) {
+    if (bits & 0x04) {
         return 2;
     }
-    if ((u8)status & 0x01) {
+    if (bits & 0x01) {
         return 3;
     }
-    return ((u8)status & 2) << 1;
+    return ((unsigned int)bits & 2) << 1;
 }
 double func_001F3805(int type, int fnid, D8_001F3805 arg1, D8_001F3805 arg2, D8_001F3805 retval, u32 cw) {
     extern int D_002AEC70[];
@@ -492,11 +493,11 @@ double func_001F39A9(double x, int exp)
     return retval;
 }
 
+#pragma optimize("s", on)
 int func_001F39D3(double x)
 {
     unsigned long lo = ((unsigned long *)&x)[0];
     unsigned long hi = ((unsigned long *)&x)[1];
-    unsigned short w;
 
     if (hi == 0x7ff00000) {
         if (lo == 0) {
@@ -507,11 +508,10 @@ int func_001F39D3(double x)
             return 2;
         }
     }
-    w = *((unsigned short *)&x + 3) & 0x7ff8;
-    if (w == 0x7ff8) {
+    if ((*((unsigned short *)&x + 3) & 0x7ff8) == 0x7ff8) {
         return 3;
     }
-    if (w == 0x7ff0 && ((hi & 0x7ffff) != 0 || lo != 0)) {
+    if ((*((unsigned short *)&x + 3) & 0x7ff8) == 0x7ff0 && ((hi & (unsigned long)&D_0007FFFF) != 0 || lo != 0)) {
         return 4;
     }
     return 0;
