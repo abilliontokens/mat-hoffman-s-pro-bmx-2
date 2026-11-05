@@ -54,3 +54,15 @@ struct C_000ACE10 {
     void func_00189770(void);
     void func_000ACE10(void);
 };
+
+void *C_000ACE30::func_000ACE30(int flags) {
+    extern int D_0027B1A4;
+    void func_001E891B(void *);
+    int func_001BAEC0(...);
+    unk0 = (int)&D_0027B1A4;
+    func_001BAEC0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
