@@ -21,7 +21,6 @@ void __stdcall func_00011FF0(void *p, int stride, int count, void *ctor);
 
 struct Vec4_000AEC90 {
     float x, y, z, w;
-    Vec4_000AEC90() { x = y = z = 0; w = 1; }
 };
 
 struct C_000AEC90Parser {
@@ -111,5 +110,73 @@ void *WaterInclusionBoxes::func_000AEC50(unsigned int flags) {
     func_00157660();
     if (flags & 1) func_001E891B(this);
     return this;
+}
+
+void WaterInclusionBoxes::func_000AEC90(C_000AEC90Parser *parser)
+{
+    Vec4_000AEC90 v1;
+    Vec4_000AEC90 v2;
+    int count;
+    int total;
+    int n;
+    int i;
+    char buf[0x104];
+
+    if (parser->func_00169710(D_0027CC24)) {
+        parser->func_00168C20(D_0027CC08, 0, &count);
+        if (count > 0) {
+            if (field_28 != 0) {
+                i = field_24;
+                total = count + i;
+                field_24 = total;
+                field_28 = (WaterBox *)func_001E83E8(field_28, total * 0x28);
+            } else {
+                WaterBox *q;
+                field_24 = count;
+                total = count;
+                n = count;
+                q = (WaterBox *)func_001E8A44(n * 0x28);
+                i = 0;
+                if (q != 0) {
+                    func_00011FF0(q, 0x28, n, &D_000AAA50);
+                } else {
+                    q = 0;
+                }
+                field_28 = q;
+            }
+            n = 1 - i;
+            for (; i < total; i++) {
+                func_001ADCC0(buf, 0x104, D_0027CBF4, i + n);
+                if (parser->func_00169710(buf)) {
+                    parser->func_00168CB0(D_0027CBE8, D_002A2734, &v1);
+                    parser->func_00168CB0(D_0027CBDC, D_002A2734, &v2);
+                    parser->func_00168C50(D_0027CBCC, 0, &field_28[i].f20);
+                    parser->func_00168C50(D_0027CBC0, 0, &field_28[i].f24);
+                    field_28[i].f24 = field_28[i].f24 * D_00275998;
+                    if (v1.x < v2.x) {
+                        field_28[i].f0 = v1.x;
+                        field_28[i].f10 = v2.x;
+                    } else {
+                        field_28[i].f0 = v2.x;
+                        field_28[i].f10 = v1.x;
+                    }
+                    if (v1.y < v2.y) {
+                        field_28[i].f4 = v1.y;
+                        field_28[i].f14 = v2.y;
+                    } else {
+                        field_28[i].f4 = v2.y;
+                        field_28[i].f14 = v1.y;
+                    }
+                    if (v1.z < v2.z) {
+                        field_28[i].f8 = v1.z;
+                        field_28[i].f18 = v2.z;
+                    } else {
+                        field_28[i].f8 = v2.z;
+                        field_28[i].f18 = v1.z;
+                    }
+                }
+            }
+        }
+    }
 }
 
