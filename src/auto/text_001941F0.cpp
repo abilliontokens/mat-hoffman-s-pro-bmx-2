@@ -358,6 +358,22 @@ int SignatureWave::func_00194490(void)
     return 1;
 }
 
+int C_00194520::func_00194520(float dt, int a) {
+ if (!D_002A99B0 && fAC == 3) return 1;
+ fE0 = dt + fE0;
+ if (fE4 != D_00275544) {
+ float frame = fE0 * fE4;
+ int index = (int)frame;
+ f58 = 1.0f - (frame - index);
+ f50 = (unsigned)index % f4C;
+ f54 = f50 + 1;
+ if (f54 >= f4C) f54 = 0;
+ } else { f50 = 0; f58 = 1.0f; f54 = 0; }
+ f84 = (float)fmod(dt * f8C + f84, f34);
+ f88 = (float)fmod(dt * f90 + f88, f38);
+ return 1;
+}
+
 undefined4 C_00194720::func_00194720(byte param_1)
 {
   int func_001942C0(...);
