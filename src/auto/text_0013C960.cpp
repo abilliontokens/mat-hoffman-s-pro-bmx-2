@@ -36,9 +36,20 @@ struct S_0013C960_Elem {
 struct C_0013C960 {
     char pad0[0xc];
     S_0013C960_Rec *fC;
-    char pad10[0xe8 - 0x10];
+    int f10;
+    char pad14[0x10];
+    int *f24;
+    int *f28;
+    int f2C[8];
+    char pad4C[0x6c - 0x4c];
+    int f6C;
+    int f70;
+    char pad74[0x7c - 0x74];
+    void *f7C;
+    S_0013C960_Ent f80[8];
+    char padE0[0xe8 - 0xe0];
     S_0013C960_Elem *fE8;
-    char padEC[4];
+    int fEC;
     int fF0;
     int fF4;
     char padF8[4];
@@ -50,6 +61,9 @@ struct C_0013C960 {
     int func_0013B760(S_0013C960_Rec *p, int v);
     int func_0013BBA0(S_0013C960_Rec *p, int a1, int a2, int a3);
     int func_0013C9F0(int a0, int a1);
+    int func_0013C660(int a0);
+    void func_0013AEC0(int a0);
+    void func_0013B840(S_0013C960_Rec *a0);
     int func_0013C960(int a0, int a1, int a2);
 };
 
