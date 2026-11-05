@@ -96,6 +96,28 @@ struct S_11FF0_State3 {
     void func_00012240(int arg1, float arg2);
 };
 
+struct S_11FF0_StateA {
+    void *vtbl;
+    char pad4[4];
+    int f8;
+    char padC[8];
+    int f14;
+    char pad18[8];
+    S_11FF0_VtObj **f20;
+    void func_000122E0(void *arg1, float arg2);
+};
+
+struct S_11FF0_StateB {
+    void *vtbl;
+    char pad4[8];
+    int fC;
+    char pad10[8];
+    int f18;
+    char pad1C[8];
+    S_11FF0_VtObj **f24;
+    void func_00012380(void *arg1, float arg2);
+};
+
 typedef void (__fastcall *S_11FF0_IterFn)(void *);
 
 extern S_11FF0_Global *D_002A8490;
