@@ -141,6 +141,39 @@ struct C_001A7860 {
     void *func_001A7860(unsigned int flags);
 };
 
+/* LoadMemoryCard */
+struct C_001A6D30_Menu {
+    void func_00093970(int a1, int a2, int a3, int a4, int a5, int a6);
+    void func_00093B80(int a1, int a2, int a3, int a4, int a5, int a6);
+    void func_00094570(int a1, int a2, int a3, int a4, int a5, int a6);
+    void func_000941A0(int a0, int a1, int a2, int a3, int a4, int a5, int a6);
+};
+
+struct C_001A6D30_Obj4C {
+    char pad0[0x24];
+    int f24;
+};
+
+extern int D_0028F5E0;
+
+struct C_001A6D30 {
+    void *vtbl;
+    char pad4[0x48];
+    C_001A6D30_Obj4C *f4C;
+    char pad50[0x5C - 0x50];
+    int f5C;
+    char pad60[0x6C - 0x60];
+    int f6C;
+    char pad70[4];
+    int f74;
+    C_001A6D30_Menu *f78;
+    char pad7C[0x88 - 0x7C];
+    int f88;
+    void func_001A6BA0();
+    void func_00157960();
+    void func_001A6D30();
+};
+
 int LoadMemoryCard::func_001A6A40(int a, int b)
 {
     if (f98) return 0;
