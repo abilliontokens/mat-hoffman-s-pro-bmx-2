@@ -70,6 +70,36 @@ struct C_00145230 {
     C_00145230 *func_00145230(void);
 };
 
+struct C_00144BF0_Entry {
+    int unk0;
+    int unk4;
+    char pad8[8];
+};
+
+struct C_00144BF0_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual int v5(int a);
+    virtual void v6();
+    virtual int v7(const char *name, int a);
+    int unk4;
+    int unk8;
+    int unkC;
+    int unk10;
+    C_00144BF0_Entry *unk14;
+};
+
+extern C_00144BF0_Obj *D_002A71C4;
+extern char D_00285C6C[];
+extern char D_00285C5C[];
+extern char D_00285C40[];
+extern char D_00285C28[];
+extern char D_00285C0C[];
+int func_002012B0(int a, int b, int c, int d);
+
 
 void C_00144CF0::func_00144CF0(void)
 {
