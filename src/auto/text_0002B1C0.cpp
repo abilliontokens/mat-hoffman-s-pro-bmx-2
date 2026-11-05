@@ -7,3 +7,12 @@ struct C_0002C100 {
 };
 
 void func_001E891B(void *ptr);
+
+void *C_0002C100::func_0002C100(unsigned int flags)
+{
+    func_00026A90();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
