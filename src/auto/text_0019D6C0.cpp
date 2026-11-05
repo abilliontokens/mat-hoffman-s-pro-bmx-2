@@ -16,6 +16,7 @@ void func_001E8BF0(char *dst, void *src, int n);
 void func_00030F30(char *s, void *p);
 int func_001EA426(void *a, void *b);
 void func_00132E90(int a, void *b);
+void *func_001E8AA5(int size);
 
 struct C_002BEAAC {
     int func_0013D310(char *a, void *b, int *c, int *d, int e);
