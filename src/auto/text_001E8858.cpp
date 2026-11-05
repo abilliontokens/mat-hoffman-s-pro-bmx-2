@@ -56,6 +56,25 @@ int func_001E8A52(unsigned int size) {
     return func_001E0AE0(func_001DF5B3(), 0, size);
 }
 
+int func_001E8A79(uint param_1, int param_2)
+{
+  int func_001E8A52(...);
+  int func_001EB3BE(...);
+  int iVar1;
+
+  if (param_1 > 0xffffffe0) {
+    return 0;
+  }
+  do {
+    iVar1 = func_001E8A52(param_1);
+    if (iVar1 != 0 || param_2 == iVar1) {
+      return iVar1;
+    }
+    iVar1 = func_001EB3BE(param_1);
+  } while (iVar1 != 0);
+  return 0;
+}
+
 void func_001E8AA5(undefined4 param_1)
 {
   extern undefined4 D_002F69EC;
