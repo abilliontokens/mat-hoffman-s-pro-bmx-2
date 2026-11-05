@@ -15,6 +15,9 @@ struct S_001B9460_Quat {
 };
 
 extern S_001B9460_Quat D_002AA9F4;
+extern u32 D_002AA9F8;
+extern u32 D_002AA9FC;
+extern u32 D_002AAA00;
 
 /* SegmentedCordTempData */
 struct C_001B9460 {
@@ -50,6 +53,7 @@ C_001B9460 *C_001B9460::func_001B9460(void) {
     C_001B9460 * volatile self = this;
     volatile int tmp[2];
     int lim;
+    int len;
     int n;
 
     vtbl = (void *)&D_0028D0BC;
@@ -62,14 +66,22 @@ C_001B9460 *C_001B9460::func_001B9460(void) {
     }
     tmp[0] = sizeof(f10) - 1;
     lim = tmp[0];
-    tmp[1] = lim > (int)strlen("") ? (int)strlen("") : lim;
+    len = (int)strlen("");
+    if (lim > len) {
+        lim = len;
+    }
+    tmp[1] = lim;
     n = tmp[1];
     func_001E8920(self->f10, (const char *)&D_00275630, n);
     self->f10[n] = 0;
 
     tmp[1] = sizeof(f218) - 1;
     lim = tmp[1];
-    tmp[0] = lim > (int)strlen("") ? (int)strlen("") : lim;
+    len = (int)strlen("");
+    if (lim > len) {
+        lim = len;
+    }
+    tmp[0] = lim;
     n = tmp[0];
     func_001E8920(self->f218, (const char *)&D_00275630, n);
     self->f218[n] = 0;
