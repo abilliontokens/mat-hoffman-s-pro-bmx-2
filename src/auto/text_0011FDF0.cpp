@@ -1,5 +1,9 @@
 /* 5 functions from 0x0011FDF0 to 0x00120B20, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
+
+static __forceinline float Min_0011FDF0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float Max_0011FDF0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 
 extern float D_00275544;
 
