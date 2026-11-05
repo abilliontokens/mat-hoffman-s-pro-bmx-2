@@ -161,21 +161,16 @@ void __stdcall func_001690D0(char *src, char *dst)
     int len;
     int i;
     int j;
-    int depth = 0;
-    int quote = 0;
-    char *p = src;
-    char *q = src + 1;
-    char c;
+    int depth;
+    int quote;
     char ch;
 
-    do {
-        c = *p;
-        p++;
-    } while (c != 0);
-    len = p - q;
+    quote = 0;
+    depth = 0;
+    len = strlen(src);
     i = 0;
     j = 0;
-    *dst = c;
+    *dst = 0;
     if (len != 0 && len > 0) {
         do {
             ch = src[i];
