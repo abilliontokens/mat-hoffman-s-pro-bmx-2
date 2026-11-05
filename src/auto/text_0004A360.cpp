@@ -50,7 +50,24 @@ struct S_Obj12140 {
     void func_00012140(void);
 };
 
+struct S_Vec4 {
+    float x, y, z, w;
+    S_Vec4() { z = 0; y = 0; x = 0; w = 1.0f; }
+    S_Vec4(float nx, float ny, float nz) { x = nx; y = ny; z = nz; w = 1.0f; }
+};
+
+struct S_Overlay {
+    void func_00088A40(int a, S_Vec4 *v);
+};
+
+extern S_Vec4 D_002A15B0;
+extern float D_00277240;
+void func_000499B0(S_Vec4 *out, S_Vec4 *in);
+float func_0014FBA0(float x, float z);
+
 struct C_001983A0 {
+    S_Vec4 *func_00199B00(S_Vec4 *out, int a);
+    S_Vec4 func_00198040(S_Vec4 *in);
     void func_001983A0(void);
     void func_00198390(void);
 };
