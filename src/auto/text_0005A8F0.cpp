@@ -1,6 +1,7 @@
 /* 9 functions from 0x0005A8F0 to 0x0005B8D0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+extern "C" char *strcpy(char *, const char *);
 struct C_0005B220 {
     void func_0005B220(void);
 };
