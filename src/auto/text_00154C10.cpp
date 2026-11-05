@@ -13,7 +13,7 @@ extern char D_002A5EA0[], D_002A60B0[], D_002A45E0[], D_002A5870[], D_00275678[]
 extern char D_002A5FA8[], D_002A47F0[], D_002A48F8[], D_002A5348[];
 extern char D_002758F0[], D_002758E4[], D_002758D8[], D_002758CC[];
 
-template <class T> inline T Min_001554D0(T l, T r) { return l > r ? r : l; }
+template <class T> inline T Min_001554D0(const T &l, const T &r) { return l > r ? r : l; }
 
 /* the path buffers are saved and restored with a length-clamped copy */
 static __forceinline void CopyPath_001554D0(char *dst, const char *src)
