@@ -224,7 +224,7 @@ struct C_001B8550 {
     char pad4[0x20];
     int f24;
     Item_001B8550 **f28;
-    void func_001B8550(Arg_001B8550 *arg);
+    void func_001B8550(void *arg);
 };
 
 void func_0014FF00(int a, const char *b, int c, char *d, int e);
