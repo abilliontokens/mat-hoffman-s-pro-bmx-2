@@ -169,7 +169,7 @@ struct S_0019B1A0_VThis {
 
 static __forceinline void Transpose_0019B1A0(float *src, float *dst)
 {
-    __m128 t0 = _mm_setzero_ps(), t1 = _mm_setzero_ps(), t2 = _mm_setzero_ps(), t3 = _mm_setzero_ps();
+    __m128 t0, t1, t2, t3;
 
     t0 = _mm_loadl_pi(t0, (__m64 *)&src[0]);
     t0 = _mm_loadh_pi(t0, (__m64 *)&src[4]);
