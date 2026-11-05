@@ -339,7 +339,7 @@ void __stdcall func_001DE759(unsigned int code, unsigned int flags, unsigned int
             nargs = 15;
         }
         er.NumberParameters = nargs;
-        for (i = 0; i < nargs; i++) {
+        for (i = 0; i != nargs; i++) {
             er.ExceptionInformation[i] = args[i];
         }
     } else {
@@ -366,6 +366,45 @@ Callback_001DE6F0 __stdcall func_001DE7D4(Callback_001DE6F0 fn)
 
     D_002F6BBC = fn;
     return old;
+}
+
+void __stdcall func_001DE7E6(S_002ACBBC_Node *node, int add)
+{
+    _imp__RtlEnterCriticalSection(D_002ACBA0);
+    if (add != 0) {
+        node->next = &D_002ACBBC;
+        node->prev = D_002ACBC0;
+        D_002ACBC0->next = node;
+        D_002ACBC0 = node;
+    } else {
+        node->prev->next = node->next;
+        node->next->prev = node->prev;
+    }
+    _imp__RtlLeaveCriticalSection(D_002ACBA0);
+}
+
+void func_001DE82F(int (__stdcall *start)(int), int param)
+{
+    S_KThread *thread;
+    char *tls;
+    int size;
+    int result;
+
+    __try {
+        thread = (S_KThread *)__readfsdword(0x28);
+        tls = (char *)thread->tls + 4;
+        *(char **)(tls - 4) = tls;
+        size = D_0028FD70 - D_0028FD6C;
+        memcpy(tls, D_0028FD6C, size);
+        if (D_0028FD7C != 0) {
+            memset(tls + size, 0, D_0028FD7C);
+        }
+        func_001DE6B8(1);
+        result = start(param);
+        func_001DE6B8(0);
+    } __except (func_001DE6F0(_exception_info())) {
+    }
+    _imp__PsTerminateSystemThread(result);
 }
 
 #pragma optimize("", on)
