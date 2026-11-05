@@ -207,10 +207,4 @@ void C_000DFCF0::func_000DFCF0()
     }
     func_001BF000();
 }
-struct S_000DFE50_W {
-    char pad0[0x38];
-    u32 f38;
-    char pad3c[0x1c];
-    u8 f58;
-    void func_001D5AD0();
-};
+
