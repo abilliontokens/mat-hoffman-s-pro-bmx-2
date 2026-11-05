@@ -212,6 +212,21 @@ void C_001677C0::func_001677C0(C_001677C0_Dst *dst)
     p[3] = d;
 }
 
+C_00167760 *C_00167760::func_00167A70(int flags)
+{
+    vtbl = (void *)&D_00287F64;
+    if (f360) {
+        f360->destroyObject(1);
+    }
+    if (f34c) {
+        f34c->destroyObject(1);
+    }
+    vtbl = (void *)&D_00287EE4;
+    func_00157660();
+    if (flags & 1) func_001E891B(this);
+    return this;
+}
+
 C_00167AC0 *C_00167AC0::func_00167AC0(void)
 {
     C_00167AC0_Sub *p = subs;
