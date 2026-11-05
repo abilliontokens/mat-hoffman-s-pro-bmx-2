@@ -350,6 +350,7 @@ void C_000B2C80::func_000B2C80(S_000B2C80_Arg *a)
 void C_000B2E40::func_000B2E40(void)
 {
     int i;
+    S_000B2E40_Buf *buf;
 
     vtbl = &D_0027CEFC;
     if (f48 != 0) {
@@ -364,9 +365,10 @@ void C_000B2E40::func_000B2E40(void)
         f40->Destroy(1);
         f40 = 0;
     }
-    if (f44 != 0) {
-        f44->func_00188720();
-        func_001E891B(f44);
+    buf = f44;
+    if (buf != 0) {
+        buf->func_00188720();
+        func_001E891B(buf);
     }
     func_0018C7F0();
 }
