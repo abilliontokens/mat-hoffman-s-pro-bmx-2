@@ -67,6 +67,12 @@ struct C_000B3DF0 {
 };
 
 
+void VehicleAI::func_000B3330(int param_1)
+{
+    f50 = param_1;
+    D_002B9134->func_000B2C80(this);
+}
+
 undefined4 C_000B3DF0::func_000B3DF0(byte param_1)
 {
   int func_000B2E40(...);
