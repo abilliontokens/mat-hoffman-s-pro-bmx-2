@@ -1,5 +1,6 @@
 /* 6 functions from 0x00022E30 to 0x00023CB0, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
 
 extern int D_00276218;
 struct S_Vec4i_00023C30 {
