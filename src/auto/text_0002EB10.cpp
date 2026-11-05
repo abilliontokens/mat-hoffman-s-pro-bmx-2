@@ -99,3 +99,22 @@ C_0002F190 *C_0002F190::func_0002F190(void)
     p[3] = 0x3f800000;
     return this;
 }
+
+void C_0002F6C0::func_0002F6C0()
+{
+    float m[12];
+    float other[12];
+    D_002EFDB8->v7(1);
+    D_002EFDB8->v8();
+    if (f54) {
+        f6c = 8;
+        func_0012B7D0(f54, 0, 0, 0, 0);
+        m[0] = m[1] = m[2] = 0.0f; m[3] = 1.0f;
+        m[4] = m[5] = m[6] = 0.0f; m[7] = 1.0f;
+        m[8] = m[9] = m[10] = 0.0f; m[11] = 1.0f;
+        f54->v1(m);
+        f30->func_0012AC20(m, m+4, m+8, other, other+1);
+        f54->v0(m, 0);
+    }
+}
+
