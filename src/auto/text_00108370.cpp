@@ -36,6 +36,13 @@ struct C_00108660 {
     int func_00108660(void);
 };
 
+struct C_001092E0 {
+    int f0;
+    int f4[5];
+    int f18[5];
+    void func_001092E0(int start);
+};
+
 
 void C_001084E0::func_001084E0(void)
 {
