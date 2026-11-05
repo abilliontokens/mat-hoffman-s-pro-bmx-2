@@ -79,3 +79,14 @@ undefined4 C_00192BD0::func_00192BD0(int param_1)
   return 0;
 }
 
+C_00192CA0 *C_00192CA0::func_00192CA0(unsigned int flags)
+{
+    void func_001E891B(void *);
+    void func_00192930();
+    func_00192930();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
