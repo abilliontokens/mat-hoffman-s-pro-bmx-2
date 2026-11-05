@@ -57,8 +57,7 @@ struct C_000E3C90_Widget {
 
 struct C_000E3D30_Item {
     char pad0[0x38];
-    unsigned lo : 24;
-    int hi : 8;
+    int w38;
     char pad3C[0x1C];
     unsigned char flags;
     void func_00051120(unsigned short v);
