@@ -176,6 +176,31 @@ void C_001659D0::func_001659D0(int *a, int b, int c)
     }
 }
 
+void C_00165D00::func_00165D00(f32 scale)
+{
+    int i;
+
+    for (i = 0; i < f218; i++) {
+        f1EC[f21C[i]].f34->func_00199300(&f200[f21C[i]]);
+        f1EC[f21C[i]].f34->func_00199650(&f204[f21C[i]]);
+    }
+    for (i = 0; i < f20C; i++) {
+        Vec4_165EF0 v;
+        Vec4_165EF0 d;
+        Vec4_165EF0 *p;
+        v.x = v.y = v.z = 0.0f;
+        v.w = 1.0f;
+        f210[i]->f8->func_00199A70(0, &v);
+        d.x = v.x * scale;
+        d.y = v.y * scale;
+        d.z = v.z * scale;
+        p = &f214[i];
+        p->x = d.x + p->x;
+        p->y = d.y + p->y;
+        p->z = d.z + p->z;
+    }
+}
+
 Vec4_165EF0 C_00165E20::func_00165E20(C_00165E20_Arg1 *a1, f32 a2, int a3, void *a4)
 {
     Vec4_165EF0 v;
