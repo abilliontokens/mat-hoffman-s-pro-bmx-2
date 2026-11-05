@@ -83,6 +83,19 @@ struct S_001EF087 {
     unsigned char func_001EF087(void);
 };
 
+extern int D_00295BF0;
+
+/* Class_00295BF0: a counted string, with its own 3-slot vtable */
+struct S_001EF45F {
+    void *vtbl;
+    int f4;
+    char *f8;
+    int fC;
+    char func_001EF4C6(void);
+};
+
+void __stdcall func_001EF68E(char *buf, int n);
+
 /* Class_00295BD8 instance */
 struct S_001EF033 {
     void *vtbl;
