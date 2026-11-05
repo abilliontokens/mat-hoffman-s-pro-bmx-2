@@ -547,6 +547,68 @@ void XboxSoundInterface::func_001CF6E0()
     func_0001CA30();
 }
 
+SoundObj_001CFE90 *SoundObj_001CFE90::func_001CF740(void *unused, int parent, int a)
+{
+    int *w = (int *)this;
+    IntArray *list;
+    int *p;
+
+    ((C_0001C930 *)this)->func_0001C930();
+    w[0] = (int)&D_0028EEEC;
+    p = &w[0x1d8 / 4]; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    p = &w[0x1e8 / 4]; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    p = &w[0x1f8 / 4]; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    w[0x138 / 4] = parent;
+    list = (IntArray *)((char *)parent + 0x30);
+    list->Add((int)this);
+    *(short *)((char *)this + 0x198) = (short)a;
+    w[0x13c / 4] = 0;
+    w[0x194 / 4] = 0;
+    w[0x118 / 4] = 0;
+    w[0x120 / 4] = 0;
+    w[0x144 / 4] = 0;
+    w[0x148 / 4] = 0;
+    w[0x14c / 4] = 0;
+    w[0x150 / 4] = 0;
+    w[0x154 / 4] = 0;
+    memset(&w[0x158 / 4], 0, 0x3c);
+    w[0x19c / 4] = 0;
+    w[0x1a0 / 4] = 0;
+    w[0x1a4 / 4] = 0x3f800000;
+    w[0x1a8 / 4] = *(int *)((char *)w[0x138 / 4] + 0x28);
+    w[0x1ac / 4] = 100;
+    w[0x124 / 4] = func_001CB0A0(w[0x1a8 / 4]);
+    w[0x1b0 / 4] = 0;
+    w[0x12c / 4] = 0;
+    w[0x130 / 4] = 0;
+    w[0x134 / 4] = 0;
+    w[0x1bc / 4] = 0;
+    w[0x1c0 / 4] = 0x3f800000;
+    w[0x1c8 / 4] = 0;
+    w[0x1d0 / 4] = 0x3f800000;
+    w[0x1d4 / 4] = 0x3f800000;
+    w[0x128 / 4] = w[0x1a8 / 4];
+    w[0x1c4 / 4] = 0x4e6e6b28;
+    w[0x1cc / 4] = 0x3e9c0ebf;
+    w[0x1b4 / 4] = 0x168;
+    w[0x1b8 / 4] = 0x168;
+    w[0x1d8 / 4] = D_002ABA64;
+    w[0x1dc / 4] = D_002ABA68;
+    w[0x1e0 / 4] = D_002ABA6C;
+    w[0x1e4 / 4] = D_002ABA70;
+    w[0x1e8 / 4] = D_002ABA44;
+    w[0x1ec / 4] = D_002ABA48;
+    w[0x1f0 / 4] = D_002ABA4C;
+    w[0x1f4 / 4] = D_002ABA50;
+    w[0x1f8 / 4] = D_002ABA44;
+    w[0x1fc / 4] = D_002ABA48;
+    w[0x200 / 4] = D_002ABA4C;
+    w[0x204 / 4] = D_002ABA50;
+    *((unsigned char *)this + 0x208) &= 0x80;
+    w[0x140 / 4] = 0;
+    return this;
+}
+
 int XboxSound_001CF970::func_001CF970(int on)
 {
     int was;
