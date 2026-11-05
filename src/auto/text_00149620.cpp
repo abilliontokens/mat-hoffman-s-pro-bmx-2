@@ -30,7 +30,14 @@ struct C_0001DFE0 {
     void *vtbl;
     int unk4;
     void func_0001DFE0();
+    void func_0001DFF0();
 };
+
+struct C_0014A540;
+struct C_00012140 {
+    void func_00012140();
+};
+void func_001E891B(void *p);
 
 struct C_0014A3A0 : C_0001DFE0 {
     int unk8[8];
