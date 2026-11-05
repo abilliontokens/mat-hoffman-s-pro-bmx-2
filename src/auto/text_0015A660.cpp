@@ -123,7 +123,7 @@ struct C_0015B470 {
         if (i >= f4) {
             grow(i * 2 + 2);
         }
-        if (fC < i + 1) {
+        if (i + 1 > fC) {
             fC = i + 1;
         }
         return &f0[i];
@@ -449,5 +449,19 @@ void C_0015B4C0::func_0015B4C0(void)
     func_001E891B(*in_ECX);
   }
   return;
+}
+
+void C_0015B470::func_0015B4E0(const char *name, int value)
+{
+    char *d;
+    char c;
+
+    at(f11C)->value = value;
+    d = at(f11C)->name;
+    do {
+        c = *name++;
+        *d++ = c;
+    } while (c != 0);
+    f11C++;
 }
 
