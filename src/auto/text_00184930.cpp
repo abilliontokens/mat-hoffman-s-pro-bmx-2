@@ -94,7 +94,10 @@ struct S_00184CC0_Item {
 };
 
 struct S_00184D10_Info {
-    char pad0[0x10];
+    int f0;
+    int f4;
+    char **f8;
+    int fc;
     char name[1];
 };
 
