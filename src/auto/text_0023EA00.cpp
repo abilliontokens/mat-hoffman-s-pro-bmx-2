@@ -283,6 +283,17 @@ int __stdcall func_0023EF5D(char *self)
     return _InterlockedIncrement((long volatile *)(self + 0x8c));
 }
 
+int __stdcall func_0023EF7B(S_0023EF7B_Src *src, S_0023EF7B_Out *out)
+{
+    memset(out, 0, sizeof(S_0023EF7B_Out));
+    out->f0 = src->f8;
+    out->f4 = src->fC;
+    out->f8 = src->f10;
+    out->fC = src->f14;
+    out->f10 = src->f2C;
+    return 0;
+}
+
 int __stdcall func_0023F160(C_0023EFB0 *p)
 {
     p->func_0023EFB0();
