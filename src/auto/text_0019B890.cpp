@@ -4,6 +4,15 @@
 #include <math.h>
 #include <xmmintrin.h>
 
+extern int D_002B92F0, D_002B92E0;
+extern float D_002B9448[];
+extern float D_0028B1B0, D_0028B1A0, D_0028B190;
+struct C_0019BA70 {
+    char pad0[0x54];
+    char *f54;
+    void func_0019BA70();
+};
+
 void func_00123C50(void *a1, void *a2, void *a3, int a4, void *a5, void *a6, void *a7);
 
 struct __declspec(align(16)) S_Matrix16 {
@@ -125,6 +134,24 @@ void SoultreeCollisionObject::func_0019C1E0(void)
 
     ((C_00199C20 *)f1C0)->func_00199C20(0, &m);
     func_0019C0E0(&m);
+}
+
+void SoultreeCollisionObject::func_0019C210(S_Matrix16 *m)
+{
+    float *v;
+    float x, y, z;
+
+    ((C_000264C0 *)((char *)this + 0x170))->func_000264C0((char *)this + 0x130);
+    ((C_000264C0 *)((char *)this + 0x130))->func_000264C0(m);
+    func_0011ACC0(fB0, fF0, m);
+    *(S_0019C690_V3 *)((char *)this + 0x28) = *(S_0019C690_V3 *)((char *)f1C4 + 0xc);
+    *(int *)((char *)this + 0x34) = 0x3f800000;
+    v = (float *)((char *)f1C4 + 0x18);
+    x = v[0];
+    y = v[1];
+    z = v[2];
+    *(float *)((char *)this + 0x48) = sqrtf(x * x + y * y + z * z);
+    func_00030AC0((float *)((char *)this + 0x28), (float *)((char *)this + 0x28), (float *)m);
 }
 
 void SoultreeCollisionObject::func_0019C2F0(void)
