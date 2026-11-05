@@ -158,6 +158,8 @@ struct C_0013B210 {
  void func_0013AFF0(int,int,int);
 };
 
+extern C_0013B210 *D_002BEAAC;
+
 struct C_0001C550 {
     int unk0;
     void func_0001C290(void);
