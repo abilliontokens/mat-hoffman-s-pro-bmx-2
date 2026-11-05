@@ -78,12 +78,12 @@ struct BmxUIPageParkEditor {
 
 BmxUIPageParkEditor *BmxUIPageParkEditor::func_000C58E0(int a)
 {
+    int i;
+
     func_001BE360(a);
     vtbl = (void *)&D_0027E14C;
-    f2D0[0] = 0;
-    f2D0[1] = 0;
-    f2D0[2] = 0;
-    f2D0[3] = 0;
+    for (i = 0; i < 4; i++)
+        f2D0[i] = 0;
     f280 = 0;
     f284 = 0;
     f290 = 0;
