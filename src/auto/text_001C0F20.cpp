@@ -34,6 +34,32 @@ struct C_001C1110 {
     void func_001C1110(void);
 };
 
+struct S_001C0F20_Stream {
+    void func_00168C20(int *name, int value, int *out);
+};
+
+extern int D_0028DD94;
+extern int D_0028DD88;
+extern int D_0028DD80;
+extern int D_0028DD74;
+extern int D_0028DD6C;
+extern int D_0028DD64;
+extern int D_0028DD5C;
+extern int D_0028DD54;
+extern int D_0028DD48;
+extern int D_0028DD3C;
+extern int D_0028DD34;
+extern int D_0028DD2C;
+
+struct C_001C0F20 {
+    char pad0[0x24];
+    void *f24;
+    int f28;
+    char pad2C[0x68 - 0x2c];
+    int f68[12];
+    C_001C0F20 *func_001C0F20(int a, S_001C0F20_Stream *stream, void *owner);
+};
+
 struct C_001D5AD0 {
     void func_001D5AD0(void);
 };
