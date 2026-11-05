@@ -221,6 +221,14 @@ void C_00108680::func_00108680(int a0) {
     unkA2C = a0;
 }
 
+float C_00108CB0::func_00108CB0(int idx, float v)
+{
+    if (idx > 5) {
+        idx = 5;
+    }
+    return v * f24->f52C->f7A64[idx];
+}
+
 void C_00108F50::func_00108F50(void)
 {
     int i;
