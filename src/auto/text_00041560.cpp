@@ -267,3 +267,29 @@ void BmxEventEditor::func_00041CF0()
         f2c4->func_00069FD0(idx);
     }
 }
+
+void BmxEventEditor::func_00041DC0()
+{
+    if (f564 != 0 && (f474 == 3 || f474 == 4)) {
+        ((S_3D910_Base *)this)->func_0003D910(0);
+    }
+    f58c->v4();
+    f590->f1a4->f4->func_00198390();
+    f594->f1a4->f4->func_00198390();
+    f64->f4e0->f1a8->func_0010C090(f294, f2a4, f2b4, 1);
+    f44->func_0002F450(0);
+    f64->f4e0->func_000A4500(1, 0);
+    func_000321F0();
+    memset(s3BA, 0, 0x32);
+    memset(s388, 0, 0x32);
+    f550->func_0008A020(s3BA);
+    f550->func_0008A040(s388);
+    f558->func_0008B670(D_00275630);
+    f550->v4();
+    f558->v4();
+    f490 = 0;
+    f494 = 0;
+    f4a4 = 0;
+    f284 = 1;
+}
+
