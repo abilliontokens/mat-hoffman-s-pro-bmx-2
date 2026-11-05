@@ -27,6 +27,8 @@ struct S_002BEAAC {
     virtual void v0();
     virtual void v1();
     virtual void v2();
+    char pad4[0x100];
+    S_002BEAAC *func_0013E080();
 };
 extern S_002BEAAC *D_002BEAAC;
 
@@ -341,6 +343,29 @@ undefined4 C_00157290::func_00157290(byte param_1)
   return in_ECX;
 }
 
+C_00157600 *C_00157600::func_00157600(unsigned char flags)
+{
+    int func_0001DFE0(...);
+    extern int D_0028715C;
+    int n;
+
+    func_0001DFE0();
+    n = D_002DF94C + 1;
+    vtbl = (void *)&D_0028715C;
+    D_002DF94C = n;
+    f20 = 0xff;
+    f8 = 0;
+    fC = 0;
+    f10 = 0;
+    f14 = 0;
+    f21.b0 = flags;
+    f21.b1 = flags;
+    f21.b23 = 0;
+    f18 = 0;
+    f1C = 0;
+    return this;
+}
+
 void C_00157660::func_00157660(void)
 {
     extern int D_0028715C;
@@ -348,6 +373,17 @@ void C_00157660::func_00157660(void)
     vtbl = (void *)&D_0028715C;
     D_002DF94C = n;
     func_0001DFF0();
+}
+
+void GameObject::func_00157680(void)
+{
+    GameObject *c;
+
+    for (c = f10; c != 0; c = c->fC) {
+        if (!(c->f21 & 8)) {
+            c->v8();
+        }
+    }
 }
 
 void C_001576C0::func_001576C0(void)
