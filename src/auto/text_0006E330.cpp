@@ -221,6 +221,9 @@ struct S_6E970_EC {
     char pad22[0x1D2];
     int unk1F4;
 };
+struct C_5B870 {
+    char *func_0005B870();
+};
 struct S_6E970_G2 {
     char pad[0x190];
     int mode;
