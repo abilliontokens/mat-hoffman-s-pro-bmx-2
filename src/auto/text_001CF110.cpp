@@ -209,6 +209,40 @@ undefined4 C_001CFAE0::func_001CFAE0(byte param_1)
   return in_ECX;
 }
 
+int __stdcall func_001CFDC0(SoundThread_001CFDC0 *p)
+{
+    int r;
+
+    do {
+        p->func_001CFC00();
+        r = func_001DDDD6(p->f1A8, 0x10);
+    } while (r == 0x102);
+    if (p->fC4 != -1) {
+        func_001DD13C(p->fC4);
+        p->fC4 = -1;
+    }
+    if (p->fB4 != 0) {
+        p->fB4->Release();
+        p->fB4 = 0;
+    }
+    return 0;
+}
+
+int SoundThread_001CFE20::func_001CFE20(void)
+{
+    if (f4C == 0) {
+        f4 = func_001DDBC7(0, 1, 0, 0);
+        if (f4 != 0) {
+            f0 = func_001DE8C7(0, 0, (void *)&func_001CF590, this, 0, 0);
+            if (f0 != 0) {
+                f4C = 1;
+                return 0;
+            }
+        }
+    }
+    return 0x80004005;
+}
+
 void *XboxSoundInterface::func_001CFE70(int flags)
 {
     func_001CF6E0();
