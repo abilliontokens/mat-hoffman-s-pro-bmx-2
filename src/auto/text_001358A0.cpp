@@ -197,8 +197,20 @@ struct S_001364B0_Record {
     int fEC, fF0, fF4;
     int padF8;
 };
+/* the engine's stream manager: reads/seeks on integer file handles */
+struct C_0013B210 {
+    int func_0013C8A0(int handle, void *dst, int size, int count);
+    int func_0013AFD0(int handle);
+    void func_0013AFF0(int handle, int offset, int mode);
+};
+extern C_0013B210 *D_002BEAAC;
+
+/* cube map group: per-face records loaded from a stream */
 struct C_001364B0 {
-    int pad0[2];
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    int f4;
     S_001367F0_Vec4 f8, f18, f28;
     int f38, f3C;
     short f40;
@@ -206,6 +218,7 @@ struct C_001364B0 {
     S_001364B0_Record records[6];
     int f62C;
     void func_001364B0();
+    C_001364B0 *func_001365B0(int handle, int discard);
 };
 
 struct S_ControlEntry {
