@@ -229,18 +229,20 @@ W4_000212A0 *W4_000212A0::func_000212A0(u32 *p)
     return this;
 }
 
-float *func_00021330(V4_000212A0 *out, V4_000212A0 *b, V4_000212A0 *a)
+float *func_00021330(V4_000212A0 *out, V4_000212A0 *a, V4_000212A0 *b)
 {
     float v[4];
     V4_000212A0 r;
-    float d = a->y * b->y + b->x * a->x + a->z * b->z;
+    float d;
 
-    v[0] = d * a->x;
-    v[1] = d * a->y;
-    v[2] = d * a->z;
-    r.x = b->x - v[0];
-    r.y = b->y - v[1];
-    r.z = b->z - v[2];
+    d = b->y * a->y + a->x * b->x;
+    d = d + b->z * a->z;
+    v[0] = d * b->x;
+    v[1] = d * b->y;
+    v[2] = d * b->z;
+    r.x = a->x - v[0];
+    r.y = a->y - v[1];
+    r.z = a->z - v[2];
     r.w = 1.0f;
     *out = r;
     if (out->x == D_00275544 && out->y == D_00275544 && out->z == D_00275544) {
@@ -318,6 +320,17 @@ void C_000219E0::func_000219E0(int idx)
         mgr->func_00166C80(f28->f1ac[idx], 1);
     } else {
         mgr->func_00164820(f28->f1ac[idx]);
+    }
+}
+
+void C_00021A20::func_00021A20(void)
+{
+    if (f34 < 0 || f34 >= f2c->count) {
+        f34 = 0;
+    }
+    f38 = f34 + 1;
+    if (f38 >= f2c->count) {
+        f38 = 0;
     }
 }
 
