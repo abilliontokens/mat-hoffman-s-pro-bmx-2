@@ -11,7 +11,7 @@ extern int D_0027AC8C;
 void func_001ADCC0(void *dst, int n, void *src, void *x);
 
 struct C_0009EDF0 {
-    int vtbl;
+    void *vtbl;
     char pad4[0x68];
     char f6c[0x104];
     float f170, f174, f178, f17c;
