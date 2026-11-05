@@ -138,9 +138,10 @@ void UIControl::func_001BE220(int n)
     do {
         i = f30 + n;
         if (i > count) {
-            i -= count;
+            f30 = i - count;
+        } else {
+            f30 = i;
         }
-        f30 = i;
         cur = arr[f30 - 1];
         f34 = cur;
     } while (cur == 0 || cur->f24 == 0);
