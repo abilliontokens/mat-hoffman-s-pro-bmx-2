@@ -100,15 +100,35 @@ struct C_00192900 {
     C_00192900 *func_00192900(int a);
 };
 
+struct SearchEntryList {
+    int count;
+    SearchEntry **items;
+    int growBy;
+    int capacity;
+
+    SearchEntry *at(int i)
+    {
+        if (count > 0 && items != 0 && i < count) {
+            return items[i];
+        }
+        return 0;
+    }
+};
+
 struct C_00192470 : C_0001DFE0 {
     int f8;
     char padC[2];
     unsigned char fE;
     char padF;
-    int f10;
-    SearchEntry **f14;
-    int f18;
-    int f1C;
+    union {
+        SearchEntryList list;
+        struct {
+            int f10;
+            SearchEntry **f14;
+            int f18;
+            int f1C;
+        };
+    };
     unsigned char f20;
     char pad21[3];
     char f24;
