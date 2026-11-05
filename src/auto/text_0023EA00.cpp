@@ -199,8 +199,32 @@ struct C_0023EC71 {
     int pad98;
     S_0023EA00_Link f9c;
     int func_0023EC71(int a0, int a1, S_0023EC71_Req *req);
-    void func_0023EB1F(int *p);
 };
+
+/* the sample stream: f10 channels of 16-bit samples, read from handle f30 in 0x800 chunks */
+struct S_0023EB1F_Obj {
+    char pad0[0x10];
+    int f10;
+    char pad14[0x1c];
+    int f30;
+    char pad34[0x7c];
+    int fB0;
+    char padB4[4];
+    unsigned int fB8;
+};
+
+/* read request: destination buffer, byte size, out byte count, out status, event handle */
+struct S_0023EB1F_Req {
+    char *f0;
+    unsigned int f4;
+    int *f8;
+    int *fC;
+    int f10;
+};
+
+int func_001DE7AF(void);
+int __stdcall func_0023FAA9(int h);
+unsigned int __stdcall func_0023FC26(int h, char *buf, int a, unsigned int n);
 
 int __stdcall func_001DD3A1(int h, int a, int b, int c);
 int __stdcall func_001DD15A(int h, int buf, int len, int *n, void *ovl);
