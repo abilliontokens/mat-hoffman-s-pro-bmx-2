@@ -5,6 +5,7 @@ extern int D_002F6A48;
 int func_001F65F0(const char *a, const char *b, unsigned int n);
 int func_001E8D25(int c);
 
+#pragma optimize("t", off)
 int func_001F6570(const char *a, const char *b, unsigned int n)
 {
     int f, l;
