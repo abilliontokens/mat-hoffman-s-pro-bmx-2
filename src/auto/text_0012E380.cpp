@@ -55,7 +55,9 @@ struct S_0012EF60_Ref {
 /* CarProceduralExtended */
 struct C_0012EF30 {
     void *vtbl;
-    char pad4[0x410];
+    char pad4[0x3FC];
+    void *f400;
+    char pad404[0x10];
     S_0012E5F0 *f414;
     char pad418[0xF8];
     f32 f510;
