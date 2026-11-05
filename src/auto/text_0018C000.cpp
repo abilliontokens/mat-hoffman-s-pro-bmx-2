@@ -39,13 +39,43 @@ struct C_0018C8D0 {
     void *func_0018C8D0(int flags);
 };
 
+struct C_0018C000_Item {
+    char pad0[0xC];
+    float unkC;
+    float unk10;
+    char pad14[6];
+    short unk1A;
+    int unk1C;
+};
+
+struct C_002AA6C0_Obj {
+    char pad0[0xC];
+    int unkC;
+};
+
+struct C_002AA6C0_Entry {
+    int unk0;
+    C_002AA6C0_Obj *unk4;
+    int unk8;
+    int unkC;
+};
+
+struct C_002AA6C0 {
+    char pad0[0x14];
+    C_002AA6C0_Entry *unk14;
+    void func_001B26C0(int a0);
+};
+
 struct C_0018C000 {
     int vtbl;
     char *unk4;
     char pad8[0x50];
-    int unk58[0x100];
+    C_0018C000_Item *unk58[0x100];
     int unk458;
     void *func_0018C000(char *param);
+    C_002AA6C0_Obj *func_0018C070(void);
+    void func_0018C1C0(void);
+    float func_0018C210(void);
 };
 
 struct C_0018C090_Node {
@@ -86,18 +116,26 @@ void *C_0018C000::func_0018C000(char *param) {
     unk4 = 0;
     for (i = 0; i < 0x100; i++)
         unk58[i] = 0;
-    unk458 = -1;
     p = param;
-    base = p + 1;
+    unk458 = -1;
+    base = (char *)((unsigned int)p + 1);
     do {
         c = *p;
         p++;
     } while (c != 0);
-    dest = (char *)func_001E8A44((int)(p - base) + 1);
+    dest = (char *)func_001E8A44((int)(p + (1 - (int)base)));
     unk4 = dest;
-    p = param;
-    while ((*dest++ = *p++) != 0)
-        ;
+    {
+        char *s = param;
+        char *d = dest;
+        char ch;
+        do {
+            ch = *s;
+            s++;
+            *d = ch;
+            d++;
+        } while (ch != 0);
+    }
     return this;
 }
 
@@ -113,14 +151,14 @@ undefined4 C_0018C070::func_0018C070(void)
 }
 
 void C_0018C090::func_0018C090(int value) {
-    C_0018C090_Node *tail;
-    C_0018C090_Node *p;
+    C_0018C090_Node *tail = 0;
     C_0018C090_Node *n;
-    tail = 0;
-    p = head;
-    while (p != 0) {
-        tail = p;
-        p = p->next;
+    C_0018C090_Node *p = head;
+    if (p != 0) {
+        do {
+            tail = p;
+            p = p->next;
+        } while (p != 0);
     }
     if (tail == 0) {
         n = (C_0018C090_Node *)func_001E8A44(8);
