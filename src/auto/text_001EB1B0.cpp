@@ -91,6 +91,7 @@ struct S_TlsBlock {
 extern volatile unsigned long D_002F41D0;
 extern S_Tiddata *D_002FB360;
 extern char D_002AEDD8[];
+extern int *D_002FAFEC;
 extern char D_002F69F0[];
 extern volatile int D_002F69F8;
 
