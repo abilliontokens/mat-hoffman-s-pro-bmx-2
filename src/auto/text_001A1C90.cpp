@@ -265,6 +265,12 @@ C_001A23F0 *C_001A23F0::func_001A23F0(S36_1A s0, S16_1A s1, S16_1A s2, int a17, 
     return this;
 }
 
+int C_001A2470::func_001A2470(void)
+{
+    f1c0 = 1;
+    return 1;
+}
+
 bool C_001A2500::func_001A2500(void)
 {
   int in_ECX = (int)this;
