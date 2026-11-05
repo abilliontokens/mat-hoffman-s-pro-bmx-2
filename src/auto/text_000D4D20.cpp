@@ -27,7 +27,9 @@ struct S_000D5B90_Owner {
 
 struct BmxUIPageHOF {
     void *vtbl;
-    char pad4[0x280 - 4];
+    char pad4[0x124 - 4];
+    S_000D5B90_Owner *f124;
+    char pad128[0x280 - 0x128];
     u32 unk280;
     u32 unk284;
     u32 unk288;
