@@ -152,10 +152,18 @@ struct C_00165A20_Elem {
     char pad38[8];
 };
 
+struct C_00165A20_Item {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2(f32 a, Vec4_165EF0 *out);
+    virtual void v3(f32 a, Vec4_165EF0 *out);
+    int f4;
+};
+
 struct C_00165A20_Arg1 {
     char pad0[0x14];
-    C_00165E20_Item **f14;     /* 0x14 */
-    C_00165E20_Item **f18;     /* 0x18 */
+    C_00165A20_Item **f14;     /* 0x14 */
+    C_00165A20_Item **f18;     /* 0x18 */
     int f1C;                   /* 0x1C */
     int f20;                   /* 0x20 */
 };
