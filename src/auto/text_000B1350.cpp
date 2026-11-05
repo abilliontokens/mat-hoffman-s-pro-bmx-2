@@ -7,6 +7,33 @@ extern u32 D_002A2DC8;
 extern u32 D_002A2DCC;
 extern u32 D_002A2DD0;
 
+struct S_000B1660_Arg {
+    char pad0[0x54];
+    int f54;
+};
+struct S_000B1660_Item {
+    char pad0[0x3B0];
+    int f3B0, f3B4;
+    char pad3B8[0x24];
+    u8 f3DC, f3DD;
+    void func_00014850(int a);
+};
+struct S_000B1660_Entry { int f0, f4, f8; };
+struct S_000B1660_Global {
+    char pad0[0x578];
+    int f578;
+    S_000B1660_Item **f57C;
+    char pad580[0xC];
+    int f58C;
+    S_000B1660_Entry **f590;
+};
+extern S_000B1660_Global *D_002B9120;
+struct C_000B1660 {
+    char pad0[0x44];
+    S_000B1660_Arg **f44;
+    void func_000B1660(S_000B1660_Arg *a);
+};
+
 struct VehicleV4 {
     u32 x, y, z, w;
 };
