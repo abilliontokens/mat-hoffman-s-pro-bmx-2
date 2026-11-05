@@ -88,6 +88,48 @@ struct C_000D0DD0 {
 };
 
 
+void C_000CFF30::func_000CFF30()
+{
+    char a[8];
+    char b[8];
+    char path[0x40];
+    int count = 0;
+    int idx = -1;
+    int i, j, k;
+    int sum;
+
+    for (i = 0; i < 8; i++) {
+        for (j = 0; j < 3; j++) {
+            for (k = 0; k < 15; k++) {
+                switch (unk48c) {
+                case 1: idx = 0; break;
+                case 3: idx = 1; break;
+                case 5: idx = 2; break;
+                case 6: idx = 3; break;
+                case 8: idx = 4; break;
+                case 10: idx = 5; break;
+                case 11: idx = 6; break;
+                case 12: idx = 7; break;
+                case 14: idx = 8; break;
+                case 15: idx = 9; break;
+                }
+                if (idx != -1 && D_002A8490->f2e0->f2c0->func_0005C020(idx)->fC[i][j][k] == 1)
+                    count++;
+            }
+        }
+    }
+    sum = 0;
+    if (idx != -1) {
+        for (i = 0; i < 8; i++)
+            sum += D_002A8490->f2e0->f2c0->func_0005C020(idx)->f5AC[i];
+    }
+    func_001ADCC0(a, 5, D_00277038, count - sum);
+    func_001ADCC0(b, 5, D_00277038, D_002A8490->f2e0->f328);
+    func_001AC330(path, D_002A8490->f2e8->f4->fe78, a, b);
+    unk568->func_001B1980();
+    unk568->func_001B17D0(path);
+}
+
 void C_000D0DD0::func_000D0D20(void)
 {
     unk4F8->func_00093120();
