@@ -42,7 +42,9 @@ struct C_00199BE0 {
     char pad0[0xb0];
     float fB0[16];
     float fF0[16];
-    char pad130[0x170 - 0x130];
+    S_00199B00_F4 f130;
+    S_00199B00_F4 f140;
+    char pad150[0x170 - 0x150];
     C_00199BE0 *f170;
     C_00199BE0 *f174;
     C_00199BE0 *f178;
