@@ -136,6 +136,78 @@ struct C_00182730 {
     undefined4 func_00182730(byte param_1);
 };
 
+void *func_001E8A44(int size);
+
+struct C_00182C60Scene {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual int v27(void *a);
+    char pad4[0x20];
+    int f24;
+    C_00182C60Scene *func_001B5830(int a);
+};
+
+struct C_00182A80Path {
+    void func_001B6590(void *p);
+};
+
+struct C_00182A80Node {
+    char pad0[4];
+    int f4;
+    char pad8[0x17c];
+    char f184[0x104];
+    C_00182A80Path *f288;
+};
+
+struct C_00182A80Group {
+    char pad0[8];
+    int f8;
+    char padC[0x100];
+    C_00182A80Node **f10c;
+};
+
+struct C_00182A80List {
+    char pad0[0x24];
+    int f24;
+    C_00182A80Group **f28;
+};
+
+struct C_00182C60 {
+    char pad0[0x28];
+    void *f28;
+    char pad2c[0x380];
+    C_00182C60Scene *f3ac;
+    char pad3b0[4];
+    C_00182A80List *f3b4;
+    void func_00182C60(void);
+    void func_00182A80(void);
+};
+
 struct C_00181DB0_Mgr {
     void func_001B0520(void *a0);
     void func_001B05A0(int a0, int a1, void *a2);
