@@ -7,6 +7,16 @@ extern float D_00276E9C, D_00276E98;
 void *func_001E8A44(unsigned int size);
 void func_001E891B(void *p);
 struct S_0003AC20_Vec { float x,y,z,w; };
+struct S_3A990_Blk { char pad[0x358]; int width, height; };
+struct S_3A990_Owner { char pad[8]; char *object; };
+struct C_3A990 {
+ char pad[0x450]; int f450; char pad454[8]; int f45C, f460;
+ char pad464[0x49c-0x464]; char **f49C;
+ char pad4A0[0x564-0x4A0]; S_3A990_Owner *f564;
+ void func_00038A70(void *, S_3A990_Blk **);
+ int func_00038B10(void *, S_0003AC20_Vec, S_0003AC20_Vec, int *, int *, int *, int);
+ int func_0003A990(S_0003AC20_Vec a, S_0003AC20_Vec b);
+};
 struct S_0003AC20_Data { char pad0[0x34]; S_0003AC20_Vec pos; };
 struct S_0003AC20_Owner { char pad0[0xE8]; S_0003AC20_Data *fE8; };
 struct S_0003AC20_Entry { int type; S_0003AC20_Owner *owner; };
