@@ -66,3 +66,20 @@ void C_000EBCD0::func_000EBCD0()
     func_000EBB70();
     func_00157960();
 }
+
+void C_000EBE30::func_000EBE30()
+{
+    vtbl = &D_00281BF4;
+    if (unk320 != 0) {
+        unk320->Destroy(1);
+        unk320 = 0;
+    }
+    for (int i = 0; i < 16; i++) {
+        if (arr2A0[i] != 0) {
+            arr2A0[i]->Destroy(1);
+            arr2A0[i] = 0;
+        }
+    }
+    func_001BE3F0();
+}
+
