@@ -124,6 +124,7 @@ struct S_00093620_Root {
 };
 
 extern S_00093620_Root *D_002A8490;
+extern char D_00275630[];
 
 struct C_00093140 {
     char pad0[0x24];
