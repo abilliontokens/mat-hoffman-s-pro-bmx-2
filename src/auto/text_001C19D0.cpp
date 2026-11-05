@@ -19,7 +19,7 @@ struct Config1C22C0 {
 };
 struct Object1C22C0 {
  int *table;
- char *data;
+ unsigned char *data;
  Object1C22C0 *func_00164440(int,int);
  void func_001673B0(int,int,int,int,int);
 };
