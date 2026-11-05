@@ -177,6 +177,30 @@ struct C_00135410 {
     int func_00135410(void);
 };
 
+struct V4_00134DE0 {
+    float x, y, z, w;
+};
+
+struct S_00134DE0_Node {
+    char pad0[2];
+    unsigned char f2;
+    int func_0014CA60(void);
+    void *func_0014CA80(int i);
+};
+
+struct S_00134DE0_Iter {
+    char pad0[0x40];
+    void func_001A46F0(void);
+    void func_001A4790(int a, int b, float *c, float *d, int e, int f, int g);
+    S_00134DE0_Node *func_001A4840(void);
+    void func_001A4A20(void);
+};
+
+extern float D_002755E8;
+extern unsigned char D_002A4330;
+extern unsigned char D_002A4331;
+int func_00134A10(V4_00134DE0 *seg, void *obj, V4_00134DE0 *out, void *hit);
+
 struct C_00135400 {
     char pad0[0x10];
     int unk10;
