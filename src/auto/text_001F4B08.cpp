@@ -119,3 +119,18 @@ int func_001F4ED9(int ch, S_001F4_FILE *stream)
     return ch & 0xff;
 }
 
+int func_001F58AA(unsigned char *s, unsigned short wc)
+{
+    int *func_001ED075(void);
+
+    if (s == 0) {
+        return 0;
+    }
+    if (wc > 0xff) {
+        *func_001ED075() = 0x2a;
+        return -1;
+    }
+    *s = (unsigned char)wc;
+    return 1;
+}
+
