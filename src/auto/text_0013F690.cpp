@@ -150,16 +150,6 @@ struct C_00162720 {
 };
 
 extern float D_00284758;
-extern float D_002755E4;
-
-static float UIntToFloat(unsigned int v)
-{
-    float f = (float)(int)v;
-    if ((int)v < 0) {
-        f += D_002755E4;
-    }
-    return f;
-}
 
 struct C_00140480 {
     char pad0[0x50];
