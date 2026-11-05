@@ -16,6 +16,20 @@ extern unsigned int D_002FB240;
 extern int D_002F6858;
 void *func_001E8AA5(int size);
 void func_001EE782(int fh);
+extern int D_002F6A84;
+extern int D_002F6848;
+int *func_001ED075(void);
+int *func_001ED07E(void);
+int func_001EE7A4(void);
+int func_001DD603(void);
+void func_001ED087(int err);
+void func_001EE63F(int fh, int hfile);
+int func_001EE4BD(int fh, int off, int whence);
+int func_001ED633(int fh, void *buf, unsigned int cnt);
+int func_001F6158(int fh, int size);
+int func_001ED40B(int fh);
+int __stdcall func_001DCC3C(const char *path, unsigned int access, unsigned int share, void *sa,
+                            unsigned int create, unsigned int attrib, void *tmpl);
 
 /* _sopen's helper takes shflag in ecx and the rest on the stack, caller cleans up */
 struct S_001F54D0 {
