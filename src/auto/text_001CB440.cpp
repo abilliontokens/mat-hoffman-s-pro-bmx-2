@@ -26,6 +26,7 @@ struct C_001CC110 {
     void *func_001CC110(int flags);
 };
 
+inline void *operator new(unsigned int, void *p) { return p; }
 extern int D_002ABA44, D_002ABA48, D_002ABA4C, D_002ABA50;
 extern int D_002ABA64, D_002ABA68, D_002ABA6C, D_002ABA70;
 extern int D_002ABA74, D_002ABA78, D_002ABA7C, D_002ABA80;
