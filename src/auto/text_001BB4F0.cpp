@@ -17,8 +17,46 @@ struct C_001BB5F0 {
     void *func_001BB5F0(unsigned int flags);
 };
 
+extern int D_002AADF8;
+
+int func_00011260(int lo, int hi);
+int func_00135C70(int param_1, int param_2, int *param_3, int param_4);
+
 struct C_001BBAA0 {
+    char pad0[0x21];
+    u8 unk21;                         /* 0x21 */
+    char pad22[0x6E];
+    int unk90;                        /* 0x90 */
+    int unk94;                        /* 0x94 */
+    int unk98;                        /* 0x98 */
+    int *unk9C;                       /* 0x9C */
+    int unkA0[5];                     /* 0xA0 */
+    void **unkB4;                     /* 0xB4 */
+    void **unkB8;                     /* 0xB8 */
+    char padBC[0x14];
+    int unkD0;                        /* 0xD0 */
+    char padD4[0x218];
+    u8 unk2EC;                        /* 0x2EC */
+    void func_001BBA60(void);
     void func_001BBAA0(void *a, void *b);
+    void func_001BBE20(int a);
+};
+
+struct S_001BBDD0_2E4 {
+    char pad0[0xA6];
+    u8 unkA6;
+};
+
+struct C_001BBDD0 {
+    char pad0[0x2E4];
+    S_001BBDD0_2E4 *unk2E4;           /* 0x2E4 */
+    int func_00157BF0(int *a, int b);
+    void func_001BBDD0(int *a, int b);
+};
+
+struct S_001BBF90_Arg {
+    char pad0[0x60];
+    C_001BBAA0 *unk60;
 };
 
 struct C_001BB620 {
