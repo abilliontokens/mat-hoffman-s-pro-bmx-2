@@ -6,7 +6,10 @@ extern "C" int (__stdcall *_imp__MmQueryStatistics)(void *a0);
 extern "C" int (__stdcall *_imp__NtClose)(void *a0);
 extern "C" int (__stdcall *_imp__NtQueryInformationFile)(void *a0, void *a1, void *a2, u32 a3, int a4);
 extern "C" int (__stdcall *_imp__NtSetInformationFile)(void *a0, void *a1, void *a2, u32 a3, int a4);
+extern "C" int (__stdcall *_imp__NtFlushBuffersFile)(void *a0, void *a1);
+extern "C" int (__stdcall *_imp__RtlNtStatusToDosError)(int a0);
 void __stdcall func_001DD659(int a0);
+void __stdcall func_001DD62B(int a0);
 extern "C" unsigned __int64 __rdtsc();
 #pragma intrinsic(__rdtsc)
 
