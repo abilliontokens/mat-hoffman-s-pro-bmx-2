@@ -56,7 +56,23 @@ struct C_00073AE0 {
     void func_00157600(int a0);
 };
 
+extern char D_002787F0[];
+extern char D_00275630[];
+extern char D_00278D44[];
+struct C_000737A0_UI { void func_001D6600(); void func_0005E840(const char *); };
+struct C_000737A0_List { int func_00109570(); void func_001095A0(int, char *); };
 struct C_000739D0 {
+    char pad0[0x64];
+    char *unk64;
+    C_000737A0_UI *unk68;
+    char pad6C[0x14];
+    C_000737A0_UI *unk80;
+    char pad84[4];
+    C_000737A0_UI *unk88;
+    char pad8C[0x2C];
+    C_000737A0_UI *unkB8[4];
+    void func_00063AD0(char *, C_000737A0_UI **, int, int);
+    void func_00073680(int, char *);
     void func_000737A0(void);
     void func_00073620(void);
     void func_00157960(void);
