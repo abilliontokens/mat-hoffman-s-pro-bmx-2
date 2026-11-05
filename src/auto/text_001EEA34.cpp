@@ -218,6 +218,19 @@ void *__cdecl func_001EF0B4(void *a)
     return a;
 }
 
+void *__cdecl func_001EF0E7(void *a)
+{
+    S_001EF0B4_Pos p1;
+    S_001EF0B4_Pos p2;
+
+    p1.off = 0;
+    p1.state = 0;
+    p2.off = 0;
+    p2.state = 0;
+    func_001F23B8(a, &p2, 0, &p1, 1);
+    return a;
+}
+
 int __fastcall func_001EF1D0(BitObj *self, int unused)
 {
     return self->s4 == 0 || self->s4 == 2;
