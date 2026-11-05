@@ -1,6 +1,14 @@
 /* 29 functions from 0x001F306F to 0x001F3B78, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct Exception_001F3805 {
+    int type;
+    char *name;
+    double arg1;
+    double arg2;
+    double retval;
+};
+
 struct C_001F3237 {
     undefined * func_001F3237(void);
 };
