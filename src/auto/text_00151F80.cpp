@@ -18,7 +18,7 @@ void C1521::func_001521D0(Vec1521* pos, Vec1521* out)
  result.x = result.y = result.z = 0; result.w = 1;
  line[1].y = 0;
  func_00134DE0(line, &hit, &result, 0, 0, 0, -1, 0, 1);
- h = (D_002B9110 | D_002B911C) ? hit.y : h;
+ h = (D_002B911C | D_002B9110) ? hit.y : h;
  if (out) *out = result;
  pos->y = h;
 }
