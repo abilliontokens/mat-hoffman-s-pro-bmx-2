@@ -136,6 +136,21 @@ struct C_52C10 {
     int GetActive() { return unk358; }
 };
 
+struct C_52F90_Inner {
+    void func_00104190();
+    void func_001041C0();
+};
+struct C_52F90_Pl {
+    void func_00108660_dummy();
+};
+struct C_52F90 {
+    void func_000529D0();
+    void func_00031260(int a);
+    void func_00032530();
+    void func_000526D0();
+    int func_00052F90(int a);
+};
+extern "C" void func_001041E0();
 struct C_535C0_44 { void func_0002F8A0(); };
 struct C_535C0_1C0 {
     void func_000988B0(int a, int b);
