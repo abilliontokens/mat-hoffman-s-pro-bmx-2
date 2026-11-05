@@ -10,6 +10,11 @@ struct C_00082430 {
 };
 
 extern float D_00275544;
+extern double D_00279150;
+extern float D_00275994;
+extern char D_00279144[];
+extern char D_00279138[];
+extern char D_00279130[];
 
 struct C_000823C0 {
     char pad0[0x14];
