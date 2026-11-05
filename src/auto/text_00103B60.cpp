@@ -132,3 +132,14 @@ void C_00104900::func_00104900(void)
     unkE8 = 1;
 }
 
+void C_00104900::func_00104930(void)
+{
+    int i;
+    for (i = 1; i < unk74; i++) {
+        if ((unsigned int)i < (unsigned int)unk74) {
+            unk8C[i] = 0;
+        }
+    }
+    unkE8 = 0;
+}
+
