@@ -51,12 +51,8 @@ struct S_00129110_Node {
     float f4;
     unsigned short child0;
     unsigned short child1;
-    struct V3 { float x, y, z; } min, max;
-};
-
-struct S_00129110_Vec4 {
-    S_00129110_Node::V3 v;
-    float w;
+    float min[3];
+    float max[3];
 };
 
 struct C_002B92A0 {
