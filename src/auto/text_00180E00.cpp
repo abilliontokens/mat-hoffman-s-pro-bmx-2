@@ -18,10 +18,16 @@ struct C_0001DFE0 {
     void func_0001DFF0(void);
 };
 
+struct RODElem {
+    int unk0;
+    int unk4;
+    VObj *unk8;
+};
+
 struct RenderableObjectData : C_0001DFE0 {
     int unk8;
     float unkC;
-    char *unk10;
+    RODElem *unk10;
     RenderableObjectData *func_00181410(void);
     void func_00181440(void);
 };
