@@ -36,19 +36,6 @@ static float fabs_0011EE50(float v)
     return *(float *)&tmp;
 }
 
-static void abs_0011EE50(V4_0011EE50 *v)
-{
-    v->x = fabs_0011EE50(v->x);
-    v->y = fabs_0011EE50(v->y);
-    v->z = fabs_0011EE50(v->z);
-    v->w = fabs_0011EE50(v->w);
-}
-
-static void copy_0011EE50(V4_0011EE50 *dst, V4_0011EE50 *src)
-{
-    *dst = *src;
-}
-
 struct C_0011EDF0 {
     float x;
     float y;
@@ -68,10 +55,21 @@ C_0011EDF0 *C_0011EDF0::func_0011EDF0(s16 *p)
 
 V4_0011EE50 *func_0011EE50(V4_0011EE50 *out, V4_0011EE50 *in)
 {
-    in->x = fabs_0011EE50(in->x);
-    in->y = fabs_0011EE50(in->y);
-    in->z = fabs_0011EE50(in->z);
-    in->w = fabs_0011EE50(in->w);
+    volatile int x;
+    volatile int tmp;
+    int *p = (int *)in;
+    x = p[0];
+    tmp = x & 0x7fffffff;
+    p[0] = tmp;
+    x = p[1];
+    tmp = x & 0x7fffffff;
+    p[1] = tmp;
+    x = p[2];
+    tmp = x & 0x7fffffff;
+    p[2] = tmp;
+    x = p[3];
+    tmp = x & 0x7fffffff;
+    p[3] = tmp;
     *out = *in;
     return out;
 }
