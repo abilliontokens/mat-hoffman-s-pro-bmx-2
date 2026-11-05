@@ -132,13 +132,21 @@ struct S_000BBE30_Entry {
     char f130[0x78];
 };
 
+struct S_000BBA80_List;
+struct S_000BBA80_Video;
+
 struct S_000BBE30_Lookup {
+    char pad0[0x2c];
+    S_000BBA80_List *f2C;
     int func_0001B3C0(const char *name);
 };
 
 struct S_000BBE30_Names {
-    char pad0[0x484];
+    char pad0[0x3ac];
+    S_000BBA80_Video *f3AC;
+    char pad3B0[0x484 - 0x3b0];
     S_000BBE30_Lookup *f484;
+    void func_000A0B80(void);
 };
 
 struct C_000BBE30 {
