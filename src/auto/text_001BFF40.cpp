@@ -282,6 +282,18 @@ void C_001C05F0::func_001C0690(void)
     }
 }
 
+void C_001C05F0::func_001C06F0(void)
+{
+    int i;
+
+    unk2C = 0;
+    if (unk19C != 0) {
+        for (i = 0; i < unk170; i++) {
+            unk68[i]->func_001B2270(unk184);
+        }
+    }
+}
+
 void C_001C0E80::func_001C0E80(void)
 {
     unk2C = 1;
