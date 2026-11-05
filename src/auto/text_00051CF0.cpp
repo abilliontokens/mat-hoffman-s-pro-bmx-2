@@ -152,6 +152,19 @@ void C_00051CF0::func_00052630(const char *name)
     }
 }
 
+void C_00051CF0::func_000526D0()
+{
+    if (unk48 != 0 && unk48->unk74->func_000301D0() == 0) {
+        unk48->unk74->func_00030210();
+        D_002A8490->v15(unk24, 0, 0, 0);
+        unk48->v4();
+        unk28->v4();
+        unk358 = 0;
+        D_002EFDB8->f30 = 1;
+        unk64->unk558->v4();
+    }
+}
+
 undefined4 C_00052BB0::func_00052BB0(byte param_1)
 {
   int func_00051260(...);
