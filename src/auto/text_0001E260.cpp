@@ -304,10 +304,11 @@ void *C_0001E930::func_0001E8A0()
             if (elem != 0) {
                 if (unkC == 0) {
                     unkC = elem;
+                    unk10 = unk14;
                 } else {
                     *unk10 = elem;
+                    unk10 = unk14;
                 }
-                unk10 = unk14;
                 unk14 = (void **)*unk10;
                 *unk10 = 0;
             } else {
