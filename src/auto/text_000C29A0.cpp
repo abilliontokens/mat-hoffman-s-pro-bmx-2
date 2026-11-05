@@ -214,3 +214,23 @@ int C_000C29A0::func_000C3550(int idx)
     return 0;
 }
 
+int C_000C29A0::func_000C36F0(int idx)
+{
+    S_000C29A0_Ui *ui = f124->f24;
+    if (idx + 8 <= 20) {
+        if (Item_000C29A0(this, idx) == D_002A8490->f8->func_00136170(7, 2, 0) &&
+            Item_000C29A0(this, idx + 1) == D_002A8490->f8->func_00136170(5, 2, 0) &&
+            Item_000C29A0(this, idx + 2) == D_002A8490->f8->func_00136170(5, 2, 0) &&
+            Item_000C29A0(this, idx + 3) == D_002A8490->f8->func_00136170(0, 2, 0) &&
+            func_000C0100(idx + 4) == D_002A8490->f8->func_00136170(5, 2, 0) &&
+            func_000C0100(idx + 5) == D_002A8490->f8->func_00136170(5, 2, 0) &&
+            func_000C0100(idx + 6) == D_002A8490->f8->func_00136170(0, 2, 0) &&
+            func_000C0100(idx + 7) == D_002A8490->f8->func_00136170(7, 2, 0)) {
+            ui->func_000B9A80(6, 1);
+            D_002A8490->f2E0->f2C0->func_0005C710();
+            return 1;
+        }
+    }
+    return 0;
+}
+
