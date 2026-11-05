@@ -130,3 +130,26 @@ void C_00182CC0::func_001832C0()
         f28 = 0;
     }
 }
+
+int C_00182CC0::func_001832F0(char *name)
+{
+    char buf[0x104];
+
+    func_001ADCC0(buf, 0x104, D_00275678, f30, name);
+    func_00030F30(buf, &D_002893EC);
+    v56();
+    void *mem = func_001E8A44(0x4cc);
+    C_00168280 *obj = mem != 0 ? ((C_00168280 *)mem)->func_00168280() : 0;
+    f28 = obj;
+    if (obj->func_00169490(buf, 0) == 0) {
+        C_00168280 *p = f28;
+        if (p != 0) {
+            p->func_001691E0();
+            func_001E891B(p);
+        }
+        f28 = 0;
+        return 0;
+    }
+    return 1;
+}
+
