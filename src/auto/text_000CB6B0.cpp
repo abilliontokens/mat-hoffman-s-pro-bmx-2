@@ -21,7 +21,10 @@ struct C_000CC2B0 {
     int f2BC;
     char pad2C0[0x38];
     C_00093120 *f2F8;
+    char pad2FC[0x8];
+    int f304;
     void func_000CC2B0();
+    void func_000CC0B0();
 };
 
 void C_000CC2B0::func_000CC2B0()
