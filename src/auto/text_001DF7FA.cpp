@@ -45,7 +45,9 @@ struct S_HeapBlock {
     unsigned char *tail;        /* 0x28 */
     unsigned char *limit;       /* 0x2c */
     int spare;                  /* 0x30 */
-    char pad34[0xc];
+    int count;                  /* 0x34, free nodes */
+    S_FreeNode *head;           /* 0x38 */
+    char pad3c[4];
     unsigned char *next;        /* 0x40 */
 };
 
