@@ -6,6 +6,10 @@ struct C_0018B3B0 {
 };
 
 extern int D_00289F60;
+extern int D_00289F70;
+extern int D_00289F80;
+extern int D_00289D8C;
+extern int D_0028A034;
 extern int D_00289B5C;
 extern int D_00289BFC;
 extern int D_00289C9C;
