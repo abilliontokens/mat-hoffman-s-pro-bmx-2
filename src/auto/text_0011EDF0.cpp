@@ -3,6 +3,8 @@
 
 float func_0014F510(float x);
 float func_0014F550(float x);
+float func_0001E960(float x);
+void func_0011F010(int a0, float x, float y, float z, int a4, int a5);
 void func_0011F400(int a0, int a1, int a2, int a3, int a4, int a5);
 extern float D_002B9348;
 extern float D_002AB30C;
@@ -14,6 +16,14 @@ struct C_0011EDF0 {
     float w;
     void func_0011EDF0(s16 *p);
 };
+
+void C_0011EDF0::func_0011EDF0(s16 *p)
+{
+    x = (float)p[0] * D_002AB30C * D_002B9348;
+    y = (float)p[1] * D_002AB30C * D_002B9348;
+    z = (float)p[2] * D_002AB30C * D_002B9348;
+    w = 1.0f;
+}
 
 void func_0011F460(int a0, int a1, int a2, int a3, float angle)
 {
