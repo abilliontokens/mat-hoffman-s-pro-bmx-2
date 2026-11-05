@@ -167,6 +167,9 @@ struct C_00182570_Elem {
     char padD[3];
     void *f10;
     C_00182570_Elem *func_00144640();
+    void func_00144660();
+    C_00182570_Elem() { func_00144640(); }
+    ~C_00182570_Elem() { func_00144660(); }
     void func_00144960(int a0, int a1, int a2, int a3);
 };
 
