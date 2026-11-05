@@ -39,7 +39,7 @@ struct C_0014A8A0 {
     char pad0[8];
     int f8;
     char padC[8];
-    VSEntry *f14;
+    VSEntry2 *f14;
     void func_0014A8A0(void);
 };
 
@@ -82,7 +82,10 @@ void C_0014A610::func_0014A650(C_0014A610 *src)
     if (unk4 == src->unk8 && unk8 != 0) {
         func_001FEEF0(src->unk8, 0);
     }
-    int v = (unk0 == src->unk4) ? 0 : src->unk4;
+    int v = 0;
+    if (unk0 != src->unk4) {
+        v = src->unk4;
+    }
     if (v != 0 || unk8 != 0) {
         func_001FEB90(v, 0);
     }
@@ -144,7 +147,7 @@ void *C_0014A870::func_0014A870(int flags) {
 void C_0014A8A0::func_0014A8A0(void)
 {
     for (int i = 0; i < f8; i++) {
-        VSEntry *e = &f14[i];
+        VSEntry2 *e = (VSEntry2 *)&f14[i];
         if (e->fC > 0 && e->f4 == 0) {
             C_0014A520 *p = (C_0014A520 *)func_001E8A44(0xc);
             if (p != 0) {
