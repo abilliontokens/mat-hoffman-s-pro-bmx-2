@@ -57,7 +57,7 @@ struct C_001AE3E0 {
     int f50;
     C_001ADFD0_Virt *f54;
     C_001AE3E0_Sub f58;
-    int f64;
+    void *f64;
     int f68;
     int f6C;
     int f70;
