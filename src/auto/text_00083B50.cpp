@@ -48,10 +48,10 @@ struct C_000843E0 {
     char pad15C[0x4B4];
     int f610;
     char pad614[0x1F4];
-    int f808;
-    int f80C;
-    int f810;
-    int f814;
+    float f808;
+    float f80C;
+    float f810;
+    float f814;
     char pad818[0x410];
     int fC28;
     char padC2C[0xDC];
@@ -131,6 +131,37 @@ void C_000843C0::func_000843C0(void) {
     unkC5C = 0;
     unkC64 = 0;
     unkCA0 = 0;
+}
+
+void C_000843E0::func_000843E0(int a)
+{
+    f4C = 0;
+    f50 = 0;
+    f134 = 0;
+    ((C_000831E0 *)this)->func_000831E0();
+    f13C = 0;
+    if (D_002A8490->f2E0->f0 > 1 && D_002A8490->f2E0->f4 != 4) {
+        f11C = 0.75f;
+    } else {
+        f11C = 1.0f;
+    }
+    if (a != 0) {
+        fC28 = 0;
+        f610 = 0;
+        f808 = 0;
+        f80C = 0;
+        f810 = 0;
+        f814 = 0;
+    }
+    fDA0 = 1;
+    f158 = 0;
+    fD30 = 0;
+    fD24 = fD2C;
+    f128 = 0;
+    f12C = 0;
+    pD08->func_001B1980();
+    pD0C->func_001B1980();
+    fD94 = 0;
 }
 
 void C_000847A0::func_000847A0(void) {
