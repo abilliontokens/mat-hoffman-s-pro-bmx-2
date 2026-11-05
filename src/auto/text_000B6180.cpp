@@ -48,6 +48,37 @@ struct C_000B67C0 {
     void func_000B67C0(void);
 };
 
+C_000B6640 *C_000B6640::func_000B6640(int a0, int a1)
+{
+    C_000B6640_Obj *p;
+
+    unk88 = a1;
+    unk90 = a0;
+    p = (C_000B6640_Obj *)func_001E8A44(0x110);
+    unk1D0 = p ? p->func_0017F050(1) : 0;
+    unk1D0->func_0017F0A0(2);
+    func_001577A0(unk1D0, -1);
+    unk1D0->func_00133660(D_002BA154);
+    unk1D0->unk9C = (void *)func_000B6140;
+    unk1D0->unk60 = this;
+    unk1D0->unk64 = unk88;
+    p = (C_000B6640_Obj *)func_001E8A44(0x110);
+    unk1D4 = p ? p->func_0017F050(1) : 0;
+    unk1D4->func_0017F0A0(2);
+    func_001577A0(unk1D4, -1);
+    unk1D4->func_00133660(D_002BA154);
+    unk1D4->unk9C = (void *)&D_000B6160;
+    unk1D4->unk60 = this;
+    unk1D4->unk64 = unk88;
+    unk1D0->func_00133660(D_002BA154);
+    unk1D4->func_00133660(D_002BA154);
+    unk1D0->func_00133660(D_002BA148);
+    unk1D4->func_00133660(D_002BA148);
+    unk1D0->func_00133660(D_002B911C);
+    unk1D4->func_00133660(D_002B911C);
+    return this;
+}
+
 void C_000B67C0::func_000B67C0(void)
 {
     int a = unk50;
