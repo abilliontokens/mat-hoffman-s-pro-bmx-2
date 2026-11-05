@@ -3,8 +3,8 @@
 #include <xmmintrin.h>
 extern float D_002755E8;
 
-struct S_00126DD0_Vec { float x, y, z, w; };
-struct __declspec(align(16)) S_00126DD0_Mat { __m128 m[4]; };
+struct S_00126DD0_Vec { float x, y, z, w; S_00126DD0_Vec() { x = 0.0f; y = 0.0f; z = 0.0f; w = 1.0f; } };
+struct S_00126DD0_Mat { float m[4][4]; };
 struct S_00126DD0_Tri { int idx[3]; float f[10]; };
 
 static inline void Xform_00126DD0(S_00126DD0_Vec *out, const S_00126DD0_Mat *mat, const float *v)
@@ -13,9 +13,9 @@ static inline void Xform_00126DD0(S_00126DD0_Vec *out, const S_00126DD0_Mat *mat
     _mm_storeh_pi((__m64 *)&out->z, t);
     out->w = 1.0f;
     t = _mm_loadh_pi(t, (__m64 *)&out->z);
-    __m128 r0 = _mm_mul_ps(mat->m[0], t);
-    __m128 r1 = _mm_mul_ps(mat->m[1], t);
-    __m128 r2 = _mm_mul_ps(mat->m[2], t);
+    __m128 r0 = _mm_mul_ps(_mm_load_ps(mat->m[0]), t);
+    __m128 r1 = _mm_mul_ps(_mm_load_ps(mat->m[1]), t);
+    __m128 r2 = _mm_mul_ps(_mm_load_ps(mat->m[2]), t);
     __m128 lo = _mm_unpacklo_ps(r0, r1);
     __m128 hi = _mm_unpackhi_ps(r0, r1);
     __m128 junk = _mm_movehl_ps(r2, r2);
