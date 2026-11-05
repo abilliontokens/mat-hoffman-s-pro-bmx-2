@@ -397,3 +397,11 @@ C_000A9030 *C_000A9030::func_000A9030() {
     return this;
 }
 
+C_000A90B0 *C_000A90B0::func_000A90B0() {
+    extern int D_0027C410;
+    ((C_001B59E0 *)this)->func_001B59E0();
+    vtbl = (void *)&D_0027C410;
+    unk10C = 0;
+    return this;
+}
+
