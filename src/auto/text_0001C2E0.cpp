@@ -306,6 +306,14 @@ void *C_0001C9C0::func_0001C9C0(int flags) {
     return this;
 }
 
+void C_0001CA30::func_0001CA30(void)
+{
+    extern int D_00275DAC;
+    vtbl = (void *)&D_00275DAC;
+    func_001E891B(f1C);
+    func_001E891B(f8);
+}
+
 void *C_0001CA50::func_0001CA50(int flags) {
     extern int D_00275C94;
     void func_001E891B(void *);
