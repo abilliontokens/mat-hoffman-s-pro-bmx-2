@@ -56,6 +56,7 @@ struct SoultreeCollisionObject {
     char pad_1BE[0x1c4 - 0x1be];
     int unk1C4;
     int unk1C8;
+    void func_0019CB00(void);
     void func_0019CCA0(int param_1);
     void func_0019CBF0(int param_1, int param_2);
     int func_0019D680(void *param_1);
