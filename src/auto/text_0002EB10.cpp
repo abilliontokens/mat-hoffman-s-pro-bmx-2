@@ -234,6 +234,36 @@ BmxCameraController_0002EF20 *BmxCameraController_0002EF20::func_0002EF20(int a0
     return this;
 }
 
+void S_2EF70_This::func_0002EF70(S_2EF70_Veh *veh, int idx)
+{
+    if (veh == 0) {
+        S_2EF70_Ent *e;
+        e = (S_2EF70_Ent *)func_001E8A44(0x3c);
+        f40 = e ? e->func_001362A0(-1.0f, 1.0f, 0, D_002A8490->f8->func_00135E80(), 0, 0.2f) : 0;
+        e = (S_2EF70_Ent *)func_001E8A44(0x3c);
+        f44 = e ? e->func_001362A0(-1.0f, 1.0f, 0, D_002A8490->f8->func_00135E80(), 1, 0.2f) : 0;
+        e = (S_2EF70_Ent *)func_001E8A44(0x3c);
+        f48 = e ? e->func_001362A0(-2.0f, 2.0f, 0, D_002A8490->f8->func_00135E80(), 2, 0.4f) : 0;
+        e = (S_2EF70_Ent *)func_001E8A44(0x3c);
+        f4c = e ? e->func_001362A0(-2.0f, 2.0f, 0, D_002A8490->f8->func_00135E80(), 5, 0.4f) : 0;
+        if (D_002A8490->f8->items[idx]) {
+            D_002A8490->f8->items[idx]->func_0015B060((int)f40, 0.01f, 0.01f);
+            D_002A8490->f8->items[idx]->func_0015B060((int)f44, 0.01f, 0.01f);
+            D_002A8490->f8->items[idx]->func_0015B060((int)f48, 0.01f, 0.01f);
+            D_002A8490->f8->items[idx]->func_0015B060((int)f4c, 0.01f, 0.01f);
+        }
+    } else {
+        f50->func_000559E0(veh->f1e0, 3.0f, veh->f1ec->f3c);
+        f54->func_0009FAD0(veh->f1e0, 3.0f, veh->f1ec->f3c);
+        f34 = veh;
+        f50->func_0009FAC0(veh);
+        f50->func_000560A0();
+        f54->func_0009FAC0(veh);
+        f60->func_00195160(veh->fa00->f4, 3.0f, 70.0f);
+        f68 = idx;
+    }
+}
+
 C_0002F190 *C_0002F190::func_0002F190(void)
 {
     unsigned int *p;
