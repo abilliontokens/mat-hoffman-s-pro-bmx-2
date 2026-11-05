@@ -67,6 +67,14 @@ void func_001AC330(char *dest, char *fmt, char *arg);
 extern char D_002786BC[];
 extern char D_00275630[];
 
+static inline unsigned int StrLen_716(const char *str)
+{
+    const char *eos = str;
+    while (*eos++) {
+    }
+    return eos - str - 1;
+}
+
 struct C_0005E840 {
     void func_0005E840(char *s);
 };
@@ -276,6 +284,34 @@ void C_00072280::func_00072280(void)
             }
         }
     }
+}
+
+void C_00072330::func_00072330(void)
+{
+    char a[0x34];
+    char b[0x40];
+    char *eos;
+
+    if (fC8 != 0) {
+        S_Obj4_716 *o = D_002A8490->p2E8->p4;
+        func_001ADCC0(a, 0x32, D_002786BC, o->f1028, fC4 + 1, o->f1100);
+        f70->func_0005E840(a);
+    } else {
+        f70->func_0005E840(D_002A8490->p2E8->p4->fEA0);
+    }
+    if (((C_000952F0 *)D_002A8490->f2E0->f2FC)->func_000952F0() == 0) {
+        func_001AC330(b, D_002A8490->p2E8->p4->fA78, D_00275630);
+    } else {
+        char *fmt = D_002A8490->p2E8->p4->fA78;
+        func_001AC330(b, fmt, ((C_00095390 *)D_002A8490->f2E0->f2FC)->func_00095390(f88));
+    }
+    eos = b;
+    while (*eos++) {
+    }
+    if ((unsigned int)(eos - b - 1) > 0x27) {
+        b[0x27] = 0;
+    }
+    fD0->func_001B17D0(b);
 }
 
 void C_00072450::func_00072450(void)
