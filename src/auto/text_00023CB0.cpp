@@ -1,5 +1,56 @@
 /* 4 functions from 0x00023CB0 to 0x00024380, found by Ghidra. */
 #include "common.h"
+#include <math.h>
+#include <xmmintrin.h>
+
+struct S_00024210_Vec {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
+struct C_00199B00 {
+    S_00024210_Vec func_00199B00(int a);
+};
+
+struct C_00198390 {
+    void func_00198390(void);
+};
+
+struct S_00024210_Player {
+    char pad0[0x22C];
+    C_00199B00 *f22C;
+};
+
+struct S_00024210_Slot {
+    char pad0[0x1E0];
+    S_00024210_Player *f1E0;
+};
+
+struct S_00024210_List {
+    char pad0[0x1A8];
+    S_00024210_Slot *a1A8[1];
+};
+
+struct S_00024210_G {
+    char pad0[0x4E0];
+    S_00024210_List *f4E0;
+};
+
+struct S_00024210_Cur {
+    char pad0[0x120];
+    int f120;
+};
+
+struct S_00024210_A {
+    char pad0[0x2A4];
+    S_00024210_Cur *f2A4;
+};
+
+extern S_00024210_A *D_002A8490;
+extern S_00024210_G *D_002B9120;
+extern float D_0027554C;
 
 struct C_000229C0 {
     char pad0[0x70];
