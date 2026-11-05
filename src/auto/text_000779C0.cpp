@@ -3,7 +3,8 @@
 struct Clamp_6A { char pad[0x10]; float f10, f14; };
 struct Mid_6A { Clamp_6A *func_0018C070(); };
 struct Lookup_6A { int *func_0018C160(int); };
-struct Global_6A { char pad[0x2ec]; Lookup_6A *p2EC; };
+struct Data_782C0 { char pad0[4]; char *p4; };
+struct Global_6A { char pad[0x2e8]; Data_782C0 *p2E8; Lookup_6A *p2EC; };
 extern Global_6A *D_002A8490;
 extern float D_00275AEC;
 extern int D_002786A0, D_00278690, D_00278678;
