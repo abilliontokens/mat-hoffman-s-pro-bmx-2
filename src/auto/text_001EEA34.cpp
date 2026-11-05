@@ -63,6 +63,8 @@ struct S_001EEFBA {
     int f30;
     int f34;
     int *func_001EEFBA(int idx);
+    S_001EEFBA *func_001EF3B4(void);
+    S_001EEFBA *func_001EF3D2(BitObj *src);
 };
 
 /* singly linked node: the next pointer is at +4 */
