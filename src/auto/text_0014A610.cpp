@@ -53,7 +53,7 @@ void *func_001E8A44(int size);
 void __stdcall func_001FF220(int v);
 void __stdcall func_001FEEF0(int a, int b);
 void __stdcall func_001FEB90(int a, int b);
-int func_0014A6C0(int type);
+int __fastcall func_0014A6C0(int type);
 int func_0014A7B0(VSEntry *entries, unsigned int *tokens);
 
 
