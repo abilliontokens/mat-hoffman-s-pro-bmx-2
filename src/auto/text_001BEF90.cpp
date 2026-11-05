@@ -384,6 +384,44 @@ struct C_001BF6F0 {
     C_001BF6F0 *func_001BF6F0(int a, int b);
 };
 
+extern int D_0028D9BC;
+extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
+
+struct S_Vec4_001BFA70 {
+    float x, y, z, w;
+    S_Vec4_001BFA70()
+    {
+        z = 0;
+        y = 0;
+        x = 0;
+        w = 1.0f;
+    }
+};
+
+/* UIWidgetSoultreeLightweight */
+struct C_001BFA70 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    int f28;
+    int f2C;
+    int f30;
+    int f34;
+    int f38;
+    int f3C;
+    int f40;
+    int f44[8];
+    int f64;
+    int f68;
+    S_Vec4_001BFA70 f6C;
+    S_Vec4_001BFA70 f7C;
+    S_Vec4_001BFA70 f8C;
+    int f9C;
+    int fA0;
+    void *func_001BFA70(int a0, int a1);
+    void func_00157600(int a0);
+};
+
 void C_001BEF90::func_001BEF90(int param_1)
 {
   unk140[param_1]->func_001BDDE0(0);
@@ -593,6 +631,54 @@ void C_001BF6C0::func_001BF6C0(int enable)
         unk2C = 0;
         ((VCall8 *)this)->v5();
     }
+}
+
+C_001BF6F0 *C_001BF6F0::func_001BF6F0(int a, int b)
+{
+    int i;
+
+    func_00157600(b);
+    f24 = a;
+    f2C = 0;
+    f28 = 0;
+    f30 = 0;
+    f34 = 0;
+    f38 = 0;
+    f3C = 0;
+    f40 = 0;
+    for (i = 0; i < 8; i++) {
+        arr44[i] = 0;
+    }
+    f64 = 0;
+    vtbl = &D_0028D8EC;
+    f74 = 0;
+    f70 = 0;
+    f6C = 0;
+    f78 = 1.0f;
+    f88 = 1.0f;
+    f84 = 0;
+    f80 = 0;
+    f7C = 0;
+    f98 = 1.0f;
+    f94 = 0;
+    f90 = 0;
+    f8C = 0;
+    f68 = 0;
+    f6C = 1.0f;
+    f70 = 1.0f;
+    f74 = 1.0f;
+    f78 = 1.0f;
+    f88 = 1.0f;
+    f7C = 0;
+    f80 = 0;
+    f84 = 0;
+    f98 = 1.0f;
+    f8C = 0;
+    f90 = 0;
+    f94 = 0;
+    f9C = 0;
+    fA0 = 0;
+    return this;
 }
 
 void C_001BF930::func_001BF930(void)
