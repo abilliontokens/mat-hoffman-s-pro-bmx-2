@@ -7,12 +7,27 @@ struct C_001BFF40 { char pad0[0x68]; S_001BFF40_Obj *unk68; void func_001BFF40(v
 
 struct S_001C0820_Vec4 {
     float x, y, z, w;
+    S_001C0820_Vec4()
+    {
+        z = 0;
+        y = 0;
+        x = 0;
+        w = 1.0f;
+    }
+    S_001C0820_Vec4(float a, float b, float c, float d)
+    {
+        x = a;
+        y = b;
+        z = c;
+        w = d;
+    }
 };
 
 struct S_001C0CB0_Stream {
     void func_00168C20(int *name, int value, int *out);
     void func_00168C50(int *name, float value, float *out);
     int func_00168CB0(int *name, S_001C0820_Vec4 *def, S_001C0820_Vec4 *out);
+    int func_00168CB0(int *name, const S_001C0820_Vec4 &def, S_001C0820_Vec4 *out);
 };
 extern int D_0028DDA0;
 extern int D_0028DD94;
@@ -544,6 +559,63 @@ void C_001C05F0::func_001C06F0(void)
             unk68[i]->func_001B2270(unk184);
         }
     }
+}
+
+C_001C0730 *C_001C0730::func_001C0820(int a, int b, S_001C0CB0_Stream *stream)
+{
+    S_001C0820_Vec4 axis;
+    S_001C0820_Vec4 angle;
+    int unused;
+    void *m;
+
+    axis.z = 0;
+    axis.y = 0;
+    axis.x = 0;
+    axis.w = 1.0f;
+    angle.z = 0;
+    angle.y = 0;
+    angle.x = 0;
+    angle.w = 1.0f;
+    stream->func_00168C20(&D_0028DC84, 0, &unused);
+    stream->func_00168C20(&D_0028DC7C, 0, &f98);
+    stream->func_00168C20(&D_0028DC74, 0, &f9C);
+    stream->func_00168C20(&D_0028DC6C, 0, &fA0);
+    stream->func_00168C20(&D_0028DC60, 1, &fA4);
+    stream->func_00168C50(&D_0028DC54, 0, &f8C);
+    stream->func_00168C50(&D_0028DC48, 0, &f90);
+    stream->func_00168C50(&D_0028DC3C, 0, &f94);
+    f28 = a;
+    m = func_001E8A44(0x1e0);
+    f68 = m ? ((S_001C0820_Node *)m)->func_00143580(1) : 0;
+    if (func_001577A0(f68->v35(b, 0, 0), 0)) {
+        S_001C0820_Vec4 d1;
+        S_001C0820_Vec4 d2;
+        S_001C0820_Vec4 d3;
+        d1.x = 1.0f;
+        d1.y = 1.0f;
+        d1.z = 1.0f;
+        d1.w = 1.0f;
+        if (stream->func_00168CB0(&D_00275AD4, &d1, &f6C)) {
+            f68->func_00199650(&f6C);
+        } else {
+            f68->func_00197E70(&f6C);
+        }
+        f7C = f6C;
+        d2.x = 0;
+        d2.y = 0;
+        d2.z = 1.0f;
+        d2.w = 1.0f;
+        if (stream->func_00168CB0(&D_00275AC8, &d2, &axis)) {
+            d3.x = 0;
+            d3.y = 0;
+            d3.z = 1.0f;
+            d3.w = 1.0f;
+            if (stream->func_00168CB0(&D_0027CEE4, &d3, &angle)) {
+                f68->func_00198F50(&axis, &angle, 1, 0, 0);
+            }
+        }
+    }
+    return this;
 }
 
 void C_001C0A60::func_001C0A60(void)
