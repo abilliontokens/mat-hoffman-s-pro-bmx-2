@@ -158,12 +158,26 @@ struct C_00100280 {
 };
 
 struct C_000FFFA0 {
-    char pad0[0x2C4];
-    int f2c4;
-    int f2c8;
-    char pad2cc[0x18];
-    int f2e4;
-    int f2e8;
+    char pad0[0x124];
+    char *f124;
+    char pad128[0x164];
+    int f28c, f290;
+    char pad294[8];
+    char *f29c;
+    char pad2a0[12];
+    int f2ac, f2b0;
+    char pad2b4[16];
+    int f2c4, f2c8;
+    char pad2cc[8];
+    int f2d4, f2d8;
+    char pad2dc[8];
+    int f2e4, f2e8;
+    char pad2ec[4];
+    int f2f0, f2f4, f2f8, f2fc;
+    float f300;
+    int f304;
+    char pad308[4];
+    int f30c;
     void func_000DBC40();
     void func_000DBD20();
     void func_000DC270();
