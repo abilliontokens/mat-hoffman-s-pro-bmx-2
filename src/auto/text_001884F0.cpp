@@ -426,6 +426,42 @@ CollisionObjects *CollisionObjects::func_00188A80(int a0)
     return this;
 }
 
+int CollisionObjects::func_00188AB0(S_00188AB0_Parser *a0, S_00188AB0_Info *a1, S_00188AB0_Reader *a2)
+{
+    char buf[0x104];
+    char buf2[0x104];
+    int ret;
+    int i;
+
+    unk24 = a1->f110;
+    if (a1->f110 == 0) {
+        return 0;
+    }
+    unk28 = (S_00188AB0_Obj **)func_001E8A44(unk24 * 4);
+    for (i = 0; i < unk24; i++) {
+        if (a1->f14c & 1) {
+            if (a1->f14c & 4) {
+                func_001ADCC0(buf, 0x104, D_0027C670, i + 1);
+            } else {
+                func_001ADCC0(buf, 0x104, D_0028A0C0, a1->f8, i + 1);
+            }
+        } else {
+            if (a1->f14c & 4) {
+                func_001ADCC0(buf, 0x104, D_002893B4, i + 1);
+            } else {
+                func_001ADCC0(buf, 0x104, D_0028A0B4, a1->f8, i + 1);
+            }
+        }
+        if (a0->func_00169710(buf) != 0) {
+            a0->func_00168BE0(D_0028A0A8, D_0028A024, buf2, -1);
+            ret = a2->v1(buf2);
+            a2->v0(&ret, &unk28[i]);
+            unk28[i]->v0(a0);
+        }
+    }
+    return 1;
+}
+
 int C_00188C20::func_00188C20(int a)
 {
     int i;
