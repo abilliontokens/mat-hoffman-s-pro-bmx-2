@@ -378,7 +378,7 @@ void __stdcall func_001DF622(int a)
 {
 }
 
-#pragma optimize("y", on)
+#pragma optimize("sy", on)
 void __stdcall func_001DF746(S_Heap *heap, S_FreeNode *node)
 {
     node->next = heap->pool->freeNodes;
