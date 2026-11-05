@@ -85,6 +85,10 @@ struct V4_00135470 {
     float y;
     float z;
     float w;
+    V4_00135470() {
+        x = y = z = 0.0f;
+        w = 1.0f;
+    }
 };
 
 /* PhysicsParticle */
