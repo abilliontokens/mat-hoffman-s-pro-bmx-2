@@ -19,6 +19,19 @@ struct C_0017AB70 {
 };
 
 
+int C_0017AB70::func_0017AB70(int param_1)
+{
+    if (unk158 == 0) {
+        return 1;
+    }
+    for (int i = 0; i < unk15C; i++) {
+        if (unk158[i] == param_1) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
 undefined4 C_0017ABC0::func_0017ABC0(byte param_1)
 {
   int func_0017A640(...);
