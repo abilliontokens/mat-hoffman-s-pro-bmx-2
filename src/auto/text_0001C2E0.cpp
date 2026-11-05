@@ -402,6 +402,34 @@ struct C_0001C4C0 {
 };
 
 
+C_0001C2E0 *C_0001C2E0::func_0001C2E0(int arg,int file) {
+ int version, type, length, pos;
+ D_002BEAAC->func_0013C8A0(file,&version,4,1);
+ if(version!=1) {D_002BEAAC->func_0013C110(file); Reset(); return 0;}
+ D_002BEAAC->func_0013C8A0(file,&f18,4,1);
+ D_002BEAAC->func_0013C8A0(file,&type,4,1);
+ f1C=(Texture_1C2E0 **)func_001E8A44(f18*4);
+ for(int i=0;i<f18;i++) {
+ Texture_1C2E0 *t=(Texture_1C2E0 *)func_001E8A44(0x110);
+ if(t) t=t->func_001D6AD0(1); else t=0;
+ f1C[i]=t;
+ if(type==0) f1C[i]->Load(file,arg,0);
+ else {
+ D_002BEAAC->func_0013C8A0(file,&length,4,1);
+ pos=D_002BEAAC->func_0013AFD0(file);
+ Image_1C2E0 *image=func_001B3560(file,0);
+ int width=image->width;
+ int format=image->bits==16?0x613:image->bits==24?0x613:0x22B8;
+ int internal=image->bits==16?0x22B:image->bits==24?0x378:0x22B8;
+ f1C[i]->Create(image->pixels,width,image->height,width,16,internal,format,2,0);
+ func_001B3970(image);
+ D_002BEAAC->func_0013AFF0(file,pos+length,0);
+ }
+ }
+ if(f18>0) {f8=f1C[0]->f8; fC=f1C[0]->fC;}
+ return this;
+}
+
 void C_0001C4C0::func_0001C4C0(int *param_1) {
     int local[3];
     int i = 0;
