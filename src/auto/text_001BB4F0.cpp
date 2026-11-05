@@ -166,15 +166,17 @@ S_001BBAE0_Mat func_000263B0(void *a, void *b);
 
 static __inline void CopyMat_001BBAE0(S_001BBAE0_Mat *src, S_001BBAE0_Mat *dst)
 {
-    __m128 r0 = src->r0;
-    __m128 r1 = src->r1;
-    __m128 r2 = src->r2;
-    __m128 r3 = src->r3;
+    __m128 *s = (__m128 *)src;
+    __m128 *d = (__m128 *)dst;
+    __m128 r0 = s[0];
+    __m128 r1 = s[1];
+    __m128 r2 = s[2];
+    __m128 r3 = s[3];
 
-    dst->r0 = r0;
-    dst->r1 = r1;
-    dst->r2 = r2;
-    dst->r3 = r3;
+    d[0] = r0;
+    d[1] = r1;
+    d[2] = r2;
+    d[3] = r3;
 }
 
 struct C_001BBAE0_Copy {
@@ -246,10 +248,12 @@ void func_001BB4F0(S_1BB4F0_Arg1 *a1, int a2, S_1BB4F0_Arg3 *a3, int enable)
 {
     S_1BB4F0_List *list;
     S_1BB4F0_Obj *obj;
+    S_1BB4F0_Obj **pp;
     int found;
     int idx;
     int i;
     int key;
+    int n;
 
     if (enable == 0) {
         return;
@@ -259,12 +263,14 @@ void func_001BB4F0(S_1BB4F0_Arg1 *a1, int a2, S_1BB4F0_Arg3 *a3, int enable)
     }
     key = a1->f64;
     list = D_002A8490->f2A4->f64->f4E0;
+    n = list->f24;
     found = 0;
-    for (i = 0; i < list->f24; i++) {
+    pp = list->f1A8;
+    for (i = 0; i < n; i++, pp++) {
         if (found) {
             break;
         }
-        obj = list->f1A8[i];
+        obj = *pp;
         if (obj->f1E0 == key) {
             found = 1;
             idx = i;
@@ -376,7 +382,7 @@ void C_001BBAE0::func_001BBAE0(int a)
         r = func_000263B0((char *)slot[0] + 0x50, &t);
         slot[1] = (int)&r;
         slot[2] = (int)&t;
-        ((C_001BBAE0_Copy *)slot[2])->Load((S_001BBAE0_Mat *)slot[1]);
+        CopyMat_001BBAE0((S_001BBAE0_Mat *)slot[1], (S_001BBAE0_Mat *)slot[2]);
         ((C_001BBAE0 *)slot[0])->unk2E4->v31(&t);
         ((C_001BBAE0 *)slot[0])->unk2E4->func_00133140(a, 2);
     } else {
