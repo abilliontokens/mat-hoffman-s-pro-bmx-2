@@ -194,16 +194,45 @@ void func_001E8390(void *p);
 void *func_001E8AA5(int size);
 void func_001E891B(void *p);
 
+/* object held in S_00192930_Node::a */
+struct S_00192B70_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    char pad4[0x8C];
+    short f90;
+};
+
+extern short D_002EFE50;
+
 struct SearchNode {
     void *vtbl;
     char pad4[0x20];
     S_00192930_Node *f24;
     S_00192930_Iface *f28;
     S_00192930_Iface *f2C;
-    void *f30;
+    int *f30;
+    int f34;
     void func_00192930(void);
     int func_00192990(int a, int b);
     void func_00192A50(int a, int b);
+    void func_00192AF0(int *src, int count);
+    int func_00192B70(void);
     int func_00192AC0(S_00192930_Iface *obj);
 };
 
