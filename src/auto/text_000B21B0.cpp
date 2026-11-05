@@ -347,6 +347,29 @@ extern float D_0027CE30;
 extern float D_002756D8;
 int func_00011260(int lo, int hi);
 
+static __forceinline float Sqrt_000B2630(float x)
+{
+    float r;
+    _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x)));
+    return r;
+}
+
+static __forceinline void Normalize_000B2630(float *out, float *in)
+{
+    __m128 v = _mm_loadu_ps(in);
+    __m128 sq = _mm_mul_ps(v, v);
+    __m128 len = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
+    len = _mm_add_ss(len, _mm_shuffle_ps(sq, sq, 0xe1));
+    __m128 minv = _mm_load_ss(&D_0027CE50);
+    __m128 cmp = _mm_cmplt_ss(len, minv);
+    len = _mm_add_ss(len, _mm_and_ps(cmp, minv));
+    __m128 r = _mm_rsqrt_ss(len);
+    __m128 t = _mm_mul_ss(_mm_mul_ss(len, r), r);
+    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_0027CE30)), _mm_sub_ss(_mm_load_ss(&D_0027CE40), t));
+    scale = _mm_shuffle_ps(scale, scale, 0);
+    _mm_storeu_ps(out, _mm_mul_ps(scale, v));
+}
+
 struct C_000B2630 {
     char pad0[0x3C];
     char *f3C;
