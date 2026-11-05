@@ -271,6 +271,28 @@ int C_001A2470::func_001A2470(void)
     return 1;
 }
 
+void C_001A2480::func_001A2480(Obj_001A2480 *obj, int a1, int a2)
+{
+    int flags;
+
+    if (obj != 0 && f1bc != obj) {
+        obj->func_001CB560(f1bc);
+    }
+    f1bc = obj;
+    flags = 0;
+    if (a1 != 0) {
+        flags = 1;
+    }
+    if (a2 != 0) {
+        flags |= 2;
+    }
+    if (f1ec != 0) {
+        D_002A8490->f4->func_0001CE80(obj, f70, f80, f48, f4c);
+        flags |= 4;
+    }
+    obj->v5(flags);
+}
+
 bool C_001A2500::func_001A2500(void)
 {
   int in_ECX = (int)this;
