@@ -96,6 +96,19 @@ struct C_0019C320 {
 };
 
 
+void SoultreeCollisionObject::func_0019BB80(void *arg1)
+{
+    struct {
+        int a;
+        int b;
+    } p;
+
+    p.a = f1C4;
+    p.b = f1C8;
+    func_00123C50((char *)arg1 + 0xf0, (char *)arg1 + 0x100, (char *)arg1 + 0xb0, 0,
+                  &p, (char *)this + 0xb0, (char *)this + 0x1b0);
+}
+
 void SoultreeCollisionObject::func_0019C1E0(void)
 {
     S_Matrix16 m;
