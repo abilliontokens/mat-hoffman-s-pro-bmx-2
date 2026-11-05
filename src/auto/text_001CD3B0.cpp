@@ -163,6 +163,13 @@ struct S_Slot {
 struct S_SlotList {
     int count;
     S_Slot **items;
+    S_Slot *at(int i)
+    {
+        if (count > 0 && items != 0 && i < count) {
+            return items[i];
+        }
+        return 0;
+    }
 };
 struct S_Owner { char pad[0x138]; char *f138; };
 extern S_Owner *D_002F08EC;
