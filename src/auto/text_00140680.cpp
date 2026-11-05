@@ -154,6 +154,38 @@ int func_001409A0(C_00168BE0 *cfg, const char *key, int def, int &out)
     return out;
 }
 
+int func_00140A10(C_00168BE0 *cfg, const char *key, int def, int &out)
+{
+    char buf[128];
+    char *tok;
+    cfg->func_00168BE0(key, "undefined", buf, 128);
+    if (strcmp(buf, "undefined") == 0) {
+        out = def;
+    } else {
+        out = 0;
+        tok = func_001E95A4(buf, D_002850C4);
+        while (tok != 0) {
+            if (strcmp(tok, "D3DTSIGN_ASIGNED") == 0) {
+                out |= 0x10000000;
+            } else if (strcmp(tok, "D3DTSIGN_AUNSIGNED") == 0) {
+                out |= 0;
+            } else if (strcmp(tok, "D3DTSIGN_RSIGNED") == 0) {
+                out |= 0x20000000;
+            } else if (strcmp(tok, "D3DTSIGN_RUNSIGNED") == 0) {
+                out |= 0;
+            } else if (strcmp(tok, "D3DTSIGN_GSIGNED") == 0) {
+                out |= 0x40000000;
+            } else if (strcmp(tok, "D3DTSIGN_GUNSIGNED") == 0) {
+                out |= 0;
+            } else if (strcmp(tok, "D3DTSIGN_BSIGNED") == 0) {
+                out |= 0x80000000;
+            }
+            tok = func_001E95A4(0, D_002850C4);
+        }
+    }
+    return out;
+}
+
 int func_00140CD0(C_00168BE0 *cfg, const char *key, int def, int &out)
 {
     char buf[64];
