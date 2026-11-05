@@ -52,3 +52,13 @@ C_00188700* C_00188700::func_00188700(void) {
     unkC = 0;
     return this;
 }
+
+CollisionObjects *CollisionObjects::func_00188A80(int a0)
+{
+    func_00157600(a0);
+    unk24 = 0;
+    unk28 = 0;
+    vtbl = (void *)&D_0028A034;
+    return this;
+}
+
