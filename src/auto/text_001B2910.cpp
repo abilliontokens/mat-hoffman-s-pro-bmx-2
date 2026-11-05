@@ -1,14 +1,35 @@
 /* 11 functions from 0x001B2910 to 0x001B35D0, found by Ghidra. */
 #include "common.h"
 
+/* image header read field by field from a file (a TGA-like header), then its pixel buffer at f14 */
 struct S_001B3560 {
-    char pad0[0x12];
-    char kind;
-    char pad13;
+    unsigned char f0;
+    unsigned char f1;
+    unsigned char f2;
+    char pad3;
+    unsigned short f4;
+    unsigned short f6;
+    unsigned char f8;
+    char pad9;
+    unsigned short fA;
+    unsigned short fC;
+    unsigned short fE;
+    unsigned short f10;
+    unsigned char kind;
+    unsigned char f13;
     void *f14;
-    char pad18[4];
+    int f18;
     char f1c;
+    char pad1d[0x120 - 0x1d];
+    int f120;
+    int f124;
 };
+
+struct C_001B33A0_Loader {
+    int func_0013C8A0(int handle, void *buf, int size, int count);
+};
+extern C_001B33A0_Loader *D_002BEAAC;
+void *func_001E8AA5(int size);
 
 int func_001B2910(int param_1);
 S_001B3560 *func_001B33A0(int a, int b);
