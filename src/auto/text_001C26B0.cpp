@@ -78,6 +78,11 @@ struct UIWidgetStaticUserRotate {
     }
 };
 
+static inline void CopyMem(void *dst, const void *src, unsigned int n)
+{
+    memcpy(dst, src, n);
+}
+
 struct C_001C35B0 {
     void *vtbl;
     int f4;
@@ -286,6 +291,26 @@ void *C_001C3510::func_001C3510(int flags)
         func_001E891B(this);
     }
     return this;
+}
+
+DXVertexBuffer *DXVertexBuffer::func_001C3550(int type, int count)
+{
+    switch (type) {
+    case 0x112:
+    case 0x1c4:
+    case 0x1c6: {
+        int ok;
+        int fail;
+        f10 = count;
+        fC = 0x20;
+        f8 = type;
+        f14 = func_001FF3C0(count << 5);
+        ok = f14 != 0;
+        fail = (int)((unsigned)(ok - 1) & 0x8007000E) < 0;
+        return (DXVertexBuffer *)((fail - 1) & (int)this);
+    }
+    }
+    return 0;
 }
 
 void C_001C35B0::func_001C35B0(void *src, int index, unsigned int count)
