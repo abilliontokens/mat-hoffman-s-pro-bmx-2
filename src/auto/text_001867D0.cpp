@@ -268,6 +268,26 @@ extern S16_1A D_002A90B4;
 int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 void __stdcall func_00011FF0(void *p, int stride, int count, void *ctor);
 
+int BasicSoundTempData::func_00186960(Stream_00186960 *stream)
+{
+ if (!stream->func_00168BE0(&D_0027B168, &D_002764F0, f4, -1)) return 0;
+ stream->func_00168CB0(&D_00275AD4, &D_002A90B4, f108);
+ stream->func_00168C20(&D_00287DA0, 0, &f120);
+ stream->func_00168C20(&D_0028998C, 0, &f124);
+ stream->func_00168C20(&D_00289978, 0, &f128);
+ stream->func_00168C20(&D_00289970, 0, &f12C);
+ stream->func_00168C20(&D_0027A20C, 0, &f130);
+ stream->func_00168C50(&D_00289960, 0x41a00000, &f134);
+ stream->func_00168C50(&D_00289948, 0x42c80000, &f138);
+ stream->func_00168C50(&D_0027CB54, 0, &f118);
+ stream->func_00168C50(&D_0027CB60, 0, &f11C);
+ stream->func_00168C20(&D_0028993C, 10, &f160);
+ stream->func_00168C20(&D_00289930, 0, &f164);
+ f148 = f11C;
+ f14C = f118;
+ return 1;
+}
+
 C_00186AB0 *C_00186AB0::func_00186AB0()
 {
     ((C_001867D0 *)this)->func_001867D0();
