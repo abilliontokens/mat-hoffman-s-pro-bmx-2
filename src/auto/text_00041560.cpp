@@ -392,3 +392,71 @@ void BmxEventEditor::func_00041DC0()
     f284 = 1;
 }
 
+void BmxEventEditor::func_00041F00()
+{
+    S_41F00_V4 v;
+    S_41F00_Entry *e;
+    int i;
+
+    if (f564 != 0 && f48c == -1)
+        func_0003D910(0);
+    i = arr.count - 1;
+    if (i >= f484) {
+        do {
+            e = arr.at(i);
+            f564 = e;
+            f48c = i;
+            if (e->type == 0 || e->type >= 3) {
+                e->obj->func_00197E70(&v);
+                f568 = func_00038850(f564->obj, v, 0);
+                if (f564->type >= 3) {
+                    if (f564->type == 3 || f564->type == 5)
+                        f56c = func_00038850(f564->objC, v, 0);
+                    if (f564->type == 4 || f564->type == 5)
+                        f570 = func_00038850(0, v, 1);
+                }
+                if (func_0003E660() != 0)
+                    func_0003D910(1);
+            } else {
+                if (e->type == 2)
+                    i -= e->type;
+                func_0003D910(1);
+            }
+            i--;
+        } while (i >= f484);
+    }
+    func_001ADCC0(f64->GetItem(f64->f5A4->f47C)->s314, 0x32, D_00276F8C);
+    f284 = 0;
+    f290 = 0;
+    f288 = 0;
+    f2c8 = 0;
+    f2cc = 0;
+    f2d0 = 0;
+    f2d4 = 0;
+    f2d8 = 0;
+    f2e4 = 0;
+    f420 = 1;
+    f424 = 500;
+    f48c = -1;
+    f490 = 0;
+    f494 = 0;
+    f4a0 = 0;
+    f4ac = D_002A14D4;
+    f4cc = D_002A14D4;
+    f4dc = D_002A14D4;
+    f51c = D_002A14D4;
+    f564 = 0;
+    f568 = 0;
+    f56c = 0;
+    f570 = 0;
+    f57c = 0;
+    f580 = 0;
+    memset(s324, 0, 0x32);
+    memset(s3EC, 0, 0x32);
+    v34();
+    f554->func_0008A910();
+    func_0003AD50();
+    func_000399A0(0);
+    func_000361F0(1);
+}
+
