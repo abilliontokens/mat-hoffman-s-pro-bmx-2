@@ -137,6 +137,26 @@ void C_001B1B30::func_001B1B30(float param_1, undefined4 param_2)
   return;
 }
 
+void C_001B1B80::func_001B1B80(undefined4 param_1, float param_2, float param_3,
+                               undefined4 param_4, undefined4 param_5, undefined4 param_6)
+{
+  int in_ECX = (int)this;
+  int iVar1;
+
+  if (*(int *)(in_ECX + 0xc0) == 0) {
+    *(undefined4 *)(in_ECX + 0xa8) = param_1;
+    iVar1 = *(int *)(in_ECX + 0x24);
+    *(undefined4 *)(in_ECX + 0xb4) = param_6;
+    *(undefined4 *)(in_ECX + 0xb0) = 0;
+    if (*(float *)(iVar1 + 0x24) != param_2 || *(float *)(iVar1 + 0x28) != param_3) {
+      *(float *)(iVar1 + 0x24) = param_2;
+      *(float *)(iVar1 + 0x28) = param_3;
+    }
+  }
+  *(undefined4 *)(in_ECX + 0xac) = *(undefined4 *)(*(int *)(in_ECX + 0x24) + 0x38);
+  return;
+}
+
 void C_001B1BF0::func_001B1BF0(float param_1)
 {
   int in_ECX = (int)this;
@@ -217,5 +237,19 @@ undefined4 C_001B2350::func_001B2350(void)
     *(undefined4 *)(in_ECX + 8) = *(undefined4 *)(*(int *)(in_ECX + 8) + 0x98);
   }
   return *(undefined4 *)(in_ECX + 8);
+}
+
+void *C_001B2700::func_001B2700(unsigned int flags)
+{
+    extern int D_0028C90C;
+    void func_001B25E0();
+    void func_001E891B(void *);
+    vtbl = (void *)&D_0028C90C;
+    func_001B25E0();
+    func_001AC830();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
 }
 
