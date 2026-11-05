@@ -95,8 +95,8 @@ struct BmxUIPageHOF4 {
     int unk2e0[5];
     C_000D6D50_Item *unk2f4[2];
     C_000D6D50_Item *unk2fc[2];
-    int unk304;
-    int unk308;
+    float unk304;
+    float unk308;
     int unk30c[5];
     BmxUIPageHOF4 *func_000D7AB0(int param);
     void func_001BE360(int param);
@@ -135,19 +135,23 @@ BmxUIPageHOF3 *BmxUIPageHOF3::func_000D6C90(int param) {
     extern int D_0027F36C;
     func_001BE360(param);
     vtbl = (int)&D_0027F36C;
+    void **p = (void **)unk2e8;
     for (int i = 0; i < 5; i++) {
-        unk2d4[i] = 0;
-        unk2e8[i] = 0;
-        unk304[i] = 0;
+        p[-5] = 0;
+        *p = 0;
+        p[7] = 0;
+        p++;
     }
     unk288 = 0;
     unk28c = 0;
     unk280 = 0;
     unk290 = 0;
     unk284 = 0;
+    void **q = (void **)unk2cc;
     for (int i = 0; i < 2; i++) {
-        unk2c4[i] = 0;
-        unk2cc[i] = 0;
+        q[-2] = 0;
+        *q = 0;
+        q++;
     }
     unk294 = 0;
     unk298 = 0;
@@ -193,19 +197,23 @@ BmxUIPageHOF4 *BmxUIPageHOF4::func_000D7AB0(int param) {
     extern int D_0027F404;
     func_001BE360(param);
     vtbl = (int)&D_0027F404;
+    void **p = (void **)unk2e0;
     for (int i = 0; i < 5; i++) {
-        unk2cc[i] = 0;
-        unk2e0[i] = 0;
-        unk30c[i] = 0;
+        p[-5] = 0;
+        *p = 0;
+        p[0xb] = 0;
+        p++;
     }
     unk280 = 0;
     unk290 = 0;
     unk284 = 0;
     unk288 = 0;
     unk28c = 0;
+    void **q = (void **)unk2fc;
     for (int i = 0; i < 2; i++) {
-        unk2f4[i] = 0;
-        unk2fc[i] = 0;
+        q[-2] = 0;
+        *q = 0;
+        q++;
     }
     unk2ac = 0;
     unk2b0 = 0;
