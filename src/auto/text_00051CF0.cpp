@@ -113,22 +113,23 @@ struct C_00052BF0 {
 int C_00051CF0::func_00052590(int idx)
 {
     int count;
+    float *p = unk2B8;
     if (unk1C8 != 0) {
         return 0;
     }
-    unk2B8[idx] = unk124;
+    p[idx] = unk124;
     unk2CC = 1;
     count = 0;
-    if (unk2B8[0] > D_00275544) {
+    if (p[0] > D_00275544) {
         count++;
     }
-    if (unk2B8[1] > D_00275544) {
+    if (p[1] > D_00275544) {
         count++;
     }
-    if (unk2B8[2] > D_00275544) {
+    if (p[2] > D_00275544) {
         count++;
     }
-    if (unk2B8[3] > D_00275544) {
+    if (p[3] > D_00275544) {
         count++;
     }
     unk170->func_00083B00(count);
