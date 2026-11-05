@@ -176,6 +176,63 @@ char *func_001E95A4(char *string, const char *control) {
     else
         return string;
 }
+
+#pragma optimize("y", off)
+double func_001E9649(char *str) {
+    extern int D_002AEA38;
+    extern unsigned short *D_002AEA30;
+    int func_001EC5F1(int, int);
+    void *func_001ED0FC(void *, char *, int, int, int);
+    struct Res {
+        char pad0[0x10];
+        double val;
+    };
+    char *p = str;
+    char *s;
+    struct Res res;
+    void *r;
+
+    for (;;) {
+        unsigned int t;
+        if (D_002AEA38 > 1) {
+            t = func_001EC5F1(*(unsigned char *)p, 8);
+        } else {
+            t = D_002AEA30[*(unsigned char *)p] & 8;
+        }
+        if (t == 0) {
+            break;
+        }
+        p++;
+    }
+    s = p;
+    while (*s != 0) {
+        s++;
+    }
+    r = func_001ED0FC(&res, p, (int)(s - p), 0, 0);
+    return *(double *)((char *)r + 0x10);
+}
+
+int func_001E96A5(int a0, int a1, int a2) {
+    int func_001ED2E9(void);
+    int *func_001ED075(void);
+    void func_001EB15B(int);
+    int func_001ED181(int, int, int, int);
+    int h;
+    int result;
+
+    h = func_001ED2E9();
+    if (h == 0) {
+        *func_001ED075() = 0x18;
+        return 0;
+    }
+    __try {
+        result = func_001ED181(a0, a1, a2, h);
+    } __finally {
+        func_001EB15B(h);
+    }
+    return result;
+}
+
 #pragma optimize("", on)
 
 #pragma optimize("t", off)
