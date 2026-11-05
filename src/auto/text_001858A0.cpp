@@ -211,6 +211,15 @@ struct C_00186540 {
 };
 
 
+PortalInfo::PortalInfo()
+{
+    for (int i = 0; i < 4; i++) {
+        v[i] = *(S_Vec4_001858A0 *)&D_002A90B4;
+    }
+    f44 = 0;
+    f48 = 0;
+}
+
 int C_00185970::func_00185970(S_Stream *stream, int n)
 {
     char buf[0x104];
