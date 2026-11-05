@@ -3,6 +3,11 @@
 #include <xmmintrin.h>
 #include <string.h>
 
+void __stdcall func_00200230(int a);
+struct XboxRenderTarget {
+    int func_001D4FF0(int a);
+};
+
 struct S_001D5610_Obj {
     virtual void v0(int flags);
 };
