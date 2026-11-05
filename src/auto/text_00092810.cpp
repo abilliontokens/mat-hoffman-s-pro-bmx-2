@@ -55,6 +55,9 @@ struct C_00092890 {
     char f150;
     char pad151[0x103];
     char f254;
+    void func_0008BCD0(void);
+    void func_0008C480(void);
+    void func_0008CC50(void);
     C_00092890 *func_00092890(int a);
     void func_00093120(void);
     C_00092890 *func_00092810(int a0, int a1, int a2, int a3);
