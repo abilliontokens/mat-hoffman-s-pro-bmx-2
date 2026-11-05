@@ -237,6 +237,64 @@ struct SoundStream_001CFEF0 {
     int func_001CE770(int a);
     int func_001CFEF0(void);
 };
+struct SoundElem_001CF2A0 {
+    virtual void v0();
+    virtual void v1();
+    virtual void release();
+};
+
+struct SoundElemList_001CF2A0 {
+    int count;
+    SoundElem_001CF2A0 **items;
+    int growBy;
+    int capacity;
+    int func_0015ACA0(int newCapacity);
+    SoundElem_001CF2A0 *at(int i)
+    {
+        if (count > 0 && items != 0 && i < count) {
+            return items[i];
+        }
+        return 0;
+    }
+    void add(SoundElem_001CF2A0 *elem)
+    {
+        if (count >= capacity && !func_0015ACA0(count + growBy)) {
+            return;
+        }
+        items[count] = elem;
+        count++;
+    }
+};
+
+struct OwnedElemList_001CF2A0 {
+    SoundElemList_001CF2A0 list;
+    unsigned char flags;
+    char pad[3];
+
+    OwnedElemList_001CF2A0()
+    {
+        list.items = 0;
+        list.count = 0;
+        list.growBy = 0;
+        list.capacity = 0;
+        flags &= 0xfe;
+    }
+
+    void init(int n)
+    {
+        list.items = (SoundElem_001CF2A0 **)func_001E8A44(n * 4);
+        list.growBy = 0x10;
+        list.capacity = n;
+        flags |= 1;
+    }
+};
+
+struct XboxSoundGroup {
+    void *vtbl;
+    char pad4[0x2c];
+    SoundElemList_001CF2A0 list;
+    void func_001CF2A0();
+};
 
 void XboxMusic::func_001CF110(IntArray *list)
 {
