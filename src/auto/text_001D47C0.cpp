@@ -34,6 +34,7 @@ int func_00200210();
 void __stdcall func_002011F0(int, void *);
 int func_001B2C40(int);
 void func_0014A7B0(void *, void *);
+extern char D_00010000[];
 extern char D_002ABD08[], D_002F0A80[], D_0028C1F0[], D_0028C1DC[];
 
 
