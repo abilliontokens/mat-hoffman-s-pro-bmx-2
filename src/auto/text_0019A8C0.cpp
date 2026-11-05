@@ -161,6 +161,19 @@ void SoultreeObject::func_0019ACE0(void)
     ((C_00157660_19A8C0 *)this)->func_00157660();
 }
 
+void SoultreeObject::func_0019ADF0(SoultreeObject *p)
+{
+    if (p->f170 != 0) {
+        f170->func_0019A210(p);
+    }
+    p->f170 = (S_0019A8C0_Mgr *)this;
+    if (f174 == 0) {
+        f174 = (S_0019A8C0_Child *)p;
+    } else {
+        f174->func_00198230(p);
+    }
+}
+
 undefined4 C_0019B6D0::func_0019B6D0(byte param_1)
 {
   int func_0019ACE0(...);
