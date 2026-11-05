@@ -48,6 +48,15 @@ struct C_001643A0 {
 };
 
 
+void C_001646B0::func_001646B0(void)
+{
+    int i;
+    for (i = 0; i < f1e8; i++) {
+        C_00199BE0 *p = *(C_00199BE0 **)(f1ec + i * 0x40 + 0x34);
+        p->func_00199BE0((void *)(f1f8 + i * 0x40));
+    }
+}
+
 void C_00164820::func_00164820(int a0) {
     unk10 = 0;
     unk18 = a0;
