@@ -38,6 +38,35 @@ struct C_00018D40 {
     int f4d8;
     void func_00018D40(C_00018D40Param *param);
 };
+struct C_00199B00 {
+    void func_00199B00(float *out, int a);
+};
+struct S_000192D0_Dev {
+    char pad0[4];
+    C_00199B00 *f4;
+};
+struct S_000192D0_Ent {
+    char pad0[0x1a4];
+    S_000192D0_Dev *f1a4;
+};
+struct S_000192D0_Slot {
+    char pad0[0x2c];
+    S_000192D0_Ent *f2c;
+};
+extern float D_002A0718f[4];
+extern float D_002757FC;
+int __cdecl func_00017AD0(void *a, void *b, void *c, int d);
+double __cdecl sqrt(double);
+struct C_000192D0 {
+    char pad0[0x398];
+    S_000192D0_Slot *f398;
+    char pad39c[0x49c - 0x39c];
+    C_00018D40Elem *f49c;
+    char pad4a0[0x4d8 - 0x4a0];
+    int f4d8;
+    int f4dc;
+    int func_000192D0(int a, int b);
+};
 struct C_0001CE80 {
     void func_0001CE80(void *a, void *b, void *c, float d, float e);
 };
