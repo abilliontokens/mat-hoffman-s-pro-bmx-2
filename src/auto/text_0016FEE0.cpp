@@ -5,6 +5,9 @@ extern int D_002A8A80, D_002A8A84, D_002A8A88, D_002A8A8C;
 struct S_00170B60_Mat { int m[16]; };
 struct C_000264C0 { void func_000264C0(void *src); };
 struct C_00170B60 { void func_00170B60(); };
+static inline void Copy_00170B60(int *p) {
+ p[0]=D_002A8A80; p[1]=D_002A8A84; p[2]=D_002A8A88; p[3]=D_002A8A8C;
+}
 static inline void Identity_00170B60(S_00170B60_Mat * volatile p) {
     __m128 z = _mm_setzero_ps();
     ((__m128 *)p->m)[0]=z; ((__m128 *)p->m)[1]=z;
