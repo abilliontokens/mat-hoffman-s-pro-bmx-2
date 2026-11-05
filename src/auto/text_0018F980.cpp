@@ -56,6 +56,7 @@ struct C_00190200 {
     C_190200_Tab *f164;
     int func_0018E7D0(int kind, C_190200_Rec *buf, int *out);
     void func_00190200(int a0, int a1, int a2, C_190200_Src *src, C_190200_Rec *rec, unsigned int flags);
+    void func_00190200(int a0, int a1, int a2, int a3, int a4, unsigned int a5);
 };
 #include <string.h>
 struct Node0018FF10 { char name[0x10c]; Node0018FF10 *next; };
@@ -76,3 +77,108 @@ struct C_0018FF10 {
     int func_0018EB70(int, char *, Node0018FF10 *);
     int func_0018FF10(char *src, char *name, int idx, int *out);
 };
+
+void C_00190200::func_00190200(int a0, int a1, int a2, C_190200_Src *src, C_190200_Rec *rec, unsigned int flags)
+{
+    int tbl;
+    int idx;
+    int hi;
+    int srcType;
+    int loc;
+    int off;
+    void *val;
+    char *dst;
+
+    if (rec->name[0] == '$') {
+        if (func_0018E7D0(0, rec, &idx) != 1) {
+            return;
+        }
+        tbl = named[idx].f0;
+    } else {
+        tbl = a0;
+        idx = a1;
+    }
+    hi = (flags >> 8) & 0xff;
+    val = src->func_0018E1D0();
+    srcType = src->f1c;
+    loc = rec->f40;
+    off = (loc >> 16) & 0xff;
+    if ((flags & 0xff) == 1) {
+        C_190200_Cell *cell = &f164[named[idx].f44].f2c[loc & 0xff];
+        dst = cell->f4 + tbl;
+        if ((cell->f8 & (unsigned int)&D_0000FF00) == 0x900 && srcType != cell->fc) {
+            dst += off;
+        }
+        switch (hi) {
+        case 1:
+        case 3:
+        case 6:
+        case 8:
+            *(int *)dst = *(int *)val;
+            return;
+        case 2:
+        case 7:
+            *(int *)dst = *(int *)val;
+            return;
+        case 4:
+            *(int *)dst = *(int *)val;
+            ((int *)dst)[1] = ((int *)val)[1];
+            return;
+        case 5:
+            *dst = *(char *)val;
+            return;
+        case 9:
+            switch ((flags >> 16) & 0xff) {
+            case 0:
+                ((int *)dst)[0] = ((int *)val)[0];
+                ((int *)dst)[1] = ((int *)val)[1];
+                ((int *)dst)[2] = ((int *)val)[2];
+                ((int *)dst)[3] = ((int *)val)[3];
+                break;
+            case 1:
+                ((C_190200_Dst *)dst)->func_000264C0(val);
+                break;
+            }
+            return;
+        }
+    } else if ((flags & 0xff) == 2) {
+        C_190200_Elem *e = named[idx].f54 + (loc & 0xff);
+        if ((e->f18 & (unsigned int)&D_0000FF00) == 0x900 && srcType != e->f1c) {
+            dst = (char *)e->f150.func_00191400() + off;
+            switch (hi) {
+            case 1:
+            case 3:
+            case 6:
+            case 8:
+                *(int *)dst = *(int *)val;
+                return;
+            case 2:
+            case 7:
+                *(int *)dst = *(int *)val;
+                return;
+            case 4:
+                *(int *)dst = *(int *)val;
+                ((int *)dst)[1] = ((int *)val)[1];
+                return;
+            case 5:
+                *dst = *(char *)val;
+                return;
+            case 9:
+                switch ((flags >> 16) & 0xff) {
+                case 0:
+                    ((int *)dst)[0] = ((int *)val)[0];
+                    ((int *)dst)[1] = ((int *)val)[1];
+                    ((int *)dst)[2] = ((int *)val)[2];
+                    ((int *)dst)[3] = ((int *)val)[3];
+                    break;
+                case 1:
+                    ((C_190200_Dst *)dst)->func_000264C0(val);
+                    break;
+                }
+                return;
+            }
+        } else {
+            e->func_0018F390((char *)rec, flags, (void **)val);
+        }
+    }
+}
