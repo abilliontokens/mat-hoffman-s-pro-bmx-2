@@ -23,16 +23,15 @@ struct C_0001DFE0 {
 };
 
 struct CubeSlot {
-    void vf0();
+    virtual void vf0();
     virtual void vf1();
     virtual void vf2();
 };
 
 struct CubeGroup {
     unsigned short mask;
-    void *ptrs[16];
-    char pad44[0xa4];
-    float vec[4];
+    CubeSlot *ptrs[0x39];
+    unsigned int vec[4];
     int unkF8;
 };
 
