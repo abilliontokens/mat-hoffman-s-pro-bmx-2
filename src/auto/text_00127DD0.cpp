@@ -26,6 +26,15 @@ struct S_00127DD0_Node {
     S_00127DD0_Node *right;
 };
 
+struct S_00128480_Entry {
+    float split, length;
+    unsigned short left, right;
+    int a, b, c;
+    float x, y, z;
+};
+extern "C" float __cdecl sqrtf(float);
+#pragma intrinsic(sqrtf)
+
 struct C_00128910 {
     char pad0[0xC];
     int unkC;
