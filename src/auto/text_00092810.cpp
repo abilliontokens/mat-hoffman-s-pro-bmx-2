@@ -80,6 +80,8 @@ struct C_00092890 {
     C_00092890 *func_00092810(int a0, int a1, int a2, int a3);
     int func_00092BE0(void);
     int func_00092C70(void);
+    int func_00092B40(int idx);
+    int func_00092E30(int idx);
 };
 
 struct C_000928D0 {
