@@ -23,7 +23,22 @@ struct S_0019CB00_Xform {
     V4_0019CB00 c;
     float f30;
     float f34;
-    static void *operator new(unsigned int size) { return func_001E8A44(size); }
+    S_0019CB00_Xform *Init(void)
+    {
+        a.z = 0.0f;
+        a.y = 0.0f;
+        a.x = 0.0f;
+        a.w = 1.0f;
+        b.z = 0.0f;
+        b.y = 0.0f;
+        b.x = 0.0f;
+        b.w = 1.0f;
+        c.z = 0.0f;
+        c.y = 0.0f;
+        c.x = 0.0f;
+        c.w = 1.0f;
+        return this;
+    }
 };
 
 struct SoultreeCollisionObject {
