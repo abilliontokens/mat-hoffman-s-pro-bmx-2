@@ -51,6 +51,11 @@ struct C_001D3F50 {
     C_001D3F50* func_001D3F50(void);
 };
 
+static __forceinline void ClearInt_001D3F60(int *p)
+{
+    *p = 0;
+}
+
 struct S_001D3F60_Sub {
     int x;
     __forceinline void reset(void)
@@ -240,9 +245,9 @@ C_001D3F60 *C_001D3F60::func_001D3F60(void)
 {
     int func_001D3F50(...);
     func_001D3F50();
-    f8 = 0;
+    f4 = 0;
     f0 = -1;
-    sub4.reset();
+    f8 = 0;
     return this;
 }
 
