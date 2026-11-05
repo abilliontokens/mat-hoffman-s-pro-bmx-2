@@ -160,6 +160,55 @@ struct C_000A8DD0 {
     void func_000A8DD0(C_000A8DD0_P1 *a, void *b);
 };
 
+/* AddPointsTriggerAction */
+struct C_000A90B0 {
+    void *vtbl;
+    char pad4[0x108];
+    int unk10C;
+    C_000A90B0 *func_000A90B0();
+};
+
+/* ScriptTriggerAction */
+struct C_000A8E20 {
+    void *vtbl;
+    char pad4[0x108];
+    unsigned char unk10C;
+    char pad10D[0x148 - 0x10D];
+    unsigned char unk148;
+    C_000A8E20 *func_000A8E20();
+};
+
+struct C_000A8E40_P1 {
+    void func_00168BE0(void *k1, void *k2, void *dst, int size);
+};
+
+/* ScriptTriggerAction */
+struct C_000A8E40 {
+    void *vtbl;
+    char pad4[0x108];
+    char unk10C[0x3c];
+    char unk148[0x3c];
+    void func_000A8E40(void *a, void *b);
+};
+
+struct C_000A8EB0_Vec {
+    float z;
+    float y;
+    float x;
+    float w;
+    float &operator[](int i) { return (&z)[i]; }
+};
+
+/* BirdTriggerAction */
+struct C_000A8EB0 {
+    void *vtbl;
+    char pad4[0x108];
+    C_000A8EB0_Vec vec10C;
+    int unk11C;
+    int unk120;
+    C_000A8EB0 *func_000A8EB0();
+};
+
 void C_000A84A0::func_000A84A0(void *param1, void *param2)
 {
     int i;
@@ -332,6 +381,12 @@ C_000A8DB0 *C_000A8DB0::func_000A8DB0() {
     vtbl = (void *)&D_0027C31C;
     unk10C = -1;
     return this;
+}
+
+void C_000A8DD0::func_000A8DD0(C_000A8DD0_P1 *a, void *b) {
+    extern int D_0027C324;
+    a->func_00168C20(&D_0027C324, -1, &unk10C);
+    func_001B5A00(a, b);
 }
 
 C_000A9030 *C_000A9030::func_000A9030() {
