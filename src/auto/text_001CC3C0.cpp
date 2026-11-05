@@ -244,7 +244,10 @@ struct C_001CC3C0 {
     int func_001CC460(int param_1);
     int func_001CCA10(void);
     int func_001CC4B0(int *a, int *b, int *c, int *d);
+    int func_001CCE10(int a, int b, int c, int d);
 };
+int __stdcall func_00221A71(int h, int a, int b, int c, int d);
+int __stdcall func_00221B90(int h, int a, int b, int c, int d);
 
 int C_001CC3C0::func_001CC3C0(int param_1)
 {
