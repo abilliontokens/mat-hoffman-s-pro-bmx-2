@@ -1,5 +1,6 @@
 /* 31 functions from 0x0001E260 to 0x0001EFA0, found by Ghidra. */
 #include "common.h"
+#include <stdlib.h>
 extern int D_00275F9C;
 extern int D_00275F7C;
 extern int D_002B7D54;
@@ -74,29 +75,23 @@ void GR_BitString::func_0001E460() {
 
 #pragma optimize("y", off)
 u32 __stdcall func_0001E550(int a0) {
-    u32 result;
     u32 v = D_002A0DAC[a0];
-    int count = D_002B7D54 + a0;
     u32 cur = D_002B7D50;
-    if (count < 0x20) {
-        D_002B7D54 = count;
-        result = v & (cur >> (0x20 - count));
+    D_002B7D54 += a0;
+    if (D_002B7D54 < 0x20) {
+        v &= cur >> (0x20 - D_002B7D54);
     } else {
-        u32 *p = D_002B7D4C;
-        count -= 0x20;
-        D_002B7D54 = count;
-        p += 1;
-        u32 next = *p;
-        u32 t = v & (cur << count);
+        D_002B7D54 -= 0x20;
+        D_002B7D4C += 1;
+        u32 next = *D_002B7D4C;
+        v &= cur << D_002B7D54;
         next = (next >> 24) | ((next >> 8) & 0xff00) | ((next << 8) & 0xff0000) | (next << 24);
-        D_002B7D4C = p;
         D_002B7D50 = next;
-        result = t;
-        if (count != 0) {
-            result = t | (next >> (0x20 - count));
+        if (D_002B7D54 != 0) {
+            v |= next >> (0x20 - D_002B7D54);
         }
     }
-    return result;
+    return v;
 }
 #pragma optimize("", on)
 void *C_0001E930::func_0001E930(unsigned int flags) {
