@@ -46,6 +46,16 @@ struct C_5E40_Dst {
     void func_001D6600();
 };
 
+struct C_6420_Q {
+    char pad0[0x30];
+    int f30;
+};
+
+struct C_6420_P {
+    int f0;
+    C_6420_Q *f4;
+};
+
 struct C_6420_Elem {
     char pad0[0x38];
     unsigned int f38;
