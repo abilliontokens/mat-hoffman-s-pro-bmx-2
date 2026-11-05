@@ -135,19 +135,26 @@ int *S_001EEFBA::func_001EEFBA(int idx)
 S_001EEFE3 *S_001EEFE3::func_001EEFE3(S_001EEFE3 *n)
 {
     S_001EEFE3 *p;
+    S_001EEFE3 *q;
 
     if (n != 0) {
         p = next;
-        if (p == 0) {
-            next = n;
+        if (p != 0) {
+            do {
+                q = p;
+                p = q->next;
+            } while (p != 0);
+            q->next = n;
         } else {
-            while (p->next != 0) {
-                p = p->next;
-            }
-            p->next = n;
+            next = n;
         }
     }
     return this;
+}
+
+int __fastcall func_001EF1D0(BitObj *self, int unused)
+{
+    return self->s4 == 0 || self->s4 == 2;
 }
 
 BitObj *BitObj::func_001EF8F6(int a0, int a1) {
