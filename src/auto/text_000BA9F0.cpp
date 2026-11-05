@@ -141,6 +141,7 @@ struct BmxUIManager {
     int func_000BABF0();
     void func_000BACE0();
     int func_000BB0C0();
+    int func_000BB180();
     void func_000BB340();
     void func_000BB360();
     void func_000BB380(const char *name);
