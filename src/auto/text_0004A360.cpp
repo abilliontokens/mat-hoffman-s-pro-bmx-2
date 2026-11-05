@@ -259,12 +259,13 @@ struct BmxEventFPS {
     void func_0004ACB0(void);
 };
 
-static inline S_Vec4 GetPos_0004A6A0(S_Obj4E4 *o)
+static __forceinline S_Vec4 GetPos_0004A6A0(S_Obj4E4 *o)
 {
-    if (o->f2c == 0)
-        return D_002A15B0;
     S_Vec4 t;
-    o->f2c->f1a4->f4->func_00199B00(&t, 0);
+    if (o->f2c == 0)
+        t = D_002A15B0;
+    else
+        o->f2c->f1a4->f4->func_00199B00(&t, 0);
     return t;
 }
 
