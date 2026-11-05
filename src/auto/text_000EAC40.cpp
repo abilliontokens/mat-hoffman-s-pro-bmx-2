@@ -58,7 +58,22 @@ struct BmxUIPageHOFTitle {
 
 struct S_000EB420_Obj {
     virtual void destroying(int flag);
+    char pad4[0x24];
+    int f28;
+    char pad2C[0x10];
+    int f3C;
+    int f40;
+    int f44;
+    int f48;
+    char pad4C[0xC];
+    unsigned char f58;
+    S_000EB420_Obj *func_001D5760(void);
+    void func_001D5810(void *a, float b, float c, int d);
 };
+
+void *func_001E8A44(int size);
+extern int D_002786B0;
+extern float D_0027E140;
 
 struct BmxUIPageMedia {
     void *vtbl;
