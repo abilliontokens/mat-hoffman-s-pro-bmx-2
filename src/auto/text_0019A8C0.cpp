@@ -140,6 +140,34 @@ struct SoultreeObject {
 };
 
 
+/* SoultreeObject seen through virtual slot 29 (clone into slot) */
+struct S_0019B1A0_VThis {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28();
+    virtual void v29(SoultreeObject **out);
+};
+
+static inline void Transpose_0019B1A0(void *dst, void *src)
+{
+    float *d = (float *)dst;
+    float *s = (float *)src;
+    __m128 r0 = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (__m64 *)&s[0]), (__m64 *)&s[4]);
+    __m128 r1 = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (__m64 *)&s[2]), (__m64 *)&s[6]);
+    __m128 r2 = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (__m64 *)&s[8]), (__m64 *)&s[12]);
+    __m128 r3 = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (__m64 *)&s[10]), (__m64 *)&s[14]);
+
+    *(__m128 *)&d[0] = _mm_shuffle_ps(r0, r2, 0x88);
+    *(__m128 *)&d[4] = _mm_shuffle_ps(r0, r2, 0xdd);
+    *(__m128 *)&d[8] = _mm_shuffle_ps(r1, r3, 0x88);
+    *(__m128 *)&d[12] = _mm_shuffle_ps(r1, r3, 0xdd);
+}
+
 void SoultreeObject::func_0019ABA0(int a1, int a2)
 {
     float vecB[4];
