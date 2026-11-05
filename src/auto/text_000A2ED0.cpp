@@ -2,6 +2,14 @@
 #include "common.h"
 #include <string.h>
 #include "ghidra.h"
+extern "C" int func_00135C70(int a, int b, unsigned int c, int d);
+struct C_000A33F0 {
+    void **vtbl;
+    char pad4[0x130];
+    char f134[1];
+    void func_00157BF0(unsigned int a, int b);
+    void func_000A33F0(unsigned int a, int b);
+};
 struct C_000A3B60 {
     void func_000A3B60(int param_1);
 };
