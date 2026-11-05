@@ -106,6 +106,14 @@ struct SearchEntryList {
     int growBy;
     int capacity;
 
+    void init()
+    {
+        items = 0;
+        count = 0;
+        growBy = 0;
+        capacity = 0;
+    }
+
     SearchEntry *at(int i)
     {
         if (count > 0 && items != 0 && i < count) {
@@ -632,8 +640,7 @@ void func_00192C00(float a, float b, float c, float d, void *out)
     __declspec(align(16)) float m[16];
     S_00192C00_Obj *o = D_002EFDB8->f4;
     float s = func_0014F600(o->f1D0 * 0.00872664526f) * o->f1FC;
-    float u = s * o->f1F8;
-    func_00162470(m, s * a, b * s, u * c, d * u, o->f1FC, o->f200, 0);
+    func_00162470(m, s * a, b * s, s * o->f1F8 * c, d * (s * o->f1F8), o->f1FC, o->f200, 0);
     func_000263B0(out, o->fB0, m);
 }
 
