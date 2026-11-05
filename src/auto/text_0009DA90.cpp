@@ -95,6 +95,34 @@ struct C_0009E590 {
     int func_0009E5F0(S_0009E5F0_Stream *stream);
 };
 
+struct S_0009E0C0_Sub {
+    char pad0[4];
+    u32 f4;
+    u32 f8;
+};
+
+struct S_0009E0C0_Item {
+    char pad0[0x30];
+    S_0009E0C0_Sub sub;
+};
+
+struct S_0009E0C0_Owner {
+    char pad0[0x134];
+    S_0009E0C0_Item *f134;
+};
+
+/* BmxTireFireParticleEmitter */
+struct C_0009E0C0 {
+    char pad0[0x64];
+    S_0009E0C0_Owner *f64;
+    char pad68[0x120];
+    u32 f188;
+    char pad18C[0x1c];
+    u32 f1A8;
+    u32 f1AC;
+    C_0009E0C0 *func_0009E0C0(int a1, int a2, int a3);
+};
+
 struct BmxSmokeParticleEmitter {
     void *vtbl;
     char pad4[0x16C];
