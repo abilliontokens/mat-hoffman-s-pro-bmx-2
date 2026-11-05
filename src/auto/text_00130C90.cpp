@@ -136,7 +136,7 @@ C_001313C0 *C_001313C0::func_00131150(void)
     return this;
 }
 
-int C_001313C0::func_00131260(int a1, int a2, int a3, int a4, f32 a5, f32 a6, int a7, int a8, int a9)
+int C_001313C0::func_00131260(int a1, f32 a2, int a3, int a4, f32 a5, f32 a6, f32 a7, f32 a8, f32 a9)
 {
     S_KeyNode *n;
 
@@ -154,8 +154,8 @@ int C_001313C0::func_00131260(int a1, int a2, int a3, int a4, f32 a5, f32 a6, in
     f94 = n ? initKeyNode(n, fA0, a2) : 0;
     fA8 = a4;
     fA4 = a3;
-    f5C = a5;
     f74 = a1;
+    f5C = a5;
     f60 = a6;
     return 1;
 }
