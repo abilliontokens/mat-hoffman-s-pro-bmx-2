@@ -238,6 +238,110 @@ void C_00144E70::func_00144E70(void)
   memcpy(dst2, *(void **)(src + 0x30), n2 * 8);
 }
 
+void C_00144ED0::func_00144ED0()
+{
+    int in_ECX = (int)this;
+    C_00144ED0_Src *src = *(C_00144ED0_Src **)(in_ECX - 4);
+    int n1 = src->count1;
+    int n2 = src->count2;
+    int i;
+
+    for (i = 0; i < n1; i++) {
+        unsigned int v = arr1[i].v;
+        C_00144ED0_A *e = &arr1[i];
+        int k = e->k;
+        int a = e->a;
+        if (k < 0xc) {
+            D_0020C6DC |= 1 << a;
+            D_0020C6E0[a * 0x20 + k] = v;
+        } else if (k == 0xc) {
+            D_0020C6DC |= v < 0x19 ? 0x800 : 0x480f;
+            D_0020C710[a * 0x20] = v;
+        } else if (k < 0x16) {
+            D_0020C6DC |= D_002751E8[k];
+            D_0020C6E0[a * 0x20 + k] = v;
+        } else if (k == 0x1c) {
+            func_001FD8E0(a, v);
+        } else if (k == 0x1d) {
+            func_001FDA60(a, v);
+        } else if (k == 0x1e) {
+            func_001FDAA0(a, v);
+        } else if (k <= 0x1b) {
+            func_001FD9F0(a, k, v);
+        }
+    }
+    for (i = 0; i < n2; i++) {
+        unsigned int v = arr2[i].v;
+        int k = arr2[i].k;
+        if (k < 0x5c) {
+            func_001FD020(D_002752F0[k], v);
+        } else if (k < 0x88) {
+            D_0020C6DC |= _imp__PsCreateSystemThreadEx[k];
+            D_0020C8E0[k] = v;
+        } else if (k == 0x88) {
+            func_001FCFF0(v);
+        } else if (k == 0x89) {
+            func_001FD890(v);
+        } else if (k == 0x8a) {
+            func_001FD400(v);
+        } else if (k == 0x8b) {
+            func_001FD770(v);
+        } else if (k == 0x8c) {
+            func_001FD7C0(v);
+        } else if (k == 0x8d) {
+            func_001FD820(v);
+        } else if (k == 0x8e) {
+            func_001FD500(v);
+        } else if (k == 0x8f) {
+            func_001FE490(v);
+        } else if (k == 0x90) {
+            func_001FE520(v);
+        } else if (k == 0x91) {
+            func_001FE5B0(v);
+        } else if (k == 0x93) {
+            func_001FD450(v);
+        } else if (k == 0x92) {
+            func_001FD4C0(v);
+        } else if (k == 0x94) {
+            func_001FD540(v);
+        } else if (k == 0x95) {
+            func_001FD690(v);
+        } else if (k == 0x96) {
+            func_001FD710(v);
+        } else if (k == 0x97) {
+            func_001FD380(v);
+        } else if (k == 0x98) {
+            func_001FE810(v);
+        } else if (k == 0x99) {
+            func_001FE890(v);
+        } else if (k == 0x9a) {
+            func_001FE790(v);
+        } else if (k == 0x9b) {
+            func_001FE7D0(v);
+        } else if (k == 0x9c) {
+            func_001FD3C0(v);
+        } else if (k == 0x9d) {
+            func_001FD5A0(v);
+        } else if (k == 0x9e) {
+            func_001FE8E0(v);
+        } else if (k == 0x9f) {
+            func_001FD610(v);
+        } else if (k == 0xa0) {
+            func_001FE620(v);
+        } else if (k == 0xa1) {
+            func_001FE650(v);
+        } else if (k == 0xa2) {
+            func_001FE6C0(v);
+        } else if (k == 0xa3) {
+            func_001FE730(v);
+        } else if (k == 0xa4) {
+            func_001FE750(v);
+        } else if (k == 0xa5) {
+            func_001FE770(v);
+        }
+    }
+}
+
 C_00145230 *C_00145230::func_00145230(void)
 {
   int in_ECX = (int)this;
