@@ -132,6 +132,52 @@ int ParticleEmitter::func_0016A8D0(void) {
     return 1;
 }
 
+C_0016ABE0 *C_0016ABE0::func_0016ABE0(int a)
+{
+    unsigned int *p;
+    V4f t;
+
+    func_00169C50(a);
+    vtbl = (void *)&D_002882EC;
+    p = (unsigned int *)&v230;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = (unsigned int *)&v240;
+    p[3] = 0x3f800000;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    f1F0 = 0;
+    f1F4 = 1.0f;
+    f1F8 = 0;
+    f1FC = 5.0f;
+    f200 = 0.01f;
+    f204 = 500.0f;
+    f208 = 3500.0f;
+    f20C = 0.5f;
+    f210 = 1.0f;
+    f214 = 5.0f;
+    f218 = 0;
+    f21C = 0;
+    f220 = 1.0f;
+    f224 = 0.01f;
+    f228 = 0;
+    f22C = 25.0f;
+    t.x = 0;
+    t.y = 0;
+    t.z = 0;
+    t.w = 1.0f;
+    v230 = t;
+    t.x = 0;
+    t.y = 0;
+    t.z = 0;
+    t.w = 1.0f;
+    v240 = t;
+    return this;
+}
+
 ParticleEmitter *ParticleEmitter::func_0016AD20(void *a, char *name, void *b, u32 *c) {
     ((C_001D3F50 *)this)->func_001D3F50();
     f64 = a;
