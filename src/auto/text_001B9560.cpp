@@ -220,7 +220,7 @@ int C_001BA3D0::func_001BA3D0(S_001B9B50_Stream *stream)
             func_001ADCC0(buf, 0x104, D_0028D1D0, i - start + 1);
             if (stream->func_00169710(buf) != 0) {
                 stream->func_00168BE0(D_0028D1C0, D_002764F0, type, 0x104);
-                v28(memcmp(type, D_0028CC18, 10) == 0 ? 1 : (memcmp(type, D_0028CC0C, 11) == 0 ? 2 : 0), i);
+                v28(strcmp(type, "KeyFramed") == 0 ? 1 : (strcmp(type, "Procedural") == 0 ? 2 : 0), i);
                 f28[i]->v1(stream);
             }
         }
