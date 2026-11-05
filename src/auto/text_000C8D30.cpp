@@ -67,11 +67,11 @@ struct BmxUIPageOptions {
     char pad2ce[0xa];
     ElemC *arr2D8[4];
     char pad2e8[0x44];
+    SetterObj *unk32C;
+    char pad330[4];
     DelObjC_000C *arr334[12];
     void func_001BE3F0();
     void func_001BF000();
-    void func_001B1980();
-    void func_001B17D0(char *s);
     void func_000C8E60();
     void func_000C8F10();
     void func_000C9860();
