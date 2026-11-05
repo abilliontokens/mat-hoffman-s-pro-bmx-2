@@ -132,3 +132,49 @@ void C_000D4280::func_000D4280()
     f2B4->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
     f2034->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
 }
+
+void BmxUIPageLevelSelection::func_000D4AE0()
+{
+    C_000D4AE0_Player* p = f124;
+    C_002B91AC* g;
+    C_001D5AD0* e;
+    int mode;
+    int i;
+
+    if (f2010 == 0) {
+        if (p->f270->func_000BC670())
+            f2044->func_001D5AD0();
+        if (p->f25C->f74->func_000301D0() == 0) {
+            (f28C ? D_002B91AC->f68 : D_002B91AC->f50)->func_001D5AD0();
+            (f290 ? D_002B91AC->f6C : D_002B91AC->f54)->func_001D5AD0();
+            mode = D_002A8490->f2E0->f4;
+            if (mode == 4 || mode == 7 || mode == 1 || mode == 2 || mode == 5)
+                (f2BC ? D_002B91AC->f70 : D_002B91AC->f58)->func_001D5AD0();
+            if (D_002A8490->f2E0->f324 == 1) {
+                D_002B91AC->func_000BF860(1, 0x173, 0x184, 0);
+                (f294 ? D_002B91AC->f74 : D_002B91AC->f5C)->func_001D5AD0();
+                D_002B91AC->func_000BF860(2, 0xe6, 0x184, 0);
+                (f2BC ? D_002B91AC->f70 : D_002B91AC->f58)->func_001D5AD0();
+            } else if (D_002A8490->f2E0->f2C0->func_0005C700() == 1 && D_002A8490->f2E0->f4 != 0) {
+                (f294 ? D_002B91AC->f74 : D_002B91AC->f5C)->func_001D5AD0();
+            }
+        }
+        if (D_002A8490->f2E0->f4 == 0) {
+            for (i = 0; i < 2; i++) {
+                e = a284[i];
+                e->f38 = (e->f38 & 0xff000000) | 0xbfa35a;
+                e->f58 |= 2;
+                e = a284[i];
+                e->f38 = (e->f38 & 0xffffff) | (f2020 << 24);
+                e->f58 |= 2;
+                a284[i]->func_001D5AD0();
+            }
+        }
+        g = D_002B91AC;
+        g->f24->func_001D5AD0();
+        g->f28->func_001D5AD0();
+        g->f2C->func_001D5AD0();
+        g->f30->func_001D5AD0();
+    }
+}
+
