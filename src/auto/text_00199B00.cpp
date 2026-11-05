@@ -61,7 +61,10 @@ struct C_00199BE0 {
     void func_00199D70(int a0, int a1, int a2, int a3);
     void func_00199D70(int a0, int a1, int a2, float angle);
     void func_00199E30(int a0, int a1, int a2, int a3, int a4);
+    void func_0019A0A0(float sx, float sy, float sz);
 };
+
+void func_001977B0(S_00199B00_F4 *out, S_00199B00_F4 *in);
 
 struct C_00199C20Mat {
     void func_000264C0(void *m);
