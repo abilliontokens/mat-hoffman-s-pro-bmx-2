@@ -1,6 +1,29 @@
 /* 20 functions from 0x001CD3B0 to 0x001CE140, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_001CDC20;
+struct SoundVec4 { int x,y,z,w; };
+extern SoundVec4 D_002ABA44, D_002ABA74, D_002ABA64;
+extern char D_0028F09C, D_0028EECC;
+int __stdcall func_0021FBC1(int);
+void func_0021FB99();
+int __stdcall func_002228B1(int, void **, int);
+int __stdcall func_00222353(void *, int, int, int, int);
+int __stdcall func_00222309(void *, float, float, float, float, float, float, int);
+int __stdcall func_002223AC(void *, int, int, int, int);
+int __stdcall func_0022195C(void *);
+void func_001CBC10(int, const char *, int);
+struct XboxSoundInterface {
+ char pad0[0x2c]; unsigned char f2c; char pad2d[3]; void *f30;
+ char pad34[0xa0]; int fD4; char padD8[0x20];
+ SoundVec4 fF8, f108, f118, f128;
+ C_001CDC20 *f138;
+ int func_001CB170(const char *, int *);
+ int func_001CBF20();
+ int func_001CBF90(float);
+ void func_001CC0C0(float);
+ int func_001CDF30(int a, int b);
+};
 struct C_001CE120 {
     undefined4 func_001CE120(byte param_1);
 };
