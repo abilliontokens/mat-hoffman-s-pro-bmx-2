@@ -43,6 +43,17 @@ int C_00053C60::func_00053C60(void) {
     return 1;
 }
 
+void *C_00053C80::func_00053C80(int flags) {
+    extern int D_00277A84;
+    void func_001E891B(void *);
+    unk0 = (int)&D_00277A84;
+    func_00033220();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void func_00054330(void) {
     int func_00031410(...);
     func_00031410();
