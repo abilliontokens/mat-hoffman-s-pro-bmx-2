@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include "ghidra.h"
+#include <math.h>
 
 extern int D_0027B1A4;
 extern int D_0027C1E4;
