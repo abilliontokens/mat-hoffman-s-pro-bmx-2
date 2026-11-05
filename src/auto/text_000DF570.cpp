@@ -78,6 +78,7 @@ struct C_000DFCF0 {
 struct S_000DFA80_W {
     void func_001B1980();
     void func_001B2270(unsigned int c);
+    void func_001B1A30(float a, float b, float c);
     void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, float a11, float a12, int a13);
 };
 
