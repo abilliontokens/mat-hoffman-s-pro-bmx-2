@@ -187,7 +187,7 @@ struct S_00018EB0_Obj {
     u8 f9c;
 };
 struct S_00018EB0_Slot {
-    S_00018EB0_Obj *o;
+    S_00018EB0_Dev *o;
     S_00018EB0_Dev *d;
     int f8, fc, f10;
     char pad14[0x28 - 0x14];
