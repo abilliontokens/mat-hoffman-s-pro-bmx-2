@@ -258,6 +258,44 @@ void *C_001CB130::func_001CB130(int flags) {
     return this;
 }
 
+extern char D_0000FFFF;
+int Loader_1CB170::func_001CB170(const char *name, int a1)
+{
+    char path[0x104];
+    unsigned long read;
+    unsigned long out;
+    void *buf = 0;
+    int hr = 0;
+    int h;
+    unsigned long size;
+    int err;
+
+    func_001ADCC0(path, 0x104, D_0028ED6C, D_002A48F8, name);
+    h = func_001DCC3C(path, 0x80000000, 1, 0, 3, 1, 0);
+    if (h == -1) {
+        err = func_001DD603();
+        hr = err > 0 ? ((err & (int)&D_0000FFFF) | 0x80070000) : err;
+    }
+    if (hr >= 0) {
+        size = func_001DD3A1(h, 0, 0, 2);
+        func_001DD3A1(h, 0, 0, 0);
+        buf = func_001E8A44(size);
+        if (!func_001DD15A(h, buf, size, &read, 0)) {
+            err = func_001DD603();
+            hr = err > 0 ? ((err & (int)&D_0000FFFF) | 0x80070000) : err;
+        }
+        if (hr >= 0) {
+            int dev = unk30;
+            hr = func_0022097B(dev, buf, size, a1, &out);
+        }
+    }
+    func_001E891B(buf);
+    if (h != -1) {
+        func_001DD13C(h);
+    }
+    return hr;
+}
+
 void func_001CB270(void)
 {
     func_0021FC46(0);
