@@ -44,6 +44,16 @@ extern int D_002AEA38;
 extern unsigned short *D_002AEA30;
 extern unsigned char *D_002FB260[];
 int func_001EC5F1(int, int);
+int *func_001ED075(void);
+
+/* <ctype.h> macros as the CRT expands them: D_002AEA38 = __mb_cur_max, D_002AEA30 = _pctype */
+#define CT_SPACE 0x8
+#define CT_DIGIT 0x4
+#define CT_ALPHA 0x103
+#define isspace_001E93CD(c) (D_002AEA38 > 1 ? func_001EC5F1((int)(unsigned char)(c), CT_SPACE) : (D_002AEA30[(unsigned char)(c)] & CT_SPACE))
+#define isdigit_001E93CD(c) (D_002AEA30[(unsigned char)(c)] & CT_DIGIT)
+#define isalpha_001E93CD(c) (D_002AEA30[(unsigned char)(c)] & CT_ALPHA)
+#define toupper_001E93CD(c) (((c) >= 'a' && (c) <= 'z') ? (c) - 'a' + 'A' : (c))
 int func_001EDB4B(int fh, char *buf, int cnt);
 int func_001E9DE9(S_001E9714_File *stream);
 void func_001ED527(S_001E9714_File *stream);
