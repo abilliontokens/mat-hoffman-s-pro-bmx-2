@@ -100,6 +100,38 @@ struct C_000F2780 {
     void func_000F2780();
 };
 
+extern float D_002756D8;
+
+struct C_000F2BD0_Svc {
+    int func_000301D0();
+    void func_00030160();
+    void func_000301F0();
+};
+
+struct C_000F2BD0_Owner {
+    char pad0[0x74];
+    C_000F2BD0_Svc *f74;
+};
+
+struct C_000F2BD0_Mgr {
+    char pad0[0x25c];
+    C_000F2BD0_Owner *f25c;
+};
+
+struct C_000F2BD0 {
+    char pad0[0x124];
+    C_000F2BD0_Mgr *f124;
+    char pad128[0x15C];
+    int f284;
+    int f288;
+    float f28C;
+    int f290;
+    float f294;
+    int arr298[0x14];
+    void func_000F2820();
+    void func_001BED00(float dt);
+    void func_000F2BD0(float dt);
+};
 
 void BmxUIPageHPHChoice::func_000F1D90(void)
 {
