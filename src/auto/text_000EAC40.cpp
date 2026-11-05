@@ -45,12 +45,18 @@ struct S_000EB460_Label {
 };
 
 struct S_000EB460_Hud {
-    char pad0[0x34];
+    char pad0[0x24];
+    C_NumHorse_Sub *f24, *f28, *f2C, *f30;
     S_000EB460_Label *f34;
     S_000EB460_Label *f38;
-    char pad3C[0x80 - 0x3C];
+    char pad3C[0x50 - 0x3C];
+    C_NumHorse_Sub *f50;
+    char pad54[0x68 - 0x54];
+    C_NumHorse_Sub *f68;
+    char pad6C[0x80 - 0x6C];
     S_000EB460_Label *f80;
     S_000EB460_Label *f84;
+    C_NumHorse_Sub *f88, *f8C, *f90, *f94;
     void func_000BF860(int a, int b, int c, int d);
 };
 
