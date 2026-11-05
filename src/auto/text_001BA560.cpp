@@ -322,6 +322,34 @@ undefined4 C_001BA9A0::func_001BA9A0(byte param_1)
   return in_ECX;
 }
 
+void C_001BB2C0::func_001BAE30(void)
+{
+    int func_001E891B(...);
+    int i;
+
+    vtbl = (void *)&D_0028D11C;
+    if (f28 != 0) {
+        for (i = 0; i < f24; i++) {
+            S_001BA910_Elem *e = ((S_001BA910_Elem **)f28)[i];
+            if (e != 0) {
+                e->vtbl = (void *)&D_0028D110;
+                if (e->f8 != 0) {
+                    func_001E891B(e->f8);
+                    e->f8 = 0;
+                }
+                if (e->f4 != 0) {
+                    func_001E891B(e->f4);
+                    e->f4 = 0;
+                }
+                func_001E891B(e);
+            }
+        }
+        func_001E891B(f28);
+        f28 = 0;
+    }
+    ((C_00157660 *)this)->func_00157660();
+}
+
 void *C_001BB280::func_001BB280(unsigned int flags)
 {
     func_001BA8B0();
