@@ -281,7 +281,20 @@ struct BmxEventRoadTrip {
 
 extern "C" int func_001EA426(const char *a, const char *b);
 struct C_0001B820 { void func_0001B820(void *p); };
-struct C_000518A0 { int func_000518A0(void); };
+struct S_000518A0_Item { char pad0[0xa0]; char name[4]; };
+struct S_000518A0_List { char pad0[0x24]; int count; S_000518A0_Item **items; };
+struct S_000518A0_Node { char pad0[4]; int type; char pad8[0x108]; char name[4]; };
+struct S_000518A0_Group { char pad0[8]; int count; char padC[0x100]; S_000518A0_Node **nodes; };
+struct S_000518A0_GroupList { char pad0[0x24]; int count; S_000518A0_Group **groups; };
+struct S_000518A0_Owner {
+    char pad0[0x3ac];
+    S_000518A0_List *f3ac;
+    char pad3b0[4];
+    S_000518A0_GroupList *f3b4;
+    char pad3b8[0x484 - 0x3b8];
+    C_0001B820 *f484;
+};
+struct C_000518A0 { char pad0[0x64]; S_000518A0_Owner *f64; int func_000518A0(void); };
 
 struct C_00051A00Node {
     char pad0[4];
