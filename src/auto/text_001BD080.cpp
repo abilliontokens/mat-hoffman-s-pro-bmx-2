@@ -6,6 +6,7 @@ extern int D_0028D58C;
 
 struct C_00157600 {
     void func_00157600(int a);
+    void func_00157660(void);
 };
 
 struct C_001BD9C0 {
