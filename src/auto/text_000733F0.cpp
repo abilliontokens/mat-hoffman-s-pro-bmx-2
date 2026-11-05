@@ -127,6 +127,10 @@ static inline void DeleteObj(C_001D6410 *p)
     }
 }
 
+struct C_00073C30_Vec {
+    float x, y, z;
+};
+
 struct C_00073C30_V {
     virtual void destroyObject(int flags);
 };
@@ -216,6 +220,79 @@ int C_00073A50::func_00073A50(int *param_1, int param_2) {
         unk84 = 0.0f;
     }
     return 0;
+}
+
+void *C_00073AE0::func_00073AE0(int param_1) {
+    u32 *p;
+    int n;
+
+    func_00157600(param_1);
+    vtbl = &D_0027850C;
+    p = unk44;
+    n = 8;
+    do {
+        p[-8] = 0;
+        p[0] = 0;
+        p++;
+    } while (--n != 0);
+    vtbl = &D_00278D54;
+    unk1C0 = 0;
+    unk11C = 0;
+    unk18 = -1;
+    unkFC = 0;
+    unkF8 = 0;
+    p = (u32 *)((char *)this + 0x70);
+    n = 2;
+    do {
+        p[-3] = 0;
+        p[0] = 0;
+        p[3] = 0;
+        p[6] = 0;
+        p++;
+    } while (--n != 0);
+    unk94 = 0;
+    unk98 = 0;
+    unk9C = 0;
+    unkAC = 0;
+    unkB0 = 0;
+    unk120 = 0;
+    p = (u32 *)((char *)this + 0x1A0);
+    n = 2;
+    do {
+        p[-2] = 0;
+        p[0] = 0;
+        p++;
+    } while (--n != 0);
+    unk194 = 0;
+    unk124 = 0;
+    p = (u32 *)((char *)this + 0x14C);
+    n = 8;
+    do {
+        p[-8] = 0;
+        p[0] = 0;
+        p[8] = 0;
+        p++;
+    } while (--n != 0);
+    unk1AC = 1;
+    unk1A8 = -1;
+    p = (u32 *)((char *)this + 0xC8);
+    n = 5;
+    do {
+        p[-5] = 0;
+        p[0] = 0;
+        p++;
+    } while (--n != 0);
+    memset((char *)this + 0xDC, 0, 0x18);
+    unk100 = 0;
+    unk104 = 0;
+    unk108 = 0;
+    unk10C = 0;
+    unk110 = 0;
+    unk114 = 0;
+    unk118 = 0;
+    unk1B4 = 0;
+    unk1B8 = 0;
+    return this;
 }
 
 void SPFPSResultsScreen::func_00073C30(void)
