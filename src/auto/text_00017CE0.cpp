@@ -60,6 +60,7 @@ struct AiTikiGod {
     void func_00017CE0(S_00017CE0_Arg *a, int b, int c);
     void func_00017D00();
     void func_00017D20(int param_1);
+    void func_00017DA0();
 };
 
 struct S_00017DA0_Vec {
