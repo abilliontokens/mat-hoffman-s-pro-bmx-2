@@ -137,7 +137,7 @@ struct C_00192470 : C_0001DFE0 {
     void func_00192610();
     void func_00192630();
     void func_00192680();
-    void func_00192840(void *row, void *limit);
+    void func_00192840(int *row, int *limit);
     void func_001927C0(void *row, int limit);
 };
 
