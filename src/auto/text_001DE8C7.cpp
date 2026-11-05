@@ -485,6 +485,7 @@ u32 func_001DF4BC(void)
     return 0;
 }
 
+#pragma optimize("s", on)
 char * __stdcall func_001DF4E1(char *dst, const char *src, int n)
 {
     __try {
