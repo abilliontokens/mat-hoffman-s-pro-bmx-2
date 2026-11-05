@@ -51,10 +51,7 @@ C_00011080* C_00011080::func_00011080(float *p) {
 }
 
 void func_000110B0(float *out, float *in) {
-    out[3] = 1.0f;
-    out[0] = -in[0];
-    out[1] = -in[1];
-    out[2] = -in[2];
+    vec3_set(out, -in[0], -in[1], -in[2]);
 }
 
 void func_000110E0(float *out, float *a, float *b) {
