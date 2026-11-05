@@ -87,3 +87,13 @@ int C_0019D7B0::func_0019D7B0(int a1, char *path)
     D_002BEAAC->func_0013C110(h);
     return 1;
 }
+
+void C_0019DE30::func_0019DE80(int a0)
+{
+    if (fA6 != 0) {
+        func_0019DE30(fA4, fA6);
+    }
+    fA7 = fA7 & 0xef;
+    func_00157A00(a0);
+}
+
