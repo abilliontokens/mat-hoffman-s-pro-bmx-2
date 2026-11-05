@@ -33,6 +33,83 @@ static __forceinline void clear_001CD260(int *size) {
  *size = 0;
 }
 
+struct C_0001C980 {
+    void *func_0001C980(int a);
+};
+extern int D_0028EF54;
+
+struct S_XboxMusicList {
+    int count;
+    void **items;
+    int growBy;
+    int capacity;
+    u8 flags;
+    char pad[3];
+
+    S_XboxMusicList()
+    {
+        items = 0;
+        count = 0;
+        growBy = 0;
+        capacity = 0;
+        flags &= 0xfe;
+    }
+
+    void init(int n)
+    {
+        items = (void **)func_001E8A44(n * 4);
+        growBy = 0x10;
+        capacity = n;
+        flags |= 1;
+    }
+};
+
+struct S_XboxMusicArg {
+    char pad0[0x28];
+    int f28;
+};
+
+struct XboxMusic {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    char pad28[4];
+    S_XboxMusicArg *f2C;
+    int f30;
+    int f34;
+    int f38;
+    S_XboxMusicList l0;
+    S_XboxMusicList l1;
+    S_XboxMusicList l2;
+    int f78;
+    int f7C;
+    int f80;
+    int f84;
+    int f88;
+    int f8C;
+    int f90;
+    int f94;
+    int f98;
+    int f9C;
+    u8 fA0;
+    char padA1[3];
+    int fA4;
+    int fA8;
+    int fAC;
+    int fB0;
+    int fB4;
+    int fB8;
+    int fBC;
+    int fC0;
+    int fC4;
+    int fC8;
+    int fCC;
+    int fD0[0x35];
+    int f1A4;
+    int f1A8;
+    XboxMusic(int a, S_XboxMusicArg *b, int c);
+};
+
 struct C_001CD220 {
     char pad0[0xCC];
     int fCC;
