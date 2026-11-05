@@ -1,7 +1,7 @@
 /* 11 functions from 0x001ECA2C to 0x001ECD6B, found by Ghidra. */
 #include "common.h"
 
-extern double D_0027F710;
+extern const double D_0027F710;
 int func_001EAFB2(double x);
 double func_001F3996(double x);
 
