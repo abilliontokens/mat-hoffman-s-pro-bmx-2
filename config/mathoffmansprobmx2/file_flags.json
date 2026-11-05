@@ -87,14 +87,14 @@
   "src/auto/text_001E9040.cpp": [
     "/Oy-"
   ],
-  "src/auto/text_001E9088.cpp": [
-    "/O1"
-  ],
   "src/auto/text_001EA3D0.cpp": [
     "/Oy-"
   ],
   "src/auto/text_001EA470.cpp": [
     "/Oy-"
+  ],
+  "src/auto/text_001EAE48.cpp": [
+    "/O1"
   ],
   "src/auto/text_001EC9D8.cpp": [
     "/Oy-"
@@ -106,7 +106,8 @@
     "/O1"
   ],
   "src/auto/text_001EF9D9.cpp": [
-    "/Oy-"
+    "/Oy-",
+    "/O1"
   ],
   "src/auto/text_001F098B.cpp": [
     "/Oy-"
