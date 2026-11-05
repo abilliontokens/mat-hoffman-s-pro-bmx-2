@@ -26,6 +26,24 @@ struct S_0012E5F0 {
     u32 f10;
 };
 
+/* (0, 0, 0, 1) vector, stored z, y, x, w */
+struct V4_0012E5F0 {
+    float x;
+    float y;
+    float z;
+    float w;
+    V4_0012E5F0() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+};
+
+/* 0x18-byte element of S_0012E5F0::arr */
+struct S_0012E5F0_Elem {
+    u32 f0;
+    u32 f4;
+    V4_0012E5F0 v;
+};
+
+void *operator new[](unsigned int size);
+
 /* CarProceduralExtended */
 struct C_0012EF30 {
     void *vtbl;
