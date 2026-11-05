@@ -531,6 +531,19 @@ void *C_001B23D0::func_001B2520(unsigned int flags)
     return this;
 }
 
+void C_001B23D0::func_001B2580(int *a, int b)
+{
+    int r;
+
+    if (func_00135C70(9, 0, a, 0x80) != 0) {
+        r = f24->iter.func_001B2330();
+        while (r != 0) {
+            r = f24->iter.func_001B2350();
+        }
+    }
+    func_00157BF0(a, b);
+}
+
 void C_001B2690::func_001B2690(int index, int data)
 {
     func_001AC750(index, data | f14[index].data);
