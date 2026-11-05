@@ -62,8 +62,22 @@ struct C_00094870 {
 
 extern S_Root_716 *D_002A8490;
 extern int D_00277038;
-void func_001ADCC0(char *buf, int size, char *fmt, int val);
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 void func_001AC330(char *dest, char *fmt, char *arg);
+extern char D_002786BC[];
+extern char D_00275630[];
+
+struct C_0005E840 {
+    void func_0005E840(char *s);
+};
+
+struct C_000952F0 {
+    int func_000952F0(void);
+};
+
+struct C_00095390 {
+    char *func_00095390(int i);
+};
 
 struct C_00072450 {
     char pad0[0xB0];
