@@ -18,6 +18,11 @@ struct C_0013FC00 {
     void func_0013FC00();
 };
 
+extern int D_00284F70;
+extern int D_00284F8C;
+extern int D_002AA46C;
+void *func_001E8A44(int size);
+
 struct C_0013FC60 {
     void *vtbl;
     int f4;
@@ -30,7 +35,61 @@ struct C_0013FC60 {
     short *f20;
     int f24;
     int f28;
+    C_0013FC60() {
+        vtbl = (void *)&D_00284F70;
+        f4 = 0;
+        f8 = 0;
+        f10 = 0;
+        f14 = 0;
+        f18 = 0;
+        f1c = 0;
+        f20 = 0;
+        f0c = 6;
+        f28 = 0;
+        f24 = 0;
+    }
+    static void *operator new(unsigned int size) { return func_001E8A44(size); }
     void func_0013FC60(int count);
+};
+
+struct DXVSStreams {
+    virtual void v0(int flags);
+    virtual void v1(int arg, int d);
+    char pad4[0xC];
+    C_0013FC60 *f10;
+    DXVSStreams *func_00144640();
+};
+
+/* DXMeshSurfaceData */
+struct C_001402C0 {
+    DXVSStreams *a;
+    C_0013FC60 *b;
+    void func_001402C0(int arg1, int arg2);
+    void func_00140360(int n);
+};
+
+struct C_001403D0 {
+    void func_001403D0(int a, int b, int c);
+};
+
+struct C_00162610 {
+    void func_00162610(int a);
+};
+
+/* DXMesh */
+struct C_00140390 {
+    void *vtbl;
+    char pad4[0x38];
+    void *f3C;
+    int f40;
+    int f44;
+    void *f48;
+    int f4C;
+    float f50;
+    float f54;
+    float f58;
+    float f5C;
+    C_00140390 *func_00140390(int a);
 };
 
 struct C_0013FCF0 {
