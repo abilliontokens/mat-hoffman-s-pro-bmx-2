@@ -147,14 +147,11 @@ void *C_0014A870::func_0014A870(int flags) {
 void C_0014A8A0::func_0014A8A0(void)
 {
     for (int i = 0; i < f8; i++) {
-        VSEntry2 *e = (VSEntry2 *)&f14[i];
-        if (e->fC > 0 && e->f4 == 0) {
+        if (f14[i].fC > 0 && f14[i].f4 == 0) {
             C_0014A520 *p = (C_0014A520 *)func_001E8A44(0xc);
-            if (p != 0) {
-                p = p->func_0014A520(e->f8);
-            }
-            p->func_0014A560(e->f0, i);
-            e->f4 = (int)p;
+            p = p != 0 ? p->func_0014A520(f14[i].f8) : 0;
+            p->func_0014A560(f14[i].f0, i);
+            f14[i].f4 = (int)p;
         }
     }
 }
