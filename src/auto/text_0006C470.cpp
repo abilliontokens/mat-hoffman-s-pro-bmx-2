@@ -126,6 +126,8 @@ struct C_0006D1D0 {
     void func_0006D1D0();
     void func_0006D210();
     void func_0006D280();
+    void func_0006D2F0(float dt);
+    void func_0005EA10(float dt);
 };
 
 void C_0006D1D0::func_0006D1D0() {
