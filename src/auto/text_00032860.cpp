@@ -98,7 +98,16 @@ static inline void RoundToInt(int *out, float f)
     *out = _mm_cvtss_si32(_mm_load_ss(&f));
 }
 
+struct O_Cam32F50 { void func_001824E0(float *out, float x, float y, float z); };
+struct O_Obj32F50 { char pad0[8]; O_Cam32F50 *f8; };
+extern V4_00032E50 D_002A1460;
+
 struct BmxEvent {
+    char pad0[0x234];
+    O_Obj32F50 *f234[2];
+    V4_00032E50 f23C[2];
+    V4_00032E50 f25C[2];
+    float f27C[2];
     void func_00032E90();
     void func_00032F50();
     void func_00157920();
