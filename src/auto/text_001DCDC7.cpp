@@ -90,6 +90,19 @@ int __stdcall func_001DD31D(void *a0) {
     }
 }
 
+#pragma optimize("y", off)
+int __stdcall func_001DD563(void *a0) {
+    u32 iosb[2];
+    int result = _imp__NtFlushBuffersFile(a0, iosb);
+    if (result >= 0) {
+        return 1;
+    } else {
+        func_001DD659(result);
+        return 0;
+    }
+}
+#pragma optimize("y", on)
+
 void __stdcall func_001DD7F7(undefined4 param_1, undefined4 param_2)
 {
   int __stdcall func_001DD779(int, int, int);
