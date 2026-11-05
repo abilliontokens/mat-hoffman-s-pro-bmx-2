@@ -6,6 +6,77 @@ struct C_001AEBB0 {
     undefined4 func_001AEBB0(byte param_1);
 };
 
+extern int D_0028C214;
+extern int D_0028C208;
+extern int D_0028C1A4;
+extern int D_00284E94;
+void func_001E891B(void *p);
+void func_001E8390(void *p);
+
+struct C_001ADFD0_Virt {
+    virtual void v0(int a);
+};
+
+struct C_00157600 {
+    void func_00157600(int a0);
+};
+
+struct C_00157660 {
+    void func_00157660(void);
+};
+
+struct C_001AE3E0_Vec4 {
+    int x;
+    int y;
+    int z;
+    int w;
+};
+
+struct C_001AE3E0_Sub {
+    void *vtbl;
+    int f4;
+    C_001ADFD0_Virt *f8;
+    void func_001D5480(void);
+    void func_001D5490(void);
+};
+
+struct C_001AE3E0 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    char pad28[8];
+    int f30;
+    char pad34[4];
+    C_001AE3E0_Vec4 *f38;
+    C_001AE3E0_Vec4 *f3C;
+    int f40;
+    int f44;
+    int f48;
+    int f4C;
+    int f50;
+    C_001ADFD0_Virt *f54;
+    C_001AE3E0_Sub f58;
+    int f64;
+    int f68;
+    int f6C;
+    int f70;
+    int f74;
+    int f78;
+    char pad7C[8];
+    unsigned char f84_0 : 1;
+    unsigned char f84_1 : 1;
+    unsigned char f84_2 : 1;
+    C_001AE3E0 *func_001AE3E0(int param_1);
+    void func_001AE460(void);
+    void func_001AE4D0(int a, int b, int c, int d, int e, int f, int g, int h, int idx);
+};
+
+struct C_001AE7D0 {
+    void *vtbl;
+    C_001ADFD0_Virt *f4;
+    void *func_001AE7D0(int flags);
+};
+
 void func_001E891B(void *p);
 void __stdcall func_00201100(void *p);
 
