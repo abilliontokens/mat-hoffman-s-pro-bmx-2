@@ -27,7 +27,7 @@ struct S_C09B0_Input { int func_00136170(int a, int b, int c); };
 struct S_BFEE0_Manager { char pad[0x2c0]; S_BFEE0_Check *f2c0; };
 struct S_BFEE0_List { int func_0001B3C0(char *name); char pad[0x2c]; char *f2c; };
 struct S_BFEE0_Owner { char pad[0x484]; S_BFEE0_List *f484; };
-struct S_BFEE0_Page { char pad[0x150]; S_BFEE0_Owner *f150; char pad154[0x27c-0x154]; char *f27c; };
+struct S_BFEE0_Page { char pad[0x24]; S_C09B0_Ui *f24; char pad28[0x150-0x28]; S_BFEE0_Owner *f150; char pad154[0x27c-0x154]; char *f27c; };
 struct S_BFEE0_Virtual { virtual void v0(); virtual void v4(); virtual void v8(); virtual void vc(); virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1c(); };
 struct S_C0010_Global {
     char pad[0x2e0];
