@@ -15,6 +15,8 @@ struct ExceptionRaw_001F3805 {
 };
 
 extern double D_002766A8;
+extern char D_0007FFFF;
+extern char D_000FFFFF;
 
 struct Exception_001F3805 {
     int type;
@@ -489,6 +491,32 @@ double func_001F39A9(double x, int exp)
     *((unsigned short *)&retval + 3) = (*((unsigned short *)&x + 3) & 0x800f) | ((exp + 0x3fe) << 4);
     return retval;
 }
+
+int func_001F39D3(double x)
+{
+    unsigned long lo = ((unsigned long *)&x)[0];
+    unsigned long hi = ((unsigned long *)&x)[1];
+    unsigned short w;
+
+    if (hi == 0x7ff00000) {
+        if (lo == 0) {
+            return 1;
+        }
+    } else if (hi == 0xfff00000) {
+        if (lo == 0) {
+            return 2;
+        }
+    }
+    w = *((unsigned short *)&x + 3) & 0x7ff8;
+    if (w == 0x7ff8) {
+        return 3;
+    }
+    if (w == 0x7ff0 && ((hi & 0x7ffff) != 0 || lo != 0)) {
+        return 4;
+    }
+    return 0;
+}
+#pragma optimize("", on)
 
 extern long double D_002AED80;
 extern long double D_002AED8C;
