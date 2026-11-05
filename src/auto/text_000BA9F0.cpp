@@ -366,6 +366,80 @@ void BmxUIManager::func_000BACE0()
     f25c->func_00030240(((UIItemData *)f150)->f3E4, 4, &((UIPositionItem *)f258)->f170, &((UIPositionItem *)f258)->f180, &D_002A32DC);
 }
 
+int BmxUIManager::func_000BADB0()
+{
+    char buf[0x104];
+    char name[0x104];
+    char *s;
+    char *d;
+
+    func_001ADCC0(D_002A5870, 0x104, D_00276F28, D_002A64D0);
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5870, D_002A47F0);
+    func_001ADCC0(buf, 0x104, D_00276C34, D_002A64D0, f154);
+    if (D_002BEAAC->func_0013D780(buf, 1, 0, 0, 0, 0, 0, 0)) {
+        D_002BEAAC->func_0013B260(1);
+    }
+    if (D_002F0630) {
+        D_002F0630->v0(1);
+        D_002F0630 = 0;
+    }
+    C_00149380 *mem = (C_00149380 *)func_001E8A44(0x4010);
+    if (mem) {
+        mem->func_00149380();
+    }
+    if (D_002A8490->f2E0->f324 == 0) {
+        D_002A829C->v4(D_0027D948);
+    } else {
+        D_002A829C->v4(D_0027D948);
+    }
+    s = f154;
+    d = name;
+    while ((*d++ = *s++) != 0)
+        ;
+    C_000AC2C0 *p = (C_000AC2C0 *)func_001E8A44(0x5c0);
+    f150 = p ? p->func_000AC2C0(1) : 0;
+    f150->func_000A0AE0(0);
+    f150->v29(f154);
+    f150->v30();
+    f150->v37();
+    if (f150->v38(name)) {
+        f150->v39();
+        f150->v56();
+    }
+    f150->v64();
+    f150->v68();
+    f150->v69(-1.0f, -1.0f);
+    if (D_002A8490->f2F0->f1DC != 0) {
+        if (f2AC) {
+            f2AC->v3(D_00276C08, 0x28, 0x10);
+        }
+        if (f2AC) {
+            f2AC->v2(D_00276C08, 0x86, 0x187);
+        }
+    }
+    f150->v72();
+    if (D_002A8490->f2F0->f1DC != 0) {
+        if (f2AC) {
+            f2AC->v3(D_00276C08, 0x50, 0x10);
+        }
+        if (f2AC) {
+            f2AC->v2(D_00276C08, 0x9a, 0x187);
+        }
+    }
+    f150->v73();
+    if (D_002A8490->f2F0->f1DC != 0) {
+        if (f2AC) {
+            f2AC->v3(D_00276C08, 0xa0, 0x10);
+        }
+        if (f2AC) {
+            f2AC->v2(D_00276C08, 0xc2, 0x187);
+        }
+    }
+    D_002BEAAC->func_0013DFF0(buf, 1);
+    return 1;
+}
+
 int BmxUIManager::func_000BB0C0()
 {
     if (f120 != 0) {
