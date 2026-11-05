@@ -156,54 +156,51 @@ void UIControl::func_001BDFB0(int n)
 {
     UIControl **arr;
     UIControl *cur;
-    int start;
-    int mod;
-    int i;
-    int prev;
-    int next;
+    int start, a, b, c, r, i, count;
 
     if (f34 != 0) {
         f34->func_001BDA80();
     }
     arr = f2c;
-    start = f30;
+    start = *(volatile int *)&f30;
     do {
-        i = f30 + 1;
-        f30 = i;
-        if (i % n == 1) {
-            f30 = i - n;
+        a = f30 + 1;
+        f30 = a;
+        if (a % n == 1) {
+            f30 = a - n;
         }
         cur = arr[f30 - 1];
         f34 = cur;
     } while (cur == 0 || cur->f24 == 0);
-    i = f30;
-    if (i == start) {
-        mod = i % n;
+    a = f30;
+    if (a == start) {
+        r = a % n;
         do {
-            i = i + 1;
-            f30 = i;
-            if (i % n == 1) {
-                f30 = i - n;
+            a = a + 1;
+            f30 = a;
+            if (a % n == 1) {
+                f30 = a - n;
             }
-            if (i % n == mod) {
+            if (a % n == r) {
                 goto restore;
             }
-            prev = f30;
-            i = prev;
+            a = f30;
+            count = f28;
+            b = a;
             do {
-                next = i + n;
-                if (f28 < next) {
-                    f30 = next - f28;
+                c = a + n;
+                if (c > count) {
+                    f30 = c - count;
                 } else {
-                    f30 = next;
+                    f30 = c;
                 }
-                i = f30;
-                cur = f2c[i - 1];
+                a = f30;
+                cur = f2c[a - 1];
                 f34 = cur;
-            } while (prev != i && (cur == 0 || cur->f24 == 0));
-            i = f30;
-        } while (prev == i);
-        if (next == mod) {
+            } while (b != a && (cur == 0 || cur->f24 == 0));
+            a = f30;
+        } while (b == a);
+        if (c == r) {
 restore:
             f30 = start;
             f34 = f2c[start - 1];
