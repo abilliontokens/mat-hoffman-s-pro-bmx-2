@@ -66,6 +66,15 @@ undefined4 C_000AE740::func_000AE740(byte param_1)
   return in_ECX;
 }
 
+void *BMXCameraFacingObjects::func_000AE760(unsigned int flags)
+{
+    func_000A99A0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void *WaterInclusionBoxes::func_000AEC50(unsigned int flags) {
     vtbl = (void *)&D_0027C594;
     if (field_28) func_001E891B(field_28);
