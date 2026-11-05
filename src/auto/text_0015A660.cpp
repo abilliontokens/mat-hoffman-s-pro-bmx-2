@@ -438,11 +438,14 @@ void C_0015B4C0::func_0015B4C0(void)
 
 void C_0015B470::func_0015B4E0(const char *name, int value)
 {
-    const char *src = name;
+    const char *src;
+    S_0015B470_Entry *e;
     char *d;
     char c;
 
-    at(f11C)->value = value;
+    e = at(f11C);
+    src = name;
+    e->value = value;
     d = at(f11C)->name;
     do {
         c = *src++;
