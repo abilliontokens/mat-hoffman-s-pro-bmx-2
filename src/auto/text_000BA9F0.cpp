@@ -281,6 +281,9 @@ struct BmxUIManager {
     void *f274;
     int f278;
     UnlockData *f27c;
+    char pad280[0x2c];
+    UIProgress *f2AC;
+    int func_000BADB0();
     void func_000BB440(int type);
     int func_000BA9F0();
     int func_000BABF0();
