@@ -2,6 +2,12 @@
 #include "common.h"
 
 extern char D_00276274[];
+extern char D_002A5558[];
+extern "C" char * __cdecl strcpy(char *, const char *);
+extern "C" char * __cdecl strcat(char *, const char *);
+struct ParticleEmitterResetVT {
+    virtual void v0(); virtual void v1(); virtual void v2();
+};
 
 int func_0014FDF0(void *a, const void *b);
 void func_0014FE50(void *p);
