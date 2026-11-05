@@ -107,3 +107,16 @@ void *C_0007E1E0::func_0007E1E0(unsigned int flags)
     return this;
 }
 
+undefined4 C_0007E200::func_0007E200(byte param_1)
+{
+  int func_000716F0(...);
+  int func_001E891B(...);
+  undefined4 in_ECX = (undefined4)this;
+  
+  func_000716F0();
+  if ((param_1 & 1) != 0) {
+    func_001E891B(in_ECX);
+  }
+  return in_ECX;
+}
+
