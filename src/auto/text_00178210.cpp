@@ -6,6 +6,7 @@ extern char D_0000F800;
 extern char D_0000FFE0;
 extern char D_0000F000;
 extern char D_0000FF00;
+extern char D_0000FFF8;
 
 u32 func_00178210(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int pal)
 {
@@ -164,6 +165,39 @@ u32 func_00178540(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   return 1;
 }
 
+u32 func_001785C0(u16 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int key)
+{
+    u16 *d;
+    u16 *p;
+    u8 *s;
+    u8 *q;
+    u16 c;
+    u16 keyc;
+    int x;
+    int y;
+
+    keyc = (u16)(((key >> 9) & 0x7c00) | ((key >> 6) & 0x3e0) | ((key >> 3) & 0x1f));
+    s = src;
+    d = dst;
+    for (y = height; y > 0; y--) {
+        for (p = d, q = s, x = width; x > 0; x--) {
+            if (q[2] == 0xff && q[1] == 0 && q[0] == 0xff) {
+                *p = keyc;
+            } else {
+                c = q[2];
+                c = (u16)(((c & 0xfff8) << 5) | q[1]);
+                c = (u16)((((c & 0xfff8) | 0xe000) << 2) | (q[0] >> 3));
+                *p = c;
+            }
+            p++;
+            q += 3;
+        }
+        s += srcPitch * 3;
+        d += dstPitch;
+    }
+    return 1;
+}
+
 u32 func_00178990(u16 *dst, u16 *src, int width, int height, int dstPitch, int srcPitch, u32 key)
 {
   u16 *d;
@@ -266,14 +300,13 @@ u32 func_00178BA0(u16 *dst, u16 *src, int width, int height, int dstPitch, int s
   s = src;
   d = dst;
   for (y = height; y > 0; y--) {
-    for (p = d, q = s, x = width; x > 0; x--) {
+    for (q = s, p = d, x = width; x > 0; x--) {
       v = *q;
-      if ((short)v < 0) {
-        *p = (u16)(((v & 0xffe0) << 1) | (v & 0x1f));
+      if (v & 0x8000) {
+        *p++ = (u16)(((v & 0xffe0) << 1) | (v & 0x1f));
       } else {
-        *p = c;
+        *p++ = c;
       }
-      p++;
       q++;
     }
     s += srcPitch;
