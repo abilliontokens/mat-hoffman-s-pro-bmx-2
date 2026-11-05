@@ -228,6 +228,38 @@ struct C_00186540 {
     void func_00186540(int param_1);
 };
 
+extern char D_002898F0;
+extern char D_0027D280;
+extern char D_002898D0;
+extern char D_002898B0;
+extern char D_002867E8;
+extern "C" char func_001862E0[];
+void *func_001E8A44(int size);
+void __stdcall func_00011FF0(void *p, int stride, int count, void *ctor);
+
+struct S_LightStream {
+    int func_00169710(void *name);
+    int func_00168C20(void *key, int def, void *dst);
+    int func_00168BE0(void *key, void *def, void *dst, int n);
+};
+
+/* element called through its vtable slot 0 */
+struct S_LightEntry {
+    virtual void func_vslot0(S_LightStream *stream, int index);
+    void *f4;
+    void *f8;
+};
+
+struct C_00186580 {
+    char pad0[0x24];
+    int f24;
+    int f28;
+    S_LightEntry *f2c;
+    V4_186720 *f30;
+    int *f34;
+    int func_00186580(S_LightStream *stream);
+};
+
 
 PortalInfo::PortalInfo()
 {
