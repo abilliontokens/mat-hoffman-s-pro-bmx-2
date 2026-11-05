@@ -230,6 +230,11 @@ struct C_000EC850 {
 };
 
 extern float D_00275AEC;
+struct S_EC850_Obj {
+    char pad0[0x10];
+    float f10;
+    float f14;
+};
 
 void C_000ECD90::func_000ECD90(void) {
     unk380 = 0;
