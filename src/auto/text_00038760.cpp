@@ -13,6 +13,29 @@ struct S_00038760_Arr {
     }
 };
 
+struct S_00038760_Vec {
+    float x, y, z;
+};
+
+struct S_00038760_Data {
+    char pad0[0x24];
+    S_00038760_Vec pos;      /* 0x24 */
+};
+
+struct S_00038760_Owner {
+    char pad0[0xE8];
+    void *fE8;               /* 0xE8 */
+    void *fEC;               /* 0xEC */
+};
+
+struct S_00038760_Entry {
+    int type;                /* 0x00 */
+    S_00038760_Owner *owner; /* 0x04 */
+    int pad8;
+    int padC;
+    void *data;              /* 0x10 */
+};
+
 struct C_00038760 {
     char pad0[0x64];
     C_00038760 *f64;         /* 0x64 */
