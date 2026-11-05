@@ -499,15 +499,18 @@ void C_00094A00::func_00094A00(void)
 
 void C_00094A00::func_00094C00(void)
 {
-    int i;
+    int i = 0;
 
-    for (i = 0; i < f7C; i++) {
-        if (f2C != 0) {
-            f28->func_001CD7D0(f84[i]);
-        } else {
-            f28->func_001CD7D0(f84[i]);
-        }
-        f84[i] = 0;
+    if (f7C > 0) {
+        do {
+            if (f2C != 0) {
+                f28->func_001CD7D0(f84[i]);
+            } else {
+                f28->func_001CD7D0(f84[i]);
+            }
+            f84[i] = 0;
+            i++;
+        } while (i < f7C);
     }
     f7C = 0;
     if (f2C != 0) {
@@ -517,9 +520,7 @@ void C_00094A00::func_00094C00(void)
 
 int C_00094A00::func_00094C60(void)
 {
-    S_00094A00_Child *p;
     int i;
-    int r;
 
     if (f24 != 0) {
         f24 = 0;
@@ -534,14 +535,15 @@ int C_00094A00::func_00094C60(void)
     }
     for (i = 0; i < f7C; i++) {
         if (i == 0) {
-            r = f84[0]->v12(100);
-            p = f84[0];
+            f84[0]->v12(100);
+            if (!f84[0]->v5(0)) {
+                return 0;
+            }
         } else {
-            r = f84[i]->v12(1);
-            p = f84[i];
-        }
-        if (!p->v5(0)) {
-            return 0;
+            f84[i]->v12(1);
+            if (!f84[i]->v5(0)) {
+                return 0;
+            }
         }
     }
     return 1;
