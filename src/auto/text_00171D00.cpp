@@ -152,6 +152,7 @@ struct PhysicsBody {
     void func_00172460(void);
     void func_00172000(void);
     void func_00172330(void);
+    void func_00171D00(float x,float y,float z,float w);
 };
 
 struct S_00171F10_F60 {
