@@ -54,6 +54,11 @@ struct C_00049C00 {
     C_00049C00 *func_00049C00(int param_1);
 };
 
+struct BmxEventFPS : C_00049C00 {
+ void func_00049F30();
+ void func_00032A60();
+};
+
 struct C_00049C60_Obj1C0 {
     void func_00099D40(int a);
 };
