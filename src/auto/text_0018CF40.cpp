@@ -79,6 +79,19 @@ int C_0018D580::func_0018D970(const char *name)
     return -1;
 }
 
+int C_0018D580::func_0018DA00(int index, const char *name)
+{
+    int i;
+    int count = entries[index].count;
+
+    for (i = 0; i < count; i++) {
+        if (strcmp(name, entries[index].items[i].str) == 0) {
+            return entries[index].items[i].f4;
+        }
+    }
+    return -1;
+}
+
 void func_0018DE50(void) {
     int func_00157A00(...);
     func_00157A00();
