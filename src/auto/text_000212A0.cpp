@@ -216,3 +216,14 @@ C_00021720* C_00021720::func_00021720(void) {
     unkC = 0;
     return this;
 }
+
+void C_000219E0::func_000219E0(int idx)
+{
+    C_000219E0_Mgr *mgr = f28->f1a4;
+    if (mgr->unk10 == 0) {
+        mgr->func_00166C80(f28->f1ac[idx], 1);
+    } else {
+        mgr->func_00164820(f28->f1ac[idx]);
+    }
+}
+
