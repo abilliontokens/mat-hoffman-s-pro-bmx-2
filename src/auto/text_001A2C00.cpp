@@ -423,23 +423,17 @@ void ResponseEmitter::func_001A3050(int a)
 
 MaterialSoundEmitter::MaterialSoundEmitter(int arg0, int arg1, int arg2, int arg3)
 {
+    S_30D0_Block *l0 = (S_30D0_Block *)&list1c0;
+    S_30D0_Block *l1 = (S_30D0_Block *)&a;
+    S_30D0_Block *l2 = (S_30D0_Block *)&b;
     ((C_001A1680 *)this)->func_001A1680(arg0, arg1, arg2, arg3);
     vtbl = (void *)&D_0028B6BC;
-    initA();
-    initB();
-    initC();
-    list1c0.items = (S_001A33A0_Elem **)func_001E8A44(4);
-    f1c8 = 16;
-    f1cc = 1;
-    f1d0 |= 1;
-    a.items = (S_3B10_Elem **)func_001E8A44(4);
-    f1dc = 16;
-    f1e0 = 1;
-    f1e4 |= 1;
-    b.items = (S_3B10_Elem **)func_001E8A44(4);
-    f1f4 = 1;
-    f1f8 |= 1;
-    f1f0 = 16;
+    l0->init();
+    l1->init();
+    l2->init();
+    l0->alloc();
+    l1->alloc();
+    l2->alloc();
     f200 = 1;
     f1fc = -1;
 }
