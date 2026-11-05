@@ -61,6 +61,14 @@ extern int D_0028992C;
 extern int D_002764F0;
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 
+extern int D_00289A7C;
+struct C_00186D60 {
+    void *vtbl;
+    int f4;
+    int f8;
+    C_00186D60 *func_00186D60(void);
+};
+
 struct C_00187640 {
     void *vtbl;
     char pad4[0x20];
@@ -280,6 +288,55 @@ void func_001E891B(void *p);
 extern S16_1A D_002A90B4;
 int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 void __stdcall func_00011FF0(void *p, int stride, int count, void *ctor);
+
+C_001867D0 *C_001867D0::func_001867D0()
+{
+    C_001867D0 * volatile self = this;
+    volatile int tmp[2];
+    int lim;
+    int len;
+    int n;
+    int *p;
+
+    vtbl = (void *)&D_0028992C;
+    p = self->f108;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    tmp[0] = sizeof(f4) - 1;
+    lim = tmp[0];
+    len = (int)strlen("none");
+    if (lim > len) {
+        lim = len;
+    }
+    tmp[1] = lim;
+    n = tmp[1];
+    func_001E8920(self->f4, (const char *)&D_002764F0, n);
+    self->f4[n] = 0;
+    *(S16_1A *)self->f108 = D_002A90B4;
+    self->f118 = 0;
+    self->f11C = 0;
+    self->f120 = 0;
+    self->f124 = 0;
+    self->f128 = 0;
+    self->f12C = 0;
+    self->f130 = 0;
+    self->f134 = 0;
+    self->f138 = 0;
+    memset(self->f13C, 0, sizeof(self->f13C));
+    self->f13C[0] = 0x168;
+    self->f13C[1] = 0x168;
+    self->f13C[2] = 0;
+    self->f13C[3] = 0x3f800000;
+    self->f13C[4] = 0x4e6e6b28;
+    self->f13C[5] = 0;
+    self->f13C[6] = 0x3e9c0ebf;
+    self->f13C[7] = 0x3f800000;
+    self->f13C[8] = 0x3f800000;
+    self->f160 = 10;
+    return self;
+}
 
 int BasicSoundTempData::func_00186960(Stream_00186960 *stream)
 {
