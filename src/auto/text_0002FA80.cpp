@@ -75,7 +75,7 @@ struct C_00030500_Destroy {
 struct C_00030500 {
     C_00030500_Destroy *f0;
     int f4;
-    void *f8;
+    C_00030500_Destroy *f8;
     char padC[0x118 - 0xC];
     void *func_00030500(unsigned int flags);
 };
@@ -188,6 +188,48 @@ void C_0002FA80::func_00030210(void)
 {
     ((C_00194C60 *)entries[cur].f0)->func_00194C60();
     ((C_00194C70 *)entries[cur].f0)->func_00194C70();
+}
+
+void *C_00030500::func_00030500(unsigned int flags)
+{
+    if (flags & 2) {
+        int *base = (int *)this - 1;
+        int i = *base;
+        C_00030500 *p = this + i;
+
+        while (--i >= 0) {
+            C_00030500_Destroy *o;
+            p--;
+            o = p->f0;
+            if (o) {
+                o->v4(1);
+            }
+            p->f0 = 0;
+            if (p->f8) {
+                func_001E891B(p->f8);
+                p->f8 = 0;
+            }
+        }
+        if (flags & 1) {
+            func_001E891B(base);
+        }
+        return base;
+    }
+    {
+        C_00030500_Destroy *o = f0;
+        if (o) {
+            o->v4(1);
+        }
+    }
+    f0 = 0;
+    if (f8) {
+        func_001E891B(f8);
+        f8 = 0;
+    }
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
 }
 
 undefined4 C_00030A10::func_00030A10(byte param_1)
