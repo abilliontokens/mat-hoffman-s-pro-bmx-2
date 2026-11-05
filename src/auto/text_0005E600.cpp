@@ -126,8 +126,8 @@ void C_0005E960::func_0005E960(int param_1, int param_2)
 void C_0005E9A0::func_0005E9A0(unsigned int param_1)
 {
     if (f48.raw != param_1) {
-        f48.b.lo = param_1;
         f4e |= 8;
+        f48.b.lo = param_1;
     }
 }
 
