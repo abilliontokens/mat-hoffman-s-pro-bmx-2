@@ -1,6 +1,21 @@
 /* 10 functions from 0x001B9560 to 0x001BA560, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+
+extern int D_0028D11C;
+
+struct C_00157600 {
+    void func_00157600(void *param);
+};
+
+struct C_001B9B20 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    int f28;
+    C_001B9B20 *func_001B9B20(void *param);
+};
+
 struct C_001B9D40 {
     undefined4 func_001B9D40(byte param_1);
 };
