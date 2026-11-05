@@ -78,6 +78,8 @@ struct C_00160860 {
     int f84;
     void func_00192370(int a0);
     void func_00157960(void);
+    void func_00157660(void);
+    void *func_00160A00(unsigned int flags);
     int func_001607B0(void);
     void func_00160810(int a1, int a2);
     C_00160860 *func_00160860(int a0);
