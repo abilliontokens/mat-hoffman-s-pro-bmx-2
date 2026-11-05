@@ -18,6 +18,30 @@ int func_001F3C55(S_001EA_FILE *stream, const unsigned short *fmt, va_list args)
 int func_001ED8A7(int ch, S_001EA_FILE *stream);
 
 #pragma optimize("t", off)
+unsigned short *func_001EA9DD(const unsigned short *wcs1, const unsigned short *wcs2)
+{
+    unsigned short *cp = (unsigned short *)wcs1;
+    unsigned short *s1;
+    unsigned short *s2;
+
+    if (!*wcs2) {
+        return (unsigned short *)wcs1;
+    }
+    while (*cp) {
+        s1 = cp;
+        s2 = (unsigned short *)wcs2;
+        while (*s1 && *s2 && !(*s1 - *s2)) {
+            s1++;
+            s2++;
+        }
+        if (!*s2) {
+            return cp;
+        }
+        cp++;
+    }
+    return 0;
+}
+
 int func_001EAA3B(const unsigned short *src, const unsigned short *dst)
 {
     int ret = 0;
