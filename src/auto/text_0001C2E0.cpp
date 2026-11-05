@@ -437,9 +437,10 @@ int C_0001CC00::func_0001CC00(int idx, int a, int b) {
         unk2C = 0;
         return 1;
     }
-    if (slots[idx] != 0) {
-        slots[idx]->func_001A13F0();
-        func_001E891B(slots[idx]);
+    S_0001CC00_Slot *p = slots[idx];
+    if (p != 0) {
+        p->func_001A13F0();
+        func_001E891B(p);
     }
     slots[idx] = 0;
     return 0;
