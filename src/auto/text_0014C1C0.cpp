@@ -1,6 +1,14 @@
 /* 12 functions from 0x0014C1C0 to 0x0014CC60, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct __declspec(align(16)) C_0014CA80_Matrix {
+    float m[16];
+    void func_000264C0(void *);
+};
+struct C_0014CA80 {
+    char pad0[8]; u16 x, y, z; u8 bE; char padF; s8 b10, b11;
+    void *func_0014CA80(int);
+};
 struct C_0014CA60 {
     undefined4 func_0014CA60(void);
 };
