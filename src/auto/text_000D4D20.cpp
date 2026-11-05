@@ -12,6 +12,19 @@ struct DelObjC_000D4DD0 {
     virtual void Destroy(int a0);
 };
 
+struct S_000D5B90_Widget {
+    void func_001B1980();
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, float a11, int a12, int a13);
+};
+
+struct S_000D5B90_Res {
+    void func_00103350();
+};
+
+struct S_000D5B90_Owner {
+    S_000D5B90_Res *func_000BA9B0(int a);
+};
+
 struct BmxUIPageHOF {
     void *vtbl;
     char pad4[0x280 - 4];
@@ -47,10 +60,12 @@ BmxUIPageHOF *BmxUIPageHOF::func_000D4D20(int a0)
 {
     func_001BE360(a0);
     vtbl = &D_0027F20C;
+    void **p = (void **)arr2D8;
     for (int i = 0; i < 5; i++) {
-        arr2C4[i] = 0;
-        arr2D8[i] = 0;
-        arr304[i] = 0;
+        p[-5] = 0;
+        *p = 0;
+        p[11] = 0;
+        p++;
     }
     arr2EC[0] = 0;
     arr2EC[1] = 0;
