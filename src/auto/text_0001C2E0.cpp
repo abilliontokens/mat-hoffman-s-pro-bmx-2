@@ -182,6 +182,14 @@ struct C_0001D200 {
 };
 extern int D_00275DFC;
 
+static __forceinline void init_0001D0F0(int *p) {
+    p[1] = 0;
+    p[0] = 0;
+    p[2] = 0;
+    p[3] = 0;
+    *(unsigned char *)(p + 4) &= 0xfe;
+}
+
 /* AuralScape constructor */
 struct C_0001D0F0 {
     void *vtbl;
