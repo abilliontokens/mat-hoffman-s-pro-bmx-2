@@ -65,7 +65,13 @@ struct C_0004DCA0 {
     int f90;
     char pad94[0x8c];
     int f120;
-    char pad124[0x9c];
+    char pad124[0x38];
+    C_0004D7A0_Menu *f15C;
+    char pad160[0x30];
+    C_0004D7A0_Other *f190;
+    char pad194[0xc];
+    C_0004D7A0_State *f1A0;
+    char pad1a4[0x1c];
     C_0004DCA0_Snd *f1C0;
     char pad1C4[0xc4];
     C_0004DCA0_Cam *f288;
