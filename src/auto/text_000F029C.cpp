@@ -89,6 +89,7 @@ struct C_000F0400_Widget {
     void func_001B1A30(float x, float y, float z);
     void func_001B2270(unsigned int color);
     void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, int a11, float a12, int a13);
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, float a7, int a8, float a9, int a10, int a11, int a12, int a13);
 };
 
 struct C_000F0400 {
@@ -199,6 +200,49 @@ void C_000F029C::func_000F029C()
         }
     }
     func_001578D0();
+}
+
+void C_000F0400::func_000F0400()
+{
+    int i;
+
+    if (f124->f25c->f74->func_000301D0() == 0) {
+        for (i = 0; i < 2; i++) {
+            D_002B91AC->arr38[i]->func_001D6600();
+        }
+    }
+    D_002B91AC->unk34->func_001D6600();
+    if (f3CC) {
+        for (i = 0; i < 9; i++) {
+            f638[i]->func_001B1980();
+            f638[i]->func_001B19A0(D_0028F5DC);
+            if (f3D4) {
+                if (i == f3C4)
+                    f638[i]->func_001B1A30(200.0f, f65C[i] - D_00275600, 0.5f);
+                else
+                    f638[i]->func_001B19C0(200, f65C[i], 0.5f);
+            } else {
+                if (i == f3C4)
+                    f638[i]->func_001B1A30(200.0f, f65C[i] - D_00275600, 0.0f);
+                else
+                    f638[i]->func_001B19C0(200, f65C[i], 0.0f);
+            }
+            if (i == f3C4) {
+                f638[i]->func_001B2270(0xffbfa35a);
+                f638[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0xff, 1.45f, 0, 0, 0.2f, 0);
+            } else if (i == f3C8) {
+                f638[i]->func_001B2270(0xffcccccc);
+                f638[i]->func_001B1860(0, -1.0f, 0xff, 1.45f, 0, 0, 0, 0xff, 1.15f, 0, 0, 0.2f, 0);
+            } else {
+                f638[i]->func_001B2270(0xffcccccc);
+                f638[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
+            }
+            if ((float)f65C[i] > D_00279B50 || (float)f65C[i] < D_0027F718) {
+                f638[i]->func_001B1980();
+            }
+        }
+        f3CC = 0;
+    }
 }
 
 void C_000F0910::func_000F0910()
