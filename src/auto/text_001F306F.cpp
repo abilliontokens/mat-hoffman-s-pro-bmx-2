@@ -16,10 +16,32 @@ struct C_001F325D_Base {
 
 struct C_001F325D : C_001F325D_Base {
     int unk0;
-    char pad4[8];
-    void func_001F31D2(int param_1);
+    char *unk4;
+    int unk8;
+    C_001F325D *func_001F31D2(int param_1);
     C_001F325D(int param_1);
     C_001F325D *func_001F325D(int param_1);
+};
+
+struct C_001F3280 {
+    int unk0;
+    char *unk4;
+    int unk8;
+    C_001F3280 *func_001F3280(int param_1);
+};
+
+struct C_001F3244 {
+    int unk0;
+    char *unk4;
+    int unk8;
+    C_001F3244 *func_001F3244(char *param_1);
+};
+
+struct C_001F3221 {
+    int unk0;
+    void *unk4;
+    int unk8;
+    void func_001F3221();
 };
 
 struct C_001F318D {
@@ -109,15 +131,12 @@ void *func_001F306F(void *param_1, int param_2) {
     }
     return param_1;
 }
-#pragma optimize("", on)
+#pragma optimize("s", on)
 void *func_001F311D(void *param_1, int param_2) {
     extern C_001EEE62 *D_002F6A04;
     void *func_001F306F(void *, int);
     int func_001EF0B4(void *);
-    C_001F311D_A localA;
-    int localB[2];
-    int localC[2];
-    int localD[2];
+    C_001F311D_Ctx ctx;
     S8_001F *node = 0;
     S8_001F *obj = (S8_001F *)D_002F6A04->func_001EEE62(8, (int)node);
     if (obj != node) {
@@ -125,15 +144,14 @@ void *func_001F311D(void *param_1, int param_2) {
         *(unsigned short *)&obj->unk4 &= 0xfe00;
         node = obj;
     }
-    func_001F306F(localB, (int)node);
-    func_001EF0B4(&localA);
-    C_001F311D_Ret *ret = localA.func_001EFD3B(localD, 0x20, localC, param_2);
+    func_001F306F(ctx.unk10, (int)node);
+    func_001EF0B4(&ctx.unk18);
+    C_001F311D_Ret *ret = ctx.unk18.func_001EFD3B(ctx.unk0, 0x20, ctx.unk8, param_2);
     int result = ret->func_001EFAB5();
     node->func_001EEF4F(result);
-    ((C_001F311D_P1 *)param_1)->func_001EEEE6(localB);
+    ((C_001F311D_P1 *)param_1)->func_001EEEE6(ctx.unk10);
     return param_1;
 }
-
 #pragma optimize("sy", on)
 C_001F318D *C_001F318D::func_001F318D(char **param_1) {
     extern int D_00295F00;
