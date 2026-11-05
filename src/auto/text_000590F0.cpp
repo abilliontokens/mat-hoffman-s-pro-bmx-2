@@ -201,7 +201,7 @@ struct InputDevice {
 };
 
 struct C_001577A0 {
-    int func_001577A0(int a, unsigned int b);
+    int func_001577A0(int a, int b);
 };
 
 /* constructors (thiscall, flag argument) of the objects BmxGame::func_00059AC0 creates, each returns this */
@@ -476,7 +476,7 @@ int BmxGame::func_00059AC0(void)
         default:
             goto done;
         }
-        f2A4 = Register(obj);
+        f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->v10(), -1);
     }
 done:
     if (f2F0 != 0) {
