@@ -14,10 +14,10 @@ static inline float dot_001225C0(const V4_001225C0 &a, const V4_001225C0 &b)
 static inline V4_001225C0 sub_001225C0(const V4_001225C0 &a, const V4_001225C0 &b)
 {
     V4_001225C0 t;
+    t.w = 1.0f;
     t.x = a.x - b.x;
     t.y = a.y - b.y;
     t.z = a.z - b.z;
-    t.w = 1.0f;
     return t;
 }
 extern "C" void func_0011F4B0(float *out, V4_001225C0 *pos, float *m);
