@@ -102,7 +102,7 @@ struct C_00051CB0 {
 };
 
 extern undefined4 D_00277934;
-extern int *D_002A8490;
+extern S_00051BB0_Root *D_002A8490;
 extern float D_002B8F98;
 extern float D_002B8FA0;
 
