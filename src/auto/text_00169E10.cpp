@@ -43,6 +43,26 @@ struct V4u {
     u32 x, y, z, w;
 };
 
+struct V4f {
+    float x, y, z, w;
+};
+
+extern int D_002882EC;
+
+/* SmokeParticleEmitter */
+struct C_0016ABE0 {
+    void *vtbl;
+    char pad4[0x1EC];
+    float f1F0, f1F4, f1F8, f1FC;
+    float f200, f204, f208, f20C;
+    float f210, f214, f218, f21C;
+    float f220, f224, f228, f22C;
+    V4f v230;
+    V4f v240;
+    void func_00169C50(int a);
+    C_0016ABE0 *func_0016ABE0(int a);
+};
+
 struct ParticleEmitter {
     void *vtbl;
     char pad4[0x40];
@@ -79,6 +99,13 @@ ParticleEmitter *ParticleEmitter::func_0016A1D0(void *a, void *b, u32 *c) {
         }
     }
     return this;
+}
+
+void ParticleEmitter::func_0016A220(void *a, u32 *b) {
+    f68 = a;
+    if (b != 0) {
+        *(V4u *)&f44 = *(V4u *)b;
+    }
 }
 
 int ParticleEmitter::func_0016A330(char *buf) {
