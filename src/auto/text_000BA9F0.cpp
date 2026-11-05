@@ -2,8 +2,12 @@
 #include "common.h"
 
 struct UIService {
+    int func_00030020(const char *name);
     int func_000300C0(const char *name);
+    int func_000300F0(const char *name);
+    int func_00030120(const char *name);
     void func_00030160();
+    int func_000301D0();
 };
 
 struct UIOwner {
