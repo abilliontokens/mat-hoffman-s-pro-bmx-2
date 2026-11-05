@@ -101,6 +101,28 @@ struct C_0015A910 {
     void *func_0015A970(unsigned char flags);
 };
 
+struct S_0015A9B0_Map {
+    void func_00135D30(int a0, int *a1, int a2);
+};
+struct C_0015A9B0 {
+    virtual void v0();
+    virtual void v1();
+    virtual int v2(int a0, int a1, int a2);
+    virtual int v3(int a0, int a1, int a2);
+    char pad4[0x10];
+    unsigned char f14;
+    char pad15[0x30b];
+    int f320;
+    char pad324[0x300];
+    float f624;
+    float f628;
+    float f62C;
+    float f630;
+    float f634;
+    float f638;
+    int func_0015A9B0(int a0, int a1, int a2);
+};
+
 struct C_0015B1A0 {
     void *vtbl;
     char pad4[0x20];
