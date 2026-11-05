@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+#include <string.h>
 
 struct V4_00161930 {
     float x, y, z, w;
@@ -200,6 +201,51 @@ void __fastcall func_00161170(int unused, S_00161170 *table)
     D_002EB254 = 0x103;
     D_002E2978 = 9;
     D_002EB250 = 0x1ff;
+}
+
+void func_001613B0(void)
+{
+    char *s;
+    char *p;
+    char *q;
+    char *dst;
+    char *tok;
+    char c;
+    int len;
+
+    s = (char *)&D_002EB268;
+    p = s;
+    do {
+        c = *p++;
+    } while (c != 0);
+    len = p - (s + 1);
+    if (len != 0) {
+        D_002EBE7C = (void **)func_001E8A44(0x400);
+        D_002EBE78 = 1;
+        D_002EBE7C[0] = func_001E8A44(0xf);
+        dst = (char *)D_002EBE7C[0];
+        *(unsigned int *)dst = D_00287ABC;
+        *(unsigned int *)(dst + 4) = D_00287AC0;
+        *(unsigned int *)(dst + 8) = D_00287AC4;
+        *(unsigned short *)(dst + 0xc) = D_00287AC8;
+        dst[0xe] = D_00287ACA;
+        tok = func_001E95A4(s, D_002789B8);
+        while (tok != 0) {
+            p = tok;
+            do {
+                c = *p++;
+            } while (c != 0);
+            D_002EBE7C[D_002EBE78] = func_001E8A44(p - (tok + 1) + 1);
+            dst = (char *)D_002EBE7C[D_002EBE78];
+            q = tok;
+            do {
+                c = *q++;
+                *dst++ = c;
+            } while (c != 0);
+            tok = func_001E95A4(0, D_002789B8);
+            D_002EBE78++;
+        }
+    }
 }
 
 int func_001614C0(void)
