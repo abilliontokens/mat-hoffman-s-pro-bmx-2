@@ -62,6 +62,19 @@ struct C_002AA6C0 {
     void func_001B26C0(int a0);
 };
 
+struct V_002EFDB8 {
+    virtual void vf0();
+    virtual void vf1();
+    virtual void vf2();
+    virtual void vf3();
+    virtual void vf4();
+    virtual void vf5();
+    virtual void vf6();
+    virtual void vf7(int a);
+    virtual void vf8();
+};
+extern V_002EFDB8 *D_002EFDB8;
+
 struct C_0018C000 {
     int vtbl;
     char *unk4;
@@ -69,6 +82,7 @@ struct C_0018C000 {
     C_0018C000_Item *unk58[0x100];
     int unk458;
     void *func_0018C000(char *param);
+    void *func_0018C650(int flags);
     C_002AA6C0_Obj *func_0018C070(void);
     void func_0018C1C0(void);
     float func_0018C210(void);
@@ -193,12 +207,11 @@ void C_0018C120::func_0018C120(void) {
 
 C_0018C120_Node *C_0018C120::func_0018C160(const char *name)
 {
-    C_0018C120_Node *n = head;
-    while (n != 0) {
+    C_0018C120_Node *n;
+    for (n = head; n != 0; n = n->next) {
         if (strcmp(name, ((C_0018C000 *)n->value)->unk4) == 0) {
             break;
         }
-        n = n->next;
     }
     return n;
 }
