@@ -179,6 +179,82 @@ struct VehicleAI {
     void func_000B1F70(void);
 };
 
+extern "C" int strlen(const char *s);
+extern "C" int func_001EA426(const char *a, const char *b);
+extern "C" int __cdecl func_001ADCC0(char *buf, int size, const char *fmt, const char *a, const char *b);
+void *func_001E8A44(int size);
+extern char D_002A4C10[];
+extern char D_002A45E0[];
+extern char D_002A5348[];
+extern char D_002A5870[];
+extern char D_00275678[];
+extern int D_002BA160;
+
+struct __declspec(align(16)) S_000B1B80_Mat { float m[16]; };
+void func_000265C0(S_000B1B80_Mat *out, void *a, void *b, void *c, int d, int e);
+void __stdcall func_001577A0(void *p, int flag);
+
+struct S_000B1B80_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    virtual void v31(S_000B1B80_Mat *m);
+    char pad4[0x64];
+    int f68;
+    S_000B1B80_Obj *func_0019B700(int a);
+    int func_00133020(int a);
+    int func_0019D7B0(void *a, char *name);
+    void func_00133140(int a, int b);
+};
+struct S_000B1B80_Cfg {
+    char pad0[8];
+    int f8;
+    u32 fC[4];
+    u32 f1C[4];
+    u32 f2C[4];
+};
+struct S_000B1B80_Slot {
+    char pad0[8];
+    S_000B1B80_Obj *f8;
+};
+struct C_000B1B80 {
+    char pad0[0x3C];
+    S_000B1B80_Cfg *f3C;
+    char pad40[4];
+    S_000B1B80_Slot *f44;
+    char pad48[0x224];
+    char name[0x104];
+    void func_000B1B80(void);
+};
+
 void C_000B1660::func_000B1660(S_000B1660_Arg *a) {
  for (int i = 0; i < D_002B9120->f578; i++) {
  S_000B1660_Item *item = D_002B9120->f57C[i];
