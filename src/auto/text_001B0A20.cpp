@@ -399,6 +399,28 @@ void C_001B0FC0::func_001B0FC0(void)
     count = 0;
 }
 
+int C_001B1010::func_001B1010(C_001B1010_Arg *arg0)
+{
+    int index = count;
+    int i;
+
+    count = index + 1;
+    if (arr[index] == 0) {
+        C_001B1010_Obj *p = (C_001B1010_Obj *)func_001E8A44(0x28);
+        arr[index] = p != 0 ? p->func_00149280(arg0->unk14) : 0;
+    }
+    arr[index]->unk8 = arg0;
+    for (i = 0; i < count - 1; i++) {
+        C_001B1010_Obj *e = arr[i];
+        if (e != 0 && e->unk8 != 0) {
+            if (arg0->v5(e->unk8) != 0 && e->unk20 > index) {
+                e->unk1C = arr[index];
+            }
+        }
+    }
+    return index;
+}
+
 void C_001B10B0::func_001B10B0(undefined4 param_1, int param_2)
 {
   int in_ECX = (int)this;
@@ -435,6 +457,16 @@ void *C_001B1110::func_001B1110(unsigned int flags)
 
 int __stdcall func_001B1190(int a0, int a1, int a2, int a3, int a4, int a5, int a6) {
     return 0;
+}
+
+void *Terrain::func_001B11A0(int flags)
+{
+    vtbl = (void *)&D_0028C70C;
+    func_00157660();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
 }
 
 float C_001B15E0::func_001B15E0(void) {
