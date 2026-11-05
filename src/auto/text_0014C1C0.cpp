@@ -8,7 +8,7 @@ static __forceinline V4_0014C1C0 *NewV4_0014C1C0(int n) {
     void *m = func_001E8A44(n * 16);
     if (m) {
         V4_0014C1C0 *p = (V4_0014C1C0 *)m;
-        for (int i = n - 1; i >= 0; i--) { new (p) V4_0014C1C0; p++; }
+        for (int i = n - 1; i >= 0; i--) { p->z = 0; p->y = 0; p->x = 0; p->w = 0x3f800000; p++; }
         return (V4_0014C1C0 *)m;
     }
     return 0;
