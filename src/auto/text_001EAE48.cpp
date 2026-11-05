@@ -68,9 +68,13 @@ void func_001EAF7F(int code) {
 }
 
 double func_001EAF91(double x, double y) {
-    double r = x;
-    ((unsigned int *)&r)[1] = (((unsigned int *)&r)[1] ^ ((unsigned int *)&y)[1]) & 0x7fffffff ^ ((unsigned int *)&y)[1];
-    return r;
+    union {
+        double d;
+        unsigned int i[2];
+    } u;
+    u.d = x;
+    u.i[1] = (u.i[1] ^ ((unsigned int *)&y)[1]) & 0x7fffffff ^ ((unsigned int *)&y)[1];
+    return u.d;
 }
 
 extern char D_000FFFFF;
@@ -126,6 +130,15 @@ int func_001EB04C(void) {
         i++;
     } while (p < (int)D_002AE6E0);
     return 0;
+}
+
+void func_001EB0F5(void) {
+    int func_001E9F99(...);
+    int func_001F445B(...);
+    func_001E9F99();
+    if (D_002F684C != 0) {
+        func_001F445B();
+    }
 }
 
 void func_001EB109(char *p) {
