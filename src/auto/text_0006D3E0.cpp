@@ -94,6 +94,18 @@ struct C_00031610 {
 };
 
 int func_001361E0(int, int, int *, int);
+extern int D_002B9028;
+extern float D_00275544;
+struct HorseResultsScreen {
+    char pad0[0xD0];
+    int unkD0;
+    C_00031610 *unkD4;
+    int unkD8;
+    float unkDC;
+    int unkE0, unkE4, unkE8, unkEC;
+    int func_0006D3E0(int *a, int b);
+    int func_00157BF0(int *a, int b);
+};
 
 struct C_0006E2C0 {
     char pad0[0x64];
