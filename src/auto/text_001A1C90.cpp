@@ -39,6 +39,35 @@ struct ObjV23 {
     virtual int v23(int a0, int a1, S16_1A s, int a2);
 };
 
+struct V4_1A {
+    float x, y, z, w;
+};
+
+extern V4_1A D_002A9ECC;
+extern float D_00275544;
+extern float D_00275460;
+
+struct Obj199_1A {
+    void func_00199A70(int a0, V4_1A *out);
+};
+
+struct C_001A2060 {
+    void *vtbl;
+    char pad4[0x24];
+    V4_1A unk28;
+    char pad38[0x38];
+    V4_1A unk70;
+    V4_1A unk80;
+    char pad90[0x8];
+    u8 unk98;
+    char pad99[0x123];
+    void *unk1BC;
+    Obj199_1A *unk1C0;
+    Obj199_1A *unk1C4;
+    void func_001A2060(float dt);
+    void func_00157A00(float dt);
+};
+
 struct ObjV2 {
     virtual void v0();
     virtual void v1();
@@ -416,15 +445,14 @@ int C_001A1C90::func_001A1C90(int a0, int a1, S16_1A s, int a2) {
     return unk1BC->v23(a0, a1, s, a2);
 }
 
-int C_001A1D20::func_001A1D20(const char * volatile name, volatile int b)
+int C_001A1D20::func_001A1D20(const char * volatile name, int b)
 {
-    C_001A1D20 * volatile self = this;
-    volatile int len;
-    volatile int limit;
-    volatile int cnt;
+    struct { C_001A1D20 * volatile self; volatile int len; volatile int limit; volatile int cnt; } t;
     int n;
     int flags;
+    C_001A1D20 *p;
 
+    t.self = this;
     if (f1bc != 0 || (f1a0 & 1)) {
         return 0;
     }
@@ -443,20 +471,22 @@ int C_001A1D20::func_001A1D20(const char * volatile name, volatile int b)
     if (f98 & 4) {
         flags |= 0x10;
     }
-    self->f1bc = f1a4->fb4->func_001CFE90(f24, (int)name, flags, 3, (int)f3c, 0);
-    len = strlen(name);
-    limit = 0x103;
-    cnt = limit > len ? len : limit;
-    n = cnt;
-    func_001E8920(self->f9c, name, n);
-    self->f9c[n] = 0;
-    if (self->f1bc != 0) {
-        if (self->f98 & 4) {
-            self->v30(self->f3c);
+    t.self->f1bc = f1a4->fb4->func_001CFE90(f24, (int)name, flags, 3, (int)f3c, 0);
+    t.len = strlen(name);
+    t.limit = 0x103;
+    t.cnt = t.limit > t.len ? t.len : t.limit;
+    n = t.cnt;
+    func_001E8920(t.self->f9c, name, n);
+    t.self->f9c[n] = 0;
+    p = t.self;
+    if (p->f1bc != 0) {
+        if (p->f98 & 4) {
+            p->v30(p->f3c);
         } else {
-            self->f1bc->v22(self->f48, self->f4c);
+            p->f1bc->v22(p->f48, p->f4c);
         }
-        self->v29(self->f70, self->f80);
+        p = t.self;
+        p->v29(p->f70, p->f80);
         return 1;
     }
     return 0;
