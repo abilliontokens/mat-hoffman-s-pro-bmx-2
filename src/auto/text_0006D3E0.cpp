@@ -119,6 +119,26 @@ struct C_0006E2C0 {
 };
 
 
+int HorseResultsScreen::func_0006D3E0(int *a, int b) {
+ if(unkEC) { D_002B9028=a[2]; unkEC=0; }
+ if(unkE0 || unkDC>D_00275544) return 0;
+ if(func_001361E0(2,2,a,0x80000000)) {
+ unkD4->func_00031610(2,1);
+ unkE4=unkD0; unkE8=1; --unkD0;
+ if(unkD0<0) unkD0=1;
+ } else if(func_001361E0(3,2,a,0x80000000)) {
+ unkD4->func_00031610(2,1);
+ unkE4=unkD0; unkE8=1; ++unkD0;
+ if(unkD0>1) unkD0=0;
+ } else {
+ if(func_001361E0(4,2,a,0x80000000) || func_001361E0(23,2,a,0x80000000)) {
+ unkD4->func_00031610(4,1); unkE0=1; unkD8=0; return 0;
+ }
+ if(!func_001361E0(0,2,a,0x80000000)) func_001361E0(1,2,a,0x80000000);
+ }
+ return func_00157BF0(a,b);
+}
+
 C_0006D590 *C_0006D590::func_0006D590(int a0)
 {
     u32 *p;
