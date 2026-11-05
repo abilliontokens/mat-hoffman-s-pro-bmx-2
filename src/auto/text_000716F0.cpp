@@ -75,6 +75,16 @@ __forceinline unsigned int StrLen_716(const char *str)
     return eos - str - 1;
 }
 
+inline void Truncate_716(char *str, unsigned int max)
+{
+    const char *eos = str;
+    while (*eos++) {
+    }
+    if ((unsigned int)(eos - str - 1) > max) {
+        str[max] = 0;
+    }
+}
+
 struct C_0005E840 {
     void func_0005E840(char *s);
 };
@@ -290,8 +300,6 @@ void C_00072330::func_00072330(void)
 {
     char a[0x34];
     char b[0x40];
-    char *s;
-    char *eos;
 
     if (fC8 != 0) {
         S_Obj4_716 *o = D_002A8490->p2E8->p4;
@@ -306,11 +314,7 @@ void C_00072330::func_00072330(void)
         char *fmt = D_002A8490->p2E8->p4->fA78;
         func_001AC330(b, fmt, ((C_00095390 *)D_002A8490->f2E0->f2FC)->func_00095390(f88));
     }
-    s = b;
-    eos = s;
-    while (*eos++) {
-    }
-    if ((unsigned int)(eos - (s + 1)) > 0x27) {
+    if (StrLen_716(b) > 0x27) {
         b[0x27] = 0;
     }
     fD0->func_001B17D0(b);
