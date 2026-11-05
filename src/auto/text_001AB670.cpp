@@ -74,10 +74,7 @@ struct C_001AC200 {
     int field_00;
     int field_04;
     const char *field_08;
-    union {
-        char *field_0C;
-        int field_0C_i;
-    };
+    char *field_0C;
     C_001AC150 *field_10;
     C_001AC200() {}
     C_001AC200(char *buf, const char *fmt, C_001AC150 *a) {
@@ -178,7 +175,8 @@ void C_001AC200::func_001AC200(int n)
     if (c != 0) {
         s++;
         do {
-            *(char *)((int)field_0C + field_04) = c;
+            char *dst = field_0C + field_04;
+            *dst = c;
             field_04++;
             c = *s++;
         } while (c != 0);
