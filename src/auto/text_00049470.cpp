@@ -99,7 +99,7 @@ struct E49Obj {
     E49Obj *func_000777A0(int);
     void func_000779C0(void *);
     E49Obj *func_0008BB80(int);
-    void func_00092810(void *, void *, int, void *);
+    void func_00092810(void *, int, void *, void *);
     E49Obj *func_000888D0(int);
     void func_00088950(void *, int);
 };
