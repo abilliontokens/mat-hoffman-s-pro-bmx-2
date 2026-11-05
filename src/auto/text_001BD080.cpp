@@ -331,6 +331,20 @@ void *C_001BD870::func_001BD920(unsigned int flags)
     return this;
 }
 
+C_001BD980 *C_001BD980::func_001BD980(int a)
+{
+    ((C_00157600 *)this)->func_00157600(a);
+    f34 = 0;
+    f3c = 0;
+    f2c = 0;
+    f28 = 0;
+    f38 = 0;
+    f44 = 0;
+    vtbl = (void *)&D_0028D51C;
+    f40 = 1;
+    return this;
+}
+
 C_001BD9C0 *C_001BD9C0::func_001BD9C0(int a)
 {
   ((C_00157600 *)this)->func_00157600(a);
