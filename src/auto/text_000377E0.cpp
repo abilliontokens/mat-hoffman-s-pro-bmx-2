@@ -121,3 +121,38 @@ void *C_000378A0::func_000378A0(int flags)
     return this;
 }
 
+void BmxEventEditor::func_000380B0()
+{
+    char path[260];
+    vtbl = &D_00276DDC;
+    func_001ADCC0(path, 260, D_00276C34, D_002A5870, *(char **)(D_002A8490 + 0x2E0) + 0x4C);
+    D_002BEAAC->func_0013DFF0(path, 1);
+    D_002BEAAC->func_0013B260(0);
+    for (int i = a.count - 1; i >= 0; i--) {
+        S_000380B0_Node *node;
+        if (a.count > 0 && a.data && i < a.count) node = ((S_000380B0_Node **)a.data)[i];
+        else node = 0;
+        if (node->count > 0) func_001E891B(node->data);
+        func_001E891B(node);
+    }
+    a.clear();
+    b.clear();
+    c.clear();
+    d.clear();
+    func_001E891B(f49C);
+    f544->v2(); f548->v2();
+    if (f54C) f54C->v2();
+    if (f53C) f53C->v2();
+    if (f594) f594->v0(1);
+    if (f59C) f59C->v0(1);
+    if (f590) f590->v0(1);
+    if (f598) f598->v0(1);
+    char *p = *(char **)(D_002A8490 + 0x2E0);
+    *(int *)(p + 0x190) = *(int *)(p + 0x1F0);
+    func_001E891B(d.data);
+    func_001E891B(c.data);
+    func_001E891B(b.data);
+    func_001E891B(a.data);
+    func_00033220();
+}
+
