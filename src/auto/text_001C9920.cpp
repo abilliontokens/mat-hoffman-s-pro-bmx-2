@@ -57,6 +57,7 @@ struct C_001C9920 {
     char padD0[0x14C];
     int unk21C;
     void func_001C9920(S_001C9920_arg *arg);
+    void func_001C9920(int a);
 };
 
 struct C_001C9AF0 {
@@ -80,11 +81,13 @@ struct C_001CA1C0 {
 void C_001C9920::func_001C9920(S_001C9920_arg *arg)
 {
     S_001C9920_arg *p = arg;
-    unkCC = p;
-    if (p->unk28 != 0) {
-        unk44 = p->unk28->v16(0, (int *)&arg, 0x80);
-        int rate = func_001B2910(p->unk28->unkA4);
-        int v = ((int)arg << 3) / rate;
+    int rate;
+    int v;
+    unkCC = arg;
+    if (arg->unk28 != 0) {
+        unk44 = arg->unk28->v16(0, (int *)&arg, 0x80);
+        rate = func_001B2910(p->unk28->unkA4);
+        v = ((int)arg << 3) / rate;
         unk21C = rate;
         unkB8 = v;
         unkC4 = (float)v / D_002F0BCC;
