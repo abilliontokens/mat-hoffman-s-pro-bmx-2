@@ -94,7 +94,7 @@ extern C_VCall8 *D_002EFDB8;
 struct C_12B2B0 {
     char pad0[0x1e0];
     C_Rect24 rect;
-    void func_0012B2B0(C_Rect24 *a, C_Rect8 *b);
+    void func_0012B2B0(void *a, void *b);
 };
 
 struct C_5E840 {
@@ -151,6 +151,30 @@ undefined4 C_0007EB00::func_0007EB00(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+undefined4 C_0007EB20::func_0007EB20(void)
+{
+    C_12B2B0 *vb;
+
+    if ((D_002B9068 & 1) == 0) {
+        D_002B9068 |= 1;
+        D_002B9064 = D_002A7CB8->func_00026500((int)&D_00278AF0, 0);
+    }
+    if (D_002A8490->f274 >= D_002A8490->f270 - 1) {
+        D_002EFDB8->v8();
+        D_002EFDB8->v7(1);
+        vb = (C_12B2B0 *)D_002EFDB8->f4;
+        if (f1B4 != 0) {
+            ((C_5E840 *)fFC)->func_0005E840(D_002A8490->f2e8->f4->f7b8);
+            ((C_Node *)f1BC)->func_001D6600();
+        } else {
+            ((C_5E840 *)fFC)->func_0005E840(D_002A8490->f2e8->f4->f7c8);
+            ((C_Node *)fFC)->func_001D6600();
+        }
+        func_00157960();
+    }
+    return 1;
 }
 
 undefined4 C_0007EC80::func_0007EC80(byte param_1)
