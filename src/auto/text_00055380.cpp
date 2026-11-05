@@ -157,6 +157,14 @@ static __forceinline void InitQuat_00055380(S_00056100_Quat *q, int zero)
     p[3] = 0x3f800000;
 }
 
+static __forceinline void InitQuatF_00055380(S_00056100_Quat *q)
+{
+    q->z = 0;
+    q->y = 0;
+    q->x = 0;
+    q->w = 1.0f;
+}
+
 static __forceinline void SetU32_00055380(u32 *p, u32 v)
 {
     *p = v;
