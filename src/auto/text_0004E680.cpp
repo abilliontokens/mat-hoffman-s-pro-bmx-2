@@ -296,6 +296,18 @@ static inline S_0004E7B0_Vec Sub_0004E7B0(const S_0004E7B0_Vec &a, const S_0004E
     return r;
 }
 
+static inline void Aim_0004E7B0(C_0004E7B0 *self, S_0004E7B0_Vec &a, S_0004E7B0_Vec &b, int i)
+{
+    float angle;
+
+    a = Sub_0004E7B0(self->f290[self->f288], self->f64->f4e0->f1a8[i]->f834);
+    func_0004E410(&a, &a);
+    a = self->f64->f4e0->f1a8[i]->f230->func_00198040(&a);
+    angle = func_0014FBA0(a.x, a.z) * D_00277240;
+    b = self->f290[self->f288];
+    self->fD30[i]->func_00088A40((int)angle, &b);
+}
+
 void C_0004ECC0::func_0004E680(void)
 {
     extern C_0004ECC0Vec D_002A174C;
