@@ -223,20 +223,6 @@ void C_001D5E90::func_001D5E90()
     f58 = 0;
 }
 
-int C_001D5E90::func_001D5F00(int param)
-{
-    char buf[260];
-    DXVSStreams_001D5760 *m;
-
-    f0 = (char *)func_001E8A44(f4f + 1);
-    strcpy(buf, D_002A60B0);
-    strcpy(D_002A60B0, D_002A5240);
-    m = (DXVSStreams_001D5760 *)func_001E8A44(0x14);
-    f5c = m ? m->func_00144640() : 0;
-    f5c->v1(param, D_002AA470);
-    strcpy(D_002A60B0, buf);
-    return 0;
-}
 
 void C_001D6190::func_001D6190(int a, const char *s, int b)
 {
