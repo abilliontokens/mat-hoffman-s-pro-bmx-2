@@ -46,6 +46,22 @@ struct C_001C67C0 {
     void func_001C67C0(Vec4 *out, int param_2);
 };
 
+struct S_001C64A0_Node {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4(int idx, Vec4 *v, int a, int b, int c);
+    virtual void v5(int idx, Vec4 *v, int a, int b, int c);
+    S_001C64A0_Node *f4;
+    char pad8[4];
+    int fC;
+    char pad10[4];
+    S_001C64A0_Node **f14;
+    char pad18[4];
+    int f1C;
+};
+
 void func_001C63F0(Vec4 *out, Vec4 *vin, f32 *m)
 {
     Vec4 q;
@@ -66,8 +82,7 @@ void func_001C63F0(Vec4 *out, Vec4 *vin, f32 *m)
     r2 = _mm_mul_ps(r2, v);
     __m128 lo = _mm_unpacklo_ps(r0, r1);
     __m128 hi = _mm_unpackhi_ps(r0, r1);
-    __m128 t;
-    t = _mm_movehl_ps(t, r2);
+    __m128 t = _mm_movehl_ps(v, r2);
     lo = _mm_add_ps(lo, hi);
     r2 = _mm_add_ps(r2, t);
     hi = _mm_movehl_ps(hi, lo);
@@ -76,7 +91,10 @@ void func_001C63F0(Vec4 *out, Vec4 *vin, f32 *m)
     lo = _mm_add_ps(lo, hi);
     _mm_storeu_ps(&pq->x, lo);
     pq->w = 1.0f;
-    *out = q;
+    ((u32 *)out)[0] = ((u32 *)pq)[0];
+    ((u32 *)out)[1] = ((u32 *)pq)[1];
+    ((u32 *)out)[2] = ((u32 *)pq)[2];
+    ((u32 *)out)[3] = ((u32 *)pq)[3];
 }
 
 void C_001C67C0::func_001C67C0(Vec4 *out, int param_2)
@@ -87,20 +105,28 @@ void C_001C67C0::func_001C67C0(Vec4 *out, int param_2)
     local.x = 0;
     local.w = 1.0f;
     this->obj10->func_vtbl3(param_2, &local);
-    *out = local;
+    ((u32 *)out)[0] = ((u32 *)&local)[0];
+    ((u32 *)out)[1] = ((u32 *)&local)[1];
+    ((u32 *)out)[2] = ((u32 *)&local)[2];
+    ((u32 *)out)[3] = ((u32 *)&local)[3];
 }
 
 int C_001C6820::func_001C6820(f32 param_1)
 {
     S_001C6820_Elem *e = &this->elems[this->idx];
     int count = e->count;
-    int result = 0;
-    S_001C6820_Pair *p = e->pairs;
     int i = 0;
-    while (i < count && param_1 > p->time) {
-        result = p->value;
-        i++;
-        p++;
+    int result = 0;
+    if (count > 0) {
+        S_001C6820_Pair *p = this->elems[this->idx].pairs;
+        do {
+            if (!(param_1 > p->time)) {
+                return result;
+            }
+            result = p->value;
+            i++;
+            p++;
+        } while (i < count);
     }
     return result;
 }
