@@ -97,6 +97,19 @@ struct S_35360_Mgr {
     S_35360_Tbl *f4e0;
 };
 
+struct UIQuad { int x, y, z, w; };
+struct UIPositionItem { char pad0[0x170]; UIQuad f170, f180; void func_0012A770(int, int); };
+struct UIOwner {
+    void func_0002EF70(int, int);
+    void func_00030240(int, int, UIQuad *, UIQuad *, void *);
+};
+struct S_35560_State {
+    char pad0[0x24]; int f24;
+    char pad28[8]; UIPositionItem *f30; UIOwner *f34;
+    int f38; int f3c;
+};
+extern UIQuad D_002A1514, D_002A1524;
+
 struct C_00035360 {
     virtual void v0();
     virtual void v1();
