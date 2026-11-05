@@ -29,6 +29,7 @@ struct SoultreeObject;
 
 struct C_0019B760_Mgr {
     void func_0013B210(void *p);
+    void func_0013C8A0(int h, void *buf, int size, int count);
 };
 extern C_0019B760_Mgr *D_002BEAAC;
 void func_001E8390(void *p);
