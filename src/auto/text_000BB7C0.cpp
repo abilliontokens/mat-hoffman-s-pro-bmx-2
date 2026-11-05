@@ -145,6 +145,14 @@ undefined4 C_000BC0B0::func_000BC0B0(void)
   return *(undefined4 *)(*(int *)(in_ECX + 0x284) * 0x1a8 + 0x124 + *(int *)(in_ECX + 0x27c));
 }
 
+int C_000BBE30::func_000BC0F0(int idx)
+{
+    if (D_002A8490->f2E0->f324 == 1) {
+        return f27C->f10C;
+    }
+    return f27C[idx].f10C;
+}
+
 void C_000BBE30::func_000BC240(void)
 {
     f288 = 0;
