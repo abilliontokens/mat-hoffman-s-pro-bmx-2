@@ -53,6 +53,15 @@ void *SpringCollisionModel::func_001AB7B0(unsigned int flags)
     return this;
 }
 
+StateMachine *StateMachine::func_001AC080()
+{
+    func_00157600(1);
+    field_24 = 0;
+    field_28 = 0;
+    vtbl = (void *)&D_0028C03C;
+    return this;
+}
+
 StringTable *StringTable::func_001AC3A0()
 {
     func_0001DFE0();
