@@ -46,6 +46,13 @@ struct Vec4_143660 {
         z = c;
         w = d;
     }
+    Vec4_143660() {}
+    Vec4_143660(f32 a, f32 b, f32 c, f32 d) {
+        x = a;
+        y = b;
+        z = c;
+        w = d;
+    }
 };
 
 struct Alloc190 {
