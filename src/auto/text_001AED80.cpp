@@ -17,6 +17,57 @@ struct C_001AF320 {
     void func_001AF320(void);
 };
 
+struct C_001AF300 {
+    void *vtbl;
+    void *func_001AF300(int a0);
+    void func_00157600(int a0);
+};
+
+struct C_001AF0D0 {
+    void *vtbl;
+    int f4;
+    int f8;
+    void func_001AF0D0();
+};
+
+struct C_0013B210 {
+    void func_0013C8A0(int a0, void *a1, int a2, int a3);
+};
+
+extern C_0013B210 *D_002BEAAC;
+
+struct C_001AF100 {
+    char pad0[4];
+    int func_001AF100(int a0, int a1, int a2, int a3);
+};
+
+struct C_002A829C_Sel {
+    char pad0[0xc];
+    int fC;
+};
+
+struct C_002A829C {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6(int a0, int a1);
+    char pad4[0x10];
+    C_002A829C_Sel *arr;
+    int func_00161850(int a0);
+    void func_001B26C0(int a0);
+};
+
+extern C_002A829C *D_002A829C;
+
+struct C_001AF250 {
+    char pad0[4];
+    int f4;
+    int func_001AF250(int a0, int a1);
+};
+
 
 undefined4 C_001AF090::func_001AF090(byte param_1)
 {
