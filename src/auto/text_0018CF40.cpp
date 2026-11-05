@@ -48,7 +48,7 @@ int C_0018D580::func_0018D580(unsigned int id)
     int i;
 
     for (i = 0; i < idCount; i++) {
-        if (id == ids[i].f5) {
+        if (id == (unsigned int)ids[i].pad6[0]) {
             return i;
         }
     }
