@@ -97,6 +97,32 @@ struct LightEmitter {
 
 extern LightEmitter *D_002E2930;
 
+struct LM_Obj {
+    virtual void v0(int flag);
+};
+
+struct LightManager {
+    void *vtbl;
+    char pad4[0x34];
+    void *f38;
+    void *f3C;
+    char pad40[0x10];
+    void *f50;
+    char pad54[0x10];
+    void *f64;
+    char pad68[0x1C];
+    void *f84;
+    char pad88[4];
+    LM_Obj *f8C;
+    void func_0015F080();
+};
+
+extern int D_00287934;
+void func_001E8390(void *p);
+struct C_0015D250 {
+    void func_0015D250();
+};
+
 void C_0015E300::func_0015E300(int idx, S_0015E300_V3 *pos, int *val)
 {
     if (idx >= 0 && idx < f78) {
