@@ -81,6 +81,8 @@ struct C_000DE650 {
     S_000DE650_Obj *group2[2];
     void func_001BE3F0();
     void func_000DE650();
+    C_000DE650 *func_000DE4D0(int a);
+    void func_001BE360(int a);
 };
 
 void C_000DE300::func_000DE300()
