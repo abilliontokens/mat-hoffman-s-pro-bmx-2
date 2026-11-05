@@ -1,6 +1,17 @@
 /* 22 functions from 0x001B5D90 to 0x001B6A70, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_001B6410 {
+    int unk0;
+    int unk4;
+    char unk8;
+    char pad9[0x103];
+    int unk10C;
+    int unk110;
+    int unk114;
+    C_001B6410* func_001B6410(void);
+};
+
 struct C_001B5EA0 {
     int unk0;
     int unk4;
@@ -29,6 +40,17 @@ C_001B5EA0* C_001B5EA0::func_001B5EA0(void) {
     unk0 = (int)&D_0028CC9C;
     unk10C = -1;
     unk110 = 0;
+    return this;
+}
+
+C_001B6410* C_001B6410::func_001B6410(void) {
+    extern int D_0028CD24;
+    unk4 = 0;
+    unk8 = 0;
+    unk0 = (int)&D_0028CD24;
+    unk10C = 0;
+    unk110 = 0;
+    unk114 = 0;
     return this;
 }
 
