@@ -175,7 +175,7 @@ struct C_00188CB0 {
 
 extern int D_0028A154;
 
-extern char D_002764F0[];
+extern char D_002764F0[5];
 extern int D_002BA160;
 struct __declspec(align(16)) M_001887A0 { float m[16]; };
 void func_000265C0(M_001887A0 *out, void *a, void *b, void *c, int d, int e);
