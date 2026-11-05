@@ -120,11 +120,23 @@ struct C_001AE810 {
 };
 
 
+float __stdcall func_001AE530(float x, float y)
+{
+    extern float D_00278788;
+    extern float D_0028AC88;
+    float dx = x - D_00278788;
+    float dy = y - D_0028AC88;
+
+    return sqrtf(dx * dx + dy * dy);
+}
+
 void C_001AE810::func_001AE810(void)
 {
     extern int D_0028C1D0;
     extern int D_0028C1A4;
     extern int D_00284E94;
+    C_001AE810F10 *p10;
+    C_001AE810F14 *p14;
 
     vtbl = (void *)&D_0028C1D0;
     if (f1C != 0) {
@@ -134,13 +146,15 @@ void C_001AE810::func_001AE810(void)
         func_00201100(f20);
     }
     D_002AA6C0->func_001B26C0(fC);
-    if (f10 != 0) {
-        f10->func_0014A540();
-        func_001E891B(f10);
+    p10 = f10;
+    if (p10 != 0) {
+        p10->func_0014A540();
+        func_001E891B(p10);
     }
-    if (f14 != 0) {
-        f14->func_00012140();
-        func_001E891B(f14);
+    p14 = f14;
+    if (p14 != 0) {
+        p14->func_00012140();
+        func_001E891B(p14);
     }
     vtbl = (void *)&D_0028C1A4;
     if (f4 != 0) {
