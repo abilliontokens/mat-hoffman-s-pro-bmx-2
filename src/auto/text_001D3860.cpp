@@ -357,13 +357,13 @@ unsigned C_001D4200::func_001D4060(int a)
     case 3:
         return 8;
     case 4:
-        return 0x10000;
+        return (unsigned)&D_00010000;
     case 5:
-        return 0x20000;
+        return (unsigned)&D_00020000;
     case 6:
-        return 0x40000;
+        return (unsigned)&D_00040000;
     case 7:
-        return 0x80000;
+        return (unsigned)&D_00080000;
     }
     return 0;
 }
