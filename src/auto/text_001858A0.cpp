@@ -19,6 +19,7 @@ extern char D_002A90B4;
 struct S_Vec4_001858A0 {
     float x, y, z, w;
     S_Vec4_001858A0() { x = y = z = 0.0f; w = 1.0f; }
+    void Set(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
 };
 
 extern float D_002A90B8;
