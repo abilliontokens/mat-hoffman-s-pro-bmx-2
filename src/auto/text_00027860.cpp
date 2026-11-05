@@ -139,6 +139,31 @@ void C_00027D40::func_00027D40(void) {
     unk580 = 0;
 }
 
+void C_00028070::func_00027D60(void) {
+    int state;
+
+    if (unk468 != 0) {
+        unk5E8 = (unk470 != 0) ? 5 : 1;
+    } else {
+        state = unk5E8;
+        if (state == 1 && unk4F8 != 0) {
+            unk5E8 = 2;
+        } else if (unk454 != 0) {
+            unk5E8 = 3;
+        } else if (state == 3 && unk698 != 0) {
+            unk5E8 = 4;
+        } else if (unk1E8->unk64 != 0 && unk45C == D_00275544) {
+            unk5E8 = 0;
+        }
+    }
+    if (unk5E8 == 0) {
+        unk5EC->func_00026130();
+        unk5F0->func_00026130();
+        unk5F4->func_00026130();
+        unk724 = 0;
+    }
+}
+
 extern "C" void func_000262B0(void);
 void C_00028070::func_00028070(void) {
     S_28070_Sound *sound;
