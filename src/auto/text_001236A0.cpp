@@ -18,6 +18,11 @@ struct S_001236A0_Vec4 {
     }
 };
 
+struct S_001236A0_Point {
+    S_001236A0_Vec3 v;
+    float w;
+};
+
 struct S_001236A0_Node {
     int unk0;
     int unk4;
@@ -77,6 +82,36 @@ void func_00123C50(int a1, int a2, int a3, int a4, int a5, int a6, int a7) {
     int func_00123AF0(...);
     D_002B92F4 = a7;
     func_00123AF0(a1, a2, a3, a4, a5, a6);
+}
+
+int func_00123DE0(int a1, int a2, int a3, unsigned short a4, S_002B9290 *tree, int a6) {
+    int func_00120B20(...);
+    int func_00122810(...);
+    int r;
+    S_001236A0_Vec4 hi, lo;
+    S_001236A0_Node *node;
+    if (a4 & 0x8000) {
+        S_001236A0_Leaf20 *leaf = &tree->leaves[a4 & 0x7fff];
+        return func_00120B20(leaf, a1, a2, a3, a6);
+    }
+    node = &tree->nodes[a4];
+    lo.x = node->v0.x;
+    lo.y = node->v0.y;
+    lo.z = node->v0.z;
+    hi.x = node->v1.x;
+    hi.y = node->v1.y;
+    hi.z = node->v1.z;
+    lo.w = 1.0f;
+    hi.w = 1.0f;
+    if (func_00122810(&lo, &hi, a1, a2, a3, a6) != 0) {
+        r = func_00123DE0(a1, a2, a3, node->left, tree, a6);
+        if (r == 0) {
+            return func_00123DE0(a1, a2, a3, node->right, tree, a6);
+        }
+    } else {
+        r = 0;
+    }
+    return r;
 }
 
 void func_00123EF0(int a1, int a2, int a3, int a4, int a5, int a6, int a7) {
