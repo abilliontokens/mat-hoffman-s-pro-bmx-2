@@ -172,7 +172,18 @@ struct S_41F00_P4 {
 };
 
 extern S_41F00_P4 D_002A14D4;
+extern float D_002A14D8;
+extern float D_002A14DC;
+extern float D_002A14E0;
 extern char D_00276F8C[];
+
+static inline void SetP4_00041F00(S_41F00_P4 *p, float x, float y, float z, float w)
+{
+    p->x = x;
+    p->y = y;
+    p->z = z;
+    p->w = w;
+}
 
 struct S_41F00_Obj {
     char pad0[0x28];
