@@ -18,6 +18,10 @@ extern char D_0027B1CC[];
 extern char D_0027B1C0[];
 extern char D_002A2734[];
 extern char D_002A2764[];
+extern char D_0027B25C[];
+extern char D_0027B244[];
+extern char D_0027B22C[];
+extern char D_0027B214[];
 
 struct C_000A4080_Stream {
     int func_00169710(const char *name);
