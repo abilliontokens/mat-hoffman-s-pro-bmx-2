@@ -70,6 +70,19 @@ struct C_001646B0 {
 
 struct C_00163A50 {
     void *func_00163A50(void *a, void *b);
+    void func_00162A80(void *p);
+};
+
+void func_001E891B(void *p);
+void func_001E8390(void *p);
+
+struct C_0013B210 {
+    void func_0013B210(void *p);
+};
+extern C_0013B210 *D_002BEAAC;
+
+struct C_00164520 {
+    void func_00164520(void);
 };
 
 int func_001EA426(const char *a, const char *b);
