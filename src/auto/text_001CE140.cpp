@@ -51,11 +51,8 @@ struct XboxMusic {
     char pad2c[0xc];
     int state;
     SoundList list3c;
-    char pad4c[8];
-    void *f54;
-    char pad58[0xc];
     SoundList list64;
-    char pad74[0x30];
+    char pad8c[0x18];
     int f_a4;
     int f_a8;
     char padac[0xc];
