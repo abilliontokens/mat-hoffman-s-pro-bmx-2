@@ -72,6 +72,52 @@ void C_000F1B60::func_000F1B60(void) {
     D_002B91AC->f34->func_001D6600();
 }
 
+void C_000F1BA0::func_000F1BA0() {
+    C_001D5AD0 *p;
+    S_002B91AC_000F1B60 *s;
+    C_001D5AD0 **ptr;
+    int count;
+    p = unk280 ? D_002B91AC->unk68 : D_002B91AC->unk50;
+    p->func_001D5AD0();
+    p = unk284 ? D_002B91AC->unk6C : D_002B91AC->unk54;
+    p->func_001D5AD0();
+    s = D_002B91AC;
+    s->unk24->func_001D5AD0();
+    s->unk28->func_001D5AD0();
+    s->unk2C->func_001D5AD0();
+    s->unk30->func_001D5AD0();
+    ptr = arr3F8; count = 2;
+    do {
+        p = *ptr;
+        unsigned int color = (p->f38 & 0xffffff) | (unk3CC << 24);
+        unsigned char flags = p->f58 | 2;
+        p->f38 = color; p->f58 = flags;
+        (*ptr)->func_001D5AD0();
+        ptr++; count--;
+    } while (count != 0);
+    ptr = arr3E8; count = 4;
+    do {
+        p = *ptr;
+        unsigned int color = (p->f38 & 0xffffff) | (unk3CC << 24);
+        unsigned char flags = p->f58 | 2;
+        p->f38 = color; p->f58 = flags;
+        (*ptr)->func_001D5AD0();
+        ptr++; count--;
+    } while (count != 0);
+    ptr = arr400; count = 4;
+    do {
+        p = *ptr;
+        p->f38 = (p->f38 & 0xffffff) | (unk3CC << 24);
+        p->f58 |= 2;
+        p = ptr[4];
+        p->f38 = (p->f38 & 0xffffff) | (unk3CC << 24);
+        p->f58 |= 2;
+        p = ((int *)ptr)[-10] ? *ptr : ptr[4];
+        p->func_001D5AD0();
+        ptr++; count--;
+    } while (count != 0);
+}
+
 BmxUIPageHPHChoice_000F1D00 *BmxUIPageHPHChoice_000F1D00::func_000F1D00(int a0) {
     int i;
     int *p;
