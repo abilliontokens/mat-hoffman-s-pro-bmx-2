@@ -89,12 +89,11 @@ void func_0012B140(void) {
     func_001576C0();
 }
 
-void C_0012B510::func_0012B510(void)
+C_0012B510R *C_0012B510R::func_0012B510(void)
 {
     extern int D_002840FC;
-    C_0012B510 *p;
-    p = this;
-    p->unk0 = (int)&D_002840FC;
+    unk0 = (int)&D_002840FC;
+    return this;
 }
 
 void __stdcall func_0012B520(undefined4 *param_1)
