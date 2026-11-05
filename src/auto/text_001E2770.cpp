@@ -351,4 +351,75 @@ int __stdcall func_001E29CD(S_func_001E29CD_arg0 *obj)
     return 0;
 }
 
+int __stdcall lcg_dither_step(S_func_001E2B60_arg0 *self, S_func_001E2B60_arg1 *arg, float *gains)
+{
+    float level = func_00243639(self->f344);
+    float inv = 1.0f / arg->f6c;
+    float scale = inv * level;
+    short *src = arg->f0;
+    float *dst = arg->f60;
+    char *flags = arg->f8;
+    float *pa = arg->fc;
+    int *pb = arg->f10;
+    int i = 0;
+    int seg = 0;
+    int j = 0;
+
+    if (self->f30 == 0) {
+        memset(dst, 0, self->f324 * 4);
+        for (i = self->f324; i < self->f328; i++) {
+            dst[i] = src[j++] * gains[i] * scale;
+        }
+        memset(dst + self->f328, 0, (self->f60 - self->f328) * 4);
+    } else {
+        float amp = self->f340 * D_002902B8;
+        int n = self->f324;
+        int end;
+        float t;
+        for (i = 0; i < n; i++) {
+            dst[i] = func_001E2B60_noise(self) * amp * gains[self->f324] * scale;
+        }
+        n = self->f3c4;
+        for (; i < n; i++) {
+            t = func_001E2B60_noise(self) * amp;
+            if (i >= self->f354[seg + 1]) {
+                seg++;
+            }
+            dst[i] = (src[j] + t) * gains[i] * scale;
+            j++;
+        }
+        while (i < self->f328) {
+            if (i >= self->f354[seg + 1]) {
+                seg++;
+            }
+            end = self->f354[seg + 1];
+            if (end >= self->f328) {
+                end = self->f328;
+            }
+            if (flags[seg] == 1) {
+                float g = func_00243639(*pb) * *pa * inv * D_002902B8;
+                for (; i < end; i++) {
+                    dst[i] = func_001E2B60_noise(self) * gains[i] * g;
+                }
+                pa++;
+                pb++;
+            } else {
+                if (self->f328 < end) {
+                    end = self->f328;
+                }
+                for (; i < end; i++) {
+                    dst[i] = (func_001E2B60_noise(self) * amp + src[j]) * gains[i] * scale;
+                    j++;
+                }
+            }
+        }
+        n = self->f60;
+        t = scale * gains[self->f328 - 1] * amp;
+        for (; i < n; i++) {
+            dst[i] = func_001E2B60_noise(self) * t;
+        }
+    }
+    return 0;
+}
+
 #pragma optimize("", on)

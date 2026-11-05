@@ -524452,6 +524452,7 @@
   "func_001D5760": "C_001D5760::C_001D5760",
   "func_001D5E90": "C_001D5E90::C_001D5E90",
   "func_001DDBC1": "MmFreeContiguousMemory",
+  "func_001E2B60": "lcg_dither_step",
   "func_001E2EFE": "XcSHAUpdate",
   "func_001E2F04": "XcSHAInit",
   "func_001E2F0A": "XcSHAFinal",
