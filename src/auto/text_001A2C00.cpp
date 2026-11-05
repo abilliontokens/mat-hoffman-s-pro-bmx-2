@@ -63,6 +63,8 @@ struct S_001A33A0_Snd {
     virtual void v4(); virtual int v5(int a); virtual void v6(); virtual int v7();
     virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
     virtual void v12(int a);
+    virtual void v13();
+    virtual void v14(int a);
 };
 struct S_001A33A0_Elem {
     S_001A33A0_Snd *snd;
@@ -305,6 +307,27 @@ void ResponseEmitter::func_001A3050(int a)
         }
     }
     ((C_00157A00 *)this)->func_00157A00(a);
+}
+
+int MaterialSoundEmitter::func_001A33A0(int idx, S_001A33A0_Vec3 pos, int a4, int vol)
+{
+    if (idx >= 1 && idx <= list1c0.count) {
+        int v = 0;
+        if (v < vol) {
+            v = vol;
+        }
+        if (v > 100) {
+            v = 100;
+        }
+        vol = v;
+        S_001A33A0_Elem *e = list1c0.at(idx - 1);
+        if (e->snd->v7() == 0) {
+            e->snd->v12(vol * 100 / 100);
+            f1a4->func_0001CE80(e->snd, &pos, D_002A9ECC, e->f8, e->fC);
+            return e->snd->v5(4);
+        }
+    }
+    return 0;
 }
 
 int MaterialSoundEmitter::func_001A3B10(void)
