@@ -22,6 +22,27 @@ struct S_00131400_In {
     S_Vec4 f10;
 };
 
+/* a 0x14-byte tracked value: current value, a time, and its limits */
+struct S_KeyNode {
+    f32 f0;
+    int f4;
+    f32 f8;
+    f32 fC;
+    f32 f10;
+};
+
+void *func_001E8A44(int size);
+
+static S_KeyNode *initKeyNode(S_KeyNode *n, f32 value, int time)
+{
+    n->f0 = value;
+    n->f4 = time;
+    n->fC = 3.4028235e38f;
+    n->f10 = -3.4028235e38f;
+    n->f8 = 1.0f;
+    return n;
+}
+
 /* CinematographerCam */
 struct C_001313C0 {
     void *vtbl;
