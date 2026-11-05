@@ -82,6 +82,11 @@ extern C_00191470_Vec D_002A97D8;
 
 void func_001E8920(void *dst, const void *src, int n);
 
+static __inline int Min(const int &a, const int &b)
+{
+    return a > b ? b : a;
+}
+
 struct C_00157600 {
     void func_00157600(int a);
 };
@@ -221,9 +226,12 @@ undefined4 C_001923D0::func_001923D0(byte param_1)
 C_001923F0 *C_001923F0::func_001923F0(int a)
 {
     func_00192720();
-    unk30 = unk28 = a;
+    unk28 = a;
+    unk34 = 0;
+    unk30 = a;
+    unk2C = 0;
     vtbl = &D_0028AB24;
-    unk38 = unk2C = unk34 = 0;
+    unk38 = 0;
     return this;
 }
 
