@@ -11,6 +11,8 @@ struct C_00157660 {
 
 /* the engine's file wrapper (D_002BEAAC) */
 struct C_0013B210 {
+    void func_0013AF80(int h);
+    void func_0013C110(int h);
     void func_0013AFF0(int a, int b, int c);
     void func_0013C8A0(int h, void *buf, int size, int count);
 };
