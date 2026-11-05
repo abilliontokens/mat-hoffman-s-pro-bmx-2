@@ -158,6 +158,7 @@ struct S_00181140_Loaded {
     void *f74;
     void *f78;
     int f7c;
+    char pad80[4];
     void *f84;
     void *f88;
     void *f8c;
@@ -183,6 +184,57 @@ struct Loader {
     void **items;
     void func_001816A0(void *stream);
 };
+
+int C_00181140::func_00181140(int a1, char *path, int a3)
+{
+    int h;
+    int ptr;
+    int v18;
+    int vC;
+    int v10;
+    int v14;
+    char buf[0x104];
+    S_00181140_Loaded *p;
+    int n;
+
+    if (D_002A4C10[0] != 0) {
+        strcpy(buf, D_002A4C10);
+        if (D_002A4C0F[strlen(D_002A4C10)] != '\\')
+            func_001E8BF0(buf, (char *)&D_00284644, 0x7f);
+        strcat(buf, path);
+    } else {
+        strcpy(buf, path);
+    }
+    func_00030F30(buf, &D_0028463C);
+    p = 0;
+    h = -1;
+    ptr = 0;
+    if (D_002BEAAC->func_0013D310(buf, &D_00275FB4, &h, &ptr, 1) == 0)
+        return 0;
+    D_002BEAAC->func_0013C8A0(h, &v18, 1, 4);
+    D_002BEAAC->func_0013C8A0(h, &vC, 4, 1);
+    D_002BEAAC->func_0013C8A0(h, &v10, 4, 1);
+    if (v18 != 0x4d2 || func_001EA426((char *)&vC, &D_00284638) != 0 || v10 != 1)
+        D_002BEAAC->func_0013C110(h);
+    func_00132E90(h, &v14);
+    func_00180600(a3, v14);
+    D_002BEAAC->func_0013C110(h);
+    f104 = a3;
+    p = (S_00181140_Loaded *)func_001E8A44(0x9c);
+    if (p != 0)
+        p = p->func_00134980();
+    n = fF8;
+    p->f7c = n;
+    p->f84 = func_001E8A44(p->f7c * 4);
+    p->f88 = func_001E8A44(p->f7c * 4);
+    p->f8c = func_001E8A44(p->f7c * 4);
+    p->f90 = func_001E8A44(p->f7c * 2);
+    p->f70 = AllocZero_00181140(p->f7c * 32, p->f7c * 2);
+    p->f74 = AllocZero_00181140(p->f7c * 16, p->f7c);
+    p->f78 = AllocZero_00181140(p->f7c * 16, p->f7c);
+    f54 = p;
+    return 1;
+}
 
 RenderableObjectData *RenderableObjectData::func_00181410(void)
 {
