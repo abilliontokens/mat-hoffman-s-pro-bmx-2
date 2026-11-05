@@ -76,6 +76,10 @@ struct C_0004F220 {
     C_0004F220 *func_0004F220(int a0);
 };
 
+struct C_0004ECC0Vec {
+    u32 x, y, z, w;
+};
+
 struct C_0004ECC0 {
     void *vtbl;
     char pad4[0x280];
@@ -157,6 +161,7 @@ C_0004ECC0 *C_0004ECC0::func_0004ECC0(int a0)
     extern u32 D_002A1758;
     u32 *p;
     u32 *q;
+    u32 *v;
     char *c;
     int n;
     int i;
@@ -180,13 +185,15 @@ C_0004ECC0 *C_0004ECC0::func_0004ECC0(int a0)
     n = 20;
     do {
         *c = 0;
-        q[0] = D_002A174C;
-        q[1] = D_002A1750;
-        q[2] = D_002A1754;
-        q[3] = D_002A1758;
-        c += 0x78;
+        v = q;
+        v[0] = D_002A174C;
+        v[1] = D_002A1750;
+        v[2] = D_002A1754;
         q += 4;
-    } while (--n != 0);
+        c += 0x78;
+        n--;
+        v[3] = D_002A1758;
+    } while (n != 0);
     fD54 = 0;
     for (i = 0; i < 8; i++) {
         fD30[i] = 0;
