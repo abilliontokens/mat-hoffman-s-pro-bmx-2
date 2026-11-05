@@ -192,9 +192,9 @@ int QuadTreeNode::func_0017CF30(void *item)
                     prev->next = node->next;
                 }
                 D_002EFD80->f90->func_0001E790(node);
-                if (found)
-                    break;
             }
+            if (found)
+                break;
             prev = node;
             node = node->next;
         } while (node != 0);
