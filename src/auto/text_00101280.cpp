@@ -238,6 +238,46 @@ undefined4 C_00101B20::func_00101B20(byte param_1)
   return in_ECX;
 }
 
+void C_00101B40::func_00101B40()
+{
+    S_00101B40_Owner *owner = f124;
+
+    if (f29C != 0) {
+        f2AC = 1;
+        f2A8 = 0;
+        owner->func_000BA9B0(0x2c)->func_00103260(0);
+        owner->func_000BA9B0(0x2d)->func_00103260(0);
+        owner->func_000BA9B0(0x2e)->func_00103260(0);
+        owner->func_000BA9B0(0x2f)->func_00103260(0);
+        owner->func_000BA9B0(0x30)->func_00103260(0);
+        f3C4 = 0xff;
+        f3C8 = 0;
+        f3CC = 0;
+        f3D0 = 0;
+        f3D4 = 0.25f;
+        func_001BEE50(1, f3BC, 0);
+        f29C = 0;
+    }
+    if (f2A0 != 0) {
+        owner->func_000BA9B0(0x2c)->func_00103350();
+        owner->func_000BA9B0(0x2d)->func_00103350();
+        owner->func_000BA9B0(0x2e)->func_00103350();
+        owner->func_000BA9B0(0x2f)->func_00103350();
+        owner->func_000BA9B0(0x30)->func_00103350();
+        f3C4 = 0;
+        f3C8 = 0xff;
+        f3CC = 0xff;
+        f3D0 = 0;
+        f3D4 = 0.25f;
+        f2A0 = 0;
+    }
+    if (f3C0 != 0) {
+        func_000F1B60();
+        func_000F1BA0();
+    }
+    func_00157960();
+}
+
 undefined4 C_00101CB0::func_00101CB0(byte param_1)
 {
   int func_000F1D90(...);
