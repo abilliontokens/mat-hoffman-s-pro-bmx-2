@@ -155,6 +155,16 @@ struct C_00157CF0 {
     int func_0001E010(void);
 };
 
+void C_00157810::func_001578A0(void)
+{
+    S_00157810_Child *c;
+
+    for (c = f10; c != 0; c = c->fC) {
+        c->v25();
+    }
+    f21_b3 = 1;
+}
+
 int C_00157810::func_00157960(void)
 {
     if (f1C & 8) {
