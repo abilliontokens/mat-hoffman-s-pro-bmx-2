@@ -49,7 +49,11 @@ struct C_000831E0 {
     int fC4C;
     char padC50[4];
     int fC54;
-    char padC58[0xCA4 - 0xC58];
+    int fC58;
+    int fC5C;
+    char padC60[4];
+    char sC64[0xCA0 - 0xC64];
+    float fCA0;
     char sCA4[0x32];
     char sCD6[0x32];
     void func_000831E0(void);
