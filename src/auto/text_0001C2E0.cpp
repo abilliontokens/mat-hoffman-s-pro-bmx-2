@@ -9,6 +9,7 @@ struct C_0001C750 {
  char pad0[0x130]; float f130[4]; float f140[4]; char pad150[0x40]; float f190[4]; char pad1A0[0x8C]; C_00197EC0_1C750 *f22C;
  void func_0001C750(S_0001C610_V4 a, S_0001C610_V4 b);
 };
+static __forceinline void Add3_1C750(float *a, float *b) { a[0]+=b[0]; a[1]+=b[1]; a[2]+=b[2]; }
 struct C_0001C710 {
     char pad0[0x130];
     float unk130;
