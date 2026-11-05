@@ -1,6 +1,7 @@
 /* 30 functions from 0x000318A0 to 0x00032860, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct ViewState_318A0 { int data[6]; };
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 
 extern char D_002A5870[];
