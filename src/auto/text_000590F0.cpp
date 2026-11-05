@@ -383,6 +383,36 @@ int BmxGame::func_00059A00(void)
     return ((C_001D0EC0 *)this)->func_001D0EC0();
 }
 
+int BmxGame::func_00059E10(int a, int b)
+{
+    S_00059E10_View *view;
+
+    f124 = 0;
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
+    if (f2AC != 0) {
+        f2AC->v29();
+        D_002A8490->f4->fB4->v9();
+        f2AC->v28(a, b);
+    } else {
+        void *m = func_001E8A44(0x34);
+        f2AC = m ? ((C_000B9A60 *)m)->func_000B9A60(1) : 0;
+        f2AC->v27(a, b, -1);
+        f14->func_001577A0((int)f2AC, -1);
+    }
+    view = D_002A8490->f2AC->f24;
+    if (D_002A8490->f2E0->f4 == 0xb) {
+        view->f25C->f74->func_00030020(D_00278084);
+        view->f25C->f74->func_000300C0(D_00278070);
+        view->f25C->f74->func_00030210();
+        view->f25C->f74->func_000301A0();
+    }
+    view->f268->func_001C4B60(500, 0);
+    if (f2F0 != 0) {
+        f2F0->func_001A5BC0();
+    }
+    return 1;
+}
+
 void BmxGame::func_00059F50(void)
 {
     D_002EFDB8->v9();
