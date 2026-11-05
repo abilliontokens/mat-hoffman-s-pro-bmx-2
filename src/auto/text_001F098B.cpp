@@ -37,6 +37,38 @@ struct S_001EF734 {
 };
 
 #pragma optimize("t", off)
+extern char D_00295CE8[];
+S_001EF734 *func_001F1DF5(S_001EF734 *);
+void *func_001F0F86(void *out)
+{
+    S_001EF734 local, base, temps[2];
+    void *func_001F098B(void *, int);
+    local.value = 0;
+    local.initial = 0;
+    local.func_001EEF4F(func_001F098B(&base, 1));
+    unsigned flags = local.flags;
+    char *s = D_00295CE8;
+    if ((flags & 15) == 0 && *D_002F6A28 != 0) {
+        if (*D_002F6A28 == '@') goto consumed;
+        local.func_001EEF4F(func_001F1DF5(&temps[0])->func_001EFD7A(&temps[1], s)->func_001EFAB5(&base, &local));
+        flags = local.flags;
+    }
+    char c = *D_002F6A28;
+    if (c == '@') {
+        consumed:
+        ++D_002F6A28;
+    } else if (c != 0) {
+        local.value = 0;
+        if ((flags & 15) != 3) local.flags = (flags & ~14u) | 1;
+    } else if (local.func_001EF1E7()) {
+        local.func_001EF333(2);
+    } else {
+        local.func_001EEF4F(base.func_001EF170(2)->func_001EFD7A(&temps[1], s)->func_001EFAB5(&temps[0], &local));
+    }
+    ((S_001EF734 *)out)->func_001EEEE6(&local);
+    return out;
+}
+
 void *func_001F1085(S_001EF734 *out)
 {
     S_001EF734 *func_001EFE9D(S_001EF734 *out);
