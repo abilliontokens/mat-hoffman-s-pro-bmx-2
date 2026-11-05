@@ -6,9 +6,7 @@ static __forceinline float Max(float a, float b) {
     return _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b)).m128_f32[0];
 }
 static __forceinline float Min(float a, float b) {
-    float r;
-    _mm_store_ss(&r, _mm_min_ss(_mm_set_ss(a), _mm_set_ss(b)));
-    return r;
+    return _mm_min_ss(_mm_set_ss(a), _mm_set_ss(b)).m128_f32[0];
 }
 struct C_0009FD60 {
     char pad0[0x3c];
