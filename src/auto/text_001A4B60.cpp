@@ -124,7 +124,7 @@ struct C_001A5730 {
     f32 f20;
     S_001A5730_Item arr24[3];
     S_001A5730_Item arr54[3];
-    void func_001A5730(void);
+        C_001A5730 *func_001A5730(void);
 };
 
 struct C_001A52C0 {
@@ -136,8 +136,8 @@ void C_001A52C0::func_001A52C0(void)
 {
   int* in_ECX = (int*)this;
   
-                    
-                    
+                      
+                      
   (**(code **)(*in_ECX + 0x80))();
   return;
 }
@@ -169,15 +169,16 @@ void C_SphereCollisionObject::func_001A5370(void)
     }
 }
 
-void C_001A5730::func_001A5730(void)
+C_001A5730 *C_001A5730::func_001A5730(void)
 {
     u32 *p;
     int n;
 
-    f1c = 0.0f;
-    f18 = 0.0f;
-    f14 = 0.0f;
-    f20 = 1.0f;
+    p = (u32 *)&f14;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
     p = (u32 *)&arr24[0];
     n = 3;
     do {
@@ -196,6 +197,7 @@ void C_001A5730::func_001A5730(void)
         p[3] = 0x3f800000;
         p += 4;
     } while (--n != 0);
+    return this;
 }
 
 void func_001A5790(void) {
