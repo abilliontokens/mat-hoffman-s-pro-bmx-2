@@ -68,6 +68,44 @@ struct C_0015C6C0 {
     int unk14;
     void func_0015C6C0(int param_1, int param_2);
 };
+extern float D_00275998;
+void *func_001E8A44(int size);
+
+struct C_0015D070 {
+    char pad0[0x8c];
+    float f8c;
+    float f90;
+    void func_0015D070(float a0, float a1);
+};
+
+struct S_0015CF60_Cell {
+    int f0;
+    int f4;
+    int f8;
+    int fc;
+    int f10;
+};
+
+struct C_0015CF60 {
+    char pad0[0x28];
+    int f28;
+    char pad2c[0x4];
+    float f30;
+    float f34;
+    float f38;
+    float f3c;
+    char pad40[0x10];
+    float f50;
+    float f54;
+    float f58;
+    float f5c;
+    char pad60[0x6c];
+    S_0015CF60_Cell *fcc;
+    unsigned int func_0015CF60(void);
+    void func_0015D000(int a0, int a1, int a2);
+};
+
+int func_0015CAB0(float *base, int hi, float v);
 extern float D_00287848;
 extern float D_00287844;
 extern float D_00287840;
