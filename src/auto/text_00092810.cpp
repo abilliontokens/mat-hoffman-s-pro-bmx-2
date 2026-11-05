@@ -1,6 +1,8 @@
 /* 21 functions from 0x00092810 to 0x00093620, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <string.h>
+
 struct C_00092870 {
     undefined4 func_00092870(byte param_1);
 };
@@ -158,6 +160,32 @@ int C_00092890::func_00092BE0(void)
 
         s.func_001D3E30();
         s.func_001D3F20(&D_0027A144, 0xd);
+        if (D_002A8490->f2e0->f2cc->func_001D4200(&s) == 0) {
+            return 0;
+        }
+        p = s.func_001D3F50();
+        do {
+            c = *p;
+            p++;
+            *d = c;
+            d++;
+        } while (c != 0);
+    }
+    return 1;
+}
+
+int C_00092890::func_00092C70(void)
+{
+    C_00092BE0_Str s;
+    char *d = &f254;
+
+    if (f254 == 0) {
+        char *p;
+        char c;
+
+        s.func_001D3E30();
+        s.func_001D3F20(&D_0027A150, 0xd);
+        s.func_001D3E60(&D_00279100);
         if (D_002A8490->f2e0->f2cc->func_001D4200(&s) == 0) {
             return 0;
         }
