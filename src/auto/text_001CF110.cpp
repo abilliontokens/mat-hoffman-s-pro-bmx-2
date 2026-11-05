@@ -120,6 +120,14 @@ struct SoundThread_001CFDC0 {
     void func_001CB8A0();
 };
 
+struct C_0001C930 {
+    void *func_0001C930(void);
+};
+extern int D_0028EEEC;
+extern int D_002ABA44, D_002ABA48, D_002ABA4C, D_002ABA50;
+extern int D_002ABA64, D_002ABA68, D_002ABA6C, D_002ABA70;
+int func_001CB0A0(int x);
+
 struct SoundObj_001CFE90 {
     virtual void v0();
     virtual void v1();
@@ -614,6 +622,94 @@ int XboxMusic::func_001CFB00(int arg)
     }
     if (arg && !func_001CD450(cur, 1)) history.func_001CBCF0(cur);
     return cur;
+}
+
+int SoundThread_001CFDC0::func_001CFC00(void)
+{
+    S_001CF1B0_Packet pkt;
+    unsigned int block;
+    int r;
+    int cur = fC8;
+    int want = fCC;
+
+    if (cur != want) {
+        switch (cur) {
+        case 0:
+            switch (want) {
+            case 2:
+                D_00220AE0(fB8[0], 0);
+                D_00220AE0(fB8[1], 0);
+                func_001CB8A0();
+                break;
+            }
+            break;
+        case 1:
+            switch (want) {
+            case 0:
+                fB8[0]->Flush();
+                fB8[1]->Flush();
+                func_001CB7D0();
+                break;
+            case 2:
+                D_00220AE0(fB8[0], 0);
+                D_00220AE0(fB8[1], 0);
+                break;
+            }
+            break;
+        case 2:
+            switch (want) {
+            case 0:
+                fB8[0]->Flush();
+                fB8[1]->Flush();
+                func_001CB7D0();
+                break;
+            }
+            break;
+        }
+        fC8 = want;
+        if (want != 2)
+            return 0;
+        while (fB4 != 0) {
+            if (func_001CB780(&block, fB0) == 0)
+                return 0;
+            r = func_001CF1B0(block, &pkt);
+            if (r < 0)
+                return r;
+            if (pkt.size != 0) {
+                pkt.rest[0] = (u32)&fD0[block];
+                pkt.completed = 0;
+                r = fB8[fB0]->Process(&pkt, 0);
+                if (r < 0)
+                    return r;
+            }
+        }
+        return 0;
+    }
+    if (want != 2)
+        return 0;
+    if (fAC != f24 || (fA0 & 2)) {
+        fA0 &= ~2;
+        fB8[0]->Flush();
+        fB8[1]->Flush();
+        D_00220AE0(fB8[0], 0);
+        D_00220AE0(fB8[1], 0);
+        func_001CB8A0();
+    }
+    while (fB4 != 0) {
+        if (func_001CB780(&block, fB0) == 0)
+            return 0;
+        r = func_001CF1B0(block, &pkt);
+        if (r < 0)
+            return r;
+        if (pkt.size != 0) {
+            pkt.rest[0] = (u32)&fD0[block];
+            pkt.completed = 0;
+            r = fB8[fB0]->Process(&pkt, 0);
+            if (r < 0)
+                return r;
+        }
+    }
+    return 0;
 }
 
 int __stdcall func_001CFDC0(SoundThread_001CFDC0 *p)
