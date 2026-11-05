@@ -118,10 +118,10 @@ void C_00028070::func_00028070(void) {
     S_28070_Sound *sound;
 
     if (unk470 != 0 && unk740 != 0) {
-        if (unk480 != 0) {
-            sound = unk214->v27();
-        } else {
+        if (unk480 == 0) {
             sound = unk218->v27();
+        } else {
+            sound = unk214->v27();
         }
     } else {
         sound = unk720;
@@ -137,7 +137,7 @@ done:
     unk468 = 0;
     unk470 = 0;
     if (unk5EC != 0) {
-        func_000262B0();
+        unk5EC->func_000262B0();
     }
     unk484 = 0;
     unk488 = 0;
