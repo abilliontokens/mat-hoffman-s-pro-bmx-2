@@ -439,6 +439,13 @@ fail:
     return 0;
 }
 
+void DXIndexBufferManager::func_001C3C80(void)
+{
+    unk0 = (int)&D_0028E378;
+    ((IndexBufferManager *)this)->func_001C3B60();
+    unk0 = (int)&D_0028E36C;
+}
+
 void C_001C3D30::func_001C3D30(int a0) {
     unk10 = a0;
 }
