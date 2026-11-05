@@ -12,6 +12,7 @@ struct C_000867F0 {
     char pad4C[0x24];
     int f70;
     void func_000867F0(int a);
+    void func_00086910(int a);
 };
 extern int D_00279734;
 struct C_0005E840 { void func_0005E840(const char *s); };
