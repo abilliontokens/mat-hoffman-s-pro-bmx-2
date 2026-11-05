@@ -2,6 +2,9 @@
 #include "common.h"
 
 extern "C" int strcmp(const char *s1, const char *s2);
+extern "C" unsigned int strlen(const char *);
+extern "C" char *func_001E95A4(char *, const char *);
+extern char D_0027CEF0[];
 
 struct C_0018D580_Sub {
     u8 a;
