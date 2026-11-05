@@ -26,6 +26,11 @@ struct C_0013FA30_Data {
     void func_0015B150();
 };
 
+struct C_0013FA30_VT {
+    virtual void vfunc0();
+    virtual int vfunc1();
+};
+
 struct C_0013FA30 {
     char pad0[0x24];
     C_0013FA30_Data *f24;
