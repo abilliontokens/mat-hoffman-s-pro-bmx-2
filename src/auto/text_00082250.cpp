@@ -27,6 +27,18 @@ struct C_000831C0 {
 };
 
 
+void C_000823C0::func_000823C0(int param_1, int param_2)
+{
+    float f2 = (float)param_2;
+    float f1 = (float)param_1;
+    if (f14 == f1 && f18 == f2) {
+        return;
+    }
+    f14 = f1;
+    f18 = f2;
+    f58 |= 1;
+}
+
 void C_00082400::func_00082400(short param_1)
 {
   int in_ECX = (int)this;
@@ -49,3 +61,12 @@ void C_00082430::func_00082430(float param_1)
   }
   return;
 }
+
+int C_000831C0::func_000831C0(void)
+{
+    if (D_00275544 < fd64) {
+        return 1;
+    }
+    return 0;
+}
+
