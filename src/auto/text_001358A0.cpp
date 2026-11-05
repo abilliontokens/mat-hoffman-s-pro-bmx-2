@@ -19,3 +19,9 @@ void C_00135D70::func_00135D70(int a0, int a1) {
     unkC = a0;
     unk10 = a1;
 }
+
+int func_00135E80()
+{
+    return ++D_002BA700;
+}
+
