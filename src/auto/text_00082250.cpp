@@ -84,4 +84,4 @@ int C_000831C0::func_000831C0(void)
     }
     return 0;
 }
-
+struct OverlayVector { int x,y,z,w; void Clear() { x=0; y=0; z=0; w=0; } };
