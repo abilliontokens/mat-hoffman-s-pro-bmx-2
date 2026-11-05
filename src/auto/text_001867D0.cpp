@@ -1,5 +1,15 @@
 /* 19 functions from 0x001867D0 to 0x00187670, found by Ghidra. */
 #include "common.h"
+struct C_00186EF0 {
+    int unk0;
+    char unk4;
+    char pad5[0x103];
+    int unk108;
+    int unk10C;
+    int unk110;
+    C_00186EF0* func_00186EF0(void);
+};
+
 
 extern int D_00289B5C;
 extern int D_00289998;
@@ -94,6 +104,36 @@ int C_00186AF0::func_00186AF0(C_00186AF0Param *param)
     param->func_00168C20((void *)&D_002899B0, 0, &f178);
     param->func_00168C50((void *)&D_0028999C, 0, &f17c);
     return 1;
+}
+
+C_00186B90 *C_00186B90::func_00186B90()
+{
+    C_00186B90 *self;
+    int limit;
+    int count;
+    self = this;
+    ((C_001867D0 *)self)->func_001867D0();
+    self->vtbl = (void *)&D_00289A28;
+    limit = sizeof(f168) - 1;
+    if (limit > strlen("body")) {
+        count = strlen("body");
+    } else {
+        count = limit;
+    }
+    func_001E8920(self->f168, (const char *)&D_00289A1C, count);
+    self->f168[count] = 0;
+    self->f370 = 0;
+    return self;
+}
+
+C_00186EF0* C_00186EF0::func_00186EF0(void) {
+    extern int D_00289A88;
+    unk0 = (int)&D_00289A88;
+    unk110 = 0;
+    unk108 = 0;
+    unk4 = 0;
+    unk10C = 0;
+    return this;
 }
 
 C_00187640 *C_00187640::func_00187640(void *param)
