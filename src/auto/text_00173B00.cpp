@@ -39,6 +39,8 @@ struct C_00198330 {
     virtual void v70(); virtual void v74(); virtual void v78(); virtual void v7C();
     virtual void v80(); virtual void v84(); virtual void v88();
     virtual void v8C(int a0, int a1, int a2);
+    virtual void v90(); virtual void v94(); virtual void v98(); virtual void v9C();
+    virtual void vA0();
     C_00198330 *func_00143580(int a);
     void func_00197E70(Vec4 *a0);
     void func_00199600(Vec4 v);
