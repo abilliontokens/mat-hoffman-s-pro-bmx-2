@@ -6,6 +6,7 @@ extern int D_002F69EC;
 void *func_001E8AA5(unsigned int size);
 void func_001E8390(void *p);
 void func_001EB390(int n);
+int func_001EB302(...);
 int func_001DF5B3(void);
 int __stdcall func_001E148B(int heap, int flags, void *p, unsigned int size);
 int func_001EB3BE(unsigned int size);
