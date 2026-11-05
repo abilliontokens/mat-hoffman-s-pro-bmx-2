@@ -96,9 +96,11 @@ struct VehicleAIOwner {
     virtual void v43();
     virtual void v44();
     virtual void v45();
-    virtual void v46(int a, int b);
-    char pad4[0x4B4];
-    int f4B8;
+          virtual void v46(int a, int b);
+      char pad4[0x454];
+      float f458[4];
+      char pad468[0x4B8 - 0x468];
+      int f4B8;
     int func_0012FCF0(int a, int b);
 };
 
