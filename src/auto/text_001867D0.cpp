@@ -109,6 +109,11 @@ struct C_00186C70 {
     C_00186C70 *func_00186C70(void);
 };
 
+static __forceinline int clamp_len_00186C70(int limit, int len)
+{
+    return limit > len ? len : limit;
+}
+
 struct C_00186AF0 {
     char pad0[0x168];
     int f168;
