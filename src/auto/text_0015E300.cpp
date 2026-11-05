@@ -66,6 +66,15 @@ struct LightEmitter_Sub {
     float f74;
 };
 
+struct S_0015E4B0_V4 {
+    float x, y, z, w;
+};
+
+extern float D_002755E8;
+extern float D_002A80A4;
+extern float D_00275460;
+float func_0014F510(float a);
+
 /* LightEmitter */
 struct LightEmitter {
     void *vtbl;
