@@ -494,6 +494,29 @@ void func_00031630(void) {
     func_000314F0();
 }
 
+void BmxEvent_00030A30::func_00031640(void)
+{
+    int i;
+    if (f1d0) func_001577A0(f1d0, -1);
+    if (fe4) func_001577A0(fe4, -1);
+    for (i = 0; i < f90; i++) {
+        if (f170[i]) func_001577A0(f170[i], -1);
+    }
+    if (f198) func_001577A0(f198, -1);
+    if (f15c) func_001577A0(f15c, -1);
+    if (f164) func_001577A0(f164, -1);
+    if (f1a0) func_001577A0(f1a0, -1);
+    if (f160) func_001577A0(f160, -1);
+    if (f16c) func_001577A0(f16c, -1);
+    if (f170[8]) func_001577A0(f170[8], -1);
+    if (f170[9]) func_001577A0(f170[9], -1);
+    if (f19c) func_001577A0(f19c, -1);
+    if (f1a4) func_001577A0(f1a4, -1);
+    if (f1a8) func_001577A0(f1a8, -1);
+    if (f1ac) func_001577A0(f1ac, -1);
+    if (f168) func_001577A0(f168, -1);
+}
+
 void BmxEvent_00030A30::func_000317B0(int flag)
 {
     int i;
