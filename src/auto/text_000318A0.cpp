@@ -76,7 +76,11 @@ struct S_BmxEvent_Scene {
 
 /* the level object an event works on */
 struct S_BmxEvent_Level {
-    char pad0[0x4e0];
+    char pad0[0x3e4];
+    int f3e4;
+    char pad3e8[0x4a8 - 0x3e8];
+    int *f4a8;
+    char pad4ac[0x4e0 - 0x4ac];
     S_BmxEvent_Scene *f4e0;
     int func_000AF900(int a);
     void func_000B03A0(int a, int b, int c);
