@@ -124,31 +124,35 @@ int func_0014F350()
 {
     float lo = 0.0f;
     float hi = 5.9604645e-08f;
-    int i;
+    float **tp;
     float *p;
-    int e;
+    float *q;
+    float scale;
+    int i;
 
-    for (e = 0; e < 25; e++) {
-        if (D_002DF740[e].table) {
-            func_001E8390(D_002DF740[e].table);
+    tp = &D_002DF748;
+    do {
+        if (*tp) {
+            func_001E8390(*tp);
         }
         p = (float *)func_001E8AA5(D_002A7708 * 4);
-        D_002DF740[e].table = p;
+        *tp = p;
         if (!p) {
             return 0;
         }
-        D_002DF740[e].lo = lo;
-        float scale = (float)(D_002A7708 - 2) / (hi - lo);
-        D_002DF740[e].scale = scale;
-        float step = D_00275460 / scale;
+        ((float *)tp)[-2] = lo;
+        scale = (float)(D_002A7708 - 2) / (hi - lo);
+        ((float *)tp)[-1] = scale;
+        q = p;
         for (i = 0; i < D_002A7708 - 1; i++) {
-            *p = (float)acos(D_00275460 - ((float)i * step + lo));
-            p++;
+            *q = (float)acos(D_00275460 - ((float)i / scale + lo));
+            q++;
         }
+        *q = q[-1];
         lo = hi;
         hi = hi + hi;
-        *p = p[-1];
-    }
+        tp += 3;
+    } while ((int)tp <= (int)&D_002DF868);
     return 1;
 }
 
