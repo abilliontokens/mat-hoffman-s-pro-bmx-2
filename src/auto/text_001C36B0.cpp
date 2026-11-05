@@ -566,6 +566,20 @@ VideoFXManager *VideoFXManager::func_001C3E50(int a)
     return this;
 }
 
+void VideoFXManager::func_001C3EA0(int n)
+{
+    unk24 = n;
+    if (n > 1) {
+        C_001D5350 *p = (C_001D5350 *)func_001E8A44(8);
+        unk28 = p != 0 ? p->func_001D5350() : 0;
+        unk28->func_001D53A0(D_0028E448);
+        p = (C_001D5350 *)func_001E8A44(8);
+        unk2C = p != 0 ? p->func_001D5350() : 0;
+        unk2C->func_001D53A0(D_0028E440);
+    }
+    func_001D3F50();
+}
+
 uint C_001C3F10::func_001C3F10(void)
 {
   extern undefined4 D_002F07B8;
