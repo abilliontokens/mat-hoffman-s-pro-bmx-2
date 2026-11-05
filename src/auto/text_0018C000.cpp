@@ -74,6 +74,11 @@ struct S_0018C9B0_Node {
     S_0018C9B0_Node *f10C;
 };
 
+struct ScriptFreeNode { char pad0[0x10]; ScriptFreeNode *next; };
+struct ScriptFreeChild { char pad0[0x10]; void *f10; char pad14[8]; };
+struct ScriptFreeGroup { char pad0[0x20]; ScriptFreeChild *f20; int f24; int f28; void *f2C; char pad30[8]; };
+struct ScriptFreeEntry { char pad0[0x54]; void *f54; char pad58[8]; };
+struct ScriptFreePair { void *p; int unk4; };
 struct C_0018C960 {
     void *vtbl;
     char pad4[0x148];
@@ -525,5 +530,38 @@ void C_0018C960::func_0018C9B0(int keep)
         }
         node = next;
     }
+}
+
+int C_0018CE00::func_0018CE00(int id, char *name)
+{
+    int slot;
+    int i;
+    int n;
+
+    slot = -1;
+    for (i = 0; i < count; i++) {
+        if (entries[i].id == 0) {
+            slot = i;
+            break;
+        }
+    }
+    if (slot == -1) {
+        slot = count;
+        if (capacity < count + 1) {
+            capacity = count + 50;
+            entries = (S_0018CE00_Entry *)func_001E83E8(entries, capacity * 0x60);
+            if (entries == 0) {
+                return slot;
+            }
+        }
+    }
+    entries[slot].id = id;
+    n = Min_0018CE00(strlen(name), 0x3f);
+    func_001E8920(entries[slot].name, name, n);
+    entries[slot].name[n] = 0;
+    entries[slot].f54 = 0;
+    entries[slot].f58 = 0;
+    count++;
+    return slot;
 }
 
