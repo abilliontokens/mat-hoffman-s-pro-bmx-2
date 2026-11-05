@@ -52,6 +52,13 @@ struct C_000843E0 {
     float f80C;
     float f810;
     float f814;
+    void SetQuad(float a, float b, float c, float d)
+    {
+        f808 = a;
+        f80C = b;
+        f810 = c;
+        f814 = d;
+    }
     char pad818[0x410];
     int fC28;
     char padC2C[0xDC];
@@ -148,10 +155,10 @@ void C_000843E0::func_000843E0(int a)
     if (a != 0) {
         fC28 = 0;
         f610 = 0;
-        f808 = 0;
-        f80C = 0;
-        f810 = 0;
-        f814 = 0;
+        f808 = 0.0f;
+        f80C = 0.0f;
+        f810 = 0.0f;
+        f814 = 0.0f;
     }
     fDA0 = 1;
     f158 = 0;
