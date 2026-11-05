@@ -289,6 +289,20 @@ void BmxEvent_00030A30::func_00031450(void)
     }
 }
 
+void BmxEvent_00030A30::func_000314A0(void)
+{
+    int i;
+
+    if (f198 != 0) {
+        f198->v6();
+    }
+    for (i = 0; i < f90; i++) {
+        if (f170[i] != 0) {
+            f170[i]->v6();
+        }
+    }
+}
+
 void BmxEvent_00030A30::func_00031610(int a0, int a1)
 {
     if (f1d8 != 0) {
