@@ -70,6 +70,51 @@ struct C_001628A0 {
     int func_001628A0(float t);
 };
 
+void *func_001E83E8(void *p, int size);
+int func_001EA426(const char *a, const char *b);
+
+/* polymorphic helper object held in the item's f4..f10 arrays (virtual destructor, slot 0) */
+struct S_00162790_Virt {
+    virtual ~S_00162790_Virt();
+    static void operator delete[](void *p) { func_001E891B(p); }
+};
+
+/* ref-counted item stored in C_00162A80's table */
+struct C_00162790 {
+    char *unk0;
+    S_00162790_Virt *unk4;
+    S_00162790_Virt *unk8;
+    S_00162790_Virt *unkC;
+    S_00162790_Virt *unk10;
+    void *unk14;
+    void *unk18;
+    int unk1C;
+    int unk20;
+    unsigned char unk24;
+    char pad25[3];
+    int unk28;
+    int unk2C;
+    int unk30;
+    int unk34;
+    int unk38;
+    int unk3C;
+    int unk40;
+    C_00162790 *func_00162790(void);
+    void func_001627E0(void);
+};
+
+struct C_00162A80 {
+    int unk0;
+    int unk4;
+    int unk8;
+    int unkC;
+    int unk10;
+    int unk14;
+    C_00162790 **unk18;
+    void func_00162A80(C_00162790 *item);
+    C_00162790 *func_00162B20(const char *name);
+};
+
 extern int D_00287C24;
 extern int D_002AA46C;
 void *func_001E8A44(int size);
