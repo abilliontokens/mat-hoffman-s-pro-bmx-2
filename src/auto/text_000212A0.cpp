@@ -104,6 +104,8 @@ struct C_000217F0 {
     char f7a;
     char f7b;
     C_000217F0 *func_000217F0(int a);
+    void func_001578D0();
+    int func_00021910();
 };
 
 inline float Dot3_000212A0(V4_000212A0 *p, V4_000212A0 *q)
@@ -332,7 +334,7 @@ void C_00021740::func_00021740(S_Stream_000212A0 *stream, int base)
         fC = 0;
     }
     stream->func_00168C20(&D_00276164, 0, &b);
-    f0 = b - 1 + base;
+    f0 = base + b - 1;
     if (f0 < 0) {
         f0 = 0;
     }
