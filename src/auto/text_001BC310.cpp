@@ -210,3 +210,19 @@ int C_UIGlobalManager::func_001BC7F0(void *a)
     return 1;
 }
 
+void C_UIGlobalManager::func_001BC810()
+{
+    int i;
+
+    D_002EFDB8->vf7(1);
+    D_002EFDB8->vf8();
+    for (i = 0; i < f28; i++) {
+        f2C[i]->v5();
+    }
+    if (f24 != 0) {
+        f24->func_00157810();
+        f24->v2();
+        f24 = 0;
+    }
+}
+
