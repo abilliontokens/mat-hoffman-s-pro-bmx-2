@@ -111,6 +111,22 @@ void C_000A3B60::func_000A3B60(int param_1)
   return;
 }
 
+int C_000A2ED0::func_000A3BA0(C_00169710 *cfg)
+{
+    char buf[0x104];
+    int count;
+    cfg->func_00169710(D_0027AEE4);
+    cfg->func_00168C20(D_0027B190, 0, &count);
+    if (count == 0) {
+        return 0;
+    }
+    unk594 = (char *)func_001E8A44(0x104);
+    func_001ADCC0(buf, 0x104, D_0027B17C);
+    cfg->func_00169710(buf);
+    cfg->func_00168BE0(D_0027B168, D_00275630, unk594, -1);
+    return 1;
+}
+
 int C_000A2ED0::func_000A3C50(void)
 {
     if (unk594 == 0) {
