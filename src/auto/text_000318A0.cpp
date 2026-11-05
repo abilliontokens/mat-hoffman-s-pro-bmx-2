@@ -337,6 +337,17 @@ void C_000321C0::func_00032410(int tag, int amount)
     }
 }
 
+void C_000321C0::func_00032460(int tag, int arg)
+{
+    int i;
+
+    for (i = 0; i < unk90; i++) {
+        if (unk64->f4E0->items[i]->f11B0 == tag) {
+            unk64->f4E0->items[i]->func_00108630(arg);
+        }
+    }
+}
+
 void BmxEvent::func_000324C0(int a)
 {
     if (f1c0 != 0) {
