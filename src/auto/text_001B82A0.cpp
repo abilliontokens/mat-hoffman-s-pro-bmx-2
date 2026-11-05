@@ -44,3 +44,11 @@ struct C_001B8450 {
     C_001B8450 *func_001B8450(void *param);
     void func_001B8480(void);
 };
+
+C_001B82A0 *C_001B82A0::func_001B82A0(void *param) {
+    ((C_00157600 *)this)->func_00157600(param);
+    f24 = 0;
+    f28 = 0;
+    vtbl = (void *)&D_0028CF94;
+    return this;
+}
