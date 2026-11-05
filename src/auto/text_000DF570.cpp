@@ -122,6 +122,62 @@ struct C_000DFA80 {
 
 extern float D_002755EC;
 
+void C_000DFCF0::func_000DF570()
+{
+    for (int i = 0; i < 18; i++) {
+        arr894[i]->func_001B1980();
+        arr8dc[i]->func_001B1980();
+        if (i + 1 == unk280) {
+            arr894[i]->func_001B2270(0xffbfa35a);
+            arr8dc[i]->func_001B2270(0xffbfa35a);
+            float a = arr384[i] - D_002755EC;
+            float b = arr3cc[i] - D_002755EC;
+            if (unk2cc != 0) {
+                arr894[i]->func_001B1A30(244.0f, a, 0.5f);
+                arr8dc[i]->func_001B1A30(244.0f, b, 0.5f);
+            } else {
+                arr894[i]->func_001B1A30(244.0f, a, 0.0f);
+                arr8dc[i]->func_001B1A30(244.0f, b, 0.0f);
+            }
+            arr894[i]->func_001B1860(0, -1.0f, 0xff, 0.8f, 0, 0, 0, 0xff, 0.95f, 0, 0, 0.2f, 0);
+            arr8dc[i]->func_001B1860(0, -1.0f, 0xff, 0.8f, 0, 0, 0, 0xff, 0.95f, 0, 0, 0.2f, 0);
+        } else if (i + 1 == unk2e8) {
+            arr894[i]->func_001B2270(0xffcccccc);
+            arr8dc[i]->func_001B2270(0xffcccccc);
+            if (unk2cc != 0) {
+                arr894[i]->func_001B1A30(244.0f, arr384[i], 0.5f);
+                arr8dc[i]->func_001B1A30(244.0f, arr3cc[i], 0.5f);
+            } else {
+                arr894[i]->func_001B1A30(244.0f, arr384[i], 0.0f);
+                arr8dc[i]->func_001B1A30(244.0f, arr3cc[i], 0.0f);
+            }
+            arr894[i]->func_001B1860(0, -1.0f, 0xff, 0.95f, 0, 0, 0, 0xff, 0.8f, 0, 0, 0.2f, 0);
+            arr8dc[i]->func_001B1860(0, -1.0f, 0xff, 0.95f, 0, 0, 0, 0xff, 0.8f, 0, 0, 0.2f, 0);
+        } else {
+            arr894[i]->func_001B2270(0xffcccccc);
+            arr8dc[i]->func_001B2270(0xffcccccc);
+            if (unk2cc != 0) {
+                arr894[i]->func_001B1A30(244.0f, arr384[i], 0.5f);
+                arr8dc[i]->func_001B1A30(244.0f, arr3cc[i], 0.5f);
+            } else {
+                arr894[i]->func_001B1A30(244.0f, arr384[i], 0.0f);
+                arr8dc[i]->func_001B1A30(244.0f, arr3cc[i], 0.0f);
+            }
+            arr894[i]->func_001B1860(0, -1.0f, 0xff, 0.8f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
+            arr8dc[i]->func_001B1860(0, -1.0f, 0xff, 0.8f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
+        }
+        if (arr3cc[i] > D_00275AF0 || arr3cc[i] < D_0027F974) {
+            arr8dc[i]->func_001B1980();
+        }
+        if (arr384[i] > D_00275AF0 || arr384[i] < D_00275994) {
+            arr894[i]->func_001B1980();
+        }
+    }
+    if (unk2cc != 0) {
+        unk2cc = 0;
+    }
+}
+
 void C_000DFA80::func_000DF8C0()
 {
     for (int i = 0; i < 18; i++) {
