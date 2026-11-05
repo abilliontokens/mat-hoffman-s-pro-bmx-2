@@ -3,6 +3,19 @@
 #include "ghidra.h"
 
 extern int D_00284DEC;
+extern int D_00284EA0;
+
+void *func_001E8A44(int size);
+
+/* Eco3DDataItem */
+struct C_0013F650 {
+    void *vtbl;
+    char pad4[0xD0 - 4];
+    int fD0;
+    int fD4;
+    int fD8;
+    float fDC;
+};
 extern int D_0004035C;
 extern int D_00040340;
 
