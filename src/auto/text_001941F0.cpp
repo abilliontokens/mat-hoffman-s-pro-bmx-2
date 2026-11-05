@@ -141,6 +141,23 @@ void *C_00194280::func_00194280(int flags)
     return this;
 }
 
+void C_001942C0::func_001942C0(void)
+{
+    unsigned int i;
+
+    vtbl = (void *)&D_0028AE14;
+    if (f24 != 0) {
+        for (i = 0; i < f4C; i++) {
+            S_001942C0_Obj *e = f24[i];
+            if (e != 0) {
+                e->v2();
+            }
+        }
+        func_001E891B(f24);
+    }
+    func_00157660();
+}
+
 void C_00194310::func_00194310(int a0, int a1) {
     unk48 = a0;
     unk44 = a1;
