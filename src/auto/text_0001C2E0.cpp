@@ -103,6 +103,52 @@ struct C_0001C550 {
     void *func_0001C550(int flags);
 };
 
+void func_001E891B(void *p);
+
+struct C_0001CA30 {
+    void *vtbl;
+    char pad4[4];
+    void *f8;
+    char padC[0x10];
+    void *f1C;
+    void func_0001CA30(void);
+};
+
+struct C_0001C8F0 {
+    void *vtbl;
+    char pad4[0x20];
+    unsigned char f24;
+    char pad25[3];
+    int f28;
+    int f2C;
+    void *func_0001C8F0(int a);
+    void func_00157600(int a);
+};
+
+struct C_0001C930 {
+    void *vtbl;
+    char pad4[4];
+    unsigned char f8;
+    char pad9[0x103];
+    int f10C;
+    int f110;
+    int f114;
+    int f118;
+    int f11C;
+    int f120;
+    void *func_0001C930(void);
+    void func_0001DFE0(void);
+};
+
+struct C_0001C980 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    int f28;
+    void *func_0001C980(int a);
+    void func_00157600(int a);
+};
+
 struct C_0001C4C0_Item {
     virtual void dummy0();
     virtual void dummy1();
@@ -182,10 +228,43 @@ void func_0001C5E0(float *out, float s, float *in) {
     vec3_set(out, s * in[0], s * in[1], s * in[2]);
 }
 
+void func_0001C610(float *out, float *a, float *b) {
+    vec3_set(out, b[2] * a[1] - b[1] * a[2], b[0] * a[2] - b[2] * a[0], b[1] * a[0] - b[0] * a[1]);
+}
+
+void func_0001C680(float *out, float x, float y, float z, int unused, float *m) {
+    vec3_set(out, y * m[1] + z * m[2] + x * m[0], y * m[5] + z * m[6] + x * m[4], y * m[9] + z * m[10] + x * m[8]);
+}
+
 void C_0001C710::func_0001C710(float a0, float a1, float a2, int a3) {
     unk130 = a0 + unk130;
     unk134 = a1 + unk134;
     unk138 = a2 + unk138;
+}
+
+float func_0001C870(float a, float b, float c, float d, float e) {
+    float r;
+
+    if (d == b) {
+        return D_00275544;
+    }
+    r = (a - b) * (e - c) / (d - b) + c;
+    if (e <= c) {
+        if (r < e) {
+            return e;
+        }
+        if (c < r) {
+            return c;
+        }
+    } else {
+        if (e < r) {
+            return e;
+        }
+        if (r < c) {
+            return c;
+        }
+    }
+    return r;
 }
 
 void C_0001C920::func_0001C920(void) {
