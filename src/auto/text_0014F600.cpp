@@ -314,22 +314,25 @@ void func_0014FAD0(void)
     }
 }
 
-float func_0014FB30(float x)
+float func_0014FB30(float v)
 {
     extern float D_00275460;
     extern float D_00286AC0;
     extern float D_002756D4;
     extern float D_00275544;
-    float ax = fabs_0014FB30(x);
-    float sq = ax * ax;
+    struct {
+        volatile int tmp;
+        volatile float x;
+    } s;
+    float ax;
     float r;
 
-    if (ax > D_00275460) {
-        r = D_002756D4 - ax / (sq + D_00286AC0);
-    } else {
-        r = ax / (sq * D_00286AC0 + D_00275460);
-    }
-    if (x < D_00275544) {
+    s.x = v;
+    s.tmp = *(int *)&s.x & 0x7fffffff;
+    ax = *(float *)&s.tmp;
+    r = ax > D_00275460 ? D_002756D4 - ax / (ax * ax + D_00286AC0)
+                        : ax / (ax * ax * D_00286AC0 + D_00275460);
+    if (v < D_00275544) {
         r = -r;
     }
     return r;
@@ -455,10 +458,10 @@ C_00150360 *C_00150360::func_00150360(int a0)
     return this;
 }
 
-void C_00150360::func_00150390(float a, float b, float c, int d)
+void C_00150360::func_00150390(int a, float b, float c, int d)
 {
-    f30 = b;
     f24 = a;
+    f30 = b;
     f34 = c;
     f2C = (f44 - f48) * b + f48;
     f28 = (D_00275460 - c) * (f2C - f4C);
