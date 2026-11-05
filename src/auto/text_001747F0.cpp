@@ -51,3 +51,45 @@ void *C_00175170::func_00175170(int flags) {
     }
     return this;
 }
+
+void __fastcall func_00175210(u16 *src, int count) {
+    register int *dst;
+    do {
+        dst[2] = (*src & 0x7c00) << 9;
+        dst[1] = (*src & 0x3e0) << 14;
+        dst[0] = ((u8)*src & 0x1f) << 19;
+        dst += 3;
+        src++;
+        count--;
+    } while (count != 0);
+}
+
+u32 func_00175250(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch)
+{
+    u8 *srow;
+    u8 *drow;
+    u8 *s;
+    u8 *s1;
+    u8 *d;
+    int x;
+    int y;
+
+    srow = src;
+    drow = dst;
+    for (y = height; y > 0; y--) {
+        s = srow;
+        d = drow;
+        for (x = width; x > 0; x--) {
+            s1 = s + srcPitch * 3;
+            d[2] = (s1[5] + s[5] + s1[2] + s[2]) >> 2;
+            d[1] = (s1[4] + s1[1] + s[4] + s[1]) >> 2;
+            d[0] = (s1[3] + s1[0] + s[3] + s[0]) >> 2;
+            d += 3;
+            s += 6;
+        }
+        srow += srcPitch * 6;
+        drow += dstPitch * 3;
+    }
+    return 1;
+}
+
