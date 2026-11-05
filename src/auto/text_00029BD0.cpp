@@ -34,8 +34,10 @@ struct C_00029BD0 {
  int func_00029BD0();
 };
 
-struct Sub_0002A010 { char pad[0x68]; int f68; char pad6c[0xf0-0x6c]; V4_00029BD0 vf0; };
-struct World_0002A010 { void func_00199E50(V4_00029BD0 a, V4_00029BD0 b, float c); };
+struct F4_0002A010 { float x, y, z, w; };
+extern F4_0002A010 D_002A1110_f4;
+struct Sub_0002A010 { char pad[0x68]; int f68; char pad6c[0xf0-0x6c]; F4_0002A010 vf0; };
+struct World_0002A010 { void func_00199E50(F4_0002A010 a, F4_0002A010 b, float c); };
 struct C_0002A010 {
  char pad[0x1e8]; Sub_0002A010 *f1e8;
  char pad1ec[0x230-0x1ec]; World_0002A010 *f230;
