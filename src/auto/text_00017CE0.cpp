@@ -150,9 +150,12 @@ struct S_00017DA0_Ref {
 
 /* owner of the Tiki AI states: vtable-less game object */
 struct S_TikiOwner {
-    char pad0[0x4f4];
+    char pad0[0x4d4];
+    int f4d4;
+    char pad4d8[0x4f4 - 0x4d8];
     int f4f4;
-    char pad4f8[0x248];
+    char pad4f8[0x73c - 0x4f8];
+    int f73c;
     int f740;
     void func_00017760();
     void func_001C6DA0(int a, int b);
