@@ -61,6 +61,35 @@ struct MgrHOF2 {
 };
 extern MgrHOF2 *D_002B91AC;
 
+void BmxUIPageHOF2::func_000D5C70()
+{
+    D_002B91AC->unk34->func_001D6600();
+    D_002B91AC->unk3C->func_001D6600();
+    func_000D5860();
+    if (unk29C != 0) {
+        unk2AC = 1;
+        unk2A8 = 0;
+        func_000D59A0();
+        unk2B0 = 0xff;
+        unk2B4 = 0;
+        unk2B8 = 0;
+        unk2BC = 0;
+        unk2C0 = 0x3e800000;
+        func_001BEE30(0, 1);
+        unk29C = 0;
+    }
+    if (unk2A0 != 0) {
+        func_000D5B90();
+        unk2B0 = 0;
+        unk2B4 = 0xff;
+        unk2B8 = 0xff;
+        unk2BC = 0;
+        unk2C0 = 0x3e800000;
+        unk2A0 = 0;
+    }
+    func_00157960();
+}
+
 BmxUIPageHOF2 *BmxUIPageHOF2::func_000D5D40(int a0)
 {
     func_001BE360(a0);
