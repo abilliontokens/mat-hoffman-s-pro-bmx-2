@@ -101,3 +101,26 @@ void C_0017DC00::func_0017DC00()
   ((C_0017DC00 *)D_002EFD80)->func_0017D120(f8);
 }
 
+void C_0017DC00::func_0017E1D0(int x0, int y0, int x1, int y1, int x, int y, int size, int minSize)
+{
+    int i;
+
+    if (size >= minSize) {
+        for (i = 0; i < 4; i++) {
+            C_0017DC00 *child;
+            if (arr4 && (child = arr4[i]) != 0) {
+                int cx = x + ((i & 2) ? size : 0);
+                int cy = y + ((i & 1) ? size : 0);
+                if (x0 <= cx + size && x1 >= cx && y0 <= cy + size && y1 >= cy) {
+                    if (cx < x0 || cx + size > x1 || cy < y0 || cy + size > y1) {
+                        child->func_0017E1D0(x0, y0, x1, y1, cx, cy, size >> 1, minSize);
+                    } else {
+                        child->func_0017DC00();
+                    }
+                }
+            }
+        }
+    }
+    ((C_0017DC00 *)D_002EFD80)->func_0017D120(f8);
+}
+
