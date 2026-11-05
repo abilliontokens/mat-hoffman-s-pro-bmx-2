@@ -417,6 +417,13 @@ void *C_0001CA80::func_0001CA80(int flags) {
     return this;
 }
 
+void func_0001CB80(char *s) {
+    char *dot = func_001E8AC0(s, '.');
+    if (dot != 0) {
+        memset(dot, 0, strlen(dot));
+    }
+}
+
 int C_0001CBF0::func_0001CBF0(void) {
     return ++unk44 - 1;
 }
