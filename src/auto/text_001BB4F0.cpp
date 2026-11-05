@@ -154,6 +154,15 @@ void C_001BBAA0::func_001BBA60(void)
     }
 }
 
+void C_001BBAA0::func_001BBAA0(void *a, void *b)
+{
+    if (unk98 < unk94) {
+        unkB4[unk98] = a;
+        unkB8[unk98] = b;
+        unk98++;
+    }
+}
+
 void C_001BBDD0::func_001BBDD0(int *a, int b)
 {
     if (func_00135C70(0x14, 0, a, 0x80) != 0 && unk2E4 != 0) {
