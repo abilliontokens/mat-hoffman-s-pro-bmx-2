@@ -76,6 +76,7 @@ struct C_001CB940 {
     virtual void v1C(); virtual void v1D(); virtual void v1E();
     virtual void v1F(int a, int b);
     void func_001CB940(void);
+    void func_001CB960(void);
 };
 
 /* a sound object that can be handed focus by another one of the same kind */
