@@ -103,7 +103,6 @@ struct C_000831E0 {
     void func_00083B20(const char *name);
 };
 
-extern float D_002755E8;
 
 struct C_000836A0 {
     char pad0[0xCC];
