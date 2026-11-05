@@ -198,8 +198,9 @@ undefined4 C_00157290::func_00157290(byte param_1)
 void C_00157660::func_00157660(void)
 {
     extern int D_0028715C;
-    D_002DF94C--;
+    int n = D_002DF94C - 1;
     vtbl = (void *)&D_0028715C;
+    D_002DF94C = n;
     func_0001DFF0();
 }
 
