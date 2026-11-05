@@ -162,31 +162,6 @@ C_001C3810* C_001C3810::func_001C3810(int a0) {
     return this;
 }
 
-bool DXVertexBufferCache::func_001C3830(int a1, int a2)
-{
-    VertexBuffer *vb;
-    IndexBuffer *ib;
-
-    vb = (VertexBuffer *)func_001E8A44(0x18);
-    if (vb) {
-        vb->fC = 0;
-        vb->f10 = 0;
-        vb->vtbl = (void *)&D_0028E2C4;
-        vb->f4 = 0;
-        vb->func_001C3550(a1, a2);
-    } else {
-        vb = 0;
-    }
-    f4 = vb;
-    if (!vb)
-        return false;
-    ib = (IndexBuffer *)func_001E8A44(0x10);
-    if (ib)
-        ib = ib->func_0012A350(0, a2);
-    f8 = ib;
-    return ib != 0;
-}
-
 bool DXIndexBufferCache::func_001C38D0(int a1, int a2)
 {
     VertexBuffer *vb;
