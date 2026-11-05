@@ -57,3 +57,13 @@ struct RenderableObject {
     void func_00197820(int a);
     RenderableObject *func_001814B0(int a);
 };
+
+RenderableObjectData *RenderableObjectData::func_00181410(void)
+{
+    func_0001DFE0();
+    unk8 = 0;
+    unk10 = 0;
+    vtbl = &D_00289254;
+    unkC = 1.0f;
+    return this;
+}
