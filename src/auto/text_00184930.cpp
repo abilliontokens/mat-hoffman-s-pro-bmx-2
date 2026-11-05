@@ -243,6 +243,66 @@ struct C_00184930 {
     int func_00184FC0(void);
 };
 
+struct S_00185610_Vec4 {
+    float x, y, z, w;
+};
+
+struct S_00185610_Elem {
+    char pad0[0x134];
+    S_00185610_Vec4 f134;
+    float f144;
+    float f148;
+    char pad14c[0x160 - 0x14c];
+};
+
+struct S_00185610_Link;
+
+struct S_00185610_Node {
+    char pad0[0x24];
+    S_00185610_Link *f24;
+    char pad28[0x3c - 0x28];
+    int f3c;
+};
+
+struct S_00185610_Test {
+    int func_0017A1D0(void *pos, float range, float *dist);
+};
+
+struct S_00185610_Link {
+    S_00185610_Link *next;
+    S_00185610_Node *node;
+    S_00185610_Test *test;
+};
+
+struct S_00185610_Cam {
+    char pad0[0x28];
+    struct { char pad0[4]; S_00185610_Node *node; } *f28;
+    char pad2c[0x170 - 0x2c];
+    char f170[1];
+};
+
+struct S_00185610_Global {
+    char pad0[4];
+    S_00185610_Cam *f4;
+};
+
+struct S_00185610_Out {
+    char pad0[4];
+    float f4, f8, fC;
+    char pad10[4];
+    float f14, f18;
+};
+
+extern S_00185610_Global *D_002EFDB8;
+extern float D_002A9118;
+extern float D_00275460;
+
+struct S_00185610_Scene {
+    char pad0[0x344];
+    S_00185610_Elem *f344;
+    void func_00185610(S_00185610_Out *out);
+};
+
 /* PlayerStart */
 struct S_Stream {
     int func_00169710(char *name);
@@ -343,6 +403,47 @@ int C_00184930::func_00184D10(void)
     return 1;
 }
 
+#pragma intrinsic(memcmp)
+int C_00184930::func_00184FC0(void)
+{
+    void *mem;
+    C_0014E3E0 *obj;
+
+    if (f388 == 0) {
+        return 1;
+    }
+    if (memcmp(f388->f31c, D_002764F0, 5) == 0) {
+        func_001ADCC0(f388->f31c, 0x104, D_002895A0, f30, f134);
+    }
+    mem = func_001E8A44(0x2208);
+    if (mem != 0) {
+        obj = ((C_0014E3E0 *)mem)->func_0014E3E0(1);
+    } else {
+        obj = 0;
+    }
+    f3f0 = obj;
+    if (D_002F07E8 == 0) {
+        if (f340 == 1) {
+            mem = func_001E8A44(0x8b8);
+            if (mem != 0) {
+                D_002F07E8 = ((C_001C4F40 *)mem)->func_001C4F40();
+            } else {
+                D_002F07E8 = 0;
+            }
+            D_002F07E8->func_001C4F70(f388->f538, 0xff7fffff, f388->f540, f388->f53c,
+                                      0x7f7fffff, f388->f544, 0x42c00000);
+            D_002F07E8->func_001C4FA0(5000);
+        } else {
+            f350 = 1;
+            ((S_00184DD0_Vt *)this)->v65();
+        }
+    }
+    if (f3f0->func_0014ECD0(f3e4, f388->f31c, 0x115c, 1, 9, f388->f54c, f388->f550, 0) == 0) {
+        f3f0 = 0;
+        return 0;
+    }
+    return 1;
+}
 C_00185790 *C_00185790::func_00185790(void)
 {
     u32 *p;
