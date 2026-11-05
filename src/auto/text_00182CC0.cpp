@@ -8,10 +8,43 @@ void *func_001E8A44(int size);
 extern char D_00275678[];
 extern int D_002893EC;
 
+#include <string.h>
+
+extern char D_002893D8[];
+extern char D_002893BC[];
+extern char D_002893B4[];
+extern char D_0028939C[];
+extern char D_00275630[];
+extern char D_00276310[];
+char *func_001E8AC0(const char *s, int c);
+int func_001EA426(const char *a, const char *b);
+
 struct C_00168280 {
     C_00168280 *func_00168280(void);
     void func_001691E0(void);
     int func_00169490(char *buf, int flag);
+    int func_00169710(const char *name);
+    int func_00168C20(const char *key, int def, void *dst);
+    int func_00168BE0(const char *k1, const char *k2, char *dst, int size);
+};
+
+struct S_00183130_Obj {
+    char pad0[4];
+    char name[0x13C];
+    int f140;
+};
+
+struct S_00183130_Item {
+    char pad0[4];
+    int f4;
+    char pad8[4];
+    S_00183130_Obj *fC;
+};
+
+struct S_00183130_Group {
+    char pad0[0x24];
+    int f24;
+    S_00183130_Item **f28;
 };
 
 struct C_001B82A0 {
