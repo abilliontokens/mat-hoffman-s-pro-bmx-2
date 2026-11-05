@@ -13,7 +13,7 @@ extern char D_002A5EA0[], D_002A60B0[], D_002A45E0[], D_002A5870[], D_00275678[]
 extern char D_002A5FA8[], D_002A47F0[], D_002A48F8[], D_002A5348[];
 extern char D_002758F0[], D_002758E4[], D_002758D8[], D_002758CC[];
 
-template <class T> inline const T &Min_001554D0(const T &l, const T &r) { return r < l ? r : l; }
+template <class T> inline T Min_001554D0(T l, T r) { return l > r ? r : l; }
 
 /* the path buffers are saved and restored with a length-clamped copy */
 static __forceinline void CopyPath_001554D0(char *dst, const char *src)
@@ -119,18 +119,9 @@ void C_001554D0::func_001554D0(int a0)
     char name[0x104];
     void *mem;
     int i;
-    volatile int len;
-    volatile int lim;
-    volatile int res;
-    int n;
 
     f3C->f4->func_0019ABA0(D_002B9120->f4A8[D_002B9120->f348], 2);
-    len = strlen(D_002A5EA0);
-    lim = 0x103;
-    res = lim > len ? len : lim;
-    n = res;
-    func_001E8920(buf1, D_002A5EA0, n);
-    buf1[n] = 0;
+    CopyPath_001554D0(buf1, D_002A5EA0);
     CopyPath_001554D0(buf2, D_002A60B0);
     func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5870, D_002A45E0);
     func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
