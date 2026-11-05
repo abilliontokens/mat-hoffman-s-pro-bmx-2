@@ -2,7 +2,94 @@
 #include "common.h"
 
 extern int D_0028D334;
+extern int D_0028D3B4;
 extern "C" void *memset(void *dst, int c, unsigned int n);
+
+void func_001E8390(void *p);
+
+struct S_001BC710_PageObj {
+    virtual void destroy(int flags);
+};
+
+extern S_001BC710_PageObj *D_002F0630;
+
+struct S_001BC810_D8 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void vf7(int a);
+    virtual void vf8();
+};
+
+extern S_001BC810_D8 *D_002EFDB8;
+
+struct S_001BC810_Item {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+};
+
+struct S_001BC710_F24 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    virtual void v31();
+    virtual void v32();
+    virtual void v33();
+    virtual void v34();
+    virtual void v35();
+    virtual void v36();
+    void func_00157810();
+};
+
+/* UIGlobalManager */
+struct C_UIGlobalManager {
+    void *vtbl;
+    char pad4[0x20];
+    S_001BC710_F24 *f24;
+    int f28;
+    S_001BC810_Item **f2C;
+    int func_001BC7F0(void *a);
+    C_UIGlobalManager *func_001BC770(void *param);
+    void func_001BC7A0();
+    void func_001BC810();
+    void func_00157660();
+};
 
 void func_001BC310();
 
