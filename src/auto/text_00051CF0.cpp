@@ -253,6 +253,47 @@ struct C_00052BF0 {
 };
 
 
+void R_00051CF0::func_00051CF0()
+{
+    int i;
+    void *p;
+    f8c = 0;
+    func_00031630();
+    p = func_001E8A44(0x358);
+    f1d0 = p ? ((R_H *)p)->func_00092890(1) : 0;
+    f1d0->v10();
+    p = func_001E8A44(0x188);
+    f160 = p ? ((R_A *)p)->func_00079790(1) : 0;
+    f160->func_0005EDC0(this);
+    f160->v4();
+    p = func_001E8A44(0x1a0);
+    f164 = p ? ((R_B *)p)->func_0006E330(1) : 0;
+    f164->func_0006ECC0(this);
+    f164->v4();
+    p = func_001E8A44(0x140);
+    f1a0 = p ? ((R_C *)p)->func_000715B0(1) : 0;
+    f1a0->func_00071880(this);
+    f1a0->v4();
+    p = func_001E8A44(0xfc);
+    f194 = p ? ((R_D *)p)->func_0006D590(1) : 0;
+    f194->func_0006D750(this);
+    f194->v4();
+    for (i = 0; i < f90; i++) {
+        p = func_001E8A44(0xda4);
+        f170[i] = p ? ((R_E *)p)->func_00082450(1) : 0;
+        f170[i]->func_0008DB70(f64, f64->f4e0->items[i], ((R_Glob *)D_002A8490)->f2e0->unk8, i, 1, 1, 0);
+        f170[i]->v6();
+    }
+    p = func_001E8A44(0xc8);
+    f198 = (p ? ((R_F *)p)->func_000876B0(1) : 0)->func_00087760(((R_Glob *)D_002A8490)->f2e0->unk8, this, 0);
+    if (f198)
+        f198->v4();
+    p = func_001E8A44(0x2f0);
+    f16c = p ? ((R_G *)p)->func_00061300(1) : 0;
+    f16c->v27(this);
+    f294 = (int)func_001E8A44((int)&D_00080000);
+}
+
 int C_00051CF0::func_00052590(int idx)
 {
     int count;
