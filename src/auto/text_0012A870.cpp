@@ -203,11 +203,13 @@ extern S_002A8490 *D_002A8490;
 
 struct S_Camera28 {
     void func_00193500(void);
+    void func_00193870(void *p);
 };
 
 struct Camera {
     void *vtbl;
-    char pad04[0x24];
+    char pad04[0x20];
+    int f24;
     S_Camera28 *f28;
     char pad2c[0x1e4];
     int f210;
