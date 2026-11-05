@@ -126,6 +126,63 @@ struct C_001C4EA0 {
     void *func_001C4EA0(int flags);
 };
 
+struct C_00157600 {
+    void func_00157600(int a);
+};
+
+extern int D_0028E554;
+void *func_001E8A44(int size);
+
+/* one 0x38-byte CrossFade layer */
+struct S_CrossFadeFx {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27(int a);
+    char pad4[0x20 - 0x4 + 0x4];
+    int f24;
+    int f28;
+    float f2C;
+    int f30;
+    int f34;
+};
+
+/* CrossFade */
+struct C_001C4C30 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    char pad28[0x48 - 0x28];
+    S_CrossFadeFx *a48[4];
+    S_CrossFadeFx *f58;
+    void func_001577A0(void *child, int b);
+    void func_001C4C30(void);
+};
+
 /* VideoFXManager */
 struct C_001C4EE0_Obj {
     void func_001D5360(void);
