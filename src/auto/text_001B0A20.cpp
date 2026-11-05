@@ -406,6 +406,23 @@ void C_001B0E60::func_001B0EA0(int value, C_001B0E60 **first)
     }
 }
 
+void SurfaceShaderList::func_001B0F70()
+{
+    int i;
+    vtbl = (void *)&D_0028C6F8;
+    if (pool != 0) {
+        pool->release();
+    }
+    if (D_002F0630 == this) {
+        D_002F0630 = 0;
+    }
+    for (i = 0; i < count; i++) {
+        if (shaders[i] != 0) {
+            shaders[i]->destroy(1);
+        }
+    }
+}
+
 void C_001B0FC0::func_001B0FC0(void)
 {
     int i;
