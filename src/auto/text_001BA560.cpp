@@ -183,6 +183,7 @@ struct C_001BB300 {
 };
 
 
+#pragma optimize("t", off)
 int C_001BA560::func_001BA560(S_001BA560_arg *arg1, int arg2)
 {
     void *func_001E8A44(int size);
@@ -207,11 +208,9 @@ int C_001BA560::func_001BA560(S_001BA560_arg *arg1, int arg2)
     return 1;
 }
 #pragma optimize("", on)
-C_001BA5E0 *C_001BA5E0::func_001BA5E0(void)
+C_001BA5E0::C_001BA5E0() : f4(0), f8(0)
 {
     void *func_001E8A44(int size);
-    f4 = 0;
-    f8 = 0;
     vtbl = (void *)&D_0028D200;
     f124 = 0;
     f118 = 0xa;
@@ -225,7 +224,6 @@ C_001BA5E0 *C_001BA5E0::func_001BA5E0(void)
     f12c = (int)func_001E8A44(0x28);
     f110 = 0;
     f144 = 0;
-    return this;
 }
 
 void C_001BA910::func_001BA910(void)
