@@ -230,6 +230,21 @@ int C_00157810::func_00157B10(void)
     return 1;
 }
 
+int C_00157CB0::func_00157CB0(void)
+{
+    if (D_002DF948 != 0) {
+        return 0;
+    }
+    if (fC != 0) {
+        fC->func_00157CB0();
+    }
+    if (f8 != 0) {
+        f8->fC = 0;
+    }
+    fC = 0;
+    return v2();
+}
+
 int C_00157CF0::func_00157CF0(void)
 {
     if (D_002DF948 != 0) {
