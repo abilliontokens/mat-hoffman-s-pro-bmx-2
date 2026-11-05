@@ -476,4 +476,4 @@ void GrindTrigger_000A8360::func_000A8450(void *param)
         }
     }
 }
-
+/* claim note */
