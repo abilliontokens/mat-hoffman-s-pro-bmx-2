@@ -42,3 +42,13 @@ struct DirectionArrowOverlay {
     f32 f50;               /* 0x50 */
     DirectionArrowOverlay *func_000888D0(int param_1);
 };
+
+SplitScreenSeparator *SplitScreenSeparator::func_00088530(int param_1)
+{
+    ((C_00157600 *)this)->func_00157600(param_1);
+    vtbl = &D_002798B4;
+    sub24.func_001D5760();
+    sub88.func_001D5760();
+    fEC = 0;
+    return this;
+}
