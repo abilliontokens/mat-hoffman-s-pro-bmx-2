@@ -36,6 +36,47 @@ struct C_000F1BA0 {
 
 extern S_002B91AC_000F1B60 *D_002B91AC;
 
+struct LookupObj_000F1980 {
+    int *func_0018C160(int a);
+};
+
+struct GObjRoot_000F1980 {
+    char pad0[0x2ec];
+    LookupObj_000F1980 *p2EC;
+};
+
+extern GObjRoot_000F1980 *D_002A8490;
+
+extern float D_00275AEC;
+extern int D_00278690;
+extern int D_002786A0;
+extern int D_00278678;
+
+struct ClampObj_000F1980 {
+    char pad0[0x10];
+    float f10;
+    float f14;
+};
+
+struct MidObj_000F1980 {
+    ClampObj_000F1980 *func_0018C070();
+};
+
+struct SubElem_000F1980 {
+    ClampObj_000F1980 *func_001D5AA0();
+};
+
+/* BmxUIPageOtherVideos */
+struct C_000F1980 {
+    char pad0[0x3e8];
+    SubElem_000F1980 *a3e8[4];
+    SubElem_000F1980 *a3f8[2];
+    SubElem_000F1980 *a400[4];
+    SubElem_000F1980 *a410[4];
+    void func_000F1980(void);
+    void func_001578D0(void);
+};
+
 struct C_000F1B60 {
     void func_000F1B60(void);
 };
