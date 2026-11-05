@@ -227,6 +227,13 @@ void C_0012B000::func_0012B000(float param1, float param2)
     func_000263B0(ff0, fb0, f70);
 }
 
+void Camera::func_0012B110(void)
+{
+    func_001576D0();
+    ((S_002EFDB8 *)D_002EFDB8)->func_00182830(this);
+    f210 = D_002EFDB8[4] + 1;
+}
+
 void func_0012B140(void) {
     int func_001576C0(...);
     func_001576C0();
