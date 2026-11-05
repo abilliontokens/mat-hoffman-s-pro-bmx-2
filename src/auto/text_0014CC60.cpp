@@ -61,6 +61,7 @@ struct C_0014CC60 {
     void func_0014D670(int v);
 };
 
+#pragma optimize("", on)
 void C_0014CC60::func_0014D670(int v)
 {
     int i;
