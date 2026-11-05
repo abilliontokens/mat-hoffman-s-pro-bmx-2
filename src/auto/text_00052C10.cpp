@@ -89,7 +89,7 @@ struct C_52C10 {
     C_52C10_Obj *unk48;               /* 0x48 */
     char pad4C[0x18];
     C_52C10_64 *unk64;                /* 0x64 */
-    char pad68[0x154];
+    char pad68[0x158];
     C_52C10_99D40 *unk1C0;            /* 0x1C0 */
     char pad1C4[0xD0];
     int unk294;                       /* 0x294 */
