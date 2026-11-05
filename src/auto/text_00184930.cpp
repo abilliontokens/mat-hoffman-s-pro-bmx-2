@@ -164,7 +164,22 @@ struct S_00184DD0_Vt {
     virtual void v64(); virtual void v65();
 };
 
-extern int D_002F07E8;
+/* 0x2208-byte renderer object created by the scene's loader */
+struct C_0014E3E0 {
+    C_0014E3E0 *func_0014E3E0(int a);
+    int func_0014ECD0(void *a, void *b, int c, int d, int e, unsigned int f, unsigned int g, int h);
+};
+
+/* 0x8b8-byte global singleton */
+struct C_001C4F40 {
+    C_001C4F40 *func_001C4F40(void);
+    void func_001C4F70(unsigned int a, unsigned int b, unsigned int c, unsigned int d,
+                       unsigned int e, unsigned int f, unsigned int g);
+    void func_001C4FA0(int a);
+};
+
+extern C_001C4F40 *D_002F07E8;
+extern char D_002895A0[];
 
 extern char D_002764F0[];
 extern char D_002A5A80[];
