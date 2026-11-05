@@ -1,5 +1,6 @@
 /* 5 functions from 0x0018EB70 to 0x0018F980, found by Ghidra. */
 #include "common.h"
+#include <string.h>
 extern char D_00275630[];
 struct C_00191470 {
     void func_00191470(unsigned int b);
