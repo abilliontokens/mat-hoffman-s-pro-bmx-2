@@ -140,6 +140,17 @@ struct C_001B6570 {
     C_001B6570 *func_001B6570(int a0, int a1);
 };
 
+void func_001E891B(void *p);
+
+struct C_001B69F0 {
+    void *vtbl;
+    int f4;
+    int f8;
+    char padc[0xfc];
+    void *f108;
+    void **f10c;
+    void func_001B69F0(void);
+};
 
 C_001B5EA0* C_001B5EA0::func_001B5EA0(void) {
     extern int D_0028CC9C;
