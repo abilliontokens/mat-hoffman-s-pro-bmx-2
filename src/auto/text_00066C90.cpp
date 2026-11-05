@@ -3,6 +3,9 @@
 
 extern int D_0027850C;
 extern int D_002787FC;
+struct PtrObj_66C { void func_001D6410(); };
+struct VObj_66C { virtual void v0(int); };
+extern "C" void __cdecl func_001E891B(void *);
 
 struct C_00066C90 {
     void *vtbl;
