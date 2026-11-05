@@ -43,6 +43,7 @@ struct C_00150810 {
     void func_001D3F50();
 };
 
+struct Vec3_150F80 { int x, y, z; };
 struct Vec4_150900 {
     float x, y, z, w;
 };
