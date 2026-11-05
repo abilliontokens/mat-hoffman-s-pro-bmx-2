@@ -34,6 +34,24 @@ struct C_00029BD0 {
  int func_00029BD0();
 };
 
+struct Sub_0002A010 { char pad[0x68]; int f68; char pad6c[0xf0-0x6c]; V4_00029BD0 vf0; };
+struct World_0002A010 { void func_00199E50(V4_00029BD0 a, V4_00029BD0 b, float c); };
+struct C_0002A010 {
+ char pad[0x1e8]; Sub_0002A010 *f1e8;
+ char pad1ec[0x230-0x1ec]; World_0002A010 *f230;
+ char pad234[0x454-0x234]; int f454;
+ char pad458[0x468-0x458]; int f468;
+ char pad46c[0x5c8-0x46c]; int f5c8;
+ char pad5cc[0x62c-0x5cc]; float f62c;
+ char pad630[4]; int f634; float f638; float f63c; int f640;
+ char pad644[0x744-0x644]; float f744;
+ void func_0002A010(float dt);
+};
+extern float D_002766C0, D_002766B0, D_002A1160, D_00275548, D_002A115C, D_002A1158;
+extern double D_002766B8, D_002766A8;
+extern int D_002B7E40;
+extern float D_002B7E3C, D_002B7E38;
+
 struct S_Cb_0002A6B0 {
     char pad0[0x7c];
     void (__cdecl *f7c)(int, void *, int, int);
