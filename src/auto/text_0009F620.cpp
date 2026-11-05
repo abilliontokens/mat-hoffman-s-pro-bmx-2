@@ -20,11 +20,11 @@ struct C_0009FD60 {
 };
 extern const float D_00277D04;
 
-static float fabs_0009FE80(float x)
+static inline float fabs_0009FE80(float v)
 {
-    volatile int tmp;
-    tmp = *(int *)&x & 0x7fffffff;
-    return *(float *)&tmp;
+    volatile float t = v;
+    int bits = *(volatile int *)&t & 0x7fffffff;
+    return *(float *)&bits;
 }
 
 extern float D_00278C58;
@@ -243,6 +243,40 @@ void C_0009FE40::func_0009FE40(undefined4 *param_1, undefined4 *param_2, undefin
 
 void C_0009FE70::func_0009FE70(int a0) {
     unk40 = a0;
+}
+
+void C_0009FE80::func_0009FE80(int a0, int a1, int a2, int a3, int a4, int a5, float a6, float a7, float a8, float a9, float a10)
+{
+    if (unk40 == 0)
+        return;
+    if (fabs_0009FE80(a6) > D_00278C58) {
+        unk8C = a6 * a10 * D_0027AD80 + unk8C;
+        if (unk8C > D_002756D0)
+            unk8C = unk8C - D_002756B8;
+        else if (unk8C < D_002756E8)
+            unk8C = unk8C + D_002756B8;
+    }
+    if (fabs_0009FE80(a7) > D_00278C58) {
+        unk90 = a7 * a10 * D_0027AD80 + unk90;
+        if (unk90 > D_002756D0)
+            unk90 = unk90 - D_002756B8;
+        else if (unk90 < D_002756E8)
+            unk90 = unk90 + D_002756B8;
+    }
+    if (fabs_0009FE80(a9) > D_00278C58) {
+        unk4C = unk4C - a9 * a10 * D_0027AD7C;
+        if (unk4C > D_0027653C)
+            unk4C = 15.0f;
+        else if (unk4C < D_0027AD78)
+            unk4C = 7.0f;
+    }
+    if (fabs_0009FE80(a8) > D_00278C58) {
+        unk3C = a8 * a10 * D_0027AD74 + unk3C;
+        if (unk3C > D_002786B8)
+            unk3C = 110.0f;
+        else if (unk3C < D_00276558)
+            unk3C = 60.0f;
+    }
 }
 
 void C_000A0090::func_000A0090(int a0, int a1) {
