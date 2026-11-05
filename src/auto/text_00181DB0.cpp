@@ -326,3 +326,13 @@ void C_00182810::func_00182810(void)
   return;
 }
 
+void C_00182830::func_00182830(C_00182830_Target *p)
+{
+    f4 = p;
+    if (p != 0) {
+        if (f8 != p->f204 || fC != p->f208) {
+            p->func_0012B390(0x3f9f49f5, 0x280, 0x1c0);
+        }
+    }
+}
+
