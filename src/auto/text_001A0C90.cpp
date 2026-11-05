@@ -108,6 +108,19 @@ struct S_001A1860_Quad {
 
 int func_001D3F50(void);
 
+extern int D_0028B3C4;
+extern int D_002A9EEC, D_002A9EF0, D_002A9EF4, D_002A9EF8;
+extern int D_002A9ECC, D_002A9ED0, D_002A9ED4, D_002A9ED8;
+extern int D_002EFF50;
+int __stdcall func_00157600(int a);
+
+/* SoundEmitter */
+struct C_001A1680 {
+    void *vtbl;
+    int u[0x6C];
+    C_001A1680 *func_001A1680(int a0, int a1, int a2, unsigned short a3);
+};
+
 struct C_001A1860 {
     virtual void v0();
     virtual void v1();
