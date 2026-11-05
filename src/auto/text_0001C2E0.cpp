@@ -189,12 +189,34 @@ struct C_0001CC00 {
 
 struct C_0001CA30 {
     void *vtbl;
-    char pad4[4];
+    int f4;
     void *f8;
-    char padC[0x10];
+    int fC;
+    int f10;
+    unsigned char f14;
+    char pad15[3];
+    int f18;
     void *f1C;
+    int f20;
+    int f24;
+    unsigned char f28;
+    char pad29[3];
+    unsigned char f2C;
+    char pad2D[3];
+    C_0001CA30 *func_0001C9F0(void);
     void func_0001CA30(void);
+    void *func_0001CAB0(unsigned char flags);
 };
+
+struct S_0001CBC0_Item {
+    char pad0[0x90];
+    float f90;
+};
+
+static __forceinline float vec3_abs(float x) {
+    int i = *(int *)&x & 0x7fffffff;
+    return *(float *)&i;
+}
 
 struct C_0001C8F0 {
     void *vtbl;
