@@ -88,10 +88,13 @@ extern C_00108630_Mgr *D_002A8490;
 struct C_00198390_Obj {
     void func_00198390();
     void func_00198E60();
+    void func_001983A0();
+    void func_0019ABA0(int a0, int a1);
 };
 
 struct C_001332A0_Obj {
     void func_001332A0();
+    void func_00133140(int a0, int a1);
 };
 
 struct C_00108370_A00 {
