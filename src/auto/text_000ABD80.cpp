@@ -67,3 +67,15 @@ C_000ABE10 *C_000ABE10::func_000ABE10()
     return this;
 }
 
+int C_000AC680::func_000AC680(void)
+{
+    C_000AC680_Alloc *p = (C_000AC680_Alloc *)func_001E8A44(0x128);
+    p = p ? p->func_000A3DE0() : 0;
+    field_4DC = p;
+    if (p->vfunc0(field_28) == 0) {
+        func_001E891B(field_4DC);
+        field_4DC = 0;
+    }
+    return 1;
+}
+
