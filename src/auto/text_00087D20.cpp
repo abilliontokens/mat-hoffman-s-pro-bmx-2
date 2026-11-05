@@ -149,12 +149,20 @@ SplitScreenSeparator *SplitScreenSeparator::func_00088530(int param_1)
 void SplitScreenSeparator::func_00088720(void)
 {
     int g;
+    float y;
 
     if (fEC == 1) {
         if (D_002A8490->f10 == 0) {
-            sub24.SetPos(0.0f, (float)(fF0 - 2));
-        } else {
-            sub24.SetPos(0.0f, 0.0f);
+            y = (float)(fF0 - 2);
+            if (sub24.f4 != D_00275544 || y != sub24.f8) {
+                sub24.f4 = 0.0f;
+                sub24.f8 = y;
+                sub24.b58 |= 1;
+            }
+        } else if (sub24.f4 != D_00275544 || sub24.f8 != D_00275544) {
+            sub24.f4 = 0.0f;
+            sub24.f8 = 0.0f;
+            sub24.b58 |= 1;
         }
     } else if (fEC == 2) {
         if (D_002A8490->f10 == 0) {
