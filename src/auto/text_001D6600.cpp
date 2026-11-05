@@ -7,7 +7,7 @@ extern int D_002A83E0;
 void __cdecl func_001B2910(int a0);
 unsigned int __stdcall func_00201100(void *p);
 int __stdcall func_00200390(void *a0, void *a1);
-unsigned char __stdcall func_001FCFE0(int a0);
+int __stdcall func_001FCFE0(int a0);
 
 struct XboxTextureMap {
     void *vtbl;
@@ -55,3 +55,32 @@ void XboxTextureMap::func_001D6B00(void)
 int __stdcall func_001D6C40(int a0, int a1) {
     return 1;
 }
+
+void XboxTextureMap::func_001D6C50(void *param)
+{
+    if (fB8 != 0) {
+        func_00200390(param, fB8);
+    }
+}
+
+int XboxTextureMap::func_001D6CB0(int param)
+{
+    int v = f8;
+    int n = func_001FCFE0((int)fB8);
+    int i = 0;
+
+    if (v != param) {
+        while (i < n) {
+            v /= 2;
+            i++;
+            if (v == param) {
+                return i;
+            }
+        }
+    }
+    if (v != param) {
+        return -1;
+    }
+    return i;
+}
+
