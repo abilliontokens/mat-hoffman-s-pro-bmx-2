@@ -71,7 +71,7 @@ extern int D_002F41D0;
 extern S_Tiddata *D_002FB360;
 extern char D_002AEDD8[];
 extern char D_002F69F0[];
-extern void *D_002F69F8;
+extern int D_002F69F8;
 
 extern "C" S_Tiddata *__cdecl func_001EA1A1(unsigned int num, unsigned int size);
 extern "C" unsigned long __cdecl func_001DE935(void);
