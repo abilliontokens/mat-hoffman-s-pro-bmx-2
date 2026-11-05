@@ -280,6 +280,17 @@ void C_00192470::func_001927A0(void)
     func_0001DFF0();
 }
 
+int SearchNode::func_00192AC0(S_00192930_Iface *obj)
+{
+    if (f2C != 0) {
+        f2C->v2();
+    }
+    obj->f8 = 2;
+    f2C = obj;
+    obj->v1();
+    return 0;
+}
+
 undefined4 C_00192B50::func_00192B50(byte param_1)
 {
   int in_ECX = (int)this;
