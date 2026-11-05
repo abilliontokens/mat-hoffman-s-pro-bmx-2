@@ -102,9 +102,9 @@ extern int D_002A97E4;
 
 void func_001E8920(void *dst, const void *src, int n);
 
-static __inline const int &Min(const int &a, const int &b)
+static __inline void MinTo(int &r, int &a, int &b)
 {
-    return a > b ? b : a;
+    r = a > b ? b : a;
 }
 
 static __inline void ZeroMatrix(S_00192310_Mat *&p)
@@ -155,7 +155,7 @@ void C_00191470::func_00191470(unsigned int a0)
 
     switch ((a0 >> 16) & 0xff) {
     case 0:
-        f20.Set(*(int *)&D_002A97D8, D_002A97DC, D_002A97E0, D_002A97E4);
+        f20 = D_002A97D8;
         break;
     case 1: {
         S_00192310_Mat * volatile p;
@@ -176,16 +176,15 @@ void C_00191470::func_00191470(unsigned int a0)
     }
 }
 
-void C_00191470::func_00191510(const char * volatile a0, volatile unsigned int a1)
+void C_00191470::func_00191510(const char * volatile a0, unsigned int a1)
 {
-    C_00191470 * volatile self = this;
-    volatile int len;
-    volatile int lim;
-    volatile int n;
+    volatile int slot[4];
     int a;
     int b;
+    int c;
     int k;
 
+    slot[0] = (int)this;
     switch ((a1 >> 16) & 0xff) {
     case 0:
         f1C = 0x10;
@@ -194,15 +193,16 @@ void C_00191470::func_00191510(const char * volatile a0, volatile unsigned int a
         f1C = 0x40;
         break;
     }
-    len = strlen(a0);
-    lim = 0x17;
-    a = lim;
-    b = len;
-    n = a > b ? b : a;
-    k = n;
-    func_001E8920(self, a0, k);
-    ((char *)self)[k] = 0;
-    self->f18 = a1;
+    slot[1] = strlen(a0);
+    slot[2] = 0x17;
+    a = slot[2];
+    b = slot[1];
+    c = a > b ? b : a;
+    slot[3] = c;
+    k = slot[3];
+    func_001E8920((void *)slot[0], a0, k);
+    *(char *)(k + slot[0]) = 0;
+    ((C_00191470 *)slot[0])->f18 = a1;
 }
 
 void *C_001915A0::func_001915A0(unsigned int a0, C_00191470_Vec *a1, int *a2)
