@@ -59,7 +59,7 @@ struct C_00168F40 {
     void *f8;
     char padC[4];
     int f10;
-    char pad14[4];
+    int f14;
     S_00168F40_Entry *f18;
     int f1C;
     void **f20;
