@@ -57,6 +57,7 @@ struct S_000F75D0_Root {
 };
 
 extern S_000F75D0_Root *D_002B91AC;
+extern float D_0027DE74, D_00278C48;
 
 struct BmxUIPageGameOptions {
     virtual void v0();
