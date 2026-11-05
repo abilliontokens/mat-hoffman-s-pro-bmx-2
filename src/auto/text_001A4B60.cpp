@@ -36,7 +36,7 @@ struct C_SphereCollisionObject {
     char pad58[0x50];
     Vec4 fA8;
     char padB8[0x8];
-    f32 matrix[16];
+    __declspec(align(16)) f32 matrix[16];
     int f100;
     char pad104[0xC];
     void *f110;
@@ -141,16 +141,17 @@ void C_SphereCollisionObject::func_001A5370(void)
 void C_001A5730::func_001A5730(void)
 {
     int i;
+    C_001A5730 *o = this;
 
-    f14 = f18 = f1c = 0.0f;
-    f20 = 1.0f;
+    o->f14 = o->f18 = o->f1c = 0.0f;
+    o->f20 = 1.0f;
     for (i = 0; i < 3; i++) {
-        arr24[i].x = arr24[i].y = arr24[i].z = 0.0f;
-        arr24[i].w = 1.0f;
+        o->arr24[i].x = o->arr24[i].y = o->arr24[i].z = 0.0f;
+        o->arr24[i].w = 1.0f;
     }
     for (i = 0; i < 3; i++) {
-        arr54[i].x = arr54[i].y = arr54[i].z = 0.0f;
-        arr54[i].w = 1.0f;
+        o->arr54[i].x = o->arr54[i].y = o->arr54[i].z = 0.0f;
+        o->arr54[i].w = 1.0f;
     }
 }
 
