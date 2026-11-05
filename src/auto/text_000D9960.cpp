@@ -180,6 +180,51 @@ void C_000DA140::func_000DA140() {
     func_00157960();
 }
 
+BmxUIPageViewVideosTitle *BmxUIPageViewVideosTitle::func_000DA210(int a0)
+{
+    int i;
+
+    func_001BE360(a0);
+    vtbl = (void *)&D_0027F5CC;
+    unk284 = 0;
+    unk294 = 0;
+    unk288 = 0;
+    unk280 = 0;
+    unk28C = 0;
+    unk290 = 0;
+    unk29C = 0;
+    unk2A0 = 0;
+    unk298 = 0;
+    unk2A4 = 0;
+    unk2AC = 0;
+    unk2A8 = 0;
+    unk2B0 = 0;
+    memset(arr2E8, 0, sizeof(arr2E8));
+    unk2B4 = 0;
+    unk2B8 = -1;
+    unk2BC = 1;
+    for (i = 0; i < 4; i++) {
+        arr314[i] = 0;
+    }
+    for (i = 0; i < 2; i++) {
+        arr324[i] = 0;
+    }
+    unk2CC = 1;
+    unk2C4 = -1;
+    unk2C0 = 6;
+    unk2C8 = 0;
+    for (i = 0; i < 11; i++) {
+        arr32C[i] = 0;
+    }
+    unk2D0 = 0;
+    unk2D4 = 0;
+    unk2D8 = 0;
+    unk2DC = 0;
+    unk2E0 = 0;
+    unk2E4 = 0;
+    return this;
+}
+
 void BmxUIPageViewVideosTitle::func_000DA320()
 {
     int i;
