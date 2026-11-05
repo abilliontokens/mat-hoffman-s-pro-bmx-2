@@ -75,6 +75,23 @@ struct C_0018C7B0 {
     void func_0018C7B0(int a0);
 };
 
+/* DynamicModelTempData */
+struct C_001B4AF0 {
+    void func_001B4AF0(void);
+};
+
+/* ProceduralTempDataExtended */
+extern int D_0027D004;
+struct C_000B2020 {
+    void *vtbl;
+    char pad4[0x110];
+    int f114, f118, f11C, f120, f124, f128, f12C, f130, f134, f138, f13C, f140, f144, f148;
+    char f14C[0x104];
+    char f250[0x104];
+    char f354[0x104];
+    C_000B2020 *func_000B2020(void);
+};
+
 struct VehicleAIOwner {
     char pad0[0x4B8];
     int f4B8;
