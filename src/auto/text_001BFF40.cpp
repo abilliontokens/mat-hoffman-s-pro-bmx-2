@@ -559,6 +559,26 @@ C_001C0C50 *C_001C0C50::func_001C0C50(int a1, int a2)
     return this;
 }
 
+C_001C0C50 *C_001C0C50::func_001C0CB0(int a, S_001C0CB0_Stream *stream, S_001C0DD0_Owner *owner)
+{
+    unk28 = a;
+    unk24 = owner;
+    stream->func_00168C20(&D_0028DDA0, 0, &unk68);
+    stream->func_00168C20(&D_0028DD94, 0, &unk6C[0]);
+    stream->func_00168C20(&D_0028DD88, 0, &unk6C[1]);
+    stream->func_00168C20(&D_0028DD80, 0, &unk6C[2]);
+    stream->func_00168C20(&D_0028DD74, 0, &unk6C[3]);
+    stream->func_00168C20(&D_0028DD6C, 0, &unk6C[4]);
+    stream->func_00168C20(&D_0028DD64, 0, &unk6C[5]);
+    stream->func_00168C20(&D_0028DD5C, 0, &unk6C[6]);
+    stream->func_00168C20(&D_0028DD54, 0, &unk6C[7]);
+    stream->func_00168C20(&D_0028DD48, 0, &unk6C[8]);
+    stream->func_00168C20(&D_0028DD3C, 0, &unk6C[9]);
+    stream->func_00168C20(&D_0028DD34, 0, &unk6C[10]);
+    stream->func_00168C20(&D_0028DD2C, 0, &unk6C[11]);
+    return this;
+}
+
 void C_001C0C50::func_001C0DD0(int a, int b, int c)
 {
     S_001C0DD0_Ctl *ctl = unk24->unk118->unk144[b]->unk4;
