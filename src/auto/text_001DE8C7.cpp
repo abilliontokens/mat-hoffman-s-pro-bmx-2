@@ -155,6 +155,7 @@ struct S_CacheSector {
     S_CacheSlot slots[41];
     unsigned int pad1F4;
     unsigned int signature;
+    unsigned int pad1FC;
 };
 int __stdcall func_001E233F(S_AnsiString *s, unsigned int size);
 long __stdcall func_001E1BD7(S_AnsiString *s, unsigned int size);
