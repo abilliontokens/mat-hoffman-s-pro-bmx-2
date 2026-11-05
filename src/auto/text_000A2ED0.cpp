@@ -81,7 +81,15 @@ struct C_00022B70 {
 };
 extern C_00022B70 *D_002B7E18;
 
+struct S_000A3170_Val4 {
+    int unk0;
+    int unk4;
+};
 struct C_00012420 {
+    char pad0[0x3c];
+    S_000A3170_Val4 *unk3C;
+    char pad40[0x42c - 0x40];
+    char name[1];
     void func_00012420(void);
 };
 
