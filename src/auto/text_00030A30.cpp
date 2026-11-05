@@ -232,8 +232,12 @@ struct List_000317B0 {
     Elem_000317B0 *f1a8[1];
 };
 
+struct VT_00031260;
+
 struct Holder_000317B0 {
-    char pad0[0x4e0];
+    char pad0[0x4c0];
+    VT_00031260 *f4c0;
+    char pad4c4[0x1c];
     List_000317B0 *f4e0;
 };
 
