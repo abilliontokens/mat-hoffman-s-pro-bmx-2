@@ -74,3 +74,13 @@ void C_000B9A80::func_000B9A80(int a0, int a1)
     }
 }
 
+void *BmxUIGlobalManager::func_000B9AA0(int flags)
+{
+    vtbl = (void *)&D_0027D5FC;
+    func_001BC7A0();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
