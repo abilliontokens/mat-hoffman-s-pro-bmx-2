@@ -2,6 +2,32 @@
 #include "common.h"
 #include "ghidra.h"
 
+void __fastcall func_001FEC30(int n, void *p);
+int __fastcall func_001FEBD0(int n, void *p);
+
+struct __declspec(align(16)) S_001401C0_Mat {
+    float m[16];
+};
+
+struct S_001401C0_Info {
+    char pad0[0x30];
+    int f30;
+};
+
+/* DXMeshVertexShaderItem */
+struct C_001401C0 {
+    void *vtbl;
+    char pad4[0xC];
+    char f10[0x40];
+    char f50[0x40];
+    char f90[0x80];
+    char f110[0x40];
+    char f150[0x40];
+    char f190[0x10];
+    S_001401C0_Info *f1A0;
+    void func_001401C0(void);
+};
+
 struct C_0013FBD0 {
     void *vtbl;
     void *func_0013FBD0(int flags);
