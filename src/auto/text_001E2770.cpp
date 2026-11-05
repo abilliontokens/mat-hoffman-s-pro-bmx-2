@@ -56,7 +56,7 @@ struct S_func_001E29CD_arg0 {
 
 extern float *D_00252DE8[];
 extern float D_00275600;
-extern float D_002902B8;
+extern const float D_002902B8;
 
 struct S_func_001E2B60_arg0 {
     char pad0[0x30];
