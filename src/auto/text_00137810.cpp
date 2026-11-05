@@ -68,6 +68,109 @@ void __stdcall func_00201100(void *p);
 extern float D_00275460;
 int func_00011260(int lo, int hi);
 
+#include <xmmintrin.h>
+
+struct S_137F90_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual int v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21(int a);
+};
+
+struct S_137F90_Src {
+    char pad0[8];
+    float f8;
+    float fC;
+    float f10;
+};
+
+struct S_137F90_Slot6C {
+    void func_0014A650(C_0014A540 *p);
+};
+
+struct S_137F90_Slot70 {
+    void func_00142D00(C_00012140 *p);
+};
+
+struct S_137F90_G {
+    char pad0[4];
+    char *f4;
+    char pad8[0x20];
+    float f28;
+    char pad2C[0x6C - 0x2C];
+    S_137F90_Slot6C *f6c;
+    S_137F90_Slot70 *f70;
+};
+
+struct S_137F90_V4 {
+    float x, y, z, w;
+};
+
+struct S_137F90_Quad {
+    char b[0x90];
+};
+
+struct S_137F90_RS {
+    int f0;
+    int f4;
+    int f8;
+    char pad[0x80 - 0xC];
+};
+
+__declspec(align(16)) struct S_137F90_Mat {
+    float m[16];
+};
+
+static __forceinline void identity_ref_00137F90(S_137F90_Mat *&p)
+{
+    S_137F90_Mat *q = p;
+    _mm_store_ps(&q->m[0], _mm_setzero_ps());
+    _mm_store_ps(&q->m[4], _mm_setzero_ps());
+    _mm_store_ps(&q->m[8], _mm_setzero_ps());
+    _mm_store_ps(&q->m[12], _mm_setzero_ps());
+    q->m[0] = 1.0f;
+    q->m[5] = 1.0f;
+    q->m[10] = 1.0f;
+    q->m[15] = 1.0f;
+}
+
+extern S_137F90_G *D_002EFDB8;
+extern int D_00040300, D_00040304, D_00040354, D_0004035C;
+extern int D_0020C6DC, D_0020C710, D_0020C718, D_0020C720, D_0020CA50;
+extern S_137F90_RS D_0020C6E0[];
+extern int D_002BEA90;
+extern S_137F90_Quad D_002BA728[];
+void __fastcall func_001FD020(void *p, int v);
+void __fastcall func_001FEC30(int n, void *p);
+int __fastcall func_001FEBD0(int n, void *p);
+void __stdcall func_001FE490(int a);
+void __stdcall func_00200390(int index, int value);
+void *__stdcall func_001FF410(void *buffer, int flags);
+void __stdcall func_001FEE00(int stream, void *data, int stride);
+void __stdcall func_00200B30(void *a, int b, void *c);
+void __stdcall func_00200950(int a, int b, void *c, void *d, int e);
+void __stdcall func_001FF4E0(int a, void *b, int c, int d, float e, int f);
+void func_000263B0(float *out, float *a, float *b);
+extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
+
 /* 0x28-byte entry of DrawableCube::f3c */
 struct DrawableCubeItem {
     float f0;
