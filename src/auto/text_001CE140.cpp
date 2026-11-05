@@ -147,3 +147,32 @@ int XboxMusic::func_001CEFD0(int id)
     }
     return 0;
 }
+
+int XboxMusic::func_001CF040(int arg)
+{
+    int idx;
+    int cur;
+
+    if (!(fa0 & 1)) {
+        return -1;
+    }
+    idx = func_00011260(0, list3c.count2 - 1);
+    cur = list3c.Item(idx);
+    if (list3c.count2 > 1) {
+        if (list64.count == list3c.count2) {
+            list64.Clear();
+        }
+        for (;;) {
+            if (cur != f_a4) {
+                if (list64.func_001CDED0(cur) != 0) {
+                    break;
+                }
+            }
+            idx = (idx + 1) % list3c.count2;
+            cur = list3c.Item(idx);
+        }
+    }
+    func_001CEFD0(cur);
+    return vf26(arg);
+}
+
