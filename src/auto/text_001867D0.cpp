@@ -163,6 +163,33 @@ C_00186EF0* C_00186EF0::func_00186EF0(void) {
     return this;
 }
 
+int C_00187510::func_00187510(C_00187510Param *param)
+{
+    char buf[0x104];
+    int i;
+    int n;
+    C_00187370 *p;
+
+    param->func_00169710((void *)&D_0027AEE4);
+    param->func_00168C20((void *)&D_00289B40, 0, &f24);
+    n = f24;
+    if (n == 0)
+        return 0;
+    p = (C_00187370 *)func_001E8A44(n * 0xc);
+    if (p != 0) {
+        func_00011FF0(p, 0xc, n, (void *)&D_00187370);
+    } else {
+        p = 0;
+    }
+    f28 = p;
+    for (i = 0; i < f24; i++) {
+        func_001ADCC0(buf, 0x104, (const char *)&D_00289B30, i + 1);
+        param->func_00169710(buf);
+        f28[i].func_00187390(param);
+    }
+    return 1;
+}
+
 C_00187640 *C_00187640::func_00187640(void *param)
 {
     ((C_00157600 *)this)->func_00157600(param);
