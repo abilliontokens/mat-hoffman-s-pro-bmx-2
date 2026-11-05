@@ -47,6 +47,44 @@ struct CollisionObjects {
     void func_00157600(int a0);
 };
 
+extern "C" int memcmp(const void *a, const void *b, unsigned int n);
+extern int D_00287EE4;
+extern int D_00289FA4;
+extern int D_00289F70;
+extern int D_00289F8C;
+extern char D_0028A024[];
+extern char D_0028A014[];
+
+struct C_00188EF0 {
+    int unk0;
+    void func_00157660(void);
+    void *func_00188EF0(int flags);
+};
+
+struct S_00188920_Obj {
+    virtual void destroy(int flags);
+};
+
+struct C_00188920 {
+    int unk0;
+    char pad4[0x20];
+    int f24;
+    S_00188920_Obj **f28;
+    void func_00157660(void);
+    void func_00188920(void);
+};
+
+struct S_00188980_Model {
+    void *vtbl;
+    int f4;
+    int f8;
+    int fc;
+};
+
+struct C_00188A40 {
+    int func_00188A40(char *name);
+};
+
 
 C_00188700* C_00188700::func_00188700(void) {
     extern int D_00289F80;
@@ -88,10 +126,17 @@ void C_00188700::func_00188750(void)
 
 void C_00188700::func_001888F0(void)
 {
-    C_001888F0_Obj *p = (C_001888F0_Obj *)func_001E8A44(0x280);
-    p = p ? p->func_00188250() : 0;
-    unkC = (int)p;
-    ((C_001888F0_Obj *)unkC)->v0();
+    C_001888F0_Obj *p;
+    C_001888F0_Obj *q;
+
+    p = (C_001888F0_Obj *)func_001E8A44(0x280);
+    if (p != 0) {
+        q = p->func_00188250();
+    } else {
+        q = 0;
+    }
+    unkC = (int)q;
+    ((C_00188VT2 *)q)->v0();
 }
 
 CollisionObjects *CollisionObjects::func_00188A80(int a0)
