@@ -21,15 +21,26 @@ struct C_0011EDF0 {
     float y;
     float z;
     float w;
-    void func_0011EDF0(s16 *p);
+    C_0011EDF0 *func_0011EDF0(s16 *p);
 };
 
-void C_0011EDF0::func_0011EDF0(s16 *p)
+C_0011EDF0 *C_0011EDF0::func_0011EDF0(s16 *p)
 {
     x = (float)p[0] * D_002AB30C * D_002B9348;
     y = (float)p[1] * D_002AB30C * D_002B9348;
     z = (float)p[2] * D_002AB30C * D_002B9348;
     w = 1.0f;
+    return this;
+}
+
+void func_0011F400(int a0, int a1, int a2, int a3, int a4, int a5)
+{
+    float x = *(float *)&a1;
+    float y = *(float *)&a2;
+    float z = *(float *)&a3;
+    float r = func_0001E960(x * x + y * y + z * z);
+
+    func_0011F010(a0, x * r, y * r, z * r, a5, a4);
 }
 
 void func_0011F460(int a0, int a1, int a2, int a3, float angle)
