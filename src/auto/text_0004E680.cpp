@@ -289,10 +289,10 @@ float func_0014FBA0(float x, float z);
 static inline S_0004E7B0_Vec Sub_0004E7B0(const S_0004E7B0_Vec &a, const S_0004E7B0_Vec &b)
 {
     S_0004E7B0_Vec r;
+    r.w = 1.0f;
     r.x = a.x - b.x;
     r.y = a.y - b.y;
     r.z = a.z - b.z;
-    r.w = 1.0f;
     return r;
 }
 
@@ -319,6 +319,34 @@ void C_0004ECC0::func_0004E680(void)
             obj->func_00168550(name, &f3d0[i * 0x78], 0x77);
         }
     }
+}
+
+void C_0004E7B0::func_0004E7B0(void)
+{
+    S_0004E7B0_Vec a;
+    S_0004E7B0_Vec b;
+    float angle;
+
+    a.z = 0;
+    a.y = 0;
+    a.x = 0;
+    a.w = 1.0f;
+    b.z = 0;
+    b.y = 0;
+    b.x = 0;
+    b.w = 1.0f;
+    a = Sub_0004E7B0(f290[f288], f64->f4e0->f1a8[0]->f834);
+    func_0004E410(&a, &a);
+    a = f64->f4e0->f1a8[0]->f230->func_00198040(&a);
+    angle = func_0014FBA0(a.x, a.z) * D_00277240;
+    b = f290[f288];
+    fD30[0]->func_00088A40((int)angle, &b);
+    a = Sub_0004E7B0(f290[f288], f64->f4e0->f1a8[1]->f834);
+    func_0004E410(&a, &a);
+    a = f64->f4e0->f1a8[1]->f230->func_00198040(&a);
+    angle = func_0014FBA0(a.x, a.z) * D_00277240;
+    b = f290[f288];
+    fD30[1]->func_00088A40((int)angle, &b);
 }
 
 void C_0004EBA0::func_0004EA20(int a)
