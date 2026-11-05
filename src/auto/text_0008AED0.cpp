@@ -45,7 +45,7 @@ void C_0008B680::func_0008B680(int param_1) {
 
 void C_0008B690::func_0008B690(void) {
     f54 = 0;
-    ((C_0005E840 *)f34)->func_0005E840(*(int *)(*(int *)((char *)D_002A8490 + 0x2e8) + 4) + 0x10d0 ? *(int *)(*(int *)(*(int *)((char *)D_002A8490 + 0x2e8) + 4) + 0x10d0) : 0);
+    ((C_0005E840 *)f34)->func_0005E840(*(int *)(*(int *)(*(int *)((char *)D_002A8490 + 0x2e8) + 4) + 0x10d0));
 }
 
 void C_0008B6C0::func_0008B6C0(void) {
