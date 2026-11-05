@@ -316,8 +316,8 @@ void C_001B1B80::func_001B1B80(undefined4 param_1, float param_2, float param_3,
   if (*(int *)(in_ECX + 0xc0) == 0) {
     *(undefined4 *)(in_ECX + 0xa8) = param_1;
     *(undefined4 *)(in_ECX + 0xb4) = param_6;
-    *(undefined4 *)(in_ECX + 0xb0) = 0;
     iVar1 = *(int *)(in_ECX + 0x24);
+    *(undefined4 *)(in_ECX + 0xb0) = 0;
     if (*(float *)(iVar1 + 0x24) != param_2 || *(float *)(iVar1 + 0x28) != param_3) {
       *(float *)(iVar1 + 0x24) = param_2;
       *(float *)(iVar1 + 0x28) = param_3;
@@ -394,15 +394,14 @@ C_001B22E0* C_001B22E0::func_001B22E0(void) {
 
 void C_001B22F0::func_001B22F0(void)
 {
-  C_001B22F0_Node *p;
+  C_001B22F0_Node *next;
 
-  p = (C_001B22F0_Node *)f0;
-  f8 = p;
-  while (p != 0) {
-    p = f8->next;
+  f8 = (C_001B22F0_Node *)f0;
+  while (f8 != 0) {
+    next = f8->next;
     f8->next = 0;
     f8->f9c = 0;
-    f8 = p;
+    f8 = next;
   }
   return;
 }
