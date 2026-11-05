@@ -25,11 +25,6 @@ struct S_FsSizeInfo_1E148B {
     u32 BytesPerSector;
 };
 
-extern "C" __declspec(dllimport) long __stdcall NtOpenFile(void **handle, u32 access, S_ObjectAttributes_1E148B *oa, S_IoStatusBlock_1E148B *iosb, u32 share, u32 options);
-extern "C" __declspec(dllimport) long __stdcall NtQueryVolumeInformationFile(void *handle, S_IoStatusBlock_1E148B *iosb, void *info, u32 len, u32 cls);
-extern "C" __declspec(dllimport) long __stdcall NtClose(void *handle);
-extern "C" __declspec(dllimport) void __stdcall HalReturnToFirmware(int a0);
-
 extern "C" long (__stdcall *_imp__NtOpenFile)(void **handle, u32 access, S_ObjectAttributes_1E148B *oa, S_IoStatusBlock_1E148B *iosb, u32 share, u32 options);
 extern "C" long (__stdcall *_imp__NtQueryVolumeInformationFile)(void *handle, S_IoStatusBlock_1E148B *iosb, void *info, u32 len, u32 cls);
 extern "C" long (__stdcall *_imp__NtClose)(void *handle);
