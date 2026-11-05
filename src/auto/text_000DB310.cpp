@@ -1,2 +1,55 @@
 /* 9 functions from 0x000DB310 to 0x000DC270, found by Ghidra. */
 #include "common.h"
+
+extern char D_0027F7D4[];
+
+struct C_000DB310_Widget {
+    void func_001B1980();
+    void func_001B2270(unsigned int color);
+    void func_001B1A30(float a1, float a2, float a3);
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, float a11, int a12, int a13);
+};
+
+struct S_000DBC00_G {
+    char pad0[0x10];
+    int f10;
+};
+
+struct S_000DBC00_F {
+    char pad0[0x1a4];
+    S_000DBC00_G *f1a4;
+};
+
+struct S_000DBC00_D {
+    char pad0[0x28];
+    S_000DBC00_F **f28;
+};
+
+struct S_000DBC00_C {
+    char pad0[0x2c];
+    S_000DBC00_D *f2c;
+    int func_0001B3C0(const char *name);
+};
+
+struct S_000DBC00_B {
+    char pad0[0x484];
+    S_000DBC00_C *f484;
+};
+
+struct S_000DBC00_A {
+    char pad0[0x150];
+    S_000DBC00_B *f150;
+};
+
+struct C_000DB310 {
+    char pad0[0x124];
+    S_000DBC00_A *f124;
+    char pad128[0x18c];
+    int f2B4;
+    char pad2B8[0x30];
+    C_000DB310_Widget *f2E8[11];
+    char pad314[0x18];
+    float f32C[11];
+    void func_000DB310();
+    int func_000DBC00();
+};
