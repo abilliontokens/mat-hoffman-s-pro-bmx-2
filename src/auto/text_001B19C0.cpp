@@ -99,6 +99,33 @@ struct C_001B22F0 {
 };
 
 
+struct C_001B2370_Node {
+    char pad0[0x98];
+    C_001B2370_Node *next;
+    C_001B2370_Node *prev;
+};
+
+struct C_001B2370 {
+    C_001B2370_Node *head;
+    C_001B2370_Node *tail;
+    char pad8[0x4];
+    int count;
+    void func_001B2370(C_001B2370_Node *node);
+};
+
+struct C_001B2690_Entry {
+    char pad0[0x8];
+    int data;
+    int refCount;
+};
+
+struct C_001B2690 {
+    char pad0[0x14];
+    C_001B2690_Entry *f14;
+    void func_001AC750(int index, int data);
+    void func_001B2690(int index, int data);
+};
+
 struct C_001B2700 {
     void *vtbl;
     void func_001AC830();
