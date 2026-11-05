@@ -200,6 +200,26 @@ void C_001982F0::func_001982F0(void)
   return;
 }
 
+void *func_001E8A44(int size);
+int func_001EA426(void *a, void *b);
+C_00198330 *C_00198330::func_00198330(void *arg)
+{
+    C_00198330 *result = 0;
+    if (func_001EA426((char *)this + 0x28, arg) == 0) {
+        return this;
+    }
+    if (f178 != 0) {
+        result = f178->func_00198330(arg);
+        if (result != 0) {
+            return result;
+        }
+    }
+    if (f174 != 0) {
+        result = f174->func_00198330(arg);
+    }
+    return result;
+}
+
 void C_00198390::func_00198390(void)
 {
   int in_ECX = (int)this;
