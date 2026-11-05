@@ -448,7 +448,7 @@ extern int D_00284A98;
 extern char D_00284A9C;
 
 struct S_001BF7C0_Stream {
-    void func_00168CB0(void *key, S_Vec4f_001BFD00 *def, void *dst);
+    void func_00168CB0(void *key, const S_Vec4f_001BFD00 &def, void *dst);
     void func_00168C50(void *key, int def, void *dst);
     int func_00168550(void *key, void *dst, int size);
 };
