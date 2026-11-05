@@ -70,6 +70,56 @@ struct C_000A4500 {
     void func_000A4500(int param_1, int param_2);
 };
 
+struct DXRenderableObject {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    virtual void v31();
+    virtual void v32();
+    virtual void v33();
+    virtual void v34();
+    virtual void v35(const char *name, int a, int b);
+    char pad4[0x19F];
+    u8 f1a3;
+    DXRenderableObject *func_00143580(int a);
+};
+
+struct C_000A4250 {
+    DXRenderableObject *unk0;
+    DXRenderableObject *unk4;
+    DXRenderableObject *unk8;
+    DXRenderableObject *unkC;
+    int func_000A4250(void);
+};
+
 struct C_000A43E0 {
     int unk0;
     int unk4;
