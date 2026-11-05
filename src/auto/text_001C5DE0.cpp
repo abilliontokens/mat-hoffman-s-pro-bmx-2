@@ -132,6 +132,7 @@ struct V4_001C6B30 {
 };
 
 struct C_001C6B30_Node {
+    void func_001996A0(Vec4 v, int a);
     void func_001994C0(int a, Vec4 *p, Vec4 *q);
     void func_00199A70(int a, Vec4 *out);
     void func_00199110(int a, Vec4 *p, Vec4 *q, int b, int c, int d);
@@ -320,33 +321,17 @@ int C_001C6820::func_001C6820(f32 param_1)
     return result;
 }
 
-void C_001C6B30::func_001C6B30(Vec4 target, float maxAngle)
+void C_001C6B30::func_001C6B30(V4_001C6B30 target, float maxAngle)
 {
-    Vec4 S;
-    Vec4 P;
-    Vec4 Q;
-    Vec4 R;
-    Vec4 T;
+    V4_001C6B30 S;
+    V4_001C6B30 P;
+    V4_001C6B30 Q;
+    V4_001C6B30 R;
+    V4_001C6B30 T;
     float sign;
     float ang;
     float d;
 
-    P.z = 0;
-    P.y = 0;
-    P.x = 0;
-    P.w = 1.0f;
-    Q.z = 0;
-    Q.y = 0;
-    Q.x = 0;
-    Q.w = 1.0f;
-    R.z = 0;
-    R.y = 0;
-    R.x = 0;
-    R.w = 1.0f;
-    S.z = 0;
-    S.y = 0;
-    S.x = 0;
-    S.w = 1.0f;
     f3C->f4->func_001994C0(0, &Q, &R);
     f3C->f4->func_00199A70(0, &P);
     target.y = P.y;
@@ -354,7 +339,7 @@ void C_001C6B30::func_001C6B30(Vec4 target, float maxAngle)
     T.y = 0;
     T.z = target.z - P.z;
     T.w = 1.0f;
-    func_001C6380(&T, &T);
+    func_001C6380((Vec4 *)&T, (Vec4 *)&T);
     cross_001C6B30(&S.x, &Q.x, &R.x);
     sign = -1.0f;
     if (T.x * S.x + T.y * S.y + T.z * S.z <= D_00275544) {
