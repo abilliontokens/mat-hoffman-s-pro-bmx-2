@@ -79,11 +79,70 @@ struct Obj_00133ED0 {
     virtual void v28();
     virtual void v29();
     virtual void v30();
-    virtual void v31();
+    virtual void v31(int a);
     virtual void v32();
     void func_00133ED0(void);
+    void func_00133EF0(int a);
 };
 
+struct C_00134980 {
+    char pad0[4];
+    float f4[4 + 4 + 4 + 4];
+    void func_00134980(void);
+};
+
+
+float func_00133D90(Coll_00133D90 *obj, float *p, float r)
+{
+    float rad = r + obj->f48;
+    float dx = obj->f28 - p[0];
+    float dz = obj->f30 - p[2];
+    float d;
+    float res;
+
+    _mm_store_ss(&d, _mm_sqrt_ss(_mm_set_ss(dz * dz + dx * dx)));
+    res = d - rad;
+    if (res <= D_00275544) {
+        res = D_00275544;
+    }
+    return res;
+}
+
+float func_00133DF0(Coll_00133D90 *a, Coll_00133D90 *b)
+{
+    float rad = a->f48 + b->f48;
+    float dx = a->f28 - b->f28;
+    float dy = a->f2C - b->f2C;
+    float dz = a->f30 - b->f30;
+    float d;
+    float res;
+
+    _mm_store_ss(&d, _mm_sqrt_ss(_mm_set_ss(dz * dz + dy * dy + dx * dx)));
+    res = d - rad;
+    if (res <= D_00275544) {
+        res = D_00275544;
+    }
+    return res;
+}
+
+void C_00133E60::func_00133E60(void)
+{
+    vtbl = (void *)&D_0028464C;
+    if (f98 != 0) {
+        f98->func_00193500();
+        func_001E891B(f98);
+    }
+    if (f78 != 0) {
+        func_001E8390(f78);
+    }
+    if (f84 != 0) {
+        func_001E8390(f84);
+    }
+    if (f90 != 0) {
+        func_001E8390(f90);
+    }
+    ((C_00157660 *)this)->func_00157660();
+}
 
 void Obj_00133ED0::func_00133ED0(void)
 {
