@@ -99,6 +99,15 @@ void C_001A6B70::func_001A6B70()
     func_00157920();
 }
 
+void *C_001A7120::func_001A7120(int flags)
+{
+    func_001A5950();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
 void C_001A7260::func_001A7260()
 {
     vtbl = (void *)&D_0028B974;
