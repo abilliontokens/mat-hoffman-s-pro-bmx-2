@@ -61,6 +61,23 @@ struct C_0008A0A0 {
 };
 
 
+void C_00089FA0::func_00089FA0(void)
+{
+    if (unk128 == 0) {
+        if (unk12C != 0) {
+            unk24->func_001D6600();
+            unk30->func_001D6600();
+            return;
+        }
+    } else if (unk12C == 0) {
+        unk28->func_001D6600();
+        unk2C->func_001D6600();
+        return;
+    }
+    unk24->func_001D6600();
+    unk2C->func_001D6600();
+}
+
 undefined4 C_0008A000::func_0008A000(int param_1)
 {
   int in_ECX = (int)this;
@@ -76,6 +93,12 @@ void C_0008A020::func_0008A020(int param_1)
 {
     unk24->func_0005E840(param_1);
     unk28->func_0005E840(param_1);
+}
+
+void C_0008A040::func_0008A040(int param_1)
+{
+    unk2C->func_0005E840(param_1);
+    unk30->func_0005E840(param_1);
 }
 
 void C_0008A060::func_0008A060(void) {
