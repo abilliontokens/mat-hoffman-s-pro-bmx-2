@@ -267,7 +267,53 @@ struct C_UIGlobalManager {
     void func_00157660();
 };
 
-void func_001BC310();
+struct V4_001BC310 {
+    float x, y, z, w;
+    V4_001BC310() { x = y = z = 0; w = 1.0f; }
+};
+
+struct V4Raw_001BC310 {
+    float x, y, z, w;
+};
+
+struct S_001BC310_Cam {
+    void func_00199A70(int a, V4_001BC310 *out);
+    void func_001994C0(int a, V4_001BC310 *p, V4_001BC310 *q);
+    void func_00199790(int a, V4_001BC310 *pos);
+    void func_00199110(int a, V4_001BC310 *p, V4_001BC310 *q, int b, int c, int d);
+};
+
+struct S_001BC310_View {
+    char pad0[0x22c];
+    S_001BC310_Cam *f22c;
+};
+
+struct S_001BC310_Ctx {
+    char pad0[0x64];
+    S_001BC310_View *f64;
+};
+
+struct S_001BC310_Xf {
+    char pad0[0xb0];
+    float m[12];
+};
+
+struct S_001BC310_Node {
+    char pad0[0x2e4];
+    S_001BC310_Xf *f2e4;
+    char pad2e8[4];
+    u8 f2ec;
+};
+
+struct S_001BC310_Pair {
+    char pad0[0x24];
+    S_001BC310_Node *f24;
+    S_001BC310_Node *f28;
+};
+
+void func_0011F4B0(float *out, V4_001BC310 *pos, float *m);
+void func_00030AC0(float *out, float *v, float *m);
+void func_001BC310(S_001BC310_Ctx *a0, S_001BC310_Node *p2, S_001BC310_Pair *p3, int flag);
 
 struct S_001BCFE0_Item {
     virtual void v0();
@@ -578,6 +624,14 @@ C_001BCC90 *C_001BCC90::func_001BCC90(void *param_1)
         D_002F0670->vf32();
     }
     return this;
+}
+
+void C_001BCFE0::func_001BCCC0(int idx)
+{
+    f11c = idx;
+    f118 = f110[idx - 1];
+    f118->v34();
+    f118->v27();
 }
 
 int C_001BCFE0::func_001BCFE0(int idx)
