@@ -87,6 +87,19 @@ void *VehicleAI::func_000B3350(int flags)
     return this;
 }
 
+void VehicleAI::func_000B3390(int param_1)
+{
+    void *mem = func_001E8A44(0x2c);
+    f44 = mem != 0 ? ((C_00187640 *)mem)->func_00187640(1) : 0;
+    if (f44->dummy27(param_1) == 0) {
+        f44->dummy2();
+        f44 = 0;
+    }
+    mem = func_001E8A44(0x458);
+    f40 = mem != 0 ? ((C_000B2020 *)mem)->func_000B2020() : 0;
+    f40->func_000B21B0(param_1);
+}
+
 undefined4 C_000B3DF0::func_000B3DF0(byte param_1)
 {
   int func_000B2E40(...);
