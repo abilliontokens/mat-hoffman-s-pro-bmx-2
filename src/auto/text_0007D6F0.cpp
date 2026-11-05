@@ -72,6 +72,20 @@ struct C_0007E1E0 {
 void func_001E891B(void *ptr);
 
 
+void C_0007E050::func_0007E050(void)
+{
+  int i;
+
+  for (i = 0; i < 0x96; i++) {
+    items[i].q0.x = items[i].q0.y = items[i].q0.z = 0;
+    items[i].q0.w = 1.0f;
+    items[i].q1.x = items[i].q1.y = items[i].q1.z = 0;
+    items[i].q1.w = 1.0f;
+    items[i].q2.x = items[i].q2.y = items[i].q2.z = 0;
+    items[i].q2.w = 1.0f;
+  }
+}
+
 undefined4 C_0007E0A0::func_0007E0A0(byte param_1)
 {
   int func_0006C470(...);
@@ -118,5 +132,20 @@ undefined4 C_0007E200::func_0007E200(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+void C_0007E220::func_0007E220(void)
+{
+  char dest[0x40];
+  char buf[4];
+
+  func_001ADCC0(buf, 0x104, (char *)&D_00277038, fAC);
+  if (fAC > 0) {
+    func_001AC330(dest, D_002A8490->p2E8->p4->fA68, buf);
+  } else {
+    GObj4_7E *p = D_002A8490->p2E8->p4;
+    func_001AC330(dest, p->fF10, p->p930);
+  }
+  fD4->func_001B17D0(dest);
 }
 
