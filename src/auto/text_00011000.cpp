@@ -178,7 +178,7 @@ struct C_00011E30 {
     C_00017680_Vec v404;
     C_00017680_Vec func_00011E30(void);
 };
-static inline float sqrt_119D0(float x) {
+static __forceinline float sqrt_119D0(const float &x) {
     float r;
     _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x)));
     return r;
