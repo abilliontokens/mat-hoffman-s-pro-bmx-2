@@ -7,6 +7,24 @@ struct S_00079790_Obj {
     virtual void destroying(int flag);
 };
 
+struct C_00078D60_Sound {
+    void func_00031610(int a0, int a1);
+};
+
+struct C_00078D60 {
+    char pad0[0x9C];
+    float f9C;
+    int fA0;
+    int fA4;
+    char padA8[0xD8 - 0xA8];
+    C_00078D60_Sound *fD8;
+    char padDC[0xE8 - 0xDC];
+    int fE8;
+    int fEC;
+    int func_00157BF0(int *a0, int a1);
+    int func_00078D60(int *param_1, int param_2);
+};
+
 struct C_0005ECA0 {
     void func_0005ECA0(void *param);
 };
