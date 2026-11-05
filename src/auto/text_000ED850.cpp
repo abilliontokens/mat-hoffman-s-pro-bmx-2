@@ -52,6 +52,11 @@ struct C_000B9A80 {
     void func_000B9A80(int a0, int a1);
 };
 
+struct S_000ED850_Sub {
+    char pad0[0x24];
+    C_000B9A80 *unk24;
+};
+
 struct C_000ED850 {
     char pad0[0x124];
     C_000B9A80 *unk124;
