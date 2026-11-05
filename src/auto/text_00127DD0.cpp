@@ -2,6 +2,7 @@
 #include "common.h"
 
 #include <string.h>
+struct S_00128630_V3 { float x,y,z; };
 struct S_00128630_Entry { int data[13]; };
 void func_00126DD0(S_00128630_Entry *,int,void *,void *,void *,float *,float *,int);
 void func_001271E0(S_00128630_Entry *,int,void *,int *,float *);
