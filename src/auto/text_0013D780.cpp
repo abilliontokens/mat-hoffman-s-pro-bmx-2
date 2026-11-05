@@ -74,3 +74,8 @@ struct C_0013DFF0 {
     int func_0013DFF0(int a1, int a2);
     int func_0013C5D0(C_0013DFF0_elem *e, int a2);
 };
+
+void func_0013E680(void) {
+    D_002EFDB8->func_001D5600();
+    D_002A8490->func_00156E80();
+}
