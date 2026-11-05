@@ -46,3 +46,10 @@ struct RayCollisionObject {
     C_00199C20 *f19C;
     void func_00180070(void);
 };
+
+void RayCollisionObject::func_00180070(void) {
+    S_Matrix16 m;
+
+    f19C->func_00199C20(0, &m);
+    v31(&m);
+}
