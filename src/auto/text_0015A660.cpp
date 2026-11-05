@@ -208,7 +208,13 @@ void *C_0015A910::func_0015A970(unsigned char flags)
 
 int C_0015AB70::func_0015AB70(unsigned int idx)
 {
-    return (idx < f8 && f18 != 0) ? (f18[idx * 0xc] & 2) : 0;
+    if (idx < f8) {
+        if (f18 == 0) {
+            return 0;
+        }
+        return f18[idx * 0xc] & 2;
+    }
+    return 0;
 }
 
 undefined4 C_0015ABF0::func_0015ABF0(int param_1)
@@ -253,6 +259,23 @@ C_0015B150* C_0015B150::func_0015B150(void) {
     unk4 = 0;
     unk8 = 0;
     return this;
+}
+
+void C_0015B150::func_0015B170(void)
+{
+    extern int D_002876E0;
+    void func_001E891B(void *p);
+    int *q;
+
+    unk0 = (int)&D_002876E0;
+    if (unk8 != 0) {
+        q = (int *)unk8 - 1;
+        if (*q != 0) {
+            ((S_0015B150_Elem *)unk8)->v0(3);
+        } else {
+            func_001E891B(q);
+        }
+    }
 }
 
 void *C_0015B1A0::func_0015B1A0(int a)
