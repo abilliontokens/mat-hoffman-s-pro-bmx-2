@@ -62,7 +62,7 @@ int C_00196290::func_001961E0(int param_1, int param_2, int param_3)
         f88[f74] = 4;
         f90[f74] = 1.0f;
         f94[f74] = 1.0f;
-        return f74++;
+        return ++f74 - 1;
     }
     return -1;
 }
