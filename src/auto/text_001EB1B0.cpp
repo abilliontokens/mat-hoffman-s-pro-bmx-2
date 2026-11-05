@@ -95,6 +95,42 @@ void __cdecl func_001EB302(int locknum)
     _imp__RtlLeaveCriticalSection(((void **)D_002AE8F0)[locknum * 2]);
 }
 
+int __cdecl func_001EB314(int locknum)
+{
+    void *pcs;
+
+    if (D_002AE8F0[locknum].lock == 0) {
+        pcs = func_001E8AA5(0x1c);
+        if (pcs == 0) {
+            *func_001ED075() = 12;
+            return 0;
+        }
+        func_001EB390(10);
+        if (D_002AE8F0[locknum].lock == 0) {
+            if (!func_001F44EF(pcs, 4000)) {
+                func_001E8390(pcs);
+                func_001EB302(10);
+                *func_001ED075() = 12;
+                return 0;
+            }
+            D_002AE8F0[locknum].lock = pcs;
+        } else {
+            func_001E8390(pcs);
+        }
+        func_001EB302(10);
+    }
+    return 1;
+}
+
+void __cdecl func_001EB390(int locknum)
+{
+    if (D_002AE8F0[locknum].lock == 0) {
+        if (!func_001EB314(locknum))
+            func_001EB9F3(17);
+    }
+    _imp__RtlEnterCriticalSection(D_002AE8F0[locknum].lock);
+}
+
 int __cdecl func_001EB3BE(unsigned int size)
 {
     if (D_002F69E8 != 0 && (*D_002F69E8)(size) != 0)
