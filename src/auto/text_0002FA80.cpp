@@ -95,12 +95,12 @@ undefined4 C_0002FA80::func_00030020(const char *name)
         }
         entries[i].curSub = 0;
     }
-    if (id != -1) {
-        cur = id;
-        f0->func_0012B7D0((int)entries[id].f0, 0, 0, 0, 0);
-        return 1;
+    if (id == -1) {
+        return 0;
     }
-    return 0;
+    cur = id;
+    f0->func_0012B7D0((int)entries[id].f0, 0, 0, 0, 0);
+    return 1;
 }
 
 
