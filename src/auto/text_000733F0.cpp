@@ -74,6 +74,14 @@ struct C_001D6410 {
     void func_001D6410(void);
 };
 
+static inline void DeleteObj(C_001D6410 *p)
+{
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+}
+
 struct C_00073C30_V {
     virtual void destroyObject(int flags);
 };
@@ -163,5 +171,49 @@ int C_00073A50::func_00073A50(int *param_1, int param_2) {
         unk84 = 0.0f;
     }
     return 0;
+}
+
+void SPFPSResultsScreen::func_00073C30(void)
+{
+    int i;
+    vtbl = &D_00278D54;
+    for (i = 0; i < 2; i++) {
+        if (unk64[i]) { unk64[i]->func_001D6410(); func_001E891B(unk64[i]); }
+        if (unk70[i]) { unk70[i]->func_001D6410(); func_001E891B(unk70[i]); }
+        if (unk7C[i]) { unk7C[i]->func_001D6410(); func_001E891B(unk7C[i]); }
+        if (unk88[i]) { unk88[i]->func_001D6410(); func_001E891B(unk88[i]); }
+    }
+    unkA0 = 0;
+    unkA4 = 0;
+    unkA8 = 0;
+    if (unkFC) { unkFC->func_001D6410(); func_001E891B(unkFC); }
+    if (unkF8) { unkF8->func_001D6410(); func_001E891B(unkF8); }
+    for (i = 0; i < 2; i++) {
+        if (unkAC[i]) { unkAC[i]->destroyObject(1); unkAC[i] = 0; }
+    }
+    for (i = 0; i < 2; i++) {
+        if (unk198[i]) { unk198[i]->destroyObject(1); unk198[i] = 0; }
+        if (unk1A0[i]) { unk1A0[i]->destroyObject(1); unk1A0[i] = 0; }
+    }
+    if (unkF4) { unkF4->destroyObject(1); unkF4 = 0; }
+    for (i = 0; i < 5; i++) {
+        if (unkB4[i]) { unkB4[i]->destroyObject(1); unkB4[i] = 0; }
+        if (unkC8[i]) { unkC8[i]->destroyObject(1); unkC8[i] = 0; }
+    }
+    for (i = 0; i < 6; i++) {
+        if (unkDC[i]) { unkDC[i]->destroyObject(1); unkDC[i] = 0; }
+    }
+    if (unk100) { unk100->func_001D6410(); func_001E891B(unk100); unk100 = 0; }
+    if (unk104) { unk104->func_001D6410(); func_001E891B(unk104); unk104 = 0; }
+    if (unk108) { unk108->func_001D6410(); func_001E891B(unk108); unk108 = 0; }
+    if (unk10C) { unk10C->func_001D6410(); func_001E891B(unk10C); unk10C = 0; }
+    if (unk114) {
+        if (unk10C) { unk10C->func_001D6410(); func_001E891B(unk10C); unk10C = 0; }
+    }
+    if (unk110) { unk110->func_001D6410(); func_001E891B(unk110); unk110 = 0; }
+    if (unk114) { unk114->func_001D6410(); func_001E891B(unk114); unk114 = 0; }
+    if (unk118) { unk118->func_001D6410(); func_001E891B(unk118); unk118 = 0; }
+    if (unk1BC) { unk1BC->func_001D6410(); func_001E891B(unk1BC); unk1BC = 0; }
+    func_00157660();
 }
 
