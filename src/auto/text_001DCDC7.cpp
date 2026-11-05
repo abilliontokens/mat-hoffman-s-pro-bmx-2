@@ -69,3 +69,14 @@ int __stdcall func_001DDC28(void *a0) {
         return 0;
     }
 }
+
+int __stdcall func_001DDCA0(void *a0) {
+    int result = _imp__NtSetEvent(a0, 0);
+    if (result >= 0) {
+        return 1;
+    } else {
+        func_001DD659(result);
+        return 0;
+    }
+}
+
