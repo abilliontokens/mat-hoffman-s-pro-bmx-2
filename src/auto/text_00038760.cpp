@@ -64,10 +64,4 @@ inline void *C_00038760::at(int i)
     return 0;
 }
 
-inline void *C_00038760::at2(int i)
-{
-    if (count2 > 0 && items2 != 0 && i < count2)
-        return items2[i];
-    return 0;
-}
 
