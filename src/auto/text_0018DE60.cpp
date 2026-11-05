@@ -42,6 +42,29 @@ struct C_0018E0E0 {
     void func_0018E0E0(C_0018E0E0_Arg *arg, int idx);
 };
 
+void *func_001E8A44(int size);
+
+struct Vec4_0018EA50 {
+    float x, y, z, w;
+};
+
+struct Node_0018EA50 {
+    char pad0[8];
+    int state;
+    char padC[4];
+    Node_0018EA50 *next;
+    char pad14[0x12C];
+    Vec4_0018EA50 v;
+    char pad150[0x40];
+    void func_0018E3E0(int a, int b);
+};
+
+struct C_0018EA50 {
+    char pad0[0x14C];
+    Node_0018EA50 *f14c;
+    void func_0018EA50(int a, int b);
+};
+
 struct C_0018E1D0_Entry {
     char name[0x20];
     char pad20[0x18];
