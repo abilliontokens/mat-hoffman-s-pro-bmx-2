@@ -58,12 +58,12 @@ struct SpriteTweak {
 
 SpriteTweak *SpriteTweak::func_001ADEB0(void)
 {
+    unk4 = 0;
+    vtbl = &D_0028C1D0;
     unk40 = 1.0f;
     unk3C = 1.0f;
     unk50 = 1.0f;
     unk48 = 1.0f;
-    unk4 = 0;
-    vtbl = &D_0028C1D0;
     unk38 = 0;
     unk34 = 0;
     unk4C = 0;
