@@ -446,6 +446,39 @@ void ResponseEmitter::func_001A3050(int a)
     ((C_00157A00 *)this)->func_00157A00(a);
 }
 
+void MaterialSoundEmitter::func_001A3210(void)
+{
+    int i;
+
+    vtbl = (void *)&D_0028B6BC;
+    for (i = 0; i < list1c0.count; i++) {
+        S_001A33A0_Elem *e = list1c0.at(i);
+        if (e != 0) {
+            func_001E891B(e);
+        }
+    }
+    list1c0.Clear();
+    for (i = 0; i < a.count; i++) {
+        S_3B10_Elem *e = a.at(i);
+        if (e != 0) {
+            func_001E891B(e);
+        }
+    }
+    a.Clear();
+    for (i = 0; i < b.count; i++) {
+        S_3B10_Elem *e = b.at(i);
+        if (e != 0) {
+            func_001E891B(e);
+        }
+    }
+    b.Clear();
+    func_001E891B(b.items);
+    func_001E891B(a.items);
+    func_001E891B(list1c0.items);
+    vtbl = (void *)&D_0028B3C4;
+    ((C_00157660 *)this)->func_00157660();
+}
+
 MaterialSoundEmitter::MaterialSoundEmitter(int arg0, int arg1, int arg2, int arg3)
 {
     S_30D0_Block *l0 = (S_30D0_Block *)&list1c0;
