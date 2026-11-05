@@ -96,3 +96,13 @@ void C_001719B0::func_001719B0(int param_1)
   }
   return;
 }
+
+void C_001719D0::func_001719D0(float param)
+{
+    if (param > D_00275544) {
+        float inv = D_00275460 / param;
+        f210 = param;
+        f214 = inv;
+    }
+}
+
