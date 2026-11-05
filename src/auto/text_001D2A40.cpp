@@ -74,6 +74,7 @@ struct C_001D3690 {
     C_001D3690 *func_001D3690(int a);
     int func_001D3730(int a);
     void func_001D37C0();
+    void func_001D3800();
     void func_001D35E0();
 };
 
