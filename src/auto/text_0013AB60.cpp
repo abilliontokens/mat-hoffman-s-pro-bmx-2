@@ -36,15 +36,34 @@ struct S_0013AEC0_Ent {
     int f8;
 };
 
+/* one 0x28-byte row of C_0013AEC0::fC */
+struct S_0013AF80_Row {
+    char pad0[0x10];
+    int f10;
+    char pad14[0x14];
+};
+
+extern "C" int D_0014FEF0(int p);
+int func_001EA426(const char *a, const char *b);
+
 struct C_0013AEC0 {
-    char pad0[0x84];
+    char pad0[0xC];
+    S_0013AF80_Row *fC;
+    char pad10[0x74];
     S_0013AEC0_Ent ents[7];
     char padD8[8];
     int fE0;
     int fE4;
     S_0013AEC0_Slot *fE8;
+    int fEC;
+    char padF0[8];
+    int fF8;
     int func_0013AFB0(int idx);
     void func_0013AEC0(int idx);
+    int func_0013AF80(int idx);
+    int func_0013AF40(int idx, int *a, unsigned int *b);
+    int func_0013AFF0(int idx, int v, int mode);
+    int func_0013B130(const char *key);
 };
 
 
@@ -55,15 +74,19 @@ char func_0013AB60(const char *path)
     char fname[260];
     char drive[3];
     char key;
+    char c;
+    const char *p;
     int n;
     int i;
 
     func_0014FF00(path, drive, dir, fname, ext);
     strcat(fname, ext);
+    p = fname;
     n = strlen(fname);
     key = (char)0xfa;
     for (i = 0; i < n; i++) {
-        key += (char)((key + 3) ^ fname[i]);
+        c = *p++;
+        key += (char)((key + 3) ^ c);
     }
     return key;
 }
