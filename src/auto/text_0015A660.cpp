@@ -42,6 +42,36 @@ struct C_0015A910 {
     int f18;
     C_0015A910 *func_0015A910(int a);
     void func_0015A940(void);
+    void *func_0015A970(unsigned char flags);
+};
+
+struct C_0015B1A0 {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    void *func_0015B1A0(int a);
+    void func_00157600(int a);
+};
+
+struct C_0015AB70 {
+    char pad0[8];
+    unsigned int f8;
+    char padC[0xc];
+    unsigned char *f18;
+    int func_0015AB70(unsigned int idx);
+};
+
+struct S_0015AC20_Game {
+    char pad0[0x230];
+    unsigned char f230;
+};
+
+struct C_0015AC20 {
+    char pad0[0x3f8];
+    int f3F8;
+    char pad3FC[0x149c];
+    unsigned int f1898;
+    bool func_0015AC20(unsigned int flags);
 };
 
 struct C_0015ABF0 {
