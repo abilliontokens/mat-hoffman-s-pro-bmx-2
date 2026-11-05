@@ -1,6 +1,11 @@
 /* 21 functions from 0x00181DB0 to 0x00182CC0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <string.h>
+extern char D_002869B8[];
+extern char D_0027C494[];
+char *func_001E95A4(char *s, const char *delim);
+int func_001E91F4(const char *s);
 struct C_00182810 {
     void func_00182810(void);
 };
