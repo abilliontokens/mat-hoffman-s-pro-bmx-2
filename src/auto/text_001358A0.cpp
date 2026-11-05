@@ -8,6 +8,13 @@ struct C_00135D70 {
 };
 
 
+struct C_00135CB0 {
+    void func_00135CB0();
+    void func_00135D00(int a0, int a1);
+};
+extern int D_002BA700;
+extern void *D_002A8490;
+
 void C_00135D70::func_00135D70(int a0, int a1) {
     unkC = a0;
     unk10 = a1;
