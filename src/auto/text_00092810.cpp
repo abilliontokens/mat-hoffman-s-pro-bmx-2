@@ -152,6 +152,7 @@ struct C_00092890 {
     void func_0008CC50(void);
     C_00092890 *func_00092890(int a);
     void func_00093120(void);
+    void func_00093140(float a1, float a2, int a3, int count, int a5, int a6, float a7);
     C_00092890 *func_00092810(int a0, int a1, int a2, int a3);
     int func_00092BE0(void);
     int func_00092C70(void);
