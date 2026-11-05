@@ -34,6 +34,40 @@ void func_001E891B(void *p);
 extern "C" void *memcpy(void *, const void *, unsigned int);
 #pragma intrinsic(memcpy)
 
+struct IVt163780 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4(int k, int *a, int *b);
+    virtual void v5();
+    virtual void v6(int n);
+    virtual void v7(int n);
+};
+struct It163780 {
+    IVt163780 *vt;
+    int unk4, unk8, count, unk10;
+    void *data;
+};
+struct Mgr163780 {
+    int func_0013C9F0(int a, void *b);
+    void func_0013C960(int h, void *p, int n);
+    void func_0013C8A0(int h, void *p, int n, int z);
+    void func_0013C110(int h);
+};
+extern Mgr163780 *D_002BEAAC_b;
+extern char D_00275FB4[];
+struct P163780 {
+    void func_00162DF0(int n);
+    void func_001628C0(int n);
+    char pad0[0x14];
+    It163780 **listA;
+    It163780 **listB;
+    int countA, countB;
+    int pad24, kindB, kindA;
+    int pad30, id0, id1;
+};
+
 struct S_00162DF0_A {
     char pad0[0x18];
 };
