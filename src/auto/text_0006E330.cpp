@@ -21,6 +21,14 @@ struct C_001B1980 {
 extern int D_0027850C;
 extern int D_00278B14;
 
+struct Res_6E480 {
+    void func_001D6410();
+};
+struct VObj_6E480 {
+    virtual ~VObj_6E480();
+};
+void func_001E891B(void *p);
+
 struct C_0006E330 {
     void *vtbl;
     char pad4[0x20];
