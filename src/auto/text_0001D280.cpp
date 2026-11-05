@@ -44,6 +44,21 @@ struct C_0001DF80_Arr {
     int func_0015ACA0(int idx);
 };
 
+struct S_0001DE30_36 { int v[9]; };
+struct S_0001DE30_16 { int v[4]; };
+struct C_0001DE30_Item {
+    virtual void virt0(int);
+    C_0001DE30_Item *func_001A2580(void *, int, int, int);
+    int func_001A4590(int,int,int,int,S_0001DE30_36,S_0001DE30_16,S_0001DE30_16,int,int,int,int,int);
+    void func_001A1D20(int,int);
+};
+struct C_0001DE30 {
+    char pad0[0x70];
+    C_0001DF80_Arr sub70;
+    void func_001577A0(C_0001DE30_Item *,int);
+    C_0001DE30_Item *func_0001DE30(int,int,int,int,int,int,S_0001DE30_36,S_0001DE30_16,S_0001DE30_16,int,int,int,int,int,int,int);
+};
+
 struct C_0001DF80 {
     char pad0[0x30];
     C_0001DF80_Sub30 sub30;
