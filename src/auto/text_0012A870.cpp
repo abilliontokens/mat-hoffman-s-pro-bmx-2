@@ -20,7 +20,9 @@ struct S_0012AB70Vec {
 struct C_0012AB70R {
     char pad0[0x170];
     S_0012AB70Vec f170;
-    char pad180[0x50];
+    int f180[4];
+    int f190[4];
+    char pad1a0[0x30];
     float f1d0;
     int f1d4;
     char pad1d8[0x38];
@@ -77,21 +79,20 @@ void C_0012AAB0::func_0012AAB0(float param)
     f210 = D_002EFDB8[4] + 1;
 }
 
-void C_0012AB70::func_0012AB70(int *param1, int param2, int param3, int *param4, float *param5)
+void C_0012AB70R::func_0012AB70(S_0012AB70Vec *param1, int param2, int param3, int *param4, float *param5)
 {
     if (param1 != 0) {
-        int *dst;
-        dst = f170;
-        dst[0] = param1[0];
-        dst[1] = param1[1];
-        dst[2] = param1[2];
-        dst[3] = param1[3];
+        f170 = *param1;
     }
     if (param2 != 0) {
-        func_0012A380((char *)this + 0x180, param2);
+        void *dst;
+        dst = (char *)this + 0x180;
+        func_0012A380(dst, param2);
     }
     if (param3 != 0) {
-        func_0012A380((char *)this + 0x190, param3);
+        void *dst;
+        dst = (char *)this + 0x190;
+        func_0012A380(dst, param3);
     }
     if (param4 != 0) {
         f1d4 = *param4;
