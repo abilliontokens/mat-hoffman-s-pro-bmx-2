@@ -66,6 +66,8 @@ extern unsigned short D_002FB120w[];
 extern unsigned char D_002FB140[0x100];
 void func_001EB390(int n);
 int func_001F4C09(unsigned int cp);
+void func_001E8390(void *p);
+void func_001F4E30(void);
 
 /* CRT run-time error table: {num, msg} pairs, 8 bytes each */
 extern int D_002AEF98[];
