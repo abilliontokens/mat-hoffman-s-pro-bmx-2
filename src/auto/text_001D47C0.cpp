@@ -1,5 +1,36 @@
 /* 28 functions from 0x001D47C0 to 0x001D5760, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
+
+struct S_001D5610_Obj {
+    virtual void v0(int flags);
+};
+
+/* 0x10-byte aligned 4x4 float matrix */
+struct __declspec(align(16)) S_001D5660_Mat {
+    float m[16];
+};
+
+struct C_001D5610 {
+    void *vtbl;
+    S_001D5610_Obj *f4;
+    void *func_001D5610(int flags);
+};
+
+struct C_001D5660 {
+    void *vtbl;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    void *f14;
+    char pad18[8];
+    S_001D5660_Mat f20;
+    int f60;
+    short *f64;
+    void func_001D5660(int count, int arg2);
+    void func_001D5720(void);
+};
 
 extern int D_0028F578;
 extern int D_00284E94;
