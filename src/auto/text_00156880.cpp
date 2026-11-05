@@ -126,6 +126,7 @@ struct GameObject {
     virtual void v5();
     virtual void v6();
     virtual void v7();
+    int pad4;
     GameObject *f8;
     GameObject *fC;
     GameObject *f10;
