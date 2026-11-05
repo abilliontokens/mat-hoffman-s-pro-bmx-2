@@ -19,6 +19,18 @@ struct C_Mgr_D1 {
     C_0005C020 *f2C0;
     char pad2C4[0x14];
     int f2D8;
+    int f2DC[8];
+};
+
+struct C_000D2300 {
+    char pad0[0x3E8];
+    int f3E8[12];
+    int f418;
+    char pad41C[0x470 - 0x41C];
+    int f470;
+    char pad474[0x202C - 0x474];
+    C_001B17D0 *f202C;
+    void func_000D2300(void);
 };
 
 struct C_Root_D1 {
