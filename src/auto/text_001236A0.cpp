@@ -24,6 +24,10 @@ struct S_001236A0_Vec4 {
     }
 };
 
+struct S_001236A0_Mat {
+    float m[16];
+};
+
 struct S_001236A0_Point {
     S_001236A0_Vec3 v;
     float w;
