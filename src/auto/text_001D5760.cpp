@@ -152,6 +152,53 @@ struct C_001D6190 {
     void func_001D6190(int a, const char *s, int b);
 };
 
+extern float D_00275544;
+
+static inline void FloatToInt(int *out, float f)
+{
+    int * volatile p = out;
+
+    *p = _mm_cvttss_si32(*(__m128 *)&f);
+}
+
+struct C_001D6290Sub {
+    short s0;
+    short pad2;
+    short s4;
+    short pad6;
+    int f8;
+};
+
+struct C_001D6290Entry {
+    char pad0[4];
+    float f4;
+    float f8;
+    char padC[8];
+    C_001D6290Sub f14;
+};
+
+struct C_001D6290Scale {
+    char pad0[8];
+    int f8;
+};
+
+struct C_001D6290Owner {
+    char pad0[0x58];
+    C_001D6290Entry *tbl[1];
+    C_001D6290Scale *func_0018C070(void);
+};
+
+struct C_001D6290 {
+    unsigned char *unk0;
+    char pad4[0x30];
+    float unk34;
+    char pad38[8];
+    C_001D6290Owner *unk40;
+    char pad44[0xc];
+    unsigned char unk50;
+    int func_001D6290(void);
+};
+
 
 C_001D5760::C_001D5760() : vtbl(&D_0028F600)
 {
