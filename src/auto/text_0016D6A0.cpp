@@ -184,6 +184,40 @@ struct C_0016D8D0 {
     int func_0016D8D0(S_0016D8D0_Stream *stream);
 };
 
+struct C_0016DAC0_Ref {
+    void func_00199A70(int a, C_Quad *out);
+    C_Quad *func_00197EC0(C_Quad *out, V4u_0016D6A0 *v);
+};
+
+struct C_0016DAC0 {
+    void *vtbl;
+    char pad4[0x20];
+    C_Quad f24;
+    C_Quad f34;
+    V4u_0016D6A0 f44;
+    char pad54[0x10];
+    void *f64;
+    C_0016DAC0_Ref *f68;
+    char f6C;
+    char pad6D[0x103];
+    float f170;
+    char pad174[4];
+    float f178;
+    float f17C;
+    char pad180[8];
+    u32 f188;
+    char pad18C[0x1C];
+    u32 f1A8, f1AC;
+    char pad1B0[0x14];
+    int f1C4, f1C8;
+    char pad1CC[0x24];
+    float f1F0[4];
+    float f200[4];
+    char pad210[8];
+    float f218, f21C, f220;
+    C_0016DAC0 *func_0016DAC0(void *a, char *name, C_0016DAC0_Ref *b, V4u_0016D6A0 *c);
+};
+
 C_0016D6A0 *C_0016D6A0::func_0016D6A0(void *a, char *name, void *b, u32 *c)
 {
     volatile float tmp[4];
