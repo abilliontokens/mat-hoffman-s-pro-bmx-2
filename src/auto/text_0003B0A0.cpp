@@ -1,6 +1,18 @@
 /* 3 functions from 0x0003B0A0 to 0x0003BC90, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct C_0003BB60 {
+ void func_0003BB60();
+ void func_0002F450(int);
+ void func_000A4500(int, int);
+ void func_000321C0();
+ void func_0003AD50();
+ void func_001983A0();
+ void func_000361F0(int);
+};
+struct Copy_0003BB60 { int a,b,c,d; };
+extern char D_00276F00[];
+extern int func_001E8AF0(const void*, const void*);
 struct C_0003BC70 {
     undefined4 func_0003BC70(byte param_1);
 };
