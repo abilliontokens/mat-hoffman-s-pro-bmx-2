@@ -24,6 +24,19 @@ int __stdcall func_001F5975(S_001F5975_Pointers *pointers);
 void func_001F6292(void);
 int func_001F627B(PFN_001F5975 fn);
 
+#pragma optimize("sy", on)
+int __stdcall func_001F5975(S_001F5975_Pointers *pointers)
+{
+    S_001F5975_Record *rec = pointers->record;
+    if (rec->code == 0xe06d7363 && rec->numParams == 3 && rec->info[0] == 0x19930520) {
+        func_001F6292();
+    }
+    if (D_002F6A70 != 0 && func_001F627B(D_002F6A70) != 0) {
+        return D_002F6A70(pointers);
+    }
+    return 0;
+}
+
 undefined4 func_001F59BB(void)
 {
   D_002F6A70 = func_001DE7D4(&func_001F5975);
