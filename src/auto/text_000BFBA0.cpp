@@ -63,6 +63,7 @@ struct BmxUIPageDemo {
     void func_001577A0(void *child, int b);
     BmxUIPageDemo *func_000C0010(int a0, int a1, int a2);
     int func_000C0480(int idx);
+    int func_000C07F0(int idx);
 };
 
 static __forceinline int Item_000C0480(BmxUIPageDemo *p, int idx)
