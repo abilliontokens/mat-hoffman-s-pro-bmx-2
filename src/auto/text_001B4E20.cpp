@@ -327,6 +327,30 @@ void C_001B4ED0::func_001B4F90() {
     }
 }
 
+int C_001B5000::func_001B5000(S_001B5000_Stream *s)
+{
+    int i;
+    s->func_00168CB0(&D_0027CB30, &D_002AA9F4, &f18);
+    s->func_00168CB0(&D_0027CB2C, &D_002AA9F4, &f28);
+    s->func_00168CB0(&D_0028CABC, &D_002AA9F4, &f08);
+    s->func_00168C50(&D_0028CAB8, 0, &f38);
+    s->func_00168C50(&D_0028CAB0, 0, &f3C);
+    s->func_00168C50(&D_0028CAA8, 0, &f40);
+    s->func_00168C20(&D_00284BE8, 0, &f4C);
+    if (f4C > 0) {
+        f50 = (S_00186EF0 **)func_001E8A44(f4C * 4);
+    }
+    for (i = 0; i < f4C; i++) {
+        S_00186EF0 *p = (S_00186EF0 *)func_001E8A44(0x114);
+        f50[i] = p ? p->func_00186EF0() : 0;
+        if (f50[i]->func_00186F80(s, i) == 0) {
+            func_001E891B(f50[i]);
+            f50[i] = 0;
+        }
+    }
+    return 1;
+}
+
 undefined4 C_001B56F0::func_001B56F0(void)
 {
   int in_ECX = (int)this;
