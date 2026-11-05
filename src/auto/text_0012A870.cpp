@@ -283,13 +283,13 @@ extern float D_002755E8;
 extern float D_00275998;
 float func_0014F600(float x);
 
-struct S_0012AEC0_Mat {
+struct __declspec(align(16)) S_0012AEC0_Mat {
     float m[16];
-    void func_000264C0(const S_0012AEC0_Mat &src);
+    void func_000264C0(S_0012AEC0_Mat *src);
 };
 
-S_0012AEC0_Mat func_00161AE0(S_0012AB70Vec a, S_0012AB70Vec b, S_0012AB70Vec c, int angle);
-S_0012AEC0_Mat func_00161AA0(float a1, float a2, float a3, float a4);
+S_0012AEC0_Mat *func_00161AE0(S_0012AEC0_Mat *out, S_0012AB70Vec a, S_0012AB70Vec b, S_0012AB70Vec c, int angle);
+S_0012AEC0_Mat *func_00161AA0(S_0012AEC0_Mat *out, float a1, float a2, float a3, float a4);
 
 /* Camera: rebuilds the view/projection matrices and the field-of-view factor */
 struct C_0012AEC0 {
