@@ -26,9 +26,9 @@ struct S_00131400_In {
 struct S_KeyNode {
     f32 f0;
     int f4;
-    f32 f8;
-    f32 fC;
-    f32 f10;
+    u32 f8;
+    u32 fC;
+    u32 f10;
 };
 
 void *func_001E8A44(int size);
@@ -37,9 +37,9 @@ static S_KeyNode *initKeyNode(S_KeyNode *n, f32 value, int time)
 {
     n->f0 = value;
     n->f4 = time;
-    n->fC = 3.40282347e+38f;
-    n->f10 = -3.40282347e+38f;
-    n->f8 = 1.0f;
+    n->fC = 0x7f7fffff;
+    n->f10 = 0xff7fffff;
+    n->f8 = 0x3f800000;
     return n;
 }
 
