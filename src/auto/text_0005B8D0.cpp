@@ -326,6 +326,77 @@ found:
     return 1;
 }
 
+int C_0005B960::func_0005BED0(int sel, int idx, float *out, char *dst)
+{
+    char *s;
+    int d;
+    char c;
+
+    switch (sel) {
+    case 3:
+        *out = (float)g4.val[idx];
+        s = g4.name[idx];
+        d = dst - s;
+        do {
+            c = *s;
+            s[d] = c;
+            s++;
+        } while (c != 0);
+        break;
+    case 4:
+        *out = (float)g3.val[idx];
+        s = g3.name[idx];
+        d = dst - s;
+        do {
+            c = *s;
+            s[d] = c;
+            s++;
+        } while (c != 0);
+        break;
+    case 0:
+        *out = g0.val[idx];
+        s = g0.name[idx];
+        d = dst - s;
+        do {
+            c = *s;
+            s[d] = c;
+            s++;
+        } while (c != 0);
+        break;
+    case 1:
+        *out = g1.val[idx];
+        s = g1.name[idx];
+        d = dst - s;
+        do {
+            c = *s;
+            s[d] = c;
+            s++;
+        } while (c != 0);
+        break;
+    case 2:
+        *out = g2.val[idx];
+        s = g2.name[idx];
+        d = dst - s;
+        do {
+            c = *s;
+            s[d] = c;
+            s++;
+        } while (c != 0);
+        break;
+    case 5:
+        *out = (float)g5.val[idx];
+        s = g5.name[idx];
+        d = dst - s;
+        do {
+            c = *s;
+            s[d] = c;
+            s++;
+        } while (c != 0);
+        break;
+    }
+    return 0;
+}
+
 int C_0005C020::func_0005C020(int param_1)
 {
   int in_ECX = (int)this;
