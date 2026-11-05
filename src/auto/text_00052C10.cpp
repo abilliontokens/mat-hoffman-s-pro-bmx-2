@@ -376,4 +376,4 @@ struct C_52D90 {
     int func_00052D90();
     void func_00052C10(int a);
 };
-extern C_52D90_Game *D_002A8490_g;
+#define G ((C_52D90_Game *)D_002A8490)
