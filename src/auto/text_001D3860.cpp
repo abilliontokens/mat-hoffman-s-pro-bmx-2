@@ -118,7 +118,9 @@ struct C_001D4200 {
     int func_001D4380(char *out);
     int func_001D4440(const char *a, const char *b, const void *data, unsigned int size);
     int func_001D4720(const char *a, const char *b);
+    int func_001D4590(const char *a, const char *b, void *data, unsigned int size);
 };
+int __stdcall func_001DD15A(int h, void *buf, unsigned int size, unsigned int *got, void *ovl);
 
 int __stdcall func_001DEFD8(const char *name);
 int __stdcall func_001DCC3C(const char *path, unsigned int access, unsigned int share, void *sa,
@@ -679,6 +681,51 @@ int C_001D4200::func_001D4380(char *out)
             return 1;
         }
     }
+    return 0;
+}
+
+int C_001D4200::func_001D4440(const char *a, const char *b, const void *data, unsigned int size)
+{
+    char path[0x104];
+    unsigned int sig[5];
+    unsigned int written;
+    int r;
+    int h;
+    int ctx;
+
+    if (unk0 != -1) {
+        r = func_001D4300(unk0);
+        if (r == 2) {
+            h = unk0;
+            if (h == -1 || func_001D4170(h) != 0) {
+                func_001D40E0(h);
+            }
+        } else if (r != 1) {
+            func_001D4170(unk0);
+            goto fail;
+        }
+        func_001ADCC0(path, 0x104, D_00278068, a, b);
+        h = func_001DCC3C(path, 0x401f0000, 0, 0, 2, 0x80, 0);
+        if (h == -1) {
+            goto fail;
+        }
+        if (func_001DD247(h, data, size, &written, 0) != 0) {
+            ctx = func_001DF361(0);
+            if (ctx != -1) {
+                if (func_001DF2EA(ctx, data, size) == 0 && func_001DF304(ctx, sig) == 0) {
+                    if (func_001DD247(h, sig, 0x14, &written, 0) != 0) {
+                        func_001DD13C(h);
+                        return 1;
+                    }
+                } else {
+                    func_001DF304(ctx, 0);
+                }
+            }
+        }
+        func_001DD13C(h);
+        return 0;
+    }
+fail:
     return 0;
 }
 
