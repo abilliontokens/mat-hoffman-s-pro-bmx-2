@@ -56,16 +56,31 @@ struct BmxUIPageHOF2 {
 
 struct S_000D7900_Widget {
     void func_001B1980();
+    void func_001B17D0(char *s);
+    void func_001B1A30(float a, float b, float c);
+    void func_001B19A0(int a);
     void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, float a11, int a12, int a13);
 };
 
 struct S_000D7900_Res {
     void func_00103350();
+    void func_00103260(int a);
 };
 
 struct S_000D7900_Owner {
     S_000D7900_Res *func_000BA9B0(int a);
 };
+
+struct S_7710_Q { void func_0005BED0(int a, int b, float *f, char *s); };
+struct S_7710_A { char pad[0x2c0]; S_7710_Q *q; };
+struct S_7710_X { char pad[0xf68]; int v; };
+struct S_7710_Y { char pad[4]; S_7710_X *x; };
+struct S_7710_B { char pad[0x2e0]; S_7710_A *a; char pad2[4]; S_7710_Y *b; };
+extern S_7710_B *D_002A8490;
+extern float D_0027F2BC, D_00279F74, D_0027F2B8;
+extern char D_0027F2C0[];
+extern int D_0028F5DC;
+extern "C" int func_001ADCC0(char *buf, int n, char *fmt, ...);
 
 struct BmxUIPageHOF3 {
     int vtbl;
