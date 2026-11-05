@@ -133,6 +133,23 @@ void *C_00135430::func_00135430(int flags)
     return this;
 }
 
+ParticleSystem *ParticleSystem::func_00135700(int a)
+{
+    ((C_00157600 *)this)->func_00157600(a);
+    f24 = 0;
+    f28 = 0;
+    f2c = 0;
+    f34 = 0;
+    f38 = 0;
+    f3c = 0;
+    f44 = 0;
+    f48 = 0;
+    f40 = 0;
+    vtbl = (void *)&D_00284774;
+    f30 = 1;
+    return this;
+}
+
 C_00135850* C_00135850::func_00135850(void) {
     extern int D_002847F0;
     unk0 = (int)&D_002847F0;
