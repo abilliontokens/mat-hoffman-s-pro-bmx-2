@@ -1,5 +1,22 @@
 /* 8 functions from 0x0012B7D0 to 0x0012C540, found by Ghidra. */
 #include "common.h"
+struct IO_0012BB60 {
+ int func_0013C9F0(char *, char *);
+ int func_0013C6E0(int, char *, int);
+ int func_0013AFF0(int, int, int);
+ int func_0013C110(int);
+ int func_0013B930(int, void *, int, int);
+};
+extern IO_0012BB60 *D_002BEAAC;
+extern char D_00276274[], D_00284224[], D_00284200[], D_00282960[];
+void *func_001E8A44(unsigned int);
+int func_001F6570(const char *, const char *, unsigned int);
+int func_001E8B76(const char *, const char *, ...);
+struct Vec_0012BB60 {
+ int x,y,z,w;
+ Vec_0012BB60() { z=0; y=0; x=0; w=0x3f800000; }
+};
+struct Triple_0012BB60 { int x,y,z; };
 
 extern int D_00284194;
 extern int D_002A3F00;
@@ -180,7 +197,6 @@ void __stdcall func_0012B950(S_0012B950_Vec4 *out, float t, S_0012B950_Vec4 p0, 
     d = t3 - t2;
     m0 = V3Scale_0012B950(V3Sub_0012B950(*(S_0012B950_V3 *)&p2, *(S_0012B950_V3 *)&p0), D_002755E8);
     m1 = V3Scale_0012B950(V3Sub_0012B950(*(S_0012B950_V3 *)&p3, *(S_0012B950_V3 *)&p1), D_002755E8);
-    out->w = 1.0f;
     V3AddInto_0012B950(out,
             V3Add_0012B950(
                 V3Add_0012B950(V3Scale_0012B950(*(S_0012B950_V3 *)&p1, a), V3Scale_0012B950(*(S_0012B950_V3 *)&p2, b)),
