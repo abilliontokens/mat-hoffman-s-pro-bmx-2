@@ -33,6 +33,7 @@ struct StringTable {
     int capacity;
     int unk10;
     StringTableEntry *entries;
+    int func_001AC440(const char *name);
     int func_001AC680(const char *name, int value);
     void func_001AC750(int index, int data);
     int func_001AC7B0(const char *name, int unused);
