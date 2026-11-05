@@ -325,6 +325,18 @@ int SearchNode::func_00192990(int a, int b)
     return ((C_00157BF0 *)this)->func_00157BF0(a, b);
 }
 
+void SearchNode::func_00192A50(int a, int b)
+{
+    S_00192930_Node *p = (S_00192930_Node *)func_001E8AA5(0x14);
+
+    p->next = f24;
+    p->a = a;
+    p->b = b;
+    p->c = 0;
+    p->d = 0x7f7fffff;
+    f24 = p;
+}
+
 int SearchNode::func_00192AC0(S_00192930_Iface *obj)
 {
     if (f2C != 0) {
