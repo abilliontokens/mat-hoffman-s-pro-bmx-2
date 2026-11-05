@@ -193,7 +193,7 @@ struct C_53460 {
     void *unk1C4;
     int unk1C8;
     char pad1CC[0xFC];
-    int unk2C8;
+    float unk2C8;
     char pad2CC[4];
     int unk2D0;
     char pad2D4[4];
