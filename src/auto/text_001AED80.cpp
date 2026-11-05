@@ -2,6 +2,8 @@
 #include "common.h"
 #include "ghidra.h"
 #include <string.h>
+#include <math.h>
+struct C_002A8490 { char pad[0x244]; float f244; };
 extern char D_002A60B0[];
 extern char D_002A60AF[];
 extern char D_00284644[];
