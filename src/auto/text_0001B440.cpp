@@ -242,6 +242,21 @@ int __stdcall func_0001B900(int param_1)
   return *(int *)(param_1 + 0x60) + -1;
 }
 
+void C_0001B790::func_0001BE50(void)
+{
+    int i;
+
+    if (f2c == 0) {
+        return;
+    }
+    for (i = 0; i < f2c->f24; i++) {
+        S_0001B790_Obj *obj = f2c->f28[i];
+        if (obj->f4 == 1) {
+            func_0001B8A0(obj);
+        }
+    }
+}
+
 void C_0001C1E0::func_0001C1E0(int idx, int b, int c, int d)
 {
     S_0001C1E0_List *list = f2c;
