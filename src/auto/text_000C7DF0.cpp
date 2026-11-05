@@ -16,11 +16,15 @@ struct S_000C86A0_124 {
 };
 
 struct S_002A8490_E8_4 {
-    char pad0[0x740];
+    char pad0[0x288];
+    int f288;
+    char pad28C[0x740 - 0x28C];
     int f740;
     char pad744[0x7C8 - 0x744];
     int f7C8;
-    char pad7CC[0x908 - 0x7CC];
+    char pad7CC[0x838 - 0x7CC];
+    int f838;
+    char pad83C[0x908 - 0x83C];
     int f908;
     char pad90C[0x928 - 0x90C];
     int f928;
