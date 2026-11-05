@@ -555,11 +555,7 @@ int C_001BA5E0::func_001BB060(S_001BB060_Stream *stream, int a1)
         s = tok2.func_001B4A70(D_0028803C);
     }
     stream->func_00168BE0(D_0028D208, D_00275630, buf, 0x80);
-    if (memcmp(buf, D_0028CD10, 14) == 0) {
-        f10c = 1;
-    } else {
-        f10c = memcmp(buf, D_0028CD08, 5) == 0 ? 2 : 0;
-    }
+    f10c = strcmp(buf, "EnterOnNoExit") == 0 ? 1 : (strcmp(buf, "Wait") == 0 ? 2 : 0);
     stream->func_00168BE0(D_0028CC30, D_00275630, &f8, 0x103);
     return 1;
 }
