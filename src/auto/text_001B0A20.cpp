@@ -386,13 +386,12 @@ void C_001B0E90::func_001B0E90(void) {
 
 void C_001B0E60::func_001B0EA0(int value, C_001B0E60 **first)
 {
-    C_001B0E60 *p = this;
+    C_001B0E60 *p;
     ShaderNode *node;
-    while (p->unk1C != 0) {
+    for (p = this; p->unk1C != 0; p = p->unk1C) {
         if (*first == 0) {
             *first = p;
         }
-        p = p->unk1C;
     }
     node = D_002F0630->pool->func_0001E8A0();
     node->next = 0;
@@ -405,6 +404,25 @@ void C_001B0E60::func_001B0EA0(int value, C_001B0E60 **first)
         p->unk14->next = node;
         p->unk14 = node;
     }
+}
+
+SurfaceShaderList *SurfaceShaderList::func_001B0F10()
+{
+    ShaderNodePool *p;
+    vtbl = (void *)&D_0028C6F8;
+    memset(shaders, 0, sizeof(shaders));
+    count = 0;
+    p = (ShaderNodePool *)func_001E8A44(0x30);
+    if (p)
+        p = p->func_0001E740(0x14, 0x1000);
+    else
+        p = 0;
+    pool = p;
+    frame = 1;
+    if (D_002F0630 == 0) {
+        D_002F0630 = this;
+    }
+    return this;
 }
 
 void SurfaceShaderList::func_001B0F70()
