@@ -98,8 +98,36 @@ extern char D_00285C5C[];
 extern char D_00285C40[];
 extern char D_00285C28[];
 extern char D_00285C0C[];
-int func_002012B0(int a, int b, int c, int d);
+int __stdcall func_002012B0(int a, int b, int c, int d);
 
+
+int func_00144BF0(const char *a0, int a1, int a2, int a3)
+{
+    int idx;
+    int result;
+    int ok;
+    int fail;
+
+    if (D_002A71C4->unk8 == 0) {
+        D_002A71C4->v7(D_00285C6C, 0);
+        D_002A71C4->v7(D_00285C5C, 0);
+        D_002A71C4->v7(D_00285C40, 0);
+        D_002A71C4->v7(D_00285C28, 0);
+        D_002A71C4->v7(D_00285C0C, 0);
+    }
+    idx = D_002A71C4->v7(a0, 0);
+    D_002A71C4->v5(idx);
+    if (a1 != 0 && D_002A71C4->unk14[idx].unk4 == 0) {
+        result = func_002012B0(a1, a2, 2, a3);
+        ok = result != 0;
+        fail = (int)((unsigned)(ok - 1) & 0x8007000E) < 0;
+        if (fail) {
+            return 0;
+        }
+        D_002A71C4->unk14[idx].unk4 = result;
+    }
+    return -idx;
+}
 
 void C_00144CF0::func_00144CF0(void)
 {
