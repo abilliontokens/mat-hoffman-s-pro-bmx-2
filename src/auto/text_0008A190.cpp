@@ -1,6 +1,45 @@
 /* 27 functions from 0x0008A190 to 0x0008AED0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+extern int D_00279C3C;
+extern int D_00279B64;
+void func_001E891B(void *p);
+
+struct PtrObj_0008 {
+    void func_001D6410();
+    void func_001D6600();
+};
+
+struct SubElem_0008 {
+    char pad0[0x64];
+    void func_001D5760();
+    void func_001D57E0();
+};
+
+struct C_0008AAB0 {
+    void *vtbl;
+    char pad4[0x20];
+    void *unk24;
+    C_0008AAB0 *func_0008AAB0(int a0);
+    void func_00157600(int a0);
+};
+
+struct C_0008A2E0 {
+    void *vtbl;
+    char pad4[0x20];
+    PtrObj_0008 *ptrs[5];
+    SubElem_0008 elems[9];
+    char pad3BC[0x100];
+    int vals[5];
+    char pad4D0[0x8];
+    int unk4D8;
+    int unk4DC;
+    C_0008A2E0 *func_0008A2E0(int a0);
+    void func_00157600(int a0);
+    void func_0008A350();
+    void func_0008A8C0();
+};
+
 struct C_0008A8F0 {
     undefined4 func_0008A8F0(int param_1);
 };
