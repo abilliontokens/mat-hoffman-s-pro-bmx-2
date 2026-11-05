@@ -50,6 +50,46 @@ struct C_00169710 {
     int func_00168BE0(const char *k1, const char *k2, char *dst, int size);
 };
 
+struct C_001B9D60 {
+    int func_001B9D60(int a);
+};
+
+char *func_001E8AF0(char *str, const char *sub);
+char *func_001EA1EE(char *str);
+
+extern char D_00276688[];
+extern char D_0027ADEC[];
+extern char D_0027ADE4[];
+extern char D_0027ADDC[];
+extern char D_0027ADD4[];
+extern char D_0027B1B0[];
+extern int D_002B9118;
+extern int D_002B9108;
+extern int D_002B910C;
+extern int D_002B911C;
+extern int D_002B9114;
+extern int D_002B9110;
+extern int D_002BA160;
+
+struct S_000A3C90_item {
+    char pad0[0x68];
+    int unk68;
+    char pad6C[0x1c0 - 0x6c];
+    char *unk1C0;
+};
+
+struct S_000A3C90_list {
+    char pad0[0x280];
+    S_000A3C90_item **unk280;
+    int unk284;
+};
+
+struct C_000A3C90 : C_001B9D60 {
+    char pad0[0x1a4];
+    S_000A3C90_list *unk1A4;
+    int func_000A3C90(int a);
+};
+
 struct C_000A2ED0 {
     char pad0[0x4c0];
     void *unk4C0;
