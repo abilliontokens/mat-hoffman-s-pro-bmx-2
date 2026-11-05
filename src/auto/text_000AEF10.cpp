@@ -112,6 +112,27 @@ struct C_000AEF80 {
     undefined4 func_000AEF80(byte param_1);
 };
 
+extern int D_0027C594;
+
+struct C_0027C594 {
+    void *vtbl;
+    char pad4[0x20];
+    int unk24;
+    int unk28;
+};
+
+struct C_000AEC90 {
+    void func_000AEC90(void *param_1);
+};
+
+struct C_000AF8A0 {
+    char pad0[0x28];
+    void *unk28;
+    char pad2C[0x548 - 0x2c];
+    C_0027C594 *unk548;
+    void func_000AF8A0(void);
+};
+
 
 void C_000AEF10::func_000AEF10(void) {
     int i;
