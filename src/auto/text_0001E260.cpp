@@ -72,6 +72,7 @@ void GR_BitString::func_0001E460() {
     }
 }
 
+#pragma optimize("y", off)
 u32 __stdcall func_0001E550(int a0) {
     u32 result;
     u32 v = D_002A0DAC[a0];
