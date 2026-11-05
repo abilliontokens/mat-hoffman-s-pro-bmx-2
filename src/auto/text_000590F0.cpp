@@ -60,7 +60,9 @@ struct S_00059F50_Ctl {
 };
 
 struct S_00059F50_E0 {
-    char pad0[0x2C4];
+    char pad0[4];
+    int f4;
+    char pad8[0x2BC];
     void *f2C4;
     char pad2C8[0x2FC-0x2C8];
     S_00059F50_Ctl *f2FC;
