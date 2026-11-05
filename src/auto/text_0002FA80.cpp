@@ -2,7 +2,17 @@
 #include "common.h"
 #include "ghidra.h"
 struct S_0002FA80_Sub {
-    char name[0x10c];
+    char name[0x104];
+    int f104;
+    int f108;
+};
+
+struct C_00194C60 {
+    void func_00194C60(void);
+};
+
+struct C_00194BD0 {
+    void func_00194BD0(int a, int b, int c);
 };
 
 struct S_0002FA80_Entry {
@@ -56,6 +66,42 @@ int S_0002FA80_Entry::func_0002FFD0(const char *subName)
         }
     }
     return -1;
+}
+
+undefined4 C_0002FA80::func_00030020(const char *name)
+{
+    int func_001EA426(...);
+    int i;
+    int id;
+
+    i = 0;
+    if (count > 0) {
+        while (1) {
+            S_0002FA80_Entry *e = &entries[i];
+            if (func_001EA426(name, e->name) == 0) {
+                id = e->id;
+                if (id != -1) {
+                    break;
+                }
+            }
+            i++;
+            if (i >= count) {
+                return 0;
+            }
+        }
+        entries[i].curSub = 0;
+    }
+    if (id != -1) {
+        cur = id;
+        f0->func_0012B7D0((int)entries[id].f0, 0, 0, 0, 0);
+        return 1;
+    }
+    return 0;
+}
+
+bool C_0002FA80::func_000300C0(const char *subName)
+{
+    return entries[cur].func_0002FFD0(subName) != -1;
 }
 
 bool C_000300F0::func_000300F0(undefined4 param_1)
