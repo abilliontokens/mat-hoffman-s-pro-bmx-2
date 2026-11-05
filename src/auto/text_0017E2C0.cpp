@@ -193,3 +193,19 @@ void RayCollisionObject::func_0017F0B0() {
  }
 }
 
+void C_0017F1B0::func_0017F1B0()
+{
+    unkA7 &= 0xdf;
+    D_002B92E0 = 0;
+    D_002B92F0 = 0;
+    func_00133D80(unk54);
+    S_0017F1B0 *p = unk54;
+    p->v0 = D_002A8EE8;
+    p->v10 = D_002A8EE8;
+    p->unk94 = 0x3f800000;
+    p->unk80 = 0;
+    p->v40 = D_002A8EE8;
+    p->v50 = D_002A8EE8;
+    p->v60 = D_002A8EE8;
+}
+
