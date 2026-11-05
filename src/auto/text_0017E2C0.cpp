@@ -1,5 +1,6 @@
 /* 13 functions from 0x0017E2C0 to 0x0017F2B0, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
 
 extern int D_00289134;
 extern int D_002891C4;
