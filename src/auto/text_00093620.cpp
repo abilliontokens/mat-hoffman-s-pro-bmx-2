@@ -223,6 +223,19 @@ void C_00093140::func_00093AD0(int a1, int a2, int a3, int a4, int a5, int a6)
     func_00093140(a1, a2, a3, 4, a4, a5, a6);
 }
 
+void C_00093140::func_00093B80(int a1, int a2, int a3, int a4, int a5, int a6)
+{
+    f24->func_001B17D0(D_002A8490->f2e8->f4->fB60);
+    f28->func_001B17D0((int)D_00275630);
+    f2c->func_001B17D0(D_002A8490->f2e8->f4->fB28);
+    f30->func_001B17D0(D_002A8490->f2e8->f4->fB30);
+    f34->func_001B17D0(D_002A8490->f2e8->f4->fB38);
+    f38->func_001B17D0((int)D_00275630);
+    f3c->func_001B17D0(D_002A8490->f2e8->f4->f11C8);
+    f40->func_001B17D0(D_002A8490->f2e8->f4->f11D0);
+    func_00093140(a1, a2, a3, 8, a4, a5, a6);
+}
+
 void C_00093140::func_00093C80(int a1, int a2, int a3, int a4, int a5, int a6)
 {
     f24->func_001B17D0(D_002A8490->f2e8->f4->fB78);
