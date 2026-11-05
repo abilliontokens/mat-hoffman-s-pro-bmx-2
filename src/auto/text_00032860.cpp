@@ -138,6 +138,8 @@ struct BmxEvent {
     void func_00032F50();
     void func_00157920();
     int func_00033300();
+    int func_00033320(void *a, int b);
+    int func_00157BF0(void *a, int b);
 };
 
 struct O_32860Ctl { void func_0001C240(); };
