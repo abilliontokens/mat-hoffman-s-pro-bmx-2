@@ -257,7 +257,23 @@ extern float D_002A997C;
 
 struct V4_00193EB0 {
     float x, y, z, w;
+    V4_00193EB0 &operator+=(const V4_00193EB0 &o)
+    {
+        x += o.x;
+        y += o.y;
+        z += o.z;
+        return *this;
+    }
 };
+static inline V4_00193EB0 Sub_00193EB0(const V4_00193EB0 &a, const V4_00193EB0 &b)
+{
+    V4_00193EB0 r;
+    r.x = a.x - b.x;
+    r.y = a.y - b.y;
+    r.z = a.z - b.z;
+    r.w = 1.0f;
+    return r;
+}
 struct Seg_00193EB0 {
     char pad0[0xc];
     V4_00193EB0 *fC;
