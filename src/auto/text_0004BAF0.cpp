@@ -99,6 +99,29 @@ struct C_0004C720Mgr {
 
 extern C_0004C720Mgr *D_002A8490;
 
+struct C_0004BAF0 {
+    char pad0[0x64];
+    C_0004BF00_World *f64;
+    char pad68[0x28];
+    int f90;
+    char pad94[0x50];
+    C_0004BF00_Object *fE4;
+    char padE8[0x74];
+    C_0004BF00_Object *f15C;
+    char pad160[4];
+    C_0004BF00_Object *f164;
+    char pad168[8];
+    C_0004BF00_Object *f170[1];
+    char pad174[0x1c];
+    C_0004BF00_Object *f190;
+    char pad194[0xc];
+    C_0004BF00_Object *f1A0;
+    char pad1A4[0xe0];
+    C_0004BF00_Object *f284[1];
+    void func_00031630();
+    void func_0004BAF0();
+};
+
 /* the base class whose virtual functions the parts below are called through */
 struct S_0004C320_Base {
     virtual void v0();
