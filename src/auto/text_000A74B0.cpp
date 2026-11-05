@@ -144,11 +144,11 @@ void Models_000A77C0::func_000A77C0(int type, int idx)
         Model60_000A77C0 *p = (Model60_000A77C0 *)func_001E8A44(0x60);
 
         if (p != 0) {
-            *(Model_000A77C0 **)((char *)f28 + idx * 4) = p->func_001B5790();
+            p = p->func_001B5790();
         } else {
-            *(Model_000A77C0 **)((char *)f28 + idx * 4) = 0;
+            p = 0;
         }
-        (*(Model_000A77C0 **)((char *)f28 + idx * 4))->f4 = type;
+        *(Model_000A77C0 **)((char *)f28 + idx * 4) = p;
     } else {
         Model1B0_000A77C0 *p = (Model1B0_000A77C0 *)func_001E8A44(0x1b0);
 
@@ -159,8 +159,9 @@ void Models_000A77C0::func_000A77C0(int type, int idx)
             p = 0;
         }
         *(Model_000A77C0 **)((char *)f28 + idx * 4) = p;
-        (*(Model_000A77C0 **)((char *)f28 + idx * 4))->f4 = 1;
+        type = 1;
     }
+    (*(Model_000A77C0 **)((char *)f28 + idx * 4))->f4 = type;
 }
 
 GrindTrigger_000A8360 *GrindTrigger_000A8360::func_000A8360(void)
