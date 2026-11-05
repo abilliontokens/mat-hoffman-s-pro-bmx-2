@@ -106,9 +106,15 @@ struct BmxEvent {
     int f90;
     char pad94[0x158 - 0x94];
     void *f158;
-    char pad15c[0x1c0 - 0x15c];
+    char pad15c[0x170 - 0x15c];
+    S_00083A70_Obj *f170;
+    char pad174[0x1c0 - 0x174];
     S_BmxEvent_Hook *f1c0;
     void *f1c4;
+    void func_00032280(int id, int a1, int a2, int a3, int a4, int a5);
+    void func_00032300(void);
+    void func_00032360(int id, int a1, int a2);
+    void func_000323C0(int id, int a1, int a2, int a3, int a4, int a5);
     void func_000324C0(int a);
     int func_00031D80(void);
     void func_00031E20(void);
