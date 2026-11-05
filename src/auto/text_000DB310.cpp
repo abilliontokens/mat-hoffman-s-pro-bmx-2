@@ -7,7 +7,7 @@ struct C_000DB310_Widget {
     void func_001B1980();
     void func_001B2270(unsigned int color);
     void func_001B1A30(float a1, float a2, float a3);
-    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, float a11, int a12, int a13);
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, float a11, float a12, int a13);
 };
 
 struct S_000DBC00_G {
