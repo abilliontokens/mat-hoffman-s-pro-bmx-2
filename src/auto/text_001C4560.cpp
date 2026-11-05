@@ -150,6 +150,41 @@ C_001C4F40::C_001C4F40(void)
     f8B4 = 0;
 }
 
+int FadeManager_001C4B60::func_001C4B60(int a0, int a1)
+{
+    if (f40->f38 != 0) {
+        return 0;
+    }
+    if (a1 != 0) {
+        f40->func_001C4180(a0);
+        return 1;
+    }
+    D_002F07B8->v4(a0);
+    f40->f40 = 1;
+    f40->f38 = 0;
+    f40->f3C = 0;
+    f40->f30 = 0;
+    return 1;
+}
+
+int FadeManager_001C4B60::func_001C4BD0(int a0, int a1)
+{
+    if (f40->f3C != 0) {
+        return 0;
+    }
+    if (a1 != 0) {
+        f40->func_001C41E0(a0);
+        return 1;
+    }
+    f44 = 1;
+    f40->f40 = 0;
+    f40->f38 = 0;
+    f40->f3C = 0;
+    f40->f30 = 0;
+    f40->f2C = (f32)a0;
+    return 1;
+}
+
 void C_001C4D50::func_001C4D50(int a0)
 {
     C_001C4D50_Fx *fx = f58;
@@ -162,6 +197,18 @@ void C_001C4D50::func_001C4D50(int a0)
         fx->f30 = 0.0f;
     }
     fx->v6();
+}
+
+void FadeManager_001C4B60::func_001C4E70(f32 v)
+{
+    FadeLevel_001C4E70 *p = f6C;
+
+    v = v * D_002755E0;
+    p->f2C = 0;
+    p->f30 = v;
+    if (v > D_00275544) {
+        p->v6();
+    }
 }
 
 void *C_001C4EA0::func_001C4EA0(int flags)
