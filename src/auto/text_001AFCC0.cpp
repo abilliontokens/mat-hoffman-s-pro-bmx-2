@@ -553,6 +553,41 @@ void *C_001B08B0::func_001B08B0(unsigned int flags)
     return this;
 }
 
+C_001B08B0 *C_001B08B0::func_001B08F0(C_001B08B0 *src)
+{
+    extern int D_0028C444;
+    int i;
+
+    vtbl = (void *)&D_0028C444;
+    unk4 = src->unk4;
+    unk8 = src->unk8;
+    for (i = 0; i < 4; i++) {
+        items[i] = 0;
+        if (src->items[i] != 0) {
+            S_001B08F0_Item *m = (S_001B08F0_Item *)func_001E8A44(0x3c);
+            items[i] = m ? (*m = *src->items[i], m) : 0;
+        }
+    }
+    return this;
+}
+
+void C_001B08B0::func_001B0970(void)
+{
+    int i;
+
+    for (i = 0; i < 4; i++) {
+        if (items[i] != 0) {
+            func_001E891B(items[i]);
+        }
+    }
+    if (unk1C != 0) {
+        unk1C->d0(1);
+    }
+    if (unk20 != 0) {
+        unk20->d0(1);
+    }
+}
+
 void *C_001B09C0::func_001B09C0(unsigned int flags)
 {
     extern int D_0028C5E0;
