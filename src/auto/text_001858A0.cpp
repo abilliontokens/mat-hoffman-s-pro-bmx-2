@@ -265,6 +265,7 @@ struct Vec16_186330 { u32 a, b, c, d; };
 struct ObjA_186330 {
     virtual void func_vslot0();
     virtual void func_vslot1();
+    virtual void func_vslot2();
     ObjA_186330 *func_0015CE00(int a);
     int func_0015E990(int type, Vec16_186330 v, int a, int b, int c, int d, int e, int f, void *g, int h);
     void func_0015D070(int a, int b);
