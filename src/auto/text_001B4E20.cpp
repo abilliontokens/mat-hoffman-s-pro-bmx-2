@@ -293,6 +293,26 @@ undefined4 C_001B5720::func_001B5720(void)
                   *(int *)(in_ECX + 0x90) * 4) * 4);
 }
 
+int C_001B5750::func_001B5750(void *name)
+{
+    int i;
+    for (i = 0; i < f60; i++) {
+        if (func_001EA426(name, ((void **)f7C)[i]) == 0) {
+            return i;
+        }
+    }
+    return 0;
+}
+
+C_001B5790 *C_001B5790::func_001B5790(void)
+{
+    ((C_001B4ED0 *)this)->func_001B4ED0();
+    f58 = 0;
+    f5C = 0;
+    vtbl = (void *)&D_0028CB80;
+    return this;
+}
+
 C_001B5830 *C_001B5830::func_001B5830(void *a) {
     ((C_001B57600 *)this)->func_00157600(a);
     f24 = 0;
