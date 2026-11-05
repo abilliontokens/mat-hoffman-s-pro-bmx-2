@@ -117,7 +117,9 @@ struct C_00104B00 {
     int fa2c;
     char pada30[0x1110 - 0xa30];
     int f1110;
-    char pad1114[0x11f4 - 0x1114];
+    char pad1114[0x11b0 - 0x1114];
+    S_001058F0_Obj *f11b0;
+    char pad11b4[0x11f4 - 0x11b4];
     int f11f4;
     char pad11f8[0x15d8 - 0x11f8];
     int f15d8;
