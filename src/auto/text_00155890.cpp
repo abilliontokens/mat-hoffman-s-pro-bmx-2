@@ -173,3 +173,16 @@ int C_00156820::func_00156820(int param_1, void *param_2)
     return 1;
 }
 
+int C_00156840::func_00156840(void)
+{
+    if (unk8 == 0) {
+        C_001D0C30 *p = (C_001D0C30 *)func_001E8A44(0xd1c);
+        p = p != 0 ? p->func_001D0C30() : 0;
+        unk8 = p;
+        if (p->dummy1() == 0) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
