@@ -498,6 +498,44 @@ C_52C10 *C_52C10::func_000536D0(void)
     return this;
 }
 
+void C_536F0::func_000536F0()
+{
+    int i;
+    func_00031630();
+    void *p = func_001E8A44(0xf4);
+    unkE4 = p ? ((C_536F0_Ev *)p)->func_00088530(1) : 0;
+    unkE4 = unkE4->func_00088570(((C_536F0_2E0 *)D_002A8490->f2E0)->unk8);
+    p = func_001E8A44(0x134);
+    unk15C = p ? ((C_536F0_A *)p)->func_0005ECA0(1) : 0;
+    unk15C->func_0005EDC0(this);
+    unk15C->vf4();
+    p = func_001E8A44(0x140);
+    unk1A0 = p ? ((C_536F0_B *)p)->func_000715B0(1) : 0;
+    unk1A0->func_00071880(this);
+    unk1A0->vf4();
+    p = func_001E8A44(0x1a0);
+    unk164 = p ? ((C_536F0_C *)p)->func_0006E330(1) : 0;
+    unk164->func_0006ECC0(this);
+    unk164->vf4();
+    p = func_001E8A44(0x16c);
+    unk190 = p ? ((C_536F0_D *)p)->func_00066C90(1) : 0;
+    unk190->func_00066FA0(this);
+    unk190->vf4();
+    p = func_001E8A44(0xcc);
+    unk1A4 = p ? ((C_536F0_F *)p)->func_00072C90(1) : 0;
+    unk1A4->func_00072E70(this);
+    unk1A4->vf4();
+    for (i = 0; i < unk90; i++) {
+        p = func_001E8A44(0xda4);
+        unk170[i] = p ? ((C_536F0_E *)p)->func_00082450(1) : 0;
+        unk170[i]->func_0008DB70(unk64, unk64->list->items[i], ((C_536F0_2E0 *)D_002A8490->f2E0)->unk8, i, 1, 1, 0);
+        unk170[i]->vf6();
+    }
+    p = func_001E8A44(0xc8);
+    C_536F0_Ev2 *q = p ? ((C_536F0_Ev2 *)p)->func_000876B0(1) : 0;
+    unk198 = q->func_00087760(((C_536F0_2E0 *)D_002A8490->f2E0)->unk8, this, 0);
+}
+
 void func_00053920(void) {
     int func_00031640(...);
     func_00031640();
