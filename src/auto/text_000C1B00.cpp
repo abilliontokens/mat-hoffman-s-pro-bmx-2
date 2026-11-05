@@ -25,9 +25,16 @@ struct S_000C2680_Obj {
     S_000C2680_Sub *f2C0;
 };
 
+struct S_000C2680_Global {
+    char pad0[8];
+    S_000C2680_Query *f8;
+    char pad0C[0x2E0 - 0xC];
+    S_000C2680_Obj *f2E0;
+};
+
 struct C_000C2680 {
     char pad0[0x124];
-    void *f124;
+    S_000C2680_Owner *f124;
     char pad128[0x290 - 0x128];
     int f290;
     char pad294[4];
