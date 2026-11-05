@@ -61,6 +61,7 @@ extern u32 D_002A990C;
 extern u32 D_002A9910;
 
 void func_001E8390(void *p);
+float sqrtf(float x);
 
 struct C_00157600 {
     void func_00157600(int a0);
