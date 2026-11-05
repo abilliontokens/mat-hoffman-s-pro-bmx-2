@@ -106,6 +106,17 @@ undefined4 C_000F7670::func_000F7670(byte param_1)
   return in_ECX;
 }
 
+void BmxUIPageGameOptions::func_000F7F80(void) {
+    unk2f8->func_00093120();
+    unk298->func_001B17D0(D_002A8490->p2e8->p4->f938);
+    unk298->func_001B1A30(320.0f, 120.0f, 0.0f);
+    unk29c->func_001B17D0(D_002A8490->p2e8->p4->f7a8);
+    if (unk288 != 0) {
+        func_000CC0B0();
+        unk288 = 0;
+    }
+}
+
 undefined4 C_000F83A0::func_000F83A0(byte param_1)
 {
   int func_000CCB10(...);
