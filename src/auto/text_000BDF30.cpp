@@ -100,7 +100,7 @@ struct C_000BBE30 {
     S_000BE540_Vt *f260;
     char pad264[0x18];
     S_000BDF30_Entry *f27C;
-    int f280;
+    S_000BE020_Item *f280;
     int f284;
     int f288;
     int f28C;
@@ -109,7 +109,9 @@ struct C_000BBE30 {
     int f2D0[8];
     void func_000BBA80(int idx, char *buf);
     int func_000BBE30(int show);
+    int func_000BBED0(int show);
     int func_000BDF30(int show);
+    int func_000BE020(int show);
     void func_000BE540();
 };
 
