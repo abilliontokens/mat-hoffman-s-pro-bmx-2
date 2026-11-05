@@ -18,12 +18,50 @@ struct C_00132540 {
     void func_00132540();
 };
 
+struct C_00157600_1328F0 {
+    void func_00157600(int a);
+};
+
+struct C_00164440_1328F0 {
+    void *func_00164440(int a, int b);
+};
+
 struct Class_002845AC {
+    int *vbptr;
+    char pad4[0x21C];
+    u32 f220;
+    u32 f224;
+    u32 f228;
+    u32 f22C;
+    u32 f230;
+    u32 f234;
+    u32 f238;
+    u32 f23C;
+    u32 f240;
+    u32 f244;
+    u32 f248;
+    u32 f24C;
+    u32 f250;
+    u32 f254;
+    u32 f258;
+    u32 f25C;
+    u32 f260;
+    u32 f264;
+    u32 f268;
+    u32 f26C;
+    u32 f270;
+    u32 f274;
+    u32 f278;
+    u32 f27C;
+    u32 f280;
+    u32 f284;
+    Class_002845AC *func_001328F0(int a, int mostDerived);
     void func_00132DB0();
     void func_00132DE0();
 };
 
 extern int D_00284514;
+extern int D_00284618;
 extern int D_002845AC;
 void func_001E891B(void *ptr);
 void func_001E8390(void *ptr);
