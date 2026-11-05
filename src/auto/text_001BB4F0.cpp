@@ -157,10 +157,10 @@ __declspec(align(16)) struct S_001BB680_Mat {
     {
         __m128 z = _mm_setzero_ps();
 
-        _mm_store_ps(m, z);
-        _mm_store_ps(m + 4, z);
-        _mm_store_ps(m + 8, z);
-        _mm_store_ps(m + 12, z);
+        *(__m128 *)&m[0] = z;
+        *(__m128 *)&m[4] = z;
+        *(__m128 *)&m[8] = z;
+        *(__m128 *)&m[12] = z;
         m[0] = 1.0f;
         m[5] = 1.0f;
         m[10] = 1.0f;
