@@ -342,9 +342,9 @@ void C_000A00A0::func_000A00A0(V4_000A00A0 a0, int a1)
         unk10->unkA7 |= 1;
         unk10->func_001A57E0(D_002A25E0, unkB4, 0);
         unk10->func_00133ED0();
-        unk10->func_001332A0();
-        unk10->func_00133140(a1, 2);
     }
+    unk10->func_001332A0();
+    unk10->func_00133140(a1, 2);
     if (unk14 == 0) {
         Obj_000A00A0 *p = (Obj_000A00A0 *)func_001E8A44(0xf4);
         if (p != 0)
@@ -363,8 +363,8 @@ void C_000A00A0::func_000A00A0(V4_000A00A0 a0, int a1)
         v[0] = a0;
         unk14->func_0014AC30(v, 0);
         unk14->func_00133ED0();
-        unk14->func_001332A0();
-        unk14->func_00133140(a1, 2);
     }
+    unk14->func_001332A0();
+    unk14->func_00133140(a1, 2);
 }
 
