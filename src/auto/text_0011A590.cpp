@@ -43,6 +43,11 @@ struct C_0011AB90 {
     void func_0011AB90(C_0011AB90Arg *arg);
 };
 
+extern float D_00275460;
+extern float D_00278C48;
+
+static __forceinline float Sqrt_0011ADD0(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+
 void func_0011AC30(float *out, float *in);
 void func_0011ACC0(void *a, void *b, float *m);
 
