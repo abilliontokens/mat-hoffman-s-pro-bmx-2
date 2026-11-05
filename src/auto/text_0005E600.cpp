@@ -111,6 +111,26 @@ void C_0005E920::func_0005E920(float param_1, float param_2)
     }
 }
 
+void C_0005E960::func_0005E960(int param_1, int param_2)
+{
+    float f2 = (float)param_2;
+    float f1 = (float)param_1;
+    if (f4 == f1 && f8 == f2) {
+        return;
+    }
+    f4 = f1;
+    f8 = f2;
+    f4e |= 6;
+}
+
+void C_0005E9A0::func_0005E9A0(unsigned int param_1)
+{
+    if (f48.raw != param_1) {
+        f48.b.lo = param_1;
+        f4e |= 8;
+    }
+}
+
 void C_0005E9D0::func_0005E9D0(float param_1)
 {
   int in_ECX = (int)this;
