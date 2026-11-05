@@ -126,6 +126,25 @@ void C_00051180::func_00051180(float param_1)
   return;
 }
 
+int C_00051840::func_00051840(void)
+{
+    int count = 0;
+
+    if (f2B8[0] > D_00275544) {
+        count++;
+    }
+    if (f2B8[1] > D_00275544) {
+        count++;
+    }
+    if (f2B8[2] > D_00275544) {
+        count++;
+    }
+    if (f2B8[3] > D_00275544) {
+        count++;
+    }
+    return count;
+}
+
 int C_00051A90::func_00051A90(int flag)
 {
     if (flag != 0) {
