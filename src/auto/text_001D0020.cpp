@@ -79,6 +79,20 @@ XboxSoundGroup_001D0870 *XboxSoundGroup_001D0870::func_001D0870(unsigned int fla
     return this;
 }
 
+XboxControlInterface_001D0C30 *XboxControlInterface_001D0C30::func_001D0C30(void)
+{
+    ((C_00135E00 *)this)->func_00135E00();
+    fD08 = 0;
+    fD0C[3] = 0;
+    fD0C[2] = 0;
+    fD0C[1] = 0;
+    fD0C[0] = 0;
+    f38 = 0;
+    vtbl = (void *)&D_0028F100;
+    fD04 = 1;
+    return this;
+}
+
 undefined4 C_001D0DE0::func_001D0DE0(byte param_1)
 {
   int func_001D0D30(...);
