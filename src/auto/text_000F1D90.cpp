@@ -227,7 +227,7 @@ struct C_000F2AD0_Ui {
     void func_000B9A80(int a, int b);
 };
 
-inline int BmxUIPageHPHChoice::HandleKey(C_000F2AD0_Ui *ui, int b)
+__forceinline int BmxUIPageHPHChoice::HandleKey(C_000F2AD0_Ui *ui, int b)
 {
     int r = 1;
     if (b == D_002A8490->f8->func_00136170(4, 2, 0) || b == D_002A8490->f8->func_00136170(0x17, 2, 0)) {
