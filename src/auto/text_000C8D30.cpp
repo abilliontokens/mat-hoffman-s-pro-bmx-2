@@ -53,6 +53,12 @@ struct RenderEntryC8 {
     void func_001D5AD0();
 };
 
+static void setEntryColorMaskC8(RenderEntryC8 *e, u32 mask, u32 color)
+{
+    e->f38 = (e->f38 & mask) | color;
+    e->b58 |= 2;
+}
+
 struct MgrC8 {
     char pad0[0x24];
     RenderEntryC8 *unk24;
