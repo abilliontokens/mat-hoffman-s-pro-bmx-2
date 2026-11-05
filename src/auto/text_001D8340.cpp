@@ -139,6 +139,8 @@ struct C_001D8760 {
 
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 extern char D_00100000;
+extern int D_0028F144;
+extern int D_0028F148;
 int func_001D7D40();
 void __stdcall func_00201A60(int adapter, int type, void *caps);
 void __stdcall func_00202950(void *a, int b);
