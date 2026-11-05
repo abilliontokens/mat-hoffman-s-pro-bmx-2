@@ -3,6 +3,21 @@
 
 extern int D_00288084;
 extern int D_00288894;
+extern float D_00275460;
+extern float D_00275544;
+extern float D_00275F58;
+extern float D_00276098;
+
+struct C_0016DD70 {
+    char pad0[0x224];
+    float f224;
+    float f228;
+    char pad22C[4];
+    float f230;
+    u8 f234;
+    int func_0016DD70(float a0);
+    int func_00169E10(float a0);
+};
 
 void func_001E891B(void *p);
 
@@ -58,11 +73,7 @@ struct C_0016E2E0 {
 
 void C_0016D8A0::func_0016D8A0(int a, int b, int c, int d)
 {
-    C_Quad *p = (C_Quad *)&f54;
-    p->a = *(float *)&a;
-    p->b = *(float *)&b;
-    p->c = *(float *)&c;
-    p->d = *(float *)&d;
+    f54.Set(a, b, c, d);
 }
 
 C_0016DA40 *C_0016DA40::func_0016DA40(void *param)
