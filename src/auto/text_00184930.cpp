@@ -178,6 +178,7 @@ struct C_00184930 {
     int func_00184C60(void);
     int func_00184CC0(void);
     int func_00184D10(void);
+    int func_00185110(int a);
 };
 
 /* PlayerStart */
