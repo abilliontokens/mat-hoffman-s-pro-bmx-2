@@ -18,8 +18,8 @@ struct C_00157600 {
 struct C_00198330 {
     char pad0[0x144];
     f32 f144;
-    C_00198330 *func_00198330(int a0);
-    void func_00199A70(int a0, Vec4 *a1);
+    C_00198330 *func_00198330(void *a0);
+    void func_00199A70(C_00198330 *a0, Vec4 *a1);
 };
 
 struct BmxWallPlantConstraint {
