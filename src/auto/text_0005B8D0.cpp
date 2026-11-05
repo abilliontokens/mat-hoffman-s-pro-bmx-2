@@ -352,6 +352,19 @@ undefined4 C_0005C200::func_0005C200(int param_1)
   return *(undefined4 *)(in_ECX + 0xb10 + param_1 * 4);
 }
 
+void C_0005C210::func_0005C210(int param_1, int param_2)
+{
+  extern undefined4 D_002A8490;
+  int in_ECX = (int)this;
+
+  *(undefined4 *)(in_ECX + 0xb10 + param_1 * 4) = 1;
+  ((S_0005B8D0_Root *)D_002A8490)->p2e0->p2fc->func_00095160(param_2);
+  ((S_0005B8D0_Root *)D_002A8490)->p2e0->p2fc->func_000951B0(param_2);
+  *(undefined4 *)(in_ECX + 0xce8 + param_2 * 8) = 1;
+  *(undefined4 *)(in_ECX + 0xcec + param_2 * 8) = 0;
+  return;
+}
+
 undefined4 C_0005C2F0::func_0005C2F0(int param_1, int param_2)
 {
   int in_ECX = (int)this;
