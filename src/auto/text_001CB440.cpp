@@ -335,9 +335,9 @@ int C_001CB440::func_001CB440(void)
 {
     int v;
 
-    __imp__RtlEnterCriticalSection((void *)(D_002F08EC->f138 + 0x50));
+    _imp__RtlEnterCriticalSection((void *)(D_002F08EC->f138 + 0x50));
     v = (f208 >> 4) & 1;
-    __imp__RtlLeaveCriticalSection((void *)(D_002F08EC->f138 + 0x50));
+    _imp__RtlLeaveCriticalSection((void *)(D_002F08EC->f138 + 0x50));
     return v;
 }
 
@@ -646,12 +646,12 @@ int C_001CC0C0::func_001CC0C0(int v)
     int r;
 
     if (f2C & 1) {
-        fF4 = v;
-        r = func_00222388(f30, v, 1);
-        if (r >= 0) {
-            return 1;
+        r = func_00222388(f30, fF4 = v, 1);
+        if (r < 0) {
+            func_001CBC10(r, &D_0028EECC, 0x284);
+            return 0;
         }
-        func_001CBC10(r, &D_0028EECC, 0x284);
+        return 1;
     }
     return 0;
 }
