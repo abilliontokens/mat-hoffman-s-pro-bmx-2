@@ -103,6 +103,19 @@ __declspec(align(16)) struct S_00026960_Mat {
     }
 };
 
+static __forceinline void identity_ref_00026960(S_00026960_Mat *&p)
+{
+    S_00026960_Mat *q = p;
+    _mm_store_ps(&q->m[0], _mm_setzero_ps());
+    _mm_store_ps(&q->m[4], _mm_setzero_ps());
+    _mm_store_ps(&q->m[8], _mm_setzero_ps());
+    _mm_store_ps(&q->m[12], _mm_setzero_ps());
+    q->m[0] = 1.0f;
+    q->m[5] = 1.0f;
+    q->m[10] = 1.0f;
+    q->m[15] = 1.0f;
+}
+
 static __forceinline float min_ss_00026A10(float a, float b)
 {
     float r;
@@ -229,6 +242,14 @@ S_000267F0_V4 func_00026910(float *m, int col)
     r.z = m[col + 8];
     r.w = 1.0f;
     return r;
+}
+
+void func_00026960(S_00026960_Mat *out)
+{
+    S_00026960_Mat m;
+
+    m.identity();
+    *out = m;
 }
 
 void C_000269B0::func_000269B0(float a, float b, float c)
