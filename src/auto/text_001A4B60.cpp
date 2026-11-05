@@ -171,19 +171,31 @@ void C_SphereCollisionObject::func_001A5370(void)
 
 void C_001A5730::func_001A5730(void)
 {
-    int i;
-    C_001A5730 *o = this;
+    u32 *p;
+    int n;
 
-    o->f14 = o->f18 = o->f1c = 0.0f;
-    o->f20 = 1.0f;
-    for (i = 0; i < 3; i++) {
-        o->arr24[i].x = o->arr24[i].y = o->arr24[i].z = 0.0f;
-        o->arr24[i].w = 1.0f;
-    }
-    for (i = 0; i < 3; i++) {
-        o->arr54[i].x = o->arr54[i].y = o->arr54[i].z = 0.0f;
-        o->arr54[i].w = 1.0f;
-    }
+    f1c = 0.0f;
+    f18 = 0.0f;
+    f14 = 0.0f;
+    f20 = 1.0f;
+    p = (u32 *)&arr24[0];
+    n = 3;
+    do {
+        p[2] = 0;
+        p[1] = 0;
+        p[0] = 0;
+        p[3] = 0x3f800000;
+        p += 4;
+    } while (--n != 0);
+    p = (u32 *)&arr54[0];
+    n = 3;
+    do {
+        p[2] = 0;
+        p[1] = 0;
+        p[0] = 0;
+        p[3] = 0x3f800000;
+        p += 4;
+    } while (--n != 0);
 }
 
 void func_001A5790(void) {
@@ -201,6 +213,28 @@ void *C_SphereCollisionObject::func_001A57A0(unsigned int flags)
     func_00133E60();
     if (flags & 1)
         func_001E891B(this);
+    return this;
+}
+
+SplashScreenManager *SplashScreenManager::func_001A58D0(void *a)
+{
+    ((C_00157600 *)this)->func_00157600(a);
+    fAC = 0;
+    fB0 = 0;
+    fBC = 0;
+    f24 = 0;
+    f28 = 0;
+    f1C0 = 0;
+    fB4 = 0;
+    fB8 = 0;
+    f1C8 = 0;
+    f1CC = 0;
+    f1D0 = 0;
+    f1D4 = 0;
+    f1D8 = 0;
+    f1DC = 0;
+    vtbl = (void *)&D_0028B8DC;
+    f1C4 = 1;
     return this;
 }
 
