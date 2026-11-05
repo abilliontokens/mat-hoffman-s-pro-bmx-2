@@ -7,6 +7,10 @@ struct V4_00161930 {
     float x, y, z, w;
 };
 
+struct V3_00161930 {
+    float x, y, z;
+};
+
 void func_001618A0(V4_00161930 *out, V4_00161930 *in);
 
 struct C_00161600 {
@@ -327,6 +331,27 @@ void func_00161910(float a, float *s, float *c)
 {
     *c = (float)cos(a);
     *s = (float)sin(a);
+}
+
+void func_00161930(float *a, float *n, V4_00161930 *out)
+{
+    float v[4];
+    V4_00161930 r;
+    float d;
+
+    d = a[0] * n[0] + n[1] * a[1] + n[2] * a[2];
+    r.w = 1.0f;
+    r.x = n[0] + n[0];
+    r.y = n[1] + n[1];
+    r.z = n[2] + n[2];
+    v[0] = r.x * d;
+    v[1] = r.y * d;
+    v[2] = r.z * d;
+    r.x = a[0] - v[0];
+    r.y = a[1] - v[1];
+    r.z = a[2] - v[2];
+    *out = r;
+    func_001618A0(out, out);
 }
 
 S_Matrix16_00161AA0 func_00161AA0(float a1, float a2, float a3, float a4)
