@@ -1,11 +1,6 @@
 /* 14 functions from 0x00178210 to 0x00178C60, found by Ghidra. */
 #include "common.h"
 
-struct Px16 {
-    u8 lo;
-    u8 hi;
-};
-
 u32 func_00178210(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int pal)
 {
   u8 *srow;
@@ -195,8 +190,6 @@ u32 func_00178990(u16 *dst, u16 *src, int width, int height, int dstPitch, int s
 
 u32 func_00178A40(u16 *dst, u16 *src, int width, int height, int dstPitch, int srcPitch, u32 key)
 {
-  u16 *d;
-  u16 *s;
   u8 *p;
   u8 *q;
   u16 c;
@@ -204,11 +197,9 @@ u32 func_00178A40(u16 *dst, u16 *src, int width, int height, int dstPitch, int s
   int y;
 
   c = (u16)(((key & 0xf80000) >> 9) | ((key & 0xf800) >> 6) | ((key & 0xf8) >> 3));
-  s = src;
-  d = dst;
   for (y = height; y > 0; y--) {
-    q = (u8 *)s;
-    p = (u8 *)d;
+    q = (u8 *)src;
+    p = (u8 *)dst;
     for (x = 0; x < width; x++) {
       if (q[2 * x + 1] & 0x80) {
         p[1] &= 0x7f;
@@ -217,8 +208,8 @@ u32 func_00178A40(u16 *dst, u16 *src, int width, int height, int dstPitch, int s
       }
       p += 2;
     }
-    s += srcPitch;
-    d += dstPitch;
+    src += srcPitch;
+    dst += dstPitch;
   }
   return 1;
 }
