@@ -25,6 +25,7 @@ struct C_001D27F0 {
     int unk2C;
     char pad30[0x20];
     C_001D27F0_Obj *unk50;
+    void func_001D2840(const char *name, int x, int y);
     void func_001D27F0(void);
 };
 
