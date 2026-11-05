@@ -201,10 +201,10 @@ struct Arg_001B8550 {
     char pad0[0x348];
     int f348;
     char pad34C[0x3a8 - 0x34c];
-    void **f3A8;
+    struct Play_001B8550 **f3A8;
     List_001B8550 *f3AC;
     char pad3B0[0x4a8 - 0x3b0];
-    void **f4A8;
+    int *f4A8;
 };
 
 struct Item_001B8550 {
