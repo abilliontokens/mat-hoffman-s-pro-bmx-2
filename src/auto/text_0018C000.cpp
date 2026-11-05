@@ -437,3 +437,18 @@ void C_0018C800::func_0018C900(float dt)
     func_00157A00(dt);
 }
 
+C_0018C960 *C_0018C960::func_0018C960(int a)
+{
+    extern int D_0028A984;
+    func_00157600(a);
+    f150 = 0;
+    f154 = 0;
+    f164 = 0;
+    f158 = 0;
+    f170 = 0;
+    f17C = 0;
+    f14C = 0;
+    vtbl = (void *)&D_0028A984;
+    return this;
+}
+
