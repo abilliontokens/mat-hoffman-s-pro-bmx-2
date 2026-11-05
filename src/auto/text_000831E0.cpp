@@ -28,6 +28,15 @@ static inline void CopyName(char *dst, const char *src)
     } while (c != 0);
 }
 
+/* the object at C_000831E0::fD08: hands out a string */
+struct C_001B17F0 {
+    char *func_001B17F0(void);
+};
+
+extern float D_002757F4;
+extern float D_00275AF0;
+extern float D_002755E8;
+
 struct C_00083710 {
     void func_00083710(undefined4 param_1, undefined4 param_2);
 };
