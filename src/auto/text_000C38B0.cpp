@@ -114,6 +114,7 @@ struct C_000C40D0 {
     char pad294[4];
     int arr298[20];
     int func_000C0100(int idx);
+    int func_000C3F60(int idx);
     int func_000C40D0(int idx);
 };
 
