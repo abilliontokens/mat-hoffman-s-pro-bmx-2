@@ -462,6 +462,16 @@ CameraController *CameraController::func_0012B550(int a)
     return this;
 }
 
+void CameraController::func_0012B580(void)
+{
+    int func_001E8390(...);
+    vtbl = (void *)&D_0028411C;
+    if (f2c != 0) {
+        func_001E8390(f2c);
+    }
+    func_00157660();
+}
+
 undefined4 C_0012B750::func_0012B750(undefined4 param_1)
 {
   int func_001E83E8(...);
