@@ -146,12 +146,15 @@ int C_00026500::func_00026500(const char *name, int value)
     return count - 1;
 }
 
-void func_000267F0(float *out, float *v, float *m)
+S_000267F0_V4 func_000267F0(float *v, float *m)
 {
-    out[0] = m[1] * v[1] + m[2] * v[2] + m[0] * v[0];
-    out[1] = m[5] * v[1] + m[4] * v[0] + m[6] * v[2];
-    out[2] = m[9] * v[1] + m[8] * v[0] + m[10] * v[2];
-    out[3] = 1.0f;
+    S_000267F0_V4 r;
+
+    r.x = m[1] * v[1] + m[2] * v[2] + m[0] * v[0];
+    r.y = m[5] * v[1] + m[4] * v[0] + m[6] * v[2];
+    r.z = m[9] * v[1] + m[8] * v[0] + m[10] * v[2];
+    r.w = 1.0f;
+    return r;
 }
 
 void func_00026880(float *out, float *v, float *m)
