@@ -30,6 +30,37 @@ extern float *D_002DF87C;
 
 void func_001E8390(void *p);
 
+struct S_00150440_Renderer {
+    void func_0012AAE0(float a, int b);
+};
+
+struct S_00150440_Device {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13(int a, int b);
+    S_00150440_Renderer *f4;
+};
+
+extern S_00150440_Device *D_002EFDB8;
+
+struct C_00150440 {
+    char pad0[0x28];
+    int f28;
+    int f2C;
+    int func_00150440(void);
+};
+
 struct C_00150350 {
     int unk0;
     void func_00150350(void);
@@ -162,6 +193,30 @@ void func_0014F9A0(void)
     }
 }
 
+void func_0014F9F0(void)
+{
+    unsigned int i;
+    for (i = 0; i < 0x80; i++) {
+        unsigned int a = (i | 0x3f80) << 16;
+        float r = sqrtf(*(float *)&a);
+        D_002CF2B0[i] = *(unsigned int *)&r & 0x7f0000;
+        unsigned int b = (i | 0x4000) << 16;
+        float s = sqrtf(*(float *)&b);
+        D_002CF4B0[i] = *(unsigned int *)&s & 0x7f0000;
+    }
+}
+
+void func_0014FA70(void)
+{
+    int i;
+    for (i = 0; i < 0x80; i++) {
+        unsigned int a = (i | 0x1f80) << 17;
+        float r = D_00275460 / sqrtf(*(float *)&a);
+        D_002CF6B8[i] = (*(unsigned int *)&r + 0x2000) >> 15;
+    }
+    D_002CF6F8 = 0xff;
+}
+
 void func_0014FDD0(void)
 {
   int func_0014F190(...);
@@ -192,6 +247,12 @@ void func_0014FE60(int a0, int a1, int a2) {
 void func_0014FE80(void) {
     int func_001E9A0C(...);
     func_001E9A0C();
+}
+
+void func_0014FED0(void)
+{
+    int func_001E9B9B(...);
+    func_001E9B9B();
 }
 
 void C_00150350::func_00150350(void) {
