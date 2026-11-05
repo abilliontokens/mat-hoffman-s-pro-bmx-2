@@ -84,3 +84,8 @@ undefined4 C_0015F860::func_0015F860(byte param_1)
   return in_ECX;
 }
 
+void C_0015FF60::func_0015FF60(int *a)
+{
+  unk78->slot37(*a);
+}
+
