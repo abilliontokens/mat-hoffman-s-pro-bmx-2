@@ -41,6 +41,8 @@ struct C_00066C90 {
     char pad160[4];
     int unk164;
     int unk168;
+    void func_00066DC0();
+    void func_00157660();
     void func_00157600(int a0);
     C_00066C90 *func_00066C90(int a0);
 };
