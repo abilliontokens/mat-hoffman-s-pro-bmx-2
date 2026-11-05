@@ -371,6 +371,53 @@ void BmxUIPageHPHChoice::func_000F2120(void)
     func_00157960();
 }
 
+void C_000F2600::func_000F2600()
+{
+    int i;
+    PtrObj_000F2600 *p;
+    vtbl = &D_0027DE7C;
+    D_002B91AC = 0;
+    if (f24) f24->v0(1);
+    if (f28) f28->v0(1);
+    if (f2C) f2C->v0(1);
+    if (f30) f30->v0(1);
+    p = f34;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+    for (i = 0; i < 6; i++) {
+        p = f38[i];
+        if (p) {
+            p->func_001D6410();
+            func_001E891B(p);
+        }
+        if (f50[i]) f50[i]->v0(1);
+        if (f68[i]) f68[i]->v0(1);
+    }
+    p = f80;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+    p = f84;
+    if (p) {
+        p->func_001D6410();
+        func_001E891B(p);
+    }
+    for (i = 0; i < 2; i++) {
+        if (f88[i]) {
+            f88[i]->v0(1);
+            f88[i] = 0;
+        }
+        if (f90[i]) {
+            f90[i]->v0(1);
+            f90[i] = 0;
+        }
+    }
+    func_00157660();
+}
+
 void *C_000F2720::func_000F2720(int flags) {
     void func_001E891B(void *);
     unk0 = (int)&D_0027DF54;
