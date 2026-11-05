@@ -14,6 +14,29 @@ void __stdcall func_001FCEA0(void *map, int index, void *out, int a, int b);
 extern char D_0028F6B8[], D_0028762C[], D_0028F6B4[], D_0028F6A0[], D_00276274[];
 struct Img_001D6D00 { int f0; char pad[0x10]; int f14; int f18; };
 struct Sz_001D6D00 { int w; void *p; };
+
+struct S_001D7190_Pack {
+    int func_0013C8A0(int a, void *b, int c, int d);
+};
+extern S_001D7190_Pack *D_002BEAAC;
+
+/* texture file header: {1, format, faces, width, w, h} + lock rect */
+struct S_001D7190_Tex {
+    int f0;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    int f14;
+    int f18;
+    void *f1C;
+    char pad20[8];
+};
+
+int __stdcall func_001FF460(int a);
+int __stdcall func_001FF4C0(int a, int b);
+int __stdcall func_001FCE40(int a, int b, void *c);
+int __stdcall func_001FCF20(int a, int b, int c, int d, int e, int f, int g);
 int __cdecl func_001ADCC0(char *buf, int n, ...);
 void *__cdecl func_0014FDF0(char *buf, char *mode);
 void __cdecl func_0014FE50(void *h);
