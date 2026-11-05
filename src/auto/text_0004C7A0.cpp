@@ -158,6 +158,11 @@ struct S_4D0E0_A {
 
 struct S_4D0E0_B {
     void func_000861A0(int idx);
+    void func_00086200();
+    void func_00086190();
+    void func_00086130(int a);
+    void func_00086140(int a);
+    void func_00085BD0(int a);
 };
 
 struct S_4D0E0_C {
