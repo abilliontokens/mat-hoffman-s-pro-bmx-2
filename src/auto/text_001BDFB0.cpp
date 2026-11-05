@@ -88,7 +88,6 @@ struct UIControl {
     UIControl *f34;
     int f38;
     UIControl **f3c;
-    UIControl *getChild(int i) { return f2c[i]; }
     void func_001BDA80(void);
     void func_00157660(void);
     UIControl *func_001BE320(byte flags);
@@ -146,7 +145,7 @@ void UIControl::func_001BE220(int n)
         f34 = cur;
     } while (cur == 0 || cur->f24 == 0);
     for (i = 0; i < cur->f28; i++) {
-        ((UIVirt70 *)cur->getChild(i))->virt28();
+        ((UIVirt70 *)cur->f2c[i])->virt28();
     }
 }
 
