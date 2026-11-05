@@ -163,18 +163,6 @@ struct C_00143C00 {
     int fEC;
     void *fF0[3];
     int fFC;
-    __forceinline float GetScale()
-    {
-        switch (fAC) {
-        case 0:
-            return fD8 / D_002EFEA0;
-        case 1:
-        case 2:
-            return fD8;
-        case 3:
-            return D_00275460;
-        }
-    }
     void func_00143C00(Quad_143C00 *arg);
 };
 
