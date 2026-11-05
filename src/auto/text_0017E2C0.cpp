@@ -113,8 +113,7 @@ __forceinline void Xform_0017E7C0(V4C_0017E7C0 *out, float *m, float *vin)
     r2 = _mm_mul_ps(r2, v);
     __m128 lo = _mm_unpacklo_ps(r0, r1);
     __m128 hi = _mm_unpackhi_ps(r0, r1);
-    __m128 t;
-    t = _mm_movehl_ps(t, r2);
+    __m128 t = _mm_movehl_ps(r2, r2);
     lo = _mm_add_ps(lo, hi);
     r2 = _mm_add_ps(r2, t);
     hi = _mm_movehl_ps(hi, lo);
