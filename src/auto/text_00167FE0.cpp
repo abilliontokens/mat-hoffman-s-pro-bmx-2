@@ -32,6 +32,11 @@ struct C_001684B0 {
     void func_001684F0(int count);
 };
 
+struct C_00168B90 {
+    int func_00168B90(void *a, float *out);
+    int func_00168BE0(int a, const char *src, char *dst, int d);
+};
+
 struct C_00168280 {
     int f0;
     int f4;
@@ -185,6 +190,17 @@ void C_001684B0::func_001684F0(int count)
             f20[i] = f20[i - 1] + 0x400;
         }
     }
+}
+
+int __stdcall func_00168B90(void *a, float *out)
+{
+    char buf[0x400];
+
+    if (func_00168550(a, buf, -1) != 0) {
+        *out = (float)func_001E9649(buf);
+        return 1;
+    }
+    return 0;
 }
 
 int __stdcall func_00168550(int a, char *dst, int d);
