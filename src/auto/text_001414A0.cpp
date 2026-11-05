@@ -5,6 +5,17 @@ extern "C" int strcmp(const char *a, const char *b);
 extern char D_0000F005;
 extern char D_0000F006;
 
+/* the original's string literals at their own addresses */
+extern char D_0028502C[];
+extern char D_002857C4[];
+extern char D_002857B0[];
+extern char D_00285798[];
+extern char D_00285780[];
+extern char D_00285768[];
+extern char D_00285754[];
+extern char D_00285740[];
+extern char D_0028572C[];
+
 struct C_00168BE0 {
     void func_00168BE0(const char *key, const char *def, char *buf, int size);
 };
