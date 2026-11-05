@@ -51,6 +51,11 @@ struct V4u_0016CF10 {
     u32 x, y, z, w;
 };
 
+struct V4s_0016CF10 {
+    u32 x, y, z, w;
+    void Set(u32 a, u32 b, u32 c, u32 d) { x = a; y = b; z = c; w = d; }
+};
+
 struct C_001D3F50 {
     void func_001D3F50(void);
 };
