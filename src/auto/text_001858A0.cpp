@@ -66,6 +66,48 @@ struct C_001862E0 {
     C_001862E0 *func_001862E0(void);
 };
 
+extern "C" int strcmp(const char *a, const char *b);
+void func_001E891B(void *p);
+extern int D_002896CC;
+extern int D_002897FC;
+
+struct C_00185D00 {
+    void *vtbl;
+    int f4;
+    void **f8;
+    void *fc;
+    void func_00185D00(void);
+};
+
+struct C_00186170 {
+    void *vtbl;
+    int f4;
+    u32 f8[4];
+    u32 f18;
+    u32 f1c;
+    u32 f20;
+    u32 f24;
+    u32 f28;
+    u8 f2c;
+    char pad2d[0x38 - 0x2d];
+    u32 f38;
+    u8 f3c;
+    char pad3d[0x40 - 0x3d];
+    u32 f40[4];
+    u32 f50;
+    u8 f54;
+    char pad55[0x94 - 0x55];
+    u32 f94[4];
+    u32 fa4;
+    char pada8[0xe8 - 0xa8];
+    int fe8;
+    int fec;
+    u32 ff0;
+    u32 ff4;
+    C_00186170 *func_00186170(void);
+    void func_00186210(void);
+};
+
 struct C_00186540 {
     void func_00186540(int param_1);
 };
