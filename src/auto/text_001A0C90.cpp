@@ -42,7 +42,7 @@ struct S_001A13F0_Obj {
     virtual void v0();
     virtual void v1();
     virtual void v2();
-    char pad4[0x14 - 4];
+    char pad4[0x18 - 4];
     V3_001A1540 unk18;
     char pad24[4];
     V3_001A1540 unk28;
