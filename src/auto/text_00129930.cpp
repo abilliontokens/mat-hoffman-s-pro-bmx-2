@@ -122,6 +122,11 @@ void BoxCollisionObject::func_00129DF0(int a, int b)
     func_00133090(a, b);
 }
 
+void BoxCollisionObject::func_00129E10(void)
+{
+    ((VCall31_129E10 *)this)->v31(0);
+}
+
 void *BoxCollisionObject::func_0012A1C0(unsigned int flags)
 {
     vtbl = (void *)&D_00283F64;
