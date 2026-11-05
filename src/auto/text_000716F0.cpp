@@ -253,6 +253,32 @@ void C_000717E0::func_000717E0(void)
     f8C = b;
 }
 
+void C_000724E0::func_00071F40() {
+int ids[2]; int i; int *r; Clamp_716 *o; Sprite_724E0 **e; Lookup_716 *lk;
+ids[0]=(int)&D_00278690; ids[1]=(int)&D_00278678;
+for(i=0;i<2;i++) { lk=D_002A8490->p2EC; r=lk->func_0018C160(ids[i]); if(r && *r) { o=((Mid_716*)*r)->func_0018C070(); if (D_00275AEC > o->f10) *(int *)&o->f10=0x41200000;
+if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14=0x41200000; } }
+if (unk78) { o=unk78->func_001D5AA0(); if (D_00275AEC > o->f10) *(int *)&o->f10=0x41200000;
+if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14=0x41200000; }
+if (unk7C) { o=unk7C->func_001D5AA0(); if (D_00275AEC > o->f10) *(int *)&o->f10=0x41200000;
+if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14=0x41200000; }
+
+e=&unk134; i=2; do { if ((*e)) { o=(*e)->func_001D5AA0(); if (D_00275AEC > o->f10) *(int *)&o->f10=0x41200000;
+if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14=0x41200000; }
+ e++; i--; } while(i);
+e=arrEC; i=8; do { if ((*e)) { o=(*e)->func_001D5AA0(); if (D_00275AEC > o->f10) *(int *)&o->f10=0x41200000;
+if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14=0x41200000; }
+ e++; i--; } while(i);
+e=arr120; i=5; do { if (e[-5]) { o=e[-5]->func_001D5AA0(); if (D_00275AEC > o->f10) *(int *)&o->f10=0x41200000;
+if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14=0x41200000; }
+if ((*e)) { o=(*e)->func_001D5AA0(); if (D_00275AEC > o->f10) *(int *)&o->f10=0x41200000;
+if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14=0x41200000; }
+ e++; i--; } while(i);
+if (unk80) { o=unk80->func_001D5AA0(); if (D_00275AEC > o->f10) *(int *)&o->f10=0x41200000;
+if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14=0x41200000; }
+func_001578D0();
+}
+
 void C_000721D0::func_000721D0(void)
 {
     while (f90 != 0) {
