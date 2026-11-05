@@ -273,6 +273,10 @@ struct S_Vec4f_001BFD00 {
     }
 };
 
+struct S_Vec4f_001BF980 {
+    float x, y, z, w;
+};
+
 struct S_001BF930_Inner {
     void func_00198E60(void);
     void func_0019ABA0(int a, int b);
@@ -719,6 +723,22 @@ void C_001BF930::func_001BF930(void)
     f68->func_00198F50(f7c, f8c, 0, 1, 0);
 }
 
+void C_001BF930::func_001BF980(float dt)
+{
+    if (f9C != D_00275544) {
+        fA0 = dt / (f9C * 6.2831855f) + fA0;
+        if (fA0 > 6.2831855f) {
+            fA0 = fA0 - 6.2831855f;
+        }
+        S_Vec4f_001BFD00 axis(0.0f, 0.0f, 1.0f, 1.0f);
+        if (f68 != 0) {
+            f68->func_00199E30(axis, fA0);
+        } else {
+            f68->func_00199E30(axis, fA0);
+        }
+    }
+}
+
 void *C_001BFA70::func_001BFA70(int a0, int a1)
 {
     float *p;
@@ -807,34 +827,34 @@ void *C_001BFDB0::func_001BFDB0(int a0, int a1)
     memset(f44, 0, sizeof(f44));
     f64 = 0;
     vtbl = (void *)&D_0028DA5C;
-    p = &f6C;
+    p = a6C;
     p[2] = 0;
     p[1] = 0;
     p[0] = 0;
     p[3] = 1.0f;
-    p = &f7C;
+    p = a7C;
     p[2] = 0;
     p[1] = 0;
     p[0] = 0;
     p[3] = 1.0f;
-    p = &f8C;
+    p = a8C;
     p[2] = 0;
     p[1] = 0;
     p[0] = 0;
     p[3] = 1.0f;
     f68 = 0;
-    f6C = 1.0f;
-    f70 = 1.0f;
-    f74 = 1.0f;
-    f78 = 1.0f;
-    f7C = 0;
-    f80 = 0;
-    f84 = 0;
-    f88 = 1.0f;
-    f8C = 0;
-    f90 = 0;
-    f94 = 0;
-    f98 = 1.0f;
+    a6C[0] = 1.0f;
+    a6C[1] = 1.0f;
+    a6C[2] = 1.0f;
+    a6C[3] = 1.0f;
+    a7C[0] = 0;
+    a7C[1] = 0;
+    a7C[2] = 0;
+    a7C[3] = 1.0f;
+    a8C[0] = 0;
+    a8C[1] = 0;
+    a8C[2] = 0;
+    a8C[3] = 1.0f;
     f39C = 0;
     f3A0 = 0;
     return this;
