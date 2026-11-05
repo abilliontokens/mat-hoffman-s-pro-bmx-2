@@ -95,3 +95,14 @@ struct BasicScene {
     int func_00189720(void);
     int func_00189AA0(void);
 };
+
+int BasicScene::func_00189720(void)
+{
+    if (f394 == 0) {
+        void *mem = func_001E8A44(0x148);
+        f394 = mem != 0 ? ((C_00185B10 *)mem)->func_00185B10() : 0;
+    }
+    if (f394->dummy0(f28) != 0) {
+        return dummy45();
+    }
+}
