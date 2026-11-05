@@ -95,6 +95,44 @@ struct C_001B01A0 {
 };
 
 
+int C_001AFEC0::func_001AFEC0()
+{
+    int i;
+    if (D_002A8490->unk238 == unk8) {
+        return 1;
+    }
+    if (D_002A8490->unk124 != 0 && unk24 == 0) {
+        return 1;
+    }
+    if (cb == 0 || cb(user, this) != 0) {
+        for (i = 0; i < 4; i++) {
+            if (items[i]) {
+                items[i]->func_001AF530(i);
+            }
+        }
+        if (unk1C) {
+            unk1C->vf2();
+        }
+        if (unk20) {
+            unk20->vf2();
+        }
+    }
+    unk8 = D_002A8490->unk238;
+    return 1;
+}
+
+C_001AFF50 *C_001AFF50::func_001AFF50()
+{
+    ((C_0001DFE0 *)this)->func_0001DFE0();
+    unk14 = 0;
+    unkC = 0;
+    unk10 = 0;
+    unk8 = 0;
+    unkA = 0;
+    vtbl = (void *)&D_0028C5BC;
+    return this;
+}
+
 void C_001B01A0::func_001B01A0(void) {
     extern int D_0028C5E0;
     unk0 = (int)&D_0028C5E0;
