@@ -20,6 +20,13 @@ struct S_00198B70_Mat {
     float m[16];
 };
 
+struct S_00198B70_F4 {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
 struct C_00198B70 {
     virtual void v0();
     virtual void v1();
