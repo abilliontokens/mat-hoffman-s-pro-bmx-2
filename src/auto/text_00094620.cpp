@@ -219,6 +219,16 @@ int C_00094760::func_00094760(void)
     return unk34;
 }
 
+int C_00094760::func_000947B0(void)
+{
+    if (--unk34 < 0) {
+        unk34 = unk50->unkA8 - 1;
+    }
+    D_002A8490->f2e0->unk468 = unk34;
+    unk50->func_001CEFD0(unk34);
+    return unk34;
+}
+
 void C_00094760::func_000947F0(int node)
 {
     unk34 = node;
