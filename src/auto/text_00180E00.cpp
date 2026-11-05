@@ -79,10 +79,10 @@ void RenderableObjectData::func_00181440(void)
     for (int i = 0; i < unk8; i++) {
         VObj *o = unk10[i].unk8;
         if (o != 0) {
-            if (((int *)o)[-1] == 0) {
-                func_001E891B((int *)o - 1);
-            } else {
+            if (((int *)o)[-1] != 0) {
                 o->destroyObject(3);
+            } else {
+                func_001E891B((int *)o - 1);
             }
         }
     }
