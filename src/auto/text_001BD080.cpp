@@ -272,6 +272,48 @@ void C_001BD840::func_001BD840(void)
   D_002A829C->func_001616F0();
 }
 
+C_001BD870 *C_001BD870::func_001BD870(int a)
+{
+    S_001BD870_Elem *e;
+    u32 *p;
+    int n;
+
+    ((C_00157600 *)this)->func_00157600(a);
+    vtbl = (void *)&D_0028D44C;
+    e = elems;
+    n = 4;
+    do {
+        p = &e->q0.x;
+        p[2] = 0;
+        p[1] = 0;
+        p[0] = 0;
+        p[3] = 0x3f800000;
+        p = &e->q1.x;
+        p[2] = 0;
+        p[1] = 0;
+        p[0] = 0;
+        p[3] = 0x3f800000;
+        p = &e->q2.x;
+        p[2] = 0;
+        p[1] = 0;
+        p[0] = 0;
+        p[3] = 0x3f800000;
+        e++;
+    } while (--n);
+    f14c = 1;
+    f28 = 0;
+    f10c = 0;
+    f114 = 0;
+    f118 = 0;
+    f144 = 0;
+    f128 = 0;
+    f12c = 0;
+    f138 = 0;
+    f13c = 0;
+    D_002F07B8->f8 = 1;
+    return this;
+}
+
 C_001BD9C0 *C_001BD9C0::func_001BD9C0(int a)
 {
   ((C_00157600 *)this)->func_00157600(a);
@@ -322,6 +364,25 @@ void C_001BDA50::func_001BDA50(void)
   if (0 < *(int *)(in_ECX + 0x28)) {
     do {
       (**(code **)(**(int **)(*(int *)(in_ECX + 0x2c) + iVar1 * 4) + 0x70))();
+      iVar1 = iVar1 + 1;
+    } while (iVar1 < *(int *)(in_ECX + 0x28));
+  }
+  return;
+}
+
+void C_001BDA80::func_001BDA80(void)
+{
+  int in_ECX = (int)this;
+  int iVar1;
+  int iVar2;
+
+  iVar1 = 0;
+  if (0 < *(int *)(in_ECX + 0x28)) {
+    do {
+      iVar2 = *(int *)(*(int *)(in_ECX + 0x2c) + iVar1 * 4);
+      if (iVar2 != 0) {
+        (**(code **)(*(int *)iVar2 + 0x74))();
+      }
       iVar1 = iVar1 + 1;
     } while (iVar1 < *(int *)(in_ECX + 0x28));
   }
