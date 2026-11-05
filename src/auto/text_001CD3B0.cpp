@@ -30,6 +30,7 @@ struct S_SoundElemList {
     int capacity;
     int func_0015ACA0(int newCapacity);
     int func_001CDE90(S_SoundElem *elem);
+    int func_001CDED0(S_SoundElem *elem);
 
     S_SoundElem *at(int i)
     {
@@ -78,9 +79,9 @@ XboxSoundGroup *XboxSoundGroup::func_001CD770(int a, int b)
     list.count = 0;
     list.growBy = 0;
     list.capacity = 0;
-    f40 &= 0xfe;
+    f40b.b0 = 0;
     list.items = (S_SoundElem **)func_001E8A44(0x20);
-    f40 |= 1;
+    f40b.b0 = 1;
     list.growBy = 0x10;
     list.capacity = 8;
     f44 = 0;
