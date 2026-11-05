@@ -3,7 +3,7 @@
 
 struct S_Inner { char pad[0x538]; int f538; int f53c; int f540; int f544; };
 struct S_Arg2 { char pad[0x388]; S_Inner *p388; };
-struct S_B { S_B *func_0017D5A0(int, int, int, int, int, int, int); };
+struct S_B { virtual void v0(); virtual void v1(); virtual void v2(); S_B *func_0017D5A0(int, int, int, int, int, int, int); };
 struct S_A {
     S_A *func_00192900(int);
     void func_00192A90(S_B *);
