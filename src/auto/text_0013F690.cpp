@@ -153,6 +153,20 @@ void *C_0013FA90::func_0013FA90(int flags)
   return this;
 }
 
+void *C_0013FBD0::func_0013FBD0(int flags)
+{
+  extern int D_00284EF4;
+  void func_0015B1C0();
+  void func_001E891B(void *);
+
+  vtbl = (void *)&D_00284EF4;
+  func_0015B1C0();
+  if (flags & 1) {
+    func_001E891B(this);
+  }
+  return this;
+}
+
 undefined4 C_00140660::func_00140660(byte param_1)
 {
   int func_0013FC00(...);
