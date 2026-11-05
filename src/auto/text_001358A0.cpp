@@ -150,7 +150,8 @@ struct C_001364B0 {
     int pad0[2];
     S_001367F0_Vec4 f8, f18, f28;
     int f38, f3C;
-    short f40, f42;
+    short f40;
+    unsigned short f42;
     S_001364B0_Record records[6];
     int f62C;
     void func_001364B0();
