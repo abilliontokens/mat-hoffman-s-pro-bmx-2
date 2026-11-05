@@ -183,9 +183,10 @@ static __forceinline float sqrt_119D0(const float &x) {
     _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x)));
     return r;
 }
-static __forceinline void distance_119D0(float *d, const float *a, const float *b) {
+static __forceinline float sqrtv_119D0(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+static __forceinline float distance_119D0(const float *a, const float *b) {
     float x = a[0]-b[0], y = a[1]-b[1], z = a[2]-b[2];
-    _mm_store_ss(d, _mm_sqrt_ss(_mm_set_ss(z*z+y*y+x*x)));
+    return sqrtv_119D0(z*z+y*y+x*x);
 }
 struct C_000119D0 {
     char pad[0x3b0];
