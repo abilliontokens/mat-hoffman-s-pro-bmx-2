@@ -177,6 +177,21 @@ void C_0014A8A0::func_0014A8A0(void)
     }
 }
 
+void C_0014A8A0::func_0014A910(int param_1)
+{
+    void func_001E891B(int);
+    int value;
+    func_001AC790(param_1);
+    if (f14[param_1].fC == 0) {
+        value = f14[param_1].f4;
+        if (value != 0) {
+            ((C_00012140 *)value)->func_0014A540();
+            func_001E891B(value);
+            f14[param_1].f4 = 0;
+        }
+    }
+}
+
 void *C_0014AA40::func_0014AA40(int flags) {
     extern int D_00286894;
     void func_001E891B(void *);
