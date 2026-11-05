@@ -154,6 +154,13 @@ struct S_Stream2 {
 };
 struct V4_186720 {
     u32 a, b, c, d;
+    void Set(u32 x, u32 y, u32 z, u32 w)
+    {
+        a = x;
+        b = y;
+        c = z;
+        d = w;
+    }
 };
 extern "C" V4_186720 *func_00182980(void *a, void *b);
 struct C_00186720 {
