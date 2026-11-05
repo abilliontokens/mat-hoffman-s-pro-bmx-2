@@ -84,6 +84,7 @@ struct C_001401C0 {
     char f190[0x10];
     S_001401C0_Info *f1A0;
     void func_001401C0(void);
+    C_001401C0 *func_0013FD50(S_001401C0_Info *info);
 };
 
 struct C_0013FBD0 {
