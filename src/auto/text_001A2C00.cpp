@@ -39,9 +39,18 @@ struct S_001A2C00_Snd {
 
 struct S_3B10_Snd {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
-    virtual void v4(); virtual void v5(); virtual int v6(int a); virtual int v7();
+    virtual void v4(); virtual int v5(int a); virtual int v6(int a); virtual int v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(int a);
+    virtual void v13();
+    virtual void v14(int a);
 };
-struct S_3B10_Elem { S_3B10_Snd *snd; };
+struct S_3B10_Elem {
+    S_3B10_Snd *snd;
+    char pad4[0x20];
+    int f24;
+    int f28;
+};
 struct S_3B10_List {
     int count;
     S_3B10_Elem **items;
