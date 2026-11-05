@@ -3,13 +3,13 @@
 extern int D_0027F20C;
 
 struct DelObjA_000D4DD0 {
-    virtual ~DelObjA_000D4DD0();
+    virtual void Destroy(int a0);
 };
 struct DelObjB_000D4DD0 {
-    virtual ~DelObjB_000D4DD0();
+    virtual void Destroy(int a0);
 };
 struct DelObjC_000D4DD0 {
-    virtual ~DelObjC_000D4DD0();
+    virtual void Destroy(int a0);
 };
 
 struct BmxUIPageHOF {
