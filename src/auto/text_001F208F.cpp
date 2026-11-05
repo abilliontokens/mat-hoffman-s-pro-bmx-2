@@ -27,7 +27,6 @@ struct S_001EF734 {
         struct { int kind : 4; unsigned state : 5; };
     };
     S_001EF734() {}
-    S_001EF734 *func_001EEF4F(S_001EF734 *p);
     S_001EF734 *func_001EEF4F(const S_001EF734 &p);
     void func_001EF9B2(char *s);
     int func_001EF210();
