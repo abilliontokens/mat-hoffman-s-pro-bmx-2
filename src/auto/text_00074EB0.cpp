@@ -52,3 +52,80 @@ struct C_00075B20 {
     void *func_00075B20(int param_1);
     void func_00157600(int a0);
 };
+
+void *C_00075B20::func_00075B20(int param_1) {
+    u32 *p;
+    int n;
+    int i;
+
+    func_00157600(param_1);
+    vtbl = &D_0027850C;
+    p = unk44;
+    n = 8;
+    do {
+        p[-8] = 0;
+        p[0] = 0;
+        p++;
+    } while (--n != 0);
+    vtbl = &D_00278DF4;
+    unk1C0 = 0;
+    unk11C = 0;
+    unk18 = -1;
+    unkFC = 0;
+    unkF8 = 0;
+    p = unk70;
+    n = 2;
+    do {
+        p[-3] = 0;
+        p[0] = 0;
+        p[3] = 0;
+        p[6] = 0;
+        p++;
+    } while (--n != 0);
+    for (i = 0; i < 3; i++) {
+        unk94[i] = 0;
+    }
+    for (i = 0; i < 2; i++) {
+        unkAC[i] = 0;
+    }
+    unk120 = 0;
+    p = unk1A0;
+    n = 2;
+    do {
+        p[-2] = 0;
+        p[0] = 0;
+        p++;
+    } while (--n != 0);
+    unk194 = 0;
+    unk124 = 0;
+    p = unk14C;
+    n = 8;
+    do {
+        p[-8] = 0;
+        p[0] = 0;
+        p[8] = 0;
+        p++;
+    } while (--n != 0);
+    unk1AC = 1;
+    unk1A8 = -1;
+    p = unkC8;
+    n = 5;
+    do {
+        p[-5] = 0;
+        p[0] = 0;
+        p++;
+    } while (--n != 0);
+    for (i = 0; i < 6; i++) {
+        unkDC[i] = 0;
+    }
+    unk100 = 0;
+    unk104 = 0;
+    unk108 = 0;
+    unk10C = 0;
+    unk110 = 0;
+    unk114 = 0;
+    unk118 = 0;
+    unk1B4 = 0;
+    unk1B8 = 0;
+    return this;
+}
