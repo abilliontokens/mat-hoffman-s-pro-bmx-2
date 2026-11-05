@@ -8,6 +8,33 @@ extern "C" int (__stdcall *_imp__NtQueryInformationFile)(void *a0, void *a1, voi
 extern "C" int (__stdcall *_imp__NtSetInformationFile)(void *a0, void *a1, void *a2, u32 a3, int a4);
 extern "C" int (__stdcall *_imp__NtFlushBuffersFile)(void *a0, void *a1);
 extern "C" int (__stdcall *_imp__RtlNtStatusToDosError)(int a0);
+struct S_AnsiString {
+    u16 length;
+    u16 maxLength;
+    char *buffer;
+};
+
+struct S_IoStatusBlock {
+    long status;
+    u32 information;
+};
+
+struct S_ObjectAttributes {
+    void *rootDirectory;
+    S_AnsiString *objectName;
+    u32 attributes;
+};
+
+extern "C" int (__stdcall *_imp__NtWaitForSingleObjectEx)(void *a0, int a1, int a2, void *a3);
+extern "C" int (__stdcall *_imp__NtCreateEvent)(void **a0, S_ObjectAttributes *a1, int a2, int a3);
+extern "C" int (__stdcall *_imp__NtCreateMutant)(void **a0, S_ObjectAttributes *a1, int a2);
+extern "C" int (__stdcall *_imp__NtCreateFile)(u32 *a0, u32 a1, S_ObjectAttributes *a2, S_IoStatusBlock *a3, void *a4, u32 a5, u32 a6, u32 a7, u32 a8);
+extern "C" void (__stdcall *_imp__RtlInitAnsiString)(S_AnsiString *a0, const char *a1);
+extern "C" int __cdecl func_001EA4E1(char *buf, const char *fmt, ...);
+extern char D_0028FA4C[];
+extern char D_0028FAC0[];
+void *__stdcall func_001DF56E(void *timeout, int ms);
+S_ObjectAttributes *__stdcall func_001DF546(S_ObjectAttributes *oa, S_AnsiString *str, const char *name);
 int __stdcall func_001DD659(int a0);
 void __stdcall func_001DD62B(int a0);
 extern "C" unsigned __int64 __rdtsc();
