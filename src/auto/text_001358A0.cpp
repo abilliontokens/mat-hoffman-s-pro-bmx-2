@@ -49,6 +49,12 @@ struct C_00136370 {
     C_00135CB0 *fCC0;
     int func_00136370();
 };
+extern int D_00284768;
+struct C_00135B70 {
+    void *vtbl;
+    char pad[0x48];
+    void *func_00135B70(unsigned int flags);
+};
 extern int D_002BA700;
 struct C_00135E00;
 struct S_Game_001358A0 {
