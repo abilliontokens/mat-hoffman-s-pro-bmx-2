@@ -149,16 +149,6 @@ struct C_0005C0A0 {
     int func_0005C0A0(void);
 };
 
-struct S_0005C650_Inner {
-    char pad0[0x48];
-    int f48;
-};
-
-struct S_0005C650_Game {
-    char pad0[0x2e0];
-    S_0005C650_Inner *f2e0;
-};
-
 struct S_0005C650_Slot {
     int v[4];
 };
