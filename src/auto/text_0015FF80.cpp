@@ -313,6 +313,27 @@ void C_00160B30::func_00160B30(S_00160B30_Node *node)
     count--;
 }
 
+void C_00160B30::func_00160B90(void)
+{
+    S_00160B30_Node *p;
+    S_00160B30_Node *node;
+    S_00160B30_Node **pnext;
+
+    count = 0;
+    p = head;
+    while (p != 0) {
+        node = p;
+        pnext = &node->next;
+        p = *pnext;
+        node->f0 = 0;
+        node->prev = 0;
+        *pnext = 0;
+        func_001E891B(node);
+    }
+    head = 0;
+    tail = 0;
+}
+
 C_00160BD0 *C_00160BD0::func_00160BD0(void)
 {
     extern int D_00287A44;
@@ -340,5 +361,53 @@ C_00160C00 *C_00160C00::func_00160C00(void)
     f2c = 0;
     f10 = 0;
     return this;
+}
+
+C_00160C40 *C_00160C40::func_00160C40(int n, int a, int b)
+{
+    int i;
+
+    count = n;
+    data = (int *)func_001E8A44(n << 2);
+    for (i = 0; i < count; i++) {
+        data[i] = 0;
+    }
+    f8 = a;
+    fC = b;
+    return this;
+}
+
+void C_00160C90::func_00160C90(void)
+{
+    int i;
+
+    for (i = 0; i < f4; i++) {
+        S_00160C90_Node *n = f0[i];
+
+        while (n != 0) {
+            S_00160C90_Node *next = n->next;
+
+            func_001E891B(n);
+            n = next;
+        }
+    }
+    func_001E891B(f0);
+}
+
+void C_00160C90::func_00160CE0(int key, int value)
+{
+    int h = f8(key);
+    int i = h;
+    S_00160C90_Node *n;
+
+    if (i < 0) {
+        i = -i;
+    }
+    n = (S_00160C90_Node *)func_001E8A44(0x10);
+    n->next = f0[i % f4];
+    f0[i % f4] = n;
+    n->hash = h;
+    n->key = key;
+    n->value = value;
 }
 
