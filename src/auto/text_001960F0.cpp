@@ -3,6 +3,9 @@
 
 extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
 
+extern float D_00275544;
+extern float D_00275460;
+
 struct C_00196290 {
     char pad0[0x24];
     int f24;
