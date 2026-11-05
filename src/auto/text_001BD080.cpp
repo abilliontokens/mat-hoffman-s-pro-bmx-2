@@ -674,6 +674,29 @@ void C_001BDB50::func_001BDE90(S_001BDB50_Group **out)
     }
 }
 
+void C_001BDF00::func_001BDF00(C_001BDF00 **out)
+{
+    C_001BDF00 **arr;
+    C_001BDF00 *cur;
+
+    if (f28 != 0) {
+        f34->func_001BDA80();
+        arr = f2c;
+        do {
+            if (--f30 < 1) {
+                f30 = f28;
+            }
+            cur = arr[f30 - 1];
+            f34 = cur;
+        } while (cur == 0 || cur->f24 == 0 || cur->f30 != 0);
+        if (out != 0) {
+            *out = cur;
+        } else {
+            cur->func_001BDA50();
+        }
+    }
+}
+
 void C_001BDF00::func_001BDF60(int n)
 {
     C_001BDF00 *cur;
