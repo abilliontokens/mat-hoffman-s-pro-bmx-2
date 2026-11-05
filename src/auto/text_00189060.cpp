@@ -149,7 +149,10 @@ struct BasicScene {
     int f348;
     char pad34c[0x394 - 0x34c];
     C_00185B10 *f394;
-    char pad398[0x3a8 - 0x398];
+    SceneSound *f398;
+    SceneSound *f39c;
+    SceneSound *f3a0;
+    SceneSound *f3a4;
     SceneGroup **f3a8;
     char pad3ac[0x4a8 - 0x3ac];
     SceneSlot **f4a8;
