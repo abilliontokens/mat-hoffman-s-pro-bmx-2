@@ -489,12 +489,12 @@ void BmxUIPageParkEditor::func_000C6420()
             e = (C_6420_Elem *)f2D0[i];
             e->f38 = (e->f38 & 0xffbfa35a) | 0xbfa35a;
             e->b58 |= 2;
+            ((C_6420_Elem *)f2D0[i])->func_001D5AD0();
         } else {
             e = (C_6420_Elem *)f2D0[i];
-            e->b58 |= 2;
             e->f38 = (e->f38 & 0xffcccccc) | 0xcccccc;
+            e->b58 |= 2;
         }
-        ((C_6420_Elem *)f2D0[i])->func_001D5AD0();
     }
     s = D_002B91AC;
     s->f24->func_001D5AD0();
