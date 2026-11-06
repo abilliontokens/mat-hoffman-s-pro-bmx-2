@@ -34,7 +34,6 @@ struct Font_001C26B0 {
     float func_0018C210();
 };
 struct L_001C26B0 {
-    union { int index; char *empty; };
     float def[4];
     float v1[4];
     float v0[4];
