@@ -494,17 +494,18 @@ void C_000229C0::func_000229C0(Arg_000229C0 *arg)
 {
     if (f28 < D_00276088) {
         int n = 5;
-        for (int i = 0; i < f70->l->count && n > 0; n--, i++) {
+        for (int i = 0; i < f70->l->count && n > 0; i++) {
             if (f70->l->items[i]->f24 == 0) {
                 V4_000229C0 v = arg->pos;
                 V4_000229C0 w = *(V4_000229C0 *)&D_002A0F74;
                 w.x = (float)func_001E8833() * D_002754B0 * 2.0f + D_00275460;
-                float r = (float)func_001E8833() * D_002754B0 * D_002756B8;
+                float r = D_002756B8 * ((float)func_001E8833() * D_002754B0);
                 func_00158390(r, *(V4_000229C0 *)&D_002A0F94, w, &w);
                 v.x = v.x + w.x;
                 v.y = v.y + w.y;
                 v.z = v.z + w.z;
                 f70->l->items[i]->func_000223B0(v, 20.0f);
+                --n;
             }
         }
         f28 = 3.0f;
