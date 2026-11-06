@@ -101,6 +101,12 @@ struct QuadTree {
     u32 f8AC;
     u16 *func_0017D050(void);
     void func_0017D120(S_QuadTreeListNode *node);
+    __forceinline void ResetIter() {
+        f9C = 0;
+        fA0 = 0;
+        fA4 = 0;
+        fAC = 0;
+    }
     void func_0017D1B0(void);
     void func_0017C590(int *position, int unused);
 };
@@ -304,9 +310,9 @@ void C_0017D190::func_0017D190(void)
 
 void QuadTree::func_0017D1B0(void)
 {
-    if (flagsE) {
+    if (flagsE & 1) {
         f94->func_0001E860();
-        flagsE = 0;
+        flagsE = flagsE & 0xfe;
         f9C = 0;
         fA0 = 0;
         fA4 = 0;
