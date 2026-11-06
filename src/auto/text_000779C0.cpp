@@ -102,6 +102,7 @@ struct Cnt_779C0 {
     Txt_779C0 *t98;
     char pad9C[0xc];
     Wid_779C0 *wA8, *wAC, *wB0, *wB4;
+    int fB8;
     Txt_779C0 *tBC, *tC0, *tC4;
     int fC8;
     char padCC[0xc];
