@@ -10,7 +10,7 @@ struct C_00168B90 {
     void func_00169710(const char *name);
 };
 extern char D_00277F24[], D_00277F20[], D_002769F8[], D_00277F10[], D_00277EFC[], D_00277EE0[], D_00277ED4[], D_00277EC8[], D_00277EB8[], D_00277EAC[], D_00277E98[], D_00277E88[], D_00277E80[], D_00277E6C[], D_00277E58[], D_00277E48[], D_00277E38[], D_00277E20[], D_00277E14[], D_00277E04[], D_00277DF0[], D_00277DDC[], D_00277DCC[], D_00277DBC[], D_00277DA8[], D_00277D94[], D_00277D80[], D_00277D70[], D_00277D5C[], D_00277D40[], D_00277D2C[], D_00277D18[], D_00277D08[];
-extern float D_00275998, D_00277EA8;
+extern const float D_00275998, D_00277EA8;
 
 struct C_00055D10 {
     char pad0[0x44];
@@ -452,6 +452,67 @@ void C_000560A0::func_000559E0(int a0, int a1, float a2)
     unk10 = 0;
     unk64 = a2 * 1.46666f;
     unk68 = a1;
+}
+
+void C_00055D10::func_00055D10(C_00168B90 *c)
+{
+    c->func_00168B90(D_00277F24, &unk5C);
+    c->func_00168B90(D_00277F20, &unk44);
+    c->func_00169710(D_002769F8);
+    c->func_00168B90(D_00277F10, &unk180);
+    unk180 = unk180 * (double)D_00275998;
+    c->func_00168B90(D_00277EFC, &unk144);
+    unk144 = unk144 * (double)D_00275998;
+    c->func_00168B90(D_00277EE0, &unk148);
+    unk148 = unk148 * (double)D_00275998;
+    c->func_00168B90(D_00277ED4, &unk14C);
+    unk14C = unk14C * (double)D_00275998;
+    c->func_00168B90(D_00277EC8, &unk150);
+    unk150 = unk150 * (double)D_00275998;
+    c->func_00168B90(D_00277EB8, &unk140);
+    unk140 = unk140 * (double)D_00275998;
+    c->func_00168B90(D_00277EAC, &unk154);
+    unk154 = unk154 * (double)D_00277EA8;
+    c->func_00168B90(D_00277E98, &unk160);
+    unk160 = unk160 * (double)D_00275998;
+    c->func_00168B90(D_00277E88, &unk164);
+    unk164 = unk164 * (double)D_00277EA8;
+    c->func_00168B90(D_00277E80, &unk60);
+    unk60 = unk60 * (double)D_00277EA8;
+    c->func_00168B90(D_00277E6C, &unk158);
+    c->func_00168B90(D_00277E58, &unk15C);
+    unk15C = unk15C * (double)D_00275998;
+    c->func_00168B90(D_00277E48, &unk188);
+    c->func_00168B90(D_00277E38, &unk168);
+    unk168 = unk168 * (double)D_00277EA8;
+    c->func_00168B90(D_00277E20, &unk16C);
+    c->func_00168B90(D_00277E14, &unk174);
+    c->func_00168B90(D_00277E04, &unk170);
+    unk174 = unk174 * (double)D_00277EA8;
+    c->func_00168B90(D_00277DF0, &unk178);
+    unk178 = unk178 * (double)D_00275998;
+    c->func_00168B90(D_00277DDC, &unk19C);
+    unk19C = unk19C * (double)D_00275998;
+    c->func_00168B90(D_00277DCC, &unk194);
+    unk194 = unk194 * (double)D_00275998;
+    c->func_00168B90(D_00277DBC, &unk1A0);
+    unk1A0 = unk1A0 * (double)D_00277EA8;
+    c->func_00168B90(D_00277DA8, &unk1A4);
+    unk1A4 = unk1A4 * (double)D_00277EA8;
+    c->func_00168B90(D_00277D94, &unk1A8);
+    unk1A8 = unk1A8 * (double)D_00275998;
+    c->func_00168B90(D_00277D80, &unk1AC);
+    unk1AC = unk1AC * (double)D_00275998;
+    c->func_00168B90(D_00277D70, &unk1B8);
+    c->func_00168B90(D_00277D5C, &unk1BC);
+    unk1BC = unk1BC * (double)D_00277EA8;
+    c->func_00168B90(D_00277D40, &unk1C0);
+    unk1C0 = unk1C0 * (double)D_00275998;
+    c->func_00168B90(D_00277D2C, &unk1B0);
+    unk1B0 = unk1B0 * (double)D_00275998;
+    c->func_00168B90(D_00277D18, &unk1B4);
+    unk1B4 = unk1B4 * (double)D_00275998;
+    c->func_00168B90(D_00277D08, &unk1C4);
 }
 
 void C_00056080::func_00056080(void) {
