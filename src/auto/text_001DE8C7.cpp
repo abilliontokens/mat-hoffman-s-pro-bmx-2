@@ -852,13 +852,7 @@ S_FreeNode * __stdcall func_001DF626(S_Heap *heap)
     list = &heap->pool->freeNodes;
     if (*list == 0) {
         blk = *(S_FreeNode **)((char *)heap->pool + 0x48);
-        if (blk != 0 && blk->size != blk->addr) {
-            size = 0x1000;
-            base = (u32)blk + blk->size;
-            if (_imp__NtAllocateVirtualMemory((void **)&base, 0, &size, 0x1000, 4) < 0)
-                return 0;
-            blk->size += size;
-        } else {
+        if (blk == 0 || blk->size == blk->addr) {
             long (__stdcall *alloc)(void **, u32, u32 *, u32, u32);
 
             alloc = _imp__NtAllocateVirtualMemory;
@@ -875,8 +869,14 @@ S_FreeNode * __stdcall func_001DF626(S_Heap *heap)
             *(S_FreeNode **)((char *)heap->pool + 0x48) = blk;
             blk->addr = reserve;
             blk->size = size;
+            base = (u32)blk + 0x10;
+        } else {
+            size = 0x1000;
+            base = (u32)blk + blk->size;
+            if (_imp__NtAllocateVirtualMemory((void **)&base, 0, &size, 0x1000, 4) < 0)
+                return 0;
+            blk->size += size;
         }
-        base = (u32)blk + 0x10;
         end = (char *)blk + blk->size;
         prev = (S_FreeNode *)&heap->pool->freeNodes;
         for (p = (S_FreeNode *)base; (char *)p < end; p = (S_FreeNode *)((char *)p + 0x10)) {
