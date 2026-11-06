@@ -1,6 +1,5 @@
 /* 7 functions from 0x000149A0 to 0x00015980, found by Ghidra. */
 #include "common.h"
-#include <xmmintrin.h>
 
 struct AIPedestrian {
     void *func_00015960(unsigned int flags);
@@ -239,8 +238,6 @@ int AIPedFleeState::func_00014EF0(float dt)
         volatile float sq;
         volatile float len;
     } L;
-    char *o;
-    char *ped;
 
     L.self = this;
     if (*(int *)(*(int *)((char *)D_002A8490 + 0x2a4) + 0x1c8) == 1)
@@ -266,30 +263,17 @@ int AIPedFleeState::func_00014EF0(float dt)
             L.self->func_00012B00(0);
         }
     }
-    if (L.dist > D_002756C4) {
-        o = (char *)L.self->owner;
-        if (IsLocal_151F0())
-            *(int *)(o + 0x3bc) = 4;
-        (*(PedAnim **)(o + 0x384))->func_0008AB90(*(int *)(o + 0x3a0));
-    }
+    if (L.dist > D_002756C4)
+        SetAnimState_14EF0((char *)L.self->owner, 4, 0x3a0);
     if (*(char *)((char *)L.self->owner + 0x3e2) == 2)
         return 1;
-    if (L.dist < D_002756BC) {
-        ped = *(char **)(*(char **)(D_002B9120 + 0x4e0) + L.idx * 4 + 0x1a8);
-        if (*(int *)(*(char **)(ped + 0x950) + 0xbc) == 0)
-            func_000149A0(L.idx, -13.0f);
-    }
-    o = (char *)L.self->owner;
-    if (IsLocal_151F0())
-        *(int *)(o + 0x3bc) = 6;
-    (*(PedAnim **)(o + 0x384))->func_0008AB90(*(int *)(o + 0x390));
+    if (L.dist < D_002756BC &&
+        *(int *)(*(int *)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + L.idx * 4 + 0x1a8) + 0x950) + 0xbc) == 0)
+        func_000149A0(L.idx, -13.0f);
+    SetAnimState_14EF0((char *)L.self->owner, 6, 0x390);
     *(float *)((char *)L.self->owner + 0x3d8) = dt + *(float *)((char *)L.self->owner + 0x3d8);
-    if (*(float *)((char *)L.self->owner + 0x3d8) > D_00275548) {
-        o = (char *)L.self->owner;
-        if (IsLocal_151F0())
-            *(int *)(o + 0x3bc) = 8;
-        (*(PedAnim **)(o + 0x384))->func_0008AB90(*(int *)(o + 0x3a8));
-    }
+    if (*(float *)((char *)L.self->owner + 0x3d8) > D_00275548)
+        SetAnimState_14EF0((char *)L.self->owner, 8, 0x3a8);
     return 1;
 }
 
