@@ -935,14 +935,15 @@ double func_001EA0D3(double x) {
         return func_001F38F6(8, 0xb, x, x + 1.0, cw);
     }
     r = func_001F3996(x);
-    if (r == x)
-        goto restore;
-    if (cw & 0x20)
-        goto restore;
-    return func_001F38F6(0x10, 0xb, x, r, cw);
-restore:
-    func_001F3AFB(cw, (int)&D_0000FFFF);
-    return r;
+    if (r == x) {
+        func_001F3AFB(cw, (int)&D_0000FFFF);
+        return r;
+    } else if (cw & 0x20) {
+        func_001F3AFB(cw, (int)&D_0000FFFF);
+        return r;
+    } else {
+        return func_001F38F6(0x10, 0xb, x, r, cw);
+    }
 }
 
 void *func_001EA1A1(unsigned int num, unsigned int size)
