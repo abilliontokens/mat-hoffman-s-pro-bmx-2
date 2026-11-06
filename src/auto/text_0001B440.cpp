@@ -324,7 +324,8 @@ struct C_0001B910 {
     char pad54[0xC];
     int f60;
     int *f64;
-    char pad68[8];
+    char pad68[4];
+    int **f6C;
     int *f70;
     char pad74[4];
     int *f78;
@@ -334,7 +335,7 @@ struct C_0001B910 {
     int f8C;
     int f90;
     int *f94;
-    char pad98[4];
+    int f98;
     int f9C;
     char padA0[0x104];
     S_0001B910_Anim *f1A4;
