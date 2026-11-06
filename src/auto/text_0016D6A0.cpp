@@ -181,6 +181,14 @@ struct S_0016D8D0_Elem {
 struct S_0016D8D0_Owner {
     char pad0[0x134];
     S_0016D8D0_Elem *f134;
+    __forceinline S_0016D8D0_Elem *GetElem(int i)
+    {
+        S_0016D8D0_Elem *p = f134;
+        if (p == 0) {
+            return 0;
+        }
+        return &p[i];
+    }
 };
 
 struct C_0016A1D0 {
@@ -346,6 +354,7 @@ void C_0016D8A0::func_0016D8A0(int a, int b, int c, int d)
 
 int C_0016D8D0::func_0016D8D0(S_0016D8D0_Stream *stream)
 {
+    S_0016D8D0_Elem *e;
     int v;
 
     if (stream != 0) {
@@ -361,17 +370,14 @@ int C_0016D8D0::func_0016D8D0(S_0016D8D0_Stream *stream)
         stream->func_00168CB0(D_00288600, D_002A8754, f220);
         stream->func_00168C20(D_00288618, 0, &f20C);
         ((C_0016A1D0 *)this)->func_0016A3A0(stream);
-        S_0016D8D0_Elem *e = f64->f134;
-        if (e != 0) {
-            S_0016D8D0_Elem *sub = &e[f1B0];
-            if (sub != 0) {
-                f1AC = sub->f8;
-                f188 = f1A8 = sub->f4;
-                return 1;
-            }
+        e = f64->f134;
+        if (e != 0 && (e = &e[f1B0]) != 0) {
+            f1AC = e->f8;
+            v = e->f4;
+        } else {
+            f1AC = 0x2f;
+            v = 0x20;
         }
-        f1AC = 0x2f;
-        v = 0x20;
         f188 = f1A8 = v;
         return 1;
     }
