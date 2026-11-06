@@ -210,7 +210,7 @@ void func_001E6B50(float *dst, float *src);
 struct M16E6D40 {
     float f[16];
     M16E6D40() {}
-    M16E6D40(float *c)
+    __forceinline M16E6D40(float *c)
     {
         float *d = f;
         float s0, s4, s8, sC, s10, s14, s18, s1C, s20, s24, s28, s2C, s30, s34, s38, s3C;
