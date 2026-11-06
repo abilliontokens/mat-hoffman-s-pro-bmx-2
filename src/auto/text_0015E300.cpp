@@ -76,10 +76,18 @@ extern float D_002A80A4;
 extern float D_00275460;
 float func_0014F510(float a);
 
+struct S_0015EB90_Blink {
+    unsigned int f00;
+    unsigned int f04;
+    float f08, f0c, f10;
+};
+
 /* LightEmitter */
 struct LightEmitter {
     void *vtbl;
-    char pad4[0x30];
+    char pad4[0x24];
+    int f28;
+    char pad2C[0x8];
     LightEmitter_Sub *f34;
     char pad38[0x8];
     float f40;
@@ -94,7 +102,10 @@ struct LightEmitter {
     char pad7C[0x10];
     float f8C;
     float f90;
-    char pad94[0x10];
+    float f94;
+    float f98;
+    float f9c;
+    float fA0;
     float fA4;
     float fA8;
     float fAC;
@@ -109,6 +120,18 @@ struct LightEmitter {
     void func_0015EB90(float dt);
     float func_0015E4B0(float a1, S_0015E4B0_V4 v, LightEmitter *e);
 };
+
+extern int D_002E2940;
+extern float D_002756C0;
+extern float D_002755E4;
+extern S_0015E4B0_V4 D_002A802C, D_002A803C, D_002A804C;
+struct S_0015EB90_Ref { char pad[0x170]; float f170, f174, f178; };
+struct S_0015EB90_Ref2 { char pad[4]; S_0015EB90_Ref *f4; };
+extern S_0015EB90_Ref2 *D_002EFDB8;
+int func_001E8858(float f);
+int func_0015CF60();
+float func_0014F600(float f);
+int func_000262C0(void *a, void *b);
 
 extern LightEmitter *D_002E2930;
 
