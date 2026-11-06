@@ -85,8 +85,54 @@ struct Alloc190 {
     void func_001432B0(void);
 };
 
+#include <xmmintrin.h>
 struct __declspec(align(16)) Mat_1432B0 {
     f32 m[16];
+    /* this = transpose(*src) */
+    __forceinline void transpose(const Mat_1432B0 *src)
+    {
+        const float *s = src->m;
+        __m128 a, b, c, d;
+
+        a = _mm_loadl_pi(a, (const __m64 *)&s[0]);
+        a = _mm_loadh_pi(a, (const __m64 *)&s[4]);
+        b = _mm_loadl_pi(b, (const __m64 *)&s[2]);
+        b = _mm_loadh_pi(b, (const __m64 *)&s[6]);
+        c = _mm_loadl_pi(c, (const __m64 *)&s[8]);
+        c = _mm_loadh_pi(c, (const __m64 *)&s[12]);
+        d = _mm_loadl_pi(d, (const __m64 *)&s[10]);
+        d = _mm_loadh_pi(d, (const __m64 *)&s[14]);
+        _mm_store_ps(&m[0], _mm_shuffle_ps(a, c, 0x88));
+        _mm_store_ps(&m[4], _mm_shuffle_ps(a, c, 0xdd));
+        _mm_store_ps(&m[8], _mm_shuffle_ps(b, d, 0x88));
+        _mm_store_ps(&m[12], _mm_shuffle_ps(b, d, 0xdd));
+    }
+    /* *out = (*in as a point) * this, w forced to 1 */
+    __forceinline void xform(float *in, float *out)
+    {
+        __m128 v = _mm_loadu_ps(in);
+        __m128 r0 = _mm_load_ps(&m[0]);
+        _mm_storeh_pi((__m64 *)(out + 2), v);
+        __m128 r1 = _mm_load_ps(&m[4]);
+        out[3] = 1.0f;
+        __m128 r2 = _mm_load_ps(&m[8]);
+        v = _mm_loadh_pi(v, (const __m64 *)(out + 2));
+        r0 = _mm_mul_ps(r0, v);
+        r1 = _mm_mul_ps(r1, v);
+        r2 = _mm_mul_ps(r2, v);
+        __m128 lo = _mm_unpacklo_ps(r0, r1);
+        __m128 hi = _mm_unpackhi_ps(r0, r1);
+        __m128 junk;
+        junk = _mm_movehl_ps(junk, r2);
+        lo = _mm_add_ps(lo, hi);
+        r2 = _mm_add_ps(r2, junk);
+        hi = _mm_movehl_ps(hi, lo);
+        lo = _mm_movelh_ps(lo, r2);
+        hi = _mm_shuffle_ps(hi, r2, 0x14);
+        lo = _mm_add_ps(lo, hi);
+        _mm_storeu_ps(out, lo);
+        out[3] = 1.0f;
+    }
 };
 struct UploadLocals_1432B0 {
     Alloc190 *volatile self;
