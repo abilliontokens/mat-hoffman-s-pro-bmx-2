@@ -537,6 +537,18 @@ fail:
     return 0;
 }
 
+static __forceinline void CopyPos_001A1930(O_001A1930 *o, Q_001A1930 *out)
+{
+    if (o) {
+        int x = ((const volatile int *)&o->pos)[0];
+        int y = ((const volatile int *)&o->pos)[1];
+        int z = ((const volatile int *)&o->pos)[2];
+        ((int *)out)[0] = x;
+        ((int *)out)[1] = y;
+        ((int *)out)[2] = z;
+    }
+}
+
 static __forceinline void GetPos_001A1930(N_001A1930 *n, Q_001A1930 *out)
 {
     O_001A1930 *o = n->obj;
