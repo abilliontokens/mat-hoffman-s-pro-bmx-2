@@ -110,13 +110,8 @@ struct S_000235C0_V3 {
 };
 
 struct S_000235C0_Elem {
-    float px, py, pz;
-    union {
-        S_000235C0_V3 d;
-        struct {
-            float dx, dy, dz;
-        };
-    };
+    S_000235C0_V3 p;
+    S_000235C0_V3 d;
 };
 
 struct S_000235C0_Tbl {
