@@ -45,7 +45,8 @@ struct C_00075F30 {
     Img_75F30 *fB4[5];
     Img_75F30 *fC8[5];
     Img_75F30 *fDC[6];
-    char padF4[0xC];
+    Img_75F30 *f4;
+    char padF8[8];
     int f100, f104, f108, f10C, f110, f114, f118;
     char pad11C[4];
     int f120;
@@ -83,38 +84,38 @@ C_00075F30 *C_00075F30::func_00075F30(int a)
         o = o ? o->func_001D5760() : 0;
         fAC = o;
         o->func_001D5810(D_00278658, 0.0f, 0.0f, 0);
-        if (o->width != 640.0f) {
-            o->width = 640.0f;
-            o->flags |= 1;
+        if (fAC->width != 640.0f) {
+            fAC->width = 640.0f;
+            fAC->flags |= 1;
         }
-        if (o->height != 50.0f) {
-            o->height = 50.0f;
-            o->flags |= 1;
+        if (fAC->height != 50.0f) {
+            fAC->height = 50.0f;
+            fAC->flags |= 1;
         }
-        o->a = o->f4C * D_00278654;
-        o->b = o->f4C * D_00275544;
-        o->c = o->f50 * D_0027653C;
-        o->d = o->f50 * D_00275544;
-        o->flags |= 4;
+        fAC->a = fAC->f4C * D_00278654;
+        fAC->b = fAC->f4C * D_00275544;
+        fAC->c = fAC->f50 * D_0027653C;
+        fAC->d = fAC->f50 * D_00275544;
+        fAC->flags |= 4;
     }
     {
         Img_75F30 *o = (Img_75F30 *)func_001E8A44(0x64);
         o = o ? o->func_001D5760() : 0;
         fB0 = o;
         o->func_001D5810(D_00278658, 0.0f, 398.0f, 0);
-        if (o->width != 640.0f) {
-            o->width = 640.0f;
-            o->flags |= 1;
+        if (fB0->width != 640.0f) {
+            fB0->width = 640.0f;
+            fB0->flags |= 1;
         }
-        if (o->height != 50.0f) {
-            o->height = 50.0f;
-            o->flags |= 1;
+        if (fB0->height != 50.0f) {
+            fB0->height = 50.0f;
+            fB0->flags |= 1;
         }
-        o->a = o->f4C * D_00278654;
-        o->b = o->f4C * D_00275544;
-        o->c = o->f50 * D_0027653C;
-        o->d = o->f50 * D_00275544;
-        o->flags |= 4;
+        fB0->a = fB0->f4C * D_00278654;
+        fB0->b = fB0->f4C * D_00275544;
+        fB0->c = fB0->f50 * D_0027653C;
+        fB0->d = fB0->f50 * D_00275544;
+        fB0->flags |= 4;
     }
 
     for (int i = 0; i < 5; i++) {
@@ -127,11 +128,31 @@ C_00075F30 *C_00075F30::func_00075F30(int a)
         q = q ? q->func_001D5760() : 0;
         fC8[i] = q;
         q->func_001D5810(D_00278658, y, 366.0f, 0);
-        q->a = 0.0f;
-        q->b = 1.0f;
-        q->c = 0.99f;
-        q->d = 0.0f;
-        q->flags |= 4;
+        fC8[i]->a = 0.0f;
+        fC8[i]->b = 1.0f;
+        fC8[i]->c = 0.99f;
+        fC8[i]->d = 0.0f;
+        fC8[i]->flags |= 4;
+    }
+
+    for (int i = 0; i < 6; i++) {
+        Img_75F30 *o = (Img_75F30 *)func_001E8A44(0x64);
+        o = o ? o->func_001D5760() : 0;
+        fDC[i] = o;
+        float x = (i % 2) ? 320.0f : 100.0f;
+        float y = (float)(i / 2) * D_002757F0 + D_00278E60;
+        fDC[i]->func_001D5810(D_002786B0, x, y, 0);
+        fDC[i]->a = 1.0f;
+        fDC[i]->b = 0.0f;
+        fDC[i]->c = 0.0f;
+        fDC[i]->d = 1.0f;
+        fDC[i]->flags |= 4;
+        if (fDC[i]->width != 221.0f) {
+            fDC[i]->width = 221.0f;
+            fDC[i]->flags |= 1;
+        }
+        fDC[i]->color = (fDC[i]->color & 0xffbfa35a) | 0xbfa35a;
+        fDC[i]->flags |= 2;
     }
     return this;
 }
