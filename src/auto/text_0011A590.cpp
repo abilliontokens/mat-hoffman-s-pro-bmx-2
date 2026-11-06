@@ -71,6 +71,61 @@ struct C_0011A590_f28 {
 float *func_0001E9E0(float *out, float *v);
 Vec4 func_0001C610(float *a, float *b);
 
+int BmxWallPlantConstraint::func_0011A590(float dt)
+{
+    Vec4 local;
+    Vec4 d;
+    Vec4 n;
+    Vec4 scaled;
+    Vec4 a;
+    Vec4 b;
+    Vec4 c;
+    Vec4 e;
+    Vec4 g;
+    float len;
+    float dot;
+    float ang;
+
+    ((C_0011A590_f28 *)f28)->func_00197F70(&local, pad2c);
+    d.x = f3c - local.x;
+    d.y = f40 - local.y;
+    d.z = f44 - local.z;
+    d.w = 1.0f;
+    a.x = 0.0f;
+    a.y = 0.0f;
+    a.z = 0.0f;
+    a.w = 1.0f;
+    b.x = 0.0f;
+    b.y = 0.0f;
+    b.z = 0.0f;
+    b.w = 1.0f;
+    len = sqrtf(d.z * d.z + d.y * d.y + d.x * d.x);
+    if (len < f64) {
+        if (!(len > f5c)) {
+            float t = dt * f6c;
+            len = len < t ? len : t;
+        }
+        func_0001E9E0((float *)&n, (float *)&d);
+        scaled.x = n.x * len;
+        scaled.y = n.y * len;
+        scaled.z = n.z * len;
+        scaled.w = 1.0f;
+        ((C_0011A590_f28 *)f28)->func_00199900(&scaled);
+    }
+    ((C_0011A590_f28 *)f28)->func_00197B40(&b, &a);
+    dot = f4c[0] * a.x + f4c[1] * a.y + f4c[2] * a.z;
+    if (!(dot > D_00275544)) {
+        a.x *= D_00275F58;
+        a.y *= D_00275F58;
+        a.z *= D_00275F58;
+    }
+    func_0001E9E0((float *)&c, (float *)&a);
+    func_0001E9E0((float *)&e, (float *)&b);
+    g = func_0001C610((float *)&e, (float *)&c);
+    ang = func_0014F7E0(g.x * a.x + g.y * a.y + g.z * a.z);
+    return 1;
+}
+
 void *C_0011AB60::func_0011AB60(int flags)
 {
     vtbl = (void *)&D_00283D5C;
@@ -126,6 +181,30 @@ void func_0011AC30(float *out, float *in)
     _mm_store_ps(out + 12, r3);
 }
 
+void func_0011ACC0(void *a, void *b, float *m)
+{
+    __m128 *out = (__m128 *)a;
+    __m128 *in = (__m128 *)b;
+    __m128 r0, r1, r2;
+
+    r0 = _mm_mul_ps(_mm_load1_ps(m), in[0]);
+    r1 = _mm_mul_ps(_mm_load1_ps(m + 4), in[0]);
+    r2 = _mm_mul_ps(_mm_load1_ps(m + 8), in[0]);
+    r0 = _mm_add_ps(r0, _mm_mul_ps(_mm_load1_ps(m + 1), in[1]));
+    r1 = _mm_add_ps(r1, _mm_mul_ps(_mm_load1_ps(m + 5), in[1]));
+    r2 = _mm_add_ps(r2, _mm_mul_ps(_mm_load1_ps(m + 9), in[1]));
+    r0 = _mm_add_ps(r0, _mm_mul_ps(_mm_load1_ps(m + 2), in[2]));
+    r1 = _mm_add_ps(r1, _mm_mul_ps(_mm_load1_ps(m + 6), in[2]));
+    r2 = _mm_add_ps(r2, _mm_mul_ps(_mm_load1_ps(m + 10), in[2]));
+    r0 = _mm_add_ps(r0, _mm_mul_ps(_mm_load1_ps(m + 3), in[3]));
+    r1 = _mm_add_ps(r1, _mm_mul_ps(_mm_load1_ps(m + 7), in[3]));
+    r2 = _mm_add_ps(r2, _mm_mul_ps(_mm_load1_ps(m + 11), in[3]));
+    out[0] = r0;
+    out[1] = r1;
+    out[2] = r2;
+    out[3] = in[3];
+}
+
 void func_0011ADA0(void *a, void *b, float *m)
 {
     __declspec(align(16)) float inv[16];
@@ -144,28 +223,28 @@ void func_0011ADD0(Vec4 *out, float *m)
     t2 = (((1.0f - m[0]) + m[5]) - m[10]) * 0.25f;
     t3 = (((1.0f - m[0]) - m[5]) + m[10]) * 0.25f;
     if (t0 > t1 && t0 > t2 && t0 > t3) {
-        s = sqrtf(t0);
+        _mm_store_ss(&s, _mm_sqrt_ss(*(__m128 *)&t0));
         inv = 0.25f / s;
         q.x = s;
         q.y = (m[9] - m[6]) * inv;
         q.z = (m[2] - m[8]) * inv;
         q.w = (m[4] - m[1]) * inv;
     } else if (t1 > t2 && t1 > t3) {
-        s = sqrtf(t1);
+        _mm_store_ss(&s, _mm_sqrt_ss(*(__m128 *)&t1));
         inv = 0.25f / s;
         q.y = s;
         q.x = (m[9] - m[6]) * inv;
         q.z = (m[4] + m[1]) * inv;
         q.w = (m[8] + m[2]) * inv;
     } else if (t2 > t3) {
-        s = sqrtf(t2);
+        _mm_store_ss(&s, _mm_sqrt_ss(*(__m128 *)&t2));
         inv = 0.25f / s;
         q.z = s;
         q.x = (m[2] - m[8]) * inv;
         q.y = (m[4] + m[1]) * inv;
         q.w = (m[9] + m[6]) * inv;
     } else {
-        s = sqrtf(t3);
+        _mm_store_ss(&s, _mm_sqrt_ss(*(__m128 *)&t3));
         inv = 0.25f / s;
         q.w = s;
         q.x = (m[4] - m[1]) * inv;
@@ -176,6 +255,12 @@ void func_0011ADD0(Vec4 *out, float *m)
 }
 
 extern float D_00275460;
+static inline void Vec4Scale3(Vec4 *out, const Vec4 *v, float s)
+{
+    out->x = v->x * s;
+    out->y = v->y * s;
+    out->z = v->z * s;
+}
 void func_0011AFF0(char *arg)
 {
  char *a=*(char **)(arg+0x54);
