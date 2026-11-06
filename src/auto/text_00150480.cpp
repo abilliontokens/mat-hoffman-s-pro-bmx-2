@@ -37,6 +37,7 @@ struct S_002EFDB8 {
 };
 extern S_002EFDB8 *D_002EFDB8;
 
+struct V3_150810 { float x, y, z; };
 struct C_00150810 {
     char pad0[0x24];
     int unk24;
@@ -167,14 +168,14 @@ void *C_001507E0::func_001507E0(int flags) {
 
 C_00150810 *C_00150810::func_00150810(int a0, float a1, float a2, float a3, float a4, float a5) {
     func_001D3F50();
+    unk4C = a5;
     unk44 = a3;
     unk48 = a4;
-    unk4C = a5;
     unk2C = (a3 - a4) * a1 + a4;
     unk30 = a1;
     unk34 = a2;
     unk24 = a0;
-    unk28 = (D_00275460 - a2) * (unk2C - a5);
+    unk28 = (unk2C - a5) * (D_00275460 - a2);
     unk38 = 0x100;
     unk3C = 1;
     D_002EFDB8->unk2C = a0;
