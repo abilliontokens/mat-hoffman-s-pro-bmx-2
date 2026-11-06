@@ -9,6 +9,15 @@ extern char D_00275678[];
 extern char D_002A5870[];
 extern char D_002A5B88[];
 
+extern char D_002A5FA8[];
+extern char D_002A60B0[];
+extern char D_002A5D98[];
+extern char D_002A5EA0[];
+struct C_000A11A0 {
+    int func_00189AA0(void);
+    int func_000A11A0(void);
+};
+
 struct C_002A829C {
     void func_00161680(void);
 };
