@@ -296,7 +296,6 @@ struct C_001AE3E0 : C_001AE3E0_Head {
     };
     C_001AE3E0(int param_1);
     void func_001AE460(void);
-    void func_001AE4D0(int a, int b, int c, int d, int e, int f, int g, int h, int idx);
     void func_001AE4D0(C_001AE3E0_Vec4 a, C_001AE3E0_Vec4 b, int idx);
     C_001AE3E0 *func_001AEBD0(int a1, int a2, float *a3, int a4, float a5, int a6, int a7, int a8, float a9, float a10, float a11, int a12, char a13);
 };
