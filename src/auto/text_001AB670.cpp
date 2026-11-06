@@ -38,6 +38,13 @@ struct C_001AC150 {
     int field_0C;
     void func_001AC150(int count);
     void func_001AC1A0(int n);
+    __forceinline char *Get(int n)
+    {
+        if (n > field_0C) {
+            func_001AC1A0(n);
+        }
+        return (char *)field_04[n - 1];
+    }
 };
 
 struct Elem_001AB800 {
@@ -204,8 +211,106 @@ void *SpringCollisionModel::func_001AB7B0(unsigned int flags)
     return this;
 }
 
-int SpringCollisionModel::func_001AB800()
+int SpringCollisionModel::func_001AB800(int arg)
 {
+    V4_001AB670 loc;
+    int i;
+    Elem_001AB800 *e;
+    float dot;
+
+    if (f3c != 0 || f88 > 0) {
+        if (f6c == 0) {
+            func_00030AC0(f114, (float *)((char *)field_24 + 0x190), (float *)(field_24->f22c + 0xf0));
+        } else {
+            func_00030AC0(f114, f104, (float *)(field_24->f22c + 0xf0));
+        }
+    }
+    if (f3c != 0 && f80 > 0) {
+        for (i = 0; i < f80; i++) {
+            e = &field_84[i];
+            Xform_001AB800(&loc.x, e->in, (float *)((char *)e->mat + 0xf0));
+            dot = (e->p[0] - loc.x) * e->n[0] + (e->p[1] - loc.y) * e->n[1] + (e->p[2] - loc.z) * e->n[2] + e->f4c;
+            if (dot > D_00275544) {
+                f30 = 1;
+                f74 = 1;
+                e->flags |= 2;
+                f144 = *(V4_001AB670 *)e->n;
+                f134.x = dot * e->n[0] + loc.x;
+                f134.y = dot * e->n[1] + loc.y;
+                f134.z = dot * e->n[2] + loc.z;
+                f134.w = 1.0f;
+                func_001A9990(f134, 0);
+                if (f4c != 0) {
+                    func_001AA270(dot, *(V4_001AB670 *)e->n, f134, 0, 0);
+                }
+                if (f64 != 0) {
+                    func_001AB670(e->n, &f134, 0);
+                }
+                if (f40 != 0) {
+                    if (f5c != 0 && dot >= f94 && f4c == 0) {
+                        func_001AB670(e->n, &f134, 0);
+                    }
+                    func_001A9D20(dot, *(V4_001AB670 *)e->n, f134, 0, 0);
+                }
+                if (f44 != 0) {
+                    func_001A9FA0(fdc[e->idx], *(V4_001AB670 *)e->n, f134, 0, 0);
+                }
+            } else {
+                e->flags &= 0xfd;
+            }
+        }
+    }
+    for (i = 0; i < f88; i++) {
+        e = &field_90[i];
+        if (e->mat == 0) {
+            Xform_001AB800(&loc.x, e->in, (float *)(field_24->f22c + 0xf0));
+        } else {
+            Xform_001AB800(&loc.x, e->in, (float *)((char *)e->mat + 0xf0));
+        }
+        dot = (e->p[0] - loc.x) * e->n[0] + (e->p[1] - loc.y) * e->n[1] + (e->p[2] - loc.z) * e->n[2];
+        if (dot > D_00275544) {
+            f30 = 1;
+            f78 = 1;
+            if (e->f48 == 0) {
+                if (e->n[1] > D_002755F4) {
+                    f34 = 1;
+                }
+            } else {
+                f38 = 1;
+            }
+            f144 = *(V4_001AB670 *)e->n;
+            f134.x = dot * e->n[0] + loc.x;
+            f134.y = dot * e->n[1] + loc.y;
+            f134.z = dot * e->n[2] + loc.z;
+            f134.w = 1.0f;
+            e->flags |= 2;
+            func_001A9990(f134, e->f48);
+            if (e->f48 != 0 && f50 != 0) {
+                func_001A9D20(dot, *(V4_001AB670 *)e->n, f134, e->f48, (unsigned int)e->f44);
+                if (f44 != 0 && f48 != 0) {
+                    func_001A9FA0(fdc[e->idx], *(V4_001AB670 *)e->n, f134, e->f48, (unsigned int)e->f44);
+                }
+            } else {
+                if (f4c != 0) {
+                    func_001AA270(dot, *(V4_001AB670 *)e->n, f134, e->f48, (unsigned int)e->f44);
+                }
+                if (f64 != 0) {
+                    func_001AB670(e->n, &f134, (int)e->f48);
+                }
+                if (f40 != 0) {
+                    if (f5c != 0 && dot >= f94 && f4c == 0) {
+                        func_001AB670(e->n, &f134, (int)e->f48);
+                    }
+                    func_001A9D20(dot, *(V4_001AB670 *)e->n, f134, e->f48, (unsigned int)e->f44);
+                }
+                if (f44 != 0 && (e->f48 == 0 || f48 != 0)) {
+                    func_001A9FA0(fdc[e->idx], *(V4_001AB670 *)e->n, f134, e->f48, (unsigned int)e->f44);
+                }
+            }
+        } else {
+            e->flags &= 0xfd;
+        }
+    }
     f2c = 0;
     return 1;
 }
@@ -275,9 +380,9 @@ void C_001AC150::func_001AC1A0(int n)
 
 void C_001AC200::func_001AC200(int n)
 {
-    C_001AC150 *args = field_10;
-    char *s;
     char c;
+    char *s;
+    C_001AC150 *args = field_10;
     if (n > args->field_0C) {
         args->func_001AC1A0(n);
     }
@@ -286,8 +391,7 @@ void C_001AC200::func_001AC200(int n)
     if (c != 0) {
         s++;
         do {
-            ((char *)field_04)[(int)field_0C] = c;
-            field_04++;
+            ((char *)field_0C)[field_04++] = c;
             c = *s++;
         } while (c != 0);
     }
