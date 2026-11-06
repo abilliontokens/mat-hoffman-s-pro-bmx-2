@@ -107,7 +107,7 @@ struct ObjE0_26 {
     virtual void v25(); virtual void v26(); virtual void v27(void *); virtual void v28(void *);
     char pad4[0x2C - 4]; V4_000273F0 f2C; V4_000273F0 f3C;
     char pad4C[0x204 - 0x4C]; int f204;
-    char pad208[0x218 - 0x208]; float f218;
+    char pad208[0x218 - 0x208]; int f218;
     char pad21C[0x238 - 0x21C]; V4_000273F0 f238;
     char pad248[0x268 - 0x248]; V4_000273F0 f268;
     char pad278[0x300 - 0x278]; int f300;
