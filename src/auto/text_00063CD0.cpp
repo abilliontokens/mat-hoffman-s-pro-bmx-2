@@ -1,5 +1,14 @@
 /* 5 functions from 0x00063CD0 to 0x00064BA0, found by Ghidra. */
 #include "common.h"
+struct C_63CD0_Call {
+ void func_0005E7C0(float, float);
+ void func_00051140(float);
+ void func_00051160(float);
+ void func_00051180(float);
+ void func_00062070(int);
+ void func_00062CD0(int);
+ void func_00051A90(int);
+};
 
 struct V_002EFDB8 {
     virtual void vf0();
