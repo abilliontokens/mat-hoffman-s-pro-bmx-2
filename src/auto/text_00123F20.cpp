@@ -4,8 +4,8 @@ struct Vec4 {
  float x,y,z,w;
  Vec4(){z=0;y=0;x=0;w=1;}
  Vec4(float a,float b,float c){x=a;y=b;z=c;w=1;}
- Vec4 operator*(float s)const{Vec4 v;v.x=x*s;v.y=y*s;v.z=z*s;return v;}
- Vec4 operator+(const Vec4 &b)const{Vec4 v;v.x=x+b.x;v.y=y+b.y;v.z=z+b.z;return v;}
+ Vec4 operator*(float s)const{return Vec4(x*s,y*s,z*s);}
+ Vec4 operator+(const Vec4 &b)const{return Vec4(x+b.x,y+b.y,z+b.z);}
 };
 extern float D_00275460;
 void func_0011EFA0(Vec4 *,const Vec4 *);
