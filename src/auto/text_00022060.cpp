@@ -249,6 +249,7 @@ struct C_00022730 {
 
 #include <math.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 extern float D_00276230, D_002755E8, D_002756D0, D_002756E8;
 extern "C" void func_00167FE0(void *a, void *b, float x, float y, float z);
@@ -297,8 +298,7 @@ static inline void wrap_00022060(float *a)
 
 int C_00022060::func_00022060(float dt)
 {
-    Vec4_000223B0 a;
-    Vec4_000223B0 b;
+    float r;
     float len;
 
     if (D_002A8490->f124 == 0) {
@@ -319,26 +319,29 @@ int C_00022060::func_00022060(float dt)
             if (fC > D_002756D0) {
                 fC = fC - D_002756B8;
             } else if (fC < D_002756E8) {
-                fC = fC + D_002756B8;
+                fC = fC + 6.28318548f;
             }
             if (f10 > D_002756D0) {
                 f10 = f10 - D_002756B8;
             } else if (f10 < D_002756E8) {
-                f10 = f10 + D_002756B8;
+                f10 = f10 + 6.28318548f;
             }
             if (f14 > D_002756D0) {
                 f14 = f14 - D_002756B8;
             } else if (f14 < D_002756E8) {
-                f14 = f14 + D_002756B8;
+                f14 = f14 + 6.28318548f;
             }
             f18 += dt * f24;
             f1C += dt * f28;
             f20 += dt * f2C;
-            len = sqrtf(f0->x * f0->x + f0->y * f0->y + f0->z * f0->z) * dt * D_00276230;
+            r = AsmSqrtF(f0->x * f0->x + f0->y * f0->y + f0->z * f0->z);
+            len = D_00276230 * (r * dt);
             f24 = ((float)func_001E8833() * D_002754B0 - D_002755E8) * f8->f28 * len;
             f28 = ((float)func_001E8833() * D_002754B0 - D_002755E8) * f8->f30 * len;
             f2C = ((float)func_001E8833() * D_002754B0 - D_002755E8) * f8->f2C * len;
         }
+        Vec4_000223B0 a;
+        Vec4_000223B0 b;
         func_00167FE0(&b, &a, fC, f14, f10);
         f4->func_00198F50(&b, &a, 0, 1, 0);
     }
@@ -464,8 +467,8 @@ int C_00022730::func_00022730(int name, int idx)
             p = 0;
         }
         f64[idx]->items = p;
-        Vec4_000223B0 a;
         Vec4_000223B0 b;
+        Vec4_000223B0 a;
         D_002BEAAC->func_0013AFF0(handle, 0, 0);
         i = -1;
         while (!D_002BEAAC->func_0013AFB0(handle)) {
