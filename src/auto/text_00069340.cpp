@@ -281,9 +281,9 @@ struct C_00069BD0 {
     char pad13C[0x140 - 0x13C];
     int unk140;
     int unk144;
-    char pad148[4];
+    int unk148;
     C_00069BD0_Obj *unk14C;
-    char pad150[4];
+    int unk150;
     int unk154;
     int unk158;
     int unk15C;
