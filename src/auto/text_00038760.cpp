@@ -103,6 +103,9 @@ struct C_00038760 {
 };
 extern float D_00276E9C;
 extern float D_00276E98;
+extern float D_00275548;
+extern float D_00275AEC;
+extern float D_00275460;
 
 int C_00038760::func_00038760(float x, float y, float z, int unused, int *out)
 {
