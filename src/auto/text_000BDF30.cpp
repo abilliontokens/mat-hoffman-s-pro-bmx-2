@@ -248,10 +248,10 @@ struct C_000BBE30 {
     char pad25c[4];
     S_000BE540_Vt *f260;
     char pad264[4];
-    void *f268;
-    void *f26c;
-    void *f270;
-    void *f274;
+    C_001C3E50 *f268;
+    C_000BEDC0 *f26c;
+    C_000BEDC0 *f270;
+    C_00092890 *f274;
     char pad278[4];
     S_000BDF30_Entry *f27C;
     S_000BE020_Item *f280;
