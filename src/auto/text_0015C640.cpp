@@ -260,28 +260,25 @@ void C_0015C6C0::func_0015C6C0(int param_1, int param_2)
     func_0015C6F0((float *)unk14, *(float *)&param_1, unkC, (S_0015C6F0_Key *)unk8, (float *)param_2);
 }
 
-void func_0015C6F0(float *base, float v, int n, S_0015C6F0_Key *up, float *out)
+void func_0015C6F0(float *base, float v, int n, S_0015C6F0_Key *volatile up, float *out)
 {
     int func_0001B1D0(...);
     S_0015C6F0_Key *lo;
     float t;
     float q1[4];
     float q0[4];
-    int found;
-
     if (up != 0 && n > 1) {
-        found = func_0015C9A0(base, v, n, (float **)&lo, (float **)&up, &t);
-        if (found != 0) {
+        if (func_0015C9A0(base, v, n, (float **)&lo, (float **)&up, &t) != 0) {
             func_0001B1D0(lo->q, q0);
             func_0001B1D0(up->q, q1);
             func_0015C7D0(q0, q1, out, t);
             func_0015C930(out, (int)up + 4);
-        } else {
-            func_0001B1D0(up->q, out);
+            return;
         }
-    } else {
-        func_0001B1D0(base + func_0015C640(base, n, v) * 2 - 1, out);
+        func_0001B1D0(up->q, out);
+        return;
     }
+    func_0001B1D0(base + func_0015C640(base, n, v) * 2 - 1, out);
 }
 
 void func_0015C7D0(float *a, float *b, float *out, float t)
