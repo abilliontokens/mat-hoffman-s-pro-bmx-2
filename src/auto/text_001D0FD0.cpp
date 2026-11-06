@@ -287,20 +287,15 @@ int XboxGame::func_001D13D0(int param_1)
     S_001D13D0_Alloc *p;
 
     unk2A0 = func_00201820(0);
-    if (unk2A0 != 0) {
-        p = (S_001D13D0_Alloc *)func_001E8A44(0x9e0);
-        if (p != 0) {
-            D_002F07B8 = (S_002F07B8 *)p->func_001D7D50();
-            if (D_002F07B8 != 0) {
-                if (D_002F07B8->func_001D87A0(0, unk29C, unk2A0, (unk230 >> 6) & 1) != 0) {
-                    return func_001572B0(param_1);
-                }
-            }
-        } else {
-            D_002F07B8 = 0;
-        }
-    }
-    return 0;
+    if (unk2A0 == 0)
+        return 0;
+    p = (S_001D13D0_Alloc *)func_001E8A44(0x9e0);
+    D_002F07B8 = p ? (S_002F07B8 *)p->func_001D7D50() : 0;
+    if (D_002F07B8 == 0)
+        return 0;
+    if (!D_002F07B8->func_001D87A0(0, unk29C, unk2A0, (unk230 >> 6) & 1))
+        return 0;
+    return func_001572B0(param_1);
 }
 
 void *C_001D1460::func_001D1460(int a0)
