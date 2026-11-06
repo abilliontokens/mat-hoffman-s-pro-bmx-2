@@ -275,7 +275,7 @@ __declspec(align(16)) struct S_001D3860_Mat {
 
 struct S_001D3860_Coords {
     float f[6];
-    int x[4];
+    int x[6];
     int w, h;
 };
 
