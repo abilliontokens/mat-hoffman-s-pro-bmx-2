@@ -150,42 +150,109 @@ static __forceinline void Spawn_3B0A0(S_3B0A0_Obj *o, void *a1, void *a2, char *
     o->f34->f5c->func_00194EB0(v24);
     o->f34->f5c->func_00194F60(v64);
 }
+__forceinline void S_3B0A0_Obj::Spawn(void *a1, void *a2, char *a4, float a5, int a6, int a7, int a8, int a9)
+{
+    Vec4_3B0A0 v54, v24, v64, v34, v74;
+    int ex, ey, ez, m;
+    float t;
+
+    if (a1 == 0)
+        return;
+    D_002EFDB8->v7(1);
+    D_002EFDB8->v8();
+    ex = ((S_3B0A0_Elem *)*(char **)(a4 + 0x5a4))[a6].f38;
+    ey = ((S_3B0A0_Elem *)*(char **)(a4 + 0x5a4))[a6].f3c;
+    ez = ((S_3B0A0_Elem *)*(char **)(a4 + 0x5a4))[a6].f40;
+    if (f24 != 0) {
+        ((S_3B0A0_Obj *)f24)->func_00198390();
+        if (f2c != 0)
+            ((S_3B0A0_Obj *)f2c)->func_00198390();
+        f24 = 0;
+    } else if (f28 != 0) {
+        ((S_3B0A0_VObj *)f28->f1a4)->f4->func_00198390();
+        ((S_3B0A0_VObj *)f28->f1a4)->vb4();
+        f28 = 0;
+    }
+    f24 = a1;
+    ((S_3B0A0_Obj *)f24)->func_001983A0();
+    ((S_3B0A0_Obj *)f24)->func_0019A8C0(&v34, &v74);
+    if (func_001E8AF0((char *)f24 + 0x28, D_00276D54))
+        v34.z -= D_00275AEC;
+    if (a2 != 0) {
+        f2c = a2;
+        ((S_3B0A0_Obj *)f2c)->func_001983A0();
+    } else {
+        f2c = 0;
+    }
+    m = a7;
+    if (m > a8) {
+        if (m > a9) m = a7; else m = a9;
+    } else {
+        if (a8 > a9) m = a8; else m = a9;
+    }
+    {
+        int best;
+        if (ey > ez)
+            best = (ey > ex) ? ey : ex;
+        else
+            best = (ez > ex) ? ez : ex;
+        t = (float)((m > best) ? m : best);
+    }
+    t = t * D_0027653C;
+    t = t * D_002766C8;
+    v34.y = a5;
+    v54.x = v34.x;
+    v54.y = D_00276220 * t + a5;
+    v54.z = v34.z - D_00276D50 * t;
+    v24 = Vec4_3B0A0(0.0f, a5 - v54.y, v34.z - v54.z, 1.0f);
+    float d = AsmSqrtF(v24.x * v24.x + v24.y * v24.y + v24.z * v24.z);
+    f38 = d;
+    func_00034820(&v24.x, &v24.x);
+    AsmVec3Cross(&v64.x, &v24.x, D_002A14E4);
+    f34->f5c->func_00194E60(v54);
+    f34->f5c->f4 = 0;
+    f34->f5c->func_00194F90(60.0f);
+    f34->f5c->func_00194EB0(v24);
+    f34->f5c->func_00194F60(v64);
+}
 void C_0003BB60::func_0003B0A0()
 {
     if (func_001E8AF0(*(char **)(*(char **)((char *)this + 0x64) + 0x5a4) + *(int *)((char *)this + 0x47c) * 72, D_00276F08)) {
         char *mgr = *(char **)((char *)this + 0x64);
         int idx = *(int *)((char *)this + 0x47c);
         int sel = ((S_3B0A0_Elem *)*(char **)(mgr + 0x5a4))[idx].f44 + *(int *)((char *)this + 0x480);
-        char *e1 = Get_3B0A0((int *)(mgr + 0x5a8), sel);
-        char *e2 = Get_3B0A0((int *)(mgr + 0x5a8), sel);
-        char *e3 = Get_3B0A0((int *)(mgr + 0x5a8), sel);
-        char *g1 = Get_3B0A0((int *)((char *)this + 0x5c8), sel + 1);
-        char *g2 = Get_3B0A0((int *)((char *)this + 0x5c8), sel);
         S_3B0A0_Obj *o = (S_3B0A0_Obj *)*(void **)((char *)this + 0x540);
-        Spawn_3B0A0(o, g2, g1, mgr, *(float *)((char *)this + 0x440), idx,
-            *(int *)(e3 + 0x360), *(int *)(e2 + 0x358), *(int *)(e1 + 0x35c));
+
+        Spawn_3B0A0(o,
+            Get_3B0A0((int *)((char *)this + 0x5c8), sel),
+            Get_3B0A0((int *)((char *)this + 0x5c8), sel + 1),
+            mgr, *(float *)((char *)this + 0x440), idx,
+            *(int *)(Get_3B0A0((int *)(mgr + 0x5a8), sel) + 0x360),
+            *(int *)(Get_3B0A0((int *)(mgr + 0x5a8), sel) + 0x358),
+            *(int *)(Get_3B0A0((int *)(mgr + 0x5a8), sel) + 0x35c));
     } else if (func_001E8AF0(*(char **)(*(char **)((char *)this + 0x64) + 0x5a4) + *(int *)((char *)this + 0x47c) * 72, D_00276F00)) {
         void *a3 = *(int *)((char *)this + 0x480) ? *(void **)((char *)this + 0x594) : *(void **)((char *)this + 0x590);
         char *mgr = *(char **)((char *)this + 0x64);
         int idx = *(int *)((char *)this + 0x47c);
         int sel = ((S_3B0A0_Elem *)*(char **)(mgr + 0x5a4))[idx].f44 + *(int *)((char *)this + 0x480);
-        char *g1 = Get_3B0A0((int *)(mgr + 0x5a8), sel);
-        char *g2 = Get_3B0A0((int *)(mgr + 0x5a8), sel);
-        char *g3 = Get_3B0A0((int *)(mgr + 0x5a8), sel);
+
         ((S_3B0A0_Obj *)*(void **)((char *)this + 0x540))->func_00034A40(0, 0, a3, mgr, *(float *)((char *)this + 0x440), idx,
-            *(int *)(g3 + 0x360), *(int *)(g2 + 0x358), *(int *)(g1 + 0x35c));
+            *(int *)(Get_3B0A0((int *)(mgr + 0x5a8), sel) + 0x360),
+            *(int *)(Get_3B0A0((int *)(mgr + 0x5a8), sel) + 0x358),
+            *(int *)(Get_3B0A0((int *)(mgr + 0x5a8), sel) + 0x35c));
     } else {
         char *mgr = *(char **)((char *)this + 0x64);
         int idx = *(int *)((char *)this + 0x47c);
         int sel = ((S_3B0A0_Elem *)*(char **)(mgr + 0x5a4))[idx].f44 + *(int *)((char *)this + 0x480);
-        char *e1 = Get_3B0A0((int *)(mgr + 0x5a8), sel);
-        char *e2 = Get_3B0A0((int *)(mgr + 0x5a8), sel);
-        char *e3 = Get_3B0A0((int *)(mgr + 0x5a8), sel);
-        char *e4 = Get_3B0A0((int *)(mgr + 0x5a8), sel);
-        char *g5 = Get_3B0A0((int *)((char *)this + 0x5c8), sel);
         S_3B0A0_Obj *o = (S_3B0A0_Obj *)*(void **)((char *)this + 0x540);
-        Spawn_3B0A0(o, g5, *(void **)(e4 + 0x310), mgr, *(float *)((char *)this + 0x440), idx,
-            *(int *)(e3 + 0x360), *(int *)(e2 + 0x358), *(int *)(e1 + 0x35c));
+
+        Spawn_3B0A0(o,
+            Get_3B0A0((int *)((char *)this + 0x5c8), sel),
+            *(void **)(Get_3B0A0((int *)(mgr + 0x5a8), sel) + 0x310),
+            mgr, *(float *)((char *)this + 0x440), idx,
+            *(int *)(Get_3B0A0((int *)(mgr + 0x5a8), sel) + 0x360),
+            *(int *)(Get_3B0A0((int *)(mgr + 0x5a8), sel) + 0x358),
+            *(int *)(Get_3B0A0((int *)(mgr + 0x5a8), sel) + 0x35c));
     }
 }
 
