@@ -84,6 +84,56 @@ struct C_000DB0E0 {
     void func_001578D0(void);
 };
 
+extern char D_002786B0[], D_0027F6F4[], D_0027E328[], D_0027E31C[];
+extern char D_0027F6E4[], D_0027F6D8[], D_0027F6CC[], D_0027F6C0[], D_0027F6B0[], D_0027F6A0[], D_0027F694[], D_0027F684[], D_0027F678[], D_0027F66C[], D_0027F65C[];
+extern float D_0027F6F0;
+extern int D_0028F5E0;
+extern "C" void *func_001E8A44(unsigned int size);
+
+struct S_000DA390_Text {
+    char pad0[0x184];
+    S_000DA390_Text *func_001B12C0(int a);
+    void func_001B13A0(const char *a, const char *b, int c, int d);
+    void func_001B1A30(float x, float y, int z);
+    void func_001B2270(unsigned int color);
+    void func_001B19A0(int v);
+    void func_001B17D0(const char *s);
+};
+
+struct S_000DA390_Obj {
+    char pad0[0x14];
+    u32 f14;
+    u32 f18;
+    char pad1C[0xC];
+    u32 f28;
+    char pad2C[4];
+    u32 f30;
+    char pad34[4];
+    u32 f38;
+    float f3C, f40, f44, f48;
+    char pad4C[0xC];
+    unsigned char b58;
+    S_000DA390_Obj *func_001D5760();
+    void func_001D5810(const char *name, float x, float y, int z);
+    void depth(u32 v) { if (f28 != v) { f28 = v; b58 |= 1; } }
+    void color() { f38 = (f38 & 0xffbfa35a) | 0xbfa35a; b58 |= 2; }
+    void pos(u32 x, u32 y) { if (f14 != x || f18 != y) { f14 = x; f18 = y; b58 |= 1; } }
+    void angle(u32 a) { if (f30 != a) { f30 = a; b58 |= 1; } }
+    void coords(float a, float b, float c, float d) { f3C = a; f40 = b; f44 = c; f48 = d; b58 |= 4; }
+};
+
+/* BmxUIPageViewVideosTitle */
+struct C_000DA390 {
+    char pad0[0x2E8];
+    S_000DA390_Text *w2E8[11];
+    S_000DA390_Obj *w314[4];
+    S_000DA390_Obj *w324[2];
+    float positions[11];
+    C_000DA390 *func_000DA390(int a, int b, int c);
+    void func_001BE4F0(int a, int b, int c);
+    void func_001577A0(void *w, int v);
+};
+
 int DA_Page::func_000DAAB0(int a, int key) {
  char *o=owner;
  DA_Call *sound=*(DA_Call **)(o+0x24);
