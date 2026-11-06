@@ -128,7 +128,7 @@ struct Game {
     int func_00156880(void);
     int func_001570C0(const char *name, char *out);
     int func_00157130(int a, char *out);
-    void func_001568A0(int a, int b, int c, int d);
+    int func_001568A0(int a, int b, int c, int d);
     int func_00156EA0(int v);
     int func_00156F00(int a, int b);
     int func_00156F30(int a, int b);
