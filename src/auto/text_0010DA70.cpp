@@ -132,6 +132,9 @@ struct BmxVehicle_10DA70 {
     void func_0010DB70(void);
     void func_0010DC00(void);
     void func_0010DCB0(void);
+    void func_0010E2A0(void);
+    void func_0002D270(void);
+    void func_00028070(void);
 };
 
 /* declarations for BmxVehicle_10DA70::func_0010E2A0 (vehicle reset) */
