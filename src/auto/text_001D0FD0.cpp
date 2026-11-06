@@ -61,6 +61,11 @@ struct Game {
     void func_00156FC0();
 };
 
+static __forceinline void CallBase_001D1390(Game *g)
+{
+    g->func_00156FC0();
+}
+
 struct V_XboxGame {
     virtual void v0();
     virtual void v1();
@@ -448,9 +453,9 @@ extern "C" int func_0026ECB6(void *h, void *p);
 extern float D_00284758, D_00287B68, D_00278650, D_00278784;
 int S_15D0_Pad::func_001D15D0(float dt)
 {
-    struct S_15D0_State { unsigned short buttons; unsigned char a[8]; short lx, ly, rx, ry; };
     S_15D0_Pkt p;
     S_15D0_State st;
+    S_15D0_H *h;
     int i;
     unsigned short mask;
     float v;
@@ -460,6 +465,7 @@ int S_15D0_Pad::func_001D15D0(float dt)
     if (p.id != f6C0) {
         f6C0 = p.id;
         st = *(S_15D0_State *)&p.buttons;
+        h = (S_15D0_H *)*(void **)(D_002A8490 + 8);
         for (i = 0; i < 8; i++) {
             unsigned char b = st.a[i];
             if (b == 0) {
@@ -468,6 +474,7 @@ int S_15D0_Pad::func_001D15D0(float dt)
                     analog[i].val = 0.0f;
                     analog[i].f10 = 0;
                     analog[i].f8 = 0;
+                    h->func_00135E90(i, 2, 0, f320);
                 } else {
                     analog[i].f8 = (int)((float)(unsigned)analog[i].f8 + dt);
                 }
@@ -480,6 +487,7 @@ int S_15D0_Pad::func_001D15D0(float dt)
                     analog[i].f14 = 0;
                     analog[i].fc = 0;
                     analog[i].val = b * D_00284758;
+                    h->func_00135E90(i, 2, 1, f320);
                 }
             }
         }
@@ -495,6 +503,7 @@ int S_15D0_Pad::func_001D15D0(float dt)
                             digital[i].val = 1.0f;
                             digital[i].f14 = 0;
                             digital[i].fc = 0;
+                            h->func_00135E90(i, 2, 1, f320);
                         }
                     } else {
                         if (digital[i].mode != 0) {
@@ -502,6 +511,7 @@ int S_15D0_Pad::func_001D15D0(float dt)
                             digital[i].val = 0.0f;
                             digital[i].f10 = 0;
                             digital[i].f8 = 0;
+                            h->func_00135E90(i, 2, 0, f320);
                         } else {
                             digital[i].f8 = (int)((float)(unsigned)digital[i].f8 + dt);
                         }
@@ -522,9 +532,34 @@ int S_15D0_Pad::func_001D15D0(float dt)
                 v = axis[i];
             func_0015AFC0(i, v, 256.0f);
         }
+        if (f6D8 != 0) {
+            f6C4 -= dt;
+            if (f6C4 <= 0.0f) {
+                f6E0 = 0;
+                f6D8 = 0;
+                f6C4 = 0.0f;
+                i = 1;
+            }
+        } else if (f6C4 > 0.0f) {
+            f6E0 = (short)(int)(f6CC * D_00278784);
+            f6D8 = 1;
+        }
+        if (f6DC != 0) {
+            f6C8 -= dt;
+            if (f6C8 <= 0.0f) {
+                f6E2 = 0;
+                f6DC = 0;
+                f6C8 = 0.0f;
+                i = 1;
+            }
+        } else if (f6C8 > 0.0f) {
+            f6E2 = (short)(int)(f6D0 * D_00278784);
+            f6DC = 1;
+        }
         if (f6E4 != 0x3e5) {
             f726 = f6E0;
             f6E8 = 0;
+            func_0026ED25(f6B8, &f6E4);
         }
     }
     return 1;
