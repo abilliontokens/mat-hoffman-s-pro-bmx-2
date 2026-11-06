@@ -63,6 +63,46 @@ struct BmxUIPageHOF5 {
     BmxUIPageHOF5 *func_000D8C70(int a0);
 };
 
+extern char D_00278690[], D_002786A0[], D_00278678[], D_0027F2AC[], D_0027CEF0[], D_0027F29C[], D_00279B00[], D_00279AF0[], D_00279AE0[], D_00279AD0[];
+extern float D_0027F2B4;
+extern "C" void *func_001E8A44(unsigned int size);
+struct Lookup_D8DB0 { int *func_0018C160(int); };
+struct Mgr_D8DB0 { char pad0[0x2EC]; Lookup_D8DB0 *f2EC; };
+struct Widget_D8DB0 {
+    Widget_D8DB0 *func_001B12C0(int);
+    void func_001B13A0(char *, char *, void *, int);
+    void func_001B2270(int);
+    void func_001B1A30(float, float, int);
+    void func_001B17D0(char *);
+};
+struct Sprite_D8DB0 {
+    char pad0[0x28];
+    u32 f28;
+    char pad2C[0xC];
+    u32 f38;
+    float f3C, f40, f44, f48;
+    char pad4C[0xC];
+    unsigned char b58;
+    Sprite_D8DB0 *func_001D5760();
+    void func_001D5810(char *, float, float, int);
+    void depth(u32 v) { if (f28 != v) { f28 = v; b58 |= 1; } }
+    void color() { f38 = (f38 & 0xffbfa35a) | 0xbfa35a; b58 |= 2; }
+    void coords(float a, float b, float c, float d) { f3C = a; f40 = b; f44 = c; f48 = d; b58 |= 4; }
+};
+struct C_000D8DB0 {
+    void *vtbl;
+    char pad4[0x2C4 - 4];
+    Widget_D8DB0 *a2C4[5];
+    Widget_D8DB0 *a2D8[5];
+    Sprite_D8DB0 *a2EC[2];
+    Sprite_D8DB0 *a2F4[2];
+    Sprite_D8DB0 *a2FC[2];
+    Widget_D8DB0 *a304[5];
+    void func_001BE4F0(int, int, int);
+    void func_001577A0(Widget_D8DB0 *, int);
+    C_000D8DB0 *func_000D8DB0(int, int, int);
+};
+
 struct BmxUIPageHOF4 {
     void *vtbl;
     char pad4[0x2C0 - 4];
