@@ -230,6 +230,56 @@ void __fastcall func_001E7E60(int n, int x3, int n2, int y, int z) {
     }
 }
 
+extern "C" void __fastcall func_001E4D60(int n, float *a, float *w);
+extern "C" void __fastcall func_001E3A20(int n, float *a, int nw);
+extern "C" void D_001E4300(void);
+extern "C" void D_001E4480(void);
+extern "C" void D_001E7010(void);
+void __fastcall func_001E7F90(float *a, float *w, int n, int *ip, int nw)
+{
+    int m;
+    float x0, x1;
+
+    if (n > 32) {
+        m = n >> 2;
+        func_001E4D60(n, a, w + (nw - m));
+        if (n > 512) {
+            func_001E7D20(m, a, nw, w);
+            func_001E7DC0(m, a + m, nw, w);
+            func_001E7D20(m, a + 2 * m, nw, w);
+            func_001E7D20(m, a + 3 * m, nw, w);
+        } else if (m > 32) {
+            func_001E7480(n, a, nw, w);
+        } else {
+            func_001E7410(n, (int)w, nw, 0, 0, 0);
+        }
+        func_001E3A20(n, a, nw);
+        return;
+    }
+    if (n > 8) {
+        if (n == 32) {
+            func_001E5F20(a, w + nw - 8);
+            D_001E4300();
+        } else {
+            func_001E6B50(a, w);
+            D_001E4480();
+        }
+        return;
+    }
+    if (n == 8) {
+        D_001E7010();
+        return;
+    }
+    if (n == 4) {
+        x0 = a[0] - a[2];
+        x1 = a[1] - a[3];
+        a[0] = a[0] + a[2];
+        a[1] = a[3] + a[1];
+        a[2] = x0;
+        a[3] = x1;
+    }
+}
+
 void __fastcall func_001E30E0(int *, int);
 void __fastcall func_001E3240(int *, int);
 void __fastcall func_001E7E60(int, int, int, int);
@@ -281,12 +331,11 @@ void __fastcall func_001E7170(float *, float *, int, int);
 void __fastcall func_001E70B0(float *, float *, int, int);
 struct C_001E7170 { void func_001E7170(int n, int nc); };
 struct C_001E70B0 { void func_001E70B0(int n, int nc); };
-void __stdcall func_001E8200(int n0, int isgn, float *a, int *ip, float *w0) {
+void __stdcall func_001E8200(int n, int isgn, float *a, int *ip, float *w) {
     int j;
     float xr;
-    float *w = w0;
+    float *c;
     int nw = ip[0];
-    int n = n0;
     if (n > nw * 4) {
         nw = n >> 2;
         func_001E30E0(nw, ip);
@@ -311,11 +360,12 @@ void __stdcall func_001E8200(int n0, int isgn, float *a, int *ip, float *w0) {
             func_001E7F90(a, w, 4, ip + 2, nw);
         }
     }
+    c = w + nw;
     func_001E7230(n, a, nc);
     if (isgn >= 0) {
         if (n > 4) {
             func_001E7E60(a, w, n, ip + 2, nw);
-            func_001E70B0(w + nw, a, n, nc);
+            func_001E70B0(c, a, n, nc);
         } else if (n == 4) {
             func_001E7E60(a, w, 4, ip + 2, nw);
         }
