@@ -5,6 +5,9 @@
 #include <math.h>
 #include <xmmintrin.h>
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
+
 extern int D_0027B1A4;
 extern int D_0027C1E4;
 void *func_001E8A44(int size);
@@ -570,15 +573,15 @@ int Coll_000A79E0::func_000A79E0(Game_000A79E0 *g)
             D_002B7E18->func_000216F0(buf, fC->f14c, f8);
         }
         f8->fA0 = func_00024360;
-        Pt_000A79E0 *p = (Pt_000A79E0 *)g->f3b0[g->f348];
-        p->func_001577A0(f8, 0x402);
         {
             __declspec(align(16)) float m[16];
+            Pt_000A79E0 *p = (Pt_000A79E0 *)g->f3b0[g->f348];
+            p->func_001577A0(f8, 0x402);
             func_000265C0(m, fC->f108, fC->f118, fC->f128, 0, 1);
             f8->v31(m);
             f8->v31(m);
+            f8->func_00133140(g->f4ac[g->f348], 1);
         }
-        f8->func_00133140(g->f4ac[g->f348], 1);
     }
     func_001E891B(fC);
     fC = 0;
