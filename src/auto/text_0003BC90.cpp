@@ -68,8 +68,9 @@ struct C_0003BC90 {
  int f428; int f42C; int f430; int f434; int f438; int f43C;
  float f440; int f444; int f448;
  char pad44C[0x100]; int f54C;
- char pad550[0x3c]; NodeBC *f58C;
- char pad590[0x38]; ListBC f5C8;
+ char pad550[0x20]; NodeBC *f570;char pad574[0x18]; NodeBC *f58C;
+ ActorBC *f590,*f594,*f598,*f59C;
+ char pad5A0[0x28]; ListBC f5C8;int f5D8; ListBC f5DC;
  void func_001577A0(NodeBC*,int);
  void func_0003BC90();
  void func_00035C10(NodeBC*,int,char*,V4*,V4*,V4*,int,int);
