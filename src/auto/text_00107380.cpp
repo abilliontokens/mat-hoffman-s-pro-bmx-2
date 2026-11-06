@@ -88,12 +88,6 @@ struct C_107AE0 {
  void func_00107AE0();
 };
 
-static __forceinline Mat_107AE0 make_identity_107AE0() {
-    Mat_107AE0 m;
-    identity_107AE0(&m);
-    return m;
-}
-
 struct C_107380 {
     char p0[0xa00];
     Obj_107AE0 *fa00;
