@@ -29,7 +29,7 @@ extern char D_002782B4[];
 template <class T> inline const T &MinRef_5CBD0(const T &a, const T &b) { return b < a ? b : a; }
 extern "C" unsigned int strlen(const char *s);
 char *func_001E8920(char *dst, const char *src, int n);
-static inline void CopyName_5CBD0(char *dst, const char *src, int len) { volatile int n = 15; if (n > len) n = len; func_001E8920(dst, src, n); dst[n] = 0; }
+static inline void CopyName_5CBD0(char *dst, const char *src, int len) { volatile int n = MinRef_5CBD0(15, len); func_001E8920(dst, src, n); dst[n] = 0; }
 struct S_5CBD0_GroupF { float s[5]; char n[5][16]; };
 struct S_5CBD0_GroupI { int s[5]; char n[5][16]; };
 struct C_0005CBD0 {
@@ -160,7 +160,7 @@ void C_0005C720::func_0005C720(void)
 void C_0005CBD0::func_0005CBD0()
 {
     char *base = (char *)this;
-    int i, j, k;
+    int i, j;
     *(int *)&g0.s[0] = 0x4283999a; CopyName_5CBD0(g0.n[0], "allen", (int)strlen("allen"));
     *(int *)&g0.s[1] = 0x425ccccd; CopyName_5CBD0(g0.n[1], "lori", (int)strlen("lori"));
     *(int *)&g0.s[2] = 0x42493333; CopyName_5CBD0(g0.n[2], "rick", (int)strlen("rick"));
