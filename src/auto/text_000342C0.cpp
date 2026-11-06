@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 extern "C" float __cdecl sqrtf(float);
 #pragma intrinsic(sqrtf)
 extern float D_00275460;
@@ -219,8 +220,25 @@ struct C_00034890 {
 
 void C_000342C0::func_000342C0()
 {
+    C_000342C0 *volatile self;
+    char buf[0x104];
+    void *p;
+
+    self = this;
     D_002A8490->f234 = 1;
-    f1d4 = func_001E8A44(0x54);
+    p = func_001E8A44(0x54);
+    self->f1d4 = p ? ((S_342C0_1D4 *)p)->func_001D1BB0() : 0;
+    ((S_342C0_1D4 *)self->f1d4)->v0(0, D_00276C90);
+    ((S_342C0_1D4 *)self->f1d4)->v5();
+    p = func_001E8A44(0x188);
+    D_002EFE08 = p ? ((S_342C0_FE08 *)p)->func_0018C960(1) : 0;
+    ((S_342C0_FE08 *)D_002EFE08)->func_0018F980(0, D_00276C84);
+    self->func_001577A0(D_002EFE08, -1);
+    self->f68 = D_002A8490->f2e0->f2c0;
+    self->func_00012140();
+    self->f90 = D_002A8490->f2e0->f0;
+    self->func_001D3F50();
+    self->func_00033680();
 }
 
 void func_000347F0(char *param_1)
@@ -238,6 +256,10 @@ void func_000347F0(char *param_1)
     cVar2 = *pcVar1;
   }
   return;
+}
+
+void func_00034820(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
 C_00034890* C_00034890::func_00034890(void) {
