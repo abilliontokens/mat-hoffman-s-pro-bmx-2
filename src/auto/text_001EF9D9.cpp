@@ -8,7 +8,7 @@ struct S_002F6A38 {
 };
 extern S_002F6A38 D_002F6A38;
 extern int D_00295C04;
-int func_001EEE49(int n);
+int func_001EEE49(int n, ...);
 
 
 /* 8-byte value object used by the 'A'..'N' parser helpers. */
@@ -771,8 +771,12 @@ void *_func_001F062A(void *a, S_001EF734 *b, int c)
 
 void *_func_001F06E9(void *o)
 {
-    S_001EF734 acc, aux, q, t1, t2, t3, t4;
+    char buf[16];
+    S_001EF734 t54;
+    S_001EF734 tD, tC, tB, tA;
+    S_001EF734 dq, e, q, aux, acc;
     int first = 1;
+
     acc.value = 0;
     *(u32 *)&acc.flags &= 0xfffffe00;
     while ((acc.flags & 0xf) == 0) {
@@ -790,17 +794,15 @@ void *_func_001F06E9(void *o)
             acc.func_001EF935(((C_Lex *)D_002F6A24)->func_001EEFBA(d));
         } else {
             char *p = D_002F6A28;
-            char buf[16];
             char *r;
             aux.value = 0;
             *(u32 *)&aux.flags &= 0xfffffe00;
             if (c == 'X') {
                 D_002F6A28++;
                 aux.func_001EF9B2((char *)&D_0027D1D8);
-            } else if (c == '$' && D_002F6A28[1] != '$') {
+            } else if (c == '$' && D_002F6A28[1] != c) {
                 D_002F6A28++;
-                _func_001F046A(&q);
-                aux.func_001EEEE6(&q);
+                aux.func_001EEF4F((int)_func_001F046A(&dq));
             } else if (c == '?') {
                 _func_001F041A(&q);
                 if (D_002F6A39 & 0x40) {
@@ -808,17 +810,17 @@ void *_func_001F06E9(void *o)
                     r = D_002F6A3C(func_001E919C(buf));
                     if (r != 0) {
                         aux.func_001EF9B2(r);
-                        goto after;
+                    } else {
+                        aux.func_001EEF4F((int)((S_001EF734 *)_func_001EFD19(&tA, D_00295C80, &q))->func_001EFD7A(&tB, D_00295C94));
                     }
-                    ((S_001EF734 *)_func_001EFD19(&t1, D_00295C80, &q))->func_001EFD7A(&t2, D_00295C94);
                 } else {
-                    ((S_001EF734 *)_func_001EFD19(&t3, D_00295C80, &q))->func_001EFD7A(&t4, D_00295C94);
+                    aux.func_001EEF4F((int)((S_001EF734 *)_func_001EFD19(&tC, D_00295C80, &q))->func_001EFD7A(&tD, D_00295C94));
                 }
             } else {
-                func_001F2F3F(&t1, &q);
-                aux.func_001EEF4F((int)&q);
+                e.value = 0;
+                *(u32 *)&e.flags &= 0xfffffe00;
+                aux.func_001EEF4F((int)func_001F2F3F(&t54, &e));
             }
-        after:
             if (D_002F6A28 - p > 1 && ((C_Lex *)D_002F6A24)->kind != 9)
                 ((C_Lex *)D_002F6A24)->func_001EF3D2(&aux);
             acc.func_001EF935(&aux);
