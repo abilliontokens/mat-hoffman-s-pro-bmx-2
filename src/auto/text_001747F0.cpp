@@ -20,6 +20,11 @@ extern float D_00275544, D_00275460;
 extern Vec4_001747F0 D_002A8C18;
 struct Body_001747F0 {
     Vec4_001747F0 *func_00197F70(Vec4_001747F0 *out, Vec4_001747F0 *in);
+    void func_0019AD60(int a, Mat4_001747F0 *m);
+    Vec4_001747F0 *func_00197EC0(Vec4_001747F0 *out, Vec4_001747F0 *in);
+    void func_00199CF0(float *d, Vec4_001747F0 v);
+    void func_00199960(int a, Vec4_001747F0 *v);
+    void func_0019AC50();
 };
 Vec4_001747F0 *func_0011ADD0(Vec4_001747F0 *out, void *in);
 struct R_001747F0 {
