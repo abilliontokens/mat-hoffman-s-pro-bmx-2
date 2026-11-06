@@ -419,6 +419,85 @@ struct C_001C2290 {
         s->f58 |= 2; \
     }
 
+/* three floats read from the config, zeroed y, z, x */
+struct V3_19D0 {
+    float x, y, z;
+    V3_19D0() { y = 0; z = 0; x = 0; }
+};
+
+#define LOAD_SUB3_19D0(F, BUF, K0, K1, K2, K3, K4, K5, K6, K7, K8, K9, SETY) \
+    { \
+        char *p = func_001E8AC0(BUF, 0x2e); \
+        if (p != 0) { \
+            memset(p, 0, strlen(p)); \
+        } \
+        s = &F; \
+        s->func_001D5810((int *)BUF, 0, 0, 0); \
+        V[0] = 0; \
+        V[2] = (int)F.f28; \
+        V[1] = 0; \
+        V[3] = (int)F.f2c; \
+        if (cfg->func_00168E70(K0, V, A) != 0) { \
+            s->f58 |= 4; \
+            s->f3c = (float)A[0] * s->f4c; \
+            s->f40 = (float)A[2] * s->f4c; \
+            s->f44 = (float)A[1] * s->f50; \
+            s->f48 = (float)A[3] * s->f50; \
+        } \
+        if (cfg->func_00168E70(K1, V, W) == 0) { \
+            float t = 0; \
+            cfg->func_00168C50(K2, 0, &t); \
+            W[0] = (int)t; \
+            cfg->func_00168C50(K3, 0, &t); \
+            SETY \
+            W[2] = (W[0] - A[0]) + A[2]; \
+            W[3] = (W[1] - A[1]) + A[3]; \
+        } \
+        float fy = (float)W[1]; \
+        float fx = (float)W[0]; \
+        if (fx != s->f04 || s->f08 != fy) { \
+            s->f04 = fx; \
+            s->f08 = fy; \
+            s->f58 |= 1; \
+        } \
+        if ((float)(W[2] - W[0]) != s->f28) { \
+            s->f28 = (float)(W[2] - W[0]); \
+            s->f58 |= 1; \
+        } \
+        if ((float)(W[3] - W[1]) != s->f2c) { \
+            s->f2c = (float)(W[3] - W[1]); \
+            s->f58 |= 1; \
+        } \
+        if (cfg->func_00168C50(K4, 0, &v.y) != 0) { \
+            cfg->func_00168C50(K5, 0, &v.z); \
+            cfg->func_00168C50(K6, 0, &v.x); \
+            if (s->f30 != v.y) { \
+                s->f30 = v.y; \
+                s->f58 |= 1; \
+            } \
+            if (s->f14 != v.z || s->f18 != v.x) { \
+                s->f18 = v.x; \
+                s->f14 = v.z; \
+                s->f58 |= 1; \
+            } \
+        } \
+        cfg->func_00168C20(K7, 0xff, &color); \
+        s->f38 = ((int)(short)color << 24) | (s->f38 & 0xffffff); \
+        s->f58 |= 2; \
+        cfg->func_00168C50(K8, 0, &temp); \
+        if (temp < D_00275544) { \
+            temp = (float)(D_002F07B8[0x6b4 / 4] - 300); \
+        } \
+        if (s->f34 != temp) { \
+            s->f34 = temp; \
+            s->f58 |= 1; \
+        } \
+        colIn[0] = 200.0f; colIn[1] = 200.0f; colIn[2] = 200.0f; colIn[3] = 1.0f; \
+        cfg->func_00168CB0(K9, colIn, colOut.v); \
+        s->f38 = (s->f38 ^ ((((((int)colOut.v[1] & 0xff) | ((int)colOut.v[0] << 8)) << 8) | ((int)colOut.v[2] & 0xff)) ^ s->f38) & 0xffffff); \
+        s->f58 |= 2; \
+    }
+
 /* colour whose constructor sets (0, 0, 0, 1), stores z, y, x first */
 struct Col19D0 {
     float v[4];
@@ -507,8 +586,8 @@ void *C_001C19D0::func_001C19D0(int a1, int a2)
     f28 = a1;
     float f1, f3, f2;
     f1 = 0;
-    f2 = 0;
     f3 = 0;
+    f2 = 0;
     Col19D0 colOut;
     int V[4], A[4], W[4];
     int color;
@@ -516,10 +595,8 @@ void *C_001C19D0::func_001C19D0(int a1, int a2)
     float colIn[4];
 
     cfg->func_00168BE0(D_0028D998, D_0028D75C, buf, 0x104);
-    s = &f68;
     LOAD_SUB2_19D0(f68, buf, D_0028E1D4, D_0028E1C4, D_0028E1B0, D_0028E19C, D_0028E18C, D_0028E17C, D_0028E16C, D_0028E15C, D_0028E14C, D_0027DE44, W[1] = (int)t;);
     cfg->func_00168BE0(D_0028E138, D_0028D75C, buf, 0x104);
-    s = &fCC;
     LOAD_SUB2_19D0(fCC, buf, D_0028E120, D_0028E10C, D_0028E0F8, D_0028E0E4, D_0028E0D4, D_0028E0C0, D_0028E0AC, D_0028E09C, D_0028E08C, D_0028E07C, ;);
     return this;
 }
