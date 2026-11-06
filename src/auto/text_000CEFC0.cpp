@@ -88,6 +88,8 @@ struct S_000CEFC0_Widget {
     void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, int a7, int a8, float a9, int a10, float a11, int a12, int a13);
 };
 
+extern "C" void *func_001E8920(void *dst, const void *src, int n);
+
 struct BmxUIPageGameOptions {
     char pad0[0x124];
     S_000CEFC0_124 *unk124;
