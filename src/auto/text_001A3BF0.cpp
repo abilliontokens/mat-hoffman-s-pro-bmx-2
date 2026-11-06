@@ -425,10 +425,10 @@ int C_001A4590::func_001A3DA0(int volatile a0)
         for (t.i = 1; t.i <= t.a; t.i++) {
             func_001ADCC0(s.buf2, 0x104, D_00284AB0, t.i);
             if (obj.func_00169710(s.buf2) != 0) {
+                C_001A4440_List *list;
                 S_001A3DA0_Item *item;
                 C_001A4590 *p;
-                C_001A4440_List *list;
-                int flags;
+                unsigned int flags;
 
                 obj.func_00168BE0(D_0027A1F8, D_00275630, s.buf3, -1);
                 obj.func_00168C20(D_00287DA0, 0, &t.c);
@@ -437,7 +437,10 @@ int C_001A4590::func_001A3DA0(int volatile a0)
                 item->f4 = t.c;
                 item->f8 = t.d;
                 p = t.self;
-                flags = (p->f1a0 & 8) ? 1 : 9;
+                flags = 1;
+                if ((p->f1a0 & 8) == 0) {
+                    flags = 9;
+                }
                 if (t.c != 0) {
                     flags |= 0x80;
                 }
@@ -502,6 +505,54 @@ int C_001A4100::func_001A4100(int key, int a1, int a2)
         }
     }
     return result;
+}
+
+int C_001A4210::func_001A4210(C_00168280 *obj, int a1, int a2)
+{
+    char path[0x104];
+    char name[0x104];
+    int count;
+    int a, b, c;
+
+    if (obj == 0) {
+        return 0;
+    }
+    func_001ADCC0(path, 0x104, D_0028B824, a1);
+    if (obj->func_00169710(path)) {
+        obj->func_00168C20(D_0028B818, 0, &count);
+        obj->func_00168C20(D_0028B80C, 0, &f1ec);
+        if (a2 != -1 && a2 < count) {
+            count = a2;
+        }
+        for (int i = 1; i <= count; i++) {
+            func_001ADCC0(path, 0x104, D_0028B800, a1, i);
+            if (obj->func_00169710(path)) {
+                obj->func_00168550(D_0028B7F4, name, -1);
+                obj->func_00168C20(D_0028B7E8, 0, &a);
+                obj->func_00168C20(D_0028B7E0, 0, &b);
+                obj->func_00168C20(D_00289930, 0, &c);
+                int *e = (int *)func_001E8A44(8);
+                e[0] = i;
+                unsigned int flags = (c != 0) + 1;
+                if (a) flags |= 0x40;
+                if (b) flags |= 0x80;
+                if (!(f1a0 & 8)) flags |= 8;
+                e[1] = ((C_001A4440_Holder *)f1a4)->fb4->func_001CFE90(f24, (int)name, flags, 7, (int)f3c, 0);
+                C_001A4440_List *l = (C_001A4440_List *)&cnt;
+                if (l->count >= l->capacity) {
+                    if (!l->func_0015ACA0(l->base + l->count)) {
+                        continue;
+                    }
+                }
+                l->items[l->count] = e;
+                l->count++;
+            }
+        }
+        if (f1ec) {
+            D_002A8490->f4->func_0001DF80(this, 0);
+        }
+    }
+    return 1;
 }
 
 undefined4 C_001A4420::func_001A4420(byte param_1)
@@ -569,7 +620,7 @@ undefined4 C_001A4500::func_001A4500(int a1, int *a2, int a3)
     return 0;
   }
   *a2 = iVar1;
-  if (a1 != 0) {
+  if (a3 != 0) {
     list = (C_001A4440_List *)(in_ECX + 0x1d4);
   } else {
     list = (C_001A4440_List *)(in_ECX + 0x1e8);
@@ -579,7 +630,7 @@ undefined4 C_001A4500::func_001A4500(int a1, int *a2, int a3)
       return 1;
     }
   }
-  list->items[list->count] = a2;
+  *(int **)((char *)list->items + list->count * 4) = a2;
   list->count++;
   return 1;
 }
