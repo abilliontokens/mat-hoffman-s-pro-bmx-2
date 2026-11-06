@@ -143,6 +143,50 @@ struct C_001DA4C0_1D9970 {
     void func_001DA4C0(int a1);
 };
 
+XboxWater* XboxWater::func_001D9970(int a,int b,int c,int d,int e,float f,int mode) {
+unsigned width=(int)(f*6.0f); f2FC=width; f300=(int)(f*512.0f);
+if(mode==1) f300>>=1; else if(mode==2) f2FC=width>>1;
+f304=f2FC*16; f308=f300;
+void** item=(void**)func_001E8A44(8);
+if(item) {item[0]=&D_0028F7F0;item[1]=0;}
+else item=0;
+f2F0=item;item[1]=this;
+func_001C9B10(a,b,c,d,e,f,mode);
+f48*=0.015625f;f4C*=0.015625f;
+Vec_1D9E v(0.5f,2.0f,D_002AC5C4,0);
+*(Vec_1D9E*)D_002AC63C=v;
+v.x=0;v.y=0;v.z=.2f;v.w=.2f;*(Vec_1D9E*)D_002AC64C=v;
+func_001FFB50();
+func_001D9760(f304,f308,f304*4,0x12,f228,f2AC,f270);
+func_001D9760(f304,f308,f304*4,0x12,f240,f2B8,f284);
+func_001D9760(f304,f308,f304*4,0x2e,f258,f2C4,f298);
+unsigned short* p=(unsigned short*)func_001FF3C0(f304*f308*4);
+f2D0=p;p=(unsigned short*)func_001FF410(p,16);
+for(unsigned short y=0;y<f308;y++) for(unsigned short x=0;x<f304;x++) {p[0]=x;p[1]=y;p+=2;}
+unsigned count=((f304+f2FC*2)*f308+f2FC*16)*2;
+p=f2F8=(unsigned short*)func_001E8A44(count+count);
+unsigned i,j,k;
+for(i=0;i<f2FC/2;i++) {
+for(j=i*16;j<i*16+16;j++) {*p++=(unsigned short)j;*p++=(unsigned short)j;}
+for(j=0;j<f308-1;j++) {unsigned short x=(unsigned short)f304*j+i*16;unsigned short y=x+(unsigned short)f304;
+*p++=x;for(k=0;k<17;k++){*p++=x++;*p++=y++;}*p++=--y;}
+}
+for(i=f2FC/2;i<f2FC;i++) {
+for(j=i*16;j<i*16+16;j++) {*p++=(unsigned short)j;*p++=(unsigned short)j;}
+for(j=0;j<f308-1;j++){unsigned short x=(unsigned short)f304*j+i*16;unsigned short y=x+(unsigned short)f304;
+*p++=y;if(i==f2FC-1){for(k=0;k<16;k++){*p++=y++;*p++=x++;}}else{for(k=0;k<17;k++){*p++=y++;*p++=x++;}}
+*p++=--x;}
+}
+unsigned handle;f2F4=((unsigned)p-(unsigned)f2F8)/2;handle=0;
+func_001E285A(0,&handle,6,f2F4,f2F8);
+f2EC=func_00202A20(handle,4);
+func_001E285A(f2EC,&handle,6,f2F4,f2F8);
+func_001E891B(f2F8);
+for(i=0;i<5;i++)f2D4[i]=0;
+f2D4[3]=handle; f2D4[4]=handle; f2D4[0]=(unsigned)&D_00020001;
+func_00201150(f2D4,f2EC);return this;
+}
+
 void XboxWaterDisplacement::func_001D9E60(void *a1, void *a2)
 {
     char *p = (char *)this;
