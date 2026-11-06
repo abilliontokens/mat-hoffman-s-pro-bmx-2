@@ -16,6 +16,8 @@ extern u32 D_002A0F7C;
 extern u32 D_002A0F80;
 extern char *D_002A8490;
 extern float D_002755EC;
+extern float D_0027622C, D_00276228, D_00276224, D_00276220, D_0027621C, D_00275800, D_002754B0, D_00275AEC;
+extern u32 D_002A0F94, D_002A0F98, D_002A0F9C, D_002A0FA0;
 
 extern u32 D_002761A4;
 extern char D_0027618C;
@@ -565,5 +567,28 @@ float func_00021AB0(V4_000212A0 *v, float maxLen)
         return len - maxLen;
     }
     return D_00275544;
+}
+
+int func_00021B90(void *self, float dt, int a2, int a3, int a4, int a5, float a6)
+{
+    V4_000212A0 v;
+    float len;
+
+    *(float *)((char *)self + 0x40) += dt;
+    v.x = *(float *)&D_002A0F74;
+    v.y = *(float *)&D_002A0F78;
+    v.z = *(float *)&D_002A0F7C;
+    v.w = *(float *)&D_002A0F80;
+    if (a6 != D_002755EC)
+        return 0;
+    {
+        int idx = *(int *)((char *)*(void **)((char *)D_002A8490 + 0x2a4) + 0x120);
+        void *o = *(void **)((char *)*(void **)((char *)*(void **)((char *)D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x1e0);
+        V4_000212A0 *p = (V4_000212A0 *)((char *)o + 0x238);
+        len = sqrtf(p->x * p->x + p->y * p->y + p->z * p->z);
+    }
+    if (*(float *)(*(char **)((char *)self + 0x50) + 0x1c) * 2.0f != len)
+        return 0;
+    return 0;
 }
 
