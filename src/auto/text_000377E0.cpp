@@ -116,6 +116,17 @@ struct S_00037840_A {
     int f64;
 };
 
+struct S_00037840_Owner { char pad0[0x1E0]; int f1E0; };
+struct S_00037840_Rider { char pad0[0x1A8]; S_00037840_Owner *f1A8; };
+struct S_00037840_Bike { char pad0[0x4E0]; S_00037840_Rider *f4E0; };
+struct S_00037840_Player { char pad0[0x64]; S_00037840_Bike *f64; };
+struct S_00037840_State { char pad0[0x2A4]; S_00037840_Player *f2A4; };
+
+static __forceinline int CurrentOwner(void)
+{
+    return ((S_00037840_State *)D_002A8490)->f2A4->f64->f4E0->f1A8->f1E0;
+}
+
 struct S_00037840_B {
     char pad0[0x24];
     int f24;
@@ -272,5 +283,39 @@ void BmxEventEditor::func_000380B0()
     func_001E891B(b.data);
     func_001E891B(a.data);
     func_00033220();
+}
+
+void BmxEventEditor::func_000382D0(int mode)
+{
+    V4_378D0 a, b, c, d;
+
+    a.x = 0.0f; a.y = 0.0f; a.z = 0.0f; a.w = 1.0f;
+    b.x = 0.0f; b.y = 0.0f; b.z = 0.0f; b.w = 1.0f;
+    c.x = 0.0f; c.y = 0.0f; c.z = 0.0f; c.w = 1.0f;
+    d.x = 0.0f; d.y = 0.0f; d.z = 0.0f; d.w = 1.0f;
+    switch (mode) {
+    case 0:
+        break;
+    case 1:
+        if (b.z > D_00275460) {
+            b.z = b.z - D_00275460;
+        }
+        break;
+    case 2:
+        if (b.z < D_00275AE8) {
+            b.z = b.z + D_00275460;
+        }
+        break;
+    case 3:
+        if (b.y < D_00275AE8) {
+            b.y = b.y + D_00275548;
+        }
+        break;
+    case 4:
+        if (b.y > D_00275548) {
+            b.y = b.y - D_00275548;
+        }
+        break;
+    }
 }
 
