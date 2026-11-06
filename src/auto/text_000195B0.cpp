@@ -211,7 +211,7 @@ extern float D_00275544;
 extern float D_00275AE8;
 extern char D_002A0718;
 static __forceinline float Sqrt_1A060(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
-static __forceinline void Round_1A060(int * volatile out, float f) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
+static __forceinline void Round_1A060(int * volatile out, float f) { *out = _mm_cvtss_si32(_mm_load_ss(&f)); }
 static __forceinline void Cross_1A060(S_1A060_Vec * volatile out, S_1A060_Vec * volatile a, S_1A060_Vec * volatile b)
 {
     S_1A060_Vec *pa = a, *pb = b;
@@ -362,8 +362,64 @@ static __forceinline void Touch_198E0(void *) {}
 
 int TikiEvadeState::func_000195B0(float dt)
 {
-    TikiEvadeState *self = this;
-    return Body_195B0(self, dt);
+    TikiEvadeState * volatile self = this;
+    TikiEvadeState *p;
+    S_195B0_Owner *o;
+    S_195B0_Vec v;
+    float square;
+    float dist;
+
+    p = self;
+    if (p->f10 != p->f14) {
+        if (p->f10 < p->f14) {
+            p->f10 += dt;
+            p = self;
+            if (p->f10 > p->f14) {
+                p->f10 = p->f14;
+                p = self;
+                p->f8->func_00017700();
+                p = self;
+                o = p->f8;
+                if (o->f4d4 <= 0)
+                    o->func_00017D00();
+            }
+        } else if (p->f10 > p->f14) {
+            p->f10 -= dt;
+            p = self;
+            if (p->f10 < p->f14)
+                p->f10 = p->f14;
+        }
+        p = self;
+        p->f8->f3c->f4->func_00182530(p->f10);
+    }
+    p = self;
+    if ((unsigned int)D_002A8490->f238 > p->fC) {
+        p->fC = D_002A8490->f238 + 2000;
+        p = self;
+        p->f8->func_00017910();
+        p = self;
+        o = p->f8;
+        v = o->f398->func_00016E40();
+        square = (v.z - o->f510) * (v.z - o->f510) + (v.y - o->f50c) * (v.y - o->f50c) + (v.x - o->f508) * (v.x - o->f508);
+        _mm_store_ss(&dist, _mm_sqrt_ss(*(__m128 *)&square));
+        p = self;
+        if ((dist < D_00275804 || dist > p->f8->f49c[p->f8->f4dc].f0) && p->f8->f4d4 > 0) {
+            int r = p->f8->func_000192D0(1, 1);
+            p = self;
+            p->f8->f4dc = r;
+            p = self;
+            p->f8->func_00017910();
+            p = self;
+            p->fC = D_002A8490->f238;
+        } else {
+            p->f8->func_00017760();
+        }
+        p = self;
+        p->f14 = 1.0f;
+        p = self;
+        p->f8->f4f4 = 0;
+    }
+    return 1;
 }
 
 void C_00019790::func_00019790(void)
