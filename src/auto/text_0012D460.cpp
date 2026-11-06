@@ -52,7 +52,6 @@ struct Key_0012D620 {
     float time;
     float f4;
     V4_0012D620 f8;
-    V4_0012D620 pos;
 };
 
 struct Anim_0012D620 {
