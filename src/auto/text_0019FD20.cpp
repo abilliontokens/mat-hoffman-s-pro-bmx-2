@@ -58,6 +58,27 @@ Vec_19FD20 func_0001C610(Vec_19FD20 *a, Vec_19FD20 *b);
 extern "C" void func_0013E260(Log_19FD20 *log, int id, void *p);
 extern "C" void func_0013E1F0(Log_19FD20 *log, int id, const void *fmt, ...);
 
+struct C_0019FD20 {
+    Node_19FD20 *f0;
+    Node_19FD20 *f4;
+    Node_19FD20 *f8;
+    int fC;
+    int f10;
+    f32 f14;
+    f32 f18;
+    f32 f1C;
+    f32 f20;
+    f32 f24;
+    f32 f28;
+    f32 f2C;
+    Vec_19FD20 f30;
+    char pad40[4];
+    Vec_19FD20 f44;
+    void func_0019FD20(Node_19FD20 *a, Node_19FD20 *b, Node_19FD20 *c, f32 x, f32 y, f32 z, f32 w);
+};
+extern float D_00275460;
+extern float D_00275544;
+
 extern int D_002A9D7C;
 extern int D_002A9D78;
 extern App_19FD20 *D_002A8490;
