@@ -463,7 +463,8 @@ void BmxStallConstraint::func_000B5120(void)
     v.w = 1.0f;
     C_00198330 *obj = f30->func_00198330(&D_0027D3F0);
     obj->func_00199A70(f30, &v);
-    f34 = Vec4(0.0f, -obj->f144 + v.y, v.z, 1.0f);
+    f32 neg = -obj->f144;
+    f34 = Vec4(0.0f, neg + v.y, -(-v.z), 1.0f);
 }
 
 void BmxStallConstraint::func_000B51C0(void)
