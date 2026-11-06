@@ -247,6 +247,40 @@ struct C_001CC3C0 {
     int func_001CCE10(int a, int b, int c, int d);
 };
 int __stdcall func_00221A71(int h, int a, int b, int c, int d);
+#include <xmmintrin.h>
+static __forceinline float Max_001CC4B0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+struct S_Vec_001CC4B0 { int x, y, z; };
+struct S_3DParams_001CC4B0 {
+    int insideCone;     /* 0x00 */
+    int outsideCone;    /* 0x04 */
+    int coneVolume;     /* 0x08 */
+    float minDist;      /* 0x0C */
+    float maxDist;      /* 0x10 */
+    int mode;           /* 0x14 */
+    int f18;            /* 0x18 */
+    int f1C;            /* 0x1C */
+    int f20;            /* 0x20 */
+};
+extern float D_0028EF4C;
+int __stdcall func_00221BB9(int h, int a, int b, int c, int d);
+int __stdcall func_00221B73(int h, float a, int d);
+int __stdcall func_00221B5B(int h, float a, int d);
+int __stdcall D_00221B51(int h, int a, int b, int d);
+int __stdcall D_00221B56(int h, int a, int d);
+int __stdcall func_00221BE2(int h, int a, int d);
+int __stdcall func_00221C12(int h, int a, int d);
+int __stdcall func_00221BFA(int h, int a, int d);
+int __stdcall func_00221B8B(int h, int a, int d);
+int __stdcall func_00221AA6(int h, int a, int b, int c, int d);
+int __stdcall func_00221A2D(int h, float a, int d);
+int __stdcall func_00221A09(int h, float a, int d);
+int __stdcall func_00221990(int h, int a, int b, int d);
+int __stdcall func_002219E9(int h, int a, int d);
+int __stdcall func_002219B4(int h, int a, int b, int c, int d);
+int __stdcall func_00221ADB(int h, int a, int d);
+int __stdcall func_00221B23(int h, int a, int d);
+int __stdcall func_00221AFF(int h, int a, int d);
+int __stdcall func_00221A51(int h, int a, int d);
 int __stdcall func_00221B90(int h, int a, int b, int c, int d);
 
 int C_001CC3C0::func_001CC3C0(int param_1)
