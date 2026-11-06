@@ -80,6 +80,7 @@ struct C_00153D30 {
     char pad5C8[0x6CC - 0x5C8];
     int unk6CC;
     void func_00153D30(int dt);
+    void func_00153350(float dt);
 };
 
 void C_001532E0::func_001532E0(void)
