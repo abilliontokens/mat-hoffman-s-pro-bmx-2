@@ -4,7 +4,6 @@
 struct V4_00029BD0 {
  union { struct { float x,y,z,w; }; __int64 q[2]; };
  V4_00029BD0() {}
- V4_00029BD0(const V4_00029BD0 &v) { __int64 a=v.q[0], b=v.q[1]; q[0]=a; q[1]=b; }
  V4_00029BD0 &operator=(const V4_00029BD0 &v) { q[0]=v.q[0]; q[1]=v.q[1]; return *this; }
 };
 struct P4_00029BD0 { float x, y, z, w; };
