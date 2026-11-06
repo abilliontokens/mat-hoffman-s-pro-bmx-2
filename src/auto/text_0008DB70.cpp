@@ -27,5 +27,47 @@ struct S_0008DB70 {
     int fd4c; int fd50; char padd54[0xd64 - 0xd54]; int fd64;
     char padd68[0xd84 - 0xd68]; void *fd84; void *fd88;
     char padd90[0xd98 - 0xd90]; int fd98;
-    S_0008DB70 *func_0008DB70(int a0, int a1, char *a2, int a3, int a4);
+    S_0008DB70 *func_0008DB70(char *a2, int a1, int a0, int a3, int a5, int a4);
 };
+
+S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, int a4)
+{
+    char *self = (char *)this;
+    void *p;
+    f44 = a1;
+    f48 = a2;
+    f40 = a3;
+    fd4c = a4;
+    fd98 = a0;
+    if (a4 != 0) {
+        char *g = P4((char *)D_002A8490, 0x2e0);
+        if (I4(g, 0x2d0) != 0) {
+            *(float *)((char *)this + 0xd50) = 1.0f;
+            fd64 = I4(P4(a2, 0x52c), 0x6350);
+            I4(&D_002A60B0, 0) = I4(&D_00278664, 0);
+            I4(&D_002A60B0, 4) = I4(&D_00278664, 4);
+            I4(&D_002A60B0, 8) = I4(&D_00278664, 8);
+            I4(&D_002A60B0, 0xc) = I4(&D_00278664, 0xc);
+            B1(&D_002A60B0, 0x10) = B1(&D_00278664, 0x10);
+        }
+    }
+    p = func_001E8A44(100);
+    f164 = (p != 0) ? ((W_0008DB70 *)p)->func_001D5760() : 0;
+    p = func_001E8A44(100);
+    f168 = (p != 0) ? ((W_0008DB70 *)p)->func_001D5760() : 0;
+    if (a0 == 0) {
+        W_0008DB70 *w = (W_0008DB70 *)f164;
+        w->func_001D5810(&D_0027A054, 20.0f, 381.0f, 0);
+        if (I4(w, 0x28) != 0x43710000) {
+            I4(w, 0x28) = 0x43710000;
+            B1(w, 0x58) = B1(w, 0x58) | 1;
+        }
+        w = (W_0008DB70 *)f168;
+        w->func_001D5810(&D_0027A054, 321.0f, 381.0f, 0);
+        if (I4(w, 0x28) != 0x43710000) {
+            I4(w, 0x28) = 0x43710000;
+            B1(w, 0x58) = B1(w, 0x58) | 1;
+        }
+    }
+    return this;
+}
