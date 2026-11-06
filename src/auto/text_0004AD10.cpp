@@ -54,6 +54,8 @@ struct Obj {
     Obj *func_001CF740(int a0, int a1, int a2);
     void func_000951B0(int a0);
     void func_00095520(int a0);
+    void func_001670C0(float a, int b, int c);
+    void func_0019AC50();
 };
 typedef void (Obj::*ObjFn5)(void *, int, int, int, int);
 union ObjFn5U { void *p; ObjFn5 f; };
