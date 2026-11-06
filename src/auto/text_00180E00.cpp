@@ -115,6 +115,7 @@ struct Rd {
     void func_0013C8A0(int a, void *b, int c, int d);
     void func_0013B210(void *p);
     void func_0013C110(int a);
+    void func_0013B1F0(int a, void *b);
     int func_0013D310(char *a, void *b, int *c, int *d, int e);
 };
 extern Rd *D_002BEAAC;
