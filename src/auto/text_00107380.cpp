@@ -7,6 +7,10 @@ struct Vec_107AE0 {
  Vec_107AE0(float a,float b,float c) { x=a;y=b;z=c;w=1; }
 };
 #include <xmmintrin.h>
+static __forceinline Vec_107AE0 scale_107AE0(const Vec_107AE0 &v,float s) {
+ Vec_107AE0 r;
+ r.x=v.x*s;r.y=v.y*s;r.z=v.z*s;return r;
+}
 struct Mat_107AE0 { float m[16]; };
 static __forceinline void identity_107AE0(Mat_107AE0 *a) {
  __m128 z=_mm_setzero_ps();
