@@ -28,7 +28,7 @@ static inline void FloatToInt(int *out, float f)
 {
     int * volatile p = out;
 
-    *p = _mm_cvtss_si32(*(__m128 *)&f);
+    *p = _mm_cvtss_si32(_mm_load_ss(&f));
 }
 struct C_001805F0 {
     char pad0[0x104];
