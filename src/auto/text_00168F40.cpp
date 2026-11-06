@@ -94,6 +94,7 @@ struct C_00168F40 {
     void func_001692E0(int h);
     int func_00168F40(int id);
     void func_001691E0(void);
+    ~C_00168F40();
     void func_001690D0(char *src, char *dst);
     int func_00169A50(char *line);
 };
@@ -409,6 +410,7 @@ int C_00168F40::func_00169710(char * volatile name)
     C_00168F40 * volatile self = this;
     C_00168F40 *q;
     struct {
+        int tmp;
         volatile int lim;
         volatile int res;
         volatile int len;
@@ -416,55 +418,60 @@ int C_00168F40::func_00169710(char * volatile name)
     int idx;
     int n;
     int count;
-    int tmp;
     int i;
     int k;
+    int r;
+    int L;
     char line[0x400];
     char clean[0x400];
 
-    if (f8 == 0) {
+    if (((volatile C_00168F40 *)this)->f8 == 0) {
         return 0;
     }
     if (fC != 0) {
         D_002BEAAC->func_0013AF80(f0);
     }
-    idx = self->func_00168300((int)name);
+    q = self;
+    idx = q->func_00168300((int)name);
     if (idx == -1) {
         return 0;
     }
     q = self;
     if (q->f4 != 0) {
-        S_00168F40_Index *e;
         int off;
         unsigned size;
 
         t.len = strlen(name);
         t.lim = 0x3ff;
-        t.res = t.lim > t.len ? t.len : t.lim;
+        r = t.lim;
+        L = t.len;
+        if (r > L) {
+            r = L;
+        }
+        t.res = r;
         n = t.res;
         func_001E8920(self->pad24, name, n);
         self->pad24[n] = 0;
         q = self;
-        e = &q->f4B8[idx];
-        off = e->offset;
-        size = e->unk4;
+        off = q->f4B8[idx].offset;
+        size = q->f4B8[idx].unk4;
         if (q->f4C0 != 0) {
             if (q->f4C4 < size) {
-                q->f4C4 = size;
+                ((volatile C_00168F40 *)q)->f4C4 = size;
                 q = self;
                 q->f4C0 = func_001E83E8(q->f4C0, q->f4C4);
             }
         } else {
-            q->f4C4 = size;
+            ((volatile C_00168F40 *)q)->f4C4 = size;
             q = self;
             q->f4C0 = func_001E8AA5(q->f4C4);
         }
         q = self;
         D_002BEAAC->func_0013AFF0(q->f0, off, 0);
-        tmp = 0;
+        t.tmp = 0;
         q = self;
-        D_002BEAAC->func_0013C8A0(q->f0, &tmp, 4, 1);
-        self->f1C = tmp;
+        D_002BEAAC->func_0013C8A0(q->f0, &t.tmp, 4, 1);
+        self->f1C = t.tmp;
         q = self;
         D_002BEAAC->func_0013C8A0(q->f0, q->f4C0, q->f4C4, 1);
         return 1;
@@ -478,7 +485,12 @@ int C_00168F40::func_00169710(char * volatile name)
     count = q->f18[idx].size;
     t.len = strlen(name);
     t.lim = 0x3ff;
-    t.res = t.lim > t.len ? t.len : t.lim;
+    r = t.lim;
+    L = t.len;
+    if (r > L) {
+        r = L;
+    }
+    t.res = r;
     n = t.res;
     func_001E8920(self->pad24, name, n);
     self->pad24[n] = 0;
