@@ -177,7 +177,7 @@ struct C_001BB950 {
     int func_001BB950(Vec_001BB950 *a, Vec_001BB950 *b, int c, int d, float e);
 };
 
-extern float D_00275544, D_002AAE04, D_002AAE08, D_002AAE0C;
+extern const float D_00275544, D_002AAE04, D_002AAE08, D_002AAE0C;
 void __cdecl func_000265C0(void *a, Vec_001BB950 *b, void *c, void *d, int e, int f);
 
 int func_00011260(int lo, int hi);
@@ -462,7 +462,7 @@ struct C_001BBBE0 {
 
 void func_001BB4F0(S_1BB4F0_Arg1 *a1, int a2, S_1BB4F0_Arg3 *a3, int enable)
 {
-    S_1BB4F0_List *list;
+    char *lb;
     S_1BB4F0_Obj *obj;
     S_1BB4F0_Obj **pp;
     int found;
@@ -478,10 +478,10 @@ void func_001BB4F0(S_1BB4F0_Arg1 *a1, int a2, S_1BB4F0_Arg3 *a3, int enable)
         return;
     }
     key = a1->f64;
-    list = D_002A8490->f2A4->f64->f4E0;
-    n = list->f24;
+    lb = (char *)D_002A8490->f2A4->f64->f4E0;
+    n = *(int *)(lb + 0x24);
     found = 0;
-    pp = list->f1A8;
+    pp = (S_1BB4F0_Obj **)(lb + 0x1A8);
     for (i = 0; i < n; i++, pp++) {
         if (found) {
             break;
