@@ -146,6 +146,11 @@ struct V4_26B0 {
     V4_26B0() { x = y = z = 0.0f; w = 1.0f; }
     V4_26B0(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
 };
+static __forceinline V4_26B0 MakeV4_26B0(float a, float b, float c, float d)
+{
+    V4_26B0 r(a, b, c, d);
+    return r;
+}
 struct S_26B0_Cam {
     void func_00199110(int a, V4_26B0 *pos, V4_26B0 *dir, int b, int c, int d);
     void func_00199110(int a, const V4_26B0 &pos, const V4_26B0 &dir, int b, int c, int d);
@@ -403,8 +408,8 @@ void C_000A26B0::func_000A26B0(void)
                 f28->func_00168BE0(D_0027B064, D_002764F0, buf5, 0x104);
                 f28->func_00168C50(D_0027B058, 100.0f, &v48);
                 f57C[i]->func_00014170(buf2, v6c, v60, buf0, buf1, buf5, v48, first + X - 1, v68 - 1, 0, &v70);
-                V4_26B0 fwd(0.0f, 0.0f, 1.0f, 1.0f);
-                V4_26B0 up(0.0f, 1.0f, 0.0f, 1.0f);
+                V4_26B0 fwd = V4_26B0(0.0f, 0.0f, 1.0f, 1.0f);
+                V4_26B0 up = V4_26B0(0.0f, 1.0f, 0.0f, 1.0f);
                 f57C[i]->f3C->f4->func_00199110(0, &fwd, &up, 0, 1, 0);
                 if (f584 < f580 && f584 <= first + X - 1) {
                     h = D_002BEAAC->func_0013C9F0(buf4, D_00276274);
