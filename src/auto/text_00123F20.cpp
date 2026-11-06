@@ -18,19 +18,23 @@ static __forceinline void Slice(Vec4 *P,Vec4 *N,const Vec4 *p,const Vec4 *a,cons
  if(vb[k]!=vc[k]&&((vb[k]<=pa[k]&&vc[k]>=pa[k])||(vb[k]>=pa[k]&&vc[k]<=pa[k]))){v[count]=b;v[count+1]=c;vn[count]=nb;vn[count+1]=nc;count+=2;}
  if(vc[k]!=va[k]&&((vc[k]<=pa[k]&&va[k]>=pa[k])||(vc[k]>=pa[k]&&va[k]<=pa[k]))){v[count]=c;v[count+1]=a;vn[count]=nc;vn[count+1]=na;}
   float t,s;
- Vec4 qp,qn;
+ float ax,ay,az,bx,by,bz;
  t=(pa[k]-(&v[0]->x)[k])/((&v[1]->x)[k]-(&v[0]->x)[k]);
  s=D_00275460-t;
- qp=*v[1]*t+*v[0]*s;
- P[0]=qp;
- qn=*vn[1]*t+*vn[0]*s;
- N[0]=qn;
+ ax=v[0]->x*s;ay=v[0]->y*s;az=v[0]->z*s;
+ bx=v[1]->x*t;by=v[1]->y*t;bz=v[1]->z*t;
+ P[0]=Vec4(bx+ax,by+ay,bz+az);
+ ax=vn[0]->x*s;ay=vn[0]->y*s;az=vn[0]->z*s;
+ bx=vn[1]->x*t;by=vn[1]->y*t;bz=vn[1]->z*t;
+ N[0]=Vec4(bx+ax,by+ay,bz+az);
  t=(pa[k]-(&v[2]->x)[k])/((&v[3]->x)[k]-(&v[2]->x)[k]);
  s=D_00275460-t;
- qp=*v[3]*t+*v[2]*s;
- P[1]=qp;
- qn=*vn[3]*t+*vn[2]*s;
- N[1]=qn;
+ ax=v[2]->x*s;ay=v[2]->y*s;az=v[2]->z*s;
+ bx=v[3]->x*t;by=v[3]->y*t;bz=v[3]->z*t;
+ P[1]=Vec4(bx+ax,by+ay,bz+az);
+ ax=vn[2]->x*s;ay=vn[2]->y*s;az=vn[2]->z*s;
+ bx=vn[3]->x*t;by=vn[3]->y*t;bz=vn[3]->z*t;
+ N[1]=Vec4(bx+ax,by+ay,bz+az);
  }
 #include <math.h>
 
