@@ -479,6 +479,38 @@ C_001C3810* C_001C3810::func_001C3810(int a0) {
     return this;
 }
 
+int DXVertexBufferCache::func_001C3830(int a1, int a2)
+{
+    VertexBuffer *vb;
+    VertexBuffer *res;
+    IndexBuffer *ib;
+    IndexBuffer *res2;
+
+    vb = (VertexBuffer *)func_001E8A44(0x18);
+    if (vb != 0) {
+        vb->fC = 0;
+        vb->f10 = 0;
+        vb->vtbl = (void *)&D_0028E2C4;
+        vb->f4 = 0;
+        vb->func_001C3550(a1, a2);
+        res = vb;
+    } else {
+        res = 0;
+    }
+    f4 = res;
+    if (res == 0)
+        return 0;
+    ib = (IndexBuffer *)func_001E8A44(0x10);
+    if (ib != 0) {
+        ib = ib->func_0012A350(0, a2);
+        res2 = ib;
+    } else {
+        res2 = 0;
+    }
+    f8 = res2;
+    return res2 != 0;
+}
+
 int DXIndexBufferCache::func_001C38D0(int a1, int a2)
 {
     DXIndexBuffer *vb;
@@ -764,11 +796,11 @@ VideoCard *VideoCard::func_001C3D90(void)
     int p;
     v->vtbl = &D_0028E3A0;
     t = *(volatile unsigned char *)&v->f3C;
-    t = (unsigned char)(t & 0xfe);
     v->f30 = 0;
     v->f2C = 0;
     v->f34 = 0;
     v->f38 = 0;
+    t = (unsigned char)(t & 0xfe);
     *(volatile unsigned char *)&v->f3C = t;
     f1C = 0;
     f20 = 0;
