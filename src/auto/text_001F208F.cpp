@@ -43,6 +43,10 @@ T* func_001F2BCC(T*, T*);
 T* func_001F2A1C(T*, T*, T*, int);
 void *func_001EFCF7(void *a, char b, void *c);
 extern char D_00295E74[];
+extern char D_00295EF8[], D_00295EF0[], D_00295EE8[], D_00295EE0[], D_00295ED8[], D_00295ED0[];
+extern char D_00295EC8[], D_00295EC0[], D_00295EB4[], D_00295EAC[], D_00295EA4[], D_00295E9C[];
+extern char D_00295E94[], D_00295E8C[], D_00295E80[], D_00295C38[], D_00295C2C[], D_00295B38[];
+extern char D_0027D240[], D_0027D21C[], D_0028A82C[];
 extern int D_002F6A08, D_002F6A0C, D_002F6A10, D_002F6A14;
 
 struct AllocObj {
