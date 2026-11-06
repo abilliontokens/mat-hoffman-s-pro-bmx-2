@@ -68,6 +68,14 @@ struct S_QuadTreeFx {
     void func_0001E860();
 };
 
+struct S_QuadTreeDispatch {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4(int x, int y, int z, int flag);
+};
+
 /* QuadTree */
 struct QuadTree {
     void *vtbl;
