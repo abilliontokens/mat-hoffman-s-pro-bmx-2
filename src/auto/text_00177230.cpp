@@ -9,6 +9,12 @@ extern char D_0000FFFC;
 struct C_00135420 {
     int func_00135420(void);
 };
+struct Bgra_00177860 {
+    u8 b;
+    u8 g;
+    u8 r;
+    u8 a;
+};
 #include <string.h>
 int func_00135410(void);
 u32 func_00175840(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch);
@@ -166,12 +172,12 @@ u32 func_00177650(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
 
 u32 func_00177780(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, u32 colorKey)
 {
-  int y;
   u8 *d;
   u8 *s;
-  int x;
   u8 *p;
   u8 *q;
+  int x;
+  int y;
   u16 key;
   u16 v;
   key = ((colorKey >> 8) & 0xf800) | ((colorKey >> 5) & 0x7e0) | ((colorKey >> 3) & 0x1f);
@@ -205,6 +211,7 @@ u32 func_00177860(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   u8 *s;
   u8 *p;
   u8 *q;
+  u8 *a;
   int x;
   int y;
   s = src;
@@ -212,9 +219,10 @@ u32 func_00177860(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   for (y = height; y > 0; y--) {
     for (p = d, q = s, x = width; x > 0; x--) {
       p[2] = (*(u16 *)q >> 7) & 0xf8;
+      a = p + 3;
       p[1] = (*(u16 *)q >> 2) & 0xf8;
       p[0] = q[0] << 3;
-      p[3] = (*(u16 *)q & 0x8000) ? 0xff : 0;
+      *a = (*(u16 *)q & 0x8000) ? 0xff : 0;
       p += 4;
       q += 2;
     }
