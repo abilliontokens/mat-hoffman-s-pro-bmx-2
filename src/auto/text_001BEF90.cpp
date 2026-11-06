@@ -678,7 +678,8 @@ void C_001BF220::func_001BF220(void)
             f140[i]->func_001BE290();
         }
     }
-    if ((name = f170, f16C != 0)) {
+    name = f170;
+    if (name == f170 && f16C != 0) {
         f16C->v27(f274);
         f16C->func_001D3B20(name);
     }
@@ -735,10 +736,11 @@ void *C_001BF430::func_001BF430(int a0, int a1)
 
 void C_001BF490::func_001BF490(C_001BF490_Item *a0)
 {
-    int i = 0;
+    int off = 0;
+    int * volatile flag = a0->unk44;
     do {
-        if (a0->unk44[i] != 0) {
-            S_001BF3C0_List *list = unk2C[i];
+        if (*flag != 0) {
+            S_001BF3C0_List *list = *(S_001BF3C0_List **)((char *)unk2C + off);
             if (list->head == 0) {
                 S_001BF3C0_Node *node = (S_001BF3C0_Node *)func_001E8A44(0xc);
                 list->head = node;
@@ -755,8 +757,9 @@ void C_001BF490::func_001BF490(C_001BF490_Item *a0)
                 list->tail->unk8 = 0;
             }
         }
-        i++;
-    } while (i < 8);
+        off += 4;
+        flag++;
+    } while (off < 0x20);
 }
 
 undefined4 C_001BF520::func_001BF520(byte param_1)
