@@ -547,6 +547,14 @@ int C_0004CED0::func_0004CEC0()
     return 1;
 }
 
+/* 0x4CFC0, merged into func_0004CEC0 by the analysis (matches 100% on its own part) */
+void C_0004CFC0::func_0004CFC0()
+{
+    ((M_0004CFC0 *)D_002A8490)->v15(f24, 0, 0, 0);
+    f24->func_0012B190(0, 0, f24->f204, f24->f208);
+    f1DC = f24->f1E0;
+}
+
 void C_0004D010::func_0004D010(void)
 {
     int v = *(int *)((char *)f64 + 0x4e0);
