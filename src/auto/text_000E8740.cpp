@@ -6,6 +6,7 @@ struct C_000E8740_UI {
  void SetAlpha(float value) { if(alpha!=value) { alpha=value;flags|=1; } }
  void func_0005E840(char *);
 };
+static __forceinline void SetAlpha_000E8740(C_000E8740_UI *p,float v) {if(p->alpha!=v) {p->alpha=v;p->flags|=1;}}
 struct C_000E8740_Model {
  void func_000BC130(); float *func_000BC2E0(); float *func_000BC320();
 };
