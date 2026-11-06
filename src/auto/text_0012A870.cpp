@@ -6,6 +6,7 @@ extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
 extern float D_002A3E34;
 extern float D_002A3E38;
 extern float D_00284034;
+extern float D_002755E4;
 
 struct C_0012B170 {
     int func_00157BF0(int a, int b);
@@ -398,6 +399,34 @@ struct C_0012AEC0 {
 };
 
 
+extern "C" float __cdecl sqrtf(float);
+int C_0012A870::func_0012A870(int a)
+{
+    f1c0 = V4Init_0012A870(f170.x - f1a0.x, f170.y - f1a0.y, f170.z - f1a0.z, 1.0f);
+    f240 = sqrtf(f1c0.x * f1c0.x + f1c0.y * f1c0.y + f1c0.z * f1c0.z);
+    f1a0 = f170;
+    f244 = func_0014F7E0(f180.x * f1b0.x + f180.y * f1b0.y + f180.z * f1b0.z);
+    if (f244 < D_00275544) {
+        f244 = -f244;
+    }
+    f1b0 = f180;
+    if (f21 & 4) {
+        return 1;
+    }
+    if (f210 != 0) {
+        f210--;
+    }
+    if (f20c != 0) {
+        f20c--;
+    }
+    vtbl->f70(this);
+    if (f28 != 0) {
+        f28->func_00193950(&f24, &f170, &D_002A3E3C, 0);
+        f2c = f28->f4;
+    }
+    func_00157A00(a);
+}
+
 void C_0012AAB0::func_0012AAB0(float param)
 {
     if (param != D_00275544) {
@@ -462,11 +491,12 @@ void C_0012AEC0::func_0012AEC0(void)
 void C_0012B000::func_0012B000(float param1, float param2)
 {
     f1fc = param1;
-    f200 = param2;
+    float *a70 = (float *)f70;
+    *(volatile float *)&f200 = param2;
     float f = D_00275460 / (D_00275460 - param1 / param2);
     f98 = f;
     f9c = -(f * param1);
-    func_000263B0(ff0, fb0, f70);
+    func_000263B0(&ff0, &fb0, a70);
 }
 
 void Camera::func_0012B060(void)
@@ -549,14 +579,18 @@ void C_0012B1D0::func_0012B1D0(undefined4 *param_1)
 
 void C_0012B210::func_0012B210(int *out)
 {
+    C_0012B210 * volatile self = this;
+    int * volatile p;
     float f;
 
     out[0] = 0;
-    f = (float)f1e8 / D_002A3E34;
-    out[2] = _mm_cvtt_ss2si(_mm_load_ss(&f));
+    p = &out[2];
+    f = (float)self->f1e8 / D_002A3E34;
+    *p = _mm_cvttss_si32(*(__m128 *)&f);
     out[1] = 0;
-    f = (float)f1ec / D_002A3E38;
-    out[3] = _mm_cvtt_ss2si(_mm_load_ss(&f));
+    p = &out[3];
+    f = (float)self->f1ec / D_002A3E38;
+    *p = _mm_cvttss_si32(*(__m128 *)&f);
 }
 
 void C_0012B2B0::func_0012B2B0(S_0012B2B0_Rect *in, S_0012B2B0_Rect *out)
