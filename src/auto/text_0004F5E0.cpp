@@ -121,7 +121,7 @@ struct C_0004FE30 {
 };
 
 struct C_0004F6E0_Data {
-    int unk0[6];
+    char unk0[24];
 };
 
 struct C_0004F6E0_Mgr {
