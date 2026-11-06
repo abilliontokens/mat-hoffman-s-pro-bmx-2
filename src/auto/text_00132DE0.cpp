@@ -104,6 +104,11 @@ static __forceinline void set_collision_vector(float *out, const float &x, const
     ((int *)out)[3] = *(int *)&w;
 }
 
+struct V4_00132EB0 {
+    float x, y, z, w;
+    V4_00132EB0(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
+};
+
 struct C_00132EB0 {
     void *vtbl;
     char pad4[0x20];
