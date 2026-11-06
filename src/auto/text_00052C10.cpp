@@ -256,6 +256,7 @@ struct C_52F90 {
     int f154;
     char pad158[0xc];
     C_52F90_T *f164;
+    char pad168[4];
     C_52F90_R *f16C;
     C_52F90_S *f170;
     char pad174[0x44];
@@ -570,6 +571,49 @@ int C_52D90::func_00052D90()
     G->f2E0->f2C0->func_0005C650(1);
     f35C = 0;
     return 0;
+}
+
+int C_52F90::func_00052F90(int a)
+{
+    char buf[0x104];
+    C_52F90_Root *root = (C_52F90_Root *)D_002A8490;
+    int flag = 1;
+
+    if (f1C8) {
+        if (f2D0) {
+            f64->f4E0->f1A8->f12A8 |= 0x80;
+            f1CC = 0;
+        } else {
+            f64->f4E0->f1A8->f12A8 &= 0x7f;
+            f1CC = 1;
+        }
+    } else {
+        f64->f4E0->f1A8->f12A8 &= 0x7f;
+    }
+    func_000529D0();
+    func_00031260(a);
+    if (f1F4 == 0 && f154 == 0) {
+        if (f1C8) {
+            if (f1C4 != 0 && (f1C4->fC0 & 0x20)) {
+                func_001041E0();
+                f1C4->func_00104190();
+                return 1;
+            }
+        } else {
+            if (f64->f4E0->f1A8->f11F4 == 3 &&
+                f64->f4E0->f1A8->f1210 != 0 &&
+                f64->f4E0->f1A8->f1214 != 0 &&
+                f290->f63C == 0) {
+                func_001ADCC0(buf, 0x104, D_00277A70,
+                              (const char *)root->f2E8->f4->f11C0,
+                              root->f2E8->f4->f11B8);
+                f170->func_00083A70(buf);
+                ((C_52F90_VT6 *)f1B8)->v5(flag);
+                f290->f63C = flag;
+            }
+        }
+    }
+    return 1;
 }
 
 int C_52C10::func_000533A0(void)
