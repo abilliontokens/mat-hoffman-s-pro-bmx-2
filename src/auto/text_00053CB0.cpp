@@ -1,7 +1,7 @@
 /* 11 functions from 0x00053930 to 0x00054680, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
-extern float D_00277B40, D_00277B50, D_00277B60;
+extern const float D_00277B40, D_00277B50, D_00277B60;
 static __forceinline void Normalize_53CB0(float *volatile outArg, const float *volatile inArg)
 {
     const float *in = inArg;
