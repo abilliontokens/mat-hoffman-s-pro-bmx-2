@@ -1,7 +1,65 @@
 /* 2 functions from 0x0003D220 to 0x0003D910, found by Ghidra. */
 #include "common.h"
 
-struct Obj3D { char pad[0x2cc]; int flag2cc; int func_0003D220(); };
+struct Vec4_3D220 { float x, y, z, w; };
+void *func_001E8A44(unsigned int size);
+void func_001E891B(void *p);
+extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
+extern float D_00275AEC;
+extern float D_00275460;
+extern float D_00275548;
+extern float D_00275F64;
+struct Node_3D220 { int f0; int f4; void *f8; int fc; void *f10; int f14; int f18; };
+struct Mgr_3D220 { void func_001577A0(void *obj, int arg); };
+struct Obj_3D220 {
+    virtual void v00(); virtual void v04(); virtual void v08(); virtual void v0c();
+    virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1c();
+    virtual void v20(); virtual void v24(); virtual void v28(); virtual void v2c();
+    virtual void v30(); virtual void v34(); virtual void v38(); virtual void v3c();
+    virtual void v40(); virtual void v44(); virtual void v48(); virtual void v4c();
+    virtual void v50(); virtual void v54(); virtual void v58(); virtual void v5c();
+    virtual void v60(); virtual void v64(); virtual void v68(); virtual void v6c();
+    virtual void v70(); virtual void v74(); virtual void v78(); virtual void v7c();
+    virtual void v80(); virtual void v84(); virtual void v88();
+    virtual int v8c(const char *name, int a, int b);
+    char pad04[0x28 - 4];
+    char name[0x1a3 - 0x28];
+    unsigned char f1a3;
+    Obj_3D220 *func_00143580(int a);
+    void func_00198F50(void *a, void *b, int c, int d, int e);
+    void func_0019ABA0(int a, int b);
+    void func_0019A0A0(float a, float b, float c);
+    void func_00199600(Vec4_3D220 v);
+    void func_0019AC50();
+};
+struct Obj2_3D220 {
+    virtual ~Obj2_3D220();
+    Obj2_3D220 *func_001BB680(int a);
+    int func_001BC040(Vec4_3D220 a, Vec4_3D220 b, Vec4_3D220 c, Vec4_3D220 d, int e, int f, int g, int h);
+    void func_001BBAE0(int a);
+};
+struct Track_3D220 { char pad[0x44]; int f44; char pad48[0x48 - 0x48]; };
+struct Game_3D220 {
+    char pad0[0x3a8]; Mgr_3D220 **f3a8;
+    char pad1[0x4a8 - 0x3ac]; int *f4a8; int *f4ac;
+    char pad2[0x5a4 - 0x4b0]; Track_3D220 *f5a4; int count; char **names;
+    char *name(int i) { return (count > 0 && names && i < count) ? names[i] : 0; }
+};
+struct Sub_3D220 { char pad[0x10]; char *f10; };
+struct Ctl_3D220 { void func_0008A970(); };
+struct Obj3D {
+    char pad0[0x64]; Game_3D220 *f64;
+    char pad1[0x2cc - 0x68]; int flag2cc;
+    char pad2[0x474 - 0x2d0]; int f474;
+    char pad3[0x47c - 0x478]; int f47c; int f480;
+    char pad4[0x4a8 - 0x484]; int f4a8;
+    char pad5[0x4bc - 0x4ac]; Vec4_3D220 f4bc; Vec4_3D220 f4cc; Vec4_3D220 f4dc;
+    char pad6[0x554 - 0x4ec]; Ctl_3D220 *f554;
+    char pad7[0x564 - 0x558]; Sub_3D220 *f564;
+    void func_000399A0(int a);
+    void func_0003AD50();
+    int func_0003D220();
+};
 
 #include <xmmintrin.h>
 static __forceinline void S_3D7B0_Round(int *out, float f)
@@ -23,13 +81,14 @@ struct C_3D7B0 {
 
 int C_3D7B0::func_0003D7B0(S_3D7B0_Vec4 v)
 {
+    S_3D7B0_Vec4 w = v;
     int ix;
     int iy;
     int iz;
 
-    S_3D7B0_Round(&ix, v.x - (float)f428);
-    S_3D7B0_Round(&iy, v.y - (float)f42c);
-    S_3D7B0_Round(&iz, v.z - (float)f430);
+    S_3D7B0_Round(&ix, w.x - (float)f428);
+    S_3D7B0_Round(&iy, w.y - (float)f42c);
+    S_3D7B0_Round(&iz, w.z - (float)f430);
     ix = ix / 10;
     iy = iy / 5;
     iz = iz / 10;
