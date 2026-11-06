@@ -125,6 +125,27 @@ struct S_00188980_Model {
     int f4;
     int f8;
     int fc;
+    static void *operator new(unsigned int size) { return func_001E8A44(size); }
+};
+
+/* StandardStaticModel */
+struct S_00188980_Std : S_00188980_Model {
+    S_00188980_Std() {
+        f4 = 0;
+        vtbl = (void *)&D_00289F70;
+        f8 = 0;
+        fc = 0;
+    }
+};
+
+/* PhysicsObjectStaticModel */
+struct S_00188980_Phys : S_00188980_Model {
+    S_00188980_Phys() {
+        f4 = 0;
+        vtbl = (void *)&D_00289F8C;
+        f8 = 0;
+        fc = 0;
+    }
 };
 
 struct C_00188A40 {
