@@ -121,6 +121,7 @@ struct Spr_87760 {
     void func_001D5810(void *a, unsigned x, unsigned y, int z);
     inline void SetF28(unsigned v) { if (f28 != v) { f28 = v; f58 |= 1; } }
     inline void SetF34(unsigned v) { if (f34 != v) { f34 = v; f58 |= 1; } }
+    inline void SetXform(unsigned a, unsigned b, unsigned c, unsigned d) { f3C = a; f40 = b; f44 = c; f48 = d; f58 |= 4; }
 };
 
 struct Txt_87760 {
@@ -251,5 +252,108 @@ void C_000876B0::func_00087700(void) {
         }
     }
     ((C_00157660 *)this)->func_00157660();
+}
+
+C_00087760 *C_00087760::func_00087760(int a, Owner_87760 *b, int c)
+{
+    int font = 0;
+    int font2 = 0;
+    int *p;
+    Spr_87760 *s;
+    Txt_87760 *t;
+    Menu_87760 *m;
+
+    f34 = b;
+    fC4 = c;
+    D_002A60B0 = D_00278664;
+    D_002A60B4 = D_00278668;
+    D_002A60B8 = D_0027866C;
+    D_002A60BC = D_00278670;
+    D_002A60C0 = D_00278674;
+    s = (Spr_87760 *)func_001E8A44(0x64);
+    f2C = s ? s->func_001D5760() : 0;
+    s = (Spr_87760 *)func_001E8A44(0x64);
+    f30 = s ? s->func_001D5760() : 0;
+    if (D_002A8490->f2E0->f8 == 0) {
+        f2C->func_001D5810(D_002786B0, 0x43d60000, 0x423c0000, 0);
+        f2C->SetF28(0x42c00000);
+        f30->func_001D5810(D_002786B0, 0x44030000, 0x423c0000, 0);
+        f30->SetF28(0x42c00000);
+    } else if (D_002A8490->f2E0->f8 == 2) {
+        f2C->func_001D5810(D_002786B0, 0x43888000, 0x423c0000, 0);
+        f2C->SetF28(0x42400000);
+        f30->func_001D5810(D_002786B0, 0x43a08000, 0x423c0000, 0);
+        f30->SetF28(0x42400000);
+    } else if (D_002A8490->f2E0->f8 == 1) {
+        f2C->func_001D5810(D_002786B0, 0x44030000, 0x43600000, 0);
+        f2C->SetF28(0x42400000);
+        f30->func_001D5810(D_002786B0, 0x440f0000, 0x43600000, 0);
+        f30->SetF28(0x42400000);
+    }
+    s = f30;
+    s->f48 = 0x3f800000;
+    s->f3C = 0x3f800000;
+    s->f58 |= 4;
+    s->f40 = 0;
+    s->f44 = 0;
+    f2C->SetF34(0x40c00000);
+    f30->SetF34(0x40c00000);
+
+    if (D_002A8490->f2E0->f8 == 0) {
+        char *names[2];
+        names[0] = D_00278690;
+        names[1] = D_0027958C;
+        D_002A8490->p2EC->func_0018C780(2, names, 0);
+        p = D_002A8490->p2EC->func_0018C160((int)D_00278690);
+        font = p ? *p : 0;
+        p = D_002A8490->p2EC->func_0018C160((int)D_0027958C);
+        font2 = p ? *p : 0;
+    } else {
+        char *name = D_002786A0;
+        D_002A8490->p2EC->func_0018C780(1, &name, 0);
+        p = D_002A8490->p2EC->func_0018C160((int)D_002786A0);
+        font = p ? *p : 0;
+    }
+    if (D_002A8490->f2E0->f8 == 0) {
+        t = (Txt_87760 *)func_001E8A44(0x60);
+        f24 = t ? t->func_001D5E90() : 0;
+        f24->func_001D5FA0(font, D_00278690, 4, 0);
+        f24->SetColor(0xffcccccc);
+        f24->func_0005E840(D_002A8490->f2E8->f4->fA10);
+        t = (Txt_87760 *)func_001E8A44(0x60);
+        f28 = t ? t->func_001D5E90() : 0;
+        f28->func_001D5FA0(font2, D_0027958C, 6, 0);
+    } else {
+        t = (Txt_87760 *)func_001E8A44(0x60);
+        f24 = t ? t->func_001D5E90() : 0;
+        f24->func_001D5FA0(font, D_002786A0, 4, 0);
+        f24->SetColor(0xffcccccc);
+        f24->func_0005E840(D_002A8490->f2E8->f4->fA10);
+        t = (Txt_87760 *)func_001E8A44(0x60);
+        f28 = t ? t->func_001D5E90() : 0;
+        f28->func_001D5FA0(font, D_002786A0, 6, 0);
+    }
+    f28->SetColor(0xffbfa35a);
+    if (D_002A8490->f2E0->f8 == 0) {
+        f24->SetPos(0x4415c000, 0x41d00000);
+        f28->SetPos(0x4415c000, 0x424c0000);
+        f24->SetFont(D_0028F5EC);
+        f28->SetFont(D_0028F5EC);
+    } else if (D_002A8490->f2E0->f8 == 2) {
+        f24->SetPos(0x43a00000, 0x41d00000);
+        f24->SetFont(D_0028F5E0);
+        f28->SetPos(0x43a00000, 0x424c0000);
+        f28->SetFont(D_0028F5E0);
+    } else if (D_002A8490->f2E0->f8 == 1) {
+        f24->func_0005E960(599, 203);
+        f24->SetFont(D_0028F5EC);
+        f28->func_0005E960(599, 229);
+        f28->SetFont(D_0028F5EC);
+    }
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5348, D_002A47F0);
+    m = (Menu_87760 *)func_001E8A44(0x20c);
+    f40 = m ? m->func_001CF740(D_002A8490->f4->fB4, f34->f64->f4C0, 1) : 0;
+    f40->v4(D_00279810, 1, 1, 0, 0);
+    return this;
 }
 
