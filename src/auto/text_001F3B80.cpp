@@ -49,6 +49,8 @@ struct F3Obj {
 #define OUT_FL_FORCEOCTAL 0x0200
 #define OUT_FL_WIDECHAR   0x0800
 #define OUT_FL_I64        0x8000
+/* Never defined or called: func_001F3C55 mentions it in a dead `if (0)` so that format and argptr count as address-taken
+   (kept in memory, as in the original) instead of being enregistered. */
 void func_unused_001F3C55(void *, void *);
 #define OUT_BUFFERSIZE    512
 #define OUT_CVTBUFSIZE    349
