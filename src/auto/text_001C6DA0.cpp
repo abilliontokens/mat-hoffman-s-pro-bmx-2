@@ -83,6 +83,7 @@ struct C_001C6DA0 {
     int unkCC;
     char padD0[4];
     S_001C6DA0_V4 unkD4;
+    int GetB0() { return unkB0; }
     int func_001C6E30(const char *name);
     void func_001C6DA0(int idx, int arg);
     void func_001C6EA0(C_00198330 *obj, Vec4 *out, int unused);
@@ -129,16 +130,15 @@ static C_001C65E0 *init_001C7250(C_001C65E0 *p)
 
 void C_001C6DA0::func_001C6DA0(int idx, int arg)
 {
-    int mode = unk3C->unk10;
     int off = idx * 0x58;
-    if (mode == 0) {
+    if (unk3C->unk10 == 0) {
         unk3C->func_00166C80(*(int *)((char *)unkC0 + off + 0x40), arg);
     } else {
         unk3C->func_00164820(*(int *)((char *)unkC0 + off + 0x40));
     }
     int old = unkC4;
     unkC4 = idx;
-    unkCC = mode & 0;
+    unkCC = 0;
     unkC8 = old;
     unkD4 = D_002AB798;
 }
@@ -183,6 +183,63 @@ void C_001C6DA0::func_001C6EA0(C_00198330 *obj, Vec4 *out, int unused)
     }
 }
 
+extern float D_002755EC;
+extern "C" void func_000265C0(Vec4 *, Vec4 *, float *, float *, int, int);
+extern "C" void func_001C63F0(Vec4 *, Vec4 *, Vec4 *);
+void __stdcall func_000BA430(Vec4 *, int, int, int);
+extern "C" int func_00134DE0(Vec4 *, Vec4 *, Vec4 *, int, int, int, int, int, int);
+extern float D_002755E8;
+void C_001C6DA0::func_001C6F90(Vec4 *a0, Vec4 *out, float a2)
+{
+    struct { float h; int hit; } L;
+    L.hit = 0;
+    if (unkB0 != 0) {
+        char *l = *(char **)((char *)this + 0x37C);
+        if (l != 0) {
+            for (int **n = *(int ***)(l + 4); n != 0 && L.hit == 0; n = (int **)n[2]) {
+                float *s = *(float **)n;
+                Vec4 d;
+                float v[16];
+                Vec4 m;
+                m.x = 0; m.y = 0; m.z = 0; m.w = 0;
+                func_000265C0((Vec4 *)v, &m, s + 10, s + 6, 0, 1);
+                func_001C63F0(&d, a0, (Vec4 *)v);
+                d.x -= s[2];
+                d.y -= s[3];
+                d.z -= s[4];
+                float r = *(volatile float *)s * D_002755E8;
+                if (-r < d.x && d.x < r) {
+                    r = *(volatile float *)(s + 1) * D_002755E8;
+                    if (-r < d.z && d.z < r) L.hit = 1;
+                }
+            }
+        }
+    }
+    L.h = a2;
+    if (unkB0 != 0) {
+        Vec4 p = *a0;
+        if (L.hit == 0) {
+            func_000BA430(&p, 0, 0, 0);
+            if (*(volatile float *)&a0->y + D_002755EC > p.y) L.h = p.y;
+        }
+    }
+    Vec4 res;
+    Vec4A b;
+    Vec4 x[2];
+    for (int i = 0; i < 2; i++) { x[i].z = 0; x[i].y = 0; x[i].x = 0; x[i].w = 1.0f; }
+    x[0] = *a0;
+    x[0].y += D_002755EC;
+    x[1] = *a0;
+    x[1].y = L.h;
+    b.z = 0; b.y = 0; b.x = 0; b.w = 1.0f;
+    res.z = 0; res.y = 0; res.x = 0; res.w = 1.0f;
+    if (func_00134DE0(x, (Vec4 *)&b, &res, 0, 0, 0, -1, 0, 0) != 0 && b.y > L.h) {
+        L.h = b.y;
+    }
+    if (out != 0) *out = res;
+    a0->y = L.h;
+}
+
 C_001C65E0 *func_001C7250(int key)
 {
     for (int i = 0; i < D_002F0894; i++) {
@@ -224,26 +281,26 @@ C_001C6DA0 *C_001C6DA0::func_001C7310(int a0)
         p += 4;
         i--;
     } while (i != 0);
-    p = &u[0x184 / 4];
-    i = 10;
-    q = p;
-    do {
-        q[2] = 0; q[1] = 0; q[0] = 0; q[3] = 0x3f800000;
-        q += 4;
-        i--;
-    } while (i != 0);
-    q = &u[0x224 / 4];
+    q = &u[0x184 / 4];
+    pv = (S_001C7310_Vec *)&u[0x184 / 4];
     i = 10;
     do {
         q[2] = 0; q[1] = 0; q[0] = 0; q[3] = 0x3f800000;
         q += 4;
         i--;
     } while (i != 0);
-    q = &u[0x2C4 / 4];
+    p = &u[0x224 / 4];
     i = 10;
     do {
-        q[2] = 0; q[1] = 0; q[0] = 0; q[3] = 0x3f800000;
-        q += 4;
+        p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+        p += 4;
+        i--;
+    } while (i != 0);
+    p = &u[0x2C4 / 4];
+    i = 10;
+    do {
+        p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+        p += 4;
         i--;
     } while (i != 0);
     u[0x3C / 4] = 0;
@@ -254,16 +311,15 @@ C_001C6DA0 *C_001C6DA0::func_001C7310(int a0)
     S_001C7310_Vec t2(0.0f, 0.0f, 0.0f);
     S_001C7310_Vec t3(0.0f, 0.0f, 0.0f);
     S_001C7310_Vec t4(0.0f, 0.0f, 0.0f);
-    pv = (S_001C7310_Vec *)p;
-    i = 10;
+    a0 = 10;
     do {
-        pv[-10] = t1;
-        pv[0] = t2;
-        pv[10] = t3;
-        pv[20] = t4;
+        *(S_001C7310_Vec *)((char *)pv - 0xa0) = t1;
+        *(S_001C7310_Vec *)pv = t2;
+        *(S_001C7310_Vec *)((char *)pv + 0xa0) = t3;
+        *(S_001C7310_Vec *)((char *)pv + 0x140) = t4;
         pv++;
-        i--;
-    } while (i != 0);
+        a0--;
+    } while (a0 != 0);
     u[0xD0 / 4] = 0xbf800000;
     u[0x378 / 4] = 0;
     u[0x370 / 4] = 0;
