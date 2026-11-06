@@ -506,6 +506,27 @@ void C_00021890::func_00021890(S_Stream_000212A0 *stream, int base)
     f24->func_00021740(stream, base);
 }
 
+int C_000217F0::func_00021910()
+{
+ func_001578D0();
+ int n = *(int *)((char *)D_002B7E18 + 0x2c);
+ float limit;
+ if(n>5) { if(n>10) limit=D_00275994; else limit=D_0027554C; } else limit=D_00275818;
+ char *p=*(char **)(*(char **)(f28+0x1a4)+4);
+ if(limit > *(float *)(p+0x1b0)) {
+  if(*(float *)(p+0x1b0)<D_00276210) {
+   f7b=1;
+  } else {
+   V4_000212A0 v;
+   int out;
+   v.x=v.y=v.z=0; v.w=1;
+   char *obj=D_002EFDB8[1];
+   if(D_002AB66C->func_001C5C50(obj,obj+0xf0,&f5c,&v,&out)==1) f7b=1;
+  }
+ }
+ return 1;
+}
+
 void C_000219E0::func_000219E0(int idx)
 {
     C_000219E0_Mgr *mgr = f28->f1a4;
