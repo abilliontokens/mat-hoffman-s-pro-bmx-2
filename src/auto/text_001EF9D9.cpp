@@ -129,6 +129,20 @@ struct S_001EFB82_Obj {
     S_001EFB82_Obj *func_001EF45F(char *s, int a);
 };
 
+/* same-TU copies: MSVC only reuses ecx across these calls when it can see the bodies */
+int S_001EF734::func_001EF1D0(void)
+{
+    return flags == 0 || flags == 2;
+}
+
+int S_001EF734::func_001EF1E7(void)
+{
+    if (value != 0 && func_001EF1D0() != 0) {
+        return 0;
+    }
+    return 1;
+}
+
 void *_func_001EF9D9(S_001EF734 *o)
 {
     S_001EF734 local;
