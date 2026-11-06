@@ -461,12 +461,11 @@ F143660_RET DXRenderableObject::func_00143660(void)
 {
     ShadowPiece *piece;
     int i;
-    u32 one = 1;
 
-    if (!(one & f181))
+    if (!(f181 & 1))
         return F143660_VAL;
     if (f1d4 == -1)
-        f1d4 = (D_002A829C->f14[*f1b8].f4->f54->f24 >> 3) & one;
+        f1d4 = (D_002A829C->f14[*f1b8].f4->f54->f24 >> 3) & 1;
     ((Alloc190 *)f1d0)->func_00142F30(D_002EFDB8[1]);
     Vec4_143660 v(f1c0.x, f1c0.y, f1c0.z, f1c0.w);
     ((Alloc190 *)f1d0)->f160 = v;
