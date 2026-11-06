@@ -61,6 +61,10 @@ struct C_0006B4B0 {
     void func_0006B4B0(void);
 };
 
+struct C_0006B4B0_R : C_0006B4B0 {
+    int func_0006B4B0(void);
+};
+
 struct C_001B1980 {
     void func_001B1980(void);
 };
