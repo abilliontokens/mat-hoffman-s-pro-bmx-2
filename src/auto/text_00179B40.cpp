@@ -173,20 +173,6 @@ struct C_0017A1D0 {
     char pad0[0x24];
     C_0017A1D0_Vec4 pts[4];
     C_0017A1D0_Vec4 normals[5];
-    #pragma optimize("g", off)
-    __forceinline float Abs(float v)
-    {
-        volatile float t = v;
-        int bits = *(volatile int *)&t & 0x7fffffff;
-        return *(float *)&bits;
-    }
-    __forceinline void StoreAbs(float *dst, float v)
-    {
-        volatile float t = v;
-        int bits = *(volatile int *)&t & 0x7fffffff;
-        *dst = *(float *)&bits;
-    }
-    #pragma optimize("", on)
     int func_0017A1D0(float *p, float r, float *out);
     C_0017A1D0 *func_0017A310(C_0017A1D0_Vec4 *p);
     void func_00179880();
