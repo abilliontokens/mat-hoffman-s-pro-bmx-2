@@ -234,7 +234,7 @@ struct C_00028070 {
 };
 
 
-struct E_Vec { char p0[0x40]; float x, y, z; };
+struct E_Vec { char p0[0x14]; char *name; char p18[0x28]; float x, y, z; };
 struct E_Mid { char p0[0x14]; char *name; char p18[0x18]; E_Vec *vec; };
 struct E_Phys { char p0[0x238]; float x, y, z; };
 struct E_Lim { char p0[0x3C]; float lim; };
