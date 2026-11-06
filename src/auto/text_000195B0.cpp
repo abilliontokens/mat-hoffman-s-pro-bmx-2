@@ -125,6 +125,7 @@ struct TikiEvadeState {
     int func_000195B0(float dt);
 };
 extern float D_00275804;
+static __forceinline void Touch_195B0(void *) {}
 
 struct S_1A060_Vec { float x, y, z, w; };
 struct S_1A060_Fx {
