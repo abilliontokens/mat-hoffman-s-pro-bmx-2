@@ -75,9 +75,11 @@ struct Elem_0008BCD0 {
         m48 = 1.0f;
     }
     void SetIdentity2() {
-        m48 = m3c = 1.0f;
+        m3c = 1.0f;
+        m48 = 1.0f;
+        m40 = 0;
+        m44 = 0;
         flags |= 4;
-        m44 = m40 = 0;
     }
     void SetAlpha(unsigned char a) {
         ((unsigned char *)&argb)[3] = a;
