@@ -9,7 +9,7 @@ struct C_00185B10 {
 };
 
 struct C_00157600 {
-    void func_00157600(int param_1);
+    int func_00157600(int param_1);
 };
 
 extern int D_00289ABC;
@@ -585,6 +585,71 @@ int BasicScene::func_00189B60(int n)
                 arr454[i] = 0;
             }
             arr3f4[i]->func_0017A8F0(&hi, &lo, 3);
+        }
+    }
+    return 1;
+}
+
+int C_189D40::func_00189D40(void)
+{
+    int i, j, k;
+    void *p;
+    E_189D40 *obj;
+    W_189D40 *node;
+    char *dst;
+
+    if (f49C != 0) {
+        p = func_001E8A44(0x24);
+        if (p)
+            ((C_00157600 *)p)->func_00157600(1);
+        f4A0 = (int)p;
+    }
+    for (i = 0; i < f498; i++) {
+        for (j = 0; j < f340; j++) {
+            G_189D40 *g = (G_189D40 *)f3A8[j];
+            for (k = 0; k < g->count; k++) {
+                W_189D40 *item = g->items[k];
+                if (item == 0)
+                    continue;
+                if (item->kind != 1)
+                    continue;
+                if (item->obj == 0)
+                    continue;
+                if (func_001E8AF0((char *)item->obj + 0x28, (char *)f49C[i] + 0x144) == 0)
+                    continue;
+                obj = 0;
+                p = func_001E8A44(0x154);
+                if (p)
+                    obj = ((E_189D40 *)p)->func_001732E0(1);
+                obj->func_001740B0((int)item->obj, f3E4, f3E8, (int)f49C[i] + 0x144, f4A8[j], f4AC[j]);
+                obj->v27(f49C[i]->a248, f49C[i]->a24c, 0, 0, 0, 0, 0,
+                         f49C[i]->a254, f49C[i]->a250, f49C[i]->a258, f49C[i]->a25c, 0, 0, 0, 0, 0);
+                obj->unkd0->fb4 = f49C[i]->a260;
+                obj->unkd0->fc8 = f49C[i]->a264;
+                obj->unkd0->fd0 = f49C[i]->a268;
+                obj->unkd0->fd4 = f49C[i]->a26c;
+                *(int *)((char *)obj->unkd0 + 0xb8) = 0;
+                dst = *(char **)((char *)obj + 0xc4);
+                *(int *)(dst + 0x190) = f49C[i]->a270[0];
+                *(int *)(dst + 0x194) = f49C[i]->a270[1];
+                *(int *)(dst + 0x198) = f49C[i]->a270[2];
+                *(int *)(dst + 0x19c) = f49C[i]->a270[3];
+                obj->v28();
+                func_001577A0((void *)f4A0, (int)obj);
+                node = (W_189D40 *)func_001E8A44(0x10);
+                if (node) {
+                    node->kind = 0;
+                    node->vtbl = D_00289F8C;
+                    node->obj = 0;
+                    node->pad = 0;
+                } else {
+                    node = 0;
+                }
+                node->kind = 2;
+                node->obj = obj;
+                g->items[k] = node;
+                item->obj->v0(1);
+            }
         }
     }
     return 1;
