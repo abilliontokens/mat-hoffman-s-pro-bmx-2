@@ -9,7 +9,7 @@ extern float D_002AA148;
 extern float D_002AA14C;
 struct V4_001A7FE0 { float x,y,z,w; __forceinline V4_001A7FE0() { x=y=z=0; w=1; }
     __forceinline V4_001A7FE0(int) {}
-    __forceinline V4_001A7FE0(const V4_001A7FE0 &v) { x=v.x; y=v.y; z=v.z; w=v.w; }
+    __forceinline V4_001A7FE0 &operator=(const V4_001A7FE0 &v) { x=v.x; y=v.y; z=v.z; w=v.w; return *this; }
     __forceinline void Clear() { x=y=z=0; w=1; }
     __forceinline V4_001A7FE0 operator*(float s) const { V4_001A7FE0 r; r.x=x*s; r.y=y*s; r.z=z*s; return r; }
     __forceinline V4_001A7FE0 operator-(const V4_001A7FE0 &b) const { V4_001A7FE0 r; r.x=x-b.x; r.y=y-b.y; r.z=z-b.z; return r; }
