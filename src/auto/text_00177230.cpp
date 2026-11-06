@@ -169,8 +169,8 @@ u32 func_00177650(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
 
 u32 func_00177780(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, u32 colorKey)
 {
-  u8 *d;
-  u8 *s;
+  u8 *s = src;
+  u8 *d = dst;
   u8 *p;
   u8 *q;
   int x;
@@ -178,8 +178,6 @@ u32 func_00177780(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   u16 key;
   u16 v;
   key = ((colorKey >> 8) & 0xf800) | ((colorKey >> 5) & 0x7e0) | ((colorKey >> 3) & 0x1f);
-  s = src;
-  d = dst;
   for (y = height; y > 0; y--) {
     for (p = d, q = s, x = width; x > 0; x--) {
       v = *(u16 *)q;
@@ -215,6 +213,7 @@ u32 func_00177860(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   for (y = height; y > 0; y--) {
     for (p = d, q = s, x = width; x > 0; x--) {
       p[2] = (*(u16 *)q >> 7) & 0xf8;
+      p[3] = p[3];
       p[1] = (*(u16 *)q >> 2) & 0xf8;
       p[0] = q[0] << 3;
       p[3] = (*(u16 *)q & 0x8000) ? 0xff : 0;
@@ -355,22 +354,39 @@ u32 func_00177CA0(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
 }
 
 static __declspec(noinline) int func_00177D60(int width, u16 *dst, u32 *src, int dstPitch, int height, u8 *tbl);
+extern void func_sink(void *, void *, void *, void *);
 static __declspec(noinline) int func_00177D60(int width, u16 *dst, u32 *src, int dstPitch, int height, u8 *tbl)
 {
   int n = width / 8;
-  int y;
-  for (y = height; y > 0; y--) {
-    int x;
-    u32 *s = src;
-    u16 *d = dst;
+  int x;
+  func_sink(&src, &dstPitch, &height, &tbl);
+  while (height > 0) {
     for (x = n; x > 0; x--) {
-      d[0] = tbl[s[1] & 0x7fff] | (tbl[(s[1] >> 16) & 0x7fff] << 8);
-      d[1] = tbl[s[0] & 0x7fff] | (tbl[(s[0] >> 16) & 0x7fff] << 8);
-      s += 2;
+      dst[0] = tbl[src[1] & 0x7fff] | (tbl[(src[1] >> 16) & 0x7fff] << 8);
+      dst[1] = tbl[src[0] & 0x7fff] | (tbl[(src[0] >> 16) & 0x7fff] << 8);
+      src += 2;
     }
     dst += dstPitch;
+    height--;
   }
   return 0;
+}
+
+u32 func_00177E50(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int a7, C_00135410 *pal)
+{
+ u8 *d; u8 *s; u8 *p; u8 *q; int x; int y; u8 *tbl;
+ if (a7 && pal) { func_00176630(src, 0x22b, width, height, srcPitch, dstPitch, 0, 0, 0, dst, (int)pal); return 1; }
+ if (!(srcPitch == width && srcPitch % 8 == 0)) {
+  s = src; d = dst;
+  tbl = (u8 *)pal->func_00135410();
+  for(y = height; y > 0; y--) {
+   for(q=s,p=d,x=width; x>0; x--) { *p = tbl[*(u16 *)q]; p++; q+=2; }
+   s += srcPitch*2; d += dstPitch;
+  }
+ } else {
+  func_00177D60(width, (u16 *)dst, (u32 *)src, dstPitch, height, (u8 *)pal->func_00135410());
+ }
+ return 1;
 }
 
 u32 func_00177F50(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, u32 key)
@@ -432,5 +448,45 @@ u32 func_00178040(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
     d += dstPitch * 3;
   }
   return 1;
+}
+
+u32 func_001780F0(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch)
+{
+  u8 *d;
+  u8 *s;
+  u8 *p;
+  u8 *q;
+  int x;
+  int y;
+  s = src;
+  d = dst;
+  for (y = height; y > 0; y--) {
+    for (p = d, q = s, x = width; x > 0; x--) {
+      *(u16 *)p = ((*(u16 *)q & 0xffe0) << 1) | (*(u16 *)q & 0x1f);
+      p += 2;
+      q += 2;
+    }
+    s += srcPitch * 2;
+    d += dstPitch * 2;
+  }
+  return 1;
+}
+
+u32 func_00178180(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch)
+{
+    u16 *s = (u16 *)src;
+    u16 *d = (u16 *)dst;
+    int x;
+    int y;
+    y = height;
+    while (y > 0) {
+        for (x = 0; x < width; x++) {
+            d[x] = (u16)(((s[x] >> 1) & 0x7fe0) | (s[x] & 0x1f));
+        }
+        s += srcPitch;
+        d += dstPitch;
+        y--;
+    }
+    return 1;
 }
 
