@@ -420,8 +420,9 @@ BmxUIPageHOF4 *BmxUIPageHOF4::func_000D7AB0(int param) {
     unk2b4 = 0;
     unk2a0 = 0;
     unk29c = 0;
-    unk304 = 0;
-    unk308 = 0;
+    for (int j = 0; j < 2; j++) {
+        ((int *)&unk304)[j] = 0;
+    }
     unk2b8 = 0;
     unk2bc = 0;
     unk2c0 = 0;
