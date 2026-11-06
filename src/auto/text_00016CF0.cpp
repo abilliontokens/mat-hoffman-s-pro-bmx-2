@@ -98,10 +98,18 @@ struct C_00017600_Entry {
     char name[16];
 };
 
+extern char D_002757E8[], D_002757E0[], D_002757D8[], D_002757D0[], D_002757C8[], D_002757C0[];
+extern char D_002757B8[], D_002757B0[], D_002757A8[], D_002757A0[], D_00275798[], D_00275790[];
+extern char D_00275788[], D_00275780[], D_00275778[], D_00275770[], D_00275768[], D_00275760[];
+extern char D_00275758[], D_00275750[], D_00275748[], D_00275740[], D_00275738[], D_00275730[];
+extern char D_00275728[], D_00275720[];
+char *func_001E8920(char *dst, const char *src, int n);
+
 struct C_00017600 {
     char pad0[0x528];
     C_00017600_Entry entries[26];
     float func_00017600(const char *name);
+    void func_00016E90();
 };
 
 struct C_00017680_Target {
