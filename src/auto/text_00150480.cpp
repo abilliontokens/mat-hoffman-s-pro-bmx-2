@@ -51,6 +51,7 @@ struct C_00150810 {
     int unk48;
     int unk4C;
     int unk50;
+    __forceinline void setPos_150810(int x, int y, int z) { unk4C = z; unk44 = x; unk48 = y; }
     C_00150810 *func_00150810(int a0, float a1, float a2, float a3, float a4, float a5);
     void func_001D3F50();
 };
@@ -167,16 +168,20 @@ void *C_001507E0::func_001507E0(int flags) {
 
 C_00150810 *C_00150810::func_00150810(int a0, float a1, float a2, float a3, float a4, float a5) {
     func_001D3F50();
-    unk4C = *(int *)&a5;
-    unk44 = *(int *)&a3;
-    unk48 = *(int *)&a4;
+    int x = *(int *)&a3;
+    int y = *(int *)&a4;
+    int z = *(int *)&a5;
+    unk4C = z;
+    unk44 = x;
+    unk48 = y;
     unk2C = (a3 - a4) * a1 + a4;
     unk30 = a1;
-    unk34 = a2;
+    float t = (unk2C - a5) * (D_00275460 - a2);
     unk24 = a0;
-    unk28 = (unk2C - a5) * (D_00275460 - a2);
-    unk38 = 0x100;
     unk3C = 1;
+    unk38 = 0x100;
+    unk34 = a2;
+    unk28 = t;
     D_002EFDB8->unk2C = a0;
     unk50 = 1;
     return this;
