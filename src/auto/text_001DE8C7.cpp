@@ -240,6 +240,11 @@ void __stdcall func_001DED66(char c)
     _imp__RtlNtStatusToDosError(status);
 }
 
+/* a byte the directory-entry copy clears through a full-width bitfield */
+struct S_001DEDC3_Byte {
+    unsigned char c : 8;
+};
+
 #pragma optimize("gsy", on)
 void __stdcall func_001DEDC3(void *info, char *out)
 {
