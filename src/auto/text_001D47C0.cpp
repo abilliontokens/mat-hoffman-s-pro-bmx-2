@@ -98,10 +98,11 @@ struct __declspec(align(16)) S_001D5660_Mat {
     float m[16];
     __forceinline void identity(void)
     {
-        _mm_store_ps(&m[0], _mm_setzero_ps());
-        _mm_store_ps(&m[4], _mm_setzero_ps());
-        _mm_store_ps(&m[8], _mm_setzero_ps());
-        _mm_store_ps(&m[12], _mm_setzero_ps());
+        __m128 z = _mm_setzero_ps();
+        ((__m128 *)m)[0] = z;
+        ((__m128 *)m)[1] = z;
+        ((__m128 *)m)[2] = z;
+        ((__m128 *)m)[3] = z;
         m[0] = 1.0f;
         m[5] = 1.0f;
         m[10] = 1.0f;
@@ -480,6 +481,116 @@ int func_001D4B20(void)
     if (D_002F0630 != 0 && D_002ABD04 != 0) {
         D_002F0630->func_00149480();
     }
+    return 1;
+}
+
+int XboxRenderTarget::func_001D4B40(int *rect, int *src, int *dst, int unused)
+{
+    S_001D5660_Mat m;
+    S_001D5660_Mat * volatile p = &m;
+    int v[4];
+    int r[4];
+    float u0, u1, v0, v1;
+    float f0, f1, f2, f3;
+    int flag;
+    int th, tw;
+    S_001D4B40_Vtx *vt;
+
+    p->identity();
+    if (dst) {
+        v[0] = dst[0];
+        v[2] = dst[2];
+        v[1] = dst[1];
+        v[3] = dst[3];
+    } else {
+        v[0] = 0;
+        v[2] = src[2];
+        v[1] = 0;
+        v[3] = src[3];
+    }
+    if (rect) {
+        r[0] = (int)((float)rect[0] * D_002ABD1C);
+        r[2] = (int)((float)rect[2] * D_002ABD1C);
+        r[1] = (int)((float)rect[1] * D_002ABD20);
+        r[3] = (int)((float)rect[3] * D_002ABD20);
+    } else {
+        r[0] = 0;
+        r[2] = 0x280;
+        r[1] = 0;
+        r[3] = 0x1c0;
+    }
+
+    D_0020C6DC |= 1;
+    D_0020C6E0 = 3;
+    D_0020C6E4 = 3;
+    D_0020C6EC = 1;
+    D_0020C6F0 = 1;
+    func_001FD020((int)D_00040304, 1);
+    func_001FD020((int)D_00040344, 0x302);
+    func_001FD020((int)D_00040348, 0x303);
+    D_0020C6DC |= 0x2000;
+    D_0020CA50 = 0;
+    func_001FD020((int)D_00040300, 0);
+    func_001FE490(0);
+    D_0020C6DC |= 0x800;
+    D_0020C710 = 4;
+    D_0020C718 = 2;
+    D_0020C71C = 0;
+    D_0020C720 = 1;
+    func_00200390(0, *(int *)((char *)src + 0xb8));
+
+    f0 = (float)r[0];
+    f2 = (float)r[2];
+    f1 = (float)r[1];
+    f3 = (float)r[3];
+
+    flag = 1;
+    switch (*(int *)((char *)src + 0xa4)) {
+    case 6:
+    case 12:
+    case 14:
+    case 15:
+        flag = 0;
+        break;
+    case 18:
+    case 30:
+        flag = 1;
+        break;
+    }
+
+    th = 0;
+    tw = (int)D_0028F570;
+    if (f4) {
+        th = ((S_001D4B40_Dev *)f4)->f1e0;
+        tw = ((S_001D4B40_Dev *)f4)->f1e4;
+    }
+    m.m[3] = (float)th;
+    m.m[7] = (float)tw;
+
+    if (flag) {
+        u0 = (float)v[0];
+        u1 = (float)v[2];
+        v0 = (float)v[1];
+        v1 = (float)v[3];
+    } else {
+        u0 = (float)v[0] / (float)src[2];
+        u1 = (float)v[2] / (float)src[2];
+        v0 = (float)v[1] / (float)src[3];
+        v1 = (float)v[3] / (float)src[3];
+    }
+
+    vt = (S_001D4B40_Vtx *)func_001FF410(f8C, 0);
+    vt[0].x = f0; vt[0].y = f3; vt[0].z = 0.5f; vt[0].color = 0xffffffff; vt[0].u = u0; vt[0].v = v1;
+    vt[1].x = f0; vt[1].y = f1; vt[1].z = 0.5f; vt[1].color = 0xffffffff; vt[1].u = u0; vt[1].v = v0;
+    vt[2].x = f2; vt[2].y = f3; vt[2].z = 0.5f; vt[2].color = 0xffffffff; vt[2].u = u1; vt[2].v = v1;
+    vt[3].x = f2; vt[3].y = f1; vt[3].z = 0.5f; vt[3].color = 0xffffffff; vt[3].u = u1; vt[3].v = v0;
+
+    ((C_0014A650 *)f6C)->func_0014A650((int)f84);
+    ((C_00142D00 *)f70)->func_00142D00((int)f88);
+    func_001FEC30(0x22, &m);
+    func_001FEE00(0, (int)f8C, 0x18);
+    func_00200A90(6, 0, 4);
+    func_001FE490(1);
     return 1;
 }
 
