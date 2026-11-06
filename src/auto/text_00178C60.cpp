@@ -86,7 +86,12 @@ static __forceinline int edge_1793E0(Vec4 *p, Vec4 *q, Vec4 *r, Vec4 *n)
     t.z = r->z - p->z;
     t.w = 1.0f;
     b = t;
-    cross_179950(&c.x, &a.x, &b.x);
+    _mm_storeu_ps(&c.x, _mm_shuffle_ps(
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a.x), _mm_shuffle_ps(_mm_loadu_ps(&b.x), _mm_loadu_ps(&b.x), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(&b.x), _mm_shuffle_ps(_mm_loadu_ps(&a.x), _mm_loadu_ps(&a.x), 0xc9))),
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a.x), _mm_shuffle_ps(_mm_loadu_ps(&b.x), _mm_loadu_ps(&b.x), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(&b.x), _mm_shuffle_ps(_mm_loadu_ps(&a.x), _mm_loadu_ps(&a.x), 0xc9))),
+        0xc9));
     float d = c.y * n->y + c.x * n->x + c.z * n->z;
     return *(int *)&d >= 0;
 }
@@ -137,5 +142,40 @@ void C_00179820::func_00179880(void) {
     _mm_store_ss(&b, _mm_sqrt_ss(_mm_set_ss(dy2 * dy2 + dx2 * dx2 + dz2 * dz2)));
     _mm_store_ss(&m, _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b)));
     fB4 = m;
+}
+
+void C_00179820::func_00179950(void) {
+    float u[4], b[4], d[4];
+    int i;
+    u[0] = v24[1].x - v24[0].x;
+    u[1] = v24[1].y - v24[0].y;
+    u[2] = v24[1].z - v24[0].z;
+    u[3] = 1.0f;
+    b[0] = v24[2].x - v24[0].x;
+    b[1] = v24[2].y - v24[0].y;
+    b[2] = v24[2].z - v24[0].z;
+    b[3] = 1.0f;
+    cross_179950(&v64.x, u, b);
+    func_00179370(&v64, &v64);
+    for (i = 0; i < 4; i++) {
+        Vec4 *n = &v24[(i + 1) % 4];
+        d[0] = n->x - v24[i].x;
+        d[1] = n->y - v24[i].y;
+        d[2] = n->z - v24[i].z;
+        d[3] = 1.0f;
+        cross_179950(&v74[i].x, d, &v64.x);
+        __m128 v = _mm_loadu_ps(&v74[i].x);
+        __m128 sq = _mm_mul_ps(v, v);
+        __m128 len = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
+        len = _mm_add_ss(len, _mm_shuffle_ps(sq, sq, 0xe1));
+        __m128 minv = _mm_load_ss(&D_00288EC0);
+        __m128 cmp = _mm_cmplt_ss(len, minv);
+        len = _mm_add_ss(len, _mm_and_ps(cmp, minv));
+        __m128 r = _mm_rsqrt_ss(len);
+        __m128 t = _mm_mul_ss(_mm_mul_ss(len, r), r);
+        __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_00288EA0)), _mm_sub_ss(_mm_load_ss(&D_00288EB0), t));
+        scale = _mm_shuffle_ps(scale, scale, 0);
+        _mm_storeu_ps(&v74[i].x, _mm_mul_ps(scale, v));
+    }
 }
 
