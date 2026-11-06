@@ -34,6 +34,10 @@ struct C_001B4A70 {
     char *func_001B4A70(char *delims);
 };
 
+static __forceinline int Tok_Advance(char *&p) {
+    return *++p;
+}
+
 /* DynamicModelTempData */
 struct C_001B4AF0 {
     void *vtbl;
@@ -314,6 +318,9 @@ C_001B4A40Ret *C_001B4A40Ret::Tokenizer_SetString(const char *str)
 char *C_001B4A70::func_001B4A70(char *delims) {
     char *p = f4;
     char c;
+    int d;
+    char *r;
+
     if (p == 0) {
         return 0;
     }
@@ -328,9 +335,11 @@ char *C_001B4A70::func_001B4A70(char *delims) {
             f4 = 0;
             return f0;
         }
-        while (func_001E9260(delims, c) != 0) {
+        r = func_001E9260(delims, c);
+        while (r != 0) {
             f4++;
-            c = *f4;
+            d = *f4;
+            r = func_001E9260(delims, d);
         }
     }
     return f0;
