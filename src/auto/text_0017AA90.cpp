@@ -290,6 +290,107 @@ C_0017AA90 *C_0017AA90::func_0017ABE0(const char *name)
     return this;
 }
 
+void C_0017AA90::func_0017AD20()
+{
+    V4_0017AD20 ext;
+    V4_0017AD20 pt;
+    V4_0017AD20 corners[3];
+    float mnx, mny, mnz;
+    float mxx, mxy, mxz;
+    int i;
+
+    if (fF0 == 0) {
+        return;
+    }
+    mnx = 3.402823466e+38f;
+    mny = 3.402823466e+38f;
+    mnz = 3.402823466e+38f;
+    mxx = -3.402823466e+38f;
+    mxy = -3.402823466e+38f;
+    mxz = -3.402823466e+38f;
+    for (i = 0; i < fF4; i++) {
+        Obj_0017AD20 *obj = ((Node_0017AD20 *)fF0[i])->f4;
+        V4_0017AD20 a;
+        V4_0017AD20 b;
+        V4_0017AD20 t1, t2, t3;
+
+        obj->func_00198B70(&a, &b);
+        func_0001C680(&t1, a, obj->mat);
+        func_0001C680(&t2, b, obj->mat);
+        func_0001C680(&t3, pt, obj->mat);
+        ext.x = ((t1.x < 0 ? -t1.x : t1.x) + (t2.x < 0 ? -t2.x : t2.x)) + (t3.x < 0 ? -t3.x : t3.x);
+        ext.y = ((t1.y < 0 ? -t1.y : t1.y) + (t2.y < 0 ? -t2.y : t2.y)) + (t3.y < 0 ? -t3.y : t3.y);
+        ext.z = ((t1.z < 0 ? -t1.z : t1.z) + (t2.z < 0 ? -t2.z : t2.z)) + (t3.z < 0 ? -t3.z : t3.z);
+        Xform_0017AD20(&pt.x, &pt.x, obj->mat);
+        if (pt.x - ext.x < mnx) mnx = pt.x - ext.x;
+        if (pt.y - ext.y < mny) mny = pt.y - ext.y;
+        if (pt.z - ext.z < mnz) mnz = pt.z - ext.z;
+        if (pt.x + ext.x > mxx) mxx = pt.x + ext.x;
+        if (pt.y + ext.y > mxy) mxy = pt.y + ext.y;
+        if (pt.z + ext.z > mxz) mxz = pt.z + ext.z;
+    }
+    fD0 = mnx;
+    fD4 = mny;
+    fD8 = mnz;
+    fDC = 1.0f;
+    fE0 = mxx;
+    fE4 = mxy;
+    fE8 = mxz;
+    fEC = 1.0f;
+    fC0 = (mxx + mnx) * D_002755E8;
+    fC4 = (mxy + mny) * D_002755E8;
+    fC8 = (mxz + mnz) * D_002755E8;
+    fB0 = (mxx - mnx) * D_002755E8;
+    fB4 = (mxy - mny) * D_002755E8;
+    fB8 = (mxz - mnz) * D_002755E8;
+    {
+        float sq = fB0 * fB0 + fB4 * fB4 + fB8 * fB8;
+        float len;
+        _mm_store_ss(&len, _mm_sqrt_ss(_mm_load_ss(&sq)));
+        f12C = len * f134;
+        f130 = D_00275460 / f12C;
+    }
+}
+
+int C_0017AA90::func_0017B800()
+{
+    if (D_002A8CDC && fF4) {
+        if (!fFC) {
+            C_0017AA90_Res *res = D_002A829C->f14[f154].f4;
+            int oldWidth = D_002EFDB8->f8;
+            int oldHeight = D_002EFDB8->fC;
+            D_002EFDB8->f8 = f148 = res->f4C->f4;
+            D_002EFDB8->fC = f14C = res->f4C->f8;
+            char *oldCamera = D_002EFDB8->f4;
+            ShadowCamera *camera = (ShadowCamera *)func_001E8A44(0x2d0);
+            fFC = (char *)(camera ? camera->init() : 0);
+            if (!fFC || !((ShadowCamera *)fFC)->func_0012B410(1.0f, f148, f14C))
+                return 0;
+            D_002EFDB8->f8 = oldWidth;
+            D_002EFDB8->fC = oldHeight;
+            D_002EFDB8->func_00182830(oldCamera);
+            D_002EFDB8->v12(oldCamera + 0x1e0);
+            ((ShadowCamera *)fFC)->func_0012AAB0(0.3f);
+            int width = f148;
+            while ((width >>= 1) != 0)
+                ++f114;
+            f104 = 0;
+            f108 = 0;
+            f10C = f148 - 1;
+            f110 = f14C - 1;
+        }
+        func_0017AD20();
+        f144 = 0;
+        for (int i = 0; i < f13C; ++i) {
+            if (f140[i]->v27()) {
+                f140[i]->v28();
+                f144 |= f140[i]->v29();
+            }
+        }
+    }
+    return 1;
+}
+
 C_0017B9E0* C_0017B9E0::func_0017B9E0(int a0, int a1) {
     unk0 = a0;
     unk4 = a1;
