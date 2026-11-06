@@ -39,11 +39,20 @@ extern unsigned short D_002BA160;
 
 void func_001E891B(void *ptr);
 
+inline void *operator new(unsigned int, void *place) { return place; }
+
+struct V4_0002B1C0 {
+    float x, y, z, w;
+    V4_0002B1C0() { x = y = z = 0.0f; w = 1.0f; }
+};
+
 void *C_0002C100::func_0002B1C0(int param)
 {
-    unsigned int *p = (unsigned int *)this;
+    unsigned int * volatile p = (unsigned int *)this;
     unsigned int *q;
     int i;
+    S_0002B1C0_Mat mat1;
+    S_0002B1C0_Mat mat2;
     func_00157600(param);
     p[0] = (unsigned int)&D_0027661C;
     p[0xd] = 0; p[0xc] = 0; p[0xb] = 0; p[0xe] = 0x3f800000;
@@ -106,6 +115,14 @@ void *C_0002C100::func_0002B1C0(int param)
     p[0x43] = D_002A1120; p[0x44] = D_002A1124; p[0x45] = D_002A1128; p[0x46] = D_002A112C;
     p[0x47] = D_002A1110; p[0x48] = D_002A1114; p[0x49] = D_002A1118; p[0x4a] = D_002A111C;
     p[0x4b] = D_002A1110; p[0x4c] = D_002A1114; p[0x4d] = D_002A1118; p[0x4e] = D_002A111C;
+    mat1.r0 = _mm_setzero_ps(); mat1.r1 = _mm_setzero_ps(); mat1.r2 = _mm_setzero_ps(); mat1.r3 = _mm_setzero_ps();
+    ((float *)&mat1)[0] = 1.0f; ((float *)&mat1)[5] = 1.0f; ((float *)&mat1)[10] = 1.0f; ((float *)&mat1)[15] = 1.0f;
+    mat2 = mat1;
+    ((C_000264C0 *)((char *)this + 0x160))->func_000264C0(&mat2);
+    mat2.r0 = _mm_setzero_ps(); mat2.r1 = _mm_setzero_ps(); mat2.r2 = _mm_setzero_ps(); mat2.r3 = _mm_setzero_ps();
+    ((float *)&mat2)[0] = 1.0f; ((float *)&mat2)[5] = 1.0f; ((float *)&mat2)[10] = 1.0f; ((float *)&mat2)[15] = 1.0f;
+    mat1 = mat2;
+    ((C_000264C0 *)((char *)this + 0x1a0))->func_000264C0(&mat1);
     ((unsigned int *)((char *)this + 0x688))[0] = D_002A10F0; ((unsigned int *)((char *)this + 0x688))[1] = D_002A10F4; ((unsigned int *)((char *)this + 0x688))[2] = D_002A10F8; ((unsigned int *)((char *)this + 0x688))[3] = D_002A10FC;
     ((unsigned int *)((char *)this + 0x7c))[0] = D_002A10F0; ((unsigned int *)((char *)this + 0x7c))[1] = D_002A10F4; ((unsigned int *)((char *)this + 0x7c))[2] = D_002A10F8; ((unsigned int *)((char *)this + 0x7c))[3] = D_002A10FC;
     p[0x67c/4] = 0; p[0x680/4] = 0; p[0x684/4] = 0; p[0x490/4] = 0; p[0x5c8/4] = 0; p[0x698/4] = 0;
