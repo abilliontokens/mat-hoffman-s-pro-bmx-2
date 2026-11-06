@@ -261,6 +261,7 @@ struct C_52F90 {
     C_52F90_S *f170;
     char pad174[0x44];
     void *f1B8;
+    char pad1BC[4];
     C_52F90_U *f1C0;
     C_52F90_Inner *f1C4;
     int f1C8;
@@ -611,6 +612,49 @@ int C_52F90::func_00052F90(int a)
                 ((C_52F90_VT6 *)f1B8)->v5(flag);
                 f290->f63C = flag;
             }
+            if (f16C) {
+                if (f28C == 0) {
+                    C_52F90_2E0 *p = root->f2E0;
+                    if (p->f20 == 0) {
+                        if (f128 <= D_00275544)
+                            f28C = 1;
+                    } else if (f124 > p->f10) {
+                        f28C = 1;
+                    }
+                }
+                flag = 0;
+                if (f64->f4E0->f1A8->func_00108660()) {
+                    f128 = 0.0f;
+                    f124 = root->f2E0->f10;
+                    flag = 1;
+                }
+                if (f28C) {
+                    f64->f4E0->f1A8->func_001084E0();
+                    if (f28C && flag && f358 == 0) {
+                        if (f68->func_0005B960(3, (float)f64->f4E0->f1A8->fA58) ||
+                            f68->func_0005B960(1, f64->f4E0->f1A8->fA4C) ||
+                            f68->func_0005B960(4, (float)f64->f4E0->f1A8->fA40) ||
+                            f68->func_0005B960(2, f64->f4E0->f1A8->f1058) ||
+                            f68->func_0005B960(0, f64->f4E0->f1A8->fA54) ||
+                            f68->func_0005B960(5, (float)f64->f4E0->f1A8->fA5C)) {
+                            f164->func_0006E970(0);
+                        } else {
+                            f16C->func_000619B0(1);
+                            f16C->func_00064A40();
+                            ((C_52F90_VT40 *)this)->v39();
+                        }
+                        root->f4->func_0001D330();
+                        f64->f4C0->v28();
+                        if (f1C4 != 0)
+                            f1C4->func_001041C0();
+                    }
+                }
+            }
+            func_00032530();
+            if (f1C0 != 0)
+                f1C0->func_0009CAD0(a, f64->f3B4, f64->f534);
+            if (f358 != 0)
+                func_000526D0();
         }
     }
     return 1;
