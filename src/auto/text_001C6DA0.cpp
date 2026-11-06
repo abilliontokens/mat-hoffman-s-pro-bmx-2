@@ -127,23 +127,18 @@ static C_001C65E0 *init_001C7250(C_001C65E0 *p)
     return p;
 }
 
-static inline int entry_unk40(C_001C6DA0_Entry *base, int off)
-{
-    return *(int *)((char *)base + off + 0x40);
-}
-
 void C_001C6DA0::func_001C6DA0(int idx, int arg)
 {
-    int off;
-    int mode;
-    if ((mode = unk3C->unk10, off = idx * 0x58, mode) == 0) {
+    int mode = unk3C->unk10;
+    int off = idx * 0x58;
+    if (mode == 0) {
         unk3C->func_00166C80(*(int *)((char *)unkC0 + off + 0x40), arg);
     } else {
         unk3C->func_00164820(*(int *)((char *)unkC0 + off + 0x40));
     }
     int old = unkC4;
     unkC4 = idx;
-    unkCC = 0;
+    unkCC = mode & 0;
     unkC8 = old;
     unkD4 = D_002AB798;
 }
