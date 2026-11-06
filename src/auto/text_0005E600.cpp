@@ -370,7 +370,7 @@ struct C_0005EDC0 {
     virtual void v25();
     virtual void v26();
     virtual void v27();
-    char pad74[0x94 - 0x74];
+    char pad4[0x94 - 4];
     Img_5ED *unk94;
     Img_5ED *unk98;
     char pad9C[0x10];
