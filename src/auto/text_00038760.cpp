@@ -57,7 +57,7 @@ static __forceinline void Round_00038850(int *out, float value)
     int rounded;
     c.out = out;
     c.v = value;
-    rounded = (int)c.v;
+    rounded = _mm_cvtss_si32(*(__m128 *)&c.v);
     _ReadWriteBarrier();
     *(*(int * volatile *)&c.out) = rounded;
 }
