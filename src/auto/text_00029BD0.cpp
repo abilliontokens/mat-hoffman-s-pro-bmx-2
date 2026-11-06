@@ -54,6 +54,7 @@ struct C_0002A010 {
  char pad630[4]; int f634; float f638; float f63c; int f640;
  char pad644[0x744-0x644]; float f744;
  void func_0002A010(float dt);
+ void AdvanceTime(float dt) { f63c += dt / D_002A1160; }
 };
 extern float D_002766C0, D_002766B0, D_002A1160, D_00275548, D_002A115C, D_002A1158;
 extern double D_002766B8, D_002766A8;
