@@ -209,8 +209,8 @@ struct Icon_7D {
     float f40;
     float f44;
     float f48;
-    float f4c;
-    float f50;
+    volatile float f4c;
+    volatile float f50;
     void *f54;
     u8 f58;
     char pad59[0xb];
