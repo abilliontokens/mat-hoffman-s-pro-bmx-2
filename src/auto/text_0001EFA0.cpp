@@ -10,7 +10,7 @@ struct AirBody {
 };
 struct AirPhysics { char pad0[0x2c]; float f2c; };
 struct AirRider {
- char pad0[0x1e4]; AirPhysics *physics; char *matrix; char pad1ec[0x490-0x1ec]; int f490; char pad494[0x60]; int f4f4,f4f8;
+ char pad0[0x1e4]; AirPhysics *physics; char *matrix; char pad1ec[0x490-0x1ec]; int f490; char pad494[0x60]; int f4f4,f4f8; char pad4fc[0x684-0x4fc]; int f684;
  void func_00027C50(float);
 };
 struct BmxAirborneControlModel {
