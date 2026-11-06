@@ -3,10 +3,10 @@
 
 extern int D_0027AC78;
 extern int D_002A5558;
-extern int D_002A2528;
-extern int D_002A252C;
-extern int D_002A2530;
-extern int D_002A2534;
+extern f32 D_002A2528;
+extern f32 D_002A252C;
+extern f32 D_002A2530;
+extern f32 D_002A2534;
 extern int D_0027AC8C;
 void func_001ADCC0(void *dst, int n, void *src, void *x);
 
