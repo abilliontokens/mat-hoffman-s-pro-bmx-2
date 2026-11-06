@@ -13,6 +13,7 @@ struct Vec4W {
     float x; float y; float z; float w;
     __forceinline Vec4W() {}
     __forceinline Vec4W(float ax, float ay, float az) { x = ax; y = ay; z = az; w = 1.0f; }
+    __forceinline Vec4W(float ax, float ay, float az, float aw) { z = az; y = ay; x = ax; w = aw; }
     __forceinline Vec4W operator-(const Vec4W &b) const { return Vec4W(x - b.x, y - b.y, z - b.z); }
     __forceinline Vec4W operator+(const Vec4W &b) const { return Vec4W(x + b.x, y + b.y, z + b.z); }
 };
