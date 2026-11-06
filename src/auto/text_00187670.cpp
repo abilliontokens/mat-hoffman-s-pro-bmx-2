@@ -402,6 +402,23 @@ int C_00187670::func_00187670(C_001877F0Param *stream)
     return 1;
 }
 
+/* 0x187774, merged into func_00187670 by the analysis (draft, unverified until the boundary is cut) */
+int C_00187670::func_00187774(int a, int b, int c, int d)
+{
+    int i;
+
+    for (i = 0; i < f24; i++) {
+        S_00187670_Elem *e = &f28[i];
+        int len = strlen(e->fC->name);
+        if (len != 0) {
+            e->v2(a, b, c, d);
+        } else {
+            e->v1(b, d);
+        }
+    }
+    return 1;
+}
+
 int C_001877F0::func_001877F0(C_001877F0Param *param)
 {
     char buf[0x104];
