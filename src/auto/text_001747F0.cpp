@@ -27,6 +27,11 @@ struct Body_001747F0 {
     void func_0019AC50();
 };
 Vec4_001747F0 *func_0011ADD0(Vec4_001747F0 *out, void *in);
+void func_0001C680(Vec4_001747F0 *out, Vec4_001747F0 m, void *p);
+Vec4_001747F0 *func_001742F0(Vec4_001747F0 *out, Vec4_001747F0 *a, Vec4_001747F0 *b);
+Vec4_001747F0 *func_00174110(Vec4_001747F0 *out, Vec4_001747F0 *in);
+Mat4_001747F0 *func_001741C0(Mat4_001747F0 *out, Vec4_001747F0 *in);
+float func_00011170(Vec4_001747F0 *v);
 struct R_001747F0 {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
     virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
@@ -101,6 +106,44 @@ struct C_00175110 {
     void func_00174580(void);
     void *func_00175110(int a);
 };
+
+int R_001747F0::func_001747F0(int a)
+{
+    Vec4_001747F0 t1;
+    Vec4_001747F0 t2;
+    float len2;
+    float s;
+
+    if (p22C == 0 || i1B4 == 0) return 0;
+    v5C = v238;
+    v4C = *p22C->func_00197F70(&t1, &v190);
+    v1A0 = *func_0011ADD0(&t2, (char *)p22C + 0xf0);
+    if (f210 > D_00275544) {
+        v6C.x = f214 * v130.x;
+        v6C.y = f214 * v130.y;
+        v6C.z = f214 * v130.z;
+        v6C.w = 1.0f;
+    }
+    if (i280 == 0) { v238.x = 0; v6C.x = 0; v2BC.x = 0; }
+    if (i284 == 0) { v238.y = 0; v6C.y = 0; v2BC.y = 0; }
+    if (i288 == 0) { v238.z = 0; v6C.z = 0; v2BC.z = 0; }
+    len2 = v6C.x * v6C.x + v6C.y * v6C.y + v6C.z * v6C.z;
+    if (len2 > f218) {
+        s = AsmSqrtF(f218 / len2);
+        v6C.x *= s;
+        v6C.y *= s;
+        v6C.z *= s;
+    } else {
+        v6C = D_002A8C18;
+        v2B0.x = 0;
+        v2B0.y = 0;
+        v2B0.z = 0;
+    }
+    v2B0.x = v6C.x;
+    v2B0.y = v6C.y;
+    v2B0.z = v6C.z;
+    return 1;
+}
 
 void *C_00175110::func_00175110(int a) {
     func_00171340(a);
