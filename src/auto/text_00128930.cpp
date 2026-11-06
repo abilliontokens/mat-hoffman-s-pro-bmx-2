@@ -198,7 +198,8 @@ static inline void Xform_00129510(S_00129510_V4 *out, const S_00129510_M44 *mat,
     __m128 r2 = _mm_mul_ps(mat->m[2], t);
     __m128 lo = _mm_unpacklo_ps(r0, r1);
     __m128 hi = _mm_unpackhi_ps(r0, r1);
-    __m128 junk = _mm_movehl_ps(r2, r2);
+    __m128 junk;
+    junk = _mm_movehl_ps(junk, r2);
     lo = _mm_add_ps(lo, hi);
     r2 = _mm_add_ps(r2, junk);
     hi = _mm_movehl_ps(hi, lo);
@@ -478,7 +479,7 @@ void func_00129510(S_00129510_Node **a0, S_00129510_Leaf **a1, S_00129510_M44 *m
     S_00129510_Col c;
     S_00129510_V4 s;
     S_00129510_V4 r;
-    float *f;
+    S_00129510_V4 a;
     int idx;
     int i;
 
@@ -489,15 +490,7 @@ void func_00129510(S_00129510_Node **a0, S_00129510_Leaf **a1, S_00129510_M44 *m
         t[i].i2 = tris[i * 3 + 2];
         func_001619D0(&verts[tris[i * 3]], &verts[tris[i * 3 + 1]], &verts[tris[i * 3 + 2]], &t[i].normal, &t[i].d);
     }
-    m->m[0] = _mm_setzero_ps();
-    m->m[1] = _mm_setzero_ps();
-    m->m[2] = _mm_setzero_ps();
-    m->m[3] = _mm_setzero_ps();
-    f = (float *)m;
-    f[0] = 1.0f;
-    f[5] = 1.0f;
-    f[10] = 1.0f;
-    f[15] = 1.0f;
+    Identity_00129510(m);
     inv = *m;
     func_0011AC30(&inv, &inv);
     for (i = 0; i < nverts; i++) {
@@ -505,10 +498,16 @@ void func_00129510(S_00129510_Node **a0, S_00129510_Leaf **a1, S_00129510_M44 *m
     }
     r.w = 1.0f;
     for (i = 0; i < ntri; i++) {
+        S_00129510_V4 *v0 = &verts[t[i].i0];
+        S_00129510_V4 *v1 = &verts[t[i].i1];
+        S_00129510_V4 *v2 = &verts[t[i].i2];
         func_0001C680(&t[i].normal, t[i].normal, &inv);
-        s.x = verts[t[i].i1].x + verts[t[i].i0].x + verts[t[i].i2].x;
-        s.y = verts[t[i].i0].y + verts[t[i].i1].y + verts[t[i].i2].y;
-        s.z = verts[t[i].i0].z + verts[t[i].i1].z + verts[t[i].i2].z;
+        a.x = v1->x + v0->x;
+        a.y = v0->y + v1->y;
+        a.z = v0->z + v1->z;
+        s.x = a.x + v2->x;
+        s.y = a.y + v2->y;
+        s.z = a.z + v2->z;
         r.x = s.x * D_00283F50;
         r.y = s.y * D_00283F50;
         r.z = s.z * D_00283F50;
