@@ -103,8 +103,6 @@ struct C_000E86C0 {
     void func_000E8630(void);
 };
 
-extern "C" int __cdecl strcmp(const char *a, const char *b);
-#pragma intrinsic(memcmp)
 #pragma intrinsic(strcmp)
 void C_000E7AD0::func_000E7AD0()
 {
