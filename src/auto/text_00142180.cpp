@@ -727,19 +727,14 @@ void C_00142D00::func_00142D00(void *a0) {
 }
 
 void C_00142D20::func_00142D20() {
-    int i = 0;
-    if (i < unk8) {
-        do {
-            C_00142D90_Elem *e = &unk14[i];
-            if (e->unkC > 0 && e->unk4 == 0) {
-                C_00142C70 *p = (C_00142C70 *)func_001E8A44(0xf0);
-                C_00142C70 *obj = p ? (C_00142C70 *)p->func_00142C70() : 0;
-                ((C_00142C80 *)obj)->func_00142C80(e->unk0, i);
-                e->unk4 = (int)obj;
-            }
-            i++;
-        } while (i < unk8);
-    }
+ for (int i=0; i<unk8; i++) {
+ if (unk14[i].unkC > 0 && unk14[i].unk4 == 0) {
+ void *mem=func_001E8A44(0xf0);
+ C_00142C80 *obj=mem ? (C_00142C80 *)((C_00142C70 *)mem)->func_00142C70() : 0;
+ obj->func_00142C80(unk14[i].unk0,i);
+ unk14[i].unk4=(int)obj;
+ }
+ }
 }
 
 void C_00142DE0::func_00142DE0() {
