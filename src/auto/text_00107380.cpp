@@ -24,6 +24,11 @@ struct Obj_107AE0 {
  void func_001994C0(int,Vec_107AE0*,Vec_107AE0*);
  void func_00199110(int,Vec_107AE0*,Vec_107AE0*,int,int,int);
  void func_001A0C90(Vec_107AE0);
+ void func_00197B40(Vec_107AE0*,Vec_107AE0*);
+ void func_00197E70(Vec_107AE0*);
+ void func_00199CF0(Vec_107AE0,float);
+ void func_001824E0(Vec_107AE0*,float,float,float);
+ float func_000260F0();
 };
 struct Model_107AE0 {
  virtual void vf0();
@@ -225,6 +230,46 @@ void C_00107A40::func_00107AB0(void) {
     fa0c->vf4();
     fa10->vf4();
     fa14->vf4();
+}
+
+int C_00107FB0::func_00107FB0(void)
+{
+    float x = f9e8->f24;
+    float y = f9ec->f24;
+    float len;
+    float a;
+    int b0, b1, b2, b3;
+
+    length_00107FB0(&len, x, y);
+    a = func_0014FBA0(-y, x);
+    if (len > D_00279B54) {
+        if (a < D_00282A98 && a > D_00282A94) return 5;
+        if (a < D_00282A90 && a > D_00282A98) return 0;
+        if (a < D_00282A8C && a > D_00282A90) return 4;
+        if (a < D_00282A88 && a > D_00282A8C) return 3;
+        if (a < D_00282A84 || a > D_00282A88) return 7;
+        if (a < D_00282A80 && a > D_00282A84) return 2;
+        if (a < D_00282A7C && a > D_00282A80) return 6;
+        if (a < D_00282A94 && a > D_00282A7C) return 1;
+        return -1;
+    }
+    b0 = D_002A8490->f8->vf4(0, 2, 0x3f, f970);
+    b1 = D_002A8490->f8->vf4(1, 2, 0x3f, f970);
+    b2 = D_002A8490->f8->vf4(2, 2, 0x3f, f970);
+    b3 = D_002A8490->f8->vf4(3, 2, 0x3f, f970);
+    if (b2) {
+        if (b0) return 3;
+        if (b1) return 0;
+        return 4;
+    }
+    if (b3) {
+        if (b0) return 2;
+        if (b1) return 1;
+        return 6;
+    }
+    if (b0) return 7;
+    if (b1) return 5;
+    return -1;
 }
 
 int C_00108270::func_00108270(int a, int b)
