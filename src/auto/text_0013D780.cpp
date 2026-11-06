@@ -187,20 +187,258 @@ struct C_0013DFF0 {
     int func_0013C5D0(C_0013DFF0_elem *e, int a2);
 };
 
+extern "C" unsigned int strlen(const char *s);
+extern "C" char *strcpy(char *d, const char *s);
 int C_0013D780::func_0013D780(char *name, int a2, int a3, int *a4, void *a5, int a6, int *a7, int a8)
 {
-    if (a8 == 0 && count > 1) {
-        S_0013D780_Ent *e = ents;
-        S_0013D780_Ent *last = &ents[count - 1];
-        do {
-            if (e->name && func_001EA426(e->name, (int)name) == 0) {
-                if (!(e->flagsC & 0x20)) return 1;
-                func_0013C5D0(e, 1);
-            }
-            e++;
-        } while (e != last + 1);
+    int result = 1;
+    int selected = -1;
+    int remain = 0;
+    int flags = 0;
+    int fileSize = 0;
+    char key = 0;
+    void *fp = 0;
+    int idx;
+    int i;
+    int ok;
+    int version;
+    int hdr[2];
+    int hdr2[2];
+    int chunk[2];
+    char buf[256];
+    S_0013D780_Ent *row;
+    char *cacheBuf;
+    char *ptr;
+    char *end;
+    int cnt;
+    int n;
+    int field1;
+    int field2;
+
+    if (a8 == 0) {
+        if (count > 1) {
+            S_0013D780_Ent *e = ents;
+            S_0013D780_Ent *last = &ents[count - 1];
+            do {
+                if (e->name && func_001EA426(e->name, (int)name) == 0) {
+                    if (!(e->flagsC & 0x20)) return 1;
+                    func_0013C5D0(e, 1);
+                }
+                e++;
+            } while (e != last + 1);
+        }
+        if (active != -1) {
+            caches[active].f4 = -1;
+            selected = active;
+            caches[active].f8 = -0x6000;
+            active = -1;
+            goto have_cache;
+        }
     }
-    return 0;
+    {
+        int found = 0;
+        i = 0;
+        do {
+            int st = caches[i].f4;
+            if (st != -2 && st != -1 && !(entries[st].f18 & 4)) {
+                caches[i].f8 = -0x6000;
+                caches[i].f4 = -1;
+                selected = i;
+                found = 1;
+            }
+            i++;
+        } while (i < 8 && !found);
+        if (!found) selected = -1;
+    }
+have_cache:
+    if (cur == -1) {
+        count++;
+        ents = (S_0013D780_Ent *)func_001E83E8(ents, count * 40);
+        if (ents == 0) return 0;
+        idx = count - 1;
+        row = &ents[idx];
+        row->flagsC = 1;
+        row->f10 = 0;
+        row->f0 = idx;
+        row->name = 0;
+        row->f8 = 0;
+        row->f14 = 0;
+        row->f24 = 0;
+    } else {
+        idx = cur;
+        cur = -1;
+        if (count > 1) {
+            i = 0;
+            for (;;) {
+                i++;
+                if (i >= count) break;
+                if (ents[i].flagsC & 1) { cur = i; break; }
+            }
+        }
+    }
+    fp = func_0014FDF0(name, D_00275FB4);
+    if (fp == 0) { result = 0; goto done; }
+    func_0014FED0(fp, 0, 0);
+    if (func_0014FE60(hdr, 8, fp) != 8) { result = 0; goto close_done; }
+    version = hdr[0];
+    fileSize = hdr[1];
+    if (version < 2 || version > 3) { result = 0; goto close_done; }
+    flags = 0;
+    if (a4) *a4 = 0;
+    if (version != 2) {
+        func_0014FE60(hdr2, 8, fp);
+        fileSize -= 8;
+        if (a4) *a4 = hdr2[0];
+        flags = hdr2[1];
+    }
+    if (a3 != 0) {
+        if ((flags & 0x80) == 0 || !(flags & 0x400)) { result = 0; goto close_done; }
+        key = func_0013AB60(name);
+    }
+    if (flags & 0x40) {
+        int extra;
+        func_0014FE60(&extra, 4, fp);
+        func_0014FED0(fp, extra, 1);
+        fileSize += -4 - key;
+    }
+    if (a6 != 0) {
+        n = a6 < fileSize ? a6 : fileSize;
+        if (n > 0) {
+            func_0014FE60(a5, n, fp);
+            *a7 = n;
+        } else {
+            *a7 = 0;
+        }
+        fileSize -= n;
+    }
+    if (fileSize > 0) func_0014FED0(fp, fileSize, 1);
+    func_0014FE60(chunk, 8, fp);
+    field1 = chunk[0];
+    field2 = chunk[1];
+    chunk[1] = D_0014FEE0(fp) + field2;
+    ok = 1;
+    if (field1 == -1) {
+        remain = field2;
+        cnt = field2;
+        i = 0;
+        do {
+            func_0014FE60(&n, 4, fp);
+            func_0014FE60(buf, n, fp);
+            buf[n] = 0;
+            if (flags & 0x400) func_0013AC00((unsigned char *)buf, n, (unsigned char)key);
+            func_0014FE60(&field1, 4, fp);
+            func_0014FE60(&field2, 4, fp);
+            if (!func_0013AC40(buf, idx, field1, field2, 0, remain)) ok = 0;
+            i++;
+            remain--;
+        } while (i < cnt);
+        goto chunks_done;
+    }
+    if (field2 >= 0x6000) {
+        cacheBuf = (char *)caches[field1].f0;
+        ptr = cacheBuf;
+        end = cacheBuf + 0x6000;
+        remain = field2;
+        cnt = 0;
+        do {
+            n = remain < (0x5fff - cnt) ? remain : (0x5fff - cnt);
+            func_0014FE60(ptr + cnt, n, fp);
+            remain -= n;
+            {
+                char *curp = ptr;
+                while (end - curp > 4) {
+                    n = *(int *)curp;
+                    curp += 4;
+                    if (end - curp <= n + 8) break;
+                    {
+                        char *dst = buf;
+                        char *src = curp;
+                        int k = n;
+                        while (k-- > 0) *dst++ = *src++;
+                    }
+                    buf[n] = 0;
+                    curp += n;
+                    if (flags & 0x400) func_0013AC00((unsigned char *)buf, n, (unsigned char)key);
+                    field1 = *(int *)curp;
+                    field2 = *(int *)(curp + 4);
+                    curp += 8;
+                    if (!func_0013AC40(buf, idx, field1, field2, 0, remain)) ok = 0;
+                    cnt++;
+                }
+                {
+                    char *dst = cacheBuf;
+                    char *src = curp;
+                    int k = (int)(end - curp - 1);
+                    while (k-- > 0) *dst++ = *src++;
+                }
+            }
+        } while (cnt < remain);
+        goto chunks_done;
+    }
+    cacheBuf = (char *)caches[field1].f0;
+    func_0014FE60(cacheBuf, field2, fp);
+    remain = selected;
+    ptr = cacheBuf;
+    cnt = *(int *)ptr;
+    i = 0;
+    do {
+        n = *(int *)ptr;
+        ptr += 4;
+        {
+            char *dst = buf;
+            char *src = ptr;
+            int k = n;
+            while (k-- > 0) *dst++ = *src++;
+        }
+        buf[n] = 0;
+        ptr += n;
+        if (flags & 0x400) func_0013AC00((unsigned char *)buf, n, (unsigned char)key);
+        field1 = *(int *)ptr;
+        field2 = *(int *)(ptr + 4);
+        ptr += 8;
+        if (!func_0013AC40(buf, idx, field1, field2, 0, remain)) ok = 0;
+        i++;
+        remain--;
+    } while (i < cnt);
+chunks_done:
+    if (!ok) {
+        result = 0;
+        for (i = 0; i < entryCount; i++) {
+            if (entries[i].f0 == idx) func_0013AEC0(i);
+        }
+    }
+    if (version == 2) {
+        for (i = 0; i < entryCount; i++) {
+            if (entries[i].f0 == idx) entries[i].fC -= flags;
+        }
+    }
+close_done:
+    func_0014FED0(fp, 0, 2);
+    fileSize = D_0014FEE0(fp);
+    func_0014FE50(fp);
+done:
+    active = selected;
+    row = &ents[idx];
+    if (result != 0) {
+        row->flagsC = flags | 2;
+        row->f10 = 0;
+        row->name = (void *)func_001E8AA5((int)strlen(name) + 1);
+        strcpy((char *)row->name, name);
+        row->f14 = remain;
+        row->f18 = flags;
+        row->f8 = 0;
+        row->f20 = fileSize;
+        row->f1C = cnt;
+        row->f24 = (unsigned char)key;
+        if (a2 != 0) {
+            func_0013B760(row, 0);
+            func_0013B9C0(row, 0);
+        }
+    } else {
+        func_0013B840(row);
+        cur = idx;
+    }
+    return result;
 }
 
 int C_0013DFF0::func_0013DFF0(int a1, int a2) {
@@ -270,7 +508,7 @@ void *C_0013E080::func_0013E140(unsigned int flags) {
 void C_0013E170::func_0013E170(int index, char *name, int value)
 {
     if (index < *(int *)((int)this + 0x193c)) {
-        S_0013E170_Entry *e = (S_0013E170_Entry *)((char *)this + index * 0x5c);
+        S_0013E170_Entry *e = (S_0013E170_Entry *)((int)this + index * 0x5c);
         if (strcmp(e->name, name) != 0) {
             func_001E8920(e->name, name, 0x4f);
             e->name[0x4f] = 0;
