@@ -14,7 +14,17 @@ struct C_0008BA00 {
 };
 struct C_00157600 {
     void func_00157600(int a0);
+    void func_001578D0(void);
 };
+struct S_0008BA00_Rect {
+    char pad0[0x10];
+    float f10;
+    float f14;
+};
+struct S_0008BA00_Font {
+    S_0008BA00_Rect *func_0018C070(void);
+};
+extern float D_00275AEC;
 
 struct S_0008BB50_Child {
     virtual void v0();
