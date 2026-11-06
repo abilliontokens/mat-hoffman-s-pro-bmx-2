@@ -20,6 +20,7 @@ struct S_00049470_This {
     char pad568[0x60];
     int f5c8, f5cc;
     void func_0003AD50();
+    int func_00042840();
     void func_00049470();
 };
 
