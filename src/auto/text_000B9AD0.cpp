@@ -159,9 +159,9 @@ struct C_001C3D60 {
 };
 extern C_001C3D60 *D_002F07B8;
 
-typedef void *B9D90_Ret;
-#define B9D90_RET0 return 0
-#define B9D90_RET return
+typedef void B9D90_Ret;
+#define B9D90_RET0 return
+#define B9D90_RET
 struct BmxUIMain {
     void *vtbl;
     char pad4[0x13C];
