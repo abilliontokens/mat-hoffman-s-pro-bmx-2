@@ -43,11 +43,7 @@ static __forceinline void Cross_00125540(float * volatile out, float * volatile 
 
 static __forceinline V4_00125540 Sub_00125540(const V4_00125540 &a, const V4_00125540 &b)
 {
-    V4_00125540 r;
-    r.x = a.x - b.x;
-    r.y = a.y - b.y;
-    r.z = a.z - b.z;
-    return r;
+    return V4_00125540(a.x - b.x, a.y - b.y, a.z - b.z);
 }
 
 static __forceinline V4_00125540 Add_00125540(const V4_00125540 &a, const V4_00125540 &b)
