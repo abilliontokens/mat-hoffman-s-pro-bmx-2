@@ -224,7 +224,7 @@ struct Table_10DED0 {
  void func_000A4AF0(int, char *);
 };
 struct Owner_10DED0 { char pad0[0x52C]; Table_10DED0 *f52C; };
-struct Queue_10DED0 { int count; int ids[5]; int modes[5]; int f2C; int f30; int f34; int f38[100]; int f1C8[100]; void func_00109340(int,int); };
+struct Queue_10DED0 { int count; int ids[5]; int modes[5]; int f2C; int f30; int f34; int f38[100]; int f1C8[100]; void func_00109340(int,int); void Push(int slot, int mode) { f38[++f34] = slot; f1C8[f34] = mode; } };
 struct Obj_10E030_5F0 { void func_000261F0(int); };
 struct C_0010DED0 {
  char pad0[0x24]; Owner_10DED0 *f24;
