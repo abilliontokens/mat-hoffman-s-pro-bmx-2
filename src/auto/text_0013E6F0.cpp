@@ -51,7 +51,7 @@ struct C_0013E6F0 {
     char padB0[0x110 - 0xB0];
     int f110;
     struct Surf { char pad[8]; int f8; char pad2[0xA4 - 0xC]; int fA4; char pad3[0xB8 - 0xA8]; void *fB8; } *f114[6];
-    volatile int f12C[6];
+    int f12C[6];
     int func_0013E6F0(char *name, int b, int c);
 };
 char *func_001E8AC0(char *s, int ch);
