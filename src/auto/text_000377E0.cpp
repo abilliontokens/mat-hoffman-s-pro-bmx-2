@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 extern int D_00276DDC;
+extern float D_00275460, D_00275AE8, D_00275548, D_00275F64;
 extern char D_002A5870[], D_00276C34[];
 struct S_000380B0_Manager {
     void func_0013DFF0(char *, int);
@@ -168,6 +169,73 @@ void *C_000378A0::func_000378A0(int flags)
     if (flags & 1) {
         func_001E891B(this);
     }
+    return this;
+}
+
+C_000378D0 *C_000378D0::func_000378D0(int a)
+{
+    int i;
+    func_00030F90(a);
+    vtbl = &D_00276DDC;
+    v294[0].init(); v294[1].init(); v294[2].init();
+    for (i = 0; i < 9; i++) v4AC[i].init();
+    arr[0].init(); arr[1].init(); arr[2].init(); arr[3].init();
+    V4_378D0 *v = v5F0;
+    for (i = 50; i != 0; i--) { v->init(); v++; }
+    v928.init2();
+    v938.init2();
+    f284 = 0;
+    f288 = 0;
+    f290 = 0;
+    f28C = -1;
+    v294[0].identity();
+    v294[1].identity();
+    v294[2].identity();
+    f2C8[0] = 0; f2C8[1] = 0; f2C8[2] = 0; f2C8[3] = 0; f2C8[4] = 0; f2C8[5] = 0;
+    f2C8[6] = 0; f2C8[7] = 0; f2C8[8] = 0; f2C8[9] = 0; f2C8[10] = 0; f2C8[11] = 0;
+    f2C8[12] = 0; f2C8[13] = 0; f2C8[14] = 0; f2C8[15] = 0; f2C8[16] = 0; f2C8[17] = 0;
+    f318 = 0; f31C = 0; f320 = 0;
+    memset(s324, 0, 50);
+    memset(s356, 0, 50);
+    memset(s388, 0, 50);
+    memset(s3BA, 0, 50);
+    f55C = 0;
+    f420 = 1;
+    f424 = 500;
+    memset(f428, 0, sizeof(f428));
+    f474 = 1; f478 = 1;
+    f47C = 0; f480 = 0; f484 = 0; f488 = 0;
+    f48C = -1;
+    f490 = 0; f494 = 0; f498 = 0; f49C = 0; f4A0 = 0;
+    f4A4 = -1;
+    f4A8 = 0;
+    v4AC[0].identity(); v4AC[1].identity(); v4AC[2].identity();
+    v4AC[3].identity(); v4AC[4].identity(); v4AC[5].identity();
+    v4AC[6].identity(); v4AC[7].identity(); v4AC[8].identity();
+    f53C = 0;
+    C_378D0_Sub *p = (C_378D0_Sub *)func_001E8A44(0x44);
+    if (p) {
+        p->func_00157600(1);
+        p->vtbl = &D_00276CE4;
+        p->f24 = 0; p->f2C = 0; p->f28 = 0; p->f30 = 0; p->f34 = 0; p->f3C = 0; p->f40 = 0;
+    } else p = 0;
+    f540 = p;
+    f544 = 0; f548 = 0; f54C = 0; f550 = 0; f554 = 0; f558 = 0; f55C = 0;
+    f560 = 0; f564 = 0; f568 = 0; f56C = 0; f570 = 0; f574 = 0;
+    f578 = -1;
+    f57C = 0; f580 = 0; f584 = 0;
+    f2C4 = 0;
+    f588 = 0; f58C = 0; f590 = 0; f594 = 0; f598 = 0; f59C = 0;
+    arr[0].alloc(200);
+    arr[1].alloc(300);
+    arr[2].alloc(50);
+    arr[3].alloc(50);
+    f910 = 0; f920 = 0; f924 = 0;
+    f918 = D_00276CA4;
+    f91C = 0; f914 = 0;
+    v928.identity();
+    v938.identity();
+    f948 = 0;
     return this;
 }
 
