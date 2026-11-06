@@ -55,6 +55,7 @@ struct C_0014A3A0 : C_0001DFE0 {
     C_00012140 *unkEC;
     C_0014A3A0 *func_0014A3A0();
     void func_0014A420();
+    int func_00149ED0(int param_1, int param_2);
 };
 
 struct C_0014A560 {
