@@ -8,6 +8,8 @@ struct Vec4_000361F0 {
 
 #include <string.h>
 
+template <class T> inline const T &Min_00035E80(const T &a, const T &b) { return a > b ? b : a; }
+
 /* config file reader, 0x4CC bytes */
 struct S_00035E80_Stream {
     char pad0[0x4CC];
