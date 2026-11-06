@@ -9,7 +9,7 @@ extern float D_00275544;
 extern float D_002B9348;
 extern void **D_002B92F4;
 struct S_0011F4B0_V4 { float x, y, z, w; };
-struct S_00120470_Triangle { S_0011F4B0_V4 a, n, b, c; };
+struct S_00120470_Triangle { S_0011F4B0_V4 a, n, b, c, s; };
 void func_0011F540(S_0011F4B0_V4 *out, S_0011F4B0_V4 pos, float *m);
 void func_0011F0E0(void *a, void *b, void *c, void *indices, void **data);
 int func_0011FF30(S_0011F4B0_V4 *p, void *tri);
