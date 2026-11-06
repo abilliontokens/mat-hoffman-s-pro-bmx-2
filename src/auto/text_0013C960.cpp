@@ -1,7 +1,7 @@
 /* 7 functions from 0x0013C960 to 0x0013D780, found by Ghidra. */
 #include "common.h"
 
-template <class T> inline T Min(T a, T b) { return a > b ? b : a; }
+template <class T> inline T Min(T a, T b) { if (a > b) a = b; return a; }
 
 void func_00012140(void *p);
 void func_001E8390(void *p);
@@ -89,7 +89,7 @@ struct C_0013C960 {
 
 int C_0013C960::func_0013C960(int a0, int a1, int a2)
 {
-    struct { C_0013C960 * volatile self; int avail; int n; } t;
+    struct { C_0013C960 * volatile self; volatile int avail; volatile int n; } t;
     S_0013C960_Elem *elem;
     S_0013C960_Rec *p;
     int r;
@@ -101,7 +101,7 @@ int C_0013C960::func_0013C960(int a0, int a1, int a2)
         return 0;
     }
     t.avail = elem->f14 - elem->f10;
-    t.n = a2 > t.avail ? t.avail : a2;
+    t.n = Min(a2, t.avail);
     if (t.n < 1) {
         return 0;
     }
