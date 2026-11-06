@@ -104,6 +104,7 @@ struct C_00097FD0 {
     char pad20[0x198 - 0x20];
     S_00097FD0_owner *unk198;
     void func_00098E80(int idx);
+    void func_00098EE0(S_00099A60_arg *a, int b);
     void func_000999B0(void);
     void func_00099500(const char *name);
     void func_00099590(void);
