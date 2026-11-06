@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <xmmintrin.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 extern float D_00275460;
 extern float D_002756D0;
@@ -161,28 +162,124 @@ struct C_0014F170 {
 };
 
 
-void __fastcall func_0014E630(void *self, int edx, S_0014E630_Holder *a)
+extern void func_0014F670(float value, void *grid, float *out);
+extern void func_00011060();
+extern float D_00283E00, D_002756D0, D_002756B8, D_002756E8;
+void __fastcall func_0014E630(void *self, int edx_, S_0014E630_Holder *a)
 {
     int i;
     int off;
     (void)self;
-    (void)edx;
+    (void)edx_;
     if (a->count == 0) {
         a->out = 0;
         return;
     }
     a->out = (void **)func_001E8AA5(a->count * 4);
+    if (a->count <= 0)
+        return;
     off = 0;
     for (i = 0; i < a->count; i++) {
-        char *entry = (char *)a->items + off;
-        int type = *(int *)(entry + 0x20);
+        Ent14E *e = (Ent14E *)((char *)a->items + off);
+        int type = e->type;
         if (type == 0) {
-            void *mem = func_001E8AA5(0x1e0);
+            void *mem = func_001E8A44(0x1e0);
             ObjB700 *o = mem ? ((ObjB700 *)mem)->func_0019B700(1) : 0;
-            func_00129920(4);
+            o->func_00129920(4);
             o->func_0019D7B0(*(void **)((char *)a + 0x1f8), a);
             a->out[i] = o;
             *(int *)((char *)o + 0x68) = D_002BA150;
+            o->func_001334E0(1);
+            *(int *)((char *)o + 0x60) = 0;
+            *(int *)((char *)o + 0x64) = 0;
+            e->func_001577A0(o, -1);
+        } else if (type == 2) {
+            void *mem = func_001E8A44(0x120);
+            ObjA50 *o = mem ? ((ObjA50 *)mem)->func_001A4A50(1) : 0;
+            o->func_00129920(4);
+            V4x v;
+            v.x = ((float *)e->p0)[0]; v.y = ((float *)e->p0)[1]; v.z = ((float *)e->p0)[2]; v.w = ((float *)e->p0)[3];
+            o->func_001A57E0(e->f24, 0, v);
+            a->out[i] = o;
+            *(int *)((char *)o + 0x68) = D_002BA574;
+            e->func_001577A0(o, -1);
+        } else if (type == 3) {
+            void *mem = func_001E8A44(0x120);
+            ObjE620 *o = mem ? ((ObjE620 *)mem)->func_0017E620(1) : 0;
+            o->func_00129920(4);
+            V4x v1, v2;
+            v1.x = ((float *)e->p0)[4]; v1.y = ((float *)e->p0)[5]; v1.z = ((float *)e->p0)[6]; v1.w = ((float *)e->p0)[7];
+            v2.x = ((float *)e->p0)[0]; v2.y = ((float *)e->p0)[1]; v2.z = ((float *)e->p0)[2]; v2.w = ((float *)e->p0)[3];
+            o->func_0017E6F0(v1, v2, e->f24);
+            a->out[i] = o;
+            *(int *)((char *)o + 0x68) = D_002BA574;
+            e->func_001577A0(o, -1);
+        } else if (type == 1) {
+            void *mem = func_001E8A44(0x1e0);
+            ObjB700 *o = mem ? ((ObjB700 *)mem)->func_0019B700(1) : 0;
+            o->func_00129920(4);
+            char grid[0x200];
+            o->func_00011FF0(grid, 0x10, 0x20, (void *)func_00011060);
+            float *rec = (float *)grid;
+            for (int k = 0; k < 0x10; k++) {
+                float v = (float)k * D_00283E00;
+                if (v <= D_002756D0)
+                    v -= D_002756B8;
+                else if (v < D_002756E8)
+                    v += D_002756B8;
+                float r[2];
+                func_0014F670(v, grid, r);
+                rec[0] = r[0] * e->f24;
+                rec[1] = (float)e->f28;
+                rec[2] = r[1] * e->f24;
+                rec[3] = 0.0f;
+                *(float *)((char *)grid + 0x100 + 8 * k) = rec[0];
+                *(int *)((char *)grid + 0x104 + 0x10 * k) = 0;
+                rec += 4;
+            }
+            float one = 1.0f;
+            float *pv = (float *)grid;
+            for (int t = 0; t < 4; t++) {
+                for (int q = 0; q < 4; q++) {
+                    pv[0] += ((float *)e->p0)[0];
+                    pv[1] += ((float *)e->p0)[1];
+                    pv[2] += ((float *)e->p0)[2];
+                    pv[3] = one;
+                    pv += 4;
+                }
+                pv += 16;
+            }
+            int ixbuf[16][6];
+            int c = 0;
+            for (int n = 0; n < 0x10; n++) {
+                int d = c + 1;
+                int s = (d < 0x10) ? d : 0;
+                int s2 = s + 0x10;
+                int *ip = ixbuf[n];
+                ip[0] = c;
+                ip[1] = s2;
+                ip[2] = s;
+                ip[3] = c;
+                ip[4] = s2;
+                ip[5] = d + 0xf;
+                c = d;
+            }
+            o->func_0019C710(grid, ixbuf, 0x20, 0x20);
+            float *ident = (float *)((char *)o + 0x130);
+            *(__m128 *)(ident + 0) = _mm_setzero_ps();
+            *(__m128 *)(ident + 4) = _mm_setzero_ps();
+            *(__m128 *)(ident + 8) = _mm_setzero_ps();
+            *(__m128 *)(ident + 12) = _mm_setzero_ps();
+            ident[0] = 1.0f;
+            ident[5] = 1.0f;
+            ident[10] = 1.0f;
+            ident[15] = 1.0f;
+            a->out[i] = o;
+            *(int *)((char *)o + 0x68) = D_002BA150;
+            o->func_001334E0(1);
+            *(int *)((char *)o + 0x60) = 0;
+            *(int *)((char *)o + 0x64) = 0;
+            e->func_001577A0(o, -1);
         }
         off += 0x2c;
     }
@@ -445,7 +542,7 @@ int func_0014F350()
 float func_0014F450(int x) {
     float f = (func_00016D60(x) + D_002756D0) * D_002DF870;
 
-    FloatToIndex(&x, f);
+    AsmFloatToInt(f, &x);
     return (f - (float)x) * D_002CF6B4[x].a * D_002DF874 + D_002CF6B4[x].b;
 }
 
