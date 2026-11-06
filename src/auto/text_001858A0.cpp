@@ -142,6 +142,11 @@ extern "C" int strlen(const char *s);
 extern "C" void *memset(void *d, int c, unsigned n);
 extern "C" char *strcpy(char *d, const char *s);
 extern int D_002897FC;
+#pragma intrinsic(memcmp)
+static __forceinline int Cmp5_00185D60(const char *a, const char *b)
+{
+    return memcmp(a, b, 5);
+}
 
 struct V4Z_001858A0 {
     u32 a;
@@ -473,13 +478,13 @@ int C_00185BF0::func_00185D60(S_Stream3 *stream, int count)
     if (!stream->func_00168C50(&D_0028973C, 0, &f538))
         fp[0x538 / 4] = -fp[0x534 / 4];
     if (!stream->func_00168C50(&D_00289734, 0, &f53c)) {
-        float t = fp[0x52c / 4] * fp[0x524 / 4];
+        float t = fp[0x524 / 4] * fp[0x52c / 4];
         fp[0x53c / 4] = t * D_00278784 + fp[0x534 / 4];
     }
     if (!stream->func_00168C50(&D_0028972C, 0, &f540))
         fp[0x540 / 4] = -fp[0x534 / 4];
     if (!stream->func_00168C50(&D_00289724, 0, &f544)) {
-        float t = fp[0x530 / 4] * fp[0x528 / 4];
+        float t = fp[0x528 / 4] * fp[0x530 / 4];
         fp[0x544 / 4] = t * D_00278784 + fp[0x534 / 4];
     }
     if (!stream->func_00168C50(&D_00289714, 0, (char *)this + 0x548))
