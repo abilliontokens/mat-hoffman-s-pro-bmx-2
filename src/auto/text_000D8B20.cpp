@@ -88,6 +88,7 @@ struct Sprite_D8DB0 {
     void depth(u32 v) { if (f28 != v) { f28 = v; b58 |= 1; } }
     void color() { f38 = (f38 & 0xffbfa35a) | 0xbfa35a; b58 |= 2; }
     void coords(float a, float b, float c, float d) { f3C = a; f40 = b; f44 = c; f48 = d; b58 |= 4; }
+    void coords2(float a, float b, float c, float d) { f40 = b; f44 = c; b58 |= 4; f3C = a; f48 = d; }
 };
 struct C_000D8DB0 {
     void *vtbl;
@@ -302,6 +303,65 @@ void BmxUIPageHOF5D::func_000D8D30()
         }
     }
     func_001BE3F0();
+}
+
+C_000D8DB0 *C_000D8DB0::func_000D8DB0(int a0, int a1, int a2)
+{
+    char buf[8];
+    int i;
+    int j;
+    void *mem;
+    func_001BE4F0(a0, a1, a2);
+    ((Mgr_D8DB0 *)D_002A8490)->f2EC->func_0018C160((int)D_00278690);
+    ((Mgr_D8DB0 *)D_002A8490)->f2EC->func_0018C160((int)D_002786A0);
+    ((Mgr_D8DB0 *)D_002A8490)->f2EC->func_0018C160((int)D_00278678);
+    for (i = 0; i < 5; i++) {
+        mem = func_001E8A44(0x184);
+        a2C4[i] = mem ? ((Widget_D8DB0 *)mem)->func_001B12C0(1) : 0;
+        a2C4[i]->func_001B13A0(D_002786A0, D_002786A0, 0, 0x1e);
+        a2C4[i]->func_001B2270(0xffcccccc);
+        func_001577A0(a2C4[i], -1);
+        mem = func_001E8A44(0x184);
+        a2D8[i] = mem ? ((Widget_D8DB0 *)mem)->func_001B12C0(1) : 0;
+        a2D8[i]->func_001B13A0(D_002786A0, D_002786A0, 0, 0x32);
+        a2D8[i]->func_001B2270(0xffcccccc);
+        func_001577A0(a2D8[i], -1);
+        mem = func_001E8A44(0x184);
+        a304[i] = mem ? ((Widget_D8DB0 *)mem)->func_001B12C0(1) : 0;
+        a304[i]->func_001B13A0(D_002786A0, D_002786A0, 0, 5);
+        a304[i]->func_001B1A30(175.0f, i * D_0027F2BC + D_0027F2B4, 0);
+        a304[i]->func_001B2270(0xffcccccc);
+        func_001ADCC0(buf, 5, D_0027F2AC, i + 1, D_0027CEF0);
+        a304[i]->func_001B17D0(buf);
+        func_001577A0(a304[i], -1);
+    }
+    for (j = 0; j < 2; j++) {
+        mem = func_001E8A44(0x64);
+        a2FC[j] = mem ? ((Sprite_D8DB0 *)mem)->func_001D5760() : 0;
+        if (j % 2 == 0) {
+            a2FC[j]->func_001D5810(D_0027F29C, 110.0f, 147.0f, 0);
+        } else {
+            a2FC[j]->func_001D5810(D_0027F29C, 321.0f, 147.0f, 0);
+            a2FC[j]->coords(1.0f, 0.0f, 0.0f, 1.0f);
+        }
+        a2FC[j]->depth(0x435d0000);
+        a2FC[j]->color();
+    }
+    mem = func_001E8A44(0x64);
+    a2EC[0] = mem ? ((Sprite_D8DB0 *)mem)->func_001D5760() : 0;
+    a2EC[0]->func_001D5810(D_00279B00, 106.0f, 114.0f, 0);
+    a2EC[0]->color();
+    mem = func_001E8A44(0x64);
+    a2F4[0] = mem ? ((Sprite_D8DB0 *)mem)->func_001D5760() : 0;
+    a2F4[0]->func_001D5810(D_00279AF0, 106.0f, 114.0f, 0);
+    mem = func_001E8A44(0x64);
+    a2EC[1] = mem ? ((Sprite_D8DB0 *)mem)->func_001D5760() : 0;
+    a2EC[1]->func_001D5810(D_00279AE0, 518.0f, 114.0f, 0);
+    a2EC[1]->color();
+    mem = func_001E8A44(0x64);
+    a2F4[1] = mem ? ((Sprite_D8DB0 *)mem)->func_001D5760() : 0;
+    a2F4[1]->func_001D5810(D_00279AD0, 518.0f, 114.0f, 0);
+    return this;
 }
 
 void C_000D9750::func_000D9530()
