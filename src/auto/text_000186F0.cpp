@@ -1,5 +1,6 @@
 /* 7 functions from 0x000186F0 to 0x000195B0, found by Ghidra. */
 #include "common.h"
+#include <string.h>
 #include <xmmintrin.h>
 struct ObjABA_186 { void func_0019ABA0(int a, int b); int func_00198330(char *s); };
 struct Obj3C_186 { char pad0[4]; ObjABA_186 *f4; };
