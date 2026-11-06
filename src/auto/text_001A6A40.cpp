@@ -109,11 +109,21 @@ struct C_001A6E90_Sub {
     void func_0005CBD0();
 };
 struct C_001A6E90_Mgr {
-    char pad0[0x2c0];
+    char pad0[4];
+    int f4;
+    char pad8[0x48 - 8];
+    int f48;
+    char pad4c[0x2c0 - 0x4c];
     C_001A6E90_Sub *f2c0;
 };
 struct C_Global2 {
-    char pad0[0x2e0];
+    virtual void vv0(); virtual void vv1(); virtual void vv2(); virtual void vv3();
+    virtual void vv4(); virtual void vv5(); virtual void vv6(); virtual void vv7();
+    virtual void vv8();
+    virtual void v9();
+    char pad4[0x234 - 4];
+    int f234;
+    char pad238[0x2e0 - 0x238];
     C_001A6E90_Mgr *f2e0;
     char pad2e4[4];
     C_CardStringsHolder *f2e8;
