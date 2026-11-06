@@ -625,54 +625,61 @@ int BmxGame::func_00059AC0(void)
         case 1:
             m = func_001E8A44(0x2a4);
             obj = m ? ((S_00059AC0_Ctors *)m)->func_0004BAB0(1) : 0;
+            f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->v10(), -1);
             break;
         case 0:
             m = func_001E8A44(0x360);
             obj = m ? ((S_00059AC0_Ctors *)m)->func_000511A0(1) : 0;
+            f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->v10(), -1);
             break;
         case 2:
             m = func_001E8A44(0x28c);
             obj = m ? ((S_00059AC0_Ctors *)m)->func_000536A0(1) : 0;
+            f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->v10(), -1);
             break;
         case 3:
             m = func_001E8A44(0x1254);
             obj = m ? ((S_00059AC0_Ctors *)m)->func_0004C610(1) : 0;
+            f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->v10(), -1);
             break;
         case 4:
             m = func_001E8A44(0x788);
             obj = m ? ((S_00059AC0_Ctors *)m)->func_0004D930(1) : 0;
+            f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->v10(), -1);
             break;
         case 5:
             m = func_001E8A44(0x2ec);
             obj = m ? ((S_00059AC0_Ctors *)m)->func_00053D20(1) : 0;
+            f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->v10(), -1);
             break;
         case 6:
             m = func_001E8A44(0xd78);
             obj = m ? ((S_00059AC0_Ctors *)m)->func_0004ECC0(1) : 0;
+            f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->v10(), -1);
             break;
         case 7:
             m = func_001E8A44(0x29c);
             obj = m ? ((S_00059AC0_Ctors *)m)->func_00050A10(1) : 0;
+            f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->v10(), -1);
             break;
         case 10:
             m = func_001E8A44(0x2ec);
             obj = m ? ((S_00059AC0_Ctors *)m)->func_00049C00(1) : 0;
+            f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->v10(), -1);
             break;
         case 8:
         case 9:
             m = func_001E8A44(0x2e4);
             obj = m ? ((S_00059AC0_Ctors *)m)->func_0004F220(1) : 0;
+            f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->v10(), -1);
             break;
         case 11:
             m = func_001E8A44(0x94c);
             obj = m ? ((S_00059AC0_Ctors *)m)->func_000378D0(1) : 0;
+            f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->v10(), -1);
             break;
-        default:
-            goto done;
         }
-        f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->GetId(), -1);
     }
-done:
     if (f2F0 != 0) {
         f2F0->func_001A5BC0();
     }
