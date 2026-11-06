@@ -159,9 +159,9 @@ struct C_001C3D60 {
 };
 extern C_001C3D60 *D_002F07B8;
 
-typedef void B9D90_Ret;
-#define B9D90_RET0 return
-#define B9D90_RET
+typedef void *B9D90_Ret;
+#define B9D90_RET0 return 0
+#define B9D90_RET return
 struct BmxUIMain {
     void *vtbl;
     char pad4[0x13C];
@@ -293,13 +293,13 @@ void BmxUIMain::func_000B9D50()
     func_001577A0(obj, 0x1000);
 }
 
-void BmxUIMain::func_000B9D90(int type, int a2)
+B9D90_Ret BmxUIMain::func_000B9D90(int type, int a2)
 {
     void *m;
     void *obj = 0;
     unsigned k = type - 1;
     if (k > 0x1f) {
-        return;
+        B9D90_RET0;
     }
     switch (k) {
     UI_CASE(0, 0x368, 000C44C0)
@@ -335,7 +335,7 @@ void BmxUIMain::func_000B9D90(int type, int a2)
     UI_CASE(30, 0x2c4, 000F1D00)
     UI_CASE(31, 0x318, 000D9820)
     }
-    func_001577A0(((V_B9D90 *)obj)->vf31(&f154, a2, this), -1);
+    B9D90_RET func_001577A0(((V_B9D90 *)obj)->vf31(&f154, a2, this), -1);
 }
 
 void func_000BA290(void) {
