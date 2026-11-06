@@ -328,7 +328,6 @@ struct C_000B1350 {
     void func_000B1350(void);
 };
 
-int func_001E8858(float f);
 void C_000B1350::func_000B1350(void)
 {
     int n;
