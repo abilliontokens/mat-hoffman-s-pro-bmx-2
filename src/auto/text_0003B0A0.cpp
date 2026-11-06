@@ -183,7 +183,8 @@ void C_0003BB60::func_0003B0A0()
         char *e3 = Get_3B0A0((int *)(mgr + 0x5a8), sel);
         char *e4 = Get_3B0A0((int *)(mgr + 0x5a8), sel);
         char *g5 = Get_3B0A0((int *)((char *)this + 0x5c8), sel);
-        ((S_3B0A0_Obj *)*(void **)((char *)this + 0x540))->Spawn(g5, *(void **)(e4 + 0x310), mgr, *(float *)((char *)this + 0x440), idx,
+        S_3B0A0_Obj *o = (S_3B0A0_Obj *)*(void **)((char *)this + 0x540);
+        Spawn_3B0A0(o, g5, *(void **)(e4 + 0x310), mgr, *(float *)((char *)this + 0x440), idx,
             *(int *)(e3 + 0x360), *(int *)(e2 + 0x358), *(int *)(e1 + 0x35c));
     }
 }
