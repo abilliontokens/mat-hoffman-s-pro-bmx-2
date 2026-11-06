@@ -181,7 +181,7 @@ struct C_001AC200 {
     const char *field_08;
     char *field_0C;
     C_001AC150 *field_10;
-    C_001AC200() { field_00 = 0; field_04 = 0; }
+    C_001AC200() {}
     C_001AC200(char *buf, const char *fmt, C_001AC150 *a) {
         field_00 = 0;
         field_04 = 0;
