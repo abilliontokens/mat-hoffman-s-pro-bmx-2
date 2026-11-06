@@ -3,6 +3,25 @@
 
 extern int D_0027718C;
 extern char D_00277160[], D_00277150[], D_00277140[];
+struct S_00049470_This {
+    void *vtbl;
+    char pad4[0x60];
+    void *f64;
+    char pad68[0x3d8];
+    int f440;
+    char pad444[0x30];
+    int f474, f478, f47c, f480;
+    char pad484[0xb8];
+    int f53c, f540;
+    char pad544[0xc];
+    int f550, f554;
+    char pad558[0xc];
+    int f564;
+    char pad568[0x60];
+    int f5c8, f5cc;
+    void func_0003AD50();
+    void func_00049470();
+};
 struct C_00162B20 { int func_00162B20(const char *, int); };
 extern C_00162B20 *D_002EF7D0;
 struct S_00049A50_Global {
@@ -291,6 +310,13 @@ void E49Fps::func_00049C90() {
             *(float *)((char *)f2A4[i] + 0x4c) = 50.0f;
         }
     }
+}
+
+void BmxEventFPS::func_00049F30()
+{
+ bool active = f2D4 != 0;
+ if(!active) { active = f2D8 != 0; }
+ if(!active) func_00032A60();
 }
 
 int C_0004A1A0::func_0004A1A0(void)
