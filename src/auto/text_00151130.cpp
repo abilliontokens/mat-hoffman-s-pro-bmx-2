@@ -85,7 +85,8 @@ struct ObjFC_151130 {
     void func_0017F0A0(int);
     void func_00180E00(int, V4_151130 *, int, void *);
     void func_001334E0(int);
-    void func_0014C1C0(int, int, int);
+    void func_00133ED0(void);
+    void func_00133140(void *, int);
 };
 struct ObjF8_151130 {
     char pad0[0x60];
@@ -98,6 +99,8 @@ struct ObjF8_151130 {
     void func_00129920(int);
     void func_001334E0(int);
     void func_0014C1C0(int, int, int);
+    void func_0014AC30(V4_151130 *, int);
+    void func_00133ED0(void);
 };
 struct Mid_151130 {
     char pad0[4];
