@@ -22,6 +22,7 @@ struct C_001D8340 {
 };
 extern float D_00284758, D_002755E4, D_00275460;
 static __forceinline int Max_001D8340(int a, int b) { return a < b ? b : a; }
+template <class T> inline const T &Min_001D8340(const T &a, const T &b) { return a > b ? b : a; }
 extern "C" int func_001DC974(void);
 extern "C" int func_001E8858(void);
 extern "C" void __stdcall func_001FF960(int mode, void *ramp);
@@ -204,10 +205,11 @@ struct C_001D8970 {
 void C_001D8340::func_001D8500(int amount)
 {
     unsigned char ramp[0x300];
+    C_001D8340 * volatile self = this;
     float scale = (float)amount * D_00284758;
     int acc = 0;
     if (amount == 0) {
-        func_001FF960(2, &r[0]);
+        func_001FF960(2, &self->r[0]);
     } else {
         unsigned int t0 = func_001DC974();
         do {
@@ -215,20 +217,20 @@ void C_001D8340::func_001D8500(int amount)
             float d = (float)(t1 - t0);
             if (d > scale) {
                 d /= scale;
+                acc += (int)d;
+                t0 = t1;
+                if (acc > 0xff) acc = 0xff;
             }
-            acc += func_001E8858();
-            t0 = t1;
-            if (acc > 0xff) acc = 0xff;
             float k = (float)acc * D_00284758;
             for (int i = 0; i < 0x100; i++) {
-                ramp[i] = (unsigned char)(int)((float)r[i] * k);
-                ramp[0x100 + i] = (unsigned char)(int)((float)g[i] * k);
-                ramp[0x200 + i] = (unsigned char)(int)((float)b[i] * k);
+                ramp[i] = (unsigned char)(int)((float)self->r[i] * k);
+                ramp[0x100 + i] = (unsigned char)(int)((float)self->g[i] * k);
+                ramp[0x200 + i] = (unsigned char)(int)((float)self->b[i] * k);
             }
             func_001FF960(2, ramp);
         } while (acc < 0xff);
-        func_001FF960(2, &r[0]);
+        func_001FF960(2, &self->r[0]);
     }
-    flags &= 0xfe;
+    self->flags &= 0xfe;
 }
 
