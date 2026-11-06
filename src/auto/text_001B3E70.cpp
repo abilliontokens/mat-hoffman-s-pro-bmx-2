@@ -34,9 +34,6 @@ struct C_001B4A70 {
     char *func_001B4A70(char *delims);
 };
 
-static __forceinline int Tok_Advance(char *&p) {
-    return *++p;
-}
 
 /* DynamicModelTempData */
 struct C_001B4AF0 {
