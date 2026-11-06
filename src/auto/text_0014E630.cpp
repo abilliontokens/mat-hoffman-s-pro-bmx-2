@@ -27,7 +27,6 @@ extern TrigEntry *D_002CF6B4;
 struct S_0014E630_Holder {
     char pad0[0x1ec];
     int count;
-    int stride;
     void *items;
     void **out;
 };
@@ -151,6 +150,21 @@ struct C_0014F170 {
     undefined4 func_0014F170(byte param_1);
 };
 
+
+void __fastcall func_0014E630(void *self, int edx, S_0014E630_Holder *a)
+{
+    int i;
+    (void)self;
+    (void)edx;
+    if (a->count == 0) {
+        a->out = 0;
+        return;
+    }
+    a->out = (void **)func_001E8AA5(a->count * 4);
+    for (i = 0; i < a->count; i++) {
+        a->out[i] = 0;
+    }
+}
 
 C_0014ECD0 *C_0014ECD0::func_0014ECD0(int a0, char * volatile name, int a2, int volatile a3, int a4, volatile float f5, volatile float f6, int a7)
 {
