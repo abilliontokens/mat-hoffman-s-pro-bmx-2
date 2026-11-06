@@ -30,15 +30,44 @@ struct S_001D2A40_Dev {
     virtual void v1();
     virtual void v2();
     virtual void v3();
-    virtual void v4(int a, void *b, void *c);
+    virtual void v4(int a, void *b, void *c, int d);
 };
 extern S_001D2A40_Dev *D_002EFDB8;
 
+extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *);
+extern "C" __declspec(dllimport) void __stdcall RtlLeaveCriticalSection(void *);
+
+/* 0x54-byte keyframe track: six channels (frame, x, y, w, h, alpha) */
+struct S_001D2A40_Track {
+    int f0;
+    short frameLo, frameHi;
+    short posLo[2], posHi[2];
+    short sizeLo[2], sizeHi[2];
+    short alphaLo, alphaHi;
+    char pad1c[4];
+    unsigned char flags;
+    unsigned char dir;
+    unsigned short done;
+    float step[6];
+    float val[6];
+};
+
+/* 16-byte frame entry */
+struct S_001D2A40_Frame {
+    int f0;
+    int w;
+    int h;
+    int fc;
+};
+
 struct C_001D2A40 {
-    char pad0[8]; int f8; char padc[4]; char *f10; char *f14; char pad18[0x18];
+    char pad0[8]; int f8; char padc[4]; S_001D2A40_Track *f10; S_001D2A40_Frame *f14; char pad18[0x18];
     char f30[0x20]; void *f50;
     void func_001D2A40();
 };
+
+static __forceinline void Round_001D2A40(int * volatile out, float f) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
+static __forceinline int Min_001D2A40(int a, int b) { return a > b ? b : a; }
 
 struct S_001D3300_Arg {
     C_001D2A40 *obj;
@@ -224,18 +253,22 @@ void C_001D3700::func_001D3700(int param_1, int param_2)
 
 int C_001D3690::func_001D3730(int a)
 {
-    if (f44 != 0 && f48 == 0) {
-        int v;
-        int *p = &v;
+    struct { C_001D3690 * volatile self; int v; float t; int * volatile p; } L;
+    int r;
+
+    L.self = this;
+    if (*(volatile int *)&f44 != 0 && *(volatile int *)&f48 == 0) {
         f48 = 1;
         D_002F07B8->func_001C3D40(0);
-        float t = (float)(a << 15) * D_002755E0;
-        *p = _mm_cvtss_si32(*(__m128 *)&t);
-        func_002598A0(f44, 0, v);
-        return f48;
+        L.p = &L.v;
+        L.t = (float)(a << 15) * D_002755E0;
+        r = _mm_cvtss_si32(*(__m128 *)&L.t);
+        *L.p = r;
+        func_002598A0(L.self->f44, 0, L.v);
+        return L.self->f48;
     }
     f48 = 0;
-    return f48;
+    return L.self->f48;
 }
 
 void C_001D3690::func_001D37C0()
