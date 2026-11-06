@@ -63,6 +63,10 @@ struct C_001B4E20 {
     int func_001B4E20(void *param);
 };
 
+struct ModelVector_001B4ED0 {
+    int x, y, z, w;
+    ModelVector_001B4ED0() { x = y = z = 0; w = 0x3f800000; }
+};
 struct C_001B4ED0_Base {
     void *vtbl;
     C_001B4ED0_Base() { vtbl = (void *)&D_0028CA9C; }
@@ -319,18 +323,19 @@ struct C_001B5240_Obj {
 };
 
 
-int C_001B4E20::func_001B4E20(void *param) {
+int C_001B4E20::func_001B4E20(void *volatile param) {
     char buf[0x104];
-    int len;
+    volatile int len;
+    volatile int count;
+    C_001B4E20 * volatile self = this;
+
     func_001B4B80(param);
-    func_00168BE0(&D_0027D880, &D_002764F0, buf, 0x104);
-    len = func_001E9040(buf, &D_0027CEF0);
-    if (len > 0x32) {
-        len = 0x32;
-    }
-    func_001E8920((char *)this + 4, buf, len);
-    buf[len] = 0;
-    func_00168C20(&D_0028CA88, 1, (char *)this + 0x114);
+    ((S_001B4E20_Stream *)param)->func_00168BE0((char *)&D_0027D880, (char *)&D_002764F0, buf, 0x104);
+    len = func_001E9040(buf, (char *)&D_0027CEF0);
+    count = len > 0x32 ? 0x32 : len;
+    func_001E8920((char *)self + 4, buf, count);
+    ((char *)self)[count + 4] = 0;
+    ((S_001B4E20_Stream *)param)->func_00168C20((char *)&D_0028CA88, 1, (char *)self + 0x114);
     return 1;
 }
 
