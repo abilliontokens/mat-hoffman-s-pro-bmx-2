@@ -1,12 +1,5 @@
 /* 15 functions from 0x00163A50 to 0x001648E0, found by Ghidra. */
 #include "common.h"
-
-static __forceinline int min_164270(const int &a, const int &b)
-{
-    int r = a;
-    if (r > b) r = b;
-    return r;
-}
 struct S_Vec4_1640D0 {
     float x, y, z, w;
 };
