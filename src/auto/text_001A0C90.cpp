@@ -116,6 +116,8 @@ struct S_001A13F0_Obj {
     int func_001D6C40(int a, int b);
 };
 
+struct C_001A0C90 { char pad0[0x10]; int f10; void func_001A0C90(float a, float b, float c, float d); };
+
 struct C_001A13F0 {
     char pad0[4];
     S_001A13F0_Obj *unk4;
@@ -372,11 +374,10 @@ void C_001A1930::func_001A1930(int count, N_001A1930 **nodes)
   }
  }else if((distance>=1.2f*unk4C)) return;
  state |=2;
- N_001A1930 *n=nearest;
- O_001A1930 *o=*(O_001A1930 * volatile *)&n->obj;
+ O_001A1930 *o=*(O_001A1930 * volatile *)&nearest->obj;
  if(o){velocity.x=o->vel.x;velocity.y=o->vel.y;velocity.z=o->vel.z;}
- n=(N_001A1930 *)n->obj;
- if(n){int x=((const volatile int*)n)[2], y=((const volatile int*)n)[3], z=((const volatile int*)n)[4]; ((int*)&position)[0]=x;((int*)&position)[1]=y;((int*)&position)[2]=z;}
+ o=nearest->obj;
+ if(o){int x=((const volatile int*)&o->pos)[0], y=((const volatile int*)&o->pos)[1], z=((const volatile int*)&o->pos)[2]; ((int*)&position)[0]=x;((int*)&position)[1]=y;((int*)&position)[2]=z;}
  { Q_001A1930 t;
  t.x=pos.x-position.x;t.y=pos.y-position.y;t.z=pos.z-position.z;t.w=1;
  if(!emitter) return;
