@@ -129,6 +129,10 @@ int func_001EA426(char *a, char *b);
 #include <xmmintrin.h>
 double func_001E9649(char *s);
 void func_000265C0(float *dst, float *a, float *b, float *c, int d, int e);
+struct EObj_00162FB0 {
+    void *func_00199B00(int a, void *out);
+    void *func_0019AD60(int a, float *m);
+};
 extern float D_00287CF0;
 extern float D_00287CE0;
 extern float D_00287CD0;
@@ -286,9 +290,14 @@ int __stdcall func_00162FB0(Src162FB0 *src, char *name, Pack162FB0 *pack)
     int handle;
     int table[0x100];
     char buf[0x100];
+    float v20[4];
+    float v30[4];
+    float v44[4];
     int found;
     int count2;
     int i;
+    int n;
+    int ctr;
     float *mats;
     handle = mgr->func_0013C9F0(name, D_00276274);
     if (handle == -1)
@@ -362,6 +371,37 @@ int __stdcall func_00162FB0(Src162FB0 *src, char *name, Pack162FB0 *pack)
         }
     }
     mgr->func_0013AFF0(handle, 0, 0);
+    v20[0] = 0; v20[1] = 0; v20[2] = 0; v20[3] = 1.0f;
+    v30[0] = 0; v30[1] = 0; v30[2] = 0; v30[3] = 1.0f;
+    v44[0] = 0; v44[1] = 0; v44[2] = 0; v44[3] = 1.0f;
+    ctr = 0;
+    if (mgr->func_0013C6E0(handle, buf, 0xff)) {
+        func_001EA1EE(buf);
+        func_001E95A4(buf, D_002789B8);
+        if (count2 > 0) {
+            n = count2;
+            do {
+                mgr->func_0013C6E0(handle, buf, 0xff);
+                func_001E95A4(buf, D_002789B8);
+                i = (unsigned char)src->func_00164650(func_001E95A4(0, D_00287D00));
+                if (i == 0xff)
+                    break;
+                v30[0] = (float)func_001E9649(func_001E95A4(0, D_002789B8));
+                v30[2] = (float)func_001E9649(func_001E95A4(0, D_002789B8));
+                v30[1] = (float)func_001E9649(func_001E95A4(0, D_002789B8));
+                Norm_00162FB0(v30);
+                v44[0] = (float)func_001E9649(func_001E95A4(0, D_002789B8));
+                v44[2] = (float)func_001E9649(func_001E95A4(0, D_002789B8));
+                v44[1] = (float)func_001E9649(func_001E95A4(0, D_002789B8));
+                Norm_00162FB0(v44);
+                v20[0] = (float)func_001E9649(func_001E95A4(0, D_002789B8));
+                v20[2] = (float)func_001E9649(func_001E95A4(0, D_002789B8));
+                v20[1] = (float)func_001E9649(func_001E95A4(0, D_002789B8));
+                func_000265C0(mats + (i << 4), v20, v30, v44, 1, 1);
+                n--;
+            } while (n != 0);
+        }
+    }
     mgr->func_0013C110(handle);
     return 1;
 }
