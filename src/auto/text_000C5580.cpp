@@ -253,7 +253,8 @@ struct C_59C0_Sub {
     int f27c;
     int func_000BC0F0(int i);
 };
-struct C_59C0_Mgr { char pad0[0x2fc]; void *f2fc; void func_00094F00(); };
+struct C_59C0_Mgr { char pad0[0x2fc]; void *f2fc; void func_00094F00(); void func_00094A10(int a, void *b); void func_00094EE0(); void func_00094C60(); };
+extern char D_0027DDEC[];
 struct C_59C0_Mgr2 { char pad0[0x4]; char *f4; };
 struct C_59C0_Page { char pad0[0x2e0]; C_59C0_Mgr *p2E0; char pad2e4[4]; C_59C0_Mgr2 *p2E8; };
 struct C_NumHorse_Root { char pad0[0x2E0]; C_5580_Q *p2E0; char pad2E4[8]; C_NumHorse_Lookup *p2EC; };
