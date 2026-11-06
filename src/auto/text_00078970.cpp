@@ -74,9 +74,13 @@ struct FPSSave_Disp {
     virtual void v31(int a0, int a1);
 };
 
+struct FPSSave_P4E0;
+
 struct FPSSave_R64 {
     char pad0[0x4C0];
     FPSSave_Disp *p4C0;
+    char pad4C4[0x4E0 - 0x4C4];
+    FPSSave_P4E0 *p4E0;
 };
 
 struct FPSSave_R2A4 {
