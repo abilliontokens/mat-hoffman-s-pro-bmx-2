@@ -26,6 +26,7 @@ struct C_0018AFD0 {
     void *func_0018AFD0(unsigned int flags);
 };
 
+struct C_0018A320 { void *vtbl; int f4; void func_0018A320(int a, void *b, void *c, int *d); };
 extern int D_00289ABC;
 extern int D_00289830;
 extern int D_002897FC;
