@@ -419,11 +419,11 @@ copy:
     return 1;
 }
 
-int __stdcall func_00168A10(void *a0, int *out)
+int C_00168280::func_00168A10(const char *name, int *out)
 {
     char *end;
     char buf[1024];
-    if (func_00168550(a0, buf, -1)) {
+    if (func_00168550(name, buf, -1)) {
         if (!func_001F6570(buf, D_00288024, 1)) { *out = 1; return 1; }
         if (!func_001F6570(buf, D_00288020, 1)) { *out = 0; return 1; }
         if (!func_001EA426(buf, D_0028801C)) { *out = 1; return 1; }
