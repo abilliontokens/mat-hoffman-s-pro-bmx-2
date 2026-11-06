@@ -127,7 +127,7 @@ void func_001F3BCE(F3Obj *o, unsigned short arg, int *cnt) {
     }
     *cnt += 1;
 }
-void func_001F3BF3(int *cnt, int arg, int count, F3Obj *o) {
+void func_001F3BF3(int *cnt, unsigned short arg, int count, F3Obj *o) {
     while (count > 0) {
         count--;
         func_001F3BCE(o, arg, cnt);
