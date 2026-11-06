@@ -332,6 +332,24 @@ struct S_001C1520_Sprite {
     unsigned char colorDirty : 1;
     unsigned char rectSet : 1;
     char pad59[0xb];
+    void SetPos(float x, float y) {
+        if (f4 != x || f8 != y) { f4 = x; f8 = y; dirty = 1; }
+    }
+    void SetWidth(float w) {
+        if (f28 != w) { f28 = w; dirty = 1; }
+    }
+    void SetHeight(float h) {
+        if (f2c != h) { f2c = h; dirty = 1; }
+    }
+    void SetScale(float s) {
+        if (f34 != s) { f34 = s; dirty = 1; }
+    }
+    void SetDepth(float d) {
+        if (f30 != d) { f30 = d; dirty = 1; }
+    }
+    void SetOffset(float x, float y) {
+        if (f14 != x || f18 != y) { f14 = x; f18 = y; dirty = 1; }
+    }
     S_001C1520_Sprite *func_001D5760();
     S_001C1520_Sprite *func_001D5810(char *name, int a, int b, int c);
 };
