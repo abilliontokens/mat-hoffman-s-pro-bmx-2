@@ -329,8 +329,6 @@ Vec4_195D40 *func_00195D40(Vec4_195D40 *out, int x, int y, int z, int w)
 SimpleVCR *SimpleVCR::func_00195D90(void)
 {
     func_00157600(1);
-    fl.mid = 0;
-    fl.b7 = 0;
     f74 = 0;
     f6c = 0;
     f70 = 0;
@@ -366,12 +364,13 @@ SimpleVCR *SimpleVCR::func_00195D90(void)
     fB4 = 0;
     fA4 = 0;
     fA8 = 0;
-    fB8 = 0;
+    fC0 = fC0 & 0x41;
     vtbl = &D_0028AFA4;
     f44 = 1.0f;
-    f4c = -0.0f;
+    f4c = 0x80000000;
     f3c = 1.0f;
     f40 = 0.06666667f;
+    fB8 = 0;
     return this;
 }
 
