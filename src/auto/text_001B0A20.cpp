@@ -655,12 +655,8 @@ void C_001B0D00::func_001B0D00(int param_1)
     int b = func_001B0460(param_1);
     if (flag != 0 || a != 0 || b != 0) {
         void *obj = func_001E8A44(0x2c);
-        if (obj != 0) {
-            unkC = ((C_001AFCC0 *)obj)->func_001AFCC0(arr, a, b, param_1);
-            return;
-        }
+        unkC = obj ? ((C_001AFCC0 *)obj)->func_001AFCC0(arr, a, b, param_1) : 0;
     }
-    unkC = 0;
 }
 
 void C_001B0DC0::func_001B0DC0(void)
