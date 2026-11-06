@@ -1,6 +1,39 @@
 /* 18 functions from 0x001BA560 to 0x001BB4F0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct S_9C0_Stream {
+    int func_00169710(const char *name);
+    void func_00168C20(const char *key, int def, int *dst);
+    void func_00168C50(const char *key, int def, float *dst);
+    void func_00168CB0(const char *key, void *def, void *dst);
+    void func_00168BE0(const char *key, const char *def, char *dst, int n);
+};
+struct S_9C0_Vec { float x, y, z, w; };
+struct S_9C0_Elem {
+    char name[0x104];
+    int f104;
+    int f108;
+    float f10c;
+    float f110;
+    float f114;
+    S_9C0_Vec v118;
+    S_9C0_Vec v128;
+    S_9C0_Vec v138;
+    S_9C0_Vec v148;
+    int *f158;
+    S_9C0_Elem *func_001B84E0();
+};
+struct S_9C0_This {
+    char pad[0x24];
+    int f24;
+    S_9C0_Elem **f28;
+    void func_001BA9C0(S_9C0_Stream *s);
+};
+extern char D_0027CBAC[], D_0027CB90[], D_0027CB78[], D_002764F0[], D_0027C4D0[], D_0027C4BC[], D_0027CB60[], D_0027CB54[], D_0027CB44[], D_0027CB38[], D_00275AD4[], D_0027CB30[], D_0027CB2C[], D_002AA9F4[];
+int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+void *func_001E83E8(void *p, unsigned int n);
+char *func_001E8920(char *dst, const char *src, unsigned int n);
+
 struct C_001BA9A0 {
     undefined4 func_001BA9A0(byte param_1);
 };
