@@ -327,8 +327,8 @@ void *C_001488B0::func_001488B0(C_001488B0 *a)
   extern int D_00285C00;
 
   *(volatile void **)&vtbl = (void *)&D_00285C00;
-  *(volatile u32 *)&unk4 = a->unk4;
-  unk8 = a->unk8;
+  *(volatile u32 *)&unk4 = *(volatile u32 *)&a->unk4;
+  *(volatile u32 *)&unk8 = *(volatile u32 *)&a->unk8;
   *(volatile u32 *)&unkC = (u32)&D_00284E94;
   *(volatile void **)&vtbl = (void *)&D_00285CA0;
   *(volatile u32 *)&unkC = (u32)&D_00285C94;
