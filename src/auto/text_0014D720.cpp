@@ -41,14 +41,7 @@ void __stdcall func_00201100(void *p);
 struct EcoSystem {
     void *vtbl;
     char pad4[0x27 - 0x4];
-    union {
-        u8 b27;
-        struct {
-            unsigned char b27_0 : 1;
-            unsigned char b27_1 : 1;
-            unsigned char b27_2 : 6;
-        };
-    };
+    u8 b27;
     int unk28;
     int unk2C;
     int unk30;
