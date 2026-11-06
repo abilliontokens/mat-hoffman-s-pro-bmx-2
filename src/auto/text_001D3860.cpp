@@ -55,6 +55,13 @@ static __forceinline void ClearInt_001D3F60(int *p)
     *p = 0;
 }
 
+inline void *operator new(unsigned int, void *p) { return p; }
+
+struct S_001D3F60_Zero {
+    int x;
+    S_001D3F60_Zero() { x = 0; }
+};
+
 struct S_001D3F60_Sub {
     int x;
     __forceinline void reset(void)
@@ -562,17 +569,13 @@ int C_001D4200::func_001D40E0(int a)
 
 int C_001D4200::func_001D4170(int a)
 {
-    char *p;
-
     if (a == 8) {
-        p = unk4;
-        memset(p, 0, 4);
+        memset(unk4, 0, sizeof(unk4));
         unk0 = -1;
         return 1;
     }
     if (func_0026EE8D(func_001D4010(a), a >= 4) >= 0) {
-        p = unk4;
-        memset(p, 0, 4);
+        memset(unk4, 0, sizeof(unk4));
         unk0 = -1;
         return 1;
     }
