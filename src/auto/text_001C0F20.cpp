@@ -381,8 +381,8 @@ struct S_001C1520_Sprite {
         f48 = y1 * f50;
     }
     void SetUV(float x0, float x1, float y0, float y1) {
-        rectSet = 1;
         f3c = x0 * f4c;
+        rectSet = 1;
         f40 = x1 * f4c;
         f44 = y0 * f50;
         f48 = y1 * f50;
@@ -583,6 +583,93 @@ C_001C14D0 *C_001C14D0::func_001C14D0(int a, int b)
     f64 = 0;
     vtbl = &D_0028DF04;
     f68 = 0;
+    return this;
+}
+
+C_001C1520 *C_001C1520::func_001C1520(int a, S_001C1520_Stream *stream, void *owner)
+{
+    char buf[260];
+    char *dot;
+    void *mem;
+    S_001C1520_Sprite *spr;
+    float depth;
+    float sy, sx;
+    float scale;
+    int hasRect;
+    int tmp;
+    int pos[4];
+    int rect[4];
+    int alpha;
+    float col[4];
+    int defRect[4];
+    float defCol[4];
+
+    func_001BF600(stream);
+    f28 = a;
+    f24 = owner;
+    hasRect = 0;
+    depth = 0;
+    sx = 0;
+    sy = 0;
+    col[2] = 0;
+    col[1] = 0;
+    col[0] = 0;
+    col[3] = 1.0f;
+    stream->func_00168BE0(&D_0028DFD8, &D_0028D75C, buf, 0x104);
+    dot = func_001E8AC0(buf, '.');
+    if (dot) {
+        memset(dot, 0, strlen(dot));
+    }
+    mem = func_001E8A44(0x64);
+    spr = (mem ? ((S_001C1520_Sprite *)mem)->func_001D5760() : 0)->func_001D5810(buf, 0, 0, 0);
+    f68 = spr;
+    defRect[0] = 0;
+    defRect[2] = (int)spr->f28;
+    defRect[1] = 0;
+    defRect[3] = (int)spr->f2c;
+    if (stream->func_00168C50(&D_0028286C, 0, &depth)) {
+        stream->func_00168C50(&D_0028DFD0, 0, &sx);
+        stream->func_00168C50(&D_0028DFC8, 0, &sy);
+    }
+    if (stream->func_00168E70(&D_0028DFBC, defRect, rect)) {
+        hasRect = 1;
+    }
+    if (!stream->func_00168E70(&D_0028DFB4, defRect, pos)) {
+        float t = 0;
+        stream->func_00168C50(&D_0028DFA8, 0, &t);
+        pos[0] = (int)t;
+        stream->func_00168C50(&D_0028DF9C, 0, &t);
+        int x = pos[0];
+        int y = pos[1];
+        pos[2] = rect[2] - rect[0] + x;
+        pos[3] = rect[3] - rect[1] + y;
+    }
+    stream->func_00168C20(&D_00282854, 0xff, &alpha);
+    stream->func_00168C50(&D_0028283C, 0, &scale);
+    defCol[0] = 200.0f;
+    defCol[1] = 200.0f;
+    defCol[2] = 200.0f;
+    defCol[3] = 1.0f;
+    stream->func_00168CB0(&D_0027DE44, defCol, col);
+    if (scale < D_00275544) {
+        tmp = D_002F07B8->f6b4 - 300;
+        scale = (float)tmp;
+    }
+    f68->SetPos((float)pos[0], (float)pos[1]);
+    f68->SetWidth((float)(pos[2] - pos[0]));
+    f68->SetHeight((float)(pos[3] - pos[1]));
+    f68->SetAlpha((short)alpha);
+    f68->SetScale(scale);
+    spr = f68;
+    spr->rgb = (((int)col[0] << 8) | ((int)col[1] & 0xff)) << 8 | ((int)col[2] & 0xff);
+    spr->colorDirty = 1;
+    if (depth > D_00275544) {
+        f68->SetDepth(depth);
+        f68->SetOffset(sx, sy);
+    }
+    if (hasRect) {
+        f68->SetUV((float)rect[0], (float)rect[2], (float)rect[1], (float)rect[3]);
+    }
     return this;
 }
 
