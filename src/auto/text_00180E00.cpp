@@ -482,8 +482,6 @@ void RenderableObjectData::func_00181440(void)
     func_0001DFF0();
 }
 
-extern "C" void _ReadWriteBarrier(void);
-#pragma intrinsic(_ReadWriteBarrier)
 RenderableObject *RenderableObject::func_001814B0(int a)
 {
     func_00197820(a);
