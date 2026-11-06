@@ -397,11 +397,6 @@ void C_00032E90::func_00032E90(void)
     }
 }
 
-static __inline float Interp_00032F50(float t, float from, float to)
-{
-    return func_0001C870(t, 0, from, 2.0f, to);
-}
-
 void BmxEvent::func_00032F50()
 {
     float t;
@@ -415,9 +410,9 @@ void BmxEvent::func_00032F50()
                 t = D_002A8490->f244 + f27C[i];
                 f27C[i] = t;
                 o->f8->func_001824E0(
-                    func_0001C870(t, 0, f25C[i].x, 2.0f, f23C[i].x),
-                    func_0001C870(t, 0, f25C[i].y, 2.0f, f23C[i].y),
-                    func_0001C870(t, 0, f25C[i].z, 2.0f, f23C[i].z));
+                    (float)(double)func_0001C870(t, 0, f25C[i].x, 2.0f, f23C[i].x),
+                    (float)(double)func_0001C870(t, 0, f25C[i].y, 2.0f, f23C[i].y),
+                    (float)(double)func_0001C870(t, 0, f25C[i].z, 2.0f, f23C[i].z));
             } else {
                 o->f8->func_001824E0(f23C[i].x, f23C[i].y, f23C[i].z);
                 f234[i] = 0;
