@@ -28,8 +28,8 @@ struct S_001B35D0_Desc {
     u8 f9;
     u16 fa;
     u16 fc;
-    u16 fe;
-    u16 f10;
+    short fe;
+    short f10;
     u8 f12;
     u8 f13;
     int f14;
