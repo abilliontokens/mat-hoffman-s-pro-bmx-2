@@ -111,6 +111,14 @@ struct C_001D6410 {
             flags |= 6;
         }
     }
+    inline void setPosXF(unsigned a, unsigned b)
+    {
+        if (x != a || yi != b) {
+            x = a;
+            yi = b;
+            flags |= 6;
+        }
+    }
     inline void setPosF(unsigned a, float b)
     {
         if (x != a || yf != b) {
@@ -403,7 +411,7 @@ void C_001A6D30::func_001A6BA0()
         unsigned x;
         if (f6C == 3) { f44->func_0005E840(D_002A8490->f2e8->f4->f11a0); x = 0x43af0000; }
         else { f44->func_0005E840(D_002A8490->f2e8->f4->f7a0); x = 0x43fa0000; }
-        f44->setPos(x, 0x43c48000);
+        f44->setPosYX(0x43c48000, x);
         f44->func_001D6600();
     }
 }
