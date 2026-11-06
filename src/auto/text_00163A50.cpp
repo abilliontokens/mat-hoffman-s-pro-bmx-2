@@ -175,7 +175,7 @@ void func_001EA1EE(char *);
 void *func_001E8920(void *, const void *, unsigned int);
 extern "C" unsigned int __cdecl strlen(const char *);
 extern "C" char *__cdecl strcpy(char *, const char *);
-static inline int min_164270(volatile int a, volatile int b) { int x = a; int y = b; return x < y ? x : y; }
+static __forceinline int min_164270(const int &a, const int &b) { int r = a; if (r > b) r = b; return r; }
 
 /* 0x40-byte entry; the name is at +0 */
 struct S_00164650_Item {
