@@ -606,9 +606,12 @@ C_000A8D70 *C_000A8D70::func_000A8D70()
 
 int __stdcall func_001BBAA0(void *a, void *b);
 extern char D_000A8D40;
-int C_000A8D90::func_000A8D90(void *a, int b)
+int C_000A8D90::func_000A8D90(void *a, S_000A8D90_Mgr *b)
 {
-    return b ? (func_001BBAA0(this, &D_000A8D40), 1) : 1;
+    if (b) {
+        b->func_001BBAA0(this, &D_000A8D40);
+    }
+    return 1;
 }
 
 C_000A8DB0 *C_000A8DB0::func_000A8DB0() {
