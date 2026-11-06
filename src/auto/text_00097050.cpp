@@ -153,7 +153,7 @@ struct C_00097770_Obj {
     virtual void v4();
     virtual void v5();
     virtual void v6();
-    char pad4[0x148];
+    char pad4[0x130];
     C_00097770_Named *f14C;
 };
 
