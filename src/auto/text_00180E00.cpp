@@ -198,6 +198,68 @@ struct C_00181140 {
     void func_00180E00(int a1, int a2, int a3, int a4);
 };
 
+extern char D_002A5EA0[];
+extern char D_002A5E9F[];
+extern char D_00289328[];
+extern char D_00289324[];
+extern char D_00289320[];
+extern char D_0028931C[];
+extern char D_00289318[];
+extern char D_00289314[];
+extern char D_00289310[];
+int func_001E8D25(int c);
+void func_001D3F50(void);
+void func_0014FF00(char *a, int b, int c, char *d, int e);
+extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
+struct Obj5B570 { int func_0015B570(char *a); };
+extern Obj5B570 *D_002E28F4;
+struct Vec16_17 { int v[4]; };
+struct Res17;
+struct RObj17 {
+    virtual void v0(); virtual void v1(); virtual int s2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void s33(void *a); virtual void v34(); virtual void v35();
+    virtual void s36(int a); virtual void s37(void *a); virtual void v38(); virtual void v39();
+    virtual void v40();
+    char pad4[0x12c];
+    Vec16_17 m130; Vec16_17 m140;
+    char pad150[0x20];
+    int f170; void *f174;
+    char pad178[8];
+    unsigned char f180; unsigned char f181;
+    char pad182[2];
+    int f184;
+    char pad188[8];
+    int f190;
+    char pad194[0xf];
+    unsigned char f1A3;
+    Res17 *f1A4;
+    void *f1A8;
+    void *f1AC;
+    char pad1B0[4];
+    int f1B4;
+    int *f1B8;
+    RObj17 *func_00197820(int a);
+    void func_0019ADF0(void *a);
+    void func_001982A0(void *a, void *b);
+    int func_0019B1A0(int a, void *b);
+    void func_001816A0(void *a);
+};
+struct ResRow17 { int count; };
+struct Res17 {
+    virtual void v0(); virtual void s1(); virtual void v2(); virtual void v3(); virtual void s4(int a, int b);
+    char pad4[0xc];
+    ResRow17 *f10;
+    RObj17 *f14;
+    Res17 *func_00143520();
+};
+
 struct Loader {
     char pad[0x1b4];
     int count;
