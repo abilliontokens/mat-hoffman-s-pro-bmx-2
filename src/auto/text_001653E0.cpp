@@ -200,7 +200,7 @@ static __forceinline void mirror_165A20(Vec4_165EF0 *v, int mode)
 {
     float z = v->z;
     float w = v->w;
-    float t = v->x;
+    float t = v->y;
 
     if (mode == 0) {
         t = -t;
