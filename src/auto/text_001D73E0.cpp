@@ -138,6 +138,12 @@ struct XboxVideoCard_001D8240 {
 void __stdcall func_002025D0(int a);
 void func_001FFBB0(void);
 
+struct LightValue_001D7FB0 {
+    int value;
+    LightValue_001D7FB0(int n) : value(n) {}
+    ~LightValue_001D7FB0() { value = 0; }
+};
+
 struct LightBufs_001D7FB0 {
     char a[0x100];
     char b[0x100];
@@ -567,19 +573,15 @@ extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
 XboxVideoCard_001D7D50 *XboxVideoCard_001D7D50::func_001D7D50(void)
 {
-    u8 t;
-
     ((C_001C3D90 *)this)->func_001C3D90();
     vtbl = (void *)&D_0028F774;
     _ReadWriteBarrier();
     memset(a5B4, 0, 0x100);
     D_002F0BB8 = 0;
-    t = f9D4;
     f6BC = 0;
     f6C = -1;
     f9D8 = 500;
-    t &= 0xfc;
-    f9D4v = t;
+    f9D4b.b01 = 0;
     f6C4 = 0;
     f6C8 = 0;
     f6CC = 0;
