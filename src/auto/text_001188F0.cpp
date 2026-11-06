@@ -49,15 +49,12 @@ static inline float Wrap(float v) {
     return v;
 }
 
-static inline float Wrap2(float v) {
-    float r;
-    if (v > D_002756D0)
-        r = v - D_002756B8;
-    else if (v < D_002756E8)
-        r = v + D_002756B8;
-    else
-        r = v;
-    return r;
+static inline float Wrap2(float a) {
+    if (a > D_002756D0)
+        a -= D_002756B8;
+    else if (a < D_002756E8)
+        a += D_002756B8;
+    return a;
 }
 
 void Obj::func_001188F0(int arg)
