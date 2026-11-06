@@ -41,6 +41,11 @@ static __forceinline void Cross_00125540(float * volatile out, float * volatile 
     _mm_storeu_ps(out, va);
 }
 
+static __forceinline V4_00125540 Sub_00125540(const V4_00125540 &a, const V4_00125540 &b)
+{
+    return V4_00125540(a.x - b.x, a.y - b.y, a.z - b.z);
+}
+
 static __forceinline float Abs_00125540(float f)
 {
     int i = *(int *)&f & 0x7fffffff;
