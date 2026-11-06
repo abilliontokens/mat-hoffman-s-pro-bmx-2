@@ -112,20 +112,14 @@ struct S_19CCE0_Frame {
     char ta[12];
     char B[16];
 };
-static const __m128 Zero_19C710 = {0.0f, 0.0f, 0.0f, 0.0f};
+extern "C" void *__cdecl memset(void *, int, unsigned int);
 static __forceinline void Identity_19C710(float *m)
 {
-    float *volatile p = m;
-    float *q = p;
-    __m128 *z = (__m128 *)q;
-    z[0] = Zero_19C710;
-    z[1] = Zero_19C710;
-    z[2] = Zero_19C710;
-    z[3] = Zero_19C710;
-    q[0] = 1.0f;
-    q[5] = 1.0f;
-    q[10] = 1.0f;
-    q[15] = 1.0f;
+    memset(m, 0, 0x40);
+    m[0] = 1.0f;
+    m[5] = 1.0f;
+    m[10] = 1.0f;
+    m[15] = 1.0f;
 }
 static __forceinline void Set3_19CCE0(S_19CCE0_Vec3 *dst, S_19CCE0_Vec3 src)
 {
