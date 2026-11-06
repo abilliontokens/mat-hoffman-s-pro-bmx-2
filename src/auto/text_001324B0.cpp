@@ -318,6 +318,41 @@ void C_1329F0::func_001329F0()
     ((C_Dst64520_1324B0 *)((char *)this - 0x74))->func_00164520();
 }
 
+void C_132CC0::func_00132A40(int a1,int a2,int a3,int a4,int a5,int a6,int a7) {
+ char path2[260], path[260], saved[260];
+ func_001ADCC0(path,260,D_00275678,D_002A46E8,a1);
+ func_001673B0(path,a3,a4,a5,a7);
+ f288=*(int *)((char *)f4+0x174);
+ if(a6) {
+  int n=0; do { saved[n]=D_002A4C10[n]; } while(saved[n++]);
+  D_002A4C10[0]=0;
+  func_001ADCC0(path2,260,D_00275678,D_002A46E8,a2);
+  Obj_132A40 *obj=func_00133750(f4,path2,5);
+  n=0; do { D_002A4C10[n]=saved[n]; } while(saved[n++]);
+  int type=*(int *)((char *)obj+0x50);
+  if(type==0) {
+   f280=func_001E8AA5(4);
+   *(Obj_132A40 **)f280=obj;
+   f284=1;
+   (*(Obj_132A40 **)f280)->func_0019C1E0();
+  } else if(type==1) {
+   f280=obj->func_0019EEC0(&f284);
+   obj->v2();
+  } else obj->v2();
+  for(int i=0;i<f284;i++) {
+   ((Obj_132A40 **)f280)[i]->func_00133730(this,D_002BA15C|D_002BA03C);
+   ((Obj_132A40 *)((char *)this+(*(int **)this)[1]))->func_001577A0(((Obj_132A40 **)f280)[i],-1);
+   Obj_132A40 *p=(Obj_132A40 *)func_001E8A44(0x300);
+   if(p) p=p->func_00171270(1); else p=0;
+   p->v10();
+   p->v27(*(int *)((char *)((Obj_132A40 **)f280)[i]+0x1c0));
+   ((Obj_132A40 *)((char *)this+(*(int **)this)[1]))->func_001577A0(p,-1);
+   *(Obj_132A40 **)((char *)((Obj_132A40 **)f280)[i]+0x64)=p;
+  }
+ }
+ ((Obj_132A40 *)((char *)this+(*(int **)this)[1]))->func_001D3F50();
+}
+
 void C_1329F0::func_00132C50(int a1)
 {
     int i;
