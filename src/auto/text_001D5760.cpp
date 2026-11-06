@@ -263,7 +263,7 @@ static inline void FloatToInt(int *out, float f)
 {
     int * volatile p = out;
 
-    *p = _mm_cvttss_si32(*(__m128 *)&f);
+    *p = (int)f;
 }
 
 static __forceinline void FloatToIntLoad(int *out, float f)
@@ -355,6 +355,7 @@ C_001D5810 *C_001D5810::func_001D5810(float a, int b, int c, int d)
     float w;
     float h;
     int idx;
+    int n;
     int type;
     char name[0x104];
     Cfg_001D5810 cfg;
@@ -371,8 +372,9 @@ C_001D5810 *C_001D5810::func_001D5810(float a, int b, int c, int d)
     f5C->v1(a, D_002AA470);
     ((Tbl_001D5810 *)D_002A829C)->func_00161680();
     ((Tbl_001D5810 *)D_002AA6C0)->func_001B2640();
-    idx = f5C->f4 * 16;
-    type = ((Tbl_001D5810 *)D_002A829C)->f14[f5C->f4].info->f54->f18;
+    n = f5C->f4;
+    idx = n * 16;
+    type = ((Tbl_001D5810 *)D_002A829C)->f14[n].info->f54->f18;
     h = 0;
     w = 0;
     if (type == -1 || type == -2) {
@@ -417,11 +419,11 @@ Ldef:
     h = 640.0f;
     w = 448.0f;
 Ldone:
+    f4C = D_00275460 / h;
     f28 = h;
     f2C = w;
     f4 = b;
     f8 = c;
-    f4C = D_00275460 / h;
     f50 = D_00275460 / w;
     p = (C_001D5FA0Obj *)func_001E8A44(0x70);
     if (p != 0) {
@@ -431,14 +433,16 @@ Ldone:
         p->f64 = 0;
         p->f10 = 6;
         p->f14 = 0;
+    } else {
+        p = 0;
     }
     f60 = p;
     f5C->f10 = p;
     f60->func_001D5660(4, 6);
-    f54 = d;
     f58 = f58 | 7;
+    f54 = d;
     if (d != 0) {
-        f24 *= D_002755E8;
+        f24 = f24 * D_002755E8;
     }
     return this;
 }
@@ -453,6 +457,49 @@ undefined4 C_001D5AA0::func_001D5AA0(void)
           (*(short *)(*(int *)(*(int *)(*(int *)(*(int *)(in_ECX + 0x5c) + 4) * 0x10 + 4 +
                                        *(int *)(D_002A829C + 0x14)) + 0x54) + 0x18) * 0x10 + 4 +
           *(int *)(D_002AA6C0 + 0x14));
+}
+
+void C_001D5760::func_001D5AD0()
+{
+ C_001D5760 * volatile self=this;
+ Vertex_001D5AD0 *v=0;
+ if(f58&7) v=(Vertex_001D5AD0*)func_001FF410(*(void**)((char*)f60+0x14),0);
+ if(f58&1) {
+ float w=f28*f24,h=f2c*f24;
+ float x,y,r,b;
+ if(f54) { x=v4.x-w; y=v4.y-h; r=v4.x+w; b=v4.y+h; }
+ else { x=v4.x; y=v4.y; r=x+w; b=h+y; }
+ volatile int z=f34;
+ if(*(float*)&f30 != D_00275544) {
+ float sn=0,cs=0;
+ x-=v14.x;y-=v14.y;r-=v14.x;b-=v14.y;
+ func_0014F670(*(float*)&f30,&sn,&cs);
+ volatile float xc=x*cs,xs=x*sn,yc=y*cs,ys=y*sn,rc=r*cs,rs=r*sn,bc=b*cs,bs=b*sn;
+ v[0].x=(xc-ys+self->v14.x)*D_002ABDD0;
+ v[0].y=(yc+xs+self->v14.y)*D_002ABDD4; v[0].z=z;
+ v[1].x=(xc-bs+self->v14.x)*D_002ABDD0;
+ v[1].y=(bc+xs+self->v14.y)*D_002ABDD4; v[1].z=z;
+ v[2].x=(rc-ys+self->v14.x)*D_002ABDD0;
+ v[2].y=(rs+yc+self->v14.y)*D_002ABDD4; v[2].z=z;
+ v[3].x=(rc-bs+self->v14.x)*D_002ABDD0;
+ v[3].y=(bc+rs+self->v14.y)*D_002ABDD4;
+ } else {
+ v[1].x=v[0].x=x*D_002ABDD0;
+ v[2].y=v[0].y=D_002ABDD4*y;
+ v[3].y=v[1].y=D_002ABDD4*b;
+ v[3].x=v[2].x=D_002ABDD0*r;
+ v[0].z=z;v[1].z=z;v[2].z=z;
+ }
+ v[3].z=z; self->f58&=~1;
+ }
+ if(self->f58&2) { v[0].color=self->f38;v[1].color=self->f38;v[2].color=self->f38;v[3].color=self->f38;self->f58&=~2; }
+ if(self->f58&4) { v[0].u=self->f3c;v[0].v=self->f44;v[1].u=self->f3c;v[1].v=*(int*)&self->f48;v[2].u=*(int*)&self->f40;v[2].v=self->f44;v[3].u=*(int*)&self->f40;v[3].v=*(int*)&self->f48;self->f58&=~4; }
+ float *m=(float*)((char*)self->f60+0x20);
+ ((__m128*)m)[0]=_mm_setzero_ps();((__m128*)m)[1]=_mm_setzero_ps();((__m128*)m)[2]=_mm_setzero_ps();((__m128*)m)[3]=_mm_setzero_ps();
+ m[0]=1.0f;m[5]=1.0f;m[10]=1.0f;m[15]=1.0f;
+ *(float*)((char*)self->f60+0x2c)=(float)*(unsigned int*)(*(char**)(D_002EFDB8+4)+0x1e0);
+ *(float*)((char*)self->f60+0x3c)=(float)*(unsigned int*)(*(char**)(D_002EFDB8+4)+0x1e4);
+ if(D_002ABDC4) ((Draw_001D5AD0*)self->f5c)->func_001446B0(self->f60,0,-1);
 }
 
 void C_001D5E90::func_001D5F00(int param)
