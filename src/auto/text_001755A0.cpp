@@ -21,9 +21,21 @@ static __forceinline void Downsample555Row(unsigned int *src, unsigned short *ds
 {
     do {
         unsigned int sum = 0;
-        Accumulate555(sum, *src);
+        unsigned int a;
+        unsigned int b;
+        a = *src & (unsigned int)D_0000FFFF;
+        b = *src >> 16;
+        sum += a & 0x7c1f;
+        sum += (a & 0x3e0) << 15;
+        sum += b & 0x7c1f;
+        sum += (b << 15) & 0x1f00000;
         src = (unsigned int *)((unsigned short *)src + srcPitch);
-        Accumulate555(sum, *src);
+        a = *src & (unsigned int)D_0000FFFF;
+        b = *src >> 16;
+        sum += a & 0x7c1f;
+        sum += (a & 0x3e0) << 15;
+        sum += b & 0x7c1f;
+        sum += (b << 15) & 0x1f00000;
         src = (unsigned int *)((unsigned short *)src - srcPitch);
         sum >>= 2;
         *dst = (unsigned short)((sum & 0x7c1f) + ((sum >> 15) & 0x3e0));
