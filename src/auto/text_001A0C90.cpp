@@ -119,6 +119,15 @@ struct S_001A13F0_Obj {
 
 struct V4_001A0C90 { float x, y, z, w; V4_001A0C90() { z = 0; y = 0; x = 0; w = 1.0f; } };
 struct Mat_001A0C90 { float m[16]; };
+static inline V4_001A0C90 Sub_001A0C90(const V4_001A0C90 &a, const V4_001A0C90 &b)
+{
+    V4_001A0C90 q;
+    q.x = a.x - b.x;
+    q.y = a.y - b.y;
+    q.z = a.z - b.z;
+    q.w = 1.0f;
+    return q;
+}
 struct Obj0_001A0C90 {
     void func_00199A70(int idx, V4_001A0C90 *out);
     V4_001A0C90 func_00198040(V4_001A0C90 *in);
@@ -255,6 +264,51 @@ struct C_001A1860 {
                       int a18, int a19, int a20, int a21, int a22);
 };
 
+
+void C_001A0C90::func_001A0C90(V4_001A0C90 v)
+{
+    C_001A0C90 * volatile self = this;
+    V4_001A0C90 a;
+    V4_001A0C90 b;
+    float len, t, sum;
+    float ang, sn, cs;
+    Mat_001A0C90 mat;
+
+    if (f10 == 0) {
+        func_001A0510(v);
+        return;
+    }
+    if (f40 != 0) {
+        if (D_002A9D84 < 0)
+            D_002A9D84 = D_002A8490->f18->f1934++;
+        if (D_002A9D80 == -1)
+            D_002A9D80 = D_002A7CB8->func_00026500(D_0028B348, D_002A9D84);
+        D_002A7CB8->func_0019FC40(D_002A9D80);
+    }
+    self->f0->func_00199A70(0, &a);
+    b.x = v.x - a.x;
+    b.y = v.y - a.y;
+    b.z = v.z - a.z;
+    b.w = 1.0f;
+    sum = b.z * b.z + b.y * b.y + b.x * b.x;
+    _mm_store_ss(&len, _mm_sqrt_ss(_mm_load_ss(&sum)));
+    t = (len * len - self->f1c) * self->f20;
+    if (t > D_00275460)
+        t = D_00275460;
+    else if (t < D_00275F58)
+        t = D_00275F58;
+    ang = func_0014F890(t) + self->f2c;
+    sn = func_0014F510(ang);
+    cs = func_0014F550(ang);
+    func_0011F400(&mat, self->f44.x, self->f44.y, self->f44.z, sn, cs);
+    mat.m[3] = self->f30;
+    mat.m[7] = self->f34;
+    mat.m[11] = self->f38;
+    self->f4->func_00199BE0(&mat);
+    if (self->f40 != 0) {
+        D_002A7CB8->func_0019FC80(D_002A9D80);
+    }
+}
 
 void C_001A13F0::func_001A13F0(void)
 {
