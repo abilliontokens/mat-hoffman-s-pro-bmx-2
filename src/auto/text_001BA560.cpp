@@ -12,7 +12,11 @@ struct S_9C0_Stream {
     void func_00168CB0(const char *key, void *def, void *dst);
     void func_00168BE0(const char *key, const char *def, char *dst, int n);
 };
-struct S_9C0_Vec { float x, y, z, w; };
+struct S_9C0_Vec {
+    float x, y, z, w;
+    S_9C0_Vec() : x(0), y(0), z(0), w(1) {}
+};
+template <class T> inline T Min(T a, T b) { if (a > b) a = b; return a; }
 struct S_9C0_Elem {
     char name[0x104];
     int f104;
@@ -420,79 +424,80 @@ C_001BA5E0::C_001BA5E0()
 
 void __stdcall func_001BA660(int *kind, void **out)
 {
+    void **o = out;
     int k = *kind;
     if (k == 1) {
         T_A *p = (T_A *)func_001E8A44(0x18c);
-        if (p == 0) { *out = 0; return; }
+        if (p == 0) { *o = 0; return; }
         p->f4 = 0; p->f8 = 0; p->vtbl = &D_0028CC44; p->f10c = 0; p->f114 = 0; p->f110 = -1;
-        *out = p;
+        *o = p;
         return;
     }
     if (k == 2) {
         T_A *p = (T_A *)func_001E8A44(0x204);
-        if (p == 0) { *out = 0; return; }
+        if (p == 0) { *o = 0; return; }
         p->f4 = 0; p->f8 = 0; p->f10c = 0; p->f114 = 0; p->f18c = 0; p->vtbl = &D_0028CC60; p->f110 = -1;
-        *out = p;
+        *o = p;
         return;
     }
     if (k == 3) {
         T_C *p = (T_C *)func_001E8A44(0x204);
-        if (p == 0) { *out = 0; return; }
-        *out = p->func_001B5D00();
+        if (p == 0) { *o = 0; return; }
+        *o = p->func_001B5D00();
         return;
     }
     if (k == 4) {
         T_D *p = (T_D *)func_001E8A44(0x188);
-        if (p == 0) { *out = 0; return; }
-        *out = p->func_001B5EA0();
+        if (p == 0) { *o = 0; return; }
+        *o = p->func_001B5EA0();
         return;
     }
     if (k == 5) {
         T_B *p = (T_B *)func_001E8A44(0x184);
-        if (p == 0) { *out = 0; return; }
+        if (p == 0) { *o = 0; return; }
         p->f4 = 0; p->f8 = 0; p->vtbl = &D_0028CCA8; p->f10c = 0;
-        *out = p;
+        *o = p;
         return;
     }
     if (k == 6) {
         T_F *p = (T_F *)func_001E8A44(0x290);
-        if (p == 0) { *out = 0; return; }
-        *out = p->func_001B6100();
+        if (p == 0) { *o = 0; return; }
+        *o = p->func_001B6100();
         return;
     }
     if (k == 9) {
         T_H *p = (T_H *)func_001E8A44(0x110);
-        if (p == 0) { *out = 0; return; }
+        if (p == 0) { *o = 0; return; }
         p->f4 = 0; p->f8 = 0; p->vtbl = &D_0028CCF4; p->f10c = 0;
-        *out = p;
+        *o = p;
         return;
     }
     if (k == 7) {
         T_G *p = (T_G *)func_001E8A44(0x224);
-        if (p == 0) { *out = 0; return; }
-        *out = p->func_001B61A0();
+        if (p == 0) { *o = 0; return; }
+        *o = p->func_001B61A0();
         return;
     }
     if (k == 8) {
         T_B *p = (T_B *)func_001E8A44(0x210);
-        if (p == 0) { *out = 0; return; }
+        if (p == 0) { *o = 0; return; }
         p->f4 = 0; p->f8 = 0; p->vtbl = &D_0028CCE8; p->f10c = 0;
-        *out = p;
+        *o = p;
         return;
     }
     if (k == 10) {
         T_I *p = (T_I *)func_001E8A44(0x148);
-        if (p == 0) { *out = 0; return; }
-        *out = p->func_001BA5E0();
+        if (p == 0) { *o = 0; return; }
+        *o = p->func_001BA5E0();
         return;
     }
     if (k == 11) {
         T_J *p = (T_J *)func_001E8A44(0x118);
-        if (p == 0) { *out = 0; return; }
-        *out = p->func_001B6410();
+        if (p == 0) { *o = 0; return; }
+        *o = p->func_001B6410();
         return;
     }
-    *out = 0;
+    *o = 0;
 }
 
 void C_001BA910::func_001BA910(void)
@@ -785,6 +790,12 @@ C_001BB300 *C_001BB300::func_001BB300(byte flags)
         func_001E891B(this);
     }
     return this;
+}
+
+void func_001BB350(int a, int b, C_001BA5E0 *obj, int flag)
+{
+    if (flag == 0 && obj->f110 != 0 && ((int *)obj)[0x10C / 4] == 0)
+        obj->f144 = 0;
 }
 
 C_001BB470::C_001BB470(int a0)
