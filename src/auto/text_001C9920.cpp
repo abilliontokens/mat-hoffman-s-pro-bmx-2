@@ -101,6 +101,16 @@ struct C_001C9920 {
     C_001C9920 *func_001C99E0(int a0);
 };
 
+struct C_001C9B10 {
+    void *vtbl;
+    char pad4[0x34];
+    int unk38;
+    char pad3C[0x1D8];
+    int unk214;
+    int unk218;
+    C_001C9B10 *func_001C9B10(int a, int b, int c, int d, int e, int f, int g);
+};
+
 struct C_001C9AF0 {
     undefined4 func_001C9AF0(byte param_1);
 };
@@ -249,9 +259,9 @@ int func_001CA360(float *n, float *p, float *a, float *b, V4_001CA360 *out)
     d.x = b[0] - a[0];
     d.y = b[1] - a[1];
     d.z = b[2] - a[2];
-    denom = n[0] * d.x + n[1] * d.y + n[2] * d.z;
+    denom = d.x * n[0] + d.y * n[1] + d.z * n[2];
     if (denom != D_00275544) {
-        t = (n[0] * (p[0] - a[0]) + n[1] * (p[1] - a[1]) + n[2] * (p[2] - a[2])) / denom;
+        t = ((p[0] - a[0]) * n[0] + (p[1] - a[1]) * n[1] + (p[2] - a[2]) * n[2]) / denom;
         if (t >= D_00275544 && t <= D_00275460) {
             s.x = d.x * t;
             s.y = d.y * t;
