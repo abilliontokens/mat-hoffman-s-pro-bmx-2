@@ -11,6 +11,12 @@ extern float D_002755E8;
 extern float D_00275460;
 void func_0011EFA0(Vec4 *out, Vec4 *in);
 
+static inline float Fabs(float f)
+{
+    int i = *(int *)&f & 0x7fffffff;
+    return *(float *)&i;
+}
+
 static inline void EdgeEval(Vec4 &P, Vec4 &N, float *v0, float *v1, float *n0, float *n1, float *n, float t)
 {
     float mx = (n1[0] + n0[0]) * D_002755E8;
