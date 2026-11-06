@@ -125,6 +125,7 @@ extern char D_0028AF84[], D_0028AF74[], D_002769E8[], D_002769DC[], D_00275AD4[]
 extern char D_0028AEB4[], D_0028AEBC[], D_0028AF64[], D_0028AF54[], D_00289510[], D_0027CB30[], D_0027CB2C[], D_0028AF48[];
 extern float D_00275F58;
 extern V4f_001956F0 D_002A9B44;
+extern float D_002A9B48, D_002A9B4C;
 struct C_001956F0 {
     char pad0[0x40];
     Item_001955F0 *f40;
@@ -176,6 +177,29 @@ static __forceinline void Normalize_001959E0(float *volatile outArg, const float
     __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_0028AEF0)), _mm_sub_ss(_mm_load_ss(&D_0028AF00), t));
     scale = _mm_shuffle_ps(scale, scale, 0);
     _mm_storeu_ps(out, _mm_mul_ps(scale, v));
+}
+
+void SimpleTVCamera::func_00195190(float dt, int *ok, V4f_001956F0 *out, V4f_001956F0 *pout, float *fv, V4f_001956F0 *a, V4f_001956F0 *b, int unused)
+{
+ V4f_001956F0 p;
+ if(target) { (*(Target_195190 **)(target+0x22c))->func_00199A70(0,&current); velocity=*(V4f_001956F0 *)(target+0x238); }
+ else {
+  fallback->func_00199A70(0,&current);
+  if(previous.x==D_002A9B44.x && previous.y==D_002A9B44.y && previous.z==D_002A9B44.z) {
+   velocity=V4f_001956F0(0.0f,0.0f,0.0f,1.0f);
+  } else {
+   float scale=D_00275460/dt;
+   velocity=V4f_001956F0((current.x-previous.x)*scale,(current.y-previous.y)*scale,(current.z-previous.z)*scale,1.0f);
+  }
+  previous=current;
+ }
+ p=position(current);
+ pos=direction(dt,current,velocity);
+ f4=value(p);
+ if(out) *out=pos;
+ if(fv) *fv=f4;
+ if(f6c) { if(a) *a=*(V4f_001956F0 *)&items[index].b; if(b) *b=*(V4f_001956F0 *)&items[index].c; *ok=0; }
+ else { if(pout) *pout=p; *ok=1; }
 }
 
 int C_001955D0::func_001955D0(int a0, int a1) {
