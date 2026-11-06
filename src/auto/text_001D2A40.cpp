@@ -65,7 +65,7 @@ struct C_001D2A40 {
     void func_001D2A40();
 };
 
-static __forceinline void Round_001D2A40(int * volatile out, float f) { *out = _mm_cvtss_si32(_mm_load_ss(&f)); }
+static __forceinline void Round_001D2A40(int * volatile out, float f) { *out = _mm_cvtss_si32(_mm_set_ss(f)); }
 static __forceinline int Min_001D2A40(int a, int b) { return a > b ? b : a; }
 
 /* step one channel k of track i; M = done/dir bit, FM = repeat bit and PM = ping-pong bit of flags */
@@ -220,24 +220,24 @@ void C_001D2A40::func_001D2A40()
     C_001D2A40 *self = this;
     C_001D2A40 **pself = &self;
     int i;
-    if (f50 != 0) {
+    if (self->f50 != 0) {
         int rc[4] = {0, 0, 0x280, 0x1c0};
-        D_002EFDB8->v4(0, f50, rc, 0);
+        D_002EFDB8->v4(0, self->f50, rc, 0);
     }
-    for (i = 0; i < f8; i++) {
+    for (i = 0; i < self->f8; i++) {
         int idx, x, y, w, h, alpha;
         int dst[4];
         int src[4];
-        RtlEnterCriticalSection(f30);
-        if (f10[i].done != 0x3f) {
+        RtlEnterCriticalSection(self->f30);
+        if (self->f10[i].done != 0x3f) {
             S_001D2A40_Frame *q;
-            Round_001D2A40(&idx, f10[i].val[0]);
-            q = &f14[idx];
-            Round_001D2A40(&x, f10[i].val[1]);
-            Round_001D2A40(&y, f10[i].val[2]);
-            Round_001D2A40(&w, f10[i].val[3]);
-            Round_001D2A40(&h, f10[i].val[4]);
-            Round_001D2A40(&alpha, f10[i].val[5]);
+            Round_001D2A40(&idx, self->f10[i].val[0]);
+            q = &self->f14[idx];
+            Round_001D2A40(&x, self->f10[i].val[1]);
+            Round_001D2A40(&y, self->f10[i].val[2]);
+            Round_001D2A40(&w, self->f10[i].val[3]);
+            Round_001D2A40(&h, self->f10[i].val[4]);
+            Round_001D2A40(&alpha, self->f10[i].val[5]);
             alpha = Min_001D2A40(alpha, 255);
             dst[0] = x - (w >> 1);
             dst[1] = y - (h >> 1);
@@ -253,7 +253,7 @@ void C_001D2A40::func_001D2A40()
             TRACK_CHANNEL(3, sizeLo[0], sizeHi[0], 8, 4, 0x40)
             TRACK_CHANNEL(4, sizeLo[1], sizeHi[1], 0x10, 4, 0x40)
             TRACK_CHANNEL(5, alphaLo, alphaHi, 0x20, 8, 0x80)
-            RtlLeaveCriticalSection(f30);
+            RtlLeaveCriticalSection(self->f30);
             D_002EFDB8->v4(dst, q->f0, src, 0);
         }
     }
