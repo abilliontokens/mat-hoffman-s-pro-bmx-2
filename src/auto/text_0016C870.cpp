@@ -232,3 +232,13 @@ C_0016D620 *C_0016D620::func_0016D620(void *param)
     f194 = 0;
     return this;
 }
+struct C_0016C870 {
+    char pad0[0x24];
+    float unk24, unk28, unk2c;
+    char pad30[0x34 - 0x30];
+    float unk34, unk38, unk3c, unk40;
+    char pad44[0x54 - 0x44];
+    float unk54, unk58, unk5c, unk60;
+    int func_00169E10(void *p);
+    int func_0016C870(void *p);
+};
