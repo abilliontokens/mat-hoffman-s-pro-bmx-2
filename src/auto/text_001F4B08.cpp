@@ -108,10 +108,10 @@ extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
 void func_001F4BDE(void)
 {
     memset(D_002FB000, 0, 0x101);
-    memset(D_002FB120, 0, 0x18);
     D_002FB104 = 0;
     D_002FAFF0 = 0;
     D_002FAFE8 = 0;
+    memset(D_002FB120, 0, 0x18);
 }
 
 int func_001F4C09(unsigned int cp)
