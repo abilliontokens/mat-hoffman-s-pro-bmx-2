@@ -175,7 +175,7 @@ struct S_00059F50_Fb4 {
 };
 
 struct S_00059F50_F4 {
-    void func_0001D330();
+    int func_0001D330();
     char pad0[0xB4];
     S_00059F50_Fb4 *fB4;
 };
