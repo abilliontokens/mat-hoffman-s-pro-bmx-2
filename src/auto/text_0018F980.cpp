@@ -119,9 +119,9 @@ void *func_001E8920(void *, const void *, int);
 template <class T> inline const T &min0018FF10(const T &a, const T &b) { return b < a ? b : a; }
 struct C_0018FF10 {
     char pad[0x150];
-    Node0018FF10 *head;
-    Node0018FF10 *tail;
-    Ent0018FF10 *ents;
+    Node0018FF10 *volatile head;
+    Node0018FF10 *volatile tail;
+    Ent0018FF10 *volatile ents;
     int func_0018EB70(int, char *, Node0018FF10 *);
     int func_0018FF10(char *src, char *name, int idx, int *out);
     __forceinline Node0018FF10 *Find0018FF10(const char *name)
@@ -301,14 +301,14 @@ void C_0018F980::func_0018F980(int a1, char *volatile str)
     self->func_001D3F50();
 }
 
-int C_0018FF10::func_0018FF10(char *src, char *volatile name, int idx, int *out)
+int C_0018FF10::func_0018FF10(char *src, char *volatile name, volatile int idx, int *volatile out)
 {
     char *key = name;
-    struct { C_0018FF10 *volatile self; volatile int a, b, r; } t;
+    C_0018FF10 *volatile self = this;
+    struct { volatile int a, b, r; } t;
     Node0018FF10 *n;
     int count;
     int found = 0;
-    t.self = this;
     if (!key || strcmp(key, "") == 0) return 0;
     for (n = this->head; n; n = n->next) {
         if (!strcmp(key, n->name)) { found = 1; break; }
@@ -317,7 +317,7 @@ int C_0018FF10::func_0018FF10(char *src, char *volatile name, int idx, int *out)
         int id = D_002BEAAC->func_0013C9F0(key, D_00275FB4);
         if (id == -1) { *out = 0; return 0; }
         n = (Node0018FF10 *)func_001E8A44(0x110);
-        if (t.self->func_0018EB70(id, src, n) != 1) {
+        if (self->func_0018EB70(id, src, n) != 1) {
             func_001E891B(n);
             *out = 0;
             return 0;
@@ -331,11 +331,13 @@ int C_0018FF10::func_0018FF10(char *src, char *volatile name, int idx, int *out)
         }
         count = t.r;
         func_001E8920(n, name, count);
-        n->name[count] = 0;
-        t.self->ents[idx].node = n;
-        if (!t.self->tail) { t.self->head = n; t.self->tail = n; *out = 1; return 1; }
-        t.self->tail->next = n;
-        t.self->tail = n;
+        ((volatile char *)n->name)[count] = 0;
+        self->ents[idx].node = n;
+        C_0018FF10 *s = self;
+        Node0018FF10 *tl = s->tail;
+        if (!tl) { s->head = n; self->tail = n; *out = 1; return 1; }
+        tl->next = n;
+        self->tail = n;
         *out = 1;
         return 1;
     } else {
