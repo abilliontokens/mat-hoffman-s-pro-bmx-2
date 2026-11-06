@@ -197,8 +197,16 @@ int AllocObj::func_001EEE62(int size, int flag) {
     return (int)(field_c + 1) + field_10;
 }
 
-void __fastcall func_001EEEE6(BitObj *dst, int dummy, BitObj *src) {
-    dst->f0 = src->f0;
+BitObj *BitObj::func_001EEEE6(BitObj *o)
+{
+    s4 = o->s4;
+    b4 = o->b4;
+    b5 = o->b5;
+    b6 = o->b6;
+    b7 = o->b7;
+    f0 = o->f0;
+    b8 = o->b8;
+    return this;
 }
 
 BitObj *BitObj::func_001EEF4F(BitObj *o)
