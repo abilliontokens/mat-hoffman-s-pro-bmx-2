@@ -75,6 +75,28 @@ struct C_00196290 {
     void func_00196560(void);
 };
 
+int C_00196290::func_001960F0(float param_1, int param_2, int param_3, int param_4, int param_5, int param_6, int param_7)
+{
+    f70++;
+    if (param_1 > 0.0f && f74 < f6c && (fc0 & 0x10) == 0) {
+        f78[f74] = param_2;
+        if (param_3 != 0) {
+            f7c[f74] = param_3;
+        } else {
+            f7c[f74] = param_2;
+        }
+        f80[f74] = 1;
+        f84[f74] = param_7;
+        f88[f74] = param_4;
+        f90[f74] = param_1;
+        f94[f74] = D_00275460 / param_1;
+        fa4[f74] = (float)param_5;
+        fa8[f74] = (float)param_6;
+        return ++f74 - 1;
+    }
+    return -1;
+}
+
 int C_00196290::func_001961E0(int param_1, int param_2, int param_3)
 {
     f70++;
