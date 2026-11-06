@@ -299,7 +299,16 @@ struct S_001BB060_Array {
     int cap;
     int max;
     int count;
+    int flag;
     void func_001B9C70(int n);
+    void Init()
+    {
+        flag = 0;
+        cap = 10;
+        max = (int)&D_000186A0;
+        count = 0;
+        data = (char **)func_001E8A44(0x28);
+    }
     char *&At(int i)
     {
         if (i >= cap) {
