@@ -36,8 +36,10 @@ struct S_00127DD0_Node {
 struct S_00128480_Entry {
     float split, length;
     unsigned short left, right;
-    int a, b, c;
-    float x, y, z;
+    union {
+        struct { int a, b, c; float x, y, z; };
+        struct { S_00128630_V3 va, vb; };
+    };
 };
 extern "C" float __cdecl sqrtf(float);
 #pragma intrinsic(sqrtf)
@@ -148,6 +150,41 @@ void func_001285A0(S_00127DD0_Entry *out, S_00127DD0_Node *node, int *count)
     e->a = node->a;
     e->b = node->b;
     (*count)++;
+}
+
+void func_00128630(S_00128480_Entry *nodes,S_00128630_Entry *entries,int count,void *context,int start,int *index)
+{
+again:
+ S_00128480_Entry *node=nodes+*index;
+ int nodeIndex=*index;
+ S_00127DD0_V4 a,b; a.x=a.y=a.z=0.0f;b.x=b.y=b.z=0.0f;b.w=1.0f;
+ func_00126DD0(entries,count,context,&a,&b,&node->split,&node->length,0);
+ int ax=*(int*)&a.x,ay=*(int*)&a.y,az=*(int*)&a.z;
+ node->c=az;node->a=ax;node->b=ay;
+ int bx=*(int*)&b.x,by=*(int*)&b.y,bz=*(int*)&b.z;
+ *(int*)&node->z=bz;*(int*)&node->x=bx;*(int*)&node->y=by;
+ float split;int axis;
+ func_001271E0(entries,count,context,&split,&axis);
+ int leftCount=0,rightCount=0;
+ int side=0;
+ S_00128630_Entry *left=(S_00128630_Entry*)func_001E8AA5(count*52);
+ S_00128630_Entry *right=(S_00128630_Entry*)func_001E8AA5(count*52);
+ for(int i=0;i<count;i++) {
+ switch(axis) {
+ case 0:side=(*(float*)&entries[i].data[7]>split ? 1:0);break;
+ case 1:side=(*(float*)&entries[i].data[8]>split ? 1:0);break;
+ case 2:side=(*(float*)&entries[i].data[9]>split ? 1:0);break;
+ }
+ if(side) {left[leftCount++]=entries[i];} else {right[rightCount++]=entries[i];}
+ }
+ for(int j=0;j<leftCount;j++) entries[j]=left[j];
+ for(int k=0;k<rightCount;k++) entries[leftCount+k]=right[k];
+ func_001E8390(left);func_001E8390(right);
+ if(!rightCount || !leftCount) {leftCount=count/2;rightCount=count-leftCount;}
+ if(leftCount==1) node->left=(unsigned short)(start|0x8000);
+ else {node->left=(unsigned short)++*index;func_00128630(nodes,entries,leftCount,context,start,index);}
+ if(rightCount==1) nodes[nodeIndex].right=(unsigned short)((start+leftCount)|0x8000);
+ else {node->right=(unsigned short)++*index;start+=leftCount;count=rightCount;entries+=leftCount;goto again;}
 }
 
 C_00128910* C_00128910::func_00128910(void) {
