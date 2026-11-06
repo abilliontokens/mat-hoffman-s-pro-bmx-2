@@ -40,7 +40,7 @@ struct C_0010C210 {
     void func_0010C210();
 };
 struct Q10C { float x, y, z, w; Q10C() { z = 0; y = 0; x = 0; w = 1.0f; } };
-struct M44C { float m[16]; };
+struct __declspec(align(16)) M44C { float m[16]; };
 struct Owner10C {
     void func_0010C210();
 };
@@ -53,10 +53,8 @@ extern float D_00283A78;
 extern float D_00275998;
 extern char D_00283B28[], D_00283B20[], D_00283B18[], D_00283B08[], D_00283AF4[], D_00283AE0[], D_00283AD0[], D_00283ABC[], D_00283AB4[], D_00283AAC[], D_00283AA4[], D_00283A98[], D_00283A8C[], D_00283A80[];
 
-void C_0010C210::func_0010C210()
+void Owner10C::func_0010C210()
 {
-    struct Q10 { float x, y, z, w; Q10() { z = 0; y = 0; x = 0; w = 1.0f; } };
-    struct M44 { float m[16]; };
     char *s = (char *)this;
     D_002BEAAC->func_0013B1A0(s + 0x33c);
     Cfg10 *cfg;
@@ -90,12 +88,12 @@ void C_0010C210::func_0010C210()
     *(float *)((char *)obj + 0x198) = *(float *)(s + 0xf4);
     *(float *)((char *)obj + 0x19c) = *(float *)(s + 0xf8);
     obj->v28(v38 * D_00283A7C);
-    Q10 q2;
-    Q10 q1;
+    Q10C q2;
+    Q10C q1;
     Node230 *node = *(Node230 **)(s + 0x230);
     node->func_0019A680(&q1, s + 0x7c);
-    M44 matA;
-    M44 matB;
+    M44C matA;
+    M44C matB;
     float *pm = matA.m;
     memset(pm, 0, 0x40);
     matB = matA;
@@ -111,8 +109,8 @@ void C_0010C210::func_0010C210()
     *(unsigned char *)((char *)node + 0x180) &= 0xbf;
     *(unsigned char *)((char *)node + 0x180) |= 0x10;
     node->func_00198B70(&q1, &q2);
-    M44 matC;
-    M44 matD;
+    M44C matC;
+    M44C matD;
     float *pm2 = matC.m;
     memset(pm2, 0, 0x40);
     matD = matC;
