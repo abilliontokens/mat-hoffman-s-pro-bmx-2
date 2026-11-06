@@ -73,13 +73,17 @@ void func_001F65C5(char *);
 extern int D_0028C0E0;
 void func_001E8390(void *p);
 void *func_001E8AA5(unsigned int size);
+extern double D_002766A8, D_00286D30, D_0028C110, D_0028C108, D_0028C100, D_002766B8;
+double func_001EA2BA(double, double *);
+int func_001E8858(double);
+static __declspec(noinline) char *func_001AC940(int *sign, char *buf, double arg, int ndigits, int *decpt, int eflag);
 
 
 int DynamicStringTable::func_001AC440(const char *name)
 {
     char path[260];
     int size, unused;
-    int j;
+    int j, k;
     if (entries) func_001E891B(entries);
     if (unk10) func_001E8390((void *)unk10);
     strcpy(path, name);
@@ -117,10 +121,11 @@ int DynamicStringTable::func_001AC440(const char *name)
             }
         }
     }
-    j = 0;
     capacity = count;
-    for (; j < unk1C; ++j)
-        for (int k = 0; k < count; ++k) {
+    j = 0;
+    while (j < unk1C) {
+        k = 0;
+        while (k < count) {
             const char *other = ((StringTableEntry *)unk18)[j].name;
             const char *current = entries[k].name;
             if (!func_001EA426(current, other)) {
@@ -131,7 +136,10 @@ int DynamicStringTable::func_001AC440(const char *name)
                 dst->data = src->data;
                 dst->refCount = src->refCount;
             }
+            k++;
         }
+        j++;
+    }
     return count;
 }
 
