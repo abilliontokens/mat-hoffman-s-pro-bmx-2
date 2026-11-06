@@ -298,7 +298,6 @@ extern char D_00278BC8[5], D_00278BC0[5], D_00278414[5], D_002783F8[5], D_00278B
 extern S_6E970_G1 *D_002A8490;
 #include <string.h>
 #pragma intrinsic(memcmp)
-#pragma intrinsic(strncmp)
 
 C_0006E330 *C_0006E330::func_0006E330(int a0)
 {
