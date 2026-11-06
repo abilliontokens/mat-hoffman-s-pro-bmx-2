@@ -75,7 +75,9 @@ struct S_00191270_Entry {
 };
 
 struct S_00191270_Owner {
-    char pad0[0x38];
+    char pad0[0x28];
+    int f28;
+    char pad2c[0xc];
     int f38;
 };
 
