@@ -376,6 +376,7 @@ void C_001AC200::func_001AC200(int n)
     C_001AC150 *args = field_10;
     char *s;
     char c;
+    int *pos = &field_04;
     if (n > args->field_0C) {
         args->func_001AC1A0(n);
     }
@@ -384,7 +385,7 @@ void C_001AC200::func_001AC200(int n)
     if (c != 0) {
         s++;
         do {
-            ((char *)field_0C)[field_04++] = c;
+            field_0C[(*pos)++] = c;
             c = *s++;
         } while (c != 0);
     }
@@ -449,7 +450,7 @@ void func_001AC330(char *buf, const char *fmt, ...)
     C_001AC200 out;
     C_001AC150 args;
 
-    ap = (va_list)(&buf + 2);
+    va_start(ap, fmt);
     args.field_00 = (int **)&ap;
     args.field_08 = 10;
     args.field_0C = 0;
