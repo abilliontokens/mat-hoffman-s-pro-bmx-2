@@ -97,8 +97,9 @@ struct C_00100CF0 : VP_101010 {
  float f2b4;
  int f2b8, f2bc, f2c0, f2c4;
  float f2c8, f2cc;
- M_101010 *f2d0;
-   void func_00100CF0(float dt);
+   M_101010 *f2d0;
+    __forceinline void Notify_00100CF0() { f298 = 1; ((VP_101010 *)this)->v70(f288, f284); }
+    void func_00100CF0(float dt);
   void func_001BEE50(int, int, int);
   void func_001BED00(float);
 };
@@ -596,6 +597,7 @@ void *C_00100CD0::func_00100CD0(unsigned int flags) {
     return this;
 }
 
+extern "C" void *memset(void *, int, unsigned int);
 void C_00100CF0::func_00100CF0(float dt) {
  O_101010 *p = owner;
  if (f29c || f2a0) { for(int i=0;i<8;i++) clear148[i]=0; }
@@ -607,14 +609,13 @@ void C_00100CF0::func_00100CF0(float dt) {
   f28c += dt;
   if (f28c >= D_0027DE74) {
    if (f290 && p->f2A4) { f290=0; f2a8=0; }
-   else { f298=1; ((VP_101010*)this)->v70(f288,f284); f28c=0; }
+   else { ((VP_101010*)this)->v70((f298=1, f288), f284); f28c=0; }
   }
  }
  if (f2b8 && !f2b0) {
   f2b4 += dt;
   if (f2b4 >= D_00278C48) {
    f2b0=1; f2b8=0;
-
   }
  }
  if(f2a4) (*(C_00094E40 **)(*(char **)(D_002A8490+0x2e0)+0x2fc))->func_00094E40(2,1,500);
