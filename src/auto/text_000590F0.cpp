@@ -214,6 +214,7 @@ struct S_00059F50_Obj {
     virtual void v28(int a, int b);
     virtual void v29();
     void func_00157810(void);
+    int GetId(void) { return v10(); }
 };
 
 struct C_000B9A60 {
