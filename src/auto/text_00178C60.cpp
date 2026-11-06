@@ -62,6 +62,12 @@ extern float D_00288EC0;
 extern float D_00288EB0;
 extern float D_00288EA0;
 
+static __forceinline Vec4 make_179950(float x, float y, float z) {
+    Vec4 r;
+    r.x = x; r.y = y; r.z = z; r.w = 1.0f;
+    return r;
+}
+
 static __forceinline void sub_179950(float *out, Vec4 *a, Vec4 *b)
 {
     out[2] = a->z - b->z;
