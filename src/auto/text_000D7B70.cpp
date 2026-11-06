@@ -85,7 +85,7 @@ struct BmxUIPageHOF4D {
     void func_001BE3F0();
     void func_000D7B70();
     void func_000D85C0();
-    void func_000D8700(int value, char *buf);
+    char *func_000D8700(int value, char *buf);
     void func_000D8820();
     void func_000D8A40();
 };
