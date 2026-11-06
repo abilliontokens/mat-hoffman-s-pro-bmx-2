@@ -11,6 +11,30 @@ int __stdcall func_00201100(int param_1);
 int __stdcall func_001FCE50(int param_1, int param_2);
 void *func_001E8AA5(unsigned int size);
 
+extern int D_002A74D0;
+extern float D_00275460;
+extern int D_0020C6DC;
+extern int D_0020C720;
+extern int D_0020C920;
+
+struct S_149ED0_Slot6C { void func_0014A650(void *p); };
+struct S_149ED0_Slot70 { void func_00142D00(void *p); };
+struct S_149ED0_G {
+    char pad0[0x6c];
+    S_149ED0_Slot6C *f6c;
+    S_149ED0_Slot70 *f70;
+};
+extern S_149ED0_G *D_002EFDB8;
+
+struct V_149ED0 {
+    int f0;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    int f14;
+};
+
 struct C_0013B210 {
     int func_0013C9F0(int param_1, int *param_2);
     void func_0013AF40(int param_1, int param_2, int *param_3);
