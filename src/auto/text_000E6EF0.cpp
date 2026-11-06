@@ -81,8 +81,7 @@ struct BmxUIPageRiderOps {
     char pad0[0x124];
     Ctx_000E6EF0 *p124;
     char pad128[0x280 - 0x128];
-    int f280, f284;
-    char pad288[0x290 - 0x288];
+    int f280, f284, f288, f28C;
     int f290, f294, f298, f29C, f2A0, f2A4, f2A8, f2AC, f2B0;
     char pad2B4[0x470 - 0x2b4];
     int f470;
