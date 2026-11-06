@@ -20,16 +20,6 @@ void __stdcall func_001FE490(int a);
 void __stdcall func_00200390(int index, int value);
 void __stdcall func_001FEFE0(int a);
 
-/* per-stage setup of the first stage loop: three state words, the dirty bit, then the stage notification */
-static __forceinline void InitStage_001D1060(unsigned int i)
-{
-    (&D_0020C6E4)[i * 0x20 - 1] = 3;
-    (&D_0020C6E4)[i * 0x20] = 3;
-    D_0020C6DC |= 1 << i;
-    (&D_0020C6E4)[i * 0x20 + 1] = 3;
-    func_00200390(i, 0);
-}
-
 struct S_002F07B8;
 
 struct V_002EFDB8 {
