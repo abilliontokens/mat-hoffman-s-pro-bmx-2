@@ -208,11 +208,6 @@ struct C_000BC590 {
     void func_000BC590(void);
 };
 
-static inline void FloatToInt(int *out, float f)
-{
-    *out = (int)f;
-}
-
 struct S_000BC4C0_Sub {
     void func_001D3700(int a, int b);
 };
