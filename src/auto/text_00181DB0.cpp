@@ -534,7 +534,7 @@ void C_00181DB0::func_001820B0(int a0, int a1, int a2)
 extern "C" float __cdecl sqrtf(float);
 void C_00182110::func_00182110(void)
 {
-    C_00182110 * volatile self = this;
+    C_00182110 *self = this;
     int i;
 
     if (self->f180 & 0x10) {
@@ -681,6 +681,41 @@ void C_00182830::func_00182830(C_00182830_Target *p)
             p->func_0012B390(0x3f9f49f5, 0x280, 0x1c0);
         }
     }
+}
+
+#pragma intrinsic(strcmp)
+extern "C" int __cdecl strcmp(const char *, const char *);
+S_00182980 func_00182980(char *str) {
+    S_00182980 c;
+    char *t = func_001E95A4(str, D_002869B8);
+    if (t && strcmp(str, "undef") != 0) {
+        c.v[0] = (float)func_001E91F4(t);
+        t = func_001E95A4(0, D_002869B8);
+        if (!t) goto default1;
+        {
+            c.v[1] = (float)func_001E91F4(t);
+            t = func_001E95A4(0, D_002869B8);
+            if (!t) goto default2;
+            {
+                c.v[2] = (float)func_001E91F4(t);
+                t = func_001E95A4(0, D_002869B8);
+                if (!t) goto default3;
+                {
+                    c.v[3] = (float)func_001E91F4(t);
+                    goto done;
+                }
+            }
+        }
+    }
+    c.v[0] = 255.0f;
+default1:
+    c.v[1] = 255.0f;
+default2:
+    c.v[2] = 255.0f;
+default3:
+    c.v[3] = 255.0f;
+done:
+    return c;
 }
 
 void C_00182C60::func_00182A80(void)
