@@ -16,7 +16,7 @@ struct Q_292C0_Obj {
 };
 struct Q_292C0_Orient { void func_00197E70(Q_292C0 *out); void func_00197B40(Q_292C0 *a, Q_292C0 *b); Q_292C0 func_00198120(const Q_292C0 &in); };
 struct Q_292C0_Aux { char pad0[0x238]; Q_292C0 f238; };
-Q_292C0 func_0001E9E0(const Q_292C0 &in);
+Q_292C0 *func_0001E9E0(Q_292C0 *out, Q_292C0 *in);
 struct C_000292C0 {
     char pad0[0x1e0]; Q_292C0_Aux *f1e0; char pad1e4[0x18]; Q_292C0_Obj *f1fc; char pad200[0x30]; Q_292C0_Orient *f230;
     char pad234[0x69c - 0x234]; int f69c; char pad6a0[4]; int f6a4; int f6a8; char pad6ac[8]; float f6b4, f6b8, f6bc, f6c0; int f6c4, f6c8; Q_292C0 f6cc, f6dc; char pad6ec[0x6fc - 0x6ec]; int f6fc; char pad700[0x760 - 0x700]; float f760;
