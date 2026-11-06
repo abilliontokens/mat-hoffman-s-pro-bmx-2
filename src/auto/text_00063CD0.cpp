@@ -277,7 +277,9 @@ struct S_000645E0_2E0 {
 };
 
 struct S_002A8490 {
-    char pad0[0x2e0];
+    char pad0[0x244];
+    int unk244;
+    char pad248[0x2e0-0x248];
     S_000645E0_2E0 *unk2e0;
 };
 extern S_002A8490 *D_002A8490;
