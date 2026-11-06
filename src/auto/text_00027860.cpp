@@ -237,6 +237,8 @@ struct C_00028070 {
 
 static __forceinline float Max_E(float a,float b) { float r; _mm_store_ss(&r,_mm_max_ss(*(__m128 *)&a,*(__m128 *)&b)); return r; }
 static __forceinline float Min_E(float a,float b) { float r; _mm_store_ss(&r,_mm_min_ss(*(__m128 *)&a,*(__m128 *)&b)); return r; }
+static __forceinline float MaxE_27E40(float a, float b) { return a > b ? a : b; }
+static __forceinline float MinE_27E40(float a, float b) { return a < b ? a : b; }
 struct E_Vec { char p0[0x14]; char *name; char p18[0x28]; float x, y, z; };
 struct E_Mid { char p0[0x14]; char *name; char p18[0x18]; E_Vec *vec; void func_00012140(); };
 struct E_Phys { char p0[0x238]; float x, y, z; };
@@ -253,11 +255,12 @@ struct C_00027E40 {
 
 void C_00027860::func_00027860(float dt)
 {
+    C_00027860 *self = this;
     S_V4_27860 t;
-    float m[16];
+    S_V4_27860 m[4];
 
     t.z = 0.0f;
-    if (f1E8->f68 != 0) {
+    if (self->f1E8->f68 != 0) {
         S_V4Id_27860 v1;
         S_V4Id_27860 v2;
         S_V4_27860 v;
@@ -265,41 +268,41 @@ void C_00027860::func_00027860(float dt)
         float neg;
         float tmp;
 
-        Cross_27860(&v1.x, f10C, f1E8->f1A0);
-        Cross_27860(&v2.x, f1E8->f1A0, &v1.x);
+        Cross_27860(&v1.x, self->f10C, self->f1E8->f1A0);
+        Cross_27860(&v2.x, self->f1E8->f1A0, &v1.x);
         v.x = 0.0f;
         v.y = 0.0f;
         v.z = 0.0f;
         v.w = 0.0f;
-        func_000265C0(m, &v.x, &v2.x, f1E8->f1A0, 0, 1);
-        t = func_00026880(f748, m);
+        func_000265C0(&m[0].x, &v.x, &v2.x, self->f1E8->f1A0, 0, 1);
+        t = func_00026880(self->f748, &m[0].x);
         s = Min_27860(Max_27860(t.z * D_002756DC, -1.0f), 1.0f);
-        neg = -(Max_27860(f5CC, 0.0f) * f5D4);
-        tmp = Min_27860(f59C - f744, 0.0f);
+        neg = -(Max_27860(self->f5CC, 0.0f) * self->f5D4);
+        tmp = Min_27860(self->f59C - self->f744, 0.0f);
         v.w = 1.0f;
         v.x = 0.0f;
         v.y = 0.0f;
-        v.z = (tmp * D_002A1150 + neg - f5D0) * f1E0->f210 * s * D_00275BF8 * f1E8->f80;
-        S_V4_27860 r = func_000267F0(&v.x, m);
-        float *p = f1E0->f130;
+        v.z = (tmp * D_002A1150 + neg - self->f5D0) * self->f1E0->f210 * s * D_00275BF8 * self->f1E8->f80;
+        S_V4_27860 r = func_000267F0(&v.x, &m[0].x);
+        float *p = self->f1E0->f130;
         p[0] += r.x;
         p[1] += r.y;
         p[2] += r.z;
     }
-    if (f1E8->f50 != 0) {
-        f5D8 = t.z * f1E8->f80;
-    } else if (f5CC > D_00275544) {
-        f5D8 = 0.0f;
+    if (self->f1E8->f50 != 0) {
+        self->f5D8 = t.z * self->f1E8->f80;
+    } else if (self->f5CC > D_00275544) {
+        self->f5D8 = 0.0f;
     }
-    if (f1E8->f54 != 0) {
-        f5DC = t.z * f1E8->f80;
-    } else if (f5CC > D_00275544) {
-        f5DC = 0.0f;
+    if (self->f1E8->f54 != 0) {
+        self->f5DC = t.z * self->f1E8->f80;
+    } else if (self->f5CC > D_00275544) {
+        self->f5DC = 0.0f;
     }
-    f5E0 = dt * f5D8 + f5E0;
-    f5E4 = dt * f5DC + f5E4;
-    func_0014FD80(&f5E0);
-    func_0014FD80(&f5E4);
+    self->f5E0 = dt * self->f5D8 + self->f5E0;
+    self->f5E4 = dt * self->f5DC + self->f5E4;
+    func_0014FD80(&self->f5E0);
+    func_0014FD80(&self->f5E4);
 }
 
 void C_00027C30::func_00027C30(void) {
@@ -314,6 +317,7 @@ void C_00027C50::func_00027C50(float scale) {
     V4_00027C50 b;
     V4_00027C50 c;
     float d;
+    float tz;
 
     a.z = 0.0f;
     a.y = 0.0f;
@@ -327,7 +331,8 @@ void C_00027C50::func_00027C50(float scale) {
     a = *(V4_00027C50 *)func_0001E9E0(&c.x, &a.x);
     d = a.y * -1.0f;
     d += a.x * 0.0f;
-    unk580 = (d + a.z * 0.0f) * scale;
+    tz = a.z * 0.0f;
+    unk580 = (d + tz) * scale;
     if (unk580 < 0.0f) {
         unk580 = 0.0f;
     }
@@ -364,6 +369,27 @@ void C_00028070::func_00027D60(void) {
         unk5F4->func_00026130();
         unk724 = 0;
     }
+}
+
+void C_00027E40::func_00027E40() {
+ C_00027E40 *self=this;
+ self->u468=1; self->u444=0; self->u48c=0;
+ if(self->u470==0) {
+  self->u478=0;
+  self->mid->func_00012140();
+  E_Phys *p=self->phys; E_Vec *v=self->mid->vec;
+  float dot=p->x*v->x+p->y*v->y+p->z*v->z;
+  S_V4_27860 t; t.x=dot*v->x;t.y=dot*v->y;t.z=dot*v->z;
+  p->x-=t.x;p->y-=t.y;p->z-=t.z;
+  float f=Min_E(Max_E(dot,-self->lim->lim),self->lim->lim);
+  v=self->mid->vec;
+  t.x=f*v->x;t.y=f*v->y;t.z=f*v->z;
+  p=self->phys;p->x+=t.x;p->y+=t.y;p->z+=t.z;
+ }
+ if(self->u5e8==2 && self->u724 && strcmp(self->u724->name,self->mid->vec->name)==0) {
+  if(self->u718==self->u71c) self->u5ec->func_000261F0(self->u5f8*2);
+  else self->u5ec->func_000261F0(self->u5f8);
+ } else self->u5ec->func_000261F0(-self->u5fc);
 }
 
 extern "C" void func_000262B0(void);
