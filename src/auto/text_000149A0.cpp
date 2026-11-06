@@ -32,8 +32,13 @@ struct Sound149A0 {
 
 extern char *D_002B9120;
 extern const float D_002756B4;
-extern "C" float __cdecl sqrtf(float);
-#pragma intrinsic(sqrtf)
+#include <xmmintrin.h>
+static inline float sqrtf(float x)
+{
+    float r;
+    _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x)));
+    return r;
+}
 
 struct Obj13F50 {
     void func_00013F50(void *arg1, int arg2, void *arg3, int arg4);
@@ -219,6 +224,55 @@ void AIPedFleeState::func_00014EA0()
         *(unsigned char *)((char *)owner + 0x3e0) = 1;
         func_00012B00(1);
     }
+}
+
+int AIPedFleeState::func_00014EF0(float dt)
+{
+    float dist;
+    int idx;
+    float len;
+    char *rider;
+
+    if (*(int *)(*(int *)((char *)D_002A8490 + 0x2a4) + 0x1c8) == 1)
+        return 1;
+    *(int *)((char *)owner + 0x3b0) = owner->func_000119D0((char *)owner + 0x3e4);
+    owner->func_00011BE0(&idx, &dist);
+    if (idx == -1)
+        return 1;
+    rider = *(char **)(*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8);
+    if (dist < D_002756C8 && *(float *)(rider + 0x1194) > D_00275460) {
+        if (*(int *)(*(int *)(rider + 0x950) + 0xbc) == 0)
+            func_00012B00(1);
+    } else {
+        float dx = *(float *)((char *)this + 0xc) - *(float *)((char *)owner + 0x3e4);
+        float dy = *(float *)((char *)this + 0x10) - *(float *)((char *)owner + 0x3e8);
+        float dz = *(float *)((char *)this + 0x14) - *(float *)((char *)owner + 0x3ec);
+        len = sqrtf(dx * dx + dy * dy + dz * dz);
+        if (len < D_00275600) {
+            if (*(unsigned int *)((char *)D_002A8490 + 0x238) <= *(unsigned int *)((char *)this + 0x1c))
+                return 1;
+            func_00012B00(0);
+        }
+    }
+    if (dist > D_002756C4) {
+        if (IsLocal_151F0())
+            *(int *)((char *)owner + 0x3bc) = 4;
+        (*(PedAnim **)((char *)owner + 0x384))->func_0008AB90(*(int *)((char *)owner + 0x3a0));
+    }
+    if (*(char *)((char *)owner + 0x3e2) == 2)
+        return 1;
+    if (dist < D_002756BC && *(int *)(*(int *)(rider + 0x950) + 0xbc) == 0)
+        func_000149A0(idx, -13.0f);
+    if (IsLocal_151F0())
+        *(int *)((char *)owner + 0x3bc) = 6;
+    (*(PedAnim **)((char *)owner + 0x384))->func_0008AB90(*(int *)((char *)owner + 0x390));
+    *(float *)((char *)owner + 0x3d8) = dt + *(float *)((char *)owner + 0x3d8);
+    if (*(float *)((char *)owner + 0x3d8) > D_00275548) {
+        if (IsLocal_151F0())
+            *(int *)((char *)owner + 0x3bc) = 8;
+        (*(PedAnim **)((char *)owner + 0x384))->func_0008AB90(*(int *)((char *)owner + 0x3a8));
+    }
+    return 1;
 }
 
 void AIPedCurseState::func_00015170()
