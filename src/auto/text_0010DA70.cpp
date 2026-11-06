@@ -18,6 +18,11 @@ struct Vec4 {
 extern Vec4 D_002A3A3C;
 extern float D_002A3A40, D_002A3A44, D_002A3A48;
 
+static __forceinline Vec4 makeVec4_10E2A0(f32 x, f32 y, f32 z, f32 w)
+{
+    return Vec4(x, y, z, w);
+}
+
 struct C_Device {
     virtual void v0();  virtual void v1();  virtual void v2();  virtual void v3();
     virtual void v4();  virtual void v5();  virtual void v6();  virtual void v7();
@@ -544,20 +549,20 @@ void C_0010E260::func_0010E260(void)
 void BmxVehicle_10DA70::func_0010E2A0(void)
 {
     BmxVehicle_10DA70 * volatile self = this;
-    Mat44_10E2A0 m2;
+    int zero = 0;
     Mat44_10E2A0 m1;
+    Mat44_10E2A0 m2;
     Mat44_10E2A0 * volatile pm;
     Vec4 a;
     Vec4 b;
-    Vec4 c;
-    float lenSq;
     float len;
+    Vec4 c;
     C_0010E810Slot *slot;
     Vec4 *v;
     int t;
     int r;
 
-    *(int *)((char *)this + 0x2084) = 0;
+    *(int *)((char *)this + 0x2084) = zero;
     MEMBER_10E2A0(int, 0x2088) = -1;
     if (MEMBER_10E2A0(float, 0x11A4) <= D_00275460) {
         func_00108510(0, D_002A3A3C);
@@ -565,12 +570,12 @@ void BmxVehicle_10DA70::func_0010E2A0(void)
     if (MEMBER_10E2A0(int, 0x11F4) == 1) {
         MEMBER_10E2A0(int, 0x11F4) = 2;
     }
-    MEMBER_10E2A0(int, 0x964) = 0;
-    MEMBER_10E2A0(int, 0x968) = 0;
-    MEMBER_10E2A0(int, 0x96C) = 0;
-    MEMBER_10E2A0(int, 0x99C) = 0;
-    MEMBER_10E2A0(int, 0x9A0) = 0;
-    MEMBER_10E2A0(int, 0x9BC) = 0;
+    MEMBER_10E2A0(int, 0x964) = zero;
+    MEMBER_10E2A0(int, 0x968) = zero;
+    MEMBER_10E2A0(int, 0x96C) = zero;
+    MEMBER_10E2A0(int, 0x99C) = zero;
+    MEMBER_10E2A0(int, 0x9A0) = zero;
+    MEMBER_10E2A0(int, 0x9BC) = zero;
     slot = D_002A8490->f2A4->f170[MEMBER_10E2A0(int, 0xA2C)];
     if (slot != 0) {
         slot->func_000848F0();
@@ -582,7 +587,7 @@ void BmxVehicle_10DA70::func_0010E2A0(void)
     MEMBER_10E2A0(C_10E2A0_230 *, 0x230)->f174->func_00199BE0(&m2);
     self->func_00028070();
     MEMBER_10E2A0(int, 0x5C8) = 1;
-    MEMBER_10E2A0(int, 0x8AC) = 0;
+    MEMBER_10E2A0(int, 0x8AC) = zero;
     a.z = 0.0f;
     a.y = 0.0f;
     a.x = 0.0f;
@@ -596,8 +601,7 @@ void BmxVehicle_10DA70::func_0010E2A0(void)
     MEMBER_10E2A0(C_10E2A0_950 *, 0x950)->func_0011CA60(a);
     func_0001E9E0(&c, (Vec4 *)((char *)MEMBER_10E2A0(char *, 0x1E0) + 0x258));
     v = (Vec4 *)((char *)MEMBER_10E2A0(char *, 0x1E0) + 0x258);
-    lenSq = v->x * v->x + v->y * v->y + v->z * v->z;
-    _mm_store_ss(&len, _mm_sqrt_ss(*(__m128 *)&lenSq));
+    len = length_10E2A0(v);
     {
         BmxVehicle_10DA70 *p = self;
         ((C_10E2A0_950 *)*(char **)((char *)p + 0x950))->func_0011C900(b, *(Vec4 *)(*(char **)((char *)p + 0x1E0) + 0x238), c, len);
