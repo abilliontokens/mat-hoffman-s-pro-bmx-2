@@ -204,6 +204,55 @@ struct C_00053D20 {
 };
 
 
+extern float D_00275544;
+int G_Event::func_00053930(int arg) {
+    int i, all;
+    if (f1f4) { return func_00157A00(arg); }
+    if (G_GLOB->f124) { return func_00031260(arg); }
+    if (f190) {
+        if (!f284) {
+            G_Mode *m = G_GLOB->f2e0;
+            if (!m->f20) { if (f128 <= D_00275544) f284 = 1; }
+            else { if (f124 > m->f10) f284 = 1; }
+        }
+        all = 1;
+        for (i = 0; i < f90; i++)
+            if (!f64->f4e0->f1a8[i]->func_00108660()) all = 0;
+        if (f284) {
+            for (i = 0; i < f90; i++)
+                f64->f4e0->f1a8[i]->func_001084E0();
+        }
+        if (f284 && all) {
+            if (G_GLOB->f2e0->mode0 == 1 &&
+                (f68->func_0005B960(3, (float)f64->f4e0->f1a8[0]->fa58) ||
+                 f68->func_0005B960(1, f64->f4e0->f1a8[0]->fa4c) ||
+                 f68->func_0005B960(4, (float)f64->f4e0->f1a8[0]->fa40) ||
+                 f68->func_0005B960(2, f64->f4e0->f1a8[0]->f1058) ||
+                 f68->func_0005B960(0, f64->f4e0->f1a8[0]->fa54) ||
+                 f68->func_0005B960(5, (float)f64->f4e0->f1a8[0]->fa5c))) {
+                f164->func_000707C0(3); f164->func_0006E970(0);
+            } else {
+                f190->func_000684B0();
+            }
+            G_GLOB->f4->func_0001D330();
+            f64->f4c0->v28();
+        }
+    }
+    func_00031260(arg);
+    if (f288) {
+        f288 = 0;
+        if (G_GLOB->f2e0->f190 == 6 && ((int *)f170)[0x130 / 4] > (int)D_000186A0) {
+            if (!f68->func_0005C330(2)) {
+                f68->func_0005C340(2);
+                f170->func_00083A70(G_GLOB->f2e8->f4->f1228);
+                f1b8->v5(1);
+            }
+        }
+    }
+    if (f64->f4e0->f1a8[0]->f11f4 == 3) f288 = 1;
+    return 1;
+}
+
 int C_00053C60::func_00053C60(void) {
     int func_00034090(...);
     unk284 = 0;
