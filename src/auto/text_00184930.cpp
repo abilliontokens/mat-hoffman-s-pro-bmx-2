@@ -208,7 +208,7 @@ struct S_00185110_Obj {
 struct S_00184930_Col { void *vtbl; float f4; float f8; float fC; float f10; int f14; int f18; };
 struct S_00184930_Fx { virtual void v0(); virtual void v1(); virtual void v2(); S_00184930_Fx *func_00150360(int a); };
 extern float D_00275F58, D_0028937C, D_00289380;
-int __fastcall func_001E8858(float f);
+int func_001E8858(float f);
 void func_001E891B(void *p);
 int __stdcall func_00150810(int a, int b, int c, float d, float e, float f);
 
@@ -520,6 +520,7 @@ int C_00184930::func_00185200(void)
 
 void S_00185610_Scene::func_00185610(S_00185610_Out *out)
 {
+    struct Q4 { float f[4]; };
     S_00185610_Cam *cam = D_002EFDB8->f4;
     S_00185610_Node *node = cam->f28->node;
     void *pos = cam->f170;
@@ -531,18 +532,17 @@ void S_00185610_Scene::func_00185610(S_00185610_Out *out)
     S_00185610_Link *l = node->f24;
     float dist;
     float inv;
-    S_00185610_Vec4 q;
-    float w;
+    Q4 q;
 
     for (; l != 0; l = l->next) {
         if (l->test->func_0017A1D0(pos, D_002A9118, &dist) != 0) {
+            float w = (D_002A9118 - dist) / D_002A9118;
             o = &f344[l->node->f3c];
-            q = o->f134;
-            w = (D_002A9118 - dist) / D_002A9118;
+            q = *(Q4 *)&o->f134;
             total += w;
-            v.x += q.x * w;
-            v.y += q.y * w;
-            v.z += q.z * w;
+            v.x += q.f[0] * w;
+            v.y += q.f[1] * w;
+            v.z += q.f[2] * w;
             px += w * o->f144;
             py += w * o->f148;
         }
