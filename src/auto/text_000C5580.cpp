@@ -40,6 +40,7 @@ struct S5580_G {
 struct C_5E40_G;
 extern C_5E40_G *D_002B91AC;
 struct S5580_R { int func_0005C0E0(); };
+static inline int S5580_GetN(S5580_P *p) { return p->f4->f30; }
 struct S5580_Q2 { char pad0[0x2C0]; S5580_R *f2C0; };
 struct S5580_Root { char pad0[0x2E0]; S5580_Q2 *p2E0; };
 struct C_NumHorse_Root;
@@ -88,6 +89,57 @@ struct BmxUIPageMain {
     void func_000C5710(void);
     void func_001BF000(void);
 };
+
+void BmxUIPageMain::func_000C5580()
+{
+    S5580_Elem *m;
+    E_000C5710 *e;
+    S5580_G *s;
+    S5580_B *owner;
+    int n;
+    int i;
+    int count;
+
+    owner = f124->f25C;
+    if (owner->f74->func_000301D0() == 0) {
+        if (f288)
+            m = ((S5580_G *)D_002B91AC)->f68;
+        else
+            m = ((S5580_G *)D_002B91AC)->f50;
+        m->func_001D5AD0();
+    }
+    if (f2E0 == 0 && f2E4 == 0 && f364 == 0 && f2E8 == 0 && f2EC == 0) {
+        if (f2A0)
+            m = ((S5580_G *)D_002B91AC)->f90;
+        else
+            m = ((S5580_G *)D_002B91AC)->f88;
+        m->func_001D5AD0();
+        if (f2A4)
+            m = ((S5580_G *)D_002B91AC)->f94;
+        else
+            m = ((S5580_G *)D_002B91AC)->f8C;
+        m->func_001D5AD0();
+        n = f140->f4->f30 - 1;
+        count = 8 + ((((S5580_Root *)D_002A8490)->p2E0->f2C0->func_0005C0E0() != 0) ? 2 : 0);
+        for (i = 0; i < count; i++) {
+            if (n * 2 == i || n * 2 + 1 == i) {
+                e = f2F8[i];
+                e->f38 = (e->f38 & 0xffbfa35a) | 0xbfa35a;
+                e->b58 |= 2;
+                f2F8[i]->func_001D5AD0();
+            } else {
+                e = f2F8[i];
+                e->f38 = (e->f38 & 0xffcccccc) | 0xcccccc;
+                e->b58 |= 2;
+            }
+        }
+    }
+    s = (S5580_G *)D_002B91AC;
+    s->f24->func_001D5AD0();
+    s->f28->func_001D5AD0();
+    s->f2C->func_001D5AD0();
+    s->f30->func_001D5AD0();
+}
 
 void BmxUIPageMain::func_000C5710(void)
 {
@@ -327,7 +379,6 @@ void BmxUIPageParkEditor::func_000C6420()
     C_6420_Elem *m;
     C_5E40_G *s;
     C_5E40_B *o;
-    unsigned char b;
     int n;
     int i;
 
@@ -353,9 +404,8 @@ void BmxUIPageParkEditor::func_000C6420()
     for (i = 0; i < 4; i++) {
         if (i == n * 2 || i == n * 2 + 1) {
             e = (C_6420_Elem *)f2D0[i];
-            b = e->b58 | 2;
             e->f38 = (e->f38 & 0xffbfa35a) | 0xbfa35a;
-            e->b58 = b;
+            e->b58 |= 2;
         } else {
             e = (C_6420_Elem *)f2D0[i];
             e->b58 |= 2;
