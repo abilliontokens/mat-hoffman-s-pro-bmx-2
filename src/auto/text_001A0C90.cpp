@@ -537,6 +537,9 @@ fail:
     return 0;
 }
 
+/* same node, read through a volatile member: the game reads obj twice without caching it */
+struct NV_001A1930 { int unk0; O_001A1930 *volatile obj; };
+
 static __forceinline void GetPos_001A1930(N_001A1930 *n, Q_001A1930 *out)
 {
     O_001A1930 *o = n->obj;
@@ -557,8 +560,7 @@ void C_001A1930::func_001A1930(int count, N_001A1930 **nodes)
  velocity.x=velocity.y=velocity.z=0;
  distance=3.402823466e38F;
  for(int i=0;i<count;i++){
-  O_001A1930 *o=nodes[i]->obj;
-  if(o){ int x=((const volatile int*)&o->pos)[0], y=((const volatile int*)&o->pos)[1], z=((const volatile int*)&o->pos)[2]; ((int*)&position)[0]=x;((int*)&position)[1]=y;((int*)&position)[2]=z; }
+  GetPos_001A1930(nodes[i],&position);
   float d=func_0001CAF0(&pos,&position);
   if(d<distance){nearest=nodes[i]; distance=d;}
  }
@@ -573,10 +575,7 @@ void C_001A1930::func_001A1930(int count, N_001A1930 **nodes)
  state |=2;
  O_001A1930 *vo=*(O_001A1930 * volatile *)&nearest->obj;
  if(vo){velocity.x=vo->vel.x;velocity.y=vo->vel.y;velocity.z=vo->vel.z;}
- if(nearest->obj){
-  int x=((const volatile int*)&nearest->obj->pos)[0], y=((const volatile int*)&nearest->obj->pos)[1], z=((const volatile int*)&nearest->obj->pos)[2];
-  ((int*)&position)[0]=x;((int*)&position)[1]=y;((int*)&position)[2]=z;
- }
+ GetPos_001A1930(nearest,&position);
  { Q_001A1930 t;
  t.x=pos.x-position.x;t.y=pos.y-position.y;t.z=pos.z-position.z;t.w=1;
  if(!emitter) return;
