@@ -40,8 +40,36 @@ struct C_00013F50_Dst {
     u8 f3e1;
 };
 
+struct S_00013A40_Ini {
+    S_00013A40_Ini();
+    ~S_00013A40_Ini();
+    int func_00169490(const char *path, int flags);
+    int func_00169710(const char *name);
+    int func_00168C20(const char *key, int def, int *dst);
+    int func_00168BE0(const char *k1, const char *k2, char *dst, int size);
+    char pad[0x4CC];
+};
+
+struct S_00013A40_Obj {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(char *name, int a, int b, int c, int d);
+};
+
+struct S_00013A40_ObjImpl {
+    S_00013A40_ObjImpl(void *a, int b, int c);
+    char pad[0x20C];
+};
+
+extern char D_002A48F8[];
+extern char D_0027568C[], D_00275680[], D_002A47F0[], D_002A5348[], D_002A5870[];
+extern char D_00275678[], D_00275668[], D_00275658[], D_00275644[], D_00275634[];
+extern char D_00275630[], D_00275620[], D_0027560C[];
+extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
+int func_001ADCC0(char *dst, int size, const char *fmt, ...);
+int func_00011260(int lo, int hi);
+
 struct C_00013F50 {
-    char pad0[4];
+    int f0;
     int f4;
     int f8;
     int fC;
@@ -263,11 +291,9 @@ void C_00014020::func_00014850(int arg)
             next = 0;
         }
         V4_00014850 zero;
-        S_00014850_Vec4 from;
-        S_00014850_Vec4 to;
-        from = f3E4;
+        S_00014850_Vec4 from = f3E4;
         from.y += 2.0f;
-        to = D_002B9120->f588[f3B4]->entries[next];
+        S_00014850_Vec4 to = D_002B9120->f588[f3B4]->entries[next];
         to.y += 2.0f;
         if (func_00012730(&from, &to, &zero, 1, 0) == 0) {
             f3DC = 0;
