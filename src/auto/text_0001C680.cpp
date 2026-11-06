@@ -400,7 +400,9 @@ static __forceinline void clear_bit0_0001C9F0(unsigned char *p) {
     *p &= 0xfe;
 }
 
-static __forceinline void init_0001C9F0(C_0001CA30 *p) {
+inline void init_0001C9F0(C_0001CA30 *p) {
+    extern int D_00275DAC;
+    p->vtbl = (void *)&D_00275DAC;
     p->f8 = 0;
     p->f4 = 0;
     p->fC = 0;
@@ -566,10 +568,8 @@ void *C_0001C9C0::func_0001C9C0(int flags) {
     return this;
 }
 
-C_0001CA30 *C_0001CA30::func_0001C9F0(void)
+C_0001C9F0_Ctor::C_0001C9F0_Ctor()
 {
-    extern int D_00275DAC;
-    vtbl = (void *)&D_00275DAC;
     f8 = 0;
     f4 = 0;
     fC = 0;
@@ -581,7 +581,6 @@ C_0001CA30 *C_0001CA30::func_0001C9F0(void)
     f24 = 0;
     clear_bit0_0001C9F0(&f28);
     clear_bit0_0001C9F0(&f2C);
-    return this;
 }
 
 void C_0001CA30::func_0001CA30(void)
