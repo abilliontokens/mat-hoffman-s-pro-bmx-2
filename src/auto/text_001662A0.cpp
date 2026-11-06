@@ -136,7 +136,8 @@ struct C_166830 {
   char pad3C[0x1B0];
  C_166830_Elem *f1EC; int *f1F0; char pad1F4[0xC];
  Vec4_166830 *f200, *f204; int f208, f20C; char pad210[4]; Vec4_166830 *f214;
- void func_00166830(float, int *, int);
+   void func_00166830(float, int *, int);
+  void func_001664C0(float, int *, int);
  void func_00165A20(C_166830_Arg *, int, float, int *, int);
  void func_00165D00(float);
 };
