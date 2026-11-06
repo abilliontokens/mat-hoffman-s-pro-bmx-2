@@ -71,8 +71,10 @@ static __forceinline Font_72* find72(char* name){Font_72** r=D_002A8490->lookup-
 static __forceinline void pos72(Res_72C90* p,int x,int y){if(p->x!=x||p->y!=y){p->y=y;p->x=x;p->flags|=6;}}
 static __forceinline void align72(Res_72C90* p,int a){if(p->align!=a){p->align=a;p->flags|=6;}}
 static __forceinline void color72(Res_72C90* p,unsigned int c){if(p->color!=c){p->flags|=8;p->color=(p->color & (c|0xff000000))|(c&0xffffff);}}
-static __forceinline void uv72(Obj_72C90* p){float a=127.0f*p->w;p->flags|=4;p->a=a;p->b=0.0f*p->w;p->c=15.0f*p->h;p->d=0.0f*p->h;}
-static __forceinline void size72(Obj_72C90* p){if(p->width!=0x44200000){p->width=0x44200000;p->flags|=1;}if(p->height!=0x42480000){p->height=0x42480000;p->flags|=1;}}
+static __forceinline void uv72(Obj_72C90* p){float a=p->w*D_00278654;p->flags|=4;p->a=a;p->b=p->w*D_00275544;p->c=p->h*D_0027653C;p->d=p->h*D_00275544;}
+static __forceinline void width72(Obj_72C90* p){if(p->width!=0x44200000){p->width=0x44200000;p->flags|=1;}}
+static __forceinline void height72(Obj_72C90* p){if(p->height!=0x42480000){p->height=0x42480000;p->flags|=1;}}
+static __forceinline void size72(Obj_72C90* p){width72(p);height72(p);}
 
 /* BmxMenu-derived menu (RunResultsMenu) */
 struct C_00072C90 {
@@ -204,20 +206,21 @@ void C_00072E50::func_00072E50(void)
 }
 
 C_00072C90* C_00072C90::func_00072E70(int arg) {
+C_00072C90* self=this;
 Font_72** r=D_002A8490->lookup->func_0018C160((int)D_00278678);Font_72* font=r?*r:0;
-r=D_002A8490->lookup->func_0018C160((int)D_00278690);Font_72* font2=r?*r:0;f64=arg;
-Res_72C90* t=(Res_72C90*)func_001E8A44(0x60);f68=t?t->func_001D5E90():0;
-f68->func_001D6190(font,*(int*)(D_002A8490->data->p+0xf20),(int)D_00278678);f68->func_0005E840(*(int*)(D_002A8490->data->p+0xf20));
-pos72(f68,0x43a00000,0x42200000);align72(f68,D_0028F5E0);color72(f68,0xaaaaaaaa);
-t=(Res_72C90*)func_001E8A44(0x60);f88=t?t->func_001D5E90():0;f88->func_001D6190(font2,*(int*)(D_002A8490->data->p+0x838),(int)D_00278690);color72(f88,0xffcccccc);pos72(f88,0x43cf8000,0x43c48000);
-t=(Res_72C90*)func_001E8A44(0x60);f80=t?t->func_001D5E90():0;f80->func_001D5FA0(font2,(int)D_00278690,30,0);pos72(f80,0x43a00000,0x42ea0000);color72(f80,0xffcccccc);align72(f80,D_0028F5E0);
-for(int i=0;i<5;i++){t=(Res_72C90*)func_001E8A44(0x60);aB8[i]=t?t->func_001D5E90():0;aB8[i]->func_001D5FA0(font2,(int)D_00278690,45,0);float y=font2->func_0018C210()*i+D_00278D40;t=aB8[i];if(t->x!=0x43a00000||*(float*)&t->y!=y){*(float*)&t->y=y;t->x=0x43a00000;t->flags|=6;}color72(aB8[i],0xffcccccc);align72(aB8[i],D_0028F5E0);}
+r=D_002A8490->lookup->func_0018C160((int)D_00278690);Font_72* font2=r?*r:0;self->f64=arg;
+Res_72C90* t=(Res_72C90*)func_001E8A44(0x60);self->f68=t?t->func_001D5E90():0;
+self->f68->func_001D6190(font,*(int*)(D_002A8490->data->p+0xf20),(int)D_00278678);self->f68->func_0005E840(*(int*)(D_002A8490->data->p+0xf20));
+pos72(self->f68,0x43a00000,0x42200000);align72(self->f68,D_0028F5E0);color72(self->f68,0xaaaaaaaa);
+t=(Res_72C90*)func_001E8A44(0x60);self->f88=t?t->func_001D5E90():0;self->f88->func_001D6190(font2,*(int*)(D_002A8490->data->p+0x838),(int)D_00278690);color72(self->f88,0xffcccccc);pos72(self->f88,0x43cf8000,0x43c48000);
+t=(Res_72C90*)func_001E8A44(0x60);self->f80=t?t->func_001D5E90():0;self->f80->func_001D5FA0(font2,(int)D_00278690,30,0);pos72(self->f80,0x43a00000,0x42ea0000);color72(self->f80,0xffcccccc);align72(self->f80,D_0028F5E0);
+for(int i=0;i<5;i++){t=(Res_72C90*)func_001E8A44(0x60);self->aB8[i]=t?t->func_001D5E90():0;self->aB8[i]->func_001D5FA0(font2,(int)D_00278690,45,0);float y=font2->func_0018C210()*i+D_00278D40;t=self->aB8[i];if(t->x!=0x43a00000||*(float*)&t->y!=y){*(float*)&t->y=y;t->x=0x43a00000;t->flags|=6;}color72(self->aB8[i],0xffcccccc);align72(self->aB8[i],D_0028F5E0);}
 func_001ADCC0(D_002A60B0,0x104,D_00275678,D_002A5348,D_002A5FA8);
-Obj_72C90* o=(Obj_72C90*)func_001E8A44(0x64);f78=o?o->func_001D5760():0;f78->func_001D5810(D_00278658,0,0,0);uv72(f78);size72(f78);
-for(int j=0;j<5;j++){o=(Obj_72C90*)func_001E8A44(0x64);a90[j]=o?o->func_001D5760():0;float x=j*D_00278650;a90[j]->func_001D5810(D_00278658,x,50,0);o=(Obj_72C90*)func_001E8A44(0x64);aA4[j]=o?o->func_001D5760():0;aA4[j]->func_001D5810(D_00278658,x,366,0);o=aA4[j];o->a=0;o->b=1;o->c=0.99f;o->d=0;o->flags|=4;}
-o=(Obj_72C90*)func_001E8A44(0x64);f7C=o?o->func_001D5760():0;f7C->func_001D5810(D_00278658,0,398,0);uv72(f7C);size72(f7C);
-o=(Obj_72C90*)func_001E8A44(0x64);f70=o?o->func_001D5760():0;f70->func_001D5810(D_00278638,379,388,0);
-o=(Obj_72C90*)func_001E8A44(0x64);f74=o?o->func_001D5760():0;f74->func_001D5810(D_00278608,379,388,0);
-strcpy(D_002A60B0,D_002A63C8);return this;
+Obj_72C90* o=(Obj_72C90*)func_001E8A44(0x64);self->f78=o?o->func_001D5760():0;self->f78->func_001D5810(D_00278658,0,0,0);uv72(self->f78);size72(self->f78);
+for(int j=0;j<5;j++){o=(Obj_72C90*)func_001E8A44(0x64);self->a90[j]=o?o->func_001D5760():0;float x=j*D_00278650;self->a90[j]->func_001D5810(D_00278658,x,50,0);o=(Obj_72C90*)func_001E8A44(0x64);self->aA4[j]=o?o->func_001D5760():0;self->aA4[j]->func_001D5810(D_00278658,x,366,0);o=self->aA4[j];o->a=0;o->b=1;o->c=0.99f;o->d=0;o->flags|=4;}
+o=(Obj_72C90*)func_001E8A44(0x64);self->f7C=o?o->func_001D5760():0;self->f7C->func_001D5810(D_00278658,0,398,0);uv72(self->f7C);size72(self->f7C);
+o=(Obj_72C90*)func_001E8A44(0x64);self->f70=o?o->func_001D5760():0;self->f70->func_001D5810(D_00278638,379,388,0);
+o=(Obj_72C90*)func_001E8A44(0x64);self->f74=o?o->func_001D5760():0;self->f74->func_001D5810(D_00278608,379,388,0);
+strcpy(D_002A60B0,D_002A63C8);return self;
 }
 
