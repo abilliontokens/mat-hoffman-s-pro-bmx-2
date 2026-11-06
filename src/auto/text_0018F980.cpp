@@ -121,7 +121,7 @@ struct C_0018FF10 {
     char pad[0x150];
     Node0018FF10 *volatile head;
     Node0018FF10 *volatile tail;
-    Ent0018FF10 *volatile ents;
+    Ent0018FF10 *ents;
     int func_0018EB70(int, char *, Node0018FF10 *);
     int func_0018FF10(char *src, char *name, int idx, int *out);
     __forceinline Node0018FF10 *Find0018FF10(const char *name)
@@ -333,10 +333,8 @@ int C_0018FF10::func_0018FF10(char *src, char *volatile name, volatile int idx, 
         func_001E8920(n, name, count);
         ((volatile char *)n->name)[count] = 0;
         self->ents[idx].node = n;
-        C_0018FF10 *s = self;
-        Node0018FF10 *tl = s->tail;
-        if (!tl) { s->head = n; self->tail = n; *out = 1; return 1; }
-        tl->next = n;
+        if (!self->tail) { self->head = n; self->tail = n; *out = 1; return 1; }
+        self->tail->next = n;
         self->tail = n;
         *out = 1;
         return 1;
