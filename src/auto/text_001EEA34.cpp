@@ -65,10 +65,20 @@ struct BitObj {
 };
 
 /* the single-character node func_001EF68E builds when the text is one char */
+extern void *D_00295BCC;
+
 struct S_001EF68E_Char {
     void *vtbl;
     int f4;
     char c;
+    S_001EF68E_Char(char ch) {
+        f4 = 0;
+        vtbl = &D_00295BCC;
+        c = ch;
+    }
+    static void *operator new(unsigned int size) {
+        return (void *)D_002F6A04.func_001EEE62(size, 0);
+    }
 };
 
 extern void *D_00295BCC;
@@ -653,32 +663,32 @@ void BitObj::func_001EF68E(char *p, int n)
         func_001EF333(3);
         return;
     }
-    if (p == 0 || n == 0) {
+    if (p != 0 && n != 0) {
+        switch (n) {
+        case 0:
+            q = 0;
+            break;
+        case 1:
+            q = (S_001EF68E_Char *)D_002F6A04.func_001EEE62(0xc, 0);
+            if (q != 0) {
+                q->f4 = 0;
+                q->vtbl = &D_00295BCC;
+                q->c = *p;
+            }
+            break;
+        default:
+            q = (S_001EF68E_Char *)D_002F6A04.func_001EEE62(0x10, 0);
+            if (q != 0) {
+                q = (S_001EF68E_Char *)((S_001EF45F *)q)->func_001EF45F(p, n);
+            }
+            break;
+        }
+        f0 = (int)q;
+        if (q == 0) {
+            s4 = 3;
+        }
+    } else {
         s4 = 1;
-        return;
-    }
-    switch (n) {
-    case 0:
-        q = 0;
-        break;
-    case 1:
-        q = (S_001EF68E_Char *)D_002F6A04.func_001EEE62(0xc, 0);
-        if (q != 0) {
-            q->f4 = 0;
-            q->vtbl = &D_00295BCC;
-            q->c = *p;
-        }
-        break;
-    default:
-        q = (S_001EF68E_Char *)D_002F6A04.func_001EEE62(0x10, 0);
-        if (q != 0) {
-            q = (S_001EF68E_Char *)((S_001EF45F *)q)->func_001EF45F(p, n);
-        }
-        break;
-    }
-    f0 = (int)q;
-    if (q == 0) {
-        s4 = 3;
     }
 }
 
