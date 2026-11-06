@@ -34,7 +34,7 @@ struct C_6A70_Obj {
     virtual void v2();
     virtual void v3();
     virtual void v4();
-    char pad14[0xbc - 0x14];
+    char pad14[0xbc - 4];
     int *fBC;
     int *fC0;
     int *fC4;
