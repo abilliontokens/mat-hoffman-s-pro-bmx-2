@@ -89,6 +89,14 @@ extern "C" void __stdcall func_001DF4E1(char *dst, const char *src, int size);
 extern "C" void *__stdcall func_001E27DB(int a0);
 extern "C" u32 __stdcall func_001E2850(int a0);
 extern "C" void __stdcall func_001E27FC(int a0);
+extern "C" int __stdcall func_001E2774(const char *a);
+extern "C" int __cdecl func_001EAA6D(void *dst, int n, const char *fmt, ...);
+extern "C" long (__stdcall *_imp__IoCreateSymbolicLink)(void *a, S_AnsiString_1E148B *b);
+extern "C" long (__stdcall *_imp__NtSetInformationFile)(void *h, S_IoStatusBlock_1E148B *iosb, void *info, u32 len, u32 cls);
+extern "C" void (__stdcall *_imp__KeQuerySystemTime)(s64 *t);
+extern char D_00120117[], D_0028FF5C[], D_0028FF50[], D_0028FF44[], D_0028FE78[], D_0028FBB0[], D_0028FED8[], D_0028FF1C[], D_0028FE8C[], D_0028FEA0[];
+extern char D_0000FEFF[];
+extern "C" long __stdcall func_001E1C4F(int a1, char *path, int size, const char *name);
 
 static __declspec(noreturn) void __stdcall reboot_1E148B(int a)
 {
