@@ -24,6 +24,8 @@ void func_001E891B(void *p);
 
 struct V4_000229C0 {
     float x, y, z, w;
+    V4_000229C0() { x = 0; y = 0; z = 0; w = 0; }
+    V4_000229C0(float px, float py, float pz, float pw) { x = px; y = py; z = pz; w = pw; }
 };
 struct Item_000229C0 {
     char pad0[0x24];
@@ -276,6 +278,56 @@ static __forceinline float length_00022060(S_00022060_Src *v)
     float r;
     _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&square));
     return r;
+}
+
+int C_00022060::func_00022060(float dt)
+{
+    Vec4_000223B0 a;
+    Vec4_000223B0 b;
+    float len;
+
+    if (D_002A8490->f124 == 0) {
+        if (f0->f18 != 0) {
+            fC = 0;
+            f10 = 0;
+            f14 = 0;
+            f18 = 0;
+            f1C = 0;
+            f20 = 0;
+            f24 = 0;
+            f28 = 0;
+            f2C = 0;
+        } else {
+            fC += dt * f18;
+            f10 += dt * f1C;
+            f14 += dt * f20;
+            if (fC > D_002756D0) {
+                fC = fC - D_002756B8;
+            } else if (fC < D_002756E8) {
+                fC = fC + D_002756B8;
+            }
+            if (f10 > D_002756D0) {
+                f10 = f10 - D_002756B8;
+            } else if (f10 < D_002756E8) {
+                f10 = f10 + D_002756B8;
+            }
+            if (f14 > D_002756D0) {
+                f14 = f14 - D_002756B8;
+            } else if (f14 < D_002756E8) {
+                f14 = f14 + D_002756B8;
+            }
+            f18 += dt * f24;
+            f1C += dt * f28;
+            f20 += dt * f2C;
+            len = sqrtf(f0->x * f0->x + f0->y * f0->y + f0->z * f0->z) * dt * D_00276230;
+            f24 = ((float)func_001E8833() * D_002754B0 - D_002755E8) * f8->f28 * len;
+            f28 = ((float)func_001E8833() * D_002754B0 - D_002755E8) * f8->f30 * len;
+            f2C = ((float)func_001E8833() * D_002754B0 - D_002755E8) * f8->f2C * len;
+        }
+        func_00167FE0(&b, &a, fC, f14, f10);
+        f4->func_00198F50(&b, &a, 0, 1, 0);
+    }
+    return 1;
 }
 
 Obj_00022320 *C_00022320::func_00022320(int a)
