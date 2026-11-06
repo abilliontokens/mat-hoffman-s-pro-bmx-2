@@ -134,7 +134,7 @@ struct ObjF0_26 {
 };
 struct ObjF4_26 {
     char pad0[0x58]; int f58; char pad5C[8]; void *f64; void *f68;
-    ObjF4_26 *func_001A8630(int); void func_001A8BC0(void *, int, int, V4_000273F0, int, int);
+    ObjF4_26 *func_001A8630(int); void func_001A8BC0(void *, int, int, V4_000273F0, int, int); void func_001A8BC0(void *, int, int, int, V4_000273F0, int);
 };
 struct ObjFC_26 {
     char pad0[0x60]; void *f60; char pad64[4]; int f68;
@@ -227,8 +227,8 @@ C_00026B60 *C_00026B60::func_00026B60(char *name, V4_000273F0 a1, V4_000273F0 a2
     void *mem;
     int edi;
     {
-        char *d = f33C;
         char *s = name;
+        char *d = f33C;
         while ((*d++ = *s++) != 0) ;
     }
     mem = func_001E8A44(0x310);
@@ -352,7 +352,8 @@ C_00026B60 *C_00026B60::func_00026B60(char *name, V4_000273F0 a1, V4_000273F0 a2
     mem = func_001E8A44(0x40);
     f5F4 = mem ? ((Obj40_26 *)mem)->func_00025E10() : 0;
     mem = func_001E8A44(0xe0);
-    f210 = mem ? (Obj210_26 *)((Obj210_26 *)mem)->func_0005DA30(f1E0) : 0;
+    f210 = mem ? (Obj210_26 *)((Obj210_26 *)mem)->func_0005E600(1) : 0;
+    f210->func_0005DA30(f1E0);
     func_001577A0(f210, -1);
     mem = func_001E8A44(0x70);
     f214 = mem ? (Obj214_26 *)((Obj214_26 *)mem)->func_000B50B0(1) : 0;
