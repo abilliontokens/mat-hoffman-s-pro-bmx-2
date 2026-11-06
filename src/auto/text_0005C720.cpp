@@ -55,6 +55,8 @@ struct C_0005C720_Ini {
     void func_00168A10(const char *key, volatile int *out);
 };
 
+static __forceinline int AddTo(int *acc, int v) { *acc += v; return v; }
+
 struct C_0005C720_Files {
     int func_0013B1A0(const char *key);
 };
@@ -80,6 +82,9 @@ void C_0005C720::func_0005C720(void)
     char buf[0x104];
     func_001ADCC0(buf, 0x104, D_00275678, D_002A5348, D_00278328);
     if (D_002BEAAC->func_0013B1A0(buf)) {
+        int s;
+        int *p;
+        int i;
         void *mem = func_001E8A44(0x4cc);
         C_0005C720_Ini *ini = mem ? ((C_0005C720_Ini *)mem)->func_00168280() : 0;
         ini->func_00169490(buf, 0);
@@ -144,10 +149,10 @@ void C_0005C720::func_0005C720(void)
             func_001E891B(ini);
         }
         total = 0;
-        int *p = this->a;
-        int i = 0;
+        p = this->a;
+        i = 0;
         do {
-            int s = e[i] + b[i] + d[i];
+            s = b[i] + e[i] + d[i];
             total += s;
             p[-8] = s;
             p[0] = a[i];
