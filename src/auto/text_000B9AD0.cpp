@@ -193,7 +193,7 @@ struct BmxUIMain {
     int f2D0[8];
     BmxUIMain *func_000BA360(int a);
     void func_000BE540();
-    void func_001577A0(V_000B9D50 *obj, int flags);
+    void *func_001577A0(V_000B9D50 *obj, int flags);
     BmxUIMain *func_000B9D30(int a);
     void func_000B9D50();
     void *func_000BA2A0(unsigned int flags);
@@ -288,6 +288,51 @@ void BmxUIMain::func_000B9D50()
     V_000B9D50 *obj = m ? ((C_000BEDC0 *)m)->func_000BEDC0(1) : 0;
     obj->vf28();
     func_001577A0(obj, 0x1000);
+}
+
+void BmxUIMain::func_000B9D90(int type, int a2)
+{
+    void *m;
+    void *obj = 0;
+    unsigned k = type - 1;
+    if (k > 0x1f) {
+        return;
+    }
+    switch (k) {
+    UI_CASE(0, 0x368, 000C44C0)
+    UI_CASE(1, 0x20b8, 000D0E00)
+    UI_CASE(2, 0x5b8, 000CC700)
+    UI_CASE(3, 0x2e8, 000C85B0)
+    UI_CASE(4, 0x364, 000C8F30)
+    UI_CASE(5, 0x318, 000D4D20)
+    UI_CASE(6, 0x3b4, 000CB480)
+    UI_CASE(7, 0x2e0, 000C58E0)
+    UI_CASE(8, 0x308, 000C6620)
+    UI_CASE(9, 0x38c, 000C77D0)
+    UI_CASE(10, 0x358, 000DA210)
+    UI_CASE(11, 0x388, 000DB5B0)
+    UI_CASE(12, 0x348, 000DD030)
+    UI_CASE(13, 0xaec, 000DE4D0)
+    UI_CASE(14, 0x2f0, 000E0D50)
+    UI_CASE(15, 0x318, 000D5D40)
+    UI_CASE(16, 0x318, 000D6C90)
+    UI_CASE(17, 0x320, 000D7AB0)
+    UI_CASE(18, 0x318, 000D8C70)
+    UI_CASE(19, 0x2dc, 000E1770)
+    UI_CASE(20, 0x468, 000E2030)
+    UI_CASE(21, 0x300, 000EA910)
+    UI_CASE(22, 0x790, 000E4830)
+    UI_CASE(23, 0x2e4, 000EB370)
+    UI_CASE(24, 0x3a4, 000EBCF0)
+    UI_CASE(25, 0x4fc, 000ECF80)
+    UI_CASE(26, 0x2e8, 000BFE90)
+    UI_CASE(27, 0x704, 000EE230)
+    UI_CASE(28, 0x420, 000F0C40)
+    UI_CASE(29, 0x288, 000BFB70)
+    UI_CASE(30, 0x2c4, 000F1D00)
+    UI_CASE(31, 0x318, 000D9820)
+    }
+    func_001577A0(((V_B9D90 *)obj)->vf31(&f154, a2, this), -1);
 }
 
 void func_000BA290(void) {
