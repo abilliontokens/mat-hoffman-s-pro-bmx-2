@@ -54,7 +54,7 @@ static void norm_179950(float *out, float *in)
 }
 void func_00179370(Vec4 *out, Vec4 *in);
 
-static __forceinline void cross_179950(float *out, float *a, float *b)
+static void cross_179950(float *out, float *a, float *b)
 {
     __m128 va = _mm_loadu_ps(a);
     __m128 vb = _mm_loadu_ps(b);
