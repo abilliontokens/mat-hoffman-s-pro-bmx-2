@@ -598,4 +598,8 @@ static void func_001EDCFF(char *str, int len, S_001EDC7E *stream, int *pcnt)
         if (*pcnt == -1) break;
     }
 }
-
+void keep_001EDCA8(char ch, int n, char *str, S_001EDC7E *stream, int *pcnt)
+{
+    func_001EDCDB(ch, n, stream, pcnt);
+    func_001EDCFF(str, n, stream, pcnt);
+}
