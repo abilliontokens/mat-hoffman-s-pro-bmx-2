@@ -17,5 +17,5 @@ struct C_000E8740 {
 extern float D_00275994, D_00275544;
 extern char D_00281A58, D_0027F2AC;
 int func_001ADCC0(char *,int,const char *,...);
-static __forceinline void Round_000E8740(int * volatile out,float f) { *out=_mm_cvtss_si32(*(__m128 *)&f); }
+static __forceinline void Round_000E8740(int * volatile out,float f) { *out=_mm_cvtss_si32(_mm_load_ss(&f)); }
 
