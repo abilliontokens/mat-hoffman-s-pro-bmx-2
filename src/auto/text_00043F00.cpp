@@ -18,7 +18,7 @@ struct Obj568_43 { void func_00133EF0(V4_43 *v); };
 struct Ctx530_43 { void func_0015A250(int); };
 struct Ctx43 {
     char pad0[0x530]; Ctx530_43 *f530;
-    char pad534[0x5A4 - 0x534]; char *f5A4; int f5A8; int *f5AC;
+    char pad534[0x5A4 - 0x534]; struct Ctx5A4_43 *f5A4; int f5A8; int *f5AC;
 };
 struct GlobEF_43 {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
