@@ -376,6 +376,10 @@ static __forceinline float vec3_abs(float x) {
     return *(float *)&i;
 }
 
+static __forceinline float bits_to_float_1C590(int v) {
+    return *(float *)&v;
+}
+
 struct C_0001C8F0 {
     void *vtbl;
     char pad4[0x20];
