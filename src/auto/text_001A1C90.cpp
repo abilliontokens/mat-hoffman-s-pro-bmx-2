@@ -118,6 +118,19 @@ struct C_001A1E60 {
     void func_001A1E60();
 };
 
+static __forceinline void ReleaseSlot_001A1E60(ObjV2 *&slot, ObjV2 *z)
+{
+    ObjV2 *p = slot;
+    if (p != z) {
+        int r = p->v2();
+        slot = z;
+        if (r != 0) {
+            return;
+        }
+    }
+    slot = z;
+}
+
 struct C_001A2500 {
     bool func_001A2500(void);
 };
@@ -564,43 +577,27 @@ int C_001A1C90::func_001A1C90(int a0, int a1, S16_1A s, int a2) {
 int C_001A1D20::func_001A1D20(const char * volatile name, int b)
 {
     struct { C_001A1D20 * volatile self; volatile int len; volatile int limit; volatile int cnt; } t;
-    int n;
-    int flags;
+    int n, flags, a, c;
     C_001A1D20 *p;
-
     t.self = this;
-    if (f1bc != 0 || (f1a0 & 1)) {
-        return 0;
-    }
+    if (((volatile C_001A1D20 *)this)->f1bc != 0 || (f1a0 & 1)) return 0;
     flags = 0;
-    if (!(f1a0 & 8)) {
-        flags = 8;
-    }
-    if (b != 0 || (f98 & 8)) {
-        flags |= 0x80;
-    }
-    if (f98 & 0x20) {
-        flags |= 2;
-    } else {
-        flags |= 1;
-    }
-    if (f98 & 4) {
-        flags |= 0x10;
-    }
+    if (!(f1a0 & 8)) flags = 8;
+    if (b != 0 || (f98 & 8)) flags |= 0x80;
+    if (f98 & 0x20) flags |= 2; else flags |= 1;
+    if (f98 & 4) flags |= 0x10;
     t.self->f1bc = f1a4->fb4->func_001CFE90(f24, (int)name, flags, 3, (int)f3c, 0);
     t.len = strlen(name);
     t.limit = 0x103;
-    t.cnt = t.limit > t.len ? t.len : t.limit;
+    a = t.limit; c = t.len;
+    t.cnt = a > c ? c : a;
     n = t.cnt;
     func_001E8920(t.self->f9c, name, n);
-    t.self->f9c[n] = 0;
+    *(n + (volatile char *)t.self->f9c) = 0;
     p = t.self;
     if (p->f1bc != 0) {
-        if (p->f98 & 4) {
-            p->v30(p->f3c);
-        } else {
-            p->f1bc->v22(p->f48, p->f4c);
-        }
+        if (p->f98 & 4) p->v30(p->f3c);
+        else p->f1bc->v22(p->f48, p->f4c);
         p = t.self;
         p->v29(p->f70, p->f80);
         return 1;
@@ -643,6 +640,35 @@ C_001A1FB0 *C_001A1FB0::func_001A1FB0(int a0, int a1, S36_1A s0, S16_1A s1, S16_
         unk1C0 = 0;
     }
     return this;
+}
+
+void C_001A2060::func_001A2060(float dt)
+{
+    V4_1A v = D_002A9ECC;
+    if (unk1C0) {
+        unk1C0->func_00199A70(0, &v);
+    } else if (unk1C4) {
+        unk1C4->func_00199A70(0, &v);
+    } else {
+        v = unk70;
+    }
+    unk28 = unk70;
+    unk70 = v;
+    V4_1A *cur = &unk70;
+    V4_1A *prev = &unk28;
+    if (unk1BC && !(unk98 & 2)) {
+        V4_1A d;
+        V4_1A o = *prev;
+        d.x = cur->x - o.x;
+        d.y = cur->y - o.y;
+        d.z = cur->z - o.z;
+        d.w = o.w;
+        if (dt > D_00275544) {
+            float inv = D_00275460 / dt;
+            unk80 = V4_1A(d.x * inv, d.y * inv, d.z * inv);
+        }
+    }
+    func_00157A00(dt);
 }
 
 C_001A2210 *C_001A2210::func_001A2210(int a0, int a1, int a2, int a3) {
@@ -755,42 +781,48 @@ void C_001A2620::func_001A2620()
 
 void KeyFramedAnimSoundEmitter_1A2690::func_001A2690(float dt)
 {
-    V4_1A o;
-    V4_1A v;
     V4_1A d;
     int i;
     Item_1A *item;
     float t;
     KfAnim_1A2690 *anim;
+    V4_1A *cur;
+    V4_1A *prev;
 
-    v.x = *(float *)&D_002A9ECC;
-    v.y = D_002A9ED0;
-    v.z = D_002A9ED4;
-    v.w = D_002A9ED8;
-    if (f1c0) {
-        f1c0->func_00199A70(0, &v);
-    } else if (f1c4) {
-        f1c4->func_00199A70(0, &v);
-    } else {
-        v = f70;
-    }
-    V4_1A *cur = &f70;
-    V4_1A *prev = &f28;
-    *prev = *cur;
-    *cur = v;
-    if (!(f98 & 2)) {
-        o = *prev;
-        d.x = cur->x - o.x;
-        d.y = cur->y - o.y;
-        d.z = cur->z - o.z;
-        d.w = o.w;
-        if (dt > D_00275544) {
-            float inv = D_00275460 / dt;
-            o.x = d.x * inv;
-            o.y = d.y * inv;
-            o.z = d.z * inv;
-            o.w = 1.0f;
-            f80 = o;
+    {
+        V4_1A o;
+        {
+            V4_1A v;
+            v.x = *(float *)&D_002A9ECC;
+            v.y = D_002A9ED0;
+            v.z = D_002A9ED4;
+            v.w = D_002A9ED8;
+            if (f1c0) {
+                f1c0->func_00199A70(0, &v);
+            } else if (f1c4) {
+                f1c4->func_00199A70(0, &v);
+            } else {
+                v = f70;
+            }
+            cur = &f70;
+            prev = &f28;
+            *prev = *cur;
+            *cur = v;
+        }
+        if (!(f98 & 2)) {
+            o = *prev;
+            d.x = cur->x - o.x;
+            d.y = cur->y - o.y;
+            d.z = cur->z - o.z;
+            d.w = o.w;
+            if (dt > D_00275544) {
+                float inv = D_00275460 / dt;
+                o.x = d.x * inv;
+                o.y = d.y * inv;
+                o.z = d.z * inv;
+                o.w = 1.0f;
+                f80 = o;
+            }
         }
     }
     if (f2d8 != 0 && f1a4->f5c != 0) {
