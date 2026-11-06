@@ -16,7 +16,14 @@ struct Vec4 {
     }
 };
 
+struct Mtx44 {
+    Vec4 r[4];
+    Mtx44() {}
+    void func_000264C0(Mtx44 *src);
+};
+
 struct DynamicRayCollisionObject {
+    int func_0014B260(char *obj);
     char pad_0[0xa6];
     unsigned char unkA6;
     unsigned char unkA7;
