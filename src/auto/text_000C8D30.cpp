@@ -263,6 +263,53 @@ struct BmxUIPageGameOptions {
     BmxUIPageGameOptions *func_000C9090(int a, int b, int c);
 };
 
+void C_000C8D30::func_000C8D30()
+{
+    RenderEntryC8 *m;
+    RenderEntryC8 *e;
+    MgrC8 *s;
+    ObjC8_B *b;
+    int n;
+    int i;
+
+    b = f124->f25C;
+    if (b->f74->func_000301D0() == 0) {
+        if (f280)
+            m = D_002B91AC->unk68;
+        else
+            m = D_002B91AC->unk50;
+        m->func_001D5AD0();
+    }
+    if (f298)
+        m = D_002B91AC->unk90;
+    else
+        m = D_002B91AC->unk88;
+    m->func_001D5AD0();
+    if (f294)
+        m = D_002B91AC->unk94;
+    else
+        m = D_002B91AC->unk8C;
+    m->func_001D5AD0();
+    n = f140->f4->f30 - 1;
+    for (i = 0; i < 4; i++) {
+        if (i == n * 2 || i == n * 2 + 1) {
+            e = arr2D8[i];
+            e->f38 = (e->f38 & 0xffbfa35a) | 0xbfa35a;
+            e->b58 |= 2;
+            arr2D8[i]->func_001D5AD0();
+        } else {
+            e = arr2D8[i];
+            e->f38 = (e->f38 & 0xffcccccc) | 0xcccccc;
+            e->b58 |= 2;
+        }
+    }
+    s = D_002B91AC;
+    s->unk24->func_001D5AD0();
+    s->unk28->func_001D5AD0();
+    s->unk2C->func_001D5AD0();
+    s->unk30->func_001D5AD0();
+}
+
 void BmxUIPageOptions::func_000C8E60()
 {
     for (int i = 0; i < 4; i++) {
