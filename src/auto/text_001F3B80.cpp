@@ -639,16 +639,15 @@ int func_001F45CF(unsigned int *x, int bits)
 #pragma optimize("", on)
 
 #pragma optimize("sy", on)
-void func_001F4641(unsigned int *src, unsigned int *dst)
+void func_001F4641(unsigned int *dst, unsigned int *src)
 {
-    int bias = (int)dst - (int)src;
-    int i;
-    unsigned int t;
+    unsigned int *s = src;
+    int n = 3;
 
-    for (i = 0; i < 3; i++) {
-        t = src[i];
-        *(unsigned int *)((char *)&src[i] + bias) = t;
-    }
+    do {
+        *(unsigned int *)((char *)dst + ((char *)s - (char *)src)) = *s;
+        s++;
+    } while (--n);
 }
 int func_001F465C(unsigned int *p)
 {
