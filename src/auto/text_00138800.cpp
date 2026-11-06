@@ -357,9 +357,8 @@ void __fastcall func_001395D0(S_1395_Owner *self) {
                 self->list58[self->entries[i].tracks[j].id]->f4->func_00198390();
         }
         for (int k = 0; k < self->entries[i].count2; k++) {
-            S_1395_Group *g = &self->entries[i].groups[k];
-            if (g->flag == 1) {
-                S_1390A0_Q *q = (S_1390A0_Q *)self->p60->f28[g->id];
+            if (self->entries[i].groups[k].flag == 1) {
+                S_1390A0_Q *q = (S_1390A0_Q *)self->p60->f28[self->entries[i].groups[k].id];
                 for (int m = 0; m < q->f10; m++) {
                     q->f4[m]->v31();
                     q->f4[m]->v4();
