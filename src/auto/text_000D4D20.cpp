@@ -109,12 +109,20 @@ struct S_59A0_Q { void func_0005BED0(int a, int b, float *f, char *s); };
 struct S_59A0_A { char pad[0x2c0]; S_59A0_Q *q; };
 struct S_59A0_X { char pad[0xf68]; int v; };
 struct S_59A0_Y { char pad[4]; S_59A0_X *x; };
-struct S_59A0_B { char pad[0x2e0]; S_59A0_A *a; char pad2[4]; S_59A0_Y *b; };
+struct S_59A0_Res {
+    void func_0018C780(int n, void *names, int a);
+    int *func_0018C160(char *name);
+};
+struct S_59A0_B { char pad[0x2e0]; S_59A0_A *a; char pad2[4]; S_59A0_Y *b; S_59A0_Res *res; };
 extern S_59A0_B *D_002A8490;
-extern float D_0027F2BC, D_00279F74, D_0027F2B8;
+extern float D_0027F2BC, D_00279F74, D_0027F2B8, D_0027F2B4;
 extern char D_0027F2C0[];
 extern int D_0028F5DC;
+extern char D_0027958C[], D_00278690[], D_002786A0[], D_00278678[];
+extern char D_0027F29C[], D_00279B00[], D_00279AF0[], D_00279AE0[], D_00279AD0[];
+extern char D_0027F2AC[], D_0027CEF0[];
 extern "C" int func_001ADCC0(char *buf, int n, char *fmt, ...);
+void *func_001E8A44(unsigned int size);
 
 struct BmxUIPageHOF {
     void *vtbl;
