@@ -482,6 +482,44 @@ int C_001CF3C0::func_001CF3C0(SoundVoice *voice)
     return 0;
 }
 
+int C_001CF3C0::func_001CF450(void)
+{
+    SoundPending_001CF450 *s;
+    SoundVoice *v;
+    int i;
+    RtlEnterCriticalSection(cs);
+    if (f38.count != 0 && (s = (SoundPending_001CF450 *)f38.Get(0)) != 0) {
+        s->f208 |= 0x40;
+        RtlLeaveCriticalSection(cs);
+        if (func_001CF3C0((SoundVoice *)s) == 0) {
+            RtlEnterCriticalSection(cs);
+            s->f208 &= ~0x40;
+            RtlLeaveCriticalSection(cs);
+            return 0x80004005;
+        }
+        RtlEnterCriticalSection(cs);
+        if (s->f208 & 0x20) {
+            s->v5(0);
+            s->f208 &= ~0x20;
+        }
+        f38.func_001CBCF0((int)s);
+    }
+    RtlLeaveCriticalSection(cs);
+    for (i = 0; i < ((IntArray *)f10)->count; i++) {
+        v = (SoundVoice *)((IntArray *)f10)->Get(i);
+        if (v != 0 && (v->flags & 8) && v->func_001CDB10() != 0) {
+            return 0x80004005;
+        }
+    }
+    for (i = 0; i < ((IntArray *)f24)->count; i++) {
+        v = (SoundVoice *)((IntArray *)f24)->Get(i);
+        if (v != 0 && (v->flags & 8) && v->func_001CDB10() != 0) {
+            return 0x80004005;
+        }
+    }
+    return 0;
+}
+
 unsigned long __stdcall func_001CF590(void *ctx)
 {
     C_001CF3C0 *p = (C_001CF3C0 *)ctx;
