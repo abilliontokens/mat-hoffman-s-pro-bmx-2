@@ -208,7 +208,7 @@ static __forceinline void sub_000B2930(float *out, VehicleAI *a, VehicleAI *b)
     out[3] = 1.0f;
 }
 
-static __forceinline void norm_000B2930(float * volatile out, float * volatile in)
+static __forceinline void norm_000B2930(float *out, float *in)
 {
     __m128 v = _mm_loadu_ps(in);
     __m128 sq = _mm_mul_ps(v, v);
