@@ -343,7 +343,6 @@ struct T69Txt {
 struct T69Btn {
     void func_0005E840(int);
     void func_001D6600();
-    void Show(int s) { func_0005E840(s); func_001D6600(); }
 };
 
 struct T69Page {
