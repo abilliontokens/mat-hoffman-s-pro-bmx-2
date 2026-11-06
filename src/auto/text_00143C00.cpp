@@ -590,8 +590,8 @@ void C_00144660::func_00144660()
 int __stdcall func_001AF120(int a0, int a1);
 int C_00144690::func_00144690(int a0, int a1)
 {
-    func_001AF120(a0, a1);
-    return 1;
+    C_001AF120_ *self = (C_001AF120_ *)this;
+    return self->func_001AF120((const char *)a0, a1) ? 1 : 1;
 }
 
 void C_001446B0::func_001446B0(int a0, int a1, int a2)
