@@ -367,6 +367,7 @@ void *_func_001EFDB9(void *out, int v)
 {
     S_001EF734 *o = (S_001EF734 *)out;
     S_001EF734 slot[3];
+    S_001EF734 *n;
     char *q = 0;
     char c;
     unsigned dim;
@@ -382,32 +383,37 @@ void *_func_001EFDB9(void *out, int v)
         return out;
     }
     if (c >= '0' && c <= '9') {
-        dim = *(volatile char *)D_002F6A28++ - '/';
-        v = 0;
-    } else {
-        dim = 0;
-        while (c != '@') {
-            if (c == 0) {
-                o->func_001EF170(2);
-                return out;
-            }
-            if (c < 'A' || c > 'P') {
-                o->func_001EF170(1);
-                return out;
-            }
-            dim = (dim << 4) + c - 'A';
-            D_002F6A28++;
-            c = *D_002F6A28;
+        if (q != 0) {
+            n = slot[2].func_001EF848(*(volatile char *)D_002F6A28++ - '/');
+            goto with_sign;
         }
-        c = *D_002F6A28++;
-        if (c != '@') {
+        r = slot[0].func_001EF848(*(volatile char *)D_002F6A28++ - '/');
+        goto done;
+    }
+    dim = 0;
+    while (c != '@') {
+        if (c == 0) {
+            o->func_001EF170(2);
+            return out;
+        }
+        if (c < 'A' || c > 'P') {
             o->func_001EF170(1);
             return out;
         }
+        dim = (dim << 4) + c - 'A';
+        D_002F6A28++;
+        c = *D_002F6A28;
+    }
+    c = *D_002F6A28++;
+    if (c != '@') {
+        o->func_001EF170(1);
+        return out;
     }
     if ((char)v != 0) {
         if (q != 0) {
-            r = (S_001EF734 *)_func_001EFD19(&slot[1], q, slot[0].func_001EF88F(dim));
+            n = slot[0].func_001EF88F(dim);
+with_sign:
+            r = (S_001EF734 *)_func_001EFD19(&slot[1], q, n);
         } else {
             r = slot[2].func_001EF88F(dim);
         }
@@ -418,6 +424,7 @@ void *_func_001EFDB9(void *out, int v)
             r = slot[2].func_001EF848(dim);
         }
     }
+done:
     o->func_001EEEE6(r);
     return out;
 }
