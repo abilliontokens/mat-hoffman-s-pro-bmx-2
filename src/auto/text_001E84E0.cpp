@@ -161,7 +161,6 @@ void func_001E87E1(void)
     D_002AEA24 = (int)positive_unlinked;
     D_002AEA28 = (int)func_001EB786;
 }
-#pragma optimize("g", on)
 
 void func_001E8819(void)
 {
