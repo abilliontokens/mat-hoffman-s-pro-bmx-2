@@ -365,7 +365,7 @@ C_00026B60 *C_00026B60::func_00026B60(char *name, V4_000273F0 a1, V4_000273F0 a2
     mem = func_001E8A44(0x74);
     f21C = mem ? (Obj21C_26 *)((Obj21C_26 *)mem)->func_0011A440(1) : 0;
     f21C->func_0011AB90(f1E0);
-    return (RET26B60)this;
+    return this;
 }
 
 int C_000273F0::func_000273F0(V4_000273F0 *a1, V4_000273F0 *a2, V4_000273F0 *a3)
