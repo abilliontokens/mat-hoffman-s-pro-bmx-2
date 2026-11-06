@@ -283,7 +283,7 @@ extern int D_0028F5E0;
 struct C_001A6D30 {
     void *vtbl;
     char pad4[0x30];
-    C_CardText *f34, *f38, *f3C, *f40, *f44, *f48;
+    C_001D6410 *f34, *f38, *f3C, *f40, *f44, *f48;
     C_001A6D30_Obj4C *f4C;
     char pad50[0x5C - 0x50];
     int f5C;
