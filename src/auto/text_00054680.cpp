@@ -14,6 +14,31 @@ static __forceinline void copyQuat_000551B0(V_000551B0 *d, const V_000551B0 *s)
 }
 extern int D_002BA160, D_002B9118, D_002B9108, D_002B9114, D_002B9110, D_002B910C;
 
+struct Q_000551B0_Src {
+    int pad0;
+    int count;
+    char pad8[0x1c];
+    V_000551B0 f24;
+    char pad34[0x20];
+    V_000551B0 f54;
+};
+struct Q_000551B0_Dst {
+    char pad0[0x10c];
+    V_000551B0 f10c;
+    V_000551B0 f11c;
+    int f12c;
+};
+struct Q_000551B0_Owner {
+    char pad0[0x54];
+    Q_000551B0_Src *f54;
+    char pad58[8];
+    Q_000551B0_Dst *f60;
+};
+struct Q_000551B0_Item {
+    char pad0[0x68];
+    int f68;
+};
+
 struct S_00054430_V4 {
     float x, y, z, w;
     S_00054430_V4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
@@ -162,6 +187,7 @@ void C_00054680::func_00054680()
     S_00054430_V4 *pos;
     float ang;
     int i;
+    int deg;
 
     q = &f64->f4e0->f1a8[0]->f834;
     pos = &f64->f4e0->f1a8[1]->f834;
@@ -171,17 +197,19 @@ void C_00054680::func_00054680()
     ang = func_0014FBA0(a.x, a.z);
     b = f64->f4e0->f1a8[1]->f834;
     b.y += 3.0f;
-    f2a4[0]->func_00088A40((int)(ang * 57.29578f), &b);
+    deg = (int)(ang * 57.29578f);
+    f2a4[0]->func_00088A40(deg, &b);
 
     q = &f64->f4e0->f1a8[1]->f834;
     pos = &f64->f4e0->f1a8[0]->f834;
     a = S_00054430_V4(pos->x - q->x, pos->y - q->y, pos->z - q->z, 1.0f);
-    NormInPlace_00054680(&a);
+    func_00053CB0(&a, &a);
     a = f64->f4e0->f1a8[1]->f230->func_00198040(&a);
     ang = func_0014FBA0(a.x, a.z);
     b = f64->f4e0->f1a8[0]->f834;
     b.y += 3.0f;
-    f2a4[1]->func_00088A40((int)(ang * 57.29578f), &b);
+    deg = (int)(ang * 57.29578f);
+    f2a4[1]->func_00088A40(deg, &b);
 
     for (i = 0; i < f90; i++) {
         if (i == f2c4) {
