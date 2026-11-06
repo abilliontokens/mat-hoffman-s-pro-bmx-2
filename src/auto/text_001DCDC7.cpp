@@ -336,14 +336,18 @@ int __stdcall func_001DD247(void *h, void *buffer, u32 size, u32 *written, S_001
             goto fail;
         if (written)
             *written = ov->InternalHigh;
+    ok:
         return 1;
     }
     status = _imp__NtWriteFile(h, 0, 0, 0, &iosb, buffer, size, 0);
     if (status == 0x103)
         status = _imp__NtWaitForSingleObject(h, 0, 0);
-    if (status >= 0 && (status = iosb.status) >= 0) {
-        *written = iosb.information;
-        return 1;
+    if (status >= 0) {
+        status = iosb.status;
+        if (status >= 0) {
+            *written = iosb.information;
+            goto ok;
+        }
     }
     if (((u32)status & 0xc0000000) == 0x80000000)
         *written = iosb.information;
@@ -461,13 +465,13 @@ int __stdcall func_001DD3A1(void *h, u32 lo, u32 *hi, int method)
 }
 
 int __stdcall func_001DD49B(void *a0, __int64 a1, __int64 *a2, int a3) {
-u32 iosb[2]; __int64 pos; char info[0x38]; __int64 target; int result;
+u32 iosb[2]; __int64 pos; char info[0x38]; int result;
 switch(a3) {
-case 0: target=a1; break;
-case 2: result=_imp__NtQueryInformationFile(a0,iosb,info,0x38,0x22); if(result<0) goto fail; target=*(__int64*)(info+0x28)+a1; break;
-case 1: result=_imp__NtQueryInformationFile(a0,iosb,&pos,8,0xe); if(result<0) goto fail; target=pos+a1; break;
+case 0: pos=a1; break;
+case 2: result=_imp__NtQueryInformationFile(a0,iosb,info,0x38,0x22); if(result<0) goto fail; pos=*(__int64*)(info+0x28)+a1; break;
+default: goto cur;
+case 1: cur: result=_imp__NtQueryInformationFile(a0,iosb,&pos,8,0xe); if(result<0) goto fail; pos+=a1; break;
 }
-pos=target;
 if(pos<0) {func_001DD62B(0x83);return 0;}
 result=_imp__NtSetInformationFile(a0,iosb,&pos,8,0xe);
 if(result>=0){if(a2)*a2=pos;return 1;}
