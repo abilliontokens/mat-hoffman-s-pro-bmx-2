@@ -59,17 +59,6 @@ extern char D_00277F64[];
 extern char D_00277F50[];
 extern "C" char *func_001E8920(char *d, const char *s, int n);
 
-static __forceinline void CopyName_000590F0(char *buf, const char *src, int lim)
-{
-    struct { volatile int a; volatile int r; } t;
-    int va, n;
-    t.a = 0x103;
-    va = t.a;
-    t.r = va > lim ? lim : va;
-    n = t.r;
-    func_001E8920(buf, src, n);
-    buf[n] = 0;
-}
 
 struct Screen_000597B0 {
     char pad0[0x40];
