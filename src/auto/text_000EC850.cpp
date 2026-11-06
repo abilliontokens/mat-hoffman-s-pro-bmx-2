@@ -236,6 +236,41 @@ struct S_EC850_Obj {
     float f14;
 };
 
+struct E300_Spr {
+    char pad0[0x28];
+    float f28;
+    float f2C;
+    char pad30[8];
+    unsigned int f38;
+    float f3C, f40, f44, f48;
+    char pad4C[0xC];
+    unsigned char f58;
+    void init(char *name, float a, float b, int c);
+};
+struct E300_Txt {
+    void init(char *a, char *b, int c, int d);
+    void func_001B1A30(float a, float b, int c);
+    void func_001B2270(int c);
+    void func_001B19A0(int c);
+};
+struct E300_Lib {
+    void func_0018C160(char *name);
+};
+extern char D_0027E52C[], D_002786B0[], D_0027E328[], D_0027E31C[];
+extern float D_00279F6C, D_0027F978;
+struct C_000ED300 {
+    char pad0[0x288];
+    E300_Spr *f288;
+    char pad28C[0x1D4];
+    float f460[11];
+    E300_Txt *f48C[11];
+    E300_Spr *f4B8[4];
+    E300_Spr *f4C8[2];
+    void func_001BE4F0(int a, int b, int c);
+    void func_001577A0(E300_Txt *t, int x);
+    C_000ED300 *func_000ED300(int a, int b, int c);
+};
+
 void C_000ECD90::func_000ECD90(void) {
     unk380 = 0;
     unk384 = 255;
