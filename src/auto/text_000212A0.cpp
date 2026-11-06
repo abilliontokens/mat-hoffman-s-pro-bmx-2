@@ -259,7 +259,10 @@ struct S_00021B90_50 {
 };
 
 struct C_00021B90 {
-    char pad0[0x10];
+    float f0;
+    float f4;
+    float f8;
+    float fC;
     int f10;
     char pad14[0x1c];
     V4_000212A0 f30;
