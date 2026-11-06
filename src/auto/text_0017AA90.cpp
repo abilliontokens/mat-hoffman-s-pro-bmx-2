@@ -213,6 +213,32 @@ undefined4 C_0017ABC0::func_0017ABC0(byte param_1)
   return in_ECX;
 }
 
+C_0017AA90 *C_0017AA90::func_0017ABE0(const char *name)
+{
+    char buf[0x104];
+    func_001D3F50();
+    if (D_002A60B0[0]) {
+        int i = 0;
+        do { buf[i] = D_002A60B0[i]; } while (D_002A60B0[i++]);
+        if (D_002A60B0[strlen(D_002A60B0)-1] != '\\')
+            strcat(buf, "\\");
+        strcat(buf, name);
+    } else {
+        strcpy(buf, name);
+    }
+    *(float *)&D_002A8D2C = 0.0f;
+    *(float *)&D_002A8D30 = 0.0f;
+    *(float *)&D_002A8D34 = 0.0f;
+    D_002A8D38 = 0.45f;
+    int *p = (int *)func_001E8A44(8);
+    if (p) { p[0] = (int)&D_00288FF4; p[1] = (int)this; } else { p = 0; }
+    f160 = (int)p;
+    f154 = D_002A829C->func_001617F0(buf, 1);
+    int value = D_002AA46C;
+    D_002A829C->v6(f154, value);
+    return this;
+}
+
 C_0017B9E0* C_0017B9E0::func_0017B9E0(int a0, int a1) {
     unk0 = a0;
     unk4 = a1;
