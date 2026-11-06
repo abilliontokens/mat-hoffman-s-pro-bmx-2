@@ -246,6 +246,10 @@ static inline float sqrtf(float x)
     _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x)));
     return r;
 }
+static __forceinline float sqrt_193600(const float &x)
+{
+    return _mm_sqrt_ss(*(__m128 *)&x).m128_f32[0];
+}
 
 struct C_00157600 {
     void func_00157600(int a0);
