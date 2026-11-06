@@ -7,7 +7,7 @@ struct Vec_107AE0 {
  Vec_107AE0(float a,float b,float c) { x=a;y=b;z=c;w=1; }
 };
 #include <xmmintrin.h>
-static __forceinline Vec_107AE0 scale_107AE0(const Vec_107AE0 &v,float s) {
+static __forceinline Vec_107AE0 scale_107AE0(const Vec_107AE0 &v,const float &s) {
  Vec_107AE0 r;
  r.x=v.x*s;r.y=v.y*s;r.z=v.z*s;return r;
 }
