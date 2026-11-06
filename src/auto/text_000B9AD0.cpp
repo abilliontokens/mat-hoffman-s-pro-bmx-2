@@ -200,7 +200,7 @@ struct BmxUIMain {
     BmxUIMain *func_000B9D30(int a);
     void func_000B9D50();
     void *func_000BA2A0(unsigned int flags);
-    void func_000B9D90(int type, int a2);
+    B9D90_Ret func_000B9D90(int type, int a2);
 };
 
 struct V_B9D90 {
