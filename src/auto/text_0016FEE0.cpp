@@ -57,7 +57,9 @@ struct V4_0016FEE0 {
 
 struct S_Light_0016FEE0 {
     union { u32 d; u8 b[4]; } col;
-    char pad4[0x1c];
+    char pad4[0xc];
+    u32 dirx, diry, dirz;
+    char pad1c[4];
 };
 
 extern int D_00040344, D_00040348;
