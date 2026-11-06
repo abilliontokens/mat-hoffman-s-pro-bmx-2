@@ -12,6 +12,12 @@ struct Vec4 {
     f32 w;
     Vec4() {}
     Vec4(f32 x_, f32 y_, f32 z_, f32 w_) : x(x_), y(y_), z(z_), w(w_) {}
+    Vec4(double y_, double z_) {
+        x = 0.0f;
+        y = (f32)y_;
+        z = (f32)z_;
+        w = 1.0f;
+    }
     Vec4(double x_, double y_, double z_, double w_) {
         x = (f32)x_;
         y = (f32)y_;
@@ -482,7 +488,7 @@ void BmxStallConstraint::func_000B5120(void)
     C_00198330 *obj = f30->func_00198330(&D_0027D3F0);
     obj->func_00199A70(f30, &v);
     f32 neg = -obj->f144;
-    f34 = Vec4(0.0f, (double)(neg + v.y), (double)v.z, 1.0f);
+    f34 = Vec4(0.0f, (double)neg + v.y, (double)v.z, 1.0f);
 }
 
 void BmxStallConstraint::func_000B51C0(void)
