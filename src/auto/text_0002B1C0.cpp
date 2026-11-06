@@ -47,6 +47,18 @@ struct V4_0002B1C0 {
     void Init() { x = y = z = 0.0f; w = 1.0f; }
 };
 
+struct V4k_0002B1C0 {
+    float x, y, z, w;
+    V4k_0002B1C0(float px, float py, float pz, float pw) { x = px; y = py; z = pz; w = pw; }
+    __forceinline V4k_0002B1C0 &operator=(const V4k_0002B1C0 &v) {
+        ((int *)this)[0] = ((const volatile int *)&v)[0];
+        ((int *)this)[1] = ((const volatile int *)&v)[1];
+        ((int *)this)[2] = ((const volatile int *)&v)[2];
+        ((int *)this)[3] = ((const volatile int *)&v)[3];
+        return *this;
+    }
+};
+
 struct S5_0002B1C0 {
     int a, b, c, d, e;
     void Init() { a = 0; b = 0; c = 0; e = 0; d = 0; }
@@ -103,7 +115,7 @@ void *C_0002C100::func_0002B1C0(int param)
     V4_AT(0x748)->Init();
     V4_AT(0x758)->Init();
     V4_AT(0x768)->Init();
-    p[0x1de] = 0; p[0x1df] = 0; p[0x1e0] = 0; p[0x1e2] = 0; p[0x1e1] = 0;
+    S5_AT(0x778)->Init();
     p[0x82] = 0; p[0xce] = 0xffffffff; p[0x10f] = 0; p[0x110] = 0; p[0x111] = 0;
     p[0x11a] = 0; p[0x11b] = 0; p[0x1a8] = 0; p[0x11c] = 0; p[0x11e] = 1; p[0x120] = 0;
     p[0x112] = 0; p[0x113] = 0; p[0x114] = 0; p[0x115] = 0; p[0x116] = 0; p[0x118] = 0; p[0x119] = 0;
