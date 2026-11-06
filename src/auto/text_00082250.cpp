@@ -24,7 +24,6 @@ struct C_00082790_Ini {
     char pad1[0x4cb];
     void func_00168280();
     void func_001691E0();
-    ~C_00082790_Ini() { func_001691E0(); }
 };
 
 struct C_00082790_X {
@@ -302,7 +301,6 @@ void BmxInGameOverlays::func_00082790()
     fr.ini.func_00168280();
     func_001ADCC0(fr.buf, 0x104, D_0027953C, &D_002A5348);
     if (fr.ini.sub.func_00169490(fr.buf, 0) == 0) {
-        fr.ini.func_001691E0();
         return;
     }
     val = *(int *)(*(int *)(D_002A8490 + 0x2e0) + 8);
@@ -541,11 +539,8 @@ void BmxInGameOverlays::func_00082790()
         if ((float)*(int *)&fr.s.f[5] != *(float *)((char *)sub + 0x28)) {
             *(float *)((char *)sub + 0x28) = (float)*(int *)&fr.s.f[5];
             *((char *)sub + 0x58) |= 1;
-            fr.ini.func_001691E0();
-            return;
         }
     }
-    fr.ini.func_001691E0();
 }
 
 int C_000831C0::func_000831C0(void)
