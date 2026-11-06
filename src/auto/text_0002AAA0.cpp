@@ -35,7 +35,15 @@ extern float D_002A1178;
 
 struct Vec4_0002AF90 {
     float x, y, z, w;
-    __forceinline void Set(const Vec4_0002AF90 *o) { *this = *o; }
+    __forceinline void Set(const Vec4_0002AF90 *o)
+    {
+        int *d = (int *)this;
+        const int *s = (const int *)o;
+        d[0] = s[0];
+        d[1] = s[1];
+        d[2] = s[2];
+        d[3] = s[3];
+    }
     __forceinline void Set4(const float &a, const float &b, const float &c, const float &d)
     {
         x = a;
@@ -341,32 +349,23 @@ void C_0002AAA0::func_0002AAA0(float dt)
 
 void C_0002AF90::func_0002AF90(void)
 {
-    Vec4_0002AF90 v;
-    Vec4_0002AF90 *cur;
-    Vec4_0002AF90 *tgt;
-
-    if ((D_002B7E5C & 1) == 0) {
-        D_002B7E5C |= 1;
-        D_002B7E4C.x = 0;
-        D_002B7E4C.y = 2.0f;
-        D_002B7E4C.z = 0;
-        D_002B7E4C.w = 1.0f;
-    }
-    v = f230->func_00197EC0(&D_002B7E4C);
-    tgt = &f14c;
-    f230->func_00199A70(0, tgt);
-    cur = &f13c;
-    tgt->x += v.x;
-    tgt->y += v.y;
-    tgt->z += v.z;
-    if (cur->x == D_002A10F0 && cur->y == D_002A10F4 && cur->z == D_002A10F8) {
-        cur->Set(tgt);
-    }
-    cur->Lerp(tgt, D_002A1178);
-    f1f8->func_0014AC30(cur, 0);
-    f1f8->func_00133ED0();
-    f1f8->func_00133F10(0);
-    f13c = f14c;
+ struct Raw4 { int a, b, c, d; };
+ Vec4_0002AF90 v; Vec4_0002AF90 *cur; Vec4_0002AF90 *tgt;
+ if((D_002B7E5C&1)==0){
+ D_002B7E5C|=1;D_002B7E4C.x=0;D_002B7E4C.y=2.0f;D_002B7E4C.z=0;D_002B7E4C.w=1.0f;
+ }
+ v=f230->func_00197EC0(&D_002B7E4C);tgt=&f14c;f230->func_00199A70(0,tgt);
+ cur=&f13c;tgt->x+=v.x;tgt->y+=v.y;tgt->z+=v.z;
+ if(cur->x==D_002A10F0&&cur->y==D_002A10F4&&cur->z==D_002A10F8){*(Raw4 *)cur=*(const Raw4 *)tgt;}
+ Vec4_0002AF90 delta=cur->Sub(tgt);
+ Vec4_0002AF90 scaled;
+ scaled.x=D_002A1178*delta.x;
+ scaled.y=delta.y*D_002A1178;
+ scaled.z=delta.z*D_002A1178;
+ scaled.w=1.0f;
+ *cur=scaled.Add(tgt);
+ f1f8->func_0014AC30(cur,0);f1f8->func_00133ED0();f1f8->func_00133F10(0);
+ f13c=f14c;
 }
 
 void C_0002B140::func_0002B140(C_00168B90 *param_1) {
