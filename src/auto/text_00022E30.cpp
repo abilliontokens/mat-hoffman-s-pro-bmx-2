@@ -158,6 +158,7 @@ struct S_000235C0_Mgr {
 struct S_000235C0_Cam {
     void func_00199600(func_000212A0 v);
     void func_00199600(W4_000235C0 v);
+    void func_00199600(V4_00023340 v);
     void func_00199110(int a, void *pos, void *dir, int b, int c, int d);
     void func_00198F50(V4_000235C0 *a, V4_000235C0 *b, int c, int d, int e);
 };
