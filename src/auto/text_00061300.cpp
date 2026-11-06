@@ -122,22 +122,26 @@ static __forceinline void set_00061B80(C_00061B80_Obj *o, float a, float b, floa
 #define SET_00061B80(p, a, b, c, k) { \
     float cc = (c) * D_00278784; \
     float bb = (b); \
-    if ((p)->f4 != (a) || (p)->f8 != bb) { \
-        (p)->f4 = (a); \
-        (p)->f8 = bb; \
-        (p)->flags |= 1; \
+    C_00061B80_Obj *q = (p); \
+    if (q->f4 != (a) || q->f8 != bb) { \
+        q->f4 = (a); \
+        q->f8 = bb; \
+        q->flags |= 1; \
     } \
-    if ((p)->f2c != cc) { \
-        (p)->f2c = cc; \
-        (p)->flags |= 1; \
+    q = (p); \
+    if (q->f2c != cc) { \
+        q->f2c = cc; \
+        q->flags |= 1; \
     } \
-    if ((p)->f28 != cc) { \
-        (p)->f28 = cc; \
-        (p)->flags |= 1; \
+    q = (p); \
+    if (q->f28 != cc) { \
+        q->f28 = cc; \
+        q->flags |= 1; \
     } \
-    if ((p)->f34 != (k)) { \
-        (p)->f34 = (k); \
-        (p)->flags |= 1; \
+    q = (p); \
+    if (q->f34 != (k)) { \
+        q->f34 = (k); \
+        q->flags |= 1; \
     } \
 }
 
