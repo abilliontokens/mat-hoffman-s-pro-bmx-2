@@ -106,11 +106,6 @@ struct C_0013B9C0 {
     int func_0013B4C0(void *a, int size, void *file);
 };
 
-static inline int Call_0013B4C0(C_0013B9C0 *t, int size, void *file)
-{
- return t->func_0013B4C0((char *)t + 0x2c, size, file);
-}
-
 void __fastcall func_0013B9C0(C_0013B9C0 * volatile self, int dummy, S_0013B9C0_Ent28 * volatile p, int index)
 {
  volatile int size;
