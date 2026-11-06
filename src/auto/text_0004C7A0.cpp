@@ -126,10 +126,17 @@ struct C_0004CED0 {
     char pad48[0x1C];
     O_0004CED0_64 *f64;
     char pad68[0x174];
-    S_0004CFC0_Data f1DC;
     int func_0004CED0();
-    void func_0004CFC0();
     int func_0004CEC0();
+};
+
+struct C_0004CFC0 {
+    char pad0[0x24];
+    S_0004CFC0_Sub *f24;
+    char pad28[0x1B4];
+    S_0004CFC0_Data f1DC;
+    void func_0004CFC0();
+    void func_0004CEC0();
 };
 
 struct C_00088F70 {
@@ -524,7 +531,21 @@ int func_0004CCE0(void) {
 }
 
 void func_00031400(void);
-void func_0004CEC0(void) { func_00031400(); }
+int C_0004CED0::func_0004CEC0()
+{
+    G_0004CED0 *g = (G_0004CED0 *)D_002A8490;
+    g->f230 |= 1;
+    ((G_0004CED0 *)D_002A8490)->f124 = 0;
+    C_0013E4F0_0004CED0 *p = (C_0013E4F0_0004CED0 *)func_001E8A44(0x2d0);
+    f24 = p ? p->func_0013E4F0(1) : 0;
+    f24->func_0012B410(0x3f9f49f5, 0x280, 0x1c0);
+    C_0002EF20_0004CED0 *q = (C_0002EF20_0004CED0 *)func_001E8A44(0x78);
+    f44 = q ? q->func_0002EF20(1) : 0;
+    f44->func_000306F0(f24, ((G_0004CED0 *)D_002A8490)->f2E0->f8, *f64->f4AC, f64->f4DC->f24, 0, 0);
+    v27();
+    v28();
+    return 1;
+}
 
 void C_0004D010::func_0004D010(void)
 {
