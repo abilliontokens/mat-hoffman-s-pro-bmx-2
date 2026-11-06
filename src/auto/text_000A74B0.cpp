@@ -5,9 +5,6 @@
 #include <math.h>
 #include <xmmintrin.h>
 
-extern "C" void _ReadWriteBarrier(void);
-#pragma intrinsic(_ReadWriteBarrier)
-
 extern int D_0027B1A4;
 extern int D_0027C1E4;
 void *func_001E8A44(int size);
