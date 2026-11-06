@@ -1,5 +1,12 @@
 /* 20 functions from 0x001F4B08 to 0x001F58D5, found by Ghidra. */
 #include "common.h"
+extern int D_002AEA38;
+extern unsigned short *D_002AEA30;
+extern char D_002AEA3C;
+int func_001EC5F1(int, int);
+void func_001F5B7B(char *, unsigned int, void *);
+void func_001F60E2(void *, int, unsigned int);
+#define DIGIT_1F(c) (D_002AEA38 > 1 ? func_001EC5F1((unsigned char)(c), 4) : (*(unsigned char *)&D_002AEA30[(unsigned char)(c)] & 4))
 
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 
