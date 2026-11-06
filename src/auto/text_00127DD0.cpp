@@ -101,7 +101,7 @@ struct __declspec(align(16)) M44_00128120 {
 void func_0011AC30(M44_00128120 *out, M44_00128120 *in);
 void func_00127DD0(int a0, int a1, int a2, S_00127DD0_Entry *e, V4_00128120 *mid, int count);
 
-static __forceinline void Xform_00128120(float *out, const M44_00128120 *mat, const float *v)
+static inline void Xform_00128120(float *out, const M44_00128120 *mat, const float *v)
 {
     __m128 t = _mm_loadu_ps(v);
     _mm_storeh_pi((__m64 *)(out + 2), t);
