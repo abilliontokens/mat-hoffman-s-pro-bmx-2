@@ -132,10 +132,9 @@ struct C_0007C2C0 {
     inline int AddLine(int si, char *text, unsigned color)
     {
         if (si >= 0 && si < 0x10) {
-            S_7C2C0_W *w = f13c[si];
-            w->func_0005E840(text);
-            w->SetColorConst(color);
-            w->func_001D6600();
+            f13c[si]->func_0005E840(text);
+            f13c[si]->SetColorConst(color);
+            f13c[si]->func_001D6600();
         }
         return si + 1;
     }
@@ -152,7 +151,10 @@ struct C_0007C9E0 {
 
 void C_0007C2C0::func_0007BAD0()
 {
+    char bigbuf[0x104];
     char buf[0x32];
+    char bufB[4];
+    char bufA[4];
     int numA = 0;
     int numB = 0;
     int si;
@@ -241,7 +243,13 @@ void C_0007C2C0::func_0007BAD0()
     si = AddLine(si, D_00275630, 0xffcccccc);
     si = AddLine(si, buf, 0xffbfa35a);
     si = AddLine(si, D_00275630, 0xffcccccc);
-    func_001ADCC0(buf, 4, D_00277038, numB);
+    func_001ADCC0(bufA, 4, D_00277038, numB);
+    func_001ADCC0(bufB, 4, D_00277038, numA);
+    func_001AC330(bigbuf, D_002A8490->f2e8->f4->f848, bufA, bufB);
+    si = AddLine(si, bigbuf, 0xffcccccc);
+    f248 = si - f244;
+    if (si > 0x10)
+        f208->func_001D6600();
 }
 
 undefined4 C_0007C2C0::func_0007C2C0()
