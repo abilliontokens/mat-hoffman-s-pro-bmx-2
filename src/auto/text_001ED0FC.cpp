@@ -106,77 +106,78 @@ void *func_001ED181(const char *path, const char *mode, int shflag, int *out)
             break;
         }
         switch (c) {
+        default:
+            ok = 0;
+            break;
         case 'S':
-            if (seen[1] == 0) {
+            if (seen[1] != 0) {
+                ok = 0;
+            } else {
                 seen[1] = 1;
                 flags |= 0x20;
-            } else {
-                ok = 0;
             }
             break;
         case 'R':
-            if (seen[1] == 0) {
+            if (seen[1] != 0) {
+                ok = 0;
+            } else {
                 seen[1] = 1;
                 flags |= 0x10;
-            } else {
-                ok = 0;
             }
             break;
         case 'D':
-            if ((flags & 0x40) == 0) {
-                flags |= 0x40;
-            } else {
+            if ((flags & 0x40) != 0) {
                 ok = 0;
+            } else {
+                flags |= 0x40;
             }
             break;
         case '+':
-            if ((flags & 2) == 0) {
+            if ((flags & 2) != 0) {
+                ok = 0;
+            } else {
                 flags &= 0xfffffffe;
                 fmode &= 0xfffffffc;
                 flags |= 2;
                 fmode |= 0x80;
-            } else {
-                ok = 0;
             }
             break;
         case 'T':
-            if ((flags & 0x1000) == 0) {
-                flags |= 0x1000;
-            } else {
+            if ((flags & 0x1000) != 0) {
                 ok = 0;
+            } else {
+                flags |= 0x1000;
             }
             break;
         case 't':
-            if ((flags & 0xc000) == 0) {
-                flags |= 0x4000;
-            } else {
+            if ((flags & 0xc000) != 0) {
                 ok = 0;
+            } else {
+                flags |= 0x4000;
             }
             break;
         case 'n':
-            if (seen[0] == 0) {
+            if (seen[0] != 0) {
+                ok = 0;
+            } else {
                 seen[0] = 1;
                 fmode &= 0xffffbfff;
-            } else {
-                ok = 0;
             }
             break;
         case 'c':
-            if (seen[0]) {
+            if (seen[0] != 0) {
                 ok = 0;
             } else {
-                fmode |= (seen[0] = 1) << 14;
+                seen[0] = 1;
+                fmode |= 0x4000;
             }
             break;
         case 'b':
-            if ((flags & 0xc000) == 0) {
-                flags |= 0x8000;
-            } else {
+            if ((flags & 0xc000) != 0) {
                 ok = 0;
+            } else {
+                flags |= 0x8000;
             }
-            break;
-        default:
-            ok = 0;
             break;
         }
     }
@@ -212,18 +213,18 @@ S_001ED_FILE *func_001ED2E9(void)
     __try {
         for (i = 0; i < D_002FB36C; i++) {
             if (D_002FB368[i] != 0) {
-                if ((D_002FB368[i]->flag & 0x83) != 0)
-                    continue;
-                if (i > 2 && i < 20) {
-                    if (!func_001EB314(i + 16)) break;
+                if ((D_002FB368[i]->flag & 0x83) == 0) {
+                    if (i > 2 && i < 20) {
+                        if (!func_001EB314(i + 16)) break;
+                    }
                     func_001EB138(i, D_002FB368[i]);
+                    if ((D_002FB368[i]->flag & 0x83) != 0) {
+                        func_001EB18A(i, D_002FB368[i]);
+                        continue;
+                    }
+                    ret = D_002FB368[i];
+                    break;
                 }
-                if ((D_002FB368[i]->flag & 0x83) != 0) {
-                    func_001EB18A(i, D_002FB368[i]);
-                    continue;
-                }
-                ret = D_002FB368[i];
-                break;
             } else {
                 D_002FB368[i] = (S_001ED_FILE *)func_001E8AA5(0x3c);
                 if (D_002FB368[i] != 0) {
@@ -334,11 +335,13 @@ int func_001ED50B(void)
 {
     int *func_001ED075(void);
     int *func_001ED07E(void);
-    void __SEH_epilog(void);
+    int func_001EAB1B(void);
+    int r;
     *func_001ED075() = 9;
     *func_001ED07E() = 0;
-    __SEH_epilog();
-    return -1;
+    r = -1;
+    func_001EAB1B();
+    return r;
 }
 
 void func_001ED527(int *param_1)
@@ -483,39 +486,36 @@ int func_001ED633(int fh, char *buf, int cnt)
 
 int func_001ED7FC(int fh, void *buffer, unsigned cnt)
 {
-    int func_001EE70F(int);
-    int func_001ED633(int, void *, unsigned);
-    int func_001EE782(int);
-    int *func_001ED075(void);
-    int *func_001ED07E(void);
-    extern unsigned int D_002FB240;
-    extern S_ioinfo *D_002FB260[];
-    int retval;
-    if ((unsigned)fh >= D_002FB240 || (D_002FB260[fh >> 5][fh & 0x1f].osfile & 1) == 0) {
-        *func_001ED075() = 9;
-        *func_001ED07E() = 0;
-        return -1;
-    }
-    func_001EE70F(fh);
-    __try {
-        if (D_002FB260[fh >> 5][fh & 0x1f].osfile & 1) {
-            retval = func_001ED633(fh, buffer, cnt);
-        } else {
-            *func_001ED075() = 9;
-            *func_001ED07E() = 0;
-            retval = -1;
-        }
-    }
-    __finally {
-        func_001EE782(fh);
-    }
-    return retval;
+ void func_001ED883(void); int func_001EE70F(int); int func_001ED633(int, void *, unsigned); int func_001EE782(int);
+ int *func_001ED075(void); int *func_001ED07E(void);
+ extern unsigned int D_002FB240; extern S_ioinfo *D_002FB260[];
+ int retval;
+ if ((unsigned)fh >= D_002FB240 || (D_002FB260[fh >> 5][fh & 0x1f].osfile & 1) == 0) {
+ *func_001ED075()=9; *func_001ED07E()=0; return -1;
+ }
+ func_001EE70F(fh);
+ __try {
+ if (D_002FB260[fh >> 5][fh & 0x1f].osfile & 1) retval=func_001ED633(fh,buffer,cnt);
+ else { *func_001ED075()=9; *func_001ED07E()=0; retval=-1; }
+ } __finally { func_001ED883(); }
+ return retval;
 }
 
 void func_001ED883(int fh)
 {
     int func_001EE782(int);
     func_001EE782(fh);
+}
+
+int func_001ED88B(void)
+{
+    int *func_001ED075(void);
+    int *func_001ED07E(void);
+    void func_001EAB1B(void);
+    *func_001ED075() = 9;
+    *func_001ED07E() = 0;
+    func_001EAB1B();
+    return -1;
 }
 
 int func_001ED8A7(int ch, void *str)
@@ -653,6 +653,12 @@ int func_001ED9C0(int fh, const void *buf, unsigned cnt)
         }
     }
     return charcount - lfcount;
+}
+
+int func_001EE782(int fh);
+void func_001EDBD2(int fh)
+{
+    func_001EE782(fh);
 }
 
 int func_001EDBF6(int *param_1)
