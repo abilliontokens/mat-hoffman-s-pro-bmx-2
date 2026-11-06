@@ -135,8 +135,7 @@ extern "C" void* func_001E8AA5(int);
 
 static inline void FloatToIndex(int *out, float f) {
     int * volatile p = out;
-    volatile float t = f;
-    *p = _mm_cvttss_si32(*(__m128 *)&t);
+    *p = _mm_cvttss_si32(*(__m128 *)&f);
 }
 
 struct C_0014F170 {
