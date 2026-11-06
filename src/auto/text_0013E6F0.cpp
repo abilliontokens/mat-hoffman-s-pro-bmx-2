@@ -195,7 +195,6 @@ extern float D_00275544;
 float func_0001E960(float x);
 int func_001E8858(float x);
 int *__stdcall func_001FF410(int a, int b);
-void func_0013E920(float *out, float *in);
 
 static __forceinline float MinF_0013ED30(float a, float b)
 {
