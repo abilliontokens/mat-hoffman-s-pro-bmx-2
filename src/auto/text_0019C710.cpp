@@ -117,10 +117,11 @@ static __forceinline void Identity_19C710(float *m)
 {
     float *volatile p = m;
     float *q = p;
-    _mm_store_ps(q, Zero_19C710);
-    _mm_store_ps(q + 4, Zero_19C710);
-    _mm_store_ps(q + 8, Zero_19C710);
-    _mm_store_ps(q + 12, Zero_19C710);
+    __m128 *z = (__m128 *)q;
+    z[0] = Zero_19C710;
+    z[1] = Zero_19C710;
+    z[2] = Zero_19C710;
+    z[3] = Zero_19C710;
     q[0] = 1.0f;
     q[5] = 1.0f;
     q[10] = 1.0f;
@@ -230,8 +231,7 @@ void SoultreeCollisionObject::func_0019C710(float *src, int a2, short a3, int n)
     *(V3 *)(self->unk1D4 + 0x14) = *(V3 *)((char *)self + 0x1b0);
     float *p = (float *)(self->unk1C4 + self->unk1BC * 36 + 0x18);
     float s = p[0] * p[0] + p[1] * p[1] + p[2] * p[2];
-    float len;
-    _mm_store_ss(&len, _mm_sqrt_ss(_mm_load_ss(&s)));
+    float len = sqrtf(s);
     self->unk1D0 = len;
 }
 
