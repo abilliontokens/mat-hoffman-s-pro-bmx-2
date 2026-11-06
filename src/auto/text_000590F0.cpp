@@ -1,5 +1,6 @@
 /* 13 functions from 0x000590F0 to 0x0005A0E0, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
 
@@ -89,7 +90,7 @@ struct Fader_000597B0 {
 
 template <class T> inline const T &Min_000590F0(const T &a, const T &b) { return b < a ? b : a; }
 
-struct File_000590F0 {
+struct __declspec(align(8)) File_000590F0 {
     char data[0x4C8];
     void func_00168280(void);
     int func_00169490(char *name, int mode);
@@ -424,11 +425,11 @@ int Screen_000597B0::func_000590F0(int a)
         return 0;
     }
     switch (a) {
-    case 0: { volatile int max = 0x103; int k = max > 14 ? 14 : max; func_001E8920(buf, D_00277FA0, k); buf[k] = 0; break; }
-    case 1: { volatile int max = 0x103; int k = max > 18 ? 18 : max; func_001E8920(buf, D_00277F8C, k); buf[k] = 0; break; }
-    case 2: { volatile int max = 0x103; int k = max > 16 ? 16 : max; func_001E8920(buf, D_00277F78, k); buf[k] = 0; break; }
-    case 3: { volatile int max = 0x103; int k = max > 19 ? 19 : max; func_001E8920(buf, D_00277F64, k); buf[k] = 0; break; }
-    case 4: { volatile int max = 0x103; int k = max > 18 ? 18 : max; func_001E8920(buf, D_00277F50, k); buf[k] = 0; break; }
+    case 0: { int max = 0x103; int k = AsmMinI(max, 14); func_001E8920(buf, D_00277FA0, k); buf[k] = 0; break; }
+    case 1: { int max = 0x103; int k = AsmMinI(max, 18); func_001E8920(buf, D_00277F8C, k); buf[k] = 0; break; }
+    case 2: { int max = 0x103; int k = AsmMinI(max, 16); func_001E8920(buf, D_00277F78, k); buf[k] = 0; break; }
+    case 3: { int max = 0x103; int k = AsmMinI(max, 19); func_001E8920(buf, D_00277F64, k); buf[k] = 0; break; }
+    case 4: { int max = 0x103; int k = AsmMinI(max, 18); func_001E8920(buf, D_00277F50, k); buf[k] = 0; break; }
     }
     f.func_00169710(buf);
     func_00055D10(&f);
