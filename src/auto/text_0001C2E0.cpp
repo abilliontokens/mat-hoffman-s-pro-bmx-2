@@ -3,6 +3,17 @@
 #include <math.h>
 #include <string.h>
 #include <xmmintrin.h>
+static __forceinline float clamp_ordered_1C870(float r, float c, float e)
+{
+    if (e > c) {
+        if (r > e) return e;
+        if (r < c) return c;
+    } else {
+        if (r < e) return e;
+        if (r > c) return c;
+    }
+    return r;
+}
 struct Texture_1C2E0 {
  virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6();
  virtual void Load(int,int,int);
@@ -491,8 +502,8 @@ void *C_0001C550::func_0001C550(int flags) {
     return this;
 }
 
-float func_0001C590(float x) {
-    int i = *(int *)&x & 0x7fffffff;
+float func_0001C590(volatile float x) {
+    int i = *(volatile int *)&x & 0x7fffffff;
     return *(float *)&i;
 }
 
