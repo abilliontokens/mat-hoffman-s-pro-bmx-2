@@ -477,17 +477,10 @@ void C_000ED0E0::func_000ED0E0(void) {
     func_001BE3F0();
 }
 
-static inline void ClearSlots_000ED170(int *a, int *b)
-{
-    int i;
-    for (i = 0; i < 11; i++) {
-        a[i] = 0;
-        b[i] = 0;
-    }
-}
-
 void C_000ED170::func_000ED170(void)
 {
+    int i;
+
     f2A0 = 0;
     f2A4 = 0;
     f2A8 = 0;
@@ -516,14 +509,9 @@ void C_000ED170::func_000ED170(void)
     f3D0 = 0;
     f3D4 = -1;
     f3DC = 0;
-    {
-        int n = 11;
-        int *p = f4D0;
-        do {
-            p[-0x3b] = 0;
-            *p = 0;
-            p++;
-        } while (--n != 0);
+    for (i = 0; i < 11; i++) {
+        f3E4[i] = 0;
+        f4D0[i] = 0;
     }
     f444 = 0;
     f45C = 0;
