@@ -244,6 +244,10 @@ void __stdcall func_001DED66(char c)
 struct S_001DEDC3_Byte {
     unsigned char c : 8;
 };
+struct S_001DEDC3_Split {
+    unsigned char lo : 1;
+    unsigned char hi : 7;
+};
 
 #pragma optimize("gsy", on)
 void __stdcall func_001DEDC3(void *info, char *out)
@@ -258,8 +262,8 @@ void __stdcall func_001DEDC3(void *info, char *out)
     *(u32 *)((char *)out + 0x1c) = *(u32 *)((char *)info + 0x2c);
     *(u32 *)((char *)out + 0x20) = *(u32 *)((char *)info + 0x28);
     memcpy(out + 0x2c, (char *)info + 0x40, *(u32 *)((char *)info + 0x3c));
-    out[0x2c + *(u32 *)((char *)info + 0x3c)] = 0;
-    out[0x130] = 0;
+    ((S_001DEDC3_Byte *)(out + 0x2c))[*(u32 *)((char *)info + 0x3c)].c = 0;
+    ((S_001DEDC3_Byte *)(out + 0x130))->c = 0;
 }
 
 int __stdcall func_001DEE2F(const char *path, char *out)
