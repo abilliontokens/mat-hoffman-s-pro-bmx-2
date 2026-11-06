@@ -1,6 +1,10 @@
 /* 9 functions from 0x000DB310 to 0x000DC270, found by Ghidra. */
 #include "common.h"
 
+struct C_DB6_Widget { void func_0005E840(int a); };
+struct C_DB6_Manager { void func_000BF860(int a, int b, int c, int d); };
+struct C_DB6 { void func_000DB6C0(); };
+
 struct C_001D5AD0 {
     char pad0[0x38];
     unsigned int f38;
