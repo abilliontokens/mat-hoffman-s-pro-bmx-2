@@ -269,7 +269,7 @@ struct BoundsSource {
 
 struct BoundsAccum {
     char pad0[0x154];
-    volatile float f154, f158, f15c;
+    float f154, f158, f15c;
     char pad160[4];
     volatile int f164;
     float f168, f16c, f170;
@@ -284,27 +284,27 @@ struct BoundsOwner {
     BoundsAccum *f60;
 };
 
-void func_0011AFF0(char *arg)
+void func_0011AFF0(BoundsOwner *self)
 {
- char *a=*(char **)(arg+0x54);
- float *b=*(float **)(arg+0x60);
- for(int i=0;i<*(int *)(a+0x80);i++){
- float *p=(float *)(*(char **)(a+0x70)+i*32);
- Vec4 d(p[0]-p[4], p[1]-p[5], p[2]-p[6], 1.0f);
- float w=(*(float **)(a+0x8c))[i];
- w=D_00275460-w;
- Vec4 r(d.x*w, d.y*w, d.z*w, 1.0f);
- if(r.x>b[94]) b[94]=r.x;
- if(r.y>b[95]) b[95]=r.y;
- if(r.z>b[96]) b[96]=r.z;
- if(r.x<b[90]) b[90]=r.x;
- if(r.y<b[91]) b[91]=r.y;
- if(r.z<b[92]) b[92]=r.z;
- }
- b[85]+=*(float *)(a+0x40);
- b[86]+=*(float *)(a+0x44);
- b[87]+=*(float *)(a+0x48);
- ++((volatile int *)b)[89];
+    BoundsSource *src = self->f54;
+    BoundsAccum *acc = self->f60;
+    for (int i = 0; i < src->f80; i++) {
+        float *p = src->f70 + i * 8;
+        Vec4 d(p[0] - p[4], p[1] - p[5], p[2] - p[6], 1.0f);
+        float w = src->f8c[i];
+        w = D_00275460 - w;
+        Vec4 r(d.x * w, d.y * w, d.z * w, 1.0f);
+        if (r.x > acc->f178) acc->f178 = r.x;
+        if (r.y > acc->f17c) acc->f17c = r.y;
+        if (r.z > acc->f180) acc->f180 = r.z;
+        if (r.x < acc->f168) acc->f168 = r.x;
+        if (r.y < acc->f16c) acc->f16c = r.y;
+        if (r.z < acc->f170) acc->f170 = r.z;
+    }
+    acc->f154 = src->f40 + acc->f154;
+    acc->f158 = src->f44 + acc->f158;
+    acc->f15c = src->f48 + acc->f15c;
+    acc->f164++;
 }
 
 float func_0011B180(float a, float b)
