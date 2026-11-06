@@ -186,7 +186,9 @@ C_0012B8F0 *C_0012B8F0::func_0012B8F0(void) {
     return this;
 }
 
-void __stdcall func_0012B950(S_0012B950_Vec4 *out, float t, S_0012B950_Vec4 p0, S_0012B950_Vec4 p1, S_0012B950_Vec4 p2, S_0012B950_Vec4 p3) {
+S_0012B950_Vec4 __stdcall func_0012B950(float t, S_0012B950_Vec4 p0, S_0012B950_Vec4 p1, S_0012B950_Vec4 p2, S_0012B950_Vec4 p3) {
+    S_0012B950_Vec4 result;
+    S_0012B950_Vec4 *out=&result;
     float t2;
     float t3;
     float b;
@@ -209,6 +211,7 @@ void __stdcall func_0012B950(S_0012B950_Vec4 *out, float t, S_0012B950_Vec4 p0, 
                 V3Add_0012B950(V3Scale_0012B950(*(S_0012B950_V3 *)&p1, a), V3Scale_0012B950(*(S_0012B950_V3 *)&p2, b)),
                 V3Scale_0012B950(m0, c)),
             V3Scale_0012B950(m1, d));
+    return result;
 }
 
 float __stdcall func_0012BAE0(float t, float p0, float p1, float p2, float p3) {
