@@ -20,7 +20,23 @@ struct Q_Sub {
 struct Q_List { char pad0[0x24]; int count; char **items; };
 struct Q_P64 { char pad0[0x3ac]; Q_List *f3AC; char pad3B0[0xd4]; Q_Sub *f484; };
 struct Q_Mgr { char pad0[0x64]; Q_P64 *f64; char pad68[0x160]; int f1C8; };
-struct Q_Root { char pad0[0x2a4]; Q_Mgr *f2A4; };
+struct Q_Vec { float x, y, z, w; };
+struct Q_Actor {
+    void **vtbl;
+    void func_001A2A10(int n);
+};
+struct Q_Lookup { Q_Actor *func_0001D450(char *name); };
+struct Q_Indices {
+    void func_0005C280(int n);
+    void func_0005C1E0(int n);
+    char *func_0005C020(int n);
+};
+struct Q_Root { char pad0[4]; Q_Lookup *f4; char pad8[0x29c]; Q_Mgr *f2A4; };
+struct Q_MgrCalls {
+    void func_00052630(char *s);
+    void func_00032E50(Q_Vec v);
+    void func_00033090(char *s, Q_Vec v, int n);
+};
 extern Q_Root *D_002A8490;
 void __stdcall func_00052630(char *s);
 extern "C" char *__cdecl strcpy(char *d, const char *s);
@@ -140,16 +156,14 @@ struct C_00096750 {
 
 void C_00096450::func_00096450(int idx)
 {
-    char *base = (char *)this + idx * 0x78;
     char buf[0x104];
-    char buf2[0x104];
     Q_Mgr *mgr;
     Q_P64 *p;
     char *e;
     int i;
     int found;
 
-    strcpy(buf, base + 0x2ff8);
+    strcpy(buf, s2ff8[idx]);
     mgr = D_002A8490->f2A4;
     p = mgr->f64;
     if (buf[0]) {
@@ -162,7 +176,7 @@ void C_00096450::func_00096450(int idx)
             }
         }
     }
-    strcpy(buf, base + 0x34a8);
+    strcpy(buf, s34a8[idx]);
     if (buf[0]) {
         found = 0;
         for (i = 0; i < p->f3AC->count && !found; i++) {
@@ -173,25 +187,26 @@ void C_00096450::func_00096450(int idx)
             }
         }
     }
-    if (base[0x3958] && base[0x3e08]) {
+    if (s3958[idx][0] && s3e08[idx][0]) {
         found = 0;
         for (i = 0; i < mgr->f64->f3AC->count && !found; i++) {
             e = mgr->f64->f3AC->items[i];
-            if (func_001EA426(e + 0xa0, base + 0x3958) == 0) {
+            if (func_001EA426(e + 0xa0, s3958[idx]) == 0) {
                 mgr->f64->f484->func_0001BDB0(i);
-                mgr->f64->f484->func_0001BB00(i, base + 0x3e08, found);
+                mgr->f64->f484->func_0001BB00(i, s3e08[idx], found);
                 found = 1;
             }
         }
     }
-    strcpy(buf2, base + 0x4768);
+    char buf2[0x104];
+    strcpy(buf2, s4768[idx]);
     if (!mgr->f1C8 && buf2[0])
         func_00052630(buf2);
-    if (base[0x42b8] && !D_002A8490->f2A4->f1C8)
+    if (s42b8[idx][0] && !D_002A8490->f2A4->f1C8)
         a6428[idx]->v5(4);
-    if (base[0x5578] && base[0x50c8])
+    if (s5578[idx][0] && s50c8[idx][0])
         a63d8[idx]->func_001B65D0();
-    if (base[0x5ed8] && base[0x5a28])
+    if (s5ed8[idx][0] && s5a28[idx][0])
         a6400[idx]->func_001B65D0();
 }
 
