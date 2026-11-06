@@ -86,6 +86,22 @@ struct V4f_001956F0 {
     V4f_001956F0 operator+(const V4f_001956F0 &o) const { return V4f_001956F0(x + o.x, y + o.y, z + o.z, 1.0f); }
     V4f_001956F0 operator-(const V4f_001956F0 &o) const { return V4f_001956F0(x - o.x, y - o.y, z - o.z, 1.0f); }
 };
+struct Target_195190 { void func_00199A70(int, V4f_001956F0 *); };
+struct SimpleTVCamera {
+    virtual void slot0(); virtual void slot1(); virtual void slot2(); virtual void slot3();
+    virtual V4f_001956F0 position(V4f_001956F0);
+    virtual V4f_001956F0 direction(float, V4f_001956F0, V4f_001956F0);
+    virtual float value(V4f_001956F0);
+    float f4; int f8, fc;
+    V4f_001956F0 pos;
+    char *target; Target_195190 *fallback;
+    V4f_001956F0 previous;
+    int index, f3c; Item_001955F0 *items; int f44, f48;
+    V4f_001956F0 current, velocity;
+    int f6c;
+    void func_00195190(float, int *, V4f_001956F0 *, V4f_001956F0 *, float *, V4f_001956F0 *, V4f_001956F0 *, int);
+};
+
 struct Ini_001956F0 {
     char data[0x4cc];
     void func_00168280();
@@ -286,12 +302,12 @@ int STV_1959E0::func_001959E0(float dt, float *pos, Vec4_195D40 *out)
 
 Vec4_195D40 *func_00195D40(Vec4_195D40 *out, int x, int y, int z, int w)
 {
-    Vec4_195D40 v = {x, y, z, w};
-    out->x = *(volatile int *)&v.x;
-    out->y = *(volatile int *)&v.y;
-    out->z = *(volatile int *)&v.z;
-    out->w = *(volatile int *)&v.w;
-    return out;
+ Vec4_195D40 v = {x,y,z,w};
+ out->x = *(volatile int *)&v.x;
+ out->y = *(volatile int *)&v.y;
+ out->z = *(volatile int *)&v.z;
+ out->w = *(volatile int *)&v.w;
+ return out;
 }
 
 SimpleVCR *SimpleVCR::func_00195D90(void)
