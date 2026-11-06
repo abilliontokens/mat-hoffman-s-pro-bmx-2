@@ -3,6 +3,7 @@
 #include <xmmintrin.h>
 
 extern int D_00276218;
+extern float D_0027627C;
 extern "C" int func_001E8920(char *d, const char *s, int n);
 extern "C" unsigned int __cdecl strlen(const char *);
 extern char D_002A5EA0[], D_002A60B0[], D_002A48F8[], D_002A46E8[];
@@ -319,6 +320,56 @@ void C_00022E30::func_00022E30(void)
     copy_22E30(b, D_002A60B0, 0x103);
     copy_22E30(c, D_002A48F8, 0x103);
     copy_22E30(d, D_002A46E8, 0x103);
+
+    if (f28->f1a8->f108) {
+        func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5348, D_002A45E0);
+        func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
+        func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5348, D_002A47F0);
+        func_001ADCC0(D_002A46E8, 0x104, D_00275678, D_002A5348, D_002A45E0);
+    } else {
+        func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5870, D_002A45E0);
+        func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+        func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5870, D_002A47F0);
+        func_001ADCC0(D_002A46E8, 0x104, D_00275678, D_002A5870, D_002A45E0);
+    }
+
+    f28->v2(D_002B9120);
+    f28->f1a4->f4->func_00199600(*(V4_00023340 *)((char *)f24 + 0x10));
+    f5c = *(V4_00023340 *)((char *)f24 + 0x10);
+    f79 = f24->f8;
+    f44 = f24->fc;
+    f78 = 0;
+    if (f7a == 0) {
+        f30 = f24->f0;
+        f3c = f30;
+        f2c = D_002B7E18->f64[f30];
+        f34 = f24->f4;
+        f40 = f34;
+        f38 = f34 + 1;
+        if (f79 == 1) {
+            S_000235C0_Elem *e = &f2c->elems[f38];
+            f4c.x = e->p.x;
+            f4c.y = e->p.y;
+            f4c.z = e->p.z;
+            f4c.w = 1.0f;
+            func_000219E0(2);
+        } else {
+            if (f2c->f2c == 0) {
+                f2c->f2d = 1;
+                f28->f1a4->f4->func_00199110(0, &f2c->f1c, &D_002A0F94, 0, 1, 1);
+            }
+            f4c = *(V4_00023340 *)((char *)f24 + 0x10);
+            func_000219E0(0);
+        }
+    }
+    if (f24) {
+        func_001E891B(f24);
+        f24 = 0;
+    }
+    copy_22E30(D_002A5EA0, a, 0x103);
+    copy_22E30(D_002A60B0, b, 0x103);
+    copy_22E30(D_002A48F8, c, 0x103);
+    copy_22E30(D_002A46E8, d, 0x103);
 }
 
 void C_00023340::func_00023340()
