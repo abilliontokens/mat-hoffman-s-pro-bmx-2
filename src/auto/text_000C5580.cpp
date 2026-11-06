@@ -298,7 +298,7 @@ struct BmxUIPageParkEditor {
     char pad144[0x13C];
     int f280;
     int f284;
-    char pad288[4];
+    int f288;
     int f28C;
     int f290;
     int f294;
