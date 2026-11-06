@@ -234,6 +234,17 @@ struct S_00022730_Key {
     S_00022730_Vec3 b;
 };
 
+/* new S_00022730_Key[n], as the compiler expands it */
+static __forceinline S_00022730_Key *new_keys_00022730(int n)
+{
+    void *m = func_001E8A44(n * 0x18);
+    if (m != 0) {
+        func_00011FF0(m, 0x18, n, (void *)func_00021720);
+        return (S_00022730_Key *)m;
+    }
+    return 0;
+}
+
 struct S_00022730_Anim {
     char pad0[4];
     int count;
