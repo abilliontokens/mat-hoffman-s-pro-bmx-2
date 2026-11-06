@@ -31,6 +31,8 @@ struct S_001160C0_Map {
 struct S_001160C0_Root {
     char pad0[8];
     S_001160C0_Map *f8;
+    char padC[0x2a4-0xc];
+    void *f2A4;
 };
 extern S_001160C0_Root *D_002A8490;
 extern float D_00275544;
