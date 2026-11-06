@@ -41,7 +41,14 @@ void __stdcall func_00201100(void *p);
 struct EcoSystem {
     void *vtbl;
     char pad4[0x27 - 0x4];
-    u8 b27;
+    union {
+        u8 b27;
+        struct {
+            unsigned char b27_0 : 1;
+            unsigned char b27_1 : 1;
+            unsigned char b27_2 : 6;
+        };
+    };
     int unk28;
     int unk2C;
     int unk30;
@@ -172,6 +179,66 @@ extern EcoGlobal *D_002EFDB8;
 
 void func_0013E1F0(EcoLog *log, int id, const char *fmt, ...);
 void func_0013E260(EcoLog *log, int id, const char *fmt, ...);
+
+void EcoSystem::func_0014D720(void)
+{
+    float q;
+    float scale;
+    int count;
+    int *outp;
+    float la, lb, lc;
+    if (D_002A7690 == 0 || unk3C == 0) {
+        return;
+    }
+    D_002BF274 = (EcoSubB0 *)((char *)D_002EFDB8->f4 + 0xB0);
+    q = D_00275460 / D_002EFDB8->f4->f200;
+    f58C = D_002869C0 * q;
+    f590 = D_002EFDB8->f4->f200 * D_002869BC;
+    scale = q * f590;
+    unk56C = 0;
+    unk570 = 0;
+    unk574 = 0;
+    scale = scale * D_0027D264;
+    D_002F07E8->v13();
+    D_002BF258 = (int)(f57C * f560);
+    D_002BF25C = (int)(f57C * f564);
+    D_002BF264 = D_002BF258 * D_002BF258;
+    D_002BF260 = D_002BF25C * D_002BF25C;
+    D_002BF268 = (int)(D_002EFDB8->f4->f170 * f57C);
+    D_002BF26C = (int)(D_002EFDB8->f4->f178 * f57C);
+    D_002BF270 = D_0027988C / (float)(D_002BF258 - D_002BF25C);
+    count = 0;
+    outp = D_002F07E8->f890;
+    la = D_002BF274->f20 * f58C;
+    lb = D_002BF274->f28 * f58C;
+    lc = D_002BF274->f2C * f58C;
+    D_002BF280 = func_0001E960(D_002EFDB8->f4->f180 * D_002EFDB8->f4->f180 + D_002EFDB8->f4->f188 * D_002EFDB8->f4->f188) * D_002869B0;
+    unk21C0 = 0x7fffffff;
+    unk21C4 = 0;
+    unk59C++;
+    if (D_002F07E8->f890 != 0) {
+        int edi = 0;
+        while (edi < D_002F07E8->f898) {
+            Ent14 *ent = (Ent14 *)(outp[edi] & 0xfffffffe);
+            int raw = outp[edi];
+            edi++;
+            if (ent == 0) {
+                break;
+            }
+            if (ent->f2 != f568) {
+                *outp++ = raw;
+                count++;
+                continue;
+            }
+            break;
+        }
+    }
+    (void)scale;
+    (void)count;
+    (void)la;
+    (void)lb;
+    (void)lc;
+}
 
 void C_0014E1C0::func_0014E1C0(C_0013E9B0 **param_1, int param_2)
 {
