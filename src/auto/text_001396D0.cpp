@@ -79,6 +79,7 @@ struct CutScene {
     void func_00139360(int oldIndex, int index);
     void func_001395D0();
     int func_001396D0(float dt);
+    CsChild *Child(int i) { return f80[i]; }
 };
 struct C_00139B30 {
     undefined4 func_00139B30(byte param_1);
