@@ -82,7 +82,7 @@ struct C_00168280 {
     int f438[32];
     int f4b8;
     int f4bc;
-    int f4c0;
+    char *f4c0;
     int f4c4;
     char *f4c8;
     C_00168280 *func_00168280(void);
