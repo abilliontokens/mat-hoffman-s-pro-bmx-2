@@ -24,7 +24,7 @@ struct C_00168F40 {
     char pad1[0x4cb];
     void func_00168280();
     void func_001691E0();
-    ~C_00168F40();
+    __declspec(noinline) ~C_00168F40();
 };
 typedef C_00168F40 C_00082790_Ini;
 
