@@ -123,6 +123,11 @@ struct S_001A5D80_G2 {
     int f30;
 };
 
+/* object whose func_001A5B10 loads the named resource into a pointer slot (this = the param of func_001A5D80) */
+struct C_001A5D80_P1 {
+    void func_001A5B10(void *a, void *b);
+};
+
 struct C_001A5D80 {
     char pad0[0x24];
     int unk24;
