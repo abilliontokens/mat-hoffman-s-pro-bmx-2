@@ -145,6 +145,7 @@ struct C_0006D590 {
     void func_0006DD40();
     void func_001578D0();
     C_0006D590 *func_0006D590(int a0);
+    C_0006D590 *func_0006D750(C_0006E250_E8 *arg);
     void func_0006DF50();
     int func_0006E1E0();
     int func_0006E250(float dt);
