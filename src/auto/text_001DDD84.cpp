@@ -42,6 +42,17 @@ int __stdcall func_001DF066(const char *name, int unused);
 int __stdcall func_001DF0D2(const char *name);
 int __stdcall func_001DD247(int h, const void *buf, unsigned int size, unsigned int *written, void *ovl);
 int func_001EAA6D(unsigned short *buf, int count, const unsigned short *fmt, ...);
+static unsigned int CopyOut_001DE2BB(char *outPath, char *path, unsigned int outSize, unsigned int len)
+{
+    if (outPath != 0) {
+        func_001DF4E1(outPath, path, outSize);
+        if (len < outSize - 1) {
+            outPath[len + 1] = 0;
+            outPath[len] = '\\';
+        }
+    }
+    return 0;
+}
 
 /* ANSI_STRING / OBJECT_ATTRIBUTES / IO_STATUS_BLOCK / LARGE_INTEGER (Xbox kernel layouts) */
 struct S_AnsiString {
