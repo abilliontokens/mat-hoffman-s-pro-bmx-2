@@ -42,6 +42,10 @@ struct Node_00193240 {
     float f20;
     float f24;
     Node_00193240 *func_00193490(void);
+    void Continue(void *a1, int r, void *a2, void *a3)
+    {
+        f8->v8(a1, r, a2, a3);
+    }
     void func_001937F0(void *a1, void *a2, void *a3);
     void func_00193600(void *a1, void *a2, void *a3, void *a4);
     void func_00193950(void *a1, struct S_00193240_V4 *a2, void *a3, void *a4);
@@ -545,11 +549,9 @@ void Node_00193240::func_00193530(void *a1, void *a2, void *a3, void *a4)
 
 void Node_00193240::func_001937F0(void *a1, void *a2, void *a3)
 {
-    int r;
-    Handler_00193240 *h;
+    Handler_00193240 *h = f8;
+    int r = h->v6(a2, a3, f14);
 
-    h = f8;
-    r = h->v6(a2, a3, f14);
     if (r != f14) {
         h->v9(a1, f14);
         if (r != 0) {
@@ -557,7 +559,7 @@ void Node_00193240::func_001937F0(void *a1, void *a2, void *a3)
         }
         f14 = r;
     } else {
-        f8->v8(a1, r, a2, a3);
+        f8->v8(a1, f14, a2, a3);
         f14 = r;
     }
 }
@@ -713,25 +715,27 @@ void C_00193B50::func_00193BC0(void)
 void Cam_00193C20::func_00193C20(int count, float dt, int a3, Env_00193C20 *env, int a5, Tgt_00193C20 *tgt,
                                 V4_00193C20 v, int last)
 {
-    V4_00193C20 pos;
+    V4_00193C20 *pa = &f28;
     float *d;
     int i;
     int j;
     int val;
     void *p;
+    V4_00193C20 *pb;
 
-    f50 = tgt;
-    f28 = v;
     f24 = count;
+    f50 = tgt;
+    *pa = v;
     f48 = env;
     f4c = (Seg_00193C20 **)func_001E8AA5(f24 * 4);
     f54 = (Key_00193C20 **)func_001E8AA5(f24 * 4);
-    f50->func_00199A70(0, &f38);
-    d = f50->func_00197EC0(&v.x, &f28);
-    f38.x = f38.x + d[0];
-    f38.y = d[1] + f38.y;
-    f38.z = d[2] + f38.z;
-    pos = f38;
+    pb = &f38;
+    f50->func_00199A70(0, pb);
+    d = f50->func_00197EC0(&v.x, pa);
+    pb->x = pb->x + d[0];
+    pb->y = d[1] + pb->y;
+    pb->z = d[2] + pb->z;
+    v = *pb;
     for (i = 0; i < f24; i++) {
         p = func_001E8A44(0x1e0);
         f4c[i] = p ? ((Seg_00193C20 *)p)->func_00143580(1) : 0;
@@ -741,11 +745,11 @@ void Cam_00193C20::func_00193C20(int count, float dt, int a3, Env_00193C20 *env,
             val = a3;
         }
         f4c[i]->v35(val, 0, 0);
-        f4c[i]->func_00199600(pos);
+        f4c[i]->func_00199600(v);
         f4c[i]->func_00198F50(&D_002A9934, &D_002A9924, 0, 1, 0);
         f4c[i]->func_0019ABA0((void *)f48->f4a8[a5], 2);
         func_001577A0(f4c[i], 0);
-        pos.y = pos.y - dt;
+        v.y = v.y - dt;
         p = func_001E8A44(0x18);
         f54[i] = p ? ((Key_00193C20 *)p)->func_00135850() : 0;
     }
@@ -757,7 +761,7 @@ void Cam_00193C20::func_00193C20(int count, float dt, int a3, Env_00193C20 *env,
     for (i = 0; i < f24; i++) {
         f4c[i]->func_00199A70(0, f58->f34 + i * 0x4c + 0x1c);
     }
-    f54[0]->func_00135870(dt, 0, f58->f34, &f38, 1);
+    f54[0]->func_00135870(dt, 0, f58->f34, pb, 1);
     for (j = 0; j < f24 - 1; j++) {
         f54[j + 1]->func_00135870(dt, f58->f34 + j * 0x4c, f58->f34 + j * 0x4c + 0x4c, 0, 1);
     }
