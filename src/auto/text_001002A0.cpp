@@ -60,7 +60,7 @@ struct VP_101010 {
     virtual void s16(); virtual void s17(); virtual void s18(); virtual void s19();
     virtual void s20(); virtual void s21(); virtual void s22(); virtual void s23();
     virtual void s24(); virtual void s25(); virtual void s26(); virtual void s27();
-    virtual void v70(int a, int b);
+    virtual int v70(int a, int b);
 };
 extern float D_00278C48;
 extern float D_0027DE74;
