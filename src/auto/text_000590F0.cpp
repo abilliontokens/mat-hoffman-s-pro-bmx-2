@@ -44,7 +44,6 @@ struct Fader_000597B0 {
 };
 
 template <class T> inline const T &Min_000590F0(const T &a, const T &b) { return b < a ? b : a; }
-static __forceinline int Clamp_000590F0(int v, int hi) { return v > hi ? hi : v; }
 
 struct File_000590F0 {
     char data[0x4C8];
@@ -375,6 +374,30 @@ struct BmxGame {
     void func_00157420(void);
     void func_0005A020(void);
 };
+
+int Screen_000597B0::func_000590F0(int a)
+{
+    File_000590F0 f;
+    char buf[0x100];
+    if (f4C == 0)
+        return 0;
+    f.func_00168280();
+    if (!f.func_00169490(f4C, 0)) {
+        f.func_001691E0();
+        return 0;
+    }
+    switch (a) {
+    case 0: { volatile int max = 0x103; volatile int n = max > 14 ? 14 : max; int k = n; func_001E8920(buf, D_00277FA0, k); buf[k] = 0; break; }
+    case 1: { volatile int max = 0x103; volatile int n = max > 18 ? 18 : max; int k = n; func_001E8920(buf, D_00277F8C, k); buf[k] = 0; break; }
+    case 2: { volatile int max = 0x103; volatile int n = max > 16 ? 16 : max; int k = n; func_001E8920(buf, D_00277F78, k); buf[k] = 0; break; }
+    case 3: { volatile int max = 0x103; volatile int n = max > 19 ? 19 : max; int k = n; func_001E8920(buf, D_00277F64, k); buf[k] = 0; break; }
+    case 4: { volatile int max = 0x103; volatile int n = max > 18 ? 18 : max; int k = n; func_001E8920(buf, D_00277F50, k); buf[k] = 0; break; }
+    }
+    f.func_00169710(buf);
+    func_00055D10(&f);
+    f.func_001691E0();
+    return 1;
+}
 
 void __stdcall func_000597A0(int a0, int a1) {
     int func_000560A0(...);
