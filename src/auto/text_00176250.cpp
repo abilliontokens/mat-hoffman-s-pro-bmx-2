@@ -8,6 +8,14 @@ struct Rgb3 {
   u8 r;
 };
 
+/* 4-byte destination pixel (BGRA) */
+struct Rgba4 {
+  u8 b;
+  u8 g;
+  u8 r;
+  u8 a;
+};
+
 /* palette object: func_00135400 = palette entries, func_00135410 = RGB555 -> index table */
 struct S_00176250_Pal {
   int func_00135410(void);
