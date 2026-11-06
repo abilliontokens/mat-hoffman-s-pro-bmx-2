@@ -151,14 +151,14 @@ struct Menu_87760 {
     Menu_87760 *func_001CF740(int a0, int a1, int a2);
 };
 
-struct Owner_87760 {
-    char pad0[0x64];
-    struct Owner2_87760 *f64;
-};
-
 struct Owner2_87760 {
     char pad0[0x4c0];
     int f4C0;
+};
+
+struct Owner_87760 {
+    char pad0[0x64];
+    Owner2_87760 *f64;
 };
 
 struct C_00087760 {
