@@ -19,19 +19,19 @@ struct C_001B1980 {
 struct C_00093120 {
     void func_00093120(void);
     int func_00092AC0(void);
-    void __stdcall func_00093A00(float x, float y, int a, int b, int c, int d);
-    void __stdcall func_00093AD0(float x, float y, int a, int b, int c, int d);
-    void __stdcall func_00093C80(float x, float y, int a, int b, int c, int d);
-    void __stdcall func_00093CF0(float x, float y, int a, int b, int c, int d);
-    void __stdcall func_00093890(float x, float y, int a, int b, int c, int d);
-    void __stdcall func_00093970(float x, float y, int a, int b, int c, int d);
-    void __stdcall func_000944C0(float x, float y, int a, int b, int c, int d);
-    void __stdcall func_000943A0(float x, float y, int a, int b, int c, int d);
-    void __stdcall func_00094570(float x, float y, int a, int b, int c, int d);
-    void __stdcall func_000942F0(float x, float y, int a, int b, int c, int d);
-    void __stdcall func_00094410(float x, float y, int a, int b, int c, int d);
-    void __stdcall func_00094690(float x, float y, int a, int b, int c, int d);
-    void __stdcall func_000941A0(int e, float x, float y, int a, int b, int c, int d);
+    void func_00093A00(float x, float y, int a, int b, int c, int d);
+    void func_00093AD0(float x, float y, int a, int b, int c, int d);
+    void func_00093C80(float x, float y, int a, int b, int c, int d);
+    void func_00093CF0(float x, float y, int a, int b, int c, int d);
+    void func_00093890(float x, float y, int a, int b, int c, int d);
+    void func_00093970(float x, float y, int a, int b, int c, int d);
+    void func_000944C0(float x, float y, int a, int b, int c, int d);
+    void func_000943A0(float x, float y, int a, int b, int c, int d);
+    void func_00094570(float x, float y, int a, int b, int c, int d);
+    void func_000942F0(float x, float y, int a, int b, int c, int d);
+    void func_00094410(float x, float y, int a, int b, int c, int d);
+    void func_00094690(float x, float y, int a, int b, int c, int d);
+    void func_000941A0(int e, float x, float y, int a, int b, int c, int d);
 };
 
 /* BmxUIPageMemCard */
