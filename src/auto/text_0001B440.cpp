@@ -176,7 +176,6 @@ struct C_0001C1E0 {
     int func_0001B3C0(int a);
     void func_0001BDB0(int idx);
     int func_0001BDF0(int a, int b);
-    int slot_query(int idx, int b);
     void func_0001C1E0(int idx, int b, int c, int d);
     int func_0001C200(int a, int b, int c, int d);
     void func_0001C240(void);
