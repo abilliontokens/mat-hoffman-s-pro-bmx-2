@@ -30,6 +30,12 @@ struct Vec4 {
     }
 };
 
+static __forceinline Vec4 MakeVec4_0011A4B0(f32 a, f32 b, f32 c, f32 d)
+{
+    Vec4 r(a, b, c, d);
+    return r;
+}
+
 struct C_00157600 {
     void func_00157600(int a0);
 };
