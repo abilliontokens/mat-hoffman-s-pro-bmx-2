@@ -106,8 +106,6 @@ struct C_0004D7A0_GlobalState {
 };
 struct C_0004D7A0_Global { char pad0[0x2e0]; C_0004D7A0_GlobalState *f2E0; };
 extern C_0004D7A0_Global *D_002A8490;
-extern float D_00275544;
-extern const float D_00275460;
 int func_001361E0(int, int, int *, int);
 
 struct C_0004DCA0_World {
