@@ -12,6 +12,7 @@
  *
  * A target that is a helper's own out-of-line copy (the whole function is the helper) is a one-line C wrapper:
  *     void func_000499B0(float *out, float *in) { AsmVec3Normalize(out, in); }
+ * (not _func_00011020 or _func_00011040: see AsmMinF and AsmMaxF).
  *
  * This file is written by hand, not by agents: decompdecomp refuses __asm in what agents write.
  */
@@ -61,7 +62,8 @@ static __forceinline float AsmSqrtF(float x)
     return r;
 }
 
-/* the smaller of a and b (minss). Proven on _func_0011EEE0; _func_00011020 is its out-of-line copy byte for byte. */
+/* the smaller of a and b (minss). Proven on _func_0011EEE0. _func_00011020 is this helper compiled on its own: a C
+ * wrapper copies a and b first, so only the __asm itself matches it. */
 static __forceinline float AsmMinF(float a, float b)
 {
     float r;
@@ -74,7 +76,8 @@ static __forceinline float AsmMinF(float a, float b)
     return r;
 }
 
-/* the larger of a and b (maxss). Proven on _func_0014AA70; _func_00011040 is its out-of-line copy byte for byte. */
+/* the larger of a and b (maxss). Proven on _func_0014AA70. _func_00011040 is this helper compiled on its own: a C
+ * wrapper copies a and b first, so only the __asm itself matches it. */
 static __forceinline float AsmMaxF(float a, float b)
 {
     float r;
