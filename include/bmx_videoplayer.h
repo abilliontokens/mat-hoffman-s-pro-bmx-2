@@ -137,10 +137,7 @@ struct C_001616F0 {
     void func_001616F0();
 };
 
-extern void __stdcall func_0015B060(int a, float x, float y);
-extern void __stdcall func_0012B190(int a, int b, int c, int d);
 extern int func_001DC974(void);
-extern "C" char *strcpy(char *dst, const char *src);
 extern char D_002A60B0[0x104];
 extern char D_00276C90[];
 extern char D_00276C08[];
