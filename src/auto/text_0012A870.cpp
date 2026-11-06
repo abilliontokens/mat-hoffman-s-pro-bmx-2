@@ -192,8 +192,8 @@ struct C_0012B000 {
     char pada0[0x10];
     char fb0[0x40];
     char ff0[0x10c];
-    float f1fc;
-    float f200;
+    int f1fc;
+    int f200;
     void func_0012B000(float param1, float param2);
 };
 
@@ -582,14 +582,23 @@ void C_0012B210::func_0012B210(int *out)
     C_0012B210 * volatile self = this;
     int * volatile p;
     float f;
+    float t;
 
     out[0] = 0;
     p = &out[2];
-    f = (float)self->f1e8 / D_002A3E34;
+    t = (float)(int)self->f1e8;
+    if ((int)self->f1e8 < 0) {
+        t += D_002755E4;
+    }
+    f = t / D_002A3E34;
     *p = _mm_cvttss_si32(*(__m128 *)&f);
     out[1] = 0;
     p = &out[3];
-    f = (float)self->f1ec / D_002A3E38;
+    t = (float)(int)self->f1ec;
+    if ((int)self->f1ec < 0) {
+        t += D_002755E4;
+    }
+    f = t / D_002A3E38;
     *p = _mm_cvttss_si32(*(__m128 *)&f);
 }
 
