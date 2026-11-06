@@ -333,10 +333,10 @@ struct S_001C1520_Sprite {
     float f4c;
     float f50;
     char pad54[4];
-    unsigned dirty : 1;
-    unsigned colorDirty : 1;
-    unsigned rectSet : 1;
-    char pad5c[0x8];
+    unsigned char dirty : 1;
+    unsigned char colorDirty : 1;
+    unsigned char rectSet : 1;
+    char pad59[0xb];
     void SetPos(float x, float y) {
         if (f4 != x || f8 != y) { f4 = x; f8 = y; dirty = 1; }
     }
