@@ -208,9 +208,9 @@ struct S_198E0_F3C { char pad0[4]; S_198E0_Cam *f4; };
 struct S_198E0_Anim { char pad0[0x54]; volatile int f54; };
 struct S_198E0_Obj {
     char pad0[0x60];
-    void *f60;
-    void *f64;
-    int f68;
+    void * volatile f60;
+    void * volatile f64;
+    volatile int f68;
     S_198E0_Obj *func_0019DA80(int a);
     void func_00129920(int a);
     void func_0019F9B0(S_198E0_Cam *cam, char *path);
