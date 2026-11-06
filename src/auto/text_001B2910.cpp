@@ -27,8 +27,7 @@ struct S_001B3560 {
 
 #pragma pack(push, 1)
 struct S_001B2CD0_Px {
-    unsigned short lo;
-    unsigned char hi;
+    unsigned char b[3];
 };
 #pragma pack(pop)
 
@@ -252,7 +251,7 @@ int func_001B2CD0(S_001B3560 *item, int a)
                     return 0;
                 }
                 do {
-                    *(S_001B2CD0_Px *)p = px;
+                    memcpy(p, &px, 3);
                     p += 3;
                 } while (count-- != 0);
             } else {
