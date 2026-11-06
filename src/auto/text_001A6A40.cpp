@@ -223,11 +223,12 @@ struct C_001A7260 {
     char pad4[0x20];
     C_Holder24 *f24;
     C_Item8 *f28;
-    char pad2c[4];
+    int f2c;
     C_001D6410 *f30;
     C_001D6410 *f34[8];
     void func_00157660();
     void func_001A7260();
+    C_001A7260 *func_001A7320(C_Holder24 *owner);
 };
 
 int func_001361E0(int, int, int, unsigned int);
