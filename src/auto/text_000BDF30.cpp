@@ -265,6 +265,13 @@ struct C_000BBE30 {
     void func_000BE540();
     void func_000BE1D0(int slot);
     void func_000BC3E0(int slot);
+    void func_000BE640(char *a, char *b, int c);
+    void func_001BCC90(void *p);
+    void func_000BADB0();
+    void func_000BCBB0();
+    void func_000BABF0();
+    void func_000BACE0();
+    void func_000BB0C0();
 };
 
 struct C_000BEDA0 {
