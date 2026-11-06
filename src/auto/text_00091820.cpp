@@ -97,9 +97,15 @@ struct C_00092750 {
     void *func_00092750(int flags);
 };
 
+/* string-id table reached through D_002A8490->f2e8->f4 (raw byte offsets) */
+struct S_00091A20_Strs { char raw[0x1300]; };
+struct S_00091A20_Mgr { int pad0; S_00091A20_Strs *f4; };
+
 struct S_002A8490 {
     char pad0[0x274];
     int unk274;
+    char pad278[0x2e8 - 0x278];
+    S_00091A20_Mgr *f2e8;
 };
 extern S_002A8490 *D_002A8490;
 
