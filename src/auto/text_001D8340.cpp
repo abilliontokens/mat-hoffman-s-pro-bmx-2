@@ -402,6 +402,16 @@ int XboxVideoCard::func_001D8A10(int a1, int a2, int a3, int a4, int a5, int a6,
     return 1;
 }
 
+int XboxVideoCard::func_001D8AA0(void *param_1)
+{
+    S_001D8AA0_Local local;
+    int r = this->func_001D8140(&local, param_1, this->f44);
+    if (r == 0) {
+        return r;
+    }
+    return this->func_001D8970(local.fC, local.f10, 0);
+}
+
 C_001D8AE0::C_001D8AE0(int p1, int p2, int p3, int p4, int p5)
 {
     volatile u32 t[3];
