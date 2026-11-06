@@ -57,6 +57,7 @@ struct S_19CCE0_File {
     void func_0013C8A0(int file, void *dst, int size, int count);
 };
 extern S_19CCE0_File *D_002BEAAC;
+#define RD_19CCE0(dst, size) D_002BEAAC->func_0013C8A0(file, dst, size, 1)
 void __stdcall func_00011FF0(void *p, int stride, int count, void (*ctor)());
 void func_0019B6F0(void);
 void D_00021290(void);
