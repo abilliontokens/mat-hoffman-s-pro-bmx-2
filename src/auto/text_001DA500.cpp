@@ -73,7 +73,7 @@ extern float D_0028F8E4, D_0028F8E8, D_0028F97C;
 extern float D_002F10D4, D_002F10D8, D_002F10DC, D_002F10E0;
 extern float D_002F10E4, D_002F10E8, D_002F10EC, D_002F10F0;
 extern char D_002AC770[], D_002AC780[];
-void __stdcall func_00199A70(float *v, int a);
+struct S_001DB080_Obj { void func_00199A70(float *v, int a); };
 int __stdcall func_001DAAD0(int a0, void *a1, void *a2);
 struct C_001DAAD0 {
     char pad0[0xEC];
