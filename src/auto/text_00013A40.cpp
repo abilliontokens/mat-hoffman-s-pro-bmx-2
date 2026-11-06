@@ -67,6 +67,9 @@ extern char D_00275630[], D_00275620[], D_0027560C[];
 extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
 int func_001ADCC0(char *dst, int size, const char *fmt, ...);
 int func_00011260(int lo, int hi);
+void *func_001E8A44(unsigned int size);
+extern "C" unsigned int strlen(const char *);
+#pragma intrinsic(strlen)
 
 struct C_00013F50 {
     int f0;
