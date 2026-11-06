@@ -2,8 +2,9 @@
 #include "common.h"
 #include "ghidra.h"
 struct C_135D00 { void func_00135D00(int a, int b); };
-struct C_160C00 { void func_00160C00(void); void func_00160D30(void *a, int b, int c); void func_00161040(int a); };
-struct C_VT { void **vtbl; };
+struct C_160C00 { C_160C00 *func_00160C00(void); void func_00160D30(void *a, int b, int c); void func_00161040(int a); };
+struct C_VT { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(char *s); };
+struct C_001BC7F0 { void func_001BC7F0(int a); };
 struct C_0005A0E0 {
     void *vtbl;
     int unk_4;
