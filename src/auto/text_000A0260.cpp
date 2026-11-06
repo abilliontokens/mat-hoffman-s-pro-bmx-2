@@ -29,14 +29,16 @@ static inline void Init_A0260(Vec_A0260 *v)
 static inline void Cross_A0260(Vec_A0260 *out, Vec_A0260 *a, Vec_A0260 *b)
 {
     Vec_A0260 *pa = a, *pb = b;
-    _mm_storeu_ps(&out->x, _mm_shuffle_ps(
-        _mm_sub_ps(
-            _mm_mul_ps(_mm_loadu_ps(&pa->x), _mm_shuffle_ps(_mm_loadu_ps(&pb->x), _mm_loadu_ps(&pb->x), 0xc9)),
-            _mm_mul_ps(_mm_loadu_ps(&pb->x), _mm_shuffle_ps(_mm_loadu_ps(&pa->x), _mm_loadu_ps(&pa->x), 0xc9))),
-        _mm_sub_ps(
-            _mm_mul_ps(_mm_loadu_ps(&pa->x), _mm_shuffle_ps(_mm_loadu_ps(&pb->x), _mm_loadu_ps(&pb->x), 0xc9)),
-            _mm_mul_ps(_mm_loadu_ps(&pb->x), _mm_shuffle_ps(_mm_loadu_ps(&pa->x), _mm_loadu_ps(&pa->x), 0xc9))),
-        0xc9));
+    __m128 va = _mm_loadu_ps(&pa->x);
+    __m128 vb = _mm_loadu_ps(&pb->x);
+    __m128 sa = va, sb = vb;
+    sa = _mm_shuffle_ps(sa, sa, 0xc9);
+    sb = _mm_shuffle_ps(sb, sb, 0xc9);
+    vb = _mm_mul_ps(vb, sa);
+    va = _mm_mul_ps(va, sb);
+    va = _mm_sub_ps(va, vb);
+    va = _mm_shuffle_ps(va, va, 0xc9);
+    _mm_storeu_ps(&out->x, va);
 }
 
 struct Cam_A0260 {
