@@ -92,6 +92,7 @@ struct V4f_001956F0 {
     V4f_001956F0(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
     V4f_001956F0 operator+(const V4f_001956F0 &o) const { return V4f_001956F0(x + o.x, y + o.y, z + o.z, 1.0f); }
     V4f_001956F0 operator-(const V4f_001956F0 &o) const { return V4f_001956F0(x - o.x, y - o.y, z - o.z, 1.0f); }
+    V4f_001956F0 operator*(float s) const { return V4f_001956F0(x * s, y * s, z * s, w); }
 };
 struct Target_195190 { void func_00199A70(int, V4f_001956F0 *); };
 struct SimpleTVCamera {
@@ -185,11 +186,14 @@ void SimpleTVCamera::func_00195190(float dt, int *ok, V4f_001956F0 *out, V4f_001
  if(target) { (*(Target_195190 **)(target+0x22c))->func_00199A70(0,&current); velocity=*(V4f_001956F0 *)(target+0x238); }
  else {
   fallback->func_00199A70(0,&current);
-  if(previous.x==D_002A9B44.x && previous.y==D_002A9B44.y && previous.z==D_002A9B44.z) {
-   velocity=V4f_001956F0(0.0f,0.0f,0.0f,1.0f);
+  if(previous.x==D_002A9B44.x && previous.y==D_002A9B48 && previous.z==D_002A9B4C) {
+   velocity.x=0.0f; velocity.y=0.0f; velocity.z=0.0f; velocity.w=1.0f;
   } else {
+   float dx=current.x-previous.x;
+   float dy=current.y-previous.y;
+   float dz=current.z-previous.z;
    float scale=D_00275460/dt;
-   velocity=V4f_001956F0((current.x-previous.x)*scale,(current.y-previous.y)*scale,(current.z-previous.z)*scale,1.0f);
+   velocity=V4f_001956F0(dx*scale,dy*scale,dz*scale,1.0f);
   }
   previous=current;
  }
