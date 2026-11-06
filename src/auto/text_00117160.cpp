@@ -10,6 +10,12 @@ struct Rider_00117160 {
     void func_00027850(float f);
 };
 
+static inline float Abs_00117160(float f)
+{
+    int i = *(int *)&f & 0x7fffffff;
+    return *(float *)&i;
+}
+
 #define RF(o) (*(float*)((char*)this + (o)))
 #define RI(o) (*(int*)((char*)this + (o)))
 #define RP(o) (*(char**)((char*)this + (o)))
