@@ -41,8 +41,8 @@ struct Reader1D1BD0 {
 
 static __forceinline int Min_1D1BD0(int a, int b) { return a > b ? b : a; }
 static __forceinline int Max_1D1BD0(int a, int b) { return a < b ? b : a; }
-static __forceinline float MinF_1D1BD0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
-static __forceinline float MaxF_1D1BD0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float MinF_1D1BD0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(*(__m128 *)&a, *(__m128 *)&b)); return r; }
+static __forceinline float MaxF_1D1BD0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(*(__m128 *)&a, *(__m128 *)&b)); return r; }
 extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *);
 extern "C" __declspec(dllimport) void __stdcall RtlLeaveCriticalSection(void *);
 
@@ -75,6 +75,112 @@ struct C_001D27F0 {
     void func_001D27F0(void);
     int func_001D1BD0(void);
 };
+
+int C_001D27F0::func_001D1BD0(void)
+{
+    Reader1D1BD0 r;
+    int i;
+    int v14, v18, v1c;
+    float f24;
+    char buf[0x104];
+    char name[0x104];
+
+    r.func_00168280();
+    if (!r.func_00169490(D_0028F430, 0) || !r.func_00169710(D_002769F8)) {
+        r.func_001691E0();
+        return 0;
+    }
+    r.func_00168C20(D_0028F420, 0, &unk4);
+    r.func_00168C20(D_0028D1DC, 0, &count);
+    r.func_00168C20(D_0028F410, 1, &v1c);
+    {
+        int n = count;
+        int *p = (int *)func_001E8A44(n * 0x54 + 4);
+        if (p) {
+            *p = n;
+            p++;
+        } else {
+            p = 0;
+        }
+        records = (LoadingRecord *)p;
+    }
+    for (i = 0; i < count;) {
+        int next = i + 1;
+        func_001ADCC0(buf, 0x104, D_0028D1D0, next);
+        if (r.func_00169710(buf)) {
+            records[i].done = 0;
+            r.func_00168BE0(D_002769A8, D_002764F0, name, -1);
+            if (memcmp(name, D_002764F0, 5) == 0) {
+                records[i].name = 0;
+            } else {
+                records[i].name = (char *)func_001E8A44(0x104);
+                memcpy(records[i].name, name, 0x104);
+            }
+            r.func_00168C20(D_00276974, 1, &v18);
+            r.func_00168C20(D_00276968, 1, &v14);
+            records[i].frameLo = Min_1D1BD0(v18 - 1, v14 - 1);
+            records[i].frameHi = Max_1D1BD0(v18 - 1, v14 - 1);
+            if (v18 > v14) {
+                records[i].dir |= 1;
+            } else {
+                records[i].dir &= ~1;
+            }
+            records[i].val[0] = (float)records[i].frameLo;
+            r.func_00168C50(D_0028F404, 0, &f24);
+            r.func_00168C20(D_0028F3F4, 0, &v1c);
+            records[i].rep0 = v1c;
+            r.func_00168C20(D_0028F3E0, 0, &v1c);
+            records[i].pong0 = v1c;
+            records[i].step[0] = (float)(records[i].frameHi - records[i].frameLo) / (f24 * D_0028F3DC);
+            r.func_00168C20(D_0028F3D0, 0, &v18);
+            r.func_00168C20(D_0028F3C8, 0, &v14);
+            records[i].posLo[0] = (short)MinF_1D1BD0(v18 * D_002ABC38, v14 * D_002ABC38);
+            records[i].posHi[0] = (short)MaxF_1D1BD0(v18 * D_002ABC38, v14 * D_002ABC38);
+            if (v18 > v14) {
+                records[i].dir |= 2;
+            } else {
+                records[i].dir &= ~2;
+            }
+            records[i].val[1] = (float)records[i].posLo[0];
+            r.func_00168C20(D_0028F3BC, 0, &v18);
+            r.func_00168C20(D_0028F3B4, 0, &v14);
+            records[i].posLo[1] = (short)MinF_1D1BD0(v18 * D_002ABC3C, v14 * D_002ABC3C);
+            records[i].posHi[1] = (short)MaxF_1D1BD0(v18 * D_002ABC3C, v14 * D_002ABC3C);
+            if (v18 > v14) {
+                records[i].dir |= 4;
+            } else {
+                records[i].dir &= ~4;
+            }
+            records[i].val[2] = (float)records[i].posLo[1];
+            r.func_00168C50(D_0028F3A8, 0, &f24);
+            r.func_00168C20(D_0028F398, 0, &v1c);
+            records[i].rep1 = v1c;
+            r.func_00168C20(D_0028F384, 0, &v1c);
+            records[i].pong1 = v1c;
+            if (f24 > D_00275544) {
+                records[i].step[1] = (float)(records[i].posHi[0] - records[i].posLo[0]) * (D_00275460 / (f24 * D_0028F3DC));
+                records[i].step[2] = (float)(records[i].posHi[1] - records[i].posLo[1]) * (D_00275460 / (f24 * D_0028F3DC));
+            } else {
+                records[i].step[1] = 0;
+                records[i].step[2] = 0;
+            }
+            records[i].done |= 6;
+            r.func_00168C20(D_0028F378, 0x20, &v18);
+            r.func_00168C20(D_0028F36C, 0x20, &v14);
+            records[i].sizeLo[0] = (short)MinF_1D1BD0(v18 * D_002ABC38, v14 * D_002ABC38);
+            records[i].sizeHi[0] = (short)MaxF_1D1BD0(v18 * D_002ABC38, v14 * D_002ABC38);
+            if (v18 > v14) {
+                records[i].dir |= 8;
+            } else {
+                records[i].dir &= ~8;
+            }
+            records[i].val[3] = (float)records[i].sizeLo[0];
+        }
+        i = next;
+    }
+    r.func_001691E0();
+    return 1;
+}
 
 void C_001D27F0::func_001D27F0(void)
 {
