@@ -66,9 +66,9 @@ struct Obj364W {
     float func_00133F10(int a);
 };
 struct ObjA0W { void func_001A0C90(Vec4W v); };
-struct ScriptControllerW { void func_0018C900(float dt); };
+struct ScriptControllerW { virtual void v0(); void func_0018C900(float dt); };
 struct Walker : ScriptControllerW {
-    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v1(); virtual void v2(); virtual void v3();
     virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
     virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
     virtual void func_001C7EB0(float dt);
