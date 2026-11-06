@@ -12,7 +12,7 @@ struct V4_001A7FE0 { float x,y,z,w; __forceinline V4_001A7FE0() { z=0; y=0; x=0;
 
     __forceinline void Clear() { x=y=z=0; w=1; }
     __forceinline V4_001A7FE0 operator*(float s) const { V4_001A7FE0 r; r.x=x*s; r.y=y*s; r.z=z*s; return r; }
-    __forceinline V4_001A7FE0 operator-(const V4_001A7FE0 &b) const { V4_001A7FE0 r; r.x=x-b.x; r.y=y-b.y; r.z=z-b.z; return r; }
+    __forceinline V4_001A7FE0 operator-(const V4_001A7FE0 &b) const { V4_001A7FE0 r; r.z=z-b.z; r.y=y-b.y; r.x=x-b.x; return r; }
     __forceinline V4_001A7FE0 operator+(const V4_001A7FE0 &b) const { V4_001A7FE0 r; r.x=x+b.x; r.y=y+b.y; r.z=z+b.z; return r; } };
 struct Body_001A7FE0 {
     virtual void v00(); virtual void v01(); virtual void v02(); virtual void v03();
