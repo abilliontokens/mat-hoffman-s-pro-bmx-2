@@ -246,8 +246,9 @@ struct C_0010DED0 {
  void func_00108D10(int,int);
  void func_00108E30(int,int);
  void func_0010DED0(int,int);
- int func_0010E030(int,int);
-};
+   int func_0010E030(int,int);
+  int *CountSlot(int mode, int slot) { return &cntE20[mode * 16 + slot]; }
+ };
 
 struct C_0010E260 {
     void func_0010E260(void);
@@ -471,7 +472,7 @@ int C_0010DED0::func_0010E030(int a, int b)
     if (cur != -1) {
         for (i = 0; i < 16; i++) {
             if (f1134 != -1) break;
-            if (f24->f52C->Match(cur, i, a, b)) {
+            if (f24->f52C->Match(i, cur, a, b)) {
                 int *p = &cntE20[cur * 16 + i];
                 f1134 = i;
                 f111C = b;
