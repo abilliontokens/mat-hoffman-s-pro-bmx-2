@@ -141,7 +141,7 @@ static __forceinline int Min_001D2A40(int a, int b) { return a > b ? b : a; }
             } \
         } \
     }
-#define TRK_T (*(S_001D2A40_Track *)((char *)this->f10 + off))
+#define TRK_T ((S_001D2A40_Track *)((char *)this->f10 + off))
 
 #define TRACK_CH3(k, LO, HI, M, FM, PM) \
     { \
