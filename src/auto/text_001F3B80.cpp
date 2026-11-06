@@ -10,6 +10,18 @@ int func_001E9760(void *f);
 void func_001E8390(void *p);
 int func_001F5059(void *ld, char **end, const char *s, int a, int b, int c, int d);
 
+extern signed char D_00295500[];
+extern char D_00295520[];
+extern unsigned short D_0029557C[];
+extern unsigned short D_00295584[];
+extern unsigned short *D_002AEA30;
+extern int D_002AEA38;
+extern int (*D_002AEA14)(unsigned short *, int, int, int, unsigned short *);
+extern int (*D_002AEA18)(unsigned short *);
+extern int (*D_002AEA20)(unsigned short *);
+void *func_001E8AA5(int size);
+int func_001F4F45(unsigned short *pwc, const unsigned char *s, unsigned int n);
+unsigned __int64 __stdcall func_001F58E0(unsigned __int64 dividend, unsigned __int64 divisor);
 int func_001F46F0(int a, int b, int c);
 short func_001F59DC(int a, void *b);
 
@@ -342,7 +354,7 @@ void func_001F494D(LD10 *dst, unsigned long *src)
     unsigned long msb = 0x80000000;
     unsigned short exp = (pus[3] >> 4) & 0x7ff;
     unsigned int sign = pus[3] & 0x8000;
-    unsigned long man_hi = src[1] & 0xfffff;
+    unsigned long man_hi = src[1] & (unsigned long)&D_000FFFFF;
     unsigned long man_lo = src[0];
     unsigned short newexp;
     unsigned int e = exp;
