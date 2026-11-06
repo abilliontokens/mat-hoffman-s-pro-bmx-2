@@ -8,17 +8,22 @@ struct Vec_19FD20 {
     Vec_19FD20(f32 ax, f32 ay, f32 az, f32 aw = 1.0f) { x = ax; y = ay; z = az; w = aw; }
 };
 
-static inline void Cross_19FD20(Vec_19FD20 &out, const Vec_19FD20 &a, const Vec_19FD20 &b)
+static __forceinline void Cross_19FD20(Vec_19FD20 * volatile out, Vec_19FD20 * volatile a, Vec_19FD20 * volatile b)
 {
-    _mm_storeu_ps(&out.x, _mm_shuffle_ps(
-        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a.x), _mm_shuffle_ps(_mm_loadu_ps(&b.x), _mm_loadu_ps(&b.x), 0xc9)),
-                   _mm_mul_ps(_mm_loadu_ps(&b.x), _mm_shuffle_ps(_mm_loadu_ps(&a.x), _mm_loadu_ps(&a.x), 0xc9))),
-        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a.x), _mm_shuffle_ps(_mm_loadu_ps(&b.x), _mm_loadu_ps(&b.x), 0xc9)),
-                   _mm_mul_ps(_mm_loadu_ps(&b.x), _mm_shuffle_ps(_mm_loadu_ps(&a.x), _mm_loadu_ps(&a.x), 0xc9))), 0xc9));
+    Vec_19FD20 *pa = a, *pb = b;
+    __m128 va = _mm_loadu_ps(&pa->x);
+    __m128 vb = _mm_loadu_ps(&pb->x);
+    __m128 sa = va, sb = vb;
+    sa = _mm_shuffle_ps(sa, sa, 0xc9);
+    sb = _mm_shuffle_ps(sb, sb, 0xc9);
+    vb = _mm_mul_ps(vb, sa);
+    va = _mm_mul_ps(va, sb);
+    va = _mm_sub_ps(va, vb);
+    va = _mm_shuffle_ps(va, va, 0xc9);
+    _mm_storeu_ps(&out->x, va);
 }
 
-#include <math.h>
-static __forceinline float Sqrt_19FD20(float x) { return sqrtf(x); }
+static __forceinline void Sqrt_19FD20(float * volatile d, float square) { _mm_store_ss(d, _mm_sqrt_ss(*(__m128 *)&square)); }
 
 struct Node_19FD20 {
     void func_00199A70(int a, Vec_19FD20 *out);
