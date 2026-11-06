@@ -199,7 +199,6 @@ extern char D_00276688;
 void *func_001E8A44(unsigned int);
 int func_00132E20_26(const char *);
 struct Glob4334_26 { int func_00132E20(const char *); void func_001577A0(void *, int); };
-#define RET26B60 C_00026B60 *
 struct C_00026B60 {
     char pad0[0x2C]; V4_000273F0 f2C; V4_000273F0 f3C;
     char pad4C[0x1E0 - 0x4C];
