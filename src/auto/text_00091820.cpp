@@ -320,7 +320,7 @@ int C_00091A20::func_00091A20()
             f28->func_0005E840(EFO_STR(0x1078));
             f2c->func_0005E840(EFO_STR(0x1090));
             f30->func_0005E840(EFO_STR(0x1080));
-            f34->func_0005E840(EFO_STR(0x7c8));
+            f34->func_0005E840(EFO_STR(0x1088));
             break;
         case 3:
             f4bc = -1;
@@ -378,12 +378,47 @@ int C_00091A20::func_00091A20()
             f24->func_0005E840(EFO_STR(0xf08));
             f28->func_0005E840(EFO_STR(0x1078));
             f2c->func_0005E840(EFO_STR(0x10a0));
-            f30->func_0005E840(EFO_STR(0x1080));
-            f34->func_0005E840(EFO_STR(0x7c8));
+            f30->func_0005E840(EFO_STR(0x838));
+            f34->func_0005E840(EFO_STR(0x1088));
+            break;
+        case 8:
+            f4bc = -1;
+            EFO_SLOT(f4c0, 5, 0x22c, 0x8e, f28, 0xbb)
+            EFO_SLOT(f4c4, 6, 0x290, 0x117, f2c, 0x143)
+            EFO_SLOT(f4c8, 2, 0x100, 0x196, f30, 0x1ba)
+            EFO_SLOT(f4cc, 0, 0x38, 0x201, f34, 0x225)
+            f28->func_0005E840(EFO_STR(0x10a8));
+            f2c->func_0005E840(EFO_STR(0x10b0));
+            f30->func_0005E840(EFO_STR(0x838));
+            f34->func_0005E840(EFO_STR(0x800));
+            break;
+        case 9:
+            f4bc = -1;
+            EFO_SLOT(f4c0, 5, 0x22c, 0x25, f28, 0x53)
+            EFO_SLOT(f4c4, 6, 0x290, 0xf7, f2c, 0x124)
+            EFO_SLOT(f4c8, 2, 0x100, 0x196, f30, 0x1ba)
+            EFO_SLOT(f4cc, 0, 0x38, 0x201, f34, 0x225)
+            f28->func_0005E840(EFO_STR(0x10b8));
+            f2c->func_0005E840(EFO_STR(0x10c0));
+            f30->func_0005E840(EFO_STR(0x838));
+            f34->func_0005E840(EFO_STR(0x800));
+            break;
+        case 10:
+            f4bc = -1;
+            f4c0 = -1;
+            EFO_SLOT(f4c4, 5, 0x22c, 0xd7, f2c, 0x103)
+            EFO_SLOT(f4c8, 2, 0x100, 0x194, f30, 0x1b8)
+            EFO_SLOT(f4cc, 0, 0x38, 0x201, f34, 0x225)
+            f2c->func_0005E840(EFO_STR(0x10c8));
+            f30->func_0005E840(EFO_STR(0x838));
+            f34->func_0005E840(EFO_STR(0x800));
             break;
         }
+        f4dc = f4d8;
     }
-    return 0;
+    func_0008AA70();
+    func_0008A8C0();
+    return func_00157960();
 }
 
 void *C_00092710::func_00092710(int flags)
