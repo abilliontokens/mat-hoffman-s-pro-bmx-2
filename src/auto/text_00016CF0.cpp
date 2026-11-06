@@ -462,6 +462,22 @@ void __stdcall func_00017810(C_00017810_Obj *obj, C_00017680_Vec *pos)
     obj->f0->func_0011CA60(*pos);
 }
 
+void C_00017910::func_00017910()
+{
+    if (f4DC >= 0 && f4DC < f4D8) {
+        C_00016E40_Vec pos = f49C[f4DC].pos;
+        float half = f49C[f4DC].radius * 0.5f;
+        float r = func_001E8833() * 3.0517578125e-05f;
+        pos.x += r * f49C[f4DC].radius - half;
+        r = func_001E8833() * 3.0517578125e-05f;
+        pos.z += r * f49C[f4DC].radius - half;
+        if (!f4F0)
+            pos.y = func_001E8833() * 3.0517578125e-05f * D_002757FC + pos.y + 56.0f;
+        f3C->f4->func_00199600(pos);
+        f508 = pos;
+    }
+}
+
 C_00016E40_Vec C_00017A40::func_00017A40(void)
 {
     C_00016E40_Vec v = f3C->f4->func_00199B00(0);
