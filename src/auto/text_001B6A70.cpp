@@ -226,6 +226,8 @@ struct C_001B73C0_Holder {
     C_001B73C0_Line *GetLine(u32 i) { return f28[i]; }
 };
 
+static __forceinline C_001B73C0_Line *LineAt(C_001B73C0_Holder *h, u32 i) { return h->f28[i]; }
+
 struct C_001B73C0_Arg {
     char pad0[0x3ac];
     C_001B73C0_Holder *f3AC;
@@ -554,9 +556,8 @@ void C_001B6E70::func_001B73C0(C_001B73C0_Arg *arg) {
         }
         for (j = 0; j < f28[i]->f8; j++) {
             C_001B73C0_Node *node = f28[i]->f10C[j];
-            u32 idx = node->f10C;
             if (node->f4 == 4) {
-                C_001B73C0_Line *line = arg->f3AC->f28[idx];
+                C_001B73C0_Line *line = arg->f3AC->GetLine(node->f10C);
                 line->f1A4->v7();
             }
         }
