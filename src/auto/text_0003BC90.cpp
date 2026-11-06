@@ -53,6 +53,10 @@ struct ListBC {
  void func_001CDE90(NodeBC*);
 };
 struct EntryBC { char name[0x34]; int count; char pad38[0xc]; int index; };
+struct StringBC {
+ char name[255],second[255],third[255];char pad2FD[0x13];
+ NodeBC *f310;char pad314[0x50];int f364;int f368;int f36C;
+};
 struct DataBC {
  char pad0[0x3a8]; void *f3A8; char pad3AC[0xfc];
  int *f4A8; char pad4AC[0xf4];
