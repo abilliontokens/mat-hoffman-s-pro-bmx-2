@@ -58,6 +58,19 @@ struct C_0011AB90 {
 void func_0011AC30(float *out, float *in);
 void func_0011ACC0(void *a, void *b, float *m);
 
+extern float D_00275544;
+extern float D_00275F58;
+
+struct C_0011A590_f28 {
+    void func_00197F70(void *a, void *b);
+    void func_00199900(void *a);
+    void func_00197B40(void *a, void *b);
+    void func_00198040(void *a, void *b);
+    void func_00199CF0(float a, Vec4 v);
+};
+float *func_0001E9E0(float *out, float *v);
+Vec4 func_0001C610(float *a, float *b);
+
 void *C_0011AB60::func_0011AB60(int flags)
 {
     vtbl = (void *)&D_00283D5C;
@@ -160,6 +173,32 @@ void func_0011ADD0(Vec4 *out, float *m)
         q.z = (m[9] + m[6]) * inv;
     }
     *out = q;
+}
+
+extern float D_00275460;
+void func_0011AFF0(char *arg)
+{
+ char *a=*(char **)(arg+0x54);
+ float *b=*(float **)(arg+0x60);
+ for(int i=0;i<*(int *)(a+0x80);i++){
+ float *p=(float *)(*(char **)(a+0x70)+i*32);
+ Vec4 d;
+ d.x=p[0]-p[4]; d.y=p[1]-p[5]; d.z=p[2]-p[6];
+ float w=(*(float **)(a+0x8c))[i];
+ w=D_00275460-w;
+ Vec4 r;
+ r.x=d.x*w; r.y=d.y*w; r.z=d.z*w;
+ if(r.x>b[94]) b[94]=r.x;
+ if(r.y>b[95]) b[95]=r.y;
+ if(r.z>b[96]) b[96]=r.z;
+ if(r.x<b[90]) b[90]=r.x;
+ if(r.y<b[91]) b[91]=r.y;
+ if(r.z<b[92]) b[92]=r.z;
+ }
+ b[85]+=*(float *)(a+0x40);
+ b[86]+=*(float *)(a+0x44);
+ b[87]+=*(float *)(a+0x48);
+ ++((volatile int *)b)[89];
 }
 
 float func_0011B180(float a, float b)
