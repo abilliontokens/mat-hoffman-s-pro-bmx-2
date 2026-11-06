@@ -147,7 +147,12 @@ struct MountVertOverlay {
 
 
 struct C_00086240_Item {
-    char pad0[0x48];
+    char pad0[4];
+    float x, y;
+    char padC[0x30];
+    float z;
+    int pad40;
+    int font;
     unsigned int argb;
     char pad4C[2];
     unsigned char flags;
