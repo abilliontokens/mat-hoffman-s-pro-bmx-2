@@ -205,10 +205,10 @@ struct C_00146DC0 {
 void C_001467A0::func_001467A0() {
     int i;
     int resource = D_002A751C->entries[id26].value;
-    if (!resource) { func_0014A8A0(); resource = D_002A751C->entries[id26].value; }
+    if (!resource) { D_002A751C->func_0014A8A0(); resource = D_002A751C->entries[id26].value; }
     (*(R146_Call **)((char *)D_002EFDB8 + 0x6c))->func_0014A650(resource);
     resource = D_002A6D84->entries[id28].value;
-    if (!resource) { func_00142D20(); resource = D_002A6D84->entries[id28].value; }
+    if (!resource) { D_002A6D84->func_00142D20(); resource = D_002A6D84->entries[id28].value; }
     (*(R146_Call **)((char *)D_002EFDB8 + 0x70))->func_00142D00(resource);
     for (i = 0; i < count; ++i) {
         int id = textures[i];
