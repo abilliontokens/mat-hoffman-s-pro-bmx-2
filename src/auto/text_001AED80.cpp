@@ -541,29 +541,24 @@ C_001AF740 *C_001AF740::func_001AF740(S_001AF360_Stream *stream, int idx)
 int C_001AFB00::func_001AFB00(void)
 {
     unsigned char f = f38;
-    int v;
 
     if (f & 4) {
-        v = f30 - 1;
+        f30--;
     } else {
-        v = f30 + 1;
+        f30++;
     }
-    f30 = v;
-    if ((f & 2) == 0) {
-        return f30;
-    }
-    if (f & 1) {
-        if (v > 0) {
-            if (v >= f34) {
+    if (f & 2) {
+        if (f & 1) {
+            int v = f30;
+            if (v <= 0) {
+                f38 = f & 0xfb;
+            } else if (v >= f34) {
                 f38 = f | 4;
                 f30 = f34 - 2;
-                return f34 - 2;
             }
-        } else {
-            f38 = f & 0xfb;
+        } else if (f30 >= f34) {
+            f30 = 0;
         }
-    } else if (f30 >= f34) {
-        f30 = 0;
     }
     return f30;
 }
