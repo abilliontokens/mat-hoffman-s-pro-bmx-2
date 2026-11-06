@@ -95,20 +95,30 @@ struct V4_000B5260 {
     float x, y, z, w;
 };
 
+static inline float Abs_000B5950(float x)
+{
+    int bits = *(int *)&x & 0x7fffffff;
+    return *(float *)&bits;
+}
+
 
 int C_000B5260::func_000B5260(float dt)
 {
     float vec3[4];
-    float d[3];
+    float d[4];
     float *m;
+    float len;
 
     ((C_00197F70 *)*(int *)((char *)this + 0x30))->func_00197F70(vec3, (float *)((char *)this + 0x34));
     m = (float *)*(int *)((char *)this + 0x24);
-    d[0] = unk54 * m[16] + m[8] - vec3[0];
-    d[1] = unk54 * m[17] + m[9] - vec3[1];
-    d[2] = unk54 * m[18] + m[10] - vec3[2];
-    unk54 = dt;
-    if (d[0] * d[0] + d[1] * d[1] + d[2] * d[2] > 0.0f)
+    d[0] = unk54 * m[16] + m[8];
+    d[1] = unk54 * m[17] + m[9];
+    d[2] = unk54 * m[18] + m[10];
+    d[0] -= vec3[0];
+    d[1] -= vec3[1];
+    d[2] -= vec3[2];
+    len = sqrtf(d[0] * d[0] + d[1] * d[1] + d[2] * d[2]);
+    if (len > *(float *)((char *)this + 0x60))
         return 1;
     return 1;
 }
@@ -236,9 +246,8 @@ void *C_000B60A0::func_000B60A0(int flags)
 
 void func_000B6140(int param_1, int param_2)
 {
-  int p = *(int *)(param_1 + 0x60);
-
-  *(int *)(p + 0x1e4) = param_2;
-  *(int *)(p + 0x8c) = *(int *)(param_2 + 0x64);
+    int p = *(int *)(param_1 + 0x60);
+    *(int *)(p + 0x1e4) = param_2;
+    *(int *)(p + 0x8c) = *(int *)(param_2 + 0x64);
 }
 
