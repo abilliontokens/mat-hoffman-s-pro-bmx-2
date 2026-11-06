@@ -10,6 +10,7 @@ struct C_00185B10 {
 
 struct C_00157600 {
     int func_00157600(int param_1);
+    void func_001577A0(int object, int kind);
 };
 
 extern int D_00289ABC;
