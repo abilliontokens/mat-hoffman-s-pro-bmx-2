@@ -17,12 +17,12 @@ struct C_0016F110 {
     void *f104;
     char pad108[0x2c];
     void *f134;
-    int *f138;
+    int f138;
     int f13c;
-    int *f140;
+    float f140;
     int f144;
     int f148;
-    int *f14c;
+    int f14c;
     int f150;
     int func_0016F110(char *name);
 };
