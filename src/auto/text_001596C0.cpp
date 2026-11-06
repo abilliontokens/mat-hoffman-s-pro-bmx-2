@@ -158,10 +158,10 @@ struct GL2 {
 };
 V4 *func_00159480(V4 *out, V4 *in);
 static __forceinline float v3abs(float x) { int i = *(int *)&x & 0x7fffffff; return *(float *)&i; }
-static inline V4 v4(float x, float y, float z) { V4 r; r.x = x; r.y = y; r.z = z; r.w = 1.0f; return r; }
-static inline V4 v4sub(const V4 &a, const V4 &b) { return v4(a.x - b.x, a.y - b.y, a.z - b.z); }
-static inline V4 v4add(const V4 &a, const V4 &b) { return v4(a.x + b.x, a.y + b.y, a.z + b.z); }
-static inline V4 v4scale(const V4 &a, float s) { return v4(a.x * s, a.y * s, a.z * s); }
+static __forceinline V4 v4(float x, float y, float z) { V4 r; r.x = x; r.y = y; r.z = z; r.w = 1.0f; return r; }
+static __forceinline V4 v4sub(const V4 &a, const V4 &b) { return v4(a.x - b.x, a.y - b.y, a.z - b.z); }
+static __forceinline V4 v4add(const V4 &a, const V4 &b) { return v4(a.x + b.x, a.y + b.y, a.z + b.z); }
+static __forceinline V4 v4scale(const V4 &a, float s) { return v4(a.x * s, a.y * s, a.z * s); }
 static inline V4 partialAdd1596(const V4 &a,const V4 &b) { V4 r; r.x=a.x+b.x;r.y=a.y+b.y;r.z=a.z+b.z;return r; }
 static inline V4 partialSub1596(const V4 &a,const V4 &b) { V4 r; r.x=a.x-b.x;r.y=a.y-b.y;r.z=a.z-b.z;return r; }
 static inline V4 partialScale1596(const V4 &a,float s) { V4 r; r.w=1; r.x=a.x*s;r.y=a.y*s;r.z=a.z*s;return r; }
@@ -238,6 +238,43 @@ void GrindLineManager::func_0015A180(void *arg)
         }
     }
     unk28--;
+}
+
+void GrindLineManager::func_0015A250(GrindLine *volatile a)
+{
+    V4 center;
+    V4 ext;
+    V4 tmp;
+
+    if (a == 0 || a->unk54 == 0)
+        return;
+    center.x = 0.0f;
+    center.y = 0.0f;
+    center.z = 0.0f;
+    center.w = 1.0f;
+    ext.x = 0.0f;
+    ext.y = 0.0f;
+    ext.z = 0.0f;
+    ext.w = 1.0f;
+    *(V4 *)&a->unk20 = *((Xf *)a->unk54)->func_00197F70(&tmp, (V4 *)&a->unk58);
+    *(V4 *)&a->unk30 = *((Xf *)a->unk54)->func_00197F70(&tmp, (V4 *)&a->unk68);
+    a->unk40.x = a->unk30.x - a->unk20.x;
+    a->unk40.y = a->unk30.y - a->unk20.y;
+    a->unk40.z = a->unk30.z - a->unk20.z;
+    a->unk40.w = 1.0f;
+    center.x = (a->unk30.x + a->unk20.x) * D_002755E8;
+    center.y = (a->unk30.y + a->unk20.y) * D_002755E8;
+    center.z = (a->unk30.z + a->unk20.z) * D_002755E8;
+    center.w = 1.0f;
+    ext.x = a->unk40.x * D_002755E8;
+    ext.y = a->unk40.y * D_002755E8;
+    ext.z = a->unk40.z * D_002755E8;
+    ext.w = 1.0f;
+    func_00159480((V4 *)&a->unk40, (V4 *)&a->unk40);
+    ext.x = v3abs(ext.x);
+    ext.y = v3abs(ext.y);
+    ext.z = v3abs(ext.z);
+    ((Sh *)a->unk78)->func_00193950((GL2 *)a, &center, &ext, 0);
 }
 
 void GrindLineManager::func_0015A490(char *a1, int a2, int a3)
