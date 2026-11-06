@@ -212,6 +212,11 @@ struct C_0008B850 {
     C_0008B850 *func_0008B850(int a1, char *a2);
 };
 
+struct V2_0008B710 {
+    float x;
+    float y;
+};
+
 struct C_0008B710_Text {
     char *str;
     float x;
@@ -271,6 +276,46 @@ void C_0008B6C0::func_0008B6C0(void) {
 void C_0008B6F0::func_0008B6F0(void) {
     f54 = 2;
     ((C_0005E840 *)f34)->func_0005E840((int)&D_00275630);
+}
+
+void C_0008B710::func_0008B710()
+{
+    if (unk54 == 0) {
+        if (unk4c && (int)strlen(unk24->str) < 40) {
+            int w = unk24->func_001D6290();
+            float x = unk24->x;
+            double y = unk24->y;
+            C_0008B710_Item *p = unk28;
+            p->func_0005E920(x + (float)(w / 2), (float)y);
+            p = unk28;
+            if (p->unk44 != D_0028F5DC) {
+                p->unk44 = D_0028F5DC;
+                p->unk4e |= 6;
+            }
+            unk2c->func_0005E920(x + (float)(w / 2), (float)y);
+            p = unk2c;
+            if (p->unk44 != D_0028F5DC) {
+                p->unk44 = D_0028F5DC;
+                p->unk4e |= 6;
+            }
+            unk2c->func_001D6600();
+        }
+        unk28->func_001D6600();
+        ((C_0008B710_Item *)unk24)->func_001D6600();
+        unk34->func_001D6600();
+        unk3c->func_001D5AD0();
+        unk40->func_001D5AD0();
+        unk44->func_001D5AD0();
+    } else if (unk54 == 1) {
+        unk34->func_001D6600();
+        unk38->func_001D6600();
+        unk3c->func_001D5AD0();
+        unk40->func_001D5AD0();
+        unk44->func_001D5AD0();
+    } else {
+        unk38->func_001D6600();
+    }
+    func_00157960();
 }
 
 C_0008B820 *C_0008B820::func_0008B820(int unused) {
