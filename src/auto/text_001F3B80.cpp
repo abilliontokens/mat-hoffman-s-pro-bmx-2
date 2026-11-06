@@ -143,10 +143,8 @@ void func_001F3C18(unsigned short *str, int len, F3Obj *f, int *pnum)
         *pnum += len;
         return;
     }
-    while (len > 0) {
-        len--;
-        func_001F3BCE(f, *str, pnum);
-        str++;
+    while (len-- > 0) {
+        func_001F3BCE(f, *str++, pnum);
         if (*pnum == -1) break;
     }
 }
@@ -184,6 +182,8 @@ int func_001F3C55(F3Obj *f, unsigned short *format, char *argptr)
     int digit;
     CrtDouble_001F3C55 tmp;
 
+    if (0)
+        func_unused_001F3C55(&format, &argptr);
     textlen = 0;
     charsout = 0;
     heapbuf = 0;
@@ -278,7 +278,7 @@ int func_001F3C55(F3Obj *f, unsigned short *format, char *argptr)
                 if (!(flags & (OUT_FL_SHORT | OUT_FL_LONG | OUT_FL_WIDECHAR)))
                     flags |= OUT_FL_SHORT;
             case 'c':
-                wchar = (unsigned short)out_get_int_arg(&argptr);
+                wchar = out_get_wchar_arg(&argptr);
                 bufferiswide = 1;
                 if (flags & OUT_FL_SHORT) {
                     char mbc[2];
