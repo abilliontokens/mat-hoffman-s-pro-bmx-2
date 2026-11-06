@@ -298,20 +298,24 @@ void C_00070360::func_00070450(void) {
 int C_00070360::func_00070570(void)
 {
     int w;
-    S_00070570_Viewport * volatile dev;
-    S_00070570_V4 size;
+    int n;
+    struct Locals {
+        S_00070570_Viewport *dev;
+        S_00070570_V4 size;
+    } l;
     S_00070570_Rect24 vp;
     S_00070570_Rect24 old;
 
-    if (D_002A8490->f274 >= D_002A8490->f270 - 1) {
-        dev = D_002EFDB8->f4;
-        if (D_002A8490->f270 > 1) {
-            vp = dev->rect;
+    n = D_002A8490->f270;
+    if (D_002A8490->f274 >= n - 1) {
+        l.dev = D_002EFDB8->f4;
+        if (n > 1) {
+            vp = l.dev->rect;
             vp.x = 0;
             vp.y = 0;
             vp.w = 0x280;
             vp.h = 0x1c0;
-            dev->func_0012B2B0(&vp, &old);
+            l.dev->func_0012B2B0(&vp, &old);
         }
         if (unk104 == 0) {
             if (unk6C != 0) {
@@ -319,10 +323,10 @@ int C_00070360::func_00070570(void)
                     w = unkD0->func_001B1800();
                     unkD0->func_001B19A0(D_0028F5DC);
                     unkD0->func_001B15F0();
-                    unkD0->func_001B1810(&size);
-                    unkD4->func_001B1A30((float)w + size.x, size.y, 0.0f);
+                    unkD0->func_001B1810(&l.size);
+                    unkD4->func_001B1A30((float)w + l.size.x, l.size.y, 0.0f);
                     unkD4->func_001B15F0();
-                    unkE8 = (float)w + size.x - D_00275AEC;
+                    unkE8 = (float)w + l.size.x - D_00275AEC;
                     unkD8->func_0005E7C0(unkE8, 182.0f);
                 }
             }
@@ -341,7 +345,7 @@ int C_00070360::func_00070570(void)
         func_00070360();
         func_00157960();
         if (D_002A8490->f270 > 1) {
-            dev->func_0012B2B0(&old, 0);
+            l.dev->func_0012B2B0(&old, 0);
         }
     }
     return 1;
