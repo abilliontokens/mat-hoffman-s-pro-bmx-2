@@ -151,8 +151,13 @@ extern char D_002A5EA0[];
 extern char D_00286C90[];
 extern char D_00286C80[], D_00286C70[], D_00286C60[], D_00286C4C[], D_0027592C[];
 extern char D_00150BA0;
+extern char D_00286C3C[], D_00286C2C[], D_00286C20[], D_002758E4[], D_00286C14[];
+extern char D_00286C08[], D_00286BFC[], D_00286BEC[], D_00286BDC[], D_002758F0[];
+extern char D_00275678[], D_002A5870[], D_002A5348[], D_002A47F0[], D_002A48F8[];
 void func_00150970(void);
+void func_00150A80(void);
 void *func_001E8A44(unsigned int size);
+int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 
 struct C_00151130 {
     char pad0[0x24];
