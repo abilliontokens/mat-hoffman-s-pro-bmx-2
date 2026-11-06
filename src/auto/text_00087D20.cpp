@@ -149,7 +149,7 @@ struct S_00087D20_Label {
 };
 
 struct S_00087D20_Frame {
-    char pad0[4];
+    int val;
     char c2[4];
     char c1[4];
     int count;
