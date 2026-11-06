@@ -108,6 +108,92 @@ struct C_0002AF90 {
 };
 
 
+/* physics step of the object at 0x1e0..0x1f4 */
+struct S_0002AAA0_V {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(float t); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(float t); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35();
+};
+
+struct S_0002AAA0_Body : S_0002AAA0_V {
+    char pad04[0x68];
+    float f6c, f70, f74;
+    char pad78[0x130 - 0x78];
+    float f130, f134, f138;
+    char pad13c[0x170 - 0x13c];
+    float f170, f174, f178;
+    char pad17c[0x210 - 0x17c];
+    float f210;
+    void func_00174550(int a, int b, int c);
+};
+
+struct S_0002AAA0_Cam : S_0002AAA0_V {
+    void func_001941F0(float t);
+};
+
+struct S_0002AAA0_State {
+    char pad0[0x64];
+    int f64;
+};
+
+struct S_0002AAA0_Link : S_0002AAA0_V {
+    char pad04[0x58];
+    int f5c;
+};
+
+struct S_0002AAA0_Dev {
+    void func_00133EF0(void *p);
+    void func_00134530(int a, int *b, int *c, int d, int e, int f);
+};
+
+struct C_0002AAA0 {
+    char pad0[0x28];
+    float f28;
+    char pad2c[0x8c - 0x2c];
+    Vec4_0002AF90 f8c;
+    Vec4_0002AF90 f9c;
+    char padac[0x1e0 - 0xac];
+    S_0002AAA0_Body *f1e0;
+    S_0002AAA0_Cam *f1e4;
+    S_0002AAA0_State *f1e8;
+    char pad1ec[4];
+    S_0002AAA0_V *f1f0;
+    S_0002AAA0_Link *f1f4;
+    char pad1f8[0x204 - 0x1f8];
+    S_0002AAA0_Dev *f204;
+    char pad208[0x230 - 0x208];
+    char *f230;
+    int f234;
+    int f238;
+    char pad23c[0x440 - 0x23c];
+    int f440;
+    int f444;
+    char pad448[0x680 - 0x448];
+    int f680;
+    int f684;
+    void func_00027860(float t);
+    void func_0002AAA0(float dt);
+};
+
+extern float D_002A1174, D_00275544, D_002A1110, D_002A1114, D_002A1118;
+
+static __forceinline float Min_0002AAA0(float a, float b)
+{
+    return a < b ? a : b;
+}
+
+static __forceinline float Abs_0002AAA0(float x)
+{
+    unsigned u = *(unsigned *)&x & 0x7fffffff;
+    return *(float *)&u;
+}
+
 void C_0002AF90::func_0002AF90(void)
 {
     Vec4_0002AF90 v;
@@ -131,9 +217,7 @@ void C_0002AF90::func_0002AF90(void)
     if (cur->x == D_002A10F0 && cur->y == D_002A10F4 && cur->z == D_002A10F8) {
         cur->Set(tgt);
     }
-    v = cur->Sub(tgt);
-    v = v.Mul();
-    *cur = v.Add(tgt);
+    cur->Lerp(tgt, D_002A1178);
     f1f8->func_0014AC30(cur, 0);
     f1f8->func_00133ED0();
     f1f8->func_00133F10(0);
