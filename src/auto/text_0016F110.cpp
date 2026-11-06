@@ -77,7 +77,7 @@ struct S_16F800_Range {
     char pad204[0x270 - 0x204]; float f270, f274, f278, f27c;
 };
 struct S_16F800_Idx { char pad0[4]; int index; };
-struct S_16F800_Table { char pad0[4]; void *obj; };
+struct S_16F800_Table { char pad0[4]; void *obj; char pad8[8]; };
 struct S_16F800_Creator { char pad0[0x14]; S_16F800_Table *f14; };
 struct S_16F800_Obj { char pad0[0xd4]; int fD4; void func_001B07A0(); };
 struct C_0015DA60 { void func_0015DD80(float *matrix, int count, char *in, char *out, int stride); };
