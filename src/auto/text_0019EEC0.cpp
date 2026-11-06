@@ -27,6 +27,7 @@ struct C_002BEAAC {
     void func_0013C8A0(int a, void *b, int c, int d);
     void func_0013C110(int a);
     int func_0013B1F0(char *a, void *b);
+    int func_0013B1F0(int h, void *obj);
 };
 extern C_002BEAAC *D_002BEAAC;
 
@@ -181,6 +182,199 @@ struct SoultreeHierarchyCollisionObject {
     void func_0019F500(void);
 };
 
+extern void *func_001E8AA5(int size);
+extern void *func_001E8A44(int size);
+extern void func_0019B700(void *o, int a);
+extern void func_00129920(void *o, int a);
+extern void func_000264C0(void *dst, const void *src);
+int __fastcall func_0019EEC0(char *self, int, int *out)
+{
+    int count = *(int *)(self + 0x190);
+    char **arr;
+    int res = 0;
+    unsigned char f = *(unsigned char *)(self + 0xa7);
+    char **srcs = *(char ***)(self + 0x1a0);
+    int i;
+
+    *out = count;
+    arr = (char **)func_001E8AA5(count * 4);
+    if (f & 4) res = 4;
+    if (f & 2) res |= 2;
+    if (f & 8) res |= 8;
+    if (count <= 0) return res;
+
+    for (i = 0; i < count; i++) {
+        char *o = (char *)func_001E8A44(0x1e0);
+        char *s;
+        int n;
+        int k;
+
+        if (o) {
+            func_0019B700(o, 1);
+        } else {
+            o = 0;
+        }
+        arr[i] = o;
+        func_00129920(o, i);
+        (*(void (__fastcall **)(char *))(*(int *)o + 0x6c))(o);
+        *(int *)(o + 0x50) = 0;
+        s = srcs[i];
+        func_000264C0(o + 0xb0, s + 0xb0);
+        func_000264C0(o + 0xf0, s + 0xf0);
+        func_000264C0(o + 0x130, s + 0x130);
+        func_000264C0(o + 0x170, s + 0x170);
+        *(unsigned short *)(o + 0x1bc) = *(unsigned short *)(s + 0x1bc);
+        *(int *)(o + 0x1c0) = *(int *)(s + 0x1c0);
+        *(int *)(o + 0x1c4) = 0;
+        *(int *)(o + 0x1c8) = 0;
+        *(unsigned short *)(o + 0x1cc) = *(unsigned short *)(s + 0x1cc);
+        *(unsigned short *)(o + 0x1ce) = *(unsigned short *)(s + 0x1ce);
+        *(char **)(o + 0x1d4) = (char *)func_001E8A44(0x80);
+        *(int *)(o + 0x1b8) = *(int *)(s + 0x1b8);
+
+        n = *(unsigned short *)(o + 0x1cc);
+        if (*(int *)(o + 0x1b8) != 0) {
+            unsigned short *p = (unsigned short *)func_001E8A44(n * 6);
+            if (p) {
+                for (k = 0; k < n; k++) {
+                    p[0] = 0;
+                    p[1] = 0;
+                    p[2] = 0;
+                    p = (unsigned short *)((char *)p + 6);
+                }
+            } else {
+                p = 0;
+            }
+            *(void **)(o + 0x1b0) = p;
+            for (k = 0; k < n; k++) {
+                char *d = (char *)(*(char **)(o + 0x1b0)) + k * 6;
+                char *q = (char *)(*(char **)(s + 0x1b0)) + k * 6;
+                *(int *)d = *(int *)q;
+                *(unsigned short *)(d + 4) = *(unsigned short *)(q + 4);
+            }
+            if (*(int *)(s + 0x1b4) != 0) {
+                unsigned short *p2 = (unsigned short *)func_001E8A44(n * 6);
+                if (p2) {
+                    for (k = 0; k < n; k++) {
+                        p2[0] = 0;
+                        p2[1] = 0;
+                        p2[2] = 0;
+                        p2 = (unsigned short *)((char *)p2 + 6);
+                    }
+                } else {
+                    p2 = 0;
+                }
+                *(void **)(o + 0x1b4) = p2;
+                for (k = 0; k < n; k++) {
+                    char *d = (char *)(*(char **)(o + 0x1b4)) + k * 6;
+                    char *q = (char *)(*(char **)(s + 0x1b4)) + k * 6;
+                    *(int *)d = *(int *)q;
+                    *(unsigned short *)(d + 4) = *(unsigned short *)(q + 4);
+                }
+            } else {
+                *(int *)(o + 0x1b4) = 0;
+            }
+        } else {
+            unsigned short *p = (unsigned short *)func_001E8A44(n * 12);
+            if (p) {
+                for (k = 0; k < n; k++) {
+                    p[0] = 0;
+                    p[1] = 0;
+                    p[2] = 0;
+                    p[3] = 0;
+                    p[4] = 0;
+                    p[5] = 0;
+                    p = (unsigned short *)((char *)p + 12);
+                }
+            } else {
+                p = 0;
+            }
+            *(void **)(o + 0x1b0) = p;
+            for (k = 0; k < n; k++) {
+                char *d = (char *)(*(char **)(o + 0x1b0)) + k * 12;
+                char *q = (char *)(*(char **)(s + 0x1b0)) + k * 12;
+                *(int *)d = *(int *)q;
+                *(int *)(d + 4) = *(int *)(q + 4);
+                *(int *)(d + 8) = *(int *)(q + 8);
+            }
+            if (*(int *)(s + 0x1b4) != 0) {
+                unsigned short *p2 = (unsigned short *)func_001E8A44(n * 12);
+                if (p2) {
+                    for (k = 0; k < n; k++) {
+                        p2[0] = 0;
+                        p2[1] = 0;
+                        p2[2] = 0;
+                        p2[3] = 0;
+                        p2[4] = 0;
+                        p2[5] = 0;
+                        p2 = (unsigned short *)((char *)p2 + 12);
+                    }
+                } else {
+                    p2 = 0;
+                }
+                *(void **)(o + 0x1b4) = p2;
+                for (k = 0; k < n; k++) {
+                    char *d = (char *)(*(char **)(o + 0x1b4)) + k * 12;
+                    char *q = (char *)(*(char **)(s + 0x1b4)) + k * 12;
+                    *(int *)d = *(int *)q;
+                    *(int *)(d + 4) = *(int *)(q + 4);
+                    *(int *)(d + 8) = *(int *)(q + 8);
+                }
+            } else {
+                *(int *)(o + 0x1b4) = 0;
+            }
+        }
+
+        {
+            int m = *(unsigned short *)(s + 0x1ce);
+            char *p = (char *)func_001E8A44(m * 0x24);
+            if (p) {
+                for (k = 0; k < m; k++) {
+                    *(int *)(p + 0) = 0;
+                    *(int *)(p + 4) = 0;
+                    *(int *)(p + 8) = 0;
+                    *(int *)(p + 0xc) = 0;
+                    *(int *)(p + 0x10) = 0;
+                    *(int *)(p + 0x14) = 0;
+                    p += 0x24;
+                }
+            } else {
+                p = 0;
+            }
+            *(void **)(o + 0x1c4) = p;
+            p = (char *)func_001E8A44((m * 5 + 5) * 4);
+            *(void **)(o + 0x1c8) = p;
+            for (k = 0; k < m - 1; k++) {
+                char *d = (char *)(*(char **)(o + 0x1c4)) + k * 0x24;
+                char *q = (char *)(*(char **)(s + 0x1c4)) + k * 0x24;
+                for (int j = 0; j < 9; j++) ((int *)d)[j] = ((int *)q)[j];
+            }
+            for (k = 0; k < m; k++) {
+                char *d = (char *)(*(char **)(o + 0x1c8)) + k * 0x14;
+                char *q = (char *)(*(char **)(s + 0x1c8)) + k * 0x14;
+                for (int j = 0; j < 5; j++) ((int *)d)[j] = ((int *)q)[j];
+            }
+        }
+
+        {
+            char *t = *(char **)(o + 0x1d4);
+            *(int *)(t + 0) = 0;
+            *(unsigned short *)(t + 8) = *(unsigned short *)(o + 0x1cc);
+            *(unsigned short *)(t + 0xa) = *(unsigned short *)(o + 0x1ce);
+            *(int *)(t + 0xc) = *(int *)(o + 0x1c4);
+            *(int *)(t + 0x10) = *(int *)(o + 0x1c8);
+            *(unsigned short *)(t + 0x20) = 0;
+            *(int *)(t + 0x70) = 1;
+            *(int *)(t + 0x14) = *(int *)(o + 0x1b0);
+            *(int *)(t + 0x18) = *(int *)(o + 0x1b4);
+            *(int *)(t + 0x1c) = *(int *)(o + 0x1b8);
+        }
+        *(int *)(o + 0x1d0) = *(int *)(s + 0x1d0);
+        (*(void (__fastcall **)(char *))(*(int *)o + 0x80))(o);
+    }
+    return res;
+}
+
 void SoultreeHierarchyCollisionObject::func_0019F500(void)
 {
     S_0019F500_Xform *p;
@@ -200,6 +394,56 @@ void SoultreeHierarchyCollisionObject::func_0019F500(void)
     p->b = u;
     p->f34 = 0.0f;
     p->f30 = 1.0f;
+}
+
+void SoultreeHierarchyCollisionObject::func_0019F600(float *m)
+{
+ SoultreeHierarchyCollisionObject *volatile p=this;
+ int i; float len;
+ fF0.func_000264C0(&f130);
+ f130.func_000264C0(m);
+ for(i=0;i<p->f190;i++){
+ S_0019F600_Node *n=p->f1A0[i];
+ n->f170.func_000264C0(n->f130);
+ n->f1C0->func_00199C20(0,n->f130);
+ func_0011ACC0(n->fB0,n->fF0,n->f130);
+ }
+ p->func_0019DEF0();
+ *(V4_0019F500 *)p->f28=*(V4_0019F500 *)p->fA8;
+ float z=p->fC0,y=p->fBC,x=p->fB8;
+ len=x*x+y*y+z*z;
+ _mm_store_ss(&len,_mm_sqrt_ss(*(__m128 *)&len));
+ p->f48=len;
+ float *out=p->f28; XformPoint(out,out,m);
+}
+
+void C_0019F9B0::func_0019F780(char *path, int h)
+{
+    int i;
+    f19C = path;
+    f1A4 = (D_F780 *)func_001E8AA5(0x30);
+    func_0019EB10(h);
+    f1A4->f0 = 1;
+    f1A4->f4 = 1;
+    f1A4->f8 = f190;
+    f1A4->f14 = (int *)func_001E8AA5(f190 * 4);
+    f1A4->f18 = (int *)func_001E8AA5(f190 * 4);
+    f1A4->fC = (int *)func_001E8AA5(f190 * 4);
+    f1A4->f10 = (int *)func_001E8AA5(f190 * 4);
+    f1A4->f1C = (F3_F780 *)func_001E8A44(f190 * 12);
+    f1A4->f20 = (M_F780 *)func_001E8AA5(f190 << 6);
+    f1A4->f28 = (short *)func_001E8AA5(f190 * 2);
+    f1A4->f2C = 1;
+    for (i = 0; i < f190; i++) {
+        f1A4->f14[i] = f1A0[i]->f1C4;
+        f1A4->f18[i] = f1A0[i]->f1C8;
+        f1A4->fC[i] = f1A0[i]->f1CC;
+        f1A4->f10[i] = f1A0[i]->f1CE;
+        f1A4->f1C[i] = f1A0[i]->f1B0;
+        f1A4->f20[i].func_000264C0(f1A0[i]->fF0);
+        f1A4->f28[i] = f1A0[i]->f1BC;
+    }
+    D_002BEAAC->func_0013B1F0(path, f1A4);
 }
 
 int C_0019F9B0::func_0019F9B0(int a1, char *path)
@@ -250,6 +494,13 @@ void *SoultreeHierarchyCollisionObject::func_0019FBA0(int flags)
         func_001E891B(this);
     }
     return this;
+}
+
+unsigned __int64 __rdtsc(void);
+#pragma intrinsic(__rdtsc)
+void __fastcall func_0019FC40(char *self, void *, int i) {
+ unsigned __int64 t = __rdtsc();
+ *(unsigned __int64 *)(self + 0x38 + i * 0x50) = t;
 }
 
 void C_0019FC80::func_0019FC80(int i)
