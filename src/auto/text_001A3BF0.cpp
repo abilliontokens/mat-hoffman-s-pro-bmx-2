@@ -661,29 +661,20 @@ int C_001A4640::func_001A4640(int a1, int a2, int a3)
     return r;
 }
 
-static __forceinline void copy_001A4790(V4_001A3BF0 *dst, V4_001A3BF0 *src)
-{
-    *dst = *src;
-}
-
 void C_001A4790::func_001A4790(void *a1, u32 flags, u32 *a3, u32 *a4, int a5, int a6, int a7)
 {
     V4_001A3BF0 *d;
-    V4_001A3BF0 *s0;
-    V4_001A3BF0 *s1;
 
     f3C = a7;
     if (a1 == 0) {
         a1 = D_002EFE78;
     }
-    s0 = (V4_001A3BF0 *)a3;
-    s1 = (V4_001A3BF0 *)a4;
     d = (V4_001A3BF0 *)&vec0[0];
     f2C = a1;
     f30 = (Mat_001A4790 *)a1;
-    *d = *s0;
+    *d = *(V4_001A3BF0 *)a3;
     d = (V4_001A3BF0 *)&vec10[0];
-    *d = *s1;
+    *d = *(V4_001A3BF0 *)a4;
     f34 = a5;
     f38 = a6;
     f20 = flags;
