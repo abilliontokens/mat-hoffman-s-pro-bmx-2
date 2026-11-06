@@ -285,6 +285,61 @@ C_00061300 *C_00061300::func_00061300(int a0)
     return this;
 }
 
+void C_00061300::func_00061590() {
+int i;
+w[0]=(int)&D_002786CC;
+for(i=0;i<15;i++) free_61590((C_61590_Obj *)w[0x84/4+i]);
+free_61590((C_61590_Obj *)w[0x1c4/4]);
+for(i=0;i<2;i++) release_61590(w[0xfc/4+i]);
+for(i=0;i<3;i++) {
+release_61590(w[0x108/4+i]);
+release_61590(w[0x114/4+i]);
+freez_61590(w[0x120/4+i]);
+}
+release_61590(w[0x1ec/4]);
+for(i=0;i<4;i++) {
+C_61590_Obj *a=(C_61590_Obj *)w[0x12c/4+i];
+if(a) a->destroying(1);
+C_61590_Obj *b=(C_61590_Obj *)w[0x1a4/4+i];
+w[0x12c/4+i]=0;
+if(b) { b->destroying(1); }
+w[0x1a4/4+i]=0;
+}
+freez_61590(w[0x200/4]);
+freez_61590(w[0x208/4]);
+freez_61590(w[0x294/4]);
+for(i=0;i<16;i++) { free_61590((C_61590_Obj *)w[0x13c/4+i]); w[0x13c/4+i]=0; }
+for(i=0;i<5;i++) {
+release_61590(w[0x17c/4+i]);
+release_61590(w[0x190/4+i]);
+}
+release_61590(w[0x1f0/4]);
+release_61590(w[0x1f4/4]);
+release_61590(w[0x1f8/4]);
+release_61590(w[0x1fc/4]);
+freez_61590(w[0x20c/4]);
+freez_61590(w[0x204/4]);
+freez_61590(w[0x210/4]);
+for(i=0;i<4;i++) { if(w[0x1a4/4+i]) ((C_61590_Obj *)w[0x1a4/4+i])->destroying(1); w[0x1a4/4+i]=0; }
+freez_61590(w[0x29c/4]);
+for(i=0;i<2;i++) freez_61590(w[0x2a0/4+i]);
+for(i=0;i<2;i++) {
+C_61590_Obj *a=(C_61590_Obj *)w[0x1b4/4+i];
+if(a) { a->destroying(1); w[0x1b4/4+i]=0; }
+freez_61590(w[0x1bc/4+i]);
+}
+freez_61590(w[0x2a8/4]);
+for(i=0;i<5;i++) {
+free_61590((C_61590_Obj *)w[0x2c8/4+i]);
+C_61590_Obj *b=(C_61590_Obj *)w[0x2dc/4+i];
+w[0x2c8/4+i]=0;
+if(b) { b->func_001D6410(); func_001E891B((void *)b); }
+w[0x2dc/4+i]=0;
+}
+freez_61590(w[0x2ac/4]);
+func_00157660();
+}
+
 void C_000619B0::func_000619B0(int mode)
 {
     unk64 = mode;
