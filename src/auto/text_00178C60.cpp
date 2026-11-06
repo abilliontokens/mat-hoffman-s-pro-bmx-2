@@ -72,6 +72,18 @@ static __forceinline void cross_179950(float *out, float *a, float *b)
     _mm_storeu_ps(out, va);
 }
 
+static __forceinline int edge_1793E0(Vec4 *p, Vec4 *q, Vec4 *r, Vec4 *n)
+{
+    float a[4];
+    float b[4];
+    float c[4];
+    sub_179950(a, q, p);
+    sub_179950(b, r, p);
+    cross_179950(c, a, b);
+    float d = c[1] * n->y + c[0] * n->x + c[2] * n->z;
+    return *(int *)&d >= 0;
+}
+
 C_00179820 *C_00179820::func_00179820(int a0) {
     u32 *p;
     int n;
