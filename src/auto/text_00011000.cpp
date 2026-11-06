@@ -189,6 +189,10 @@ static __forceinline void distance_119D0(float *d, const float *a, const float *
     float square = z*z+y*y+x*x;
     _mm_store_ss(d, _mm_sqrt_ss(*(__m128 *)&square));
 }
+static __forceinline float dist_119D0(const float *a, const float *b) {
+    float x = a[0]-b[0], y = a[1]-b[1], z = a[2]-b[2];
+    return sqrtf(z*z+y*y+x*x);
+}
 struct C_000119D0 {
     char pad[0x3b0];
     int f3B0;
@@ -420,21 +424,23 @@ int C_000115F0::func_000115F0(float *pos, float radius, int start, int dir)
 }
 
 void C_00011BE0::func_00011BE0(int * volatile index, float * volatile distance) {
-    C_00011BE0 *volatile self = this;
+    C_00011BE0 *volatile self;
+    volatile float t[2];
+    self = this;
     *index = -1;
     *distance = 1000000.0f;
     S_11BE0_List **list;
     for (int i = 0; list = &D_002B9120->list, i < (*list)->count; ++i) {
         C_00017680_Vec v, temp;
-        S_11BE0_Actor *actor = (*list)->actors[i];
-        int active = actor->state->fBC;
+        int active = (*list)->actors[i]->state->fBC;
         if (active) v = *(*(S_11BE0_List * volatile *)list)->actors[i]->mid->f4->func_00199B00(&temp, 0);
-        else v = actor->pos;
+        else v = (*list)->actors[i]->pos;
         C_00011BE0 *p = self;
         float x = p->pos.x-v.x, y = p->pos.y-v.y, z = p->pos.z-v.z;
-        volatile float square = z*z+y*y+x*x;
-        volatile float d = sqrtf(square);
-        if (*index == -1 || d < *distance) { *index = i; *distance = d; }
+        t[1] = z*z+y*y+x*x;
+        t[0] = sqrtf(t[1]);
+        int *ix = index;
+        if (*ix == -1 || *distance > t[0]) { *ix = i; *distance = t[0]; }
     }
 }
 
