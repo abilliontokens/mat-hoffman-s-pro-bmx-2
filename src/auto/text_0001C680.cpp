@@ -367,6 +367,31 @@ struct S_0001CBC0_Item {
     float f90;
 };
 
+/* SoundInterface as the original compiler saw it: 16 virtuals, so the
+   constructor's implicit vptr store is emitted first, before the field
+   initialisers (the layout matches C_0001CA30: fields from +4). */
+struct C_0001C9F0_Ctor {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    int f4;
+    void *f8;
+    int fC;
+    int f10;
+    unsigned char f14;
+    char pad15[3];
+    int f18;
+    void *f1C;
+    int f20;
+    int f24;
+    unsigned char f28;
+    char pad29[3];
+    unsigned char f2C;
+    char pad2D[3];
+    C_0001C9F0_Ctor();
+};
+
 static __forceinline void set_vtbl_0001C9F0(void **p, void *v) {
     *p = v;
 }
@@ -545,7 +570,17 @@ C_0001CA30 *C_0001CA30::func_0001C9F0(void)
 {
     extern int D_00275DAC;
     vtbl = (void *)&D_00275DAC;
-    init_0001C9F0(this);
+    f8 = 0;
+    f4 = 0;
+    fC = 0;
+    f10 = 0;
+    clear_bit0_0001C9F0(&f14);
+    f1C = 0;
+    f18 = 0;
+    f20 = 0;
+    f24 = 0;
+    clear_bit0_0001C9F0(&f28);
+    clear_bit0_0001C9F0(&f2C);
     return this;
 }
 
