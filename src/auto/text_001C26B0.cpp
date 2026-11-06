@@ -269,9 +269,7 @@ C_001C26B0 *C_001C26B0::func_001C26B0(int a, C_001C26B0 *p)
     p->func_00168C50(D_0028E27C, 0x3f800000, data + 0x17c);
     l.has = p->func_00168550(D_002828C0, l.text, 0x1e0);
     if (l.has) {
-        int tmp;
-        ((C_001C26B0 *)*(void **)(*(char **)(D_002A8490 + 0x2e8) + 0x2c))->func_000979C0(l.text, &(tmp = 0));
-        *(int *)(data + 0x6c) = tmp;
+        *(int *)(data + 0x6c) = lookup_001C26B0((C_001C26B0 *)*(void **)(*(char **)(D_002A8490 + 0x2e8) + 0x2c), l.text);
     } else {
         *(int *)(data + 0x180) = p->func_00168C20(D_0028E264, 0, data + 0x174);
         p->func_00168C20(D_0028E24C, 0, data + 0x170);
