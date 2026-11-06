@@ -434,10 +434,11 @@ int C_001CD3B0::func_001CD450(int a, int b)
         if (a == -1) {
             a = f24;
         } else {
-            int n = f34[fA4].count;
+            S_001CD3B0_IdList *l = &f34[fA4].list;
+            int n = l->count;
             int i = -1;
             for (int j = 0; j < n; j++) {
-                if (f34[fA4].ids[j] == a) { i = j; break; }
+                if (l->ids[j] == a) { i = j; break; }
             }
             if (i == -1)
                 return 0;
