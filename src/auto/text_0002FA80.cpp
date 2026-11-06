@@ -223,6 +223,70 @@ struct C_000308F0 {
 };
 
 
+void BmxCameraController_0002FA80::func_0002FA80(int a, int b)
+{
+    float m[12];
+    float other[12];
+
+    if (func_00135C70(0x3b, 0, a, 0x3f) != 0) {
+        if (f6C == 0) {
+            D_002B7EBC = 0;
+            f6C = 2;
+            func_0012B7D0(f58, 0, 0, 0, 0);
+            m[2] = 0.0f; m[1] = 0.0f; m[0] = 0.0f; m[3] = 1.0f;
+            m[6] = 0.0f; m[5] = 0.0f; m[4] = 0.0f; m[7] = 1.0f;
+            m[10] = 0.0f; m[9] = 0.0f; m[8] = 0.0f; m[11] = 1.0f;
+            f50->v1(m);
+            f30->func_0012AC20(m, m + 4, m + 8, other, other + 1);
+            f58->v0(m, 0);
+            f34->f95C = 1;
+        } else if (f6C == 4) {
+            D_002B7EBC = 4;
+            f6C = 2;
+            func_0012B7D0(f58, 0, 0, 0, 0);
+            m[2] = 0.0f; m[1] = 0.0f; m[0] = 0.0f; m[3] = 1.0f;
+            m[6] = 0.0f; m[5] = 0.0f; m[4] = 0.0f; m[7] = 1.0f;
+            m[10] = 0.0f; m[9] = 0.0f; m[8] = 0.0f; m[11] = 1.0f;
+            f74->slots[f74->cur].obj->v1(m);
+            f30->func_0012AC20(m, m + 4, m + 8, other, other + 1);
+            f58->v0(m, 0);
+        } else if (f6C == 2) {
+            if (D_002B7EBC == 0) {
+                f6C = 0;
+                func_0012B7D0(f50, 0, 0, 0, 0);
+                ((C_0002F190_2FA80 *)m)->func_0002F190();
+                f50->v1(m);
+                f30->func_0012AC20(m, m + 4, m + 8, other, other + 1);
+                f50->v0(m, 0);
+                f34->f95C = 0;
+            } else if (D_002B7EBC == 4) {
+                f6C = 4;
+                func_0012B7D0(f74->slots[f74->cur].obj, 0, 0, 0, 0);
+                ((C_0002F190_2FA80 *)m)->func_0002F190();
+                f58->v1(m);
+                f30->func_0012AC20(m, m + 4, m + 8, other, other + 1);
+                f74->slots[f74->cur].obj->v0(m, 0);
+            } else if (D_002B7EBC == 10) {
+                f6C = 10;
+                func_0012B7D0(f64, 0, 0, 0, 0);
+                ((C_0002F190_2FA80 *)m)->func_0002F190();
+                f64->v1(m);
+                f30->func_0012AC20(m, m + 4, m + 8, other, other + 1);
+                f64->v0(m, 0);
+            }
+        } else if (f6C == 10) {
+            D_002B7EBC = 10;
+            f6C = 2;
+            func_0012B7D0(f58, 0, 0, 0, 0);
+            ((C_0002F190_2FA80 *)m)->func_0002F190();
+            f64->v1(m);
+            f30->func_0012AC20(m, m + 4, m + 8, other, other + 1);
+            f58->v0(m, 0);
+        }
+    }
+    ((C_00157BF0_2FA80 *)this)->func_00157BF0(a, b);
+}
+
 void S_0002FA80_Entry::func_0002FE10(C_00168280 *stream, int index)
 {
     char buf[0x104];
@@ -486,6 +550,68 @@ undefined4 C_0002FA80::func_000305C0(const char *path)
         func_001E891B(stream);
     }
     return 1;
+}
+
+C_000308F0 *C_000308F0::func_000306F0(int a0, int a1, int a2, int a3, int a4, int a5, int a6, const char *path, int a8)
+{
+    if (!func_0012B5B0(a0)) {
+        return 0;
+    }
+    f70 = a1;
+    if (path) {
+        S_000308F0_Holder *h = (S_000308F0_Holder *)func_001E8A44(0x10);
+        if (h) {
+            h->f0 = this;
+            h->f4 = 0;
+            h->fC = 0;
+            h->f8 = 0;
+        } else {
+            h = 0;
+        }
+        f74 = h;
+        if (!((C_0002FA80 *)h)->func_000305C0(path)) {
+            S_000308F0_Holder *p = f74;
+            if (p) {
+                if (p->f4) {
+                    p->f4->func_00030500(3);
+                    p->f4 = 0;
+                }
+                func_001E891B(p);
+            }
+            f74 = 0;
+        }
+    }
+    if (!a8) {
+        C_00055380 *m50 = (C_00055380 *)func_001E8A44(0x220);
+        C_00055380 *o50 = m50 ? m50->func_00055380() : 0;
+        f50 = (C_00055910 *)o50;
+        if (!o50->func_000597B0(*(S_000306F0_Rect *)&a3, a2, D_00276A00, 1, a1)) {
+            return 0;
+        }
+        C_0009F7F0 *m54 = (C_0009F7F0 *)func_001E8A44(0xe4);
+        C_0009F7F0 *o54 = m54 ? m54->func_0009F7F0() : 0;
+        f54 = (C_0009F9F0 *)o54;
+        if (!o54->func_000A08D0(*(S_000306F0_Rect *)&a3, a2)) {
+            return 0;
+        }
+        C_00131150 *m58 = (C_00131150 *)func_001E8A44(0xd4);
+        C_00131150 *o58 = m58 ? m58->func_00131150() : 0;
+        f58 = (C_001324B0 *)o58;
+        if (!o58->func_00131260(1, 0.25f, 40.0f, 120.0f, 90.0f, 25.0f, 0.15f, 0.85f, 0.5f)) {
+            return 0;
+        }
+        C_00194CC0 *m5C = (C_00194CC0 *)func_001E8A44(0x4c);
+        C_00194CC0 *o5C = m5C ? m5C->func_00194CC0() : 0;
+        f5C = (C_00194DB0 *)o5C;
+        C_00195090 *m60 = (C_00195090 *)func_001E8A44(0x7c);
+        C_00195090 *o60 = m60 ? m60->func_00195090() : 0;
+        f60 = (C_00195130 *)o60;
+        o60->func_001956F0(D_002A5870);
+        ((C_00195090 *)f60)->func_001955D0(1, 0.4f);
+        C_001500A0 *m64 = (C_001500A0 *)func_001E8A44(0x18);
+        f64 = (C_00150350 *)(m64 ? m64->func_001500A0() : 0);
+    }
+    return this;
 }
 
 void C_000308F0::func_000308F0(void)
