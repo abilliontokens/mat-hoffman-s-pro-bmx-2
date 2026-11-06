@@ -458,12 +458,4 @@ void MountVertOverlay::func_000864D0(void)
     }
     ((C_00157660 *)this)->func_00157660();
 }
-struct C_00085630_Manager {
- void func_0018C780(int, const char **, int);
- int *func_0018C160(const char *);
-};
-extern char D_00278690[], D_002796B0[];
-extern int D_0028F5DC, D_0028F5E0;
-void *func_001E8A44(unsigned int);
-extern "C" char *strcpy(char *, const char *);
-extern "C" unsigned int strlen(const char *);
+
