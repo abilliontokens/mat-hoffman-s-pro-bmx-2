@@ -61,12 +61,11 @@ struct Wid_6C570 {
     __forceinline void SetH(float h) { if (f2c != h) { f2c = h; b58 |= 1; } }
     __forceinline void Scale()
     {
-        float a = f4c, b = f50;
-        f3c = a * D_00278654;
+        f3c = f4c * D_00278654;
         b58 |= 4;
-        f40 = a * D_00275544;
-        f44 = b * D_0027653C;
-        f48 = b * D_00275544;
+        f40 = f4c * D_00275544;
+        f44 = f50 * D_0027653C;
+        f48 = f50 * D_00275544;
     }
     Wid_6C570 *func_001D5760();
     void func_001D5810(char *, float, float, float);
@@ -333,6 +332,121 @@ void C_0006C470::func_0006C470()
         }
     }
     func_00157660();
+}
+
+C_0006D100 *C_0006D100::func_0006C570(int a)
+{
+    C_6C570 *self = (C_6C570 *)this;
+    Wid_6C570 *w;
+    Txt_6C570 *t;
+    Obj184_6C570 *o;
+    void *p;
+    int v1, v2, *r;
+    int i;
+    self->fD4 = a;
+    r = D_002A8490->f2EC->func_0018C160((int)D_002786A0);
+    v1 = r ? *r : 0;
+    r = D_002A8490->f2EC->func_0018C160((int)D_00278690);
+    v2 = r ? *r : 0;
+    D_002A60B0 = D_00278664;
+    D_002A60B4 = D_00278668;
+    D_002A60B8 = D_0027866C;
+    D_002A60BC = D_00278670;
+    D_002A60C0 = D_00278674;
+    p = func_001E8A44(0x64);
+    w = p ? ((Wid_6C570 *)p)->func_001D5760() : 0;
+    self->w6C = w;
+    w->func_001D5810(D_00278658, 0, 0, 0);
+    self->w6C->SetW(640.0f);
+    self->w6C->SetH(50.0f);
+    self->w6C->Scale();
+    p = func_001E8A44(0x64);
+    w = p ? ((Wid_6C570 *)p)->func_001D5760() : 0;
+    self->w70 = w;
+    w->func_001D5810(D_00278658, 0, 398.0f, 0);
+    self->w70->SetW(640.0f);
+    self->w70->SetH(50.0f);
+    self->w70->Scale();
+    for (i = 0; i < 5; i++) {
+        float x;
+        p = func_001E8A44(0x64);
+        w = p ? ((Wid_6C570 *)p)->func_001D5760() : 0;
+        x = i * D_00278650;
+        self->arr7C[i] = w;
+        w->func_001D5810(D_00278658, x, 50.0f, 0);
+        p = func_001E8A44(0x64);
+        w = p ? ((Wid_6C570 *)p)->func_001D5760() : 0;
+        self->arr90[i] = w;
+        w->func_001D5810(D_00278658, x, 366.0f, 0);
+        w = self->arr90[i];
+        w->f3c = 0;
+        w->f48 = 0;
+        w->b58 |= 4;
+        w->f40 = 1.0f;
+        w->f44 = 0.99f;
+    }
+    p = func_001E8A44(0x64);
+    w = p ? ((Wid_6C570 *)p)->func_001D5760() : 0;
+    self->wBC = w;
+    w->func_001D5810(D_00278648, 491.0f, 388.0f, 0);
+    p = func_001E8A44(0x64);
+    w = p ? ((Wid_6C570 *)p)->func_001D5760() : 0;
+    self->wC0 = w;
+    w->func_001D5810(D_00278624, 491.0f, 388.0f, 0);
+    p = func_001E8A44(0x64);
+    w = p ? ((Wid_6C570 *)p)->func_001D5760() : 0;
+    self->wB4 = w;
+    w->func_001D5810(D_00278600, 0, 0, 0);
+    self->wB4->b58 |= 2;
+    self->wB4->color &= 0xff000000;
+    self->wB4->b58 |= 2;
+    *((unsigned char *)&self->wB4->color + 3) = 0x80;
+    self->wB4->SetH(448.0f);
+    self->wB4->SetW(640.0f);
+    for (i = 0; i < 4; i++) {
+        p = func_001E8A44(0x64);
+        w = p ? ((Wid_6C570 *)p)->func_001D5760() : 0;
+        self->arrA4[i] = w;
+        w->func_001D5810(D_002786B0, (i / 2) * D_002757F0 + D_00278A60, (i % 2) ? 321.0f : 100.0f, 0);
+        w->f3c = 1.0f;
+        w->f48 = 1.0f;
+        w->b58 |= 4;
+        w->f40 = 0;
+        w->f44 = 0;
+        w->SetW(221.0f);
+    }
+    func_001ADCC0((char *)D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+    p = func_001E8A44(0x184);
+    o = p ? ((Obj184_6C570 *)p)->func_001B12C0(1) : 0;
+    self->f64 = o;
+    o->func_001B1580(D_002786A0, D_002786A0, *(int *)(((Data6C570 *)*(void **)((char *)D_002A8490 + 0x2E8))->p4 + 0x7D8), 0);
+    self->f74 = 0x115;
+    o->func_001B19C0(0x140, 0x115, 0);
+    o->func_001B2270(0xffcccccc);
+    o->func_001B19A0(D_0028F5E0);
+    self->func_001577A0(o, -1);
+    p = func_001E8A44(0x184);
+    o = p ? ((Obj184_6C570 *)p)->func_001B12C0(1) : 0;
+    self->f68 = o;
+    o->func_001B1580(D_002786A0, D_002786A0, *(int *)(((Data6C570 *)*(void **)((char *)D_002A8490 + 0x2E8))->p4 + 0x7E8), 0);
+    self->f78 = 0x13d;
+    o->func_001B19C0(0x140, 0x13d, 0);
+    o->func_001B2270(0xffcccccc);
+    o->func_001B19A0(D_0028F5E0);
+    self->func_001577A0(o, -1);
+    p = func_001E8A44(0x60);
+    t = p ? ((Txt_6C570 *)p)->func_001D5E90() : 0;
+    self->tC8 = t;
+    t->func_001D6190(v2, *(int *)(((Data6C570 *)*(void **)((char *)D_002A8490 + 0x2E8))->p4 + 0x7C8), (int *)D_00278690);
+    self->tC8->SetPos(517.0f, 393.0f);
+    self->tC8->SetColor(0xffcccccc);
+    p = func_001E8A44(0x60);
+    t = p ? ((Txt_6C570 *)p)->func_001D5E90() : 0;
+    self->tC4 = t;
+    t->func_001D5FA0(v1, D_002786A0, 0x14, 0);
+    self->tC4->SetPos(320.0f, (float)((int)((C210_6C570 *)v1)->func_0018C210() * 2 + 0x5C));
+    self->tC4->SetColor(0xffcccccc);
+    return this;
 }
 
 void C_0006D100::func_0006CC20()
