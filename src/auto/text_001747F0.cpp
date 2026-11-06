@@ -13,7 +13,7 @@ struct Vec3_001747F0 {
     float x, y, z;
 };
 
-struct Mat4_001747F0 {
+struct __declspec(align(16)) Mat4_001747F0 {
     Vec4_001747F0 r0, r1, r2, r3;
 };
 extern float D_00275544, D_00275460;
@@ -151,6 +151,7 @@ int R_001747F0::func_001747F0(int a)
     v2B0.x = v6C.x;
     v2B0.y = v6C.y;
     v2B0.z = v6C.z;
+    ((Emit_001747F0 *)this)->fn(a, 3, &v238, (Vec4_001747F0 *)&v2B0);
 
     len2 = v238.x * v238.x + v238.y * v238.y + v238.z * v238.z;
     if (len2 > f220) {
@@ -162,6 +163,7 @@ int R_001747F0::func_001747F0(int a)
     v298.x = v238.x;
     v298.y = v238.y;
     v298.z = v238.z;
+    ((Emit_001747F0 *)this)->fn(a, 3, &v4C, (Vec4_001747F0 *)&v298);
 
     func_0001C680(&v7C, v140, (char *)p22C + 0xf0);
 
@@ -179,6 +181,7 @@ int R_001747F0::func_001747F0(int a)
     v2E8.x = v7C.x;
     v2E8.y = v7C.y;
     v2E8.z = v7C.z;
+    ((Emit_001747F0 *)this)->fn(a, 3, &v268, (Vec4_001747F0 *)&v2E8);
 
     len2 = v268.x * v268.x + v268.y * v268.y + v268.z * v268.z;
     if (len2 > f224) {
@@ -188,6 +191,7 @@ int R_001747F0::func_001747F0(int a)
         v268.z *= s;
     }
     v2C8 = *func_001742F0(&t2, &v1A0, &v268);
+    ((Emit_001747F0 *)this)->fn(a, 4, &v1A0, &v2C8);
 
     v1A0 = *func_00174110(&t1, &v1A0);
     m = *func_001741C0(&mSrc, &v1A0);
