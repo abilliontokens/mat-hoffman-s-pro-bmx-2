@@ -206,8 +206,10 @@ struct SoundVoiceList {
     int func_001CDE90(SoundVoice *voice);
 };
 
-static inline int Voice_CheckOther(SoundVoice *cur, SoundVoice *old)
+static inline int Voice_CheckOther(SoundVoice *&voice, SoundVoice *cur)
 {
+    SoundVoice *old = voice;
+    voice = cur;
     return cur->func_001CD940(old);
 }
 
@@ -503,7 +505,7 @@ int C_001CF3C0::func_001CF3C0(SoundVoice *voice)
         list = (SoundVoiceList *)f24;
     }
     if (func_001CDD50(list, x, &found, &index, &found)) {
-        if (!Voice_CheckOther(voice, voice = found)) {
+        if (!Voice_CheckOther(voice = found, voice)) {
             if (index >= 0 || list->func_001CDE90(voice)) {
                 return 1;
             }
