@@ -126,6 +126,9 @@ struct S_000508C0_Item {
     virtual void vf5();
     char pad4[0x958];
     int unk95c;
+    char pad960[0x848];
+    int unk11a8;
+    void func_00108680(int a);
 };
 
 struct S_000508C0_List {
