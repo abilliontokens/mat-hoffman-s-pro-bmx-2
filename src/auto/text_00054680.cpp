@@ -55,6 +55,21 @@ static __forceinline void NormInPlace_00054680(S_00054430_V4 *p)
     func_00053CB0(p, p);
 }
 
+static __forceinline void Aim_00054680(C_00054680 *self, S_00054430_V4 &a, S_00054430_V4 &b, int k)
+{
+    S_00054430_V4 *q = &self->f64->f4e0->f1a8[k]->f834;
+    S_00054430_V4 *pos = &self->f64->f4e0->f1a8[1 - k]->f834;
+    float ang;
+
+    a = S_00054430_V4(pos->x - q->x, pos->y - q->y, pos->z - q->z, 1.0f);
+    func_00053CB0(&a, &a);
+    a = self->f64->f4e0->f1a8[k]->f230->func_00198040(&a);
+    ang = func_0014FBA0(a.x, a.z);
+    b = self->f64->f4e0->f1a8[1 - k]->f834;
+    b.y += 3.0f;
+    self->f2a4[k]->func_00088A40((int)(ang * 57.29578f), &b);
+}
+
 static __forceinline float Sqrt549(float f) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&f)); return r; }
 struct V549 { float x, y, z, w; };
 struct Item549 {
@@ -160,9 +175,8 @@ void C_00054680::func_00054680()
 
     q = &f64->f4e0->f1a8[1]->f834;
     pos = &f64->f4e0->f1a8[0]->f834;
-    S_00054430_V4 &ra = a;
     a = S_00054430_V4(pos->x - q->x, pos->y - q->y, pos->z - q->z, 1.0f);
-    func_00053CB0(&a, &ra);
+    NormInPlace_00054680(&a);
     a = f64->f4e0->f1a8[1]->f230->func_00198040(&a);
     ang = func_0014FBA0(a.x, a.z);
     b = f64->f4e0->f1a8[0]->f834;
