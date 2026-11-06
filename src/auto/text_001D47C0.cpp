@@ -244,14 +244,10 @@ struct V4_001D48E0 {
     V4_001D48E0() { z = 0; y = 0; x = 0; w = 1.0f; }
 };
 
-/* members up to the V4 at 0x74 */
-struct C_001D48E0Mid : C_001D48E0Base {
+/* XboxRenderTarget */
+struct C_001D48E0 : C_001D48E0Base {
     int f54, f58, f5C, f60, f64, f68, f6C, f70;
     V4_001D48E0 v74;
-};
-
-/* XboxRenderTarget */
-struct C_001D48E0 : C_001D48E0Mid {
     int f84, f88, f8C, f90;
     int idx[300];
     C_001D48E0(void);
