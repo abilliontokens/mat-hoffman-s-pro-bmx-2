@@ -206,7 +206,6 @@ struct BmxUIPageParkEditor {
     void *vtbl;
     char pad4[0x120];
     C_5E40_A *f124;
-    C_5E40_A *getA() { return f124; }
     char pad128[0x18];
     C_6420_P *f140;
     char pad144[0x13C];
