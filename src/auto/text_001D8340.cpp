@@ -21,6 +21,7 @@ struct C_001D8340 {
     void func_001D8500(int amount);
 };
 extern float D_00284758, D_002755E4, D_00275460;
+static __forceinline int Max_001D8340(int a, int b) { return a < b ? b : a; }
 extern "C" int func_001DC974(void);
 extern "C" int func_001E8858(void);
 extern "C" void __stdcall func_001FF960(int mode, void *ramp);
@@ -199,6 +200,47 @@ struct C_001D8970 {
     int func_001D8040(int *a1, void *a2, int a3, int a4, int a5, int a6, int a7);
     int func_001D8970(int a1, int a2, int a3);
 };
+
+void C_001D8340::func_001D8340(int amount)
+{
+    unsigned char ramp[0x300];
+    int tmp;
+    float scale = (float)amount * D_00284758;
+    int acc = 0;
+    if (amount == 0) {
+        memset(ramp, 0, sizeof(ramp));
+        func_001FF960(2, ramp);
+    } else {
+        unsigned int t0 = func_001DC974();
+        int * volatile pr = &tmp;
+        int * volatile pg = &tmp;
+        int * volatile pb = &tmp;
+        do {
+            unsigned int t1 = func_001DC974();
+            float d = (float)(t1 - t0);
+            if (d > scale) {
+                acc += (int)(d / scale);
+                t0 = t1;
+                if (acc < 0) acc = 0;
+            }
+            float k = D_00275460 - (float)acc * D_00284758;
+            for (int i = 0; i < 0x100; i++) {
+                float t;
+                t = (float)r[i] * k;
+                *pr = _mm_cvtss_si32(*(__m128 *)&t);
+                ramp[i] = (unsigned char)tmp;
+                t = (float)g[i] * k;
+                *pg = _mm_cvtss_si32(*(__m128 *)&t);
+                ramp[0x100 + i] = (unsigned char)tmp;
+                t = (float)b[i] * k;
+                *pb = _mm_cvtss_si32(*(__m128 *)&t);
+                ramp[0x200 + i] = (unsigned char)tmp;
+            }
+            func_001FF960(2, ramp);
+        } while (acc < 0xff);
+    }
+    flags |= 1;
+}
 
 void func_001D86C0(char *buf, int size, int adapter)
 {
