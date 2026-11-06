@@ -135,6 +135,13 @@ struct S_001EEFE3 {
     }
 };
 
+static inline S_001EEFE3 *B_Tail(S_001EEFE3 *p)
+{
+    S_001EEFE3 *cur;
+    while ((cur = p->next) != 0) p = cur;
+    return p;
+}
+
 /* virtual object with a mode at +8 (Class_00295BE4 slot 1) */
 struct S_001EF087 {
     void *vtbl;
@@ -659,9 +666,9 @@ unsigned char __fastcall func_001EF235(BitObj *self, int unused)
 char *__fastcall func_001EF26D(BitObj *self, int unused, char *buf, int n)
 {
     if (func_001EF1E7(self, unused) == 0) {
-        char *dst;
         S_001EF210_Node *p;
         int len;
+        char *dst;
         if (buf == 0) {
             n = func_001EF210(self, unused) + 1;
             buf = (char *)D_002F6A04.func_001EEE62(n, 0);
@@ -670,10 +677,7 @@ char *__fastcall func_001EF26D(BitObj *self, int unused, char *buf, int n)
             }
         }
         dst = buf;
-        for (p = (S_001EF210_Node *)self->f0; p != 0; p = p->next) {
-            if (n <= 0) {
-                break;
-            }
+        for (p = (S_001EF210_Node *)self->f0; p != 0 && n > 0; p = p->next) {
             len = p->v0();
             if (len != 0) {
                 if (n - len < 0) {
@@ -863,8 +867,9 @@ BitObj *BitObj::func_001EF613(int a)
     return this;
 }
 
-void BitObj::func_001EF68E(char *p, int n)
+void BitObj::func_001EF68E(char *p, volatile int n)
 {
+    int len;
     S_001EF68E_Char *q;
 
     if (s4 == 1 || s4 == 3) {
@@ -874,22 +879,22 @@ void BitObj::func_001EF68E(char *p, int n)
         func_001EF333(3);
         return;
     }
-    if (p == 0 || n == 0) {
+    if (p == 0 || (len = n) == 0) {
         s4 = 1;
         return;
     }
-    switch (n) {
-    case 0:
-        q = 0;
-        break;
-    case 1:
-        q = new S_001EF68E_Char(*p);
-        break;
+    switch (len) {
     default:
         q = (S_001EF68E_Char *)D_002F6A04.func_001EEE62(0x10, 0);
         if (q != 0) {
             q = (S_001EF68E_Char *)((S_001EF45F *)q)->func_001EF45F(p, n);
         }
+        break;
+    case 1:
+        q = new S_001EF68E_Char(*p);
+        break;
+    case 0:
+        q = 0;
         break;
     }
     f0 = (int)q;
