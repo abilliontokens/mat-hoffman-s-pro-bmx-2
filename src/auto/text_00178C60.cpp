@@ -96,9 +96,12 @@ void func_00179370(Vec4 *out, Vec4 *in);
 
 static __forceinline __m128 cross_ps_179950(__m128 va, __m128 vb)
 {
-    __m128 r = _mm_sub_ps(_mm_mul_ps(va, _mm_shuffle_ps(vb, vb, 0xc9)),
-                          _mm_mul_ps(vb, _mm_shuffle_ps(va, va, 0xc9)));
-    return _mm_shuffle_ps(r, r, 0xc9);
+    __m128 sa = _mm_shuffle_ps(va, va, 0xc9);
+    __m128 sb = _mm_shuffle_ps(vb, vb, 0xc9);
+    vb = _mm_mul_ps(vb, sa);
+    va = _mm_mul_ps(va, sb);
+    va = _mm_sub_ps(va, vb);
+    return _mm_shuffle_ps(va, va, 0xc9);
 }
 
 static __forceinline void cross_179950(float *out, float *a, float *b)
