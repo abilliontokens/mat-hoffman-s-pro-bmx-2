@@ -4,6 +4,11 @@
 extern int D_00286CBC;
 void func_001E891B(void *p);
 int func_00011260(int a, int b);
+struct Q4_00152E30 { int x, y, z, w; };
+struct C_00152E30 {
+    int f0;
+    C_00152E30 *func_00152E30(int a0);
+};
 
 struct C_00136300 {
     void func_00136300(void);
