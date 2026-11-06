@@ -92,6 +92,37 @@ struct C_001094F0 {
 };
 
 extern int D_00282AE4;
+extern char D_00282AD8[], D_00282AD4[], D_00276F28[], D_00277A70[], D_0027D158[];
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+
+struct S_001095A0_Player {
+    char pad0[0x52C];
+    char *f52C;
+};
+
+struct S_001095A0_Mgr {
+    char pad0[0x64];
+    S_001095A0_Player *f64;
+};
+
+struct S_001095A0_Root {
+    char pad0[0x2A4];
+    S_001095A0_Mgr *f2A4;
+};
+
+extern S_001095A0_Root *D_002A8490;
+
+static inline void StrCopy_001095A0(char *d, const char *s)
+{
+    char c;
+    do {
+        c = *s;
+        s++;
+        *d = c;
+        d++;
+    } while (c != '\0');
+}
+
 void func_001E891B(void *p);
 void func_001E8390(void *p);
 
