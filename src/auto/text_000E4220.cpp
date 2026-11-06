@@ -231,6 +231,34 @@ struct C_000E4BC0 {
     void func_000E4BC0();
 };
 
+/* BmxUIPageHorseController, virtual slot 28 */
+struct C_000E4220 {
+    char pad0[0x124];
+    S_000E4220_Mgr *f124;
+    char pad128[0x280 - 0x128];
+    int f280;
+    int f284;
+    char pad288[0x28C - 0x288];
+    int f28C;
+    char pad290[0x298 - 0x290];
+    int f298;
+    int f29C;
+    int f2A0;
+    int f2A4;
+    int f2A8;
+    int f2AC;
+    char pad2B0[0x2B4 - 0x2B0];
+    int f2B4;
+    int f2B8;
+    int f2BC;
+    int f2C0;
+    char pad2C4[0x420 - 0x2C4];
+    int a420[8];
+    int func_000E4220(int a, int b);
+    void func_000E40F0();
+    void func_000E3FC0();
+};
+
 extern int D_002A3398, D_002A339C, D_002A33A0, D_002A33A4;
 C_000E4AB0 *C_000E4AB0::func_000E4830(int a0)
 {
