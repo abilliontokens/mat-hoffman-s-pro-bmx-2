@@ -332,6 +332,7 @@ extern "C" char *strcpy(char *dst, const char *src);
 extern char D_002786A0[], D_00278690[], D_00278678[], D_00278658[], D_00278648[], D_00278638[], D_00278624[], D_00278608[], D_00278600[];
 extern char D_002A60B0[], D_002A5FA8[], D_002A5870[], D_00275678[];
 extern int D_0028F5E0;
+extern float D_00278650;
 
 static __forceinline void pos5ED(Txt_5ED *p, int x, int y) { if (p->x != x || p->y != y) { p->y = y; p->x = x; p->flags |= 6; } }
 static __forceinline void align5ED(Txt_5ED *p, int a) { if (p->align != a) { p->align = a; p->flags |= 6; } }
