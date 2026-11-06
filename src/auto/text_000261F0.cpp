@@ -30,7 +30,7 @@ inline void cross_000265C0(S_000265C0_V4 *out, S_000265C0_V4 *a, S_000265C0_V4 *
 static __forceinline float clamp_max_000261F0(float a, float b)
 {
  float r;
- _mm_store_ss(&r, _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b)));
+ _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b)));
  return r;
 }
 static __forceinline float clamp_min_000261F0(float a, float b)
