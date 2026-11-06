@@ -193,7 +193,7 @@ struct V4_001BB680 {
         *(volatile int *)&z = 0;
         *(volatile int *)&y = 0;
         *(volatile int *)&x = 0;
-        *(volatile int *)&w = 0x3f800000;
+        *(volatile float *)&w = 1.0f;
     }
     void Set(const float &a, const float &b, const float &c, const float &d) volatile
     {
@@ -544,13 +544,13 @@ void C_001BB620::func_001BB620(void *a1, void *a2, int a3, int a4)
 
 C_001BBAA0 *C_001BBAA0::func_001BB680(int a)
 {
-    C_001BBAA0 * volatile self = this;
+    C_001BBAA0 * volatile self;
     S_001BB680_Mat m;
     S_001BB680_Mat copy;
     S_001BB680_Mat * volatile p;
     int i;
 
-    ((C_00157600 *)this)->func_00157600(a);
+    ((C_00157600 *)((void)(self = this), this))->func_00157600(a);
     self->vtbl = &D_0028D2BC;
     self->f24.Init();
     self->f34.Init();
@@ -613,11 +613,12 @@ int C_001BB900::func_001BB900(void *a1)
 int C_001BB950::func_001BB950(Vec_001BB950 *a, Vec_001BB950 *b, int c, int d, float e)
 {
     Vec_001BB950 *pb;
+    float ev = e;
     f24 = *a;
     pb = &f34;
     *pb = *b;
     f2E0 = *(int *)&e;
-    if (e > D_00275544) {
+    if (ev > D_00275544) {
         Anim_001BB950 *p = f2E4;
         if (p->f50 == 5) {
             p->func_001A4AE0(a, &f2E0);
@@ -737,11 +738,10 @@ void C_001BBDD0::func_001BBDD0(int *a, int b)
 void C_001BBAA0::func_001BBE20(int a)
 {
     int i;
+    int *p0;
     unk2E8 = a;
     for (i = 0; i < unk2E4->unk88; i++) {
-        if (unk2E4->unk84[i] == a) {
-            return;
-        }
+        if (unk2E4->unk84[i] == a) return;
     }
     if (unk2EC & 2) {
         for (i = 0; i < unk98; i++) {
@@ -749,14 +749,16 @@ void C_001BBAA0::func_001BBE20(int a)
             if (x == -1 && unkC0[i] == x) {
                 if (unkC4[i] > D_00275544) {
                     unkCC[i] = a;
-                    unkC8[i] = unkC4[i];
+                    int value = ((int *)unkC4)[i];
+                    ((int *)unkC8)[i] = value;
                 } else {
                     ((void (*)(int, void *, void *, int))unkB8[i])(a, this, unkB4[i], 1);
                 }
-            } else if (x == unkD0 || (unkC0[i] != -1 && unkD0 > unkC0[i])) {
+            } else if (x == unkD0 || ((p0 = *(int * volatile *)&unkC0)[i] != -1 && unkD0 > p0[i])) {
                 if (unkC4[i] > D_00275544) {
                     unkCC[i] = a;
-                    unkC8[i] = unkC4[i];
+                    int value = ((volatile int *)(*(int * volatile *)&unkC4))[i];
+                    ((int *)unkC8)[i] = value;
                 } else {
                     ((void (*)(int, void *, void *, int))unkB8[i])(a, this, unkB4[i], 1);
                 }
