@@ -62,10 +62,6 @@ struct Rec12 {
     int f8;
 };
 
-struct Vec4 {
-    float x, y, z, w;
-};
-
 struct BmxSceneMgr {
     char pad0[0x24];
     int count;
@@ -169,19 +165,23 @@ void BmxScene::func_00183E90(void)
 
 int BmxScene::func_00184880(void)
 {
-    int i, j;
+    int i;
     for (i = 0; i < f38c->count; i++) {
         f38c->objs2[i].dummy1(i, this);
         func_001577A0(f38c->objs2[i].f4, 2);
     }
-    for (j = 0; j < f340; j++) {
-        float *f = f38c->floats;
-        int *n = f38c->ints;
-        if (f[j * 4] >= D_0028957C) {
-            D_002E2930->func_0015E300(j, (int)&f[j * 4], (int)&n[j]);
-        } else {
-            D_002E2930->func_0015E300(j, 0, (int)&n[j]);
-        }
+    i = 0;
+    if (f340 > 0) {
+        do {
+            float *f = f38c->floats;
+            int *n = f38c->ints;
+            if (f[i * 4] >= D_0028957C) {
+                D_002E2930->func_0015E300(i, (int)&f[i * 4], (int)&n[i]);
+            } else {
+                D_002E2930->func_0015E300(i, 0, (int)&n[i]);
+            }
+            i++;
+        } while (i < f340);
     }
     return 1;
 }
