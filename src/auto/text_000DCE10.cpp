@@ -105,6 +105,15 @@ struct C_000DCC20 {
     I_000DCC20_Buf *arr378[4];
     int func_000DCC20(void);
     int func_000DCE10(void);
+    __forceinline void SwapBuffers(int src, int dst) {
+        for (int i = 0; i < 4; i++) {
+            void *s = arr368[src + i]->v40(0, 0, 0);
+            void *d = arr368[dst + i]->v40(0, 0, 0);
+            memcpy(d, s, 0x20000);
+            arr368[src + i]->v44(0);
+            arr368[dst + i]->v44(0);
+        }
+    }
 };
 
 struct C_001D6410 {
