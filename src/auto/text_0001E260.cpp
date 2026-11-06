@@ -218,6 +218,52 @@ static __forceinline float vec3_invLength(float lengthSquared) {
 }
 
 
+void GR_BitString::func_0001E260(int a0)
+{
+    union { unsigned int i; unsigned short s[2]; unsigned char c[4]; } u;
+    int m = 32 - a0;
+    int words = ((int)unk4 + 31) / 32;
+    u32 *last = (u32 *)unk8 + words - 1;
+    u32 *prev = last;
+    u32 *cur = last + 1;
+    int i;
+    u32 v;
+
+    u.i = *last;
+    u.i = (u32)(((u.c[0] << 8 | u.c[1]) << 8 | (unsigned char)u.s[1]) << 8 | (unsigned char)(u.s[1] >> 8)) >> a0;
+    *last = ((u.c[0] << 8 | u.c[1]) << 8 | (unsigned char)u.s[1]) << 8 | (unsigned char)(u.s[1] >> 8);
+    for (i = words - 1; i != 0; i--) {
+        cur--;
+        prev--;
+        if (*prev != 0) {
+            if (*prev == 0xffffffff) {
+                *cur |= D_002A0C18[a0];
+                *prev = ~D_002A0C18[a0];
+            } else {
+                unsigned char *b = (unsigned char *)prev;
+                *prev = ((b[0] << 8 | b[1]) << 8 | b[2]) << 8 | b[3];
+                v = *prev << m;
+                if (v != 0) {
+                    u.i = v;
+                    *cur |= ((u.c[0] << 8 | u.c[1]) << 8 | (unsigned char)u.s[1]) << 8 | (unsigned char)(u.s[1] >> 8);
+                }
+                v = *prev >> a0;
+                *prev = v;
+                if (v != 0) {
+                    u.i = v;
+                    *prev = ((u.c[0] << 8 | u.c[1]) << 8 | (unsigned char)u.s[1]) << 8 | (unsigned char)(u.s[1] >> 8);
+                }
+            }
+        }
+    }
+    cur--;
+    if (unk18 == 0) {
+        *cur &= ~D_002A0C18[a0];
+    } else {
+        *cur |= D_002A0C18[a0];
+    }
+}
+
 void GR_BitString::func_0001E3F0(u32 *a0, u32 a1, int a2) {
     unk18 = a2 ? -1 : 0;
     unk4 = a1;
@@ -515,11 +561,11 @@ void func_0001E9B0(float *out, float *a, float *b)
 
 float *func_0001E9E0(float *out, float *v)
 {
-    float inv;
-
-    inv = func_0001E960(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
-    vec3_set(out, inv * v[0], inv * v[1], inv * v[2]);
-    return out;
+ float t;
+ *(volatile float *)&t=v[0]*v[0]+v[1]*v[1]+v[2]*v[2];
+ float inv=func_0001E960(t);
+ vec3_set(out,inv*v[0],inv*v[1],inv*v[2]);
+ return out;
 }
 
 void func_0001EAB0(float *out, float *a, float *b)
@@ -642,9 +688,22 @@ void C_0001EDD0::func_0001EDD0(int a0) {
     unk28 = a0;
 }
 
-void C_0001EDE0::func_0001EDE0(int a0, int a1) {
-    unk58 = a0;
-    unk5C = a1;
+Vec4 *C_0001EDE0::func_0001EDE0(Vec4 *out) {
+    Vec4 a;
+    Vec4 b;
+    Vec4 c;
+    float *p;
+
+    if (unk50 != 0 && unkF8 != 0) {
+        *out = unk104;
+        return out;
+    }
+    a.z = 0; a.y = 0; a.x = 0; a.w = 1.0f;
+    b.z = 0; b.y = 0; b.x = 0; b.w = 1.0f;
+    unk28->unk230->func_00197B40(&a, &b);
+    p = func_0001E9E0(&c.x, &a.x);
+    *out = *(Vec4 *)p;
+    return out;
 }
 
 /* vtable slot 30 (0x1EE00): the analysis merged it into func_0001EDE0 */
