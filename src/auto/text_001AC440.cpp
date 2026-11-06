@@ -48,6 +48,7 @@ struct DynamicStringTable {
     StringTableEntry *entries;
     int unk18;
     int unk1C;
+    int func_001AC440(const char *name);
     void func_001AC830();
     void *func_001AC920(int flags);
     DynamicStringTable *func_001AC800();
@@ -74,6 +75,65 @@ extern int D_0028C0E0;
 void func_001E8390(void *p);
 void *func_001E8AA5(unsigned int size);
 
+
+int StringTable::func_001AC440(const char *name)
+{
+    char path[260];
+    int size, unused;
+    if (entries) func_001E891B(entries);
+    if (unk10) func_001E8390((void *)unk10);
+    strcpy(path, name);
+    for (char *p = path; *p; ++p) *p = (char)func_001E8D25(*p);
+    int file = D_002BEAAC->func_0013C9F0(path, D_00275FB4);
+    if (file == -1) return 0;
+    D_002BEAAC->func_0013AF40(file, &unused, &size);
+    unk10 = (int)func_001E8AA5(size + 1);
+    ((char *)unk10)[size] = 0;
+    D_002BEAAC->func_0013C8A0(file, (void *)unk10, size, 1);
+    D_002BEAAC->func_0013C110(file);
+    func_001F65C5((char *)unk10);
+    int inWord = 0;
+    count = 0;
+    for (int i = 0; i < size; ++i) {
+        char *p = (char *)unk10 + i;
+        if (*p == 13) { *p = 0; inWord = false; }
+        else if (*p == 10) { *p = 0; inWord = false; }
+        else if (*p == 32) { *p = 0; inWord = false; }
+        else if (!inWord) { int n = count + 1; inWord = true; count = n; }
+    }
+    if (count > 0) {
+        entries = (StringTableEntry *)func_001E8A44(count * 16);
+        int n = 0;
+        inWord = false;
+        for (int i = 0; i < size; ++i) {
+            if (!((char *)unk10)[i]) inWord = false;
+            else if (!inWord) {
+                inWord = true;
+                entries[n].value = 0;
+                entries[n].data = 0;
+                entries[n].name = (char *)unk10 + i;
+                entries[n].refCount = 0;
+                ++n;
+            }
+        }
+    }
+    *(volatile int *)&capacity = count;
+    for (int j = 0; j < ((DynamicStringTable *)this)->unk1C; ++j)
+        for (int k = 0; k < count; ++k)
+            {
+            const char *other = ((StringTableEntry *)((DynamicStringTable *)this)->unk18)[j].name;
+            const char *current = entries[k].name;
+            if (!func_001EA426(current, other)) {
+                StringTableEntry *src = &((StringTableEntry *)((DynamicStringTable *)this)->unk18)[j];
+                StringTableEntry *dst = &entries[k];
+                dst->name = src->name;
+                dst->value = src->value;
+                dst->data = src->data;
+                dst->refCount = src->refCount;
+            }
+        }
+    return count;
+}
 
 int StringTable::func_001AC680(const char *name, int value)
 {
@@ -294,19 +354,18 @@ void __fastcall func_001ACF30(unsigned int value, int unused, char fmt, int *out
 void __fastcall func_001ACF80(int shift, int value, char fmt, int *outlen)
 {
     char *end;
-    char *digits = D_0028C140;
-    char *p = end;
-    int mask = (1 << shift) - 1;
-    if (fmt == 'X') {
-        digits = D_0028C154;
-    }
+    register char *p = end;
+    register int mask = (1 << shift) - 1;
+    register char *digits = fmt == 'X' ? D_0028C154 : D_0028C140;
+
     if ((unsigned int)value > 0xffffffff) {
         func_001ACF30(value, 0, fmt, outlen);
         return;
     }
     do {
+        register char c = digits[value & mask];
         p--;
-        *p = digits[value & mask];
+        *p = c;
         value >>= shift;
     } while (value != 0);
     *outlen = end - p;
