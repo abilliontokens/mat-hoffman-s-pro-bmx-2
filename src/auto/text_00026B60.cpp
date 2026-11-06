@@ -186,7 +186,7 @@ struct Obj1EC_26 {
     Obj1EC_26 *func_00030C00(int); void func_00030CD0(void *);
 };
 struct Obj40_26 { Obj40_26 *func_00025E10(); };
-struct Obj210_26 { Obj210_26 *func_0005DA30(void *); };
+struct Obj210_26 { Obj210_26 *func_0005E600(int); Obj210_26 *func_0005DA30(void *); };
 struct Obj214_26 { Obj214_26 *func_000B50B0(int); void func_000B6050(void *); };
 struct Obj218_26 { Obj218_26 *func_000B5990(int); void func_000B6050(void *); };
 struct Obj21C_26 { Obj21C_26 *func_0011A440(int); void func_0011AB90(void *); };
@@ -229,7 +229,7 @@ C_00026B60 *C_00026B60::func_00026B60(char *name, V4_000273F0 a1, V4_000273F0 a2
     {
         char *d = f33C;
         char *s = name;
-        do { *d++ = *s; } while (*s++ != 0);
+        while ((*d++ = *s++) != 0) ;
     }
     mem = func_001E8A44(0x310);
     f1E0 = mem ? (ObjE0_26 *)((ObjE0_26 *)mem)->func_00175110(1) : 0;
@@ -366,55 +366,22 @@ C_00026B60 *C_00026B60::func_00026B60(char *name, V4_000273F0 a1, V4_000273F0 a2
     return this;
 }
 
-int C_000273F0::func_000273F0(V4_000273F0 *a1, V4_000273F0 *a2, V4_000273F0 *a3)
+int C_000273F0::func_000273F0(V4_000273F0 *a1,V4_000273F0 *a2,V4_000273F0 *a3)
 {
-    V4_000273F0 a;
-    V4_000273F0 b;
-    V4_000273F0 c;
-    V4_000273F0 d;
-    V4_000273F0 e;
-
-    f230->func_00198330(D_00276690)->func_00197E70(&e);
-    if (a1) {
-        c = *a1;
-        f2C = c;
-    } else {
-        c = f2C;
-    }
-    d = c;
-    if (a2) {
-        func_00026340(&a, a2);
-        f3C = a;
-    } else {
-        func_00026340(&a, &f3C);
-    }
-    if (a3) {
-        b = *a3;
-    } else if (f22C) {
-        f22C->func_000BA430(&d, &b, 0, 0);
-    } else {
-        d = D_002A10F0;
-        b = D_002A1110;
-    }
-    V4_000273F0 f;
-    Cross_000273F0(&f, &b, &a);
-    Cross_000273F0(&a, &f, &b);
-    f230->func_00199110(0, &a, &b, 0, 1, 0);
-    if (d.y > c.y) {
-        c = d;
-    }
-    f230->func_00199790(0, &c);
-    f230->func_00197AA0();
-    f67C = 1;
-    f220->func_000269B0(b.x, 3.402823466e+38f, 3.402823466e+38f);
-    f224->func_000269B0(b.y, 3.402823466e+38f, 3.402823466e+38f);
-    f228->func_000269B0(b.z, 3.402823466e+38f, 3.402823466e+38f);
-    f1E0->v45();
-    f13C = D_002A10F0;
-    f14C = D_002A10F0;
-    f1E8->func_000B6A70(0);
-    f1E8->v13(0);
-    return f1E8->f64 != 0;
+ C_000273F0 * volatile self=this;
+ V4_000273F0 dir,up,pos,ground,node;
+ this->f230->func_00198330(D_00276690)->func_00197E70(&node);
+ if(a1) {pos=*a1; self->f2C=pos;} else pos=self->f2C;
+ ground=pos;
+ if(a2) {func_00026340(&dir,a2); self->f3C=dir;} else func_00026340(&dir,&self->f3C);
+ if(a3) up=*a3; else if(self->f22C) self->f22C->func_000BA430(&ground,&up,0,0); else {ground=D_002A10F0; up=D_002A1110;}
+ V4_000273F0 side;
+ Cross_000273F0(&side,&up,&dir); Cross_000273F0(&dir,&side,&up);
+ self->f230->func_00199110(0,&dir,&up,0,1,0);
+ if(ground.y>pos.y) pos=ground;
+ self->f230->func_00199790(0,&pos); self->f230->func_00197AA0(); self->f67C=1;
+ self->f220->func_000269B0(up.x,3.402823466e38f,3.402823466e38f); self->f224->func_000269B0(up.y,3.402823466e38f,3.402823466e38f); self->f228->func_000269B0(up.z,3.402823466e38f,3.402823466e38f);
+ self->f1E0->v45(); self->f13C=D_002A10F0; self->f14C=D_002A10F0; self->f1E8->func_000B6A70(0); self->f1E8->v13(0); return self->f1E8->f64!=0;
 }
 
 void C_00027850::func_00027850(int a0) {
