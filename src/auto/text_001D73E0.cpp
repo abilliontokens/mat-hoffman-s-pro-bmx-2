@@ -677,35 +677,6 @@ int __stdcall func_001D8140(S_001D8140 *p, unsigned int index, int h)
     return 0;
 }
 
-static __forceinline int WaitVBlank_001D8240(XboxVideoCard_001D8240 *self, int mode)
-{
-    volatile int *d = (volatile int *)&D_002F0BBC;
-    if (self->f10 != 0)
-        return 0;
-    if (self->f14 == 1) {
-        if (*d <= 1 && *d < mode)
-            goto wait;
-    } else if (self->f14 == mode && *d == 0) {
-wait:
-        while (*d < 1)
-            ;
-        *d = 0;
-    }
-    self->f6BC++;
-    if (self->f9D4 & mode) {
-        func_001FF4E0(0, 0, 0xf3, 0, 0, 0);
-        func_002025D0(0);
-        func_001FF4E0(0, 0, 0xf3, 0, 0, 0);
-        func_002025D0(0);
-    }
-    if (self->f9D4 & mode) {
-        func_001FFBB0();
-        self->v7(self->f9D8);
-        self->f9D4 &= ~mode;
-    }
-    return 1;
-}
-
 int XboxVideoCard_001D8240::func_001D8240(void)
 {
     volatile int *d = (volatile int *)&D_002F0BBC;
