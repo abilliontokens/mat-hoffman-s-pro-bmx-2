@@ -167,9 +167,9 @@ void *C_001507E0::func_001507E0(int flags) {
 
 C_00150810 *C_00150810::func_00150810(int a0, float a1, float a2, float a3, float a4, float a5) {
     func_001D3F50();
-    unk4C = a5;
-    unk44 = a3;
-    unk48 = a4;
+    unk4C = *(int *)&a5;
+    unk44 = *(int *)&a3;
+    unk48 = *(int *)&a4;
     unk2C = (a3 - a4) * a1 + a4;
     unk30 = a1;
     unk34 = a2;
@@ -197,6 +197,26 @@ void C_00150900::func_00150900(Vec4_150900 *a0, Vec4_150900 *a1) {
         return;
     }
     unk2C->unk1A4->unk4->func_00197B40(a0, a1);
+}
+
+void func_00150970(char *a, char *b) {
+ if (a != b && *(int *)(b+0x68) != D_002B911C && *(int *)(b+0x68) != D_002B9110) {
+ volatile float t;
+ volatile int v1, v2;
+ char *obj = *(char **)(a+0x60);
+ char *data = *(char **)(a+0x54);
+ *(char **)(obj+0x64) = b;
+ t = *(float *)(data+0x40); v1 = *(volatile int *)&t & 0x7fffffff;
+ t = *(float *)(obj+0x68); v2 = *(volatile int *)&t & 0x7fffffff;
+ if (*(volatile float *)&v1 > *(volatile float *)&v2) *(int *)(obj+0x68) = *(int *)(data+0x40);
+ t = *(float *)(data+0x44); v1 = *(volatile int *)&t & 0x7fffffff;
+ t = *(float *)(obj+0x6c); v2 = *(volatile int *)&t & 0x7fffffff;
+ if (*(volatile float *)&v1 > *(volatile float *)&v2) *(int *)(obj+0x6c) = *(int *)(data+0x44);
+ t = *(float *)(data+0x48); v1 = *(volatile int *)&t & 0x7fffffff;
+ t = *(float *)(obj+0x70); v2 = *(volatile int *)&t & 0x7fffffff;
+ if (*(volatile float *)&v1 > *(volatile float *)&v2) *(int *)(obj+0x70) = *(int *)(data+0x48);
+ *(float *)(data+0x94) = 1.0f;
+ } else a[0xa7] &= ~0x20;
 }
 
 void C_00150F60::func_00150F60(int a0, int a1) {
