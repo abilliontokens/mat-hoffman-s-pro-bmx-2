@@ -101,6 +101,8 @@ struct Globals138 {
 extern Globals138 *D_002F08EC;
 extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *cs);
 extern "C" __declspec(dllimport) void __stdcall RtlLeaveCriticalSection(void *cs);
+extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
+extern "C" void (__stdcall *_imp__RtlLeaveCriticalSection)(void *cs);
 int __stdcall func_00220A12(int h, int a, int b, int c);
 
 struct Voice {
