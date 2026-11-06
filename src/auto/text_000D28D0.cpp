@@ -57,7 +57,7 @@ struct C_000D28D0 {
     int f1FE4;
     int f1FE8;
     int f1FEC;
-    int completed[8];
+    void *completed[8];
     int f2010;
     char pad2014[0x2040 - 0x2014];
     int f2040;
