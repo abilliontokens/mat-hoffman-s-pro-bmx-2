@@ -32,6 +32,12 @@ struct C_00096450 {
     void func_00096450(int idx);
 };
 
+struct C_00096AB0 {
+    char pad0[0x1cc];
+    int f1cc;
+    void func_00096AB0(void);
+};
+
 struct C_00096700 {
     char pad0[0x4880];
     C_00012140 *arr4880[12];
