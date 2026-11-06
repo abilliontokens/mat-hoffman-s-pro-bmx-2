@@ -25,6 +25,109 @@ struct TrigEntry {
 extern TrigEntry *D_002CF6B4;
 
 float func_00016D60(int x);
+
+/* resource loader object (0x21e4+ bytes), second base at +0x24 */
+struct S_0014ECD0_Obj {
+    char pad0[0x1ec];
+    int f1ec;
+    void func_0014C890(int a);
+};
+
+struct S_0014ECD0_Item {
+    unsigned short s0;
+    unsigned char c2;
+    unsigned char lo3 : 3;
+    unsigned char hi3 : 5;
+    char pad4[4];
+    unsigned short s8;
+    unsigned short sA;
+    unsigned short sC;
+    unsigned char cE;
+    unsigned char padF;
+    unsigned char c10;
+    unsigned char c11;
+    char pad12[10];
+};
+
+struct S_0014ECD0_Vec {
+    float x, y, z, w;
+    S_0014ECD0_Vec() { x = 0; y = 0; z = 0; w = 1.0f; }
+};
+
+struct S_0014ECD0_Base {
+    int f0;
+};
+
+struct S_0014ECD0_G {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5();
+    virtual int v6(S_0014ECD0_Vec *a, S_0014ECD0_Vec *b, int c);
+    virtual void v7(S_0014ECD0_Base *base, int r, S_0014ECD0_Vec *a, S_0014ECD0_Vec *b);
+    char pad08[0x38];
+    float f40;
+    float f44;
+};
+
+struct S_0014ECD0_Files {
+    int func_0013B1A0(const char *name);
+    void func_0013C110(int h);
+};
+
+struct S_0014ECD0_Class {
+    char func_001BC6E0(const char *name);
+};
+
+struct S_0014ECD0_Cfg {
+    char pad0[0x568];
+    char f568;
+};
+
+struct C_0014ECD0 {
+    virtual void v0(); virtual void v1(); virtual void v2();
+    char pad04[0x38];
+    int f3c;
+    S_0014ECD0_Item *f40;
+    int *f44;
+    int *f48;
+    int *f4c;
+    int f50;
+    S_0014ECD0_Obj *f54[256];
+    int f454[0x108 / 4 - 0x100 + 0x100];
+    int f55c;
+    float f560;
+    float f564;
+    char f568;
+    char pad569[0x578 - 0x569];
+    float f578;
+    float f57c;
+    int f580;
+    int f584;
+    int f588;
+    char pad58c[0x21d4 - 0x58c];
+    int f21d4;
+    int *f21d8;
+    int f21dc;
+    int f21e0;
+    int func_0014CC60(const char *name, int *out);
+    void func_0014E630(S_0014ECD0_Obj *o);
+    void func_0014D360(int a, int b);
+    int func_0013F690(void);
+    C_0014ECD0 *func_0014ECD0(int a0, char *name, int a2, int a3, int a4, float f5, float f6, int a7);
+};
+
+extern S_0014ECD0_G *D_002F07E8;
+extern S_0014ECD0_Files *D_002BEAAC;
+extern S_0014ECD0_Class *D_002AAEC8;
+extern S_0014ECD0_Cfg *D_002BF250;
+extern char D_00286A94[], D_00286A88[], D_00282A9C[];
+extern float D_00286A9C, D_00286A90;
+void func_001D3F50(void);
+int func_001E8AF0(const char *s, const char *pat);
+void *func_001E8920(void *, const void *, unsigned int);
+void func_00030F30(char *dst, const char *src);
+void *func_001E8A44(unsigned int);
+int func_0013F650(void);
+int func_0013F7B0(void);
 extern "C" void func_001E8390(void*);
 extern "C" void* func_001E8AA5(int);
 
