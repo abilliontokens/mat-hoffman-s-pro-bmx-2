@@ -328,6 +328,8 @@ struct S_002A8490 {
 };
 extern S_002A8490 *D_002A8490;
 
+static __forceinline S_00059F50_Ctl *Ctl_00059CC0(void) { return D_002A8490->f2E0->f2FC; }
+
 struct Rect_0005A020 {
     int x, y, w, h;
     float minZ, maxZ;
@@ -694,6 +696,7 @@ int BmxGame::func_00059CC0() {
  ((S_00059F50_Obj*)f2A4)->v2();
  f2A4=0;
  D_002BEAAC->func_0013CA50();
+ return 1;
  }
  return 1;
 }
