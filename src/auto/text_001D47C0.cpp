@@ -250,7 +250,6 @@ struct C_001D48E0 : C_001D48E0Base {
     V4_001D48E0 v74;
     int f84, f88, f8C, f90;
     int idx[300];
-    int *func_001D48E0(void);
     C_001D48E0(void);
 };
 
