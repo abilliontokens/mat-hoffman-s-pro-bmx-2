@@ -56,7 +56,7 @@ struct It163780V {
     virtual void v1();
     virtual void v2();
     virtual void v3();
-    virtual void v4(int k, int *a, int *b);
+    virtual void v4(int k, void *a, void *b);
     virtual void v5();
     virtual void v6(int n);
     virtual void v7(int n);
@@ -257,7 +257,7 @@ int __stdcall func_00162FB0(Src162FB0 *src, char *name, Pack162FB0 *pack)
     Mgr162FB0 *mgr = (Mgr162FB0 *)D_002BEAAC;
     int handle;
     int table[0x100];
-    char buf[0x400];
+    char buf[0x100];
     int found;
     int count2;
     int i;
@@ -265,7 +265,7 @@ int __stdcall func_00162FB0(Src162FB0 *src, char *name, Pack162FB0 *pack)
     handle = mgr->func_0013C9F0(name, D_00276274);
     if (handle == -1)
         return 0;
-    for (i = 0; i < 0x100; i++)
+    for (i = 0; i < 0x40; i++)
         table[i] = 0;
     found = 0;
     count2 = 0;
@@ -343,7 +343,6 @@ int __stdcall func_00163780(int name, P163780 *p)
     int mode;
     int h;
     int i, k;
-    int a, b, c, d, e;
 
     h = (int)D_002BEAAC->func_0013C9F0(name, D_00275FB4);
     if (h == -1) {
@@ -365,7 +364,7 @@ int __stdcall func_00163780(int name, P163780 *p)
     for (i = 0; i < p->countA; i++) {
         D_002BEAAC->func_0013C960(h, &p->listA[i]->count, 4);
         D_002BEAAC->func_0013C8A0(h, &p->listA[i]->unk4, 4, 1);
-        p->listA[i]->vt->v7(p->listA[i]->count);
+        ((It163780V *)p->listA[i])->v7(p->listA[i]->count);
         if (p->kindA == 0) {
             D_002BEAAC->func_0013C8A0(h, p->listA[i]->data, p->listA[i]->count << 4, 1);
         } else if (p->kindA == 1) {
@@ -375,7 +374,7 @@ int __stdcall func_00163780(int name, P163780 *p)
     for (i = 0; i < p->countB; i++) {
         D_002BEAAC->func_0013C8A0(h, &p->listB[i]->count, 4, 1);
         D_002BEAAC->func_0013C8A0(h, &p->listB[i]->unk4, 4, 1);
-        p->listB[i]->vt->v6(p->listB[i]->count);
+        ((It163780V *)p->listB[i])->v6(p->listB[i]->count);
         if (mode == 2) {
             if (p->kindB == 0) {
                 D_002BEAAC->func_0013C8A0(h, p->listB[i]->data, p->listB[i]->count << 3, 1);
@@ -383,13 +382,15 @@ int __stdcall func_00163780(int name, P163780 *p)
                 D_002BEAAC->func_0013C8A0(h, p->listB[i]->data, p->listB[i]->count * 12, 1);
             }
         } else {
+            int a, b, c, d, e;
+            int *pe = &e;
             for (k = 0; k < p->listB[i]->count; k++) {
                 D_002BEAAC->func_0013C960(h, &a, 4);
                 D_002BEAAC->func_0013C960(h, &b, 4);
                 D_002BEAAC->func_0013C960(h, &c, 4);
                 D_002BEAAC->func_0013C960(h, &d, 4);
                 D_002BEAAC->func_0013C960(h, &e, 4);
-                p->listB[i]->vt->v4(k, &a, &e);
+                ((It163780V *)p->listB[i])->v4(k, &a, &e);
             }
         }
     }
