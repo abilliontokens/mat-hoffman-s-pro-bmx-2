@@ -497,7 +497,7 @@ void func_0001E9E0(float *out, float *v)
 {
     float inv;
 
-    inv = func_0001E960(vec3_lengthSquared(v));
+    inv = func_0001E960(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
     vec3_set(out, inv * v[0], inv * v[1], inv * v[2]);
 }
 
@@ -669,4 +669,4 @@ void *C_0001EF70::func_0001EF70(unsigned int flags)
     }
     return this;
 }
-
+extern u8 D_002A0B18[];
