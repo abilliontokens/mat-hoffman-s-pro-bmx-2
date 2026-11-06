@@ -5,7 +5,6 @@ extern int D_002A8A80, D_002A8A84, D_002A8A88, D_002A8A8C;
 __declspec(align(16)) struct S_00170B60_Mat { int m[16]; };
 struct C_000264C0 { void func_000264C0(void *src); };
 struct C_00170B60 { void func_00170B60(); };
-#pragma optimize("g", off)
 struct V_00170B60 { int m[4]; __forceinline void reset() { m[0]=D_002A8A80; m[1]=D_002A8A84; m[2]=D_002A8A88; m[3]=D_002A8A8C; } };
 static inline void Copy_00170B60(int *p) {
  p[0]=D_002A8A80; p[1]=D_002A8A84; p[2]=D_002A8A88; p[3]=D_002A8A8C;
@@ -327,6 +326,157 @@ void C_001703B0::func_001703B0(void)
     if (f15c) func_00201100(f15c);
     if (f160) func_00201100(f160);
     func_00157660();
+}
+
+C_001703B0 *C_001703B0::func_001704B0(char *path, int count)
+{
+    char saved[128];
+    char buf[128];
+    u32 tbl[5];
+    func_001D3F50();
+    f124 = count;
+    {
+        void *p = func_001E8A44(0xf0);
+        f170 = p ? ((S_Obj *)p)->func_001425B0() : 0;
+    }
+    f10c = count / 2;
+    if (f10c > 0) {
+        f110 = func_001E8A44(f10c * 8);
+    }
+    D_002A88B8 = f10c;
+    for (int i = 0; i < f10c; i++) {
+        ((int *)f110)[i * 2] = 0;
+        ((int *)f110)[i * 2 + 1] = 0;
+    }
+    if (f124 > 0) {
+        f12c = func_001E8A44(f124 << 2);
+        int n = f124;
+        S_Slot_001704B0 *blk = (S_Slot_001704B0 *)func_001E8A44(n * 100);
+        if (blk) {
+            for (int k = n - 1; k >= 0; k--) {
+                blk[n - 1 - k].a = V4_0016FEE0();
+                blk[n - 1 - k].b = V4_0016FEE0();
+            }
+        }
+        f130 = blk;
+        int off = 0;
+        for (int i = 0; i < f124; i++) {
+            ((int *)f12c)[i] = (int)f130 + off;
+            off += 100;
+        }
+    }
+    func_0016F110(path);
+    {
+        int i = 0;
+        char c;
+        do {
+            c = D_002A60B0[i];
+            saved[i] = c;
+            i++;
+        } while (c != 0);
+    }
+    {
+        int i = 0;
+        char c;
+        do {
+            c = D_002A5558[i];
+            D_002A60B0[i] = c;
+            i++;
+        } while (c != 0);
+    }
+    {
+        char *s = path;
+        char *d = buf;
+        char c;
+        do {
+            c = *s;
+            *d = c;
+            s++;
+            d++;
+        } while (c != 0);
+    }
+    char *ext = func_001E8AC0(buf, '.');
+    if (ext) {
+        char *e = ext;
+        while (*e++) {
+        }
+        memset(ext, 0, e - ext - 1);
+    }
+    {
+        void *p = func_001E8A44(0x14);
+        f148 = p ? ((S_Obj *)p)->func_00144640() : 0;
+    }
+    f148->v4(buf, D_002AA46C);
+    {
+        int i = 0;
+        char c;
+        do {
+            c = saved[i];
+            D_002A60B0[i] = c;
+            i++;
+        } while (c != 0);
+    }
+    f13c = 1;
+    tbl[0] = 0x20000000;
+    tbl[1] = 0x40320000;
+    tbl[2] = 0x40220001;
+    tbl[3] = 0x40320002;
+    tbl[4] = 0xffffffff;
+    func_0014A7B0(D_002EFB80, tbl);
+    {
+        void *p = func_001E8A44(0xc);
+        f154 = p ? ((S_Obj154 *)p)->func_0014A520(D_002EFB80) : 0;
+    }
+    f154->func_0014A560(D_00288B04, 0);
+    {
+        void *p = func_001E8A44(8);
+        if (p) {
+            ((u32 *)p)[0] = (u32)&D_00288A84;
+            ((u32 *)p)[1] = 0;
+        } else {
+            p = 0;
+        }
+        f158 = (S_Obj *)p;
+    }
+    f158->f4 = this;
+    f148->f10 = f158;
+    f148->fC &= 0xfe;
+    if (f124 > 0) {
+        f15c = func_001FF3C0(f124 << 7);
+    }
+    f16c = (int)(f124 * D_002755E8);
+    if (f16c > 0) {
+        f160 = func_001FF3C0(f16c << 7);
+    }
+    f84 = 0xbf800000;
+    f88 = 0x3f800000;
+    f8c = 0;
+    lights[0].dirx = 0xbf800000;
+    lights[0].diry = 0xbf800000;
+    lights[0].dirz = 0;
+    lights[1].dirx = 0x3f800000;
+    lights[1].diry = 0x3f800000;
+    lights[1].dirz = 0;
+    lights[2].dirx = 0x3f800000;
+    lights[2].diry = 0xbf800000;
+    lights[2].dirz = 0;
+    {
+        V4_0016FEE0 q(-1.0f, 1.0f, 0.25f, 1.0f);
+        Normalize_001704B0((float *)vectors[0], &q.x);
+    }
+    {
+        V4_0016FEE0 q(-1.0f, -1.0f, 0.25f, 1.0f);
+        Normalize_001704B0((float *)vectors[1], &q.x);
+    }
+    {
+        V4_0016FEE0 q(1.0f, 1.0f, 0.25f, 1.0f);
+        Normalize_001704B0((float *)vectors[2], &q.x);
+    }
+    {
+        V4_0016FEE0 q(1.0f, -1.0f, 0.25f, 1.0f);
+        Normalize_001704B0((float *)vectors[3], &q.x);
+    }
+    return this;
 }
 
 void *C_00170AD0::func_00170AD0(unsigned int flags)
