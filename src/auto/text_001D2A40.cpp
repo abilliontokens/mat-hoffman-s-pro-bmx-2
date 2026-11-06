@@ -269,7 +269,7 @@ struct C_001D3690 {
     void func_001D3800();
 };
 
-extern float D_0028F26C;
+extern const float D_0028F26C;
 extern const float D_002779FC;
 extern char D_0028F45C;
 void *__cdecl func_001E8A44(unsigned int);
