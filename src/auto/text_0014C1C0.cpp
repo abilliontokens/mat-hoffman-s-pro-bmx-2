@@ -206,7 +206,7 @@ struct C_0014C720 {
     char pad200[8];
     void *f208;
     int func_0014C890(int);
-    void func_0014C720();
+    C_0014C720 *func_0014C720();
     void func_0014C7D0();
     f32 func_0014C830(char param);
     f32 func_0014C860(char param);
@@ -300,7 +300,7 @@ void *C_0014C6F0::func_0014C6F0(int flags)
     return this;
 }
 
-void C_0014C720::func_0014C720()
+C_0014C720 *C_0014C720::func_0014C720()
 {
     b0 = 0;
     b80 = 0;
@@ -328,6 +328,7 @@ void C_0014C720::func_0014C720()
     f1F4 = 0;
     f1F0 = 0;
     f1F8 = 0;
+    return this;
 }
 
 void C_0014C720::func_0014C7D0()
