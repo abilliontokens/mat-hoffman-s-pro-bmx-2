@@ -58,8 +58,6 @@ struct S_Heap {
 };
 
 /* the import slots themselves: the original calls through the IAT entry */
-extern "C" __declspec(dllimport) long (__stdcall *NtAllocateVirtualMemory)(void **base, u32 zeroBits, u32 *size, u32 type, u32 protect);
-extern "C" __declspec(dllimport) long (__stdcall *NtFreeVirtualMemory)(void **base, u32 *size, u32 type);
 extern "C" long (__stdcall *_imp__NtAllocateVirtualMemory)(void **base, u32 zeroBits, u32 *size, u32 type, u32 protect);
 extern "C" long (__stdcall *_imp__NtFreeVirtualMemory)(void **base, u32 *size, u32 type);
 
@@ -757,7 +755,7 @@ S_FreeNode * __stdcall func_001DF626(S_Heap *heap)
     char *end;
     u32 reserve;
     u32 size;
-    void *base;
+    u32 base;
     S_FreeNode **list;
 
     list = &heap->pool->freeNodes;
@@ -765,18 +763,21 @@ S_FreeNode * __stdcall func_001DF626(S_Heap *heap)
         blk = *(S_FreeNode **)((char *)heap->pool + 0x48);
         if (blk != 0 && blk->size != blk->addr) {
             size = 0x1000;
-            base = (char *)blk + blk->size;
-            if (NtAllocateVirtualMemory(&base, 0, &size, 0x1000, 4) < 0)
+            base = (u32)blk + blk->size;
+            if (_imp__NtAllocateVirtualMemory((void **)&base, 0, &size, 0x1000, 4) < 0)
                 return 0;
             blk->size += size;
         } else {
+            long (__stdcall *alloc)(void **, u32, u32 *, u32, u32);
+
+            alloc = _imp__NtAllocateVirtualMemory;
             reserve = (u32)D_00010000;
             blk = 0;
-            if (NtAllocateVirtualMemory((void **)&blk, 0, &reserve, 0x2000, 4) < 0)
+            if (alloc((void **)&blk, 0, &reserve, 0x2000, 4) < 0)
                 return 0;
             size = 0x1000;
-            if (NtAllocateVirtualMemory((void **)&blk, 0, &size, 0x1000, 4) < 0) {
-                NtFreeVirtualMemory((void **)&blk, &reserve, 0x8000);
+            if (alloc((void **)&blk, 0, &size, 0x1000, 4) < 0) {
+                _imp__NtFreeVirtualMemory((void **)&blk, &reserve, 0x8000);
                 return 0;
             }
             blk->next = *(S_FreeNode **)((char *)heap->pool + 0x48);
@@ -784,7 +785,7 @@ S_FreeNode * __stdcall func_001DF626(S_Heap *heap)
             blk->addr = reserve;
             blk->size = size;
         }
-        base = (char *)blk + 0x10;
+        base = (u32)blk + 0x10;
         end = (char *)blk + blk->size;
         prev = (S_FreeNode *)&heap->pool->freeNodes;
         for (p = (S_FreeNode *)base; (char *)p < end; p = (S_FreeNode *)((char *)p + 0x10)) {
