@@ -73,7 +73,7 @@ struct Label_5F3 {
     u8 f58_0 : 1;
     u8 f58_1 : 1;
     u8 f58_2 : 1;
-    void SetF28(float v) { if (v != f28) { f58_0 = 1; f28 = v; } }
+    void SetF28(float v) { if (v != f28) { f28 = v; f58_0 = 1; } }
     Label_5F3 *func_001D5760(void);
     void func_001D5810(char *font, float x, float y, int a);
     void func_001D5810(const char *font, float x, float y, int a);
