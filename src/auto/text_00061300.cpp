@@ -78,6 +78,61 @@ struct C_000619B0 {
     void func_000619F0(const char *name);
 };
 
+extern float D_00278784;
+extern float D_002A1D88, D_002A1D8C, D_002A1D90, D_002A1D98, D_002A1D9C, D_002A1DA0;
+extern float D_002A1DA8, D_002A1DAC, D_002A1DB0, D_002A1DB8, D_002A1DBC, D_002A1DC0;
+extern float D_002A1DD8, D_002A1DDC, D_002A1DE0, D_002A1DE8, D_002A1DEC, D_002A1DF0;
+extern float D_002A1DF8, D_002A1DFC, D_002A1E00, D_002A1E08, D_002A1E0C, D_002A1E10;
+
+struct C_00061B80_Obj {
+    char pad0[4];
+    float f4;
+    float f8;
+    char pad0c[0x28 - 0xc];
+    float f28;
+    float f2c;
+    char pad30[4];
+    float f34;
+    char pad38[0x58 - 0x38];
+    unsigned char flags;
+};
+
+static inline void set_00061B80(C_00061B80_Obj *o, float a, float b, float c, float k)
+{
+    c *= D_00278784;
+    if (o->f4 != a || o->f8 != b) {
+        o->f4 = a;
+        o->f8 = b;
+        o->flags |= 1;
+    }
+    if (o->f2c != c) {
+        o->f2c = c;
+        o->flags |= 1;
+    }
+    if (o->f28 != c) {
+        o->f28 = c;
+        o->flags |= 1;
+    }
+    if (o->f34 != k) {
+        o->f34 = k;
+        o->flags |= 1;
+    }
+}
+
+struct C_00061B80 {
+    char pad0[0x12c];
+    C_00061B80_Obj *o12c;
+    C_00061B80_Obj *o130;
+    C_00061B80_Obj *o134;
+    C_00061B80_Obj *o138;
+    char pad13c[0x1a4 - 0x13c];
+    C_00061B80_Obj *o1a4;
+    C_00061B80_Obj *o1a8;
+    C_00061B80_Obj *o1ac;
+    C_00061B80_Obj *o1b0;
+    void func_00061B80();
+};
+
 C_00061300 *C_00061300::func_00061300(int a0)
 {
     int i;
