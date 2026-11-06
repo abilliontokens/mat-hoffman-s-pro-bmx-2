@@ -67,6 +67,15 @@ struct Txt_779C0 {
     unsigned int f48;
     char pad4C[2];
     unsigned char b4e;
+    __forceinline void SetPos(float x, float y) { if (f4 != x || f8 != y) { f4 = x; f8 = y; b4e |= 6; } }
+    __forceinline void SetColor(unsigned int c)
+    {
+        if (f48 != c) {
+            b4e |= 8;
+            f48 = (f48 & (c | 0xff000000)) | (c & 0xffffff);
+        }
+    }
+    void func_0005E840(int);
     Txt_779C0 *func_001D5E90();
     void func_001D5FA0(int, char *, int, int);
     void func_001D6190(int, int, int *);
