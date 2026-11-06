@@ -146,8 +146,6 @@ struct LightBufs_001D7FB0 {
     char c[0x100];
 };
 
-static inline int One_001D7FB0(int) { return 1; }
-
 struct XboxVideoCard_001D7FB0 {
     char pad0[0x6D4];
     int f6D4;
