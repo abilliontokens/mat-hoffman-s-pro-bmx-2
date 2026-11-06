@@ -145,9 +145,6 @@ void *func_001ED181(const char *path, const char *mode, int shflag, int *out)
                 ok = 0;
             }
             break;
-        default:
-            ok = 0;
-            break;
         case 't':
             if ((flags & 0xc000) == 0) {
                 flags |= 0x4000;
@@ -164,13 +161,11 @@ void *func_001ED181(const char *path, const char *mode, int shflag, int *out)
             }
             break;
         case 'c':
-            if (seen[0] == 0) {
-                seen[0] = 1;
-            } else {
+            if (seen[0]) {
                 ok = 0;
-                break;
+            } else {
+                fmode |= (seen[0] = 1) << 14;
             }
-            fmode |= 0x4000;
             break;
         case 'b':
             if ((flags & 0xc000) == 0) {
@@ -178,6 +173,9 @@ void *func_001ED181(const char *path, const char *mode, int shflag, int *out)
             } else {
                 ok = 0;
             }
+            break;
+        default:
+            ok = 0;
             break;
         }
     }
@@ -193,6 +191,64 @@ void *func_001ED181(const char *path, const char *mode, int shflag, int *out)
     out[7] = 0;
     out[4] = fd;
     return out;
+}
+
+S_001ED_FILE *func_001ED2E9(void)
+{
+    void func_001EB390(int);
+    int func_001EB314(int);
+    void func_001EB138(int, S_001ED_FILE *);
+    void func_001EB18A(int, S_001ED_FILE *);
+    void *func_001E8AA5(int);
+    int func_001F44EF(void *, int);
+    void func_001E8390(void *);
+    void func_001ED402(void);
+    extern int D_002FB36C;
+    extern S_001ED_FILE **D_002FB368;
+    S_001ED_FILE *ret = 0;
+    int i;
+    func_001EB390(1);
+    __try {
+        for (i = 0; i < D_002FB36C; i++) {
+            if (D_002FB368[i] != 0) {
+                if ((D_002FB368[i]->flag & 0x83) != 0)
+                    continue;
+                if (i > 2 && i < 20) {
+                    if (!func_001EB314(i + 16)) break;
+                    func_001EB138(i, D_002FB368[i]);
+                }
+                if ((D_002FB368[i]->flag & 0x83) != 0) {
+                    func_001EB18A(i, D_002FB368[i]);
+                    continue;
+                }
+                ret = D_002FB368[i];
+                break;
+            } else {
+                D_002FB368[i] = (S_001ED_FILE *)func_001E8AA5(0x3c);
+                if (D_002FB368[i] != 0) {
+                    if (!func_001F44EF((char *)D_002FB368[i] + 0x20, 4000)) {
+                        func_001E8390(D_002FB368[i]);
+                        D_002FB368[i] = 0;
+                    } else {
+                        RtlEnterCriticalSection((char *)D_002FB368[i] + 0x20);
+                        ret = D_002FB368[i];
+                    }
+                }
+                break;
+            }
+        }
+        if (ret != 0) {
+            ret->cnt = 0;
+            ret->flag = 0;
+            ret->base = 0;
+            ret->ptr = 0;
+            *(int *)((char *)ret + 0x1c) = 0;
+            *(int *)((char *)ret + 0x10) = -1;
+        }
+    } __finally {
+        func_001ED402();
+    }
+    return ret;
 }
 
 #pragma optimize("", on)
@@ -603,3 +659,5 @@ void keep_001EDCA8(char ch, int n, char *str, S_001EDC7E *stream, int *pcnt)
     func_001EDCDB(ch, n, stream, pcnt);
     func_001EDCFF(str, n, stream, pcnt);
 }
+typedef struct { int osfhnd; char osfile; char pipech; char pad[34]; } ioinfo_633;
+#define _pioinfo_633(i) (D_002FB260[(i) >> 5] + ((i) & 0x1f))
