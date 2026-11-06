@@ -4,6 +4,8 @@
 #include <math.h>
 #include <xmmintrin.h>
 
+static __forceinline float Min_133F10(float a,float b) {float r;_mm_store_ss(&r,_mm_min_ss(_mm_load_ss(&a),_mm_load_ss(&b)));return r;}
+static __forceinline float Sqrt_133F10(float a) {float r;_mm_store_ss(&r,_mm_sqrt_ss(_mm_load_ss(&a)));return r;}
 extern float D_00275544;
 extern int D_0028464C;
 
@@ -286,6 +288,50 @@ void Mgr_00134770::func_00134530(int max, int *cnt, Ent_00134770 **list, int typ
             }
         }
     }
+}
+
+int Mgr_00134770::func_00134770(int count, Ent_00134770 **list)
+{
+    int i;
+
+    flags |= 0x10;
+    v28();
+    for (i = 0; i < count; i++) {
+        Ent_00134770 *e = list[i];
+        if (e->b2 == D_002A4330) {
+            Ent_00134770 *c = list[i] ? (Ent_00134770 *)((char *)list[i] - 0x24) : 0;
+            c->flags |= 0x10;
+            if (func_00133DF0((Coll_00133D90 *)this, (Coll_00133D90 *)c) == D_00275544) {
+                if (func_001332E0(c) != 0 && v29(c) != 0) {
+                    flags |= 0x20;
+                    if (D_002BA144) c->flags |= 0x40;
+                    if (cb9c) cb9c(this, c);
+                    if (c->cbA0) c->cbA0(c, this);
+                }
+            }
+        } else if (!(flags & 1) && e->b2 == D_002A4331) {
+            float v[4];
+            int j;
+
+            v[3] = 1.0f;
+            v[1] = 0.0f;
+            v[0] = (float)e->w8 * *(float *)(D_002BF250 + 0x578);
+            v[2] = (float)e->wC * *(float *)(D_002BF250 + 0x578);
+            if (func_00133D90((Coll_00133D90 *)this, v, e->func_0014CC20()) == D_00275544) {
+                for (j = 0; j < e->func_0014CA60(); j++) {
+                    Ent_00134770 *c = e->func_0014CA80(j);
+                    c->flags |= 0x10;
+                    if (v29(c) != 0) {
+                        flags |= 0x20;
+                        if (D_002BA144) c->flags |= 0x40;
+                        if (cb9c) cb9c(this, c);
+                        if (c->cbA0) c->cbA0(c, this);
+                    }
+                }
+            }
+        }
+    }
+    return (flags >> 5) & 1;
 }
 
 C_00134980::C_00134980()
