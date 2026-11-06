@@ -340,6 +340,41 @@ void func_0011F4B0(float *out, V4_001BC310 *pos, float *m);
 void func_00030AC0(float *out, float *v, float *m);
 void func_001BC310(S_001BC310_Ctx *a0, S_001BC310_Node *p2, S_001BC310_Pair *p3, int flag);
 
+static __forceinline void Step1_001BC310(V4_001BC310 *D, V4_001BC310 *A, V4_001BC310 *C, V4_001BC310 *B, V4Raw_001BC310 *E1, V4Raw_001BC310 *E2, float *m)
+{
+    func_0011F4B0(&D->x, A, m);
+    E1->x = C->x * m[0] + (C->z * m[8] + C->y * m[4]);
+    E1->y = C->x * m[1] + (C->z * m[9] + C->y * m[5]);
+    E1->z = C->x * m[2] + (C->z * m[10] + C->y * m[6]);
+    E2->x = B->x * m[0] + (B->z * m[8] + B->y * m[4]);
+    E2->y = B->x * m[1] + (B->z * m[9] + B->y * m[5]);
+    E2->z = B->x * m[2] + (B->z * m[10] + B->y * m[6]);
+}
+
+static __forceinline void Step2_001BC310(V4_001BC310 *A, V4_001BC310 *D, V4Raw_001BC310 *E1, V4Raw_001BC310 *E2, V4_001BC310 *F, V4_001BC310 *G, float *m)
+{
+    float t;
+    func_00030AC0(&A->x, &D->x, m);
+    t = E1->y * m[1];
+    t = t + E1->z * m[2];
+    F->x = t + E1->x * m[0];
+    t = E1->y * m[5];
+    t = t + E1->z * m[6];
+    F->y = t + E1->x * m[4];
+    t = E1->y * m[9];
+    t = t + E1->z * m[10];
+    F->z = t + E1->x * m[8];
+    t = E2->y * m[1];
+    t = t + E2->z * m[2];
+    G->x = t + E2->x * m[0];
+    t = E2->y * m[5];
+    t = t + E2->z * m[6];
+    G->y = t + E2->x * m[4];
+    t = E2->y * m[9];
+    t = t + E2->z * m[10];
+    G->z = t + E2->x * m[8];
+}
+
 struct S_001BCFE0_Item {
     virtual void v0();
     virtual void v1();
