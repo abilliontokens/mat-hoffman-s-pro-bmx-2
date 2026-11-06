@@ -45,6 +45,8 @@ struct Obj {
     void func_000951B0(int a0);
     void func_00095520(int a0);
 };
+typedef void (Obj::*ObjFn5)(void *, int, int, int, int);
+union ObjFn5U { void *p; ObjFn5 f; };
 #define VPAD4(a) virtual void a##0(); virtual void a##1(); virtual void a##2(); virtual void a##3();
 struct VGame {
     VPAD4(a) VPAD4(b) VPAD4(c) VPAD4(d) VPAD4(e) VPAD4(f) VPAD4(g) VPAD4(h)
