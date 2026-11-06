@@ -190,7 +190,7 @@ long __stdcall func_001E2124(void)
     S_IoStatusBlock_1E148B iosb;
     void *handle;
     long st;
-    long result;
+    long result = 0;
 
     oa.RootDirectory = 0;
     oa.Attributes = 0x40;
@@ -210,20 +210,20 @@ long __stdcall func_001E2124(void)
     *(u16 *)&spt.Cdb[7] = 0x1c00;
     memset(buf, 0, sizeof(buf));
 
-    i = 0;
-    result = 0;
-    for (; i < 5; i++) {
-        result = _imp__NtDeviceIoControlFile(handle, 0, 0, 0, &iosb, (u32)&D_0004D014, &spt, sizeof(spt), 0, 0);
-        if (result < 0)
+    for (i = 0; i < 5; i++) {
+        st = _imp__NtDeviceIoControlFile(handle, 0, 0, 0, &iosb, (u32)&D_0004D014, &spt, sizeof(spt), 0, 0);
+        if (st < 0)
             break;
         if (buf[0xb] != 1) {
-            result = 0xC0000014;
+            st = 0xC0000014;
             continue;
         }
         if (buf[0xa] != 0 && buf[0xc] != 0)
-            break;
-        result = 0xC0000001;
+            goto done;
+        st = 0xC0000001;
     }
+    result = st;
+done:
     _imp__NtClose(handle);
     return result;
 }
