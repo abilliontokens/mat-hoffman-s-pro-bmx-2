@@ -5,6 +5,7 @@
 #include <math.h>
 #include <string.h>
 #define VF_00162020(x) (*(volatile float *)&(x))
+struct M4_00162020 { float f[16]; };
 struct __declspec(align(16)) S_Matrix_00162330 { float m[16]; };
 static __forceinline void translate_00162330(float *s, float x, float y, float z)
 {
@@ -261,41 +262,33 @@ float func_00161F80(float param)
 void func_00162020(float *out, float *m, int transpose)
 {
  __declspec(align(16)) float t[16];
- float a = m[5]*m[10]-m[9]*m[6];
+ float a = VF_00162020(m[10])*m[5]-VF_00162020(m[9])*m[6];
  t[0]=a;
- t[4]=-(m[1]*m[10]-m[9]*m[2]);
- t[8]=m[6]*m[1]-m[5]*m[2];
- float b = m[11]*m[6]-m[7]*m[10];
- float c = m[11]*m[5]-m[9]*m[7];
+ t[4]=-(VF_00162020(m[1])*m[10]-VF_00162020(m[9])*m[2]);
+ t[8]=VF_00162020(m[6])*m[1]-VF_00162020(m[5])*m[2];
+ float b = VF_00162020(m[11])*m[6]-VF_00162020(m[7])*m[10];
+ float c = VF_00162020(m[11])*m[5]-VF_00162020(m[9])*m[7];
  t[12]=-(b*m[1]-c*m[2]+a*m[3]);
- float d = m[4]*m[10]-m[6]*m[8];
+ float d = VF_00162020(m[4])*m[10]-VF_00162020(m[6])*m[8];
  t[1]=-d;
- t[5]=m[0]*m[10]-m[8]*m[2];
- t[9]=-(m[6]*m[0]-m[4]*m[2]);
+ t[5]=VF_00162020(m[0])*m[10]-VF_00162020(m[8])*m[2];
+ t[9]=-(VF_00162020(m[6])*m[0]-VF_00162020(m[4])*m[2]);
  t[3]=0; t[7]=0; t[11]=0;
- float e = m[11]*m[4]-m[7]*m[8];
+ float e = VF_00162020(m[11])*m[4]-VF_00162020(m[7])*m[8];
  t[13]=b*m[0]-e*m[2]+d*m[3];
- float f = m[9]*m[4]-m[8]*m[5];
+ float f = VF_00162020(m[9])*m[4]-VF_00162020(m[8])*m[5];
  t[2]=f;
- t[6]=-(m[9]*m[0]-m[1]*m[8]);
- t[10]=m[0]*m[5]-m[4]*m[1];
+ t[6]=-(VF_00162020(m[9])*m[0]-VF_00162020(m[1])*m[8]);
+ t[10]=VF_00162020(m[0])*m[5]-VF_00162020(m[4])*m[1];
  t[14]=-(c*m[0]-e*m[1]+f*m[3]);
  t[15]=a*m[0]-d*m[1]+f*m[2];
  if(transpose) {
  float * volatile p=t;
  float *src=p;
- __m128 r0;
- r0 = _mm_loadl_pi(r0, (__m64*)src);
- r0 = _mm_loadh_pi(r0, (__m64*)(src+4));
- __m128 r1;
- r1 = _mm_loadl_pi(r1, (__m64*)(src+2));
- r1 = _mm_loadh_pi(r1, (__m64*)(src+6));
- __m128 r2;
- r2 = _mm_loadl_pi(r2, (__m64*)(src+8));
- r2 = _mm_loadh_pi(r2, (__m64*)(src+12));
- __m128 r3;
- r3 = _mm_loadl_pi(r3, (__m64*)(src+10));
- r3 = _mm_loadh_pi(r3, (__m64*)(src+14));
+ __m128 r0 = _mm_loadh_pi(_mm_loadl_pi(r0, (__m64*)src), (__m64*)(src+4));
+ __m128 r1 = _mm_loadh_pi(_mm_loadl_pi(r1, (__m64*)(src+2)), (__m64*)(src+6));
+ __m128 r2 = _mm_loadh_pi(_mm_loadl_pi(r2, (__m64*)(src+8)), (__m64*)(src+12));
+ __m128 r3 = _mm_loadh_pi(_mm_loadl_pi(r3, (__m64*)(src+10)), (__m64*)(src+14));
  __m128 a0=_mm_shuffle_ps(r0,r2,0x88), a1=_mm_shuffle_ps(r0,r2,0xdd), a2=_mm_shuffle_ps(r1,r3,0x88), a3=_mm_shuffle_ps(r1,r3,0xdd);
  *(__m128*)out=a0; *(__m128*)(out+4)=a1; *(__m128*)(out+8)=a2; *(__m128*)(out+12)=a3;
  } else {
