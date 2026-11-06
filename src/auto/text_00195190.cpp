@@ -50,11 +50,6 @@ struct Vec4_195D40 {
     int x, y, z, w;
 };
 
-/* by-value Vec4 built from four ints, returned through the hidden pointer */
-struct Vec4Ret_195D40 {
-    int x, y, z, w;
-    Vec4Ret_195D40(int a, int b, int c, int d) { x = a; y = b; z = c; w = d; }
-};
 
 struct Item_001955F0 {
     Vec4_195D40 a;
