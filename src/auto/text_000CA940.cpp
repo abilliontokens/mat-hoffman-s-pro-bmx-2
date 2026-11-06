@@ -272,12 +272,12 @@ void BmxUIPageGameOptions::func_000CB2D0()
     RenderEntryCB **p = arr334 + 1;
 
     do {
-        setEntryColor(p[-1], f314);
-        setEntryColor(p[0], f314);
-        setEntryColor(p[1], f314);
-        setEntryColor(p[2], f314);
-        setEntryColor(p[3], f314);
-        setEntryColor(p[4], f314);
+        for (int k = -1; k < 5; k++) {
+            RenderEntryCB *e = p[k];
+            s32 c = f314;
+            e->f38 = (c << 24) | (e->f38 & 0xffffff);
+            e->b58 |= 2;
+        }
         p += 6;
         n--;
     } while (n != 0);
