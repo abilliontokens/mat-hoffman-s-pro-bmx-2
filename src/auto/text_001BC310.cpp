@@ -308,6 +308,7 @@ struct S_001BC310_Node {
     S_001BC310_Xf *f2e4;
     char pad2e8[4];
     u8 f2ec;
+    float *M() { return f2e4->mat.m; }
 };
 
 struct S_001BC310_Pair {
