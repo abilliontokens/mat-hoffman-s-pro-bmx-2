@@ -106,7 +106,7 @@ static __forceinline float Min_0011F8E0(float a, float b)
 static __forceinline float Max_0011F8E0(float a, float b)
 {
     float r;
-    r = a > b ? a : b;
+    _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b)));
     return r;
 }
 
