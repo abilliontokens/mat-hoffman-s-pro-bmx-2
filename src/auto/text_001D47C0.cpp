@@ -260,19 +260,12 @@ struct C_001827B0 {
 
 /* the vtable store lands between the base constructor and the member constructors */
 struct C_001D48E0Base : C_001827B0 {
-    __forceinline C_001D48E0Base()
-    {
-        vtbl = (int)&D_0028F584;
-        float *p = (float *)((char *)this + 0x74);
-        p[2] = 0;
-        p[1] = 0;
-        p[0] = 0;
-        p[3] = 1.0f;
-    }
+    __forceinline C_001D48E0Base() { vtbl = (int)&D_0028F584; }
 };
 
 struct V4_001D48E0 {
     float x, y, z, w;
+    V4_001D48E0() { z = 0; y = 0; x = 0; w = 1.0f; }
 };
 
 /* XboxRenderTarget */
