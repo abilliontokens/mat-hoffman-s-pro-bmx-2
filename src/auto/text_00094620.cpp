@@ -25,6 +25,7 @@ struct S_00094620_NodeHead {
 struct S_00094620_NodeTail {
     int unk0;
     char pad4[0x20];
+    int *Self(void) { return &unk0; }
 };
 
 struct S_00094620_Node : S_00094620_NodeHead, S_00094620_NodeTail {
@@ -535,13 +536,17 @@ int *C_00094760::func_00094810(int node)
 
 int C_00094840::func_00094840(void)
 {
-    int node = unk34;
     S_00094A00_Obj *path = unk50;
+    int i = unk34;
+    S_00094620_Node *n = 0;
 
-    if (node >= path->unkA8 || node < 0) {
-        return 0;
+    if (i < path->unkA8 && i >= 0) {
+        n = &path->unk34[i];
     }
-    return node * 0x44 + (int)path->unk34 + 0x20;
+    if (n != 0) {
+        return (int)&n->unk0;
+    }
+    return 0;
 }
 
 int C_00094840::func_00094870(void)
