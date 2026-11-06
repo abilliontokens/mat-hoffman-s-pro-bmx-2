@@ -17,6 +17,10 @@ struct S_00122810_V4 {
 struct S_00122810_V3 {
     float x, y, z, w;
     S_00122810_V3() { z = 0; y = 0; x = 0; }
+    S_00122810_V3(float a, float b, float c) { x = a; y = b; z = c; }
+    S_00122810_V3 operator+(const S_00122810_V3 &o) const { return S_00122810_V3(x + o.x, y + o.y, z + o.z); }
+    S_00122810_V3 operator-(const S_00122810_V3 &o) const { return S_00122810_V3(x - o.x, y - o.y, z - o.z); }
+    S_00122810_V3 operator*(float s) const { return S_00122810_V3(x * s, y * s, z * s); }
 };
 struct S_00122810_Box {
     S_00122810_V4 min;
@@ -55,3 +59,37 @@ int func_00122730(float *p1, float r1, float *m1, float *p2, float r2, float *m2
     float dz = q2[2] - q1[2];
     return dx * dx + dy * dy + dz * dz <= sum * sum ? 1 : 0;
 }
+
+int func_00122810(float *p, float *half, S_00122810_Box *box, float eps, float unused, float *m)
+{
+    S_00122810_V3 a;
+    S_00122810_V3 b;
+    float cx, cy, cz;
+    float hx, hy, hz;
+
+    func_0011F540(&a, box->min, m);
+    func_0011F540(&b, box->max, m);
+    a.x -= p[0];
+    a.y -= p[1];
+    a.z -= p[2];
+    b.x -= p[0];
+    b.y -= p[1];
+    b.z -= p[2];
+    cx = (b.x + a.x) * D_002755E8;
+    cy = (b.y + a.y) * D_002755E8;
+    cz = (b.z + a.z) * D_002755E8;
+    hx = cx - a.x;
+    hy = cy - a.y;
+    hz = cz - a.z;
+    if (Fabs_00122810(hx) + half[0] + eps < Fabs_00122810(cx)) {
+        return 0;
+    }
+    if (Fabs_00122810(hy) + half[1] + eps < Fabs_00122810(cy)) {
+        return 0;
+    }
+    if (Fabs_00122810(hz) + half[2] + eps < Fabs_00122810(cz)) {
+        return 0;
+    }
+    return 1;
+}
+
