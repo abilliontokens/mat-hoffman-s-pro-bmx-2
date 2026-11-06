@@ -536,14 +536,16 @@ int *C_00094760::func_00094810(int node)
 
 int C_00094840::func_00094840(void)
 {
+    int node = unk34;
     S_00094A00_Obj *path = unk50;
-    int i = unk34;
     S_00094620_Node *n = 0;
+    int ok = 0;
 
-    if (i < path->unkA8 && i >= 0) {
-        n = &path->unk34[i];
+    if (node < path->unkA8 && node >= 0) {
+        n = &path->unk34[node];
+        ok = 1;
     }
-    if (n != 0) {
+    if (ok) {
         return (int)&n->unk0;
     }
     return 0;
