@@ -133,6 +133,7 @@ struct C_001C2210 {
     u32 unk30;
     u32 unk34;
     void func_001C2210();
+    __forceinline bool IsLinked() { return unk30 != 0 && unk34 != 0; }
 };
 
 struct C_001C21F0 {
