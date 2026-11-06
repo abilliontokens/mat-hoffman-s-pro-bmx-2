@@ -107,7 +107,7 @@ struct W_Widget {
     float f4c;
     float f50;
     float f54;
-    unsigned char flags;
+    unsigned char flags : 8;
     char pad59[3];
     void *f5c;
     void *f60;
@@ -403,7 +403,7 @@ C_00089290 *C_00089290::func_00089290(void)
     for (n = 0x15; n <= 0x19; n++) {
         o = (W_Widget *)func_001E8A44(0x64);
         *slot = o ? o->func_001D5760() : 0;
-        (*slot)->func_001D5810(D_00279AC4, 366.0f, (float)(n - 0x15) * D_00278650, 0);
+        (*slot)->func_001D5810(D_00278658, 366.0f, (float)(n - 0x15) * D_00278650, 0);
         (*slot)->flags |= 4;
         (*slot)->f3c = 0.0f;
         (*slot)->f40 = 1.0f;
@@ -451,14 +451,14 @@ C_00089290 *C_00089290::func_00089290(void)
         w24->flags |= 6;
     }
     if (w24->f48 != 0xffcccccc) {
-        w24->f48 = (w24->f48 & 0xffcccccc) | 0xcccccc;
         w24->flags |= 8;
+        w24->f48 = (w24->f48 & 0xffcccccc) | 0xcccccc;
     }
     if (w24->f44 != D_0028F5DC) {
         w24->f44 = D_0028F5DC;
         w24->flags |= 6;
     }
-    if (w24->f3c != 5.9f) { w24->f3c = 5.9f; w24->flags |= 4; }
+    if (w24->f3c != 5.9f) { w24->flags |= 4; w24->f3c = 5.9f; }
 
     l = (W_Label *)func_001E8A44(0x60);
     w28 = l ? l->func_001D5E90() : 0;
@@ -469,14 +469,14 @@ C_00089290 *C_00089290::func_00089290(void)
         w28->flags |= 6;
     }
     if (w28->f48 != 0xffbfa35a) {
-        w28->f48 = (w28->f48 & 0xffbfa35a) | 0xbfa35a;
         w28->flags |= 8;
+        w28->f48 = (w28->f48 & 0xffbfa35a) | 0xbfa35a;
     }
     if (w28->f44 != D_0028F5DC) {
         w28->f44 = D_0028F5DC;
         w28->flags |= 6;
     }
-    if (w28->f3c != 5.9f) { w28->f3c = 5.9f; w28->flags |= 4; }
+    if (w28->f3c != 5.9f) { w28->flags |= 4; w28->f3c = 5.9f; }
 
     l = (W_Label *)func_001E8A44(0x60);
     w2c = l ? l->func_001D5E90() : 0;
@@ -487,14 +487,14 @@ C_00089290 *C_00089290::func_00089290(void)
         w2c->flags |= 6;
     }
     if (w2c->f48 != 0xffcccccc) {
-        w2c->f48 = (w2c->f48 & 0xffcccccc) | 0xcccccc;
         w2c->flags |= 8;
+        w2c->f48 = (w2c->f48 & 0xffcccccc) | 0xcccccc;
     }
     if (w2c->f44 != D_0028F5DC) {
         w2c->f44 = D_0028F5DC;
         w2c->flags |= 6;
     }
-    if (w2c->f3c != 5.9f) { w2c->f3c = 5.9f; w2c->flags |= 4; }
+    if (w2c->f3c != 5.9f) { w2c->flags |= 4; w2c->f3c = 5.9f; }
 
     l = (W_Label *)func_001E8A44(0x60);
     w30 = l ? l->func_001D5E90() : 0;
@@ -505,14 +505,14 @@ C_00089290 *C_00089290::func_00089290(void)
         w30->flags |= 6;
     }
     if (w30->f48 != 0xffbfa35a) {
-        w30->f48 = (w30->f48 & 0xffbfa35a) | 0xbfa35a;
         w30->flags |= 8;
+        w30->f48 = (w30->f48 & 0xffbfa35a) | 0xbfa35a;
     }
     if (w30->f44 != D_0028F5DC) {
         w30->f44 = D_0028F5DC;
         w30->flags |= 6;
     }
-    if (w30->f3c != 5.9f) { w30->f3c = 5.9f; w30->flags |= 4; }
+    if (w30->f3c != 5.9f) { w30->flags |= 4; w30->f3c = 5.9f; }
 
     return this;
 }
