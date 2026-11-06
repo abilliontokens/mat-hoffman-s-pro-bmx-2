@@ -9,7 +9,11 @@ struct Water : WaterBase {
     void *vtbl; char pad0[0x28]; Entry *entries; char pad1[8]; int count; Obj *obj3c; char pad2[0x14]; Obj **list54; int h58[4]; int n68; char pad4[0x64]; Obj **arrd0; char pad5[0x34]; void *p108; char pad6[0x114]; Obj *p220;
     ~Water();
 };
-struct Vec4W { float x; float y; float z; float w; };
+struct Vec4W {
+    float x; float y; float z; float w;
+    Vec4W operator-(const Vec4W &b) const { Vec4W r; r.x = x - b.x; r.y = y - b.y; r.z = z - b.z; r.w = 1.0f; return r; }
+    Vec4W operator+(const Vec4W &b) const { Vec4W r; r.x = x + b.x; r.y = y + b.y; r.z = z + b.z; r.w = 1.0f; return r; }
+};
 inline Vec4W operator-(const Vec4W &a, const Vec4W &b) { Vec4W r; r.x = a.x - b.x; r.y = a.y - b.y; r.z = a.z - b.z; r.w = 1.0f; return r; }
 inline Vec4W operator+(const Vec4W &a, const Vec4W &b) { Vec4W r; r.x = a.x + b.x; r.y = a.y + b.y; r.z = a.z + b.z; r.w = 1.0f; return r; }
 struct __declspec(align(16)) MatW { float m[16]; };
