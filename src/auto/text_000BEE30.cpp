@@ -94,9 +94,10 @@ struct BmxUIPageGlobal {
 
 struct ElemA_BEE {
     char pad0[4]; float x; float y;
-    char padC[0x28 - 0xC]; float f28; float f2C;
+    char padC[0x24 - 0xC]; float f24; float f28; float f2C;
     char pad30[0x3C - 0x30]; float f3C; float f40; float f44; float f48; float f4C; float f50;
-    char pad54[4]; unsigned char f58;
+    int f54; unsigned char f58;
+    void SetF24() { if (f24 != 0.65f) { if (f54 == 0) { f24 = 0.65f; } else { f24 = 0.325f; f58 |= 1; } } }
     ElemA_BEE *func_001D5760();
     void func_001D5810(char *name, float a, float b, float c);
     void SetXY58(float nx, float ny) { if (nx != x || y != ny) { x = nx; y = ny; f58 |= 1; } }
@@ -244,6 +245,27 @@ void C_BEE30::func_000BEE30(void)
     a68[0] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
     a68[0]->func_001D5810(D_00278624, 0.0f, 0.0f, 0.0f);
     a68[0]->SetXY58(491.0f, 386.0f);
+    mem = func_001E8A44(0x64);
+    a50[1] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
+    a50[1]->func_001D5810(D_00278638, 0.0f, 0.0f, 0.0f);
+    a50[1]->SetXY58(491.0f, 386.0f);
+    mem = func_001E8A44(0x64);
+    a68[1] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
+    a68[1]->func_001D5810(D_00278608, 0.0f, 0.0f, 0.0f);
+    a68[1]->SetXY58(491.0f, 386.0f);
+    mem = func_001E8A44(0x64);
+    a50[2] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
+    a50[2]->func_001D5810(D_00279008, 0.0f, 0.0f, 0.0f);
+    a50[2]->SetXY58(491.0f, 386.0f);
+    mem = func_001E8A44(0x64);
+    a68[2] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
+    a68[2]->func_001D5810(D_00278FF0, 0.0f, 0.0f, 0.0f);
+    a68[2]->SetXY58(491.0f, 386.0f);
+    mem = func_001E8A44(0x64);
+    a50[3] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
+    a50[3]->func_001D5810(D_00279C28, 0.0f, 0.0f, 0.0f);
+    a50[3]->SetXY58(491.0f, 386.0f);
+    (void)v0;
 }
 
 void C_000BF860::func_000BF860(int idx, int x, int y, int w)
