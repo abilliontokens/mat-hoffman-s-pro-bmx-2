@@ -63,8 +63,6 @@ static inline int und_strncmp(const char *first, const char *last, unsigned int 
     return *(unsigned char *)first - *(unsigned char *)last;
 }
 
-static inline void CopyName(S_001EF734 *src, S_001EF734 *dst) { dst->func_001EEEE6(src); }
-
 #pragma optimize("t", off)
 extern char D_00295CE8[];
 S_001EF734 *func_001F1DF5(S_001EF734 *);
