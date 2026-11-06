@@ -64,6 +64,7 @@ struct S_002B91AC {
     C_000EBB_Elem *unk8C;
     C_000EBB_Elem *unk90;
     C_000EBB_Elem *unk94;
+    void func_000BF860(int a0, int a1, int a2, int a3);
 };
 
 struct S_000EBB_Svc { int func_000301D0(); };
