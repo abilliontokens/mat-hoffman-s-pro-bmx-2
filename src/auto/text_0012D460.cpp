@@ -1,5 +1,6 @@
 /* 2 functions from 0x0012D460 to 0x0012E380, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 #include <xmmintrin.h>
 struct S_0012D460 { int pad0; int pad4; int f8; int fC; int f10; float f14; S_0012D460* func_0012D460(); };
 
@@ -75,6 +76,15 @@ struct C_0012D620 {
     int func_00171230(float dt);
     int func_0012D620(float dt);
 };
+
+S_0012D460 *S_0012D460::func_0012D460()
+{
+    f10 = 0;
+    fC = 0;
+    f8 = 0;
+    f14 = 1.0f;
+    return this;
+}
 
 int C_0012D620::func_0012D620(float dt)
 {
