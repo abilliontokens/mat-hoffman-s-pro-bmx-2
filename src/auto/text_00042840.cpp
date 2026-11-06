@@ -19,6 +19,7 @@ struct MidD {
     void func_00164820(int a);
     void func_001670C0(int a, int b, int c);
     void func_00132D20();
+    void func_00194F10(V4 *out);
 };
 
 struct Mid2D {
