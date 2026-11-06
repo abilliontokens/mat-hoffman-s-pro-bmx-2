@@ -77,7 +77,6 @@ struct C_00032E50 {
     V4_00032E50 f210;
     char pad220[0x10];
     float f230;
-    void func_00032E50(float a, float b, float c, float d);
     void func_00032E50(V4_00032E50 v);
 };
 
