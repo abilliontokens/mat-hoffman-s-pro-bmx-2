@@ -17,6 +17,14 @@ static __forceinline V_000551B0 vec_000551B0(void)
 }
 extern int D_002BA160, D_002B9118, D_002B9108, D_002B9114, D_002B9110, D_002B910C;
 
+static __forceinline void setV_000551B0(V_000551B0 *d)
+{
+    d->x = D_002A1A64;
+    d->y = D_002A1A68;
+    d->z = D_002A1A6C;
+    d->w = D_002A1A70;
+}
+
 struct S_00054430_V4 {
     float x, y, z, w;
     S_00054430_V4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
@@ -233,8 +241,8 @@ void C_000549F0::func_000549F0(float dt)
             }
         }
     } else {
-        V549 v0;
         V549 v1;
+        V549 v0;
         V549 tmp;
         func_00054680();
         edi = 1;
@@ -265,41 +273,49 @@ void C_000549F0::func_000549F0(float dt)
             float dx = v1.x - v0.x;
             float dy = v1.y - v0.y;
             float dz = v1.z - v0.z;
-            float dist = sqrtf(dx * dx + dy * dy + dz * dz);
+            float sum = dx * dx + dy * dy + dz * dz;
+            float dist = sqrtf(sum);
             if (dist <= f2e0 && f2cc <= D_00275544) {
                 f2c4 = (f2c4 == 0);
                 f2cc = f2e4;
             } else {
                 if (f2cc > D_00275544) {
                     f2cc -= dt;
-                    if (f2cc < D_00275544) {
+                    if (f2cc <= D_00275544) {
                         f2cc = 0.0f;
                     }
                 }
             }
         }
         for (i = 0; i < f90; i++) {
-            Item549 *item = f64->f4e0->items[i];
             if (i == f2c4) {
-                item->fa3c = 0;
+                f64->f4e0->items[i]->fa3c = 0;
             } else {
-                item->fa3c = 1;
-                int r = D_002A8490->f2a4->arr[i]->func_000831C0();
-                f64->f4e0->items[f2c4]->func_001092D0(r ? 0.5f : 1.0f);
-                item->func_001092D0(1.0f);
+                f64->f4e0->items[i]->fa3c = 1;
+                if (D_002A8490->f2a4->arr[i]->func_000831C0()) {
+                    f64->f4e0->items[f2c4]->func_001092D0(0.5f);
+                } else {
+                    f64->f4e0->items[f2c4]->func_001092D0(1.0f);
+                }
+                f64->f4e0->items[i]->func_001092D0(1.0f);
                 f284[i]->func_0008BB50(f2c4);
             }
         }
         {
-            Obj983549 *o = f64->f4e0->items[f2c4]->fa00->f4;
-            void *obj = o->func_00198330(&D_00277CA4);
-            Obj983549 *os = (Obj983549 *)obj;
+            Obj983549 *o;
+            void *obj;
+            Obj983549 *os;
+            V549 *ret;
+            f64->f484->func_0001B3C0(&D_00277C9C);
+            o = f64->f4e0->items[f2c4]->fa00->f4;
+            obj = o->func_00198330(&D_00277CA4);
+            os = (Obj983549 *)obj;
             tmp = D_002A1988;
             os->func_00197E70(&tmp);
-            V549 *ret = os->func_00197F70(&v0, &tmp);
+            ret = os->func_00197F70(&v0, &tmp);
             tmp = *ret;
-            bx->f1a4arr[1]->func_00199600(*ret);
-            bx->f1a4arr[1]->func_0019AC50();
+            ((BxSub549 *)bx->f1a4arr[0])->f4->func_00199600(*ret);
+            ((BxSub549 *)bx->f1a4arr[0])->f4->func_0019AC50();
         }
     }
     if (f190) {
@@ -333,6 +349,7 @@ void C_000549F0::func_000549F0(float dt)
             f190->func_000684B0();
         }
     }
+    func_00054210(dt);
     func_00031260(dt);
 }
 
