@@ -280,7 +280,7 @@ struct V4_001D48E0 {
 struct C_001D48E0 : C_001D48E0Base {
     volatile int f54, f58, f5C, f60, f64, f68, f6C, f70;
     V4_001D48E0 v74;
-    int f84, f88, f8C, f90;
+    volatile int f84, f88, f8C, f90;
     int idx[300];
     C_001D48E0(void);
 };
