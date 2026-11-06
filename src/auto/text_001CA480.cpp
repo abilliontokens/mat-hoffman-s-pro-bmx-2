@@ -84,6 +84,8 @@ struct XboxSndIf_1CB290 {
     void func_001CB2D0(void);
 };
 
+static __forceinline void CallV4_1CB290(SndBank_1CB290 *p) { p->v4(); }
+
 struct C_001CB130 {
     void *vtbl;
     int unk4;
@@ -464,7 +466,7 @@ void XboxSndIf_1CB290::func_001CB290(void)
     p = (SndBank_1CB290 *)func_001E8A44(0x20);
     p = p != 0 ? p->func_001AC3A0() : 0;
     f13C = p;
-    p->v4();
+    return p->v4();
 }
 
 void XboxSndIf_1CB290::func_001CB2D0(void)
