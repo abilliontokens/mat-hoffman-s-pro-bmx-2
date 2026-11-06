@@ -99,6 +99,7 @@ struct C_00107070 {
     void func_00107070(float dt);
 };
 static inline float abs_106B20(float v) { volatile int bits = *(int *)&v & 0x7fffffff; return *(volatile float *)&bits; }
+static inline float absp_106B20(float *v) { int bits = *(int *)v & 0x7fffffff; return *(float *)&bits; }
 struct Vec_106B20 { int x,y,z,w; };
 struct Obj_106B20 {
  char pad0[0x1cc]; unsigned char flags;
@@ -214,6 +215,9 @@ void C_00106B20::func_00106B20() {
     C_00106B20 *q;
     int active;
     float amount;
+    union { int i; float f; } t;
+    float ratio;
+    float rate;
     if (D_002A8490->f2a4->f1c8 == 0) {
         flags &= ~2;
         q = self;
@@ -241,13 +245,15 @@ void C_00106B20::func_00106B20() {
     q->f7d8->func_0011CA60(*(Vec_106B20 *)(q->f1e8 + 0x130));
     q = self;
     if (*(int *)(q->f1e8 + 0x54) == 1 && active) {
-        float strength = abs_106B20(q->f744 / *(float *)(q->f1ec + 0x3c)) * amount;
-        float rate = .1f;
+        ratio = q->f744 / *(float *)(q->f1ec + 0x3c);
+        t.i = *(int *)&ratio & 0x7fffffff;
+        t.f = t.f * amount;
+        rate = .1f;
         q = self;
         if (q->f1598 || *(int *)(*(char **)((char *)D_002A8490 + 0x2e0) + 0x190 + q->fa28 * 4) == 12) {
             rate = .3f;
         }
-        q->f1230->func_001B3E70(q->f1e8 + 0x130, q->f1e8 + 0x190, rate, 1.0f, strength);
+        q->f1230->func_001B3E70(q->f1e8 + 0x130, q->f1e8 + 0x190, rate, 1.0f, t.f);
         if (D_002A8490->f2a4->f1c8 == 0) {
             q = self;
             q->flags |= 4;
@@ -264,7 +270,7 @@ void C_00106B20::func_00106B20() {
         } else if (!valid) {
             return;
         }
-        q->f7d8->func_0009DF90(strength);
+        q->f7d8->func_0009DF90(t.f);
         q = self;
         if (q->f1598) {
             q->f1598->func_0011CA60(*(Vec_106B20 *)(q->f1e8 + 0x130));
@@ -325,3 +331,68 @@ void C_00106E30::func_00106E30(void)
         f1240->func_001B4970();
     }
 }
+
+void C_00107070::func_00107070(float dt)
+{
+    struct { S_107070_Vec b; S_107070_Vec a; } l;
+    int r;
+    int on;
+    int on2;
+    float t;
+    float v;
+
+    l.b.z = 0.0f; l.b.y = 0.0f; l.b.x = 0.0f; l.b.w = 1.0f;
+    l.a.z = 0.0f; l.a.y = 0.0f; l.a.x = 0.0f; l.a.w = 1.0f;
+    fa04->f4->func_001994C0(0, &l.b, &l.a);
+    on = 0;
+    on2 = 0;
+    if (f1178) {
+        if (f99c > D_00275544) {
+            on = 1;
+        } else {
+            if (f1640 > D_00275544) {
+                if (f1640 < D_00276288) {
+                    on = 1;
+                    on2 = on;
+                }
+                f1640 -= dt;
+            } else {
+                r = func_00011260(0x1e, 0x46);
+                f1640 = (float)r * D_002756DC;
+            }
+        }
+    }
+    if (!(l.b.y > D_002755E8) && on) {
+        if (f1fa0 < D_00275460) f1fa0 += dt;
+        if (f1fa0 > D_00275460) f1fa0 = 1.0f;
+        if (*(float *)&f1648 == D_00275544 && !on2) f1648 = 0x3f666666;
+    } else {
+        if (f1fa0 > D_00275544) {
+            if (f1178) f1fa0 -= dt;
+            else f1fa0 -= 2.0f * dt;
+            if (f1fa0 < D_00275544) f1fa0 = 0.0f;
+        }
+        if (f1648 == 0x3f666666) f1648 = 0;
+    }
+    if (f1fa0 > D_00275544) {
+        if (l.b.y * f74c + l.b.x * f748 + l.b.z * f750 > D_00275544) {
+            t = f744 * f1654 * dt;
+            if (t > D_00282A70) t = D_00282A70;
+            v = t * f1fa0 + f163c;
+            f163c = v;
+            if (v > D_00275460) f163c = v - D_00275460;
+        }
+    }
+    if (f1644 > *(float *)&f1648) {
+        f1644 -= dt;
+        if (f1644 < *(float *)&f1648) f1644 = *(float *)&f1648;
+    } else {
+        if (f1648 == 0x3f666666) f1644 += dt * D_00276DD4;
+        else f1644 += dt * D_002755E8;
+        if (f1644 > *(float *)&f1648) {
+            f1644 = *(float *)&f1648;
+            if (f1648 == 0x3f666666) f1648 = 0;
+        }
+    }
+}
+
