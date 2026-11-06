@@ -22,6 +22,24 @@ struct S_00176250_Pal {
   int func_00135400(void);
 };
 
+/* dither row buffers: two rows of width*(B,G,R) accumulators in 8.19 fixed point */
+extern int D_002EFD18;
+extern int *D_002EFD1C[2];
+
+/* constant masks the original kept as globals (memory-operand AND/CMP/ADD) */
+extern int D_0007FFFF;
+extern int D_00040000;
+extern int D_00080000;
+extern int D_0000FFE0;
+extern int D_0000F81F;
+extern int D_0000FC1F;
+
+int func_001B2910(int);
+extern "C" void __fastcall func_001751A0(u8 *src, int count);
+extern "C" void __fastcall func_001751D0(u16 *src, int count);
+extern "C" void __fastcall func_00175210(u16 *src, int count);
+extern "C" int abs(int);
+
 u32 func_00176250(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, S_00176250_Pal *pal)
 {
   u8 *srow = src;
