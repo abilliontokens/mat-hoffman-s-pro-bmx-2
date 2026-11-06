@@ -847,19 +847,3 @@ void BmxEvent_00030A30::func_000317B0(int flag)
     }
 }
 
-void C_00031840::func_00031840(void)
-{
-    void *m = func_001E8A44(0x19c);
-    C_0009A290 *obj = m ? ((C_0009A290 *)m)->func_0009A290(this, f64 + 0x134, 0) : 0;
-
-    f1C0 = obj;
-    C_0009A290 *chk = f1C0;
-    if (obj->f194 != 0) {
-        if (chk) {
-            chk->func_0009C770();
-        }
-        func_001E891B(obj);
-        f1C0 = 0;
-    }
-}
-
