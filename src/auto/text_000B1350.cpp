@@ -328,6 +328,7 @@ struct C_000B1350 {
     void func_000B1350(void);
 };
 
+int func_001E8858(float f);
 void C_000B1350::func_000B1350(void)
 {
     int n;
@@ -398,8 +399,8 @@ void C_000B1350::func_000B1350(void)
         for (k = 0; k < f44[i]->f4C; k++) {
             S_000B1350_Sub *s = f44[i]->f48[k];
             int cur = (int)s->f4;
-            if (f4C[s->f0]->f4 > 0) {
-                S_000B1350_Node *node = f4C[s->f0];
+            S_000B1350_Node *node = f4C[s->f0];
+            if (node->f4 > 0) {
                 float t = s->f4 - (float)cur;
                 S_000B1350_Tbl *tbl = node->fC[0]->f3C->f518;
                 unsigned int next = cur + 1;
@@ -452,6 +453,56 @@ int func_000B1740(VehicleAI *ai, S_000B1740_Panel *panel)
         panel->f18->fC = (float)ai->f50;
     }
     return 0;
+}
+
+C_000B1860 *C_000B1860::func_000B1860(void)
+{
+    C_000B1860 * volatile self = this;
+    u32 *v = self->fC;
+    v[2] = 0; v[1] = 0; v[0] = 0; v[3] = 0x3f800000;
+    v = self->f1C;
+    v[2] = 0; v[1] = 0; v[0] = 0; v[3] = 0x3f800000;
+    v = self->f2C;
+    v[2] = 0; v[1] = 0; v[0] = 0; v[3] = 0x3f800000;
+    {
+        volatile int limit = sizeof(f3C) - 1;
+        int l = limit;
+        volatile int count = l > 4 ? 4 : l;
+        int n = count;
+        func_001E8920(self->f3C, (const char *)&D_002764F0, n);
+        self->f3C[n] = 0;
+    }
+    {
+        volatile int limit = sizeof(f140) - 1;
+        int l = limit;
+        volatile int count = l > 4 ? 4 : l;
+        int n = count;
+        func_001E8920(self->f140, (const char *)&D_002764F0, n);
+        self->f140[n] = 0;
+    }
+    {
+        volatile int limit = sizeof(f244) - 1;
+        int l = limit;
+        volatile int count = l > 4 ? 4 : l;
+        int n = count;
+        func_001E8920(self->f244, (const char *)&D_002764F0, n);
+        self->f244[n] = 0;
+    }
+    {
+        volatile int limit = 0x3b;
+        int l = limit;
+        volatile int count = l > 6 ? 6 : l;
+        int n = count;
+        func_001E8920(self->f348, (const char *)&D_0027CED0, n);
+        self->f348[n] = 0;
+    }
+    *(VehicleV4 *)self->fC = *(VehicleV4 *)&D_002A2DC4;
+    *(VehicleV4 *)self->f1C = *(VehicleV4 *)&D_002A2DF4;
+    *(VehicleV4 *)self->f2C = *(VehicleV4 *)&D_002A2DE4;
+    self->f0 = 1;
+    self->f4 = 0;
+    self->f8 = 0;
+    return self;
 }
 
 #pragma optimize("g", on)
