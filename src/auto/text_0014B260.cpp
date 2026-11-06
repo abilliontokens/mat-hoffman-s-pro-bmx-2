@@ -126,7 +126,6 @@ struct V4_0014B940 {
     f32 x; f32 y; f32 z; f32 w;
     V4_0014B940() { z = 0; y = 0; x = 0; w = 1.0f; }
     V4_0014B940(f32 x_, f32 y_, f32 z_, f32 w_) { x = x_; y = y_; z = z_; w = w_; }
-    V4_0014B940 &operator=(const V4_0014B940 &o) { x = o.x; y = o.y; z = o.z; w = o.w; return *this; }
     V4_0014B940 ScaleAdd(f32 s, const V4_0014B940 &d) const
     {
         return V4_0014B940(x + s * d.x, y + s * d.y, z + s * d.z, 1.0f);
