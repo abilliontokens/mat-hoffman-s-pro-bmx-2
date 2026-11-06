@@ -22,6 +22,13 @@ static __forceinline V4_001225C0 sub_001225C0(const V4_001225C0 *a, const V4_001
     t.z = a->z - b->z;
     return t;
 }
+static __forceinline V4_001225C0 &subs_001225C0(V4_001225C0 &a, float f)
+{
+    a.x -= f;
+    a.y -= f;
+    a.z -= f;
+    return a;
+}
 extern "C" void func_0011F4B0(float *out, V4_001225C0 *pos, float *m);
 
 static __forceinline void xform_00122090(float *out, const float *in, const float *m)
