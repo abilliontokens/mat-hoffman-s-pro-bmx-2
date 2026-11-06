@@ -95,9 +95,12 @@ struct C_001703B0 {
     void *f15c;
     void *f160;
     int f164, f168;
-    char pad16c[4];
+    int f16c;
     S_Obj *f170;
     void func_0016FEE0(void);
+    void func_001D3F50(void);
+    void func_0016F110(char *path);
+    C_001703B0 *func_001704B0(char *path, int count);
     void func_00157660(void);
     void func_00157600(int a);
     C_001703B0 *func_001702B0(int a);
