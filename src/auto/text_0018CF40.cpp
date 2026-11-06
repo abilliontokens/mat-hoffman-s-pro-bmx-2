@@ -34,6 +34,10 @@ struct C_0018DDD0_List {
 };
 
 int __stdcall func_001904E0(C_0018DDD0_Owner *owner, int a, C_0018DDD0_Node *node, int b, int c);
+struct C_0018DDD0_Mgr {
+    int func_0018DDD0(C_0018DDD0_Owner *owner, C_0018DDD0_List *list, const char *name);
+    int func_001904E0(C_0018DDD0_Owner *owner, int a, C_0018DDD0_Node *node, int b, int c);
+};
 
 struct C_0018D580_Id {
     char pad0[4];
@@ -151,13 +155,14 @@ int C_0018D580::func_0018D580(unsigned int id)
     int i = 0;
 
     if (0 < idCount) {
-        unsigned char *p = (unsigned char *)ids + 4;
+        unsigned short *p = (unsigned short *)ids;
+        p += 2;
         do {
-            if (id == p[1]) {
+            if (id == ((unsigned char *)p)[1]) {
                 return i;
             }
             i++;
-            p += 0x24;
+            p += 0x12;
         } while (i < idCount);
     }
     return 0;
