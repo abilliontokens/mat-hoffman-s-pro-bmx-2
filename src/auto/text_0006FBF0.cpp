@@ -111,7 +111,7 @@ struct C_00070360 {
     C_001D5AD0 *unkE0;
     char padE4[4];
     float unkE8;
-    char padEC[4];
+    S_0006FF80_Own *fEC;
     C_001D5AD0 *unkF0;
     char padF4[4];
     C_001D5AD0 *unkF8;
