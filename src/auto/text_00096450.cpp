@@ -25,7 +25,19 @@ extern Q_Root *D_002A8490;
 void __stdcall func_00052630(char *s);
 extern "C" char *__cdecl strcpy(char *d, const char *s);
 struct C_00096450 {
-    char pad0[0x63d8];
+    char pad0[0x2ff8];
+    char s2ff8[10][0x78];
+    char s34a8[10][0x78];
+    char s3958[10][0x78];
+    char s3e08[10][0x78];
+    char s42b8[10][0x78];
+    char s4768[10][0x78];
+    char pad4c18[0x50c8 - 0x4c18];
+    char s50c8[10][0x78];
+    char s5578[10][0x78];
+    char s5a28[10][0x78];
+    char s5ed8[10][0x78];
+    char pad6388[0x63d8 - 0x6388];
     Q_Click *a63d8[10];
     Q_Click *a6400[10];
     Q_Obj *a6428[10];
@@ -125,6 +137,63 @@ struct C_00096750 {
     void func_00096750(void);
 };
 
+
+void C_00096450::func_00096450(int idx)
+{
+    char *base = (char *)this + idx * 0x78;
+    char buf[0x104];
+    char buf2[0x104];
+    Q_Mgr *mgr;
+    Q_P64 *p;
+    char *e;
+    int i;
+    int found;
+
+    strcpy(buf, base + 0x2ff8);
+    mgr = D_002A8490->f2A4;
+    p = mgr->f64;
+    if (buf[0]) {
+        found = 0;
+        for (i = 0; i < p->f3AC->count && !found; i++) {
+            e = p->f3AC->items[i];
+            if (func_001EA426(e + 0xa0, buf) == 0) {
+                p->f484->func_0001B9E0(e, 0, 0);
+                found = 1;
+            }
+        }
+    }
+    strcpy(buf, base + 0x34a8);
+    if (buf[0]) {
+        found = 0;
+        for (i = 0; i < p->f3AC->count && !found; i++) {
+            e = p->f3AC->items[i];
+            if (func_001EA426(e + 0xa0, buf) == 0) {
+                mgr->f64->f484->func_0001B820(e);
+                found = 1;
+            }
+        }
+    }
+    if (base[0x3958] && base[0x3e08]) {
+        found = 0;
+        for (i = 0; i < mgr->f64->f3AC->count && !found; i++) {
+            e = mgr->f64->f3AC->items[i];
+            if (func_001EA426(e + 0xa0, base + 0x3958) == 0) {
+                mgr->f64->f484->func_0001BDB0(i);
+                mgr->f64->f484->func_0001BB00(i, base + 0x3e08, found);
+                found = 1;
+            }
+        }
+    }
+    strcpy(buf2, base + 0x4768);
+    if (!mgr->f1C8 && buf2[0])
+        func_00052630(buf2);
+    if (base[0x42b8] && !D_002A8490->f2A4->f1C8)
+        a6428[idx]->v5(4);
+    if (base[0x5578] && base[0x50c8])
+        a63d8[idx]->func_001B65D0();
+    if (base[0x5ed8] && base[0x5a28])
+        a6400[idx]->func_001B65D0();
+}
 
 void C_00096700::func_00096700(void) {
     int i;
