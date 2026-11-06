@@ -23,7 +23,6 @@ static __forceinline float Min_DD80(float a, float b) {
  _mm_store_ss(&r,_mm_min_ss(_mm_load_ss(&a),_mm_load_ss(&b)));
  return r;
 }
-struct M4_DD80 { __m128 r[4]; };
 static __forceinline void Xform_DD80(float *volatile outArg,float *volatile inArg,float *volatile mArg) {
  float *in=inArg; float *m=mArg; float *out=outArg;
  __m128 v=_mm_loadu_ps(in);
