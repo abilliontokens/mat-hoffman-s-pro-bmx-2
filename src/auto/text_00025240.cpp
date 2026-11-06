@@ -9,7 +9,7 @@ struct S_25240_V4 {
     S_25240_V4() {}
     S_25240_V4(const S_25240_Pt *p) { x = p->x; y = p->y; z = p->z; w = 1.0f; }
     S_25240_V4(float a, float b, float c) { x = a; y = b; z = c; w = 1.0f; }
-    S_25240_V4(const S_25240_Pt &p) { *(S_25240_V3 *)this = *(const S_25240_V3 *)&p; w = 1.0f; }
+    S_25240_V4(const S_25240_Pt &p) { w = 1.0f; *(S_25240_V3 *)this = *(const S_25240_V3 *)&p; }
 };
 static __forceinline void SetV4_25240(S_25240_V4 *d, const S_25240_Pt *p)
 {
@@ -423,7 +423,7 @@ int C_00025240::func_00025240(void)
                         f60[k]->f40 = f60[k]->f34;
                         f60[k]->f38 = f60[k]->f34 + 1;
                         pt = &f60[k]->f2c->f18[f60[k]->f38];
-                        f60[k]->f4c = S_25240_V4(*pt);
+                        SetV4_25240(&f60[k]->f4c, pt);
                         pt = &f60[k]->f2c->f18[f60[k]->f34];
                         f60[k]->f28->f1a4->f4->func_00199600(S_25240_V4(*pt));
                         if (f60[k]->f28->f1a4->f10 == 0)
