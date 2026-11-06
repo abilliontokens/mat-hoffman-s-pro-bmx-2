@@ -154,6 +154,10 @@ __forceinline void Vec4_150900::reset_150F80(int *flag) {
     *(int *)&x=D_002A789C; *(int *)&y=D_002A78A0; *(int *)&z=D_002A78A4;
     int t=D_002A78A8; *flag=0; *(int *)&w=t;
 }
+static __forceinline void SetVec_150F80(Vec4_150F80 *dst, int *flag) {
+    *dst = *(Vec4_150F80 *)&D_002A789C;
+    *flag = 0;
+}
 static __forceinline void ResetVec_150F80(int *p) {
     p[0]=D_002A789C; p[1]=D_002A78A0; p[2]=D_002A78A4; p[3]=D_002A78A8;
 }
@@ -238,9 +242,9 @@ void C_00150F80::func_00150F80() {
     u[0x584/4] = 1000;
     u[0x574/4] = 10;
     int *p = &u[0xe8/4];
-    *(Vec4_150900 *)p = *(Vec4_150900 *)&D_002A789C;
+    *(Vec4_150F80 *)p = *(Vec4_150F80 *)&D_002A789C;
     p = &u[0xf8/4];
-    *(Vec4_150900 *)p = *(Vec4_150900 *)&D_002A789C;
+    *(Vec4_150F80 *)p = *(Vec4_150F80 *)&D_002A789C;
     u[0x10c/4]=0;
     ((C_00150900_obj *)u[0x2c/4])->unk1A4->unk4->func_001983A0();
     Manager_150F80 *manager = D_002A8490->f2a4;
@@ -248,8 +252,7 @@ void C_00150F80::func_00150F80() {
     manager->f44[u[9]]->func_0002F990();
     manager->f284[u[9]]->func_0008D550();
     p = &u[0x120/4];
-    *(Vec4_150900 *)p = *(Vec4_150900 *)&D_002A789C;
-    u[0xdc/4]=0;
+    (*(Vec4_150F80 *)p = *(Vec4_150F80 *)&D_002A789C, u[0xdc/4]=0);
     p = &u[0x1ac/4];
     for(int i=0;i<11;++i,p+=24) {
         p[-6]=0;
