@@ -119,12 +119,19 @@ struct S_00095A00_Vt {
     virtual int v41(int a);
 };
 
+extern "C" void *__cdecl memset(void *dst, int c, unsigned int n);
+#pragma intrinsic(memset)
 struct S_00095A00_Sub {
     int count;
     void *data;
     void func_001CDED0(int n);
     void func_001CBCF0(int n);
     void func_00094F10();
+    void Clear()
+    {
+        memset(data, 0, count * sizeof(int));
+        count = 0;
+    }
 };
 
 struct C_00095A00 {
