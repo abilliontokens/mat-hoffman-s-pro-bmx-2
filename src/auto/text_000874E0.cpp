@@ -7,7 +7,7 @@ void func_001E891B(void *p);
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 
 struct C_00157600 {
-    void func_00157600(int param);
+    C_00157600 *func_00157600(int param);
 };
 
 struct C_00157660 {
