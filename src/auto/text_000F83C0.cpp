@@ -12,7 +12,7 @@ struct S_F83C0_Mgr {
 };
 extern S_F83C0_Mgr *D_002B91AC;
 
-struct S_F83C0_Node { char pad0[0x38]; unsigned int f38; char pad3c[0x1c]; unsigned char f58; };
+struct S_F83C0_Node { char pad0[0x38]; unsigned int f38; char pad3c[0x1c]; unsigned char f58; void func_001D5AD0(); };
 struct S_F83C0_Svc { int func_000301D0(); };
 struct S_F83C0_Host { char pad0[0x74]; S_F83C0_Svc *f74; };
 struct S_F83C0_Owner { char pad0[0x25c]; S_F83C0_Host *f25c; };
