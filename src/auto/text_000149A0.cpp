@@ -46,7 +46,49 @@ struct PedHelper { int func_00011BE0(int *idx, float *dist); };
 extern float D_002756C8, D_00275460, D_00275600, D_002756C4, D_002756BC, D_00275548;
 int func_000119D0(void *pos);
 struct PedAnim { void func_0008AB90(int arg); };
-void func_000149A0(int idx, float scale);
+void __stdcall func_000149A0(int idx, float scale);
+
+struct AnimCtl_14B40 { void func_0008AB90(int a); };
+struct VecSrc_14B40 { Vec4_149A0 *func_00199B00(Vec4_149A0 *out, int a); };
+
+struct PedObj_14B40 {
+    char pad0[0x384];
+    AnimCtl_14B40 *f384;
+    char pad388[0x390 - 0x388];
+    int f390;
+    int f394;
+    char pad398[0x39c - 0x398];
+    int f39c;
+    char pad3a0[0x3a8 - 0x3a0];
+    int f3a8;
+    char pad3ac[0x3b0 - 0x3ac];
+    int f3b0;
+    int f3b4;
+    char pad3b8[0x3bc - 0x3b8];
+    int f3bc;
+    unsigned f3c0;
+    char pad3c4[0x3cc - 0x3c4];
+    int f3cc;
+    char pad3d0[0x3d8 - 0x3d0];
+    float f3d8;
+    char pad3dc[0x3e1 - 0x3dc];
+    char f3e1;
+    char f3e2;
+    char pad3e3[0x3e4 - 0x3e3];
+    float f3e4, f3e8, f3ec;
+    void func_001C6B30(Vec4_149A0 v, float f);
+    int func_00011BE0(float *dist, int *idx);
+};
+
+struct AIPedScaredState_14B40 {
+    char pad0[8];
+    PedObj_14B40 *owner;
+    int func_00014B40(float dt);
+};
+
+void __cdecl func_000111B0(Vec4_149A0 *a, Vec4_149A0 *b);
+extern float D_002756C0;
+extern float D_002755F8;
 
 struct AIPedCurseState {
     char pad_0[8];
