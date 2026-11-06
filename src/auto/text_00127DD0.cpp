@@ -70,6 +70,16 @@ struct V4_00128120 {
     V4_00128120(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
 };
 
+static inline V4_00128120 Add_00128120(const S_00127DD0_V4 &a, const S_00127DD0_V4 &b)
+{
+    return V4_00128120(a.x + b.x, a.y + b.y, a.z + b.z, 1.0f);
+}
+
+static inline V4_00128120 Scale4_00128120(const V4_00128120 &s, float k)
+{
+    return V4_00128120(s.x * k, s.y * k, s.z * k, 1.0f);
+}
+
 static inline V4_00128120 Scale_00128120(const S_00127DD0_V4 &s, float k)
 {
     return V4_00128120(s.x * k, s.y * k, s.z * k, 1.0f);
