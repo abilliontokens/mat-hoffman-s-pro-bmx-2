@@ -67,8 +67,10 @@ extern S_1C4FB0_Cull *D_002AB66C;
 
 /* each child gets its own quadrant corner: x0 is c or right, y0 is d or bottom */
 #define QN_VISIT2(i, EX, EZ, X0, Y0) \
-    if (f4[i]) { \
-        ctr.y = f4[i]->fC; \
+    { \
+        C_001C4FB0 *ch = f4[i]; \
+        if (ch) { \
+        ctr.y = ch->fC; \
         ext2.y = f4[i]->f10; \
         ctr.x = EX; \
         ctr.z = EZ; \
