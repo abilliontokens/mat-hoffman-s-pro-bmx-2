@@ -622,7 +622,9 @@ static int func_001EBA0F(int c)
     return c;
 }
 
-/* experiment: a caller in the same unit makes MSVC give the static helper its register convention */
+/* Not in the original binary. _hextodec's real caller (scanf's _input) is in another unit; MSVC only
+   gives a static helper the argument-in-eax convention when a caller is compiled in the same file,
+   so this stand-in keeps func_001EBA0F matching. Delete it once _input and _hextodec share a unit. */
 int func_test_caller_001EBA0F(int c)
 {
     return func_001EBA0F(c);
