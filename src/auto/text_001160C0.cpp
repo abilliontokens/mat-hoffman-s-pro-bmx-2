@@ -1,5 +1,12 @@
 /* 1 function from 0x001160C0 to 0x00117160, found by Ghidra. */
 #include "common.h"
+#include <string.h>
+struct C_000AD5C0 { int func_000AD5C0(int,int *,int); int func_000A7570(int,int,int); void func_000A7560(); };
+struct C_001C3D30 { void func_001C3D30(int); };
+struct Queue_10DED0 { int count; int ids[5]; int modes[5]; int f2C; int f30; int f34; int f38[100]; int f1C8[100]; void func_00109340(int,int); };
+struct Obj831549 { int func_000831C0(); };
+extern float D_002755E8, D_00276098, D_002756DC, D_00275460, D_00283C80, D_00278C58;
+unsigned int func_001DC974();
 
 /* input device slot: virtual 3 reads an analog value for a control code */
 struct S_001160C0_Pad {
