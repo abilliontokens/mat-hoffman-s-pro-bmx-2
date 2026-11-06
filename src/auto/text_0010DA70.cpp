@@ -11,9 +11,12 @@ struct Vec4 {
     f32 y;
     f32 z;
     f32 w;
+    Vec4() {}
+    Vec4(f32 a, f32 b, f32 c, f32 d) { x = a; y = b; z = c; w = d; }
 };
 
 extern Vec4 D_002A3A3C;
+extern float D_002A3A40, D_002A3A44, D_002A3A48;
 
 struct C_Device {
     virtual void v0();  virtual void v1();  virtual void v2();  virtual void v3();
@@ -460,9 +463,9 @@ int C_0010DED0::func_0010E030(int a, int b)
 {
     char buffer[260];
     float scale;
+    int cur;
     int i;
     int idx;
-    int cur;
     int mode;
     int flag;
 
