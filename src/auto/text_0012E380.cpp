@@ -173,7 +173,7 @@ struct K_0012E380 {
 };
 extern f32 D_00275544;
 
-static float Abs_0012E380(float x)
+static inline float Abs_0012E380(float x)
 {
     u32 b = *(u32 *)&x & 0x7fffffff;
     return *(float *)&b;
