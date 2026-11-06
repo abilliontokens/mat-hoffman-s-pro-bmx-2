@@ -72,6 +72,38 @@ struct S_Light_0016FEE0 {
 
 extern int D_00040344, D_00040348;
 extern float D_002A88C0;
+#include <string.h>
+extern int D_002A88B8, D_002AA46C, D_00288A84;
+extern char D_002A60B0[], D_002A5558[], D_002EFB80[], D_00288B04[];
+extern float D_002755E8, D_002889B0, D_002889A0, D_00288990;
+void *func_001E8A44(int size);
+int func_001E8858(void);
+char *func_001E8AC0(char *s, int c);
+void func_0014A7B0(void *a, void *b);
+void *__stdcall func_001FF3C0(int size);
+
+/* 100-byte particle slot: two default-initialised vectors, rest untouched. */
+struct S_Slot_001704B0 {
+    V4_0016FEE0 a;
+    V4_0016FEE0 b;
+    char pad20[0x44];
+};
+
+static __forceinline void Normalize_001704B0(float *out, float *in)
+{
+    __m128 v = _mm_loadu_ps(in);
+    __m128 sq = _mm_mul_ps(v, v);
+    __m128 len = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
+    len = _mm_add_ss(len, _mm_shuffle_ps(sq, sq, 0xe1));
+    __m128 minv = _mm_load_ss(&D_002889B0);
+    __m128 cmp = _mm_cmplt_ss(len, minv);
+    len = _mm_add_ss(len, _mm_and_ps(cmp, minv));
+    __m128 r = _mm_rsqrt_ss(len);
+    __m128 t = _mm_mul_ss(_mm_mul_ss(len, r), r);
+    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_00288990)), _mm_sub_ss(_mm_load_ss(&D_002889A0), t));
+    scale = _mm_shuffle_ps(scale, scale, 0);
+    _mm_storeu_ps(out, _mm_mul_ps(scale, v));
+}
 void __fastcall func_001FD020(void *p, int v);
 void __fastcall func_001FEC30(int n, void *p);
 int __fastcall func_001FEBD0(int n, void *p);
