@@ -17,12 +17,24 @@ struct FadeSprite {
 };
 struct FadeBuf { char pad[0x1E0]; int r[6]; };
 struct FadeDev { void func_0012B2B0(int *rect, int *out); };
+#include <xmmintrin.h>
+
 struct FadeObj {
-    void **vtbl; char pad4[0x20];
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    char pad4[0x20];
     FadeSprite *f24; char pad28[8];
     float f30; int f34; int f38; int f3C; int f40;
     int func_001C4240(void);
 };
+
+static __forceinline int FtoI_001C4240(float x)
+{
+    return _mm_cvtss_si32(_mm_set_ss(x));
+}
 struct C_001C3F10 {
     uint func_001C3F10(void);
 };
@@ -974,8 +986,8 @@ CrossFade_001C44A0 *CrossFade_001C44A0::func_001C44A0(int a0)
     o = unk24;
     t = D_002779FC + D_0028E3CC;
     o->b58 |= 4;
-    o->f44 = D_0028E3CC;
     o->f3C = 0;
+    o->f44 = D_0028E3CC;
     o->f40 = 0x44200000;
     o->f48 = t;
     v4();
