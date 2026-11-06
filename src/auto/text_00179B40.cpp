@@ -169,10 +169,10 @@ static inline float C_0017A1D0_Abs(volatile float f)
     return u.f;
 }
 
-static __forceinline float C_0017A1D0_AbsV(float x)
+static __forceinline float C_0017A1D0_AbsV(volatile float x)
 {
     volatile int tmp;
-    tmp = *(int *)&x & 0x7fffffff;
+    tmp = *(volatile int *)&x & 0x7fffffff;
     return *(float *)&tmp;
 }
 
@@ -314,9 +314,7 @@ int C_0017A1D0::func_0017A1D0(float *p, float r, float *out)
     v.z = p[2] - pts[0].z;
     d = C_0017A1D0_Dot(v, normals[0]);
     if (out) {
-        volatile float copy = d;
-        volatile int bits = *(int *)&copy & 0x7fffffff;
-        *out = *(volatile float *)&bits;
+        *out = C_0017A1D0_AbsV(d);
     }
     if (d > r || -r > d) return 0;
     if (C_0017A1D0_Dot(v, normals[1]) > r) return 0;
