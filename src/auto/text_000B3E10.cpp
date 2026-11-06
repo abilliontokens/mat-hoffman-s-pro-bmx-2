@@ -215,7 +215,7 @@ extern float D_00275544;
 extern float D_00278C48;
 extern float D_0027D264;
 void func_00192300(void *p);
-void func_00011110(float *out, float *a, float *b);
+float *func_00011110(float *out, float *a, float *b);
 float func_00011170(float *v);
 
 struct C_000B4300 {
