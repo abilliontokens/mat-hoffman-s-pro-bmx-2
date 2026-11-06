@@ -49,7 +49,7 @@ static __forceinline float Fabs(float f)
     return *(float *)&i;
 }
 
-static inline void EdgeEval(Vec4 &P, Vec4 &N, float *v0, float *v1, float *n0, float *n1, float *n, float t)
+static __forceinline void EdgeEval(Vec4 &P, Vec4 &N, float *v0, float *v1, float *n0, float *n1, float *n, float t)
 {
     float mx = (n1[0] + n0[0]) * D_002755E8;
     float my = (n1[1] + n0[1]) * D_002755E8;
