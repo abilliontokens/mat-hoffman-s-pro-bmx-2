@@ -116,7 +116,54 @@ struct S_001A13F0_Obj {
     int func_001D6C40(int a, int b);
 };
 
-struct C_001A0C90 { char pad0[0x10]; int f10; void func_001A0C90(float a, float b, float c, float d); };
+struct V4_001A0C90 { float x, y, z, w; V4_001A0C90() { z = 0; y = 0; x = 0; w = 1.0f; } };
+struct Mat_001A0C90 { float m[16]; };
+struct Obj0_001A0C90 {
+    void func_00199A70(int idx, V4_001A0C90 *out);
+    V4_001A0C90 func_00198040(V4_001A0C90 *in);
+    void func_00199C90(V4_001A0C90 axis, float c, float s);
+};
+struct Obj4_001A0C90 {
+    void func_00199BE0(Mat_001A0C90 *m);
+    V4_001A0C90 func_00197EC0(V4_001A0C90 *in);
+    void func_00199A70(int idx, V4_001A0C90 *out);
+};
+struct Obj8_001A0C90 {
+    void func_00199A70(int idx, V4_001A0C90 *out);
+};
+struct Prof_001A0C90 {
+    int func_00026500(const char *name, int a);
+    void func_0019FC40(int h);
+    void func_0019FC80(int h);
+};
+struct Gfx_001A0C90 { char pad0[0x1934]; int f1934; };
+struct Glob_001A0C90 { char pad0[0x18]; Gfx_001A0C90 *f18; };
+extern int D_002A9D84, D_002A9D80;
+extern Glob_001A0C90 *D_002A8490;
+extern Prof_001A0C90 *D_002A7CB8;
+extern char D_0028B348[];
+extern float D_00275460, D_00275F58, D_002755EC;
+float func_0014F890(float x);
+float func_0014F510(float x);
+float func_0014F550(float x);
+void func_0011F400(void *out, float x, float y, float z, float s, float c);
+
+struct C_001A0C90 {
+    Obj0_001A0C90 *f0;
+    Obj4_001A0C90 *f4;
+    Obj8_001A0C90 *f8;
+    int fC;
+    int f10;
+    char pad14[8];
+    float f1c, f20;
+    char pad24[8];
+    float f2c, f30, f34, f38;
+    char pad3C[4];
+    int f40;
+    V4_001A0C90 f44;
+    void func_001A0510(V4_001A0C90 v);
+    void func_001A0C90(V4_001A0C90 v);
+};
 
 struct C_001A13F0 {
     char pad0[4];
@@ -329,6 +376,67 @@ undefined4 C_001A1650::func_001A1650(undefined4 *param_1)
   return 1;
 }
 
+C_001A1680 *C_001A1680::func_001A1680(int a1, int a2, unsigned short a3, int a0)
+{
+    int *w = (int *)this;
+    int *p;
+    volatile int v[4];
+    int zero = 0;
+    int one = 0x3f800000;
+    int t;
+    func_00157600(a0);
+    vtbl = (void *)&D_0028B3C4;
+    p = &w[0x28 / 4]; p[2] = zero; p[1] = zero; p[0] = zero; p[3] = one;
+    p = &w[0x60 / 4]; p[3] = one; p[2] = zero; p[1] = zero; p[0] = zero;
+    p = &w[0x70 / 4]; p[3] = one; p[2] = zero; p[1] = zero; p[0] = zero;
+    p = &w[0x80 / 4]; p[3] = one; p[2] = zero; p[1] = zero; p[0] = zero;
+    p = &w[0x28 / 4];
+    for (int i = 0; i < 9; i++) w[0x3c / 4 + i] = zero;
+    w[0x48 / 4] = one; w[0x58 / 4] = one; w[0x5c / 4] = one;
+    w[0x24 / 4] = a2;
+    w[0x1a4 / 4] = a1;
+    v[3] = one;
+    v[0] = 0x7f7fffff;
+    t = v[0];
+    w[0x70 / 4] = t;
+    p[0] = t;
+    v[1] = 0x7f7fffff;
+    t = v[1];
+    p[1] = t;
+    w[0x74 / 4] = t;
+    w[0x3c / 4] = 0x168;
+    w[0x40 / 4] = 0x168;
+    w[0x44 / 4] = zero;
+    w[0x4c / 4] = 0x4e6e6b28;
+    w[0x50 / 4] = zero;
+    w[0x54 / 4] = 0x3e9c0ebf;
+    w[0x1bc / 4] = zero;
+    v[2] = 0x7f7fffff;
+    p[2] = v[2];
+    w[0x78 / 4] = v[2];
+    t = v[3];
+    p[3] = t;
+    w[0x7c / 4] = t;
+    w[0x60 / 4] = D_002A9EEC; w[0x64 / 4] = D_002A9EF0;
+    w[0x68 / 4] = D_002A9EF4; w[0x6c / 4] = D_002A9EF8;
+    w[0x80 / 4] = D_002A9ECC; w[0x84 / 4] = D_002A9ED0;
+    w[0x88 / 4] = D_002A9ED4; w[0x8c / 4] = D_002A9ED8;
+    w[0x98 / 4] = zero;
+    unsigned char c = ((unsigned char *)this)[0x1a0];
+    *(unsigned short *)&w[0x1b0 / 4] = a3;
+    w[0x1a8 / 4] = zero;
+    ((unsigned char *)this)[0x9c] = 0;
+    w[0x1ac / 4] = 0x42c80000;
+    ((unsigned char *)this)[0x1a0] = c & 0xe0;
+    w[0x38 / 4] = D_002EFF50;
+    D_002EFF50++;
+    w[0x90 / 4] = zero;
+    w[0x1b4 / 4] = zero;
+    w[0x1b8 / 4] = 1;
+    p[0] = D_002A9ECC; p[1] = D_002A9ED0; p[2] = D_002A9ED4; p[3] = D_002A9ED8;
+    return this;
+}
+
 bool C_001A1850::func_001A1850(void)
 {
   int in_ECX = (int)this;
@@ -345,10 +453,10 @@ int C_001A1860::func_001A1860(S_001A1860_Buf buf, S_001A1860_Quad q70, S_001A186
     if (unk1A4 == 0) {
         goto fail;
     }
-    if (FlagsNeedBit(a18) || a21 != 0) {
+    if ((a18 & 2) == 0 || (a18 & 4) != 0 || a21 != 0) {
         unk1A0 |= 4;
     }
-    unk1A0 ^= ((a22 << 3) ^ unk1A0) & 8;
+    unk1A0 = MergeBit3((unsigned char)(a22 << 3), unk1A0);
     unk3C = buf;
     unk70 = q70;
     unk80 = q80;
