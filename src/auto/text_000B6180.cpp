@@ -11,6 +11,7 @@ void *func_001E8A44(int size);
 extern int D_0027D4C4;
 extern int D_002A2FD8, D_002A2FDC, D_002A2FE0, D_002A2FE4;
 struct C_000B6180 {
+    virtual void v0();
     int u[0x28];
     float f[0x4c];
     int t[7];
