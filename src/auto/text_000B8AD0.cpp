@@ -41,7 +41,7 @@ struct C_000B8C90 {
     float f3C;
     int f40;
     float f44;
-    int func_000B8C90(void);
+    void func_000B8C90(float dt);
 };
 
 extern int D_0027D5FC;
@@ -91,6 +91,10 @@ C_000B8B60 *C_000B8B60::func_000B8B60(int a0)
 
 void C_000B8C80::func_000B8C80(int a0) {
     unk9C = a0;
+}
+
+void C_000B8C90::func_000B8C90(float dt)
+{
 }
 
 void *C_000B9A30::func_000B9A30(int flags) {
