@@ -5,6 +5,12 @@
 #include <math.h>
 #include <string.h>
 struct __declspec(align(16)) S_Matrix_00162330 { float m[16]; };
+static __forceinline void setmatrix_00162330(float *p, float x0, float y0, float z0, float x1, float y1, float z1, float x2, float y2, float z2)
+{
+    p[0]=x0; p[1]=y0; p[2]=z0;
+    p[4]=x1; p[5]=y1; p[6]=z1;
+    p[8]=x2; p[9]=y2; p[10]=z2;
+}
 static __forceinline void setrow_00162330(float *p, float x, float y, float z)
 {
     p[0] = x; p[1] = y; p[2] = z;
