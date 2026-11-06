@@ -59,6 +59,29 @@ struct C_000F4DE0 {
     undefined4 func_000F4DE0(byte param_1);
 };
 
+struct F4E_Obj {
+    void func_001B1980();
+    void func_001B1A30(int a, int b, int c);
+    void func_001B2270(int a);
+    void func_001B1860(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11, int a12);
+};
+
+struct C_000F4E00 {
+    char pad0[0x2a4];
+    int f2A4;
+    char pad2A8[0x2c4 - 0x2a8];
+    int f2C4;
+    char pad2C8[0x2d8 - 0x2c8];
+    F4E_Obj *a2D8[23];
+    void func_000F4E00();
+    void func_000CA9B0();
+    void func_000C9860();
+    void func_000C98D0();
+    void func_000CAA10();
+    void func_000CA940();
+    void func_000CA8D0();
+};
+
 
 undefined4 C_000F4DE0::func_000F4DE0(byte param_1)
 {
