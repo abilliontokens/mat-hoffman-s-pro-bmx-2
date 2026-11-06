@@ -11,12 +11,14 @@ void *func_001E8A44(int size);
 extern int D_0027D4C4;
 extern int D_002A2FD8, D_002A2FDC, D_002A2FE0, D_002A2FE4;
 struct C_000B6180 {
-    int u[0x7c];
+    int u[0x28];
+    float f[0x4c];
+    int t[7];
     C_000B6180 *func_000B6180(int a0);
     void func_00157600(int a0);
 };
-#define VEC(o) u[(o)/4+2] = 0; u[(o)/4+1] = 0; u[(o)/4] = 0; u[(o)/4+3] = 0x3f800000;
-#define CPY(o) u[(o)/4] = D_002A2FD8; u[(o)/4+1] = D_002A2FDC; u[(o)/4+2] = D_002A2FE0; u[(o)/4+3] = D_002A2FE4;
+#define VEC(o) f[((o)-0xa0)/4+2] = 0.0f; f[((o)-0xa0)/4+1] = 0.0f; f[((o)-0xa0)/4] = 0.0f; f[((o)-0xa0)/4+3] = 1.0f;
+#define CPY(o) f[((o)-0xa0)/4] = *(float *)&D_002A2FD8; f[((o)-0xa0)/4+1] = *(float *)&D_002A2FDC; f[((o)-0xa0)/4+2] = *(float *)&D_002A2FE0; f[((o)-0xa0)/4+3] = *(float *)&D_002A2FE4;
 
 extern int D_002A2FD8;
 
@@ -108,6 +110,25 @@ struct C_000B67C0 {
     int unk6C;
     void func_000B67C0(void);
 };
+
+C_000B6180 *C_000B6180::func_000B6180(int a0)
+{
+    func_00157600(a0);
+    VEC(0xa0) VEC(0xb0) VEC(0xc0) VEC(0xd0) VEC(0xe0) VEC(0xf0) VEC(0x100) VEC(0x110)
+    VEC(0x120) VEC(0x130) VEC(0x140) VEC(0x150) VEC(0x160) VEC(0x170) VEC(0x180) VEC(0x190)
+    VEC(0x1a0) VEC(0x1b0) VEC(0x1c0)
+    *(void **)this = &D_0027D4C4;
+    u[0x24/4] = 1; u[0x28/4] = 0; u[0x2c/4] = 0; u[0x30/4] = 0; u[0x34/4] = 0;
+    u[0x40/4] = 0; u[0x44/4] = 0; u[0x50/4] = 0; u[0x54/4] = 0;
+    u[0x38/4] = 0; u[0x3c/4] = 0; u[0x48/4] = 0; u[0x4c/4] = 0;
+    u[0x5c/4] = 0; u[0x60/4] = 0; u[0x70/4] = 0; u[0x74/4] = 0; u[0x78/4] = 0; u[0x7c/4] = 0;
+    u[0x80/4] = 0x3f800000; u[0x84/4] = 0x3f060a91;
+    u[0x88/4] = 0; u[0x8c/4] = 0; u[0x90/4] = 0; u[0x1d0/4] = 0; u[0x1d4/4] = 0;
+    CPY(0xa0) CPY(0xb0) CPY(0xc0) CPY(0xd0) CPY(0xe0) CPY(0xf0) CPY(0x100) CPY(0x110)
+    CPY(0x140) CPY(0x150) CPY(0x160) CPY(0x170)
+    u[0x94/4] = 0; u[0x98/4] = 0; u[0x1d8/4] = 0; u[0x1dc/4] = 0; u[0x1e0/4] = 0; u[0x1e4/4] = 0; u[0x1e8/4] = 0;
+    return this;
+}
 
 C_000B6640 *C_000B6640::func_000B6640(int a0, int a1)
 {
