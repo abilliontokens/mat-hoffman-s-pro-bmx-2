@@ -272,7 +272,7 @@ int __stdcall func_001DD13C(void *a0) {
     }
 }
 
-#pragma optimize("s", off)
+#pragma optimize("y", off)
 int __stdcall func_001DD15A(void *h, void *buffer, u32 size, u32 *read, S_001DD670_Overlapped *ov)
 {
     S_IoStatusBlock iosb;
@@ -461,45 +461,17 @@ int __stdcall func_001DD3A1(void *h, u32 lo, u32 *hi, int method)
 }
 
 int __stdcall func_001DD49B(void *a0, __int64 a1, __int64 *a2, int a3) {
-    u32 iosb[2];
-    __int64 pos;
-    char info[0x38];
-    __int64 target;
-    int result;
-    switch (a3) {
-    case 0:
-        target = a1;
-        break;
-    case 1:
-        result = _imp__NtQueryInformationFile(a0, iosb, &pos, 8, 0xe);
-        if (result < 0) {
-            goto fail;
-        }
-        target = a1 + pos;
-        break;
-    case 2:
-        result = _imp__NtQueryInformationFile(a0, iosb, info, 0x38, 0x22);
-        if (result < 0) {
-            goto fail;
-        }
-        target = a1 + *(__int64 *)(info + 0x28);
-        break;
-    }
-    pos = target;
-    if (pos < 0) {
-        func_001DD62B(0x83);
-        return 0;
-    }
-    result = _imp__NtSetInformationFile(a0, iosb, &pos, 8, 0xe);
-    if (result >= 0) {
-        if (a2 != 0) {
-            *a2 = pos;
-        }
-        return 1;
-    }
-fail:
-    func_001DD659(result);
-    return 0;
+u32 iosb[2]; __int64 pos; char info[0x38]; __int64 target; int result;
+switch(a3) {
+case 0: target=a1; break;
+case 2: result=_imp__NtQueryInformationFile(a0,iosb,info,0x38,0x22); if(result<0) goto fail; target=*(__int64*)(info+0x28)+a1; break;
+case 1: result=_imp__NtQueryInformationFile(a0,iosb,&pos,8,0xe); if(result<0) goto fail; target=pos+a1; break;
+}
+pos=target;
+if(pos<0) {func_001DD62B(0x83);return 0;}
+result=_imp__NtSetInformationFile(a0,iosb,&pos,8,0xe);
+if(result>=0){if(a2)*a2=pos;return 1;}
+fail: func_001DD659(result);return 0;
 }
 
 int __stdcall func_001DD563(void *a0) {
