@@ -192,13 +192,12 @@ void SoultreeCollisionObject::func_0019C710(float *src, int a2, short a3, int n)
     void func_00129510(int *, int *, float *, float *, int, short, int);
     struct V3 { float x, y, z; };
     char *b = (char *)this;
-    int i, j;
+    int i;
     ((VObj_0019C710 *)this)->v1b();
-    for (j = 0; j < 4; j++) {
-        float *m = (float *)(b + 0xb0 + j * 0x40);
-        for (i = 0; i < 16; i++) m[i] = 0.0f;
-        m[0] = 1.0f; m[5] = 1.0f; m[10] = 1.0f; m[15] = 1.0f;
-    }
+    Identity_19C710((float *)(b + 0xb0));
+    Identity_19C710((float *)(b + 0xf0));
+    Identity_19C710((float *)(b + 0x130));
+    Identity_19C710((float *)(b + 0x170));
     *(short *)(b + 0x1bc) = 0;
     *(int *)(b + 0x1c0) = 0;
     *(int *)(b + 0x1c4) = 0;
@@ -284,6 +283,9 @@ void SoultreeCollisionObject::func_0019CCA0(int param_1)
 
 void SoultreeCollisionObject::func_0019CCE0(int volatile file)
 {
+    int i;
+    void *mem;
+    volatile float sqr;
     struct {
         SoultreeCollisionObject * volatile self;
         float vf[3];
@@ -296,9 +298,6 @@ void SoultreeCollisionObject::func_0019CCE0(int volatile file)
         volatile float sqx;
     } L;
     S_19CCE0_Vec3 &v = *(S_19CCE0_Vec3 *)L.vf;
-    int i;
-    void *mem;
-    volatile float sqr;
 
     L.self = this;
     RD_19CCE0(&this->unkF0[0][0], 4);
@@ -439,21 +438,5 @@ void *SoultreeCollisionObject::func_0019D650(int flags)
         func_001E891B(this);
     }
     return this;
-}
-
-int SoultreeCollisionObject::func_0019D680(void *param_1)
-{
-    int result;
-
-    if (((int *)param_1)[0x14] != 6) {
-        return 0;
-    }
-    result = func_0019BB80(param_1);
-    if (result != 0) {
-        SoultreeCollisionObject *p = this;
-        p->func_0019BA70();
-        p->func_0019B890();
-    }
-    return result;
 }
 
