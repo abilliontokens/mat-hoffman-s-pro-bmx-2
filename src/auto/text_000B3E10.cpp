@@ -182,7 +182,8 @@ struct C_000B4300 {
 
 inline void B4300_Reg(int id, const B4300_Cb &cb, const char *a, const char *b, const char *c)
 {
-    D_002EFE08->func_0018CF40(id, cb, a, b, c, 1);
+    B4300_Cb f = cb;
+    D_002EFE08->func_0018CF40(id, f, a, b, c, 1);
 }
 
 C_000B4300 *C_000B4300::func_000B4300(S_B4300_Stream * volatile a, S_B4300_Stream * volatile b)
