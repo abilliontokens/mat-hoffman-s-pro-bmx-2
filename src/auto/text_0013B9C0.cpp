@@ -62,7 +62,7 @@ struct S_0013B9C0_Ent20 {
     int f1C;
 };
 
-template <class T> inline T Min_0013B9C0(T a, T b) { return a < b ? a : b; }
+template <class T> inline const T &Min_0013B9C0(const T &a, const T &b) { return (b < a) ? b : a; }
 
 struct C_0013B9C0 {
     char pad0[8];
@@ -105,7 +105,7 @@ struct C_0013B9C0 {
     int func_0013B4C0(void *a, int size, void *file);
 };
 
-void __fastcall func_0013B9C0(C_0013B9C0 * volatile self, int dummy, S_0013B9C0_Ent28 * volatile p, volatile int index)
+void __fastcall func_0013B9C0(C_0013B9C0 * volatile self, int dummy, S_0013B9C0_Ent28 * volatile p, int index)
 {
  volatile int size;
  volatile int limit;
@@ -129,20 +129,22 @@ void __fastcall func_0013B9C0(C_0013B9C0 * volatile self, int dummy, S_0013B9C0_
  int offset = ((int *)p)[6];
  t = self;
  if (compressed) {
-  if (index > 0) {
+  int n = *(volatile int *)&index;
+  if (n > 0) {
    unsigned short *q = t->f7C;
    int i = 0;
    do {
     offset += *q + extra;
     ++q;
     ++i;
-   } while (i != index);
+   } while (i != n);
   }
  } else offset += (extra + 0x6000) * index;
  func_0014FED0(p->f10, offset, 0);
  limit = self->f70;
  remaining = (int)p->f14 - offset;
- size = remaining > limit ? limit : remaining;
+ size = remaining;
+ if (remaining > limit) size = limit;
  int result;
  if (extra) {
   self->f100 = 1;
@@ -152,7 +154,7 @@ void __fastcall func_0013B9C0(C_0013B9C0 * volatile self, int dummy, S_0013B9C0_
   t = self;
   result = t->func_0013B4C0((char *)t + 0x2c, size, p->f10);
  }
- self->f74 = index;
+ self->f74 = *(volatile int *)&index;
  if (compressed) {
   t = self;
   t->f78 = t->f74;
