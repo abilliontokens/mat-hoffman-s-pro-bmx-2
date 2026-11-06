@@ -13,6 +13,7 @@ struct Vec4W { float x; float y; float z; float w; };
 struct __declspec(align(16)) MatW { float m[16]; };
 extern float D_00275544;
 MatW func_00026960();
+void func_00026960(MatW *out);
 extern Vec4W D_002AB798;
 struct NodeW {
     void func_00199A70(int a, Vec4W *out);
