@@ -119,8 +119,8 @@ void BmxUIPageMain::func_000C5580()
         else
             m = ((S5580_G *)D_002B91AC)->f8C;
         m->func_001D5AD0();
-        n = f140->f4->f30 - 1;
-        count = 8 + ((((S5580_Root *)D_002A8490)->p2E0->f2C0->func_0005C0E0() != 0) ? 2 : 0);
+        n = S5580_GetN(f140) - 1;
+        count = (((S5580_Root *)D_002A8490)->p2E0->f2C0->func_0005C0E0() != 0) ? 10 : 8;
         for (i = 0; i < count; i++) {
             if (n * 2 == i || n * 2 + 1 == i) {
                 e = f2F8[i];
@@ -239,7 +239,23 @@ extern C_5E40_G *D_002B91AC;
 
 struct C_NumHorse_Lookup { int *func_0018C160(int a); };
 struct C_5580_Q { char pad0[0x2C0]; struct C_5580_R *f2C0; };
-struct C_5580_R { int func_0005C0E0(); };
+struct C_5580_R { int func_0005C0E0(); int func_0005C1E0(int i); int func_0005C1D0(int i); };
+
+struct C_59C0_Obj { void *vtbl; int f4; };
+struct C_59C0_Res { char pad0[0x1a4]; C_59C0_Obj *f1a4; };
+struct C_59C0_Tab4 { char pad0[0x28]; C_59C0_Res **f28; };
+struct C_59C0_Tab3 { char pad0[0x2c]; C_59C0_Tab4 *f2c; };
+struct C_59C0_Tab2 { char pad0[0x484]; C_59C0_Tab3 *f484; };
+struct C_59C0_Sub {
+    char pad0[0x150];
+    C_59C0_Tab2 *f150;
+    char pad154[0x128];
+    int f27c;
+    int func_000BC0F0(int i);
+};
+struct C_59C0_Mgr { char pad0[0x2fc]; void *f2fc; void func_00094F00(); };
+struct C_59C0_Mgr2 { char pad0[0x4]; char *f4; };
+struct C_59C0_Page { char pad0[0x2e0]; C_59C0_Mgr *p2E0; char pad2e4[4]; C_59C0_Mgr2 *p2E8; };
 struct C_NumHorse_Root { char pad0[0x2E0]; C_5580_Q *p2E0; char pad2E4[8]; C_NumHorse_Lookup *p2EC; };
 extern C_NumHorse_Root *D_002A8490;
 extern int D_00278690, D_002786A0, D_00278678, D_002786B0;
