@@ -299,7 +299,8 @@ struct C_000B4300 {
     void func_000B1E70(void);
     void B4300_Reg(B4300_Cb cb, const char *a, const char *b, const char *c)
     {
-        D_002EFE08->func_0018CF40(f38, cb, a, b, c, 1);
+        volatile B4300_Cb fn = cb;
+        D_002EFE08->func_0018CF40(f38, fn, a, b, c, 1);
     }
 };
 
@@ -307,16 +308,19 @@ extern "C" void __stdcall func_001577A0(S_B3E10_Obj *o, int a);
 
 void C_000B4300::func_000B3E10(void)
 {
+    C_000B4300 * volatile self = this;
     char path[0x104];
     char path2[0x104];
+    S_B3E10_Info *info;
     S_B3E10_Obj *o;
 
     if (func_001EA426(f3c->f3c, D_002764F0) == 0)
         return;
-    func_001ADCC0(f3c->f140, 0x104, D_0027C588, f3c->f3c);
+    info = self->f3c;
+    func_001ADCC0(info->f140, 0x104, D_0027C588, info->f3c);
     B3E10_Copy(path, D_002A5EA0, 0x103);
     B3E10_Copy(path2, D_002A60B0, 0x103);
-    if (f3c->f8 != 0) {
+    if (self->f3c->f8 != 0) {
         func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5348, D_002A45E0);
         func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
     } else {
@@ -324,38 +328,40 @@ void C_000B4300::func_000B3E10(void)
         func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
     }
     o = (S_B3E10_Obj *)func_001E8A44(0x1e0);
-    f40->f8 = o ? o->func_00143580(1) : 0;
-    if (f40->f8->Load(f3c->f140, 0, f3c->f4)) {
-        B3E10_Copy(f40->f8->f28, f3c->f140, 0x7f);
-        f40->f8->func_00199600(f3c->fC);
-        f40->f8->func_00198F50(f3c->f1c, f3c->f2c, 1, 0, 0);
-        f40->f8->func_0019ABA0(D_002B9120->f4a8[D_002B9120->f348], 1);
-        func_001577A0(f40->f8, 0);
-        f40->f8->func_00182020(f40->f8->f1b8->f4,
-            D_002A829C->func_001617F0((char *)this + 0x64, 1));
-        f40->f8->func_00182020(f40->f8->f1b8->f8,
-            D_002A829C->func_001617F0((char *)this + 0x168, 1));
+    self->f40->f8 = o ? o->func_00143580(1) : 0;
+    info = self->f3c;
+    if (self->f40->f8->Load(info->f140, 0, info->f4)) {
+        B3E10_Copy(self->f40->f8->f28, self->f3c->f140, 0x7f);
+        self->f40->f8->func_00199600(self->f3c->fC);
+        self->f40->f8->func_00198F50(self->f3c->f1c, self->f3c->f2c, 1, 0, 0);
+        self->f40->f8->func_0019ABA0(D_002B9120->f4a8[D_002B9120->f348], 1);
+        func_001577A0(self->f40->f8, 0);
+        self->f40->f8->func_00182020(self->f40->f8->f1b8->f4,
+            D_002A829C->func_001617F0((char *)self + 0x64, 1));
+        self->f40->f8->func_00182020(self->f40->f8->f1b8->f8,
+            D_002A829C->func_001617F0((char *)self + 0x168, 1));
     } else {
-        f40->f8 = 0;
+        self->f40->f8 = 0;
     }
-    func_000B1B80();
+    self->func_000B1B80();
     B3E10_Copy(D_002A5EA0, path, 0x103);
     B3E10_Copy(D_002A60B0, path2, 0x103);
-    if (D_002EFE08->func_0018E740(this, D_0027D1E0) == 0) {
+    if (D_002EFE08->func_0018E740(self, D_0027D1E0) == 0) {
         B4300_Cb volatile cb = &C_000B4300::func_000B3330;
-        B4300_Reg(cb, D_0027D1BC, D_0027D1D0, D_0027D1D8);
+        self->B4300_Reg(cb, D_0027D1BC, D_0027D1D0, D_0027D1D8);
         cb = &C_000B4300::func_000B1E50;
-        B4300_Reg(cb, D_0027D1AC, D_0027D1D0, D_0027D1D8);
+        self->B4300_Reg(cb, D_0027D1AC, D_0027D1D0, D_0027D1D8);
         cb = &C_000B4300::func_000B1E60;
-        B4300_Reg(cb, D_0027D194, D_0027D1A4, D_0027D1D8);
+        self->B4300_Reg(cb, D_0027D194, D_0027D1A4, D_0027D1D8);
         cb = &C_000B4300::func_000B1E70;
-        B4300_Reg(cb, D_0027D178, D_0027D18C, D_0027D1D8);
-        D_002EFE08->func_00191270(this, D_0027D1E0, (S_B4300_Stream *)f3c->f348, f3c->f384);
+        self->B4300_Reg(cb, D_0027D178, D_0027D18C, D_0027D1D8);
+        info = self->f3c;
+        D_002EFE08->func_00191270(self, D_0027D1E0, (S_B4300_Stream *)info->f348, info->f384);
     }
-    v70();
-    if (f3c != 0) {
-        func_001E891B(f3c);
-        f3c = 0;
+    self->v70();
+    if (self->f3c != 0) {
+        func_001E891B(self->f3c);
+        self->f3c = 0;
     }
 }
 
@@ -407,7 +413,7 @@ int C_000B4300::func_000B4530(float dt)
 {
     float tmp[4];
 
-    if (!f1a0) {
+    if (f1a0 == 0) {
         int id = D_002A829C->func_001617F0(f9c, 1);
         f3c->f400->func_00181DB0(id);
         f3c->f400->func_001820B0((void *)func_00192300, this, id);
@@ -415,17 +421,17 @@ int C_000B4300::func_000B4530(float dt)
     }
     if (D_002A8490->f124 == 0) {
         if (D_002A8490->f2a4->f1c8 == 0) {
-            if (!f1a2) {
+            if (f1a2 == 0) {
                 f3c->f400->func_00199A70(0, f7c);
-                if (!f2a8) {
-                    if (!f2a9) {
-                        if (!f2ab)
+                if (f2a8 == 0) {
+                    if (f2a9 == 0) {
+                        if (f2ab == 0)
                             func_000B2630();
                         if (f74 == 0)
                             func_000B2930();
                     }
                     func_000B3C30();
-                    if (f70 == 1 && !f2a9)
+                    if (f70 == 1 && f2a9 == 0)
                         func_000B3B40();
                 } else if (f74 == 0) {
                     func_000B2510(0x5a);
