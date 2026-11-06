@@ -74,6 +74,15 @@ static __forceinline void Add_0017F2B0(Vec4_0017F2B0 *r, const Vec4_0017F2B0 *a,
     r->z = a->z + b->z;
 }
 
+static __forceinline Vec4_0017F2B0 AddV_0017F2B0(const Vec4_0017F2B0 &a, const Vec4_0017F2B0 &b)
+{
+    Vec4_0017F2B0 r;
+    r.x = a.x + b.x;
+    r.y = a.y + b.y;
+    r.z = a.z + b.z;
+    return r;
+}
+
 static __forceinline void Sub_0017F2B0(Vec4_0017F2B0 *r, const Vec4_0017F2B0 *a, const Vec4_0017F2B0 *b)
 {
     r->x = a->x - b->x;
@@ -229,21 +238,11 @@ int C_0017F2B0::func_0017F2B0(char *a)
         b = ts.tmp;
     } else {
         q = *(Aabb_0017F2B0 **)(t + 0x100);
-        ts.s.x = q->mx.x + q->mn.x;
-        ts.s.y = q->mx.y + q->mn.y;
-        ts.s.z = q->mx.z + q->mn.z;
-        ts.tmp.x = ts.s.x * D_002755E8;
-        ts.tmp.y = ts.s.y * D_002755E8;
-        ts.tmp.z = ts.s.z * D_002755E8;
-        ts.tmp.w = 1.0f;
+        Add_0017F2B0(&ts.s, &q->mn, &q->mx);
+        Half_0017F2B0(&ts.tmp, &ts.s);
         p = ts.tmp;
-        ts.s.x = q->mx.x - q->mn.x;
-        ts.s.y = q->mx.y - q->mn.y;
-        ts.s.z = q->mx.z - q->mn.z;
-        ts.tmp.x = ts.s.x * D_002755E8;
-        ts.tmp.y = ts.s.y * D_002755E8;
-        ts.tmp.z = ts.s.z * D_002755E8;
-        ts.tmp.w = 1.0f;
+        Sub_0017F2B0(&ts.s, &q->mx, &q->mn);
+        Half_0017F2B0(&ts.tmp, &ts.s);
         b = ts.tmp;
     }
     m = t + 0xb0;
