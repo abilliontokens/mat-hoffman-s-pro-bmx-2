@@ -300,17 +300,18 @@ void C_0018C090::func_0018C090(int value) {
     C_0018C090_Node *tail = 0;
     C_0018C090_Node *n;
     C_0018C090_Node *p = head;
-    if (p != 0) {
-        do {
-            tail = p;
-            p = p->next;
-        } while (p != 0);
+
+    while (p != 0) {
+        tail = p;
+        p = p->next;
     }
     if (tail == 0) {
         n = (C_0018C090_Node *)func_001E8A44(8);
         if (n != 0) {
             n->value = value;
             n->next = 0;
+        } else {
+            n = 0;
         }
         head = n;
         count++;
@@ -319,6 +320,8 @@ void C_0018C090::func_0018C090(int value) {
         if (n != 0) {
             n->value = value;
             n->next = 0;
+        } else {
+            n = 0;
         }
         tail->next = n;
         count++;
@@ -340,11 +343,12 @@ void C_0018C120::func_0018C120(void) {
 
 C_0018C120_Node *C_0018C120::func_0018C160(const char *name)
 {
-    C_0018C120_Node *n;
-    for (n = head; n != 0; n = n->next) {
+    C_0018C120_Node *n = head;
+    while (n != 0) {
         if (strcmp(name, ((C_0018C000 *)n->value)->unk4) == 0) {
             break;
         }
+        n = n->next;
     }
     return n;
 }
