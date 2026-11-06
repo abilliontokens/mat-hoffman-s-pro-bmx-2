@@ -719,6 +719,51 @@ C_00192CA0 *C_00192CA0::func_00192CA0(unsigned int flags)
     return this;
 }
 
+int SearchNode::func_00192CC0(float *pts)
+{
+    S_00192930_Node *n = f24;
+    int a[8];
+    int b[8];
+    float minx;
+    float maxx;
+    float miny;
+    float maxy;
+    int i;
+    for (i = 0; i < 4; i++) ((S_001D3F50 *)a)[i].func_001D3F50();
+    for (i = 0; i < 4; i++) ((S_001D3F50 *)b)[i].func_001D3F50();
+    if (f90 != D_002EFE50) {
+        f40 = 3.4028235e38f;
+        f44 = -3.4028235e38f;
+        f48 = 3.4028235e38f;
+        f4c = -3.4028235e38f;
+    }
+    minx = f40;
+    maxx = f44;
+    miny = f48;
+    maxy = f4c;
+    for (i = 0; i < 4; i++) {
+        if (pts[i * 2] < minx) minx = pts[i * 2];
+        if (pts[i * 2] > maxx) maxx = pts[i * 2];
+        if (pts[i * 2 + 1] < miny) miny = pts[i * 2 + 1];
+        if (maxy < pts[i * 2 + 1]) maxy = pts[i * 2 + 1];
+    }
+    if (minx == f40 && maxx == f44 && miny == f48 && maxy == f4c) {
+        return 0;
+    }
+    f4c = maxy;
+    f40 = minx;
+    f44 = maxx;
+    f48 = miny;
+    f90 = D_002EFE50;
+    for (; n != 0; n = n->next) {
+        if (((C_00179B40 *)n->b)->func_00179B40(a, D_002EFDB8->f4) != 0 &&
+            func_0017C060(pts, a, b) != 0) {
+            ((SearchNode *)n->a)->func_00192CC0((float *)b);
+        }
+    }
+    return 1;
+}
+
 int SearchNode::func_00192F40(SearchNode *root)
 {
     S_00192930_Node *n;
