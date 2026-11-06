@@ -119,7 +119,7 @@ extern float D_00278654, D_00275544, D_0027653C, D_00278650, D_00275800, D_00279
 extern char D_00275678[], D_002A5870[], D_002A5FA8[];
 extern "C" void *func_001E8A44(unsigned int size);
 
-static __forceinline void uv7CA(BmxSprite *p) { float a = p->sx * D_00278654; p->flags |= 4; p->u0 = a; p->v0 = p->sx * D_00275544; p->u1 = p->sy * D_0027653C; p->v1 = p->sy * D_00275544; }
+static __forceinline void uv7CA(BmxSprite *p) { float a = *(volatile float *)&p->sx * D_00278654; p->flags |= 4; p->u0 = a; p->v0 = *(volatile float *)&p->sx * D_00275544; p->u1 = *(volatile float *)&p->sy * D_0027653C; p->v1 = *(volatile float *)&p->sy * D_00275544; }
 static __forceinline void width7CA(BmxSprite *p, int v) { if (p->w != v) { p->w = v; p->flags |= 1; } }
 static __forceinline void height7CA(BmxSprite *p, int v) { if (p->h != v) { p->h = v; p->flags |= 1; } }
 
