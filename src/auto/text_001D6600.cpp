@@ -5,6 +5,11 @@
 #include <string.h>
 
 extern int D_0028F644;
+struct TextureInit_001D6B70 {
+ virtual void slot0(); virtual void slot1(); virtual void slot2(); virtual void slot3();
+ virtual void slot4(); virtual void slot5(); virtual void slot6(); virtual void slot7();
+ virtual int slot8(int,int,int,int,int,int,int,int,int);
+};
 extern int D_002A83E0;
 
 extern float D_00275460, D_002755E4, D_002F0B90, D_002ABDD0, D_002ABDD4, D_002ABE5C;
@@ -386,15 +391,19 @@ XboxTextureMap *XboxTextureMap::func_001D6B70(void)
 {
     int dims[2];
     XboxTextureMap *p;
+    XboxTextureMap *q = 0;
 
     if (fB8 != 0) {
         func_001FCEA0(fB8, 0, dims, 0, 0x80);
         p = (XboxTextureMap *)func_001E8A44(0x110);
         if (p != 0) {
             p->func_001B1200((void *)1);
-            ((void **)p)[0] = (void *)&D_0028F644;
-            p->fB8 = 0;
-            p->fBC = 0;
+            q = p;
+        }
+        if (q != 0) {
+            ((void **)q)[0] = (void *)&D_0028F644;
+            q->fB8 = 0;
+            q->fBC = 0;
             if (p->slot8(dims[1], f8, fC, (dims[0] << 3) / func_001B2910(fA4), fA0, fA4, fA4, 0, 0))
                 return p;
             p->slot0(1);
@@ -507,11 +516,11 @@ void *func_001D6E20(char *name, int arg2, unsigned int flags)
         S_001D6E20_Res *p = (S_001D6E20_Res *)func_001E8A44(0x144);
         obj = p ? p->func_0013E8C0(1) : 0;
         if (((S_001D6E20_Res *)obj)->slot23(name, arg2, flags & ~0x20)) {
+            void *res = obj;
             D_002BEAAC->func_0013AC40(buf, 0, -1, 0, &key, 0);
-            D_002BEAAC->func_0013B1F0(key, obj);
-            S_001D7190_Pack *pk = D_002BEAAC;
-            pk->func_0013C110(key);
-            return obj;
+            D_002BEAAC->func_0013B1F0(key, res);
+            D_002BEAAC->func_0013C110(key);
+            return res;
         }
         ((S_001D6E20_Res *)obj)->slot2();
         return 0;
@@ -577,13 +586,14 @@ void *func_001D6E20(char *name, int arg2, unsigned int flags)
 
 int XboxTextureMap::func_001D7190(int a1, int a2, int a3)
 {
-    XboxTextureMap *volatile p = this;
     S_001D7190_Tex t;
     int desc[3];
     int dims[2];
+    int size = 0;
     int fmt;
     int n;
     int i;
+    XboxTextureMap *volatile p = this;
 
     t.f4 = -1;
     t.f0 = 1;
@@ -609,8 +619,9 @@ int XboxTextureMap::func_001D7190(int a1, int a2, int a3)
         break;
     case 5:
         fmt = 0xb;
-        p->fBC = (void *)func_001FF460(0);
         {
+            void **pdata = (void **)((char *)p + 0xbc);
+            *pdata = (void *)func_001FF460(0);
             void *q = (void *)func_001FF4C0((int)p->fBC, 0);
             D_002BEAAC->func_0013C8A0(*(volatile int *)&a1, q, t.fC * 4, 1);
         }
@@ -628,16 +639,20 @@ int XboxTextureMap::func_001D7190(int a1, int a2, int a3)
         t.f8 = 1;
     }
     if ((a3 & 2) != 0 && n == 1) {
-        dims[0] = t.f10 < t.f14 ? t.f10 : t.f14;
+        size = t.f10 < t.f14 ? t.f10 : t.f14;
         n = 0;
-        while (dims[0] >= 4) {
-            dims[0] >>= 1;
+        while (size >= 4) {
+            size >>= 1;
             n++;
         }
     }
-    p->fB8 = (void *)func_001FCF20(t.f10, t.f14, 1, n, 0, fmt, 3);
-    if ((int)(p->fB8 != 0) - 1 < 0) {
-        return 0;
+    {
+        void **pdata = (void **)((char *)p + 0xb8);
+        void *r = (void *)func_001FCF20(t.f10, t.f14, 1, n, 0, fmt, 3);
+        *pdata = r;
+        if ((int)(((int)(r != 0) - 1) & 0x8007000e) < 0) {
+            return 0;
+        }
     }
     p->fA4 = fmt;
     p->fA8 = n;
