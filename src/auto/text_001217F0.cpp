@@ -10,12 +10,18 @@ struct V4s_001217F0 : V4_001225C0 {
     V4s_001217F0() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
 };
 
+struct V4t_001217F0 {
+    float x, y, z, w;
+    V4t_001217F0(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
+};
+
 extern float D_002B9348;
 extern void **D_002B92F4;
 extern V4_001225C0 D_002B9350[13];
 extern V4_001225C0 D_002A3C3C[3];
 void func_0011F0E0(void *a, void *b, void *c, void *indices, void **data);
 void func_0001C680(V4_001225C0 *out, V4_001225C0 v, float *m);
+void func_0001C680(V4_001225C0 *out, V4t_001217F0 v, float *m);
 void func_0011EFA0(float *out, float *in);
 
 extern float D_00275544;
