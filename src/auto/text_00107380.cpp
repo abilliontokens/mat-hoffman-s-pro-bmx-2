@@ -3,7 +3,7 @@
 extern float D_00282A78, D_002755E8;
 struct Vec_107AE0 {
  float x,y,z,w;
- Vec_107AE0() { z=y=x=0; w=1; }
+ Vec_107AE0() { x=y=z=0; w=1; }
  Vec_107AE0(float a,float b,float c) { x=a;y=b;z=c;w=1; }
 };
 struct Mat_107AE0 { float m[16]; };
