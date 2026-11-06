@@ -137,7 +137,10 @@ struct VObj_002A8490 {
 struct Data_002A8490 {
     char pad0[8];
     VObj_002A8490 **arr;
+    char padC[0x2d4];
+    GData_000F3C70 *p2E0;
 };
+extern float D_002757F0;
 
 extern Data_002A8490 *D_002A8490;
 extern float D_00278C58;
