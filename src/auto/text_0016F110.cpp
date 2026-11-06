@@ -28,9 +28,28 @@ struct C_0016FBC0 {
 };
 
 struct O_0016F800 { char pad[0xa8]; int f; };
+struct S_16F800_Part { float x, y, z; char padc[0x18]; int f24; char pad28[0x1c]; };
+struct S_16F800_Range {
+    char pad0[0x180]; float f180, f184; char pad188[8]; float f190;
+    char pad194[0x1fc - 0x194]; float f1fc, f200;
+    char pad204[0x270 - 0x204]; float f270, f274, f278, f27c;
+};
 struct C_0016F800 {
-    char pad0[0x108]; unsigned frame; void *buckets; int minb, maxb, count, used; int pad124[2]; void **nodes;
-    char pad130[0x14]; unsigned f144; char pad148[0x28]; O_0016F800 *obj170;
+    char pad0[0x108];
+    int frame;          // 0x108
+    int f10c;           // 0x10c
+    void *buckets;      // 0x110
+    int minb;           // 0x114
+    int maxb;           // 0x118
+    int count;          // 0x11c
+    int used;           // 0x120
+    int pad124[2];      // 0x124
+    S_16F800_Part **nodes; // 0x12c
+    char pad130[0x14];  // 0x130
+    int f144;           // 0x144
+    void *f148;         // 0x148
+    char pad14c[0x24];  // 0x14c
+    O_0016F800 *obj170; // 0x170
     int func_0016F800(void);
 };
 extern "C" void __fastcall func_001D7D00(void);
