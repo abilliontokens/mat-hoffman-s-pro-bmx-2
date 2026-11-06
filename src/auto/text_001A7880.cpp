@@ -75,6 +75,7 @@ struct State_001A7FE0 {
 };
 extern unsigned D_002BA154, D_002BA15C, D_002BA160;
 void func_0011F540(V4_001A7FE0 *, V4_001A7FE0, float *);
+V4_001A7FE0 func_0011F540(V4_001A7FE0, float *);
 static __forceinline V4_001A7FE0 xform_001A7FE0(V4_001A7FE0 v, float *m)
 {
     V4_001A7FE0 r;
@@ -228,7 +229,8 @@ void func_001A7FE0(State_001A7FE0 *state, Contact_001A7FE0 *contact)
         V4_001A7FE0 a = xform_001A7FE0(shape->f14, (float *)(body->f22c + 0xf0));
         V4_001A7FE0 b;
         for (int i=0; i<shape->f4; ++i) {
-            func_0011F540(&b, shape->f14 - shape->f24[i] * state->f100, (float *)(body->f22c + 0xf0));
+            V4_001A7FE0 t = shape->f14 - shape->f24[i] * state->f100;
+            func_0011F540(&b, t, (float *)(body->f22c + 0xf0));
             model->func_001A95B0(a,b,shape->f24[i],shape->f24[i+3],flags,other,state->f110,frame);
         }
         break;
@@ -239,7 +241,8 @@ void func_001A7FE0(State_001A7FE0 *state, Contact_001A7FE0 *contact)
         V4_001A7FE0 a, b;
         for (int i=0; i<count; ++i, count=mesh->f7c) {
             if (!mesh->f88[i]) continue;
-            func_0011F540(&b, state->fc0[i] + state->fc4[i] * state->fbc[i], (float *)(body->f22c+0xf0));
+            V4_001A7FE0 t = state->fc0[i] + state->fc4[i] * state->fbc[i];
+            func_0011F540(&b, t,(float *)(body->f22c+0xf0));
             func_0011F540(&a, state->fc0[i],(float *)(body->f22c+0xf0));
             model->func_001A95B0(a,b,mesh->f74[i],mesh->f78[i],flags,other,state->fac[i],frame);
         }
