@@ -352,7 +352,7 @@ BmxUIPageGameOptions *BmxUIPageGameOptions::func_000C9090(int a, int b, int c)
         arr32C[i] = NewWidgetC9090();
         arr32C[i]->func_001B13A0(D_002786A0, D_002786A0, 0, 0x1e);
         arr32C[i]->func_001B2270(0xffcccccc);
-        func_001577A0(-1, arr32C[i]);
+        func_001577A0(arr32C[i], -1);
     }
     arr32C[0]->func_001B1A30(330.0f, 145.0f, 0);
     arr32C[0]->func_001B19A0(D_0028F5DC);
@@ -364,35 +364,35 @@ BmxUIPageGameOptions *BmxUIPageGameOptions::func_000C9090(int a, int b, int c)
     unk2D8->func_001B1A30(330.0f, 105.0f, 0);
     unk2D8->func_001B19A0(D_0028F5DC);
     unk2D8->func_001B2270(0xffcccccc);
-    func_001577A0(-1, unk2D8);
+    func_001577A0(unk2D8, -1);
 
     unk2DC = NewWidgetC9090();
     unk2DC->func_001B13A0(D_002786A0, D_002786A0, 0, 5);
     unk2DC->func_001B1A30(330.0f, 225.0f, 0);
     unk2DC->func_001B19A0(D_0028F5DC);
     unk2DC->func_001B2270(0xffcccccc);
-    func_001577A0(-1, unk2DC);
+    func_001577A0(unk2DC, -1);
 
     unk324 = NewWidgetC9090();
     unk324->func_001B13A0(D_002786A0, D_002786A0, 0, 0x1e);
     unk324->func_001B1A30(330.0f, 265.0f, 0);
     unk324->func_001B19A0(D_0028F5DC);
     unk324->func_001B2270(0xffcccccc);
-    func_001577A0(-1, unk324);
+    func_001577A0(unk324, -1);
 
     unk2E0 = NewWidgetC9090();
     unk2E0->func_001B13A0(D_002786A0, D_002786A0, 0, 0x1e);
     unk2E0->func_001B1A30(330.0f, 305.0f, 0);
     unk2E0->func_001B19A0(D_0028F5DC);
     unk2E0->func_001B2270(0xffcccccc);
-    func_001577A0(-1, unk2E0);
+    func_001577A0(unk2E0, -1);
 
     unk2EC = NewWidgetC9090();
     unk2EC->func_001B13A0(D_002786A0, D_002786A0, 0, 0x1e);
     unk2EC->func_001B1A30(320.0f, 105.0f, 0);
     unk2EC->func_001B19A0(D_0028F5EC);
     unk2EC->func_001B2270(0xffcccccc);
-    func_001577A0(-1, unk2EC);
+    func_001577A0(unk2EC, -1);
     unk2EC->func_001B17D0(D_002A8490->p2E8->p4->f340);
 
     unk2F4 = NewWidgetC9090();
@@ -400,7 +400,7 @@ BmxUIPageGameOptions *BmxUIPageGameOptions::func_000C9090(int a, int b, int c)
     unk2F4->func_001B1A30(320.0f, 145.0f, 0);
     unk2F4->func_001B19A0(D_0028F5EC);
     unk2F4->func_001B2270(0xffcccccc);
-    func_001577A0(-1, unk2F4);
+    func_001577A0(unk2F4, -1);
     unk2F4->func_001B17D0(D_002A8490->p2E8->p4->f880);
 
     unk2F8 = NewWidgetC9090();
@@ -408,7 +408,7 @@ BmxUIPageGameOptions *BmxUIPageGameOptions::func_000C9090(int a, int b, int c)
     unk2F8->func_001B1A30(320.0f, 185.0f, 0);
     unk2F8->func_001B19A0(D_0028F5EC);
     unk2F8->func_001B2270(0xffcccccc);
-    func_001577A0(-1, unk2F8);
+    func_001577A0(unk2F8, -1);
     unk2F8->func_001B17D0(D_002A8490->p2E8->p4->f888);
 
     unk2FC = NewWidgetC9090();
@@ -416,7 +416,7 @@ BmxUIPageGameOptions *BmxUIPageGameOptions::func_000C9090(int a, int b, int c)
     unk2FC->func_001B1A30(320.0f, 225.0f, 0);
     unk2FC->func_001B19A0(D_0028F5EC);
     unk2FC->func_001B2270(0xffcccccc);
-    func_001577A0(-1, unk2FC);
+    func_001577A0(unk2FC, -1);
     unk2FC->func_001B17D0(D_002A8490->p2E8->p4->fD0);
 
     unk300 = NewWidgetC9090();
@@ -424,7 +424,7 @@ BmxUIPageGameOptions *BmxUIPageGameOptions::func_000C9090(int a, int b, int c)
     unk300->func_001B1A30(320.0f, 265.0f, 0);
     unk300->func_001B19A0(D_0028F5EC);
     unk300->func_001B2270(0xffcccccc);
-    func_001577A0(-1, unk300);
+    func_001577A0(unk300, -1);
     unk300->func_001B17D0(D_002A8490->p2E8->p4->f11A8);
 
     unk304 = NewWidgetC9090();
@@ -432,12 +432,13 @@ BmxUIPageGameOptions *BmxUIPageGameOptions::func_000C9090(int a, int b, int c)
     unk304->func_001B1A30(320.0f, 305.0f, 0);
     unk304->func_001B19A0(D_0028F5EC);
     unk304->func_001B2270(0xffcccccc);
-    func_001577A0(-1, unk304);
+    func_001577A0(unk304, -1);
     unk304->func_001B17D0(D_002A8490->p2E8->p4->f11B0);
 
     for (i = 0; i < 12; i++) {
         void *mem = func_001E8A44(100);
         Entry334 *e;
+        Entry334 *p;
         if (mem != 0)
             e = ((Entry334 *)mem)->func_001D5760();
         else
@@ -447,15 +448,17 @@ BmxUIPageGameOptions *BmxUIPageGameOptions::func_000C9090(int a, int b, int c)
             e->func_001D5810(D_002786B0, 100.0f, (float)((i / 2) * 40) + D_0027E484, 0);
         } else {
             e->func_001D5810(D_002786B0, 321.0f, (float)((i / 2) * 40) + D_0027E484, 0);
-            e->f3C = 0x3f800000;
-            e->f48 = 0x3f800000;
-            e->f40 = 0;
-            e->f44 = 0;
-            e->b58 |= 4;
+            p = (Entry334 *)arr334[i];
+            p->f3C = 0x3f800000;
+            p->f48 = 0x3f800000;
+            p->f40 = 0;
+            p->f44 = 0;
+            p->b58 |= 4;
         }
-        if (e->f28 != 0x435d0000) {
-            e->f28 = 0x435d0000;
-            e->b58 |= 1;
+        p = (Entry334 *)arr334[i];
+        if (p->f28 != 0x435d0000) {
+            p->f28 = 0x435d0000;
+            p->b58 |= 1;
         }
     }
     return this;
