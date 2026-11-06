@@ -46,6 +46,7 @@ struct C_00078050 {
 };
 
 extern float D_002A1FEC;
+void *func_001E8A44(int);
 
 struct Wid_779C0 {
     char pad0[0x28];
