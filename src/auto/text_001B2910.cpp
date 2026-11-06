@@ -32,12 +32,6 @@ struct S_001B2CD0_Px {
 };
 #pragma pack(pop)
 
-static inline void copy_px_001B2CD0(S_001B2CD0_Px *d, const S_001B2CD0_Px *s)
-{
-    d->lo = s->lo;
-    d->hi = s->hi;
-}
-
 struct C_001B33A0_Loader {
     int func_0013C8A0(int handle, void *buf, int size, int count);
 };
