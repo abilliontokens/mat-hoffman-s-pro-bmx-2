@@ -198,7 +198,9 @@ int *__stdcall func_001FF410(int a, int b);
 
 static __forceinline float MinF_0013ED30(float a, float b)
 {
-    return a < b ? a : b;
+    float r;
+    _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b)));
+    return r;
 }
 struct V4_0013ED30 { float x, y, z, w; };
 void func_0013E920(V4_0013ED30 *out, V4_0013ED30 *in);
