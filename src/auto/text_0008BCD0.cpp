@@ -75,11 +75,9 @@ struct Elem_0008BCD0 {
         m48 = 1.0f;
     }
     void SetIdentity2() {
-        m3c = 1.0f;
-        m48 = 1.0f;
+        m48 = m3c = 1.0f;
         flags |= 4;
-        m40 = 0;
-        m44 = 0;
+        m44 = m40 = 0;
     }
     void SetAlpha(unsigned char a) {
         ((unsigned char *)&argb)[3] = a;
@@ -337,7 +335,7 @@ void C_0008BCD0::func_0008C480()
     func_001577A0(unk54, -1);
     unk38->SetX(0x42c00000);
     unk38->SetY(0x42800000);
-    unk38->SetIdentity();
+    unk38->SetIdentity2();
     unk38->SetF34(5.0f);
     unk4c->SetX(0x42000000);
     unk4c->SetY(0x42000000);
@@ -378,7 +376,7 @@ void C_0008BCD0::func_0008C480()
         unk28->SetColor(D_0028F5EC);
         px = 0x42e80000;
     }
-    unk28->SetPos(px, 0x421c0000);
+    unk28->SetPos2(px, 0x421c0000);
     unk2c->SetColor(D_0028F5EC);
     unk2c->SetPos(px, 0x427c0000);
     unk24->Set3C(0x40a00000);
