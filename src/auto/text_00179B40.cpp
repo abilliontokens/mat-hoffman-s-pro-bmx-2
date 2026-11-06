@@ -140,10 +140,6 @@ static inline void V3Add_0017A010(V3_0017A010 &r, const V3_0017A010 &a, const V3
     r.z = a.z + b.z;
 }
 int func_001793E0(C_0017A1D0_Vec4 *p, V3_0017A010 *n, V3_0017A010 *o, V3_0017A010 *a, V3_0017A010 *b, V3_0017A010 *c);
-struct V4Tmp_0017A010 {
-    float x, y, z, w;
-    V4Tmp_0017A010(const V3_0017A010 &v, float w_) { x = v.x; y = v.y; z = v.z; w = w_; }
-};
 struct C_0017A010 {
     char pad0[0x24];
     V3_0017A010 f24;
@@ -287,12 +283,12 @@ int C_0017A010::func_0017A010(V3_0017A010 *a, V3_0017A010 *b, C_0017A1D0_Vec4 *o
         float t = -((c + V3Dot_0017A010(*a, f64)) / V3Dot_0017A010(dv, f64));
         if (t >= D_00275544 && t <= D_00275460) {
             C_0017A1D0_Vec4 pt;
-            d.w = 1.0f;
             V3Scale_0017A010(*(V3_0017A010 *)&pt, dv, t);
             V3Add_0017A010(dv, *(V3_0017A010 *)&pt, *a);
+            d.w = 1.0f;
             pt = d;
             if (out) {
-                *out = d;
+                *out = pt;
             }
             if (func_001793E0(&pt, &f64, &f24, &f34, &f44, &f54))
                 return 1;
