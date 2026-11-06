@@ -193,32 +193,38 @@ void C_00198B70::func_00198C00(C_00198B70 *src, C_00198B70 *dst)
     } else dst->f174=0;
 }
 
-void C_00198B70::func_00198DE0(void)
+extern "C" void *memset(void *, int, unsigned int);
+static __forceinline void Identity_198DE0(S_00198B70_Mat *m)
 {
-    C_00198B70 * volatile self = this;
-    S_00198B70_Mat * volatile p;
-    S_00198B70_Mat *q;
-    __m128 *v;
-    unsigned int *iq;
-
-    f180 &= 0xfe;
-    p = &self->fB0;
-    q = p;
-    v = (__m128 *)q;
-    iq = (unsigned int *)q;
-    v[0] = _mm_setzero_ps();
-    v[1] = _mm_setzero_ps();
-    v[2] = _mm_setzero_ps();
-    v[3] = _mm_setzero_ps();
+    unsigned int *iq = (unsigned int *)m;
+    memset(m, 0, 0x40);
     iq[0] = 0x3f800000;
     iq[5] = 0x3f800000;
     iq[10] = 0x3f800000;
     iq[15] = 0x3f800000;
-    if (self->f178 != 0) {
-        self->f178->v32();
+}
+void C_00198B70::func_00198DE0(void)
+{
+    C_00198B70 * volatile self = this;
+    S_00198B70_Mat * volatile p;
+    unsigned int *iq;
+    C_00198B70 *c;
+
+    f180b.b0 = 0;
+    p = &self->fB0;
+    iq = (unsigned int *)p;
+    memset((void *)p, 0, 0x40);
+    iq[0] = 0x3f800000;
+    iq[5] = 0x3f800000;
+    iq[10] = 0x3f800000;
+    iq[15] = 0x3f800000;
+    c = self->f178;
+    if (c != 0) {
+        c->v32();
     }
-    if (self->f174 != 0) {
-        self->f174->v32();
+    c = self->f174;
+    if (c != 0) {
+        c->v32();
     }
 }
 
@@ -255,6 +261,49 @@ void func_00198EF0(void *a, C_00198B70 *obj, void *c)
         func_0011ACC0(a, c, inv);
     } else {
         ((S_00198B70_MatCopy *)a)->func_000264C0(c);
+    }
+}
+
+void C_00198B70::func_00198F50(float *a, float *b, int c, int d, int e)
+{
+    C_00198B70 * volatile self = this;
+    float tmp[4];
+    if (c == 0 && e != 0) {
+        float * volatile p = tmp;
+        tmp[0] = tmp[1] = tmp[2] = *(float *)&c;
+        tmp[3] = 1.0f;
+        _mm_storeu_ps(p, _mm_shuffle_ps(
+            _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9)),
+                       _mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9))),
+            _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9)),
+                       _mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9))),
+            0xc9));
+        self->fB0.m[0] = tmp[0];
+        self->fB0.m[4] = tmp[1];
+        self->fB0.m[8] = tmp[2];
+        self->fB0.m[12] = 0.0f;
+        self->fB0.m[1] = b[0];
+        self->fB0.m[5] = b[1];
+        self->fB0.m[9] = b[2];
+        self->fB0.m[13] = 0.0f;
+        self->fB0.m[2] = a[0];
+        self->fB0.m[6] = a[1];
+        self->fB0.m[10] = a[2];
+        self->fB0.m[14] = 0.0f;
+        self->fB0.m[15] = 1.0f;
+    } else {
+        tmp[0] = fB0.m[3];
+        tmp[1] = fB0.m[7];
+        tmp[2] = fB0.m[11];
+        tmp[3] = 1.0f;
+        func_000265C0(fB0.m, tmp, a, b, c, d);
+    }
+    self->func_001982F0();
+    if (self->f180 & 1) {
+        self->f180 &= 0xfe;
+        if (self->f174 != 0) {
+            self->f174->func_00197B10();
+        }
     }
 }
 
