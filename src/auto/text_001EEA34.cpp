@@ -127,6 +127,11 @@ struct S_001EEFE3 {
     S_001EEFE3 *next;
     S_001EEFE3 *func_001EEFE3(S_001EEFE3 *n);
     S_001EEFE3 *func_001EF419(void);
+    S_001EEFE3 *Tail(void) {
+        S_001EEFE3 *p = this;
+        while (p->next != 0) p = p->next;
+        return p;
+    }
 };
 
 /* virtual object with a mode at +8 (Class_00295BE4 slot 1) */
@@ -176,6 +181,219 @@ struct S_001EF210_Node {
     virtual int v2(char *dst, int n);
     S_001EF210_Node *next;
 };
+
+int func_001EEA34(void)
+{
+    char *s = D_002F6A28;
+    int code;
+    int d;
+    char c;
+
+restart:
+    code = 0;
+    if (*s == '_') {
+        s++;
+        code = 0x4000;
+        D_002F6A28 = s;
+    }
+    c = *s;
+    if (c >= 'A' && c <= 'Z') goto letter;
+    if (c != '$') goto digit;
+
+    s++;
+    D_002F6A28 = s;
+    d = (signed char)*s;
+    if (d > 'A') goto dollar_letter;
+    if (d == 'A') goto dollar_A;
+    if (d == 0) goto dollar_0;
+    if (d != '$') goto dollar_digit;
+
+    s++;
+    D_002F6A28 = s;
+    c = *s;
+    switch (c) {
+    case 'F': case 'G': case 'H': case 'I':
+    case 'L': case 'M':
+        s++;
+        break;
+    case 'J': case 'K': case 'N': case 'O':
+        s++;
+        D_002F6A28 = s;
+        if (*s < '0' || *s > '9') goto ret_ffff;
+        s = s + *s - 0x2f;
+        break;
+    default:
+        goto consume_ret;
+    }
+    D_002F6A28 = s;
+    goto restart;
+
+letter:
+    d = (signed char)*s - 'A';
+    s++;
+    code |= 0x8000;
+    if (d & 1) code |= 0x2000;
+    else code &= ~0x2000;
+    D_002F6A28 = s;
+    if (d >= 0x18) goto ret;
+    if (code & 0x8000) {
+        code = (code & ~0x1000) | 0x800;
+    } else {
+        code &= ~0x6000;
+    }
+    switch (d & 0x18) {
+    case 0:
+        if (code & 0x8000) code = (code & ~0x80) | 0x40;
+        else code = (code & ~0x1000) | 0x800;
+        break;
+    case 8:
+        if (code & 0x8000) code = (code & ~0x40) | 0x80;
+        else code = (code & ~0x800) | 0x1000;
+        break;
+    case 0x10:
+        if (code & 0x8000) code &= ~0xc0;
+        else code &= ~0x1800;
+        break;
+    default:
+        goto ret_ffff;
+    }
+    switch (d & 6) {
+    case 0:
+        goto ret;
+    case 2:
+        if (code & 0x8000) code = (code & ~0x500) | 0x200;
+        else code &= ~0x6000;
+        goto ret;
+    case 4:
+        code = (code & ~0x600) | 0x100;
+        goto ret;
+    case 6:
+        code = (code & ~0x300) | 0x400;
+        goto ret;
+    }
+
+dollar_digit:
+    if (d < '0' || d > '5') goto ret_ffff;
+    d = (signed char)*s;
+    code |= 0x8000;
+    d -= 0x30;
+    if (code & 0x8000) {
+        code = (code & ~0x1000) | 0x800;
+    } else {
+        code &= ~0x6000;
+    }
+    code = (code & ~0x200) | 0x500;
+    if (d & 1) code |= 0x2000;
+    else code &= ~0x2000;
+    switch (d & 6) {
+    case 0:
+        break;
+    case 2:
+        if (code & 0x8000) code = (code & ~0x500) | 0x200;
+        else code &= ~0x6000;
+        break;
+    case 4:
+        if (code & 0x8000) code = (code & ~0x40) | 0x80;
+        else code = (code & ~0x800) | 0x1000;
+        break;
+    case 6:
+        if (code & 0x8000) code &= ~0xc0;
+        else code &= ~0x1800;
+        break;
+    }
+    goto consume_ret;
+
+ret_ffff:
+    code = 0xffff;
+    goto ret;
+
+dollar_0:
+    code = 0xfffe;
+    goto consume_ret;
+
+dollar_A:
+    code = (code & ~0xb00) | 0x9000;
+    goto consume_ret;
+
+dollar_letter:
+    d -= 'B';
+    if (d == 0) {
+        code |= 0x9800;
+    } else {
+        d -= 2;
+        if (d == 0) {
+            code = (code & ~0xa00) | 0x9100;
+        } else {
+            d--;
+            if (d != 0) goto ret_ffff;
+            code = (code & ~0x900) | 0x9200;
+        }
+    }
+    goto consume_ret;
+
+consume_ret:
+    s++;
+    D_002F6A28 = s;
+    goto ret;
+
+digit:
+    c = *s;
+    if (c < '0' || c > '8') goto not_digit;
+    d = (signed char)c;
+    s++;
+    D_002F6A28 = s;
+    code &= ~0x8000;
+    switch (d - 0x30) {
+    case 0:
+        if (code & 0x8000) code = (code & ~0x500) | 0x200;
+        else code &= ~0x6000;
+        if (code & 0x8000) code = (code & ~0x80) | 0x40;
+        else code = (code & ~0x1000) | 0x800;
+        goto ret;
+    case 1:
+        if (code & 0x8000) code = (code & ~0x500) | 0x200;
+        else code &= ~0x6000;
+        if (code & 0x8000) code = (code & ~0x40) | 0x80;
+        else code = (code & ~0x800) | 0x1000;
+        goto ret;
+    case 2:
+        if (code & 0x8000) code = (code & ~0x500) | 0x200;
+        else code &= ~0x6000;
+        if (code & 0x8000) code &= ~0xc0;
+        else code &= ~0x1800;
+        goto ret;
+    case 3:
+        code = (code & ~0x2000) | 0x8000;
+        goto ret;
+    case 4:
+        code = (code & ~0x4000) | 0x2000;
+        goto ret;
+    case 5:
+        code = (code & ~0x1800) | 0x6000;
+        goto ret;
+    case 6:
+        code = (code & ~0x1000) | 0x6800;
+        goto ret;
+    case 7:
+        code = (code & ~0x800) | 0x7000;
+        goto ret;
+    case 8:
+        code |= 0x7800;
+        goto ret;
+    }
+
+not_digit:
+    if (c == '9') {
+        s++;
+        D_002F6A28 = s;
+        code = 0xfffd;
+    } else {
+        code = 0xfffe + (c != 0);
+    }
+
+ret:
+    return code;
+}
 
 int func_001EEE49(int i) {
     volatile int *gp = &D_002F6A38;
@@ -655,6 +873,7 @@ BitObj *BitObj::func_001EF613(int a)
 void BitObj::func_001EF68E(char *p, int n)
 {
     S_001EF68E_Char *q;
+    int len;
 
     if (s4 == 1 || s4 == 3) {
         return;
@@ -663,32 +882,27 @@ void BitObj::func_001EF68E(char *p, int n)
         func_001EF333(3);
         return;
     }
-    if (p != 0 && n != 0) {
-        switch (n) {
-        case 0:
-            q = 0;
-            break;
-        case 1:
-            q = (S_001EF68E_Char *)D_002F6A04.func_001EEE62(0xc, 0);
-            if (q != 0) {
-                q->f4 = 0;
-                q->vtbl = &D_00295BCC;
-                q->c = *p;
-            }
-            break;
-        default:
-            q = (S_001EF68E_Char *)D_002F6A04.func_001EEE62(0x10, 0);
-            if (q != 0) {
-                q = (S_001EF68E_Char *)((S_001EF45F *)q)->func_001EF45F(p, n);
-            }
-            break;
-        }
-        f0 = (int)q;
-        if (q == 0) {
-            s4 = 3;
-        }
-    } else {
+    if (!p || !(len = n)) {
         s4 = 1;
+        return;
+    }
+    switch (len) {
+    case 0:
+        q = 0;
+        break;
+    case 1:
+        q = new S_001EF68E_Char(*p);
+        break;
+    default:
+        q = (S_001EF68E_Char *)D_002F6A04.func_001EEE62(0x10, 0);
+        if (q) {
+            q = (S_001EF68E_Char *)((S_001EF45F *)q)->func_001EF45F(p, n);
+        }
+        break;
+    }
+    f0 = (int)q;
+    if (!q) {
+        s4 = 3;
     }
 }
 
