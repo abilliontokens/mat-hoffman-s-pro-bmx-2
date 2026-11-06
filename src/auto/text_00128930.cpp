@@ -118,6 +118,82 @@ struct S_00128930_Hit {
 
 extern S_00128930_Hit *D_002B92EC;
 
+/* func_00129510: builds the collision tree of a triangle mesh */
+void *func_001E8AA5(int n);
+void *func_001E8A44(int n);
+void func_001E8390(void *p);
+extern float D_00283F50;
+
+struct S_00129510_V4 { float x, y, z, w; };
+
+/* one triangle: vertex indices, plane normal, centroid, plane distance */
+struct S_00129510_Tri {
+    int i0, i1, i2;
+    S_00129510_V4 normal;
+    S_00129510_V4 center;
+    int pad2C;
+    float d;
+};
+
+struct S_00129510_Col {
+    short r, g, b;
+    S_00129510_Col *func_0001AF00(const void *v);
+};
+
+/* 0x14-byte leaf of the second table */
+struct S_00129510_Leaf {
+    short i0, i1, i2;
+    short pad6;
+    float d;
+    S_00129510_Col col;
+    short pad12;
+};
+
+struct S_00129510_V3z {
+    float x, y, z;
+    S_00129510_V3z() { z = 0; y = 0; x = 0; }
+};
+
+/* 0x24-byte tree node */
+struct S_00129510_Node {
+    float f0, f4;
+    unsigned short child0, child1;
+    S_00129510_V3z min;
+    S_00129510_V3z max;
+    static void *operator new[](unsigned int n) { return func_001E8A44(n); }
+};
+
+struct __declspec(align(16)) S_00129510_M44 {
+    __m128 m[4];
+};
+
+void func_001619D0(S_00129510_V4 *a, S_00129510_V4 *b, S_00129510_V4 *c, S_00129510_V4 *out, float *d);
+void func_0011AC30(S_00129510_M44 *out, S_00129510_M44 *in);
+void func_0001C680(S_00129510_V4 *out, S_00129510_V4 v, S_00129510_M44 *m);
+void func_00128630(S_00129510_Node *nodes, S_00129510_Tri *tris, int count, S_00129510_V4 *verts, int start, int *index);
+
+static inline void Xform_00129510(S_00129510_V4 *out, const S_00129510_M44 *mat, const S_00129510_V4 *v)
+{
+    __m128 t = _mm_loadu_ps(&v->x);
+    _mm_storeh_pi((__m64 *)&out->z, t);
+    out->w = 1.0f;
+    t = _mm_loadh_pi(t, (__m64 *)&out->z);
+    __m128 r0 = _mm_mul_ps(mat->m[0], t);
+    __m128 r1 = _mm_mul_ps(mat->m[1], t);
+    __m128 r2 = _mm_mul_ps(mat->m[2], t);
+    __m128 lo = _mm_unpacklo_ps(r0, r1);
+    __m128 hi = _mm_unpackhi_ps(r0, r1);
+    __m128 junk = _mm_movehl_ps(r2, r2);
+    lo = _mm_add_ps(lo, hi);
+    r2 = _mm_add_ps(r2, junk);
+    hi = _mm_movehl_ps(hi, lo);
+    lo = _mm_movelh_ps(lo, r2);
+    hi = _mm_shuffle_ps(hi, r2, 0x14);
+    lo = _mm_add_ps(lo, hi);
+    _mm_storeu_ps(&out->x, lo);
+    out->w = 1.0f;
+}
+
 static inline void Xform_00128930(S_00129050_Vec4 *out, const S_00128930_Mat *mat, const float *v)
 {
     __m128 t = _mm_loadu_ps(v);
@@ -262,6 +338,94 @@ int func_00129050(unsigned int a0, unsigned int a1)
     }
     return 0;
 }
+
+extern "C" int func_00122400(float *pa, float *pb, float *pos, float f, float radius, void *m);
+int func_001236A0(unsigned short a0, unsigned short a1);
+#pragma optimize("y", off)
+int func_00129110(unsigned short a0, unsigned short a1)
+{
+    unsigned int aLeaf = a0 & 0x8000;
+    unsigned int bLeaf = a1 & 0x8000;
+    S_00129110_Node *na;
+    S_00129110_Node *nb;
+    int r;
+
+    if (aLeaf) {
+        if (bLeaf) {
+            return ((int (*)(unsigned short, unsigned short))func_00129050)(a0, a1);
+        }
+    } else if (!bLeaf) {
+        float aMin[4];
+        float bMin[4];
+        float aMax[4];
+        float bMax[4];
+
+        na = &((S_00129110_Node *)D_002B92E8->nodes)[a0];
+        nb = &((S_00129110_Node *)D_002B9290->nodes)[a1];
+        aMin[0] = na->min[0];
+        aMin[1] = na->min[1];
+        aMin[2] = na->min[2];
+        aMin[3] = 1.0f;
+        aMax[0] = na->max[0];
+        aMax[1] = na->max[1];
+        aMax[2] = na->max[2];
+        bMin[0] = nb->min[0];
+        bMin[1] = nb->min[1];
+        bMin[2] = nb->min[2];
+        bMin[3] = 1.0f;
+        bMax[0] = nb->max[0];
+        bMax[1] = nb->max[1];
+        bMax[2] = nb->max[2];
+        aMax[3] = 1.0f;
+        bMax[3] = 1.0f;
+        if (func_00122400(aMin, aMax, bMin, nb->f4, nb->f4 * nb->f4, &D_002B92A0)) {
+            if (func_00122400(bMin, bMax, aMin, na->f4, na->f4 * na->f4, &D_002B9300)) {
+                r = 0;
+                if (na->f0 > nb->f0) {
+                    if (func_00129110(na->child0, a1)) {
+                        r = 1;
+                    }
+                    if (func_00129110(na->child1, a1)) {
+                        r = 1;
+                    }
+                } else {
+                    if (func_00129110(a0, nb->child0)) {
+                        r = 1;
+                    }
+                    if (func_00129110(a0, nb->child1)) {
+                        r = 1;
+                    }
+                }
+                return r;
+            }
+        }
+        return 0;
+    }
+    if (func_001236A0(a0, a1)) {
+        int hit = 0;
+        if (aLeaf) {
+            nb = &((S_00129110_Node *)D_002B9290->nodes)[a1];
+            if (func_00129110(a0, nb->child0)) {
+                hit = 1;
+            }
+            if (func_00129110(a0, nb->child1)) {
+                hit = 1;
+            }
+        } else {
+            na = &((S_00129110_Node *)D_002B92E8->nodes)[a0];
+            if (func_00129110(na->child0, a1)) {
+                hit = 1;
+            }
+            if (func_00129110(na->child1, a1)) {
+                hit = 1;
+            }
+        }
+        return hit;
+    }
+    return 0;
+}
+#pragma optimize("y", on)
+
 #pragma optimize("y", on)
 
 #pragma optimize("y", off)
