@@ -5,6 +5,65 @@
 extern float D_00275544;
 u32 func_001DC974(void);
 void *__stdcall func_001FF410(void *buffer, int flags);
+extern char D_0027DE5C[];
+extern char D_0027DE4C[];
+extern char D_0027DE38[];
+extern char D_0027DE2C[];
+extern char D_00282890[];
+extern char D_00282880[];
+extern char D_0028E27C[];
+extern char D_002828C0[];
+extern char D_0028E264[];
+extern char D_0028E24C[];
+extern char D_00282898[];
+extern char D_00282854[];
+extern char D_0028283C[];
+extern char D_0027DE44[];
+extern char D_0028282C[];
+extern char D_002828B0[];
+extern char D_0028948C[];
+extern char D_00275630[];
+extern char D_0027DE24[];
+extern char D_0027C294[];
+extern int D_0028F5EC, D_0028F5E8, D_0028F5E4, D_0028F5E0, D_0028F5DC;
+extern char *D_002A8490;
+extern "C" void *func_001E8A44(unsigned int);
+extern "C" void *func_001E8AA5(unsigned int);
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, int arg);
+struct Font_001C26B0 {
+    float func_0018C210();
+};
+struct L_001C26B0 {
+    union { int index; char *empty; };
+    float def[4];
+    float v2[4];
+    float v1[4];
+    float v0[4];
+    char kind[20];
+    char text[480];
+};
+struct C_001C26B0 {
+    C_001C26B0 *func_001C26B0(C_001C26B0 *p, int a);
+    void func_001BF600(C_001C26B0 *p);
+    int func_00168550(const char *key, void *dst, int n);
+    void func_00168BE0(const char *key, void *a, void *b, int c);
+    int func_00168C20(const char *key, int def, void *dst);
+    void func_00168C50(const char *key, int def, void *dst);
+    int func_00168CB0(const char *key, void *def, void *dst);
+    void func_000979C0(char *text, int *out);
+    void func_001C01E0(char *text);
+    C_001C26B0 *func_001B12C0(int a);
+    void func_001B13A0(char *a, char *b, int c, int d);
+    void func_001577A0(C_001C26B0 *elem, int a);
+    void func_001B1860(int a0, float a1, int a2, float a3, int a4, int a5, float a6, int a7, float a8, int a9, int a10, int a11, int a12);
+    void func_001B17D0(char *text);
+    void func_001B19A0(int a);
+    void func_001B2270(int a);
+    void func_001B19C0(int a, int b, int c);
+    void func_001B1AB0(int a, int b);
+    void func_001B1BF0(int a);
+    char data[0x1B0];
+};
 
 struct C_00199650 {
     void func_00199650(void *p);
@@ -275,6 +334,7 @@ void UIWidgetStaticUserRotate::func_001C33A0(void)
 
 void UIWidgetStaticUserRotate::func_001C3440(int p)
 {
+    UIWidgetStaticUserRotate *self = this;
     if (f1E4 != 0) {
         u32 now = func_001DC974();
         if (f240 < (float)((now - f244) / 1000)) {
@@ -283,9 +343,9 @@ void UIWidgetStaticUserRotate::func_001C3440(int p)
         }
     }
     if (f1E0 != 0) {
-        func_001C2F90(p);
+        self->func_001C2F90(p);
     } else {
-        func_00157A00(p);
+        self->func_00157A00(p);
     }
 }
 
