@@ -7,6 +7,7 @@ struct S_25240_V4 {
     float x, y, z, w;
     S_25240_V4() {}
     S_25240_V4(const S_25240_Pt *p) { x = p->x; y = p->y; z = p->z; w = 1.0f; }
+    S_25240_V4(float a, float b, float c) { x = a; y = b; z = c; w = 1.0f; }
 };
 struct S_25240_V3 { float x, y, z; };
 static __forceinline S_25240_V4 MakeV4_25240(const S_25240_Pt *p)
@@ -382,7 +383,7 @@ int C_00025240::func_00025240(void)
 {
     int n2, n1, lim, m, cnt, i, j;
     int acc, k;
-    float *p;
+    S_25240_Pt *pt;
 
     if (f30 <= 0)
         return 0;
@@ -410,11 +411,10 @@ int C_00025240::func_00025240(void)
                         f60[k]->f34 = acc;
                         f60[k]->f40 = f60[k]->f34;
                         f60[k]->f38 = f60[k]->f34 + 1;
-                        f60[k]->f4c.x = f60[k]->f2c->f18[f60[k]->f38].x;
-                        f60[k]->f4c.y = f60[k]->f2c->f18[f60[k]->f38].y;
-                        f60[k]->f4c.z = f60[k]->f2c->f18[f60[k]->f38].z;
-                        f60[k]->f4c.w = 1.0f;
-                        f60[k]->f28->f1a4->f4->func_00199600(S_25240_V4(&f60[k]->f2c->f18[f60[k]->f34]));
+                        pt = &f60[k]->f2c->f18[f60[k]->f38];
+                        f60[k]->f4c = MakeV4_25240(pt);
+                        pt = &f60[k]->f2c->f18[f60[k]->f34];
+                        f60[k]->f28->f1a4->f4->func_00199600(MakeV4_25240(pt));
                         if (f60[k]->f28->f1a4->f10 == 0)
                             func_00166C80(f60[k]->f28->f1ac->f8, 1);
                         else
@@ -427,10 +427,7 @@ int C_00025240::func_00025240(void)
             }
         }
     }
-    p = &f60[0]->f6c;
-    p[0] = *(f32 *)D_002A0F74;
-    p[1] = D_002A0F78;
-    p[2] = D_002A0F7C;
+    *(S_25240_V3 *)&f60[0]->f6c = *(S_25240_V3 *)D_002A0F74;
     {
         int cx = 0;
         int cz = 1;
