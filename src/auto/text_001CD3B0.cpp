@@ -284,21 +284,8 @@ struct S_Slot {
     int f14;
     int f18;
     int f1C;
-    union {
-        u8 f20;
-        struct {
-            u8 lo : 3;
-            u8 busy : 1;
-        };
-    };
-    void reset()
-    {
-        f14 = 0;
-        f18 = 0;
-        f1C = 0;
-        lo = 0;
-        busy = 0;
-    }
+    u8 f20;
+    char pad21[3];
 };
 struct S_SlotList {
     int count;
@@ -315,22 +302,6 @@ struct S_Owner { char pad[0x138]; char *f138; };
 extern S_Owner *D_002F08EC;
 extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
 extern "C" void (__stdcall *_imp__RtlLeaveCriticalSection)(void *cs);
-struct S_SlotObj : S_Slot {
-    S_SlotObj()
-    {
-        f8 = 0;
-        fC = 0;
-        f10 = 0;
-        _imp__RtlEnterCriticalSection(D_002F08EC->f138 + 0x50);
-        f4 = 0;
-        _imp__RtlLeaveCriticalSection(D_002F08EC->f138 + 0x50);
-        f14 = 0;
-        f18 = 0;
-        f1C = 0;
-        lo = 0;
-        busy = 0;
-    }
-};
 
 int __stdcall func_00220AE5(void *obj, int a, int b, int c);
 extern char D_00040000;
@@ -441,6 +412,40 @@ int C_001CD3B0::func_001CD3B0(int param_1)
             f98 = param_1;
             return 1;
         }
+    }
+    return 0;
+}
+
+int C_001CD3B0::func_001CD450(int a, int b)
+{
+    if (fA0 & 1) {
+        if (a == -1 && b != 0)
+            goto skip;
+        if (a < f24)
+            return 0;
+        if (a == f24 && b == 0)
+            return 0;
+        if (a < -1)
+            return 0;
+        if (a >= v41(fA4))
+            return 0;
+    skip:
+        f98 = 0;
+        func_001CD3B0(100);
+        if (a == -1) {
+            a = f24;
+        } else {
+            int n = f34[fA4].count;
+            int i = -1;
+            for (int j = 0; j < n; j++) {
+                if (f34[fA4].ids[j] == a) { i = j; break; }
+            }
+            if (i == -1)
+                return 0;
+        }
+        fAC = a;
+        fCC = 2;
+        return 1;
     }
     return 0;
 }
@@ -677,6 +682,42 @@ void C_001CDCF0::func_001CDCF0(void)
     func_001E891B(f3C);
     func_001E891B(f28);
     func_001E891B(f14);
+}
+
+int __stdcall func_001CDD50(S_SlotList *list, int max, S_Slot **outSlot, int *outIdx, int unused)
+{
+    int i;
+    S_Slot *s;
+    for (i = 0; i < list->count; i++) {
+        s = list->at(i);
+        if (!(s->f20 & 8)) {
+            *outSlot = s;
+            *outIdx = i;
+            return 1;
+        }
+    }
+    if (list->count < max) {
+        s = (S_Slot *)func_001E8A44(0x24);
+        if (s != 0) {
+            s->f8 = 0;
+            s->fC = 0;
+            s->f10 = 0;
+            _imp__RtlEnterCriticalSection(D_002F08EC->f138 + 0x50);
+            s->f4 = 0;
+            _imp__RtlLeaveCriticalSection(D_002F08EC->f138 + 0x50);
+            s->f14 = 0;
+            s->f18 = 0;
+            s->f1C = 0;
+            s->f20 &= 0xf0;
+            s->f0 = -1;
+            *outSlot = s;
+            *outIdx = -1;
+            return 1;
+        }
+    }
+    *outSlot = 0;
+    *outIdx = -1;
+    return 0;
 }
 
 void __stdcall func_001CDE40(S_001CDE40_Owner *owner, S_001CDE40_Obj *obj)
