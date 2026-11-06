@@ -443,7 +443,7 @@ void C_0019F9B0::func_0019F780(char *path, int h)
         f1A4->f20[i].func_000264C0(f1A0[i]->fF0);
         f1A4->f28[i] = f1A0[i]->f1BC;
     }
-    D_002BEAAC->func_0013B1F0(path, f1A4);
+    D_002BEAAC->func_0013B1F0(h, f1A4);
 }
 
 int C_0019F9B0::func_0019F9B0(int a1, char *path)
