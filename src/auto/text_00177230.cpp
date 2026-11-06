@@ -9,12 +9,6 @@ extern char D_0000FFFC;
 struct C_00135420 {
     int func_00135420(void);
 };
-struct Bgra_00177860 {
-    u8 b;
-    u8 g;
-    u8 r;
-    u8 a;
-};
 #include <string.h>
 int func_00135410(void);
 u32 func_00175840(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch);
@@ -210,20 +204,20 @@ u32 func_00177860(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   u8 *d;
   u8 *s;
   u8 *p;
-  u8 *q;
   u8 *a;
+  u8 *q;
   int x;
   int y;
   s = src;
   d = dst;
   for (y = height; y > 0; y--) {
-    for (p = d, q = s, x = width; x > 0; x--) {
+    for (p = d, a = d + 3, q = s, x = width; x > 0; x--) {
       p[2] = (*(u16 *)q >> 7) & 0xf8;
-      a = p + 3;
       p[1] = (*(u16 *)q >> 2) & 0xf8;
       p[0] = q[0] << 3;
       *a = (*(u16 *)q & 0x8000) ? 0xff : 0;
       p += 4;
+      a += 4;
       q += 2;
     }
     s += srcPitch * 2;
