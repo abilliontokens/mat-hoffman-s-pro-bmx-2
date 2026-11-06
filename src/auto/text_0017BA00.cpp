@@ -312,17 +312,13 @@ void C_0017BDE0::func_0017BB90(f32 *pts, int n)
 }
 
 int C_0017BDE0::func_0017BDE0(f32 x, f32 y) {
-    int i = 0;
-    int j;
-
-    do {
-        j = (i + 1) & 3;
-        if (D_00275544 < (x - v[i * 2]) * (v[i * 2 + 1] - v[j * 2 + 1]) + (y - v[i * 2 + 1]) * (v[j * 2] - v[i * 2])) {
-            return 0;
-        }
-        i++;
-    } while (i < 4);
-    return 1;
+ int i=0;
+ do { int j=(i+1)&3;
+ float a[2]; a[0]=v[i*2+1]-v[j*2+1]; a[1]=v[j*2]-v[i*2];
+ float b[2]; b[0]=x-v[i*2]; b[1]=y-v[i*2+1];
+ if (a[0]*b[0]+a[1]*b[1]>D_00275544) return 0;
+ ++i; } while(i<4);
+ return 1;
 }
 
 int C_0017BDE0::func_0017BFB0(void) {
