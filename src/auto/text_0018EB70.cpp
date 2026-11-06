@@ -12,6 +12,7 @@ struct File_0018EB70 {
  void func_0013C8A0(int,void*,int,int);
  void func_0013AFF0(int,int,int);
  int func_0013AFD0(int);
+ int func_0013AFB0(int);
  void func_0013C110(int);
 };
 extern File_0018EB70 *D_002BEAAC;
