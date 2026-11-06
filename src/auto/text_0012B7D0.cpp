@@ -77,11 +77,6 @@ static inline S_0012B950_V3 V3Scale_0012B950(const S_0012B950_V3 &v, float s)
     return r;
 }
 
-static inline float Twice_0012B950(float x)
-{
-    return x + x;
-}
-
 void func_001E891B(void *p);
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 
