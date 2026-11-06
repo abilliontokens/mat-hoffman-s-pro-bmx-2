@@ -9,6 +9,9 @@ void __stdcall func_00171340(int a);
 struct Vec4_001747F0 {
     float x, y, z, w;
 };
+struct Vec3_001747F0 {
+    float x, y, z;
+};
 extern float D_00275544, D_00275460;
 extern Vec4_001747F0 D_002A8C18;
 struct Body_001747F0 {
