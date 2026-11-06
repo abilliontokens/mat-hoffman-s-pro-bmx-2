@@ -88,6 +88,7 @@ extern float D_00284038;
 extern float D_0028403C;
 
 void func_0012A380(void *dst, int param);
+extern int *D_002EFDB8;
 
 struct S_0012AB70Vec;
 inline void Vec_Normalize(void *dst, int src) { if (src) func_0012A380(dst, src); }
