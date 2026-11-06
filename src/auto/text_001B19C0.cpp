@@ -327,6 +327,7 @@ extern char D_0028C860[];
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 
 static __forceinline void Round_001B1C30(volatile int * volatile out, float f) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
+extern "C" int func_001E8858();
 
 void C_001B19C0::func_001B19C0(float a1, float a2, float a3)
 {
@@ -447,7 +448,8 @@ void C_001B1C10::func_001B1C10(int param_1)
 
 int C_001B1C30::func_001B1C30(float dt)
 {
-    C_001B1C30 * volatile self = this;
+    C_001B1C30 *self = this;
+    C_001B1C30 **pself = &self;
     int rect[4];
     char buf[0x100];
     int x;
@@ -472,9 +474,7 @@ int C_001B1C30::func_001B1C30(float dt)
     if (sy != self->fBC) {
         self->fBC = sy;
     }
-    if (self->f64 == 0) {
-        self->fC0 = 0;
-    } else {
+    if (self->f64 != 0) {
         if (self->f78 >= D_00275544) {
             self->f78 -= dt;
             self->f6C -= dt;
@@ -491,6 +491,8 @@ int C_001B1C30::func_001B1C30(float dt)
             self->f74 = (self->f74 == 0);
             self->f6C = self->f70;
         }
+    } else {
+        self->fC0 = 0;
     }
 timerDone:
     x = self->f4C;
