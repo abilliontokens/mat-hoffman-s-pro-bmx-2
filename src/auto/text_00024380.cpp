@@ -35,10 +35,59 @@ struct Seg_24380 {
     void *f10;
 };
 
+struct Obj20C_24380;
+
+struct Obj20C_Vtbl_24380 {
+    void *f0;
+    void *f4;
+    void *f8;
+    void *fC;
+    void (*v10)(int a, int b, int c, int d, char *buf);
+};
+
+struct Obj20C_24380 {
+    void *vtbl;
+    Obj20C_24380 *func_001CF740(void *a, int b, int c);
+};
+
+struct Seg5C_24380 {
+    int f0;
+    Obj20C_24380 *f4;
+};
+
+struct D217F0_24380 {
+    void *vtbl;
+    char pad4[0x70];
+    char f7a;
+    char f7b;
+    D217F0_24380 *func_000217F0(int a);
+    void func_001D3F50();
+    void func_00021890(Ini_24380 *stream, int base);
+    void func_001578D0();
+};
+
+struct Obj138_24380 {
+    void *vtbl;
+    int f4;
+    int f8;
+    void **fC;
+    int f10;
+    int f14;
+    void **f18;
+    float f1C;
+    float f20;
+    float f24;
+    float f28;
+    float f2C;
+    float f30;
+    char f34[0x104];
+};
+
 struct AmbientDebris {
     char pad0[0x28];
     Ini_24380 *f28;
-    char pad2c[8];
+    char pad2c[4];
+    int f30;
     int f34;
     int f38;
     int f3C;
@@ -47,12 +96,12 @@ struct AmbientDebris {
     char pad48[8];
     int f50;
     char pad54[8];
-    void *f5C;
-    void *f60;
+    Seg5C_24380 **f5C;
+    D217F0_24380 **f60;
     Debris_24380 **f64;
     Seg_24380 **f68;
-    void *f6C;
-    void *f70;
+    int (*f6C)[2];
+    Obj138_24380 **f70;
     void func_00024380(Ini_24380 *ini);
 };
 
@@ -91,11 +140,10 @@ void AmbientDebris::func_00024380(Ini_24380 *ini)
     int n;
     int start;
     int i;
+    int t;
     int idx;
-    int lim;
-    int k;
 
-    lim = -1;
+    idx = -1;
     if (!ini->func_00169710(D_00276510))
         return;
     ini->func_00168C20(D_00276504, 0, &cnt);
@@ -105,16 +153,14 @@ void AmbientDebris::func_00024380(Ini_24380 *ini)
         f34 = cnt;
         n = f34;
         start = 0;
-        lim = 0;
-        idx = n;
+        idx = 0;
         f64 = (Debris_24380 **)func_001E8A44(n * 4);
     } else {
         start = f34;
         f34 = start + cnt;
         n = f34;
         f64 = (Debris_24380 **)func_001E83E8(f64, n * 4);
-        idx = start;
-        lim = n;
+        idx = n;
     }
     if (start >= n)
         return;
@@ -134,24 +180,24 @@ void AmbientDebris::func_00024380(Ini_24380 *ini)
         func_001ADCC0(buf, 0x20, D_002764F8, i - start + 1);
         ini->func_00169710(buf);
         ini->func_00168BE0(D_002764EC, D_002764F0, o->f30, 0x104);
-        ini->func_00168C20(D_002764DC, 1, &lim);
-        o->f2C = (unsigned char)lim;
+        ini->func_00168C20(D_002764DC, 1, &idx);
+        o->f2C = (unsigned char)idx;
         ini->func_00168C50(D_002764D8, 60.0f, &o->f0);
         ini->func_00168CB0(D_002764C8, &D_002A0FA4, &o->f1C);
-        ini->func_00168C20(D_002764B4, 0, &lim);
-        o->f2E = (unsigned char)lim;
-        ini->func_00168C20(D_002764A8, 0, &lim);
-        o->f8 = lim - 1;
+        ini->func_00168C20(D_002764B4, 0, &t);
+        o->f2E = (unsigned char)t;
+        ini->func_00168C20(D_002764A8, 0, &t);
+        o->f8 = t - 1;
         if (o->f8 != -1)
             o->f8 += start;
-        ini->func_00168C20(D_0027649C, 0, &lim);
-        o->fC = lim - 1;
-        ini->func_00168C20(D_00276490, 0, &lim);
-        o->f10 = lim - 1;
+        ini->func_00168C20(D_0027649C, 0, &t);
+        o->fC = t - 1;
+        ini->func_00168C20(D_00276490, 0, &t);
+        o->f10 = t - 1;
         if (o->f10 != -1)
             o->f10 += start;
-        ini->func_00168C20(D_00276488, 0, &lim);
-        o->f14 = lim - 1;
+        ini->func_00168C20(D_00276488, 0, &t);
+        o->f14 = t - 1;
         o->f18 = 0;
         o->f4 = 0;
         o->f2D = 0;
