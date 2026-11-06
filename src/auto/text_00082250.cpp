@@ -20,9 +20,8 @@ struct C_00082790_IniSub {
 };
 
 struct C_00082790_Ini {
-    char pad0[8];
     C_00082790_IniSub sub;
-    char pad1[0x4c3];
+    char pad1[0x4cb];
     void func_00168280();
     void func_001691E0();
 };
