@@ -327,6 +327,8 @@ static __declspec(noinline) char *func_001EB4F7(char *buf, int ndec, int caps, S
     return buf;
 }
 
+static __forceinline int Less_001EB6F9(int a, int b) { return a < b; }
+
 char *__cdecl func_001EB5A0(double *pvalue, char *buf, int ndec, int caps)
 {
     typedef S_StrFlt *(__cdecl *Fltout2Fn)(S_CrtDouble, S_StrFlt *, char *);
@@ -417,14 +419,14 @@ void __cdecl func_001EB6F9(double *arg, char *buffer, int precision, int caps)
     if (expo < -4 || expo >= precision) {
         func_001EB4F7(buffer, precision, caps, &flt, 1);
     } else {
-        if (shorter != 0) {
+        if (shorter) {
             do {
                 c = *p++;
             } while (c != 0);
             p -= 2;
             *p = c;
         }
-        func_001EB600(&flt, buffer, precision, 1);
+        func_001EB600(&flt, buffer, precision, shorter | 1);
     }
 }
 
