@@ -122,6 +122,7 @@ struct S_WaveFormat {
     u16 wSamplesPerBlock;
 };
 
+#pragma pack(push, 1)
 struct S_WaveFormatEx {
     u16 wFormatTag;
     u16 nChannels;
@@ -131,6 +132,7 @@ struct S_WaveFormatEx {
     u16 wBitsPerSample;
     u16 cbSize;
 };
+#pragma pack(pop)
 
 struct S_BufferDesc {
     u32 dwSize;
