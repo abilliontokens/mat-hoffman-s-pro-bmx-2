@@ -519,6 +519,31 @@ void C_001089C0::func_001089C0(Vec4_00108370 *out)
     f230->func_00199A70(0, out);
 }
 
+void C_00108B00::func_00108B00(Vec4_00108370 *out)
+{
+    if (f47c == 1) {
+        Vec4_00108370 v;
+        int sel;
+        float s, t;
+        v.z = 0; v.y = 0; v.x = 0; v.w = 1.0f;
+        if (f480 == 0) sel = f1950[f718]; else sel = f1910[f718];
+        v = fa04->func_00165E20(sel, 0.5f, D_00276690, func_00029290());
+        if (f15d8 == 10) s = f15f4; else s = D_00275544;
+        int mode = f480;
+        int index = f718;
+        t = mode == 0 ? ((S_00108B00_Mgr *)f24)->f52c->f7948[index] : ((S_00108B00_Mgr *)f24)->f52c->f77e8[index];
+        if (t < D_002756DC) t = 0.1f;
+        else if (t > D_00276E9C) t = 0.9f;
+        if (s < D_00275544) s = D_00275544;
+        if (s > t) s = t;
+        s = s / t;
+        v.x *= s; v.y *= s; v.z = *(volatile float *)&v.z * s;
+        *out = f230->func_00197F70(&v);
+        return;
+    }
+    f230->f174->func_00199A70(0, out);
+}
+
 float C_00108CB0::func_00108CB0(int idx, float v)
 {
     if (idx > 5) {
