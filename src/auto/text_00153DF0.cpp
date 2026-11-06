@@ -59,6 +59,8 @@ struct X153DF0_78 { void func_0014AC30(void *a, int b); void func_00133ED0(); vo
 struct X153DF0_F { void *func_00197F70(void *a); };
 struct X153DF0_50900 { void func_00150900(void *a, void *b); };
 void func_0011CA60(float *v);
+struct X153DF0_9B00 { void func_00199B00(void *a, int b); };
+extern "C" double sqrt(double x);
 extern float D_002756DC;
 extern int D_002A789C, D_002A78A0, D_002A78A4, D_002A78A8;
 
@@ -72,17 +74,21 @@ void C153DF0_Self::func_00153DF0(float dt)
     float vb[4];
     int i;
 
-    v18[0] = 0; v18[1] = 0; v18[2] = 0; v18[3] = 1;
-    v4c[0] = 0; v4c[1] = 0; v4c[2] = 0; v4c[3] = 1;
-
     if (D_002A8490->f124 != 0)
         return;
     if (D_002B9120->f528 != 0)
         D_002B9120->f528->func_00017A40((void *)v4c);
+    v18[0] = 0; v18[1] = 0; v18[2] = 0; v18[3] = 1;
+    v4c[0] = 0; v4c[1] = 0; v4c[2] = 0; v4c[3] = 1;
+    if (f194 == 0)
+        return;
+    for (i = 0; i < 2; i++) {
+        vec2[i][0] = 0; vec2[i][1] = 0; vec2[i][2] = 0; vec2[i][3] = 1;
+    }
+    f1A0 += dt;
     if (f198 == 0)
         return;
-    f1A0 += dt;
-    if (f198 != 0 && f1A0 > D_002756DC) {
+    if (f1A0 > D_002756DC) {
         f198 = 0;
         ((X153DF0_50900 *)f2C)->func_00150900((void *)v18, (void *)v4c);
         f150->f150->v18();
@@ -95,9 +101,6 @@ void C153DF0_Self::func_00153DF0(float dt)
         f94[1] = D_002A78A0;
         f94[2] = D_002A78A4;
         f94[3] = D_002A78A8;
-        for (i = 0; i < 2; i++) {
-            vec2[i][0] = 0; vec2[i][1] = 0; vec2[i][2] = 0; vec2[i][3] = 1;
-        }
         va[0] = 1.5f; va[1] = -2.0f; va[2] = 0.0f; va[3] = 1.0f;
         ((X153DF0_F *)f2C->f1A4_2[1])->func_00197F70((void *)va);
         vb[0] = 1.5f; vb[1] = -2.0f; vb[2] = 6.0f; vb[3] = 1.0f;
