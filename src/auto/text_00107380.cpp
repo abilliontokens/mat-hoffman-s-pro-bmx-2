@@ -6,7 +6,13 @@ struct Vec_107AE0 {
  Vec_107AE0() { x=y=z=0; w=1; }
  Vec_107AE0(float a,float b,float c) { x=a;y=b;z=c;w=1; }
 };
+#include <xmmintrin.h>
 struct Mat_107AE0 { float m[16]; };
+static __forceinline void identity_107AE0(Mat_107AE0 *a) {
+ __m128 z=_mm_setzero_ps();
+ _mm_store_ps(a->m,z);_mm_store_ps(a->m+4,z);_mm_store_ps(a->m+8,z);_mm_store_ps(a->m+12,z);
+ a->m[0]=1;a->m[5]=1;a->m[10]=1;a->m[15]=1;
+}
 struct Obj_107AE0 {
  char pad[8];
  Obj_107AE0 *f8;
