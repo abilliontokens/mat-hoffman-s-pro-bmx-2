@@ -613,6 +613,18 @@ C_00135E00 *C_00135E00::func_00136320(unsigned int flags)
     return this;
 }
 
+int C_00136370::func_00136370()
+{
+    C_00135CB0 *p = (C_00135CB0 *)func_001E8A44(0xb90);
+    if (p != 0)
+        p->func_00135CB0();
+    else
+        p = 0;
+    fCC0 = p;
+    unkC = 1;
+    return 1;
+}
+
 int func_00136460(int param_1, int param_2, int param_3)
 {
     switch ((param_1 >> (param_2 * 2) >> (param_3 * 8)) & 3) {
@@ -626,6 +638,32 @@ int func_00136460(int param_1, int param_2, int param_3)
         return 0x100;
     }
     return 0;
+}
+
+void C_001364B0::func_001364B0()
+{
+    f42 = 0xffff;
+    f62C = 0;
+    f3C = 0;
+    f40 = 0;
+    f38 = -1;
+    f8 = D_002A6760;
+    f18 = D_002A6760;
+    f28 = D_002A6760;
+    for (int i = 0; i < 6; ++i) {
+        records[i].f0 = 0;
+        records[i].f4 = 0;
+        records[i].f6 = 0;
+        for (int j = 0; j < 16; ++j) {
+            records[i].f8[j] = 0;
+            records[i].f48[j] = 0;
+            records[i].f88[j] = 0xffff;
+            records[i].fA8[j] = -1;
+        }
+        records[i].fEC = 0;
+        records[i].fF0 = 0;
+        records[i].fF4 = 0;
+    }
 }
 
 C_001364B0 *C_001364B0::func_001365B0(int handle, int discard)
