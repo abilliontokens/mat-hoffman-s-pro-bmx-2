@@ -235,6 +235,36 @@ void C_000A9820::func_000A91C0(S_A91C0_Reader *stream)
     }
 }
 
+void C_000A9820::func_000A9820(float dt)
+{
+int i;
+if(D_002A8490->flag){func_00157A00(dt);return;}
+for(i=0;i<num;i++){
+ if(objs[i]->elems){
+ float f=objs[i]->t/objs[i]->dur;
+ int k=objs[i]->idx;
+ float tmp[4];
+ float fr,fg,fb;
+ int j;
+ fr=(objs[i]->r[k+1]-objs[i]->r[k])*f+objs[i]->r[k];
+ fg=(objs[i]->g[k+1]-objs[i]->g[k])*f+objs[i]->g[k];
+ fb=(objs[i]->b[k+1]-objs[i]->b[k])*f+objs[i]->b[k];
+ for(j=0;j<objs[i]->n;j++){
+ if(objs[i]->elems[j])
+ ((CCObj *volatile *)objs)[i]->elems[j]->func_001824E0(tmp,fr,fg,fb);
+ }
+ objs[i]->t+=dt;
+ if(objs[i]->t>objs[i]->dur){
+ ++k;
+ if(k+1>=objs[i]->count) k=0;
+ objs[i]->t=0;
+ objs[i]->idx=k;
+ }
+ }
+}
+func_00157A00(dt);
+}
+
 void C_000A99A0::func_000A99A0(void)
 {
     int func_001E891B(...);
