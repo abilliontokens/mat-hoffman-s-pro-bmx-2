@@ -97,4 +97,3 @@ int func_00175E30(unsigned short *dst, unsigned short *src, int width, int heigh
     }
     return 1;
 }
-#pragma optimize("", on)
