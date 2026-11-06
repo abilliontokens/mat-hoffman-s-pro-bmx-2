@@ -15,7 +15,7 @@ struct C153DF0_Eff {
     void func_00199600(float *v);
     void func_00198F50(float *a, float *b, int c, int d, int e);
 };
-struct C153DF0_Game { char pad0[0x124]; int f124; char pad128[0x1BC]; int *f2E0; };
+struct C153DF0_Game { char pad0[0x124]; int f124; char pad128[0x1B8]; int *f2E0; };
 struct C153DF0_17A40 { void func_00017A40(void *a); };
 struct C153DF0_B9120 { char pad0[0x4E4]; int arr[0x2E]; C153DF0_17A40 *f528; };
 struct C153DF0_2C { char pad0[0x1A4]; int *f1A4_2; };
@@ -61,6 +61,12 @@ void func_0011CA60(float *v);
 extern float D_002756DC;
 extern int D_002A789C, D_002A78A0, D_002A78A4, D_002A78A8;
 
+
+void C153DF0_Self::func_00153DF0(float dt)
+{
+    (void)dt;
+    return;
+}
 
 undefined4 C_00154BF0::func_00154BF0(byte param_1)
 {
