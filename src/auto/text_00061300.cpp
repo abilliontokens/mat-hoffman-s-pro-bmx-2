@@ -47,6 +47,8 @@ struct C_00061B20_44 {
 extern const char D_0027876C[];
 extern const char D_00278758[];
 extern const char D_00278744[];
+extern "C" unsigned int strlen(const char *);
+#pragma intrinsic(strlen)
 char *func_001E8920(char *dst, const char *src, int n);
 
 static inline const int &min_00061300(const int &a, const int &b)
