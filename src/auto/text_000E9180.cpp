@@ -49,8 +49,8 @@ extern float D_002A33C0;
 
 int func_000BC670();
 void func_000BC590();
-void func_000BE020(int a);
-void func_000BDF30(int a);
+int func_000BE020(int a);
+int func_000BDF30(int a);
 int func_001E8858(float v);
 void func_0001C1E0(int a, int b, int c, int d);
 void func_0001BB00(int a, int b, int c);
@@ -129,6 +129,49 @@ struct C_000E9180 {
     int f78c;
     void func_000E9180(float dt);
 };
+
+typedef void (__fastcall *VF_0E9180)(void *self, int dummy, int a, int b);
+void C_000E9180::func_000E9180(float dt)
+{
+    S_0E9180_124 *m = f124;
+    int b, v;
+
+    if (((S_0E9180_270 *)m->f270)->func_000BC670() != 0) {
+        ((S_0E9180_270 *)m->f270)->func_000BC590();
+    }
+    v = ((u8 *)f6b8)[0x3b];
+    if (f490 != v) {
+        if (f49c >= f4a0) {
+            b = f494;
+            f498 = func_001E8858((float)(f490 - b) * f49c / f4a0) + b;
+        } else {
+            f498 = f490;
+        }
+    }
+    f49c = f49c + dt;
+    if (f2a0 == 0 && f2a4 == 0 && f29c == 0 && f50c != 0) {
+        f298 = f298 + dt;
+        if (!(f298 < D_0027DE74)) {
+            f2a8 = 1;
+            ((VF_0E9180)(*(void ***)this)[0x1C])(this, 0, f290, f294);
+            f2a0 = 0;
+            f2a4 = 0;
+            f29c = 0;
+            f50c = 0;
+            f298 = 0;
+        }
+    }
+    v = ((u8 *)f514)[0x3b];
+    if (f47c != v) {
+        if (f488 >= f48c) {
+            b = f480;
+            f484 = func_001E8858((float)(f47c - b) * f488 / f48c) + b;
+        } else {
+            f484 = f47c;
+        }
+    }
+    f488 = f488 + dt;
+}
 
 void C_000E9FD0::func_000E9FD0(void) {
     int func_001BF220(...);
