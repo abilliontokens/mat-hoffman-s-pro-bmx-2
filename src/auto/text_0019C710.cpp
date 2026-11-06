@@ -93,6 +93,10 @@ struct S_19CCE0_Elem {
     static void *operator new[](unsigned int n) { return func_001E8A44(n); }
 };
 extern "C" float __cdecl sqrtf(float);
+static __forceinline void Set3_19CCE0(S_19CCE0_Vec3 *dst, S_19CCE0_Vec3 src)
+{
+    *dst = src;
+}
 static __forceinline void Sqrt_19CCE0(float *out, float x)
 {
     _mm_store_ss(out, _mm_sqrt_ss(_mm_load_ss(&x)));
