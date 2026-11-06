@@ -161,6 +161,74 @@ struct C_001A8B80 {
     void func_001A95B0(V4_001A8B80 a, V4_001A8B80 b, V4_001A8B80 c, V4_001A8B80 d, int e, int f, int g, int h);
 };
 
+extern float D_002755E8;
+
+struct V4_001A8720 {
+    float x, y, z, w;
+    V4_001A8720() {}
+    V4_001A8720(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
+};
+
+struct S_001A8720_Xf {
+    V4_001A8720 *func_00197F70(V4_001A8720 *out, V4_001A8720 *in);
+};
+
+/* 0x58-byte entry of the body's item array */
+struct S_001A8720_Item {
+    char pad0[0x10];
+    V4_001A8720 f10;
+    V4_001A8720 f20;
+    V4_001A8720 f30;
+    S_001A8720_Xf *f40;
+    char pad44[0xc];
+    int f50;
+    char pad54[4];
+};
+
+struct S_001A8720_Body {
+    char pad0[0x3c];
+    int f3c;
+    char pad40[0x40];
+    int f80;
+    S_001A8720_Item *f84;
+    char pad88[0x50];
+    int fd8;
+    void func_001A9680(void);
+};
+
+struct S_001A8720_Link {
+    void func_000BA430(V4_001A8720 *a, V4_001A8720 *b, int c, int *d);
+};
+
+struct S_001A8720_Mesh {
+    void func_0014AC30(void *p, int a);
+    void func_00133ED0(void);
+    void func_00134770(int a, int b);
+    float func_00133F10(int a);
+};
+
+/* SpringCollisionDetectionModel */
+struct C_001A8720 {
+    void *vtbl;
+    char pad4[0x20];
+    S_001A8720_Body *f24;
+    S_001A8720_Link *f28;
+    S_001A8720_Mesh *f2c;
+    char pad30[4];
+    V4_001A8720 f34;
+    V4_001A8720 f44;
+    char *f54;
+    int f58;
+    int f5c;
+    int f60;
+    int *f64;
+    int f68;
+    int func_001A8720(void);
+};
+
+static __forceinline float Min_001A8720(float a, float b) { return a < b ? a : b; }
+static __forceinline float Max_001A8720(float a, float b) { return a > b ? a : b; }
+
 void *C_001A8B80::func_001A8B80(int flags)
 {
     void *p = f54;
