@@ -27,7 +27,11 @@ struct Result_0018EB70 {
 };
 struct C_0018EB70 {
  int func_0018EB70(int,char*,Result_0018EB70*);
+ void func_0018DE60(char*,Node_0018EB70*,int,int,char*,int);
 };
+extern "C" int func_001E8390(void *);
+extern "C" void *func_001E83E8(void *,int);
+static inline const int &minref(const int &a,const int &b){return a<b?a:b;}
 extern char D_00275630[];
 struct C_00191470 {
     void func_00191470(unsigned int b);
