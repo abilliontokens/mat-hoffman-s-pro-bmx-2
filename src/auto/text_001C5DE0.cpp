@@ -338,20 +338,14 @@ void C_001C67C0::func_001C67C0(Vec4 *out, int param_2)
 
 int C_001C6820::func_001C6820(f32 param_1)
 {
-    S_001C6820_Elem *e = &this->elems[this->idx];
-    int count = e->count;
     int i = 0;
     int result = 0;
-    if (count > 0) {
-        S_001C6820_Pair *p = this->elems[this->idx].pairs;
-        do {
-            if (!(param_1 > p->time)) {
-                return result;
-            }
-            result = p->value;
-            i++;
-            p++;
-        } while (i < count);
+
+    for (; i < elems[idx].count; i++) {
+        if (!(param_1 > elems[idx].pairs[i].time)) {
+            break;
+        }
+        result = elems[idx].pairs[i].value;
     }
     return result;
 }
