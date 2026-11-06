@@ -37,7 +37,7 @@ extern char D_002758D8[];
 extern char D_002758CC[];
 extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
 void *func_001E8AA5(unsigned int size);
-static inline int min_186F0(const int &a, const int &b) { return a > b ? b : a; }
+template <class T> inline T min_186F0(T a, T b) { return a > b ? b : a; }
 struct C_000186F0 {
     char pad0[0x3C];
     Obj3C_186 *f3C;
@@ -380,6 +380,94 @@ struct C_00019070 {
     S_00019070_Slot f3a4[6];
     void func_00019070();
 };
+
+void C_000186F0::func_000186F0(void *p)
+{
+    C_000186F0 * volatile self = this;
+    char bufA[0x104];
+    char bufB[0x104];
+    char bufC[0x104];
+    volatile int len, lim;
+    int n, r;
+    self->f3C->f4->func_0019ABA0(((G9120_186 *)D_002B9120)->f4A8[((G9120_186 *)D_002B9120)->f348], 2);
+    self->f498 = self->f3C->f4->func_00198330(D_00275748);
+    len = strlen(D_002A5EA0); lim = 0x103; r = min_186F0((int)lim, (int)len); n = r;
+    func_001E8920(bufA, D_002A5EA0, n);
+    bufA[n] = 0;
+    len = strlen(D_002A60B0); lim = 0x103; r = min_186F0((int)lim, (int)len); n = r;
+    func_001E8920(bufB, D_002A60B0, n);
+    bufB[n] = 0;
+    func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5870, D_002A45E0);
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+    for (int off = 0; off < 0xF0; off += 0x28) {
+        Elem_186 *e = (Elem_186 *)((char *)self + 0x3A4 + off);
+        e->a = (ObjC5_186 *)func_001E8A44(0x21C);
+        e->a = e->a ? e->a->func_0016C5B0(1) : 0;
+        e->a->func_0016C640(p, D_00275940, 0, 0);
+        self->func_001577A0(e->a, 2);
+        e->b = (ObjCE_186 *)func_001E8A44(0x218);
+        e->b = e->b ? e->b->func_0016CE80(1) : 0;
+        e->b->func_0016CF10(p, D_0027592C, 0, 0);
+        self->func_001577A0(e->b, 2);
+    }
+    self->f494 = (ObjCE_186 *)func_001E8A44(0x218);
+    self->f494 = self->f494 ? self->f494->func_0016CE80(1) : 0;
+    self->f494->func_0016CF10(p, D_00275910, 0, 0);
+    self->func_001577A0(self->f494, 2);
+    len = strlen(bufA); lim = 0x103; r = min_186F0((int)lim, (int)len); n = r;
+    func_001E8920(D_002A5EA0, bufA, n);
+    D_002A5EA0[n] = 0;
+    len = strlen(bufB); lim = 0x103; r = min_186F0((int)lim, (int)len); n = r;
+    func_001E8920(D_002A60B0, bufB, n);
+    D_002A60B0[n] = 0;
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5870, D_002A47F0);
+    self->f4B8 = (Obj20C_186 *)func_001E8A44(0x20C);
+    self->f4B8 = self->f4B8 ? self->f4B8->func_001CF740(((FB4_186 *)D_002A8490->f4)->fB4, ((G9120_186 *)D_002B9120)->f4C0, 1) : 0;
+    self->f4B8->v4(D_00275900, 1, 1, 0, 0);
+    self->f4BC = (Obj20C_186 *)func_001E8A44(0x20C);
+    self->f4BC = self->f4BC ? self->f4BC->func_001CF740(((FB4_186 *)D_002A8490->f4)->fB4, ((G9120_186 *)D_002B9120)->f4C0, 1) : 0;
+    self->f4BC->v4(D_002758F0, 1, 1, 0, 0);
+    self->f4C0 = (Obj20C_186 *)func_001E8A44(0x20C);
+    self->f4C0 = self->f4C0 ? self->f4C0->func_001CF740(((FB4_186 *)D_002A8490->f4)->fB4, ((G9120_186 *)D_002B9120)->f4C0, 1) : 0;
+    self->f4C0->v4(D_002758E4, 1, 1, 0, 0);
+    {
+        int cnt = 0;
+        for (int off = 0x4A8; off < 0x4B0; off += 4) {
+            Obj20C_186 **slot = (Obj20C_186 **)((char *)self + off);
+            cnt++;
+            func_001ADCC0(bufC, 0x104, D_002758D8, cnt);
+            *slot = (Obj20C_186 *)func_001E8A44(0x20C);
+            *slot = *slot ? (*slot)->func_001CF740(((FB4_186 *)D_002A8490->f4)->fB4, ((G9120_186 *)D_002B9120)->f4C0, 1) : 0;
+            (*slot)->v4(bufC, 1, 1, 0, 0);
+        }
+    }
+    {
+        int cnt = 0;
+        for (int off = 0x4B0; off < 0x4B8; off += 4) {
+            Obj20C_186 **slot = (Obj20C_186 **)((char *)self + off);
+            cnt++;
+            func_001ADCC0(bufC, 0x104, D_002758CC, cnt);
+            *slot = (Obj20C_186 *)func_001E8A44(0x20C);
+            *slot = *slot ? (*slot)->func_001CF740(((FB4_186 *)D_002A8490->f4)->fB4, ((G9120_186 *)D_002B9120)->f4C0, 1) : 0;
+            (*slot)->v4(bufC, 1, 1, 0, 0);
+        }
+    }
+    for (int off = 0x39C; off < 0x3A4; off += 4) {
+        ObjA0_186 **slot = (ObjA0_186 **)((char *)self + off);
+        *slot = (ObjA0_186 *)func_001E8A44(0xA0);
+        *slot = *slot ? (*slot)->func_00158590(1) : 0;
+        (*slot)->v27(p, (void *)((G9120_186 *)D_002B9120)->f4AC[((G9120_186 *)D_002B9120)->f348]);
+        self->func_001577A0(*slot, -1);
+    }
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5348, D_002A47F0);
+    self->f4A0->v32();
+    self->f4A0->func_00133140((void *)((G9120_186 *)D_002B9120)->f4AC[0], 2);
+    self->func_001577A0(self->f4A0, 2);
+    self->f4e4 = 1;
+    self->f4A4 = (void **)func_001E8AA5(self->f4e4 << 2);
+    *self->f4A4 = self->f4A0;
+    self->func_00016E90();
+}
 
 void C_00018D40::func_00018D40(C_00018D40Param *param)
 {
