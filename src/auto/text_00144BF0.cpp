@@ -427,3 +427,58 @@ void C_001452A0::func_001452A0()
     func_001B0DC0();
 }
 
+void __stdcall func_00145370(C_00168BE0 *cfg, C_00145370_Src *src, int idx, C_00145370_Out *out, int *count)
+{
+    int v;
+    char buf[0x40];
+
+    v = src->f88[idx];
+    if (cfg) { func_001ADCC0(buf, 0x40, D_00285DC4, idx); func_00140DF0(cfg, buf, v, v); }
+    out->idx = idx; out->type = 0x15; out->val = v; out++; (*count)++;
+    v = src->f98[idx];
+    if (cfg) { func_001ADCC0(buf, 0x40, D_00285DB8, idx); func_00140F30(cfg, buf, v, v); }
+    out->val = v; out->idx = idx; out->type = 0; out++; (*count)++;
+    v = src->fA8[idx];
+    if (cfg) { func_001ADCC0(buf, 0x40, D_00285DAC, idx); func_00140F30(cfg, buf, v, v); }
+    out->idx = idx; out->type = 1; out->val = v; out++; (*count)++;
+    v = src->fB8[idx];
+    if (cfg) { func_001ADCC0(buf, 0x40, D_00285DA0, idx); func_00140F30(cfg, buf, v, v); }
+    out->idx = idx; out->type = 2; out->val = v; out++; (*count)++;
+    v = src->fC8[idx];
+    if (cfg) { func_001ADCC0(buf, 0x40, D_00285D90, idx); func_00141070(cfg, buf, v, v); }
+    out->val = v; out->idx = idx; out->type = 3; out++; (*count)++;
+    v = src->fD8[idx];
+    if (cfg) { func_001ADCC0(buf, 0x40, D_00285D80, idx); func_00141070(cfg, buf, v, v); }
+    out->idx = idx; out->type = 4; out->val = v; out++; (*count)++;
+    v = src->fE8[idx];
+    if (cfg) { func_001ADCC0(buf, 0x40, D_00285D70, idx); func_00141070(cfg, buf, v, v); }
+    out->idx = idx; out->type = 5; out->val = v; out++; (*count)++;
+    *(float *)&v = src->fF8[idx];
+    if (cfg) { func_001ADCC0(buf, 0x40, D_00285D5C, idx); func_00140820(cfg, buf, v, v); }
+    out->idx = idx; out->type = 6; out->val = v; out++; (*count)++;
+    v = src->f108[idx];
+    if (cfg) { func_001ADCC0(buf, 0x40, D_00285D4C, idx); func_00140890(cfg, buf, v, v); }
+    out->val = v; out->idx = idx; out->type = 7; out++; (*count)++;
+    v = src->f118[idx];
+    if (cfg) { func_001ADCC0(buf, 0x40, D_00285D38, idx); func_00140890(cfg, buf, v, v); }
+    out->idx = idx; out->type = 8; out->val = v; out++; (*count)++;
+    v = src->f128[idx];
+    if (cfg) { func_001ADCC0(buf, 0x40, D_00285D28, idx); func_001411A0(cfg, buf, v, v); }
+    out->idx = idx; out->type = 9; out->val = v; out++; (*count)++;
+    v = src->f138[idx];
+    if (cfg) { func_001ADCC0(buf, 0x40, D_00285D18, idx); func_00140A10(cfg, buf, v, v); }
+    out->val = v; out->idx = idx; out->type = 10; out++; (*count)++;
+    v = src->f148[idx];
+    if (cfg) { func_001ADCC0(buf, 0x40, D_00285D08, idx); func_001412A0(cfg, buf, v, v); }
+    out->idx = idx; out->type = 11; out->val = v; out++; (*count)++;
+    v = src->f158[idx];
+    if (cfg) { func_001ADCC0(buf, 0x40, D_00285CF4, idx); func_00140B60(cfg, buf, v, v); }
+    out->idx = idx; out->type = 0x1c; out->val = v; out++; (*count)++;
+    v = src->f168[idx];
+    if (cfg) { func_001ADCC0(buf, 0x40, D_00285CE4, idx); func_001409A0(cfg, buf, v, v); }
+    out->val = v; out->idx = idx; out->type = 0x1d; out++; (*count)++;
+    v = src->f178[idx];
+    if (cfg) { func_001ADCC0(buf, 0x40, D_00285CD0, idx); func_001409A0(cfg, buf, v, v); }
+    out->idx = idx; out->type = 0x1e; out->val = v; (*count)++;
+}
+
