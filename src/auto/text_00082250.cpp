@@ -24,6 +24,7 @@ struct C_00082790_Ini {
     char pad1[0x4cb];
     void func_00168280();
     void func_001691E0();
+    ~C_00082790_Ini() { func_001691E0(); }
 };
 
 struct C_00082790_X {
@@ -276,70 +277,69 @@ extern int D_0028F5E0;
 void BmxInGameOverlays::func_00082790()
 {
     int func_001ADCC0(char *, int, char *, ...);
-    char buf[0x104];
-    C_00082790_Ini ini;
-    char buf2[0x104];
-    S_00082790_Settings s;
+    S_00082790_Frame fr;
     int val;
     int *sub;
+    float pa;
+    float pb;
 
-    s.f[0] = 0.0f;
-    s.f[1] = 0.0f;
-    s.f[2] = 0.0f;
-    s.f[3] = 1.0f;
-    s.f[14] = 0.0f;
-    s.f[15] = 0.0f;
-    s.f[16] = 0.0f;
-    s.f[17] = 1.0f;
-    s.f[6] = 0.0f;
-    s.f[7] = 0.0f;
-    s.f[8] = 0.0f;
-    s.f[9] = 1.0f;
-    s.f[10] = 0.0f;
-    s.f[11] = 0.0f;
-    s.f[12] = 0.0f;
-    s.f[13] = 1.0f;
-    ini.func_00168280();
-    func_001ADCC0(buf, 0x104, D_0027953C, &D_002A5348);
-    if (ini.sub.func_00169490(buf, 0) == 0) {
-        ini.func_001691E0();
+    fr.s.f[2] = 0.0f;
+    fr.s.f[1] = 0.0f;
+    fr.s.f[0] = 0.0f;
+    fr.s.f[3] = 1.0f;
+    fr.s.f[16] = 0.0f;
+    fr.s.f[15] = 0.0f;
+    fr.s.f[14] = 0.0f;
+    fr.s.f[17] = 1.0f;
+    fr.s.f[8] = 0.0f;
+    fr.s.f[7] = 0.0f;
+    fr.s.f[6] = 0.0f;
+    fr.s.f[9] = 1.0f;
+    fr.s.f[12] = 0.0f;
+    fr.s.f[11] = 0.0f;
+    fr.s.f[10] = 0.0f;
+    fr.s.f[13] = 1.0f;
+    fr.ini.func_00168280();
+    func_001ADCC0(fr.buf, 0x104, D_0027953C, &D_002A5348);
+    if (fr.ini.sub.func_00169490(fr.buf, 0) == 0) {
+        fr.ini.func_001691E0();
         return;
     }
     val = *(int *)(*(int *)(D_002A8490 + 0x2e0) + 8);
     if (val == 0) {
-        func_001ADCC0(buf, 0x104, D_00279520);
+        func_001ADCC0(fr.s.rest, 0x104, D_00279520);
     } else if (val == 2) {
-        if (w[0x10]) func_001ADCC0(buf, 0x104, D_002794C8);
-        else func_001ADCC0(buf, 0x104, D_002794F4);
+        if (!w[0x10]) func_001ADCC0(fr.s.rest, 0x104, D_002794F4);
+        else func_001ADCC0(fr.s.rest, 0x104, D_002794C8);
     } else {
-        if (w[0x10]) func_001ADCC0(buf, 0x104, D_00279468);
-        else func_001ADCC0(buf, 0x104, D_00279498);
+        if (!w[0x10]) func_001ADCC0(fr.s.rest, 0x104, D_00279498);
+        else func_001ADCC0(fr.s.rest, 0x104, D_00279468);
     }
-    if (ini.sub.func_00169710(buf) != 0) {
-        ini.sub.func_00168CB0(D_0027945C, D_002A2034, &s.f[1]);
-        ini.sub.func_00168BE0(D_00279448, D_00275630, (int *)&s.f[1], -1);
-        ini.sub.func_00168CB0(D_0027943C, D_002A2034, &s.f[15]);
-        ini.sub.func_00168BE0(D_00279428, D_00275630, (int *)&s.f[6], -1);
-        ini.sub.func_00168CB0(D_00279418, D_002A2034, &s.f[7]);
-        ini.sub.func_00168CB0(D_00279408, D_002A2034, &s.f[11]);
-        ini.sub.func_00168C20(D_002793F8, 0, (char *)&s.f[6]);
+    if (fr.ini.sub.func_00169710(fr.s.rest) != 0) {
+        fr.ini.sub.func_00168CB0(D_0027945C, D_002A2034, &fr.s.f[0]);
+        fr.ini.sub.func_00168BE0(D_00279448, D_00275630, &fr.s.dummy0, -1);
+        fr.ini.sub.func_00168CB0(D_0027943C, D_002A2034, &fr.s.f[14]);
+        fr.ini.sub.func_00168BE0(D_00279428, D_00275630, (int *)&fr.s.f[4], -1);
+        fr.ini.sub.func_00168CB0(D_00279418, D_002A2034, &fr.s.f[6]);
+        fr.ini.sub.func_00168CB0(D_00279408, D_002A2034, &fr.s.f[10]);
+        fr.ini.sub.func_00168C20(D_002793F8, 0, (char *)&fr.s.f[5]);
+        pa = fr.s.f[0];
+        pb = fr.s.f[1];
         sub = *(int **)((char *)this + 0x16c);
-        if (*(float *)(sub + 1) != s.f[1] || *(float *)(sub + 2) != s.f[2]) {
-            *(float *)(sub + 2) = s.f[2];
-            *(float *)(sub + 1) = s.f[1];
+        if (*(float *)(sub + 1) != pa || *(float *)(sub + 2) != pb) {
+            *(float *)(sub + 1) = pa;
+            *(float *)(sub + 2) = pb;
             *((char *)sub + 0x4e) |= 6;
         }
+        pa = fr.s.f[14];
+        pb = fr.s.f[15];
         sub = *(int **)((char *)this + 0x178);
-        if (*(float *)(sub + 1) != s.f[15] || *(float *)(sub + 2) != s.f[16]) {
-            *(float *)(sub + 2) = s.f[16];
-            *(float *)(sub + 1) = s.f[15];
+        if (*(float *)(sub + 1) != pa || *(float *)(sub + 2) != pb) {
+            *(float *)(sub + 1) = pa;
+            *(float *)(sub + 2) = pb;
             *((char *)sub + 0x4e) |= 6;
         }
-        switch (((char *)s.f)[0]) {
-        case 'C':
-        case 'c':
-            val = D_0028F5E0;
-            break;
+        switch (((char *)&fr.s)[0]) {
         case 'L':
         case 'l':
             val = D_0028F5DC;
@@ -347,6 +347,10 @@ void BmxInGameOverlays::func_00082790()
         case 'R':
         case 'r':
             val = D_0028F5EC;
+            break;
+        case 'C':
+        case 'c':
+            val = D_0028F5E0;
             break;
         default:
             goto after1;
@@ -357,11 +361,7 @@ void BmxInGameOverlays::func_00082790()
             *((char *)sub + 0x4e) |= 6;
         }
     after1:
-        switch (((char *)s.f)[0x14]) {
-        case 'C':
-        case 'c':
-            val = D_0028F5E0;
-            break;
+        switch (((char *)&fr.s)[0x14]) {
         case 'L':
         case 'l':
             val = D_0028F5DC;
@@ -369,6 +369,10 @@ void BmxInGameOverlays::func_00082790()
         case 'R':
         case 'r':
             val = D_0028F5EC;
+            break;
+        case 'C':
+        case 'c':
+            val = D_0028F5E0;
             break;
         default:
             goto after2;
@@ -383,47 +387,45 @@ void BmxInGameOverlays::func_00082790()
     }
     val = *(int *)(*(int *)(D_002A8490 + 0x2e0) + 8);
     if (val == 0) {
-        func_001ADCC0(buf, 0x104, D_002793DC);
+        func_001ADCC0(fr.s.rest, 0x104, D_002793DC);
     } else if (val == 2) {
-        if (w[0x10]) func_001ADCC0(buf, 0x104, D_00279384);
-        else func_001ADCC0(buf, 0x104, D_002793B0);
+        if (!w[0x10]) func_001ADCC0(fr.s.rest, 0x104, D_002793B0);
+        else func_001ADCC0(fr.s.rest, 0x104, D_00279384);
     } else {
-        if (w[0x10]) func_001ADCC0(buf, 0x104, D_00279324);
-        else func_001ADCC0(buf, 0x104, D_00279354);
+        if (!w[0x10]) func_001ADCC0(fr.s.rest, 0x104, D_00279354);
+        else func_001ADCC0(fr.s.rest, 0x104, D_00279324);
     }
-    if (ini.sub.func_00169710(buf) != 0) {
-        ini.sub.func_00168CB0(D_0027945C, D_002A2034, &s.f[1]);
-        ini.sub.func_00168BE0(D_00279448, D_00275630, (int *)&s.f[1], -1);
-        ini.sub.func_00168CB0(D_0027943C, D_002A2034, &s.f[15]);
-        ini.sub.func_00168BE0(D_00279428, D_00275630, (int *)&s.f[6], -1);
-        ini.sub.func_00168CB0(D_00279418, D_002A2034, &s.f[7]);
-        ini.sub.func_00168CB0(D_00279408, D_002A2034, &s.f[11]);
-        ini.sub.func_00168C20(D_002793F8, 0, (char *)&s.f[6]);
+    if (fr.ini.sub.func_00169710(fr.s.rest) != 0) {
+        fr.ini.sub.func_00168CB0(D_0027945C, D_002A2034, &fr.s.f[0]);
+        fr.ini.sub.func_00168BE0(D_00279448, D_00275630, &fr.s.dummy0, -1);
+        fr.ini.sub.func_00168CB0(D_0027943C, D_002A2034, &fr.s.f[14]);
+        fr.ini.sub.func_00168BE0(D_00279428, D_00275630, (int *)&fr.s.f[4], -1);
+        fr.ini.sub.func_00168CB0(D_00279418, D_002A2034, &fr.s.f[6]);
+        fr.ini.sub.func_00168CB0(D_00279408, D_002A2034, &fr.s.f[10]);
+        fr.ini.sub.func_00168C20(D_002793F8, 0, (char *)&fr.s.f[5]);
     }
     val = *(int *)(*(int *)(D_002A8490 + 0x2e0) + 8);
     if (val == 0) {
-        func_001ADCC0(buf, 0x104, D_0027930C);
+        func_001ADCC0(fr.s.rest, 0x104, D_0027930C);
     } else if (val == 2) {
-        if (w[0x10]) func_001ADCC0(buf, 0x104, D_002792BC);
-        else func_001ADCC0(buf, 0x104, D_002792E4);
+        if (!w[0x10]) func_001ADCC0(fr.s.rest, 0x104, D_002792E4);
+        else func_001ADCC0(fr.s.rest, 0x104, D_002792BC);
     } else {
-        if (w[0x10]) func_001ADCC0(buf, 0x104, D_0027926C);
-        else func_001ADCC0(buf, 0x104, D_00279294);
+        if (!w[0x10]) func_001ADCC0(fr.s.rest, 0x104, D_00279294);
+        else func_001ADCC0(fr.s.rest, 0x104, D_0027926C);
     }
-    if (ini.sub.func_00169710(buf) != 0) {
-        ini.sub.func_00168CB0(D_0027925C, D_002A2034, &s.f[1]);
-        ini.sub.func_00168BE0(D_0027923C, D_00279258, (int *)&s.f[1], -1);
+    if (fr.ini.sub.func_00169710(fr.s.rest) != 0) {
+        fr.ini.sub.func_00168CB0(D_0027925C, D_002A2034, &fr.s.f[0]);
+        fr.ini.sub.func_00168BE0(D_0027923C, D_00279258, &fr.s.dummy0, -1);
+        pa = fr.s.f[0];
+        pb = fr.s.f[1];
         sub = *(int **)((char *)this + 0xc50);
-        if (*(float *)(sub + 1) != s.f[1] || *(float *)(sub + 2) != s.f[2]) {
-            *(float *)(sub + 2) = s.f[2];
-            *(float *)(sub + 1) = s.f[1];
+        if (*(float *)(sub + 1) != pa || *(float *)(sub + 2) != pb) {
+            *(float *)(sub + 1) = pa;
+            *(float *)(sub + 2) = pb;
             *((char *)sub + 0x4e) |= 6;
         }
-        switch (((char *)s.f)[0]) {
-        case 'C':
-        case 'c':
-            val = D_0028F5E0;
-            break;
+        switch (((char *)&fr.s)[0]) {
         case 'L':
         case 'l':
             val = D_0028F5DC;
@@ -431,6 +433,10 @@ void BmxInGameOverlays::func_00082790()
         case 'R':
         case 'r':
             val = D_0028F5EC;
+            break;
+        case 'C':
+        case 'c':
+            val = D_0028F5E0;
             break;
         default:
             goto after3;
@@ -441,19 +447,17 @@ void BmxInGameOverlays::func_00082790()
             *((char *)sub + 0x4e) |= 6;
         }
     after3:
-        ini.sub.func_00168CB0(D_0027922C, D_002A2034, &s.f[1]);
-        ini.sub.func_00168BE0(D_00279210, D_00279258, (int *)&s.f[1], -1);
+        fr.ini.sub.func_00168CB0(D_0027922C, D_002A2034, &fr.s.f[0]);
+        fr.ini.sub.func_00168BE0(D_00279210, D_00279258, &fr.s.dummy0, -1);
+        pa = fr.s.f[0];
+        pb = fr.s.f[1];
         sub = *(int **)((char *)this + 0x208);
-        if (*(float *)(sub + 1) != s.f[1] || *(float *)(sub + 2) != s.f[2]) {
-            *(float *)(sub + 2) = s.f[2];
-            *(float *)(sub + 1) = s.f[1];
+        if (*(float *)(sub + 1) != pa || *(float *)(sub + 2) != pb) {
+            *(float *)(sub + 1) = pa;
+            *(float *)(sub + 2) = pb;
             *((char *)sub + 0x4e) |= 6;
         }
-        switch (((char *)s.f)[0]) {
-        case 'C':
-        case 'c':
-            val = D_0028F5E0;
-            break;
+        switch (((char *)&fr.s)[0]) {
         case 'L':
         case 'l':
             val = D_0028F5DC;
@@ -461,6 +465,10 @@ void BmxInGameOverlays::func_00082790()
         case 'R':
         case 'r':
             val = D_0028F5EC;
+            break;
+        case 'C':
+        case 'c':
+            val = D_0028F5E0;
             break;
         default:
             goto after4;
@@ -471,75 +479,73 @@ void BmxInGameOverlays::func_00082790()
             *((char *)sub + 0x4e) |= 6;
         }
     after4:
-        ini.sub.func_00168CB0(D_00279204, D_002A2034, &s.f[1]);
-        ini.sub.func_00168BE0(D_002791EC, D_00279258, (int *)&s.f[1], -1);
-        ((C_00082790_X *)*(int *)((char *)this + 0xd08))->func_001B1A30(s.f[1], s.f[2], 0);
-        switch (((char *)s.f)[0]) {
-        case 'C':
-        case 'c':
-            val = D_0028F5E0;
-            break;
+        fr.ini.sub.func_00168CB0(D_00279204, D_002A2034, &fr.s.f[0]);
+        fr.ini.sub.func_00168BE0(D_002791EC, D_00279258, &fr.s.dummy0, -1);
+        ((C_00082790_X *)*(int *)((char *)this + 0xd08))->func_001B1A30(fr.s.f[0], fr.s.f[1], 0);
+        switch (((char *)&fr.s)[0]) {
         case 'L':
         case 'l':
-            val = D_0028F5DC;
+            ((C_00082790_X *)*(int *)((char *)this + 0xd08))->func_001B19A0(D_0028F5DC);
             break;
         case 'R':
         case 'r':
-            val = D_0028F5EC;
+            ((C_00082790_X *)*(int *)((char *)this + 0xd08))->func_001B19A0(D_0028F5EC);
             break;
-        default:
-            goto after5;
-        }
-        ((C_00082790_X *)*(int *)((char *)this + 0xd08))->func_001B19A0(val);
-    after5:
-        ini.sub.func_00168CB0(D_002791E0, D_002A2034, &s.f[1]);
-        ini.sub.func_00168BE0(D_002791C8, D_00279258, (int *)&s.f[1], -1);
-        ((C_00082790_X *)*(int *)((char *)this + 0xd0c))->func_001B1A30(s.f[1], s.f[2], 0);
-        switch (((char *)s.f)[0]) {
         case 'C':
         case 'c':
-            val = D_0028F5E0;
+            ((C_00082790_X *)*(int *)((char *)this + 0xd08))->func_001B19A0(D_0028F5E0);
             break;
+        }
+        fr.ini.sub.func_00168CB0(D_002791E0, D_002A2034, &fr.s.f[0]);
+        fr.ini.sub.func_00168BE0(D_002791C8, D_00279258, &fr.s.dummy0, -1);
+        ((C_00082790_X *)*(int *)((char *)this + 0xd0c))->func_001B1A30(fr.s.f[0], fr.s.f[1], 0);
+        switch (((char *)&fr.s)[0]) {
         case 'L':
         case 'l':
-            val = D_0028F5DC;
+            ((C_00082790_X *)*(int *)((char *)this + 0xd0c))->func_001B19A0(D_0028F5DC);
             break;
         case 'R':
         case 'r':
-            val = D_0028F5EC;
+            ((C_00082790_X *)*(int *)((char *)this + 0xd0c))->func_001B19A0(D_0028F5EC);
             break;
-        default:
-            goto after6;
+        case 'C':
+        case 'c':
+            ((C_00082790_X *)*(int *)((char *)this + 0xd0c))->func_001B19A0(D_0028F5E0);
+            break;
         }
-        ((C_00082790_X *)*(int *)((char *)this + 0xd0c))->func_001B19A0(val);
-    after6:
-        ini.sub.func_00168CB0(D_00279418, D_002A2034, &s.f[7]);
-        ini.sub.func_00168CB0(D_00279408, D_002A2034, &s.f[11]);
-        ini.sub.func_00168C20(D_002793F8, 0, (char *)&s.f[6]);
+        fr.ini.sub.func_00168CB0(D_00279418, D_002A2034, &fr.s.f[6]);
+        fr.ini.sub.func_00168CB0(D_00279408, D_002A2034, &fr.s.f[10]);
+        fr.ini.sub.func_00168C20(D_002793F8, 0, (char *)&fr.s.f[5]);
+        pa = fr.s.f[6];
+        pb = fr.s.f[7];
         sub = *(int **)((char *)this + 0x164);
-        if (*(float *)(sub + 1) != s.f[7] || *(float *)(sub + 2) != s.f[8]) {
-            *(float *)(sub + 2) = s.f[8];
-            *(float *)(sub + 1) = s.f[7];
+        if (*(float *)(sub + 1) != pa || *(float *)(sub + 2) != pb) {
+            *(float *)(sub + 1) = pa;
+            *(float *)(sub + 2) = pb;
+            *((char *)sub + 0x58) |= 1;
+        }
+        pa = fr.s.f[10];
+        pb = fr.s.f[11];
+        sub = *(int **)((char *)this + 0x168);
+        if (*(float *)(sub + 1) != pa || *(float *)(sub + 2) != pb) {
+            *(float *)(sub + 1) = pa;
+            *(float *)(sub + 2) = pb;
+            *((char *)sub + 0x58) |= 1;
+        }
+        sub = *(int **)((char *)this + 0x164);
+        if ((float)*(int *)&fr.s.f[5] != *(float *)((char *)sub + 0x28)) {
+            *(float *)((char *)sub + 0x28) = (float)*(int *)&fr.s.f[5];
             *((char *)sub + 0x58) |= 1;
         }
         sub = *(int **)((char *)this + 0x168);
-        if (*(float *)(sub + 1) != s.f[11] || *(float *)(sub + 2) != s.f[12]) {
-            *(float *)(sub + 2) = s.f[12];
-            *(float *)(sub + 1) = s.f[11];
+        if ((float)*(int *)&fr.s.f[5] != *(float *)((char *)sub + 0x28)) {
+            *(float *)((char *)sub + 0x28) = (float)*(int *)&fr.s.f[5];
             *((char *)sub + 0x58) |= 1;
-        }
-        sub = *(int **)((char *)this + 0x164);
-        if ((float)*(int *)&s.f[6] != *(float *)((char *)sub + 0x28)) {
-            *(float *)((char *)sub + 0x28) = (float)*(int *)&s.f[6];
-            *((char *)sub + 0x58) |= 1;
-        }
-        sub = *(int **)((char *)this + 0x168);
-        if ((float)*(int *)&s.f[6] != *(float *)((char *)sub + 0x28)) {
-            *(float *)((char *)sub + 0x28) = (float)*(int *)&s.f[6];
-            *((char *)sub + 0x58) |= 1;
+            fr.ini.func_001691E0();
+            return;
         }
     }
-    ini.func_001691E0();
+    fr.ini.func_001691E0();
 }
 
 int C_000831C0::func_000831C0(void)
