@@ -164,6 +164,35 @@ struct BmxSmokeParticleEmitter {
     int func_0009E470(void);
 };
 
+extern int D_0027AAEC;
+extern int D_0027AAD0;
+
+/* BmxTireFireParticleEmitter: same layout as BmxSmokeParticleEmitter */
+struct C_0009DFC0 {
+    void *vtbl;
+    char pad4[0x16C];
+    f32 f170;
+    f32 f174;
+    f32 f178;
+    char pad17C[0xC];
+    u32 f188;
+    char pad18C[4];
+    u32 f190;
+    char pad194[0x14];
+    u32 f1A8;
+    u32 f1AC;
+    char pad1B0[0x40];
+    u32 f1F0;
+    f32 f1F4[0x40][4];
+    u32 f5F4;
+    u32 f5F8;
+    u32 f5FC;
+    u32 f600;
+    f32 f604;
+    f32 f608;
+    C_0009DFC0 *func_0009DFC0(int param_1);
+};
+
 extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
 void func_0009DA90(float *out, float *in) {
