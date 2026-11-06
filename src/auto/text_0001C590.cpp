@@ -440,9 +440,7 @@ struct C_0001C4C0 {
 };
 
 float func_0001C590(float x) {
-    unsigned int u = *(unsigned int *)&x;
-    float y;
-    *(unsigned int *)&y = u & 0x7fffffff;
-    return y;
+    int i = *(int *)&x & 0x7fffffff;
+    return *(float *)&i;
 }
-
+#pragma optimize("", on)
