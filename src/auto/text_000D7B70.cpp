@@ -163,6 +163,33 @@ void BmxUIPageHOF4D::func_000D85C0()
     s->unk30->func_001D5AD0();
 }
 
+char *BmxUIPageHOF4D::func_000D8700(int value, char *buf)
+{
+    char tmp[0x40];
+    int i, o;
+
+    memset(tmp, 0, 0x40);
+    *(int *)buf = 0;
+    func_001ADCC0(tmp, 0x40, D_00277038, value);
+    value = strlen(tmp) % 3;
+    o = 0;
+    for (i = 0; i < (int)strlen(tmp); i++) {
+        char c = tmp[i];
+        if (c == ' ') {
+            strcat(buf, &tmp[i]);
+            break;
+        }
+        if (i > value - 1 && i != 0 && ((i - value) == 0 || (i - value) % 3 == 0)) {
+            buf[o++] = ',';
+            buf[o++] = c;
+        } else {
+            buf[o++] = c;
+        }
+    }
+    buf[o] = 0;
+    return buf;
+}
+
 void BmxUIPageHOF4D::func_000D8820()
 {
     S_000D8A40_Owner *owner = f124;
