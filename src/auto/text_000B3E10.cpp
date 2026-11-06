@@ -158,7 +158,7 @@ extern "C" void *func_001E8A44(unsigned int n);
 extern "C" void func_001E891B(void *p);
 
 template <class T>
-inline T B3E10_Min(T a, T b)
+inline T B3E10_Min(const T &a, const T &b)
 {
     return a > b ? b : a;
 }
@@ -291,6 +291,60 @@ struct C_000B4300 {
 };
 
 extern "C" void __stdcall func_001577A0(S_B3E10_Obj *o, int a);
+
+void C_000B4300::func_000B3E10(void)
+{
+    char path[0x104];
+    char path2[0x104];
+    S_B3E10_Obj *o;
+
+    if (func_001EA426(f3c->f3c, D_002764F0) == 0)
+        return;
+    func_001ADCC0(f3c->f140, 0x104, D_0027C588, f3c->f3c);
+    B3E10_Copy(path, D_002A5EA0, 0x103);
+    B3E10_Copy(path2, D_002A60B0, 0x103);
+    if (f3c->f8 != 0) {
+        func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5348, D_002A45E0);
+        func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
+    } else {
+        func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5870, D_002A45E0);
+        func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+    }
+    o = (S_B3E10_Obj *)func_001E8A44(0x1e0);
+    f40->f8 = o ? o->func_00143580(1) : 0;
+    if (f40->f8->Load(f3c->f140, 0, f3c->f4)) {
+        B3E10_Copy(f40->f8->f28, f3c->f140, 0x7f);
+        f40->f8->func_00199600(f3c->fC);
+        f40->f8->func_00198F50(f3c->f1c, f3c->f2c, 1, 0, 0);
+        f40->f8->func_0019ABA0(D_002B9120->f4a8[D_002B9120->f348], 1);
+        func_001577A0(f40->f8, 0);
+        f40->f8->func_00182020(f40->f8->f1b8->f4,
+            D_002A829C->func_001617F0((char *)this + 0x64, 1));
+        f40->f8->func_00182020(f40->f8->f1b8->f8,
+            D_002A829C->func_001617F0((char *)this + 0x168, 1));
+    } else {
+        f40->f8 = 0;
+    }
+    func_000B1B80();
+    B3E10_Copy(D_002A5EA0, path, 0x103);
+    B3E10_Copy(D_002A60B0, path2, 0x103);
+    if (D_002EFE08->func_0018E740(this, D_0027D1E0) == 0) {
+        B4300_Cb volatile cb = &C_000B4300::func_000B3330;
+        B4300_Reg(cb, D_0027D1BC, D_0027D1D0, D_0027D1D8);
+        cb = &C_000B4300::func_000B1E50;
+        B4300_Reg(cb, D_0027D1AC, D_0027D1D0, D_0027D1D8);
+        cb = &C_000B4300::func_000B1E60;
+        B4300_Reg(cb, D_0027D194, D_0027D1A4, D_0027D1D8);
+        cb = &C_000B4300::func_000B1E70;
+        B4300_Reg(cb, D_0027D178, D_0027D18C, D_0027D1D8);
+        D_002EFE08->func_00191270(this, D_0027D1E0, (S_B4300_Stream *)f3c->f348, f3c->f384);
+    }
+    v70();
+    if (f3c != 0) {
+        func_001E891B(f3c);
+        f3c = 0;
+    }
+}
 
 C_000B4300 *C_000B4300::func_000B4300(S_B4300_Stream * volatile a, S_B4300_Stream * volatile b)
 {
