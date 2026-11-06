@@ -48,7 +48,9 @@ struct C_0005C020 {
 };
 
 struct C_000E5150_Mgr {
-    char pad0[0x190];
+    char pad0[4];
+    int f4;
+    char pad8[0x190 - 8];
     int a190[(0x2C0 - 0x190) / 4];
     C_0005C020 *f2C0;
     char pad2C4[0x14];
