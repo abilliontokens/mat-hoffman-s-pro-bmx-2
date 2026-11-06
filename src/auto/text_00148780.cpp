@@ -11,7 +11,9 @@ struct Resource_00148E80 {
  int func_001617F0(const char *, int);
  ShaderData_00148E80 *func_00161850(int);
 };
+struct Parser_00148910;
 struct DXShaderDescriptor {
+ int func_00148910(int a0, Parser_00148910 *p, int id, int idx, int arg4);
  char pad0[0xA]; char fA; char padB[9]; int f14; short f18; char pad1A[6]; char f20; char pad21[3]; unsigned char f24; char pad25; short f26; short f28; short pad2A; void *f2C; void *f30; int f34; int f38; int f3C;
  int func_00148E80(const char *);
  void func_00145370(int, ShaderData_00148E80 *, int, void *, int *);
