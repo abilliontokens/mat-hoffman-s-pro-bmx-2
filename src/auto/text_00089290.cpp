@@ -153,7 +153,7 @@ extern float D_00275544;
 extern float D_00278654;
 extern float D_0027653C;
 extern float D_00278650;
-extern float D_0028F5DC;
+extern int D_0028F5DC;
 extern int D_00278664;
 extern int D_00278668;
 extern int D_0027866C;
