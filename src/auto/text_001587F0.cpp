@@ -195,6 +195,13 @@ struct C_00158C10 {
     void func_00158C10(int a, int b);
 };
 
+static __forceinline Vec4_587F0 RandomVec_587F0()
+{
+    float y = func_001E8833() * D_002754B0;
+    float x = func_001E8833() * D_002754B0;
+    return Vec4_587F0(x, y, func_001E8833() * D_002754B0);
+}
+
 void C_001587F0::func_001587F0(int a0, Vec4_587F0 pos, Vec4_587F0 dir)
 {
     unk5c = pos;
@@ -206,14 +213,14 @@ void C_001587F0::func_001587F0(int a0, Vec4_587F0 pos, Vec4_587F0 dir)
     float y = func_001E8833() * D_002754B0;
     float x = func_001E8833() * D_002754B0;
     Vec4_587F0 v(x, y, func_001E8833() * D_002754B0);
-    func_001584A0(&v, &v);
+    Vec4_587F0 *pv = &v;
+    func_001584A0(pv, &v);
     unk48 = 0.05f;
     unk28->v30();
     unk28->func_0011CA60(unk5c + v * unk48);
     unk2c->v30();
     unk2c->func_0011CA60(unk5c - v * unk48);
-    Vec4_587F0 &dst = unk6c;
-    dst = unk5c + v * unk48;
+    unk6c = unk5c + v * unk48;
     unk34->v31();
     unk34->v32();
     unk38->v31();
@@ -278,10 +285,16 @@ void C_00158C10::func_00158C10(int a, int b)
 
 void func_00159480(float *out, const float *in)
 {
- __m128 v=_mm_loadu_ps(in),q=_mm_mul_ps(v,v);
- __m128 sum=_mm_movehl_ps(q,q);sum=_mm_add_ss(sum,q);q=_mm_shuffle_ps(q,q,0xe1);sum=_mm_add_ss(sum,q);
- __m128 eps=_mm_load_ss(&D_002874A0);sum=_mm_add_ss(sum,_mm_and_ps(_mm_cmplt_ss(sum,eps),eps));
- __m128 r=_mm_rsqrt_ps(sum);__m128 c=_mm_load_ss(&D_00287490);sum=_mm_mul_ss(sum,r);sum=_mm_mul_ss(sum,r);r=_mm_mul_ss(r,_mm_load_ss(&D_00287480));r=_mm_mul_ss(r,_mm_sub_ss(c,sum));r=_mm_shuffle_ps(r,r,0);_mm_storeu_ps(out,_mm_mul_ps(r,v));
+    __m128 v = _mm_loadu_ps(in);
+    __m128 q = _mm_mul_ps(v, v);
+    __m128 s = _mm_add_ss(_mm_movehl_ps(q, q), q);
+    s = _mm_add_ss(s, _mm_shuffle_ps(q, q, 0xe1));
+    s = _mm_add_ss(s, _mm_and_ps(_mm_cmplt_ss(s, _mm_load_ss(&D_002874A0)), _mm_load_ss(&D_002874A0)));
+    __m128 r = _mm_rsqrt_ss(s);
+    __m128 t = _mm_mul_ss(_mm_mul_ss(s, r), r);
+    r = _mm_mul_ss(r, _mm_sub_ss(_mm_load_ss(&D_00287490), t));
+    r = _mm_shuffle_ps(r, r, 0);
+    _mm_storeu_ps(out, _mm_mul_ps(r, v));
 }
 
 C_001594F0 *C_001594F0::func_001594F0(void)
