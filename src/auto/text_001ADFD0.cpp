@@ -670,3 +670,5 @@ C_001AE3E0 *C_001AE3E0::func_001AEBD0(int a1, int a2, float *a3, int a4, float a
     return this;
 }
 
+static int Probe_001ADFD0(void) { return D_002EFDB8->cam->f1E0 + (int)D_002EFDB8->f6c; }
+
