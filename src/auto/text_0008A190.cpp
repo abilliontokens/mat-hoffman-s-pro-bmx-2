@@ -110,7 +110,9 @@ struct PtrObj_0008 {
 };
 
 struct SubElem_0008 {
-    char pad0[0x64];
+    char pad0[0x28];
+ int x28, y2c; char pad30[0x28]; unsigned char flags58; char pad59[11];
+ void func_001D5810(const void *, float, float, int);
     void func_001D5760();
     void func_001D57E0();
     ClampObj *func_001D5AA0();
