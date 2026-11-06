@@ -1,6 +1,15 @@
 /* 24 functions from 0x00157810 to 0x001587F0, found by Ghidra. */
 #include "common.h"
 
+extern "C" char *__cdecl strcat(char *, const char *);
+
+/* the run-time type information record of an object (typeid(*obj)) */
+struct S_00157D40_TypeInfo {
+    const char *func_001E9FA2(void);
+};
+S_00157D40_TypeInfo *func_001EA038(void *obj);
+int func_0014FE80(const char *buf, int size, int count, void *file);
+
 extern int D_002DF95C;
 extern char D_00287354[], D_00276274[], D_002790E0[], D_00287330[], D_00287314[];
 int func_001ADCC0(char *, int, const char *, ...);
