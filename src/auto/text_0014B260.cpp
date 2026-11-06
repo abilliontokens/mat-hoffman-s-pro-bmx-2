@@ -2,7 +2,6 @@
 #include "common.h"
 #include <xmmintrin.h>
 #include <math.h>
-#pragma auto_inline(off)
 
 struct Vec4 {
     f32 x;
