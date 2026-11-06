@@ -28,17 +28,67 @@ struct C_00157600 {
     void func_00157600(int a0);
 };
 
+struct S119_UI {
+    void **vt;
+};
+struct S119_G8 {
+    char pad0[0x38];
+    S119_UI *f38;
+};
+struct S119_Obj1C4 {
+    char pad0[0xe0];
+    char fe0;
+    void func_001048E0();
+};
+struct S119_Veh138 {
+    char pad0[0x138];
+    float f138;
+};
+struct S119_P2A4 {
+    char pad0[0x170];
+    S119_Veh138 *list[21];
+    S119_Obj1C4 *f1c4;
+    int f1c8;
+};
 struct S_002A8490_119810 {
-    char pad0[0x124];
+    char pad0[8];
+    S119_G8 *f8;
+    char padC[0x124 - 0xC];
     int f124;
+    char pad128[0x2a4 - 0x128];
+    S119_P2A4 *f2a4;
 };
 extern S_002A8490_119810 *D_002A8490;
+extern float D_00275460;
+
+struct S119_Obj {
+    void func_00199650(void *a);
+    void func_00198F50(void *a, void *b, int c, int d, int e);
+    void func_00199C20(int a, void *b);
+    void func_0019AD60(int a, void *b);
+    void func_0019AC50();
+    void func_00026270(float s);
+    void func_00133ED0();
+};
 
 struct BmxVehicle {
     int func_00119810(int a);
     void func_00027D40();
     int func_001091D0();
     void func_0010DC00();
+    int func_0010DAB0();
+    void func_00112A80(int a);
+    void func_0010C210();
+    void func_00105890();
+    void func_00118840(int a);
+    void func_0002EE30(int a);
+    void func_00119680(int a);
+    void func_00111C60(int a);
+    void func_00105AA0();
+    void func_001184E0(int a);
+    void func_00113290(int a);
+    void func_00105B30(int a);
+    void func_00105CB0();
 };
 
 struct C_00198330 {
@@ -65,6 +115,46 @@ struct BmxWallPlantConstraint {
     void func_0011A4B0();
     void func_0011A550(Vec4 *a, Vec4 *b);
 };
+
+int BmxVehicle::func_00119810(int a)
+{
+    char *self = (char *)this;
+
+    if (D_002A8490->f124 != 0) {
+        if (*(char *)(self + 0x12a8) < 0) {
+            int func_0010DAB0();
+            if (func_0010DAB0()) {
+                return 1;
+            }
+        }
+        if (*(int *)(*(int *)((char *)D_002A8490 + 0x2a4) + 0x1c8) == 0) {
+            if (*(int *)(self + 0x209c) != 0 && *(int *)(self + 0x1178) != 0 && *(int *)(self + 0x11f4) == 1 && *(int *)(self + 0x454) == 0 && *(int *)(self + 0x468) == 0) {
+                *(int *)(self + 0x20a0) = 1;
+                *(int *)(self + 0x209c) = 0;
+            }
+            if (*(int *)(self + 0x20a0) != 0) {
+                *(int *)(self + 0x99c) = 0;
+                *(int *)(self + 0x9bc) = 0;
+                *(int *)(self + 0x964) = 0;
+                *(int *)(self + 0x968) = 0;
+                *(int *)(self + 0x9e0) = 1;
+                func_00027D40();
+                if (func_001091D0()) {
+                    *(float *)(self + 0x9a0) = 1.0f;
+                } else {
+                    *(int *)(self + 0x9a0) = 0;
+                }
+                if (*(int *)(self + 0x20a4) == 0 && *(int *)(self + 0x15d8) == 1) {
+                    if (*(float *)(self + 0x15f4) >= 1.0f || *(int *)(self + 0x1130) != 0) {
+                        *(int *)(self + 0x20a4) = 1;
+                        func_0010DC00();
+                    }
+                }
+            }
+        }
+    }
+    return 1;
+}
 
 BmxWallPlantConstraint *BmxWallPlantConstraint::func_0011A440(int param_1)
 {
