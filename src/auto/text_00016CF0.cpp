@@ -2,6 +2,7 @@
 #include "common.h"
 #include <xmmintrin.h>
 #include <string.h>
+#include "asm_helpers.h"
 
 extern float D_002755E8, D_002754B0, D_002757FC, D_002757F8;
 int func_001E8833();
@@ -287,10 +288,7 @@ struct L_00016CF0 {
 
 int func_00016CF0(float f)
 {
-    int * volatile p = (int *)&f;
-    volatile float t = f;
-
-    *p = (int)t;
+    AsmFloatToInt(f, (int *)&f);
     return *(int *)&f;
 }
 
