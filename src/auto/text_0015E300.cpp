@@ -277,11 +277,6 @@ void LightEmitter::func_0015E420(float *dir, float *mat, int unk)
     mat[14] = f48;
 }
 
-static inline float Blend_0015E4B0(float r)
-{
-    return D_002A80A4 * r + (D_00275460 - r);
-}
-
 float LightEmitter::func_0015E4B0(float a1, S_0015E4B0_V4 v, LightEmitter *e)
 {
     S_0015E4B0_V4 n;
@@ -298,11 +293,14 @@ float LightEmitter::func_0015E4B0(float a1, S_0015E4B0_V4 v, LightEmitter *e)
     if (dot < t1) return D_002A80A4 * a1;
     float t2 = func_0014F510(e->f8C * 0.5f);
     if (dot > t2) return D_00275460 * a1;
-    float ratio = (t2 - dot) / (t2 - t1);
-    float result = ratio;
-    result *= D_002A80A4;
-    result += D_00275460 - ratio;
-    return a1 * result;
+    float result;
+    {
+        float ratio = (t2 - dot) / (t2 - t1);
+        result = ratio;
+        result *= D_002A80A4;
+        result += D_00275460 - ratio;
+    }
+    return result * a1;
 }
 
 int C_0015E300::func_0015E5B0(void)
