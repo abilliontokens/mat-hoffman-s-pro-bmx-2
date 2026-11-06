@@ -353,6 +353,75 @@ void C_0017A6F0::func_0017A6F0(int a0) {
     unk134 = a0;
 }
 
+static __forceinline void AddShadowCaster(C_0017A700 *o, DXRenderableObject *owner, int index)
+{
+    void *func_001E8AA5(int);
+    void *func_001E83E8(void *, int);
+    void *func_001E8A44(int);
+    if (!o->fF0) {
+        o->fF0 = (DXShadowCaster **)func_001E8AA5(4);
+        o->fF8 = 1;
+        o->fF0[o->fF4] = 0;
+    } else if (o->fF8 < o->fF4 + 1) {
+        o->fF0 = (DXShadowCaster **)func_001E83E8(o->fF0, o->fF4 * 4 + 4);
+        o->fF8 = o->fF4 + 1;
+        o->fF0[o->fF4] = 0;
+    }
+    if (o->fF0[o->fF4]) o->fF0[o->fF4]->v2(owner);
+    else {
+        DXShadowCaster *p = (DXShadowCaster *)func_001E8A44(16);
+        if (p) p = p->func_00143820(owner);
+        else p = 0;
+        o->fF0[o->fF4] = p;
+    }
+    int max = o->fF0[o->fF4]->f4->f1a4->count - 1;
+    int value = ShadowMin(index, max);
+    o->fF0[o->fF4]->f8 = value;
+    o->fF4++;
+}
+
+void C_0017A700::func_0017A700(DXRenderableObject *owner, int index)
+{
+    void *func_001E8AA5(int);
+    void *func_001E83E8(void *, int);
+    void *func_001E8A44(int);
+    C_0017A700 * volatile saved = this;
+    C_0017A700 *self = this;
+    if (!self->fF0) {
+        DXShadowCaster **items = (DXShadowCaster **)func_001E8AA5(4);
+        self = saved;
+        self->fF0 = items;
+        self = saved;
+        self->fF8 = 1;
+        self = saved;
+        self->fF0[self->fF4] = 0;
+    } else if (self->fF8 < self->fF4 + 1) {
+        DXShadowCaster **items = (DXShadowCaster **)func_001E83E8(self->fF0, self->fF4 * 4 + 4);
+        self = saved;
+        self->fF0 = items;
+        self = saved;
+        self->fF8 = self->fF4 + 1;
+        self = saved;
+        self->fF0[self->fF4] = 0;
+    }
+    self = saved;
+    if (self->fF0[self->fF4]) self->fF0[self->fF4]->v2(owner);
+    else {
+        DXShadowCaster *p = (DXShadowCaster *)func_001E8A44(16);
+        if (p) p = p->func_00143820(owner);
+        else p = 0;
+        self = saved;
+        self->fF0[self->fF4] = p;
+    }
+    self = saved;
+    volatile int max = self->fF0[self->fF4]->f4->f1a4->count - 1;
+    volatile int value = index < max ? index : max;
+    self = saved;
+    self->fF0[self->fF4]->f8 = value;
+    self = saved;
+    self->fF4++;
+}
+
 void C_0017A850::func_0017A850(void) {
     unkF4 = 0;
 }
