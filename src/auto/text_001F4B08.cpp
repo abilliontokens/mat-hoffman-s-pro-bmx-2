@@ -154,10 +154,58 @@ found:
     return 0;
 }
 
+#pragma auto_inline(off)
+int func_001F4D18(int cp)
+{
+    int retval = -1;
+    S_mbcinfo *mbc;
+    int i;
+
+    func_001EB390(13);
+    __try {
+        D_002F6A64 = 0;
+        if (cp == -4) {
+            D_002F6A64 = 1;
+            cp = D_002F6A58;
+        }
+        if (cp != D_002FB104) {
+            mbc = D_002FAFEC;
+            if (mbc == 0 || mbc->refcount != 0) {
+                mbc = (S_mbcinfo *)func_001E8AA5(0x220);
+            }
+            if (mbc != 0) {
+                retval = func_001F4C09(cp);
+                if (retval == 0) {
+                    mbc->refcount = 0;
+                    mbc->cp = D_002FB104;
+                    mbc->flag = D_002FAFF0;
+                    mbc->lcid = D_002FAFE8;
+                    for (i = 0; i < 5; i++)
+                        mbc->names[i] = ((unsigned short *)D_002FB120)[i];
+                    for (i = 0; i < 0x101; i++)
+                        mbc->ctype[i] = D_002FB000[i];
+                    for (i = 0; i < 0x100; i++)
+                        mbc->xtype[i] = D_002FB140[i];
+                    D_002FAFEC = mbc;
+                }
+            }
+            if (retval == -1 && mbc != D_002FAFEC)
+                func_001E8390(mbc);
+        } else {
+            retval = 0;
+        }
+    } __finally {
+        func_001F4E30();
+    }
+    return retval;
+}
+#pragma auto_inline(on)
+#pragma auto_inline(off)
 void func_001F4E30(void) {
     int func_001EB302(...);
     func_001EB302(13);
 }
+#pragma auto_inline(on)
 
 int func_001F4E39(void)
 {
