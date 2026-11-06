@@ -186,6 +186,8 @@ extern void *func_001E8A44(int size);
 extern void func_0019B700(void *o, int a);
 extern void func_00129920(void *o, int a);
 extern void func_000264C0(void *dst, const void *src);
+struct S_0019B700 { void func_0019B700(int a); };
+struct S_00129920 { void func_00129920(int a); };
 int __fastcall func_0019EEC0(char *self, int, int *out)
 {
     int count = *(int *)(self + 0x190);
