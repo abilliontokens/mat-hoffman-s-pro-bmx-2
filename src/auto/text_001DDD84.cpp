@@ -524,6 +524,50 @@ fail:
     return err;
 }
 
+int __stdcall func_001DE51E(char *name, int a1)
+{
+    char buf[0x104];
+    int len;
+    int h;
+    int r;
+    S_001DE51E_Obj *o;
+
+    strcpy(buf, name);
+    len = strlen(buf);
+    strcpy(buf + len, D_0028FB58);
+    h = func_001DEE2F(buf, a1);
+    if (h != -1) {
+        if (func_001DE0DD(a1, name, len) == 0) {
+            r = func_001DEF3C(h, a1);
+            while (r != 0) {
+                if (func_001DE0DD(a1, name, len) != 0)
+                    break;
+                r = func_001DEF3C(h, a1);
+            }
+            if (r == 0) {
+                func_001DD13C(h);
+                h = -1;
+                func_001DD62B(0x12);
+            }
+        }
+        if (h != -1) {
+            o = (S_001DE51E_Obj *)func_001DF5B9(0, 0x110);
+            if (o) {
+                o->tag = 0x53425645;
+                o->handle = h;
+                o->len = len;
+                func_001DF4E1(o->path, name, 0x104);
+                h = (int)o;
+            } else {
+                func_001DD13C(h);
+                h = -1;
+                func_001DD62B(8);
+            }
+        }
+    }
+    return h;
+}
+
 int __stdcall func_001DE625(S_001DE625_Obj *p, int arg)
 {
     int r;
