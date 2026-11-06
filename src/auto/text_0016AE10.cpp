@@ -78,7 +78,7 @@ struct C_0016B8B0 {
     void func_0016B8B0(int a, int b, int c, int d, int e);
 };
 
-int func_0016AE10(float dt)
+int __fastcall func_0016AE10(void *self, float dt)
 {
     return 1;
 }
@@ -181,10 +181,6 @@ struct SmokeParticleEmitter {
     u32 f23C;
     float f240, f244, f248;
     u32 f24C;
-};
-
-struct C_AE10 {
-    int func_0016AE10(float dt);
 };
 
 void C_0016B8B0::func_0016B8B0(int a, int b, int c, int d, int e)
