@@ -182,13 +182,17 @@ int AllocObj::func_001EEE62(int size, int flag) {
     if ((unsigned int)field_10 < sz) {
         int space = 0x1fc;
         if (sz > (unsigned int)space) return 0;
+        int *p = (int *)D_002F6A04.func_001EEE62(0x200, 1);
         int *blk;
-        do {
-            blk = (int *)D_002F6A04.func_001EEE62(0x200, 1);
-            if (blk) *blk = 0;
-        } while (blk == 0);
-        if (field_c == 0) field_8 = (int)blk;
-        else *field_c = (int)blk;
+        if (p) {
+            *p = 0;
+            blk = p;
+        } else {
+            blk = 0;
+        }
+        if (blk == 0) return 0;
+        if (field_c) *field_c = (int)blk;
+        else field_8 = (int)blk;
         field_c = blk;
         field_10 = space - (int)sz;
     } else {
@@ -235,18 +239,17 @@ int *S_001EEFBA::func_001EEFBA(int idx)
 
 S_001EEFE3 *S_001EEFE3::func_001EEFE3(S_001EEFE3 *n)
 {
-    S_001EEFE3 *first;
-    S_001EEFE3 *last;
-    S_001EEFE3 *cur;
+    S_001EEFE3 *p;
+    S_001EEFE3 *q;
 
     if (n != 0) {
-        first = next;
-        if (first != 0) {
-            last = first;
-            while ((cur = last->next) != 0) {
-                last = cur;
-            }
-            last->next = n;
+        p = next;
+        if (p != 0) {
+            do {
+                q = p;
+                p = q->next;
+            } while (p != 0);
+            q->next = n;
         } else {
             next = n;
         }
