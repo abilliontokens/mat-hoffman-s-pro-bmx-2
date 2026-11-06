@@ -77,12 +77,12 @@ struct C_0014CC60 {
     char pad0[0x38];
     int f38;
     char pad3C[4];
-    char *f40;
+    S_0014D360_Rec *f40;
     int f44;
     int *f48;
     int f4C;
     C_000BA430 *f50;
-    char *f54[320];
+    S_0014D360_Info *f54[320];
     int f554;
     int f558;
     char pad55C[0x14];
