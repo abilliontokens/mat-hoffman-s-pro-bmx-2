@@ -123,6 +123,99 @@ struct C_0009A100 {
 extern S_0009A1F0_Root *D_002A8490;
 
 
+void C_0009A100::func_00099E50(S_0009A100_Out *out, int slot)
+{
+    int i;
+    int j;
+    int k;
+    volatile int n;
+    int ok;
+    int last;
+    int *fp;
+    S_0009A100_Obj **lp;
+    S_0009A100_Obj **list;
+    S_0009A100_Obj *o;
+
+    last = 0;
+    for (i = 0; i < 3; i++) {
+        j = 0;
+        func_00098E80(i);
+        list = List(i);
+        n = Count(i);
+        ok = 1;
+        if (n >= 4) {
+            fp = out->recs[slot * 3 + i].items + 1;
+            lp = list + 2;
+            for (k = 3; k < n; k += 4) {
+                o = lp[-2];
+                if (fp[-1] != 0) {
+                    o->f48E0 = 1;
+                    o->f1B4 = 1;
+                    if (D_002A8490->f2a4 != 0) {
+                        o->f1A4 = D_002A8490->f2a4->f124;
+                    }
+                } else if (o->f1A8 == 0) {
+                    ok = 0;
+                }
+                o = lp[-1];
+                if (fp[0] != 0) {
+                    o->f48E0 = 1;
+                    o->f1B4 = 1;
+                    if (D_002A8490->f2a4 != 0) {
+                        o->f1A4 = D_002A8490->f2a4->f124;
+                    }
+                } else if (o->f1A8 == 0) {
+                    ok = 0;
+                }
+                o = lp[0];
+                if (fp[1] != 0) {
+                    o->f48E0 = 1;
+                    o->f1B4 = 1;
+                    if (D_002A8490->f2a4 != 0) {
+                        o->f1A4 = D_002A8490->f2a4->f124;
+                    }
+                } else if (o->f1A8 == 0) {
+                    ok = 0;
+                }
+                o = lp[1];
+                if (fp[2] != 0) {
+                    o->f48E0 = 1;
+                    o->f1B4 = 1;
+                    if (D_002A8490->f2a4 != 0) {
+                        o->f1A4 = D_002A8490->f2a4->f124;
+                    }
+                } else if (o->f1A8 == 0) {
+                    ok = 0;
+                }
+                j += 4;
+                fp += 4;
+                lp += 4;
+            }
+        }
+        if (j < n) {
+            fp = (int *)out + ((slot * 3 + i) * 15 + j + 3);
+            do {
+                if (*fp != 0) {
+                    o = list[j];
+                    o->f48E0 = 1;
+                    o->f1B4 = 1;
+                    if (D_002A8490->f2a4 != 0) {
+                        o->f1A4 = D_002A8490->f2a4->f124;
+                    }
+                } else if (list[j]->f1A8 == 0) {
+                    ok = 0;
+                }
+                j++;
+                fp++;
+            } while (j < n);
+        }
+        if (ok != 0) {
+            last = i + 1;
+        }
+    }
+    f18 = last;
+}
+
 void C_0009A0E0::func_0009A0E0(int param_1)
 {
   int in_ECX = (int)this;
@@ -139,9 +232,8 @@ void C_0009A100::func_0009A100(S_0009A100_Out *out, int slot)
     int i;
     int j;
     int count;
-    int *dst;
     S_0009A100_Obj **list;
-    volatile int n;
+    int n;
     S_0009A100_Obj *o;
 
     count = 0;
@@ -149,21 +241,16 @@ void C_0009A100::func_0009A100(S_0009A100_Out *out, int slot)
         j = 0;
         list = List(i);
         n = Count(i);
-        if (n > j) {
-            dst = out->recs[slot * 3 + i].items;
-            do {
+        for (j = 0; j < n; j++) {
+            o = list[j];
+            if (o->f48E0 != 0) {
+                f198->f68->func_0005C0B0(D_002A8490->f2e0->f48, i, j);
                 o = list[j];
-                if (o->f48E0 != 0) {
-                    f198->f68->func_0005C0B0(D_002A8490->f2e0->f48, i, j);
-                    o = list[j];
-                    if (o->f1A8 != 0) {
-                        count++;
-                    }
+                if (o->f1A8 != 0) {
+                    count++;
                 }
-                *dst = o->f48E0;
-                j++;
-                dst++;
-            } while (j < n);
+            }
+            out->recs[slot * 3 + i].items[j] = o->f48E0;
         }
         out->counts[slot] = count;
     }
