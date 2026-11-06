@@ -13,7 +13,7 @@ struct Q_292C0_Obj {
     char pad0[0x54]; Q_292C0_Src *f54; char pad58[0xa7 - 0x58]; unsigned char fa7;
     void func_00133ED0(); float func_00133F10(int);
 };
-struct Q_292C0_Orient { void func_00197E70(Q_292C0 *out); void func_00197B40(Q_292C0 *a, Q_292C0 *b); Q_292C0 *func_00198120(Q_292C0 *out, Q_292C0 *in); };
+struct Q_292C0_Orient { void func_00197E70(Q_292C0 *out); void func_00197B40(Q_292C0 *a, Q_292C0 *b); Q_292C0 func_00198120(const Q_292C0 &in); };
 struct Q_292C0_Aux { char pad0[0x238]; Q_292C0 f238; };
 Q_292C0 func_0001E9E0(const Q_292C0 &in);
 struct C_000292C0 {
