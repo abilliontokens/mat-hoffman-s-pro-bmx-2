@@ -168,17 +168,16 @@ void C_1B8920_Mgr::func_001B8920(void)
                 P.z = dz;
                 float sq = dx * dx + dy * dy + dz * dz;
                 len = sqrtf(sq);
+                norm_1B8920(&P.x, &P.x);
                 q = sub->f118;
                 if (q.x != *(float *)&D_002AA9F4.x && q.y != *(float *)&D_002AA9F8 && q.z != *(float *)&D_002AA9FC) {
                     rot = P;
-                    c3.x = rot.y * D_002AAA14.z - rot.z * D_002AAA14.y;
-                    c3.y = rot.z * D_002AAA14.x - rot.x * D_002AAA14.z;
-                    c3.z = rot.x * D_002AAA14.y - rot.y * D_002AAA14.x;
-                    c3.w = 0.0f;
-                    c2.x = c3.y * rot.z - c3.z * rot.y;
-                    c2.y = c3.z * rot.x - c3.x * rot.z;
-                    c2.z = c3.x * rot.y - c3.y * rot.x;
-                    c2.w = 0.0f;
+                    Cross_1B8920(&c3, &rot, &D_002AAA14);
+                    norm_1B8920(&c3.x, &c3.x);
+                    Cross_1B8920(&c2, &c3, &rot);
+                    norm_1B8920(&c2.x, &c2.x);
+                    Cross_1B8920(&c2, &c3, &rot);
+                    norm_1B8920(&c2.x, &c2.x);
                 } else {
                     obj->func_001994C0(0, &axis.x, &v2.x);
                     float d = q.y * axis.y + q.x * axis.x + q.z * axis.z;
@@ -187,17 +186,18 @@ void C_1B8920_Mgr::func_001B8920(void)
                     axis.y -= q.y * d;
                     axis.z -= q.z * d;
                     axis.w = 1.0f;
+                    norm_1B8920(&axis.x, &axis.x);
                     float d2 = q.y * P.y + q.x * P.x + q.z * P.z;
                     P.x -= q.x * d2;
                     P.y -= q.y * d2;
                     P.z -= q.z * d2;
                     P.w = 1.0f;
+                    norm_1B8920(&P.x, &P.x);
                     float angle = func_0014F890(axis.x * P.x + axis.y * P.y + axis.z * P.z);
-                    q.x = axis.y * P.z - axis.z * P.y;
-                    q.y = axis.z * P.x - axis.x * P.z;
-                    q.z = axis.x * P.y - axis.y * P.x;
-                    q.w = 0.0f;
+                    Cross_1B8920(&q, &axis, &P);
+                    norm_1B8920(&q.x, &q.x);
                     func_00158390(angle, B, q, &rot);
+                    norm_1B8920(&rot.x, &rot.x);
                 }
                 obj->func_00199110(0, &rot.x, &c2.x, 0, 1, 0);
                 int i0 = func_001E8858(sub->f10C);
