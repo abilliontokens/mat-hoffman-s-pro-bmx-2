@@ -99,14 +99,6 @@ static __forceinline Vec4 vec3_neg(Vec4 *v)
     return r;
 }
 
-static __forceinline void vec3_neg2(Vec4 *t, Vec4 *v)
-{
-    t->w = 1.0f;
-    t->x = -v->x;
-    t->y = -v->y;
-    t->z = -v->z;
-}
-
 extern float D_00275544;
 void func_001C6380(Vec4 *out, Vec4 *in);
 float func_0014F7E0(float x);
@@ -253,7 +245,6 @@ void func_001C63F0(Vec4 *out, Vec4 *vin, f32 *m)
 void func_001C64A0(S_001C64A0_Node *obj)
 {
     Vec4 a;
-    Vec4 t;
     int i;
     S_001C64A0_Node *root = *(S_001C64A0_Node * volatile *)&obj;
 
@@ -266,8 +257,7 @@ void func_001C64A0(S_001C64A0_Node *obj)
     a.x = 0;
     a.w = 1.0f;
     root->v5(0, &a, 0, 0, 0);
-    vec3_neg2(&t, &a);
-    a = t;
+    a = vec3_neg(&a);
     a.y = 0;
     for (i = 0; i < root->fC; i++) {
         Vec4 b;
