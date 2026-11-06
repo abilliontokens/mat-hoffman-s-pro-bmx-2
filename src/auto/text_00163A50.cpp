@@ -1,5 +1,12 @@
 /* 15 functions from 0x00163A50 to 0x001648E0, found by Ghidra. */
 #include "common.h"
+
+static __forceinline int min_164270(const int &a, const int &b)
+{
+    int r = a;
+    if (r > b) r = b;
+    return r;
+}
 struct S_Vec4_1640D0 {
     float x, y, z, w;
 };
@@ -580,32 +587,16 @@ void C_00164820::func_00164820(int a0) {
     unk34 = 0;
 }
 
-void C_00164650::func_00164840(S_00164650_Scale *scale, float time, int rescale)
-{
-    float ratio;
-    if (rescale != 0) {
-        float r = f34 / f18->f38;
-        ratio = r * scale->f38;
-    }
-    if (time != D_00275544) {
-        f44 = time;
-        f3c = time + f34;
-        f38 = f34;
-        f40 = f34;
-        f1c = f18;
-        if (f18 == 0 || f30 != 0) {
-            f1c = 0;
-            func_00164770();
-        }
-        f30 = 1;
-    } else {
-        f30 = 0;
-    }
-    f10 = 0;
-    f18 = scale;
-    f34 = 0;
-    if (rescale != 0) {
-        f34 = ratio;
-    }
+void C_00164650::func_00164840(S_00164650_Scale *scale, float time, int rescale) {
+float ratio;
+if(rescale != 0) { float r=f34/f18->f38; ratio=r*scale->f38; }
+if(time != D_00275544) {
+f44=time; f3c=time+f34; f38=f34; f40=f34;
+f1c=*(S_00164650_Scale **)&time;
+if(f1c==0 || f30!=0) { f1c=0; func_00164770(); }
+f30=1;
+} else f30=0;
+f10=0; f18=scale; f34=0;
+if(rescale!=0) f34=ratio;
 }
 
