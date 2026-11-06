@@ -231,6 +231,56 @@ struct BmxCameraController_0002EF20 {
     BmxCameraController_0002EF20 *func_0002EF20(int a0);
 };
 
+void C_0002EE30::func_0002EB10()
+{
+    S_2EB10_T *t = (S_2EB10_T *)this;
+    const char *s;
+
+    if (D_002A1194 < 0) {
+        S_2EB10_G *g = (S_2EB10_G *)D_002A8490->f18;
+        int id = g->counter;
+        D_002A1194 = id;
+        g->counter = id + 1;
+    }
+    S_2EB10_V4 v;
+    t->f230->func_00197E70(&v.x);
+    func_0013E260((void *)D_002A8490->f18, D_002A1194, D_002768DC);
+    func_0013E1F0((void *)D_002A8490->f18, D_002A1194, D_002768C8, (double)t->f1e0->f28 * D_002768D8);
+    func_0013E1F0((void *)D_002A8490->f18, D_002A1194, D_002768B8, (double)t->f1e0->f238);
+    func_0013E1F0((void *)D_002A8490->f18, D_002A1194, D_002768A8, (double)t->f1e0->f23c);
+    func_0013E1F0((void *)D_002A8490->f18, D_002A1194, D_00276898, (double)t->f1e0->f240);
+    func_0013E1F0((void *)D_002A8490->f18, D_002A1194, D_0027688C, (double)v.x);
+    func_0013E1F0((void *)D_002A8490->f18, D_002A1194, D_00276880, (double)v.y);
+    func_0013E1F0((void *)D_002A8490->f18, D_002A1194, D_00276874, (double)v.z);
+    if (t->f470 != 0) {
+        switch (t->f480) {
+        case 0:
+            s = D_0027686C;
+            break;
+        case 1:
+            s = D_00276864;
+            break;
+        case 2:
+            s = D_0027685C;
+            break;
+        case 3:
+            s = D_00276854;
+            break;
+        default:
+            s = D_0027684C;
+            break;
+        }
+    } else {
+        s = D_00276844;
+    }
+    func_0013E1F0((void *)D_002A8490->f18, D_002A1194, D_00276830, s);
+    func_0013E1F0((void *)D_002A8490->f18, D_002A1194, D_00276810, t->f478 ? D_00276828 : D_00276820);
+    func_0013E1F0((void *)D_002A8490->f18, D_002A1194, D_002767F8, t->f1e8->f50 ? D_00276828 : D_00276820);
+    func_0013E1F0((void *)D_002A8490->f18, D_002A1194, D_002767E0, t->f1e8->f54 ? D_00276828 : D_00276820);
+    func_0013E1F0((void *)D_002A8490->f18, D_002A1194, D_002767D0, t->f1f0->f30 ? D_00276828 : D_00276820);
+    func_0013E1F0((void *)D_002A8490->f18, D_002A1194, D_002767BC, (double)(t->f784 * t->f778));
+}
+
 int C_0002EE30::func_0002EE30(int a0)
 {
     if ((D_002B7EAC & 1) == 0) {
