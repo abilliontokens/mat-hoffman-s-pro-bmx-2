@@ -119,7 +119,8 @@ struct C_001703B0 {
     S_Light_0016FEE0 lights[3];
     char padF4[0x10];
     void *f104;
-    u32 f108, f10c;
+    u32 f108;
+    int f10c;
     void *f110;
     char pad114[8];
     u32 f11c, f120;
