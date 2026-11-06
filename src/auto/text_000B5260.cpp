@@ -95,6 +95,13 @@ struct V4_000B5260 {
     float x, y, z, w;
 };
 
+struct Obj_000B58B0 {
+    float pad0[8];
+    V4_000B5260 pos;
+    float pad1[4];
+    V4_000B5260 dir;
+};
+
 
 int C_000B5260::func_000B5260(float dt)
 {
