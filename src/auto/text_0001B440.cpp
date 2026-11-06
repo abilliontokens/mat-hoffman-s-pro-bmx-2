@@ -708,9 +708,9 @@ int C_0001C1E0::func_0001BE90(S_0001C1E0_Slot *obj, volatile int a, int b, int c
     flag = 1;
     if (*(volatile float *)&a < D_00275BC0) {
         flag = 0;
+        a = 0x38d1b717;
     }
-    a = 0x38d1b717;
-    if (obj->f4 == 1) {
+    if (*(volatile int *)&obj->f4 == 1) {
         anim = obj->f1A4;
         if (anim->f10 != 0 || b != 0) {
             obj->f8C = 0;
@@ -721,9 +721,10 @@ int C_0001C1E0::func_0001BE90(S_0001C1E0_Slot *obj, volatile int a, int b, int c
             obj->f88 = -1;
             obj->f90 = 0;
             anim->func_00164820(obj->func_001B56F0());
+            float t = *(float *)&a;
             anim->f34 = 0;
-            obj->f9C = a;
-            anim->func_001670C0(a, 0, 0);
+            *(float *)&obj->f9C = t;
+            anim->func_001670C0(t, 0, 0);
             if (anim->f4->f18c->f4 == obj->f44) {
                 anim->func_00132D20();
             } else {
@@ -733,8 +734,8 @@ int C_0001C1E0::func_0001BE90(S_0001C1E0_Slot *obj, volatile int a, int b, int c
         }
         if ((obj->f70[obj->f84] == 0 || obj->f78[obj->f84] == 0) && c == 0) {
             anim->f10 = 1;
+            obj->f78[obj->f84] = 0;
         }
-        obj->f78[obj->f84] = 0;
         if (obj->f78[obj->f84] == 0 && c != 0) {
             anim->f10 = 1;
         }
