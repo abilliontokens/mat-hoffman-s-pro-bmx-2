@@ -63,6 +63,7 @@ struct Txt_66C {
     unsigned char flags;
     Txt_66C *func_001D5E90();
     void func_001D5FA0(int x, void *name, float y, int z);
+    void func_001D6190(int a, void *b, void *c);
     void func_0005E840(void *a);
 };
 struct Spr_66C {
