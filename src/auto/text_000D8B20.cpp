@@ -464,6 +464,44 @@ void C_000D9750::func_000D9750() {
     func_00157960();
 }
 
+BmxUIPageHOF6 *BmxUIPageHOF6::func_000D9820(int a0)
+{
+    func_001BE360(a0);
+    vtbl = &D_0027F534;
+    u32 *p = arr2D8;
+    for (int i = 0; i < 5; i++) {
+        p[-5] = 0;
+        *p = 0;
+        p[11] = 0;
+        p++;
+    }
+    unk280 = 0;
+    unk290 = 0;
+    unk284 = 0;
+    unk288 = 0;
+    unk28C = 0;
+    p = arr2F4;
+    for (int i = 0; i < 2; i++) {
+        p[-2] = 0;
+        *p = 0;
+        p++;
+    }
+    unk29C = 0;
+    unk2A0 = 0;
+    unk2A4 = 0;
+    unk2AC = 0;
+    unk2A8 = 0;
+    for (int j = 0; j < 2; j++) {
+        arr2FC[j] = 0;
+    }
+    unk2B0 = 0;
+    unk2B4 = 0;
+    unk2B8 = 0;
+    unk2BC = 0;
+    unk2C0 = 0;
+    return this;
+}
+
 void BmxUIPageHOF6D::func_000D98E0()
 {
     vtbl = &D_0027F534;
