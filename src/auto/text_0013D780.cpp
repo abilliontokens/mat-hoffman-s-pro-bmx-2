@@ -530,14 +530,11 @@ void *C_0013E080::func_0013E140(unsigned int flags) {
 
 void C_0013E170::func_0013E170(int index, char *name, int value)
 {
-    if (index < *(int *)((int)this + 0x193c)) {
-        char *base = (char *)this;
-        base += index * 0x5c;
-        char *buf = base + 0x230;
-        if (strcmp(buf, name) != 0) {
-            func_001E8920(buf, name, 0x4f);
-            base[0x27f] = 0;
-            *(int *)(base + 0x280) = value;
+    if (index < count) {
+        if (strcmp(entries[index].name, name) != 0) {
+            func_001E8920(entries[index].name, name, 0x4f);
+            entries[index].name[0x4f] = 0;
+            entries[index].value = value;
         }
     }
 }
