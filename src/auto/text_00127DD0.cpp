@@ -36,8 +36,8 @@ struct S_00127DD0_Node {
 struct S_00128480_Entry {
     float split, length;
     unsigned short left, right;
-    int a, b, c;
-    float x, y, z;
+    S_00128630_V3 va;
+    S_00128630_V3 vb;
 };
 extern "C" float __cdecl sqrtf(float);
 #pragma intrinsic(sqrtf)
@@ -89,6 +89,41 @@ static __forceinline void Xform_00128120(float *out, const M44_00128120 *mat, co
     lo = _mm_add_ps(lo, hi);
     _mm_storeu_ps(out, lo);
     out[3] = 1.0f;
+}
+
+void func_00128120(int a0, int a1, int a2, M44_00128120 *mat, S_00127DD0_Entry *e, int count)
+{
+    V4_00128120 *mid;
+    M44_00128120 m;
+    float *p;
+    int i;
+    int n;
+    float sx, sy, sz;
+
+    mid = (V4_00128120 *)func_001E8AA5(count << 4);
+    for (i = 0; i + 3 < count; i += 4) {
+        sx = e[i].a.x + e[i].b.x; sy = e[i].a.y + e[i].b.y; sz = e[i].a.z + e[i].b.z;
+        mid[i] = V4_00128120(sx * D_002755E8, sy * D_002755E8, sz * D_002755E8, 1.0f);
+        sx = e[i + 1].a.x + e[i + 1].b.x; sy = e[i + 1].a.y + e[i + 1].b.y; sz = e[i + 1].a.z + e[i + 1].b.z;
+        mid[i + 1] = V4_00128120(sx * D_002755E8, sy * D_002755E8, sz * D_002755E8, 1.0f);
+        sx = e[i + 2].a.x + e[i + 2].b.x; sy = e[i + 2].a.y + e[i + 2].b.y; sz = e[i + 2].a.z + e[i + 2].b.z;
+        mid[i + 2] = V4_00128120(sx * D_002755E8, sy * D_002755E8, sz * D_002755E8, 1.0f);
+        sx = e[i + 3].a.x + e[i + 3].b.x; sy = e[i + 3].a.y + e[i + 3].b.y; sz = e[i + 3].a.z + e[i + 3].b.z;
+        mid[i + 3] = V4_00128120(sx * D_002755E8, sy * D_002755E8, sz * D_002755E8, 1.0f);
+    }
+    for (; i < count; i++) {
+        sx = e[i].a.x + e[i].b.x; sy = e[i].a.y + e[i].b.y; sz = e[i].a.z + e[i].b.z;
+        mid[i] = V4_00128120(sx * D_002755E8, sy * D_002755E8, sz * D_002755E8, 1.0f);
+    }
+    m = *mat;
+    func_0011AC30(&m, &m);
+    p = (float *)e;
+    for (n = count * 2; n > 0; n--) {
+        Xform_00128120(p, &m, p);
+        p += 4;
+    }
+    func_00127DD0(a0, a1, a2, e, mid, count);
+    func_001E8390(mid);
 }
 
 void func_00128440(S_00127DD0_Node *node)
