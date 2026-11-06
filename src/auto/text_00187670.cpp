@@ -9,9 +9,17 @@ struct C_001877F0Param {
 };
 
 /* 0x10-byte element of the ContinuousAnimObjectSounds list, loaded through virtual slot 0 */
+struct S_00187670_Owner {
+    char pad0[0x26c];
+    char name[1];
+};
+
 struct S_00187670_Elem {
     virtual void v0(void *stream);
-    char pad4[0xc];
+    virtual void v1(int a, int b);
+    virtual void v2(int a, int b, int c, int d);
+    char pad4[0x4];
+    S_00187670_Owner *fC;
 };
 
 struct C_00187670 {
@@ -19,6 +27,7 @@ struct C_00187670 {
     int f24;
     S_00187670_Elem *f28;
     int func_00187670(C_001877F0Param *stream);
+    int func_00187774(int a, int b, int c, int d);
 };
 
 extern int D_00289BE0;
@@ -622,14 +631,18 @@ int C_001880A0::func_001880A0(S_001880A0_Stream * volatile stream)
 {
     char buf[0x104];
     C_001880A0 * volatile self = this;
-    volatile int len;
+    volatile int lengths[2];
+    int count;
+    
     int n;
-
     stream->func_00168BE0(&D_00276310, &D_002764F0, buf, -1);
-    len = func_001E9040(buf, (char *)&D_0027CEF0);
-    n = len > 0x32 ? 0x32 : len;
+    lengths[0] = func_001E9040(buf, (char *)&D_0027CEF0);
+    count = 50;
+    if (lengths[0] < count) count = lengths[0];
+    lengths[1] = count;
+    n = lengths[1];
     func_001E8920(self->f4, buf, n);
-    self->f4[n] = 0;
+    ((volatile char *)n)[(int)self->f4] = 0;
     stream->func_00168CB0(&D_00275AD4, &D_002A90B4, self->f108);
     stream->func_00168CB0(&D_00275AC8, &D_002A90E4, self->f118);
     stream->func_00168CB0(&D_0027CEE4, &D_002A90D4, self->f128);
