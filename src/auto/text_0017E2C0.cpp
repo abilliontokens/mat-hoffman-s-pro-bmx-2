@@ -1,6 +1,7 @@
 /* 13 functions from 0x0017E2C0 to 0x0017F2B0, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 extern int D_00289134;
 extern int D_002891C4;
@@ -324,6 +325,10 @@ int QuadTree::func_0017E2C0(float *a, float *b, int *c, int **d, int *e)
     return 1;
 }
 
+void func_0017E5B0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
+}
+
 RadiusLineCollisionObject *RadiusLineCollisionObject::func_0017E620(int a0) {
     func_00132EB0(a0);
     vtbl = &D_00289134;
@@ -353,6 +358,27 @@ RadiusLineCollisionObject *RadiusLineCollisionObject::func_0017E620(int a0) {
     return this;
 }
 
+void C_0017E6F0::func_0017E6F0(Vec4_0017E6F0 a, Vec4_0017E6F0 b, float r)
+{
+    C_0017E6F0 * volatile self = this;
+    v6C();
+    self->fF0 = a;
+    self->f100 = b;
+    self->f110 = r;
+    self->f114 = self->f110 * self->f110;
+    self->f118 = 1.0f;
+    self->f11C = 1.0f;
+    __m128 *m = (__m128 *)self->mB0;
+    m[0] = _mm_setzero_ps();
+    m[1] = _mm_setzero_ps();
+    m[2] = _mm_setzero_ps();
+    m[3] = _mm_setzero_ps();
+    ((float *)m)[0] = 1.0f;
+    ((float *)m)[5] = 1.0f;
+    ((float *)m)[10] = 1.0f;
+    ((float *)m)[15] = 1.0f;
+}
+
 void RadiusLineCollisionObject::func_0017E8E0(int param_1)
 {
     if (unkA6 != 0) {
@@ -360,6 +386,60 @@ void RadiusLineCollisionObject::func_0017E8E0(int param_1)
     }
     unkA7 = unkA7 & 0xef;
     func_00157A00(param_1);
+}
+
+void C_0017E920::func_0017E920(V4C_0017E7C0 *centre, float *extent)
+{
+    V4C_0017E7C0 v[3];
+    V4C_0017E7C0 c;
+    V4C_0017E7C0 a;
+    float s = f11C;
+    float bx, by, bz, r;
+    float minx, maxx, miny, maxy, minz, maxz;
+    float ex, ey, ez;
+
+    a.x = s * fF0;
+    a.y = s * fF4;
+    a.z = s * fF8;
+    bx = s * f100;
+    by = s * f104;
+    bz = s * f108;
+    r = f118 * f110;
+    if (a.x < bx) {
+        minx = a.x - r;
+        maxx = bx + r;
+    } else {
+        minx = bx - r;
+        maxx = a.x + r;
+    }
+    if (a.y < by) {
+        miny = a.y - r;
+        maxy = by + r;
+    } else {
+        miny = by - r;
+        maxy = a.y + r;
+    }
+    if (a.z < bz) {
+        minz = a.z - r;
+        maxz = bz + r;
+    } else {
+        minz = bz - r;
+        maxz = a.z + r;
+    }
+    c = V4C_0017E7C0((maxx + minx) * D_002755E8, (maxy + miny) * D_002755E8, (maxz + minz) * D_002755E8, 1.0f);
+    ex = (maxx - minx) * D_002755E8;
+    ey = (maxy - miny) * D_002755E8;
+    ez = (maxz - minz) * D_002755E8;
+    v[0] = V4C_0017E7C0(ex, 0.0f, 0.0f, 1.0f);
+    v[1] = V4C_0017E7C0(0.0f, ey, 0.0f, 1.0f);
+    v[2] = V4C_0017E7C0(0.0f, 0.0f, ez, 1.0f);
+    Xform_0017E7C0(centre, mB0, &c.x);
+    func_0001C680(&v[0], v[0], mB0);
+    func_0001C680(&v[1], v[1], mB0);
+    func_0001C680(&v[2], v[2], mB0);
+    extent[0] = Abs_0017E920(v[2].x) + Abs_0017E920(v[1].x) + Abs_0017E920(v[0].x);
+    extent[1] = Abs_0017E920(v[2].y) + Abs_0017E920(v[1].y) + Abs_0017E920(v[0].y);
+    extent[2] = Abs_0017E920(v[2].z) + Abs_0017E920(v[1].z) + Abs_0017E920(v[0].z);
 }
 
 void *C_0017EE30::func_0017EE30(unsigned int flags) {
