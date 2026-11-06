@@ -81,6 +81,16 @@ static __forceinline V4_001A7FE0 xform_001A7FE0(V4_001A7FE0 v, float *m)
     func_0011F540(&r, v, m);
     return r;
 }
+struct Pair_001A7FE0 {
+    V4_001A7FE0 b, a;
+    __forceinline Pair_001A7FE0() { a.Clear(); b.Clear(); }
+};
+static __forceinline Pair_001A7FE0 pair_001A7FE0(V4_001A7FE0 v, float *m)
+{
+    Pair_001A7FE0 p;
+    func_0011F540(&p.a, v, m);
+    return p;
+}
 char *func_001E9260(const char *, int);
 extern "C" unsigned int __cdecl strlen(const char *);
 void func_001A7FE0(State_001A7FE0 *, Contact_001A7FE0 *);
@@ -212,8 +222,8 @@ void func_001A7FE0(State_001A7FE0 *state, Contact_001A7FE0 *contact)
     switch (state->f50) {
     case 5: {
         Shape_001A7FE0 *shape = (Shape_001A7FE0 *)state->f54;
-        V4_001A7FE0 a, b;
-        func_0011F540(&a, shape->f14, (float *)(body->f22c + 0xf0));
+        V4_001A7FE0 a = xform_001A7FE0(shape->f14, (float *)(body->f22c + 0xf0));
+        V4_001A7FE0 b;
         for (int i=0; i<shape->f4; ++i) {
             V4_001A7FE0 t = shape->f14 - shape->f24[i] * state->f100;
             func_0011F540(&b, t, (float *)(body->f22c + 0xf0));
