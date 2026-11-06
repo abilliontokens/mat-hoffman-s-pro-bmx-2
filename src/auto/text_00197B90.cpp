@@ -43,7 +43,7 @@ static __forceinline void Copy_00198120(M_00198040 *dst, const M_00198040 *src)
 extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
 
-static __forceinline void Copy4_00198040(__m128 * volatile dst, __m128 * volatile src)
+static __forceinline void Copy4_00198040(__m128 * volatile src, __m128 * volatile dst)
 {
     __m128 *s = src;
     __m128 *d = dst;
@@ -442,31 +442,25 @@ void C_001983E0::func_001983E0(void *out0, void *out1)
 
 void C_00197EC0::func_00198440(float * volatile pos, float * volatile maxDist, int recurse)
 {
-    C_00197EC0 * volatile self = this;
-    C_00197EC0_Vec4 v;
-
-    if (f180 & 4) {
-        if (*maxDist > D_00275544) {
-            v = func_00197F70(f130);
-            float x = fabs_00198440(v.x - pos[0]);
-            volatile float d = x;
-            float e = fabs_00198440(v.y - pos[1]);
-            if (e > x) d = e;
-            e = fabs_00198440(v.z - pos[2]);
-            if (e > d) d = e;
-            float r = d + self->f184;
-            if (r > *maxDist) *maxDist = r;
-        } else {
-            *maxDist = f184;
-            *(C_00197EC0_Vec4 *)pos = func_00197F70(f130);
-        }
-    }
-    if (recurse) {
-        C_00197EC0 *c;
-        for (c = self->f174; c != 0; c = c->f178) {
-            c->func_00198440(pos, maxDist, 1);
-        }
-    }
+ C_00197EC0_Vec4 v;
+ C_00197EC0 * volatile self=this;
+ if (f180 & 4) {
+  if (*maxDist > D_00275544) {
+   v = func_00197F70(f130);
+   float x = fabs_00198440(v.x-pos[0]);
+   volatile float d = x;
+   float e = fabs_00198440(v.y-pos[1]);
+   if (e > x) d=e;
+   e=fabs_00198440(v.z-pos[2]);
+   if(e>d) d=e;
+   float r=d+self->f184;
+   if(r>*maxDist) *maxDist=r;
+  } else {
+   *maxDist=f184;
+   *(C_00197EC0_Vec4*)pos=func_00197F70(f130);
+  }
+ }
+ if(recurse) for(C_00197EC0 *c=self->f174;c;c=c->f178) c->func_00198440(pos,maxDist,1);
 }
 
 void C_00197EC0::func_001985D0(int *flag, C_00197EC0_Vec4 *mn, C_00197EC0_Vec4 *mx, float *m, int n)
