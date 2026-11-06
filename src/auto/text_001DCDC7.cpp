@@ -156,6 +156,8 @@ int __stdcall func_001DCDC7(int, int, int, int, int, int);
 #pragma optimize("y", on)
 __declspec(noinline) int __stdcall func_001DCDC7(int a0,int a1,volatile int a2,int a3,int a4,int a5) {
     typedef int (__stdcall *Progress)(__int64,__int64,__int64,__int64,u32,u32,u32,u32,int);
+    u32 size=(u32)&D_00010000;
+    int status;
     u32 basic[10];
     S_AnsiString str;
     __int64 allocation;
@@ -164,9 +166,8 @@ __declspec(noinline) int __stdcall func_001DCDC7(int a0,int a1,volatile int a2,i
     S_IoStatusBlock ios;
     void *buffer;
     char remove;
-    u32 output,input;
+    u32 input,output;
     __int64 offset;
-    u32 size=(u32)&D_00010000;
     oa.rootDirectory=(void *)-3; oa.attributes=0x40; oa.objectName=&str;
     buffer=_imp__MmAllocateSystemMemory(size,4);
     if(!buffer) {func_001DD62B(8);return 0;}
@@ -177,7 +178,6 @@ __declspec(noinline) int __stdcall func_001DCDC7(int a0,int a1,volatile int a2,i
     a0=_imp__NtQueryInformationFile((void *)input,&ios,info,0x38,0x22);
     if(a0<0) { _imp__NtClose((void *)input); goto openFailed; }
     init(&str,(const char *)a1);
-    int status;
     status=_imp__NtCreateFile(&output,0x40100000,&oa,&ios,&info[10],0x80,0,(a5&1)?2:5,0x64);
     if(status<0) { _imp__NtClose((void *)input); _imp__MmFreeSystemMemory(buffer,size); func_001DD659(status); return 0; }
     offset=0;
@@ -272,6 +272,87 @@ int __stdcall func_001DD13C(void *a0) {
     }
 }
 
+#pragma optimize("s", off)
+int __stdcall func_001DD15A(void *h, void *buffer, u32 size, u32 *read, S_001DD670_Overlapped *ov)
+{
+    S_IoStatusBlock iosb;
+    u32 offset[2];
+    int status;
+
+    if (read)
+        *read = 0;
+    if (ov) {
+        offset[0] = ov->Offset;
+        offset[1] = ov->OffsetHigh;
+        ov->Internal = 0x103;
+        status = _imp__NtReadFile(h, ov->hEvent, 0, ((u32)ov->hEvent & 1) ? 0 : ov, ov, buffer, size, offset);
+        if (status >= 0 && status != 0x103) {
+            if (read)
+                *read = ov->InternalHigh;
+            return 1;
+        }
+        if (status == 0xc0000011) {
+            if (read)
+                *read = 0;
+            goto fail;
+        }
+        goto fail;
+    }
+    status = _imp__NtReadFile(h, 0, 0, 0, &iosb, buffer, size, 0);
+    if (status == 0x103)
+        status = _imp__NtWaitForSingleObject(h, 0, 0);
+    if (status >= 0) {
+        status = iosb.status;
+        if (status >= 0) {
+            *read = iosb.information;
+            return 1;
+        }
+    }
+    if (status == 0xc0000011) {
+        *read = 0;
+        return 1;
+    }
+    if (((u32)status & 0xc0000000) == 0x80000000)
+        *read = iosb.information;
+fail:
+    func_001DD659(status);
+    return 0;
+}
+#pragma optimize("s", on)
+int __stdcall func_001DD247(void *h, void *buffer, u32 size, u32 *written, S_001DD670_Overlapped *ov)
+{
+    S_IoStatusBlock iosb;
+    u32 offset[2];
+    int status;
+
+    if (written)
+        *written = 0;
+    if (ov) {
+        offset[0] = ov->Offset;
+        offset[1] = ov->OffsetHigh;
+        ov->Internal = 0x103;
+        status = _imp__NtWriteFile(h, ov->hEvent, 0, ((u32)ov->hEvent & 1) ? 0 : ov, ov, buffer, size, offset);
+        if (((u32)status & 0xc0000000) == 0xc0000000 || status == 0x103)
+            goto fail;
+        if (written)
+            *written = ov->InternalHigh;
+        return 1;
+    }
+    status = _imp__NtWriteFile(h, 0, 0, 0, &iosb, buffer, size, 0);
+    if (status == 0x103)
+        status = _imp__NtWaitForSingleObject(h, 0, 0);
+    if (status >= 0 && (status = iosb.status) >= 0) {
+        *written = iosb.information;
+        return 1;
+    }
+    if (((u32)status & 0xc0000000) == 0x80000000)
+        *written = iosb.information;
+fail:
+    func_001DD659(status);
+    return 0;
+}
+#pragma optimize("y", on)
+
 int __stdcall func_001DD31D(void *a0) {
     u32 iosb[2];
     __int64 eof;
@@ -339,9 +420,7 @@ int __stdcall func_001DD3A1(void *h, u32 lo, u32 *hi, int method)
     current:
         status = _imp__NtQueryInformationFile(h, iosb, &pos, 8, 0xe);
         if (status < 0) {
-        queryFailed:
             func_001DD659(status);
-        fail:
             return -1;
         }
         pos.q += off.q;
@@ -349,18 +428,19 @@ int __stdcall func_001DD3A1(void *h, u32 lo, u32 *hi, int method)
     case 2:
         status = _imp__NtQueryInformationFile(h, iosb, &info, 0x38, 0x22);
         if (status < 0) {
-            goto queryFailed;
+            func_001DD659(status);
+            return -1;
         }
         pos.q = info.endOfFile + off.q;
         break;
     }
     if (pos.q < 0) {
         func_001DD62B(0x83);
-        goto fail;
+        return -1;
     }
     if (hi == 0 && (pos.s.hi & 0x7fffffff) != 0) {
         func_001DD62B(0x57);
-        goto fail;
+        return -1;
     }
     status = _imp__NtSetInformationFile(h, iosb, &pos, 8, 0xe);
     if (status >= 0) {
@@ -379,6 +459,49 @@ int __stdcall func_001DD3A1(void *h, u32 lo, u32 *hi, int method)
     }
     return pos.s.lo;
 }
+
+int __stdcall func_001DD49B(void *a0, __int64 a1, __int64 *a2, int a3) {
+    u32 iosb[2];
+    __int64 pos;
+    char info[0x38];
+    __int64 target;
+    int result;
+    switch (a3) {
+    case 0:
+        target = a1;
+        break;
+    case 1:
+        result = _imp__NtQueryInformationFile(a0, iosb, &pos, 8, 0xe);
+        if (result < 0) {
+            goto fail;
+        }
+        target = a1 + pos;
+        break;
+    case 2:
+        result = _imp__NtQueryInformationFile(a0, iosb, info, 0x38, 0x22);
+        if (result < 0) {
+            goto fail;
+        }
+        target = a1 + *(__int64 *)(info + 0x28);
+        break;
+    }
+    pos = target;
+    if (pos < 0) {
+        func_001DD62B(0x83);
+        return 0;
+    }
+    result = _imp__NtSetInformationFile(a0, iosb, &pos, 8, 0xe);
+    if (result >= 0) {
+        if (a2 != 0) {
+            *a2 = pos;
+        }
+        return 1;
+    }
+fail:
+    func_001DD659(result);
+    return 0;
+}
+
 int __stdcall func_001DD563(void *a0) {
     u32 iosb[2];
     int result = _imp__NtFlushBuffersFile(a0, iosb);
@@ -432,15 +555,11 @@ u32 __stdcall func_001DD5C8(void *a0, u32 *a1) {
 
 int func_001DD603(void)
 {
-    int idx;
-    int **tls;
-
-    if (__readfsbyte(0x24) < 2 && __readfsdword(0x28) == 0) {
-        tls = 0;
+    if (__readfsbyte(0x24) < 2) {
+        unsigned long thread = __readfsdword(0x28);
+        (void)thread;
     }
-    idx = D_002F41D0;
-    tls = (int **)__readfsdword(4);
-    return tls[idx][1];
+    return ((int **)__readfsdword(4))[D_002F41D0][1];
 }
 
 void __stdcall func_001DD62B(int a0)
@@ -595,12 +714,13 @@ int __stdcall func_001DD8C5(u32 id, u32 idx, u32 *out1, u32 *out2, unsigned shor
 {
     u32 buf[0x80];
     void *h = (void *)-1;
+    int ok = 1;
     int status;
     u32 n;
     u32 i;
     u32 *p;
     u32 sector;
-    u32 ok = 1;
+    u32 index = idx;
 
     if (D_002ACA04 != id) {
         status = func_001DD713((u32 *)&h, buf);
@@ -629,12 +749,12 @@ int __stdcall func_001DD8C5(u32 id, u32 idx, u32 *out1, u32 *out2, unsigned shor
             func_001DD62B(_imp__RtlNtStatusToDosError(status));
         }
         if (ok) {
-            ok = func_001DD3A1(h, idx << 9, 0, 1) != -1;
+            ok = func_001DD3A1(h, index << 9, 0, 1) != -1;
             if (ok) {
                 ok = func_001DD6D5(h, buf, (u32)&D_00021371);
                 if (ok) {
-                    memcpy(&D_002ACA00, buf, 0x1a0);
-                    if (buf[1] == id && buf[2] > idx) {
+                    D_002ACA00 = *(S_001DD779_Header *)buf;
+                    if (buf[1] == id && buf[2] > index) {
                         ok = 1;
                     } else {
                         ok = 0;
@@ -647,7 +767,7 @@ int __stdcall func_001DD8C5(u32 id, u32 idx, u32 *out1, u32 *out2, unsigned shor
         }
     }
     if (ok) {
-        if (D_002AC844 != id || idx < D_002AC848 * 6 || idx >= D_002AC848 * 6 + 6) {
+        if (D_002AC844 != id || index < D_002AC848 * 6 || index >= D_002AC848 * 6 + 6) {
             if ((int)h == -1) {
                 status = func_001DD713((u32 *)&h, buf);
                 ok = status >= 0;
@@ -656,13 +776,13 @@ int __stdcall func_001DD8C5(u32 id, u32 idx, u32 *out1, u32 *out2, unsigned shor
                 }
             }
             if (ok) {
-                sector = (D_002ACA0C[idx / 6] + 0x65) << 9;
+                sector = (D_002ACA0C[index / 6] + 0x65) << 9;
                 ok = func_001DD3A1(h, sector, 0, 0) != -1;
                 if (ok) {
                     ok = func_001DD6D5(h, buf, (u32)&D_00031073);
                     if (ok) {
                         ok = buf[1] == id;
-                        memcpy(&D_002AC840, buf, 0x1c0);
+                        D_002AC840 = *(S_001DD8C5_Table *)buf;
                         if (!ok) {
                             func_001DD62B(0xd);
                         }
@@ -673,12 +793,12 @@ int __stdcall func_001DD8C5(u32 id, u32 idx, u32 *out1, u32 *out2, unsigned shor
             }
         }
     }
-    if (idx > D_002ACA08) {
+    if (index > D_002ACA08) {
         ok = 0;
         func_001DD62B(0x57);
     }
     if (ok) {
-        u32 slot = idx % 6;
+        u32 slot = index % 6;
 
         *out1 = D_002AC850[slot];
         *out2 = D_002AC868[slot];
@@ -694,6 +814,12 @@ int __stdcall func_001DD8C5(u32 id, u32 idx, u32 *out1, u32 *out2, unsigned shor
 #pragma optimize("y", on)
 
 #pragma optimize("y", on)
+
+static __forceinline u32 Fail_001DDAEE(int status)
+{
+    func_001DD659(status);
+    return -1;
+}
 
 u32 __stdcall func_001DDAEE(u32 id, int flag)
 {
