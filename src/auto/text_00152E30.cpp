@@ -5,6 +5,12 @@ extern int D_00286CBC;
 void func_001E891B(void *p);
 int func_00011260(int a, int b);
 struct Q4_00152E30 { int x, y, z, w; };
+extern int D_002A789C, D_002A78A0, D_002A78A4, D_002A78A8;
+extern int D_002A78BC, D_002A78C0, D_002A78C4, D_002A78C8;
+static __forceinline void set_id_00152E30(int *d)
+{
+    d[0] = D_002A789C; d[1] = D_002A78A0; d[2] = D_002A78A4; d[3] = D_002A78A8;
+}
 struct C_00152E30 {
     int f0;
     C_00152E30 *func_00152E30(int a0);
