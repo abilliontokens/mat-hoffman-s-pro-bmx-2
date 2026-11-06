@@ -88,25 +88,6 @@ struct C_107AE0 {
  void func_00107AE0();
 };
 
-static __forceinline void branch_107AE0(C_107AE0 *self, Obj_107AE0 *obj, Obj_107AE0 *obj2,
-                                        Mat_107AE0 *mat, Vec_107AE0 *pos, Vec_107AE0 *dir) {
-    obj->func_00199A70(0,pos);
-    mat->m[3]=pos->x; mat->m[7]=pos->y; mat->m[11]=pos->z;
-    self->f11c0->vf31(mat);
-    self->f11c0->func_00133F10(0);
-    if (self->f11c0->fa4[3] & 0x20) {
-        Vec_107AE0 p = *(Vec_107AE0*)(self->f11c0->f54+0x30);
-        Vec_107AE0 *direction = (Vec_107AE0*)(self->f11c0->f54+0x20);
-        *dir = *direction;
-        Vec_107AE0 offset = scale_107AE0(*direction, D_002755E8);
-        p.x += offset.x; p.y += offset.y; p.z += offset.z;
-        obj2->func_001A0C90(p);
-        Vec_107AE0 a,b;
-        obj2->f8->func_001994C0(0,&a,&b);
-        obj2->f8->func_00199110(0,&a,dir,1,0,0);
-    }
-}
-
 struct C_107380 {
     char p0[0xa00];
     Obj_107AE0 *fa00;
