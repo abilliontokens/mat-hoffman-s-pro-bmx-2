@@ -399,7 +399,7 @@ void C_000B1350::func_000B1350(void)
         for (k = 0; k < f44[i]->f4C; k++) {
             S_000B1350_Sub *s = f44[i]->f48[k];
             int cur = (int)s->f4;
-            S_000B1350_Node *node = *(S_000B1350_Node **)((char *)this->f4C + s->f0 * 4);
+            S_000B1350_Node *node = f4C[s->f0];
             if (node->f4 > 0) {
                 float t = s->f4 - (float)cur;
                 S_000B1350_Tbl *tbl = node->fC[0]->f3C->f518;
