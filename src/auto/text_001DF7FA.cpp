@@ -38,8 +38,6 @@ struct S_HeapEntry {
     S_HeapLink link;            /* 0x08, free-list links */
 };
 
-struct S_HeapFlagBits { unsigned char bits : 8; };
-
 /* kernel heap block header (16-byte granules) */
 struct S_HeapBlock {
     unsigned short size;        /* 0x00, in granules */
