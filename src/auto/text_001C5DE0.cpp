@@ -99,6 +99,16 @@ static __forceinline Vec4 vec3_neg(Vec4 *v)
     return r;
 }
 
+static __forceinline Vec4 vec3_neg3(float x, float y, float z)
+{
+    Vec4 r;
+    r.x = -x;
+    r.y = -y;
+    r.z = -z;
+    r.w = 1.0f;
+    return r;
+}
+
 extern float D_00275544;
 void func_001C6380(Vec4 *out, Vec4 *in);
 float func_0014F7E0(float x);
@@ -207,6 +217,11 @@ struct C_001C65E0 {
     void func_001C65E0(S_001C64A0_Node *obj);
 };
 
+int __stdcall func_001C5DE0(float *m, float *a, float *b, int *out)
+{
+    return 0;
+}
+
 void func_001C63F0(Vec4 *out, Vec4 *vin, f32 *m)
 {
     Vec4 q;
@@ -261,15 +276,19 @@ void func_001C64A0(S_001C64A0_Node *obj)
     a.y = 0;
     for (i = 0; i < root->fC; i++) {
         Vec4 b;
+        Vec4 *pa = &a;
+        Vec4 *pb = &b;
         b.z = 0;
         b.y = 0;
         b.x = 0;
         b.w = 1.0f;
-        root->v5(i, &b, 0, 0, 0);
-        b.x = a.x + b.x;
-        b.y = b.y + a.y;
-        b.z = b.z + a.z;
-        root->v4(i, &b, 0, 0, 0);
+        root->v5(i, pb, 0, 0, 0);
+        float *fa = &pa->x;
+        float *fb = &pb->x;
+        fb[0] = fa[0] + fb[0];
+        fb[1] = fb[1] + fa[1];
+        fb[2] = fb[2] + fa[2];
+        root->v4(i, pb, 0, 0, 0);
     }
 }
 
@@ -438,7 +457,7 @@ void C_001C6B30::func_001C6B30(V4_001C6B30 target, float maxAngle)
     V4_001C6B30 P;
     V4_001C6B30 Q;
     V4_001C6B30 R;
-    V4_001C6B30 T;
+    Vec4 T;
     float sign;
     float ang;
     float d;
@@ -458,7 +477,7 @@ void C_001C6B30::func_001C6B30(V4_001C6B30 target, float maxAngle)
     }
     d = T.x * Q.x + T.y * Q.y + T.z * Q.z;
     if (d == D_00275544) {
-        f3C->f4->func_00199110(0, &T, &R, 0, 1, 0);
+        f3C->f4->func_00199110(0, (Vec4 *)&T, (Vec4 *)&R, 0, 1, 0);
         return;
     }
     ang = func_0014F7E0(Max_001C6B30(-1.0f, Min_001C6B30(1.0f, d)));
