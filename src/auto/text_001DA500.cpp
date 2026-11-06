@@ -91,11 +91,17 @@ struct S_001DAC10_Vert {
     float x, y, z;
     float u0, v0;
     float u1, v1;
-    S_001DAC10_Vert() { x = 0; y = 0; z = 0; u0 = 0; v0 = 0; u1 = 0; v1 = 0; }
 };
 
 struct S_001DAC10_Quad {
     S_001DAC10_Vert v[4];
+    S_001DAC10_Quad()
+    {
+        for (int i = 0; i < 4; i++) {
+            v[i].z = v[i].y = v[i].x = 0;
+            v[i].v1 = v[i].u1 = v[i].v0 = v[i].u0 = 0;
+        }
+    }
 };
 
 struct S_001DAC10_Color {
