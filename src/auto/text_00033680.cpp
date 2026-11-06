@@ -210,6 +210,7 @@ struct E33680_Ev {
     int f208;
     int f20c;
     void func_00031840();
+    void func_00031E20();
     int func_00033680();
 };
 
