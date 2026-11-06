@@ -283,7 +283,6 @@ struct VtblStore_00055380 {
 };
 
 struct CameraBehavior_00055380 {
-    virtual void vdummy_00055380() = 0;
     __forceinline CameraBehavior_00055380() { ((C_00055380 *)this)->func_0012B510(); }
 };
 
