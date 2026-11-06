@@ -299,19 +299,22 @@ void C_000EC850::func_000EC850()
         C_000EC850_Node **r = lk->func_0018C160(ids[i]);
         if (r && *r) {
             C_000EC850_Range *o = (*r)->func_0018C070();
-            o->Clamp();
+            if (D_00275AEC > o->f10) o->f10 = 10.0f;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) o->f14 = 10.0f;
         }
     }
     if (f320) {
         C_000EC850_Range *o = f320->func_001D5AA0();
-        o->Clamp();
+        if (D_00275AEC > o->f10) o->f10 = 10.0f;
+        if (D_00275AEC < o->f14 || o->f14 > o->f10) o->f14 = 10.0f;
     }
     e = f2A0;
     i = 16;
     do {
         if (*e) {
             C_000EC850_Range *o = (*e)->func_001D5AA0();
-            o->Clamp();
+            if (D_00275AEC > o->f10) o->f10 = 10.0f;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) o->f14 = 10.0f;
         }
         e++;
         i--;
@@ -321,7 +324,6 @@ void C_000EC850::func_000EC850()
 
 void C_000ECC60::func_000ECC60(void) {
     C_001D5AD0 *p;
-    C_001D5AD0 *q;
     S_002B91AC *s;
     C_001D5AD0 **ptr;
     int i;
@@ -351,9 +353,11 @@ skip:
             p->f38 = (p->f38 & 0xff000000) | 0xbfa35a;
             p->f58 |= 2;
         } else {
-            q = *ptr;
-            q->f38 = (q->f38 & 0xff000000) | 0xcccccc;
-            q->f58 |= 2;
+            p = *ptr;
+            unsigned int color = (p->f38 & 0xff000000) | 0xcccccc;
+            unsigned char flags = p->f58 | 2;
+            *(volatile unsigned int *)&p->f38 = color;
+            p->f58 = flags;
         }
         (*ptr)->func_001D5AD0();
         i++;
@@ -473,10 +477,17 @@ void C_000ED0E0::func_000ED0E0(void) {
     func_001BE3F0();
 }
 
-void C_000ED170::func_000ED170(void)
+static inline void ClearSlots_000ED170(int *a, int *b)
 {
     int i;
+    for (i = 0; i < 11; i++) {
+        a[i] = 0;
+        b[i] = 0;
+    }
+}
 
+void C_000ED170::func_000ED170(void)
+{
     f2A0 = 0;
     f2A4 = 0;
     f2A8 = 0;
@@ -505,16 +516,21 @@ void C_000ED170::func_000ED170(void)
     f3D0 = 0;
     f3D4 = -1;
     f3DC = 0;
-    for (i = 0; i < 11; i++) {
-        f3E4[i] = 0;
-        f4D0[i] = 0;
+    {
+        int n = 11;
+        int *p = f4D0;
+        do {
+            p[-0x3b] = 0;
+            *p = 0;
+            p++;
+        } while (--n != 0);
     }
     f444 = 0;
     f45C = 0;
-    D_002B91AC->f34->func_0005E840((char *)(D_002A8490->f2E8->f4->fA58));
+    D_002B91AC->f34->func_0005E840(D_002A8490->f2E8->f4->fA58);
     D_002B91AC->func_000BF860(0, 0x1EB, 0x184, 0);
-    D_002B91AC->f38->func_0005E840((D_002A8490->f2E8->f4->f7C8));
+    D_002B91AC->f38->func_0005E840(D_002A8490->f2E8->f4->f7C8);
     D_002B91AC->func_000BF860(1, 0x17B, 0x184, 0);
-    D_002B91AC->f3c->func_0005E840((D_002A8490->f2E8->f4->f838));
+    D_002B91AC->f3c->func_0005E840(D_002A8490->f2E8->f4->f838);
 }
 
