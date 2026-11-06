@@ -79,6 +79,19 @@ struct S_000C4FD0_Root {
 };
 
 extern float D_00275AEC;
+extern float D_002757F0, D_0027E140, D_002782A8;
+extern int D_002786B0, D_0027E134, D_0028F5E0;
+void *func_001E8A44(unsigned);
+struct Font_000C4640 { float func_0018C210(); };
+struct Text_000C4640 {
+    int f0, f4, f8;
+    char padc[0x3c];
+    unsigned f48;
+    char pad4c[2];
+    unsigned char f4e;
+    Text_000C4640 *func_001D5E90();
+    void func_001D5FA0(Font_000C4640 *, int, int, int);
+};
 extern int D_002786A0, D_00278678, D_00278690;
 
 struct C_000C50E0 {
