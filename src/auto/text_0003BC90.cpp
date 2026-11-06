@@ -2,7 +2,7 @@
 #include "common.h"
 struct V4 { float x,y,z,w; };
 struct NodeBC {
- virtual void vf0();
+ virtual void vf0(int);
 virtual void vf1();
 virtual void vf2();
 virtual void vf3();
