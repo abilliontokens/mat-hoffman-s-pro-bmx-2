@@ -14,6 +14,8 @@ void __stdcall func_00201590(int, void *, int);
 int __stdcall func_001FEE00(int, void *, int);
 void __stdcall func_00202770(void *, int);
 struct Vec_1D9E { float x,y,z,w; Vec_1D9E(float a,float b,float c,float d) : x(a),y(b),z(c),w(d) {} };
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 void *__stdcall func_001FFE40(int);
 void *func_00200210();
 void __stdcall func_00201100(void *);
