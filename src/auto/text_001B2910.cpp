@@ -28,7 +28,7 @@ struct S_001B3560 {
 #pragma pack(push, 1)
 struct S_001B2CD0_Px {
     unsigned short lo;
-    volatile unsigned char hi;
+    unsigned char hi;
 };
 #pragma pack(pop)
 
