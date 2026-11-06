@@ -283,6 +283,8 @@ int EcoSystem::func_0014E200(void)
 }
 
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 EcoSystem *EcoSystem::func_0014E3E0(int param_1)
 {
     int i;
@@ -293,6 +295,7 @@ EcoSystem *EcoSystem::func_0014E3E0(int param_1)
     unk2C = 0;
     unk28 = 0;
     f34 = 1.0f;
+    _ReadWriteBarrier();
     b27 |= 3;
     unk3C = 0;
     unk40 = 0;
@@ -323,12 +326,11 @@ EcoSystem *EcoSystem::func_0014E3E0(int param_1)
     }
     unk21E4 = 0;
     unk21E8 = 0;
-    unk21EC = 0;
-    unk21F0 = 0;
-    unk21F4 = 0;
+    for (i = 0; i < 3; i++) {
+        (&unk21EC)[i] = 0;
+    }
     return this;
 }
-
 void EcoSystem::func_0014E4E0(void)
 {
     int i;
