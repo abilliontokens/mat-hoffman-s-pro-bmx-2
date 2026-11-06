@@ -34,7 +34,7 @@ struct S2_000A4AF0 { u16 a; };
 struct S3_000A4AF0 { u16 a; u8 b; };
 
 #define APPEND2(D) { char *p = buf - 1; do ; while (*++p); *(S2_000A4AF0 *)p = *(S2_000A4AF0 *)(D); }
-#define APPEND3(D) { char *p = buf - 1; do ; while (*++p); *(S3_000A4AF0 *)p = *(S3_000A4AF0 *)(D); }
+#define APPEND3(D) { char *p = buf - 1; do ; while (*++p); *(u16 *)p = *(u16 *)(D); p[2] = (D)[2]; }
 
 extern char D_002A60B0[];
 extern char D_002A5EA0[];
