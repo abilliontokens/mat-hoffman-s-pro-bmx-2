@@ -98,14 +98,25 @@ struct V_VB {
     virtual void v5();
 };
 
+struct C_ELEM;
+struct VB_A {
+    virtual void b0();
+    virtual void b1();
+    virtual void b2();
+    virtual void b3();
+    virtual void b4();
+    virtual void b5();
+};
+struct VB_D : virtual VB_A { };
+
 struct S_LOOK2 {
     char pad0[0x28];
-    int *f28;
+    C_ELEM **f28;
 };
 
 struct C_ELEM {
     char pad0[0x1a4];
-    void *f1a4;
+    VB_D *f1a4;
 };
 
 struct S_000BDF30_F0 {
