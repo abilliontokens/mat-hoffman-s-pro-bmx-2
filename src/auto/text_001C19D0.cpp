@@ -128,8 +128,8 @@ struct C_001C2210 {
     void **vtbl;
     char pad4[0x28];
     u32 unk2C;
-    u32 unk30;
-    u32 unk34;
+    void *unk30;
+    void *unk34;
     void func_001C2210();
 };
 
@@ -320,8 +320,9 @@ void C_001C21F0::func_001C21F0(int a0) {
 }
 
 void C_001C2210::func_001C2210() {
-    *(volatile u32 *)&unk2C = 1;
+    unk2C = 1;
     if (unk30 == 0 || unk34 == 0) {
+        __noop;
         if (unk30 != 0) {
             ((VCall8 *)this)->v7();
         }
