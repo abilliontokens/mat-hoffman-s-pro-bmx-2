@@ -1,5 +1,6 @@
 /* 24 functions from 0x00157810 to 0x001587F0, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 
 extern "C" char *__cdecl strcat(char *, const char *);
 extern "C" unsigned int __cdecl strlen(const char *);
@@ -592,6 +593,10 @@ int func_00158390(float angle, S_00158390_Vec4 axis, S_00158390_Vec4 v, S_001583
     out->y = cr.y * s + p.y * c + kd.y;
     out->z = cr.z * s + p.z * c + kd.z;
     return 1;
+}
+
+void func_001584A0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
 void func_00158510(S_00158510_Arg0 *a, S_00158510_Arg1 *b)
