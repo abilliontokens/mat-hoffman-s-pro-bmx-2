@@ -150,6 +150,9 @@ struct C_000C4EB0 {
     void func_001BEF50(int a, int b);
     void func_000C4EB0();
     void func_000C4CE0();
+    C_000C4EB0 *func_000C4640(int, int, int);
+    void func_001BE4F0(int, int, int);
+    void func_001577A0(S_000C4EB0_Obj *, int);
 };
 
 struct C_000C4FD0 {
