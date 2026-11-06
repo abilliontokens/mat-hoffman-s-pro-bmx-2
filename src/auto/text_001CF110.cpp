@@ -206,6 +206,11 @@ struct SoundVoiceList {
     int func_001CDE90(SoundVoice *voice);
 };
 
+static inline int Voice_CheckOther(SoundVoice *old, SoundVoice *cur)
+{
+    return cur->func_001CD940(old);
+}
+
 extern "C" void __stdcall MmFreeContiguousMemory(void *p);
 
 struct SoundObj_001CF590 {
@@ -433,6 +438,33 @@ void XboxMusic::func_001CF110(IntArray *list)
     }
 }
 
+int C_001CF1B0::func_001CF1B0(int block, S_001CF1B0_Packet *packet)
+{
+    memset(packet, 0, sizeof(*packet));
+    packet->buffer = buffer + (block << 13);
+    packet->size = 0x2000;
+    packet->completed = (u32 *)&block;
+    int result = ((int (__stdcall *)(void *, void *, S_001CF1B0_Packet *))(*(void ***)stream)[4])(stream, 0, packet);
+    if (result >= 0) {
+        if ((u32)block < packet->size)
+            memset(packet->buffer + (u32)block, 0, packet->size - (u32)block);
+        if (!block) {
+            ((void (__stdcall *)(void *))(*(void ***)handles[index])[5])(handles[index]);
+            func_00220AE5(handles[index], 0, 0, 3);
+            func_001CB7D0();
+            func_001CEF50();
+            index = (index - 1) & 1;
+            if (state != 5) {
+                func_001CB8A0();
+                return 0;
+            }
+            v33(0);
+            return 0;
+        }
+    }
+    return 0;
+}
+
 void XboxSoundGroup::func_001CF2A0()
 {
     FlatElemList_001CF2A0 copy;
@@ -458,10 +490,11 @@ void XboxSoundGroup::func_001CF2A0()
 
 int C_001CF3C0::func_001CF3C0(SoundVoice *voice)
 {
-    int index;
-    SoundVoice *found;
     SoundVoiceList *list;
     int x;
+    int index;
+    SoundVoice *found;
+
     if (voice->f10c & 8) {
         x = f8;
         list = (SoundVoiceList *)f10;
@@ -470,11 +503,10 @@ int C_001CF3C0::func_001CF3C0(SoundVoice *voice)
         list = (SoundVoiceList *)f24;
     }
     if (func_001CDD50(list, x, &found, &index, &found)) {
-        SoundVoice *prev;
-        prev = voice;
-        voice = found;
-        if (voice->func_001CD940(prev) == 0 && (index >= 0 || list->func_001CDE90(voice) != 0)) {
-            return 1;
+        if (!(voice = found)->func_001CD940(voice)) {
+            if (index >= 0 || list->func_001CDE90(voice)) {
+                return 1;
+            }
         }
         voice->flags &= ~8;
         func_001CDE40(list, voice);
