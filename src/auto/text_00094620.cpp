@@ -357,12 +357,12 @@ struct C_00095060 {
     C_00094F10 tracks;
     int f5C;
     int f60;
-    unsigned char f64;
+    volatile unsigned char f64;
     char pad65[3];
     S_00095060_PtrList ids;
     int f70;
     int f74;
-    unsigned char f78;
+    volatile unsigned char f78;
     char pad79[3];
     int f7C;
     void *f80;
@@ -801,20 +801,26 @@ void C_00094F10::func_00094F10(void)
     Clear();
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 void *C_00095060::func_00094F40(void *arg)
 {
     ((C_00157600 *)this)->func_00157600(1);
     vtbl = (void *)&D_0027A23C;
+    _ReadWriteBarrier();
     tracks.items = 0;
     tracks.count = 0;
     f5C = 0;
     f60 = 0;
-    f64 &= 0xfe;
+    unsigned char mask = 0xfe;
+    f64 &= mask;
+    _ReadWriteBarrier();
     ids.items = 0;
     ids.count = 0;
     f70 = 0;
     f74 = 0;
-    f78 &= 0xfe;
+    f78 &= mask;
+    _ReadWriteBarrier();
     f30 = 5;
     f34 = 0;
     f38 = -1;
@@ -824,9 +830,31 @@ void *C_00095060::func_00094F40(void *arg)
     f44 = 0;
     f4C = 0;
     f48 = 0;
+    tracks.items = (S_00095060_Track **)func_001E8A44(4);
+    f5C = 16;
+    f60 = 1;
+    f64 |= 1;
+    ids.items = (void **)func_001E8A44(4);
+    f70 = 16;
+    f74 = 1;
+    f78 |= 1;
+    f7C = 0;
+    f80 = arg;
+    C_001CD770 *obj = (C_001CD770 *)func_001E8A44(0x4c);
+    if (obj != 0) {
+        obj = obj->func_001CD770(((S_00094F40_Arg *)f80)->fB4, 1);
+    } else {
+        obj = 0;
+    }
+    f28 = obj;
+    obj->v10();
+    func_001577A0(f28, 2);
+    f2C = 0;
+    f24 = 0;
+    for (int i = 0; i < 5; i++)
+        f84[i] = 0;
     return this;
 }
-
 void C_00095060::func_00095060(void)
 {
     int i;
