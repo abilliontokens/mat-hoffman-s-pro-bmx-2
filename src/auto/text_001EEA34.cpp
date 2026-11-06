@@ -168,9 +168,11 @@ struct S_001EF210_Node {
 };
 
 int func_001EEE49(int i) {
-    int r = D_002955B8[i];
-    if (D_002F6A38 & 1) r += 2;
-    return r;
+    volatile int *gp = &D_002F6A38;
+    if (~*gp & 1) {
+        return D_002955B8[i];
+    }
+    return D_002955B8[i] + 1 + 1;
 }
 
 int AllocObj::func_001EEE62(int size, int flag) {
