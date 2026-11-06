@@ -50,6 +50,7 @@ void *func_001E8A44(int);
 
 extern float D_00278654, D_00275544, D_0027653C, D_00278650;
 extern float D_00278654, D_00275544, D_0027653C, D_00278650;
+extern float D_00278654, D_00275544, D_0027653C, D_00278650;
 struct Wid_779C0 {
     char pad0[0x28];
     float f28, f2c;
