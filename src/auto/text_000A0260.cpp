@@ -15,6 +15,7 @@ extern Special_A0B* D_002F07E8;
 extern Result_A0B* D_002EFE78;
 void func_00012140();
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 struct Vec_A0260 {
     f32 x, y, z, w;
@@ -243,6 +244,10 @@ int C_000A08D0::func_000A08D0(S_000A08D0 s, int a5) {
     func_000A00A0(s, a5);
     f38 = 1;
     return 1;
+}
+
+void func_000A0980(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
 C_000A09F0* C_000A09F0::func_000A09F0(void) {
