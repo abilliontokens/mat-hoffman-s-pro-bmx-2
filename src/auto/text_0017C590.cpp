@@ -81,7 +81,7 @@ struct QuadTree {
     void *vtbl;
     char pad4[8];
     u16 stampC;
-    u8 flagsE;
+    u8 flagsE : 1;
     char padF[0x94 - 0xF];
     S_QuadTreeFx *f94;
     char pad98[4];
@@ -116,6 +116,11 @@ struct C_0017D190 {
     int fac;
     void func_0017D190(void);
 };
+
+void QuadTree::func_0017C590(int *position, int unused)
+{
+    ((S_QuadTreeDispatch *)this)->v4(position[0], position[1], position[2], 0);
+}
 
 QuadTreeNode *QuadTreeNode::func_0017CE10(void)
 {
@@ -301,11 +306,12 @@ void QuadTree::func_0017D1B0(void)
 {
     if (flagsE & 1) {
         f94->func_0001E860();
+        u32 zero = 0;
         flagsE &= 0xfe;
-        f9C = 0;
-        fA0 = 0;
-        fA4 = 0;
-        fAC = 0;
+        f9C = zero;
+        fA0 = (S_QuadTreeListNode *)zero;
+        fA4 = zero;
+        fAC = zero;
         f8A0 = 0x80000000;
         f8A4 = 0x80000000;
         f8A8 = 0x80000000;
