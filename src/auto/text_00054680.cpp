@@ -4,7 +4,6 @@
 
 struct V_000551B0 {
     int x, y, z, w;
-    V_000551B0(int px, int py, int pz, int pw) { x = px; y = py; z = pz; w = pw; }
 };
 extern V_000551B0 D_002A1A64;
 extern int D_002A1A68, D_002A1A6C, D_002A1A70;
