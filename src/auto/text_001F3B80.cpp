@@ -149,7 +149,6 @@ void func_001F3C18(unsigned short *str, int len, F3Obj *f, int *pnum)
     }
 }
 
-#pragma optimize("sy", on)
 int func_001F3C55(F3Obj *f, unsigned short *format, char *argptr)
 {
     int hexadd;
@@ -178,9 +177,6 @@ int func_001F3C55(F3Obj *f, unsigned short *format, char *argptr)
     int bufferiswide;
     char *heapbuf;
     int padding;
-    unsigned __int64 number;
-    int digit;
-    CrtDouble_001F3C55 tmp;
 
     if (0)
         func_unused_001F3C55(&format, &argptr);
@@ -278,8 +274,8 @@ int func_001F3C55(F3Obj *f, unsigned short *format, char *argptr)
                 if (!(flags & (OUT_FL_SHORT | OUT_FL_LONG | OUT_FL_WIDECHAR)))
                     flags |= OUT_FL_SHORT;
             case 'c':
-                wchar = out_get_wchar_arg(&argptr);
                 bufferiswide = 1;
+                wchar = out_get_wchar_arg(&argptr);
                 if (flags & OUT_FL_SHORT) {
                     char mbc[2];
                     mbc[0] = (char)wchar;
@@ -359,7 +355,8 @@ int func_001F3C55(F3Obj *f, unsigned short *format, char *argptr)
                 ch += 'a' - 'A';
             case 'e':
             case 'f':
-            case 'g':
+            case 'g': {
+                CrtDouble_001F3C55 tmp;
                 flags |= OUT_FL_SIGNED;
                 text.sz = buffer.sz;
                 if (precision < 0)
@@ -387,6 +384,7 @@ int func_001F3C55(F3Obj *f, unsigned short *format, char *argptr)
                 }
                 textlen = strlen(text.sz);
                 break;
+            }
             case 'd':
             case 'i':
                 flags |= OUT_FL_SIGNED;
@@ -412,7 +410,9 @@ int func_001F3C55(F3Obj *f, unsigned short *format, char *argptr)
                 radix = 8;
                 if (flags & OUT_FL_ALTERNATE)
                     flags |= OUT_FL_FORCEOCTAL;
-            COMMON_INT:
+            COMMON_INT: {
+                unsigned __int64 number;
+                int digit;
                 if (flags & OUT_FL_I64) {
                     number = out_get_int64_arg(&argptr);
                 } else if (flags & OUT_FL_SHORT) {
@@ -458,6 +458,7 @@ int func_001F3C55(F3Obj *f, unsigned short *format, char *argptr)
                     }
                 }
                 break;
+            }
             }
             if (!no_output) {
                 if (flags & OUT_FL_SIGNED) {
