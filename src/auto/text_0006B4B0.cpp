@@ -1,6 +1,7 @@
 /* 5 functions from 0x0006B4B0 to 0x0006C470, found by Ghidra. */
 #include "common.h"
 extern "C" unsigned int strlen(const char *);
+#define RET_B4B0 void
 
 struct V_002EFDB8 {
     virtual void vf0();
@@ -268,6 +269,9 @@ struct C_0006BB90 {
 void C_0006B4B0::func_0006B4B0(void)
 {
     int i;
+    Wid_B4B0 *w;
+    C_001D5AD0 **p;
+
     unk98->func_001D5AD0();
     unk9C->func_001D5AD0();
     for (i = 0; i < 5; i++) {
@@ -275,88 +279,91 @@ void C_0006B4B0::func_0006B4B0(void)
         unkF8[i]->func_001D5AD0();
     }
     if (unk164) {
-        for (i = 0; i < 16; i++) {
+        i = 0;
+        for (p = unk10C; i < 16; p++) {
             if (i == unk154 * 2 || i == unk154 * 2 + 1) {
-                ((Wid_B4B0 *)unk10C[i])->color = (((Wid_B4B0 *)unk10C[i])->color & 0xffbfa35a) | 0xbfa35a;
-                ((Wid_B4B0 *)unk10C[i])->b58 |= 2;
+                w = (Wid_B4B0 *)*p;
+                w->color = (w->color & 0xffbfa35a) | 0xbfa35a;
+                w->b58 |= 2;
             }
-            unk10C[i]->func_001D5AD0();
+            (*p)->func_001D5AD0();
+            i++;
+        }
+        if (unk168) {
+            for (i = 0; i < 2; i++) {
+                unkB8[i]->func_001D5AD0();
+            }
         }
     }
-    if (unk168) {
-        for (i = 0; i < 2; i++) {
-            unkB8[i]->func_001D5AD0();
+    if (!unk164 && !unk168) {
+        unkA0->SetPos(491.0f, 388.0f);
+        unkAC->SetPos(491.0f, 388.0f);
+        switch (unk1D8) {
+        case 0:
+            unkA0->SetPos(320.0f, 388.0f);
+            unkAC->SetPos(320.0f, 388.0f);
+            if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
+            break;
+        case 4:
+            if (unk1FC) {
+                unkA0->SetPos(491.0f, 388.0f);
+                unkAC->SetPos(491.0f, 388.0f);
+                unkA4->SetPos(388.0f, 388.0f);
+                unkB0->SetPos(388.0f, 388.0f);
+            } else {
+                unkA0->SetPos(491.0f, 388.0f);
+                unkAC->SetPos(491.0f, 388.0f);
+                unkA4->SetPos(195.0f, 388.0f);
+                unkB0->SetPos(195.0f, 388.0f);
+            }
+            if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
+            if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
+            break;
+        case 11:
+        case 12:
+            unkA0->SetPos(491.0f, 388.0f);
+            unkAC->SetPos(491.0f, 388.0f);
+            if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
+            break;
+        case 1:
+            if (unk1BC) unkB4->func_001D5AD0(); else unkA8->func_001D5AD0();
+            unkA4->SetPos(365.0f, 388.0f);
+            unkB0->SetPos(365.0f, 388.0f);
+            if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
+            break;
+        case 2:
+        case 3:
+        case 13:
+            unkA0->SetPos(491.0f, 388.0f);
+            unkAC->SetPos(491.0f, 388.0f);
+            if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
+            unkA4->SetPos(365.0f, 388.0f);
+            unkB0->SetPos(365.0f, 388.0f);
+            if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
+            break;
         }
+    } else if (unk164) {
+        unkA0->SetPos(501.0f, 388.0f);
+        unkAC->SetPos(501.0f, 388.0f);
+        if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
+        unkA4->SetPos(380.0f, 388.0f);
+        unkB0->SetPos(380.0f, 388.0f);
+        if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
+    } else if (unk1FC) {
+        unkA0->SetPos(501.0f, 388.0f);
+        unkAC->SetPos(501.0f, 388.0f);
+        if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
+        unkA4->SetPos(375.0f, 388.0f);
+        unkB0->SetPos(375.0f, 388.0f);
+        if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
+    } else {
+        unkA0->SetPos(496.0f, 388.0f);
+        unkAC->SetPos(496.0f, 388.0f);
+        if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
+        unkA4->SetPos(375.0f, 388.0f);
+        unkB0->SetPos(375.0f, 388.0f);
+        if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
     }
-    if (unk164) goto L164;
-    if (unk168) goto L168;
-    unkA0->SetPos(491.0f, 388.0f);
-    unkAC->SetPos(491.0f, 388.0f);
-    switch (unk1D8) {
-    case 0:
-        unkA0->SetPos(320.0f, 388.0f);
-        unkAC->SetPos(320.0f, 388.0f);
-        if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
-        break;
-    case 1:
-        unkA0->SetPos(491.0f, 388.0f);
-        unkAC->SetPos(491.0f, 388.0f);
-        if (unk1FC) {
-            unkA4->SetPos(388.0f, 388.0f);
-            unkB0->SetPos(388.0f, 388.0f);
-        } else {
-            unkA4->SetPos(195.0f, 388.0f);
-            unkB0->SetPos(195.0f, 388.0f);
-        }
-        if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
-        if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
-        break;
-    case 2:
-    case 3:
-    case 13:
-        unkA0->SetPos(491.0f, 388.0f);
-        unkAC->SetPos(491.0f, 388.0f);
-        if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
-        break;
-    case 4:
-        if (unk1BC) unkB4->func_001D5AD0(); else unkA8->func_001D5AD0();
-        unkA4->SetPos(365.5f, 388.0f);
-        unkB0->SetPos(365.5f, 388.0f);
-        if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
-        break;
-    case 11:
-    case 12:
-        unkA0->func_001D5AD0();
-        unkA4->SetPos(365.5f, 388.0f);
-        unkB0->SetPos(365.5f, 388.0f);
-        if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
-        break;
-    default:
-        unkA0->SetPos(491.0f, 388.0f);
-        unkAC->SetPos(491.0f, 388.0f);
-        if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
-        unkA4->SetPos(365.5f, 388.0f);
-        unkB0->SetPos(365.5f, 388.0f);
-        if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
-        break;
-    }
-    goto Lend;
-L164:
-    unkA0->SetPos(501.0f, 388.0f);
-    unkAC->SetPos(501.0f, 388.0f);
-    if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
-    unkA4->SetPos(380.0f, 388.0f);
-    unkB0->SetPos(380.0f, 388.0f);
-    if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
-    goto Lend;
-L168:
-    unkA0->SetPos(496.0f, 388.0f);
-    unkAC->SetPos(496.0f, 388.0f);
-    if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
-    unkA4->SetPos(375.5f, 388.0f);
-    unkB0->SetPos(375.5f, 388.0f);
-    if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
-Lend:
     if (unk14C) unk14C->func_001D5AD0();
 }
 
@@ -434,8 +441,7 @@ int C_0006BD40::func_0006BD40(S_0006BD40_Msg *m, int a)
 
     if (unk168 != 0) {
         p = *unk174;
-        len = 0;
-        while (p[len] != 0) len++;
+        len = strlen(p);
         q = tmp;
         while ((*q++ = *p++) != 0) {}
         *(S26 *)alpha = *(S26 *)D_002789C4;
