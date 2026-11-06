@@ -254,6 +254,10 @@ static __forceinline float Min_00025E50(float a, float b) { float r; _mm_store_s
    float compares that the build if-converts to maxss/minss. */
 static __forceinline float MaxF_00025E50(float a, float b) { return a > b ? a : b; }
 static __forceinline float MinF_00025E50(float a, float b) { return a < b ? a : b; }
+/* _mm_set_ss on a by-value operand gives the direct `movss xmm0,[esp+N]` the clamps
+   use, where _mm_load_ss(&a) would materialise the address first. */
+static __forceinline float MaxS_00025E50(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b))); return r; }
+static __forceinline float MinS_00025E50(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_set_ss(a), _mm_set_ss(b))); return r; }
 static __forceinline float MaxR_00025E50(const float &a, const float &b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float MinR_00025E50(const float &a, const float &b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 extern int D_002A1030;
