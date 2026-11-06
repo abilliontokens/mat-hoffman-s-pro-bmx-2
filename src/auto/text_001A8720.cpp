@@ -91,6 +91,11 @@ struct S_001A9240_Item {
     char pad55[3];
 };
 
+static __forceinline int Match_001A9240(const S_001A9240_Item *it, const V4_001A8B80 &v, int b)
+{
+    return v.x == it->pos.x && v.y == it->pos.y && v.z == it->pos.z && b == it->f40;
+}
+
 struct S_001A9430_V3 {
     float x, y, z;
 };
@@ -335,6 +340,29 @@ void C_001A8B80::func_001A9220(int idx, f32 v)
 {
     if (idx >= 0 && idx < 10) {
         fDC[idx] = v;
+    }
+}
+
+void C_001A8B80::func_001A9240(V4_001A8B80 v, int a, int b, float c)
+{
+    if (f80 < f8C) {
+        int found = 0;
+        int i;
+        for (i = 0; i < f80; i++) {
+            S_001A9240_Item *it = &((S_001A9240_Item *)f84)[i];
+            if (v.x == it->pos.x && v.y == it->pos.y && v.z == it->pos.z && b == it->f40) {
+                found = 1;
+            }
+        }
+        if (!found) {
+            ((S_001A9240_Item *)f84)[f80].f40 = b;
+            ((S_001A9240_Item *)f84)[f80].pos = v;
+            ((S_001A9240_Item *)f84)[f80].f54 ^= (((S_001A9240_Item *)f84)[f80].f54 ^ a) & 1;
+            ((S_001A9240_Item *)f84)[f80].f4C = c;
+            ((S_001A9240_Item *)f84)[f80].b = D_002AA248;
+            ((S_001A9240_Item *)f84)[f80].c = D_002AA248;
+            f80++;
+        }
     }
 }
 
