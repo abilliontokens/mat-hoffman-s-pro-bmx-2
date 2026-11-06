@@ -1,6 +1,33 @@
 /* 5 functions from 0x0018EB70 to 0x0018F980, found by Ghidra. */
 #include "common.h"
 #include <string.h>
+extern char D_00288030[],D_0028AA08[],D_0028AA04[],D_0028A83C[],D_002869B8[],D_0028A9FC[],D_0028A9F8[],D_00277038[];
+extern char *D_002A96C0;
+extern char *D_002A96C4[];
+extern "C" void *func_001E8AA5(int);
+extern "C" void *func_001E8A44(int);
+extern "C" int func_001E91F4(const char *);
+extern "C" int func_001ADCC0(char *,int,const char *,...);
+struct File_0018EB70 {
+ void func_0013C8A0(int,void*,int,int);
+ void func_0013AFF0(int,int,int);
+ int func_0013AFD0(int);
+ void func_0013C110(int);
+};
+extern File_0018EB70 *D_002BEAAC;
+struct Parser_0018EB70 {
+ char *start,*current;
+ char *func_0018E640(char*);
+};
+struct Node_0018EB70 {
+ char data[0x24]; int f24,f28; Node_0018EB70 *next;
+};
+struct Result_0018EB70 {
+ char data[0x104]; Node_0018EB70 *first,*last; int count;
+};
+struct C_0018EB70 {
+ int func_0018EB70(int,char*,Result_0018EB70*);
+};
 extern char D_00275630[];
 struct C_00191470 {
     void func_00191470(unsigned int b);
