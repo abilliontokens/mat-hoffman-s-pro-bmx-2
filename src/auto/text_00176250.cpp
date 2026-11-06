@@ -240,6 +240,33 @@ u32 func_00176EA0(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   return 1;
 }
 
+void func_00177000(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, u32 color)
+{
+  int r = (color >> 16) & 255;
+  int g = (color >> 8) & 255;
+  int b = color & 255;
+  u8 *p;
+  u8 *q;
+  int y;
+  int x;
+
+  for (y = 0; y < height; y++) {
+    q = src + y * srcPitch * 3;
+    p = dst + y * dstPitch * 4;
+    for (x = 0; x < width; x++) {
+      p[2] = q[2];
+      p[1] = q[1];
+      p[0] = q[0];
+      if (q[2] == r && q[1] == g && q[0] == b)
+        p[3] = 0;
+      else
+        p[3] = 255;
+      q += 3;
+      p += 4;
+    }
+  }
+}
+
 u32 func_001770E0(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int level)
 {
   u8 *buf;
