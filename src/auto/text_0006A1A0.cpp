@@ -2,13 +2,65 @@
 #include "common.h"
 struct Clamp_6A { char pad[0x10]; float f10, f14; };
 struct Mid_6A { Clamp_6A *func_0018C070(); };
-struct Lookup_6A { int *func_0018C160(int); };
-struct Global_6A { char pad[0x2ec]; Lookup_6A *p2EC; };
+struct Lookup_6A { int *func_0018C160(int); void func_0018C780(int count, int *names, int flags); };
+struct Menu_6A { char pad0[0x7c8]; int f7c8; char pad7cc[0x1128 - 0x7cc]; int f1128; char pad112c[0x1248 - 0x112c]; int f1248; };
+struct Hud_6A { int pad0; Menu_6A *f4; };
+struct Global_6A { char pad[0x2e8]; Hud_6A *p2E8; Lookup_6A *p2EC; };
 extern Global_6A *D_002A8490;
 extern float D_00275AEC;
 extern int D_002786A0, D_00278690, D_00278678;
+extern int D_0027896C, D_0027895C, D_00278958;
+extern unsigned D_0028F5E0, D_0028F5DC;
 struct W_6A1A0 { virtual ~W_6A1A0(); Clamp_6A *func_001D5AA0(); };
-struct D_6A1A0 { void func_001D6410(); };
+/* text label widget (0x60 bytes) */
+struct D_6A1A0 {
+    char pad0[4];
+    unsigned f4;
+    unsigned f8;
+    char padC[0x34 - 0xC];
+    unsigned f34;
+    char pad38[0x44 - 0x38];
+    unsigned f44;
+    unsigned f48;
+    char pad4C[2];
+    unsigned char f4e;
+    char pad4F[0x60 - 0x4F];
+    void func_001D6410();
+    D_6A1A0 *func_001D5E90();
+    void func_001D5FA0(int font, int name, int a, int b);
+    void func_001D6190(int font, int text, int name);
+    void func_0005E840(int a);
+    inline void SetPos(unsigned x, unsigned y)
+    {
+        if (f4 != x || f8 != y) {
+            f4 = x;
+            f8 = y;
+            f4e |= 6;
+        }
+    }
+    inline void SetScale(unsigned v)
+    {
+        if (f34 != v) {
+            f4e |= 6;
+            f34 = v;
+        }
+    }
+    inline void SetColor(unsigned c)
+    {
+        if (f48 != c) {
+            f4e |= 8;
+            f48 = (f48 & c) | (c & 0xffffff);
+        }
+    }
+    inline void SetFont(unsigned v)
+    {
+        if (f44 != v) {
+            f44 = v;
+            f4e |= 6;
+        }
+    }
+};
+void *func_001E8A44(int size);
 void func_001E891B(void *p);
 extern int D_002788EC;
 
