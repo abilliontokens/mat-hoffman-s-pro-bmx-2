@@ -104,7 +104,7 @@ struct C_001862E0 {
 extern "C" int strcmp(const char *a, const char *b);
 void func_001E891B(void *p);
 extern int D_002896CC;
-extern int D_002764F0;
+extern char D_002764F0[];
 char *func_001E8920(char *dst, const char *src, int n);
 
 static __forceinline int clamp_len_00185BF0(int limit, int len)
@@ -477,16 +477,12 @@ int C_00185BF0::func_00185D60(S_Stream3 *stream, int count)
     stream->func_00168C50(&D_00289744, 0, &f534);
     if (!stream->func_00168C50(&D_0028973C, 0, &f538))
         fp[0x538 / 4] = -fp[0x534 / 4];
-    if (!stream->func_00168C50(&D_00289734, 0, &f53c)) {
-        float t = fp[0x524 / 4] * fp[0x52c / 4];
-        fp[0x53c / 4] = t * D_00278784 + fp[0x534 / 4];
-    }
+    if (!stream->func_00168C50(&D_00289734, 0, &f53c))
+        fp[0x53c / 4] = *(float volatile *)((char *)this + 0x52c) * fp[0x524 / 4] * D_00278784 + fp[0x534 / 4];
     if (!stream->func_00168C50(&D_0028972C, 0, &f540))
         fp[0x540 / 4] = -fp[0x534 / 4];
-    if (!stream->func_00168C50(&D_00289724, 0, &f544)) {
-        float t = fp[0x528 / 4] * fp[0x530 / 4];
-        fp[0x544 / 4] = t * D_00278784 + fp[0x534 / 4];
-    }
+    if (!stream->func_00168C50(&D_00289724, 0, &f544))
+        fp[0x544 / 4] = *(float volatile *)((char *)this + 0x530) * fp[0x528 / 4] * D_00278784 + fp[0x534 / 4];
     if (!stream->func_00168C50(&D_00289714, 0, (char *)this + 0x548))
         *(u32 *)((char *)this + 0x548) = 0x42c00000;
     stream->func_00168C50(&D_00289704, D_00289388, (char *)this + 0x54c);
