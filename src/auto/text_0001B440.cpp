@@ -339,6 +339,7 @@ struct C_0001B910 {
     char padA0[0x104];
     S_0001B910_Anim *f1A4;
     S_0001B910_Node *func_001B56F0(void);
+    int func_001B5720(void);
 };
 
 int C_0001B790::func_0001B790(float dt)
