@@ -654,12 +654,11 @@ int func_001DF5B3(void) {
     return D_002F6BB4;
 }
 
+#pragma optimize("sy", on)
 void __stdcall func_001DF5B9(unsigned int a, int b)
 {
     func_001E0AE0(D_002F6BB4, (a >> 3) & 8, b);
 }
-#pragma optimize("", on)
-#pragma optimize("sy", on)
 int __stdcall func_001DF5D6(int a)
 {
     return func_001E1297(D_002F6BB4, 0, a) ? 0 : a;
