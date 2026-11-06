@@ -1,12 +1,25 @@
 /* 16 functions from 0x001D0020 to 0x001D0FD0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
-struct Vec_1D01 { int n; int *p; int step; int cap; unsigned char flags; int grow(int); };
-struct Ent_1D01 { char **names; int cnt; char pad[4]; Vec_1D01 v; char pad2[0x2c]; };
+struct Vec_1D01 {
+    int n; int *p; int step; int cap; unsigned char flags;
+    int func_0015ACA0(int);
+    void Add(int value)
+    {
+        if (n >= cap && !func_0015ACA0(n + step)) {
+            return;
+        }
+        p[n] = value;
+        n++;
+    }
+};
+struct Name_1D01 { char *str; int f4; char pad8[0x10]; };
+struct Ent_1D01 { Name_1D01 *names; int cnt; char pad[4]; Vec_1D01 v; char pad20[0x20]; unsigned char flags40; char pad41[3]; };
+struct C_001D0020 { int func_001D0020(void); };
 struct C_001D01A0 {
-    char pad0[0x28]; int f28; char pad2c[8]; Ent_1D01 *f34; char pad38[0x18]; int f50, f54, f58, f5C; char pad60[0x34]; int f94; char pad98[8]; unsigned char fA0; char padA1[3]; int fA4, fA8;
+    char pad0[0x28]; int f28; char pad2c[8]; Ent_1D01 *f34; char pad38[0x18]; Vec_1D01 f50; char pad64[0x30]; int f94; char pad98[8]; unsigned char fA0; char padA1[3]; int fA4, fA8;
     C_001D01A0 *func_001D01A0(int n);
-    int func_001CEB70(); int func_001D0020x(); void func_001CD260();
+    int func_001CEB70(); void func_001CD260();
 };
 extern const char D_0028F0C0[], D_0028F0B0[];
 extern "C" int func_001ADCC0(char *, int, const char *, ...);
