@@ -273,6 +273,7 @@ struct Loader {
 };
 
 #include <xmmintrin.h>
+#include <string.h>
 
 inline void *operator new(unsigned int, void *p) { return p; }
 
