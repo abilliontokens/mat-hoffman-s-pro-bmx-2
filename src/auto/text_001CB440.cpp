@@ -377,6 +377,10 @@ struct C_001CB9A0 {
 };
 
 extern char D_0002EDEF;
+inline int is_valid_frequency(unsigned int freq)
+{
+    return freq >= 0xbc && freq <= (unsigned int)&D_0002EDEF;
+}
 extern "C" int __stdcall D_00221B4C(void *stream, unsigned int value);
 int __stdcall func_00222388(int handle, float value, int flag);
 int __stdcall func_00221974(int handle, unsigned int value);
@@ -642,21 +646,24 @@ int C_001CB9A0::func_001CB9F0(unsigned int idx)
     } st;
     S_001CB9A0_Owner *owner;
     int flag;
+    int hr;
 
     memset(&st.pkt, 0, sizeof(st.pkt));
-    st.pkt.buffer = (unsigned int)f10 + idx * 0x4800;
+    st.pkt.buffer = idx * 0x4800 + (unsigned int)f10;
+    st.total = 0;
     st.pkt.size = 0x4800;
     st.pkt.completed = &idx;
-    st.total = 0;
     do {
         if (f0 >= 0) {
-            if (f8->v7(f0, 0, 0) < 0) {
-                goto fail;
+            hr = f8->v7(f0, 0, 0);
+            if (hr < 0) {
+                return hr;
             }
             f0 = -1;
         }
-        if (f8->v4(0, (S_001CBB50_Packet *)&st.pkt) < 0) {
-            goto fail;
+        hr = f8->v4(0, (S_001CBB50_Packet *)&st.pkt);
+        if (hr < 0) {
+            return hr;
         }
         st.total += idx;
         if (idx < st.pkt.size) {
@@ -665,19 +672,18 @@ int C_001CB9A0::func_001CB9F0(unsigned int idx)
             flag = owner->f208 & 1;
             leave((void *)(D_002F08EC->f138 + 0x50));
             if (flag == 0) {
-                goto fail;
+                f20 = (f20 & 0xfd) | 1;
+                memset((char *)idx + st.pkt.buffer, 0, st.pkt.size - idx);
+                return 0;
             }
             st.pkt.buffer += idx;
             st.pkt.size -= idx;
-            if (f8->v7(0, 0, 0) < 0) {
-                goto fail;
+            hr = f8->v7(0, 0, 0);
+            if (hr < 0) {
+                return hr;
             }
         }
     } while (st.total < 0x4800);
-    return 0;
-fail:
-    f20 = (f20 & 0xfd) | 1;
-    memset((void *)(idx + st.pkt.buffer), 0, st.pkt.size - idx);
     return 0;
 }
 
@@ -742,16 +748,19 @@ void func_001CBC10(int hr, int a, int b)
 
 int C_001CBCF0::func_001CBCF0(int value)
 {
-    int i;
+    int i = 0;
 
-    for (i = 0; i < count; i++) {
-        if (items[i] == value) {
-            items[i] = items[count - 1];
-            count--;
-            return 1;
+    if (count > 0) {
+        for (; i < count; i++) {
+            if (items[i] == value) {
+                items[i] = items[count - 1];
+                count--;
+                return 1;
+            }
         }
+        return 0;
     }
-    return 0;
+    return i;
 }
 
 C_001CBD40::C_001CBD40()
@@ -931,20 +940,20 @@ int C_001CC0C0::func_001CC320(unsigned int v)
                 return 0;
             }
             f19C = v;
-            return 1;
         }
     } else if (f140 != 0) {
-        if (f19C != v) {
-            if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
-                return 0;
-            }
-            r = D_00221B4C(f140->fC, v);
-            if (r < 0) {
-                func_001CBC10(r, &D_0028EECC, 0x630);
-                return 0;
-            }
-            f19C = v;
+        if (f19C == v) {
+            return 1;
         }
+        if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
+            return 0;
+        }
+        r = D_00221B4C(f140->fC, v);
+        if (r < 0) {
+            func_001CBC10(r, &D_0028EECC, 0x630);
+            return 0;
+        }
+        f19C = v;
     }
     return 1;
 }
