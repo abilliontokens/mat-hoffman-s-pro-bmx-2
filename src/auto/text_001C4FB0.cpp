@@ -55,10 +55,10 @@ extern S_1C4FB0_Cull *D_002AB66C;
 
 #define QN_VISIT(i, EX, EZ) \
     if (f4[i]) { \
-        ctr.x = EX; \
         ctr.y = f4[i]->fC; \
-        ctr.z = EZ; \
+        ctr.x = EX; \
         ext2.y = f4[i]->f10; \
+        ctr.z = EZ; \
         if (D_002AB66C->func_001C5DE0(f + 0xf0, &ctr, &ext2, &res)) { \
             if (res == 0) f4[i]->vf1(a, b, c, d, e); \
             else f4[i]->func_001C4FB0(a, b, c, d, e, f); \
@@ -80,6 +80,47 @@ struct C_001C5AC0 {
     void func_0017C520();
     C_001C5AC0 *func_001C5AC0(unsigned int flags);
 };
+
+void C_001C4FB0::func_001C4FB0(int a, int b, volatile int c, volatile int d, int e, volatile int f)
+{
+    int right = c + e;
+    int bottom = d + e;
+    float cx = (float)right * D_002EFD7C + D_002EFD80->f28;
+    float cy = (float)bottom * D_002EFD7C + D_002EFD80->f30;
+    V4_1C4FB0 ctr;
+    int res;
+    e >>= 1;
+    float ext = (float)e * D_002EFD7C;
+    V4_1C4FB0 ext2(ext, 0.0f, ext);
+    D_002EFD80->func_0017D500(f8, 1);
+    if (f4) {
+        if (a >= right) {
+            if (b >= bottom) {
+                QN_VISIT(0, cx - ext, cy - ext)
+                QN_VISIT(1, cx - ext, ext + cy)
+                QN_VISIT(2, ext + cx, cy - ext)
+                QN_VISIT(3, ext + cx, ext + cy)
+            } else {
+                QN_VISIT(1, cx - ext, ext + cy)
+                QN_VISIT(0, cx - ext, cy - ext)
+                QN_VISIT(3, ext + cx, ext + cy)
+                QN_VISIT(2, ext + cx, cy - ext)
+            }
+        } else {
+            if (b >= bottom) {
+                QN_VISIT(2, ext + cx, cy - ext)
+                QN_VISIT(3, ext + cx, ext + cy)
+                QN_VISIT(0, cx - ext, cy - ext)
+                QN_VISIT(1, cx - ext, ext + cy)
+            } else {
+                QN_VISIT(3, ext + cx, ext + cy)
+                QN_VISIT(2, ext + cx, cy - ext)
+                QN_VISIT(1, cx - ext, ext + cy)
+                QN_VISIT(0, cx - ext, cy - ext)
+            }
+        }
+    }
+}
 
 void C_001C5AA0::func_001C5AA0()
 {
