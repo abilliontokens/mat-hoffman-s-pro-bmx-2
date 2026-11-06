@@ -21,6 +21,8 @@ struct C_000B6180 {
 #define VEC(o) u[(o)/4+2] = 0; u[(o)/4+1] = 0; u[(o)/4] = 0; f[(o)/4+3] = 1.0f;
 #define CPY(o) u[(o)/4] = D_002A2FD8; u[(o)/4+1] = D_002A2FDC; u[(o)/4+2] = D_002A2FE0; u[(o)/4+3] = D_002A2FE4;
 
+extern int D_002A2FD8;
+
 struct C_000B6640_Obj {
     char pad0[0x60];
     void *unk60;
