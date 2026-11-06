@@ -193,9 +193,7 @@ extern float D_002A10FC, D_002A1174, D_00275544, D_002A1110, D_002A1114, D_002A1
 
 static __forceinline float Min_0002AAA0(float a, float b)
 {
-    float r;
-    _mm_store_ss(&r, _mm_min_ss(_mm_set_ss(a), _mm_set_ss(b)));
-    return r;
+    return a < b ? a : b;
 }
 
 static __forceinline float Abs_0002AAA0(volatile float x)
