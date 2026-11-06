@@ -25,7 +25,7 @@ struct C_Elem_62070 {
 struct C_00062070 {
     char pad0[0x12C];
     C_Elem_62070 *f12C[30];
-    C_Elem_62070 *f1A4[33];
+    C_Elem_62070 *f1A4[32];
     int f224;
     int f228;
     int f22C;
@@ -39,4 +39,31 @@ struct C_00062070 {
 
 void C_00062070::func_00062070(int a)
 {
+    V4_62070 v;
+    V4_62070 w;
+    float m;
+    float t;
+    float inv;
+    int * volatile p = &f284;
+
+    if (f224 > 1 && f22C != 0) {
+        if (f234 == D_002A1D04) {
+            f22C = 0;
+        }
+        inv = D_00275460 / D_002A1D04;
+        t = inv * f234 * D_002755EC;
+        *p = _mm_cvttss_si32(*(__m128 *)&t);
+        m = Min_00062070(1.0f, inv * f234);
+        if (f224 == 2) {
+            w = D_002A1DE8;
+            v = D_002A1D98;
+        } else if (f224 == 3) {
+            w = D_002A1DF8;
+            v = D_002A1DA8;
+        } else {
+            w = D_002A1E08;
+            v = D_002A1DB8;
+        }
+        f228 = (int)(v.x + w.x + m);
+    }
 }
