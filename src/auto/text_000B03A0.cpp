@@ -13,6 +13,7 @@ void __stdcall func_00157A00(float);
 
 struct C_000B1320 {
     int func_000B1320(float dt);
+    void func_00157A00(float dt);
 };
 
 struct C_000B1200_Entry {
