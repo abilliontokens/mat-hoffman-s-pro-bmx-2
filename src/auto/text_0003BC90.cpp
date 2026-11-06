@@ -120,8 +120,7 @@ void func_000347F0(char*);
 void func_001E891B(void*);
 extern "C" int __cdecl memcmp(const void*,const void*,unsigned int);
 static __forceinline StringBC *getStringBC(DataBC *d,int i) {
- if(d->stringCount>0 && d->strings && i<d->stringCount) return d->strings[i];
- return 0;
+ return ((StringListBC*)&d->stringCount)->get(i);
 }
 static __forceinline void appendBC(ListBC *l,NodeBC *p) {
  if(l->count<l->capacity || l->func_0015ACA0(l->count+l->grow)) l->data[l->count++]=p;
