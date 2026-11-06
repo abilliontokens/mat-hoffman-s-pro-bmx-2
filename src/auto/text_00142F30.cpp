@@ -258,8 +258,8 @@ struct DXRenderableObject {
     Vec4_143660 f1c0;          /* 0x1C0 */
     PageObj *f1d0;
     int f1d4;
-    void func_00143660(void);
-    void func_00157960(void);
+    F143660_RET func_00143660(void);
+    int func_00157960(void);
     void func_001814B0(int a);
     int func_001817F0(int a, int b, int c);
     void func_00181540();
