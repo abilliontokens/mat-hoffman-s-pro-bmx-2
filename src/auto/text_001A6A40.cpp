@@ -314,6 +314,12 @@ extern float D_002EFF78;
 extern float D_00275460;
 extern float D_00278C48;
 
+static __forceinline float AdvanceTimer(float &timer, float dt)
+{
+    timer = dt + timer;
+    return timer;
+}
+
 struct C_001A6E90 {
     void *vtbl;
     char pad4[0x48];
@@ -379,7 +385,12 @@ void C_001A6D30::func_001A6BA0()
         f48->func_001D6600();
         if (f60) f40->func_001D5AD0(); else f38->func_001D5AD0();
         f44->func_0005E840(D_002A8490->f2e8->f4->f7a0);
-        f44->setPos(0x43fa0000, 0x43c48000);
+        C_001D6410 *q = f44;
+        if (!(q->x == 0x43fa0000 && q->yi == 0x43c48000)) {
+            q->yi = 0x43c48000;
+            q->x = 0x43fa0000;
+            q->flags |= 6;
+        }
         f44->func_001D6600();
         if (f5C) f3C->func_001D5AD0(); else f34->func_001D5AD0();
     } else if (f6C == 3 || f6C == 6) {
@@ -395,7 +406,12 @@ void C_001A6D30::func_001A6BA0()
         unsigned x;
         if (f6C == 3) { f44->func_0005E840(D_002A8490->f2e8->f4->f11a0); x = 0x43af0000; }
         else { f44->func_0005E840(D_002A8490->f2e8->f4->f7a0); x = 0x43fa0000; }
-        f44->setPos(x, 0x43c48000);
+        C_001D6410 *p = f44;
+        if (!(p->x == x && p->yi == 0x43c48000)) {
+            p->yi = 0x43c48000;
+            p->x = x;
+            p->flags |= 6;
+        }
         f44->func_001D6600();
     }
 }
@@ -440,7 +456,6 @@ void C_001A6D30::func_001A6D30()
 
 void C_001A6E90::func_001A6E90(float dt)
 {
-    float t;
     S_001A6E90_Msg msg;
     float sum;
     int s;
@@ -506,9 +521,8 @@ void C_001A6E90::func_001A6E90(float dt)
     }
 after_draw:
     if (f5C != 0 || f60 != 0) {
-        t = dt + f64;
-        f64 = t;
-        if (t >= D_002755E8) {
+        f64 = dt + f64;
+        if (f64 >= D_002755E8) {
             if (f5C != 0) {
                 if (f6C == 3) {
                     if (f78->func_00092A10() == 0) {
@@ -521,7 +535,7 @@ after_draw:
                     f4C->f24 = 9;
                     f5C = 0;
                 }
-            } else if (f60 != 0 && t >= D_00278C48) {
+            } else if (f60 != 0 && f64 >= D_00278C48) {
                 if (f6C == 9) {
                     msg.type = 2;
                     msg.code = 0x55;
