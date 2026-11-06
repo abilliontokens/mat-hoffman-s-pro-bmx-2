@@ -23,7 +23,7 @@ static __forceinline void Cross_19FD20(Vec_19FD20 * volatile out, Vec_19FD20 * v
     _mm_storeu_ps(&out->x, va);
 }
 
-static __forceinline void Sqrt_19FD20(float *d, float square) { _mm_store_ss(d, _mm_sqrt_ss(_mm_load_ss(&square))); }
+static __forceinline void Sqrt_19FD20(float *d, float square) { _mm_store_ss(d, _mm_sqrt_ss(*(__m128 *)&square)); }
 
 struct Node_19FD20 {
     void func_00199A70(int a, Vec_19FD20 *out);
