@@ -137,7 +137,7 @@ struct C_00192470 : C_0001DFE0 {
             int f1C;
         };
     };
-    unsigned char f20;
+    unsigned char f20 : 1;
     char pad21[3];
     char f24;
     char f25;
