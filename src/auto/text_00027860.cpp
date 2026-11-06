@@ -74,8 +74,10 @@ static __forceinline float Max_27860(float a, float b) { float r; __m128 x = _mm
 static __forceinline float Min_27860(float a, float b) { float r; __m128 x = _mm_load_ss(&a); __m128 y = _mm_load_ss(&b); _mm_store_ss(&r, _mm_min_ss(x, y)); return r; }
 inline void Cross_27860(float * volatile out, float * volatile a, float * volatile b)
 {
-    __m128 va = _mm_loadu_ps(a);
-    __m128 vb = _mm_loadu_ps(b);
+    float *pa = a;
+    float *pb = b;
+    __m128 va = _mm_loadu_ps(pa);
+    __m128 vb = _mm_loadu_ps(pb);
     __m128 sa = _mm_shuffle_ps(va, va, 0xc9);
     __m128 sb = _mm_shuffle_ps(vb, vb, 0xc9);
     __m128 r = _mm_sub_ps(_mm_mul_ps(va, sb), _mm_mul_ps(vb, sa));
