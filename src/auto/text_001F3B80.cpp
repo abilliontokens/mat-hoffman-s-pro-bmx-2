@@ -118,9 +118,10 @@ int func_001F3B80(unsigned char *a, unsigned char *b)
 }
 
 #pragma optimize("y", on)
-static void func_001F3BCE(F3Obj *o, int arg, int *cnt);
-void func_001F3BF3(int *cnt, int arg, int count, F3Obj *o);
-void func_001F3BCE(F3Obj *o, int arg, int *cnt) {
+static void func_001F3BCE(F3Obj *o, unsigned short arg, int *cnt);
+static void func_001F3BF3(int *cnt, unsigned short arg, int count, F3Obj *o);
+static void func_001F3C18(unsigned short *str, int len, F3Obj *f, int *pnum);
+void func_001F3BCE(F3Obj *o, unsigned short arg, int *cnt) {
     if ((o->field_c & 0x40) == 0 || o->field_8 != 0) {
         if (func_001F59DC(arg, o) == -1) { *cnt |= -1; return; }
     }
