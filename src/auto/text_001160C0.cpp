@@ -5,7 +5,7 @@ struct C_000AD5C0 { int func_000AD5C0(int,int *,int); int func_000A7570(int,int,
 struct C_001C3D30 { void func_001C3D30(int); };
 struct Queue_10DED0 { int count; int ids[5]; int modes[5]; int f2C; int f30; int f34; int f38[100]; int f1C8[100]; void func_00109340(int,int); };
 struct Obj831549 { int func_000831C0(); };
-extern float D_002755E8, D_00276098, D_002756DC, D_00275460, D_00283C80, D_00278C58;
+extern float D_002755E4, D_002755E8, D_00276098, D_002756DC, D_00275460, D_00283C80, D_00278C58;
 unsigned int func_001DC974();
 
 /* input device slot: virtual 3 reads an analog value for a control code */
@@ -165,10 +165,8 @@ void C_001160C0::func_001160C0(float dt)
 {
  float value[6];
  if (!(f958 > D_00275544) && f95C == 0) {
- double a0 = f9E8->f24;
- f964 = (float)a0;
- double a1 = f9EC->f24;
- f968 = (float)a1;
+ f964 = f9E8->f24;
+ f968 = f9EC->f24;
  for (int i=0; i<32; ++i) {
  if (D_002A8490->f8->items[f970]->v3(i,63,value)) {
  if (value[1] >= D_00275544) input[i]=1;
@@ -334,8 +332,8 @@ void C_001160C0::func_001160C0(float dt)
  if(!grounded && !f468 && state==4 && f9B0==D_00275544 && !f4F8 && !f4F4 && f1178) f9D0=1;
  }
  if(f9D0)f99C=0;
- if(special && !grounded && !f468 && !f4F8 && !f4F4 && f1178)goto keep_d0;
  }
+ if(special && !grounded && !f468 && !f4F8 && !f4F4 && f1178)goto keep_d0;
  f9D0=0;
  keep_d0:
  f9B8=0;f9B0=0;
