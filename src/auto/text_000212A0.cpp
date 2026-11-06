@@ -251,6 +251,26 @@ struct S_00021A50_Mgr {
 
 extern S_00021A50_Mgr *D_002B7E18;
 
+struct S_00021B90_50 {
+    char pad0[0x1c];
+    float f1c;
+    float f20;
+    float f24;
+};
+
+struct C_00021B90 {
+    char pad0[0x10];
+    int f10;
+    char pad14[0x1c];
+    V4_000212A0 f30;
+    float f40;
+    char pad44[4];
+    int f48;
+    char pad4c[4];
+    S_00021B90_50 *f50;
+    int func_00021B90(float dt, V4_000212A0 v, float a6);
+};
+
 struct C_00021A50 {
     char pad0[0x2c];
     S_00021A50_Ent *f2c;
