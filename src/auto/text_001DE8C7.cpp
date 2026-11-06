@@ -22,7 +22,7 @@ extern int D_00010130;
 extern int D_002F6BC0;
 extern int D_002F6BB4;
 extern "C" long __stdcall ExQueryNonVolatileSetting(u32 valueIndex, u32 *type, void *value, u32 valueLength, u32 *resultLength);
-extern u32 D_002F41C8;
+extern u8 D_002F41C8;
 extern char D_0028FD54;
 
 extern "C" unsigned long __readfsdword(unsigned long Offset);
@@ -391,7 +391,7 @@ void __stdcall func_001DED66(char c)
     RtlInitAnsiString(&name, buf);
     status = IoDeleteSymbolicLink(&name);
     if (c == 'X' && status >= 0) {
-        D_002F41C8 &= 0;
+        D_002F41C8 &= 0xFFFFFF00;
     }
     RtlNtStatusToDosError(status);
 }
