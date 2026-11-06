@@ -147,6 +147,7 @@ struct C_00103450 {
     int unk3F0;
     int unk3F4;
     C_00103450 *func_00103450(S_Cfg *cfg, int a);
+    C_00103450 *func_00103450(int a, S_Cfg *cfg);
 };
 
 struct C_001BF6A0 {
@@ -375,7 +376,7 @@ C_001033D0 *C_001033D0::func_001033D0(void *a, void *b)
 
 C_00103450 *C_00103450::func_00103450(S_Cfg *cfg, int a)
 {
-    S_00103_Vec4 v34, v4c, v14, v24, v40;
+    S_00103_Vec4 v14, v24, v34, v40, v4c;
     char buf[0x190];
     int c0, c1, c2;
 
@@ -427,6 +428,27 @@ C_00103450 *C_00103450::func_00103450(S_Cfg *cfg, int a)
     cfg->func_00168550(D_0027C294, buf, 0x190);
     if (unk190 != 0) {
         ((C_001C01E0 *)this)->func_001C01E0(buf);
+    } else {
+        C_001B1980 *q;
+
+        unk170 = 1;
+        unk1B0 = (C_001B1980 **)func_001E8A44(4);
+        q = (C_001B1980 *)func_001E8A44(0x184);
+        if (q)
+            q = (C_001B1980 *)((C_001B12C0 *)q)->func_001B12C0(1);
+        else
+            q = 0;
+        *unk1B0 = q;
+        C_001B13A0::func_001B13A0(unk1B8, unkF0, 0, strlen(buf));
+        ((C_001577A0 *)this)->func_001577A0(*unk1B0, -1);
+        ((S_00103_Btn *)*unk1B0)->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
+        ((S_00103_Btn *)*unk1B0)->func_001B17D0(buf);
+        ((S_00103_Btn *)*unk1B0)->func_001B19A0(unk178);
+        ((S_00103_Btn *)*unk1B0)->func_001B2270(unk3C0);
+        ((S_00103_Btn *)*unk1B0)->func_001B19C0(unk3C4, unk3C8, 0);
+        ((S_00103_Btn *)*unk1B0)->func_001B1B80(unk3E4 * D_00275998, vec3D4, 0);
+        ((S_00103_Btn *)*unk1B0)->func_001B1AB0(*(int *)&v40.x, 0);
+        ((S_00103_Btn *)*unk1B0)->func_001B1BF0(*(int *)&v40.y);
     }
     return this;
 }
