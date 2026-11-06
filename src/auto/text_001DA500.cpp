@@ -64,7 +64,7 @@ struct S_001DAC10_Tex {
 };
 
 struct S_001DAC10_Entry {
-    char pad0[0x2C];
+    int f0; float scale,x,fC,z; char pad14[0x18];
     S_001DAC10_Tex *f2c;
     int f30;
     S_001DAC10_Tex *f34;
