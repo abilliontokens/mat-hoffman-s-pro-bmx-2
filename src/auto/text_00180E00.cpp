@@ -97,6 +97,7 @@ struct RenderableObject {
     void func_00197820(int a);
     RenderableObject *func_001814B0(int a);
     void func_00181540(void);
+    RenderableObject *func_001817F0(char *name, int a, int b);
 };
 
 struct Mgr {
@@ -258,6 +259,80 @@ static __forceinline void *NewPairs_00180E00(int n)
         return m;
     }
     return 0;
+}
+
+void C_00181140::func_00180E00(int a1, int a2, int a3, int a4)
+{
+    C_00181140 * volatile self = this;
+    void *obj;
+    int nodeCount;
+    int leafCount;
+    int idx;
+    int leaves;
+    S_00180E00_Mat * volatile mp;
+    S_00181140_Loaded *p;
+
+    Reset();
+    if (a1 == 1) {
+        C_001805C0 *m = (C_001805C0 *)func_001E8A44(0x24);
+        obj = m ? m->func_001805C0() : 0;
+    } else {
+        obj = new (func_001E8A44(0x30)) S_00180E00_Node;
+    }
+    mp = &self->matB0;
+    {
+        S_00180E00_Mat *q = mp;
+        __m128 *v = (__m128 *)q;
+
+        v[0] = _mm_setzero_ps();
+        v[1] = _mm_setzero_ps();
+        v[2] = _mm_setzero_ps();
+        v[3] = _mm_setzero_ps();
+        q->m[0] = 1.0f;
+        q->m[5] = 1.0f;
+        q->m[10] = 1.0f;
+        q->m[15] = 1.0f;
+    }
+    nodeCount = 0;
+    leafCount = 0;
+    func_00128120(obj, &nodeCount, &leafCount, &self->matB0, a2, a1);
+    self->fFC = 0;
+    self->fF0 = (short)0x8000;
+    self->fF4 = a4;
+    self->f104 = a3;
+    self->fF8 = a1;
+    leaves = -1;
+    if (nodeCount > 0) {
+        self->fF0 = 0;
+        {
+            void *m = func_001E8A44(nodeCount * 0x24);
+            if (m != 0) {
+                func_00011FF0(m, 0x24, nodeCount, func_00128910);
+            } else {
+                m = 0;
+            }
+            self->fFC = m;
+        }
+        idx = 0;
+        func_00128480(self->fFC, obj, &idx, &leaves);
+    }
+    idx = 0;
+    self->f100 = NewPairs_00180E00(leafCount);
+    func_001285A0(self->f100, obj, &idx);
+    func_00128440(obj);
+    {
+        void *m = func_001E8A44(0x9c);
+        p = m ? ((S_00181140_Loaded *)m)->func_00134980() : 0;
+    }
+    p->f7c = a1 * 3;
+    p->f84 = func_001E8A44(p->f7c * 4);
+    p->f88 = func_001E8A44(p->f7c * 4);
+    p->f8c = func_001E8A44(p->f7c * 4);
+    p->f90 = func_001E8A44(p->f7c * 2);
+    p->f70 = NewV4_00180E00(p->f7c * 2);
+    p->f74 = NewV4_00180E00(p->f7c);
+    p->f78 = NewV4_00180E00(p->f7c);
+    self->f54 = p;
 }
 
 int C_00181140::func_00181140(int a1, char *path, int a3)
