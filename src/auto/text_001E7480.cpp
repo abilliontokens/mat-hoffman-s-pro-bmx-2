@@ -17,6 +17,144 @@ void __fastcall func_001E4220(float *);
 void __fastcall func_001E6B50(float *, int, int, int);
 void __fastcall func_001E6F70(float *);
 void __fastcall func_001E7480(int, int, float *, int, int, int);
+void func_001E7D20(int n, float *a, int y, float *z);
+void func_001E7DC0(int n, float *a, int y, float *z);
+extern "C" void func_001E55E0(int n, float *a, float *w);
+extern "C" void func_001E59B0(int n, float *a, float *w);
+extern "C" void func_001E5F20(float *a, float *w);
+extern "C" void func_001E64D0(float *a, float *w);
+extern "C" void func_001E6B50(float *a, float *w);
+extern "C" void func_001E6D40(float *a, float *w);
+void func_001E7480(int n, float *a, int nw, float *w)
+{
+    int j, k, m, mh;
+
+    m = n >> 2;
+    mh = n >> 3;
+    while (m > 128) {
+        for (k = m; k < n; k *= 4) {
+            for (j = k - m; j < n; j += 4 * k) {
+                func_001E55E0(m, a + j, w + (nw - mh));
+                func_001E59B0(m, a + j + 2 * k, w + (nw - m));
+                func_001E55E0(m, a + j + 3 * k, w + (nw - mh));
+            }
+        }
+        func_001E55E0(m, a + (n - m), w + (nw - mh));
+        mh = m >> 1;
+        m = m >> 2;
+    }
+    for (k = m; k < n; k *= 4) {
+        for (j = k - m; j < n; j += 4 * k) {
+            func_001E55E0(m, a + j, w + (nw - mh));
+            if (m == 128) {
+                func_001E5F20(a + j, w + nw);
+                func_001E64D0(a + j, w + nw);
+                func_001E5F20(a + j, w + nw);
+                func_001E5F20(a + j, w + nw);
+            } else {
+                func_001E6B50(a + j, w + nw);
+                func_001E6D40(a + j, w + nw);
+                func_001E6B50(a + j, w + nw);
+                func_001E6B50(a + j, w + nw);
+            }
+            func_001E59B0(m, a + j + 2 * k, w + (nw - m));
+            func_001E55E0(m, a + j + 3 * k, w + (nw - mh));
+        }
+    }
+    func_001E55E0(m, a + (n - m), w + (nw - mh));
+    if (m == 128) {
+        func_001E5F20(a + (n - m), w + nw);
+        func_001E64D0(a + (n - m), w + nw);
+        func_001E5F20(a + (n - m), w + nw);
+        func_001E5F20(a + (n - m), w + nw);
+    } else {
+        func_001E6B50(a + (n - m), w + nw);
+        func_001E6D40(a + (n - m), w + nw);
+        func_001E6B50(a + (n - m), w + nw);
+        func_001E6B50(a + (n - m), w + nw);
+    }
+}
+
+void func_001E7880(int n, float *a, int nw, float *w)
+{
+    int h, j, k, m;
+    float *tw;
+
+    m = n >> 2;
+    h = n >> 1;
+    while (m > 128) {
+        for (k = m; k < h; k *= 4) {
+            tw = w + (nw - (m >> 1));
+            for (j = k - m; j < h; j += 2 * k) {
+                func_001E55E0(m, a + j, tw);
+                func_001E55E0(m, a + j + h, tw);
+            }
+            tw = w + (nw - m);
+            for (j = 2 * k - m; j < h; j += 4 * k) {
+                func_001E59B0(m, a + j, tw);
+                func_001E59B0(m, a + j + h, tw);
+            }
+        }
+        m = m >> 2;
+    }
+    for (k = m; k < h; k *= 4) {
+        tw = w + (nw - (m >> 1));
+        for (j = k - m; j < h; j += 2 * k) {
+            func_001E55E0(m, a + j, tw);
+            if (m == 128) {
+                func_001E5F20(a + j, w + nw - 8);
+                func_001E64D0(a + j, w + nw - 32);
+                func_001E5F20(a + j, w + nw - 8);
+                func_001E5F20(a + j, w + nw - 8);
+            } else {
+                func_001E6B50(a + j, w + nw - 16);
+                func_001E6D40(a + j, w + nw - 16);
+                func_001E6B50(a + j, w + nw - 16);
+                func_001E6B50(a + j, w + nw - 16);
+            }
+            func_001E55E0(m, a + j + h, tw);
+            if (m == 128) {
+                func_001E5F20(a + j + h, w + nw - 8);
+                func_001E64D0(a + j + h, w + nw - 32);
+                func_001E5F20(a + j + h, w + nw - 8);
+                func_001E5F20(a + j + h, w + nw - 8);
+            } else {
+                func_001E6B50(a + j + h, w + nw - 16);
+                func_001E6D40(a + j + h, w + nw - 16);
+                func_001E6B50(a + j + h, w + nw - 16);
+                func_001E6B50(a + j + h, w + nw - 16);
+            }
+        }
+        tw = w + (nw - m);
+        for (j = 2 * k - m; j < h; j += 4 * k) {
+            func_001E59B0(m, a + j, tw);
+            if (m == 128) {
+                func_001E5F20(a + j, w + nw - 8);
+                func_001E64D0(a + j, w + nw - 32);
+                func_001E5F20(a + j, w + nw - 8);
+                func_001E64D0(a + j, w + nw - 32);
+            } else {
+                func_001E6B50(a + j, w + nw - 16);
+                func_001E6D40(a + j, w + nw - 16);
+                func_001E6B50(a + j, w + nw - 16);
+                func_001E6D40(a + j, w + nw - 16);
+            }
+            func_001E59B0(m, a + j + h, tw);
+            if (m == 128) {
+                func_001E5F20(a + j + h, w + nw - 8);
+                func_001E64D0(a + j + h, w + nw - 32);
+                func_001E5F20(a + j + h, w + nw - 8);
+                func_001E64D0(a + j + h, w + nw - 32);
+            } else {
+                func_001E6B50(a + j + h, w + nw - 16);
+                func_001E6D40(a + j + h, w + nw - 16);
+                func_001E6B50(a + j + h, w + nw - 16);
+                func_001E6D40(a + j + h, w + nw - 16);
+            }
+        }
+    }
+}
+
 void __fastcall func_001E7E60(int n, int x3, int n2, int y, int z) {
     if (n > 0x20) {
         int q = n >> 2;
