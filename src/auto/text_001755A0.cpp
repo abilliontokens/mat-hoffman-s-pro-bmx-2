@@ -7,6 +7,16 @@ extern char D_0000FFF8[];
 extern char D_0000F81F[];
 extern char D_0000FFFC[];
 
+static __forceinline void Accumulate555(unsigned int &sum, unsigned int pair)
+{
+    unsigned int a = pair & (unsigned int)D_0000FFFF;
+    unsigned int b = pair >> 16;
+    sum += (b << 15) & 0x1f00000;
+    sum += (a & 0x3e0) << 15;
+    sum += b & 0x7c1f;
+    sum += a & 0x7c1f;
+}
+
 static __forceinline void Downsample555Row(unsigned int *src, unsigned short *dst, int count, int srcPitch)
 {
     do {
