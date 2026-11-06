@@ -28,10 +28,11 @@ __declspec(align(16)) struct S_ADFD0_Mat {
 static __forceinline void Identity_001ADFD0(S_ADFD0_Mat *&p)
 {
     S_ADFD0_Mat *q = p;
-    _mm_store_ps(&q->m[0], _mm_setzero_ps());
-    _mm_store_ps(&q->m[4], _mm_setzero_ps());
-    _mm_store_ps(&q->m[8], _mm_setzero_ps());
-    _mm_store_ps(&q->m[12], _mm_setzero_ps());
+    __m128 z = _mm_setzero_ps();
+    ((__m128 *)q->m)[0] = z;
+    ((__m128 *)q->m)[1] = z;
+    ((__m128 *)q->m)[2] = z;
+    ((__m128 *)q->m)[3] = z;
     q->m[0] = 1.0f;
     q->m[5] = 1.0f;
     q->m[10] = 1.0f;
@@ -387,7 +388,6 @@ void C_001ADFD0::func_001ADFD0(float *srcf, S_ADFD0_Tex *tex, int *rect, int a4,
     int *src = (int *)srcf;
     S_ADFD0_Mat mat;
     S_ADFD0_Mat *pm = &mat;
-    S_ADFD0_RootX *g = (S_ADFD0_RootX *)D_002EFDB8;
     int x, y, z, w;
     int s0, s1, s2, s3;
     float u0, v0, u1, v1;
@@ -398,7 +398,7 @@ void C_001ADFD0::func_001ADFD0(float *srcf, S_ADFD0_Tex *tex, int *rect, int a4,
     unsigned char cr, cg, cb;
     S_ADFD0_Vtx *p;
 
-    pm->identity();
+    Identity_001ADFD0(pm);
     if (rect != 0) {
         x = rect[0];
         y = rect[1];
@@ -412,8 +412,8 @@ void C_001ADFD0::func_001ADFD0(float *srcf, S_ADFD0_Tex *tex, int *rect, int a4,
     }
     if (src != 0) {
         s0 = (int)((float)src[0] * D_002AA2E8);
-        s1 = (int)((float)src[1] * D_002AA2EC);
         s2 = (int)((float)src[2] * D_002AA2E8);
+        s1 = (int)((float)src[1] * D_002AA2EC);
         s3 = (int)((float)src[3] * D_002AA2EC);
     } else {
         s0 = 0;
@@ -456,9 +456,9 @@ void C_001ADFD0::func_001ADFD0(float *srcf, S_ADFD0_Tex *tex, int *rect, int a4,
     q0 = 0;
     q1 = 0;
     if (a5 == 0) {
-        if (g->cam != 0) {
-            q0 = g->cam->f1E0;
-            q1 = g->cam->f1E4;
+        if (((S_ADFD0_RootX *)D_002EFDB8)->cam != 0) {
+            q0 = ((S_ADFD0_RootX *)D_002EFDB8)->cam->f1E0;
+            q1 = ((S_ADFD0_RootX *)D_002EFDB8)->cam->f1E4;
         }
     }
     fq0 = (float)q0;
@@ -502,8 +502,8 @@ void C_001ADFD0::func_001ADFD0(float *srcf, S_ADFD0_Tex *tex, int *rect, int a4,
     p[3].color = MakeColor_001AEBD0(f64, cb, cg, cr);
     p[3].u = u1;
     p[3].v = v0;
-    g->f6c->func_0014A650(f10);
-    g->f70->func_00142D00(f14);
+    ((S_ADFD0_RootX *)D_002EFDB8)->f6c->func_0014A650(f10);
+    ((S_ADFD0_RootX *)D_002EFDB8)->f70->func_00142D00(f14);
     func_001FEC30(0x22, mat.m);
     func_001FEE00(0, f28, 0x18);
     func_00200A90(6, 0, 4);
