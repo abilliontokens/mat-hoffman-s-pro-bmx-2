@@ -141,7 +141,7 @@ struct S_6DD0_Spr {
 };
 extern char D_00278690[], D_002786A0[], D_00278678[], D_0027CEF0[], D_0027F29C[], D_00279B00[], D_00279AF0[], D_00279AE0[], D_00279AD0[], D_0027F2AC[];
 extern float D_0027F2B4;
-extern void *operator new(unsigned int);
+extern "C" void *func_001E8A44(unsigned int size);
 
 struct BmxUIPageHOF4 {
     int vtbl;
