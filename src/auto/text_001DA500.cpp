@@ -126,7 +126,7 @@ struct C_001DAC10 {
     char padFC[0x488 - 0xFC];
     void *arr488[6];
     void func_001DAC10();
-    void DrawQuad(S_001DAC10_Vert *verts, S_001DAC10_Color *color, S_001DAC10_Entry *e, int tex)
+    __forceinline void DrawQuad(S_001DAC10_Vert *verts, S_001DAC10_Color *color, S_001DAC10_Entry *e, int tex)
     {
         void **p = &arr488[D_002F1038];
         int f;
@@ -162,6 +162,92 @@ struct C_001DAC10 {
             D_002F1038++;
     }
 };
+
+void C_001DA500::func_001DA500() {
+float c0[4],c1[4],c2[4],c3[4];
+S_001DAC10_Entry *e=&D_002F08BC->f2c[*(int*)(data+0xd4)];
+if(!*(void**)(data+0x218)){
+*(void**)(data+0x218)=func_001FF3C0(80);
+*(void**)(data+0x21c)=func_001FF3C0(80);
+*(void**)(data+0x220)=func_001FF3C0(80);
+}
+func_001FF940((int)D_002F08BC+0x228,(int)D_002F08BC+0x258);
+D_002EFDB8->f6c->func_0014A650(*(int*)(data+0xe0));
+func_001FEE00(0,((void**)(data+0x218))[*(int*)(data+0xdc)],20);
+D_002EFDB8->f70->func_00142D00(*(int*)(data+0xfc));
+c1[0]=0;c1[1]=0;c1[2]=0; c1[3]=D_002F08AC/D_002EFEA0;
+func_00201590(1,c1,1);
+void *buffer=((void**)(data+0x218))[*(int*)(data+0xdc)];
+float *v=(float*)func_001FF410(buffer,0);
+float x=e->x,z=e->z;
+v[0]=*(float*)(data+116);v[1]=*(float*)(data+120);v[2]=*(float*)(data+124);v[3]=(v[0]-x)*e->scale;v[4]=(v[2]-z)*e->scale;
+v[5]=*(float*)(data+132);v[6]=*(float*)(data+136);v[7]=*(float*)(data+140);v[8]=(v[5]-x)*e->scale;v[9]=(v[7]-z)*e->scale;
+{
+float *w=v+10;
+w[0]=*(float*)(data+148);w[1]=*(float*)(data+152);w[2]=*(float*)(data+156);w[3]=(w[0]-x)*e->scale;w[4]=(w[2]-z)*e->scale;
+}
+v[15]=*(float*)(data+164);v[16]=*(float*)(data+168);v[17]=*(float*)(data+172);v[18]=(v[15]-x)*e->scale;v[19]=(v[17]-z)*e->scale;
+c0[0]=1;c0[1]=0;c0[2]=0;c0[3]=1;
+c2[0]=0;c2[1]=1;c2[2]=0;c2[3]=1;
+c3[0]=0;c3[1]=0;c3[2]=1;c3[3]=1;
+char *dev=*(char**)((char*)D_002EFDB8+4);
+func_001FEBD0(32,c0);
+func_001FEC30(24,dev+0x290);
+D_0020C6DC|=0x3000;D_0020CA7C=0;
+func_001FD020(&D_00040304,1);
+func_001FD020(&D_00040350,0x8006);
+func_001FD020(&D_00040344,1);
+func_001FD020(&D_00040348,1);
+func_00200390(0,e->f2c->fB8);
+int flags=D_0020C6DC|1;
+D_0020C6E0=4;D_0020C6DC=flags;D_0020C6E4=4;
+func_001FDA60(0,0xff800000);
+D_0020C6EC=2;D_0020C6F0=2;D_0020C6DC|=1;D_0020C6F4=0;
+func_00200B30(6,4,D_002AC7D4);
+func_001FF940((int)D_002F08BC+0x240,(int)D_002F08BC+0x258);
+D_002EFDB8->f70->func_00142D00(*(int*)(data+0xf0));
+func_001FDA60(0,0xff800000);
+func_00200390(0,e->f34->fB8);
+func_001FEBD0(32,c0);
+func_00200B30(6,4,D_002AC7D4);
+func_001FDA60(0,0xff008000);
+func_00200390(0,e->f38->fB8);
+func_001FEBD0(32,c2);
+func_00200B30(6,4,D_002AC7D4);
+if(D_002A99B0){
+if(!*(void**)(data+0x224)){
+*(void**)(data+0x224)=func_001FF3C0(80);
+*(void**)(data+0x228)=func_001FF3C0(80);
+*(void**)(data+0x22c)=func_001FF3C0(80);
+}
+v=(float*)func_001FF410(((void**)(data+0x224))[*(int*)(data+0xdc)],0);
+x=D_002F100C[*(int*)(data+0xd4)*4]-D_00278650;
+z=D_002F1014[*(int*)(data+0xd4)*4]-D_00278650;
+v[0]=*(float*)(data+116);v[1]=*(float*)(data+120);v[2]=*(float*)(data+124);v[3]=v[0]-x;v[4]=v[2]-z;
+v[5]=*(float*)(data+132);v[6]=*(float*)(data+136);v[7]=*(float*)(data+140);v[8]=v[5]-x;v[9]=v[7]-z;
+v[10]=*(float*)(data+148);v[11]=*(float*)(data+152);v[12]=*(float*)(data+156);v[13]=v[10]-x;v[14]=v[12]-z;
+v[15]=*(float*)(data+164);v[16]=*(float*)(data+168);v[17]=*(float*)(data+172);v[18]=v[15]-x;v[19]=v[17]-z;
+func_00200390(0,((S_001DAC10_Tex*)e->f30)->fB8);
+flags=D_0020C6DC|1;D_0020C6E0=4;D_0020C6DC=flags;D_0020C6E4=4;
+func_001FDA60(0,0xff000000);
+D_0020C6EC=2;D_0020C6F0=2;D_0020C6DC|=1;D_0020C6F4=0;
+D_002EFDB8->f6c->func_0014A650(*(int*)(data+0xe0));
+D_002EFDB8->f70->func_00142D00(*(int*)(data+0xf0));
+func_001FEBD0(32,c3);
+func_001FEE00(0,((void**)(data+0x224))[*(int*)(data+0xdc)],20);
+func_00200B30(6,4,D_002AC6D0);
+}
+int i=0; int *state=&D_0020C6E4;
+do {
+func_00200390(i,0);
+int flags=D_0020C6DC | (1<<i);
+state[-1]=3;
+state[0]=3;
+D_0020C6DC=flags;
+i++;state+=32;
+} while((int)state<(int)&D_0020C8E4);
+if(++*(int*)(data+0xdc)==3) *(int*)(data+0xdc)=0;
+}
 
 int C_001DAAD0::func_001DAAD0(int a0, S_001DAAD0_Block *a1, void *a2)
 {
@@ -203,3 +289,107 @@ int C_001DAAD0::func_001DAAD0(int a0, S_001DAAD0_Block *a1, void *a2)
     }
     return 0;
 }
+
+void C_001DAC10::func_001DAC10()
+{
+    static S_001DAC10_Vert verts[4];
+    float xs[4] = {0.0f, 128.0f, 0.0f, 128.0f};
+    float ys[4] = {0.0f, 0.0f, 128.0f, 128.0f};
+    static S_001DAC10_Color color1(1.0f, 0.0f, 0.0f, 1.0f);
+    static S_001DAC10_Color color2(0.0f, 1.0f, 0.0f, 1.0f);
+    S_001DAC10_Entry *e;
+    void **p;
+    int tex;
+    int i;
+    int f;
+
+    func_001FE490(0);
+    D_002EFDB8->f6c->func_0014A650(fE8);
+    D_002EFDB8->f70->func_00142D00(fF8);
+    e = &D_002F08BC->f2c[fD4];
+
+    tex = func_001FCE50(e->f34->fB8, 0);
+    func_001FF940(tex, 0);
+    for (i = 0; i < 4; i++) {
+        verts[i].x = xs[i];
+        verts[i].y = ys[i];
+        verts[i].u0 = xs[i] - 1.0f;
+        verts[i].v0 = ys[i];
+        verts[i].u1 = xs[i] + 1.0f;
+        verts[i].v1 = ys[i];
+    }
+    p = &arr488[D_002F1038];
+    if (*p == 0)
+        *p = func_001FF3C0(0x70);
+    *(S_001DAC10_Quad *)func_001FF410(arr488[D_002F1038], 0) = *(S_001DAC10_Quad *)verts;
+    func_001FEBD0(0x20, &color1);
+    func_001FEE00(0, arr488[D_002F1038], 0x1c);
+    func_001FD020(&D_00040304, 0);
+    func_001FD020(&D_00040354, 0x207);
+    f = D_0020C6DC;
+    f |= 0x2000;
+    D_0020C6DC = f;
+    D_0020CA50 = 0;
+    func_001FD770(0x1b02);
+    func_00200390(0, e->f2c->fB8);
+    f = D_0020C6DC;
+    f |= 1;
+    D_0020C6E0 = 3;
+    D_0020C6DC = f;
+    D_0020C6E4 = 3;
+    func_00200390(1, e->f2c->fB8);
+    f = D_0020C6DC;
+    f |= 2;
+    D_0020C760 = 3;
+    D_0020C6DC = f;
+    D_0020C764 = 3;
+    func_00200B30(6, 4, D_002AC6D0);
+    func_00201100(tex);
+    if (D_002F1038 == 5)
+        D_002F1038 = 0;
+    else
+        D_002F1038++;
+
+    tex = func_001FCE50(e->f38->fB8, 0);
+    func_001FF940(tex, 0);
+    for (i = 0; i < 4; i++) {
+        verts[i].x = xs[i];
+        verts[i].y = ys[i];
+        verts[i].u0 = xs[i];
+        verts[i].v0 = ys[i] - 1.0f;
+        verts[i].u1 = xs[i];
+        verts[i].v1 = ys[i] + 1.0f;
+    }
+    p = &arr488[D_002F1038];
+    if (*p == 0)
+        *p = func_001FF3C0(0x70);
+    *(S_001DAC10_Quad *)func_001FF410(arr488[D_002F1038], 0) = *(S_001DAC10_Quad *)verts;
+    func_001FEBD0(0x20, &color2);
+    func_001FEE00(0, arr488[D_002F1038], 0x1c);
+    func_001FD020(&D_00040304, 0);
+    func_001FD020(&D_00040354, 0x207);
+    f = D_0020C6DC;
+    f |= 0x2000;
+    D_0020C6DC = f;
+    D_0020CA50 = 0;
+    func_001FD770(0x1b02);
+    func_00200390(0, e->f2c->fB8);
+    f = D_0020C6DC;
+    f |= 1;
+    D_0020C6E0 = 3;
+    D_0020C6DC = f;
+    D_0020C6E4 = 3;
+    func_00200390(1, e->f2c->fB8);
+    f = D_0020C6DC;
+    f |= 2;
+    D_0020C760 = 3;
+    D_0020C6DC = f;
+    D_0020C764 = 3;
+    func_00200B30(6, 4, D_002AC6D0);
+    func_00201100(tex);
+    if (D_002F1038 == 5)
+        D_002F1038 = 0;
+    else
+        D_002F1038++;
+}
+
