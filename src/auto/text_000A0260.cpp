@@ -26,7 +26,7 @@ static inline void Init_A0260(Vec_A0260 *v)
     v->w = 1.0f;
 }
 
-static __forceinline void Cross_A0260(Vec_A0260 * volatile out, Vec_A0260 * volatile a, Vec_A0260 * volatile b)
+static inline void Cross_A0260(Vec_A0260 *out, Vec_A0260 *a, Vec_A0260 *b)
 {
     Vec_A0260 *pa = a, *pb = b;
     __m128 va = _mm_loadu_ps(&pa->x);
