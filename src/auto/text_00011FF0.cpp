@@ -285,7 +285,7 @@ struct C_00012590 {
     char f3f4[0x10];
     void func_000114D0(int a);
     S_11FF0_Vec4i func_00011E30(void);
-    void func_001C7EB0(void);
+    void func_001C7EB0(int a);
     int func_00012590(int a);
 };
 
@@ -295,6 +295,11 @@ void __stdcall func_00011FF0(void *p, int step, int count, S_11FF0_IterFn fn)
         fn(p);
         p = (char *)p + step;
     }
+}
+
+void AIPedIdleState::func_00012020()
+{
+    owner->func_001C6DA0(owner->f414, 1);
 }
 
 void func_00012140(void) {
