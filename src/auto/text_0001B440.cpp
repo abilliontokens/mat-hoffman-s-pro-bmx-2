@@ -561,34 +561,21 @@ void C_0001C1E0::func_0001BDB0(int idx)
     }
 }
 
-__forceinline int C_0001C1E0::slot_query(int idx, int b)
-{
-    S_0001C1E0_Slot *s = f2c->f28[idx];
-    int k = s->func_001B5750(b);
-    if (s->f84 == k) {
-        return s->f78[k] | (s->f1A4->f10 == 0);
-    }
-    return s->f78[k];
-}
-
 int C_0001C1E0::func_0001BDF0(int a, int b)
 {
     S_0001C1E0_Slot *s;
     int k;
     int idx = func_0001B3C0(a);
 
-    if (f2c == 0) {
-        return 0;
+    if (f2c != 0 && idx < f2c->f24 && idx >= 0) {
+        s = f2c->f28[idx];
+        k = s->func_001B5750(b);
+        if (s->f84 == k) {
+            return s->f78[k] | (s->f1A4->f10 == 0);
+        }
+        return s->f78[k];
     }
-    if (idx >= f2c->f24 || idx < 0) {
-        return 0;
-    }
-    s = f2c->f28[idx];
-    k = s->func_001B5750(b);
-    if (s->f84 == k) {
-        return s->f78[k] | (s->f1A4->f10 == 0);
-    }
-    return s->f78[k];
+    return 0;
 }
 
 struct S_0001C020_Mgr {
