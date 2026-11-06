@@ -484,6 +484,48 @@ int func_001E9760(S_001E9714_File *stream) {
     return result;
 }
 
+extern "C" unsigned int __cdecl func_001ED7FC(int, void *, unsigned int);
+extern "C" int __cdecl func_001ED552(S_001E9_FILE *);
+unsigned int func_001E97B1(void *buffer, unsigned int size, unsigned int count, S_001E9_FILE *stream) {
+    char *data = (char *)buffer;
+    unsigned int nread;
+    unsigned int bufsize;
+    unsigned int total;
+    unsigned int nbytes;
+    nread = total = size * count;
+    int c;
+    if (total == 0) return 0;
+    if (stream->flag & 0x10c) bufsize = stream->bufsiz;
+    else bufsize = 0x1000;
+    do {
+        if ((stream->flag & 0x10c) && stream->cnt != 0) {
+            nbytes = (nread < (unsigned int)stream->cnt) ? nread : stream->cnt;
+            memcpy(data, stream->ptr, nbytes);
+            nread -= nbytes;
+            stream->cnt -= nbytes;
+            stream->ptr += nbytes;
+            data += nbytes;
+        } else if (nread >= bufsize) {
+            nbytes = bufsize ? nread - nread % bufsize : nread;
+            nbytes = func_001ED7FC(stream->file, data, nbytes);
+            if (nbytes == 0) {
+                stream->flag |= 0x10;
+                return (total - nread) / size;
+            } else if (nbytes == (unsigned int)-1) {
+                return (stream->flag |= 0x20, (total - nread) / size);
+            }
+            nread -= nbytes;
+            data += nbytes;
+        } else {
+            if ((c = func_001ED552(stream)) == -1) return (total - nread) / size;
+            *data++ = (char)c;
+            --nread;
+            bufsize = stream->bufsiz;
+        }
+    } while (nread != 0);
+    return count;
+}
+
 #pragma optimize("t", off)
 int func_001E98A9(int param_1, int param_2, int param_3, int param_4) {
     int func_001EB109(int);
@@ -771,6 +813,28 @@ int func_001E9E46(S_001E9_FILE *str)
     return 0;
 }
 
+#pragma inline_depth(0)
+int func_001E9E74(int mode) {
+ int count = 0;
+ int result = 0;
+ func_001EB390(1);
+ __try {
+  for (int i = 0; i < D_002FB36C; ++i) {
+   if (D_002FB368[i] && (D_002FB368[i]->flag & 0x83)) {
+    func_001EB138(i, D_002FB368[i]);
+    __try {
+     if (D_002FB368[i]->flag & 0x83) {
+      if (mode == 1) { if (func_001E9E46(D_002FB368[i]) != -1) ++count; }
+      else if (mode == 0 && (D_002FB368[i]->flag & 2)) { if (func_001E9E46(D_002FB368[i]) == -1) result = -1; }
+     }
+    } __finally { func_001EB18A(i, D_002FB368[i]); }
+   }
+  }
+ } __finally { func_001E9F40(); }
+ return mode == 1 ? count : result;
+}
+#pragma inline_depth(255)
+
 #pragma optimize("", on)
 void func_001E9F40(void) {
     int func_001EB302(...);
@@ -800,35 +864,26 @@ void func_001E9F99(void) {
     func_001E9E74(1);
 }
 
-#pragma optimize("t", off)
+#pragma intrinsic(strlen)
 const char *S_001E9FA2_TypeInfo::func_001E9FA2(void)
 {
     void func_001EB390(int n);
     int func_001EB302(...);
     char *und;
     char *tail;
-    char *src;
-    char *dst;
-    char c;
 
     if (_m_data == 0) {
         und = func_001F2B32(0, _m_d_name + 1, 0, func_001E8AA5, func_001E8390, 0x2800);
         if (und == 0) {
             return 0;
         }
-        tail = und - 1;
-        tail += strlen(und);
+        tail = und + (strlen(und) - 1);
         while (*tail == ' ') {
             *tail-- = 0;
         }
         func_001EB390(0xe);
-        dst = _m_data = (char *)func_001E8AA5(strlen(und) + 1);
-        if (dst != 0) {
-            src = und;
-            do {
-                c = *src++;
-                *dst++ = c;
-            } while (c != 0);
+        if ((_m_data = (char *)func_001E8AA5(strlen(und) + 1)) != 0) {
+            strcpy(_m_data, und);
         }
         func_001E8390(und);
         func_001EB302(0xe);
@@ -858,7 +913,6 @@ void *func_001EA038(void *inptr)
 
 double func_001EA0D3(double x) {
     extern unsigned int D_002AE658;
-    extern double D_002766B8;
     extern char D_0000FFFF;
     unsigned int func_001F3AFB(unsigned int, int);
     int func_001F39D3(double);
@@ -878,18 +932,17 @@ double func_001EA0D3(double x) {
                 return x;
             }
         }
-        return func_001F38F6(8, 0xb, x, x + D_002766B8, cw);
+        return func_001F38F6(8, 0xb, x, x + 1.0, cw);
     }
     r = func_001F3996(x);
-    if (r == x) {
-        func_001F3AFB(cw, (int)&D_0000FFFF);
-        return r;
-    }
-    if (cw & 0x20) {
-        func_001F3AFB(cw, (int)&D_0000FFFF);
-        return r;
-    }
+    if (r == x)
+        goto restore;
+    if (cw & 0x20)
+        goto restore;
     return func_001F38F6(0x10, 0xb, x, r, cw);
+restore:
+    func_001F3AFB(cw, (int)&D_0000FFFF);
+    return r;
 }
 
 void *func_001EA1A1(unsigned int num, unsigned int size)
