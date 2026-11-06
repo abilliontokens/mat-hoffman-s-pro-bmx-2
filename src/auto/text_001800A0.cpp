@@ -69,7 +69,8 @@ struct Pair180600 {
 };
 extern "C" void func_00104A00(float *dst, float *src);
 void func_00011060(void);
-static __forceinline float Sqrt180600(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
+extern "C" float __cdecl sqrtf(float);
+#pragma intrinsic(sqrtf)
 struct C_00180600 {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26(); virtual void func_000EBE90v();
     char pad4[0xAC];
@@ -154,7 +155,7 @@ void C_00180600::func_00180600(int a0, int handle)
     {
         int i;
         float x, y, z;
-        V_1800 d, n;
+        float n[3];
         C_001804F0 q1, q2, q3;
         for (i = 0; i < n1; i++) {
             Rec180600 *rec = (Rec180600 *)((char *)fFC + i * 0x24);
@@ -167,14 +168,12 @@ void C_00180600::func_00180600(int a0, int handle)
             rec->fC = (float)s->unk0 * D_002EFD9C * D_002AB30C;
             rec->f10 = (float)s->unk2 * D_002EFD9C * D_002AB30C;
             rec->f14 = (float)s->unk4 * D_002EFD9C * D_002AB30C;
-            d.x = rec->fC - A.x;
-            d.y = rec->f10 - A.y;
-            d.z = rec->f14 - A.z;
-            func_00104A00(&n.x, &d.x);
+            V_1800 d = Sub1800(&rec->fC, &A.x);
+            func_00104A00(n, &d.x);
             D_002BEAAC->func_0013C8A0(handle, &x, 4, 1);
             D_002BEAAC->func_0013C8A0(handle, &y, 4, 1);
             D_002BEAAC->func_0013C8A0(handle, &z, 4, 1);
-            V_1800 B(n.x + x, n.y + y, n.z + z);
+            V_1800 B(n[0] + x, n[1] + y, n[2] + z);
             s = q2.func_001804F0(&B.x);
             rec->f18 = (float)s->unk0 * D_002EFD9C * D_002AB30C;
             rec->f1C = (float)s->unk2 * D_002EFD9C * D_002AB30C;
@@ -190,7 +189,10 @@ void C_00180600::func_00180600(int a0, int handle)
             rec->f18 = (float)s->unk0 * D_002EFD9C * D_002AB30C;
             rec->f1C = (float)s->unk2 * D_002EFD9C * D_002AB30C;
             rec->f20 = (float)s->unk4 * D_002EFD9C * D_002AB30C;
-            rec->f4 = Sqrt180600(C.z * C.z + C.y * C.y + C.x * C.x);
+            float sq = C.z * C.z + C.y * C.y + C.x * C.x;
+            float len;
+            _mm_store_ss(&len, _mm_sqrt_ss(*(__m128 *)&sq));
+            rec->f4 = len;
             D_002BEAAC->func_0013C8A0(handle, &rec->s8, 2, 1);
             D_002BEAAC->func_0013C8A0(handle, &rec->sA, 2, 1);
         }
@@ -219,6 +221,7 @@ void C_00180600::func_00180600(int a0, int handle)
             D_002BEAAC->func_0013C8A0(handle, &e->f18, 1, 4);
         }
     }
+    fF0s = 0;
 }
 
 void *C_00180DD0::func_00180DD0(unsigned int flags) {
