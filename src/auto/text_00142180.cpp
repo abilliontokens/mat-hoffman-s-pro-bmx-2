@@ -290,7 +290,7 @@ extern C_00142AF0_NodeMgr *D_002A829C;
 extern C_00142AF0_SlotMgr *D_002AA6C0;
 extern C_00142AF0_TrackMgr *D_002F0630;
 
-void C_001425B0::CopyVertex_00142180(Vertex_00142180 *out, int d, int s)
+__forceinline void C_001425B0::CopyVertex_00142180(Vertex_00142180 *out, int d, int s)
 {
     out[d].x = ((Particle_00142180 *)f10)[s].x;
     out[d].y = ((Particle_00142180 *)f10)[s].y;
