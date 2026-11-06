@@ -105,6 +105,8 @@ struct S_00088DD0_Sprite {
     u32 f38;
     char pad3C[0x1c];
     unsigned char b58;
+    void SetWidth(u32 w) { if(f28!=w) { f28=w; b58|=1; } }
+    void SetHeight(u32 h) { if(f2C!=h) { f2C=h; b58|=1; } }
     S_00088DD0_Sprite *func_001D5760();
     void func_001D5810(void *a, int b, int c, int d);
 };
@@ -225,20 +227,25 @@ void C_00088F60::func_00088F60(int param_1)
   return;
 }
 
-void C_00088F70::func_00088F70(int a, int b)
+void C_00088F70::func_00088F70(volatile int a, volatile int b)
 {
-    if ((float)a > f34 && b == 0) {
-        if (f40->v7() == 0) {
-            f40->v5(0);
+    C_00088F70 * volatile self = this;
+    int tmp;
+    int * volatile p;
+    float t;
+    if ((float)a > self->f34 && b == 0) {
+        if (self->f40->v7() == 0) {
+            self->f40->v5(0);
         }
     }
-    f34 = (float)a;
+    self->f34 = (float)a;
     if (b != 0) {
-        float t = f34 / f30;
-        int r = _mm_cvtss_si32(_mm_load_ss(&t));
-        f3C = r;
-        if (f40->v7() != 0) {
-            f40->v6(0);
+        p = &tmp;
+        t = self->f34 / self->f30;
+        *p = _mm_cvtss_si32(*(__m128 *)&t);
+        self->f3C = tmp;
+        if (self->f40->v7() != 0) {
+            self->f40->v6(0);
         }
     }
 }
