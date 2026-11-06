@@ -197,6 +197,7 @@ struct C_000235C0 {
     void func_00021A20();
     int func_00021A50(int idx, int v);
     void func_000219E0(int idx);
+    void func_000239F0(float dt);
     inline void Select(int idx)
     {
         if (idx >= 0 && idx < D_002B7E18->f34 && D_002B7E18->f64[idx]->count != 0) {
