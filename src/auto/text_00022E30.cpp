@@ -94,7 +94,7 @@ struct C_00022E30 {
 };
 
 void func_000212C0(V4_00023340 *out, V4_00023340 *in);
-static __forceinline float Min_239F0(float a,float b) { return _mm_min_ss(_mm_set_ss(a),_mm_set_ss(b)).m128_f32[0]; }
+static __forceinline float Min_239F0(float a,float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_set_ss(a),_mm_set_ss(b))); return r; }
 
 inline void cross_00023340(float *out, float *a, float *b)
 {
@@ -527,6 +527,27 @@ void C_000235C0::func_000235C0()
                 return;
             }
         }
+    }
+}
+
+void C_000235C0::func_000239F0(float dt)
+{
+    V4_00023340 v(*(float *)&f4c.x - f5c.x, *(float *)&f4c.y - f5c.y, *(float *)&f4c.z - f5c.z), out;
+    func_000212C0(&v, &v);
+    if (f78) {
+        float ratio = (float)(f2c->count - f34) / (float)f2c->count;
+        float lim = 0.65f;
+        float s = Min_239F0(lim, ratio);
+        s = (s + D_0027627C) * (*(float *)&f2c->f0) * dt;
+        v.x *= s; v.y *= s; v.z *= s;
+        out.x = v.x + f5c.x; out.y = v.y + f5c.y; out.z = v.z + f5c.z; out.w = 1.0f;
+        f28->f1a4->f4->func_00199600(out);
+        if (f34 == f2c->count - 3 && *(int *)((char *)f28->f1a4 + 0x18) != *(int *)(*(char **)((char *)f28 + 0x1ac) + 0xc)) func_000219E0(3);
+    } else {
+        float s = dt * (*(float *)&f2c->f0);
+        v.x *= s; v.y *= s; v.z *= s;
+        out.x = v.x + f5c.x; out.y = v.y + f5c.y; out.z = v.z + f5c.z; out.w = 1.0f;
+        f28->f1a4->f4->func_00199600(out);
     }
 }
 
