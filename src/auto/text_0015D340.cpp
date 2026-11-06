@@ -36,7 +36,7 @@ static __forceinline void Xform_DD80(float *volatile outArg,float *volatile inAr
  __m128 t=_mm_add_ps(_mm_unpacklo_ps(r0,r1),_mm_unpackhi_ps(r0,r1));
  __m128 u=_mm_add_ps(r2,_mm_movehl_ps(r2,r2));
  _mm_storeu_ps(out,_mm_add_ps(_mm_movelh_ps(t,u),_mm_shuffle_ps(_mm_movehl_ps(t,t),u,0x14)));
- *(volatile float *)&out[3]=1.0f;
+ out[3]=1.0f;
 }
 
 void func_001E891B(void *p);
