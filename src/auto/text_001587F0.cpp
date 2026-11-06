@@ -195,13 +195,6 @@ struct C_00158C10 {
     void func_00158C10(int a, int b);
 };
 
-static __forceinline Vec4_587F0 RandomVec_587F0()
-{
-    float y = func_001E8833() * D_002754B0;
-    float x = func_001E8833() * D_002754B0;
-    return Vec4_587F0(x, y, func_001E8833() * D_002754B0);
-}
-
 void C_001587F0::func_001587F0(int a0, Vec4_587F0 pos, Vec4_587F0 dir)
 {
     unk5c = pos;
@@ -213,8 +206,7 @@ void C_001587F0::func_001587F0(int a0, Vec4_587F0 pos, Vec4_587F0 dir)
     float y = func_001E8833() * D_002754B0;
     float x = func_001E8833() * D_002754B0;
     Vec4_587F0 v(x, y, func_001E8833() * D_002754B0);
-    Vec4_587F0 *pv = &v;
-    func_001584A0(pv, &v);
+    func_001584A0(&v, &v);
     unk48 = 0.05f;
     unk28->v30();
     unk28->func_0011CA60(unk5c + v * unk48);
