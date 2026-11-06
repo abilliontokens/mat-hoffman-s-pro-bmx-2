@@ -32,8 +32,30 @@ struct C_NumHorse_Lookup {
     int *func_0018C160(int a);
 };
 
+/* input query object held at the root +8 */
+struct S_000E1070_Input {
+    int func_00136170(int id, int kind, int flag);
+};
+
+/* game settings record held at the root +0x2E0 */
+struct S_000E1070_Cfg {
+    int f0;
+    char pad4[0xC];
+    float f10;
+    int f14;
+    char pad18[8];
+    int f20;
+    char pad24[0x190 - 0x24];
+    int f190;
+    void func_0005B220();
+};
+
 struct C_NumHorse_Root {
-    char pad0[0x2E8];
+    char pad0[8];
+    S_000E1070_Input *f8;
+    char padC[0x2E0 - 0xC];
+    S_000E1070_Cfg *p2E0;
+    char pad2E4[4];
     C_NumHorse_Obj2E8 *p2E8;
     C_NumHorse_Lookup *p2EC;
 };
