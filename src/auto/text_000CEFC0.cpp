@@ -111,6 +111,7 @@ struct BmxUIPageGameOptions {
     int unk578;
     int unk57c;
     int unk580;
+    void func_000CEFC0();
     void func_000CFDA0();
     void func_000CFCD0();
     void func_000CFCA0();
