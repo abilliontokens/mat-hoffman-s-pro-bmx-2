@@ -194,6 +194,11 @@ static __forceinline float dist_119D0(const float *a, const float *b) {
     float x = a[0]-b[0], y = a[1]-b[1], z = a[2]-b[2];
     return sqrtf(z*z+y*y+x*x);
 }
+static __forceinline float dist2_119D0(const float *a, const float *b) {
+    float x = a[0]-b[0], y = a[1]-b[1], z = a[2]-b[2];
+    float square = z*z+y*y+x*x;
+    return sqrt_119D0(square);
+}
 struct C_000119D0 {
     char pad[0x3b0];
     int f3B0;
@@ -493,11 +498,13 @@ float C_00011730::func_00011730(float *pos, int i)
     return r;
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 void C_00011BE0::func_00011BE0(int * volatile index, float * volatile distance) {
     C_00011BE0 *volatile self;
     volatile float t[2];
-    self = this;
     *index = -1;
+    self = this;
     *distance = 1000000.0f;
     S_11BE0_List **list;
     for (int i = 0; list = &D_002B9120->list, i < (*list)->count; ++i) {
@@ -510,10 +517,10 @@ void C_00011BE0::func_00011BE0(int * volatile index, float * volatile distance) 
         t[1] = z*z+y*y+x*x;
         t[0] = sqrtf(t[1]);
         int *ix = index;
-        if (*ix == -1 || *distance > t[0]) { *ix = i; *distance = t[0]; }
+        float *dp;
+        if (*ix == -1 || (dp = distance, _ReadWriteBarrier(), *dp > t[0])) { *distance = (*ix = i, t[0]); }
     }
 }
-
 int C_00011D30::func_00011D30(void)
 {
     C_00017680_Vec b;
@@ -534,5 +541,27 @@ int C_00011D30::func_00011D30(void)
         }
     }
     return 1;
+}
+
+C_00017680_Vec C_00011E30::func_00011E30(void)
+{
+ C_00017680_Vec ret, pos, tmp, a;
+ int idx; volatile int cur;
+ float distance;
+ f3C->f4->func_00199B00(&pos,0);
+ if ((float)D_002B9120->cnt->count >= pos.y) {
+ ret=v404; cur=f3B8;
+ ((C_00011BE0*)this)->func_00011BE0(&idx,&distance);
+ if(idx!=-1) {
+ *(volatile float*)&a.z=0; *(volatile float*)&a.y=0; *(volatile float*)&a.x=0; *(volatile float*)&a.w=1;
+ S_11BE0_Actor *actor=load_list_11BE0(&D_002B9120->list)->actors[idx];
+ if(actor->state->fBC) a=*D_002B9120->list->actors[idx]->mid->f4->func_00199B00(&tmp,0);
+ else a=actor->pos;
+ cur=((C_000115F0*)this)->func_000115F0((float*)&a,33.0f,f3B8,1);
+ ret=*(C_00017680_Vec*)((char*)D_002B9120->paths[f3B4]->pts+cur*16);
+ f3C->f4->func_00199600(ret); f3B0=cur;
+ }
+ } else ret=pos;
+ return ret;
 }
 
