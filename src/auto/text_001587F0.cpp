@@ -100,10 +100,10 @@ struct C_00158BE0 {
 };
 
 struct C_001594F0 {
-    unsigned unk0 : 16;
-    unsigned unk2 : 8;
-    unsigned unk3 : 3;
-    unsigned unk3b : 5;
+    unsigned short unk0;
+    unsigned char unk2 : 8;
+    unsigned char unk3 : 3;
+    unsigned char unk3b : 5;
     int unk4;
     char pad8[0x14 - 8];
     int unk14;
@@ -265,6 +265,14 @@ void C_00158C10::func_00158C10(int a, int b)
     unk3c = obj;
     obj->v4(D_002758E4, 1, 1, 0, 0);
     func_001D3F50();
+}
+
+void func_00159480(float *out, const float *in)
+{
+ __m128 v=_mm_loadu_ps(in),q=_mm_mul_ps(v,v);
+ __m128 sum=_mm_movehl_ps(q,q);sum=_mm_add_ss(sum,q);q=_mm_shuffle_ps(q,q,0xe1);sum=_mm_add_ss(sum,q);
+ __m128 eps=_mm_load_ss(&D_002874A0);sum=_mm_add_ss(sum,_mm_and_ps(_mm_cmplt_ss(sum,eps),eps));
+ __m128 r=_mm_rsqrt_ps(sum);__m128 c=_mm_load_ss(&D_00287490);sum=_mm_mul_ss(sum,r);sum=_mm_mul_ss(sum,r);r=_mm_mul_ss(r,_mm_load_ss(&D_00287480));r=_mm_mul_ss(r,_mm_sub_ss(c,sum));r=_mm_shuffle_ps(r,r,0);_mm_storeu_ps(out,_mm_mul_ps(r,v));
 }
 
 C_001594F0 *C_001594F0::func_001594F0(void)
