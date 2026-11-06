@@ -483,17 +483,11 @@ int C_001CD590::func_001CD590(int a, int b) {
 
 XboxSoundGroup *XboxSoundGroup::func_001CD770(int a, int b)
 {
+    S_001CD770_Arr *arr = (S_001CD770_Arr *)&list;
     func_0001C8F0(b);
     vtbl = (void *)&D_0028F004;
-    list.items = 0;
-    list.count = 0;
-    list.growBy = 0;
-    list.capacity = 0;
-    f40b.b0 = 0;
-    list.items = (S_SoundElem **)func_001E8A44(0x20);
-    *(volatile u8 *)&f40 |= 1;
-    list.growBy = 0x10;
-    list.capacity = 8;
+    arr->init();
+    arr->alloc(8);
     f44 = 0;
     return this;
 }
