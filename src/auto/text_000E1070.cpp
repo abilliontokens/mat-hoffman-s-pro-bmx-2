@@ -34,7 +34,7 @@ struct C_NumHorse_Lookup {
 
 /* input query object held at the root +8 */
 struct S_000E1070_Input {
-    int func_00136170(int id, int kind, int flag);
+    int func_00136170(int id, int kind, char flag);
 };
 
 /* game settings record held at the root +0x2E0 */
