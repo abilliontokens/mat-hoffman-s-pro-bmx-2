@@ -21,6 +21,7 @@ struct S_000380B0_Array {
 };
 struct S_000380B0_Widget {
     virtual void v0(int); virtual void v1(); virtual void v2();
+    void func_001A4100(int, int, int);
 };
 struct BmxEventEditor {
     void *vtbl;
