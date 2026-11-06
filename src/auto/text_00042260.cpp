@@ -33,8 +33,8 @@ struct C_001C3E50 {
     void func_001C4C30();
 };
 struct C_001D35E0 {
-    virtual void v0(); virtual void v1(); virtual void v2(int, int, int);
-    virtual void v3(int, int, int); virtual void v4(); virtual void v5(); virtual void v6();
+    virtual void v0(); virtual void v1(); virtual void v2(char *, int, int);
+    virtual void v3(char *, int, int); virtual void v4(); virtual void v5(); virtual void v6();
     void func_001D35E0();
 };
 struct C_001A2C00 {
