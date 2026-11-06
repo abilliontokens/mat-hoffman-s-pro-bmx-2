@@ -73,7 +73,6 @@ struct E33680_G {
     char f2b8[0x28];
     E33680_Mgr *f2e0;
 };
-extern E33680_G *D_002A8490_;
 
 struct E33680_Loader {
     void func_0013C1D0(int a);
@@ -81,9 +80,9 @@ struct E33680_Loader {
     void func_0013B260(int a);
     void func_0013DFF0(char *name, int a);
 };
-extern E33680_Loader *D_002BEAAC_;
+extern E33680_Loader *D_002BEAAC;
 struct E33680_Sink { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(char *s); };
-extern E33680_Sink *D_002A829C_;
+extern E33680_Sink *D_002A829C;
 
 struct E33680_Trace {
     virtual void v0();
