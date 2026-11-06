@@ -45,6 +45,8 @@ struct S_00128480_Entry {
 };
 extern "C" float __cdecl sqrtf(float);
 #pragma intrinsic(sqrtf)
+extern "C" double __cdecl sqrt(double);
+#pragma intrinsic(sqrt)
 
 struct C_00128910 {
     char pad0[0xC];
@@ -139,6 +141,34 @@ void func_00128440(S_00127DD0_Node *node)
         func_00128440(node->right);
     }
     func_001E891B(node);
+}
+
+void func_00128480(S_00128480_Entry *out, S_00127DD0_Node *node, int *count, int *leaves)
+{
+    if (node->split >= D_00275544) {
+        S_00128480_Entry *e = out + *count;
+        e->split = node->split;
+        e->length = node->a.x;
+        e->a = *(int *)&node->a.y;
+        e->b = *(int *)&node->a.z;
+        e->c = *(int *)&node->a.w;
+        e->x = node->b.y;
+        e->y = node->b.z;
+        e->z = node->b.w;
+        e->length = sqrtf(node->b.y * node->b.y + node->b.z * node->b.z + node->b.w * node->b.w);
+        e->left = ++*count;
+        func_00128480(out, node->left, count, leaves);
+        if (node->left->split < D_00275544) {
+            e->left = *leaves | 0x8000;
+        }
+        e->right = *count;
+        func_00128480(out, node->right, count, leaves);
+        if (node->right->split < D_00275544) {
+            e->right = *leaves | 0x8000;
+        }
+    } else {
+        ++*leaves;
+    }
 }
 
 void func_001285A0(S_00127DD0_Entry *out, S_00127DD0_Node *node, int *count)
