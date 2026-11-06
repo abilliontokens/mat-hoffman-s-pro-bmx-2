@@ -72,6 +72,7 @@ void *func_001E8A44(int size);
 int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 void __stdcall func_00011FF0(void *p, int stride, int count, void *ctor);
 #include "ghidra.h"
+#include "asm_helpers.h"
 struct C_00187AF0 {
     void func_00187AF0(void);
 };
@@ -671,21 +672,13 @@ int C_001880A0::func_001880A0(S_001880A0_Stream * volatile stream)
 
 C_001881C0 *C_001881C0::func_001881C0(void)
 {
-    C_001881C0 * volatile self = this;
-    volatile int limit;
-    int count;
-
-    self->func_00187F60();
-    self->vtbl = (void *)&D_00289ED0;
-    limit = sizeof(f144) - 1;
-    if (limit > 4) {
-        count = 4;
-    } else {
-        count = limit;
-    }
-    func_001E8920(self->f144, (const char *)&D_002764F0, count);
-    self->f144[count] = 0;
-    return self;
+    func_00187F60();
+    vtbl = (void *)&D_00289ED0;
+    int limit = sizeof(f144) - 1;
+    int count = AsmMinI(limit, 4);
+    func_001E8920(f144, (const char *)&D_002764F0, count);
+    f144[count] = 0;
+    return this;
 }
 
 int __stdcall func_00188230(int a0) {
