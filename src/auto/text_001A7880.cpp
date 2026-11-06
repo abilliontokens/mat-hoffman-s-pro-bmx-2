@@ -11,7 +11,7 @@ struct V4_001A7FE0 { float x,y,z,w; __forceinline V4_001A7FE0() { z=0; y=0; x=0;
     __forceinline V4_001A7FE0(int) {}
 
     __forceinline void Clear() { x=y=z=0; w=1; }
-    __forceinline V4_001A7FE0 operator*(float s) const { V4_001A7FE0 r; r.x=x*s; r.y=y*s; r.z=z*s; return r; }
+    __forceinline V4_001A7FE0 operator*(float s) const { V4_001A7FE0 r; r.x=s*x; r.y=s*y; r.z=s*z; return r; }
     __forceinline V4_001A7FE0 operator-(const V4_001A7FE0 &b) const { V4_001A7FE0 r; r.x=x-b.x; r.y=y-b.y; r.z=z-b.z; return r; }
     __forceinline V4_001A7FE0 operator+(const V4_001A7FE0 &b) const { V4_001A7FE0 r; r.x=b.x+x; r.y=b.y+y; r.z=b.z+z; return r; } };
 struct Body_001A7FE0 {
