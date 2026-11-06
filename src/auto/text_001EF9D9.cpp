@@ -9,6 +9,8 @@ struct S_002F6A38 {
 extern S_002F6A38 D_002F6A38;
 extern int D_00295C04;
 int func_001EEE49(int n);
+struct S_001EF734;
+int __fastcall func_001EF1E7(S_001EF734 *self, int unused);
 
 /* 8-byte value object used by the 'A'..'N' parser helpers. */
 struct S_001EF734 {
@@ -623,6 +625,43 @@ void *_func_001F046A(S_001EF734 *o)
     }
     }
 }
+
+void *_func_001F062A(void *a, S_001EF734 *b, int c)
+{
+    extern char D_00295CA0[];
+    extern char D_00295C98[];
+    void *_func_001F007D(void *a, S_001EF734 *b);
+    void *_func_001F2BCC(void *a, S_001EF734 *b);
+    S_001EF734 local;
+    char ch = *D_002F6A28;
+
+    if (ch != 0) {
+        if (c != 0 && ch == 'X') {
+            D_002F6A28++;
+            if (b->func_001EF1E7() != 0) {
+                ((S_001EF734 *)a)->func_001EF759(&D_0027D1D8);
+            } else {
+                void *x;
+                _func_001EFD19(a, D_00295CA0, x);
+            }
+        } else {
+            if (ch == 'Y') {
+                D_002F6A28++;
+                _func_001F007D(a, b);
+            } else if (ch == '_' && D_002F6A28[1] == 'Z') {
+                D_002F6A28 += 2;
+                _func_001EFD19(a, D_00295C98, _func_001F2BCC(&local, b));
+            } else {
+                _func_001F2BCC(a, b);
+            }
+            return a;
+        }
+    } else {
+        _func_001EFCF7(a, 2, b);
+    }
+    return a;
+}
+
 #pragma optimize("", on)
 
 #pragma optimize("y", on)
