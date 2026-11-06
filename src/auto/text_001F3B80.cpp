@@ -667,7 +667,7 @@ void func_001F4675(unsigned int *x, int n)
     unsigned int mask = ~(-1 << (n % 32));
     unsigned int carry = 0;
     unsigned int v;
-    unsigned int lo;
+    volatile unsigned int lo;
     int i;
 
     for (i = 0; i < 3; i++) {
