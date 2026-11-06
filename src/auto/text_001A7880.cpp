@@ -75,7 +75,6 @@ struct State_001A7FE0 {
 };
 extern unsigned D_002BA154, D_002BA15C, D_002BA160;
 void func_0011F540(V4_001A7FE0 *, V4_001A7FE0, float *);
-V4_001A7FE0 func_0011F540(V4_001A7FE0, float *);
 static __forceinline V4_001A7FE0 xform_001A7FE0(V4_001A7FE0 v, float *m)
 {
     V4_001A7FE0 r;
