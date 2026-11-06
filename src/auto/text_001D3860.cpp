@@ -38,6 +38,10 @@ struct C_001D3E30 {
     void func_001D3EA0(int n, const char *a, const char *b, const char *c);
 };
 
+struct C_001D4010 {
+    int func_001D4010(int a);
+};
+
 struct C_001D3CA0 {
     undefined4 func_001D3CA0(byte param_1);
 };
