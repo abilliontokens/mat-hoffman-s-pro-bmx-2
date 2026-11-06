@@ -83,6 +83,13 @@ struct C_00034A40 {
     void func_00034A40(void *a1, void *a2, void *a3, S_00034A40_Tab *a4, float a5, int a6, int a7, int a8, int a9);
 };
 
+/* object behind D_002EFDB8 (its vtable slots 7 and 8 are called by func_00034A40) */
+struct S_00034A40_G {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(int);
+    virtual void v8();
+};
+
 extern int *D_002EFDB8;
 extern char D_00276D54[];
 extern float D_00275AEC;
