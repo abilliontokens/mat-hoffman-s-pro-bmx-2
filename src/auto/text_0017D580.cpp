@@ -99,6 +99,21 @@ C_0017D5A0 *C_0017D5A0::func_0017D5A0(int a1, int a2, int a3, int a4, int a5, in
   return this;
 }
 
+S_QTNode *func_0017D630()
+{
+    S_QTNode *n = (S_QTNode *)func_001E8A44(0x14);
+    if (n != 0) {
+        n->vtbl = &D_002890E8;
+        n->f8 = 0;
+        n->f4 = 0;
+        ((S_QuadTreeGlobal *)D_002EFD80)->f880++;
+        n->fC = 0;
+        n->f10 = -3.4028235e38f;
+        return n;
+    }
+    return 0;
+}
+
 undefined4 C_0017DAC0::func_0017DAC0(byte param_1)
 {
   int func_0017CE40(...);
@@ -142,16 +157,51 @@ void *C_0017DC00::func_0017DAE0(void *item, int x0, int y0, int x1, int y1, int 
 
 void C_0017DC00::func_0017DC00()
 {
-  int i;
+    int i;
 
-  for (i = 0; i < 4; i++) {
-    if (arr4 && arr4[i]) {
-      arr4[i]->func_0017DC00();
-    } else {
-      break;
+    for (i = 0; i < 4; i++) {
+        C_0017DC00 *child;
+        if (arr4 && (child = arr4[i]) != 0) {
+            child->func_0017DC00();
+        }
     }
-  }
-  ((C_0017DC00 *)D_002EFD80)->func_0017D120(f8);
+    ((C_0017DC00 *)D_002EFD80)->func_0017D120(f8);
+}
+
+void C_0017DC00::func_0017DC40(int x0, int y0, int x1, int y1, int size)
+{
+    int xe = x1 + size;
+    int ye = y1 + size;
+    int half = size >> 1;
+
+    if (arr4) {
+        if (x0 >= xe) {
+            if (y0 >= ye) {
+                if (arr4[0]) arr4[0]->func_0017DC40(x0, y0, x1, y1, half);
+                if (arr4[1]) arr4[1]->func_0017DC40(x0, y0, x1, ye, half);
+                if (arr4[2]) arr4[2]->func_0017DC40(x0, y0, xe, y1, half);
+                if (arr4[3]) arr4[3]->func_0017DC40(x0, y0, xe, ye, half);
+            } else {
+                if (arr4[1]) arr4[1]->func_0017DC40(x0, y0, x1, ye, half);
+                if (arr4[0]) arr4[0]->func_0017DC40(x0, y0, x1, y1, half);
+                if (arr4[3]) arr4[3]->func_0017DC40(x0, y0, xe, ye, half);
+                if (arr4[2]) arr4[2]->func_0017DC40(x0, y0, xe, y1, half);
+            }
+        } else {
+            if (y0 >= ye) {
+                if (arr4[2]) arr4[2]->func_0017DC40(x0, y0, xe, y1, half);
+                if (arr4[3]) arr4[3]->func_0017DC40(x0, y0, xe, ye, half);
+                if (arr4[0]) arr4[0]->func_0017DC40(x0, y0, x1, y1, half);
+                if (arr4[1]) arr4[1]->func_0017DC40(x0, y0, x1, ye, half);
+            } else {
+                if (arr4[3]) arr4[3]->func_0017DC40(x0, y0, xe, ye, half);
+                if (arr4[2]) arr4[2]->func_0017DC40(x0, y0, xe, y1, half);
+                if (arr4[1]) arr4[1]->func_0017DC40(x0, y0, x1, ye, half);
+                if (arr4[0]) arr4[0]->func_0017DC40(x0, y0, x1, y1, half);
+            }
+        }
+    }
+    ((C_0017DC00 *)D_002EFD80)->func_0017D500(f8, 0);
 }
 
 void C_0017DC00::func_0017E1D0(int x0, int y0, int x1, int y1, int x, int y, int size, int minSize)
