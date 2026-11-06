@@ -44,6 +44,21 @@ struct S_ADFD0_Vtx {
 struct S_ADFD0_Slot6C { void func_0014A650(void *p); };
 struct S_ADFD0_Slot70 { void func_00142D00(void *p); };
 
+struct C_1AE570_Root;
+extern C_1AE570_Root *D_002EFDB8;
+struct S_ADFD0_CamX {
+    char pad0[0x1E0];
+    int f1E0;
+    int f1E4;
+};
+struct S_ADFD0_RootX {
+    char pad0[4];
+    S_ADFD0_CamX *cam;
+    char pad8[0x64];
+    S_ADFD0_Slot6C *f6c;
+    S_ADFD0_Slot70 *f70;
+};
+
 extern int D_0020C6E0, D_0020C6E4, D_0020C6DC, D_0020C6EC, D_0020C6F0, D_0020CA50;
 extern int D_00040300, D_00040304, D_00040344, D_00040348, D_00040354;
 void __fastcall func_001FD020(void *p, int v);
