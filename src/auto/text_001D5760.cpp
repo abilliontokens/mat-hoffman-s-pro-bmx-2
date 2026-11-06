@@ -270,7 +270,7 @@ static __forceinline void FloatToIntLoad(int *out, float f)
 {
     int * volatile p = out;
 
-    *p = _mm_cvttss_si32(*(__m128 *)&f);
+    *p = _mm_cvtt_ss2si(_mm_load_ss(&f));
 }
 
 struct C_001D6290Sub {
