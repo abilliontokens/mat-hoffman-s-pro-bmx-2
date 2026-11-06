@@ -10,8 +10,14 @@ extern char D_002A60B0;
 extern char D_0027A054;
 extern char D_002786B0;
 void *func_001E8A44(int size);
-void *__fastcall func_001D5760(void *self, int unused);
-void __fastcall func_001D5810(void *self, int unused, char *name, float x, float y, int z);
+struct W_0008DB70 {
+    char pad0[0x28];
+    float f28; float f2c; char pad30[0x34 - 0x30]; float f34;
+    int f38; char pad3c[0x40 - 0x3c]; int f40; int f44; float f48;
+    char pad4c[0x58 - 0x4c]; unsigned char f58;
+    W_0008DB70 *func_001D5760();
+    void func_001D5810(char *name, float x, float y, int z);
+};
 struct S_0008DB70 {
     char pad0[0x40];
     int f40; int f44; char *f48;
