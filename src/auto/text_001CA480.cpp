@@ -119,6 +119,51 @@ struct WaterDisplacement {
     void func_00157660();
 };
 
+struct Vec4_001CA480 {
+    float x, y, z, w;
+    Vec4_001CA480() { x = y = z = 0.0f; w = 1.0f; }
+    Vec4_001CA480(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
+};
+
+struct Cam_001CA480 {
+    char pad0[0x170];
+    float posx, posy, posz;
+    char pad17C[4];
+    float dirx, diry, dirz;
+    char pad18C[0x1D0 - 0x18C];
+    float fov;
+    char pad1D4[0x1F8 - 0x1D4];
+    float aspect;
+    float nearD;
+    float farD;
+};
+
+struct CamRoot_001CA480 {
+    char pad0[4];
+    Cam_001CA480 *cam;
+};
+
+struct Frustum_001CA480 {
+    char padD4_[0xD4];
+    Vec4_001CA480 vD4;
+    Vec4_001CA480 vE4;
+    Vec4_001CA480 vF4;
+    char pad104[0x304 - 0x104];
+    unsigned int f304;
+    unsigned int f308;
+};
+
+struct Plane_001CA480 {
+    float f0;
+    float f4;
+};
+
+extern CamRoot_001CA480 *D_002EFDB8;
+extern Frustum_001CA480 *D_002F08BC;
+extern float D_0028AC40;
+float func_0014F600(float a);
+int func_001CA360(void *a, void *b, Vec4_001CA480 *p0, Vec4_001CA480 *p1, Vec4_001CA480 *out);
+
 struct WaterObject {
     void *vtbl;
     void *func_001CAFD0(int a0);
