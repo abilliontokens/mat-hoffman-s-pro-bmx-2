@@ -191,6 +191,24 @@ struct C_00086C10 {
     void func_00086C10(int a0);
 };
 
+extern int D_0027958C;
+extern int D_002786A0;
+extern int D_0028F5EC;
+extern int D_0028F5DC;
+struct Icon86E60 {
+    void *vtbl;
+    char pad4[0x24];
+    int w28;
+    char pad2C[8];
+    int h34;
+    char pad38[4];
+    float a3C, b40, c44, d48;
+    char pad4C[0xC];
+    unsigned char flags;
+    Icon86E60 *func_001D5760();
+    void func_001D5810(char *name, float x, float y, int z);
+};
+
 struct C_000874D0 {
     char pad0[0x40];
     int unk40;
@@ -363,13 +381,11 @@ int C_00086C70::func_00086C70(int a0) {
 
 void C_00086C80::func_00086C80()
 {
-    int *r = D_002A8490->f2EC->func_0018C160((int)&D_00278690);
-    if (r != 0 && *r != 0) {
-        C_Clamp_00086C80 *o = func_0018C070((C_Mid_00086C80 *)*r);
-        if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
-        if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
-    }
-    func_001578D0();
+ int *r; C_Clamp_00086C80 *o; C_Lookup_00086C80 *lk;
+ lk=D_002A8490->f2EC; r=lk->func_0018C160((int)&D_00278690);
+ if(r && *r) { o=((C_Mid_00086C80 *)*r)->func_0018C070(); if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+ if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000; }
+ func_001578D0();
 }
 
 BestScoreOverlay *BestScoreOverlay::func_00086DC0(int a0) {
@@ -407,6 +423,33 @@ void BestScoreOverlay::func_00086E00(void) {
         f30->Destroy(1);
     }
     ((C_00157660 *)this)->func_00157660();
+}
+
+extern "C" unsigned int strlen(const char *);
+extern "C" void *memset(void *, int, unsigned int);
+void BestScoreOverlay::func_000873C0(void) {
+ char buf[15];
+ char out[15];
+ memset(buf,0,15);
+ memset(out,0,15);
+ f3C = *(int *)(f34 + 0xA40);
+ if ((int)f3C > (int)f40) f40 = f3C;
+ func_001ADCC0(buf, 15, D_00277038, f40);
+ int rem = strlen(out) % 3;
+ int i=0;
+ if ((int)strlen(buf)>0) {
+ char *p=out;
+ do {
+  if (i > rem-1 && i && ((i-rem)==0 || (i-rem)%3==0)) {
+   *p++ = ',';
+   *p = buf[i];
+  } else *p = buf[i];
+  p++;
+  i++;
+ } while (i<(int)strlen(buf));
+ }
+ f28->func_0005E840(out);
+ f28->func_001D6600();
 }
 
 void C_000874D0::func_000874D0(void) {
