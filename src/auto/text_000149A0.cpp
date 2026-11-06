@@ -39,6 +39,12 @@ static __forceinline float sqrtf(float x)
     _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x));
     return r;
 }
+static __forceinline float sqrtf(float *x)
+{
+    float r;
+    _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)x));
+    return r;
+}
 
 struct Obj13F50 {
     void func_00013F50(void *arg1, int arg2, void *arg3, int arg4);
