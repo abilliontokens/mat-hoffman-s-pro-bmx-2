@@ -153,7 +153,6 @@ int S_001EF734::func_001EF1E7(void)
 
 void *_func_001EF9D9(S_001EF734 *o)
 {
-    /* probe: ellipsis-only callee declaration */
     S_001EF734 local;
     char c = *D_002F6A28;
     if (c != 0) {
@@ -371,7 +370,7 @@ void *_func_001EFDB9(void *out, int v)
         return out;
     }
     if (c >= '0' && c <= '9') {
-        dim = *D_002F6A28++ - '/';
+        dim = *(volatile char *)D_002F6A28++ - '/';
         v = 0;
     } else {
         dim = 0;
@@ -519,40 +518,22 @@ void *_func_001F0000(S_001EF734 *o)
 
 void *_func_001F007D(S_001EF734 *out, S_001EF734 *st)
 {
-    S_001EF734 arrayType;
-    S_001EF734 t10;
-    S_001EF734 t18;
-    S_001EF734 t20;
-    S_001EF734 t28;
-    int n;
-
-    if (*D_002F6A28 != 0) {
-        n = func_001EE9D1();
-        if (n < 0) {
-            n = 0;
-        }
-        if (n == 0) {
-            func_001F2BCC(out, t18.func_001EF734('[')->func_001EF8F6(&arrayType, 2)->func_001EFD3B(&t10, ']'));
-            return out;
-        }
-        arrayType.value = 0;
-        *(u16 *)&arrayType.flags &= 0xfe00;
-        if (st->flags & 0x80) {
-            arrayType.func_001EFB82(D_00295B38);
-        }
-        while (n--) {
-            arrayType.func_001EF935(((S_001EF734 *)_func_001EFCD5(&t28, '[', _func_001EFDB9(&t20, 0)))->func_001EFD3B(&t18, ']'));
-        }
-        if (st->func_001EF1E7() == 0) {
-            arrayType.func_001EEF4F((int)((st->flags & 0x80) ? st : ((S_001EF734 *)_func_001EFCD5(&t18, '(', st))->func_001EFD3B(&t20, ')'))->func_001EFAB5(&t28, &arrayType));
-        }
-        func_001F2F3F(&t10, &arrayType);
-        t10.flags |= 0x80;
-        out->func_001EEEE6(&t10);
-        return out;
-    }
-    func_001F2BCC(out, (st->func_001EF1E7() == 0 ? ((S_001EF734 *)_func_001EFCD5(&t10, '(', st))->func_001EFD7A(&t18, D_00295C68) : t18.func_001EF734('['))->func_001EF8F6(&t20, 2)->func_001EFD3B(&t28, ']'));
-    return out;
+ S_001EF734 temps[5];
+ int n;
+ if (*D_002F6A28 != 0) {
+ n=func_001EE9D1(); if(n<0)n=0;
+ if(n==0) {func_001F2BCC(out,temps[2].func_001EF734('[')->func_001EF8F6(&temps[4],2)->func_001EFD3B(&temps[3],']'));return out;}
+ temps[4].value=0; *(u16 *)&temps[4].flags &=0xfe00;
+ if(st->flags&0x80)temps[4].func_001EFB82(D_00295B38);
+ do {temps[4].func_001EF935(((S_001EF734 *)_func_001EFCD5(&temps[0],'[',_func_001EFDB9(&temps[1],0)))->func_001EFD3B(&temps[2],']'));}while(--n);
+ if(st->func_001EF1E7()==0) {
+ if(st->flags&0x80) temps[4].func_001EEF4F((int)st->func_001EFAB5(&temps[0],&temps[4])); else temps[4].func_001EEF4F((int)((S_001EF734 *)_func_001EFCD5(&temps[2],'(',st))->func_001EFD3B(&temps[1],')')->func_001EFAB5(&temps[0],&temps[4]));
+ }
+ func_001F2F3F(&temps[3],&temps[4]);temps[3].flags|=0x80;out->func_001EEEE6(&temps[3]);return out;
+ }
+ if(st->func_001EF1E7()==0)func_001F2BCC(out,((S_001EF734 *)_func_001EFCD5(&temps[3],'(',st))->func_001EFD7A(&temps[2],D_00295C68)->func_001EF8F6(&temps[1],2)->func_001EFD3B(&temps[0],']'));
+ else func_001F2BCC(out,temps[2].func_001EF734('[')->func_001EF8F6(&temps[1],2)->func_001EFD3B(&temps[0],']'));
+ return out;
 }
 
 void *_func_001F01D8(S_001EF734 *o)
