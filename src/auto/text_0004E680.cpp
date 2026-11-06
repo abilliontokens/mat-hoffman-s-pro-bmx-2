@@ -177,6 +177,7 @@ struct C_0004ECC0 {
 };
 
 int func_00011260(int lo, int hi);
+typedef enum { BAD_NO_0004EA20, BAD_YES_0004EA20 } EBad_0004EA20;
 extern char D_00277750[];
 
 struct S_0004EA20_Vec {
