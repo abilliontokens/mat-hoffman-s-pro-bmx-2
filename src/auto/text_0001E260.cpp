@@ -646,6 +646,25 @@ void C_0001EDE0::func_0001EDE0(int a0, int a1) {
     unk5C = a1;
 }
 
+/* vtable slot 30 (0x1EE00): the analysis merged it into func_0001EDE0 */
+Vec4 *C_0001EDE0::func_0001EE00(Vec4 *out) {
+    Vec4 a;
+    Vec4 b;
+    Vec4 c;
+    float *p;
+
+    if (unk50 != 0 && unkF8 != 0) {
+        *out = unk104;
+        return out;
+    }
+    a.z = 0; a.y = 0; a.x = 0; a.w = 1.0f;
+    b.z = 0; b.y = 0; b.x = 0; b.w = 1.0f;
+    unk28->unk230->func_00197B40(&a, &b);
+    p = func_0001E9E0(&c.x, &a.x);
+    *out = *(Vec4 *)p;
+    return out;
+}
+
 void C_0001EED0::func_0001EED0(void)
 {
   int in_ECX = (int)this;
