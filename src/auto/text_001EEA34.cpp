@@ -656,14 +656,35 @@ unsigned char __fastcall func_001EF235(BitObj *self, int unused)
     return 0;
 }
 
+/* copies the nodes' text into dst, at most left bytes; returns the end of the copy */
+static __forceinline char *CopyNodes_001EF26D(S_001EF210_Node *p, char *dst, int left)
+{
+    int len;
+
+    for (; p != 0; p = p->next) {
+        if (left <= 0) {
+            break;
+        }
+        len = p->v0();
+        if (len != 0) {
+            if (left - len < 0) {
+                len = left;
+            }
+            if (p->v2(dst, len) != 0) {
+                left -= len;
+                dst += len;
+            }
+        }
+    }
+    return dst;
+}
+
 char *__fastcall func_001EF26D(BitObj *self, int unused, char *buf, int n)
 {
     if (func_001EF1E7(self, unused) == 0) {
-        int left;
         char *dst;
         S_001EF210_Node *p;
         int len;
-
         if (buf == 0) {
             n = func_001EF210(self, unused) + 1;
             buf = (char *)D_002F6A04.func_001EEE62(n, 0);
@@ -671,17 +692,18 @@ char *__fastcall func_001EF26D(BitObj *self, int unused, char *buf, int n)
                 return buf;
             }
         }
-        left = n;
-        p = (S_001EF210_Node *)self->f0;
         dst = buf;
-        for (; p != 0 && left > 0; p = p->next) {
+        for (p = (S_001EF210_Node *)self->f0; p != 0; p = p->next) {
+            if (n <= 0) {
+                break;
+            }
             len = p->v0();
             if (len != 0) {
-                if (left - len < 0) {
-                    len = left;
+                if (n - len < 0) {
+                    len = n;
                 }
                 if (p->v2(dst, len) != 0) {
-                    left -= len;
+                    n -= len;
                     dst += len;
                 }
             }
@@ -867,7 +889,6 @@ BitObj *BitObj::func_001EF613(int a)
 void BitObj::func_001EF68E(char *p, int n)
 {
     S_001EF68E_Char *q;
-    int len;
 
     if (s4 == 1 || s4 == 3) {
         return;
@@ -876,11 +897,11 @@ void BitObj::func_001EF68E(char *p, int n)
         func_001EF333(3);
         return;
     }
-    if (!p || !(len = n)) {
+    if (p == 0 || n == 0) {
         s4 = 1;
         return;
     }
-    switch (len) {
+    switch (n) {
     case 0:
         q = 0;
         break;
@@ -889,13 +910,13 @@ void BitObj::func_001EF68E(char *p, int n)
         break;
     default:
         q = (S_001EF68E_Char *)D_002F6A04.func_001EEE62(0x10, 0);
-        if (q) {
+        if (q != 0) {
             q = (S_001EF68E_Char *)((S_001EF45F *)q)->func_001EF45F(p, n);
         }
         break;
     }
     f0 = (int)q;
-    if (!q) {
+    if (q == 0) {
         s4 = 3;
     }
 }
