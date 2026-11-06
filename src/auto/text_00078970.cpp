@@ -203,7 +203,9 @@ struct BmxInGameMenu {
 };
 
 struct FPSSave_Root {
-    char pad0[0x2A4];
+    char pad0[8];
+    FPSSave_R8 *p8;
+    char padC[0x2A4 - 0xC];
     FPSSave_R2A4 *p2A4;
     char pad2A8[0x2E0 - 0x2A8];
     FPSSave_R2E0 *p2E0;
