@@ -120,6 +120,7 @@ ParticleEmitterLoader *ParticleEmitterLoader::func_0016B7A0(void *a, char *name,
 }
 
 extern short D_002EFE50;
+extern "C" float __cdecl fabsf(float);
 extern float D_00278C48, D_00284ECC, D_002754B0;
 int func_001E8833();
 int func_00011260(int a, int b);
