@@ -34,6 +34,7 @@ struct Font_001C26B0 {
     float func_0018C210();
 };
 struct L_001C26B0 {
+    int index;
     float def[4];
     float v1[4];
     float v0[4];
@@ -262,10 +263,8 @@ C_001C26B0 *C_001C26B0::func_001C26B0(int a, C_001C26B0 *p)
     p->func_00168C50(D_0028E27C, 0x3f800000, data + 0x17c);
     l.has = p->func_00168550(D_002828C0, l.text, 0x1e0);
     if (l.has) {
-        int tmp;
-        memset(&tmp, 0, sizeof(tmp));
-        ((C_001C26B0 *)*(void **)(*(char **)(D_002A8490 + 0x2e8) + 0x2c))->func_000979C0(l.text, &tmp);
-        *(int *)(data + 0x6c) = tmp;
+        int tmp = 0;
+        *(int *)(data + 0x6c) = (((C_001C26B0 *)*(void **)(*(char **)(D_002A8490 + 0x2e8) + 0x2c))->func_000979C0(l.text, &tmp), tmp);
     } else {
         *(int *)(data + 0x180) = p->func_00168C20(D_0028E264, 0, data + 0x174);
         p->func_00168C20(D_0028E24C, 0, data + 0x170);
@@ -491,13 +490,10 @@ void UIWidgetStaticUserRotate::func_001C3440(int p)
             f1E4 = 0;
         }
     }
-    switch (f1E0) {
-    case 0:
-        func_00157A00(p);
-        break;
-    default:
+    if (f1E0 != 0) {
         func_001C2F90(p);
-        break;
+    } else {
+        func_00157A00(p);
     }
 }
 
