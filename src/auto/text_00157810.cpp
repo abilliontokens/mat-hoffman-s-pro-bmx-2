@@ -2,6 +2,7 @@
 #include "common.h"
 
 extern "C" char *__cdecl strcat(char *, const char *);
+extern "C" unsigned int __cdecl strlen(const char *);
 
 /* the run-time type information record of an object (typeid(*obj)) */
 struct S_00157D40_TypeInfo {
@@ -441,6 +442,79 @@ int C_00157CF0::func_00157CF0(void)
         f14->f10 = fC;
     }
     return func_0001E010();
+}
+
+void C_00157810::func_00157D40(void *file, int a, int b)
+{
+    S_00157D40_TypeInfo *ti;
+    char line[0x100];
+    char num[0x14];
+    char name[0x80];
+    const char *src;
+    char *dst;
+    char ch;
+    unsigned int w;
+    int n;
+    S_00157810_Child *c;
+
+    ti = func_001EA038(this);
+    char indent[3] = "  ";
+    src = ti->func_001E9FA2();
+    dst = name;
+    do {
+        ch = *src++;
+        *dst++ = ch;
+    } while (ch != 0);
+    if (file == 0) {
+        return;
+    }
+    line[0] = 0;
+    for (n = b; n > 0; n--) {
+        strcat(line, indent);
+    }
+    if (!f21_b0) {
+        if (a & 1) {
+            return;
+        }
+        strcat(line, "(");
+        strcat(line, name);
+        strcat(line, ")");
+    } else {
+        strcat(line, name);
+    }
+    strcat(line, ", 0x");
+    func_001ADCC0(num, 0x14, "%X", this);
+    strcat(line, num);
+    if (a & 2) {
+        w = f18;
+        if (w == 0xffffffff) {
+            strcat(line, " Wants all events");
+        } else if (w == 0) {
+            strcat(line, " Wants nothing");
+        } else {
+            if (w & 0x1) strcat(line, ", tick while inactive");
+            if (w & 0x2) strcat(line, ", wants tick");
+            if (w & 0x4) strcat(line, ", wants RenderPre3D");
+            if (w & 0x8) strcat(line, ", wants Render3D");
+            if (w & 0x10) strcat(line, ", wants RenderPost3D");
+            if (w & 0x20) strcat(line, ", wants pause");
+            if (w & 0x40) strcat(line, ", wants lost focus");
+            if (w & 0x80) strcat(line, ", wants restore");
+            if (w & 0x100) strcat(line, ", wants event handler");
+            if (w & 0x200) strcat(line, ", wants keyup");
+            if (w & 0x400) strcat(line, ", wants keydown");
+            if (w & 0x800) strcat(line, ", wants packet handler");
+            if (w & 0x1000) strcat(line, ", wants prepare geom");
+        }
+    }
+    strcat(line, "\r\n");
+    src = line;
+    while (*src++) {
+    }
+    func_0014FE80(line, 1, src - (line + 1), file);
+    for (c = f10; c != 0; c = c->fC) {
+        ((C_00157810 *)c)->func_00157D40(file, a, b + 1);
+    }
 }
 
 void C_00157810::func_00158270(char *name, int a, int b)
