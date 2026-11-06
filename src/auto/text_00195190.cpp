@@ -7,7 +7,7 @@ struct SimpleVCR {
     float f24, f28, f2c, f30, f34, f38;
     float f3c, f40, f44;
     float f48;
-    u32 f4c;
+    float f4c;
     float f50, f54, f58, f5c, f60, f64, f68, f6c, f70, f74, f78, f7c, f80, f84, f88;
     char pad8C[4];
     float f90, f94, f98, f9c, fA0, fA4, fA8, fAC, fB0, fB4, fB8;
