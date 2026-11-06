@@ -163,7 +163,7 @@ struct GL2 {
     V4 p1;
     V4 d;
     char pad50[4];
-    Xf *xf;
+    Xf * volatile xf;
     V4 s0;
     V4 s1;
     Sh *sh;
@@ -182,12 +182,14 @@ void func_001E891B(void *p);
 int func_001EA426(char *a, char *b);
 
 
-void GrindLineManager::func_00159C40(GL2 * volatile g)
+void GrindLineManager::func_00159C40(GL2 *g)
 {
-    GrindLineManager * volatile self = this;
+    GrindLineManager *self = this;
     V4 ext;
     V4 center;
     V4 tmp;
+    GL2 **pg = &g;
+    GrindLineManager **ps = &self;
 
     center.x = 0.0f;
     center.y = 0.0f;
@@ -197,21 +199,21 @@ void GrindLineManager::func_00159C40(GL2 * volatile g)
     ext.y = 0.0f;
     ext.z = 0.0f;
     ext.w = 1.0f;
-    if (g->xf != 0) {
+    if ((*pg)->xf != 0) {
         {
-            GL2 *q = g;
+            GL2 *q = *pg;
             V4 *r = q->xf->func_00197F70(&tmp, &q->s0);
-            g->p0 = *r;
+            (*pg)->p0 = *r;
         }
         {
-            GL2 *q = g;
+            GL2 *q = *pg;
             V4 *r = q->xf->func_00197F70(&tmp, &q->s1);
-            g->p1 = *r;
+            (*pg)->p1 = *r;
         }
-        GL2 *p = g;
+        GL2 *p = *pg;
         V4 *d = &p->d;
         *d = v4sub(p->p1, p->p0);
-        p = g;
+        p = *pg;
         center = v4scale(v4add(p->p1, p->p0), D_002755E8);
         d = &p->d;
         ext = v4(d->x * D_002755E8, d->y * D_002755E8, d->z * D_002755E8);
@@ -231,8 +233,8 @@ void GrindLineManager::func_00159C40(GL2 * volatile g)
             volatile int i = *(int *)&f & 0x7fffffff;
             ext.z = *(float *)&i;
         }
-        self->unk2C++;
-        g->sh->func_001938C0(g, self->unk38, 1, &center, &ext, 0);
+        (*ps)->unk2C++;
+        (*pg)->sh->func_001938C0(*pg, (*ps)->unk38, 1, &center, &ext, 0);
     }
 }
 
