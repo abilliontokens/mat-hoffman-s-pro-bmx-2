@@ -615,15 +615,17 @@ void C_0005C650::func_0005C650(int param_1)
     int lo;
     int hi;
 
-    if (param_1 == 0) {
+    if (param_1 != 0) {
+        hi = *(int *)(*(int *)(D_002A8490 + 0x2e0) + 0x48);
+        lo = hi;
+    } else {
         lo = 0;
         hi = 8;
-    } else {
-        lo = *(int *)(*(int *)(D_002A8490 + 0x2e0) + 0x48);
-        hi = lo;
     }
-    if (lo < hi) {
-        memset(&slots[lo], 0, (hi - lo) * 16);
+    for (int i = lo; i < hi; i++) {
+        int *p = (int *)&slots[i];
+        for (int j = 0; j < 4; j++)
+            p[j] = 0;
     }
 }
 
