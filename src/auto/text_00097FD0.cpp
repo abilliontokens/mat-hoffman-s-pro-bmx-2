@@ -229,6 +229,93 @@ int C_00097FD0::func_00098080(const char *name) {
     return 0;
 }
 
+void C_00097FD0::func_000981D0(void *a, void *b, int c)
+{
+    S_981D0_Arg *arg = (S_981D0_Arg *)a;
+    S_981D0_Owner *owner;
+    int mode;
+    int i;
+    if (arg == 0) {
+        return;
+    }
+    if (arg->arr28 == 0) {
+        return;
+    }
+    owner = (S_981D0_Owner *)unk198;
+    mode = owner->unk1C8 ? mode1 : mode0;
+    if (mode != 3) {
+        for (i = 0; i < 15; i++) {
+            int idx = *(int *)((char *)this + 0x2c + (mode * 15 + i) * 4);
+            if (idx != -1) {
+                S_981D0_Mid *mid = owner->unk64;
+                mid->unk484->func_0001B820(mid->unk3AC->arr28[idx]);
+            }
+            idx = *(int *)((char *)this + 0xe0 + (mode * 15 + i) * 4);
+            if (idx == -1) {
+                break;
+            }
+            ((S_981D0_Item *)arg->arr28[idx])->unk4->v4();
+        }
+    }
+}
+
+static __forceinline void Refresh_000988B0(char *self, char *a, int m18)
+{
+    char **list;
+    int count;
+    int p;
+    int j;
+    int k;
+    int n;
+    int found;
+    char *e;
+    char *o;
+    char *has = *(char **)(*(char **)(self + 0x198) + 0x1c8);
+
+    switch (has ? *(int *)(self + 0x1c) : m18) {
+    case 0: list = *(char ***)(self + 0x0); break;
+    case 1: list = *(char ***)(self + 0x4); break;
+    case 2: list = *(char ***)(self + 0x8); break;
+    default: list = 0; break;
+    }
+    switch (has ? *(int *)(self + 0x1c) : m18) {
+    case 0: count = *(int *)(self + 0xc); break;
+    case 1: count = *(int *)(self + 0x10); break;
+    case 2: count = *(int *)(self + 0x14); break;
+    default: count = 0; break;
+    }
+    for (p = 0; p < count; p++) {
+        if (*(int *)(list[p] + 0x48e0) == 0 && *(int *)(list[p] + 0x1bc) != 0) {
+            found = 1;
+            for (j = 0; j < *(int *)(list[p] + 0x1b8); j++) {
+                e = (*(char ***)(list[p] + 0x1c8))[j];
+                if (*(int *)e == 1) {
+                    for (k = 0; k < *(int *)(e + 0x2554); k++) {
+                        n = *(int *)(e + 0x2558 + k * 4);
+                        o = *(char **)((*(char ***)(a + 0x28))[n] + 4);
+                        ((void (__fastcall *)(void *))(*(void ***)o)[6])(o);
+                        if (!found) {
+                            o = *(char **)((*(char ***)(a + 0x28))[n] + 4);
+                            ((void (__fastcall *)(void *))(*(void ***)o)[4])(o);
+                        }
+                        e = (*(char ***)(list[p] + 0x1c8))[j];
+                    }
+                } else {
+                    n = *(int *)(e + 0x268);
+                    o = *(char **)((*(char ***)(a + 0x28))[n] + 4);
+                    ((void (__fastcall *)(void *))(*(void ***)o)[6])(o);
+                    if (!found) {
+                        o = *(char **)((*(char ***)(a + 0x28))[n] + 4);
+                        ((void (__fastcall *)(void *))(*(void ***)o)[4])(o);
+                    }
+                }
+                if (*(int *)((*(char ***)(list[p] + 0x1c8))[j] + 0x40) == 0)
+                    found = 0;
+            }
+        }
+    }
+}
+
 int __fastcall func_000988B0(char *self, int unused, char *a, char *b)
 {
     int i;
@@ -244,6 +331,7 @@ int __fastcall func_000988B0(char *self, int unused, char *a, char *b)
     char *e;
     char *mgr;
     char *o;
+    char *has;
 
     for (i = 0; i < 3; i++) {
         switch (i) {
@@ -317,7 +405,7 @@ int __fastcall func_000988B0(char *self, int unused, char *a, char *b)
     }
 
     if (*(int *)(self + 0x18) != 3) {
-        char *has = *(char **)(*(char **)(self + 0x198) + 0x1c8);
+        has = *(char **)(*(char **)(self + 0x198) + 0x1c8);
         switch (has ? *(int *)(self + 0x1c) : *(int *)(self + 0x18)) {
         case 0: list = *(char ***)(self + 0x0); break;
         case 1: list = *(char ***)(self + 0x4); break;
