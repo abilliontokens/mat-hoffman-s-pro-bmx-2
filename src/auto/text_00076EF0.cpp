@@ -46,6 +46,70 @@ struct S_00077450_Obj120 {
 
 int func_001361E0(int a, int b, int *c, int d);
 
+struct Lbl_76EF0 {
+    char pad0[0x34];
+    u32 f34;
+    char pad38[0xC];
+    u32 f44, f48;
+    char pad4C[2];
+    u8 f4E;
+    void func_0005E840(char *);
+    void func_001D6600();
+};
+struct Text_76EF0 {
+    void func_001B1980();
+    void func_001B2270(unsigned int);
+    void func_001B19C0(int, int, int);
+    void func_001B1860(float, float, int, float, float, float, float, int, float, float, float, float, float);
+};
+struct Mode_76EF0 { char pad0[0x90]; int f90; };
+struct Player_76EF0 { char pad0[0x6CC]; int f6CC, f6D0, f6D4, f6D8; };
+struct Root_76EF0 { char pad0[0x4E4]; Player_76EF0 *f4E4[17]; };
+extern Root_76EF0 *D_002B9120;
+extern char D_00278DE4[], D_00277038[], D_00278DD0[];
+extern float D_00276DD4, D_00275994;
+extern u32 D_0028F5E0;
+int func_001ADCC0(char *, int, const char *, ...);
+int func_001AC330(char *, const char *, ...);
+
+struct Strs_76EF0 { char pad0[0x850]; char *f850; char pad854[0xec0 - 0x854]; char *fEC0; char padEC4[0xfd8 - 0xec4]; char *fFD8; };
+struct Mgr2E8_76EF0 { char pad0[4]; Strs_76EF0 *p4; };
+struct Mgr2A4_76EF0 { char pad0[0x2c4]; float f2C4; };
+#define G_76EF0_2A4 (*(Mgr2A4_76EF0 **)((char *)D_002A8490 + 0x2A4))
+#define G_76EF0_2E8 (*(Mgr2E8_76EF0 **)((char *)D_002A8490 + 0x2E8))
+
+struct C_00076EF0 {
+    char pad0[0x64];
+    Lbl_76EF0 *unk64[3];
+    Lbl_76EF0 *unk70[3];
+    Lbl_76EF0 *unk7C[3];
+    Lbl_76EF0 *unk88[3];
+    Text_76EF0 *unk94[3];
+    float fA0[3];
+    char padAC[0x100 - 0xAC];
+    Lbl_76EF0 *unk100, *unk104, *unk108, *unk10C, *unk110, *unk114, *unk118;
+    int unk11C;
+    Mode_76EF0 *unk120;
+    char pad124[0x12C - 0x124];
+    int unk12C[8];
+    int unk14C[8];
+    int unk16C[8];
+    int unk18C, unk190;
+    char pad194[0x1A8 - 0x194];
+    int unk1A8, unk1AC;
+    char pad1B0[4];
+    int unk1B4;
+    void func_00076EF0();
+};
+#define SETUP_LABEL_76EF0(slot) { \
+    Lbl_76EF0 *p = (slot); \
+    u32 color = p->f48; \
+    if (color != 0xffcccccc) { p->f4E |= 8; p->f48 = (color & 0xffcccccc) | 0xcccccc; } \
+    p = (slot); \
+    if (p->f44 != D_0028F5E0) { p->f44 = D_0028F5E0; p->f4E |= 6; } \
+    p = (slot); \
+    if (p->f34 != 0x3f800000) { p->f34 = 0x3f800000; p->f4E |= 6; } }
+
 struct C_000775D0 {
     char pad0[0x11C];
     int f11C;
