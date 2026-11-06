@@ -224,6 +224,7 @@ struct C_00104B00 {
     void func_00105970(void);
     void func_001059E0(void);
     void func_00105A40(void);
+    void func_00105050(void);
     void func_00104DF0(int a0);
     void func_00104F10(int a0);
     int func_00104C80(int idx);
