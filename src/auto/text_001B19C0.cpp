@@ -326,7 +326,7 @@ extern float D_002779FC;
 extern char D_0028C860[];
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 
-static __forceinline void Round_001B1C30(int * volatile out, float f) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
+static __forceinline void Round_001B1C30(volatile int * volatile out, float f) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
 
 void C_001B19C0::func_001B19C0(float a1, float a2, float a3)
 {
@@ -443,6 +443,142 @@ void C_001B1C10::func_001B1C10(int param_1)
     *(byte *)(iVar1 + 0x4e) = *(byte *)(iVar1 + 0x4e) | 6;
   }
   return;
+}
+
+int C_001B1C30::func_001B1C30(float dt)
+{
+    C_001B1C30 * volatile self = this;
+    int rect[4];
+    char buf[0x100];
+    int x;
+
+    self->f174 = 0;
+    self->f178 = 0;
+    self->f17C = 0;
+    self->f180 = 0;
+    if (self->f80 != 0) {
+        self->f80->func_0012B210(rect);
+    } else {
+        rect[0] = 0;
+        rect[1] = 0;
+        rect[2] = 0x280;
+        rect[3] = 0x1c0;
+    }
+    float sx = D_00277A00 / (float)(rect[2] - rect[0]);
+    float sy = D_002779FC / (float)(rect[3] - rect[1]);
+    if (sx != self->fB8) {
+        self->fB8 = sx;
+    }
+    if (sy != self->fBC) {
+        self->fBC = sy;
+    }
+    if (self->f64 == 0) {
+        self->fC0 = 0;
+    } else {
+        if (self->f78 >= D_00275544) {
+            self->f78 -= dt;
+            self->f6C -= dt;
+        } else if (self->f7C == 0) {
+            self->f64 = 0;
+            self->f7C = 0;
+            self->f78 = -1.0f;
+            self->fC0 = 0;
+            goto timerDone;
+        } else {
+            self->f6C -= dt;
+        }
+        if (self->f6C <= D_00275544 && self->f70 > D_00275544) {
+            self->f74 = (self->f74 == 0);
+            self->f6C = self->f70;
+        }
+    }
+timerDone:
+    x = self->f4C;
+    if (x != self->f2C || self->f50 != self->f30) {
+        self->f4C = (int)((float)x / self->fB8);
+        self->f50 = (int)((float)self->f50 / self->fBC);
+        if (self->f60 != D_00275544 && self->f5C < self->f60) {
+            int dy = self->f50 - self->f40;
+            float fy = (float)dy;
+            int dx = self->f4C - self->f3C;
+            float r = self->f5C / self->f60;
+            Round_001B1C30(&self->f2C, (float)dx * r);
+            Round_001B1C30(&self->f30, r * fy);
+            self->f2C += self->f3C;
+            self->f30 = self->f30 + self->f40;
+            self->f5C += dt;
+        } else {
+            *(C_001B19C0_Vec *)&self->f2C = *(C_001B19C0_Vec *)&self->f4C;
+        }
+    }
+    if (self->f88 != self->f24->s4C) {
+        if (self->f90 >= self->f94) {
+            self->f178 = 1;
+            self->f168 = (float)self->f88;
+        } else {
+            self->f8C = (int)((float)(self->f88 - self->f84) * (self->f90 / self->f94)) + self->f84;
+            self->f178 = 1;
+            self->f168 = (float)self->f8C;
+            self->f90 += dt;
+        }
+    }
+    if (self->f24->getF34() != self->f9C) {
+        if (self->fA0 >= self->fA4) {
+            self->f17C = 1;
+            self->f16C = self->f9C;
+        } else {
+            self->f16C = (self->f9C - self->f98) * (self->fA0 / self->fA4) + self->f98;
+            self->f17C = 1;
+            self->fA0 += dt;
+        }
+    }
+    if (self->f24->getF38() != self->fA8) {
+        if (self->fB0 >= self->fB4) {
+            self->f180 = 1;
+            self->f170 = self->fA8;
+        } else {
+            self->f170 = (self->fB0 / self->fB4) * (self->fA8 - self->fAC) + self->fAC;
+            self->f180 = 1;
+            self->fB0 += dt;
+        }
+    }
+    if (self->fD4 != 0 && self->fD8 < self->fDC) {
+        int step;
+        Round_001B1C30(&step, dt * self->fE0);
+        self->fD8 += step;
+        if (self->fD8 > self->fDC) {
+            self->fD8 = self->fDC;
+            self->fD4 = 0;
+        }
+        func_001ADCC0(buf, 0x100, D_0028C860, self->fE4, self->fD8, self->f124);
+        self->f24->func_0005E840(buf);
+    }
+    if (self->fC4 >= D_00275544) {
+        self->fC4 -= dt;
+        return 1;
+    }
+    if (*(int *)&self->fC4 == (int)0xbf800000) {
+        return 1;
+    }
+    self->fC4 = -1.0f;
+    self->f88 = self->fC8;
+    if (self->f88 > 0xff) {
+        self->f88 = 0xff;
+    } else if (self->f88 < 0) {
+        self->f88 = 0;
+    }
+    self->f84 = self->f24->s4C;
+    self->f90 = 0;
+    self->f9C = self->fCC;
+    if (self->f9C < D_00275544) {
+        self->f9C = 0;
+    }
+    self->f98 = self->f24->getF34();
+    self->fA0 = 0;
+    self->fA8 = self->fD0;
+    self->fAC = self->f24->getF38();
+    self->fB0 = 0;
+    return 1;
 }
 
 void C_001B2270::func_001B2270(undefined4 param_1)
