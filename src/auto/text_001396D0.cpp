@@ -84,6 +84,11 @@ struct C_00139B30 {
     undefined4 func_00139B30(byte param_1);
 };
 
+static __forceinline float Scale_001396D0(float v)
+{
+    return v * D_002755E8 * D_00275994;
+}
+
 
 int CutScene::func_001396D0(float dt)
 {
@@ -186,7 +191,7 @@ play:
         }
     }
     if (f2c >= D_00275544) {
-        f50->func_001C4E70(D_00275994 * (f2c * D_002755E8));
+        f50->func_001C4E70(f2c * D_002755E8 * D_00275994);
         if (f2c == D_00275544) {
             f2c = -1.0f;
         } else {
