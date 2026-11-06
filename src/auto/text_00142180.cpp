@@ -659,13 +659,9 @@ struct C_00142DE0 {
     void func_00142DE0();
 };
 
-struct H_00142D00 {
-    void *p;
-};
-
 struct C_00142D00 {
     void *unk0;
-    void func_00142D00(H_00142D00 a0);
+    void func_00142D00(void *a0);
 };
 
 struct C_00142D20 {
