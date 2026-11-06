@@ -98,7 +98,7 @@ struct C_00132EB0 {
     unsigned char f26;
     unsigned char f27;
     int f28, f2C, f30;
-    int f34, f38, f3C, f40, f44;
+    float f34, f38, f3C, f40, f44;
     int f48, f4C, f50, f54, f58, f5C, f60, f64, f68;
     char f6C, f6D;
     char pad6E[2];
