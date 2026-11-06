@@ -44,6 +44,7 @@ struct S_00038760_Entry {
 };
 
 static __forceinline void Round_00038850(float value, int * volatile out) { *out = _mm_cvtss_si32(*(__m128 *)&value); }
+static void Round2_00038850(int * volatile out, float f) { *out = _mm_cvtss_si32(_mm_set_ss(f)); }
 extern char D_00276E90[];
 extern int D_002B911C;
 int func_001E8AF0(void *, void *);
