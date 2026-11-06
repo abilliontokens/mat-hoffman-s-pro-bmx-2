@@ -343,6 +343,9 @@ extern "C" void __stosd(unsigned long *dest, unsigned long value, unsigned long 
 #pragma intrinsic(__stosd)
 void C_0004FE30::func_0004FAC0(void)
 {
+    int *p;
+    int i;
+
     f64->f4E0->objs[f120]->v5();
     do {
         if (++f120 >= f90) {
@@ -359,10 +362,13 @@ void C_0004FE30::func_0004FAC0(void)
         f170->func_000847A0();
     }
     f2B0 = 1;
-    __stosd((unsigned long *)&f288, 0, 8);
+    p = &f288;
+    for (i = 0; i < 8; i++) {
+        p[i] = 0;
+    }
     f2AC = 0;
-    f124 = 0;
     f128 = ((G_4F5E0 *)D_002A8490)->f2E0->f10;
+    f124 = 0;
 }
 int C_0004FC20::func_0004FC20(int *a, int b)
 {
