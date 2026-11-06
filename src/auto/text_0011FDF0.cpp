@@ -28,6 +28,13 @@ struct S_001206E0_Hit {
     int f84;
 };
 extern S_001206E0_Hit *D_002B92EC;
+static __forceinline void Cross_0011FF30(S_0011F4B0_V4 *out, S_0011F4B0_V4 *a, S_0011F4B0_V4 *b)
+{
+    __m128 va = _mm_loadu_ps(&a->x);
+    __m128 vb = _mm_loadu_ps(&b->x);
+    __m128 r = _mm_sub_ps(_mm_mul_ps(va, _mm_shuffle_ps(vb, vb, 0xc9)), _mm_mul_ps(vb, _mm_shuffle_ps(va, va, 0xc9)));
+    _mm_storeu_ps(&out->x, _mm_shuffle_ps(r, r, 0xc9));
+}
 
 
 float func_0011FDF0(float *p, float *a, float *b)
@@ -88,6 +95,71 @@ int func_00120470(short *tri, S_0011F4B0_V4 pos, float radius, int unused, float
     absoluteBits = *(volatile int *)&absoluteInput & 0x7fffffff;
     if (*(volatile float *)&absoluteBits < radius) return 1;
     return 0;
+}
+
+int func_001206E0(short *tri, S_0011F4B0_V4 pos, float radius, int unused, float *m)
+{
+    int result = 0;
+    S_0011F4B0_V4 n;
+    S_0011F4B0_V4 v0;
+    S_0011F4B0_V4 proj;
+    S_0011F4B0_V4 v1;
+    S_0011F4B0_V4 v2;
+    float scaled[4];
+    float delta[4];
+    float t;
+    float dist;
+    int adist;
+    S_001206E0_Hit *hit;
+
+    func_0011F540(&pos, pos, m);
+    n.x = (float)tri[6] * D_002B9348;
+    n.y = (float)tri[7] * D_002B9348;
+    n.z = (float)tri[8] * D_002B9348;
+    n.w = 1.0f;
+    v0.z = 0.0f; v0.y = 0.0f; v0.x = 0.0f; v0.w = 1.0f;
+    v1.z = 0.0f; v1.y = 0.0f; v1.x = 0.0f; v1.w = 1.0f;
+    v2.z = 0.0f; v2.y = 0.0f; v2.x = 0.0f; v2.w = 1.0f;
+    func_0011F0E0(&v0, &v1, &v2, tri, D_002B92F4);
+    delta[0] = pos.x - v0.x;
+    delta[1] = pos.y - v0.y;
+    delta[2] = pos.z - v0.z;
+    t = delta[2] * n.z + (delta[0] * n.x + delta[1] * n.y);
+    if (t < D_00275544) return 0;
+    if (t > radius) return 0;
+    scaled[0] = n.x * t;
+    scaled[1] = n.y * t;
+    scaled[2] = n.z * t;
+    proj.x = pos.x - scaled[0];
+    proj.y = pos.y - scaled[1];
+    proj.z = pos.z - scaled[2];
+    proj.w = 1.0f;
+    if (func_0011FF30(&proj, tri)) goto hit;
+    dist = func_0011FDF0(&pos, &v0, &v1);
+    adist = *(int *)&dist & 0x7fffffff;
+    if (*(float *)&adist < radius) goto hit;
+    dist = func_0011FDF0(&pos, &v1, &v2);
+    adist = *(int *)&dist & 0x7fffffff;
+    if (*(float *)&adist < radius) goto hit;
+    dist = func_0011FDF0(&pos, &v2, &v0);
+    adist = *(int *)&dist & 0x7fffffff;
+    if (*(float *)&adist >= radius) goto done;
+hit:
+    result = 1;
+    hit = D_002B92EC;
+    if (hit == NULL) goto done;
+    if (hit->count >= hit->max) goto done;
+    if (hit->count != 0 && !(t < hit->t)) {
+        result = 0;
+        return result;
+    }
+    func_0011EFA0(&hit->v24, &n);
+    hit->v54 = proj;
+    hit->t = t;
+    hit->f84 = 0;
+    hit->count = 1;
+done:
+    return result;
 }
 
 int func_001209F0(float *a, float *b, float *p, float r2)
