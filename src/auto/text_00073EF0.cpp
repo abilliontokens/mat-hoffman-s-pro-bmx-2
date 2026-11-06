@@ -104,7 +104,7 @@ extern char D_002786A0[], D_00278690[], D_00278678[], D_00278658[], D_00278648[]
 extern char D_002A60B0[], D_002A5FA8[], D_002A5870[], D_00275678[];
 extern char D_00278664[];
 extern int D_0028F5E0, D_0028F5DC;
-extern float D_00278650, D_002757F0, D_00278870, D_0027886C, D_00276DD4, D_002756C8, D_00278DC4, D_00278DC0, D_00278654, D_0027653C;
+extern float D_00278650, D_002757F0, D_00278870, D_0027886C, D_00276DD4, D_002756C8, D_00278DC4, D_00278DC0, D_00278654, D_0027653C, D_00275544;
 extern "C" void *func_001E8A44(unsigned int size);
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
