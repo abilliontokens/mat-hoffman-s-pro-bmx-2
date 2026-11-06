@@ -117,6 +117,7 @@ extern int D_0028CAC8;
 extern int D_0027CB30, D_0027CB2C, D_0028CABC, D_0028CAB8, D_0028CAB0, D_0028CAA8, D_00284BE8;
 
 struct S_001B5000_Stream {
+    void func_00168BE0(void *name, void *def, void *dst, int size);
     void func_00168CB0(void *name, void *def, void *dst);
     void func_00168C50(void *name, int def, void *dst);
     void func_00168C20(void *name, int def, void *dst);
