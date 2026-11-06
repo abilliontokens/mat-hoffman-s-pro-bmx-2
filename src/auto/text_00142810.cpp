@@ -360,6 +360,11 @@ struct C_00142E90 {
     void func_00142E90(int a0);
 };
 
+static __forceinline S_00142810_Rec *RecAt_00142810(S_00142810_Rec *base, int idx)
+{
+    return base + idx;
+}
+
 void C_00142AF0::func_00142810(void)
 {
     int pos;
@@ -392,14 +397,14 @@ void C_00142AF0::func_00142810(void)
                     chunk = remaining;
                 slot = f28[f48];
                 flag = 0;
-                if (((S_00142810_Rec *)(slot * 0x34 + (char *)f14))->f24 != f48)
+                if (((S_00142810_Rec *)((int)f14 + slot * 0x34))->f24 != f48)
                     flag = 1;
-                ((S_00142810_Rec *)(slot * 0x34 + (char *)f14))->f24 = f48;
-                ((S_00142810_Rec *)(slot * 0x34 + (char *)f14))->f4 = f64;
-                ((S_00142810_Rec *)(slot * 0x34 + (char *)f14))->f10 = f70;
-                ((S_00142810_Rec *)(slot * 0x34 + (char *)f14))->f1C = f7C;
-                ((S_00142810_Rec *)(slot * 0x34 + (char *)f14))->f20 = f80;
-                ((S_00142810_Rec *)(slot * 0x34 + (char *)f14))->f30 = fEC;
+                ((S_00142810_Rec *)((int)f14 + slot * 0x34))->f24 = f48;
+                ((S_00142810_Rec *)((int)f14 + slot * 0x34))->f4 = f64;
+                ((S_00142810_Rec *)((int)f14 + slot * 0x34))->f10 = f70;
+                ((S_00142810_Rec *)((int)f14 + slot * 0x34))->f1C = f7C;
+                ((S_00142810_Rec *)((int)f14 + slot * 0x34))->f20 = f80;
+                ((S_00142810_Rec *)((int)f14 + slot * 0x34))->f30 = fEC;
                 func_00142180(slot, f38[f48], pos, chunk, flag);
                 maxv = D_00275544;
                 n = 0;
