@@ -14,6 +14,12 @@ struct S_000399A0_Slot {
     void *f10;                /* 0x10 */
 };
 
+struct S_000399A0_Obj2 {
+    char pad0[0xe8];
+    void *fE8;                /* 0xe8 */
+    void *fEC;                /* 0xec */
+};
+
 struct C_000399A0 {
     char pad0[0x450];
     int f450;
@@ -32,3 +38,7 @@ struct C_000399A0 {
     int func_000395A0(S_000392B0_Vec4 pos);
     int func_000399A0(int mode);
 };
+
+int C_000399A0::func_000399A0(int mode) {
+    return 1;
+}
