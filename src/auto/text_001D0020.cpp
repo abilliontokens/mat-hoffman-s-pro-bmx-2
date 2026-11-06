@@ -1,6 +1,17 @@
 /* 16 functions from 0x001D0020 to 0x001D0FD0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct Vec_1D01 { int n; int *p; int step; int cap; unsigned char flags; int grow(int); };
+struct Ent_1D01 { char **names; int cnt; char pad[4]; Vec_1D01 v; char pad2[0x2c]; };
+struct C_001D01A0 {
+    char pad0[0x28]; int f28; char pad2c[8]; Ent_1D01 *f34; char pad38[0x18]; int f50, f54, f58, f5C; char pad60[0x34]; int f94; char pad98[8]; unsigned char fA0; char padA1[3]; int fA4, fA8;
+    C_001D01A0 *func_001D01A0(int n);
+    int func_001CEB70(); int func_001D0020x(); void func_001CD260();
+};
+extern const char D_0028F0C0[], D_0028F0B0[];
+extern "C" int func_001ADCC0(char *, int, const char *, ...);
+extern "C" void *func_001EA1A1(int, int);
+extern "C" void *func_001E8AA5(int);
 struct C_001D0DE0 {
     undefined4 func_001D0DE0(byte param_1);
 };
@@ -305,6 +316,47 @@ XboxSoundGroup_001D0870 *XboxSoundGroup_001D0870::func_001D0870(unsigned int fla
         func_001E891B(this);
     }
     return this;
+}
+
+void XboxSoundInterface_001D08B0::func_001D08B0(void)
+{
+    SoundVoice_001D08B0 *v;
+    int i;
+    int r;
+
+    for (i = 0; i < f13C->count; i++) {
+        if (f13C->entries[i].count > 0) {
+            f13C->entries[i].voice->func_001CFEF0();
+        }
+    }
+    for (i = 0; i < f13C->count; i++) {
+        if (f13C->entries[i].count > 0) {
+            v = f13C->entries[i].voice;
+            if (v->f150 != 0) {
+                r = v->f124;
+                v->f13C = v->f150->f13C;
+                r = func_002209A2(v->f13C, r);
+                if (r < 0) {
+                    func_001CBC10(r, D_0028F084, 0x196);
+                }
+                v->func_001CC4B0(&v->f1B4, &v->f1E8, &v->f1F8, &v->f1D8);
+            }
+            if (v->f148 == 0) {
+                for (v = v->f14C; v != 0; v = v->f14C) {
+                    if (v->f150 != 0) {
+                        r = v->f124;
+                        v->f13C = v->f150->f13C;
+                        r = func_002209A2(v->f13C, r);
+                        if (r < 0) {
+                            func_001CBC10(r, D_0028F084, 0x196);
+                        }
+                        v->func_001CC4B0(&v->f1B4, &v->f1E8, &v->f1F8, &v->f1D8);
+                    }
+                }
+            }
+            f13C->entries[i].count = 0;
+        }
+    }
 }
 
 XboxControlInterface_001D0C30 *XboxControlInterface_001D0C30::func_001D0C30(void)
