@@ -159,8 +159,6 @@ struct C_001C2250 {
     char pad30[0x8];
     u32 unk38;
     u32 unk3C;
-    bool HasA() { return unk38 != 0; }
-    bool HasB() { return unk3C != 0; }
     void func_001C2250();
 };
 
@@ -338,14 +336,14 @@ void C_001C2210::func_001C2210() {
 
 void C_001C2250::func_001C2250() {
     unk2C = 0;
-    while (unk38 == 0 || unk3C == 0) {
+    u32 a = unk38;
+    if (a == 0 || unk3C == 0) {
         if (unk38 != 0) {
             ((VCall8 *)this)->v7();
         }
         if (unk3C != 0) {
             ((VCall8 *)this)->v5();
         }
-        break;
     }
 }
 
