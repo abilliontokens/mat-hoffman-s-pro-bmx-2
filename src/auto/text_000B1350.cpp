@@ -325,7 +325,6 @@ struct C_000B1350 {
     S_000B1350_A **f44;
     S_000B1350_B **f48;
     S_000B1350_Node **f4C;
-    __forceinline S_000B1350_Node *Node_000B1350(int i) { return f4C[i]; }
     void func_000B1350(void);
 };
 
