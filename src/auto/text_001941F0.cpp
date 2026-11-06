@@ -177,7 +177,7 @@ static __forceinline void FloatToInt(int *out, float f)
 {
     int * volatile p = out;
 
-    *p = _mm_cvttss_si32(*(__m128 *)&f);
+    *p = _mm_cvttss_si32(_mm_load_ss(&f));
 }
 
 /* SimpleCutSceneCamera (run-time type information), base class CameraBehavior */
@@ -583,12 +583,15 @@ int SimpleCutSceneCamera::func_001947E0(void *a0, int a1, int a2, int a3)
 
 void SimpleCutSceneCamera::func_00194820(float dt, int *done, S_Vec4 *pos, int a3, float *fov, S_Vec4 *v2, S_Vec4 *v3, int a7)
 {
+    SimpleCutSceneCamera * volatile self = this;
+    SimpleCutSceneCamera *q;
+    S_Vec4 *c;
     S_Vec4 p;
-    S_Vec4 q;
     S_Vec4 r;
+    S_Vec4 s;
     float f;
-    float t;
     int fl;
+    float t;
     int a;
     float frac;
     int i0;
@@ -599,97 +602,116 @@ void SimpleCutSceneCamera::func_00194820(float dt, int *done, S_Vec4 *pos, int a
     p.y = 0.0f;
     p.x = 0.0f;
     p.w = 1.0f;
-    q.z = 0.0f;
-    q.y = 0.0f;
-    q.x = 0.0f;
-    q.w = 1.0f;
     r.z = 0.0f;
     r.y = 0.0f;
     r.x = 0.0f;
     r.w = 1.0f;
+    s.z = 0.0f;
+    s.y = 0.0f;
+    s.x = 0.0f;
+    s.w = 1.0f;
     if (f24 == 0) {
         *done = 0;
         return;
     }
     if (f14 == 1) {
         fC = fC - dt;
-        t = fC * f8;
+        q = self;
+        t = q->fC * q->f8;
         FloatToInt(&fl, t);
         if (t <= (float)fl) {
-            f18 = fl;
+            self->f18 = fl;
         } else {
-            f18 = fl + 1;
+            self->f18 = fl + 1;
         }
-        if (f18 <= f1C) {
-            if (f2C != 0) {
-                f18 = f20;
-                fC = (float)f20 / f8;
+        q = self;
+        if (q->f18 <= q->f1C) {
+            if (q->f2C != 0) {
+                q->f18 = q->f20;
+                q = self;
+                q->fC = (float)q->f20 / q->f8;
             } else {
-                f18 = f1C;
-                fC = (float)f1C / f8;
-                f24 = 0;
+                q->f18 = q->f1C;
+                q = self;
+                q->fC = (float)q->f1C / q->f8;
+                self->f24 = 0;
             }
         }
-        if (f20 != f1C && f18 != f1C) {
-            a = f18;
-            frac = (float)a - fC * f8;
-            i0 = a;
-            i1 = a - 1;
+        q = self;
+        if (q->f20 == q->f1C) {
+            goto simple;
+        }
+        a = q->f18;
+        if (a == q->f1C) {
+            goto simple;
+        }
+        frac = (float)a - q->fC * q->f8;
+        i0 = a;
+        i1 = a - 1;
+        if (a != q->f20) {
+            i0 = a + 1;
+        }
+        if (a == q->f1C + 1) {
             i2 = i1;
-            if (a != f20) {
-                i0 = a + 1;
-            }
-            if (a != f1C + 1) {
-                i2 = i1 - 1;
-            }
-            if (f4->f40 >= 2) {
-                f4->func_0012BF90(f18, i0, i1, i2, frac, &p, &q, &r, &f);
-                goto tail;
-            }
+        } else {
+            i2 = i1 - 1;
         }
     } else {
         fC = dt + fC;
-        FloatToInt(&f18, fC * f8);
-        if (f18 >= f20) {
-            if (f2C != 0) {
-                f18 = f1C;
-                fC = (float)f1C / f8;
+        q = self;
+        t = q->fC * q->f8;
+        FloatToInt(&q->f18, t);
+        q = self;
+        if (q->f18 >= q->f20) {
+            if (q->f2C != 0) {
+                q->f18 = q->f1C;
+                q = self;
+                q->fC = (float)q->f1C / q->f8;
             } else {
-                f18 = f20;
-                f24 = 0;
+                q->f18 = q->f20;
+                q = self;
+                q->f24 = 0;
             }
         }
-        if (f1C != f20 && f18 != f20) {
-            a = f18;
-            frac = fC * f8 - (float)a;
-            i0 = a;
-            i1 = a + 1;
-            i2 = i1;
-            if (a != f1C) {
-                i0 = a - 1;
-            }
-            if (a != f20 - 1) {
-                i2 = i1 + 1;
-            }
-            if (f4->f40 >= 2) {
-                f4->func_0012BF90(f18, i0, i1, i2, frac, &p, &q, &r, &f);
-                goto tail;
-            }
+        q = self;
+        if (q->f1C == q->f20) {
+            goto simple;
+        }
+        a = q->f18;
+        if (a == q->f20) {
+            goto simple;
+        }
+        frac = q->fC * q->f8 - (float)a;
+        i0 = a;
+        i1 = a + 1;
+        i2 = i1;
+        if (a != q->f1C) {
+            i0 = a - 1;
+        }
+        if (a != q->f20 - 1) {
+            i2 = i1 + 1;
         }
     }
-    f4->func_0012BF10(f18, &p, &q, &r, &f);
+    if (q->f4->f40 >= 2) {
+        q->f4->func_0012BF90(q->f18, i0, i1, i2, frac, &p, &r, &s, &f);
+        goto tail;
+    }
+simple:
+    q->f4->func_0012BF10(q->f18, &p, &r, &s, &f);
 tail:
-    p.x = p.x + f4->f30.x;
-    p.y = p.y + f4->f30.y;
-    p.z = p.z + f4->f30.z;
+    q = self;
+    c = &q->f4->f30;
+    p.x = p.x + c->x;
+    p.y = p.y + c->y;
+    p.z = p.z + c->z;
     if (pos != 0) {
-        *pos = p;
+        *(S_Vec4Int *)pos = *(S_Vec4Int *)&p;
     }
     if (v2 != 0) {
-        *v2 = q;
+        *(S_Vec4Int *)v2 = *(S_Vec4Int *)&r;
     }
     if (v3 != 0) {
-        *v3 = r;
+        *(S_Vec4Int *)v3 = *(S_Vec4Int *)&s;
     }
     if (fov != 0) {
         *fov = f;
