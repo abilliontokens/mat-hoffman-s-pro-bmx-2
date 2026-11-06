@@ -41,6 +41,9 @@ struct DurW { char pad0[0x38]; float dur; };
 struct C67W {
     Vec4W *func_001C67C0(Vec4W *out, int p);
 };
+struct C67V {
+    Vec4W func_001C67C0(float p);
+};
 struct EntryW {
     char pad0[0x40];
     DurW *p40;
