@@ -2,7 +2,7 @@
 #include "common.h"
 
 struct Vec4B { float x; float y; float z; float w; void func_000B60D0(); };
-struct MatB { float m[16]; };
+struct __declspec(align(16)) MatB { float m[16]; };
 struct NodeB { void func_001994C0(int a, Vec4B *p, Vec4B *q); };
 struct OwnerB { char pad0[0x22c]; NodeB *f22c; };
 struct MatSrcB {
@@ -117,3 +117,183 @@ struct C_000B6A70 {
     void func_000B6A70(int a0);
     void func_000B67C0();
 };
+
+void C_000B6A70::func_000B6A70(int a0)
+{
+    Vec4B l1;
+    Vec4B l2;
+    l2.z = 0.0f;
+    l2.y = 0.0f;
+    l2.x = 0.0f;
+    l2.w = 1.0f;
+    l1.z = 0.0f;
+    l1.y = 0.0f;
+    l1.x = 0.0f;
+    l1.w = 1.0f;
+    f88->f22c->func_001994C0(0, &l2, &l1);
+    if (f74 == 0) {
+        f1D0->func_00133660(D_002B911C);
+        f1D4->func_00133660(D_002B911C);
+    } else {
+        f1D0->func_00133700();
+        f1D4->func_00133700();
+        f1D0->func_00133660(D_002BA154);
+        f1D4->func_00133660(D_002BA154);
+        f1D0->func_00133660(D_002BA148);
+        f1D4->func_00133660(D_002BA148);
+        f1D0->func_00133660(D_002B911C);
+        f1D4->func_00133660(D_002B911C);
+    }
+    f28 = 0;
+    f2C = 0;
+    f30 = 0;
+    f34 = 0;
+    f48 = 0;
+    f4C = 0;
+    f38 = 0;
+    f3C = 0;
+    f8C = 0;
+    void *src = (char *)f88->f22c + 0xf0;
+    func_00030AC0(&vC0, &vA0, src);
+    func_00030AC0(&vD0, &vB0, src);
+    func_00030AC0(&v100, &vE0, src);
+    func_00030AC0(&v110, &vF0, src);
+    if (f90 != 0) {
+        v120 = v100;
+        f90->func_000BA430(&v120, &v180, 0, 0);
+        v130 = v110;
+        f90->func_000BA430(&v130, &v190, 0, &f9C);
+        if (v100.y - v120.y < f78 - f7C) {
+            f28 = 1;
+        }
+        if (v110.y - v130.y < f78 - f7C) {
+            f30 = 1;
+        }
+    }
+    if ((D_002B9154 & 1) == 0) {
+        D_002B9154 = D_002B9154 | 1;
+        D_002B9150 = func_0014F550(0.52359879f);
+    }
+    if (f24 != 0) {
+        MatB mat;
+        mat = *(MatB *)src;
+        mat.m[3] = vC0.x;
+        mat.m[7] = vC0.y;
+        mat.m[11] = vC0.z;
+        f1D0->v31(&mat);
+        mat.m[3] = vD0.x;
+        mat.m[7] = vD0.y;
+        mat.m[11] = vD0.z;
+        f1D4->v31(&mat);
+        if (f98 != 0) {
+            f1D4->func_00134770(*f94, f98);
+            f1D0->func_00134770(*f94, f98);
+        } else {
+            f1D4->func_00133F10(0);
+            f1D0->func_00133F10(0);
+        }
+        if (f1D0->fA7 & 0x20) {
+            MatSrcB *s = f1D0->f54;
+            int raw = *(int *)&s->v20.w;
+            if (D_00278C48 < *(float *)&(raw = raw & 0x7fffffff, raw) ||
+                f1E4->f68 == D_002B9108 || f1E4->f68 == D_002B911C || f1E4->f68 == D_002B910C) {
+                v180 = s->v20;
+                v120 = s->v30;
+                v1B0 = s->v40;
+                f40 = (s->b98 >> 1) & 1;
+                f28 = 0;
+                f2C = 1;
+                f38 = (f1E4->f68 == D_002B911C);
+            }
+            if (D_002B9150 < l1.x * s->v20.x + l1.y * s->v20.y + l1.z * s->v20.z) {
+                f1D8 = f1E4;
+                f1DC = f1E4;
+            }
+        }
+        if (f1D4->fA7 & 0x20) {
+            MatSrcB *s = f1D4->f54;
+            int raw = *(int *)&s->v20.w;
+            if (D_00278C48 < *(float *)&(raw = raw & 0x7fffffff, raw) ||
+                f1E8->f68 == D_002B9108 || f1E8->f68 == D_002B911C || f1E8->f68 == D_002B910C) {
+                v190 = s->v20;
+                v130 = s->v30;
+                v1C0 = s->v40;
+                f44 = (s->b98 >> 1) & 1;
+                f30 = 0;
+                f34 = 1;
+                f3C = (f1E8->f68 == D_002B911C);
+            }
+            if (D_002B9150 < l1.x * s->v20.x + l1.y * s->v20.y + l1.z * s->v20.z) {
+                f1E0 = f1E8;
+            }
+        }
+    }
+    if (f5C != 0 && (f28 != 0 || f2C != 0)) {
+        float dx = v120.x - vC0.x;
+        float dy = v120.y - vC0.y;
+        float dz = v120.z - vC0.z;
+        float len = dx * dx + dy * dy + dz * dz;
+        if (len <= f7C + D_002756DC) {
+            f5C = 0;
+        }
+    }
+    if (f60 != 0 && (f30 != 0 || f34 != 0)) {
+        float dx = v130.x - vD0.x;
+        float dy = v130.y - vD0.y;
+        float dz = v130.z - vD0.z;
+        float len = dx * dx + dy * dy + dz * dz;
+        if (len <= f7C + D_002756DC) {
+            f60 = 0;
+        }
+    }
+    if ((f28 == 0 && f2C == 0) || f5C != 0 || f38 != 0) {
+        f50 = 0;
+    } else {
+        if (f50 == 0) {
+            v140 = v180;
+        }
+        f50 = 1;
+    }
+    if ((f30 == 0 && f34 == 0) || f60 != 0 || f3C != 0) {
+        f54 = 0;
+    } else {
+        if (f54 == 0) {
+            v150 = v190;
+        }
+        f54 = 1;
+    }
+    Vec4B tv;
+    tv.x = 0.0f;
+    tv.y = 0.0f;
+    tv.z = 0.0f;
+    tv.w = 1.0f;
+    if (f50 != 0) {
+        float d = func_0014F7E0(v140.x * v180.x + v140.y * v180.y + v140.z * v180.z);
+        tv.x = v120.x - v160.x;
+        tv.y = v120.y - v160.y;
+        tv.z = v120.z - v160.z;
+        tv.w = 1.0f;
+        tv.func_000B60D0();
+        if (f84 < d && D_00275544 < tv.x * v180.z + tv.y * v180.x + tv.z * v180.y) {
+            f50 = 0;
+            f5C = 1;
+        }
+        v140 = v180;
+        v160 = v120;
+    }
+    if (f54 != 0) {
+        float d = func_0014F7E0(v150.x * v190.x + v150.y * v190.y + v150.z * v190.z);
+        tv.x = v130.x - v170.x;
+        tv.y = v130.y - v170.y;
+        tv.z = v130.z - v170.z;
+        tv.w = 1.0f;
+        tv.func_000B60D0();
+        if (D_00275544 < tv.x * v190.z + tv.y * v190.x + tv.z * v190.y && f84 < d) {
+            f54 = 0;
+            f60 = 1;
+        }
+        v150 = v190;
+        v170 = v130;
+    }
+    func_000B67C0();
+}
