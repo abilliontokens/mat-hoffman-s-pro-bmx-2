@@ -40,6 +40,95 @@ struct S_Ioinfo {
     char padC[0x1c];
 };
 
+/* CRT FILE as output.c's write helpers see it */
+struct S_001EDC7E {
+    int f0;
+    int f4;
+    int f8;
+    u8 fC;
+    u8 fD;
+    char padE[0xA];
+    int f18;
+};
+int func_001ED8A7(int ch, void *stream);
+void func_001E8390(void *p);
+int func_001F58AA(char *mb, short wc);
+unsigned __int64 __stdcall func_001F58E0(unsigned __int64 dividend, unsigned __int64 divisor);
+
+extern signed char D_00295500[];
+extern char D_00295520[];
+extern char D_0029557C[];
+extern unsigned short D_00295584[];
+extern unsigned short *D_002AEA30;
+struct CrtDouble_001EDD36 {
+    unsigned long lo;
+    unsigned long hi;
+};
+extern void (*D_002AEA14)(CrtDouble_001EDD36 *, char *, int, int, int);
+extern void (*D_002AEA18)(char *);
+extern void (*D_002AEA20)(char *);
+/* Never defined or called: func_001EDD36 mentions it in a dead `if (0)` so format and argptr stay in memory. */
+void func_unused_001EDD36(void *, void *);
+
+/* output.c's flag bits, buffer sizes and va_arg helpers */
+#define OUTA_FL_SIGN       0x0001
+#define OUTA_FL_SIGNSP     0x0002
+#define OUTA_FL_LEFT       0x0004
+#define OUTA_FL_LEADZERO   0x0008
+#define OUTA_FL_LONG       0x0010
+#define OUTA_FL_SHORT      0x0020
+#define OUTA_FL_SIGNED     0x0040
+#define OUTA_FL_ALTERNATE  0x0080
+#define OUTA_FL_NEGATIVE   0x0100
+#define OUTA_FL_FORCEOCTAL 0x0200
+#define OUTA_FL_WIDECHAR   0x0800
+#define OUTA_FL_I64        0x8000
+#define OUTA_BUFFERSIZE    512
+#define OUTA_CVTBUFSIZE    349
+#define outa_get_int_arg(ap)   (*(int *)((*(ap) += 4) - 4))
+#define outa_get_short_arg(ap) (*(short *)((*(ap) += 4) - 4))
+#define outa_get_ptr_arg(ap)   (*(void **)((*(ap) += 4) - 4))
+#define outa_get_int64_arg(ap) (*(__int64 *)((*(ap) += 8) - 8))
+
+extern "C" unsigned int strlen(const char *s);
+#pragma intrinsic(strlen)
+
+/* write_char / write_multi_char / write_string. In the original they sit at the end of the
+   previous unit (text_001ED0FC.cpp, where they are matched); these copies give _output the
+   same register-based calls until the two units can be one file. */
+static void func_001EDCA8(char ch, S_001EDC7E *stream, int *pcnt) {
+    if ((stream->fC & 0x40) && stream->f8 == 0) {
+        ++*pcnt;
+        return;
+    }
+    if ((--stream->f4 >= 0 ? (unsigned char)(*(char *)stream->f0++ = ch)
+                           : func_001ED8A7(ch, stream)) == -1) {
+        *pcnt = -1;
+    } else {
+        ++*pcnt;
+    }
+}
+
+static void func_001EDCDB(char ch, int n, S_001EDC7E *stream, int *pcnt) {
+    while (n > 0) {
+        n--;
+        func_001EDCA8(ch, stream, pcnt);
+        if (*pcnt == -1) break;
+    }
+}
+
+static void func_001EDCFF(char *str, int len, S_001EDC7E *stream, int *pcnt)
+{
+    if ((stream->fC & 0x40) && stream->f8 == 0) {
+        *pcnt += len;
+        return;
+    }
+    while (len-- > 0) {
+        func_001EDCA8(*str++, stream, pcnt);
+        if (*pcnt == -1) break;
+    }
+}
+
 #pragma optimize("s", on)
 
 int func_001EE4BD(int fh, int pos, int mthd)
@@ -183,6 +272,79 @@ int func_001EE70F(int fh)
 void func_001EE782(int fh)
 {
     _imp__RtlLeaveCriticalSection((char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 0xc);
+}
+
+int func_001EE7A4(void)
+{
+    int fh = -1;
+    int i;
+    int base;
+    int **table;
+    S_Ioinfo *p;
+    void *cs;
+
+    if (!func_001EB314(11)) {
+        return fh;
+    }
+    func_001EB390(11);
+    base = 0;
+    i = 0;
+    table = D_002FB260;
+    do {
+        if (!*table) {
+            break;
+        }
+        for (p = (S_Ioinfo *)*table; p < (S_Ioinfo *)*table + 32; ++p) {
+            if (!(p->osfile & 1)) {
+                if (!p->lockinitflag) {
+                    func_001EB390(10);
+                    if (!p->lockinitflag) {
+                        if (!func_001F44EF(p->padC, 4000)) {
+                            func_001EB302(10);
+                            fh = -1;
+                            goto done;
+                        }
+                        ++p->lockinitflag;
+                    }
+                    func_001EB302(10);
+                }
+                cs = p->padC;
+                _imp__RtlEnterCriticalSection(cs);
+                if (!(p->osfile & 1)) {
+                    p->osfhnd = -1;
+                    fh = (p - (S_Ioinfo *)*table) + base;
+                    break;
+                }
+                _imp__RtlLeaveCriticalSection(cs);
+            }
+        }
+        if (fh != -1) {
+            goto done;
+        }
+        base += 32;
+        ++i;
+        ++table;
+    } while ((int)table < (int)D_002FB360);
+    if ((int)table < (int)D_002FB360) {
+        p = (S_Ioinfo *)func_001E8AA5(0x500);
+        if (p) {
+            D_002FB240 += 32;
+            D_002FB260[i] = (int *)p;
+            for (; p < (S_Ioinfo *)D_002FB260[i] + 32; ++p) {
+                p->osfile = 0;
+                p->osfhnd = -1;
+                p->lockinitflag = 0;
+                p->pipech = 10;
+            }
+            fh = i << 5;
+            if (!func_001EE70F(fh)) {
+                fh = -1;
+            }
+        }
+    }
+done:
+    func_001EB302(11);
+    return fh;
 }
 
 int func_001EE8F1(int fh)
