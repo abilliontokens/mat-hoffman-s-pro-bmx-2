@@ -274,15 +274,6 @@ struct C_001BBAA0 {
     void func_001BBA60(void);
     __declspec(noinline) void func_001BBAA0(void *a, void *b);
     void func_001BBE20(int a);
-    __forceinline void ApplyAction(int i, int a)
-    {
-        if (unkC4[i] > D_00275544) {
-            unkCC[i] = a;
-            unkC8[i] = unkC4[i];
-        } else {
-            ((void (*)(int, void *, void *, int))unkB8[i])(a, this, unkB4[i], 1);
-        }
-    }
 };
 
 struct S_001BBE20_2E4 {
