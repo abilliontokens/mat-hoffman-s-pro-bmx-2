@@ -7,7 +7,7 @@ struct C_000DC270_UI {
  void func_001B1860(int,float,int,float,int,int,int,int,float,int,float,float,int);
  void func_00093970(float,float,int,int,int,int);
  void func_00094570(float,float,int,int,int,int);
- void func_00093A00(float,float,int,int,int,int);
+ void func_00093A00(float,float,int,float,float,float);
  int func_000301D0();
  void Draw(int color) { func_00093A00(320,80,color,0,0,0); }
 };
