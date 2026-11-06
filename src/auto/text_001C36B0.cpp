@@ -319,7 +319,7 @@ struct VideoCardFlags {
 };
 
 struct VideoCard {
-    void * volatile vtbl;
+    void *vtbl;
     int f4;
     int f8;
     int fC;
@@ -761,8 +761,17 @@ void C_001C3D80::func_001C3D80(void) {
 
 VideoCard *VideoCard::func_001C3D90(void)
 {
-    vtbl = &D_0028E3A0;
-    Clear_001C3D90();
+    volatile VideoCard *v = this;
+    unsigned char t;
+    int p;
+    v->vtbl = &D_0028E3A0;
+    t = *(volatile unsigned char *)&v->f3C;
+    t = (unsigned char)(t & 0xfe);
+    v->f30 = 0;
+    v->f2C = 0;
+    v->f34 = 0;
+    v->f38 = 0;
+    *(volatile unsigned char *)&v->f3C = t;
     f1C = 0;
     f20 = 0;
     f4 = 0;
@@ -771,9 +780,15 @@ VideoCard *VideoCard::func_001C3D90(void)
     f10 = 0;
     f24 = 0;
     f28 = 0;
-    Alloc_001C3D90();
-    f14 = 2;
-    f18 = 2;
+    p = (int)func_001E8A44(4);
+    t = *(volatile unsigned char *)&v->f3C;
+    v->f30 = p;
+    v->f34 = 1;
+    v->f38 = 1;
+    t = (unsigned char)(t | 1);
+    *(volatile unsigned char *)&v->f3C = t;
+    v->f14 = 2;
+    v->f18 = 2;
     return this;
 }
 
