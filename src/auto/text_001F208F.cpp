@@ -308,6 +308,35 @@ plain:
     }
     return D_002F6A30;
 }
+
+#pragma optimize("s", on)
+T* func_001F2A1C(T* r, T* a, T* b, int c) {
+    char ch = *D_002F6A28;
+    T t;
+    if (ch) {
+        if ((ch >= 0x36 && ch <= 0x39) || ch == 0x5f) {
+            t.func_001EF734(c);
+            if (!a->func_001EF1E7() && (b->func_001EF1E7() || !(((char*)b)[4] & 0x10))) t.func_001EF935(a);
+            if (!b->func_001EF1E7()) t.func_001EF935(b);
+            func_001F208F(r, &t);
+        } else {
+        func_001F23B8(&t, b, c, a, 0);
+        func_001F062A(r, &t, (char)c == 0x2a);
+        }
+    } else {
+    t.func_001EF170(2);
+    t.func_001EFB18(c);
+    if (!a->func_001EF1E7()) t.func_001EF935(a);
+    if (!b->func_001EF1E7()) {
+        if (!a->func_001EF1E7()) t.func_001EFB18(0x20);
+        t.func_001EF935(b);
+    }
+    r->func_001EEEE6(&t);
+    }
+    return r;
+}
+#pragma optimize("", on)
+
 void func_001F2BC3(void) {
     int func_001EB302(...);
     func_001EB302(5);
