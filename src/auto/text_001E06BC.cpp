@@ -50,6 +50,7 @@ extern "C" void __stdcall RtlInitializeCriticalSection(void *cs);
 extern "C" void *memcpy(void *, const void *, unsigned int);
 extern "C" void *memset(void *, int, unsigned int);
 extern u32 D_0028FD88, D_002ACBD4, D_002ACBD8, D_002ACBDC, D_002ACBE0;
+extern u32 D_000FF000, D_00040000, D_0000FFFF, D_00010000;
 extern u8 D_002F6BB1, D_002F6BB2;
 u8 __stdcall func_001E016D(S_Heap *heap, void *a, int b, void *c, u32 d, void *e, void *f);
 S_HeapEntry *__stdcall func_001DF985(S_Heap *heap, S_HeapEntry *entry, u32 *size, int a3);
