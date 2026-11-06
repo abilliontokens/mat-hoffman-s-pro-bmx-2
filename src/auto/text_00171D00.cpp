@@ -13,6 +13,9 @@ struct V3_00171BA0 {
  V3_00171BA0 operator-(const V3_00171BA0 &o) const { return V3_00171BA0(x-o.x,y-o.y,z-o.z); }
  void operator+=(const V3_00171BA0 &o) { x+=o.x; y+=o.y; z+=o.z; }
 };
+struct V4_00171BA0 {
+ float x,y,z,w;
+};
 static __forceinline float Sqrt_00171BA0(const float &x) { float r; _mm_store_ss(&r,_mm_sqrt_ss(_mm_load_ss(&x))); return r; }
 static __forceinline float Max_00171BA0(const float &a,const float &b) { float r; _mm_store_ss(&r,_mm_max_ss(_mm_load_ss(&a),_mm_load_ss(&b))); return r; }
 
@@ -308,7 +311,7 @@ void PhysicsBody::func_00172090(float a0, float a1, int a2, int a3, int a4, int 
     b = V4_00172090(b.x + b.x, b.y + b.y, b.z + b.z);
     s = b.z * b.z + b.y * b.y + b.x * b.x;
     _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&s));
-    self->f114 = r;
+    self->f114 = (float)(double)r;
     {
         PhysicsBody *p = self;
         if (p->f114 > D_00275544) {
@@ -317,7 +320,7 @@ void PhysicsBody::func_00172090(float a0, float a1, int a2, int a3, int a4, int 
     }
     {
         PhysicsBody *p = self;
-        ((C_00171D00_C4VT *)p->fC4)->v28(D_00283A7C * a0);
+        ((C_00171D00_C4VT *)p->fC4)->v28(a0 * D_00283A7C);
     }
     {
         S_00172090_Mat *q = pm;
@@ -337,13 +340,13 @@ void PhysicsBody::func_00172090(float a0, float a1, int a2, int a3, int a4, int 
     }
     self->fD0->func_001A9110(a2, a3, a4, a5, a6, a8, a8, a8);
     self->fD0->func_001A9220(0, a7);
-    self->fE0 = a9;
-    self->fE4 = a10;
-    self->fE8 = a11;
-    self->fEC = a12;
-    self->fF0 = a13;
-    self->fF4 = a14;
-    self->fF8 = a15;
+    self->fE0 = (float)(double)a9;
+    self->fE4 = (float)(double)a10;
+    self->fE8 = (float)(double)a11;
+    self->fEC = (float)(double)a12;
+    self->fF0 = (float)(double)a13;
+    self->fF4 = (float)(double)a14;
+    self->fF8 = (float)(double)a15;
     {
         PhysicsBody *p = self;
         p->fFC = *(int *)&p->fE0;
@@ -391,5 +394,41 @@ void PhysicsBody::func_00172460(void)
     fD8->func_001332A0();
     fDC->func_001332A0();
 }
+
+extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
+void PhysicsBody::func_001729D0(void)
+{
+    char *p = (char *)this;
+    V3_00171BA0 *src = (V3_00171BA0 *)(p + 0x84);
+    V3_00171BA0 v;
+
+    v.z = 0.0f; v.y = 0.0f; v.x = 0.0f; v.w = 1.0f;
+    ((C_001729D0_Cam *)*(void **)(*(char **)(p + 0xc4) + 0x22c))->func_00199A70(0, &src->x);
+    V3_00171BA0 *dst = (V3_00171BA0 *)(p + 0x74);
+    if (dst->x == D_002A8BA0 && dst->y == D_002A8BA4 && dst->z == D_002A8BA8) {
+        *dst = *src;
+    }
+    ((C_001729D0_Obj *)fDC)->func_0014AC30(&dst->x, 0);
+    ((C_001729D0_Obj *)fDC)->func_00133ED0();
+    if (*(int *)(p + 0x148) != 0) {
+        ((C_001729D0_Obj *)fDC)->func_00134770(**(int **)(p + 0x144), *(int *)(p + 0x148));
+    } else {
+        ((C_001729D0_Obj *)fDC)->func_00133F10(0);
+    }
+    if (((C_001729D0_Obj *)fDC)->fA7 & 0x20) {
+        C_001729D0_Node *n = ((C_001729D0_Obj *)fDC)->f54;
+        V3_00171BA0 *m = (V3_00171BA0 *)((char *)n + 0x20);
+        *(V3_00171BA0 *)(p + 0x94) = *m;
+        V3_00171BA0 w = *m * D_002A8BE8 + *(V3_00171BA0 *)((char *)n + 0x30);
+        w.w = 1.0f;
+        v = w;
+        ((C_001729D0_Cam *)f14C)->func_00199790(0, &v.x);
+        ((C_001729D0_Cam *)f14C)->func_0019AC50();
+        *dst = v;
+        return;
+    }
+    *dst = *src;
+}
+
 static __forceinline void SqrtR_00171D00(float *r,const float &x) { _mm_store_ss(r,_mm_sqrt_ss(_mm_load_ss(&x))); }
 static __forceinline void MaxR_00171D00(float *r,const float &a,const float &b) { _mm_store_ss(r,_mm_max_ss(_mm_load_ss(&a),_mm_load_ss(&b))); }
