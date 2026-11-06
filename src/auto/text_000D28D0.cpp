@@ -26,7 +26,8 @@ struct Unlocks_D28 {
     Rec_D28 *func_0005C020(int idx);
 };
 struct Mgr_D28 {
-    char pad0[0x2C0];
+    int f0, f4;
+    char pad8[0x2C0 - 8];
     Unlocks_D28 *f2C0;
     char pad2C4[0x14];
     int f2D8;
