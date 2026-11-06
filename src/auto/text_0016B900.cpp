@@ -68,6 +68,41 @@ struct C_Pool {
     C_Particle **f12C;
 };
 
+struct S_0016B900_68 { char pad0[0x18C]; void *f18C; };
+struct S_0016B900_This {
+    void *vtbl;
+    char pad04[0x20];
+    V4f f24;
+    V4f f34;
+    char pad44[0x10];
+    float f54, f58, f5C;
+    char pad60[4];
+    C_Pool *f64;
+    S_0016B900_68 *f68;
+    char pad6C[0x104];
+    float f170;
+    float f174;
+    float f178;
+    float f17C;
+    float f180;
+    float f184;
+    int f188;
+    void *f18C;
+    int f190;
+    char pad194[0x14];
+    int f1A8, f1AC;
+    int f1B0;
+    char pad1B4[0x3c];
+    float f1F0;
+    int f1F4;
+};
+static __forceinline float Sqrt_0016B900(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+static __forceinline float Max_0016B900(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+extern float D_002A8734, D_002A8730, D_002A8738, D_002A873C, D_002A8740, D_002A8744, D_002A8748;
+extern float D_0027AA24, D_00275F5C, D_002756DC;
+extern int D_002EFB64;
+int func_00169E10(float dt);
+int func_0016A3A0(int a);
 struct C_0016C0D0 {
     void *vtbl;
     char pad04[0x20];
@@ -246,6 +281,80 @@ C_0016BEC0 *C_0016BEC0::func_0016BEC0(void *a, char *name, void *b, u32 *c)
     f17C = 2500.0f;
     f190 = 0xc;
     return this;
+}
+
+extern "C" float __cdecl sqrtf(float);
+int C_0016C0D0::func_0016C0D0(float dt)
+{
+    C_Particle *p;
+    float r1, r2, r3;
+    float px, py, pz;
+    float sq, len, f, fv, maxv, v;
+    int i;
+
+    if (((C_00169E10 *)this)->func_00169E10(dt)) return 1;
+    if (f194 != D_00278C48) {
+        f34 = f24;
+        return 1;
+    }
+    if (f68) {
+        void *o = *(void **)((char *)f68 + 0x18C);
+        if (o) {
+            if (D_002EFE50 != *(u16 *)(*(char **)((char *)o + 4) + 0x90)) {
+                if (o) goto done;
+            }
+        }
+    }
+    sq = f5C * f5C + f58 * f58 + f54 * f54;
+    len = sqrtf(sq);
+    f = dt * f17C;
+    if (len < D_00275548 && f1F0) {
+        if (len < D_002755E8)
+            f = D_00275544;
+        else
+            f = f * (len * D_00275F64);
+    }
+    *(u32 *)&fv = f180;
+    _mm_store_ss(&maxv, _mm_max_ss(_mm_set_ss(fv), _mm_set_ss(f)));
+    i = 0;
+    if (D_00275544 < maxv) {
+        do {
+            r1 = func_001E8833() * D_002754B0;
+            r2 = func_001E8833() * D_002754B0;
+            r3 = func_001E8833() * D_002754B0;
+            px = (f204.x - f1F4.x) * r1 + f1F4.x;
+            py = (f204.y - f1F4.y) * r2 + f1F4.y;
+            pz = (f204.z - f1F4.z) * r3 + f1F4.z;
+            if (f64->f11C == f64->f124) goto done;
+            p = f64->f12C[f64->f11C];
+            p->f2C = 0;
+            p->f0 = f24;
+            p->f28 = f188;
+            v = func_001E8833() * D_002754B0 * f174;
+            p->f40 = v;
+            if (v <= D_00275544) {
+                p->f44 &= ~8;
+                p->f38 = f178;
+                p->f48 = this;
+                p->f3C = f178;
+            }
+            v = func_001E8833() * D_002754B0 * f170;
+            p->f30 = v;
+            p->f34 = D_00275460 / v;
+            p->f10 = V4f(px + f54, py + f58, pz + f5C, 1.0f);
+            p->f44 = f190;
+            if (r1 != D_002755E8 && f1C4) p->f44 |= 0x4000; else p->f44 &= ~0x4000;
+            if (r2 != D_002755E8 && f1C8) p->f44 |= 0x8000; else p->f44 &= ~0x8000;
+            f64->f11C++;
+            f188++;
+            if (f188 > f1AC) f188 = f1A8;
+            i++;
+        } while (i < maxv);
+    }
+done:
+    f184 = f178;
+    f194 = 0;
+    return 1;
 }
 
 C_0016C5B0 *C_0016C5B0::func_0016C5B0(void *param)
