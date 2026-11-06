@@ -136,6 +136,60 @@ struct C_001D0C30 {
 
 void *func_001E8A44(int size);
 
+#include <string.h>
+int func_001ADCC0(char *dst, int size, const char *fmt, ...);
+extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
+extern char D_00275630[], D_00275AE4[], D_00275678[];
+extern char D_002A5EA0[], D_002A60B0[], D_002A45E0[], D_002A5870[], D_002A5FA8[];
+extern char D_00286F50[], D_00286F40[], D_00286F30[], D_00286F18[], D_00286F00[];
+extern char D_00286EEC[], D_00286ED0[], D_00286EB0[], D_00286EA0[], D_0027AEEC[];
+extern int D_00286E50, D_00286E60, D_00286E74, D_00286E84, D_00286E94;
+struct S_1561_V4 { float x, y, z, w; };
+struct S_1561_Vec4 : S_1561_V4 { S_1561_Vec4() { x = y = z = 0; w = 1; } };
+extern S_1561_V4 D_002A79B8;
+extern S_1561_V4 D_002A79C8;
+extern S_1561_V4 D_002A79D8;
+struct S_1561_Obj99 { S_1561_V4 func_00199B00(int a); };
+struct S_1561_1A4 { char pad0[4]; S_1561_Obj99 *unk4; };
+struct S_1561_Arg1Sub { char pad0[0x1a4]; S_1561_1A4 *unk1A4; };
+struct S_1561_Arg1 {
+    char pad0[0x2c];
+    S_1561_Arg1Sub *unk2C;
+    void func_00150900(S_1561_V4 *a, S_1561_V4 *b);
+};
+struct S_1561_Stream { void func_00168BE0(const char *key, const char *def, char *dst, int size); };
+struct S_1561_Cam { void func_00199110(int a, void *pos, void *dir, int b, int c, int d); };
+struct S_1561_F3C { char pad0[4]; S_1561_Cam *unk4; };
+struct S_1561_Anim { char pad0[0x54]; volatile int unk54; };
+struct S_1561_Machine { S_1561_Machine *func_001AC080(void); void func_001AC0A0(void *a, const char *name); };
+struct S_1561_State { void *vtbl; int kind; void *owner; };
+static __forceinline S_1561_State *Init1561A(void *p) { S_1561_State *s = (S_1561_State *)p; s->vtbl = &D_00286E50; s->kind = 0; s->owner = 0; return s; }
+static __forceinline S_1561_State *Init1561B(void *p) { S_1561_State *s = (S_1561_State *)p; s->vtbl = &D_00286E60; s->kind = 1; s->owner = 0; return s; }
+static __forceinline S_1561_State *Init1561C(void *p) { S_1561_State *s = (S_1561_State *)p; s->vtbl = &D_00286E74; s->kind = 3; s->owner = 0; return s; }
+static __forceinline S_1561_State *Init1561D(void *p) { S_1561_State *s = (S_1561_State *)p; s->vtbl = &D_00286E84; s->kind = 4; s->owner = 0; return s; }
+static __forceinline S_1561_State *Init1561E(void *p) { S_1561_State *s = (S_1561_State *)p; s->vtbl = &D_00286E94; s->kind = 5; s->owner = 0; return s; }
+template <class T> inline T min_1561(T a, T b) { return a > b ? b : a; }
+#define CopyPath1561(dst, src, len, lim, res) { int ma, mb, n; len = strlen(src); lim = 0x103; ma = lim; mb = len; res = ma > mb ? mb : ma; n = res; func_001E8920(dst, src, n); (dst)[n] = 0; }
+struct C_1561 {
+    char pad0[0x3c];
+    S_1561_F3C *unk3C;
+    char pad40[0xc0 - 0x40];
+    S_1561_Anim *unkC0;
+    char padC4[0x384 - 0xc4];
+    S_1561_Machine * volatile unk384;
+    S_1561_State * volatile unk388;
+    S_1561_State * volatile unk38C;
+    S_1561_State * volatile unk390;
+    S_1561_State * volatile unk394;
+    S_1561_State * volatile unk398;
+    S_1561_Arg1 *unk39C;
+    char pad3A0[0x3bc - 0x3a0];
+    volatile int unk3BC[9];
+    void func_001C76B0(char *buf, int a, S_1561_V4 *pos, int b, int c, S_1561_V4 v1, S_1561_V4 v2);
+    int func_001C6E30(const char *name);
+    void func_001561A0(S_1561_Stream *stream, S_1561_Arg1 *arg1);
+};
+
 struct C_00156820 {
     int func_00156820(int param_1, void *param_2);
 };
@@ -160,12 +214,7 @@ int TikiPlayerAirborneState::func_00156030(int param_1)
 
 void TikiPlayerFlinchState::func_001560A0(void)
 {
-    int iVar1 = *(int *)((char *)this + 8);
-    if (*(int *)(*(int *)(iVar1 + 0x39c) + 0x108) != 0) {
-        func_001C6DA0(*(int *)(iVar1 + 0x3d8), 1);
-        return;
-    }
-    func_001C6DA0(*(int *)(iVar1 + 0x3d4), 1);
+    unk8->Flinch();
 }
 
 void C_00156740::func_00156740(void)
