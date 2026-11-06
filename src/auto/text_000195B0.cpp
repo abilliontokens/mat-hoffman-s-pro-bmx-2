@@ -92,7 +92,7 @@ struct C_00019830 {
 
 struct S_195B0_Vec { float x, y, z; };
 struct S_195B0_Range { float f0; char pad[0x10]; };
-struct S_195B0_F398 { S_195B0_Vec func_00016E40(void); };
+struct S_195B0_F398 { S_195B0_Vec func_00016E40(void); S_195B0_Vec *func_00016E40(S_195B0_Vec *out); };
 struct S_195B0_F4 { float func_00182530(float v); };
 struct S_195B0_F3C { char pad0[4]; S_195B0_F4 *f4; };
 struct S_195B0_Owner {
@@ -586,30 +586,38 @@ undefined4 C_0001A3E0::func_0001A3E0(byte param_1)
   return in_ECX;
 }
 
+extern float D_002A071C, D_002A0720, D_002A0724;
 void C_1A400::func_0001A400(S_1A400_Arg *a, float t)
 {
- float z=t*a->f20, y=t*a->f1C, x=t*a->f18;
- S_1A400_Vec4 *v=(S_1A400_Vec4*)&a->p->x;
- v->x+=x; v->y+=y; v->z+=z;
- a->p->func_0011CA60(*(S_1A400_Vec4*)&a->p->x);
- int hit=0;
- if(a->p->y <= a->f8) hit=1;
+ S_1A400_Arg *volatile *pa = (S_1A400_Arg *volatile *)&a;
+ S_1A400_Arg *q = *pa;
+ C_1A400 *volatile self = this;
+ float d[3];
+ d[0] = t * q->f18; d[1] = t * q->f1C; d[2] = t * q->f20;
+ float *pos = &q->p->x;
+ pos[0] += d[0]; pos[1] += d[1]; pos[2] += d[2];
+ q = *pa;
+ pos = &q->p->x;
+ q->p->func_0011CA60(*(S_1A400_Vec4 *)pos);
+ int hit = 0;
+ q = *pa;
+ if (q->p->y <= q->f8) hit = 1;
  S_1A400_Vec4 p;
- S_1A400_Entity *e=D_002B9120->p->p;
- if(!e) p=*(S_1A400_Vec4*)&D_002A0718;
- else e->p->p->func_00199B00(&p,0);
- float d;
- x=a->p->x-p.x; y=a->p->y-p.y; z=a->p->z-p.z;
- float square=z*z+y*y+x*x;
- _mm_store_ss(&d,_mm_sqrt_ss(_mm_set_ss(square)));
- if(d<D_002756C4) {
- d=D_0027599C-d;
- D_002B9120->p->func_00153D30((int)(d*D_00275AEC));
- D_002B9120->p->score+=(int)(d*D_00275AEC);
- func_00017D20(50);
- hit=1;
+ S_1A400_Entity *e = D_002B9120->p->p;
+ if (!e) { p.x=*(float*)&D_002A0718; p.y=D_002A071C; p.z=D_002A0720; p.w=D_002A0724; }
+ else e->p->p->func_00199B00(&p, 0);
+ q = *pa;
+ pos = &q->p->x;
+ float x = pos[0] - p.x, y = pos[1] - p.y, z = pos[2] - p.z;
+ float square = z*z + y*y + x*x;
+ float dist = sqrtf(square);
+ if (dist < D_002756C4) {
+  dist = D_0027599C - dist;
+  D_002B9120->p->func_00153D30((int)(dist*D_00275AEC));
+  D_002B9120->p->score += (int)(dist*D_00275AEC);
+  self->func_00017D20(50);
+  hit = 1;
  }
-
- if(hit) a->f8=0;
+ if (hit) (*pa)->f8 = 0;
 }
 
