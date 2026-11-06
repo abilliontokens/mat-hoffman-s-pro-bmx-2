@@ -3,7 +3,7 @@
 #include <xmmintrin.h>
 #include "asm_helpers.h"
 
-struct V4 { float x; float y; float z; float w; V4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; } };
+struct V4 { float x; float y; float z; float w; };
 extern float D_00276600;
 extern float D_002765F0;
 extern float D_002765E0;
