@@ -173,7 +173,7 @@ struct C_00086240_Item {
         if (x != a || y != b) { x = a; y = b; flags |= 6; }
     }
     void SetFont(int a) { if (font != a) { font = a; flags |= 6; } }
-    void SetZ(float a) { if (*(int *)&z != *(int *)&a) { z = a; flags |= 4; } }
+    void SetZ(float a) { if (z != a) { z = a; flags |= 4; } }
     void SetAlpha(unsigned short a) { if (*(unsigned short *)pad4C != a) { flags |= 8; *(unsigned short *)pad4C = a; ((char *)&argb)[3] = (char)a; } }
     void SetArgb(unsigned int c) {
         if (argb != c) {
