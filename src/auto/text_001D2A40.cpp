@@ -48,7 +48,7 @@ struct S_001D2A40_Track {
     unsigned char dir;
     unsigned short done;
     float step[6];
-    float val[6];
+    volatile float val[6];
 };
 
 /* 16-byte frame entry */
