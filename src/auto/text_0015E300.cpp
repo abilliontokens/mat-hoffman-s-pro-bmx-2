@@ -277,24 +277,32 @@ void LightEmitter::func_0015E420(float *dir, float *mat, int unk)
     mat[14] = f48;
 }
 
+static inline float Blend_0015E4B0(float r)
+{
+    return D_002A80A4 * r + (D_00275460 - r);
+}
+
 float LightEmitter::func_0015E4B0(float a1, S_0015E4B0_V4 v, LightEmitter *e)
 {
     S_0015E4B0_V4 n;
     n.x = -e->f6C;
     n.y = -e->f70;
     n.z = -e->f74;
-    func_0015CD90(&v.x, &v.x);
-    float dot = v.x * n.x + v.y * n.y + v.z * n.z;
-    float t1 = func_0014F510(D_002755E8 * e->f90);
-    if (dot < t1) {
-        return D_002A80A4 * a1;
-    }
-    float t2 = func_0014F510(D_002755E8 * e->f8C);
-    if (dot > t2) {
-        return D_00275460 * a1;
-    }
+    float *p = &v.x;
+    float *q = &v.x;
+    func_0015CD90(p, q);
+    float dot = v.x * n.x;
+    dot += v.y * n.y;
+    dot += v.z * n.z;
+    float t1 = func_0014F510(e->f90 * 0.5f);
+    if (dot < t1) return D_002A80A4 * a1;
+    float t2 = func_0014F510(e->f8C * 0.5f);
+    if (dot > t2) return D_00275460 * a1;
     float ratio = (t2 - dot) / (t2 - t1);
-    return ((D_00275460 - ratio) + D_002A80A4 * ratio) * a1;
+    float result = ratio;
+    result *= D_002A80A4;
+    result += D_00275460 - ratio;
+    return a1 * result;
 }
 
 int C_0015E300::func_0015E5B0(void)
@@ -420,6 +428,59 @@ void LightEmitter::func_0015E920(float *p)
         f74 = fAC;
         if (D_002E2930 != 0) {
             D_002E2930->f68++;
+        }
+    }
+}
+
+void LightEmitter::func_0015EB90(float dt)
+{
+    S_0015EB90_Blink *p = (S_0015EB90_Blink *)fCC;
+    if (p == 0)
+        return;
+    if (*(int *)p == -1)
+        return;
+    p->f0c += dt;
+    while (p->f0c > p->f08)
+        p->f0c -= p->f08;
+
+    unsigned int a = (unsigned int)func_0015CF60();
+    int idx = (int)(((S_0015EB90_Blink *)fCC)->f0c / ((S_0015EB90_Blink *)fCC)->f08 * D_002756C0);
+    unsigned int b = ((p->f00 >> idx) & 1) ? p->f04 : 0;
+    float t = p->f10;
+    float it = D_00275460 - t;
+    LS_Vec4 col;
+    col.x = (float)((a >> 16) & 0xff) * t + (float)((b >> 16) & 0xff) * it;
+    col.y = (float)((a >> 8) & 0xff) * t + (float)((b >> 8) & 0xff) * it;
+    col.z = (float)(a & 0xff) * t + (float)(b & 0xff) * it;
+    col.w = (float)(a >> 24) * t + (float)(b >> 24) * it;
+    ((LightSource *)this)->func_0015E650(col);
+
+    if (D_002E2940 != 0) {
+        float dx = D_002EFDB8->f4->f170 - f94;
+        float dy = D_002EFDB8->f4->f174 - f98;
+        float dz = D_002EFDB8->f4->f178 - f9c;
+        float dist = sqrtf(dx * dx + dy * dy + dz * dz);
+        if (f28 == 3) {
+            float v = func_0014F600(f90 * D_002755E8);
+            LS_Vec4 n;
+            n.x = v * dist;
+            n.y = v * dist;
+            n.z = v * dist;
+            n.w = D_00275460;
+            func_0015CD90(&n.x, &n.x);
+            LS_Vec4 q;
+            q.x = n.x * D_002A802C.x + n.y * D_002A802C.y + n.z * D_002A802C.z;
+            q.y = n.x * D_002A802C.x + n.y * D_002A802C.y + n.z * D_002A802C.z;
+            q.z = n.x * D_002A802C.x + n.y * D_002A802C.y + n.z * D_002A802C.z;
+            q.w = 0.0f;
+            if (func_000262C0(&q, D_002A801C)) {
+                LS_Vec4 m;
+                m.x = q.x * D_002A803C.x;
+                m.y = q.y * D_002A803C.y;
+                m.z = q.z * D_002A803C.z;
+                m.w = D_00275460;
+                func_0015CD90(&m.x, &m.x);
+            }
         }
     }
 }
