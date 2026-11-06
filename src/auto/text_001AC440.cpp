@@ -279,7 +279,7 @@ static __declspec(noinline) char *func_001AC940(int *sign, char *buf, double arg
             dp--;
         }
     }
-    p1 = &buf[ndigits];
+    p1 = (char *)ndigits + (int)buf;
     if (eflag == 0)
         p1 += dp;
     *decpt = dp;
@@ -463,6 +463,13 @@ char *func_001ACD40(int ndec, char fmt, double value, int alt, int *sign, char *
     }
     *outlen = p - buf;
     return buf;
+}
+
+/* Stand-in for the printf engine (_func_001ACFE0, in text_001ACFE0.cpp), the only caller of the
+   static func_001ACD40: gives it a caller in this unit so it keeps its register convention. */
+char *call_001ACD40(int ndec, char fmt, double value, int alt, int *sign, char *buf, int *outlen)
+{
+    return func_001ACD40(ndec, fmt, value, alt, sign, buf, outlen);
 }
 
 void __cdecl func_001ACF30(char fmt, int *outlen)
