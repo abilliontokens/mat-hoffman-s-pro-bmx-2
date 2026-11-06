@@ -383,6 +383,10 @@ struct BmxEventEditor {
     void func_00041CF0();
     void func_00041DC0();
     void func_00041F00();
+    int func_00041560();
+    int func_00038B10(void *obj, S_41F00_V4 va, S_41F00_V4 vb, int *ox, int *oy, int *oz, int flag);
+    void func_00038A70(void *p, void **out);
+    int func_0003D7B0(S_41F00_V4 v);
 };
 
 struct S_3D910_Base {
