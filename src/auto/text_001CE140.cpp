@@ -178,6 +178,11 @@ template <class T> inline const T &Min(const T &a, const T &b)
     return b < a ? b : a;
 }
 
+static __forceinline int MinV_001CE9F0(int a, int b)
+{
+    return b < a ? b : a;
+}
+
 struct TrackRec {
     int f0;
     char *name;
@@ -284,10 +289,17 @@ int Voice::func_001CE140(int arg)
             return 1;
         }
         int mode;
-        if (flags & 1)
-            mode = (arg & 1) ? 3 : 1;
-        else
-            mode = (arg & 1) ? 2 : 0;
+        if (flags & 1) {
+            if (arg & 1)
+                mode = 3;
+            else
+                mode = 1;
+        } else {
+            if (arg & 1)
+                mode = 2;
+            else
+                mode = 0;
+        }
         if (func_00220A12(f13c, 0, 0, mode))
             return 0;
         flags &= 0xef;
@@ -312,6 +324,7 @@ int XboxSound::func_001CE660(float dt)
     int x;
     int * volatile p;
     float t;
+    float r;
 
     if (f154 != 0) {
         func_001CCA10();
@@ -321,9 +334,10 @@ int XboxSound::func_001CE660(float dt)
     }
     if (self->f12c > D_00275544) {
         self->f130 += dt;
-        t = min_ss_001CE660(self->f12c, self->f130) * self->f134;
+        _mm_store_ss(&r, _mm_min_ss(_mm_set_ss(self->f130), _mm_set_ss(self->f12c)));
+        t = r * self->f134;
         p = &x;
-        *p = _mm_cvttss_si32(*(__m128 *)&t);
+        *p = _mm_cvttss_si32(_mm_set_ss(t));
         self->v09(self->f128 + x);
         if (self->f130 >= self->f12c) {
             self->f12c = 0;
@@ -336,6 +350,8 @@ int XboxSound::func_001CE660(float dt)
 int Voice::func_001CE770(int buf)
 {
     int handle = -1;
+    int p;
+    short fmt;
 
     if (f144 == 0) {
         handle = D_002BEAAC->func_0013C9F0(path, &D_00275FB4);
@@ -354,25 +370,28 @@ int Voice::func_001CE770(int buf)
             }
         }
     }
-    if (f16c == 0x69) {
+    fmt = f16c;
+    if (fmt == 0x69) {
         f118 = f190;
     } else {
         f118 = f180;
     }
     f11c = (float)f118 / (float)f174;
     if ((f10c & 0x100) && f150) {
+        p = buf;
         f19c = f170;
         f1a0 = f170;
-        if (func_001CCAC0(buf, handle, 0, f118)) {
+        if (func_001CCAC0(p, handle, 0, f118)) {
             if (handle != -1) {
                 D_002BEAAC->func_0013C110(handle);
             }
             return 1;
         }
     } else {
-        if (func_001CCC50(&f13c, 0, f170, f17a, f178, f16c, (flags >> 1) & 1,
+        if (func_001CCC50(&f13c, 0, f170, f17a, f178, fmt, (flags >> 1) & 1,
                           (f10c & 8) == 8, 1, f110)) {
-            if (func_001CCAC0(f13c, handle, 0, f118)) {
+            p = f13c;
+            if (func_001CCAC0(p, handle, 0, f118)) {
                 if (handle != -1) {
                     D_002BEAAC->func_0013C110(handle);
                 }
@@ -417,8 +436,41 @@ void XboxMusic::func_001CE920()
     func_0001C9B0();
 }
 
+void TrackDB::func_001CE9F0(volatile int idx, volatile int set)
+{
+    TrackDB *volatile self = this;
+    int tmp;
+    volatile int lengths[2];
+    char name[0x20];
+    char wname[0x40];
+    sets[set].recs[idx].f0 = 0;
+    TrackSet *current = &self->sets[set];
+    int index = idx;
+    func_001DD8C5(current->handle, index, current->recs[index].f10, &tmp, (unsigned short *)wname, 0x20);
+    lengths[0] = func_001EA410((unsigned short *)wname);
+    int length = lengths[0];
+    lengths[1] = length;
+    if (lengths[1] > 0x20) lengths[1] = 0x20;
+    int end = lengths[1] * 2;
+    for (int i = 1; i < end; i += 2) {
+        if (wname[i]) {
+            wname[i - 1] = 1;
+            wname[i] = 0;
+        }
+    }
+    func_001DDE51(name, D_0028F0A8, wname);
+    self->sets[set].recs[idx].name = (char *)func_001E8AA5(strlen(name) + 3);
+    func_001ADCC0(self->sets[set].recs[idx].name, 0x20, D_002843B0, name);
+    IntList *l = &self->sets[set].ids;
+    if (l->count < l->cap || l->func_0015ACA0(l->count + l->grow)) {
+        l->data[l->count] = idx;
+        l->count++;
+    }
+}
+
 int TrackDB::func_001CEB70()
 {
+    TrackDB * volatile self = this;
     int capacity = count;
     struct { int handle; unsigned int count; int unk; unsigned short name[32]; } info;
     volatile int h = func_001DD816(&info);
@@ -433,14 +485,15 @@ int TrackDB::func_001CEB70()
                     return 0x8007000e;
                 }
                 memset((char *)p+bytes,0,bytes);
-                sets = p;
+                self->sets = p;
                 capacity *= 2;
             }
             if (info.count > 0) {
                 sets[count].flags &= ~1;
                 sets[count].handle = info.handle;
                 sets[count].count = info.count;
-                int len=Min(func_001EA410(info.name),32);
+                int len = func_001EA410(info.name);
+                if (len > 32) len = 32;
                 char *name = (char *)info.name;
                 for (int i=1;i<len*2;i+=2) {
                     if(name[i]) { name[i-1]=1; name[i]=0; }
