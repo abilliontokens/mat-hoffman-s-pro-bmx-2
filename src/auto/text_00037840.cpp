@@ -116,15 +116,15 @@ struct S_00037840_A {
     int f64;
 };
 
-struct S_00037840_Owner { char pad0[0x1E0]; int f1E0; int GetF1E0() { return f1E0; } };
-struct S_00037840_Rider { char pad0[0x1A8]; S_00037840_Owner *f1A8; S_00037840_Owner *GetF1A8() { return f1A8; } };
-struct S_00037840_Bike { char pad0[0x4E0]; S_00037840_Rider *f4E0; S_00037840_Rider *GetF4E0() { return f4E0; } };
-struct S_00037840_Player { char pad0[0x64]; S_00037840_Bike *f64; S_00037840_Bike *GetF64() { return f64; } };
-struct S_00037840_State { char pad0[0x2A4]; S_00037840_Player *f2A4; S_00037840_Player *GetF2A4() { return f2A4; } };
+struct S_00037840_Owner { char pad0[0x1E0]; int f1E0; };
+struct S_00037840_Rider { char pad0[0x1A8]; S_00037840_Owner *f1A8; };
+struct S_00037840_Bike { char pad0[0x4E0]; S_00037840_Rider *f4E0; };
+struct S_00037840_Player { char pad0[0x64]; S_00037840_Bike *f64; };
+struct S_00037840_State { char pad0[0x2A4]; S_00037840_Player *f2A4; };
 
 static __forceinline int CurrentOwner(void)
 {
-    return ((S_00037840_State *)D_002A8490)->GetF2A4()->GetF64()->GetF4E0()->GetF1A8()->GetF1E0();
+    return ((S_00037840_State *)D_002A8490)->f2A4->f64->f4E0->f1A8->f1E0;
 }
 
 struct S_00037840_B {
@@ -137,11 +137,9 @@ struct S_00037840_B {
 
 void func_00037840(S_00037840_A *a1, S_00037840_B *a2, int a3, int a4)
 {
-    if (a4 == 0)
+    if (a4 == 0 || CurrentOwner() != a1->f64)
         return;
-    if (CurrentOwner() == a1->f64) {
-        func_00035300(&a2->f24, a2->fDC);
-        a2->func_001BB4D0(0);
-    }
+    func_00035300(&a2->f24, a2->fDC);
+    a2->func_001BB4D0(0);
 }
 
