@@ -11,7 +11,7 @@ extern int D_002F0BDC;
 void __fastcall func_001FEC30(int, void *);
 void __fastcall func_001FEBD0(int, void *);
 void __stdcall func_00201590(int, void *, int);
-void __stdcall func_001FEE00(int, void *, int);
+int __stdcall func_001FEE00(int, void *, int);
 void __stdcall func_00202770(void *, int);
 struct Vec_1D9E { float x,y,z,w; Vec_1D9E(float a,float b,float c,float d) : x(a),y(b),z(c),w(d) {} };
 void *__stdcall func_001FFE40(int);
