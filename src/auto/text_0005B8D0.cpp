@@ -242,6 +242,12 @@ struct C_0005C650 {
 
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 
+static __forceinline void CopyName_0005BA80(char *d, const char *s)
+{
+    while ((*d++ = *s++) != 0) {
+    }
+}
+
 
 void C_0005B8D0::func_0005B8D0(void)
 {
