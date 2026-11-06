@@ -199,7 +199,7 @@ void func_0013E920(float *out, float *in);
 
 static __forceinline void MinF_0013ED30(float *out, float a, float b)
 {
-    _mm_store_ss(out, _mm_min_ss(*(__m128 *)&a, *(__m128 *)&b));
+    _mm_store_ss(out, _mm_min_ss(_mm_set_ss(a), _mm_set_ss(b)));
 }
 
 struct C_0013ED30 {
