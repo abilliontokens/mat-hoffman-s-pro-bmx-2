@@ -63,11 +63,11 @@ struct Wid_779C0 {
     __forceinline void SetH(float h) { if (f2c != h) { f2c = h; b58 |= 1; } }
     __forceinline void Scale()
     {
-        f3c = f4c * D_00278654;
+        f3c = (float)((double)f4c * D_00278654);
         b58 |= 4;
-        f40 = f4c * D_00275544;
-        f44 = f50 * D_0027653C;
-        f48 = f50 * D_00275544;
+        f40 = (float)((double)f4c * D_00275544);
+        f44 = (float)((double)f50 * D_0027653C);
+        f48 = (float)((double)f50 * D_00275544);
     }
     Wid_779C0 *func_001D5760();
     void func_001D5810(char *, float, float, float);
@@ -245,6 +245,115 @@ struct C_000788D0 {
     int unkF4;
     void func_000788D0();
 };
+
+Cnt_779C0 *Cnt_779C0::func_000779C0(void *a)
+{
+    Wid_779C0 *w;
+    Txt_779C0 *t;
+    void *p;
+    int v1, v2, *r;
+    int i;
+    fC8 = *(int *)((char *)a + 0x1d0);
+    fD8 = (int)a;
+    D_002A8490->p2EC->func_0018C160((int)&D_002786A0);
+    r = D_002A8490->p2EC->func_0018C160((int)&D_00278690);
+    v1 = r ? *r : 0;
+    r = D_002A8490->p2EC->func_0018C160((int)&D_00278678);
+    v2 = r ? *r : 0;
+    D_002A60B0 = D_00278664;
+    D_002A60B4 = D_00278668;
+    D_002A60B8 = D_0027866C;
+    D_002A60BC = D_00278670;
+    D_002A60C0 = D_00278674;
+    p = func_001E8A44(0x64);
+    w = p ? ((Wid_779C0 *)p)->func_001D5760() : 0;
+    w64 = w;
+    w->func_001D5810(D_00278658, 0, 0, 0);
+    w64->SetW(640.0f);
+    w64->SetH(50.0f);
+    w64->Scale();
+    p = func_001E8A44(0x64);
+    w = p ? ((Wid_779C0 *)p)->func_001D5760() : 0;
+    w68 = w;
+    w->func_001D5810(D_00278658, 0, 398.0f, 0);
+    w68->SetW(640.0f);
+    w68->SetH(50.0f);
+    w68->Scale();
+    for (i = 0; i < 5; i++) {
+        float x;
+        p = func_001E8A44(0x64);
+        w = p ? ((Wid_779C0 *)p)->func_001D5760() : 0;
+        x = i * D_00278650;
+        w6C[i] = w;
+        w->func_001D5810(D_00278658, x, 50.0f, 0);
+        p = func_001E8A44(0x64);
+        w = p ? ((Wid_779C0 *)p)->func_001D5760() : 0;
+        w80[i] = w;
+        w->func_001D5810(D_00278658, x, 366.0f, 0);
+        w = w80[i];
+        w->f3c = 0;
+        w->f48 = 0;
+        w->b58 |= 4;
+        w->f40 = 1.0f;
+        w->f44 = 0.99f;
+    }
+    p = func_001E8A44(0x64);
+    w = p ? ((Wid_779C0 *)p)->func_001D5760() : 0;
+    wB0 = w;
+    w->func_001D5810(D_00278648, 491.0f, 388.0f, 0);
+    p = func_001E8A44(0x64);
+    w = p ? ((Wid_779C0 *)p)->func_001D5760() : 0;
+    wA8 = w;
+    w->func_001D5810(D_00278624, 491.0f, 388.0f, 0);
+    p = func_001E8A44(0x64);
+    w = p ? ((Wid_779C0 *)p)->func_001D5760() : 0;
+    wB4 = w;
+    w->func_001D5810(D_00278638, 379.0f, 388.0f, 0);
+    p = func_001E8A44(0x64);
+    w = p ? ((Wid_779C0 *)p)->func_001D5760() : 0;
+    wAC = w;
+    w->func_001D5810(D_00278608, 379.0f, 388.0f, 0);
+    p = func_001E8A44(0x64);
+    w = p ? ((Wid_779C0 *)p)->func_001D5760() : 0;
+    w94 = w;
+    w->func_001D5810(D_00278600, 0, 0, 0);
+    w94->b58 |= 2;
+    w94->color &= 0xff000000;
+    w94->b58 |= 2;
+    *((unsigned char *)&w94->color + 3) = 0x80;
+    w94->SetH(448.0f);
+    w94->SetW(640.0f);
+    p = func_001E8A44(0x60);
+    t = p ? ((Txt_779C0 *)p)->func_001D5E90() : 0;
+    t98 = t;
+    t->func_001D5FA0(v1, (char *)&D_00278678, 0x14, 0);
+    t98->SetColor(0xaaaaaaaa);
+    t98->SetPos(320.0f, 40.0f);
+    if (t98->f44 != D_0028F5E0) {
+        t98->f44 = D_0028F5E0;
+        t98->b4e |= 6;
+    }
+    t98->func_0005E840(*(int *)(D_002A8490->p2E8->p4 + 0xfd8));
+    p = func_001E8A44(0x60);
+    t = p ? ((Txt_779C0 *)p)->func_001D5E90() : 0;
+    tC0 = t;
+    t->func_001D6190(v2, *(int *)(D_002A8490->p2E8->p4 + 0x1128), &D_00278690);
+    tC0->SetPos(528.0f, 393.0f);
+    tC0->SetColor(0xffcccccc);
+    p = func_001E8A44(0x60);
+    t = p ? ((Txt_779C0 *)p)->func_001D5E90() : 0;
+    tBC = t;
+    t->func_001D6190(v2, *(int *)(D_002A8490->p2E8->p4 + 0x7c0), &D_00278690);
+    tBC->SetPos(418.0f, 393.0f);
+    tBC->SetColor(0xffcccccc);
+    p = func_001E8A44(0x60);
+    t = p ? ((Txt_779C0 *)p)->func_001D5E90() : 0;
+    tC4 = t;
+    t->func_001D6190(v2, *(int *)(D_002A8490->p2E8->p4 + 0x1248), &D_00278690);
+    tC4->SetPos(80.0f, 393.0f);
+    tC4->SetColor(0xffcccccc);
+    return this;
+}
 
 void C_00078050::func_00078050() {
 int ids[3]; int i; int *r; Clamp_6A *o; W_78050 **e; Lookup_6A *lk;
