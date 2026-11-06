@@ -108,7 +108,7 @@ struct C_00190200 {
 };
 #include <string.h>
 struct Node0018FF10 { char name[0x10c]; Node0018FF10 *next; };
-struct Ent0018FF10 { char pad[0x48]; Node0018FF10 *node; char pad2[0x60 - 0x4c]; };
+struct Ent0018FF10 { char pad[0x48]; Node0018FF10 *volatile node; char pad2[0x60 - 0x4c]; };
 struct C_0013C9F0 { int func_0013C9F0(char *, char *); };
 extern C_0013C9F0 *D_002BEAAC;
 extern const char D_00275630[1];
@@ -304,18 +304,20 @@ void C_0018F980::func_0018F980(int a1, char *volatile str)
 int C_0018FF10::func_0018FF10(char *src, char *volatile name, int idx, int *out)
 {
     char *key = name;
-    C_0018FF10 *volatile self = this;
-    struct { volatile int a, b, r; } t;
+    struct { C_0018FF10 *volatile self; volatile int a, b, r; } t;
     Node0018FF10 *n;
     int count;
+    int found = 0;
+    t.self = this;
     if (!key || strcmp(key, "") == 0) return 0;
-    n = this->head;
-    while (n && strcmp(key, n->name)) n = n->next;
-    if (!n) {
+    for (n = this->head; n; n = n->next) {
+        if (!strcmp(key, n->name)) { found = 1; break; }
+    }
+    if (!found) {
         int id = D_002BEAAC->func_0013C9F0(key, D_00275FB4);
         if (id == -1) { *out = 0; return 0; }
         n = (Node0018FF10 *)func_001E8A44(0x110);
-        if (self->func_0018EB70(id, src, n) != 1) {
+        if (t.self->func_0018EB70(id, src, n) != 1) {
             func_001E891B(n);
             *out = 0;
             return 0;
@@ -330,10 +332,10 @@ int C_0018FF10::func_0018FF10(char *src, char *volatile name, int idx, int *out)
         count = t.r;
         func_001E8920(n, name, count);
         n->name[count] = 0;
-        self->ents[idx].node = n;
-        if (!self->tail) { self->head = n; self->tail = n; *out = 1; return 1; }
-        self->tail->next = n;
-        self->tail = n;
+        t.self->ents[idx].node = n;
+        if (!t.self->tail) { t.self->head = n; t.self->tail = n; *out = 1; return 1; }
+        t.self->tail->next = n;
+        t.self->tail = n;
         *out = 1;
         return 1;
     } else {
