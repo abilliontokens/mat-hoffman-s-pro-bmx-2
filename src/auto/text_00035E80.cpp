@@ -8,7 +8,7 @@ struct Vec4_000361F0 {
 
 #include <string.h>
 
-static inline int Min_00035E80(volatile int a, volatile int b) { int r = b; if (r > a) r = a; return r; }
+static inline int Min_00035E80(volatile int a, volatile int b) { int y = b, x = a; return y > x ? x : y; }
 
 
 /* config file reader, 0x4CC bytes */
