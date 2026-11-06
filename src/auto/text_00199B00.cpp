@@ -109,6 +109,15 @@ struct C_00199C20Mat {
     void func_000264C0(void *m);
 };
 
+S_00199B00_F4 C_00199BE0::func_00199B00(C_00199BE0 *other) {
+if(other==this) return S_00199B00_F4(fB0[3],fB0[7],fB0[11]);
+S_00199B00_F4 v;
+func_00197AA0();
+v.x=fF0[3];v.y=fF0[7];v.z=fF0[11];
+if(other) v=other->func_00198120(&v);
+return v;
+}
+
 void C_00199BE0::func_00199BE0(void *m)
 {
     ((C_00199BE0Mat *)((char *)this + 0xb0))->func_000264C0(m);
