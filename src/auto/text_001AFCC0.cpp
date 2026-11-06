@@ -192,6 +192,7 @@ struct C_001AFEC0 {
     V_001AFEC0 *unk1C;
     V_001AFEC0 *unk20;
     int unk24;
+    C_001AF530 *Item(int k) { return items[k]; }
     int func_001AFEC0();
 };
 
@@ -351,12 +352,13 @@ int C_001AFEC0::func_001AFEC0()
         return 1;
     }
     if (cb == 0 || cb(user, this) != 0) {
-        for (i = 0; i < 4; i++) {
-            C_001AF530 *p = items[i];
-            if (p) {
-                p->func_001AF530(i);
+        i = 0;
+        do {
+            if (items[i]) {
+                items[i]->func_001AF530(i);
             }
-        }
+            i++;
+        } while (i < 4);
         if (unk1C) {
             unk1C->vf2();
         }
