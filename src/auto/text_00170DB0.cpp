@@ -100,6 +100,15 @@ struct C_00171A00 {
 
 #include <xmmintrin.h>
 
+static __forceinline void Zero_00171340(Mat_00171340 * volatile &p)
+{
+    Mat_00171340 *q = p;
+    _mm_store_ps(&q->m[0], _mm_setzero_ps());
+    _mm_store_ps(&q->m[4], _mm_setzero_ps());
+    _mm_store_ps(&q->m[8], _mm_setzero_ps());
+    _mm_store_ps(&q->m[12], _mm_setzero_ps());
+}
+
 void func_001712D0(float *out, void *in);
 
 static __forceinline float Sqrt_00171BA0(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
@@ -200,6 +209,89 @@ void *C_001712A0::func_001712A0(int flags) {
         func_001E891B(this);
     }
     return this;
+}
+
+void *C_00171340::func_00171340(int a)
+{
+    C_00171340 * volatile self = this;
+    Mat_00171340 * volatile pm;
+
+    func_00157600(a);
+    self->vtbl = (void *)&D_00288C44;
+    InitA_00171340(&self->f2c);
+    InitA_00171340(&self->f3c);
+    InitA_00171340(&self->f4c);
+    InitA_00171340(&self->f5c);
+    InitA_00171340(&self->f6c);
+    InitA_00171340(&self->f7c);
+    InitA_00171340(&self->f8c);
+    InitA_00171340(&self->f9c);
+    InitA_00171340(&self->f130);
+    InitA_00171340(&self->f140);
+    InitA_00171340(&self->f150);
+    InitA_00171340(&self->f160);
+    InitC_00171340(&self->f170);
+    InitC_00171340(&self->f180);
+    InitC_00171340(&self->f190);
+    InitC_00171340(&self->f238);
+    InitC_00171340(&self->f248);
+    InitC_00171340(&self->f258);
+    InitC_00171340(&self->f268);
+    self->f1b4 = 1;
+    self->f1b8 = 0;
+    self->u24 = 0;
+    self->f2c = D_002A8AC8;
+    self->f3c = D_002A8AC8;
+    self->f4c = D_002A8AC8;
+    self->f238 = D_002A8AC8;
+    self->f248 = D_002A8AC8;
+    self->f258 = D_002A8AC8;
+    self->f268 = D_002A8AC8;
+    self->f6c = D_002A8AC8;
+    self->f7c = D_002A8AC8;
+    self->f150 = D_002A8AC8;
+    self->f160 = D_002A8AC8;
+    self->f170 = D_002A8AC8;
+    self->f180 = D_002A8AC8;
+    self->f1a0 = D_002EF740;
+    self->f8c = D_002A8AC8;
+    self->f218 = 933220.06f;
+    self->f21c = 250000.0f;
+    self->f220 = 18225.0f;
+    self->f224 = 625.0f;
+    self->f210 = 0;
+    self->f214 = 0;
+    self->f28 = 0;
+    self->f228 = 0;
+    pm = &self->fB0;
+    {
+        Mat_00171340 *q = pm;
+        __m128 *v = (__m128 *)q;
+        v[0] = _mm_setzero_ps();
+        v[1] = _mm_setzero_ps();
+        v[2] = _mm_setzero_ps();
+        v[3] = _mm_setzero_ps();
+    }
+    pm = &self->fF0;
+    {
+        Mat_00171340 *q = pm;
+        __m128 *v = (__m128 *)q;
+        v[0] = _mm_setzero_ps();
+        v[1] = _mm_setzero_ps();
+        v[2] = _mm_setzero_ps();
+        v[3] = _mm_setzero_ps();
+    }
+    self->f9c = D_002A8AC8;
+    self->f234 = (void *)func_00161C70;
+    self->f190 = D_002A8AC8;
+    self->f208 = 0;
+    self->f20c = 0;
+    self->f230 = 0;
+    self->f22c = 0;
+    self->f1bc = 0;
+    self->f1e0 = 0;
+    self->f204 = 0;
+    return self;
 }
 
 void C_00171980::func_00171980(void) {
