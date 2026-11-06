@@ -260,12 +260,19 @@ struct C_001827B0 {
 
 /* the vtable store lands between the base constructor and the member constructors */
 struct C_001D48E0Base : C_001827B0 {
-    __forceinline C_001D48E0Base() { vtbl = (int)&D_0028F584; }
+    __forceinline C_001D48E0Base()
+    {
+        vtbl = (int)&D_0028F584;
+        float *p = (float *)((char *)this + 0x74);
+        p[2] = 0;
+        p[1] = 0;
+        p[0] = 0;
+        p[3] = 1.0f;
+    }
 };
 
 struct V4_001D48E0 {
     float x, y, z, w;
-    V4_001D48E0() { z = 0; y = 0; x = 0; w = 1.0f; }
 };
 
 /* XboxRenderTarget */
@@ -486,17 +493,18 @@ int func_001D4B20(void)
 
 int XboxRenderTarget::func_001D4B40(int *rect, int *src, int *dst, int unused)
 {
-    S_001D5660_Mat m;
-    S_001D5660_Mat * volatile p = &m;
+    XboxRenderTarget *p = this;
+    S_001D5660_Mat mat;
+    S_001D5660_Mat * volatile pm = &mat;
     int v[4];
     int r[4];
     float u0, u1, v0, v1;
     float f0, f1, f2, f3;
     int flag;
-    int th, tw;
+    int w, h;
     S_001D4B40_Vtx *vt;
 
-    p->identity();
+    pm->identity();
     if (dst) {
         v[0] = dst[0];
         v[2] = dst[2];
@@ -558,14 +566,14 @@ int XboxRenderTarget::func_001D4B40(int *rect, int *src, int *dst, int unused)
         break;
     }
 
-    th = 0;
-    tw = (int)D_0028F570;
-    if (f4) {
-        th = ((S_001D4B40_Dev *)f4)->f1e0;
-        tw = ((S_001D4B40_Dev *)f4)->f1e4;
+    w = (int)D_0028F570;
+    h = 0;
+    if (p->f4) {
+        h = ((S_001D4B40_Dev *)p->f4)->f1e0;
+        w = ((S_001D4B40_Dev *)p->f4)->f1e4;
     }
-    m.m[3] = (float)th;
-    m.m[7] = (float)tw;
+    mat.m[3] = (float)h;
+    mat.m[7] = (float)w;
 
     if (flag) {
         u0 = (float)v[0];
@@ -579,16 +587,16 @@ int XboxRenderTarget::func_001D4B40(int *rect, int *src, int *dst, int unused)
         v1 = (float)v[3] / (float)src[3];
     }
 
-    vt = (S_001D4B40_Vtx *)func_001FF410(f8C, 0);
+    vt = (S_001D4B40_Vtx *)func_001FF410(p->f8C, 0);
     vt[0].x = f0; vt[0].y = f3; vt[0].z = 0.5f; vt[0].color = 0xffffffff; vt[0].u = u0; vt[0].v = v1;
     vt[1].x = f0; vt[1].y = f1; vt[1].z = 0.5f; vt[1].color = 0xffffffff; vt[1].u = u0; vt[1].v = v0;
     vt[2].x = f2; vt[2].y = f3; vt[2].z = 0.5f; vt[2].color = 0xffffffff; vt[2].u = u1; vt[2].v = v1;
     vt[3].x = f2; vt[3].y = f1; vt[3].z = 0.5f; vt[3].color = 0xffffffff; vt[3].u = u1; vt[3].v = v0;
 
-    ((C_0014A650 *)f6C)->func_0014A650((int)f84);
-    ((C_00142D00 *)f70)->func_00142D00((int)f88);
-    func_001FEC30(0x22, &m);
-    func_001FEE00(0, (int)f8C, 0x18);
+    ((C_0014A650 *)p->f6C)->func_0014A650((int)p->f84);
+    ((C_00142D00 *)p->f70)->func_00142D00((int)p->f88);
+    func_001FEC30(0x22, &mat);
+    func_001FEE00(0, (int)p->f8C, 0x18);
     func_00200A90(6, 0, 4);
     func_001FE490(1);
     return 1;
@@ -614,6 +622,10 @@ void C_001D4F40::func_001D4F40(void)
     f6c->func_0014A650(0);
     f70->func_00142D00(0);
 }
+
+#pragma optimize("y", off)
+int XboxRenderTarget::func_001D4FF0(int a) { func_00200230(a); return 1; }
+#pragma optimize("", on)
 
 int __stdcall func_001D5110(int param)
 {
