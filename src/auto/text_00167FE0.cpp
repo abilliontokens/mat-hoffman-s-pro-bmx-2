@@ -423,10 +423,9 @@ int __stdcall func_00168B90(float a, float *out)
 
 int __stdcall func_00168550(int a, char *dst, int d);
 int __stdcall func_00168550(void *a, char *dst, int d);
-int __stdcall func_00168BE0(int a, const char *src, char *dst, int d)
+int C_00168280::func_00168BE0(const char *name, const char *src, char *dst, int d)
 {
-    int r = func_00168550(a, dst, d);
-    if (r != 0) {
+    if (func_00168550(name, dst, d) != 0) {
         return 1;
     }
     strcpy(dst, src);
