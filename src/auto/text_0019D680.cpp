@@ -183,24 +183,14 @@ struct SoultreeCollisionObject {
     void *func_0019D650(int flags);
 };
 
-static __forceinline int Post_0019D680(int result, SoultreeCollisionObject *o)
-{
-    if (result != 0) {
-        o->func_0019BA70();
-        o->func_0019B890();
-    }
-    return result;
-}
 extern "C" void __stdcall func_0019BBD0(unsigned short param_1, int *param_2, int param_3, char *param_4, char *param_5);
 extern "C" void __stdcall func_0019BD20(unsigned short param_1, int *param_2, char *param_3, char *param_4, int param_5);
 
 int SoultreeCollisionObject::func_0019D680(void *param_1)
 {
-    int result;
-    int check;
+    register int result;
 
-    check = ((int *)param_1)[0x14];
-    if (check != 6) {
+    if (((int *)param_1)[0x14] != 6) {
         return 0;
     }
     result = func_0019BB80(param_1);
