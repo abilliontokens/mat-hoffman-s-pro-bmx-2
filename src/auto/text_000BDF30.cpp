@@ -157,6 +157,8 @@ struct S_000BDF30_Audio {
     virtual void v6();
     virtual void v7(int a);
     virtual void v8();
+    char pad24[0xc];
+    int f30;
 };
 
 extern S_000BDF30_Game *D_002A8490;
