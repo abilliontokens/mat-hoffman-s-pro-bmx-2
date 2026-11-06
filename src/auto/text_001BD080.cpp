@@ -369,6 +369,51 @@ struct C_001BD980 {
 };
 
 
+int C_001BD080::func_001BD080()
+{
+    BD080_Config parser;
+    int result = 1;
+    int i, j, tmp;
+    char buf[0x100];
+    BD080_Obj *obj;
+    func_001ADCC0(buf, 0x100, D_0028D4F0, D_002A64D0);
+    parser.func_00168280();
+    if (!parser.func_00169490(buf, 0)) {
+        func_001ADCC0(buf, 0x100, D_0027D90C, D_002A64D0);
+        if (!parser.func_00169490(buf, 0)) {
+            parser.func_001691E0();
+            return 0;
+        }
+    }
+    parser.func_00169710(D_002769F8);
+    parser.func_00168C20(D_0027D8FC, 0, &f124);
+    f120 = (void **)func_001E8AA5(f124 * 4);
+    for (i = 0; i < f124; i++) {
+        func_001ADCC0(buf, 0x100, D_0027D8F0, i + 1);
+        parser.func_00169710(buf);
+        parser.func_00168550(D_0027A604, buf, 0x100);
+        obj = ((BD080_View *)this)->v38(&parser, buf);
+        j = 0;
+        if (obj) {
+            int *p = obj->f44;
+            do {
+                func_001ADCC0(buf, 0x100, D_0027D8D8, j + 1);
+                parser.func_00168C20(buf, 0, &tmp);
+                *p = tmp;
+                j++;
+                p++;
+            } while (j < 8);
+            obj->v5();
+            f120[i] = obj;
+        } else {
+            f120[i] = 0;
+            result = 0;
+        }
+    }
+    parser.func_001691E0();
+    return result;
+}
+
 undefined4 C_001BD790::func_001BD790(void)
 {
   int in_ECX = (int)this;
@@ -390,17 +435,13 @@ undefined4 C_001BD790::func_001BD790(void)
 
 undefined4 C_001BD7E0::func_001BD7E0(void)
 {
-  int iVar1;
-  int in_ECX = (int)this;
+  int i;
 
   D_002EFDB8->v7(1);
   D_002EFDB8->v8();
-  iVar1 = 0;
-  if (0 < *(int *)(in_ECX + 0x124)) {
-    do {
-      (**(code **)(**(int **)(*(int *)(in_ECX + 0x120) + iVar1 * 4) + 0x94))();
-      iVar1 = iVar1 + 1;
-    } while (iVar1 < *(int *)(in_ECX + 0x124));
+  for (i = 0; i < f124; i++) {
+    BD080_View *item = (BD080_View *)f120[i];
+    item->v37();
   }
   return 1;
 }
