@@ -34,6 +34,7 @@ struct BmxEventEditor {
     S_000380B0_Array a, b, c, d;
     void func_000380B0();
     void func_00033220();
+    void func_000382D0(int mode);
 };
 struct C_00037820 {
     undefined4 func_00037820(int param_1);
