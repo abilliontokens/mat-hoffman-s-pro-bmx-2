@@ -47,6 +47,7 @@ struct C_00165EF0 {
     void *fC;                  /* 0x0C */
     int func_00164650(int a);
     void func_00165EF0(Vec4_165EF0 *out, C_00165EF0_Arg1 *a1, f32 a2, int a3, void *a4);
+    Vec4_165EF0 func_00165EF0(C_00165EF0_Arg1 *a1, f32 a2, int a3, void *a4);
 };
 
 struct C_00165E20_Node {
