@@ -224,6 +224,53 @@ struct C_00085BD0 {
     void func_00085D00(int a);
 };
 
+C_00086240 *C_00086240::func_00085630(int a, int b) {
+ int i = 0;
+ const char *name = D_00278690;
+ C_00085630_Manager *manager = *(C_00085630_Manager **)((char *)D_002A8490 + 0x2ec);
+ manager->func_0018C780(1, &name, 0);
+ int *entry = (*(C_00085630_Manager **)((char *)D_002A8490 + 0x2ec))->func_0018C160(D_00278690);
+ register int parent = entry ? *entry : 0;
+ *(int *)padC8 = a; fD0 = b;
+ char buf[40];
+ for (int y = 54; y < 406; y += 44) {
+  C_00086240_Item *p = (C_00086240_Item *)func_001E8A44(0x60);
+  a24[i] = p ? p->func_001D5E90() : 0;
+  a24[i]->func_001D5FA0(parent, D_00278690, 25, 0);
+  a24[i]->SetPos(30.0f, (float)(y-24));
+  a24[i]->SetFont(D_0028F5DC); a24[i]->SetZ(5.0f);
+  func_001ADCC0(buf,40,D_002796B0,*(int *)((char *)D_002A8490->f2E8->f4+0x1018),++i);
+  a24[i-1]->func_0005E840(buf); a24[i-1]->SetArgb(0xff8974f6);
+  p=(C_00086240_Item *)func_001E8A44(0x60);
+  a44[i-1]=p?p->func_001D5E90():0;
+  a44[i-1]->func_001D5FA0(parent,D_00278690,25,0);
+  a44[i-1]->SetPos(40.0f,(float)y); a44[i-1]->SetFont(D_0028F5DC);
+  a44[i-1]->SetZ(5.0f); a44[i-1]->SetArgb(0xff5eff5e);
+  p=(C_00086240_Item *)func_001E8A44(0x60);
+  a64[i-1]=p?p->func_001D5E90():0;
+  a64[i-1]->func_001D5FA0(parent,D_00278690,25,0);
+  a64[i-1]->SetPos(40.0f,(float)y); a64[i-1]->SetFont(D_0028F5DC);
+  a64[i-1]->SetZ(6.0f); a64[i-1]->SetArgb(0xff606060); a64[i-1]->SetAlpha(128);
+  a64[i-1]->func_0005E840((char *)D_002A8490->f2E0+0x254);
+ }
+ C_00086240_Item *p=(C_00086240_Item *)func_001E8A44(0x60);
+ f94=p?p->func_001D5E90():0;
+ f94->func_001D5FA0(parent,D_00278690,40,0); f94->SetPos(500,20); f94->SetArgb(0xffffffff);
+ for (int j=0,y=150;y<270;y+=30,++j) {
+  p=(C_00086240_Item *)func_001E8A44(0x60);
+  a84[j]=p?p->func_001D5E90():0;
+  a84[j]->func_001D5FA0(parent,D_00278690,40,0);
+  a84[j]->SetPos(320,(float)y); a84[j]->SetArgb(0xffffffff); a84[j]->SetFont(D_0028F5E0);
+ }
+ p=(C_00086240_Item *)func_001E8A44(0x60);
+ f98=p?p->func_001D5E90():0;
+ f98->func_001D5FA0(parent,D_00278690,40,0); f98->SetPos(320,20); f98->SetZ(5); f98->SetFont(D_0028F5E0);
+ p=(C_00086240_Item *)func_001E8A44(0x60);
+ f9C=p?p->func_001D5E90():0;
+ f9C->func_001D5FA0(parent,D_00278690,40,0); f9C->SetPos(320,40); f9C->SetZ(5); f9C->SetFont(D_0028F5E0);
+ strcpy(fD4,(char *)D_002A8490->f2E0+0x254); fE8=strlen(fD4); return this;
+}
+
 void C_00085BD0::func_00085BD0(int a)
 {
     char buf[0x104];
@@ -418,53 +465,5 @@ int C_00086240::func_00086240(void)
         a64[i]->func_001D6600();
     }
     return func_00157960();
-}
-
-MountVertOverlay *MountVertOverlay::func_00086470(int a)
-{
-    float *p;
-    int i;
-
-    func_00157600(1);
-    vtbl = (void *)&D_002796BC;
-    unk28 = 0;
-    unk2C = 0;
-    unk48 = 0;
-    p = &unk30;
-    for (i = 0; i < 4; i++)
-        p[i] = 0.0f;
-    unk70 = 0;
-    unk74 = 0;
-    for (i = 0; i < 8; i++)
-        unk50[i] = 0;
-    unk80 = 0;
-    unk44 = 0;
-    unk84 = 0;
-    unk40 = 0;
-    unk88 = 0;
-    unk8C = 0;
-    return this;
-}
-
-void MountVertOverlay::func_000864D0(void)
-{
-    S_000864D0_Obj *p = (S_000864D0_Obj *)unk28;
-    int i;
-
-    vtbl = (void *)&D_002796BC;
-    if (p != 0) {
-        p->func_001D6410();
-        func_001E891B(p);
-    }
-    S_000864D0_Obj **a = (S_000864D0_Obj **)&unk30;
-    for (i = 4; i != 0; i--) {
-        p = *a;
-        if (p != 0) {
-            p->func_001D6410();
-            func_001E891B(p);
-        }
-        a++;
-    }
-    ((C_00157660 *)this)->func_00157660();
 }
 
