@@ -275,7 +275,8 @@ void func_00011140(float *out, float *in, float s) {
 }
 
 float func_00011170(float *v) {
-    return sqrtf(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
+    float s = v[0] * v[0] + v[1] * v[1] + v[2] * v[2];
+    return AsmSqrtF(s);
 }
 
 void func_000111B0(float *out, float *in) {
