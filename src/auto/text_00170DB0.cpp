@@ -40,6 +40,14 @@ struct C_00171980 {
     void func_00171980(void);
 };
 
+struct C_00171340 {
+    void *vtbl;
+    char pad4[0x20];
+    int u24;
+    void func_00157600(int a);
+    void func_00171340(int a);
+};
+
 struct C_001719B0 {
     void func_001719B0(int param_1);
 };
