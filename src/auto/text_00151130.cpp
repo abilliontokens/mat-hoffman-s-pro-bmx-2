@@ -9,6 +9,7 @@ struct V4_151130 {
     float x, y, z, w;
     V4_151130() { x = y = z = 0.0f; w = 1.0f; }
     V4_151130(float a, float b, float c) { x = a; y = b; z = c; w = 1.0f; }
+    V4_151130(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
     __forceinline void Copy(const V4_151130 &v) {
         ((int *)this)[0] = ((const volatile int *)&v)[0];
         ((int *)this)[1] = ((const volatile int *)&v)[1];
@@ -204,8 +205,7 @@ struct C_001983A0 {
 void C_00151130::func_00151130(int a, Cam_151130 *b, void *c)
 {
     char saved[0x104];
-    char unused[0x104];
-    V4_151130 pts[36];
+    char buf[0x104];
     int i;
     void *mem;
 
@@ -227,17 +227,14 @@ void C_00151130::func_00151130(int a, Cam_151130 *b, void *c)
         D_002A8490->f8->ents[f28]->func_0015B060(f40, 0.01f, 0.01f);
         D_002A8490->f8->ents[f28]->func_0015B060(f44, 0.01f, 0.01f);
     }
+    V4_151130 pts[36];
     for (i = 0; i < 16; i++) {
         pts[i * 2] = D_002A789C;
         pts[i * 2 + 1].x = (float)cos(i * D_00283E00);
         pts[i * 2 + 1].z = (float)sin(i * D_00283E00);
-        pts[i * 2 + 1].x *= 2.0f;
-        pts[i * 2 + 1].y *= 2.0f;
-        pts[i * 2 + 1].z *= 2.0f;
+        Scale_151130(&pts[i * 2 + 1], 2.0f);
     }
-    pts[1].x *= D_002756BC;
-    pts[1].y *= D_002756BC;
-    pts[1].z *= D_002756BC;
+    Scale_151130(&pts[1], D_002756BC);
     pts[32].Copy(V4_151130());
     pts[33].Copy(V4_151130(0.0f, 4.0f, 2.0f));
     pts[34].Copy(V4_151130());
@@ -260,33 +257,32 @@ void C_00151130::func_00151130(int a, Cam_151130 *b, void *c)
     }
     memcpy(D_002A5EA0, D_00286C90, 23);
     for (i = 0; i < 11; i++) {
-        Slot_151130 *s = &slots[i];
         mem = func_001E8A44(0x1e0);
-        s->f0 = mem ? ((Node_151130 *)mem)->func_00143580(1) : 0;
-        s->f0->Load(D_00286C80, 1, 0);
-        s->f0->func_00199600(D_002A789C);
-        s->f0->func_00198F50(&D_002A78CC, &D_002A78BC, 0, 1, 0);
-        s->f0->func_0019ABA0(*D_002B9120->f4A8, 2);
-        func_001577A0(s->f0, -1);
-        s->f0->func_00198390();
+        slots[i].f0 = mem ? ((Node_151130 *)mem)->func_00143580(1) : 0;
+        slots[i].f0->Load(D_00286C80, 1, 0);
+        slots[i].f0->func_00199600(D_002A789C);
+        slots[i].f0->func_00198F50(&D_002A78CC, &D_002A78BC, 0, 1, 0);
+        slots[i].f0->func_0019ABA0(*D_002B9120->f4A8, 2);
+        func_001577A0(slots[i].f0, -1);
+        slots[i].f0->func_00198390();
         mem = func_001E8A44(0x218);
-        s->f54 = mem ? ((Obj218_151130 *)mem)->func_0016CE80(1) : 0;
-        s->f54->func_0016CF10(c, D_0027592C, 0, 0);
-        func_001577A0(s->f54, 2);
-        s->f54->v31();
-        s->f54->v4();
+        slots[i].f54 = mem ? ((Obj218_151130 *)mem)->func_0016CE80(1) : 0;
+        slots[i].f54->func_0016CF10(c, D_0027592C, 0, 0);
+        func_001577A0(slots[i].f54, 2);
+        slots[i].f54->v31();
+        slots[i].f54->v4();
         mem = func_001E8A44(0x218);
-        s->f58 = mem ? ((Obj218_151130 *)mem)->func_0016CE80(1) : 0;
-        s->f58->func_0016CF10(c, D_00286C70, 0, 0);
-        func_001577A0(s->f58, 2);
-        s->f58->v31();
-        s->f58->v4();
+        slots[i].f58 = mem ? ((Obj218_151130 *)mem)->func_0016CE80(1) : 0;
+        slots[i].f58->func_0016CF10(c, D_00286C70, 0, 0);
+        func_001577A0(slots[i].f58, 2);
+        slots[i].f58->v31();
+        slots[i].f58->v4();
         mem = func_001E8A44(0x250);
-        s->f5C = mem ? ((Obj250_151130 *)mem)->func_0016ABE0(1) : 0;
-        s->f5C->func_0016AD20(c, D_00286C60, 0, 0);
-        func_001577A0(s->f5C, 2);
-        s->f5C->v31();
-        s->f5C->v4();
+        slots[i].f5C = mem ? ((Obj250_151130 *)mem)->func_0016ABE0(1) : 0;
+        slots[i].f5C->func_0016AD20(c, D_00286C60, 0, 0);
+        func_001577A0(slots[i].f5C, 2);
+        slots[i].f5C->v31();
+        slots[i].f5C->v4();
     }
     {
         int k = 0;
@@ -313,6 +309,87 @@ void C_00151130::func_00151130(int a, Cam_151130 *b, void *c)
     f78->func_001334E0(1);
     f78->fA7 |= 1;
     f78->func_0014C1C0(1, 0, 0);
+    pts[1] = D_002A789C;
+    pts[0] = D_002A789C;
+    f78->func_0014AC30(pts, 0);
+    f78->func_00133ED0();
+    func_001577A0(f78, -1);
+    mem = func_001E8A44(0x110);
+    f7C = mem ? ((ObjFC_151130 *)mem)->func_0017F050(1) : 0;
+    f7C->func_0017F0A0(2);
+    f7C->f60 = this;
+    f7C->f9C = (void *)&func_00150A80;
+    f7C->func_001334E0(1);
+    f7C->fA7 |= 1;
+    pts[0] = D_002A789C;
+    pts[1].Copy(V4_151130(0.0f, 0.0f, 20.0f));
+    f7C->func_00180E00(1, pts, 0, 0);
+    f7C->func_00133ED0();
+    f7C->func_00133140((void *)*D_002B9120->f4AC, 2);
+    func_001577A0(f7C, -1);
+    mem = func_001E8A44(0xf4);
+    f80 = mem ? ((ObjF8_151130 *)mem)->func_0014AB30(1) : 0;
+    f80->func_00129920(2);
+    f80->f60 = this;
+    f80->f9C = (void *)&func_00150970;
+    f80->func_001334E0(1);
+    f80->fA7 |= 1;
+    f80->func_0014C1C0(1, 0, 0);
+    pts[1] = D_002A789C;
+    pts[0] = D_002A789C;
+    f80->func_0014AC30(pts, 0);
+    f80->func_00133ED0();
+    func_001577A0(f80, -1);
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5870, D_002A47F0);
+    mem = func_001E8A44(0x20c);
+    f598 = mem ? ((Obj20C_151130 *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+    f598->v4(D_00286C3C, 1, 1, 0, 0);
+    mem = func_001E8A44(0x20c);
+    f59C = mem ? ((Obj20C_151130 *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+    f59C->v4(D_00286C2C, 1, 1, 0, 0);
+    mem = func_001E8A44(0x20c);
+    f5A0 = mem ? ((Obj20C_151130 *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+    f5A0->v4(D_00286C20, 1, 1, 0, 0);
+    mem = func_001E8A44(0x20c);
+    f5A4 = mem ? ((Obj20C_151130 *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+    f5A4->v4(D_002758E4, 1, 1, 0, 0);
+    mem = func_001E8A44(0x20c);
+    f5C0 = mem ? ((Obj20C_151130 *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+    f5C0->v4(D_00286C14, 1, 1, 0, 0);
+    if (D_002A8490->f2e0->f0 == 1) {
+        for (i = 0; i < 4; i++) {
+            func_001ADCC0(buf, 0x104, D_00286C08, i + 1);
+            mem = func_001E8A44(0x20c);
+            f5A8[i] = mem ? ((Obj20C_151130 *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+            f5A8[i]->v4(buf, 1, 1, 0, 0);
+        }
+        for (i = 0; i < 2; i++) {
+            func_001ADCC0(buf, 0x104, D_00286BFC, i + 1);
+            mem = func_001E8A44(0x20c);
+            f5B8[i] = mem ? ((Obj20C_151130 *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+            f5B8[i]->v4(buf, 1, 1, 0, 0);
+        }
+    } else {
+        mem = func_001E8A44(0x20c);
+        f5A8[0] = mem ? ((Obj20C_151130 *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+        f5A8[0]->v4(D_00286BEC, 1, 1, 0, 0);
+        mem = func_001E8A44(0x20c);
+        f5A8[1] = mem ? ((Obj20C_151130 *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+        f5A8[1]->v4(D_00286BDC, 1, 1, 0, 0);
+        mem = func_001E8A44(0x20c);
+        f5A8[2] = mem ? ((Obj20C_151130 *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+        f5A8[2]->v4(D_00286BEC, 1, 1, 0, 0);
+        mem = func_001E8A44(0x20c);
+        f5A8[3] = mem ? ((Obj20C_151130 *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+        f5A8[3]->v4(D_00286BDC, 1, 1, 0, 0);
+        mem = func_001E8A44(0x20c);
+        f5B8[0] = mem ? ((Obj20C_151130 *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+        f5B8[0]->v4(D_002758F0, 1, 1, 0, 0);
+        mem = func_001E8A44(0x20c);
+        f5B8[1] = mem ? ((Obj20C_151130 *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+        f5B8[1]->v4(D_002758F0, 1, 1, 0, 0);
+    }
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5348, D_002A47F0);
 }
 
 int C_00151F40::func_00151F40(void)
