@@ -88,7 +88,6 @@ struct XboxVideoCard_001D7D50 {
     int a6D4[0xC0];
     union {
         u8 f9D4;
-        volatile u8 f9D4v;
         volatile struct {
             u8 b01 : 2;
             u8 rest : 6;
