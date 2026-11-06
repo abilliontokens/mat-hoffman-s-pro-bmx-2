@@ -240,7 +240,7 @@ struct Data_000A79E0 {
 struct Game_000A79E0 {
     char pad0[0x348];
     int f348;
-    char pad34c[0x60];
+    char pad34c[0x64];
     int *f3b0;
     char pad3b4[0xf8];
     int *f4ac;
@@ -524,6 +524,62 @@ int Models_000A7860::func_000A7860(Arg_000A7860 *arg)
             Handle_000A7860(m->f1a8, arg);
         models[i]->v2(arg);
     }
+    return 1;
+}
+
+extern "C" int memcmp(const void *a, const void *b, unsigned int n);
+int Coll_000A79E0::func_000A79E0(Game_000A79E0 *g)
+{
+    char buf[0x104];
+    char *name = fC->name;
+    char *src;
+    char c;
+
+    if (memcmp(name, D_002764F0, 5) == 0) {
+        return 0;
+    }
+    src = name;
+    do {
+        c = *src;
+        buf[src - name] = c;
+        src++;
+    } while (c);
+    func_001EA1EE(buf);
+    f8 = func_00133750(0, buf, 13);
+    if (f8 != 0) {
+        if (func_001E8AF0(buf, D_00276688)) {
+            f8->f68 = D_002B9118;
+        } else if (func_001E8AF0(buf, D_0027ADEC)) {
+            f8->f68 = D_002B9108;
+        } else if (func_001E8AF0(buf, D_0027ADE4)) {
+            f8->f68 = D_002B910C;
+        } else if (func_001E8AF0(buf, D_0027ADDC)) {
+            f8->f68 = D_002B911C;
+        } else if (func_001E8AF0(buf, D_0027ADD4)) {
+            f8->f68 = D_002B9114;
+        } else if (func_001E8AF0(buf, D_0027B1B0) == buf) {
+            f8->f68 = D_002B9110;
+        } else {
+            f8->f68 = D_002BA160;
+        }
+        if (fC->f148 > 0) {
+            f8->f6d = (char)fC->f148;
+        }
+        if (fC->f14c != 0) {
+            D_002B7E18->func_000216F0(buf, fC->f14c, f8);
+        }
+        f8->fA0 = func_00024360;
+        {
+            __declspec(align(16)) float m[16];
+            ((Pt_000A79E0 *)g->f3b0[g->f348])->func_001577A0(f8, 0x402);
+            func_000265C0(m, fC->f108, fC->f118, fC->f128, 0, 1);
+            f8->v31(m);
+            f8->v31(m);
+            f8->func_00133140(g->f4ac[g->f348], 1);
+        }
+    }
+    func_001E891B(fC);
+    fC = 0;
     return 1;
 }
 
