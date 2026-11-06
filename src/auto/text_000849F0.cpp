@@ -288,12 +288,12 @@ C_000849F0 *C_000849F0::func_000849F0(int a, int b, int c, int d)
 
 void C_00084FF0::func_00084FF0(void)
 {
-    char buf[15];
-    char out[15];
+    char c;
+    char *p;
     int rem;
     int i;
-    char *p;
-    char c;
+    char buf[15];
+    char out[15];
 
     memset(buf, 0, 15);
     memset(out, 0, 15);
@@ -305,8 +305,8 @@ void C_00084FF0::func_00084FF0(void)
         func_001ADCC0(out, 15, D_00279550, D_002A8490->f27C);
     } else {
         func_001ADCC0(buf, 15, D_00277038, f38->fA40);
-        i = 0;
         rem = strlen(buf) % 3;
+        i = 0;
         if ((int)strlen(buf) > 0) {
             p = out;
             do {
@@ -317,8 +317,10 @@ void C_00084FF0::func_00084FF0(void)
                 }
                 if (i > rem - 1 && i && ((i - rem) == 0 || (i - rem) % 3 == 0)) {
                     *p++ = ',';
+                    *p++ = c;
+                } else {
+                    *p++ = c;
                 }
-                *p++ = c;
                 i++;
             } while (i < (int)strlen(buf));
         }
@@ -326,6 +328,28 @@ void C_00084FF0::func_00084FF0(void)
     f24->func_001D6600();
     f28->func_0005E840(out);
     f28->func_001D6600();
+}
+
+void C_00084FF0::func_000851C0()
+{
+ const char *names[3]={D_00279630,D_00278690,D_0027958C};
+ if(D_002A8490->f10!=f3C && D_002A8490->f2E0->f4) {func_001578D0(); return;}
+ S_851C0_Values *v=f2C->func_001D5AA0();
+ if(D_00275AEC>v->f10) v->f10=10.0f;
+ if(D_00275AEC<v->f14 || v->f14>v->f10) v->f14=10.0f;
+ v=f30->func_001D5AA0();
+ if(D_00275AEC>v->f10) v->f10=10.0f;
+ if(D_00275AEC<v->f14 || v->f14>v->f10) v->f14=10.0f;
+ for(int i=0;i<3;i++) {
+ S_851C0_List *list=D_002A8490->f2EC;
+ S_851C0_Item **p=list->func_0018C160(names[i]);
+ if(p && *p) {
+ v=(*p)->func_0018C070();
+ if(D_00275AEC>v->f10) v->f10=10.0f;
+ if(D_00275AEC<v->f14 || v->f14>v->f10) v->f14=10.0f;
+ }
+ }
+ func_001578D0();
 }
 
 C_00085520 *C_00085520::func_00085470(int a)
