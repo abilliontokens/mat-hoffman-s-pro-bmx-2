@@ -119,6 +119,7 @@ extern float D_002754B0;
 extern float D_002755E8;
 int func_001E8833(void);
 int func_00011260(int lo, int hi);
+static __forceinline float Rand01_0016DEA0(void) { return (float)func_001E8833() * D_002754B0; }
 
 struct C_0016DEA0 {
     void *vtbl;
