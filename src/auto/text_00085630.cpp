@@ -158,6 +158,14 @@ struct C_00086240_Item {
     unsigned char flags;
     void func_0005E840(const char *s);
     void func_001D6600(void);
+    C_00086240_Item *func_001D5E90();
+    void func_001D5FA0(int parent, const char *name, int size, int flags);
+    void SetPos(float a, float b) {
+        if (*(int *)&x != *(int *)&a || y != b) { x = a; y = b; flags |= 6; }
+    }
+    void SetFont(int a) { if (font != a) { font = a; flags |= 6; } }
+    void SetZ(float a) { if (*(int *)&z != *(int *)&a) { z = a; flags |= 4; } }
+    void SetAlpha(unsigned short a) { if (*(unsigned short *)pad4C != a) { flags |= 8; *(unsigned short *)pad4C = a; ((char *)&argb)[3] = (char)a; } }
     void SetArgb(unsigned int c) {
         if (argb != c) {
             flags |= 8;
