@@ -62,6 +62,7 @@ struct C_001A0510 {
 };
 
 void func_0019FBD0(Vec_19FD20 *out, Vec_19FD20 *in);
+void func_0001E9E0(Vec_19FD20 *out, Vec_19FD20 *in);
 Vec_19FD20 func_0001C610(Vec_19FD20 *a, Vec_19FD20 *b);
 extern "C" void func_0013E260(Log_19FD20 *log, int id, void *p);
 extern "C" void func_0013E1F0(Log_19FD20 *log, int id, const void *fmt, ...);
