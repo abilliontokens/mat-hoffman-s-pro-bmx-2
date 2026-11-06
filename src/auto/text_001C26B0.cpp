@@ -245,6 +245,13 @@ struct UIWidgetMovementControl {
 };
 
 
+static int lookup_001C26B0(C_001C26B0 *o, char *text)
+{
+    int index = 0;
+    o->func_000979C0(text, &index);
+    return index;
+}
+
 C_001C26B0 *C_001C26B0::func_001C26B0(int a, C_001C26B0 *p)
 {
     L_001C26B0 l;
