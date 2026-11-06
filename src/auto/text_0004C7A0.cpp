@@ -129,7 +129,7 @@ struct C_0004CED0 {
     S_0004CFC0_Data f1DC;
     int func_0004CED0();
     void func_0004CFC0();
-    void probe();
+    int func_0004CEC0();
 };
 
 struct C_00088F70 {
