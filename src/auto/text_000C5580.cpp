@@ -1,6 +1,11 @@
 /* 10 functions from 0x000C5580 to 0x000C6550, found by Ghidra. */
 #include "common.h"
 
+struct S_C5EA0_Clamp { float f10, f14; };
+struct S_C5EA0_Inner { S_C5EA0_Clamp *func_0018C070(); };
+struct S_C5EA0_Obj { S_C5EA0_Inner *f0; };
+struct S_C5EA0_Disp { S_C5EA0_Obj *func_0018C160(int id); };
+struct S_C5EA0_Mgr { char pad0[0x2ec]; S_C5EA0_Disp *f2ec; };
 struct E_000C5710 {
     char pad0[0x38];
     unsigned int f38;
@@ -353,19 +358,39 @@ void BmxUIPageParkEditor::func_000C5980(void)
 
 void BmxUIPageParkEditor::func_000C59C0()
 {
-    int i;
+    char *self = (char *)this;
+    C_59C0_Sub *sub = (C_59C0_Sub *)f124;
+    int i, k, off, r;
 
     f280 = 0;
-    *(int *)((char *)this + 0x288) = 0;
+    *(int *)(self + 0x288) = 0;
     f284 = 0;
     f298 = 0;
     f294 = 0;
     f29C = 1;
     f2A4 = 0;
     for (i = 0; i < 16; i++) {
-        if (((C_59C0_Sub *)f124)->func_000BC0F0(i))
+        if (sub->func_000BC0F0(i))
             break;
         D_002A8490->p2E0->f2C0->func_0005C1E0(i);
+    }
+    for (k = 0, off = 0; off < 0x1a80; k++, off += 0x1a8) {
+        if (D_002A8490->p2E0->f2C0->func_0005C1D0(k) == 0) {
+            if (off == 0x1a8 || off == 0x4f8 || off == 0x9f0 || off == 0xd40 || off == 0x13e0 || off == 0x18d8) {
+                r = sub->f150->f484->func_0001B3C0(sub->f27c + off);
+                ((C_59C0_VB *)sub->f150->f484->f2c->f28[r]->f1a4)->v5();
+            }
+        } else if (*(int *)((char *)D_002A8490->p2E0 + 4) == 0) {
+            if (off == 0x1a8 || off == 0x4f8 || off == 0x9f0 || off == 0xd40 || off == 0x13e0 || off == 0x18d8) {
+                r = sub->f150->f484->func_0001B3C0(sub->f27c + off);
+                ((C_59C0_VB *)sub->f150->f484->f2c->f28[r]->f1a4)->v5();
+            }
+        } else {
+            if (off == 0x1a8 || off == 0x4f8 || off == 0x9f0 || off == 0xd40 || off == 0x13e0 || off == 0x18d8) {
+                r = sub->f150->f484->func_0001B3C0(sub->f27c + off);
+                ((C_59C0_VB *)sub->f150->f484->f2c->f28[r]->f1a4)->v7();
+            }
+        }
     }
 }
 
