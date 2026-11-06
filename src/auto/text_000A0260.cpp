@@ -4,7 +4,7 @@ struct Node_A0B { char pad[0x3c]; int id; Node_A0B* func_00192900(int); void fun
 struct List_A0B { List_A0B* func_00157600(int); void func_001577A0(void*,int); };
 struct Link_A0B { Link_A0B* func_00179820(int); void* func_0017A310(void*); };
 struct World_A0B { void func_0015D850(int,int,int,int,int,int,int,int,int); void func_0015DA60(int,int,void*); };
-struct Special_A0B { void** vt; Special_A0B* func_001C4F40(); int func_001C4F70(int,int,int,int,int,int,int); void func_001C4FA0(int); };
+struct Special_A0B { virtual void v0(); virtual void v1(); virtual void v2(); Special_A0B* func_001C4F40(); int func_001C4F70(int,int,int,int,int,int,int); void func_001C4FA0(int); };
 struct Result_A0B { int x; Node_A0B* node; Special_A0B* special; Result_A0B* func_00193490(); };
 struct Sector_A0B { char pad[0x114]; int a; int b; int c; int d; void* data; int count; char rest[0x34]; };
 struct Edge_A0B { int x; char data[0x40]; int a,b; };
