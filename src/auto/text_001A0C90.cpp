@@ -255,17 +255,12 @@ struct C_001A1860 {
     char pad90[0x8];
     int unk98;
     char pad9C[0x104];
-    union {
-        u8 unk1A0;
-        struct {
-            u8 unk1A0_0 : 1;
-            u8 unk1A0_1 : 1;
-            u8 unk1A0_2 : 1;
-            u8 unk1A0_3 : 1;
-            u8 unk1A0_4 : 1;
-            u8 unk1A0_5 : 3;
-        };
-    };
+    u8 unk1A0_0 : 1;
+    u8 unk1A0_1 : 1;
+    u8 unk1A0_2 : 1;
+    u8 unk1A0_3 : 1;
+    u8 unk1A0_4 : 1;
+    u8 unk1A0_5 : 3;
     char pad1A1[0x3];
     int unk1A4;
     int unk1A8;
