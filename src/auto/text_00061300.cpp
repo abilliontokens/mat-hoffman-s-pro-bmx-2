@@ -10,7 +10,7 @@ struct C_61590_Obj {
  virtual void destroying(int);
  void func_001D6410();
 };
-static inline void free_61590(int p) {
+static inline void free_61590(C_61590_Obj *p) {
  if(p) { ((C_61590_Obj *)p)->func_001D6410(); func_001E891B((void *)p); }
 }
 struct C_00061300 {
