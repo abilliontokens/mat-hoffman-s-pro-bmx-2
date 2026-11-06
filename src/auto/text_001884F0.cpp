@@ -61,6 +61,9 @@ struct C_001888F0_Obj : C_00188VT {
 };
 
 static __forceinline void CallV0_001888F0(C_001888F0_Obj *o) { o->v0(); }
+struct C_001888F0_VTF {
+    virtual void __fastcall v0();
+};
 
 struct S_00188AB0_Parser {
     int func_00169710(char *name);
@@ -428,7 +431,7 @@ void C_00188700::func_001888F0(void)
         q = 0;
     }
     unkC = (int)q;
-    (*(void (__fastcall **)(C_001888F0_Obj *))*(void ***)q)(q);
+    CallV0_001888F0(q);
 }
 
 void C_00188920::func_00188920(void)
