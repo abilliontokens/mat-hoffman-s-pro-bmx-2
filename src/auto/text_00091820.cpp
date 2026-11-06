@@ -143,6 +143,41 @@ struct C_00091990 {
     void *func_00091990(int flags);
 };
 
+/* UI element with position/text setters */
+struct S_00091A20_Elem {
+    void func_0005E800(int x, int y);
+    void func_0005E960(int x, int y);
+    void func_0005E840(int s);
+};
+
+/* EditorFooterOverlay: five labels f24..f34, one icon per slot chosen from the 8 icon objects at +0x38+k*0x64 */
+struct C_00091A20 {
+    void *vtbl;
+    char pad4[0x20];
+    S_00091A20_Elem *f24;
+    S_00091A20_Elem *f28;
+    S_00091A20_Elem *f2c;
+    S_00091A20_Elem *f30;
+    S_00091A20_Elem *f34;
+    char pad38[0x4bc - 0x38];
+    int f4bc;
+    int f4c0;
+    int f4c4;
+    int f4c8;
+    int f4cc;
+    char pad4d0[8];
+    int f4d8;
+    int f4dc;
+    int func_00091A20();
+};
+
+#define EFO_ICON(off) ((S_00091A20_Elem *)((char *)this + (off)))
+#define EFO_STR(off) (*(int *)((char *)D_002A8490->f2e8->f4 + (off)))
+#define EFO_SLOT(field, v, off, x, lab, lx) \
+    field = (v); \
+    EFO_ICON(off)->func_0005E800((x), 0x184); \
+    lab->func_0005E960((lx), 0x18e);
+
 
 undefined4 C_00091820::func_00091820(byte param_1)
 {
