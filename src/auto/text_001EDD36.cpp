@@ -132,6 +132,361 @@ static void func_001EDCFF(char *str, int len, S_001EDC7E *stream, int *pcnt)
 
 #pragma optimize("s", on)
 
+int func_001EDD36(S_001EDC7E *stream, const char *format, char *argptr)
+{
+    int hexadd;
+    char ch;
+    int flags;
+    int capexp;
+    int state;
+    int chclass;
+    int radix;
+    int charsout;
+    int fldwidth;
+    int precision;
+    char prefix[2];
+    int prefixlen;
+    int no_output;
+    int textlen;
+    union {
+        char *sz;
+        unsigned short *wz;
+    } text;
+    char buffer[OUTA_BUFFERSIZE];
+    short wchar;
+    int bufferiswide;
+    char *heapbuf;
+    int padding;
+
+    textlen = 0;
+    charsout = 0;
+    heapbuf = 0;
+    state = 0;
+
+    while ((ch = *format++) != 0 && charsout >= 0) {
+        chclass = (ch < 0x20 || ch > 0x78) ? 0 : D_00295500[ch] & 0xf;
+        state = (signed char)D_00295520[chclass * 8 + state] >> 4;
+        switch (state) {
+        case 1:
+            prefixlen = fldwidth = no_output = capexp = 0;
+            flags = 0;
+            precision = -1;
+            bufferiswide = 0;
+            break;
+        case 2:
+            switch (ch) {
+            case ' ':
+                flags |= OUTA_FL_SIGNSP;
+                break;
+            case '#':
+                flags |= OUTA_FL_ALTERNATE;
+                break;
+            case '+':
+                flags |= OUTA_FL_SIGN;
+                break;
+            case '-':
+                flags |= OUTA_FL_LEFT;
+                break;
+            case '0':
+                flags |= OUTA_FL_LEADZERO;
+                break;
+            }
+            break;
+        case 3:
+            if (ch == '*') {
+                fldwidth = outa_get_int_arg(&argptr);
+                if (fldwidth < 0) {
+                    flags |= OUTA_FL_LEFT;
+                    fldwidth = -fldwidth;
+                }
+            } else {
+                fldwidth = fldwidth * 10 + (ch - '0');
+            }
+            break;
+        case 4:
+            precision = 0;
+            break;
+        case 5:
+            if (ch == '*') {
+                precision = outa_get_int_arg(&argptr);
+                if (precision < 0)
+                    precision = -1;
+            } else {
+                precision = precision * 10 + (ch - '0');
+            }
+            break;
+        case 6:
+            switch (ch) {
+            case 'I':
+                if (*format == '6' && *(format + 1) == '4') {
+                    format += 2;
+                    flags |= OUTA_FL_I64;
+                } else if (*format == '3' && *(format + 1) == '2') {
+                    format += 2;
+                    flags &= ~OUTA_FL_I64;
+                } else if (*format != 'd' && *format != 'i' && *format != 'o' &&
+                           *format != 'u' && *format != 'x' && *format != 'X') {
+                    state = 0;
+                    goto NORMAL_STATE;
+                }
+                break;
+            case 'h':
+                flags |= OUTA_FL_SHORT;
+                break;
+            case 'l':
+                flags |= OUTA_FL_LONG;
+                break;
+            case 'w':
+                flags |= OUTA_FL_WIDECHAR;
+                break;
+            }
+            break;
+        case 0:
+        NORMAL_STATE:
+            bufferiswide = 0;
+            if (D_002AEA30[(unsigned char)ch] & 0x8000) {
+                func_001EDCA8(ch, stream, &charsout);
+                ch = *format++;
+            }
+            func_001EDCA8(ch, stream, &charsout);
+            break;
+        case 7:
+            switch (ch) {
+            case 'C':
+                if (!(flags & (OUTA_FL_SHORT | OUTA_FL_LONG | OUTA_FL_WIDECHAR)))
+                    flags |= OUTA_FL_WIDECHAR;
+            case 'c':
+                if (flags & (OUTA_FL_LONG | OUTA_FL_WIDECHAR)) {
+                    wchar = outa_get_short_arg(&argptr);
+                    textlen = func_001F58AA(buffer, wchar);
+                    if (textlen < 0)
+                        no_output = 1;
+                } else {
+                    buffer[0] = (char)outa_get_int_arg(&argptr);
+                    textlen = 1;
+                }
+                text.sz = buffer;
+                break;
+            case 'Z': {
+                struct CountString {
+                    short Length;
+                    short MaximumLength;
+                    char *Buffer;
+                } *pstr;
+                pstr = (CountString *)outa_get_ptr_arg(&argptr);
+                if (pstr == 0 || pstr->Buffer == 0) {
+                    text.sz = D_0029557C;
+                    textlen = strlen(text.sz);
+                } else {
+                    if (flags & OUTA_FL_WIDECHAR) {
+                        text.wz = (unsigned short *)pstr->Buffer;
+                        textlen = pstr->Length / 2;
+                        bufferiswide = 1;
+                    } else {
+                        bufferiswide = 0;
+                        text.sz = pstr->Buffer;
+                        textlen = pstr->Length;
+                    }
+                }
+                break;
+            }
+            case 'S':
+                if (!(flags & (OUTA_FL_SHORT | OUTA_FL_LONG | OUTA_FL_WIDECHAR)))
+                    flags |= OUTA_FL_WIDECHAR;
+            case 's': {
+                int i;
+                char *p;
+                unsigned short *pwch;
+                i = (precision == -1) ? 0x7fffffff : precision;
+                text.sz = (char *)outa_get_ptr_arg(&argptr);
+                if (flags & (OUTA_FL_LONG | OUTA_FL_WIDECHAR)) {
+                    if (text.wz == 0)
+                        text.wz = D_00295584;
+                    bufferiswide = 1;
+                    pwch = text.wz;
+                    while (i-- && *pwch)
+                        ++pwch;
+                    textlen = pwch - text.wz;
+                } else {
+                    if (text.sz == 0)
+                        text.sz = D_0029557C;
+                    p = text.sz;
+                    while (i-- && *p)
+                        ++p;
+                    textlen = p - text.sz;
+                }
+                break;
+            }
+            case 'n': {
+                void *p = outa_get_ptr_arg(&argptr);
+                if (flags & OUTA_FL_SHORT)
+                    *(short *)p = (short)charsout;
+                else
+                    *(int *)p = charsout;
+                no_output = 1;
+                break;
+            }
+            case 'E':
+            case 'G':
+                capexp = 1;
+                ch += 'a' - 'A';
+            case 'e':
+            case 'f':
+            case 'g': {
+                CrtDouble_001EDD36 tmp;
+                flags |= OUTA_FL_SIGNED;
+                text.sz = buffer;
+                if (precision < 0)
+                    precision = 6;
+                else if (precision == 0 && ch == 'g')
+                    precision = 1;
+                else if (precision > OUTA_BUFFERSIZE)
+                    precision = OUTA_BUFFERSIZE;
+                if (precision > OUTA_BUFFERSIZE - OUTA_CVTBUFSIZE) {
+                    heapbuf = (char *)func_001E8AA5(OUTA_CVTBUFSIZE + precision);
+                    if (heapbuf != 0)
+                        text.sz = heapbuf;
+                    else
+                        precision = OUTA_BUFFERSIZE - OUTA_CVTBUFSIZE;
+                }
+                tmp = *(CrtDouble_001EDD36 *)((argptr += 8) - 8);
+                (*D_002AEA14)(&tmp, text.sz, ch, precision, capexp);
+                if ((flags & OUTA_FL_ALTERNATE) && precision == 0)
+                    (*D_002AEA20)(text.sz);
+                if (ch == 'g' && !(flags & OUTA_FL_ALTERNATE))
+                    (*D_002AEA18)(text.sz);
+                if (*text.sz == '-') {
+                    flags |= OUTA_FL_NEGATIVE;
+                    ++text.sz;
+                }
+                textlen = strlen(text.sz);
+                break;
+            }
+            case 'd':
+            case 'i':
+                flags |= OUTA_FL_SIGNED;
+            case 'u':
+                radix = 10;
+                goto COMMON_INT;
+            case 'p':
+                precision = 8;
+            case 'X':
+                hexadd = 'A' - '9' - 1;
+                goto COMMON_HEX;
+            case 'x':
+                hexadd = 'a' - '9' - 1;
+            COMMON_HEX:
+                radix = 16;
+                if (flags & OUTA_FL_ALTERNATE) {
+                    prefix[0] = '0';
+                    prefix[1] = (char)('x' - 'a' + '9' + 1 + hexadd);
+                    prefixlen = 2;
+                }
+                goto COMMON_INT;
+            case 'o':
+                radix = 8;
+                if (flags & OUTA_FL_ALTERNATE)
+                    flags |= OUTA_FL_FORCEOCTAL;
+            COMMON_INT: {
+                unsigned __int64 number;
+                int digit;
+                __int64 l;
+                if (flags & OUTA_FL_I64) {
+                    l = *(__int64 *)argptr;
+                    argptr += 8;
+                } else if (flags & OUTA_FL_SHORT) {
+                    if (flags & OUTA_FL_SIGNED)
+                        l = (short)outa_get_int_arg(&argptr);
+                    else
+                        l = (unsigned short)outa_get_int_arg(&argptr);
+                } else {
+                    if (flags & OUTA_FL_SIGNED)
+                        l = outa_get_int_arg(&argptr);
+                    else
+                        l = (unsigned int)outa_get_int_arg(&argptr);
+                }
+                if ((flags & OUTA_FL_SIGNED) && l < 0) {
+                    number = -l;
+                    flags |= OUTA_FL_NEGATIVE;
+                } else {
+                    number = l;
+                }
+                if ((flags & OUTA_FL_I64) == 0)
+                    number &= 0xffffffff;
+                if (precision < 0) {
+                    precision = 1;
+                } else {
+                    flags &= ~OUTA_FL_LEADZERO;
+                    if (precision > OUTA_BUFFERSIZE)
+                        precision = OUTA_BUFFERSIZE;
+                }
+                if (number == 0)
+                    prefixlen = 0;
+                text.sz = &buffer[OUTA_BUFFERSIZE - 1];
+                while (precision-- > 0 || number != 0) {
+                    digit = (int)(number % radix) + '0';
+                    number /= radix;
+                    if (digit > '9')
+                        digit += hexadd;
+                    *text.sz-- = (char)digit;
+                }
+                textlen = (int)&buffer[OUTA_BUFFERSIZE - 1] - (int)text.sz;
+                ++text.sz;
+                if (flags & OUTA_FL_FORCEOCTAL) {
+                    if (*text.sz != '0' || textlen == 0) {
+                        *--text.sz = '0';
+                        ++textlen;
+                    }
+                }
+                break;
+            }
+            }
+            if (!no_output) {
+                if (flags & OUTA_FL_SIGNED) {
+                    if (flags & OUTA_FL_NEGATIVE) {
+                        prefix[0] = '-';
+                        prefixlen = 1;
+                    } else if (flags & OUTA_FL_SIGN) {
+                        prefix[0] = '+';
+                        prefixlen = 1;
+                    } else if (flags & OUTA_FL_SIGNSP) {
+                        prefix[0] = ' ';
+                        prefixlen = 1;
+                    }
+                }
+                padding = fldwidth - prefixlen - textlen;
+                if (!(flags & (OUTA_FL_LEFT | OUTA_FL_LEADZERO)))
+                    func_001EDCDB(' ', padding, stream, &charsout);
+                func_001EDCFF(prefix, prefixlen, stream, &charsout);
+                if ((flags & OUTA_FL_LEADZERO) && !(flags & OUTA_FL_LEFT))
+                    func_001EDCDB('0', padding, stream, &charsout);
+                if (bufferiswide && textlen > 0) {
+                    unsigned short *p = text.wz;
+                    int retval;
+                    char mbbuf[8];
+                    int i = textlen;
+                    while (i--) {
+                        retval = func_001F58AA(mbbuf, *p++);
+                        if (retval <= 0)
+                            break;
+                        func_001EDCFF(mbbuf, retval, stream, &charsout);
+                    }
+                } else {
+                    func_001EDCFF(text.sz, textlen, stream, &charsout);
+                }
+                if (flags & OUTA_FL_LEFT)
+                    func_001EDCDB(' ', padding, stream, &charsout);
+            }
+            if (heapbuf) {
+                func_001E8390(heapbuf);
+                heapbuf = 0;
+            }
+            break;
+        }
+    }
+    return charsout;
+}
+
 int func_001EE4BD(int fh, int pos, int mthd)
 {
     int handle;
