@@ -88,7 +88,6 @@ struct C_001467A0 {
  int func_001AFF80(int);
  void func_001467A0();
 };
-void func_0014A8A0(); void func_00142D20();
 void __stdcall func_00200510(int,int);
 void __stdcall func_001FD8E0(int,unsigned);
 void __stdcall func_001FDA60(int,unsigned);
