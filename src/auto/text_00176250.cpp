@@ -35,6 +35,8 @@ extern int D_0000F81F;
 extern int D_0000FC1F;
 
 int func_001B2910(int);
+extern "C" void *func_001E8AA5(int size);
+extern "C" void func_001E8390(void *p);
 extern "C" void __fastcall func_001751A0(u8 *src, int count);
 extern "C" void __fastcall func_001751D0(u16 *src, int count);
 extern "C" void __fastcall func_00175210(u16 *src, int count);
@@ -151,6 +153,14 @@ u32 func_00176250(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
     }
   }
   return 0;
+}
+
+u32 _func_00176630(u8 *src, int fmt, int width, int height, int srcWidth, int dstWidth,
+                  u8 *out888, u16 *out565, u16 *out555, u8 *outPal, S_00176250_Pal *pal)
+{
+    int bpp = func_001B2910(fmt);
+    return bpp + (pal != 0) + (out888 == src) + (out565 == out555) + (outPal == (u8 *)src)
+        + (srcWidth == dstWidth) + (height == width);
 }
 
 u32 func_00176CD0(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch)
