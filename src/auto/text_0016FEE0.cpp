@@ -87,7 +87,7 @@ struct S_Slot_001704B0 {
     char pad20[0x44];
 };
 
-static __forceinline void Normalize_001704B0(float *out, float *in)
+static __forceinline void Normalize_001704B0(float * volatile out, float * volatile in)
 {
     __m128 v = _mm_loadu_ps(in);
     __m128 sq = _mm_mul_ps(v, v);
@@ -522,21 +522,33 @@ void C_00170B50::func_00170B50(void) {
 }
 
 void C_00170B60::func_00170B60() {
-
- ((V_00170B60 *)((char *)this+304))->reset();
- ((V_00170B60 *)((char *)this+320))->reset();
- ((V_00170B60 *)((char *)this+108))->reset();
- ((V_00170B60 *)((char *)this+124))->reset();
- ((V_00170B60 *)((char *)this+568))->reset();
- ((V_00170B60 *)((char *)this+584))->reset();
- ((V_00170B60 *)((char *)this+92))->reset();
- ((V_00170B60 *)((char *)this+616))->reset();
- ((V_00170B60 *)((char *)this+600))->reset();
+ C_00170B60 * volatile self = this;
+ S_00170B60_Mat * volatile qv;
+ Copy_00170B60((int *)((char *)this+304));
+ Copy_00170B60((int *)((char *)self+320));
+ Copy_00170B60((int *)((char *)self+108));
+ Copy_00170B60((int *)((char *)self+124));
+ Copy_00170B60((int *)((char *)self+568));
+ Copy_00170B60((int *)((char *)self+584));
+ Copy_00170B60((int *)((char *)self+92));
+ Copy_00170B60((int *)((char *)self+616));
+ Copy_00170B60((int *)((char *)self+600));
  __declspec(align(16)) S_00170B60_Mat a,b;
- Identity_00170B60(&a); b=a;
- ((C_000264C0 *)((char *)this+0x280))->func_000264C0(&b);
- Identity_00170B60(&b); a=b;
- ((C_000264C0 *)((char *)this+0x2c0))->func_000264C0(&a);
- ((int *)this)[10]=0;
+ S_00170B60_Mat *q;
+ qv = &a;
+ q = qv;
+ ((__m128 *)q->m)[0]=_mm_setzero_ps(); ((__m128 *)q->m)[1]=_mm_setzero_ps();
+ ((__m128 *)q->m)[2]=_mm_setzero_ps(); ((__m128 *)q->m)[3]=_mm_setzero_ps();
+ q->m[0]=0x3f800000; q->m[5]=0x3f800000; q->m[10]=0x3f800000; q->m[15]=0x3f800000;
+ b=a;
+ ((C_000264C0 *)((char *)self+0x280))->func_000264C0(&b);
+ qv = &b;
+ q = qv;
+ ((__m128 *)q->m)[0]=_mm_setzero_ps(); ((__m128 *)q->m)[1]=_mm_setzero_ps();
+ ((__m128 *)q->m)[2]=_mm_setzero_ps(); ((__m128 *)q->m)[3]=_mm_setzero_ps();
+ q->m[0]=0x3f800000; q->m[5]=0x3f800000; q->m[10]=0x3f800000; q->m[15]=0x3f800000;
+ a=b;
+ ((C_000264C0 *)((char *)self+0x2c0))->func_000264C0(&a);
+ ((int *)self)[10]=0;
 }
 
