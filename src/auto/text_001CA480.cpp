@@ -4,7 +4,7 @@
 #include <string.h>
 #include <xmmintrin.h>
 
-static inline float Sqrt_001CA480(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
+static __forceinline float Sqrt_001CA480(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
 
 struct S_Vec4Int_1CB320 {
     int x, y, z, w;
@@ -240,14 +240,15 @@ struct VCall_1CAFF0 {
 };
 
 
-bool WaterDisplacement::func_001CA480(Plane_001CA480 *plane, void *arg1)
+Ret_001CA480 WaterDisplacement::func_001CA480(Plane_001CA480 *plane, void *arg1)
 {
     CamV_001CA480 *cam = (CamV_001CA480 *)D_002EFDB8->cam;
     Vec4_001CA480 A[4];
     Vec4_001CA480 B[2];
     Vec4_001CA480 C[2];
-    bool ret = false;
-    bool flip = cam->pos.y < plane->f4;
+    int ret = 0;
+    int flip = 0;
+    if (cam->pos.y < plane->f4) flip = 1;
     float T = func_0014F600(cam->fov * D_0028AC40);
     float K = cam->aspect;
     Vec3_001CA480 P = cam->dir * cam->nearD + cam->pos;
@@ -273,10 +274,10 @@ bool WaterDisplacement::func_001CA480(Plane_001CA480 *plane, void *arg1)
     float tr2 = cam->farD * T;
     Vec3_001CA480 U2 = *(Vec3_001CA480 *)&unk64 * tr2 * K;
     Vec3_001CA480 V2 = *(Vec3_001CA480 *)&unk54 * tr2;
-    t = Q + U2;
-    B[1] = Vec4_001CA480(t.x, t.y, t.z, 1.0f);
-    t = Q - U2;
-    C[1] = Vec4_001CA480(t.x, t.y, t.z, 1.0f);
+    Vec3_001CA480 B1 = Q + U2;
+    Vec3_001CA480 C1 = Q - U2;
+    B[1] = Vec4_001CA480(B1.x, B1.y, B1.z, 1.0f);
+    C[1] = Vec4_001CA480(C1.x, C1.y, C1.z, 1.0f);
 
     int r1 = func_001CA360(arg1, plane, &B[0], &C[0], &A[0]);
     int r2 = func_001CA360(arg1, plane, &B[1], &C[1], &A[1]);
@@ -286,7 +287,36 @@ bool WaterDisplacement::func_001CA480(Plane_001CA480 *plane, void *arg1)
     if (r1) {
         *(Vec4_001CA480 *)&unk74[1] = Vec4_001CA480(A[0].x - V.x, A[0].y - V.y, A[0].z - V.z, 1.0f);
         *(Vec4_001CA480 *)&unk74[3] = Vec4_001CA480(A[0].x + V.x, A[0].y + V.y, A[0].z + V.z, 1.0f);
-        ret = true;
+        ret = 1;
+    }
+    if (r2) {
+        *(Vec4_001CA480 *)&unk74[0] = Vec4_001CA480(A[1].x - V2.x, A[1].y - V2.y, A[1].z - V2.z, 1.0f);
+        *(Vec4_001CA480 *)&unk74[2] = Vec4_001CA480(A[1].x + V2.x, A[1].y + V2.y, A[1].z + V2.z, 1.0f);
+        ret = 1;
+    }
+    if (r3) {
+        Vec3_001CA480 e1 = B1 - cam->pos;
+        Vec3_001CA480 e2 = *(Vec3_001CA480 *)&A[2] - cam->pos;
+        float n2 = e2.z * e2.z + e2.y * e2.y + e2.x * e2.x;
+        float l2 = Sqrt_001CA480(n2);
+        float n1 = e1.z * e1.z + e1.y * e1.y + e1.x * e1.x;
+        float l1 = Sqrt_001CA480(n1);
+        Vec3_001CA480 w = V2 * (l2 / l1);
+        *(Vec4_001CA480 *)&unk74[flip != 0] = Vec4_001CA480(A[2].x - w.x, A[2].y - w.y, A[2].z - w.z, 1.0f);
+        *(Vec4_001CA480 *)&unk74[(flip != 0) + 2] = Vec4_001CA480(A[2].x + w.x, A[2].y + w.y, A[2].z + w.z, 1.0f);
+        ret = 1;
+    }
+    if (r4) {
+        Vec3_001CA480 e1 = C1 - cam->pos;
+        Vec3_001CA480 e2 = *(Vec3_001CA480 *)&A[3] - cam->pos;
+        float n2 = e2.z * e2.z + e2.y * e2.y + e2.x * e2.x;
+        float l2 = Sqrt_001CA480(n2);
+        float n1 = e1.z * e1.z + e1.y * e1.y + e1.x * e1.x;
+        float l1 = Sqrt_001CA480(n1);
+        Vec3_001CA480 w = V2 * (l2 / l1);
+        *(Vec4_001CA480 *)&unk74[!flip] = Vec4_001CA480(A[3].x - w.x, A[3].y - w.y, A[3].z - w.z, 1.0f);
+        *(Vec4_001CA480 *)&unk74[3 - (flip != 0)] = Vec4_001CA480(A[3].x + w.x, A[3].y + w.y, A[3].z + w.z, 1.0f);
+        ret = 1;
     }
     return ret;
 }
