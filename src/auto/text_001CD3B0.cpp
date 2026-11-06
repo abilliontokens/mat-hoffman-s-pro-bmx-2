@@ -47,9 +47,9 @@ extern char D_0028F09C, D_0028EECC;
 int __stdcall func_0021FBC1(int);
 void func_0021FB99();
 int __stdcall func_002228B1(int, void **, int);
-int __stdcall func_00222353(void *, float, float, float, int);
-int __stdcall func_00222309(void *, float, float, float, float, float, float, int);
-int __stdcall func_002223AC(void *, float, float, float, int);
+int __stdcall func_00222353(void *, int, int, int, int);
+int __stdcall func_00222309(void *, int, int, int, int, int, int, int);
+int __stdcall func_002223AC(void *, int, int, int, int);
 int __stdcall func_0022195C(void *);
 void func_001CBC10(int, const char *, int);
 struct XboxSoundInterface {
@@ -453,6 +453,16 @@ int C_001CD510::func_001CD510(int a)
     return 1;
 }
 
+int C_001CD590::func_001CD590(int a, int b) {
+    if (b) {
+        v33(0);
+        fA0 |= 2;
+        f38 = 1;
+        return func_001CD450(a, b) != 0;
+    }
+    return 0;
+}
+
 XboxSoundGroup *XboxSoundGroup::func_001CD770(int a, int b)
 {
     func_0001C8F0(b);
@@ -707,6 +717,66 @@ int S_SoundElemList::func_001CDED0(S_SoundElem *elem)
     items[count] = elem;
     count++;
     return 1;
+}
+
+int XboxSoundInterface::func_001CDF30(int a, int b)
+{
+    int hr;
+    int desc[2];
+    if (f2c & 1)
+        return 0x80004005;
+    func_0021FBC1(fD4);
+    hr = func_002228B1(0, &f30, 0);
+    if (hr != 0)
+        goto done;
+    func_0021FB99();
+    desc[0] = hr;
+    desc[1] = 1;
+    hr = func_001CB170(&D_0028F09C, desc);
+    if (hr != 0)
+        goto done;
+    {
+        void *p = func_001E8A44(0x6c);
+        f138 = p ? new (p) C_001CDC20(a, b) : 0;
+    }
+    f2c |= 1;
+    func_001CBF20();
+    if (!func_001CBF90(0.3048f))
+        goto fail;
+    f118 = D_002ABA44;
+    f128 = D_002ABA44;
+    fF8 = D_002ABA74;
+    f108 = D_002ABA64;
+    {
+        void **dev = &f30;
+        int r1 = func_00222353(*dev, 0, 0, 0, 1);
+        if (r1 < 0) {
+            func_001CBC10(r1, &D_0028EECC, 0xa2);
+            goto fail;
+        }
+        int r2 = func_00222309(*dev, 0, 0, 1.0f, 0, 1.0f, 0, 1);
+        if (r2 < 0) {
+            func_001CBC10(r2, &D_0028EECC, 0xab);
+            goto fail;
+        }
+        int r3 = func_002223AC(*dev, 0, 0, 0, 1);
+        if (r3 < 0) {
+            func_001CBC10(r3, &D_0028EECC, 0xb3);
+            goto fail;
+        }
+        func_001CC0C0(1.0f);
+        {
+            void *device = *dev;
+            int r4 = func_0022195C(device);
+            if (r4 >= 0)
+                goto done;
+            func_001CBC10(r4, &D_0028EECC, 0xbc);
+        }
+    }
+fail:
+    hr = 0x80004005;
+done:
+    return hr;
 }
 
 undefined4 C_001CE120::func_001CE120(byte param_1)
