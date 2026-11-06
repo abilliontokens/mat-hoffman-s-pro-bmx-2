@@ -40,6 +40,18 @@ struct S_HeapCallout {
     void (__stdcall *notify)(int code, void *data);
 };
 
+struct S_HeapParams {
+    u32 length, segmentReserve, segmentCommit, deCommitFree, deCommitTotal;
+    u32 maxAlloc, virtualThreshold, initialCommit, initialReserve, commitRoutine, lock2, r2;
+};
+extern "C" long __stdcall NtAllocateVirtualMemory(void **base, u32 zero, u32 *size, u32 type, u32 prot);
+extern "C" long __stdcall NtQueryVirtualMemory(void *addr, int cls, void *info, u32 len, u32 *ret);
+extern "C" void __stdcall RtlInitializeCriticalSection(void *cs);
+extern "C" void *memcpy(void *, const void *, unsigned int);
+extern "C" void *memset(void *, int, unsigned int);
+extern u32 D_0028FD88, D_002ACBD4, D_002ACBD8, D_002ACBDC, D_002ACBE0;
+extern u8 D_002F6BB1, D_002F6BB2;
+u8 __stdcall func_001E016D(S_Heap *heap, void *a, int b, void *c, u32 d, void *e, void *f);
 S_HeapEntry *__stdcall func_001DF985(S_Heap *heap, S_HeapEntry *entry, u32 *size, int a3);
 void __stdcall func_001E0412(S_Heap *heap, S_HeapEntry *entry, u32 size);
 void __stdcall func_001DFC2A(S_Heap *heap, S_HeapEntry *entry, u32 size);
