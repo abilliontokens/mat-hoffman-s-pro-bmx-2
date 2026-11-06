@@ -44,6 +44,7 @@ struct ElemHOF2 {
         unsigned char f = b58 | 4;
         m3c = 1.0f;
         m48 = 1.0f;
+        _ReadWriteBarrier();
         b58 = f;
     }
     void SetX(int nx) {
