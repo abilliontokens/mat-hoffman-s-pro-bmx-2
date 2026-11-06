@@ -318,13 +318,13 @@ struct func_00055380 : CameraBehavior_00055380 {
     Quat_00055380 q2C;
     u32 unk3C, unk40, unk44, unk48, unk4C, unk50, unk54, unk58;
     char pad5C[4];
-    u32 unk60, unk64, unk68;
+    volatile u32 unk60; u32 unk64, unk68;
     Quat_00055380 q6C, q7C, q8C, q9C, qAC, qBC, qCC, qDC, qEC, qFC, q10C, q11C;
     char pad12C[12];
-    u32 unk138, unk13C, unk140, unk144, unk148, unk14C, unk150, unk154, unk158, unk15C;
-    u32 unk160, unk164, unk168, unk16C, unk170, unk174, unk178, unk17C, unk180, unk184;
+    u32 unk138, unk13C, unk140, unk144, unk148, unk14C, unk150; volatile u32 unk154; u32 unk158, unk15C;
+    u32 unk160; volatile u32 unk164, unk168; u32 unk16C, unk170; volatile u32 unk174; u32 unk178, unk17C, unk180, unk184;
     u32 unk188, unk18C, unk190, unk194, unk198, unk19C, unk1A0, unk1A4, unk1A8, unk1AC;
-    u32 unk1B0, unk1B4, unk1B8, unk1BC, unk1C0, unk1C4, unk1C8, unk1CC, unk1D0, unk1D4;
+    u32 unk1B0, unk1B4, unk1B8, unk1BC, unk1C0; volatile u32 unk1C4; u32 unk1C8, unk1CC, unk1D0, unk1D4;
     u32 unk1D8, unk1DC, unk1E0, unk1E4, unk1E8;
     Quat_00055380 q1EC, q1FC;
     u32 unk20C, unk210, unk214, unk218, unk21C;
