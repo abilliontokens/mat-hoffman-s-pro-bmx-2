@@ -136,7 +136,9 @@ struct S_41DC0_Menu {
 };
 
 struct S_41F00_Cur {
-    char pad0[0x47C];
+    char pad0[0x284];
+    int f284;
+    char pad288[0x47C - 0x288];
     int f47C;
 };
 
