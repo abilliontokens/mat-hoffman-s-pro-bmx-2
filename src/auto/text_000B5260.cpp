@@ -167,10 +167,13 @@ int C_000B5950::func_000B5950(void)
     volatile float f;
     volatile int tmp;
   } s;
+  int bits;
 
   s.self = (int)this;
-  s.f = *(float *)((**(code **)(*(int *)this + 0x6c))() + 0x44);
-  s.tmp = *(int *)&s.f & 0x7fffffff;
+  s.f = *(float *)(((int (__fastcall *)(C_000B5950 *))(*(int *)(*(volatile int *)this + 0x6c)))(this) + 0x44);
+  bits = *(volatile int *)&s.f;
+  bits &= 0x7fffffff;
+  s.tmp = bits;
   if (*(float *)&s.tmp > D_002A2EC8) {
     return 1;
   }
