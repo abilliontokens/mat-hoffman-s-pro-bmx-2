@@ -138,7 +138,7 @@ struct PhysicsBodyVT {
     virtual void v25();
     virtual void v26();
     virtual void v27();
-    virtual void v28(int a);
+    virtual void v28(float a);
     virtual void v29();
 };
 
