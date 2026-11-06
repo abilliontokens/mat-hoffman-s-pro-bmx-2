@@ -17,10 +17,28 @@ struct S_000EA070_Elem {
 };
 
 struct C_000EA070 {
-    char pad0[0x484];
+    char pad0[0x284];
+    int f284;
+    char pad288[0x29c-0x288];
+    int f29c, f2a0, f2a4;
+    int f2a8, f2ac;
+    char pad2b0[0x484-0x2b0];
     short f484;
-    char pad486[0x514 - 0x486];
+    char pad486[0x498-0x486];
+    short f498;
+    char pad49a[0x4c4-0x49a];
+    int f4c4;
+    char pad4c8[0x4dc-0x4c8];
+    int f4dc, f4e0, f4e4, f4e8;
+    char pad4ec[0x508-0x4ec];
+    int f508, f50c;
+    char pad510[4];
     S_000EA070_Elem *r[6][5];
+    char pad58c[0x6b8-0x58c];
+    S_000EA070_Elem *labels[6];
+    S_000EA070_Elem *on[4];
+    S_000EA070_Elem *off[4];
+    void func_000EA410();
     void func_001BF000(void);
     void func_000EA070(void);
 };
