@@ -810,7 +810,49 @@ C_001C0EC0 *C_001C0EC0::func_001C0EC0(int a1, int a2)
 }
 C_001C0730 *C_001C0730::func_001C0730(int a1, int a2)
 {
+    struct V { float x, y, z, w; } v;
+    int i;
+
     ((C_00157600 *)this)->func_00157600(a1);
     f24 = a2;
+    f2C = 0;
+    f28 = 0;
+    f30 = 0;
+    f34 = 0;
+    f38 = 0;
+    f3C = 0;
+    f40 = 0;
+    for (i = 0; i < 8; i++)
+        f44[i] = 0;
+    f64 = 0;
+    vtbl = &D_0028DBA4;
+    f6C.x = 0;
+    f6C.y = 0;
+    f6C.z = 0;
+    f6C.w = 1.0f;
+    f7C.w = 1.0f;
+    f7C.z = 0;
+    f7C.y = 0;
+    f7C.x = 0;
+    v.w = 1.0f;
+    f6C.x = 0;
+    f6C.y = 0;
+    f68 = 0;
+    fA8 = 0;
+    fAC = 0;
+    fB0 = 0;
+    f98 = 0;
+    f9C = 0;
+    fA0 = 0;
+    f8C = 0;
+    f90 = 0;
+    f94 = 0;
+    v.x = 0;
+    v.y = 0;
+    v.z = 0;
+    f6C.z = v.z;
+    f6C.w = v.w;
+    fA4 = 1;
+    fB4 = 3.1415927f;
     return this;
 }
