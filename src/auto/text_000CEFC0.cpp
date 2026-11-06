@@ -79,7 +79,9 @@ struct S_000CEFC0_Record {
     int f0;
     int f4;
     char pad8[0x2b8];
-    S_000CEFC0_Mgr *f2c0;
+          S_000CEFC0_Mgr *f2c0;
+      char pad2c4[0x2d8 - 0x2c4];
+      int f2d8;
 };
 
 struct S_000CEFC0_Root {
