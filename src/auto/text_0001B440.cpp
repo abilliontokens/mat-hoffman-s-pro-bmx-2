@@ -561,6 +561,16 @@ void C_0001C1E0::func_0001BDB0(int idx)
     }
 }
 
+__forceinline int C_0001C1E0::slot_query(int idx, int b)
+{
+    S_0001C1E0_Slot *s = f2c->f28[idx];
+    int k = s->func_001B5750(b);
+    if (s->f84 == k) {
+        return s->f78[k] | (s->f1A4->f10 == 0);
+    }
+    return s->f78[k];
+}
+
 int C_0001C1E0::func_0001BDF0(int a, int b)
 {
     S_0001C1E0_Slot *s;
