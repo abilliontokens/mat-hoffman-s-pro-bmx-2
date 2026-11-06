@@ -2,6 +2,7 @@
 #include "common.h"
 #include <xmmintrin.h>
 #include <math.h>
+#include "asm_helpers.h"
 
 struct Vec_19FD20 {
     f32 x, y, z, w;
@@ -82,7 +83,7 @@ struct C_0019FD20 {
     f32 f28;
     f32 f2C;
     Vec_19FD20 f30;
-    char pad40[4];
+    int f40;
     Vec_19FD20 f44;
     void func_0019FD20(Node_19FD20 *a, Node_19FD20 *b, Node_19FD20 *c, f32 x, f32 y, f32 z, f32 w);
 };
@@ -99,79 +100,89 @@ extern char D_0028B324[];
 
 void C_0019FD20::func_0019FD20(Node_19FD20 *a, Node_19FD20 *b, Node_19FD20 *c, f32 x, f32 y, f32 z, f32 w)
 {
-    C_0019FD20 * volatile self = this;
-    Vec_19FD20 *m30 = &this->f30;
     Vec_19FD20 q1;
     Vec_19FD20 q2;
     float lenA, lenB, lenC, lenD;
     float dx, dy, dz, s;
+    Vec_19FD20 *m30 = &this->f30;
     m30->z = 0; m30->y = 0; m30->x = 0; m30->w = 1.0f;
-    self->f44.z = 0; self->f44.y = 0; self->f44.x = 0; self->f44.w = 1.0f;
-    Vec_19FD20 *m44 = &self->f44;
-    self->f0 = a;
-    self->f4 = b;
-    self->f8 = c;
+    this->f44.z = 0; this->f44.y = 0; this->f44.x = 0; this->f44.w = 1.0f;
+    Vec_19FD20 *m44 = &this->f44;
+    this->f0 = a;
+    this->f4 = b;
+    this->f8 = c;
     Vec_19FD20 p0(0, 0, 0, 1.0f);
     Vec_19FD20 p1(0, 0, 0, 1.0f);
     Vec_19FD20 p2(0, 0, 0, 1.0f);
-    self->f0->func_00199A70(0, &p0);
-    self->f4->func_00199A70(0, &p1);
-    self->f8->func_00199A70(0, &p2);
-    self->f4->func_00197E70(&self->f30);
-    m44 = &self->f44;
+    this->f0->func_00199A70(0, &p0);
+    this->f4->func_00199A70(0, &p1);
+    this->f8->func_00199A70(0, &p2);
+    this->f4->func_00197E70(&this->f30);
+    m44 = &this->f44;
     m44->x = x; m44->y = y; m44->z = z; m44->w = w;
     dx = p1.x - p2.x; dy = p1.y - p2.y; dz = p1.z - p2.z;
     s = dx * dx + dz * dz + dy * dy;
-    lenA = sqrtf(s);
+    lenA = AsmSqrtF(s);
     dx = p0.x - p1.x; dy = p0.y - p1.y; dz = p0.z - p1.z;
     s = dx * dx + dz * dz + dy * dy;
-    lenB = sqrtf(s);
-    self->f14 = lenB * lenB + lenA * lenA;
+    lenB = AsmSqrtF(s);
+    this->f14 = lenB * lenB + lenA * lenA;
     dx = p1.x - p2.x; dy = p1.y - p2.y; dz = p1.z - p2.z;
     s = dx * dx + dz * dz + dy * dy;
-    lenC = sqrtf(s);
+    lenC = AsmSqrtF(s);
     dx = p0.x - p1.x; dy = p0.y - p1.y; dz = p0.z - p1.z;
     s = dx * dx + dz * dz + dy * dy;
-    lenD = sqrtf(s);
-    self->f18 = D_00275460 / (lenD * lenC + lenD * lenC);
-    self->f4->func_00198120(&q1, &p0);
-    self->f4->func_00198120(&q2, &p2);
+    lenD = AsmSqrtF(s);
+    this->f18 = D_00275460 / (lenD * lenC + lenD * lenC);
+    this->f4->func_00198120(&q1, &p0);
+    this->f4->func_00198120(&q2, &p2);
     Vec_19FD20 v1(0, 0, 0, 1.0f);
-    s = q1.y * self->f44.y + q1.x * self->f44.x + q1.z * self->f44.z;
+    s = q1.y * this->f44.y + q1.x * this->f44.x + q1.z * this->f44.z;
     float fa1 = Abs_19FD20(s);
-    if (q1.y * self->f44.y + q1.x * self->f44.x + q1.z * self->f44.z <= D_00275544) {
-        v1.x = q1.x + fa1 * self->f44.x;
-        v1.y = q1.y + fa1 * self->f44.y;
-        v1.z = q1.z + fa1 * self->f44.z;
+    if (q1.y * this->f44.y + q1.x * this->f44.x + q1.z * this->f44.z <= D_00275544) {
+        v1.x = q1.x + fa1 * this->f44.x;
+        v1.y = q1.y + fa1 * this->f44.y;
+        v1.z = q1.z + fa1 * this->f44.z;
     } else {
-        v1.x = q1.x - fa1 * self->f44.x;
-        v1.y = q1.y - fa1 * self->f44.y;
-        v1.z = q1.z - fa1 * self->f44.z;
+        v1.x = q1.x - fa1 * this->f44.x;
+        v1.y = q1.y - fa1 * this->f44.y;
+        v1.z = q1.z - fa1 * this->f44.z;
     }
-    float l1 = sqrtf(v1.x * v1.x + v1.y * v1.y + v1.z * v1.z);
+    float l1 = AsmSqrtF(v1.x * v1.x + v1.y * v1.y + v1.z * v1.z);
     Vec_19FD20 v2(0, 0, 0, 1.0f);
-    s = q2.y * self->f44.y + q2.x * self->f44.x + q2.z * self->f44.z;
+    s = q2.y * this->f44.y + q2.x * this->f44.x + q2.z * this->f44.z;
     float fa2 = Abs_19FD20(s);
-    if (q2.y * self->f44.y + q2.x * self->f44.x + q2.z * self->f44.z <= D_00275544) {
-        v2.x = q2.x + fa2 * self->f44.x;
-        v2.y = q2.y + fa2 * self->f44.y;
-        v2.z = q2.z + fa2 * self->f44.z;
+    if (q2.y * this->f44.y + q2.x * this->f44.x + q2.z * this->f44.z <= D_00275544) {
+        v2.x = q2.x + fa2 * this->f44.x;
+        v2.y = q2.y + fa2 * this->f44.y;
+        v2.z = q2.z + fa2 * this->f44.z;
     } else {
-        v2.x = q2.x - fa2 * self->f44.x;
-        v2.y = q2.y - fa2 * self->f44.y;
-        v2.z = q2.z - fa2 * self->f44.z;
+        v2.x = q2.x - fa2 * this->f44.x;
+        v2.y = q2.y - fa2 * this->f44.y;
+        v2.z = q2.z - fa2 * this->f44.z;
     }
-    float l2 = sqrtf(v2.x * v2.x + v2.y * v2.y + v2.z * v2.z);
-    int s1 = (q1.y * self->f44.y + q1.x * self->f44.x + q1.z * self->f44.z < D_00275544) ? -1 : 1;
-    int s2 = (q2.y * self->f44.y + q2.x * self->f44.x + q2.z * self->f44.z < D_00275544) ? -1 : 1;
+    float l2 = AsmSqrtF(v2.x * v2.x + v2.y * v2.y + v2.z * v2.z);
+    int s1 = (q1.y * this->f44.y + q1.x * this->f44.x + q1.z * this->f44.z < D_00275544) ? -1 : 1;
+    int s2 = (q2.y * this->f44.y + q2.x * this->f44.x + q2.z * this->f44.z < D_00275544) ? -1 : 1;
     float k = (s1 != s2) ? (fa2 + fa1) : (fa1 - fa2);
-    self->f1C = k * k + l2 * l2 + l1 * l1;
-    self->f20 = D_00275460 / (l1 * l2 + l1 * l2);
+    this->f1C = k * k + l2 * l2 + l1 * l1;
+    this->f20 = D_00275460 / (l1 * l2 + l1 * l2);
     func_0019FBD0(&v1, &v1);
-    Vec_19FD20 e(p1.x - p2.x, p1.y - p2.y, p1.z - p2.z);
-    Vec_19FD20 r;
-    func_0001E9E0(&r, &e);
-    self->f4->func_00198040(&r);
+    Vec_19FD20 t;
+    t.x = p1.x - p2.x; t.y = p1.y - p2.y; t.z = p1.z - p2.z; t.w = 1.0f;
+    Vec_19FD20 tmp;
+    func_0001E9E0(&tmp, &t);
+    q2 = this->f4->func_00198040(&tmp);
+    func_0019FBD0(&v2, &v2);
+    this->f24 = q2.x * v1.x + q2.y * v1.y + q2.z * v1.z;
+    v2.x = -v2.x; v2.y = -v2.y; v2.z = -v2.z; v2.w = 1.0f;
+    this->f24 = v2.x * v1.x + v2.y * v1.y + v2.z * v1.z;
+    this->f28 = AsmSqrtF(D_00275460 - this->f24 * this->f24);
+    this->f2C = func_0014F890(this->f24);
+    Vec_19FD20 ax = func_0001C610(&v1, &q2);
+    func_0019FBD0(&ax, &ax);
+    ax = this->f0->func_00198040(&ax);
+    this->f0->func_00199C90(ax, this->f24, this->f28);
 }
 
 void C_001A0510::func_001A0510(Vec_19FD20 target)
