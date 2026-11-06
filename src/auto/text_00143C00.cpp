@@ -313,6 +313,9 @@ struct C_00144690 {
     virtual void v0();
     virtual int func_00144690(int a0, int a1);
 };
+struct C_001AF120_ {
+    int func_001AF120(const char *name, int arg);
+};
 
 struct Mgr_002A829C {
     char pad0[0x14];
@@ -341,7 +344,6 @@ struct C_00144960 {
 void C_00143C00::func_00143C00(Quad_143C00 *arg)
 {
     int v;
-    float t;
     if (D_002A99B0 != 0 || fAC != 3) {
         int wide = fE4 != D_00275544;
         {
@@ -351,19 +353,7 @@ void C_00143C00::func_00143C00(Quad_143C00 *arg)
         }
         f94 = f84 + f64;
         f98 = f88 + f6C;
-        switch (fAC) {
-        case 0:
-            t = fD8 / D_002EFEA0;
-            break;
-        case 1:
-        case 2:
-            t = fD8;
-            break;
-        case 3:
-            t = D_00275460;
-            break;
-        }
-        SetColor(t);
+        SetColor(GetScale());
         func_001FEC30(0x18, (void *)(*(int *)(D_002EFDB8 + 4) + 0x290));
         D_0020C6DC |= 0x3000;
         D_0020CA7C = 0;
@@ -465,11 +455,11 @@ void C_00143C00::func_00143C00(Quad_143C00 *arg)
                 v28[3].pos.y = arg->c[3].pos.y;
                 v28[3].pos.z = arg->c[3].pos.z;
                 float invW = D_00275460 / f34;
-                t = D_00275460 / f38;
-                Uv28(&v28[0], invW, t);
-                Uv28(&v28[1], invW, t);
-                Uv28(&v28[2], invW, t);
-                Uv28(&v28[3], invW, t);
+                float invH = D_00275460 / f38;
+                Uv28(&v28[0], invW, invH);
+                Uv28(&v28[1], invW, invH);
+                Uv28(&v28[2], invW, invH);
+                Uv28(&v28[3], invW, invH);
                 func_00200950(6, 6, D_002A7054, v28, 0x1c);
             }
         } else {
@@ -516,11 +506,11 @@ void C_00143C00::func_00143C00(Quad_143C00 *arg)
                 v20[3].pos.y = arg->c[3].pos.y;
                 v20[3].pos.z = arg->c[3].pos.z;
                 float invW = D_00275460 / f34;
-                t = D_00275460 / f38;
-                Uv20(&v20[0], invW, t);
-                Uv20(&v20[1], invW, t);
-                Uv20(&v20[2], invW, t);
-                Uv20(&v20[3], invW, t);
+                float invH = D_00275460 / f38;
+                Uv20(&v20[0], invW, invH);
+                Uv20(&v20[1], invW, invH);
+                Uv20(&v20[2], invW, invH);
+                Uv20(&v20[3], invW, invH);
                 func_00200950(6, 6, D_002A7054, v20, 0x14);
             }
         }
