@@ -2,6 +2,7 @@
 #include "common.h"
 #include <xmmintrin.h>
 #include <math.h>
+#include "asm_helpers.h"
 static __forceinline void Sqrt_00021AB0(float *dst, float square) { _mm_store_ss(dst, _mm_sqrt_ss(*(__m128 *)&square)); }
 
 extern float D_002760D0, D_002760C0, D_002760B0;
@@ -309,6 +310,10 @@ W4_000212A0 *W4_000212A0::func_000212A0(u32 *p)
     z = p[2];
     w = 0x3f800000;
     return this;
+}
+
+void func_000212C0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
 float *func_00021330(V4_000212A0 *out, V4_000212A0 *a, V4_000212A0 *b)
