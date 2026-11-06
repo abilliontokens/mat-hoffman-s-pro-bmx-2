@@ -92,6 +92,8 @@ struct C_000D2080 {
     char extraNames[16][0x104];
     char pad1EDC[0x2048 - 0x1EDC];
     S_000D2080_Item *ptrs[10];
+    S_000D2080_Item *extraPtrs[16];
+    void func_000D1AE0(void);
     void func_000D2080(void);
 };
 
