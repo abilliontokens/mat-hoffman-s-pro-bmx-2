@@ -88,6 +88,7 @@ struct Fader_000597B0 {
 };
 
 template <class T> inline const T &Min_000590F0(const T &a, const T &b) { return b < a ? b : a; }
+static inline int MinVol_000590F0(volatile int a, int b) { volatile int r = a > b ? b : a; return r; }
 
 struct File_000590F0 {
     char data[0x4C8];
@@ -438,111 +439,113 @@ int Screen_000597B0::func_000590F0(int a)
 
 void C_00059290::func_00059290(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7, float a8, float a9, float a10)
 {
+    C_00059290 *self = this;
     float t;
 
-    if (f58 <= 0) {
+    if (self->f58 <= 0) {
         if (D_002A8490->f8->v5(0x2e, 0, 0xc, 0) == 0) goto setup;
-        func_000590F0(f50);
-        if (f58 > 0) goto dec;
+        func_000590F0(self->f50);
+        if (self->f58 > 0) goto dec;
         if (D_002A8490->f8->v5(0x1e, 0, 0xc, 0) == 0) goto dec;
 setup:
-        f58 = 0x14;
+        self->f58 = 0x14;
         {
             S_00059290_List *list = D_002B9120->f484->f2c;
-            if (f54 < list->count) {
-                S_00059290_Item *it = list->items[f54];
+            int i = self->f54;
+            if (i < list->count) {
+                S_00059290_Item *it = list->items[i];
                 if (it->f4 == 2)
-                    f10 = it->f58->f22c;
+                    self->f10 = it->f58->f22c;
                 else
-                    f10 = it->f1a4->f288;
-                f0c = 0;
-                f64 = 102.66619873046875f;
-                f68 = 3.0f;
-                f54++;
+                    self->f10 = it->f1a4->f288;
+                self->f0c = 0;
+                self->f64 = 102.66619873046875f;
+                self->f68 = 3.0f;
+                self->f54++;
             } else {
-                f54 = 0;
-                f0c = f4->f1e0;
-                f10 = 0;
-                f64 = f4->f1ec->f3c * D_00277D04;
-                f68 = 3.0f;
+                self->f54 = 0;
+                self->f0c = self->f4->f1e0;
+                self->f10 = 0;
+                self->f64 = self->f4->f1ec->f3c * D_00277D04;
+                self->f68 = 3.0f;
             }
         }
         goto after;
     }
 dec:
-    f58--;
+    self->f58--;
 after:
-    if (D_002A8490->f8->v4(0x22, 2, 0x3f, f4->f1218 - 1) != 0) {
-        if (f1e0 != 0) {
-            f1dc = (f1dc == 0);
-            f1e0 = 0;
+    if (D_002A8490->f8->v4(0x22, 2, 0x3f, self->f4->f1218 - 1) != 0) {
+        if (self->f1e0 != 0) {
+            self->f1dc = (self->f1dc == 0);
+            self->f1e0 = 0;
         } else {
-            f1e0 = 1;
+            self->f1e0 = 1;
         }
     }
     {
-        float old = f184;
-        f184 = f4->f964 * f15c;
-        f184 = (f184 - old) * f188 + f184;
+        float old = self->f184;
+        self->f184 = self->f4->f964 * self->f15c;
+        self->f184 = (self->f184 - old) * self->f188 + self->f184;
     }
     if (Abs_00059290(a8) > 0.5f) {
-        f18c = f18c - a8 * f194 * a10;
-        if (f18c > D_002756D0)
-            f18c -= D_002756B8;
-        else if (f18c < D_002756E8)
-            f18c += D_002756B8;
+        self->f18c = self->f18c - a8 * self->f194 * a10;
+        if (self->f18c > D_002756D0)
+            self->f18c -= D_002756B8;
+        else if (self->f18c < D_002756E8)
+            self->f18c += D_002756B8;
     }
-    if (f1dc == 0 && a8 < 0.5f && a8 > D_00277FBC) {
-        if (f18c > D_00275544) {
-            if (f18c <= D_002756D0) {
-                f18c -= a10 * f194 * 2.0f;
-                if (f18c < D_00275544)
-                    f18c = 0.0f;
+    if (self->f1dc == 0 && a8 < 0.5f && a8 > D_00277FBC) {
+        if (self->f18c > D_00275544) {
+            if (self->f18c <= D_002756D0) {
+                self->f18c -= a10 * self->f194 * 2.0f;
+                if (self->f18c < D_00275544)
+                    self->f18c = 0.0f;
             } else {
-                if (f18c < D_002756B8)
-                    f18c -= D_002756B8;
+                if (self->f18c < D_002756B8)
+                    self->f18c -= D_002756B8;
                 else
-                    f18c = 0.0f;
+                    self->f18c = 0.0f;
             }
         } else {
-            if (f18c < D_00275544)
-                f18c -= D_002756B8;
+            if (self->f18c < D_00275544)
+                self->f18c -= D_002756B8;
             else
-                f18c = 0.0f;
+                self->f18c = 0.0f;
         }
     }
     if (Abs_00059290(a9) > 0.5f) {
-        f190 = a9 * f194 * a10 + f190;
-        t = f190 + f14c + D_002756DC;
+        self->f190 = a9 * self->f194 * a10 + self->f190;
+        t = self->f190 + self->f14c + D_002756DC;
         if (t > D_00277FB8) {
             t = D_00277FB8;
             if (t < 0.0f) {
-                if (f18c >= D_002756E8) {
-                    f18c += a10 * f194 * 2.0f;
-                    if (f18c > 0.0f)
-                        f18c = 0.0f;
-                } else if (f18c > D_00277FB4) {
-                    f18c += D_002756B8;
+                if (self->f18c >= D_002756E8) {
+                    self->f18c += a10 * self->f194 * 2.0f;
+                    if (self->f18c > 0.0f)
+                        self->f18c = 0.0f;
+                } else if (self->f18c > D_00277FB4) {
+                    self->f18c += D_002756B8;
                 } else {
-                    f18c = 0.0f;
+                    self->f18c = 0.0f;
                 }
             }
         } else {
-            if (f18c < D_002756B8)
-                f18c -= D_002756B8;
+            if (self->f18c < D_002756B8)
+                self->f18c -= D_002756B8;
             else
-                f18c = 0.0f;
+                self->f18c = 0.0f;
         }
     }
-    if (f1dc == 0 && a9 < 0.5f && a9 > D_00277FBC) {
-        if (f190 > D_00275544) {
-            f190 -= a10 * f194 * 2.0f;
-            if (f190 < D_00275544)
-                f190 = 0.0f;
-        } else if (f190 < D_00275544) {
-            f190 += a10 * f194 * 2.0f;
-            if (f190 > D_00275544)
-                f190 = 0.0f;
+    if (self->f1dc == 0 && a9 < 0.5f && a9 > D_00277FBC) {
+        if (self->f190 > D_00275544) {
+            self->f190 -= a10 * self->f194 * 2.0f;
+            if (self->f190 < D_00275544)
+                self->f190 = 0.0f;
+        } else if (self->f190 < D_00275544) {
+            self->f190 += a10 * self->f194 * 2.0f;
+            if (self->f190 > D_00275544)
+                self->f190 = 0.0f;
         }
     }
 }
@@ -612,6 +615,32 @@ int BmxGame::func_00059950(GameEvent *e, int b)
 int BmxGame::func_00059A00(void)
 {
     return ((C_001D0EC0 *)this)->func_001D0EC0();
+}
+
+extern char D_00278068[];
+extern char D_00276274[];
+void *func_0014FDF0(char *buf, char *mode);
+void func_0014FE50(void *h);
+extern "C" char * __cdecl strcpy(char *, const char *);
+int BmxGame::func_00059A05(char *a, char *b)
+{
+    char buf[0x104];
+    char *name = (char *)this + 0x12C;
+    void *h;
+
+    *b = 0;
+    if (name[0] != 0) {
+        func_001ADCC0(buf, 0x104, D_00278068, name, a);
+    } else {
+        strcpy(buf, a);
+    }
+    h = func_0014FDF0(buf, D_00276274);
+    if (!h) {
+        return 0;
+    }
+    strcpy(b, buf);
+    func_0014FE50(h);
+    return 1;
 }
 
 int BmxGame::func_00059AC0(void)
