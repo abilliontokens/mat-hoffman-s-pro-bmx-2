@@ -69,7 +69,7 @@ struct S_Slot {
     int f1DC, f1E0, f1E4, f1E8, f1EC;
     S_Entry *f1F0;
     char pad1F4[0x18];
-    void func_0014C720();
+    S_Slot *func_0014C720();
 };
 void *__cdecl func_001E8A44(int size);
 void *__cdecl func_001E8AA5(int size);
