@@ -48,7 +48,8 @@ struct C_00096870 {
     int f1b8;
     char pad1bc[0xc];
     C_00096870 **f1c8;
-    char pad1cc[0x2554 - 0x1cc];
+    int f1cc;
+    char pad1d0[0x2554 - 0x1d0];
     int f2554;
     char pad2558[0x48e0 - 0x2558];
     int f48e0;
