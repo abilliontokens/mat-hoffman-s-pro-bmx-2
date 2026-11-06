@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <xmmintrin.h>
 #include "ghidra.h"
+extern u8 D_002A0B18[];
 struct Vec4 {
     float x, y, z, w;
 };
