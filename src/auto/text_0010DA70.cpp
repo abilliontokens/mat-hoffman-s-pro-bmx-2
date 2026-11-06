@@ -134,6 +134,47 @@ struct BmxVehicle_10DA70 {
     void func_0010DCB0(void);
 };
 
+/* declarations for BmxVehicle_10DA70::func_0010E2A0 (vehicle reset) */
+extern float D_00275460, D_00275544;
+extern int D_002A3A9C, D_002A3A98, D_002B91FC;
+
+__declspec(align(16)) struct Mat44_10E2A0 {
+    float m[16];
+};
+
+static __forceinline void identity_ref_10E2A0(Mat44_10E2A0 *&p)
+{
+    Mat44_10E2A0 *q = p;
+    _mm_store_ps(&q->m[0], _mm_setzero_ps());
+    _mm_store_ps(&q->m[4], _mm_setzero_ps());
+    _mm_store_ps(&q->m[8], _mm_setzero_ps());
+    _mm_store_ps(&q->m[12], _mm_setzero_ps());
+    q->m[0] = 1.0f;
+    q->m[5] = 1.0f;
+    q->m[10] = 1.0f;
+    q->m[15] = 1.0f;
+}
+
+struct C_10E2A0_Mat { void func_00199BE0(void *m); };
+struct C_10E2A0_230 { char pad0[0x174]; C_10E2A0_Mat *f174; };
+struct C_10E2A0_950 {
+    char pad0[0x88];
+    C_00198330 *f88;
+    void func_0011CA60(Vec4 v);
+    void func_0011C900(Vec4 a, Vec4 b, Vec4 c, float d);
+};
+struct C_10E2A0_A04 {
+    void func_001648E0(int a, float b, int c, int d, int e);
+    void func_00164820(int a);
+};
+struct C_10E2A0_15A8 {
+    char pad0[0x1c4];
+    int f1C4;
+    void func_001A4100(int a, int b, int c);
+};
+extern "C" int __cdecl func_00011260(int a, int b);
+extern "C" void __cdecl func_0001E9E0(Vec4 *out, Vec4 *in);
+
 struct Anim_10DD90 {
     int f0;
     int func_00109580(int);
