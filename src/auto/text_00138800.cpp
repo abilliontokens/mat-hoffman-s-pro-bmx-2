@@ -37,12 +37,12 @@ struct Obj138 {
     int f32c;
 };
 struct Found138 {
+    Found138 *func_00198330(char *s);
     int *func_00199B00(int *a, int b);
 };
 struct Elem138 {
     int f0;
     Found138 *f4;
-    Found138 *func_00198330(char *s);
 };
 struct ArrObj138 {
     virtual void v0();
