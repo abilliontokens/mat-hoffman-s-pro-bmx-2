@@ -78,7 +78,10 @@ struct BmxUIPageHOFTitle {
     int f294, f298;
     int f29C;
     int f2A0;
-    char pad2A4[0x2C4 - 0x2A4];
+    int f2A4, f2A8, f2AC, f2B0;
+    char pad2B4[0x2C4 - 0x2B4];
+    int func_000EAC40(int a, int b);
+    int func_001BF050(int);
     short f2C4;
     char pad2C6[0x2D0 - 0x2C6];
     C_NumHorse_Sub *arr2D0[12];
