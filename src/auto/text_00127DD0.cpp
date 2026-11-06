@@ -61,6 +61,8 @@ struct C_00128910 {
 #include <xmmintrin.h>
 extern float D_002755E8;
 
+static inline float Sqrt_00128480(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
+
 struct V4_00128120 {
     float x, y, z, w;
     V4_00128120(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
@@ -159,12 +161,17 @@ void func_00128630(S_00128480_Entry *nodes,S_00128630_Entry *entries,int count,v
 again:
  S_00128480_Entry *node=nodes+*index;
  int nodeIndex=*index;
+ int bz,by,bx;
  S_00127DD0_V4 a,b; a.x=a.y=a.z=0.0f;b.x=b.y=b.z=0.0f;b.w=1.0f;
  func_00126DD0(entries,count,context,&a,&b,&node->split,&node->length,0);
- int ax=*(int*)&a.x,ay=*(int*)&a.y,az=*(int*)&a.z;
- node->c=az;node->a=ax;node->b=ay;
- int bx=*(int*)&b.x,by=*(int*)&b.y,bz=*(int*)&b.z;
- *(int*)&node->z=bz;*(int*)&node->x=bx;*(int*)&node->y=by;
+ int az=*(int*)&a.z,ay=*(int*)&a.y,ax=*(int*)&a.x;
+ node->a=ax;
+ bx=*(int*)&b.x;
+ node->b=ay;
+ by=*(int*)&b.y;
+ node->c=az;
+ bz=*(int*)&b.z;
+ *(int*)&node->x=bx;*(int*)&node->z=bz;*(int*)&node->y=by;
  float split;int axis;
  func_001271E0(entries,count,context,&split,&axis);
  int leftCount=0,rightCount=0;
