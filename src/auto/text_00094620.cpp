@@ -253,7 +253,6 @@ struct C_00094A00 {
     int f24;
     C_001CD7D0 *f28;
     void *f2C;
-    void *getF2C(void) { return f2C; }
     int f30;
     char pad34[0x10];
     int f44;
@@ -666,7 +665,7 @@ void C_00094A00::func_00094C00(void)
     int i;
 
     for (i = 0; i < f7C; i++) {
-        if (getF2C() != 0) {
+        if (f2C != 0) {
             f28->func_001CD7D0(f84[i]);
         } else {
             f28->func_001CD7D0(f84[i]);
