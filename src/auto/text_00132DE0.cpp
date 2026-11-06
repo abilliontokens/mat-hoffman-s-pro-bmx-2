@@ -93,10 +93,10 @@ extern int D_0028464C;
 
 static __forceinline void set_collision_vector(float *out, const float &x, const float &y, const float &z, const float &w)
 {
-    out[0] = x;
-    out[1] = y;
-    out[2] = z;
-    out[3] = w;
+    ((int *)out)[0] = *(int *)&x;
+    ((int *)out)[1] = *(int *)&y;
+    ((int *)out)[2] = *(int *)&z;
+    ((int *)out)[3] = *(int *)&w;
 }
 
 struct C_00132EB0 {
