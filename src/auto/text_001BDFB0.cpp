@@ -565,6 +565,91 @@ void UIPage::func_001BE3F0(void)
     func_00157660();
 }
 
+extern "C" char *strcpy(char *, const char *);
+UIPage *UIPage::func_001BE4F0(char *name, char *file, UIInputState *input) {
+    char title[0x104];
+    UIPageParser parser;
+    char key[0x80];
+    int count, selected, index, n, unused;
+    f124 = input; D_002EFDB8->f30 = 0; f274 = 0;
+    strcpy((char *)this+0x24,name);
+    parser.func_00168280();
+    if (!parser.func_00169490(file, 0)) { parser.func_001691E0(); return 0; }
+    parser.func_00169710(D_0028D768);
+    parser.func_00168BE0(D_0028D750, D_0028D75C, title, 0x104);
+    unused=0;
+    parser.func_00168C20(D_0028D73C,0,&unused);
+    ((UIPageTitle *)this)->setTitle(title,0);
+    parser.func_00168C20(D_0028D734,0,&f12C);
+    UIPageLoaderObject *obj = (UIPageLoaderObject *)func_001E8A44(0x30);
+    obj = obj ? (UIPageLoaderObject *)obj->func_001BF3A0(1) : 0;
+    f128 = (u32)obj->func_001BF430(this,f124);
+    func_001577A0((void *)f128,-1);
+    parser.func_00168C20(D_0028D71C,0,&f130);
+    parser.func_00168C20(D_0028D708,0,&f134);
+    f138 = (UIPageObj **)func_001E8AA5(f134*4+4);
+    parser.func_00168C20(D_0028D6F8,0,&f13C);
+    f140 = (UIControl **)func_001E8AA5(f13C*4+4);
+    f144 = (UIPageSlot **)func_001E8A44(0x20);
+    for (int i=0;i<8;i++) { f144[i]=(UIPageSlot *)func_001E8A44(8); f144[i]->item=0; f144[i]->index=-1; }
+    for (int i=0;i<=f134;i++) {
+        obj=(UIPageLoaderObject *)func_001E8A44(0x34);
+        obj = obj ? (UIPageLoaderObject *)obj->func_001BD9C0(1) : 0;
+        f138[i]=(UIPageObj *)obj;
+        UIControl *control=(UIControl *)f138[i];
+        func_001ADCC0(key,0x80,D_0028D6EC,i);
+        control->f24=parser.func_00169710(key);
+        if(control->f24) {
+            parser.func_00168C20(D_0027D8FC,0,&count);
+            control->f28=count;
+            if(count>0) {
+                control->f2c=(UIControl **)func_001E8AA5(count*4);
+                for(int j=0;j<count;j++) {
+                    func_001ADCC0(key,0x80,D_0028D6E0,j+1);
+                    parser.func_00168C20(key,0,&index);
+                    control->f2c[j]=(*(UIControl ***)((char *)f124+0x120))[index-1];
+                    UIControl *item=control->f2c[j];
+                    if(item) ((UIPageLoaderObject *)f128)->func_001BF490(item);
+                }
+            }
+        }
+    }
+    for(int i=0;i<=f13C;i++) {
+        obj=(UIPageLoaderObject *)func_001E8A44(0x48);
+        obj = obj ? (UIPageLoaderObject *)obj->func_001BD980(1) : 0;
+        f140[i]=(UIControl *)obj;
+        UIControl *control=f140[i];
+        control->f24=1;
+        func_001ADCC0(key,0x80,D_0028D6D4,i);
+        parser.func_00169710(key);
+        parser.func_00168C20(D_0028D708,0,&n);
+        control->f28=n;
+        if(n>0) {
+            control->f2c=(UIControl **)func_001E8AA5(n*4);
+            for(int j=0;j<n;j++) {
+                func_001ADCC0(key,0x80,D_0028D6C8,j+1);
+                parser.func_00168C20(key,-1,&index);
+                if (index != -1) control->f2c[j]=(UIControl *)f138[index];
+                else control->f2c[j]=0;
+            }
+            control->f30=1; control->f34=control->f2c[0];
+        } else { control->f2c=0; control->f30=0; control->f34=0; }
+        parser.func_00168C20(D_0028D6B0,0,&selected);
+        control->f38=selected;
+        if(selected>0) {
+            control->f3c=(UIControl **)func_001E8AA5(selected*4);
+            for(int j=0;j<selected;j++) {
+                func_001ADCC0(key,0x80,D_0028D6A0,j+1);
+                parser.func_00168C20(key,0,&index);
+                control->f3c[j]=(UIControl *)f138[index];
+            }
+        } else control->f3c=0;
+        parser.func_00168C20(D_0028D694,1,(char *)control+0x40);
+    }
+    parser.func_001691E0();
+    return this;
+}
+
 int UIPage::func_001BEA50(int param_1)
 {
     f32 y = f124->axisA[param_1]->value;
