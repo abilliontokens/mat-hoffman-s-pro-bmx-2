@@ -392,6 +392,95 @@ int func_001ED552(S_001ED_FILE *stream)
     return (unsigned char)*stream->ptr++;
 }
 
+int func_001ED633(int fh, char *buf, int cnt)
+{
+    extern S_ioinfo *D_002FB260[];
+    int __stdcall func_001DD15A(int h, void *b, int n, int *got, int ov);
+    int func_001DD603(void);
+    int *func_001ED075(void);
+    int *func_001ED07E(void);
+    void func_001ED087(int e);
+    int func_001EE4BD(int fh, int off, int whence);
+    int os_read;
+    int bytes_read = 0;
+    char *buffer = buf;
+    char *p, *q;
+    char peekchr;
+    int dosretval;
+    if (cnt == 0 || (_pioinfo(fh)->osfile & 2))
+        return 0;
+    if ((_pioinfo(fh)->osfile & 0x48) && _pioinfo(fh)->pipech != 10) {
+        cnt--;
+        *buffer++ = _pioinfo(fh)->pipech;
+        bytes_read = 1;
+        _pioinfo(fh)->pipech = 10;
+    }
+    if (!func_001DD15A(_pioinfo(fh)->osfhnd, buffer, cnt, &os_read, 0)) {
+        if ((dosretval = func_001DD603()) == 5) {
+            *func_001ED075() = 9;
+            *func_001ED07E() = dosretval;
+            return -1;
+        } else if (dosretval == 0x6d) {
+            return 0;
+        } else {
+            func_001ED087(dosretval);
+            return -1;
+        }
+    }
+    bytes_read += os_read;
+    if (_pioinfo(fh)->osfile & 0x80) {
+        if (os_read != 0 && *buf == 10)
+            _pioinfo(fh)->osfile |= 4;
+        else
+            _pioinfo(fh)->osfile &= ~4;
+        p = q = buf;
+        while (p < buf + bytes_read) {
+            if (*p == 0x1a) {
+                if (!(_pioinfo(fh)->osfile & 0x40))
+                    _pioinfo(fh)->osfile |= 2;
+                break;
+            } else if (*p != 13) {
+                *q++ = *p++;
+            } else {
+                if (p < buf + bytes_read - 1) {
+                    if (*(p + 1) == 10) {
+                        p += 2;
+                        *q++ = 10;
+                    } else
+                        *q++ = *p++;
+                } else {
+                    ++p;
+                    dosretval = 0;
+                    if (!func_001DD15A(_pioinfo(fh)->osfhnd, &peekchr, 1, &os_read, 0))
+                        dosretval = func_001DD603();
+                    if (dosretval != 0 || os_read == 0) {
+                        *q++ = 13;
+                    } else {
+                        if (_pioinfo(fh)->osfile & 0x48) {
+                            if (peekchr == 10)
+                                *q++ = 10;
+                            else {
+                                *q++ = 13;
+                                _pioinfo(fh)->pipech = peekchr;
+                            }
+                        } else {
+                            if (q == buf && peekchr == 10)
+                                *q++ = 10;
+                            else {
+                                func_001EE4BD(fh, -1, 1);
+                                if (peekchr != 10)
+                                    *q++ = 13;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        bytes_read = (int)(q - buf);
+    }
+    return bytes_read;
+}
+
 int func_001ED7FC(int fh, void *buffer, unsigned cnt)
 {
     int func_001EE70F(int);
