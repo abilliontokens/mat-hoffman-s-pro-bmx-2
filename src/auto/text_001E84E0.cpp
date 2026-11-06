@@ -138,31 +138,26 @@ recurse:
 void func_001E87E0(void) {
 }
 
-#pragma optimize("t", off)
 void func_001E87E1(void)
 {
     int func_001EB786(...);
-    extern int D_002AEA14;
-    extern int D_002AEA18;
-    extern int D_002AEA1C;
-    extern int D_002AEA20;
-    extern int D_002AEA24;
-    extern int D_002AEA28;
-    D_002AEA14 = (int)func_001EB786;
-    D_002AEA18 = 0;
-    D_002AEA1C = 0;
-    D_002AEA20 = 0;
-    D_002AEA24 = 0;
-    D_002AEA28 = (int)func_001EB786;
+    extern void (*D_002AEA14[6])(void);
+    D_002AEA14[0] = (void (*)(void))func_001EB786;
+    D_002AEA14[1] = 0;
+    D_002AEA14[2] = 0;
+    D_002AEA14[3] = 0;
+    D_002AEA14[4] = 0;
+    D_002AEA14[5] = (void (*)(void))func_001EB786;
 }
 #pragma optimize("", on)
 
 void func_001E8819(void)
 {
-    void func_001E87E1(void);
-    int func_001EB7D7(void);
-    func_001E87E1();
-    func_001EB7D7();
+  int func_001E87E1(...);
+  int func_001EB7D7(...);
+  func_001E87E1();
+  func_001EB7D7();
+  return;
 }
 
 void func_001E8826(undefined4 param_1)
