@@ -22,7 +22,7 @@ struct C_001D8340 {
 };
 extern float D_00284758, D_002755E4, D_00275460;
 static __forceinline int Max_001D8340(int a, int b) { return a < b ? b : a; }
-template <class T> inline const T &Min_001D8340(const T &a, const T &b) { return a > b ? b : a; }
+template <class T> inline T Min_001D8340(const T &a, const T &b) { return a > b ? b : a; }
 extern "C" int func_001DC974(void);
 extern "C" int func_001E8858(void);
 extern "C" void __stdcall func_001FF960(int mode, void *ramp);
@@ -219,7 +219,7 @@ void C_001D8340::func_001D8500(int amount)
                 d /= scale;
                 acc += (int)d;
                 t0 = t1;
-                if (acc > 0xff) acc = 0xff;
+                acc = Min_001D8340(acc, 0xff);
             }
             float k = (float)acc * D_00284758;
             for (int i = 0; i < 0x100; i++) {
