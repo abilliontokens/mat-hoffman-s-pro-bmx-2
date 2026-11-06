@@ -53,6 +53,15 @@ struct C_0016F800 {
     int func_0016F800(void);
 };
 extern "C" void __fastcall func_001D7D00(void);
+extern int D_002A88B8;
+extern float D_00288A7C, D_00275994, D_00275460;
+extern int *D_002F0630;
+struct S_16F800_Creator { char pad[0x14]; void *f14; };
+extern S_16F800_Creator *D_002A829C;
+void func_001B07A0(void);
+int func_001E8858(void);
+void func_000265C0(void *m, void *a, void *b);
+void *func_0015DD80(int a, void *m, void *b, void *c, int d);
 
 struct C_00142560 {
     void func_00142560(void);
