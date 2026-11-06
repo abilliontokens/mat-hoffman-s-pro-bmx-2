@@ -274,7 +274,7 @@ __declspec(align(16)) struct S_001D3860_Mat {
 };
 
 struct S_001D3860_Coords {
-    volatile float f[6];
+    float f[6];
     S_001D3860_Mat * volatile pm;
     int x[6];
     int w, h;
