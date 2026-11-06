@@ -162,7 +162,7 @@ struct S_0006E620 {
     virtual void v4();
     virtual void v5();
     virtual void v6();
-    char pad4[0x68];
+    char pad4[0x6C];
     int unk70;
     char pad74[0x2C];
     int unkA0;
@@ -174,6 +174,15 @@ struct S_0006E620 {
     float unkE8;
     char padEC[8];
     int unkF4;
+    char padF8[0x10];
+    int unk108;
+    int unk10C;
+    int unk110;
+    int unk114;
+    int unk118;
+    int unk11C;
+    char pad120[0x7C];
+    int unk19C;
     void func_0006E620(int a0);
 };
 extern float D_00278BD0;
