@@ -777,6 +777,7 @@ int C_0001D0B0::func_0001D0B0(int count, int p2)
 
 C_0001D0F0 *C_0001D0F0::func_0001D0F0(int a)
 {
+    int i;
     func_00157600(a);
     vtbl = &D_00275DFC;
     init_0001D0F0(&f30);
@@ -790,8 +791,8 @@ C_0001D0F0 *C_0001D0F0::func_0001D0F0(int a)
     f58 = 0;
     f44 = 0;
     f24 = 0;
-    for (int i = 0; i < 4; i++) {
-        (&f60)[i] = 0;
+    for (i = 0; i < 4; i++) {
+        ((int *)&f60)[i] = 0;
     }
     unsigned char b = fB0 | 1;
     fAC = -1;
