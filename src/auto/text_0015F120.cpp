@@ -148,6 +148,7 @@ struct C_0015FF60 {
 };
 
 
+static __forceinline float Sqrt_15F880(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
 extern float D_002A8060, D_002A805C, D_002A8064;
 extern unsigned char D_002A8010;
 extern float D_002A80A8;
