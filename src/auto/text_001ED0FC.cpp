@@ -237,38 +237,39 @@ done:
 
 int func_001ED48C(int fh)
 {
-    void __SEH_prolog(void *, int);
     int func_001EE70F(int);
+    int func_001EE782(int);
     int *func_001ED075(void);
     int *func_001ED07E(void);
-    void __SEH_epilog(void);
-    void func_001ED503(void);
     int func_001ED40B(int);
-    extern int D_002954F0;
     extern unsigned int D_002FB240;
-    extern int *D_002FB260[];
-    int result;
-    __SEH_prolog(&D_002954F0, 0xc);
-    if ((unsigned int)fh < D_002FB240 && (*(unsigned char *)((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) != 0) {
-        func_001EE70F(fh);
-        if ((*(unsigned char *)((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) == 0) {
-            *func_001ED075() = 9;
-            result = -1;
-        } else {
-            result = func_001ED40B(fh);
-        }
-        func_001ED503();
-        return result;
+    extern S_ioinfo *D_002FB260[];
+    int retval;
+
+    if ((unsigned int)fh >= D_002FB240 ||
+        (D_002FB260[fh >> 5][fh & 0x1f].osfile & 1) == 0) {
+        *func_001ED075() = 9;
+        *func_001ED07E() = 0;
+        return -1;
     }
-    *func_001ED075() = 9;
-    *func_001ED07E() = 0;
-    __SEH_epilog();
-    return -1;
+    func_001EE70F(fh);
+    __try {
+        if (D_002FB260[fh >> 5][fh & 0x1f].osfile & 1) {
+            retval = func_001ED40B(fh);
+        } else {
+            *func_001ED075() = 9;
+            retval = -1;
+        }
+    } __finally {
+        func_001EE782(fh);
+    }
+    return retval;
 }
 
-void func_001ED503(int fh)
+void func_001ED503(void)
 {
-    int func_001EE782(...);
+    int func_001EE782(int);
+    int fh;
     func_001EE782(fh);
 }
 
@@ -342,16 +343,16 @@ int func_001ED7FC(int fh, void *buffer, unsigned cnt)
     int *func_001ED075(void);
     int *func_001ED07E(void);
     extern unsigned int D_002FB240;
-    extern int *D_002FB260[];
+    extern S_ioinfo *D_002FB260[];
     int retval;
-    if ((unsigned)fh >= D_002FB240 || (*(unsigned char *)((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) == 0) {
+    if ((unsigned)fh >= D_002FB240 || (D_002FB260[fh >> 5][fh & 0x1f].osfile & 1) == 0) {
         *func_001ED075() = 9;
         *func_001ED07E() = 0;
         return -1;
     }
     func_001EE70F(fh);
     __try {
-        if (*(unsigned char *)((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) {
+        if (D_002FB260[fh >> 5][fh & 0x1f].osfile & 1) {
             retval = func_001ED633(fh, buffer, cnt);
         } else {
             *func_001ED075() = 9;
@@ -558,26 +559,25 @@ void func_001EDC7E(int a, S_001EDC7E *p) {
     }
 }
 
-int func_001EDCA8(int ch, S_001EDC7E *stream, int *pcnt) {
+static void func_001EDCA8(char ch, S_001EDC7E *stream, int *pcnt) {
     int c;
     if ((stream->fC & 0x40) == 0 || stream->f8 != 0) {
         if (--stream->f4 < 0) {
             c = func_001ED8A7(ch, stream);
         } else {
-            *(char *)stream->f0 = (char)ch;
+            *(char *)stream->f0 = ch;
             stream->f0++;
             c = (unsigned char)ch;
         }
         if (c == -1) {
             *pcnt = -1;
-            return -1;
+            return;
         }
     }
     (*pcnt)++;
-    return 0;
 }
 
-void func_001EDCDB(int *pcnt, int ch, int n, S_001EDC7E *stream) {
+static void func_001EDCDB(int ch, int n, S_001EDC7E *stream, int *pcnt) {
     while (n > 0) {
         n--;
         func_001EDCA8(ch, stream, pcnt);
@@ -585,7 +585,7 @@ void func_001EDCDB(int *pcnt, int ch, int n, S_001EDC7E *stream) {
     }
 }
 
-void func_001EDCFF(char *str, int len, S_001EDC7E *stream, int *pcnt)
+static void func_001EDCFF(char *str, int len, S_001EDC7E *stream, int *pcnt)
 {
     if ((stream->fC & 0x40) && stream->f8 == 0) {
         *pcnt += len;
