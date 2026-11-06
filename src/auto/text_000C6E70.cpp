@@ -42,6 +42,7 @@ struct S_000C6E70_Widget {
     unsigned char flags;
     void SetAlpha(int a) { f38 = (a << 24) | (f38 & 0xffffff); flags |= 2; }
     void SetAlphaP(short *a) { f38 = (*a << 24) | (f38 & 0xffffff); flags |= 2; }
+    void SetAlphaF(int a) { flags |= 2; f38 = (a << 24) | (f38 & 0xffffff); }
 };
 
 /* BmxUIPageParkLevel (vtable 0x0027E1F4) */
@@ -111,19 +112,12 @@ struct BmxUIPageTwoPlayer {
 
 void C_000C6E70::func_000C6E70(void)
 {
-    S_000C6E70_Widget *w;
-    w = f2F0;
-    w->SetAlpha(f2D4);
-    w = f2F4;
-    w->SetAlpha(f2D4);
-    w = f2F8;
-    w->SetAlpha(f2D4);
-    w = f2FC;
-    w->SetAlpha(f2D4);
-    w = f300;
-    w->SetAlpha(f2D4);
-    w = f304;
-    w->SetAlpha(f2D4);
+    f2F0->SetAlphaP(&f2D4);
+    f2F4->SetAlphaP(&f2D4);
+    f2F8->SetAlphaP(&f2D4);
+    f2FC->SetAlphaP(&f2D4);
+    f300->SetAlphaP(&f2D4);
+    f304->SetAlphaP(&f2D4);
     func_001BF000();
 }
 
