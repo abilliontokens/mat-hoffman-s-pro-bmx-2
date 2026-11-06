@@ -8,6 +8,8 @@ void __stdcall func_00171340(int a);
 
 struct Vec4_001747F0 {
     float x, y, z, w;
+    Vec4_001747F0() {}
+    Vec4_001747F0(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
 };
 struct Vec3_001747F0 {
     float x, y, z;
@@ -117,7 +119,6 @@ int R_001747F0::func_001747F0(int a)
     Vec4_001747F0 t1;
     Vec4_001747F0 t2;
     Vec4_001747F0 t3;
-    Vec4_001747F0 t4;
     Mat4_001747F0 m;
     Mat4_001747F0 mSrc;
     float len2;
@@ -197,22 +198,22 @@ int R_001747F0::func_001747F0(int a)
     m = *func_001741C0(&mSrc, &v1A0);
     p22C->func_0019AD60(0, &m);
     if (v160.x != 0.0f || v160.y != 0.0f || v160.z != 0.0f) {
-        t3 = *p22C->func_00197EC0(&t2, &v160);
-        float d = func_00011170(&t3);
+        t1 = *p22C->func_00197EC0(&t2, &v160);
+        float d = func_00011170(&t1);
         if (d != 0.0f) {
             Vec4_001747F0 sv;
             float inv = 1.0f / d;
-            sv.x = t3.x * inv;
-            sv.y = t3.y * inv;
-            sv.z = t3.z * inv;
-            sv.w = t3.w;
+            sv.x = t1.x * inv;
+            sv.y = t1.y * inv;
+            sv.z = t1.z * inv;
+            sv.w = t1.w;
             p22C->func_00199CF0(&d, sv);
         }
     }
-    t4 = *p22C->func_00197F70(&t4, &v190);
-    v4C.x = v4C.x + (v150.x - t4.x);
-    v4C.y = v4C.y + (v150.y - t4.y);
-    v4C.z = v4C.z + (v150.z - t4.z);
+    t3 = *p22C->func_00197F70(&t3, &v190);
+    v4C.x = v4C.x + (v150.x - t3.x);
+    v4C.y = v4C.y + (v150.y - t3.y);
+    v4C.z = v4C.z + (v150.z - t3.z);
     p22C->func_00199960(0, &v4C);
     p22C->func_0019AC50();
     v248 = *v41(&t2);
