@@ -759,27 +759,26 @@ int C_001CBCF0::func_001CBCF0(int value)
     return i;
 }
 
-C_001CBD40::C_001CBD40()
+C_001CBD40 *C_001CBD40::func_001CBD40()
 {
-    int *p;
-    p = fF8; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
-    p = f108; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
-    p = f118; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
-    p = f128; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
-    *(C_001CBD40 **)&D_002F08EC = this;
-    fE8 = 0;
-    f30 = 0;
-    f138 = 0;
-    f13C = 0;
-    fD4 = -1;
-    f2C &= ~1;
-    f118[0] = D_002ABA44; f118[1] = D_002ABA48; f118[2] = D_002ABA4C; f118[3] = D_002ABA50;
-    f128[0] = D_002ABA44; f128[1] = D_002ABA48; f128[2] = D_002ABA4C; f128[3] = D_002ABA50;
-    fF8[0] = D_002ABA74; fF8[1] = D_002ABA78; fF8[2] = D_002ABA7C; fF8[3] = D_002ABA80;
-    f108[0] = D_002ABA64; f108[1] = D_002ABA68; f108[2] = D_002ABA6C; f108[3] = D_002ABA70;
-    fF4 = 0x3f800000;
-    fF0 = 0x3f800000;
-    fEC = 0x3e9c0ebf;
+func_0001C9F0();vtbl=&D_0028EE8C;
+Sub *sub=&f34;
+memset(sub,0,16);
+sub->f10=0;
+memset((char *)sub+0x90,0,16);
+ int *p;
+ p=fF8;p[2]=0;p[1]=0;p[0]=0;p[3]=0x3f800000;
+ p=f108;p[2]=0;p[1]=0;p[0]=0;p[3]=0x3f800000;
+ p=f118;p[2]=0;p[1]=0;p[0]=0;p[3]=0x3f800000;
+ p=f128;p[2]=0;p[1]=0;p[0]=0;p[3]=0x3f800000;
+ *(C_001CBD40 **)&D_002F08EC=this;
+ fE8=0;f30=0;f138=0;f13C=0;fD4=-1;f2C&=~1;
+ f118[0]=D_002ABA44;f118[1]=D_002ABA48;f118[2]=D_002ABA4C;f118[3]=D_002ABA50;
+ f128[0]=D_002ABA44;f128[1]=D_002ABA48;f128[2]=D_002ABA4C;f128[3]=D_002ABA50;
+ fF8[0]=D_002ABA74;fF8[1]=D_002ABA78;fF8[2]=D_002ABA7C;fF8[3]=D_002ABA80;
+ f108[0]=D_002ABA64;f108[1]=D_002ABA68;f108[2]=D_002ABA6C;f108[3]=D_002ABA70;
+ fF4=0x3f800000;fF0=0x3f800000;fEC=0x3e9c0ebf;
+return this;
 }
 
 int __stdcall func_001CBEE0(int a0, int a1, int a2, int a3, int a4) {
