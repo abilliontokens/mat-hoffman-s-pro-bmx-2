@@ -654,8 +654,7 @@ void *_func_001F062A(void *a, S_001EF734 *b, int c)
             if (b->func_001EF1E7() != 0) {
                 ((S_001EF734 *)a)->func_001EF759(&D_0027D1D8);
             } else {
-                void *x;
-                _func_001EFD19(a, D_00295CA0, x);
+                _func_001EFD19(a, D_00295CA0, b);
             }
         } else {
             if (ch == 'Y') {
