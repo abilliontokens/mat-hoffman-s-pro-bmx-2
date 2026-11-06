@@ -85,7 +85,8 @@ struct S_00099D40_Slots {
 };
 
 struct S_00097FD0_owner {
-    char pad0[0x68];
+    char pad0[0x64];
+    void *f64;
     S_00099D40_Slots *f68;
     char pad6c[0x1c8 - 0x6c];
     int unk1c8;
