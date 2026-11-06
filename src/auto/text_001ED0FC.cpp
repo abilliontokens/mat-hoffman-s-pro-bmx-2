@@ -659,5 +659,3 @@ void keep_001EDCA8(char ch, int n, char *str, S_001EDC7E *stream, int *pcnt)
     func_001EDCDB(ch, n, stream, pcnt);
     func_001EDCFF(str, n, stream, pcnt);
 }
-typedef struct { int osfhnd; char osfile; char pipech; char pad[34]; } ioinfo_633;
-#define _pioinfo_633(i) (D_002FB260[(i) >> 5] + ((i) & 0x1f))
