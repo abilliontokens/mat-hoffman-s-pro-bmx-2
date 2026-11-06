@@ -92,7 +92,7 @@ struct C_000B6640 {
     }
     void Box3(V4_000B6840 *dst, V4_000B6840 *src, float y)
     {
-        *dst = V4Init_000B6840(src->x, y, src->z, 1.0f);
+        *dst = V4Init_000B6840(*(volatile float *)&src->x, y, src->z, 1.0f);
     }
 };
 
