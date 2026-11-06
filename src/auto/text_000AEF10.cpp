@@ -140,6 +140,7 @@ extern int D_0027CA70;
 struct Vec4_000AF0D0 {
     float x, y, z, w;
     Vec4_000AF0D0() { x = y = z = 0; w = 1; }
+    Vec4_000AF0D0(float ax, float ay, float az, float aw) { x = ax; y = ay; z = az; w = aw; }
 };
 
 /* config file reader, 0x4CC bytes */
