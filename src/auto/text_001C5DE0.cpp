@@ -114,6 +114,11 @@ extern float D_00275544;
 void func_001C6380(Vec4 *out, Vec4 *in);
 float func_0014F7E0(float x);
 
+static __forceinline float Dot_001C6B30(const float *a, const float *b)
+{
+    return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+}
+
 static __forceinline float Min_001C6B30(float a, float b)
 {
     float r;
@@ -546,10 +551,10 @@ void C_001C6870::func_001C6870(C_001C6870_Obj *obj)
 
 void C_001C6B30::func_001C6B30(V4_001C6B30 target, float maxAngle)
 {
-    V4_001C6B30 S;
     V4_001C6B30 P;
     V4_001C6B30 Q;
     V4_001C6B30 R;
+    V4_001C6B30 S;
     Vec4 T;
     float sign;
     float ang;
@@ -563,17 +568,17 @@ void C_001C6B30::func_001C6B30(V4_001C6B30 target, float maxAngle)
     T.z = target.z - P.z;
     T.w = 1.0f;
     func_001C6380((Vec4 *)&T, (Vec4 *)&T);
-    cross_001C6B30(&S.x, &Q.x, &R.x);
+    AsmVec3Cross(&S.x, &Q.x, &R.x);
     sign = -1.0f;
-    if (T.x * S.x + T.y * S.y + T.z * S.z <= D_00275544) {
+    if (!(S.x * T.x + S.y * T.y + S.z * T.z > D_00275544)) {
         sign = 1.0f;
     }
-    d = T.x * Q.x + T.y * Q.y + T.z * Q.z;
+    d = Q.x * T.x + Q.y * T.y + Q.z * T.z;
     if (d == D_00275544) {
         f3C->f4->func_00199110(0, (Vec4 *)&T, (Vec4 *)&R, 0, 1, 0);
         return;
     }
-    ang = func_0014F7E0(Max_001C6B30(-1.0f, Min_001C6B30(1.0f, d)));
+    ang = func_0014F7E0(AsmMaxF(-1.0f, AsmMinF(1.0f, d)));
     if (ang > maxAngle) {
         ang = maxAngle;
     }
