@@ -14,7 +14,7 @@ static __forceinline Vec_107AE0 scale_107AE0(const Vec_107AE0 &v,const float &s)
 struct Mat_107AE0 { float m[16]; };
 static __forceinline void identity_107AE0(Mat_107AE0 *a) {
  __m128 *p=(__m128*)a;
- p[0]=p[1]=p[2]=p[3]=_mm_setzero_ps();
+ __m128 z=_mm_setzero_ps();p[0]=z;p[1]=z;p[2]=z;p[3]=z;
  a->m[0]=1;a->m[5]=1;a->m[10]=1;a->m[15]=1;
 }
 struct Obj_107AE0 {
