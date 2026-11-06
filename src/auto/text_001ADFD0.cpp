@@ -368,7 +368,7 @@ extern C_1AE570_Tr *D_002AB66C;
 extern const float D_002755E4;
 extern const float D_00275544;
 extern const float D_0028C280;
-float __stdcall func_001AE530(float x, float y);
+extern const float D_00275460;
 void func_001578D0_(void);
 struct C_1AE570 {
     char pad0[0x30];
@@ -380,6 +380,7 @@ struct C_1AE570 {
     unsigned char f84_0 : 1;
     int func_001AE570(void);
     int func_001578D0(void);
+    float func_001AE530(float x, float y);
 };
 
 struct C_001AE890 {
