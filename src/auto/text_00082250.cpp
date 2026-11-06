@@ -41,6 +41,7 @@ struct S_00082790_Frame {
     S_00082790_Settings s;
     C_00082790_Ini ini;
     char buf[0x104];
+    ~S_00082790_Frame() { ini.func_001691E0(); }
 };
 struct C_00082400 {
     void func_00082400(short param_1);
@@ -80,11 +81,15 @@ extern "C" int abs(int);
 void func_00082250(char *out, float value, int fractions)
 {
     const char *text;
+    float t;
+    int * volatile p;
     int n;
     int a;
 
     if (value != D_00275544 && !(value > D_00279150)) {
-        RoundF_00082250(*(volatile float *)&value * D_00275994, (int *)&value);
+        t = *(volatile float *)&value * D_00275994;
+        p = (int *)&value;
+        *p = _mm_cvtss_si32(*(__m128 *)&t);
         if (*(int *)&value < 0) {
             *out++ = '-';
         }
