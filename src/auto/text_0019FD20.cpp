@@ -32,6 +32,12 @@ static __forceinline float Abs_19FD20(float f)
     return *(float *)&i;
 }
 
+static __forceinline float Abs_19FD20(float *f)
+{
+    int i = *(int *)f & 0x7fffffff;
+    return *(float *)&i;
+}
+
 static __forceinline float Dot_19FD20(Vec_19FD20 *a, Vec_19FD20 *b)
 {
     return a->y * b->y + a->x * b->x + a->z * b->z;
