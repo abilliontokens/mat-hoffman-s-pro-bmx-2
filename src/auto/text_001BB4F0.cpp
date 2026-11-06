@@ -223,10 +223,10 @@ __declspec(align(16)) struct S_001BB680_Mat {
     {
         __m128 z = _mm_setzero_ps();
 
-        _mm_store_ps(m, z);
-        _mm_store_ps(m + 4, z);
-        _mm_store_ps(m + 8, z);
-        _mm_store_ps(m + 12, z);
+        ((__m128 *)m)[0] = z;
+        ((__m128 *)m)[1] = z;
+        ((__m128 *)m)[2] = z;
+        ((__m128 *)m)[3] = z;
         m[0] = 1.0f;
         m[5] = 1.0f;
         m[10] = 1.0f;
@@ -609,8 +609,10 @@ int C_001BB900::func_001BB900(void *a1)
 
 int C_001BB950::func_001BB950(Vec_001BB950 *a, Vec_001BB950 *b, int c, int d, float e)
 {
+    Vec_001BB950 *pb;
     f24 = *a;
-    f34 = *b;
+    pb = &f34;
+    *pb = *b;
     f2E0 = *(int *)&e;
     if (e > D_00275544) {
         Anim_001BB950 *p = f2E4;
@@ -621,7 +623,7 @@ int C_001BB950::func_001BB950(Vec_001BB950 *a, Vec_001BB950 *b, int c, int d, fl
             return 1;
         }
     }
-    if (a->x != D_002AAE04 || a->y != D_002AAE08 || a->z != D_002AAE0C) {
+    if (pb->x != D_002AAE04 || pb->y != D_002AAE08 || pb->z != D_002AAE0C) {
         Anim_001BB950 *p = f2E4;
         if (p->f50 == 6) {
             p->func_001299C0(0, b);
