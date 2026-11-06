@@ -145,10 +145,7 @@ __declspec(align(16)) struct S_137F90_Mat {
         ((__m128 *)m)[1] = z;
         ((__m128 *)m)[2] = z;
         ((__m128 *)m)[3] = z;
-        m[0] = 1.0f;
-        m[5] = 1.0f;
-        m[10] = 1.0f;
-        m[15] = 1.0f;
+        m[15] = m[10] = m[5] = m[0] = 1.0f;
     }
 };
 
@@ -256,16 +253,15 @@ void DrawableCube::func_00137810()
     DrawableCube * volatile self = this;
     S_137F90_Mat *pm;
     S_137810_V3 v;
-    float *vv;
     int vf[25];
     int i;
     int j;
     int k;
     int idx;
+    float limit;
     S_137810_Clamp *o;
 
     v = *(S_137810_V3 *)(D_002EFDB8->f4 + 0xd0);
-    vv = &v.x;
     pm = &D_002BEA50;
     pm->identity();
     D_002BEA50.m[0] = 1.0f;
@@ -280,7 +276,8 @@ void DrawableCube::func_00137810()
         float *vp;
         int *op;
         *(unsigned short *)((char *)self->f28 + k * 0xfc + 0x12c) = 0;
-        if (!((*(float *)(D_002EFDB8->f4 + 0x1d0) - D_00275AEC) * D_0028491C < vv[1] * p[-1] + vv[0] * p[-2] + vv[2] * p[0])) {
+        limit = (*(float *)(D_002EFDB8->f4 + 0x1d0) - D_00275AEC) * D_0028491C;
+        if (!(limit < v.z * p[0] + v.x * p[-2] + v.y * p[-1])) {
             vp = &D_002BE040[k * 100];
             op = vf;
             i = 25;
@@ -291,6 +288,13 @@ void DrawableCube::func_00137810()
                 i--;
             } while (i != 0);
             for (j = 0; j < 16; j += 8) {
+#define CELL2(n) \
+                idx = (j + (n)) / 4 + j + (n); \
+                if (!((vf[idx + 5] & vf[idx + 6] & vf[idx + 1] & vf[idx]) & 0xffffffef)) { \
+                    *(unsigned short *)((char *)self->f28 + k * 0xfc + 0x12c) |= (unsigned short)(1 << (j + (n))); \
+                    o = ((S_137810_Clamp **)self->f28)[0x13 + k * 0x3f + j + (n)]; \
+                    if (o) CLAMP8_137810(o) \
+                }
                 CELL2(0)
                 CELL2(1)
                 CELL2(2)
@@ -373,9 +377,9 @@ int DrawableCube::func_00137F90()
         pm->identity();
         {
             DrawableCube *t = self;
-            ((int *)mat.m)[3] = t->f28->f8;
-            ((int *)mat.m)[7] = t->f28->fC;
-            ((int *)mat.m)[11] = t->f28->f10;
+            ((volatile int *)mat.m)[3] = t->f28->f8;
+            ((volatile int *)mat.m)[7] = t->f28->fC;
+            ((volatile int *)mat.m)[11] = t->f28->f10;
         }
         func_000263B0(mat2.m, mat.m, (float *)(g4 + 0x250));
         func_001FEC30(0x18, mat2.m);
@@ -386,16 +390,16 @@ int DrawableCube::func_00137F90()
         func_001FD020(&D_0004035C, 0);
         func_001FE490(1);
         func_001FD020(&D_00040354, 0x203);
-        D_0020C6DC = D_0020C6DC | 0x2800;
         D_0020C710 = 2;
         D_0020C718 = 2;
         D_0020CA50 = 0;
+        D_0020C6DC = D_0020C6DC | 0x2800;
         D_0020C720 = 1;
         for (i = 0; i < 4; i++) {
             func_00200390(i, 0);
-            D_0020C6E0[i].f0 = 3;
-            D_0020C6E0[i].f4 = 3;
-            D_0020C6E0[i].f8 = 3;
+            D_0020C6E4[i * 0x20 - 1] = 3;
+            D_0020C6E4[i * 0x20] = 3;
+            D_0020C6E4[i * 0x20 + 1] = 3;
             D_0020C6DC |= 1 << i;
         }
         idx[0] = 0;
@@ -513,12 +517,9 @@ void DrawableCube::func_00138390(void)
 DrawableCube *DrawableCube::func_00138480(int a)
 {
     int n;
-    int i;
-    int j;
     int v;
     int x;
     int h;
-    int zero = 0;
     CubeSub *p;
     CubeSub2 *q;
     CubeSub3 *r;
@@ -535,12 +536,12 @@ DrawableCube *DrawableCube::func_00138480(int a)
     if (D_002BEAAC->func_0013C8A0(h, &f7c8, 4, 1) != 1) {
         goto done;
     }
-    for (i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) {
         if (D_002BEAAC->func_0013C8A0(h, &v, 4, 1) != 1) {
             goto done;
         }
         x = D_002BEAAC->func_0013AFD0(h);
-        if (D_002BEAAC->func_0013AFF0(h, v, zero) != 0) {
+        if (D_002BEAAC->func_0013AFF0(h, v, 0) != 0) {
             goto done;
         }
         if (f7c0 != 0) {
@@ -548,18 +549,18 @@ DrawableCube *DrawableCube::func_00138480(int a)
         }
         p = (CubeSub *)func_001E8A44((int)D_00018B10);
         f7c0 = (DrawableCubeVirt *)(p ? ((CubeSub4 *)p)->func_00135150(h) : 0);
-        if (D_002BEAAC->func_0013AFF0(h, x, zero) != 0) {
+        if (D_002BEAAC->func_0013AFF0(h, x, 0) != 0) {
             goto done;
         }
     }
     f30 = 0;
     f2c = (DrawableCubeVirt **)func_001E8A44(f7c8 * 4);
-    for (j = 0; j < f7c8; j++) {
+    for (int j = 0; j < f7c8; j++) {
         if (D_002BEAAC->func_0013C8A0(h, &v, 4, 1) != 1) {
             goto done;
         }
         x = D_002BEAAC->func_0013AFD0(h);
-        if (D_002BEAAC->func_0013AFF0(h, v, zero) != 0) {
+        if (D_002BEAAC->func_0013AFF0(h, v, 0) != 0) {
             goto done;
         }
         p = (CubeSub *)func_001E8A44(0x630);
@@ -568,12 +569,12 @@ DrawableCube *DrawableCube::func_00138480(int a)
         if (f2c[j] == 0) {
             goto done;
         }
-        if (D_002BEAAC->func_0013AFF0(h, x, zero) != 0) {
+        if (D_002BEAAC->func_0013AFF0(h, x, 0) != 0) {
             goto done;
         }
     }
-    for (j = 0; j < f7c8; j++) {
-        func_001376B0(f2c[j]);
+    for (int k = 0; k < f7c8; k++) {
+        func_001376B0(f2c[k]);
     }
     f30 = 0;
     f28 = (S_137F90_Src *)f2c[0];
