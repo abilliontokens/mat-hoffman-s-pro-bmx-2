@@ -79,6 +79,11 @@ struct S_2EB10_B { char pad[0x28]; float f28; char pad2c[0x20c]; float f238, f23
 struct S_2EB10_C { char pad[0x50]; int f50, f54; };
 struct S_2EB10_D { char pad[0x30]; int f30; };
 struct S_2EB10_G { char pad[0x1934]; int counter; };
+/* local vector: z, y, x = 0 then w = 1, as the compiler initialises it */
+struct S_2EB10_V4 {
+    float x, y, z, w;
+    S_2EB10_V4() { x = y = z = 0.0f; w = 1.0f; }
+};
 struct S_2EB10_T {
     char pad0[0x1e0]; S_2EB10_B *f1e0; char pad1e4[4]; S_2EB10_C *f1e8; char pad1ec[4]; S_2EB10_D *f1f0;
     char pad1f4[0x3c]; S_2EB10_Cam *f230; char pad234[0x23c]; int f470; char pad474[4]; int f478; char pad47c[4]; unsigned f480;
