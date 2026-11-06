@@ -68,7 +68,7 @@ struct SndBank_1CB290 {
     virtual void v1();
     virtual void v2();
     virtual void v3();
-    virtual SndBank_1CB290 *v4();
+    virtual void v4();
     int f4;
     int f8;
     int fC;
@@ -462,11 +462,7 @@ void XboxSndIf_1CB290::func_001CB290(void)
         f13C->v2();
     }
     p = (SndBank_1CB290 *)func_001E8A44(0x20);
-    if (p != 0) {
-        p = p->func_001AC3A0();
-    } else {
-        p = 0;
-    }
+    p = p != 0 ? p->func_001AC3A0() : 0;
     f13C = p;
     p->v4();
 }
