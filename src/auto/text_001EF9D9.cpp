@@ -234,15 +234,16 @@ C_001EFB18 *C_001EFB18::func_001EFB18(char param_1)
     return this;
 }
 
+#pragma optimize("y", on)
 C_001EFB82 *C_001EFB82::func_001EFB82(char *param_1)
 {
     if (param_1 != 0 && *param_1 != 0) {
-        if (func_001EF1E7() != 0) {
+        if (((S_001EF734 *)this)->func_001EF1E7() != 0) {
             func_001EF9B2(param_1);
         } else {
             f0 = f0->func_001EF419();
             if (f0 != 0) {
-                S_001EFB82_Obj *o = (S_001EFB82_Obj *)D_002F6A04->func_001EEE62(0x10, 0);
+                S_001EFB82_Obj *o = (S_001EFB82_Obj *)D_002F6A04.func_001EEE62(0x10, 0);
                 if (o != 0) {
                     o = o->func_001EF45F(param_1, 0);
                 } else {
@@ -256,7 +257,7 @@ C_001EFB82 *C_001EFB82::func_001EFB82(char *param_1)
     }
     return this;
 }
-
+#pragma optimize("", on)
 void *_func_001EFCD5(void *a, char b, void *c)
 {
     S_001EF734 local;
