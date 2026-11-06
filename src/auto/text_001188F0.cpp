@@ -86,21 +86,6 @@ static inline float Wrap2(float a) {
     return a;
 }
 
-static inline float Wrap3(float x) {
-    return x > D_002756D0 ? x - D_002756B8 : (x < D_002756E8 ? x + D_002756B8 : x);
-}
-
-static inline float Wrap4(float x) {
-    float r;
-    if (x > D_002756D0)
-        r = x - D_002756B8;
-    else if (x < D_002756E8)
-        r = x + D_002756B8;
-    else
-        r = x;
-    return r;
-}
-
 #pragma optimize("y", on)
 void Obj::func_001188F0(int arg)
 {
