@@ -36,7 +36,7 @@ struct C_001648E0 {
  int f0;
  void *f4;
  int f8;
- void *fC;
+ int fC;
  char pad10[8];
  int f18;
  char pad1C[0x1D0];
