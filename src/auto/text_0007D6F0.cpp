@@ -222,10 +222,10 @@ struct Icon_7D {
     void setH(float v) { if (f2c != v) { u8 f = f58 | 1; f2c = v; f58 = f; } }
     void updateUV() {
         u8 f = f58 | 4;
-        f3c = D_00278654 * texW();
-        f40 = D_00275544 * texW();
-        f44 = D_0027653C * texH();
-        f48 = D_00275544 * texH();
+        f3c = f4c * *(volatile float *)&D_00278654;
+        f40 = f4c * *(volatile float *)&D_00275544;
+        f44 = f50 * *(volatile float *)&D_0027653C;
+        f48 = f50 * *(volatile float *)&D_00275544;
         f58 = f;
     }
 };
@@ -300,7 +300,8 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
 {
     Icon_7D *w;
     int i, j, y;
-    char buf[0x14];
+    char bufA[12];
+    char bufB[8];
 
     {
         void *fonts[2];
@@ -399,8 +400,8 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
         SetterObj_7E *t;
 
         i++;
-        func_001ADCC0(buf, 0x104, (char *)&D_00277038, i);
-        func_001AC330(&buf[0xC], D_002A8490->p2E8->p4->fED0, buf);
+        func_001ADCC0(bufA, 0x104, (char *)&D_00277038, i);
+        func_001AC330(bufB, D_002A8490->p2E8->p4->fED0, bufA);
         t = (SetterObj_7E *)func_001E8A44(0x184);
         if (t != 0) {
             t = (SetterObj_7E *)t->func_001B12C0(1);
@@ -413,7 +414,7 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
         texts[i - 1]->func_001B19C0(0x140, y, 0);
         texts[i - 1]->func_001B19A0(D_0028F5E0);
         func_001577A0(texts[i - 1], -1);
-        texts[i - 1]->func_001B17D0(&buf[0xC]);
+        texts[i - 1]->func_001B17D0(bufB);
     }
 
     w = (Icon_7D *)func_001E8A44(0x64);
