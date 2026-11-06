@@ -1,6 +1,7 @@
 /* 1 function from 0x000399A0 to 0x0003A990, found by Ghidra. */
 #include "common.h"
 #include "grid_000392B0.h"
+#include "asm_helpers.h"
 
 extern float D_002A14D4, D_002A14D8, D_002A14DC, D_002A14E0;
 extern float D_00275AEC, D_00275548;
@@ -24,7 +25,8 @@ struct C_000399A0 {
     char pad0[0x450];
     int f450;
     char pad454[8];
-    int f45C, f460, f464, f468;
+    int f45C, f460;
+    float f464, f468;
     char pad46c[0x30];
     S_000392B0_Obj **f49C;
     int f4a0;
@@ -40,16 +42,22 @@ struct C_000399A0 {
     int func_000399A0(int mode);
 };
 
+int func_001E8858(float v);
 int C_000399A0::func_000399A0(int mode) {
-    S_000392B0_Vec4 a;
-    S_000392B0_Vec4 b;
-    S_000392B0_Vec4 c, d;
-    int dx, dz;
+    S_000392B0_Vec4 a, b, c, d;
+    S_000392B0_Block *blk;
+    int ix, iy, iz;
+    int dx, dz, m;
+    float t;
 
     a.x = D_002A14D4;
     a.y = D_002A14D8;
     a.z = D_002A14DC;
     a.w = D_002A14E0;
+    b.x = 0.0f;
+    b.y = 0.0f;
+    b.z = 0.0f;
+    b.w = 1.0f;
 
     if (f564 != 0) {
         if (f564->type == 0 || f564->type >= 3) {
@@ -63,17 +71,17 @@ int C_000399A0::func_000399A0(int mode) {
             c = *pc;
             d = *pd;
             if (c.x > d.x || c.z > d.z) {
-                dx = (int)(c.x - d.x);
-                dz = (int)(c.z - d.z);
-                a.x = d.x + (float)(dx / 2);
-                a.y = d.y + (float)((int)(c.y - d.y) / 2);
-                a.z = d.z + (float)(dz / 2);
-            } else {
-                dx = (int)(d.x - c.x);
-                dz = (int)(d.z - c.z);
+                dx = func_001E8858(d.x - c.x);
+                dz = func_001E8858(d.z - c.z);
                 a.x = c.x + (float)(dx / 2);
-                a.y = c.y + (float)((int)(d.y - c.y) / 2);
+                a.y = c.y + (float)(func_001E8858(d.y - c.y) / 2);
                 a.z = c.z + (float)(dz / 2);
+            } else {
+                dx = func_001E8858(c.x - d.x);
+                dz = func_001E8858(c.z - d.z);
+                a.x = d.x + (float)(dx / 2);
+                a.y = d.y + (float)(func_001E8858(c.y - d.y) / 2);
+                a.z = d.z + (float)(dz / 2);
             }
             if (dx > 0) f4a0 = ((dx / 5) % 2) != 0;
             else if (dz > 0) f4a0 = ((dz / 5) % 2) != 0;
@@ -82,12 +90,74 @@ int C_000399A0::func_000399A0(int mode) {
 
     f948 = f468;
     if (a.x != D_002A14D4 || a.y != D_002A14D8 || a.z != D_002A14DC) {
-        a.x = (float)(int)a.x;
-        a.y = (float)(int)a.y;
-        a.z = (float)(int)a.z;
+        AsmFloatToIntRound(a.x, &ix);
+        AsmFloatToIntRound(a.y, &iy);
+        AsmFloatToIntRound(a.z, &iz);
+        a.x = (float)ix;
+        a.y = (float)iy;
+        a.z = (float)iz;
         f4b0 = a.y;
         if (f4ac != D_002A14D4 || f4b0 != D_002A14D8 || f4b4 != D_002A14DC) {
-            return 1;
+            switch (mode) {
+            case 0:
+                switch (f4a8) {
+                case 0: f4ac = a.x - f468; f4b4 = a.z; break;
+                case 1: f4ac = a.x + f468; f4b4 = a.z; break;
+                case 2: f4ac = a.x; f4b4 = a.z - f468; break;
+                case 3: f4ac = a.x; f4b4 = a.z; break;
+                case 4: f4ac = a.x - f468; f4b4 = a.z - f468; break;
+                case 5: f4ac = a.x - f468; f4b4 = a.z + f468; break;
+                case 6: f4ac = a.x + f468; f4b4 = a.z + f468; break;
+                case 7: f4ac = a.x + f468; f4b4 = a.z - f468; break;
+                }
+                break;
+            case 1:
+                switch (f4a8) {
+                case 0: f4ac = a.x + f468; f4b4 = a.z + f468; f4a8 = 7; break;
+                case 1: f4ac = a.x; f4b4 = a.z + f468; f4a8 = 3; break;
+                case 2: f4ac = a.x - f468; f4b4 = a.z - f468; f4a8 = 4; break;
+                case 3: f4ac = a.x - f468; f4b4 = a.z + f468; f4a8 = 5; break;
+                case 4: f4ac = a.x + f468; f4b4 = a.z - f468; f4a8 = 6; break;
+                case 5: f4ac = a.x - f468; f4b4 = a.z; f4a8 = 0; break;
+                case 6: f4ac = a.x + f468; f4b4 = a.z; f4a8 = 1; break;
+                case 7: f4ac = a.x; f4b4 = a.z - f468; f4a8 = 2; break;
+                }
+                break;
+            case 2:
+                switch (f4a8) {
+                case 0: f4ac = a.x - f468; f4b4 = a.z - f468; f4a8 = 4; break;
+                case 1: f4ac = a.x - f468; f4b4 = a.z + f468; f4a8 = 5; break;
+                case 2: f4ac = a.x; f4b4 = a.z + f468; f4a8 = 3; break;
+                case 3: f4ac = a.x + f468; f4b4 = a.z + f468; f4a8 = 7; break;
+                case 4: f4ac = a.x + f468; f4b4 = a.z; f4a8 = 1; break;
+                case 5: f4ac = a.x + f468; f4b4 = a.z - f468; f4a8 = 6; break;
+                case 6: f4ac = a.x; f4b4 = a.z - f468; f4a8 = 2; break;
+                case 7: f4ac = a.x - f468; f4b4 = a.z; f4a8 = 0; break;
+                }
+                break;
+            }
+            if (f564 != 0 && (f564->type == 0 || f564->type >= 3)) {
+                blk = 0;
+                func_00038A70(&f564->obj->f28, (void **)&blk);
+                if (blk == 0) {
+                    f4b0 = f4b0 + f464;
+                } else {
+                    m = AsmMaxI(blk->w, blk->h);
+                    t = (float)(m - 1) * D_00275AEC;
+                    f948 = f948 + t;
+                    f4b0 = f4b0 + f464 + (float)blk->d * D_00275548;
+                    switch (f4a8) {
+                    case 0: f4ac = f4ac - t; break;
+                    case 1: f4ac = f4ac + t; break;
+                    case 2: f4b4 = f4b4 - t; break;
+                    case 3: f4b4 = f4b4 + t; break;
+                    case 4: f4ac = f4ac - t; f4b4 = f4b4 - t; break;
+                    case 5: f4ac = f4ac - t; f4b4 = f4b4 + t; break;
+                    case 6: f4ac = f4ac + t; f4b4 = f4b4 - t; break;
+                    case 7: f4ac = f4ac + t; f4b4 = f4b4 + t; break;
+                    }
+                }
+            }
         }
     }
     return 1;
