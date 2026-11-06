@@ -178,10 +178,13 @@ inline T B3E10_Min(const volatile T &a, const volatile T &b)
 
 __forceinline void B3E10_Copy(char *dst, const char *src, int max)
 {
+    volatile int size;
     volatile int length = strlen(src);
     volatile int limit = max;
-    volatile int size = B3E10_Min(limit, length);
-    int n = size;
+    int n;
+
+    size = B3E10_Min(limit, length);
+    n = size;
     func_001E8920(dst, src, n);
     dst[n] = 0;
 }
@@ -314,7 +317,7 @@ void C_000B4300::func_000B3E10(void)
     S_B3E10_Info *info;
     S_B3E10_Obj *o;
 
-    if (func_001EA426(f3c->f3c, D_002764F0) == 0)
+    if (func_001EA426(self->f3c->f3c, D_002764F0) == 0)
         return;
     info = self->f3c;
     func_001ADCC0(info->f140, 0x104, D_0027C588, info->f3c);
@@ -349,18 +352,19 @@ void C_000B4300::func_000B3E10(void)
     if (D_002EFE08->func_0018E740(self, D_0027D1E0) == 0) {
         B4300_Cb volatile cb = &C_000B4300::func_000B3330;
         self->B4300_Reg(cb, D_0027D1BC, D_0027D1D0, D_0027D1D8);
-        cb = &C_000B4300::func_000B1E50;
+        cb = B4300_CbOf(D_000B1E50);
         self->B4300_Reg(cb, D_0027D1AC, D_0027D1D0, D_0027D1D8);
-        cb = &C_000B4300::func_000B1E60;
+        cb = B4300_CbOf(D_000B1E60);
         self->B4300_Reg(cb, D_0027D194, D_0027D1A4, D_0027D1D8);
-        cb = &C_000B4300::func_000B1E70;
+        cb = B4300_CbOf(D_000B1E70);
         self->B4300_Reg(cb, D_0027D178, D_0027D18C, D_0027D1D8);
         info = self->f3c;
         D_002EFE08->func_00191270(self, D_0027D1E0, (S_B4300_Stream *)info->f348, info->f384);
     }
     self->v70();
-    if (self->f3c != 0) {
-        func_001E891B(self->f3c);
+    info = self->f3c;
+    if (info != 0) {
+        func_001E891B(info);
         self->f3c = 0;
     }
 }
