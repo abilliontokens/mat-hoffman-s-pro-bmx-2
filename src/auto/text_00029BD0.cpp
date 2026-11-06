@@ -307,6 +307,33 @@ static __forceinline float Length_0002A250(V4_0002A250 *v)
     _mm_store_ss(&r, _mm_sqrt_ss(_mm_set_ss(v->x * v->x + v->y * v->y + v->z * v->z)));
     return r;
 }
+struct Sub_00029E00 { char pad[0x50]; int f50; char pad54[0x64 - 0x54]; int f64; char pad68[4]; int f6c; char pad70[0x1a0 - 0x70]; V4_00029BD0 v1a0; };
+struct Obj1_00029E00 { char pad[0x23c]; float f23c; };
+struct Obj2_00029E00 { char pad[0x30]; int f30; };
+struct C_00029E00 {
+    char pad0[0x10c];
+    V4_00029BD0 f10c;
+    char pad11c[0x120 - 0x11c];
+    float f120;
+    char pad124[0x1e0 - 0x124];
+    Obj1_00029E00 *f1e0;
+    char pad1e4[4];
+    Sub_00029E00 *f1e8;
+    char pad1ec[4];
+    Obj2_00029E00 *f1f0;
+    char pad1f4[0x230 - 0x1f4];
+    World_0002A250 *f230;
+    char pad234[0x5c8 - 0x234];
+    int f5c8;
+    char pad5cc[0x620 - 0x5cc];
+    float f620;
+    float f624;
+    int f628;
+    char pad62c[0x684 - 0x62c];
+    int f684;
+    void func_00029E00(float dt);
+};
+extern float D_002756D8, D_002A1154;
 extern double D_002766C8;
 extern float D_002756D4, D_002A1170, D_002A116C, D_002A1168, D_002A1164, D_00275F58, D_00275460, D_002766C4;
 void func_00026340(V4_0002A250 *out, V4_0002A250 *in);
