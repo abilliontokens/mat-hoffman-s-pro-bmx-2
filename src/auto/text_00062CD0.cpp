@@ -116,6 +116,86 @@ extern int D_00277038;
 void func_001ADCC0(char *buf, int size, char *fmt, int val);
 void func_001AC330(char *dest, char *fmt, char *arg);
 
+void C_00062CD0::func_00062CD0(float dt)
+{
+    if (f230 != 0) {
+        float t;
+        Vec4_62 p1, p2;
+        C_Elem_62 *e;
+        float z;
+
+        t = _mm_min_ss(_mm_set_ss(1.0f), _mm_set_ss(f234 / D_002A1D08)).m128_f32[0];
+        Vec4_62 d1 = *(Vec4_62 *)&D_002A1DC8 - *(Vec4_62 *)&D_002A1D88;
+        Vec4_62 d2 = *(Vec4_62 *)&D_002A1E18 - *(Vec4_62 *)&D_002A1DD8;
+        if (f230 == 1) {
+            p1 = *(Vec4_62 *)&D_002A1D88 + d1 * t;
+            p2 = *(Vec4_62 *)&D_002A1DD8 + d2 * t;
+        } else {
+            p1 = *(Vec4_62 *)&D_002A1DC8 - d1 * t;
+            p2 = *(Vec4_62 *)&D_002A1E18 - d2 * t;
+        }
+
+        e = f12C[f228];
+        if (e->f4 != p1.x || e->f8 != p1.y) {
+            e->f8 = p1.y;
+            e->f4 = p1.x;
+            e->f58 |= 1;
+        }
+        z = p1.z * D_00278784;
+        e = f12C[f228];
+        if (z != e->f2C) {
+            e->f2C = z;
+            e->f58 |= 1;
+        }
+        e = f12C[f228];
+        if (z != e->f28) {
+            e->f28 = z;
+            e->f58 |= 1;
+        }
+
+        e = f1A4[f228];
+        if (e->f4 != p2.x || e->f8 != p2.y) {
+            e->f4 = p2.x;
+            e->f8 = p2.y;
+            e->f58 |= 1;
+        }
+        z = p2.z * D_00278784;
+        e = f1A4[f228];
+        if (z != e->f2C) {
+            e->f2C = z;
+            e->f58 |= 1;
+        }
+        e = f1A4[f228];
+        if (z != e->f28) {
+            e->f28 = z;
+            e->f58 |= 1;
+        }
+
+        if (f234 == D_002A1D08) {
+            f234 = 0.0f;
+            f230 = 0;
+        } else {
+            f234 += dt;
+            if (f234 > D_002A1D08)
+                f234 = D_002A1D08;
+        }
+    }
+}
+
+void C_00063080::func_00063080() {
+    int ids[2]; int i; int *r; Clamp_63 *o; W_63 **e; Lookup_63 *lk;
+    ids[0]=(int)&D_00278690; ids[1]=(int)&D_002786A0;
+    for(i=0;i<2;i++) { lk=D_002A8490->p2EC; r=lk->func_0018C160(ids[i]); if(r && *r) { o=((Mid_63 *)*r)->func_0018C070(); CL(o) } }
+    e=&f[0]; i=2; do { o=(*e)->func_001D5AA0(); CL(o) e++; i--; } while(i);
+    e=&f[(0x108-0xfc)/4]; i=3; do { if(e[3]) { o=e[3]->func_001D5AA0(); CL(o) } if(*e) { o=(*e)->func_001D5AA0(); CL(o) } e++; i--; } while(i);
+    if(f[(0x1ec-0xfc)/4]) { o=f[(0x1ec-0xfc)/4]->func_001D5AA0(); CL(o) }
+    o=f[(0x1f0-0xfc)/4]->func_001D5AA0(); CL(o)
+    e=&f[(0x12c-0xfc)/4]; i=4; do { o=(*e)->func_001D5AA0(); CL(o) e++; i--; } while(i);
+    e=&f[(0x190-0xfc)/4]; i=5; do { if(e[-5]) { o=e[-5]->func_001D5AA0(); CL(o) } if(*e) { o=(*e)->func_001D5AA0(); CL(o) } e++; i--; } while(i);
+    e=&f[(0x1b4-0xfc)/4]; i=2; do { if(*e) { o=(*e)->func_001D5AA0(); CL(o) } e++; i--; } while(i);
+    func_001578D0();
+}
+
 void C_000634D0::func_000634D0(void)
 {
     char dest[0x40];
@@ -126,6 +206,27 @@ void C_000634D0::func_000634D0(void)
                   mgr->f2C0->func_0005C020(mgr->f2D8)->f4);
     func_001AC330(dest, D_002A8490->p2E8->p4->fEA8, buf);
     f29C->func_0005E840(dest);
+}
+
+int __fastcall func_00063550(void *self) {
+ char buf[60]; C_Mgr_62 *mgr=D_002A8490->f2E0; C_5C020Ret_62 *obj=mgr->f2C0->func_0005C020(mgr->f2D8); int score=obj->f4; volatile int n=0; int count=0;
+ if(*(int*)((char*)obj+0x5ec)==1) ++count;
+ if(*(int*)((char*)obj+0x5f0)==1) ++count;
+ if(*(int*)((char*)obj+0x5f4)==1) ++count;
+ if(*(int*)((char*)obj+0x5f8)==1) ++count;
+ if(*(int*)((char*)obj+0x5fc)==1) ++count;
+ if(*(int*)((char*)obj+0x600)==1) ++count;
+ if(*(int*)((char*)obj+0x604)==1) ++count;
+ if(*(int*)((char*)obj+0x608)==1) ++count;
+ (*(C_0005E840**)((char*)self+0x2a0))->func_0005E840(*(char**)((char*)D_002A8490->p2E8->p4+0xeb0));
+ if(score>=*(int*)((char*)D_002A8490->f2E0+0x2e8)&&!*(int*)((char*)obj+0x618)){strcpy(buf,"Las Vegas");++n;}
+ if(score>=*(int*)((char*)D_002A8490->f2E0+0x2e0)&&!*(int*)((char*)obj+0x610)){if(!n)strcpy(buf,"Chicago");else if(n<3)strcat(buf," or Chicago");++n;}
+ if(score>=*(int*)((char*)D_002A8490->f2E0+0x2ec)&&!*(int*)((char*)obj+0x61c)){if(!n)strcpy(buf,"New Orleans");else if(n<3)strcat(buf," or New Orleans");++n;}
+ if(score>=*(int*)((char*)D_002A8490->f2E0+0x2e4)&&!*(int*)((char*)obj+0x614)&&*(int*)((char*)obj+0x618)==1){if(!n)strcpy(buf,"Los Angeles");else if(n<3)strcat(buf," or Los Angeles");++n;}
+ if(score>=*(int*)((char*)D_002A8490->f2E0+0x2f0)&&!*(int*)((char*)obj+0x620)&&*(int*)((char*)obj+0x618)==1){if(!n)strcpy(buf,"Portland");else if(n<3)strcat(buf," or Portland");++n;}
+ if(score>=*(int*)((char*)D_002A8490->f2E0+0x2f4)&&!*(int*)((char*)obj+0x624)&&(*(int*)((char*)obj+0x610)==1||*(int*)((char*)obj+0x61c)==1)){if(!n)strcpy(buf,"Boston");else if(n<3)strcat(buf," or Boston");++n;}
+ if(score>=*(int*)((char*)D_002A8490->f2E0+0x2f8)&&!*(int*)((char*)obj+0x628)&&count>=7){if(!n)strcpy(buf,"Hawaii");else if(n<3)strcat(buf," or Hawaii");++n;}
+ if(n>0){if(n>3)strcat(buf,"...");else strcat(buf,"!");(*(C_0005E840**)((char*)self+0x2a4))->func_0005E840(buf);return 1;}return 0;
 }
 
 char* __stdcall func_000639B0(int value, char* out)
