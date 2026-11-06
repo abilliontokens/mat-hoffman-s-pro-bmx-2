@@ -595,16 +595,8 @@ void func_0001EA40(float *out, float *in) {
 }
 
 #pragma optimize("y", on)
-void func_0001EAB0(float *out, float *a, float *b)
-{
-    __m128 va = _mm_loadu_ps(a);
-    __m128 vb = _mm_loadu_ps(b);
-    __m128 sa = _mm_shuffle_ps(va, va, 0xc9);
-    __m128 sb = _mm_shuffle_ps(vb, vb, 0xc9);
-    __m128 r = _mm_sub_ps(_mm_mul_ps(va, sb), _mm_mul_ps(vb, sa));
-
-    r = _mm_shuffle_ps(r, r, 0xc9);
-    _mm_storeu_ps(out, r);
+void func_0001EAB0(float *out, float *a, float *b) {
+    AsmVec3Cross(out, a, b);
 }
 #pragma optimize("", on)
 void C_0001EAF0::func_0001EAF0(Vec4 v)
