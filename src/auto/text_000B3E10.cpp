@@ -55,6 +55,18 @@ struct S_B3E10_Quad {
     int a, b, c, d;
 };
 
+/* device object at owner+0x400: handle registration and camera-space query */
+struct S_B4530_Dev {
+    void func_00181DB0(int h);
+    void func_001820B0(void *cb, void *ctx, int h);
+    void func_00199A70(int a, float *out);
+};
+
+struct S_B4530_Flag {
+    char pad0[0x14];
+    int f14;
+};
+
 struct S_B3E10_Info {
     char pad0[4];
     int f4;
@@ -66,6 +78,15 @@ struct S_B3E10_Info {
     char f140[0x208];
     char f348[0x3c];
     char f384[1];
+    char pad385[0x400 - 0x385];
+    S_B4530_Dev *f400;
+    char pad404[0x4b8 - 0x404];
+    int f4b8;
+    char pad4bc[0x510 - 0x4bc];
+    float f510;
+    char pad514[4];
+    S_B4530_Flag *f518;
+    int func_0012FE50(float a, int b);
 };
 
 struct S_B3E10_Obj;
