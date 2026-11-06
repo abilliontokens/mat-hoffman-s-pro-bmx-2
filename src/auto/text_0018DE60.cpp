@@ -19,7 +19,7 @@ struct C_00191400 {
 };
 
 struct C_0018DA90_Result {
-    int pad0[16];
+    int pad0[9];
     int f40;
 };
 
@@ -224,7 +224,7 @@ void C_0018E0E0::func_0018DE60(int a, C_0018DE60_Arg *arg, int idx, int kind, co
     (*(C_0018DE60_Arg *volatile *)&arg)->f20[*(volatile int *)&idx].type = type;
     int len = strlen(name);
     int max = 0x3f;
-    int n = max > len ? len : max;
+    int n = AsmMinI(max, len);
     func_001E8920((*(C_0018DE60_Arg *volatile *)&arg)->f20[*(volatile int *)&idx].name, name, n);
     (*(C_0018DE60_Arg *volatile *)&arg)->f20[*(volatile int *)&idx].name[n] = 0;
     if (name[0] == '$')
@@ -387,30 +387,30 @@ void C_0018E250::func_0018E250(const char * volatile name, unsigned int flags)
 
 void Node_0018EA50::func_0018E3E0(int a, int b)
 {
-    volatile int slot[1];
+    volatile int self;
     int len;
     int cap;
     int min;
     Node_0018EA50 *p;
     int v;
 
-    slot[0] = (int)this;
+    self = (int)this;
     *(volatile unsigned int *)&flags = a;
-    p = (Node_0018EA50 *)slot[0];
+    p = (Node_0018EA50 *)self;
     switch ((p->flags >> 8) & 0xff) {
     case 1:
         p->f18 = *(int *)b;
-        p = (Node_0018EA50 *)slot[0];
+        p = (Node_0018EA50 *)self;
         p->f0C = &p->f18;
         v = *(volatile int *)&D_002EFE08->f12C;
-        ((Node_0018EA50 *)slot[0])->f4 = v;
+        ((Node_0018EA50 *)self)->f4 = v;
         break;
     case 2:
         p->f1C = *(int *)b;
-        p = (Node_0018EA50 *)slot[0];
+        p = (Node_0018EA50 *)self;
         p->f0C = &p->f1C;
         v = *(volatile int *)&D_002EFE08->f130;
-        ((Node_0018EA50 *)slot[0])->f4 = v;
+        ((Node_0018EA50 *)self)->f4 = v;
         break;
     case 3: {
         const char *s = *(const char **)b;
@@ -418,14 +418,14 @@ void Node_0018EA50::func_0018E3E0(int a, int b)
         len = StrLen_0018E3E0(s);
         cap = 0xff;
         min = AsmMinI(cap, len);
-        func_001E8920(((Node_0018EA50 *)slot[0])->f24, s, min);
-        ((Node_0018EA50 *)slot[0])->f24[min] = 0;
-        p = (Node_0018EA50 *)slot[0];
+        func_001E8920(((Node_0018EA50 *)self)->f24, s, min);
+        ((Node_0018EA50 *)self)->f24[min] = 0;
+        p = (Node_0018EA50 *)self;
         p->f20 = p->f24;
-        p = (Node_0018EA50 *)slot[0];
+        p = (Node_0018EA50 *)self;
         p->f0C = &p->f20;
         v = *(volatile int *)&D_002EFE08->f134;
-        ((Node_0018EA50 *)slot[0])->f4 = v;
+        ((Node_0018EA50 *)self)->f4 = v;
         break;
     }
     case 4: {
@@ -433,44 +433,44 @@ void Node_0018EA50::func_0018E3E0(int a, int b)
 
         p->f130 = src[0];
         v = src[1];
-        ((Node_0018EA50 *)slot[0])->f134 = v;
-        p = (Node_0018EA50 *)slot[0];
+        ((Node_0018EA50 *)self)->f134 = v;
+        p = (Node_0018EA50 *)self;
         p->f0C = &p->f130;
         v = *(volatile int *)&D_002EFE08->f138;
-        ((Node_0018EA50 *)slot[0])->f4 = v;
+        ((Node_0018EA50 *)self)->f4 = v;
         break;
     }
     case 5:
         p->f138 = *(char *)b;
-        p = (Node_0018EA50 *)slot[0];
+        p = (Node_0018EA50 *)self;
         p->f0C = &p->f138;
         v = *(volatile int *)&D_002EFE08->f13C;
-        ((Node_0018EA50 *)slot[0])->f4 = v;
+        ((Node_0018EA50 *)self)->f4 = v;
         break;
     case 6:
         p->f124 = *(int *)b;
-        p = (Node_0018EA50 *)slot[0];
+        p = (Node_0018EA50 *)self;
         p->f0C = &p->f124;
         v = *(volatile int *)&D_002EFE08->f140;
-        ((Node_0018EA50 *)slot[0])->f4 = v;
+        ((Node_0018EA50 *)self)->f4 = v;
         break;
     case 7:
         p->f128 = *(int *)b;
-        p = (Node_0018EA50 *)slot[0];
+        p = (Node_0018EA50 *)self;
         p->f0C = &p->f128;
         v = *(volatile int *)&D_002EFE08->f144;
-        ((Node_0018EA50 *)slot[0])->f4 = v;
+        ((Node_0018EA50 *)self)->f4 = v;
         break;
     case 8:
         p->f12C = *(int *)b;
-        p = (Node_0018EA50 *)slot[0];
+        p = (Node_0018EA50 *)self;
         p->f0C = &p->f12C;
         v = *(volatile int *)&D_002EFE08->f148;
-        ((Node_0018EA50 *)slot[0])->f4 = v;
+        ((Node_0018EA50 *)self)->f4 = v;
         break;
     case 9:
         v = p->v.func_001915A0(a, b, &p->f4);
-        ((Node_0018EA50 *)slot[0])->f0C = (void *)v;
+        ((Node_0018EA50 *)self)->f0C = (void *)v;
         break;
     }
 }
