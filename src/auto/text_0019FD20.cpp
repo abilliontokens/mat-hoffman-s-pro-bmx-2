@@ -17,7 +17,8 @@ static inline void Cross_19FD20(Vec_19FD20 &out, const Vec_19FD20 &a, const Vec_
                    _mm_mul_ps(_mm_loadu_ps(&b.x), _mm_shuffle_ps(_mm_loadu_ps(&a.x), _mm_loadu_ps(&a.x), 0xc9))), 0xc9));
 }
 
-static __forceinline float Sqrt_19FD20(const float &x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+#include <math.h>
+static __forceinline float Sqrt_19FD20(float x) { return sqrtf(x); }
 
 struct Node_19FD20 {
     void func_00199A70(int a, Vec_19FD20 *out);
