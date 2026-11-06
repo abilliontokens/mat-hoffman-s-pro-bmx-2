@@ -349,10 +349,10 @@ static __inline void CopyMat_001BBAE0(S_001BBAE0_Mat *src, S_001BBAE0_Mat *dst)
 {
     __m128 *s = (__m128 *)src;
     __m128 *d = (__m128 *)dst;
+    __m128 r3 = s[3];
     __m128 r0 = s[0];
     __m128 r1 = s[1];
     __m128 r2 = s[2];
-    __m128 r3 = s[3];
 
     d[0] = r0;
     d[1] = r1;
@@ -464,12 +464,12 @@ void func_001BB4F0(S_1BB4F0_Arg1 *a1, int a2, S_1BB4F0_Arg3 *a3, int enable)
 {
     S_1BB4F0_List *list;
     S_1BB4F0_Obj *obj;
+    S_1BB4F0_Obj **pp;
     int found;
     int idx;
     int i;
     int key;
     int n;
-    S_1BB4F0_Obj **pp;
 
     if (enable == 0) {
         return;
@@ -481,7 +481,8 @@ void func_001BB4F0(S_1BB4F0_Arg1 *a1, int a2, S_1BB4F0_Arg3 *a3, int enable)
     list = D_002A8490->f2A4->f64->f4E0;
     n = list->f24;
     found = 0;
-    for (pp = list->f1A8, i = 0; i < n; i++, pp++) {
+    pp = list->f1A8;
+    for (i = 0; i < n; i++, pp++) {
         if (found) {
             break;
         }
