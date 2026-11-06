@@ -149,6 +149,41 @@ struct C_00159560 {
     C_00159560 *func_00159560(int param_1);
 };
 
+/* GIDFireball (vtable slot 27): the small init method at the head of the merged symbol */
+extern char D_002758E4[];
+struct S_00158C10_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4(const char *s, int a, int b, int c, int d);
+    S_00158C10_Obj *func_001CF740(void *a, int b, int c);
+};
+struct S_00158C10_Scene {
+    char pad0[0xb4];
+    void *fB4;
+};
+struct S_00158C10_Root {
+    char pad0[4];
+    S_00158C10_Scene *f4;
+};
+struct S_00158C10_Global {
+    char pad0[0x4c0];
+    int f4C0;
+};
+extern S_00158C10_Global *D_002B9120;
+extern S_00158C10_Root *D_002A8490;
+struct C_00158C10 {
+    char pad0[0x3c];
+    S_00158C10_Obj *unk3c;
+    void *unk40;
+    void func_001586F0(int a);
+    void func_001577A0(void *p, int n);
+    void func_00158A60(int a);
+    void func_001D3F50(void);
+    void func_00158C10(int a, int b);
+};
+
 void C_00158A60::func_00158A60(int a) {
     S_P *p = (S_P *)func_001E8A44(0x218);
     unk24 = p ? p->func_0016CE80(1) : 0;
