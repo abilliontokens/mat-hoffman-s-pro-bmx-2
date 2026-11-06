@@ -7,6 +7,11 @@ struct C_001AEBB0 {
     undefined4 func_001AEBB0(byte param_1);
 };
 
+extern float D_002AA2E8, D_002AA2EC;
+struct C_001ADFD0 {
+    char pad0[0x24];
+    void func_001ADFD0(int *a, int *b, int *c, int d, int e, int f);
+};
 extern int D_0028C214;
 extern int D_0028C208;
 extern int D_0028C1A4;
