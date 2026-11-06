@@ -1,6 +1,7 @@
 /* 10 functions from 0x0018DE60 to 0x0018EB70, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include "asm_helpers.h"
 struct C_0018E720 {
     undefined4 func_0018E720(byte param_1);
 };
@@ -339,7 +340,7 @@ void C_0018E250::func_0018E250(const char * volatile name, unsigned int flags)
     slot[3] = c;
     k = slot[3];
     func_001E8920((void *)slot[0], name, k);
-    ((volatile char *)k)[slot[0]] = 0;
+    ((volatile char *)slot[0])[k] = 0;
     ((C_0018E250 *)slot[0])->f18 = *(volatile unsigned int *)&flags;
     f = *(volatile unsigned int *)&flags;
 
@@ -384,12 +385,18 @@ void C_0018E250::func_0018E250(const char * volatile name, unsigned int flags)
     }
 }
 
+union Slot_0018E3E0 {
+    volatile int v[4];
+    int n[4];
+};
 void Node_0018EA50::func_0018E3E0(int a, int b)
 {
-    volatile int slot[4];
+    volatile int slot[1];
+    int len;
+    int cap;
+    int min;
     Node_0018EA50 *p;
     int v;
-    int k;
 
     slot[0] = (int)this;
     *(volatile unsigned int *)&flags = a;
@@ -412,16 +419,11 @@ void Node_0018EA50::func_0018E3E0(int a, int b)
     case 3: {
         const char *s = *(const char **)b;
 
-        slot[1] = StrLen_0018E3E0(s);
-        slot[2] = 0xff;
-        k = slot[2];
-        if (k > slot[1]) {
-            k = slot[1];
-        }
-        slot[3] = k;
-        k = slot[3];
-        func_001E8920(((Node_0018EA50 *)slot[0])->f24, s, k);
-        ((Node_0018EA50 *)slot[0])->f24[k] = 0;
+        len = StrLen_0018E3E0(s);
+        cap = 0xff;
+        min = AsmMinI(cap, len);
+        func_001E8920(((Node_0018EA50 *)slot[0])->f24, s, min);
+        ((Node_0018EA50 *)slot[0])->f24[min] = 0;
         p = (Node_0018EA50 *)slot[0];
         p->f20 = p->f24;
         p = (Node_0018EA50 *)slot[0];
