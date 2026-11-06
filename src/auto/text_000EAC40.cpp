@@ -284,7 +284,6 @@ void BmxUIPageHOFTitle::func_000EB350(void)
 
 BmxUIPageMedia *BmxUIPageMedia::func_000EB370(void *param_1)
 {
-    S_000EB420_Obj *zero = 0;
     func_001BE360(param_1);
     unk29C = 0;
     unk2B0 = 0;
@@ -300,10 +299,8 @@ BmxUIPageMedia *BmxUIPageMedia::func_000EB370(void *param_1)
     unk2C0 = 0;
     vtbl = (void *)&D_00281B34;
     unk290 = 1;
-    unk280[0] = zero;
-    unk280[1] = zero;
-    unk280[2] = zero;
-    unk280[3] = zero;
+    for (int i = 0; i < 4; i++)
+        unk280[i] = 0;
     unk2C8 = 0;
     unk2CC = 0;
     unk2D0 = 0;
