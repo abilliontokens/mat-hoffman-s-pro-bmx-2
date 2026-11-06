@@ -10,7 +10,8 @@ struct Water : WaterBase {
     ~Water();
 };
 struct Vec4W { float x; float y; float z; float w; };
-struct MatW { float m[16]; };
+struct __declspec(align(16)) MatW { float m[16]; };
+extern float D_00275544;
 MatW func_00026960();
 extern Vec4W D_002AB798;
 struct NodeW {
@@ -113,6 +114,164 @@ struct C_001C8720 {
     undefined4 func_001C8720(byte param_1);
 };
 
+
+void Walker::func_001C7EB0(float dt)
+{
+    unk380 = 0;
+    if (unk3C->unk10 == 0) {
+        if (dt > 0.0f) {
+            unk3C->func_001670C0(dt, unk378, 0);
+            unkCC = dt + unkCC;
+            EntryW *e = &unkC0[unkC4];
+            if (e->p44 != 0 && e->p40->dur < unkCC) {
+                do {
+                    unkCC = unkCC - e->p40->dur;
+                    pos.x = pos.x - e->p44->x;
+                    pos.y = pos.y - e->p44->y;
+                    pos.z = pos.z - e->p44->z;
+                    pos.w = 1.0f;
+                } while (e->p40->dur < unkCC);
+            }
+            Vec4W A;
+            Vec4W B;
+            Vec4W C;
+            Vec4W D;
+            D.z = 0.0f;
+            D.y = 0.0f;
+            D.x = 0.0f;
+            D.w = 1.0f;
+            if (e->p44 != 0) {
+                D = *((C67W *)e->p44)->func_001C67C0(&A, *(int *)&unkCC);
+            } else {
+                D = D_002AB798;
+            }
+            B.w = 1.0f;
+            B.x = D.x - pos.x;
+            D.x = B.x;
+            B.y = D.y - pos.y;
+            D.y = B.y;
+            B.z = D.z - pos.z;
+            D.z = B.z;
+            C.z = 0.0f;
+            C.y = 0.0f;
+            C.x = 0.0f;
+            C.w = 1.0f;
+            A.w = 1.0f;
+            A.x = B.x + pos.x;
+            pos.x = A.x;
+            A.y = B.y + pos.y;
+            pos.y = A.y;
+            A.z = B.z + pos.z;
+            pos.z = A.z;
+            pos.w = A.w;
+            unk3C->unk4->func_00199A70(0, &C);
+            D = unk3C->unk4->func_00197EC0((float *)&D);
+            A.x = C.x + D.x;
+            A.y = C.y + D.y;
+            A.z = C.z + D.z;
+            C = A;
+            Vec4W E;
+            E.x = A.x;
+            E.y = A.y;
+            E.z = A.z;
+            E.w = 1.0f;
+            v29(&E, 0, 0);
+            unkD0 = ((int *)&E)[1];
+            unk3C->unk4->func_00199790(0, &C);
+            if (e->f54 != 0) {
+                int ns = func_001C6820(unkCC);
+                if (ns != unkB8) {
+                    int old = unkB8;
+                    bool b1 = (old == 1 || old == 3);
+                    bool b2 = (old == 2 || old == 3);
+                    unkB8 = ns;
+                    if (!b1) {
+                        if (ns == 1 || ns == 3) {
+                            func_001C6EA0(unk40, &f50, &f60);
+                            A = unk40->func_00199B00(0);
+                            for (int i = 9; i > 0; i--) hist[i] = hist[i - 1];
+                            hist[0] = A;
+                        }
+                    } else {
+                        if (ns == 2 || ns == 0) {
+                            A = unk40->func_00199B00(0);
+                            for (int i = 9; i > 0; i--) hist[10 + i] = hist[10 + i - 1];
+                            hist[10] = A;
+                        }
+                    }
+                    if (!b2) {
+                        if (ns == 2 || ns == 3) {
+                            func_001C6EA0(unk44, &f80, &f90);
+                            A = unk44->func_00199B00(0);
+                            for (int i = 9; i > 0; i--) hist[20 + i] = hist[20 + i - 1];
+                            hist[20] = A;
+                        }
+                    } else {
+                        if (ns == 1 || ns == 0) {
+                            A = unk44->func_00199B00(0);
+                            for (int i = 9; i > 0; i--) hist[30 + i] = hist[30 + i - 1];
+                            hist[30] = A;
+                        }
+                    }
+                }
+            }
+            if (unk370 != 0 && unk364 != 0) {
+                C.y = C.y + unk368;
+                MatW mat = func_00026960();
+                mat.m[3] = C.x;
+                mat.m[7] = C.y;
+                mat.m[11] = C.z;
+                unk364->v31(&mat);
+                unk364->func_00133F10(0);
+                if (unk364->fA7 & 0x20) {
+                    C.x = C.x - unk364->f54->v40.x;
+                    C.y = C.y - unk364->f54->v40.y;
+                    C.z = C.z - unk364->f54->v40.z;
+                    mat.m[3] = C.x;
+                    mat.m[7] = C.y;
+                    mat.m[11] = C.z;
+                    unk364->v31(&mat);
+                    unk364->func_00133F10(0);
+                    if (unk364->fA7 & 0x20) {
+                        C.x = C.x - unk364->f54->v40.x;
+                        C.y = C.y - unk364->f54->v40.y;
+                        C.z = C.z - unk364->f54->v40.z;
+                    }
+                    C.y = C.y - unk368;
+                    unk3C->unk4->func_00199790(0, &C);
+                }
+            }
+            if (unkB0 != 0 && e->f54 != 0 && unk3C->unk4->f1A0 == 0) {
+                B.z = 0.0f;
+                B.y = 0.0f;
+                B.x = 0.0f;
+                B.w = 1.0f;
+                unk40->func_00199A70(0, &B);
+                float saved = B.y;
+                v29(&B, 0, 0);
+                B.y = B.y + unkB4;
+                if (B.y > saved) {
+                    unk48->func_001A0C90(B);
+                }
+                B.z = 0.0f;
+                B.y = 0.0f;
+                B.x = 0.0f;
+                B.w = 1.0f;
+                unk44->func_00199A70(0, &B);
+                saved = B.y;
+                v29(&B, 0, 0);
+                B.y = B.y + unkB4;
+                if (B.y > saved) {
+                    unk4C->func_001A0C90(B);
+                }
+            }
+        }
+    }
+    if (dt > 0.0f) {
+        unk3C->unk4->func_0019AC50();
+    }
+    ScriptControllerW::func_0018C900(dt);
+}
 
 undefined4 C_001C8720::func_001C8720(byte param_1)
 {
