@@ -3,7 +3,7 @@
 #include "ghidra.h"
 extern float D_00275460;
 extern float D_002755E8;
-extern float D_002755EC;
+extern const float D_002755EC;
 extern float D_00275600;
 
 struct Vec4 {
@@ -131,6 +131,12 @@ struct C_00034890 {
 };
 
 
+void C_000342C0::func_000342C0()
+{
+    D_002A8490->f234 = 1;
+    f1d4 = func_001E8A44(0x54);
+}
+
 void func_000347F0(char *param_1)
 {
   int func_001E8D25(...);
@@ -163,8 +169,10 @@ void func_000348B0(Vec4 *out, float t, Vec4 p0, Vec4 p1, Vec4 p2, Vec4 p3)
 {
     float t2 = t * t;
     float t3 = t * t2;
-    float a = ((t3 + t3) - t2 * D_002755EC) + D_00275460;
-    float b = t2 * D_002755EC - (t3 + t3);
+    float t6 = t3 + t3;
+    float k = t2 * 3.0f;
+    float a = (t6 - k) + D_00275460;
+    float b = k - t6;
     float c = (t3 - D_00275600 * t2) + t;
     float d = t3 - t2;
     Vec4 m0 = Vec3Scale(Vec3Sub(p2, p0), D_002755E8);
@@ -173,12 +181,12 @@ void func_000348B0(Vec4 *out, float t, Vec4 p0, Vec4 p1, Vec4 p2, Vec4 p3)
     Vec4 n0 = Vec3Scale(m0, c);
     Vec4 q2 = Vec3Scale(p2, b);
     Vec4 q1 = Vec3Scale(p1, a);
+    out->w = 1.0f;
     Vec4 s = Vec3Add(q1, q2);
     Vec4 u = Vec3Add(s, n0);
     out->x = u.x + n1.x;
     out->y = u.y + n1.y;
     out->z = u.z + n1.z;
-    out->w = 1.0f;
 }
 
 void C_00034A40::func_00034A40(void *a1, void *a2, void *a3, S_00034A40_Tab *a4, float a5, int a6, int a7, int a8, int a9)
