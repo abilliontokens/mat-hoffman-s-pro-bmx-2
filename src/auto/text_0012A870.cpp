@@ -509,35 +509,3 @@ void C_0012AC20::func_0012AC20(S_0012AB70Vec *p1, S_0012AB70Vec *p2, S_0012AB70V
     if (p5) *p5 = f1d0;
 }
 
-int C_0012ACC0::func_0012ACC0(float x, float y, float z, float w)
-{
-    C_0012ACC0 *volatile self = this;
-    float right[4];
-    S_0012AB70Vec delta;
-    if (x == pos[0] && y == pos[1] && z == pos[2]) return 0;
-    right[2] = right[1] = right[0] = 0.0f;
-    right[3] = 1.0f;
-    self->up[0] = 0.0f;
-    self->up[1] = 1.0f;
-    self->up[2] = 0.0f;
-    float dz = z - self->pos[2], dy = y - self->pos[1], dx = x - self->pos[0];
-    *(float *)&delta.v0 = dx;
-    *(float *)&delta.v1 = dy;
-    *(float *)&delta.v2 = dz;
-    delta.v3 = 0x3f800000;
-    func_0012A380(self->forward, (int)&delta);
-    if (x == self->pos[0] && z == self->pos[2]) {
-        *(float *)&delta.v0 = 1.0f;
-        *(float *)&delta.v1 = 0.0f;
-        *(float *)&delta.v2 = 0.0f;
-        *(float *)&delta.v3 = 1.0f;
-        memcpy(right, &delta, 16);
-    } else {
-        Cross_0012ACC0(right, self->up, self->forward);
-        func_0012A380(right, (int)right);
-    }
-    Cross_0012ACC0(self->up, self->forward, right);
-    self->stamp = D_002EFDB8[4] + 1;
-    return 1;
-}
-
