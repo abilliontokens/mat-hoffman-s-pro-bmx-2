@@ -60,6 +60,8 @@ void func_0011ACC0(void *a, void *b, float *m);
 
 extern float D_00275544;
 extern float D_00275F58;
+extern float D_00275460;
+extern float D_00278C48;
 
 struct C_0011A590_f28 {
     void func_00197F70(void *a, void *b);
@@ -284,7 +286,7 @@ struct BoundsOwner {
     BoundsAccum *f60;
 };
 
-void func_0011AFF0(BoundsOwner *self)
+int func_0011AFF0(BoundsOwner *self)
 {
     BoundsSource *src = self->f54;
     BoundsAccum *acc = self->f60;
@@ -304,7 +306,7 @@ void func_0011AFF0(BoundsOwner *self)
     *(volatile float *)&acc->f154 = acc->f154 + src->f40;
     *(volatile float *)&acc->f158 = acc->f158 + src->f44;
     *(volatile float *)&acc->f15c = acc->f15c + src->f48;
-    acc->f164++;
+    return ++*(volatile int *)&acc->f164;
 }
 
 float func_0011B180(float a, float b)
