@@ -41,6 +41,7 @@ struct S_3B0A0_Gfx {
 };
 struct S_3B0A0_Owner { char pad0[0x5c]; S_3B0A0_Gfx *f5c; };
 struct S_3B0A0_28 { char pad0[0x1a4]; void *f1a4; void *f1ac; };
+struct S_3B0A0_Elem { char pad0[0x38]; int f38, f3c, f40, f44; };
 struct S_3B0A0_Obj {
     char pad0[0x24];
     void *f24;
@@ -86,50 +87,94 @@ static __forceinline char *Get_3B0A0(int *p, int i)
 }
 void C_0003BB60::func_0003B0A0()
 {
-    char *p = (char *)this;
-    char *mgr = *(char **)(p + 0x64);
-    char *arr = *(char **)(mgr + 0x5a4);
-    int idx = *(int *)(p + 0x47c);
-    int count;
-    int *items;
-    int sel;
-    char *e1, *e2, *e3, *g1, *g2;
+    if (func_001E8AF0(*(char **)(*(char **)((char *)this + 0x64) + 0x5a4) + *(int *)((char *)this + 0x47c) * 72, D_00276F08)) {
+        char *mgr = *(char **)((char *)this + 0x64);
+        int idx = *(int *)((char *)this + 0x47c);
+        char *arr = *(char **)(mgr + 0x5a4);
+        int sel = *(int *)(arr + idx * 72 + 0x44) + *(int *)((char *)this + 0x480);
+        char *e1 = Get_3B0A0((int *)(mgr + 0x5a8), sel);
+        char *e2 = Get_3B0A0((int *)(mgr + 0x5a8), sel);
+        char *e3 = Get_3B0A0((int *)(mgr + 0x5a8), sel);
+        char *g1 = Get_3B0A0((int *)((char *)this + 0x5c8), sel + 1);
+        char *g2 = Get_3B0A0((int *)((char *)this + 0x5c8), sel);
+        int a9 = *(int *)(e1 + 0x35c);
+        int a8 = *(int *)(e2 + 0x358);
+        int a7 = *(int *)(e3 + 0x360);
+        float a5 = *(float *)((char *)this + 0x440);
+        S_3B0A0_Obj *o = (S_3B0A0_Obj *)*(void **)((char *)this + 0x540);
+        Vec4_3B0A0 v54, v24, v64, v34, v74;
 
-    if (func_001E8AF0(arr + idx * 72, D_00276F08) == 0) {
-        return;
-    }
-    sel = *(int *)(arr + idx * 72 + 0x44) + *(int *)(p + 0x480);
-    count = *(int *)(mgr + 0x5a8);
-    items = *(int **)(mgr + 0x5ac);
-    e1 = (count > 0 && items != 0 && sel < count) ? (char *)items[sel] : 0;
-    e2 = (count > 0 && items != 0 && sel < count) ? (char *)items[sel] : 0;
-    e3 = (count > 0 && items != 0 && sel < count) ? (char *)items[sel] : 0;
-    count = *(int *)(p + 0x5c8);
-    items = *(int **)(p + 0x5cc);
-    g1 = (count > 0 && items != 0 && sel + 1 < count) ? (char *)items[sel + 1] : 0;
-    g2 = (count > 0 && items != 0 && sel < count) ? (char *)items[sel] : 0;
-    if (g2 == 0) {
-        return;
-    }
-    {
-        char *o = *(char **)(p + 0x540);
-        float v1[4], v2[4], v3[4], v4[4], v5[4];
-        v1[0] = *(float *)(e1 + 0x35c);
-        v1[1] = *(float *)(e2 + 0x358);
-        v1[2] = *(float *)(e3 + 0x360);
-        v2[0] = 0.0f; v2[1] = 0.0f; v2[2] = 0.0f; v2[3] = 1.0f;
-        v3[0] = 0.0f; v3[1] = 0.0f; v3[2] = 0.0f; v3[3] = 1.0f;
-        v4[0] = 0.0f; v4[1] = 0.0f; v4[2] = 0.0f; v4[3] = 1.0f;
-        v5[0] = 0.0f; v5[1] = 0.0f; v5[2] = 0.0f; v5[3] = 1.0f;
-        if (*(void **)(o + 0x24) != 0) {
-            ((C_0003BB60 *)*(void **)(o + 0x24))->func_00198390();
+        if (g2 == 0)
+            return;
+        D_002EFDB8->v7(1);
+        D_002EFDB8->v8();
+        int ex = *(int *)(arr + idx * 72 + 0x38);
+        int ey = *(int *)(arr + idx * 72 + 0x3c);
+        int ez = *(int *)(arr + idx * 72 + 0x40);
+        if (o->f24 != 0) {
+            ((S_3B0A0_Obj *)o->f24)->func_00198390();
+            if (o->f2c != 0)
+                ((S_3B0A0_Obj *)o->f2c)->func_00198390();
+            o->f24 = 0;
+        } else if (o->f28 != 0) {
+            ((S_3B0A0_VObj *)o->f28->f1a4)->f4->func_00198390();
+            ((S_3B0A0_VObj *)o->f28->f1a4)->vb4();
+            o->f28 = 0;
         }
-        if (*(void **)(o + 0x2c) != 0) {
-            ((C_0003BB60 *)*(void **)(o + 0x2c))->func_00198390();
+        o->f24 = g2;
+        ((S_3B0A0_Obj *)g2)->func_001983A0();
+        ((S_3B0A0_Obj *)g2)->func_0019A8C0(&v34, &v74);
+        if (func_001E8AF0((char *)g2 + 0x28, D_00276D54))
+            v34.z -= D_00275AEC;
+        if (g1 != 0) {
+            o->f2c = g1;
+            ((S_3B0A0_Obj *)g1)->func_001983A0();
+        } else {
+            o->f2c = 0;
         }
-        *(void **)(o + 0x24) = g2;
-        ((C_0003BB60 *)g2)->func_001983A0();
-        (void)v1; (void)v2; (void)v3; (void)v4; (void)v5; (void)g1;
+        int m = a7;
+        if (m > a8) {
+            if (m > a9) m = a7; else m = a9;
+        } else {
+            if (a8 > a9) m = a8; else m = a9;
+        }
+        int best;
+        if (ey > ez)
+            best = (ey > ex) ? ey : ex;
+        else
+            best = (ez > ex) ? ez : ex;
+        float t = (float)((m > best) ? m : best);
+        t = t * D_0027653C;
+        t = t * D_002766C8;
+        v34.y = a5;
+        v54.x = v34.x;
+        v54.y = D_00276220 * t + a5;
+        v54.z = v34.z - D_00276D50 * t;
+        v24 = Vec4_3B0A0(0.0f, a5 - v54.y, v34.z - v54.z, 1.0f);
+        float d = AsmSqrtF(v24.x * v24.x + v24.y * v24.y + v24.z * v24.z);
+        o->f38 = d;
+        func_00034820(&v24.x, &v24.x);
+        AsmVec3Cross(&v64.x, &v24.x, D_002A14E4);
+        o->f34->f5c->func_00194E60(v54);
+        o->f34->f5c->f4 = 0;
+        o->f34->f5c->func_00194F90(60.0f);
+        o->f34->f5c->func_00194EB0(v24);
+        o->f34->f5c->func_00194F60(v64);
+    } else if (func_001E8AF0(*(char **)(*(char **)((char *)this + 0x64) + 0x5a4) + *(int *)((char *)this + 0x47c) * 72, D_00276F00)) {
+        char *mgr = *(char **)((char *)this + 0x64);
+        int idx = *(int *)((char *)this + 0x47c);
+        void *a3 = *(int *)((char *)this + 0x480) ? *(void **)((char *)this + 0x594) : *(void **)((char *)this + 0x590);
+        char *arr = *(char **)(mgr + 0x5a4);
+        int sel = *(int *)(arr + idx * 72 + 0x44) + *(int *)((char *)this + 0x480);
+        char *g1 = Get_3B0A0((int *)(mgr + 0x5a8), sel);
+        char *g2 = Get_3B0A0((int *)(mgr + 0x5a8), sel);
+        char *g3 = Get_3B0A0((int *)(mgr + 0x5a8), sel);
+        S_3B0A0_Obj *o = (S_3B0A0_Obj *)*(void **)((char *)this + 0x540);
+
+        o->func_00034A40(0, 0, a3, mgr, *(float *)((char *)this + 0x440), idx,
+                         *(int *)(g3 + 0x360), *(int *)(g2 + 0x358), *(int *)(g1 + 0x35c));
+    } else {
+        return;
     }
 }
 
