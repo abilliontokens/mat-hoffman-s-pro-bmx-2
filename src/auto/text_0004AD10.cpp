@@ -14,7 +14,17 @@ struct C_0004BAB0 {
 #include <xmmintrin.h>
 #include <string.h>
 struct Vec16 { int v[4]; };
-struct __declspec(align(16)) Mtx { float m[16]; };
+struct __declspec(align(16)) Mtx {
+    float m[16];
+    void Identity() {
+        __m128 z = _mm_setzero_ps();
+        _mm_store_ps(&m[0], z);
+        _mm_store_ps(&m[4], z);
+        _mm_store_ps(&m[8], z);
+        _mm_store_ps(&m[12], z);
+        m[0] = m[5] = m[10] = m[15] = 1.0f;
+    }
+};
 template <class T> inline const T &Min(const T &a, const T &b) { return a > b ? b : a; }
 
 struct Obj {
