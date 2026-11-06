@@ -82,6 +82,14 @@ inline int Clamp_00013A40(const char *s)
     return res;
 }
 inline int MinV_00013A40(int a, int b) { return a > b ? b : a; }
+inline int Clamp2_00013A40(const char *s)
+{
+    volatile int len = strlen(s);
+    volatile int lim = 0x103;
+    volatile int res;
+    res = lim > len ? len : lim;
+    return res;
+}
 
 struct C_00013F50 {
     int f0;
@@ -346,10 +354,12 @@ void C_00014020::func_00014850(int arg)
             next = 0;
         }
         V4_00014850 zero;
-        S_00014850_Vec4 from = f3E4;
-        from.y += 2.0f;
-        S_00014850_Vec4 to = D_002B9120->f588[f3B4]->entries[next];
+        S_00014850_Vec4 from;
+        S_00014850_Vec4 to;
+        to = D_002B9120->f588[f3B4]->entries[next];
         to.y += 2.0f;
+        from = f3E4;
+        from.y += 2.0f;
         if (func_00012730(&from, &to, &zero, 1, 0) == 0) {
             f3DC = 0;
             f3E0 = 1;
