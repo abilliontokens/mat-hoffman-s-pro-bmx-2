@@ -222,6 +222,7 @@ struct PhysicsBody {
     void func_00171F50(int a1, int a2);
     void func_00172420(void);
     void func_00172460(void);
+    void func_001724B0(float dt);
     void func_00172000(void);
     void func_00172330(void);
     void func_00171D00(float x,float y,float z,float w);
@@ -489,6 +490,7 @@ void func_001724B0(int a)
 }
 
 extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
+#pragma optimize("a", on)
 void PhysicsBody::func_001729D0(void)
 {
     char *p = (char *)this;
@@ -520,6 +522,6 @@ void PhysicsBody::func_001729D0(void)
     }
     *(V4_00171BA0 *)(p + 0x74) = *(V4_00171BA0 *)(p + 0x84);
 }
-
+#pragma optimize("", on)
 static __forceinline void SqrtR_00171D00(float *r,const float &x) { _mm_store_ss(r,_mm_sqrt_ss(_mm_load_ss(&x))); }
 static __forceinline void MaxR_00171D00(float *r,const float &a,const float &b) { _mm_store_ss(r,_mm_max_ss(_mm_load_ss(&a),_mm_load_ss(&b))); }
