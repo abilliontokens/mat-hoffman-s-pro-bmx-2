@@ -404,9 +404,8 @@ void SimpleVCR::func_00195E70(void)
 
 int C_00196000::func_00196000(float param_1, int param_2, int param_3, int param_4, float param_5, float param_6, int param_7)
 {
-    float p = param_1;
     f70++;
-    if (p > D_00275544 && f74 < f6c && (fc0 & 0x10) == 0) {
+    if (param_1 > 0.0f && f74 < f6c && (fc0 & 0x10) == 0) {
         f78[f74] = param_2;
         if (param_3 != 0) {
             f7c[f74] = param_3;
