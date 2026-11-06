@@ -2,6 +2,8 @@
 #include "common.h"
 #include <xmmintrin.h>
 #include <string.h>
+#include <math.h>
+#include <stdlib.h>
 
 struct V4_2D270 {
     float x, y, z, w;
