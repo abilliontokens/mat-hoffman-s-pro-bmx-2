@@ -238,7 +238,7 @@ struct S_001AFF80_list {
 static __forceinline void FloatToInt(int *out, float f)
 {
     int * volatile p = out;
-    *p = _mm_cvtt_ss2si(_mm_load_ss(&f));
+    *p = _mm_cvtt_ss2si(*(__m128 *)&f);
 }
 
 struct C_001AFF80 {
@@ -353,14 +353,15 @@ int C_001AFEC0::func_001AFEC0()
     }
     if (cb == 0 || cb(user, this) != 0) {
         for (i = 0; i < 4; i++) {
-            if (Item(i)) {
-                Item(i)->func_001AF530(i);
+            C_001AF530 *item = items[i];
+            if (item != 0) {
+                item->func_001AF530(i);
             }
         }
-        if (unk1C) {
+        if (unk1C != 0) {
             unk1C->vf2();
         }
-        if (unk20) {
+        if (unk20 != 0) {
             unk20->vf2();
         }
     }
@@ -773,14 +774,16 @@ C_001B08B0::C_001B08B0(const C_001B08B0 &src)
 {
     extern int D_0028C444;
     int i;
+    const C_001B08B0 *s;
 
     vtbl = (void *)&D_0028C444;
-    unk4 = src.unk4;
-    unk8 = src.unk8;
+    s = &src;
+    unk4 = s->unk4;
+    unk8 = s->unk8;
     for (i = 0; i < 4; i++) {
         items[i] = 0;
-        if (src.items[i] != 0) {
-            items[i] = new S_001B08F0_Item(*src.items[i]);
+        if (s->items[i] != 0) {
+            items[i] = new S_001B08F0_Item(*s->items[i]);
         }
     }
 }
