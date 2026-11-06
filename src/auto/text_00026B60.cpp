@@ -98,6 +98,107 @@ static __forceinline void Cross_000273F0(V4_000273F0 * volatile out, V4_000273F0
                 _mm_mul_ps(_mm_loadu_ps(&pa->x), _mm_shuffle_ps(_mm_loadu_ps(&pb->x), _mm_loadu_ps(&pb->x), 0xc9)),
                 _mm_mul_ps(_mm_loadu_ps(&pb->x), _mm_shuffle_ps(_mm_loadu_ps(&pa->x), _mm_loadu_ps(&pa->x), 0xc9))), 0xc9));
 }
+struct ObjE0_26 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
+    virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14();
+    virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24();
+    virtual void v25(); virtual void v26(); virtual void v27(void *); virtual void v28(void *);
+    char pad4[0x28 - 4]; V4_000273F0 f2C; V4_000273F0 f3C;
+    char pad4C[0x204 - 0x4C]; int f204;
+    char pad208[0x218 - 0x208]; float f218;
+    char pad21C[0x238 - 0x21C]; V4_000273F0 f238;
+    char pad248[0x268 - 0x248]; V4_000273F0 f268;
+    char pad278[0x300 - 0x278]; int f300;
+    void func_00175110(int); void func_00174550(int, int, int);
+};
+struct ObjE4_26 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
+    virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14();
+    virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24();
+    virtual void v25(); virtual void v26(); virtual void v27(void *); virtual void v28(void *);
+    void func_00194130(int);
+};
+struct ObjF0_26 {
+    char pad0[0x24]; int f24; int f28;
+    char pad2C[0x3C - 0x2C]; int f3C; int f40; int f44;
+    char pad48[4]; int f4C;
+    char pad50[0x60 - 0x50]; int f60; char pad64[4]; int f68;
+    char pad6C[0xB4 - 0x6C]; int fB4; int fB8;
+    char padBC[0xC8 - 0xBC]; int fC8; int fCC; float fD0; int fD4;
+    void func_001A8E30(int); void func_001A9070(int); void func_0001EDC0(void *);
+};
+struct ObjF4_26 {
+    char pad0[0x58]; int f58; char pad5C[8]; void *f64; void *f68;
+    void func_001A8630(int); void func_001A8BC0(void *, int, int, V4_000273F0, int, int);
+};
+struct ObjFC_26 {
+    char pad0[0x60]; void *f60; char pad64[4]; int f68;
+    char pad6C[0xA7 - 0x6C]; unsigned char fA7;
+    void func_0017F050(int); void func_0017F0A0(int); void func_001334E0(int);
+    void func_00086C20(int); void func_00133660(int);
+};
+struct ObjF8_26 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
+    virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14();
+    virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24();
+    virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29();
+    virtual void v30(); virtual void v31(); virtual void v32();
+    char pad4[0x60 - 4]; void *f60; void *f64; int f68;
+    char pad6C[0x9C - 0x6C]; void *f9C;
+    void func_0014AB30(int); void func_00129920(int); void func_0014C1C0(int, int, int);
+};
+struct Obj204_26 {
+    char pad0[0x68]; int f68;
+    void func_001A4A50(int); void func_00129920(int);
+};
+struct Obj208_26 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
+    virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14();
+    virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24();
+    virtual void v25(); virtual void v26(); virtual void v27(void *); virtual void v28(void *);
+    char pad4[0x30 - 4]; int f30;
+    void func_0001EBB0(int);
+};
+struct ObjE8_26 {
+    char pad0[0x94]; void *f94; void *f98;
+    void func_000B6180(int); void func_000B6640(int, void *);
+};
+struct Axis14_26 { float f0, f4, f8, fC, f10; };
+struct Obj20C_26 {
+    char pad0[0x24]; int f24;
+    char pad28[0x94 - 0x28]; void *f94; void *f98;
+    void func_000B8B60(int); void func_000B8C80(void *);
+};
+extern int D_002BA148;
+extern int D_002BA15C;
+extern int D_002BA154;
+extern int D_002A4334;
+extern char D_00276688;
+void *func_001E8A44(unsigned int);
+int func_00132E20_26(const char *);
+struct Glob4334_26 { int func_00132E20(const char *); void func_001577A0(void *, int); };
+struct C_00026B60 {
+    char pad0[0x2C]; V4_000273F0 f2C; V4_000273F0 f3C;
+    char pad4C[0x1E0 - 0x4C];
+    ObjE0_26 *f1E0; ObjE4_26 *f1E4; ObjE8_26 *f1E8; char padEC[4];
+    ObjF0_26 *f1F0; ObjF4_26 *f1F4; ObjF8_26 *f1F8; ObjFC_26 *f1FC; ObjFC_26 *f200;
+    Obj204_26 *f204; Obj208_26 *f208; Obj20C_26 *f20C;
+    char pad210[0x220 - 0x210]; Axis14_26 *f220; Axis14_26 *f224; Axis14_26 *f228;
+    int f22C; int f230; int f234; int f238;
+    char pad23C[0x33C - 0x23C]; char f33C[0x100];
+    char pad43C[0x758 - 0x43C]; int f758;
+    char pad75C[0x768 - 0x75C]; int f768;
+    void func_00026B60(char *name, V4_000273F0 a1, V4_000273F0 a2, V4_000273F0 a3, V4_000273F0 a4, int a5, int a6);
+    void func_001577A0(void *, int);
+};
 struct C_00027850 {
     char pad0[0x5CC];
     int unk5CC;
