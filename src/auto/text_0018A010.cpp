@@ -51,7 +51,7 @@ struct C_0018A210 {
     int f114, f118, f11C, f120, f124, f128, f12C;
     C_0018A210_Sub sub;
     unsigned char flags;
-    void func_0018A210();
+    C_0018A210 *func_0018A210();
 };
 
 /* LightTempData */
