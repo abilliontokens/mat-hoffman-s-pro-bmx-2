@@ -203,7 +203,9 @@ struct PhysicsBody {
     float fF8;
     int fFC;
     int f100;
-    char pad104[0x10];
+    char pad104[0x8];
+    float f10C;
+    float f110;
     float f114;
     float f118;
     char pad11C[0x10];
