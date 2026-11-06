@@ -276,6 +276,21 @@ void *C_00092890::func_000928F0(void)
     return func_001D3F50();
 }
 
+/* vtable slot 14 (0x929A0): the analysis merged it into func_000928F0.
+   Only diff left: target keeps *r in eax (`mov eax,[eax]; test eax,eax; ...
+   mov ecx,eax`), this builds `mov ecx,[eax]; test ecx,ecx`. */
+void C_00092890::func_000929A0(void)
+{
+    S_00093140_Obj **r = D_002A8490->f2ec->func_0018C160(&D_0027958C);
+
+    if (r != 0 && *r != 0) {
+        S_000929A0_Clamp *o = func_0018C070((S_000929A0_Mid *)*r);
+        if (D_00275AEC > o->f10) o->f10 = 10.0f;
+        if (D_00275AEC < o->f14 || o->f14 > o->f10) o->f14 = 10.0f;
+    }
+    func_001578D0();
+}
+
 int func_00092A10(void)
 {
     if (D_002A8490->f2e0->f2cc->func_001D4300(8) != 0) {
