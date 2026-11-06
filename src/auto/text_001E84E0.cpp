@@ -2,9 +2,6 @@
 #include "common.h"
 #include "ghidra.h"
 
-extern char D_000343FD[];
-extern char D_00269EC3[];
-
 static void swap_bytes(char *p, char *q, unsigned int width)
 {
     char dummy;
