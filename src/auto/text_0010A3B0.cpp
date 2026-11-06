@@ -124,6 +124,22 @@ struct Hud_0010A3B0 {
     LOAD_TEX(0x18a8, D_00282B7C); \
     LOAD_TEX(0x18ac, D_00282B64)
 #define HA(base, i) (((int *)((char *)this + (base)))[i])
+#define NAME_LOOP6(i0, chk, ld) \
+    for (i = i0, j = 0; i < i0 + 8; i++, j += 0x32) { \
+        const char *src = f24->f52c + j + chk; \
+        char *dst = name; \
+        char c; \
+        do { \
+            c = *src++; \
+            *dst++ = c; \
+        } while (c != 0); \
+        if (func_001E8AF0(name, D_00282B54) == 0) { \
+            func_001ADCC0(buf, 0x100, D_00276F28, f24->f52c + j + ld); \
+            f1658[i] = D_002EF7D0->func_00162B20(buf, 1); \
+            func_001ADCC0(buf, 0x100, D_00282B50, f24->f52c + j + ld); \
+            f17f4[i] = D_002EF7D0->func_00162B20(buf, 1); \
+        } \
+    }
 #define NAME_LOOP5(i0, chk, ld) \
     for (i = i0, j = 0; i < i0 + 8; i++, j++) { \
         const char *src = f24->f52c + j * 0x32 + chk; \
@@ -204,26 +220,26 @@ void Hud_0010A3B0::func_0010A3B0()
     int i, j, k, r;
     prefix[0] = 0;
     LOAD_ALL_TEX;
-    NAME_LOOP2(47, 0x6858, 0x6858)
+    NAME_LOOP5(47, 0x6858, 0x6858)
     for (k = 0; k < *(int *)(f24->f52c + 0x18); k++) {
         func_001ADCC0(buf, 0x100, D_00276F28, f24->f52c + k * 0x32 + 0xdc8);
-        HA(0x1990, k) = D_002EF7D0->func_00162B20(buf, 1);
+        f1990[k] = D_002EF7D0->func_00162B20(buf, 1);
         func_001ADCC0(buf, 0x100, D_00282B50, f24->f52c + k * 0x32 + 0xdc8);
-        HA(0x1aa8, k) = D_002EF7D0->func_00162B20(buf, 1);
+        f1aa8[k] = D_002EF7D0->func_00162B20(buf, 1);
     }
     for (r = 0; r < 5; r++) {
         for (k = 0; k < *(int *)(f24->f52c + 0x39f0 + r * 4); k++) {
             func_001ADCC0(buf, 0x100, D_00276F28, f24->f52c + 0x49a4 + r * 0x320 + k * 0x32);
-            HA(0x1bc0 + r * 0x40, k) = D_002EF7D0->func_00162B20(buf, 1);
+            f1bc0[r][k] = D_002EF7D0->func_00162B20(buf, 1);
             func_001ADCC0(buf, 0x100, D_00282B50, f24->f52c + 0x49a4 + r * 0x320 + k * 0x32);
-            HA(0x1d00 + r * 0x40, k) = D_002EF7D0->func_00162B20(buf, 1);
+            f1d00[r][k] = D_002EF7D0->func_00162B20(buf, 1);
         }
     }
-    NAME_LOOP2(55, 0x6cb8, 0x6cb8)
-    NAME_LOOP2(63, 0x6cb8, 0x6e48)
-    NAME_LOOP2(71, 0x6cb8, 0x6fd8)
-    NAME_LOOP2(79, 0x72f8, 0x72f8)
-    NAME_LOOP2(87, 0x72f8, 0x7488)
-    NAME_LOOP2(95, 0x72f8, 0x7618)
+    NAME_LOOP5(55, 0x6cb8, 0x6cb8)
+    NAME_LOOP5(63, 0x6cb8, 0x6e48)
+    NAME_LOOP5(71, 0x6cb8, 0x6fd8)
+    NAME_LOOP5(79, 0x72f8, 0x72f8)
+    NAME_LOOP5(87, 0x72f8, 0x7488)
+    NAME_LOOP5(95, 0x72f8, 0x7618)
     func_001056E0();
 }
