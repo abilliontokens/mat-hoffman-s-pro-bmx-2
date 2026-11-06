@@ -3,7 +3,7 @@
 struct V4_00029BD0 {
  union { struct { float x,y,z,w; }; __int64 q[2]; };
  V4_00029BD0() {}
- V4_00029BD0(const V4_00029BD0 &v) { q[0]=v.q[0]; q[1]=v.q[1]; }
+ V4_00029BD0(const V4_00029BD0 &v) { x=v.x; y=v.y; z=v.z; w=v.w; }
  V4_00029BD0 &operator=(const V4_00029BD0 &v) { q[0]=v.q[0]; q[1]=v.q[1]; return *this; }
 };
 struct __declspec(align(16)) M4_00029BD0 { float m[16]; };
@@ -339,6 +339,77 @@ extern float D_002756D4, D_002A1170, D_002A116C, D_002A1168, D_002A1164, D_00275
 void func_00026340(V4_0002A250 *out, V4_0002A250 *in);
 float func_0014F7E0(float x);
 float func_0001C870(float a, int b, float c, float d, float e);
+
+int C_00029BD0::func_00029BD0()
+{
+ V4_00029BD0 *pv=&f1e8->v;
+ V4_00029BD0 v=*pv, temp;
+ v=*func_0001E9E0(&temp,&v);
+ f464=v.y;
+ if(v.y<D_002766A4) {
+ func_0001E9E0(&v,func_0001C610(&temp,&D_002A1110,&v));
+ float dot=v.y*y;
+ dot+=v.x*x;
+ if(dot+v.z*z<D_00275544) return 1;
+ return 0;
+ }
+ f1fc->func_00086C20(1);
+ f1fc->func_00133700();
+ f1fc->func_00133660(D_002BA154);
+ M4_00029BD0 mat=f230->mat;
+ mat.m[7]+=0.5f;
+ f1fc->func_00133EF0(&mat);
+ f1fc->func_00133F10(0);
+ int result;
+ if(f1fc->flags&0x20) {
+ v=*f1fc->data->v;
+ f230->func_00198120(&temp,&v);
+ result=!(temp.x<D_00275544 ? 1 : 0);
+ } else result=1;
+ int id=D_002A4334->func_00132E20(D_00276688);
+ f1fc->func_00086C20(0);
+ f1fc->func_00133700();
+ f1fc->func_00133660(id);
+ f1fc->flags|=1;
+ f1fc->func_00133EF0(&f230->mat);
+ return result;
+}
+
+void C_0002A010::func_0002A010(float dt)
+{
+    static float rate = (float)((D_002766B8 - D_002766C0 - D_002766B0) * D_002A1160);
+    C_0002A010 *self = this;
+    float t;
+    int i;
+    C_0002A010 **pp = &self;
+
+    if (!self->f634) {
+        if (!self->f468 && !self->f454 && self->f1e8->f68 && self->f744 < D_00275548 && !self->f5c8) {
+            t = self->f62c;
+            i = *(int *)&t & 0x7fffffff;
+            if (*(float *)&i > D_002A115C) {
+                int dir;
+                self->f634 = 1;
+                dir = (*pp)->f62c < D_002766A8 ? -1 : 1;
+                D_002B7E40 = dir;
+                D_002B7E3C = 0;
+                self->f640 = dir >= 0;
+                self->f63c = 0;
+                D_002B7E38 = D_002A1158 * self->f638;
+            }
+        }
+    }
+    if (self->f634) {
+        if (D_002B7E3C < D_002766B8 && self->f63c > D_002766C0) {
+            self->f230->func_00199E50(self->f1e8->vf0, *(F4_0002A010 *)&D_002A1110, self->f62c / rate * D_002B7E38 * dt);
+            D_002B7E3C += dt / rate;
+            self->f63c += dt / D_002A1160;
+        }
+        if (self->f63c >= D_002766B8) {
+            self->f634 = 0;
+        }
+    }
+}
 
 void C_0002A250::func_0002A250(float dt)
 {
