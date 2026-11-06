@@ -156,6 +156,7 @@ struct S_000ED170_Mid {
 struct S_000ED170_Global {
     char pad0[0x2E8];
     S_000ED170_Mid *f2E8;
+    struct E300_Lib *f2EC;
 };
 
 struct S_000ED170_Ed {
