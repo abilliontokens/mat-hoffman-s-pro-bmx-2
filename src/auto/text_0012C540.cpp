@@ -77,6 +77,62 @@ struct C_0012CCA0 {
 };
 
 
+int C_0012C540::func_0012C540(char *name, Vec16C *offset)
+{
+    int index=0;
+    Vec16C off;
+    off=*(Vec16C*)&D_002A3F00;
+    if(offset) off=*offset;
+    if(a) func_001E891B(a);
+    if(b) func_001E891B(b);
+    if(c) func_001E891B(c);
+    if(d) func_001E891B(d);
+    char path[260];
+    if(!D_002BEAAC->func_0013B1A0(name)) {
+        char *src=name,*dst=path;
+        do { *dst++=*src; } while(*src++);
+        func_00030F30(path,D_0028422C);
+        if(D_002BEAAC->func_0013B1A0(path)) {
+            func_0012BB60(path,name);
+        } else {
+            return 0;
+        }
+    }
+    int f=D_002BEAAC->func_0013C9F0(name,D_00275FB4);
+    int header[3];
+    D_002BEAAC->func_0013C8A0(f,header,12,1);
+    if(header[0]!=2) { D_002BEAAC->func_0013C110(f); return 0; }
+    int frames=header[2];
+    count=header[1];
+    int n=count;
+    a=alloc_12C(n);
+    b=alloc_12C(count);
+    c=alloc_12C(count);
+    d=(int*)func_001E8A44(count*4);
+    Vec16C v1,v2,v3;
+    v1.z=0;v1.y=0;v1.x=0;v1.w=1;
+    v2.z=0;v2.y=0;v2.x=0;v2.w=1;
+    v3.z=0;v3.y=0;v3.x=0;v3.w=1;
+    for(int i=0;i<count;i++) {
+        for(int j=frames;j>0;--j) {
+            D_002BEAAC->func_0013C8A0(f,&v1,12,1);
+            D_002BEAAC->func_0013C8A0(f,&v2,12,1);
+            D_002BEAAC->func_0013C8A0(f,&v3,12,1);
+            D_002BEAAC->func_0013C8A0(f,&d[index],4,1);
+            v3.x+=off.x;v3.y+=off.y;v3.z+=off.z;
+            Vec12C *dest=&a[index];
+            *(int*)&dest->x=*(int*)&v1.x; *(int*)&dest->y=*(int*)&v1.y; *(int*)&dest->z=*(int*)&v1.z;
+            dest=&b[index];
+            *(int*)&dest->x=*(int*)&v2.x; *(int*)&dest->y=*(int*)&v2.y; *(int*)&dest->z=*(int*)&v2.z;
+            dest=&c[index];
+            *(int*)&dest->x=*(int*)&v3.x; *(int*)&dest->y=*(int*)&v3.y; *(int*)&dest->z=*(int*)&v3.z;
+            ++index;
+        }
+    }
+    D_002BEAAC->func_0013C110(f);
+    return 1;
+}
+
 undefined4 C_0012C8F0::func_0012C8F0(byte param_1)
 {
   int func_0012C4E0(...);
