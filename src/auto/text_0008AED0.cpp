@@ -196,7 +196,9 @@ struct C_0008B850_Text {
     char pad0[4];
     int x;
     int y;
-    char pad0c[0x38];
+    char pad0c[0x30];
+    int f3c;
+    char pad40[4];
     int color;
     unsigned int argb;
     char pad4c[2];
