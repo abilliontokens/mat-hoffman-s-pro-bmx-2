@@ -105,6 +105,7 @@ struct C_0013AEC0 {
     char padF4[4];
     int fF8;
     int fFC;
+    int SlotFlag4(int idx) { return fE8[idx].f18 & 4; }
     int func_0013AC40(const char * volatile key, int a2, int a3, int a4, int *out, int grow);
     int func_0013AFB0(int idx);
     void func_0013B040(int id);
@@ -168,47 +169,61 @@ void func_0013AC00(unsigned char *p, unsigned int n, unsigned char key)
 }
 
 void *func_001E83E8(void *p, unsigned int size);
-int C_0013AEC0::func_0013AC40(const char *key, int a2, int a3, int a4, int *out, int grow)
+int C_0013AEC0::func_0013AC40(const char * volatile key, int a2, int a3, int a4, int *out, int grow)
 {
-    C_0013AEC0 * volatile self = this;
+    struct { C_0013AEC0 * volatile self; volatile int n; } t;
     C_0013AEC0 *p = this;
     int i;
+    int e;
     int cap;
     int idx;
     int j;
     S_0013AEC0_Slot *s;
     char *buf;
-    int one = 1;
 
-    for (i = 0; i < p->fEC; i++, p = self) {
+    t.self = this;
+    for (i = 0; i < *(volatile int *)&p->fEC; i++, p = t.self) {
         if (p->fE8[i].f8 != 0 && func_001EA426(key, (const char *)p->fE8[i].f8) == 0)
             return 1;
     }
     if (p->fE4 == -1) {
-        int n = Max_0013AC40(grow, one);
-        cap = self->fEC + n;
-        self->fE8 = (S_0013AEC0_Slot *)func_001E83E8(self->fE8, cap * sizeof(S_0013AEC0_Slot));
-        if (self->fE8 == 0)
+        t.n = grow;
+        if (grow < 1)
+            t.n = 1;
+        p = t.self;
+        cap = p->fEC + t.n;
+        t.self->fE8 = (S_0013AEC0_Slot *)func_001E83E8(p->fE8, cap * sizeof(S_0013AEC0_Slot));
+        p = t.self;
+        if (p->fE8 == 0)
             return 0;
-        self->fE4 = self->fEC;
+        p->fE4 = p->fEC;
         do {
-            self->fE8[self->fEC].f18 = 1;
-            self->fE8[self->fEC].f8 = 0;
-            self->fE8[self->fEC].f0 = 0;
-            self->fE8[self->fEC].fC = 0;
-            self->fE8[self->fEC].f10 = 0;
-            self->fE8[self->fEC].f14 = 0;
-            self->fE8[self->fEC].f4 = 0;
-            self->fE8[self->fEC].f1C = 0;
-            self->fEC++;
-        } while (self->fEC != cap);
+            p = t.self;
+            *(volatile int *)&p->fE8[p->fEC].f18 = 1;
+            p = t.self;
+            *(volatile int *)&p->fE8[p->fEC].f8 = 0;
+            p = t.self;
+            *(volatile int *)&p->fE8[p->fEC].f0 = 0;
+            p = t.self;
+            *(volatile int *)&p->fE8[p->fEC].fC = 0;
+            p = t.self;
+            *(volatile int *)&p->fE8[p->fEC].f10 = 0;
+            p = t.self;
+            *(volatile int *)&p->fE8[p->fEC].f14 = 0;
+            p = t.self;
+            *(volatile int *)&p->fE8[p->fEC].f4 = 0;
+            p = t.self;
+            *(volatile int *)&p->fE8[p->fEC].f1C = 0;
+            p = t.self;
+            p->fEC++;
+            p = t.self;
+        } while ((e = *(volatile int *)&p->fEC) != cap);
     }
-    p = self;
     idx = p->fE4;
-    p->fE4 = -1;
-    p = self;
+    *(volatile int *)&p->fE4 = -1;
+    j = idx + 1;
+    p = t.self;
     if (p->fEC > 1) {
-        j = idx + 1;
         if (j == p->fEC)
             j = 0;
         do {
@@ -221,9 +236,9 @@ int C_0013AEC0::func_0013AC40(const char *key, int a2, int a3, int a4, int *out,
                 j = 0;
         } while (j != idx);
     }
-    p = self;
+    p = t.self;
     s = &p->fE8[idx];
-    s->f18 = 0;
+    *(volatile int *)&s->f18 = 0;
     buf = (char *)func_001E8AA5(strlen(key) + 1);
     s->f8 = buf;
     strcpy(buf, key);
@@ -451,7 +466,7 @@ void C_0013AEC0::func_0013B280(int keep)
     p = (S_0013B340_Buf *)((char *)this + 0x80);
     do {
         idx = p->f4;
-        if (idx != -2 && (idx == -1 || (*(unsigned char *)(*(int *)((int)this + 0xe8) + 0x18 + idx * 0x20) & 4) == 0)) {
+        if (idx != -2 && (idx == -1 || (*(unsigned char *)(idx * 0x20 + (char *)fE8 + 0x18) & 4) == 0)) {
             p->f8 = -0x6000;
             p->f4 = -1;
             count++;
@@ -562,17 +577,17 @@ void __stdcall func_0013B480(S_BufSet *set)
     }
 }
 
-int __stdcall func_0013B4C0(S_BufSet *set, int n, int x)
+int __stdcall func_0013B4C0(S_BufSet * volatile set, volatile int n, volatile int x)
 {
     int total = 0;
     int off;
-    int sz;
-    int cnt;
+    volatile int sz;
+    volatile int cnt;
 
     for (off = 0; off < 0x20; off += 4) {
         if (*(int *)((char *)set + off) != 0) {
             sz = *(int *)((char *)set + off + 0x20);
-            cnt = n < sz ? n : sz;
+            cnt = n > sz ? sz : n;
             n -= sz;
             if (cnt > 0) {
                 total += func_0014FE60(*(int *)((char *)set + off), cnt, x);
