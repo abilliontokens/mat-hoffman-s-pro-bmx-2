@@ -8,6 +8,10 @@ struct AirBody {
  char pad258[0x10]; AirVec velocity;
  void func_0001C710(AirVec);
 };
+struct AirRider {
+ char pad0[0x1e8]; char *matrix; char pad1ec[0x490-0x1ec]; int f490;
+ void func_00027C50(float);
+};
 struct BmxAirborneControlModel {
  char pad0[0x24]; AirBody *body; void *rider; int active; int f30; int f34; int f38;
  int f3c,f40,f44,f48,f4c,f50,f54;
