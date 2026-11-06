@@ -324,12 +324,12 @@ void C_00067D80::func_00067D80(int param_1)
 extern "C" char *strcpy(char *dst, const char *src);
 void C_00067DA0::func_00067DA0(void)
 {
-    int n;
-    int i;
+    char s3[0x30];
+    char s2[0x14];
     int best, besti, tie;
     char num[4];
-    char s2[0x14];
-    char s3[0x30];
+    int n;
+    int i;
     int score;
 
     if (f150 != 0) {
@@ -343,19 +343,23 @@ void C_00067DA0::func_00067DA0(void)
         if (f15C != 0) {
             for (i = 0; i < n; i++) {
                 ((M_67DA0 *)arr[5 + i])->func_001B1980();
-                fs[0] = (n == 3) ? 290.0f : 320.0f;
+                if (n == 3) {
+                    *(int *)&fs[0] = 0x43910000;
+                } else {
+                    ((int *)this)[0x21] = 0x43a00000;
+                }
                 if (i == f108) {
                     ((M_67DA0 *)arr[5 + i])->func_001B2270(0xffbfa35a);
-                    ((M_67DA0 *)arr[5 + i])->func_001B19C0(0x140, func_001E8858(fs[i] - D_00276DD4), 0);
-                    ((M_67DA0 *)arr[5 + i])->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, 0.0f, 0, 0, 1.0f, 0xff, 0.2f, 0);
+                    ((M_67DA0 *)arr[5 + i])->func_001B19C0(0x140, (int)(fs[i] - D_00276DD4), 0);
+                    ((M_67DA0 *)arr[5 + i])->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, 0.0f, 0xff, 1.3f, 0, 0, 0.2f, 0);
                 } else if (i == f158) {
                     ((M_67DA0 *)arr[5 + i])->func_001B2270(0xffcccccc);
-                    ((M_67DA0 *)arr[5 + i])->func_001B19C0(0x140, func_001E8858(fs[i]), 0);
-                    ((M_67DA0 *)arr[5 + i])->func_001B1860(0, -1.0f, 0xff, 1.3f, 0, 0, 0.0f, 0, 0, 1.0f, 0xff, 0.2f, 0);
+                    ((M_67DA0 *)arr[5 + i])->func_001B19C0(0x140, (int)fs[i], 0);
+                    ((M_67DA0 *)arr[5 + i])->func_001B1860(0, -1.0f, 0xff, 1.3f, 0, 0, 0.0f, 0xff, 1.0f, 0, 0, 0.2f, 0);
                 } else {
                     ((M_67DA0 *)arr[5 + i])->func_001B2270(0xffcccccc);
-                    ((M_67DA0 *)arr[5 + i])->func_001B19C0(0x140, func_001E8858(fs[i]), 0);
-                    ((M_67DA0 *)arr[5 + i])->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, -1.0f, 0, 0, 1.0f, 0xff, 0.0f, 0);
+                    ((M_67DA0 *)arr[5 + i])->func_001B19C0(0x140, (int)fs[i], 0);
+                    ((M_67DA0 *)arr[5 + i])->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0.0f, 0);
                 }
             }
             f15C = 0;
@@ -383,7 +387,7 @@ void C_00067DA0::func_00067DA0(void)
             f114 = 1;
         }
         if (D_002A8490_67DA0->f2E0->f4 == 2 || f114 != 0) {
-            scores[i] = ((Sc_67DA0 **)((char *)D_002A8490_67DA0->f2A4->f64 + 0x4e0 + 0x1a8))[i]->fA40;
+            scores[i] = ((Sc_67DA0 **)((char *)D_002A8490_67DA0->f2A4->f64->tbl + 0x1a8))[i]->fA40;
         }
         score = scores[i];
         s2[0] = 0;
@@ -419,7 +423,7 @@ void C_00067DA0::func_00067DA0(void)
         }
         arr[i]->func_001D6600();
         arr[i + 2]->func_001D6600();
-        score = ((Sc_67DA0 **)((char *)D_002A8490_67DA0->f2A4->f64 + 0x4e0 + 0x1a8))[i]->fA40;
+        score = ((Sc_67DA0 **)((char *)D_002A8490_67DA0->f2A4->f64->tbl + 0x1a8))[i]->fA40;
         if (score > best) {
             best = score;
             besti = i;
@@ -569,6 +573,60 @@ void C_000683F0::func_000684B0()
     unk158 = -1;
 }
 
+int C_00068540::func_00068540(int *a, int b)
+{
+    if (unk160) {
+        D_002B901C = a[2];
+        unk160 = 0;
+        if (unk138 || unk164) {
+            if (unk150) {
+                unk10C->func_00031610(4, 1);
+                unk164 = 1;
+                unk110 = 0;
+                return 0;
+            }
+        } else if (func_001361E0(0x17, 2, a, 0x80000000)) {
+            goto rot;
+        } else if (func_001361E0(2, 2, a, 0x80000000)) {
+            unk10C->func_00031610(2, 1);
+            unk158 = unk108;
+            unk15C = 1;
+            if (unk10C->unk90 == 1) {
+                if (unk108 == 0)
+                    unk108 = 1;
+                else if (unk108 == 2)
+                    unk108 = 0;
+                else if (unk108 == 1)
+                    unk108 = 2;
+            }
+        } else if (func_001361E0(3, 2, a, 0x80000000)) {
+            unk10C->func_00031610(2, 1);
+            unk158 = unk108;
+            unk15C = 1;
+            if (unk10C->unk90 == 1) {
+                if (unk108 == 0)
+                    unk108 = 2;
+                else if (unk108 == 2)
+                    unk108 = 1;
+                else if (unk108 == 1)
+                    unk108 = 0;
+            }
+        } else if (func_001361E0(4, 2, a, 0x80000000) || func_001361E0(0x17, 2, a, 0x80000000)) {
+            unk10C->func_00031610(4, 1);
+            unk138 = 1;
+            unk110 = 0;
+            return 0;
+        } else {
+            if (func_001361E0(5, 2, a, 0x80000000) || func_001361E0(0x18, 2, a, 0x80000000)) {
+            }
+            if (!func_001361E0(0, 2, a, 0x80000000))
+                func_001361E0(1, 2, a, 0x80000000);
+        }
+    }
+rot:
+    return func_00157BF0(a, b);
+}
+
 C_000683F0 *C_000683F0::func_000687B0(int a)
 {
     extern int D_0027850C;
@@ -597,8 +655,9 @@ C_000683F0 *C_000683F0::func_000687B0(int a)
     for (i = 0; i < 7; i++) {
         w[0x19 + i] = 0;
     }
-    w[0x20] = 0;
-    w[0x21] = 0;
+    for (i = 0; i < 2; i++) {
+        w[0x20 + i] = 0;
+    }
     p = &w[0x2e];
     for (i = 0; i < 4; i++) {
         p[4] = 0;
