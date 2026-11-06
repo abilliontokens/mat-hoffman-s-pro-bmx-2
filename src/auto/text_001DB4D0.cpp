@@ -36,6 +36,7 @@ struct WaterTexture {
 struct WaterEntry {
  int a,b,c,d,e;
  WaterEntry() { a=b=c=d=e=0; }
+ void initialize() { a=b=c=d=e=0; }
 };
 void func_001E891B(void *p);
 void __stdcall func_00201100(void *p);
