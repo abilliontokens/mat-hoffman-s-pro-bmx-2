@@ -33,7 +33,7 @@ struct S_B4300_Stream {
 struct S_B4300_Cfg {
     char pad0[8];
     S_B3E10_Obj *f8;
-    char pad10[0x108 - 0x10];
+    char pad0c[0x108 - 0x0c];
     int f108;
     char pad10c[0x118 - 0x10c];
     int f118;
