@@ -216,14 +216,16 @@ struct Icon_7D {
     char pad59[0xb];
     Icon_7D *func_001D5760();
     void func_001D5810(int tex, float b, float c, int d);
-    void setW(float v) { if (f28 != v) { f58 |= 1; f28 = v; } }
-    void setH(float v) { if (f2c != v) { f58 |= 1; f2c = v; } }
+    float texW() { return f4c; }
+    float texH() { return f50; }
+    void setW(float v) { if (f28 != v) { u8 f = f58 | 1; f28 = v; f58 = f; } }
+    void setH(float v) { if (f2c != v) { u8 f = f58 | 1; f2c = v; f58 = f; } }
     void updateUV() {
         u8 f = f58 | 4;
-        f3c = D_00278654 * f4c;
-        f40 = D_00275544 * f4c;
-        f44 = D_0027653C * f50;
-        f48 = D_00275544 * f50;
+        f3c = texW() * D_00278654;
+        f40 = texW() * D_00275544;
+        f44 = texH() * D_0027653C;
+        f48 = texH() * D_00275544;
         f58 = f;
     }
 };
