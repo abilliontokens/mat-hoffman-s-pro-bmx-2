@@ -209,27 +209,15 @@ void __stdcall func_0012B950(S_0012B950_Vec4 *out, float t, S_0012B950_Vec4 p0, 
             V3Scale_0012B950(m1, d));
 }
 
-static __forceinline float Hermite_0012BAE0(float t, float t2, float t3, float p0, float p1, float p2, float p3) {
+float __stdcall func_0012BAE0(float t, float p0, float p1, float p2, float p3) {
+    union { float f; unsigned int u; } t3;
     float m0 = (p2 - p0) * D_002755E8;
     float m1 = (p3 - p1) * D_002755E8;
-    return m0 * ((t3 - (t2 + t2)) + t)
-         + m1 * (t3 - t2)
-         + (((t3 + t3) - t2 * D_002755EC) + D_00275460) * p1
-         + (t2 * D_002755EC - (t3 + t3)) * p2;
-}
-
-float __stdcall func_0012BAE0(float t, float p0, float p1, float p2, float p3) {
-    float t2;
-    float m0;
-    float m1;
-
-    t2 = t * t;
-    m0 = (p2 - p0) * D_002755E8;
-    m1 = (p3 - p1) * D_002755E8;
-    return m0 * (((t * t2) - (t2 + t2)) + t)
-         + m1 * ((t * t2) - t2)
-         + ((((t * t2) + (t * t2)) - t2 * D_002755EC) + D_00275460) * p1
-         + (t2 * D_002755EC - ((t * t2) + (t * t2))) * p2;
+    t3.f = t * t * t;
+    return m0 * ((t3.f - ((t * t) + (t * t))) + t)
+         + m1 * (t3.f - (t * t))
+         + (((t3.f + t3.f) - (t * t) * D_002755EC) + D_00275460) * p1
+         + ((t * t) * D_002755EC - (t3.f + t3.f)) * p2;
 }
 
 void __stdcall func_0012BB60(char *input, char *output) {
