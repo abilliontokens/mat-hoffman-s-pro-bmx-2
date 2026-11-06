@@ -475,5 +475,3 @@ int __stdcall func_00163780(int name, P163780 *p)
     D_002BEAAC->func_0013C110((void *)h);
     return 1;
 }
-struct Elem162ED0 { void func_0015B990(); };
-struct C_00162ED0 { void *func_00162ED0(unsigned int flags); };
