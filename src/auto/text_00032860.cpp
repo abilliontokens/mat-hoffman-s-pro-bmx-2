@@ -268,14 +268,10 @@ void C_00032A20::func_00032A40(void)
     D_002A8490->f124 = 0;
 }
 
-void C_00032E50::func_00032E50(float a, float b, float c, float d)
+void C_00032E50::func_00032E50(V4_00032E50 v)
 {
     if (D_002F08BC != 0) {
-        float *p = &f210.x;
-        p[0] = a;
-        p[1] = b;
-        p[2] = c;
-        p[3] = d;
+        f210 = v;
         f230 = 0.0f;
     }
 }
