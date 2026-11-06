@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 extern float D_002755E0;
 extern int D_0028F274;
@@ -472,24 +473,17 @@ extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
 int C_001D3690::func_001D3730(int a)
 {
-    struct { C_001D3690 * volatile self; int v; union { float t; int n; }; int * volatile p; } L;
-    int r;
+    int v;
 
-    L.self = this;
-    if (*(volatile int *)&f44 != 0 && *(volatile int *)&f48 == 0) {
+    if (f44 != 0 && f48 == 0) {
         f48 = 1;
         D_002F07B8->func_001C3D40(0);
-        L.p = &L.v;
-        L.n = a << 15;
-        L.t = (float)L.n * D_002755E0;
-        r = _mm_cvtss_si32(*(__m128 *)&L.t);
-        _ReadWriteBarrier();
-        *L.p = r;
-        func_002598A0(L.self->f44, 0, L.v);
-        return L.self->f48;
+        AsmFloatToIntRound((float)(a << 15) * D_002755E0, &v);
+        func_002598A0(f44, 0, v);
+        return f48;
     }
     f48 = 0;
-    return L.self->f48;
+    return f48;
 }
 void C_001D3690::func_001D37C0()
 {
