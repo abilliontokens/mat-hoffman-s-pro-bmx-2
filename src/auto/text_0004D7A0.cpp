@@ -1,5 +1,6 @@
 /* 7 functions from 0x0004D7A0 to 0x0004E680, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
 
 void *func_001E8A44(unsigned int);
 struct C_0004E480_Object {
