@@ -22,15 +22,15 @@ static __forceinline void Normalize_0019B890(float *out, const float *in)
     __m128 sq = _mm_mul_ps(v, v);
     __m128 d = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
     d = _mm_add_ss(d, _mm_shuffle_ps(sq, sq, 0xE1));
-    __m128 eps = _mm_set_ss(D_0028B1B0);
-    d = _mm_add_ss(d, _mm_and_ps(_mm_cmplt_ss(d, eps), eps));
-    __m128 r = _mm_rsqrt_ss(d);
-    __m128 dr = _mm_mul_ss(_mm_mul_ss(d, r), r);
+    sq = _mm_set_ss(D_0028B1B0);
+    d = _mm_add_ss(d, _mm_and_ps(_mm_cmplt_ss(d, sq), sq));
+    sq = _mm_rsqrt_ss(d);
+    __m128 dr = _mm_mul_ss(_mm_mul_ss(d, sq), sq);
     __m128 c2 = _mm_set_ss(D_0028B1A0);
-    r = _mm_mul_ss(r, _mm_set_ss(D_0028B190));
-    r = _mm_mul_ss(r, _mm_sub_ss(c2, dr));
-    r = _mm_shuffle_ps(r, r, 0);
-    _mm_storeu_ps(out, _mm_mul_ps(r, v));
+    sq = _mm_mul_ss(sq, _mm_set_ss(D_0028B190));
+    sq = _mm_mul_ss(sq, _mm_sub_ss(c2, dr));
+    sq = _mm_shuffle_ps(sq, sq, 0);
+    _mm_storeu_ps(out, _mm_mul_ps(sq, v));
 }
 
 struct C_0019BA70 {
