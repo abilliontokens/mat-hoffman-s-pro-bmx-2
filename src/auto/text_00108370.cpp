@@ -556,31 +556,55 @@ void C_00108E30::func_00108E30(int a, int b) {
 
 void C_00108F50::func_00108F50(void)
 {
-    int i;
-    int j;
-
-    for (i = 0; i < 4; i++) {
-        fa68[i] = -1;
-        fa78[i] = -1;
-    }
-    fa88 = 0;
-    memset(fab0, 0, sizeof(fab0));
-    for (j = 0; j < 16; j++) {
-        for (i = 0; i < 5; i++) {
-            fce0[i][j] = 0;
-        }
-    }
-    for (j = 0; j < 8; j++) {
-        ff90[0][j] = 0;
-        ff90[1][j] = 0;
-        ff90[2][j] = 0;
-    }
-    ff60[0].a = 0;
-    ff60[1].a = 0;
-    ff60[2].a = 0;
-    ff60[3].a = 0;
-    ff60[4].a = 0;
-    ff60[5].a = 0;
+  int in_ECX = (int)this;
+  undefined4 *puVar1;
+  undefined4 *puVar2;
+  int iVar3;
+  int iVar4;
+  
+  puVar2 = (undefined4 *)(in_ECX + 0xa78);
+  iVar3 = 4;
+  do {
+    puVar2[-4] = 0xffffffff;
+    *puVar2 = 0xffffffff;
+    puVar2 = puVar2 + 1;
+    iVar3 = iVar3 + -1;
+  } while (iVar3 != 0);
+  *(undefined4 *)(in_ECX + 0xa88) = 0;
+  puVar2 = (undefined4 *)(in_ECX + 0xab0);
+  for (iVar3 = 0x46; iVar3 != 0; iVar3 = iVar3 + -1) {
+    *puVar2 = 0;
+    puVar2 = puVar2 + 1;
+  }
+  puVar2 = (undefined4 *)(in_ECX + 0xce0);
+  iVar3 = 0x10;
+  do {
+    iVar4 = 5;
+    puVar1 = puVar2;
+    do {
+      *puVar1 = 0;
+      puVar1 = puVar1 + 0x10;
+      iVar4 = iVar4 + -1;
+    } while (iVar4 != 0);
+    puVar2 = puVar2 + 1;
+    iVar3 = iVar3 + -1;
+  } while (iVar3 != 0);
+  puVar2 = (undefined4 *)(in_ECX + 0xfd0);
+  iVar3 = 8;
+  do {
+    puVar2[-0x10] = 0;
+    *puVar2 = 0;
+    puVar2[0x10] = 0;
+    puVar2 = puVar2 + 1;
+    iVar3 = iVar3 + -1;
+  } while (iVar3 != 0);
+  *(undefined4 *)(in_ECX + 0xf60) = 0;
+  *(undefined4 *)(in_ECX + 0xf68) = 0;
+  *(undefined4 *)(in_ECX + 0xf70) = 0;
+  *(undefined4 *)(in_ECX + 0xf78) = 0;
+  *(undefined4 *)(in_ECX + 0xf80) = 0;
+  *(undefined4 *)(in_ECX + 0xf88) = 0;
+  return;
 }
 
 void C_00108F50::func_00108FF0(void)
