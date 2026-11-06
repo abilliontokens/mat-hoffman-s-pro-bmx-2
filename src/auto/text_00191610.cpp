@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <xmmintrin.h>
 #include <string.h>
+#include "asm_helpers.h"
 struct C_001923D0 {
     undefined4 func_001923D0(byte param_1);
 };
@@ -240,10 +241,35 @@ void func_001917E0(int name, C_0018F390 *obj)
     obj->func_0018F390(&D_00275630, 0x200, &value);
 }
 
+void func_00191810(int a, C_00191470 *b, int op, C_0018F390 *out)
+{
+    int x = ((C_00191470 *)a)->f20.y;
+    int y = b->f20.y;
+    int r = -1;
+    switch (op) {
+    case 22: r = x + y; break;
+    case 23: r = x - y; break;
+    case 24: r = x * y; break;
+    case 25: if (y) r = x / y; break;
+    }
+    out->func_0018F390(&D_00275630, 0x200, &r);
+}
+
 void func_00191970(int a0, int a1, int a2, C_0018F390 *obj)
 {
     char *value = &D_0028AA84;
     obj->func_0018F390(&D_00275630, 0x300, (int *)&value);
+}
+
+int func_001919A0(void *a, void *b, int op)
+{
+    const char *left = *(const char **)((char *)a + 0x28);
+    const char *right = *(const char **)((char *)b + 0x28);
+    switch (op) {
+    case 0x20: if (strcmp(left, right) == 0) return 1; break;
+    case 0x40: if (strcmp(left, right) != 0) return 1; break;
+    }
+    return 0;
 }
 
 void func_00191C20(int name, C_0018F390 *obj)
@@ -283,29 +309,44 @@ void func_00191DA0(int name, C_0018F390 *obj)
     obj->func_0018F390(&D_00275630, 0x500, &value);
 }
 
-void func_00191DD0(C_00191DD0_Node *a, C_00191DD0_Node *b, int op, C_0018F390 *obj)
+int func_00191DD0(C_00191DD0_Node *a, C_00191DD0_Node *b, int op)
 {
     unsigned char x = a->unk140;
     unsigned char y = b->unk140;
-    char r = 0;
 
     switch (op) {
-    case 0x16:
-        r = y + x;
+    case 0x20:
+        if (x == y) {
+            return 1;
+        }
         break;
-    case 0x17:
-        r = x - y;
+    case 0x40:
+        if (x != y) {
+            return 1;
+        }
         break;
-    case 0x18:
-        r = y * x;
+    case 2:
+        if (x < y) {
+            return 1;
+        }
         break;
-    case 0x19:
-        if (y != 0) {
-            r = x / y;
+    case 8:
+        if (x > y) {
+            return 1;
+        }
+        break;
+    case 4:
+        if (x <= y) {
+            return 1;
+        }
+        break;
+    case 0x10:
+        if (x >= y) {
+            return 1;
         }
         break;
     }
-    obj->func_0018F390(&D_00275630, 0x500, &r);
+    return 0;
 }
 
 /* 0x191E50, merged into func_00191DD0 by the analysis (matches on its own part) */
@@ -355,27 +396,46 @@ void func_00191F20(int name, C_0018F390 *obj)
     obj->func_0018F390(&D_00275630, 0x600, &value);
 }
 
+void func_00191F50(C_00191F50_Node *a, C_00191F50_Node *b, int op, C_0018F390 *obj)
+{
+    int x = a->unk12c;
+    int y = b->unk12c;
+    int r = 0;
+
+    switch (op) {
+    case 0x16:
+        r = y + x;
+        break;
+    case 0x17:
+        r = x - y;
+        break;
+    case 0x18:
+        r = y * x;
+        break;
+    case 0x19:
+        if (y != 0) {
+            r = x / y;
+        }
+        break;
+    }
+    obj->func_0018F390(&D_00275630, 0x600, &r);
+}
+
 int func_00192300(void) {
     return 0;
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 void func_00192310(int unused, C_0018F390 *obj)
 {
     S_00192310_Mat m;
     S_00192310_Mat copy;
-    S_00192310_Mat * volatile p;
-    __m128 *v;
 
-    p = &m;
-    v = (__m128 *)p;
-    v[0] = _mm_setzero_ps();
-    v[1] = _mm_setzero_ps();
-    v[2] = _mm_setzero_ps();
-    v[3] = _mm_setzero_ps();
+    AsmZeroMatrix(&m);
     copy = m;
     obj->func_0018F390(&D_00275630, (int)&D_00010900, (int *)&copy);
 }
-
 C_00192370 *C_00192370::func_00192370(int a)
 {
     ((C_00157600 *)this)->func_00157600(a);
