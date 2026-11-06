@@ -78,6 +78,10 @@ struct C_0001CBF0 {
 };
 
 struct V4_1CE80 { float x, y, z, w; };
+/* local vector with the default init the compiler shows: z, y, x = 0 then w = 1 */
+struct V4C_1CE80 : V4_1CE80 {
+    V4C_1CE80() { x = y = z = 0.0f; w = 1.0f; }
+};
 struct Obj_1CE80 {
  virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
  virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
@@ -684,6 +688,41 @@ void *C_0001CD90::func_0001CD90(int arg)
 
     o->func_001A23F0(s, o->f70, o->f80, 2, 0x41a00000, 0x42c80000, z, z);
     return obj;
+}
+
+int C_0001CE80::func_0001CE80(Obj_1CE80 *obj, float *p, float *q, int unused, float maxd)
+{
+    V4_1CE80 best = {0, 0, 0, 1.0f};
+    V4_1CE80 tmp = {0, 0, 0, 1.0f};
+    V4_1CE80 m2 = {0, 0, 0, 1.0f};
+    V4_1CE80 m1 = {0, 0, 0, 1.0f};
+    V4_1CE80 m0 = {0, 0, 0, 1.0f};
+    float bestd;
+    int bi = 0;
+    int i;
+    if (count <= 0) return 0;
+    bestd = 3.4028235e38f;
+    for (i = 0; i < count; i++) {
+        float d;
+        nodes[i]->func_001A15C0(&tmp);
+        d = func_0001CAF0(&tmp, *(float * volatile *)&p);
+        if (d < bestd) {
+            bestd = d;
+            best = tmp;
+            bi = i;
+        }
+    }
+    nodes[bi]->func_001A1540(&m2, &m1);
+    nodes[bi]->func_001A1620(&m0);
+    V4_1CE80 r;
+    r.x = p[0] - best.x; r.y = p[1] - best.y; r.z = p[2] - best.z; r.w = 1.0f;
+    if (obj == 0) return 0;
+    if (!(bestd < maxd)) return 0;
+    obj->SetA(r);
+    V4_1CE80 s;
+    s.x = q[0] - m0.x; s.y = q[1] - m0.y; s.z = q[2] - m0.z; s.w = 1.0f;
+    obj->SetB(s);
+    return 1;
 }
 
 int C_0001D0B0::func_0001D0B0(int count, int p2)
