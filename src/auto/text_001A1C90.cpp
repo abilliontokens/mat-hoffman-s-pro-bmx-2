@@ -728,19 +728,13 @@ body:
 
 C_001A2580 *C_001A2580::func_001A2580(int a0, int a1, int a2, int a3)
 {
+    S_30D0_Block *blk = (S_30D0_Block *)&f1c8;
     func_001A1680(a0, a1, a2, a3);
     f1c0 = 0;
     f1c4 = 0;
     vtbl = &D_0028B58C;
-    f1cc = 0;
-    f1c8 = 0;
-    f1d0 = 0;
-    f1d4 = 0;
-    f1d8 &= 0xfe;
-    f1cc = func_001E8A44(4);
-    f1d4 = 1;
-    f1d0 = 0x10;
-    f1d8 |= 1;
+    blk->init();
+    blk->alloc();
     f2d0 = 0;
     f2d8 = 1;
     return this;
