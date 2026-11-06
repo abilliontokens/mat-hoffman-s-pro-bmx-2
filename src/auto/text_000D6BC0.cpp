@@ -131,7 +131,7 @@ struct S_6DD0_W {
     S_6DD0_W *func_001B12C0(int a);
     void func_001B13A0(char *a, char *b, int c, int d);
     void func_001B2270(unsigned int c);
-    void func_001B1A30(float a, int b, float c);
+    void func_001B1A30(float a, float b, int c);
     void func_001B17D0(char *s);
 };
 struct S_6DD0_Spr {
