@@ -1,6 +1,6 @@
 /* 2 functions from 0x0003D910 to 0x0003E660, found by Ghidra. */
 #include "common.h"
-struct V4 { float x, y, z, w; };
+struct V4 { float x, y, z, w; V4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; } };
 struct Blk { char pad[0x358]; int w; int h; int d; char pad2[4]; int flag; };
 struct Q { char pad[0x28]; void func_00197E70(V4*); void func_00197B40(V4*, V4*); };
 struct Sub { int a; int b; Q* q; };
@@ -362,37 +362,47 @@ tail:
 #pragma optimize("y", on)
 int Obj::_func_0003E410()
 {
-    V4 a = {0, 0, 0, 1};
-    V4 b = {0, 0, 0, 1};
-    V4 c = {0, 0, 0, 1};
-    Blk* blk = 0;
-    int x, y, z;
-    if (*(int*)f564 != 0)
+    V4 a, b, c;
+    int px, py, pz;
+    Blk *blk;
+    int w, h, d;
+    int i, j;
+
+    a.z = 0.0f; a.y = 0.0f; a.x = 0.0f; a.w = 1.0f;
+    b.z = 0.0f; b.y = 0.0f; b.x = 0.0f; b.w = 1.0f;
+    c.z = 0.0f; c.y = 0.0f; c.x = 0.0f; c.w = 1.0f;
+
+    if (f564->a != 0)
         return 1;
     f564->q->func_00197E70(&a);
-    f564->q->func_00197B40(&c, &b);
-    if (!((float)f438 > a.z))
-        return 0;
-    if (!func_00038B10(f564->q + 1, b, a, &x, &y, &z, 1))
-        return 0;
+    f564->q->func_00197B40(&b, &c);
+    if ((float)f438 <= a.y)
+        return 1;
+    if (func_00038B10(f564->q + 1, a, b, &px, &py, &pz, 1) == 0)
+        return 1;
+    blk = 0;
     func_00038A70(f564->q + 1, &blk);
     if (!blk->flag)
-        return 0;
-    int w = blk->w, h = blk->h, d = blk->d;
+        return 1;
+    w = blk->w;
+    h = blk->h;
+    d = blk->d;
     if (d > f45c)
         d = f45c;
-    d += x;
-    if (d >= f45c)
-        return 0;
-    for (int j = 0; j < h; j++) {
-        for (int i = 0; i < w; i++) {
-            int idx;
-            if (b.x > D_00276E9C && b.x < D_00276E98)
-                idx = (d + f45c * y) * f460 + j;
-            else
-                idx = (d + f45c * y) * f460 + i;
-            if (grid[idx + z])
-                return 1;
+    d += py;
+    if (d >= f45c || h <= 0)
+        return 1;
+    for (i = 0; i < h; i++) {
+        int row = (px + i) * f45c;
+        for (j = 0; j < w; j++) {
+            int col = (px + j) * f45c;
+            if (b.x > D_00276E9C || b.x < D_00276E98) {
+                if (grid[(row + d) * f460 + j + pz])
+                    return 1;
+            } else {
+                if (grid[(col + d) * f460 + i + pz])
+                    return 1;
+            }
         }
     }
     return 0;
