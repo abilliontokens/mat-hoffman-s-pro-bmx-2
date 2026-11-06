@@ -2,6 +2,21 @@
 #include "common.h"
 
 extern int D_0027E28C;
+extern char D_00278690[], D_002786A0[], D_00278678[], D_002786B0[], D_0027E328[], D_0027E31C[];
+extern float D_002757F0, D_002786B8;
+extern int D_0028F5E0;
+extern void *D_002A8490;
+extern "C" void *func_001E8A44(unsigned int);
+struct S_C7970_Manager { void func_0018C160(const char *); };
+struct S_C7970_Text {
+ char pad[0x184];
+ S_C7970_Text *func_001B12C0(int);
+ void func_001B13A0(const char *,const char *,int,int);
+ void func_001B1A30(float,float,int);
+ void func_001B2270(unsigned int);
+ void func_001B19A0(int);
+ void func_001B17D0(int);
+};
 
 struct S_000C7_Obj {
     virtual void destroying(int flag);
