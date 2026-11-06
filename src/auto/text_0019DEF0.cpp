@@ -1,5 +1,70 @@
 /* 4 functions from 0x0019DEF0 to 0x0019EEC0, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
+
+struct V4_0019DEF0 {
+    float x, y, z, w;
+    V4_0019DEF0() { x = y = z = 0.0f; w = 1.0f; }
+    V4_0019DEF0(float ax, float ay, float az, float aw = 1.0f) { x = ax; y = ay; z = az; w = aw; }
+};
+
+struct __declspec(align(16)) M_0019DEF0 { __m128 m[4]; };
+
+static __forceinline void Xform_0019DEF0(V4_0019DEF0 * volatile out, const M_0019DEF0 * volatile mat, const V4_0019DEF0 * volatile v)
+{
+    __m128 t = _mm_loadu_ps(&v->x);
+    _mm_storeh_pi((__m64 *)&out->z, t);
+    out->w = 1.0f;
+    t = _mm_loadh_pi(t, (__m64 *)&out->z);
+    __m128 r0 = _mm_mul_ps(mat->m[0], t);
+    __m128 r1 = _mm_mul_ps(mat->m[1], t);
+    __m128 r2 = _mm_mul_ps(mat->m[2], t);
+    __m128 lo = _mm_unpacklo_ps(r0, r1);
+    __m128 hi = _mm_unpackhi_ps(r0, r1);
+    __m128 junk;
+    junk = _mm_movehl_ps(junk, r2);
+    lo = _mm_add_ps(lo, hi);
+    r2 = _mm_add_ps(r2, junk);
+    hi = _mm_movehl_ps(hi, lo);
+    lo = _mm_movelh_ps(lo, r2);
+    hi = _mm_shuffle_ps(hi, r2, 0x14);
+    lo = _mm_add_ps(lo, hi);
+    _mm_storeu_ps(&out->x, lo);
+    out->w = 1.0f;
+}
+
+static __forceinline void Copy_0019DEF0(M_0019DEF0 * volatile dst, const M_0019DEF0 * volatile src) { *dst = *src; }
+
+static inline float Abs_0019DEF0(float f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
+
+struct Bone_0019DEF0 {
+    float pad0[3];
+    V4_0019DEF0 *pad;
+};
+struct Shape_0019DEF0 { char pad0[0xc]; float cx, cy, cz; float ex, ey, ez; };
+struct Obj_0019DEF0 { char pad0[0xb0]; M_0019DEF0 xf; char padF0[0xd4]; Shape_0019DEF0 *f1c4; };
+
+struct C_0019DEF0 {
+    char pad0[0xa8];
+    V4_0019DEF0 center;
+    V4_0019DEF0 extent;
+    V4_0019DEF0 oldCenter;
+    V4_0019DEF0 oldExtent;
+    char padE8[0x48];
+    M_0019DEF0 xf;
+    char pad170[0x20];
+    int count;
+    int *active;
+    int *f198;
+    void *f19c;
+    Obj_0019DEF0 **objs;
+    void func_0019DEF0(void);
+};
+
+void func_0011AC30(M_0019DEF0 *out, M_0019DEF0 *in);
+V4_0019DEF0 func_0001C680(V4_0019DEF0 v, M_0019DEF0 *m);
+V4_0019DEF0 func_0019D9A0(V4_0019DEF0 *a, V4_0019DEF0 *b);
+V4_0019DEF0 func_0019DA10(V4_0019DEF0 *a, V4_0019DEF0 *b);
 
 struct S_0019EB10_Node {
     char pad0[0x170];
@@ -92,6 +157,25 @@ extern S_0019EB10_Loader *D_002BEAAC;
 void *func_001E8A44(int size);
 void *func_001E8AA5(int size);
 void func_001E891B(void *p);
+
+void func_00030AC0(float *out, float *v, float *m);
+void func_0001C680(V4_0019E860 *out, V4_0019E860 v, float *m);
+void SoultreeHierarchyCollisionObject::func_0019E860(float *m, float *ext)
+{
+    SoultreeHierarchyCollisionObject * volatile self = this;
+    V4_0019E860 v[3];
+    V4_0019E860 a(self->fB8, 0.0f, 0.0f, 1.0f);
+    v[1] = V4_0019E860(0.0f, self->fBC, 0.0f, 1.0f);
+    v[2] = V4_0019E860(0.0f, 0.0f, self->fC0, 1.0f);
+    v[0] = a;
+    func_00030AC0(m, self->fA8, self->f130);
+    func_0001C680(&v[0], a, self->f130);
+    func_0001C680(&v[1], v[1], self->f130);
+    func_0001C680(&v[2], v[2], self->f130);
+    ext[0] = fabs_0019E860(v[2].x) + fabs_0019E860(v[1].x) + fabs_0019E860(v[0].x);
+    ext[1] = fabs_0019E860(v[2].y) + fabs_0019E860(v[1].y) + fabs_0019E860(v[0].y);
+    ext[2] = fabs_0019E860(v[2].z) + fabs_0019E860(v[1].z) + fabs_0019E860(v[0].z);
+}
 
 void C_0019EB10::func_0019EB10(int h)
 {
