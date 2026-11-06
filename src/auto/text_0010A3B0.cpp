@@ -124,6 +124,22 @@ struct Hud_0010A3B0 {
     LOAD_TEX(0x18a8, D_00282B7C); \
     LOAD_TEX(0x18ac, D_00282B64)
 #define HA(base, i) (((int *)((char *)this + (base)))[i])
+#define NAME_LOOP9(end, chk, ld) \
+    for (j = 0; i < end; i++, j++) { \
+        const char *src = f24->f52c + j * 0x32 + chk; \
+        char *dst = name; \
+        char c; \
+        do { \
+            c = *src++; \
+            *dst++ = c; \
+        } while (c != 0); \
+        if (func_001E8AF0(name, D_00282B54) == 0) { \
+            func_001ADCC0(buf, 0x100, D_00276F28, f24->f52c + j * 0x32 + ld); \
+            f1658[i] = D_002EF7D0->func_00162B20(buf, 1); \
+            func_001ADCC0(buf, 0x100, D_00282B50, f24->f52c + j * 0x32 + ld); \
+            f17f4[i] = D_002EF7D0->func_00162B20(buf, 1); \
+        } \
+    }
 #define NAME_LOOP8(i0, chk, ld) \
     for (i = i0 * 4, j = 0; i < i0 * 4 + 0x20; i += 4, j++) { \
         const char *src = f24->f52c + j * 0x32 + chk; \
