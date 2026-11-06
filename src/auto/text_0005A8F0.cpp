@@ -106,6 +106,7 @@ struct S_LevelInfo {
     int arr300[8];
     char pad320[4];
     int f324;
+    S_LevelInfo *func_0005D6A0();
 };
 struct S_Obj2EC {
     S_Obj2EC *func_001D5350();
