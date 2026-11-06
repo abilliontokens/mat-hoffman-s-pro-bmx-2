@@ -255,7 +255,7 @@ void func_0011ADD0(Vec4 *out, float *m)
 }
 
 extern float D_00275460;
-static inline void Vec4Scale3(Vec4 *out, const Vec4 *v, float s)
+static inline void Vec4Scale3(Vec4 *out, const Vec4 *v, const float &s)
 {
     out->x = v->x * s;
     out->y = v->y * s;
@@ -270,9 +270,8 @@ void func_0011AFF0(char *arg)
  Vec4 d;
  d.x=p[0]-p[4]; d.y=p[1]-p[5]; d.z=p[2]-p[6];
  float w=(*(float **)(a+0x8c))[i];
- w=D_00275460-w;
  Vec4 r;
- r.x=d.x*w; r.y=d.y*w; r.z=d.z*w;
+ Vec4Scale3(&r,&d,D_00275460-w);
  if(r.x>b[94]) b[94]=r.x;
  if(r.y>b[95]) b[95]=r.y;
  if(r.z>b[96]) b[96]=r.z;
