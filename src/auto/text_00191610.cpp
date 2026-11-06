@@ -308,6 +308,47 @@ void func_00191DD0(C_00191DD0_Node *a, C_00191DD0_Node *b, int op, C_0018F390 *o
     obj->func_0018F390(&D_00275630, 0x500, &r);
 }
 
+/* 0x191E50, merged into func_00191DD0 by the analysis (matches on its own part) */
+int func_00191E50(C_00191DD0_Node *a, C_00191DD0_Node *b, int op)
+{
+    unsigned char x = a->unk140;
+    unsigned char y = b->unk140;
+
+    switch (op) {
+    case 0x20:
+        if (x == y) {
+            return 1;
+        }
+        break;
+    case 0x40:
+        if (x != y) {
+            return 1;
+        }
+        break;
+    case 2:
+        if (x < y) {
+            return 1;
+        }
+        break;
+    case 8:
+        if (x > y) {
+            return 1;
+        }
+        break;
+    case 4:
+        if (x <= y) {
+            return 1;
+        }
+        break;
+    case 0x10:
+        if (x >= y) {
+            return 1;
+        }
+        break;
+    }
+    return 0;
+}
+
 void func_00191F20(int name, C_0018F390 *obj)
 {
     int value = func_001E91F4(name);
