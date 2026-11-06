@@ -251,19 +251,60 @@ struct C_00156820 {
 };
 
 
+int C_1558::func_00155890(float a)
+{
+    C_1558 *volatile self = this;
+    S_1558_V4 *p;
+    S_1558_Node *n;
+    S_1558_V4 tmp;
+    if (D_002A8490->unk124 == 1) {
+        return 1;
+    }
+    if (unk39C->unk108 == 0) {
+        unk3E4 = a + unk3E4;
+    } else {
+        unk3E4 = 0;
+    }
+    n = self->unk3C->unk4->func_00198330(D_00282A10);
+    n->func_00199CF0(S_1558_V4c(0.5f, 0.866f, 0.0f, 1.0f), self->unk39C->unk48);
+    self->unk384->s12(a);
+    self->func_001C7EB0(a);
+    S_1558_Vec4 vA;
+    S_1558_Vec4 vB;
+    p = self->unk39C->func_00016E40(&tmp);
+    S_1558_V4 pos = *p;
+    self->unk39C->func_00150900(&vA, &vB);
+    {
+        S_1558_Vec4 vC;
+        vC.x = vA.y * vB.z - vA.z * vB.y;
+        vC.y = vA.z * vB.x - vA.x * vB.z;
+        vC.z = vA.x * vB.y - vA.y * vB.x;
+        *(S_1558_V4 *)&vC = *n->func_00198120(&tmp, &vC);
+        n->func_00199CF0(S_1558_V4c(0.5f, 0.866f, 0.0f, 1.0f), -self->unk39C->unk48);
+        *(S_1558_V4 *)&vB = *(S_1558_V4 *)&D_002A79D8;
+        vA.y = 0.0f;
+        func_001553E0(&vA, &vA);
+        self->unk3C->unk4->func_00199600(S_1558_V4c(pos.x, pos.y - self->unk39C->unk34, pos.z, pos.w));
+        self->unk3C->unk4->func_00198F50(&vA, &vB, 0, 1, 0);
+    }
+    self->unk3C->unk4->func_0019AC50();
+    self->unk3E0 = self->unk39C->unk584;
+    return 1;
+}
+
 int TikiPlayerAirborneState::func_00156030(int param_1)
 {
-    S_00156030_Player *p = GetPlayer();
+    S_00156030_Player *p = unk8;
     if (p->unk39C->unk108 != 0) {
         if (p->unk3C->unk10 != 0) {
             p->unk384->func_0008AB90(p->unk388);
         } else if (p->unkC4 != p->unk3C0) {
-            func_001C6DA0(p->unk3C0, 1);
+            p->func_001C6DA0(p->unk3C0, 1);
         }
     }
-    p = GetPlayer();
+    p = unk8;
     if (p->unk3C->unk10 != 0) {
-        func_001C6DA0(p->unk3BC, 1);
+        p->func_001C6DA0(p->unk3BC, 1);
     }
     return 1;
 }
