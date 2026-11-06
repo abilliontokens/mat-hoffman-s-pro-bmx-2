@@ -4,7 +4,7 @@
 struct C_001B1980 {
     void func_001B1980(void);
     void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6,
-                       float a7, int a8, float a9, int a10, float a11, int a12, int a13);
+                       float a7, int a8, float a9, int a10, float a11, float a12, int a13);
     void func_001B2270(int a);
     void func_001B1A30(float a, float b, int c);
     void func_001B19C0(int a, int b, int c);
@@ -114,7 +114,7 @@ void C_000E7AD0::func_000E7AD0()
         D_002B91AC->f40->func_0005E840(D_002A8490->f2E8->f4->fA38);
     }
     for (esi = 0x38; esi < 0x44; esi += 4) {
-        ((E7_GObj *)((char *)D_002B91AC + esi))->func_001D6600();
+        (*(E7_GObj **)(esi + (int)D_002B91AC))->func_001D6600();
     }
     if (f2AC != 0 && f508 == 0 && f284 == 1) {
         f500->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
@@ -126,18 +126,24 @@ void C_000E7AD0::func_000E7AD0()
         char *str;
         f340->func_001B1980();
         str = saved->f27C + saved->f284 * 0x1A8;
-        f340->func_001B17D0(memcmp(str, D_0027E83C, 0x11) == 0 ? (void *)D_00281A48 : (void *)str);
+        if (memcmp(str, D_0027E83C, 0x11) == 0) {
+            f340->func_001B17D0(D_00281A48);
+        } else {
+            f340->func_001B17D0(str);
+        }
         f340->func_001B1860(0, -1.0f, 0, 1.0f, 0, 0, 0, 0xff, 1.0f, 0, 0.25f, 0, 0);
-        saved = f124;
         f4AC = 0;
     }
     if (f4B0 != 0) {
         char *str;
         f340->func_001B1980();
         str = saved->f27C + saved->f284 * 0x1A8;
-        f340->func_001B17D0(memcmp(str, D_0027E83C, 0x11) == 0 ? (void *)D_00281A48 : (void *)str);
+        if (memcmp(str, D_0027E83C, 0x11) == 0) {
+            f340->func_001B17D0(D_00281A48);
+        } else {
+            f340->func_001B17D0(str);
+        }
         f340->func_001B1860(0, -1.0f, 0xff, 1.2f, 0, 0, 0, 0, 1.2f, 0, 0.1f, 0, 0);
-        saved = f124;
         f4B0 = 0;
     }
     if (f4A4 != 0) {
