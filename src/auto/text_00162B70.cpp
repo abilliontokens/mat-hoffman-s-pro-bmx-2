@@ -27,6 +27,8 @@ struct Mgr162B70 {
     void *func_0013B930(void *a, void *b, int c, int d);
     void func_0013C110(void *a);
     void func_00162B70(Pack162B70 *p, int arg);
+    void func_0013C960(int h, void *p, int n);
+    void func_0013C8A0(int h, void *p, int n, int z);
 };
 extern Mgr162B70 *D_002BEAAC;
 extern char D_00282960[];
@@ -321,6 +323,66 @@ int __stdcall func_00162FB0(Src162FB0 *src, char *name, Pack162FB0 *pack)
     }
     mgr->func_0013AFF0(handle, 0, 0);
     mgr->func_0013C110(handle);
+    return 1;
+}
+
+int __stdcall func_00163780(int name, P163780 *p)
+{
+    Mgr163780 *mgr = (Mgr163780 *)D_002BEAAC;
+    int mode;
+    int h;
+    int i, k;
+    int a, b, c, d, e;
+
+    h = mgr->func_0013C9F0(name, D_00275FB4);
+    if (h == -1) {
+        return 0;
+    }
+    mode = 1;
+    mgr->func_0013C960(h, &p->id0, 4);
+    if (p->id0 < 0) {
+        mode = -p->id0;
+        mgr->func_0013C960(h, &p->id0, 4);
+    }
+    mgr->func_0013C960(h, &p->id1, 4);
+    mgr->func_0013C960(h, &p->kindB, 4);
+    mgr->func_0013C960(h, &p->kindA, 4);
+    mgr->func_0013C960(h, &p->countA, 4);
+    mgr->func_0013C960(h, &p->countB, 4);
+    p->func_00162DF0(p->countB);
+    p->func_001628C0(p->countA);
+    for (i = 0; i < p->countA; i++) {
+        mgr->func_0013C960(h, &p->listA[i]->count, 4);
+        mgr->func_0013C8A0(h, &p->listA[i]->unk4, 4, 1);
+        p->listA[i]->vt->v7(p->listA[i]->count);
+        if (p->kindA == 0) {
+            mgr->func_0013C8A0(h, p->listA[i]->data, p->listA[i]->count << 4, 1);
+        } else if (p->kindA == 1) {
+            mgr->func_0013C8A0(h, p->listA[i]->data, p->listA[i]->count * 40, 1);
+        }
+    }
+    for (i = 0; i < p->countB; i++) {
+        mgr->func_0013C8A0(h, &p->listB[i]->count, 4, 1);
+        mgr->func_0013C8A0(h, &p->listB[i]->unk4, 4, 1);
+        p->listB[i]->vt->v6(p->listB[i]->count);
+        if (mode == 2) {
+            if (p->kindB == 0) {
+                mgr->func_0013C8A0(h, p->listB[i]->data, p->listB[i]->count << 3, 1);
+            } else if (p->kindB == 1) {
+                mgr->func_0013C8A0(h, p->listB[i]->data, p->listB[i]->count * 12, 1);
+            }
+        } else {
+            for (k = 0; k < p->listB[i]->count; k++) {
+                mgr->func_0013C960(h, &a, 4);
+                mgr->func_0013C960(h, &b, 4);
+                mgr->func_0013C960(h, &c, 4);
+                mgr->func_0013C960(h, &d, 4);
+                mgr->func_0013C960(h, &e, 4);
+                p->listB[i]->vt->v4(k, &a, &e);
+            }
+        }
+    }
+    mgr->func_0013C110(h);
     return 1;
 }
 
