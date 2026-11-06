@@ -131,7 +131,14 @@ struct XboxVideoCard_001D8240 {
     char pad18[0x6BC - 0x18];
     int f6BC;
     char pad6C0[0x9D4 - 0x6C0];
-    u8 f9D4;
+    union {
+        u8 f9D4;
+        struct {
+            u8 b0 : 1;
+            u8 b1 : 1;
+            u8 rest : 6;
+        } f9D4b;
+    };
     char pad9D5[3];
     int f9D8;
     int func_001D8240(void);
