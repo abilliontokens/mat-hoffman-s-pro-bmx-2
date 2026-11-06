@@ -175,6 +175,96 @@ struct BmxUIPageGameOptions {
     void func_00157960(void);
 };
 
+struct S_F7690_VObj {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(int);
+};
+struct S_F7690_Obj5C020 { int *func_0005C020(int i); };
+struct S_F7690_Sub2FC { char pad0[0x28]; S_F7690_VObj *f28; };
+struct S_F7690_Game {
+    char pad0[0x18];
+    int f18, f1c;
+    char pad20[0x2c0 - 0x20];
+    S_F7690_Obj5C020 *f2c0;
+    char pad2c4[0x2fc - 0x2c4];
+    S_F7690_Sub2FC *f2fc;
+};
+struct S_F7690_Root { char pad0[0x2e0]; S_F7690_Game *f2e0; };
+struct S_F7690_Sub150 { char pad0[0x4c0]; S_F7690_VObj *f4c0; };
+struct S_F7690_Owner {
+    char pad0[0x134];
+    int f134, f138;
+    char pad13c[0x150 - 0x13c];
+    S_F7690_Sub150 *f150;
+    char pad154[0x25c - 0x154];
+    S_000F75D0_B *f25c;
+};
+struct S_F7690_Btn { char pad0[0x3b]; unsigned char f3b; };
+struct S_F7690_Card {
+    int func_00092A10(void);
+    void func_00093120(void);
+    int func_00092A50(int *p);
+    int func_00092AC0(void);
+    int func_00092B40(int i);
+    int func_00093300(float f);
+    void func_00093290(float f);
+    int func_00092EF0(void);
+};
+extern float D_002755E8, D_00275F64, D_00275460, D_002756DC;
+extern "C" int __stdcall func_001DCAFF(int a, int *msg);
+
+struct BmxUIPageMemCard {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    char pad4[0x124 - 4];
+    S_F7690_Owner *unk124;
+    char pad128[0x28c - 0x128];
+    int unk28c, unk290;
+    S_F7690_Btn *unk294;
+    char pad298[8];
+    S_F7690_Btn *unk2a0;
+    char pad2a4[0x2b0 - 0x2a4];
+    float unk2b0;
+    int unk2b4, unk2b8, unk2bc, unk2c0;
+    float unk2c4;
+    int unk2c8, unk2cc, unk2d0, unk2d4, unk2d8, unk2dc, unk2e0;
+    float unk2e4;
+    int unk2e8, unk2ec, unk2f0, unk2f4;
+    S_F7690_Card *unk2f8;
+    int unk2fc, unk300;
+    char pad304[0x310 - 0x304];
+    int unk310, unk314;
+    char pad318[0x320 - 0x318];
+    int unk320, unk324, unk328, unk32c, unk330, unk334;
+    float unk338, unk33c;
+    char pad340[0x348 - 0x340];
+    int unk348, unk34c, unk350, unk354, unk358;
+    float unk35c;
+    int unk360, unk364;
+    float unk368;
+    int unk36c, unk370, unk374;
+    float unk378, unk37c;
+    int unk380;
+    float unk384;
+    int unk388, unk38c, unk390, unk394, unk398, unk39c, unk3a0;
+    float unk3a4, unk3a8;
+    int unk3ac, unk3b0;
+    int func_000F7690(float dt);
+    void func_000CC1B0(void);
+    int func_001BED00(float dt);
+};
+
 struct C_000F83A0 {
     undefined4 func_000F83A0(byte param_1);
 };
