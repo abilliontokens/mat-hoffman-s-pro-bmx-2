@@ -466,9 +466,18 @@ void C_0001C710::func_0001C710(float a0, float a1, float a2, int a3) {
     unk138 = a2 + unk138;
 }
 
-float func_0001C870(float a, float b, float c, float d, float e) {
+float func_0001C870(float a, float b, float c, float d, float e)
+{
     if (d != b) {
-        return clamp_0001C870((a - b) * (e - c) / (d - b) + c, c, e);
+        double r = (a-b)*(e-c)/(d-b)+c;
+        if (e > c) {
+            if ((float)r > e) return e;
+            if ((float)r < c) return c;
+        } else {
+            if ((float)r < e) return e;
+            if ((float)r > c) return c;
+        }
+        return r;
     }
     return D_00275544;
 }
