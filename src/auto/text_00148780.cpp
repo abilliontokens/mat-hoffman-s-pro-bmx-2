@@ -387,9 +387,9 @@ void *C_001488B0::func_001488B0(C_001488B0 *a)
 C_00148820::C_00148820(int a1, void *a2)
 {
     *(volatile u32 *)&unk4 = 0;
-    *(volatile void **)&unk8 = a2;
-    *(volatile int *)((char *)this + 0xC) = (int)&D_00284E94;
-    *(volatile void **)&vtbl = (void *)&D_00285CA0;
+    *(volatile u32 *)&unk8 = (u32)a2;
+    *(volatile u32 *)((char *)this + 0xC) = (u32)&D_00284E94;
+    *(volatile u32 *)&vtbl = (u32)&D_00285CA0;
     *(volatile u32 *)&unkC = (u32)&D_00285C94;
     func_00144E70();
 }
@@ -417,8 +417,8 @@ int DXShaderDescriptor::func_00148910(int a0, Parser_00148910 *p, int id, int id
     char buf[0x40];
     char loopName[0x40];
     char bufA[0x40];
-    unsigned char n;
-    char flag2;
+    int n;
+    int flag2;
     int x;
     int flag;
     int count2;
@@ -426,7 +426,7 @@ int DXShaderDescriptor::func_00148910(int a0, Parser_00148910 *p, int id, int id
     int count1;
     ShaderData_00148E80 *sd;
     int i;
-    short *out;
+    int size;
 
     count1 = 0;
     count2 = 0;
@@ -448,7 +448,7 @@ int DXShaderDescriptor::func_00148910(int a0, Parser_00148910 *p, int id, int id
     if (f14 == 1) {
         func_0014A7B0(D_002BED60, D_002A7130);
         D_002A751C->Set(f26, D_002BED60);
-    } else if (memcmp(buf, D_002867DC, 10) == 0) {
+    } else if (strcmp("Water.xvu", buf) == 0) {
         func_0014A7B0(D_002BEF60, D_002A719C);
         D_002A751C->Set(f26, D_002BEF60);
     } else {
@@ -463,24 +463,23 @@ int DXShaderDescriptor::func_00148910(int a0, Parser_00148910 *p, int id, int id
     fl1 = flag;
     p->func_00168C20(D_002867B4, 1, &n);
     fA = n;
-    if (n == 0) {
+    if (fA == 0) {
         func_00145370(p, sd, 0, items, &count1);
     } else {
-        out = f18;
         for (i = 0; i < fA; i++) {
             func_001ADCC0(loopName, 0x40, D_002867E8, D_002867A8, i + 1);
             p->func_00168BE0(loopName, D_00275630, bufA, -1);
             if (bufA[0] == 0)
                 func_0014FF00(D_002A829C->f14[id].f0, 0, 0, bufA, 0);
             if (bufA[0] == 0x26) {
-                *out = func_00144AE0(bufA, 0, 0, 0);
+                f18[i] = func_00144AE0(bufA, 0, 0, 0);
             } else if (func_001EA426(bufA, D_0028679C) == 0) {
-                *out = -3;
+                f18[i] = -3;
             } else if (func_001EA426(bufA, D_0028678C) == 0) {
-                *out = -4;
+                f18[i] = -4;
             } else {
                 func_001ADCC0(path, 0x104, D_00275678, a0, bufA);
-                *out = D_002AA6C0->Create(path, 0);
+                f18[i] = D_002AA6C0->Create(path, 0);
                 val = sd->f84;
                 func_001ADCC0(loopName, 0x40, D_002867E8, D_00286784, i + 1);
                 p->func_00168C20(loopName, val, &val);
@@ -492,22 +491,23 @@ int DXShaderDescriptor::func_00148910(int a0, Parser_00148910 *p, int id, int id
                     x = 2;
                     break;
                 }
-                D_002AA6C0->Set(*out, x);
+                D_002AA6C0->Set(f18[i], x);
             }
             func_00145370(p, sd, i, &items[count1], &count1);
             func_001ADCC0(loopName, 0x40, D_002867E8, D_0028676C, i + 1);
             p->func_00168C20(loopName, i, &flag2);
             f20[i] = flag2;
-            out++;
         }
     }
-    f2C = (Item12_00148910 *)func_001E8A44(count1 * 12);
-    memcpy(f2C, items, count1 * 12);
+    size = count1 * 12;
+    f2C = (Item12_00148910 *)func_001E8A44(size);
+    memcpy(f2C, items, size);
     f38 = count1;
     fl0 = (fA == 2);
     func_001458E0(p, sd, (Entry8_00148910 *)items, &count2);
-    f30 = (Entry8_00148910 *)func_001E8A44(count2 * 8);
-    memcpy(f30, items, count2 * 8);
+    size = count2 * 8;
+    f30 = (Entry8_00148910 *)func_001E8A44(size);
+    memcpy(f30, items, size);
     f3C = count2;
     for (i = 0; i < f3C; i++) {
         if (f30[i].id == 0x8f)
