@@ -365,13 +365,12 @@ int C_001BA560::func_001BA560(S_001BA560_arg *arg1, int arg2)
 {
     int func_001E8A44(...);
     void func_001BA540();
-    void __stdcall func_001BBAA0(void *a, void *b);
     int r = arg1->v96(&f10c);
     S_001BA560_Node *n;
 
-    if (arg2)
-        func_001BBAA0(this, (void *)&func_001BA540);
-    if (!r)
+    if (arg2 != 0)
+        ((C_001BBAA0 *)arg2)->func_001BBAA0(this, (void *)&func_001BA540);
+    if (r == 0)
         return 0;
     n = (S_001BA560_Node *)func_001E8A44(8);
     if (n) {
