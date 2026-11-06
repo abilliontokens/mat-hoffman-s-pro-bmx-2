@@ -45,8 +45,21 @@ struct Obj {
     void func_000951B0(int a0);
     void func_00095520(int a0);
 };
-typedef void (Obj::*ObjFn5)(void *, int, int, int, int);
-union ObjFn5U { void *p; ObjFn5 f; };
+#define VPAD4(a) virtual void a##0(); virtual void a##1(); virtual void a##2(); virtual void a##3();
+struct VGame {
+    VPAD4(a) VPAD4(b) VPAD4(c) VPAD4(d) VPAD4(e) VPAD4(f) VPAD4(g) VPAD4(h)
+    VPAD4(i) VPAD4(j) VPAD4(k) VPAD4(l) VPAD4(m) VPAD4(n) VPAD4(o) VPAD4(p)
+    VPAD4(q) VPAD4(r) VPAD4(s) VPAD4(t) VPAD4(u) VPAD4(v) VPAD4(w) VPAD4(x)
+    virtual Obj *Find(void *name);
+};
+struct VEnt {
+    VPAD4(a)
+    virtual void Activate();
+};
+struct VHud {
+    VPAD4(a)
+    virtual void Init(void *a0, int a1, int a2, int a3, int a4);
+};
 
 typedef Obj *(Obj::*ObjFn1)(void *);
 typedef void (Obj::*ObjFn0)();
