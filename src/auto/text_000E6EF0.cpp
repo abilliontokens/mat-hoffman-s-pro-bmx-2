@@ -78,7 +78,19 @@ struct SubElem_000F1980 {
     ClampObj_000F1980 *func_001D5AA0();
 };
 struct BmxUIPageRiderOps {
-    char pad0[0x514];
+    char pad0[0x124];
+    Ctx_000E6EF0 *p124;
+    char pad128[0x280 - 0x128];
+    int f280, f284;
+    char pad288[0x290 - 0x288];
+    int f290, f294, f298, f29C, f2A0, f2A4, f2A8, f2AC, f2B0;
+    char pad2B4[0x470 - 0x2b4];
+    int f470;
+    char pad474[0x4c4 - 0x474];
+    int f4C4, f4C8, f4CC, f4D0, f4D4, f4D8, f4DC, f4E0, f4E4, f4E8, f4EC;
+    char pad4F0[0x508 - 0x4f0];
+    int f508, f50C;
+    char pad510[0x514 - 0x510];
     SubElem_000F1980 *a514[5], *a528[5], *a53c[5], *a550[5];
     char pad564[0x154];
     SubElem_000F1980 *a6b8[6], *a6d0[4], *a6e0[4];
