@@ -36,6 +36,32 @@ Vec4 *func_0011EEE0(Vec4 *out, Vec4 *a, Vec4 *b);
 Vec4 *func_0014AA70(Vec4 *out, Vec4 *a, Vec4 *b);
 void func_0001C680(Vec4 *out, Vec4 v, float *m);
 #pragma auto_inline(on)
+struct V4_0014BA80 {
+    f32 x; f32 y; f32 z; f32 w;
+    V4_0014BA80() { z = 0; y = 0; x = 0; w = 1.0f; }
+    V4_0014BA80(f32 x_, f32 y_, f32 z_, f32 w_) { x = x_; y = y_; z = z_; w = w_; }
+};
+static __forceinline void XformV4_0014BA80(V4_0014BA80 *out, const M44_0014BA80 *mat, const float *v)
+{
+    __m128 t = _mm_loadu_ps(v);
+    _mm_storeh_pi((__m64 *)&out->z, t);
+    out->w = 1.0f;
+    t = _mm_loadh_pi(t, (__m64 *)&out->z);
+    __m128 r0 = _mm_mul_ps(mat->m[0], t);
+    __m128 r1 = _mm_mul_ps(mat->m[1], t);
+    __m128 r2 = _mm_mul_ps(mat->m[2], t);
+    __m128 lo = _mm_unpacklo_ps(r0, r1);
+    __m128 hi = _mm_unpackhi_ps(r0, r1);
+    __m128 junk = _mm_movehl_ps(r2, r2);
+    lo = _mm_add_ps(lo, hi);
+    r2 = _mm_add_ps(r2, junk);
+    hi = _mm_movehl_ps(hi, lo);
+    lo = _mm_movelh_ps(lo, r2);
+    hi = _mm_shuffle_ps(hi, r2, 0x14);
+    lo = _mm_add_ps(lo, hi);
+    _mm_storeu_ps(&out->x, lo);
+    out->w = 1.0f;
+}
 static __forceinline void Xform_0014BA80(Vec4 *out, const M44_0014BA80 *mat, const float *v)
 {
     __m128 t = _mm_loadu_ps(v);
