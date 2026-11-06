@@ -1,6 +1,7 @@
 /* 5 functions from 0x0007BAD0 to 0x0007CA00, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <string.h>
 struct C_00026500 { int func_00026500(char *s, int a); };
 extern C_00026500 *D_002A7CB8;
 extern char D_00278AF0[];
