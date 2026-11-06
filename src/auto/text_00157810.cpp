@@ -216,6 +216,9 @@ struct C_00157CF0 {
     int func_0001E010(void);
 };
 
+/* The game's original file holds this function and func_00157810 together (text_00156880.cpp has the
+   matched copy; the auto-split cut the file at 0x157810). func_00157810 only matches when MSVC sees this body in
+   its own unit: it inlines the call once and keeps edx across the recursive call. */
 unsigned int S_00157810_Child::func_00157770(void)
 {
     S_00157810_Child *c;
