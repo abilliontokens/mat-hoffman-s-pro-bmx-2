@@ -275,8 +275,9 @@ void GR_BitString::func_0001E3F0(u32 *a0, u32 a1, int a2) {
     unk10 = 0x80;
     D_002B7D54 = 0;
     D_002B7D4C = a0;
-    u8 *b = (u8 *)a0;
-    D_002B7D50 = (u32)((b[0] << 24) | (b[1] << 16) | (b[2] << 8) | b[3]);
+    u32 v = *a0;
+    u32 b3 = ((u8 *)a0)[3];
+    D_002B7D50 = (((v << 16) | (v & 0xFF00)) << 8) | (((u8 *)&v)[2] << 8) | b3;
 }
 
 void GR_BitString::func_0001E460() {
@@ -288,8 +289,7 @@ void GR_BitString::func_0001E460() {
 
 #pragma optimize("y", off)
 u32 __stdcall func_0001E550(int a0) {
-    u32 *table = D_002A0DAC;
-    u32 v = table[a0];
+    u32 v = D_002A0DAC[a0];
     u32 cur = D_002B7D50;
     D_002B7D54 += a0;
     if (D_002B7D54 < 0x20) {
@@ -540,17 +540,17 @@ void *C_0001E930::func_0001E930(unsigned int flags) {
 
 float func_0001E960(float lengthSquared)
 {
-    __m128 v = _mm_load_ss(&lengthSquared);
+    __m128 v;
     __m128 r;
-    __m128 t;
+    __m128 eps;
 
-    v = _mm_add_ss(v, _mm_and_ps(_mm_cmplt_ss(v, _mm_load_ss(&D_00275FC8)), _mm_load_ss(&D_00275FC8)));
-    r = _mm_rsqrt_ps(v);
-    t = _mm_mul_ss(v, r);
-    t = _mm_mul_ss(t, r);
-    t = _mm_sub_ss(_mm_load_ss(&D_00275FC4), t);
-    r = _mm_mul_ss(r, _mm_load_ss(&D_00275FC0));
-    _mm_store_ss(&lengthSquared, _mm_mul_ss(r, t));
+    v = _mm_load_ss(&lengthSquared);
+    eps = _mm_load_ss(&D_00275FC8);
+    v = _mm_add_ss(v, _mm_and_ps(_mm_cmplt_ss(v, eps), eps));
+    r = _mm_rsqrt_ss(v);
+    r = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_00275FC0)),
+                   _mm_sub_ss(_mm_load_ss(&D_00275FC4), _mm_mul_ss(_mm_mul_ss(v, r), r)));
+    _mm_store_ss(&lengthSquared, r);
     return lengthSquared;
 }
 
@@ -568,22 +568,17 @@ float *func_0001E9E0(float *out, float *v)
  return out;
 }
 
+#pragma optimize("y", on)
 void func_0001EAB0(float *out, float *a, float *b)
 {
-    __m128 va = _mm_loadu_ps(a);
-    __m128 vb = _mm_loadu_ps(b);
-    __m128 sa = va;
-    __m128 sb = vb;
-
-    sa = _mm_shuffle_ps(sa, sa, 0xc9);
-    sb = _mm_shuffle_ps(sb, sb, 0xc9);
-    vb = _mm_mul_ps(vb, sa);
-    va = _mm_mul_ps(va, sb);
-    va = _mm_sub_ps(va, vb);
-    va = _mm_shuffle_ps(va, va, 0xc9);
-    _mm_storeu_ps(out, va);
+    _mm_storeu_ps(out, _mm_shuffle_ps(
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9))),
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9))),
+        0xc9));
 }
-
+#pragma optimize("", on)
 void C_0001EAF0::func_0001EAF0(Vec4 v)
 {
     Vec4 r;
