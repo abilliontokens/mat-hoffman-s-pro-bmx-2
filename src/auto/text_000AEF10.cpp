@@ -199,10 +199,7 @@ static __forceinline void AF0D0_Copy(char *dst, const char *src, int max)
 {
     volatile int len = strlen(src);
     volatile int lim = max;
-    volatile int res;
-    int l = lim;
-    int s = len;
-    res = l > s ? s : l;
+    volatile int res = AF0D0_Min((int)lim, (int)len);
     int n = res;
     func_001E8920(dst, src, n);
     dst[n] = 0;
