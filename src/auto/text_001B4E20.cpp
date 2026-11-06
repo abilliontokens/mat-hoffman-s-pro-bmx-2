@@ -397,6 +397,98 @@ int C_001B5000::func_001B5000(S_001B5000_Stream *s)
     return 1;
 }
 
+void C_001B5000::func_001B5240(S_001B5000_Stream *s)
+{
+    char bufA[0x104];
+    char bufB[0x104];
+    int i;
+    int k;
+    int j;
+    char *tok;
+    void *mem;
+    C_001B5240_Obj *obj;
+
+    s->func_00168BE0(&D_002769A8, &D_002764F0, fA0, 0x104);
+    s->func_00168C20(&D_00277288, 0, &f58);
+    if (f58 > 0) {
+        f5C = (char **)func_001E8A44(f58 * 4);
+        for (i = 0; i < f58; i++) {
+            f5C[i] = (char *)func_001E8A44(0x104);
+            func_001ADCC0(bufA, 0x104, D_0028CB6C, i + 1);
+            s->func_00168BE0(bufA, &D_002764F0, f5C[i], 0x104);
+        }
+    }
+    s->func_00168C20(&D_0028CB58, 1, &f60);
+    if (f60 > 0) {
+        f64 = (int *)func_001E8A44(f60 * 4);
+        f68 = (int **)func_001E8A44(f60 * 4);
+        f6C = (int **)func_001E8A44(f60 * 4);
+        f94 = (int *)func_001E8A44(f60 * 4);
+        f70 = (int *)func_001E8A44(f60 * 4);
+        f78 = (int *)func_001E8A44(f60 * 4);
+        f7C = (char **)func_001E8A44(f60 * 4);
+    }
+    for (k = 0; k < f60; k++) {
+        func_001ADCC0(bufA, 0x104, D_0028CB44, k + 1);
+        s->func_00168C20(bufA, 1, &f64[k]);
+        f68[k] = (int *)func_001E8A44(f64[k] * 4);
+        func_001ADCC0(bufA, 0x104, D_0028CB30, k + 1);
+        s->func_00168BE0(bufA, &D_002764F0, bufB, 0x104);
+        if (strcmp(bufB, "none") != 0) {
+            tok = func_001E95A4(bufB, D_002869B8);
+            for (j = 0; tok != 0 && j < f64[k]; j++) {
+                f68[k][j] = func_001E91F4(tok);
+                tok = func_001E95A4(0, D_002869B8);
+            }
+        } else {
+            for (j = 0; j < f64[k]; j++) {
+                f68[k][j] = 1;
+            }
+        }
+        f6C[k] = (int *)func_001E8A44(f64[k] * 4);
+        func_001ADCC0(bufA, 0x104, D_0028CB1C, k + 1);
+        s->func_00168BE0(bufA, &D_002764F0, bufB, 0x104);
+        if (strcmp(bufB, "none") != 0) {
+            tok = func_001E95A4(bufB, D_002869B8);
+            for (j = 0; tok != 0 && j < f64[k]; j++) {
+                f6C[k][j] = func_001E91F4(tok);
+                tok = func_001E95A4(0, D_002869B8);
+            }
+        } else {
+            for (j = 0; j < f64[k]; j++) {
+                f6C[k][j] = 100;
+            }
+        }
+        func_001ADCC0(bufA, 0x104, D_0028CB0C, k + 1);
+        s->func_00168C20(bufA, 1, &f94[k]);
+        func_001ADCC0(bufA, 0x104, D_0028CAFC, k + 1);
+        s->func_00168C20(bufA, 1, &f70[k]);
+        func_001ADCC0(bufA, 0x104, D_0028CAE8, k + 1);
+        s->func_00168C20(bufA, 1, &f78[k]);
+        f7C[k] = (char *)func_001E8A44(0x104);
+        func_001ADCC0(bufA, 0x104, D_0028CAD4, k + 1);
+        s->func_00168BE0(bufA, &D_002764F0, f7C[k], 0x104);
+    }
+    func_001B5000(s);
+    mem = func_001E8A44(0x2c);
+    f54 = mem != 0 ? ((C_00187640 *)mem)->func_00187640(1) : 0;
+    if (((C_00187640 *)f54)->v27(s) == 0) {
+        ((C_00187640 *)f54)->v2();
+        f54 = 0;
+    }
+    mem = func_001E8A44(0x118);
+    if (mem != 0) {
+        ((C_001B4AF0 *)mem)->func_001B4AF0();
+        *(void **)mem = &D_0028CA84;
+        ((C_001B5240_Obj *)mem)->f114 = 1;
+        obj = (C_001B5240_Obj *)mem;
+    } else {
+        obj = 0;
+    }
+    f1A8 = obj;
+    f1A8->v0(s);
+}
+
 undefined4 C_001B56F0::func_001B56F0(void)
 {
   int in_ECX = (int)this;
