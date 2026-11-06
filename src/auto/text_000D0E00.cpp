@@ -194,6 +194,7 @@ struct C_000D0FD0 {
     void func_001BE360(int a);
     void func_001BE3F0();
     void func_000D0FD0();
+    void func_000D1050();
     void func_000D1980();
 };
 
