@@ -90,6 +90,8 @@ struct S_002A8490_119810 {
 extern S_002A8490_119810 *D_002A8490;
 extern float D_00275460;
 
+struct C_00198330;
+
 struct S119_Obj {
     void func_00199650(void *a);
     void func_00198F50(void *a, void *b, int c, int d, int e);
@@ -98,7 +100,35 @@ struct S119_Obj {
     void func_0019AC50();
     void func_00026270(float s);
     void func_00133ED0();
+    void func_000B6A70(int a);
+    C_00198330 *func_00198330(char *name);
+    Vec4 *func_00199B00(Vec4 *out, int a);
+    void func_001994C0(int a, Vec4 *b, Vec4 *c);
 };
+
+struct S119_Cam {
+    void func_0011CA60(Vec4 v);
+    void func_0009F4C0(int a);
+};
+
+struct S119_Entry {
+    Vec4 a;
+    Vec4 b;
+    f32 d;
+};
+
+extern float D_002755E8;
+extern char D_00283D44[];
+extern char D_00282A40[];
+extern char D_00282A00[];
+extern char D_002829C0[];
+extern char D_002829A8[];
+extern int D_002B9264;
+extern float D_002B9254, D_002B9258, D_002B925C, D_002B9260;
+extern float D_002B9244, D_002B9248, D_002B924C, D_002B9250;
+extern float D_002B9234, D_002B9238, D_002B923C, D_002B9240;
+extern float D_002B9224, D_002B9228, D_002B922C, D_002B9230;
+void func_00104A90(void *a, void *b);
 
 #define VF(off, T) (*(T *)((char *)self + (off)))
 #define VP(off) ((char *)self + (off))
