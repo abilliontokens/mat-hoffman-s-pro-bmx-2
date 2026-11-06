@@ -136,7 +136,6 @@ struct C_0004CFC0 {
     char pad28[0x1B4];
     S_0004CFC0_Data f1DC;
     void func_0004CFC0();
-    void func_0004CEC0();
 };
 
 struct C_00088F70 {
