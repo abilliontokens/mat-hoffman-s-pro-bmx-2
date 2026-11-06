@@ -25,7 +25,7 @@ __declspec(align(16)) struct S_ADFD0_Mat {
     }
 };
 
-static __forceinline void Identity_001ADFD0(S_ADFD0_Mat *&p)
+static __forceinline void Identity_001ADFD0(S_ADFD0_Mat *volatile &p)
 {
     S_ADFD0_Mat *q = p;
     __m128 z = _mm_setzero_ps();
@@ -755,6 +755,95 @@ void C_001AE810::func_001AE810(void)
         f4->v0(1);
     }
     vtbl = (void *)&D_00284E94;
+}
+
+void __fastcall func_001AE890(C_001AE890 * volatile self)
+{
+    int desc[6];
+    S_001AE890_View view;
+    int rect2[4];
+    int rect[4];
+    struct { int pitch; int *bits; } lock;
+    void *oldView;
+    int bottom;
+    int right;
+    C_001AE890 *q;
+    int left, top, r, end;
+    int texA, texB;
+    int *p;
+    int i, x, y, v;
+
+    q = self;
+    func_001ADD80(q->f18);
+    q = self;
+    setint_1AE890(&right, (float)q->f34 * q->f3C + (float)q->f2C);
+    q = self;
+    setint_1AE890(&bottom, (float)q->f38 * q->f40 + (float)q->f30);
+    q = self;
+    func_001FF940(q->f20, *(void **)((char *)D_002EFDB8 + 0x5c));
+    oldView = (char *)D_002EFDB8->cam + 0x1e0;
+    view = *(S_001AE890_View *)oldView;
+    func_00200230(&view);
+    q = self;
+    {
+        int *b = (int *)((char *)q->f18 + 0x6c);
+        left = b[0];
+        top = b[1] + view.v[1];
+        r = b[2];
+        end = b[3] + view.v[1];
+    }
+    rect[0] = left;
+    rect[1] = top;
+    rect[2] = r;
+    rect[3] = end;
+    func_001FF4E0(1, rect, 240, 0, 0, 0);
+    q = self;
+    texB = *(int *)(D_002AA6C0->f14 + q->fC * 16 + 4);
+    texA = *(int *)(D_002AA6C0->f14 + q->f8 * 16 + 4);
+    q->f64 = 255;
+    q = self;
+    q->f68 = 16758600.0f;
+    q = self;
+    q->f24 = 0xffffff;
+    q = self;
+    q->func_001ADFD0((char *)q->f18 + 0x6c, texB, 0, 0, 0, 1);
+    q = self;
+    func_00201210(q->f20, &lock, 0, 0);
+    q = self;
+    func_002011F0(q->f20, desc);
+    p = lock.bits + desc[5] * top + left;
+    i = 0;
+    for (y = top; y < end; y++) {
+        for (x = 0; x < 2; x++) {
+            v = *p++;
+            self->f18->f64[i++] = (v == 0);
+            v = *p++;
+            self->f18->f64[i++] = (v == 0);
+            v = *p++;
+            self->f18->f64[i++] = (v == 0);
+            v = *p++;
+            self->f18->f64[i++] = (v == 0);
+            v = *p++;
+            self->f18->f64[i++] = (v == 0);
+            v = *p++;
+            self->f18->f64[i++] = (v == 0);
+            v = *p++;
+            self->f18->f64[i++] = (v == 0);
+            v = *p++;
+            self->f18->f64[i++] = (v == 0);
+        }
+        p += 624;
+    }
+    q = self;
+    q->f18->func_001AE700();
+    func_001FF940(*(void **)((char *)D_002EFDB8 + 0x58), *(void **)((char *)D_002EFDB8 + 0x5c));
+    func_00200230(oldView);
+    q = self;
+    rect2[0] = q->f2C;
+    rect2[1] = q->f30;
+    rect2[2] = right;
+    rect2[3] = bottom;
+    q->func_001ADFD0(rect2, texA, 0, 0, 0, 0);
 }
 
 void *C_001AEB70::func_001AEB70(int flags)
