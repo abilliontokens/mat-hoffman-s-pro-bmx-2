@@ -8,7 +8,7 @@ struct S_002F6A38 {
 };
 extern S_002F6A38 D_002F6A38;
 extern int D_00295C04;
-int func_001EEE49(int n, ...);
+int func_001EEE49(...);
 
 
 /* 8-byte value object used by the 'A'..'N' parser helpers. */
