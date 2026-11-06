@@ -348,6 +348,7 @@ struct T69Btn {
 struct T69Page {
     char pad0[0x64];
     T69Txt *t[7];
+    char pad80[8];
     int s88[7];
     char padA4[4];
     T69Btn *bA8;
