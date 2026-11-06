@@ -30,6 +30,25 @@ extern C_001C4F40 *D_002F07E8;
 extern float D_0027A094, D_002755E8;
 struct C_0014CC60;
 extern C_0014CC60 *D_002BF250;
+struct S_0014D360_Pos { unsigned short x, y, z; };
+struct S_0014D360_Rec {
+    char pad0[8];
+    S_0014D360_Pos pos;
+    unsigned char type;
+    char padF;
+    signed char a;
+    signed char b;
+    unsigned char flags;
+    char pad13[9];
+};
+struct S_0014D360_Info {
+    char pad0[0x180];
+    float f180, f184;
+    char pad188[4];
+    float f18C;
+    char pad190[4];
+    float f194;
+};
 
 
 void *__cdecl func_001E83E8(void *p, int size);
