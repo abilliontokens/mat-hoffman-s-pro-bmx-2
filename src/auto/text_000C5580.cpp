@@ -247,7 +247,8 @@ struct C_5E40_G {
 extern C_5E40_G *D_002B91AC;
 
 struct C_NumHorse_Lookup { int *func_0018C160(int a); };
-struct C_5580_Q { char pad0[0x2C0]; struct C_5580_R *f2C0; };
+struct C_59C0_Ctl { int func_00094F00(); int func_00094EE0(); void func_00094A10(int a, void *b); void func_00094C60(); };
+struct C_5580_Q { char pad0[4]; int f4; char pad8[0x2C0 - 8]; struct C_5580_R *f2C0; char pad2C4[0x2FC - 0x2C4]; C_59C0_Ctl *f2FC; };
 struct C_5580_R { int func_0005C0E0(); int func_0005C1E0(int i); int func_0005C1D0(int i); };
 
 struct C_59C0_Obj { void *vtbl; int f4; };
