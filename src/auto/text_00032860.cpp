@@ -2,6 +2,7 @@
 #include "common.h"
 #include <xmmintrin.h>
 #include <string.h>
+#include "asm_helpers.h"
 struct O_B { void func_0018C120(); void func_0001CC80(void *p); };
 struct S_002A8490 {
     char pad0[4];
@@ -271,50 +272,43 @@ void C_00032A20::func_00032A40(void)
 
 void BmxEvent::func_00032A60(void)
 {
-#define PAUSE32A60() do { \
-    ((V_32A60 *)self)->v18(1); \
-    *(int *)((char *)D_002A8490 + 0x124) = 1; \
-    ((V_32A60 *)*(char **)(*(char **)(self + 0x64) + 0x4c0))->v31(1, 1); \
-    ((V_32A60 *)*(char **)(*(char **)((char *)D_002A8490 + 0x2e0) + 0x2fc))->v18(1); \
-} while (0)
-#define SETHALF32A60() do { \
-    int k; \
-    for (k = 0; k < *(int *)(self + 0x90); k++) { \
-        char *a = *(char **)(*(char **)(self + 0x64) + 0x4e0); \
-        *(float *)(*(char **)(a + 0x1a8 + k * 4) + 0x958) = 0.5f; \
-    } \
-} while (0)
+#define GLOB ((char *)D_002A8490)
+#define MGR (*(char **)(GLOB + 0x2e0))
     char *self = (char *)this;
-    char *glob = (char *)D_002A8490;
-    char *mgr = *(char **)(glob + 0x2e0);
     int n = *(int *)(self + 0x90);
     int i;
 
     if (*(int *)(self + 0x11c) != 0) {
-        int idx = *(int *)(self + 0x120);
-        char *arr = *(char **)(glob + 0x8);
-        int id = *(int *)(mgr + 0x300 + idx * 4);
-        char *obj = *(char **)(arr + 0x14 + id * 4);
+        char *obj = *(char **)(*(char **)(GLOB + 0x8) + 0x14 + *(int *)(MGR + 0x300 + *(int *)(self + 0x120) * 4) * 4);
         if (((V_32A60 *)obj)->v16() == 0) {
             if (*(int *)(*(char **)(self + 0x15c) + 0xfc) == 0) {
                 if (*(int *)(*(char **)(self + 0x190) + 0x168) == 0) {
-                    PAUSE32A60();
-                    SETHALF32A60();
+                    ((V_32A60 *)self)->v18(1);
+                    *(int *)(GLOB + 0x124) = 1;
+                    ((V_32A60 *)*(char **)(*(char **)(self + 0x64) + 0x4c0))->v31(1, 1);
+                    ((V_32A60 *)*(char **)(MGR + 0x2fc))->v18(1);
+                    {
+                        int k;
+                        for (k = 0; k < *(int *)(self + 0x90); k++) {
+                            char *a = *(char **)(*(char **)(self + 0x64) + 0x4e0);
+                            *(float *)(*(char **)(a + 0x1a8 + k * 4) + 0x958) = 0.5f;
+                        }
+                    }
                     ((O_33320 *)*(char **)(self + 0x15c))->func_000602B0();
-                    ((O_33320 *)*(char **)(self + 0x15c))->func_00060350(id);
+                    ((O_33320 *)*(char **)(self + 0x15c))->func_00060350(*(int *)(MGR + 0x300 + *(int *)(self + 0x120) * 4));
                 }
             }
         }
     }
     for (i = 0; i < n; i++) {
-        char *arr = *(char **)(glob + 0x8);
-        int id = *(int *)(mgr + i * 4);
+        char *arr = *(char **)(GLOB + 0x8);
+        int id = *(int *)(MGR + i * 4);
         char *obj = *(char **)(arr + 0x14 + id * 4);
         int mode;
         if (((V_32A60 *)obj)->v16() != 0) {
             continue;
         }
-        mode = *(int *)(mgr + 0x4);
+        mode = *(int *)(MGR + 0x4);
         if (mode == 10) {
             if (*(int *)(self + 0x90) == 1) {
                 char *o = *(char **)(self + 0x1ac);
@@ -327,7 +321,10 @@ void BmxEvent::func_00032A60(void)
                 if (*(int *)(o + 0x1c0) != 0) {
                     continue;
                 }
-                PAUSE32A60();
+                ((V_32A60 *)self)->v18(1);
+                *(int *)(GLOB + 0x124) = 1;
+                ((V_32A60 *)*(char **)(*(char **)(self + 0x64) + 0x4c0))->v31(1, 1);
+                ((V_32A60 *)*(char **)(MGR + 0x2fc))->v18(1);
                 ((O_33320 *)*(char **)(self + 0x15c))->func_000602B0();
                 ((O_33320 *)*(char **)(self + 0x15c))->func_00060350(0);
             } else if (*(int *)(self + 0x90) == 2) {
@@ -341,7 +338,10 @@ void BmxEvent::func_00032A60(void)
                 if (*(int *)(o + 0x1c0) != 0) {
                     continue;
                 }
-                PAUSE32A60();
+                ((V_32A60 *)self)->v18(1);
+                *(int *)(GLOB + 0x124) = 1;
+                ((V_32A60 *)*(char **)(*(char **)(self + 0x64) + 0x4c0))->v31(1, 1);
+                ((V_32A60 *)*(char **)(MGR + 0x2fc))->v18(1);
                 ((O_33320 *)*(char **)(self + 0x15c))->func_000602B0();
                 ((O_33320 *)*(char **)(self + 0x15c))->func_00060350(0);
             }
@@ -352,8 +352,17 @@ void BmxEvent::func_00032A60(void)
             if (*(int *)(*(char **)(self + 0x190) + 0x168) != 0) {
                 continue;
             }
-            PAUSE32A60();
-            SETHALF32A60();
+            ((V_32A60 *)self)->v18(1);
+            *(int *)(GLOB + 0x124) = 1;
+            ((V_32A60 *)*(char **)(*(char **)(self + 0x64) + 0x4c0))->v31(1, 1);
+            ((V_32A60 *)*(char **)(MGR + 0x2fc))->v18(1);
+            {
+                int k;
+                for (k = 0; k < *(int *)(self + 0x90); k++) {
+                    char *a = *(char **)(*(char **)(self + 0x64) + 0x4e0);
+                    *(float *)(*(char **)(a + 0x1a8 + k * 4) + 0x958) = 0.5f;
+                }
+            }
             ((O_33320 *)*(char **)(self + 0x15c))->func_000602B0();
             ((O_33320 *)*(char **)(self + 0x15c))->func_00060350(id);
         } else {
@@ -361,14 +370,23 @@ void BmxEvent::func_00032A60(void)
             if (*(int *)(o + 0x1c8) != 0) {
                 continue;
             }
-            PAUSE32A60();
-            SETHALF32A60();
+            ((V_32A60 *)self)->v18(1);
+            *(int *)(GLOB + 0x124) = 1;
+            ((V_32A60 *)*(char **)(*(char **)(self + 0x64) + 0x4c0))->v31(1, 1);
+            ((V_32A60 *)*(char **)(MGR + 0x2fc))->v18(1);
+            {
+                int k;
+                for (k = 0; k < *(int *)(self + 0x90); k++) {
+                    char *a = *(char **)(*(char **)(self + 0x64) + 0x4e0);
+                    *(float *)(*(char **)(a + 0x1a8 + k * 4) + 0x958) = 0.5f;
+                }
+            }
             ((O_33320 *)*(char **)(self + 0x160))->func_000602B0();
             ((O_33320 *)*(char **)(self + 0x160))->func_00060350(id);
         }
     }
-#undef PAUSE32A60
-#undef SETHALF32A60
+#undef GLOB
+#undef MGR
 }
 
 void C_00032E50::func_00032E50(V4_00032E50 v)
@@ -381,19 +399,11 @@ void C_00032E50::func_00032E50(V4_00032E50 v)
 
 void C_00032E90::func_00032E90(void)
 {
-    struct { C_00032E90 * volatile self; int v; int * volatile p; float t; } L;
-    C_00032E90 *s;
-    int r;
+    int v;
 
-    L.self = this;
     if (D_002F08BC != 0 && (f210 != D_00275544 || f214 != D_00275544 || f218 != D_00275544) && f230 < D_00275600) {
-        *(volatile float *)&f230 = D_002A8490->f244 + f230;
-        s = L.self;
-        L.v = *(int *)&s->f210;
-        L.p = &L.v;
-        L.t = func_0001C870(s->f230, 0, s->f220, 2.0f, *(float *)&L.v);
-        r = _mm_cvtss_si32(*(__m128 *)&L.t);
-        *L.p = r;
+        f230 = D_002A8490->f244 + f230;
+        AsmFloatToIntRound(func_0001C870(f230, 0, f220, 2.0f, f210), &v);
     }
 }
 
@@ -410,9 +420,9 @@ void BmxEvent::func_00032F50()
                 t = D_002A8490->f244 + f27C[i];
                 f27C[i] = t;
                 o->f8->func_001824E0(
-                    (float)(double)func_0001C870(t, 0, f25C[i].x, 2.0f, f23C[i].x),
-                    (float)(double)func_0001C870(t, 0, f25C[i].y, 2.0f, f23C[i].y),
-                    (float)(double)func_0001C870(t, 0, f25C[i].z, 2.0f, f23C[i].z));
+                    func_0001C870(t, 0, f25C[i].x, 2.0f, f23C[i].x),
+                    func_0001C870(t, 0, f25C[i].y, 2.0f, f23C[i].y),
+                    func_0001C870(t, 0, f25C[i].z, 2.0f, f23C[i].z));
             } else {
                 o->f8->func_001824E0(f23C[i].x, f23C[i].y, f23C[i].z);
                 f234[i] = 0;
@@ -428,14 +438,13 @@ void BmxEvent::func_00033090(const char *name, float x, float y, float z, float 
 {
     char buf[0x104];
     int i;
-    int found;
+    bool found;
     int j;
     O_Obj32F50 *obj;
     char *dot;
     char *s;
     int delta;
     char c;
-
     for (i = 0; i < (*f64->f3a8)->count; i++) {
         obj = (*f64->f3a8)->items[i];
         if (obj->f8) {
@@ -451,24 +460,19 @@ void BmxEvent::func_00033090(const char *name, float x, float y, float z, float 
                 memset(dot, 0, strlen(dot));
             }
             if (!func_001EA426(buf, name)) {
-                found = 0;
+                found = false;
                 if (flag) {
                     obj->f8->func_001824E0(x, y, z);
                 } else {
                     for (j = 0; j < 2; j++) {
-                        if (found) {
-                            break;
-                        }
+                        if (found) break;
                         if (f234[j] == 0) {
-                            f23C[j].x = x;
-                            f23C[j].y = y;
-                            f23C[j].z = z;
-                            f23C[j].w = w;
+                            f23C[j].Set(x, y, z, w);
                             f234[j] = obj;
                             f25C[j].x = obj->f8->f1c0;
                             f25C[j].y = obj->f8->f1c4;
                             f25C[j].z = obj->f8->f1c8;
-                            found = 1;
+                            found = true;
                             f27C[j] = 0.0f;
                         }
                     }
@@ -513,6 +517,55 @@ int BmxEvent::func_00033300(void)
     func_00157920();
     return 1;
 }
+
+int BmxEvent::func_00033320(void *a, int b)
+{
+ int one = 1;
+ if(*(int*)((char*)this+0x1f4)) return func_00157BF0(a,b);
+ if(func_001361E0(0x17,2,a,0x80000000)) {
+ if((*(int**)((char*)D_002A8490+0x2e0))[1] && (*(int*)((char*)this+0x90)!=one || *(int*)((char*)a+8)==(*(int**)((char*)D_002A8490+0x2e0))[0xc0])) {
+ if(*(int*)(*(int*)((char*)this+0x15c)+0xfc) || (*(int*)((char*)this+0x190) && *(int*)(*(int*)((char*)this+0x190)+0x168)) || (*(int*)((char*)this+0x1a8) && *(int*)(*(int*)((char*)this+0x1a8)+0x1c0)) || (*(int*)((char*)this+0x1ac) && *(int*)(*(int*)((char*)this+0x1ac)+0x1c0)) || (*(int*)((char*)this+0x164) && *(int*)(*(int*)((char*)this+0x164)+0x19c))) goto reject;
+ ((C_00032A20*)this)->func_00032A20();
+ (*(V_33320**)((char*)f64+0x4c0))->v31(one,one);
+ (*(V_33320**)(*(int**)((char*)D_002A8490+0x2e0)+0xbf))->v18(one);
+ if((*(int**)((char*)D_002A8490+0x2e0))[1]!=10) {
+ for(int i=0;i<*(int*)((char*)this+0x90);i++) *(float*)(*(int*)(*(int*)((char*)f64+0x4e0)+0x1a8+i*4)+0x958)=0.5f;
+}
+ (*(O_33320**)((char*)this+0x15c))->func_000602B0();
+ (*(O_33320**)((char*)this+0x15c))->func_00060350(*(int*)((char*)a+8));
+ return one;
+ } else {
+ if(*(int*)((char*)a+8)!=(*(int**)((char*)D_002A8490+0x2e0))[0xc0] || (*(int*)((char*)this+0x16c) && *(int*)(*(int*)((char*)this+0x16c)+0x1c8)) || (*(int*)((char*)this+0x190) && *(int*)(*(int*)((char*)this+0x190)+0x168))) goto reject;
+ ((C_00032A20*)this)->func_00032A20();
+ if(*(int*)((char*)f64+0x594)) {
+ if(((O_33320*)(*(V_33320**)(*(int**)((char*)D_002A8490+0x2e0)+0xbf)))->func_00094EE0() && !*(int*)((char*)(*(V_33320**)(*(int**)((char*)D_002A8490+0x2e0)+0xbf))+0x24)) *(int*)((char*)this+0x118)=one;
+ else { *(int*)((char*)this+0x118)=0; (*(V_33320**)(*(int**)((char*)D_002A8490+0x2e0)+0xbf))->v18(one); }
+ } else (*(V_33320**)(*(int**)((char*)D_002A8490+0x2e0)+0xbf))->v18(one);
+ (*(V_33320**)((char*)f64+0x4c0))->v31(one,one);
+ if((*(int**)((char*)D_002A8490+0x2e0))[1]!=10) {
+ for(int i=0;i<*(int*)((char*)this+0x90);i++) *(float*)(*(int*)(*(int*)((char*)f64+0x4e0)+0x1a8+i*4)+0x958)=0.5f;
+}
+ (*(O_33320**)((char*)this+0x160))->func_000602B0();
+ (*(O_33320**)((char*)this+0x160))->func_00060350(*(int*)((char*)a+8));
+ return one;
+ }
+reject:;
+ }
+ if(func_00135C70(0x16,0,a,0x30)) {
+ if(*(int*)((char*)this+0x198)) (*(O_33320**)((char*)this+0x198))->func_00087D20();
+ for(int i=0;i<*(int*)((char*)this+0x90);i++) {
+ O_33320 *p=*(O_33320**)((char*)this+0x170+i*4);
+ if(p) p->func_00082790();
+ }
+ }
+ if(func_00135C70(0x13,0,a,0x80)) {
+ D_002A829C->func_00161760();
+ D_002AA6C0->func_001B2640();
+ }
+ if(func_00135C70(0x14,0,a,1)) *(int*)((char*)this+0x110)=!*(int*)((char*)this+0x110);
+ return func_00157BF0(a,b);
+}
+
 struct O_60350 { void func_000602B0(); void func_00060350(int a); };
 struct O_Obj60 { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(); virtual int v16(); };
 struct O_Dev60 { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(int a); virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31(int a, int b); };
