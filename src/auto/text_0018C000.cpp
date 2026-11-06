@@ -655,7 +655,8 @@ void C_0018C960::func_0018C9B0(int keep)
 
 void C_0018C960::func_0018CA20()
 {
-    int i, j;
+    int i, j, k;
+    int off;
     ScriptFreeNode *p, *next;
     vtbl = &D_0028A984;
     func_0018C9B0(0);
@@ -664,16 +665,20 @@ void C_0018C960::func_0018CA20()
         func_001E891B(p);
     }
     if (f164) {
-        for (i = 0; i < f168; i++) {
-            if (*(ScriptFreeChild **)((char *)f164 + i * 0x38 + 0x20)) {
-                for (j = 0; j < *(int *)((char *)f164 + i * 0x38 + 0x24); j++)
-                    func_001E8390((*(ScriptFreeChild **)((char *)f164 + i * 0x38 + 0x20))[j].f10);
-                func_001E8390(*(ScriptFreeChild **)((char *)f164 + i * 0x38 + 0x20));
-                *(ScriptFreeChild **)((char *)f164 + i * 0x38 + 0x20) = 0;
-            }
-            if (*(void **)((char *)f164 + i * 0x38 + 0x2C)) {
-                func_001E8390(*(void **)((char *)f164 + i * 0x38 + 0x2C));
-                *(void **)((char *)f164 + i * 0x38 + 0x2C) = 0;
+        k = 0;
+        if (k < f168) {
+            off = 0;
+            for (; k < f168; k++, off += 0x38) {
+                if (*(ScriptFreeChild **)((char *)f164 + off + 0x20)) {
+                    for (j = 0; j < *(int *)((char *)f164 + off + 0x24); j++)
+                        func_001E8390((*(ScriptFreeChild **)((char *)f164 + off + 0x20))[j].f10);
+                    func_001E8390(*(ScriptFreeChild **)((char *)f164 + off + 0x20));
+                    *(ScriptFreeChild **)((char *)f164 + off + 0x20) = 0;
+                }
+                if (*(void **)((char *)f164 + off + 0x2C)) {
+                    func_001E8390(*(void **)((char *)f164 + off + 0x2C));
+                    *(void **)((char *)f164 + off + 0x2C) = 0;
+                }
             }
         }
         func_001E8390((void *)f164);
