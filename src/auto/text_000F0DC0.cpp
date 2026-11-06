@@ -1,5 +1,19 @@
 /* 6 functions from 0x000F0DC0 to 0x000F1D90, found by Ghidra. */
 #include "common.h"
+extern "C" void *func_001E8A44(unsigned int);
+extern int D_0027E328, D_0027E31C, D_002786B0, D_00281DB4, D_00281DC0;
+extern float D_002757F0, D_0027F978;
+struct Elem_000F0DC0 {
+ char pad0[0x14]; int x,y; char pad1C[0xc]; int width; int f2C; int angle; int f34; unsigned int color; int m0,m1,m2,m3; char pad4C[0xc]; unsigned char flags;
+ Elem_000F0DC0 *func_001D5760();
+ void func_001D5810(int,int,int,int);
+};
+struct C_000F0DC0 {
+ char pad0[0x3e8];
+ Elem_000F0DC0 *a3e8[4], *a3f8[2], *a400[4], *a410[4];
+ void func_001BE4F0(int,int,int);
+ C_000F0DC0 *func_000F0DC0(int,int,int);
+};
 
 extern int D_0028248C;
 
