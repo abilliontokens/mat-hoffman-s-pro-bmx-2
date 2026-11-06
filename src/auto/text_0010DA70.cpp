@@ -138,7 +138,7 @@ struct BmxVehicle_10DA70 {
 };
 
 /* declarations for BmxVehicle_10DA70::func_0010E2A0 (vehicle reset) */
-#define MEMBER_10E2A0(T, off) (*(T volatile *)((char *)self + (off)))
+#define MEMBER_10E2A0(T, off) (*(T *)((char *)self + (off)))
 extern float D_00275460, D_00275544;
 extern int D_002A3A9C, D_002A3A98, D_002B91FC;
 
