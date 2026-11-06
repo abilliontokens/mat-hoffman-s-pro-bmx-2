@@ -97,7 +97,7 @@ struct C_0014CC60 {
     int f580;
     int f584;
     char pad588[0xC];
-    volatile int f594;
+    int f594;
     unsigned char *f598;
     char pad59C[0x1C38];
     int f21D4;
