@@ -32,6 +32,11 @@ struct S_001B2CD0_Px {
 };
 #pragma pack(pop)
 
+static inline void put_pixel_001B2CD0(unsigned char *dst, const S_001B2CD0_Px *src)
+{
+    *(S_001B2CD0_Px *)dst = *src;
+}
+
 struct C_001B33A0_Loader {
     int func_0013C8A0(int handle, void *buf, int size, int count);
 };
@@ -212,11 +217,11 @@ int func_001B2CB0(int param_1)
 extern "C" void *memcpy(void *d, const void *s, unsigned int n);
 int func_001B2CD0(S_001B3560 *item, int a)
 {
-    int count;
-    unsigned char *end;
-    unsigned char *p;
-    int pixels;
     unsigned int size;
+    int pixels;
+    unsigned char *p;
+    unsigned char *end;
+    unsigned int count;
 
     pixels = item->fE * item->f10;
     size = pixels * 3;
@@ -246,18 +251,18 @@ int func_001B2CD0(S_001B3560 *item, int a)
             D_002BEAAC->func_0013C8A0(a, &hdr, 1, 1);
             count = hdr;
             if (count & 0x80) {
-                S_001B2CD0_Px px;
+                unsigned char px[3];
                 count &= 0x7f;
-                if (D_002BEAAC->func_0013C8A0(a, &px, 3, 1) != 1) {
+                if (D_002BEAAC->func_0013C8A0(a, px, 3, 1) != 1) {
                     return 0;
                 }
                 do {
-                    *(S_001B2CD0_Px *)p = px;
+                    *(S_001B2CD0_Px *)p = *(S_001B2CD0_Px *)px;
                     p += 3;
-                } while (count-- != 0);
+                } while (count--);
             } else {
                 count++;
-                if (D_002BEAAC->func_0013C8A0(a, p, 3, count) != count) {
+                if (D_002BEAAC->func_0013C8A0(a, p, 3, count) != (int)count) {
                     return 0;
                 }
                 p += count * 3;
@@ -302,14 +307,13 @@ int func_001B2CD0(S_001B3560 *item, int a)
 
 int func_001B2F10(S_001B3560 *item, int a)
 {
-    int count;
-    unsigned char *end;
-    unsigned char *p;
-    int pixels;
     unsigned int size;
+    register int count;
+    unsigned char *p;
+    unsigned char *end;
 
-    pixels = item->fE * item->f10;
-    size = pixels * 4;
+    size = item->fE * item->f10 * 4;
+    count = item->fE * item->f10;
     if (size > (unsigned int)item->f18) {
         if (item->f14 != 0) {
             func_001E8390(item->f14);
@@ -327,7 +331,7 @@ int func_001B2F10(S_001B3560 *item, int a)
     p = (unsigned char *)item->f14;
     end = p + size;
     if (item->f2 == 2) {
-        if (D_002BEAAC->func_0013C8A0(a, p, 4, pixels) != pixels) {
+        if (D_002BEAAC->func_0013C8A0(a, p, 4, count) != count) {
             return 0;
         }
     } else if (p < end) {
