@@ -50,6 +50,7 @@ struct C_0016D8A0 {
     char pad0[0x54];
     C_IntQuad f54;
     void func_0016D8A0(int a, int b, int c, int d);
+    void func_0016D8A0(C_IntQuad v);
 };
 
 struct C_0016DA40 {
