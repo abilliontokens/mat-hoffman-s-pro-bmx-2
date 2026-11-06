@@ -1,6 +1,7 @@
 /* 9 functions from 0x001C5DE0 to 0x001C6DA0, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 struct Vec4 {
     f32 x;
@@ -308,6 +309,10 @@ int __stdcall func_001C5DE0(float *m, float *a, float *b, int *out)
         return andMask == 0;
     }
     return andMask == 0;
+}
+
+void func_001C6380(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
 void func_001C63F0(Vec4 *out, Vec4 *vin, f32 *m)
