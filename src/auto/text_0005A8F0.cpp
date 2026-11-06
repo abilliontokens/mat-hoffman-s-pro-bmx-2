@@ -213,113 +213,117 @@ struct C_0005B880 {
 
 int BmxGame::func_0005A8F0()
 {
+    BmxGame *self = this;
     void *mem;
     S_ModeObj *obj;
     int r;
     int n = -1;
     int m = 0;
 
-    ((S_GGame *)D_002A8490)->f4->fB4->v7("AppStart\\AudioStr.txt");
+    ((S_GGame *)D_002A8490)->f4->fB4->v7(D_002781D4);
     D_002F07B8->func_001D7FB0(1.1f, 1.1f, 1.15f, 0);
-    if (((S_GGame *)D_002A8490)->f4->fB4->func_001CB170("XTalkAndLFE.bin", &n))
+    if (((S_GGame *)D_002A8490)->f4->fB4->func_001CB170(D_002781C4, &n))
         return 0;
     func_001ADCC0(D_002A48F8, 0x104, D_00276F28, D_002A47F0);
-    func_0005A480(func_001EA426(name1, "buildmotres") == 0);
-    D_002AA46C->func_00147890("AppStart\\DfltMT");
-    D_002AA470->func_00147890("AppStart\\ScrnMT");
+    if (func_001EA426(self->name1, D_002781B8) == 0)
+        self->func_0005A480(1);
+    else
+        self->func_0005A480(0);
+    D_002AA46C->func_00147890(D_002781A8);
+    D_002AA470->func_00147890(D_00278198);
     mem = func_001E8A44(8);
-    f2EC = mem ? ((S_Obj2EC *)mem)->func_001D5350() : 0;
-    f2EC = f2EC->func_001D3F50();
+    self->f2EC = mem ? ((S_Obj2EC *)mem)->func_001D5350() : 0;
+    self->f2EC = self->f2EC->func_001D3F50();
     mem = func_001E8A44(0x46c);
-    f2E0 = mem ? ((S_LevelInfo *)mem)->func_0005D6A0() : 0;
+    self->f2E0 = mem ? ((S_LevelInfo *)mem)->func_0005D6A0() : 0;
 
-    if (!memcmp(name1, "miniui", 7) || !func_001EA426(name1, "buildui") || !func_001EA426(name1, "buildminiui"))
-        f2E0->f324 = 1;
-    else if (!func_001EA426(name1, "buildsplash"))
-        f2E0->f324 = 0;
+    if (!memcmp(self->name1, D_00278190, 7) || !func_001EA426(self->name1, D_00278188) || !func_001EA426(self->name1, D_0027817C))
+        self->f2E0->f324 = 1;
+    else if (!func_001EA426(self->name1, D_00278170))
+        self->f2E0->f324 = 0;
 
-    if (!func_001EA426(name2, "roadtrip") || !func_001EA426(name2, "build")) {
-        if (!memcmp(name1, "daytona", 8) || !memcmp(name1, "austin", 7) || !memcmp(name1, "sf", 3) || !memcmp(name1, "london", 7))
-            f2E0->f4 = 1;
-        else if (!memcmp(name1, "halfpipe", 9)) {
-            f2E0->f4 = 8;
-            f2D8 = 2;
+    if (!func_001EA426(self->name2, D_00278164) || !func_001EA426(self->name2, D_0027815C)) {
+        if (!memcmp(self->name1, D_002780F0, 8) || !memcmp(self->name1, D_002780E8, 7) || !memcmp(self->name1, D_002780E4, 3) || !memcmp(self->name1, D_002780DC, 7))
+            self->f2E0->f4 = 1;
+        else if (!memcmp(self->name1, D_00277830, 9)) {
+            self->f2E0->f4 = 8;
+            self->f2D8 = 2;
         } else
-            f2E0->f4 = 0;
-    } else if (!memcmp(name2, "freeride", 9))
-        f2E0->f4 = 1;
-    else if (!memcmp(name2, "session", 8))
-        f2E0->f4 = 2;
-    else if (!memcmp(name2, "gwar", 5))
-        f2E0->f4 = 3;
-    else if (!memcmp(name2, "horse", 6))
-        f2E0->f4 = 4;
-    else if (!memcmp(name2, "tag", 4))
-        f2E0->f4 = 5;
-    else if (!memcmp(name2, "hunt", 5))
-        f2E0->f4 = 6;
-    else if (!memcmp(name2, "push", 5))
-        f2E0->f4 = 7;
-    else if (!memcmp(name2, "vert", 5))
-        f2E0->f4 = 8;
-    else if (!memcmp(name2, "verthot", 8))
-        f2E0->f4 = 9;
-    else if (!memcmp(name2, "fps", 4))
-        f2E0->f4 = 10;
-    else if (!memcmp(name2, "fpsbuild", 9) || !memcmp(name2, "editbuild", 10)) {
+            self->f2E0->f4 = 0;
+    } else if (!memcmp(self->name2, D_00278150, 9))
+        self->f2E0->f4 = 1;
+    else if (!memcmp(self->name2, D_00278148, 8))
+        self->f2E0->f4 = 2;
+    else if (!memcmp(self->name2, D_00278140, 5))
+        self->f2E0->f4 = 3;
+    else if (!memcmp(self->name2, D_00278138, 6))
+        self->f2E0->f4 = 4;
+    else if (!memcmp(self->name2, D_00278134, 4))
+        self->f2E0->f4 = 5;
+    else if (!memcmp(self->name2, D_0027812C, 5))
+        self->f2E0->f4 = 6;
+    else if (!memcmp(self->name2, D_00278124, 5))
+        self->f2E0->f4 = 7;
+    else if (!memcmp(self->name2, D_00276D7C, 5))
+        self->f2E0->f4 = 8;
+    else if (!memcmp(self->name2, D_0027811C, 8))
+        self->f2E0->f4 = 9;
+    else if (!memcmp(self->name2, D_00278118, 4))
+        self->f2E0->f4 = 10;
+    else if (!memcmp(self->name2, D_0027810C, 9) || !memcmp(self->name2, D_002780F8, 10)) {
         m = 14;
         r = m < 5 ? m : 5;
-        func_001E8920(name2, "build", r);
-        name2[r] = 0;
-        f2E0->f4 = 10;
-    } else if (!memcmp(name2, "edit", 5))
-        f2E0->f4 = 11;
+        func_001E8920(self->name2, D_0027815C, r);
+        self->name2[r] = 0;
+        self->f2E0->f4 = 10;
+    } else if (!memcmp(self->name2, D_00278104, 5))
+        self->f2E0->f4 = 11;
 
-    f2E0->f0 = f2D8;
-    if (f2E0->f0 == 1)
-        f2E0->f8 = 0;
+    self->f2E0->f0 = self->f2D8;
+    if (self->f2E0->f0 == 1)
+        self->f2E0->f8 = 0;
     else
-        f2E0->f8 = f2E0->fC;
-    if (f2E0->f4 == 4 || f2E0->f4 == 9)
-        f2E0->f8 = 0;
+        self->f2E0->f8 = self->f2E0->fC;
+    if (self->f2E0->f4 == 4 || self->f2E0->f4 == 9)
+        self->f2E0->f8 = 0;
 
-    if (f2E0->f4 == 11) {
-        if (!memcmp(name1, "daytona", 8) || !memcmp(name1, "austin", 7) || !memcmp(name1, "sf", 3)) {
-            strcpy(f2E0->f4C, name1);
-            if (!memcmp(name1, "daytona", 8))
-                f2E0->f48 = 8;
-            if (!memcmp(name1, "austin", 7))
-                f2E0->f48 = 10;
-            if (!memcmp(name1, "sf", 3))
-                f2E0->f48 = 9;
+    if (self->f2E0->f4 == 11) {
+        if (!memcmp(self->name1, D_002780F0, 8) || !memcmp(self->name1, D_002780E8, 7) || !memcmp(self->name1, D_002780E4, 3)) {
+            strcpy(self->f2E0->f4C, self->name1);
+            if (!memcmp(self->name1, D_002780F0, 8))
+                self->f2E0->f48 = 8;
+            if (!memcmp(self->name1, D_002780E8, 7))
+                self->f2E0->f48 = 10;
+            if (!memcmp(self->name1, D_002780E4, 3))
+                self->f2E0->f48 = 9;
         }
     }
-    if (f2E0->f4 == 10) {
-        strcpy(f2E0->f4C, name1);
-        f2E0->f48 = 7;
+    if (self->f2E0->f4 == 10) {
+        strcpy(self->f2E0->f4C, self->name1);
+        self->f2E0->f48 = 7;
     }
 
     mem = func_001E8A44(0x1e0);
-    f2F0 = mem ? ((S_Obj2F0 *)mem)->func_001A58D0(1) : 0;
-    f2F0->v10();
-    if (f2E4 != 0) {
-        if (f2F0 != 0)
-            f14->func_001577A0(f2F0, -1);
+    self->f2F0 = mem ? ((S_Obj2F0 *)mem)->func_001A58D0(1) : 0;
+    self->f2F0->v10();
+    if (self->f2E4 != 0) {
+        if (self->f2F0 != 0)
+            self->f14->func_001577A0(self->f2F0, -1);
         ((S_LevelObj *)D_002A8490)->f2F0->func_0001EDC0(8);
         ((S_LevelObj *)D_002A8490)->f2F0->fB8 = 1;
         D_002EFDB8->f30 = 1;
         return 1;
     }
 
-    f2E0->arr300[0] = 0;
-    f2E0->arr300[1] = 1;
-    f2E0->arr300[2] = 2;
-    f2E0->arr300[3] = 3;
-    f2E0->arr300[4] = 4;
-    f2E0->arr300[5] = 5;
-    f2E0->arr300[6] = 6;
-    f2E0->arr300[7] = 7;
-    switch (f2E0->f4) {
+    self->f2E0->arr300[0] = 0;
+    self->f2E0->arr300[1] = 1;
+    self->f2E0->arr300[2] = 2;
+    self->f2E0->arr300[3] = 3;
+    self->f2E0->arr300[4] = 4;
+    self->f2E0->arr300[5] = 5;
+    self->f2E0->arr300[6] = 6;
+    self->f2E0->arr300[7] = 7;
+    switch (self->f2E0->f4) {
     case 0:
         mem = func_001E8A44(0x360);
         obj = mem ? ((S_ModeObj *)mem)->func_000511A0(1) : 0;
@@ -370,7 +374,7 @@ int BmxGame::func_0005A8F0()
         break;
     }
     r = obj ? obj->v10() : 0;
-    f2A4 = f14->func_001577A0((void *)r, -1);
+    self->f2A4 = self->f14->func_001577A0((void *)r, -1);
     return 1;
 }
 
@@ -394,11 +398,8 @@ void C_0005B240::func_0005B240(void)
     char buf[0x104];
     R_Reader *r;
     void *p;
-    char *e;
     strcpy(buf, D_002A5348);
-    e = buf - 1;
-    do { } while (*++e);
-    *(S_Str15 *)e = D_00278250;
+    strcat(buf, "famePoints.txt");
     p = func_001E8A44(0x4cc);
     if (p) r = (R_Reader *)((R_Reader *)p)->func_00168280();
     else r = 0;
