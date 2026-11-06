@@ -158,7 +158,32 @@ struct ListEntry_12A200 {
 extern float D_00284038;
 extern float D_0028403C;
 extern int D_00284074;
-extern int D_002A3E40, D_002A3E44, D_002A3E48;
+extern int D_002A3E3C, D_002A3E40, D_002A3E44, D_002A3E48;
+
+#include <xmmintrin.h>
+
+struct V4_12A3F0 { float x, y, z, w; };
+
+static __forceinline void Set4_12A3F0(V4_12A3F0 *v)
+{
+    v->z = 0.0f;
+    v->y = 0.0f;
+    v->x = 0.0f;
+    v->w = 1.0f;
+}
+
+static __forceinline void Ident_12A3F0(float *m)
+{
+    __m128 z = _mm_setzero_ps();
+    ((__m128 *)m)[0] = z;
+    ((__m128 *)m)[1] = z;
+    ((__m128 *)m)[2] = z;
+    ((__m128 *)m)[3] = z;
+    m[0] = 1.0f;
+    m[5] = 1.0f;
+    m[10] = 1.0f;
+    m[15] = 1.0f;
+}
 
 struct Camera_12A3F0 {
     void func_00157600(int a);
@@ -222,6 +247,22 @@ void BoxCollisionObject::func_00129DF0(int a, int b)
 void BoxCollisionObject::func_00129E10(void)
 {
     ((VCall31_129E10 *)this)->v31(0);
+}
+
+void BoxCollisionObject::func_00129E20(void *src)
+{
+    if (src == 0) {
+        memset(matrix, 0, 0x40);
+        matrix[0] = 1.0f;
+        matrix[5] = 1.0f;
+        matrix[10] = 1.0f;
+        matrix[15] = 1.0f;
+    } else {
+        ((C_000264C0_129E20 *)matrix)->func_000264C0(src);
+    }
+    f28 = fF0;
+    f48 = sqrtf(*(float *)&f100.z * *(float *)&f100.z + *(float *)&f100.y * *(float *)&f100.y + *(float *)&f100.x * *(float *)&f100.x);
+    func_00030AC0(&f28, &f28, matrix);
 }
 
 void *BoxCollisionObject::func_0012A1C0(unsigned int flags)
