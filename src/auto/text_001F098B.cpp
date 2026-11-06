@@ -376,8 +376,13 @@ void *func_001F1184(void *p)
 }
 #pragma optimize("s", on)
 #pragma optimize("y", off)
-static inline char und_peek() { return *D_002F6A28; }
-static inline char und_next() { return *D_002F6A28++; }
+void *func_001EEE49(int n);
+static inline void *und_uscore(int tok)
+{
+    if (tok < 0)
+        return 0;
+    return func_001EEE49(tok);
+}
 void *func_001F11B1(S_001EF734 *o)
 {
     void *func_001EEE49(int n);
