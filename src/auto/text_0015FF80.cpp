@@ -67,6 +67,19 @@ struct C_00160C40 {
     C_00160C40 *func_00160C40(int n, int a, int b);
 };
 
+struct V4_00160310 { float x, y, z, w; };
+struct S_Cam_00160310 { char pad0[0x170]; V4_00160310 p; };
+struct S_Holder_00160310 { int unk0; S_Cam_00160310 *cam; };
+extern S_Holder_00160310 *D_002EFDB8;
+extern int D_002E2944;
+extern float D_002A8110, D_002A810C, D_00275460;
+struct C_00160310 {
+    char pad0[0x28];
+    float x, y, z;
+    char pad34[0x4c];
+    float scale;
+    int func_00160310(void);
+};
 void *func_001E8A44(int size);
 void func_001E891B(void *p);
 extern int D_002A80C0;
