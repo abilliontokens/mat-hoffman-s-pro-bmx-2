@@ -213,43 +213,6 @@ struct M16E6D40 {
         struct { float x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15; };
     };
 };
-struct B6D40 {
-    float *c;
-    __forceinline B6D40(float *tw) { c = tw; }
-    __forceinline operator M16E6D40()
-    {
-        M16E6D40 &r = *(M16E6D40 *)this;
-        float s0, s4, s8, sC, s10, s14, s18, s1C, s20, s24, s28, s2C, s30, s34, s38, s3C;
-        float k1 = c[1], k4 = c[4], k5 = c[5];
-        float a, b;
-        float p, q, r2, t;
-        s4 = r.x0 - r.x9;
-        sC = *(volatile float *)&r.x8 + r.x1;
-        s28 = *(volatile float *)&r.x9 + r.x0;
-        s2C = r.x1 - r.x8;
-        a = r.x4 - r.x13; b = *(volatile float *)&r.x12 + r.x5;
-        s8 = (a - b) * k1; s10 = (a + b) * k1;
-        a = r.x13 + r.x4; b = r.x5 - r.x12;
-        s30 = (a - b) * k1; s24 = (a + b) * k1;
-        a = r.x2 - r.x11; b = r.x3 + r.x10;
-        s14 = a * k4 - b * k5; s1C = a * k5 + b * k4;
-        a = r.x11 + r.x2; b = r.x3 - r.x10;
-        s38 = a * k5 - b * k4; s3C = a * k4 + b * k5;
-        a = r.x6 - r.x15; b = r.x7 + r.x14;
-        s18 = a * k5 - b * k4; s20 = a * k4 + b * k5;
-        a = r.x15 + r.x6; b = r.x7 - r.x14;
-        s34 = a * k4 - b * k5; s0 = a * k5 + b * k4;
-        p = s8 + s4; q = s10 + sC; r2 = s18 + s14; t = s20 + s1C;
-        r.x0 = p + r2; r.x1 = q + t; r.x2 = p - r2; r.x3 = q - t;
-        p = s4 - s8; q = sC - s10; r2 = s14 - s18; t = s1C - s20;
-        r.x4 = p - t; r.x5 = q + r2; r.x6 = p + t; r.x7 = q - r2;
-        p = s28 - s24; q = s30 + s2C; r2 = s38 - s34; t = s3C - s0;
-        r.x8 = p + r2; r.x9 = q + t; r.x10 = p - r2; r.x11 = q - t;
-        p = s24 + s28; q = s2C - s30; r2 = s34 + s38; t = s0 + s3C;
-        r.x12 = p - t; r.x13 = q + r2; r.x14 = p + t; r.x15 = q - r2;
-        return r;
-    }
-};
 M16E6D40 __fastcall func_001E6D40(float *tw);
 struct C6D40 { M16E6D40 func_001E6D40(); };
 void __declspec(noinline) func_001E7410(int n, float *a, float *b, int k)
