@@ -1,6 +1,7 @@
 /* 23 functions from 0x001BFF40 to 0x001C0F20, found by Ghidra. */
 #include "common.h"
 
+
 struct S_001BFF40_Inner { void func_00198E60(void); };
 struct S_001BFF40_Obj { char pad0[4]; S_001BFF40_Inner *unk4; };
 struct C_001BFF40 { char pad0[0x68]; S_001BFF40_Obj *unk68; void func_001BFF40(void); };
@@ -436,6 +437,48 @@ void C_001C0110::func_001C01B0(void)
     }
     vtbl = &D_0028D804;
     ((C_00157660 *)this)->func_00157660();
+}
+
+void *func_001E83E8(void *, unsigned int);
+void C_001C05F0::func_001C01E0(char *text)
+{
+    if (unk68) {
+        for (int i = 0; i < unk170; i++) {
+            unk68[i]->func_00157810();
+            unk68[i]->v2();
+        }
+        func_001E8390(unk68);
+        unk68 = 0;
+    }
+    unk170 = 0;
+    int index = -1;
+    int len = strlen(text);
+    char *end = text + len;
+    if (end) {
+        char *next;
+        do {
+            next = func_001E9260(text, 0x40);
+            if (!next) next = end;
+            unk170++;
+            index++;
+            unk68 = (S_001C05F0_Item **)func_001E83E8(unk68, unk170 * 4);
+            S_001C05F0_Item *item = (S_001C05F0_Item *)func_001E8A44(0x184);
+            if (item) item = item->func_001B12C0(1);
+            else item = 0;
+            unk68[index] = item;
+            unk68[index]->func_001B13A0((char *)this + 0x70, (char *)this + 0xF0, 0, next-text);
+            func_001577A0(unk68[index], -1);
+            unk68[index]->func_001B17D0(text);
+            unk68[index]->func_001B1AB0(unk194, 0);
+            unk68[index]->func_001B1BF0(*(int *)((char *)this+0x198));
+            unk68[index]->func_001B19A0(unk178);
+            unk68[index]->func_001B2270(unk184);
+            if (unk190) unk68[index]->func_001B19C0(unk188, unk18C + unk190 * index, 0);
+            else unk68[index]->func_001B19C0(unk188, unk18C + (int)(unk68[index]->unk28->func_0018C210() * unk17C * index), 0);
+            unk68[index]->func_001B1860(0, -1.0f, 255, 1.0f, 0, 0, -1.0f, 255, 1.0f, 0, 0, 0, 0);
+            text = next + 1;
+        } while (next != end);
+    }
 }
 
 void C_001C04D0::func_001C03F0(char *text)
