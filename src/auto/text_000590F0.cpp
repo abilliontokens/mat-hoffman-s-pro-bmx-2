@@ -175,7 +175,7 @@ struct S_00059F50_Fb4 {
 };
 
 struct S_00059F50_F4 {
-    int func_0001D330();
+    void func_0001D330();
     char pad0[0xB4];
     S_00059F50_Fb4 *fB4;
 };
@@ -430,6 +430,117 @@ int Screen_000597B0::func_000590F0(int a)
     return 1;
 }
 
+void C_00059290::func_00059290(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7, float a8, float a9, float a10)
+{
+    float t;
+
+    if (f58 <= 0) {
+        if (D_002A8490->f8->v5(0x2e, 0, 0xc, 0) == 0) goto setup;
+        func_000590F0(f50);
+        if (f58 > 0) goto dec;
+        if (D_002A8490->f8->v5(0x1e, 0, 0xc, 0) == 0) goto dec;
+setup:
+        f58 = 0x14;
+        {
+            S_00059290_List *list = D_002B9120->f484->f2c;
+            if (f54 < list->count) {
+                S_00059290_Item *it = list->items[f54];
+                if (it->f4 == 2)
+                    f10 = it->f58->f22c;
+                else
+                    f10 = it->f1a4->f288;
+                f0c = 0;
+                f64 = 102.66619873046875f;
+                f68 = 3.0f;
+                f54++;
+            } else {
+                f54 = 0;
+                f0c = f4->f1e0;
+                f10 = 0;
+                f64 = f4->f1ec->f3c * D_00277D04;
+                f68 = 3.0f;
+            }
+        }
+        goto after;
+    }
+dec:
+    f58--;
+after:
+    if (D_002A8490->f8->v4(0x22, 2, 0x3f, f4->f1218 - 1) != 0) {
+        if (f1e0 != 0) {
+            f1dc = (f1dc == 0);
+            f1e0 = 0;
+        } else {
+            f1e0 = 1;
+        }
+    }
+    {
+        float old = f184;
+        f184 = f4->f964 * f15c;
+        f184 = (f184 - old) * f188 + f184;
+    }
+    if (Abs_00059290(a8) > 0.5f) {
+        f18c = f18c - a8 * f194 * a10;
+        if (f18c > D_002756D0)
+            f18c -= D_002756B8;
+        else if (f18c < D_002756E8)
+            f18c += D_002756B8;
+    }
+    if (f1dc == 0 && a8 < 0.5f && a8 > D_00277FBC) {
+        if (f18c > D_00275544) {
+            if (f18c <= D_002756D0) {
+                f18c -= a10 * f194 * 2.0f;
+                if (f18c < D_00275544)
+                    f18c = 0.0f;
+            } else {
+                if (f18c < D_002756B8)
+                    f18c -= D_002756B8;
+                else
+                    f18c = 0.0f;
+            }
+        } else {
+            if (f18c < D_00275544)
+                f18c -= D_002756B8;
+            else
+                f18c = 0.0f;
+        }
+    }
+    if (Abs_00059290(a9) > 0.5f) {
+        f190 = a9 * f194 * a10 + f190;
+        t = f190 + f14c + D_002756DC;
+        if (t > D_00277FB8) {
+            t = D_00277FB8;
+            if (t < 0.0f) {
+                if (f18c >= D_002756E8) {
+                    f18c += a10 * f194 * 2.0f;
+                    if (f18c > 0.0f)
+                        f18c = 0.0f;
+                } else if (f18c > D_00277FB4) {
+                    f18c += D_002756B8;
+                } else {
+                    f18c = 0.0f;
+                }
+            }
+        } else {
+            if (f18c < D_002756B8)
+                f18c -= D_002756B8;
+            else
+                f18c = 0.0f;
+        }
+    }
+    if (f1dc == 0 && a9 < 0.5f && a9 > D_00277FBC) {
+        if (f190 > D_00275544) {
+            f190 -= a10 * f194 * 2.0f;
+            if (f190 < D_00275544)
+                f190 = 0.0f;
+        } else if (f190 < D_00275544) {
+            f190 += a10 * f194 * 2.0f;
+            if (f190 > D_00275544)
+                f190 = 0.0f;
+        }
+    }
+}
+
 void __stdcall func_000597A0(int a0, int a1) {
     int func_000560A0(...);
     func_000560A0();
@@ -562,30 +673,29 @@ done:
     return 1;
 }
 
-int __fastcall func_00059CC0(BmxGame *self)
-{
-    D_002EFDB8->v9();
-    if (self->f2A4) {
-        D_002A8490->f2E0->f2FC->func_00094960(0);
-        D_002A8490->f2E0->f2FC->func_000947F0(0);
-        if (*(int *)(*(char **)(*(char **)((char *)D_002A8490 + 0x2a4) + 0x64) + 0x594))
-            D_002A8490->f2E0->f2FC->func_00094D90(250);
-        D_002A8490->f2E0->f2FC->func_00094C00();
-        (*(S_00059F50_F4 **)((char *)self + 4))->func_0001D330();
-        (*(S_00059F50_Fb4 **)(*(char **)(*(char **)((char *)D_002A8490 + 0x2a4) + 0x64) + 0x4c0))->v28();
-        (*(S_00059F50_F4 **)((char *)self + 4))->fB4->v14();
-        self->f2EC->func_0018C120();
-        D_002A8490->f4->fB4->v9();
-        if (*(void **)((char *)D_002A8490->f2E0 + 0x2c4)) {
-            func_001E891B(*(void **)((char *)D_002A8490->f2E0 + 0x2c4));
-            *(void **)((char *)D_002A8490->f2E0 + 0x2c4) = 0;
-        }
-        ((S_00059F50_Obj *)self->f2A4)->func_00157810();
-        ((S_00059F50_Obj *)self->f2A4)->v2();
-        self->f2A4 = 0;
-        D_002BEAAC->func_0013CA50();
-    }
-    return 1;
+int BmxGame::func_00059CC0() {
+ D_002EFDB8->v9();
+ if(f2A4) {
+ D_002A8490->f2E0->f2FC->func_00094960(0);
+ D_002A8490->f2E0->f2FC->func_000947F0(0);
+ if(*(int*)(*(char**)(*(char**)((char*)D_002A8490+0x2a4)+0x64)+0x594))
+ D_002A8490->f2E0->f2FC->func_00094D90(250);
+ D_002A8490->f2E0->f2FC->func_00094C00();
+ (*(S_00059F50_F4**)((char*)this+4))->func_0001D330();
+ (*(S_00059F50_Fb4**)(*(char**)(*(char**)((char*)D_002A8490+0x2a4)+0x64)+0x4c0))->v28();
+ (*(S_00059F50_F4**)((char*)this+4))->fB4->v14();
+ f2EC->func_0018C120();
+ D_002A8490->f4->fB4->v9();
+ if(*(void**)((char*)D_002A8490->f2E0+0x2c4)) {
+ func_001E891B(*(void**)((char*)D_002A8490->f2E0+0x2c4));
+ *(void**)((char*)D_002A8490->f2E0+0x2c4)=0;
+ }
+ ((S_00059F50_Obj*)f2A4)->func_00157810();
+ ((S_00059F50_Obj*)f2A4)->v2();
+ f2A4=0;
+ D_002BEAAC->func_0013CA50();
+ }
+ return 1;
 }
 
 int BmxGame::func_00059E10(int a, int b)
