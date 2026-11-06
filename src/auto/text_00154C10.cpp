@@ -103,6 +103,123 @@ struct S_001554D0_Global {
 extern S_001554D0_Global *D_002B9120;
 extern S_001554D0_Root *D_002A8490;
 
+/* FPSPlayer::Update (vtable slot 12) */
+struct V4c_154C10 : V4_154C10 {
+    V4c_154C10() { x = y = z = 0.0f; w = 1.0f; }
+};
+
+struct S_154C10_Pos {
+    V4_154C10 func_00016E40(void);
+};
+
+struct S_154C10_Line {
+    void func_0014AC30(V4_154C10 *line, int a);
+    void func_00133ED0(void);
+    float func_00133F10(int a);
+};
+
+struct S_154C10_Xf {
+    V4_154C10 func_00197F70(float *vin);
+    void func_00199600(V4_154C10 v);
+    void func_0019AC50(void);
+};
+
+struct S_154C10_Mid {
+    char pad0[4];
+    S_154C10_Xf *f4;
+    char pad8[8];
+    int f10;
+    char pad14[0x20];
+    float f34;
+    void func_00166C50(const void *p);
+    void func_00132D20(void);
+};
+
+struct S_154C10_Cam {
+    char pad0[0x1a4];
+    S_154C10_Mid *f1a4;
+};
+
+struct S_154C10_Obj {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32();
+    void func_0011CA60(V4_154C10 v);
+};
+
+extern "C" int func_001DC974(void);
+extern "C" void func_0013E260(void *, int, const void *);
+extern "C" void func_0013E1F0(void *, int, const void *, ...);
+void func_00011060(void);
+void __stdcall func_00011FF0(void *p, int stride, int count, void *ctor);
+extern float D_002A789C, D_002A78A0, D_002A78A4, D_002A78A8;
+extern float D_00275600, D_002756C8;
+extern double D_0027F710;
+extern char D_00286D8C[], D_00286D7C[], D_00286D68[], D_00286D58[], D_00286D50[];
+
+struct C_00154C10 {
+    char pad0[0x24];
+    int f24;
+    char pad28[4];
+    S_154C10_Cam *f2c;
+    char pad30[4];
+    float f34;
+    char pad38[0x10];
+    int f48;
+    int f4c;
+    char pad50[4];
+    float f54;
+    float f58;
+    int f5c;
+    char pad60[0x18];
+    S_154C10_Line *f78;
+    char pad7c[8];
+    V4_154C10 f84;
+    V4_154C10 f94;
+    V4_154C10 fa4;
+    V4_154C10 fb4;
+    int fc4;
+    V4_154C10 fc8;
+    char padd8[8];
+    S_154C10_Obj *fe0;
+    unsigned int fe4;
+    float fe8;
+    float fec;
+    float ff0;
+    char padf4[0x14];
+    int f108;
+    float f10c;
+    char pad110[0x10];
+    V4_154C10 f120;
+    char pad130[0x574 - 0x130];
+    int f574;
+    int f578;
+    int f57c;
+    float f580;
+    char pad584[4];
+    int f588;
+    float f58c;
+    char pad590[0x6c8 - 0x590];
+    int f6c8;
+    char pad6cc[0x6ec - 0x6cc];
+    int f6ec;
+    int f6f0;
+    V4_154C10 func_00016E40(void);
+    void func_00151F80(float dt);
+    void func_001521D0(V4_154C10 *pos, V4_154C10 *out);
+    void func_00152300(float dt);
+    void func_001528D0(float dt);
+    void func_00153350(float dt);
+    void func_00153DF0(float dt);
+    int func_00154C10(float dt);
+};
+
 struct C_001554D0 {
     char pad0[0x3c];
     S_001554D0_Owner *f3C;
