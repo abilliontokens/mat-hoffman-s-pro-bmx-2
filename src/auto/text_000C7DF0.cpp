@@ -236,6 +236,8 @@ struct BmxUIPageOptions {
     void func_001BE4F0(int a, int b, int c);
     void func_000C8660(void);
     void func_000C86A0(void);
+    void func_000C88E0(void);
+    void func_001578D0(void);
     void func_001BE3F0(void);
 };
 
