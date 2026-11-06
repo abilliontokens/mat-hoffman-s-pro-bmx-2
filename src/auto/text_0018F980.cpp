@@ -111,7 +111,7 @@ struct Node0018FF10 { char name[0x10c]; Node0018FF10 *next; };
 struct Ent0018FF10 { char pad[0x48]; Node0018FF10 *node; char pad2[0x60 - 0x4c]; };
 struct C_0013C9F0 { int func_0013C9F0(char *, char *); };
 extern C_0013C9F0 *D_002BEAAC;
-extern const char D_00275630[] = "";
+extern const char D_00275630[1];
 extern char D_00275FB4[];
 void *func_001E8A44(int size);
 void func_001E891B(void *p);
