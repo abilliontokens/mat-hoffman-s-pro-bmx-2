@@ -549,7 +549,7 @@ float func_0014F450(int x) {
 float func_0014F4B0(int x) {
     float f = (func_00016D60(x) + D_002756D0) * D_002DF870;
 
-    FloatToIndex(&x, f);
+    AsmFloatToInt(f, &x);
     return D_002CF6B4[x].a - (f - (float)x) * D_002CF6B4[x].b * D_002DF874;
 }
 
