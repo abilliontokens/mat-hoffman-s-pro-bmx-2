@@ -806,8 +806,12 @@ int C_001D4200::func_001D4440(const char *a, const char *b, const void *data, un
  if(func_001DD247(h,data,size,&written,0)) {
   ctx=func_001DF361(0);
   if(ctx!=-1) {
-   if(!func_001DF2EA(ctx,data,size) && !func_001DF304(ctx,sig)) {
-    if(func_001DD247(h,sig,0x14,&written,0)) {func_001DD13C(h); return 1;}
+   if(!func_001DF2EA(ctx,data,size)) {
+    if(!func_001DF304(ctx,sig)) {
+     if(func_001DD247(h,sig,0x14,&written,0)) {func_001DD13C(h); return 1;}
+     goto close;
+    }
+    func_001DF304(ctx,0);
     goto close;
    }
    func_001DF304(ctx,0);
