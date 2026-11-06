@@ -24,7 +24,8 @@ struct FileSys {
 struct CubeSub { CubeSub *func_00136AD0(); void func_001365B0(int h, int a); };
 struct CubeSub2 { void func_0014A520(void *p); void func_0014A560(void *p, int a); };
 struct CubeSub3 { CubeSub3 *func_00142C70(); void func_00142C80(void *p, int a); };
-struct CubeSub4 { void func_00135150(int h); };
+struct CubeSub4 { void *func_00135150(int h); };
+void func_001D3F50(void);
 extern FileSys *D_002BEAAC;
 extern char D_00275FB4[], D_00018B10[], D_002A67B4[], D_002BDD28[], D_0028499C[], D_00284990[];
 void *func_001E8A44(int size);
@@ -251,15 +252,16 @@ void DrawableCube::func_00137810()
     DrawableCube * volatile self = this;
     S_137F90_Mat *pm;
     S_137810_V3 v;
+    float *vv;
     int vf[25];
     int i;
     int j;
     int k;
     int idx;
-    float limit;
     S_137810_Clamp *o;
 
     v = *(S_137810_V3 *)(D_002EFDB8->f4 + 0xd0);
+    vv = &v.x;
     pm = &D_002BEA50;
     pm->identity();
     D_002BEA50.m[0] = 1.0f;
@@ -274,8 +276,7 @@ void DrawableCube::func_00137810()
         float *vp;
         int *op;
         *(unsigned short *)((char *)self->f28 + k * 0xfc + 0x12c) = 0;
-        limit = (*(float *)(D_002EFDB8->f4 + 0x1d0) - D_00275AEC) * D_0028491C;
-        if (!(limit < v.z * p[0] + v.x * p[-2] + v.y * p[-1])) {
+        if (!((*(float *)(D_002EFDB8->f4 + 0x1d0) - D_00275AEC) * D_0028491C < vv[1] * p[-1] + vv[0] * p[-2] + vv[2] * p[0])) {
             vp = &D_002BE040[k * 100];
             op = vf;
             i = 25;
@@ -286,13 +287,6 @@ void DrawableCube::func_00137810()
                 i--;
             } while (i != 0);
             for (j = 0; j < 16; j += 8) {
-#define CELL2(n) \
-                idx = (j + (n)) / 4 + j + (n); \
-                if (!((vf[idx + 5] & vf[idx + 6] & vf[idx + 1] & vf[idx]) & 0xffffffef)) { \
-                    *(unsigned short *)((char *)self->f28 + k * 0xfc + 0x12c) |= (unsigned short)(1 << (j + (n))); \
-                    o = ((S_137810_Clamp **)self->f28)[0x13 + k * 0x3f + j + (n)]; \
-                    if (o) CLAMP8_137810(o) \
-                }
                 CELL2(0)
                 CELL2(1)
                 CELL2(2)
