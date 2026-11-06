@@ -316,86 +316,6 @@ unsigned char *__stdcall func_001DFD24(unsigned char *p)
     return r;
 }
 
-/* tail of the grow-in-place path: shrink the entry to `index` granules and give
-   the rest (total - index granules) back to the free lists */
-static __forceinline unsigned char GrowTail_001DFD40(S_HeapRoot *root, unsigned int flags, S_HeapEntry *entry,
-                                                     unsigned int size, unsigned int index, unsigned int total,
-                                                     unsigned char eflags, unsigned char fflags)
-{
-    unsigned int oldSize;
-    unsigned int n;
-    S_HeapEntry *next;
-    S_HeapEntry *split;
-
-    oldSize = entry->size * 16 - *((unsigned char *)entry + 6);
-    n = total - index;
-    if (n <= 2) {
-        index += n;
-        n = 0;
-    }
-    if (eflags & 2) {
-        *(S_HeapEntry *)((unsigned char *)entry + index * 16 - 16) = *(S_HeapEntry *)((unsigned char *)entry + entry->size * 16 - 16);
-    }
-    entry->size = (unsigned short)index;
-    *((unsigned char *)entry + 6) = (unsigned char)(index * 16 - size);
-    if (n == 0) {
-        entry->flags |= fflags & 0x10;
-        if (!(fflags & 0x10)) {
-            *(unsigned short *)((unsigned char *)entry + (unsigned short)index * 16 + 2) = (unsigned short)index;
-        } else {
-            ((S_HeapBlock *)root->bucket[entry->bucket])->next = (unsigned char *)entry;
-        }
-    } else {
-        split = (S_HeapEntry *)((unsigned char *)entry + index * 16);
-        split->prevSize = (unsigned short)index;
-        split->bucket = entry->bucket;
-        if (fflags & 0x10) {
-            ((S_HeapBlock *)root->bucket[split->bucket])->next = (unsigned char *)split;
-            split->flags = fflags;
-            split->size = (unsigned short)n;
-            split->flags = fflags & 0xf8;
-            FreeInsert_001DFD40(root, split, n);
-            root->freeTotal += n;
-        } else {
-            next = (S_HeapEntry *)((unsigned char *)split + n * 16);
-            if (next->flags & 1) {
-                split->flags = fflags & 0xef;
-                split->size = (unsigned short)n;
-                *(unsigned short *)((unsigned char *)split + n * 16 + 2) = (unsigned short)n;
-                split->flags &= 0xf8;
-                FreeInsert_001DFD40(root, split, n);
-                root->freeTotal += n;
-            } else {
-                fflags = next->flags;
-                FreeUnlink_001DF985(root, next);
-                root->freeTotal -= next->size;
-                n += next->size;
-                split->flags = fflags;
-                if (n <= (unsigned int)&D_0000FF00) {
-                    split->size = (unsigned short)n;
-                    if (!(fflags & 0x10)) {
-                        *(unsigned short *)((unsigned char *)split + n * 16 + 2) = (unsigned short)n;
-                    } else {
-                        ((S_HeapBlock *)root->bucket[split->bucket])->next = (unsigned char *)split;
-                    }
-                    split->flags &= 0xf8;
-                    FreeInsert_001DFD40(root, split, n);
-                    root->freeTotal += n;
-                } else {
-                    func_001DFC2A(root, (unsigned char *)split, n);
-                }
-            }
-        }
-    }
-    if (flags & 8) {
-        if (size > oldSize) {
-            memset((unsigned char *)entry + 0x10 + oldSize, 0, size - oldSize);
-        }
-    }
-    entry->flags = ((unsigned char)(flags >> 4) ^ entry->flags) & 0x1f ^ (unsigned char)(flags >> 4);
-    return 1;
-}
-
 unsigned char __stdcall func_001DFD40(S_HeapRoot *root, unsigned int flags, S_HeapEntry *entry, unsigned int size, unsigned int index)
 {
     unsigned char eflags;
@@ -444,7 +364,7 @@ unsigned char __stdcall func_001DFD40(S_HeapRoot *root, unsigned int flags, S_He
         n = 0;
     }
     if (eflags & 2) {
-        *(S_HeapEntry *)((unsigned char *)entry + index * 16 - 16) = *(S_HeapEntry *)((unsigned char *)entry + entry->size * 16 - 16);
+        entry[index - 1] = entry[entry->size - 1];
     }
     entry->size = (unsigned short)index;
     *((unsigned char *)entry + 6) = (unsigned char)(index * 16 - size);
