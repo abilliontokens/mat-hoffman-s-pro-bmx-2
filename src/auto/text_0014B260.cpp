@@ -110,12 +110,14 @@ struct DynamicRayCollisionObject {
 
 static inline void Vec4Unused(Vec4 *a, Vec4 *b) {}
 
+#pragma auto_inline(on)
 struct V4_0014B940 {
     f32 x; f32 y; f32 z; f32 w;
     V4_0014B940() { z = 0; y = 0; x = 0; w = 1.0f; }
     V4_0014B940(f32 x_, f32 y_, f32 z_, f32 w_) { x = x_; y = y_; z = z_; w = w_; }
     V4_0014B940 &operator=(const V4_0014B940 &o) { x = o.x; y = o.y; z = o.z; w = o.w; return *this; }
 };
+#pragma auto_inline(off)
 
 /* same layout as DynamicRayCollisionObject, so BA40 keeps calling func_0014B940 instead of inlining it */
 struct S_0014B940_Obj {
