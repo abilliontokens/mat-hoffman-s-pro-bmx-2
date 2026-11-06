@@ -61,6 +61,7 @@ struct C_001067B0 {
     float f15AC;
     void func_001067B0(void);
     void func_00105AA0(void);
+    void func_00105CB0(void);
 };
 
 struct Vec4_00105B30 {
