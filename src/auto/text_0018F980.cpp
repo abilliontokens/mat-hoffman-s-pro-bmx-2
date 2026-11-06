@@ -124,13 +124,6 @@ struct C_0018FF10 {
     Ent0018FF10 *ents;
     int func_0018EB70(int, char *, Node0018FF10 *);
     int func_0018FF10(char *src, char *name, int idx, int *out);
-    __forceinline Node0018FF10 *Find0018FF10(const char *name)
-    {
-        for (Node0018FF10 *n = head; n; n = n->next) {
-            if (!strcmp(name, n->name)) return n;
-        }
-        return 0;
-    }
 };
 
 extern char D_0027D1D8[], D_0027D21C[], D_0027D240[], D_0028A834[], D_0028A82C[];
@@ -307,6 +300,8 @@ int C_0018FF10::func_0018FF10(char *src, char *volatile name, volatile int idx, 
     C_0018FF10 *volatile self = this;
     struct { volatile int a, b, r; } t;
     Node0018FF10 *n;
+    Node0018FF10 *tl;
+    C_0018FF10 *s;
     int count;
     int found = 0;
     if (!key || strcmp(key, "") == 0) return 0;
@@ -333,8 +328,10 @@ int C_0018FF10::func_0018FF10(char *src, char *volatile name, volatile int idx, 
         func_001E8920(n, name, count);
         ((volatile char *)n->name)[count] = 0;
         self->ents[idx].node = n;
-        if (!self->tail) { self->head = n; self->tail = n; *out = 1; return 1; }
-        self->tail->next = n;
+        s = self;
+        tl = s->tail;
+        if (!tl) { s->head = n; self->tail = n; *out = 1; return 1; }
+        tl->next = n;
         self->tail = n;
         *out = 1;
         return 1;
