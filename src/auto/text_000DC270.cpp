@@ -339,22 +339,4 @@ void C_000DD130::func_000DD130()
     }
     func_001BE3F0();
 }
-struct C_000DC270_UI {
- char pad0[0x48]; unsigned int color; char pad4C[2]; unsigned char flags;
- void func_00093120(); void func_001B1980(); void func_0005E840(int); void func_001D6600();
- void func_001B17D0(int); void func_001B1A30(float,float,int);
- void func_001B1860(int,float,int,float,int,int,int,int,float,int,float,float,int);
- void func_00093970(float,float,int,int,int,int);
- void func_00094570(float,float,int,int,int,int);
- void func_00093A00(float,float,int,int,int,int);
- int func_000301D0();
-};
-extern C_000DC270_UI **D_002B91AC;
-extern int D_0028F5E0;
-struct C_000DC270 {
- char pad0[0x124]; char *unk124; char pad128[0x18C];
- C_000DC270_UI *unk2B4; int unk2B8; C_000DC270_UI *unk2BC;
- char pad2C0[0x10]; int unk2D0; int unk2D4; int unk2D8;
- char pad2DC[0x30]; int unk30C; C_000DC270_UI *arr310[10];
- void func_000DC270();
-};
+
