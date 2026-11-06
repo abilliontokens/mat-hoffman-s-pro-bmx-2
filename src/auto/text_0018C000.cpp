@@ -508,12 +508,19 @@ void C_0018C800::func_0018C6B0(int a, int b)
     func_001ADCC0(buf1, 0x104, D_0028A76C, D_002A5240, name);
     func_001ADCC0(buf2, 0x104, D_00276F28, name);
     node = ((C_0018C120 *)this)->func_0018C160(name);
-    if (!(node != 0 && node->value != 0)) {
-        mem = func_001E8A44(0x45c);
-        obj = mem != 0 ? (C_0018C000 *)((C_0018C000 *)mem)->func_0018C000(name) : 0;
-        obj->func_0018C2D0(buf1, buf2, 0);
-        ((C_0018C090 *)this)->func_0018C090((int)obj);
-    } else if (b != 0) {
+    if (node == 0)
+        goto create;
+    if (node->value == 0)
+        goto create;
+    goto found;
+create:
+    mem = func_001E8A44(0x45c);
+    obj = mem != 0 ? (C_0018C000 *)((C_0018C000 *)mem)->func_0018C000(name) : 0;
+    obj->func_0018C2D0(buf1, buf2, 0);
+    ((C_0018C090 *)this)->func_0018C090((int)obj);
+    return;
+found:
+    if (b != 0) {
         ((C_0018C000 *)node->value)->func_0018C2D0(buf1, buf2, 1);
     }
 }
