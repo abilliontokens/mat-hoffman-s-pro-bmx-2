@@ -42,7 +42,7 @@ struct S_001EF734 {
 
 struct S_002F6A20 {
     int count;
-    void func_001EEFBA(int i);
+    S_001EF734 *func_001EEFBA(int i);
     void func_001EF3D2(S_001EF734 *n);
 };
 extern S_002F6A20 *D_002F6A20;
@@ -126,7 +126,7 @@ void *func_001F098B(S_001EF734 *out, bool update)
 done:
     if (update && D_002F6A20->count != 9)
         D_002F6A20->func_001EF3D2(&zName);
-    out->func_001EEEE6(zName);
+    CopyName(&zName, out);
     return out;
 }
 
