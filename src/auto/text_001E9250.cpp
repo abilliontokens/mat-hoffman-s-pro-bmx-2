@@ -248,7 +248,6 @@ double func_001E931E(char *str, char **endptr) {
     }
     return v;
 }
-#pragma optimize("e", off)
 unsigned long func_001E93CD(const char *nptr, const char **endptr, int ibase, int flags)
 {
     const char *p;
