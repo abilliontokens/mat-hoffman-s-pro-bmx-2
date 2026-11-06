@@ -40,6 +40,12 @@ struct BmxUIPageRider {
     BmxUIPageRider *func_000CC700(void *a);
 };
 
+struct BmxUIPageBase {
+    void func_001BE360(void *a);
+};
+extern char D_0027E538[];
+extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
+
 struct C_000CC6D0 {
     char pad0[0x328];
     int unk328;
