@@ -1,6 +1,11 @@
 /* 27 functions from 0x0008A190 to 0x0008AED0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+extern int D_00278664, D_00278668, D_0027866C, D_00278670;
+extern unsigned char D_00278674, D_002A60C0;
+extern int D_002A60B0, D_002A60B4, D_002A60B8, D_002A60BC, D_0028F5DC;
+extern char D_00278648[], D_00279C28[], D_00278638[], D_00279008[], D_00279C1C[], D_00279038[], D_00279044[], D_00279C14[], D_00279C0C[], D_002A5FA8[], D_002A5870[], D_00275678[], D_00279C00[], D_00279BF4[], D_00279BE8[], D_00279BDC[], D_00279BD0[];
+void func_001ADCC0(void *, int, const void *, const void *, const void *);
 extern float D_00279B5C;
 extern float D_00279B58;
 extern float D_00279B54;
