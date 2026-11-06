@@ -417,36 +417,47 @@ done:
 
 void C_0002A010::func_0002A010(float dt)
 {
+    C_0002A010 *volatile self = this;
     static float rate = (float)((D_002766B8 - D_002766C0 - D_002766B0) * D_002A1160);
-    C_0002A010 *self = this;
-    float t;
-    int i;
-    C_0002A010 **pp = &self;
-
-    if (!self->f634) {
-        if (!self->f468 && !self->f454 && self->f1e8->f68 && self->f744 < D_00275548 && !self->f5c8) {
-            t = self->f62c;
-            i = *(int *)&t & 0x7fffffff;
-            if (*(float *)&i > D_002A115C) {
+    volatile float t[2];
+    C_0002A010 *p = this;
+    if (this->f634) goto body;
+    {
+        if (this->f468 || this->f454 || !this->f1e8->f68 || !(this->f744 < D_00275548) || this->f5c8) goto active;
+        {
+            t[0] = this->f62c;
+            *(volatile int *)&t[1] = *(volatile int *)&t[0] & 0x7fffffff;
+            if (t[1] > D_002A115C) {
                 int dir;
-                self->f634 = 1;
-                dir = (*pp)->f62c < D_002766A8 ? -1 : 1;
+                float scale;
+                unsigned int address = (unsigned int)self;
+                *(volatile int *)(address + 0x634) = 1;
+                p = self;
+                dir = p->f62c < D_002766A8 ? -1 : 1;
+                scale = D_002A1158;
                 D_002B7E40 = dir;
                 D_002B7E3C = 0;
-                self->f640 = dir >= 0;
-                self->f63c = 0;
-                D_002B7E38 = D_002A1158 * self->f638;
+                *(volatile int *)&p->f640 = dir >= 0;
+                p = self;
+                scale *= p->f638;
+                *(volatile float *)&p->f63c = 0;
+                D_002B7E38 = scale;
             }
         }
     }
-    if (self->f634) {
-        if (D_002B7E3C < D_002766B8 && self->f63c > D_002766C0) {
-            self->f230->func_00199E50(self->f1e8->vf0, *(F4_0002A010 *)&D_002A1110, self->f62c / rate * D_002B7E38 * dt);
+    p = self;
+active:
+    if (p->f634) {
+body:
+        if (D_002B7E3C < D_002766B8 && p->f63c > D_002766C0) {
+            p->f230->func_00199E50(p->f1e8->vf0, *(F4_0002A010 *)&D_002A1110, p->f62c / rate * D_002B7E38 * dt);
+            p = self;
             D_002B7E3C += dt / rate;
-            self->f63c += dt / D_002A1160;
         }
-        if (self->f63c >= D_002766B8) {
-            self->f634 = 0;
+        *(volatile float *)&p->f63c += dt / D_002A1160;
+        p = self;
+        if (p->f63c >= D_002766B8) {
+            p->f634 = 0;
         }
     }
 }
