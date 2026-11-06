@@ -213,7 +213,7 @@ struct C_00026B60 {
     char pad43C[0x5EC - 0x43C]; Obj40_26 *f5EC; Obj40_26 *f5F0; Obj40_26 *f5F4;
     char pad5F8[0x758 - 0x5F8]; int f758;
     char pad75C[0x768 - 0x75C]; int f768;
-    RET26B60 func_00026B60(char *name, V4_000273F0 a1, V4_000273F0 a2, V4_000273F0 a3, V4_000273F0 a4, int a5, int a6);
+    C_00026B60 *func_00026B60(char *name, V4_000273F0 a1, V4_000273F0 a2, V4_000273F0 a3, V4_000273F0 a4, int a5, int a6);
     void func_001577A0(void *, int);
 };
 struct C_00027850 {
