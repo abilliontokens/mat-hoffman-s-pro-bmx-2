@@ -90,10 +90,9 @@ void func_00034820(V4_49470 *a, V4_49470 *b);
 void __stdcall func_000361F0(int a);
 static __forceinline S_49470_Elem *get49470(S_49470_Elem **arr, int count, int i)
 {
-    if (count <= 0) return 0;
-    if (arr == 0) return 0;
-    if (i >= count) return 0;
-    return arr[i];
+    if (count > 0 && arr != 0 && i < count)
+        return arr[i];
+    return 0;
 }
 struct C_00162B20 { int func_00162B20(const char *, int); };
 extern C_00162B20 *D_002EF7D0;
@@ -297,7 +296,102 @@ struct C_00049BD0 {
 };
 
 
-void _func_00049470(void *p) { *(int *)((char *)p + 0x47c) = 15; *(int *)((char *)p + 0x480) = 0; *(int *)((char *)p + 0x478) = 3; *(int *)((char *)p + 0x474) = 3; }
+extern "C" float sqrtf(float);
+void S_00049470_This::func_00049470()
+{
+    S_49470_F64 *f = (S_49470_F64 *)f64;
+    S_49470_F540 *sub = (S_49470_F540 *)f540;
+    S_49470_Elem *a, *b, *c, *d;
+    int idx;
+
+    f47c = 15;
+    f480 = 0;
+    f478 = 3;
+    f474 = 3;
+    func_0003AD50();
+
+    idx = f->f5a4[f47c].f44 + f480;
+    a = get49470(f->f5ac, f->f5a8, idx);
+    b = get49470(f->f5ac, f->f5a8, idx);
+    c = get49470(f->f5ac, f->f5a8, idx);
+    d = get49470((S_49470_Elem **)f5cc, f5c8, idx);
+
+    if (d != 0) {
+        V4_49470 v30 = {0,0,0,1}, v40 = {0,0,0,1}, v60 = {0,0,0,1}, v70 = {0,0,0,1}, v80 = {0,0,0,1};
+        V4_49470 v50;
+        int m, n;
+        float t, len, fy;
+
+        fy = f440;
+        D_002EFDB8->v7(1);
+        D_002EFDB8->v8();
+
+        if (sub->f24 != 0) {
+            sub->f24->func_00198390();
+            if (sub->f2c != 0)
+                sub->f2c->func_00198390();
+            sub->f24 = 0;
+        } else if (sub->f28 != 0) {
+            sub->f28->f1a4->f4->func_00198390();
+            sub->f28 = 0;
+        }
+        sub->f24 = (C_00198390 *)d;
+        sub->f24->func_001983A0();
+        sub->f24->func_0019A8C0(&v40, &v80);
+
+        if (func_001E8AF0(&sub->f24[1], D_00276D54))
+            v40.z -= D_00275AEC;
+        sub->f2c = 0;
+
+        if (c->f360 <= b->f358) {
+            if (b->f358 > a->f35c) m = b->f358;
+            else if (a->f35c > c->f360) m = a->f35c;
+            else m = c->f360;
+        } else {
+            m = a->f35c;
+        }
+        if (f->f5a4[f47c].f3c <= f->f5a4[f47c].f40) {
+            if (f->f5a4[f47c].f40 <= f->f5a4[f47c].f38) n = f->f5a4[f47c].f38;
+            else n = (m > f->f5a4[f47c].f40) ? m : f->f5a4[f47c].f40;
+        } else {
+            if (f->f5a4[f47c].f3c <= f->f5a4[f47c].f38) n = f->f5a4[f47c].f38;
+            else n = (m > f->f5a4[f47c].f3c) ? m : f->f5a4[f47c].f3c;
+        }
+        t = (float)n * D_0027653C;
+        v50.x = 0.0f;
+        v40.w = fy;
+        v60.x = v40.x;
+        v60.w = 1.0f;
+        v60.y = D_00276220 * (t * D_002766C8) + fy;
+        v60.z = v40.z - t * D_00276D50;
+        v30.x = v50.x;
+        v30.w = v60.w;
+        v30.y = fy - v60.y;
+        v30.z = v40.z - v60.z;
+        t = v30.z * v30.z + v30.y * v30.y + v50.x * v50.x;
+        len = sqrtf(t);
+        *(float *)&sub->f38 = len;
+        func_00034820(&v30, &v30);
+        v70 = D_002A14E4;
+
+        sub->f34->f5c->func_00194E60(v60);
+        sub->f34->f5c->f4 = 0;
+        sub->f34->f5c->func_00194F90(60.0f);
+        sub->f34->f5c->func_00194EB0(v40);
+        sub->f34->f5c->func_00194F60(v70);
+
+        if (!func_00042840()) {
+            func_000361F0(1);
+            return;
+        }
+    }
+    if (f564 != 0 && ((S_49470_F564 *)f564)->f0 != 0) {
+        if (((S_49470_F564 *)f564)->f0 >= 3)
+            ((S_49470_Obj *)f554)->func_0008A920();
+        ((S_49470_Obj *)f550)->func_0008A0A0();
+    }
+    ((S_49470_Obj *)f53c)->func_001A4100(2, 1, 0);
+}
 
 void func_00049A20(S_00049A20_Arg *arg) {
     arg->f2E4->f0->f4->func_00198390();
