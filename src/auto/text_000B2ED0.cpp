@@ -4,6 +4,7 @@
 static inline int vehicle_min(const int &a, const int &b) { return a > b ? b : a; }
 
 extern int D_0027CF8C;
+extern "C" unsigned int __cdecl strlen(const char *);
 struct S_2ED0_Rd {
     void func_00168550(const void *k, char *buf, int n);
     void func_00168BE0(const void *k, const void *k2, char *buf, int n);
