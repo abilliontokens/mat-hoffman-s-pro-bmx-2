@@ -393,6 +393,11 @@ void __stdcall func_001DED66(char c)
     RtlNtStatusToDosError(status);
 }
 
+struct S_001DEDC3_Out {
+    char pad0[0x2c];
+    signed char cFileName[260];
+    signed char cAlternateFileName[14];
+};
 #pragma optimize("gsy", on)
 void __stdcall func_001DEDC3(void *info, char *out)
 {
@@ -762,10 +767,11 @@ u32 func_001DF4BC(void)
 
 char * __stdcall func_001DF4E1(char *lpString1, const char *lpString2, int iMaxLength)
 {
-    char *src, *dst;
+    const char *src;
+    char *dst;
 
     __try {
-        src = (char *)lpString2;
+        src = lpString2;
         dst = lpString1;
         if (iMaxLength) {
             while (iMaxLength && *src) {
