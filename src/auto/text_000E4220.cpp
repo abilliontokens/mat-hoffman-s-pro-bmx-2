@@ -87,6 +87,112 @@ struct C_000E5150_Global {
 
 extern C_000E5150_Global *D_002A8490;
 
+struct S_000E4BC0_Widget {
+    void func_001B1980();
+};
+
+/* the manager a page holds at +0x124 */
+struct S_000E4BC0_Mgr {
+    char pad0[0x264];
+    int f264;
+    char pad268[0x284 - 0x268];
+    int f284;
+    int f288;
+    int f28C;
+    void func_000BBF90(char *name);
+    int func_000BC0B0();
+    int func_000BC1C0();
+};
+
+struct S_000E4BC0_Label {
+    void func_0005E840(char *s);
+};
+
+struct S_000E4BC0_Hud {
+    char pad0[0x34];
+    S_000E4BC0_Label *f34;
+    S_000E4BC0_Label *f38;
+    S_000E4BC0_Label *f3C;
+    S_000E4BC0_Label *f40;
+    void func_000BF860(int a, int b, int c, int d);
+};
+
+extern S_000E4BC0_Hud *D_002B91AC;
+extern int D_002786A0;
+extern char D_0027DB68[], D_0027E914[], D_0027E904[], D_0027E8F0[], D_0027E8E4[], D_0027E8C8[];
+extern char D_0027E8B0[], D_0027E8A0[], D_0027E888[], D_0027E878[], D_0027E85C[], D_0027E83C[];
+extern char D_0027E824[], D_0027E7E0[], D_0027E7F8[], D_0027E7C8[];
+
+/* BmxUIPageRiderOps, virtual slot 27 */
+struct C_000E4BC0 {
+    char pad0[0x124];
+    S_000E4BC0_Mgr *f124;
+    char pad128[0x280 - 0x128];
+    int f280;
+    int f284;
+    char pad288[0x29C - 0x288];
+    int f29C;
+    int f2A0;
+    int f2A4;
+    int f2A8;
+    int f2AC;
+    char pad2B0[0x2B4 - 0x2B0];
+    int a2B4[35];
+    S_000E4BC0_Widget *f340;
+    S_000E4BC0_Widget *f344;
+    S_000E4BC0_Widget *f348;
+    char pad34C[0x358 - 0x34C];
+    int a358[35];
+    char pad3E4[0x3E8 - 0x3E4];
+    int a3E8[16];
+    int a428[16];
+    int f468;
+    char pad46C[0x47C - 0x46C];
+    int f47C;
+    int f480;
+    int f484;
+    char pad488[0x490 - 0x488];
+    int f490;
+    int f494;
+    int f498;
+    int f49C;
+    char pad4A0[0x4A4 - 0x4A0];
+    int f4A4;
+    int f4A8;
+    int f4AC;
+    int f4B0;
+    int f4B4;
+    int f4B8;
+    char pad4BC[0x4C4 - 0x4BC];
+    int f4C4;
+    int f4C8;
+    int f4CC;
+    int f4D0;
+    int f4D4;
+    int f4D8;
+    int f4DC;
+    int f4E0;
+    int f4E4;
+    int f4E8;
+    int f4EC;
+    char pad4F0[0x500 - 0x4F0];
+    S_000E4BC0_Widget *f500;
+    char pad504[0x508 - 0x504];
+    int f508;
+    int f50C;
+    char pad510[0x578 - 0x510];
+    S_000E4BC0_Widget *a578[5];
+    char pad58C[0x5A0 - 0x58C];
+    S_000E4BC0_Widget *a5A0[35];
+    S_000E4BC0_Widget *a62C[35];
+    char pad6B8[0x6F0 - 0x6B8];
+    int a6F0[35];
+    char pad77C[0x788 - 0x77C];
+    int f788;
+    int f78C;
+    void func_000E4BC0();
+};
+
 extern int D_002A3398, D_002A339C, D_002A33A0, D_002A33A4;
 C_000E4AB0 *C_000E4AB0::func_000E4830(int a0)
 {
