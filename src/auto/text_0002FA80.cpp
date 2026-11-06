@@ -379,13 +379,18 @@ bool C_000300F0::func_000300F0(undefined4 param_1)
   return iVar1 == 0;
 }
 
+static __forceinline S_0002FA80_Sub *CurSub_00030120(C_0002FA80 *m)
+{
+    S_0002FA80_Entry *e = &m->entries[m->cur];
+    return &e->subs[e->curSub];
+}
+
 bool C_0002FA80::func_00030120(const char *subName)
 {
     int func_001EA426(...);
-    S_0002FA80_Entry *e = CurEntry30120();
-    S_0002FA80_Sub *subs = e->subs;
-    int idx = e->curSub;
-    S_0002FA80_Sub *s = &subs[idx];
+    C_0002FA80 *self = this;
+    S_0002FA80_Entry *e = &self->entries[self->cur];
+    S_0002FA80_Sub *s = &e->subs[e->curSub];
 
     return func_001EA426(subName, s->name) == 0;
 }
