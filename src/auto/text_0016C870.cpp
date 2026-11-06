@@ -68,6 +68,11 @@ struct ParticleEmitterResetVT {
     virtual void v0(); virtual void v1(); virtual void v2();
 };
 
+struct V4f {
+    float x, y, z, w;
+    V4f(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
+};
+
 struct C_0016CF10 {
     void *vtbl;
     char pad4[0x40];
