@@ -86,16 +86,11 @@ static __forceinline float Min_00131510(float a, float b)
 
 static __forceinline void Cross_00131510(V4_00131510 *out, V4_00131510 *a, V4_00131510 *b)
 {
-    __m128 va = _mm_loadu_ps(&a->x);
-    __m128 vb = _mm_loadu_ps(&b->x);
-    __m128 sa = va, sb = vb;
-    sa = _mm_shuffle_ps(sa, sa, 0xc9);
-    sb = _mm_shuffle_ps(sb, sb, 0xc9);
-    vb = _mm_mul_ps(vb, sa);
-    va = _mm_mul_ps(va, sb);
-    va = _mm_sub_ps(va, vb);
-    va = _mm_shuffle_ps(va, va, 0xc9);
-    _mm_storeu_ps(&out->x, va);
+    _mm_storeu_ps(&out->x, _mm_shuffle_ps(
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a->x), _mm_shuffle_ps(_mm_loadu_ps(&b->x), _mm_loadu_ps(&b->x), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(&b->x), _mm_shuffle_ps(_mm_loadu_ps(&a->x), _mm_loadu_ps(&a->x), 0xc9))),
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a->x), _mm_shuffle_ps(_mm_loadu_ps(&b->x), _mm_loadu_ps(&b->x), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(&b->x), _mm_shuffle_ps(_mm_loadu_ps(&a->x), _mm_loadu_ps(&a->x), 0xc9))), 0xc9));
 }
 
 static __forceinline float Track_00131510(S_Node_00131510 *n, float target, float dt)
@@ -105,4 +100,43 @@ static __forceinline float Track_00131510(S_Node_00131510 *n, float target, floa
     n->f8 = D_00275460 / n->f4 * m;
     n->f0 = (target - n->f0) * n->f8 + n->f0;
     return n->f0;
+}
+
+void C_00131510::func_00131510(float dt, int a1, int a2, int a3, float *p18, V4_00131510 *p1c, V4_00131510 *p20, int a7)
+{
+    if (f74 != 0 && f98 != 0) {
+        float negC8 = -fC8;
+        float c4 = fC4;
+        Vec4_00131510 a;
+        Vec4_00131510 b;
+        Cross_00131510(&a, p20, p1c);
+        if (f9C == 0) {
+            a.y = 0;
+        }
+        func_001310E0(&a, &a);
+        if (p1c->x == D_00275544 && p1c->z == D_00275544) {
+            b.x = p20->x;
+            b.y = p20->y;
+            b.z = p20->z;
+            b.w = p20->w;
+        } else {
+            b.x = p1c->x;
+            b.y = p1c->y;
+            b.z = p1c->z;
+            b.w = p1c->w;
+        }
+        if (f9C == 0) {
+            b.y = 0;
+        }
+        func_001310E0(&b, &b);
+        float s = c4 * dt;
+        float s2 = negC8 * dt;
+        float k = f5C;
+        V4_00131510 r;
+        r.x = b.x * s2 * k + f14.x + a.x * s * k;
+        r.y = b.y * s2 * k + f14.y + a.y * s * k;
+        r.z = b.z * s2 * k + f14.z + a.z * s * k;
+        r.w = 1.0f;
+        f14 = r;
+    }
 }
