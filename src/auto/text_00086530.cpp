@@ -166,6 +166,7 @@ struct BestScoreOverlay {
     int f84;
     BestScoreOverlay *func_00086530(char **players, int idx);
     BestScoreOverlay *func_00086DC0(int a0);
+    BestScoreOverlay *func_00086E60(u32 a, int mode, int c);
     void func_00086E00(void);
     void func_00086C40(float a0);
     void func_000873C0(void);
