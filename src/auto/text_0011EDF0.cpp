@@ -171,14 +171,6 @@ void func_0011F010(int a0, float x, float y, float z, float s, float c)
     m[10] = *(volatile float *)&s * z + c;
 }
 
-static __forceinline void SetV_0011F210(C_0011EDF0 *t, s16 *q)
-{
-    t->x = (float)q[0] * D_002B9348;
-    t->y = (float)q[1] * D_002B9348;
-    t->z = (float)q[2] * D_002B9348;
-    t->w = 1.0f;
-}
-
 static __forceinline C_0011EDF0 MakeV_0011F210(s16 *q)
 {
     C_0011EDF0 t;
@@ -209,10 +201,9 @@ void func_0011F210(C_0011EDF0 *a, C_0011EDF0 *b, C_0011EDF0 *c, unsigned short *
 {
     if (data[2]) {
         s16 *p = (s16 *)data[1];
-        C_0011EDF0 t;
-        SetV_0011F210(&t, p + indices[0] * 3); *a = t;
-        SetV_0011F210(&t, p + indices[1] * 3); *b = t;
-        SetV_0011F210(&t, p + indices[2] * 3); *c = t;
+        *a = MakeV_0011F210(p + indices[0] * 3);
+        *b = MakeV_0011F210(p + indices[1] * 3);
+        *c = MakeV_0011F210(p + indices[2] * 3);
     } else {
         S_0011F5A0_V3 *p = (S_0011F5A0_V3 *)data[1];
         int i0 = indices[0]; ((int *)a)[0] = p[i0].x; ((int *)a)[1] = p[i0].y; ((int *)a)[2] = p[i0].z; a->w = 1.0f;
