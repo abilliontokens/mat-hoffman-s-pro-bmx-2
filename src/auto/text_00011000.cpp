@@ -160,6 +160,7 @@ struct S_11BE0_Mid { int f0; S_11BE0_Target *f4; };
 struct S_11BE0_State { char pad[0xbc]; int fBC; };
 struct S_11BE0_Actor { char pad[0x834]; C_00017680_Vec pos; char pad844[0x950-0x844]; S_11BE0_State *state; char pad954[0xa00-0x954]; S_11BE0_Mid *mid; };
 struct S_11BE0_List { char pad[0x24]; int count; char pad28[0x1a8-0x28]; S_11BE0_Actor *actors[1]; };
+static __forceinline S_11BE0_List *load_list_11BE0(S_11BE0_List * volatile *p) { return *p; }
 struct S_11E30_Cnt { char pad[0x124]; int count; };
 struct S_115F0_Mgr { char pad[0x4dc]; S_11E30_Cnt *cnt; S_11BE0_List *list; char pad4e4[0x588-0x4e4]; S_115F0_Path **paths; };
 static __forceinline float distance_11BE0(const C_00017680_Vec &a, const C_00017680_Vec &b) {
@@ -209,9 +210,19 @@ extern float D_00275544;
 
 float func_00011000(float x) { return sqrtf(x); }
 
-float func_00011020(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+float func_00011020(float a, float b)
+{
+    float r;
+    _mm_store_ss(&r, _mm_min_ss(*(__m128 *)&a, *(__m128 *)&b));
+    return r;
+}
 
-float func_00011040(float a, float b) { return b > a ? b : a; }
+float func_00011040(float a, float b)
+{
+    float r;
+    _mm_store_ss(&r, _mm_max_ss(*(__m128 *)&a, *(__m128 *)&b));
+    return r;
+}
 
 C_00011060* C_00011060::func_00011060(void) {
     unk8 = 0;
@@ -380,6 +391,50 @@ void C_000112E0::func_000114D0(int n)
     case 4: ((C_0008AB90 *)f384)->func_0008AB90((void *)f3A0); return;
     case 7: ((C_0008AB90 *)f384)->func_0008AB90((void *)f3A4); return;
     case 8: ((C_0008AB90 *)f384)->func_0008AB90((void *)f3A8); return;
+    }
+}
+
+int C_000115F0::func_000115F0(float *pos, float radius, int start, int dir)
+{
+    S_115F0_Path *path = D_002B9120->paths[pathIdx];
+    if (dir == 1) {
+        for (int i = start; i < start + path->count; i++) {
+            int idx = i;
+            if (i >= path->count) idx = i - path->count;
+            float *p = path->pts + idx * 4;
+            float dx = p[0] - pos[0], dy = p[1] - pos[1], dz = p[2] - pos[2];
+            float d = func_00011000(dx * dx + dy * dy + dz * dz);
+            if (d > radius) return idx;
+        }
+    } else {
+        for (int i = start; i >= start - path->count; i--) {
+            int idx = i;
+            if (i < 0) idx = i + path->count;
+            float *p = path->pts + idx * 4;
+            float dx = p[0] - pos[0], dy = p[1] - pos[1], dz = p[2] - pos[2];
+            float d = func_00011000(dx * dx + dy * dy + dz * dz);
+            if (d > radius) return idx;
+        }
+    }
+    return start;
+}
+
+void C_00011BE0::func_00011BE0(int * volatile index, float * volatile distance) {
+    C_00011BE0 *volatile self = this;
+    *index = -1;
+    *distance = 1000000.0f;
+    S_11BE0_List **list;
+    for (int i = 0; list = &D_002B9120->list, i < (*list)->count; ++i) {
+        C_00017680_Vec v, temp;
+        S_11BE0_Actor *actor = (*list)->actors[i];
+        int active = actor->state->fBC;
+        if (active) v = *(*(S_11BE0_List * volatile *)list)->actors[i]->mid->f4->func_00199B00(&temp, 0);
+        else v = actor->pos;
+        C_00011BE0 *p = self;
+        float x = p->pos.x-v.x, y = p->pos.y-v.y, z = p->pos.z-v.z;
+        volatile float square = z*z+y*y+x*x;
+        volatile float d = sqrtf(square);
+        if (*index == -1 || d < *distance) { *index = i; *distance = d; }
     }
 }
 
