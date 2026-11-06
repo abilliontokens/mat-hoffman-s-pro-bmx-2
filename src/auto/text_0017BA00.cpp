@@ -376,25 +376,18 @@ void C_0017BDE0::func_0017BE40(void) {
     }
 }
 
-static __forceinline f32 dot2_0017BFB0(const f32 *a, const f32 *b)
-{
-    return a[1] * b[1] + a[0] * b[0];
-}
-
 int C_0017BDE0::func_0017BFB0(void) {
- f32 e[4][2]; f32 n[4][2]; int k; int off;
+ f32 e[8][2]; int k; int off;
  e[0][0]=v[2]-v[0]; e[0][1]=v[3]-v[1];
  e[1][0]=v[4]-v[2]; e[1][1]=v[5]-v[3];
  e[2][0]=v[6]-v[4]; e[2][1]=v[7]-v[5];
  e[3][0]=v[0]-v[6]; e[3][1]=v[1]-v[7]; k=0; off=0;
  do {
- f32 *ee=(f32*)((char*)e+off);
- f32 *nn=(f32*)((char*)n+off);
- *(u32*)&nn[1]=*(u32*)&ee[0];
- nn[0]=-ee[1];
+ *(u32*)((char*)(e+4)+off+4)=*(u32*)((char*)e+off);
+ *(f32*)((char*)(e+4)+off)=-*(f32*)((char*)e+off+4);
  ++k;
  f32 *q=e[k&3];
- if(D_00275544 < q[1] * nn[1] + q[0] * nn[0]) return 0;
+ if(D_00275544 < q[1] * *(f32*)((char*)(e+4)+off+4) + q[0] * *(f32*)((char*)(e+4)+off)) return 0;
  off+=8;
  }while(off<32);
  return 1;
