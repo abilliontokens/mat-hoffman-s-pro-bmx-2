@@ -92,7 +92,7 @@ extern float D_002A14D4;
 extern float D_002A14D8;
 extern float D_002A14DC;
 extern float D_002A14E0;
-inline void V4::identity() { x = D_002A14D4; y = D_002A14D8; z = D_002A14DC; w = D_002A14E0; }
+inline void V4::identity() { *(int *)&x = *(int *)&D_002A14D4; *(int *)&y = *(int *)&D_002A14D8; *(int *)&z = *(int *)&D_002A14DC; *(int *)&w = *(int *)&D_002A14E0; }
 void func_001E891B(void *p);
 int func_000265C0(V4 *out, V4 *a, V4 *b, V4 *c, int d, int e);
 
@@ -228,11 +228,10 @@ void C_0003D910::func_0003D910(int a0)
         func_001E891B(f564);
         f564 = 0;
     } else {
-        V4 *p = &v51C;
-        *(int *)&p->x = D_002A14D4;
-        *(int *)&p->y = D_002A14D8;
-        *(int *)&p->z = D_002A14DC;
-        *(int *)&p->w = D_002A14E0;
+        *(int *)&v51C.x = *(int *)&D_002A14D4;
+        *(int *)&v51C.y = *(int *)&D_002A14D8;
+        *(int *)&v51C.z = *(int *)&D_002A14DC;
+        *(int *)&v51C.w = *(int *)&D_002A14E0;
         if (f564->a == 0) {
             int i;
             if (f564->f14 > 0) {
@@ -307,17 +306,17 @@ void C_0003D910::func_0003D910(int a0)
     }
     if (f48C != -1) {
         int idx568 = -1;
-        int idx56C = -1;
-        int idx570 = -1;
         int i;
         for (i = f5B4 - 1; i >= 0; i--) {
             int e = (f5B4 < 1 || f5B8 == 0 || f5B4 <= i) ? 0 : f5B8[i];
             if (f568 == (NodeD *)e) { idx568 = i; break; }
         }
+        int idx56C = -1;
         for (i = f5B4 - 1; i >= 0; i--) {
             int e = (f5B4 < 1 || f5B8 == 0 || f5B4 <= i) ? 0 : f5B8[i];
             if (f56C == (NodeD *)e) { idx56C = i; break; }
         }
+        int idx570 = -1;
         for (i = f5B4 - 1; i >= 0; i--) {
             int e = (f5B4 < 1 || f5B8 == 0 || f5B4 <= i) ? 0 : f5B8[i];
             if (f570 == (NodeD *)e) { idx570 = i; break; }
