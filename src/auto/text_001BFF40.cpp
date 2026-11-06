@@ -808,4 +808,9 @@ C_001C0EC0 *C_001C0EC0::func_001C0EC0(int a1, int a2)
     }
     return this;
 }
-
+C_001C0730 *C_001C0730::func_001C0730(int a1, int a2)
+{
+    ((C_00157600 *)this)->func_00157600(a1);
+    f24 = a2;
+    return this;
+}
