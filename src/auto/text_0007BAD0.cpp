@@ -47,6 +47,7 @@ struct S_7C690_Text {
 struct ResultsScreen {
     char pad0[0x100];
     S_7C690_Text *f100;
+    char pad104[8];
     S_7C690_Obj90 *f10C;
     char pad110[0x40];
     int f150;
