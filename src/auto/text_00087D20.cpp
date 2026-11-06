@@ -89,6 +89,73 @@ struct Sub_00088530 {
 };
 
 extern char D_00279920[];
+extern char D_0027953C[], D_00279870[], D_00279854[], D_00279838[], D_0027945C[];
+extern char D_00279448[], D_00279830[], D_0027981C[], D_00279418[], D_00279408[], D_002793F8[];
+extern char D_00279258[];
+extern int D_0028F5DC, D_0028F5EC, D_0028F5E0;
+
+struct C_00087D20_Config {
+    char pad0[0x4CC];
+    void func_00168280();
+    void func_001691E0();
+    int func_00169490(char *path, int flags);
+    int func_00169710(const char *name);
+    void func_00168CB0(const char *key, void *def, void *dst);
+    void func_00168BE0(const char *key, const char *def, char *dst, int size);
+    void func_00168C20(const char *key, int def, int *dst);
+};
+
+struct S_00087D20_Vec {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
+struct S_00087D20_Sprite {
+    char pad0[4];
+    float f4;
+    float f8;
+    char padC[0x28 - 0xC];
+    float f28;
+    char pad2C[0x58 - 0x2C];
+    unsigned char b58;
+    void SetPos(float x, float y)
+    {
+        if (f4 != x || f8 != y) {
+            f4 = x;
+            f8 = y;
+            b58 |= 1;
+        }
+    }
+};
+
+struct S_00087D20_Label {
+    char pad0[4];
+    float f4;
+    float f8;
+    char padC[0x44 - 0xC];
+    int f44;
+    char pad48[0x4E - 0x48];
+    unsigned char b4e;
+    void SetPos(float x, float y)
+    {
+        if (f4 != x || f8 != y) {
+            f4 = x;
+            f8 = y;
+            b4e |= 6;
+        }
+    }
+};
+
+struct C_00087D20 {
+    char pad0[0x24];
+    S_00087D20_Label *f24;
+    S_00087D20_Label *f28;
+    S_00087D20_Sprite *f2C;
+    S_00087D20_Sprite *f30;
+    void func_00087D20();
+};
 
 struct S_00088720_Global {
     char pad0[0x10];
@@ -163,8 +230,9 @@ C_00088570 *C_00088570::func_00088570(int mode)
 {
     int w;
     int h;
-    int w2 = 0;
-    int h2 = 0;
+    volatile int w2 = 0;
+    volatile int h2 = 0;
+    Sub_00088530 *s;
 
     fEC = mode;
     if (mode == 0) {
@@ -187,29 +255,31 @@ C_00088570 *C_00088570::func_00088570(int mode)
     w2 = 0x140;
     h2 = 2;
     func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
-    sub24.func_001D5810((void *)D_00279920, 0, 0, 0);
-    if (sub24.f28 != w) {
-        sub24.f28 = w;
-        sub24.b58 |= 1;
+    s = &sub24;
+    s->func_001D5810(D_00279920, 0, 0, 0);
+    if (s->f28 != w) {
+        s->f28 = w;
+        s->b58 |= 1;
     }
-    if (sub24.f2c != h) {
-        sub24.f2c = h;
-        sub24.b58 |= 1;
+    if (s->f2c != h) {
+        s->f2c = h;
+        s->b58 |= 1;
     }
-    sub24.f38 &= 0xff000000;
-    sub24.b58 |= 2;
+    s->f38 &= 0xff000000;
+    s->b58 |= 2;
     if (fEC == 3 || fEC == 4) {
-        sub88.func_001D5810((void *)D_00279920, 0, 0, 0);
-        if (sub88.f28 != w2) {
-            sub88.f28 = w2;
-            sub88.b58 |= 1;
+        s = &sub88;
+        s->func_001D5810(D_00279920, 0, 0, 0);
+        if (s->f28 != w2) {
+            s->f28 = w2;
+            s->b58 |= 1;
         }
-        if (sub88.f2c != h2) {
-            sub88.f2c = h2;
-            sub88.b58 |= 1;
+        if (s->f2c != h2) {
+            s->f2c = h2;
+            s->b58 |= 1;
         }
-        sub88.f38 &= 0xff000000;
-        sub88.b58 |= 2;
+        s->f38 &= 0xff000000;
+        s->b58 |= 2;
     }
     func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
     return this;
