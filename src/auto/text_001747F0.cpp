@@ -12,6 +12,10 @@ struct Vec4_001747F0 {
 struct Vec3_001747F0 {
     float x, y, z;
 };
+
+struct Mat4_001747F0 {
+    Vec4_001747F0 r0, r1, r2, r3;
+};
 extern float D_00275544, D_00275460;
 extern Vec4_001747F0 D_002A8C18;
 struct Body_001747F0 {
