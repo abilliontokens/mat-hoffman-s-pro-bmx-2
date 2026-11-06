@@ -141,43 +141,43 @@ void CinematographerCam::func_001324B0()
     func_0012B540();
 }
 
-void C_00132540::func_00132540()
+float *__fastcall func_00132540(float *f)
 {
-    unsigned int *in_ECX = (unsigned int *)this;
-    int iVar2;
-    for (iVar2 = 0; iVar2 < 8; iVar2++) {
-        in_ECX[iVar2 * 4 + 2] = 0;
-        in_ECX[iVar2 * 4 + 1] = 0;
-        in_ECX[iVar2 * 4] = 0;
-        in_ECX[iVar2 * 4 + 3] = 0x3f800000;
+    int i;
+    for (i = 0; i < 8; i++) {
+        f[i * 4 + 2] = 0.0f;
+        f[i * 4 + 1] = 0.0f;
+        f[i * 4] = 0.0f;
+        f[i * 4 + 3] = 1.0f;
     }
-    in_ECX[1] = 0xff7fffff;
-    in_ECX[0x20] = 0xff7fffff;
-    in_ECX[0x21] = 0xff7fffff;
-    in_ECX[0x22] = 0x7f7fffff;
-    *in_ECX = 0xff7fffff;
-    in_ECX[2] = 0xff7fffff;
-    in_ECX[4] = 0x7f7fffff;
-    in_ECX[5] = 0xff7fffff;
-    in_ECX[6] = 0xff7fffff;
-    in_ECX[8] = 0x7f7fffff;
-    in_ECX[9] = 0x7f7fffff;
-    in_ECX[10] = 0xff7fffff;
-    in_ECX[0xc] = 0xff7fffff;
-    in_ECX[0xd] = 0x7f7fffff;
-    in_ECX[0xe] = 0xff7fffff;
-    in_ECX[0x10] = 0xff7fffff;
-    in_ECX[0x11] = 0xff7fffff;
-    in_ECX[0x12] = 0xff7fffff;
-    in_ECX[0x14] = 0x7f7fffff;
-    in_ECX[0x15] = 0xff7fffff;
-    in_ECX[0x16] = 0xff7fffff;
-    in_ECX[0x18] = 0x7f7fffff;
-    in_ECX[0x19] = 0x7f7fffff;
-    in_ECX[0x1a] = 0xff7fffff;
-    in_ECX[0x1c] = 0xff7fffff;
-    in_ECX[0x1d] = 0x7f7fffff;
-    in_ECX[0x1e] = 0xff7fffff;
+    f[1] = -3.4028235e38f;
+    f[0x20] = -3.4028235e38f;
+    f[0x21] = -3.4028235e38f;
+    f[0x22] = 3.4028235e38f;
+    f[0] = -3.4028235e38f;
+    f[2] = -3.4028235e38f;
+    f[4] = 3.4028235e38f;
+    f[5] = -3.4028235e38f;
+    f[6] = -3.4028235e38f;
+    f[8] = 3.4028235e38f;
+    f[9] = 3.4028235e38f;
+    f[10] = -3.4028235e38f;
+    f[0xc] = -3.4028235e38f;
+    f[0xd] = 3.4028235e38f;
+    f[0xe] = -3.4028235e38f;
+    f[0x10] = -3.4028235e38f;
+    f[0x11] = -3.4028235e38f;
+    f[0x12] = -3.4028235e38f;
+    f[0x14] = 3.4028235e38f;
+    f[0x15] = -3.4028235e38f;
+    f[0x16] = -3.4028235e38f;
+    f[0x18] = 3.4028235e38f;
+    f[0x19] = 3.4028235e38f;
+    f[0x1a] = -3.4028235e38f;
+    f[0x1c] = -3.4028235e38f;
+    f[0x1d] = 3.4028235e38f;
+    f[0x1e] = -3.4028235e38f;
+    return f;
 }
 
 int func_001325D0(float *param_1)
