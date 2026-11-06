@@ -312,4 +312,59 @@ undefined4 C_000BA9D0::func_000BA9D0(int param_1)
   
   return *(undefined4 *)(*(int *)(in_ECX + 0x110) + -4 + param_1 * 4);
 }
-
+#include <string.h>
+struct BA440_Reader { int func_00168C20(const char *, int, int *); void func_00168550(const char *, char *, int); };
+struct BA440_Obj {
+virtual void vf0();
+virtual void vf1();
+virtual void vf2();
+virtual void vf3();
+virtual void vf4();
+virtual void vf5();
+virtual void vf6();
+virtual void vf7();
+virtual void vf8();
+virtual void vf9();
+virtual void vf10();
+virtual void vf11();
+virtual void vf12();
+virtual void vf13();
+virtual void vf14();
+virtual void vf15();
+virtual void vf16();
+virtual void vf17();
+virtual void vf18();
+virtual void vf19();
+virtual void vf20();
+virtual void vf21();
+virtual void vf22();
+virtual void vf23();
+virtual void vf24();
+virtual void vf25();
+virtual void vf26();
+virtual void vf27();
+virtual void vf28();
+virtual void vf29();
+virtual void vf30();
+virtual void vf31();
+virtual void vf32();
+virtual void vf33();
+virtual void vf34();
+virtual void vf35();
+virtual void vf36();
+virtual void vf37();
+virtual void *vf38(int, char *, BA440_Reader *);
+BA440_Obj *func_001BF6F0(void *, int); void *func_001BF7C0(int, char *, BA440_Reader *);
+BA440_Obj *func_001BFA70(void *, int); void *func_001BFB40(int, char *, BA440_Reader *);
+BA440_Obj *func_00102B30(void *, int); void *func_00103B60(int, BA440_Reader *);
+BA440_Obj *func_001033D0(void *, int); void *func_00103450(int, BA440_Reader *);
+BA440_Obj *func_001C0110(void *, int); void *func_001C26B0(int, BA440_Reader *);
+BA440_Obj *func_001C14D0(void *, int); void *func_001C1520(int, BA440_Reader *, void *);
+BA440_Obj *func_001C0C50(void *, int); void *func_001C0CB0(int, BA440_Reader *, void *);
+BA440_Obj *func_001C0EC0(void *, int); void *func_001C0F20(int, BA440_Reader *, void *);
+BA440_Obj *func_001C1150(void *, int); void *func_001C11E0(int, char *, BA440_Reader *);
+BA440_Obj *func_001C0730(void *, int); void *func_001C0820(int, char *, BA440_Reader *);
+BA440_Obj *func_001BFDB0(void *, int);
+};
+struct BA440_Manager { char pad[0x24]; char *f24; void *func_000BA440(BA440_Reader *, const char *); };
+extern char D_0027D8D0[], D_0027D8BC[], D_0027D8B0[], D_00276310[], D_0027D898[], D_0027D884[], D_0027D880[], D_002A46E8[], D_0027D86C[], D_0027D854[], D_0027D844[], D_0027D83C[], D_0027D828[], D_0027D818[], D_0027D80C[], D_0027D800[];
