@@ -23,6 +23,13 @@ struct C_001A7140 {
 extern int D_0028B9E4;
 extern int D_0028B974;
 
+static __forceinline int CmpStore_001A6E90(float t, float k, float *dst)
+{
+    int r = t >= k;
+    *dst = t;
+    return r;
+}
+
 void func_001E891B(void *p);
 
 struct C_Item0 {
@@ -440,7 +447,7 @@ void C_001A6D30::func_001A6D30()
 
 void C_001A6E90::func_001A6E90(float dt)
 {
-    float t;
+    float tt[1];
     S_001A6E90_Msg msg;
     float sum;
     int s;
@@ -506,9 +513,9 @@ void C_001A6E90::func_001A6E90(float dt)
     }
 after_draw:
     if (f5C != 0 || f60 != 0) {
-        t = dt + f64;
-        f64 = t;
-        if (t >= D_002755E8) {
+        tt[0] = dt + f64;
+        f64 = tt[0];
+        if (tt[0] >= D_002755E8) {
             if (f5C != 0) {
                 if (f6C == 3) {
                     if (f78->func_00092A10() == 0) {
@@ -521,7 +528,7 @@ after_draw:
                     f4C->f24 = 9;
                     f5C = 0;
                 }
-            } else if (f60 != 0 && t >= D_00278C48) {
+            } else if (f60 != 0 && tt[0] >= D_00278C48) {
                 if (f6C == 9) {
                     msg.type = 2;
                     msg.code = 0x55;
