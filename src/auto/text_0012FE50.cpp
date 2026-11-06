@@ -42,7 +42,7 @@ static __forceinline V4_0012FE50 operator-(const V4_0012FE50 &a, const V4_0012FE
     r.z = a.z - b.z;
     return r;
 }
-static inline float Dot_0012FE50(const V4_0012FE50 &a, const V4_0012FE50 &b)
+static __forceinline float Dot_0012FE50(const V4_0012FE50 &a, const V4_0012FE50 &b)
 {
     return a.x * b.x + a.y * b.y + a.z * b.z;
 }
