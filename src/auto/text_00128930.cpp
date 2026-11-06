@@ -221,7 +221,8 @@ static inline void Xform_00128930(S_00129050_Vec4 *out, const S_00128930_Mat *ma
     __m128 r2 = _mm_mul_ps(_mm_load_ps(mat->m[2]), t);
     __m128 lo = _mm_unpacklo_ps(r0, r1);
     __m128 hi = _mm_unpackhi_ps(r0, r1);
-    __m128 junk = _mm_movehl_ps(r2, r2);
+    __m128 junk;
+    junk = _mm_movehl_ps(junk, r2);
     lo = _mm_add_ps(lo, hi);
     r2 = _mm_add_ps(r2, junk);
     hi = _mm_movehl_ps(hi, lo);
