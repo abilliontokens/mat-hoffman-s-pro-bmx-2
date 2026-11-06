@@ -31,7 +31,7 @@ extern float D_00275544;
 /* Truncate towards zero into *out; inlined into its callers. */
 static void storeftoi(int * volatile out, float f)
 {
-    *out = _mm_cvttss_si32(_mm_load_ss(&f));
+    *out = _mm_cvttss_si32(*(__m128 *)&f);
 }
 
 /* one entry of the table func_0014F9A0 frees; the table ends where D_002DF874 starts */
