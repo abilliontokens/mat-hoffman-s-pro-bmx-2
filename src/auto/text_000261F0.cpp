@@ -6,7 +6,7 @@
 
 struct S_000265C0_V4 {
     float x, y, z, w;
-    S_000265C0_V4() { x = 0.0f; y = 0.0f; z = 0.0f; w = 1.0f; }
+    S_000265C0_V4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
 };
 
 void func_00026340(float *dst, float *src);
@@ -302,20 +302,20 @@ int C_00026500::func_00026500(const char *name, int value)
 void func_000265C0(float *out, float *t, S_000265C0_V4 *pa, S_000265C0_V4 *pb, int flag1, int flag2)
 {
     S_000265C0_V4 va = *pa;
-    S_000265C0_V4 vb = *pb;
     S_000265C0_V4 v2;
+    S_000265C0_V4 vb = *pb;
 
     if (flag1) {
-        cross_000265C0(&v2, &va, &vb);
+        AsmVec3Cross(&v2.x, &vb.x, &va.x);
         if (flag2) {
-            cross_000265C0(&vb, &v2, &va);
+            AsmVec3Cross(&vb.x, &va.x, &v2.x);
         } else {
-            cross_000265C0(&va, &vb, &v2);
+            AsmVec3Cross(&va.x, &v2.x, &vb.x);
         }
     }
     func_00026340(&vb.x, &vb.x);
     func_00026340(&va.x, &va.x);
-    cross_000265C0(&v2, &va, &vb);
+    AsmVec3Cross(&v2.x, &vb.x, &va.x);
     out[0] = v2.x;
     out[4] = v2.y;
     out[8] = v2.z;
@@ -324,9 +324,9 @@ void func_000265C0(float *out, float *t, S_000265C0_V4 *pa, S_000265C0_V4 *pb, i
     out[9] = vb.z;
     out[2] = va.x;
     out[6] = va.y;
-    out[10] = va.z;
     out[12] = 0.0f;
     out[13] = 0.0f;
+    out[10] = va.z;
     out[14] = 0.0f;
     out[3] = t[0];
     out[7] = t[1];
