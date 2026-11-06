@@ -15,7 +15,11 @@ static inline float dot_001225C0(const V4_001225C0 &a, const V4_001225C0 &b)
 
 static __forceinline V4_001225C0 sub_001225C0(const V4_001225C0 *a, const V4_001225C0 *b)
 {
-    V4_001225C0 t = { a->x - b->x, a->y - b->y, a->z - b->z, 1.0f };
+    V4_001225C0 t;
+    t.x = a->x - b->x;
+    t.y = a->y - b->y;
+    t.z = a->z - b->z;
+    t.w = 1.0f;
     return t;
 }
 extern "C" void func_0011F4B0(float *out, V4_001225C0 *pos, float *m);
@@ -49,6 +53,55 @@ V4_001225C0 func_00104A00(const V4_001225C0 &v);
 extern "C" V4_001225C0 *func_0011EE50(V4_001225C0 *out, V4_001225C0 *in);
 extern "C" V4_001225C0 *func_0011EEE0(V4_001225C0 *out, V4_001225C0 *a, V4_001225C0 *b);
 
+extern "C" int func_00122090(float *center, float *ext, float *p0, float *p1, float *m)
+{
+    V4_001225C0 a = { 0.0f, 0.0f, 0.0f, 1.0f };
+    V4_001225C0 b = { 0.0f, 0.0f, 0.0f, 1.0f };
+    V4_001225C0 mid, d, ad, e;
+    float f;
+    int i;
+
+    xform_00122090(&a.x, p0, m);
+    xform_00122090(&b.x, p1, m);
+    mid.w = 1.0f;
+    d.w = 1.0f;
+    a.x -= center[0];
+    a.y -= center[1];
+    a.z -= center[2];
+    b.x -= center[0];
+    b.y -= center[1];
+    b.z -= center[2];
+    mid.x = (b.x + a.x) * D_002755E8;
+    mid.y = (b.y + a.y) * D_002755E8;
+    mid.z = (b.z + a.z) * D_002755E8;
+    d.x = mid.x - a.x;
+    d.y = mid.y - a.y;
+    d.z = mid.z - a.z;
+    ad = func_00104A00(d);
+    e = func_00104A00(mid);
+    e.x -= ext[0];
+    e.y -= ext[1];
+    e.z -= ext[2];
+    e.x -= ad.x;
+    e.y -= ad.y;
+    e.z -= ad.z;
+    if (e.x > D_00275544 || e.y > D_00275544 || e.z > D_00275544)
+        return 0;
+    f = d.z * mid.y - d.y * mid.z;
+    i = *(int *)&f & 0x7fffffff;
+    if (ad.y * ext[2] + ad.z * ext[1] < *(float *)&i)
+        return 0;
+    f = mid.x * d.z - d.x * mid.z;
+    i = *(int *)&f & 0x7fffffff;
+    if (ad.x * ext[2] + ad.z * ext[0] < *(float *)&i)
+        return 0;
+    f = mid.x * d.y - d.x * mid.y;
+    i = *(int *)&f & 0x7fffffff;
+    if (ad.x * ext[1] + ad.y * ext[0] < *(float *)&i)
+        return 0;
+    return 1;
+}
+
 extern "C" int func_00122400(float *pa, float *pb, V4_001225C0 *pos, float f, float radius, float *m)
 {
     V4_001225C0 v = { 0.0f, 0.0f, 0.0f, 1.0f };
@@ -81,3 +134,44 @@ extern "C" int func_00122400(float *pa, float *pb, V4_001225C0 *pos, float f, fl
     }
     return 0;
 }
+
+int func_001225C0(V4_001225C0 *a0, V4_001225C0 *a1, V4_001225C0 *pos, float r, float maxDist, float *m)
+{
+    V4_001225C0 v;
+    V4_001225C0 *mn;
+    float dx, dy, dz;
+
+    v.z = 0.0f;
+    v.y = 0.0f;
+    v.x = 0.0f;
+    v.w = 1.0f;
+    func_0011F4B0(&v.x, pos, m);
+    v.x -= a0->x;
+    v.y -= a0->y;
+    v.z -= a0->z;
+    {
+        V4_001225C0 t;
+        func_0011EE50(&t, &v);
+    }
+    V4_001225C0 e;
+    e = sub_001225C0(&v, a1);
+    e.x -= r;
+    e.y -= r;
+    e.z -= r;
+    if (e.x > D_00275544 || e.y > D_00275544 || e.z > D_00275544)
+        return 0;
+    {
+        V4_001225C0 t;
+        mn = func_0011EEE0(&t, &v, a1);
+    }
+    dx = v.x - mn->x;
+    dy = v.y - mn->y;
+    dz = v.z - mn->z;
+    float lenSq = dy * dy;
+    lenSq += dz * dz;
+    lenSq += dx * dx;
+    if (maxDist > lenSq)
+        return 1;
+    return 0;
+}
+
