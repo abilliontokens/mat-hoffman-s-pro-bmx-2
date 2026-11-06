@@ -8,6 +8,7 @@ extern char D_0000F000;
 extern char D_0000FF00;
 extern char D_0000FFF8;
 extern char D_0000FFF0;
+extern char D_0000FFF0;
 
 u32 func_00178210(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int pal)
 {
