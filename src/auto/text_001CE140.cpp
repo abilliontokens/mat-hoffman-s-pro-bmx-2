@@ -163,17 +163,6 @@ struct S_Loader_001CE770 {
 extern S_Loader_001CE770 *D_002BEAAC;
 extern char D_00275FB4;
 
-static __forceinline int Load_001CE770(Voice *v, int p, int handle)
-{
-    if (v->func_001CCAC0(p, handle, 0, v->f118)) {
-        if (handle != -1) {
-            D_002BEAAC->func_0013C110(handle);
-        }
-        return 1;
-    }
-    return 0;
-}
-
 extern char D_0028F0A8[];
 extern char D_002843B0[];
 int __stdcall func_001DD8C5(int h, int idx, void *a, void *b, unsigned short *name, int len);
@@ -434,13 +423,20 @@ int Voice::func_001CE770(int buf)
     if ((f10c & 0x100) && f150) {
         f19c = f170;
         f1a0 = f170;
-        if (Load_001CE770(this, buf, handle)) {
+        if (func_001CCAC0(buf, handle, 0, f118)) {
+            if (handle != -1) {
+                D_002BEAAC->func_0013C110(handle);
+            }
             return 1;
         }
     } else {
         if (func_001CCC50(&f13c, 0, f170, f17a, f178, f16c, (flags >> 1) & 1,
                           (f10c & 8) == 8, 1, f110)) {
-            if (Load_001CE770(this, f13c, handle)) {
+            buf = f13c;
+            if (func_001CCAC0(buf, handle, 0, f118)) {
+                if (handle != -1) {
+                    D_002BEAAC->func_0013C110(handle);
+                }
                 return 1;
             }
         }
