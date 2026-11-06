@@ -46,13 +46,16 @@ struct S_002A8490_B03A0 {
 };
 
 struct S_Rec_B03A0 {
-    char pad0[0x28];
-    float v0[4];        /* -0x28 .. -0x18 */
-    float v1[4];        /* -0x18 .. -0x8 */
-    float f8;           /* -0x8 */
-    float fC;           /* -0x4 */
-    u8 pad10[0x40];     /* 0x00 .. 0x40 */
-    u8 type;            /* -0x56 relative: rec+0x0A?? */
+    u8 pad0[0x2];
+    u8 type;            /* +0x02 */
+    s16 idx;            /* +0x04 */
+    u8 pad6[0x30 - 0x6];
+    float v0[4];        /* +0x30 */
+    float v1[4];        /* +0x40 */
+    float f50;          /* +0x50 */
+    float f54;          /* +0x54 */
+    float f58;          /* +0x58 */
+    u8 pad5C[0x70 - 0x5C];
 };
 
 struct S_Obj_B03A0 {
