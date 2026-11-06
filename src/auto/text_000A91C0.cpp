@@ -107,6 +107,27 @@ struct C_000A9A00 {
     C_000A9A00 *func_000A9A00(void);
 };
 
+extern char D_002A5FA8[], D_002A5348[], D_00275678[], D_002A60B0[], D_002A5D98[], D_002A5870[], D_002A5EA0[], D_0027C588[];
+struct A9_Model {
+    void **vtbl;
+    char pad4[0x24];
+    char name[128];
+    A9_Model *func_00143580(int);
+    void func_00199600(V4_A91C0);
+    void func_00198F50(void *, void *, int, int, int);
+    void func_0019ABA0(void *, int);
+};
+struct A9_Obj { char name[0x104]; int count; int flag; char pad10C[0x20]; V4_A91C0 vec; char a[16]; char b[16]; A9_Model **models; };
+struct A9_Item { int x; int kind; A9_Model *model; char padC[0x198]; S_A95D0_b *info; };
+struct A9_List { char pad[0x24]; int count; A9_Item **items; void func_001577A0(A9_Model *, int); };
+struct A9_Arg { char pad[0x348]; int index; char pad34C[0x5c]; A9_List **lists; A9_List *list; };
+struct A9_Global { char pad[0x3a8]; A9_List **lists; char pad3AC[0xfc]; void **models; };
+extern A9_Global *D_002B9120;
+struct C_A9 { char pad[0x24]; int count; A9_Obj **objs; void func_000A9A70(A9_Arg *); };
+extern "C" int func_001EA426(const char *, const char *);
+extern "C" char *func_001E8AC0(char *, int);
+extern "C" void *memset(void *, int, unsigned int);
+void func_0014FF00(const char *, int, int, char *, int);
 extern "C" V4_A91C0 *func_00182980(void *a, void *b);
 void C_000A9820::func_000A91C0(S_A91C0_Reader *stream)
 {
