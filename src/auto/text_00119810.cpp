@@ -135,6 +135,7 @@ void func_00104A90(void *a, void *b);
 
 struct BmxVehicle {
     int func_00119810(int a);
+    int func_00119810(float a);
     void func_00027D40();
     int func_001091D0();
     void func_0010DC00();
