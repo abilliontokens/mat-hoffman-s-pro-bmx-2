@@ -209,6 +209,59 @@ struct C_0018E7D0 {
     int func_0018E7D0(int kind, C_0018E7D0_Rec *buf, int *out);
 };
 
+void C_0018E0E0::func_0018DE60(int a, C_0018DE60_Arg *arg, int idx, int kind, const char *name, int type)
+{
+    C_0018E0E0 *self = this;
+    unsigned int out;
+    C_0018DA90_Result res;
+    int r;
+    int i;
+    char *s;
+
+    arg->f20[idx].idx = idx;
+    arg->f20[idx].kind = kind;
+    arg->f20[idx].type = type;
+    int len = strlen(name);
+    int max = 0x3f;
+    int n = max > len ? len : max;
+    func_001E8920(arg->f20[idx].name, name, n);
+    arg->f20[idx].name[n] = 0;
+    if (name[0] == '$')
+        return;
+    if ((char)type == 1
+        && (kind == 13 || kind == 14 || kind == 10 || kind == 11 || kind == 12
+            || kind == 2 || kind == 19 || kind == 20 || kind == 21)) {
+        r = self->func_0018D900(a);
+        if (r != -1) {
+            out = 0;
+            res = self->func_0018DA90(1, r, name, &out);
+            if (res.f40 != -1)
+                arg->f20[idx].f44 = res.f40;
+            else
+                arg->f20[idx].f44 = -1;
+        }
+    }
+    if (kind == 15) {
+        for (i = 0; (s = D_002A96A4[i]) != 0; i++) {
+            if (strcmp(name, s) == 0) {
+                arg->f20[idx].f44 = i + 1;
+                return;
+            }
+        }
+    } else if (kind == 3) {
+        r = self->func_0018D900(a);
+        if (r == -1)
+            return;
+        r = self->func_0018DA00(r, name);
+        if (r == -1)
+            arg->f20[idx].f44 = -1;
+        else
+            arg->f20[idx].f44 = r;
+    } else if (kind == 16 || kind == 17 || kind == 18) {
+        arg->f20[idx].f44 = func_001E91F4(name);
+    }
+}
+
 void C_0018E0E0::func_0018E0E0(C_0018E0E0_Arg *arg, int idx)
 {
     int i;
@@ -285,7 +338,7 @@ void C_0018E250::func_0018E250(const char * volatile name, unsigned int flags)
     slot[3] = c;
     k = slot[3];
     func_001E8920((void *)slot[0], name, k);
-    ((volatile char *)slot[0])[k] = 0;
+    ((volatile char *)k)[slot[0]] = 0;
     ((C_0018E250 *)slot[0])->f18 = *(volatile unsigned int *)&flags;
     f = *(volatile unsigned int *)&flags;
 
@@ -423,6 +476,36 @@ void Node_0018EA50::func_0018E3E0(int a, int b)
     }
 }
 
+char *C_0018E640::func_0018E640(const char *delim)
+{
+    char *str;
+    const char *ctrl = delim;
+    unsigned char map[32];
+    char *token;
+    int count;
+
+    for (count = 0; count < 32; count++)
+        map[count] = 0;
+
+    do {
+        map[*ctrl >> 3] |= (1 << (*ctrl & 7));
+    } while (*ctrl++);
+
+    str = next;
+    while ((map[*str >> 3] & (1 << (*str & 7))) && *str)
+        str++;
+    token = str;
+    for (; *str; str++)
+        if (map[*str >> 3] & (1 << (*str & 7))) {
+            *str++ = 0;
+            break;
+        }
+    next = str;
+    if (token == str)
+        return 0;
+    return token;
+}
+
 undefined4 C_0018E720::func_0018E720(byte param_1)
 {
   int func_0018CA20(...);
@@ -470,7 +553,7 @@ int C_0018E7D0::func_0018E7D0(int kind, C_0018E7D0_Rec *buf, int *out)
     if (idx == -1) {
         return 0;
     }
-    val = named[idx].rec.f40;
+    val = this->named[idx].rec.f40;
     name = func_001E95A4(0, D_0027CEF0);
     switch (kind) {
     case 0:
