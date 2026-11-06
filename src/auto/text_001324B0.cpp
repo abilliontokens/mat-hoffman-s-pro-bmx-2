@@ -111,6 +111,8 @@ struct C_132CC0 {
     char pad8[0x278];
     void *f280;
     int f284;
+    int f288;
+    void func_001673B0(char *, int, int, int, int);
     void func_00132CC0(int a1, int a2, int a3);
     void func_00132D20();
     void func_00132D70();
