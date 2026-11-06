@@ -43,7 +43,12 @@ void func_001ADCC0(void *dst, int n, void *src, void *x);
 
 struct C_0009EDF0 {
     void *vtbl;
-    char pad4[0x68];
+    char pad4[0x20];
+    Vec4f v24;
+    Vec4f v34;
+    char pad44[0x20];
+    Pool9E *f64;
+    char pad68[4];
     char f6c[0x104];
     float f170, f174, f178, f17c;
     char pad180[8];
