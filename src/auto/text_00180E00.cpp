@@ -120,6 +120,7 @@ struct Rd {
 extern Rd *D_002BEAAC;
 extern Mgr *D_002A829C;
 extern char D_002A60B0[];
+extern char D_002A60AF;
 extern unsigned short D_00284644;
 extern int D_002AA46C;
 void *func_001E8AA5(unsigned int n);
