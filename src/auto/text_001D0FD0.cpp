@@ -240,6 +240,12 @@ struct S_15D0_Pad {
     int func_001D15D0(float dt);
 };
 struct S_15D0_Pkt { int id; unsigned short buttons; unsigned char a[8]; short lx, ly, rx, ry; };
+struct S_15D0_State { unsigned short buttons; unsigned char a[8]; short lx, ly, rx, ry; };
+struct S_15D0_H { void func_00135E90(int a, int b, int c, int d); };
+extern char *D_002A8490;
+extern "C" int func_0026ECB6(void *h, void *p);
+extern "C" int func_0026ED25(void *h, void *p);
+extern float D_002755E4, D_00284758, D_00287B68, D_00278650, D_00278784, D_00275544;
 int XboxGame::func_001D0FD0(int param_1)
 {
     int saved = 0;
@@ -436,6 +442,92 @@ undefined4 C_001D15B0::func_001D15B0(void)
   func_0026ECAA((int)(*(undefined4 *)(in_ECX + 0x6b8)));
   *(undefined4 *)(in_ECX + 0x6b8) = 0;
   return 1;
+}
+
+extern "C" int func_0026ECB6(void *h, void *p);
+extern float D_00284758, D_00287B68, D_00278650, D_00278784;
+int S_15D0_Pad::func_001D15D0(float dt)
+{
+    struct S_15D0_State { unsigned short buttons; unsigned char a[8]; short lx, ly, rx, ry; };
+    S_15D0_Pkt p;
+    S_15D0_State st;
+    int i;
+    unsigned short mask;
+    float v;
+
+    if (f6B8 && func_0026ECB6(f6B8, &p) < 0)
+        return 0;
+    if (p.id != f6C0) {
+        f6C0 = p.id;
+        st = *(S_15D0_State *)&p.buttons;
+        for (i = 0; i < 8; i++) {
+            unsigned char b = st.a[i];
+            if (b == 0) {
+                if (analog[i].mode != 0) {
+                    analog[i].mode = 0;
+                    analog[i].val = 0.0f;
+                    analog[i].f10 = 0;
+                    analog[i].f8 = 0;
+                } else {
+                    analog[i].f8 = (int)((float)(unsigned)analog[i].f8 + dt);
+                }
+            } else if (b > 0x38) {
+                if (analog[i].mode == 1) {
+                    analog[i].fc = (int)((float)(unsigned)analog[i].fc + dt);
+                    analog[i].val = b * D_00284758;
+                } else {
+                    analog[i].mode = 1;
+                    analog[i].f14 = 0;
+                    analog[i].fc = 0;
+                    analog[i].val = b * D_00284758;
+                }
+            }
+        }
+        if (st.buttons != f6BC) {
+            if (f8 > 8) {
+                mask = 1;
+                for (i = 8; i < f8; i++) {
+                    if (mask & st.buttons) {
+                        if (digital[i].mode == 1) {
+                            digital[i].fc = (int)((float)(unsigned)digital[i].fc + dt);
+                        } else {
+                            digital[i].mode = 1;
+                            digital[i].val = 1.0f;
+                            digital[i].f14 = 0;
+                            digital[i].fc = 0;
+                        }
+                    } else {
+                        if (digital[i].mode != 0) {
+                            digital[i].mode = 0;
+                            digital[i].val = 0.0f;
+                            digital[i].f10 = 0;
+                            digital[i].f8 = 0;
+                        } else {
+                            digital[i].f8 = (int)((float)(unsigned)digital[i].f8 + dt);
+                        }
+                    }
+                    mask <<= 1;
+                }
+            }
+        }
+        f6BC = st.buttons;
+        axis[0] = st.lx * D_00287B68 + D_00278650;
+        axis[1] = D_00278784 - (st.ly * D_00287B68 + D_00278650);
+        axis[2] = st.rx * D_00287B68 + D_00278650;
+        axis[4] = D_00278784 - (st.ry * D_00287B68 + D_00278650);
+        for (i = 0; i < 6; i++) {
+            if (i == 2)
+                v = D_00278784 - axis[2];
+            else
+                v = axis[i];
+            func_0015AFC0(i, v, 256.0f);
+        }
+        if (f6E4 != 0x3e5) {
+            f726 = f6E0;
+            f6E8 = 0;
+        }
+    }
+    return 1;
 }
 
 int __stdcall func_001D1A30(int a0) {
