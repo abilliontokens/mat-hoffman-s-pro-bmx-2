@@ -88,6 +88,15 @@ extern float D_002756D0, D_002756B8, D_002756E8;
 extern double D_002766B8;
 extern "C" float func_0014F510(float x);
 extern "C" float func_0014F550(float x);
+static inline float Wrap_001AFB60(float a)
+{
+    if (a > D_002756D0) {
+        a -= D_002756B8;
+    } else if (a < D_002756E8) {
+        a += D_002756B8;
+    }
+    return a;
+}
 extern float D_00275544, D_002755E4, D_00276098;
 extern S_001AF530_Tbl *D_002AA6C0;
 extern S_001AF530_Time *D_002A8490;
@@ -586,7 +595,7 @@ void C_001AFB00::func_001AFB60(float *a, float *b, float *c)
         ang += D_002756B8;
     }
     f20 = ang;
-    float cs = func_0014F510(ang);
+    float cs = func_0014F510(f20);
     float sn = func_0014F550(f20);
     f0 = (float)fmod(s * f24 + f0, D_002766B8);
     f4 = (float)fmod(s * f28 + f4, D_002766B8);
