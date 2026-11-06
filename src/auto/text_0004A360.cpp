@@ -64,10 +64,7 @@ struct S_Overlay {
     void func_00088A40(int a, S_Vec4 *v);
 };
 
-extern float D_002A15B0;
-extern float D_002A15B4;
-extern float D_002A15B8;
-extern float D_002A15BC;
+extern S_Vec4Pod D_002A15B0;
 extern float D_00277240;
 void func_000499B0(S_Vec4Pod *out, S_Vec4Pod *in);
 float func_0014FBA0(float x, float z);
