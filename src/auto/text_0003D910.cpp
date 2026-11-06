@@ -43,6 +43,7 @@ struct MidD {
     void func_00164820(int a);
     void func_001670C0(int a, int b, int c);
     void func_00132D20();
+    void func_00194EE0(V4 v);
 };
 struct Mid2D { char pad0[4]; int f4; };
 struct MgrD {
