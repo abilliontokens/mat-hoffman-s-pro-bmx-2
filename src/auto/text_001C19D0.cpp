@@ -179,7 +179,7 @@ static __forceinline void LoadSubK19D0(Sub19D0 *s, Cfg19D0 *cfg, char *buf, char
         s->f44 = (float)a[1] * s->f50;
         s->f48 = (float)a[3] * s->f50;
     }
-    if (cfg->func_00168E70(k1, bb, a) == 0) {
+    if (cfg->func_00168E70(k1, b, a) == 0) {
         float t;
         cfg->func_00168C50(k2, 0, &t);
         int x = (int)t;
