@@ -302,7 +302,6 @@ void func_00162330(void *a, float *n, float *p1, float *p2, float *p3)
 /* The part of the projection matrix that doesn't depend on the far plane. */
 static __forceinline void setprojcommon(float *m, float a2, float a3, float a4, float a5, float a6)
 {
-    float d = a5 - a4;
     m[14] = 1.0f;
     m[3] = 0.0f;
     m[7] = 0.0f;
