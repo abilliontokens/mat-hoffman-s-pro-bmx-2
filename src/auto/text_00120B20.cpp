@@ -32,6 +32,9 @@ void func_0001C680(S_0011F4B0_V4 *out, S_0011F4B0_V4 v, float *m);
 
 extern S_0011F4B0_V4 D_002A3C3C[3];
 extern S_0011F4B0_V4 D_002B9350[15];
+extern S_0011F4B0_V4 D_002B9360, D_002B9370, D_002B9380, D_002B9390, D_002B93A0;
+extern S_0011F4B0_V4 D_002B93B0, D_002B93C0, D_002B93D0, D_002B93E0, D_002B93F0;
+extern S_0011F4B0_V4 D_002B9400, D_002B9410, D_002B9420, D_002B9430;
 extern float D_00275544;
 
 static inline void Cross_00120FF0(S_0011F4B0_V4 *a, S_0011F4B0_V4 *b, S_0011F4B0_V4 *out)
@@ -117,53 +120,43 @@ int func_00120B20(S_001206E0_Tri *tri, S_00120B20_Seg *seg, float radius, int un
 
 int func_00120FF0(float *p0, float *extA, float *p1, float *extB, float *m)
 {
+    int i;
+    int j;
     S_0011F4B0_V4 rows[3];
     S_0011F4B0_V4 d;
-    S_0011F4B0_V4 t;
+    S_0011F4B0_V4 e0, e1, e2;
     S_0011F4B0_V4 *ax;
-    float ea0, ea1, ea2;
     float dist, rA0, rA1, rA2, rB0, rB1, rB2;
-    int i;
+    float sumA, sumB;
 
     func_00030AC0(p1, p1, m);
     for (i = 0; i < 3; i++) {
-        rows[i].x = 0.0f;
-        rows[i].y = 0.0f;
         rows[i].z = 0.0f;
+        rows[i].y = 0.0f;
+        rows[i].x = 0.0f;
         rows[i].w = 1.0f;
     }
     for (i = 0; i < 3; i++) {
-        rows[i].x = 0.0f;
-        rows[i].y = 0.0f;
         rows[i].z = 0.0f;
+        rows[i].y = 0.0f;
+        rows[i].x = 0.0f;
         rows[i].w = 1.0f;
     }
-    ea0 = extA[0];
-    ea1 = extA[1];
-    ea2 = extA[2];
-    t.x = extB[0];
-    t.y = 0.0f;
-    t.z = 0.0f;
-    t.w = 1.0f;
-    rows[0] = t;
-    t.x = 0.0f;
-    t.y = extB[1];
-    t.z = 0.0f;
-    t.w = 1.0f;
-    rows[1] = t;
-    t.x = 0.0f;
-    t.y = 0.0f;
-    t.z = extB[2];
-    t.w = 1.0f;
-    rows[2] = t;
+    e0 = V4p_00120FF0(extA[0], D_00275544, D_00275544);
+    e1 = V4p_00120FF0(D_00275544, extA[1], D_00275544);
+    e2 = V4p_00120FF0(D_00275544, D_00275544, extA[2]);
+    rows[0] = V4p_00120FF0(extB[0], 0.0f, 0.0f);
+    rows[1] = V4p_00120FF0(0.0f, extB[1], 0.0f);
+    rows[2] = V4p_00120FF0(0.0f, 0.0f, extB[2]);
     func_0001C680(&rows[0], rows[0], m);
     func_0001C680(&rows[1], rows[1], m);
     func_0001C680(&rows[2], rows[2], m);
     d.x = p1[0] - p0[0];
     d.y = p1[1] - p0[1];
     d.z = p1[2] - p0[2];
-    for (i = 0; i < 15; i++) {
-        switch (i) {
+    j = 0;
+    do {
+        switch (j) {
         case 0:
             D_002B9350[0] = D_002A3C3C[0];
             break;
@@ -173,21 +166,15 @@ int func_00120FF0(float *p0, float *extA, float *p1, float *extB, float *m)
         case 2:
             D_002B9350[2] = D_002A3C3C[2];
             break;
-        case 3: {
-            S_0011F4B0_V4 t3 = { m[0], m[4], m[8], 1.0f };
-            D_002B9350[3] = t3;
+        case 3:
+            D_002B9350[3] = V4p_00120FF0(m[0], m[4], m[8]);
             break;
-        }
-        case 4: {
-            S_0011F4B0_V4 t4 = { m[1], m[5], m[9], 1.0f };
-            D_002B9350[4] = t4;
+        case 4:
+            D_002B9350[4] = V4p_00120FF0(m[1], m[5], m[9]);
             break;
-        }
-        case 5: {
-            S_0011F4B0_V4 t5 = { m[2], m[6], m[10], 1.0f };
-            D_002B9350[5] = t5;
+        case 5:
+            D_002B9350[5] = V4p_00120FF0(m[2], m[6], m[10]);
             break;
-        }
         case 6:
             AsmVec3Cross(&D_002B9350[6].x, &D_002B9350[0].x, &D_002B9350[3].x);
             break;
@@ -216,17 +203,20 @@ int func_00120FF0(float *p0, float *extA, float *p1, float *extB, float *m)
             AsmVec3Cross(&D_002B9350[14].x, &D_002B9350[2].x, &D_002B9350[5].x);
             break;
         }
-        ax = &D_002B9350[i];
+        ax = &D_002B9350[j];
         dist = Abs_00120FF0(Dot_00120FF0(&d, ax));
-        rA0 = Abs_00120FF0(ea0 * ax->x + ax->y * D_00275544 + ax->z * D_00275544);
-        rA1 = Abs_00120FF0(ea1 * ax->y + ax->x * D_00275544 + ax->z * D_00275544);
-        rA2 = Abs_00120FF0(ax->y * D_00275544 + ax->x * D_00275544 + ea2 * ax->z);
+        rA0 = Abs_00120FF0(e0.x * ax->x + ax->y * D_00275544 + ax->z * D_00275544);
+        rA1 = Abs_00120FF0(e1.y * ax->y + ax->x * D_00275544 + ax->z * D_00275544);
+        rA2 = Abs_00120FF0(ax->y * D_00275544 + ax->x * D_00275544 + e2.z * ax->z);
         rB0 = Abs_00120FF0(Dot_00120FF0(&rows[0], ax));
         rB1 = Abs_00120FF0(Dot_00120FF0(&rows[1], ax));
         rB2 = Abs_00120FF0(Dot_00120FF0(&rows[2], ax));
-        if (rB2 + rB1 + rB0 + (rA2 + rA1 + rA0) < dist)
+        sumA = rA2 + rA1 + rA0;
+        sumB = rB2 + rB1 + rB0;
+        if (sumB + sumA < dist)
             return 0;
-    }
+        j++;
+    } while (j < 15);
     return 1;
 }
 
