@@ -234,7 +234,11 @@ struct S_001AFF80_list {
     S_001AFF80_entry entries[1];
 };
 
-static inline void FloatToInt(int *out, float f) { *out = (int)f; }
+static __forceinline void FloatToInt(int *out, float f)
+{
+    int * volatile p = out;
+    *p = _mm_cvttss_si32(*(__m128 *)&f);
+}
 
 struct C_001AFF80 {
     char pad0[0xc];
@@ -339,25 +343,28 @@ struct C_001B08B0 {
 
 int C_001AFEC0::func_001AFEC0()
 {
-    if (D_002A8490->unk238 != unk8) {
-        if (D_002A8490->unk124 == 0 || unk24 != 0) {
-            if (cb == 0 || cb(user, this) != 0) {
-                int i;
-                for (i = 0; i < 4; i++) {
-                    if (items[i]) {
-                        items[i]->func_001AF530(i);
-                    }
-                }
-                if (unk1C) {
-                    unk1C->vf2();
-                }
-                if (unk20) {
-                    unk20->vf2();
-                }
+    int i;
+    if (D_002A8490->unk238 == unk8) {
+        return 1;
+    }
+    if (D_002A8490->unk124 != 0 && unk24 == 0) {
+        return 1;
+    }
+    if (cb == 0 || cb(user, this) != 0) {
+        for (i = 0; i < 4; i++) {
+            C_001AF530 *p = items[i];
+            if (p) {
+                p->func_001AF530(i);
             }
-            unk8 = D_002A8490->unk238;
+        }
+        if (unk1C) {
+            unk1C->vf2();
+        }
+        if (unk20) {
+            unk20->vf2();
         }
     }
+    unk8 = D_002A8490->unk238;
     return 1;
 }
 
