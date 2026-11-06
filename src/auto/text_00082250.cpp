@@ -19,12 +19,14 @@ struct C_00082790_IniSub {
     int func_00168C20(char *key, int zero, char *out);
 };
 
-struct C_00082790_Ini {
+struct C_00168F40 {
     C_00082790_IniSub sub;
     char pad1[0x4cb];
     void func_00168280();
     void func_001691E0();
+    ~C_00168F40();
 };
+typedef C_00168F40 C_00082790_Ini;
 
 struct C_00082790_X {
     int func_001B1A30(float a, float b, int c);
@@ -343,7 +345,6 @@ void BmxInGameOverlays::func_00082790()
     fr.ini.func_00168280();
     func_001ADCC0(fr.buf, 0x104, D_0027953C, &D_002A5348);
     if (fr.ini.sub.func_00169490(fr.buf, 0) == 0) {
-        fr.ini.func_001691E0();
         return;
     }
     val = *(int *)(*(int *)(D_002A8490 + 0x2e0) + 8);
@@ -582,13 +583,9 @@ void BmxInGameOverlays::func_00082790()
         if ((float)*(int *)&fr.s.f[5] != *(float *)((char *)sub + 0x28)) {
             *(float *)((char *)sub + 0x28) = (float)*(int *)&fr.s.f[5];
             *((char *)sub + 0x58) |= 1;
-            fr.ini.func_001691E0();
-        } else {
-            fr.ini.func_001691E0();
+            return;
         }
-        return;
     }
-    fr.ini.func_001691E0();
 }
 
 int C_000831C0::func_000831C0(void)
