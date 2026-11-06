@@ -204,7 +204,8 @@ struct C_00182110 {
     V4_00181E10 f150;
     V4_00181E10 f160;
     char pad170[0x10];
-    unsigned int f180;
+    unsigned char f180;
+    char pad181[3];
     float f184;
     float f188;
     char pad18C[4];
@@ -528,6 +529,50 @@ void C_00181DB0::func_001820B0(int a0, int a1, int a2)
       i++;
     } while (i < f1B4);
   }
+}
+
+extern "C" float __cdecl sqrtf(float);
+void C_00182110::func_00182110(void)
+{
+    C_00182110 * volatile self = this;
+    int i;
+
+    if (self->f180 & 0x10) {
+        func_00197AA0();
+        V4_00181E10 pos(0, 0, 0);
+        float s = 0;
+        V4_00181E10 tmp;
+
+        if (self->f180 & 4) {
+            pos = *func_00197F70(&tmp, &self->f130);
+            s = self->f184;
+        }
+        for (i = 0; i < self->f190; i++)
+            self->f1AC[i]->func_00198440(&pos, &s, 0);
+        self->f150 = *func_00198120(&tmp, &pos);
+        self->f160.x = s;
+        self->f160.y = s;
+        self->f160.z = s;
+        self->f188 = s;
+    } else {
+        func_00197AA0();
+        V4_00181E10 mn(0, 0, 0);
+        V4_00181E10 mx(0, 0, 0);
+        int flag = 0;
+
+        if (self->f180 & 4) {
+            flag = 1;
+            mn = self->f130 - self->f140;
+            mx = V4_00181E10(self->f130.x + self->f140.x, self->f130.y + self->f140.y, self->f130.z + self->f140.z);
+        }
+        for (i = 0; i < self->f190; i++)
+            self->f1AC[i]->func_001985D0(&flag, &mn, &mx, self->fF0, 0);
+        self->f150 = V4_00181E10((mx.x + mn.x) * D_002755E8, (mx.y + mn.y) * D_002755E8, (mx.z + mn.z) * D_002755E8);
+        self->f160 = V4_00181E10((mx.x - mn.x) * D_002755E8, (mx.y - mn.y) * D_002755E8, (mx.z - mn.z) * D_002755E8);
+        self->f188 = sqrtf(self->f160.x * self->f160.x + self->f160.y * self->f160.y + self->f160.z * self->f160.z);
+    }
+    if (self->f188 > D_00275544)
+        self->f180 |= 0x40;
 }
 
 C_001824E0_Vec C_001824E0::func_001824E0(int x, int y, int z)
