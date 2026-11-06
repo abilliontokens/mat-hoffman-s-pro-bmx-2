@@ -214,13 +214,10 @@ void func_0011F210(C_0011EDF0 *a, C_0011EDF0 *b, C_0011EDF0 *c, unsigned short *
 
 void func_0011F400(int a0, int a1, int a2, int a3, int a4, int a5)
 {
-    float x = *(float *)&a1;
-    float y = *(float *)&a2;
     float z = *(float *)&a3;
-    float xx = x * x;
-    float yy = y * y;
-    float zz = z * z;
-    float r = func_0001E960(xx + yy + zz);
+    float y = *(float *)&a2;
+    float x = *(float *)&a1;
+    float r = func_0001E960(x * x + y * y + z * z);
 
     func_0011F010(a0, x * r, y * r, z * r, *(float *)&a5, *(float *)&a4);
 }
