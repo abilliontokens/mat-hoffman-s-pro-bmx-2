@@ -1,5 +1,6 @@
 /* 20 functions from 0x0001D280 to 0x0001E260, found by Ghidra. */
 #include "common.h"
+#include <algorithm>
 struct C_0001E0A0 {
     char pad0[0x140];
     float unk140;
@@ -554,6 +555,45 @@ int C_0001D420::func_0001D420(int param)
   }
   sub30.func_001CBCF0(param);
   return sub70.func_001CBCF0(param);
+}
+
+C_0001D450_Item *C_0001D450::func_0001D450(const char *name)
+{
+    char buf[0x104];
+    char key[0x104];
+    int len = strlen(name);
+    int lim = 0x103;
+    int n = minref(lim, len);
+    func_001E8920(key, name, n);
+    key[n] = 0;
+    char *p = func_001E8AC0(key, '.');
+    if (p) memset(p, 0, strlen(p));
+    for (int i = 0; i < unk70; i++) {
+        C_0001D450_Item *item = itemAt(i);
+        if (item) {
+            const char *s = item->name;
+            len = strlen(s);
+            lim = 0x103;
+            n = minref(lim, len);
+            func_001E8920(buf, s, n);
+            buf[n] = 0;
+            p = func_001E8AC0(buf, '.');
+            if (p) memset(p, 0, strlen(p));
+            if (func_001EA426(key, buf) == 0) return item;
+            if (item->unk1BC) {
+                s = item->unk1BC->name;
+                len = strlen(s);
+                lim = 0x103;
+                n = minref(lim, len);
+                func_001E8920(buf, s, n);
+                buf[n] = 0;
+                p = func_001E8AC0(buf, '.');
+                if (p) memset(p, 0, strlen(p));
+                if (func_001EA426(key, buf) == 0) return item;
+            }
+        }
+    }
+    return 0;
 }
 
 void *C_0001D690::func_0001D690(unsigned char param_1)
