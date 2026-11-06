@@ -110,6 +110,17 @@ struct DynamicRayCollisionObject {
 
 static inline void Vec4Unused(Vec4 *a, Vec4 *b) {}
 
+/* same layout as DynamicRayCollisionObject, so BA40 keeps calling func_0014B940 instead of inlining it */
+struct S_0014B940_Obj {
+    char pad0[0xA8];
+    int unkA8;
+    char padAC[0x10];
+    f32 *unkBC;
+    V4_0014BA80 *unkC0;
+    V4_0014BA80 *unkC4;
+    void func_0014B940();
+};
+
 void DynamicRayCollisionObject::func_0014B940()
 {
     Vec4 a(0.0f, 0.0f, 0.0f, 1.0f);
@@ -132,35 +143,35 @@ void DynamicRayCollisionObject::func_0014BA40(int param_1)
 #pragma auto_inline(on)
 void DynamicRayCollisionObject::func_0014BA80(Vec4 *centre, float *extent)
 {
-    VecInit_0014BA80 axes[3];
-    VecInit_0014BA80 a;
-    VecInit_0014BA80 b;
-    Vec4 mn(3.4028235e+38f, 3.4028235e+38f, 3.4028235e+38f, 1.0f);
-    Vec4 mx(-3.4028235e+38f, -3.4028235e+38f, -3.4028235e+38f, 1.0f);
-    Vec4 t1, t2, t3, t4;
-    Vec4 *r;
+    V4_0014BA80 axes[3];
+    V4_0014BA80 a;
+    V4_0014BA80 b;
+    V4_0014BA80 mn(3.4028235e+38f, 3.4028235e+38f, 3.4028235e+38f, 1.0f);
+    V4_0014BA80 mx(-3.4028235e+38f, -3.4028235e+38f, -3.4028235e+38f, 1.0f);
+    V4_0014BA80 t1, t2, t3, t4;
+    V4_0014BA80 *r;
     int i;
     for (i = 0; i < unkA8; i++) {
         if (fAC[i].a != 0) {
-            Xform_0014BA80(&a, &fAC[i].a->mat, &fB0[i * 2].x);
+            XformV4_0014BA80(&a, &fAC[i].a->mat, &fB0[i * 2].x);
         } else {
-            *(Vec4 *)&a = fB0[i * 2];
+            a = *(V4_0014BA80 *)&fB0[i * 2];
         }
         if (fAC[i].b != 0) {
-            Xform_0014BA80(&b, &fAC[i].b->mat, &fB0[i * 2 + 1].x);
+            XformV4_0014BA80(&b, &fAC[i].b->mat, &fB0[i * 2 + 1].x);
         } else {
-            *(Vec4 *)&b = fB0[i * 2 + 1];
+            b = *(V4_0014BA80 *)&fB0[i * 2 + 1];
         }
-        r = func_0011EEE0(&t1, &mn, &b);
-        r = func_0011EEE0(&t2, r, &a);
+        r = (V4_0014BA80 *)func_0011EEE0((Vec4 *)&t1, (Vec4 *)&mn, (Vec4 *)&b);
+        r = (V4_0014BA80 *)func_0011EEE0((Vec4 *)&t2, (Vec4 *)r, (Vec4 *)&a);
         mn = *r;
-        r = func_0014AA70(&t3, &mx, &b);
-        r = func_0014AA70(&t4, r, &a);
+        r = (V4_0014BA80 *)func_0014AA70((Vec4 *)&t3, (Vec4 *)&mx, (Vec4 *)&b);
+        r = (V4_0014BA80 *)func_0014AA70((Vec4 *)&t4, (Vec4 *)r, (Vec4 *)&a);
         mx = *r;
     }
-    Vec4 c((mx.x + mn.x) * D_002755E8, (mx.y + mn.y) * D_002755E8, (mx.z + mn.z) * D_002755E8, 1.0f);
-    Vec4 h((mx.x - mn.x) * D_002755E8, (mx.y - mn.y) * D_002755E8, (mx.z - mn.z) * D_002755E8, 1.0f);
-    f28 = c;
+    V4_0014BA80 c((mx.x + mn.x) * D_002755E8, (mx.y + mn.y) * D_002755E8, (mx.z + mn.z) * D_002755E8, 1.0f);
+    V4_0014BA80 h((mx.x - mn.x) * D_002755E8, (mx.y - mn.y) * D_002755E8, (mx.z - mn.z) * D_002755E8, 1.0f);
+    f28 = *(Vec4 *)&c;
     float rad;
     _mm_store_ss(&rad, _mm_sqrt_ss(_mm_set_ss(h.x * h.x + h.y * h.y + h.z * h.z)));
     f48 = rad;
@@ -173,10 +184,10 @@ void DynamicRayCollisionObject::func_0014BA80(Vec4 *centre, float *extent)
     ((float *)&m)[5] = 1.0f;
     ((float *)&m)[10] = 1.0f;
     ((float *)&m)[15] = 1.0f;
-    axes[0] = VecInit_0014BA80(h.x, 0.0f, 0.0f);
-    axes[1] = VecInit_0014BA80(0.0f, h.y, 0.0f);
-    axes[2] = VecInit_0014BA80(0.0f, 0.0f, h.z);
-    Xform_0014BA80(centre, &m, &c.x);
+    axes[0] = V4_0014BA80(h.x, 0.0f, 0.0f, 1.0f);
+    axes[1] = V4_0014BA80(0.0f, h.y, 0.0f, 1.0f);
+    axes[2] = V4_0014BA80(0.0f, 0.0f, h.z, 1.0f);
+    XformV4_0014BA80((V4_0014BA80 *)centre, &m, &c.x);
     func_0001C680(&axes[0], axes[0], (float *)&m);
     func_0001C680(&axes[1], axes[1], (float *)&m);
     func_0001C680(&axes[2], axes[2], (float *)&m);
