@@ -238,45 +238,6 @@ static __forceinline void fft16_001E6D40(float *d, float *c)
     p = s24 + s28; q = s2C - s30; r2 = s34 + s38; t = s0 + s3C;
     d[12] = p - t; d[13] = q + r2; d[14] = p + t; d[15] = q - r2;
 }
-struct M16E6D40 {
-    union {
-        float f[16];
-        struct { float x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15; };
-    };
-    M16E6D40() {}
-    __forceinline M16E6D40(float *c)
-    {
-        float *d = f;
-        float s0, s4, s8, sC, s10, s14, s18, s1C, s20, s24, s28, s2C, s30, s34, s38, s3C;
-        float k1 = c[1], k4 = c[4], k5 = c[5];
-        float a, b;
-        float p, q, r2, t;
-        s4 = d[0] - d[9];
-        sC = *(volatile float *)&d[8] + d[1];
-        s28 = *(volatile float *)&d[9] + d[0];
-        s2C = d[1] - d[8];
-        a = d[4] - d[13]; b = *(volatile float *)&d[12] + d[5];
-        s8 = (a - b) * k1; s10 = (a + b) * k1;
-        a = d[13] + d[4]; b = d[5] - d[12];
-        s30 = (a - b) * k1; s24 = (a + b) * k1;
-        a = d[2] - d[11]; b = d[3] + d[10];
-        s14 = a * k4 - b * k5; s1C = a * k5 + b * k4;
-        a = d[11] + d[2]; b = d[3] - d[10];
-        s38 = a * k5 - b * k4; s3C = a * k4 + b * k5;
-        a = d[6] - d[15]; b = d[7] + d[14];
-        s18 = a * k5 - b * k4; s20 = a * k4 + b * k5;
-        a = d[15] + d[6]; b = d[7] - d[14];
-        s34 = a * k4 - b * k5; s0 = a * k5 + b * k4;
-        p = s8 + s4; q = s10 + sC; r2 = s18 + s14; t = s20 + s1C;
-        d[0] = p + r2; d[1] = q + t; d[2] = p - r2; d[3] = q - t;
-        p = s4 - s8; q = sC - s10; r2 = s14 - s18; t = s1C - s20;
-        d[4] = p - t; d[5] = q + r2; d[6] = p + t; d[7] = q - r2;
-        p = s28 - s24; q = s30 + s2C; r2 = s38 - s34; t = s3C - s0;
-        d[8] = p + r2; d[9] = q + t; d[10] = p - r2; d[11] = q - t;
-        p = s24 + s28; q = s2C - s30; r2 = s34 + s38; t = s0 + s3C;
-        d[12] = p - t; d[13] = q + r2; d[14] = p + t; d[15] = q - r2;
-    }
-};
 float *__fastcall func_001E6D40(float *c, float *x);
 void __declspec(noinline) func_001E7410(int n, float *a, float *b, int k)
 {
