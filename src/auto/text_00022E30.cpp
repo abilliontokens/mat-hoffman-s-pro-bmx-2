@@ -6,7 +6,7 @@ extern int D_00276218;
 extern "C" int func_001E8920(char *d, const char *s, int n);
 extern "C" unsigned int __cdecl strlen(const char *);
 extern char D_002A5EA0[], D_002A60B0[], D_002A48F8[], D_002A46E8[];
-struct C_00022E30 { void func_00022E30(void); };
+struct C_00022E30;
 struct S_Vec4i_00023C30 {
     int x, y, z, w;
 };
