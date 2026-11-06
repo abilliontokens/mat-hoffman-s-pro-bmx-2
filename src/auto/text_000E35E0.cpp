@@ -132,10 +132,6 @@ struct C_000E35E0 {
     char pad308[0x18];
     C_000E3D30_Item *f320[8][8];
     int f420[8];
-    void DrawSel(int n) {
-        f320[n][f420[n]]->func_00051120(f2CC);
-        f320[n][f420[n]]->func_001D5AD0();
-    }
     void func_000E3D30(void);
     void func_000E35E0(int param_1);
     void func_000E3790(void);
