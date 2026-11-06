@@ -2,7 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 extern float D_00275544;
-extern const float D_00277924;
+extern float D_00277924;
 extern float D_002A8F40;
 extern float D_002756B8, D_002756D0, D_002756E8;
 extern float D_00277928, D_0027792C, D_002779FC, D_00277A00;
@@ -492,7 +492,7 @@ void C_00051CF0::func_00052740(int a)
             unk28->v4();
             D_002EFDB8->f30 = 1;
             D_002A8F40 = 1.0f;
-            unk64->f3DC->func_001503E0(1000.0f, *(float *)&D_00277924, 64.0f);
+            unk64->f3DC->func_001503E0(1000.0f, D_00277924, 64.0f);
             unk64->unk558->v4();
         } else {
             D_002A8490->v15(unk28, unk24, 0, 0);
@@ -500,7 +500,7 @@ void C_00051CF0::func_00052740(int a)
             unk28->v6();
             D_002EFDB8->f30 = 0;
             D_002A8F40 = 0.25f;
-            unk64->f3DC->func_001503E0(256.0f, *(float *)&D_00277924, 64.0f);
+            unk64->f3DC->func_001503E0(256.0f, D_00277924, 64.0f);
         }
     }
 }
