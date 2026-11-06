@@ -77,6 +77,11 @@ static inline S_0012B950_V3 V3Scale_0012B950(const S_0012B950_V3 &v, float s)
     return r;
 }
 
+static inline float Twice_0012B950(float x)
+{
+    return x + x;
+}
+
 void func_001E891B(void *p);
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 
@@ -210,14 +215,12 @@ void __stdcall func_0012B950(S_0012B950_Vec4 *out, float t, S_0012B950_Vec4 p0, 
 }
 
 float __stdcall func_0012BAE0(float t, float p0, float p1, float p2, float p3) {
-    union { float f; unsigned int u; } t3;
     float m0 = (p2 - p0) * D_002755E8;
     float m1 = (p3 - p1) * D_002755E8;
-    t3.f = t * t * t;
-    return m0 * ((t3.f - ((t * t) + (t * t))) + t)
-         + m1 * (t3.f - (t * t))
-         + (((t3.f + t3.f) - (t * t) * D_002755EC) + D_00275460) * p1
-         + ((t * t) * D_002755EC - (t3.f + t3.f)) * p2;
+    return m0 * (((t * t * t) - ((t * t) + (t * t))) + t)
+         + m1 * ((t * t * t) - (t * t))
+         + ((((t * t * t) + (t * t * t)) - (t * t) * D_002755EC) + D_00275460) * p1
+         + ((t * t) * D_002755EC - ((t * t * t) + (t * t * t))) * p2;
 }
 
 void __stdcall func_0012BB60(char *input, char *output) {
