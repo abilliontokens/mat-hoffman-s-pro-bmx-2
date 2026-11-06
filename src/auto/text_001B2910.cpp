@@ -32,11 +32,6 @@ struct S_001B2CD0_Px {
 };
 #pragma pack(pop)
 
-static inline void put_pixel_001B2CD0(unsigned char *dst, const S_001B2CD0_Px *src)
-{
-    *(S_001B2CD0_Px *)dst = *src;
-}
-
 struct C_001B33A0_Loader {
     int func_0013C8A0(int handle, void *buf, int size, int count);
 };
@@ -221,7 +216,7 @@ int func_001B2CD0(S_001B3560 *item, int a)
     int pixels;
     unsigned char *p;
     unsigned char *end;
-    unsigned int count;
+    int count;
 
     pixels = item->fE * item->f10;
     size = pixels * 3;
@@ -251,18 +246,18 @@ int func_001B2CD0(S_001B3560 *item, int a)
             D_002BEAAC->func_0013C8A0(a, &hdr, 1, 1);
             count = hdr;
             if (count & 0x80) {
-                unsigned char px[3];
+                S_001B2CD0_Px px;
                 count &= 0x7f;
-                if (D_002BEAAC->func_0013C8A0(a, px, 3, 1) != 1) {
+                if (D_002BEAAC->func_0013C8A0(a, &px, 3, 1) != 1) {
                     return 0;
                 }
                 do {
-                    *(S_001B2CD0_Px *)p = *(S_001B2CD0_Px *)px;
+                    *(S_001B2CD0_Px *)p = px;
                     p += 3;
-                } while (count--);
+                } while (count-- != 0);
             } else {
                 count++;
-                if (D_002BEAAC->func_0013C8A0(a, p, 3, count) != (int)count) {
+                if (D_002BEAAC->func_0013C8A0(a, p, 3, count) != count) {
                     return 0;
                 }
                 p += count * 3;
