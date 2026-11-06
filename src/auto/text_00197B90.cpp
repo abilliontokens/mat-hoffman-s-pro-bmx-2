@@ -43,7 +43,7 @@ static __forceinline void Copy_00198120(M_00198040 *dst, const M_00198040 *src)
 extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
 
-static __forceinline void Copy4_00198040(__m128 * volatile dst, __m128 * volatile src)
+static __forceinline void Copy4_00198040(__m128 * volatile src, __m128 * volatile dst)
 {
     __m128 *s = src;
     __m128 *d = dst;
