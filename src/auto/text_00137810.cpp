@@ -218,7 +218,7 @@ struct DrawableCube {
     void *vtbl;
     char pad4[0x23];
     u8 f27;
-    S_137F90_Src *f28;
+    S_137F90_Src * volatile f28;
     DrawableCubeVirt **f2c;
     int f30;
     int f34;
@@ -377,9 +377,9 @@ int DrawableCube::func_00137F90()
         pm->identity();
         {
             DrawableCube *t = self;
-            ((volatile int *)mat.m)[3] = t->f28->f8;
-            ((volatile int *)mat.m)[7] = t->f28->fC;
-            ((volatile int *)mat.m)[11] = t->f28->f10;
+            ((int *)mat.m)[3] = t->f28->f8;
+            ((int *)mat.m)[7] = t->f28->fC;
+            ((int *)mat.m)[11] = t->f28->f10;
         }
         func_000263B0(mat2.m, mat.m, (float *)(g4 + 0x250));
         func_001FEC30(0x18, mat2.m);
