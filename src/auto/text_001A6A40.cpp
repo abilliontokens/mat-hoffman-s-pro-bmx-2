@@ -129,7 +129,7 @@ struct C_Holder24 {
     int f1d0;
     char **f1d4;
     int f1d8;
-    void func_001A5B10(char *name, int *out);
+    void func_001A5B10(char *name, C_Item8 **out);
 };
 
 struct C_0018C120Obj {
