@@ -5,6 +5,19 @@ extern char *D_002F6A28;
 extern char D_0027D1D8[];
 extern char D_00295D30[];
 extern u32 D_002F6A38;
+extern int D_002955B8[];
+/* Copy of the real func_001EEE49 (src/auto/text_001EEA34.cpp, undname.c UScore). It only
+ * exists here because MSVC emits `add esp,4` instead of `pop ecx` after calls to a callee whose
+ * body it has already compiled in the same translation unit; remove it once these files are
+ * merged into one undname translation unit with the callee first. */
+extern "C" void *func_001EEE49(int n)
+{
+    volatile int *gp = (volatile int *)&D_002F6A38;
+    if (~*gp & 1) {
+        return (void *)D_002955B8[n];
+    }
+    return (void *)(D_002955B8[n] + 1 + 1);
+}
 extern char D_00295D20[];
 extern char D_00295D14[];
 extern char D_00295D0C[];
