@@ -342,6 +342,11 @@ struct C_001A6E90 {
     int f8C;
     void func_00157A00(float dt);
     void func_001A6E90(float dt);
+    __forceinline float Tick(float dt)
+    {
+        f64 = dt + f64;
+        return f64;
+    }
 };
 
 int LoadMemoryCard::func_001A6A40(int a, int b)
@@ -456,6 +461,7 @@ void C_001A6D30::func_001A6D30()
 
 void C_001A6E90::func_001A6E90(float dt)
 {
+    float t;
     S_001A6E90_Msg msg;
     float sum;
     int s;
@@ -521,8 +527,8 @@ void C_001A6E90::func_001A6E90(float dt)
     }
 after_draw:
     if (f5C != 0 || f60 != 0) {
-        f64 = dt + f64;
-        if (f64 >= D_002755E8) {
+        t = dt + f64;
+        if ((f64 = t) >= D_002755E8) {
             if (f5C != 0) {
                 if (f6C == 3) {
                     if (f78->func_00092A10() == 0) {
@@ -535,7 +541,7 @@ after_draw:
                     f4C->f24 = 9;
                     f5C = 0;
                 }
-            } else if (f60 != 0 && f64 >= D_00278C48) {
+            } else if (f60 != 0 && t >= D_00278C48) {
                 if (f6C == 9) {
                     msg.type = 2;
                     msg.code = 0x55;
