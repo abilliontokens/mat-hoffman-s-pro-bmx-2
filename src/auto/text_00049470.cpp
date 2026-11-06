@@ -22,6 +22,78 @@ struct S_00049470_This {
     void func_0003AD50();
     void func_00049470();
 };
+
+struct V4_49470 { float x, y, z, w; };
+struct C_00198390;
+
+struct S_49470_Table {
+    char pad0[0x38];
+    int f38;
+    int f3c;
+    int f40;
+    int f44;
+};
+
+struct S_49470_Elem {
+    char pad0[0x358];
+    int f358;
+    int f35c;
+    int f360;
+};
+
+struct S_49470_F64 {
+    char pad0[0x5a4];
+    S_49470_Table *f5a4;
+    int f5a8;
+    S_49470_Elem **f5ac;
+};
+
+struct S_49470_F5C {
+    int f4;
+    void func_00194E60(V4_49470 v);
+    void func_00194EB0(V4_49470 v);
+    void func_00194F60(V4_49470 v);
+    void func_00194F90(float f);
+};
+
+struct S_49470_F34 { char pad0[0x5c]; S_49470_F5C *f5c; };
+struct S_49470_F1A4 { char pad0[4]; C_00198390 *f4; };
+struct S_49470_F28 { char pad0[0x1a4]; S_49470_F1A4 *f1a4; };
+
+struct S_49470_F540 {
+    char pad0[0x24];
+    C_00198390 *f24;
+    S_49470_F28 *f28;
+    C_00198390 *f2c;
+    char pad30[4];
+    S_49470_F34 *f34;
+    int f38;
+};
+
+struct S_49470_F564 { int f0; };
+struct S_49470_Obj { void func_0008A920(); void func_0008A0A0(); void func_001A4100(int a, int b, int c); };
+
+struct S_49470_Dev {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6();
+    virtual void v7(int a);
+    virtual void v8();
+};
+extern S_49470_Dev *D_002EFDB8;
+extern char D_00276D54[];
+extern float D_00275AEC, D_0027653C, D_00276220, D_00276D50;
+extern double D_002766C8;
+extern V4_49470 D_002A14E4;
+int func_001E8AF0(void *a, char *b);
+void func_00034820(V4_49470 *a, V4_49470 *b);
+void __stdcall func_000361F0(int a);
+static __forceinline S_49470_Elem *get49470(S_49470_Elem **arr, int count, int i)
+{
+    if (count <= 0) return 0;
+    if (arr == 0) return 0;
+    if (i >= count) return 0;
+    return arr[i];
+}
 struct C_00162B20 { int func_00162B20(const char *, int); };
 extern C_00162B20 *D_002EF7D0;
 struct S_00049A50_Global {
@@ -223,9 +295,34 @@ struct C_00049BD0 {
 };
 
 
+void _func_00049470(void *p) { *(int *)((char *)p + 0x47c) = 15; *(int *)((char *)p + 0x480) = 0; *(int *)((char *)p + 0x478) = 3; *(int *)((char *)p + 0x474) = 3; }
+
 void func_00049A20(S_00049A20_Arg *arg) {
     arg->f2E4->f0->f4->func_00198390();
     arg->f2E8->f0->f4->func_00198390();
+}
+
+void func_00049A50(S_00049A20_Arg *arg, int index) {
+ int func_001ADCC0(char *, int, const char *, ...);
+ char name[32];
+ S_00049A20_Inner *a=arg->f2E4->f0;
+ S_00049A20_Inner *b=arg->f2E8->f0;
+ ++index;
+ func_001ADCC0(name,32,D_00277160,index);
+ a->f4->func_001983A0();
+ a->func_00164820(D_002EF7D0->func_00162B20(name,1));
+ a->f4->func_00198E60();
+ a->f4->func_0019ABA0(*D_002B9120->f4A8,2);
+ func_001ADCC0(name,32,D_00277150,index);
+ b->f4->func_001983A0();
+ b->func_00164820(D_002EF7D0->func_00162B20(name,1));
+ b->f4->func_00198E60();
+ b->f4->func_0019ABA0(*D_002B9120->f4A8,2);
+ if (index==2) {
+ typedef C_00198390 *(S_00049A50_Global::*Lookup)(const char *);
+ C_00198390 *p=(D_002B9120->**(Lookup *)&D_002B9120->vtbl[0x180/4])(D_00277140);
+ if (p) p->func_00198390();
+ }
 }
 
 C_00049BD0* C_00049BD0::func_00049BD0(void) {
