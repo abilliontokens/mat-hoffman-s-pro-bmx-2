@@ -49,6 +49,30 @@ struct C_001805C0 {
     C_001805C0 *func_001805C0(void);
 };
 
+extern float D_002EFD9C, D_002AB30C;
+extern void *D_002BEAAC;
+struct Reader180600 {
+    void func_0013C8A0(int handle, void *dst, int size, int count);
+    int func_0013C960(int handle, void *dst, int size);
+};
+struct Rec180600 {
+    char pad0[4];
+    float f4;
+    float f8, fC, f10, f14, f18, f1C, f20;
+};
+struct C_00180600 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26(); virtual void func_000EBE90v();
+    char pad4[0xAC];
+    float mB0, mB4, mB8, mBC, mC0, mC4, mC8, mCC, mD0, mD4, mD8, mDC, mE0, mE4, mE8, mEC;
+    char padF0[4];
+    int fF4;
+    float fF8;
+    Rec180600 *fFC;
+    Rec180600 *f100;
+    short fF0s;
+    void func_00180600(int a0, int a1);
+};
+
 
 C_001804F0 *C_001804F0::func_001804F0(float *p) {
     extern float D_002F0798;
