@@ -721,32 +721,18 @@ extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
 void DXCamera::func_0013E580(void)
 {
-    DXCamera *volatile self = this;
     __declspec(align(16)) Mat4_0013E4F0 m;
-    DXCamera *c;
     float s;
 
     func_0012AEC0();
-    c = self;
-    func_000263B0(&c->f250, (char *)c + 0xb0, (char *)c + 0x70);
-    _ReadWriteBarrier();
-    {
-        __m128 *volatile p = (__m128 *)m.m;
-        __m128 z = _mm_setzero_ps();
-        __m128 *q = p;
-
-        q[0] = z;
-        q[1] = z;
-        q[2] = z;
-        q[3] = z;
-    }
-    c = self;
-    s = *(volatile float *)&D_00284DD8 / c->f200;
+    func_000263B0(&f250, (char *)this + 0xb0, (char *)this + 0x70);
+    AsmZeroMatrix(&m);
+    s = D_00284DD8 / f200;
     m.m[15] = s;
     m.m[0] = s;
     m.m[5] = s;
     m.m[10] = s;
-    func_000263B0(&c->f290, &c->f250, &m);
+    func_000263B0(&f290, &f250, &m);
 }
 int DXCamera::func_0013E610(void)
 {
