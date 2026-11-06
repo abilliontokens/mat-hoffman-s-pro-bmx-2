@@ -240,8 +240,13 @@ struct S_00021A50_Ent {
 struct S_00021A50_Mgr {
     char pad0[0x34];
     int f34;
-    char pad38[0x2c];
+    char pad38[0x14];
+    int f4c;
+    int f50;
+    char pad54[0x10];
     S_00021A50_Ent **f64;
+    char pad68[0x1c];
+    float f84, f88, f8c;
 };
 
 extern S_00021A50_Mgr *D_002B7E18;
