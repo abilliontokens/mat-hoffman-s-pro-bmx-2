@@ -1,5 +1,7 @@
 /* 11 functions from 0x00053930 to 0x00054680, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
+extern float D_00277B40, D_00277B50, D_00277B60;
 struct G_P2 { char pad0[0xa40]; int fa40; char pada44[8]; int fa4c; char pada50[4]; int fa54; int fa58; int fa5c; char pada60[0x1058 - 0xa60]; int f1058; char pad105c[0x11f4 - 0x105c]; int f11f4;
     int func_00108660(); void func_001084E0(); };
 struct G_PL { char pad0[0x1a8]; G_P2 *f1a8[1]; };
