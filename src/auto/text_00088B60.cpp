@@ -162,7 +162,7 @@ struct S_00088B60_Player {
     char fF0[0x80];
     f32 f170[3];
     char pad17C[0x70];
-    u32 f1EC;
+    int f1EC;
 };
 struct S_00088B60_Game {
     char pad0[4];
@@ -206,6 +206,46 @@ struct C_00088F60 {
     void func_00088F60(int param_1);
 };
 
+
+void C_00088B60::func_00088B60()
+{
+    f32 v[4];
+    S_00088B60_Player *p;
+    S_00088B60_Sprite *s;
+    S_00088B60_Ent *e;
+    float w, h, dx, dy, dz, sq, len;
+
+    if (*(u32 *)((char *)D_002A8490 + 0x10) != f44) return;
+    v[0] = 0.0f; v[1] = 0.0f; v[2] = 0.0f; v[3] = 1.0f;
+    p = D_002EFDB8->f4;
+    f30 = D_002AB66C->func_001C5C50(p, p->fF0, f34, v, 0);
+    p = D_002EFDB8->f4;
+    h = (float)p->f1EC - v[1] - D_002756C4;
+    w = v[0] - D_002756C4;
+    s = f2C;
+    if (w != s->f4 || h != s->f8) {
+        s->f4 = w;
+        s->f8 = h;
+        s->b58 |= 1;
+    }
+    p = D_002EFDB8->f4;
+    dx = p->f170[0] - f34[0];
+    dy = p->f170[1] - f34[1];
+    dz = p->f170[2] - f34[2];
+    sq = dx * dx + dy * dy + dz * dz;
+    _mm_store_ss(&len, _mm_sqrt_ss(_mm_load_ss(&sq)));
+    *(u32 *)&len &= 0x7fffffff;
+    if (len > f4C) {
+        f48 = 1.0f;
+    } else {
+        float z = 0.0f;
+        float t = (len + f50 - f4C) / f50;
+        _mm_store_ss(&f48, _mm_max_ss(_mm_load_ss(&t), _mm_load_ss(&z)));
+    }
+    e = D_002B9120->f4E4[f44];
+    if (e != 0 && e->f5C != 0) f48 *= D_002755E8;
+    func_001578D0();
+}
 
 C_00088F70 *C_00088F70::func_00088DA0(int a0)
 {
