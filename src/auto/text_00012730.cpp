@@ -343,7 +343,7 @@ int S_11FF0_Owner::func_00012730(V4_00012730 *a, V4_00012730 *b, V4_00012730 *ou
 
 extern void *func_00011110(void *, void *, void *);
 extern float func_00011170(void *);
-extern volatile float D_002755EC;
+extern float D_002755EC;
 void S_11FF0_Owner::func_00012960(float *p, int a, int b)
 {
     S_12590_Vec4f vec[3];
