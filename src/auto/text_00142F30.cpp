@@ -88,6 +88,11 @@ struct Alloc190 {
 struct __declspec(align(16)) Mat_1432B0 {
     f32 m[16];
 };
+struct UploadLocals_1432B0 {
+    Alloc190 *volatile self;
+    Mat_1432B0 *volatile dst;
+    Mat_1432B0 *volatile src;
+};
 struct C_00197AA0 {
     char pad0[0xF0];
     Mat_1432B0 ff0;
