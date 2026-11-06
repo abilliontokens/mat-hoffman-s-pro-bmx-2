@@ -376,7 +376,7 @@ struct C_001C2290 {
         } \
         float fy = (float)W[1]; \
         float fx = (float)W[0]; \
-        if (fx != s->f04 || fy != s->f08) { \
+        if (fx != s->f04 || s->f08 != fy) { \
             s->f04 = fx; \
             s->f08 = fy; \
             s->f58 |= 1; \
