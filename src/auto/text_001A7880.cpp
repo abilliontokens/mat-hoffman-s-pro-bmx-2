@@ -91,7 +91,7 @@ static __forceinline V4_001A7FE0 xform2_001A7FE0(const V4_001A7FE0 &v, float *m,
 }
 struct Seg_001A7FE0 {
     V4_001A7FE0 b, a;
-    __forceinline Seg_001A7FE0(V4_001A7FE0 v, float *m) : b(0), a(0) { a.Clear(); b.Clear(); func_0011F540(&a, v, m); }
+    __forceinline Seg_001A7FE0(const V4_001A7FE0 &v, float *m) : b(0), a(0) { a.Clear(); b.Clear(); func_0011F540(&a, v, m); }
 };
 char *func_001E9260(const char *, int);
 extern "C" unsigned int __cdecl strlen(const char *);
