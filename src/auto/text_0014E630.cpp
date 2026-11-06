@@ -63,7 +63,7 @@ struct S_0014ECD0_G {
     virtual void v4(); virtual void v5();
     virtual int v6(S_0014ECD0_Vec *a, S_0014ECD0_Vec *b, int c);
     virtual void v7(S_0014ECD0_Base *base, int r, S_0014ECD0_Vec *a, S_0014ECD0_Vec *b);
-    char pad08[0x38];
+    char pad04[0x3c];
     float f40;
     float f44;
 };
@@ -141,6 +141,134 @@ struct C_0014F170 {
     undefined4 func_0014F170(byte param_1);
 };
 
+
+C_0014ECD0 *C_0014ECD0::func_0014ECD0(int a0, char *name, int a2, int a3, int a4, volatile float f5, volatile float f6, int a7)
+{
+    C_0014ECD0 * volatile self = this;
+    struct {
+        union {
+            int var;
+            volatile int res;
+            volatile float m;
+        };
+        union {
+            volatile int len;
+            volatile float ta;
+        };
+        union {
+            volatile int lim;
+            volatile float tb;
+        };
+    } t;
+    char buf[260];
+    int n;
+    int i;
+    int cnt;
+    int ma;
+    int mb;
+    S_0014ECD0_Item *items;
+    S_0014ECD0_Item *mem;
+    S_0014ECD0_Base *base;
+
+    func_001D3F50();
+    self->f560 = f5;
+    self->f564 = f6;
+    self->f50 = a0;
+    self->f55c = a2;
+    t.tb = D_002F07E8->f44;
+    t.ta = D_002F07E8->f40;
+    t.m = t.ta > t.tb ? t.ta : t.tb;
+    self->f57c = D_00286A9C / t.m;
+    self->f578 = t.m * D_00286A90;
+    if (func_001E8AF0(name, D_00286A94) == 0) {
+        if (func_001E8AF0(name, D_00286A88) != 0) {
+            t.len = strlen(name);
+            t.lim = 0x103;
+            ma = t.lim;
+            mb = t.len;
+            t.res = ma > mb ? mb : ma;
+            n = t.res;
+            func_001E8920(buf, name, n);
+            buf[n] = 0;
+            func_00030F30(buf, D_00286A94);
+            if (D_002BEAAC->func_0013B1A0(buf) != 0) {
+                func_00030F30(name, D_00286A94);
+            }
+        }
+    }
+    t.var = -1;
+    if (self->func_0014CC60(name, &t.var) == 0) {
+        self->v2();
+        return 0;
+    }
+    for (i = 0; i < 0x100; i++) {
+        if (self->f54[i] != 0) {
+            self->f54[i]->func_0014C890(0x22b8);
+            if (a3 != 0) {
+                self->func_0014E630(self->f54[i]);
+            } else {
+                self->f54[i]->f1ec = 0;
+            }
+        }
+    }
+    self->f568 = D_002AAEC8->func_001BC6E0(D_00282A9C);
+    cnt = self->f3c;
+    mem = (S_0014ECD0_Item *)func_001E8A44(cnt * 0x1c);
+    if (mem != 0) {
+        S_0014ECD0_Item *it = mem;
+        for (i = cnt - 1; i >= 0; i--) {
+            it->c2 = 0xff;
+            it->s0 = 0;
+            it->lo3 = 0;
+            it->s8 = 0;
+            it->sA = 0;
+            it->sC = 0;
+            it->c10 = 0;
+            it->c11 = 0;
+            it->cE = 0;
+            it->c2 = D_002BF250->f568;
+            it++;
+        }
+        items = mem;
+    } else {
+        items = 0;
+    }
+    self->f40 = items;
+    self->f580 = 0x5dc;
+    self->f584 = 0x3c;
+    self->f588 = 0x3c;
+    self->f21d4 = 0x3c;
+    self->f44 = (int *)func_001E8AA5(self->f580 << 2);
+    self->f48 = (int *)func_001E8AA5(self->f584 << 2);
+    self->f4c = (int *)func_001E8AA5(self->f588 << 2);
+    self->f21d8 = (int *)func_001E8AA5(self->f21d4 << 2);
+    if (self->f40 != 0 && self->f44 != 0 && self->f48 != 0 && self->f4c != 0 && self->f21d8 != 0) {
+        for (i = 0; i < 0x3c; i++) {
+            self->f21d8[i] = func_0013F650();
+        }
+        self->f21dc = self->func_0013F690();
+        self->f21e0 = func_0013F7B0();
+        self->func_0014D360(t.var, a7);
+        D_002BEAAC->func_0013C110(t.var);
+        S_0014ECD0_Vec a;
+        S_0014ECD0_Vec b;
+        a.x = D_002F07E8->f40 * D_002755E8;
+        a.y = 0;
+        a.z = D_002F07E8->f44 * D_002755E8;
+        b.y = 1000.0f;
+        b.x = a.x * D_002755E8;
+        b.z = a.z * D_002755E8;
+        if (self != 0) {
+            base = (S_0014ECD0_Base *)((char *)self + 0x24);
+        } else {
+            base = 0;
+        }
+        D_002F07E8->v7(base, D_002F07E8->v6(&a, &b, 0), &a, &b);
+        return self;
+    }
+    self->v2();
+    return 0;
+}
 
 undefined4 C_0014F170::func_0014F170(byte param_1)
 {
