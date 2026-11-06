@@ -614,3 +614,37 @@ void C_0004D630::func_0004D630()
     }
 }
 
+int C_0004D0E0::func_0004D650()
+{
+    int i;
+    int n;
+    int *z;
+    func_00034090();
+    if (f288 != 0) {
+        f288->func_00086200();
+        f288->func_00086190();
+    }
+    z = f2a0;
+    for (n = 8; n > 0; n--) {
+        *z++ = 1;
+    }
+    f28c = 0;
+    for (i = 0; i < f90; i++) {
+        f64->f4e0->func_000A4500(0, i);
+        f64->f4e0->objs[i]->f95c = 1;
+        f64->f4e0->objs[i]->func_00108680(0);
+        char *base = (char *)this + f28c * 0x10;
+        f64->f4e0->objs[i]->func_0010C090(base + 0x688, base + 0x708, 0, 1);
+    }
+    f120 = f90 - 1;
+    func_0004D0E0();
+    f288->func_00086130(0);
+    f288->func_00086140(0);
+    f288->func_00085BD0(1);
+    f64->f4e0->objs[f120]->f95c = 1;
+    f290 = 0;
+    f2c0 = 0;
+    f288->func_000861A0(f120);
+    return 1;
+}
+
