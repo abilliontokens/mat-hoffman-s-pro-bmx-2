@@ -24,6 +24,13 @@ static __forceinline void cross_107380(Vec_107AE0 *d,Vec_107AE0 *a,Vec_107AE0 *b
  _mm_storeu_ps(&d->x,_mm_shuffle_ps(x,x,0xc9));
 }
 struct Mat_107AE0 { float m[16]; };
+static __forceinline void crossG_107380(Vec_107AE0 *d, Vec_107AE0 *a, const float &bx, const float &by, const float &bz)
+{
+    d->x = a->y * bz - a->z * by;
+    d->y = a->z * bx - a->x * bz;
+    d->z = a->x * by - a->y * bx;
+    d->w = 1.0f;
+}
 static __forceinline void identity_107AE0(Mat_107AE0 *a) {
  __m128 *p=(__m128*)a;
  __m128 z=_mm_setzero_ps();p[0]=z;p[1]=z;p[2]=z;p[3]=z;
