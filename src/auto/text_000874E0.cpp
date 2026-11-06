@@ -113,7 +113,7 @@ struct Spr_87760 {
     char pad2C[8];
     unsigned f34;
     char pad38[4];
-    unsigned f3C, f40, f44, f48;
+    float f3C, f40, f44, f48;
     char pad4C[0xC];
     unsigned char f58;
     char pad59[0x64 - 0x59];
@@ -121,7 +121,7 @@ struct Spr_87760 {
     void func_001D5810(void *a, unsigned x, unsigned y, int z);
     inline void SetF28(unsigned v) { if (f28 != v) { f28 = v; f58 |= 1; } }
     inline void SetF34(unsigned v) { if (f34 != v) { f34 = v; f58 |= 1; } }
-    inline void SetXform(unsigned a, unsigned b, unsigned c, unsigned d) { f3C = a; f40 = b; f44 = c; f48 = d; f58 |= 4; }
+    inline void SetQuad() { unsigned char f = f58 | 4; f3C = 1.0f; f40 = 0.0f; f44 = 0.0f; f48 = 1.0f; f58 = f; }
 };
 
 struct Txt_87760 {
@@ -291,11 +291,9 @@ C_00087760 *C_00087760::func_00087760(int a, Owner_87760 *b, int c)
         f30->SetF28(0x42400000);
     }
     s = f30;
-    s->f48 = 0x3f800000;
-    s->f3C = 0x3f800000;
+    s->f3C = s->f48 = 0x3f800000;
+    s->f44 = s->f40 = 0;
     s->f58 |= 4;
-    s->f40 = 0;
-    s->f44 = 0;
     f2C->SetF34(0x40c00000);
     f30->SetF34(0x40c00000);
 
