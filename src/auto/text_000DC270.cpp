@@ -218,6 +218,63 @@ done:
     return ret;
 }
 
+int C_000DCC20::func_000DCE10(void)
+{
+    char buf[0x104];
+    void *mem = 0;
+    int ret;
+
+    if (unk2D0 != 0) {
+        mem = func_001E8A44((int)&D_00080000);
+        int src, dst;
+        if (unk2D8 > unk2DC) {
+            src = 4;
+            dst = 0;
+        } else {
+            src = 0;
+            dst = 4;
+        }
+        int i;
+        for (i = 0; i < 4; i++) {
+            void *s = arr368[src + i]->v40(0, 0, 0);
+            void *d = arr368[dst + i]->v40(0, 0, 0);
+            memcpy(d, s, 0x20000);
+            arr368[src + i]->v44(0);
+            arr368[dst + i]->v44(0);
+        }
+        func_001ADCC0(buf, 0x104, &D_00277A04, &D_00277A0C, unk2D8);
+        int r = D_002A8490->f2E0->f2CC->func_001D4590((char *)unk2BC->func_000928D0(), buf, (int)mem, (int)&D_00080000);
+        if (r != 1) {
+            if (r == -1) {
+                int *tmp = (int *)func_001E8A44((int)&D_00080000);
+                int *z = tmp;
+                int n;
+                for (n = (int)&D_00020000; n > 0; n--) {
+                    *z++ = 0;
+                }
+                D_002A8490->f2E0->f2CC->func_001D4440((char *)unk2BC->func_000928D0(), buf, (int)tmp, (int)&D_00080000);
+                func_001E891B(tmp);
+            } else {
+                ret = 0;
+                goto done;
+            }
+        }
+        D_002A8490->f2E0->f2C0->func_0005C020(D_002A8490->f2E0->f2D8);
+        D_002A8490->f2E0->f2C0->func_0005C6A0();
+        for (i = 0; i < 4; i++) {
+            void *d = arr368[src + i]->v40(0, 0, 0);
+            memcpy(d, (char *)mem + i * (int)&D_00020000, 0x20000);
+            arr368[src + i]->v44(0);
+        }
+    }
+    ret = 1;
+done:
+    if (mem != 0) {
+        func_001E891B(mem);
+    }
+    return ret;
+}
+
 C_000DD030 *C_000DD030::func_000DD030(int a)
 {
     func_001BE360(a);
@@ -282,4 +339,22 @@ void C_000DD130::func_000DD130()
     }
     func_001BE3F0();
 }
-
+struct C_000DC270_UI {
+ char pad0[0x48]; unsigned int color; char pad4C[2]; unsigned char flags;
+ void func_00093120(); void func_001B1980(); void func_0005E840(int); void func_001D6600();
+ void func_001B17D0(int); void func_001B1A30(float,float,int);
+ void func_001B1860(int,float,int,float,int,int,int,int,float,int,float,float,int);
+ void func_00093970(float,float,int,int,int,int);
+ void func_00094570(float,float,int,int,int,int);
+ void func_00093A00(float,float,int,int,int,int);
+ int func_000301D0();
+};
+extern C_000DC270_UI **D_002B91AC;
+extern int D_0028F5E0;
+struct C_000DC270 {
+ char pad0[0x124]; char *unk124; char pad128[0x18C];
+ C_000DC270_UI *unk2B4; int unk2B8; C_000DC270_UI *unk2BC;
+ char pad2C0[0x10]; int unk2D0; int unk2D4; int unk2D8;
+ char pad2DC[0x30]; int unk30C; C_000DC270_UI *arr310[10];
+ void func_000DC270();
+};
