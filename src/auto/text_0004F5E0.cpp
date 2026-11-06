@@ -208,6 +208,13 @@ struct C_0004FC20 {
         for (int i = 0; i < f90; ++i)
             f64->f4E0->f1A8[i]->f958 = 0.5f;
     }
+    __forceinline void ResetRiders2()
+    {
+        f64->f4C0->v31(1, 1);
+        ((G_4FC20 *)D_002A8490)->f2E0->f2FC->v18(1);
+        for (int i = 0; i < f90; ++i)
+            f64->f4E0->f1A8[i]->f958 = 0.5f;
+    }
 };
 
 struct S_4F820_Control {
@@ -363,6 +370,39 @@ void C_0004FE30::func_0004FAC0(void)
     f2AC = 0;
     f128 = ((G_4F5E0 *)D_002A8490)->f2E0->f10;
     f124 = 0;
+}
+
+int C_0004FC20::func_0004FC20(int *a, int b)
+{
+    int i;
+
+    if (func_001361E0(23, 2, a, 0x80000000)) {
+        if (((G_4FC20 *)D_002A8490)->f2E0->f4) {
+            if (f2D8 && f2D8->fCC == 1) return 0;
+            if (!f15C->fFC && !f190->f168 && !f1A0->f13C) {
+                if (f2D8 && !f2D8->fCC) {
+                    f64->f4C0->v31(1, 1);
+                    ((G_4FC20 *)D_002A8490)->f2E0->f2FC->v18(1);
+                    for (i = 0; i < f90; ++i)
+                        f64->f4E0->f1A8[i]->f958 = 0.5f;
+                } else {
+                    f64->f4C0->v31(1, 1);
+                    ((G_4FC20 *)D_002A8490)->f2E0->f2FC->v18(1);
+                    for (i = 0; i < f90; ++i)
+                        f64->f4E0->f1A8[i]->f958 = 0.5f;
+                }
+                func_00032A20();
+                f15C->func_000602B0();
+                f15C->func_00060350(a[2]);
+                return 1;
+            }
+        }
+    } else if (func_001361E0(4, 2, a, 0x80000000)) {
+        if (!f15C->fFC && (f2DC == 0 || f2DC == 4 || f2DC == 5 || f2DC == 2)) {
+            if (a[2] == f64->f4E0->f1A8[f120]->f970) f2E0 = 1;
+        }
+    }
+    return func_00157BF0(a, b);
 }
 
 void *C_0004FE30::func_0004FE30(int flags) {
