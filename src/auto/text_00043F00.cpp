@@ -1,6 +1,7 @@
 /* 1 function from 0x00043F00 to 0x000448D0, found by Ghidra. */
 #include "common.h"
 struct V4_43 { float x, y, z, w; };
+struct __declspec(align(16)) AV4_43 { float x, y, z, w; };
 struct Obj8_43 {
     void func_00197E70(V4_43 *out);
     void func_00197B40(V4_43 *a, V4_43 *b);
@@ -51,3 +52,88 @@ struct C_00043F00 {
     int func_000395A0(V4_43 v);
     int func_000392B0();
 };
+
+int C_00043F00::func_00043F00(int arg)
+{
+    V4_43 v1 = {0.0f, 0.0f, 0.0f, 1.0f};
+    V4_43 v2 = {0.0f, 0.0f, 0.0f, 1.0f};
+    V4_43 v3 = {0.0f, 0.0f, 0.0f, 1.0f};
+    V4_43 v4;
+    V4_43 out;
+    int i;
+    D_002EFDB8->v7(1);
+    D_002EFDB8->v8();
+    if (f564 != 0 && arg != 0) {
+        int n;
+        f564->f8->func_00197E70(&v1);
+        v4 = v1;
+        f564->f8->func_00197B40(&v2, &v3);
+        f51C = v2;
+        n = -1 - (int)(v1.y * D_0027701C);
+        while (n >= (int)(f440 * D_00275F64)) {
+            V4_43 tmp = v1;
+            tmp.y = (float)n * D_00275548;
+            f564->f8->func_00199600(tmp);
+            f564->f8->func_0019AC50();
+            for (i = 0; i < f564->f14; i++) {
+                f64->f530->func_0015A250(f564->f18[i]);
+            }
+            if (f564->fC != 0) {
+                f564->fC->func_00199600(v1);
+                f564->fC->func_0019AC50();
+            }
+            func_000265C0(&out, &v1, &v2, &v3, 0, 1);
+            if (f568) f568->func_00133EF0(&out);
+            if (f56C) f56C->func_00133EF0(&out);
+            if (f570) f570->func_00133EF0(&out);
+            if (func_00041560() == -1) {
+                f53C->func_001A4100(1, 1, 0);
+                if (v4.y - v1.y != D_00275548) {
+                    v1.y = v4.y;
+                } else {
+                    v1.y += D_00275548;
+                }
+                {
+                    V4_43 tmp2 = v1;
+                    f564->f8->func_00199600(tmp2);
+                }
+                if (f564->fC != 0) {
+                    f564->fC->func_00199600(v1);
+                    f564->fC->func_0019AC50();
+                }
+                f564->f8->func_0019AC50();
+                for (i = 0; i < f564->f14; i++) {
+                    f64->f530->func_0015A250(f564->f18[i]);
+                }
+                func_000265C0(&out, &v1, &v2, &v3, 0, 1);
+                if (f568) f568->func_00133EF0(&out);
+                if (f56C) f56C->func_00133EF0(&out);
+                if (f570) f570->func_00133EF0(&out);
+                return 0;
+            }
+            if (func_000395A0(D_002A14D4) != 0) {
+                break;
+            }
+            n--;
+        }
+    } else if (f564 != 0) {
+        if (func_000395A0(D_002A14D4) != 0) {
+            if (f564->f0 != 0 && f564->f0 < 3) {
+                v1 = *(V4_43 *)((char *)f564->f10 + 0x24);
+                f51C = f4CC;
+            } else {
+                f564->f8->func_00197E70(&v1);
+                f564->f8->func_00197B40(&v2, &v3);
+                f51C = v2;
+            }
+            if (f564->f0 == 0 || f564->f0 >= 3) {
+                if (func_000392B0() == 0) {
+                    return 0;
+                }
+            } else {
+                f53C->func_001A4100(2, 1, 0);
+            }
+        }
+    }
+    return 0;
+}
