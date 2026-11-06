@@ -286,6 +286,14 @@ struct S_Slot {
     int f1C;
     u8 f20;
     char pad21[3];
+
+    void init(int z)
+    {
+        f14 = z;
+        f18 = z;
+        f1C = z;
+        f20 &= 0xf0;
+    }
 };
 struct S_SlotList {
     int count;
@@ -708,7 +716,7 @@ int __stdcall func_001CDD50(S_SlotList *list, int max, S_Slot **outSlot, int *ou
             s->f14 = 0;
             s->f18 = 0;
             s->f1C = 0;
-            s->f20 &= 0xf0;
+            ((u8 *)s)[0x20] &= 0xf0;
             s->f0 = -1;
             *outSlot = s;
             *outIdx = -1;
