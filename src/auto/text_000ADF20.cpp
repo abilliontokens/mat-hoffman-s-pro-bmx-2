@@ -61,6 +61,48 @@ struct BMXCameraFacingObjects {
     void func_000A99A0();
     void *func_000AE760(unsigned int flags);
 };
+struct C_000AE780Parser {
+    int func_00169710(void *name);
+    int func_00168C20(void *name, int def, void *out);
+    void func_00168CB0(void *name, void *def, void *out);
+    int func_00168C50(void *name, float def, void *out);
+    void func_00168BE0(void *name, void *def, char *out, int size);
+};
+
+struct C_000AE780Elem {
+    char name[0x104];
+    int f104;
+    int f108;
+    int f10c;
+    int f110;
+    int f114;
+    int f118;
+    Vec4_000AEC90 v11c;
+    Vec4_000AEC90 v12c;
+    Vec4_000AEC90 v13c;
+    Vec4_000AEC90 v14c;
+    int *f15c;
+    C_000AE780Elem *func_000A9A00();
+};
+
+struct C_000AE780 {
+    void *vtbl;
+    char pad_04[0x20];
+    int count;
+    C_000AE780Elem **arr;
+    void func_000AE780(C_000AE780Parser *parser);
+};
+
+void *func_001E8920(void *dst, const void *src, unsigned int n);
+extern char D_0027CBAC[], D_0027CB90[], D_0027CB78[], D_002764F0[], D_0027C4D0[];
+extern char D_0027C4BC[], D_00275680[], D_0027CB6C[], D_0027CB60[], D_0027CB54[];
+extern char D_0027CB44[], D_0027CB38[], D_00275AD4[], D_0027CB30[], D_0027CB2C[];
+
+template <class T> inline const T &min_000AE780(const T &a, const T &b)
+{
+    return b < a ? b : a;
+}
+
 #include "ghidra.h"
 struct C_000AE740 {
     undefined4 func_000AE740(byte param_1);
@@ -115,12 +157,12 @@ void *WaterInclusionBoxes::func_000AEC50(unsigned int flags) {
 
 void WaterInclusionBoxes::func_000AEC90(C_000AEC90Parser *parser)
 {
-    Vec4_000AEC90 v1;
-    Vec4_000AEC90 v2;
     int count;
     int total;
     int n;
     int i;
+    Vec4_000AEC90 v2;
+    Vec4_000AEC90 v1;
     char buf[0x104];
 
     if (parser->func_00169710(D_0027CC24)) {
@@ -128,16 +170,13 @@ void WaterInclusionBoxes::func_000AEC90(C_000AEC90Parser *parser)
         if (count > 0) {
             if (field_28 != 0) {
                 i = field_24;
-                total = count + i;
-                field_24 = total;
+                total = field_24 = count + i;
                 field_28 = (WaterBox *)func_001E83E8(field_28, total * 0x28);
             } else {
                 WaterBox *q;
-                field_24 = count;
-                total = count;
-                n = count;
-                q = (WaterBox *)func_001E8A44(n * 0x28);
+                n = total = field_24 = count;
                 i = 0;
+                q = (WaterBox *)func_001E8A44(n * 0x28);
                 if (q != 0) {
                     func_00011FF0(q, 0x28, n, &D_000AAA50);
                 } else {
@@ -147,13 +186,13 @@ void WaterInclusionBoxes::func_000AEC90(C_000AEC90Parser *parser)
             }
             n = 1 - i;
             for (; i < total; i++) {
-                func_001ADCC0(buf, 0x104, D_0027CBF4, i + n);
+                func_001ADCC0(buf, 0x104, D_0027CBF4, n + i);
                 if (parser->func_00169710(buf)) {
                     parser->func_00168CB0(D_0027CBE8, D_002A2734, &v1);
                     parser->func_00168CB0(D_0027CBDC, D_002A2734, &v2);
                     parser->func_00168C50(D_0027CBCC, 0, &field_28[i].f20);
                     parser->func_00168C50(D_0027CBC0, 0, &field_28[i].f24);
-                    field_28[i].f24 = field_28[i].f24 * D_00275998;
+                    field_28[i].f24 *= D_00275998;
                     if (v1.x < v2.x) {
                         field_28[i].f0 = v1.x;
                         field_28[i].f10 = v2.x;
