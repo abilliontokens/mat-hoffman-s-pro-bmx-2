@@ -2,11 +2,12 @@
 #include "common.h"
 #include <xmmintrin.h>
 
-extern int D_002A1A64, D_002A1A68, D_002A1A6C, D_002A1A70;
 struct V_000551B0 {
     int x, y, z, w;
     V_000551B0(int px, int py, int pz, int pw) { x = px; y = py; z = pz; w = pw; }
 };
+extern V_000551B0 D_002A1A64;
+extern int D_002A1A68, D_002A1A6C, D_002A1A70;
 extern int D_002BA160, D_002B9118, D_002B9108, D_002B9114, D_002B9110, D_002B910C;
 
 struct S_00054430_V4 {
