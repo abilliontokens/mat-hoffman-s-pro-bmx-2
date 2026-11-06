@@ -18,8 +18,46 @@ struct Vec4_0017F2B0 {
     f32 w;
 };
 
+#include <xmmintrin.h>
+
+/* two-pointer tree header (nodes, leaves), as func_00129350 and func_00123C80 take it */
+struct S_0017F550_Pair {
+    int nodes;
+    int leaves;
+};
+
+/* shape tested by C_0017F2B0::func_0017F550 */
+struct S_0017F550_Shape {
+    char pad0[0x50];
+    int f50;
+    char pad54[0x54];
+    char fA8[8];
+    float mB0[16];
+    char fF0[0x10];
+    int f100;
+    int f104;
+    char pad108[0x88];
+    int f190;
+    int *f194;
+    char pad198[8];
+    S_0017F550_Shape **f1A0;
+    char pad1A4[0xc];
+    char f1B0[0xc];
+    u16 f1BC;
+    char pad1BE[6];
+    int f1C4;
+    int f1C8;
+};
+
 struct C_0017F2B0 {
+    void *vtbl;
+    char pad4[0xac];
+    float mB0[16];
+    u16 fF0;
+    char padF2[0xa];
+    S_0017F550_Pair tree;
     int func_0017F2B0(char *a);
+    int func_0017F550(S_0017F550_Shape *a);
 };
 extern f32 D_002755E8;
 static inline Vec4_0017F2B0 Vec4Make_0017F2B0(f32 x, f32 y, f32 z) {
