@@ -76,8 +76,7 @@ static __forceinline int Clamp_00013A40(const char *s)
     volatile int len = strlen(s);
     volatile int lim = 0x103;
     volatile int res;
-    int a = lim, b = len;
-    res = a > b ? b : a;
+    res = lim > len ? len : lim;
     return res;
 }
 inline int MinV_00013A40(int a, int b) { return a > b ? b : a; }
@@ -254,14 +253,11 @@ void C_00013F50::func_00013A40(char *path)
     int n1;
     int n3;
     int mode;
-    volatile int len;
-    volatile int lim;
-    volatile int res;
     char val[0x104];
     char name[0x104];
     char saved[0x104];
     S_00013A40_Ini *ini;
-    int i, n, a, b;
+    int i, n;
 
     self = this;
     f0++;
@@ -271,12 +267,7 @@ void C_00013F50::func_00013A40(char *path)
     }
     ini = new S_00013A40_Ini;
     if (ini->func_00169490(path, 0)) {
-        len = strlen(D_002A48F8);
-        lim = 0x103;
-        a = lim; b = len;
-        if (a > b) a = b;
-        res = a;
-        n = res;
+        n = Clamp_00013A40(D_002A48F8);
         func_001E8920(saved, D_002A48F8, n);
         saved[n] = 0;
         ini->func_00169710(D_0027568C);
@@ -328,12 +319,7 @@ void C_00013F50::func_00013A40(char *path)
             }
             self->fC = func_00011260(0, self->f18 - 1);
         }
-        len = strlen(saved);
-        lim = 0x103;
-        a = lim; b = len;
-        if (a > b) a = b;
-        res = a;
-        n = res;
+        n = Clamp_00013A40(saved);
         func_001E8920(D_002A48F8, saved, n);
         D_002A48F8[n] = 0;
     }
