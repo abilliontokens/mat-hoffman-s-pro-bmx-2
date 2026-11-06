@@ -208,7 +208,10 @@ void func_001E5F20(float *dst, float *src);
 void func_001E64D0(float *dst, float *src);
 void func_001E6B50(float *dst, float *src);
 struct M16E6D40 {
-    float f[16];
+    union {
+        float f[16];
+        struct { float x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15; };
+    };
     M16E6D40() {}
     __forceinline M16E6D40(float *c)
     {
