@@ -131,8 +131,8 @@ extern int *D_002EFDB8;
 extern char D_0004035C;
 void __fastcall func_001FD020(void *, int);
 void __stdcall func_001FE490(int);
-extern float D_00275544;
-extern float D_00275F58;
+extern const float D_00275544;
+extern const float D_00275F58;
 
 struct C_001B1840 {
     char pad0[0x64];
@@ -1101,6 +1101,45 @@ void C_001B1840::func_001B1840(int a0, int a1, int a2) {
     unkC0 = a2;
     unk64 = a0;
     unk74 = a1;
+}
+
+void C_001B1860::func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, float a7, int a8, float a9, int a10, float a11, float a12, int a13)
+{
+    if (fC0 != 0) return;
+    fC0 = a6;
+    f6C = a1;
+    f70 = a1;
+    f64 = 1;
+    f74 = 1;
+    if (a2 >= D_00275544) {
+        f78 = *(int *)&a2;
+        f7C = 0;
+    } else {
+        f7C = 1;
+    }
+    f168 = (float)a3;
+    f9C = *(int *)&a4;
+    f16C = *(int *)&a4;
+    fA8 = a5;
+    f170 = a5;
+    fC4 = *(int *)&a7;
+    f88 = a3;
+    f178 = 1;
+    f17C = 1;
+    f180 = 1;
+    if (a7 > D_00275F58) {
+        fC8 = a8;
+        f94 = *(int *)&a11;
+        fCC = *(int *)&a9;
+        fA4 = *(int *)&a12;
+        fD0 = a10;
+        fB4 = a13;
+        fC0 = 1;
+    } else {
+        fC8 = a3;
+        fCC = *(volatile int *)&a4;
+        fD0 = *(volatile int *)&a5;
+    }
 }
 
 void C_001B1980::func_001B1980(void) {
