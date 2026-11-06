@@ -584,13 +584,19 @@ int C_001A1D20::func_001A1D20(const char * volatile name, int b)
     return 0;
 }
 
+static __forceinline int ReleaseSlot_001A1E60(ObjV2 *&slot)
+{
+    if (slot != 0) {
+        int r = slot->v2();
+        slot = 0;
+        return r;
+    }
+    return 0;
+}
+
 void C_001A1E60::func_001A1E60() {
-    if (unk1BC != 0) {
-        int r = unk1BC->v2();
-        unk1BC = 0;
-        if (r != 0) {
-            return;
-        }
+    if (ReleaseSlot_001A1E60(unk1BC) != 0) {
+        return;
     }
     unk1BC = 0;
 }
@@ -720,12 +726,18 @@ void C_001A2620::func_001A2620()
 
 void KeyFramedAnimSoundEmitter_1A2690::func_001A2690(float dt)
 {
-    V4_1A v = D_002A9ECC;
+    V4_1A o;
+    V4_1A v;
+    V4_1A d;
     int i;
     Item_1A *item;
     float t;
     KfAnim_1A2690 *anim;
 
+    v.x = *(float *)&D_002A9ECC;
+    v.y = D_002A9ED0;
+    v.z = D_002A9ED4;
+    v.w = D_002A9ED8;
     if (f1c0) {
         f1c0->func_00199A70(0, &v);
     } else if (f1c4) {
@@ -738,8 +750,7 @@ void KeyFramedAnimSoundEmitter_1A2690::func_001A2690(float dt)
     *prev = *cur;
     *cur = v;
     if (!(f98 & 2)) {
-        V4_1A o = *prev;
-        V4_1A d;
+        o = *prev;
         d.x = cur->x - o.x;
         d.y = cur->y - o.y;
         d.z = cur->z - o.z;
