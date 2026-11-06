@@ -8,6 +8,16 @@ struct T { int a; int b; T() {} int func_001EF1E7(); void func_001EF734(char); v
     T func_001EFD3B(char); T func_001EFD7A(char*); T func_001EFAB5(const T&); T* func_001EFAB5(T*, const T&); };
 /* DName default constructor (node = 0, status = valid, flags cleared). */
 struct N : T { N() { a = 0; b &= 0xfffffe00; } };
+__declspec(noinline) int T::func_001EF1E7()
+{
+    if (a != 0) {
+        int st = (b << 28) >> 28;
+        if (st == 0 || st == 2) {
+            return 0;
+        }
+    }
+    return 1;
+}
 extern char* D_002F6A28;
 T* func_001F208F(T*, T*);
 T* func_001F23B8(T*, T*, char, T*, int);
