@@ -181,6 +181,12 @@ struct C_0004DCA0 {
     int func_00033320(int *a, int b);
     void func_00032A20(void);
     void func_000342C0(void);
+    int func_00157A00(float dt);
+    void func_0004D0E0(void);
+    void func_0004D230(void);
+    void func_0004CCF0(int a);
+    void func_00031260(float dt);
+    int func_0004DDB0(float dt);
     C_0004DCA0 *func_0004DCA0(void);
     C_0004DCA0 *func_0004D930(int a);
     void func_00030F90(int a);
