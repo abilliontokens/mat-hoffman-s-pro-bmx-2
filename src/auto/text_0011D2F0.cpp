@@ -43,6 +43,11 @@ struct G1_0011D2F0 {
 };
 extern G1_0011D2F0 *D_002A8490;
 extern V4_0011D2F0 D_002A3BBC;
+extern float D_00275544, D_00283F14, D_00276538;
+
+void func_00011060(void);
+void __stdcall func_00011FF0(V4_0011D2F0 *out, int a, int b, void (*fn)(void));
+int func_00134DE0(V4_0011D2F0 *a, V4_0011D2F0 *b, V4_0011D2F0 *c, int d, int e, int f, int g, int h, int i);
 
 M4_0011D2F0 *func_0011ADA0(M4_0011D2F0 *out, M4_0011D2F0 *a, M4_0011D2F0 *b);
 V4_0011D2F0 *func_00026910(V4_0011D2F0 *out, M4_0011D2F0 *m, int n);
@@ -69,3 +74,80 @@ struct C_0011D2F0 {
     void func_00157A00(float dt);
     void func_0011D2F0(float dt);
 };
+
+void C_0011D2F0::func_0011D2F0(float dt)
+{
+    fC0 = fBC;
+    if (D_002A8490->f2a4->f1c8 != 0) {
+        if (fBC == 0) {
+            if (f12C == 1) {
+                f84->func_00164820(fC4);
+                f84->node->func_001996A0(0, f134);
+                f84->node->func_00199300(&f144);
+                f84->func_001670C0(dt, 0, 0);
+            } else if (f12C == 2) {
+                M4_0011D2F0 mA, mB, mC, mE;
+                V4_0011D2F0 vD, ra, rb;
+                f84->node->func_001996A0(0, f134);
+                f84->node->func_00199300(&f144);
+                f84->f18 = 0;
+                f84->func_00166C80(fC8[f130], 0);
+                f84->node->func_00197EA0(&mA);
+                f88->func_00199C20(0, &mB);
+                func_0011ADA0(&mC, &mB, &mA);
+                ra = *func_00026910(&vD, &mC, 3);
+                rb = *func_0011ADD0(&vD, &mC);
+                *f84->f204 = ra;
+                *f84->f200 = rb;
+            }
+        } else if (fBC == 1) {
+            f84->func_001670C0(dt, 0, 0);
+            if (f12C == 1) {
+                f84->node->func_001996A0(0, f134);
+                f84->node->func_00199300(&f144);
+            } else if (f12C == 2) {
+                M4_0011D2F0 mA, mB, mC, mE;
+                V4_0011D2F0 vD, ra, rb;
+                f84->node->func_001996A0(0, f134);
+                f84->node->func_00199300(&f144);
+                f84->f18 = 0;
+                f84->func_00166C80(fC8[f130], 0);
+                f84->node->func_00197EA0(&mA);
+                f88->func_00199C20(0, &mB);
+                func_0011ADA0(&mC, &mB, &mA);
+                ra = *func_00026910(&vD, &mC, 3);
+                rb = *func_0011ADD0(&vD, &mC);
+                *f84->f204 = ra;
+                *f84->f200 = rb;
+            }
+        } else if (fBC == 2) {
+            if (f12C == 1) {
+                M4_0011D2F0 mA, mD;
+                V4_0011D2F0 vZ, vY;
+                f84->f18 = 0;
+                f84->func_00166C80(fC4, 0);
+                f88->func_00199A70(0, &f24);
+                *f84->f204 = D_002A3BBC;
+                func_00026960(&mA);
+                *f84->f200 = *(V4_0011D2F0 *)func_0011ADA0(&mD, &mA, 0);
+                vZ.x = vZ.y = vZ.z = 0.0f; vZ.w = 1.0f;
+                vY.x = vY.y = vY.z = 0.0f; vY.w = 1.0f;
+                f88->func_001994C0(0, &vZ, &vY);
+                f84->node->func_00199110(0, &vZ, &vY, 0, 1, 0);
+            } else {
+                V4_0011D2F0 v;
+                f84->node->func_001996A0(0, f134);
+                f84->node->func_00199300(&f144);
+                if (f84->f10 == 0) {
+                    f84->func_001670C0(dt, 0, 0);
+                }
+                v.x = v.y = v.z = 0.0f; v.w = 1.0f;
+                f84->node->func_001994C0(0, 0, &v);
+                func_0011BBB0(v);
+            }
+        }
+        fBC = f12C;
+        func_00157A00(dt);
+        return;
+    }
+}
