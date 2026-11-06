@@ -3,6 +3,12 @@
 
 extern int D_00277FD4;
 extern float D_002755E8, D_002756D0, D_002756B8, D_002756E8, D_00277FBC, D_00275544, D_002756DC, D_00277FB8, D_00277FB4, D_00277FB0, D_00277D04;
+static __forceinline float Abs_00059290(float x)
+{
+    unsigned u = *(unsigned *)&x & 0x7fffffff;
+    return *(float *)&u;
+}
+
 struct S_00059290_Sub3 { char pad0[0x3c]; float f3c; };
 struct S_00059290_Obj {
     char pad0[0x1e0];
