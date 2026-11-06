@@ -80,13 +80,21 @@ struct C_00160BF0Obj {
 struct C_Holder24 {
     char pad0[0xb4];
     C_00160BF0Obj *fb4;
+    char padb8[0x1cc - 0xb8];
+    char **f1cc;
+    int f1d0;
+    char **f1d4;
+    int f1d8;
+    void func_001A5B10(char *name, int *out);
 };
 
 struct C_0018C120Obj {
     void func_0018C120();
+    void func_0018C780(int count, int *names, int flags);
+    int *func_0018C160(char *name);
 };
 
-struct C_CardStrings { char pad0[0x7a0]; int f7a0; char pad7a4[0x11a0-0x7a4]; int f11a0; char pad11a4[0x1248-0x11a4]; int f1248; };
+struct C_CardStrings { char pad0[0x7a0]; int f7a0; char pad7a4[0xf58-0x7a4]; int ff58; char padf5c[0x11a0-0xf5c]; int f11a0; char pad11a4[0x1248-0x11a4]; int f1248; };
 struct C_CardStringsHolder { char pad0[4]; C_CardStrings *f4; };
 struct C_CardText {
     int f0, x, y;
@@ -316,9 +324,10 @@ void C_001A6D30::func_001A6D30()
 
 void C_001A6E90::func_001A6E90(float dt)
 {
-    volatile float t;
+    float t;
     S_001A6E90_Msg msg;
     float sum;
+    int s;
 
     sum = dt + f54;
     f54 = sum;
@@ -333,7 +342,7 @@ void C_001A6E90::func_001A6E90(float dt)
                     f6C = 0;
                     f7C = 1;
                 } else {
-                    f6C = f8C >= 5 ? 4 : 9;
+                    f6C = f8C < 5 ? 9 : 4;
                 }
             } else {
                 if (f78->func_00092AC0()) {
@@ -349,20 +358,25 @@ void C_001A6E90::func_001A6E90(float dt)
         }
         f54 = 0;
     }
+    s = f6C;
     D_002EFF78 += dt;
-    if (f6C == 0 || f6C == 4) {
+    if (s == 0 || s == 4) {
         if (f78->func_00092A10() && f88 == 0) {
-            D_002EFF78 = 0.0f;
-            f80 = 0;
-            f68 = 1;
-            if (f6C != 0) {
+            if (f6C == 0) {
+                D_002EFF78 = 0.0f;
+                f68 = 1;
+                f80 = 0;
+                if (f78->func_00092EF0() == 0) {
+                    f6C = 6;
+                    D_002A8490->f2e0->f2c0->func_0005CBD0();
+                    f88 = 0;
+                    f68 = 0;
+                }
+            } else {
+                D_002EFF78 = 0.0f;
+                f68 = 1;
+                f80 = 0;
                 goto after_draw;
-            }
-            if (f78->func_00092EF0() == 0) {
-                f6C = 6;
-                D_002A8490->f2e0->f2c0->func_0005CBD0();
-                f88 = 0;
-                f68 = 0;
             }
         }
     }
