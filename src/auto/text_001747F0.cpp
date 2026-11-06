@@ -46,9 +46,15 @@ struct R_001747F0 {
     Vec4_001747F0 v258;
     Vec4_001747F0 v268;
     char pad278[0x280 - 0x278];
-    int i280, i284, i288;
-    char pad28C[0x2b0 - 0x28c];
-    Vec4_001747F0 v2B0;
+    int i280, i284, i288, i28C, i290, i294;
+    Vec3_001747F0 v298;
+    Vec3_001747F0 v2A4;
+    Vec3_001747F0 v2B0;
+    Vec3_001747F0 v2BC;
+    Vec4_001747F0 v2C8;
+    Vec4_001747F0 v2D8;
+    Vec3_001747F0 v2E8;
+    Vec3_001747F0 v2F4;
     int func_001747F0(int a);
 };
 struct C_00175170 {
