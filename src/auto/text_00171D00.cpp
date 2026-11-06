@@ -20,7 +20,7 @@ struct W3_001729D0 {
  float x,y,z,w;
  W3_001729D0() {}
  W3_001729D0(float a,float b,float c):x(a),y(b),z(c),w(1.0f) {}
- W3_001729D0 operator*(const float &s) const { return W3_001729D0(x*s,y*s,z*s); }
+ W3_001729D0 operator*(float s) const { return W3_001729D0(x*s,y*s,z*s); }
  W3_001729D0 operator+(const W3_001729D0 &o) const { return W3_001729D0(x+o.x,y+o.y,z+o.z); }
 };
 static __forceinline float Sqrt_00171BA0(const float &x) { float r; _mm_store_ss(&r,_mm_sqrt_ss(_mm_load_ss(&x))); return r; }
