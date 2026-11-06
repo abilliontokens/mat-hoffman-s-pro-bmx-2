@@ -282,8 +282,15 @@ struct VtblStore_00055380 {
     VtblStore_00055380() { p = &D_00277CF4; }
 };
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
+
 struct CameraBehavior_00055380 {
-    __forceinline CameraBehavior_00055380() { ((C_00055380 *)this)->func_0012B510(); }
+    __forceinline CameraBehavior_00055380()
+    {
+        ((C_00055380 *)this)->func_0012B510();
+        ((C_00055380 *)this)->unk0 = (u32)&D_00277CF4;
+    }
 };
 
 static __forceinline void G2_00055380(u32 *a, u32 *b, u32 va, u32 vb)
