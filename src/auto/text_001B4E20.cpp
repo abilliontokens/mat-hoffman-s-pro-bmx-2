@@ -64,13 +64,18 @@ struct C_001B4E20 {
     int func_001B4E20(void *param);
 };
 
-struct ModelVector_001B4ED0 {
-    int x, y, z, w;
-    ModelVector_001B4ED0() { x = y = z = 0; w = 0x3f800000; }
-};
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
+static __forceinline void InitVec_001B4ED0(int *v)
+{
+    v[2] = 0;
+    v[1] = 0;
+    v[0] = 0;
+    v[3] = 0x3f800000;
+}
 struct C_001B4ED0_Base {
     void *volatile vtbl;
-    C_001B4ED0_Base() { vtbl = (void *)&D_0028CA9C; }
+    C_001B4ED0_Base() { vtbl = (void *)&D_0028CA9C; _ReadWriteBarrier(); }
 };
 struct C_001B4ED0 : C_001B4ED0_Base {
     int f04;
