@@ -116,15 +116,15 @@ static __forceinline void AsmFloatToIntRound(float f, int *dst)
 /* out = in / |in|: rsqrt and one Newton-Raphson step, the squared length clamped to FLT_MIN. Each source file of
  * the game has its own copy of the three constants, as these statics give it. Proven on _func_0001EA40,
  * _func_000499B0, _func_00055140, _func_00016DD0, _func_00179370, _func_000111B0 (out-of-line copies). */
-static __forceinline void AsmVec3Normalize(float *out, const float *in)
+static __forceinline void AsmVec3Normalize(float *dst, const float *src)
 {
     static const __declspec(align(16)) float s_half[4] = { 0.5f, 0.5f, 0.5f, 0.5f };
     static const __declspec(align(16)) float s_three[4] = { 3.0f, 3.0f, 3.0f, 3.0f };
     static const __declspec(align(16)) float s_minLenSq[4] = { 1.17549435e-38f, 1.17549435e-38f, 1.17549435e-38f,
                                                                1.17549435e-38f };
     __asm {
-        mov ecx, in
-        mov edx, out
+        mov ecx, src
+        mov edx, dst
         movups xmm0, [ecx]
         movaps xmm1, xmm0
         mulps xmm0, xmm0
@@ -150,8 +150,8 @@ static __forceinline void AsmVec3Normalize(float *out, const float *in)
     }
 }
 
-/* out = a x b. Proven on _func_0001EAB0 (its out-of-line copy), _func_0001C750@32, _func_00198F50@20. */
-static __forceinline void AsmVec3Cross(float *out, const float *a, const float *b)
+/* dst = a x b. Proven on _func_0001EAB0 (its out-of-line copy), _func_0001C750@32, _func_00198F50@20. */
+static __forceinline void AsmVec3Cross(float *dst, const float *a, const float *b)
 {
     __asm {
         mov ecx, a
@@ -165,7 +165,7 @@ static __forceinline void AsmVec3Cross(float *out, const float *a, const float *
         mulps xmm2, xmm1
         mulps xmm0, xmm3
         subps xmm0, xmm2
-        mov eax, out
+        mov eax, dst
         shufps xmm0, xmm0, 0xc9
         movups [eax], xmm0
     }
@@ -221,13 +221,13 @@ static __forceinline void AsmCopyMatrix(void *dst, const void *src)
     }
 }
 
-/* out.xyz = m (3 rows of 4) * (v.x, v.y, v.z, 1), out.w = 1. Proven on _func_00030AC0, _func_00197F70@8. */
-static __forceinline void AsmTransformPoint(float *out, const float *v, const float *m)
+/* dst.xyz = m (3 rows of 4) * (v.x, v.y, v.z, 1), dst.w = 1. Proven on _func_00030AC0, _func_00197F70@8. */
+static __forceinline void AsmTransformPoint(float *dst, const float *v, const float *m)
 {
     __asm {
         mov ecx, v
         mov edx, m
-        mov eax, out
+        mov eax, dst
         movups xmm3, [ecx]
         movaps xmm0, [edx]
         movhps qword ptr [eax+8], xmm3
