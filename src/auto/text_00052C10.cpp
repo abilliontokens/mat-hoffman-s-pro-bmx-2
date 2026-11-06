@@ -711,6 +711,9 @@ int C_53460::func_00053460()
 
 int C_535C0::func_000535C0()
 {
+    int i;
+    int *p;
+
     func_000533E0();
     unk44->func_0002F8A0();
     func_00051A00();
@@ -723,8 +726,10 @@ int C_535C0::func_000535C0()
     if (unk1C0 != 0)
         unk1C0->func_000981D0(unk64->f3B4, unk64->f534, unk1C8);
     if (unk16C->f274 != 0) {
-        *(double *)&unk2B8 = 0.0;
-        *(double *)&unk2C0 = 0.0;
+        p = &unk2B8;
+        for (i = 0; i < 4; i++) {
+            p[i] = 0;
+        }
     }
     unk2D0 = 0;
     unk2C8 = 0;
