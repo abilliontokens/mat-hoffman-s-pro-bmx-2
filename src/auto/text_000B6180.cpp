@@ -10,11 +10,16 @@ void *func_001E8A44(int size);
 
 extern int D_0027D4C4;
 extern int D_002A2FD8, D_002A2FDC, D_002A2FE0, D_002A2FE4;
-struct C_000B6180 {
+struct C_000B6180_Base {
+    void func_00157600(int a0);
+    C_000B6180_Base(int a0) { func_00157600(a0); }
+};
+struct C_000B6180 : C_000B6180_Base {
     virtual void v0();
     int u[0x27];
     float f[0x4c];
     int t[7];
+    C_000B6180(int a0);
     C_000B6180 *func_000B6180(int a0);
     void func_00157600(int a0);
 };
@@ -118,15 +123,15 @@ C_000B6180 *C_000B6180::func_000B6180(int a0)
     VEC(0xa0) VEC(0xb0) VEC(0xc0) VEC(0xd0) VEC(0xe0) VEC(0xf0) VEC(0x100) VEC(0x110)
     VEC(0x120) VEC(0x130) VEC(0x140) VEC(0x150) VEC(0x160) VEC(0x170) VEC(0x180) VEC(0x190)
     VEC(0x1a0) VEC(0x1b0) VEC(0x1c0)
-    u[0x24/4] = 1; u[0x28/4] = 0; u[0x2c/4] = 0; u[0x30/4] = 0; u[0x34/4] = 0;
-    u[0x40/4] = 0; u[0x44/4] = 0; u[0x50/4] = 0; u[0x54/4] = 0;
-    u[0x38/4] = 0; u[0x3c/4] = 0; u[0x48/4] = 0; u[0x4c/4] = 0;
-    u[0x5c/4] = 0; u[0x60/4] = 0; u[0x70/4] = 0; u[0x74/4] = 0; u[0x78/4] = 0; u[0x7c/4] = 0;
-    u[0x80/4] = 0x3f800000; u[0x84/4] = 0x3f060a91;
-    u[0x88/4] = 0; u[0x8c/4] = 0; u[0x90/4] = 0; u[0x1d0/4] = 0; u[0x1d4/4] = 0;
+    u[8] = 1; u[9] = 0; u[10] = 0; u[11] = 0; u[12] = 0;
+    u[15] = 0; u[16] = 0; u[19] = 0; u[20] = 0;
+    u[13] = 0; u[14] = 0; u[17] = 0; u[18] = 0;
+    u[22] = 0; u[23] = 0; u[27] = 0; u[28] = 0; u[29] = 0; u[30] = 0;
+    u[31] = 0x3f800000; u[32] = 0x3f060a91;
+    u[33] = 0; u[34] = 0; u[35] = 0; t[0] = 0; t[1] = 0;
     CPY(0xa0) CPY(0xb0) CPY(0xc0) CPY(0xd0) CPY(0xe0) CPY(0xf0) CPY(0x100) CPY(0x110)
     CPY(0x140) CPY(0x150) CPY(0x160) CPY(0x170)
-    u[0x94/4] = 0; u[0x98/4] = 0; u[0x1d8/4] = 0; u[0x1dc/4] = 0; u[0x1e0/4] = 0; u[0x1e4/4] = 0; u[0x1e8/4] = 0;
+    u[36] = 0; u[37] = 0; t[2] = 0; t[3] = 0; t[4] = 0; t[5] = 0; t[6] = 0;
     return this;
 }
 
