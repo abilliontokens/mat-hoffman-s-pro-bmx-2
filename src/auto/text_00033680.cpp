@@ -42,6 +42,170 @@ struct C_000342A0 {
     undefined4 func_000342A0(byte param_1);
 };
 
+#include <string.h>
+
+/* ---- BmxEvent::func_00033680 (event setup) ---- */
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+extern "C" char *func_00030F30(char *dst, const char *src);
+extern "C" void *func_001E8A44(unsigned int size);
+extern "C" void func_001DC974(void);
+extern "C" int func_001E8AF0(const char *a, const char *b);
+extern "C" int func_0001CBF0(void);
+extern "C" void func_0001CC00(int h, float a, float b);
+extern char D_002A5870[], D_002A5768[], D_00276C40[], D_002A60B0[], D_00275678[], D_002A5348[], D_002A5FA8[];
+extern char D_002A48F8[], D_002A47F0[], D_002A4C10[], D_002A4B08[], D_00276C34[], D_00276C28[], D_00276C14[];
+extern char D_00276C08[], D_00276C00[], D_00276BF8[], D_00276BF0[], D_00276BE8[], D_00276BE0[];
+extern char D_00276BC8[], D_00276BC0[], D_00276BB4[], D_002A5EA0[], D_00276BAC[];
+extern char D_001F4240;
+extern float D_00276BD4, D_00276BD8, D_00276BDC;
+extern int D_002A1448, D_002A1444, D_002AB7F0;
+
+struct E33680_Mgr {
+    char pad0[4];
+    int f4;
+    int f8;
+    char padc[0x48 - 0xc];
+    int f48;
+    char f4c[1];
+};
+struct E33680_G {
+    char pad0[0x2b8];
+    char f2b8[0x28];
+    E33680_Mgr *f2e0;
+};
+extern E33680_G *D_002A8490_;
+
+struct E33680_Loader {
+    void func_0013C1D0(int a);
+    void func_0013D780(char *name, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
+    void func_0013B260(int a);
+    void func_0013DFF0(char *name, int a);
+};
+extern E33680_Loader *D_002BEAAC_;
+struct E33680_Sink { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(char *s); };
+extern E33680_Sink *D_002A829C_;
+
+struct E33680_Trace {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2(const char *file, int line, int x);
+    virtual void v3(const char *file, int line, int x);
+};
+
+struct E33680_Track { char pad0[0xa38]; int fA38; };
+struct E33680_List {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5();
+    virtual void v6();
+    char pad4[0x20];
+    int f24;
+    char pad28[0x1a8 - 0x28];
+    E33680_Track *arr1a8[1];
+};
+struct E33680_Obj388 { char pad0[0x420]; float f420[3]; };
+
+struct E33680_Ev;
+struct E33680_Level {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28();
+    virtual void v29(char *a);
+    virtual void v30();
+    virtual void v31(); virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35(); virtual void v36();
+    virtual void v37();
+    virtual int v38(char *a);
+    virtual void v39();
+    virtual void v40(); virtual void v41(); virtual void v42(); virtual void v43(); virtual void v44(); virtual void v45(); virtual void v46(); virtual void v47();
+    virtual void v48(); virtual void v49(); virtual void v50();
+    virtual void v51();
+    virtual void v52();
+    virtual void v53(); virtual void v54(); virtual void v55();
+    virtual void v56();
+    virtual int v57(char *a);
+    virtual void v58();
+    virtual void v59(); virtual void v60();
+    virtual void v61();
+    virtual void v62();
+    virtual void v63();
+    virtual void v64();
+    virtual void v65(); virtual void v66(); virtual void v67();
+    virtual void v68();
+    virtual void v69(float a, float b);
+    virtual void v70(); virtual void v71();
+    virtual void v72();
+    virtual void v73();
+    virtual void v74();
+    virtual void v75();
+    virtual void v76();
+    virtual void v77();
+    virtual void v78(int a, int b, int c);
+    virtual void v79(int a, int b);
+    virtual void v80();
+    virtual void v81(); virtual void v82();
+    virtual void v83();
+    virtual void v84();
+    virtual void v85();
+    virtual void v86();
+    virtual void v87();
+    virtual void v88();
+    virtual void v89(); virtual void v90(); virtual void v91(); virtual void v92(); virtual void v93();
+    virtual void v94();
+    char pad4[0x134 - 4];
+    char f134[0x388 - 0x134];
+    E33680_Obj388 *f388;
+    char pad38c[0x4e0 - 0x38c];
+    E33680_List *f4e0;
+    E33680_Level *func_000AC2C0(int a);
+    void func_000A0AE0(E33680_Ev *ev);
+    void func_000AF0D0();
+    void func_000A2620();
+    void func_000A25E0();
+    void func_000A1E60();
+    void func_000A17E0();
+    void func_000A10B0(int a);
+    void func_000AF080(int a, int b, int c);
+    void func_000A0B80();
+    void func_000AC6E0();
+    void func_000AC730();
+    void func_000AC760();
+    void func_000ACC40();
+    void func_000A3C50();
+    void func_000A3170();
+    void func_000A1830();
+};
+struct E33680_Boot { void func_00149380(); };
+extern "C" void __stdcall func_001041F0(E33680_Track *t);
+
+struct E33680_Ev {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32();
+    char pad4[0x60];
+    E33680_Level *f64;
+    char pad68[4];
+    int f6c[4];
+    char pad7c[0x8c - 0x7c];
+    int f8c;
+    int f90;
+    char pad94[0x11c - 0x94];
+    int f11c;
+    char pad120[0x1c4 - 0x120];
+    int f1c4;
+    char pad1c8[0x1d4 - 0x1c8];
+    E33680_Trace *f1d4;
+    char pad1d8[0x1f8 - 0x1d8];
+    int f1f8;
+    int f1fc;
+    char pad200[4];
+    int f204;
+    int f208;
+    int f20c;
+    void func_00031840();
+    int func_00033680();
+};
+
 
 int E34090_Ev::func_00034090()
 {
