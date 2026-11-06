@@ -430,23 +430,22 @@ C_001C0F20 *C_001C0F20::func_001C0F20(int a, S_001C0F20_Stream *stream, void *ow
 void C_001C1030::func_001C1030(int slot, int value, int key)
 {
   int v = f68[slot];
-  C_001C1030 *self = this;
 
   switch (v) {
   case -2:
-    self->f24->f118->func_001BEC10(value);
-    self->f24->v31(v, 1, 0, 0);
-    return;
+    f24->f118->func_001BEC10(value);
+    break;
   case -1:
-    self->f24->f118->func_001BEB90(value);
-    self->f24->v31(v, 1, 0, 0);
-    return;
-  }
-  if (v > 0) {
-    self->f24->f118->func_001BEC90(value, v);
+    f24->f118->func_001BEB90(value);
+    break;
+  default:
+    if (v > 0) {
+      f24->f118->func_001BEC90(value, v);
+    }
+    break;
   }
   if (v != 0) {
-    self->f24->v31(v, 1, 0, 0);
+    f24->v31(v, 1, 0, 0);
   }
 }
 
