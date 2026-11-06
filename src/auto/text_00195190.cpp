@@ -12,7 +12,15 @@ struct SimpleVCR {
     char pad8C[4];
     float f90, f94, f98, f9c, fA0, fA4, fA8, fAC, fB0, fB4, fB8;
     char padBC[4];
-    unsigned char fC0;
+    union {
+        unsigned char fC0;
+        struct {
+            unsigned char b0 : 1;
+            unsigned char mid : 5;
+            unsigned char b6 : 1;
+            unsigned char b7 : 1;
+        } fl;
+    };
     char padC1[3];
     int fC4, fC8, fCC;
     void func_00157600(int a);
