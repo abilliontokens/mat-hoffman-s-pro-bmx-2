@@ -249,7 +249,7 @@ struct C_001CC3C0 {
 };
 int __stdcall func_00221A71(int h, int a, int b, int c, int d);
 #include <xmmintrin.h>
-static __forceinline float Max_001CC4B0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b))); return r; }
+static __forceinline float Max_001CC4B0(float a, float b) { __m128 x = _mm_set_ss(a); __m128 y = _mm_set_ss(b); x = _mm_max_ss(x, y); float r; _mm_store_ss(&r, x); return r; }
 struct S_Vec_001CC4B0 { int x, y, z; };
 struct S_3DParams_001CC4B0 {
     int insideCone;     /* 0x00 */
