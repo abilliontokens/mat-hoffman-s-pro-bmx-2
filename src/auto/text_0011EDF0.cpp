@@ -79,11 +79,10 @@ float func_00011170(float *a);
 
 static __forceinline void Cross_0011F8E0(float * volatile out, float *a, float *b)
 {
- _mm_storeu_ps(out, _mm_shuffle_ps(
- _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
- _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9))),
- _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
- _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9))), 0xc9));
+ float x=a[1]*b[2]-a[2]*b[1];
+ float y=a[2]*b[0]-a[0]*b[2];
+ float z=a[0]*b[1]-a[1]*b[0];
+ out[0]=x;out[1]=y;out[2]=z;out[3]=0;
 }
 
 static __forceinline float Min_0011F8E0(float a, float b)
