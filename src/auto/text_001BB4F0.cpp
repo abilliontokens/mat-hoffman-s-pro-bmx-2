@@ -274,6 +274,15 @@ struct C_001BBAA0 {
     void func_001BBA60(void);
     __declspec(noinline) void func_001BBAA0(void *a, void *b);
     void func_001BBE20(int a);
+    __forceinline void ApplyAction(int i, int a)
+    {
+        if (unkC4[i] > D_00275544) {
+            unkCC[i] = a;
+            unkC8[i] = unkC4[i];
+        } else {
+            ((void (*)(int, void *, void *, int))unkB8[i])(a, this, unkB4[i], 1);
+        }
+    }
 };
 
 struct S_001BBE20_2E4 {
@@ -701,6 +710,41 @@ void C_001BBDD0::func_001BBDD0(int *a, int b)
         unk2E4->unkA6 = unk2E4->unkA6 == 0;
     }
     func_00157BF0(a, b);
+}
+
+void C_001BBAA0::func_001BBE20(int a)
+{
+    int i;
+    unk2E8 = a;
+    for (i = 0; i < unk2E4->unk88; i++) {
+        if (unk2E4->unk84[i] == a) {
+            return;
+        }
+    }
+    if (unk2EC & 2) {
+        for (i = 0; i < unk98; i++) {
+            int x = unkBC[i];
+            if (x == -1 && unkC0[i] == x) {
+                if (unkC4[i] > D_00275544) {
+                    unkCC[i] = a;
+                    unkC8[i] = unkC4[i];
+                } else {
+                    ((void (*)(int, void *, void *, int))unkB8[i])(a, this, unkB4[i], 1);
+                }
+            } else if (x == unkD0 || (unkC0[i] != -1 && unkD0 > unkC0[i])) {
+                if (unkC4[i] > D_00275544) {
+                    unkCC[i] = a;
+                    unkC8[i] = unkC4[i];
+                } else {
+                    ((void (*)(int, void *, void *, int))unkB8[i])(a, this, unkB4[i], 1);
+                }
+            }
+        }
+    }
+    if (unk2EC & 4) {
+        unk2E4->func_00133580(a);
+        ((S_001BBE20_2E4 *)a)->func_00133580((int)unk2E4);
+    }
 }
 
 void func_001BBF90(S_001BBF90_Arg *a, int b)
