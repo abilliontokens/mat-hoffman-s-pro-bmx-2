@@ -22,6 +22,27 @@ static __forceinline V4_001225C0 sub_001225C0(const V4_001225C0 *a, const V4_001
     t.z = a->z - b->z;
     return t;
 }
+struct V4c_001225C0 : V4_001225C0 {
+    V4c_001225C0() {}
+    V4c_001225C0(const V4c_001225C0 &o)
+    {
+        x = o.x;
+        y = o.y;
+        z = o.z;
+        w = o.w;
+    }
+};
+
+static __forceinline V4c_001225C0 subc_001225C0(const V4_001225C0 *a, const V4_001225C0 *b)
+{
+    V4c_001225C0 t;
+    t.x = a->x - b->x;
+    t.y = a->y - b->y;
+    t.z = a->z - b->z;
+    t.w = 1.0f;
+    return t;
+}
+
 static __forceinline V4_001225C0 &subs_001225C0(V4_001225C0 &a, float f)
 {
     a.x -= f;
@@ -161,9 +182,7 @@ int func_001225C0(V4_001225C0 *a0, V4_001225C0 *a1, V4_001225C0 *pos, float r, f
         func_0011EE50(&t, &v);
     }
     V4_001225C0 e = sub_001225C0(&v, a1);
-    e.x -= r;
-    e.y -= r;
-    e.z -= r;
+    subs_001225C0(e, r);
     if (e.x > D_00275544 || e.y > D_00275544 || e.z > D_00275544)
         return 0;
     {
