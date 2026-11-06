@@ -24,6 +24,8 @@ static inline unsigned int swap32(unsigned int x)
     return ((b0 << 8 | b1) << 8 | b2) << 8 | b3;
 }
 
+#define SWAP32B(x) (((((unsigned char)(x) << 8 | (unsigned char)((x) >> 8)) << 8 | (unsigned char)((x) >> 16)) << 8) | (unsigned char)((x) >> 16 >> 8))
+
 #define SWAP32(x) (((((x) & 0xff) << 8 | ((x) >> 8) & 0xff) << 8 | ((x) >> 16) & 0xff) << 8 | ((x) >> 24))
 
 struct C_0001E0E0 {
