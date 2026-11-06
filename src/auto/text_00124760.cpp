@@ -43,7 +43,7 @@ static __forceinline void TriInterp(Vec4 *out, Vec4 *Q, Vec4 *R, float *p, float
     EdgeEval(dummy, *out, &Q[0].x, &Q[1].x, &R[0].x, &R[1].x, n, t);
 }
 
-static inline float Fabs(float f)
+static __forceinline float Fabs(float f)
 {
     int i = *(int *)&f & 0x7fffffff;
     return *(float *)&i;
@@ -63,4 +63,17 @@ static inline void EdgeEval(Vec4 &P, Vec4 &N, float *v0, float *v1, float *n0, f
     s = D_00275460 - t;
     P = Vec4(v1[0] * t + v0[0] * s, v1[1] * t + v0[1] * s, v1[2] * t + v0[2] * s);
     N = Vec4(rx * t * s + v0[0] * s * s + n1[0] * t, ry * t * s + n0[1] * s * s + n1[1] * t, rz * t * s + n0[2] * s * s + n1[2] * t);
+}
+
+void func_00124760(Vec4 *out, float *p, float *n, float *a, float *b, float *c, float *na, float *nb, float *nc)
+{
+    Vec4 R[2];
+    Vec4 Q[2];
+
+    if (Fabs(n[0]) > Fabs(n[2])) {
+        TriInterp(out, Q, R, p, n, a, b, c, na, nb, nc, 2, 0, 0, 1);
+    } else {
+        TriInterp(out, Q, R, p, n, a, b, c, na, nb, nc, 0, 2, 2, 1);
+    }
+    func_0011EFA0(out, out);
 }
