@@ -109,6 +109,7 @@ extern "C" void *func_001E8A44(unsigned int size);
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
 
+static __forceinline Font_73 *find73(char *name) { Font_73 **r = D_002A8490->f2EC->func_0018C160((int)name); return r ? *r : 0; }
 static __forceinline void pos73(Txt_73 *p, int x, int y) { if (p->x != x || p->y != y) { p->y = y; p->x = x; p->flags |= 6; } }
 static __forceinline void align73(Txt_73 *p, int a) { if (p->align != a) { p->align = a; p->flags |= 6; } }
 static __forceinline void color73(Txt_73 *p, unsigned int c) { if (p->color != c) { p->flags |= 8; p->color = (p->color & (c | 0xff000000)) | (c & 0xffffff); } }
