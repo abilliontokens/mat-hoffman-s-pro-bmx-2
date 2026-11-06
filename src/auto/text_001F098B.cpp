@@ -376,13 +376,6 @@ void *func_001F1184(void *p)
 }
 #pragma optimize("s", on)
 #pragma optimize("y", off)
-void *func_001EEE49(int n);
-static inline void *und_uscore(int tok)
-{
-    if (tok < 0)
-        return 0;
-    return func_001EEE49(tok);
-}
 void *func_001F11B1(S_001EF734 *o)
 {
     void *func_001EEE49(int n);
