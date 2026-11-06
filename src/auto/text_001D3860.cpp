@@ -736,6 +736,39 @@ fail:
     return 0;
 }
 
+int C_001D4200::func_001D4590(const char *a, const char *b, void * volatile data, unsigned int size)
+{
+ char path[0x104];
+ unsigned int got;
+ unsigned char want[20], have[20];
+ int h, ctx;
+ if(unk0==-1) goto invalid;
+ {
+  int r=func_001D4300(unk0);
+  if(r==2) { int e=unk0; if(e==-1 || func_001D4170(e)) func_001D40E0(e); }
+  else if(r!=1) {func_001D4170(unk0); invalid: return 0;}
+ }
+ func_001ADCC0(path,0x104,D_00278068,a,b);
+ h=func_001DCC3C(path,0x801f0000,0,0,3,0x80,0);
+ if(h!=-1) {
+  got=0;
+  if(func_001DD15A(h,data,size,&got,0) && func_001DD15A(h,want,20,&got,0)) {
+   ctx=func_001DF361(0);
+   if(ctx!=-1) {
+    if(!func_001DF2EA(ctx,data,size) && !func_001DF304(ctx,have)) {
+     if(memcmp(have,want,20)!=0) goto zero;
+     func_001DD13C(h); return 1;
+    }
+    func_001DF304(ctx,0);
+    zero:
+    memset(data,0,size);
+   } else goto zero;
+  } else goto zero;
+  func_001DD13C(h);
+ }
+ return 0;
+}
+
 int C_001D4200::func_001D4720(const char *a, const char *b)
 {
     char buf[0x104];
