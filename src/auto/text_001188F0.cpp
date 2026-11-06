@@ -91,11 +91,13 @@ static inline float Wrap3(float x) {
 }
 
 static inline float Wrap4(float x) {
-    float r = x;
+    float r;
     if (x > D_002756D0)
         r = x - D_002756B8;
     else if (x < D_002756E8)
         r = x + D_002756B8;
+    else
+        r = x;
     return r;
 }
 
