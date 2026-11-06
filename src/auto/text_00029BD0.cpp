@@ -264,3 +264,45 @@ struct C_0002A7C0 {
     V4_0002A7C0 f768;
     void func_0002A7C0();
 };
+struct V4_0002A250 {
+    float x, y, z, w;
+};
+struct Obj1_0002A250 {
+    char pad0[0x170];
+    V4_0002A250 v170;
+    float f180, f184, f188, f18c;
+    char pad190[0x268 - 0x190];
+    float f268, f26c, f270;
+};
+struct Obj2_0002A250 {
+    char pad0[0x3c];
+    float f3c;
+};
+struct World_0002A250 {
+    void func_00199CF0(V4_0002A250 axis, float angle);
+};
+struct C_0002A250 {
+    char pad0[0x10c];
+    V4_0002A250 f10c;
+    char pad11c[0x1e0 - 0x11c];
+    Obj1_0002A250 *f1e0;
+    char pad1e4[0x1ec - 0x1e4];
+    Obj2_0002A250 *f1ec;
+    char pad1f0[0x230 - 0x1f0];
+    World_0002A250 *f230;
+    char pad234[0x4b4 - 0x234];
+    float f4b4;
+    char pad4b8[0x644 - 0x4b8];
+    float f644;
+    char pad648[4];
+    float f64c;
+    float f650;
+    char pad654[0x78c - 0x654];
+    int f78c;
+    void func_0002A250(float dt);
+};
+extern double D_002766C8;
+extern float D_002756D4, D_002A1170, D_002A116C, D_002A1168, D_002A1164, D_00275F58, D_00275460, D_002766C4;
+void func_00026340(V4_0002A250 *out, V4_0002A250 *in);
+float func_0014F7E0(float x);
+float func_0001C870(float a, int b, float c, float d, float e);
