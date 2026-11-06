@@ -128,6 +128,33 @@ void C_000634D0::func_000634D0(void)
     f29C->func_0005E840(dest);
 }
 
+char* __stdcall func_000639B0(int value, char* out)
+{
+    char buf[64];
+    int i, o, n;
+    memset(buf, 0, 64);
+    *(int*)out = 0;
+    func_001ADCC0(buf, 0x40, (char*)&D_00277038, value);
+    value = strlen(buf) % 3;
+    o = 0;
+    n = strlen(buf);
+    for (i = 0; i < n; i++) {
+        char c = buf[i];
+        if (c == ' ') {
+            strcat(out, buf + i);
+            break;
+        }
+        if (i > value - 1 && i != 0 && ((i - value) == 0 || (i - value) % 3 == 0)) {
+            out[o++] = ',';
+            out[o++] = c;
+        } else {
+            out[o++] = c;
+        }
+    }
+    out[o] = 0;
+    return out;
+}
+
 void __stdcall func_00063AD0(char *str, C_0005E840 **lines, int width, int count)
 {
     char buf[780];
