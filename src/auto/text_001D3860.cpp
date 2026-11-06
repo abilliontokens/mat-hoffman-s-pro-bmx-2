@@ -280,6 +280,13 @@ struct S_001D3860_Coords {
     int w, h;
 };
 
+struct S_001D3860_Locals {
+    volatile float f[6];
+    S_001D3860_Mat * volatile pm;
+    int x[6];
+    int w, h;
+};
+
 /* XboxMediaControl */
 struct C_001D3AB0 {
     void *vtbl;
@@ -314,49 +321,55 @@ struct C_001D3AB0 {
 int C_001D3AB0::func_001D3860(void)
 {
     C_001D3AB0 *p = this;
-    float f[6];
+    C_001D3AB0 * volatile q = p;
+    volatile S_001D3860_Coords c;
     S_001D3860_Mat mat;
-    S_001D3860_Mat *pm = &mat;
-    int x[4];
-    int w, h;
-    float *out;
+    
+    
+    
+    volatile float *out;
 
-    w = p->unk70->f8;
-    h = p->unk70->fC;
-    x[0] = (int)((float)p->unk54 * D_002ABC88);
-    x[2] = (int)((float)p->unk5C * D_002ABC88);
-    x[1] = (int)((float)p->unk58 * D_002ABC8C);
-    x[3] = (int)((float)p->unk60 * D_002ABC8C);
+    c.w = p->unk70->f8;
+    c.h = p->unk70->fC;
+    c.x[0] = (int)((float)p->unk54 * D_002ABC88);
+    c.x[2] = (int)((float)p->unk5C * D_002ABC88);
+    c.x[1] = (int)((float)p->unk58 * D_002ABC8C);
+    c.x[3] = (int)((float)p->unk60 * D_002ABC8C);
     D_0020C6E0 = 3;
     D_0020C6E4 = 3;
-    D_0020C6DC |= 1;
+    int state = D_0020C6DC | 1;
     D_0020C6EC = 1;
+    D_0020C6DC = state;
     D_0020C6F0 = 1;
     func_001FD020(&D_00040304, p->unk64);
-    func_001FD020(&D_00040344, p->unk68);
-    func_001FD020(&D_00040348, p->unk6C);
+    func_001FD020(&D_00040344, q->unk68);
+    func_001FD020(&D_00040348, q->unk6C);
     D_0020C6DC |= 0x2000;
     D_0020CA50 = 0;
     func_001FD020(&D_00040300, 0);
-    func_00200390(0, (int)p->unk70->fB8);
-    f[0] = (float)x[0];
-    f[1] = (float)x[3];
-    f[2] = (float)h;
-    f[3] = (float)x[2];
-    f[4] = (float)x[1];
-    f[5] = (float)w;
-    pm->identity();
-    out = (float *)func_001FF410(p->unk7C, 0);
-    out[0] = f[0]; out[1] = f[1]; out[2] = 0; out[3] = -1;
-    out[4] = 0; out[5] = f[2]; out[6] = f[0]; out[7] = f[4];
-    out[8] = 0; out[9] = -1; out[10] = 0; out[11] = 0;
-    out[12] = f[3]; out[13] = f[1]; out[14] = 0; out[15] = -1;
-    out[16] = f[5]; out[17] = f[2]; out[18] = f[3]; out[19] = f[4];
-    out[20] = 0; out[21] = -1; out[22] = f[5]; out[23] = 0;
-    D_002EFDB8->f6c->func_0014A650(p->unk74);
-    D_002EFDB8->f70->func_00142D00(p->unk78);
-    func_001FEC30(0x22, pm);
-    func_001FEE00(0, p->unk7C, 0x18);
+    func_00200390(0, (int)q->unk70->fB8);
+    c.f[0] = (float)c.x[0];
+    c.f[3] = (float)c.x[2];
+    c.f[4] = (float)c.x[1];
+    c.f[1] = (float)c.x[3];
+    c.f[5] = (float)c.w;
+    c.f[2] = (float)c.h;
+    c.pm = &mat;
+    c.pm->identity();
+    out = (float *)func_001FF410(q->unk7C, 0);
+    out[0] = c.f[0]; out[1] = c.f[1];
+    out[5] = c.f[2]; out[6] = c.f[0]; out[7] = c.f[4];
+    out[12] = c.f[3]; out[13] = c.f[1];
+    out[16] = c.f[5]; out[17] = c.f[2]; out[18] = c.f[3];
+    ((volatile int *)out)[3] = -1; ((int *)out)[9] = -1;
+    ((int *)out)[15] = -1; ((int *)out)[21] = -1;
+    out[2] = 0; out[4] = 0; out[8] = 0; out[10] = 0;
+    out[11] = 0; out[14] = 0; out[19] = c.f[4];
+    out[20] = 0; out[22] = c.f[5]; out[23] = 0;
+    D_002EFDB8->f6c->func_0014A650(q->unk74);
+    D_002EFDB8->f70->func_00142D00(q->unk78);
+    func_001FEC30(0x22, &mat);
+    func_001FEE00(0, q->unk7C, 0x18);
     func_00200A90(6, 0, 4);
     return 1;
 }
