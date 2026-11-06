@@ -382,32 +382,35 @@ void *C_0015BDB0::func_0015BDB0(unsigned char flags)
 
 int func_0015BF70(S_0015BF70_Node *arr, int n, float t)
 {
+    int mid;
+    int lo;
+    int hi;
+
     if (n == 0) {
         return 0;
     }
-    if (t < arr[n - 1].f0) {
-        if (t < arr[0].f0) {
-            return 0;
-        }
-        int lo = 0;
-        int hi = n;
-        int mid;
-        for (;;) {
-            mid = (hi + lo) >> 1;
-            if (t >= arr[mid].f0) {
-                if (t < arr[mid + 1].f0) {
-                    return mid + 1;
-                }
-                lo = mid;
-            } else {
-                if (t >= arr[mid - 1].f0) {
-                    return mid;
-                }
-                hi = mid;
+    if (t >= arr[n - 1].f0) {
+        return n;
+    }
+    if (t < arr[0].f0) {
+        return 0;
+    }
+    lo = 0;
+    hi = n;
+    for (;;) {
+        mid = (hi + lo) >> 1;
+        if (t >= arr[mid].f0) {
+            if (t < arr[mid + 1].f0) {
+                return mid + 1;
             }
+            lo = mid;
+        } else {
+            if (t >= arr[mid - 1].f0) {
+                return mid;
+            }
+            hi = mid;
         }
     }
-    return n;
 }
 
 void C_0015C000::func_0015C000(float t, float *out)
