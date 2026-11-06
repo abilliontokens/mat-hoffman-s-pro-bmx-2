@@ -77,16 +77,12 @@ static __forceinline void LoadSub19D0(Sub19D0 *s, Cfg19D0 *cfg, char **keys, cha
 {
     char *p = func_001E8AC0(buf, 0x2e);
     if (p != 0) {
-        int n = 0;
-        while (p[n] != 0) n++;
-        for (int i = 0; i < n; i++) p[i] = 0;
+        memset(p, 0, strlen(p));
     }
-    int v[4];
-    v[0] = 0;
-    v[1] = func_001E8858(s->f28);
-    v[2] = 0;
-    v[3] = func_001E8858(s->f2c);
-    s->func_001D5810(v, 0, 0, 0);
+    s->func_001D5810((int *)buf, 0, 0, 0);
+    int v1 = func_001E8858(s->f28);
+    int v2 = func_001E8858(s->f2c);
+    (void)v1; (void)v2;
     int a[4];
     int b[4];
     b[0] = 0; b[1] = 0; b[2] = 0; b[3] = 0;
