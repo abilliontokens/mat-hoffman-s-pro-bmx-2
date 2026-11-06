@@ -97,7 +97,7 @@ void __fastcall func_001FD020(int,unsigned);
 void __fastcall func_001FEC30(int,R146_Vector *);
 void __fastcall func_001FEBD0(int,R146_Vector *);
 extern unsigned D_0020C6DC,D_0020C6E0[],D_0020C710[],D_002751E8[],D_002752F0[],D_0020C8E0[];
-extern unsigned __imp__PsCreateSystemThreadEx[];
+extern "C" unsigned __imp__PsCreateSystemThreadEx[];
 extern int D_00040000;
 void __stdcall func_001FCFF0(unsigned);
 void __stdcall func_001FD890(unsigned);
