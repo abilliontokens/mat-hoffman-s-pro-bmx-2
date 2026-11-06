@@ -58,11 +58,20 @@ struct Obj136_000F3C70 {
 };
 
 struct Owner_000F3C70 {
-    char pad0[0x25C];
+    char pad0[0x24];
+    Obj24_000F3C70 *f24;
+    char pad28[0x10c];
+    int f134;
+    int f138;
+    char pad13C[0x120];
     Obj_000F3C70_25C *p25C;
-    char pad260[0x44];
+    char pad260[4];
+    int f264;
+    char pad268[0x3c];
     int f2A4;
     Btn_000F3C70 *func_000BA9B0(int id);
+    Btn_000F3C70 *func_000BA9D0(int id);
+    void func_000BB7C0(int a);
 };
 
 struct Data_000F3C70_2D0 {
