@@ -61,10 +61,6 @@ struct Game {
     void func_00156FC0();
 };
 
-struct GameBase {
-    void func_00156FC0();
-};
-
 struct V_XboxGame {
     virtual void v0();
     virtual void v1();
@@ -351,7 +347,7 @@ void *XboxGame::func_001D1390(int flags)
     vtbl = (void *)&D_0028F154;
     if (unk2A0 != 0) {
         unk2A0 = 0;
-        Game::func_00156FC0();
+        func_00156FC0();
     }
     if (flags & 1) {
         func_001E891B(this);
