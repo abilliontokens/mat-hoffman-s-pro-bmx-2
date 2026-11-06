@@ -140,7 +140,7 @@ struct G_189D40 { char pad[0x24]; int count; W_189D40 **items; char pad2[0]; };
 struct R_189D40 { char pad0[0x24]; int cnt; char pad28[0]; };
 struct Q_189D40 { char pad[0x248]; int a248, a24c, a250, a254, a258, a25c, a260, a264, a268, a26c; int a270[4]; };
 extern char D_00289F8C[];
-void func_001577A0(void *l, void *v, int t);
+void __stdcall func_001577A0(void *v, int t);
 int func_001E8AF0(void *a, void *b);
 
 struct C_189D40 {
