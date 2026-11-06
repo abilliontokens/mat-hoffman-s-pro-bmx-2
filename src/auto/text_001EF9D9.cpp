@@ -111,9 +111,10 @@ struct C_001EFB82 {
 
 struct C_Allocator {
     void *func_001EEE62(int size, int flags);
+    C_Allocator *operator->() { return this; }
 };
 
-extern C_Allocator *D_002F6A04;
+extern C_Allocator D_002F6A04;
 extern int D_00295BCC;
 
 struct S_001EFB18_Obj {
