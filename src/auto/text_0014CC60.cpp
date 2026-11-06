@@ -39,7 +39,10 @@ struct S_0014D360_Rec {
     char padF;
     signed char a;
     signed char b;
-    unsigned char flags;
+    union {
+        unsigned char flags;
+        struct { unsigned char flag0 : 1; };
+    };
     char pad13[9];
 };
 struct S_0014D360_Info {
@@ -105,6 +108,65 @@ struct C_0014CC60 {
 };
 
 #pragma optimize("", on)
+int C_0014CC60::func_0014D360(int handle, int flag)
+{
+    C_0014CC60 *self = this;
+    int i;
+    C_0014CC60 ** volatile pself = &self;
+    int * volatile ph = &handle;
+    int * volatile pi = &i;
+    for (i = 0; i < self->f558; i++) {
+        unsigned char index;
+        signed char a, b;
+        S_0014D360_Pos pos;
+        int special = 0;
+        int scratch;
+        int type;
+        S_0014D360_Rec *rec;
+        S_0014D360_Vector transformed, position, bounds;
+        D_002BEAAC->func_0013C8A0(handle, &index, 1, 1);
+        if ((signed char)index < 0) {
+            index &= 0x7f;
+            special = 1;
+        }
+        if (self->f598) {
+            type = self->f598[index];
+        } else {
+            type = index;
+        }
+        D_002BEAAC->func_0013C8A0(handle, &pos, 6, 1);
+        D_002BEAAC->func_0013C8A0(handle, &a, 1, 1);
+        D_002BEAAC->func_0013C8A0(handle, &b, 1, 1);
+        if (flag || special) {
+            transformed.x = transformed.y = transformed.z = 0;
+            transformed.w = 1;
+            transformed.x = pos.x * self->f578;
+            transformed.y = pos.y * self->f578;
+            transformed.z = pos.z * self->f578;
+            self->f50->func_000BA430(&transformed, 0, 0, 0);
+            FloatToInt(&scratch, transformed.y * self->f57C);
+            pos.y = (unsigned short)scratch;
+        }
+        rec = &self->f40[i];
+        rec->type = type;
+        rec->pos = pos;
+        rec->b = b;
+        rec->a = a;
+        rec->flags |= 1;
+        position.x = position.y = position.z = 0;
+        position.w = 1;
+        bounds.x = bounds.y = bounds.z = 0;
+        bounds.w = 1;
+        bounds.z = bounds.x = (self->f54[type]->f194 - self->f54[type]->f18C) * b * D_0027A094 + self->f54[type]->f18C;
+        bounds.y = ((self->f54[type]->f180 - self->f54[type]->f184) * a * D_0027A094 + self->f54[type]->f180) * D_002755E8;
+        position.x = self->f40[i].pos.x * D_002BF250->f578;
+        position.y = self->f40[i].pos.y * D_002BF250->f578 + bounds.y;
+        position.z = self->f40[i].pos.z * D_002BF250->f578;
+        D_002F07E8->v7(&self->f40[i], D_002F07E8->v6(&position, &bounds, 0), &position, &bounds);
+    }
+    return 1;
+}
+
 void C_0014CC60::func_0014D670(int v)
 {
     int i;
