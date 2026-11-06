@@ -64,6 +64,12 @@ struct C_001B1980 {
     void func_001B1980(void);
 };
 
+struct C_0008CC50 {
+    char pad0[0x7c];
+    int u7c;
+    void func_0008CC50();
+};
+
 struct C_0008D550 {
     char pad0[0x54];
     C_001B1980 *unk54;
@@ -115,6 +121,39 @@ void C_0008D550::func_0008D550(void)
     unk54->func_001B1980();
     unk5C = 1;
     unk60 = 0;
+}
+
+void C_0008D590::func_0008D590()
+{
+    S_0008D590_Obj **pa;
+    S_0008D590_Obj **pb;
+    S_0008D590_Obj *a;
+    S_0008D590_Obj *b;
+    S_0008D590_Vals *v;
+
+    pa = D_002A8490->f2ec->func_0018C160(D_00278690);
+    a = pa ? *pa : 0;
+    pb = D_002A8490->f2ec->func_0018C160(D_0027958C);
+    b = pb ? *pb : 0;
+    if (a != 0) {
+        v = a->func_0018C070();
+        if (D_00275AEC > v->f10) {
+            v->f10 = 10.0f;
+        }
+        if (D_00275AEC < v->f14 || v->f14 > v->f10) {
+            v->f14 = 10.0f;
+        }
+    }
+    if (b != 0) {
+        v = b->func_0018C070();
+        if (D_00275AEC > v->f10) {
+            v->f10 = 10.0f;
+        }
+        if (D_00275AEC < v->f14 || v->f14 > v->f10) {
+            v->f14 = 10.0f;
+        }
+    }
+    func_001578D0();
 }
 
 void C_0008D910::func_0008D910()
