@@ -303,9 +303,8 @@ struct C_0002A250 {
 };
 static __forceinline float Length_0002A250(V4_0002A250 *v)
 {
-    float square = v->x * v->x + v->y * v->y + v->z * v->z;
     float r;
-    _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&square));
+    _mm_store_ss(&r, _mm_sqrt_ss(_mm_set_ss(v->x * v->x + v->y * v->y + v->z * v->z)));
     return r;
 }
 extern double D_002766C8;
@@ -324,8 +323,8 @@ void C_0002A250::func_0002A250(float dt)
     float s1;
     float s2;
 
-    speed = Sqrt_0002A7C0(f1e0->v170.x * f1e0->v170.x + f1e0->v170.y * f1e0->v170.y + f1e0->v170.z * f1e0->v170.z);
-    if (f1ec->f3c * D_002766C8 < speed) {
+    speed = Length_0002A250(&f1e0->v170);
+    if (speed > f1ec->f3c * D_002766C8) {
         f78c = 1;
     }
     if (speed > D_00275544 && f644 == D_00275544) {
