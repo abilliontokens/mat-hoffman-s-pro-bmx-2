@@ -352,6 +352,10 @@ struct C_000ACCF0 {
 extern int D_0027C874;
 extern int D_0027AE04;
 
+struct C_000AC780_Quad {
+    int a, b, c, d;
+};
+
 /* PipZmask */
 struct C_000AC780_Obj {
     virtual void v0();
