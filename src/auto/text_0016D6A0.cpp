@@ -1,5 +1,6 @@
 /* 8 functions from 0x0016D6A0 to 0x0016E320, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
 
 extern int D_00288084;
 extern int D_00288894;
@@ -343,8 +344,8 @@ C_0016D6A0 *C_0016D6A0::func_0016D6A0(void *a, char *name, void *b, u32 *c)
         f1AC = 0x68;
         f1A8 = 0x68;
         f188 = 0x68;
-        *(V4f *)&f210 = V4f(-1.0f, 0.0f, -1.0f, 1.0f);
-        *(V4f *)&f220 = V4f(1.0f, 0.0f, 1.0f, 1.0f);
+        f210 = V4f(-1.0f, 0.0f, -1.0f, 1.0f);
+        f220 = V4f(1.0f, 0.0f, 1.0f, 1.0f);
     } else {
         f64 = a;
         strcpy(&f6C, D_002A5558);
@@ -354,8 +355,8 @@ C_0016D6A0 *C_0016D6A0::func_0016D6A0(void *a, char *name, void *b, u32 *c)
         }
         strcat(&f6C, name);
         if (((C_0016A330 *)this)->func_0016A330(&f6C)) return this;
-        *(V4f *)&f210 = V4f(-1.0f, 0.0f, -1.0f, 1.0f);
-        *(V4f *)&f220 = V4f(1.0f, 0.0f, 1.0f, 1.0f);
+        f210 = V4f(-1.0f, 0.0f, -1.0f, 1.0f);
+        f220 = V4f(1.0f, 0.0f, 1.0f, 1.0f);
     }
     f170 = 5000.0f;
     f174 = 0.0f;
