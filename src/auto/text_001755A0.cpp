@@ -2,3 +2,5 @@
 #include "common.h"
 
 extern char D_0000F0F0[];
+extern char D_0000FFFF[];
+extern char D_0000FFF8[];
