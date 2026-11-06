@@ -111,8 +111,8 @@ struct UIGlobal {
 };
 
 extern UIGlobal *D_002A8490;
-extern char D_0027D934[];
-extern char D_0027D91C[];
+extern const char D_0027D934[];
+extern const char D_0027D91C[];
 void *func_001E8A44(int size);
 
 struct C_00157920 {
@@ -349,10 +349,10 @@ int BmxUIManager::func_000BABF0()
     f258 = (int)(p ? p->func_0013E4F0(1) : 0);
     ((C_0012B410 *)f258)->func_0012B410(0x3f9f49f5, 0x280, 0x1c0);
     C_0002EF20 *q = (C_0002EF20 *)func_001E8A44(0x78);
-    f25c = q ? q->func_0002EF20(1) : 0;
-    int mode = D_002A8490->f2E0->f324;
-    f25c->func_000306F0(f258, 0, *((UIItemData *)f150)->f4AC, ((UIItemData *)f150)->f4DC->f24,
-                        mode == 0 ? D_0027D934 : D_0027D91C, 0);
+    UIOwner *o = q ? q->func_0002EF20(1) : 0;
+    f25c = o;
+    o->func_000306F0(f258, 0, *((UIItemData *)f150)->f4AC, ((UIItemData *)f150)->f4DC->f24,
+                     D_002A8490->f2E0->f324 == 0 ? D_0027D934 : D_0027D91C, 0);
     D_002A8490->v15((void *)f258, 0, 0, 0);
     return 1;
 }
