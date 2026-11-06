@@ -520,21 +520,18 @@ void C_0004D0E0::func_0004D0E0()
     }
 }
 
+#pragma optimize("", on)
 void C_0004D230::func_0004D230()
 {
-    char *p;
-    do {
-        if (++f28c >= f684) {
-            f28c = 0;
-        }
-        p = (char *)this + f28c * 0x78 + 0x2c4;
-    } while (*p != 0 && f1c0 != 0 && func_00097DA0(p) == 0);
-
-    char *base = (char *)this + f28c * 0x10;
-    S_4D230_Mgr *m = f64;
-    m->f4e0->objs[f120]->func_0010C090(base + 0x688, base + 0x708, 0, 1);
+ char *p;
+ do {
+ if (++f28c >= f684) f28c=0;
+ p=(char*)this+f28c*0x78+0x2c4;
+ } while (*p != 0 && f1c0 != 0 && func_00097DA0(p)==0);
+ 
+ S_4D230_Mgr *m=f64;
+ m->f4e0->objs[f120]->func_0010C090(&((C_0004CC60Vec*)((char*)this+0x688))[f28c],&((C_0004CC60Vec*)((char*)this+0x708))[f28c],0,1);
 }
-
 void BmxEventHorse::func_0004D2C0() {
     func_00031630();
     void *p = func_001E8A44(0xf4);
