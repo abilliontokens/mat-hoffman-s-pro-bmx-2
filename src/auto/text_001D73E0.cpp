@@ -74,12 +74,12 @@ struct XboxVideoCard_001D7E30 {
 struct XboxVideoCard_001D7D50 {
     void *volatile vtbl;
     char pad4[0x68];
-    volatile int f6C;
+    int f6C;
     char pad70[0x5B4 - 0x70];
     int a5B4[0x40];
     int f6B4;
     int f6B8;
-    volatile int f6BC;
+    int f6BC;
     int f6C0;
     int f6C4;
     int f6C8;
@@ -95,7 +95,7 @@ struct XboxVideoCard_001D7D50 {
         } f9D4b;
     };
     char pad9D5[3];
-    volatile int f9D8;
+    int f9D8;
     XboxVideoCard_001D7D50 *func_001D7D50(void);
 };
 
@@ -563,16 +563,23 @@ int func_001D7D40()
     return ++D_002F0BBC;
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 XboxVideoCard_001D7D50 *XboxVideoCard_001D7D50::func_001D7D50(void)
 {
+    u8 t;
+
     ((C_001C3D90 *)this)->func_001C3D90();
     vtbl = (void *)&D_0028F774;
+    _ReadWriteBarrier();
     memset(a5B4, 0, 0x100);
     D_002F0BB8 = 0;
+    t = f9D4;
     f6BC = 0;
     f6C = -1;
     f9D8 = 500;
-    f9D4b.b01 = 0;
+    t &= 0xfc;
+    f9D4v = t;
     f6C4 = 0;
     f6C8 = 0;
     f6CC = 0;
@@ -580,7 +587,6 @@ XboxVideoCard_001D7D50 *XboxVideoCard_001D7D50::func_001D7D50(void)
     memset(a6D4, 0, 0x300);
     return this;
 }
-
 int __stdcall func_001D7DD0(Vec4_001D7DD0 *p, int b, int c, float d)
 {
     Vec4_001D7DD0 v;
