@@ -1,5 +1,10 @@
 /* 40 functions from 0x0001C2E0 to 0x0001D280, found by Ghidra. */
 #include "common.h"
+
+struct S_0001C590_F {
+    float f;
+    S_0001C590_F() {}
+};
 #include <math.h>
 #include <string.h>
 #include <xmmintrin.h>
@@ -435,7 +440,9 @@ struct C_0001C4C0 {
 };
 
 float func_0001C590(float x) {
-    int i = *(int *)&x & 0x7fffffff;
-    return *(volatile float *)&i;
+    unsigned int u = *(unsigned int *)&x;
+    float y;
+    *(unsigned int *)&y = u & 0x7fffffff;
+    return y;
 }
 
