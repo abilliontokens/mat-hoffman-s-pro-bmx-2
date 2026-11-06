@@ -105,6 +105,12 @@ struct C_000DCC20 {
     I_000DCC20_Buf *arr378[4];
     int func_000DCC20(void);
     int func_000DCE10(void);
+    __forceinline int ReadBlk(char *b, void *m) {
+        return D_002A8490->f2E0->f2CC->func_001D4590((char *)unk2BC->func_000928D0(), b, (int)m, (int)&D_00080000);
+    }
+    __forceinline int WriteBlk(char *b, void *m) {
+        return D_002A8490->f2E0->f2CC->func_001D4440((char *)unk2BC->func_000928D0(), b, (int)m, (int)&D_00080000);
+    }
     __forceinline void SwapBuffers(int src, int dst) {
         for (int i = 0; i < 4; i++) {
             void *s = arr368[src + i]->v40(0, 0, 0);
@@ -211,14 +217,7 @@ int C_000DCC20::func_000DCE10(void)
             src = 0;
             dst = 4;
         }
-        int i;
-        for (i = 0; i < 4; i++) {
-            void *s = arr368[src + i]->v40(0, 0, 0);
-            void *d = arr368[dst + i]->v40(0, 0, 0);
-            memcpy(d, s, 0x20000);
-            arr368[src + i]->v44(0);
-            arr368[dst + i]->v44(0);
-        }
+        SwapBuffers(src, dst);
         func_001ADCC0(buf, 0x104, &D_00277A04, &D_00277A0C, unk2D8);
         int r = D_002A8490->f2E0->f2CC->func_001D4590((char *)unk2BC->func_000928D0(), buf, (int)mem, (int)&D_00080000);
         if (r != 1) {
@@ -238,7 +237,7 @@ int C_000DCC20::func_000DCE10(void)
         }
         D_002A8490->f2E0->f2C0->func_0005C020(D_002A8490->f2E0->f2D8);
         D_002A8490->f2E0->f2C0->func_0005C6A0();
-        for (i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++) {
             void *d = arr368[src + i]->v40(0, 0, 0);
             memcpy(d, (char *)mem + i * (int)&D_00020000, 0x20000);
             arr368[src + i]->v44(0);
