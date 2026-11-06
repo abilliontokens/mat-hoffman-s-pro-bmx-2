@@ -185,7 +185,7 @@ struct C_001B4B70 {
 float sqrtf(float);
 void TireTrack::func_001B3E70(V4_3E70 *a0, V4_3E70 *a1, float a2, int a3, float a4)
 {
-    float clamped = a4;
+    float clamped;
     unsigned char bl;
     float acc;
     float dist;
@@ -195,8 +195,8 @@ void TireTrack::func_001B3E70(V4_3E70 *a0, V4_3E70 *a1, float a2, int a3, float 
     V4_3E70 diff;
     int color;
     int i;
-    if (clamped > 1.0f) clamped = 1.0f;
-    if (clamped < 0.0f) clamped = 0.0f;
+    clamped = MinF_3E70(a4, 1.0f);
+    clamped = MaxF_3E70(clamped, 0.0f);
     bl = (unsigned char)(int)(clamped * D_0027A060);
     if (f34) {
         v40 = *a0;
@@ -303,19 +303,12 @@ void TireTrack::func_001B4A20()
     ((C_00157960 *)this)->func_00157960();
 }
 
+#pragma intrinsic(strlen)
 C_001B4A40Ret *C_001B4A40Ret::func_001B4A40(const char *str)
 {
-    char *p = (char *)str;
-    char *first = p + 1;
-    char c;
-
-    do {
-        c = *p++;
-    } while (c != 0);
-    f4 = (p - first) ? (char *)str : 0;
+    f4 = strlen(str) ? str : 0;
     return this;
 }
-
 char *C_001B4A70::func_001B4A70(char *delims) {
     char *p = f4;
     char c;
