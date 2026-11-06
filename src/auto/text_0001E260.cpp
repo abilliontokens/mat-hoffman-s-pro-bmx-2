@@ -98,7 +98,7 @@ struct GR_BitString {
     u32 unk14;
     u32 unk18;
     u32 unk1C;
-    void func_0001E3F0(u32 *a0, u32 a1, int a2);
+    GR_BitString *func_0001E3F0(u32 *a0, u32 a1, int a2);
     GR_BitString(u32 *a0, u32 a1, int a2);
     void func_0001E460();
     void func_0001E480(int *out);
