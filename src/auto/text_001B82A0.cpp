@@ -187,15 +187,10 @@ extern "C" char *func_001E8AC0(const char *s, int c);
 extern "C" int func_001EA426(const char *a, const char *b);
 extern "C" int strlen(const char *s);
 
-struct ClampA_001B8550 {
-    volatile int limit;
-    volatile int len;
-};
-
 struct Clamp_001B8550 {
     volatile int limit;
-    volatile int n;
     volatile int len;
+    volatile int n;
 };
 extern "C" void *memset(void *dst, int c, unsigned int n);
 #pragma intrinsic(memset)
