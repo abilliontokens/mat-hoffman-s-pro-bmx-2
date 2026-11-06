@@ -21,7 +21,7 @@ static __forceinline void Downsample555Row(unsigned int *src, unsigned short *ds
         sum += a & 0x7c1f;
         src = (unsigned int *)((unsigned short *)src + srcPitch);
         a = *src & (unsigned int)D_0000FFFF;
-        b = *src >> 16;
+        b = (unsigned short)(*src >> 16);
         sum += (b << 15) & 0x1f00000;
         sum += (a & 0x3e0) << 15;
         sum += b & 0x7c1f;
