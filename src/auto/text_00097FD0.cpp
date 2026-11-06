@@ -259,6 +259,38 @@ void C_00097FD0::func_000981D0(void *a, void *b, int c)
     }
 }
 
+static __forceinline void Refresh_000988B0(char **lp, char *a, int flag)
+{
+    int j;
+    int k;
+    int n;
+    char *o;
+
+    for (j = 0; j < *(int *)(*lp + 0x1b8); j++) {
+        if (*(int *)(*(char ***)(*lp + 0x1c8))[j] == 1) {
+            for (k = 0; k < *(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x2554); k++) {
+                n = *(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x2558 + k * 4);
+                o = *(char **)((*(char ***)(a + 0x28))[n] + 4);
+                ((void (__fastcall *)(void *))(*(void ***)o)[6])(o);
+                if (!flag) {
+                    o = *(char **)((*(char ***)(a + 0x28))[n] + 4);
+                    ((void (__fastcall *)(void *))(*(void ***)o)[4])(o);
+                }
+            }
+        } else {
+            n = *(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x268);
+            o = *(char **)((*(char ***)(a + 0x28))[n] + 4);
+            ((void (__fastcall *)(void *))(*(void ***)o)[6])(o);
+            if (!flag) {
+                o = *(char **)((*(char ***)(a + 0x28))[n] + 4);
+                ((void (__fastcall *)(void *))(*(void ***)o)[4])(o);
+            }
+        }
+        if (*(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x40) == 0)
+            flag = 0;
+    }
+}
+
 int __fastcall func_000988B0(char *self, int unused, char *a, char *b)
 {
     int i;
@@ -271,7 +303,6 @@ int __fastcall func_000988B0(char *self, int unused, char *a, char *b)
     int m;
     int off;
     int found;
-    char *e;
     char *mgr;
     char *o;
 
@@ -347,14 +378,13 @@ int __fastcall func_000988B0(char *self, int unused, char *a, char *b)
     }
 
     if (*(int *)(self + 0x18) != 3) {
-        char *has = *(char **)(*(char **)(self + 0x198) + 0x1c8);
-        switch (has ? *(int *)(self + 0x1c) : *(int *)(self + 0x18)) {
+        switch (*(char **)(*(char **)(self + 0x198) + 0x1c8) ? *(int *)(self + 0x1c) : *(int *)(self + 0x18)) {
         case 0: list = *(char ***)(self + 0x0); break;
         case 1: list = *(char ***)(self + 0x4); break;
         case 2: list = *(char ***)(self + 0x8); break;
         default: list = 0; break;
         }
-        switch (has ? *(int *)(self + 0x1c) : *(int *)(self + 0x18)) {
+        switch (*(char **)(*(char **)(self + 0x198) + 0x1c8) ? *(int *)(self + 0x1c) : *(int *)(self + 0x18)) {
         case 0: count = *(int *)(self + 0xc); break;
         case 1: count = *(int *)(self + 0x10); break;
         case 2: count = *(int *)(self + 0x14); break;
@@ -364,20 +394,18 @@ int __fastcall func_000988B0(char *self, int unused, char *a, char *b)
             if (*(int *)(list[p] + 0x48e0) == 0 && *(int *)(list[p] + 0x1bc) != 0) {
                 found = 1;
                 for (j = 0; j < *(int *)(list[p] + 0x1b8); j++) {
-                    e = (*(char ***)(list[p] + 0x1c8))[j];
-                    if (*(int *)e == 1) {
-                        for (k = 0; k < *(int *)(e + 0x2554); k++) {
-                            n = *(int *)(e + 0x2558 + k * 4);
+                    if (*(int *)(*(char ***)(list[p] + 0x1c8))[j] == 1) {
+                        for (k = 0; k < *(int *)((*(char ***)(list[p] + 0x1c8))[j] + 0x2554); k++) {
+                            n = *(int *)((*(char ***)(list[p] + 0x1c8))[j] + 0x2558 + k * 4);
                             o = *(char **)((*(char ***)(a + 0x28))[n] + 4);
                             ((void (__fastcall *)(void *))(*(void ***)o)[6])(o);
                             if (!found) {
                                 o = *(char **)((*(char ***)(a + 0x28))[n] + 4);
                                 ((void (__fastcall *)(void *))(*(void ***)o)[4])(o);
                             }
-                            e = (*(char ***)(list[p] + 0x1c8))[j];
                         }
                     } else {
-                        n = *(int *)(e + 0x268);
+                        n = *(int *)((*(char ***)(list[p] + 0x1c8))[j] + 0x268);
                         o = *(char **)((*(char ***)(a + 0x28))[n] + 4);
                         ((void (__fastcall *)(void *))(*(void ***)o)[6])(o);
                         if (!found) {
