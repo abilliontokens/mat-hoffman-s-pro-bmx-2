@@ -105,6 +105,7 @@ struct Quat_1CAF20 {
 };
 
 struct Plane_001CA480;
+typedef bool Ret_001CA480;
 
 struct WaterDisplacement {
     void *vtbl;
