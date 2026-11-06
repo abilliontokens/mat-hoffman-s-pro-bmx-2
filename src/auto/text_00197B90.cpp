@@ -213,12 +213,13 @@ void C_00197EA0::func_00197EA0(void *dst)
 C_00197EC0_Vec4 C_00197EC0::func_00197EC0(float *v)
 {
     C_00197EC0_Vec4 r;
+    float *m = &fF0;
 
     r.w = 1.0f;
     func_00197AA0();
-    r.x = fF0 * v[0] + (fF4 * v[1] + fF8 * v[2]);
-    r.y = f100 * v[0] + f104 * v[1] + f108 * v[2];
-    r.z = f110 * v[0] + f114 * v[1] + f118 * v[2];
+    r.x = m[1] * v[1] + m[2] * v[2] + m[0] * v[0];
+    r.y = m[5] * v[1] + m[4] * v[0] + m[6] * v[2];
+    r.z = m[9] * v[1] + m[8] * v[0] + m[10] * v[2];
     return r;
 }
 
