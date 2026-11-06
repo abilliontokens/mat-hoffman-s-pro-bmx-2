@@ -98,6 +98,7 @@ static __forceinline void Cross_000273F0(V4_000273F0 * volatile out, V4_000273F0
                 _mm_mul_ps(_mm_loadu_ps(&pa->x), _mm_shuffle_ps(_mm_loadu_ps(&pb->x), _mm_loadu_ps(&pb->x), 0xc9)),
                 _mm_mul_ps(_mm_loadu_ps(&pb->x), _mm_shuffle_ps(_mm_loadu_ps(&pa->x), _mm_loadu_ps(&pa->x), 0xc9))), 0xc9));
 }
+struct PV4_26 { float x, y, z, w; };
 struct ObjE0_26 {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
     virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
@@ -226,7 +227,11 @@ void C_00026B60::func_00026B60(char *name, V4_000273F0 a1, V4_000273F0 a2, V4_00
 {
     void *mem;
     int edi;
-    strcpy(f33C, name);
+    {
+        char *d = f33C;
+        char *s = name;
+        do { *d++ = *s; } while (*s++ != 0);
+    }
     mem = func_001E8A44(0x310);
     f1E0 = mem ? (ObjE0_26 *)((ObjE0_26 *)mem)->func_00175110(1) : 0;
     f1E0->v10();
@@ -237,7 +242,7 @@ void C_00026B60::func_00026B60(char *name, V4_000273F0 a1, V4_000273F0 a2, V4_00
     f1E0->f3C = a4;
     f1E0->f238 = f1E0->f2C;
     f1E0->f268 = f1E0->f3C;
-    f1E0->f218 = 12345.0f;
+    f1E0->f218 = 0x4a63d241;
     f1E0->f300 = 1;
     f2C = a1;
     f3C = a2;
@@ -301,7 +306,7 @@ void C_00026B60::func_00026B60(char *name, V4_000273F0 a1, V4_000273F0 a2, V4_00
     f1F8->f60 = this;
     f1F8->func_0014C1C0(1, 0, 0);
     f1F8->v32();
-    f1F8->f9C = (void *)0;
+    f1F8->f9C = (void *)&func_001A7FE0;
     f1F8->f68 = D_002BA15C;
     f1F8->f60 = f1F0;
     f1F8->f64 = (void *)f1F0->f24;
@@ -324,14 +329,11 @@ void C_00026B60::func_00026B60(char *name, V4_000273F0 a1, V4_000273F0 a2, V4_00
     f1E8->f98 = &f238;
     func_001577A0(f1E8, -1);
     mem = func_001E8A44(0x14);
-    f220 = mem ? (Axis14_26 *)mem : 0;
-    if (f220) { f220->f0 = 0.0f; f220->f4 = 0.0f; f220->fC = 3.402823466e+38f; f220->f10 = -3.402823466e+38f; f220->f8 = 1.0f; }
+    f220 = mem ? ((Axis14_26 *)mem)->Init(0.0f) : 0;
     mem = func_001E8A44(0x14);
-    f224 = mem ? (Axis14_26 *)mem : 0;
-    if (f224) { f224->f0 = 1.0f; f224->f4 = 0.0f; f224->fC = 3.402823466e+38f; f224->f10 = -3.402823466e+38f; f224->f8 = 1.0f; }
+    f224 = mem ? ((Axis14_26 *)mem)->Init(1.0f) : 0;
     mem = func_001E8A44(0x14);
-    f228 = mem ? (Axis14_26 *)mem : 0;
-    if (f228) { f228->f0 = 0.0f; f228->f4 = 0.0f; f228->fC = 3.402823466e+38f; f228->f10 = -3.402823466e+38f; f228->f8 = 1.0f; }
+    f228 = mem ? ((Axis14_26 *)mem)->Init(0.0f) : 0;
     mem = func_001E8A44(0xbc);
     f20C = mem ? (Obj20C_26 *)((Obj20C_26 *)mem)->func_000B8B60(1) : 0;
     func_001577A0(f20C, -1);
@@ -339,6 +341,29 @@ void C_00026B60::func_00026B60(char *name, V4_000273F0 a1, V4_000273F0 a2, V4_00
     f20C->func_000B8C80(f1E0);
     f20C->f94 = &f758;
     f20C->f98 = &f768;
+    mem = func_001E8A44(0x7c);
+    f1EC = mem ? (Obj1EC_26 *)((Obj1EC_26 *)mem)->func_00030C00(1) : 0;
+    f1EC->v10();
+    func_001577A0(f1EC, -1);
+    f1EC->func_00030CD0(f1E0);
+    mem = func_001E8A44(0x40);
+    f5EC = mem ? ((Obj40_26 *)mem)->func_00025E10() : 0;
+    mem = func_001E8A44(0x40);
+    f5F0 = mem ? ((Obj40_26 *)mem)->func_00025E10() : 0;
+    mem = func_001E8A44(0x40);
+    f5F4 = mem ? ((Obj40_26 *)mem)->func_00025E10() : 0;
+    mem = func_001E8A44(0xe0);
+    f210 = mem ? (Obj210_26 *)((Obj210_26 *)mem)->func_0005DA30(f1E0) : 0;
+    func_001577A0(f210, -1);
+    mem = func_001E8A44(0x70);
+    f214 = mem ? (Obj214_26 *)((Obj214_26 *)mem)->func_000B50B0(1) : 0;
+    f214->func_000B6050(f1E0);
+    mem = func_001E8A44(0x70);
+    f218 = mem ? (Obj218_26 *)((Obj218_26 *)mem)->func_000B5990(1) : 0;
+    f218->func_000B6050(f1E0);
+    mem = func_001E8A44(0x74);
+    f21C = mem ? (Obj21C_26 *)((Obj21C_26 *)mem)->func_0011A440(1) : 0;
+    f21C->func_0011AB90(f1E0);
 }
 
 int C_000273F0::func_000273F0(V4_000273F0 *a1, V4_000273F0 *a2, V4_000273F0 *a3)
