@@ -18,7 +18,7 @@ struct C_000C9940 {
     char pad2A8[0x30];
     ElemC9 *f2D8;
     ElemC9 *f2DC;
-    char pad2E0[8];
+    char pad2E0[0xc];
     ElemC9 *f2EC;
     char pad2F0[4];
     ElemC9 *f2F4;
@@ -94,6 +94,58 @@ struct C_000CA8D0 {
     int unk2E8;
     void func_000CA8D0(void);
 };
+
+void C_000C9940::func_000C9940(void)
+{
+    if (f2A4 == 1) {
+        setupC9(f2EC, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f2D8, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f2FC, 0xff, 1.2f, 1.2f);
+        setupC9(f2DC, 0xff, 1.2f, 1.2f);
+        setupC9(f2F4, 0xffbfa35a, 1.45f, 1.45f);
+        setupC9(f32C, 0xffbfa35a, 1.45f, 1.45f);
+        setupC9(f2F8, 0xffcccccc, 1.2f, 1.2f);
+        f330->func_001B2270(0xffcccccc);
+        f330->func_001B1B30(1.2f, 0);
+    } else if (f2A4 == 2) {
+        setupC9(f2EC, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f2D8, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f2FC, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f2DC, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f2F4, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f32C, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f2F8, 0xffbfa35a, 1.45f, 1.45f);
+        setupC9(f330, 0xffbfa35a, 1.45f, 1.45f);
+    } else if (f2A4 == 0) {
+        setupC9(f2EC, 0xffbfa35a, 1.45f, 1.45f);
+        setupC9(f2D8, 0xffbfa35a, 1.45f, 1.45f);
+        setupC9(f2FC, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f2DC, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f2F4, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f32C, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f2F8, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f330, 0xffcccccc, 1.2f, 1.2f);
+    } else if (f2A4 == 3) {
+        setupC9(f2EC, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f2D8, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f2FC, 0xffbfa35a, 1.45f, 1.45f);
+        setupC9(f2DC, 0xffbfa35a, 1.45f, 1.45f);
+        setupC9(f2F4, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f32C, 0xffcccccc, 1.2f, 1.45f);
+        setupC9(f2F8, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f330, 0xffcccccc, 1.2f, 1.2f);
+    } else {
+        setupC9(f2EC, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f2D8, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f2FC, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f2DC, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f2F4, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f32C, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f2F8, 0xffcccccc, 1.2f, 1.2f);
+        setupC9(f330, 0xffcccccc, 1.2f, 1.2f);
+    }
+    setupC9(f300, 0xffcccccc, 1.2f, 1.2f);
+}
 
 void C_000CA7D0::func_000CA7D0(void)
 {
