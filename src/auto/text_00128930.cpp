@@ -56,10 +56,7 @@ struct S_00129110_Node {
     unsigned short child0;
     unsigned short child1;
     float min[3];
-    union {
-        float max[3];
-        S_001293F0_Vec3 maxv;
-    };
+    float max[3];
 };
 
 struct S_00129110_Vec4 {
