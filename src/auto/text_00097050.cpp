@@ -115,6 +115,7 @@ struct C_00097770_3A8 { C_00097770_List *f0; };
 struct C_00097770_64 { char pad0[0x3a8]; C_00097770_3A8 *f3A8; };
 struct C_00097770_2A4 { char pad0[0x64]; C_00097770_64 *f64; };
 struct C_00097770_Root { char pad0[0x2a4]; C_00097770_2A4 *f2A4; };
+extern C_00097770_Root *D_002A8490;
 
 struct C_00097DA0_Item {
     char pad0[0xC0];
