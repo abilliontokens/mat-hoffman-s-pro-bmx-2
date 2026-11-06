@@ -97,6 +97,8 @@ struct BmxUIPageRiderOps {
     SubElem_000F1980 *a514[5], *a528[5], *a53c[5], *a550[5];
     char pad564[0x154];
     SubElem_000F1980 *a6b8[6], *a6d0[4], *a6e0[4];
+    char pad6F0[0x788 - 0x6f0];
+    int f788;
     int func_000E6EF0(int a, int b);
     void func_000E7820();
     void func_001578D0();
