@@ -3,13 +3,14 @@
 
 /* func_00025240: ambient object spawn over the manager's tracks and entries */
 struct S_25240_Pt { float x, y, z, pad[3]; };
+struct S_25240_V3 { float x, y, z; };
 struct S_25240_V4 {
     float x, y, z, w;
     S_25240_V4() {}
     S_25240_V4(const S_25240_Pt *p) { x = p->x; y = p->y; z = p->z; w = 1.0f; }
     S_25240_V4(float a, float b, float c) { x = a; y = b; z = c; w = 1.0f; }
+    S_25240_V4(const S_25240_Pt &p) { *(S_25240_V3 *)this = *(const S_25240_V3 *)&p; w = 1.0f; }
 };
-struct S_25240_V3 { float x, y, z; };
 static __forceinline S_25240_V4 MakeV4_25240(const S_25240_Pt *p)
 {
     S_25240_V4 r;
@@ -412,9 +413,12 @@ int C_00025240::func_00025240(void)
                         f60[k]->f40 = f60[k]->f34;
                         f60[k]->f38 = f60[k]->f34 + 1;
                         pt = &f60[k]->f2c->f18[f60[k]->f38];
-                        f60[k]->f4c = MakeV4_25240(pt);
+                        f60[k]->f4c.x = pt->x;
+                        f60[k]->f4c.y = pt->y;
+                        f60[k]->f4c.z = pt->z;
+                        f60[k]->f4c.w = 1.0f;
                         pt = &f60[k]->f2c->f18[f60[k]->f34];
-                        f60[k]->f28->f1a4->f4->func_00199600(MakeV4_25240(pt));
+                        f60[k]->f28->f1a4->f4->func_00199600(S_25240_V4(pt->x, pt->y, pt->z));
                         if (f60[k]->f28->f1a4->f10 == 0)
                             func_00166C80(f60[k]->f28->f1ac->f8, 1);
                         else
@@ -433,8 +437,10 @@ int C_00025240::func_00025240(void)
         int cz = 1;
         for (i = 0; i < f30 - 1; i++) {
             int q = i % 8;
-            int a = (q >= 2) ? (i % 2) : 0;
-            float v1 = (float)((q >= 2) * cx);
+            int g = (q >= 2);
+            int m2 = i % 2;
+            int a = g ? m2 : 0;
+            float v1 = (float)(g * cx);
             if (a == 1)
                 v1 *= D_00275F58;
             int b = (q < 2 || q >= 4);
