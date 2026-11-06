@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include "ghidra.h"
+extern "C" void *memset(void *, int, unsigned);
 struct C_001387E0 {
     undefined4 func_001387E0(byte param_1);
 };
@@ -264,10 +265,14 @@ void DrawableCube::func_00137810()
 
     v = *(S_137810_V3 *)(D_002EFDB8->f4 + 0xd0);
     pm = &D_002BEA50;
-    pm->identity();
-    D_002BEA50.m[0] = 1.0f;
-    D_002BEA50.m[5] = 1.0f;
-    D_002BEA50.m[10] = 1.0f;
+    *(__m128 *)&pm->m[0] = _mm_setzero_ps();
+    *(__m128 *)&pm->m[4] = _mm_setzero_ps();
+    *(__m128 *)&pm->m[8] = _mm_setzero_ps();
+    *(__m128 *)&pm->m[12] = _mm_setzero_ps();
+    pm->m[0] = 1.0f;
+    pm->m[5] = 1.0f;
+    pm->m[10] = 1.0f;
+    pm->m[15] = 1.0f;
     ((int *)D_002BEA50.m)[3] = self->f28->f8;
     ((int *)D_002BEA50.m)[7] = self->f28->fC;
     ((int *)D_002BEA50.m)[11] = self->f28->f10;
@@ -278,7 +283,7 @@ void DrawableCube::func_00137810()
         int *op;
         *(unsigned short *)((char *)self->f28 + k * 0xfc + 0x12c) = 0;
         limit = (*(float *)(D_002EFDB8->f4 + 0x1d0) - D_00275AEC) * D_0028491C;
-        if (!(limit < v.z * p[0] + v.x * p[-2] + v.y * p[-1])) {
+        if (!(limit < v.y * p[-1] + v.x * p[-2] + v.z * p[0])) {
             vp = &D_002BE040[k * 100];
             op = vf;
             i = 25;
