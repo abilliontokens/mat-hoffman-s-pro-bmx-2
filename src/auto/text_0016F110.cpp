@@ -35,6 +35,8 @@ extern char D_00288A5C[];
 extern char D_00288A50[];
 extern char D_00288A44[];
 void func_00030F30(char *a, void *b);
+extern "C" char *strcpy(char *, const char *);
+extern "C" char *strcat(char *, const char *);
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 void *func_001E8A44(unsigned int n);
 
