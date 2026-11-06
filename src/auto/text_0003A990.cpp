@@ -7,7 +7,7 @@ extern float D_00276E9C, D_00276E98;
 void *func_001E8A44(unsigned int size);
 void func_001E891B(void *p);
 struct S_0003AC20_Vec { float x,y,z,w; };
-struct S_0003AC20_Arg { float x,y,z,w; S_0003AC20_Arg(float a,float b,float c,float d){x=a;y=b;z=c;w=d;} };
+struct S_0003AC20_Arg { float x,y,z; int w; S_0003AC20_Arg(float a,float b,float c,int d){x=a;y=b;z=c;w=d;} };
 struct S_3A990_Blk { char pad[0x358]; int width, height; };
 struct S_3A990_Owner { char pad[8]; char *object; };
 struct C_3A990 {
