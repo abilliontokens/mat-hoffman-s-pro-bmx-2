@@ -328,8 +328,6 @@ struct S_002A8490 {
 };
 extern S_002A8490 *D_002A8490;
 
-static __forceinline S_00059F50_Ctl *Ctl_00059CC0(void) { return D_002A8490->f2E0->f2FC; }
-
 struct Rect_0005A020 {
     int x, y, w, h;
     float minZ, maxZ;
@@ -683,10 +681,10 @@ int BmxGame::func_00059CC0() {
  D_002A8490->f2E0->f2FC->func_000947F0(0);
  if(D_002A8490->f2A4->f64->f594)
  D_002A8490->f2E0->f2FC->func_00094D90(250);
- Ctl_00059CC0()->func_00094C00();
- (*(S_00059F50_F4**)((char*)this+4))->func_0001D330();
+ D_002A8490->f2E0->f2FC->func_00094C00();
+ f4->func_0001D330();
  D_002A8490->f2A4->f64->f4C0->v28();
- (*(S_00059F50_F4**)((char*)this+4))->fB4->v14();
+ f4->fB4->v14();
  f2EC->func_0018C120();
  D_002A8490->f4->fB4->v9();
  if(*(void**)((char*)D_002A8490->f2E0+0x2c4)) {
