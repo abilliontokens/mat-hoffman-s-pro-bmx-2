@@ -243,6 +243,8 @@ struct C_000724E0 {
     void func_000716F0();
     void func_00157660();
     void func_000724E0(void);
+    C_000724E0 *func_00071880(int a0);
+    void func_001577A0(ObjB_71880 *o, int a1);
     void func_00071F40();
     void func_001578D0();
 };
