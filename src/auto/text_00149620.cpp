@@ -55,7 +55,7 @@ struct C_0014A3A0 : C_0001DFE0 {
     int unk50;
     int unk54;
     int unk58;
-    float unk5C[16];
+    Vec4f_149620 unk5C[4];
     int unk9C[8];
     int unkBC[8];
     int unkDC;
@@ -95,6 +95,102 @@ struct C_0014A520 {
     C_0014A520* func_0014A520(int a0);
 };
 
+
+int C_0014A3A0::func_00149620(int param_1, int param_2, int param_3, int param_4, int param_5, int param_6)
+{
+    void *__stdcall func_001FF3C0(int size);
+    void *__stdcall func_001FF410(void *buffer, int flags);
+    int __stdcall func_001FCF20(int a0, int a1, int a2, int a3, int a4, int a5, int a6);
+    int func_0014A7B0(void *entries, unsigned int *tokens);
+    void *func_001E8A44(int size);
+    Vec4f_149620 *q;
+    Vec4f_149620 t;
+    int width;
+    int height;
+    int i;
+    int hr;
+    C_0014A560 *obj;
+    void *alloc;
+
+    unkF0 = param_1;
+    unkDC = (int)func_001FF3C0(0x80);
+    q = (Vec4f_149620 *)func_001FF410((void *)unkDC, 0x10);
+    t.x = -1.0f; t.y = -1.0f; t.z = 0.0f; t.w = 1.0f; q[0] = t;
+    t.x = 1.0f; t.y = -1.0f; t.z = 0.0f; t.w = 1.0f; q[2] = t;
+    t.x = 1.0f; t.y = 1.0f; t.z = 0.0f; t.w = 1.0f; q[4] = t;
+    t.x = -1.0f; t.y = 1.0f; t.z = 0.0f; t.w = 1.0f; q[6] = t;
+    t.x = 0.0f; t.y = 1.0f; t.z = 0.0f; t.w = 1.0f; q[1] = t;
+    t.x = 1.0f; t.y = 1.0f; t.z = 0.0f; t.w = 1.0f; q[3] = t;
+    t.x = 1.0f; t.y = 0.0f; t.z = 0.0f; t.w = 1.0f; q[5] = t;
+    t.x = 0.0f; t.y = 0.0f; t.z = 0.0f; t.w = 1.0f; q[7] = t;
+
+    unkE4 = (int)func_001FF3C0(0x80);
+    q = (Vec4f_149620 *)func_001FF410((void *)unkE4, 0x10);
+    t.x = -1.0f; t.y = -1.0f; t.z = 0.0f; t.w = 1.0f; q[0] = t;
+    t.x = 1.0f; t.y = -1.0f; t.z = 0.0f; t.w = 1.0f; q[2] = t;
+    t.x = 1.0f; t.y = 1.0f; t.z = 0.0f; t.w = 1.0f; q[4] = t;
+    t.x = -1.0f; t.y = 1.0f; t.z = 0.0f; t.w = 1.0f; q[6] = t;
+    t.x = 0.0f; t.y = 0.0f; t.z = 0.0f; t.w = 1.0f; q[1] = t;
+    t.x = 640.0f; t.y = 0.0f; t.z = 0.0f; t.w = 1.0f; q[3] = t;
+    t.x = 640.0f; t.y = 480.0f; t.z = 0.0f; t.w = 1.0f; q[5] = t;
+    t.x = 0.0f; t.y = 480.0f; t.z = 0.0f; t.w = 1.0f; q[7] = t;
+
+    unkE0 = (int)func_001FF3C0(0x80);
+    q = (Vec4f_149620 *)func_001FF410((void *)unkE0, 0x10);
+    t.x = -1.0f; t.y = -1.0f; t.z = 0.0f; t.w = 1.0f; q[0] = t;
+    t.x = -0.7f; t.y = -1.0f; t.z = 0.0f; t.w = 1.0f; q[2] = t;
+    t.x = -0.7f; t.y = -0.7f; t.z = 0.0f; t.w = 1.0f; q[4] = t;
+    t.x = -1.0f; t.y = -0.7f; t.z = 0.0f; t.w = 1.0f; q[6] = t;
+    t.x = 0.0f; t.y = 1.0f; t.z = 0.0f; t.w = 1.0f; q[1] = t;
+    t.x = 1.0f; t.y = 1.0f; t.z = 0.0f; t.w = 1.0f; q[3] = t;
+    t.x = 1.0f; t.y = 0.0f; t.z = 0.0f; t.w = 1.0f; q[5] = t;
+    t.x = 0.0f; t.y = 0.0f; t.z = 0.0f; t.w = 1.0f; q[7] = t;
+
+    q = (Vec4f_149620 *)unk5C;
+    t.x = -1.0f; t.y = -1.0f; t.z = 0.0f; t.w = 0.0f; q[0] = t;
+    t.x = 1.0f; t.y = -1.0f; t.z = 0.0f; t.w = 0.0f; q[1] = t;
+    t.x = 1.0f; t.y = 1.0f; t.z = 0.0f; t.w = 0.0f; q[2] = t;
+    t.x = -1.0f; t.y = 1.0f; t.z = 0.0f; t.w = 0.0f; q[3] = t;
+
+    unk58 = param_5;
+    width = param_2;
+    height = param_3;
+    for (i = 0; i < unk58; i++) {
+        unk9C[i] = width;
+        unkBC[i] = height;
+        unk8[i] = func_001FCF20(width, height, 1, 1, 1, param_4, 3);
+        hr = unk8[i] != 0 ? 0 : 0x8007000e;
+        if (hr < 0) {
+            return 0;
+        }
+        unk28[i] = func_001FCE50(unk8[i], 0);
+        hr = unk28[i] != 0 ? 0 : 0x8007000e;
+        if (hr < 0) {
+            return 0;
+        }
+        if (param_6 != 0) {
+            width /= 2;
+            height /= 2;
+        }
+    }
+    {
+        unsigned int tokens[4];
+        tokens[0] = 0x20000000;
+        tokens[1] = 0x40420000;
+        tokens[2] = 0x40420001;
+        tokens[3] = 0xffffffff;
+        func_0014A7B0(&D_002BF0E0, tokens);
+    }
+    alloc = func_001E8A44(0xc);
+    if (alloc == 0) {
+        obj = 0;
+    } else {
+        obj = (C_0014A560 *)((C_0014A520 *)alloc)->func_0014A520((int)&D_002BF0E0);
+    }
+    obj->func_0014A560((int)&D_00286830, 0);
+    unkE8 = (C_0014A540 *)obj;
+    return 1;
+}
 
 int C_00149E70::func_00149E70(int param_1, int param_2, int param_3)
 {
