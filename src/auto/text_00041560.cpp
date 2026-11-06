@@ -189,8 +189,26 @@ static inline void SetP4_00041F00(S_41F00_P4 *p, float x, float y, float z, floa
 
 struct S_41F00_Obj {
     char pad0[0x28];
+    int f28;
     void func_00197E70(S_41F00_V4 *v);
+    void func_00197B40(S_41F00_V4 *a, S_41F00_V4 *b);
+    S_41F00_V4 *func_00199B00(S_41F00_V4 *out, int a);
 };
+
+struct S_41560_Block {
+    char pad0[0x358];
+    int w;
+    int h;
+    int d;
+};
+
+extern float D_00276E9C;
+extern float D_00276E98;
+extern float D_00275AEC;
+extern float D_00275548;
+extern char D_00276F78[];
+extern char D_00276F68[];
+int func_001E8AF0(void *a, void *b);
 
 struct S_41F00_Entry {
     int type;
