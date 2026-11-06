@@ -44,7 +44,7 @@ struct V4_0011EE50 {
     float w;
 };
 
-static float fabs_0011EE50(float v)
+static __forceinline float fabs_0011EE50(volatile float v)
 {
     volatile int tmp;
     tmp = *(volatile int *)&v & 0x7fffffff;
