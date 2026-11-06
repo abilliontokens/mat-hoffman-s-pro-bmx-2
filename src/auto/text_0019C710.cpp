@@ -163,7 +163,8 @@ struct SoultreeCollisionObject {
         };
     };
     unsigned short unk1BC;
-    char pad_1BE[0x1c4 - 0x1be];
+    short pad_1BE;
+    int unk1C0;
     int unk1C4;
     int unk1C8;
     unsigned short unk1CC;
