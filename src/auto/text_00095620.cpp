@@ -146,27 +146,8 @@ struct C_00095A00 {
 };
 void *func_001E8A44(unsigned int size);
 int func_001E891B(...);
+/* growable int array: bit 0 of flags = owns data */
 struct S_00095880_Array {
-    int count;
-    int *data;
-    int growth;
-    int capacity;
-    unsigned char owned : 1;
-    unsigned char flags : 7;
-    S_00095880_Array(int n) { owned = 0; data = (int *)func_001E8A44(n * 4); growth = 16; capacity = n; owned = 1; }
-    ~S_00095880_Array() { func_001E891B(data); }
-    void func_001CDED0(int n);
-};
-struct S_00095880_Raw {
-    int count;
-    int *data;
-    int growth;
-    int capacity;
-    unsigned char owned : 1;
-    unsigned char flags : 7;
-    void func_001CDED0(int n);
-};
-struct S_00095880_Raw2 {
     int count;
     int *data;
     int growth;
@@ -174,6 +155,7 @@ struct S_00095880_Raw2 {
     unsigned char flags;
     void func_001CDED0(int n);
 };
+typedef S_00095880_Array S_00095880_Raw2;
 int func_00011260(int a, int b);
 
 struct S_00095AB0_Vt {
@@ -359,14 +341,16 @@ int C_00095A00::func_00095880()
 {
     if (!f50) return 0;
     int n = f34 == 0 ? f54 : f50->v41(f34);
-    S_00095880_Raw a;
+    S_00095880_Raw2 a;
+    unsigned char t = a.flags;
     a.count = 0;
-    a.owned = 0;
+    t &= 0xfe;
     int *buf = (int *)func_001E8A44(n * 4);
     a.data = buf;
     a.growth = 16;
     a.capacity = n;
-    a.owned = 1;
+    t |= 1;
+    a.flags = t;
     int count;
     if (f34 == 0) {
         if (!func_000952F0()) {
@@ -386,7 +370,7 @@ int C_00095A00::func_00095880()
             }
         }
     } else {
-        if (n <= 0) {
+        if (a.capacity <= 0) {
             func_001E891B(buf);
             return 0;
         }
