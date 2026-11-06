@@ -1,7 +1,6 @@
 /* 5 functions from 0x0006B4B0 to 0x0006C470, found by Ghidra. */
 #include "common.h"
 extern "C" unsigned int strlen(const char *);
-#define RET_B4B0 void
 
 struct V_002EFDB8 {
     virtual void vf0();
