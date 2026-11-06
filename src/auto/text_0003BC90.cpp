@@ -62,6 +62,7 @@ struct DataBC {
  int *f4A8; char pad4AC[0xf4];
  int count; EntryBC *entries; int stringCount; StringBC **strings;
 };
+struct ActorBC;
 struct C_0003BC90 {
  char pad0[0x64]; DataBC *f64; char pad68[0x3c0];
  int f428; int f42C; int f430; int f434; int f438; int f43C;
