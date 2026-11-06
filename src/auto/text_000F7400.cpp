@@ -58,7 +58,7 @@ struct S_000F75D0_Root {
 
 extern S_000F75D0_Root *D_002B91AC;
 
-struct S_F8010_O { void func_001D5AD0(void); int pad0[14]; int f38; char pad3C[0x1C]; unsigned char f58; };
+struct S_F8010_O { void func_001D5AD0(void); int pad0[14]; int f38; char pad3C[0x1C]; char f58; };
 struct S_F8010_G {
     char pad0[0x24];
     S_F8010_O *f24, *f28, *f2C, *f30;
@@ -370,6 +370,71 @@ void BmxUIPageGameOptions::func_000F7F80(void) {
         func_000CC0B0();
         unk288 = 0;
     }
+}
+
+void C_000F8010::func_000F8010(void) {
+    int i;
+    if (f358) (f2D4 ? F8010_G->f6C : F8010_G->f54)->func_001D5AD0();
+    if (f374) {
+        if (f324) F8010_G->func_000BF860(1, 0x17B, 0x184, 0);
+        else F8010_G->func_000BF860(1, 0xDC, 0x184, 0);
+        (f2D4 ? F8010_G->f6C : F8010_G->f54)->func_001D5AD0();
+        (f2D0 ? F8010_G->f68 : F8010_G->f50)->func_001D5AD0();
+    }
+    if (f394) {
+        (f2D4 ? F8010_G->f6C : F8010_G->f54)->func_001D5AD0();
+        (f2D0 ? F8010_G->f68 : F8010_G->f50)->func_001D5AD0();
+    }
+    if (!f2F0 && !f2EC && !f358 && !f2E8 && !f374) {
+        if (f2F4 != 3 && f2F4 != 2) (f2D0 ? F8010_G->f68 : F8010_G->f50)->func_001D5AD0();
+        if (f2F4 != 7 && f2F4 != 8 && f2F4 != 9) (f2D4 ? F8010_G->f6C : F8010_G->f54)->func_001D5AD0();
+        if (f2F4 == 2) (f290 ? F8010_G->f70 : F8010_G->f58)->func_001D5AD0();
+        if (f2F4 == 9) (f290 ? F8010_G->f70 : F8010_G->f58)->func_001D5AD0();
+    }
+    if (!f320 && (f2F4 == 0 || f2F4 == 1)) {
+        i = 0;
+        S_F8010_O **pp = f2A0;
+        for (; i < 4; i++, pp++) {
+            if (i == f2BC * 2 || i == f2BC * 2 + 1) {
+                S_F8010_O *p = *pp;
+                unsigned char b = p->f58;
+                b |= 2;
+                p->f38 = (p->f38 & 0xFFBFA35A) | 0xBFA35A;
+                p->f58 = b;
+            } else {
+                S_F8010_O *p = *pp;
+                p->f38 = (p->f38 & 0xFFCCCCCC) | 0xCCCCCC;
+                p->f58 |= 2;
+            }
+            (*pp)->func_001D5AD0();
+        }
+    }
+    if (!f2F0 && !f350 && !f360 && !f388 && !f2EC && !f358 && !f38C && !f300 &&
+        !f2E8 && !f374 && !f320 && !f394) {
+        if (f328) {
+            f2F8->func_00093120();
+            f394 = 0;
+            f2F4 = 1;
+            func_000CC6D0();
+        }
+    } else if (f328) {
+        S_F8010_O *p = f294;
+        p->f38 = ((short)f334 << 24) | (p->f38 & 0xFFFFFF);
+        p->f58 |= 2;
+        f294->func_001D5AD0();
+    } else if (!f3AC) {
+        f32C = 0xB2;
+        f330 = 0;
+        f334 = 0;
+        f338 = 0;
+        f33C = 0.25f;
+        f328 = 1;
+    }
+    S_F8010_G *g = F8010_G;
+    g->f24->func_001D5AD0();
+    g->f28->func_001D5AD0();
+    g->f2C->func_001D5AD0();
+    g->f30->func_001D5AD0();
 }
 
 undefined4 C_000F83A0::func_000F83A0(byte param_1)
