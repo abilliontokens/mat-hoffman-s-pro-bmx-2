@@ -27,7 +27,11 @@ void func_001ADCC0(char *buf, int size, const char *fmt, ...);
 extern char D_002A45E0[], D_002A5348[], D_00275678[], D_002A5FA8[], D_002A47F0[], D_002A5870[];
 extern int D_002B9120;
 
-static int min_22E30(int a, int b) { return a > b ? b : a; }
+template <class T>
+inline T min_22E30(const volatile T &a, const volatile T &b)
+{
+    return a > b ? b : a;
+}
 
 struct C_00022E30_Cfg {
     int f0;
