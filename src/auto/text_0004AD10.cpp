@@ -167,6 +167,204 @@ void func_001670C0(char *a, float b, int c, int d);
 void func_0019AC50(void *a);
 void func_000788D0(void *a);
 
+struct C_4B760_A { int func_0005C0A0(); };
+struct C_4B760_B { void func_001394F0(int b); };
+struct C_4B760_C { void func_001983A0(); };
+struct C_4B760_D { void func_000788D0(); };
+
+
+extern Obj *D_002BEAAC;
+extern Obj *D_002EF7D0;
+extern char D_002A5FA8[], D_002A5870[], D_00275678[], D_002A60B0[], D_00276C58[], D_00277300[], D_002772E8[], D_002772D4[], D_002772CC[], D_002A5348[], D_00276C34[], D_002772A8[], D_00277298[], D_00277288[], D_00275630[], D_00277274[], D_00277268[], D_00277244[], D_002A48F8[], D_002A47F0[], D_00276C48[];
+extern float D_00277318, D_00277314, D_00277310, D_002755E8;
+extern Vec16 D_002A15B0;
+extern char D_00049B50[];
+void func_00049A50();
+void func_00049A20();
+float func_00011170(float *v);
+int func_001ADCC0(char *buf, int n, const char *fmt, ...);
+void *func_001E8A44(unsigned int n);
+char *func_001E8920(char *d, const char *s, int n);
+void C_0004AD10::func_0004AD10()
+{
+    int func_001E891B(...);
+    char *volatile self = (char *)this;
+    float v[4];
+    int count;
+    Mtx m;
+    Mtx m2;
+    char name[0x104];
+    char path[0x104];
+    char buf[0x104];
+    char tmp[0x104];
+    char saved[0x104];
+    Obj *p;
+    void *mem;
+    int len;
+    int max;
+    int n;
+    int i;
+
+    p = ((VGame *)D9120)->Find(D_00277140);
+    if (p) p->func_00198390();
+    {
+        int idx = *(int *)(*(char **)(D9120 + 0x4e4) + 0x5c4);
+        char *t = **(char ***)(D9120 + 0x3b0);
+        if (t && *(int *)(t + 0x24) >= idx) {
+            char *e = *(char **)((*(char ***)(t + 0x28))[idx] + 8);
+            if (e) {
+                v[0] = *(float *)(e + 0x28) - D_00277318;
+                v[3] = 1.0f;
+                v[1] = *(float *)(e + 0x2c) - D_00277314;
+                v[2] = *(float *)(e + 0x30) - D_00277310;
+                if (func_00011170(v) < D_002755E8) {
+                    ((VEnt *)e)->Activate();
+                }
+            }
+        }
+    }
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+    (*(Obj **)(self + 0x64))->func_000A2440();
+    if (**(int **)(D8490 + 0x2e0) == 1) {
+        mem = func_001E8A44(0x90);
+        *(Obj **)(self + 0x2cc) = mem ? ((Obj *)mem)->func_00138800(0) : 0;
+        (*(Obj **)(self + 0x2cc))->func_00139B50(D_002772E8, D_00277300, (Obj *)D9120, *(int *)(self + 0x158), D_00276C58, *(int *)(self + 0x44), *(int *)(self + 0x24), *(int *)(D9120 + 0x488), *(int *)(D9120 + 0x4c0), 0, 0, -1, 0, 0, 0);
+        (*(Obj **)(self + 0x2cc))->func_00139060((void *)func_00049A50, self);
+        (*(Obj **)(self + 0x2cc))->func_00139080((void *)func_00049A20, self);
+        func_001577A0(*(void **)(self + 0x2cc), -1);
+
+        mem = func_001E8A44(0x90);
+        *(Obj **)(self + 0x2d0) = mem ? ((Obj *)mem)->func_00138800(0) : 0;
+        (*(Obj **)(self + 0x2d0))->func_00139B50(D_002772D4, D_00277300, (Obj *)D9120, *(int *)(self + 0x158), D_00276C58, *(int *)(self + 0x44), *(int *)(self + 0x24), *(int *)(D9120 + 0x488), *(int *)(D9120 + 0x4c0), 0, 0, -1, 0, 0, 0);
+        (*(Obj **)(self + 0x2d0))->func_00139060(D_00049B50, self);
+        (*(Obj **)(self + 0x2d0))->func_00139080((void *)func_00049A20, self);
+        func_001577A0(*(void **)(self + 0x2d0), -1);
+
+        {
+            Mtx *pm = &m;
+            __m128 z = _mm_setzero_ps();
+            _mm_store_ps(&pm->m[0], z);
+            _mm_store_ps(&pm->m[4], z);
+            _mm_store_ps(&pm->m[8], z);
+            _mm_store_ps(&pm->m[12], z);
+            pm->m[0] = 1.0f;
+            pm->m[5] = 1.0f;
+            pm->m[10] = 1.0f;
+            pm->m[15] = 1.0f;
+        }
+        m2 = m;
+
+        mem = func_001E8A44(0x10);
+        *(Obj **)(self + 0x2e4) = mem ? ((Obj *)mem)->func_000A43E0() : 0;
+        {
+            char *prof = *(char **)(D8490 + 0x2e0);
+            func_001ADCC0(name, 0x104, D_002772CC, prof + 0x150, *(int *)(prof + 0x1b0) + 1);
+        }
+        func_001ADCC0(path, 0x104, D_00276C34, D_002A5348, name);
+        D_002BEAAC->func_0013D780(path, 0, 0, 0, 0, 0, 0, 0);
+        (*(Obj **)(self + 0x2e4))->func_000A4150(name);
+        ((Obj *)D9120)->func_000A0B80();
+        D_002BEAAC->func_0013DFF0(path, 1);
+        *(unsigned char *)(*(char **)(**(char ***)(self + 0x2e4) + 4) + 0x180) |= 8;
+        *(unsigned char *)(*(char **)(**(char ***)(self + 0x2e4) + 4) + 0x180) |= 0x10;
+        (**(Obj ***)(self + 0x2e4))->func_001646B0();
+        (*(Obj **)(**(char ***)(self + 0x2e4) + 4))->func_00199BE0(&m2);
+        (*(Obj **)(**(char ***)(self + 0x2e4) + 4))->func_00199600(D_002A15B0);
+        (*(Obj **)(**(char ***)(self + 0x2e4) + 4))->func_0019ABA0(**(int **)(D9120 + 0x4a8), 2);
+        (*(Obj **)(**(char ***)(self + 0x2e4) + 4))->func_00198390();
+        *(int *)(**(char ***)(self + 0x2e4) + 0x10) = 1;
+        {
+            char *q = **(char ***)(self + 0x2e4);
+            func_001577A0(q ? q + (*(int **)q)[1] : 0, -1);
+        }
+
+        mem = func_001E8A44(0x10);
+        *(Obj **)(self + 0x2e8) = mem ? ((Obj *)mem)->func_000A43E0() : 0;
+        len = strlen(*(char **)(D8490 + 0x2e0) + 0x1f4);
+        max = 0x103;
+        n = Min(max, len);
+        func_001E8920(name, *(char **)(D8490 + 0x2e0) + 0x1f4, n);
+        name[n] = 0;
+        func_001ADCC0(path, 0x104, D_00276C34, D_002A5348, name);
+        D_002BEAAC->func_0013D780(path, 0, 0, 0, 0, 0, 0, 0);
+        (*(Obj **)(self + 0x2e8))->func_000A4400(name);
+        ((Obj *)D9120)->func_000A0B80();
+        D_002BEAAC->func_0013DFF0(path, 1);
+        *(unsigned char *)(*(char **)(**(char ***)(self + 0x2e8) + 4) + 0x180) |= 8;
+        *(unsigned char *)(*(char **)(**(char ***)(self + 0x2e8) + 4) + 0x180) |= 0x10;
+        (**(Obj ***)(self + 0x2e8))->func_001646B0();
+        (*(Obj **)(**(char ***)(self + 0x2e8) + 4))->func_00199BE0(&m2);
+        (*(Obj **)(**(char ***)(self + 0x2e8) + 4))->func_00199600(D_002A15B0);
+        (*(Obj **)(**(char ***)(self + 0x2e8) + 4))->func_0019ABA0(**(int **)(D9120 + 0x4a8), 2);
+        (*(Obj **)(**(char ***)(self + 0x2e8) + 4))->func_00198390();
+        *(int *)(**(char ***)(self + 0x2e8) + 0x10) = 1;
+        {
+            char *q = **(char ***)(self + 0x2e8);
+            func_001577A0(q ? q + (*(int **)q)[1] : 0, -1);
+        }
+
+        mem = func_001E8A44(0x4cc);
+        p = mem ? ((Obj *)mem)->func_00168280() : 0;
+        if (p->func_00169490(D_002772A8, 0)) {
+            p->func_00169710(D_00277298);
+            p->func_00168C20(D_00277288, 0, &count);
+            p->func_00168BE0(D_00277274, D_00275630, buf, 0x104);
+            len = strlen(buf);
+            max = 0x4f;
+            n = Min(max, len);
+            func_001E8920(**(char ***)(self + 0x2e4) + 0x190, buf, n);
+            (**(char ***)(self + 0x2e4) + 0x190)[n] = 0;
+            *(Obj **)(**(char ***)(self + 0x2e4) + 8) = p;
+            for (i = 0; i < count; i++) {
+                char *r;
+                func_001ADCC0(tmp, 0x104, D_00277268, i + 1);
+                r = D_002EF7D0->func_00163A50(**(void ***)(self + 0x2e4), tmp);
+                if (r) (*(int *)(r + 0x40))++;
+            }
+        }
+        if (p->func_00169490(D_00277244, 0)) {
+            p->func_00169710(D_00277298);
+            p->func_00168C20(D_00277288, 0, &count);
+            p->func_00168BE0(D_00277274, D_00275630, buf, 0x104);
+            len = strlen(buf);
+            max = 0x4f;
+            n = Min(max, len);
+            func_001E8920(**(char ***)(self + 0x2e8) + 0x190, buf, n);
+            (**(char ***)(self + 0x2e8) + 0x190)[n] = 0;
+            *(Obj **)(**(char ***)(self + 0x2e8) + 8) = p;
+            for (i = 0; i < count; i++) {
+                char *r;
+                func_001ADCC0(tmp, 0x104, D_00277268, i + 1);
+                r = D_002EF7D0->func_00163A50(**(void ***)(self + 0x2e8), tmp);
+                if (r) (*(int *)(r + 0x40))++;
+            }
+        }
+        if (p) {
+            p->func_001691E0();
+            func_001E891B(p);
+        }
+    }
+    len = strlen(D_002A48F8);
+    max = 0x103;
+    n = Min(max, len);
+    func_001E8920(saved, D_002A48F8, n);
+    saved[n] = 0;
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5870, D_002A47F0);
+    mem = func_001E8A44(0x20c);
+    *(Obj **)(self + 0x2c8) = mem ? ((Obj *)mem)->func_001CF740(*(int *)(*(char **)(D8490 + 4) + 0xb4), *(int *)(D9120 + 0x4c0), 1) : 0;
+    {
+        ObjFn5U u;
+        u.p = (**(void ****)(self + 0x2c8))[4];
+        ((*(Obj **)(self + 0x2c8))->*u.f)(D_00276C48, 1, 1, 0, 0);
+    }
+    len = strlen(saved);
+    max = 0x103;
+    n = Min(max, len);
+    func_001E8920(D_002A48F8, saved, n);
+    D_002A48F8[n] = 0;
+    (*(Obj **)(*(char **)(D8490 + 0x2e0) + 0x2fc))->func_000951B0(0x13);
+    (*(Obj **)(*(char **)(D8490 + 0x2e0) + 0x2fc))->func_00095520(0x13);
+}
 
 void BmxEventFPS::func_0004B760(float dt)
 {
