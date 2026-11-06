@@ -195,7 +195,7 @@ inline T AF0D0_Min(const T &a, const T &b)
     return a > b ? b : a;
 }
 
-inline void AF0D0_Copy(char *dst, const char *src, int max)
+static __forceinline void AF0D0_Copy(char *dst, const char *src, int max)
 {
     volatile int len = strlen(src);
     volatile int lim = max;
