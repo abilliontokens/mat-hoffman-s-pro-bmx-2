@@ -127,6 +127,8 @@ struct C_000AB340_Cam {
     C_000AB340_Vec f190;
 };
 
+#define VOL_000AB790(x) (*(volatile int *)&(x))
+
 /* the 0x1e0-byte object in f110[]: vtable, name at +0x28 */
 struct C_000ABBC0_Sub {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
