@@ -62,6 +62,12 @@ static __forceinline float Abs_00112A80(float x)
     return *(float *)&i;
 }
 
+static __forceinline float AbsBits_00112A80(int x)
+{
+    int i = x & 0x7fffffff;
+    return *(float *)&i;
+}
+
 struct Vec4_00108370 { float x, y, z, w; };
 struct V3_00104A00 { float x, y, z; };
 struct V4_00104A00 { float x, y, z, w; };
@@ -186,13 +192,19 @@ no_calls:
             S_0001C610_V4 dir = func_0001C610((float *)&v.z, (float *)((char *)self + 0x748));
             float rbuf[4];
             float *r = func_0001E9E0(rbuf, (float *)&dir);
-            float s = (r[1] != D_00275544) ? -1.0f : 1.0f;
-            float g = D_002B9200;
-            g = fabsf(v.y) * s * dt + g;
+            float s = 1.0f;
+            if (r[1] <= D_00275544)
+                s = -1.0f;
+            float g = Abs_00112A80(v.y) * s * dt + D_002B9200;
             D_002B9200 = g;
-            float X = AT(float, AT(void *, self, 0x208), 0x134);
-            float val = (g > D_00275544) ? q.y - X : q.y + X;
-            fv = (float)(int)(fabsf(val) / D_002A3AA4 + D_002755E8) * D_002A3AA4 + D_002A3AA0;
+            if (g > D_00275544)
+                q.y = q.y - AT(float, AT(void *, self, 0x208), 0x134);
+            else
+                q.y = q.y + AT(float, AT(void *, self, 0x208), 0x134);
+            float ax = Abs_00112A80(q.x);
+            float ay = Abs_00112A80(q.y);
+            fv = (float)(int)(ay / D_002A3AA4 + D_002755E8) * D_002A3AA4 + D_002A3AA0;
+            float az = Abs_00112A80(q.z);
             if (fv <= D_00283D08 && AT(int, self, 0x1200) < 0x384) {
                 AT(int, self, 0x1200) = 0x384;
                 el = AT(int, AT(void *, D_002A8490, 0x2a4), AT(int, self, 0xa2c) * 4 + 0x170);
@@ -282,3 +294,155 @@ final_check:
     }
     AT(int, self, 0x11ec) = 1;
 }
+
+void Obj::func_00113290(float dt)
+{
+    Obj *self = this;
+    D_gSelfSink = (char *)&self;
+    self->f11e0 = self->f11dc;
+    if (self->f11e0 != 0) {
+        if (AT(int, self, 0x468) != 0) {
+            char *s = AT(char *, AT(char *, AT(char *, self, 0x210), 0x30), 0x14);
+            char *d = (char *)self + 0x1090;
+            char c;
+            do {
+                c = *s++;
+                *d++ = c;
+            } while (c != 0);
+            AT(int, self, 0x1108) = AT(int, self, 0x484);
+            if (AT(int, self, 0x470) == 0) {
+                if (AT(float, self, 0x20b0) > D_00275544) {
+                    AT(float, self, 0x20b0) -= dt;
+                    if (AT(float, self, 0x20b0) <= D_00275544) {
+                        AT(float, self, 0x20b0) = 0.25f;
+                        float a = Abs_00112A80(AT(float, self, 0x744));
+                        float t = func_00161F80(AT(int, self, 0x113c)) * D_002756DC;
+                        Obj_VF *o = AT(Obj_VF *, AT(char *, D_002A8490, 0x8), 0x14 + AT(int, self, 0x970) * 4);
+                        o->v3C(1, func_0001C870(a, 0, 0, 30.0f, 0.26f, 200) + t, 200);
+                    }
+                }
+            } else if (AT(int, self, 0x480) == 0) {
+                AT(int, self, 0x1070) = AT(int, AT(char *, AT(char *, self, 0x24), 0x52c), 0xc);
+            }
+        } else {
+            AT(int, self, 0x113c) = 0;
+            AT(char, self, 0x1090) = 0;
+            AT(int, self, 0x1108) = 0;
+            self->f11dc = 0;
+            struct V { int a, b, c, d; };
+            AT(V, self, 0x2028) = AT(V, self, 0x834);
+            AT(int, self, 0x2024) = 1;
+        }
+    } else {
+        if (AT(int, self, 0x468) != 0
+            && (AT(int, AT(char *, self, 0x210), 0x24) == 0 || AT(int, self, 0x470) != 0))
+            self->f11dc = 1;
+        if (self->f11dc != 0) {
+            self->func_001059E0();
+            AT(int, self, 0x1060) = 1;
+        }
+    }
+    if (self->f11dc != 0) {
+        AT(int, self, 0x1068) = 0;
+        if (self->f11e0 == 0) {
+            AT(int, self, 0x1078) = 0;
+            AT(int, self, 0x107c) = 0;
+            return;
+        }
+        if (AT(int, self, 0x2010) == 0 && AT(int, self, 0xa38) != 0 && AT(int, self, 0x1078) != 0
+            && AT(int, AT(char *, D_002A8490, 0x2a4), 0x170 + AT(int, self, 0xa2c) * 4) != 0) {
+            char *tbl = AT(char *, AT(char *, self, 0x24), 0x52c);
+            float m;
+            if (AT(int, self, 0x470) != 0) {
+                if (AT(int, self, 0x480) == 0)
+                    m = AT(float, tbl, 0x7928 + AT(int, self, 0x718) * 4);
+                else
+                    m = AT(float, tbl, 0x77c8 + AT(int, self, 0x718) * 4);
+            } else {
+                m = AT(float, tbl, 0x6a08 + AT(int, self, 0x718) * 4);
+            }
+            self->func_0010DD90(dt * m, 0, 0, -1, -1, 0);
+        }
+        if (AT(float, self, 0x484) <= D_00275F64 && AT(int, self, 0x470) == 0)
+            return;
+        if (AT(int, self, 0x1078) == 0) {
+            if (AT(int, AT(char *, D_002A8490, 0x2a4), 0x170 + AT(int, self, 0xa2c) * 4) != 0) {
+                int n, i;
+                char *tbl;
+                Obj *p;
+                if (AT(int, self, 0x470) != 0) {
+                    if (AT(int, self, 0x480) == 0) {
+                        AT(int, self, 0x1030 + AT(int, self, 0x718) * 4)++;
+                        p = self;
+                        i = AT(int, p, 0x718);
+                        AT(int, p, 0x1010 + i * 4)++;
+                        n = AT(int, p, 0x1030 + i * 4);
+                        p = self;
+                        i = AT(int, p, 0x718);
+                        tbl = AT(char *, AT(char *, p, 0x24), 0x52c);
+                        p->func_0010DD90(p->func_00108CB0(n, (float)AT(int, tbl, 0x7908 + i * 4)),
+                            p->func_00108CE0(AT(int, p, 0x1010 + i * 4)), tbl + i * 0x32 + 0x7168, i, 8, 0);
+                    } else {
+                        AT(int, self, 0xff0 + AT(int, self, 0x718) * 4)++;
+                        p = self;
+                        i = AT(int, p, 0x718);
+                        AT(int, p, 0xfd0 + i * 4)++;
+                        n = AT(int, p, 0xff0 + i * 4);
+                        p = self;
+                        i = AT(int, p, 0x718);
+                        tbl = AT(char *, AT(char *, p, 0x24), 0x52c);
+                        p->func_0010DD90(p->func_00108CB0(n, (float)AT(int, tbl, 0x77a8 + i * 4)),
+                            p->func_00108CE0(AT(int, p, 0xfd0 + i * 4)), tbl + i * 0x32 + 0x6b28, i, 9, 0);
+                    }
+                } else {
+                    AT(int, self, 0xfb0 + AT(int, self, 0x718) * 4)++;
+                    p = self;
+                    i = AT(int, p, 0x718);
+                    AT(int, p, 0xf90 + i * 4)++;
+                    n = AT(int, p, 0xfb0 + i * 4);
+                    p = self;
+                    i = AT(int, p, 0x718);
+                    tbl = AT(char *, AT(char *, p, 0x24), 0x52c);
+                    p->func_0010DD90(p->func_00108CB0(n, (float)AT(int, tbl, 0x69e8 + i * 4)),
+                        p->func_00108CE0(AT(int, p, 0xf90 + i * 4)), tbl + i * 0x32 + 0x66c8, i, 10, 0);
+                }
+            }
+            AT(int, self, 0x1078) = 1;
+        }
+        if (AT(int, self, 0x107c) != 0)
+            return;
+        int idx = AT(Obj_A8520 *, AT(char *, self, 0x24), 0x534)->func_000A8520(
+            AT(char *, AT(char *, AT(char *, self, 0x210), 0x30), 0x14));
+        if (idx == -1)
+            return;
+        Obj *q = self;
+        char *e = AT(char **, AT(char *, AT(char *, q, 0x24), 0x534), 0x28)[idx];
+        int ge0 = 0;
+        if (!(AT(float, q, 0x484) < AT(float, e, 0x400)))
+            ge0 = 1;
+        int ge1 = 0;
+        if (!(AT(float, q, 0x488) < AT(float, e, 0x404)))
+            ge1 = 1;
+        if (ge0 == 0 || ge1 == 0)
+            return;
+        int c2 = AT(int, AT(char *, D_002A8490, 0x2a4), 0x170 + AT(int, q, 0xa2c) * 4);
+        if (c2 != 0 && e[0x24] != 0) {
+            if (func_000839F0(e + 0x24, (float)AT(int, e, 0x3f8), idx)) {
+                char *g = AT(char *, D_002A8490, 0x2a4);
+                if (AT(int, g, 0x1f8) != 0)
+                    AT(Obj_5C5B0 *, g, 0x68)->func_0005C5B0(AT(int, AT(char *, D_002A8490, 0x2e0), 0x2d8), idx);
+            }
+        }
+        q = self;
+        q->func_0010DD90((float)AT(int, AT(char **, AT(char *, AT(char *, q, 0x24), 0x534), 0x28)[idx], 0x3f8),
+            0, 0, -1, -1, 0);
+        AT(int, self, 0x107c) = 1;
+        return;
+    }
+    if (self->f11e0 != 0 && AT(int, self, 0x1078) == 0) {
+        char *t = AT(char *, AT(char *, self, 0x24), 0x52c);
+        self->func_0010DD90((float)AT(int, t, 0x66c4), 1.0f, t + 0x63ee, -1, 13, 0);
+        AT(int, self, 0x1078) = 1;
+    }
+}
+
