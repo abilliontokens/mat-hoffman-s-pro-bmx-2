@@ -52,6 +52,55 @@ struct C_000342C0 {
     void *f1d4;
     void func_000342C0();
 };
+
+/* element of the table reached through arg4->f5a4, 0x48 bytes */
+struct S_00034A40_Elem {
+    char pad0[0x38];
+    float f38, f3c, f40;
+    char pad44[4];
+};
+
+struct S_00034A40_Tab {
+    char pad0[0x5a4];
+    S_00034A40_Elem *f5a4;
+};
+
+/* object held in C_00034A40::f28 */
+struct S_00034A40_28 {
+    char pad0[0x1a4];
+    void *f1a4;
+    void *f1ac;
+};
+
+struct C_00034A40 {
+    char pad0[0x24];
+    void *f24;
+    S_00034A40_28 *f28;
+    void *f2c;
+    char pad30[4];
+    void *f34;
+    float f38;
+    void func_00034A40(void *a1, void *a2, void *a3, S_00034A40_Tab *a4, float a5, int a6, int a7, int a8, int a9);
+};
+
+extern int *D_002EFDB8;
+extern char D_00276D54[];
+extern float D_00275AEC;
+extern float D_0027653C;
+extern double D_002766C8;
+extern float D_00276220;
+extern float D_00276D50;
+extern float D_002A14E4[4];
+void func_00198390(void *p);
+void func_001983A0(void *p);
+void func_0019A8C0(void *a, void *b);
+int func_001E8AF0(void *a, void *b);
+void func_00164820(void *a, void *b);
+void func_00034820(void *a, void *b);
+void func_00194E60(Vec4 v);
+void func_00194F90(float f);
+void func_00194EB0(Vec4 v);
+void func_00194F60(Vec4 v);
 void *func_001E8A44(int size);
 
 struct C_00034890 {
