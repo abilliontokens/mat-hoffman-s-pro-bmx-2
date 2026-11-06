@@ -79,3 +79,49 @@ int func_001ADCC0(char*,int,const char*,...);
 void *func_001E8A44(unsigned int);
 void *func_001E8920(void*,const void*,unsigned int);
 extern "C" unsigned int __cdecl strlen(const char*);
+struct ManagerBC {
+ int f0;NodeBC *f4;char pad8[8];int f10;int f14;int f18;
+ void func_00132D70();void func_00132CC0(int,int,int);
+ void func_00164820(int);void func_001670C0(int,int,int);void func_00132D20();
+};
+struct ModelBC {
+ ModelBC *func_00168280();
+ int func_00169490(char*,int);
+ void func_00169710(char*);
+ void func_001691E0();
+};
+struct ActorBC {
+ virtual void Destroy(int); virtual void SetModel(ModelBC*); virtual int Init(DataBC*);
+ char padC[0x198];ManagerBC *f1A4;
+ ActorBC *func_001B5110();
+};
+struct AnimBC {
+ virtual void v0();virtual void v1();virtual void Destroy();
+ char padC[0x5c];int f68;
+ AnimBC *func_0019B700(int);int func_00129920();
+ int func_0019D7B0(NodeBC*,char*);
+};
+struct EndBC {void func_00161680();void func_001B2640();};
+struct ResourceBC {int func_0013C9F0(char*,char*);void func_0013C110(int);};
+extern ResourceBC *D_002BEAAC;
+extern EndBC *D_002A829C,*D_002AA6C0;
+extern int D_002B9118,D_002B9108,D_002B910C,D_002B911C,D_002B9114,D_002BA160;
+extern char D_00276F00[],D_002A46E8[],D_00275678[],D_00276F28[],D_00276F20[],D_00276F18[];
+extern char D_00276D84[],D_00276D7C[],D_00276D74[],D_00276D6C[],D_00276D64[],D_00276F0C[],D_00276274[];
+int func_001E8AF0(const char*,const char*);
+char *func_001E8AC0(char*,int);
+int func_001E8D25(int);
+void func_000347F0(char*);
+void func_001E891B(void*);
+extern "C" int __cdecl memcmp(const void*,const void*,unsigned int);
+static __forceinline StringBC *getStringBC(DataBC *d,int i) {
+ if(d->stringCount>0 && d->strings && i<d->stringCount) return d->strings[i];
+ return 0;
+}
+static __forceinline void appendBC(ListBC *l,NodeBC *p) {
+ if(l->count<l->capacity || l->func_0015ACA0(l->count+l->grow)) l->data[l->count++]=p;
+}
+static __forceinline int minBC(const int &a,const int &b) {return a<b?a:b;}
+static __forceinline void copyBC(NodeBC *p,const char *s) {
+ int n=minBC(127,(int)strlen(s));func_001E8920(p->name,s,n);p->name[n]=0;
+}
