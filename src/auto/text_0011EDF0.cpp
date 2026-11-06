@@ -68,6 +68,7 @@ struct C_0011EDF0 {
     float z;
     float w;
     C_0011EDF0 *func_0011EDF0(s16 *p);
+    C_0011EDF0 *set_0011F210(s16 *p);
 };
 
 extern float D_00275544;
@@ -204,6 +205,7 @@ void func_0011F0E0(C_0011EDF0 *a, C_0011EDF0 *b, C_0011EDF0 *c, unsigned short *
     }
 }
 
+extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int n);
 void func_0011F210(C_0011EDF0 *a, C_0011EDF0 *b, C_0011EDF0 *c, unsigned short *indices, void **data)
 {
     if (data[2]) {
@@ -211,13 +213,13 @@ void func_0011F210(C_0011EDF0 *a, C_0011EDF0 *b, C_0011EDF0 *c, unsigned short *
         C_0011EDF0 t;
         s16 *q;
         q = p + indices[0] * 3;
-        t.w = 1.0f; t.x = (float)q[0] * D_002B9348; t.y = (float)q[1] * D_002B9348; t.z = (float)q[2] * D_002B9348;
+        ((float *)&t)[0] = q[0] * D_002B9348; ((float *)&t)[1] = q[1] * D_002B9348; ((float *)&t)[2] = q[2] * D_002B9348; t.w = 1.0f;
         *a = t;
         q = p + indices[1] * 3;
-        t.w = 1.0f; t.x = (float)q[0] * D_002B9348; t.y = (float)q[1] * D_002B9348; t.z = (float)q[2] * D_002B9348;
+        ((float *)&t)[0] = q[0] * D_002B9348; ((float *)&t)[1] = q[1] * D_002B9348; ((float *)&t)[2] = q[2] * D_002B9348; t.w = 1.0f;
         *b = t;
         q = p + indices[2] * 3;
-        t.w = 1.0f; t.x = (float)q[0] * D_002B9348; t.y = (float)q[1] * D_002B9348; t.z = (float)q[2] * D_002B9348;
+        ((float *)&t)[0] = q[0] * D_002B9348; ((float *)&t)[1] = q[1] * D_002B9348; ((float *)&t)[2] = q[2] * D_002B9348; t.w = 1.0f;
         *c = t;
     } else {
         S_0011F5A0_V3 *p = (S_0011F5A0_V3 *)data[1];
