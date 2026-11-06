@@ -47,8 +47,7 @@ template <class T> inline const T &Min_3D220(const T &a, const T &b) { return (b
 struct Game_3D220 {
     char pad0[0x3a8]; Mgr_3D220 **f3a8;
     char pad1[0x4a8 - 0x3ac]; int *f4a8; int *f4ac;
-    char pad2[0x5a4 - 0x4b0]; Track_3D220 *f5a4; int count; char **names;
-    char *name(int i) { return (count > 0 && names && i < count) ? names[i] : 0; }
+    char pad2[0x5a4 - 0x4b0]; Track_3D220 *f5a4; NameList_3D220 names;
 };
 struct Sub_3D220 { char pad[0x10]; char *f10; };
 struct Ctl_3D220 { void func_0008A970(); };
