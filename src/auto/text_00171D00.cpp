@@ -212,7 +212,7 @@ struct C_001729D0_Node { char pad[0x20]; float m[4]; float pos[4]; };
 struct C_001729D0_Obj {
     char pad0[0x54]; C_001729D0_Node *f54; char pad58[0x4F]; unsigned char fA7;
     void func_0014AC30(float *a, int b); void func_00133ED0(void);
-    float func_00133F10(int a); float func_00134770(int a, int b);
+    float func_00133F10(int a); int func_00134770(int a, int b);
 };
 extern float D_002A8BA0, D_002A8BA4, D_002A8BA8, D_002A8BE8;
 
@@ -427,7 +427,7 @@ void PhysicsBody::func_001729D0(void)
         *dst = v;
         return;
     }
-    *dst = *src;
+    *(V4_00171BA0 *)dst = *(V4_00171BA0 *)src;
 }
 
 static __forceinline void SqrtR_00171D00(float *r,const float &x) { _mm_store_ss(r,_mm_sqrt_ss(_mm_load_ss(&x))); }
