@@ -82,6 +82,11 @@ struct L_149ED0 {
     V_149ED0 vtx2;
 };
 
+union U_149ED0 {
+    V_149ED0 vtx;
+    Vec4f_149620 t;
+};
+
 struct C_0014A3A0 : C_0001DFE0 {
     int unk8[8];
     int unk28[8];
