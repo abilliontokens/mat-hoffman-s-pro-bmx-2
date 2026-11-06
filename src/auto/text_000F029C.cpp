@@ -118,7 +118,7 @@ struct C_000F0A00 {
     int f3C4;
     char pad3C8[0x270];
     C_000F0A00_Widget *f638[9];
-    int f65C;
+    int f65C[9];
     void func_000F0A00();
 };
 
