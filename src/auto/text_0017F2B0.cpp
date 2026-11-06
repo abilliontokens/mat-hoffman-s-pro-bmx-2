@@ -122,6 +122,10 @@ struct C_0017FDB0 {
     void func_0017FDB0(u16 idx, S_0017FDB0_Tree *tree, float *m);
 };
 
+struct C_0017FCA0 {
+    void func_0017FCA0(u16 idx, S_0017FDB0_Tree *tree, int depth, float *m);
+};
+
 struct C_0017FEB0 {
     char pad0[0xA4];
     u16 fA4;
