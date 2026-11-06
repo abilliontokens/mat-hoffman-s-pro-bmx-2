@@ -257,17 +257,9 @@ struct C_00184930 {
     int func_00184930(float a, float b);
 };
 
-extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
 struct S_00185610_Vec4 {
     float x, y, z, w;
 };
-
-static __forceinline void AddScaled_00185610(S_00185610_Vec4 *v, S_00185610_Vec4 q, float s)
-{
-    v->x += q.x * s;
-    v->y += q.y * s;
-    v->z += q.z * s;
-}
 
 struct S_00185610_Elem {
     char pad0[0x134];
@@ -532,21 +524,21 @@ void S_00185610_Scene::func_00185610(S_00185610_Out *out)
     S_00185610_Cam *cam = D_002EFDB8->f4;
     S_00185610_Node *node = cam->f28->node;
     void *pos = cam->f170;
-    S_00185610_Elem *e = &f344[node->f3c];
-    S_00185610_Vec4 v = e->f134;
-    float px = e->f144;
-    float py = e->f148;
+    S_00185610_Elem *o = &f344[node->f3c];
+    S_00185610_Vec4 v = o->f134;
+    float px = o->f144;
+    float py = o->f148;
     float total = 1.0f;
     S_00185610_Link *l = node->f24;
     float dist;
     float inv;
+    S_00185610_Vec4 q;
 
     for (; l != 0; l = l->next) {
         if (l->test->func_0017A1D0(pos, D_002A9118, &dist) != 0) {
             float w = (D_002A9118 - dist) / D_002A9118;
-            S_00185610_Elem *o = &f344[l->node->f3c];
-            S_00185610_Vec4 q;
-            memcpy(&q, &o->f134, sizeof(q));
+            o = &f344[l->node->f3c];
+            q = o->f134;
             total += w;
             v.x += q.x * w;
             v.y += q.y * w;
