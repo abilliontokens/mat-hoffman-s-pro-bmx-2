@@ -57,6 +57,8 @@ struct C_0001C5B0 {
     C_0001C5B0 *func_0001C5B0(float *p);
 };
 
+struct S_0001C590_bits { int i; };
+
 static __forceinline void vec3_set(float *out, float x, float y, float z) {
     out[3] = 1.0f;
     out[0] = x;
