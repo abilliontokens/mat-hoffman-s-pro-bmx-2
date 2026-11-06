@@ -20,13 +20,14 @@ V4_A91C0 func_00182980(const char *s);
 
 static inline int a91c0_strlen(const char *s)
 {
-    const char *p = s;
-    while (*p++) {
+    const char *p = s + 1;
+    const char *q = s;
+    while (*q++) {
     }
-    return p - s - 1;
+    return q - p;
 }
 
-static inline int a91c0_min(const int &a, const int &b)
+template <class T> inline T a91c0_min(const T &a, const T &b)
 {
     return (b < a) ? b : a;
 }
@@ -105,6 +106,77 @@ struct C_000A9A00 {
     int f158;
     C_000A9A00 *func_000A9A00(void);
 };
+
+extern "C" V4_A91C0 *func_00182980(void *a, void *b);
+void C_000A9820::func_000A91C0(S_A91C0_Reader *stream)
+{
+    char val[0x104];
+    char key[0x104];
+    char sect[0x104];
+    char name[0x104];
+    char tmp[0x10];
+    V4_A91C0 t;
+    int i;
+    int count;
+    int end;
+    float duration;
+    int nColors;
+    int nCycles;
+    int start;
+    int k;
+    int len;
+
+    if (stream->func_00169710(D_0027C504) != 0) {
+        stream->func_00168C20(D_0027C4EC, 0, &count);
+        if (count > 0) {
+            if (objs != 0) {
+                start = num;
+                num = count + start;
+                end = num;
+                objs = (CCObj **)func_001E83E8(objs, end * 4);
+            } else {
+                start = 0;
+                num = count;
+                end = num;
+                objs = (CCObj **)func_001E8A44(end * 4);
+            }
+            for (i = start; i < end; i++) {
+                func_001ADCC0(sect, 0x104, D_0027C4DC, i - start + 1);
+                if (stream->func_00169710(sect) != 0) {
+                    stream->func_00168BE0(D_0027C4D0, D_002764F0, name, -1);
+                    stream->func_00168C20(D_0027C4BC, 1, &nColors);
+                    objs[i] = (CCObj *)func_001E8A44(0x12c);
+                    len = a91c0_min(0x103, a91c0_strlen(name));
+                    func_001E8920((char *)objs[i], name, len);
+                    ((char *)objs[i])[len] = 0;
+                    objs[i]->n = nColors;
+                    objs[i]->elems = (CCElem **)func_001E8A44(nColors * 4);
+                    for (k = 0; k < nColors; k++) {
+                        objs[i]->elems[k] = 0;
+                    }
+                    stream->func_00168C20(D_0027C4AC, 1, &nCycles);
+                    objs[i]->count = nCycles;
+                    objs[i]->r = (float *)func_001E8A44(nCycles * 4);
+                    objs[i]->g = (float *)func_001E8A44(nCycles * 4);
+                    objs[i]->b = (float *)func_001E8A44(nCycles * 4);
+                    objs[i]->idx = 0;
+                    for (k = 0; k < nCycles; k++) {
+                        func_001ADCC0(key, 0x104, D_0027C49C, k + 1);
+                        stream->func_00168BE0(key, D_0027C494, val, -1);
+                        t = *func_00182980(tmp, val);
+                        objs[i]->r[k] = t.x;
+                        objs[i]->g[k] = t.y;
+                        objs[i]->b[k] = t.z;
+                    }
+                    stream->func_00168C50(D_0027C488, 1.0f, &duration);
+                    objs[i]->f120 = duration;
+                    objs[i]->dur = duration / ((float)nCycles - 1.0f);
+                    objs[i]->t = 0;
+                }
+            }
+        }
+    }
+}
 
 void C_000A99A0::func_000A99A0(void)
 {
