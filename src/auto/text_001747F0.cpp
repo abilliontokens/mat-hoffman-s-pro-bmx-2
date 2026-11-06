@@ -32,6 +32,11 @@ Vec4_001747F0 *func_001742F0(Vec4_001747F0 *out, Vec4_001747F0 *a, Vec4_001747F0
 Vec4_001747F0 *func_00174110(Vec4_001747F0 *out, Vec4_001747F0 *in);
 Mat4_001747F0 *func_001741C0(Mat4_001747F0 *out, Vec4_001747F0 *in);
 float func_00011170(Vec4_001747F0 *v);
+struct Emit_001747F0 {
+    char pad0[0x234];
+    void (*fn)(int, Vec4_001747F0 *, Vec4_001747F0 *);
+};
+
 struct R_001747F0 {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
     virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
