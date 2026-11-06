@@ -159,6 +159,8 @@ struct XboxWaterDisplacement {
     void func_001DB080();
     void func_001DC010();
     void func_001DA4C0(int);
+    int func_001CA480(int *a, int *b);
+    void func_001DA500();
 };
 extern int D_002AC720, D_002AB7F0, D_002A99B0, D_002AC5C0;
 extern int *D_002A8490, *D_002F08BC;
