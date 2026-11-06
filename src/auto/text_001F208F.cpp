@@ -1,7 +1,7 @@
 /* 8 functions from 0x001F208F to 0x001F306F, found by Ghidra. */
 #include "common.h"
 
-struct Obj { char pad[0x90]; Obj(int a, int b, int c, int d, unsigned short e); ~Obj(); int run(); };
+struct Obj { char pad[0x90]; Obj(int a, int b, int c, int d, int e); ~Obj(); int run(); };
 struct T { int a; int b; T() {} int func_001EF1E7(); int func_001EF1D0(); void func_001EF734(char); void func_001EF935(T*); void func_001EFB18(int); T* func_001EF170(int); void func_001EEEE6(T*); void func_001EF9B2(char*);
     T* func_001EEF4F(T*); T* func_001EF2FE(T*); T* func_001EF613(int); T* func_001EFD3B(T*, char); T* func_001EFD7A(T*, char*); T* func_001EFAB5(T*, T*);
     void func_001EF935(const T&); T* func_001EEF4F(const T&); T* func_001EF2FE(const T&);
@@ -344,6 +344,39 @@ T* func_001F2A1C(T* r, T* a, T* b, int c) {
 void func_001F2BC3(void) {
     int func_001EB302(...);
     func_001EB302(5);
+}
+
+T* func_001F2BCC(T* ret, T* superType)
+{
+    char c = *D_002F6A28;
+    if (c == 0) {
+        func_001EFCF7(ret, 2, superType);
+        return ret;
+    }
+    D_002F6A28++;
+    N A;
+    int ebx = -1;
+    switch (c) {
+    case 'C': case 'D': case 'E':
+        A.func_001EF9B2(D_00295EF8);
+        break;
+    case 'F': case 'G':
+        A.func_001EF9B2(D_00295EF0);
+        break;
+    case 'H': case 'I':
+        A.func_001EF9B2(D_0027D240);
+        break;
+    case 'J': case 'K':
+        A.func_001EF9B2(D_00295EE8);
+        break;
+    case 'M':
+        A.func_001EF9B2(D_0027D21C);
+        break;
+    default:
+        ebx = c & 3;
+        break;
+    }
+    return ret;
 }
 
 T *func_001F2F3F(T *a1, T *a2)
