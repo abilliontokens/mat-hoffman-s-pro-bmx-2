@@ -71,7 +71,7 @@ struct Label_5F3 {
     float d48;
     char pad4C[0xC];
     u8 flags;
-    void SetW() { if (w28 != 0x435d0000) { w28 = 0x435d0000; flags |= 1; } }
+    void SetW() { if (w28 != 0x435d0000) { flags |= 1; *(float *)&w28 = 221.0f; } }
     void SetY(float y) { if (y != *(float *)&w28) { flags |= 1; *(float *)&w28 = y; } }
     void SetQuad() { a3C = 1.0f; d48 = 1.0f; unsigned char f = flags | 4; b40 = 0.0f; c44 = 0.0f; flags = f; }
     Label_5F3 *func_001D5760(void);
@@ -252,6 +252,109 @@ struct S6_5FC { int r[4]; int x, y; };
 #define AT(t, o) (*(t *)((char *)this + (o)))
 #define GAT(t, o) (*(t *)((char *)D_002A8490 + (o)))
 
+
+void BmxInGameMenu::func_0005F3C0(void)
+{
+    int *r;
+    int font;
+    int i;
+    D_002A8490->f2EC->func_0018C160((int)&D_002786A0);
+    r = D_002A8490->f2EC->func_0018C160((int)&D_00278690);
+    font = r ? *r : 0;
+    D_002A8490->f2EC->func_0018C160((int)&D_00278678);
+    strcpy(D_002A60B0, "global\\textures\\");
+    for (i = 0; i < 8; i++) {
+        Label_5F3 *m = (Label_5F3 *)func_001E8A44(0x64);
+        unk64[i] = (C_001D5AA0 *)(m ? m->func_001D5760() : 0);
+        if (i % 2 == 0) {
+            ((Label_5F3 *)unk64[i])->func_001D5810(D_002786B0, 100.0f, i * D_002757F0 * D_002755E8 + D_002786B8, 0);
+        } else {
+            ((Label_5F3 *)unk64[i])->func_001D5810((const char *)D_002786B0, 321.0f, (i - 1) * D_002757F0 * D_002755E8 + D_002786B8, 0);
+        }
+        ((Label_5F3 *)unk64[i])->SetQuad();
+        ((Label_5F3 *)unk64[i])->SetY(221.0f);
+    }
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+
+    Widget_5F3 *w = (Widget_5F3 *)func_001E8A44(0x184);
+    unk84 = w ? w->func_001B12C0(1) : 0;
+    unk84->func_001B1580(&D_00278690, &D_00278690, D_002A8490->f2E8->f4[0x7a0 / 4], 0);
+    unk9C = 0x75;
+    unk84->func_001B19C0(0x140, 0x75, 0);
+    unk84->func_001B2270(0xffcccccc);
+    unk84->func_001B19A0(D_0028F5E0);
+    func_001577A0(unk84, -1);
+
+    w = (Widget_5F3 *)func_001E8A44(0x184);
+    unk8C = w ? w->func_001B12C0(1) : 0;
+    unk8C->func_001B13A0(&D_00278690, &D_00278690, 0, 0x28);
+    unkA4 = 0xc5;
+    unk8C->func_001B19C0(0x140, 0xc5, 0);
+    unk8C->func_001B2270(0xffcccccc);
+    unk8C->func_001B19A0(D_0028F5E0);
+    unk8C->func_001B17D0(D_002A8490->f2E8->f4[0xea0 / 4]);
+    func_001577A0(unk8C, -1);
+
+    w = (Widget_5F3 *)func_001E8A44(0x184);
+    unk88 = w ? w->func_001B12C0(1) : 0;
+    unk88->func_001B1580(&D_00278690, &D_00278690, D_002A8490->f2E8->f4[0x7d8 / 4], 0);
+    unkA0 = 0x9d;
+    unk88->func_001B19C0(0x140, 0x9d, 0);
+    unk88->func_001B2270(0xffcccccc);
+    unk88->func_001B19A0(D_0028F5E0);
+    func_001577A0(unk88, -1);
+
+    w = (Widget_5F3 *)func_001E8A44(0x184);
+    unk90 = w ? w->func_001B12C0(1) : 0;
+    unk90->func_001B1580(&D_00278690, &D_00278690, D_002A8490->f2E8->f4[0x7e8 / 4], 0);
+    unkA8 = 0xed;
+    unk90->func_001B19C0(0x140, 0xed, 0);
+    unk90->func_001B2270(0xffcccccc);
+    unk90->func_001B19A0(D_0028F5E0);
+    func_001577A0(unk90, -1);
+
+    Text_5F3 *t = (Text_5F3 *)func_001E8A44(0x60);
+    unkE4 = t ? t->func_001D5E90() : 0;
+    unkE4->func_001D6190(font, D_002A8490->f2E8->f4[0x7c8 / 4], &D_00278690);
+    t = unkE4;
+    if (t->f4 != 0x44048000 || t->f8 != 0x43c48000) {
+        t->f4 = 0x44048000;
+        t->f8 = 0x43c48000;
+        t->f4E |= 6;
+    }
+    t = unkE4;
+    if (t->f48 != 0xffcccccc) {
+        t->f4E |= 8;
+        t->f48 = (t->f48 & 0xffcccccc) | 0xcccccc;
+    }
+    t = unkE4;
+    if (t->f34 != 0x3f800000) {
+        t->f34 = 0x3f800000;
+        t->f4E |= 6;
+    }
+
+    t = (Text_5F3 *)func_001E8A44(0x60);
+    unkE8 = t ? t->func_001D5E90() : 0;
+    unkE8->func_001D6190(font, D_002A8490->f2E8->f4[0x808 / 4], &D_00278690);
+    t = unkE8;
+    if (t->f4 != 0x43cc0000 || t->f8 != 0x43c48000) {
+        t->f4 = 0x43cc0000;
+        t->f8 = 0x43c48000;
+        t->f4E |= 6;
+    }
+    t = unkE8;
+    if (t->f48 != 0xffcccccc) {
+        t->f4E |= 8;
+        t->f48 = (t->f48 & 0xffcccccc) | 0xcccccc;
+    }
+    t = unkE8;
+    if (t->f34 != 0x3f800000) {
+        t->f34 = 0x3f800000;
+        t->f4E |= 6;
+    }
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+    unk110 = 1;
+}
 
 void BmxInGameMenu::func_0005F960(void)
 {
