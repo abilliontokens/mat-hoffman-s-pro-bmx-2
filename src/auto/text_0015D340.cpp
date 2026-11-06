@@ -18,11 +18,6 @@ static __forceinline void Normalize_DD80(float *volatile outArg, const float *vo
  scale=_mm_shuffle_ps(scale,scale,0);
  _mm_storeu_ps(out,_mm_mul_ps(scale,v));
 }
-static __forceinline void Copy_DD80(float *volatile outArg, const float *in) {
- float *out=outArg;
- __m128 r0=_mm_load_ps(in), r1=_mm_load_ps(in+4), r2=_mm_load_ps(in+8), r3=_mm_load_ps(in+12);
- _mm_store_ps(out,r0); _mm_store_ps(out+4,r1); _mm_store_ps(out+8,r2); _mm_store_ps(out+12,r3);
-}
 static __forceinline float Min_DD80(float a, float b) {
  float r;
  _mm_store_ss(&r,_mm_min_ss(_mm_set_ss(a),_mm_set_ss(b)));
