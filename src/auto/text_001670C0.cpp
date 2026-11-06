@@ -4,7 +4,62 @@
 #include <xmmintrin.h>
 #include <string.h>
 struct Vec4_165EF0 { float x,y,z,w; };
-struct C_001673B0 { char pad[0x1e0]; int f1e0; int func_001673B0(const char *a, void *b, void *c, void *d, int e); };
+/* the engine's file wrapper (D_002BEAAC) */
+struct C_0013B210_1673B0 {
+    int func_0013D310(char *name, char *key, int *h, int *node, int flag);
+    int func_0013AC40(char *name, int a2, int a3, int a4, int *out, int grow);
+    void func_0013B1F0(int h, void *obj);
+    void func_0013C110(int h);
+};
+extern C_0013B210_1673B0 *D_002BEAAC;
+extern char D_00275FB4[], D_00287E90[], D_00287EA0[], D_00287EA8[];
+void func_001E891B(void *p);
+void *func_001E8A44(int size);
+char *func_001E8920(char *dst, const char *src, int n);
+void func_0014FF00(const char *path, int b, int c, char *name, int e);
+void func_00030F30(char *name, char *key);
+int func_001EA426(const char *a, const char *b);
+
+/* config file reader, 0x4CC bytes */
+struct C_00168280 {
+    char pad0[0x4CC];
+    C_00168280 *func_00168280(void);
+    int func_00169490(const char *path, int flags);
+    void func_001691E0(void);
+    void func_00169710(const char *name);
+    void func_00168550(const char *key, char *dst, int n);
+};
+
+template <class T> inline T Min(const T &a, const T &b) { return a < b ? a : b; }
+
+/* the interface every object of this family exposes through a virtual base */
+struct C_001673B0_Base {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    C_001673B0_Base *func_001D3F50(void);
+};
+
+/* an already loaded object of the family (found by name) */
+struct C_001673B0_Found : virtual C_001673B0_Base {
+    char pad0[4];
+    char *f4;
+    void func_00166CA0(int arg);
+};
+
+struct C_001673B0 : virtual C_001673B0_Base {
+    char pad0[8];
+    C_00168280 *f8;
+    char padC[0x3c];
+    char f48[0x50];
+    char pad98[0xa0];
+    char f138[0x50];
+    int f188;
+    char pad18C[0x54];
+    int f1e0;
+    C_001673B0_Base *func_001673B0(const char *name, const char *slt, void *unused, int id, int arg4);
+    void func_00166EB0(int arg);
+};
 struct C_001648E0_Item {
  virtual void v0(); virtual void v1();
  virtual void v2(float, Vec4_165EF0 *);
