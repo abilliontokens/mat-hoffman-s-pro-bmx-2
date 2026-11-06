@@ -42,6 +42,15 @@ T* func_001F062A(T*, T*, int);
 T* func_001F2BCC(T*, T*);
 T* func_001F2A1C(T*, T*, T*, int);
 void *func_001EFCF7(void *a, char b, void *c);
+T* func_001F1DF5(T*, T*, T*);
+T* func_001F11B1(T*, T*, T*);
+T* func_001F11B1(T*, T*);
+T* func_001EF9D9(T*, T*, T*);
+T* func_001EF9D9(T*);
+T* func_001EFF6E(T*, T*);
+T* func_001EF5E4(T*, T*);
+T* func_001F0000(T*);
+T* func_001EF0E7(T*);
 extern char D_00295E74[];
 extern char D_00295EF8[], D_00295EF0[], D_00295EE8[], D_00295EE0[], D_00295ED8[], D_00295ED0[];
 extern char D_00295EC8[], D_00295EC0[], D_00295EB4[], D_00295EAC[], D_00295EA4[], D_00295E9C[];
@@ -81,6 +90,46 @@ extern unsigned char D_002F6A39;
 extern char D_00295E5C[];
 
 #pragma optimize("s", on)
+T* func_001F208F(T* a0, T* a1)
+{
+    char *s;
+    char c;
+    int mode;
+
+    s = D_002F6A28;
+    c = *s;
+    if (c == 0) {
+        func_001EFCF7(a0, 2, a1);
+        return a0;
+    }
+    if (!(c >= '6' && c <= '9') && c != '_') {
+        a0->func_001EF170(1);
+        return a0;
+    }
+    mode = c - '6';
+    D_002F6A28 = ++s;
+    if (mode == 0x29) {
+        c = *s;
+        if (c == 0) {
+            func_001EFCF7(a0, 2, a1);
+            return a0;
+        }
+        mode = c - '=';
+        D_002F6A28 = ++s;
+        if (mode < 4 || mode > 7)
+            mode = -1;
+    } else {
+        if (mode < 0 || mode > 3)
+            mode = -1;
+    }
+    if (mode != -1) {
+        N dname;
+        dname.func_001EEEE6(a1);
+    }
+    a0->func_001EF170(3);
+    return a0;
+}
+
 T* func_001F23B8(T* ret, T* superType, char prefix, T* cvType, int thisFlag)
 {
     N A;
@@ -339,6 +388,27 @@ T* func_001F2A1C(T* r, T* a, T* b, int c) {
     }
     return r;
 }
+
+#pragma optimize("s", on)
+int func_001EB390(int);
+void __fastcall func_001EE9AB(AllocObj*);
+#pragma optimize("s", on)
+int func_001F2B32(int a, int b, int c, int d, int e, unsigned short f)
+{
+ int r;
+ if (!d) return 0;
+ func_001EB390(5);
+ __try {
+ *(int*)&D_002F6A04=d; D_002F6A08=e; D_002F6A14=0; D_002F6A0C=0; D_002F6A10=0;
+ char buf[0x78];
+ ((Obj*)buf)->Obj::Obj(a,b,c,0,f);
+ r=((Obj*)buf)->run();
+ func_001EE9AB(&D_002F6A04);
+ } __finally { }
+ return r;
+}
+#pragma optimize("", on)
+
 #pragma optimize("", on)
 
 void func_001F2BC3(void) {
@@ -379,6 +449,7 @@ T* func_001F2BCC(T* ret, T* superType)
     return ret;
 }
 
+#pragma optimize("s", on)
 T *func_001F2F3F(T *a1, T *a2)
 {
     T local;
@@ -446,4 +517,4 @@ dodefault:
         return func_001F2BCC(a1, a2);
     }
 }
-
+#pragma optimize("", on)
