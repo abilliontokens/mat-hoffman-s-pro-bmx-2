@@ -163,8 +163,6 @@ struct S_0004C320_World {
     S_0004C320_Scene *f3ac;
 };
 
-static __forceinline void LoopBody_0004C130(int) {}
-
 struct C_0004C560Block {
     int used;
     int vals[50];
@@ -291,7 +289,7 @@ void C_0004C560::func_0004C130(void)
     int cnt[8];
     char buf[0x104];
     char buf2[0x104];
-    int i, j, n = 0, m, k;
+    int i, j, n = 0, m;
 
     memset(cnt, 0, sizeof(cnt));
     for (i = 0; i < *(int *)((char *)f64->f3ac + 0x24); i++) {
@@ -309,9 +307,9 @@ void C_0004C560::func_0004C130(void)
             n++;
         }
     }
-    k = 0;
-    while (k < f90)
-        k++;
+    for (i = 0; i < f90; i++) {
+        __noop;
+    }
     f1250 = n;
     m = 0;
     for (i = 0; i < *(int *)(*(char **)((char *)f64 + 0x3b4) + 0x24); i++) {
