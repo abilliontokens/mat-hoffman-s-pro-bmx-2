@@ -50,7 +50,7 @@ struct Node_1596 {
  virtual void v44();
  virtual void v45();
  virtual void enable(int,int);
- char pad4[0x228]; void *xf; void func_0012FE50(float,int);
+ char pad4[0x22C]; void *xf; void func_0012FE50(float,int);
 };
 struct Skeleton_1596 { void *func_00198330(char *); };
 struct Ref_1596 { int pad; Skeleton_1596 *skeleton; };
