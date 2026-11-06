@@ -28,7 +28,8 @@ struct Sprite_8AED0 {
     void SetF34(int v) { if (f34 != v) { f34 = v; b58 |= 1; } }
     void SetF2c(int v) { if (f2c != v) { f2c = v; b58 |= 1; } }
     void SetVec4(float a, float b, float c, float d) { f3c = a; f40 = b; f44 = c; f48 = d; b58 |= 4; }
-    void SetAlphaByte() { b58 |= 2; f38 &= 0xff000000; b58 |= 2; ((char *)&f38)[3] = (char)0x80; }
+    void SetAlphaMask() { b58 |= 2; f38 &= 0xff000000; }
+    void SetAlphaByte() { b58 |= 2; ((char *)&f38)[3] = (char)0x80; }
 };
 extern int D_00275630;
 extern int D_00279DEC;
@@ -509,8 +510,9 @@ void C_0008BA00::func_0008BA00(void)
         return;
     }
     int *res = ((C_0008B850_Res *)D_002A8490[0x2ec / 4])->func_0018C160(D_00278690);
-    if (res != 0 && *res != 0) {
-        S_0008BA00_Rect *r = func_0018C070((S_0008BA00_Font *)*res);
+    int font = res ? *res : 0;
+    if (font != 0) {
+        S_0008BA00_Rect *r = ((S_0008BA00_Font *)font)->func_0018C070();
         if (D_00275AEC > r->f10) {
             r->f10 = 10.0f;
         }
