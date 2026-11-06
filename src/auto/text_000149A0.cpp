@@ -29,7 +29,7 @@ struct Sound149A0 {
 };
 
 extern char *D_002B9120;
-extern const float D_002756B4;
+extern float D_002756B4;
 
 struct Obj13F50 {
     void func_00013F50(void *arg1, int arg2, void *arg3, int arg4);
@@ -72,6 +72,33 @@ static inline int IsLocal_151F0()
 
 void func_001E891B(void *ptr);
 int func_00011260(int arg1, int arg2);
+
+void AIPedestrian::func_000149A0(int idx, float scale)
+{
+    if (*(unsigned int *)((char *)D_002A8490 + 0x238) >= *(unsigned int *)((char *)this + 0x3c0)) {
+        char *rider = *(char **)(*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8);
+        if (*(unsigned char *)(rider + 0x21) & 1) {
+            Vec4_149A0 a;
+            Vec4_149A0 b;
+            Vec4_149A0 c;
+            a.z = 0.0f; a.y = 0.0f; a.x = 0.0f; a.w = 1.0f;
+            b.z = 0.0f; b.y = 0.0f; b.x = 0.0f; b.w = 1.0f;
+            (*(Obj197B40 **)(*(char **)((char *)this + 0x3c) + 4))->func_00197B40(&a, &b);
+            (*(Obj108360 **)(*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8))->func_00108360();
+            c.x = a.x * scale;
+            c.y = a.y * scale;
+            c.z = a.z * scale;
+            c.w = 1.0f;
+            *(Vec4_149A0 *)(*(char **)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x950) + 0x5c) = c;
+            *(unsigned int *)((char *)this + 0x3c0) = *(unsigned int *)((char *)D_002A8490 + 0x238) + 5000;
+            int snd = *(int *)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x970);
+            (*(Sound149A0 **)(*(char **)((char *)D_002A8490 + 8) + snd * 4 + 0x14))->Play(0, scale * D_002756B4, 200);
+            if (*((char *)this + 0x3e1) == 0) {
+                D_002AF44C->func_00013F50(this, *(unsigned char *)((char *)this + 0x3e2), (char *)this + 0x3e4, *(int *)((char *)this + 0x3cc));
+            }
+        }
+    }
+}
 
 void AIPedFleeState::func_00014EA0()
 {
