@@ -171,6 +171,13 @@ struct C_000B4300 {
     void func_000B2530(void);
     void func_000B25D0(void);
     C_000B4300 *func_000B4300(S_B4300_Stream *a, S_B4300_Stream *b);
+    void func_000B3E10(void);
+    void func_000B1B80(void);
+    void func_000B3330(void);
+    void func_000B1E50(void);
+    void func_000B1E60(void);
+    void func_000B1E70(void);
+    void func_001577A0(S_B3E10_Obj *o, int a);
 };
 
 template <class T>
