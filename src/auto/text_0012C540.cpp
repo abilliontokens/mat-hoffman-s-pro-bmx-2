@@ -100,6 +100,21 @@ struct A_12CD10 { /* 0x1e0 animation object */
     void func_0019D7B0(void *a, char *b);
 };
 
+struct V4i_12CD10 { int a, b, c, d; };
+struct __declspec(align(16)) Mat_12CD10 {
+    float m[16];
+    void identity();
+};
+inline void Mat_12CD10::identity()
+{
+    __m128 z = _mm_setzero_ps();
+    _mm_store_ps(m, z);
+    _mm_store_ps(m + 4, z);
+    _mm_store_ps(m + 8, z);
+    _mm_store_ps(m + 12, z);
+    m[0] = m[5] = m[10] = m[15] = 1;
+}
+
 struct S_12CD10 { /* self; vtable slots 2, 27, 29 and 47 used */
     virtual void v0();virtual void v1();
     virtual void slot2();
@@ -327,3 +342,124 @@ void C_0012CCA0::func_0012CCA0()
     func_00170B50();
 }
 
+extern "C" void *memcpy(void *, const void *, unsigned int);
+#pragma intrinsic(memcpy)
+void *S_12CD10::func_0012CD10(char *volatile model, char *volatile animation, int a2, char *a3, Vec16C *a4, float a5, int a6, int a7, float a8, int a9, unsigned int count, int a11, float a12, float a13, int a14, int a15)
+{
+    __declspec(align(16)) float matrix[16], identity[16];
+    char path[260], check[260], animpath[260];
+    struct { S_12CD10 * volatile self; Vec16C lo; volatile int result; Vec16C hi; volatile int length, limit; } t;
+    t.self = this;
+    t.hi.z = 0; t.hi.y = 0; t.hi.x = 0; t.hi.w = 1;
+    t.lo.z = 0; t.lo.y = 0; t.lo.x = 0; t.lo.w = 1;
+    t.self->f4b0 = a14;
+    t.self->func_001D3F50();
+    func_001ADCC0(check, 260, D_00275678, D_002A4C10, animation);
+    if (!D_002BEAAC->func_0013B1A0(check))
+        animation[0] = 0;
+    func_001ADCC0(path, 260, D_00275678, D_002A46E8, a3);
+    t.length = strlen(model);
+    t.limit = 255;
+    { int a = t.limit, b = t.length; t.result = a > b ? b : a; }
+    int n = t.result;
+    func_001E8920(t.self->name, model, n);
+    t.self->name[n] = 0;
+    M_12CD10 *m = (M_12CD10 *)func_001E8A44(0x1e0);
+    if (m)
+        m = m->func_00143580(1);
+    m->v35(model, 0, 1);
+    t.self->func_001577A0(m, 0);
+    t.self->f400 = m;
+    M_12CD10 *part = t.self->f400->func_00198330(D_00284398);
+    if (!part) {
+        part = t.self->f400;
+        t.self->f22c = t.self->f400;
+        t.self->slot27(t.self->f22c);
+    }
+    t.self->f448 = *a4;
+    t.self->f4e8 = a8;
+    t.self->f458[0] = D_002A3FD8; t.self->f458[1] = D_002A3FDC; t.self->f458[2] = D_002A3FE0; t.self->f458[3] = D_002A3FE4;
+    t.self->f4dc = 0;
+    t.self->f498 = a6;
+    t.self->f4a0 = a7;
+    part->func_00197E70((char *)t.self + 0x190);
+    part->func_001983E0(&t.hi, &t.lo);
+    float *id = identity;
+    __m128 zero = _mm_setzero_ps();
+    _mm_store_ps(id, zero);
+    _mm_store_ps(id + 4, zero);
+    _mm_store_ps(id + 8, zero);
+    _mm_store_ps(id + 12, zero);
+    id[0] = id[5] = id[10] = id[15] = 1;
+    memcpy(matrix, identity, 64);
+    float z = t.lo.z * t.lo.z, y = t.lo.y * t.lo.y, x = t.lo.x * t.lo.x;
+    matrix[0] = (y + z) * t.self->f210 * D_00283A78;
+    matrix[5] = (x + z) * t.self->f210 * D_00283A78;
+    matrix[10] = (x + y) * t.self->f210 * D_00283A78;
+    t.self->slot29(matrix);
+    t.self->f4b4 = count;
+    if (t.self->f4b4 > 0) {
+        t.self->f500 = (M_12CD10 **)func_001E8A44(t.self->f4b4 * 4);
+        if (t.self->f4b4 > 0) t.self->f500[0] = t.self->f400->func_00198330(D_0028438C);
+        if (t.self->f4b4 > 1) t.self->f500[1] = t.self->f400->func_00198330(D_00284380);
+        if (t.self->f4b4 > 2) t.self->f500[2] = t.self->f400->func_00198330(D_00284374);
+        if (t.self->f4b4 > 3) t.self->f500[3] = t.self->f400->func_00198330(D_00284368);
+        if (t.self->f4b4 > 4) t.self->f500[4] = t.self->f400->func_00198330(D_0028435C);
+        if (t.self->f4b4 > 5) t.self->f500[5] = t.self->f400->func_00198330(D_00284350);
+        t.self->f500[0]->func_001983E0(&t.hi, &t.lo);
+        if (t.lo.y > D_00275544)
+            t.self->f4d4 = D_00275460 / t.lo.y;
+        else
+            t.self->f4d4 = 1.0f;
+    }
+    t.self->f4fc = a2;
+    T_12CD10 *tc = (T_12CD10 *)func_001E8A44(0x110);
+    if (tc)
+        tc = tc->func_0017F050(1);
+    t.self->f408 = tc;
+    t.self->f408->func_0017F0A0(3);
+    t.self->f408->flagsA7 |= 1;
+    t.self->func_001577A0(t.self->f408, -1);
+    t.self->f4d8 = 5.0f;
+    A_12CD10 *anim = (A_12CD10 *)func_001E8A44(0x1e0);
+    if (anim)
+        anim = anim->func_0019B700(1);
+    t.self->f40c = anim;
+    t.self->f40c->func_00129920(5);
+    t.self->f40c->obj60 = t.self;
+    t.self->f40c->self64 = t.self;
+    t.self->f40c->src68 = D_002BA15C;
+    t.self->f40c->flagsA7 |= 1;
+    t.self->func_001577A0(t.self->f40c, -1);
+    if (animation && animation[0]) {
+        if (a15) {
+            strcpy(animpath, animation);
+            func_00030F30(animpath, D_00284348);
+            T_12CD10 *c = (T_12CD10 *)func_001E8A44(0x110);
+            if (c)
+                c = c->func_0017F050(1);
+            t.self->f410 = c;
+            t.self->f410->func_0017F0A0(3);
+            t.self->f410->src68 = D_002BA15C;
+            t.self->f410->func_001334E0(1);
+            t.self->f410->func_00181140(t.self->f22c, animpath, 0);
+            t.self->f410->cbA0 = func_00012140;
+            t.self->f410->obj60 = t.self->f22c;
+            t.self->f410->self64 = t.self;
+            t.self->func_001577A0(t.self->f410, 2);
+        }
+        t.self->f40c->func_0019D7B0(t.self->f400, animation);
+    }
+    t.self->f408->func_001334F0(t.self->f40c);
+    t.self->f4c0 = a5;
+    if (t.self->f4c0 > D_00275544)
+        t.self->f4c4 = D_00275460 / t.self->f4c0;
+    t.self->f4c8 = a11;
+    t.self->f4cc = a12;
+    t.self->f4d0 = a13;
+    if (!t.self->slot47(path, (char *)t.self->f400 + 0x28)) {
+        t.self->slot2();
+        return 0;
+    }
+    return t.self;
+}
