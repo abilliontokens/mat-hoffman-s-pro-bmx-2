@@ -259,6 +259,7 @@ struct BmxUIPageGameOptions {
     BmxUIPageGameOptions *func_000C8F30(int a);
     void func_001BE4F0(int a, int b, int c);
     void func_001577A0(int a, WidgetC9090 *w);
+    void func_001577A0(WidgetC9090 *w, int a);
     BmxUIPageGameOptions *func_000C9090(int a, int b, int c);
 };
 
@@ -337,6 +338,127 @@ void BmxUIPageGameOptions::func_000C9050()
         }
     }
     func_001BE3F0();
+}
+
+BmxUIPageGameOptions *BmxUIPageGameOptions::func_000C9090(int a, int b, int c)
+{
+    int i;
+
+    func_001BE4F0(a, b, c);
+    D_002A8490->p2EC->func_0018C160(D_00278690);
+    D_002A8490->p2EC->func_0018C160(D_00278678);
+    D_002A8490->p2EC->func_0018C160(D_002786A0);
+    for (i = 0; i < 2; i++) {
+        arr32C[i] = NewWidgetC9090();
+        arr32C[i]->func_001B13A0(D_002786A0, D_002786A0, 0, 0x1e);
+        arr32C[i]->func_001B2270(0xffcccccc);
+        func_001577A0(-1, arr32C[i]);
+    }
+    arr32C[0]->func_001B1A30(330.0f, 145.0f, 0);
+    arr32C[0]->func_001B19A0(D_0028F5DC);
+    arr32C[1]->func_001B1A30(330.0f, 185.0f, 0);
+    arr32C[1]->func_001B19A0(D_0028F5DC);
+
+    unk2D8 = NewWidgetC9090();
+    unk2D8->func_001B13A0(D_002786A0, D_002786A0, 0, 0x1e);
+    unk2D8->func_001B1A30(330.0f, 105.0f, 0);
+    unk2D8->func_001B19A0(D_0028F5DC);
+    unk2D8->func_001B2270(0xffcccccc);
+    func_001577A0(-1, unk2D8);
+
+    unk2DC = NewWidgetC9090();
+    unk2DC->func_001B13A0(D_002786A0, D_002786A0, 0, 5);
+    unk2DC->func_001B1A30(330.0f, 225.0f, 0);
+    unk2DC->func_001B19A0(D_0028F5DC);
+    unk2DC->func_001B2270(0xffcccccc);
+    func_001577A0(-1, unk2DC);
+
+    unk324 = NewWidgetC9090();
+    unk324->func_001B13A0(D_002786A0, D_002786A0, 0, 0x1e);
+    unk324->func_001B1A30(330.0f, 265.0f, 0);
+    unk324->func_001B19A0(D_0028F5DC);
+    unk324->func_001B2270(0xffcccccc);
+    func_001577A0(-1, unk324);
+
+    unk2E0 = NewWidgetC9090();
+    unk2E0->func_001B13A0(D_002786A0, D_002786A0, 0, 0x1e);
+    unk2E0->func_001B1A30(330.0f, 305.0f, 0);
+    unk2E0->func_001B19A0(D_0028F5DC);
+    unk2E0->func_001B2270(0xffcccccc);
+    func_001577A0(-1, unk2E0);
+
+    unk2EC = NewWidgetC9090();
+    unk2EC->func_001B13A0(D_002786A0, D_002786A0, 0, 0x1e);
+    unk2EC->func_001B1A30(320.0f, 105.0f, 0);
+    unk2EC->func_001B19A0(D_0028F5EC);
+    unk2EC->func_001B2270(0xffcccccc);
+    func_001577A0(-1, unk2EC);
+    unk2EC->func_001B17D0(D_002A8490->p2E8->p4->f340);
+
+    unk2F4 = NewWidgetC9090();
+    unk2F4->func_001B13A0(D_002786A0, D_002786A0, 0, 0x1e);
+    unk2F4->func_001B1A30(320.0f, 145.0f, 0);
+    unk2F4->func_001B19A0(D_0028F5EC);
+    unk2F4->func_001B2270(0xffcccccc);
+    func_001577A0(-1, unk2F4);
+    unk2F4->func_001B17D0(D_002A8490->p2E8->p4->f880);
+
+    unk2F8 = NewWidgetC9090();
+    unk2F8->func_001B13A0(D_002786A0, D_002786A0, 0, 0x1e);
+    unk2F8->func_001B1A30(320.0f, 185.0f, 0);
+    unk2F8->func_001B19A0(D_0028F5EC);
+    unk2F8->func_001B2270(0xffcccccc);
+    func_001577A0(-1, unk2F8);
+    unk2F8->func_001B17D0(D_002A8490->p2E8->p4->f888);
+
+    unk2FC = NewWidgetC9090();
+    unk2FC->func_001B13A0(D_002786A0, D_002786A0, 0, 0x1e);
+    unk2FC->func_001B1A30(320.0f, 225.0f, 0);
+    unk2FC->func_001B19A0(D_0028F5EC);
+    unk2FC->func_001B2270(0xffcccccc);
+    func_001577A0(-1, unk2FC);
+    unk2FC->func_001B17D0(D_002A8490->p2E8->p4->fD0);
+
+    unk300 = NewWidgetC9090();
+    unk300->func_001B13A0(D_002786A0, D_002786A0, 0, 0x1e);
+    unk300->func_001B1A30(320.0f, 265.0f, 0);
+    unk300->func_001B19A0(D_0028F5EC);
+    unk300->func_001B2270(0xffcccccc);
+    func_001577A0(-1, unk300);
+    unk300->func_001B17D0(D_002A8490->p2E8->p4->f11A8);
+
+    unk304 = NewWidgetC9090();
+    unk304->func_001B13A0(D_002786A0, D_002786A0, 0, 0x1e);
+    unk304->func_001B1A30(320.0f, 305.0f, 0);
+    unk304->func_001B19A0(D_0028F5EC);
+    unk304->func_001B2270(0xffcccccc);
+    func_001577A0(-1, unk304);
+    unk304->func_001B17D0(D_002A8490->p2E8->p4->f11B0);
+
+    for (i = 0; i < 12; i++) {
+        void *mem = func_001E8A44(100);
+        Entry334 *e;
+        if (mem != 0)
+            e = ((Entry334 *)mem)->func_001D5760();
+        else
+            e = 0;
+        arr334[i] = (DelObjC_000C *)e;
+        if (i % 2 == 0) {
+            e->func_001D5810(D_002786B0, 100.0f, (float)((i / 2) * 40) + D_0027E484, 0);
+        } else {
+            e->func_001D5810(D_002786B0, 321.0f, (float)((i / 2) * 40) + D_0027E484, 0);
+            e->f3C = 0x3f800000;
+            e->f48 = 0x3f800000;
+            e->f40 = 0;
+            e->f44 = 0;
+            e->b58 |= 4;
+        }
+        if (e->f28 != 0x435d0000) {
+            e->f28 = 0x435d0000;
+            e->b58 |= 1;
+        }
+    }
+    return this;
 }
 
 void BmxUIPageOptions::func_000C9860()
