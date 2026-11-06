@@ -247,10 +247,6 @@ void *DynamicStringTable::func_001AC920(int flags)
 }
 
 double func_001EA2BA(double value, double *ipart);
-static __forceinline char *IndexPtr_001AC940(int n, char *base)
-{
-    return base + n;
-}
 static __declspec(noinline) char *func_001AC940(int *sign, char *buf, double arg, int ndigits, int *decpt, int eflag)
 {
     char *p;
@@ -283,7 +279,7 @@ static __declspec(noinline) char *func_001AC940(int *sign, char *buf, double arg
             dp--;
         }
     }
-    p1 = (char *)ndigits + (int)buf;
+    p1 = buf + ndigits;
     if (eflag == 0)
         p1 += dp;
     *decpt = dp;
