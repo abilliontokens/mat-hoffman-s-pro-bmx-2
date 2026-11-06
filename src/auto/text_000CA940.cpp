@@ -243,6 +243,9 @@ struct BmxUIPageGameOptions {
     void func_000CAA80();
     void func_000CB2D0();
     void func_000CB3B0();
+    int func_000CAB90(int a, int b);
+    void func_001BEC10(int a);
+    void func_001BEB90(int a);
 };
 
 void C_000CA940::func_000CA940(void)
