@@ -65,7 +65,7 @@ struct C_001D2A40 {
     void func_001D2A40();
 };
 
-static __forceinline void Round_001D2A40(int * volatile out, float f) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
+static __forceinline void Round_001D2A40(int * volatile out, float f) { *out = _mm_cvtss_si32(_mm_load_ss(&f)); }
 static __forceinline int Min_001D2A40(int a, int b) { return a > b ? b : a; }
 
 /* step one channel k of track i; M = done/dir bit, FM = repeat bit and PM = ping-pong bit of flags */
