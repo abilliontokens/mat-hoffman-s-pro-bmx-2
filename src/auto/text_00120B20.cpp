@@ -32,11 +32,11 @@ extern float D_00275544;
 
 static inline void Cross_00120FF0(S_0011F4B0_V4 *a, S_0011F4B0_V4 *b, S_0011F4B0_V4 *out)
 {
-    _mm_storeu_ps(&out->x, _mm_shuffle_ps(
-        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a->x), _mm_shuffle_ps(_mm_loadu_ps(&b->x), _mm_loadu_ps(&b->x), 0xc9)),
-                   _mm_mul_ps(_mm_loadu_ps(&b->x), _mm_shuffle_ps(_mm_loadu_ps(&a->x), _mm_loadu_ps(&a->x), 0xc9))),
-        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a->x), _mm_shuffle_ps(_mm_loadu_ps(&b->x), _mm_loadu_ps(&b->x), 0xc9)),
-                   _mm_mul_ps(_mm_loadu_ps(&b->x), _mm_shuffle_ps(_mm_loadu_ps(&a->x), _mm_loadu_ps(&a->x), 0xc9))), 0xc9));
+    __m128 va = _mm_loadu_ps(&a->x);
+    __m128 vb = _mm_loadu_ps(&b->x);
+    __m128 r = _mm_sub_ps(_mm_mul_ps(va, _mm_shuffle_ps(vb, vb, 0xc9)),
+                          _mm_mul_ps(vb, _mm_shuffle_ps(va, va, 0xc9)));
+    _mm_storeu_ps(&out->x, _mm_shuffle_ps(r, r, 0xc9));
 }
 static __forceinline float Abs_00120FF0(float f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
 static __forceinline float Dot_00120FF0(S_0011F4B0_V4 *a, S_0011F4B0_V4 *b) { return a->y * b->y + a->x * b->x + a->z * b->z; }
@@ -110,3 +110,115 @@ int func_00120B20(S_001206E0_Tri *tri, S_00120B20_Seg *seg, float radius, int un
     }
     return 1;
 }
+
+int func_00120FF0(float *p0, float *extA, float *p1, float *extB, float *m)
+{
+    S_0011F4B0_V4 rows[3];
+    S_0011F4B0_V4 d;
+    S_0011F4B0_V4 *ax;
+    float ea0, ea1, ea2;
+    float dist, rA0, rA1, rA2, rB0, rB1, rB2;
+    int i;
+
+    func_00030AC0(p1, p1, m);
+    for (i = 0; i < 3; i++) {
+        rows[i].x = 0.0f;
+        rows[i].y = 0.0f;
+        rows[i].z = 0.0f;
+        rows[i].w = 1.0f;
+    }
+    for (i = 0; i < 3; i++) {
+        rows[i].x = 0.0f;
+        rows[i].y = 0.0f;
+        rows[i].z = 0.0f;
+        rows[i].w = 1.0f;
+    }
+    ea0 = extA[0];
+    ea1 = extA[1];
+    ea2 = extA[2];
+    rows[0].x = extB[0];
+    rows[0].y = 0.0f;
+    rows[0].z = 0.0f;
+    rows[0].w = 1.0f;
+    rows[1].x = 0.0f;
+    rows[1].y = extB[1];
+    rows[1].z = 0.0f;
+    rows[1].w = 1.0f;
+    rows[2].x = 0.0f;
+    rows[2].y = 0.0f;
+    rows[2].z = extB[2];
+    rows[2].w = 1.0f;
+    func_0001C680(&rows[0], rows[0], m);
+    func_0001C680(&rows[1], rows[1], m);
+    func_0001C680(&rows[2], rows[2], m);
+    d.x = p1[0] - p0[0];
+    d.y = p1[1] - p0[1];
+    d.z = p1[2] - p0[2];
+    for (i = 0; i < 15; i++) {
+        switch (i) {
+        case 0:
+            D_002B9350[0] = D_002A3C3C[0];
+            break;
+        case 1:
+            D_002B9350[1] = D_002A3C3C[1];
+            break;
+        case 2:
+            D_002B9350[2] = D_002A3C3C[2];
+            break;
+        case 3: {
+            S_0011F4B0_V4 t = { m[0], m[4], m[8], 1.0f };
+            D_002B9350[3] = t;
+            break;
+        }
+        case 4: {
+            S_0011F4B0_V4 t = { m[1], m[5], m[9], 1.0f };
+            D_002B9350[4] = t;
+            break;
+        }
+        case 5: {
+            S_0011F4B0_V4 t = { m[2], m[6], m[10], 1.0f };
+            D_002B9350[5] = t;
+            break;
+        }
+        case 6:
+            Cross_00120FF0(&D_002B9350[0], &D_002B9350[3], &D_002B9350[6]);
+            break;
+        case 7:
+            Cross_00120FF0(&D_002B9350[0], &D_002B9350[4], &D_002B9350[7]);
+            break;
+        case 8:
+            Cross_00120FF0(&D_002B9350[0], &D_002B9350[5], &D_002B9350[8]);
+            break;
+        case 9:
+            Cross_00120FF0(&D_002B9350[1], &D_002B9350[3], &D_002B9350[9]);
+            break;
+        case 10:
+            Cross_00120FF0(&D_002B9350[1], &D_002B9350[4], &D_002B9350[10]);
+            break;
+        case 11:
+            Cross_00120FF0(&D_002B9350[1], &D_002B9350[5], &D_002B9350[11]);
+            break;
+        case 12:
+            Cross_00120FF0(&D_002B9350[2], &D_002B9350[3], &D_002B9350[12]);
+            break;
+        case 13:
+            Cross_00120FF0(&D_002B9350[2], &D_002B9350[4], &D_002B9350[13]);
+            break;
+        case 14:
+            Cross_00120FF0(&D_002B9350[2], &D_002B9350[5], &D_002B9350[14]);
+            break;
+        }
+        ax = &D_002B9350[i];
+        dist = Abs_00120FF0(Dot_00120FF0(&d, ax));
+        rA0 = Abs_00120FF0(ea0 * ax->x + ax->y * D_00275544 + ax->z * D_00275544);
+        rA1 = Abs_00120FF0(ea1 * ax->y + ax->x * D_00275544 + ax->z * D_00275544);
+        rA2 = Abs_00120FF0(ax->y * D_00275544 + ax->x * D_00275544 + ea2 * ax->z);
+        rB0 = Abs_00120FF0(Dot_00120FF0(&rows[0], ax));
+        rB1 = Abs_00120FF0(Dot_00120FF0(&rows[1], ax));
+        rB2 = Abs_00120FF0(Dot_00120FF0(&rows[2], ax));
+        if (rB2 + rB1 + rB0 + (rA2 + rA1 + rA0) < dist)
+            return 0;
+    }
+    return 1;
+}
+
