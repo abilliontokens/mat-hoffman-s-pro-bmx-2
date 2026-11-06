@@ -584,18 +584,14 @@ int C_001A1D20::func_001A1D20(const char * volatile name, int b)
     return 0;
 }
 
-static __forceinline int ReleaseSlot_001A1E60(ObjV2 *&slot)
-{
-    if (slot != 0) {
-        int r = slot->v2();
-        slot = 0;
-        return r;
-    }
-    return 0;
-}
-
 void C_001A1E60::func_001A1E60() {
-    if (ReleaseSlot_001A1E60(unk1BC) != 0) {
+    ObjV2 *p = unk1BC;
+    int r = 0;
+    if (p != 0) {
+        r = p->v2();
+    }
+    unk1BC = 0;
+    if (r != 0) {
         return;
     }
     unk1BC = 0;
