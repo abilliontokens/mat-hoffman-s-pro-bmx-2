@@ -40,6 +40,45 @@ static __forceinline float Sqrt_00126A80(float x) { float r; _mm_store_ss(&r, _m
 static __forceinline float Max_00126A80(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float Abs_00126A80(float f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
 
+struct S_00125F00_Vec { float f[4]; };
+struct S_00125F00_Node {
+    char pad00[8];
+    unsigned short left;
+    unsigned short right;
+    float c[3];
+    float r[3];
+};
+struct S_00125F00_A0 {
+    char pad00[0xa8];
+    int count;
+    char padAC[8];
+    S_00125F00_Vec *b4;
+    S_00125F00_Vec *b8;
+    float *bc;
+    char padC0[8];
+    float c8;
+    float cc;
+    float d0;
+    char padD4[0x14];
+    float e8;
+};
+struct S_00125F00_A3 {
+    char pad00[0x20];
+    S_00125F00_Vec v20;
+    S_00125F00_Vec v30;
+    S_00125F00_Vec v40;
+    char pad50[0x24];
+    S_00125F00_Vec *p74;
+    S_00125F00_Vec *p78;
+    char pad7C[4];
+    int n80;
+    char pad84[4];
+    int *p88;
+    float *p8c;
+    char pad90[4];
+    float f94;
+};
+
 void func_00126740(int a0, int a1, int a2, int a3, int a4, int a5) {
     extern int D_002B92F4;
     int func_00125F00(...);
