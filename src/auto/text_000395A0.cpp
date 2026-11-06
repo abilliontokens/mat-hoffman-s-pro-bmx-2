@@ -10,6 +10,7 @@ int func_000395A0(S_000392B0_Vec4 pos);
    in the second loop reproduce every instruction (registers, late `blk = 0` store) at 99.7%, but MSVC puts
    their locals in the dead `pos` slot, so the frame is 4 bytes short (sub esp,0x58) and all offsets shift. */
 S_000392B0_Block *GetBlock(S_000392B0_Obj *o) { S_000392B0_Block *b = 0; func_00038A70(&o->f28, (void **)&b); return b; }
+S_000392B0_Block **GetBlockRef(S_000392B0_Obj *o) { S_000392B0_Block *b = 0; func_00038A70(&o->f28, (void **)&b); return &b; }
 void Fetch(S_000392B0_Obj *o, S_000392B0_Block *&out) { out = 0; func_00038A70(&o->f28, (void **)&out); }
 int GetFlag(S_000392B0_Obj *o) { S_000392B0_Block *b; func_00038A70(&o->f28, (void **)&b); return *(int *)((char *)b + 0x368); }
 };
