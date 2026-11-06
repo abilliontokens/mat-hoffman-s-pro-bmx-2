@@ -1,5 +1,41 @@
 /* 3 functions from 0x001DB4D0 to 0x001DC010, found by Ghidra. */
 #include "common.h"
+#include <string.h>
+struct WaterConfig {
+ char pad0[0x54]; int f54; char pad58[0x10]; int f68;
+ char pad6C[0x64]; void *fD0;
+};
+struct WaterItem {
+ char pad0[0x54]; void *f54; void *f58; void *f5C;
+ void func_001B0560(void *,void *);
+};
+struct WaterTable { char pad0[0x14]; char *f14; };
+extern WaterTable *D_002A829C;
+extern char D_001DB560[],D_001DB700[];
+extern char D_0028FA04[],D_0028F9F4[],D_0028F9E4[],D_0028F9D4[];
+extern int D_002ABE74;
+extern char D_002A5A80[],D_0028F9C0[];
+extern char D_002AC6D8[],D_002AC6EC[],D_002AC6FC[],D_002AC710[];
+extern char D_002F0D08[],D_002F0E08[],D_002F0F08[],D_002F0C08[];
+extern char D_0028F9AC[],D_0028F994[],D_0028F980[];
+void *func_001E8A44(int);
+struct I_Release;
+I_Release *func_001D6E20(const char *,int,int);
+void func_001ADCC0(char *,int,const char *,...);
+void func_0014A7B0(char *,const char *);
+struct WaterTexture {
+ virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+ virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+ virtual void create(int,int,int,int,int,int,int,int,int);
+ virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12();
+ virtual void v13(); virtual void v14(); virtual void v15();
+ virtual void *lock(int,int,int); virtual void unlock(int);
+ WaterTexture *func_001D6AD0(int);
+};
+struct WaterEntry {
+ int a,b,c,d,e;
+ WaterEntry() { a=b=c=d=e=0; }
+};
 void func_001E891B(void *p);
 void __stdcall func_00201100(void *p);
 extern int D_0028F8F4;
