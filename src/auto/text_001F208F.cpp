@@ -7,7 +7,7 @@ struct T { int a; int b; T() {} int func_001EF1E7(); void func_001EF734(char); v
     void func_001EF935(const T&); T* func_001EEF4F(const T&); T* func_001EF2FE(const T&);
     T func_001EFD3B(char); T func_001EFD7A(char*); T func_001EFAB5(const T&); T* func_001EFAB5(T*, const T&); };
 /* DName default constructor (node = 0, status = valid, flags cleared). */
-struct N : T { N() { a = 0; b &= 0xfffffe00; } };
+struct N : T { N() { a &= 0; b &= 0xfffffe00; } };
 __declspec(noinline) int T::func_001EF1E7()
 {
     if (a != 0) {
@@ -110,40 +110,42 @@ T* func_001F23B8(T* ret, T* superType, char prefix, T* cvType, int thisFlag)
         N B;
         N C;
         int code = *D_002F6A28 - (*D_002F6A28 >= 'A' ? 'A' : '0' - 26);
-        for (;;) {
-            switch (code) {
-            case 4:
-                if (~(u32)D_002F6A38.b1 & 1 && ~(u32)D_002F6A38.b17 & 1) {
-                    if (B.func_001EF1E7()) {
-                        B.func_001EF9B2(func_001EEE49(7));
-                    } else {
-                        B.func_001EEF4F(B.func_001EFD3B(' ').func_001EFD7A(func_001EEE49(7)));
+        {
+            for (;;) {
+                switch (code) {
+                case 4:
+                    if (~(u32)D_002F6A38.b1 & 1 && ~(u32)D_002F6A38.b17 & 1) {
+                        if (B.func_001EF1E7()) {
+                            B.func_001EF9B2(func_001EEE49(7));
+                        } else {
+                            B.func_001EEF4F(B.func_001EFD3B(' ').func_001EFD7A(func_001EEE49(7)));
+                        }
                     }
-                }
-                break;
-            case 5:
-                if (~(u32)D_002F6A38.b1 & 1) {
-                    if (C.func_001EF1E7()) {
-                        C.func_001EF9B2(func_001EEE49(9));
-                    } else {
-                        C.func_001EEF4F(C.func_001EFD3B(' ').func_001EFD7A(func_001EEE49(9)));
+                    break;
+                case 5:
+                    if (~(u32)D_002F6A38.b1 & 1) {
+                        if (C.func_001EF1E7()) {
+                            C.func_001EF9B2(func_001EEE49(9));
+                        } else {
+                            C.func_001EEF4F(C.func_001EFD3B(' ').func_001EFD7A(func_001EEE49(9)));
+                        }
                     }
-                }
-                break;
-            case 8:
-                if (~(u32)D_002F6A38.b1 & 1) {
-                    if (B.func_001EF1E7()) {
-                        B.func_001EF9B2(func_001EEE49(8));
-                    } else {
-                        B.func_001EEF4F(B.func_001EFD3B(' ').func_001EFD7A(func_001EEE49(8)));
+                    break;
+                case 8:
+                    if (~(u32)D_002F6A38.b1 & 1) {
+                        if (B.func_001EF1E7()) {
+                            B.func_001EF9B2(func_001EEE49(8));
+                        } else {
+                            B.func_001EEF4F(B.func_001EFD3B(' ').func_001EFD7A(func_001EEE49(8)));
+                        }
                     }
+                    break;
+                default:
+                    goto out;
                 }
-                break;
-            default:
-                goto out;
+                D_002F6A28++;
+                code = *D_002F6A28 - (*D_002F6A28 >= 'A' ? 'A' : '0' - 26);
             }
-            D_002F6A28++;
-            code = *D_002F6A28 - (*D_002F6A28 >= 'A' ? 'A' : '0' - 26);
         }
     out:
         D_002F6A28++;
@@ -151,6 +153,7 @@ T* func_001F23B8(T* ret, T* superType, char prefix, T* cvType, int thisFlag)
             ret->func_001EF170(1);
             return ret;
         }
+        {
         T tmp8;
         tmp8.func_001EF734(prefix);
         tmp8.func_001EEF4F(A.func_001EFAB5(tmp8));
@@ -219,6 +222,7 @@ T* func_001F23B8(T* ret, T* superType, char prefix, T* cvType, int thisFlag)
         tmp8.b |= 0x10;
         ret->func_001EEEE6(&tmp8);
         return ret;
+        }
         }
     }
     if (!thisFlag) {
