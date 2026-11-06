@@ -205,7 +205,7 @@ struct Size_001D5810 {
     unsigned h;
 };
 struct Cfg_001D5810 {
-    char pad0[0x4c0];
+    char pad0[0x4cc];
     void func_00168280(void);
     int func_00169490(const char *s, int flag);
     void func_00169710(const char *s);
