@@ -163,18 +163,18 @@ long __stdcall func_001E1C4F(int a1, char *path, int size, const char *name)
     oa.RootDirectory = 0;
     oa.ObjectName = &ansi;
     oa.Attributes = 0x40;
-    st = _imp__NtCreateFile((void **)&path, 0x40100000, &oa, &iosb, 0, 4, 1, 3, 0x22);
+    st = _imp__NtCreateFile((void **)(&a1 + 1), 0x40100000, &oa, &iosb, 0, 4, 1, 3, 0x22);
     *end = 0;
     if (st >= 0) {
-        st = _imp__NtQueryInformationFile(path, &iosb, &info, 0x38, 0x22);
+        st = _imp__NtQueryInformationFile(*(void **)(&a1 + 1), &iosb, &info, 0x38, 0x22);
         if (st >= 0 && info.EndOfFileLow == 0 && info.EndOfFileHigh == 0) {
             buf = func_001E27DB(a1);
             if (buf != 0) {
-                st = _imp__NtWriteFile(path, 0, 0, 0, &iosb, buf, func_001E2850(a1), 0);
+                st = _imp__NtWriteFile(*(void **)(&a1 + 1), 0, 0, 0, &iosb, buf, func_001E2850(a1), 0);
                 func_001E27FC(a1);
             }
         }
-        _imp__NtClose(path);
+        _imp__NtClose(*(void **)(&a1 + 1));
     } else if (st == 0xC0000035) {
         st = 0;
     }
@@ -373,27 +373,60 @@ extern int D_00010134, D_00010138, D_002F6BB4;
 extern unsigned int D_00010124;
 extern char D_002ACBE4[], D_002ACBF4[];
 extern "C" void *__imp__XboxHardwareInfo;
+extern "C" int __stdcall func_001DEC61(int a1);
+extern "C" unsigned int __cdecl func_001DF4BC(void);
+extern "C" void *_imp__XboxHardwareInfo;
 void __stdcall func_001E2213(void)
 {
     int local[12];
     int st;
+    unsigned int v;
+    int zero = 0;
 
     func_001E2703();
     memset(local, 0, sizeof(local));
     local[0] = 0x30;
-    st = func_001E06BC(2, 0, D_00010134, D_00010138, 0, local);
+    st = func_001E06BC(2, zero, D_00010134, D_00010138, zero, local);
     D_002F6BB4 = st;
-    if (st == 0) {
-        func_001E20BF(1, 1, 0);
+    if (st == zero) {
+        func_001E20BF(1, 1, zero);
         return;
     }
-    if (!(D_00010124 & 8)) {
-        st = (int)func_001E2202((S_AnsiString_1E148B *)D_002ACBF4);
-        if (st >= 0)
-            st = (int)_imp__IoCreateSymbolicLink(D_002ACBE4, (S_AnsiString_1E148B *)D_002ACBEC);
+    if ((*(unsigned int *)((char *)D_00010118 + 0x9c) & 0xffffff) == 2) {
+        if (func_001E2124() < 0) {
+            func_001E20BF(zero, zero, zero);
+            return;
+        }
     }
-    if (__imp__XboxHardwareInfo != 0)
-        st = 0;
+    if (!(D_00010124 & 8)) {
+        if (func_001E2202((S_AnsiString_1E148B *)D_002ACBF4) < 0) {
+            func_001E20BF(1, 2, zero);
+            return;
+        }
+        if (!(((unsigned char *)_imp__XboxHardwareInfo)[1] & 1)) {
+            st = _imp__IoCreateSymbolicLink(D_002ACBE4, (S_AnsiString_1E148B *)D_002ACBEC);
+            if (st < 0 && st != 0xC0000035) {
+                func_001E20BF(1, 1, zero);
+                return;
+            }
+        }
+    }
+    if (!(D_00010124 & 0x18)) {
+        st = func_001E206A(*(int *)((char *)D_00010118 + 8), (int)((char *)D_00010118 + 0xc));
+        if (st < 0) {
+            if (st != 0xC000007F) {
+                func_001E20BF(1, 2, zero);
+                return;
+            }
+            func_001E20BF(2, 0x54, 0x10);
+            return;
+        }
+    }
+    if (!(D_00010124 & 8) && (D_00010124 & 1) && func_001DEC61(D_00010124 & 2) == zero)
+        func_001E20BF(1, 2, zero);
+    v = *(unsigned int *)((char *)D_00010118 + 0xa4);
+    if (v < func_001DF4BC())
+        func_001E20BF(1, 4, v);
 }
 
 #pragma optimize("", on)
