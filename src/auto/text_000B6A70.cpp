@@ -1,5 +1,6 @@
 /* 1 function from 0x000B6A70 to 0x000B7520, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
 
 struct Vec4B { float x; float y; float z; float w; void func_000B60D0(); };
 struct __declspec(align(16)) MatB { float m[16]; };
