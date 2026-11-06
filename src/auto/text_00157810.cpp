@@ -216,6 +216,18 @@ struct C_00157CF0 {
     int func_0001E010(void);
 };
 
+unsigned int S_00157810_Child::func_00157770(void)
+{
+    S_00157810_Child *c;
+    unsigned int r = 0;
+
+    for (c = f10; c != 0; c = c->fC) {
+        r |= c->func_00157770();
+    }
+    f1C = r;
+    return f18 | r;
+}
+
 int C_00157810::func_00157810(void)
 {
     S_00157810_Child *p;
