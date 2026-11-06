@@ -16,6 +16,7 @@ struct S_151F80_Vec {
     S_151F80_Vec operator+(const S_151F80_Vec &o) const { return S_151F80_Vec(x + o.x, y + o.y, z + o.z); }
     S_151F80_Vec operator-(const S_151F80_Vec &o) const { return S_151F80_Vec(x - o.x, y - o.y, z - o.z); }
     S_151F80_Vec operator*(float s) const { return S_151F80_Vec(x * s, y * s, z * s); }
+    S_151F80_Vec &operator+=(const S_151F80_Vec &o) { *this = *this + o; return *this; }
 };
 struct S_152BA0_Hnd { void func_00017FA0(S_151F80_Vec *a, S_151F80_Vec *b); };
 struct S_152BA0_Obj {
@@ -162,6 +163,49 @@ void C1521::func_001521D0(Vec1521* pos, Vec1521* out)
  h = (D_002B911C | D_002B9110) ? hit.y : h;
  if (out) *out = result;
  pos->y = h;
+}
+
+void C_00151F80::func_00152300(float dt)
+{
+    S_151F80_Vec v;
+    __declspec(align(16)) float m[16];
+
+    if (f2c == 0) {
+        v.x = D_002A789C.x; v.y = D_002A78A0; v.z = D_002A78A4; v.w = D_002A78A8;
+    } else {
+        f2c->f1a4->f4->func_00199B00((S_1528D0_Vec *)&v, 0);
+    }
+    if (f78 != 0) {
+        f94.x = D_002A789C.x; f94.y = D_002A78A0; f94.z = D_002A78A4; f94.w = D_002A78A8;
+        f84.x = D_002A789C.x; f84.y = D_002A78A0; f84.z = D_002A78A4; f84.w = D_002A78A8;
+        fc4 = 0;
+        f84.x = D_002A789C.x; f84.y = D_002A78A0; f84.z = D_002A78A4; f84.w = D_002A78A8;
+        f94.x = D_002A789C.x; f94.y = D_002A78A0; f94.z = D_002A78A4; f94.w = D_002A78A8;
+        S_151F80_Vec line[2];
+        line[0] = f120;
+        line[1] = func_00016E40();
+        fc8 = line[0];
+        f78->func_0014AC30(line, 0);
+        f78->func_00133ED0();
+        f78->func_00133F10(0);
+        if (fc4 != 0) {
+            v = f84;
+            if (f60 != 0) {
+                v.y = (D_00286CA8 - f34) + v.y;
+                m[0] = 0.0f; m[1] = 0.0f; m[2] = 0.0f; m[3] = 0.0f;
+                m[4] = 0.0f; m[5] = 0.0f; m[6] = 0.0f; m[7] = 0.0f;
+                m[8] = 0.0f; m[9] = 0.0f; m[10] = 0.0f; m[11] = 0.0f;
+                m[12] = 0.0f; m[13] = 0.0f; m[14] = 0.0f; m[15] = 0.0f;
+                m[0] = 1.0f; m[5] = 1.0f; m[10] = 1.0f; m[15] = 1.0f;
+                m[3] = v.x;
+                m[7] = v.y;
+                m[11] = v.z;
+                f68.x = D_002A789C.x; f68.y = D_002A78A0; f68.z = D_002A78A4; f68.w = D_002A78A8;
+                f60->v31(m);
+                f60->func_00133F10(0);
+            }
+        }
+    }
 }
 
 void C_00151F80::func_001528D0(float dt)
