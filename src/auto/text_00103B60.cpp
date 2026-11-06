@@ -1,6 +1,56 @@
 /* 17 functions from 0x00103B60 to 0x00104B00, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+extern char D_0027DE5C[];
+extern char D_0027DE38[];
+extern char D_0027DE2C[];
+extern char D_00282898[];
+extern char D_00282880[];
+extern char D_0028285C[];
+extern char D_00282854[];
+extern char D_00282844[];
+extern char D_0028283C[];
+extern char D_002828DC[];
+extern char D_002828C8[];
+extern char D_002828C0[];
+extern char D_0027C294[];
+extern char D_0027DE44[];
+extern char D_0028282C[];
+extern char D_002828B0[];
+extern char D_002828A8[];
+extern char D_0028281C[];
+extern char D_00282810[];
+extern char D_00282800[];
+extern char D_002827EC[];
+extern char D_002786A0[];
+extern int D_0028F5EC, D_0028F5E8, D_0028F5E4, D_0028F5E0, D_0028F5DC;
+extern char *D_002A8490;
+extern "C" void *func_001E8A44(unsigned int);
+extern "C" int strcmp(const char *, const char *);
+struct C_00103B60 {
+ C_00103B60 *func_00103B60(C_00103B60 *, int);
+ void func_001BF600(C_00103B60 *);
+ int func_00168550(const char *, void *, int);
+ void func_00168C20(const char *, int, void *);
+ void func_00168C50(const char *, int, void *);
+ int func_00168CB0(const char *, void *, void *);
+ void func_000979C0(char *, int *);
+ void func_001C01E0(char *);
+ void func_0018C780(int, void *, int);
+ void func_0018C160(char *);
+ C_00103B60 *func_001B12C0(int);
+ void func_001B13A0(char *, char *, int, int);
+ void func_001577A0(C_00103B60 *, int);
+ void func_001B1860(int,float,int,float,int,int,float,int,float,int,int,int,int);
+ void func_001B17D0(char *);
+ void func_001B19A0(int);
+ void func_001B2270(int);
+ void func_001B19C0(int,int,int);
+ void func_001B1AB0(int,int);
+ void func_001B1BF0(int);
+ void func_001B1B30(float,int);
+ char data[0x400];
+};
 struct C_001046B0 {
  void func_001046B0();
  void func_001960F0(float, void *, int, int, int, int, int);
