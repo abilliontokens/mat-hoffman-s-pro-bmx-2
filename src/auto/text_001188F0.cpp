@@ -43,6 +43,30 @@ void func_00028070(int a);
 int func_00029BD0(void);
 void __stdcall func_00113F00(int a);
 
+/* objects reached from Obj, with the thiscall methods block A of func_001188F0 uses */
+struct Node1188F0 {
+    char pad0[0x174];
+    Node1188F0 *f174;
+    Vec4 *func_00197EC0(Vec4 *out, Vec4 *in);
+    void func_00198040(Vec4 *out, Vec4 *in);
+};
+struct Cam1188F0 {
+    void func_00199C20(int a, void *m);
+    void func_0019AD60(int a, void *m);
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+};
+static __forceinline void Copy_001188F0(M4 * volatile dst, const M4 * volatile src)
+{
+    const M4 *s = src;
+    __m128 r0 = s->r0, r1 = s->r1, r2 = s->r2, r3 = s->r3;
+    M4 *d = dst;
+    d->r0 = r0; d->r1 = r1; d->r2 = r2; d->r3 = r3;
+}
+
 static inline float Wrap(float v) {
     if (v > D_002756D0) return v - D_002756B8;
     if (v < D_002756E8) return v + D_002756B8;
