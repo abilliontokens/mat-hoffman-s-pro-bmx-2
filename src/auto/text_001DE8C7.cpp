@@ -18,6 +18,11 @@ struct S_ObjectAttributes {
     u32 attributes;
 };
 
+struct S_ByteTop {
+    unsigned int lo : 24;
+    unsigned int hi : 8;
+};
+
 extern int D_00010130;
 extern int D_002F6BC0;
 extern int D_002F6BB4;
@@ -235,12 +240,12 @@ void __stdcall func_001DED66(char c)
 
     c &= 0xdf;
     func_001EA4E1(buf, &D_0028FD54, c);
-    _imp__RtlInitAnsiString(&name, buf);
-    status = _imp__IoDeleteSymbolicLink(&name);
+    RtlInitAnsiString(&name, buf);
+    status = IoDeleteSymbolicLink(&name);
     if (c == 'X' && status >= 0) {
         D_002F41C8 = 0;
     }
-    _imp__RtlNtStatusToDosError(status);
+    RtlNtStatusToDosError(status);
 }
 
 #pragma optimize("gsy", on)
@@ -259,7 +264,6 @@ void __stdcall func_001DEDC3(void *info, char *out)
     out[0x2c + *(u32 *)((char *)info + 0x3c)] = 0;
     out[0x130] = 0;
 }
-
 int __stdcall func_001DEE2F(const char *path, char *out)
 {
     S_AnsiString fileName;
@@ -533,20 +537,16 @@ int __stdcall func_001DF375(int a)
 {
     void *t;
     char *p;
-    unsigned long tib;
 
     func_001E2213();
     t = *(void **)(__readfsdword(0x20) + 0x250);
-    if (t != 0) {
-        p = *(char **)((char *)t + 0x24);
-    } else {
-        p = 0;
-    }
+    p = t != 0 ? *(char **)((char *)t + 0x24) : 0;
     if (p != 0) {
-        tib = __readfsdword(0x28);
+        int *tib = (int *)__readfsdword(0x28);
+        int idx = D_002F41D0;
+        int v = *(int *)(__readfsdword(4) + idx * 4) - tib[10];
         *p = 1;
-        *(int *)(p + 4) = *(int *)(__readfsdword(4) + D_002F41D0 * 4) -
-                          *(int *)(tib + 0x28) + 4;
+        *(int *)(p + 4) = v + 4;
     }
     func_001E26AD();
     func_001E2655();
@@ -608,25 +608,29 @@ u32 func_001DF4BC(void)
     return 0;
 }
 
-char * __stdcall func_001DF4E1(char *dst, const char *src, int n)
+char * __stdcall func_001DF4E1(char *lpString1, const char *lpString2, int iMaxLength)
 {
+    char *src, *dst;
+
     __try {
-        char *d = dst;
-        const char *s = src;
-        if (n != 0) {
-            while (n != 0 && *s != 0) {
-                *d++ = *s++;
-                n--;
+        src = (char *)lpString2;
+        dst = lpString1;
+        if (iMaxLength) {
+            while (iMaxLength && *src) {
+                *dst++ = *src++;
+                iMaxLength--;
             }
-            if (n == 0) {
-                d--;
+            if (iMaxLength) {
+                *dst = '\0';
+            } else {
+                dst--;
+                *dst = '\0';
             }
-            *d = 0;
         }
-        return dst;
     } __except (1) {
+        return 0;
     }
-    return 0;
+    return lpString1;
 }
 
 void __stdcall func_001DF546(S_ObjectAttributes *oa, S_AnsiString *name, const char *path)
