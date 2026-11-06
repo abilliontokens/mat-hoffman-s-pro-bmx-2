@@ -354,21 +354,20 @@ u32 func_00177CA0(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   return 1;
 }
 
-static __declspec(noinline) int func_00177D60(int width, u16 *dst, u32 *src, int dstPitch, int height, u8 *tbl);
-static __declspec(noinline) int func_00177D60(int width, u16 *dst, u32 *src, int dstPitch, int height, u8 *tbl)
+static __declspec(noinline) int func_00177D60(int width, u16 *dst, u32 * volatile src, int volatile dstPitch, int volatile height, u8 * volatile tbl);
+static __declspec(noinline) int func_00177D60(int width, u16 *dst, u32 * volatile src, int volatile dstPitch, int volatile height, u8 * volatile tbl)
 {
   int n = width / 8;
-  int y;
-  for (y = height; y > 0; y--) {
-    int x;
-    u32 *s = src;
-    u16 *d = dst;
+  int x;
+  u32 *s = src;
+  while (height > 0) {
     for (x = n; x > 0; x--) {
-      d[0] = tbl[s[1] & 0x7fff] | (tbl[(s[1] >> 16) & 0x7fff] << 8);
-      d[1] = tbl[s[0] & 0x7fff] | (tbl[(s[0] >> 16) & 0x7fff] << 8);
+      dst[0] = tbl[s[1] & 0x7fff] | (tbl[(s[1] >> 16) & 0x7fff] << 8);
+      dst[1] = tbl[s[0] & 0x7fff] | (tbl[(s[0] >> 16) & 0x7fff] << 8);
       s += 2;
     }
     dst += dstPitch;
+    height--;
   }
   return 0;
 }
