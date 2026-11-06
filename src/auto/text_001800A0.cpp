@@ -50,6 +50,9 @@ struct C_001805C0 {
 };
 
 extern float D_002EFD9C, D_002AB30C;
+void *func_001E8A44(int size);
+void __stdcall func_00011FF0(void *p, int stride, int count, void *ctor);
+extern int func_00128910;
 extern void *D_002BEAAC;
 struct Reader180600 {
     void func_0013C8A0(int handle, void *dst, int size, int count);
