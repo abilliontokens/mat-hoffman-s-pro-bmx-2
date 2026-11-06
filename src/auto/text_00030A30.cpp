@@ -162,9 +162,6 @@ struct S_00030E70_Target {
     float f190;
     float f194;
     float f198;
-    float GetX(void) { return f190; }
-    float GetY(void) { return f194; }
-    float GetZ(void) { return f198; }
 };
 
 struct C_00030E70 {
