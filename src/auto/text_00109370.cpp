@@ -317,9 +317,11 @@ void C_00109520::func_001095A0(int idx, char *dst)
     char name[0x104];
     int v;
     int dd;
+    int off;
     char *p;
     char ch;
 
+    off = 0;
     if (idx >= count) {
         return;
     }
@@ -448,9 +450,10 @@ void C_00109520::func_001095A0(int idx, char *dst)
     out[0] = 0;
     func_001ADCC0(out, 0x104, D_0027D158, s2, s3, name);
     p = out;
+    off = dst - out;
     do {
         ch = *p;
-        *(char *)((int)p + ((int)dst - (int)out)) = ch;
+        *(p + off) = ch;
         p++;
     } while (ch != '\0');
 }
