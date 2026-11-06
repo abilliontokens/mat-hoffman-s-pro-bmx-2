@@ -339,7 +339,6 @@ struct C_001B08B0 {
     S_001B0230_Owned *unk20;
     void *func_001B08B0(unsigned int flags);
     C_001B08B0 *func_001B08F0(C_001B08B0 *src);
-    C_001B08B0 *func_001B08F0(const C_001B08B0 &src);
     C_001B08B0(const C_001B08B0 &src);
     void func_001B0970(void);
 };
@@ -771,7 +770,7 @@ void *C_001B08B0::func_001B08B0(unsigned int flags)
     return this;
 }
 
-C_001B08B0 *C_001B08B0::func_001B08F0(const C_001B08B0 &src)
+C_001B08B0::C_001B08B0(const C_001B08B0 &src)
 {
     extern int D_0028C444;
     int i;
@@ -785,7 +784,6 @@ C_001B08B0 *C_001B08B0::func_001B08F0(const C_001B08B0 &src)
             items[i] = new S_001B08F0_Item(*src.items[i]);
         }
     }
-    return this;
 }
 
 void C_001B08B0::func_001B0970(void)
