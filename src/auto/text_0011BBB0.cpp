@@ -188,7 +188,14 @@ struct C_0011C900 {
 };
 
 extern float D_002756DC, D_002755E8, D_00278C48;
-extern V4_0011C3F0 *D_002A3BCC;
+extern V4_0011C3F0 D_002A3BCC;
+static __forceinline void Cross_0011BBB0(V4_0011C3F0 *out, const V4_0011C3F0 *a, const V4_0011C3F0 *b)
+{
+    __m128 vb = _mm_loadu_ps(&b->x);
+    __m128 va = _mm_loadu_ps(&a->x);
+    __m128 r = _mm_sub_ps(_mm_mul_ps(vb, _mm_shuffle_ps(va, va, 0xc9)), _mm_mul_ps(va, _mm_shuffle_ps(vb, vb, 0xc9)));
+    _mm_storeu_ps(&out->x, _mm_shuffle_ps(r, r, 0xc9));
+}
 struct S_0011BBB0_Att {
     void func_001A0C90(V4_0011C3F0 p);
 };
