@@ -57,6 +57,12 @@ struct C_GlobalObj {
     virtual void vv2();
     virtual void vv3();
     virtual void v4(int a, void *b, int c, int d);
+    virtual void vv5();
+    virtual void vv6();
+    virtual void vv7();
+    virtual void v8();
+    char pad4[0x2c];
+    int f30;
 };
 
 extern C_GlobalObj *D_002EFDB8;
