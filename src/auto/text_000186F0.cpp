@@ -1,11 +1,62 @@
 /* 7 functions from 0x000186F0 to 0x000195B0, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+struct ObjABA_186 { void func_0019ABA0(int a, int b); int func_00198330(char *s); };
+struct Obj3C_186 { char pad0[4]; ObjABA_186 *f4; };
+struct ObjC5_186 { ObjC5_186 *func_0016C5B0(int a); void func_0016C640(void *p, char *s, int a, int b); };
+struct ObjCE_186 { ObjCE_186 *func_0016CE80(int a); void func_0016CF10(void *p, char *s, int a, int b); };
+struct Obj20C_186 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(char *s, int a, int b, int c, int d);
+    Obj20C_186 *func_001CF740(void *a, int b, int c);
+};
+struct ObjA0_186 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26();
+    virtual void v27(void *p, void *a);
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32();
+    ObjA0_186 *func_00158590(int a);
+    void func_00133140(void *a, int b);
+};
+struct Elem_186 { ObjC5_186 *a; ObjCE_186 *b; char pad8[0x20]; };
+struct G9120_186 { char pad0[0x348]; int f348; char pad34C[0x4A8 - 0x34C]; void **f4A8; void **f4AC; char pad4B0[0x4C0 - 0x4B0]; int f4C0; };
+struct FB4_186 { char pad0[0xB4]; void *fB4; };
+extern char D_002A48F8[];
+extern char D_002A5348[];
+extern char D_00275900[];
+extern char D_002758F0[];
+extern char D_002758E4[];
+extern char D_002758D8[];
+extern char D_002758CC[];
+extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
+void *func_001E8AA5(unsigned int size);
+static inline int min_186F0(const int &a, const int &b) { return a > b ? b : a; }
 struct C_000186F0 {
-    char pad0[0x498];
+    char pad0[0x3C];
+    Obj3C_186 *f3C;
+    char pad40[0x39C - 0x40];
+    ObjA0_186 *f39C[2];
+    Elem_186 f3A4[6];
+    ObjCE_186 *f494;
     int f498;
-    char pad49c[0x4e4 - 0x49c];
+    char pad49C[4];
+    ObjA0_186 *f4A0;
+    void **f4A4;
+    Obj20C_186 *f4A8[2];
+    Obj20C_186 *f4B0[2];
+    Obj20C_186 *f4B8;
+    Obj20C_186 *f4BC;
+    Obj20C_186 *f4C0;
+    char pad4C4[0x4E4 - 0x4C4];
     int f4e4;
+    void func_001577A0(void *obj, int a);
+    void func_00016E90();
     void func_000186F0(void *p);
 };
 struct C_0004AAD0 {
