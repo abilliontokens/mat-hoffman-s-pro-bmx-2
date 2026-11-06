@@ -1,5 +1,6 @@
 /* 8 functions from 0x001747F0 to 0x001755A0, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 
 extern int D_00288DC4;
 void func_001E891B(void *);
@@ -59,6 +60,22 @@ struct C_00175110 {
     void func_00174580(void);
     void *func_00175110(int a);
 };
+
+void R_001747F0::func_001747F0(int a)
+{
+    Vec4_001747F0 t;
+    Vec4_001747F0 t2;
+    if (p22C == 0 || i1B4 == 0) return;
+    v5C = v238;
+    v4C = *p22C->func_00197F70(&t, &v190);
+    v1A0 = *func_0011ADD0(&t2, (char *)p22C + 0xf0);
+    if (f210 > D_00275544) {
+        v6C.x = f214 * v6C.x;
+        v6C.y = f214 * v6C.y;
+        v6C.z = f214 * v6C.z;
+        v6C.w = 1.0f;
+    }
+}
 
 void *C_00175110::func_00175110(int a) {
     func_00171340(a);
