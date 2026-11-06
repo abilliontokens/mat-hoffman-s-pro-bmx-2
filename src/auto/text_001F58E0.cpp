@@ -88,10 +88,10 @@ extern char D_00018000[];
 /* the special-value strings ("1#QNAN", "1#INF", "1#IND", "1#SNAN") with their NULs */
 struct S_I10_Str6 { char c[6]; };
 struct S_I10_Str7 { char c[7]; };
-extern const S_I10_Str7 D_00296334; /* "1#QNAN" */
-extern const S_I10_Str6 D_0029633C; /* "1#INF" */
-extern const S_I10_Str6 D_00296344; /* "1#IND" */
-extern const S_I10_Str7 D_0029634C; /* "1#SNAN" */
+extern char D_00296334[]; /* "1#QNAN" */
+extern char D_0029633C[]; /* "1#INF" */
+extern char D_00296344[]; /* "1#IND" */
+extern char D_0029634C[]; /* "1#SNAN" */
 void func_001F5B20(S_U12 *p);
 void func_001F5B4E(S_U12 *p);
 
