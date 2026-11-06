@@ -52,18 +52,52 @@ struct S_001554D0_Scene {
     void *fB4;
 };
 
+struct S_154C10_Dbg {
+    char pad0[0x1934];
+    int f1934;
+};
+
+struct S_154C10_Notify {
+    void func_0004AB90(int a);
+};
+
 struct S_001554D0_Root {
     char pad0[4];
     S_001554D0_Scene *f4;
+    char pad8[0x10];
+    S_154C10_Dbg *f18;
+    char pad1C[0x124 - 0x1c];
+    int f124;
+    char pad128[0x2a4 - 0x128];
+    S_154C10_Notify *f2A4;
+    char pad2A8[0x2e0 - 0x2a8];
+    int *f2E0;
+};
+
+struct V4_154C10 {
+    float x, y, z, w;
+};
+
+struct S_154C10_Tbl {
+    char pad0[0x24];
+    V4_154C10 pts[1];
+};
+
+struct S_154C10_Anim {
+    int func_0001BE90(void *obj, int a, int b, int c);
 };
 
 struct S_001554D0_Global {
     char pad0[0x348];
     int f348;
-    char pad34C[0x15c];
+    char pad34C[0x484 - 0x34c];
+    S_154C10_Anim *f484;
+    char pad488[0x4a8 - 0x488];
     int *f4A8;
     char pad4AC[0x14];
     int f4C0;
+    char pad4C4[0x4dc - 0x4c4];
+    S_154C10_Tbl *f4DC;
 };
 
 extern S_001554D0_Global *D_002B9120;
