@@ -3,6 +3,21 @@
 #include <math.h>
 #include <xmmintrin.h>
 
+struct PhIface { virtual void v00(); };
+struct PhObj {
+    void *vtbl; char pad4[0x2c];
+    int f30, f34, f38;
+    char pad3c[0x78];
+    float fb4, fb8, fbc;
+    char padc0[4];
+    char *fc4; PhIface *fc8; PhIface *fcc; PhObj *fd0; PhIface *fd4; PhIface *fd8;
+    char padDC[0x40];
+    float f11c, f120, f124, f128;
+    int func_00173B00(float dt);
+};
+struct PhGlobal { char pad[0x124]; int f124; };
+extern PhGlobal *D_002A8490;
+extern float D_002A8BEC;
 extern float D_00275460;
 extern float D_00275544;
 extern float D_002755E8;
