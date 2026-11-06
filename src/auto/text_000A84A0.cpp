@@ -427,6 +427,28 @@ int C_000A85C0::func_000A85C0(S_GrindsStream *stream, int a2, int a3, int a4)
     return 1;
 }
 
+void func_000A8710(S_000A8710_Arg0 *a0, int a1, S_000A8710_Arg2 *a2, int a3)
+{
+    S_000A8710_List *list;
+    int count;
+    int found;
+    int i;
+    int id;
+
+    if (a3 != 0) {
+        id = a0->f64;
+        list = D_002A8490->f2A4->f64->f4E0;
+        count = list->count;
+        found = 0;
+        for (i = 0; i < count && !found; i++) {
+            if (list->items[i]->f1E0 == id) {
+                found = 1;
+            }
+        }
+        func_00118410(a2->name, -1, (float)a2->f148);
+    }
+}
+
 C_000A88A0 *C_000A88A0::func_000A88A0() {
     extern int D_0027C2A0;
     extern float D_002A2734;
@@ -622,19 +644,13 @@ void C_000A8E40::func_000A8E40(void *a, void *b) {
 C_000A8EB0 *C_000A8EB0::func_000A8EB0() {
     extern int D_0027C380;
     extern float D_002A2734;
-    extern float D_002A2738;
-    extern float D_002A273C;
-    extern float D_002A2740;
     ((C_001B59E0 *)this)->func_001B59E0();
     vtbl = (void *)&D_0027C380;
     vec10C[3] = 1.0f;
     vec10C[2] = 0.0f;
     vec10C[1] = 0.0f;
     vec10C[0] = 0.0f;
-    vec10C[0] = D_002A2734;
-    vec10C[1] = D_002A2738;
-    vec10C[2] = D_002A273C;
-    vec10C[3] = D_002A2740;
+    vec10C = *(C_000A8EB0_Vec *)&D_002A2734;
     unk11C = 0;
     unk120 = 0;
     return this;
