@@ -24,6 +24,7 @@ struct BmxObjectivesMenu {
     int f64;                        /* 0x64 */
     char pad68[0x1D0 - 0x68];
     S_00064BA0_Inner *f1D0;         /* 0x1D0 */
+    char pad1D4[0x1D8 - 0x1D4];
     float f1D8;                     /* 0x1D8 */
     char pad1DC[0x224 - 0x1DC];
     int f224;                       /* 0x224 */
@@ -38,3 +39,29 @@ struct BmxObjectivesMenu {
 };
 
 extern float D_002756DC;
+
+void BmxObjectivesMenu::func_00064BA0(float dt)
+{
+    if (f64 == 4 && f280 != 0) {
+        f288 = 1;
+        if (f228 >= 0 && f228 < f224 && f1D8 >= D_002756DC) {
+            f1D0->func_00052C10(0);
+            f228++;
+            f1D8 = 0.0f;
+        }
+        if (f228 >= f224) {
+            f1D0->f64->v4();
+            f228 = 0;
+            f280 = 0;
+            f2B4 = 1;
+            f1D0->f158->func_001C4D50(1000);
+            f1D8 = 0.0f;
+            f288 = 0;
+            func_0005EA10(dt);
+            return;
+        }
+        f1D8 += dt;
+        func_0005EA10(dt);
+        return;
+    }
+}
