@@ -211,12 +211,36 @@ void func_001F5B20(S_U12 *p)
 
 void func_001F5B4E(S_U12 *p)
 {
-    unsigned int l1 = p->l[1];
-    unsigned int l2 = p->l[2];
+    volatile unsigned int *l = p->l;
+    register unsigned int l1 = l[1];
+    unsigned int l2 = l[2];
+    unsigned int c1 = l1 << 31;
+    unsigned int c2 = l2 << 31;
+    unsigned int n0;
+    l[1] = (l1 >> 1) | c2;
+    n0 = (l[0] >> 1) | c1;
+    l[2] = l2 >> 1;
+    l[0] = n0;
+}
 
-    p->l[1] = (l1 >> 1) | (l2 << 31);
-    p->l[0] = (p->l[0] >> 1) | (l1 << 31);
-    p->l[2] = l2 >> 1;
+extern char D_0000FFF0[];
+void func_001F5B7B(char *s, unsigned int n, S_U12 *x)
+{
+    unsigned int exp = 0x404e;
+    x->l[0] = 0; x->l[1] = 0; x->l[2] = 0;
+    for (; n > 0; n--) {
+        S_U12 t = *x;
+        func_001F5B20(x); func_001F5B20(x); func_001F5AC2(x, &t); func_001F5B20(x);
+        t.l[0] = *s; t.l[1] = 0; t.l[2] = 0; func_001F5AC2(x, &t); s++;
+    }
+    while (x->l[2] == 0) {
+        x->l[2] = x->l[1] >> 16;
+        x->l[1] = (x->l[1] << 16) | (x->l[0] >> 16);
+        x->l[0] <<= 16;
+        exp += (unsigned int)D_0000FFF0;
+    }
+    while (!(x->l[2] & 0x8000)) { func_001F5B20(x); exp += (unsigned int)D_0000FFFF; }
+    *(unsigned short *)((char *)x + 10) = (unsigned short)exp;
 }
 
 #pragma optimize("s", on)
