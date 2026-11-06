@@ -20,7 +20,9 @@ struct C_000E6D00_Owner {
 struct C_000E6D00 {
     char pad0[0x124];
     C_000E6D00_Owner *f124;
-    char pad128[0x218];
+    char pad128[0x284 - 0x128];
+    int f284;
+    char pad288[0x340 - 0x288];
     C_001B1980 *f340;
     C_001B1980 *f344;
     C_001B1980 *f348;
