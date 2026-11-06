@@ -25,6 +25,7 @@ struct S_0019A8C0_V4 {
 
 void func_0001C680(S_0019A8C0_V4 *out, S_0019A8C0_V4 v, float *m);
 void func_00030AC0(float *out, float *v, float *m);
+void func_0013E4A0(void *dst, void *src);
 
 static __forceinline float Abs_0019A8C0(float f)
 {
