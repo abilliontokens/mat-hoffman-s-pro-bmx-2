@@ -43,8 +43,7 @@ struct S_00038760_Entry {
     void *data;              /* 0x10 */
 };
 
-static __forceinline void Round_00038850(float value, int * volatile out) { *out = _mm_cvtss_si32(*(__m128 *)&value); }
-static void Round2_00038850(int * volatile out, float f) { *out = _mm_cvtss_si32(_mm_load_ss(&f)); }
+static __forceinline void Round_00038850(int *out, float value) { *out = _mm_cvtss_si32(*(__m128 *)&value); }
 extern char D_00276E90[];
 extern int D_002B911C;
 int func_001E8AF0(void *, void *);
@@ -111,23 +110,23 @@ int C_00038760::func_00038760(float x, float y, float z, int unused, int *out)
 {
     int n = arr.count;
     int i;
-    int j;
+    int j = 0;
 
     for (i = 0; i < n; i++) {
-        S_00038760_Entry *e = (S_00038760_Entry *)arr.at(i);
+        S_00038760_Entry *e = (S_00038760_Entry *)arr.atv(i);
         if (e->type == 1) {
             S_00038760_Vec *v = &((S_00038760_Data *)e->data)->pos;
             if (x == v->x && y == v->y && z == v->z) {
-                for (j = 0; j < n; j++) {
-                    S_00038760_Entry *e2 = (S_00038760_Entry *)arr.at(j);
+                for (; j < n; j++) {
+                    S_00038760_Entry *e2 = (S_00038760_Entry *)arr.atv(j);
                     if (e2->type == 2) {
                         if (e2->owner->fE8 == e->data) {
                             *out = j;
-                            return 1;
+                            break;
                         }
                         if (e2->owner->fEC == e->data) {
                             *out = j;
-                            return 1;
+                            break;
                         }
                     }
                 }
@@ -135,7 +134,7 @@ int C_00038760::func_00038760(float x, float y, float z, int unused, int *out)
             }
         }
     }
-    return 0;
+    return j;
 }
 
 int *C_00038760::func_000389C0(int param_1)
