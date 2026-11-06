@@ -228,11 +228,11 @@ struct C_001D5760 {
     u8 b58;
     C_001D5760 *func_001D5760();
     void func_001D5810(void *a, int b, int c, int d);
-    __forceinline void SetUV(int u0, int u1, f32 v0, f32 v1)
+    __forceinline void SetUV(int u0, int u1, int v0, f32 v1)
     {
         f3C = u0;
         f40 = u1;
-        f44 = v0;
+        *(int *)&f44 = v0;
         f48 = v1;
         b58 |= 4;
     }
