@@ -126,17 +126,6 @@ struct C_000264C0 {
     C_000264C0 *func_000264C0(S_000264C0_Mat *src);
 };
 
-extern "C" void _ReadWriteBarrier(void);
-#pragma intrinsic(_ReadWriteBarrier)
-
-static __forceinline void Copy4_000264C0(__m128 *s, __m128 * volatile dst)
-{
-    __m128 a0 = s[0], a1 = s[1], a2 = s[2], a3 = s[3];
-    _ReadWriteBarrier();
-    __m128 *d = dst;
-    d[0] = a0; d[1] = a1; d[2] = a2; d[3] = a3;
-}
-
 struct S_00026500_Entry {
     char name[0x20];
     int value;
