@@ -102,9 +102,9 @@ static inline int C_000ACF30_strlen(const char *s)
     return q - p;
 }
 
-template <class T> inline T C_000ACF30_min(const T &a, const T &b)
+template <class T> inline const T &C_000ACF30_min(const T &a, const T &b)
 {
-    return (b < a) ? b : a;
+    return a > b ? b : a;
 }
 
 struct C_000ACF30_Pos {
@@ -327,3 +327,120 @@ void *C_000ACF00::func_000ACF00(int flags) {
     }
     return this;
 }
+
+int C_000ACE60::func_000ACF30(C_000ACF30_Game * volatile game, int count, int flag3, int flag4)
+{
+    void *func_001E8A44(...);
+    C_000ACE60 * volatile self = this;
+    struct {
+        volatile int res;
+        volatile int lim;
+        volatile int len;
+    } t;
+    C_000ACE60 *me;
+    C_000ACE60_s4 *p;
+    C_000ACF30_Stage *stage;
+    C_000ACF30_Obj *obj;
+    int i;
+    int n;
+    int cnt;
+    int ma;
+    int mb;
+    int idx;
+    char buf[0x104];
+    char name[0x104];
+
+    unk24 = count;
+    D_002BEAAC->func_0013C1D0(&D_00040000);
+    D_002BEAAC->func_0013B260(0);
+    stage = (C_000ACF30_Stage *)func_001E8A44(0x7a90);
+    game->f52C = stage ? stage->func_000A4570() : 0;
+    game->f52C->func_000A4D30();
+    me = self;
+    cnt = me->unk24;
+    for (i = 0; i < cnt; i++, cnt = (me = self)->unk24) {
+        func_001ADCC0(name, 0x104, D_002772CC, D_002A8490->f2E0->names150[i], D_002A8490->f2E0->f1B0[i] + 1);
+        func_001ADCC0(buf, 0x104, D_00276C34, D_002A5348, name);
+        D_002BEAAC->func_0013D780(buf, 1, 0, 0, 0, 0, 0, 0);
+        self->arr2[i].func_000A4150(name);
+        D_002A829C->func_00161680();
+        D_002AA6C0->func_001B2640();
+        D_002BEAAC->func_0013DFF0(buf, 1);
+    }
+    cnt = me->unk24;
+    for (i = 0; i < cnt; i++, cnt = (me = self)->unk24) {
+        t.len = C_000ACF30_strlen(D_002A8490->f2E0->names1F4[i]);
+        t.lim = 0x103;
+        ma = t.lim;
+        mb = t.len;
+        t.res = ma > mb ? mb : ma;
+        n = t.res;
+        func_001E8920(name, D_002A8490->f2E0->names1F4[i], n);
+        name[n] = 0;
+        func_001ADCC0(buf, 0x104, D_00276C34, D_002A5348, name);
+        D_002BEAAC->func_0013D780(buf, 1, 0, 0, 0, 0, 0, 0);
+        self->arr1[i].func_000A4400(name);
+        D_002A829C->func_00161680();
+        D_002AA6C0->func_001B2640();
+        D_002BEAAC->func_0013DFF0(buf, 1);
+    }
+    func_001ADCC0(buf, 0x104, D_0027CAC4, D_002A5348);
+    D_002BEAAC->func_0013D780(buf, 1, 0, 0, 0, 0, 0, 0);
+    D_002BEAAC->func_0013B260(0);
+    me = self;
+    cnt = me->unk24;
+    for (i = 0; i < cnt; i++, cnt = (me = self)->unk24) {
+        if (flag3) {
+            if (i == 0) {
+                me->arr3[0].func_000A4250();
+                self->func_001577A0((void *)self->arr3[0].a, 2);
+                self->func_001577A0((void *)self->arr3[0].b, 2);
+                self->func_001577A0((void *)self->arr3[0].c, 2);
+                self->func_001577A0((void *)self->arr3[0].d, 2);
+                p = &self->arr3[0];
+            }
+        } else {
+            me->arr3[i].func_000A4250();
+            self->func_001577A0((void *)self->arr3[i].a, 2);
+            self->func_001577A0((void *)self->arr3[i].b, 2);
+            self->func_001577A0((void *)self->arr3[i].c, 2);
+            self->func_001577A0((void *)self->arr3[i].d, 2);
+            p = &self->arr3[i];
+        }
+        obj = (C_000ACF30_Obj *)func_001E8A44(0x20d0);
+        self->arr4[i] = obj ? obj->func_0010E920(1) : 0;
+        idx = i;
+        if (flag3) idx = 0;
+        self->arr4[i]->func_0010F320(game, self->arr1[i].a, self->arr2[i].a, *p, game->f488,
+                                     game->f4DC->a[idx], game->f4DC->b[idx], D_002A2754, game->f3E4, i);
+        if (D_002A8490->f2E4) {
+            game->f4E0->arr4[i]->func_0010DA70(&D_002A8490->f2E0->f398[i]);
+        }
+        func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5870, D_002A47F0);
+        self->arr4[i]->f1244 = D_002A8490->f4->func_0001CD90(game->f4C0);
+        if (self->arr4[i]->f1244) {
+            game->v89(self->arr4[i]->f1244);
+            game->v91(self->arr4[i]->f1244);
+        }
+        self->func_001577A0(self->arr4[i], 0x40e);
+        if (D_002A8490->f2E0->f190[i] == 3 || D_002A8490->f2E0->f45C) {
+            self->arr4[i]->func_00108370();
+            self->arr4[i]->func_001083E0();
+        }
+    }
+    if (flag4) {
+        func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
+        if (flag3) {
+            game->v82(1);
+        } else {
+            game->v82(self->unk24);
+        }
+        func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+    }
+    D_002A829C->func_00161680();
+    D_002AA6C0->func_001B2640();
+    D_002BEAAC->func_0013DFF0(buf, 1);
+    D_002BEAAC->func_0013B260(0);
+    return 1;
+}
+
