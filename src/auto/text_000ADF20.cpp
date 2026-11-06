@@ -258,11 +258,11 @@ void *WaterInclusionBoxes::func_000AEC50(unsigned int flags) {
 void WaterInclusionBoxes::func_000AEC90(C_000AEC90Parser *parser)
 {
     int count;
-    int total;
-    int n;
+    int locals[2];
+    
     int i;
-    Vec4_000AEC90 v2;
     Vec4_000AEC90 v1;
+    Vec4_000AEC90 v2;
     char buf[0x104];
 
     if (parser->func_00169710(D_0027CC24)) {
@@ -270,51 +270,57 @@ void WaterInclusionBoxes::func_000AEC90(C_000AEC90Parser *parser)
         if (count > 0) {
             if (field_28 != 0) {
                 i = field_24;
-                total = field_24 = count + i;
-                field_28 = (WaterBox *)func_001E83E8(field_28, total * 0x28);
+                locals[1] = field_24 = count + i;
+                field_28 = (WaterBox *)func_001E83E8(field_28, field_24 * 0x28);
             } else {
                 WaterBox *q;
-                n = total = field_24 = count;
+                locals[1] = field_24 = count;
+                locals[0] = count;
                 i = 0;
-                q = (WaterBox *)func_001E8A44(n * 0x28);
+                q = (WaterBox *)func_001E8A44(locals[0] * 0x28);
                 if (q != 0) {
-                    func_00011FF0(q, 0x28, n, &D_000AAA50);
+                    func_00011FF0(q, 0x28, locals[0], &D_000AAA50);
                 } else {
                     q = 0;
                 }
                 field_28 = q;
             }
-            n = 1 - i;
-            for (; i < total; i++) {
-                func_001ADCC0(buf, 0x104, D_0027CBF4, n + i);
+            if (i < locals[1]) {
+            int offset = i * 0x28;
+            locals[0] = 1 - i;
+            do {
+                func_001ADCC0(buf, 0x104, D_0027CBF4, locals[0] + i);
                 if (parser->func_00169710(buf)) {
                     parser->func_00168CB0(D_0027CBE8, D_002A2734, &v1);
                     parser->func_00168CB0(D_0027CBDC, D_002A2734, &v2);
-                    parser->func_00168C50(D_0027CBCC, 0, &field_28[i].f20);
-                    parser->func_00168C50(D_0027CBC0, 0, &field_28[i].f24);
-                    field_28[i].f24 *= D_00275998;
+                    parser->func_00168C50(D_0027CBCC, 0, &(*(WaterBox *)((char *)field_28 + offset)).f20);
+                    parser->func_00168C50(D_0027CBC0, 0, &(*(WaterBox *)((char *)field_28 + offset)).f24);
+                    *(volatile float *)&(*(WaterBox *)((char *)field_28 + offset)).f24 *= D_00275998;
                     if (v1.x < v2.x) {
-                        field_28[i].f0 = v1.x;
-                        field_28[i].f10 = v2.x;
+                        (*(WaterBox *)((char *)field_28 + offset)).f0 = v1.x;
+                        (*(WaterBox *)((char *)field_28 + offset)).f10 = v2.x;
                     } else {
-                        field_28[i].f0 = v2.x;
-                        field_28[i].f10 = v1.x;
+                        (*(WaterBox *)((char *)field_28 + offset)).f0 = v2.x;
+                        (*(WaterBox *)((char *)field_28 + offset)).f10 = v1.x;
                     }
                     if (v1.y < v2.y) {
-                        field_28[i].f4 = v1.y;
-                        field_28[i].f14 = v2.y;
+                        (*(WaterBox *)((char *)field_28 + offset)).f4 = v1.y;
+                        (*(WaterBox *)((char *)field_28 + offset)).f14 = v2.y;
                     } else {
-                        field_28[i].f4 = v2.y;
-                        field_28[i].f14 = v1.y;
+                        (*(WaterBox *)((char *)field_28 + offset)).f4 = v2.y;
+                        (*(WaterBox *)((char *)field_28 + offset)).f14 = v1.y;
                     }
                     if (v1.z < v2.z) {
-                        field_28[i].f8 = v1.z;
-                        field_28[i].f18 = v2.z;
+                        (*(WaterBox *)((char *)field_28 + offset)).f8 = v1.z;
+                        (*(WaterBox *)((char *)field_28 + offset)).f18 = v2.z;
                     } else {
-                        field_28[i].f8 = v2.z;
-                        field_28[i].f18 = v1.z;
+                        (*(WaterBox *)((char *)field_28 + offset)).f8 = v2.z;
+                        (*(WaterBox *)((char *)field_28 + offset)).f18 = v1.z;
                     }
                 }
+            ++i;
+                offset += 0x28;
+            } while (i < locals[1]);
             }
         }
     }
