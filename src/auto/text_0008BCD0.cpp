@@ -152,7 +152,10 @@ struct C_0008BCD0 {
     Elem_0008BCD0 *unk4c;
     Elem_0008BCD0 *unk50;
     Win_0008BCD0 *unk54;
+    char pad58[0x24];
+    int unk7c;
     void func_0008BCD0();
+    void func_0008C480();
     void func_001577A0(Win_0008BCD0 *w, int a);
 };
 
