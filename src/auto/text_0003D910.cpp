@@ -126,7 +126,7 @@ struct C_0003D910 {
     int f5B4;
     int *f5B8;
     void func_0003D910(int a0);
-    NodeD *func_00038A10(NodeD *a, int *b);
+    RetD *func_00038A10(NodeD *a, int *b);
     void func_000399A0(int a);
     void func_000392B0();
 };
