@@ -26,7 +26,6 @@ struct C_002BEAAC {
     int func_0013D310(char *a, void *b, int *c, int *d, int e);
     void func_0013C8A0(int a, void *b, int c, int d);
     void func_0013C110(int a);
-    int func_0013B1F0(char *a, void *b);
     int func_0013B1F0(int h, void *obj);
 };
 extern C_002BEAAC *D_002BEAAC;
