@@ -36,7 +36,7 @@ struct S_ADFD0_Tex {
 };
 
 struct S_ADFD0_Vtx {
-    int x, y, z;
+    float x, y, z;
     int color;
     float u, v;
 };
@@ -367,6 +367,132 @@ struct C_001AE810 {
     void func_001AE810(void);
 };
 
+
+void C_001ADFD0::func_001ADFD0(float *src, S_ADFD0_Tex *tex, int *rect, int a4, int a5, int a6)
+{
+    S_ADFD0_Mat mat;
+    S_ADFD0_Mat *pm = &mat;
+    S_ADFD0_RootX *g = (S_ADFD0_RootX *)D_002EFDB8;
+    int x, y, z, w;
+    int s0, s1, s2, s3;
+    float u0, v0, u1, v1;
+    float fx, fy, fz, fw;
+    volatile float fq0, fq1;
+    int b;
+    int q0, q1;
+    unsigned char cr, cg, cb;
+    S_ADFD0_Vtx *p;
+
+    pm->identity();
+    if (rect != 0) {
+        x = rect[0];
+        y = rect[1];
+        z = rect[2];
+        w = rect[3];
+    } else {
+        x = 0;
+        y = 0;
+        z = tex->f8;
+        w = tex->fC;
+    }
+    if (src != 0) {
+        s0 = (int)(src[0] * D_002AA2E8);
+        s1 = (int)(src[1] * D_002AA2EC);
+        s2 = (int)(src[2] * D_002AA2E8);
+        s3 = (int)(src[3] * D_002AA2EC);
+    } else {
+        s0 = 0;
+        s1 = 0;
+        s2 = 0x280;
+        s3 = 0x1c0;
+    }
+    D_0020C6E0 = 3;
+    D_0020C6E4 = 3;
+    D_0020C6DC |= 1;
+    D_0020C6EC = 1;
+    D_0020C6F0 = 1;
+    func_001FD020(&D_00040304, 1);
+    func_001FD020(&D_00040344, 0x302);
+    func_001FD020(&D_00040348, 0x303);
+    D_0020C6DC |= 0x2000;
+    D_0020CA50 = 0;
+    func_001FD020(&D_00040300, 0);
+    func_001FE490(1);
+    func_001FD020(&D_00040354, a6 != 0 ? 0x203 : 0x207);
+    func_00200390(0, tex->fB8);
+    fx = (float)s0;
+    fy = (float)s1;
+    fz = (float)s2;
+    fw = (float)s3;
+    b = 1;
+    switch (tex->fA4) {
+    case 6:
+    case 0xc:
+    case 0xe:
+    case 0xf:
+        b = 0;
+        break;
+    case 0x12:
+    case 0x1c:
+    case 0x1e:
+        b = 1;
+        break;
+    }
+    q0 = 0;
+    q1 = 0;
+    if (a5 == 0) {
+        if (g->cam != 0) {
+            q0 = g->cam->f1E0;
+            q1 = g->cam->f1E4;
+        }
+    }
+    fq0 = (float)q0;
+    fq1 = (float)q1;
+    if (b != 0) {
+        u0 = (float)x;
+        v0 = (float)y;
+        u1 = (float)z;
+        v1 = (float)w;
+    } else {
+        u0 = (float)x / (float)tex->f8;
+        v0 = (float)y / (float)tex->fC;
+        u1 = (float)z / (float)tex->f8;
+        v1 = (float)w / (float)tex->fC;
+    }
+    cr = f24;
+    cg = f25;
+    cb = f26;
+    p = (S_ADFD0_Vtx *)func_001FF410(f28, 0);
+    p[0].x = (int)fx;
+    p[0].y = (int)fw;
+    p[0].z = f68;
+    p[0].color = MakeColor_001AEBD0(f64, cb, cg, cr);
+    p[0].u = u0;
+    p[0].v = v1;
+    p[1].x = (int)fx;
+    p[1].y = (int)fy;
+    p[1].z = f68;
+    p[1].color = MakeColor_001AEBD0(f64, cb, cg, cr);
+    p[1].u = u0;
+    p[1].v = v0;
+    p[2].x = (int)fz;
+    p[2].y = (int)fw;
+    p[2].z = f68;
+    p[2].color = MakeColor_001AEBD0(f64, cb, cg, cr);
+    p[2].u = u1;
+    p[2].v = v1;
+    p[3].x = (int)fz;
+    p[3].y = (int)fy;
+    p[3].z = f68;
+    p[3].color = MakeColor_001AEBD0(f64, cb, cg, cr);
+    p[3].u = u1;
+    p[3].v = v0;
+    g->f6c->func_0014A650(f10);
+    g->f70->func_00142D00(f14);
+    func_001FEC30(0x22, mat.m);
+    func_001FEE00(0, f28, 0x18);
+    func_00200A90(6, 0, 4);
+}
 
 C_001AE3E0::C_001AE3E0(int param_1) : C_001AE3E0_Head(param_1)
 {
