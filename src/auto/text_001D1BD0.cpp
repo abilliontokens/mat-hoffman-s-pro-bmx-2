@@ -1,8 +1,48 @@
 /* 3 functions from 0x001D1BD0 to 0x001D2A40, found by Ghidra. */
 #include "common.h"
 #include <string.h>
-struct LoadingRecord { const char *name; char pad4[0x3C]; float x,y,w,h,value; };
-extern float D_002ABC38, D_002ABC3C;
+#include <xmmintrin.h>
+/* 0x54-byte keyframe track: frame, x, y, w, h and alpha channels (see C_001D2A40) */
+struct LoadingRecord {
+    char *name;
+    short frameLo, frameHi;
+    short posLo[2], posHi[2];
+    short sizeLo[2], sizeHi[2];
+    float alphaLo, alphaHi;
+    union {
+        unsigned char flags;
+        struct {
+            unsigned char rep0 : 1, rep1 : 1, rep2 : 1, rep3 : 1, pong0 : 1, pong1 : 1, pong2 : 1, pong3 : 1;
+        };
+    };
+    unsigned char dir;
+    unsigned short done;
+    float step[6];
+    float val[6];
+};
+extern float D_002ABC38, D_002ABC3C, D_00275544, D_00275460, D_0028F3DC;
+extern char D_0028F430[], D_002769F8[], D_0028F420[], D_0028D1DC[], D_0028F410[], D_0028D1D0[];
+extern char D_002764F0[], D_002769A8[], D_00276974[], D_00276968[], D_0028F404[], D_0028F3F4[];
+extern char D_0028F3E0[], D_0028F3D0[], D_0028F3C8[], D_0028F3BC[], D_0028F3B4[], D_0028F3A8[];
+extern char D_0028F398[], D_0028F384[], D_0028F378[], D_0028F36C[], D_0028F360[];
+void *func_001E8A44(int);
+int func_001ADCC0(char *, int, const char *, ...);
+
+struct Reader1D1BD0 {
+    char pad[0x4cc];
+    Reader1D1BD0 *func_00168280();
+    int func_00169490(const char *, int);
+    int func_00169710(const char *);
+    void func_001691E0();
+    int func_00168C20(const char *, int, int *);
+    int func_00168C50(const char *, int, float *);
+    void func_00168BE0(const char *, const char *, char *, int);
+};
+
+static __forceinline int Min_1D1BD0(int a, int b) { return a > b ? b : a; }
+static __forceinline int Max_1D1BD0(int a, int b) { return a < b ? b : a; }
+static __forceinline float MinF_1D1BD0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float MaxF_1D1BD0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *);
 extern "C" __declspec(dllimport) void __stdcall RtlLeaveCriticalSection(void *);
 
