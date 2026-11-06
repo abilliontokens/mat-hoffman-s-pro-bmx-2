@@ -1,5 +1,7 @@
 /* 4 functions from 0x001DA500 to 0x001DB4D0, found by Ghidra. */
 #include "common.h"
+#include <math.h>
+void __stdcall func_00201100(void *);
 extern float D_002F08AC,D_002EFEA0,D_00278650;
 extern float D_002F100C[],D_002F1014[];
 extern int D_0020CA7C,D_00040350,D_00040344,D_00040348,D_0020C8E4;
