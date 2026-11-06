@@ -82,6 +82,8 @@ struct V4f_001956F0 {
     float x, y, z, w;
     V4f_001956F0() { x = y = z = 0; w = 1.0f; }
     V4f_001956F0(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
+    V4f_001956F0 operator+(const V4f_001956F0 &o) const { return V4f_001956F0(x + o.x, y + o.y, z + o.z, 1.0f); }
+    V4f_001956F0 operator-(const V4f_001956F0 &o) const { return V4f_001956F0(x - o.x, y - o.y, z - o.z, 1.0f); }
 };
 struct Ini_001956F0 {
     char data[0x4cc];
