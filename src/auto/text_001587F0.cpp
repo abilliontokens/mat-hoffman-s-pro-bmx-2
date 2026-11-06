@@ -100,10 +100,10 @@ struct C_00158BE0 {
 };
 
 struct C_001594F0 {
-    unsigned unk0 : 16;
-    unsigned unk2 : 8;
-    unsigned unk3 : 3;
-    unsigned unk3b : 5;
+    unsigned short unk0;
+    unsigned char unk2;
+    unsigned char unk3 : 3;
+    unsigned char unk3b : 5;
     int unk4;
     char pad8[0x14 - 8];
     int unk14;
@@ -270,8 +270,8 @@ void C_00158C10::func_00158C10(int a, int b)
 C_001594F0 *C_001594F0::func_001594F0(void)
 {
     unk0 = 0;
-    unk3 = 0;
     unk2 = 0xff;
+    unk3 = 0;
     unk28 = 0;
     unk24 = 0;
     unk20 = 0;
