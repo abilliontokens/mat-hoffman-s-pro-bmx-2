@@ -408,22 +408,15 @@ int __stdcall func_0023EB1F(S_0023EB1F_Obj *obj, S_0023EB1F_Req *req)
 
 unsigned int C_0023EC0D::func_0023EC0D(unsigned int a, unsigned int b, int *out)
 {
-    unsigned int end;
-    unsigned int rest;
-
     if (f44 != 0) {
         return f44(f48, a, b, out);
     }
     _imp__RtlEnterCriticalSection(f6c);
-    end = f94 + f3c;
-    if (end > a) {
-        rest = end - a;
-        if (b <= rest) {
-            *out = (f34 - f3c) + a;
-            f40 = a;
-            _imp__RtlLeaveCriticalSection(f6c);
-            return b;
-        }
+    if (f94 + f3c > a && b <= f94 + f3c - a) {
+        *out = f34 - f3c + a;
+        f40 = a;
+        _imp__RtlLeaveCriticalSection(f6c);
+        return b;
     }
     return 0;
 }
@@ -644,17 +637,16 @@ unsigned int __stdcall func_0023F0F4(int p1, C_0023EC0D *obj, unsigned int a, un
 
 int __stdcall func_0023F119(S_0023F119_Src *src, S_0023F119_Wfx *wfx)
 {
-    short ch;
-    unsigned short align;
+    unsigned short ch;
 
     wfx->wFormatTag = 1;
     wfx->nSamplesPerSec = src->func_0023EE30(src->fC);
     ch = src->f10;
     wfx->cbSize = 0;
     wfx->nChannels = ch;
-    align = ch << 1;
-    wfx->nBlockAlign = align;
-    wfx->nAvgBytesPerSec = align * wfx->nSamplesPerSec;
+    ch <<= 1;
+    wfx->nBlockAlign = ch;
+    wfx->nAvgBytesPerSec = ch * wfx->nSamplesPerSec;
     wfx->wBitsPerSample = 16;
     return 0;
 }
