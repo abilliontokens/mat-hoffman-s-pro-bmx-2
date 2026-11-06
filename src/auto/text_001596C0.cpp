@@ -54,6 +54,7 @@ struct GrindLineManager {
     GrindLine **unk34;
     int unk38;
     void *unk3C;
+    void func_001596C0(struct Scene_1596 *scene);
     void func_00159C40(GL2 *g);
     int func_0015A520(void);
     void func_0015A180(void *arg);
