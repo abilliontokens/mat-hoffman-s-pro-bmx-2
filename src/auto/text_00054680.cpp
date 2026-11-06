@@ -1,6 +1,7 @@
 /* 6 functions from 0x00054680 to 0x00055380, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include <new>
 
 extern int D_002A1A64, D_002A1A68, D_002A1A6C, D_002A1A70;
 struct V_000551B0 {
