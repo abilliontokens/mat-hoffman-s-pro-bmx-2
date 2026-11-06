@@ -90,7 +90,7 @@ struct Fader_000597B0 {
 
 template <class T> inline const T &Min_000590F0(const T &a, const T &b) { return b < a ? b : a; }
 
-struct __declspec(align(8)) File_000590F0 {
+struct File_000590F0 {
     char data[0x4C8];
     void func_00168280(void);
     int func_00169490(char *name, int mode);
