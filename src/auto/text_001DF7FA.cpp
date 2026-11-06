@@ -118,7 +118,7 @@ static __forceinline void FreeInsert_001DFD40(S_HeapRoot *root, S_HeapEntry *e, 
 extern "C" void *__cdecl memset(void *, int, unsigned int);
 void __stdcall func_001DF746(S_HeapBlock *blk, S_FreeNode *node);
 void __stdcall func_001DF767(S_HeapBlock *blk, unsigned int addr, unsigned int size);
-void __stdcall func_001DFC2A(S_HeapRoot *root, unsigned char *blk, int granules);
+void __stdcall func_001DFC2A(S_HeapRoot *root, unsigned char *blk, unsigned int granules);
 
 #pragma optimize("sy", on)
 #pragma optimize("y", off)
@@ -261,6 +261,50 @@ unsigned char *__stdcall func_001DF985(S_HeapRoot *root, unsigned char *entry, u
     }
     return (unsigned char *)cur;
 }
+
+#pragma optimize("sy", on)
+#pragma optimize("y", off)
+void __stdcall func_001DFC2A(S_HeapRoot *root, unsigned char *blk, int granules)
+{
+    S_HeapEntry *e = (S_HeapEntry *)blk;
+    unsigned char bucket = e->bucket;
+    unsigned short prev = e->prevSize;
+    S_HeapBlock *pool = (S_HeapBlock *)root->bucket[bucket];
+    unsigned char flags = e->flags;
+    unsigned int n = granules;
+    unsigned int sz;
+
+    root->freeTotal += n;
+    while (n != 0) {
+        if (n > (unsigned int)&D_0000FF00) {
+            if (n == (unsigned int)&D_0000FF01) {
+                sz = (unsigned int)&D_0000FF00 - 0x10;
+                e->flags = 0;
+            } else {
+                sz = (unsigned int)&D_0000FF00;
+                e->flags = flags;
+            }
+        } else {
+            sz = n;
+            e->flags = flags;
+        }
+        e->flags &= 0xf8;
+        e->prevSize = prev;
+        e->bucket = bucket;
+        e->size = (unsigned short)sz;
+        FreeInsert_001DFD40(root, e, sz);
+        n -= (unsigned short)sz;
+        e = (S_HeapEntry *)((unsigned char *)e + (unsigned short)sz * 16);
+        prev = (unsigned short)sz;
+        if ((unsigned char *)e >= pool->limit) {
+            return;
+        }
+    }
+    if (!(flags & 0x10)) {
+        e->prevSize = prev;
+    }
+}
+
 #pragma optimize("sy", on)
 
 #pragma optimize("sy", on)
