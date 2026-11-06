@@ -118,8 +118,8 @@ struct C_00163A50 {
     void *func_00163A50(void *a, void *b);
     void func_00162A80(void *p);
     S_00163DC0_Res *func_00162B20(const char *name, int a);
-    S_00163DC0_Res *func_00163780(const char *path, S_00163DC0_Res *res);
-    S_00163DC0_Res *func_00162FB0(S_00163A50_Arg *a1, const char *path, S_00163DC0_Res *res);
+    int func_00163780(const char *path, S_00163DC0_Res *res);
+    int func_00162FB0(S_00163A50_Arg *a1, const char *path, S_00163DC0_Res *res);
     void func_00162B70(const char *path, S_00163DC0_Res *res);
     void *func_00163DC0(C_00163DC0_Parser *parser, const char *section, const char *prefix);
 };
@@ -283,12 +283,18 @@ void *C_00163A50::func_00163A50(void *a, void *b)
         res->f2C = a1->f2C;
     }
     func_00030F30(path, D_00287D28);
-    if (0 == func_00163780(path, res)) {
+    switch ((int)func_00163780(path, res)) {
+    case 0:
         func_00030F30(path, D_00287D20);
-        if (0 != func_00162FB0(a1, path, res)) {
+        switch ((int)func_00162FB0(a1, path, res)) {
+        case 0:
+            break;
+        default:
             func_00030F30(path, D_00287D28);
             func_00162B70(path, res);
+            break;
         }
+        break;
     }
     if (a1->f8->func_00168C50(D_00287D10, 0, &res->f3C) == 0) {
         float t = res->f38;
