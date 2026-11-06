@@ -70,6 +70,12 @@ static __forceinline unsigned int xstrlen(const char *str)
     }
     return eos - str - 1;
 }
+
+/* the object's flag byte: bit 0x10 set means it has a search path */
+static __forceinline unsigned char xflag10(unsigned int flags)
+{
+    return flags & 0x10;
+}
 extern "C" void (__stdcall *_imp__RtlInitAnsiString)(S_AnsiString *dst, const char *src);
 extern "C" int (__stdcall *_imp__NtCreateFile)(int *handle, unsigned int access, S_ObjAttr *oa, S_IoStatus *iosb, S_Large *alloc, unsigned int attrs, unsigned int share, unsigned int disp, unsigned int opts);
 extern "C" unsigned int (__stdcall *_imp__RtlNtStatusToDosError)(int status);
@@ -343,6 +349,60 @@ int __stdcall func_001DDF52(int a0, void *a1, char *a2, int a3)
         }
         result = 1;
         break;
+    }
+    return result;
+}
+
+int __stdcall func_001DE0DD(int a0, void *a1, int a2)
+{
+    char *p = (char *)a0;
+    int result = 0;
+    char *q;
+    char *s;
+    char *t;
+    char *d;
+    char *e;
+    int len;
+    bool m;
+    int h;
+
+    m = *(unsigned int *)p & 0x10;
+    if (!m) {
+        return 0;
+    }
+    q = p + 0x2c;
+    s = q;
+    t = s + 1;
+    while (*s++) {
+    }
+    len = s - t;
+    s = (char *)a1;
+    d = p + 0x140;
+    while ((*d++ = *s++) != 0) {
+    }
+    d = p + 0x140 + a2;
+    while ((*d++ = *q++) != 0) {
+    }
+    if ((unsigned int)(len + a2) < 0x103) {
+        p[len + a2 + 0x141] = 0;
+        p[len + a2 + 0x140] = '\\';
+        if (len + a2 < 0xf7) {
+            e = p + len + a2;
+            s = D_0028FAD0;
+            d = e + 0x140;
+            while ((*d++ = *s++) != 0) {
+            }
+            h = func_001DCC3C((int)(p + 0x140), 0x80000000, 1, 0, 3, 0x80, 0);
+            a0 = h;
+            if (h != -1) {
+                result = func_001DDF0A(h, 1);
+                if (result) {
+                    result = func_001DDF52(a0, &D_0028FB38, p + 0x244, 0x80);
+                }
+                func_001DD13C(a0);
+            }
+            e[0x141] = 0;
+        }
     }
     return result;
 }
