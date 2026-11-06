@@ -72,6 +72,7 @@ struct C_001D27F0 {
     C_001D27F0_Obj *unk50;
     void func_001D2840(const char *name, int x, int y);
     void func_001D27F0(void);
+    int func_001D1BD0(void);
 };
 
 void C_001D27F0::func_001D27F0(void)
