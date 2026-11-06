@@ -21,7 +21,7 @@ double func_001E909C(double x, double y)
 }
 
 #pragma optimize("t", off)
-int func_001E90AA(int value) {
+static int func_001E90AA(int value) {
     int func_001ECFEC(...);
     int func_001E83E8(...);
     unsigned n = func_001ECFEC(D_002FB374);
