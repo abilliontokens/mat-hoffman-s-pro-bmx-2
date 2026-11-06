@@ -41,8 +41,8 @@ struct C_00075F30 {
     int fA8;
     Img_75F30 *fAC;
     Img_75F30 *fB0;
-    char padB4[0x14];
-    int fC8[5];
+    Img_75F30 *fB4[5];
+    Img_75F30 *fC8[5];
     char padDC[0x24];
     int f100, f104, f108, f10C, f110, f114, f118;
     char pad11C[4];
