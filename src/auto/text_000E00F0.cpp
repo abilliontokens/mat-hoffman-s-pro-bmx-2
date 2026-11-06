@@ -15,7 +15,7 @@ struct E00F0_Page { char pad0[0x134]; int f134; int f138; char *f25C; };
 struct E00F0_Game { char pad0[8]; E00F0_Buttons *f8; char padC[0x2E0 - 0xC]; struct E00F0_Lvl *f2E0; };
 struct E00F0_Lvl { char pad0[0x2FC]; void *f2FC; };
 struct E00F0_SongList { int func_00095250(int a); int func_000952A0(int a); void func_00094D90(int a); void func_00095490(int a); void func_00094E40(int a, int b, int c); void func_00094960(int a); void func_00094C60(void); };
-struct E00F0_Self { char pad0[0x124]; E00F0_Page *f124; int func_000DFC90(void); };
+struct E00F0_Self { char pad0[0x124]; E00F0_Page *f124; int func_000DFC90(void); int func_000E00F0(int a, int b); };
 
 struct DelObjTime {
     virtual void Destroy(int a0);
