@@ -1,5 +1,6 @@
 /* 13 functions from 0x00168F40 to 0x00169E10, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 extern "C" unsigned int strlen(const char *s);
 #pragma intrinsic(strlen)
 extern "C" char *strcpy(char *dst, const char *src);
@@ -559,6 +560,10 @@ int C_00168F40::func_00169A50(char *line)
         f430++;
         return slotCount;
     }
+}
+
+void func_00169B90(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
 void func_00169C00(void *a0, void *a1, VT_00169C00 *obj, int flag)
