@@ -7,6 +7,7 @@ struct C_63CD0_Call {
  unsigned char flags;
  void setColor(unsigned int c) { color = (color & 0xff000000) | (c & 0xffffff); flags |= 2; }
  void setAlpha(unsigned char a) { ((unsigned char *)&color)[3] = a; flags |= 2; }
+ void func_001D5AD0();
  void func_0005E7C0(float, float);
  void func_00051140(float);
  void func_00051160(float);
