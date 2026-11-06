@@ -27,6 +27,14 @@ static inline void SetVec4(Vec4 *d, f32 x, f32 y, f32 z, f32 w)
     d->w = w;
 }
 
+static inline void SetVec4XZYW(Vec4 *d, f32 x, f32 z, f32 y, f32 w)
+{
+    d->x = x;
+    d->y = y;
+    d->z = z;
+    d->w = w;
+}
+
 struct C_00157600 {
     void func_00157600(int a0);
 };
