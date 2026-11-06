@@ -202,6 +202,122 @@ struct ProceduralModel {
     int func_001BA1B0(S_001BA1B0_Owner *p);
 };
 
+extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
+#pragma intrinsic(memcpy)
+extern char D_0027DB60[];
+extern float D_002AA9F4, D_002AA9F8, D_002AA9FC;
+extern float D_00275998;
+float func_00016D20(float x);
+void func_00167FE0(void *a, void *b, float x, float y, float z);
+
+struct S_001B9D60_Vec4 {
+    float x, y, z, w;
+    S_001B9D60_Vec4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+};
+
+/* temp data of KeyFramedModel (DynamicModelTempData), freed after load */
+struct S_001B9D60_Temp {
+    void *vtbl;
+    char name[0x108];
+    int f10c;
+    int f110;
+    int f114;
+};
+
+struct S_001B9D60_VBase {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+};
+
+struct S_001B9D60_Cam {
+    char pad0[0x180];
+    unsigned char f180;
+    void func_00199650(S_001B9D60_Vec4 *pos);
+    void func_00198F50(S_001B9D60_Vec4 *a, S_001B9D60_Vec4 *b, int c, int d, int e);
+};
+
+struct S_001B9D60_Anim : virtual S_001B9D60_VBase {
+    S_001B9D60_Cam *f4;
+    char pad8[8];
+    int f10;
+    S_001B9D60_Anim *func_001328F0(int a, int mostDerived);
+    int func_00132A40(char *a, char *b, int c, int d, int e, int f, int g);
+    void func_00132CC0(int a, int b, int c);
+    void func_00132D20(void);
+    void func_00164820(int node);
+    void func_001670C0(int a, int b, int c);
+};
+
+struct S_001B9D60_Scene {
+    void func_001577A0(S_001B9D60_VBase *a, int b);
+};
+
+struct S_001B9D60_Owner {
+    char pad0[0x3ac];
+    S_001B9D60_Scene *f3ac;
+    char pad3b0[0x4a8 - 0x3b0];
+    int *f4a8;
+    int *f4ac;
+    char pad4b0[0x10];
+    int f4c0;
+};
+
+struct S_001B9D60_Res {
+    int func_00162B20(const char *name, int a);
+};
+extern S_001B9D60_Res *D_002EF7D0;
+
+struct S_001B9D60_Elem {
+    void func_00186F10(int a);
+};
+
+struct S_001B9D60_Attach {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(S_001B9D60_Owner *p, S_001B9D60_Cam *cam, char *c, int d);
+};
+
+struct KeyFramedModel {
+    void *vtbl;
+    char pad4[4];
+    S_001B9D60_Vec4 f08;
+    S_001B9D60_Vec4 f18;
+    S_001B9D60_Vec4 f28;
+    float f38;
+    float f3c;
+    float f40;
+    int f44;
+    int f48;
+    int f4c;
+    S_001B9D60_Elem **f50;
+    S_001B9D60_Attach *f54;
+    int f58;
+    char **f5c;
+    int f60;
+    char pad64[4];
+    int **f68;
+    char pad6c[8];
+    int *f74;
+    int *f78;
+    char pad7c[4];
+    int f80;
+    int f84;
+    char pad88[4];
+    int f8c;
+    char pad90[0x10];
+    char fa0[0x1a4 - 0xa0];
+    S_001B9D60_Anim *f1a4;
+    S_001B9D60_Temp *f1a8;
+    int *f1ac;
+    int func_001B9D60(S_001B9D60_Owner *p);
+};
+
 C_001B9B20 *C_001B9B20::func_001B9B20(void *param) {
     ((C_00157600 *)this)->func_00157600(param);
     f24 = 0;
