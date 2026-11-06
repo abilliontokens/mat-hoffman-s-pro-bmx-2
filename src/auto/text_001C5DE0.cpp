@@ -92,10 +92,10 @@ static __forceinline S_001C64A0_Node *find_root(S_001C64A0_Node *&n)
 static __forceinline Vec4 vec3_neg(Vec4 *v)
 {
     Vec4 r;
-    r.w = 1.0f;
     r.x = -v->x;
     r.y = -v->y;
     r.z = -v->z;
+    r.w = 1.0f;
     return r;
 }
 
@@ -253,6 +253,7 @@ void func_001C63F0(Vec4 *out, Vec4 *vin, f32 *m)
 void func_001C64A0(S_001C64A0_Node *obj)
 {
     Vec4 a;
+    Vec4 t;
     int i;
     S_001C64A0_Node *root = *(S_001C64A0_Node * volatile *)&obj;
 
@@ -265,7 +266,8 @@ void func_001C64A0(S_001C64A0_Node *obj)
     a.x = 0;
     a.w = 1.0f;
     root->v5(0, &a, 0, 0, 0);
-    a = vec3_neg(&a);
+    vec3_neg2(&t, &a);
+    a = t;
     a.y = 0;
     for (i = 0; i < root->fC; i++) {
         Vec4 b;
