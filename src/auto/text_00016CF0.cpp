@@ -280,6 +280,11 @@ extern unsigned char D_002A4330;
 extern int D_002BA148;
 int func_00134A10(V4_00017AD0 *seg, void *obj, V4_00017AD0 *out, V4_00017AD0 *hit);
 
+struct L_00016CF0 {
+    int * volatile p;
+    volatile float t;
+};
+
 int func_00016CF0(float f)
 {
     int * volatile p = (int *)&f;
@@ -316,6 +321,22 @@ float func_00016D60(float x)
         r += D_002756B8;
     }
     return r;
+}
+
+void func_00016DD0(float *dst, const float *src)
+{
+    __m128 v = _mm_loadu_ps(src);
+    __m128 sq = _mm_mul_ps(v, v);
+    __m128 len = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
+    len = _mm_add_ss(len, _mm_shuffle_ps(sq, sq, _MM_SHUFFLE(3, 2, 0, 1)));
+    __m128 eps = _mm_load_ss(&D_00275710);
+    len = _mm_add_ss(len, _mm_and_ps(_mm_cmplt_ss(len, eps), eps));
+    __m128 r = _mm_rsqrt_ss(len);
+    __m128 three = _mm_load_ss(&D_00275700);
+    __m128 s = _mm_mul_ss(_mm_mul_ss(len, r), r);
+    __m128 h = _mm_mul_ss(r, _mm_load_ss(&D_002756F0));
+    __m128 f = _mm_mul_ss(h, _mm_sub_ss(three, s));
+    _mm_storeu_ps(dst, _mm_mul_ps(_mm_shuffle_ps(f, f, 0), v));
 }
 
 C_00016E40_Vec C_00016E40::func_00016E40(void)
