@@ -8,6 +8,7 @@ static __forceinline void FloatToInt(int *out, float f)
 }
 struct C_0013C8A0 {
     void func_0013C8A0(int key, void *out, int size, int flag);
+    int func_0013C9F0(const char *name, const char *mode);
 };
 extern C_0013C8A0 *D_002BEAAC;
 struct S_0014D360_Vector { float x,y,z,w; };
