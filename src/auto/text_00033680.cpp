@@ -217,12 +217,13 @@ struct E33680_Ev {
 
 int E33680_Ev::func_00033680()
 {
-    char buf0[0x104];
     char buf1[0x104];
+    char buf0[0x104];
     char buf2[0x104];
     char buf3[0x104];
     void *p;
     int n;
+    int i;
 
     f8c = 0;
     if (((E33680_G *)D_002A8490)->f2b8[0] != 0) {
@@ -246,8 +247,8 @@ int E33680_Ev::func_00033680()
     D_002BEAAC->func_0013C1D0((int)&D_001F4240);
     if (D_002BEAAC->func_0013D780(buf2, 1, 0, 0, 0, 0, 0, 0)) {
         D_002BEAAC->func_0013B260(0);
-        func_001DC974();
     }
+    func_001DC974();
     func_001ADCC0(buf3, 0x104, D_00276C14, D_002A5870, buf1);
     D_002A829C->v4(buf3);
     n = ((E33680_G *)D_002A8490)->f2e0->f4;
@@ -279,23 +280,40 @@ int E33680_Ev::func_00033680()
     }
     if (f1f8 != 0 && f20c == 0) {
         func_00030F30(buf0, D_00276C00);
+        buf0[strlen(buf0) - 1] = 0;
+        if (f64->v38(buf0)) {
+            f64->v39();
+            f64->v56();
+        }
     } else if (f204 != 0) {
         func_00030F30(buf0, D_00276BF8);
+        buf0[strlen(buf0) - 1] = 0;
+        if (f64->v38(buf0)) {
+            f64->v39();
+            f64->v56();
+        }
     } else if (f208 != 0) {
         func_00030F30(buf0, D_00276BF0);
+        buf0[strlen(buf0) - 1] = 0;
+        if (f64->v38(buf0)) {
+            f64->v39();
+            f64->v56();
+        }
     } else if (f1fc != 0) {
         func_00030F30(buf0, D_00276BE8);
+        buf0[strlen(buf0) - 1] = 0;
+        if (f64->v38(buf0)) {
+            f64->v39();
+            f64->v56();
+        }
     } else if (f20c != 0) {
         func_00030F30(buf0, D_00276BE0);
-    } else {
-        goto skip;
+        buf0[strlen(buf0) - 1] = 0;
+        if (f64->v38(buf0)) {
+            f64->v39();
+            f64->v56();
+        }
     }
-    buf0[strlen(buf0) - 1] = 0;
-    if (f64->v38(buf0)) {
-        f64->v39();
-        f64->v56();
-    }
-skip:
     f64->func_000AF0D0();
     if (f1d4) {
         f1d4->v3(D_00276C08, 0x50, 0x10);
@@ -314,16 +332,13 @@ skip:
     }
     if (D_002A1448 != 0) {
         if (((E33680_G *)D_002A8490)->f2e0->f4 == 10) {
-            E33680_Obj388 *o = f64->f388;
-            o->f420[0] = D_00276BD4;
-            o->f420[1] = D_00276BD8;
-            o->f420[2] = D_00276BDC;
+            f64->f388->v420 = *(E33680_V3 *)&D_00276BD4;
         }
         n = 0;
         if (((E33680_G *)D_002A8490)->f2e0->f4 != 0) {
             n = 1000;
         }
-        if (memcmp(buf1, D_00276BC8, 9) == 0 || memcmp(buf1, D_00276BC0, 7) == 0) {
+        if (strcmp(buf1, "lasvegas") == 0 || strcmp(buf1, "hawaii") == 0) {
             n += 2000;
         } else {
             n += 1000;
@@ -411,17 +426,17 @@ skip:
     }
     v32();
     if (((E33680_G *)D_002A8490)->f2e0->f4 != 10) {
-        int i;
         f64->func_000AF080(f90, f11c, D_002A1444);
         f64->f4e0->v6();
         for (i = 0; i < f64->f4e0->f24; i++) {
             if (f1c4 != 0) {
-                func_001041F0(f64->f4e0->arr1a8[i]);
+                f1c4->func_001041F0(f64->f4e0->arr1a8[i]);
             }
             if (func_001E8AF0(f64->f134, D_00276BAC) != 0) {
                 f64->f4e0->arr1a8[i]->fA38 = 0;
             }
         }
+        func_00031E20();
     }
     f64->v51();
     f64->v52();
@@ -433,15 +448,10 @@ skip:
     if (f11c != 0) {
         n = 1;
     }
-    if (n > 0) {
-        int *pp = &f6c[0];
-        do {
-            int h = func_0001CBF0();
-            *pp = h;
-            func_0001CC00(h, 1.0f, 1.0f);
-            pp++;
-            n--;
-        } while (n != 0);
+    for (i = 0; i < n; i++) {
+        int h = ((E33680_G *)D_002A8490)->f4->func_0001CBF0();
+        f6c[i] = h;
+        ((E33680_G *)D_002A8490)->f4->func_0001CC00(h, 1.0f, 1.0f);
     }
     if (f1d4) {
         f1d4->v3(D_00276C08, 0x172, 0x10);
