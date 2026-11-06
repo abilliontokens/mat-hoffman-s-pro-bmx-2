@@ -178,6 +178,16 @@ struct S_SoundGroupFlags {
     u8 b7 : 1;
 };
 
+struct S_001CD770_Arr {
+    int count;
+    S_SoundElem **items;
+    int growBy;
+    int capacity;
+    unsigned char owned : 1;
+    void init() { items = 0; count = 0; growBy = 0; capacity = 0; owned = 0; }
+    void alloc(int n) { items = (S_SoundElem **)func_001E8A44(n * 4); owned = 1; growBy = 16; capacity = n; }
+};
+
 struct XboxSoundGroup {
     void *vtbl;
     char pad4[0x24];
