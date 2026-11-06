@@ -55,6 +55,7 @@ struct C_00096870 {
     int f48e0;
     char pad48e4[0x63b0 - 0x48e4];
     f32 f63b0[1];
+    void func_00096750();
     void func_00096870(const char *name);
     void func_00096450(int idx);
     void func_00096200(int idx);
@@ -417,6 +418,88 @@ void C_00097FD0::func_000999E0(void) {
         }
     }
     mode1 = unk198->unk1c8 ? mode1 : mode0;
+}
+
+void C_00097FD0::func_00099A60(S_00099A60_arg *arg) {
+    C_00096870 **list;
+    int count;
+    int i;
+    int j;
+    int m;
+    char buf1[0x104];
+    char buf2[0xfc];
+
+    for (i = 0; i < arg->f24; i++) {
+        S_00099A60_ent *e = arg->f28[i];
+        if (e->f10)
+            e->f4->v6();
+        else
+            e->f4->v4();
+    }
+    for (i = 0; i < 3; i++) {
+        switch (i) {
+        case 0:
+            list = arr0;
+            break;
+        case 1:
+            list = arr1;
+            break;
+        case 2:
+            list = arr2;
+            break;
+        default:
+            list = 0;
+            break;
+        }
+        switch (i) {
+        case 0:
+            count = cnt0;
+            break;
+        case 1:
+            count = cnt1;
+            break;
+        case 2:
+            count = cnt2;
+            break;
+        default:
+            count = 0;
+            break;
+        }
+        for (j = 0; j < count; j++) {
+            int flag = 0;
+            if (unk198 != 0 && unk198->unk1c8 != 0 && list[j]->f1b4 != 0)
+                flag = 1;
+            if (list[j]->f48e0 != 0 && !flag) {
+                list[j]->func_00097050(unk198);
+                continue;
+            }
+            for (m = 0; m < list[j]->f1cc; m++) {
+                if (((char *)list[j])[0x2450 + m * 0x78] != 0) {
+                    ((S_001B65E0_obj *)*(void **)((char *)list[j] + 0x4880 + m * 4))->func_001B65E0();
+                    ((S_001B65E0_obj *)*(void **)((char *)list[j] + 0x4880 + m * 4))->func_001B65F0();
+                }
+            }
+            for (m = 0; m < list[j]->f1b8; m++) {
+                C_00096870 *sub = list[j]->f1c8[m];
+                if (sub->f0 != 1)
+                    continue;
+                for (int n = 0; n < sub->f2554; n++) {
+                    strcpy(buf1, (char *)sub + 0x5578 + n * 0x78);
+                    strcpy(buf2, (char *)sub + 0x50c8 + n * 0x78);
+                    if (buf2[0] != 0 && buf1[0] != 0) {
+                        ((S_001B65E0_obj *)*(void **)((char *)sub + 0x63d8 + n * 4))->func_001B65E0();
+                        ((S_001B65E0_obj *)*(void **)((char *)sub + 0x63d8 + n * 4))->func_001B65F0();
+                    }
+                    strcpy(buf1, (char *)sub + 0x5ed8 + n * 0x78);
+                    strcpy(buf2, (char *)sub + 0x5a28 + n * 0x78);
+                    if (buf1[0] != 0 && buf2[0] != 0) {
+                        ((S_001B65E0_obj *)*(void **)((char *)sub + 0x6400 + n * 4))->func_001B65E0();
+                        ((S_001B65E0_obj *)*(void **)((char *)sub + 0x6400 + n * 4))->func_001B65F0();
+                    }
+                }
+            }
+        }
+    }
 }
 
 void C_00097FD0::func_00099D40(int param) {
