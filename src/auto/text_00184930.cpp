@@ -259,6 +259,8 @@ struct C_00184930 {
 
 struct S_00185610_Vec4 {
     float x, y, z, w;
+    S_00185610_Vec4() {}
+    S_00185610_Vec4(const S_00185610_Vec4 &o) : x(o.x), y(o.y), z(o.z), w(o.w) {}
 };
 
 struct S_00185610_Elem {
@@ -517,6 +519,41 @@ int C_00184930::func_00185200(void)
         f3b4->v29(this);
     }
     return 1;
+}
+
+void S_00185610_Scene::func_00185610(S_00185610_Out *out)
+{
+    S_00185610_Cam *cam = D_002EFDB8->f4;
+    S_00185610_Node *node = cam->f28->node;
+    void *pos = cam->f170;
+    S_00185610_Elem *e = &f344[node->f3c];
+    S_00185610_Vec4 v = e->f134;
+    float px = e->f144;
+    float py = e->f148;
+    float total = 1.0f;
+    S_00185610_Link *l = node->f24;
+    float dist;
+    float inv;
+
+    for (; l != 0; l = l->next) {
+        if (l->test->func_0017A1D0(pos, D_002A9118, &dist) != 0) {
+            float w = (D_002A9118 - dist) / D_002A9118;
+            S_00185610_Elem *o = &f344[l->node->f3c];
+            S_00185610_Vec4 q = o->f134;
+            total += w;
+            v.x += q.x * w;
+            v.y += q.y * w;
+            v.z += q.z * w;
+            px += w * o->f144;
+            py += w * o->f148;
+        }
+    }
+    inv = D_00275460 / total;
+    out->f4 = v.x * inv;
+    out->f8 = v.y * inv;
+    out->fC = v.z * inv;
+    out->f14 = px * inv;
+    out->f18 = py * inv;
 }
 
 C_00185790 *C_00185790::func_00185790(void)
