@@ -1,6 +1,7 @@
 /* 7 functions from 0x0017AA90 to 0x0017BA00, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <xmmintrin.h>
 struct ShadowObject {
     virtual void v0();
     virtual void v1();
