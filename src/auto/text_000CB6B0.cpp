@@ -66,6 +66,7 @@ struct S_002A8490_2E8 {
 struct S_002A8490 {
     char pad0[0x2e8];
     S_002A8490_2E8 *f2E8;
+    C_0018C160 *f2EC;
 };
 extern S_002A8490 *D_002A8490;
 
