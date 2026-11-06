@@ -161,7 +161,6 @@ struct S_11BE0_State { char pad[0xbc]; int fBC; };
 struct S_11BE0_Actor { char pad[0x834]; C_00017680_Vec pos; char pad844[0x950-0x844]; S_11BE0_State *state; char pad954[0xa00-0x954]; S_11BE0_Mid *mid; };
 struct S_11BE0_List { char pad[0x24]; int count; char pad28[0x1a8-0x28]; S_11BE0_Actor *actors[1]; };
 static __forceinline S_11BE0_List *load_list_11BE0(S_11BE0_List * volatile *p) { return *p; }
-static __forceinline C_00017680_Vec vec_at_11E30(const C_00017680_Vec *base, int i) { return base[i]; }
 struct S_11E30_Cnt { char pad[0x124]; int count; };
 struct S_115F0_Mgr { char pad[0x4dc]; S_11E30_Cnt *cnt; S_11BE0_List *list; char pad4e4[0x588-0x4e4]; S_115F0_Path **paths; };
 static __forceinline float distance_11BE0(const C_00017680_Vec &a, const C_00017680_Vec &b) {
