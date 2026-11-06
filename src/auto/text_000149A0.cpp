@@ -226,7 +226,7 @@ void AIPedFleeState::func_00014EA0()
 static __forceinline float Sqrt_14EF0(float square)
 {
     float r;
-    _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&square));
+    _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&square)));
     return r;
 }
 
@@ -237,11 +237,8 @@ int AIPedFleeState::func_00014EF0(float dt)
         float dist;
         int idx;
     } L;
-    float d2;
     float len;
 
-    L.dist = 0.0f;
-    L.idx = 0;
     L.self = this;
     if (*(int *)(*(int *)((char *)D_002A8490 + 0x2a4) + 0x1c8) == 1)
         return 1;
@@ -252,18 +249,17 @@ int AIPedFleeState::func_00014EF0(float dt)
     if (L.dist < D_002756C8 &&
         *(float *)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + L.idx * 4 + 0x1a8) + 0x1194) > D_00275460) {
         if (*(int *)(*(int *)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + L.idx * 4 + 0x1a8) + 0x950) + 0xbc) == 0)
-            func_00012B00(1);
+            L.self->func_00012B00(1);
     } else {
         float *o = (float *)((char *)L.self->owner + 0x3e4);
         float dx = *(float *)((char *)L.self + 0xc) - o[0];
         float dy = *(float *)((char *)L.self + 0x10) - o[1];
         float dz = *(float *)((char *)L.self + 0x14) - o[2];
-        d2 = dx * dx + dy * dy + dz * dz;
-        len = sqrtf(d2);
+        len = Sqrt_14EF0(dz * dz + dy * dy + dx * dx);
         if (len < D_00275600) {
             if (*(unsigned int *)((char *)D_002A8490 + 0x238) <= *(unsigned int *)((char *)L.self + 0x1c))
                 return 1;
-            func_00012B00(0);
+            L.self->func_00012B00(0);
         }
     }
     if (L.dist > D_002756C4) {
