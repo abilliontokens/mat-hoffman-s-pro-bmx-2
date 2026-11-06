@@ -23,18 +23,30 @@ struct S_HeapEntry {
     S_ListEntry freeList;
 };
 
+struct S_HeapLookaside {
+    char pad0[0x40];
+    S_HeapEntry *lastEntry;     /* +0x40 */
+};
+
 struct S_Heap {
-    char pad0[0x18];
+    char pad0[0x14];
+    u32 flags14;                /* +0x14 */
     u32 flags;                  /* +0x18 */
-    char pad1C[0xC];
+    u32 maximumAllocationSize;  /* +0x1C */
+    char pad20[8];
     u32 deCommitFreeBlockThreshold; /* +0x28 */
     u32 deCommitTotalFreeThreshold; /* +0x2C */
     u32 totalFreeSize;          /* +0x30 */
-    char pad34[0x160 - 0x34];
+    char pad34[0x60 - 0x34];
+    S_HeapLookaside *lookaside[0x40]; /* +0x60 */
     u8 freeListsInUse[0x20];    /* +0x160 */
     S_ListEntry freeLists[128]; /* +0x180 */
     void *lockVariable;         /* +0x580 */
 };
+
+extern "C" void __stdcall RtlRaiseException(void *record);
+u8 __fastcall func_001E2770(u32 mask);
+S_HeapEntry *__stdcall func_001E028B(S_Heap *heap, u32 size);
 
 struct S_HeapCallout {
     char pad0[0x14];
@@ -68,15 +80,23 @@ int __stdcall func_001E06BC(u32 flags, void *base, u32 reserve, u32 commit, void
     u32 flag;
     u32 *pbase;
     u32 psize;
+    u32 code = 0;
 
     heap = 0;
     memset(&p, 0, 0x30);
-    if (params) {
-        if (params->length == 0x30) {
-            memcpy(&p, params, 0x30);
-        } else {
-            return 1;
+    __try {
+        if (params) {
+            if (params->length == 0x30) {
+                memcpy(&p, params, 0x30);
+            } else {
+                return 1;
+            }
         }
+    } __except (code = GetExceptionCode(), EXCEPTION_EXECUTE_HANDLER) {
+        return 1;
+    }
+    if ((int)code < 0) {
+        return 0;
     }
     if (D_002F6BB2 & 0x20) {
         flags |= 0x80;
@@ -179,3 +199,109 @@ int __stdcall func_001E06BC(u32 flags, void *base, u32 reserve, u32 commit, void
     }
     return 1;
 }
+
+void *__stdcall func_001E0AE0(void *heap, unsigned int flags, unsigned int size)
+{
+    if (size == 0) size = 1;
+    return 0;
+}
+
+extern char D_0000FF00;
+#pragma optimize("s", on)
+u8 __stdcall func_001E1297(S_Heap *heap, u32 flags, void *base)
+{
+    S_Heap *h = heap;
+    u8 locked = 0;
+    u8 result = 1;
+    S_HeapEntry *entry;
+    S_HeapCallout *callout;
+    struct { void *base; u32 a; u32 b; } rec;
+    u32 size;
+    long status;
+
+    if (base == 0)
+        return 1;
+    rec.base = base;
+    rec.a = 0;
+    rec.b = 0;
+    callout = *(S_HeapCallout **)(__readfsdword(0x20) + 0x250);
+    if (callout != 0)
+        callout->notify(0xb, &rec);
+    flags |= heap->flags;
+    entry = (S_HeapEntry *)base - 1;
+    __try {
+        if (!(flags & 1)) {
+            RtlEnterCriticalSection(heap->lockVariable);
+            locked = 1;
+        }
+        if (!(entry->flags & 8)) {
+            size = entry->size;
+            entry = func_001DF985(heap, entry, &size, 0);
+            if (size < 0x80) {
+                S_ListEntry *head;
+                entry->flags &= 0x10;
+                head = &heap->freeLists[(u16)size];
+                if (head->flink == head) {
+                    u32 idx = entry->size >> 3;
+                    u32 bit = 1 << (entry->size & 7);
+                    heap->freeListsInUse[idx] |= bit;
+                }
+                {
+                    S_ListEntry *list = head;
+                    S_ListEntry *blink = list->blink;
+                    entry->freeList.flink = list;
+                    entry->freeList.blink = blink;
+                    blink->flink = &entry->freeList;
+                    list->blink = &entry->freeList;
+                }
+                h->totalFreeSize += size;
+            } else if (size >= heap->deCommitFreeBlockThreshold &&
+                       heap->totalFreeSize + size >= heap->deCommitTotalFreeThreshold) {
+                func_001E0412(heap, entry, size);
+            } else if (size <= (unsigned int)&D_0000FF00) {
+                S_ListEntry *head;
+                S_ListEntry *next;
+                entry->flags &= 0x10;
+                head = &heap->freeLists[0];
+                next = head->flink;
+                while (head != next) {
+                    S_HeapEntry *e = (S_HeapEntry *)((char *)next - 8);
+                    if ((u16)size <= e->size)
+                        break;
+                    next = next->flink;
+                }
+                {
+                    S_ListEntry *list = next;
+                    S_ListEntry *blink = list->blink;
+                    entry->freeList.flink = list;
+                    entry->freeList.blink = blink;
+                    blink->flink = &entry->freeList;
+                    list->blink = &entry->freeList;
+                }
+                h->totalFreeSize += size;
+            } else {
+                func_001DFC2A(heap, entry, size);
+            }
+        } else {
+            S_ListEntry *block = (S_ListEntry *)((char *)entry - 0x20);
+            S_ListEntry *flink = block->flink;
+            S_ListEntry *blink = block->blink;
+            blink->flink = flink;
+            flink->blink = blink;
+            if (locked) {
+                RtlLeaveCriticalSection(heap->lockVariable);
+                locked = 0;
+            }
+            size = 0;
+            status = NtFreeVirtualMemory((void **)&block, &size, 0x8000);
+            if (status < 0)
+                result = 0;
+        }
+    } __finally {
+        if (locked)
+            RtlLeaveCriticalSection(h->lockVariable);
+    }
+    return result;
+}
+#pragma optimize("", on)
+
