@@ -41,6 +41,11 @@ struct Obj {
     void func_00168BE0(void *a0, void *a1, char *a2, int a3);
 };
 
+typedef Obj *(Obj::*ObjFn1)(void *);
+typedef void (Obj::*ObjFn0)();
+union ObjFn1U { void *p; ObjFn1 f; };
+union ObjFn0U { void *p; ObjFn0 f; };
+
 struct C_0004AD10 {
     void func_0004AD10();
     void func_001577A0(void *a0, int a1);
