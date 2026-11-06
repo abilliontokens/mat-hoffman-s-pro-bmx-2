@@ -12,36 +12,15 @@ struct Vec4 {
     f32 w;
     Vec4() {}
     Vec4(f32 x_, f32 y_, f32 z_, f32 w_) : x(x_), y(y_), z(z_), w(w_) {}
-    Vec4(double y_, double z_) {
-        x = 0.0f;
-        y = (f32)y_;
-        z = (f32)z_;
-        w = 1.0f;
-    }
-    Vec4(double x_, double y_, double z_, double w_) {
-        x = (f32)x_;
-        y = (f32)y_;
-        z = (f32)z_;
-        w = (f32)w_;
-    }
+    /* y and z arrive as doubles: this makes z a fld/fstp copy (as in the
+       original) instead of an integer move. */
     Vec4(f32 x_, double y_, double z_, f32 w_) {
         x = x_;
         y = (f32)y_;
         z = (f32)z_;
         w = w_;
     }
-    Vec4(f32 x_, f32 y_, double z_, f32 w_) {
-        x = x_;
-        y = y_;
-        z = (f32)z_;
-        w = w_;
-    }
 };
-
-static inline f32 GetZ(const Vec4 *p)
-{
-    return p->z;
-}
 
 static inline void SetVec4(Vec4 *d, f32 x, f32 y, f32 z, f32 w)
 {
