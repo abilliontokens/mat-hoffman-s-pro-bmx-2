@@ -1,4 +1,6 @@
 /* 12 functions from 0x00102BB0 to 0x00103B60, found by Ghidra. */
+#include "common.h"
+#include <string.h>
 extern char D_0027DE5C[];
 
 extern int D_002826B4;
@@ -358,6 +360,34 @@ C_001033D0 *C_001033D0::func_001033D0(void *a, void *b)
     unk3F4 = 0;
     unk3F0 = 0;
     unk3EC = 0xff;
+    return this;
+}
+
+C_00103450 *C_00103450::func_00103450(S_Cfg *cfg, int a)
+{
+    S_00103_Vec4 v34, v4c, v14, v24;
+
+    v34.x = v34.y = v34.z = 0.0f; v34.w = 1.0f;
+    v4c.x = v4c.y = v4c.z = 0.0f; v4c.w = 1.0f;
+    ((C_001BF600 *)this)->func_001BF600(cfg);
+    cfg->func_00168550(D_0027DE5C, unk1B8, 0x104);
+    cfg->func_00168BE0(D_0027DE4C, unk1B8, unkF0, 0x80);
+    cfg->func_00168C20(D_0027DE38, 0, &unk3C4);
+    cfg->func_00168C20(D_0027DE2C, 0, &unk3C8);
+    cfg->func_00168C20(D_00282898, 1, &unk170);
+    cfg->func_00168BE0(D_00282880, D_00282890, (char *)&v4c, 0x14);
+    v14.x = v14.y = v14.z = 0.0f; v14.w = 1.0f;
+    cfg->func_00168CB0(D_00282874, &v14, &vec3D4);
+    cfg->func_00168C50(D_0028286C, 0.0f, &unk3E4);
+    cfg->func_00168C20(D_0028285C, 0, (int *)&v34.z);
+    cfg->func_00168C20(D_00282854, 0xff, (int *)&v24.x);
+    cfg->func_00168C20(D_00282844, 0, (int *)&v34.y);
+    cfg->func_00168C50(D_0028283C, 0.0f, &v24.y);
+    unk3F0 = *(int *)&v34.y;
+    unk3EC = *(int *)&v24.x;
+    unk3E8 = *(int *)&v34.z;
+    unk3F4 = *(int *)&v24.y;
+    (void)a;
     return this;
 }
 
