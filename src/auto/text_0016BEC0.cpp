@@ -233,6 +233,14 @@ struct C_0016C5B0 {
 
 extern "C" float __cdecl sqrtf(float);
 
+static __forceinline int BuildPath_0016BEC0(char *dst, char *name)
+{
+    strcpy(dst, D_002A5558);
+    if (!name) return 0;
+    strcat(dst, name);
+    return 1;
+}
+
 C_0016BEC0 *C_0016BEC0::func_0016BEC0(void *a, char *name, void *b, u32 *c)
 {
     ((C_001D3F50 *)this)->func_001D3F50();
@@ -245,20 +253,21 @@ C_0016BEC0 *C_0016BEC0::func_0016BEC0(void *a, char *name, void *b, u32 *c)
         f1A8 = 0x20;
         f188 = 0x20;
         f1F4 = V4f(-1.0f, 0.0f, -1.0f, 1.0f);
-        f204 = V4f(1.0f, 0.0f, 1.0f, 1.0f);
         f1AC = 0x2f;
-        return this;
+        f204 = V4f(1.0f, 0.0f, 1.0f, 1.0f);
+    } else {
+        register char *path = &f6C;
+        f64 = a;
+        strcpy(path, D_002A5558);
+        if (!name) {
+            ((ParticleEmitterResetVT *)this)->v2();
+            return 0;
+        }
+        strcat(path, name);
+        if (((C_0016A330 *)this)->func_0016A330(path)) return this;
+        f1F4 = V4f(-1.0f, 0.0f, -1.0f, 1.0f);
+        f204 = V4f(1.0f, 0.0f, 1.0f, 1.0f);
     }
-    f64 = a;
-    strcpy(&f6C, D_002A5558);
-    if (!name) {
-        ((ParticleEmitterResetVT *)this)->v2();
-        return 0;
-    }
-    strcat(&f6C, name);
-    if (((C_0016A330 *)this)->func_0016A330(&f6C)) return this;
-    f1F4 = V4f(-1.0f, 0.0f, -1.0f, 1.0f);
-    f204 = V4f(1.0f, 0.0f, 1.0f, 1.0f);
     f170 = 325.0f;
     f174 = 0.0f;
     f17C = 2500.0f;
@@ -275,7 +284,7 @@ int C_0016C0D0::func_0016C0D0(float dt)
     int i;
 
     if (((C_00169E10 *)this)->func_00169E10(dt)) return 1;
-    if (f194 != D_00278C48) {
+    if (f194 > D_00278C48) {
         f34 = f24;
         return 1;
     }
