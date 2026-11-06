@@ -30,6 +30,7 @@ struct V4f {
 };
 
 #include <xmmintrin.h>
+#include <math.h>
 
 extern float D_00278C48;
 extern u16 D_002EFE50;
@@ -229,6 +230,94 @@ struct C_0016C5B0 {
     int f218;
     C_0016C5B0 *func_0016C5B0(void *param);
 };
+
+int __fastcall func_0016B900(S_0016B900_This *self, int unused, float a)
+{
+    float dx, dy, dz, len, inv, x, t, rate, acc;
+    int count, i;
+
+    if (func_00169E10(a)) return 0;
+    if (self->f68 != 0) {
+        void *q = self->f68->f18C;
+        if (q != 0) {
+            if (*(u16 *)(*(int *)((char *)q + 4) + 0x90) != D_002EFE50) return 0;
+        }
+    }
+    dx = self->f24.x - self->f34.x;
+    dy = self->f24.y - self->f34.y;
+    dz = self->f24.z - self->f34.z;
+    len = Sqrt_0016B900(dx * dx + dy * dy + dz * dz);
+    inv = len / a;
+    if (len < D_002A8734) return 0;
+    if (self->f1F0 == 0.0f)
+        self->f178 = inv * D_0027AA24;
+    else
+        self->f178 = self->f1F0 * D_0027AA24 * inv;
+    if (self->f178 < D_002756DC) self->f178 = 0.1f;
+    if (self->f178 > D_002A8730) self->f178 = D_002A8730;
+    x = self->f178 * self->f170 * len * 2.0f;
+    if (x < D_00275F5C) x = 500.0f;
+    if (x > self->f170 && D_002A8734 * 0.5f < len) x = self->f170;
+    t = len * len / ((self->f184 + self->f178) * D_002A8738);
+    t = Max_0016B900(t, 0.05f);
+    rate = (self->f178 - self->f184) / (t * D_002A8744);
+    self->f184 = self->f178;
+    dx = dx * rate + self->f34.x;
+    dy = dy * rate + self->f34.y;
+    dz = dz * rate + self->f34.z;
+    acc = rate + self->f178;
+    if (acc > 1.0f) {
+        count = (int)acc;
+        self->f1F4 = 0;
+    } else {
+        self->f1F4 += acc;
+        if (self->f1F4 > 1.0f) {
+            count = (int)self->f1F4;
+            self->f1F4 = 0;
+        } else {
+            count = 0;
+        }
+    }
+    if (count > 4) count = 4;
+    count = (int)Max_0016B900(self->f180, (float)count);
+    if (count <= 0) return 0;
+    i = 0;
+    {
+        int idx = D_002EFB64;
+        do {
+            C_Pool *pool = self->f64;
+            C_Particle *p;
+            if (pool->f11C >= pool->f124) break;
+            p = pool->f12C[pool->f11C];
+            p->f0.x = dx;
+            p->f0.y = dy;
+            p->f0.z = dz;
+            p->f0.w = 1.0f;
+            p->f2C = *(u32 *)&x;
+            p->f28 = self->f188;
+            p->f3C = *(u32 *)&x;
+            p->f38 = *(u32 *)&x;
+            p->f48 = self;
+            idx++;
+            p->f30 = x - (float)((idx & 3) + 2) * D_002A8748 * x;
+            p->f34 = 1.0f / p->f30;
+            p->f44 = self->f190;
+            p->f40 = D_002A8740 * p->f30;
+            if (p->f40 == 0.0f) p->f44 &= ~8;
+            p->f4C = *(u32 *)&self->f18C;
+            p->f10 = *(V4f *)((char *)self + 0x54);
+            dx += rate;
+            dy += rate;
+            dz += rate;
+            pool->f11C++;
+            self->f188++;
+            if (self->f188 >= self->f1AC) self->f188 = self->f1A8;
+            i++;
+        } while (i < count);
+        D_002EFB64 = idx;
+    }
+    return 1;
+}
 
 C_0016BE40 *C_0016BE40::func_0016BE40(void *param)
 {
