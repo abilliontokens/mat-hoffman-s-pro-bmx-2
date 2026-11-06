@@ -5,7 +5,7 @@ struct C_00029290 {
     undefined4 func_00029290(void);
 };
 
-struct Q_292C0 { float x, y, z, w; Q_292C0 &operator=(const Q_292C0 &o) { x = o.x; y = o.y; z = o.z; w = o.w; return *this; } };
+struct Q_292C0 { float x, y, z, w; };
 static inline float dot_295D0(const Q_292C0 &a, const Q_292C0 &b) { return a.y*b.y + a.x*b.x + a.z*b.z; }
 static inline Q_292C0 subtract_295D0(const Q_292C0 &a, const Q_292C0 &b) { Q_292C0 r; r.x=a.x-b.x; r.y=a.y-b.y; r.z=a.z-b.z; r.w=a.w-b.w; return r; }
 static __forceinline void copy_295D0(Q_292C0 *dst, const Q_292C0 *src) { *dst = *src; }
@@ -180,7 +180,8 @@ struct C_000298F0 {
 void C_28CD0::func_00028CD0(void *arg0)
 {
     S_28CD0 *self = (S_28CD0 *)this;
-    V4_000298F0 g, e, h, f, a, c, d, up, neg, b, cross;
+    V4_000298F0 a, b, c, d, e, f, g, h, up;
+    V4_000298F0 neg, cross;
     V4_000298F0 *p;
 #define THIS ((S_28CD0 *)this)
 #define SELF (*(S_28CD0 *volatile *)&self)
@@ -282,6 +283,50 @@ undefined4 C_00029290::func_00029290(void)
     uVar1 = 1;
   }
   return uVar1;
+}
+
+int C_000292C0::func_000292C0() {
+    if (f6a8) {
+        f1fc->func_00133ED0();
+        f1fc->func_00133F10(0);
+        if (f1fc->fa7 & 0x20) {
+            if (!f69c) {
+                f6c8++;
+                f6fc = 0;
+            }
+            if (f6c8 <= f6c4 && !(f760 < D_00275544)) {
+                copy_295D0(&f6cc, f1fc->f54->f78);
+                copy_295D0(&f6dc, f1fc->f54->f74);
+                if (f69c) {
+                    goto hit;
+                } else {
+                    Q_292C0 a, b, c, d;
+                    a.x = 0; a.y = 0; a.z = 0; a.w = 1.0f;
+                    b.x = 0; b.y = 0; b.z = 0; b.w = 1.0f;
+                    f230->func_00197B40(&a, &b);
+                    c = f1e0->f238;
+                    c.w = 0;
+                    d = *func_0001E9E0(&a, &c);
+                    Q_292C0 e = *func_0001E9E0(&a, &d);
+                    Q_292C0 g = *func_0001E9E0(&a, &f6dc);
+                    float p = g.y * b.y + g.x * b.x + g.z * b.z;
+                    float q = e.y * d.y + e.x * d.x + e.z * d.z;
+                    float ap = abs_28CD0(p);
+                    float aq = abs_28CD0(q);
+                    if (!(aq > f6bc) && !(aq < f6c0) && !(ap > f6b4) && !(ap < f6b8)) {
+                    hit:
+                        Q_292C0 r;
+                        f230->func_00198120(&r, &f6cc);
+                        f6a4 = r.w < D_00275544 ? 1 : 0;
+                        f69c = 1;
+                        return 1;
+                    }
+                }
+            }
+        }
+    }
+    f69c = 0;
+    return 0;
 }
 
 void C_000298F0::func_000298F0(int a0)
