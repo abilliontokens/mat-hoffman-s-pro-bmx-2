@@ -365,7 +365,8 @@ struct C_001A5BC0 {
 
 struct BmxGame {
     void *vtbl;
-    char pad4[0x10];
+    S_00059F50_F4 *f4;
+    char pad8[0xC];
     C_001577A0 *f14;
     char pad18[0x10C];
     int f124;
@@ -680,11 +681,11 @@ int BmxGame::func_00059CC0() {
  if(f2A4) {
  D_002A8490->f2E0->f2FC->func_00094960(0);
  D_002A8490->f2E0->f2FC->func_000947F0(0);
- if(*(int*)(*(char**)(*(char**)((char*)D_002A8490+0x2a4)+0x64)+0x594))
+ if(D_002A8490->f2A4->f64->f594)
  D_002A8490->f2E0->f2FC->func_00094D90(250);
- D_002A8490->f2E0->f2FC->func_00094C00();
+ Ctl_00059CC0()->func_00094C00();
  (*(S_00059F50_F4**)((char*)this+4))->func_0001D330();
- (*(S_00059F50_Fb4**)(*(char**)(*(char**)((char*)D_002A8490+0x2a4)+0x64)+0x4c0))->v28();
+ D_002A8490->f2A4->f64->f4C0->v28();
  (*(S_00059F50_F4**)((char*)this+4))->fB4->v14();
  f2EC->func_0018C120();
  D_002A8490->f4->fB4->v9();
@@ -696,7 +697,6 @@ int BmxGame::func_00059CC0() {
  ((S_00059F50_Obj*)f2A4)->v2();
  f2A4=0;
  D_002BEAAC->func_0013CA50();
- return 1;
  }
  return 1;
 }
