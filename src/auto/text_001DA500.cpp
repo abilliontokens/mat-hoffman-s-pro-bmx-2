@@ -54,13 +54,27 @@ struct S_001DAAD0_Dev {
 extern S_001DAAD0_Dev *D_002EFDB8;
 
 struct C_001DB080 {
-    char pad0[0xD4];
+    char pad0[0x30];
+    void *f30[4];
+    char pad40[0xD4 - 0x40];
     int cur;
-    char pad1[0x210 - 0xD8];
-    int cnt;
-    int idx;
+    char padD8[0x208 - 0xD8];
+    void *f208;
+    float *f20C;
+    int f210;
+    int f214;
     void func_001DB080();
 };
+
+extern int D_002F1148;
+extern float D_002F10F8[];
+extern float D_002AC7DC[8];
+extern float D_0028F8E4, D_0028F8E8, D_0028F97C;
+extern float D_002F10D4, D_002F10D8, D_002F10DC, D_002F10E0;
+extern float D_002F10E4, D_002F10E8, D_002F10EC, D_002F10F0;
+extern char D_002AC770[], D_002AC780[];
+void __stdcall func_00199A70(float *v, int a);
+int __stdcall func_001DAAD0(int a0, void *a1, void *a2);
 
 struct C_001DAAD0 {
     char pad0[0xEC];
@@ -298,10 +312,8 @@ void C_001DAC10::func_001DAC10()
     static S_001DAC10_Color color1(1.0f, 0.0f, 0.0f, 1.0f);
     static S_001DAC10_Color color2(0.0f, 1.0f, 0.0f, 1.0f);
     S_001DAC10_Entry *e;
-    void **p;
-    int tex;
+    u32 tex = 0;
     int i;
-    int f;
 
     func_001FE490(0);
     D_002EFDB8->f6c->func_0014A650(fE8);
@@ -318,37 +330,7 @@ void C_001DAC10::func_001DAC10()
         verts[i].u1 = xs[i] + 1.0f;
         verts[i].v1 = ys[i];
     }
-    p = &arr488[D_002F1038];
-    if (*p == 0)
-        *p = func_001FF3C0(0x70);
-    *(S_001DAC10_Quad *)func_001FF410(arr488[D_002F1038], 0) = *(S_001DAC10_Quad *)verts;
-    func_001FEBD0(0x20, &color1);
-    func_001FEE00(0, arr488[D_002F1038], 0x1c);
-    func_001FD020(&D_00040304, 0);
-    func_001FD020(&D_00040354, 0x207);
-    f = D_0020C6DC;
-    f |= 0x2000;
-    D_0020C6DC = f;
-    D_0020CA50 = 0;
-    func_001FD770(0x1b02);
-    func_00200390(0, e->f2c->fB8);
-    f = D_0020C6DC;
-    f |= 1;
-    D_0020C6E0 = 3;
-    D_0020C6DC = f;
-    D_0020C6E4 = 3;
-    func_00200390(1, e->f2c->fB8);
-    f = D_0020C6DC;
-    f |= 2;
-    D_0020C760 = 3;
-    D_0020C6DC = f;
-    D_0020C764 = 3;
-    func_00200B30(6, 4, D_002AC6D0);
-    func_00201100(tex);
-    if (D_002F1038 == 5)
-        D_002F1038 = 0;
-    else
-        D_002F1038++;
+    DrawQuad(verts, &color1, e, tex);
 
     tex = func_001FCE50(e->f38->fB8, 0);
     func_001FF940(tex, 0);
@@ -360,36 +342,6 @@ void C_001DAC10::func_001DAC10()
         verts[i].u1 = xs[i];
         verts[i].v1 = ys[i] + 1.0f;
     }
-    p = &arr488[D_002F1038];
-    if (*p == 0)
-        *p = func_001FF3C0(0x70);
-    *(S_001DAC10_Quad *)func_001FF410(arr488[D_002F1038], 0) = *(S_001DAC10_Quad *)verts;
-    func_001FEBD0(0x20, &color2);
-    func_001FEE00(0, arr488[D_002F1038], 0x1c);
-    func_001FD020(&D_00040304, 0);
-    func_001FD020(&D_00040354, 0x207);
-    f = D_0020C6DC;
-    f |= 0x2000;
-    D_0020C6DC = f;
-    D_0020CA50 = 0;
-    func_001FD770(0x1b02);
-    func_00200390(0, e->f2c->fB8);
-    f = D_0020C6DC;
-    f |= 1;
-    D_0020C6E0 = 3;
-    D_0020C6DC = f;
-    D_0020C6E4 = 3;
-    func_00200390(1, e->f2c->fB8);
-    f = D_0020C6DC;
-    f |= 2;
-    D_0020C760 = 3;
-    D_0020C6DC = f;
-    D_0020C764 = 3;
-    func_00200B30(6, 4, D_002AC6D0);
-    func_00201100(tex);
-    if (D_002F1038 == 5)
-        D_002F1038 = 0;
-    else
-        D_002F1038++;
+    DrawQuad(verts, &color2, e, tex);
 }
 
