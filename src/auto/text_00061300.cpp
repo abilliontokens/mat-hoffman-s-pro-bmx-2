@@ -6,6 +6,10 @@ extern int D_0027850C;
 extern int D_002786CC;
 
 extern "C" void func_001E891B(void *);
+struct C_61590_Plain {
+ ~C_61590_Plain() { func_001D6410(); }
+ void func_001D6410();
+};
 struct C_61590_Obj {
  virtual void destroying(int);
  void func_001D6410();
