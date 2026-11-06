@@ -111,6 +111,16 @@ struct C_000DCC20 {
     __forceinline int WriteBlk(char *b, void *m) {
         return D_002A8490->f2E0->f2CC->func_001D4440((char *)unk2BC->func_000928D0(), b, (int)m, (int)&D_00080000);
     }
+    __forceinline void WriteZero(char *b) {
+        int *tmp = (int *)func_001E8A44((int)&D_00080000);
+        int *z = tmp;
+        int n;
+        for (n = (int)&D_00020000; n > 0; n--) {
+            *z++ = 0;
+        }
+        WriteBlk(b, tmp);
+        func_001E891B(tmp);
+    }
     __forceinline void SwapBuffers(int src, int dst) {
         for (int i = 0; i < 4; i++) {
             void *s = arr368[src + i]->v40(0, 0, 0);
@@ -219,7 +229,7 @@ int C_000DCC20::func_000DCE10(void)
         }
         SwapBuffers(src, dst);
         func_001ADCC0(buf, 0x104, &D_00277A04, &D_00277A0C, unk2D8);
-        int r = D_002A8490->f2E0->f2CC->func_001D4590((char *)unk2BC->func_000928D0(), buf, (int)mem, (int)&D_00080000);
+        int r = ReadBlk(buf, mem);
         if (r != 1) {
             if (r == -1) {
                 int *tmp = (int *)func_001E8A44((int)&D_00080000);
@@ -228,7 +238,7 @@ int C_000DCC20::func_000DCE10(void)
                 for (n = (int)&D_00020000; n > 0; n--) {
                     *z++ = 0;
                 }
-                D_002A8490->f2E0->f2CC->func_001D4440((char *)unk2BC->func_000928D0(), buf, (int)tmp, (int)&D_00080000);
+                WriteBlk(buf, tmp);
                 func_001E891B(tmp);
             } else {
                 ret = 0;
