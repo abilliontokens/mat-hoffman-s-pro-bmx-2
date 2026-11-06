@@ -107,7 +107,9 @@ struct C_000D4280 {
     C_001B1860* f2AC;
     C_001B1860* f2B0;
     C_001B1860* f2B4;
-    char pad2B8[0x202C - 0x2B8];
+    char pad2B8[0x3D8 - 0x2B8];
+    int f3D8;
+    char pad3DC[0x202C - 0x3DC];
     C_001B1860* f202C;
     C_001B1860* f2030;
     C_001B1860* f2034;
