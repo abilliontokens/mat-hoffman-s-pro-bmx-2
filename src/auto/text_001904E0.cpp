@@ -124,7 +124,7 @@ struct C_00191400 {
 
 #pragma intrinsic(strcmp)
 extern "C" int strcmp(const char *a, const char *b);
-#pragma intrinsic(strcmp)
+#pragma optimize("y", off)
 void C_00191270::func_001904E0(S_00191270_Owner *owner, int slot, S_00191270_Node *node, int c, int d)
 {
     C_0018F350 ctxA;
@@ -231,13 +231,12 @@ void C_00191270::func_001904E0(S_00191270_Owner *owner, int slot, S_00191270_Nod
         }
     }
 }
-
+#pragma optimize("", on)
 void C_00191270::func_00191270(S_00191270_Owner *owner, int a, char *name, int b)
 {
     int flag;
     int slot;
     S_00191270_Node *node;
-    S_00191270_Node *n2;
 
     slot = func_0018CE00(owner, name);
     flag = 0;
@@ -257,9 +256,9 @@ void C_00191270::func_00191270(S_00191270_Owner *owner, int a, char *name, int b
             }
         }
         if (flag != 0) {
-            for (n2 = f158[slot].f48->f104; n2 != 0; n2 = n2->f2C) {
-                if (strcmp("@Create", n2->tag) != 0) {
-                    func_0018E0E0(n2, slot);
+            for (node = f158[slot].f48->f104; node != 0; node = node->f2C) {
+                if (strcmp("@Create", node->tag) != 0) {
+                    func_0018E0E0(node, slot);
                 }
             }
         }
