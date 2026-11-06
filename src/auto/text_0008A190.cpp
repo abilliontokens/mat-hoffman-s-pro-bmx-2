@@ -322,6 +322,25 @@ void C_0008A2E0::func_0008A350() {
     func_00157660();
 }
 
+C_0008A2E0 *C_0008A2E0::func_0008A3B0() { int key; int *found; int resource; void *m; NodeObj *p;
+ D_002A60B0=D_00278664; D_002A60B4=D_00278668; D_002A60B8=D_0027866C; D_002A60BC=D_00278670; D_002A60C0=D_00278674;
+elems[0].func_001D5810(D_00278648,20.0f,388.0f,0);
+elems[1].func_001D5810(D_00279C28,20.0f,388.0f,0);
+elems[2].func_001D5810(D_00278638,20.0f,388.0f,0);
+elems[3].func_001D5810(D_00279008,20.0f,388.0f,0);
+elems[4].init(D_00279C1C);
+elems[5].init(D_00279038);
+elems[6].init(D_00279044);
+elems[7].init(D_00279C14);
+elems[8].init(D_00279C0C);
+func_001ADCC0(&D_002A60B0,260,D_00275678,D_002A5870,D_002A5FA8); key=(int)&D_00278690; D_002A8490->lookup->func_0018C780(1,&key,0); found=D_002A8490->lookup->func_0018C160((int)&D_00278690); resource=found?*found:0;
+m=func_001E8A44(0x60); p=m?((AllocObj8*)m)->func_001D5E90():0; ptrs[0]=(PtrObj_0008*)p; p->func_001D5FA0(resource,(int)&D_00278690,15,(int)D_00279C00); p=(NodeObj*)ptrs[0]; if(p->f4!=1113325568 || p->f8!=0x43c70000){p->f4=1113325568;p->f8=0x43c70000;p->b4e|=6;} p=(NodeObj*)ptrs[0]; if(p->u48!=0xffcccccc){p->b4e|=8;p->u48=(p->u48&0xffcccccc)|0xcccccc;} p=(NodeObj*)ptrs[0]; if(p->f44!=D_0028F5DC){p->f44=D_0028F5DC;p->b4e|=6;}
+m=func_001E8A44(0x60); p=m?((AllocObj8*)m)->func_001D5E90():0; ptrs[1]=(PtrObj_0008*)p; p->func_001D5FA0(resource,(int)&D_00278690,15,(int)D_00279BF4); p=(NodeObj*)ptrs[1]; if(p->f4!=1126039552 || p->f8!=0x43c70000){p->f4=1126039552;p->f8=0x43c70000;p->b4e|=6;} p=(NodeObj*)ptrs[1]; if(p->u48!=0xffcccccc){p->b4e|=8;p->u48=(p->u48&0xffcccccc)|0xcccccc;} p=(NodeObj*)ptrs[1]; if(p->f44!=D_0028F5DC){p->f44=D_0028F5DC;p->b4e|=6;}
+m=func_001E8A44(0x60); p=m?((AllocObj8*)m)->func_001D5E90():0; ptrs[2]=(PtrObj_0008*)p; p->func_001D5FA0(resource,(int)&D_00278690,15,(int)D_00279BE8); p=(NodeObj*)ptrs[2]; if(p->f4!=1133477888 || p->f8!=0x43c70000){p->f4=1133477888;p->f8=0x43c70000;p->b4e|=6;} p=(NodeObj*)ptrs[2]; if(p->u48!=0xffcccccc){p->b4e|=8;p->u48=(p->u48&0xffcccccc)|0xcccccc;} p=(NodeObj*)ptrs[2]; if(p->f44!=D_0028F5DC){p->f44=D_0028F5DC;p->b4e|=6;}
+m=func_001E8A44(0x60); p=m?((AllocObj8*)m)->func_001D5E90():0; ptrs[3]=(PtrObj_0008*)p; p->func_001D5FA0(resource,(int)&D_00278690,15,(int)D_00279BDC); p=(NodeObj*)ptrs[3]; if(p->f4!=1137639424 || p->f8!=0x43c70000){p->f4=1137639424;p->f8=0x43c70000;p->b4e|=6;} p=(NodeObj*)ptrs[3]; if(p->u48!=0xffcccccc){p->b4e|=8;p->u48=(p->u48&0xffcccccc)|0xcccccc;} p=(NodeObj*)ptrs[3]; if(p->f44!=D_0028F5DC){p->f44=D_0028F5DC;p->b4e|=6;}
+m=func_001E8A44(0x60); p=m?((AllocObj8*)m)->func_001D5E90():0; ptrs[4]=(PtrObj_0008*)p; p->func_001D5FA0(resource,(int)&D_00278690,15,(int)D_00279BD0); p=(NodeObj*)ptrs[4]; if(p->f4!=1141342208 || p->f8!=0x43c70000){p->f4=1141342208;p->f8=0x43c70000;p->b4e|=6;} p=(NodeObj*)ptrs[4]; if(p->u48!=0xffcccccc){p->b4e|=8;p->u48=(p->u48&0xffcccccc)|0xcccccc;} p=(NodeObj*)ptrs[4]; if(p->f44!=D_0028F5DC){p->f44=D_0028F5DC;p->b4e|=6;}
+return this; }
+
 void C_0008A2E0::func_0008A8C0() {
     int i;
     for (i = 0; i < 5; i++) {
