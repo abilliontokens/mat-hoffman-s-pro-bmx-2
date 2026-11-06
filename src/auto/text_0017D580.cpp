@@ -54,9 +54,11 @@ struct C_0017D5A0 {
 };
 
 struct C_0017DC00 {
-    char pad0[4];
+    virtual void v0();
+    virtual void func_0017DC40(int x0, int y0, int x1, int y1, int size);
     C_0017DC00 **arr4;
     int f8;
+    void func_0017D500(int a0, int a1);
     void func_0017DC00();
     void *func_0017CFF0(void *item);
     void *func_0017DAE0(void *item, int x0, int y0, int x1, int y1, int x, int y, int size, int minSize);
