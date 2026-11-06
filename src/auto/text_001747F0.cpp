@@ -30,7 +30,8 @@ struct R_001747F0 {
     float f210, f214, f218, f21C, f220, f224;
     char pad228[0x22c - 0x228];
     Body_001747F0 *p22C;
-    char pad230[0x238 - 0x230];
+    char pad230[0x234 - 0x230];
+    void (*fn234)(int, Vec4_001747F0 *, Vec4_001747F0 *);
     Vec4_001747F0 v238;
     char pad248[0x280 - 0x248];
     int i280, i284, i288;
