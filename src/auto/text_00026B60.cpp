@@ -272,11 +272,14 @@ C_00026B60 *C_00026B60::func_00026B60(char *name, V4_000273F0 a1, V4_000273F0 a2
     func_001577A0(f1F0, -1);
     mem = func_001E8A44(0x6c);
     f1F4 = mem ? (ObjF4_26 *)((ObjF4_26 *)mem)->func_001A8630(1) : 0;
-    f1F4->func_001A8BC0(f1F0, f22C, 0, D_002A10F0, 0, 0);
+    f1F4->func_001A8BC0(f1F0, f22C, 0, 0, D_002A10F0, 0);
     func_001577A0(f1F4, -1);
     f1F4->f58 = 1;
-    f1F4->f64 = &f234;
-    f1F4->f68 = &f238;
+    {
+        ObjF4_26 *p = f1F4;
+        p->f64 = &f234;
+        p->f68 = &f238;
+    }
     mem = func_001E8A44(0x110);
     f1FC = mem ? (ObjFC_26 *)((ObjFC_26 *)mem)->func_0017F050(1) : 0;
     f1FC->func_0017F0A0(2);
@@ -324,8 +327,11 @@ C_00026B60 *C_00026B60::func_00026B60(char *name, V4_000273F0 a1, V4_000273F0 a2
     mem = func_001E8A44(0x1ec);
     f1E8 = mem ? (ObjE8_26 *)((ObjE8_26 *)mem)->func_000B6180(1) : 0;
     f1E8->func_000B6640(f22C, f1E0);
-    f1E8->f94 = &f234;
-    f1E8->f98 = &f238;
+    {
+        ObjE8_26 *p = f1E8;
+        p->f94 = &f234;
+        p->f98 = &f238;
+    }
     func_001577A0(f1E8, -1);
     mem = func_001E8A44(0x14);
     f220 = mem ? ((Axis14_26 *)mem)->Init(0.0f) : 0;
