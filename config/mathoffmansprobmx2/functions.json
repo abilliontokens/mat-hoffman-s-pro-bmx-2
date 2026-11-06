@@ -347788,7 +347788,9 @@
       0
      ]
     ]
-   },
+   }
+  ],
+  "text_00193EB0": [
    {
     "name": "_func_00193EB0@4",
     "addr": 1654448,
@@ -524431,6 +524433,7 @@
   "func_001BB470": "C_001BB470::C_001BB470",
   "func_001C4F40": "C_001C4F40::C_001C4F40",
   "func_001C8740": "Water::~Water",
+  "func_001CBD40": "C_001CBD40::C_001CBD40",
   "func_001CD090": "XboxMusic::XboxMusic",
   "func_001CDC20": "C_001CDC20::C_001CDC20",
   "func_001D48E0": "C_001D48E0::C_001D48E0",
