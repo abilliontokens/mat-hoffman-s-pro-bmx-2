@@ -12,6 +12,13 @@ struct C_001D6600 { void func_001D6600(void); };
 struct C_000BA9B0 { void *func_000BA9B0(int a); };
 struct C_000BBDF0 { int func_000BBDF0(void); };
 
+static inline void *C_000D0DD0_TipW(void *hw, int n)
+{
+    void *w = ((C_000BA9B0 *)hw)->func_000BA9B0(n);
+    w = *(void **)((char *)w + 0x1b0);
+    return *(void **)w;
+}
+
 struct S_002B91AC {
     char pad0[0x34];
     C_0005E840 *f34;
@@ -156,7 +163,6 @@ void C_000CFF30::func_000CFF30()
 void C_000D0DD0::func_000D0110(void)
 {
     void *w;
-    int n;
     void *hw = AT(void *, this, 0x124);
 
     D_002B91AC->func_000BF860(1, 0x17e, 0x184, 0);
@@ -171,57 +177,53 @@ void C_000D0DD0::func_000D0110(void)
             D_002B91AC->f38->func_001D6600();
             D_002B91AC->f3c->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x7c0));
             D_002B91AC->f3c->func_001D6600();
-        } else {
-            if (AT(int, this, 0x510) != 0 || AT(int, this, 0x4f0) != 0 ||
-                AT(int, this, 0x4f4) != 0 || AT(int, this, 0x4e4) != 0 ||
-                AT(int, this, 0x558) != 0 || AT(int, this, 0x538) != 0) {
-                if (AT(int, this, 0x588) == 0) {
-                    if (AT(int, this, 0x4e4) != 0) {
-                        D_002B91AC->f40->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x7b8));
-                        D_002B91AC->f40->func_001D6600();
-                        D_002B91AC->f3c->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x7c0));
-                        D_002B91AC->f3c->func_001D6600();
-                    } else if (AT(int, this, 0x538) == 0) {
-                        D_002B91AC->func_000BF860(0, 0x140, 0x184, 0);
-                        D_002B91AC->f3c->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x1128));
-                        D_002B91AC->f3c->func_001D6600();
-                    } else {
-                        D_002B91AC->func_000BF860(0, 0x1eb, 0x184, 0);
-                        D_002B91AC->f38->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x7b8));
-                        D_002B91AC->f38->func_001D6600();
-                        D_002B91AC->f3c->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x7c0));
-                        D_002B91AC->f3c->func_001D6600();
-                    }
-                }
+        } else if ((AT(int, this, 0x510) != 0 || AT(int, this, 0x4f0) != 0 ||
+                    AT(int, this, 0x4f4) != 0 || AT(int, this, 0x4e4) != 0 ||
+                    AT(int, this, 0x558) != 0 || AT(int, this, 0x538) != 0) &&
+                   AT(int, this, 0x588) == 0) {
+            if (AT(int, this, 0x4e4) != 0) {
+                D_002B91AC->f40->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x7b8));
+                D_002B91AC->f40->func_001D6600();
+                D_002B91AC->f3c->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x7c0));
+                D_002B91AC->f3c->func_001D6600();
+            } else if (AT(int, this, 0x538) != 0) {
+                D_002B91AC->func_000BF860(0, 0x140, 0x184, 0);
+                D_002B91AC->f3c->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x1128));
+                D_002B91AC->f3c->func_001D6600();
+            } else {
+                D_002B91AC->func_000BF860(0, 0x1eb, 0x184, 0);
+                D_002B91AC->f38->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x7b8));
+                D_002B91AC->f38->func_001D6600();
+                D_002B91AC->f3c->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x7c0));
+                D_002B91AC->f3c->func_001D6600();
             }
-            if (AT(int, this, 0x57c) != 0 || AT(int, this, 0x580) != 0) {
+        } else if (AT(int, this, 0x57c) != 0 || AT(int, this, 0x580) != 0) {
+            D_002B91AC->func_000BF860(0, 0x1eb, 0x184, 0);
+            D_002B91AC->f38->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x940));
+            D_002B91AC->f38->func_001D6600();
+        } else if (AT(int, this, 0x4ec) != 0) {
+            D_002B91AC->func_000BF860(0, 0x1eb, 0x184, 0);
+            D_002B91AC->f38->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x940));
+            D_002B91AC->f38->func_001D6600();
+            D_002B91AC->func_000BF860(1, 0xc8, 0x184, 0);
+            D_002B91AC->f3c->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x1248));
+            D_002B91AC->f3c->func_001D6600();
+        } else if (AT(int, this, 0x510) == 0) {
+            D_002B91AC->func_000BF860(0, 0x1eb, 0x184, 0);
+            D_002B91AC->f38->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x7c8));
+            D_002B91AC->f3c->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x838));
+            D_002B91AC->f40->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x950));
+            D_002B91AC->f38->func_001D6600();
+            D_002B91AC->f3c->func_001D6600();
+            if (AT(int, this, 0x48c) == 2 || AT(int, this, 0x48c) == 4 ||
+                AT(int, this, 0x48c) == 7 || AT(int, this, 0x48c) == 9 ||
+                AT(int, this, 0x48c) == 0xd || AT(int, this, 0x48c) == 0x10 ||
+                AT(int, this, 0x43c + AT(int, this, 0x48c) * 4) != 0) {
                 D_002B91AC->func_000BF860(0, 0x1eb, 0x184, 0);
                 D_002B91AC->f38->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x940));
                 D_002B91AC->f38->func_001D6600();
-            } else if (AT(int, this, 0x4ec) != 0) {
-                D_002B91AC->func_000BF860(0, 0x1eb, 0x184, 0);
-                D_002B91AC->f38->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x940));
-                D_002B91AC->f38->func_001D6600();
-                D_002B91AC->func_000BF860(1, 0xc8, 0x184, 0);
-                D_002B91AC->f3c->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x1248));
-                D_002B91AC->f3c->func_001D6600();
-            } else if (AT(int, this, 0x510) == 0) {
-                D_002B91AC->func_000BF860(0, 0x1eb, 0x184, 0);
-                D_002B91AC->f38->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x7c8));
-                D_002B91AC->f3c->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x838));
-                D_002B91AC->f40->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x950));
-                D_002B91AC->f38->func_001D6600();
-                D_002B91AC->f3c->func_001D6600();
-                if (AT(int, this, 0x48c) == 2 || AT(int, this, 0x48c) == 4 ||
-                    AT(int, this, 0x48c) == 7 || AT(int, this, 0x48c) == 9 ||
-                    AT(int, this, 0x48c) == 0xd || AT(int, this, 0x48c) == 0x10 ||
-                    AT(int, this, 0x43c + AT(int, this, 0x48c) * 4) != 0) {
-                    D_002B91AC->func_000BF860(0, 0x1eb, 0x184, 0);
-                    D_002B91AC->f38->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x940));
-                    D_002B91AC->f38->func_001D6600();
-                } else {
-                    D_002B91AC->f40->func_001D6600();
-                }
+            } else {
+                D_002B91AC->f40->func_001D6600();
             }
         }
         if (AT(int, this, 0x560) != 0 && AT(int, this, 0x510) == 0 &&
@@ -359,97 +361,97 @@ void C_000D0DD0::func_000D0110(void)
                 w = ((C_000BA9B0 *)hw)->func_000BA9B0(6);
                 w = *(void **)((char *)w + 0x1b0);
                 w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.4f, 0, 0, 0, 255, 1.4f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 2:
                 w = ((C_000BA9B0 *)hw)->func_000BA9B0(7);
                 w = *(void **)((char *)w + 0x1b0);
                 w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.4f, 0, 0, 0, 255, 1.4f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 3:
                 w = ((C_000BA9B0 *)hw)->func_000BA9B0(8);
                 w = *(void **)((char *)w + 0x1b0);
                 w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.4f, 0, 0, 0, 255, 1.4f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 4:
                 w = ((C_000BA9B0 *)hw)->func_000BA9B0(9);
                 w = *(void **)((char *)w + 0x1b0);
                 w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.4f, 0, 0, 0, 255, 1.4f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 5:
                 w = ((C_000BA9B0 *)hw)->func_000BA9B0(10);
                 w = *(void **)((char *)w + 0x1b0);
                 w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.4f, 0, 0, 0, 255, 1.4f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 6:
                 w = ((C_000BA9B0 *)hw)->func_000BA9B0(11);
                 w = *(void **)((char *)w + 0x1b0);
                 w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.4f, 0, 0, 0, 255, 1.4f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 7:
                 w = ((C_000BA9B0 *)hw)->func_000BA9B0(12);
                 w = *(void **)((char *)w + 0x1b0);
                 w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.4f, 0, 0, 0, 255, 1.4f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 8:
                 w = ((C_000BA9B0 *)hw)->func_000BA9B0(13);
                 w = *(void **)((char *)w + 0x1b0);
                 w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.4f, 0, 0, 0, 255, 1.4f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 9:
                 w = ((C_000BA9B0 *)hw)->func_000BA9B0(14);
                 w = *(void **)((char *)w + 0x1b0);
                 w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.4f, 0, 0, 0, 255, 1.4f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 10:
                 w = ((C_000BA9B0 *)hw)->func_000BA9B0(15);
                 w = *(void **)((char *)w + 0x1b0);
                 w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.4f, 0, 0, 0, 255, 1.4f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 11:
                 w = ((C_000BA9B0 *)hw)->func_000BA9B0(16);
                 w = *(void **)((char *)w + 0x1b0);
                 w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.4f, 0, 0, 0, 255, 1.4f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 12:
                 w = ((C_000BA9B0 *)hw)->func_000BA9B0(17);
                 w = *(void **)((char *)w + 0x1b0);
                 w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.4f, 0, 0, 0, 255, 1.4f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 13:
                 w = ((C_000BA9B0 *)hw)->func_000BA9B0(18);
                 w = *(void **)((char *)w + 0x1b0);
                 w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.4f, 0, 0, 0, 255, 1.4f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 14:
                 w = ((C_000BA9B0 *)hw)->func_000BA9B0(19);
                 w = *(void **)((char *)w + 0x1b0);
                 w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.4f, 0, 0, 0, 255, 1.4f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 15:
                 w = ((C_000BA9B0 *)hw)->func_000BA9B0(20);
                 w = *(void **)((char *)w + 0x1b0);
                 w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.4f, 0, 0, 0, 255, 1.4f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 16:
                 w = ((C_000BA9B0 *)hw)->func_000BA9B0(21);
                 w = *(void **)((char *)w + 0x1b0);
                 w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.4f, 0, 0, 0, 255, 1.4f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             }
         }
@@ -461,27 +463,26 @@ void C_000D0DD0::func_000D0110(void)
         AT(int, this, 0x5a8) = 0;
     }
     if (AT(int, this, 0x51c) != 0)
-        n = AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x738);
+        D_002B91AC->f34->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x738));
     else if (AT(int, this, 0x4f0) != 0)
-        n = AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x720);
+        D_002B91AC->f34->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x720));
     else if (AT(int, this, 0x578) != 0)
-        n = AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0xf28);
+        D_002B91AC->f34->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0xf28));
     else if (AT(int, this, 0x4f4) != 0)
-        n = AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x770);
+        D_002B91AC->f34->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x770));
     else if (AT(int, this, 0x518) != 0)
-        n = AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0xf30);
+        D_002B91AC->f34->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0xf30));
     else if (AT(int, this, 0x55c) != 0)
-        n = AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0xf38);
+        D_002B91AC->f34->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0xf38));
     else if (AT(int, this, 0x57c) != 0)
-        n = AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x1250);
+        D_002B91AC->f34->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x1250));
     else if (AT(int, this, 0x580) != 0)
-        n = AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x710);
+        D_002B91AC->f34->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x710));
     else if (AT(int, this, 0x4ec) != 0)
-        n = AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x700);
+        D_002B91AC->f34->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x700));
     else
-        n = AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x948);
-    D_002B91AC->f44->func_0005E840(n);
-    D_002B91AC->f44->func_001D6600();
+        D_002B91AC->f34->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x948));
+    D_002B91AC->f34->func_001D6600();
 }
 
 void C_000D0DD0::func_000D0D20(void)
