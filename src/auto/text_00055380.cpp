@@ -262,7 +262,7 @@ struct C_00055380 {
     S_00056100_Quat q1EC;
     S_00056100_Quat q1FC;
     u32 unk20C, unk210, unk214, unk218, unk21C;
-    void func_0012B510(void);
+    C_00055380 *func_0012B510(void);
     C_00055380 *func_00055380(void);
  int func_00055A10(S_00056100_Quat,S_00056100_Quat,S_00056100_Quat,S_00056100_Quat,float);
 };
@@ -498,6 +498,37 @@ void C_000560A0::func_000559E0(int a0, int a1, float a2)
     unk10 = 0;
     unk64 = a2 * 1.46666f;
     unk68 = a1;
+}
+
+int C_00055380::func_00055A10(S_00056100_Quat a,S_00056100_Quat b,S_00056100_Quat c,S_00056100_Quat d,float dt)
+{
+ C_00055380 * volatile self=this;
+ S_00056100_Quat points[2];
+ points[0]=b;
+ S_00056100_Quat dir;
+ { C_00055380 *p=self; points[1]=p->q6C; }
+ *(int*)self->pad12C=0;
+ ((S_00056100_Node*)self->unk14)->func_001A4AE0(&self->q6C,0);
+ ((S_00056100_Node*)self->unk14)->func_00133ED0();
+ ((S_00056100_Node*)self->unk18)->func_0014AC30(points,0);
+ ((S_00056100_Node*)self->unk18)->func_00133ED0();
+ ((S_00056100_Node*)self->unk18)->func_00133F10(0);
+ if(!*(int*)self->pad12C) ((S_00056100_Node*)self->unk14)->func_00133F10(0);
+ if(*(int*)self->pad12C) { C_00055380 *p=self; p->q6C=p->q10C+p->q11C*(*(float*)&p->unk21C); }
+ { C_00055380 *p=self; dir=b-p->q6C; }
+ float distance=0;
+ float squared=dir.z*dir.z+dir.y*dir.y+dir.x*dir.x;
+ distance=sqrtf(squared);
+ func_00055140(&dir,&dir);
+ if(*(int*)self->pad12C) {
+ distance=((C_00055A10_Filter*)*(int*)(self->pad12C+4))->func_00026A10(distance,dt);
+ ((C_00055A10_Filter*)*(int*)(self->pad12C+8))->func_000269B0(distance,3.402823466e38f,3.402823466e38f);
+ } else {
+ distance=((C_00055A10_Filter*)*(int*)(self->pad12C+8))->func_00026A10(distance,dt);
+ ((C_00055A10_Filter*)*(int*)(self->pad12C+4))->func_000269B0(distance,3.402823466e38f,3.402823466e38f);
+ }
+ { C_00055380 *p=self; p->q6C=b-dir*distance; }
+ return 1;
 }
 
 void C_00055D10::func_00055D10(C_00168B90 *c)
