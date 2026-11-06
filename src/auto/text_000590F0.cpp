@@ -46,7 +46,7 @@ struct Fader_000597B0 {
 template <class T> inline const T &Min_000590F0(const T &a, const T &b) { return b < a ? b : a; }
 
 struct File_000590F0 {
-    char data[0x4CC];
+    char data[0x4C8];
     void func_00168280(void);
     int func_00169490(char *name, int mode);
     void func_001691E0(void);
@@ -486,11 +486,37 @@ int BmxGame::func_00059AC0(void)
         default:
             goto done;
         }
-        f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->v10(), ~0);
+        f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->v10(), -1);
     }
 done:
     if (f2F0 != 0) {
         f2F0->func_001A5BC0();
+    }
+    return 1;
+}
+
+int __fastcall func_00059CC0(BmxGame *self)
+{
+    D_002EFDB8->v9();
+    if (self->f2A4) {
+        D_002A8490->f2E0->f2FC->func_00094960(0);
+        D_002A8490->f2E0->f2FC->func_000947F0(0);
+        if (*(int *)(*(char **)(*(char **)((char *)D_002A8490 + 0x2a4) + 0x64) + 0x594))
+            D_002A8490->f2E0->f2FC->func_00094D90(250);
+        D_002A8490->f2E0->f2FC->func_00094C00();
+        (*(S_00059F50_F4 **)((char *)self + 4))->func_0001D330();
+        (*(S_00059F50_Fb4 **)(*(char **)(*(char **)((char *)D_002A8490 + 0x2a4) + 0x64) + 0x4c0))->v28();
+        (*(S_00059F50_F4 **)((char *)self + 4))->fB4->v14();
+        self->f2EC->func_0018C120();
+        D_002A8490->f4->fB4->v9();
+        if (*(void **)((char *)D_002A8490->f2E0 + 0x2c4)) {
+            func_001E891B(*(void **)((char *)D_002A8490->f2E0 + 0x2c4));
+            *(void **)((char *)D_002A8490->f2E0 + 0x2c4) = 0;
+        }
+        ((S_00059F50_Obj *)self->f2A4)->func_00157810();
+        ((S_00059F50_Obj *)self->f2A4)->v2();
+        self->f2A4 = 0;
+        D_002BEAAC->func_0013CA50();
     }
     return 1;
 }
@@ -541,6 +567,23 @@ void BmxGame::func_00059F50(void)
         f2AC = 0;
         D_002BEAAC->func_0013CA50();
     }
+}
+
+void BmxGame::func_0005A020(void)
+{
+    if (f2A4 != 0 && f2A4->f154 != 0) {
+        Rect_0005A020 r;
+        D_002EFDB8->v7(1);
+        D_002EFDB8->v8();
+        r.x = 0;
+        r.y = 0;
+        r.w = 640;
+        r.h = 448;
+        D_002EFDB8->v12(&r);
+    }
+    func_00059CC0();
+    D_002A8490->f14->func_001577A0(D_002A8490->f2F0, -1);
+    func_00157420();
 }
 
 void BmxGame::func_0005A0B0(void)
