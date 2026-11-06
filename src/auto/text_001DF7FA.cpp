@@ -215,7 +215,7 @@ unsigned char *__stdcall func_001DF7FA(S_HeapRoot *root, S_HeapBlock *blk, unsig
 
 #pragma optimize("sy", on)
 #pragma optimize("y", off)
-unsigned char *__stdcall func_001DF985(S_HeapRoot *root, unsigned char *entry, unsigned int *size, HeapFlag a3)
+unsigned char *__stdcall func_001DF985(S_HeapRoot *root, unsigned char *entry, unsigned int *size, char a3)
 {
     S_HeapEntry *cur = (S_HeapEntry *)entry;
     S_HeapEntry *prev = (S_HeapEntry *)((unsigned char *)cur - cur->prevSize * 16);
@@ -225,7 +225,7 @@ unsigned char *__stdcall func_001DF985(S_HeapRoot *root, unsigned char *entry, u
         if (a3) {
             FreeUnlink_001DF985(root, cur);
             root->freeTotal -= cur->size;
-            a3 = false;
+            a3 = 0;
         }
         FreeUnlink_001DF985(root, prev);
         prev->flags = cur->flags & 0x10;
