@@ -139,8 +139,18 @@ struct Obj4_001A0C90 {
     void func_00199A70(int idx, V4_001A0C90 *out);
 };
 struct Obj8_001A0C90 {
+    char pad0[0x28];
+    V4_001A0C90 f28;
     void func_00199A70(int idx, V4_001A0C90 *out);
 };
+static inline void Cross_001A0C90(V4_001A0C90 *out, const V4_001A0C90 *a, const V4_001A0C90 *b)
+{
+    __m128 va = _mm_loadu_ps(&a->x);
+    __m128 vb = _mm_loadu_ps(&b->x);
+    __m128 r = _mm_sub_ps(_mm_mul_ps(va, _mm_shuffle_ps(vb, vb, 0xC9)),
+                          _mm_mul_ps(vb, _mm_shuffle_ps(va, va, 0xC9)));
+    _mm_storeu_ps(&out->x, _mm_shuffle_ps(r, r, 0xC9));
+}
 struct Prof_001A0C90 {
     int func_00026500(const char *name, int a);
     void func_0019FC40(int h);
