@@ -103,6 +103,7 @@ extern char D_002A5870[];
 extern char D_00275678[];
 extern char D_002786B0[];
 extern int D_0028F5E0;
+extern float D_002755E8, D_002757F0, D_002786B8;
 struct Mid_5F { S_0005FBD0_Obj *func_0018C070(); };
 struct Lookup_5F { int *func_0018C160(int); };
 extern int D_002786A0, D_00278690, D_00278678;
