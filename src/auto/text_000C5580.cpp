@@ -241,6 +241,7 @@ struct C_5E40_G {
     C_6420_Elem *f8C;
     C_6420_Elem *f90;
     C_6420_Elem *f94;
+    void func_000BF860(int a, int b, int c, int d);
 };
 
 extern C_5E40_G *D_002B91AC;
