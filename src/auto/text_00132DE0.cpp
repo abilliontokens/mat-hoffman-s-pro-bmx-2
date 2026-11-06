@@ -346,6 +346,34 @@ int func_00132E90(int a0, int a1)
     return 1;
 }
 
+C_00132EB0 *C_00132EB0::func_00132EB0(int a)
+{
+ f24=0; f26=0xff; f27 &= 0xf8;
+ func_00157600(a);
+ vtbl=&D_0028464C;
+ int *p=&f28;
+ p[2]=0; p[1]=0; p[0]=0; p[3]=0x3f800000;
+ p=(int*)&f38;
+ p[2]=0; p[1]=0; p[0]=0; p[3]=0x3f800000;
+ if(D_002A4330==0xff) D_002A4330=D_002AAEC8->func_001BC6E0(D_00282AA8);
+ if(D_002A4331==0xff) D_002A4331=D_002AAEC8->func_001BC6E0(D_00282A9C);
+ f26=D_002AAEC8->func_001BC6E0(D_00282AA8);
+ f74=1; f80=1; f8C=1;
+ fA7=(fA7&0x8e)|6;
+ float v[4];
+ v[0]=0.0f; v[1]=-10000.0f; v[2]=0.0f; v[3]=1.0f;
+ *(volatile int*)&f38=collision_float_bits(v[0]);
+ *(volatile int*)&f3C=collision_float_bits(v[1]);
+ *(volatile int*)&f40=collision_float_bits(v[2]);
+ *(volatile int*)&f50=0; f54=0; f9C=0; fA0=0; fA4=0; fA6=0;
+ f78=0; f84=0; f7C=0; f88=0; f90=0; f94=0;
+ f58=0; f5C=0; f60=0; f64=0; f68=0;
+ f6C=0; f6D=0; f4C=0; f98=0; f70=-1;
+
+ f44=collision_float_bits(v[3]);
+ return this;
+}
+
 void C_00133020::func_00133020(unsigned int v)
 {
     extern unsigned char D_002BA040;
@@ -439,6 +467,88 @@ void C_001332A0::func_001332A0(void)
         }
         f98 = 0;
     }
+}
+
+int C_001332E0::func_001332E0(C_001332E0 *o)
+{
+    int i;
+    int found;
+
+    if (o == this) {
+        return 0;
+    }
+    if ((o->fA7 & 4) == 0) {
+        return 0;
+    }
+    if ((o->f21 & 1) == 0) {
+        return 0;
+    }
+    if ((f70 & o->f68) == 0) {
+        return 0;
+    }
+    if (f7c > 0) {
+        for (i = 0; i < f7c; i++) {
+            if (f78[i] == o) {
+                if (f74 == 1) return 0;
+                goto b;
+            }
+        }
+        if (f74 == 0) return 0;
+    }
+b:
+    if (o->f7c > 0) {
+        for (i = 0; i < o->f7c; i++) {
+            if (o->f78[i] == this) {
+                if (o->f74 == 1) return 0;
+                goto c;
+            }
+        }
+        if (o->f74 == 0) return 0;
+    }
+c:
+    if (f88 > 0) {
+        for (i = 0; i < f88; i++) {
+            if (f84[i] == o) {
+                if (f80 == 1) return 0;
+                goto d;
+            }
+        }
+        if (f80 == 0) return 0;
+    }
+d:
+    if (o->f88 > 0) {
+        for (i = 0; i < o->f88; i++) {
+            if (o->f84[i] == this) {
+                if (o->f80 == 1) return 0;
+                goto e;
+            }
+        }
+        if (o->f80 == 0) return 0;
+    }
+e:
+    if (f8c == 1) {
+        for (i = 0; i < f94; i++) {
+            if (f90[i] & o->f68) return 0;
+        }
+    } else {
+        found = 0;
+        for (i = 0; i < f94; i++) {
+            if (f90[i] & o->f68) found = 1;
+        }
+        if (!found) return 0;
+    }
+    if (o->f8c == 1) {
+        for (i = 0; i < o->f94; i++) {
+            if (o->f90[i] & f68) return 0;
+        }
+        return 1;
+    }
+    found = 0;
+    for (i = 0; i < o->f94; i++) {
+        if (o->f90[i] & f68) found = 1;
+    }
+    if (!found) return 0;
+    return 1;
 }
 
 void C_001334E0::func_001334E0(int a0) {
