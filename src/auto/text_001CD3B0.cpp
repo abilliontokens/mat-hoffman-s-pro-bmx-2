@@ -150,14 +150,6 @@ struct S_SoundElemList {
     int func_001CDE90(S_SoundElem *elem);
     int func_001CDED0(S_SoundElem *elem);
 
-    void init()
-    {
-        items = 0;
-        count = 0;
-        growBy = 0;
-        capacity = 0;
-    }
-
     S_SoundElem *at(int i)
     {
         if (count > 0 && items != 0 && i < count) {
