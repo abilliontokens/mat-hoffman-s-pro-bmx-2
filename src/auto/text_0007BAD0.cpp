@@ -160,28 +160,25 @@ void C_0007C2C0::func_0007BAD0()
     int si;
     int i, n, color;
     S_7BAD0_Player **arr;
-    S_7BAD0_Player *p;
-    S_7C2C0_W *w;
 
     si = f244;
     func_001ADCC0(buf, 0x32, D_002A8490->f2e8->f4->f6b8, D_00279030);
-    si = func_00064580(func_00064580(si, buf, 0xffbfa35a), D_00275630, 0xffcccccc);
+    si = func_00064580(si, buf, 0xffbfa35a);
+    si = func_00064580(si, D_00275630, 0xffcccccc);
     n = f1d0->f1c0->func_00097710(0);
     arr = f1d0->f1c0->func_00097740(0);
     for (i = 0; i < n; i++) {
-        p = arr[i];
-        if (p->f1a8 == 0) {
-            color = p->func_00096740() ? 0xff5eff5e : 0xffcccccc;
+        if (arr[i]->f1a8 == 0) {
+            color = arr[i]->func_00096740() ? 0xff5eff5e : 0xffcccccc;
             if (si >= 0 && si < 0x10) {
-                w = f13c[si];
-                w->func_0005E840((char *)p);
-                w->SetColorVar(color);
-                w->func_001D6600();
+                f13c[si]->func_0005E840((char *)arr[i]);
+                f13c[si]->SetColorVar(color);
+                f13c[si]->func_001D6600();
             }
             si++;
         } else {
             numA++;
-            if (p->func_00096740())
+            if (arr[i]->func_00096740())
                 numB++;
         }
     }
@@ -193,19 +190,17 @@ void C_0007C2C0::func_0007BAD0()
         n = f1d0->f1c0->func_00097710(1);
         arr = f1d0->f1c0->func_00097740(1);
         for (i = 0; i < n; i++) {
-            p = arr[i];
-            if (p->f1a8 == 0) {
-                color = p->func_00096740() ? 0xff5eff5e : 0xffcccccc;
+            if (arr[i]->f1a8 == 0) {
+                color = arr[i]->func_00096740() ? 0xff5eff5e : 0xffcccccc;
                 if (si >= 0 && si < 0x10) {
-                    w = f13c[si];
-                    w->func_0005E840((char *)p);
-                    w->SetColorVar(color);
-                    w->func_001D6600();
+                    f13c[si]->func_0005E840((char *)arr[i]);
+                    f13c[si]->SetColorVar(color);
+                    f13c[si]->func_001D6600();
                 }
                 si++;
             } else {
                 numA++;
-                if (p->func_00096740())
+                if (arr[i]->func_00096740())
                     numB++;
             }
         }
@@ -220,19 +215,17 @@ void C_0007C2C0::func_0007BAD0()
         n = f1d0->f1c0->func_00097710(2);
         arr = f1d0->f1c0->func_00097740(2);
         for (i = 0; i < n; i++) {
-            p = arr[i];
-            if (p->f1a8 == 0) {
-                color = p->func_00096740() ? 0xff5eff5e : 0xffcccccc;
+            if (arr[i]->f1a8 == 0) {
+                color = arr[i]->func_00096740() ? 0xff5eff5e : 0xffcccccc;
                 if (si >= 0 && si < 0x10) {
-                    w = f13c[si];
-                    w->func_0005E840((char *)p);
-                    w->SetColorVar(color);
-                    w->func_001D6600();
+                    f13c[si]->func_0005E840((char *)arr[i]);
+                    f13c[si]->SetColorVar(color);
+                    f13c[si]->func_001D6600();
                 }
                 si++;
             } else {
                 numA++;
-                if (p->func_00096740())
+                if (arr[i]->func_00096740())
                     numB++;
             }
         }
