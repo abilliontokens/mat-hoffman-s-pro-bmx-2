@@ -2,6 +2,22 @@
 #include "common.h"
 #include <xmmintrin.h>
 extern float D_00277B40, D_00277B50, D_00277B60;
+static __forceinline void Normalize_53CB0(float *volatile outArg, const float *volatile inArg)
+{
+    const float *in = inArg;
+    float *out = outArg;
+    __m128 v = _mm_loadu_ps(in), sq = _mm_mul_ps(v, v);
+    __m128 len = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
+    len = _mm_add_ss(len, _mm_shuffle_ps(sq, sq, 0xe1));
+    __m128 minv = _mm_load_ss(&D_00277B60);
+    __m128 cmp = _mm_cmplt_ss(len, minv);
+    len = _mm_add_ss(len, _mm_and_ps(cmp, minv));
+    __m128 r = _mm_rsqrt_ss(len);
+    __m128 t = _mm_mul_ss(_mm_mul_ss(len, r), r);
+    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_00277B40)), _mm_sub_ss(_mm_load_ss(&D_00277B50), t));
+    scale = _mm_shuffle_ps(scale, scale, 0);
+    _mm_storeu_ps(out, _mm_mul_ps(scale, v));
+}
 struct G_P2 { char pad0[0xa40]; int fa40; char pada44[8]; int fa4c; char pada50[4]; int fa54; int fa58; int fa5c; char pada60[0x1058 - 0xa60]; int f1058; char pad105c[0x11f4 - 0x105c]; int f11f4;
     int func_00108660(); void func_001084E0(); };
 struct G_PL { char pad0[0x1a8]; G_P2 *f1a8[1]; };
@@ -272,6 +288,21 @@ void *C_00053C80::func_00053C80(int flags) {
         func_001E891B(this);
     }
     return this;
+}
+
+void func_00053CB0(float *out, const float *in)
+{
+    __m128 v = _mm_loadu_ps(in), sq = _mm_mul_ps(v, v);
+    __m128 len = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
+    len = _mm_add_ss(len, _mm_shuffle_ps(sq, sq, 0xe1));
+    __m128 minv = _mm_load_ss(&D_00277B60);
+    __m128 cmp = _mm_cmplt_ss(len, minv);
+    len = _mm_add_ss(len, _mm_and_ps(cmp, minv));
+    __m128 r = _mm_rsqrt_ss(len);
+    __m128 t = _mm_mul_ss(_mm_mul_ss(len, r), r);
+    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_00277B40)), _mm_sub_ss(_mm_load_ss(&D_00277B50), t));
+    scale = _mm_shuffle_ps(scale, scale, 0);
+    _mm_storeu_ps(out, _mm_mul_ps(scale, v));
 }
 
 C_00053D20 *C_00053D20::func_00053D20(void *param)
