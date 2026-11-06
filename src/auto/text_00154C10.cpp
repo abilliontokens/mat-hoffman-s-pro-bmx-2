@@ -58,7 +58,13 @@ struct S_154C10_Dbg {
     int f1934;
 };
 
+struct S_154C10_Sub158 {
+    void func_001C4D50(int a);
+};
+
 struct S_154C10_Notify {
+    char pad0[0x158];
+    S_154C10_Sub158 *f158;
     void func_0004AB90(int a);
 };
 
