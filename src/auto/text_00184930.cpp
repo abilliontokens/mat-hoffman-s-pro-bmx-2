@@ -257,6 +257,7 @@ struct C_00184930 {
     int func_00184930(float a, float b);
 };
 
+extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
 struct S_00185610_Vec4 {
     float x, y, z, w;
 };
@@ -535,9 +536,9 @@ void S_00185610_Scene::func_00185610(S_00185610_Out *out)
 
     for (; l != 0; l = l->next) {
         if (l->test->func_0017A1D0(pos, D_002A9118, &dist) != 0) {
-            float w = (D_002A9118 - dist) / D_002A9118;
             S_00185610_Elem *o = &f344[l->node->f3c];
             S_00185610_Vec4 q = o->f134;
+            float w = (D_002A9118 - dist) / D_002A9118;
             total += w;
             v.x += q.x * w;
             v.y += q.y * w;
