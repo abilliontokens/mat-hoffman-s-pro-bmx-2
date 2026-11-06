@@ -377,7 +377,7 @@ struct C_001CB9A0 {
 
 extern char D_0002EDEF;
 extern "C" int __stdcall D_00221B4C(void *stream, unsigned int value);
-int __stdcall func_00222388(int handle, int value, int flag);
+int __stdcall func_00222388(int handle, float value, int flag);
 int __stdcall func_00221974(int handle, unsigned int value);
 
 struct C_0013B210 {
