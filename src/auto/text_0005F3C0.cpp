@@ -63,7 +63,7 @@ struct S_0005F3C0_8490 {
 struct S_0005F3C0_2E8 { int f0; int *f4; };
 struct Label_5F3 {
     char pad0[0x28];
-    int w28;
+    float f28;
     char pad2C[0x10];
     float a3C;
     float b40;
@@ -71,8 +71,8 @@ struct Label_5F3 {
     float d48;
     char pad4C[0xC];
     u8 flags;
-    void SetW() { if (w28 != 0x435d0000) { flags |= 1; *(float *)&w28 = 221.0f; } }
-    void SetY(float y) { if (y != *(float *)&w28) { flags |= 1; *(float *)&w28 = y; } }
+    void SetY(float y) { if (f28 != y) { flags |= 1; f28 = y; } }
+    void SetW() { SetY(221.0f); }
     void SetQuad() { a3C = 1.0f; d48 = 1.0f; unsigned char f = flags | 4; b40 = 0.0f; c44 = 0.0f; flags = f; }
     Label_5F3 *func_001D5760(void);
     void func_001D5810(char *font, float x, float y, int a);
@@ -272,7 +272,7 @@ void BmxInGameMenu::func_0005F3C0(void)
             ((Label_5F3 *)unk64[i])->func_001D5810((const char *)D_002786B0, 321.0f, (i - 1) * D_002757F0 * D_002755E8 + D_002786B8, 0);
         }
         ((Label_5F3 *)unk64[i])->SetQuad();
-        ((Label_5F3 *)unk64[i])->SetY(221.0f);
+        ((Label_5F3 *)unk64[i])->SetW();
     }
     func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
 
@@ -435,10 +435,12 @@ int BmxInGameMenu::func_0005FC30(void)
             int v;
             if (AT(int, 0x120)) {
                 AT(Obj_5FC *, 0x124)->func_001D6600();
-                if (*(int *)(*(char **)((char *)D_002A8490 + 0x2e0) + 4) != 0)
-                    v = *(int *)(*(char **)(*(char **)((char *)D_002A8490 + 0x2e8) + 4) + 0xec0);
+                int c = D_002A8490->f2E0->f4;
+                int *q = D_002A8490->f2E8->f4;
+                if (c == 0)
+                    v = *(int *)((char *)q + 0xfb8);
                 else
-                    v = *(int *)(*(char **)(*(char **)((char *)D_002A8490 + 0x2e8) + 4) + 0xfb8);
+                    v = *(int *)((char *)q + 0xec0);
             } else {
                 char *q = *(char **)(*(char **)((char *)D_002A8490 + 0x2e8) + 4);
                 v = *(int *)(q + 0xe98);
