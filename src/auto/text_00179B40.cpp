@@ -56,7 +56,7 @@ extern struct { char pad[4]; char *p; } *D_002EFDB8;
 V4_0017A8F0 *func_0001E9E0(V4_0017A8F0 *, V4_0017A8F0 *);
 V4_0017A8F0 *func_0001C610(V4_0017A8F0 *, V4_0017A8F0 *, V4_0017A8F0 *);
 void func_0017A460(V4_0017A8F0 *, V4_0017A8F0 *);
-void func_0012AB70(V4_0017A8F0 *, V4_0017A8F0 *, V4_0017A8F0 *, int, int);
+void __stdcall func_0012AB70(V4_0017A8F0 *, V4_0017A8F0 *, V4_0017A8F0 *, int, int);
 
 extern int D_00288ED4;
 extern int D_00288F84;
