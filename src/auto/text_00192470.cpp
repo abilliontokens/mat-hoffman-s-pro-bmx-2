@@ -137,7 +137,7 @@ struct C_00192470 : C_0001DFE0 {
             int f1C;
         };
     };
-    unsigned char f20 : 1;
+    unsigned char f20;
     char pad21[3];
     char f24;
     char f25;
@@ -465,10 +465,7 @@ C_00192470 *C_00192470::func_00192720(void)
     func_0001DFE0();
     vtbl = (void *)&D_0028AB84;
     f20 &= 0xfe;
-    list.items = 0;
-    list.count = 0;
-    list.growBy = 0;
-    list.capacity = 0;
+    list.init();
     f8 = 0;
     list.items = (SearchEntry **)func_001E8A44(0x78);
     f20 |= 1;
