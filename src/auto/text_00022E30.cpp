@@ -21,7 +21,7 @@ struct V4_00023340 {
 };
 
 void func_000212C0(V4_00023340 *out, V4_00023340 *in);
-static __forceinline float Min_239F0(float a,float b) { float r; _mm_store_ss(&r,_mm_min_ss(_mm_set_ss(a),_mm_set_ss(b))); return r; }
+static __forceinline float Min_239F0(float a,float b) { return _mm_min_ss(_mm_set_ss(a),_mm_set_ss(b)).m128_f32[0]; }
 
 inline void cross_00023340(float *out, float *a, float *b)
 {
