@@ -165,14 +165,15 @@ struct S_001DE625_Obj {
     char fC[1];
 };
 
+#pragma optimize("y", on)
+#pragma optimize("s", on)
 int __stdcall func_001DDD84(int a0, int a1) {
     void *__stdcall func_001DF56E(void *, int);
-    u32 timeout[2];
-    void *p = func_001DF56E(timeout, a0);
+    s64 timeout;
+    void *p = func_001DF56E(&timeout, a0);
     if (p == 0) {
-        timeout[0] = 0;
-        timeout[1] = 0x80000000;
-        p = timeout;
+        timeout = 0x8000000000000000;
+        p = &timeout;
     }
     int status;
     do {
@@ -180,9 +181,6 @@ int __stdcall func_001DDD84(int a0, int a1) {
     } while (a1 != 0 && status == 0x101);
     return status == 0xc0 ? 0xc0 : 0;
 }
-
-#pragma optimize("y", on)
-#pragma optimize("s", on)
 void __stdcall func_001DDDD6(int a0, int a1) {
     void __stdcall func_001DDCC0(int, int, int);
     func_001DDCC0(a0, a1, 0);
