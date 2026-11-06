@@ -125,7 +125,47 @@ struct TikiEvadeState {
     int func_000195B0(float dt);
 };
 extern float D_00275804;
-static __forceinline void Touch_195B0(void *) {}
+static __forceinline int Body_195B0(TikiEvadeState *&self, float dt)
+{
+    if (self->f10 != self->f14) {
+        if (self->f10 < self->f14) {
+            self->f10 += dt;
+            if (self->f10 > self->f14) {
+                self->f10 = self->f14;
+                self->f8->func_00017700();
+                if (self->f8->f4d4 <= 0)
+                    self->f8->func_00017D00();
+            }
+        } else if (self->f10 > self->f14) {
+            self->f10 -= dt;
+            if (self->f10 < self->f14)
+                self->f10 = self->f14;
+        }
+        self->f8->f3c->f4->func_00182530(self->f10);
+    }
+    if ((unsigned int)D_002A8490->f238 > self->fC) {
+        self->fC = D_002A8490->f238 + 2000;
+        self->f8->func_00017910();
+        S_195B0_Owner *o = self->f8;
+        S_195B0_Vec v = o->f398->func_00016E40();
+        float dx = v.x - o->f508;
+        float dy = v.y - o->f50c;
+        float dz = v.z - o->f510;
+        float square = dz * dz + dy * dy + dx * dx;
+        float dist;
+        _mm_store_ss(&dist, _mm_sqrt_ss(_mm_load_ss(&square)));
+        if ((dist < D_00275804 || dist > self->f8->f49c[self->f8->f4dc].f0) && self->f8->f4d4 > 0) {
+            self->f8->f4dc = self->f8->func_000192D0(1, 1);
+            self->f8->func_00017910();
+            self->fC = D_002A8490->f238;
+        } else {
+            self->f8->func_00017760();
+        }
+        self->f14 = 1.0f;
+        self->f8->f4f4 = 0;
+    }
+    return 1;
+}
 
 struct S_1A060_Vec { float x, y, z, w; };
 struct S_1A060_Fx {
