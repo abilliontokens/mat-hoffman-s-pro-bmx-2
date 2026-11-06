@@ -98,6 +98,13 @@ extern double D_002766C8;
 extern float D_00276220;
 extern float D_00276D50;
 extern float D_002A14E4[4];
+/* the thiscall callees used by func_00034A40 (all take their object in ecx) */
+struct S_00034A40_Obj {
+    void func_00198390();
+    void func_001983A0();
+    void func_0019A8C0(void *a, void *b);
+    void func_00164820(void *a);
+};
 void func_00198390(void *p);
 void func_001983A0(void *p);
 void func_0019A8C0(void *a, void *b);
@@ -170,5 +177,40 @@ void func_000348B0(Vec4 *out, float t, Vec4 p0, Vec4 p1, Vec4 p2, Vec4 p3)
     out->y = u.y + n1.y;
     out->z = u.z + n1.z;
     out->w = 1.0f;
+}
+
+void C_00034A40::func_00034A40(void *a1, void *a2, void *a3, S_00034A40_Tab *a4, float a5, int a6, int a7, int a8, int a9)
+{
+    Vec4 v54, v24, v64, v34, v74;
+    S_00034A40_Elem *e;
+    float ex, ey, ez;
+
+    v54.x = v54.y = v54.z = 0.0f; v54.w = 1.0f;
+    v24.x = v24.y = v24.z = 0.0f; v24.w = 1.0f;
+    v64.x = v64.y = v64.z = 0.0f; v64.w = 1.0f;
+    v34.x = v34.y = v34.z = 0.0f; v34.w = 1.0f;
+    v74.x = v74.y = v74.z = 0.0f; v74.w = 1.0f;
+
+    if (a1 == 0 && a3 == 0)
+        return;
+
+    ((S_00034A40_G *)D_002EFDB8)->v7(1);
+    ((S_00034A40_G *)D_002EFDB8)->v8();
+
+    e = &a4->f5a4[a6];
+    ex = e->f38;
+    ey = e->f3c;
+    ez = e->f40;
+
+    if (f24 != 0) {
+        func_00198390(f24);
+        if (f2c != 0)
+            func_00198390(f2c);
+        f24 = 0;
+    } else if (f28 != 0) {
+        func_00198390(*(void **)((char *)f28->f1a4 + 4));
+        f28 = 0;
+    }
+    (void)ex; (void)ey; (void)ez;
 }
 
