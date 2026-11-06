@@ -34,8 +34,8 @@ struct C_001C1110 {
     char pad4[0x28];
     int f2c;
     char pad30[8];
-    int f38;
-    int f3c;
+    void *f38;
+    void *f3c;
     void func_001C1110(void);
 };
 
