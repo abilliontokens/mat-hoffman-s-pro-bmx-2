@@ -205,7 +205,7 @@ struct S_198E0_Cam {
     void func_00199110(int a, void *pos, void *dir, int b, int c, int d);
 };
 struct S_198E0_F3C { char pad0[4]; S_198E0_Cam *f4; };
-struct S_198E0_Anim { char pad0[0x54]; int f54; int pad58; };
+struct S_198E0_Anim { char pad0[0x54]; volatile int f54; };
 struct S_198E0_Obj {
     char pad0[0x60];
     void *f60;
@@ -347,7 +347,7 @@ void C_00019830::func_00019830(void)
     func_001C75A0();
 }
 
-C_198E0 *C_198E0::func_000198E0(S_198E0_Stream *stream, S_198E0_Cam *cam)
+C_198E0 *C_198E0::func_000198E0(S_198E0_Stream * volatile stream, S_198E0_Cam *cam)
 {
     char bufB[0x104];
     char bufA[0x104];
