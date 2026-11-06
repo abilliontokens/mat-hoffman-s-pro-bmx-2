@@ -409,18 +409,9 @@ inline void Init_001BA5E0(C_001BA5E0 *p)
 
 C_001BA5E0::C_001BA5E0()
 {
-    void *func_001E8A44(int size);
     Init_001BA5E0(this);
-    f124 = 0;
-    f118 = 0xa;
-    f11c = (int)&D_000186A0;
-    f120 = 0;
-    f114 = (int)func_001E8A44(0x28);
-    f13c = 0;
-    f130 = 0xa;
-    f134 = (int)&D_000186A0;
-    f138 = 0;
-    f12c = (int)func_001E8A44(0x28);
+    ((S_001BB060_Array *)&f114)->Init();
+    ((S_001BB060_Array *)&f12c)->Init();
     f110 = 0;
     f144 = 0;
 }
