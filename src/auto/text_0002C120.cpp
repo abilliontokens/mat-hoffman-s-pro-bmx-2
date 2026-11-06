@@ -1,7 +1,10 @@
 /* 3 functions from 0x0002C120 to 0x0002CBC0, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
 
 extern float D_00275544;
+static __forceinline float Min_0002C120(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float Max_0002C120(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 
 /* four floats built in a temporary like the callers do */
 struct V4_0002C120 {
@@ -173,6 +176,165 @@ struct C_0002CB00 {
     void func_0002C9A0(float dt);
     void func_0002CB00(float dt);
 };
+
+void C_0002C120::func_0002C120(int param_1, float param_2)
+{
+    C_0002C120 *self = this;
+    C_0002C120 **pself = &self;
+    float v;
+    float lc;
+    V4_0002C120 zero;
+    V4_0002C120 tmp;
+    float s;
+
+    if (!(self->f504 < self->f508 || self->f468 != 0 || self->f69c != 0)) {
+        return;
+    }
+    if (self->f4f4 != 0) {
+        return;
+    }
+    if (self->f444 != 0) {
+        return;
+    }
+    self->f698 = 0;
+    v = func_0014F870(self->f110);
+    self->f54c = D_002A10F0;
+    zero.z = 0;
+    zero.y = 0;
+    zero.x = 0;
+    zero.w = 1.0f;
+    func_00026340(&zero, &self->f55c);
+    if (self->f1e0->f28 < D_002A1184) {
+        lc = 0;
+    } else {
+        if (self->f1ec->f3c - D_002A1180 > self->f1e0->f28) {
+            lc = self->f1ec->f38;
+        } else if (self->f1e8->f68 == 0) {
+            lc = D_002A117C * self->f1ec->f3c;
+        } else {
+            lc = self->f1ec->f3c;
+        }
+    }
+    if (self->f468 == 0 && self->f46c == 0) {
+        if (self->f69c == 0 && self->f6a0 == 0) {
+            unsigned int u = self->f500;
+            float m;
+            if (u == D_002B9108 || u == D_002B911C) {
+                if (self->f110 > D_00276080) {
+                    self->f698 = 4;
+                    self->f53c = *func_0001C5E0(&tmp, (float)self->f778.fC * self->f778.f0 + self->f528, &D_002A1110);
+                    self->f778.func_0002B180();
+                    goto end;
+                }
+                if (!(self->f120 > D_00276080)) {
+                    goto end;
+                }
+                self->f698 = 1;
+                if (lc > self->f1ec->f38) {
+                    s = D_00275460;
+                } else {
+                    s = self->f514;
+                }
+                self->f53c = *func_0001C5E0(&tmp, s * self->f520, &D_002A1110);
+                if (param_1 != 0) {
+                    self->f698 = 2;
+                    self->f53c = *func_0001C5E0(&tmp, self->f530, &D_002A1110);
+                }
+                m = self->f4a0;
+            } else {
+                if (u == D_002B910C) {
+                    self->f698 = 4;
+                    self->f53c = D_002A10F0;
+                    goto end;
+                }
+                if (v <= self->f510 && v > self->f50c) {
+                    self->f698 = 3;
+                    if (lc > self->f1ec->f38) {
+                        s = D_00275460;
+                    } else {
+                        s = self->f518;
+                    }
+                    self->f53c = *func_0001C5E0(&tmp, s * self->f524, &D_002A1110);
+                    m = self->f49c;
+                } else {
+                    self->f698 = 1;
+                    if (param_1 != 0) {
+                        self->f698 = 2;
+                        self->f53c = *func_0001C5E0(&tmp, self->f530, &D_002A1110);
+                    } else {
+                        if (lc > self->f1ec->f38) {
+                            s = D_00275460;
+                        } else {
+                            s = self->f514;
+                        }
+                        self->f53c = *func_0001C5E0(&tmp, s * self->f520, &D_002A1110);
+                    }
+                    self->f1e0->f238 = *func_0001C5E0(&tmp, lc * self->f4a0, &zero);
+                    goto end;
+                }
+            }
+            self->f1e0->f238 = *func_0001C5E0(&tmp, lc * m, &zero);
+        } else {
+            self->f698 = 1;
+            self->f53c = *func_0001C5E0(&tmp, self->f6ac * self->f520, &D_002A1110);
+            if (param_1 != 0) {
+                self->f698 = 2;
+                self->f53c = *func_0001C5E0(&tmp, self->f530, &D_002A1110);
+            }
+            self->f54c = *func_0001C5E0(&tmp, param_2 * self->f52c, &D_002A1100);
+        }
+    } else {
+        float fl;
+        if (param_1 != 0) {
+            self->f698 = 2;
+            fl = self->f530;
+        } else {
+            self->f698 = 1;
+            fl = self->f728 * self->f520;
+        }
+        self->f53c = V4_0002C120(D_002A1110.x * fl, D_002A1110.y * fl, D_002A1110.z * fl, 1.0f);
+        param_2 = param_2 * self->f52c;
+        self->f54c = V4_0002C120(D_002A1100.x * param_2, D_002A1100.y * param_2, D_002A1100.z * param_2, 1.0f);
+        if (func_00026300(&self->f210->vx, &D_002A10F0)) {
+            S_0002C120_Normal *n = self->f210;
+            S_0002C120_Body *b = self->f1e0;
+            float d = n->vy * b->f238.y + b->f238.x * n->vx + n->vz * b->f238.z;
+            float t;
+            float lim;
+            b->f238.x = b->f238.x - d * n->vx;
+            b->f238.y = b->f238.y - d * n->vy;
+            b->f238.z = b->f238.z - d * n->vz;
+            if (d < D_00275544) {
+                s = D_00275F58;
+            } else {
+                s = D_00275460;
+            }
+            lim = -self->f1ec->f3c;
+            t = s * self->f4a4 + d;
+            if (!(t > lim)) {
+                t = lim;
+            }
+            lim = self->f1ec->f3c;
+            if (!(lim > t)) {
+                t = lim;
+            }
+            n = self->f210;
+            b = self->f1e0;
+            b->f238.x = t * n->vx + b->f238.x;
+            b->f238.y = t * n->vy + b->f238.y;
+            b->f238.z = t * n->vz + b->f238.z;
+        }
+    }
+end:
+    if (self->f698 != 0) {
+        self->f538 = 0.1f;
+        self->f504 = self->f508;
+        self->func_00028070();
+        self->f4f4 = 0;
+        self->f69c = 0;
+        self->f4fc = 0;
+    }
+}
 
 void C_0002CB00::func_0002C9A0(float dt)
 {
