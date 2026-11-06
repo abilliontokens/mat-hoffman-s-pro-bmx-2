@@ -47,9 +47,9 @@ struct C_00150810 {
     int unk38;
     int unk3C;
     char pad40[0x4];
-    float unk44;
-    float unk48;
-    float unk4C;
+    int unk44;
+    int unk48;
+    int unk4C;
     int unk50;
     C_00150810 *func_00150810(int a0, float a1, float a2, float a3, float a4, float a5);
     void func_001D3F50();
