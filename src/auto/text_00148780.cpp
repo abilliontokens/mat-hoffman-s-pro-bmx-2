@@ -17,6 +17,13 @@ struct DXShaderDescriptor {
  void func_00145370(int, ShaderData_00148E80 *, int, void *, int *);
  void func_001458E0(int, ShaderData_00148E80 *, void *, int *);
 };
+struct Parser_00148910 {
+ void func_00169710(char *out);
+ int func_00168BE0(const char *a, const char *b, char *out, int n);
+ void func_00168C20(const char *key, int n, void *out);
+};
+void __cdecl func_001ADCC0(char *dst, int n, const char *fmt, ...);
+int __cdecl func_001EA426(const char *a, const char *b);
 extern Resource_00148E80 *D_002A829C;
 extern ShaderData_00148E80 *D_002AA470;
 extern Manager_00148E80 *D_002A751C, *D_002A6D84, *D_002AA6C0;
