@@ -76,7 +76,7 @@ struct E33680_G {
 
 struct E33680_Loader {
     void func_0013C1D0(int a);
-    void func_0013D780(char *name, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
+    int func_0013D780(char *name, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
     void func_0013B260(int a);
     void func_0013DFF0(char *name, int a);
 };
