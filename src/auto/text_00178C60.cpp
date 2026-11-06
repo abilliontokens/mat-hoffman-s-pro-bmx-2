@@ -58,15 +58,9 @@ static __forceinline void cross_179950(float *out, float *a, float *b)
 {
     __m128 va = _mm_loadu_ps(a);
     __m128 vb = _mm_loadu_ps(b);
-    __m128 sa = va;
-    __m128 sb = vb;
-    sa = _mm_shuffle_ps(sa, sa, 0xc9);
-    sb = _mm_shuffle_ps(sb, sb, 0xc9);
-    vb = _mm_mul_ps(vb, sa);
-    va = _mm_mul_ps(va, sb);
-    va = _mm_sub_ps(va, vb);
-    va = _mm_shuffle_ps(va, va, 0xc9);
-    _mm_storeu_ps(out, va);
+    __m128 r = _mm_sub_ps(_mm_mul_ps(va, _mm_shuffle_ps(vb, vb, 0xc9)),
+                          _mm_mul_ps(vb, _mm_shuffle_ps(va, va, 0xc9)));
+    _mm_storeu_ps(out, _mm_shuffle_ps(r, r, 0xc9));
 }
 
 static __forceinline int edge_1793E0(Vec4 *p, Vec4 *q, Vec4 *r, Vec4 *n)
