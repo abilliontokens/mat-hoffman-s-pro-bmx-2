@@ -22,7 +22,9 @@ struct C_0016C870 {
     int unk188;
     int unk18C, unk190;
     char pad194[0x1A8 - 0x194];
-    int unk1A8, unk1AC, unk1B0, unk1B4;
+    int unk1A8, unk1AC, unk1B0;
+    float unk1B4;
+    char pad1B8[4];
     int *unk1BC;
     int unk1C0, unk1C4, unk1C8;
     char pad1CC[0x1F0 - 0x1CC];
@@ -232,15 +234,107 @@ struct C_0016D140 {
 
 int C_0016C870::func_0016C870(float dt)
 {
-    float inv;
-    if (func_00169E10(dt)) {
+    Parent_0016D140 *parent;
+    Ref_0016D140 *ref;
+    Pool_0016D140 *pool;
+    float inv, t, len, sc, clamp, fv, r0, r1, r2, x, z;
+    int n, i, idx;
+
+    if (func_00169E10(dt))
         return 1;
-    }
-    inv = 1.0f / dt;
+
+    parent = (Parent_0016D140 *)unk68;
+    ref = parent ? parent->f18C : 0;
+    if (ref && D_002EFE50 != ref->f4->f90)
+        return 1;
+
+    inv = D_00275460 / dt;
     unk54 = (unk24 - unk34) * inv;
     unk58 = (unk28 - unk38) * inv;
     unk5c = (unk2c - unk3c) * inv;
     unk60 = 1.0f;
+
+    _mm_store_ss(&len, _mm_sqrt_ss(_mm_set_ss(unk54 * unk54 + unk58 * unk58 + unk5c * unk5c)));
+    sc = len * D_002886C0;
+    _mm_store_ss(&clamp, _mm_min_ss(_mm_set_ss(1.0f), _mm_set_ss(sc)));
+
+    t = dt * unk17C * D_002756CC;
+    if (t > D_00275460) {
+        TruncToInt(t, &n);
+        unk214 = 0.0f;
+    } else {
+        unk214 += t;
+        if (unk214 != D_00275544 && unk214 > D_00275460) {
+            TruncToInt(unk214, &n);
+            unk214 = 0.0f;
+        } else {
+            n = 0;
+        }
+    }
+    _mm_store_ss(&fv, _mm_max_ss(_mm_set_ss(unk180), _mm_set_ss((float)n)));
+    TruncToInt(fv, &n);
+
+    for (i = 0; i < n; i++) {
+        Particle_0016D140 *p;
+        int k, found, j;
+
+        pool = (Pool_0016D140 *)unk64;
+        if (pool->count >= pool->max)
+            break;
+        D_002EFB68++;
+        r0 = (float)func_001E8833() * D_002754B0;
+        r1 = (float)func_001E8833() * D_002754B0;
+        r2 = (float)func_001E8833() * D_002754B0;
+        idx = 0;
+        x = (unk200 - unk1F0) * r0 + unk1F0;
+        z = (unk208 - unk1F8) * r2 + unk1F8;
+        if (r2 > D_0027AB84)
+            idx = 1;
+        if (r2 > D_0027AB80)
+            idx = 2;
+        if (unk1BC) {
+            int *a = unk1BC;
+            found = 0;
+            for (k = unk1C0; k > 0; k--) {
+                if (idx == *a)
+                    found = 1;
+                a++;
+            }
+            if (!found) {
+                RoundToInt((float)(unk1C0 - 1) * r2, &j);
+                idx = unk1BC[j];
+            }
+        }
+        p = pool->items[pool->count];
+        p->pos = *(C_Quad *)(void *)&unk34;
+        p->pos.a += x;
+        p->pos.c += z;
+        p->f38 = unk178;
+        p->f3C = unk178;
+        p->f48 = (void *)this;
+        fv = unk170 - (float)(D_002EFB68 & 3) * unk170 * D_0027AA20;
+        p->f30 = fv;
+        *(float *)(void *)&p->f2C = fv * clamp * D_002755E8;
+        p->f28 = (int)((float)idx * *(float *)(void *)&unk1B4 + unk1A8);
+        p->f34 = D_00275460 / p->f30;
+        p->f40 = unk174;
+        if (unk174 == D_00275544)
+            p->f44 &= ~8;
+        p->f4C = unk18C;
+        p->f44 = unk190;
+        if (r0 > D_002755E8 && unk1C4)
+            p->f44 |= 0x4000;
+        else
+            p->f44 &= ~0x4000;
+        if (r1 > D_002755E8 && unk1C8)
+            p->f44 |= 0x8000;
+        else
+            p->f44 &= ~0x8000;
+        p->f10 = *(C_Quad *)(void *)&unk54;
+        if (unk218)
+            p->f10.b += r1 * unk210;
+        pool->count++;
+    }
     return 1;
 }
 
