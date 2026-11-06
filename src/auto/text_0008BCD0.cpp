@@ -41,11 +41,11 @@ struct Elem_0008BCD0 {
     unsigned char flags;
     Elem_0008BCD0 *func_001D5760();
     void func_001D5810(char *name, float x, float y, int z);
-    void SetPos(int nx, int ny) {
-        if (x != nx) {
-            x = nx;
-            flags |= 1;
-        }
+    void SetArgbRaw(unsigned int c) {
+        argb = (argb & c) | (c & 0xffffff);
+        flags |= 2;
+    }
+    void SetY(int ny) {
         if (y != ny) {
             y = ny;
             flags |= 1;
