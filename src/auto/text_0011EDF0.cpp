@@ -179,6 +179,16 @@ static __forceinline void SetV_0011F210(C_0011EDF0 *t, s16 *q)
     t->w = 1.0f;
 }
 
+static __forceinline C_0011EDF0 MakeV_0011F210(s16 *q)
+{
+    C_0011EDF0 t;
+    t.x = (float)q[0] * D_002B9348;
+    t.y = (float)q[1] * D_002B9348;
+    t.z = (float)q[2] * D_002B9348;
+    t.w = 1.0f;
+    return t;
+}
+
 void func_0011F0E0(C_0011EDF0 *a, C_0011EDF0 *b, C_0011EDF0 *c, unsigned short *indices, void **data)
 {
     if (data[2]) {
@@ -189,6 +199,22 @@ void func_0011F0E0(C_0011EDF0 *a, C_0011EDF0 *b, C_0011EDF0 *c, unsigned short *
         t.func_0011EDF0(p + indices[2] * 3); *c = t;
     } else {
         S_0011F5A0_V3 *p = (S_0011F5A0_V3 *)data[0];
+        int i0 = indices[0]; ((int *)a)[0] = p[i0].x; ((int *)a)[1] = p[i0].y; ((int *)a)[2] = p[i0].z; a->w = 1.0f;
+        int i1 = indices[1]; ((int *)b)[0] = p[i1].x; ((int *)b)[1] = p[i1].y; ((int *)b)[2] = p[i1].z; b->w = 1.0f;
+        int i2 = indices[2]; ((int *)c)[0] = p[i2].x; ((int *)c)[1] = p[i2].y; ((int *)c)[2] = p[i2].z; c->w = 1.0f;
+    }
+}
+
+void func_0011F210(C_0011EDF0 *a, C_0011EDF0 *b, C_0011EDF0 *c, unsigned short *indices, void **data)
+{
+    if (data[2]) {
+        s16 *p = (s16 *)data[1];
+        C_0011EDF0 t;
+        SetV_0011F210(&t, p + indices[0] * 3); *a = t;
+        SetV_0011F210(&t, p + indices[1] * 3); *b = t;
+        SetV_0011F210(&t, p + indices[2] * 3); *c = t;
+    } else {
+        S_0011F5A0_V3 *p = (S_0011F5A0_V3 *)data[1];
         int i0 = indices[0]; ((int *)a)[0] = p[i0].x; ((int *)a)[1] = p[i0].y; ((int *)a)[2] = p[i0].z; a->w = 1.0f;
         int i1 = indices[1]; ((int *)b)[0] = p[i1].x; ((int *)b)[1] = p[i1].y; ((int *)b)[2] = p[i1].z; b->w = 1.0f;
         int i2 = indices[2]; ((int *)c)[0] = p[i2].x; ((int *)c)[1] = p[i2].y; ((int *)c)[2] = p[i2].z; c->w = 1.0f;
