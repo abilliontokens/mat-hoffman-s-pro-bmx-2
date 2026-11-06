@@ -333,47 +333,50 @@ void C_000B1350::func_000B1350(void)
     int n;
     int i;
     int k;
-    int cnt;
     int idx;
 
     for (n = 0; n < f3C; n++) {
-        cnt = 0;
-        for (i = 0; i < f38; i++) {
-            if (f48[i]->f50 == n || f48[i]->f54 == n) {
-                cnt++;
-            }
-        }
-        if (cnt > 0) {
-            f4C[n]->fC = (S_000B1350_B **)func_001E8A44(cnt * 4);
-            idx = 0;
+        {
+            int cnt = 0;
             for (i = 0; i < f38; i++) {
                 if (f48[i]->f50 == n || f48[i]->f54 == n) {
-                    f4C[n]->fC[idx] = f48[i];
-                    idx++;
-                }
-            }
-            f4C[n]->f4 = idx;
-        }
-        cnt = 0;
-        for (i = 0; i < f34; i++) {
-            for (k = 0; k < f44[i]->f4C; k++) {
-                if (f44[i]->f48[k]->f0 == n) {
                     cnt++;
                 }
             }
-        }
-        if (cnt > 0) {
-            f4C[n]->f8 = (S_000B1350_A **)func_001E8A44(cnt * 4);
-            idx = 0;
-            for (i = 0; i < f34; i++) {
-                for (k = 0; k < f44[i]->f4C; k++) {
-                    if (f44[i]->f48[k]->f0 == n) {
-                        f4C[n]->f8[idx] = f44[i];
+            if (cnt > 0) {
+                f4C[n]->fC = (S_000B1350_B **)func_001E8A44(cnt * 4);
+                idx = 0;
+                for (i = 0; i < f38; i++) {
+                    if (f48[i]->f50 == n || f48[i]->f54 == n) {
+                        f4C[n]->fC[idx] = f48[i];
                         idx++;
                     }
                 }
+                f4C[n]->f4 = idx;
             }
-            f4C[n]->f0 = idx;
+        }
+        {
+            int cnt = 0;
+            for (i = 0; i < f34; i++) {
+                for (k = 0; k < f44[i]->f4C; k++) {
+                    if (f44[i]->f48[k]->f0 == n) {
+                        cnt++;
+                    }
+                }
+            }
+            if (cnt > 0) {
+                f4C[n]->f8 = (S_000B1350_A **)func_001E8A44(cnt * 4);
+                idx = 0;
+                for (i = 0; i < f34; i++) {
+                    for (k = 0; k < f44[i]->f4C; k++) {
+                        if (f44[i]->f48[k]->f0 == n) {
+                            f4C[n]->f8[idx] = f44[i];
+                            idx++;
+                        }
+                    }
+                }
+                f4C[n]->f0 = idx;
+            }
         }
     }
     for (n = 0; n < f3C; n++) {
@@ -401,12 +404,9 @@ void C_000B1350::func_000B1350(void)
                 if (next >= tbl->count) {
                     next = 0;
                 }
-                float *p1 = &tbl->f8[next].x;
-                float *p0 = &tbl->f8[cur].x;
-                float dx = p1[0] - p0[0];
-                float dy = p1[1] - p0[1];
-                float dz = p1[2] - p0[2];
-                s->f8 = V4_000B1350(p0[0] + t * dx, p0[1] + t * dy, p0[2] + t * dz);
+                V4_000B1350 *p1 = (V4_000B1350 *)&tbl->f8[next].x;
+                V4_000B1350 *p0 = (V4_000B1350 *)&tbl->f8[cur].x;
+                s->f8 = *p0 + (*p1 - *p0) * t;
             }
         }
     }
@@ -452,7 +452,6 @@ int func_000B1740(VehicleAI *ai, S_000B1740_Panel *panel)
     return 0;
 }
 
-#pragma optimize("g", off)
 void C_000B1A40::func_000B1A40(S_000B1A40_Stream *stream)
 {
     char buf[0x104];
@@ -469,8 +468,7 @@ void C_000B1A40::func_000B1A40(S_000B1A40_Stream *stream)
     stream->func_00168CB0(D_0027CEE4, &D_002A2DE4, f2C);
     stream->func_00168C20(D_0027CED8, 1, &f0);
 }
-
-#pragma optimize("g", on)
+#pragma optimize("", on)
 void C_000B1B80::func_000B1B80(void)
 {
     char buf[0x104];
@@ -518,6 +516,26 @@ void C_000B1B80::func_000B1B80(void)
         func_001E8920(D_002A4C10, buf, n);
         D_002A4C10[n] = 0;
     }
+}
+
+#pragma optimize("g", on)
+int VehicleAI::func_000B1DA0(int a) {
+    if (((S_000B1DA0_Root *)D_002A8490)->f124 == 0) {
+        if (f5C == 0) {
+            int h = D_002A829C->func_001617F0(&f64, 1);
+            ((S_000B1DA0_Obj *)f40)->f8->func_00181DB0(h);
+            ((S_000B1DA0_Obj *)f40)->f8->func_001820B0((void *)func_000B1740, this, h);
+            f5C = 1;
+        }
+        if (f60 == 0) {
+            int h = D_002A829C->func_001617F0((char *)this + 0x168, 1);
+            ((S_000B1DA0_Obj *)f40)->f8->func_00181DB0(h);
+            ((S_000B1DA0_Obj *)f40)->f8->func_001820B0((void *)D_000B17D0, this, h);
+            f60 = 1;
+        }
+        func_0018C900(a);
+    }
+    return 1;
 }
 
 #pragma optimize("g", on)
