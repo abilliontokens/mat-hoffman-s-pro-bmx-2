@@ -44,7 +44,10 @@ struct C_000D28D0 {
     Obj_D28 *f124;
     char pad128[0x2C4 - 0x128];
     char name[0x104];
-    char pad3C8[0x41C - 0x3C8];
+    char pad3C8[0x3E8 - 0x3C8];
+    int flags[8];
+    char pad408[0x418 - 0x408];
+    int selected;
     int f41C;
     int f420;
     char pad424[0x1FE4 - 0x424];
