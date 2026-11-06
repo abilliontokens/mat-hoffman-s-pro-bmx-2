@@ -59,6 +59,11 @@ static __forceinline void ClearInt_001D3F60(int *p)
     *p = 0;
 }
 
+static __forceinline int IsLowerSlot_001D40E0(int a)
+{
+    return a >= 4;
+}
+
 inline void *operator new(unsigned int, void *p) { return p; }
 
 struct S_001D3F60_Zero {
@@ -302,6 +307,56 @@ struct C_001D3AB0 {
     void func_001D3C30(void);
 };
 
+
+int C_001D3AB0::func_001D3860(void)
+{
+    C_001D3AB0 *p = this;
+    float f[6];
+    S_001D3860_Mat mat;
+    S_001D3860_Mat *pm = &mat;
+    int x[4];
+    int w, h;
+    float *out;
+
+    w = p->unk70->f8;
+    h = p->unk70->fC;
+    x[0] = (int)((float)p->unk54 * D_002ABC88);
+    x[2] = (int)((float)p->unk5C * D_002ABC88);
+    x[1] = (int)((float)p->unk58 * D_002ABC8C);
+    x[3] = (int)((float)p->unk60 * D_002ABC8C);
+    D_0020C6E0 = 3;
+    D_0020C6E4 = 3;
+    D_0020C6DC |= 1;
+    D_0020C6EC = 1;
+    D_0020C6F0 = 1;
+    func_001FD020(&D_00040304, p->unk64);
+    func_001FD020(&D_00040344, p->unk68);
+    func_001FD020(&D_00040348, p->unk6C);
+    D_0020C6DC |= 0x2000;
+    D_0020CA50 = 0;
+    func_001FD020(&D_00040300, 0);
+    func_00200390(0, (int)p->unk70->fB8);
+    f[0] = (float)x[0];
+    f[1] = (float)x[3];
+    f[2] = (float)h;
+    f[3] = (float)x[2];
+    f[4] = (float)x[1];
+    f[5] = (float)w;
+    pm->identity();
+    out = (float *)func_001FF410(p->unk7C, 0);
+    out[0] = f[0]; out[1] = f[1]; out[2] = 0; out[3] = -1;
+    out[4] = 0; out[5] = f[2]; out[6] = f[0]; out[7] = f[4];
+    out[8] = 0; out[9] = -1; out[10] = 0; out[11] = 0;
+    out[12] = f[3]; out[13] = f[1]; out[14] = 0; out[15] = -1;
+    out[16] = f[5]; out[17] = f[2]; out[18] = f[3]; out[19] = f[4];
+    out[20] = 0; out[21] = -1; out[22] = f[5]; out[23] = 0;
+    D_002EFDB8->f6c->func_0014A650(p->unk74);
+    D_002EFDB8->f70->func_00142D00(p->unk78);
+    func_001FEC30(0x22, pm);
+    func_001FEE00(0, p->unk7C, 0x18);
+    func_00200A90(6, 0, 4);
+    return 1;
+}
 
 void C_001D3AB0::func_001D3AB0(void)
 {
@@ -602,7 +657,7 @@ int C_001D4200::func_001D40E0(int a)
         return 1;
     }
     if ((func_0026EBC5(&D_0026D8D0) & func_001D4060(a)) != 0) {
-        if (func_0026ED5B(func_001D4010(a), a >= 4, &letter) >= 0) {
+        if (func_0026ED5B(func_001D4010(a), (a >= 4) ? 1 : 0, &letter) >= 0) {
             func_001ADCC0(unk4, 4, D_0028F130, letter);
             unk0 = a;
             return 1;
@@ -733,47 +788,33 @@ int C_001D4200::func_001D4380(char *out)
 
 int C_001D4200::func_001D4440(const char *a, const char *b, const void *data, unsigned int size)
 {
-    char path[0x104];
-    unsigned int sig[5];
-    unsigned int written;
-    int r;
-    int h;
-    int ctx;
-
-    if (unk0 != -1) {
-        r = func_001D4300(unk0);
-        if (r == 2) {
-            h = unk0;
-            if (h == -1 || func_001D4170(h) != 0) {
-                func_001D40E0(h);
-            }
-        } else if (r != 1) {
-            func_001D4170(unk0);
-            goto fail;
-        }
-        func_001ADCC0(path, 0x104, D_00278068, a, b);
-        h = func_001DCC3C(path, 0x401f0000, 0, 0, 2, 0x80, 0);
-        if (h == -1) {
-            goto fail;
-        }
-        if (func_001DD247(h, data, size, &written, 0) != 0) {
-            ctx = func_001DF361(0);
-            if (ctx != -1) {
-                if (func_001DF2EA(ctx, data, size) == 0 && func_001DF304(ctx, sig) == 0) {
-                    if (func_001DD247(h, sig, 0x14, &written, 0) != 0) {
-                        func_001DD13C(h);
-                        return 1;
-                    }
-                } else {
-                    func_001DF304(ctx, 0);
-                }
-            }
-        }
-        func_001DD13C(h);
-        return 0;
-    }
-fail:
-    return 0;
+ char path[0x104];
+ unsigned int sig[5];
+ unsigned int written;
+ int h, ctx;
+ if(unk0==-1) goto invalid;
+ {
+  int r=func_001D4300(unk0);
+  if(r==2) { int e=unk0; if(e==-1 || func_001D4170(e)) func_001D40E0(e); }
+  else if(r!=1) {func_001D4170(unk0); invalid: return 0;}
+ }
+ func_001ADCC0(path,0x104,D_00278068,a,b);
+ h=func_001DCC3C(path,0x401f0000,0,0,2,0x80,0);
+ if(h==-1) return 0;
+ if(func_001DD247(h,data,size,&written,0)) {
+  ctx=func_001DF361(0);
+  if(ctx!=-1) {
+   if(!func_001DF2EA(ctx,data,size) && !func_001DF304(ctx,sig)) {
+    if(func_001DD247(h,sig,0x14,&written,0)) {func_001DD13C(h); return 1;}
+    goto close;
+   }
+   func_001DF304(ctx,0);
+   close:
+   ;
+  }
+ }
+ func_001DD13C(h);
+ return 0;
 }
 
 int C_001D4200::func_001D4590(const char *a, const char *b, void * volatile data, unsigned int size)
