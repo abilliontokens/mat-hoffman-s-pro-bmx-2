@@ -22,7 +22,8 @@ struct Img_75F30 {
     char pad0[0x28];
     float width;
     float height;
-    char pad30[0xC];
+    char pad30[8];
+    int color;
     float a, b, c, d;
     float f4C, f50;
     char pad54[4];
@@ -113,6 +114,23 @@ C_00075F30 *C_00075F30::func_00075F30(int a)
         o->c = o->f50 * D_0027653C;
         o->d = o->f50 * D_00275544;
         o->flags |= 4;
+    }
+
+    for (int i = 0; i < 5; i++) {
+        float y = (float)i * D_00278650;
+        Img_75F30 *o = (Img_75F30 *)func_001E8A44(0x64);
+        o = o ? o->func_001D5760() : 0;
+        fB4[i] = o;
+        o->func_001D5810(D_00278658, y, 50.0f, 0);
+        Img_75F30 *q = (Img_75F30 *)func_001E8A44(0x64);
+        q = q ? q->func_001D5760() : 0;
+        fC8[i] = q;
+        q->func_001D5810(D_00278658, y, 366.0f, 0);
+        q->a = 0.0f;
+        q->b = 1.0f;
+        q->c = 0.99f;
+        q->d = 0.0f;
+        q->flags |= 4;
     }
     return this;
 }
