@@ -113,6 +113,7 @@ struct C_6C570 {
     Txt_6C570 *tC4, *tC8;
     char padCC[8];
     int fD4;
+    C_6C570 *func_0006C570(int);
     void func_001577A0(void *, int);
 };
 
