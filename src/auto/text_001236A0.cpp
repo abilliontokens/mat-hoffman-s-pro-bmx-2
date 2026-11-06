@@ -114,7 +114,14 @@ int func_00123AF0(int a1, int a2, S_00123AF0_Mat *a3, unsigned short a4, S_002B9
         func_0011ACC0(&m, a6, &m);
         node = &tree->nodes[a4];
         S_001236A0_Vec4 lo(node->v0);
-        S_001236A0_Vec4 hi(node->v1);
+        int hz = ((int *)&node->v1)[2];
+        int hx = ((int *)&node->v1)[0];
+        int hy = ((int *)&node->v1)[1];
+        S_001236A0_Vec4 hi;
+        ((int *)&hi)[2] = hz;
+        ((int *)&hi)[0] = hx;
+        ((int *)&hi)[1] = hy;
+        hi.w = 1.0f;
         if (func_00120FF0(a1, a2, &lo, &hi, &m) != 0) {
             r = func_00123AF0(a1, a2, a3, node->left, tree, a6);
             if (r == 0) {
