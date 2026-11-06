@@ -2,6 +2,7 @@
 #include "common.h"
 #include <xmmintrin.h>
 #include <new>
+#include <math.h>
 
 void *func_001E8A44(int size);
 void func_00133D80(void *p);
@@ -194,42 +195,44 @@ void SoultreeCollisionObject::func_0019C710(float *src, int a2, short a3, int n)
     void *func_001E8AA5(int size);
     void func_00129510(int *, int *, float *, float *, int, short, int);
     struct V3 { float x, y, z; };
-    char *b = (char *)this;
+    SoultreeCollisionObject *volatile self = this;
     int i;
     ((VObj_0019C710 *)this)->v1b();
-    Identity_19C710((float *)(b + 0xb0));
-    Identity_19C710((float *)(b + 0xf0));
-    Identity_19C710((float *)(b + 0x130));
-    Identity_19C710((float *)(b + 0x170));
-    *(short *)(b + 0x1bc) = 0;
-    *(int *)(b + 0x1c0) = 0;
-    *(int *)(b + 0x1c4) = 0;
-    *(int *)(b + 0x1c8) = 0;
-    *(short *)(b + 0x1cc) = (short)n;
+    Identity_19C710((float *)((char *)self + 0xb0));
+    Identity_19C710((float *)((char *)self + 0xf0));
+    Identity_19C710((float *)((char *)self + 0x130));
+    Identity_19C710((float *)((char *)self + 0x170));
+    self->unk1BC = 0;
+    self->unk1C0 = 0;
+    self->unk1C4 = 0;
+    self->unk1C8 = 0;
+    self->unk1CC = (unsigned short)n;
     char *o = (char *)func_001E8AA5(0x80);
-    *(char **)(b + 0x1d4) = o;
-    *(short *)(b + 0x1ce) = a3;
-    *(int *)(b + 0x1b8) = 0;
+    self->unk1D4 = o;
+    self->unk1CE = a3;
+    self->unk1B8 = 0;
     V3 *v = (V3 *)func_001E8A44(n * 12);
     if (v) {
         for (i = 0; i < n; i++) { v[i].x = 0; v[i].y = 0; v[i].z = 0; }
     }
-    *(V3 **)(b + 0x1b0) = v;
-    *(int *)(b + 0x1b4) = 0;
-    V3 *dst = *(V3 **)(b + 0x1b0);
-    for (i = 0; i < n; i++) dst[i] = *(V3 *)((char *)src + i * 16);
-    func_00129510((int *)(b + 0x1c4), (int *)(b + 0x1c8), (float *)(b + 0xf0), src, a2, a3, n);
-    o = *(char **)(b + 0x1d4);
-    *(int *)o = 0;
-    *(short *)(o + 8) = *(short *)(b + 0x1cc);
-    *(short *)(o + 0xa) = *(short *)(b + 0x1ce);
-    *(int *)(o + 0xc) = *(int *)(b + 0x1c4);
-    *(int *)(o + 0x10) = *(int *)(b + 0x1c8);
-    *(short *)(o + 0x20) = 0;
-    *(int *)(o + 0x70) = 1;
-    *(V3 *)(o + 0x14) = *(V3 *)(b + 0x1b0);
-    float *p = (float *)(*(int *)(b + 0x1c4) + *(unsigned short *)(b + 0x1bc) * 36 + 0x18);
-    *(float *)(b + 0x1d0) = sqrtf(p[0] * p[0] + p[1] * p[1] + p[2] * p[2]);
+    self->unk1B0p = v;
+    self->unk1B4p = 0;
+    for (i = 0; i < n; i++)
+        ((V3 *)self->unk1B0p)[i] = *(V3 *)((char *)src + i * 16);
+    func_00129510(&self->unk1C4, &self->unk1C8, self->unkF0[0], src, a2, a3, n);
+    *(int *)self->unk1D4 = 0;
+    *(short *)(self->unk1D4 + 8) = self->unk1CC;
+    *(short *)(self->unk1D4 + 0xa) = self->unk1CE;
+    *(int *)(self->unk1D4 + 0xc) = self->unk1C4;
+    *(int *)(self->unk1D4 + 0x10) = self->unk1C8;
+    *(short *)(self->unk1D4 + 0x20) = 0;
+    *(int *)(self->unk1D4 + 0x70) = 1;
+    *(V3 *)(self->unk1D4 + 0x14) = *(V3 *)((char *)self + 0x1b0);
+    float *p = (float *)(self->unk1C4 + self->unk1BC * 36 + 0x18);
+    float s = p[0] * p[0] + p[1] * p[1] + p[2] * p[2];
+    float len;
+    _mm_store_ss(&len, _mm_sqrt_ss(_mm_load_ss(&s)));
+    self->unk1D0 = len;
 }
 
 void SoultreeCollisionObject::func_0019CB00(void)
