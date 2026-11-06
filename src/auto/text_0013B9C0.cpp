@@ -34,7 +34,17 @@ struct S_0013B9C0_Ent28 {
     int fC;
     void *f10;
     void *f14;
-    char pad18[0x10];
+    int f18;
+    int f1C;
+    int f20;
+    unsigned char f24;
+    char pad25[3];
+};
+
+struct S_0013B9C0_Cache {
+    void *f0;
+    int f4;
+    int f8;
 };
 
 struct S_0013B9C0_Ent20 {
@@ -215,6 +225,98 @@ else if (minSize <= (unsigned int)D_001C0000 && maxSize >= (unsigned int)D_001C0
 else if (minSize <= (unsigned int)D_00200000 && maxSize >= (unsigned int)D_00200000) size=(unsigned int)D_00200000;
  else size=maxSize;
  return func_0013C1D0(size);
+}
+
+int C_0013B9C0::func_0013C3D0(const char *name, char *mode, int a2)
+{
+    volatile int ok = 1;
+    char buf[12];
+    int idx;
+    S_0013B9C0_Ent28 *e;
+
+    if (f8 == -1) {
+        f10++;
+        fC = (S_0013B9C0_Ent28 *)func_001E83E8(fC, f10 * 40);
+        if (fC == 0) {
+            return 0;
+        }
+        idx = f10 - 1;
+        f8 = -1;
+        e = &fC[idx];
+        e->fC = 1;
+        e->f10 = 0;
+        e->f0 = idx;
+        e->f4 = 0;
+        e->f8 = 0;
+        e->f14 = 0;
+        ((char *)e)[0x24] = 0;
+    } else {
+        int i = f8;
+        idx = i;
+        f8 = -1;
+        if (f10 > 1) {
+            for (;;) {
+                i++;
+                if (i >= f10) {
+                    i = 0;
+                }
+                if (i == idx) {
+                    break;
+                }
+                if (!(fC[i].fC & 1)) {
+                    f8 = i;
+                    break;
+                }
+            }
+        }
+    }
+    char *d = buf;
+    const char *s = mode;
+    char c;
+    do {
+        c = *s;
+        d[s - mode] = c;
+        s++;
+    } while (c);
+    if (func_001E9260(buf, 'b') == 0) {
+        char *p = buf;
+        while (*p) {
+            p++;
+        }
+        *(short *)p = D_00284C50;
+    }
+    void *fp = func_0014FDF0(name, buf);
+    if (fp == 0) {
+        ok = 0;
+        func_0013B840(&fC[idx]);
+        f8 = idx;
+        return ok;
+    }
+    func_0014FED0(fp, 0, 2);
+    int sz = D_0014FEE0(fp);
+    if (!func_0013AC40((int)name, idx, 0, sz, a2, 5)) {
+        func_0014FE50(fp);
+        ok = 0;
+        func_0013B840(&fC[idx]);
+        f8 = idx;
+        return ok;
+    }
+    e = &fC[idx];
+    e->f10 = fp;
+    e->fC = 4;
+    e->f8 = 0;
+    e->f14 = (void *)a2;
+    e->f4 = (int)func_001E8AA5(strlen(name) + 1);
+    strcpy((char *)e->f4, name);
+    if (func_001E9260(mode, 'w') || func_001E9260(mode, 'a') || func_001E9260(mode, '+')) {
+        e->fC |= 0x10;
+    }
+    ((int *)e)[6] = 0;
+    ((int *)e)[8] = 0;
+    ((int *)e)[7] = 0;
+    ((char *)e)[0x24] = 0;
+    e->f0 = idx;
+    return ok;
 }
 
 int C_0013B9C0::func_0013C5D0(S_0013B9C0_Ent28 *arg1, int arg2)
