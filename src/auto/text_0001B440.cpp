@@ -176,6 +176,7 @@ struct C_0001C1E0 {
     int func_0001B3C0(int a);
     void func_0001BDB0(int idx);
     int func_0001BDF0(int a, int b);
+    int slot_query(int idx, int b);
     void func_0001C1E0(int idx, int b, int c, int d);
     int func_0001C200(int a, int b, int c, int d);
     void func_0001C240(void);
@@ -564,22 +565,20 @@ int C_0001C1E0::func_0001BDF0(int a, int b)
 {
     S_0001C1E0_Slot *s;
     int k;
-    int r;
     int idx = func_0001B3C0(a);
 
-    if (f2c == 0 || idx >= f2c->f24) {
+    if (f2c == 0) {
         return 0;
     }
-    if (idx < 0) {
+    if (idx >= f2c->f24 || idx < 0) {
         return 0;
     }
     s = f2c->f28[idx];
     k = s->func_001B5750(b);
-    r = s->f78[k];
     if (s->f84 == k) {
-        r |= (s->f1A4->f10 == 0);
+        return s->f78[k] | (s->f1A4->f10 == 0);
     }
-    return r;
+    return s->f78[k];
 }
 
 struct S_0001C020_Mgr {
@@ -603,15 +602,20 @@ void C_0001B790::func_0001BE50(void)
     }
 }
 
+void __cdecl func_0001C020(int a, int b, C_0001B910 *obj, int flag)
+{
+    if (flag != 0) {
+        D_002B7C88->func_0001B9E0(obj, 0, 0);
+    }
+}
+
 void C_0001C1E0::func_0001C1E0(int idx, int b, int c, int d)
 {
-    S_0001C1E0_List *list = f2c;
-
-    if (list != 0) {
-        func_0001BE90(list->f28[idx], b, c, d);
-    } else {
-        return;
-    }
+    if (f2c != 0)
+        goto have;
+    return;
+have:
+    func_0001BE90(f2c->f28[idx], b, c, d);
 }
 
 int C_0001C1E0::func_0001C200(int a, int b, int c, int d)
