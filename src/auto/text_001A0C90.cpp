@@ -10,8 +10,13 @@ struct N_001A1930 { int unk0; O_001A1930 *obj;
  void GetPosition(Q_001A1930 *p) {
   O_001A1930 *o=obj;
   if(o) {
-   int x=((const volatile int*)&o->pos)[0],y=((const volatile int*)&o->pos)[1],z=((const volatile int*)&o->pos)[2];
-   ((int*)p)[0]=x;((int*)p)[1]=y;((int*)p)[2]=z;
+   p->x=o->pos.x; p->y=o->pos.y; p->z=o->pos.z;
+  }
+ }
+ void GetVelocity(Q_001A1930 *p) {
+  O_001A1930 *o=obj;
+  if(o) {
+   p->x=o->vel.x; p->y=o->vel.y; p->z=o->vel.z;
   }
  }
 };
@@ -367,10 +372,11 @@ void C_001A1930::func_001A1930(int count, N_001A1930 **nodes)
   }
  }else if((distance>=1.2f*unk4C)) return;
  state |=2;
- O_001A1930 *o=nearest->obj;
+ N_001A1930 *n=nearest;
+ O_001A1930 *o=*(O_001A1930 * volatile *)&n->obj;
  if(o){velocity.x=o->vel.x;velocity.y=o->vel.y;velocity.z=o->vel.z;}
- o=*(O_001A1930 * volatile *)&nearest->obj;
- if(o){int x=((const volatile int*)&o->pos)[0], y=((const volatile int*)&o->pos)[1], z=((const volatile int*)&o->pos)[2]; ((int*)&position)[0]=x;((int*)&position)[1]=y;((int*)&position)[2]=z;}
+ n=(N_001A1930 *)n->obj;
+ if(n){int x=((const volatile int*)n)[2], y=((const volatile int*)n)[3], z=((const volatile int*)n)[4]; ((int*)&position)[0]=x;((int*)&position)[1]=y;((int*)&position)[2]=z;}
  { Q_001A1930 t;
  t.x=pos.x-position.x;t.y=pos.y-position.y;t.z=pos.z-position.z;t.w=1;
  if(!emitter) return;
