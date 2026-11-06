@@ -172,7 +172,6 @@ struct C_0016AE10 {
     u32 f23C;
     float f240, f244, f248;
     u32 f24C;
-    int func_0016AE10(float dt);
 };
 
 void C_0016B8B0::func_0016B8B0(int a, int b, int c, int d, int e)
