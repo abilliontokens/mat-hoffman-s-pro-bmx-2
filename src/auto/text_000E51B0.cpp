@@ -14,6 +14,15 @@ struct C_000E51B0_G {
     int *f300;
 };
 
+struct C_000E51B0_Obj {
+    int func_0018C780(int a, void *b, int c);
+    int *func_0018C160(char *a);
+};
+
+struct C_000E51B0_Y {
+    void func_001B17D0(char *a);
+};
+
 struct BmxUIPageRiderOps {
     int w[0x900 / 4];
     void func_001BE4F0(int a, int b, int c);
