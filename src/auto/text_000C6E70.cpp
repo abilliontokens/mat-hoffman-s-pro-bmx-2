@@ -37,10 +37,10 @@ struct S_000C7_Obj {
 
 struct S_000C6E70_Widget {
     char pad0[0x38];
-    u32 f38;
+    int f38;
     char pad3C[0x58 - 0x3C];
     unsigned char flags;
-    void SetAlpha(short a) { f38 = (a << 24) | (f38 & 0xffffff); flags |= 2; }
+    void SetAlpha(int a) { f38 = (f38 & 0xffffff) | (a << 24); flags |= 2; }
 };
 
 /* BmxUIPageParkLevel (vtable 0x0027E1F4) */
