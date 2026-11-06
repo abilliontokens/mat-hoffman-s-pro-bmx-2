@@ -44,7 +44,7 @@ extern "C" int func_001ADCC0(char*,int,const char*,...);
 static __forceinline void pos72(Res_72C90* p,int x,int y){if(p->x!=x||p->y!=y){p->y=y;p->x=x;p->flags|=6;}}
 static __forceinline void align72(Res_72C90* p,int a){if(p->align!=a){p->align=a;p->flags|=6;}}
 static __forceinline void color72(Res_72C90* p,unsigned int c){if(p->color!=c){p->flags|=8;p->color=(p->color & (c|0xff000000))|(c&0xffffff);}}
-static __forceinline void uv72(Obj_72C90* p){p->flags|=4;p->a=127.0f*p->w;p->b=0.0f*p->w;p->c=15.0f*p->h;p->d=0.0f*p->h;}
+static __forceinline void uv72(Obj_72C90* p,float a,float b,float c,float d){p->flags|=4;p->a=a;p->b=b;p->c=c;p->d=d;}
 static __forceinline void size72(Obj_72C90* p){if(p->width!=0x44200000){p->width=0x44200000;p->flags|=1;}if(p->height!=0x42480000){p->height=0x42480000;p->flags|=1;}}
 
 /* BmxMenu-derived menu (RunResultsMenu) */
