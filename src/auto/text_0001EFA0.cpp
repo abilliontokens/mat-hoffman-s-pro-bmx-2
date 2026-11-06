@@ -20,7 +20,10 @@ struct BmxAirborneControlModel {
  char pad100[0x118-0x100]; int f118; char pad11c[8]; AirVec f124;
  int func_0001EFA0(float);
 };
-extern AirVec D_002A0E84;
+extern AirVec D_002A0E84,D_002B7DF8,D_002B7DE8,D_002B7DD8,D_002B7DC8;
+extern int D_002B7E08,D_002A0E70;
+extern float D_002755F4;
+AirVec *func_0001E9E0(AirVec*,AirVec*);
 extern float D_002A0E78, D_00275994, D_002760A0, D_002A0E74, D_00275544;
 AirVec *func_000110B0(AirVec*,AirVec*);
 AirVec *func_0001C5E0(AirVec*,float,AirVec*);
