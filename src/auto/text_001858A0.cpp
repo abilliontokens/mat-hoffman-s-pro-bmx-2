@@ -407,6 +407,36 @@ int C_00185B10::func_00185B60(S_Stream *stream)
     return count != 0;
 }
 
+C_00185BF0 *C_00185BF0::func_00185BF0(void)
+{
+    C_00185BF0 * volatile self = this;
+    volatile int limit;
+    volatile int n;
+
+    self->vtbl = &D_002896CC;
+    self->f4 = 0;
+    self->f8 = 0;
+    self->fc = 0;
+    limit = 0x103;
+    n = clamp_len_00185BF0(limit, 4);
+    func_001E8920(self->f10, (const char *)&D_002764F0, n);
+    self->f10[n] = 0;
+    limit = 0x103;
+    n = clamp_len_00185BF0(limit, 4);
+    func_001E8920(self->f114, (const char *)&D_002764F0, n);
+    self->f114[n] = 0;
+    self->f524 = 0;
+    self->f528 = 0;
+    self->f52c = 0;
+    self->f530 = 0;
+    self->f534 = 0;
+    self->f538 = 0;
+    self->f53c = 0;
+    self->f540 = 0;
+    self->f544 = 0;
+    return self;
+}
+
 void C_00185D00::func_00185D00(void)
 {
     int i;
@@ -446,23 +476,23 @@ int C_00185BF0::func_00185D60(S_Stream3 *stream, int count)
                 stream->func_00168BE0(buf, &D_002764F0, F8[0], -1);
             }
         }
-    }
-    if (count > 0) {
-        FC = (int *)func_001E8A44(count * 4);
-        for (i = 0; i < count; i++) {
-            func_001ADCC0(buf2, 0x104, &D_002867E8, &D_002897BC, i + 1);
-            stream->func_00168C20(buf2, 1, FC + i);
-            FC[i]--;
+        if (count > 0) {
+            FC = (int *)func_001E8A44(count * 4);
+            for (i = 0; i < count; i++) {
+                func_001ADCC0(buf2, 0x104, &D_002867E8, &D_002897BC, i + 1);
+                stream->func_00168C20(buf2, 1, FC + i);
+                FC[i]--;
+            }
         }
     }
-    if (f4 == 1 && F8 && !memcmp(F8[0], &D_002764F0, 5)) {
+    if (f4 == 1 && F8 && !strcmp((const char *)F8[0], "none")) {
         func_001E891B(F8[0]);
         F8[0] = 0;
         f4 = 0;
     }
     char *name = (char *)this + 0x31c;
     stream->func_00168BE0(&D_002897AC, &D_002764F0, name, -1);
-    if (memcmp(name, &D_002764F0, 5)) {
+    if (strcmp(name, "none")) {
         char *dot = strchr(name, '.');
         if (dot)
             memset(dot, 0, strlen(dot));
