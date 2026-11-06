@@ -60,14 +60,8 @@ void C_0009C770::func_0009C770(void)
 {
     int i;
     int j;
-    int n;
-    struct {
-        int e2;
-        int dummy;
-    } t;
     S_0009C770_E1 *e1;
     S_0009C770_Child *c;
-    S_0009C770_Child **p;
 
     if (arr0 != 0) {
         for (i = 0; i < cnt0; i++) {
@@ -110,21 +104,7 @@ void C_0009C770::func_0009C770(void)
                     func_001E891B(arr4[i]->f1c8);
                     arr4[i]->f1c8 = 0;
                 }
-                t.e2 = (int)arr4[i];
-                if (t.e2 != 0) {
-                    p = ((S_0009C770_E2 *)t.e2)->f4880;
-                    n = 12;
-                    do {
-                        c = *p;
-                        if (c != 0) {
-                            c->func_00012140();
-                            func_001E891B(c);
-                            *p = 0;
-                        }
-                        p++;
-                    } while (--n != 0);
-                    func_001E891B((void *)t.e2);
-                }
+                Free_0009C770(arr4[i]);
                 arr4[i] = 0;
             }
         }
@@ -146,21 +126,7 @@ void C_0009C770::func_0009C770(void)
                     func_001E891B(arr8[i]->f1c8);
                     arr8[i]->f1c8 = 0;
                 }
-                t.e2 = (int)arr8[i];
-                if (t.e2 != 0) {
-                    p = ((S_0009C770_E2 *)t.e2)->f4880;
-                    n = 12;
-                    do {
-                        c = *p;
-                        if (c != 0) {
-                            c->func_00012140();
-                            func_001E891B(c);
-                            *p = 0;
-                        }
-                        p++;
-                    } while (--n != 0);
-                    func_001E891B((void *)t.e2);
-                }
+                Free_0009C770(arr8[i]);
                 arr8[i] = 0;
             }
         }
