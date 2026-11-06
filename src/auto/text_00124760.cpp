@@ -11,6 +11,38 @@ extern float D_002755E8;
 extern float D_00275460;
 void func_0011EFA0(Vec4 *out, Vec4 *in);
 
+static inline float Fabs(float f);
+static inline void EdgeEval(Vec4 &P, Vec4 &N, float *v0, float *v1, float *n0, float *n1, float *n, float t);
+
+static inline void TriInterp(Vec4 *out, Vec4 *Q, Vec4 *R, float *p, float *n, float *a, float *b, float *c, float *na, float *nb, float *nc, int k, int cmp, int ja, int jb)
+{
+    float *v[4];
+    float *vn[4];
+    int cnt = 0;
+    int j;
+    float t;
+    Vec4 dummy;
+
+    if ((a[k] <= p[k] && b[k] >= p[k]) || (a[k] >= p[k] && b[k] <= p[k])) {
+        v[0] = a; v[1] = b; vn[0] = na; vn[1] = nb;
+        cnt = 2;
+    }
+    if ((b[k] <= p[k] && c[k] >= p[k]) || (b[k] >= p[k] && c[k] <= p[k])) {
+        v[cnt] = b; v[cnt + 1] = c; vn[cnt] = nb; vn[cnt + 1] = nc;
+        cnt += 2;
+    }
+    if ((c[k] <= p[k] && a[k] >= p[k]) || (c[k] >= p[k] && a[k] <= p[k])) {
+        v[cnt] = c; v[cnt + 1] = a; vn[cnt] = nc; vn[cnt + 1] = na;
+    }
+    t = (p[k] - v[0][k]) / (v[1][k] - v[0][k]);
+    EdgeEval(Q[0], R[0], v[0], v[1], vn[0], vn[1], n, t);
+    t = (p[k] - v[2][k]) / (v[3][k] - v[2][k]);
+    EdgeEval(Q[1], R[1], v[2], v[3], vn[2], vn[3], n, t);
+    j = (Fabs(n[1]) > Fabs(n[cmp])) ? ja : jb;
+    t = (p[j] - (&Q[0].x)[j]) / ((&Q[1].x)[j] - (&Q[0].x)[j]);
+    EdgeEval(dummy, *out, &Q[0].x, &Q[1].x, &R[0].x, &R[1].x, n, t);
+}
+
 static inline float Fabs(float f)
 {
     int i = *(int *)&f & 0x7fffffff;
