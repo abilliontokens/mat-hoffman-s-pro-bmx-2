@@ -64,8 +64,7 @@ static __forceinline float Abs_00112A80(float x)
 
 static __forceinline float AbsBits_00112A80(int x)
 {
-    int *p = &x;
-    int i = *p & 0x7fffffff;
+    int i = x & 0x7fffffff;
     return *(float *)&i;
 }
 
