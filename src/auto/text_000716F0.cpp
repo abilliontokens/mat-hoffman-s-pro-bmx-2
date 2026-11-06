@@ -5,6 +5,57 @@ struct Lookup_716 { int *func_0018C160(int); };
 struct Mid_716 { Clamp_716 *func_0018C070(); };
 extern float D_00275AEC;
 extern int D_00278690, D_00278678;
+extern int D_0028F5E0;
+extern float D_00278654, D_00275544, D_0027653C, D_00278650, D_002755E8, D_002757F0, D_002786B8;
+extern int D_00278664, D_00278668, D_0027866C, D_00278670;
+extern char D_00278674;
+extern int D_002A60B0, D_002A60B4, D_002A60B8, D_002A60BC;
+extern char D_002A60C0;
+extern char D_00278658[], D_002786B0[], D_00278600[], D_00278638[], D_00278608[], D_00275678[];
+extern int D_002A5870, D_002A5FA8;
+void *func_001E8A44(int size);
+struct ObjB_71880 {
+    ObjB_71880 *func_001B12C0(int);
+    void func_001B13A0(int, int, int, int);
+    void func_001B19C0(int, int, int);
+    void func_001B2270(int);
+    void func_001B19A0(int);
+};
+struct ObjD5_71880 {
+    char pad0[4];
+    int f4;
+    int f8;
+    char padC[0x1C];
+    int f28;
+    int f2c;
+    char pad30[0x14];
+    int f44;
+    int f48;
+    char pad4C[2];
+    unsigned char b4E;
+    char pad4F[9];
+    unsigned char b58;
+    ObjD5_71880 *func_001D5E90();
+    void func_001D5FA0(int, int, int, int);
+    void func_0005E840(char *);
+};
+struct ObjD57_71880 {
+    char pad0[0x28];
+    int f28;
+    int f2c;
+    char pad30[8];
+    int f38;
+    float f3c;
+    float f40;
+    float f44;
+    float f48;
+    float f4c;
+    float f50;
+    char pad54[4];
+    unsigned char b58;
+    ObjD57_71880 *func_001D5760();
+    void func_001D5810(int, float, float, int);
+};
 
 struct S_Obj4_716 {
     char pad0[0x930];
