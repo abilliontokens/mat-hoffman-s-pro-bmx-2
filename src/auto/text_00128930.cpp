@@ -46,6 +46,8 @@ struct S_002B9290 {
 extern S_002B92E8 *D_002B92E8;
 extern S_002B9290 *D_002B9290;
 
+struct S_001293F0_Vec4 { float x, y, z, w; };
+
 /* tree node, 0x24 bytes, of D_002B92E8 / D_002B9290 ->nodes */
 struct S_00129110_Node {
     float f0;
@@ -143,6 +145,107 @@ static __forceinline float Min_00128930(float a, float b) { float r; _mm_store_s
 static __forceinline float Max_00128930(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 
 #pragma optimize("y", off)
+int func_00128930(S_00128930_Leaf *leaf, float *seg, short id, S_00128930_Mat *mat)
+{
+    int func_00030AC0(...);
+    int func_00125540(S_00128930_Leaf *l, S_00129050_Vec4 dir, S_00129050_Vec4 org, float len, S_00129050_Vec4 *b, S_00129050_Vec4 *a, float *t);
+    S_00128930_Hit *h = D_002B92EC;
+    S_00129050_Vec4 hitB;
+    S_00129050_Vec4 hitA;
+    S_00129050_Vec4 q[2];
+    S_00129050_Vec4 d;
+    S_00129050_Vec4 dn;
+    float sx, sy, sz;
+    float t;
+    float len;
+    float inv;
+    float u;
+    float k;
+    int i;
+    int found;
+
+    sx = (float)leaf->sx * D_002B9348;
+    sy = (float)leaf->sy * D_002B9348;
+    sz = (float)leaf->sz * D_002B9348;
+    Xform_00128930(&q[0], mat, seg);
+    func_00030AC0(&q[1], seg + 4, mat);
+    d.x = q[1].x - q[0].x;
+    d.y = q[1].y - q[0].y;
+    d.z = q[1].z - q[0].z;
+    t = -1.0f;
+    len = Sqrt_00128930(d.z * d.z + d.y * d.y + d.x * d.x);
+    inv = D_00275460 / len;
+    dn.x = d.x * inv;
+    dn.y = d.y * inv;
+    dn.z = d.z * inv;
+    if (!func_00125540(leaf, dn, q[0], len, &hitB, &hitA, &t)) {
+        return 0;
+    }
+    if (h == 0) {
+        return 1;
+    }
+    if (h->f70 != 0) {
+        i = 0;
+        found = 0;
+        if (0 < h->count) {
+            do {
+                if (found) {
+                    break;
+                }
+                if (h->f90[i] == id) {
+                    found = 1;
+                } else {
+                    i++;
+                }
+            } while (i < h->count);
+        }
+        if (found) {
+            if (t < h->f8C[i]) {
+                h->f84[i] = 0;
+                h->f8C[i] = t;
+                h->f78[i] = hitB;
+                h->f74[i] = hitA;
+            }
+        } else {
+            h->f84[h->count] = 0;
+            h->f8C[h->count] = t;
+            h->f90[h->count] = id;
+            h->f70[h->count][0] = *(S_00129050_Vec4 *)seg;
+            h->f70[h->count][1] = *(S_00129050_Vec4 *)(seg + 4);
+            h->f78[h->count] = hitB;
+            u = D_00275460 - t;
+            h->f74[h->count] = hitA;
+            h->count++;
+            k = dn.z * len * u * sz + len * dn.x * u * sx + dn.y * len * u * sy;
+            sx = sx * k;
+            sy = sy * k;
+            sz = sz * k;
+            h->minv[0] = Min_00128930(sx, h->minv[0]);
+            h->minv[1] = Min_00128930(sy, h->minv[1]);
+            h->minv[2] = Min_00128930(sz, h->minv[2]);
+            h->maxv[0] = Max_00128930(sx, h->maxv[0]);
+            h->maxv[1] = Max_00128930(sy, h->maxv[1]);
+            h->maxv[2] = Max_00128930(sz, h->maxv[2]);
+        }
+        if (t <= h->t) {
+            h->fl0 = 0;
+            h->t = t;
+            h->v0 = *(S_00129050_Vec4 *)seg;
+            h->v1 = *(S_00129050_Vec4 *)(seg + 4);
+            h->v3 = hitB;
+            h->v2 = hitA;
+            h->fl1 = (*(int *)(D_002B92F4 + 4) != 0 && D_002B9344 != 0);
+        }
+    } else {
+        if (t < h->t) {
+            h->t = t;
+            h->v2 = hitA;
+            h->fl1 = (*(int *)(D_002B92F4 + 4) != 0 && D_002B9344 != 0);
+        }
+    }
+    return 1;
+}
+
 int func_00129050(unsigned int a0, unsigned int a1)
 {
     int func_00128930(...);
