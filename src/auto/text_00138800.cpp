@@ -171,10 +171,19 @@ struct S_1395_Group {
     int flag;
 };
 
+struct S_1395_Entry {
+    char pad0[4];
+    int count1;
+    int count2;
+    char padC[0x14];
+    S_1395_Track *tracks;
+    S_1395_Group *groups;
+};
+
 struct S_1395_Owner {
     char pad0[0x3c];
     int count;
-    S_1390A0_Entry *entries;
+    S_1395_Entry *entries;
     char pad44[0x14];
     S_1390A0_A **list58;
     char pad5c[4];
@@ -343,14 +352,14 @@ void CutScene::func_001394F0(int arg) {
 void __fastcall func_001395D0(S_1395_Owner *self) {
     for (int i = 0; i < self->count; i++) {
         for (int j = 0; j < *(int *)((char *)self->entries + i * 0x2c + 4); j++) {
-            char *it = ((S_1390A0_Entry *)((char *)self->entries + i * 0x2c))->list1 + j * 0x1c;
-            if (*(int *)(it + 0x18) == 1)
-                self->list58[*(int *)it]->f4->func_00198390();
+            S_1395_Track *t = (S_1395_Track *)((S_1390A0_Entry *)((char *)self->entries + i * 0x2c))->list1 + j;
+            if (t->flag == 1)
+                self->list58[t->id]->f4->func_00198390();
         }
         for (int k = 0; k < *(int *)((char *)self->entries + i * 0x2c + 8); k++) {
-            char *it = ((S_1390A0_Entry *)((char *)self->entries + i * 0x2c))->list2 + k * 0x10;
-            if (*(int *)(it + 0xc) == 1) {
-                S_1390A0_Q *q = (S_1390A0_Q *)self->p60->f28[*(int *)it];
+            S_1395_Group *g = (S_1395_Group *)((S_1390A0_Entry *)((char *)self->entries + i * 0x2c))->list2 + k;
+            if (g->flag == 1) {
+                S_1390A0_Q *q = (S_1390A0_Q *)self->p60->f28[g->id];
                 for (int m = 0; m < q->f10; m++) {
                     q->f4[m]->v31();
                     q->f4[m]->v4();
