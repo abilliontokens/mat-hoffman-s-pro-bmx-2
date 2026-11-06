@@ -65,7 +65,7 @@ static inline void V3AddInto_0012B950(S_0012B950_Vec4 *o, const S_0012B950_V3 &a
     o->x = a.x + b.x;
     o->y = a.y + b.y;
     o->z = a.z + b.z;
-    o->w = 1.0f;
+    *(u32 *)&o->w = 0x3f800000;
 }
 
 static inline S_0012B950_V3 V3Scale_0012B950(const S_0012B950_V3 &v, float s)
@@ -204,8 +204,9 @@ void __stdcall func_0012B950(S_0012B950_Vec4 *out, float t, S_0012B950_Vec4 p0, 
     S_0012B950_V3 m1;
 
     t2 = t * t;
-    t3 = t * t2;
-    u = t3 + t3;
+    t3 = t2 * t;
+    u = t3;
+    u += t3;
     a = (u - t2 * 3.0f) + D_00275460;
     b = 3.0f * t2 - u;
     c = (t3 - D_00275600 * t2) + t;
