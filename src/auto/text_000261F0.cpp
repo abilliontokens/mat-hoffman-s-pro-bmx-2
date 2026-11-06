@@ -11,20 +11,6 @@ struct S_000265C0_V4 {
 
 void func_00026340(float *dst, float *src);
 
-/* out = b x a */
-inline void cross_000265C0(S_000265C0_V4 *out, S_000265C0_V4 *a, S_000265C0_V4 *b)
-{
-    __m128 vb = _mm_loadu_ps(&b->x);
-    __m128 va = _mm_loadu_ps(&a->x);
-    __m128 sb = _mm_shuffle_ps(vb, vb, 0xc9);
-    __m128 sa = _mm_shuffle_ps(va, va, 0xc9);
-
-    vb = _mm_mul_ps(vb, sa);
-    va = _mm_mul_ps(va, sb);
-    vb = _mm_sub_ps(vb, va);
-    _mm_storeu_ps(&out->x, _mm_shuffle_ps(vb, vb, 0xc9));
-}
-
 static __forceinline float clamp_max_000261F0(float a, float b)
 {
  float r;
