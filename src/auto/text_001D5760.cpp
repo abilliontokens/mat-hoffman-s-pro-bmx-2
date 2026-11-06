@@ -253,6 +253,8 @@ int __stdcall func_001FCE40(void *a, int b, Size_001D5810 *out);
 void func_00030F30(char *dst, const char *src);
 
 struct C_001D6190 {
+    char pad0[0x4e];
+    unsigned char f4e;
     void func_001D5FA0(int a, int b, int c, int d);
     void func_001D6190(int a, const char *s, int b);
 };
@@ -522,6 +524,7 @@ void C_001D6190::func_001D5FA0(int a, int b, int c, int d)
     struct { volatile int max, len, n; } l;
     C_001D5FA0Obj *o;
     char *p;
+    int *pd;
     DXVSStreams_001D5760 *s;
 
     self->f4e |= 0x20;
@@ -546,12 +549,13 @@ void C_001D6190::func_001D5FA0(int a, int b, int c, int d)
     } else {
         self->func_001D5F00(b);
     }
-    if (d != 0) {
-        l.len = strlen((const char *)d);
+    pd = &d;
+    if (*pd != 0) {
+        l.len = strlen((const char *)*pd);
         l.max = self->f4f;
         l.n = l.len < l.max ? l.len : l.max;
         self->f50 = (unsigned char)l.n;
-        func_001E8920(self->f0, (const char *)d, self->f50);
+        func_001E8920(self->f0, (const char *)*pd, self->f50);
         self->f0[self->f50] = 0;
     } else {
         self->f50 = 0;
