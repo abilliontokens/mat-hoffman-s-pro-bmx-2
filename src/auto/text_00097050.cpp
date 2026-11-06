@@ -110,6 +110,8 @@ struct C_00097770_Obj {
     virtual void v2();
     virtual void v3();
     virtual void v4();
+    virtual void v5();
+    virtual void v6();
     char pad4[0x148];
     C_00097770_Named *f14C;
 };
@@ -298,18 +300,26 @@ undefined4 C_00097740::func_00097740(int param_1)
 
 void __stdcall func_00097890(const char *name)
 {
+    char buf[0x104];
+    volatile int lim;
+    volatile int res;
+    volatile int len;
+    struct { C_00097770_List *list; int i; } it;
     C_00097770_2A4 *a = D_002A8490->f2A4;
     if (a == 0 || a->f64 == 0)
         return;
-    C_00097770_List *list = a->f64->f3A8->f0;
-    int i;
-    for (i = 0; i < list->count; i++) {
-        C_00097770_Entry *&e = list->items[i];
+    it.list = a->f64->f3A8->f0;
+    for (it.i = 0; it.i < it.list->count; it.i++) {
+        C_00097770_Entry *&e = it.list->items[it.i];
         if (e->f4 == 2) {
             C_00097770_Obj *obj = e->f8;
-            char buf[0x104];
             const char *src = obj->f14C->name;
-            int n = min_ref2((int)strlen(src), (int)sizeof(buf) - 1);
+            len = strlen(src);
+            lim = 0x103;
+            int x = lim;
+            int y = len;
+            res = min_val(x, y);
+            int n = res;
             func_001E8920(buf, src, n);
             buf[n] = 0;
             char *ext = func_001E8AC0(buf, '.');
