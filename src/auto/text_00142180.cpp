@@ -70,7 +70,6 @@ struct C_001425B0 {
     void func_0001DFE0(void);
     C_001425B0 *func_001425B0(void);
     void func_00142180(int buffer, int dst, int src, int count, int clear);
-    void CopyVertex_00142180(Vertex_00142180 *out, int d, int s);
 };
 
 extern int D_002A6D30;
