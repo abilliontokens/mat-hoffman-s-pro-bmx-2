@@ -112,15 +112,15 @@ struct S_19CCE0_Frame {
     char ta[12];
     char B[16];
 };
+static const __m128 Zero_19C710 = {0.0f, 0.0f, 0.0f, 0.0f};
 static __forceinline void Identity_19C710(float *m)
 {
-    __m128 z = _mm_setzero_ps();
     float *volatile p = m;
     float *q = p;
-    _mm_store_ps(q, z);
-    _mm_store_ps(q + 4, z);
-    _mm_store_ps(q + 8, z);
-    _mm_store_ps(q + 12, z);
+    _mm_store_ps(q, Zero_19C710);
+    _mm_store_ps(q + 4, Zero_19C710);
+    _mm_store_ps(q + 8, Zero_19C710);
+    _mm_store_ps(q + 12, Zero_19C710);
     q[0] = 1.0f;
     q[5] = 1.0f;
     q[10] = 1.0f;
