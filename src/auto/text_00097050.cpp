@@ -511,3 +511,30 @@ int C_00097DA0::func_00097DA0(const char *name)
     return 0;
 }
 
+int C_00097DA0::func_00097E90(const char *a, const char *b)
+{
+    int found = 0;
+    int done = 0;
+    int k;
+    for (k = 0; k < 3; k++) {
+        C_00097DA0_Obj **list = ListAt(k);
+        int n = CountAt(k);
+        int i;
+        for (i = 0; i < n && found == 0; i++) {
+            if (func_001EA426(a, (const char *)list[i] + 0xB4) == 0) {
+                int j;
+                found = 1;
+                for (j = 0; j < list[i]->f1B8 && done == 0; j++) {
+                    if (func_001EA426(b, list[i]->f1C8[j]->fC0) == 0) {
+                        done = 1;
+                        if (*(int *)((char *)list[i]->f1C8[j] + 0x40) != 0) {
+                            return 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return 0;
+}
+
