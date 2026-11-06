@@ -1,6 +1,7 @@
 /* 19 functions from 0x00198B70 to 0x00199B00, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 extern float D_00275544;
 extern float D_00275600;
 extern float D_00275460;
@@ -257,31 +258,26 @@ void func_00198EF0(void *a, C_00198B70 *obj, void *c)
 
 void C_00198B70::func_00198F50(float *a, float *b, int c, int d, int e)
 {
-    C_00198B70 * volatile self = this;
     float tmp[4];
     if (c == 0 && e != 0) {
-        float * volatile p = tmp;
-        tmp[0] = tmp[1] = tmp[2] = *(float *)&c;
+        tmp[2] = 0.0f;
+        tmp[1] = 0.0f;
+        tmp[0] = 0.0f;
         tmp[3] = 1.0f;
-        _mm_storeu_ps(p, _mm_shuffle_ps(
-            _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9)),
-                       _mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9))),
-            _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9)),
-                       _mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9))),
-            0xc9));
-        self->fB0.m[0] = tmp[0];
-        self->fB0.m[4] = tmp[1];
-        self->fB0.m[8] = tmp[2];
-        self->fB0.m[12] = 0.0f;
-        self->fB0.m[1] = b[0];
-        self->fB0.m[5] = b[1];
-        self->fB0.m[9] = b[2];
-        self->fB0.m[13] = 0.0f;
-        self->fB0.m[2] = a[0];
-        self->fB0.m[6] = a[1];
-        self->fB0.m[10] = a[2];
-        self->fB0.m[14] = 0.0f;
-        self->fB0.m[15] = 1.0f;
+        AsmVec3Cross(tmp, b, a);
+        this->fB0.m[0] = tmp[0];
+        this->fB0.m[4] = tmp[1];
+        this->fB0.m[8] = tmp[2];
+        this->fB0.m[12] = 0.0f;
+        this->fB0.m[1] = b[0];
+        this->fB0.m[5] = b[1];
+        this->fB0.m[9] = b[2];
+        this->fB0.m[13] = 0.0f;
+        this->fB0.m[2] = a[0];
+        this->fB0.m[6] = a[1];
+        this->fB0.m[10] = a[2];
+        this->fB0.m[14] = 0.0f;
+        this->fB0.m[15] = 1.0f;
     } else {
         tmp[0] = fB0.m[3];
         tmp[1] = fB0.m[7];
@@ -289,43 +285,55 @@ void C_00198B70::func_00198F50(float *a, float *b, int c, int d, int e)
         tmp[3] = 1.0f;
         func_000265C0(fB0.m, tmp, a, b, c, d);
     }
-    self->func_001982F0();
-    if (self->f180 & 1) {
-        self->f180 &= 0xfe;
-        if (self->f174 != 0) {
-            self->f174->func_00197B10();
+    this->func_001982F0();
+    if (this->f180 & 1) {
+        this->f180 &= 0xfe;
+        if (this->f174 != 0) {
+            this->f174->func_00197B10();
         }
     }
 }
 
-void C_00198B70::func_00199110(C_00198B70 *other, float *a, float *b, int c, int d, int e)
+void C_00198B70::func_00199110(C_00198B70 * volatile other, float *a, float *b, int c, int d, int e)
 {
  C_00198B70 * volatile self=this;
  S_00198B70_V4 * volatile p;
  volatile S_00198B70_V4 t;
  volatile S_00198B70_V4 cross;
  __declspec(align(16)) float m[16];
+ C_00198B70 *s;
+ C_00198B70 *o;
  t.x=((int*)fB0.m)[3]; t.y=((int*)fB0.m)[7]; t.z=((int*)fB0.m)[11]; t.w=0x3f800000;
  if(!c && e) {
  cross.z=0; cross.y=0; cross.x=0; cross.w=0x3f800000;
  p=(S_00198B70_V4*)&cross;
- __m128 v=_mm_loadu_ps(b), w=_mm_loadu_ps(a);
- __m128 v1=_mm_shuffle_ps(v,v,0xc9), w1=_mm_shuffle_ps(w,w,0xc9);
- __m128 r=_mm_sub_ps(_mm_mul_ps(v,w1),_mm_mul_ps(w,v1));
- _mm_storeu_ps((float*)p,_mm_shuffle_ps(r,r,0xc9));
+ __m128 R = _mm_mul_ps(_mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9), _mm_loadu_ps(a));
+ __m128 L = _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9));
+ __m128 D = _mm_sub_ps(L, R);
+ _mm_storeu_ps((float*)p, _mm_shuffle_ps(D, D, 0xc9));
  ((int*)m)[0]=cross.x; ((int*)m)[4]=cross.y; ((int*)m)[8]=cross.z; m[12]=0;
  ((int*)m)[1]=((int*)b)[0]; ((int*)m)[5]=((int*)b)[1]; ((int*)m)[9]=((int*)b)[2]; m[13]=0;
  ((int*)m)[2]=((int*)a)[0]; ((int*)m)[6]=((int*)a)[1]; ((int*)m)[10]=((int*)a)[2]; m[14]=0;
  ((int*)m)[3]=t.x; ((int*)m)[7]=t.y; ((int*)m)[11]=t.z; m[15]=1;
  } else func_000265C0(m,(float*)&t,a,b,c,d);
- if(other==self) func_0011ACC0(&self->fB0,m,self->fB0.m);
+ s = self;
+ o = other;
+ if(o==s) func_0011ACC0(&s->fB0,m,s->fB0.m);
  else {
- if(other) { other->func_00197AA0(); func_0011ACC0(m,m,other->fF0.m); }
- func_00198EF0(&self->fB0,self,m);
- self->fB0.m[3]=((float*)&t)[0]; self->fB0.m[7]=((float*)&t)[1]; self->fB0.m[11]=((float*)&t)[2];
+ if(o) { o->func_00197AA0(); func_0011ACC0(m,m,other->fF0.m); }
+ s = self;
+ func_00198EF0(&s->fB0,s,m);
+ self->fB0.m[3]=((volatile float*)&t)[0]; self->fB0.m[7]=((volatile float*)&t)[1]; self->fB0.m[11]=((volatile float*)&t)[2];
  }
  self->func_001982F0();
- if(self->f180&1) { self->f180&=0xfe; if(self->f174) self->f174->func_00197B10(); }
+ s = self;
+ unsigned char fl = s->f180;
+ if(fl&1) {
+ s->f180 = fl&0xfe;
+ s = self;
+ o = s->f174;
+ if(o) o->func_00197B10();
+ }
 }
 
 void C_00198B70::func_00199300(float *q)
