@@ -347,13 +347,10 @@ int C_001B4E20::func_001B4E20(void *volatile param) {
     return 1;
 }
 
-void C_001B4ED0::func_001B4ED0() {
-    f08 = f0C = f10 = 0;
-    f14 = 0x3f800000;
-    f18 = f1C = f20 = 0;
-    f24 = 0x3f800000;
-    f28 = f2C = f30 = 0;
-    f34 = 0x3f800000;
+C_001B4ED0::C_001B4ED0() {
+    InitVec_001B4ED0(&f08);
+    InitVec_001B4ED0(&f18);
+    InitVec_001B4ED0(&f28);
     f44 = 0;
     f48 = 0;
     f04 = 0;
@@ -375,7 +372,6 @@ void C_001B4ED0::func_001B4ED0() {
     f4C = 0;
     f50 = 0;
     f54 = 0;
-    vtbl = (void *)&D_0028CA9C;
 }
 
 void C_001B4ED0::func_001B4F90() {
