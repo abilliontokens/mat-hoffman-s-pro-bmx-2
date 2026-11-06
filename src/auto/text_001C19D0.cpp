@@ -96,9 +96,9 @@ static __forceinline void LoadSub19D0(Sub19D0 *s, Cfg19D0 *cfg, char **keys, cha
     if (cfg->func_00168E70(keys[1], b, a) == 0) {
         float t;
         cfg->func_00168C50(keys[2], 0, &t);
-        int x = func_001E8858(t);
+        int x = (int)t;
         cfg->func_00168C50(keys[3], 0, &t);
-        int y = func_001E8858(t);
+        int y = (int)t;
         b[0] = x;
         b[1] = y;
         b[2] = (x - a[0]) + a[2];
