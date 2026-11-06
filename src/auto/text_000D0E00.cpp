@@ -54,6 +54,8 @@ struct S_000D1980_Str10 {
 };
 
 extern S_000D1980_Str10 D_0027ED04;
+extern int D_0027ED08;
+extern short D_0027ED0C;
 char *func_001E8920(char *dst, const char *src, int n);
 char *func_001E8AC0(const char *s, int c);
 int func_001EA426(const char *a, const char *b);
