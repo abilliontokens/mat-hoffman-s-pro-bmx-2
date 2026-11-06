@@ -46,6 +46,7 @@ int func_0014FE50(void *fp);
 
 extern float D_002756C8,D_0028F874,D_00284ECC,D_002AC5C4;
 extern int D_0028F7F0;
+extern char D_00020001;
 void func_001FFB50();
 void* __stdcall func_001FF3C0(unsigned);
 void* __stdcall func_001FF410(void*,unsigned);
