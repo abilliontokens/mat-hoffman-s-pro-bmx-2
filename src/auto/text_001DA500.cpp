@@ -58,6 +58,63 @@ struct C_001DAAD0 {
     int func_001DAAD0(int a0, S_001DAAD0_Block *a1, void *a2);
 };
 
+struct S_001DAC10_Tex {
+    char pad0[0xB8];
+    int fB8;
+};
+
+struct S_001DAC10_Entry {
+    char pad0[0x2C];
+    S_001DAC10_Tex *f2c;
+    int f30;
+    S_001DAC10_Tex *f34;
+    S_001DAC10_Tex *f38;
+    char pad3C[0x48 - 0x3C];
+};
+
+struct S_001DAC10_Mgr {
+    char pad0[0x2C];
+    S_001DAC10_Entry *f2c;
+};
+
+extern S_001DAC10_Mgr *D_002F08BC;
+extern int D_002F1038;
+extern int D_0020C760;
+extern int D_0020C764;
+extern float D_00275460;
+void __stdcall func_001FE490(int a0);
+int __stdcall func_001FCE50(int a0, int a1);
+void __stdcall func_001FF940(int a0, int a1);
+void __stdcall func_00201100(int a0);
+
+struct S_001DAC10_Vert {
+    float x, y, z;
+    float u0, v0;
+    float u1, v1;
+    S_001DAC10_Vert() { x = 0; y = 0; z = 0; u0 = 0; v0 = 0; u1 = 0; v1 = 0; }
+};
+
+struct S_001DAC10_Quad {
+    S_001DAC10_Vert v[4];
+};
+
+struct S_001DAC10_Color {
+    float r, g, b, a;
+    S_001DAC10_Color(float r_, float g_, float b_, float a_) { r = r_; g = g_; b = b_; a = a_; }
+};
+
+struct C_001DAC10 {
+    char pad0[0xD4];
+    int fD4;
+    char padD8[0xE8 - 0xD8];
+    int fE8;
+    char padEC[0xF8 - 0xEC];
+    int fF8;
+    char padFC[0x488 - 0xFC];
+    void *arr488[6];
+    void func_001DAC10();
+};
+
 int C_001DAAD0::func_001DAAD0(int a0, S_001DAAD0_Block *a1, void *a2)
 {
     void **p = &arr230[D_002F1034];
