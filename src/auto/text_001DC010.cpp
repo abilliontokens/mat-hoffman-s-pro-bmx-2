@@ -191,10 +191,11 @@ extern float D_002AC82C, D_002AC830, D_002AC834, D_002AC838;
 extern int D_002AC7A0[], D_002AC790[];
 extern int D_002AC794, D_002F0BD0, D_0020C6DC, D_0020CA78, D_0020CA50;
 #define W_001DC010(p, off, T) (*(T *)((char *)(p) + (off)))
-static __forceinline float Max_001DC010(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
-static __forceinline float Min_001DC010(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+extern "C" float __cdecl sqrtf(float);
+static __forceinline float Max_001DC010(float a, float b) { return a > b ? a : b; }
+static __forceinline float Min_001DC010(float a, float b) { return a < b ? a : b; }
 static __forceinline float Abs_001DC010(float a) { int i = *(int *)&a & 0x7fffffff; return *(float *)&i; }
-static __forceinline float Sqrt_001DC010(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+static __forceinline float Sqrt_001DC010(float x) { return sqrtf(x); }
 
 struct C_001DC540 {
     undefined4 func_001DC540(byte param_1);
@@ -212,6 +213,42 @@ undefined4 C_001DC540::func_001DC540(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+void XboxWaterDisplacement::func_001DC560() {
+ if (!D_002AC720) {func_00157960(); return;}
+ if (D_002A8490[0x274/4] <= v[0xd8/4]) v[0xd4/4]=0; else ++v[0xd4/4];
+ v[0xd8/4]=D_002A8490[0x274/4];
+ int a=func_001FFE40(0);
+ int b=func_00200210();
+ unsigned int color=D_002AB7F0 ? 0xff000000 : 0xff800000;
+ func_001FF940(D_002F08BC+0x228/4,D_002F08BC+0x258/4);
+ func_001FF4E0(0,0,0xf3,color,0x3f800000,0);
+ color=D_002AB7F0 ? 0xff000000 : 0xff808000;
+ func_001FF940(D_002F08BC+0x240/4,D_002F08BC+0x258/4);
+ func_001FF4E0(0,0,0xf0,color,0x3f800000,0);
+ int *p=D_002EFDB8[1];
+ v[0xc8/4]=p[0x1d0/4];
+ S_WaterVector *src=(S_WaterVector*)(p+0x190/4), *dst=(S_WaterVector*)(v+0xb4/4);
+ memcpy(dst,src,16);
+ v[0xc4/4]=p[0x1d4/4]; v[0xcc/4]=p[0x1f8/4]; v[0xd0/4]=p[0x1dc/4];
+ if(D_002AB7F0 && !D_002A8490[0x124/4]) {func_001DAC10(); if(D_002A99B0) func_001DB080();}
+ func_001DC010();
+ if(D_002AC5C0 && v[0x4c/4]) {
+ func_001FF940(D_002F08BC+0x228/4,D_002F08BC+0x258/4);
+ func_001DA4C0(((int*)v[0x100/4])[v[0xd4/4]+0x58/4]);
+ func_001FF940(D_002F08BC+0x240/4,D_002F08BC+0x258/4);
+ func_001DA4C0(((int*)v[0x100/4])[v[0xd4/4]+0x60/4]);
+ }
+ p[0x1d0/4]=v[0xc8/4];
+ memcpy(src,dst,16);
+ p[0x1d4/4]=v[0xc4/4];p[0x1f8/4]=v[0xcc/4];p[0x1dc/4]=v[0xd0/4];
+ ((S_WaterVirtual*)p)->slot28();
+ func_001FF940((void*)a,(void*)b);
+ func_00201100(a);func_00201100(b);
+ func_00200230(D_002EFDB8[1]+0x1e0/4);
+ ((S_WaterVirtual*)D_002A8490)->slot7();
+ func_00157960();
 }
 
 int func_001DC820(int a, int b, int c)
