@@ -137,13 +137,19 @@ struct S_0019F600_Node {
 
 static __forceinline void XformPoint(float *out, float *in, float *m)
 {
-#define XF_V _mm_loadh_pi(_mm_loadu_ps(in), (__m64 *)(out + 2))
-#define XF_R(k) _mm_mul_ps(_mm_load_ps(m + (k)), XF_V)
-#define XF_T _mm_add_ps(_mm_unpacklo_ps(XF_R(0), XF_R(4)), _mm_unpackhi_ps(XF_R(0), XF_R(4)))
-#define XF_U _mm_add_ps(XF_R(8), _mm_movehl_ps(XF_R(8), XF_R(8)))
-    _mm_storeh_pi((__m64 *)(out + 2), _mm_loadu_ps(in));
+    __m128 v = _mm_loadu_ps(in);
+    __m128 r0 = _mm_load_ps(m);
+    _mm_storeh_pi((__m64 *)(out + 2), v);
+    __m128 r1 = _mm_load_ps(m + 4);
     out[3] = 1.0f;
-    _mm_storeu_ps(out, _mm_add_ps(_mm_movelh_ps(XF_T, XF_U), _mm_shuffle_ps(_mm_movehl_ps(XF_T, XF_T), XF_U, 0x14)));
+    __m128 r2 = _mm_load_ps(m + 8);
+    v = _mm_loadh_pi(v, (__m64 *)(out + 2));
+    r0 = _mm_mul_ps(r0, v);
+    r1 = _mm_mul_ps(r1, v);
+    r2 = _mm_mul_ps(r2, v);
+    __m128 t = _mm_add_ps(_mm_unpacklo_ps(r0, r1), _mm_unpackhi_ps(r0, r1));
+    __m128 u = _mm_add_ps(r2, _mm_movehl_ps(r2, r2));
+    _mm_storeu_ps(out, _mm_add_ps(_mm_movelh_ps(t, u), _mm_shuffle_ps(_mm_movehl_ps(t, t), u, 0x14)));
     out[3] = 1.0f;
 }
 
