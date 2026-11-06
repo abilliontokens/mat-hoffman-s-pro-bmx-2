@@ -362,12 +362,17 @@ int func_001CA360(float *n, float *p, float *a, float *b, V4_001CA360 *out)
         t += e[2] * n[2];
         t = t / denom;
         if (t >= D_00275544 && t <= D_00275460) {
-            v3_scale(&s, d, t);
+            s.x = *(volatile float *)&d.x * t;
+            s.y = *(volatile float *)&d.y * t;
+            s.z = *(volatile float *)&d.z * t;
             d.x = s.x + a[0];
             d.y = s.y + a[1];
             d.z = s.z + a[2];
             d.w = 1.0f;
-            *out = d;
+            ((int *)out)[0] = ((int *)&d)[0];
+            ((int *)out)[1] = ((int *)&d)[1];
+            ((int *)out)[2] = ((int *)&d)[2];
+            ((int *)out)[3] = ((int *)&d)[3];
             return 1;
         }
     }
