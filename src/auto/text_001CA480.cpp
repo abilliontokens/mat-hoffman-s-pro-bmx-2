@@ -100,6 +100,8 @@ struct Quat_1CAF20 {
     }
 };
 
+struct Plane_001CA480;
+
 struct WaterDisplacement {
     void *vtbl;
     char pad4[0x24];
