@@ -22,6 +22,7 @@ int __stdcall func_00168A10(int a, int *out);
 int __stdcall func_00168550(int a, char *dst, int d);
 int __stdcall func_00168550(void *a, char *dst, int d);
 int __stdcall func_00168550(float a, char *dst, int d);
+int __stdcall func_00168550(const char *a, char *dst, int d);
 extern char D_00288004[];
 extern char D_00288008[];
 int func_001F6570(const char *a, const char *b, int n);
@@ -105,6 +106,44 @@ struct C_00168280 {
     int func_00168E70(const char *name, const int *def, int *out);
 };
 
+
+void func_00161910(float a, float *s, float *c);
+void func_00161910(float a, float *c, float *s);
+int func_00167FE0(float *f, float *u, float rx, float ry, float rz)
+{
+    float c, s, t;
+
+    if (u == 0 || f == 0)
+        return 0;
+    u[0] = 0.0f;
+    u[1] = 1.0f;
+    u[2] = 0.0f;
+    f[2] = 1.0f;
+    f[0] = 0.0f;
+    f[1] = 0.0f;
+
+    func_00161910(rz, &c, &s);
+    t = c * u[1] - s * u[0];
+    u[0] = s * u[1] + c * u[0];
+    u[1] = t;
+
+    func_00161910(ry, &c, &s);
+    t = c * u[1] + s * u[2];
+    u[2] = c * u[2] - s * u[1];
+    u[1] = t;
+    t = s * f[2] + c * f[1];
+    f[2] = c * f[2] - s * f[1];
+    f[1] = t;
+
+    func_00161910(rx, &c, &s);
+    t = c * u[2] - s * u[0];
+    u[0] = c * u[0] + s * u[2];
+    u[2] = t;
+    t = c * f[2] - s * f[0];
+    f[0] = c * f[0] + s * f[2];
+    f[2] = t;
+    return 1;
+}
 
 int func_00168120(const char *s)
 {
@@ -483,8 +522,9 @@ int C_00168280::func_00168C50(const char *name, float def, float *out)
 int C_00168280::func_00168CB0(const char *name, const float *def, float *out)
 {
     char buf[0x184];
+    int ok = func_00168550(name, buf, 0x80) != 0;
 
-    if (func_00168550(name, buf, 0x80) == 0) {
+    if (!ok) {
         strcpy(buf, D_00275630);
         out[0] = def[0];
         out[1] = def[1];
@@ -526,9 +566,13 @@ int C_00168280::func_00168D70(const char *name, float *out, int count)
 int C_00168280::func_00168E70(const char *name, const int *def, int *out)
 {
     char buf[0x184];
+    int i;
 
-    if (func_00168550(name, buf, 0x80) == 0) {
-        strcpy(buf, D_00275630);
+    i = func_00168550(name, buf, 0x80);
+    if (i == 0) {
+        do {
+            buf[i] = D_00275630[i];
+        } while (D_00275630[i++] != 0);
         out[0] = def[0];
         out[2] = def[2];
         out[1] = def[1];
