@@ -177,7 +177,7 @@ static __forceinline void FloatToInt(int *out, float f)
 {
     int * volatile p = out;
 
-    *p = _mm_cvttss_si32(_mm_load_ss(&f));
+    *p = _mm_cvttss_si32(*(__m128 *)&f);
 }
 
 /* SimpleCutSceneCamera (run-time type information), base class CameraBehavior */
