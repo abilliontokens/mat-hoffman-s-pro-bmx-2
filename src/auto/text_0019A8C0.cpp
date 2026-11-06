@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 struct S_0019A8C0_V4 {
     float x;
     float y;
@@ -338,18 +339,64 @@ void SoultreeObject::func_0019ADF0(SoultreeObject *p)
     }
 }
 
+float sqrtf(float);
+void SoultreeObject::func_0019AE40(int volatile file) {
+ SoultreeObject *arr[256]; SoultreeObject *volatile self=this;
+ int flag;
+ D_002BEAAC->func_0013C8A0(file,&f190,4,1);
+ arr[0]=this;
+ int i;
+ for(i=0;i<self->f190;i++) {
+ if(i) ((S_0019B1A0_VThis*)self)->v29(&arr[i]);
+ D_002BEAAC->func_0013C8A0(file,arr[i]->f28,0x80,1);
+ D_002BEAAC->func_0013C8A0(file,arr[i]->fB0,0x40,1);
+ func_0013E4A0(arr[i]->fB0,arr[i]->fB0);
+ D_002BEAAC->func_0013C8A0(file,&flag,4,1);
+ arr[i]->f27_bit2=flag;
+ D_002BEAAC->func_0013C8A0(file,&flag,4,1);
+ arr[i]->f180_bit5=flag;
+ D_002BEAAC->func_0013C8A0(file,arr[i]->f130,12,1);
+ D_002BEAAC->func_0013C8A0(file,arr[i]->f140,12,1);
+ D_002BEAAC->func_0013C8A0(file,&flag,4,1);
+ arr[i]->f180_bit6=flag;
+ D_002BEAAC->func_0013C8A0(file,(char*)arr[i]+0x150,12,1);
+ D_002BEAAC->func_0013C8A0(file,(char*)arr[i]+0x160,12,1);
+ arr[i]->f180 &= 0xbf;
+ float *v=(float*)arr[i]->f140;
+ float z=v[2],y=v[1],x=v[0];
+ float len=x*x+y*y+z*z;
+ float root=sqrtf(len);
+ *(float*)&arr[i]->f184=root;
+ }
+ int *parents=(int*)func_001E8A44(f190*4);
+ D_002BEAAC->func_0013C8A0(file,parents,4,f190);
+ for(i=0;i<self->f190;i++) {
+ if(parents[i]!=-1) {
+ SoultreeObject *child=arr[i], *parent=arr[parents[i]];
+ if(child->f170) parent->f170->func_0019A210(child);
+ child->f170=(S_0019A8C0_Mgr*)parent;
+ S_0019A8C0_Child *sib=parent->f174;
+ if(!sib) parent->f174=(S_0019A8C0_Child*)child;
+ else if(!sib->f178) { sib->f178=(S_0019A8C0_Child*)child; child->f17c=sib; }
+ else sib->f178->func_00198230(child);
+ }
+ }
+ if(parents) func_001E891B(parents);
+}
+
 void func_0013E4A0(void *dst, void *src);
-int SoultreeObject::func_0019B1A0(int file, SoultreeObject **arr)
+int SoultreeObject::func_0019B1A0(volatile int file, SoultreeObject ** volatile arr)
 {
+    SoultreeObject * volatile self = this;
     int *parents;
     int i;
 
-    D_002BEAAC->func_0013C8A0(file, &f190, 4, 1);
-    *arr = this;
-    parents = (int *)func_001E8A44(f190 * 4);
-    for (i = 0; i < f190; i++) {
+    D_002BEAAC->func_0013C8A0(file, &self->f190, 4, 1);
+    *arr = self;
+    parents = (int *)func_001E8A44(self->f190 * 4);
+    for (i = 0; i < self->f190; i++) {
         if (i != 0) {
-            ((S_0019B1A0_VThis *)this)->v29(&arr[i]);
+            ((S_0019B1A0_VThis *)self)->v29(&arr[i]);
         }
         D_002BEAAC->func_0013C8A0(file, &arr[i]->f28, 0x80, 1);
         D_002BEAAC->func_0013C8A0(file, &arr[i]->fB0, 0x40, 1);
@@ -362,7 +409,7 @@ int SoultreeObject::func_0019B1A0(int file, SoultreeObject **arr)
         D_002BEAAC->func_0013C8A0(file, &arr[i]->f184, 4, 1);
         D_002BEAAC->func_0013C8A0(file, &parents[i], 4, 1);
     }
-    for (i = 0; i < f190; i++) {
+    for (i = 0; i < self->f190; i++) {
         if (parents[i] != -1) {
             SoultreeObject *child = arr[i];
             SoultreeObject *parent = arr[parents[i]];
@@ -384,7 +431,7 @@ int SoultreeObject::func_0019B1A0(int file, SoultreeObject **arr)
         }
     }
     func_001E891B(parents);
-    return f190;
+    return self->f190;
 }
 
 void SoultreeObject::func_0019B400(void)
