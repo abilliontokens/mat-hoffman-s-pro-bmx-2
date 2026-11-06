@@ -132,7 +132,7 @@ extern "C" void *func_001E8A44(unsigned int n);
 extern "C" void func_001E891B(void *p);
 
 template <class T>
-inline const T &B3E10_Min(const T &a, const T &b)
+inline T B3E10_Min(const T &a, const T &b)
 {
     return a > b ? b : a;
 }
