@@ -18,6 +18,7 @@ struct C_001D5AD0 {
 };
 
 extern int D_002B9018;
+extern int D_002B9014;
 int func_001361E0(int a, int b, int *c, unsigned int d);
 struct C_00031610 { void func_00031610(int a, int b); };
 struct Item_60D {
