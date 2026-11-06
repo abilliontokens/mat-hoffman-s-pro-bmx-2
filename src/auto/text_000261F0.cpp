@@ -36,7 +36,7 @@ static __forceinline float clamp_max_000261F0(float a, float b)
 static __forceinline float clamp_min_000261F0(float a, float b)
 {
  float r;
- _mm_store_ss(&r, _mm_min_ss(_mm_set_ss(a), _mm_set_ss(b)));
+ _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b)));
  return r;
 }
 struct C_00026290 {
@@ -294,6 +294,41 @@ int C_00026500::func_00026500(const char *name, int value)
     return count - 1;
 }
 
+void func_000265C0(float *out, float *t, S_000265C0_V4 *pa, S_000265C0_V4 *pb, int flag1, int flag2)
+{
+    S_000265C0_V4 va = *pa;
+    S_000265C0_V4 vb = *pb;
+    S_000265C0_V4 v2;
+
+    if (flag1) {
+        cross_000265C0(&v2, &va, &vb);
+        if (flag2) {
+            cross_000265C0(&vb, &v2, &va);
+        } else {
+            cross_000265C0(&va, &vb, &v2);
+        }
+    }
+    func_00026340(&vb.x, &vb.x);
+    func_00026340(&va.x, &va.x);
+    cross_000265C0(&v2, &va, &vb);
+    out[0] = v2.x;
+    out[4] = v2.y;
+    out[8] = v2.z;
+    out[1] = vb.x;
+    out[5] = vb.y;
+    out[9] = vb.z;
+    out[2] = va.x;
+    out[6] = va.y;
+    out[10] = va.z;
+    out[12] = 0.0f;
+    out[13] = 0.0f;
+    out[14] = 0.0f;
+    out[3] = t[0];
+    out[7] = t[1];
+    out[11] = t[2];
+    out[15] = 1.0f;
+}
+
 S_000267F0_V4 func_000267F0(float *v, float *m)
 {
     S_000267F0_V4 r;
@@ -333,16 +368,16 @@ S_00026960_Mat func_00026960(void)
     S_00026960_Mat * volatile p = &m;
     S_00026960_Mat *q = p;
     __m128 *v = (__m128 *)q;
-    unsigned int *iq = (unsigned int *)q;
+    __m128 z = _mm_setzero_ps();
 
-    v[0] = _mm_setzero_ps();
-    v[1] = _mm_setzero_ps();
-    v[2] = _mm_setzero_ps();
-    v[3] = _mm_setzero_ps();
-    iq[0] = 0x3f800000;
-    iq[5] = 0x3f800000;
-    iq[10] = 0x3f800000;
-    iq[15] = 0x3f800000;
+    v[0] = z;
+    v[1] = z;
+    v[2] = z;
+    v[3] = z;
+    q->m[0] = 1.0f;
+    q->m[5] = 1.0f;
+    q->m[10] = 1.0f;
+    q->m[15] = 1.0f;
     return m;
 }
 
