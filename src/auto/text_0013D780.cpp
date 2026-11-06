@@ -10,13 +10,31 @@ extern "C" int strcmp(const char *s1, const char *s2);
 char *func_001E8920(char *dst, const char *src, int n);
 int func_001ADD20(char *buf, int count, int a3, void *a4);
 
-struct S_0013D780_Ent { int f0; void *name; int f8; unsigned char flagsC; char padD[0x1B]; };
-struct S_0013D780_Slot { int id; int f88; int f8C; };
+struct S_0013D780_Ent { int f0; void *name; int f8; int flagsC; void *f10; int f14; int f18; int f1C; int f20; unsigned char f24; char pad25[3]; };
+struct S_0013D780_Cache { void *f0; int f4; int f8; };
+struct S_0013D780_Ent20 { int f0; int f4; int f8; int fC; int f10; int f14; int f18; int f1C; };
+extern char D_00275FB4[];
+extern "C" int D_0014FEE0(void *fp);
+void *func_0014FDF0(const char *name, char *mode);
+int func_0014FE60(void *p, int size, void *file);
+int func_0014FED0(void *a, int b, int c);
+void func_0014FE50(void *a);
+void *func_001E83E8(void *p, int size);
+void *func_001E8AA5(int size);
+char func_0013AB60(const char *path);
+void func_0013AC00(unsigned char *p, unsigned int n, unsigned char key);
 struct C_0013D780 {
     char pad0[8]; int cur; S_0013D780_Ent *ents; int count;
-    char pad14[0x70]; S_0013D780_Slot slots[8]; int active;
+    char pad14[0x10]; int *f24; int *f28; char pad2C[0x40]; int f6C; int f70; int f74; int f78; void *f7C;
+    S_0013D780_Cache caches[8]; int active; char padE4[4]; S_0013D780_Ent20 *entries; int entryCount;
+    char padF0[0x10]; int f100;
     int func_0013D780(char *name, int a2, int a3, int *a4, void *a5, int a6, int *a7, int a8);
-    void func_0013C5D0(S_0013D780_Ent *e, int a);
+    int func_0013C5D0(S_0013D780_Ent *e, int a);
+    int func_0013AC40(char *key, int a2, int a3, int a4, int *out, int grow);
+    void func_0013AEC0(int idx);
+    void func_0013B840(S_0013D780_Ent *e);
+    int func_0013B760(S_0013D780_Ent *e, int v);
+    void func_0013B9C0(S_0013D780_Ent *e, int v);
 };
 
 struct C_0013E170 {
@@ -168,6 +186,22 @@ struct C_0013DFF0 {
     int func_0013DFF0(int a1, int a2);
     int func_0013C5D0(C_0013DFF0_elem *e, int a2);
 };
+
+int C_0013D780::func_0013D780(char *name, int a2, int a3, int *a4, void *a5, int a6, int *a7, int a8)
+{
+    if (a8 == 0 && count > 1) {
+        S_0013D780_Ent *e = ents;
+        S_0013D780_Ent *last = &ents[count - 1];
+        do {
+            if (e->name && func_001EA426(e->name, (int)name) == 0) {
+                if (!(e->flagsC & 0x20)) return 1;
+                func_0013C5D0(e, 1);
+            }
+            e++;
+        } while (e != last + 1);
+    }
+    return 0;
+}
 
 int C_0013DFF0::func_0013DFF0(int a1, int a2) {
     C_0013DFF0_elem *p = unkC;
