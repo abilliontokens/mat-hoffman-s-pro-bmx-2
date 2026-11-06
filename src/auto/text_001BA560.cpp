@@ -16,7 +16,9 @@ struct S_9C0_Vec {
     float x, y, z, w;
     S_9C0_Vec() : x(0), y(0), z(0), w(1) {}
 };
-template <class T> inline T Min(T a, T b) { if (a > b) a = b; return a; }
+template <class T> inline T Min(T a, T b) { return a > b ? b : a; }
+extern "C" unsigned int strlen(const char *);
+#pragma intrinsic(strlen)
 struct S_9C0_Elem {
     char name[0x104];
     int f104;
@@ -543,34 +545,42 @@ undefined4 C_001BA9A0::func_001BA9A0(byte param_1)
 
 unsigned int strlen(const char *s);
 char *strncpy(char *d, const char *s, unsigned int n);
-void S_9C0_This::func_001BA9C0(S_9C0_Stream *s)
+void S_9C0_This::func_001BA9C0(S_9C0_Stream * volatile s)
 {
-    int count;
-    int i, j;
+    S_9C0_This * volatile self = this;
     int flag;
-    float fa, fb, fc;
-    S_9C0_Vec v1, v2, v4, v3;
+    float fa;
+    int count;
+    float fb;
+    float fc;
+    int n;
+    int first;
+    int max;
+    int len;
     char name[0x104];
     char buf[0x104];
-    int n;
     S_9C0_Elem *e;
+    int i, j, limit;
 
     if (!s->func_00169710(D_0027CBAC))
         return;
     s->func_00168C20(D_0027CB90, 0, &count);
     if (count <= 0)
         return;
-    if (f28 != 0) {
-        i = f24;
-        f24 += count;
-        f28 = (S_9C0_Elem **)func_001E83E8(f28, f24 * 4);
+    if (self->f28 != 0) {
+        i = self->f24;
+        self->f24 += count;
+        self->f28 = (S_9C0_Elem **)func_001E83E8(self->f28, self->f24 * 4);
     } else {
         i = 0;
-        f24 = count;
-        f28 = (S_9C0_Elem **)func_001E8A44(count * 4);
+        self->f24 = count;
+        self->f28 = (S_9C0_Elem **)func_001E8A44(count * 4);
     }
-    for (; i < f24; i++) {
-        func_001ADCC0(buf, 0x104, D_0027CB78, i + 1);
+    limit = self->f24;
+    first = i;
+    for (; i < limit; i++) {
+        S_9C0_Vec v1, v2, v4, v3;
+        func_001ADCC0(buf, 0x104, D_0027CB78, i + 1 - first);
         if (!s->func_00169710(buf))
             continue;
         s->func_00168BE0(D_0027C4D0, D_002764F0, name, -1);
@@ -583,26 +593,27 @@ void S_9C0_This::func_001BA9C0(S_9C0_Stream *s)
         s->func_00168CB0(D_0027CB30, D_002AA9F4, &v3);
         s->func_00168CB0(D_0027CB2C, D_002AA9F4, &v4);
         e = (S_9C0_Elem *)func_001E8A44(0x15c);
-        f28[i] = e ? e->func_001B84E0() : 0;
+        self->f28[i] = e ? e->func_001B84E0() : 0;
         n = strlen(name);
-        n = n < 0x103 ? n : 0x103;
-        strncpy((char *)f28[i], name, n);
-        ((char *)f28[i])[n] = 0;
-        f28[i]->f104 = flag;
-        f28[i]->f10c = fb;
-        f28[i]->f110 = fa;
-        f28[i]->f114 = fc;
-        f28[i]->v118 = v1;
-        f28[i]->v128 = v2;
-        f28[i]->v138 = v3;
-        f28[i]->v148 = v4;
+        max = 0x103;
+        len = Min(max, n);
+        strncpy((char *)self->f28[i], name, len);
+        ((char *)self->f28[i])[len] = 0;
+        self->f28[i]->f104 = flag;
+        self->f28[i]->f10c = fb;
+        self->f28[i]->f110 = fa;
+        self->f28[i]->f114 = fc;
+        self->f28[i]->v118 = v1;
+        self->f28[i]->v128 = v2;
+        self->f28[i]->v138 = v3;
+        self->f28[i]->v148 = v4;
         if (flag == 0) {
-            f28[i]->f158 = (int *)func_001E8A44(4);
-            f28[i]->f158[0] = 0;
+            self->f28[i]->f158 = (int *)func_001E8A44(4);
+            self->f28[i]->f158[0] = 0;
         } else {
-            f28[i]->f158 = (int *)func_001E8A44(flag * 4);
+            self->f28[i]->f158 = (int *)func_001E8A44(flag * 4);
             for (j = 0; j < flag; j++)
-                f28[i]->f158[j] = 0;
+                self->f28[i]->f158[j] = 0;
         }
     }
 }
