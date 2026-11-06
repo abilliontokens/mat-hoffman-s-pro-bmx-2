@@ -796,6 +796,30 @@ void C_000F2BD0::func_000F2820()
     func_000BFEE0();
 }
 
+int C_000F2AD0::func_000F2AD0(int a, int key)
+{
+    C_000F2AD0_Mgr *mgr = f124;
+    C_000F2AD0_Ui *ui = mgr->f24;
+    f294 = 0;
+    if (f290 < 0x14) {
+        arr298[f290] = key;
+        f290++;
+    }
+    if (key == D_002A8490->f8->func_00136170(0x17, 2, 0)) {
+        f284 = 0;
+        ui->func_000B9A80(4, 1);
+        mgr->f25c->f74->func_00030020(&D_00278084);
+        mgr->f25c->f74->func_000300C0(&D_0028251C);
+        mgr->f25c->f74->func_00030210();
+        mgr->f25c->f74->func_000301A0();
+        f124->f138 = 7;
+        f124->f134 = 1;
+        mgr->f268->func_001C4D50(500);
+        mgr->func_000BA9D0(1)->f360 = 0x1b;
+    }
+    return 1;
+}
+
 void C_000F2BD0::func_000F2BD0(float dt)
 {
     C_000F2BD0_Mgr *mgr = f124;
