@@ -1,6 +1,7 @@
 /* 8 functions from 0x001B35D0 to 0x001B3E70, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include "asm_helpers.h"
 
 extern "C" char *__cdecl strcpy(char *dst, const char *src);
 #pragma intrinsic(strcpy)
@@ -89,6 +90,16 @@ struct C_001B3DC0 {
     C_001B3DC0 *func_001B3DC0(int a1, int a2, int a3, int a4);
 };
 
+int func_001B35D0(S_001B35D0_Desc *d,int a,int mask,int flags){int func_0014FDF0(void*,void*);int func_0014FE80(void*,int,int,int);void func_0014FE50(int);extern char D_00282960[];int i,off;unsigned short o;int f=func_0014FDF0(d->f1c,D_00282960);if(!f)return 0;d->f13=(u8)flags;d->f2=2;
+if(func_0014FE80(d,1,1,f)!=1||func_0014FE80(&d->f1,1,1,f)!=1||func_0014FE80(&d->f2,1,1,f)!=1||func_0014FE80(&d->f4,2,1,f)!=1||func_0014FE80(&d->f6,2,1,f)!=1||func_0014FE80(&d->f8,1,1,f)!=1||func_0014FE80(&d->fa,2,1,f)!=1||func_0014FE80(&d->fc,2,1,f)!=1)goto fail;
+{u8 *b=&d->f12;short *w=&d->fe;if(func_0014FE80(w,2,1,f)!=1||func_0014FE80(&d->f10,2,1,f)!=1)goto fail;if(func_0014FE80(b,1,1,f)!=1||func_0014FE80(&d->f13,1,1,f)!=1)goto fail;
+if(*b==24){unsigned stride=a;if(!a)stride=(unsigned)(*w*3)/3;i=0;if(d->f10<=0)goto success;volatile int step=*w;off=0;step=stride*3;do{char *p=(char*)d->f14+off;int n=*w;if(func_0014FE80(p,3,n,f)!=n)goto fail;++i;off+=step;}while(i<d->f10);goto success;}
+if(*b==32){int width=*w,n=d->f10*width;unsigned *p=(unsigned*)d->f14;for(i=0;i<n;i+=width){if(func_0014FE80(p,4,width,f)!=width)goto fail;p+=width;}goto success;}
+unsigned stride=a;if(!a)stride=(unsigned)(*w*2)/2;
+if(mask==0x3e0){i=0;if(d->f10<=0)goto success;volatile int step=*w;off=0;step=stride*2;do{char *p=(char*)d->f14+off;int n=*w;if(func_0014FE80(p,2,n,f)!=n)goto fail;off+=step;}while(++i<d->f10);}
+else{off=0;int step=stride*2;for(i=0;i<d->f10;i++){unsigned short *p=(unsigned short*)((char*)d->f14+off);for(int j=0;j<*w;j++,p++){unsigned short v=*p;o=(unsigned short)(((v>>1)&0x7fe0)|(v&31));if(func_0014FE80(&o,2,1,f)!=1)goto fail;}off+=step;}}}
+success:func_0014FE50(f);return 1;fail:func_0014FE50(f);return 0;}
+
 void func_001B3970(int param_1)
 {
   int func_001E8390(...);
@@ -165,6 +176,10 @@ void func_001B3AF0(int a1, u16 a2, u16 a3, int a4, int a5, const char *name, int
     desc.f14 = a1;
     strcpy(desc.f1c, name);
     func_001B35D0(&desc, a4, a5, a7);
+}
+
+void func_001B3BA0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
 C_001B3C10 *C_001B3C10::func_001B3C10(int a0)
