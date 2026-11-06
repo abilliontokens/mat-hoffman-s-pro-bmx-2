@@ -339,8 +339,8 @@ template <class T> inline T min_198E0(T a, T b)
 #define CopyPathV_198E0(dst, src, len, lim, res) \
     { \
         int ma, mb, n; \
-        len = strlen(src); \
         lim = 0x103; \
+        len = strlen(src); \
         ma = lim; \
         mb = len; \
         res = ma > mb ? mb : ma; \
@@ -377,14 +377,9 @@ static __forceinline void Touch_198E0(void *) {}
 
 int TikiEvadeState::func_000195B0(float dt)
 {
-    TikiEvadeState * volatile self = this;
-    TikiEvadeState *p;
+    TikiEvadeState *volatile self = this;
+    TikiEvadeState *p = self;
     S_195B0_Owner *o;
-    S_195B0_Vec v;
-    float square;
-    float dist;
-
-    p = self;
     if (p->f10 != p->f14) {
         if (p->f10 < p->f14) {
             p->f10 += dt;
@@ -395,14 +390,12 @@ int TikiEvadeState::func_000195B0(float dt)
                 p->f8->func_00017700();
                 p = self;
                 o = p->f8;
-                if (o->f4d4 <= 0)
-                    o->func_00017D00();
+                if (o->f4d4 <= 0) o->func_00017D00();
             }
         } else if (p->f10 > p->f14) {
             p->f10 -= dt;
             p = self;
-            if (p->f10 < p->f14)
-                p->f10 = p->f14;
+            if (p->f10 < p->f14) p->f10 = p->f14;
         }
         p = self;
         p->f8->f3c->f4->func_00182530(p->f10);
@@ -414,21 +407,24 @@ int TikiEvadeState::func_000195B0(float dt)
         p->f8->func_00017910();
         p = self;
         o = p->f8;
-        v = o->f398->func_00016E40();
-        square = (v.z - o->f510) * (v.z - o->f510) + (v.y - o->f50c) * (v.y - o->f50c) + (v.x - o->f508) * (v.x - o->f508);
+        S_195B0_Vec buf;
+        S_195B0_Vec *v = o->f398->func_00016E40(&buf);
+        float dx = v->x - o->f508;
+        float dy = v->y - o->f50c;
+        float dz = v->z - o->f510;
+        float square = dz*dz + dy*dy + dx*dx;
+        float dist;
         _mm_store_ss(&dist, _mm_sqrt_ss(*(__m128 *)&square));
         p = self;
-        if ((dist < D_00275804 || dist > p->f8->f49c[p->f8->f4dc].f0) && p->f8->f4d4 > 0) {
-            int r = p->f8->func_000192D0(1, 1);
+        if ((dist < D_00275804 || dist <= p->f8->f49c[p->f8->f4dc].f0) && p->f8->f4d4 > 0) {
+            int r = p->f8->func_000192D0(1,1);
             p = self;
             p->f8->f4dc = r;
             p = self;
             p->f8->func_00017910();
             p = self;
             p->fC = D_002A8490->f238;
-        } else {
-            p->f8->func_00017760();
-        }
+        } else p->f8->func_00017760();
         p = self;
         p->f14 = 1.0f;
         p = self;
