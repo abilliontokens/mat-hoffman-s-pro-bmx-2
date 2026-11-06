@@ -124,17 +124,6 @@ static inline void StrCopy_001095A0(char *d, const char *s)
     } while (c != '\0');
 }
 
-static inline void StrCopyOff_001095A0(char *d, const char *s)
-{
-    int off = d - s;
-    char c;
-    do {
-        c = *s;
-        *(char *)(s + off) = c;
-        s++;
-    } while (c != '\0');
-}
-
 void func_001E891B(void *p);
 void func_001E8390(void *p);
 
