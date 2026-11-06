@@ -206,7 +206,7 @@ extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
 #pragma intrinsic(memcpy)
 extern char D_0027DB60[];
 extern float D_002AA9F4, D_002AA9F8, D_002AA9FC;
-extern float D_00275998;
+extern const float D_00275998;
 float func_00016D20(float x);
 void func_00167FE0(void *a, void *b, float x, float y, float z);
 
@@ -381,6 +381,85 @@ undefined4 C_001B9D40::func_001B9D40(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+int KeyFramedModel::func_001B9D60(S_001B9D60_Owner *p)
+{
+    char bufA[0x104];
+    char bufB[0x104];
+    void *m;
+    S_001B9D60_Temp *t;
+    int i;
+
+    func_001ADCC0(bufA, 0x104, D_0027DB60, f1a8->name);
+    func_001ADCC0(bufB, 0x104, D_0027D170, f1a8->name);
+    f44 = p->f4a8[f1a8->f110];
+    f48 = p->f4ac[f1a8->f110];
+    m = func_001E8A44(0x2b8);
+    f1a4 = m ? ((S_001B9D60_Anim *)m)->func_001328F0(1, 1) : 0;
+    if (f1a4->func_00132A40(bufA, bufB, 0, 1, 1, f1a8->f114, f1a8->f10c) == 0) {
+        func_00012140();
+        f1a4->v2();
+        f1a4 = 0;
+        t = f1a8;
+        if (t) {
+            t->vtbl = &D_0028CA64;
+            func_001E891B(t);
+        }
+        f1a8 = 0;
+        return 0;
+    }
+    f1a4->f4->f180 |= 8;
+    f1a4->f4->f180 |= 0x10;
+    S_001B9D60_Vec4 a;
+    S_001B9D60_Vec4 b;
+    if (f18.x == D_002AA9F4 && f18.y == D_002AA9F8 && f18.z == D_002AA9FC) {
+        func_00167FE0(&a, &b, func_00016D20(D_00275998 * f38), func_00016D20(D_00275998 * f3c),
+                      func_00016D20(D_00275998 * f40));
+    } else {
+        a = f18;
+        b = f28;
+    }
+    f1a4->f4->func_00199650(&f08);
+    f1a4->f4->func_00198F50(&a, &b, 0, 1, 0);
+    if (f58 > 0) {
+        f1ac = (int *)func_001E8A44(f58 * 4);
+        for (i = 0; i < f58; i++) {
+            f1ac[i] = D_002EF7D0->func_00162B20(f5c[i], 1);
+        }
+    }
+    f1a4->func_00132CC0(f44, f48, 2);
+    p->f3ac->func_001577A0(f1a4, 2);
+    f84 = 0;
+    f8c = 0;
+    for (i = 0; i < f60; i++) {
+        if (f78[i] == 1) {
+            f84 = i;
+            break;
+        }
+    }
+    f1a4->func_00164820(f1ac[*f68[f84] - 1]);
+    f1a4->func_001670C0(0, 0, 0);
+    if (f78[f84] == 0) {
+        f1a4->f10 = 1;
+    }
+    f1a4->func_00132D20();
+    f74 = (int *)func_001E8A44(f60 * 4);
+    memcpy(f74, f78, f60 * 4);
+    f80 = f84;
+    t = f1a8;
+    if (t) {
+        t->vtbl = &D_0028CA64;
+        func_001E891B(t);
+    }
+    f1a8 = 0;
+    for (i = 0; i < f4c; i++) {
+        f50[i]->func_00186F10(p->f4c0);
+    }
+    if (f54) {
+        f54->v28(p, f1a4->f4, fa0, p->f4c0);
+    }
+    return 1;
 }
 
 int ProceduralModel::func_001BA1B0(S_001BA1B0_Owner *p)
