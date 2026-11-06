@@ -37,7 +37,6 @@ struct S_002EFDB8 {
 };
 extern S_002EFDB8 *D_002EFDB8;
 
-struct V3_150810 { float x, y, z; };
 struct C_00150810 {
     char pad0[0x24];
     int unk24;
