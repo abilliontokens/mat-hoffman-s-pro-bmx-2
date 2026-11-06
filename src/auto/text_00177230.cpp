@@ -14,7 +14,6 @@ struct C_00135420 {
 struct C_00135410 {
     int func_00135410(void);
 };
-int func_00135410(void);
 u32 func_00175840(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch);
 u32 func_00175A10(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int a7, int key);
 void *func_001E8AA5(int size);
@@ -295,28 +294,34 @@ int func_00177AB0(unsigned short* dst, unsigned char* src, int width, int height
     return 1;
 }
 
-int func_00177BA0(unsigned char* dst, unsigned char* src, int width, int height, int dstPitch, int srcPitch, int a7, int a8)
+u32 func_00177BA0(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int a7, C_00135410 *pal)
 {
-    if (a7 && a8) {
-        func_00176630(src, 0x378, width, height, srcPitch, dstPitch, 0, 0, 0, dst, a8);
+    u8 *d;
+    u8 *s;
+    u8 *p;
+    u8 *q;
+    u8 *tbl;
+    int x;
+    int y;
+    if (a7 != 0 && pal != 0) {
+        func_00176630(src, 0x378, width, height, srcPitch, dstPitch, 0, 0, 0, dst, (int)pal);
         return 1;
     }
-    unsigned char* row = src;
-    unsigned char* out = dst;
-    unsigned char* tbl = (u8 *)func_00135410();
-    for (int y = height; y > 0; y--) {
-        unsigned char* d = out;
-        unsigned char* s = row;
-        for (int x = width; x > 0; x--) {
-            unsigned short r = s[2];
-            unsigned short g = s[1];
-            unsigned short b = s[0];
-            unsigned short t = (((r & 0xFFF8) << 5) | g) & 0xFFF8;
-            *d++ = tbl[(unsigned short)(t << 2) | (b >> 3)];
-            s += 3;
+    s = src;
+    d = dst;
+    tbl = (u8 *)pal->func_00135410();
+    for (y = height; y > 0; y--) {
+        for (q = s, p = d, x = width; x > 0; x--) {
+            u16 r = q[2];
+            u16 g = q[1];
+            u16 b = q[0];
+            u16 t = (((r & 0xFFF8) << 5) | g) & 0xFFF8;
+            *p = tbl[(u16)(t << 2) | (b >> 3)];
+            p++;
+            q += 3;
         }
-        row += srcPitch * 3;
-        out += dstPitch;
+        s += srcPitch * 3;
+        d += dstPitch;
     }
     return 1;
 }
@@ -347,6 +352,25 @@ u32 func_00177CA0(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
     d += dstPitch;
   }
   return 1;
+}
+
+static __declspec(noinline) int func_00177D60(int width, u16 *dst, u32 *src, int dstPitch, int height, u8 *tbl);
+static __declspec(noinline) int func_00177D60(int width, u16 *dst, u32 *src, int dstPitch, int height, u8 *tbl)
+{
+  int n = width / 8;
+  int y;
+  for (y = height; y > 0; y--) {
+    int x;
+    u32 *s = src;
+    u16 *d = dst;
+    for (x = n; x > 0; x--) {
+      d[0] = tbl[s[1] & 0x7fff] | (tbl[(s[1] >> 16) & 0x7fff] << 8);
+      d[1] = tbl[s[0] & 0x7fff] | (tbl[(s[0] >> 16) & 0x7fff] << 8);
+      s += 2;
+    }
+    dst += dstPitch;
+  }
+  return 0;
 }
 
 u32 func_00177F50(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, u32 key)
