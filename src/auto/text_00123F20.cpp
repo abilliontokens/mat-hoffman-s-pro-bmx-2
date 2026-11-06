@@ -17,12 +17,13 @@ static __forceinline void Slice(Vec4 *P,Vec4 *N,const Vec4 *p,const Vec4 *a,cons
  if(va[k]!=vb[k]&&((va[k]<=pa[k]&&vb[k]>=pa[k])||(va[k]>=pa[k]&&vb[k]<=pa[k]))){v[0]=a;v[1]=b;vn[0]=na;vn[1]=nb;count=2;}
  if(vb[k]!=vc[k]&&((vb[k]<=pa[k]&&vc[k]>=pa[k])||(vb[k]>=pa[k]&&vc[k]<=pa[k]))){v[count]=b;v[count+1]=c;vn[count]=nb;vn[count+1]=nc;count+=2;}
  if(vc[k]!=va[k]&&((vc[k]<=pa[k]&&va[k]>=pa[k])||(vc[k]>=pa[k]&&va[k]<=pa[k]))){v[count]=c;v[count+1]=a;vn[count]=nc;vn[count+1]=na;}
-  float t;
+  float t,s;
  int i;
  for(i=0;i<2;i++){
   t=(pa[k]-(&v[2*i]->x)[k])/((&v[2*i+1]->x)[k]-(&v[2*i]->x)[k]);
-  P[i]=Lerp(*v[2*i],*v[2*i+1],t);
-  N[i]=Lerp(*vn[2*i],*vn[2*i+1],t);
+  s=D_00275460-t;
+  P[i]=*v[2*i+1]*t+*v[2*i]*s;
+  N[i]=*vn[2*i+1]*t+*vn[2*i]*s;
  }
  }
 #include <math.h>
