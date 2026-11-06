@@ -57,6 +57,9 @@ struct StringBC {
  char name[255],second[255],third[255];char pad2FD[0x13];
  NodeBC *f310;char pad314[0x50];int f364;int f368;int f36C;
 };
+struct StringListBC {int count;StringBC **data;
+ __forceinline StringBC *get(int i) {if(count>0 && data && i<count)return data[i];return 0;}
+};
 struct DataBC {
  char pad0[0x3a8]; void *f3A8; char pad3AC[0xfc];
  int *f4A8; char pad4AC[0xf4];
