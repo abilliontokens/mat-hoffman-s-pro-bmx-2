@@ -444,6 +444,18 @@ struct C_000AC7F0 {
     void func_000AC7F0(void);
 };
 
+/* BmxDynamicModels as allocated by C_000AC7F0::func_000AC7F0 */
+struct New_000AC7F0 {
+    void *vtbl;
+    char pad4[0x28];
+    New_000AC7F0()
+    {
+        ((C_000AC7F0_Dyn *)this)->func_001B5830(1);
+        vtbl = &D_0027AE04;
+    }
+    static void *operator new(unsigned int size) { return func_001E8A44(size); }
+};
+
 /* scene helper object */
 struct C_000AC890_Obj {
     virtual void v0();
