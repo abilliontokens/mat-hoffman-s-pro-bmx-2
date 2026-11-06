@@ -66,7 +66,7 @@ struct C_001D2A40 {
 };
 
 static __forceinline void Round_001D2A40(int * volatile out, float f) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
-static __forceinline float Get_001D2A40(const float *p) { return *p; }
+static __forceinline float Get_001D2A40(const volatile float *p) { return *p; }
 static __forceinline int Min_001D2A40(int a, int b) { return a > b ? b : a; }
 
 /* step one channel k of track i; M = done/dir bit, FM = repeat bit and PM = ping-pong bit of flags */
@@ -232,13 +232,13 @@ void C_001D2A40::func_001D2A40()
         RtlEnterCriticalSection(self->f30);
         if (self->f10[i].done != 0x3f) {
             S_001D2A40_Frame *q;
-            Round_001D2A40(&idx, self->f10[i].val[0]);
+            Round_001D2A40(&idx, Get_001D2A40(&self->f10[i].val[0]));
             q = &self->f14[idx];
-            Round_001D2A40(&x, self->f10[i].val[1]);
-            Round_001D2A40(&y, self->f10[i].val[2]);
-            Round_001D2A40(&w, self->f10[i].val[3]);
-            Round_001D2A40(&h, self->f10[i].val[4]);
-            Round_001D2A40(&alpha, self->f10[i].val[5]);
+            Round_001D2A40(&x, Get_001D2A40(&self->f10[i].val[1]));
+            Round_001D2A40(&y, Get_001D2A40(&self->f10[i].val[2]));
+            Round_001D2A40(&w, Get_001D2A40(&self->f10[i].val[3]));
+            Round_001D2A40(&h, Get_001D2A40(&self->f10[i].val[4]));
+            Round_001D2A40(&alpha, Get_001D2A40(&self->f10[i].val[5]));
             alpha = Min_001D2A40(alpha, 255);
             dst[0] = x - (w >> 1);
             dst[1] = y - (h >> 1);
