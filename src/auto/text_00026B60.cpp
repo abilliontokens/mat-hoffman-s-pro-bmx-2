@@ -133,7 +133,7 @@ struct ObjF0_26 {
 };
 struct ObjF4_26 {
     char pad0[0x58]; int f58; char pad5C[8]; void *f64; void *f68;
-    void func_001A8630(int); void func_001A8BC0(void *, int, int, V4_000273F0, int, int);
+    ObjF4_26 *func_001A8630(int); void func_001A8BC0(void *, int, int, V4_000273F0, int, int);
 };
 struct ObjFC_26 {
     char pad0[0x60]; void *f60; char pad64[4]; int f68;
