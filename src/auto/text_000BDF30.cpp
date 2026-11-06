@@ -208,7 +208,7 @@ struct C_000BE640 {
     virtual void v36();
     virtual void v37(int a);
     char pad0[0x150];
-    C_000BBE30 *f150;
+    S_000BDF30_Names *f150;
     char f154[0x104];
     struct { char pad0[0x204]; int f204; int f208; } *f258;
     void *f268;
