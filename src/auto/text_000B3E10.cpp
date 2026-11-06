@@ -180,9 +180,51 @@ struct C_000B4300 {
     void func_001577A0(S_B3E10_Obj *o, int a);
 };
 
-template <class T>
-inline void B4300_Reg(T *const &obj, void (T::*cb)(void), const char *a, const char *b, const char *c)
+inline void B4300_Reg(int id, B4300_Cb cb, const char *a, const char *b, const char *c)
 {
-    void (T::*f)(void) = cb;
-    D_002EFE08->func_0018CF40(obj->f38, f, a, b, c, 1);
+    D_002EFE08->func_0018CF40(id, cb, a, b, c, 1);
+}
+
+C_000B4300 *C_000B4300::func_000B4300(S_B4300_Stream * volatile a, S_B4300_Stream * volatile b)
+{
+    char name[0x104];
+    char buf[0x104];
+    B4300_Cb volatile cb1 = &C_000B4300::func_000B2530;
+    B4300_Cb volatile cb2 = &C_000B4300::func_000B25D0;
+    C_000B4300 * volatile self = this;
+
+    func_00167750();
+    self->func_000B3390(b);
+    {
+        C_000B4300 *t = self;
+        *(volatile char *)&t->f1a2 = t->f40->f144;
+    }
+    {
+        C_000B4300 *t = self;
+        strcpy(t->f1a3, t->f40->f14c);
+    }
+    {
+        C_000B4300 *t = self;
+        *(volatile int *)&t->f6c = t->f40->f118;
+    }
+    b->func_00168BE0(D_0027D138, D_0027D144, buf, 0x104);
+    a->func_00168BE0(D_0027D250, D_002764F0, name, 0x104);
+    if (func_001EA426(name, D_002764F0) != 0) {
+        C_000B4300 *t = self;
+        if (t->f40->f108 != 0)
+            func_001ADCC0(t->f9c, 0x104, D_0027D158, D_002A5348, D_002A5FA8, name);
+        else
+            func_001ADCC0(t->f9c, 0x104, D_0027D158, D_002A5870, D_002A5FA8, name);
+    } else {
+        self->f1a0 = 1;
+    }
+    if (D_002EFE08->func_0018E740(self, D_0027D244) == 0) {
+        D_002EFE08->func_0018CF40(self->f38, cb1, D_0027D230, D_0027D1A4, D_0027D240, 1);
+        D_002EFE08->func_0018CF40(self->f38, cb2, D_0027D224, D_0027D1A4, D_0027D1D8, 1);
+        D_002EFE08->func_0018D330(self->f38, 0x68, D_0027D210, D_0027D21C);
+        D_002EFE08->func_0018D330(self->f38, 0x60, D_0027D204, D_0027D240);
+        D_002EFE08->func_0018D330(self->f38, 0x74, D_0027D1EC, D_0027D1FC);
+    }
+    D_002EFE08->func_00191270(self, D_0027D244, a, buf);
+    return self;
 }
