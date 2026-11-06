@@ -1,5 +1,5 @@
 /* 12 functions from 0x00102BB0 to 0x00103B60, found by Ghidra. */
-#include "common.h"
+extern char D_0027DE5C[];
 
 extern int D_002826B4;
 extern int D_00282754;
