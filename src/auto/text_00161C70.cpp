@@ -4,6 +4,11 @@
 #include <xmmintrin.h>
 #include <math.h>
 #include <string.h>
+struct __declspec(align(16)) S_Matrix_00162330 { float m[16]; };
+static __forceinline void setrow_00162330(float *p, float x, float y, float z)
+{
+    p[0] = x; p[1] = y; p[2] = z;
+}
 struct C_00162720 {
     void func_00162720(undefined4 param_1);
 };
@@ -226,16 +231,20 @@ int func_00162210(float *out, float *m)
 {
     float det;
     float s;
+    __m128 v;
+    __m128 *p;
     det = (m[10] * m[5] - m[9] * m[6]) * m[0] - (m[4] * m[10] - m[8] * m[6]) * m[1] + (m[9] * m[4] - m[8] * m[5]) * m[2];
     if (det == 0.0f) {
         return 0;
     }
     func_00162020(out, m, 1);
     s = D_00275460 / det;
-    *(__m128 *)out = _mm_mul_ps(*(__m128 *)out, _mm_set1_ps(s));
-    *(__m128 *)(out + 4) = _mm_mul_ps(*(__m128 *)(out + 4), _mm_set1_ps(s));
-    *(__m128 *)(out + 8) = _mm_mul_ps(*(__m128 *)(out + 8), _mm_set1_ps(s));
-    *(__m128 *)(out + 12) = _mm_mul_ps(*(__m128 *)(out + 12), _mm_set1_ps(s));
+    v = _mm_set1_ps(s);
+    p = (__m128 *)out;
+    p[0] = _mm_mul_ps(p[0], v);
+    p[1] = _mm_mul_ps(p[1], v);
+    p[2] = _mm_mul_ps(p[2], v);
+    p[3] = _mm_mul_ps(p[3], v);
     return 1;
 }
 
