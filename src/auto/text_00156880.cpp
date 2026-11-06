@@ -29,7 +29,7 @@ extern Obj_00156FC0 *D_002EFDB8;
 extern Obj_00156FC0 *D_002F07B8;
 extern int D_002DF8F4;
 extern int D_002DF8F8;
-extern int D_002DF94C;
+extern volatile int D_002DF94C;
 
 struct S_002AA6C0 {
     void func_00011430(int a, int b);
@@ -508,8 +508,8 @@ C_00157600 *C_00157600::func_00157600(unsigned char flags)
     int n;
 
     func_0001DFE0();
-    n = D_002DF94C + 1;
     vtbl = (void *)&D_0028715C;
+    n = D_002DF94C + 1;
     D_002DF94C = n;
     f20 = 0xff;
     f8 = 0;
