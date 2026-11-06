@@ -96,14 +96,6 @@ struct S_6FF80_Data {
     char pad12c[0x188 - 0x12c]; int f188;
     char pad18c[0x1198 - 0x18c]; int f1198;
 };
-struct S_6FF80_Text { void func_0005E840(char *s); };
-struct C_0006FF80 {
-    char pad0[0xEC];
-    S_0006FF80_Own *fEC;
-    char padF0[0x180 - 0xF0];
-    S_6FF80_Text *f180[8];
-    int func_0006FF80(void);
-};
 extern char D_00278C38[], D_00278C28[];
 struct S_0006FF80_Str { char pad0[0x18]; int f18; char pad1c[4]; int f20; char pad24[0x100]; int f124_; int f128; char pad12c[0x5c]; int f188; char pad18c[0xfc4 - 0x18c]; int f1198_dummy; };
 
