@@ -1,5 +1,77 @@
 /* 9 functions from 0x001B6A70 to 0x001B7570, found by Ghidra. */
 #include "common.h"
+
+struct C_6A70_V4 { float x, y, z, w; };
+
+struct C_6A70_Item {
+    virtual void v0(void *cfg, int a);
+    int f4;
+};
+
+struct C_6A70_Src {
+    virtual void v0(int *out, C_6A70_Item **slot);
+    virtual int v1(char *name);
+};
+
+struct C_6A70_Data {
+    C_6A70_V4 f0;
+    C_6A70_V4 f10;
+    C_6A70_V4 f20;
+    C_6A70_V4 f30;
+    int f4c;
+    C_6A70_Data *func_001B6850(void);
+    void func_001B6930(void *cfg, int a);
+};
+
+struct S_6A70_Bits {
+    u8 b0 : 1, b1 : 1, b2 : 1, b3 : 1, b4 : 1, b5 : 1, b6 : 1, b7 : 1;
+};
+
+struct C_6A70_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    char pad14[0xbc - 0x14];
+    int *fBC;
+    int *fC0;
+    int *fC4;
+    char padC8[0xd4 - 0xc8];
+    char fD4[0x104];
+    char f1D8[0x104];
+    char pad2DC[0x2ec - 0x2dc];
+    u8 b2EC;
+    C_6A70_Obj *func_001BB680(int a);
+    void func_001BC040(C_6A70_V4 a, C_6A70_V4 b, C_6A70_V4 c, C_6A70_V4 d, int e, int f, int g, int h);
+};
+
+struct C_6A70_Cfg {
+    void func_00168BE0(const void *key, const void *fmt, void *buf, int size);
+    void func_00168C20(const void *key, int def, int *out);
+    void func_00168C50(const void *key, int def, int *out);
+    int func_00169710(char *name);
+};
+struct C_6A70 {
+    void *vtbl;
+    C_6A70_Obj *f4;
+    int f8;
+    int fC;
+    int f10;
+    int f14;
+    char f18[0x78];
+    char f90[0x78];
+    C_6A70_Data *f108;
+    C_6A70_Item **f10C;
+    int func_001B6A70(C_6A70_Cfg *cfg, int a1, int a2, C_6A70_Src *a3, int a4);
+};
+extern char D_0027CC48[], D_0027CC38[], D_0028CE4C[], D_0028CE38[], D_0027CAD4[], D_0028CE20[], D_0028CE04[], D_0028CDEC[];
+extern char D_00275630[], D_00276980[], D_0027A84C[], D_00284B7C[], D_0028CE58[], D_0027B0AC[], D_00289948[];
+extern int D_002764F0;
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+extern "C" char *strcpy(char *dst, const char *src);
+void *func_001E8A44(int size);
+void func_00012140(void);
 extern char D_0028CF08[], D_0028CEF4[];
 extern int D_0028CDE4;
 void *func_001E83E8(void *, int);
