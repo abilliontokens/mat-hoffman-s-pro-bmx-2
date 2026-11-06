@@ -80,6 +80,7 @@ struct C_001B4ED0 {
     int f4C;
     int f50;
     int f54;
+    C_001B4ED0();
     void func_001B4ED0();
     void func_001B4F90();
 };
