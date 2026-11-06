@@ -279,6 +279,29 @@ float func_0014F870(float x)
     return D_002756D4 - func_0014F7E0(x);
 }
 
+float func_0014F890(float x) {
+ volatile float sign, offset;
+ if (x > D_00275460) { x = D_00275460; goto positive; }
+ if (x < D_00275F58) { x = D_00275F58; goto negative; }
+ if (x < D_00275544) goto negative;
+positive:
+ offset = 0.0f; sign = 1.0f; x = D_00275460 - x;
+ goto lookup;
+negative:
+ offset = 3.14159265358979323846f; sign = -1.0f; x += D_00275460;
+lookup:
+ int n = ((*(unsigned int *)&x >> 23) & 255) - 102;
+ if (n > 24) n = 24;
+ else if (n < 0) n = 0;
+ float v = (x - D_002DF740[n * 3]) * D_002DF744[n * 3];
+ volatile float t = v;
+ int * volatile p = (int *)&x;
+ *p = _mm_cvttss_si32(*(__m128 *)&t);
+ float f = v - (float)*(volatile int *)&x;
+ float *table = (float *)D_002DF748[n].f0 + *(int *)&x;
+ return ((D_00275460 - f) * table[0] + f * table[1]) * sign + offset;
+}
+
 float func_0014F990(float x)
 {
     return (float)atan(x);
@@ -305,19 +328,21 @@ void func_0014F9A0(void)
 
 static __forceinline float Sqrt_0014F9F0(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
 
+#pragma intrinsic(sqrt)
 void func_0014F9F0(void)
 {
-    unsigned int i;
-    for (i = 0; i < 0x80; i++) {
-        unsigned int a = (i | 0x3f80) << 16;
-        float r = sqrtf(*(float *)&a);
-        D_002CF2B0[i] = *(unsigned int *)&r & 0x7f0000;
-        unsigned int b = (i | 0x4000) << 16;
-        float s = sqrtf(*(float *)&b);
-        D_002CF4B0[i] = *(unsigned int *)&s & 0x7f0000;
-    }
+ volatile unsigned int bits;
+ for(unsigned int i=0;i<0x80;i++) {
+ unsigned int a=(i|0x3f80)<<16;
+ float r=(float)sqrt(*(float *)&a);
+ bits=*(unsigned int *)&r;
+ D_002CF2B0[i]=*(unsigned int *)&r&0x7f0000;
+ unsigned int b=(i|0x4000)<<16;
+ float s=(float)sqrt(*(float *)&b);
+ bits=*(unsigned int *)&s;
+ D_002CF4B0[i]=*(unsigned int *)&s&0x7f0000;
+ }
 }
-
 void func_0014FA70(void)
 {
     int i;
@@ -371,6 +396,11 @@ float func_0014FB30(float v)
         r = -r;
     }
     return r;
+}
+
+static __forceinline void Abs_0014FBA0(volatile float *dst, const float *src)
+{
+    *(int *)dst = *(const int *)src & 0x7fffffff;
 }
 
 float func_0014FBA0(volatile float y, volatile float x)
