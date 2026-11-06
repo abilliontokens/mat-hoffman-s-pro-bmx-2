@@ -7,7 +7,8 @@ struct C_0003BB60 {
  void func_000A4500(int, int);
  void func_000321C0();
  void func_0003AD50();
- void func_001983A0();
+   void func_001983A0();
+  void func_00198390();
    void func_000361F0(int);
   void func_0003B0A0();
 };
