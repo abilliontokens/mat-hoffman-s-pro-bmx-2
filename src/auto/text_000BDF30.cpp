@@ -494,7 +494,3 @@ C_000BEDC0 *C_000BEDC0::func_000BEDC0(void *param)
     }
     return this;
 }
-struct S_000BDF30_Probe {
-    int x;
-    int y;
-};
