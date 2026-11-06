@@ -564,10 +564,8 @@ void *C_001493B0::func_001493B0(unsigned int flags)
 void C_001493E0::func_001493E0()
 {
     int __fastcall func_001FEBD0(int a, void *b);
-    void *func_001E8A44(int size);
     extern undefined4 D_002EFDB8;
     extern VObj_00148780 *D_002BF0C8;
-    extern int D_00286818;
     VObj_00148780 *p;
 
     if (unkC != 0) {
@@ -575,14 +573,11 @@ void C_001493E0::func_001493E0()
     }
     func_001FEBD0(0x21, (void *)(*(int *)(D_002EFDB8 + 4) + 0x170));
     func_001FEBD0(0x3, (void *)(D_002EFDB8 + 0x74));
-    if (D_002BF0C8 == 0) {
-        p = (VObj_00148780 *)func_001E8A44(4);
-        if (p != 0)
-            *(int *)p = (int)&D_00286818;
-    } else {
-        p = D_002BF0C8;
+    p = D_002BF0C8;
+    if (p == 0) {
+        p = (VObj_00148780 *)new New_001493E0;
+        D_002BF0C8 = p;
     }
-    D_002BF0C8 = p;
     p->f1();
 }
 
