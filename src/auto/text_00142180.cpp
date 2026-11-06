@@ -6,6 +6,7 @@ struct Vertex_00142180 { int x,y,z; float a; int b,c,d,e; float f; int g,h,i,j,k
 
 void __stdcall func_00201100(void *p);
 void func_001E8390(void *p);
+void *__stdcall func_001FF410(void *buffer, int flags);
 extern int D_00285970;
 
 struct C_00142720_Virt {
@@ -434,13 +435,13 @@ void C_00142AF0::func_00142810(void)
     if (i < f50) {
         off = 0;
         do {
-            remaining = *(int *)((char *)f18 + off + 0x2C) - *(int *)((char *)f18 + off + 0x28) + 1;
-            f48 = *(int *)((char *)f18 + off + 0x24);
-            f64 = *(S_001425B0_V3 *)((char *)f18 + off + 4);
-            f70 = *(S_001425B0_V3 *)((char *)f18 + off + 0x10);
-            f7C = *(int *)((char *)f18 + off + 0x1C);
-            f80 = *(int *)((char *)f18 + off + 0x20);
-            fEC = *(int *)((char *)f18 + off + 0x30);
+            remaining = ((S_00142810_Rec *)((char *)f18 + off))->f2C - ((S_00142810_Rec *)((char *)f18 + off))->f28 + 1;
+            f48 = ((S_00142810_Rec *)((char *)f18 + off))->f24;
+            f64 = ((S_00142810_Rec *)((char *)f18 + off))->f4;
+            f70 = ((S_00142810_Rec *)((char *)f18 + off))->f10;
+            f7C = ((S_00142810_Rec *)((char *)f18 + off))->f1C;
+            f80 = ((S_00142810_Rec *)((char *)f18 + off))->f20;
+            fEC = ((S_00142810_Rec *)((char *)f18 + off))->f30;
             while (remaining > 0) {
                 if (f38[f48] + remaining > f24)
                     chunk = f24 - f38[f48];
@@ -448,14 +449,14 @@ void C_00142AF0::func_00142810(void)
                     chunk = remaining;
                 slot = f28[f48];
                 flag = 0;
-                if (*(int *)((char *)f14 + slot * 0x34 + 0x24) != f48)
+                if (f14[slot].f24 != f48)
                     flag = 1;
-                *(int *)((char *)f14 + slot * 0x34 + 0x24) = f48;
-                *(S_001425B0_V3 *)((char *)f14 + slot * 0x34 + 4) = f64;
-                *(S_001425B0_V3 *)((char *)f14 + slot * 0x34 + 0x10) = f70;
-                *(int *)((char *)f14 + slot * 0x34 + 0x1C) = f7C;
-                *(int *)((char *)f14 + slot * 0x34 + 0x20) = f80;
-                *(int *)((char *)f14 + slot * 0x34 + 0x30) = fEC;
+                f14[slot].f24 = f48;
+                f14[slot].f4 = f64;
+                f14[slot].f10 = f70;
+                f14[slot].f1C = f7C;
+                f14[slot].f20 = f80;
+                f14[slot].f30 = fEC;
                 func_00142180(slot, f38[f48], pos, chunk, flag);
                 maxv = D_00275544;
                 n = 0;
@@ -481,8 +482,8 @@ void C_00142AF0::func_00142810(void)
                     if (maxv < t)
                         maxv = t;
                 }
-                if (*(float *)((char *)f14 + slot * 0x34) < maxv + f58)
-                    *(float *)((char *)f14 + slot * 0x34) = maxv + f58;
+                if (f14[slot].f0 < maxv + f58)
+                    f14[slot].f0 = maxv + f58;
                 f38[f48] += chunk;
                 if (f38[f48] >= f24) {
                     f38[f48] = 0;
