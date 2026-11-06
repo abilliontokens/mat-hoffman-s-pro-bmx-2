@@ -325,6 +325,7 @@ struct C_000B1350 {
     S_000B1350_A **f44;
     S_000B1350_B **f48;
     S_000B1350_Node **f4C;
+    __forceinline S_000B1350_Node *Node_000B1350(int i) { return f4C[i]; }
     void func_000B1350(void);
 };
 
@@ -398,7 +399,7 @@ void C_000B1350::func_000B1350(void)
         for (k = 0; k < f44[i]->f4C; k++) {
             S_000B1350_Sub *s = f44[i]->f48[k];
             int cur = (int)s->f4;
-            S_000B1350_Node *node = f4C[s->f0];
+            S_000B1350_Node *node = *(S_000B1350_Node **)((char *)this->f4C + s->f0 * 4);
             if (node->f4 > 0) {
                 float t = s->f4 - (float)cur;
                 S_000B1350_Tbl *tbl = node->fC[0]->f3C->f518;
@@ -406,8 +407,8 @@ void C_000B1350::func_000B1350(void)
                 if (next >= tbl->count) {
                     next = 0;
                 }
-                V4_000B1350 *p1 = (V4_000B1350 *)&tbl->f8[next].x;
                 V4_000B1350 *p0 = (V4_000B1350 *)&tbl->f8[cur].x;
+                V4_000B1350 *p1 = (V4_000B1350 *)&tbl->f8[next].x;
                 s->f8 = *p0 + (*p1 - *p0) * t;
             }
         }
