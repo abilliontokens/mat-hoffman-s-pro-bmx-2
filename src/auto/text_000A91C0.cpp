@@ -158,15 +158,16 @@ struct A9_List { char pad[0x24]; int count; A9_Item **items; void func_001577A0(
 struct A9_Arg { char pad[0x348]; int index; char pad34C[0x5c]; A9_List **lists; A9_List *list; };
 struct A9_Global { char pad[0x3a8]; A9_List **lists; char pad3AC[0xfc]; void **models; };
 extern A9_Global *D_002B9120;
-static inline int a9_min(volatile int a, volatile int b) { int x = a, y = b; volatile int result = x < y ? x : y; return result; }
+static inline int a9_min(volatile int a, volatile int b) { int x = a, y = b; return x > y ? y : x; }
 struct C_A9 { char pad[0x24]; int count; A9_Obj **objs; void func_000A9A70(A9_Arg *); };
 extern "C" int func_001EA426(const char *, const char *);
 extern "C" char *func_001E8AC0(char *, int);
 extern "C" void *memset(void *, int, unsigned int);
 void func_0014FF00(const char *, int, int, char *, int);
 extern "C" V4_A91C0 *func_00182980(void *a, void *b);
-void C_000A9820::func_000A91C0(S_A91C0_Reader *stream)
+void C_000A9820::func_000A91C0(S_A91C0_Reader * volatile stream)
 {
+    C_000A9820 * volatile self = this;
     char val[0x104];
     char key[0x104];
     char sect[0x104];
@@ -186,49 +187,101 @@ void C_000A9820::func_000A91C0(S_A91C0_Reader *stream)
     if (stream->func_00169710(D_0027C504) != 0) {
         stream->func_00168C20(D_0027C4EC, 0, &count);
         if (count > 0) {
-            if (objs != 0) {
-                start = num;
-                num = count + start;
-                end = num;
-                objs = (CCObj **)func_001E83E8(objs, end * 4);
+            if (self->objs != 0) {
+                start = self->num;
+                self->num = count + start;
+                end = self->num;
+                self->objs = (CCObj **)func_001E83E8(self->objs, end * 4);
             } else {
                 start = 0;
-                num = count;
-                end = num;
-                objs = (CCObj **)func_001E8A44(end * 4);
+                self->num = count;
+                end = self->num;
+                self->objs = (CCObj **)func_001E8A44(end * 4);
             }
             for (i = start; i < end; i++) {
                 func_001ADCC0(sect, 0x104, D_0027C4DC, i - start + 1);
                 if (stream->func_00169710(sect) != 0) {
                     stream->func_00168BE0(D_0027C4D0, D_002764F0, name, -1);
                     stream->func_00168C20(D_0027C4BC, 1, &nColors);
-                    objs[i] = (CCObj *)func_001E8A44(0x12c);
+                    self->objs[i] = (CCObj *)func_001E8A44(0x12c);
                     len = a91c0_min(0x103, a91c0_strlen(name));
-                    func_001E8920((char *)objs[i], name, len);
-                    ((char *)objs[i])[len] = 0;
-                    objs[i]->n = nColors;
-                    objs[i]->elems = (CCElem **)func_001E8A44(nColors * 4);
+                    func_001E8920((char *)self->objs[i], name, len);
+                    ((char *)self->objs[i])[len] = 0;
+                    self->objs[i]->n = nColors;
+                    self->objs[i]->elems = (CCElem **)func_001E8A44(nColors * 4);
                     for (k = 0; k < nColors; k++) {
-                        objs[i]->elems[k] = 0;
+                        self->objs[i]->elems[k] = 0;
                     }
                     stream->func_00168C20(D_0027C4AC, 1, &nCycles);
-                    objs[i]->count = nCycles;
-                    objs[i]->r = (float *)func_001E8A44(nCycles * 4);
-                    objs[i]->g = (float *)func_001E8A44(nCycles * 4);
-                    objs[i]->b = (float *)func_001E8A44(nCycles * 4);
-                    objs[i]->idx = 0;
+                    self->objs[i]->count = nCycles;
+                    self->objs[i]->r = (float *)func_001E8A44(nCycles * 4);
+                    self->objs[i]->g = (float *)func_001E8A44(nCycles * 4);
+                    self->objs[i]->b = (float *)func_001E8A44(nCycles * 4);
+                    self->objs[i]->idx = 0;
                     for (k = 0; k < nCycles; k++) {
                         func_001ADCC0(key, 0x104, D_0027C49C, k + 1);
                         stream->func_00168BE0(key, D_0027C494, val, -1);
                         t = *func_00182980(tmp, val);
-                        objs[i]->r[k] = t.x;
-                        objs[i]->g[k] = t.y;
-                        objs[i]->b[k] = t.z;
+                        self->objs[i]->r[k] = t.x;
+                        self->objs[i]->g[k] = t.y;
+                        self->objs[i]->b[k] = t.z;
                     }
                     stream->func_00168C50(D_0027C488, 1.0f, &duration);
-                    objs[i]->f120 = duration;
-                    objs[i]->dur = duration / ((float)nCycles - 1.0f);
-                    objs[i]->t = 0;
+                    self->objs[i]->f120 = duration;
+                    self->objs[i]->dur = duration / ((float)nCycles - 1.0f);
+                    self->objs[i]->t = 0;
+                }
+            }
+        }
+    }
+}
+
+extern "C" unsigned int strlen(const char *);
+void C_A95D0::func_000A95D0(S_A95D0_arg *a)
+{
+    char buf[0x104];
+    int i;
+    int j;
+    int k;
+    int m;
+    int n;
+
+    if (num == 0) {
+        return;
+    }
+    for (i = 0; i < num; i++) {
+        k = 0;
+        for (j = 0; j < a->f3AC->num; j++) {
+            A9_Item *e = (A9_Item *)a->f3AC->items[j];
+            if (e != 0 && e->kind == 1 && e->info != 0) {
+                func_0014FF00(e->info->f4 + 0x28, 0, 0, buf, 0);
+                if (func_001EA426(buf, (const char *)objs[i]) == 0) {
+                    objs[i]->arr[k] = e->info->f4;
+                    k++;
+                    if (k >= objs[i]->n) {
+                        break;
+                    }
+                }
+            }
+        }
+        if (k == 0) {
+            for (m = 0; m < (*a->f3A8)->num; m++) {
+                A9_Item *e = (A9_Item *)(*a->f3A8)->items[m];
+                if (e != 0 && e->kind == 1 && e->model != 0) {
+                    n = a9_min(0x103, strlen(e->model->name));
+                    func_001E8920(buf, e->model->name, n);
+                    buf[n] = 0;
+                    char *p = func_001E8AC0(buf, '.');
+                    if (p != 0) {
+                        memset(p, 0, strlen(p));
+                    }
+                    if (func_001EA426(buf, (const char *)objs[i]) == 0) {
+                        objs[i]->arr[k] = e->model;
+                        k++;
+                        if (k >= objs[i]->n) {
+                            break;
+                        }
+                    }
                 }
             }
         }
@@ -308,3 +361,71 @@ C_000A9A00 *C_000A9A00::func_000A9A00(void)
     return this;
 }
 
+extern "C" unsigned int __cdecl strlen(const char *);
+#pragma intrinsic(strlen)
+void C_A9::func_000A9A70(A9_Arg *arg)
+{
+    C_A9 *volatile self = this;
+    char buf[0x104];
+    int i, found, len;
+    A9_Model *model;
+    if (self->count != 0) {
+        for (i = 0; i < self->count; i++) {
+            found = 0;
+            A9_Obj *obj = self->objs[i];
+            if (obj->count == 0) {
+                if (obj->flag) {
+                    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
+                    func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5348, D_002A5D98);
+                } else {
+                    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+                    func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5870, D_002A5D98);
+                }
+                func_001ADCC0(buf, 0x104, D_0027C588, self->objs[i]);
+                model = (A9_Model *)func_001E8A44(0x1e0);
+                if (model) model = model->func_00143580(1);
+                else model = 0;
+                self->objs[i]->models[0] = model;
+                model = self->objs[i]->models[0];
+                if (model->load(buf, 0, 1)) {
+                    len = a9_min(0x7f, (int)strlen(buf));
+                    func_001E8920(model->name, buf, len);
+                    model->name[len] = 0;
+                    model->func_00199600(self->objs[i]->vec);
+                    obj = self->objs[i];
+                    model->func_00198F50(obj->a, obj->b, 1, 0, 0);
+                    model->func_0019ABA0(D_002B9120->models[arg->index], 1);
+                    D_002B9120->lists[arg->index]->func_001577A0(model, 0);
+                    self->objs[i]->count = 1;
+                }
+            } else {
+                for (int j = 0; j < arg->list->count; j++) {
+                    A9_Item *item = arg->list->items[j];
+                    if (item && item->kind == 1) {
+                        func_0014FF00(item->info->f4 + 0x28, 0, 0, buf, 0);
+                        if (!func_001EA426(buf, self->objs[i]->name)) {
+                            self->objs[i]->models[found] = (A9_Model *)item->info->f4;
+                            if (++found >= self->objs[i]->count) break;
+                        }
+                    }
+                }
+                if (!found) {
+                    for (int j = 0; j < arg->lists[0]->count; j++) {
+                        A9_Item *item = arg->lists[0]->items[j];
+                        if (item && item->kind == 1 && item->model) {
+                            len = a9_min(0x103, (int)strlen(item->model->name));
+                            func_001E8920(buf, item->model->name, len);
+                            buf[len] = 0;
+                            char *dot = func_001E8AC0(buf, '.');
+                            if (dot) memset(dot, 0, (int)strlen(dot));
+                            if (!func_001EA426(buf, self->objs[i]->name)) {
+                                self->objs[i]->models[found] = item->model;
+                                if (++found >= self->objs[i]->count) break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
