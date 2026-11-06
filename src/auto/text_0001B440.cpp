@@ -348,7 +348,36 @@ struct C_0001B910 {
     int func_001B5720(void);
 };
 
-/* same object layout as C_0001B910, but 0x9c is a float timer here */
+/* same layouts as C_0001B910 / S_0001B910_Anim / S_0001B910_Flags, but the
+   timer fields (0x9c, anim+0x34, flags+0x38/0x3c) are floats here */
+struct S_0001B440_Flags {
+    char pad0[0x24];
+    unsigned char f24;
+    char pad25[0x38 - 0x25];
+    float f38;
+    float f3c;
+    int func_001628A0(float t);
+};
+
+struct S_0001B440_Anim {
+    int pad0;
+    S_0001BE90_Ctx1 *f4;
+    int pad8[2];
+    int f10;
+    void func_00132D70(void);
+    void func_00132CC0(int a, int b, int c);
+    int pad14;
+    S_0001B440_Flags *f18;
+    char pad1C[0x18];
+    float f34;
+    void func_00164820(S_0001B910_Node *node);
+    void func_00166C80(S_0001B910_Node *node, int a);
+    void func_001670C0(float t, int a, int b);
+    void func_00132D20(void);
+    char pad38[0x220 - 0x38];
+    V4_0001B440 f220;
+};
+
 struct C_0001B440 {
     char pad0[0x44];
     int f44;
@@ -372,7 +401,7 @@ struct C_0001B440 {
     int f98;
     float f9C;
     char padA0[0x104];
-    S_0001B910_Anim *f1A4;
+    S_0001B440_Anim *f1A4;
     S_0001B910_Node *func_001B56F0(void);
     int func_001B5720(void);
 };
