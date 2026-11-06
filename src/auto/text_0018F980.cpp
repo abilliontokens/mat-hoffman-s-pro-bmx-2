@@ -163,7 +163,7 @@ struct C_0018F980_Obj {
 };
 struct C_0018F980 {
     char pad0[0x24];
-    int f24;
+    volatile int f24;
     char name[0x104];
     volatile int f12c;
     volatile int f130;
