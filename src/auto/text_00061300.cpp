@@ -17,6 +17,12 @@ struct C_61590_Obj {
 static inline void free_61590(C_61590_Obj *p) {
  if(p) { ((C_61590_Obj *)p)->func_001D6410(); func_001E891B((void *)p); }
 }
+static inline void release_61590(int &p) {
+ if(p) { ((C_61590_Obj *)p)->destroying(1); p=0; }
+}
+static inline void freez_61590(int &p) {
+ if(p) { ((C_61590_Obj *)p)->func_001D6410(); func_001E891B((void *)p); p=0; }
+}
 struct C_00061300 {
     int w[0xBC];
     void func_00157600(int a0);
