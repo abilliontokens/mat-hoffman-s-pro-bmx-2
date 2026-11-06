@@ -6,7 +6,8 @@ struct T { int a; int b; T() {} int func_001EF1E7(); void func_001EF734(char); v
     T* func_001EEF4F(T*); T* func_001EF2FE(T*); T* func_001EF613(int); T* func_001EFD3B(T*, char); T* func_001EFD7A(T*, char*); T* func_001EFAB5(T*, T*);
     void func_001EF935(const T&); T* func_001EEF4F(const T&); T* func_001EF2FE(const T&);
     T func_001EFD3B(char); T func_001EFD7A(char*); T func_001EFAB5(const T&); T* func_001EFAB5(T*, const T&); };
-struct N : T { N() { *(void **)&a = 0; b &= 0xfffffe00; } };
+/* DName default constructor (node = 0, status = valid, flags cleared). */
+struct N : T { N() { a = 0; b &= 0xfffffe00; } };
 extern char* D_002F6A28;
 T* func_001F208F(T*, T*);
 T* func_001F23B8(T*, T*, char, T*, int);
