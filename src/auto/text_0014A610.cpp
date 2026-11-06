@@ -328,11 +328,10 @@ int func_0014A7B0(VSEntry *entries, unsigned int *tokens)
                 VSEntry *e = &entries[tok & 0x1f];
                 e->f0 = index;
                 e->f4 = offset;
-                int type = ((unsigned char *)tokens)[2];
-                e->f8 = type;
+                e->f8 = ((unsigned char *)tokens)[2];
                 e->fC = 0;
                 e->fD = 0;
-                offset += func_0014A6C0(type);
+                offset += func_0014A6C0(e->f8);
                 count++;
             }
             break;
