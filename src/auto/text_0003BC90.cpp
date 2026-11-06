@@ -1,5 +1,6 @@
 /* 1 function from 0x0003BC90 to 0x0003D220, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 struct V4 { float x,y,z,w; };
 struct NodeBC {
  virtual void vf0(int);
@@ -129,4 +130,184 @@ static __forceinline void appendBC(ListBC *l,NodeBC *p) {
 static __forceinline int minBC(const int &a,const int &b) {int r=a;if(r>b)r=b;return r;}
 static __forceinline void copyBC(NodeBC *p,const char *s) {
  int n=minBC(127,(int)strlen(s));func_001E8920(p->name,s,n);p->name[n]=0;
+}
+
+void C_0003BC90::func_0003BC90() {
+ V4 pos={0,0,0,1}, b={0,0,0,1}, a={0,0,0,1}, scale, center;
+ int n;
+ char name[0x104];
+ center.w=1;
+ pos.x=(float)f444; pos.y=f440; pos.z=(float)f448;
+ scale.x=0;scale.y=0;scale.z=0;scale.w=1;
+ a.x=1;a.y=0;a.z=0;
+ b.x=0;b.y=1;b.z=0;
+ V4 corner; corner.w=1;corner.x=pos.x-5.0f;corner.y=pos.y;corner.z=pos.z-5.0f;
+ func_001ADCC0(D_002A5EA0,0x104,D_00276BB4,D_002A5870);
+ func_001ADCC0(D_002A60B0,0x104,D_00276F58,D_002A5870);
+ func_001ADCC0(D_002A4C10,0x104,D_00276BB4,D_002A5870);
+ func_001ADCC0(name,0x32,D_00276F44);
+ NodeBC *p=(NodeBC*)func_001E8A44(0x1e0);
+ p=p?p->func_00143580(1):0;
+ if(p->Load(name,0,0)){
+ n=minBC(127,(int)strlen(name));
+ func_001E8920(p->name,name,n);p->name[n]=0;
+ func_001577A0(p,0);
+ p->func_00199600(pos);
+ p->func_00198F50(&a,&b,1,0,0);
+ p->func_0019ABA0(f54C,2);
+ func_001ADCC0(name,0x32,D_00276F34);
+ p=(NodeBC*)func_001E8A44(0x1e0);
+ f58C=p?p->func_00143580(1):0;
+ if(f58C->Load(name,0,0)){
+ n=minBC(127,(int)strlen(name));
+ func_001E8920(f58C->name,name,n);f58C->name[n]=0;
+ center.x=(float)(f428+(f434-f428)/2);
+ center.y=f440+0.03f;
+ center.z=(float)(f430+(f43C-f430)/2);
+ f58C->func_00199600(center);
+ f58C->func_0019ABA0(*f64->f4A8,2);
+ ((C_0003BC90*)*(void**)f64->f3A8)->func_001577A0(f58C,0);
+
+ int i;
+ for(i=0;i<f64->count;++i) {
+ EntryBC *entry=&f64->entries[i];
+ if(!memcmp(entry->name,D_00276F2C,5)) {
+ char *str=getStringBC(f64,entry->index)->name;
+ func_001ADCC0(D_002A5EA0,0x104,D_00276BB4,D_002A5870);
+ func_001ADCC0(D_002A60B0,0x104,D_00276F58,D_002A5870);
+ func_001ADCC0(D_002A4C10,0x104,D_00276BB4,D_002A5870);
+ NodeBC *text1=(NodeBC*)func_001E8A44(0x1e0);text1=text1?text1->func_00143580(1):0;
+ if(text1->Load(str,0,0)){
+ copyBC(text1,str);appendBC(&f5C8,text1);func_001577A0(text1,0);
+ scale.x=0;scale.y=0;scale.z=1;scale.w=1;
+ text1->func_00199600(pos);text1->func_00198F50(&scale,&b,1,0,0);text1->func_00198390();text1->func_0019ABA0(f54C,2);
+ pos.x+=20.0f;
+ NodeBC *text2=(NodeBC*)func_001E8A44(0x1e0);text2=text2?text2->func_00143580(1):0;
+ if(text2->Load(str,0,0)){
+ copyBC(text2,str);f5C8.func_001CDE90(text2);func_001577A0(text2,0);
+ text2->func_00199600(pos);text2->func_00198F50(&scale,&b,1,0,0);text2->func_00198390();text2->func_0019ABA0(f54C,2);
+ }else {text2->vf2();return;}
+}else {text1->vf2();return;}
+} else if(!memcmp(entry->name,D_00276F00,6)) {
+ for(int j=0;j<f64->entries[i].count;j++) {
+ char *str=getStringBC(f64,f64->entries[i].index+j)->name;
+ func_001ADCC0(D_002A5EA0,0x104,D_00276BB4,D_002A5870);
+ func_001ADCC0(D_002A60B0,0x104,D_00276F58,D_002A5870);
+ func_001ADCC0(D_002A4C10,0x104,D_00276BB4,D_002A5870);
+ func_001ADCC0(D_002A46E8,0x104,D_00276BB4,D_002A5870);
+ char modelName[0x104];
+ func_001ADCC0(name,0x104,D_00275678,D_002A46E8,str);
+ func_001ADCC0(modelName,0x104,D_00276F28,str);
+ func_001ADCC0(str,0x104,D_00276F28,name);
+ ActorBC *actor=(ActorBC*)func_001E8A44(0x1b0);actor=actor?actor->func_001B5110():0;
+ ActorBC *other=(ActorBC*)func_001E8A44(0x1b0);other=other?other->func_001B5110():0;
+ ModelBC *model=(ModelBC*)func_001E8A44(0x4cc);model=model?model->func_00168280():0;
+ ModelBC *model2=(ModelBC*)func_001E8A44(0x4cc);model2=model2?model2->func_00168280():0;
+ if(!model->func_00169490(str,0)) {
+ if(model){model->func_001691E0();func_001E891B(model);}if(model2){model2->func_001691E0();func_001E891B(model2);}
+ if(actor)actor->Destroy(1);if(other)other->Destroy(1);return;
+ }
+ model->func_00169710(modelName);actor->SetModel(model);
+ if(!actor->Init(f64)){
+ if(model){model->func_001691E0();func_001E891B(model);}if(model2){model2->func_001691E0();func_001E891B(model2);}
+ actor->Destroy(1);if(other)other->Destroy(1);return;
+ }
+ appendBC(&f5C8,actor->f1A4->f4);
+ *((char*)actor->f1A4->f4+0x180)|=8;
+ actor->f1A4->f4->func_00199650(&pos);
+ actor->f1A4->f4->func_00198F50(&a,&b,0,1,0);
+ actor->f1A4->func_00132D70();actor->f1A4->func_00132CC0(f54C,0,2);
+ actor->f1A4->func_00164820(actor->f1A4->f18);
+ actor->f1A4->func_001670C0(0,0,0);actor->f1A4->f10=1;actor->f1A4->func_00132D20();
+ actor->f1A4->f4->func_00198390();
+ if(model){model->func_001691E0();func_001E891B(model);}
+ if(!model2->func_00169490(str,0)) {
+ if(model2){model2->func_001691E0();func_001E891B(model2);}
+ actor->Destroy(1);if(other)other->Destroy(1);return;
+ }
+ model2->func_00169710(modelName);other->SetModel(model2);
+ if(!other->Init(f64)) {
+ if(model2){model2->func_001691E0();func_001E891B(model2);}
+ actor->Destroy(1);other->Destroy(1);return;
+ }
+ *((char*)other->f1A4->f4+0x180)|=8;
+ other->f1A4->f4->func_00199650(&pos);other->f1A4->f4->func_00198F50(&a,&b,0,1,0);
+ other->f1A4->func_00164820(actor->f1A4->f18);other->f1A4->func_001670C0(0,0,0);
+ other->f1A4->f10=1;other->f1A4->func_00132D20();other->f1A4->f4->func_00198390();
+ if(model2){model2->func_001691E0();func_001E891B(model2);}
+ if(func_001E8AF0(str,D_00276F20)){f594=actor;f59C=other;}
+ else if(func_001E8AF0(str,D_00276F18)){f590=actor;f598=other;}
+ char *q=actor->f1A4->f4->name;while((*str++=*q++)!=0){}
+ }
+ } else {
+ for(int j=0;j<f64->entries[i].count;j++){
+ int index=f64->entries[i].index+j;
+ char *str=getStringBC(f64,index)->name;
+ char *second=getStringBC(f64,index)->second;
+ func_001ADCC0(D_002A5EA0,0x104,D_00276BB4,D_002A5870);
+ func_001ADCC0(D_002A60B0,0x104,D_00276F58,D_002A5870);
+ func_001ADCC0(D_002A4C10,0x104,D_00276BB4,D_002A5870);
+ NodeBC *first=(NodeBC*)func_001E8A44(0x1e0);first=first?first->func_00143580(1):0;
+ if(first->Load(str,0,0)){
+
+ copyBC(first,str);appendBC(&f5C8,first);func_001577A0(first,0);
+ int len=minBC(0x103,(int)strlen(str));func_001E8920(name,str,len);name[len]=0;
+ for(char *c=name;*c;c++)*c=(char)func_001E8D25(*c);
+ AnimBC *anim=(AnimBC*)func_001E8A44(0x1e0);anim=anim?anim->func_0019B700(1):0;
+ if(anim->func_00129920(5)) {
+ if(func_001E8AF0(name,D_00276D84))anim->f68=D_002B9118;
+ else if(func_001E8AF0(name,D_00276D7C))anim->f68=D_002B9108;
+ else if(func_001E8AF0(name,D_00276D74))anim->f68=D_002B910C;
+ else if(func_001E8AF0(name,D_00276D6C))anim->f68=D_002B911C;
+ else if(func_001E8AF0(name,D_00276D64))anim->f68=D_002B9114;
+ else anim->f68=D_002BA160;
+ if(!anim->func_0019D7B0(first,str)){anim->Destroy();goto anim_done;}
+ }
+ if(anim){appendBC(&f5DC,(NodeBC*)anim);func_001577A0((NodeBC*)anim,0);}
+ anim_done:
+ len=strlen(second);
+ if(len) {
+ p=(NodeBC*)func_001E8A44(0x1e0);p=p?p->func_00143580(1):0;
+ if(!p->Load(second,0,0)){p->vf2();return;}
+ copyBC(p,second);func_001577A0(p,0);
+ len=minBC(0x103,(int)strlen(second));func_001E8920(name,second,len);name[len]=0;
+ func_000347F0(name);
+ anim=(AnimBC*)func_001E8A44(0x1e0);anim=anim?anim->func_0019B700(1):0;
+ if(anim->func_00129920(5)) {
+ if(func_001E8AF0(name,D_00276D84))anim->f68=D_002B9118;
+ else if(func_001E8AF0(name,D_00276D7C))anim->f68=D_002B9108;
+ else if(func_001E8AF0(name,D_00276D74))anim->f68=D_002B910C;
+ else if(func_001E8AF0(name,D_00276D6C))anim->f68=D_002B911C;
+ else if(func_001E8AF0(name,D_00276D64))anim->f68=D_002B9114;
+ else anim->f68=D_002BA160;
+ if(!anim->func_0019D7B0(p,second)){anim->Destroy();goto second_done;}
+ }
+ if(anim){f5DC.func_001CDE90((NodeBC*)anim);func_001577A0((NodeBC*)anim,0);}
+ second_done:
+ V4 v1,v2;first->func_00199B00(&v1,0);p->func_00199B00(&v2,0);
+ getStringBC(f64,index)->f310=p;
+ if(getStringBC(f64,index)->f36C)p->func_00199600(corner);else p->func_00199600(pos);
+ p->func_00198F50(&a,&b,1,0,0);p->func_00198390();p->func_0019ABA0(f54C,2);
+ }
+ char *third=getStringBC(f64,index)->third;
+ len=strlen(third);
+ if(len){func_00035C10(first,1,third,&pos,&a,&b,0,1);f570->vf4();}
+ if(getStringBC(f64,index)->f364){
+ char path[0x104],fullPath[0x104];
+ func_001ADCC0(path,0x104,getStringBC(f64,index)->name);
+ char *dot=func_001E8AC0(path,'.');
+ if(dot){unsigned int n=strlen(dot);memset(dot,0,n);}
+ func_001ADCC0(fullPath,0x104,D_00276F0C,D_002A5EA0,path);
+ int resource=D_002BEAAC->func_0013C9F0(fullPath,D_00276274);
+ if(resource!=-1)D_002BEAAC->func_0013C110(resource);
+ }
+ if(getStringBC(f64,index)->f36C)first->func_00199600(corner);else first->func_00199600(pos);
+ first->func_00198F50(&a,&b,1,0,0);first->func_00198390();first->func_0019ABA0(f54C,2);
+ }else {first->vf2();return;}
+ }
+ }
+ }
+ D_002A829C->func_00161680();D_002AA6C0->func_001B2640();
+} else if(f58C)f58C->vf0(1);
+} else p->vf0(1);
 }
