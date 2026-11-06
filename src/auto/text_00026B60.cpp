@@ -83,6 +83,7 @@ struct C_000273F0 {
 
 extern char D_00276690[];
 extern V4_000273F0 D_002A10F0;
+extern float D_002A10F4, D_002A10F8, D_002A10FC;
 extern V4_000273F0 D_002A1110;
 void func_00026340(V4_000273F0 *out, V4_000273F0 *in);
 
