@@ -171,8 +171,8 @@ static __forceinline S_1561_State *Init1561B(void *p) { S_1561_State *s = (S_156
 static __forceinline S_1561_State *Init1561C(void *p) { S_1561_State *s = (S_1561_State *)p; s->vtbl = &D_00286E74; s->kind = 3; s->owner = 0; return s; }
 static __forceinline S_1561_State *Init1561D(void *p) { S_1561_State *s = (S_1561_State *)p; s->vtbl = &D_00286E84; s->kind = 4; s->owner = 0; return s; }
 static __forceinline S_1561_State *Init1561E(void *p) { S_1561_State *s = (S_1561_State *)p; s->vtbl = &D_00286E94; s->kind = 5; s->owner = 0; return s; }
-static inline int min_1561(const volatile int &a, const volatile int &b) { return a > b ? b : a; }
-#define CopyPath1561(dst, src, len, lim, res) { int n; len = strlen(src); lim = 0x103; res = min_1561(lim, len); n = res; func_001E8920(dst, src, n); (dst)[n] = 0; }
+template <class T> inline T min_1561(T a, T b) { return a > b ? b : a; }
+#define CopyPath1561(dst, src, len, lim, res) { int ma, mb, n, r; len = strlen(src); lim = 0x103; ma = lim; mb = len; r = ma; if (r > mb) r = mb; res = r; n = res; func_001E8920(dst, src, n); (dst)[n] = 0; }
 struct C_1561 {
     char pad0[0x3c];
     S_1561_F3C *unk3C;
