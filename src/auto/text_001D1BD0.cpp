@@ -15,7 +15,12 @@ struct LoadingRecord {
             unsigned char rep0 : 1, rep1 : 1, rep2 : 1, rep3 : 1, pong0 : 1, pong1 : 1, pong2 : 1, pong3 : 1;
         };
     };
-    unsigned char dir;
+    union {
+        unsigned char dir;
+        struct {
+            unsigned char dirLow : 6, loop : 1, dirHigh : 1;
+        };
+    };
     unsigned short done;
     float step[6];
     float val[6];
