@@ -92,7 +92,7 @@ struct S_6FF80_Data {
     char pad0[0x18]; int f18;
     char pad1c[4]; int f20;
     char pad24[0x120 - 0x24]; int f120;
-    int f128;
+    char pad124[4]; int f128;
     char pad12c[0x188 - 0x12c]; int f188;
     char pad18c[0x1198 - 0x18c]; int f1198;
 };
@@ -247,6 +247,19 @@ char *__stdcall func_0006FE60(int value, char *out)
     }
     out[j] = 0;
     return out;
+}
+
+int C_00070360::func_0006FF80(void)
+{
+    int n = 0;
+    if (fEC->f68->func_0005B960(3, (float)fEC->f64->f4e0->f1a8->fa58)) {
+        S_0006FF80_Buf buf = {0};
+        char out[0x14];
+        func_0006FE60(fEC->f64->f4e0->f1a8->fa58, (char *)&buf);
+        func_001ADCC0(out, 0x104, D_00278C38, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->f128);
+        unk180[n++]->func_0005E840((int)out);
+    }
+    return n;
 }
 
 void C_00070360::func_00070360(void) {
