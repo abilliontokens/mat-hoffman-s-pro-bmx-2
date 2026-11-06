@@ -10,8 +10,8 @@ struct Vec4 {
 extern float D_00275460;
 void func_0011EFA0(Vec4 *,const Vec4 *);
 static __forceinline float Fabs(volatile float f){int i=*(volatile int*)&f&0x7fffffff;return *(float*)&i;}
-static __forceinline void Slice(Vec4 *P,Vec4 *N,const Vec4 *p,const Vec4 *a,const Vec4 *b,const Vec4 *c,const Vec4 *na,const Vec4 *nb,const Vec4 *nc,int k){
- const Vec4 *v[4],*vn[4];int count=0;
+static __forceinline void Slice(Vec4 *P,Vec4 *N,const Vec4 *p,const Vec4 *a,const Vec4 *b,const Vec4 *c,const Vec4 *na,const Vec4 *nb,const Vec4 *nc,int k,const Vec4 **v,const Vec4 **vn){
+ int count=0;
  const float *pa=&p->x,*va=&a->x,*vb=&b->x,*vc=&c->x;
  if(va[k]!=vb[k]&&((va[k]<=pa[k]&&vb[k]>=pa[k])||(va[k]>=pa[k]&&vb[k]<=pa[k]))){v[0]=a;v[1]=b;vn[0]=na;vn[1]=nb;count=2;}
  if(vb[k]!=vc[k]&&((vb[k]<=pa[k]&&vc[k]>=pa[k])||(vb[k]>=pa[k]&&vc[k]<=pa[k]))){v[count]=b;v[count+1]=c;vn[count]=nb;vn[count+1]=nc;count+=2;}
