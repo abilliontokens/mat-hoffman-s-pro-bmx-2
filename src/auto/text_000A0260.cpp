@@ -29,16 +29,14 @@ static inline void Init_A0260(Vec_A0260 *v)
 static inline void Cross_A0260(Vec_A0260 *out, Vec_A0260 *a, Vec_A0260 *b)
 {
     Vec_A0260 *pa = a, *pb = b;
-    __m128 va = _mm_loadu_ps(&pa->x);
-    __m128 vb = _mm_loadu_ps(&pb->x);
-    __m128 sa = va, sb = vb;
-    sa = _mm_shuffle_ps(sa, sa, 0xc9);
-    sb = _mm_shuffle_ps(sb, sb, 0xc9);
-    vb = _mm_mul_ps(vb, sa);
-    va = _mm_mul_ps(va, sb);
-    va = _mm_sub_ps(va, vb);
-    va = _mm_shuffle_ps(va, va, 0xc9);
-    _mm_storeu_ps(&out->x, va);
+    _mm_storeu_ps(&out->x, _mm_shuffle_ps(
+        _mm_sub_ps(
+            _mm_mul_ps(_mm_loadu_ps(&pa->x), _mm_shuffle_ps(_mm_loadu_ps(&pb->x), _mm_loadu_ps(&pb->x), 0xc9)),
+            _mm_mul_ps(_mm_loadu_ps(&pb->x), _mm_shuffle_ps(_mm_loadu_ps(&pa->x), _mm_loadu_ps(&pa->x), 0xc9))),
+        _mm_sub_ps(
+            _mm_mul_ps(_mm_loadu_ps(&pa->x), _mm_shuffle_ps(_mm_loadu_ps(&pb->x), _mm_loadu_ps(&pb->x), 0xc9)),
+            _mm_mul_ps(_mm_loadu_ps(&pb->x), _mm_shuffle_ps(_mm_loadu_ps(&pa->x), _mm_loadu_ps(&pa->x), 0xc9))),
+        0xc9));
 }
 
 struct Cam_A0260 {
@@ -303,6 +301,19 @@ C_000A0AE0 *C_000A0AE0::func_000A0AE0(int a)
 void func_000A0B80(void) {
     D_002A829C->func_00161680();
     D_002AA6C0->func_001B2640();
+}
+
+int Scene_A0B::func_000A0BA0() {
+Link_A0B* p=0;
+List_A0B* l=(List_A0B*)func_001E8A44(0x24); list=l!=(List_A0B*)p?l->func_00157600(1):(List_A0B*)p;
+nodes=(Node_A0B**)func_001E8A44(count*4); other=(Node_A0B**)func_001E8A44(count*4);
+D_002E2930->func_0015D850(count,bounds->a,0xff7fffff,bounds->c,bounds->b,0x7f7fffff,bounds->d,0x42c80000,1);
+for(int i=0;i<count;i++){Node_A0B* n=(Node_A0B*)func_001E8A44(0xa0); nodes[i]=n!=(Node_A0B*)p?n->func_00192900(1):(Node_A0B*)p; n=(Node_A0B*)func_001E8A44(0xa0); other[i]=n!=(Node_A0B*)p?n->func_00192900(1):(Node_A0B*)p; nodes[i]->id=i;other[i]->id=i;if(sectors[i].count>0)nodes[i]->func_00192AF0(sectors[i].data,sectors[i].count);}
+if(edges>0){int j=0; do {p=(Link_A0B*)func_001E8A44(0xb8); p=p?p->func_00179820(1):0; list->func_001577A0(p->func_0017A310(edge[j].data),0);int a=edge[j].a-1,b=edge[j].b-1;nodes[a]->func_00192A50(nodes[b],p);other[a]->func_00192A50(other[b],p);nodes[b]->func_00192A50(nodes[a],p);other[b]->func_00192A50(other[a],p);if(D_002E2930)D_002E2930->func_0015DA60(a,b,p);++j;}while(j<edges);}
+func_001E891B(edge);p=0;edge=0;
+if(count==1 && sectors->c==2 && sectors->a==2){Special_A0B* p=(Special_A0B*)func_001E8A44(0x8b8);D_002F07E8=p?p->func_001C4F40():0;if(!D_002F07E8->func_001C4F70(bounds->a,0xff7fffff,bounds->c,bounds->b,0x7f7fffff,bounds->d,0x42c00000))func_00012140();D_002F07E8->func_001C4FA0(5000);nodes[0]->id=0;other[0]->id=0;nodes[0]->func_00192A90(D_002F07E8);nodes[0]->func_00192AC0(D_002F07E8);other[0]->func_00192A90(D_002F07E8);other[0]->func_00192AC0(D_002F07E8);list->func_001577A0(nodes[0],0);list->func_001577A0(other[0],0);D_002F07E8->v2();}
+else {a=(int*)func_001E8A44(count*4);b=(int*)func_001E8A44(count*4);c=(int*)func_001E8A44(count*4);d=(int*)func_001E8A44(count*4);for(int i=0;i<count;i++){list->func_001577A0(nodes[i],1024);list->func_001577A0(other[i],0);a[i]=0;b[i]=0;c[i]=0;d[i]=0;v66(i);v67(i);}if(flag)v65();}
+Result_A0B* r=(Result_A0B*)func_001E8A44(0x28);D_002EFE78=r?r->func_00193490():0;D_002EFE78->node=other[0];D_002EFE78->special=D_002F07E8;return 1;
 }
 
 extern "C" int strcmp(const char *a, const char *b);
