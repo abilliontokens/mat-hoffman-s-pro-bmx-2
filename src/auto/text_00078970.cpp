@@ -118,7 +118,7 @@ struct S_SelectObj {
 
 struct FPSSave_R8 {
     char pad0[0x14];
-    S_SelectObj **objs;
+    S_SelectObj *objs[1];
 };
 
 struct S_InGameObj {
