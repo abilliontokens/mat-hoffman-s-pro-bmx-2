@@ -38,13 +38,6 @@ struct C_001AC150 {
     int field_0C;
     void func_001AC150(int count);
     void func_001AC1A0(int n);
-    __forceinline char *Get(int n)
-    {
-        if (n > field_0C) {
-            func_001AC1A0(n);
-        }
-        return (char *)field_04[n - 1];
-    }
 };
 
 struct Elem_001AB800 {
@@ -380,9 +373,9 @@ void C_001AC150::func_001AC1A0(int n)
 
 void C_001AC200::func_001AC200(int n)
 {
-    char c;
-    char *s;
     C_001AC150 *args = field_10;
+    char *s;
+    char c;
     if (n > args->field_0C) {
         args->func_001AC1A0(n);
     }
