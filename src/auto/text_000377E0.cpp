@@ -52,6 +52,7 @@ void __stdcall func_00035300(void *a, int b);
 void *func_001E8A44(int size);
 struct V4_378D0 {
     float x, y, z, w;
+    V4_378D0() { x = y = z = 0.0f; w = 1.0f; }
     void init() { x = y = z = 0.0f; w = 1.0f; }
     void init2() { w = 1.0f; x = y = z = 0.0f; }
     void identity();
