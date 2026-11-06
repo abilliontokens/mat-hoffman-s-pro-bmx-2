@@ -85,6 +85,13 @@ struct S_I10_Fos {
     char man[24];
 };
 extern char D_00018000[];
+/* the special-value strings ("1#QNAN", "1#INF", "1#IND", "1#SNAN") with their NULs */
+struct S_I10_Str6 { char c[6]; };
+struct S_I10_Str7 { char c[7]; };
+extern const S_I10_Str7 D_00296334; /* "1#QNAN" */
+extern const S_I10_Str6 D_0029633C; /* "1#INF" */
+extern const S_I10_Str6 D_00296344; /* "1#IND" */
+extern const S_I10_Str7 D_0029634C; /* "1#SNAN" */
 void func_001F5B20(S_U12 *p);
 void func_001F5B4E(S_U12 *p);
 
@@ -409,8 +416,8 @@ void __cdecl func_001F5EC0(S_Ld12_001F60E2 *px, S_Ld12_001F60E2 *py)
     q = (unsigned short *)tm + 2;
     roffs = 0;
     for (i = 5; i > 0; i--) {
-        pxs = (unsigned short *)px + roffs;
-        pys = (unsigned short *)py + (roffs ? 4 : 4);
+        pxs = (unsigned short *)((char *)px + roffs * 2);
+        pys = (unsigned short *)((char *)py + 8);
         for (j = i; j > 0; j--) {
             if (func_001F5AA1(*(unsigned int *)(q - 2), (unsigned int)*pxs * (unsigned int)*pys, (unsigned int *)(q - 2))) {
                 ++*q;
