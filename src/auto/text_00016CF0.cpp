@@ -8,10 +8,6 @@ int func_001E8833();
 static __forceinline float random_00017910() {
     return (float)func_001E8833() * D_002754B0;
 }
-static __forceinline void FloatToInt_00016D60(int *out, float f) {
-    int * volatile p = out;
-    *p = _mm_cvttss_si32(*(__m128 *)&f);
-}
 extern float D_002756D0;
 extern float D_002756B8;
 extern float D_002756E8;
@@ -302,18 +298,17 @@ float func_00016D20(float x)
 float func_00016D60(float x)
 {
     int n;
-    volatile float t;
     int * volatile p = &n;
+    float t = x * D_002756EC;
     float r;
 
-    t = x * D_002756EC;
     *p = _mm_cvttss_si32(*(__m128 *)&t);
     r = x - (float)n * D_002756B8;
     if (r > D_002756D0) {
         return r - D_002756B8;
     }
     if (r < D_002756E8) {
-        return r + D_002756B8;
+        r += D_002756B8;
     }
     return r;
 }
