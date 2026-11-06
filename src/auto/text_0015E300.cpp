@@ -217,7 +217,7 @@ struct C_0015E990 {
     void func_0015E850(void *p);
     void func_0015E920(void *p);
     void func_0015E800(float v);
-    void func_0015E990(int a1, float x, float y, float z, float w, void *p6, void *p7, float *p8, float a9, int a10, int a11, int a12, int a13);
+    C_0015E990 *func_0015E990(int a1, float x, float y, float z, float w, void *p6, void *p7, float *p8, float a9, int a10, int a11, int a12, int a13);
 };
 
 void C_0015E300::func_0015E300(int idx, S_0015E300_V3 *pos, int *val)
