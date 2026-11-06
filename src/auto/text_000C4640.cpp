@@ -66,7 +66,7 @@ struct S_000C50E0_Widget {
     char pad2c[0x10];
     float f3c, f40, f44, f48;
     char pad4c[0xc];
-    unsigned char f58;
+    union { unsigned char f58; struct { unsigned char bits0:2; unsigned char colorChanged:1; unsigned char bits3:5; }; };
     S_000C50E0_Widget *func_001D5760();
     void func_001D5810(int, float, float, int);
     S_000C50E0_Clamp *func_001D5AA0();
