@@ -194,8 +194,14 @@ extern int D_00278690, D_002786A0, D_00278678, D_002786B0;
 extern float D_0027E140;
 void *func_001E8A44(int size);
 
+struct E5EA0_F { char pad0[0x10]; float f10; float f14; };
+struct E5EA0_H { E5EA0_F *func_0018C070(); };
+struct E5EA0_W { E5EA0_F *func_001D5AA0(); };
+extern float D_00275AEC;
+
 struct BmxUIPageParkEditor {
     void func_000C59C0();
+    void func_000C5EA0();
     void *vtbl;
     char pad4[0x120];
     C_5E40_A *f124;
