@@ -23,13 +23,6 @@ struct C_001A7140 {
 extern int D_0028B9E4;
 extern int D_0028B974;
 
-static __forceinline int CmpStore_001A6E90(float t, float k, float *dst)
-{
-    int r = t >= k;
-    *dst = t;
-    return r;
-}
-
 void func_001E891B(void *p);
 
 struct C_Item0 {
