@@ -579,6 +579,7 @@ int C_52D90::func_00052D90()
 int C_52F90::func_00052F90(int a)
 {
     char buf[0x104];
+    int flag = 1;
 
     if (f1C8) {
         if (f2D0) {
@@ -595,15 +596,12 @@ int C_52F90::func_00052F90(int a)
     func_00031260(a);
     if (f1F4 == 0 && f154 == 0) {
         if (f1C8) {
-            if (f1C4 != 0) {
-                if (f1C4->fC0 & 0x20) {
-                    func_001041E0();
-                    f1C4->func_00104190();
-                    return 1;
-                }
+            if (f1C4 != 0 && (f1C4->fC0 & 0x20)) {
+                f1C4->func_001041E0();
+                f1C4->func_00104190();
+                return 1;
             }
         } else {
-            int flag = 1;
             if (f64->f4E0->f1A8->f11F4 == 3 &&
                 f64->f4E0->f1A8->f1210 != 0 &&
                 f64->f4E0->f1A8->f1214 != 0 &&
@@ -648,12 +646,13 @@ int C_52F90::func_00052F90(int a)
                         }
                         ((C_52F90_Root *)D_002A8490)->f4->func_0001D330();
                         f64->f4C0->v28();
-                        if (f1C4 != 0)
+                        if (f1C4 != 0) {
                             f1C4->func_001041C0();
+                            func_00032530();
+                        }
                     }
                 }
             }
-            func_00032530();
             if (f1C0 != 0)
                 f1C0->func_0009CAD0(a, f64->f3B4, f64->f534);
             if (f358 != 0)
