@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 static inline int vehicle_min(const int &a, const int &b) { return a > b ? b : a; }
+static inline const int &vehicle_min_ref(const int &a, const int &b) { return a > b ? b : a; }
 
 extern int D_0027CF8C;
 extern "C" unsigned int __cdecl strlen(const char *);
