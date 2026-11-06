@@ -244,7 +244,7 @@ struct C_5580_R { int func_0005C0E0(); int func_0005C1E0(int i); int func_0005C1
 struct C_59C0_Obj { void *vtbl; int f4; };
 struct C_59C0_Res { char pad0[0x1a4]; C_59C0_Obj *f1a4; };
 struct C_59C0_Tab4 { char pad0[0x28]; C_59C0_Res **f28; };
-struct C_59C0_Tab3 { char pad0[0x2c]; C_59C0_Tab4 *f2c; };
+struct C_59C0_Tab3 { char pad0[0x2c]; C_59C0_Tab4 *f2c; int func_0001B3C0(int i); };
 struct C_59C0_Tab2 { char pad0[0x484]; C_59C0_Tab3 *f484; };
 struct C_59C0_Sub {
     char pad0[0x150];
