@@ -1,8 +1,9 @@
 /* 1 function from 0x00028130 to 0x00028CD0, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
-struct V4 { float x; float y; float z; float w; };
+struct V4 { float x; float y; float z; float w; V4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; } };
 extern float D_00276600;
 extern float D_002765F0;
 extern float D_002765E0;
@@ -187,7 +188,7 @@ int C_00028130::func_00028130(int *param1, int param2, int *param3)
         nrm.z = cand->v48;
         nrm.w = cand->v4C;
         nrm.y = 0.0f;
-        norm28130((float *)&nrm, (float *)&nrm);
+        AsmVec3Normalize((float *)&nrm, (float *)&nrm);
         float dd = nrm.y * v1.y + nrm.x * v1.x;
         dd = dd + nrm.z * v1.z;
         float ang = func_0014F7E0(dd);
@@ -219,8 +220,7 @@ int C_00028130::func_00028130(int *param1, int param2, int *param3)
         float dy = point.y - resF.y;
         float dz = point.z - resF.z;
         float ssq = dz * dz + dx * dx + dy * dy;
-        float dist;
-        _mm_store_ss(&dist, _mm_sqrt_ss(_mm_load_ss(&ssq)));
+        float dist = AsmSqrtF(ssq);
         V4 diffA;
         diffA.x = cand->p20 - point.x;
         diffA.y = cand->p24 - point.y;
@@ -231,8 +231,8 @@ int C_00028130::func_00028130(int *param1, int param2, int *param3)
         diffB.y = cand->p34 - point.y;
         diffB.z = cand->p38 - point.z;
         diffB.w = 1.0f;
-        norm28130((float *)&diffA, (float *)&diffA);
-        norm28130((float *)&diffB, (float *)&diffB);
+        AsmVec3Normalize((float *)&diffA, (float *)&diffA);
+        AsmVec3Normalize((float *)&diffB, (float *)&diffB);
         int flag = 1;
         float dot = diffB.z * diffA.z + diffB.x * diffA.x + diffB.y * diffA.y;
         int ti2 = *(int *)&f120 & 0x7fffffff;
