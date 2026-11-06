@@ -3,8 +3,8 @@
 
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 
-static inline int mse_max(int a, int b) { volatile int r = a < b ? b : a; return r; }
-static inline int mse_min(volatile int a, int b) { int x = a; volatile int r = x > b ? b : x; return r; }
+template <class T> inline const T &mse_max(const T &a, const T &b) { return a < b ? b : a; }
+template <class T> inline const T &mse_min(const T &a, const T &b) { return b < a ? b : a; }
 
 struct S_001A2C00_Vec {
     int x;
