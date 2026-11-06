@@ -2,6 +2,8 @@
 #include "common.h"
 #include "ghidra.h"
 extern float D_0027DE74, D_00278C48;
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 
 struct S_000F4BA0_Obj301D0 {
     int func_000301D0(void);
