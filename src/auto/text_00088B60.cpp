@@ -45,10 +45,7 @@ struct C_00088F70 {
 struct C_000891A0 {
     void *vtbl;
     char pad4[0x20];
-    u32 f24;
-    u32 f28;
-    u32 f2C;
-    u32 f30;
+    u32 f24[4];
     char pad34[0x68];
     u32 f9C;
     u32 fA0[16];
@@ -310,11 +307,8 @@ bool C_00089040::func_00089040(void)
 C_000891A0 *C_000891A0::func_000891A0(int unused)
 {
     ((C_00157600 *)this)->func_00157600(1);
-    *(void *volatile *)this = (void *)&D_00279A44;
-    f24 = 0;
-    f28 = 0;
-    f2C = 0;
-    f30 = 0;
+    vtbl = &D_00279A44;
+    memset(&f24, 0, 0x10);
     memset(fA0, 0, sizeof(fA0));
     memset(fE0, 0, sizeof(fE0));
     f120 = 0;
