@@ -48,6 +48,7 @@ struct GObjRoot_7E {
     int f274;
     char pad278[0x2e8 - 0x278];
     GObj2E8_7E *p2E8;
+    char *p2EC;
 };
 
 extern int D_002B9060;
