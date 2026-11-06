@@ -84,6 +84,34 @@ struct V4f_0016D6A0 {
     void Set(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
 };
 
+struct Particle_0016DEA0 {
+    char pad0[0x2c];
+    int f2C;
+    int f30;
+    char pad34[0x10];
+    u32 f44;
+    void *f48;
+};
+
+struct Pool_0016DEA0 {
+    char pad0[0x11c];
+    int count;
+    char pad120[4];
+    int max;
+    char pad128[4];
+    Particle_0016DEA0 **items;
+};
+
+struct C_0016DEA0 {
+    char pad0[0x64];
+    Pool_0016DEA0 *f64;
+    char pad68[0x118];
+    int f180;
+    char pad184[0x9c];
+    float f220;
+    void func_0016DEA0(void);
+};
+
 struct C_001D3F50 {
     void func_001D3F50(void);
 };
