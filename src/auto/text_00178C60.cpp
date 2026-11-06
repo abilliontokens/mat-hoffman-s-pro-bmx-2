@@ -40,20 +40,21 @@ static __forceinline void sub_179950(float *out, Vec4 *a, Vec4 *b)
     out[3] = 1.0f;
 }
 
+static __forceinline __m128 norm_ps_179950(__m128 v)
+{
+    __m128 sq = _mm_mul_ps(v, v);
+    __m128 len = _mm_add_ss(_mm_add_ss(_mm_movehl_ps(sq, sq), sq), _mm_shuffle_ps(sq, sq, 0xe1));
+    __m128 minv = _mm_load_ss(&D_00288EC0);
+    len = _mm_add_ss(len, _mm_and_ps(_mm_cmplt_ss(len, minv), minv));
+    __m128 r = _mm_rsqrt_ss(len);
+    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_00288EA0)),
+                              _mm_sub_ss(_mm_load_ss(&D_00288EB0), _mm_mul_ss(_mm_mul_ss(len, r), r)));
+    return _mm_mul_ps(_mm_shuffle_ps(scale, scale, 0), v);
+}
+
 static __forceinline void norm_179950(float *out, float *in)
 {
-    __m128 v = _mm_loadu_ps(in);
-    __m128 sq = _mm_mul_ps(v, v);
-    __m128 len = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
-    len = _mm_add_ss(len, _mm_shuffle_ps(sq, sq, 0xe1));
-    __m128 minv = _mm_load_ss(&D_00288EC0);
-    __m128 cmp = _mm_cmplt_ss(len, minv);
-    len = _mm_add_ss(len, _mm_and_ps(cmp, minv));
-    __m128 r = _mm_rsqrt_ss(len);
-    __m128 t = _mm_mul_ss(_mm_mul_ss(len, r), r);
-    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_00288EA0)), _mm_sub_ss(_mm_load_ss(&D_00288EB0), t));
-    scale = _mm_shuffle_ps(scale, scale, 0);
-    _mm_storeu_ps(out, _mm_mul_ps(scale, v));
+    _mm_storeu_ps(out, norm_ps_179950(_mm_loadu_ps(in)));
 }
 void func_00179370(Vec4 *out, Vec4 *in);
 
