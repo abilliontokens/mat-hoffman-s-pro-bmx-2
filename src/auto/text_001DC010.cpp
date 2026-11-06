@@ -306,7 +306,7 @@ int __stdcall func_001DCA56(int *outType, void *outData)
 
     if (page != 0) {
         type = page->launchType;
-        if (type == 2 || type == 3 || D_00010118->titleId == page->titleId) {
+        if (type == 2 || type == 3 || page->titleId == (*(S_XbeCertificate * volatile *)&D_00010118)->titleId) {
             *outType = type;
             memcpy(outData, (char *)*_imp__LaunchDataPage + 0x400, 0xC00);
             page = *_imp__LaunchDataPage;
