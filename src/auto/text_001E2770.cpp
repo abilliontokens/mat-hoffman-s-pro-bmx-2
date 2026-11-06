@@ -96,7 +96,7 @@ extern int D_0019660D;
 
 static __forceinline int dither_noise_step(int &seed, int &prev)
 {
-    int s = seed * (int)&D_0019660D + 1013904223;
+    int s = seed * 1664525 + 1013904223;
     int n;
     seed = s;
     s >>= 2;
@@ -122,14 +122,14 @@ struct C_001E2770 {
 };
 
 extern "C" unsigned char _BitScanForward(unsigned long *index, unsigned long mask);
-#pragma optimize("y", on)
+extern "C" unsigned char _BitScanForward(unsigned long *Index, unsigned long Mask);
+#pragma intrinsic(_BitScanForward)
 int __fastcall func_001E2770(unsigned long mask)
 {
     unsigned long index;
     _BitScanForward(&index, mask);
     return (int)index;
 }
-#pragma optimize("", on)
 int __stdcall func_001E2774(const char *name)
 {
     S_AnsiString target;
@@ -363,11 +363,11 @@ int __stdcall mix_dither_block(S_func_001E2B60_arg0 *self, S_func_001E2B60_arg1 
     short *src = arg->f0;
     float *dst = arg->f60;
     char *flags = arg->f8;
-    float *a = arg->fc;
     int *b = arg->f10;
-    int i = 0;
+    float *a = arg->fc;
     int seg = 0;
     int j = 0;
+    int i;
 
     if (self->f30 == 0) {
         memset(dst, 0, self->f324 * 4);
@@ -376,7 +376,7 @@ int __stdcall mix_dither_block(S_func_001E2B60_arg0 *self, S_func_001E2B60_arg1 
         }
         memset(dst + self->f328, 0, (self->f60 - self->f328) * 4);
     } else {
-        float amp = self->f340 * D_002902B8;
+        float amp = self->f340 * 1.86264515e-09f;
         int n = self->f324;
         int k = 0;
         int end;
@@ -402,7 +402,7 @@ int __stdcall mix_dither_block(S_func_001E2B60_arg0 *self, S_func_001E2B60_arg1 
                 end = self->f328;
             }
             if (flags[seg] == 1) {
-                float g = func_00243639(b[k]) * a[k] * inv * D_002902B8;
+                float g = func_00243639(b[k]) * a[k] * inv * 1.86264515e-09f;
                 for (; i < end; i++) {
                     dst[i] = dither_noise(self) * gains[i] * g;
                 }
