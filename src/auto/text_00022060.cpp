@@ -225,7 +225,7 @@ void __stdcall func_00011FF0(void *p, int stride, int count, void *ctor);
 void func_00021720(void);
 
 struct S_00022730_Vec3 {
-    int x, y, z;
+    float x, y, z;
 };
 
 /* one 0x18-byte keyframe: two vectors */
@@ -515,8 +515,8 @@ void C_000229C0::func_000229C0(Arg_000229C0 *arg)
 void C_B70::func_00022B70()
 {
     int i, j;
-    f2c = 0;
-    f48 = 0;
+    *(volatile int *)&f2c = 0;
+    *(volatile int *)&f48 = 0;
     G_B70 *g = D_002A8490;
     float t = g->f2e0->f10;
     int n = f34;
