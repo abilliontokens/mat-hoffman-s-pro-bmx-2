@@ -43,6 +43,10 @@ struct S_7C690_Text {
     void func_0005E840(int a);
     void func_001D6600();
 };
+struct S_7C690_TextB {
+    void func_0005E840(int a);
+    void func_001D6600();
+};
 
 struct ResultsScreen {
     char pad0[0x100];
