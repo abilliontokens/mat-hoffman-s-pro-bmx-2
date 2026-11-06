@@ -109,6 +109,24 @@ struct Mat4_0013E4F0 {
     }
 };
 
+/* Sets a 16-byte aligned matrix to the identity with SSE stores. */
+static void IdentityMat4(Mat4_0013E4F0 *mat)
+{
+    __m128 *volatile p = (__m128 *)mat->m;
+    __m128 z = _mm_setzero_ps();
+    __m128 *q = p;
+    float *f = (float *)q;
+
+    q[0] = z;
+    q[1] = z;
+    q[2] = z;
+    q[3] = z;
+    f[0] = 1.0f;
+    f[5] = 1.0f;
+    f[10] = 1.0f;
+    f[15] = 1.0f;
+}
+
 /* Clears a 16-byte aligned matrix with SSE stores. */
 static void ZeroMat4(Mat4_0013E4F0 *mat)
 {
