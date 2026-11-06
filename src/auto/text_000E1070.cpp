@@ -141,7 +141,7 @@ struct S_000E1070_Owner {
 
 /* sound player a page's manager holds at +0x24 */
 struct S_000E1070_Snd {
-    void func_000B9A80(int a, char b);
+    void func_000B9A80(int a, int b);
 };
 
 /* a control the manager hands out by index */
