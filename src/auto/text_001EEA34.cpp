@@ -130,11 +130,8 @@ struct S_001EEFE3 {
     S_001EEFE3 *Tail(void) {
         S_001EEFE3 *p = this;
         S_001EEFE3 *q;
-        for (;;) {
-            q = p->next;
-            if (q == 0) return p;
-            p = q;
-        }
+        while ((q = *(S_001EEFE3 * volatile *)&p->next) != 0) p = q;
+        return p;
     }
 };
 
