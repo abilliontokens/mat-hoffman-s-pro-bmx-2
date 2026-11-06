@@ -206,7 +206,6 @@ extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
 #pragma intrinsic(memcpy)
 extern char D_0027DB60[];
 extern float D_002AA9F4, D_002AA9F8, D_002AA9FC;
-extern const float D_00275998;
 float func_00016D20(float x);
 void func_00167FE0(void *a, void *b, float x, float y, float z);
 
