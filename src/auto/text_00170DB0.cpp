@@ -40,13 +40,39 @@ struct C_00171980 {
     void func_00171980(void);
 };
 
+struct V4_00171340 { float x, y, z, w; };
+struct Mat_00171340 { float m[16]; };
+
 struct C_00171340 {
     void *vtbl;
     char pad4[0x20];
     int u24;
+    int f28;
+    V4_00171340 f2c, f3c, f4c, f5c, f6c, f7c, f8c, f9c;
+    char padAC[4];
+    Mat_00171340 fB0;
+    Mat_00171340 fF0;
+    V4_00171340 f130, f140, f150, f160, f170, f180, f190, f1a0;
+    int pad1B0;
+    int f1b4, f1b8, f1bc;
+    char pad1C0[0x20];
+    int f1e0;
+    char pad1E4[0x20];
+    int f204, f208, f20c, f210, f214;
+    float f218, f21c, f220, f224;
+    int f228, f22c, f230;
+    void *f234;
+    V4_00171340 f238, f248, f258, f268;
     void func_00157600(int a);
-    void func_00171340(int a);
+    void *func_00171340(int a);
 };
+
+extern V4_00171340 D_002A8AC8;
+extern V4_00171340 D_002EF740;
+void __cdecl func_00161C70(void);
+
+static __forceinline void InitA_00171340(V4_00171340 *p) { p->z = 0; p->y = 0; p->x = 0; p->w = 1.0f; }
+static __forceinline void InitC_00171340(V4_00171340 *p) { p->w = 1.0f; p->z = 0; p->y = 0; p->x = 0; }
 
 struct C_001719B0 {
     void func_001719B0(int param_1);
@@ -202,5 +228,11 @@ void C_001719D0::func_001719D0(float param)
         f210 = param;
         f214 = inv;
     }
+}
+
+void C_00171A00::func_00171A00(void *param_1)
+{
+    fB0.func_000264C0(param_1);
+    func_00162210(&fF0, &fB0);
 }
 
