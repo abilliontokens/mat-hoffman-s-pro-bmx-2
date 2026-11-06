@@ -356,7 +356,7 @@ static __forceinline float wrap_angle_00016D60(float x)
     float r;
 
     t = x * D_002756EC;
-    *p = _mm_cvttss_si32(*(__m128 *)&t);
+    *p = _mm_cvttss_si32(_mm_load_ss(&t));
     r = x - (float)n * D_002756B8;
     if (r > D_002756D0) {
         return r - D_002756B8;
@@ -383,10 +383,10 @@ struct C_00019070 {
 
 void C_000186F0::func_000186F0(void *p)
 {
-    C_000186F0 * volatile self = this;
     char bufA[0x104];
     char bufB[0x104];
     char bufC[0x104];
+    C_000186F0 * volatile self = this;
     volatile int len, lim;
     int n, r;
     self->f3C->f4->func_0019ABA0(((G9120_186 *)D_002B9120)->f4A8[((G9120_186 *)D_002B9120)->f348], 2);
