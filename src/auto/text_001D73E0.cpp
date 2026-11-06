@@ -86,7 +86,13 @@ struct XboxVideoCard_001D7D50 {
     int f6CC;
     int f6D0;
     int a6D4[0xC0];
-    volatile u8 f9D4;
+    union {
+        u8 f9D4;
+        volatile struct {
+            u8 b01 : 2;
+            u8 rest : 6;
+        } f9D4b;
+    };
     char pad9D5[3];
     int f9D8;
     XboxVideoCard_001D7D50 *func_001D7D50(void);
