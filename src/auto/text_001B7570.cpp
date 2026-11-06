@@ -25,7 +25,6 @@ struct C_001B7570 {
     char f110[0x104];
     char f214[0x104];
     V4_1B7570 f318;
-    int pad328_0;
     int f328;
     int f32C;
     int func_001B7570(Reader_1B7570 *r);
