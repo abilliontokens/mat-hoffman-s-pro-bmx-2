@@ -101,6 +101,96 @@ struct C_0016CF10 {
     C_0016CF10 *func_0016CF10(void *a, char *name, void *b, u32 *c);
 };
 
+#include <xmmintrin.h>
+
+extern u16 D_002EFE50;
+extern int D_002EFB6C;
+extern float D_002754B0;
+extern float D_002755E8;
+extern float D_0027AA20;
+extern float D_00275460;
+extern float D_00275544;
+extern "C" int __cdecl func_001E8833(void);
+extern "C" int __cdecl func_00011260(int a, int b);
+
+struct Particle_0016D140 {
+    C_Quad pos;
+    C_Quad f10;
+    char pad20[8];
+    int f28;
+    u32 f2C;
+    float f30;
+    float f34;
+    u32 f38, f3C;
+    float f40;
+    u32 f44;
+    void *f48;
+    u32 f4C;
+};
+
+struct Pool_0016D140 {
+    char pad0[0x11C];
+    int count;
+    char pad120[4];
+    int max;
+    char pad128[4];
+    Particle_0016D140 **items;
+};
+
+struct Owner_0016D140 {
+    char pad0[0x90];
+    u16 f90;
+};
+
+struct Ref_0016D140 {
+    char pad0[4];
+    Owner_0016D140 *f4;
+};
+
+struct Parent_0016D140 {
+    char pad0[0x18C];
+    Ref_0016D140 *f18C;
+};
+
+static inline void RoundToInt(float f, int *out) { *out = _mm_cvtss_si32(_mm_set_ss(f)); }
+static inline void TruncToInt(float f, int *out) { *out = _mm_cvttss_si32(_mm_set_ss(f)); }
+
+struct C_0016D140 {
+    void *vtbl;
+    char pad4[0x20];
+    C_Quad f24;
+    char pad34[0x20];
+    C_Quad f54;
+    Pool_0016D140 *f64;
+    Parent_0016D140 *f68;
+    char pad6C[0x104];
+    float f170;
+    float f174;
+    u32 f178;
+    float f17C;
+    float f180;
+    char pad184[8];
+    u32 f18C;
+    u32 f190;
+    char pad194[4];
+    u32 f198;
+    char pad19C[0xC];
+    int f1A8, f1AC;
+    char pad1B0[4];
+    float f1B4;
+    char pad1B8[4];
+    int *f1BC;
+    int f1C0;
+    int f1C4, f1C8;
+    char pad1CC[0x24];
+    float f1F0[4];
+    float f200[4];
+    float f210;
+    int f214;
+    int func_00169E10(float dt);
+    int func_0016D140(float dt);
+};
+
 C_0016CE80 *C_0016CE80::func_0016CE80(void *param)
 {
     u32 *p;
