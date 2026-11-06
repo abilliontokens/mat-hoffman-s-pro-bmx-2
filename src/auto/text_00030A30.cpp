@@ -185,6 +185,8 @@ struct C_0009A290 {
     int f194;
     C_0009A290 *func_0009A290(void *a0, char *a1, int a2);
     void func_0009C770(void);
+    ~C_0009A290();
+    static void operator delete(void *p) { func_001E891B(p); }
 };
 
 struct C_00031840 {
