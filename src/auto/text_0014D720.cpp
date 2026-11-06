@@ -142,7 +142,7 @@ extern int D_002A7690;
 extern int D_002A7694;
 extern int D_002A7698;
 extern int D_002A769C;
-extern int D_002A768C;
+static int D_002A768C = -1;
 extern char D_00286A00[];
 extern char D_002869E8[];
 extern char D_002869D0[];
