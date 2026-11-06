@@ -23,6 +23,13 @@ struct V4_0015D0A0 {
     void Set(const V3_0015D0A0 &v, float d) { *(V3_0015D0A0 *)&x = v; w = d; }
 };
 
+struct L_0015D0A0 {
+    V4_0015D0A0 pos;
+    V4_0015D0A0 scl;
+    V3_0015D0A0 t;
+    float w;
+};
+
 struct C_001938C0 {
     char pad0[0x28];
     C_001938C0 *func_00193490(void);
@@ -565,7 +572,6 @@ void C_0015D070::func_0015D070(float a0, float a1)
 void C_0015D0A0::func_0015D0A0(int a0, int a1)
 {
     float w;
-    V3_0015D0A0 t;
     V4_0015D0A0 scl;
     V4_0015D0A0 pos;
     float s;
@@ -578,15 +584,9 @@ void C_0015D0A0::func_0015D0A0(int a0, int a1)
         pos.x += s * f6c;
         pos.y += s * f70;
         pos.z += s * f74;
-        t.x = s;
-        t.y = s;
-        t.z = s;
-        scl = V4_0015D0A0(t, w);
+        scl = V4_0015D0A0(V3_0015D0A0(s, s, s), w);
     } else {
-        t.x = f78;
-        t.y = f78;
-        t.z = f78;
-        scl = V4_0015D0A0(t, w);
+        scl = V4_0015D0A0(V3_0015D0A0(f78, f78, f78), w);
     }
     obj = (C_001938C0 *)func_001E8A44(0x28);
     if (obj != 0) {
