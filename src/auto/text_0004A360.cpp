@@ -335,6 +335,26 @@ void BmxEventFPS::func_0004A590(void)
     }
 }
 
+void BmxEventFPS::func_0004A6A0(void)
+{
+    S_Vec4 a;
+    S_Vec4 b;
+    volatile float angle;
+
+    a = Sub_0004A6A0(GetPos_0004A6A0(f64->f4e4[1]), GetPos_0004A6A0(f64->f4e4[0]));
+    func_000499B0(&a, &a);
+    *(S_Vec4Pod *)&a = f64->f4e4[0]->f2c->f1a4->f4->func_00198040(&a);
+    angle = func_0014FBA0(a.x, a.z);
+    *(S_Vec4Pod *)&b = GetPos_0004A6A0(f64->f4e4[1]);
+    f2a4->func_00088A40((int)(angle * D_00277240), &b);
+    a = Sub_0004A6A0(GetPos_0004A6A0(f64->f4e4[0]), GetPos_0004A6A0(f64->f4e4[1]));
+    func_000499B0(&a, &a);
+    *(S_Vec4Pod *)&a = f64->f4e4[1]->f2c->f1a4->f4->func_00198040(&a);
+    angle = func_0014FBA0(a.x, a.z);
+    *(S_Vec4Pod *)&b = GetPos_0004A6A0(f64->f4e4[0]);
+    f2a8->func_00088A40((int)(angle * D_00277240), &b);
+}
+
 S_Item80 *__stdcall func_0004AA80(int param_1)
 {
     int i = 0;
