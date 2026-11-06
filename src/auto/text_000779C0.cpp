@@ -59,7 +59,12 @@ struct Wid_779C0 {
     float f3c, f40, f44, f48, f4c, f50;
     char pad54[4];
     unsigned char b58;
-    __forceinline void SetRGB(unsigned int rgb) { b58 |= 2; color = (color & 0xff000000) | rgb; }
+    __forceinline void SetRGB(unsigned int rgb)
+    {
+        unsigned int alpha = color & 0xff000000;
+        b58 |= 2;
+        color = alpha | rgb;
+    }
     __forceinline void SetAlpha(unsigned int al)
     {
         unsigned char dirty = (unsigned char)(b58 | 2);
@@ -332,30 +337,31 @@ Cnt_779C0 *Cnt_779C0::func_000779C0(void *a)
     p = func_001E8A44(0x60);
     t = p ? ((Txt_779C0 *)p)->func_001D5E90() : 0;
     t98 = t;
-    t->func_001D5FA0(v1, (char *)&D_00278678, 0x14, 0);
+    t->func_001D5FA0(v2, (char *)&D_00278678, 0x14, 0);
     t98->SetColor(0xaaaaaaaa);
     t98->SetPos(320.0f, 40.0f);
-    if (t98->f44 != D_0028F5E0) {
-        t98->f44 = D_0028F5E0;
-        t98->b4e |= 6;
+    t = t98;
+    if (t->f44 != D_0028F5E0) {
+        t->f44 = D_0028F5E0;
+        t->b4e |= 6;
     }
     t98->func_0005E840(*(int *)(D_002A8490->p2E8->p4 + 0xfd8));
     p = func_001E8A44(0x60);
     t = p ? ((Txt_779C0 *)p)->func_001D5E90() : 0;
     tC0 = t;
-    t->func_001D6190(v2, *(int *)(D_002A8490->p2E8->p4 + 0x1128), &D_00278690);
+    t->func_001D6190(v1, *(int *)(D_002A8490->p2E8->p4 + 0x1128), &D_00278690);
     tC0->SetPos(530.0f, 393.0f);
     tC0->SetColor(0xffcccccc);
     p = func_001E8A44(0x60);
     t = p ? ((Txt_779C0 *)p)->func_001D5E90() : 0;
     tBC = t;
-    t->func_001D6190(v2, *(int *)(D_002A8490->p2E8->p4 + 0x7c0), &D_00278690);
+    t->func_001D6190(v1, *(int *)(D_002A8490->p2E8->p4 + 0x7c0), &D_00278690);
     tBC->SetPos(417.0f, 393.0f);
     tBC->SetColor(0xffcccccc);
     p = func_001E8A44(0x60);
     t = p ? ((Txt_779C0 *)p)->func_001D5E90() : 0;
     tC4 = t;
-    t->func_001D6190(v2, *(int *)(D_002A8490->p2E8->p4 + 0x1248), &D_00278690);
+    t->func_001D6190(v1, *(int *)(D_002A8490->p2E8->p4 + 0x1248), &D_00278690);
     tC4->SetPos(80.0f, 393.0f);
     tC4->SetColor(0xffcccccc);
     return this;
