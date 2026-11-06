@@ -200,6 +200,41 @@ struct C_0004C560 {
     int func_0004C720(void);
 };
 
+void C_0004BAF0::func_0004BAF0() {
+    C_0004BF00_Object *p;
+    int i;
+    func_00031630();
+    p = (C_0004BF00_Object *)func_001E8A44(0xf4);
+    fE4 = p ? p->func_00088530(1) : 0;
+    fE4 = fE4->func_00088570(D_002A8490->f2e0->f8);
+    p = (C_0004BF00_Object *)func_001E8A44(0x134);
+    f15C = p ? p->func_0005ECA0(1) : 0;
+    f15C->func_0005EDC0(this);
+    f15C->v4();
+    p = (C_0004BF00_Object *)func_001E8A44(0x140);
+    f1A0 = p ? p->func_000715B0(1) : 0;
+    f1A0->func_00071880(this);
+    f1A0->v4();
+    p = (C_0004BF00_Object *)func_001E8A44(0x1a0);
+    f164 = p ? p->func_0006E330(1) : 0;
+    f164->func_0006ECC0(this);
+    f164->v4();
+    p = (C_0004BF00_Object *)func_001E8A44(0x16c);
+    f190 = p ? p->func_00066C90(1) : 0;
+    f190->func_00066FA0(this);
+    f190->v4();
+    for (i = 0; i < f90; ++i) {
+        p = (C_0004BF00_Object *)func_001E8A44(0xda4);
+        f170[i] = p ? p->func_00082450(1) : 0;
+        f170[i]->func_0008DB70(f64, f64->f4E0->f1A8[i], D_002A8490->f2e0->f8, i, 1, 1, 0);
+        f170[i]->v6();
+        p = (C_0004BF00_Object *)func_001E8A44(0x48);
+        f284[i] = p ? p->func_00086DC0(1) : 0;
+        f284[i]->func_00086E60(f64->f4E0->f1A8[i], D_002A8490->f2e0->f8, i);
+        f284[i]->v6();
+    }
+}
+
 void *C_0004BED0::func_0004BED0(int flags) {
     extern int D_0027732C;
     unk0 = (int)&D_0027732C;
@@ -321,8 +356,9 @@ int C_0004C560::func_0004C560(void)
     func_00034090();
     func_0004C320();
     for (i = 0; i < f1250; i++) {
-        items[i].b = 0;
-        items[i].a = -1;
+        int *p = &items[i].a;
+        p[0] = -1;
+        p[1] = 0;
     }
     f1248[0]->func_00088F70(0, 1);
     f1248[1]->func_00088F70(0, 1);
