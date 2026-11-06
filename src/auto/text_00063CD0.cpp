@@ -1,6 +1,12 @@
 /* 5 functions from 0x00063CD0 to 0x00064BA0, found by Ghidra. */
 #include "common.h"
 struct C_63CD0_Call {
+ char pad0[0x38];
+ unsigned int color;
+ char pad3c[0x58-0x3c];
+ unsigned char flags;
+ void setColor(unsigned int c) { color = (color & 0xff000000) | (c & 0xffffff); flags |= 2; }
+ void setAlpha(unsigned char a) { ((unsigned char *)&color)[3] = a; flags |= 2; }
  void func_0005E7C0(float, float);
  void func_00051140(float);
  void func_00051160(float);
