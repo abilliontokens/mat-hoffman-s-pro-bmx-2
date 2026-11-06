@@ -44,7 +44,7 @@ struct NameList_3D220 {
     int count; char **data;
     char *get(int i) { return (count > 0 && data && i < count) ? data[i] : 0; }
 };
-template <class T> inline const T &Min_3D220(const T &a, const T &b) { return (b < a) ? b : a; }
+template <class T> inline T Min_3D220(const T &a, const T &b) { return (b < a) ? b : a; }
 struct Game_3D220 {
     char pad0[0x3a8]; Mgr_3D220 **f3a8;
     char pad1[0x4a8 - 0x3ac]; int *f4a8; int *f4ac;
@@ -83,6 +83,88 @@ struct C_3D7B0 {
     int func_000389C0(int cell);
     int func_0003D7B0(S_3D7B0_Vec4 v);
 };
+
+int Obj3D::func_0003D220()
+{
+    Obj3D *volatile self = this;
+    flag2cc = 1;
+    int idx = self->f64->f5a4[self->f47c].f44 + self->f480;
+    Node_3D220 *node;
+    Node_3D220 *m = (Node_3D220 *)func_001E8A44(0x1c);
+    if (m) {
+        m->f0 = -1;
+        m->f4 = 0;
+        m->f8 = 0;
+        m->fc = 0;
+        m->f10 = 0;
+        m->f14 = 0;
+        m->f18 = 0;
+        node = m;
+    } else {
+        node = 0;
+    }
+    Obj_3D220 *om = (Obj_3D220 *)func_001E8A44(0x1e0);
+    Obj_3D220 *obj = om ? om->func_00143580(1) : 0;
+    Vec4_3D220 v = *(Vec4_3D220 *)(self->f564->f10 + 0x24);
+    switch (self->f4a8) {
+    case 0: v.x -= 10.0f; break;
+    case 1: v.x += 10.0f; break;
+    case 2: v.z -= 10.0f; break;
+    case 3: v.z += 10.0f; break;
+    case 4: v.x -= 10.0f; v.z -= 10.0f; break;
+    case 5: v.x -= 10.0f; v.z += 10.0f; break;
+    case 6: v.x += 10.0f; v.z -= 10.0f; break;
+    case 7: v.x += 10.0f; v.z += 10.0f; break;
+    }
+    if (obj->v8c(self->f64->names.get(idx), 0, 1)) {
+        float a = ((self->f4bc.x > D_00275460) ? self->f4bc.x - D_00275548 : self->f4bc.x - D_00275460) * 0.2f + D_00275460;
+        float b = (self->f4bc.y - D_00275548) * 0.2f + D_00275460;
+        float c = ((self->f4bc.z > D_00275460) ? self->f4bc.z - D_00275548 : self->f4bc.z - D_00275460) * 0.2f + D_00275460;
+        int len = strlen(self->f64->names.get(idx));
+        int lim = 0x7f;
+        int n = Min_3D220(lim, len);
+        func_001E8920(obj->name, self->f64->names.get(idx), n);
+        obj->name[n] = 0;
+        obj->func_00198F50(&self->f4cc, &self->f4dc, 1, 0, 0);
+        obj->f1a3 &= ~8;
+        obj->func_0019ABA0(*self->f64->f4a8, 2);
+        (*self->f64->f3a8)->func_001577A0(obj, 0);
+        obj->func_0019A0A0(a, b, c);
+        Vec4_3D220 w = v;
+        w.y = v.y - self->f4bc.y;
+        obj->func_00199600(w);
+        obj->func_0019AC50();
+    }
+    node->f8 = obj;
+    Obj2_3D220 *om2 = (Obj2_3D220 *)func_001E8A44(0x2f0);
+    Obj2_3D220 *obj2 = om2 ? om2->func_001BB680(1) : 0;
+    v = *(Vec4_3D220 *)(self->f564->f10 + 0x24);
+    switch (self->f4a8) {
+    case 0: v.x -= 10.0f; break;
+    case 1: v.x += 10.0f; break;
+    case 2: v.z -= 10.0f; break;
+    case 3: v.z += 10.0f; break;
+    case 4: v.x -= 10.0f; v.z -= 10.0f; break;
+    case 5: v.x -= 10.0f; v.z += 10.0f; break;
+    case 6: v.x += 10.0f; v.z -= 10.0f; break;
+    case 7: v.x += 10.0f; v.z += 10.0f; break;
+    }
+    if (obj2->func_001BC040(v, self->f4bc, self->f4cc, self->f4dc, 0, 0, 0x64, 0)) {
+        obj2->func_001BBAE0(*self->f64->f4ac);
+        ((Mgr_3D220 *)self->f64)->func_001577A0(obj2, -1);
+        node->f0 = 1;
+        node->f10 = obj2;
+        self->f554->func_0008A970();
+        self->f474 = 7;
+        self->f564 = (Sub_3D220 *)node;
+        self->func_000399A0(0);
+        self->func_0003AD50();
+        return 1;
+    }
+    delete obj2;
+    func_001E891B(node);
+    return 0;
+}
 
 int C_3D7B0::func_0003D7B0(S_3D7B0_Vec4 v)
 {
