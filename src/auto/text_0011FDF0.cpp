@@ -4,7 +4,7 @@
 
 static __forceinline float Min_0011FDF0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_set_ss(a), _mm_set_ss(b))); return r; }
 static __forceinline float Max_0011FDF0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b))); return r; }
-static __forceinline float Abs_0011FDF0(float f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
+static __forceinline float Abs_0011FDF0(volatile float f) { int i = *(volatile int *)&f & 0x7fffffff; return *(float *)&i; }
 
 extern float D_00275544;
 extern float D_002B9348;
@@ -110,8 +110,6 @@ int func_001206E0(short *tri, S_0011F4B0_V4 pos, float radius, int unused, float
     float scaled[4];
     float delta[4];
     float t;
-    float dist;
-    int adist;
     S_001206E0_Hit *hit;
 
     func_0011F540(&pos, pos, m);
@@ -137,15 +135,9 @@ int func_001206E0(short *tri, S_0011F4B0_V4 pos, float radius, int unused, float
     proj.z = pos.z - scaled[2];
     proj.w = 1.0f;
     if (func_0011FF30(&proj, tri)) goto hit;
-    dist = func_0011FDF0(&pos, &v0, &v1);
-    adist = *(int *)&dist & 0x7fffffff;
-    if (*(float *)&adist < radius) goto hit;
-    dist = func_0011FDF0(&pos, &v1, &v2);
-    adist = *(int *)&dist & 0x7fffffff;
-    if (*(float *)&adist < radius) goto hit;
-    dist = func_0011FDF0(&pos, &v2, &v0);
-    adist = *(int *)&dist & 0x7fffffff;
-    if (*(float *)&adist >= radius) goto done;
+    if (Abs_0011FDF0(func_0011FDF0(&pos, &v0, &v1)) < radius) goto hit;
+    if (Abs_0011FDF0(func_0011FDF0(&pos, &v1, &v2)) < radius) goto hit;
+    if (!(Abs_0011FDF0(func_0011FDF0(&pos, &v2, &v0)) < radius)) goto done;
 hit:
     result = 1;
     hit = D_002B92EC;
