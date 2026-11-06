@@ -147,8 +147,10 @@ struct S_000929A0_Clamp {
 };
 
 struct S_000929A0_Mid {
-    S_000929A0_Clamp *func_0018C070(void);
+    int unk0;
 };
+
+S_000929A0_Clamp *__fastcall func_0018C070(S_000929A0_Mid *self);
 
 struct C_00092890 {
     void *vtbl;
