@@ -2,8 +2,8 @@
 #include "common.h"
 #include "ghidra.h"
 extern float D_00275544;
-extern float D_002755E8;
-extern float D_00275994;
+extern const float D_002755E8;
+extern const float D_00275994;
 struct CsGlobal { char pad[0x124]; int f124; };
 extern CsGlobal *D_002A8490;
 struct CsValue { int id; float time; int f8; };
@@ -84,6 +84,120 @@ struct C_00139B30 {
     undefined4 func_00139B30(byte param_1);
 };
 
+
+int CutScene::func_001396D0(float dt)
+{
+    CsValue *v;
+    int i, k, id, next;
+
+    if (D_002A8490->f124 == 1) {
+        return 1;
+    }
+    if (f34 == 0) {
+        if (f24 == -1) {
+            func_00139360(-1, 0);
+        }
+        if (f40[f24].values != 0) {
+            if (f74 == 1) {
+                if (f40[f24].values->time != D_00275544) {
+                    f40[f24].values->time -= dt;
+                    v = f40[f24].values;
+                    if (v->time < D_00275544) {
+                        if (v->id >= 0 && f7c != 0) {
+                            f7c->func_001A4100(v->id, 0, 0);
+                        }
+                        f40[f24].values->time = 0;
+                    }
+                }
+            } else {
+                for (i = 0; i < f40[f24].valueCount; i++) {
+                    if (f40[f24].values[i].time != D_00275544) {
+                        f40[f24].values[i].time -= dt;
+                        v = &f40[f24].values[i];
+                        if (v->time < D_00275544) {
+                            id = v->id;
+                            if (id >= 0 && f80[id] != 0 && !f80[id]->v7()) {
+                                f80[id]->v5(0);
+                            }
+                            f40[f24].values[i].time = 0;
+                        }
+                    }
+                }
+            }
+        }
+        f28 += dt;
+        if (f40[f24].mode == 1) {
+            if (!(f28 > f40[f24].end)) {
+                goto play;
+            }
+        } else if (f40[f24].clip->func_000B5870()) {
+            goto play;
+        }
+        next = f24 + 1;
+        f28 = 0;
+        if (next >= f3c) {
+            if (f38 == 0) {
+                f34 = 1;
+                func_001390A0(f24);
+                func_001395D0();
+                if (f88 != 0) {
+                    f88(f8c, f24);
+                }
+            } else {
+                func_00139360(f24, 0);
+            }
+        } else {
+            func_00139360(f24, next);
+        }
+play:
+        if (f34 == 0) {
+            for (i = 0; i < f40[f24].trackCount; i++) {
+                f58[f40[f24].tracks[i].id]->func_001670C0(dt, 0, 0);
+                f58[f40[f24].tracks[i].id]->cam->func_0019AC50();
+            }
+            for (i = 0; i < f40[f24].cueCount; i++) {
+                if (f28 >= f40[f24].cues[i].start) {
+                    CsGroup *grp = f60->groups[f40[f24].cues[i].id];
+                    for (k = 0; k < grp->count; k++) {
+                        CsChild *c = grp->children[k];
+                        if (c->f1cc & 2) {
+                            continue;
+                        }
+                        if (c->f1d0 == 1 && c->f1dc <= D_00275544) {
+                            continue;
+                        }
+                        c->v31();
+                        grp->children[k]->v32();
+                        grp->children[k]->v30();
+                        grp->children[k]->v6();
+                    }
+                }
+                if (f40[f24].cues[i].end != D_00275544 && f28 >= f40[f24].cues[i].end) {
+                    CsGroup *grp = f60->groups[f40[f24].cues[i].id];
+                    for (k = 0; k < grp->count; k++) {
+                        CsChild *c = grp->children[k];
+                        if (c->f1cc & 2) {
+                            c->v31();
+                            grp->children[k]->v4();
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if (f2c >= D_00275544) {
+        f50->func_001C4E70(D_00275994 * (f2c * D_002755E8));
+        if (f2c == D_00275544) {
+            f2c = -1.0f;
+        } else {
+            f2c -= dt;
+            if (f2c <= f30) {
+                f2c = f30;
+            }
+        }
+    }
+    return func_00157A00(dt);
+}
 
 undefined4 C_00139B30::func_00139B30(byte param_1)
 {
