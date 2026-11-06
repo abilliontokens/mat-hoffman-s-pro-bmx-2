@@ -56,6 +56,12 @@ extern int D_002A3A40;
 extern int D_002A3A44;
 extern int D_002A3A48;
 
+static __forceinline float Abs_00112A80(float x)
+{
+    int i = *(int *)&x & 0x7fffffff;
+    return *(float *)&i;
+}
+
 struct Vec4_00108370 { float x, y, z, w; };
 struct V3_00104A00 { float x, y, z; };
 struct V4_00104A00 { float x, y, z, w; };
@@ -80,7 +86,7 @@ S_0001C610_V4 func_0001C610(float *a, float *b);
 void Obj::func_00112A80(float dt)
 {
     Obj *self = this;
-    char *volatile keep = (char *)&self;
+    D_gSelfSink = (char *)&self;
     float fv;
     int el;
     if (AT(int, self, 0x5c8) == 0) {
