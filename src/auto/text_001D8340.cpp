@@ -47,7 +47,7 @@ struct XboxVideoCard {
     u32 f150;
     int func_001D8140(S_001D8AA0_Local *out, void *a, u32 b);
     int func_001D8970(int a, int b, int c);
-    void func_001D8AA0(void *param_1);
+    int func_001D8AA0(void *param_1);
     int func_001D8A10(int a1, int a2, int a3, int a4, int a5, int a6, int a7);
 };
 
