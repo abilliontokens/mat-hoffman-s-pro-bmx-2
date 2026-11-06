@@ -84,12 +84,24 @@ static __forceinline void Store_00190200(char *dst, int hi, unsigned int flags, 
         break;
     }
 }
+struct C_1900E0_Ctx {
+    void func_0018F4D0(unsigned int flags);
+    void func_0018F390(char *name, unsigned int flags, void *p);
+};
+struct C_1900E0_Fn {
+    char pad0[0x14];
+    void (__cdecl *fn)(C_190200_Rec *rec, C_1900E0_Ctx *ctx);
+    char pad18[0xc];
+};
 struct C_00190200 {
     char pad0[0x158];
     C_190200_Ent *named;
     char pad15c[8];
     C_190200_Tab *f164;
+    char pad168[8];
+    C_1900E0_Fn *f170;
     int func_0018E7D0(int kind, C_190200_Rec *buf, int *out);
+    void func_001900E0(int a0, int a1, int a2, C_190200_Rec *rec, unsigned int flags, int a5, C_1900E0_Ctx *ctx);
     void func_00190200(int a0, int a1, int a2, C_190200_Src *src, C_190200_Rec *rec, unsigned int flags);
     void func_00190200(int a0, int a1, int a2, int a3, int a4, unsigned int a5);
 };
@@ -202,18 +214,18 @@ void C_0018F980::func_0018F980(int a1, char *volatile str)
         volatile int r;
     } t;
     C_0018F980_Obj *p;
-    const char *s0;
+    const char *s1;
     const char *end;
     char c;
     int n;
 
     this->f24 = a1;
-    s0 = str;
-    end = s0;
+    end = str;
+    s1 = end + 1;
     do {
         c = *end++;
     } while (c != 0);
-    t.a = end - s0 - 1;
+    t.a = end - s1;
     t.b = 0x103;
     {
         int vb = t.b;
@@ -222,7 +234,7 @@ void C_0018F980::func_0018F980(int a1, char *volatile str)
     }
     n = t.r;
     func_001E8920((char *)self->name, str, n);
-    self->name[n] = 0;
+    *(volatile char *)(n + (int)self + 0x28) = 0;
     self->f12c = 4;
     self->f130 = 4;
     self->f134 = 4;
