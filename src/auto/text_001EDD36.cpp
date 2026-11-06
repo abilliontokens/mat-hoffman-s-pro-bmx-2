@@ -188,13 +188,13 @@ int func_001EE8F1(int fh)
     int retval;
 
     if ((unsigned int)fh >= D_002FB240 ||
-        (*((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) == 0) {
+        (((S_Ioinfo *)D_002FB260[fh >> 5] + (fh & 0x1f))->osfile & 1) == 0) {
         *func_001ED075() = 9;
         return -1;
     }
     func_001EE70F(fh);
     __try {
-        if (*((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) {
+        if (((S_Ioinfo *)D_002FB260[fh >> 5] + (fh & 0x1f))->osfile & 1) {
             if (func_001DD563(func_001EE6CE(fh)) == 0) {
                 retval = func_001DD603();
             } else {
@@ -222,9 +222,9 @@ void func_001EE98F(void)
 
 int func_001EE997(void)
 {
-    void func_001EAB1B(void);
+    int __fastcall func_001EAB1B(int);
     *func_001ED075() = 9;
-    return (func_001EAB1B(), -1);
+    return func_001EAB1B(-1);
 }
 
 void __fastcall func_001EE9AB(S_001EE9AB *list, int unused)
@@ -239,27 +239,25 @@ void __fastcall func_001EE9AB(S_001EE9AB *list, int unused)
 
 int func_001EE9D1(void)
 {
-    int value;
-
-    if (*D_002F6A28 == 0) {
+    if (!*D_002F6A28)
         return 0;
-    }
-    if (*D_002F6A28 >= '0' && *D_002F6A28 <= '9') {
-        return *D_002F6A28++ - '0' + 1;
-    }
-    value = 0;
-    while (*D_002F6A28 != '@') {
-        if (*D_002F6A28 == 0) {
-            return 0;
+    else if ((*D_002F6A28 >= '0') && (*D_002F6A28 <= '9'))
+        return (unsigned long)(*(D_002F6A28++) - '0') + 1;
+    else {
+        unsigned long dim = 0;
+
+        while (*D_002F6A28 != '@') {
+            if (!*D_002F6A28)
+                return 0;
+            else if ((*D_002F6A28 >= 'A') && (*D_002F6A28 <= 'P'))
+                dim = (dim << 4) + (*(D_002F6A28++) - 'A');
+            else
+                return -1;
         }
-        if (*D_002F6A28 < 'A' || *D_002F6A28 > 'P') {
+        if (*(D_002F6A28++) != '@')
             return -1;
-        }
-        value = (value << 4) + (*D_002F6A28++ - 'A');
+        else
+            return dim;
     }
-    if (*D_002F6A28++ != '@') {
-        return -1;
-    }
-    return value;
 }
 
