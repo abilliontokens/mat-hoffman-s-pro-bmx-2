@@ -233,7 +233,7 @@ static __forceinline void Xform_00128930(S_00129050_Vec4 *out, const S_00128930_
     out->w = 1.0f;
 }
 
-static inline float Sqrt_00128930(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+static __forceinline float Sqrt_00128930(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
 static __forceinline float Min_00128930(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float Max_00128930(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 
