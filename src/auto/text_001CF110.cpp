@@ -97,6 +97,11 @@ struct StreamIface_001CFC00 {
     virtual long __stdcall Flush();
 };
 
+static __forceinline long ProcessStream_001CFC00(StreamIface_001CFC00 *stream, S_001CF1B0_Packet *packet, void *dst)
+{
+    return stream->Process(packet, dst);
+}
+
 struct SoundThread_001CFDC0 {
     char pad0[0x24];
     int f24;
@@ -475,21 +480,23 @@ int C_001CF1B0::func_001CF1B0(int block, S_001CF1B0_Packet *packet)
 
 void XboxSoundGroup::func_001CF2A0()
 {
-    int n;
-    SoundElem_001CF2A0 *elem;
-    FlatElemList_001CF2A0 copy;
+    PlainElemList_001CF2A0 copy;
     int i;
-    int count = copy.count;
-    SoundElem_001CF2A0 **items = copy.items;
+    int count = 0;
+    SoundElem_001CF2A0 **items = 0;
+    copy.count = 0;
+    copy.growBy = 0;
+    copy.capacity = 0;
+    copy.flags &= 0xfe;
     if (list.count > 0) {
-        n = list.count;
+        int n = list.count;
         items = (SoundElem_001CF2A0 **)func_001E8A44(n * 4);
         copy.items = items;
         copy.growBy = 16;
         copy.capacity = n;
         copy.flags |= 1;
         for (i = 0; i < list.count; i++) {
-            elem = list.at(i);
+            SoundElem_001CF2A0 *elem = list.at(i);
             int ok = 1;
             if (count >= copy.capacity) {
                 ok = copy.func_0015ACA0(count + copy.growBy);
@@ -840,9 +847,9 @@ int SoundThread_001CFDC0::func_001CFC00(void)
         r = func_001CF1B0(index, &pkt);
         if (r < 0) return r;
         if (pkt.size != 0) {
-            int channel = fB0;
             pkt.rest[0] = (u32)&fD0[index];
             pkt.completed = 0;
+            int channel = fB0;
             r = fB8[channel]->Process(&pkt, 0);
             if (r < 0) return r;
         }
