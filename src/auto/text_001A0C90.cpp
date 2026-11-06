@@ -255,7 +255,17 @@ struct C_001A1860 {
     char pad90[0x8];
     int unk98;
     char pad9C[0x104];
-    u8 unk1A0;
+    union {
+        u8 unk1A0;
+        struct {
+            u8 unk1A0_0 : 1;
+            u8 unk1A0_1 : 1;
+            u8 unk1A0_2 : 1;
+            u8 unk1A0_3 : 1;
+            u8 unk1A0_4 : 1;
+            u8 unk1A0_5 : 3;
+        };
+    };
     char pad1A1[0x3];
     int unk1A4;
     int unk1A8;
@@ -268,43 +278,51 @@ struct C_001A1860 {
 void C_001A0C90::func_001A0C90(V4_001A0C90 v)
 {
     C_001A0C90 * volatile self = this;
-    V4_001A0C90 a;
-    V4_001A0C90 b;
-    float len, t, sum;
-    float ang, sn, cs;
-    Mat_001A0C90 mat;
 
     if (f10 == 0) {
         func_001A0510(v);
         return;
     }
     if (f40 != 0) {
-        if (D_002A9D84 < 0)
-            D_002A9D84 = D_002A8490->f18->f1934++;
-        if (D_002A9D80 == -1)
-            D_002A9D80 = D_002A7CB8->func_00026500(D_0028B348, D_002A9D84);
-        D_002A7CB8->func_0019FC40(D_002A9D80);
+        int idx = D_002A9D84;
+        int h;
+        if (idx < 0) {
+            Gfx_001A0C90 *g = D_002A8490->f18;
+            idx = g->f1934++;
+            D_002A9D84 = idx;
+        }
+        h = D_002A9D80;
+        if (h == -1) {
+            h = D_002A7CB8->func_00026500(D_0028B348, idx);
+            D_002A9D80 = h;
+        }
+        D_002A7CB8->func_0019FC40(h);
     }
-    self->f0->func_00199A70(0, &a);
-    b.x = v.x - a.x;
-    b.y = v.y - a.y;
-    b.z = v.z - a.z;
-    b.w = 1.0f;
-    sum = b.z * b.z + b.y * b.y + b.x * b.x;
-    _mm_store_ss(&len, _mm_sqrt_ss(_mm_load_ss(&sum)));
-    t = (len * len - self->f1c) * self->f20;
-    if (t > D_00275460)
-        t = D_00275460;
-    else if (t < D_00275F58)
-        t = D_00275F58;
-    ang = func_0014F890(t) + self->f2c;
-    sn = func_0014F510(ang);
-    cs = func_0014F550(ang);
-    func_0011F400(&mat, self->f44.x, self->f44.y, self->f44.z, sn, cs);
-    mat.m[3] = self->f30;
-    mat.m[7] = self->f34;
-    mat.m[11] = self->f38;
-    self->f4->func_00199BE0(&mat);
+    {
+        V4_001A0C90 a;
+        V4_001A0C90 b;
+        float len, t, sum;
+        float ang, sn, cs;
+        Mat_001A0C90 mat;
+
+        self->f0->func_00199A70(0, &a);
+        b = Sub_001A0C90(v, a);
+        sum = b.z * b.z + b.y * b.y + b.x * b.x;
+        _mm_store_ss(&len, _mm_sqrt_ss(_mm_load_ss(&sum)));
+        t = (len * len - self->f1c) * self->f20;
+        if (t > D_00275460)
+            t = D_00275460;
+        else if (t < D_00275F58)
+            t = D_00275F58;
+        ang = func_0014F890(t) + self->f2c;
+        sn = func_0014F510(ang);
+        cs = func_0014F550(ang);
+        func_0011F400(&mat, self->f44.x, self->f44.y, self->f44.z, sn, cs);
+        mat.m[3] = self->f30;
+        mat.m[7] = self->f34;
+        mat.m[11] = self->f38;
+        self->f4->func_00199BE0(&mat);
+    }
     if (self->f40 != 0) {
         D_002A7CB8->func_0019FC80(D_002A9D80);
     }
@@ -511,7 +529,7 @@ int C_001A1860::func_001A1860(S_001A1860_Buf buf, S_001A1860_Quad q70, S_001A186
     if ((a18 & 2) == 0 || (a18 & 4) != 0 || a21 != 0) {
         unk1A0 |= 4;
     }
-    unk1A0 = MergeBit3((unsigned char)(a22 << 3), unk1A0);
+    unk1A0 ^= ((a22 << 3) ^ unk1A0) & 8;
     unk3C = buf;
     unk70 = q70;
     unk80 = q80;
