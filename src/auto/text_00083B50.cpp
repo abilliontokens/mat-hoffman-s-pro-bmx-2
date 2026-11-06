@@ -293,14 +293,49 @@ struct C_000847A0 {
 };
 
 
+void C_00083B50::func_00083B50(void)
+{
+    int ids[3];
+    int i;
+    int *r;
+    Lookup_00083B50 *lk;
+    ids[0] = (int)D_002786A0;
+    ids[1] = (int)D_00278690;
+    ids[2] = (int)D_0027958C;
+    if (D_002A8490->f10 != f40) {
+        func_001578D0();
+        return;
+    }
+    for (i = 0; i < 2; i++) {
+        lk = D_002A8490->f2EC;
+        r = lk->func_0018C160(ids[i]);
+        if (r && *r) {
+            ClampObj_00083B50 *o = ((MidObj_00083B50 *)*r)->func_0018C070();
+            if (D_00275AEC > o->f10) o->f10 = 10.0f;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) o->f14 = 10.0f;
+        }
+    }
+    CLAMP_00083B50(f164);
+    CLAMP_00083B50(f168);
+    if (f188 && D_002A8490->f2E0->f8 == 0) CLAMP_00083B50(f188);
+    CLAMP_00083B50(f170);
+    CLAMP_00083B50(f174);
+    if (fD84) CLAMP_00083B50(fD84);
+    if (fD88) CLAMP_00083B50(fD88);
+    func_001578D0();
+}
+
 void C_000843C0::func_000843C0(void) {
     unkC5C = 0;
     unkC64 = 0;
     unkCA0 = 0;
 }
 
+extern "C" void *memset(void *, int, unsigned int);
 void C_000843E0::func_000843E0(int a)
 {
+    int i;
+
     f4C = 0;
     f50 = 0;
     f134 = 0;
@@ -314,10 +349,9 @@ void C_000843E0::func_000843E0(int a)
     if (a != 0) {
         fC28 = 0;
         f610 = 0;
-        *(void **)&f808 = 0;
-        *(void **)&f80C = 0;
-        *(void **)&f810 = 0;
-        *(void **)&f814 = 0;
+        for (i = 0; i < 4; i++) {
+            ((int *)&f808)[i] = 0;
+        }
     }
     fDA0 = 1;
     f158 = 0;
@@ -328,6 +362,58 @@ void C_000843E0::func_000843E0(int a)
     pD08->func_001B1980();
     pD0C->func_001B1980();
     fD94 = 0;
+}
+
+void C_000844B0::func_000844B0(void)
+{
+    S_00083B50_B *g = D_002A8490->f2E0;
+    int mode = ((int *)g)[2];
+    S_000844B0_Text *t;
+
+    if (mode == 0) {
+        if (g->f4 == 4) {
+            f178->SetPos(0x441b0000, 0x429a0000);
+        } else {
+            f178->SetPos(0x42200000, 0x42d40000);
+        }
+    } else if (mode == 1) {
+        if (f40 == 0) {
+            f178->func_0005E960(0x28, 0x6a);
+        } else {
+            f178->func_0005E960(0x28, 0x14a);
+        }
+    } else if (mode == 2) {
+        if (f40 == 0) {
+            f178->func_0005E960(0x28, 0x9a);
+        } else {
+            f178->func_0005E960(0x257, 0x9a);
+        }
+    }
+    t = f178;
+    if (t->f48 != 0xff308930) {
+        t->f4E |= 8;
+        t->f48 = (t->f48 & 0xff308930) | (u32)&D_00308930;
+    }
+    f178->SetAlpha();
+    f178->func_0005E840(&D_002795B4);
+    f178->SetScale(0x3fa00000);
+    t = f16C;
+    if (t->f48 != 0xffcccccc) {
+        t->f4E |= 8;
+        t->f48 = (t->f48 & 0xffcccccc) | 0xcccccc;
+    }
+    f16C->SetAlpha();
+    f16C->func_0005E840(&D_002795AC);
+    f16C->SetScale(0x3f800000);
+    fD08->func_001B2270(0xffbfa35a);
+    fD0C->func_001B2270(0xffbfa35a);
+    f208->SetAlpha();
+    fC50->SetAlpha();
+    f164->Show();
+    f168->Show();
+    f170->Show();
+    f174->Show();
+    fDA0 = 0;
 }
 
 void C_000847A0::func_000847A0(void) {
