@@ -174,10 +174,10 @@ static __forceinline void Set4_12A3F0(V4_12A3F0 *v)
 
 static __forceinline void Ident_12A3F0(float *m)
 {
-    _mm_storeu_ps(m, _mm_setzero_ps());
-    _mm_storeu_ps(m + 4, _mm_setzero_ps());
-    _mm_storeu_ps(m + 8, _mm_setzero_ps());
-    _mm_storeu_ps(m + 12, _mm_setzero_ps());
+    ((__m128 *)m)[0] = _mm_setzero_ps();
+    ((__m128 *)m)[1] = _mm_setzero_ps();
+    ((__m128 *)m)[2] = _mm_setzero_ps();
+    ((__m128 *)m)[3] = _mm_setzero_ps();
     m[0] = 1.0f;
     m[5] = 1.0f;
     m[10] = 1.0f;
