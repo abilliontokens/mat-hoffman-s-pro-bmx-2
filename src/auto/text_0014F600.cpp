@@ -4,6 +4,7 @@
 #include <math.h>
 #include <xmmintrin.h>
 #include <stdarg.h>
+#include "asm_helpers.h"
 /* One entry of the sine/cosine table func_0014F6E0 interpolates in. */
 struct S_SinCosEntry {
     float a;
@@ -294,9 +295,8 @@ lookup:
  if (n > 24) n = 24;
  else if (n < 0) n = 0;
  float v = (x - D_002DF740[n * 3]) * D_002DF744[n * 3];
- volatile float t = v;
  int * volatile p = (int *)&x;
- *p = _mm_cvttss_si32(*(__m128 *)&t);
+ *p = (int)v;
  float f = v - (float)*(volatile int *)&x;
  float *table = (float *)D_002DF748[n].f0 + *(int *)&x;
  return ((D_00275460 - f) * table[0] + f * table[1]) * sign + offset;
@@ -348,7 +348,7 @@ void func_0014FA70(void)
     int i;
     for (i = 0; i < 0x80; i++) {
         unsigned int a = (i | 0x1f80) << 17;
-        float root = sqrtf(*(float *)&a);
+        float root = AsmSqrtF(*(float *)&a);
         float r = D_00275460 / root;
         D_002CF6B8[i] = (*(unsigned int *)&r + 0x2000) >> 15;
     }
@@ -562,73 +562,17 @@ void func_0014FED0(void)
 
 void func_0014FF00(char *path, char *drive, char *dir, char *fname, char *ext)
 {
-    char *p;
-    char *dot;
-    char *dot2;
-    char *slash;
-    unsigned int len;
-    int n;
-    volatile int l;
-    char c;
-
-    dot = 0;
-    dot2 = 0;
-    len = strlen(path);
-    if (len >= 1 && path[1] == ':') {
-        if (drive) {
-            func_001E8920(drive, path, 2);
-            drive[2] = 0;
-        }
-        p = path + 3;
-    } else {
-        if (drive) *drive = 0;
-        p = path;
-    }
-    slash = 0;
-    c = *p;
-    if (c) {
-        do {
-            if (c == '/' || c == '\\') {
-                slash = p + 1;
-            } else if (c == '.') {
-                dot2 = p;
-                dot = p;
-            }
-            c = p[1];
-            p++;
-        } while (c);
-    }
-    if (slash) {
-        if (dir) {
-            l = (int)(slash - path);
-            n = min_0014FF00(l, 0xff);
-            func_001E8920(dir, path, n);
-            dir[n] = 0;
-        }
-        path = slash;
-    } else {
-        if (dir) *dir = 0;
-    }
-    if (dot && dot >= path && fname) {
-        l = (int)(dot - path);
-        n = min_0014FF00(l, 0xff);
-        func_001E8920(fname, path, n);
-        fname[n] = 0;
-        if (ext) {
-            l = (int)(p - dot);
-            n = min_0014FF00(l, 0xff);
-            func_001E8920(ext, dot, n);
-            ext[n] = 0;
-        }
-    } else {
-        if (fname) {
-            l = (int)(p - path);
-            n = min_0014FF00(l, 0xff);
-            func_001E8920(fname, path, n);
-            fname[n] = 0;
-        }
-        if (ext) *ext = 0;
-    }
+ char *dot=0; char *p; char *slash; int n; volatile int lens[3]; lens[2]=255;
+ if(strlen(path)>=1 && path[1]==':') { if(drive) {func_001E8920(drive,path,2); drive[2]=0;} path+=3; }
+ else if(drive) *drive=0;
+ slash=0; p=path;
+ char c=*p;
+ if(c) do { if(c=='/' || c=='\\') slash=p+1; else if(c=='.') dot=p; c=p[1]; ++p; } while(c);
+ if(slash) {if(dir) {lens[0]=slash-path; lens[1]=min_0014FF00(lens[2],lens[0]); n=lens[1]; func_001E8920(dir,path,n); dir[n]=0;} path=slash;} else if(dir) *dir=0;
+ if(dot && dot>=path) {
+ if(fname) {lens[0]=dot-path; lens[1]=min_0014FF00(lens[2],lens[0]); n=lens[1]; func_001E8920(fname,path,n); fname[n]=0;}
+ if(ext) {lens[0]=p-dot; lens[1]=min_0014FF00(lens[2],lens[0]); n=lens[1]; func_001E8920(ext,dot,n); ext[n]=0;}
+ } else {if(fname) {lens[0]=p-path; lens[1]=min_0014FF00(lens[2],lens[0]); n=lens[1]; func_001E8920(fname,path,n); fname[n]=0;} if(ext) *ext=0;}
 }
 
 C_001500A0 *C_001500A0::func_001500A0(void)
