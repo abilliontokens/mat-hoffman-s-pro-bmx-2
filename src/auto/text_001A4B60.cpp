@@ -179,12 +179,10 @@ static __forceinline void Xform_001A4B60(const S_001A53C0_V4 *volatile vArg, con
     const S_001A53C0_V4 *v=vArg;
     const __m128 *mat=matArg;
     f32 *out=outArg;
+    __m128 r0=mat[0], r1=mat[1], r2=mat[2];
     __m128 t=_mm_loadu_ps(&v->x);
-    __m128 r0=mat[0];
     _mm_storeh_pi((__m64 *)&out[2],t);
-    __m128 r1=mat[1];
     out[3]=1.0f;
-    __m128 r2=mat[2];
     t=_mm_loadh_pi(t,(__m64 *)&out[2]);
     r0=_mm_mul_ps(r0,t); r1=_mm_mul_ps(r1,t); r2=_mm_mul_ps(r2,t);
     __m128 hi=r0;
