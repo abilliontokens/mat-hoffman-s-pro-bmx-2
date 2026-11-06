@@ -138,7 +138,6 @@ recurse:
 void func_001E87E0(void) {
 }
 
-#pragma optimize("g", on)
 /* CRT _cfltcvt_init: fills the float-conversion dispatch table (D_002AEA14..28).
    Slots 1-4 hold the addresses of optional formatting helpers (_cropzeros, _fassign,
    _forcdecpt, _positive) that were not linked into this build, so they resolve to 0. */
