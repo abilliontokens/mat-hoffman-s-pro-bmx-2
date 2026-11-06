@@ -406,6 +406,55 @@ void C_0006E910::func_0006E910()
     unk19C = 0;
 }
 
+void S_6E970::func_0006E970(int a0)
+{
+    char buf[16];
+
+    unkC0 = 0;
+    v6();
+    unkEC->v18(1);
+    v18(0);
+    unkEC->flags21 &= 0xfb;
+    func_0006E620(a0);
+    unk110 = 0;
+    unkEC->v35();
+    unkEC->unk1F4 = 1;
+    unkF4 = a0;
+    unk114 = 0;
+    unk118 = 0;
+    unk11C = 0;
+    unk108 = 1;
+    unk10C = 1;
+    unk19C = 1;
+    strcpy(buf, D_002A8490->field2E0->field2C0->func_0005B870());
+    if (strcmp(buf, " ") == 0) {
+        switch (D_002A8490->field2E0->mode) {
+        case 0: strcpy(buf, "mat"); break;
+        case 1: memcpy(buf, D_00278BC8, 5); break;
+        case 2: strcpy(buf, "joe"); break;
+        case 3: memcpy(buf, D_00278BC0, 5); break;
+        case 4: memcpy(buf, D_00278414, 5); break;
+        case 5: memcpy(buf, D_002783F8, 5); break;
+        case 6: strcpy(buf, "day"); break;
+        case 7: memcpy(buf, D_00278BB8, 6); break;
+        case 8: memcpy(buf, D_00278BB0, 8); break;
+        case 9: memcpy(buf, D_00278BA8, 6); break;
+        case 10: memcpy(buf, D_00278BA0, 5); break;
+        case 11: memcpy(buf, D_00278B98, 6); break;
+        case 12: strcpy(buf, "big"); break;
+        case 13: memcpy(buf, D_00278B90, 5); break;
+        case 14: memcpy(buf, D_00278B88, 5); break;
+        case 15: memcpy(buf, D_00278B80, 5); break;
+        }
+    }
+    unkD0->func_001B17D0(buf);
+    strcpy(unkA4, buf);
+    lenA0 = strlen((char *)unkD0->func_001B17F0());
+    unkD4->func_001B17D0(unkA4 + lenA0 - 1);
+    unkA4[lenA0 - 1] = 0;
+    unkD0->func_001B17D0(unkA4);
+}
+
 void C_0006E910::func_0006EC60()
 {
     D_002EFDB8->vf7(1);
