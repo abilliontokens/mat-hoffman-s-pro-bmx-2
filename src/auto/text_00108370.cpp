@@ -364,7 +364,6 @@ extern float D_00282AC8;
 float *func_0001E9E0(float *out, float *in);
 S_001091D0_V *func_0001E9E0(S_001091D0_V *out, const S_001091D0_V &in);
 S_001091D0_V func_0001E9E0(S_001091D0_V *in);
-static __forceinline void Copy_001091D0(S_001091D0_V *dst, const S_001091D0_V *src) { *dst = *src; }
 
 struct S_001089C0_Cam {
     Vec4_00108370 func_00165E20(void *a1, int a2, char *a3, void *a4);
