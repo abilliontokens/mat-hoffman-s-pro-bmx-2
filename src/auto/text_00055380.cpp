@@ -267,8 +267,23 @@ struct C_00055380 {
  int func_00055A10(S_00056100_Quat,S_00056100_Quat,S_00056100_Quat,S_00056100_Quat,float);
 };
 
+static __forceinline void CopyQ_00055380(S_00056100_Quat *q, const void *src, u32 y, u32 z, u32 w)
+{
+    u32 *p = (u32 *)q;
+    const u32 *s = (const u32 *)src;
+    p[0] = s[0];
+    p[1] = y;
+    p[2] = z;
+    p[3] = w;
+}
+
+struct VtblStore_00055380 {
+    void * volatile p;
+    VtblStore_00055380() { p = &D_00277CF4; }
+};
+
 struct CameraBehavior_00055380 {
-    __forceinline CameraBehavior_00055380() { ((C_00055380 *)this)->func_0012B510(); *(void * volatile *)this = &D_00277CF4; }
+    __forceinline CameraBehavior_00055380() { ((C_00055380 *)this)->func_0012B510(); }
 };
 
 struct Quat_00055380 : S_00056100_Quat {
