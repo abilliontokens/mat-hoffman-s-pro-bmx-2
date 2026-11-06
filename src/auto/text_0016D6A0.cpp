@@ -258,6 +258,14 @@ struct C_0016D8D0 {
     int f20C;
     float f210[4];
     float f220[4];
+    __forceinline S_0016D8D0_Elem *CurElem(void)
+    {
+        S_0016D8D0_Elem *p = f64->f134;
+        if (p == 0) {
+            return 0;
+        }
+        return &p[f1B0];
+    }
     int func_0016D8D0(S_0016D8D0_Stream *stream);
 };
 
@@ -395,6 +403,7 @@ void C_0016D8A0::func_0016D8A0(C_IntQuad v)
 
 int C_0016D8D0::func_0016D8D0(S_0016D8D0_Stream *stream)
 {
+    S_0016D8D0_Elem *base;
     S_0016D8D0_Elem *e;
     int v;
 
@@ -411,15 +420,16 @@ int C_0016D8D0::func_0016D8D0(S_0016D8D0_Stream *stream)
         stream->func_00168CB0(D_00288600, D_002A8754, f220);
         stream->func_00168C20(D_00288618, 0, &f20C);
         ((C_0016A1D0 *)this)->func_0016A3A0(stream);
-        e = f64->f134;
-        if (e != 0 && (e = &e[f1B0]) != 0) {
+        base = f64->f134;
+        if (base != 0 && (e = base + f1B0) != 0) {
             f1AC = e->f8;
             v = e->f4;
         } else {
             f1AC = 0x2f;
             v = 0x20;
         }
-        f188 = f1A8 = v;
+        f1A8 = v;
+        f188 = v;
         return 1;
     }
     return 0;
@@ -498,10 +508,9 @@ void C_0016DEA0::func_0016DEA0(void)
         r2 = Rand01_0016DEA0();
         r3 = Rand01_0016DEA0();
         p = f64->items[f64->count];
-        p->pos.x = (f200 - f1F0) * r1 + f1F0 + f24;
-        p->pos.y = (f204 - f1F4) * r2 + f1F4 + f28;
-        p->pos.z = (f208 - f1F8) * r3 + f1F8 + f2c;
-        p->pos.w = 1.0f;
+        p->pos = V4f_0016D6A0((f200 - f1F0) * r1 + f1F0 + f24,
+                              (f204 - f1F4) * r2 + f1F4 + f28,
+                              (f208 - f1F8) * r3 + f1F8 + f2c, 1.0f);
         if (f220[1] != -1.0f) {
             float a = Rand01_0016DEA0();
             float b = Rand01_0016DEA0();
@@ -518,10 +527,7 @@ void C_0016DEA0::func_0016DEA0(void)
             if (Rand01_0016DEA0() > D_002755E8) {
                 vz = vz * D_00275F58;
             }
-            p->vel.x = vx;
-            p->vel.y = vy;
-            p->vel.z = vz;
-            p->vel.w = 1.0f;
+            p->vel = V4f_0016D6A0(vx, vy, vz, 1.0f);
         }
         {
             float life = (f210[1] - f210[0]) * Rand01_0016DEA0() + f210[0];
