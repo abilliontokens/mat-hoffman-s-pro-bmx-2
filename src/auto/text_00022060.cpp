@@ -423,11 +423,11 @@ int C_00022550::func_00022550()
             a.z = D_002A0F7C;
             a.w = D_002A0F80;
             a.x = (float)func_001E8833() * D_002754B0 * D_00275AEC + D_00275994;
-            float r = (float)func_001E8833() * D_002754B0 * D_002756B8;
+            float r = D_002756B8 * ((float)func_001E8833() * D_002754B0);
             func_00158390(r, *(V4_000229C0 *)&D_002A0F94, a, &a);
             p.x += a.x;
-            p.y += a.y;
-            p.z += a.z;
+            p.y = *(volatile float *)&a.y + p.y;
+            p.z = *(volatile float *)&a.z + p.z;
             ((Item_000229C0 *)groups[i]->items[j])->func_000223B0(p, 0);
         }
     }
