@@ -97,6 +97,7 @@ struct C_00168280 {
     int func_00168300(const char *name);
     int func_00168550(const char *name, char *dst, int size);
     int func_00168A10(const char *name, int *out);
+    int func_00168B90(const char *name, float *out);
     int func_00168BE0(const char *name, const char *src, char *dst, int d);
     int func_00168C50(const char *name, float def, float *out);
     int func_00168CB0(const char *name, const float *def, float *out);
