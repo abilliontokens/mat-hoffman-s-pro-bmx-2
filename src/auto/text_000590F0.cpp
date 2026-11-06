@@ -1,5 +1,7 @@
 /* 13 functions from 0x000590F0 to 0x0005A0E0, found by Ghidra. */
 #include "common.h"
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 
 extern int D_00277FD4;
 extern float D_002755E8, D_002756D0, D_002756B8, D_002756E8, D_00277FBC, D_00275544, D_002756DC, D_00277FB8, D_00277FB4, D_00277FB0, D_00277D04;
