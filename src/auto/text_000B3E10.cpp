@@ -165,7 +165,10 @@ inline T B3E10_Min(const volatile T &a, const volatile T &b)
 
 __forceinline void B3E10_Copy(char *dst, const char *src, int max)
 {
-    int n = B3E10_Min(max, (int)strlen(src));
+    volatile int length = strlen(src);
+    volatile int limit = max;
+    volatile int size = B3E10_Min(limit, length);
+    int n = size;
     func_001E8920(dst, src, n);
     dst[n] = 0;
 }
