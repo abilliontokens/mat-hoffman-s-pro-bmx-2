@@ -1,5 +1,6 @@
 /* 7 functions from 0x000149A0 to 0x00015980, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
 
 struct AIPedestrian {
     void *func_00015960(unsigned int flags);
@@ -300,17 +301,23 @@ int AIPedCurseState::func_000151F0(float dt)
         if (idx != -1) {
             Vec4_149A0 v;
             char *ped = *(char **)(*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8);
-            ((Ped_151F0 *)owner)->func_001C6B30(*(*(Vec4Src_151F0 **)(*(char **)(ped + 0xa00) + 4))->func_00199B00(&v, 0), dt * D_002756B8);
+            ((Ped_151F0 *)owner)->func_001C6B30(*(*(Vec4Src_151F0 **)(*(char **)(ped + 0xa00) + 4))->func_00199B00(&v, 0), D_002756B8 * dt);
             char *p;
             char *o;
-            if (dist > D_002756C4 && (p = *(char **)((char *)D_002A8490 + 0x2a4)) != 0 && *(int *)(p + 0x1c8) == 0) {
+            if (dist > D_002756C4) {
                 o = (char *)owner;
-                *(int *)(o + 0x3bc) = 3;
+                p = *(char **)((char *)D_002A8490 + 0x2a4);
+                if (p != 0 && *(int *)(p + 0x1c8) == 0) {
+                    *(int *)(o + 0x3bc) = 3;
+                }
                 (*(PedAnim **)(o + 0x384))->func_0008AB90(*(int *)(o + 0x39c));
             } else {
                 o = (char *)owner;
-                if (*(int *)(*(char **)(o + 0x3c) + 0x10) == 1 && (p = *(char **)((char *)D_002A8490 + 0x2a4)) != 0 && *(int *)(p + 0x1c8) == 0) {
-                    *(int *)(o + 0x3bc) = 2;
+                if (*(int *)(*(char **)(o + 0x3c) + 0x10) == 1) {
+                    p = *(char **)((char *)D_002A8490 + 0x2a4);
+                    if (p != 0 && *(int *)(p + 0x1c8) == 0) {
+                        *(int *)(o + 0x3bc) = 2;
+                    }
                     (*(PedAnim **)(o + 0x384))->func_0008AB90(*(int *)(o + 0x398));
                 }
             }
