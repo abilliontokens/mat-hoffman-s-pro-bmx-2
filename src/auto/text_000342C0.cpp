@@ -45,8 +45,48 @@ static __forceinline Vec4 Vec3Add(Vec4 a, Vec4 b)
     return r;
 }
 
-struct S_000342C0_Mgr { char pad0[0x234]; int f234; };
-extern S_000342C0_Mgr *D_002A8490;
+struct S_342C0_1D4 {
+    virtual void v0(int a, const char *s) = 0;
+    virtual void v1() = 0;
+    virtual void v2(int a, int b, const char *s) = 0;
+    virtual void v3(int a, int b, const char *s) = 0;
+    virtual void v4() = 0;
+    virtual void v5() = 0;
+    virtual void v6() = 0;
+    void func_001D35E0();
+    S_342C0_1D4 *func_001D1BB0();
+};
+struct S_342C0_2E0 {
+    int f0;
+    int f4;
+    char pad8[0x2B8];
+    void *f2c0;
+    char pad2C4[0x38];
+    void *f2fc;
+};
+struct S_342C0_Mgr {
+    char pad0[4];
+    void *f4;
+    char pad8[0x228];
+    u8 f230;
+    char pad231[3];
+    int f234;
+    char pad238[0xA8];
+    S_342C0_2E0 *f2e0;
+};
+extern S_342C0_Mgr *D_002A8490;
+extern char D_00276C90[];
+extern char D_00276C84[];
+extern char D_00276C74[];
+extern char D_00276C64[];
+extern char D_00276C58[];
+extern char D_00276C48[];
+extern char D_00276C08[];
+extern void *D_002EFE08;
+extern void *D_002F07B8;
+extern void *D_002F0670;
+extern void *D_002BEAAC;
+extern void *D_002A829C;
 struct C_000342C0 {
     void **vtbl;
     char pad4[0x64];
@@ -228,10 +268,9 @@ void func_000348B0(Vec4 *out, float t, Vec4 p0, Vec4 p1, Vec4 p2, Vec4 p3)
 void C_00034A40::func_00034A40(void *a1, void *a2, void *a3, S_00034A40_Tab *a4, float a5, int a6, int a7, int a8, int a9)
 {
     Vec4 v54, v24, v64, v34, v74;
-    S_00034A40_Elem *e;
-    float ex, ey, ez;
-    float m, t;
-    float u;
+    int ex, ey, ez;
+    int m;
+    float t;
 
     v54.x = v54.y = v54.z = 0.0f; v54.w = 1.0f;
     v24.x = v24.y = v24.z = 0.0f; v24.w = 1.0f;
@@ -245,10 +284,9 @@ void C_00034A40::func_00034A40(void *a1, void *a2, void *a3, S_00034A40_Tab *a4,
     ((S_00034A40_G *)D_002EFDB8)->v7(1);
     ((S_00034A40_G *)D_002EFDB8)->v8();
 
-    e = &a4->f5a4[a6];
-    ex = e->f38;
-    ey = e->f3c;
-    ez = e->f40;
+    ex = a4->f5a4[a6].f38;
+    ey = a4->f5a4[a6].f3c;
+    ez = a4->f5a4[a6].f40;
 
     if (f24 != 0) {
         ((S_00034A40_Obj *)f24)->func_00198390();
@@ -256,7 +294,8 @@ void C_00034A40::func_00034A40(void *a1, void *a2, void *a3, S_00034A40_Tab *a4,
             ((S_00034A40_Obj *)f2c)->func_00198390();
         f24 = 0;
     } else if (f28 != 0) {
-        ((S_00034A40_Obj *)*(void **)((char *)f28->f1a4 + 4))->func_00198390();
+        ((S_34A40_VObj *)f28->f1a4)->f4->func_00198390();
+        ((S_34A40_VObj *)f28->f1a4)->vb4();
         f28 = 0;
     }
     if (a1 != 0) {
@@ -286,20 +325,28 @@ void C_00034A40::func_00034A40(void *a1, void *a2, void *a3, S_00034A40_Tab *a4,
         if (a8 > a9) m = a8; else m = a9;
     }
     {
-        float best;
-        if (ey > ez) {
+        int best;
+        if (ey > ez)
             best = (ey > ex) ? ey : ex;
-        } else {
+        else
             best = (ez > ex) ? ez : ex;
-        }
-        t = (m > best) ? best : m;
+        t = (float)((m > best) ? m : best);
     }
     t = t * D_0027653C;
-    t = t * (float)D_002766C8;
-    u = D_00276220 * t + a5;
-    v34.z = a5 - u;
-    v64.x = v34.y * u - v34.z * u;
-    this->f38 = 0.0f;
-    (void)v54; (void)v64; (void)v74;
+    t = t * D_002766C8;
+    v34.y = a5;
+    v54.x = v34.x;
+    v54.y = D_00276220 * t + a5;
+    v54.z = v34.z - D_00276D50 * t;
+    v24 = Vec4(0.0f, a5 - v54.y, v34.z - v54.z, 1.0f);
+    float d = sqrtf(v24.x * v24.x + v24.y * v24.y + v24.z * v24.z);
+    this->f38 = d;
+    func_00034820(&v24.x, &v24.x);
+    Cross_34A40(&v64, &v24, (const Vec4 *)D_002A14E4);
+    this->f34->f5c->func_00194E60(v54);
+    this->f34->f5c->f4 = 0;
+    this->f34->f5c->func_00194F90(60.0f);
+    this->f34->f5c->func_00194EB0(v24);
+    this->f34->f5c->func_00194F60(v64);
 }
 
