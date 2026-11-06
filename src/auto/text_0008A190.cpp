@@ -12,7 +12,7 @@ extern float D_00279B54;
 extern float D_00279B50;
 extern float D_00279B4C;
 int func_001E8858(float f);
-static inline unsigned int sub_from_ones_0008A190(unsigned int x) { return 0xffffffffu - x; }
+static inline unsigned int sub_0008A190(unsigned int a, unsigned int b) { return a - b; }
 struct E190 { void func_001D5AD0(); };
 struct R190 { int func_000377E0(); };
 struct T190 { char pad0[0x28]; float f28; char pad2c[0xc]; unsigned int c38; char pad3c[0x1c]; unsigned char b58; void func_001D5AD0(); };
