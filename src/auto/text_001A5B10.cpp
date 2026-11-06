@@ -387,7 +387,7 @@ C_001A5D80 *C_001A5D80::func_001A5D80(int param)
     D_002A8490->f234 = 1;
     D_002EFDB8->f30 = 0;
     unk24 = param;
-    func_001A5B10((char *)&D_0028BA50, (void **)&unk28);
+    ((C_001A5D80_P1 *)param)->func_001A5B10(&D_0028BA50, &unk28);
     if (unk28 != 0) {
         D_002EFDB8->v4(0, (int)unk28, 0, 0);
         D_002A8490->v9();
