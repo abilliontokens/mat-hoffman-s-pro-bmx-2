@@ -51,7 +51,9 @@ struct S_001425B0_V4 {
 struct C_001425B0 {
     void *vtbl;
     char pad4[4];
-    int f8, fC, f10, f14, f18, f1C, f20, f24;
+    int f8, fC;
+    Particle_00142180 *f10;
+    int f14, f18, f1C, f20, f24;
     int f28[4];
     int f38[4];
     int f48, f4C, f50, f54, f58, f5C;
@@ -298,7 +300,7 @@ void C_001425B0::func_00142180(int buffer, int dst, int src, int count, int clea
     int s = src + 1;
 
 #define COPY_00142180(D, S) \
-    out[D].x = ((Particle_00142180 *)f10)[S].x; \
+    out[D].x = *(int *)&((Particle_00142180 *)f10)[S]; \
     out[D].y = ((Particle_00142180 *)f10)[S].y; \
     out[D].z = ((Particle_00142180 *)f10)[S].z; \
     out[D].a = *(float *)&f58 - ((Particle_00142180 *)f10)[S].d; \
@@ -317,7 +319,7 @@ void C_001425B0::func_00142180(int buffer, int dst, int src, int count, int clea
     if (count >= 4) {
         do {
             COPY_00142180(dst + i, s - 1)
-            COPY_00142180(dst + i + 1, (src + 1) + i)
+            COPY_00142180(dst + i + 1, src + i + 1)
             COPY_00142180(dst + i + 2, s + 1)
             COPY_00142180(dst + i + 3, s + 2)
             i += 4;
