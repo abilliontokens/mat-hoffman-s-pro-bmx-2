@@ -36,7 +36,7 @@ static __forceinline int FtoI_001C4240(float x)
     return _mm_cvtss_si32(_mm_set_ss(x));
 }
 
-static void FtoI2_001C4240(volatile int *dst, float src)
+static void FtoI2_001C4240(int *dst, float src)
 {
     *dst = _mm_cvtss_si32(*(const __m128 *)&src);
 }
@@ -1026,13 +1026,13 @@ int FadeObj::func_001C4240(void)
     }
     if (v == -1 && *(int *)(D_002A8490 + 0x274) < *(int *)(D_002A8490 + 0x270) - 1) return 1;
     if (f38 != 0) {
-        FtoI2_001C4240(&a, D_0027A060 * f30);
+        FtoI2_001C4240(&a, f30 * D_0027A060);
         if (a == 255) {
             f40 = 1;
             f38 = 0;
         }
     } else if (f3C != 0) {
-        FtoI2_001C4240(&a, D_0027A060 - D_0027A060 * f30);
+        FtoI2_001C4240(&a, D_0027A060 - f30 * D_0027A060);
         if (a == 0) {
             f40 = 0;
             f3C = 0;
