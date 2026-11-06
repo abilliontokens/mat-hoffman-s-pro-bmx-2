@@ -1,6 +1,87 @@
 /* 2 functions from 0x000707D0 to 0x000716F0, found by Ghidra. */
 #include "common.h"
 #include <string.h>
+
+extern float D_002755E8, D_002B9034, D_00278C58, D_00278C48, D_00278500, D_002782A8;
+extern double D_00278C50;
+
+struct KB_Obj {
+    char *func_001B17F0();
+    void func_001B17D0(char *s);
+    void func_000602B0();
+    int func_00094960(int a);
+    void func_0001EDC0(int a);
+    void func_0005B850(char *s);
+    void func_00032060(char *s, int a);
+    void func_000320A0(char *s, int a);
+    void func_00032120(char *s, int a);
+    void func_00032150(char *s, int a);
+    void func_00032180(char *s, int a);
+    void func_000320E0(char *s, int a);
+    int func_0005B960(float a, int b);
+    void func_00064A40();
+    void func_00032720();
+    void func_00032740();
+    void func_000683F0();
+    void func_0006D1D0();
+    void func_0006E620(int a);
+};
+
+struct KB_VT {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual int v4(int a, int b, int c, int d);
+};
+
+struct KB_VT23 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22();
+    virtual void v23(int a, int b);
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35();
+    virtual void v36(); virtual void v37(); virtual void v38();
+    virtual void v39();
+};
+
+struct C_000707D0 {
+    int f0;
+    char pad4[0x64 - 4];
+    int f64;
+    float f68;
+    int f6C;
+    char pad70[0xA0 - 0x70];
+    int fA0;
+    char aA4[0xBC - 0xA4];
+    float fBC;
+    int fC0;
+    int fC4;
+    char padC8[0xD0 - 0xC8];
+    KB_Obj *fD0;
+    KB_Obj *fD4;
+    char padD8[0xEC - 0xD8];
+    KB_Obj *fEC;
+    char padF0[0xF4 - 0xF0];
+    int fF4;
+    char padF8[0xFC - 0xF8];
+    int fFC;
+    char pad100[0x104 - 0x100];
+    int f104;
+    char pad108[0x110 - 0x108];
+    float f110;
+    float f114;
+    int f118;
+    int f11C;
+    int f120;
+    int f124;
+    void func_0006EC60();
+    void func_0006E910();
+    int func_0005EA10(float dt);
+    int func_000707D0(float dt);
+};
 struct BmxMusicMenu {
  void* func_000715B0(int);
  void func_00157600(int);
