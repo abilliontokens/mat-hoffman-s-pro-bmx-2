@@ -41,7 +41,7 @@ struct L_001C26B0 {
     int has;
     float v2[4];
     char kind[20];
-    char text[480];
+    char text[476];
 };
 extern char D_0028281C[];
 extern char D_00282810[];
@@ -237,139 +237,140 @@ struct UIWidgetMovementControl {
 };
 
 
-C_001C26B0 *C_001C26B0::func_001C26B0(C_001C26B0 *p, int a)
+C_001C26B0 *C_001C26B0::func_001C26B0(int a, C_001C26B0 *p)
 {
-    C_001C26B0 *self = this;
+    C_001C26B0 *cfg = p;
     L_001C26B0 l;
-    C_001C26B0 *q;
 
-    self->func_001BF600(p);
+    func_001BF600(cfg);
     l.v0[0] = l.v0[1] = l.v0[2] = 0; l.v0[3] = 1;
     l.v1[0] = l.v1[1] = l.v1[2] = 0; l.v1[3] = 1;
     l.v2[0] = l.v2[1] = l.v2[2] = 0; l.v2[3] = 1;
-    p->func_00168550(D_0027DE5C, self->data + 0x70, 0x80);
-    p->func_00168BE0(D_0027DE4C, self->data + 0x70, self->data + 0xf0, 0x80);
-    p->func_00168C20(D_0027DE38, 0, self->data + 0x188);
-    p->func_00168C20(D_0027DE2C, 0, self->data + 0x18c);
-    p->func_00168BE0(D_00282880, D_00282890, l.kind, 0x14);
-    p->func_00168C50(D_0028E27C, 0x3f800000, self->data + 0x17c);
-    l.has = p->func_00168550(D_002828C0, l.text, 0x1e0);
+    cfg->func_00168550(D_0027DE5C, data + 0x70, 0x80);
+    cfg->func_00168BE0(D_0027DE4C, data + 0x70, data + 0xf0, 0x80);
+    cfg->func_00168C20(D_0027DE38, 0, data + 0x188);
+    cfg->func_00168C20(D_0027DE2C, 0, data + 0x18c);
+    cfg->func_00168BE0(D_00282880, D_00282890, l.kind, 0x14);
+    cfg->func_00168C50(D_0028E27C, 0x3f800000, data + 0x17c);
+    l.has = cfg->func_00168550(D_002828C0, l.text, 0x1e0);
     if (l.has) {
         char *t = *(char **)(D_002A8490 + 0x2e8);
         C_001C26B0 *lookup = (C_001C26B0 *)*(void **)(t + 0x2c);
         lookup->func_000979C0(l.text, &(l.index = 0));
-        *(int *)(self->data + 0x6c) = l.index;
+        *(int *)(data + 0x6c) = l.index;
     } else {
-        *(int *)(self->data + 0x180) = p->func_00168C20(D_0028E264, 0, self->data + 0x174);
-        p->func_00168C20(D_0028E24C, 0, self->data + 0x170);
+        *(int *)(data + 0x180) = cfg->func_00168C20(D_0028E264, 0, data + 0x174);
+        cfg->func_00168C20(D_0028E24C, 0, data + 0x170);
     }
-    if (*(int *)(self->data + 0x180) == 0) {
-        l.index = p->func_00168C20(D_00282898, 1, self->data + 0x170);
+    if (*(int *)(data + 0x180) == 0) {
+        l.index = cfg->func_00168C20(D_00282898, 1, data + 0x170);
     }
-    p->func_00168C20(D_00282854, 0xff, self->data + 0x194);
-    p->func_00168C50(D_0028283C, 0, self->data + 0x198);
+    cfg->func_00168C20(D_00282854, 0xff, data + 0x194);
+    cfg->func_00168C50(D_0028283C, 0, data + 0x198);
     l.def[0] = 40; l.def[1] = 40; l.def[2] = 40; l.def[3] = 1;
-    p->func_00168CB0(D_0027DE44, l.def, l.v0);
-    *(int *)(self->data + 0x184) = ((((int)l.v0[0] | 0xffffff00) << 8 | ((int)l.v0[1] & 255)) << 8) | ((int)l.v0[2] & 255);
+    cfg->func_00168CB0(D_0027DE44, l.def, l.v0);
+    *(int *)(data + 0x184) = ((((int)l.v0[0] | 0xffffff00) << 8 | ((int)l.v0[1] & 255)) << 8) | ((int)l.v0[2] & 255);
     l.def[0] = 255; l.def[1] = 255; l.def[2] = 255; l.def[3] = 1;
-    if (p->func_00168CB0(D_0028282C, l.def, l.v1)) {
-        *(int *)(self->data + 0x19c) = 1;
+    if (cfg->func_00168CB0(D_0028282C, l.def, l.v1)) {
+        *(int *)(data + 0x19c) = 1;
     }
-    *(int *)(self->data + 0x1a0) = ((((int)l.v1[0] | 0xffffff00) << 8 | ((int)l.v1[1] & 255)) << 8) | ((int)l.v1[2] & 255);
+    *(int *)(data + 0x1a0) = ((((int)l.v1[0] | 0xffffff00) << 8 | ((int)l.v1[1] & 255)) << 8) | ((int)l.v1[2] & 255);
     l.def[0] = 128; l.def[1] = 128; l.def[2] = 128; l.def[3] = 1;
-    if (p->func_00168CB0(D_002828B0, l.def, l.v2)) {
-        *(int *)(self->data + 0x1a4) = 1;
+    if (cfg->func_00168CB0(D_002828B0, l.def, l.v2)) {
+        *(int *)(data + 0x1a4) = 1;
     }
-    *(int *)(self->data + 0x1a8) = ((((int)l.v2[0] | 0xffffff00) << 8 | ((int)l.v2[1] & 255)) << 8) | ((int)l.v2[2] & 255);
-    p->func_00168C20(D_0028948C, 0, self->data + 0x190);
-    *(int *)(self->data + 0x28) = a;
+    *(int *)(data + 0x1a8) = ((((int)l.v2[0] | 0xffffff00) << 8 | ((int)l.v2[1] & 255)) << 8) | ((int)l.v2[2] & 255);
+    cfg->func_00168C20(D_0028948C, 0, data + 0x190);
+    *(int *)(data + 0x28) = a;
     if (!strcmp(l.kind, "Right")) {
-        *(int *)(self->data + 0x178) = D_0028F5EC;
+        *(int *)(data + 0x178) = D_0028F5EC;
     } else if (!strcmp(l.kind, "CenterBoth")) {
-        *(int *)(self->data + 0x178) = D_0028F5E8;
+        *(int *)(data + 0x178) = D_0028F5E8;
     } else if (!strcmp(l.kind, "CenterVertical")) {
-        *(int *)(self->data + 0x178) = D_0028F5E4;
+        *(int *)(data + 0x178) = D_0028F5E4;
     } else if (!strcmp(l.kind, "CenterHorizontal")) {
-        *(int *)(self->data + 0x178) = D_0028F5E0;
+        *(int *)(data + 0x178) = D_0028F5E0;
     } else {
-        *(int *)(self->data + 0x178) = D_0028F5DC;
+        *(int *)(data + 0x178) = D_0028F5DC;
     }
     if (l.has) {
         char *t = *(char **)(D_002A8490 + 0x2e8);
-        char *src = *(char **)(*(char **)(t + 4) + *(int *)(self->data + 0x6c) * 8);
-        self->func_001C01E0(src);
-        return self;
+        char *src = *(char **)(*(char **)(t + 4) + *(int *)(data + 0x6c) * 8);
+        func_001C01E0(src);
+        return this;
     }
-    if (*(int *)(self->data + 0x180) != 0) {
-        *(void **)(self->data + 0x68) = func_001E8AA5(*(int *)(self->data + 0x170) * 4);
-        for (l.index = 0; l.index < *(int *)(self->data + 0x170); l.index++) {
-            q = (C_001C26B0 *)func_001E8A44(0x184);
+    if (*(int *)(data + 0x180) != 0) {
+        *(void **)(data + 0x68) = func_001E8AA5(*(int *)(data + 0x170) * 4);
+        for (l.index = 0; l.index < *(int *)(data + 0x170); l.index++) {
+            C_001C26B0 *q = (C_001C26B0 *)func_001E8A44(0x184);
             if (q) {
                 q = q->func_001B12C0(1);
             } else {
                 q = 0;
             }
-            (*(C_001C26B0 ***)(self->data + 0x68))[l.index] = q;
-            q->func_001B13A0(self->data + 0x70, self->data + 0xf0, 0, *(int *)(self->data + 0x174));
-            q->func_001B1860(0, -1, 255, 1, 0, 0, -1, 255, 1, 0, 0, 0, 0);
-            q->func_001B19A0(*(int *)(self->data + 0x178));
-            q->func_001B2270(*(int *)(self->data + 0x184));
-            q->func_001B17D0(D_00275630);
-            q->func_001B19C0(*(int *)(self->data + 0x188), (int)(((Font_001C26B0 *)*(void **)(q->data + 0x28))->func_0018C210() * l.index * *(float *)(self->data + 0x17c)) + *(int *)(self->data + 0x18c), 0);
-            q->func_001B1AB0(*(int *)(self->data + 0x194), 0);
-            q->func_001B1BF0(*(int *)(self->data + 0x198));
-            self->func_001577A0(q, -1);
+            (*(C_001C26B0 ***)(data + 0x68))[l.index] = q;
+            (*(C_001C26B0 ***)(data + 0x68))[l.index]->func_001B13A0(data + 0x70, data + 0xf0, 0, *(int *)(data + 0x174));
+            (*(C_001C26B0 ***)(data + 0x68))[l.index]->func_001B1860(0, -1, 255, 1, 0, 0, -1, 255, 1, 0, 0, 0, 0);
+            (*(C_001C26B0 ***)(data + 0x68))[l.index]->func_001B19A0(*(int *)(data + 0x178));
+            (*(C_001C26B0 ***)(data + 0x68))[l.index]->func_001B2270(*(int *)(data + 0x184));
+            (*(C_001C26B0 ***)(data + 0x68))[l.index]->func_001B17D0(D_00275630);
+            (*(C_001C26B0 ***)(data + 0x68))[l.index]->func_001B19C0(*(int *)(data + 0x188), (int)(((Font_001C26B0 *)*(void **)((*(C_001C26B0 ***)(data + 0x68))[l.index]->data + 0x28))->func_0018C210() * l.index * *(float *)(data + 0x17c)) + *(int *)(data + 0x18c), 0);
+            (*(C_001C26B0 ***)(data + 0x68))[l.index]->func_001B1AB0(*(int *)(data + 0x194), 0);
+            (*(C_001C26B0 ***)(data + 0x68))[l.index]->func_001B1BF0(*(int *)(data + 0x198));
+            func_001577A0((*(C_001C26B0 ***)(data + 0x68))[l.index], -1);
         }
-        return self;
+        return this;
     }
     if (l.index != 0) {
-        *(void **)(self->data + 0x68) = func_001E8AA5(*(int *)(self->data + 0x170) * 4);
-        for (l.index = 0; l.index < *(int *)(self->data + 0x170); l.index++) {
+        *(void **)(data + 0x68) = func_001E8AA5(*(int *)(data + 0x170) * 4);
+        for (l.index = 0; l.index < *(int *)(data + 0x170); l.index++) {
             func_001ADCC0(l.kind, 0x14, D_0027DE24, l.index + 1);
-            p->func_00168550(l.kind, l.text, 0x1e0);
-            q = (C_001C26B0 *)func_001E8A44(0x184);
+            cfg->func_00168550(l.kind, l.text, 0x1e0);
+            C_001C26B0 *q = (C_001C26B0 *)func_001E8A44(0x184);
             if (q) {
                 q = q->func_001B12C0(1);
             } else {
                 q = 0;
             }
-            (*(C_001C26B0 ***)(self->data + 0x68))[l.index] = q;
-            q->func_001B13A0(self->data + 0x70, self->data + 0xf0, 0, (int)strlen(l.text));
-            self->func_001577A0(q, -1);
-            q->func_001B1860(0, -1, 255, 1, 0, 0, -1, 255, 1, 0, 0, 0, 0);
-            q->func_001B19A0(*(int *)(self->data + 0x178));
-            q->func_001B2270(*(int *)(self->data + 0x184));
-            q->func_001B17D0(l.text);
-            q->func_001B19C0(*(int *)(self->data + 0x188), (int)(((Font_001C26B0 *)*(void **)(q->data + 0x28))->func_0018C210() * l.index * *(float *)(self->data + 0x17c)) + *(int *)(self->data + 0x18c), 0);
-            q->func_001B1AB0(*(int *)(self->data + 0x194), 0);
-            q->func_001B1BF0(*(int *)(self->data + 0x198));
+            (*(C_001C26B0 ***)(data + 0x68))[l.index] = q;
+            (*(C_001C26B0 ***)(data + 0x68))[l.index]->func_001B13A0(data + 0x70, data + 0xf0, 0, (int)strlen(l.text));
+            func_001577A0((*(C_001C26B0 ***)(data + 0x68))[l.index], -1);
+            (*(C_001C26B0 ***)(data + 0x68))[l.index]->func_001B1860(0, -1, 255, 1, 0, 0, -1, 255, 1, 0, 0, 0, 0);
+            (*(C_001C26B0 ***)(data + 0x68))[l.index]->func_001B19A0(*(int *)(data + 0x178));
+            (*(C_001C26B0 ***)(data + 0x68))[l.index]->func_001B2270(*(int *)(data + 0x184));
+            (*(C_001C26B0 ***)(data + 0x68))[l.index]->func_001B17D0(l.text);
+            (*(C_001C26B0 ***)(data + 0x68))[l.index]->func_001B19C0(*(int *)(data + 0x188), (int)(((Font_001C26B0 *)*(void **)((*(C_001C26B0 ***)(data + 0x68))[l.index]->data + 0x28))->func_0018C210() * l.index * *(float *)(data + 0x17c)) + *(int *)(data + 0x18c), 0);
+            (*(C_001C26B0 ***)(data + 0x68))[l.index]->func_001B1AB0(*(int *)(data + 0x194), 0);
+            (*(C_001C26B0 ***)(data + 0x68))[l.index]->func_001B1BF0(*(int *)(data + 0x198));
         }
-        return self;
+        return this;
     }
-    p->func_00168550(D_0027C294, l.text, 0x1e0);
-    if (*(int *)(self->data + 0x190) != 0) {
-        self->func_001C01E0(l.text);
-        return self;
+    cfg->func_00168550(D_0027C294, l.text, 0x1e0);
+    if (*(int *)(data + 0x190) != 0) {
+        func_001C01E0(l.text);
+        return this;
     }
-    *(int *)(self->data + 0x170) = 1;
-    *(void **)(self->data + 0x68) = func_001E8AA5(4);
-    q = (C_001C26B0 *)func_001E8A44(0x184);
-    if (q) {
-        q = q->func_001B12C0(1);
-    } else {
-        q = 0;
+    *(int *)(data + 0x170) = 1;
+    *(void **)(data + 0x68) = func_001E8AA5(4);
+    {
+        C_001C26B0 *q = (C_001C26B0 *)func_001E8A44(0x184);
+        if (q) {
+            q = q->func_001B12C0(1);
+        } else {
+            q = 0;
+        }
+        (*(C_001C26B0 ***)(data + 0x68))[0] = q;
     }
-    (*(C_001C26B0 ***)(self->data + 0x68))[0] = q;
-    q->func_001B13A0(self->data + 0x70, self->data + 0xf0, 0, (int)strlen(l.text));
-    self->func_001577A0(q, -1);
-    q->func_001B1860(0, -1, 255, 1, 0, 0, -1, 255, 1, 0, 0, 0, 0);
-    q->func_001B17D0(l.text);
-    q->func_001B19A0(*(int *)(self->data + 0x178));
-    q->func_001B2270(*(int *)(self->data + 0x184));
-    q->func_001B19C0(*(int *)(self->data + 0x188), (int)(((Font_001C26B0 *)*(void **)(q->data + 0x28))->func_0018C210() * l.index * *(float *)(self->data + 0x17c)) + *(int *)(self->data + 0x18c), 0);
-    q->func_001B1AB0(*(int *)(self->data + 0x194), 0);
-    q->func_001B1BF0(*(int *)(self->data + 0x198));
-    return self;
+    (*(C_001C26B0 ***)(data + 0x68))[0]->func_001B13A0(data + 0x70, data + 0xf0, 0, (int)strlen(l.text));
+    func_001577A0((*(C_001C26B0 ***)(data + 0x68))[0], -1);
+    (*(C_001C26B0 ***)(data + 0x68))[0]->func_001B1860(0, -1, 255, 1, 0, 0, -1, 255, 1, 0, 0, 0, 0);
+    (*(C_001C26B0 ***)(data + 0x68))[0]->func_001B17D0(l.text);
+    (*(C_001C26B0 ***)(data + 0x68))[0]->func_001B19A0(*(int *)(data + 0x178));
+    (*(C_001C26B0 ***)(data + 0x68))[0]->func_001B2270(*(int *)(data + 0x184));
+    (*(C_001C26B0 ***)(data + 0x68))[0]->func_001B19C0(*(int *)(data + 0x188), (int)(((Font_001C26B0 *)*(void **)((*(C_001C26B0 ***)(data + 0x68))[0]->data + 0x28))->func_0018C210() * l.index * *(float *)(data + 0x17c)) + *(int *)(data + 0x18c), 0);
+    (*(C_001C26B0 ***)(data + 0x68))[0]->func_001B1AB0(*(int *)(data + 0x194), 0);
+    (*(C_001C26B0 ***)(data + 0x68))[0]->func_001B1BF0(*(int *)(data + 0x198));
+    return this;
 }
 
 undefined4 C_001C2F70::func_001C2F70(void)
