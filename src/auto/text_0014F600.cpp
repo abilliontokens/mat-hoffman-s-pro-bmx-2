@@ -30,7 +30,7 @@ static float clampf(float x)
 extern float D_00275544;
 extern "C" unsigned int strlen(const char *);
 void *func_001E8920(void *d, const void *s, int n);
-static int min_0014FF00(int a, int b) { return a > b ? b : a; }
+static int min_0014FF00(int a, int b) { return a < b ? a : b; }
 /* Truncate towards zero into *out; inlined into its callers. */
 static void storeftoi(int * volatile out, float f)
 {
@@ -406,6 +406,8 @@ float func_0014FBA0(volatile float y, volatile float x)
     extern float D_00286AC4;
     float q;
     float d;
+    int a;
+    int b;
 
     if (x != D_00275544) {
         if (y == D_00275544) {
@@ -417,7 +419,9 @@ float func_0014FBA0(volatile float y, volatile float x)
         if (y > D_00275544) {
             if (x > D_00275544) {
                 q = y / x;
-                *(int *)&x = *(int *)&q & 0x7fffffff;
+                a = *(int *)&q;
+                b = a & 0x7fffffff;
+                *(int *)&x = b;
                 if (x > D_00275460) {
                     d = x * x + D_00286AC0;
                     return D_002756D4 - x / d;
@@ -426,7 +430,9 @@ float func_0014FBA0(volatile float y, volatile float x)
                 return x / d;
             }
             q = y / x;
-            *(int *)&x = *(int *)&q & 0x7fffffff;
+            a = *(int *)&q;
+            b = a & 0x7fffffff;
+            *(int *)&x = b;
             if (x > D_00275460) {
                 d = x * x + D_00286AC0;
                 return x / d + D_002756D4;
@@ -436,7 +442,9 @@ float func_0014FBA0(volatile float y, volatile float x)
         }
         if (x > D_00275544) {
             q = y / x;
-            *(int *)&x = *(int *)&q & 0x7fffffff;
+            a = *(int *)&q;
+            b = a & 0x7fffffff;
+            *(int *)&x = b;
             if (x > D_00275460) {
                 d = x * x + D_00286AC0;
                 return x / d - D_002756D4;
@@ -445,7 +453,9 @@ float func_0014FBA0(volatile float y, volatile float x)
             return -(x / d);
         }
         q = y / x;
-        *(int *)&x = *(int *)&q & 0x7fffffff;
+        a = *(int *)&q;
+        b = a & 0x7fffffff;
+        *(int *)&x = b;
         if (x > D_00275460) {
             d = x * x + D_00286AC0;
             return D_00286AC4 - x / d;
