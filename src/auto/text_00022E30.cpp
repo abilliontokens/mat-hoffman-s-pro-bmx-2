@@ -90,6 +90,7 @@ struct V4_000235C0 {
 struct func_000212A0 {
     u32 x, y, z, w;
     func_000212A0(u32 *p);
+    func_000212A0(const func_000212A0 &o) { x = o.x; y = o.y; z = o.z; w = o.w; }
 };
 
 struct W4_000235C0 {
@@ -269,6 +270,115 @@ void C_00023340::func_00023340()
         up2.z = e2->dz;
         func_000212C0(&v, &v);
         self->f28->f1a4->f4->func_00198F50(&v, &up2, 0, 1, 0);
+    }
+}
+
+void C_000235C0::func_000235C0()
+{
+    int i;
+    int j;
+
+    if (f2c->f2c == 0) {
+        if (f34 >= f2c->count - 2 && f2c->f10 != -1) {
+            if (D_002B7E18->f64[f2c->f10]->f2c == 0 && f79 == 1) {
+                if (f34 >= f2c->count - 1) {
+                    if (f78 != 2) {
+                        for (i = 0; i < D_002B7E18->f38; i++) {
+                            if (f30 == D_002B7E18->f68[i]->f8) {
+                                for (j = 0; j < D_002B7E18->f68[i]->count; j++) {
+                                    if (D_002B7E18->f68[i]->pts[j].used == 0) {
+                                        V4_000235C0 dir;
+                                        V4_000235C0 up;
+                                        S_000235C0_Elem *e;
+                                        S_000235C0_Pt *pt;
+
+                                        f78 = 2;
+                                        f48 = (j << 8) | i;
+                                        D_002B7E18->f68[i]->pts[j].used = 1;
+                                        pt = &D_002B7E18->f68[i]->pts[j];
+                                        f4c.x = pt->x;
+                                        f4c.y = pt->y;
+                                        f4c.z = pt->z;
+                                        f4c.w = 0x3f800000;
+                                        func_00011110(&dir, &f4c, &f5c);
+                                        e = &f2c->elems[f34];
+                                        up.x = e->dx;
+                                        up.y = e->dy;
+                                        up.z = e->dz;
+                                        up.w = 1.0f;
+                                        func_000212C0((V4_00023340 *)&dir, (V4_00023340 *)&dir);
+                                        f28->f1a4->f4->func_00198F50(&dir, &up, 0, 1, 0);
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (f78 == 1) {
+                        f28->f1a4->f4->func_00199600(func_000212A0((u32 *)&f2c->elems[f34]));
+                        f28->f1a4->f4->func_00199110(0, &f2c->f1c, &D_002A0F94, 0, 1, 1);
+                        f4c.func_000212A0((u32 *)&f2c->elems[f34]);
+                    } else if (f78 == 2) {
+                        f28->f1a4->f4->func_00199600(*(func_000212A0 *)&f4c);
+                        f28->f1a4->f4->func_00199110(0, &f2c->f1c, &D_002A0F94, 0, 1, 1);
+                    }
+                    f79 = 0;
+                    f78 = 0;
+                    func_000219E0(0);
+                }
+            } else {
+                int wasLocked;
+                int k;
+
+                f2c->f2d = 0;
+                wasLocked = f2c->f2c;
+                func_00021A50(f2c->f10, f2c->f14);
+                if (wasLocked != 0 || f2c->f2c != 0) {
+                    func_000219E0(2);
+                    return;
+                }
+                func_000219E0(1);
+                for (k = 0; k < D_002B7E18->f38; k++) {
+                    if (f2c->f8 == D_002B7E18->f68[k]->f8) {
+                        D_002B7E18->f68[f48 & 0xff]->pts[b48[1]].used = 0;
+                        f48 = 0;
+                        D_002B7E18->f68[k]->cur--;
+                        if (D_002B7E18->f68[k]->cur < 0) {
+                            D_002B7E18->f68[k]->cur = 0;
+                        }
+                        return;
+                    }
+                }
+            }
+        }
+    } else {
+        int i2;
+        int k;
+
+        for (i2 = 0; i2 < D_002B7E18->f34; i2++) {
+            S_000235C0_Tbl *t = D_002B7E18->f64[i2];
+            if (f30 == t->f8 && f34 == t->fc && t->f2d == 0) {
+                Select(i2);
+                if (f2c->f2c == 0) {
+                    f78 = 1;
+                    if (f2c->f2f == 0) {
+                        f2c->f2d = 1;
+                        return;
+                    }
+                    for (k = 0; k < D_002B7E18->f38; k++) {
+                        if (f30 == D_002B7E18->f68[k]->f8) {
+                            D_002B7E18->f68[k]->cur++;
+                            if (D_002B7E18->f68[k]->cur >= D_002B7E18->f68[k]->count) {
+                                f2c->f2d = 1;
+                                D_002B7E18->f68[k]->cur = D_002B7E18->f68[k]->count;
+                            }
+                            return;
+                        }
+                    }
+                }
+                return;
+            }
+        }
     }
 }
 
