@@ -25,7 +25,8 @@ struct C_0009EDF0 {
     unsigned char f1cc;
     char pad1cd[0x23];
     float f1f0;
-    int f1f4, f1f8, f1fc, f200, f204, f208;
+    int f1f4, f1f8;
+    f32 f1fc, f200, f204, f208;
     float f20c, f210, f214, f218;
     C_0009EDF0 *func_0009EDF0(int a);
     void func_00169C50(int a);
