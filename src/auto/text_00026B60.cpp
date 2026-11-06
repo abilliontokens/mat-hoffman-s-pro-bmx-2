@@ -182,7 +182,7 @@ struct Obj1EC_26 {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
     virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
     virtual void v10();
-    void func_00030C00(int); void func_00030CD0(void *);
+    Obj1EC_26 *func_00030C00(int); void func_00030CD0(void *);
 };
 struct Obj40_26 { Obj40_26 *func_00025E10(); };
 struct Obj210_26 { Obj210_26 *func_0005DA30(void *); };
