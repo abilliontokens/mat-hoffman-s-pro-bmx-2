@@ -64,6 +64,7 @@ extern char D_002A5FA8[],D_002A5348[],D_00275678[],D_002A60B0[],D_002A63C8[],D_0
 extern float D_00278D40,D_00278654,D_00275544,D_0027653C,D_00278650;
 void* func_001E8A44(int);
 extern "C" int func_001ADCC0(char*,int,const char*,...);
+static __forceinline Font_72* find72(char* name){Font_72** r=D_002A8490->lookup->func_0018C160((int)name);return r?*r:0;}
 static __forceinline void pos72(Res_72C90* p,int x,int y){if(p->x!=x||p->y!=y){p->y=y;p->x=x;p->flags|=6;}}
 static __forceinline void align72(Res_72C90* p,int a){if(p->align!=a){p->align=a;p->flags|=6;}}
 static __forceinline void color72(Res_72C90* p,unsigned int c){if(p->color!=c){p->flags|=8;p->color=(p->color & (c|0xff000000))|(c&0xffffff);}}
