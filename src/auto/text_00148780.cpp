@@ -67,6 +67,15 @@ struct VObj_00148780 {
     virtual void f1();
 };
 
+extern int D_00286818;
+
+/* RestoreFrameBufferDataItem allocation helper: ctor stores the real vtable */
+struct New_001493E0 {
+    void *vtbl;
+    New_001493E0() { vtbl = (void *)&D_00286818; }
+    static void *operator new(unsigned int size) { return func_001E8A44(size); }
+};
+
 struct Node_001492A0 {
     Node_001492A0 *next;
     char *unk4;
