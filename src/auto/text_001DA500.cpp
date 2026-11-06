@@ -1,5 +1,17 @@
 /* 4 functions from 0x001DA500 to 0x001DB4D0, found by Ghidra. */
 #include "common.h"
+extern float D_002F08AC,D_002EFEA0,D_00278650;
+extern float D_002F100C[],D_002F1014[];
+extern int D_0020CA7C,D_00040350,D_00040344,D_00040348;
+extern int D_0020C6EC,D_0020C6F0,D_0020C6F4,D_002A99B0;
+extern char D_002AC7D4[];
+void __fastcall func_001FEC30(int,void*);
+void __stdcall func_00201590(int,void*,int);
+void __stdcall func_001FDA60(int,unsigned int);
+struct C_001DA500 {
+ char data[0x230];
+ void func_001DA500();
+};
 
 void *__stdcall func_001FF3C0(int size);
 void *__stdcall func_001FF410(void *buffer, int flags);
