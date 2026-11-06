@@ -79,18 +79,20 @@ struct C_00023C30 {
     float f0;
     float f4;
     float f8;
+    int fC;
     int f10;
     int f14;
     int f18;
     int f1C;
     S_00024210_Vec f20;
     S_00024210_Vec f30;
+    int f40;
     int f44;
     int f48;
     C_00199B00 *f4C;
     C_00023C30 *func_00023C30(int a, int b, int c, int d);
     int func_00023CB0(float a, S_00024210_Vec v, float len);
-    int func_00021B90(int a, S_00024210_Vec v, float len);
+    int func_00021B90(float a, S_00024210_Vec v, float len);
 };
 
 /* the 0x30-byte record tying the other two together */
@@ -153,6 +155,98 @@ S_00024210_Vec *func_00011140(S_00024210_Vec *a, C_00023C30 *b, float c);
 
 int C_00023C30::func_00023CB0(float a, S_00024210_Vec v, float len)
 {
+    S_00024210_Vec out;
+    S_00024210_Vec t;
+    S_00024210_Vec d;
+    S_00024210_Vec tmp;
+    S_00024210_Vec *r;
+    int n;
+    int flags;
+
+    if (D_002A8490->f2A4->f120 != 0) {
+        out.x = v.x + a * f0;
+        out.y = v.y + a * f4;
+        out.z = v.z + a * f8;
+        out.w = 1.0f;
+        goto done;
+    }
+    if (f14 == 0) {
+        if (func_00021B90(a, v, len)) {
+            f14 = 1;
+            f4C->func_00199B00(&v, 0);
+        }
+    }
+    if (f14 == 0)
+        goto sw;
+    f14 = 0;
+    n = f44 + 1;
+    t.x = v.x + f0 * D_0027628C * (float)n * D_00276288;
+    t.y = v.y + f4 * D_0027628C * (float)n * D_00276288;
+    t.z = v.z + f8 * D_0027628C * (float)n * D_00276288;
+    t.w = 1.0f;
+    func_00011FF0(&tmp, 0x10, 2, _func_00011060);
+    tmp = v;
+    d = t;
+    flags = D_002B9114 | D_002B9108 | D_002B9118 | D_002BA160;
+    if (func_00134DE0(&tmp, &f20, &f30, 1, 0, 0, flags, 0, 1)) {
+        d.x = v.x - f20.x;
+        d.y = v.y - f20.y;
+        d.z = v.z - f20.z;
+        d.w = 1.0f;
+        if (func_00011170(&d) < D_00276284) {
+            r = func_0001E9E0(&d, &f30);
+            f20.x += r->x * D_00276284;
+            f20.y += r->y * D_00276284;
+            f20.z += r->z * D_00276284;
+            f1C = 2;
+        } else {
+            f20 = v;
+            f1C = 0;
+            f10 = 1;
+            r = func_0001E9E0(&d, &f30);
+            f18 = (D_002A0F94 * r->x + D_002A0F98 * r->y + D_002A0F9C * r->z < D_00276280) ? 1 : 0;
+        }
+    } else {
+        f1C = 1;
+        f10 = 0;
+        f18 = 0;
+    }
+sw:
+    out.x = 0; out.y = 0; out.z = 0; out.w = 1.0f;
+    switch (f1C) {
+    case 1:
+        out.x = v.x + a * f0;
+        out.y = v.y + a * f4;
+        out.z = v.z + a * f8;
+        out.w = 1.0f;
+        break;
+    case 2:
+        t.x = a * f0;
+        t.y = a * f4;
+        t.z = a * f8;
+        t.w = 1.0f;
+        d.x = v.x - f20.x;
+        d.y = v.y - f20.y;
+        d.z = v.z - f20.z;
+        d.w = 1.0f;
+        if (func_00011170(&d) < func_00011170(&t)) {
+            func_00021330(this, this, &f30);
+            out = f20;
+            f14 = 1;
+        } else {
+            r = func_00011140(&tmp, this, a);
+            out.x = v.x + r->x;
+            out.y = v.y + r->y;
+            out.z = v.z + r->z;
+            out.w = 1.0f;
+        }
+        break;
+    default:
+        out = v;
+        break;
+    }
+done:
+    f4C->func_00199600(out);
     return 1;
 }
 
