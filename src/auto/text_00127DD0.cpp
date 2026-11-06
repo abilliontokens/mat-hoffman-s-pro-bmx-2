@@ -36,8 +36,8 @@ struct S_00127DD0_Node {
 struct S_00128480_Entry {
     float split, length;
     unsigned short left, right;
-    S_00128630_V3 va;
-    S_00128630_V3 vb;
+    int a, b, c;
+    float x, y, z;
 };
 extern "C" float __cdecl sqrtf(float);
 #pragma intrinsic(sqrtf)
