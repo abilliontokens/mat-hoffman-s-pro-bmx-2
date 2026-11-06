@@ -160,8 +160,9 @@ BmxUIPageHOF2 *BmxUIPageHOF2::func_000D5D40(int a0)
     unk2AC = 0;
     unk2A8 = 0;
     unk2A4 = 1;
-    arr2FC[0] = 0;
-    arr2FC[1] = 0;
+    for (int j = 0; j < 2; j++) {
+        arr2FC[j] = 0;
+    }
     unk2B0 = 0;
     unk2B4 = 0;
     unk2B8 = 0;
