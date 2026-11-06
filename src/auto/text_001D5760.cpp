@@ -270,7 +270,7 @@ static __forceinline void FloatToIntLoad(int *out, float f)
 {
     int * volatile p = out;
 
-    *p = _mm_cvtt_ss2si(_mm_load_ss(&f));
+    *p = _mm_cvttss_si32(*(__m128 *)&f);
 }
 
 struct C_001D6290Sub {
@@ -620,20 +620,25 @@ void C_001D6190::func_001D6190(int a, const char *s, int b)
 
 int C_001D61E0::func_001D61E0(void)
 {
-    int result = 0;
+    int result;
     C_001D61E0Entry *e = unk40->tbl[*unk0];
-
     if (e == 0) {
         C_001D61E0Entry **p = unk40->tbl;
         do {
             e = *p++;
+            if (e) break;
+            e = *unk40->tbl;
         } while (e == 0);
     }
+    result = 0;
+    int * volatile out = &result;
     if (e->f1C == 0) {
         float d = e->f10 - e->fC;
-        result = (int)((float)unk40->func_0018C070()->fC * unk34 * d);
+        float f = (float)unk40->func_0018C070()->fC * unk34 * d;
+        *out = (int)f;
     } else {
-        result = (int)((float)(e->s1A + 1) * unk34);
+        float f = (float)(e->s1A + 1) * unk34;
+        *out = (int)f;
     }
     return result;
 }
