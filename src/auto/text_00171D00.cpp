@@ -1,6 +1,7 @@
 /* 12 functions from 0x00171D00 to 0x00172BA0, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 static __forceinline void SqrtR_00171D00(float *r,const float &x);
 static __forceinline void MaxR_00171D00(float *r,const float &a,const float &b);
 void func_001712D0(float *out, void *in);
@@ -324,6 +325,10 @@ void *PhysicsBody::func_00171E60(int flags)
     return this;
 }
 
+void func_00171EA0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
+}
+
 void func_00171F10(S_00171F10_Arg0 *arg)
 {
     C_00171D00_C4VT *obj = arg->f64;
@@ -477,18 +482,93 @@ void PhysicsBody::func_00172460(void)
     fDC->func_001332A0();
 }
 
-void func_001724B0(int a)
+#pragma optimize("y", off)
+void PhysicsBody::func_001724B0(float dt)
 {
-    float v0[4];
-    float v1[4];
-    float v2[4];
-    float v3[4];
-    v0[0] = 0.0f; v0[1] = 0.0f; v0[2] = 0.0f; v0[3] = 1.0f;
-    v1[0] = 0.0f; v1[1] = 0.0f; v1[2] = 0.0f; v1[3] = 1.0f;
-    v2[0] = 0.0f; v2[1] = 0.0f; v2[2] = 0.0f; v2[3] = 1.0f;
-    v3[0] = 0.0f; v3[1] = 0.0f; v3[2] = 0.0f; v3[3] = 1.0f;
-}
+    PhysicsBody * volatile self = this;
+    V4_00171BA0 a;
+    V4_00171BA0 b;
+    V4_00171BA0 v[2];
+    float dot;
+    int i;
+    C_001729D0_Node *node;
+    V4_00171BA0 tmp;
 
+    a.z = 0.0f; a.y = 0.0f; a.x = 0.0f; a.w = 1.0f;
+    b.z = 0.0f; b.y = 0.0f; b.x = 0.0f; b.w = 1.0f;
+    for (i = 0; i < 2; i++) {
+        v[i].z = 0.0f; v[i].y = 0.0f; v[i].x = 0.0f; v[i].w = 1.0f;
+    }
+
+    ((C_001729D0_Cam *)*(void **)(*(char **)((char *)self + 0xc4) + 0x22c))->func_00199A70(0, &v[0].x);
+    ((PhysicsBodyVT *)self)->v28(dt);
+    ((C_00171D00_C4VT *)*(void **)((char *)self + 0xc4))->v13(dt);
+    self->fD0->f30 = 0;
+
+    for (;;) {
+        ((C_001729D0_Cam *)*(void **)(*(char **)((char *)self + 0xc4) + 0x22c))->func_00199A70(0, &v[1].x);
+        ((C_001729D0_Obj *)self->fDC)->func_0014AC30(&v[0].x, 0);
+        ((C_001729D0_Obj *)self->fDC)->func_00133ED0();
+        if (self->f148 != 0) {
+            ((C_001729D0_Obj *)self->fDC)->func_00134770(*self->f144, self->f148);
+        } else {
+            ((C_001729D0_Obj *)self->fDC)->func_00133F10(0);
+        }
+        if ((((C_001729D0_Obj *)self->fDC)->fA7 & 0x20) == 0) {
+            return;
+        }
+        node = ((C_001729D0_Obj *)self->fDC)->f54;
+        self->fD0->f30 = 1;
+        *(V4_00171BA0 *)&self->f94 = *(V4_00171BA0 *)((char *)node + 0x20);
+        dot = self->f98 * ((C_001724B0_C4 *)self->fC4)->f23c
+            + self->f94 * ((C_001724B0_C4 *)self->fC4)->f238
+            + self->f9C * ((C_001724B0_C4 *)self->fC4)->f240;
+        {
+            int adot = *(int *)&dot & 0x7fffffff;
+            if (*(float *)&adot != D_002A8BE4) {
+                self->f34 = 0;
+            }
+        }
+        if (self->f34 != 0) {
+            float s = -(self->f10C + D_00275460);
+            self->fB4 = dot * self->f94 * s;
+            self->fB8 = dot * self->f98 * s;
+            self->fBC = dot * self->f9C * s;
+            self->fC0 = 1.0f;
+            ((C_001724B0_C4 *)self->fC4)->f238 += self->fB4;
+            ((C_001724B0_C4 *)self->fC4)->f23c += self->fB8;
+            ((C_001724B0_C4 *)self->fC4)->f240 += self->fBC;
+            a.x = ((C_001724B0_C4 *)self->fC4)->f238 - dot * self->f94;
+            a.y = ((C_001724B0_C4 *)self->fC4)->f23c - dot * self->f98;
+            a.z = ((C_001724B0_C4 *)self->fC4)->f240 - dot * self->f9C;
+            a.w = 1.0f;
+            Cross_001724B0(&((C_001724B0_C4 *)self->fC4)->f268, (float *)((char *)node + 0x20), &a.x);
+            Normalize_001724B0(&((C_001724B0_C4 *)self->fC4)->f268, &((C_001724B0_C4 *)self->fC4)->f268);
+            *(V4_00171BA0 *)&((C_001724B0_C4 *)self->fC4)->f268 =
+                *((C_001724B0_C4 *)self->fC4)->f22c->func_00198040(&tmp, (V4_00171BA0 *)&((C_001724B0_C4 *)self->fC4)->f268);
+            {
+                float k = ((C_001724B0_C4 *)self->fC4)->f28 * self->f118 * self->f110;
+                ((C_001724B0_C4 *)self->fC4)->f268 *= k;
+                ((C_001724B0_C4 *)self->fC4)->f26c *= k;
+                ((C_001724B0_C4 *)self->fC4)->f270 *= k;
+            }
+        }
+        {
+            float d2 = (node->pos[1] - v[1].y) * self->f98
+                     + (node->pos[0] - v[1].x) * self->f94
+                     + (node->pos[2] - v[1].z) * self->f9C;
+            float t = Max_00171BA0(d2, D_002A8BE0);
+            t = t + t;
+            b.x = v[1].x + t * self->f94;
+            b.y = v[1].y + t * self->f98;
+            b.z = v[1].z + t * self->f9C;
+            b.w = 1.0f;
+            ((C_001729D0_Cam *)self->f14C)->func_00199790(0, &b.x);
+            ((C_001729D0_Cam *)self->f14C)->func_0019AC50();
+        }
+    }
+}
+#pragma optimize("", on)
 extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
 #pragma optimize("a", on)
 void PhysicsBody::func_001729D0(void)
