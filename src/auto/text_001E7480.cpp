@@ -273,6 +273,7 @@ void __stdcall func_001E80C0(int n, int sign, int a2, int *h, int *d) {
 }
 
 void __fastcall func_001E7230(int, int);
+void __cdecl func_001E7230(int, float *, int);
 void __fastcall func_001E30E0(int, int *);
 void __fastcall func_001E7F90(float *, float *, int, int *, int);
 void __fastcall func_001E7E60(float *, float *, int, int *, int);
@@ -284,7 +285,7 @@ void __stdcall func_001E8200(int n, int isgn, float *a, int *ip, float *w) {
     int nw = ip[0];
     if (n > nw * 4) {
         nw = n >> 2;
-        func_001E30E0(ip, nw);
+        func_001E30E0(nw, ip);
     }
     int nc = ip[1];
     if (n > nc) {
@@ -300,19 +301,19 @@ void __stdcall func_001E8200(int n, int isgn, float *a, int *ip, float *w) {
         a[1] = a[0] - xr;
         a[0] = xr + a[0];
         if (n > 4) {
-            func_001E7170((int)(w + nw), n);
-            func_001E7F90(n, (int)a, (int)(ip + 2), nw);
+            func_001E7170(w + nw, a, n, nc);
+            func_001E7F90(a, w, n, ip + 2, nw);
         } else if (n == 4) {
-            func_001E7F90(4, (int)a, (int)(ip + 2), nw);
+            func_001E7F90(a, w, 4, ip + 2, nw);
         }
     }
     func_001E7230(n, (int)a);
     if (isgn >= 0) {
         if (n > 4) {
-            func_001E7E60(n, (int)a, (int)(ip + 2), nw);
-            func_001E70B0((int)(w + nw), n);
+            func_001E7E60(a, w, n, ip + 2, nw);
+            func_001E70B0(w + nw, a, n, nc);
         } else if (n == 4) {
-            func_001E7E60(4, (int)a, (int)(ip + 2), nw);
+            func_001E7E60(a, w, 4, ip + 2, nw);
         }
         xr = a[0] - a[1];
         a[0] = a[1] + a[0];
