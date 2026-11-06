@@ -130,8 +130,8 @@ extern float D_002B9234, D_002B9238, D_002B923C, D_002B9240;
 extern float D_002B9224, D_002B9228, D_002B922C, D_002B9230;
 void func_00104A90(void *a, void *b);
 
-#define VF(off, T) (*(T *)((char *)self + (off)))
-#define VP(off) ((char *)self + (off))
+#define VF(off, T) (*(T *)((char *)this + (off)))
+#define VP(off) ((char *)this + (off))
 
 struct BmxVehicle {
     int func_00119810(int a);
@@ -188,7 +188,7 @@ int BmxVehicle::func_00119810(int a)
 {
     BmxVehicle * volatile self = this;
     float sv;
-    char v70[0x28];
+    __declspec(align(16)) char v70[0x28];
 
     if (D_002A8490->f124 != 0) {
         if (*(char *)((char *)this + 0x12a8) < 0) {
