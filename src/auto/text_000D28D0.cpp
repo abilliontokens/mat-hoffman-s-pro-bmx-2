@@ -31,6 +31,7 @@ struct Mgr_D28 {
     Unlocks_D28 *f2C0;
     char pad2C4[0x14];
     int f2D8;
+    int thresholds[8];
 };
 struct Root_D28 {
     char pad0[0x2E0];
