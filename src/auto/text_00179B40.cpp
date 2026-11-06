@@ -169,13 +169,10 @@ static inline float C_0017A1D0_Abs(volatile float f)
     return u.f;
 }
 
-extern "C" void _ReadWriteBarrier(void);
-#pragma intrinsic(_ReadWriteBarrier)
-
-static __forceinline float C_0017A1D0_AbsV(volatile float x)
+static __forceinline float C_0017A1D0_AbsV(float x)
 {
     volatile int tmp;
-    tmp = *(volatile int *)&x & 0x7fffffff;
+    tmp = *(int *)&x & 0x7fffffff;
     return *(float *)&tmp;
 }
 
