@@ -10,8 +10,7 @@ extern float D_002B9348;
 extern void **D_002B92F4;
 
 struct S_0011F4B0_V4 { float x, y, z, w; };
-struct V4p_00120FF0 {
-    float x, y, z, w;
+struct V4p_00120FF0 : S_0011F4B0_V4 {
     V4p_00120FF0(float a, float b, float c) { x = a; y = b; z = c; w = 1.0f; }
 };
 struct S_001206E0_Tri { int pad0[2]; float t; short x, y, z; };
