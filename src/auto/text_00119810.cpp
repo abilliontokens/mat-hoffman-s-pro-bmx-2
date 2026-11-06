@@ -135,7 +135,6 @@ void func_00104A90(void *a, void *b);
 
 struct BmxVehicle {
     int func_00119810(int a);
-    int func_00119810(float a);
     void func_00027D40();
     int func_001091D0();
     void func_0010DC00();
@@ -186,8 +185,8 @@ struct BmxWallPlantConstraint {
 
 int BmxVehicle::func_00119810(int a)
 {
-    BmxVehicle * volatile self = this;
     float sv;
+    Vec4 ve;
     __declspec(align(16)) char v70[0x28];
 
     if (D_002A8490->f124 != 0) {
@@ -214,26 +213,26 @@ int BmxVehicle::func_00119810(int a)
             VF(0x964, int) = 0;
             VF(0x968, int) = 0;
             VF(0x9e0, int) = 1;
-            self->func_00027D40();
-            if (self->func_001091D0())
+            this->func_00027D40();
+            if (this->func_001091D0())
                 VF(0x9a0, float) = 1.0f;
             else
                 VF(0x9a0, int) = 0;
             if (VF(0x20a0, int) != 0 && VF(0x20a4, int) == 0 && VF(0x15d8, int) == 1 && (VF(0x15f4, float) >= D_00275460 || VF(0x1130, int) != 0)) {
                 VF(0x20a4, int) = 1;
-                self->func_0010DC00();
+                this->func_0010DC00();
             }
         }
     }
-    self->func_00112A80(a);
+    this->func_00112A80(a);
     {
         S119_UI *ui = D_002A8490->f8->f38;
         if (ui != 0) {
             if (ui->vf5(0x26, 0x3f, 0) != 0)
-                self->func_0010C210();
+                this->func_0010C210();
         }
     }
-    self->func_00105890();
+    this->func_00105890();
     {
         S119_Veh138 *veh = D_002A8490->f2a4->list[VF(0xa2c, int)];
         sv = 1.0f;
@@ -243,11 +242,11 @@ int BmxVehicle::func_00119810(int a)
         ((S119_Obj *)VF(0x5f0, void *))->func_00026270(sv);
         ((S119_Obj *)VF(0x5f4, void *))->func_00026270(sv);
     }
-    self->func_00118840(a);
-    self->func_0002EE30(a);
+    this->func_00118840(a);
+    this->func_0002EE30(a);
     ((S119_Obj *)VF(0x204, void *))->func_00133ED0();
     ((S119_Obj *)VF(0x11b8, void *))->func_00133ED0();
-    self->func_00119680(a);
+    this->func_00119680(a);
     {
         S119_Obj1C4 *o = D_002A8490->f2a4->f1c4;
         if (o != 0 && (VF(0x468, int) == 0 || (VF(0x470, int) == 0 && VF(0x704, int) == 0)) && o->fe0 != 0)
@@ -255,17 +254,17 @@ int BmxVehicle::func_00119810(int a)
     }
     VF(0x460, int) = (VF(0x15d8, int) == 1);
     if (D_002A8490->f2a4->f1c8 == 0) {
-        self->func_00111C60(a);
-        self->func_00105AA0();
-        self->func_001184E0(a);
-        self->func_00113290(a);
+        this->func_00111C60(a);
+        this->func_00105AA0();
+        this->func_001184E0(a);
+        this->func_00113290(a);
         VF(0x1194, int) = VF(0x744, int);
         {
             int m = VF(0x5c8, int);
             if (m != 0 && m == 1)
                 VF(0x5c8, int) = 2;
         }
-        self->func_00105B30(a);
+        this->func_00105B30(a);
     }
     ((S119_Obj *)*(void **)(VF(0xa00, char *) + 4))->func_0019AC50();
     ((S119_Obj *)VF(0xa08, void *))->func_0019AC50();
@@ -273,21 +272,21 @@ int BmxVehicle::func_00119810(int a)
     ((S119_Obj *)VF(0xa10, void *))->func_0019AC50();
     ((S119_Obj *)VF(0xa14, void *))->func_0019AC50();
     if (D_002A8490->f2a4->f1c8 == 0)
-        self->func_00105CB0();
+        this->func_00105CB0();
 
     if (D_002A8490->f2a4->f1c8 != 0) {
         float dx = VF(0x834, float) - VF(0x844, float);
         float dy = VF(0x838, float) - VF(0x848, float);
         float dz = VF(0x83c, float) - VF(0x84c, float);
-        *(Vec4 *)((char *)self + 0x844) = *(Vec4 *)((char *)self + 0x834);
+        *(Vec4 *)((char *)this + 0x844) = *(Vec4 *)((char *)this + 0x834);
         float t = 1.0f / (float)a;
         float sum = (dx * t) * (dx * t) + (dy * t) * (dy * t) + (dz * t) * (dz * t);
         float len = AsmSqrtF(sum);
         VF(0x1194, float) = len;
         VF(0x744, float) = len;
         ((S119_Obj *)VF(0x1e8, void *))->func_000B6A70(a);
-        self->func_00106B20();
-        self->func_00106E30();
+        this->func_00106B20();
+        this->func_00106E30();
         VF(0x11d0, int) = *(int *)(VF(0x20c, char *) + 0x30);
         VF(0x708, int) = VF(0x704, int);
         VF(0x710, int) = VF(0x70c, int);
@@ -380,11 +379,15 @@ int BmxVehicle::func_00119810(int a)
 
     {
         Vec4 vd(0.0f, 0.0f, 0.0f, 1.0f);
-        Vec4 ve(0.0f, 0.0f, 0.0f, 1.0f);
         Vec4 pos;
-        Vec4 v = *((S119_Obj *)*(void **)(VF(0x1e0, char *) + 0x22c))->func_00199B00(&pos, 0);
+        Vec4 v;
+        ve.x = 0.0f;
+        ve.y = 0.0f;
+        ve.z = 0.0f;
+        ve.w = 1.0f;
+        v = *((S119_Obj *)*(void **)(VF(0x1e0, char *) + 0x22c))->func_00199B00(&pos, 0);
         ((S119_Obj *)*(void **)(VF(0x1e0, char *) + 0x22c))->func_001994C0(0, &ve, &vd);
-        S119_Entry *e = (S119_Entry *)((char *)self + 0x12ac) + VF(0x157c, int);
+        S119_Entry *e = (S119_Entry *)((char *)this + 0x12ac) + VF(0x157c, int);
         float dx = v.x - e->a.x;
         float dy = v.y - e->a.y;
         float dz = v.z - e->a.z;
@@ -393,7 +396,7 @@ int BmxVehicle::func_00119810(int a)
         e->d = len;
         if (len >= 1.0f) {
             VF(0x157c, int) = VF(0x1580, int);
-            e = (S119_Entry *)((char *)self + 0x12ac) + VF(0x157c, int);
+            e = (S119_Entry *)((char *)this + 0x12ac) + VF(0x157c, int);
             e->a = v;
             e->b = vd;
             e->d = 0.0f;
@@ -401,7 +404,7 @@ int BmxVehicle::func_00119810(int a)
                 VF(0x1580, int) = 0x13;
         }
     }
-    return self->func_00157A00(a);
+    return this->func_00157A00(a);
 }
 
 BmxWallPlantConstraint *BmxWallPlantConstraint::func_0011A440(int param_1)
