@@ -506,8 +506,8 @@ void *C_0001C550::func_0001C550(int flags) {
     return this;
 }
 
-float func_0001C590(volatile float x) {
-    int i = *(volatile int *)&x & 0x7fffffff;
+float func_0001C590(float x) {
+    int i = *(int *)&x & 0x7fffffff;
     return *(float *)&i;
 }
 
@@ -795,6 +795,38 @@ int C_0001D0B0::func_0001D0B0(int count, int p2)
     f4 = p;
     f8 = p2;
     return p != 0;
+}
+
+C_0001D0F0 *C_0001D0F0::func_0001D0F0(int a)
+{
+    int i;
+    func_00157600(a);
+    vtbl = &D_00275DFC;
+    init_0001D0F0(&f30);
+    init_0001D0F0(&f70);
+    init_0001D0F0(&f84);
+    init_0001D0F0(&f98);
+    f48 = 0;
+    f4C = 0;
+    f54 = 0;
+    f50 = 0;
+    f58 = 0;
+    f44 = 0;
+    f24 = 0;
+    for (i = 0; i < 4; i++) {
+        (&f60)[i] = 0;
+    }
+    unsigned char b = fB0 | 1;
+    fAC = -1;
+    fB0 = b;
+    f28 = 0;
+    f5C = 1;
+    f2C = 0;
+    f34 = func_001E8A44(4);
+    f40 |= 1;
+    f3C = 1;
+    f38 = 0x10;
+    return this;
 }
 
 void C_0001D200::func_0001D200(void)
