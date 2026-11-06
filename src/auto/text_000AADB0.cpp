@@ -171,7 +171,7 @@ struct C_000ABBC0_Obj {
     int f104;
           int f108;
     int f10C;
-    C_000ABBC0_Sub **f110;
+    void **f110;
 };
 
 struct C_000ABBC0 {
