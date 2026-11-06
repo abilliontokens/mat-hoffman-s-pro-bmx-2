@@ -136,6 +136,7 @@ struct SpringCollisionModel {
     void func_001A9FA0(float s, V4_001AB670 v, V4_001AB670 q, void *other, unsigned int mask);
     void func_001AB670(float *v, void *q, int b);
     int func_001AB800();
+    int func_001AB800(int);
 };
 
 struct StateMachine {
@@ -201,6 +202,12 @@ void *SpringCollisionModel::func_001AB7B0(unsigned int flags)
     func_00157660();
     if (flags & 1) func_001E891B(this);
     return this;
+}
+
+int SpringCollisionModel::func_001AB800()
+{
+    f2c = 0;
+    return 1;
 }
 
 StateMachine *StateMachine::func_001AC080()
