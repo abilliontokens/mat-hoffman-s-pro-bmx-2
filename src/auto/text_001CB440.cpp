@@ -388,7 +388,7 @@ struct C_001CC0C0 {
     char pad2D[3];
     int f30;
     char pad34[0xc0];
-    int fF4;
+    float fF4;
     char padF8[0x14];
     unsigned int f10C;
     char pad110[0x2c];
