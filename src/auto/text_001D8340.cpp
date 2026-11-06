@@ -61,7 +61,6 @@ struct C_001D8AE0 {
     u32 fC;
     u32 f10;
     C_001D8AE0(int p1, int p2, int p3, int p4, int p5);
-    void func_001D8AE0(int p1, int p2, int p3, int p4, int p5);
 };
 
 struct PageObjDtor {
