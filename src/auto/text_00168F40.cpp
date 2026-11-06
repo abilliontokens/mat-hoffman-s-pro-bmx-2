@@ -58,7 +58,7 @@ struct S_00168F40_Slot {
 /* 8-byte string tokenizer state (strtok-like) */
 struct S_00168F40_Tokenizer {
     double align;
-    void func_001B4A40(const char *str);
+    void Tokenizer_SetString(const char *str);
     char *func_001B4A70(const char *delims);
 };
 
@@ -419,6 +419,7 @@ int C_00168F40::func_00169710(char * volatile name)
     int tmp;
     int i;
     int k;
+    char line[0x400];
     char clean[0x400];
 
     if (f8 == 0) {
@@ -483,8 +484,6 @@ int C_00168F40::func_00169710(char * volatile name)
     self->pad24[n] = 0;
     q = self;
     for (i = 0; i < count; i++) {
-        char line[0x400];
-
         D_002BEAAC->func_0013C6E0(q->f0, line, 0x400);
         q = self;
         q->func_001690D0(line, clean);
@@ -499,8 +498,6 @@ int C_00168F40::func_00169710(char * volatile name)
     q = self;
     k = 0;
     for (i = 0; i < count; i++) {
-        char line[0x400];
-
         D_002BEAAC->func_0013C6E0(q->f0, line, 0x400);
         q = self;
         q->func_001690D0(line, clean);
@@ -540,7 +537,7 @@ int C_00168F40::func_00169A50(char *line)
             strcpy(line, raw);
         }
         func_001690D0(raw, clean);
-        tok.func_001B4A40(clean);
+        tok.Tokenizer_SetString(clean);
         s = tok.func_001B4A70(D_0028803C);
         slotCount = 0;
         while (s != 0) {

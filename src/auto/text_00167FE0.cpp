@@ -51,7 +51,7 @@ extern char D_0028800C[];
 /* 8-byte string tokenizer state (strtok-like) */
 struct S_00168550_Tokenizer {
     double align;
-    void func_001B4A40(const char *str);
+    void Tokenizer_SetString(const char *str);
     char *func_001B4A70(const char *delims);
 };
 
@@ -323,7 +323,7 @@ int C_00168280::func_00168550(const char *name, char *dst, int size)
             n = Min_00168550(strlen(list[i]), 0x3ff);
             func_001E8920(key, list[i], n);
             key[n] = 0;
-            tok.func_001B4A40(key);
+            tok.Tokenizer_SetString(key);
             s = tok.func_001B4A70(D_0028800C);
             n = Min_00168550(strlen(s), 0x3ff);
             func_001E8920(val, s, n);

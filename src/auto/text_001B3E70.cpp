@@ -167,13 +167,13 @@ struct TireTrack {
 struct C_001B4A40 {
     int unk0;
     const char *f4;
-    void func_001B4A40(const char *str);
+    void Tokenizer_SetString(const char *str);
 };
 
 struct C_001B4A40Ret {
     int unk0;
     const char *f4;
-    C_001B4A40Ret *func_001B4A40(const char *str);
+    C_001B4A40Ret *Tokenizer_SetString(const char *str);
 };
 
 struct C_001B4B70 {
@@ -304,7 +304,7 @@ void TireTrack::func_001B4A20()
 }
 
 #pragma intrinsic(strlen)
-C_001B4A40Ret *C_001B4A40Ret::func_001B4A40(const char *str)
+C_001B4A40Ret *C_001B4A40Ret::Tokenizer_SetString(const char *str)
 {
     f4 = strlen(str) ? str : 0;
     return this;

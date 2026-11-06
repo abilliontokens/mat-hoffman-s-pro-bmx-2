@@ -137,7 +137,7 @@ struct C_001376B0 {
 
 struct TokenizerBuf {
     double align;
-    void func_001B4A40(int a);
+    void Tokenizer_SetString(int a);
     char *func_001B4A70(const char *delims);
 };
 
@@ -273,7 +273,7 @@ void func_00136B60(int a, TokenEntry *out)
 {
     TokenizerBuf tok;
     int i = 0;
-    tok.func_001B4A40(a);
+    tok.Tokenizer_SetString(a);
     for (int n = 0; n < 16; n++) {
         char *s;
         for (s = tok.func_001B4A70(D_00284878); s != 0; i++) {
@@ -283,4 +283,178 @@ void func_00136B60(int a, TokenEntry *out)
     }
 }
 
+extern "C" char *strcpy(char *, const char *);
+extern "C" int strncmp(const char *, const char *, unsigned int);
+extern "C" int strcmp(const char *, const char *);
+#pragma intrinsic(strcpy, strcmp)
+void C_00136BE0::func_00136BE0(char *name)
+{
+ TokenizerBuf tok;
+ Locals136BE0 local;
+ strcpy(local.path,name);
+ func_00030F30(local.path,D_00284914);
+ local.cfg.func_00168280();
+ int i=0;
+ if(!local.cfg.func_00169490(local.path,i)) {
+ local.cfg.func_001691E0();
+ return;
+ }
+ local.cfg.func_00169710(D_00284908);
+ local.cfg.func_00168C20(D_002848F8,i,&count);
+ if(i<count) {
+ anims=(Anim136BE0*)func_001E8A44(count*40);
+ for(;i<count;i++) {
+ float value;
+ Anim136BE0 *a=&anims[i];
+ func_001ADCC0(local.section,0x104,D_002848EC,i+1);
+ local.cfg.func_00169710(local.section);
+ local.cfg.func_00168C50(D_00276974,0,&a->start);
+ a->start-=D_00275460;
+ local.cfg.func_00168C50(D_00276968,0,&a->end);
+ a->end-=D_00275460;
+ a->count=(int)(a->end-a->start);
+ local.cfg.func_00168C50(D_002848DC,0,&a->fC);
+ local.cfg.func_00168C50(D_002848D0,0,&a->f10);
+ local.cfg.func_00168C20(D_002848BC,100,&a->f14);
+ local.cfg.func_00168C50(D_002848B0,0,&value);
+ a->f18=value; a->f1C=1; a->f20=0; a->flags = 0;
+ }
+ local.cfg.func_00169710(D_002848A4);
+ Group136BE0 (*base)[16]=groups;
+ for(int j=0;j<6;j++){
+ func_001ADCC0(local.key,0x104,D_00284894,j+1);
+ local.cfg.func_00168BE0(local.key,D_00275630,local.list,-1);
+ func_00136B60((int)local.list,(TokenEntry*)base[j]);
+ }
+ for(int k=0;k<6;k++){
+ func_001ADCC0(local.key,0x104,D_00284894,k+1);
+ local.cfg.func_00168BE0(local.key,D_00275630,local.list,-1);
+ func_00136B60((int)local.list,(TokenEntry*)base[k]);
+ }
+ Group136BE0 *g=&base[0][0];
+ for(int x=0;x<6;x++) for(int y=0;y<16;y++,g++){
+ if(g->id){
+ func_001ADCC0(local.section,0x104,D_0028488C,g->id);
+ local.cfg.func_00169710(local.section);
+ local.cfg.func_00168BE0(D_0028487C,D_00275630,local.text,-1);
+ g->count=0;
+ if(strcmp(local.text,"")!=0){
+ tok.Tokenizer_SetString((int)local.text);
+ char *p=tok.func_001B4A70(D_00284878);
+ while(p){
+ int frame;
+ g->entries[g->count]=func_001E91F4((int)p)-1;
+ Anim136BE0 *a=&anims[g->entries[g->count]];
+ for(frame=(int)a->start;frame<a->end;frame++) {}
+ p=tok.func_001B4A70(D_00284878);
+ g->count++;
+ }
+ }
+ }
+ }
+ }
+ local.cfg.func_001691E0();
+}
+int func_00136FE0(void)
+{
+    Vtx_00136FE0 v[25];
+    int face;
+    int i;
+    int j;
+    int k;
+    int n;
+    int idx;
+    int row;
+    Vtx_00136FE0 *p;
+
+    for (face = 0; face < 6; face++) {
+        for (i = 0; i < 5; i++) {
+            for (j = 0; j < 5; j++) {
+                int a = 256 - j * 128;
+                int au = j * 128 - 256;
+                int b = 256 - i * 128;
+                int bu = i * 128 - 256;
+                p = &v[i * 5 + j];
+                switch (face) {
+                case 0:
+                    p->pos.z = 25600.0f;
+                    D_002BE9A0[0][1] = 0;
+                    D_002BE9A0[0][0] = 0;
+                    D_002BE9A0[0][2] = -1.0f;
+                    p->pos.x = au * D_00275994;
+                    p->pos.y = b * D_00275994;
+                    break;
+                case 1:
+                    p->pos.x = -25600.0f;
+                    D_002BE9A0[1][1] = 0;
+                    D_002BE9A0[1][2] = 0;
+                    D_002BE9A0[1][0] = 1.0f;
+                    p->pos.y = b * D_00275994;
+                    p->pos.z = au * D_00275994;
+                    break;
+                case 2:
+                    p->pos.z = -25600.0f;
+                    D_002BE9A0[2][1] = 0;
+                    D_002BE9A0[2][0] = 0;
+                    D_002BE9A0[2][2] = 1.0f;
+                    p->pos.x = a * D_00275994;
+                    p->pos.y = b * D_00275994;
+                    break;
+                case 3:
+                    p->pos.x = 25600.0f;
+                    D_002BE9A0[3][1] = 0;
+                    D_002BE9A0[3][2] = 0;
+                    D_002BE9A0[3][0] = -1.0f;
+                    p->pos.y = b * D_00275994;
+                    p->pos.z = a * D_00275994;
+                    break;
+                case 4:
+                    p->pos.y = 25600.0f;
+                    D_002BE9A0[4][2] = 0;
+                    D_002BE9A0[4][0] = 0;
+                    D_002BE9A0[4][1] = -1.0f;
+                    p->pos.x = au * D_00275994;
+                    p->pos.z = bu * D_00275994;
+                    break;
+                case 5:
+                    p->pos.y = -25600.0f;
+                    D_002BE9A0[5][2] = 0;
+                    D_002BE9A0[5][0] = 0;
+                    D_002BE9A0[5][1] = 1.0f;
+                    p->pos.x = au * D_00275994;
+                    p->pos.z = b * D_00275994;
+                    break;
+                }
+                p->color = -1;
+                p->u = j * D_00278C48;
+                p->v = i * D_00278C48;
+            }
+        }
+        n = 0;
+        idx = 0;
+        for (row = 0; row < 4; row++) {
+            for (k = 0; k < 4; k++) {
+                Vtx_00136FE0 *d = &D_002BA728[face * 96 + n];
+                d[0].pos = v[idx].pos;
+                d[1].pos = v[idx + 1].pos;
+                d[2].pos = v[idx + 6].pos;
+                d[3].pos = v[idx + 5].pos;
+                d[4].pos = v[idx].pos;
+                d[5].pos = v[idx + 6].pos;
+                d[0].color = -1;
+                d[1].color = -1;
+                d[2].color = -1;
+                d[3].color = -1;
+                d[4].color = -1;
+                d[5].color = -1;
+                n += 6;
+                idx++;
+            }
+            idx++;
+        }
+        for (k = 0; k < 25; k++)
+            *(Vec3_00136FE0 *)&D_002BE040[face * 100 + k * 4] = v[k].pos;
+    }
+    return 1;
+}
 

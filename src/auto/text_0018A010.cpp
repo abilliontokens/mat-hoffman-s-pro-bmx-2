@@ -33,7 +33,7 @@ struct S_0018A320_P {
     void func_00168C50(char *key, float def, float *out);
     int func_00168BE0(char *key, char *def, char *out, int len);
 };
-struct S_0018A320_Tok { char *p0, *p1; void func_001B4A40(char *s); char *func_001B4A70(char *sep); };
+struct S_0018A320_Tok { char *p0, *p1; void Tokenizer_SetString(char *s); char *func_001B4A70(char *sep); };
 struct S_0018A320_Vec { int x, y, z, w; };
 extern S_0018A320_Vec *func_00182980(S_0018A320_Vec *out, char *s);
 extern void *func_001E8A44(unsigned int);
@@ -135,6 +135,100 @@ void BasicScene::func_0018A010()
   }
  }
  func_001578D0();
+}
+
+int C_0018A210::func_0018A320(S_0018A320_W *w, S_0018A320_P *p, int level)
+{
+ char name2[0x104];
+ char s2[0x80];
+ char s[0x80];
+ char buf[0x104];
+ S_0018A320_Tok tokA, tokB;
+ S_0018A320_Vec tmp;
+ int *pv;
+ int v;
+ this->f4 = level - 1;
+ func_001ADCC0(this->name, 0x104, D_0028A4F4, level);
+ if (!p->func_00169710(this->name)) {
+  if (level != 1) return 0;
+  func_001ADCC0(this->name, 0x104, D_0028A398);
+  if (!p->func_00169710(this->name)) return 0;
+ }
+ p->func_00168C20(D_0028A4DC, 1, &v);
+ this->bit1 = v;
+ this->bit2 = !memcmp(this->name, D_0028A398, 13);
+ pv = &this->f10C;
+ p->func_00168C20(D_0028A4C4, 0, pv);
+ if (p->func_00168BE0(D_0028A4B8, D_00276844, buf, -1)) {
+  int t;
+  if (!memcmp(buf, D_002895F4, 9)) t = 2;
+  else t = !memcmp(buf, D_002895EC, 5);
+  this->f114 = t;
+  this->f11C = t;
+  this->f120 = t;
+ } else {
+  if (p->func_00168BE0(D_0028A4A0, D_00276844, buf, -1)) {
+   this->f11C = this->func_00185860(buf);
+  } else {
+   p->func_00168BE0(D_0028A484, D_002895F4, buf, -1);
+   this->f11C = this->func_00185860(buf);
+  }
+  p->func_00168BE0(D_0028A468, D_002895F4, buf, -1);
+  this->f114 = this->func_00185860(buf);
+  if (p->func_00168BE0(D_0028A454, D_00276844, buf, -1)) {
+   this->func_00185860(buf);
+   this->f11C = this->f114;
+  } else {
+   p->func_00168BE0(D_0028A438, D_002895F4, buf, -1);
+   this->f120 = this->func_00185860(buf);
+   p->func_00168BE0(D_0028A41C, D_002895F4, buf, -1);
+   this->f118 = this->func_00185860(buf);
+  }
+ }
+ if (!this->f114 || !this->f11C || !this->f118 || !this->f120) return 0;
+ p->func_00168C50(D_0028973C, 0, &this->f150);
+ p->func_00168C50(D_00289734, 0, &this->f154);
+ p->func_00168C50(D_0028972C, 0, &this->f158);
+ p->func_00168C50(D_00289724, 0, &this->f15c);
+ p->func_00168C20(D_0028A410, 0, &this->f12C);
+ p->func_00168BE0(D_0028A404, D_0027C494, buf, -1);
+ if (!memcmp(buf, D_0027C494, 6)) {
+  *(S_0018A320_Vec *)this->sub.v = *(S_0018A320_Vec *)((char *)w->f390 + 4);
+ } else {
+  *(S_0018A320_Vec *)this->sub.v = *func_00182980(&tmp, buf);
+ }
+ p->func_00168C50(D_0028A3F4, *(float *)((char *)w->f390 + 0x14), &this->sub.f14);
+ p->func_00168C50(D_0028A3E8, *(float *)((char *)w->f390 + 0x18), &this->sub.f18);
+ w->f4D8 |= 1;
+ this->f128 = 0;
+ if (p->func_00168BE0(D_0028A3D8, D_00275630, s, 0x80)) {
+  strcpy(s2, s);
+  tokA.Tokenizer_SetString(s);
+  while (tokA.func_001B4A70(D_0028803C)) this->f128++;
+  this->f124 = (int *)func_001E8A44(this->f128 * 4);
+  tokB.Tokenizer_SetString(s2);
+  int i = 0;
+  char *t;
+  while ((t = tokB.func_001B4A70(D_0028803C)) != 0) {
+   this->f124[i] = func_001E91F4(t) - 1;
+   i++;
+  }
+ }
+ func_001ADCC0(name2, 0x104, D_0028A4F4, level);
+ if (!p->func_00169710(name2)) {
+  if (level != 1) return 0;
+  func_001ADCC0(name2, 0x104, D_0028A3C4);
+  if (!p->func_00169710(name2)) {
+   this->f110 = *pv;
+   this->bit0 = 0;
+   return level;
+  }
+ }
+ p->func_00168C20(D_0028A3A8, -1, &this->f110);
+ if (this->f110 != -1) return 0;
+ this->f110 = *pv;
+ this->bit0 = 0;
+ return 1;
 }
 
 void *C_0018AEF0::func_0018AEF0(unsigned int flags)

@@ -289,7 +289,7 @@ struct S_001BB060_Stream {
 /* 8-byte string tokenizer state (strtok-like) */
 struct S_001BB060_Tokenizer {
     double align;
-    void func_001B4A40(const char *str);
+    void Tokenizer_SetString(const char *str);
     char *func_001B4A70(const char *delims);
 };
 
@@ -416,6 +416,83 @@ C_001BA5E0::C_001BA5E0()
     f144 = 0;
 }
 
+void __stdcall func_001BA660(int *kind, void **out)
+{
+    int k = *kind;
+    if (k == 1) {
+        T_A *p = (T_A *)func_001E8A44(0x18c);
+        if (p == 0) { *out = 0; return; }
+        p->f4 = 0; p->f8 = 0; p->vtbl = &D_0028CC44; p->f10c = 0; p->f114 = 0; p->f110 = -1;
+        *out = p;
+        return;
+    }
+    if (k == 2) {
+        T_A *p = (T_A *)func_001E8A44(0x204);
+        if (p == 0) { *out = 0; return; }
+        p->f4 = 0; p->f8 = 0; p->f10c = 0; p->f114 = 0; p->f18c = 0; p->vtbl = &D_0028CC60; p->f110 = -1;
+        *out = p;
+        return;
+    }
+    if (k == 3) {
+        T_C *p = (T_C *)func_001E8A44(0x204);
+        if (p == 0) { *out = 0; return; }
+        *out = p->func_001B5D00();
+        return;
+    }
+    if (k == 4) {
+        T_D *p = (T_D *)func_001E8A44(0x188);
+        if (p == 0) { *out = 0; return; }
+        *out = p->func_001B5EA0();
+        return;
+    }
+    if (k == 5) {
+        T_B *p = (T_B *)func_001E8A44(0x184);
+        if (p == 0) { *out = 0; return; }
+        p->f4 = 0; p->f8 = 0; p->vtbl = &D_0028CCA8; p->f10c = 0;
+        *out = p;
+        return;
+    }
+    if (k == 6) {
+        T_F *p = (T_F *)func_001E8A44(0x290);
+        if (p == 0) { *out = 0; return; }
+        *out = p->func_001B6100();
+        return;
+    }
+    if (k == 9) {
+        T_H *p = (T_H *)func_001E8A44(0x110);
+        if (p == 0) { *out = 0; return; }
+        p->f4 = 0; p->f8 = 0; p->vtbl = &D_0028CCF4; p->f10c = 0;
+        *out = p;
+        return;
+    }
+    if (k == 7) {
+        T_G *p = (T_G *)func_001E8A44(0x224);
+        if (p == 0) { *out = 0; return; }
+        *out = p->func_001B61A0();
+        return;
+    }
+    if (k == 8) {
+        T_B *p = (T_B *)func_001E8A44(0x210);
+        if (p == 0) { *out = 0; return; }
+        p->f4 = 0; p->f8 = 0; p->vtbl = &D_0028CCE8; p->f10c = 0;
+        *out = p;
+        return;
+    }
+    if (k == 10) {
+        T_I *p = (T_I *)func_001E8A44(0x148);
+        if (p == 0) { *out = 0; return; }
+        *out = p->func_001BA5E0();
+        return;
+    }
+    if (k == 11) {
+        T_J *p = (T_J *)func_001E8A44(0x118);
+        if (p == 0) { *out = 0; return; }
+        *out = p->func_001B6410();
+        return;
+    }
+    *out = 0;
+}
+
 void C_001BA910::func_001BA910(void)
 {
     int func_001E891B(...);
@@ -455,6 +532,72 @@ undefined4 C_001BA9A0::func_001BA9A0(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+unsigned int strlen(const char *s);
+char *strncpy(char *d, const char *s, unsigned int n);
+void S_9C0_This::func_001BA9C0(S_9C0_Stream *s)
+{
+    int count;
+    int i, j;
+    int flag;
+    float fa, fb, fc;
+    S_9C0_Vec v1, v2, v4, v3;
+    char name[0x104];
+    char buf[0x104];
+    int n;
+    S_9C0_Elem *e;
+
+    if (!s->func_00169710(D_0027CBAC))
+        return;
+    s->func_00168C20(D_0027CB90, 0, &count);
+    if (count <= 0)
+        return;
+    if (f28 != 0) {
+        i = f24;
+        f24 += count;
+        f28 = (S_9C0_Elem **)func_001E83E8(f28, f24 * 4);
+    } else {
+        i = 0;
+        f24 = count;
+        f28 = (S_9C0_Elem **)func_001E8A44(count * 4);
+    }
+    for (; i < f24; i++) {
+        func_001ADCC0(buf, 0x104, D_0027CB78, i + 1);
+        if (!s->func_00169710(buf))
+            continue;
+        s->func_00168BE0(D_0027C4D0, D_002764F0, name, -1);
+        s->func_00168C20(D_0027C4BC, 1, &flag);
+        s->func_00168C50(D_0027CB60, 0, &fb);
+        s->func_00168C50(D_0027CB54, 0, &fa);
+        s->func_00168C50(D_0027CB44, 0, &fc);
+        s->func_00168CB0(D_0027CB38, D_002AA9F4, &v1);
+        s->func_00168CB0(D_00275AD4, D_002AA9F4, &v2);
+        s->func_00168CB0(D_0027CB30, D_002AA9F4, &v3);
+        s->func_00168CB0(D_0027CB2C, D_002AA9F4, &v4);
+        e = (S_9C0_Elem *)func_001E8A44(0x15c);
+        f28[i] = e ? e->func_001B84E0() : 0;
+        n = strlen(name);
+        n = n < 0x103 ? n : 0x103;
+        strncpy((char *)f28[i], name, n);
+        ((char *)f28[i])[n] = 0;
+        f28[i]->f104 = flag;
+        f28[i]->f10c = fb;
+        f28[i]->f110 = fa;
+        f28[i]->f114 = fc;
+        f28[i]->v118 = v1;
+        f28[i]->v128 = v2;
+        f28[i]->v138 = v3;
+        f28[i]->v148 = v4;
+        if (flag == 0) {
+            f28[i]->f158 = (int *)func_001E8A44(4);
+            f28[i]->f158[0] = 0;
+        } else {
+            f28[i]->f158 = (int *)func_001E8A44(flag * 4);
+            for (j = 0; j < flag; j++)
+                f28[i]->f158[j] = 0;
+        }
+    }
 }
 
 void C_001BB2C0::func_001BAE30(void)
@@ -569,14 +712,14 @@ int C_001BA5E0::func_001BB060(S_001BB060_Stream *stream, int a1)
     int i;
 
     stream->func_00168BE0(D_0028D22C, D_0028514C, buf, 0x80);
-    tok1.func_001B4A40(buf);
+    tok1.Tokenizer_SetString(buf);
     s = tok1.func_001B4A70(D_0028803C);
     for (i = 0; s != 0; i++) {
         ((S_001BB060_Array *)&f114)->At(i) = func_001E91F4(s);
         s = tok1.func_001B4A70(D_0028803C);
     }
     stream->func_00168BE0(D_0028D220, D_0028514C, buf, 0x80);
-    tok2.func_001B4A40(buf);
+    tok2.Tokenizer_SetString(buf);
     s = tok2.func_001B4A70(D_0028803C);
     for (i = 0; s != 0; i++) {
         ((S_001BB060_Array *)&f12c)->At(i) = func_001E91F4(s);
