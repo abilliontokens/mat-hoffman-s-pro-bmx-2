@@ -108,6 +108,7 @@ struct C_00198390 {
     void func_001983A0(void);
     void func_00198E60(void);
     void func_0019ABA0(int, int);
+    void func_0019A8C0(V4_49470 *a, V4_49470 *b);
 };
 
 struct S_00049A20_Inner {
