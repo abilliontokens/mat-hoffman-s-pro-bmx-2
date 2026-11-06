@@ -79,6 +79,23 @@ char *func_001E9260(const char *, int);
 extern "C" unsigned int __cdecl strlen(const char *);
 void func_001A7FE0(State_001A7FE0 *, Contact_001A7FE0 *);
 
+struct Dev_001A7880 { void **vtbl; };
+extern Dev_001A7880 *D_002A8490;
+void *func_001E8A44(int size);
+struct Obj_001A7880 {
+    Obj_001A7880 *func_0013E4F0(int a);
+    void func_0012B410(unsigned a, int b, int c);
+};
+struct SplashScreenManager_001A7880 {
+    char pad0[0x1C0];
+    Obj_001A7880 *f1C0;
+    void func_001577A0(void *p, int a);
+    void func_001A59F0();
+    void func_001A7140();
+    void func_001D3F50();
+    void func_001A7880();
+};
+
 struct C_00157600 {
     void func_00157600(int param);
 };
