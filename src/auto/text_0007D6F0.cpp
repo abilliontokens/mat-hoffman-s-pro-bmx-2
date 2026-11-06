@@ -33,7 +33,9 @@ struct GObj4_7E {
     char *p930;
     char pad934[0x134];
     char *fA68;
-    char padA6C[0x4a4];
+    char padA6C[0x464];
+    char *fED0;
+    char padED4[0x3c];
     char *fF10;
 };
 
