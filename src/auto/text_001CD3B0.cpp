@@ -274,9 +274,13 @@ struct S_Slot {
     int f14;
     int f18;
     int f1C;
-    u8 lo : 3;
-    u8 busy : 1;
-    S_Slot();
+    union {
+        u8 f20;
+        struct {
+            u8 lo : 3;
+            u8 busy : 1;
+        };
+    };
     void reset()
     {
         f14 = 0;
