@@ -44,6 +44,22 @@ void *func_0014FDF0(const char *name, const char *mode);
 int func_0014FE80(const void *buf, int size, int count, void *fp);
 int func_0014FE50(void *fp);
 
+extern float D_002756C8,D_0028F874,D_00284ECC,D_002AC5C4;
+extern int D_0028F7F0;
+void func_001FFB50();
+void* __stdcall func_001FF3C0(unsigned);
+void* __stdcall func_001FF410(void*,unsigned);
+void __stdcall func_001E285A(void*,unsigned*,int,unsigned,void*);
+void* __stdcall func_00202A20(unsigned,unsigned);
+void __stdcall func_00201150(void*,void*);
+struct XboxWater {
+ char pad0[0x48]; float f48,f4C; char pad50[0x228-0x50];
+ char f228[0x18],f240[0x18],f258[0x18],f270[0x14],f284[0x14],f298[0x14],f2AC[12],f2B8[12],f2C4[12];
+ void* f2D0; unsigned f2D4[5]; unsigned f2E8; void* f2EC; void* f2F0; unsigned f2F4; unsigned short* f2F8; unsigned f2FC,f300,f304,f308;
+ XboxWater* func_001D9970(int,int,int,int,int,float,int);
+ void func_001C9B10(int,int,int,int,int,float,int);
+ void func_001D9760(unsigned,unsigned,unsigned,int,void*,void*,void*);
+};
 struct WaterDisplacement {
     void *vtbl;
     char pad4[0x38];
