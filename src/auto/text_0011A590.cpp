@@ -256,8 +256,6 @@ void func_0011ADD0(Vec4 *out, float *m)
     *out = q;
 }
 
-extern float D_00275460;
-
 struct BoundsSource {
     char pad0[0x40];
     float f40, f44, f48;
