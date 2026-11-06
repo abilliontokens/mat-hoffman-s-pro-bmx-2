@@ -690,6 +690,22 @@ void C_000AC760::func_000AC760()
     }
 }
 
+void C_000AC780::func_000AC780(int a, int b, int c, int d)
+{
+    C_000AC780_Obj *p = (C_000AC780_Obj *)func_001E8A44(0x34);
+    C_000AC780_Obj *q;
+    if (p != 0) {
+        p->func_00157600(0);
+        *(void **)p = (void *)&D_0027C874;
+        p->field_24 = *(C_000AC780_Quad *)&a;
+        q = p;
+    } else {
+        q = 0;
+    }
+    field_558 = q;
+    q->v4();
+}
+
 void C_000AC7F0::func_000AC7F0(void)
 {
     if (D_002A8490->field_2F0->field_1DC == 0 && D_002A8490->field_2E0->field_48 == 0xd) {
