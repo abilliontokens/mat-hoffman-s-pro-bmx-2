@@ -95,6 +95,21 @@ struct S_19CCE0_Elem {
     static void *operator new[](unsigned int n) { return func_001E8A44(n); }
 };
 extern "C" float __cdecl sqrtf(float);
+/* the stack frame of func_0019CCE0, laid out as the original has it (0x54 bytes from esp+0x10) */
+struct S_19CCE0_Frame {
+    struct SoultreeCollisionObject * volatile self;
+    float vf[3];
+    int hasColor;
+    int nRec;
+    int count;
+    int x2;
+    int y1;
+    int x1;
+    volatile float sqx;
+    char A[12];
+    char ta[12];
+    char B[16];
+};
 static __forceinline void Set3_19CCE0(S_19CCE0_Vec3 *dst, S_19CCE0_Vec3 src)
 {
     *dst = src;
@@ -212,120 +227,132 @@ void SoultreeCollisionObject::func_0019CCA0(int param_1)
 
 void SoultreeCollisionObject::func_0019CCE0(int volatile file)
 {
-    SoultreeCollisionObject * volatile self = this;
-    S_19CCE0_Vec3 v;
-    int hasColor;
-    int nRec;
-    int count;
-    int x2;
-    int y1;
-    int x1;
+    struct {
+        SoultreeCollisionObject * volatile self;
+        float vf[3];
+        int hasColor;
+        int nRec;
+        int count;
+        int x2;
+        int y1;
+        int x1;
+        volatile float sqx;
+    } L;
+    S_19CCE0_Vec3 &v = *(S_19CCE0_Vec3 *)L.vf;
     int i;
     void *mem;
+    volatile float sqr;
 
+    L.self = this;
     RD_19CCE0(&this->unkF0[0][0], 4);
-    RD_19CCE0(&self->unkF0[1][0], 4);
-    RD_19CCE0(&self->unkF0[2][0], 4);
-    self->unkF0[3][0] = 0.0f;
-    RD_19CCE0(&self->unkF0[0][1], 4);
-    RD_19CCE0(&self->unkF0[1][1], 4);
-    RD_19CCE0(&self->unkF0[2][1], 4);
-    self->unkF0[3][1] = 0.0f;
-    RD_19CCE0(&self->unkF0[0][2], 4);
-    RD_19CCE0(&self->unkF0[1][2], 4);
-    RD_19CCE0(&self->unkF0[2][2], 4);
-    self->unkF0[3][2] = 0.0f;
-    RD_19CCE0(&self->unkF0[0][3], 4);
-    RD_19CCE0(&self->unkF0[1][3], 4);
-    RD_19CCE0(&self->unkF0[2][3], 4);
-    self->unkF0[3][3] = 1.0f;
-    RD_19CCE0(&x1, 4);
-    RD_19CCE0(&x2, 4);
-    self->unk1CC = (short)x2;
-    RD_19CCE0(&count, 4);
-    RD_19CCE0(&nRec, 4);
-    hasColor = 1;
-    RD_19CCE0(&hasColor, 4);
-    self->unk1B8 = hasColor;
-    if (hasColor != 0) {
-        int n = self->unk1CC;
+    RD_19CCE0(&L.self->unkF0[1][0], 4);
+    RD_19CCE0(&L.self->unkF0[2][0], 4);
+    *(volatile float *)&L.self->unkF0[3][0] = 0.0f;
+    RD_19CCE0(&L.self->unkF0[0][1], 4);
+    RD_19CCE0(&L.self->unkF0[1][1], 4);
+    RD_19CCE0(&L.self->unkF0[2][1], 4);
+    *(volatile float *)&L.self->unkF0[3][1] = 0.0f;
+    RD_19CCE0(&L.self->unkF0[0][2], 4);
+    RD_19CCE0(&L.self->unkF0[1][2], 4);
+    RD_19CCE0(&L.self->unkF0[2][2], 4);
+    *(volatile float *)&L.self->unkF0[3][2] = 0.0f;
+    RD_19CCE0(&L.self->unkF0[0][3], 4);
+    RD_19CCE0(&L.self->unkF0[1][3], 4);
+    RD_19CCE0(&L.self->unkF0[2][3], 4);
+    *(volatile float *)&L.self->unkF0[3][3] = 1.0f;
+    RD_19CCE0(&L.x1, 4);
+    RD_19CCE0(&L.x2, 4);
+    L.self->unk1CC = (short)L.x2;
+    RD_19CCE0(&L.count, 4);
+    RD_19CCE0(&L.nRec, 4);
+    L.hasColor = 1;
+    RD_19CCE0(&L.hasColor, 4);
+    L.self->unk1B8 = L.hasColor;
+    if (L.hasColor != 0) {
+        int n = L.self->unk1CC;
         mem = func_001E8A44(n * 6);
         if (mem != 0) {
             func_00011FF0(mem, 6, n, func_0019B6F0);
         } else {
             mem = 0;
         }
-        self->unk1B0p = mem;
-        for (i = 0; i < self->unk1CC; i++) {
+        L.self->unk1B0p = mem;
+        for (i = 0; i < L.self->unk1CC; i++) {
             S_19CCE0_Rgb16 s;
             RD_19CCE0(&s.f0, 2);
             RD_19CCE0(&s.f2, 2);
             RD_19CCE0(&s.f4, 2);
-            ((S_19CCE0_Rgb16 *)self->unk1B0p)[i] = s;
+            ((S_19CCE0_Rgb16 *)L.self->unk1B0p)[i] = s;
         }
     } else {
-        int n = self->unk1CC;
+        int n = L.self->unk1CC;
         mem = func_001E8A44(n * 12);
         if (mem != 0) {
             func_00011FF0(mem, 12, n, D_00021290);
         } else {
             mem = 0;
         }
-        self->unk1B0p = mem;
-        for (i = 0; i < self->unk1CC; i++) {
+        L.self->unk1B0p = mem;
+        for (i = 0; i < L.self->unk1CC; i++) {
             RD_19CCE0(&v.x, 4);
             RD_19CCE0(&v.y, 4);
             RD_19CCE0(&v.z, 4);
-            Set3_19CCE0(&((S_19CCE0_Vec3 *)self->unk1B0p)[i], v);
+            S_19CCE0_Vec3 t = v;
+            ((S_19CCE0_Vec3 *)L.self->unk1B0p)[i] = t;
         }
     }
-    RD_19CCE0(&y1, 4);
-    if (y1 != 0) {
-        if (hasColor != 0) {
-            self->unk1B4p = func_001E8A44(self->unk1CC * 6);
-            for (i = 0; i < self->unk1CC; i++) {
+    RD_19CCE0(&L.y1, 4);
+    if (L.y1 != 0) {
+        if (L.hasColor != 0) {
+            L.self->unk1B4p = func_001E8A44(L.self->unk1CC * 6);
+            for (i = 0; i < L.self->unk1CC; i++) {
                 S_19CCE0_Raw16 s;
                 RD_19CCE0(&s.f0, 2);
                 RD_19CCE0(&s.f2, 2);
                 RD_19CCE0(&s.f4, 2);
-                ((S_19CCE0_Raw16 *)self->unk1B4p)[i] = s;
+                ((S_19CCE0_Raw16 *)L.self->unk1B4p)[i] = s;
             }
         } else {
-            self->unk1B4p = new S_19CCE0_V3z[self->unk1CC];
-            for (i = 0; i < self->unk1CC; i++) {
+            L.self->unk1B4p = new S_19CCE0_V3z[L.self->unk1CC];
+            for (i = 0; i < L.self->unk1CC; i++) {
                 RD_19CCE0(&v.x, 4);
                 RD_19CCE0(&v.y, 4);
                 RD_19CCE0(&v.z, 4);
-                Set3_19CCE0(&((S_19CCE0_Vec3 *)self->unk1B4p)[i], v);
+                S_19CCE0_Vec3 t = v;
+                ((S_19CCE0_Vec3 *)L.self->unk1B4p)[i] = t;
             }
         }
     } else {
-        self->unk1B4p = 0;
+        L.self->unk1B4p = 0;
     }
-    self->unk1C4 = (int)new S_19CCE0_Elem[count];
-    for (i = 0; i < count; i++) {
-        S_19CCE0_Elem *e = &((S_19CCE0_Elem *)self->unk1C4)[i];
+    L.self->unk1C4 = (int)new S_19CCE0_Elem[L.count];
+    for (i = 0; i < L.count; i++) {
+        S_19CCE0_Elem *e = &((S_19CCE0_Elem *)L.self->unk1C4)[i];
         RD_19CCE0(&e->f0, 4);
         RD_19CCE0(&v.x, 4);
         RD_19CCE0(&v.y, 4);
         RD_19CCE0(&v.z, 4);
-        Set3_19CCE0((S_19CCE0_Vec3 *)&e->a, v);
+        S_19CCE0_Vec3 ta = v;
+        *(S_19CCE0_Vec3 *)&e->a = ta;
         RD_19CCE0(&v.x, 4);
         RD_19CCE0(&v.y, 4);
         RD_19CCE0(&v.z, 4);
-        Set3_19CCE0((S_19CCE0_Vec3 *)&e->b, v);
-        e->len = sqrtf(v.x * v.x + v.y * v.y + v.z * v.z);
+        S_19CCE0_Vec3 tb = v;
+        *(S_19CCE0_Vec3 *)&e->b = tb;
+        L.sqx = v.x * v.x + v.y * v.y + v.z * v.z;
+        sqr = sqrtf(L.sqx);
+        e->len = sqr;
         RD_19CCE0(&e->f8, 2);
         RD_19CCE0(&e->fA, 2);
     }
-    self->unk1CE = (short)nRec;
-    self->unk1C8 = (int)func_001E8A44(nRec * 0x14);
-    if (nRec < 1) {
-        self->unk1BC = 0;
+    L.self->unk1CE = (short)L.nRec;
+    L.self->unk1C8 = (int)func_001E8A44(L.nRec * 0x14);
+    if (L.nRec < 1) {
+        L.self->unk1BC = 0;
         return;
     }
-    for (i = 0; i < nRec; i++) {
-        S_19CCE0_Rec *rec = &((S_19CCE0_Rec *)self->unk1C8)[i];
+    for (i = 0; i < L.nRec; i++) {
+        S_19CCE0_Rec *rec = &((S_19CCE0_Rec *)L.self->unk1C8)[i];
         float w4[4];
         S_19CCE0_Color c;
         RD_19CCE0(&rec->f8, 4);
@@ -341,7 +368,7 @@ void SoultreeCollisionObject::func_0019CCE0(int volatile file)
         RD_19CCE0(&rec->f2, 2);
         RD_19CCE0(&rec->f4, 2);
     }
-    self->unk1BC = 0;
+    L.self->unk1BC = 0;
 }
 
 void *SoultreeCollisionObject::func_0019D650(int flags)
