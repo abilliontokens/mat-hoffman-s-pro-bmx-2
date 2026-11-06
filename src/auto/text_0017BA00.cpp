@@ -16,10 +16,6 @@ static __forceinline f32 Max_0017C360(f32 a, f32 b)
     _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b)));
     return r;
 }
-static __forceinline f32 Pass_0017C360(f32 v)
-{
-    return v;
-}
 extern int D_0028909C;
 extern void *D_002EFD80;
 
@@ -449,13 +445,13 @@ void C_0017C300::func_0017C360(f32 a, f32 b, f32 c, f32 d, f32 e)
     f32 m;
 
     self->f8C = ((QuadTreeVt *)this)->v17();
-    self->f28 = a;
-    self->f2C = c;
-    self->f30 = b;
-    self->f34 = d;
+    self->f28 = (f32)(double)a;
+    self->f2C = (f32)(double)c;
+    self->f30 = (f32)(double)b;
+    self->f34 = (f32)(double)d;
     self->f40 = c - a;
     self->f44 = d - b;
-    *(f32 *)&self->unk8B0 = e;
+    *(f32 *)&self->unk8B0 = (f32)(double)e;
     x = self->f40;
     y = self->f44;
     m = x > y ? x : y;
