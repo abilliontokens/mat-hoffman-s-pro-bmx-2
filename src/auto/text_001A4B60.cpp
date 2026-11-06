@@ -94,6 +94,7 @@ struct C_SphereCollisionObject {
     f32 f108;
     f32 f10C;
     void *f110;
+    int func_001A4B60(char *other);
     void func_00133E60();
     void func_001A52D0(void *a);
     void func_001A5370(void);
