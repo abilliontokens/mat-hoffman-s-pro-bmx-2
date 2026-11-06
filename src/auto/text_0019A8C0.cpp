@@ -204,13 +204,13 @@ static __forceinline void Transpose_0019B1A0(float *src, float *dst)
 {
     __m128 t0, t1, t2, t3;
 
-    t0 = _mm_loadl_pi(_mm_setzero_ps(), (__m64 *)&src[0]);
+    t0 = _mm_loadl_pi(t0, (__m64 *)&src[0]);
     t0 = _mm_loadh_pi(t0, (__m64 *)&src[4]);
-    t1 = _mm_loadl_pi(_mm_setzero_ps(), (__m64 *)&src[2]);
+    t1 = _mm_loadl_pi(t1, (__m64 *)&src[2]);
     t1 = _mm_loadh_pi(t1, (__m64 *)&src[6]);
-    t2 = _mm_loadl_pi(_mm_setzero_ps(), (__m64 *)&src[8]);
+    t2 = _mm_loadl_pi(t2, (__m64 *)&src[8]);
     t2 = _mm_loadh_pi(t2, (__m64 *)&src[12]);
-    t3 = _mm_loadl_pi(_mm_setzero_ps(), (__m64 *)&src[10]);
+    t3 = _mm_loadl_pi(t3, (__m64 *)&src[10]);
     t3 = _mm_loadh_pi(t3, (__m64 *)&src[14]);
     _mm_store_ps(dst, _mm_shuffle_ps(t0, t2, 0x88));
     _mm_store_ps(dst + 4, _mm_shuffle_ps(t0, t2, 0xdd));
