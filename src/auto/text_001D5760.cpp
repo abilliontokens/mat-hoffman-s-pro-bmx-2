@@ -435,7 +435,8 @@ Ldone:
     f4 = b;
     f8 = c;
     f50 = D_00275460 / w;
-    if ((p = (C_001D5FA0Obj *)func_001E8A44(0x70)) != 0) {
+    p = (C_001D5FA0Obj *)func_001E8A44(0x70);
+    if (p != 0) {
         p->vtbl = &D_0028F5F4;
         p->f8 = 0;
         p->fC = 0;
@@ -717,14 +718,18 @@ C_001D63D0 *C_001D63D0::func_001D63D0(unsigned int flags)
 
 void C_001D6410::func_001D6410(void)
 {
+    C_001D6410Obj *o;
+
     if (unk0 != 0) {
         func_001E891B(unk0);
     }
-    if (unk5C != 0) {
-        unk5C->destroy(1);
+    o = unk5C;
+    if (o != 0) {
+        o->destroy(1);
     }
-    if (unk58 != 0) {
-        unk58->destroy(1);
+    o = unk58;
+    if (o != 0) {
+        o->destroy(1);
     }
 }
 
