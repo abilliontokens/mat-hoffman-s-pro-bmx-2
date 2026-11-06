@@ -10,6 +10,8 @@ int func_001DD603(void);
 void func_001EB302(int locknum);
 void func_001EB390(int locknum);
 int func_001F44EF(void *cs, unsigned long spinCount);
+int func_001EB314(int locknum);
+void *func_001E8AA5(int size);
 extern unsigned int D_002FB240;
 extern int *D_002FB260[];
 extern int *D_002FB360[];
