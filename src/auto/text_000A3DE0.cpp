@@ -21,7 +21,11 @@ extern int D_0027B1BC;
 extern char D_0027B4F0[], D_0027B4D8[], D_0027B4B8[], D_0027B4A4[], D_0027B490[], D_0027B47C[], D_0027B464[], D_0027B44C[], D_0027B434[], D_0027B41C[], D_0027B404[], D_0027B3EC[], D_0027B3D4[], D_0027B3BC[], D_0027B39C[], D_0027B380[], D_0027B364[], D_0027B344[], D_0027B324[], D_0027B30C[], D_0027B2F4[], D_0027B2E0[];
 
 #define F(T, o) (*(T *)((char *)this + (o)))
-struct C_000A4570 { C_000A4570 *func_000A4570(void); };
+struct C_000A4570 {
+    char pad0[0x1c8c];
+    int f1c8c[70];
+    C_000A4570 *func_000A4570(void);
+};
 extern char D_0027B4F0[], D_0027B4D8[], D_0027B4B8[], D_0027B4A4[], D_0027B490[], D_0027B47C[], D_0027B464[], D_0027B44C[], D_0027B434[], D_0027B41C[], D_0027B404[], D_0027B3EC[], D_0027B3D4[], D_0027B3BC[], D_0027B39C[], D_0027B380[], D_0027B364[], D_0027B344[], D_0027B324[], D_0027B30C[], D_0027B2F4[], D_0027B2E0[];
 
 /* BmxPlayerStart */
@@ -304,5 +308,134 @@ void C_000A4500::func_000A4500(int param_1, int param_2)
         unk1A8[param_2]->v6();
         unk1C8[param_2] = 0;
     }
+}
+
+C_000A4570 *C_000A4570::func_000A4570(void)
+{
+    int i, j, k;
+    char *p;
+    int *q, *s;
+    F(float, 4) = 1.0f; F(float, 8) = 1.0f; F(int, 0) = 0;
+    F(float, 0xc) = 0.2f; F(float, 0x10) = 7.0f; F(float, 0x14) = 0.07f; F(int, 0x18) = 0;
+    p = (char *)this + 0xdc8;
+    for (i = 0; i < 70; i++) {
+        func_001ADCC0(p - 0xdac, 0x32, D_0027B4F0, i);
+        func_001ADCC0(p, 0x32, D_0027B4D8, i);
+        q = (int *)((char *)this + 0x1c8c) + i;
+        q[0] = 0; q[-0x118 / 4] = 0; q[0x118 / 4] = 0; q[0x230 / 4] = 0;
+        q[0x460 / 4] = 0; q[0x348 / 4] = 0; q[0x7a8 / 4] = 0; q[0x8c0 / 4] = 1;
+        q[0x9d8 / 4] = 0; q[0xaf0 / 4] = 0; q[0xc08 / 4] = 1;
+        q[0xd20 / 4] = 0; q[0xe38 / 4] = 0; q[0xf50 / 4] = 1;
+        q[0x578 / 4] = -1;
+        q[0x690 / 4] = -1;
+        p += 0x32;
+    }
+    for (i = 0; i < 8; i++) {
+        int *e = (int *)((char *)this + 0x2ff0) + i;
+        for (j = 0; j < 16; j++) {
+            e[-0x80] = -1; e[0] = -1; e[0x80] = -1; e[0x100] = -1; e[0x180] = -1; e[0x200] = -1;
+            e += 8;
+        }
+    }
+    s = (int *)((char *)this + 0x39f0);
+    p = (char *)this + 0x49a4;
+    q = (int *)((char *)this + 0x5944);
+    for (k = 0; k < 5; k++) {
+        *s = 0;
+        for (i = 0; i < 16; i++) {
+            func_001ADCC0(p - 0xfa0, 0x32, D_0027B4B8, i);
+            func_001ADCC0(p, 0x32, D_0027B4D8, i);
+            q[0] = 0; q[0x140 / 4] = 0; q[0x280 / 4] = 0;
+            for (j = 0; j < 3; j++) q[0x3c0 / 4 + j * 0x50] = 0;
+            q[0x780 / 4] = -1; q[0x8c0 / 4] = -1;
+            p += 0x32; q++;
+        }
+        s++;
+    }
+    F(int, 0x6348) = 0; F(int, 0x6354) = 0; F(int, 0x634c) = 0; F(int, 0x6350) = 0;
+    func_001ADCC0((char *)this + 0x6358, 0x32, D_0027B4A4);
+    func_001ADCC0((char *)this + 0x638a, 0x32, D_0027B490);
+    func_001ADCC0((char *)this + 0x63ee, 0x32, D_0027B47C);
+    func_001ADCC0((char *)this + 0x6420, 0x32, D_0027B464);
+    func_001ADCC0((char *)this + 0x2cf4, 0x32, D_0027B44C);
+    func_001ADCC0((char *)this + 0x2d26, 0x32, D_0027B434);
+    func_001ADCC0((char *)this + 0x2d58, 0x32, D_0027B41C);
+    func_001ADCC0((char *)this + 0x2d8a, 0x32, D_0027B404);
+    func_001ADCC0((char *)this + 0x2dbc, 0x32, D_0027B3EC);
+    func_001ADCC0((char *)this + 0x64b6, 0x32, D_0027B3D4);
+    F(int, 0x64e8) = 0;
+    func_001ADCC0((char *)this + 0x64ec, 0x32, D_0027B3BC);
+    F(int, 0x6520) = 0;
+    func_001ADCC0((char *)this + 0x6524, 0x32, D_0027B39C);
+    func_001ADCC0((char *)this + 0x6560, 0x32, D_0027B380);
+    func_001ADCC0((char *)this + 0x659c, 0x32, D_0027B364);
+    func_001ADCC0((char *)this + 0x65d8, 0x32, D_0027B344);
+    func_001ADCC0((char *)this + 0x6614, 0x32, D_0027B324);
+    F(int, 0x6558) = 0; F(int, 0x655c) = 0; F(int, 0x6594) = 0; F(int, 0x6598) = 0;
+    F(int, 0x65d0) = 0; F(int, 0x65d4) = 0; F(int, 0x660c) = 0; F(int, 0x6610) = 0;
+    F(int, 0x6648) = 0; F(int, 0x664c) = 0;
+    F(float, 0x6344) = 1.0f;
+    for (i = 0; i < 5; i++) {
+        F(float, 0x7a68 + i * 4) = 1.0f; F(float, 0x7a7c + i * 4) = 1.0f;
+    }
+    F(int, 0x66c4) = 0;
+    p = (char *)this + 0x6858;
+    for (i = 0; i < 8; i++) {
+        int *r = (int *)((char *)this + 0x6a08) + i;
+        func_001ADCC0(p - 0x190, 0x32, D_0027B30C, i);
+        func_001ADCC0(p, 0x32, D_0027B4D8, i);
+        r[0] = 0; r[-0x20 / 4] = 0;
+        r[0x20 / 4] = 1; r[0x40 / 4] = 1; r[0x60 / 4] = 1; r[0x80 / 4] = 1;
+        r[0xa0 / 4] = 1; r[0xc0 / 4] = 1; r[0xe0 / 4] = 1; r[0x100 / 4] = 1;
+        func_001ADCC0(p + 0x2d0, 0x32, D_0027B2F4, i);
+        func_001ADCC0(p + 0x460, 0x32, D_0027B4D8, i);
+        func_001ADCC0(p + 0x5f0, 0x32, D_0027B4D8, i);
+        r[0xda0 / 4] = 0; r[0xdc0 / 4] = 0;
+        r[0xe00 / 4] = 1; r[0xe20 / 4] = 1; r[0xe40 / 4] = 1; r[0xe60 / 4] = 1;
+        r[0xe80 / 4] = 1; r[0xea0 / 4] = 1; r[0xec0 / 4] = 1; r[0xee0 / 4] = 1;
+        func_001ADCC0(p + 0x910, 0x32, D_0027B2F4, i);
+        func_001ADCC0(p + 0xaa0, 0x32, D_0027B4D8, i);
+        r[0xf00 / 4] = 0; r[0xf20 / 4] = 0;
+        r[0xf60 / 4] = 1; r[0xf80 / 4] = 1; r[0xfa0 / 4] = 1; r[0xfc0 / 4] = 1;
+        r[0xfe0 / 4] = 1; r[0x1000 / 4] = 1; r[0x1020 / 4] = 1; r[0x1040 / 4] = 1;
+        p += 0x32;
+    }
+    func_001ADCC0((char *)this + 0x6650, 0x32, D_0027B2E0);
+    F(int, 0x6684) = 0; F(int, 0x6688) = 0;
+    func_001ADCC0((char *)this + 0x668c, 0x32, D_0027B2E0);
+    F(int, 0x66c0) = 0;
+    return this;
+}
+
+int __stdcall func_000A4AF0(int flags, char *buf)
+{
+    int n = 1;
+    int i;
+    int shift = 8;
+    u8 v;
+
+    *buf = 0;
+    if ((u8)(flags >> 16)) {
+        n = 3;
+    } else if ((u8)(flags >> 8)) {
+        n = 2;
+    }
+    v = (u8)flags;
+    for (i = 0; i < n; i++) {
+        switch (v) {
+        case 0x01: strcat(buf, "U"); break;
+        case 0x02: strcat(buf, "UR"); break;
+        case 0x04: strcat(buf, "R"); break;
+        case 0x08: strcat(buf, "DR"); break;
+        case 0x10: strcat(buf, "D"); break;
+        case 0x20: strcat(buf, "DL"); break;
+        case 0x40: strcat(buf, "L"); break;
+        case 0x80: strcat(buf, "UL"); break;
+        }
+        if (i < n - 1) strcat(buf, "+");
+        v = (u8)(flags >> shift);
+        shift += 8;
+    }
+    return 1;
 }
 
