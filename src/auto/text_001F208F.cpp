@@ -6,7 +6,7 @@ struct T { int a; int b; T() {} int func_001EF1E7(); void func_001EF734(char); v
     T* func_001EEF4F(T*); T* func_001EF2FE(T*); T* func_001EF613(int); T* func_001EFD3B(T*, char); T* func_001EFD7A(T*, char*); T* func_001EFAB5(T*, T*);
     void func_001EF935(const T&); T* func_001EEF4F(const T&); T* func_001EF2FE(const T&);
     T func_001EFD3B(char); T func_001EFD7A(char*); T func_001EFAB5(const T&); T* func_001EFAB5(T*, const T&); };
-struct N : T { N() { a = 0; b &= 0xfffffe00; } };
+struct N : T { N() { *(void **)&a = 0; b &= 0xfffffe00; } };
 extern char* D_002F6A28;
 T* func_001F208F(T*, T*);
 T* func_001F23B8(T*, T*, char, T*, int);
@@ -65,9 +65,7 @@ extern char D_00295E5C[];
 #pragma optimize("s", on)
 T* func_001F23B8(T* ret, T* superType, char prefix, T* cvType, int thisFlag)
 {
-    T A;
-    A.a = 0;
-    A.b &= 0xfffffe00;
+    N A;
     if (*D_002F6A28) {
         if (*D_002F6A28 == '$') {
             D_002F6A28++;
@@ -81,12 +79,12 @@ T* func_001F23B8(T* ret, T* superType, char prefix, T* cvType, int thisFlag)
                     A.func_001EEF4F(A.func_001EFD7A(D_002869B8));
                 }
                 A.func_001EEF4F(A.func_001EFD7A(D_00295E34));
-                prefix = 0;
-                break;
+                goto clear;
             }
             case '1':
                 A.func_001EF9B2(D_00295E40);
                 D_002F6A28 += 2;
+            clear:
                 prefix = 0;
                 break;
             case 'A':
@@ -98,12 +96,8 @@ T* func_001F23B8(T* ret, T* superType, char prefix, T* cvType, int thisFlag)
             }
         }
         {
-        T B;
-        B.a = 0;
-        B.b &= 0xfffffe00;
-        T C;
-        C.a = 0;
-        C.b &= 0xfffffe00;
+        N B;
+        N C;
         int code = *D_002F6A28 - (*D_002F6A28 >= 'A' ? 'A' : '0' - 26);
         for (;;) {
             switch (code) {
