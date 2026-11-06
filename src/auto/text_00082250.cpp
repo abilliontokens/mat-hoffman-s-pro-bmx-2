@@ -58,7 +58,7 @@ extern char D_00279144[];
 extern char D_00279138[];
 extern char D_00279130[];
 static __forceinline void Round_00082250(int * volatile out, float value) { *out = _mm_cvtss_si32(*(__m128 *)&value); }
-static __forceinline void RoundF_00082250(float value, int * volatile out) { *out = _mm_cvtss_si32(*(__m128 *)&value); }
+static __forceinline void RoundF_00082250(float value, int * volatile out) { int r = _mm_cvtss_si32(*(__m128 *)&value); *out = r; }
 
 struct C_000823C0 {
     char pad0[0x14];
@@ -84,7 +84,7 @@ void func_00082250(char *out, float value, int fractions)
     int a;
 
     if (value != D_00275544 && !(value > D_00279150)) {
-        Round_00082250((int *)&value, *(volatile float *)&value * D_00275994);
+        RoundF_00082250(*(volatile float *)&value * D_00275994, (int *)&value);
         if (*(int *)&value < 0) {
             *out++ = '-';
         }
