@@ -183,6 +183,10 @@ struct SmokeParticleEmitter {
     u32 f24C;
 };
 
+struct C_AE10 {
+    int func_0016AE10(float dt);
+};
+
 void C_0016B8B0::func_0016B8B0(int a, int b, int c, int d, int e)
 {
     f34 = f24;
