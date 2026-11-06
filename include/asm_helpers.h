@@ -253,4 +253,32 @@ static __forceinline void AsmTransformPoint(float *out, const float *v, const fl
     }
 }
 
+/* dst = src transposed (4x4). Proven on _func_0013E4A0, whose whole body this is; the same sequence is inlined
+ * in _func_00162020, _func_0013FF50@4, _func_0019B1A0@8, _func_00142F30@4 and _func_0019AE40. */
+static __forceinline void AsmTransposeMatrix(float *dst, const float *src)
+{
+    __asm {
+        mov eax, src
+        mov edx, dst
+        movlps xmm0, [eax]
+        movhps xmm0, [eax+0x10]
+        movlps xmm2, [eax+8]
+        movhps xmm2, [eax+0x18]
+        movlps xmm4, [eax+0x20]
+        movhps xmm4, [eax+0x30]
+        movlps xmm5, [eax+0x28]
+        movhps xmm5, [eax+0x38]
+        movaps xmm1, xmm0
+        movaps xmm3, xmm2
+        shufps xmm0, xmm4, 0x88
+        shufps xmm1, xmm4, 0xdd
+        shufps xmm2, xmm5, 0x88
+        shufps xmm3, xmm5, 0xdd
+        movaps [edx], xmm0
+        movaps [edx+0x10], xmm1
+        movaps [edx+0x20], xmm2
+        movaps [edx+0x30], xmm3
+    }
+}
+
 #endif
