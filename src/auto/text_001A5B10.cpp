@@ -145,6 +145,8 @@ extern int D_0028B974;
 extern int D_00284C44;
 
 extern "C" char *strcpy(char *, const char *);
+extern "C" void *memset(void *, int, unsigned int);
+#pragma intrinsic(memset)
 void func_00030F30(char *s, void *p);
 void *func_001D6E20(char *name, int a1, int a2);
 
