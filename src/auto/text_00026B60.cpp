@@ -138,7 +138,7 @@ struct ObjF4_26 {
 struct ObjFC_26 {
     char pad0[0x60]; void *f60; char pad64[4]; int f68;
     char pad6C[0xA7 - 0x6C]; unsigned char fA7;
-    void func_0017F050(int); void func_0017F0A0(int); void func_001334E0(int);
+    ObjFC_26 *func_0017F050(int); void func_0017F0A0(int); void func_001334E0(int);
     void func_00086C20(int); void func_00133660(int);
 };
 struct ObjF8_26 {
