@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <math.h>
+#include <xmmintrin.h>
 extern int D_00284274;
 extern int D_002A3FD8, D_002A3FDC, D_002A3FE0, D_002A3FE4;
 extern int D_002A3FF8, D_002A3FFC, D_002A4000, D_002A4004;
