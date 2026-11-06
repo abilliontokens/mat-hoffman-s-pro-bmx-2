@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <string.h>
+#include <xmmintrin.h>
 struct Q_001A1930 { float x,y,z,w; };
 static inline Q_001A1930 Sub_001A1930(const Q_001A1930 &a,const Q_001A1930 &b) { Q_001A1930 q; q.x=a.x-b.x;q.y=a.y-b.y;q.z=a.z-b.z;q.w=1;return q; }
 struct I3_001A1930 { float x,y,z; };
