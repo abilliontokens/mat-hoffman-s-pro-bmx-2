@@ -1,6 +1,6 @@
 /* 1 function from 0x0001EFA0 to 0x000212A0, found by Ghidra. */
 #include "common.h"
-struct AirVec { float x,y,z,w; };
+struct AirVec { float x,y,z,w; void func_0001C5B0(AirVec*); };
 struct AirMotion { void func_00197B40(AirVec*,AirVec*); };
 struct AirBody {
  char pad0[0x8c]; float speed; float f90,f94; char pad98[0x140-0x98]; AirVec position;
