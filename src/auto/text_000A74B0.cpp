@@ -172,6 +172,22 @@ struct Mdl_000A7860 {
 };
 extern char D_002A45E0[], D_002A5348[], D_00275678[], D_002A46E8[], D_002A5EA0[], D_002A5FA8[], D_002A60B0[], D_002A4C10[], D_002A5870[];
 void __cdecl func_001ADCC0(char *a, int b, char *c, char *d, ...);
+static __forceinline void Handle_000A7860(Obj_000A7860 *o, Arg_000A7860 *arg)
+{
+    if (o->f108) {
+        func_001ADCC0(D_002A46E8, 0x104, D_00275678, D_002A5348, D_002A45E0);
+        func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5348, D_002A45E0);
+        func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
+        func_001ADCC0(D_002A4C10, 0x104, D_00275678, D_002A5348, D_002A45E0);
+        arg->v93();
+    } else {
+        func_001ADCC0(D_002A46E8, 0x104, D_00275678, D_002A5870, D_002A45E0);
+        func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5870, D_002A45E0);
+        func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+        func_001ADCC0(D_002A4C10, 0x104, D_00275678, D_002A5870, D_002A45E0);
+        arg->v94();
+    }
+}
 struct Models_000A7860 {
     char pad0[0x24];
     int count;
@@ -494,6 +510,37 @@ void Models_000A77C0::func_000A77C0(int type, int idx)
         type = 1;
     }
     (*(Model_000A77C0 **)((char *)f28 + idx * 4))->f4 = type;
+}
+
+int Models_000A7860::func_000A7860(Arg_000A7860 *arg)
+{
+    int i;
+    for (i = 0; i < count; i++) {
+        Mdl_000A7860 *m = models[i];
+        Obj_000A7860 *o;
+        if (m->f4 == 2)
+            o = m->f5c;
+        else if (m->f4 == 1)
+            o = m->f1a8;
+        else
+            goto next;
+        if (o->f108) {
+            func_001ADCC0(D_002A46E8, 0x104, D_00275678, D_002A5348, D_002A45E0);
+            func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5348, D_002A45E0);
+            func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
+            func_001ADCC0(D_002A4C10, 0x104, D_00275678, D_002A5348, D_002A45E0);
+            arg->v93();
+        } else {
+            func_001ADCC0(D_002A46E8, 0x104, D_00275678, D_002A5870, D_002A45E0);
+            func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5870, D_002A45E0);
+            func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+            func_001ADCC0(D_002A4C10, 0x104, D_00275678, D_002A5870, D_002A45E0);
+            arg->v94();
+        }
+next:
+        models[i]->v2(arg);
+    }
+    return 1;
 }
 
 void func_000A7FE0(int a0, S_A7FE0_Obj *obj, S_A7FE0_Req *req, int enabled)
