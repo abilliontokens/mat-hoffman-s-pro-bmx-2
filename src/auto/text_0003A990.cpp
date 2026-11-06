@@ -97,9 +97,8 @@ int C_3A990::func_0003A990(S_0003AC20_Vec a, S_0003AC20_Vec b)
  int width,height;
  int *used;
  int x,y,z;
- { char *object=f564->object;
- S_3A990_Blk *block=0;
- func_00038A70(object+0x28,&block);
+ {
+ S_3A990_Blk *block = Lookup(f564->object);
  width=block->width; height=block->height;
  }
  if(!func_00038B10(f564->object+0x28,a,b,&x,&y,&z,1)) return -1;
