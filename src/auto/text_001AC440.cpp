@@ -310,6 +310,64 @@ char *func_001AC940(double value, int ndec, int *decpt, int flag)
     return buf;
 }
 
+char *func_001ACB40(double value, int digits, char *out, int alternate)
+{
+    int decimal, sign;
+    char buffer[80];
+    char *p = cvt_probe(&sign, buffer, value, digits, &decimal, 1);
+    char *s = out;
+    if (sign) *s++ = '-';
+    for (int i = digits - 1; i > 0; --i) {
+        if (p[i] != '0') break;
+        --digits;
+    }
+    if (decimal >= 0) { if (decimal - digits > 4) goto scientific; }
+    else if (decimal < -3) goto scientific;
+    {
+        if (decimal <= 0) {
+            if (*p != '0') *s++ = '.';
+            while (decimal < 0) {
+                *s++ = '0';
+                decimal++;
+            }
+        }
+        int j;
+        for (j = 1; j <= digits; ++j) {
+            *s++ = *p++;
+            if (j == decimal) *s++ = '.';
+        }
+        if (digits < decimal) {
+            decimal -= digits;
+            memset(s, '0', decimal);
+            s += decimal;
+            *s++ = '.';
+        }
+    goto finish;
+    }
+    scientific: {
+        --decimal;
+        *s++ = *p++;
+        *s++ = '.';
+        for (int k = 1; k < digits; k++)
+            *s++ = *p++;
+        *s++ = 'e';
+        if (decimal < 0) { decimal = -decimal; *s = '-'; }
+        else *s = '+';
+        ++s;
+        int rem = decimal % 100;
+        int q = decimal / 100;
+        if (q > 0) *s++ = (char)q + '0';
+        q = decimal / 10;
+        int last = decimal % 10;
+        if (q > 0) *s++ = (char)(rem / 10) + '0';
+        *s++ = (char)last + '0';
+    }
+finish:
+    if (s[-1] == '.' && !alternate) s[-1] = 0;
+    else *s = 0;
+    return out;
+}
+
 static __declspec(noinline) char *cvt_probe(int *sign, char *buf, double arg, int ndigits, int *decpt, int eflag)
 {
     char *p = buf;
@@ -410,7 +468,7 @@ char *func_001ACD40(int ndec, char fmt, double value, int alt, int *sign, char *
     int esign;
     int len;
 
-    src = func_001AC940(value, fmt == 'f' ? ndec : ndec + 1, &decpt, fmt != 'f');
+    src = cvt_probe(sign, digits, value, fmt == 'f' ? ndec : ndec + 1, &decpt, fmt != 'f');
     if (func_001EA211(*src)) {
         strcpy(buf, src);
         *outlen = strlen(buf);
@@ -472,21 +530,12 @@ char *func_001ACD40(int ndec, char fmt, double value, int alt, int *sign, char *
 
 void __fastcall func_001ACF30(unsigned int value, int unused, char fmt, int *outlen)
 {
-    char *end;
-    int shift;
-    char *digits = D_0028C118;
-    char *p = end;
-    unsigned int mask;
-    if (fmt == 'X') {
-        digits = D_0028C12C;
-    }
-    mask = (1 << shift) - 1;
-    do {
-        p--;
-        *p = digits[value & mask];
-        value >>= shift;
-    } while (value != 0);
-    *outlen = end - p;
+ char *end; register int shift;
+ char *p = end;
+ unsigned int mask = (1U << shift) - 1;
+ char *digits = fmt == 'X' ? D_0028C12C : D_0028C118;
+ do { char c = digits[value & mask]; --p; *p = c; value = value >> shift; } while (value != 0);
+ *outlen = end - p;
 }
 
 void __fastcall func_001ACF80(int shift, int value, char fmt, int *outlen)
