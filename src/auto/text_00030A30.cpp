@@ -1,6 +1,7 @@
 /* 24 functions from 0x00030A30 to 0x000318A0, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 static __forceinline float Max_00030CE0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float Min_00030CE0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static inline float Max2_00030CE0(float a, float b) { _mm_store_ss(&a, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return a; }
@@ -446,27 +447,7 @@ void func_00030A30(Vec4_00030A30 *out, float x, float y, float z, float w, float
 
 void func_00030AC0(float *out, float *v, float *m)
 {
-    __m128 r0 = _mm_load_ps(m);
-    __m128 r1 = _mm_load_ps(m + 4);
-    __m128 r2 = _mm_load_ps(m + 8);
-    __m128 vec = _mm_loadu_ps(v);
-    __m128 lo, hi;
-    _mm_storeh_pi((__m64 *)(out + 2), vec);
-    out[3] = 1.0f;
-    vec = _mm_loadh_pi(vec, (__m64 *)(out + 2));
-    r0 = _mm_mul_ps(r0, vec);
-    r1 = _mm_mul_ps(r1, vec);
-    r2 = _mm_mul_ps(r2, vec);
-    lo = _mm_unpacklo_ps(r0, r1);
-    hi = _mm_unpackhi_ps(r0, r1);
-    lo = _mm_add_ps(lo, hi);
-    r2 = _mm_add_ps(r2, _mm_movehl_ps(r2, r2));
-    hi = _mm_movehl_ps(hi, lo);
-    lo = _mm_movelh_ps(lo, r2);
-    hi = _mm_shuffle_ps(hi, r2, 0x14);
-    lo = _mm_add_ps(lo, hi);
-    _mm_storeu_ps(out, lo);
-    out[3] = 1.0f;
+    AsmTransformPoint(out, v, m);
 }
 
 void C_00030B20::func_00030B20(float x, float y, float z, float w)
@@ -747,7 +728,7 @@ int BmxEvent_00030A30::func_00031260(float dt)
         D_002B8F18 = D_002A7CB8->func_00026500((int)&D_00276B68, -1);
     }
     if (D_002A8490->f4 != 0) {
-        v30((D_002A8490->f2e0->f4 - 10) != 0);
+        v30(!!(D_002A8490->f2e0->f4 - 10));
     }
     func_00157A00(dt);
     if (D_002A8490->f124 == 0 && f110 != 0) {
