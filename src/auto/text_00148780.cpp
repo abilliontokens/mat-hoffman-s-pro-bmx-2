@@ -168,7 +168,7 @@ struct C_00149480 {
     int unk4;
     int unk8;
     void *unkC;
-    int *unk10;
+    Item_00149480 *items[1];
     void func_00149480(void);
 };
 extern int D_002BF0AC;
@@ -611,5 +611,60 @@ void *C_00149450::func_00149450(unsigned int flags)
         func_001E891B(this);
     }
     return this;
+}
+
+void C_00149480::func_00149480(void)
+{
+    int __fastcall func_001FEBD0(int a, void *b);
+    void __fastcall func_0001E860(void *p);
+    extern undefined4 D_002EFDB8;
+    int i;
+    Item_00149480 *obj;
+
+    D_002BF0AC = 0;
+    if (!(D_002BF0DC & 1)) {
+        D_002BF0DC |= 1;
+        D_002BF0D8 = unk4;
+        D_002BF0B4 = 0;
+        D_002BF0B8 = 0;
+        D_002BF0BC = 0;
+        D_002BF0C0 = 0;
+        D_002BF0C4 = 0;
+        {
+            float v[8] = {0.0f, 0.0f, 0.0f, 1.0f, 0.5f, 0.5f, 0.5f, 0.5f};
+            func_001FEBD0(0, &v[0]);
+            func_001FEBD0(1, &v[4]);
+            func_001FEBD0(0x21, (void *)(*(int *)(D_002EFDB8 + 4) + 0x170));
+            func_001FEBD0(3, (void *)(D_002EFDB8 + 0x74));
+        }
+    }
+    for (i = 0; i < unk4; i++) {
+        obj = ((Item_00149480 **)this)[4 + i];
+        if (obj == 0) continue;
+        if (obj->f4 != 0 && obj->fC == 0)
+            ((VObj_00148780 *)((char *)obj->f4 + 0xC))->f1();
+        if (obj->f18 == unk8) {
+            if (obj->f4 != 0 && obj->fC == 0)
+                ((VObj_00148780 *)((char *)obj->f4 + 0xC))->f1();
+            if (obj->f24 != 0) {
+                obj->v2();
+                ((C_001493E0 *)obj)->func_001493E0();
+            } else {
+                obj->v1();
+                ((C_001493E0 *)obj)->func_001493E0();
+            }
+        } else {
+            if (obj->f24 != 0) {
+                obj->v2();
+                ((C_001493E0 *)obj)->func_001493E0();
+            } else {
+                obj->v1();
+            }
+        }
+        if (obj->f4 == 0 && obj->fC != 0)
+            ((C_001493E0 *)obj)->func_001493E0();
+    }
+    func_0001E860(unkC);
+    unk8++;
 }
 
