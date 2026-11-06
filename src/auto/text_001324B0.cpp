@@ -340,7 +340,7 @@ void C_132CC0::func_00132A40(int a1,int a2,int a3,int a4,int a5,int a6,int a7) {
    obj->v2();
   } else obj->v2();
   for(int i=0;i<f284;i++) {
-   ((Obj_132A40 **)f280)[i]->func_00133730(this,D_002BA15C|D_002BA03C);
+   ((Obj_132A40 **)f280)[i]->func_00133730(this,D_002BA03C|D_002BA15C);
    ((Obj_132A40 *)((char *)this+(*(int **)this)[1]))->func_001577A0(((Obj_132A40 **)f280)[i],-1);
    Obj_132A40 *p=(Obj_132A40 *)func_001E8A44(0x300);
    if(p) p=p->func_00171270(1); else p=0;
