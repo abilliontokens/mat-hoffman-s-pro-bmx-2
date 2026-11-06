@@ -136,6 +136,9 @@ struct C_001C2210 {
     __forceinline bool IsLinked() { return unk30 != 0 && unk34 != 0; }
 };
 
+static __forceinline void Fire7_001C2210(C_001C2210 *p, u32 v) { if (v != 0) ((VCall8 *)p)->v7(); }
+static __forceinline void Fire5_001C2210(C_001C2210 *p, u32 v) { if (v != 0) ((VCall8 *)p)->v5(); }
+
 struct C_001C21F0 {
     void func_001C21F0(int a0);
     void func_001BFD00(int a0);
@@ -333,7 +336,7 @@ void C_001C21F0::func_001C21F0(int a0) {
 
 void C_001C2210::func_001C2210() {
     unk2C = 1;
-    if (unk30 == 0 || unk34 == 0) {
+    if (!IsLinked()) {
         if (unk30 != 0) {
             ((VCall8 *)this)->v7();
         }
