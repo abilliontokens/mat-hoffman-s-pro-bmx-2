@@ -144,9 +144,12 @@ struct C_000A2620 {
 struct V4_26B0 {
     float x, y, z, w;
     V4_26B0() { x = y = z = 0.0f; w = 1.0f; }
-    V4_26B0(const float &a, const float &b, const float &c, const float &d) { x = a; y = b; z = c; w = d; }
+    V4_26B0(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
 };
-struct S_26B0_Cam { void func_00199110(int a, V4_26B0 *pos, V4_26B0 *dir, int b, int c, int d); };
+struct S_26B0_Cam {
+    void func_00199110(int a, V4_26B0 *pos, V4_26B0 *dir, int b, int c, int d);
+    void func_00199110(int a, const V4_26B0 &pos, const V4_26B0 &dir, int b, int c, int d);
+};
 struct S_26B0_Info { char pad0[4]; S_26B0_Cam *f4; };
 struct C_26B0_Ped {
     char pad0[0x3C];
