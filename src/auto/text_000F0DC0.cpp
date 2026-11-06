@@ -6,7 +6,7 @@ extern float D_002757F0, D_0027F978;
 struct Elem_000F0DC0 {
  char pad0[0x14]; int x,y; char pad1C[0xc]; int width; int f2C; int angle; int f34; unsigned int color; int m0,m1,m2,m3; char pad4C[0xc]; unsigned char flags;
  Elem_000F0DC0 *func_001D5760();
- void func_001D5810(int,int,int,int);
+ void func_001D5810(int,float,float,int);
  void setWidth(int v) { if(width!=v){width=v;flags|=1;} }
  void setColor() { color=(color&0xffbfa35a)|0xbfa35a;flags|=2; }
  void setPos(int a,int b) { if(x!=a||y!=b){x=a;y=b;flags|=1;} }
