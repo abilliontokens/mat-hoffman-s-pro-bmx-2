@@ -152,6 +152,7 @@ void func_00030F30(char *s, void *p);
 void *func_001D6E20(char *name, int a1, int a2);
 
 struct C_002BEAAC {
+    void func_0013C240(void *a, void *b);
     void func_0013D780(char *name, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
     int func_0013DFF0(char *name, int a2);
 };
