@@ -6,6 +6,7 @@ struct V4_001225C0 {
 };
 
 extern float D_00275544;
+extern float D_002755E8;
 
 static inline float dot_001225C0(const V4_001225C0 &a, const V4_001225C0 &b)
 {
