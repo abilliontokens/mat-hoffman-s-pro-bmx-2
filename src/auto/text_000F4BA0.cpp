@@ -56,6 +56,7 @@ struct BmxUIPageOptions : UIPage_000F4BA0 {
     float unk2d0, unk2d4;
     unsigned char *unk2d8;
     void func_000F4BA0(float dt);
+    __forceinline void Notify_000F4BA0(int a, int b) { v70(a, b); }
     void func_001BEE50(int a, int b, int c);
     void func_001BED00(float dt);
 };
