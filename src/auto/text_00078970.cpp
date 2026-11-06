@@ -285,11 +285,10 @@ void C_00078970::func_00078970(float dt)
     if (fE4 && fE0 >= D_00276220) {
         if (fC8->func_00093300(100.0f) == 1) {
             fE8 = 1;
-            fE4 = 0;
         } else {
             fEC = 1;
-            fE4 = 0;
         }
+        fE4 = 0;
     }
     f9C += dt;
     if (fA0 && f9C >= D_00278500) {
