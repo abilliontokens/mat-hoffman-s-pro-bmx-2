@@ -311,8 +311,8 @@ extern "C" void __stdcall func_0015B060(void *p, float a, float b);
 extern "C" void __stdcall func_0012B190(int a, int b, int c, int d);
 extern "C" int func_001DC974(void);
 
-struct VideoFXManager {
-    VideoFXManager *func_001C3E50(int a);
+struct C_001C36B0 {
+    C_001C36B0 *func_001C3E50(int a);
     void func_001C3EA0(int n);
 };
 struct C_001C4A70 { void func_001C4A70(void); };
@@ -329,6 +329,8 @@ struct C_001D1BB0 {
     virtual void v5();
     virtual void v6();
     virtual void v7();
+};
+struct C_001D0FD0 {
     C_001D1BB0 *func_001D1BB0();
 };
 
