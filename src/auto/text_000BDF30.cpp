@@ -6,6 +6,7 @@ extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 extern char D_0027DB74[];
 extern char D_0027DB8C[];
 extern char D_0027DDE0[];
+extern char D_0027DDE1[];
 extern void *func_001E8A44(int size);
 extern int func_001E8AF0(char *s, char *ext);
 void func_001E891B(void *p);
