@@ -114,6 +114,7 @@ extern Dev_000448D0 *D_002F0670;
 extern G829C_000448D0 *D_002A829C;
 extern char D_00276C90[];
 extern char D_002A47F0[], D_002A5348[], D_00275678[], D_002A48F8[];
+void func_00012140(void);
 void *func_001E8A44(unsigned int size);
 int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 
