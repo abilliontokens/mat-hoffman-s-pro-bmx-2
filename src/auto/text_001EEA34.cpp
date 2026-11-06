@@ -130,12 +130,7 @@ struct S_001EEFE3 {
     S_001EEFE3 *Tail(void) {
         S_001EEFE3 *p = this;
         S_001EEFE3 *cur;
-        goto test;
-        do {
-            p = cur;
-        test:
-            cur = p->next;
-        } while (cur != 0);
+        while ((cur = p->next) != 0) p = cur;
         return p;
     }
 };
