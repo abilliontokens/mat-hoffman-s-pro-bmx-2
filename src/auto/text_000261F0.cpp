@@ -276,15 +276,7 @@ void func_000263B0(float *out, float *a, float *b)
 #pragma optimize("y", on)
 C_000264C0 *C_000264C0::func_000264C0(S_000264C0_Mat *src)
 {
-    __m128 r0 = src->r0;
-    __m128 r1 = src->r1;
-    __m128 r2 = src->r2;
-    __m128 r3 = src->r3;
-
-    mat.r0 = r0;
-    mat.r1 = r1;
-    mat.r2 = r2;
-    mat.r3 = r3;
+    AsmCopyMatrix(&mat, src);
     return this;
 }
 #pragma optimize("", on)
