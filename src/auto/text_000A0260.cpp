@@ -210,17 +210,17 @@ void func_000A0B80(void) {
     D_002AA6C0->func_001B2640();
 }
 
+extern "C" int strcmp(const char *a, const char *b);
 int C_000A0AE0::func_000A10B0(int a)
 {
     char buf[0x104];
     C_001702B0_000A0260 *pm;
-    unsigned int n = 5;
 
     func_001ADCC0(D_002A5558, 0x104, D_00275678, D_002A5348, D_002A5450);
     if (f388 == 0) {
         return 1;
     }
-    if (memcmp((char *)f388 + 0x420, D_002764F0, n) != 0) {
+    if (strcmp((char *)f388 + 0x420, "none") != 0) {
         strcpy(buf, (char *)f388 + 0x420);
         pm = (C_001702B0_000A0260 *)func_001E8A44(0x174);
         f488 = pm ? pm->func_001702B0(1) : 0;
