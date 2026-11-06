@@ -1,5 +1,6 @@
 /* 6 functions from 0x00054680 to 0x00055380, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
 
 struct V_000551B0 {
     int x, y, z, w;
