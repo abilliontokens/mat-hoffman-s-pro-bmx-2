@@ -72,6 +72,7 @@ struct Label_5F3 {
     char pad4C[0xC];
     u8 flags;
     void SetW() { if (w28 != 0x435d0000) { w28 = 0x435d0000; flags |= 1; } }
+    void SetY(float y) { if (y != *(float *)&w28) { flags |= 1; *(float *)&w28 = y; } }
     void SetQuad() { unsigned char f = flags | 4; a3C = 1.0f; b40 = 0.0f; c44 = 0.0f; d48 = 1.0f; flags = f; }
     Label_5F3 *func_001D5760(void);
     void func_001D5810(char *font, float x, float y, int a);
