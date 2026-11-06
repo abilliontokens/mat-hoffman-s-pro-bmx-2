@@ -86,51 +86,60 @@ static inline float Wrap2(float a) {
     return a;
 }
 
+static inline float Wrap3(float x) {
+    return x > D_002756D0 ? x - D_002756B8 : (x < D_002756E8 ? x + D_002756B8 : x);
+}
+
+#pragma optimize("y", on)
 void Obj::func_001188F0(int arg)
 {
     char *t = (char *)this;
-    M4 m2;
-    Vec4 v = { 0.0f, 4.0f, 0.0f, 1.0f };
-    int p18;
+    M4 m;
+    Vec4 v;
+    Vec4 tmp;
+    int p18, p1c;
+    Node1188F0 *n;
+
     if (*(int *)(*(int *)(t + 0x950) + 0xbc) == 0) {
-        func_00199C20(0, &m2);
-        func_0019AD60(0, &m2);
-        m2 = *(M4 *)(void *)(*(int *)(*(int *)(t + 0x230) + 0x174) + 0xf0);
-        {
-            float *f = (float *)&m2;
-            f[3] = f[3] + v.x;
-            f[11] = f[11] + v.y;
-            f[15] = f[15] + v.z;
+        ((Cam1188F0 *)*(int *)(*(int *)(t + 0x1e0) + 0x22c))->func_00199C20(0, &m);
+        ((Cam1188F0 *)*(int *)(*(int *)(t + 0xa00) + 4))->func_0019AD60(0, &m);
+        v.x = 0.0f;
+        v.y = 4.0f;
+        v.z = 0.0f;
+        v.w = 1.0f;
+        if (*(int *)(t + 0x470) != 0) {
+            n = ((Node1188F0 *)*(int *)(t + 0x230))->f174;
+            v = *n->func_00197EC0(&tmp, &v);
+            Copy_001188F0(&m, (M4 *)((char *)((Node1188F0 *)*(int *)(t + 0x230))->f174 + 0xf0));
+        } else {
+            v = *((Node1188F0 *)*(int *)(t + 0x230))->func_00197EC0(&tmp, &v);
+            Copy_001188F0(&m, (M4 *)(*(char **)(t + 0x230) + 0xf0));
         }
-        func_0019AD60(0, &m2);
-        func_0019AD60(0, &m2);
-        func_0019AD60(0, &m2);
-        func_0019AD60(0, &m2);
+        ((float *)&m)[3] = ((float *)&m)[3] + v.x;
+        ((float *)&m)[7] = ((float *)&m)[7] + v.y;
+        ((float *)&m)[11] = ((float *)&m)[11] + v.z;
+        ((Cam1188F0 *)*(int *)(t + 0xa08))->func_0019AD60(0, &m);
+        ((Cam1188F0 *)*(int *)(t + 0xa0c))->func_0019AD60(0, &m);
+        ((Cam1188F0 *)*(int *)(t + 0xa10))->func_0019AD60(0, &m);
+        ((Cam1188F0 *)*(int *)(t + 0xa14))->func_0019AD60(0, &m);
         if (*(int *)(t + 0x11dc) == 0 && (*(int *)(t + 0x454) == 0 || *(int *)(t + 0xa30) != 0)) {
-            void (__stdcall **fp)(void *);
-            int *o = *(int **)(t + 0xa08);
-            fp = (void (__stdcall **)(void *))(*(int *)o + 0x10);
-            (*fp)((void *)o);
-            o = *(int **)(t + 0xa0c);
-            fp = (void (__stdcall **)(void *))(*(int *)o + 0x10);
-            (*fp)((void *)o);
-            o = *(int **)(t + 0xa10);
-            fp = (void (__stdcall **)(void *))(*(int *)o + 0x10);
-            (*fp)((void *)o);
-            o = *(int **)(t + 0xa14);
-            fp = (void (__stdcall **)(void *))(*(int *)o + 0x10);
-            (*fp)((void *)o);
+            ((Cam1188F0 *)*(int *)(t + 0xa08))->v4();
+            ((Cam1188F0 *)*(int *)(t + 0xa0c))->v4();
+            ((Cam1188F0 *)*(int *)(t + 0xa10))->v4();
+            ((Cam1188F0 *)*(int *)(t + 0xa14))->v4();
         }
-        func_00107380();
+        ((Self1188F0 *)this)->func_00107380();
     }
     if (*(int *)(t + 0x20a0) == 0) {
-        func_001138E0(arg);
+        ((Self1188F0 *)this)->func_001138E0(arg);
     }
     {
         Vec4 out;
         int below;
-        func_00198040(&out, (char *)t + 0x9c);
-        below = (out.y < D_00283D30) != (out.y == D_00283D30);
+        p1c = 0;
+        p18 = 0;
+        ((Node1188F0 *)*(int *)(t + 0x230))->func_00198040(&out, (Vec4 *)(t + 0x9c));
+        below = out.y <= D_00283D30;
         {
             char *b = t;
             int st = *(int *)(b + 0x15d8);
@@ -470,7 +479,6 @@ void Obj::func_001188F0(int arg)
         }
     }
 }
-
 #pragma optimize("y", on)
 void Obj::func_00119680(int a)
 {
@@ -508,5 +516,4 @@ void Obj::func_00119680(int a)
     s15a0->func_00199E30(D_002A3A4C, f5e4);
     func_00106810(ia04, m);
 }
-#pragma optimize("", on)
 
