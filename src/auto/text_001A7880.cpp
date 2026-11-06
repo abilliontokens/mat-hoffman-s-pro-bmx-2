@@ -79,7 +79,14 @@ char *func_001E9260(const char *, int);
 extern "C" unsigned int __cdecl strlen(const char *);
 void func_001A7FE0(State_001A7FE0 *, Contact_001A7FE0 *);
 
-struct Dev_001A7880 { void **vtbl; };
+struct Obj_001A7880;
+struct Dev_001A7880 {
+    virtual void v00(); virtual void v01(); virtual void v02(); virtual void v03();
+    virtual void v04(); virtual void v05(); virtual void v06(); virtual void v07();
+    virtual void v08(); virtual void v09(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14();
+    virtual void v15(Obj_001A7880 *, int, int, int);
+};
 extern Dev_001A7880 *D_002A8490;
 void *func_001E8A44(int size);
 struct Obj_001A7880 {
