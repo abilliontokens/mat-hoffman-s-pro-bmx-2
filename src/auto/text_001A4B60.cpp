@@ -141,6 +141,40 @@ struct S_001A5730_Item {
     f32 x, y, z, w;
 };
 
+struct S_001A53C0_V4 {
+    f32 x, y, z, w;
+    S_001A53C0_V4() { z = 0; y = 0; x = 0; w = 1.0f; }
+    S_001A53C0_V4(f32 a, f32 b, f32 c) { x = a; y = b; z = c; w = 1.0f; }
+};
+
+static inline void Xform_001A53C0(f32 *out, const __m128 *mat, const S_001A53C0_V4 *v)
+{
+    __m128 t = _mm_loadu_ps(&v->x);
+    _mm_storeh_pi((__m64 *)&out[2], t);
+    out[3] = 1.0f;
+    t = _mm_loadh_pi(t, (__m64 *)&out[2]);
+    __m128 r0 = _mm_mul_ps(mat[0], t);
+    __m128 r1 = _mm_mul_ps(mat[1], t);
+    __m128 r2 = _mm_mul_ps(mat[2], t);
+    __m128 lo = _mm_unpacklo_ps(r0, r1);
+    __m128 hi = _mm_unpackhi_ps(r0, r1);
+    __m128 junk = _mm_movehl_ps(r2, r2);
+    lo = _mm_add_ps(lo, hi);
+    r2 = _mm_add_ps(r2, junk);
+    hi = _mm_movehl_ps(hi, lo);
+    lo = _mm_movelh_ps(lo, r2);
+    hi = _mm_shuffle_ps(hi, r2, 0x14);
+    lo = _mm_add_ps(lo, hi);
+    _mm_storeu_ps(out, lo);
+    out[3] = 1.0f;
+}
+
+static inline f32 Fabs_001A53C0(f32 x)
+{
+    int i = *(int *)&x & 0x7fffffff;
+    return *(f32 *)&i;
+}
+
 static inline void SetIdentity(f32 *m)
 {
     __m128 z = _mm_setzero_ps();
