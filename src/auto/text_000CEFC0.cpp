@@ -9,6 +9,8 @@ extern char D_0027DB68[], D_0027DB80[], D_0027E914[], D_0027E904[], D_0027E8F8[]
 extern char D_0027E8E4[], D_0027E8D8[], D_0027E8C8[], D_0027E8BC[], D_0027E8B0[], D_0027E8A0[];
 extern char D_0027E894[], D_0027E888[], D_0027E878[], D_0027E86C[], D_0027E85C[], D_0027E850[];
 extern char D_0027E83C[], D_0027E830[], D_0027E824[];
+extern char D_0027E7E0[], D_0027E7EC[], D_0027E7F8[], D_0027E7D4[];
+extern char D_0027EB58[], D_0027EB50[];
 
 struct S_000CEFC0_Obj30000 {
     int func_00030020(const char *name);
