@@ -171,7 +171,7 @@ static __forceinline void SetU32_00055380(u32 *p, u32 v)
     *p = v;
 }
 
-static __forceinline void InitTail_00055380(u32 *p)
+static __forceinline void InitTail_00055380(volatile u32 *p)
 {
     p[0x5e] = 0x44c80000;
     p[0x60] = 0x44c80000;
