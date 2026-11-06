@@ -158,6 +158,7 @@ struct S_000235C0_Mgr {
 
 struct S_000235C0_Cam {
     void func_00199600(func_000212A0 v);
+    void func_00199600(W4_000235C0 v);
     void func_00199110(int a, void *pos, void *dir, int b, int c, int d);
     void func_00198F50(V4_000235C0 *a, V4_000235C0 *b, int c, int d, int e);
 };
@@ -305,22 +306,17 @@ void C_000235C0::func_000235C0()
                                     if (D_002B7E18->f68[i]->pts[j].used == 0) {
                                         V4_000235C0 dir;
                                         V4_000235C0 up;
-                                        S_000235C0_Elem *e;
-                                        S_000235C0_Pt *pt;
+                                        S_000235C0_V3 *d;
 
                                         f78 = 2;
                                         f48 = (j << 8) | i;
                                         D_002B7E18->f68[i]->pts[j].used = 1;
-                                        pt = &D_002B7E18->f68[i]->pts[j];
-                                        f4c.x = pt->x;
-                                        f4c.y = pt->y;
-                                        f4c.z = pt->z;
-                                        f4c.w = 0x3f800000;
+                                        f4c.Set(&D_002B7E18->f68[i]->pts[j].x);
                                         func_00011110(&dir, &f4c, &f5c);
-                                        e = &f2c->elems[f34];
-                                        up.x = e->dx;
-                                        up.y = e->dy;
-                                        up.z = e->dz;
+                                        d = &f2c->elems[f34].d;
+                                        up.x = d->x;
+                                        up.y = d->y;
+                                        up.z = d->z;
                                         up.w = 1.0f;
                                         func_000212C0((V4_00023340 *)&dir, (V4_00023340 *)&dir);
                                         f28->f1a4->f4->func_00198F50(&dir, &up, 0, 1, 0);
