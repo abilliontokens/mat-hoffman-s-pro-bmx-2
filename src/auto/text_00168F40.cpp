@@ -93,7 +93,6 @@ struct C_00168F40 {
     int func_00169490(int name, int flag);
     void func_001692E0(int h);
     int func_00168F40(int id);
-    void func_001691E0(void);
     ~C_00168F40();
     void func_001690D0(char *src, char *dst);
     int func_00169A50(char *line);
