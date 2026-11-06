@@ -251,8 +251,7 @@ void C_00150F80::func_00150F80() {
     manager->f44[u[9]]->f64->func_0009FAC0(D_002B9120->f4e4[u[9]]->unk2C->unk1A4->unk4);
     manager->f44[u[9]]->func_0002F990();
     manager->f284[u[9]]->func_0008D550();
-    p = &u[0x120/4];
-    (*(Vec4_150F80 *)p = *(Vec4_150F80 *)&D_002A789C, u[0xdc/4]=0);
+    SetVec_150F80((Vec4_150F80 *)&u[0x120/4], &u[0xdc/4]);
     p = &u[0x1ac/4];
     for(int i=0;i<11;++i,p+=24) {
         p[-6]=0;
