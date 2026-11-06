@@ -476,12 +476,11 @@ void *C_00030500::func_00030500(unsigned int flags)
             p--;
             if (p->f0) {
                 p->f0->v4(1);
-                p->f0 = 0;
-            } else {
-                p->f0 = 0;
+                *(C_00030500_Destroy * volatile *)&p->f0 = 0;
             }
-            if (p->f8) {
-                func_001E891B(p->f8);
+            C_00030500_Destroy *v = *(C_00030500_Destroy * volatile *)&p->f8;
+            if (v) {
+                func_001E891B(v);
                 p->f8 = 0;
             }
         }
@@ -492,12 +491,11 @@ void *C_00030500::func_00030500(unsigned int flags)
     }
     if (f0) {
         f0->v4(1);
-        f0 = 0;
-    } else {
-        f0 = 0;
+        *(C_00030500_Destroy * volatile *)&f0 = 0;
     }
-    if (f8) {
-        func_001E891B(f8);
+    C_00030500_Destroy *v = *(C_00030500_Destroy * volatile *)&f8;
+    if (v) {
+        func_001E891B(v);
         f8 = 0;
     }
     if (flags & 1) {
