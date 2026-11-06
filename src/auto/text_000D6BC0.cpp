@@ -167,8 +167,7 @@ struct BmxUIPageHOF4 {
     int unk2e0[5];
     C_000D6D50_Item *unk2f4[2];
     C_000D6D50_Item *unk2fc[2];
-    int unk304;
-    int unk308;
+    int unk304[2];
     int unk30c[5];
     BmxUIPageHOF4 *func_000D7AB0(int param);
     void func_001BE360(int param);
