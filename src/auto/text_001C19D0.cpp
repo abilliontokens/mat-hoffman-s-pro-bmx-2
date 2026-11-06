@@ -159,7 +159,7 @@ static __forceinline void LoadSub19D0(Sub19D0 *s, Cfg19D0 *cfg, char **keys, cha
     s->f38 = (s->f38 ^ packed) & 0xffffff ^ s->f38;
     s->f58 |= 2;
 }
-static __forceinline void LoadSubK19D0(Sub19D0 *s, Cfg19D0 *cfg, char *buf, char *k0, char *k1, char *k2, char *k3, char *k4, char *k5, char *k6, char *k7, char *k8, char *k9, int *b = 0, float *vf = 0)
+static __forceinline void LoadSubK19D0(Sub19D0 *s, Cfg19D0 *cfg, char *buf, char *k0, char *k1, char *k2, char *k3, char *k4, char *k5, char *k6, char *k7, char *k8, char *k9)
 {
     char *p = func_001E8AC0(buf, 0x2e);
     if (p != 0) {
@@ -169,10 +169,11 @@ static __forceinline void LoadSubK19D0(Sub19D0 *s, Cfg19D0 *cfg, char *buf, char
     int v1 = (int)s->f28;
     int v2 = (int)s->f2c;
     int a[4];
-    int *bb = (int *)vf;
-    bb[2] = v1;
+    int b[4];
+    b[0] = 0; b[1] = 0; b[2] = 0; b[3] = 0;
+    b[2] = v1;
     a[0] = v2;
-    if (cfg->func_00168E70(k0, bb, a) != 0) {
+    if (cfg->func_00168E70(k0, b, a) != 0) {
         s->f58 |= 4;
         s->f3c = (float)a[0] * s->f4c;
         s->f40 = (float)a[2] * s->f4c;
