@@ -326,6 +326,7 @@ extern float D_002779FC;
 extern char D_0028C860[];
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 
+extern "C" void *memset(void *, int, unsigned);
 static __forceinline void Round_001B1C30(volatile int * volatile out, const float &f) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
 extern "C" int func_001E8858();
 
