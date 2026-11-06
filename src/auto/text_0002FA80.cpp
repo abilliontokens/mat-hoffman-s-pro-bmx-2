@@ -382,8 +382,10 @@ bool C_000300F0::func_000300F0(undefined4 param_1)
 bool C_0002FA80::func_00030120(const char *subName)
 {
     int func_001EA426(...);
-    S_0002FA80_Entry *e = &entries[cur];
-    S_0002FA80_Sub *s = &e->subs[e->curSub];
+    S_0002FA80_Entry *e = CurEntry30120();
+    S_0002FA80_Sub *subs = e->subs;
+    int idx = e->curSub;
+    S_0002FA80_Sub *s = &subs[idx];
 
     return func_001EA426(subName, s->name) == 0;
 }
@@ -392,7 +394,7 @@ void C_0002FA80::func_00030160(void)
 {
     S_0002FA80_Entry *e = &entries[cur];
     int idx = e->curSub;
-    S_0002FA80_Sub *subs = e->subs;
+    S_0002FA80_Sub *subs = *(S_0002FA80_Sub *volatile *)&e->subs;
     S_0002FA80_Sub *s = subs + idx;
 
     ((C_00194BD0 *)e->f0)->func_00194BD0(s->f104, s->f108, 0);
