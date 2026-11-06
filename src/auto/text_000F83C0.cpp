@@ -74,5 +74,5 @@ struct C_000F83C0 {
     int f590;
     char pad594[0x20];
     int f5b4;
-    void func_000F83C0(void);
+    int func_000F83C0(void);
 };
