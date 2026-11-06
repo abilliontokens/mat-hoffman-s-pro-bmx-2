@@ -157,9 +157,8 @@ struct Parent_0016D140 {
     Ref_0016D140 *f18C;
 };
 
-static inline void RoundToInt(float f, int *out) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
-static inline void TruncToInt(float f, int *out) { *out = _mm_cvttss_si32(*(__m128 *)&f); }
-static __forceinline float Max_0016D140(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(*(__m128 *)&a, *(__m128 *)&b)); return r; }
+static inline void RoundToInt(float f, int *out) { *out = _mm_cvtss_si32(_mm_set_ss(f)); }
+static inline void TruncToInt(float f, int *out) { *out = _mm_cvttss_si32(_mm_set_ss(f)); }
 
 struct C_0016D140 {
     void *vtbl;
