@@ -395,6 +395,7 @@ int C_00095A00::func_00095880()
 
 extern "C" void *__cdecl memset(void *dst, int c, unsigned int n);
 #pragma intrinsic(memset)
+static __inline void zero_mem(void *p, unsigned int n) { memset(p, 0, n); }
 int C_00095A00::func_00095A00(int n)
 {
     if (f34 == 0) {
