@@ -502,6 +502,7 @@ int func_001F3C55(F3Obj *f, unsigned short *format, char *argptr)
     return charsout;
 }
 
+#pragma optimize("y", on)
 extern "C" unsigned long __cdecl _exception_code(void);
 int __stdcall func_001F4419(int *p)
 {
