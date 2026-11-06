@@ -422,9 +422,8 @@ int C_00184930::func_00184EF0(int a0, int a1)
     char buf[0x80];
     S_00184EF0_Obj *obj;
     void *mem;
-    unsigned int n = 5;
 
-    if (memcmp((char *)f388 + 0x114, D_002764F0, n) == 0) {
+    if (strcmp((char *)f388 + 0x114, "none") == 0) {
         return 1;
     }
     func_001ADCC0(buf, 0x80, D_00289588, D_002A5A80);
