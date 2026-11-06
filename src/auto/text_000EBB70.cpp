@@ -36,7 +36,7 @@ struct C_001D6600 {
 int func_00092A10();
 struct S_EBE90_Page { char pad0[0x7c8]; int f7c8; char pad7cc[0x838 - 0x7cc]; int f838; char pad83c[0xa50 - 0x83c]; int fa50; };
 struct S_EBE90_Sel { int pad0; S_EBE90_Page *f4; };
-struct S_EBE90_Ctx { char pad0[0x274]; int f274; };
+struct S_EBE90_Ctx { char pad0[0x274]; int f274; int func_00092A10(); };
 
 struct C_000EBB_Elem {
     char pad0[0x38];
