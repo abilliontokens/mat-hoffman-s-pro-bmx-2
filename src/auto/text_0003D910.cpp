@@ -53,7 +53,6 @@ struct MgrD {
     char pad1A8[4];
     Mid2D *f1AC;
 };
-struct __declspec(align(16)) AV4 : V4 {};
 struct F4ObjD {
     char pad0[0xe8];
     NodeD *fE8;
