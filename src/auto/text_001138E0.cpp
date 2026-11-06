@@ -36,6 +36,9 @@ struct G_1138E0 { char pad0[0x2A4]; Slots_1138E0 *f2A4; };
 extern G_1138E0 *D_002A8490;
 extern float D_00275544, D_00279B54;
 struct Q_1138E0;
+void __stdcall func_00108E30(int a, int b);
+float __stdcall func_00108CB0(int idx, float v);
+float __stdcall func_00108CE0(int idx);
 struct C_001138E0 {
     char pad0[0x24]; Own_1138E0 *f24;
     char pad28[0x1EC - 0x28]; B1EC_1138E0 *f1EC;
