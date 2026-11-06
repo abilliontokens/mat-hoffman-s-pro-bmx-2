@@ -90,7 +90,9 @@ struct S_19CCE0_Elem {
     unsigned short f8, fA;
     S_19CCE0_V3z a;
     S_19CCE0_V3z b;
+    static void *operator new[](unsigned int n) { return func_001E8A44(n); }
 };
+extern "C" float __cdecl sqrtf(float);
 /* 0x14-byte record of the third table */
 struct S_19CCE0_Rec {
     unsigned short f0, f2, f4;
