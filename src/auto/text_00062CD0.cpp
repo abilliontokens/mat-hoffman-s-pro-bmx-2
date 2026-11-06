@@ -78,11 +78,26 @@ struct C_GObj2E8_62 {
     C_GObj4_62 *p4;
 };
 
+struct Clamp_63 { char pad[0x10]; float f10, f14; };
+struct Mid_63 { Clamp_63 *func_0018C070(); };
+struct Lookup_63 { int *func_0018C160(int); };
+struct W_63 { Clamp_63 *func_001D5AA0(); };
+extern float D_00275AEC;
+extern int D_002786A0, D_00278690;
+struct C_00063080 {
+    char pad0[0xfc];
+    W_63 *f[0x1f0/4 - 0x3f + 1];
+    void func_001578D0();
+    void func_00063080();
+};
+#define CL(o) if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000; if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+
 struct C_Root_62 {
     char pad0[0x2E0];
     C_Mgr_62 *f2E0;
     char pad2E4[4];
     C_GObj2E8_62 *p2E8;
+    Lookup_63 *p2EC;
 };
 
 struct C_000634D0 {
