@@ -184,6 +184,110 @@ struct C_000C4FD0 {
     void func_000C4FD0();
 };
 
+C_000C4EB0 *C_000C4EB0::func_000C4640(int a, int b, int c)
+{
+    func_001BE4F0(a,b,c);
+    int names[3] = {(int)&D_00278678,(int)&D_002786A0,(int)&D_00278690};
+    D_002A8490->f2EC->func_0018C780(3,names,0);
+    D_002A8490->f2EC->func_0018C160((int)&D_00278678);
+    D_002A8490->f2EC->func_0018C160((int)&D_002786A0);
+    int *found = D_002A8490->f2EC->func_0018C160((int)&D_00278690);
+    Font_000C4640 *font = found ? (Font_000C4640 *)*found : 0;
+    for(int i=0;i<10;++i) {
+        S_000C50E0_Widget *mem = (S_000C50E0_Widget *)func_001E8A44(0x64);
+        a2F8[i] = mem ? mem->func_001D5760() : 0;
+        if (i%2 == 0)
+            a2F8[i]->func_001D5810((int)&D_002786B0,100.0f,(i/2)*D_002757F0+D_0027E140,0);
+        else {
+            a2F8[i]->func_001D5810((int)&D_002786B0,321.0f,(i/2)*D_002757F0+D_0027E140,0);
+            S_000C50E0_Widget *w = a2F8[i];
+            w->SetColor(1.0f,0.0f,0.0f,1.0f);
+        }
+        S_000C50E0_Widget *w = a2F8[i];
+        if(w->f28 != 0x435d0000) { w->f28=0x435d0000; w->f58 |= 1; }
+    }
+    Text_000C4640 *mem = (Text_000C4640 *)func_001E8A44(0x60);
+    f2C4 = mem ? mem->func_001D5E90() : 0;
+    f2C4->func_001D5FA0(font,(int)&D_00278690,20,(int)&D_0027E134);
+    Text_000C4640 *text = f2C4;
+    if(text->f4 != 0x41a00000 || text->f8 != 0x43b40000) {
+        text->f4=0x41a00000;
+        unsigned char flags = text->f4e | 6;
+        text->f8=0x43b40000; text->f4e = flags;
+    }
+    text = f2C4;
+    unsigned color = text->f48;
+    if(color != 0xff8974f6) {
+        unsigned char flags = text->f4e | 8;
+        color = (color & 0xff8974f6) | 0x8974f6;
+        text->f4e = flags;
+        text->f48 = color;
+    }
+    for(int i=0;i<3;++i) {
+        {
+            S_000C4EB0_Obj *m = (S_000C4EB0_Obj *)func_001E8A44(0x184);
+            a320[i] = m ? m->func_001B12C0(1) : 0;
+            a320[i]->func_001B13A0((int)&D_00278690,(int)&D_00278690,0,20);
+            a320[i]->func_001B1A30(320.0f, font->func_0018C210() * (float)i + D_002782A8,0);
+            a320[i]->func_001B2270(0xffcccccc);
+            a320[i]->func_001B19A0(D_0028F5E0);
+            func_001577A0(a320[i],-1);
+        }
+        {
+            S_000C4EB0_Obj *m = (S_000C4EB0_Obj *)func_001E8A44(0x184);
+            a32C[i] = m ? m->func_001B12C0(1) : 0;
+            a32C[i]->func_001B13A0((int)&D_00278690,(int)&D_00278690,0,30);
+            a32C[i]->func_001B1A30(320.0f, font->func_0018C210() * (float)i + D_002782A8,0);
+            a32C[i]->func_001B2270(0xffcccccc);
+            a32C[i]->func_001B19A0(D_0028F5E0);
+            func_001577A0(a32C[i],-1);
+        }
+        {
+            S_000C4EB0_Obj *m = (S_000C4EB0_Obj *)func_001E8A44(0x184);
+            a338[i] = m ? m->func_001B12C0(1) : 0;
+            a338[i]->func_001B13A0((int)&D_00278690,(int)&D_00278690,0,20);
+            a338[i]->func_001B1A30(320.0f, font->func_0018C210() * (float)i + D_002782A8,0);
+            a338[i]->func_001B2270(0xffcccccc);
+            a338[i]->func_001B19A0(D_0028F5E0);
+            func_001577A0(a338[i],-1);
+        }
+        {
+            S_000C4EB0_Obj *m = (S_000C4EB0_Obj *)func_001E8A44(0x184);
+            a344[i] = m ? m->func_001B12C0(1) : 0;
+            a344[i]->func_001B13A0((int)&D_00278690,(int)&D_00278690,0,20);
+            a344[i]->func_001B1A30(320.0f, font->func_0018C210() * (float)i + D_002782A8,0);
+            a344[i]->func_001B2270(0xffcccccc);
+            a344[i]->func_001B19A0(D_0028F5E0);
+            func_001577A0(a344[i],-1);
+        }
+        {
+            S_000C4EB0_Obj *m = (S_000C4EB0_Obj *)func_001E8A44(0x184);
+            a350[i] = m ? m->func_001B12C0(1) : 0;
+            a350[i]->func_001B13A0((int)&D_00278690,(int)&D_00278690,0,20);
+            a350[i]->func_001B1A30(320.0f, font->func_0018C210() * (float)i + D_002782A8,0);
+            a350[i]->func_001B2270(0xffcccccc);
+            a350[i]->func_001B19A0(D_0028F5E0);
+            func_001577A0(a350[i],-1);
+        }
+    }
+    a320[0]->func_001B17D0(*(int *)((char *)D_002A8490->f2E8->f4 + 0x1130));
+    a320[1]->func_001B17D0(*(int *)((char *)D_002A8490->f2E8->f4 + 0x1138));
+    a320[2]->func_001B17D0(*(int *)((char *)D_002A8490->f2E8->f4 + 0x1140));
+    a32C[0]->func_001B17D0(*(int *)((char *)D_002A8490->f2E8->f4 + 0x1130));
+    a32C[1]->func_001B17D0(*(int *)((char *)D_002A8490->f2E8->f4 + 0x1138));
+    a32C[2]->func_001B17D0(*(int *)((char *)D_002A8490->f2E8->f4 + 0x1148));
+    a338[0]->func_001B17D0(*(int *)((char *)D_002A8490->f2E8->f4 + 0x1130));
+    a338[1]->func_001B17D0(*(int *)((char *)D_002A8490->f2E8->f4 + 0x1138));
+    a338[2]->func_001B17D0(*(int *)((char *)D_002A8490->f2E8->f4 + 0x1160));
+    a344[0]->func_001B17D0(*(int *)((char *)D_002A8490->f2E8->f4 + 0x1130));
+    a344[1]->func_001B17D0(*(int *)((char *)D_002A8490->f2E8->f4 + 0x1138));
+    a344[2]->func_001B17D0(*(int *)((char *)D_002A8490->f2E8->f4 + 0x1220));
+    a350[0]->func_001B17D0(*(int *)((char *)D_002A8490->f2E8->f4 + 0x1130));
+    a350[1]->func_001B17D0(*(int *)((char *)D_002A8490->f2E8->f4 + 0x1138));
+    a350[2]->func_001B17D0(*(int *)((char *)D_002A8490->f2E8->f4 + 0x1230));
+    return this;
+}
+
 void C_000C4EB0::func_000C4CE0()
 {
     int i;
