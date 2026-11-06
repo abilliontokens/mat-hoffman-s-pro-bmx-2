@@ -91,6 +91,12 @@ struct C_000C50E0 {
 extern S_000C4FD0_Root *D_002A8490;
 
 struct S_000C4EB0_Obj {
+    S_000C4EB0_Obj *func_001B12C0(int);
+    void func_001B13A0(int, int, int, int);
+    void func_001B1A30(float, float, int);
+    void func_001B2270(unsigned);
+    void func_001B19A0(int);
+    void func_001B17D0(int);
     void func_001B1980();
     void func_001B1860(int, float, int, float, int, int, int, int, float, int, float, float, int);
 };
