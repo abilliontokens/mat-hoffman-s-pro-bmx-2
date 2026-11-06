@@ -148,6 +148,20 @@ struct S_00087D20_Label {
     }
 };
 
+struct S_00087D20_Frame {
+    char pad0[4];
+    char c2[4];
+    char c1[4];
+    int count;
+    S_00087D20_Vec vSprite2;
+    S_00087D20_Vec vLabel2;
+    S_00087D20_Vec vLabel1;
+    S_00087D20_Vec vSprite1;
+    char section[0x104];
+    C_00087D20_Config cfg;
+    char path[0x104];
+};
+
 struct C_00087D20 {
     char pad0[0x24];
     S_00087D20_Label *f24;
@@ -215,6 +229,98 @@ struct DirectionArrowOverlay {
     DirectionArrowOverlay *func_00088950(int a0, int a1);
     void func_00088A40(int a, S_00088A40_V4 *v);
 };
+
+void C_00087D20::func_00087D20()
+{
+    C_00087D20_Config cfg;
+    char path[0x104];
+    char section[0x104];
+    S_00087D20_Vec vLabel1 = {0.0f, 0.0f, 0.0f, 1.0f};
+    S_00087D20_Vec vLabel2 = {0.0f, 0.0f, 0.0f, 1.0f};
+    S_00087D20_Vec vSprite1 = {0.0f, 0.0f, 0.0f, 1.0f};
+    S_00087D20_Vec vSprite2 = {0.0f, 0.0f, 0.0f, 1.0f};
+    int count;
+    char c1[4];
+    char c2[4];
+    int val;
+
+    cfg.func_00168280();
+    func_001ADCC0(path, 0x104, D_0027953C, D_002A5348);
+    if (cfg.func_00169490(path, 0) == 0) goto done;
+    {
+        int mode = *(int *)(*(int *)((char *)D_002A8490 + 0x2e0) + 8);
+        if (mode == 0) {
+            func_001ADCC0(section, 0x104, D_00279870);
+        } else if (mode == 2) {
+            func_001ADCC0(section, 0x104, D_00279854);
+        } else {
+            func_001ADCC0(section, 0x104, D_00279838);
+        }
+    }
+    if (cfg.func_00169710(section) == 0) goto done;
+    cfg.func_00168CB0(D_0027945C, &D_002A2034, &vLabel1);
+    cfg.func_00168BE0(D_00279448, D_00279258, c1, -1);
+    cfg.func_00168CB0(D_00279830, &D_002A2034, &vLabel2);
+    cfg.func_00168BE0(D_0027981C, D_00279258, c2, -1);
+    cfg.func_00168CB0(D_00279418, &D_002A2034, &vSprite1);
+    cfg.func_00168CB0(D_00279408, &D_002A2034, &vSprite2);
+    cfg.func_00168C20(D_002793F8, 0, &count);
+    f2C->SetPos(vSprite1.x, vSprite1.y);
+    if ((float)count != f2C->f28) {
+        f2C->f28 = (float)count;
+        f2C->b58 |= 1;
+    }
+    f30->SetPos(vSprite2.x, vSprite2.y);
+    if ((float)count != f30->f28) {
+        f30->f28 = (float)count;
+        f30->b58 |= 1;
+    }
+    f24->SetPos(vLabel1.x, vLabel1.y);
+    f28->SetPos(vLabel2.x, vLabel2.y);
+    switch (c1[0]) {
+    case 'L':
+    case 'l':
+        val = D_0028F5DC;
+        break;
+    case 'R':
+    case 'r':
+        val = D_0028F5EC;
+        break;
+    case 'C':
+    case 'c':
+        val = D_0028F5E0;
+        break;
+    default:
+        goto second;
+    }
+    if (f24->f44 != val) {
+        f24->f44 = val;
+        f24->b4e |= 6;
+    }
+second:
+    switch (c2[0]) {
+    case 'L':
+    case 'l':
+        val = D_0028F5DC;
+        break;
+    case 'R':
+    case 'r':
+        val = D_0028F5EC;
+        break;
+    case 'C':
+    case 'c':
+        val = D_0028F5E0;
+        break;
+    default:
+        goto done;
+    }
+    if (f28->f44 != val) {
+        f28->f44 = val;
+        f28->b4e |= 6;
+    }
+done:
+    cfg.func_001691E0();
+}
 
 SplitScreenSeparator *SplitScreenSeparator::func_00088530(int param_1)
 {
