@@ -197,15 +197,15 @@ float func_00133D90(Coll_00133D90 *obj, float *p, float r)
 
 float func_00133DF0(Coll_00133D90 *a, Coll_00133D90 *b)
 {
- volatile float rad=a->f48+b->f48;
- float dx=a->f28-b->f28;
- float dy=a->f2C-b->f2C;
- float dz=a->f30-b->f30;
- volatile float square=dz*dz+dy*dy+dx*dx;
- float d=(float)sqrt((double)square);
- float res=d-rad;
- if(res>D_00275544) return res;
- return D_00275544;
+    float rad = a->f48 + b->f48;
+    float dx = a->f28 - b->f28;
+    float dy = a->f2C - b->f2C;
+    float dz = a->f30 - b->f30;
+    float res = AsmSqrtF(dz * dz + dy * dy + dx * dx) - rad;
+    if (res > D_00275544) {
+        return res;
+    }
+    return D_00275544;
 }
 
 #pragma auto_inline(on)
