@@ -418,35 +418,24 @@ struct C_0001DCF0 {
     C_0001DCF0_Obj *func_0001DCF0(int p0, int p1, int p2, int p3, int p4, int p5, int p6, int p7, int p8, int p9, int p10, int p11, int p12, int p13, int p14, int p15, int p16, int p17, int p18, int p19, int p20, int p21, int p22, int p23, int p24, int p25, int p26, int p27);
 };
 
-C_0001DCF0_Obj *C_0001DCF0::func_0001DCF0(int p0, int p1, int p2, int p3, int p4, int p5, int p6, int p7, int p8, int p9, int p10, int p11, int p12, int p13, int p14, int p15, int p16, int p17, int p18, int p19, int p20, int p21, int p22, int p23, int p24, int p25, int p26, int p27) {
+C_0001DCF0_Obj *C_0001DCF0::func_0001DCF0(int p0, int p1, int p2, int p3, S9 c, S4 b, S4 a, int p21, int p22, int p23, int p24, int p25, int p26, int p27) {
     void *func_001E8A44(int);
-    void *mem = func_001E8A44(0x1c8);
-    if (mem == 0) {
-        return 0;
-    }
-    C_0001DCF0_Obj *o = ((C_0001DCF0_Obj *)mem)->func_001A1F70(this, p2, p22, p21);
-    if (o == 0) {
-        return 0;
-    }
-    S9 c = {{p4, p5, p6, p7, p8, p9, p10, p11, p12}};
-    S4 b = {p13, p14, p15, p16};
-    S4 a = {p16, p18, p19, p20};
-    if (o->func_001A1FB0(p0, p1, c, b, a, p21, p22, p25, p26, p27) == 0) {
+    C_0001DCF0_Obj *o = (C_0001DCF0_Obj *)func_001E8A44(0x1c8);
+    if (o) o = o->func_001A1F70(this, p2, p22, p21);
+    if (!o) return 0;
+    if (!o->func_001A1FB0(p0, p1, c, b, a, p23, p24, p25, p26, p27)) {
         o->virt0(1);
         return 0;
     }
-    if (p2 != 0) {
-        o->func_001A1D20(p2, (p23 & 8) ? 1 : 0);
+    if (p3) {
+        if (p23 & 8) o->func_001A1D20(p3, 1);
+        else o->func_001A1D20(p3, 0);
     }
-    C_0001DF80_Arr *r = &arr70;
-    if (r->n >= r->cap) {
-        if (r->func_0015ACA0(r->base + r->n) == 0) {
-            goto done;
-        }
+    C_0001DF80_Arr *array = &arr70;
+    if (array->n < array->cap || array->func_0015ACA0(array->n + array->base)) {
+        array->arr[array->n] = (int)o;
+        array->n++;
     }
-    r->arr[r->n] = (int)o;
-    r->n++;
-done:
     func_001577A0(o, 2);
     return o;
 }
