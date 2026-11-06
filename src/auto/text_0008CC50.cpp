@@ -279,9 +279,7 @@ void C_0008CC50::func_0008CC50()
     int fontA;
     int fontB;
 
-    f = 0.0f;
-    if (u7c != 0)
-        f = 220.0f;
+    f = (u7c == 0) ? 0.0f : 220.0f;
     D_002A60B0.a[0] = D_00278664.a[0];
     D_002A60B4 = D_00278668;
     D_002A60B8 = D_0027866C;
@@ -313,11 +311,11 @@ void C_0008CC50::func_0008CC50()
     unk54->func_001B1AB0(0, 0);
     unk54->func_001B17D0(*(int *)(*(int *)(((int *)D_002A8490)[0x2e8 / 4] + 4) + 0x10e0));
     func_001577A0(unk54, -1);
-    unk40->func_001D5810(D_00279F10, 288.0f, f + D_002798A0, 0);
-    unk44->func_001D5810(D_00279EE8, 0, f + D_00279F74, 0);
+    unk40->func_001D5810(D_00279F10, 288.0f, *(volatile float *)&f + D_002798A0, 0);
+    unk44->func_001D5810(D_00279EE8, 0, *(volatile float *)&f + D_00279F74, 0);
     unk44->SetX(0x44200000);
     unk44->SetY(0x42b00000);
-    unk38->func_001D5810(D_002786B0, 524.0f, f + D_00279F70, 0);
+    unk38->func_001D5810(D_002786B0, 524.0f, *(volatile float *)&f + D_00279F70, 0);
     unk38->SetX(0x42c00000);
     unk38->SetY(0x42800000);
     unk38->SetIdentity2();
@@ -340,16 +338,16 @@ void C_0008CC50::func_0008CC50()
     mem = func_001E8A44(0x60);
     unk2c = mem ? ((Text_8CC50 *)mem)->func_001D5E90() : 0;
     unk2c->func_001D5FA0(fontB, D_0027958C, 0x28, 0);
-    unk48->func_001D5810(D_00279F08, 524.0f, f + D_00276558, 0);
-    unk4c->func_001D5810(D_00279EFC, 524.0f, f + D_00279F6C, 0);
-    unk24->SetPos(0x441b0000, f + D_00276524);
+    unk48->func_001D5810(D_00279F08, 524.0f, *(volatile float *)&f + D_00276558, 0);
+    unk4c->func_001D5810(D_00279EFC, 524.0f, *(volatile float *)&f + D_00279F6C, 0);
+    unk24->SetPos(0x441b0000, *(volatile float *)&f + D_00276524);
     unk24->SetArgb(0xffcccccc);
     unk24->SetColor(D_0028F5DC);
     unk24->func_0005E840(D_00279F60);
     unk28->SetColor(D_0028F5EC);
-    unk28->SetPos(0x441b0000, f + D_00279F5C);
+    unk28->SetPos(0x441b0000, *(volatile float *)&f + D_00279F5C);
     unk2c->SetColor(D_0028F5EC);
-    unk2c->SetPos(0x441b0000, f + D_00279F58);
+    unk2c->SetPos(0x441b0000, *(volatile float *)&f + D_00279F58);
     unk4c->SetX(0x42000000);
     unk4c->SetY(0x42000000);
     unk48->SetX(0x42000000);
