@@ -247,6 +247,136 @@ void *DynamicStringTable::func_001AC920(int flags)
     return this;
 }
 
+double func_001EA2BA(double value, double *ipart);
+char *func_001AC940(double value, int ndec, int *decpt, int flag)
+{
+    char buf[0x50];
+    char *p = buf + 0x50;
+    char *q;
+    char *end;
+    int n = 0;
+    double ipart;
+    double frac;
+
+    if (ndec > 0x4e) ndec = 0x4e;
+    if (value < 0) value = -value;
+    frac = func_001EA2BA(value, &ipart);
+    if (ipart != 0) {
+        while (p > buf) {
+            if (ipart == 0) break;
+            frac = func_001EA2BA(ipart * D_00286D30, &ipart);
+            *--p = (char)('0' - (int)((frac + D_0028C110) * D_0028C108));
+            n++;
+        }
+    }
+    if (value > 0) {
+        double x = value * D_0028C100;
+        if (x <= D_002766B8) {
+            do { x *= D_0028C100; p--; } while (x < D_002766B8);
+            frac = x;
+            n = (int)(p - buf);
+        }
+    }
+    end = buf + ndec;
+    if (flag == 0) {
+        end += n;
+        *decpt = n;
+        if (end < buf) { buf[0] = 0; return buf; }
+    }
+    q = buf;
+    while (q <= end) {
+        if (q >= buf + 0x50) break;
+        frac = func_001EA2BA(value * D_0028C100, &ipart);
+        *q++ = (char)('0' + (int)ipart);
+    }
+    if (end < buf + 0x50) {
+        char c = (char)(*end + 5);
+        *end = c;
+        if (c > '9') {
+            *end = '0';
+            while (end > buf) {
+                end--;
+                if ((*end)++ < '9') break;
+                *end = '0';
+            }
+            if (end <= buf) {
+                *end = '1';
+                (*decpt)++;
+            }
+        }
+    } else {
+        buf[0x4f] = 0;
+    }
+    return buf;
+}
+
+static __declspec(noinline) char *cvt_probe(int *sign, char *buf, double arg, int ndigits, int *decpt, int eflag)
+{
+    char *p = buf;
+    char *p1;
+    double fi, fj;
+    int dp = 0;
+
+    if (ndigits >= 0x4f)
+        ndigits = 0x4e;
+    *sign = 0;
+    if (arg < D_002766A8) {
+        *sign = 1;
+        arg = -arg;
+    }
+    arg = func_001EA2BA(arg, &fi);
+    if (fi != D_002766A8) {
+        p1 = buf + 0x50;
+        while (p1 > buf && fi != D_002766A8) {
+            fj = func_001EA2BA(fi * D_00286D30, &fi);
+            *--p1 = '0' - (int)((fj + D_0028C110) * D_0028C108);
+            dp++;
+        }
+        while (p1 < buf + 0x50)
+            *p++ = *p1++;
+    } else if (arg > D_002766A8) {
+        while ((fj = arg * D_0028C100) < D_002766B8) {
+            arg = fj;
+            dp--;
+        }
+    }
+    p1 = buf + ndigits;
+    if (eflag == 0)
+        p1 += dp;
+    *decpt = dp;
+    if (p1 < buf) {
+        buf[0] = 0;
+        return buf;
+    }
+    while (p <= p1 && p < buf + 0x50) {
+        arg *= D_0028C100;
+        arg = func_001EA2BA(arg, &fj);
+        *p++ = (int)fj + '0';
+    }
+    if (p1 >= buf + 0x50) {
+        buf[0x4f] = 0;
+        return buf;
+    }
+    p = p1;
+    *p1 += 5;
+    while (*p1 > '9') {
+        *p1 = '0';
+        if (p1 > buf) {
+            ++*--p1;
+        } else {
+            *p1 = '1';
+            ++*decpt;
+            if (eflag == 0) {
+                if (p > buf)
+                    *p = '0';
+                p++;
+            }
+        }
+    }
+    *p = 0;
+    return buf;
+}
+
 char *func_001ACCF0(int flag, int *sign, unsigned value, char *end, int *len)
 {
     char *p = end;
