@@ -194,7 +194,7 @@ extern int D_002AC794, D_002F0BD0, D_0020C6DC, D_0020CA78, D_0020CA50;
 static __forceinline float Max_001DC010(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float Min_001DC010(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float Abs_001DC010(float a) { int i = *(int *)&a & 0x7fffffff; return *(float *)&i; }
-static __forceinline float Sqrt_001DC010(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
+static __forceinline float Sqrt_001DC010(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
 
 struct C_001DC540 {
     undefined4 func_001DC540(byte param_1);
