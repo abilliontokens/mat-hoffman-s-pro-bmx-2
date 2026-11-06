@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 struct S_000265C0_V4 {
     float x, y, z, w;
@@ -244,6 +245,10 @@ undefined4 func_00026300(float *param_1, float *param_2)
   return 1;
 }
 
+void func_00026340(float *out, float *in) {
+    AsmVec3Normalize(out, in);
+}
+
 void func_000263B0(float *out, float *a, float *b)
 {
     __m128 *O = (__m128 *)out;
@@ -268,6 +273,7 @@ void func_000263B0(float *out, float *a, float *b)
     O[3] = r3;
 }
 
+#pragma optimize("y", on)
 C_000264C0 *C_000264C0::func_000264C0(S_000264C0_Mat *src)
 {
     __m128 r0 = src->r0;
@@ -281,7 +287,7 @@ C_000264C0 *C_000264C0::func_000264C0(S_000264C0_Mat *src)
     mat.r3 = r3;
     return this;
 }
-
+#pragma optimize("", on)
 int C_00026500::func_00026500(const char *name, int value)
 {
     int i;
