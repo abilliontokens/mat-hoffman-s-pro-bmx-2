@@ -130,16 +130,66 @@ extern int D_002A8CDC;
 extern C_0017AA90_Mgr *D_002A829C;
 void func_000263B0(void *a, void *b, void *c);
 
+struct V4_0017AD20 { float x, y, z, w; V4_0017AD20() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; } };
+struct Obj_0017AD20 {
+      char pad_00[0xf0];
+      float mat[12];
+      void func_00198B70(void *a, void *b);
+};
+struct Node_0017AD20 {
+      int f0;
+      Obj_0017AD20 *f4;
+};
+extern float D_002755E8;
+extern float D_00275460;
+extern float D_002A8CE0;
+extern float D_00289080;
+void func_0001C680(void *out, V4_0017AD20 v, float *m);
+static __forceinline void Xform_0017AD20(float *out, float *v, float *m)
+{
+    __m128 r0 = _mm_load_ps(m);
+    __m128 r1 = _mm_load_ps(m + 4);
+    __m128 r2 = _mm_load_ps(m + 8);
+    __m128 vec = _mm_loadu_ps(v);
+    __m128 lo, hi;
+    _mm_storeh_pi((__m64 *)(out + 2), vec);
+    out[3] = 1.0f;
+    vec = _mm_loadh_pi(vec, (__m64 *)(out + 2));
+    r0 = _mm_mul_ps(r0, vec);
+    r1 = _mm_mul_ps(r1, vec);
+    r2 = _mm_mul_ps(r2, vec);
+    lo = _mm_unpacklo_ps(r0, r1);
+    hi = _mm_unpackhi_ps(r0, r1);
+    lo = _mm_add_ps(lo, hi);
+    r2 = _mm_add_ps(r2, _mm_movehl_ps(r2, r2));
+    hi = _mm_movehl_ps(hi, lo);
+    lo = _mm_movelh_ps(lo, r2);
+    hi = _mm_shuffle_ps(hi, r2, 0x14);
+    lo = _mm_add_ps(lo, hi);
+    _mm_storeu_ps(out, lo);
+    out[3] = 1.0f;
+}
 struct C_0017AA90 {
-    void *vtbl;
-    char pad4[0xEC];
-    C_0017AA90_Child **fF0;
-    int fF4;
-    char padF8[4];
-    char *fFC;
-    int f100, f104, f108, f10C, f110, f114;
-    char pad118[0x24];
-    int f13C;
+      void *vtbl;
+      char pad4[0xAC];
+      float fB0, fB4, fB8;
+      char padBC[4];
+      float fC0, fC4, fC8;
+      char padCC[4];
+      float fD0, fD4, fD8, fDC;
+      float fE0, fE4, fE8, fEC;
+      C_0017AA90_Child **fF0;
+      int fF4;
+      char padF8[4];
+      char *fFC;
+      int f100, f104, f108, f10C, f110, f114;
+      int f118;
+      char pad11C[0x10];
+      float f12C;
+      float f130;
+      float f134;
+      char pad138[4];
+      int f13C;
     struct ShadowObject **f140;
     int f144, f148, f14C;
     int f150;
