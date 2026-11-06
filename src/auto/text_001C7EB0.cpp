@@ -19,6 +19,7 @@ extern float D_00275544;
 MatW func_00026960();
 void func_00026960(MatW *out);
 extern Vec4W D_002AB798;
+extern float D_002AB79C, D_002AB7A0, D_002AB7A4;
 struct NodeW {
     void func_00199A70(int a, Vec4W *out);
     Vec4W func_00197EC0(float *v);
