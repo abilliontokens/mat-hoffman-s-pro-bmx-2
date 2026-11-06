@@ -591,6 +591,13 @@ static void func_001EDCFF(char *str, int len, S_001EDC7E *stream, int *pcnt)
         if (*pcnt == -1) break;
     }
 }
+
+/* Not in the original binary. The three statics above (CRT output.c's
+ * write_char / write_multi_char / write_string) get MSVC's register-based
+ * calling convention only when the TU sees them as non-exported, and a
+ * static with no referrer is dropped. Their real callers (_output) sit in the
+ * next unit, so this stand-in keeps them emitted. Drop it once _output is in
+ * the same file. */
 void keep_001EDCA8(char ch, int n, char *str, S_001EDC7E *stream, int *pcnt)
 {
     func_001EDCDB(ch, n, stream, pcnt);
