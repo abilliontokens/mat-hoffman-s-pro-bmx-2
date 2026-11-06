@@ -125,7 +125,8 @@ void BmxUIPageMain::func_000C5580()
         else
             m = ((S5580_G *)D_002B91AC)->f8C;
         m->func_001D5AD0();
-        n = S5580_GetN(f140) - 1;
+        n = f140->f4->f30;
+        n--;
         count = (((S5580_Root *)D_002A8490)->p2E0->f2C0->func_0005C0E0() != 0) ? 10 : 8;
         for (i = 0; i < count; i++) {
             if (n * 2 == i || n * 2 + 1 == i) {
@@ -200,6 +201,7 @@ struct C_5E40_A {
 
 struct C_5E40_Dst {
     void func_001D6600();
+    void func_0005E840(int a);
 };
 
 struct C_6420_Q {
