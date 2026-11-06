@@ -587,10 +587,6 @@ extern const float D_002755E4;
 extern const float D_00275544;
 extern const float D_0028C280;
 extern const float D_00275460;
-static __forceinline float Dot3_001AE570(float ax, float ay, float az, const float *v)
-{
-    return ax * v[0] + ay * v[1] + az * v[2];
-}
 void func_001578D0_(void);
 struct C_1AE570 {
     char pad0[0x30];
