@@ -15,6 +15,7 @@ struct Owner_0010A3B0 {
 struct Hud_0010A3B0 {
     char pad0[0x24];
     Owner_0010A3B0 *f24;
+    void func_001056E0();
     void func_0010A3B0();
 };
 #define HI(o) (*(int*)((char*)this + (o)))
