@@ -456,21 +456,17 @@ void C_001C1030::func_001C1030(int slot, int value, int key)
 void C_001C10D0::func_001C10D0(void)
 {
   f2c = 1;
-  do {
-    if (f30 != 0 && f34 != 0) {
-      break;
-    }
+  if (f30 == 0 || f34 == 0) {
     if (f30 != 0) {
       v7();
     }
     if (f34 != 0) {
       v5();
     }
-  } while (0);
+  }
   v7();
 }
-
-#pragma optimize("g", on)
+#pragma optimize("a", off)
 void C_001C1110::func_001C1110(void)
 {
   f2c = 0;
