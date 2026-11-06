@@ -41,8 +41,9 @@ struct S_00082790_Frame {
     S_00082790_Settings s;
     C_00082790_Ini ini;
     char buf[0x104];
-    ~S_00082790_Frame() { ini.func_001691E0(); }
+    __declspec(noinline) ~S_00082790_Frame();
 };
+__declspec(noinline) S_00082790_Frame::~S_00082790_Frame() { ini.func_001691E0(); }
 struct C_00082400 {
     void func_00082400(short param_1);
 };
