@@ -7,6 +7,7 @@ extern int D_0028F154;
 void func_001E891B(void *p);
 void *func_001E8A44(int size);
 
+struct TextureStageState { int a, b, c; char pad[0x74]; };
 /* Direct3D render/texture-stage state shadow and its setters */
 extern int D_0020C6DC, D_0020C6E4, D_0020C6F0, D_0020C710, D_0020C718, D_0020C720, D_0020C728;
 extern int D_0020CA50, D_0020CA64, D_0020CA78, D_0020CA7C;
@@ -572,6 +573,8 @@ void C_001D1A40::func_001D1A40(void) {
 int __stdcall func_001D1A50(int a0, int a1, int a2) {
     return 0;
 }
+
+int __stdcall func_001D1A60(int a0, int a1) { return 0; }
 
 void *C_001D1B70::func_001D1B70(unsigned int flags)
 {
