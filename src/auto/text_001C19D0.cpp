@@ -160,6 +160,15 @@ struct C_001C2250 {
     void *unk38;
     void *unk3C;
     void func_001C2250();
+    void ReleaseChildren()
+    {
+        if (unk38 != 0) {
+            ((VCall8 *)this)->v7();
+        }
+        if (unk3C != 0) {
+            ((VCall8 *)this)->v5();
+        }
+    }
 };
 
 struct C_001C2670 {
@@ -333,6 +342,7 @@ void C_001C2210::func_001C2210() {
     }
 }
 
+#pragma optimize("a", on)
 void C_001C2250::func_001C2250() {
     unk2C = 0;
     if (unk38 == 0 || unk3C == 0) {
@@ -344,7 +354,7 @@ void C_001C2250::func_001C2250() {
         }
     }
 }
-
+#pragma optimize("a", off)
 void C_001C2290::func_001C2290(void) {
     unk2C = 0;
 }
