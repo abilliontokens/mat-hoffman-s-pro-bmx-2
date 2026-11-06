@@ -2,6 +2,7 @@
 #include "common.h"
 #include <math.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 extern float D_00275AFC;
 extern float D_00275B00;
@@ -151,35 +152,63 @@ struct C_0001B3C0 {
 extern "C" int strcmp(const char *, const char *);
 
 
-C_0001AE60* C_0001AE60::func_0001AE60(const Vec3* v) {
-    C_0001AE60 * volatile self = this;
-    int tmp;
-    int * volatile p;
-    float t;
-    p = &tmp;
-    t = D_00275AFC * v->x;
-    *p = _mm_cvtss_si32(_mm_load_ss(&t));
-    self->r = (s8)tmp;
-    p = &tmp;
-    t = D_00275AFC * v->y;
-    *p = _mm_cvtss_si32(_mm_load_ss(&t));
-    self->g = (s8)tmp;
-    p = &tmp;
-    t = D_00275AFC * v->z;
-    *p = _mm_cvtss_si32(_mm_load_ss(&t));
-    self->b = (s8)tmp;
-    return self;
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
+C_0001AE60* C_0001AE60::func_0001AE60(const Vec3* volatile v) {
+    struct A { int * volatile p; float t; };
+    struct B { float t; int * volatile p; };
+    struct { int tmp; C_0001AE60 * volatile self; union { A a; B b; } u; } L;
+    int r;
+    L.self = this;
+    L.u.a.t = D_00275AFC * v->x;
+    L.u.a.p = &L.tmp;
+    r = _mm_cvtss_si32(*(__m128 *)&L.u.a.t);
+    _ReadWriteBarrier();
+    *L.u.a.p = r;
+    L.self->r = (s8)L.tmp;
+    L.u.b.t = D_00275AFC * v->y;
+    L.u.b.p = &L.tmp;
+    r = _mm_cvtss_si32(*(__m128 *)&L.u.b.t);
+    _ReadWriteBarrier();
+    *L.u.b.p = r;
+    L.self->g = (s8)L.tmp;
+    L.u.b.t = D_00275AFC * v->z;
+    L.u.b.p = &L.tmp;
+    r = _mm_cvtss_si32(*(__m128 *)&L.u.b.t);
+    _ReadWriteBarrier();
+    *L.u.b.p = r;
+    L.self->b = (s8)L.tmp;
+    return L.self;
+}
+C_0001AF00* C_0001AF00::func_0001AF00(const Vec3* volatile v) {
+    struct A { int * volatile p; float t; };
+    struct B { float t; int * volatile p; };
+    struct { int tmp; volatile C_0001AF00 * volatile self; union { A a; B b; } u; } L;
+    int r;
+    L.self = this;
+    L.u.a.t = D_00275B00 * v->x;
+    L.u.a.p = &L.tmp;
+    r = _mm_cvtss_si32(*(__m128 *)&L.u.a.t);
+    _ReadWriteBarrier();
+    *L.u.a.p = r;
+    L.self->r = (s16)L.tmp;
+    L.u.b.t = D_00275B00 * v->y;
+    L.u.b.p = &L.tmp;
+    r = _mm_cvtss_si32(*(__m128 *)&L.u.b.t);
+    _ReadWriteBarrier();
+    *L.u.b.p = r;
+    L.self->g = (s16)L.tmp;
+    L.u.b.t = D_00275B00 * v->z;
+    L.u.b.p = &L.tmp;
+    r = _mm_cvtss_si32(*(__m128 *)&L.u.b.t);
+    _ReadWriteBarrier();
+    *L.u.b.p = r;
+    L.self->b = (s16)L.tmp;
+    return (C_0001AF00 *)L.self;
 }
 
-C_0001AF00* C_0001AF00::func_0001AF00(const Vec3* v) {
-    int t;
-    t = _mm_cvtss_si32(_mm_set_ss(D_00275B00 * v->x));
-    r = (s16)t;
-    t = _mm_cvtss_si32(_mm_set_ss(D_00275B00 * v->y));
-    g = (s16)t;
-    t = _mm_cvtss_si32(_mm_set_ss(D_00275B00 * v->z));
-    b = (s16)t;
-    return this;
+void func_0001AFB0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
 void func_0001B020(Quat *q, float *angle, Vec3 *axis) {
@@ -221,22 +250,21 @@ C_0001B0A0 *C_0001B0A0::func_0001B0A0(void) {
 }
 
 void func_0001B130(u8 *dst, Quat *q) {
-    float angle;
-    int tmp;
-    int * volatile p;
+    struct { int tmp; float angle; int * volatile p; } L;
     Vec4 v;
-    C_0001AE60 col;
+    int r;
     v.z = 0.0f;
     v.y = 0.0f;
     v.x = 0.0f;
     v.w = 1.0f;
-    func_0001B020(q, &angle, (Vec3 *)&v);
+    func_0001B020(q, &L.angle, (Vec3 *)&v);
     func_0001AFB0((Vec3 *)&v, (Vec3 *)&v);
-    angle *= D_00275B44;
-    p = &tmp;
-    *p = _mm_cvtss_si32(*(__m128 *)&angle);
-    *dst++ = (u8)tmp;
-    *(C_0001AE60 *)dst = *col.func_0001AE60((Vec3 *)&v);
+    L.angle *= 40.5845108f;
+    L.p = &L.tmp;
+    r = _mm_cvtss_si32(*(__m128 *)&L.angle);
+    *L.p = r;
+    *dst++ = (u8)L.tmp;
+    *(C_0001AE60 *)dst = *C_0001AE60().func_0001AE60((Vec3 *)&v);
 }
 
 void func_0001B1D0(const PackedQuat *p, Quat *q) {
@@ -251,22 +279,19 @@ void func_0001B1D0(const PackedQuat *p, Quat *q) {
     q->z = v[2] * s;
 }
 
-void func_0001B250(S_0001B250_Out *out, Quat *q)
+void func_0001B250(S_0001B250_Out * volatile out, Quat *q)
 {
-    float angle;
+    union { float angle; C_0001AF00 col; } u;
     S_0001B250_Block v;
     v.z = 0;
     v.y = 0;
     v.x = 0;
     v.w = 1.0f;
-    func_0001B020(q, &angle, (Vec3 *)&v);
-    func_0001AFB0(&v, &v);
-    float t = D_002B7C80 * angle;
+    func_0001B020(q, &u.angle, (Vec3 *)&v);
+    func_0001AFB0((Vec3 *)&v, (Vec3 *)&v.x);
+    float t = D_002B7C80 * u.angle;
     out->f0 = (int)t;
-    C_0001AF00 obj;
-    obj.func_0001AF00((Vec3 *)&v);
-    out->f2 = *(u32 *)&obj;
-    out->f6 = *(u16 *)((char *)&obj + 4);
+    *(C_0001AF00 *)((char *)out + 2) = *u.col.func_0001AF00((Vec3 *)&v);
 }
 
 void func_0001B2E0(const S_0001B2E0_In *in, S_0001B2E0_Out *out)
