@@ -44,6 +44,7 @@ struct S_ObjectAttributes {
 };
 
 /* stack frame of the file copy routine, in the order the original keeps it */
+#pragma pack(push, 4)
 struct S_001DCDC7_Frame {
     u32 basic[10];
     S_AnsiString str;
@@ -58,6 +59,7 @@ struct S_001DCDC7_Frame {
     u32 output;
     __int64 offset;
 };
+#pragma pack(pop)
 
 extern "C" int (__stdcall *_imp__NtWaitForSingleObjectEx)(void *a0, int a1, int a2, void *a3);
 extern "C" int (__stdcall *_imp__NtCreateEvent)(void **a0, S_ObjectAttributes *a1, int a2, int a3);
