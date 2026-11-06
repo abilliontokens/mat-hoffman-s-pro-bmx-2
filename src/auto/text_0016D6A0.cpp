@@ -184,7 +184,7 @@ struct S_0016D8D0_Owner {
 };
 
 struct C_0016A1D0 {
-    int func_0016A3A0(S_0016D8D0_Stream *stream);
+    void func_0016A3A0(S_0016D8D0_Stream *stream);
 };
 
 /* FireworkParticleEmitter (virtual slot 34: load from stream) */
