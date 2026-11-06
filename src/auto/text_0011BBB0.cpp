@@ -9,6 +9,7 @@ struct S_0011CA20_V4 {
     int w;
 };
 extern S_0011CA20_V4 D_002A3BBC;
+extern int D_002A3BC0, D_002A3BC4, D_002A3BC8;
 
 void *func_001E83E8(void *block, unsigned int size);
 
