@@ -61,6 +61,17 @@ int func_001B27B0(int format);
 struct V136FE0 { float x, y, z; int color; float u, v; };
 extern const float D_00278C48, D_00275994;
 extern float D_002BE040[];
+struct Vec3_00136FE0 {
+    float x, y, z;
+};
+/* sky cube grid vertex: position, colour, texture coordinates */
+struct Vtx_00136FE0 {
+    Vec3_00136FE0 pos;
+    int color;
+    float u, v;
+};
+extern float D_002BE9A0[][4];
+extern Vtx_00136FE0 D_002BA728[];
 int func_001B2730(int format);
 void *func_001E8A44(int size);
 
