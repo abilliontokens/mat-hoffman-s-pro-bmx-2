@@ -67,10 +67,7 @@ struct C_001067B0 {
 struct Vec4_00105B30 {
     float x, y, z, w;
     void Set(const Vec4_00105B30 &o) {
-        x = o.x;
-        y = o.y;
-        z = o.z;
-        w = o.w;
+        *this = o;
     }
 };
 
