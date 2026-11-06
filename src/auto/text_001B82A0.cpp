@@ -195,6 +195,50 @@ C_001B82A0 *C_001B82A0::func_001B82A0(void *param) {
     return this;
 }
 
+int C_001B82A0::func_001B82D0(C_00169710 *stream)
+{
+    int count;
+    int i;
+    int end;
+    int start;
+    char buf[0x104];
+    C_001B82D0_item *e;
+
+    if (stream->func_00169710(D_0028D034) == 0) {
+        return 0;
+    }
+    stream->func_00168C20(D_0028D020, 0, &count);
+    if (count > 0) {
+        if (f28 != 0) {
+            start = f24;
+            f24 = start + count;
+            end = f24;
+            f28 = (C_001B83F0_item **)func_001E83E8(f28, f24 * 4);
+        } else {
+            start = 0;
+            f24 = count;
+            end = f24;
+            f28 = (C_001B83F0_item **)func_001E8A44(f24 * 4);
+        }
+        for (i = start; i < end; i++) {
+            func_001ADCC0(buf, 0x104, D_0028D00C, i - start + 1);
+            if (stream->func_00169710(buf) != 0) {
+                e = (C_001B82D0_item *)func_001E8A44(0x18);
+                if (e != 0) {
+                    e->vtbl = (void *)&D_0028CF84;
+                    e->f4 = 0;
+                    e->f8 = 0;
+                } else {
+                    e = 0;
+                }
+                f28[i] = (C_001B83F0_item *)e;
+                ((C_001B82D0_itemv *)f28[i])->Load(stream);
+            }
+        }
+    }
+    return 1;
+}
+
 int C_001B82A0::func_001B83F0(void *param) {
     int i;
 
