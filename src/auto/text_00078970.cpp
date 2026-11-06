@@ -237,7 +237,7 @@ struct C_00078970 {
     char padD8[4];
     int fDC;
     float fE0;
-    int fE4;
+    volatile int fE4;
     int fE8;
     int fEC;
     int fF0;
@@ -268,6 +268,97 @@ struct BmxMenuBase {
     RawBuf_Menu *f124;
     void func_00157660();
 };
+
+void C_00078970::func_00078970(float dt)
+{
+    int buf[0x300];
+    int i;
+
+    fD0 = 0;
+    for (i = 0; i < 10; i++) {
+        if (*D_002A8490->p2E0->p2C0->func_0005C020(i) == 0 && fC8->func_00092B40(i) == 0)
+            fD0++;
+    }
+    if (fC8->func_00092AC0() == 0)
+        fD0 += 4;
+    fE0 += dt;
+    if (fE4 && fE0 >= D_00276220) {
+        if (fC8->func_00093300(100.0f) == 1) {
+            fE8 = 1;
+            *(volatile int *)&fE4 = 0;
+        } else {
+            fEC = 1;
+            *(volatile int *)&fE4 = 0;
+        }
+    }
+    f9C += dt;
+    if (fA0 && f9C >= D_00278500) {
+        if (fE8 || fEC) {
+            fE0 = 0;
+            fE8 = 0;
+            fEC = 0;
+            D_002A8490->p2E0->p2FC->func_00094960(0);
+            D_002A8490->p2A4->p64->p4C0->v31(0, 1);
+            D_002A8490->p2E0->p2FC->v18(0);
+            D_002A8490->p2A4->f154 = 1;
+            D_002A8490->p2E0->f324 = 0;
+            D_002A8490->p2F0->func_0001EDC0(13);
+        }
+        if (fD4) {
+            if (fF0) {
+                buf[0] = 2;
+                buf[2] = 0x55;
+                buf[3] = fD0;
+                func_001DCAFF(0, buf);
+            } else {
+                fF0 = 1;
+            }
+        } else if (fDC && fC8->func_00092AC0() == 1) {
+            if (fC8->func_00092B40(D_002A8490->p2E0->f2D8) == 1) {
+                fE4 = 1;
+                fE0 = 0;
+            }
+        } else if (fDC) {
+            if (fD0 <= fCC) {
+                fE4 = 1;
+                fE0 = 0;
+            } else {
+                goto set_d4;
+            }
+        } else if (fC8->func_00092AC0() == 0) {
+            if (fD0 > fCC) {
+            set_d4:
+                fD4 = 1;
+            }
+        } else if (fC8->func_00092B40(D_002A8490->p2E0->f2D8) != 1 && fD0 > fCC) {
+            fD4 = 1;
+        } else {
+            fDC = 1;
+        }
+        fA0 = 0;
+        f9C = 0;
+    }
+    if (fA4 && f9C >= D_00278500) {
+        if (fD4) {
+            if (fF0) {
+                fD4 = 0;
+                fF0 = 0;
+                D_002A8490->p2A4->f154 = 1;
+                D_002A8490->p2E0->f324 = 0;
+                D_002A8490->p2F0->func_0001EDC0(13);
+            } else {
+                fF0 = 1;
+                fA4 = 0;
+            }
+        } else {
+            D_002A8490->p2A4->f154 = 1;
+            D_002A8490->p2E0->f324 = 0;
+            D_002A8490->p2F0->func_0001EDC0(13);
+            fA4 = 0;
+        }
+    }
+    func_00157A00(dt);
+}
 
 int C_00078D60::func_00078D60(int *param_1, int param_2) {
     int func_001361E0(int, int, int *, int);
@@ -407,36 +498,36 @@ void BmxInGameMenu::func_00078FD0(float dt)
     if (unkF4 != 0) {
         if (unkF0 >= D_00278500) {
             if (unk120 != 0) {
-                if (D_002A8490->p2E0->f4 == 2 || D_002A8490->p2E0->f4 == 0)
-                    goto checks;
-save:
+                if (D_002A8490->p2E0->f4 == 2 || D_002A8490->p2E0->f4 == 0) {
+                    if (unk104->f90 != 1)
+                        goto save_p;
+                    if (unk104->f68->func_0005B960(3, (float)unk104->f64->p4E0->arr1a8[0]->fA58) != 0)
+                        goto fail_p;
+                    if (unk104->f68->func_0005B960(1, unk104->f64->p4E0->arr1a8[0]->fA4C) != 0)
+                        goto fail_p;
+                    if (unk104->f68->func_0005B960(5, (float)unk104->f64->p4E0->arr1a8[0]->fA5C) != 0)
+                        goto fail_p;
+                    if (unk104->f68->func_0005B960(4, (float)unk104->f64->p4E0->arr1a8[0]->fA40) != 0)
+                        goto fail_p;
+                    if (unk104->f68->func_0005B960(2, unk104->f64->p4E0->arr1a8[0]->f1058) != 0)
+                        goto fail_p;
+                    if (unk104->f68->func_0005B960(0, unk104->f64->p4E0->arr1a8[0]->fA54) == 0)
+                        goto save_p;
+fail_p:
+                    func_00060220();
+                    unk104->f164->fFC = 2;
+                    unk104->f164->func_0006E970(0);
+                    unkF4 = 0;
+                    goto done;
+                } else {
+                }
+save_p:
                 D_002A8490->p2E0->p2FC->func_00094960(0);
                 D_002A8490->p2A4->p64->p4C0->v31(0, 1);
                 D_002A8490->p2E0->p2FC->v18(0);
                 D_002A8490->p2A4->f154 = 1;
                 D_002A8490->p2E0->f324 = (D_002A8490->p2E0->f4 == 0);
                 D_002A8490->p2F0->func_0001EDC0(4);
-                unkF4 = 0;
-                goto done;
-checks:
-                if (unk104->f90 != 1)
-                    goto save;
-                if (unk104->f68->func_0005B960(3, (float)unk104->f64->p4E0->arr1a8[0]->fA58) != 0)
-                    goto fail;
-                if (unk104->f68->func_0005B960(1, unk104->f64->p4E0->arr1a8[0]->fA4C) != 0)
-                    goto fail;
-                if (unk104->f68->func_0005B960(5, (float)unk104->f64->p4E0->arr1a8[0]->fA5C) != 0)
-                    goto fail;
-                if (unk104->f68->func_0005B960(4, (float)unk104->f64->p4E0->arr1a8[0]->fA40) != 0)
-                    goto fail;
-                if (unk104->f68->func_0005B960(2, unk104->f64->p4E0->arr1a8[0]->f1058) != 0)
-                    goto fail;
-                if (unk104->f68->func_0005B960(0, unk104->f64->p4E0->arr1a8[0]->fA54) == 0)
-                    goto save;
-fail:
-                func_00060220();
-                unk104->f164->fFC = 2;
-                unk104->f164->func_0006E970(0);
                 unkF4 = 0;
             } else {
                 switch (unk100) {
@@ -467,22 +558,20 @@ fail:
                         unk104->func_00032720();
                         unk104->v39();
                         unk104->func_00032740();
-                    } else {
-                        if (unk104->f90 == 1) {
-                            if (unk104->f68->func_0005B960(3, (float)unk104->f64->p4E0->arr1a8[0]->fA58) == 0 &&
-                                unk104->f68->func_0005B960(1, unk104->f64->p4E0->arr1a8[0]->fA4C) == 0 &&
-                                unk104->f68->func_0005B960(5, (float)unk104->f64->p4E0->arr1a8[0]->fA5C) == 0 &&
-                                unk104->f68->func_0005B960(4, (float)unk104->f64->p4E0->arr1a8[0]->fA40) == 0 &&
-                                unk104->f68->func_0005B960(2, unk104->f64->p4E0->arr1a8[0]->f1058) == 0) {
-                                if (unk104->f68->func_0005B960(0, unk104->f64->p4E0->arr1a8[0]->fA54) != 0) {
-                                    unk104->f164->fFC = 1;
-                                    unk104->f164->func_0006E970(0);
-                                }
-                            } else {
-                                func_00060220();
-                                unk104->f164->fFC = 2;
+                    } else if (unk104->f90 == 1) {
+                        if (unk104->f68->func_0005B960(3, (float)unk104->f64->p4E0->arr1a8[0]->fA58) == 0 &&
+                            unk104->f68->func_0005B960(1, unk104->f64->p4E0->arr1a8[0]->fA4C) == 0 &&
+                            unk104->f68->func_0005B960(5, (float)unk104->f64->p4E0->arr1a8[0]->fA5C) == 0 &&
+                            unk104->f68->func_0005B960(4, (float)unk104->f64->p4E0->arr1a8[0]->fA40) == 0 &&
+                            unk104->f68->func_0005B960(2, unk104->f64->p4E0->arr1a8[0]->f1058) == 0) {
+                            if (unk104->f68->func_0005B960(0, unk104->f64->p4E0->arr1a8[0]->fA54) != 0) {
+                                unk104->f164->fFC = 1;
                                 unk104->f164->func_0006E970(0);
                             }
+                        } else {
+                            func_00060220();
+                            unk104->f164->fFC = 2;
+                            unk104->f164->func_0006E970(0);
                         }
                     }
                     unkF4 = 0;
