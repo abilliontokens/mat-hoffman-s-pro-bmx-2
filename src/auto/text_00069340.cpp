@@ -164,10 +164,40 @@ struct SetterObj_69 {
 };
 
 struct GObj4_69 {
-    char pad0[0x868];
+    char pad0[0x7B8];
+    int f7B8;
+    char pad7BC[4];
+    int f7C0;
+    char pad7C4[4];
+    int f7C8;
+    char pad7CC[0x3C];
+    int f808;
+    char pad80C[0x2C];
+    int f838;
+    char pad83C[0x24];
+    int f860;
+    char pad864[4];
     int f868;
-    char pad86C[0x24];
+    char pad86C[0xC];
+    int f878;
+    char pad87C[0x14];
     int f890;
+    char pad894[0xAC];
+    int f940;
+    char pad944[0x184];
+    int fAC8;
+    char padACC[4];
+    int fAD0;
+    char padAD4[4];
+    int fAD8;
+    char padADC[4];
+    int fAE0;
+    char padAE4[0x3DC];
+    int fEC0;
+    char padEC4[4];
+    int fEC8;
+    char padECC[0x3AC];
+    int f1278;
 };
 
 struct GObj2E8_69 {
