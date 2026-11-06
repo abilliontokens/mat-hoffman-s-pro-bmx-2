@@ -67,6 +67,28 @@ struct Aabb_0017F2B0 {
     Vec4_0017F2B0 mx;
 };
 
+static __forceinline void Add_0017F2B0(Vec4_0017F2B0 *r, const Vec4_0017F2B0 *a, const Vec4_0017F2B0 *b)
+{
+    r->x = a->x + b->x;
+    r->y = a->y + b->y;
+    r->z = a->z + b->z;
+}
+
+static __forceinline void Sub_0017F2B0(Vec4_0017F2B0 *r, const Vec4_0017F2B0 *a, const Vec4_0017F2B0 *b)
+{
+    r->x = a->x - b->x;
+    r->y = a->y - b->y;
+    r->z = a->z - b->z;
+}
+
+static __forceinline void Half_0017F2B0(Vec4_0017F2B0 *r, const Vec4_0017F2B0 *a)
+{
+    r->x = a->x * D_002755E8;
+    r->y = a->y * D_002755E8;
+    r->z = a->z * D_002755E8;
+    r->w = 1.0f;
+}
+
 static inline Vec4_0017F2B0 Vec4Make_0017F2B0(f32 x, f32 y, f32 z) {
     Vec4_0017F2B0 r;
     r.x = x; r.y = y; r.z = z; r.w = 1.0f;
@@ -189,13 +211,12 @@ int C_0017F2B0::func_0017F2B0(char *a)
     struct TS { Vec4_0017F2B0 tmp; Vec4_0017F2B0 s; } ts;
     char *t = (char *)this;
     char *m;
-    char *e;
     Vec4_0017F2B0 d;
     Vec4_0017F2B0 c;
     Vec4_0017F2B0 b;
     Vec4_0017F2B0 p;
     f32 *o = *(f32 **)(t + 0xfc);
-    f32 *q;
+    Aabb_0017F2B0 *q;
 
     p.z = 0.0f; p.y = 0.0f; p.x = 0.0f; p.w = 1.0f;
     c.z = 0.0f; c.y = 0.0f; c.x = 0.0f; c.w = 1.0f;
@@ -207,18 +228,18 @@ int C_0017F2B0::func_0017F2B0(char *a)
         ts.tmp.x = o[6]; ts.tmp.y = o[7]; ts.tmp.z = o[8]; ts.tmp.w = 1.0f;
         b = ts.tmp;
     } else {
-        q = *(f32 **)(t + 0x100);
-        ts.s.x = q[4] + q[0];
-        ts.s.y = q[5] + q[1];
-        ts.s.z = q[6] + q[2];
+        q = *(Aabb_0017F2B0 **)(t + 0x100);
+        ts.s.x = q->mx.x + q->mn.x;
+        ts.s.y = q->mx.y + q->mn.y;
+        ts.s.z = q->mx.z + q->mn.z;
         ts.tmp.x = ts.s.x * D_002755E8;
         ts.tmp.y = ts.s.y * D_002755E8;
         ts.tmp.z = ts.s.z * D_002755E8;
         ts.tmp.w = 1.0f;
         p = ts.tmp;
-        ts.s.x = q[4] - q[0];
-        ts.s.y = q[5] - q[1];
-        ts.s.z = q[6] - q[2];
+        ts.s.x = q->mx.x - q->mn.x;
+        ts.s.y = q->mx.y - q->mn.y;
+        ts.s.z = q->mx.z - q->mn.z;
         ts.tmp.x = ts.s.x * D_002755E8;
         ts.tmp.y = ts.s.y * D_002755E8;
         ts.tmp.z = ts.s.z * D_002755E8;
@@ -240,8 +261,7 @@ int C_0017F2B0::func_0017F2B0(char *a)
     default:
         return 0;
     }
-    e = a + 0x130;
-    return func_00123770(&p, &b, m, &c, &d, e);
+    return func_00123770(&p, &b, m, &c, &d, a + 0x130);
 }
 
 int C_0017F2B0::func_0017F550(S_0017F550_Shape *a)
