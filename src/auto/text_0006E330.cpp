@@ -298,6 +298,7 @@ extern char D_00278BC8[5], D_00278BC0[5], D_00278414[5], D_002783F8[5], D_00278B
 extern S_6E970_G1 *D_002A8490;
 #include <string.h>
 #pragma intrinsic(memcmp)
+#pragma intrinsic(strncmp)
 
 C_0006E330 *C_0006E330::func_0006E330(int a0)
 {
@@ -396,6 +397,54 @@ void C_0006E330::func_0006E480()
     p = (Res_6E480 *)unk100;
     if (p) { p->func_001D6410(); func_001E891B(p); unk100 = 0; }
     func_00157660();
+}
+
+void S_6E970::func_0006E620(int a0)
+{
+    char buf[16];
+
+    unk70 = 0;
+    unkE8 = (float)(unkD0->func_001B1800() - 10) + D_00278BD0;
+    unkD4->func_001B1980();
+    unkD0->func_001B1980();
+    unkC0 = 0;
+    unkE4 = 0;
+    unk108 = 1;
+    unk110 = 0;
+    unkF4 = a0;
+    unk114 = 0;
+    unk118 = 0;
+    unk11C = 0;
+    unk10C = 1;
+    unk19C = 1;
+    strcpy(buf, D_002A8490->field2E0->field2C0->func_0005B870());
+    if (memcmp(buf, D_002789B8, 2) == 0) {
+        switch (D_002A8490->field2E0->mode) {
+        case 0: memcpy(buf, "mat", 4); break;
+        case 1: memcpy(buf, D_00278BC8, 5); break;
+        case 2: memcpy(buf, "joe", 4); break;
+        case 3: memcpy(buf, D_00278BC0, 5); break;
+        case 4: memcpy(buf, D_00278414, 5); break;
+        case 5: memcpy(buf, D_002783F8, 5); break;
+        case 6: memcpy(buf, "day", 4); break;
+        case 7: memcpy(buf, D_00278BB8, 6); break;
+        case 8: memcpy(buf, D_00278BB0, 8); break;
+        case 9: memcpy(buf, D_00278BA8, 6); break;
+        case 10: memcpy(buf, D_00278BA0, 5); break;
+        case 11: memcpy(buf, D_00278B98, 6); break;
+        case 12: memcpy(buf, "big", 4); break;
+        case 13: memcpy(buf, D_00278B90, 5); break;
+        case 14: memcpy(buf, D_00278B88, 5); break;
+        case 15: memcpy(buf, D_00278B80, 5); break;
+        }
+    }
+    unkD0->func_001B17D0(buf);
+    strcpy(unkA4, buf);
+    lenA0 = strlen(unkD0->func_001B17F0());
+    unkD4->func_001B17D0(&unkA4[lenA0 - 1]);
+    unkA4[lenA0 - 1] = 0;
+    unkD0->func_001B17D0(unkA4);
+    v6();
 }
 
 void C_0006E910::func_0006E910()
