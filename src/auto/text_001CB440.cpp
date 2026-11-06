@@ -394,7 +394,7 @@ struct C_001CC0C0 {
     char pad2D[3];
     int f30;
     char pad34[0xc0];
-    float fF4;
+    int fF4;
     char padF8[0x14];
     unsigned int f10C;
     char pad110[0x2c];
@@ -607,6 +607,8 @@ void C_001CB940::func_001CB960(void)
 void C_001CB940::func_001CB980(void)
 {
     func_00157680();
+    /* tail forwarder; the symbol also holds alignment padding and a second
+       forwarder at +0x10 that no C here can emit (boundary 0x1CB985). */
 }
 
 void C_001CB9A0::func_001CB9A0(void)
