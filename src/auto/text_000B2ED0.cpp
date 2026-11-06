@@ -207,6 +207,24 @@ struct C_000B3410 {
     void func_000B3410(int a);
     void func_000B1F70();
 };
+struct V_000B3410 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(void *a, void *b, char *c, int d);
+    virtual void v29(); virtual void v30(); virtual void v31(); virtual void v32();
+    virtual void v33(); virtual void v34(); virtual void v35(); virtual void v36(); virtual void v37(); virtual void v38(); virtual void v39(); virtual void v40();
+    virtual void v41(); virtual void v42(); virtual void v43(); virtual void v44(); virtual void v45(); virtual void v46(); virtual void v47(); virtual void v48();
+    virtual void v49(); virtual void v50(); virtual void v51(); virtual void v52();
+    virtual int v53(char *name, char *path, int a, char *b, char *c, char *d, int e, int f, int g, float h, float i, int j, int k, int l, int m, int n, int o, int p, int q, int r);
+};
+static inline void vehicle_strcpy(char *dst, const char *src)
+{
+    int n = vehicle_min(259, (int)strlen(src));
+    func_001E8920(dst, src, n);
+    dst[n] = 0;
+}
 struct C_0012EF30 { C_0012EF30 *func_0012EF30(int a); };
 struct C_001B4B70 { void func_001B4B70(); };
 struct C_0019ABA0 { void func_0019ABA0(int a,int b); };
@@ -217,6 +235,62 @@ struct C_000B3DF0 {
     undefined4 func_000B3DF0(byte param_1);
 };
 
+
+void C_000B2ED0::func_000B2ED0(S_2ED0_Rd * volatile rd)
+{
+    C_000B2ED0 * volatile self = this;
+    char bufC[0x100];
+    char bufB[0x104];
+    char bufA[0x104];
+    int i;
+    int len;
+    volatile int a;
+    volatile int b;
+    volatile int m;
+
+    f3C->func_000B1A40(rd);
+    rd->func_00168550(D_0027D160, bufA, 0x104);
+    func_001ADCC0(self->f64, 0x104, D_0027D158, self->f3C->f8 ? D_002A5348 : D_002A5870, D_002A5FA8, bufA);
+    rd->func_00168550(D_0027D14C, bufA, 0x104);
+    func_001ADCC0(self->f168, 0x104, D_0027D158, self->f3C->f8 ? D_002A5348 : D_002A5870, D_002A5FA8, bufA);
+    rd->func_00168BE0(D_0027D138, D_0027D144, bufB, 0x104);
+    a = (int)strlen(bufB);
+    b = 0x103;
+    m = b > a ? a : b;
+    len = m;
+    func_001E8920(self->f3C->f384, bufB, len);
+    self->f3C->f384[len] = 0;
+    rd->func_00168C20(D_0027D124, 0, &self->f58);
+    rd->func_00168C20(D_0027D114, 0, &self->f4C);
+    if (self->f48 != 0) {
+        for (i = 0; i < self->f4C; i++) {
+            func_001E891B(self->f48[i]);
+        }
+        func_001E891B(self->f48);
+        self->f48 = 0;
+    }
+    if (self->f4C > 0) {
+        self->f48 = (S_2ED0_Item **)func_001E8A44(self->f4C * 4);
+        for (i = 0; i < self->f4C; i++) {
+            S_2ED0_Item *p = (S_2ED0_Item *)func_001E8A44(0x18);
+            if (p) {
+                p->f10 = 0;
+                p->fC = 0;
+                p->f8 = 0;
+                p->f14 = 1.0f;
+            }
+            self->f48[i] = p;
+        }
+    }
+    for (i = 0; i < self->f4C; i++) {
+        func_001ADCC0(bufC, 0x100, D_0027D104, i + 1);
+        rd->func_00168C20(bufC, 0, self->f48[i]);
+        self->f48[i]->f0--;
+        func_001ADCC0(bufC, 0x100, D_0027D0F4, i + 1);
+        rd->func_00168C50(bufC, 0, &self->f48[i]->f4);
+        self->f50 = 0;
+    }
+}
 
 void VehicleAI::func_000B3330(int param_1)
 {
