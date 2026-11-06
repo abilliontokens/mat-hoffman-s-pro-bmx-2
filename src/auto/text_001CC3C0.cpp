@@ -392,6 +392,66 @@ int C_001CC3C0::func_001CCAC0(int a, int b, int c, int d)
  return 1;
 }
 
+int C_001CCC50::func_001CCC50(int *out, u32 bytes, u32 rate, u16 bits, u32 align, s16 tag, int stereo, int a7, int a8, u32 flags)
+{
+    S_WaveFormatEx pcm;
+    S_WaveFormat adpcm;
+    S_BufferDesc desc;
+    memset(&desc, 0, sizeof(desc));
+    desc.dwSize = sizeof(desc);
+    if (tag == 1) {
+        memset(&pcm, 0, 0x12);
+        pcm.wFormatTag = 1;
+        pcm.nSamplesPerSec = rate;
+        pcm.nChannels = (stereo != 0) + 1;
+        pcm.nAvgBytesPerSec = (u16)align * rate;
+        pcm.nBlockAlign = align;
+        pcm.wBitsPerSample = bits;
+        pcm.cbSize = 0;
+        desc.lpwfxFormat = (S_WaveFormat *)&pcm;
+    } else if (tag == 0x69) {
+        memset(&adpcm, 0, sizeof(adpcm));
+        adpcm.wFormatTag = tag;
+        adpcm.nChannels = (stereo != 0) + 1;
+        adpcm.nAvgBytesPerSec = (u16)align * rate >> 6;
+        adpcm.nSamplesPerSec = rate;
+        adpcm.nBlockAlign = align;
+        adpcm.wBitsPerSample = bits;
+        adpcm.cbSize = 2;
+        adpcm.wSamplesPerBlock = 0x40;
+        desc.lpwfxFormat = &adpcm;
+    }
+    f19C = rate;
+    f1A0 = rate;
+    f110 = flags;
+    u32 f = 0;
+    if (flags & 1)
+        f = 0x80;
+    if (flags & 4)
+        f |= 0x20;
+    if (flags & 8)
+        f |= 0x10;
+    u32 df = f;
+    if (a7)
+        df |= 0x10;
+    desc.dwFlags = df | (u32)&D_00040000;
+    if (align == 0)
+        desc.dwBufferBytes = bytes;
+    else
+        desc.dwBufferBytes = bytes - bytes % align;
+    if (!(f & (u32)&D_00040000))
+        f198 = 0;
+    int *o = out;
+    int h = D_002F08EC->f30;
+    int e = func_002226F7(h, &desc, o, 0);
+    if (e) {
+        func_001CBC10(e, &D_0028EECC, 0xa2a);
+        *out = 0;
+        return 0;
+    }
+    return 1;
+}
+
 XboxMusic::XboxMusic(int a, S_XboxMusicArg *b, int c)
 {
     ((C_0001C980 *)this)->func_0001C980(c);
