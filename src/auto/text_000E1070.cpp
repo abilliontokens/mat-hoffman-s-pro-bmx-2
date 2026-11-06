@@ -129,6 +129,81 @@ struct C_000E1650 {
     void func_000E1650(void);
 };
 
+/* the sound/animation service a manager's owner holds at +0x74 */
+struct S_000E1070_Svc {
+    int func_000301D0();
+};
+
+struct S_000E1070_Owner {
+    char pad0[0x74];
+    S_000E1070_Svc *f74;
+};
+
+/* sound player a page's manager holds at +0x24 */
+struct S_000E1070_Snd {
+    void func_000B9A80(int a, int b);
+};
+
+/* a control the manager hands out by index */
+struct S_000E1070_Ctl {
+    char pad0[0x304];
+    float f304;
+    char pad308[0x360 - 0x308];
+    int f360;
+    char pad364[0x59C - 0x364];
+    int f59C;
+    int f5A0;
+};
+
+/* the manager a page holds at +0x124 */
+struct S_000E1070_Mgr {
+    char pad0[0x24];
+    S_000E1070_Snd *f24;
+    char pad28[0x134 - 0x28];
+    int f134;
+    int f138;
+    char pad13C[0x25C - 0x13C];
+    S_000E1070_Owner *f25C;
+    S_000E1070_Ctl *func_000BA9D0(int idx);
+    void func_000BB7C0(int a);
+};
+
+/* the selector a page holds at +0x140 +4 */
+struct S_000E1070_Sel {
+    char pad0[0x30];
+    int f30;
+    void func_001BDF00(int a);
+    void func_001BDE90(int a);
+};
+
+struct S_000E1070_Lst {
+    char pad0[4];
+    S_000E1070_Sel *f4;
+};
+
+/* BmxUIPageTime */
+struct C_000E1070 {
+    char pad0[0x124];
+    S_000E1070_Mgr *f124;
+    char pad128[0x140 - 0x128];
+    S_000E1070_Lst *f140;
+    char pad144[0x280 - 0x144];
+    int f280;
+    int f284;
+    int f288;
+    int f28C;
+    int f290;
+    int f294;
+    char pad298[0x2A4 - 0x298];
+    int f2A4;
+    char pad2A8[4];
+    int f2A8;
+    char pad2AC[0x2B4 - 0x2AC];
+    int f2B4;
+    int func_001BF050(int a);
+    int func_000E1070(int a0, int a1);
+};
+
 /* BmxUIPageTime */
 struct C_000E1550 {
     char pad0[0x2D0];
