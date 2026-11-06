@@ -28,6 +28,7 @@ extern "C" int __stdcall func_0013B660(void *a, void *b, int c);
 extern short D_00284C50;
 extern "C" unsigned int strlen(const char *);
 extern "C" char *strcpy(char *, const char *);
+extern "C" void *memcpy(void *, const void *, unsigned int);
 static inline int min_i(int a, int b) { return a > b ? b : a; }
 
 struct S_0013B9C0_Ent28 {
