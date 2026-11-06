@@ -229,6 +229,7 @@ __declspec(align(16)) struct S_001BB680_Mat {
         ((__m128 *)m)[1] = z;
         ((__m128 *)m)[2] = z;
         ((__m128 *)m)[3] = z;
+        _ReadWriteBarrier();
         *(volatile int *)&m[0] = 0x3f800000;
         *(volatile int *)&m[5] = 0x3f800000;
         *(volatile int *)&m[10] = 0x3f800000;
