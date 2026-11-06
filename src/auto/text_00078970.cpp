@@ -60,6 +60,7 @@ struct FPSSave_Mem {
     virtual void v16(); virtual void v17();
     virtual void v18(int a0);
     void func_00094960(int a0);
+    void func_000949B0(float a0, float a1, int a2);
 };
 
 struct FPSSave_Disp {
