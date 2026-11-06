@@ -121,7 +121,7 @@ struct __declspec(align(16)) S_001401C0_Mat {
     }
 };
 
-static void Mat_Copy_0013FD50(S_001401C0_Mat *dst, const S_001401C0_Mat *src)
+static void Mat_Copy_0013FD50(S_001401C0_Mat *volatile dst, const S_001401C0_Mat *volatile src)
 {
     __m128 a = _mm_load_ps(&src->m[0]);
     __m128 b = _mm_load_ps(&src->m[4]);
@@ -717,6 +717,31 @@ void C_0013FCF0::func_0013FCF0()
     func_001FEE00(3, f1c, 8);
   }
   func_00200B30(f0c, f8, f20);
+}
+
+C_001401C0 *C_001401C0::func_0013FD50(S_001401C0_Info *info)
+{
+    S_001401C0_Mat m;
+    S_001401C0_Mat id;
+    int *p;
+
+    vtbl = (void *)&D_00284E94;
+    vtbl = (void *)&D_00284F7C;
+    p = (int *)f190;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    id.identity();
+    m = id;
+    f1A0 = info;
+    Mat_Copy_0013FD50((S_001401C0_Mat *)f10, &m);
+    Mat_Copy_0013FD50((S_001401C0_Mat *)f50, &m);
+    Mat_Copy_0013FD50((S_001401C0_Mat *)f90, &m);
+    Mat_Copy_0013FD50((S_001401C0_Mat *)(f90 + 0x40), &m);
+    Mat_Copy_0013FD50((S_001401C0_Mat *)f150, &m);
+    Mat_Copy_0013FD50((S_001401C0_Mat *)f110, &m);
+    return this;
 }
 
 void C_0013FF50::func_0013FF50(int a0)
