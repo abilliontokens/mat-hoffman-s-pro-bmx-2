@@ -112,6 +112,17 @@ struct C_001A1FB0 {
     void func_001A1860(S36_1A s0, S16_1A s1, S16_1A s2, int a19, int a20, int a21, int a22, int a23);
 };
 
+static __forceinline void Reset_001A1E60(ObjV2 *&p, ObjV2 *nv) {
+    if (p != nv) {
+        int r = p->v2();
+        p = nv;
+        if (r != 0) {
+            return;
+        }
+    }
+    p = nv;
+}
+
 struct C_001A1E60 {
     char pad0[0x1BC];
     ObjV2 *unk1BC;
