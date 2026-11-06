@@ -52,7 +52,15 @@ struct AIPedCurseState {
     char pad_0[8];
     AIPedestrian *owner;
     void func_00015170();
+    int func_000151F0(float dt);
 };
+struct Vec4Src_151F0 { Vec4_149A0 *func_00199B00(Vec4_149A0 *out, int a); };
+struct Ped_151F0 {
+    int func_00011BE0(int *idx, float *dist);
+    void func_001C6B30(Vec4_149A0 v, float f);
+    void func_000149A0(int idx, float scale);
+};
+extern const float D_002756B8;
 
 extern void *D_002A8490;
 extern Obj13F50 *D_002AF44C;
