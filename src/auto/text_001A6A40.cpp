@@ -176,6 +176,35 @@ struct C_Global2 {
 
 extern C_Global2 *D_002A8490;
 
+struct S_001A7320_Loader {
+    int func_0013D780(char *name, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
+    void func_0013DFF0(char *name, int a);
+};
+struct S_001A7320_Hud {
+    virtual void vv0(); virtual void vv1(); virtual void vv2(); virtual void vv3();
+    virtual void v4(char *name);
+    void func_00161680();
+    void func_001616F0();
+};
+struct S_001A7320_Sub {
+    void func_001B2640();
+};
+struct S_001A7320_Obj {
+    void func_00149380();
+};
+struct S_001A7320_Font {
+    float func_0018C210();
+};
+extern S_001A7320_Loader *D_002BEAAC;
+extern S_001A7320_Hud *D_002A829C;
+extern S_001A7320_Sub *D_002AA6C0;
+extern char D_0028BC34[], D_002A64D0[], D_0028BC0C[], D_00278690[], D_00276F28[];
+extern char D_0028BDA0[], D_0028BD84[], D_0028BD68[], D_0028BD4C[], D_0028BD30[], D_0028BD14[], D_0028BCF8[];
+extern char D_0028BCDC[], D_0028BCC0[], D_0028BCA4[], D_0028BC88[], D_0028BC6C[], D_0028BC50[];
+extern float D_00275544, D_0028BDBC;
+int func_00011260(int a, int b);
+void func_001A5C30(char *buf, C_001D6410 **labels, int a, int b);
+
 extern int D_0028BB04;
 
 struct C_001A7120 {
