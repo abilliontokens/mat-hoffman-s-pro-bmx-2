@@ -178,11 +178,6 @@ template <class T> inline const T &Min(const T &a, const T &b)
     return b < a ? b : a;
 }
 
-static __forceinline int MinV_001CE9F0(int a, int b)
-{
-    return b < a ? b : a;
-}
-
 struct TrackRec {
     int f0;
     char *name;
