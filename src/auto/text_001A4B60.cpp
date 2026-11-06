@@ -147,6 +147,7 @@ struct S_001A53C0_V4 {
     S_001A53C0_V4() { z = 0; y = 0; x = 0; w = 1.0f; }
     S_001A53C0_V4(f32 a, f32 b, f32 c) { x = a; y = b; z = c; w = 1.0f; }
     S_001A53C0_V4(const f32 *p) { x=p[0]; y=p[1]; z=p[2]; w=1.0f; }
+    void set(const f32 *p) { x=p[0]; y=p[1]; z=p[2]; w=1.0f; }
     S_001A53C0_V4 operator*(f32 s) const { return S_001A53C0_V4(x * s, y * s, z * s); }
 };
 
