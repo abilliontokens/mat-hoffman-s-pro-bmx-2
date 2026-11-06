@@ -291,7 +291,7 @@ struct S_0001B910_Anim {
     int f34;
     void func_00164820(S_0001B910_Node *node);
     void func_00166C80(S_0001B910_Node *node, int a);
-    void func_001670C0(float a, int b, int c);
+    void func_001670C0(int a, int b, int c);
     void func_00132D20(void);
 };
 
