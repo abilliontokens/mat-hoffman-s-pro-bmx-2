@@ -107,7 +107,7 @@ struct C_08690_Entity {
 extern char D_00276690[];
 extern float D_00282AC0;
 extern double D_00282AB8;
-extern V4_08690 D_002A3A3C;
+extern float D_002A3A3C, D_002A3A40, D_002A3A44, D_002A3A48;
 struct C_00108690 {
     char pad0[0x1E0];
     C_08690_Entity *f1E0;
