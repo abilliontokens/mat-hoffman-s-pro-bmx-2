@@ -169,6 +169,23 @@ struct C_0007ECA0 {
 };
 
 
+extern float D_00275460;
+
+struct C_0007E690 {
+    void *vtbl;
+    char pad4[0x84];
+    int f88;
+    char pad8c[0x1c];
+    int fA8;
+    char padAC[8];
+    float fB4;
+    void func_00072330(void);
+    void func_000724E0(void);
+    void func_0007E2B0(void);
+    void func_00157960(void);
+    undefined4 func_0007E690(void);
+};
+
 undefined4 C_0007EAE0::func_0007EAE0(byte param_1)
 {
   int func_00072D30(...);
