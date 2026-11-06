@@ -40,6 +40,11 @@ static __forceinline void Copy_00198120(M_00198040 *dst, const M_00198040 *src)
     *dst = *src;
 }
 
+static __forceinline void CopyMat_00198040(M_00198040 * volatile dst, const M_00198040 * volatile src)
+{
+    *dst = *src;
+}
+
 static __forceinline void Copy4_00198040(__m128 * volatile dst, __m128 * volatile src)
 {
     __m128 *s = src;
@@ -268,6 +273,20 @@ C_00197EC0_Vec4 C_00197EC0::func_00197F70(float *vin)
     lo = _mm_add_ps(lo, hi);
     _mm_storeu_ps(&pq->x, lo);
     pq->w = 1.0f;
+    return q;
+}
+
+void func_0001C680(C_00197EC0_Vec4 *out, C_00197EC0_Vec4 v, float *m);
+C_00197EC0_Vec4 C_00197EC0::func_00198040(C_00197EC0_Vec4 *v)
+{
+    C_00197EC0_Vec4 q;
+    M_00198040 m;
+    q.z = 0; q.y = 0; q.x = 0; q.w = 1.0f;
+    C_00197EC0 * volatile self = this;
+    func_00197AA0();
+    Copy4_00198040((__m128 *)&m, (__m128 *)&self->fF0);
+    func_0011AC30(&m, &m);
+    func_0001C680(&q, *v, (float *)&m);
     return q;
 }
 
