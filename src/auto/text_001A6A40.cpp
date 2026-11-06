@@ -336,11 +336,6 @@ struct C_001A6E90 {
     int f8C;
     void func_00157A00(float dt);
     void func_001A6E90(float dt);
-    __forceinline float Tick(float dt)
-    {
-        f64 = dt + f64;
-        return f64;
-    }
 };
 
 int LoadMemoryCard::func_001A6A40(int a, int b)
