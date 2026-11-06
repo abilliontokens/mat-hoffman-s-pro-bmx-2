@@ -268,6 +268,7 @@ struct C_00067DA0 {
     int f158;
     int f15C;
     void func_00067DA0(void);
+    void func_000639B0(int score, char *buf);
 };
 
 extern char D_00277038[];
