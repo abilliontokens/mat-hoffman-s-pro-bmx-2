@@ -61,6 +61,9 @@ struct BmxUIPageTwoPlayer {
     u32 arr320[9];
     u32 arr344[9];
     u32 arr368[9];
+    BmxUIPageTwoPlayer *func_000C7970(int,int,int);
+    void func_001BE4F0(int,int,int);
+    void func_001577A0(void *,int);
     void func_001BE3F0(void);
     void func_001BE360(int a);
     void func_000C7900(void);
