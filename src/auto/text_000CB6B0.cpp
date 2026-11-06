@@ -21,10 +21,10 @@ struct C_001D5760 {
     unsigned int f2C;
     char pad30[0xb];
     unsigned char f3B;
-    unsigned int f3C;
+    float f3C;
     unsigned int f40;
     unsigned int f44;
-    unsigned int f48;
+    float f48;
     char pad4C[0xc];
     unsigned char f58;
     C_001D5760 *func_001D5760();
