@@ -614,10 +614,11 @@ int C_189D40::func_00189D40(void)
     W_189D40 *node;
     char *dst;
 
-    if (f49C != 0) {
+    if (f49C == 0) return 1;
+    {
         p = func_001E8A44(0x24);
         f4A0 = p ? ((C_00157600 *)p)->func_00157600(1) : 0;
-    }
+    
     for (i = 0; i < f498; i++) {
         for (j = 0; j < f340; j++) {
             G_189D40 *g = (G_189D40 *)f3A8[j];
@@ -631,10 +632,8 @@ int C_189D40::func_00189D40(void)
                     continue;
                 if (func_001E8AF0((char *)item->obj + 0x28, (char *)f49C[i] + 0x144) == 0)
                     continue;
-                obj = 0;
                 p = func_001E8A44(0x154);
-                if (p)
-                    obj = ((E_189D40 *)p)->func_001732E0(1);
+                obj = p ? ((E_189D40 *)p)->func_001732E0(1) : 0;
                 obj->func_001740B0((int)item->obj, f3E4, f3E8, (int)f49C[i] + 0x144, f4A8[j], f4AC[j]);
                 obj->v27(f49C[i]->a248, f49C[i]->a24c, 0, 0, 0, 0, 0,
                          f49C[i]->a254, f49C[i]->a250, f49C[i]->a258, f49C[i]->a25c, 0, 0, 0, 0, 0);
@@ -643,13 +642,9 @@ int C_189D40::func_00189D40(void)
                 obj->unkd0->fd0 = f49C[i]->a268;
                 obj->unkd0->fd4 = f49C[i]->a26c;
                 *(int *)((char *)obj->unkd0 + 0xb8) = 0;
-                dst = *(char **)((char *)obj + 0xc4);
-                *(int *)(dst + 0x190) = f49C[i]->a270[0];
-                *(int *)(dst + 0x194) = f49C[i]->a270[1];
-                *(int *)(dst + 0x198) = f49C[i]->a270[2];
-                *(int *)(dst + 0x19c) = f49C[i]->a270[3];
-                obj->v28();
-                func_001577A0((void *)f4A0, (int)obj);
+                *(S_00189B60_Vec4 *)(*(char **)((char *)obj + 0xc4) + 0x190) = *(S_00189B60_Vec4 *)f49C[i]->a270;
+                obj->v29();
+                ((C_00157600 *)f4A0)->func_001577A0((int)obj, 2);
                 node = (W_189D40 *)func_001E8A44(0x10);
                 if (node) {
                     node->kind = 0;
@@ -662,9 +657,10 @@ int C_189D40::func_00189D40(void)
                 node->kind = 2;
                 node->obj = obj;
                 g->items[k] = node;
-                item->obj->v0(1);
+                ((X_189D40 *)item)->v0(1);
             }
         }
+    }
     }
     return 1;
 }
