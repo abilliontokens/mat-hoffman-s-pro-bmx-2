@@ -8,6 +8,16 @@ struct S_25240_V4 {
     S_25240_V4() {}
     S_25240_V4(const S_25240_Pt *p) { x = p->x; y = p->y; z = p->z; w = 1.0f; }
 };
+struct S_25240_V3 { float x, y, z; };
+static __forceinline S_25240_V4 MakeV4_25240(const S_25240_Pt *p)
+{
+    S_25240_V4 r;
+    r.x = p->x;
+    r.y = p->y;
+    r.z = p->z;
+    r.w = 1.0f;
+    return r;
+}
 struct S_25240_Track { char pad0[4]; int f4; char pad8[0x10]; S_25240_Pt *f18; };
 struct S_25240_Entry { int f0; int f4; };
 struct S_25240_Obj { void func_00199600(S_25240_V4 v); };
@@ -370,8 +380,9 @@ static __forceinline void Normalize_00025980(float *volatile outArg, const float
 
 int C_00025240::func_00025240(void)
 {
-    int i, j, k, m;
-    int acc, n1, n2, cnt, lim;
+    int n2, n1, lim, m, cnt, i, j;
+    int acc, k;
+    float *p;
 
     if (f30 <= 0)
         return 0;
@@ -380,72 +391,67 @@ int C_00025240::func_00025240(void)
     for (i = 0; i < f30; i++)
         f60[i]->func_00022E30();
     for (i = 0; i < f3c; i++) {
-        S_25240_Entry *e = &f6c[i];
-        float rate = (float)e->f4 * D_0027651C;
-        n1 = (int)((float)f64[e->f0]->f4 / rate);
-        n2 = (int)(rate + D_00275460);
+        n1 = (int)((float)f64[f6c[i].f0]->f4 / ((float)f6c[i].f4 * D_0027651C));
+        n2 = (int)((float)f6c[i].f4 * D_0027651C + D_00275460);
         acc = 0;
         j = 0;
         for (m = 0; m < n2; m++, acc += n1) {
-            if (j >= e->f4)
+            if (j >= f6c[i].f4)
                 break;
-            lim = func_00011260(3, 4);
             cnt = 0;
             k = 0;
-            if (f30 > 0 && cnt < lim && j < e->f4) {
+            lim = func_00011260(3, 4);
+            if (f30 > 0 && cnt < lim && j < f6c[i].f4) {
                 for (; k < f30; k++) {
-                    S_25240_Item *it = f60[k];
-                    if (it->f7a == 1) {
-                        it->f30 = e->f0;
-                        it->f3c = it->f30;
-                        it->f2c = f64[it->f30];
-                        it->f34 = acc;
-                        it->f40 = it->f34;
-                        it->f38 = it->f34 + 1;
-                        it->f4c.x = it->f2c->f18[it->f38].x;
-                        it->f4c.y = it->f2c->f18[it->f38].y;
-                        it->f4c.z = it->f2c->f18[it->f38].z;
-                        it->f4c.w = 1.0f;
-                        S_25240_V4 v;
-                        v.x = it->f2c->f18[it->f34].x;
-                        v.y = it->f2c->f18[it->f34].y;
-                        v.z = it->f2c->f18[it->f34].z;
-                        v.w = 1.0f;
-                        it->f28->f1a4->f4->func_00199600(v);
-                        if (it->f28->f1a4->f10 != 0)
-                            it->f28->f1a4->func_00164820((int)it->f28->f1ac->f8);
+                    if (f60[k]->f7a == 1) {
+                        f60[k]->f30 = f6c[i].f0;
+                        f60[k]->f3c = f60[k]->f30;
+                        f60[k]->f2c = f64[f60[k]->f30];
+                        f60[k]->f34 = acc;
+                        f60[k]->f40 = f60[k]->f34;
+                        f60[k]->f38 = f60[k]->f34 + 1;
+                        f60[k]->f4c.x = f60[k]->f2c->f18[f60[k]->f38].x;
+                        f60[k]->f4c.y = f60[k]->f2c->f18[f60[k]->f38].y;
+                        f60[k]->f4c.z = f60[k]->f2c->f18[f60[k]->f38].z;
+                        f60[k]->f4c.w = 1.0f;
+                        f60[k]->f28->f1a4->f4->func_00199600(S_25240_V4(&f60[k]->f2c->f18[f60[k]->f34]));
+                        if (f60[k]->f28->f1a4->f10 == 0)
+                            func_00166C80(f60[k]->f28->f1ac->f8, 1);
                         else
-                            func_00166C80(it->f28->f1ac->f8, 1);
+                            f60[k]->f28->f1a4->func_00164820((int)f60[k]->f28->f1ac->f8);
                     }
-                    it->f7a = 0;
+                    f60[k]->f7a = 0;
                     cnt++;
                     j++;
                 }
             }
         }
     }
-    f60[0]->f6c = *(f32 *)D_002A0F74;
-    f60[0]->f70 = D_002A0F78;
-    f60[0]->f74 = D_002A0F7C;
-    int cx = 0;
-    int cz = 1;
-    for (i = 0; i < f30 - 1; i++) {
-        int q = i % 8;
-        int a = (q >= 2) ? (i % 2) : 0;
-        float v1 = (float)((q >= 2) * cx);
-        if (a == 1)
-            v1 *= D_00275F58;
-        int b = (q < 2 || q >= 4);
-        float v2 = (float)(b * cz);
-        if (q == 1)
-            v2 *= D_00275F58;
-        f60[i + 1]->f6c = v1;
-        f60[i + 1]->f70 = v2;
-        f60[i + 1]->f74 = 0;
-        if (q == 0)
-            cx++;
-        if (q == 7)
-            cz++;
+    p = &f60[0]->f6c;
+    p[0] = *(f32 *)D_002A0F74;
+    p[1] = D_002A0F78;
+    p[2] = D_002A0F7C;
+    {
+        int cx = 0;
+        int cz = 1;
+        for (i = 0; i < f30 - 1; i++) {
+            int q = i % 8;
+            int a = (q >= 2) ? (i % 2) : 0;
+            float v1 = (float)((q >= 2) * cx);
+            if (a == 1)
+                v1 *= D_00275F58;
+            int b = (q < 2 || q >= 4);
+            float v2 = (float)(b * cz);
+            if (q == 1)
+                v2 *= D_00275F58;
+            f60[i + 1]->f6c = v1;
+            f60[i + 1]->f70 = v2;
+            f60[i + 1]->f74 = 0;
+            if (q == 0)
+                cx++;
+            if (q == 7)
+                cz++;
+        }
     }
     if (f6c != 0) {
         func_001E891B(f6c);
