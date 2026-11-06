@@ -225,12 +225,12 @@ void *func_001F306F(void *param_1, int param_2) {
 }
 #pragma optimize("s", on)
 void *func_001F311D(void *param_1, int param_2) {
-    extern C_001EEE62 *D_002F6A04;
+    extern C_001EEE62 D_002F6A04;
     void *func_001F306F(void *, int);
     int func_001EF0B4(void *);
     C_001F311D_Ctx ctx;
     S8_001F *node = 0;
-    S8_001F *obj = (S8_001F *)D_002F6A04->func_001EEE62(8, (int)node);
+    S8_001F *obj = (S8_001F *)D_002F6A04.func_001EEE62(8, (int)node);
     if (obj != node) {
         obj->unk0 = 0;
         *(unsigned short *)&obj->unk4 &= 0xfe00;
