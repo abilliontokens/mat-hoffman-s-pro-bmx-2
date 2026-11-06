@@ -112,6 +112,16 @@ struct C_00150360 {
     void func_00150390(float a, float b, float c, int d);
     void func_00150390(int a, float b, float c, int d);
     void func_001503E0(float a, float b, float c);
+    __forceinline void Blend_001503E0(int a, float b, float c)
+    {
+        f24 = a;
+        f30 = b;
+        f34 = c;
+        f2C = (f44 - f48) * b + f48;
+        f28 = (D_00275460 - c) * (f2C - f4C);
+        D_002EFDB8->f2C = a;
+        f50 = 1;
+    }
 };
 
 struct C_00150440 {
@@ -537,8 +547,8 @@ void func_0014FF00(char *path, char *drive, char *dir, char *fname, char *ext)
     char *dot2;
     char *slash;
     unsigned int len;
-    int l;
     int n;
+    volatile int l;
     char c;
 
     dot = 0;
@@ -613,6 +623,32 @@ C_001500A0 *C_001500A0::func_001500A0(void)
     vtbl = (void *)&D_00286AE8;
     f14 = 90.0f;
     return this;
+}
+
+void C_001500A0::func_001500D0(int a, int *b, V_1500 *c, int d, float *e, V_1500 *f, V_1500 *g, int *h) {
+ C_001500A0 *self=this;
+ if (f4) {
+ V_1500 v,u,r;
+ 
+ float m[16],n[16],o[16]; V_1500 p;
+ p=((T_1500 *)self->f4)->func_00199B00(0);
+ ((T_1500 *)self->f4)->func_00197B40(&v,&u);
+ p.y+=*(float *)&self->f8;
+ cross_1500(&r,&v,&u);
+ float ax=r.x, ay=r.y, az=r.z;
+ float angle=*(float *)&self->fC;
+ float s=func_0014F510(angle);
+ float co=func_0014F550(angle);
+ func_0011F400(m,ax,ay,az,s,co);
+ angle=*(float *)&self->f10;
+ s=func_0014F510(angle);
+ co=func_0014F550(angle);
+ func_0011F400(n,0,1,0,s,co);
+ func_000263B0(o,m,n);
+ func_00030AC0(&u,&u,o);
+ func_00030AC0(&r,&r,o);
+ *b=0; *c=p; *e=self->f14; *f=u; *g=r; *h=0;
+ }
 }
 
 void C_00150350::func_00150350(void) {
