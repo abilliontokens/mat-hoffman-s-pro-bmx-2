@@ -236,7 +236,8 @@ struct C_001729D0_Obj {
     void func_0014AC30(float *a, int b); void func_00133ED0(void);
     float func_00133F10(int a); int func_00134770(int a, int b);
 };
-extern float D_002A8BA0, D_002A8BA4, D_002A8BA8, D_002A8BE8;
+extern float D_002A8BA0, D_002A8BA4, D_002A8BA8;
+extern const float D_002A8BE8;
 extern float D_002A8BE0, D_002A8BE4;
 extern float D_00288D00, D_00288D10, D_00288D20;
 
