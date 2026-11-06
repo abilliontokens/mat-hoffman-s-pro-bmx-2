@@ -1,5 +1,6 @@
 /* 1 function from 0x0012FE50 to 0x00130C90, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 #include <xmmintrin.h>
 
 extern float D_00275544;
@@ -185,11 +186,10 @@ struct C_0012FE50 {
     int func_0012FE50(float dt, int b);
 };
 
+#pragma optimize("y", on)
 int C_0012FE50::func_0012FE50(float dt, int b)
 {
     int ret = func_00171230(dt);
-    V4_0012FE50 a;
-    V4_0012FE50 c;
     float t;
 
     if (dt <= D_00275544) {
@@ -203,6 +203,8 @@ int C_0012FE50::func_0012FE50(float dt, int b)
         Spline_0012FE50 *s = f518;
         f510 = (float)fmod((double)(dt + f510), (double)(s->arr[s->count - 1].time * f4c4));
     }
+    V4_0012FE50 a;
+    V4_0012FE50 c;
     if (f4a4 == 0) {
         float vv[8];
         V4_0012FE50 *p = (V4_0012FE50 *)vv;
@@ -284,7 +286,7 @@ int C_0012FE50::func_0012FE50(float dt, int b)
             f = func_0012F0F0(t);
         }
         if (f4b0 != 0) {
-            float m[16];
+            __declspec(align(16)) float m[16];
             func_000265C0(m, &o, &D_002A4140, &D_002A4130, 1, 1);
             f408->v31(m);
             f408->func_00133F10(0);
@@ -356,3 +358,4 @@ int C_0012FE50::func_0012FE50(float dt, int b)
     f400->func_0019AC50();
     return ret;
 }
+#pragma optimize("", on)
