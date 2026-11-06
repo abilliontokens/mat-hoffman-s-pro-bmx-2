@@ -90,6 +90,22 @@ struct S_0008A0B0_Root {
 
 extern S_0008A0B0_Root *D_002A8490;
 
+struct W_Widget {
+    char pad0[0x34];
+    float f34;
+    char pad38[0x20];
+    unsigned char flags;
+    W_Widget *init(void *tpl, float x, float y, int z);
+};
+extern void *func_001E8A44(int size);
+extern "C" int D_00279B30;
+
+struct C_00089290 {
+    char pad0[0x34];
+    W_Widget *w34;
+    void func_00089290(void);
+};
+
 /* EditorMenuOverlay */
 struct C_0008A0B0 {
     char pad0[0x34];
