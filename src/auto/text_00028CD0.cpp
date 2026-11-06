@@ -28,6 +28,14 @@ struct C_295D0 {
  char p0[0x1e0]; Q_292C0_Aux *f1e0; char p1e4[0x1c]; Q_292C0_Obj *f200; char p204[0x18]; C_295D0_Event *f21c; char p220[0x10]; Q_292C0_Orient *f230; char p234[0x470]; int f6a4,f6a8; char p6ac[0x20]; Q_292C0 f6cc,f6dc; float f6ec,f6f0; int f6f4; char p6f8[0xc]; int f704; char p708[4]; int f70c; char p710[4]; int f714;
  int func_000295D0(int); void func_00027C30();
 };
+struct C_28CD0_Call { void func_0005DA40(void *); void func_0005DA80(int); int func_00026A70(int); void func_000B6080(void *); void func_00026130(); };
+struct C_28CD0 { char data[0x764]; void func_00028CD0(void *); void func_00027C30(); };
+void func_00026340(Q_292C0 *, Q_292C0 *);
+float func_0014F510(float);
+extern float D_002756DC, D_00275F58;
+extern double D_00276698;
+extern int D_002B9108;
+extern Q_292C0 D_002A10F0;
 extern float D_00275544;
 #define FLT_MAX_298F0 3.402823466e+38f
 
