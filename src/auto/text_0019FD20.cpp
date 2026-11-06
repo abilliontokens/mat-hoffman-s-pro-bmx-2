@@ -1,11 +1,12 @@
 /* 2 functions from 0x0019FD20 to 0x001A0C90, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include <math.h>
 
 struct Vec_19FD20 {
     f32 x, y, z, w;
-    Vec_19FD20() { x = y = z = 0.0f; w = 1.0f; }
-    Vec_19FD20(f32 ax, f32 ay, f32 az, f32 aw = 1.0f) { x = ax; y = ay; z = az; w = aw; }
+    Vec_19FD20() {}
+    Vec_19FD20(f32 ax, f32 ay, f32 az, f32 aw = 1.0f) { z = az; y = ay; x = ax; w = aw; }
 };
 
 static __forceinline void Cross_19FD20(Vec_19FD20 * volatile out, Vec_19FD20 * volatile a, Vec_19FD20 * volatile b)
