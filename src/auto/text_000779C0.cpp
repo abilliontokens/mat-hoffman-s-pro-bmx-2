@@ -66,10 +66,10 @@ struct Wid_779C0 {
     __forceinline void Scale()
     {
         f3c = (float)((double)f4c * D_00278654);
-        b58 |= 4;
         f40 = (float)((double)f4c * D_00275544);
         f44 = (float)((double)f50 * D_0027653C);
         f48 = (float)((double)f50 * D_00275544);
+        b58 |= 4;
     }
     Wid_779C0 *func_001D5760();
     void func_001D5810(char *, float, float, float);
@@ -338,13 +338,13 @@ Cnt_779C0 *Cnt_779C0::func_000779C0(void *a)
     t = p ? ((Txt_779C0 *)p)->func_001D5E90() : 0;
     tC0 = t;
     t->func_001D6190(v2, *(int *)(D_002A8490->p2E8->p4 + 0x1128), &D_00278690);
-    tC0->SetPos(528.0f, 393.0f);
+    tC0->SetPos(530.0f, 393.0f);
     tC0->SetColor(0xffcccccc);
     p = func_001E8A44(0x60);
     t = p ? ((Txt_779C0 *)p)->func_001D5E90() : 0;
     tBC = t;
     t->func_001D6190(v2, *(int *)(D_002A8490->p2E8->p4 + 0x7c0), &D_00278690);
-    tBC->SetPos(418.0f, 393.0f);
+    tBC->SetPos(417.0f, 393.0f);
     tBC->SetColor(0xffcccccc);
     p = func_001E8A44(0x60);
     t = p ? ((Txt_779C0 *)p)->func_001D5E90() : 0;
