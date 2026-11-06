@@ -236,12 +236,14 @@ struct S_15D0_Pad {
     char pad6D4[4];
     int f6D8;
     int f6DC;
-    short f6E0;
-    short f6E2;
+    union {
+        S_15D0_Rumble rumble;
+        struct { short f6E0; short f6E2; };
+    };
     int f6E4;
     int f6E8;
     char pad6EC[0x3A];
-    int f726;
+    union { S_15D0_Rumble rumbleOut; int f726; };
     void func_0015AFC0(int a0, float a1, float a2);
     int func_001D15D0(float dt);
 };
