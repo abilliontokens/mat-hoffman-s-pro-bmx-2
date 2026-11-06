@@ -148,15 +148,15 @@ struct S_001A53C0_V4 {
     S_001A53C0_V4 operator*(f32 s) const { return S_001A53C0_V4(x * s, y * s, z * s); }
 };
 
-static inline void Xform_001A53C0(f32 *out, const f32 *mat, const S_001A53C0_V4 *v)
+static inline void Xform_001A53C0(f32 *out, const __m128 *mat, const S_001A53C0_V4 *v)
 {
     __m128 t = _mm_loadu_ps(&v->x);
     _mm_storeh_pi((__m64 *)&out[2], t);
     out[3] = 1.0f;
     t = _mm_loadh_pi(t, (__m64 *)&out[2]);
-    __m128 r0 = _mm_mul_ps(_mm_load_ps(mat), t);
-    __m128 r1 = _mm_mul_ps(_mm_load_ps(mat + 4), t);
-    __m128 r2 = _mm_mul_ps(_mm_load_ps(mat + 8), t);
+    __m128 r0 = _mm_mul_ps(mat[0], t);
+    __m128 r1 = _mm_mul_ps(mat[1], t);
+    __m128 r2 = _mm_mul_ps(mat[2], t);
     __m128 lo = _mm_unpacklo_ps(r0, r1);
     __m128 hi = _mm_unpackhi_ps(r0, r1);
     __m128 junk = _mm_movehl_ps(r2, r2);
