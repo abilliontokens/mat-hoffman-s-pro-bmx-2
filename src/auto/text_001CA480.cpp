@@ -84,8 +84,6 @@ struct XboxSndIf_1CB290 {
     void func_001CB2D0(void);
 };
 
-static __forceinline void CallV4_1CB290(SndBank_1CB290 *p) { p->v4(); }
-
 struct C_001CB130 {
     void *vtbl;
     int unk4;
