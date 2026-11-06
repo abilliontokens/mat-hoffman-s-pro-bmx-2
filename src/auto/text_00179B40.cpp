@@ -173,6 +173,14 @@ struct C_0017A1D0 {
     char pad0[0x24];
     C_0017A1D0_Vec4 pts[4];
     C_0017A1D0_Vec4 normals[5];
+    #pragma optimize("g", off)
+    __forceinline float Abs(float v)
+    {
+        volatile float t = v;
+        int bits = *(volatile int *)&t & 0x7fffffff;
+        return *(float *)&bits;
+    }
+    #pragma optimize("", on)
     int func_0017A1D0(float *p, float r, float *out);
     C_0017A1D0 *func_0017A310(C_0017A1D0_Vec4 *p);
     void func_00179880();
@@ -295,6 +303,31 @@ int C_0017A010::func_0017A010(V3_0017A010 *a, V3_0017A010 *b, C_0017A1D0_Vec4 *o
         }
     }
     return 0;
+}
+
+int C_0017A1D0::func_0017A1D0(float *p, float r, float *out)
+{
+    C_0017A1D0_Vec4 v;
+    volatile float d;
+    int i;
+    v.x = p[0] - pts[0].x;
+    v.y = p[1] - pts[0].y;
+    v.z = p[2] - pts[0].z;
+    d = C_0017A1D0_Dot(v, normals[0]);
+    if (out) {
+        volatile float copy = d;
+        volatile int bits = *(int *)&copy & 0x7fffffff;
+        *out = *(volatile float *)&bits;
+    }
+    if (d > r || -r > d) return 0;
+    if (C_0017A1D0_Dot(v, normals[1]) > r) return 0;
+    for (i = 1; i < 4; i++) {
+        v.x = p[0] - pts[i].x;
+        v.y = p[1] - pts[i].y;
+        v.z = p[2] - pts[i].z;
+        if (C_0017A1D0_Dot(v, normals[i + 1]) > r) return 0;
+    }
+    return 1;
 }
 
 void *C_0017A2E0::func_0017A2E0(unsigned int flags)
