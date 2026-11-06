@@ -180,7 +180,7 @@ struct C_000B4300 {
     void func_001577A0(S_B3E10_Obj *o, int a);
 };
 
-inline void B4300_Reg(int id, B4300_Cb cb, const char *a, const char *b, const char *c)
+inline void B4300_Reg(int id, const B4300_Cb &cb, const char *a, const char *b, const char *c)
 {
     D_002EFE08->func_0018CF40(id, cb, a, b, c, 1);
 }
