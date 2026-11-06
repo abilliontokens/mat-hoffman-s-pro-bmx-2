@@ -162,6 +162,17 @@ struct S_Loader_001CE770 {
 extern S_Loader_001CE770 *D_002BEAAC;
 extern char D_00275FB4;
 
+static __forceinline int Load_001CE770(Voice *v, int p, int handle)
+{
+    if (v->func_001CCAC0(p, handle, 0, v->f118)) {
+        if (handle != -1) {
+            D_002BEAAC->func_0013C110(handle);
+        }
+        return 1;
+    }
+    return 0;
+}
+
 extern char D_0028F0A8[];
 extern char D_002843B0[];
 int __stdcall func_001DD8C5(int h, int idx, void *a, void *b, unsigned short *name, int len);
@@ -315,6 +326,54 @@ int Voice::func_001CE140(int arg)
     return 1;
 }
 
+int Voice::func_001CE4C0()
+{
+    void (__stdcall *enter)(void *) = _imp__RtlEnterCriticalSection;
+    enter(D_002F08EC->f138->Lock());
+    if (!(flags & 8)) {
+        if (flags & 4) {
+            if (!D_002F08EC->f138->l38.func_001CDED0((int)this)) {
+                _imp__RtlLeaveCriticalSection(D_002F08EC->f138->Lock());
+                return 0;
+            }
+            flags = (flags & 0xef) | 0x20;
+            _imp__RtlLeaveCriticalSection(D_002F08EC->f138->Lock());
+            return 1;
+        }
+        _imp__RtlLeaveCriticalSection(D_002F08EC->f138->Lock());
+        return 0;
+    }
+    void (__stdcall *leave)(void *) = _imp__RtlLeaveCriticalSection;
+    leave(D_002F08EC->f138->Lock());
+    if (f13c) {
+        if (f154) {
+            flags = (flags & 0xef) | 0x20;
+            return 1;
+        }
+        int r;
+        if (flags & 1)
+            r = func_00220A12(f13c, 0, 0, 1);
+        else
+            r = func_00220A12(f13c, 0, 0, 0);
+        if (r) {
+            return 0;
+        }
+        flags &= 0xef;
+        f120 = 0;
+        return 1;
+    }
+    enter(D_002F08EC->f138->Lock());
+    if (f140) {
+        v48(0);
+        leave(D_002F08EC->f138->Lock());
+        v20(f1a0);
+        f120 = 0;
+        return 1;
+    }
+    leave(D_002F08EC->f138->Lock());
+    return 1;
+}
+
 int XboxSound::func_001CE660(float dt)
 {
     XboxSound * volatile self = this;
@@ -348,7 +407,6 @@ int Voice::func_001CE770(int buf)
 {
     int handle = -1;
     int p;
-    short fmt;
 
     if (f144 == 0) {
         handle = D_002BEAAC->func_0013C9F0(path, &D_00275FB4);
@@ -367,15 +425,15 @@ int Voice::func_001CE770(int buf)
             }
         }
     }
-    fmt = f16c;
+    short fmt = f16c;
     if (fmt == 0x69) {
         f118 = f190;
     } else {
         f118 = f180;
     }
     f11c = (float)f118 / (float)f174;
+    p = buf;
     if ((f10c & 0x100) && f150) {
-        p = buf;
         f19c = f170;
         f1a0 = f170;
         if (func_001CCAC0(p, handle, 0, f118)) {
