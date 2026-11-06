@@ -339,6 +339,24 @@ int __stdcall func_00221B47(void *a, S_001CD940_Buf *b);
 int __stdcall func_002228F8(int *desc, void **out);
 int __stdcall func_001DDB7E(int a, int b, int c, int d);
 
+int C_001CD510::func_001CD510(int a)
+{
+    if (!(fa0 & 1)) {
+        return 0;
+    }
+    if (a != 0) {
+        if (fcc != 1 && fc8 == 2 && fcc == 2) {
+            D_00220AE0(fb8, 1);
+            D_00220AE0(fbc, 1);
+            fcc = 1;
+            return 1;
+        }
+    } else if (fcc == 1) {
+        func_001CB6D0();
+    }
+    return 1;
+}
+
 XboxSoundGroup *XboxSoundGroup::func_001CD770(int a, int b)
 {
     func_0001C8F0(b);
