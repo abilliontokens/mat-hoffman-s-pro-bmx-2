@@ -255,23 +255,45 @@ void func_0011ADD0(Vec4 *out, float *m)
 }
 
 extern float D_00275460;
-static inline void Vec4Scale3(Vec4 *out, const Vec4 *v, const float &s)
-{
-    out->x = v->x * s;
-    out->y = v->y * s;
-    out->z = v->z * s;
-}
+
+struct BoundsSource {
+    char pad0[0x40];
+    float f40, f44, f48;
+    char pad4c[0x24];
+    float *f70;
+    char pad74[0xc];
+    int f80;
+    char pad84[8];
+    float *f8c;
+};
+
+struct BoundsAccum {
+    char pad0[0x154];
+    float f154, f158, f15c;
+    char pad160[4];
+    int f164;
+    float f168, f16c, f170;
+    char pad174[4];
+    float f178, f17c, f180;
+};
+
+struct BoundsOwner {
+    char pad0[0x54];
+    BoundsSource *f54;
+    char pad58[8];
+    BoundsAccum *f60;
+};
+
 void func_0011AFF0(char *arg)
 {
  char *a=*(char **)(arg+0x54);
  float *b=*(float **)(arg+0x60);
  for(int i=0;i<*(int *)(a+0x80);i++){
  float *p=(float *)(*(char **)(a+0x70)+i*32);
- Vec4 d;
- d.x=p[0]-p[4]; d.y=p[1]-p[5]; d.z=p[2]-p[6];
+ Vec4 d(p[0]-p[4], p[1]-p[5], p[2]-p[6], 1.0f);
  float w=(*(float **)(a+0x8c))[i];
- Vec4 r;
- Vec4Scale3(&r,&d,D_00275460-w);
+ w=D_00275460-w;
+ Vec4 r(d.x*w, d.y*w, d.z*w, 1.0f);
  if(r.x>b[94]) b[94]=r.x;
  if(r.y>b[95]) b[95]=r.y;
  if(r.z>b[96]) b[96]=r.z;
