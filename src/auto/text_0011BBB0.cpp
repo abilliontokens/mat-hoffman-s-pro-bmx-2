@@ -27,9 +27,7 @@ extern V4_0011C3F0 D_002A3BDC;
 
 static __forceinline float Min_0011C3F0(float a, float b)
 {
-    float r;
-    _mm_store_ss(&r, _mm_min_ss(_mm_set_ss(a), _mm_set_ss(b)));
-    return r;
+    return a < b ? a : b;
 }
 
 struct S_0011C3F0_Smoother {
