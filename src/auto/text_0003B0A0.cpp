@@ -80,11 +80,75 @@ extern float D_002A14E4[4];
 void func_00034820(void *a, void *b);
 static __forceinline char *Get_3B0A0(int *p, int i)
 {
-    int n = p[0];
-    int *items = (int *)p[1];
-    if (n > 0 && items != 0 && i < n)
-        return (char *)items[i];
+    if (p[0] > 0 && p[1] != 0 && i < p[0])
+        return (char *)((int *)p[1])[i];
     return 0;
+}
+
+__forceinline void S_3B0A0_Obj::Spawn(void *a1, void *a2, char *a4, float a5, int a6, int a7, int a8, int a9)
+{
+    Vec4_3B0A0 v54, v24, v64, v34, v74;
+    int ex, ey, ez, m;
+    float t;
+
+    if (a1 == 0)
+        return;
+    D_002EFDB8->v7(1);
+    D_002EFDB8->v8();
+    ex = ((S_3B0A0_Elem *)*(char **)(a4 + 0x5a4))[a6].f38;
+    ey = ((S_3B0A0_Elem *)*(char **)(a4 + 0x5a4))[a6].f3c;
+    ez = ((S_3B0A0_Elem *)*(char **)(a4 + 0x5a4))[a6].f40;
+    if (f24 != 0) {
+        ((S_3B0A0_Obj *)f24)->func_00198390();
+        if (f2c != 0)
+            ((S_3B0A0_Obj *)f2c)->func_00198390();
+        f24 = 0;
+    } else if (f28 != 0) {
+        ((S_3B0A0_VObj *)f28->f1a4)->f4->func_00198390();
+        ((S_3B0A0_VObj *)f28->f1a4)->vb4();
+        f28 = 0;
+    }
+    f24 = a1;
+    ((S_3B0A0_Obj *)f24)->func_001983A0();
+    ((S_3B0A0_Obj *)f24)->func_0019A8C0(&v34, &v74);
+    if (func_001E8AF0((char *)f24 + 0x28, D_00276D54))
+        v34.z -= D_00275AEC;
+    if (a2 != 0) {
+        f2c = a2;
+        ((S_3B0A0_Obj *)f2c)->func_001983A0();
+    } else {
+        f2c = 0;
+    }
+    m = a7;
+    if (m > a8) {
+        if (m > a9) m = a7; else m = a9;
+    } else {
+        if (a8 > a9) m = a8; else m = a9;
+    }
+    {
+        int best;
+        if (ey > ez)
+            best = (ey > ex) ? ey : ex;
+        else
+            best = (ez > ex) ? ez : ex;
+        t = (float)((m > best) ? m : best);
+    }
+    t = t * D_0027653C;
+    t = t * D_002766C8;
+    v34.y = a5;
+    v54.x = v34.x;
+    v54.y = D_00276220 * t + a5;
+    v54.z = v34.z - D_00276D50 * t;
+    v24 = Vec4_3B0A0(0.0f, a5 - v54.y, v34.z - v54.z, 1.0f);
+    float d = AsmSqrtF(v24.x * v24.x + v24.y * v24.y + v24.z * v24.z);
+    f38 = d;
+    func_00034820(&v24.x, &v24.x);
+    AsmVec3Cross(&v64.x, &v24.x, D_002A14E4);
+    f34->f5c->func_00194E60(v54);
+    f34->f5c->f4 = 0;
+    f34->f5c->func_00194F90(60.0f);
+    f34->f5c->func_00194EB0(v24);
+    f34->f5c->func_00194F60(v64);
 }
 void C_0003BB60::func_0003B0A0()
 {
