@@ -13,7 +13,7 @@ struct DA_Page {
  int f280,f284,f288,f28c,f290,f294,f298,f29c,f2a0,f2a4,f2a8,f2ac;
  int f2b0,f2b4,f2b8,f2bc,f2c0,f2c4,f2c8,f2cc,f2d0;
  char pad2d4[0x58]; float positions[11];
- int func_000DAAB0(int,int);
+ bool func_000DAAB0(int,int);
 };
 extern float D_002757F0;
 
