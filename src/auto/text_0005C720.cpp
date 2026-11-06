@@ -55,8 +55,6 @@ struct C_0005C720_Ini {
     void func_00168A10(const char *key, volatile int *out);
 };
 
-static __forceinline int AddTo(int *acc, int v) { *acc += v; return v; }
-
 struct C_0005C720_Files {
     int func_0013B1A0(const char *key);
 };
