@@ -303,16 +303,6 @@ struct C_001362A0 {
     C_001362A0 *func_001362A0(float a, float b, int c, int d, int e, float f);
 };
 
-struct VB_A {
-    virtual void b0();
-    virtual void b1();
-    virtual void b2();
-    virtual void b3();
-    virtual void b4();
-    virtual void b5();
-};
-struct VB_D : virtual VB_A { };
-
 struct C_001C3E50;
 struct C_000BEDC0;
 struct C_00092890;
