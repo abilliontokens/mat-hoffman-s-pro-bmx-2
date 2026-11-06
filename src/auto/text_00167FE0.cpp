@@ -71,7 +71,7 @@ struct C_00168280 {
     int f14;
     char *f18;
     int f1c;
-    int f20;
+    char **f20;
     char f24;
     char pad25[0x3ff];
     int f424;
