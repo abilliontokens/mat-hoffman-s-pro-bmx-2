@@ -221,7 +221,8 @@ struct Table_10DED0 {
  char pad49A4[0x60C4-0x49A4];
  union { int ids[80]; int ids2[5][16]; };
  union { int keys[80]; int keys2[5][16]; };
- void func_000A4AF0(int, char *);
+   void func_000A4AF0(int, char *);
+  int Match(int mode, int slot, int id, int key) { int idx = mode * 16 + slot; return ids[idx] == id && keys[idx] == key; }
 };
 struct Owner_10DED0 { char pad0[0x52C]; Table_10DED0 *f52C; };
 struct Queue_10DED0 { int count; int ids[5]; int modes[5]; int f2C; int f30; int f34; int f38[100]; int f1C8[100]; void func_00109340(int,int); void Push(int slot, int mode) { f38[++f34] = slot; f1C8[f34] = mode; } };
@@ -471,9 +472,8 @@ int C_0010DED0::func_0010E030(int a, int b)
     if (cur != -1) {
         for (i = 0; i < 16; i++) {
             if (f1134 != -1) break;
-            Table_10DED0 *t = f24->f52C;
             idx = cur * 16 + i;
-            if (t->ids[idx] == a && t->keys[idx] == b) {
+            if (f24->f52C->ids[idx] == a && f24->f52C->keys[idx] == b) {
                 int *p = &cntE20[cur * 16 + i];
                 f1134 = i;
                 f111C = b;
@@ -499,11 +499,7 @@ int C_0010DED0::func_0010E030(int a, int b)
                 case 4: mode = 5; break;
                 }
                 ((C_0010DD90 *)this)->func_0010DD90(0.0f, *(int *)&scale, (int)&f24->f52C->recs[f1158 * 16 + f1134], f1134, mode, flag);
-                Queue_10DED0 *q = f1084;
-                int n = q->f34 + 1;
-                q->f34 = n;
-                q->f38[n] = f1134;
-                q->f1C8[q->f34] = f1158;
+                f1084->Push(f1134, f1158);
                 f15F4 = 0;
                 f5F0->func_000261F0(f604);
                 return 1;
