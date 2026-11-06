@@ -456,7 +456,6 @@ char *func_001ACCF0(int flag, int *sign, unsigned value, char *end, int *len)
     return p;
 }
 
-char *func_001AC940(double value, int ndec, int *decpt, int flag);
 int func_001EA211(int c);
 char *func_001ACD40(int ndec, char fmt, double value, int alt, int *sign, char *buf, int *outlen)
 {
