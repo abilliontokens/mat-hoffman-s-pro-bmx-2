@@ -191,7 +191,7 @@ void *C_00026290::func_00026290(int flags) {
 }
 
 void C_000262B0::func_000262B0(void) {
-    f18 = f1C;
+    f18 = GetF1C();
 }
 
 int func_000262C0(float *a, float *b)
