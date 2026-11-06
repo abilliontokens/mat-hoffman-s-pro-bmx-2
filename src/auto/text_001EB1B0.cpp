@@ -433,8 +433,7 @@ void __cdecl func_001EB6F9(double *arg, char *buffer, int precision, int caps)
     char c;
     int oldexpo;
     int expo;
-    int shorter;
-
+    char shorter;
     ((Fltout2Fn)func_001F4A07)(*(S_CrtDouble *)arg, &flt, resultstr);
     oldexpo = flt.decpt - 1;
     p = buffer + (flt.sign == '-');
@@ -448,10 +447,9 @@ void __cdecl func_001EB6F9(double *arg, char *buffer, int precision, int caps)
             do {
                 c = *p++;
             } while (c != 0);
-            p -= 2;
-            *p = c;
+            p[-2] = p[-2] & (unsigned char)c;
         }
-        func_001EB600(&flt, buffer, precision, shorter | 1);
+        func_001EB600(&flt, buffer, precision, shorter ? 1 : !shorter);
     }
 }
 
