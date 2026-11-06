@@ -286,7 +286,9 @@ struct C_001D3AB0 {
     int unk58;
     int unk5C;
     int unk60;
-    char pad64[0xC];
+    int unk64;
+    int unk68;
+    int unk6C;
     S_001D3AB0_Res *unk70;
     void *unk74;
     void *unk78;
@@ -294,7 +296,7 @@ struct C_001D3AB0 {
     int func_001D3CC0(char *name);
     void func_001D3B20(char *name);
     void func_001D3800(void);
-    void func_001D3860(void);
+    int func_001D3860(void);
     void func_001D37C0(void);
     void func_001D3AB0(void);
     void func_001D3C30(void);
