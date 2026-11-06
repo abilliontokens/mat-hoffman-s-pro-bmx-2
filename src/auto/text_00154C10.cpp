@@ -125,9 +125,15 @@ struct S_154C10_Line {
     float func_00133F10(int a);
 };
 
+struct V4k_154C10 {
+    float x, y, z, w;
+    V4k_154C10(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
+};
+
 struct S_154C10_Xf {
     V4_154C10 func_00197F70(float *vin);
     void func_00199600(V4_154C10 v);
+    void func_00199600(V4k_154C10 v);
     void func_0019AC50(void);
 };
 
@@ -256,124 +262,129 @@ struct C_00155450 {
 
 int C_00154C10::func_00154C10(float dt)
 {
+    struct { C_00154C10 *self; float t0; float t1; V4_154C10 v; V4_154C10 p[2]; } L;
+    L.self = this;
     if (D_002A8490->f124 != 0) {
         return 1;
     }
-    if (f120.x == D_002A789C && f120.y == D_002A78A0 && f120.z == D_002A78A4) {
-        f120 = func_00016E40();
+    if (L.self->f120.x == D_002A789C && L.self->f120.y == D_002A78A0 && L.self->f120.z == D_002A78A4) {
+        L.self->f120 = L.self->func_00016E40();
     }
-    func_00151F80(dt);
-    f54 += dt;
-    f58 += dt;
-    if (fe4 > 0) {
-        if (func_001DC974() - fe4 > 0x6e) {
-            fe4 = 0;
-            fe0->v31();
-            fe0->v32();
-            fe0->v4();
+    L.self->func_00151F80(dt);
+    L.self->f54 += dt;
+    L.self->f58 += dt;
+    if (L.self->fe4 > 0) {
+        if (func_001DC974() - L.self->fe4 > 0x6e) {
+            L.self->fe4 = 0;
+            L.self->fe0->v31();
+            L.self->fe0->v32();
+            L.self->fe0->v4();
         } else {
-            V4_154C10 v;
-            v.x = 1.5f;
-            v.y = -2.0f;
-            v.z = 6.0f;
-            v.w = 1.0f;
-            v = f2c->f1a4->f4->func_00197F70(&v.x);
-            fe0->func_0011CA60(v);
+            L.v.x = 1.5f;
+            L.v.y = -2.0f;
+            L.v.z = 6.0f;
+            L.v.w = 1.0f;
+            L.v = L.self->f2c->f1a4->f4->func_00197F70(&L.v.x);
+            L.self->fe0->func_0011CA60(L.v);
         }
     }
-    func_00153350(dt);
-    func_001528D0(dt);
-    func_00152300(dt);
+    L.self->func_00153350(dt);
+    L.self->func_001528D0(dt);
+    L.self->func_00152300(dt);
     {
-        V4_154C10 pos = func_00016E40();
-        float ny = pos.y - f34;
-        V4_154C10 v;
-        v.x = pos.x;
-        v.y = ny;
-        v.z = pos.z;
-        v.w = pos.w;
-        V4c_154C10 w;
-        func_001521D0(&v, &w);
-        fb4 = v;
-        f108 = 0;
-        if (ny <= v.y) {
+        V4_154C10 pos;
+        L.p[0].z = L.p[0].y = L.p[0].x = 0.0f;
+        L.p[0].w = 1.0f;
+        pos = L.self->func_00016E40();
+        float ny = pos.y - L.self->f34;
+        L.v.x = pos.x;
+        L.v.y = ny;
+        L.v.z = pos.z;
+        L.v.w = pos.w;
+        L.self->func_001521D0(&L.v, &L.p[0]);
+        L.self->fb4 = L.v;
+        L.self->f108 = 0;
+        if (ny <= L.v.y) {
             V4_154C10 np;
             np.x = pos.x;
-            np.y = v.y + f34;
+            np.y = L.v.y + L.self->f34;
             np.z = pos.z;
             np.w = pos.w;
-            f2c->f1a4->f4->func_00199600(np);
-            f2c->f1a4->func_00132D20();
-            fec = 0;
-            f108 = 1;
+            L.self->f2c->f1a4->f4->func_00199600(np);
+            L.self->f2c->f1a4->func_00132D20();
+            L.self->fec = 0;
+            L.self->f108 = 1;
         }
-        if (f108 != 0) {
-            fa4 = w;
+        if (L.self->f108 != 0) {
+            L.self->fa4 = L.p[0];
         }
         if (D_002A8490->f18 != 0) {
-            if (f6c8 < 0) {
-                f6c8 = D_002A8490->f18->f1934++;
+            if (L.self->f6c8 < 0) {
+                L.self->f6c8 = D_002A8490->f18->f1934++;
             }
-            func_0013E260(D_002A8490->f18, f6c8, D_00286D8C);
-            func_0013E1F0(D_002A8490->f18, f6c8, D_00286D7C, f108);
-            func_0013E1F0(D_002A8490->f18, f6c8, D_00286D68, (double)v.y);
-            func_0013E1F0(D_002A8490->f18, f6c8, D_00286D58, (double)(ny - v.y));
+            func_0013E260(D_002A8490->f18, L.self->f6c8, D_00286D8C);
+            func_0013E1F0(D_002A8490->f18, L.self->f6c8, D_00286D7C, L.self->f108);
+            func_0013E1F0(D_002A8490->f18, L.self->f6c8, D_00286D68, (double)L.v.y);
+            func_0013E1F0(D_002A8490->f18, L.self->f6c8, D_00286D58, (double)(ny - L.v.y));
         }
-        func_00153DF0(dt);
+        L.self->func_00153DF0(dt);
     }
-    if (f108 != 0 && sqrtf(fe8 * fe8 + fec * fec + ff0 * ff0) > D_0027F710) {
-        f10c += dt;
-        if (f10c > D_00275600) {
-            f10c -= D_00275600;
+    if (L.self->f108 != 0 && sqrtf(L.self->fe8 * L.self->fe8 + L.self->fec * L.self->fec + L.self->ff0 * L.self->ff0) > D_0027F710) {
+        L.self->f10c += dt;
+        if (L.self->f10c > D_00275600) {
+            L.self->f10c -= D_00275600;
         }
     } else {
-        f10c = 0;
+        L.self->f10c = 0;
     }
-    if (func_00016E40().y <= D_002756C8) {
-        f2c->f1a4->f4->func_00199600(D_002B9120->f4DC->pts[f24]);
+    if (L.self->func_00016E40().y <= D_002756C8) {
+        L.self->f2c->f1a4->f4->func_00199600(D_002B9120->f4DC->pts[L.self->f24]);
     }
-    f4c = f6ec;
-    f48 = f6f0;
-    f2c->f1a4->f4->func_0019AC50();
-    if (f2c->f1a4->f10 != 0 && f574 <= 0 && f578 > 0) {
-        f578--;
-        f574 = 10;
+    L.self->f4c = L.self->f6ec;
+    L.self->f48 = L.self->f6f0;
+    L.self->f2c->f1a4->f4->func_0019AC50();
+    if (L.self->f2c->f1a4->f10 != 0 && L.self->f574 <= 0 && L.self->f578 > 0) {
+        L.self->f578--;
+        L.self->f574 = 10;
     }
-    D_002B9120->f484->func_0001BE90(f2c, 0, 1, 1);
-    f2c->f1a4->func_00166C50(D_00286D50);
-    if (f57c != 0 && dt + f2c->f1a4->f34 >= f580) {
-        f57c = 0;
+    D_002B9120->f484->func_0001BE90(L.self->f2c, 0, 1, 1);
+    L.self->f2c->f1a4->func_00166C50(D_00286D50);
+    if (L.self->f57c != 0 && dt + L.self->f2c->f1a4->f34 >= L.self->f580) {
+        L.self->f57c = 0;
     }
-    f2c->f1a4->f10 = 1;
+    L.self->f2c->f1a4->f10 = 1;
     if (*D_002A8490->f2E0 > 1) {
-        fc4 = 0;
-        f94.x = D_002A789C;
-        f94.y = D_002A78A0;
-        f94.z = D_002A78A4;
-        f94.w = D_002A78A8;
-        f84.x = D_002A789C;
-        f84.y = D_002A78A0;
-        f84.z = D_002A78A4;
-        f84.w = D_002A78A8;
-        V4_154C10 p[2];
-        func_00011FF0(p, 0x10, 2, (void *)func_00011060);
-        p[0] = func_00016E40();
-        p[1] = ((S_154C10_Pos **)D_002B9120)[0x13a - f24]->func_00016E40();
-        fc8 = p[0];
-        f78->func_0014AC30(p, 0);
-        f78->func_00133ED0();
-        f78->func_00133F10(0);
-        f5c = fc4;
+        L.self->fc4 = 0;
+        L.self->f94.x = D_002A789C;
+        L.self->f94.y = D_002A78A0;
+        L.self->f94.z = D_002A78A4;
+        L.self->f94.w = D_002A78A8;
+        L.self->f84.x = D_002A789C;
+        L.self->f84.y = D_002A78A0;
+        L.self->f84.z = D_002A78A4;
+        L.self->f84.w = D_002A78A8;
+        func_00011FF0(L.p, 0x10, 2, (void *)func_00011060);
+        L.p[0] = L.self->func_00016E40();
+        L.p[1] = ((S_154C10_Pos **)D_002B9120)[0x13a - L.self->f24]->func_00016E40();
+        L.self->fc8 = L.p[0];
+        L.self->f78->func_0014AC30(L.p, 0);
+        L.self->f78->func_00133ED0();
+        L.self->f78->func_00133F10(0);
+        L.self->f5c = L.self->fc4;
     }
-    if (f588 != 0) {
-        f58c += dt;
-        if (f58c > D_00275600) {
-            D_002A8490->f2A4->func_0004AB90(f24);
-            f588 = 0;
-            f58c = 0;
+    if (L.self->f588 != 0) {
+        L.self->f58c += dt;
+        if (L.self->f58c > D_00275600) {
+            D_002A8490->f2A4->func_0004AB90(L.self->f24);
+            L.self->f588 = 0;
+            L.self->f58c = 0;
         }
     }
-    return 1;
+    if (*D_002A8490->f2E0 == 1) {
+        D_002A8490->f2A4->f158->func_001C4D50(0x1f4);
+        L.self->f120 = L.self->func_00016E40();
+        L.self->func_00157A00(dt);
+    }
 }
 
 C_00155450 *C_00155450::func_00155450(void *param)
