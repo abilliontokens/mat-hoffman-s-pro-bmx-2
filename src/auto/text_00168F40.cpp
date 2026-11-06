@@ -524,34 +524,33 @@ int C_00168F40::func_00169A50(char *line)
 
     if (f8 == 0) {
         return 0;
-    }
-    if (f424 == 0) {
+    } else if (f424 == 0) {
         return 0;
-    }
-    if (f430 > f42C - 1) {
+    } else if (f430 > f42C - 1) {
         return 0;
-    }
-    for (i = 0; i < slotCount; i++) {
-        if (slots[i].kind == 2) {
-            func_001E8390(slots[i].ptr);
+    } else {
+        for (i = 0; i < slotCount; i++) {
+            if (slots[i].kind == 2) {
+                func_001E8390(slots[i].ptr);
+            }
+            slots[i].ptr = 0;
         }
-        slots[i].ptr = 0;
-    }
-    D_002BEAAC->func_0013C6E0(f0, raw, 0x400);
-    if (line != 0) {
-        strcpy(line, raw);
-    }
-    func_001690D0(raw, clean);
-    tok.func_001B4A40(clean);
-    s = tok.func_001B4A70(D_0028803C);
-    slotCount = 0;
-    while (s != 0) {
-        func_001681A0(s, &slots[slotCount]);
+        D_002BEAAC->func_0013C6E0(f0, raw, 0x400);
+        if (line != 0) {
+            strcpy(line, raw);
+        }
+        func_001690D0(raw, clean);
+        tok.func_001B4A40(clean);
         s = tok.func_001B4A70(D_0028803C);
-        slotCount++;
+        slotCount = 0;
+        while (s != 0) {
+            func_001681A0(s, &slots[slotCount]);
+            s = tok.func_001B4A70(D_0028803C);
+            slotCount++;
+        }
+        f430++;
+        return slotCount;
     }
-    f430++;
-    return slotCount;
 }
 
 void func_00169C00(void *a0, void *a1, VT_00169C00 *obj, int flag)
