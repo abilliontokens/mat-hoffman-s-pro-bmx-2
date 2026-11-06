@@ -78,7 +78,7 @@ struct C_00157810 {
     S_00157810_Child *fC;
     S_00157810_Child *f10;
     S_00157810_Child *f14;
-    char pad18[4];
+    unsigned int f18;
     int f1C;
     char f20;
     unsigned char f21_b0 : 1;
