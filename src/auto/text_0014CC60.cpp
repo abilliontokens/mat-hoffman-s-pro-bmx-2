@@ -33,6 +33,23 @@ extern C_0014CC60 *D_002BF250;
 void *__cdecl func_001E83E8(void *p, int size);
 int __cdecl func_0013F650(void);
 
+struct S_Entry { int a; char pad[0x28]; };
+struct S_Slot {
+    char name[0x80];
+    char name2[0x80];
+    char name3[0x80];
+    int f180, f184, f188, f18C, f190, f194, f198, f19C, f1A0, f1A4, f1A8, f1AC, f1B0, f1B4;
+    int f1B8, f1BC, f1C0, f1C4, f1C8;
+    char pad1CC[0x10];
+    int f1DC, f1E0, f1E4, f1E8, f1EC;
+    S_Entry *f1F0;
+    char pad1F4[0x18];
+    void func_0014C720();
+};
+void *__cdecl func_001E8A44(int size);
+void *__cdecl func_001E8AA5(int size);
+int __stdcall func_0013C9F0(const char *name, const char *mode);
+
 /* two lists that grow 20 entries at a time: f48 holds one entry per item,
    f21D8 twenty per item */
 struct C_0014CC60 {
