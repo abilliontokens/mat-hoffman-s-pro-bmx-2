@@ -416,7 +416,7 @@ struct BmxGame {
 int Screen_000597B0::func_000590F0(int a)
 {
     File_000590F0 f;
-    char buf[0x100];
+    char buf[0x104];
     if (f4C == 0)
         return 0;
     f.func_00168280();
