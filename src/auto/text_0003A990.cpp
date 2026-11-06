@@ -34,6 +34,7 @@ struct C_0003AC20 {
    int func_00038760(S_0003AC20_Vec pos,int *out);
    int func_0003AC20(int x,float y,int z,int w);
    int func_0003AC20(S_0003AC20_Vec pos);
+   int func_0003AC20(float x,float y,float z,float w);
   };
 static __forceinline void Round_0003AC20(int * volatile out,float f) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
 
@@ -193,19 +194,20 @@ int C_3A990::func_0003A990(S_0003AC20_Vec a, S_0003AC20_Vec b)
  return result;
 }
 
-int C_0003AC20::func_0003AC20(int x,float y,int z,int w) {
- int index;
- for(int i=f450;i<f45C;i++) {
-  y=i*D_00275548+f440;
-  if(func_00038760(S_0003AC20_Arg(x,y,z,w),&index)) {
-   S_0003AC20_Entry *e=at(index);
+int C_0003AC20::func_0003AC20(S_0003AC20_Vec pos) {
+ struct { C_0003AC20 *self; int result; int index; } L;
+ S_0003AC20_Vec p = pos;
+ L.self = this;
+ for(int i=L.self->f450;i<L.self->f45C;i++) {
+  p.y=i*D_00275548+L.self->f440;
+  if(L.self->func_00038760(p,&L.index)) {
+   S_0003AC20_Entry *e=L.self->at(L.index);
    S_0003AC20_Vec v=e->owner->fE8->pos;
-   f574=e;
-   f578=index;
-   f2D4=1;
-   int result;
-   Round_0003AC20(&result, v.y+v.y+y-f440);
-   return result;
+   L.self->f574=e;
+   L.self->f578=L.index;
+   L.self->f2D4=1;
+   Round_0003AC20(&L.result, v.y+v.y+p.y-L.self->f440);
+   return L.result;
   }
  }
  return -1;
