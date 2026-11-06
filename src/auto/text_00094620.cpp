@@ -666,7 +666,7 @@ void C_00094A00::func_00094C00(void)
 
     for (i = 0; i < f7C; i++) {
         if (f2C != 0) {
-            f28->func_001CD7D0(f84[i]);
+            ((C_001CD7D0 *)f2C)->func_001CD7D0(f84[i]);
         } else {
             f28->func_001CD7D0(f84[i]);
         }
