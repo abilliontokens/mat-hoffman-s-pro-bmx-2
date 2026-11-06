@@ -1,6 +1,7 @@
 /* 11 functions from 0x0009DA90 to 0x0009E680, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include "asm_helpers.h"
 struct C_0009DF90 {
     void func_0009DF90(float param_1);
 };
@@ -163,6 +164,12 @@ struct BmxSmokeParticleEmitter {
     int func_0009E470(void);
 };
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
+void func_0009DA90(float *out, float *in) {
+    AsmVec3Normalize(out, in);
+}
+
 BmxSmokeParticleEmitter *BmxSmokeParticleEmitter::func_0009DB00(int param_1)
 {
     ((C_00169C50 *)this)->func_00169C50(param_1);
@@ -179,9 +186,9 @@ BmxSmokeParticleEmitter *BmxSmokeParticleEmitter::func_0009DB00(int param_1)
     int i = 0x40;
     f32 *p = f1F4[0];
     do {
-        f32 *q = p;
         int j = 4;
-        p += 4;
+        f32 *q = p;
+        p += j;
         do {
             f32 v = (f32)func_001E8833() * D_002754B0;
             *q++ = v + v + D_00275460;
@@ -193,6 +200,18 @@ BmxSmokeParticleEmitter *BmxSmokeParticleEmitter::func_0009DB00(int param_1)
     f188 = 0;
     f608 = 100.0f;
     func_001ADCC0((char *)this + 0x6C, 0x104, (const char *)&D_0027AA28, (const char *)&D_002A5558);
+    return this;
+}
+C_0009DC00 *C_0009DC00::func_0009DC00(int a1, int a2, int a3)
+{
+    ((C_0016A1D0 *)this)->func_0016A1D0(a1, a2, a3);
+    S_0009E590_Sub *item = (S_0009E590_Sub *)f64->f134;
+    if (item != 0) {
+        f1AC = item->f8;
+        f1A8 = item->f4;
+        f188 = f1A8;
+        ((C_0016A1D0 *)this)->func_0016A330(buf6C);
+    }
     return this;
 }
 
@@ -223,18 +242,19 @@ C_0009E0C0 *C_0009E0C0::func_0009E0C0(int a1, int a2, int a3)
 }
 
 int BmxSmokeParticleEmitter::func_0009E400(S_0009E5F0_Stream *stream) {
+    f32 *p;
+    int i;
     ((C_0016A1D0 *)this)->func_0016A3A0(stream);
-    int i = 0x40;
-    f32 *p = f1F4[0];
-    do {
+    p = f1F4[0];
+    for (i = 0x40; i != 0; i--) {
         f32 *q = p;
         int j = 4;
-        p += 4;
+        p = q + 4;
         do {
             f32 v = (f32)func_001E8833() * D_002754B0;
             *q++ = v * f174 + D_00275460;
         } while (--j);
-    } while (--i);
+    }
     return 0;
 }
 
