@@ -105,6 +105,8 @@ struct S_00088DD0_Sprite {
     void Dirty(unsigned char flags) { b58 |= flags; }
     void SetWidth(u32 w) { if(f28!=w) { f28=w; Dirty(1); } }
     void SetHeight(u32 h) { if(f2C!=h) { f2C=h; Dirty(1); } }
+    void SetWidthF(u32 w, unsigned char flags) { if(f28!=w) { f28=w; b58 |= flags; } }
+    void SetHeightF(u32 h, unsigned char flags) { if(f2C!=h) { f2C=h; b58 |= flags; } }
     S_00088DD0_Sprite *func_001D5760();
     void func_001D5810(void *a, int b, int c, int d);
 };
@@ -257,6 +259,34 @@ C_00088F70 *C_00088F70::func_00088DA0(int a0)
     return this;
 }
 
+C_00088DD0 *C_00088DD0::func_00088DD0(int a0, int a1, S_00088DD0_Arg *a2)
+{
+ int one = 1, two = 2;
+ f24=a0; f28=a1;
+ func_001ADCC0(D_002A60B0,0x104,D_00275678,D_002A5348,D_002A5FA8);
+ S_00088DD0_Sprite *p=(S_00088DD0_Sprite*)func_001E8A44(0x64);
+ p=p?p->func_001D5760():0; f2C=p;
+ p->func_001D5810(&D_00279A34,0,0,0);
+ unsigned h;
+ if(f24==two) {
+ f2C->SetWidth(0x43a00000); h=0x43e00000;
+ } else {
+ f2C->SetWidth(0x44200000); h=0x43600000;
+ }
+ f2C->SetHeight(h);
+ p=f2C;
+ if(f28==one)p->f38=(p->f38&0xffdd3737)|0xdd3737;
+ else p->f38=(p->f38&0xffaaaaff)|0xaaaaff;
+ p->b58|=two;
+ p=f2C; *((unsigned char*)p+0x3b)=0;p->b58|=two;
+ func_001ADCC0(D_002A48F8,0x104,D_00275678,D_002A5870,D_002A47F0);
+ S_00088DD0_Ctor *c=(S_00088DD0_Ctor*)func_001E8A44(0x20c);
+ c=c?c->func_001CF740(D_002A8490->f4->fB4,a2->f64->f4C0,one):0;
+ f40=(S_00088DD0_Obj*)c; f40->v4(&D_00279A28,0x81,one,0,0);
+ func_001ADCC0(D_002A60B0,0x104,D_00275678,D_002A5870,D_002A5FA8);
+ return this;
+}
+
 void C_00088F60::func_00088F60(int param_1)
 {
   int in_ECX = (int)this;
@@ -302,6 +332,25 @@ bool C_00089040::func_00089040(void)
   int in_ECX = (int)this;
   
   return *(int *)(in_ECX + 0x3c) == 0xff;
+}
+
+void C_00088F70::func_00089050(float dt)
+{
+ float ratio = f34 / f30;
+ volatile int value;
+ if (f34 < f30) {
+  float t = ratio * ratio * 240.0f;
+  value = _mm_cvtss_si32(*(__m128 *)&t);
+ } else value = 255;
+ value = value < 255 ? value : 255;
+ if (value != (int)f3C) f38 += dt;
+ if (f38 > D_002755E0 && value != (int)f3C) {
+  if (value > (int)f3C) ++f3C; else --f3C;
+  f38 = 0;
+  if (value == (int)f3C) f40->v6(0);
+ }
+ if (f38 > D_00275AE8) f40->v6(0);
+ func_00157A00(dt);
 }
 
 C_000891A0 *C_000891A0::func_000891A0(int unused)
