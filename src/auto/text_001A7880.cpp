@@ -81,15 +81,12 @@ static __forceinline V4_001A7FE0 xform_001A7FE0(V4_001A7FE0 v, float *m)
     func_0011F540(&r, v, m);
     return r;
 }
-struct Pair_001A7FE0 {
-    V4_001A7FE0 b, a;
-    __forceinline Pair_001A7FE0() : b(0), a(0) { a.Clear(); b.Clear(); }
-};
-static __forceinline Pair_001A7FE0 pair_001A7FE0(V4_001A7FE0 v, float *m)
+static __forceinline V4_001A7FE0 xform_b_001A7FE0(V4_001A7FE0 v, float *m, V4_001A7FE0 &b)
 {
-    Pair_001A7FE0 p;
-    func_0011F540(&p.a, v, m);
-    return p;
+    V4_001A7FE0 r;
+    b.Clear();
+    func_0011F540(&r, v, m);
+    return r;
 }
 char *func_001E9260(const char *, int);
 extern "C" unsigned int __cdecl strlen(const char *);
