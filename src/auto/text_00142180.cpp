@@ -664,6 +664,14 @@ struct C_00142D00 {
     void func_00142D00(void *a0);
 };
 
+static __forceinline void Assign_142D00(void *src, void **dst)
+{
+    if (*dst != src) {
+        func_00201350(src);
+        *dst = src;
+    }
+}
+
 struct C_00142D20 {
     char pad0[0x8];
     int unk8;
