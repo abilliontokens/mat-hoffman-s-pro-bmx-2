@@ -2,6 +2,7 @@
 #include "common.h"
 #include <math.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 extern int D_00283D5C;
 
@@ -146,6 +147,10 @@ void C_0011AB90::func_0011AB90(C_0011AB90Arg *arg)
     func_001D3F50();
 }
 
+void func_0011ABC0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
+}
+
 void func_0011AC30(float *out, float *in)
 {
     __m128 r0 = _mm_load_ps(in);
@@ -214,7 +219,7 @@ void func_0011ADA0(void *a, void *b, float *m)
     func_0011ACC0(a, b, inv);
 }
 
-void func_0011ADD0(Vec4 *out, float *m)
+Vec4 *func_0011ADD0(Vec4 *out, float *m)
 {
     Vec4 q;
     float t0, t1, t2, t3;
@@ -225,28 +230,28 @@ void func_0011ADD0(Vec4 *out, float *m)
     t2 = (((1.0f - m[0]) + m[5]) - m[10]) * 0.25f;
     t3 = (((1.0f - m[0]) - m[5]) + m[10]) * 0.25f;
     if (t0 > t1 && t0 > t2 && t0 > t3) {
-        _mm_store_ss(&s, _mm_sqrt_ss(*(__m128 *)&t0));
+        s = sqrtf(t0);
         inv = 0.25f / s;
         q.x = s;
         q.y = (m[9] - m[6]) * inv;
         q.z = (m[2] - m[8]) * inv;
         q.w = (m[4] - m[1]) * inv;
     } else if (t1 > t2 && t1 > t3) {
-        _mm_store_ss(&s, _mm_sqrt_ss(*(__m128 *)&t1));
+        s = sqrtf(t1);
         inv = 0.25f / s;
         q.y = s;
         q.x = (m[9] - m[6]) * inv;
         q.z = (m[4] + m[1]) * inv;
         q.w = (m[8] + m[2]) * inv;
     } else if (t2 > t3) {
-        _mm_store_ss(&s, _mm_sqrt_ss(*(__m128 *)&t2));
+        s = sqrtf(t2);
         inv = 0.25f / s;
         q.z = s;
         q.x = (m[2] - m[8]) * inv;
         q.y = (m[4] + m[1]) * inv;
         q.w = (m[9] + m[6]) * inv;
     } else {
-        _mm_store_ss(&s, _mm_sqrt_ss(*(__m128 *)&t3));
+        s = sqrtf(t3);
         inv = 0.25f / s;
         q.w = s;
         q.x = (m[4] - m[1]) * inv;
@@ -254,6 +259,7 @@ void func_0011ADD0(Vec4 *out, float *m)
         q.z = (m[9] + m[6]) * inv;
     }
     *out = q;
+    return out;
 }
 
 struct BoundsSource {
