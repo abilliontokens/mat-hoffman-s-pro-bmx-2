@@ -208,13 +208,6 @@ struct C_0004FC20 {
         for (int i = 0; i < f90; ++i)
             f64->f4E0->f1A8[i]->f958 = 0.5f;
     }
-    __forceinline void ResetRiders2()
-    {
-        f64->f4C0->v31(1, 1);
-        ((G_4FC20 *)D_002A8490)->f2E0->f2FC->v18(1);
-        for (int i = 0; i < f90; ++i)
-            f64->f4E0->f1A8[i]->f958 = 0.5f;
-    }
 };
 
 struct S_4F820_Control {
