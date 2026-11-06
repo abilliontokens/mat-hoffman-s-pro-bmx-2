@@ -2,8 +2,8 @@
 #include "common.h"
 #include <xmmintrin.h>
 
-static __forceinline float Min_00120B20(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
-static __forceinline float Max_00120B20(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float Min_00120B20(float a, float b) { __m128 r = _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b)); return r.m128_f32[0]; }
+static __forceinline float Max_00120B20(float a, float b) { __m128 r = _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b)); return r.m128_f32[0]; }
 
 extern float D_002B9348;
 extern void **D_002B92F4;
