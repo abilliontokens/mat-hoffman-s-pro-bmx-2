@@ -6,6 +6,7 @@ extern float D_00275544;
 /* four floats built in a temporary like the callers do */
 struct V4_0002C120 {
     float x, y, z, w;
+    V4_0002C120() {}
     V4_0002C120(float a, float b, float c, float d)
     {
         x = a;
