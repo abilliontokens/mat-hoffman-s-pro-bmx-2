@@ -537,6 +537,19 @@ fail:
     return 0;
 }
 
+static __forceinline void GetPos_001A1930(N_001A1930 *n, Q_001A1930 *out)
+{
+    O_001A1930 *o = n->obj;
+    if (o) {
+        int x = ((const volatile int *)&o->pos)[0];
+        int y = ((const volatile int *)&o->pos)[1];
+        int z = ((const volatile int *)&o->pos)[2];
+        ((int *)out)[0] = x;
+        ((int *)out)[1] = y;
+        ((int *)out)[2] = z;
+    }
+}
+
 void C_001A1930::func_001A1930(int count, N_001A1930 **nodes)
 {
  Q_001A1930 position,velocity;
@@ -558,10 +571,12 @@ void C_001A1930::func_001A1930(int count, N_001A1930 **nodes)
   }
  }else if((distance>=1.2f*unk4C)) return;
  state |=2;
- O_001A1930 *o=*(O_001A1930 * volatile *)&nearest->obj;
- if(o){velocity.x=o->vel.x;velocity.y=o->vel.y;velocity.z=o->vel.z;}
- o=nearest->obj;
- if(o){int x=((const volatile int*)&o->pos)[0], y=((const volatile int*)&o->pos)[1], z=((const volatile int*)&o->pos)[2]; ((int*)&position)[0]=x;((int*)&position)[1]=y;((int*)&position)[2]=z;}
+ O_001A1930 *vo=*(O_001A1930 * volatile *)&nearest->obj;
+ if(vo){velocity.x=vo->vel.x;velocity.y=vo->vel.y;velocity.z=vo->vel.z;}
+ if(nearest->obj){
+  int x=((const volatile int*)&nearest->obj->pos)[0], y=((const volatile int*)&nearest->obj->pos)[1], z=((const volatile int*)&nearest->obj->pos)[2];
+  ((int*)&position)[0]=x;((int*)&position)[1]=y;((int*)&position)[2]=z;
+ }
  { Q_001A1930 t;
  t.x=pos.x-position.x;t.y=pos.y-position.y;t.z=pos.z-position.z;t.w=1;
  if(!emitter) return;
