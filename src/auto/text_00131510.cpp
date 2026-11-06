@@ -84,7 +84,7 @@ static __forceinline float Min_00131510(float a, float b)
     return r;
 }
 
-static __forceinline void Cross_00131510(V4_00131510 * volatile out, V4_00131510 * a, V4_00131510 * b)
+static __forceinline void Cross_00131510(V4_00131510 *out, V4_00131510 *a, V4_00131510 *b)
 {
     __m128 va = _mm_loadu_ps(&a->x);
     __m128 vb = _mm_loadu_ps(&b->x);
