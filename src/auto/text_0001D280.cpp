@@ -257,19 +257,7 @@ struct C_0001D330_List {
 
 struct C_0001D330 {
     char pad0[0x70];
-    union {
-        C_0001D330_List list;
-        struct {
-            int unk70;
-            C_0001D330_Item **unk74;
-        };
-    };
-    C_0001D330_Item *itemAt(int i) {
-        if (unk70 > 0 && unk74 != 0 && i < unk70) {
-            return unk74[i];
-        }
-        return 0;
-    }
+    C_0001D330_List list;
     void func_0001D330(void);
 };
 
