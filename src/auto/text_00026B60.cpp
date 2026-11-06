@@ -169,7 +169,7 @@ struct Obj208_26 {
 };
 struct ObjE8_26 {
     char pad0[0x94]; void *f94; void *f98;
-    void func_000B6180(int); void func_000B6640(int, void *);
+    ObjE8_26 *func_000B6180(int); void func_000B6640(int, void *);
 };
 struct Axis14_26 { float f0, f4, f8, fC, f10; };
 struct Obj20C_26 {
