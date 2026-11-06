@@ -172,6 +172,9 @@ struct C_00092890 {
     int func_00092EF0(void);
     void func_00092D10(void);
     void *func_000928F0(void);
+    void func_000928F0(int probe);
+    void func_000929A0(void);
+    void func_001578D0(void);
     void func_001577A0(void *o, int a);
     void *func_001D3F50(void);
 };
@@ -232,6 +235,32 @@ int C_000928D0::func_000928D0(void) {
 
 int C_000928E0::func_000928E0(void) {
     return (int)&unk254;
+}
+
+void *C_00092890::func_000928F0(void)
+{
+    void *name = &D_0027958C;
+    C_001B1980 **p;
+    int i;
+
+    D_002A8490->f2ec->func_0018C780(1, &name, 0);
+    D_002A8490->f2ec->func_0018C160(&D_0027958C);
+    p = f24;
+    i = 8;
+    do {
+        C_001B12C0 *o = (C_001B12C0 *)func_001E8A44(0x184);
+        if (o != 0) {
+            o = o->func_001B12C0(1);
+        } else {
+            o = 0;
+        }
+        *p = (C_001B1980 *)o;
+        o->func_001B13A0(&D_0027958C, &D_0027958C, 0, 0x28);
+        ((C_001B12C0 *)*p)->func_001B2270(0xffcccccc);
+        func_001577A0(*p, -1);
+        p++;
+    } while (--i);
+    return func_001D3F50();
 }
 
 int func_00092A10(void)
