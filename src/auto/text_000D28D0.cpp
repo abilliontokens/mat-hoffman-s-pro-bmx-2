@@ -50,7 +50,10 @@ struct C_000D28D0 {
     int selected;
     int f41C;
     int f420;
-    char pad424[0x1FE4 - 0x424];
+    char pad424[0x450 - 0x424];
+    int states[8];
+    int currentState;
+    char pad474[0x1FE4 - 0x474];
     int f1FE4;
     int f1FE8;
     int f1FEC;
