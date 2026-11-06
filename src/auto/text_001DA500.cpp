@@ -113,6 +113,41 @@ struct C_001DAC10 {
     char padFC[0x488 - 0xFC];
     void *arr488[6];
     void func_001DAC10();
+    void DrawQuad(S_001DAC10_Vert *verts, S_001DAC10_Color *color, S_001DAC10_Entry *e, int tex)
+    {
+        void **p = &arr488[D_002F1038];
+        int f;
+        if (*p == 0)
+            *p = func_001FF3C0(0x70);
+        *(S_001DAC10_Quad *)func_001FF410(arr488[D_002F1038], 0) = *(S_001DAC10_Quad *)verts;
+        func_001FEBD0(0x20, color);
+        func_001FEE00(0, arr488[D_002F1038], 0x1c);
+        func_001FD020(&D_00040304, 0);
+        func_001FD020(&D_00040354, 0x207);
+        f = D_0020C6DC;
+        f |= 0x2000;
+        D_0020C6DC = f;
+        D_0020CA50 = 0;
+        func_001FD770(0x1b02);
+        func_00200390(0, e->f2c->fB8);
+        f = D_0020C6DC;
+        f |= 1;
+        D_0020C6E0 = 3;
+        D_0020C6DC = f;
+        D_0020C6E4 = 3;
+        func_00200390(1, e->f2c->fB8);
+        f = D_0020C6DC;
+        f |= 2;
+        D_0020C760 = 3;
+        D_0020C6DC = f;
+        D_0020C764 = 3;
+        func_00200B30(6, 4, D_002AC6D0);
+        func_00201100(tex);
+        if (D_002F1038 == 5)
+            D_002F1038 = 0;
+        else
+            D_002F1038++;
+    }
 };
 
 int C_001DAAD0::func_001DAAD0(int a0, S_001DAAD0_Block *a1, void *a2)
