@@ -92,7 +92,7 @@ struct C_00061B80_Obj {
     float f28;
     float f2c;
     char pad30[4];
-    float f34;
+    int f34;
     char pad38[0x58 - 0x38];
     unsigned char flags;
 };
