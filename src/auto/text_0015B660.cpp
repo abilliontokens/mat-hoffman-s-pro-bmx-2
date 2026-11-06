@@ -34,7 +34,7 @@ struct ByteAxisRotationController {
 };
 
 struct C_0015C5C0_Entry {
-    int a;
+    float t;
     int b;
 };
 
