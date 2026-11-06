@@ -286,6 +286,10 @@ struct CameraBehavior_00055380 {
     __forceinline CameraBehavior_00055380() { ((C_00055380 *)this)->func_0012B510(); }
 };
 
+struct QuatV_00055380 : S_00056100_Quat {
+    __forceinline QuatV_00055380() { *(void * volatile *)((char *)this - 0x1c) = &D_00277CF4; z = 0; y = 0; x = 0; w = 1.0f; }
+};
+
 struct Quat_00055380 : S_00056100_Quat {
     Quat_00055380() { z = 0; y = 0; x = 0; w = 1.0f; }
     void operator=(const S_00056100_Quat &q) { *(S_00056100_Quat *)this = q; }
