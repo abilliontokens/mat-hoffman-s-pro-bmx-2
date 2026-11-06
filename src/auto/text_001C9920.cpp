@@ -202,22 +202,22 @@ void *func_001E8AA5(unsigned int size);
 void func_0014FF00(int a0, int a1, char *a2, int a3, int a4);
 
 
-void C_001C9920::func_001C9920(int a)
+void C_001C9920::func_001C9920(S_001C9920_arg *arg)
 {
-    S_001C9920_arg *p = (S_001C9920_arg *)a;
+    int size;
     int rate;
     int v;
-    unkCC = p;
-    if (p->unk28 == 0) {
+    unkCC = arg;
+    if (arg->unk28 == 0) {
         return;
     }
-    unk44 = p->unk28->v16(0, &a, 0x80);
-    rate = func_001B2910(p->unk28->unkA4);
-    v = (a << 3) / rate;
+    unk44 = arg->unk28->v16(0, &size, 0x80);
+    rate = func_001B2910(arg->unk28->unkA4);
+    v = (size << 3) / rate;
     unk21C = rate;
     unkB8 = v;
     unkC4 = (float)v / D_002F0BCC;
-    p->unk28->v17(0);
+    arg->unk28->v17(0);
 }
 
 int C_001C99A0::func_001C99A0(int a0)
