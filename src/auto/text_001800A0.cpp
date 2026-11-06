@@ -84,6 +84,7 @@ struct C_00180600 {
 };
 
 
+#pragma auto_inline(off)
 C_001804F0 *C_001804F0::func_001804F0(float *p) {
     extern float D_002F0798;
     extern float D_002891BC;
@@ -95,6 +96,7 @@ C_001804F0 *C_001804F0::func_001804F0(float *p) {
     unk4 = (short)(D_002891BC * f2);
     return this;
 }
+#pragma auto_inline(on)
 
 C_001805C0 *C_001805C0::func_001805C0(void) {
     int *p = (int *)((char *)this + 4);
@@ -118,53 +120,103 @@ void C_001805F0::func_001805F0(void) {
 extern float D_00275460;
 void C_00180600::func_00180600(int a0, int handle)
 {
-    Reader180600 *reader = (Reader180600 *)D_002BEAAC;
-    int count;
+    int n1;
+    int n2;
     if (handle == -1)
         return;
     func_000EBE90v();
     fF4 = a0;
-    reader->func_0013C8A0(handle, &mB0, 4, 1);
-    reader->func_0013C8A0(handle, &mC0, 4, 1);
-    reader->func_0013C8A0(handle, &mD0, 4, 1);
-    reader->func_0013C8A0(handle, &mE0, 4, 1);
-    reader->func_0013C8A0(handle, &mB4, 4, 1);
-    reader->func_0013C8A0(handle, &mC4, 4, 1);
-    reader->func_0013C8A0(handle, &mD4, 4, 1);
-    reader->func_0013C8A0(handle, &mE4, 4, 1);
-    reader->func_0013C8A0(handle, &mB8, 4, 1);
-    reader->func_0013C8A0(handle, &mC8, 4, 1);
-    reader->func_0013C8A0(handle, &mD8, 4, 1);
-    reader->func_0013C8A0(handle, &mE8, 4, 1);
-    reader->func_0013C8A0(handle, &mBC, 4, 1);
-    reader->func_0013C8A0(handle, &mCC, 4, 1);
-    reader->func_0013C8A0(handle, &mDC, 4, 1);
-    reader->func_0013C8A0(handle, &mEC, 4, 1);
-    reader->func_0013C8A0(handle, &fF8, 4, 1);
-    reader->func_0013C960(handle, &count, 4);
+    D_002BEAAC->func_0013C8A0(handle, &mB0, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &mC0, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &mD0, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &mE0, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &mB4, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &mC4, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &mD4, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &mE4, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &mB8, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &mC8, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &mD8, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &mE8, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &mBC, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &mCC, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &mDC, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &mEC, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &fF8, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &n1, 4, 1);
+    D_002BEAAC->func_0013C960(handle, &n2, 4);
     {
-        void *mem = func_001E8A44(count * 0x24);
+        Rec180600 *mem = (Rec180600 *)func_001E8A44(n1 * 0x24);
         if (mem != 0)
-            func_00011FF0(mem, 0x24, count, &func_00128910);
-        fFC = (Rec180600 *)mem;
+            func_00011FF0(mem, 0x24, n1, &func_00128910);
+        fFC = mem;
     }
-    if (count > 0) {
+    {
         int i;
-        float tmp[4];
-        for (i = 0; i < count; i++) {
+        float x, y, z;
+        V_1800 d, n;
+        C_001804F0 q1, q2, q3;
+        for (i = 0; i < n1; i++) {
             Rec180600 *rec = (Rec180600 *)((char *)fFC + i * 0x24);
-            float v[4];
-            reader->func_0013C8A0(handle, rec, 4, 1);
-            reader->func_0013C8A0(handle, &tmp[0], 4, 1);
-            reader->func_0013C8A0(handle, &tmp[1], 4, 1);
-            reader->func_0013C8A0(handle, &tmp[2], 4, 1);
-            v[0] = tmp[0]; v[1] = tmp[1]; v[2] = tmp[2]; v[3] = 1.0f;
-            {
-                C_001804F0 *s = ((C_001804F0 *)((char *)tmp + 0x40))->func_001804F0(v);
-                rec->f14 = (float)s->unk4 * D_002EFD9C * D_002AB30C;
-                rec->fC = (float)s->unk0 * D_002EFD9C * D_002AB30C;
-                rec->f10 = (float)s->unk2 * D_002EFD9C * D_002AB30C;
+            D_002BEAAC->func_0013C8A0(handle, rec, 4, 1);
+            D_002BEAAC->func_0013C8A0(handle, &x, 4, 1);
+            D_002BEAAC->func_0013C8A0(handle, &y, 4, 1);
+            D_002BEAAC->func_0013C8A0(handle, &z, 4, 1);
+            V_1800 A(x, y, z);
+            C_001804F0 *s = q1.func_001804F0(&A.x);
+            rec->fC = (float)s->unk0 * D_002EFD9C * D_002AB30C;
+            rec->f10 = (float)s->unk2 * D_002EFD9C * D_002AB30C;
+            rec->f14 = (float)s->unk4 * D_002EFD9C * D_002AB30C;
+            d.x = rec->fC - A.x;
+            d.y = rec->f10 - A.y;
+            d.z = rec->f14 - A.z;
+            func_00104A00(&n.x, &d.x);
+            D_002BEAAC->func_0013C8A0(handle, &x, 4, 1);
+            D_002BEAAC->func_0013C8A0(handle, &y, 4, 1);
+            D_002BEAAC->func_0013C8A0(handle, &z, 4, 1);
+            V_1800 B(n.x + x, n.y + y, n.z + z);
+            s = q2.func_001804F0(&B.x);
+            rec->f18 = (float)s->unk0 * D_002EFD9C * D_002AB30C;
+            rec->f1C = (float)s->unk2 * D_002EFD9C * D_002AB30C;
+            rec->f20 = (float)s->unk4 * D_002EFD9C * D_002AB30C;
+            V_1800 C(rec->f18, rec->f1C, rec->f20);
+            if (C.x < x)
+                C.x += D_00275460;
+            if (C.y < y)
+                C.y += D_00275460;
+            if (C.z < z)
+                C.z += D_00275460;
+            s = q3.func_001804F0(&C.x);
+            rec->f18 = (float)s->unk0 * D_002EFD9C * D_002AB30C;
+            rec->f1C = (float)s->unk2 * D_002EFD9C * D_002AB30C;
+            rec->f20 = (float)s->unk4 * D_002EFD9C * D_002AB30C;
+            rec->f4 = Sqrt180600(C.z * C.z + C.y * C.y + C.x * C.x);
+            D_002BEAAC->func_0013C8A0(handle, &rec->s8, 2, 1);
+            D_002BEAAC->func_0013C8A0(handle, &rec->sA, 2, 1);
+        }
+    }
+    {
+        Pair180600 *mem = (Pair180600 *)func_001E8A44(n2 * 0x20);
+        if (mem != 0) {
+            int k;
+            Pair180600 *p = mem;
+            for (k = n2 - 1; k >= 0; k--) {
+                func_00011FF0(p, 0x10, 2, (void *)func_00011060);
+                p++;
             }
+        }
+        f100 = mem;
+    }
+    {
+        int j;
+        for (j = 0; j < n2; j++) {
+            Pair180600 *e = (Pair180600 *)((char *)f100 + j * 0x20);
+            D_002BEAAC->func_0013C8A0(handle, &e->f0, 1, 4);
+            D_002BEAAC->func_0013C8A0(handle, &e->f4, 1, 4);
+            D_002BEAAC->func_0013C8A0(handle, &e->f8, 1, 4);
+            D_002BEAAC->func_0013C8A0(handle, &e->f10, 1, 4);
+            D_002BEAAC->func_0013C8A0(handle, &e->f14, 1, 4);
+            D_002BEAAC->func_0013C8A0(handle, &e->f18, 1, 4);
         }
     }
 }
