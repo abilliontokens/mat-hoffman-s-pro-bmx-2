@@ -56,8 +56,8 @@ struct Vec4_0002AF90 {
     {
         Vec4_0002AF90 r;
         r.x = t * x;
-        r.y = t * y;
-        r.z = t * z;
+        r.y = y * t;
+        r.z = z * t;
         r.w = 1.0f;
         return r;
     }
@@ -282,21 +282,24 @@ void C_0002AAA0::func_0002AAA0(float dt)
             s.xb1 = *(unsigned *)&self->f9c.x;
             s.rb1 = s.xb1 & 0x7fffffff;
             if (*(volatile float *)&s.ra1 > *(volatile float *)&s.rb1) {
-                self->f9c.x = self->f1e0->f170;
+                p = self;
+                p->f9c.x = p->f1e0->f170;
             }
             s.xa2 = *(unsigned *)&self->f1e0->f174;
             s.ra2 = s.xa2 & 0x7fffffff;
             s.xb2 = *(unsigned *)&self->f9c.y;
             s.rb2 = s.xb2 & 0x7fffffff;
             if (*(volatile float *)&s.ra2 > *(volatile float *)&s.rb2) {
-                self->f9c.y = self->f1e0->f174;
+                p = self;
+                p->f9c.y = p->f1e0->f174;
             }
             s.xa3 = *(unsigned *)&self->f1e0->f178;
             s.ra3 = s.xa3 & 0x7fffffff;
             s.xb3 = *(unsigned *)&self->f9c.z;
             s.rb3 = s.xb3 & 0x7fffffff;
             if (*(volatile float *)&s.ra3 > *(volatile float *)&s.rb3) {
-                self->f9c.z = self->f1e0->f178;
+                p = self;
+                p->f9c.z = p->f1e0->f178;
             }
             self->f1e0->v13(step);
             s.xa4 = *(unsigned *)&self->f1e0->f6c;
@@ -304,21 +307,24 @@ void C_0002AAA0::func_0002AAA0(float dt)
             s.xb4 = *(unsigned *)&self->f8c.x;
             s.rb4 = s.xb4 & 0x7fffffff;
             if (*(volatile float *)&s.ra4 > *(volatile float *)&s.rb4) {
-                self->f8c.x = self->f1e0->f6c;
+                p = self;
+                p->f8c.x = p->f1e0->f6c;
             }
             s.xa5 = *(unsigned *)&self->f1e0->f70;
             s.ra5 = s.xa5 & 0x7fffffff;
             s.xb5 = *(unsigned *)&self->f8c.y;
             s.rb5 = s.xb5 & 0x7fffffff;
             if (*(volatile float *)&s.ra5 > *(volatile float *)&s.rb5) {
-                self->f8c.y = self->f1e0->f70;
+                p = self;
+                p->f8c.y = p->f1e0->f70;
             }
             s.xa6 = *(unsigned *)&self->f1e0->f74;
             s.ra6 = s.xa6 & 0x7fffffff;
             s.xb6 = *(unsigned *)&self->f8c.z;
             s.rb6 = s.xb6 & 0x7fffffff;
             if (*(volatile float *)&s.ra6 > *(volatile float *)&s.rb6) {
-                self->f8c.z = self->f1e0->f74;
+                p = self;
+                p->f8c.z = p->f1e0->f74;
             }
             t = step + t;
             s.d1174 = *(unsigned *)&D_002A1174;
