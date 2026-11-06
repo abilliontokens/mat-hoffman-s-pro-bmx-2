@@ -7,12 +7,14 @@ struct C_00148780 {
 };
 
 struct C_00148750 {
+    char pad0[4];
     void func_00148750(unsigned int flags);
+};
+
+struct C_Derived_00148750 : C_00148780, C_00148750 {
 };
 
 void C_00148750::func_00148750(unsigned int flags)
 {
-    unsigned int self = (unsigned int)this;
-    self -= 0x1C;
-    ((C_00148780 *)self)->func_00148780(flags);
+    (((C_00148780 *)this) - 1)->func_00148780(flags);
 }
