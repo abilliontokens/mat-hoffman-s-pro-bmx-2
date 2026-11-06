@@ -118,6 +118,10 @@ struct Walker : ScriptControllerW {
     int unk380;
     int func_001C6820(float p);
     void func_001C6EA0(NodeW *obj, Vec4W *out, Vec4W *third);
+    __forceinline void PushHist(int base, Vec4W v) {
+        for (int i = 9; i > 0; i--) hist[base + i] = hist[base + i - 1];
+        hist[base] = v;
+    }
 };
 extern int D_0028E864, D_002F08BC;
 extern Pool *D_002AA6C0, *D_002A829C;
