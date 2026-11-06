@@ -99,6 +99,8 @@ struct Globals138 {
     LockOwner *f138;
 };
 extern Globals138 *D_002F08EC;
+extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *cs);
+extern "C" __declspec(dllimport) void __stdcall RtlLeaveCriticalSection(void *cs);
 int __stdcall func_00220A12(int h, int a, int b, int c);
 
 struct Voice {
@@ -366,6 +368,56 @@ void XboxMusic::func_001CE920()
     func_001E891B(list3c.data2);
     func_001E891B(list3c.data);
     func_0001C9B0();
+}
+
+int TrackDB::func_001CEB70()
+{
+    int capacity = count;
+    struct { int handle; unsigned int count; int unk; unsigned short name[32]; } info;
+    volatile int h = func_001DD816(&info);
+    if (h != -1) {
+        do {
+            if (count + 1 > capacity) {
+                int bytes=capacity*sizeof(TrackSet);
+                TrackSet *p = (TrackSet *)func_001E83E8(sets, bytes*2);
+                if (!p) {
+                    func_001CD260();
+                    func_001DE66C(h);
+                    return 0x8007000e;
+                }
+                memset((char *)p+bytes,0,bytes);
+                sets = p;
+                capacity *= 2;
+            }
+            if (info.count > 0) {
+                sets[count].flags &= ~1;
+                sets[count].handle = info.handle;
+                sets[count].count = info.count;
+                int len=Min(func_001EA410(info.name),32);
+                char *name = (char *)info.name;
+                for (int i=1;i<len*2;i+=2) {
+                    if(name[i]) { name[i-1]=1; name[i]=0; }
+                }
+                func_001DDE51(sets[count].name,D_0028F0A8,info.name);
+                sets[count].recs=(TrackRec *)func_001E8AA5(sets[count].count*24);
+                IntList *list=&sets[count].ids;
+                list->data=(int *)func_001E8A44(4);
+                list->grow=16;
+                list->cap=1;
+                *(unsigned char *)(list+1) |= 1;
+                int j=0;
+                if (sets[count].count>0) do {
+                    func_001CE9F0(j,count);
+                    ++j;
+                } while(j<sets[count].count);
+                ids.Add(count);
+                ++count;
+            }
+        } while(func_001DD7F7(h,&info));
+        func_001DE66C(h);
+    }
+    sets=(TrackSet *)func_001E83E8(sets,count*sizeof(TrackSet));
+    return 0;
 }
 
 int XboxMusic::func_001CEE50(int a, int b)
