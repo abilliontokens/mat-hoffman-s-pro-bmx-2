@@ -568,19 +568,10 @@ void *C_0001C9C0::func_0001C9C0(int flags) {
     return this;
 }
 
-C_0001C9F0_Ctor::C_0001C9F0_Ctor()
+C_0001CA30 *C_0001CA30::func_0001C9F0(void)
 {
-    f8 = 0;
-    f4 = 0;
-    fC = 0;
-    f10 = 0;
-    clear_bit0_0001C9F0(&f14);
-    f1C = 0;
-    f18 = 0;
-    f20 = 0;
-    f24 = 0;
-    clear_bit0_0001C9F0(&f28);
-    clear_bit0_0001C9F0(&f2C);
+    init_0001C9F0(this);
+    return this;
 }
 
 void C_0001CA30::func_0001CA30(void)
