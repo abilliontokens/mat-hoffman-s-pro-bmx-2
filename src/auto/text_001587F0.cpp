@@ -1,5 +1,7 @@
 /* 8 functions from 0x001587F0 to 0x001596C0, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
+extern float D_002874A0, D_00287490, D_00287480;
 
 struct S_Inner { char pad[0x538]; int f538; int f53c; int f540; int f544; };
 struct S_Arg2 { char pad[0x388]; S_Inner *p388; };
@@ -184,6 +186,30 @@ struct C_00158C10 {
     void func_00158C10(int a, int b);
 };
 
+void C_001587F0::func_001587F0(int a0, Vec4_587F0 pos, Vec4_587F0 dir)
+{
+    unk5c = pos;
+    unk4c = dir;
+    unk9c_1 = 1;
+    unk44 = a0;
+    unk24->v30();
+    unk24->func_0011CA60(unk5c);
+    float y = func_001E8833() * D_002754B0;
+    float x = func_001E8833() * D_002754B0;
+    Vec4_587F0 v(x, y, func_001E8833() * D_002754B0);
+    func_001584A0(&v, &v);
+    unk48 = 0.05f;
+    unk28->v30();
+    unk28->func_0011CA60(unk5c + v * unk48);
+    unk2c->v30();
+    unk2c->func_0011CA60(unk5c - v * unk48);
+    unk6c = unk5c + v * unk48;
+    unk34->v31();
+    unk34->v32();
+    unk38->v31();
+    unk38->v32();
+}
+
 void C_00158A60::func_00158A60(int a) {
     S_P *p = (S_P *)func_001E8A44(0x218);
     unk24 = p ? p->func_0016CE80(1) : 0;
@@ -223,6 +249,21 @@ void *C_00158BE0::func_00158BE0(int flags) {
         func_001E891B(this);
     }
     return this;
+}
+
+void C_00158C10::func_00158C10(int a, int b)
+{
+    void *mem;
+    S_00158C10_Obj *obj;
+
+    func_001586F0(b);
+    func_001577A0(unk40, -1);
+    func_00158A60(a);
+    mem = func_001E8A44(0x20c);
+    obj = mem ? ((S_00158C10_Obj *)mem)->func_001CF740(D_002A8490->f4->fB4, D_002B9120->f4C0, 1) : 0;
+    unk3c = obj;
+    obj->v4(D_002758E4, 1, 1, 0, 0);
+    func_001D3F50();
 }
 
 C_001594F0 *C_001594F0::func_001594F0(void)
