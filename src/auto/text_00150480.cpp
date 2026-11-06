@@ -53,6 +53,7 @@ struct C_00150810 {
     float unk4C;
     int unk50;
     C_00150810 *func_00150810(int a0, float a1, float a2, float a3, float a4, float a5);
+    C_00150810 *func_00150810(int a0, float a1, float a2, V3_150810 v);
     void func_001D3F50();
 };
 
