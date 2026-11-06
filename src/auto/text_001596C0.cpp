@@ -152,7 +152,7 @@ struct C_00193500 {
 
 struct V4 { float x, y, z, w; };
 struct GL2;
-struct Xf { V4 *func_00197F70(V4 *out, V4 *in); };
+struct Xf { V4 *func_00197F70(V4 *out, V4 *in); V4 func_00197F70(V4 *in); };
 struct Sh {
     void func_00193950(GL2 *a, V4 *b, V4 *c, int d);
     void func_001938C0(GL2 *g, int a, int b, V4 *c, V4 *d, int e);
@@ -182,42 +182,34 @@ void func_001E891B(void *p);
 int func_001EA426(char *a, char *b);
 
 
-void GrindLineManager::func_00159C40(GL2 *g)
+void GrindLineManager::func_00159C40(GL2 * volatile g)
 {
-    GrindLineManager *self = this;
+    GL2 *q = g;
+    GrindLineManager * volatile self = this;
     V4 ext;
     V4 center;
     V4 tmp;
-    GL2 **pg = &g;
-    GrindLineManager **ps = &self;
 
-    center.x = 0.0f;
-    center.y = 0.0f;
     center.z = 0.0f;
+    center.y = 0.0f;
+    center.x = 0.0f;
     center.w = 1.0f;
-    ext.x = 0.0f;
-    ext.y = 0.0f;
     ext.z = 0.0f;
+    ext.y = 0.0f;
+    ext.x = 0.0f;
     ext.w = 1.0f;
-    if ((*pg)->xf != 0) {
-        {
-            GL2 *q = *pg;
-            V4 *r = q->xf->func_00197F70(&tmp, &q->s0);
-            (*pg)->p0 = *r;
-        }
-        {
-            GL2 *q = *pg;
-            V4 *r = q->xf->func_00197F70(&tmp, &q->s1);
-            (*pg)->p1 = *r;
-        }
-        GL2 *p = *pg;
-        V4 *d = &p->d;
-        *d = v4sub(p->p1, p->p0);
-        p = *pg;
-        center = v4scale(v4add(p->p1, p->p0), D_002755E8);
-        d = &p->d;
-        ext = v4(d->x * D_002755E8, d->y * D_002755E8, d->z * D_002755E8);
-        func_00159480(d, d);
+    if (q->xf != 0) {
+        V4 *r = q->xf->func_00197F70(&tmp, &q->s0);
+        g->p0 = *r;
+        q = g;
+        r = q->xf->func_00197F70(&tmp, &q->s1);
+        g->p1 = *r;
+        q = g;
+        q->d = v4sub(q->p1, q->p0);
+        q = g;
+        center = v4scale(v4add(q->p1, q->p0), D_002755E8);
+        ext = v4(q->d.x * D_002755E8, q->d.y * D_002755E8, q->d.z * D_002755E8);
+        func_00159480(&q->d, &q->d);
         {
             volatile float f = ext.x;
             volatile int i = *(int *)&f & 0x7fffffff;
@@ -233,8 +225,8 @@ void GrindLineManager::func_00159C40(GL2 *g)
             volatile int i = *(int *)&f & 0x7fffffff;
             ext.z = *(float *)&i;
         }
-        (*ps)->unk2C++;
-        (*pg)->sh->func_001938C0(*pg, (*ps)->unk38, 1, &center, &ext, 0);
+        self->unk2C++;
+        g->sh->func_001938C0(g, self->unk38, 1, &center, &ext, 0);
     }
 }
 
