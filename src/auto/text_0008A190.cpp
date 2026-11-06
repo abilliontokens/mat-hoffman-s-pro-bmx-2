@@ -12,6 +12,7 @@ extern float D_00279B54;
 extern float D_00279B50;
 extern float D_00279B4C;
 int func_001E8858(float f);
+static inline unsigned int sub_from_ones_0008A190(unsigned int x) { return 0xffffffffu - x; }
 struct E190 { void func_001D5AD0(); };
 struct R190 { int func_000377E0(); };
 struct T190 { char pad0[0x28]; float f28; char pad2c[0xc]; unsigned int c38; char pad3c[0x1c]; unsigned char b58; void func_001D5AD0(); };
@@ -285,6 +286,21 @@ struct C_0008ADF0 {
     void func_00157660();
 };
 
+
+int C_0008A190::func_0008A190()
+{
+ int i; for(i=0;i<12;i++) e34[i]->func_001D5AD0();
+ if(f128){e68->func_001D5AD0();e70->func_001D5AD0();}else{e64->func_001D5AD0();e6c->func_001D5AD0();}
+ if(f12c){e78->func_001D5AD0();e80->func_001D5AD0();}else{e74->func_001D5AD0();e7c->func_001D5AD0();}
+ for(i=0;i<6;i++)e84[i]->func_001D5AD0();
+ int n=r120->func_000377E0(); float v=(float)n*D_00279B5C; float t=D_00279B58*v;
+ T190 *o=t9c; if(t!=o->f28){o->f28=t;o->b58|=1;}
+ unsigned int col;
+ if(v<=D_00279B54){col=((int)(double(v)*D_00279B50)<<16)|0xff00ff00;}
+ else{int m=-(int)((v-D_00279B54)*D_00279B4C);col=(~(m<<8)&0xffffff00)|0xffff0000;}
+ o=t9c;unsigned int old=o->c38;o->c38=old^((o->c38^col)&0xffffff);o->b58|=2;
+ t9c->func_001D5AD0();return 1;
+}
 
 C_0008A2E0 *C_0008A2E0::func_0008A2E0(int a0) {
     func_00157600(1);
