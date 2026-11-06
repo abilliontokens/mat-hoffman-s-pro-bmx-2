@@ -60,6 +60,13 @@ extern int D_002A789C, D_002A78A0, D_002A78A4, D_002A78A8;
 struct Vec4_150900 {
     float x, y, z, w;
     __forceinline void reset_150F80(int *flag);
+ __forceinline Vec4_150900 &operator=(const Vec4_150900 &v) {
+ *(int*)&x=*(const int*)&v.x;*(int*)&y=*(const int*)&v.y;
+ *(int*)&z=*(const int*)&v.z;*(int*)&w=*(const int*)&v.w; return *this;
+ }
+ __forceinline void reset_150A80() {
+ *(int*)&x=D_002A789C;*(int*)&y=D_002A78A0;*(int*)&z=D_002A78A4;*(int*)&w=D_002A78A8;
+ }
 };
 extern float D_002A78BC;
 extern float D_002A78CC;
