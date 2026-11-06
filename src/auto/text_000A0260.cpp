@@ -6,7 +6,7 @@ struct Link_A0B { Link_A0B* func_00179820(int); void* func_0017A310(void*); };
 struct World_A0B { void func_0015D850(int,int,int,int,int,int,int,int,int); void func_0015DA60(int,int,void*); };
 struct Special_A0B { void** vt; Special_A0B* func_001C4F40(); int func_001C4F70(int,int,int,int,int,int,int); void func_001C4FA0(int); };
 struct Result_A0B { int x; Node_A0B* node; Special_A0B* special; Result_A0B* func_00193490(); };
-struct Sector_A0B { char pad[0x114]; int a; int b; int c; int d; int e; int f; void* data; int count; char rest[0x34]; };
+struct Sector_A0B { char pad[0x114]; int a; int b; int c; int d; void* data; int count; char rest[0x34]; };
 struct Edge_A0B { int x; char data[0x40]; int a,b; };
 struct Bounds_A0B { char pad[0x538]; int a,b,c,d; };
 struct Scene_A0B { void** vt; char pad[0x33c]; int count; Sector_A0B* sectors; int x348; int edges; int flag; char p354[0x30]; Edge_A0B* edge; Bounds_A0B* bounds; char p38c[0x118]; List_A0B* list; Node_A0B** nodes; Node_A0B** other; int *a,*b,*c,*d; int func_000A0BA0(); };
