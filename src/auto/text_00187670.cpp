@@ -18,7 +18,7 @@ struct S_00187670_Elem {
     virtual void v0(void *stream);
     virtual void v1(int a, int b);
     virtual void v2(int a, int b, int c, int d);
-    char pad4[0x4];
+    char pad4[0x8];
     S_00187670_Owner *fC;
 };
 
