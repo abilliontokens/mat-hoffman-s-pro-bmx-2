@@ -75,6 +75,23 @@ static __forceinline void cross_001619D0(float *out, float *a, float *b)
     _mm_storeu_ps(out, va);
 }
 
+/* same as cross_001619D0, but the pointer parameters are spilled to the stack (volatile) */
+static __forceinline void cross_00161AE0(float * volatile out, float * volatile a, float * volatile b)
+{
+    float *pa = a, *pb = b;
+    __m128 va = _mm_loadu_ps(pa);
+    __m128 vb = _mm_loadu_ps(pb);
+    __m128 sa = va, sb = vb;
+
+    sa = _mm_shuffle_ps(sa, sa, 0xc9);
+    sb = _mm_shuffle_ps(sb, sb, 0xc9);
+    vb = _mm_mul_ps(vb, sa);
+    va = _mm_mul_ps(va, sb);
+    va = _mm_sub_ps(va, vb);
+    va = _mm_shuffle_ps(va, va, 0xc9);
+    _mm_storeu_ps(out, va);
+}
+
 struct C_00161600 {
     undefined4 func_00161600(byte param_1);
 };
@@ -707,10 +724,11 @@ void func_00161930(V3_00161930 *a, V3_00161930 *n, V4_00161930 *out)
     func_001618A0(out, out);
 }
 
+#pragma optimize("y", on)
 void func_001619D0(V3_00161930 *a, V3_00161930 *b, V3_00161930 *c, V4_00161930 *out, float *d)
 {
-    V4_00161930 v2;
     V4_00161930 v1;
+    V4_00161930 v2;
     V4_00161930 *n;
 
     v1.w = 1.0f;
@@ -721,17 +739,13 @@ void func_001619D0(V3_00161930 *a, V3_00161930 *b, V3_00161930 *c, V4_00161930 *
     v2.x = b->x - a->x;
     v2.y = b->y - a->y;
     v2.z = b->z - a->z;
-    _mm_storeu_ps(&out->x, _mm_shuffle_ps(
-        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&v2.x), _mm_shuffle_ps(_mm_loadu_ps(&v1.x), _mm_loadu_ps(&v1.x), 0xc9)),
-                   _mm_mul_ps(_mm_loadu_ps(&v1.x), _mm_shuffle_ps(_mm_loadu_ps(&v2.x), _mm_loadu_ps(&v2.x), 0xc9))),
-        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&v2.x), _mm_shuffle_ps(_mm_loadu_ps(&v1.x), _mm_loadu_ps(&v1.x), 0xc9)),
-                   _mm_mul_ps(_mm_loadu_ps(&v1.x), _mm_shuffle_ps(_mm_loadu_ps(&v2.x), _mm_loadu_ps(&v2.x), 0xc9))), 0xc9));
+    cross_001619D0((float *)out, (float *)&v2, (float *)&v1);
     n = func_001618A0(out, out);
     if (d != 0) {
         *d = -(n->y * a->y + a->x * n->x + n->z * a->z);
     }
 }
-
+#pragma optimize("", on)
 S_Matrix16_00161AA0 func_00161AA0(float a1, float a2, float a3, float a4)
 {
     S_Matrix16_00161AA0 m;
