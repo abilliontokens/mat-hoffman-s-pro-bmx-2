@@ -1,5 +1,43 @@
 /* 4 functions from 0x0016F110 to 0x0016FEE0, found by Ghidra. */
 #include "common.h"
+struct Rdr6F110 {
+    char pad0[0x4d4];
+    void func_00168280();
+    void func_001691E0();
+    int func_00169490(char *a, int b);
+    void func_00169710(void *a);
+    void func_00168BE0(void *a, void *b, void *c, int d);
+    void func_00168C20(void *a, int b, void *c);
+    void func_00168C50(void *a, float b, void *c);
+    void func_00168A10(void *a, void *b);
+    void func_00168B90(void *a, void *b);
+};
+struct C_0016F110 {
+    char pad0[0x104];
+    void *f104;
+    char pad108[0x2c];
+    void *f134;
+    int *f138;
+    int f13c;
+    int *f140;
+    int f144;
+    int f148;
+    int *f14c;
+    int f150;
+    int func_0016F110(char *name);
+};
+extern char D_002A5558[];
+extern char D_00288A74[];
+extern int D_00277298;
+extern char D_00275630[];
+extern char D_00288A68[];
+extern char D_00288A5C[];
+extern char D_00288A50[];
+extern char D_00288A44[];
+void func_00030F30(char *a, void *b);
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+void *func_001E8A44(unsigned int n);
+
 struct S_0016FBC0_Node {
     float x,y,z;
     char padc[0x14];
@@ -95,5 +133,18 @@ void C_0016F7B0::func_0016F7B0(void)
     if (this->obj170) {
         this->obj170->func_00142560();
     }
+}
+
+int C_0016F800::func_0016F800(void)
+{
+    this->f144 = 0;
+    if (this->obj170->f) func_001D7D00();
+    if (this->count > 0) {
+        this->used = 0;
+        this->minb = 0x7fffffff;
+        this->maxb = 0;
+        this->frame++;
+    }
+    return 1;
 }
 
