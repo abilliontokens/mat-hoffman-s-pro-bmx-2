@@ -23,6 +23,16 @@ struct Object1C22C0 {
  Object1C22C0 *func_00164440(int,int);
  void func_001673B0(int,int,int,int,int);
 };
+extern "C" void * __cdecl memcpy(void *,const void *,unsigned int);
+static __forceinline void LoadName1C22C0(Config1C22C0 *cfg, Config1C22C0 *other, const char *key, char *dst, char *buf, int *id)
+{
+ memcpy(dst,D_00284A98,5);
+ if(cfg->func_00168C20(key,0,id) && *id>0){
+ func_001ADCC0(buf,0x100,D_00277268,*id);
+ other->func_00169710(buf);
+ other->func_00168550(D_0028E234,dst,0x100);
+ }
+}
 struct UIWidgetSoultreeCharacter {
  char pad0[0x28];
  int unk28;
@@ -343,10 +353,18 @@ void *C_001C19D0::func_001C19D0(int a1, int a2)
     func_001BF600(cfg);
     f28 = a2;
     char buf[0x104];
+    char *keys1[10];
+    keys1[0] = D_0028E1D4; keys1[1] = D_0028E1C4; keys1[2] = D_0028E1B0; keys1[3] = D_0028E19C;
+    keys1[4] = D_0028E18C; keys1[5] = D_0028E17C; keys1[6] = D_0028E16C; keys1[7] = D_0028E15C;
+    keys1[8] = D_0028E14C; keys1[9] = D_0027DE44;
     cfg->func_00168BE0(D_0028D998, D_0028D75C, buf, 0x104);
-    LoadSubK19D0(&f68, cfg, buf, D_0028E1D4, D_0028E1C4, D_0028E1B0, D_0028E19C, D_0028E18C, D_0028E17C, D_0028E16C, D_0028E15C, D_0028E14C, D_0027DE44);
+    LoadSub19D0(&f68, cfg, keys1, buf);
+    char *keys2[10];
+    keys2[0] = D_0028E120; keys2[1] = D_0028E10C; keys2[2] = D_0028E0F8; keys2[3] = D_0028E0E4;
+    keys2[4] = D_0028E0D4; keys2[5] = D_0028E0C0; keys2[6] = D_0028E0AC; keys2[7] = D_0028E09C;
+    keys2[8] = D_0028E08C; keys2[9] = D_0028E07C;
     cfg->func_00168BE0(D_0028E138, D_0028D75C, buf, 0x104);
-    LoadSubK19D0(&fCC, cfg, buf, D_0028E120, D_0028E10C, D_0028E0F8, D_0028E0E4, D_0028E0D4, D_0028E0C0, D_0028E0AC, D_0028E09C, D_0028E08C, D_0028E07C);
+    LoadSub19D0(&fCC, cfg, keys2, buf);
     return this;
 }
 
@@ -429,6 +447,72 @@ undefined4 C_001C22A0::func_001C22A0(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+extern "C" void * __cdecl memcpy(void *,const void *,unsigned int);
+UIWidgetSoultreeCharacter *UIWidgetSoultreeCharacter::func_001C22C0(int arg,char *path,Config1C22C0 *cfg)
+{
+ int id;
+ float v[4];
+ char buf[0x100];
+ func_001BF600(cfg);
+ Config1C22C0 *other=(Config1C22C0*)func_001E8A44(0x4cc);
+ if(other) other=other->func_00168280();
+ else other=0;
+ v[0]=1;v[1]=1;v[2]=1;v[3]=1;
+ cfg->func_00168CB0(D_00275AD4,v,v6C);
+ v[0]=0;v[1]=0;v[2]=1;v[3]=1;
+ cfg->func_00168CB0(D_00275AC8,v,v7C);
+ v[0]=0;v[1]=0;v[2]=1;v[3]=1;
+ cfg->func_00168CB0(D_0027CEE4,v,v8C);
+ other->func_00169490(path,0);
+ memcpy(str19C,D_00284A98,5);
+ if(cfg->func_00168C20(D_0028E23C,0,&id) && id>0){
+ func_001ADCC0(buf,0x100,D_00277268,id);
+ other->func_00169710(buf);
+ other->func_00168550(D_0028E234,str19C,0x100);
+ }
+ memcpy(str29C,D_00284A98,5);
+ if(cfg->func_00168C20(D_0028E220,0,&id) && id>0){
+ func_001ADCC0(buf,0x100,D_00277268,id);
+ other->func_00169710(buf);
+ other->func_00168550(D_0028E234,str29C,0x100);
+ }
+ memcpy(str9C,D_00284A98,5);
+ if(cfg->func_00168C20(D_0028E210,0,&id) && id>0){
+ func_001ADCC0(buf,0x100,D_00277268,id);
+ other->func_00169710(buf);
+ other->func_00168550(D_0028E234,str9C,0x100);
+ }
+ cfg->func_00168C20(D_0028E1F8,0,&count);
+ if(count>0){
+ strings=(char**)func_001E8AA5(count*4);
+ int i=0;
+ for(;i<count;){
+ strings[i]=(char*)func_001E8AA5(0x100);
+ int next=i+1;
+ func_001ADCC0(buf,0x100,D_0028E1E8,next);
+ if(cfg->func_00168C20(buf,0,&id)){
+ func_001ADCC0(buf,0x100,D_00277268,id);
+ other->func_00169710(buf);
+ other->func_00168550(D_0028E234,strings[i],0x100);
+ }
+ i=next;
+ }
+ }
+ if(other){other->func_001691E0();func_001E891B(other);}
+ unk28=arg;
+ Object1C22C0 *obj=(Object1C22C0*)func_001E8A44(0x244);
+ if(obj) obj=obj->func_00164440(1,1);
+ else obj=0;
+ unk68=obj;
+ obj->func_001673B0((int)path,0,1,1,1);
+ void *base;
+ if(!unk68) base=0;
+ else base=(char*)unk68+unk68->table[1];
+ func_001577A0(base,-1);
+ unk68->data[0x180]|=8;
+ return this;
 }
 
 void *C_001C2670::func_001C2670(int flags) {
