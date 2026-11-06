@@ -186,18 +186,18 @@ void func_0011F540(S_0011F4B0_V4 *out, S_0011F4B0_V4 pos, float *m)
 
 void func_0011F5A0(void *m, int a, int b, int c, int d, int e)
 {
-    volatile int saved[3];
+    volatile int saved[7];
     __declspec(align(16)) float tmp[16];
     int *mi = (int *)m;
 
-    saved[0] = mi[3];
-    saved[1] = mi[7];
-    saved[2] = mi[11];
+    saved[3] = mi[3];
+    saved[4] = mi[7];
+    saved[5] = mi[11];
     func_0011F400((int)tmp, a, b, c, d, e);
     func_0011ACC0(m, tmp, m);
-    mi[3] = saved[0];
-    mi[7] = saved[1];
-    mi[11] = saved[2];
+    mi[3] = saved[3];
+    mi[7] = saved[4];
+    mi[11] = saved[5];
 }
 
 void func_0011F610(S_0011F4B0_V4 *pts, int n, S_0011F4B0_V4 *mn, S_0011F4B0_V4 *mx)
