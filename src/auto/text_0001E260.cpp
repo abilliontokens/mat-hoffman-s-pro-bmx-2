@@ -144,11 +144,29 @@ struct C_0001EDD0 {
     void func_0001EDD0(int a0);
 };
 
+struct C_00197B40_0001EDE0 {
+    void func_00197B40(Vec4 *a, Vec4 *b);
+};
+
+struct C_0001EDE0_Owner {
+    char pad0[0x230];
+    C_00197B40_0001EDE0 *unk230;
+};
+
 struct C_0001EDE0 {
-    char pad0[0x58];
+    char pad0[0x28];
+    C_0001EDE0_Owner *unk28;
+    char pad2C[0x24];
+    int unk50;
+    char pad54[4];
     int unk58;
     int unk5C;
+    char pad60[0x98];
+    int unkF8;
+    char padFC[8];
+    Vec4 unk104;
     void func_0001EDE0(int a0, int a1);
+    Vec4 *func_0001EE00(Vec4 *out);
 };
 
 struct C_0001EDC0 {
