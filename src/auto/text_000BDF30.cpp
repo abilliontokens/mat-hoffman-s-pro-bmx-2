@@ -216,6 +216,10 @@ struct C_00136300 {
 
 struct C_0013B210 {
     void func_0013B340();
+    void func_0013C1D0(int f);
+    int func_0013D780(char *buf, int a, int b, int c, int d, int e, int f, int g);
+    void func_0013B260(int f);
+    void func_0013DFF0(char *buf, int f);
 };
 
 struct C_0018C120 {
