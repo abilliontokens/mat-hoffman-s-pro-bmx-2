@@ -37,6 +37,12 @@ struct S_00082790_Settings {
     float f[18];
     char rest[0x150 - 76];
 };
+
+struct S_00082790_Frame {
+    S_00082790_Settings s;
+    C_00082790_Ini ini;
+    char buf[0x104];
+};
 struct C_00082400 {
     void func_00082400(short param_1);
 };
