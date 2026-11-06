@@ -45,7 +45,7 @@ struct C_000D28D0 {
     char pad128[0x2C4 - 0x128];
     char name[0x104];
     char pad3C8[0x3E8 - 0x3C8];
-    void *flags[8];
+    int flags[8];
     char pad408[0x418 - 0x408];
     int selected;
     int f41C;
