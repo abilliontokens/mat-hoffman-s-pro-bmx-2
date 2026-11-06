@@ -152,9 +152,9 @@ static __forceinline void LoadSub19D0(Sub19D0 *s, Cfg19D0 *cfg, char **keys, cha
     float colOut[4];
     colIn[0] = 200.0f; colIn[1] = 200.0f; colIn[2] = 200.0f; colIn[3] = 1.0f;
     cfg->func_00168CB0(keys[9], colOut, colIn);
-    int packed = func_001E8858(colOut[1]) & 0xff;
-    packed = (packed << 8) | (func_001E8858(colOut[0]) & 0xff);
-    packed = (packed << 8) | (func_001E8858(colOut[2]) & 0xff);
+    int packed = (int)colOut[1] & 0xff;
+    packed = (packed << 8) | ((int)colOut[0] & 0xff);
+    packed = (packed << 8) | ((int)colOut[2] & 0xff);
     s->f38 = (s->f38 ^ packed) & 0xffffff ^ s->f38;
     s->f58 |= 2;
 }
