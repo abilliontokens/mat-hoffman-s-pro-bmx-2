@@ -2,6 +2,9 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+
+static __forceinline float Max_0012AAE0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float Min_0012AAE0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
 extern float D_002A3E34;
 extern float D_002A3E38;
@@ -449,11 +452,8 @@ void C_0012AAB0::func_0012AAB0(float param)
 
 void C_0012AAE0::func_0012AAE0(float param1, float param2)
 {
-    float r;
-    _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&D_00284038), _mm_set_ss(param1)));
-    f1fc = r;
-    _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&D_0028403C), _mm_set_ss(param2)));
-    f200 = r;
+    _mm_store_ss(&f1fc, _mm_max_ss(_mm_load_ss(&D_00284038), _mm_set_ss(param1)));
+    _mm_store_ss(&f200, _mm_min_ss(_mm_load_ss(&D_0028403C), _mm_set_ss(param2)));
     ((C_0012AAE0_VCall *)this)->v29(f1fc, f200);
 }
 
@@ -463,8 +463,12 @@ void C_0012AB70R::func_0012AB70(S_0012AB70Vec *param1, int param2, int param3, i
     if (param1 != 0) {
         f170 = *param1;
     }
-    Vec_Normalize(f180, param2);
-    Vec_Normalize(f190, param3);
+    if (param2 != 0) {
+        func_0012A380((char *)this + 0x180, param2);
+    }
+    if (param3 != 0) {
+        func_0012A380((char *)this + 0x190, param3);
+    }
     if (param4 != 0) {
         f1d4 = *param4;
     }
