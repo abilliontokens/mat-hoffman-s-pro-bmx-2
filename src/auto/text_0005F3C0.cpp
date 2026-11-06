@@ -1,6 +1,7 @@
 /* 10 functions from 0x0005F3C0 to 0x00060370, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <string.h>
 struct C_00060350 {
     char pad0[0x11C];
     int unk11C;
