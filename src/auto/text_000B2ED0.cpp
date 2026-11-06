@@ -28,6 +28,11 @@ struct C_000B2ED0 {
     S_2ED0_Item **f48;
     int f4C;
     int f50;
+    char pad54[4];
+    int f58;
+    char pad5C[8];
+    char f64[0x104];
+    char f168[0x104];
     void func_000B2ED0(S_2ED0_Rd *rd);
 };
 extern char D_0027D160[], D_002A5FA8[], D_002A5348[], D_002A5870[], D_0027D158[], D_0027D14C[], D_0027D144[], D_0027D138[], D_0027D124[], D_0027D114[], D_0027D104[], D_0027D0F4[];
