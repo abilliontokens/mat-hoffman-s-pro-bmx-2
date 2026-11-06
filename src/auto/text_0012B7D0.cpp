@@ -135,6 +135,7 @@ struct C_0012B8F0 {
     C_0012B8F0 *func_0012B8F0(void);
     void func_0012BF10(int idx, u32 *a, u32 *b, u32 *c, int *d);
     void func_0012C4E0(void);
+    void func_0012BF90(int i0, int i1, int i2, int i3, S_0012B950_Vec4 *a, S_0012B950_Vec4 *b, S_0012B950_Vec4 *c, float *d, float t);
 };
 
 int C_0012B7D0::func_0012B7D0(void *id, int a1, int a2, S_0012B7D0_Vec *a3, S_0012B7D0_Vec *a4) {
