@@ -172,6 +172,21 @@ void func_0011AC30(S_00129510_M44 *out, S_00129510_M44 *in);
 void func_0001C680(S_00129510_V4 *out, S_00129510_V4 v, S_00129510_M44 *m);
 void func_00128630(S_00129510_Node *nodes, S_00129510_Tri *tris, int count, S_00129510_V4 *verts, int start, int *index);
 
+static inline void Identity_00129510(S_00129510_M44 *p)
+{
+    float *f;
+
+    p->m[0] = _mm_setzero_ps();
+    p->m[1] = _mm_setzero_ps();
+    p->m[2] = _mm_setzero_ps();
+    p->m[3] = _mm_setzero_ps();
+    f = (float *)p;
+    f[0] = 1.0f;
+    f[5] = 1.0f;
+    f[10] = 1.0f;
+    f[15] = 1.0f;
+}
+
 static inline void Xform_00129510(S_00129510_V4 *out, const S_00129510_M44 *mat, const S_00129510_V4 *v)
 {
     __m128 t = _mm_loadu_ps(&v->x);
@@ -453,6 +468,65 @@ void func_001294E0(int a0, int a1, int a2, int a3, int a4) {
     int func_001293F0(...);
     D_002B92F4 = a4;
     func_001293F0(a0, a1, a2, a3);
+}
+
+void func_00129510(S_00129510_Node **a0, S_00129510_Leaf **a1, S_00129510_M44 *m, S_00129510_V4 *verts, int *tris, int ntri, int nverts)
+{
+    S_00129510_Tri *t;
+    S_00129510_M44 inv;
+    S_00129510_Node *nodes;
+    S_00129510_Col c;
+    S_00129510_V4 s;
+    S_00129510_V4 r;
+    float *f;
+    int idx;
+    int i;
+
+    t = (S_00129510_Tri *)func_001E8AA5(ntri * 0x34);
+    for (i = 0; i < ntri; i++) {
+        t[i].i0 = tris[i * 3];
+        t[i].i1 = tris[i * 3 + 1];
+        t[i].i2 = tris[i * 3 + 2];
+        func_001619D0(&verts[tris[i * 3]], &verts[tris[i * 3 + 1]], &verts[tris[i * 3 + 2]], &t[i].normal, &t[i].d);
+    }
+    m->m[0] = _mm_setzero_ps();
+    m->m[1] = _mm_setzero_ps();
+    m->m[2] = _mm_setzero_ps();
+    m->m[3] = _mm_setzero_ps();
+    f = (float *)m;
+    f[0] = 1.0f;
+    f[5] = 1.0f;
+    f[10] = 1.0f;
+    f[15] = 1.0f;
+    inv = *m;
+    func_0011AC30(&inv, &inv);
+    for (i = 0; i < nverts; i++) {
+        Xform_00129510(&verts[i], &inv, &verts[i]);
+    }
+    r.w = 1.0f;
+    for (i = 0; i < ntri; i++) {
+        func_0001C680(&t[i].normal, t[i].normal, &inv);
+        s.x = verts[t[i].i1].x + verts[t[i].i0].x + verts[t[i].i2].x;
+        s.y = verts[t[i].i0].y + verts[t[i].i1].y + verts[t[i].i2].y;
+        s.z = verts[t[i].i0].z + verts[t[i].i1].z + verts[t[i].i2].z;
+        r.x = s.x * D_00283F50;
+        r.y = s.y * D_00283F50;
+        r.z = s.z * D_00283F50;
+        t[i].center = r;
+    }
+    nodes = new S_00129510_Node[ntri];
+    *a0 = nodes;
+    *a1 = (S_00129510_Leaf *)func_001E8A44(ntri * 0x14);
+    idx = 0;
+    func_00128630(*a0, t, ntri, verts, 0, &idx);
+    for (i = 0; i < ntri; i++) {
+        (*a1)[i].i0 = (short)t[i].i0;
+        (*a1)[i].i1 = (short)t[i].i1;
+        (*a1)[i].i2 = (short)t[i].i2;
+        (*a1)[i].d = t[i].d;
+        (*a1)[i].col = *c.func_0001AF00(&t[i].normal);
+    }
+    func_001E8390(t);
 }
 
 BoxCollisionObject *BoxCollisionObject::func_00129840(int a0)
