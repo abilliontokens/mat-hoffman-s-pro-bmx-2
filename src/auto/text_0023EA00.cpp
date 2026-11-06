@@ -178,10 +178,6 @@ struct S_0023F119_Src {
     int func_0023EE30(int a);
 };
 
-static __forceinline unsigned int Wfx_AvgBytes(S_0023F119_Wfx *w)
-{
-    return w->nBlockAlign * w->nSamplesPerSec;
-}
 
 void func_001E891B(void *p);
 
