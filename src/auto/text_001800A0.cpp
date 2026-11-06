@@ -33,9 +33,13 @@ C_001804F0 *C_001804F0::func_001804F0(float *p) {
     float f0 = D_002F0798 * p[0];
     float f1 = D_002F0798 * p[1];
     float f2 = D_002F0798 * p[2];
-    unk0 = (short)(D_002891BC * f0);
-    unk2 = (short)(D_002891BC * f1);
-    unk4 = (short)(D_002891BC * f2);
+    int tmp;
+    FloatToInt(&tmp, D_002891BC * f0);
+    unk0 = (short)tmp;
+    FloatToInt(&tmp, D_002891BC * f1);
+    unk2 = (short)tmp;
+    FloatToInt(&tmp, D_002891BC * f2);
+    unk4 = (short)tmp;
     return this;
 }
 
@@ -69,4 +73,12 @@ void *C_00180DD0::func_00180DD0(unsigned int flags) {
     }
     return this;
 }
-
+#include <xmmintrin.h>
+extern float D_002755E8;
+struct V_1800 { float x,y,z,w; V_1800(){z=y=x=0;w=1;} V_1800(float a,float b,float c){x=a;y=b;z=c;w=1;} };
+struct RayCollisionObject { char pad[0xB0]; float matrix[16]; char padF0[12]; float *pFC; float *p100; void func_001800A0(float *out,float *extent); };
+extern "C" void func_0001C680(V_1800 *,V_1800,float *);
+static __forceinline float Abs1800(float f){int i=*(int *)&f & 0x7fffffff;return *(float *)&i;}
+static __forceinline V_1800 Add1800(float *a,float *b){return V_1800(a[0]+b[0],a[1]+b[1],a[2]+b[2]);}
+static __forceinline V_1800 Sub1800(float *a,float *b){return V_1800(a[0]-b[0],a[1]-b[1],a[2]-b[2]);}
+static __forceinline V_1800 Mul1800(V_1800 a){return V_1800(a.x*D_002755E8,a.y*D_002755E8,a.z*D_002755E8);}
