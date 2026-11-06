@@ -11,6 +11,8 @@ int __stdcall func_0025BBC0(int size);
 void __stdcall func_0025BC30(void *p);
 void __stdcall func_001E2F20(int a, unsigned int b);
 
+extern "C" double __cdecl atan(double);
+#pragma intrinsic(atan)
 extern "C" double __cdecl atan2(double, double);
 extern "C" double __cdecl cos(double);
 extern "C" double __cdecl sin(double);
@@ -78,5 +80,57 @@ void __stdcall func_001E3010(int size) {
         }
     }
     D_002F47DC = 0;
+}
+
+void func_001E30E0(int n, int *hdr, float *tab)
+{
+    int m;
+    int off;
+    int off2;
+    int j;
+    int k;
+    float step;
+    float c;
+    float x;
+
+    hdr[0] = n;
+    hdr[1] = 1;
+    if (n > 2) {
+        m = n >> 1;
+        step = (float)(atan2(D_002766B8, 1.0) / m);
+        tab[0] = 1.0f;
+        c = (float)cos(m * step);
+        tab[1] = c;
+        if (m >= 4) {
+            tab[2] = (float)(D_0027F710 / cos(step + step));
+            tab[3] = (float)(D_0027F710 / cos(step * D_002756C8));
+        }
+        for (j = 4; j < m; j += 4) {
+            x = j * step;
+            tab[j] = (float)cos(x);
+            tab[j + 1] = (float)sin(x);
+            x = x * D_002755EC;
+            tab[j + 2] = (float)cos(x);
+            tab[j + 3] = (float)sin(x);
+        }
+        off = 0;
+        while (m > 2) {
+            off2 = off + m;
+            m >>= 1;
+            tab[off2 + 1] = c;
+            tab[off2] = 1.0f;
+            if (m >= 4) {
+                tab[off2 + 2] = D_002755E8 / tab[off + 4];
+                tab[off2 + 3] = D_002755E8 / tab[off + 6];
+                for (k = 4; k < m; k += 4) {
+                    tab[off2 + k] = tab[off + 2 * k];
+                    tab[off2 + k + 1] = tab[off + 2 * k + 1];
+                    tab[off2 + k + 2] = tab[off + 2 * k + 2];
+                    tab[off2 + k + 3] = tab[off + 2 * k + 3];
+                }
+            }
+            off = off2;
+        }
+    }
 }
 
