@@ -24,6 +24,15 @@ struct TrigEntry {
 };
 extern TrigEntry *D_002CF6B4;
 
+struct S_0014E630_Holder {
+    char pad0[0x1ec];
+    int count;
+    int stride;
+    void *items;
+    void **out;
+};
+void *func_001E8AA5(unsigned int n);
+
 float func_00016D60(int x);
 
 /* resource loader object (0x21e4+ bytes), second base at +0x24 */
