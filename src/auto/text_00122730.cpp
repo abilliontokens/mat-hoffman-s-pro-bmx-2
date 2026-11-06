@@ -11,26 +11,32 @@ struct Vec4 {
 
 void func_00030AC0(float *out, float *v, float *m);
 
+struct S_00122810_V4 {
+    float x, y, z, w;
+};
+struct S_00122810_V3 {
+    float x, y, z, w;
+    S_00122810_V3() { z = 0; y = 0; x = 0; }
+};
+struct S_00122810_Box {
+    S_00122810_V4 min;
+    S_00122810_V4 max;
+};
+void func_0011F540(S_00122810_V3 *out, S_00122810_V4 pos, float *m);
+extern float D_002755E8;
+static __forceinline float Fabs_00122810(volatile float f)
+{
+    int i = *(volatile int *)&f & 0x7fffffff;
+    return *(float *)&i;
+}
+
 int func_00122730(float *p1, float r1, float *m1, float *p2, float r2, float *m2)
 {
     Vec4 a;
     Vec4 b;
-    float dz;
-    float dy;
-    float dx;
-    float sum;
-    float rr;
     float *q2;
     float *q1;
 
-    a.z = 0.0f;
-    a.y = 0.0f;
-    a.x = 0.0f;
-    a.w = 1.0f;
-    b.z = 0.0f;
-    b.y = 0.0f;
-    b.x = 0.0f;
-    b.w = 1.0f;
     if (m1 != 0) {
         q1 = &a.x;
         func_00030AC0(&a.x, p1, m1);
@@ -43,13 +49,9 @@ int func_00122730(float *p1, float r1, float *m1, float *p2, float r2, float *m2
     } else {
         q2 = p2;
     }
-    sum = r1 + r2;
-    rr = sum * sum;
-    dx = q2[0] - q1[0];
-    dy = q2[1] - q1[1];
-    dz = q2[2] - q1[2];
-    if (dz * dz + dy * dy + dx * dx <= rr) {
-        return 1;
-    }
-    return 0;
+    float sum = r1 + r2;
+    float dx = q2[0] - q1[0];
+    float dy = q2[1] - q1[1];
+    float dz = q2[2] - q1[2];
+    return dx * dx + dy * dy + dz * dz <= sum * sum ? 1 : 0;
 }
