@@ -170,7 +170,9 @@ void QuadTreeNode::func_0017CEB0(void *item)
     }
     n = D_002EFD80->f90->func_0001E8A0();
     z = (u32 *)n;
-    z[0] = z[1] = z[2] = z[3] = z[4] = 0;
+    for (i = 0; i < 5; i++) {
+        z[i] = 0;
+    }
     n->slot[0] = item;
     if (f8 == 0) {
         f8 = n;
