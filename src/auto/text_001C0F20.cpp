@@ -556,3 +556,4 @@ struct C_001C1520 {
     void func_001BF600(S_001C1520_Stream *stream);
     C_001C1520 *func_001C1520(int a, S_001C1520_Stream *stream, void *owner);
 };
+extern int D_0028D75C, D_0028DFD8, D_0028286C, D_0028DFD0, D_0028DFC8, D_0028DFBC;
