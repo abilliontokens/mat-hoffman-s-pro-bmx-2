@@ -1,6 +1,32 @@
 /* 8 functions from 0x00101280 to 0x00101CF0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+extern float D_002B91CC;
+extern float D_002B91C8;
+extern float D_002755E8;
+extern float D_00275460;
+struct C_00101280 {
+    char pad0[0x288];
+    int f288;
+    int f28C;
+    char pad290[0x2A4 - 0x290];
+    int f2A4;
+    float f2A8;
+    char pad2AC[0x3B4 - 0x2AC];
+    float f3B4;
+    char pad3B8[0x418 - 0x3B8];
+    int f418;
+    int f41C;
+    int f420;
+    float f424;
+    float f428;
+    char pad42C[0x450 - 0x42C];
+    int f450;
+    char pad454[0x45C - 0x454];
+    int f45C;
+    int func_00101280(float dt);
+};
+
 struct C_00101A30_Widget {
     void func_001B1980();
 };
