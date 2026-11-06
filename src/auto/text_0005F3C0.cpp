@@ -173,6 +173,7 @@ struct BmxInGameMenu {
     int unk128;
     int pad12C;
     int unk130;
+    void func_0005F3C0(void);
     void func_0005FBD0(void);
     void func_0005F960(void);
     void func_001578D0(void);
