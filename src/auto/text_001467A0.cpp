@@ -62,7 +62,10 @@ struct C_001B01B0 { void func_001B01B0(); };
 void __stdcall func_00200390(int a, int b);
 
 struct S_002EFDB8 {
-    char pad0[0x54];
+    char pad0[0x28];
+    int f28;
+    int f2C;
+    char pad30[0x54 - 0x30];
     int *f54;
     int *f58;
 };
