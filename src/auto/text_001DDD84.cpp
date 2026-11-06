@@ -38,6 +38,11 @@ extern unsigned short D_0028FB90[];
 extern unsigned short D_0028FBB0[];
 extern unsigned short D_0028FBD0[];
 extern char D_0000FEFF;
+
+static __forceinline unsigned short *SkipPast_001DDF52(unsigned short *q, int bytes)
+{
+    return (unsigned short *)((char *)q + bytes + 2);
+}
 int __stdcall func_001DF066(const char *name, int unused);
 int __stdcall func_001DF0D2(const char *name);
 int __stdcall func_001DD247(int h, const void *buf, unsigned int size, unsigned int *written, void *ovl);
@@ -236,19 +241,18 @@ int __stdcall func_001DDE64(int param_1)
 void __stdcall func_001DDE78(unsigned short *s, char *out, int unused)
 {
     unsigned __int64 acc;
-    int i;
-    int shift;
-    acc = 0;
-    while (*s != 0) {
-        acc = (acc * 0x10000 + *s) % (((unsigned __int64)0x0000FFFF << 32) | 0xFFFFFFC5);
-        s = s + 1;
+    memset(&acc, 0, sizeof(acc));
+    unsigned short ch;
+    while ((ch = *s) != 0) {
+        acc = (acc * 0x10000 + ch) % (((unsigned __int64)0xFFFF << 32) | 0xFFFFFFC5);
+        ++s;
     }
-    i = 11;
-    shift = 0;
+    int i = 11;
+    int shift = 0;
     do {
-        out[i] = (char)func_001DDE64((int)((acc >> shift) & 0xf));
-        shift = shift + 4;
-        i = i - 1;
+        out[i] = (char)func_001DDE64((int)((acc >> shift) & 15));
+        shift += 4;
+        --i;
     } while (shift <= 0x2c);
     out[12] = 0;
 }
@@ -270,10 +274,11 @@ int __stdcall func_001DDF52(int a0, void *a1, char *a2, int a3)
     int skipRead;
     int bytesRead;
     int result;
-    unsigned int nameLen;
+    int nameLen;
     unsigned short buf[0x8d];
     unsigned short *p;
     unsigned short *found;
+    unsigned short *endp;
     unsigned int total;
     unsigned int off;
     unsigned int rem;
@@ -323,21 +328,21 @@ int __stdcall func_001DDF52(int a0, void *a1, char *a2, int a3)
             continue;
         }
         p = found + nameLen + 1;
-        found = func_001EA9DD(p, D_0028FB88);
-        if (found == 0) {
+        endp = func_001EA9DD(p, D_0028FB88);
+        if (endp == 0) {
             partial = 1;
             p = buf;
             room = 0x8c;
             continue;
         }
-        x = found - p;
+        x = endp - p;
         n = a3 - 1;
         if (n >= x) {
             n = x;
         }
         func_001EA4A4((unsigned short *)a2, p, n);
         ((unsigned short *)a2)[n] = 0;
-        off = ((char *)found - (char *)buf) + 4;
+        off = ((char *)endp - (char *)buf) + 4;
         if (off < total) {
             func_001DD3A1(a0, off - total, 0, 1);
         }
