@@ -446,16 +446,10 @@ void BmxInGameMenu::func_00060220(void)
     unk104->unk158->func_001C4D50(0x1f4);
 }
 
-static __forceinline int peek_000602B0(volatile int *p)
-{
-    return *p;
-}
-
 void BmxInGameMenu::func_000602B0(void)
 {
     if (unk130 != 0) {
-        if (D_002A8490->f2E0->f4) {
-        }
+        (*(S_0005F3C0_2E0 * volatile *)&D_002A8490->f2E0)->f4;
         unk100 = 0;
         unk110 = 1;
         unk130 = 0;
