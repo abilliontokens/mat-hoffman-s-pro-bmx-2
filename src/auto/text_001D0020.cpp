@@ -25,6 +25,8 @@ extern const char D_0028F0C0[], D_0028F0B0[];
 extern "C" int func_001ADCC0(char *, int, const char *, ...);
 extern "C" void *func_001EA1A1(int, int);
 extern "C" void *func_001E8AA5(int);
+extern "C" unsigned int strlen(const char *);
+extern "C" char *strcpy(char *, const char *);
 struct C_001D0DE0 {
     undefined4 func_001D0DE0(byte param_1);
 };
