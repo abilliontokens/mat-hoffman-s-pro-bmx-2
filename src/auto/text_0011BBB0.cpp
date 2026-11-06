@@ -17,6 +17,36 @@ struct C_001334E0 {
     void func_001334F0(void *a);
 };
 
+struct V4_0011C3F0 {
+    float x, y, z, w;
+    V4_0011C3F0() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+};
+
+extern float D_00275548, D_00276278, D_00275460;
+extern V4_0011C3F0 D_002A3BDC;
+
+static __forceinline float Min_0011C3F0(float a, float b)
+{
+    float r;
+    _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b)));
+    return r;
+}
+
+struct S_0011C3F0_Smoother {
+    float f0;
+    float f4;
+    float f8;
+    float fC;
+    float f10;
+    float Update(float target, float dt)
+    {
+        float step = Min_0011C3F0(dt, f4);
+        f8 = D_00275460 / f4 * step;
+        f0 = (target - f0) * f8 + f0;
+        return f0;
+    }
+};
+
 struct C_0011CA60 {
     char pad0[0x24];
     S_0011CA20_V4 f24;
