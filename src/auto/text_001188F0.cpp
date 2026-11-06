@@ -11,6 +11,8 @@ struct Obj {
     char pad3[0xa04 - 0x954]; int ia04;
     char pad4[0x12a8 - 0xa08]; char c12a8;
     char pad5[0x159c - 0x12a9]; Sub* s159c; Sub* s15a0;
+    float GetF5E0(void) { return f5e0; }
+    float GetF5E4(void) { return f5e4; }
     void func_001188F0(int a);
     void func_00106810(int a, int b);
     void func_00119680(int a);
@@ -441,3 +443,43 @@ void Obj::func_001188F0(int arg)
         }
     }
 }
+
+#pragma optimize("y", on)
+void Obj::func_00119680(int a)
+{
+    static int h = D_002A7CB8->func_00026500(D_00283D34, -1);
+    if (*(int *)(p950 + 0xbc) != 0 && (c12a8 & 0x80))
+        func_001188F0(a);
+    int m = 0;
+    switch (mode) {
+    case 1:
+        m = 4;
+        break;
+    case 0:
+    case 5:
+        m = 1;
+        break;
+    case 2:
+    case 4:
+    case 7:
+        m = 2;
+        break;
+    case 3:
+    case 6:
+        m = 8;
+        break;
+    }
+    if (f5e0 > D_002756D0)
+        f5e0 -= D_002756B8;
+    else if (f5e0 < D_002756E8)
+        f5e0 += D_002756B8;
+    s159c->func_00199E30(D_002A3A4C, f5e0);
+    if (f5e4 > D_002756D0)
+        f5e4 -= D_002756B8;
+    else if (f5e4 < D_002756E8)
+        f5e4 += D_002756B8;
+    s15a0->func_00199E30(D_002A3A4C, f5e4);
+    func_00106810(ia04, m);
+}
+#pragma optimize("", on)
+
