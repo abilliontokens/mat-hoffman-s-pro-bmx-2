@@ -6,6 +6,7 @@ extern "C" void __cdecl _ReadWriteBarrier(void);
 #pragma intrinsic(sqrt)
 #pragma pack(push, 4)
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 #pragma pack(pop)
 
 float func_0014F510(float x);
@@ -140,14 +141,13 @@ V4_0011EE50 *func_0011EE50(V4_0011EE50 *out, V4_0011EE50 *in)
 
 V4_0011EE50 *func_0011EEE0(V4_0011EE50 *out, V4_0011EE50 *a, V4_0011EE50 *b)
 {
- V4_0011EE50 t;
- volatile float r;
- t.w=1.0f;
- _ReadWriteBarrier();
- _mm_store_ss((float *)&r,_mm_min_ss(_mm_set_ss(a->x),_mm_set_ss(b->x))); t.x=r; _ReadWriteBarrier();
- _mm_store_ss((float *)&r,_mm_min_ss(_mm_set_ss(a->y),_mm_set_ss(b->y))); t.y=r; _ReadWriteBarrier();
- _mm_store_ss((float *)&r,_mm_min_ss(_mm_set_ss(a->z),_mm_set_ss(b->z))); t.z=r;
- *out=t; return out;
+    V4_0011EE50 t;
+    t.w = 1.0f;
+    t.x = AsmMinF(a->x, b->x);
+    t.y = AsmMinF(a->y, b->y);
+    t.z = AsmMinF(a->z, b->z);
+    *out = t;
+    return out;
 }
 
 void func_0011F010(int a0, float x, float y, float z, float s, float c)
