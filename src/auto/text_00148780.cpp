@@ -575,16 +575,18 @@ void *C_001490F0::func_001490F0(unsigned int flags)
     return this;
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 void *C_00149120::func_00149120(int a0, int a1)
 {
     void *func_001E8A44(int);
     void __stdcall func_00011FF0(void *p, int a1, int a2, int *a3);
     func_001B07F0(a0, a1);
     *(volatile u32 *)&unk1C = (u32)&D_00284E94;
-    u32 fv = *(volatile u32 *)&unk8;
+    _ReadWriteBarrier();
     *(volatile void **)&vtbl = (void *)&D_00285C84;
     *(volatile u32 *)&unk1C = (u32)&D_00285C78;
-    int n = ((AnimSrc_00149120 *)fv)->count;
+    int n = unk8->count;
     void *p;
     if (n) {
         p = func_001E8A44(n * 0x14);
@@ -600,21 +602,20 @@ void *C_00149120::func_00149120(int a0, int a1)
     int cnt = src->count;
     for (int i = 0; i < cnt; i++) {
         unk20[i].a0 = src->arr[i].a0;
-        unk20[i].data = src->arr[i].data;
+        *(Anim_00149120_Data *)((int)unk20 + i * 0x14 + 4) = src->arr[i].data;
     }
     return this;
 }
-
 void *C_001491E0::func_001491E0(C_001491E0 *a0)
 {
     void *func_001E8A44(int);
     void __stdcall func_00011FF0(void *p, int a1, int a2, int *a3);
     func_001B08F0(a0);
     *(volatile u32 *)&unk1C = (u32)&D_00284E94;
-    volatile AnimSrc_00149120 *src = *(AnimSrc_00149120 * volatile *)&unk8;
+    _ReadWriteBarrier();
     *(volatile void **)&vtbl = (void *)&D_00285C84;
     *(volatile u32 *)&unk1C = (u32)&D_00285C78;
-    int n = src->count;
+    int n = unk8->count;
     void *p;
     if (n) {
         p = func_001E8A44(n * 0x14);
