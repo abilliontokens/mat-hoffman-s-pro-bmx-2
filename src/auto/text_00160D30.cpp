@@ -59,7 +59,7 @@ struct V3_00161930 {
 
 V4_00161930 *func_001618A0(V4_00161930 *out, V4_00161930 *in);
 
-static inline void cross_001619D0(float *out, float *a, float *b)
+static void cross_001619D0(float *out, float *a, float *b)
 {
     __m128 va = _mm_loadu_ps(a);
     __m128 vb = _mm_loadu_ps(b);
@@ -745,12 +745,16 @@ S_Matrix16_00161AA0 func_00161AE0(V4_00161930 a, V4_00161930 b, V4_00161930 c, f
     V4_00161930 v;
     S_Matrix16_00161AA0 m;
     S_Matrix16_00161AA0 r;
+    float *ptrs[3];
 
     v.x = 0.0f;
     v.y = 0.0f;
     v.z = 0.0f;
     v.w = 1.0f;
-    cross_001619D0(&v.x, &c.x, &b.x);
+    ptrs[0] = &v.x;
+    ptrs[1] = &c.x;
+    ptrs[2] = &b.x;
+    cross_001619D0(ptrs[0], ptrs[1], ptrs[2]);
     func_00162330(&m, &a, &v, &c, &b);
     if (angle != D_00275544) {
         r = func_001622C0(-angle);
