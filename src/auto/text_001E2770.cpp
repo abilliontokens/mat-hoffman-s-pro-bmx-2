@@ -127,7 +127,8 @@ extern "C" unsigned char _BitScanForward(unsigned long *Index, unsigned long Mas
 int __fastcall func_001E2770(unsigned long mask)
 {
     unsigned long index;
-    _BitScanForward(&index, mask);
+    if (!_BitScanForward(&index, mask))
+        return 0;
     return (int)index;
 }
 int __stdcall func_001E2774(const char *name)
@@ -273,7 +274,7 @@ int __stdcall func_001E285A(u32 *buffer, u32 *size, u32 value, unsigned int coun
 
 void Class_002901A0::func_001E29C5(unsigned int flags)
 {
-    ((C_00224F6E *)((char *)this - 8))->func_00224F6E(flags);
+    ((C_00224F6E *)(unsigned int)((__int64)(unsigned int)this - 8))->func_00224F6E(flags);
 }
 
 int __stdcall func_001E29CD(S_func_001E29CD_arg0 *obj)
@@ -281,9 +282,7 @@ int __stdcall func_001E29CD(S_func_001E29CD_arg0 *obj)
     int n = obj->f380;
     int b = obj->f384;
     float *p;
-    float *q;
     int v;
-    int w;
     double k;
 
     if (n >= b) {
@@ -325,33 +324,33 @@ int __stdcall func_001E29CD(S_func_001E29CD_arg0 *obj)
     }
     switch (b) {
     case 0x40:
-        w = obj->f424 + 0x100;
+        v = obj->f424 + 0x100;
         break;
     case 0x80:
-        w = obj->f420 + 0x200;
+        v = obj->f420 + 0x200;
         break;
     case 0x100:
-        w = obj->f41C + 0x400;
+        v = obj->f41C + 0x400;
         break;
     case 0x200:
-        w = obj->f418 + 0x800;
+        v = obj->f418 + 0x800;
         break;
     case 0x400:
-        w = obj->f414 + 0x1000;
+        v = obj->f414 + 0x1000;
         break;
     case 0x800:
-        w = obj->f410 + 0x2000;
+        v = obj->f410 + 0x2000;
         break;
     default:
         return 0x80040002;
     }
-    obj->f42C = w;
-    q = D_00252DE8[b >> 7];
-    obj->f36C = q[1];
-    obj->f370 = -q[0];
-    obj->f374 = q[1];
-    obj->f378 = q[0];
-    obj->f37C = (float)(q[8] * k);
+    obj->f42C = v;
+    p = D_00252DE8[b >> 7];
+    obj->f36C = p[1];
+    obj->f370 = -p[0];
+    obj->f374 = p[1];
+    obj->f378 = p[0];
+    obj->f37C = (float)(p[8] * k);
     return 0;
 }
 
