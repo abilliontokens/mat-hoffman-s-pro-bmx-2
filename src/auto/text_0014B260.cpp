@@ -85,7 +85,11 @@ static __forceinline void Xform_0014BA80(Vec4 *out, const M44_0014BA80 *mat, con
     _mm_storeu_ps(&out->x, lo);
     out->w = 1.0f;
 }
-static __forceinline float Abs_0014BA80(float f) { return fabsf(f); }
+static inline float Abs_0014BA80(float f)
+{
+    int i = *(int *)&f & 0x7fffffff;
+    return *(float *)&i;
+}
 #pragma auto_inline(off)
 struct DynamicRayCollisionObject {
     int func_0014B260(char *obj);
@@ -164,12 +168,11 @@ void DynamicRayCollisionObject::func_0014BA40(int param_1)
 void DynamicRayCollisionObject::func_0014BA80(Vec4 *centre, float *extent)
 {
     V4_0014BA80 axes[3];
+    V4_0014BA80 c;
     V4_0014BA80 a;
     V4_0014BA80 b;
     V4_0014BA80 mn(3.4028235e+38f, 3.4028235e+38f, 3.4028235e+38f, 1.0f);
     V4_0014BA80 mx(-3.4028235e+38f, -3.4028235e+38f, -3.4028235e+38f, 1.0f);
-    V4_0014BA80 t1, t2, t3, t4;
-    V4_0014BA80 *r;
     int i;
     for (i = 0; i < unkA8; i++) {
         if (fAC[i].a != 0) {
@@ -182,14 +185,10 @@ void DynamicRayCollisionObject::func_0014BA80(Vec4 *centre, float *extent)
         } else {
             b = *(V4_0014BA80 *)&fB0[i * 2 + 1];
         }
-        r = (V4_0014BA80 *)func_0011EEE0((Vec4 *)&t1, (Vec4 *)&mn, (Vec4 *)&b);
-        r = (V4_0014BA80 *)func_0011EEE0((Vec4 *)&t2, (Vec4 *)r, (Vec4 *)&a);
-        mn = *r;
-        r = (V4_0014BA80 *)func_0014AA70((Vec4 *)&t3, (Vec4 *)&mx, (Vec4 *)&b);
-        r = (V4_0014BA80 *)func_0014AA70((Vec4 *)&t4, (Vec4 *)r, (Vec4 *)&a);
-        mx = *r;
+        mn = func_0011EEE0(func_0011EEE0(mn, b), a);
+        mx = func_0014AA70(func_0014AA70(mx, b), a);
     }
-    V4_0014BA80 c((mx.x + mn.x) * D_002755E8, (mx.y + mn.y) * D_002755E8, (mx.z + mn.z) * D_002755E8, 1.0f);
+    c = V4_0014BA80((mx.x + mn.x) * D_002755E8, (mx.y + mn.y) * D_002755E8, (mx.z + mn.z) * D_002755E8, 1.0f);
     V4_0014BA80 h((mx.x - mn.x) * D_002755E8, (mx.y - mn.y) * D_002755E8, (mx.z - mn.z) * D_002755E8, 1.0f);
     f28 = *(Vec4 *)&c;
     float rad;
