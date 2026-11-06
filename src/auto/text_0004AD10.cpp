@@ -87,6 +87,82 @@ struct C_0004BA90 {
     undefined4 func_0004BA90(byte param_1);
 };
 
+#define VP4B(x) virtual void x##0(); virtual void x##1(); virtual void x##2(); virtual void x##3();
+struct V45Bmx {
+    VP4B(a) VP4B(b) VP4B(c) VP4B(d) VP4B(e) VP4B(f) VP4B(g) VP4B(h)
+    VP4B(i) VP4B(j) VP4B(k)
+    virtual void v44();
+};
+struct V8Bmx {
+    VP4B(a) VP4B(b)
+};
+struct V97Bmx {
+    VP4B(a) VP4B(b) VP4B(c) VP4B(d) VP4B(e) VP4B(f) VP4B(g) VP4B(h)
+    VP4B(i) VP4B(j) VP4B(k) VP4B(l) VP4B(m) VP4B(n) VP4B(o) VP4B(p)
+    VP4B(q) VP4B(r) VP4B(s) VP4B(t) VP4B(u) VP4B(v) VP4B(w) VP4B(x)
+    virtual void *y0(void *a);
+};
+struct S_4B760_Mgr {
+    VP4B(a) VP4B(b) VP4B(c) VP4B(d) VP4B(e) VP4B(f) VP4B(g) VP4B(h)
+    VP4B(i) VP4B(j) VP4B(k) VP4B(l) VP4B(m) VP4B(n) VP4B(o) VP4B(p)
+    VP4B(q) VP4B(r) VP4B(s) VP4B(t) VP4B(u) VP4B(v) VP4B(w) VP4B(x)
+    virtual void *y0(void *a);
+    char pad184[0x524 - 0x184];
+    void **f524;
+    char pad528[0x560 - 0x528];
+    int f560;
+};
+struct S_4B760_Item {
+    char pad0[4];
+    char *f4;
+    char pad8[0x78];
+    void **f80;
+    float f84;
+};
+struct S_4B760_Global {
+    char pad0[0x124];
+    int f124;
+    char pad128[0x1B8];
+    int *f2E0;
+};
+struct BmxEventFPS {
+    VP4B(a) VP4B(b) VP4B(c) VP4B(d) VP4B(e) VP4B(f) VP4B(g) VP4B(h)
+    VP4B(i) VP4B(j) VP4B(k)
+    virtual void v44();
+    char padB4[0x114 - 0xB4];
+    int f114;
+    char pad118[0x168 - 0x118];
+    char *f168;
+    char pad16C[0x284 - 0x16C];
+    char *f284;
+    char pad288[0x2C4 - 0x288];
+    float f2C4;
+    char *f2C8;
+    char *f2CC;
+    char *f2D0;
+    int f2D4;
+    int f2D8;
+    int f2DC;
+    int f2E0;
+    char *f2E4;
+    char *f2E8;
+    void func_00031260(float dt);
+    void func_0004A360();
+    void func_0004A590();
+    void func_0004A6A0();
+    void func_0004B760(float dt);
+};
+extern S_4B760_Global *D_002A8490;
+extern S_4B760_Mgr *D_002B9120;
+extern char D_00277140[];
+extern float D_00275544;
+int func_0005C0A0(void *a);
+void func_001394F0(char *a, int b);
+void func_001983A0(void *a);
+void func_001670C0(char *a, float b, int c, int d);
+void func_0019AC50(void *a);
+void func_000788D0(void *a);
+
 
 undefined4 C_0004BA90::func_0004BA90(byte param_1)
 {
