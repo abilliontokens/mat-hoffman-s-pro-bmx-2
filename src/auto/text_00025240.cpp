@@ -122,7 +122,8 @@ struct C_00168B90 {
     int func_00168B90(const char *name, void *out);
 };
 
-extern float D_00275544, D_00276520;
+extern float D_00275544;
+extern const float D_00276520;
 extern char D_002A0F74[];
 int func_001E8858(float f);
 extern "C" double __cdecl sqrt(double);
@@ -309,8 +310,10 @@ static __forceinline void Normalize_00025980(float *volatile outArg, const float
     _mm_storeu_ps(out, _mm_mul_ps(scale, v));
 }
 
-void C_000255D0::func_000255D0(Vec4_257E0 *pos, float radius, float t, int chance)
+void C_000255D0::func_000255D0(Vec4_257E0 * volatile pos, float radius, float t, int chance)
 {
+    C_000255D0 * volatile self = this;
+    C_000255D0 *p;
     int hits;
     int id;
     int i;
@@ -319,52 +322,59 @@ void C_000255D0::func_000255D0(Vec4_257E0 *pos, float radius, float t, int chanc
     int idx[6];
 
     if (t != D_00275544) {
-        f58 = D_002A8490->unk238 - (int)(t * D_00276520);
-        f74 = *pos;
-        f24 = radius;
+        f58 = D_002A8490->unk238 - (int)(D_00276520 * t);
+        self->f74 = *pos;
+        self->f24 = radius;
         return;
     }
     hits = 0;
     id = -1;
-    for (i = 0; i < f30; i++) {
-        if (f60[i]->f79 == 0) {
-            float dx = f60[i]->f5c - pos->x;
-            float dy = f60[i]->f60 - pos->y;
-            float dz = f60[i]->f64 - pos->z;
+    p = this;
+    for (i = 0; i < p->f30; i++, p = self) {
+        if (p->f60[i]->f79 == 0) {
+            Vec4_257E0 *q = pos;
+            float dx = p->f60[i]->f5c - q->x;
+            float dy = p->f60[i]->f60 - q->y;
+            float dz = p->f60[i]->f64 - q->z;
             float d = (float)sqrt(dx * dx + dy * dy + dz * dz);
             if (d < radius) {
-                f60[i]->func_000235C0();
-                f60[i]->f34--;
-                f60[i]->func_00023340();
-                f60[i]->f79 = 1;
-                f60[i]->f78 = 0;
-                id = f60[i]->f44;
+                self->f60[i]->func_000235C0();
+                self->f60[i]->f34--;
+                self->f60[i]->func_00023340();
+                self->f60[i]->f79 = 1;
+                self->f60[i]->f78 = 0;
+                p = self;
+                id = p->f60[i]->f44;
                 hits++;
             }
         }
     }
     if (hits != 0 && id != -1) {
         n = 0;
-        for (i = 0; i < f40; i++) {
-            if (f5c[i]->id == id) {
+        for (i = 0; i < p->f40; i++) {
+            if (p->f5c[i]->id == id) {
                 idx[n++] = i;
                 if (n >= 6) {
                     break;
                 }
             }
         }
-        if ((chance == 0 || func_00011260(1, 100) <= 50) && n != 0) {
-            if (n == 1) {
-                k = 0;
-            } else {
-                k = func_00011260(0, n - 1);
-                if (k < 0) {
-                    return;
+        if (chance == 0 || func_00011260(1, 100) <= 50) {
+            p = self;
+            if (n != 0) {
+                if (n == 1) {
+                    k = 0;
+                } else {
+                    k = func_00011260(0, n - 1);
+                    if (k < 0) {
+                        return;
+                    }
                 }
+                p = self;
+                k = idx[k];
+                D_002A8490->unk4->func_0001CE80(p->f5c[k]->f4, pos, D_002A0F74, 4.0f, 100.0f);
+                self->f5c[k]->f4->v5(4);
             }
-            k = idx[k];
-            D_002A8490->unk4->func_0001CE80(f5c[k]->f4, pos, D_002A0F74, 4.0f, 100.0f);
-            f5c[k]->f4->v5(4);
         }
     }
 }
