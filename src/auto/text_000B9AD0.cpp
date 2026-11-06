@@ -143,6 +143,26 @@ struct BmxUIMain {
     void *func_000BA2A0(unsigned int flags);
 };
 
+struct V_B9D90 {
+    virtual void vf0(); virtual void vf1(); virtual void vf2(); virtual void vf3();
+    virtual void vf4(); virtual void vf5(); virtual void vf6(); virtual void vf7();
+    virtual void vf8(); virtual void vf9(); virtual void vf10(); virtual void vf11();
+    virtual void vf12(); virtual void vf13(); virtual void vf14(); virtual void vf15();
+    virtual void vf16(); virtual void vf17(); virtual void vf18(); virtual void vf19();
+    virtual void vf20(); virtual void vf21(); virtual void vf22(); virtual void vf23();
+    virtual void vf24(); virtual void vf25(); virtual void vf26(); virtual void vf27();
+    virtual void vf28(); virtual void vf29(); virtual void vf30();
+    virtual V_000B9D50 *vf31(void *, int, void *);
+};
+#define MK_CTOR(a) struct C_##a { void *func_##a(int); };
+MK_CTOR(000C44C0) MK_CTOR(000D0E00) MK_CTOR(000CC700) MK_CTOR(000C85B0)
+MK_CTOR(000C8F30) MK_CTOR(000D4D20) MK_CTOR(000CB480) MK_CTOR(000C58E0)
+MK_CTOR(000C6620) MK_CTOR(000C77D0) MK_CTOR(000DA210) MK_CTOR(000DB5B0)
+MK_CTOR(000DD030) MK_CTOR(000DE4D0) MK_CTOR(000E0D50) MK_CTOR(000D5D40)
+MK_CTOR(000D6C90) MK_CTOR(000D7AB0) MK_CTOR(000D8C70) MK_CTOR(000E1770)
+MK_CTOR(000E2030) MK_CTOR(000EA910) MK_CTOR(000E4830) MK_CTOR(000EB370)
+MK_CTOR(000EBCF0) MK_CTOR(000ECF80) MK_CTOR(000BFE90) MK_CTOR(000EE230)
+MK_CTOR(000F0C40) MK_CTOR(000BFB70) MK_CTOR(000F1D00) MK_CTOR(000D9820)
 struct C_000BA2D0 {
     char pad0[0x110];
     int count;
