@@ -43,6 +43,11 @@ typedef void (__fastcall *VFn_000988B0)(void *);
 #define P4(p, o) (*(char **)((char *)(p) + (o)))
 #define VCALL(o, off) ((VFn_000988B0)(*(void ***)(o))[(off) / 4])(o)
 
+typedef void (__fastcall *VFn_000988B0)(void *);
+#define I4(p, o) (*(int *)((char *)(p) + (o)))
+#define P4(p, o) (*(char **)((char *)(p) + (o)))
+#define VCALL(o, off) ((VFn_000988B0)(*(void ***)(o))[(off) / 4])(o)
+
 struct Vobj_000988B0 {
     virtual void v00();
     virtual void v04();
