@@ -161,6 +161,8 @@ extern "C" char D_000B1E50[];
 extern "C" char D_000B1E60[];
 extern "C" char D_000B1E70[];
 
+union B4300_Callback { B4300_Cb cb; void *p; };
+
 inline B4300_Cb B4300_CbOf(void *p)
 {
     union { void *p; B4300_Cb f; } u;
