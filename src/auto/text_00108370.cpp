@@ -330,6 +330,7 @@ extern int D_002B9108;
 extern float D_00282AC4;
 extern float D_00282AC8;
 float *func_0001E9E0(float *out, float *in);
+S_001091D0_V *func_0001E9E0(S_001091D0_V *out, const S_001091D0_V &in);
 
 struct S_001089C0_Cam {
     Vec4_00108370 func_00165E20(void *a1, int a2, char *a3, void *a4);
@@ -730,8 +731,7 @@ int C_001091D0::func_001091D0(void)
     a = *(S_001091D0_V *)func_0001E9E0((float *)&b, (float *)&a);
     b = f874;
     func_0001E9E0((float *)&o, (float *)&b);
-    S_001091D0_Ref *ref = f1e8->f1d8;
-    if (ref != 0 && ref->f68 == D_002B9108) {
+    if (f1e8->f1d8 != 0 && f1e8->f1d8->f68 == D_002B9108) {
         if (f874.y > D_00282AC8 && a.y > D_00282AC8) {
             return 1;
         }
