@@ -320,7 +320,7 @@ struct S_001C1520_Sprite {
     float f30;
     float f34;
     unsigned rgb : 24;
-    unsigned alpha : 8;
+    int alpha : 8;
     float f3c;
     float f40;
     float f44;
