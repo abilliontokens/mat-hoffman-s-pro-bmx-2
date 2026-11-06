@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <xmmintrin.h>
 #include <string.h>
+#include "asm_helpers.h"
 
 struct S_00161040_Global {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
@@ -425,71 +426,55 @@ void __fastcall func_00161170(int unused, S_00161170 *table)
 
 void func_001611C0(char *out, void *data, int size)
 {
-    unsigned int prev;
-    char *p = out;
+    S_001611C0_State state;
     S_001611C0_BitReader br;
-    S_00161170 table[1365];
-    unsigned int code;
+    S_00161170 table[0x8900];
+    unsigned int code, len, c, n, idx, hi, lo;
     int first;
-    unsigned int len;
-    unsigned int c;
-    unsigned int n;
-    unsigned int idx;
-    unsigned int hi;
-    unsigned int lo;
-    char *sbuf = D_002E2980;
-
+    state.out = out;
     br.func_0001E3F0((u32 *)data, size * 8, 0);
     br.func_0001E550(0x20);
     func_00161170(0, table);
-    prev = br.func_0001E550(D_002E2978);
-    while (prev != 0x100) {
-        *p++ = (char)prev;
-        first = prev;
+    state.prev = br.func_0001E550(D_002E2978);
+    while (state.prev != 0x100) {
+        *state.out++ = (char)state.prev;
+        first = state.prev;
         for (;;) {
             code = br.func_0001E550(D_002E2978);
-            if (code == 0x100) {
-                goto done;
-            }
-            if (code == 0x102) {
-                break;
-            }
-            if (code == 0x101) {
-                D_002E2978++;
-                continue;
-            }
+            if (code == 0x100) goto done;
+            if (code == 0x102) break;
+            if (code == 0x101) { D_002E2978++; continue; }
             if (code >= D_002EB254) {
-                sbuf[0] = (char)first;
+                D_002E2980[0] = (char)first;
                 len = 1;
-                c = prev;
+                c = state.prev;
+                while (c > 0xff) {
+                    hi = c >> 8; lo = c & 0xff; idx = (hi << 8) + lo;
+                    D_002E2980[len] = table[idx].unk8;
+                    c = table[idx].unk4;
+                    len++;
+                }
             } else {
-                len = 0;
-                c = code;
+                len = 0; c = code;
+                while (c > 0xff) {
+                    hi = c >> 8; lo = c & 0xff; idx = (hi << 8) + lo;
+                    D_002E2980[len] = table[idx].unk8;
+                    c = table[idx].unk4;
+                    len++;
+                }
             }
-            while (c > 0xff) {
-                hi = c >> 8;
-                lo = c & 0xff;
-                idx = (hi << 8) + lo;
-                sbuf[len] = table[idx].unk8;
-                len++;
-                c = table[idx].unk4;
-            }
-            sbuf[len] = (char)c;
+            D_002E2980[len] = (char)c;
             n = len + 1;
             first = D_002E297F[n];
-            for (; n > 0; n--) {
-                *p++ = D_002E297F[n];
-            }
-            hi = D_002EB254 >> 8;
-            lo = D_002EB254 & 0xff;
-            idx = (hi << 8) + lo;
-            table[idx].unk4 = prev;
+            for (; n > 0; n--) *state.out++ = D_002E297F[n];
+            hi = D_002EB254 >> 8; lo = D_002EB254 & 0xff; idx = (hi << 8) + lo;
+            table[idx].unk4 = state.prev;
             table[idx].unk8 = (char)first;
             D_002EB254++;
-            prev = code;
+            state.prev = code;
         }
         func_00161170(0, table);
-        prev = br.func_0001E550(D_002E2978);
+        state.prev = br.func_0001E550(D_002E2978);
     }
 done:
     br.func_0001E460();
@@ -689,6 +674,10 @@ void *C_00161870::func_00161870(unsigned int flags)
         func_001E891B(this);
     }
     return this;
+}
+
+void func_001618A0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
 void func_00161910(float a, float *s, float *c)
