@@ -76,7 +76,9 @@ static __forceinline int Clamp_00013A40(const char *s)
     volatile int len = strlen(s);
     volatile int lim = 0x103;
     volatile int res;
-    res = lim > len ? len : lim;
+    int a = lim, b = len;
+    int t = a > b ? b : a;
+    res = t;
     return res;
 }
 inline int MinV_00013A40(int a, int b) { return a > b ? b : a; }
