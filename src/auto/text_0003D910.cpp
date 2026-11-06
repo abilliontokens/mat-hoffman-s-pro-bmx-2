@@ -1,7 +1,7 @@
 /* 2 functions from 0x0003D910 to 0x0003E660, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
-struct V4 { float x, y, z, w; };
+struct V4 { float x, y, z, w; void identity(); };
 struct Blk { char pad[0x358]; int w; int h; int d; char pad2[4]; int flag; };
 struct Q { char pad[0x28]; void func_00197E70(V4*); void func_00197B40(V4*, V4*); };
 struct Sub { int a; int b; Q* q; };
@@ -158,7 +158,7 @@ void C_0003D910::func_0003D910(int a0)
             f564->f8->func_00198F50(&v4FC, &v50C, 0, 1, 0);
             f564->f8->func_0019AC50();
             if (f568 != 0) {
-                func_000265C0(&v4EC, (V4 *)(L + 4), &v4FC, &v50C, 0, 1);
+                func_000265C0((V4 *)(L + 4), &v4EC, &v4FC, &v50C, 0, 1);
                 f568->func_00133EF0((V4 *)(L + 4));
             }
             f564->f8->func_001824E0((V4 *)L, 1.0f, 1.0f, 1.0f);
@@ -182,7 +182,7 @@ void C_0003D910::func_0003D910(int a0)
             f564->f8->func_00198F50(&v4FC, &v50C, 0, 1, 0);
             f564->f8->func_0019AC50();
             if (f568 != 0) {
-                func_000265C0(&v4EC, (V4 *)(L + 4), &v4FC, &v50C, 0, 1);
+                func_000265C0((V4 *)(L + 4), &v4EC, &v4FC, &v50C, 0, 1);
                 f568->func_00133EF0((V4 *)(L + 4));
             }
             f564->f8->func_001824E0((V4 *)L, 1.0f, 1.0f, 1.0f);
@@ -199,8 +199,10 @@ void C_0003D910::func_0003D910(int a0)
             }
         }
         int i;
-        for (i = 0; i < f564->f14; i++) {
-            f64->f530->func_0015A250(f564->f18[i]);
+        if (f564->f14 > 0) {
+            for (i = 0; i < f564->f14; i++) {
+                f64->f530->func_0015A250(f564->f18[i]);
+            }
         }
         f48C = -1;
         f564 = 0;
@@ -232,10 +234,12 @@ void C_0003D910::func_0003D910(int a0)
         *(int *)&p->w = D_002A14E0;
         if (f564->a == 0) {
             int i;
-            for (i = 0; i < f564->f14; i++) {
-                f64->f530->func_0015A180(f564->f18[i]);
+            if (f564->f14 > 0) {
+                for (i = 0; i < f564->f14; i++) {
+                    f64->f530->func_0015A180(f564->f18[i]);
+                }
+                func_001E891B(f564->f18);
             }
-            func_001E891B(f564->f18);
             f564->f8->func_00198E60();
             f564->f8->func_00157810();
             f564->f8->nv2();
@@ -281,10 +285,12 @@ void C_0003D910::func_0003D910(int a0)
             f564->f4 = 0;
         } else if (f564->a > 2) {
             int i;
-            for (i = 0; i < f564->f14; i++) {
-                f64->f530->func_0015A180(f564->f18[i]);
+            if (f564->f14 > 0) {
+                for (i = 0; i < f564->f14; i++) {
+                    f64->f530->func_0015A180(f564->f18[i]);
+                }
+                func_001E891B(f564->f18);
             }
-            func_001E891B(f564->f18);
             f564->f8->func_00198E60();
             f564->f8->func_00157810();
             f564->f8->nv2();
@@ -303,15 +309,15 @@ void C_0003D910::func_0003D910(int a0)
         int idx56C = -1;
         int idx570 = -1;
         int i;
-        for (i = f5B4 - 1; i > -1; i--) {
+        for (i = f5B4 - 1; i >= 0; i--) {
             int e = (f5B4 < 1 || f5B8 == 0 || f5B4 <= i) ? 0 : f5B8[i];
             if (f568 == (NodeD *)e) { idx568 = i; break; }
         }
-        for (i = f5B4 - 1; i > -1; i--) {
+        for (i = f5B4 - 1; i >= 0; i--) {
             int e = (f5B4 < 1 || f5B8 == 0 || f5B4 <= i) ? 0 : f5B8[i];
             if (f56C == (NodeD *)e) { idx56C = i; break; }
         }
-        for (i = f5B4 - 1; i > -1; i--) {
+        for (i = f5B4 - 1; i >= 0; i--) {
             int e = (f5B4 < 1 || f5B8 == 0 || f5B4 <= i) ? 0 : f5B8[i];
             if (f570 == (NodeD *)e) { idx570 = i; break; }
         }
@@ -319,15 +325,15 @@ void C_0003D910::func_0003D910(int a0)
             f5A4[f48C] = f5A4[f5A0 - 1];
             f5A0 = f5A0 - 1;
         }
-        if (idx570 > -1 && f5B4 > 0 && f5B8 != 0 && idx570 < f5B4) {
+        if (idx570 >= 0 && f5B4 > 0 && f5B8 != 0 && idx570 < f5B4) {
             f5B8[idx570] = f5B8[f5B4 - 1];
             f5B4 = f5B4 - 1;
         }
-        if (idx56C > -1 && f5B4 > 0 && f5B8 != 0 && idx56C < f5B4) {
+        if (idx56C >= 0 && f5B4 > 0 && f5B8 != 0 && idx56C < f5B4) {
             f5B8[idx56C] = f5B8[f5B4 - 1];
             f5B4 = f5B4 - 1;
         }
-        if (idx568 > -1 && f5B4 > 0 && f5B8 != 0 && idx568 < f5B4) {
+        if (idx568 >= 0 && f5B4 > 0 && f5B8 != 0 && idx568 < f5B4) {
             f5B8[idx568] = f5B8[f5B4 - 1];
             f5B4 = f5B4 - 1;
         }
