@@ -44,45 +44,50 @@ inline void *operator new(unsigned int, void *place) { return place; }
 struct V4_0002B1C0 {
     float x, y, z, w;
     V4_0002B1C0() { x = y = z = 0.0f; w = 1.0f; }
+    void Init() { x = y = z = 0.0f; w = 1.0f; }
 };
+
+#define V4_AT(off) ((V4_0002B1C0 *)((char *)p + (off)))
+#define V4_CPY(off, src) (*V4_AT(off) = *(V4_0002B1C0 *)&(src))
 
 void *C_0002C100::func_0002B1C0(int param)
 {
     unsigned int * volatile p = (unsigned int *)this;
     unsigned int *q;
+    V4_0002B1C0 *q4;
     int i;
     S_0002B1C0_Mat mat1;
     S_0002B1C0_Mat mat2;
     func_00157600(param);
     p[0] = (unsigned int)&D_0027661C;
-    p[0xd] = 0; p[0xc] = 0; p[0xb] = 0; p[0xe] = 0x3f800000;
-    p[0x11] = 0; p[0x10] = 0; p[0xf] = 0; p[0x12] = 0x3f800000;
-    q = p + 0x13; i = 3;
-    do { q[2] = 0; q[1] = 0; q[0] = 0; q[3] = 0x3f800000; q = q + 4; i = i - 1; } while (i != 0);
-    p[0x21] = 0; p[0x20] = 0; p[0x1f] = 0; p[0x22] = 0x3f800000;
-    p[0x25] = 0; p[0x24] = 0; p[0x23] = 0; p[0x26] = 0x3f800000;
-    p[0x29] = 0; p[0x28] = 0; p[0x27] = 0; p[0x2a] = 0x3f800000;
-    p[0x2d] = 0; p[0x2c] = 0; p[0x2b] = 0; p[0x2e] = 0x3f800000;
-    p[0x31] = 0; p[0x30] = 0; p[0x2f] = 0; p[0x32] = 0x3f800000;
-    p[0x35] = 0; p[0x34] = 0; p[0x33] = 0; p[0x36] = 0x3f800000;
-    p[0x39] = 0; p[0x38] = 0; p[0x37] = 0; p[0x3a] = 0x3f800000;
-    p[0x3d] = 0; p[0x3c] = 0; p[0x3b] = 0; p[0x3e] = 0x3f800000;
-    p[0x41] = 0; p[0x40] = 0; p[0x3f] = 0; p[0x42] = 0x3f800000;
-    p[0x45] = 0; p[0x44] = 0; p[0x43] = 0; p[0x46] = 0x3f800000;
-    p[0x49] = 0; p[0x48] = 0; p[0x47] = 0; p[0x4a] = 0x3f800000;
-    p[0x4d] = 0; p[0x4c] = 0; p[0x4b] = 0; p[0x4e] = 0x3f800000;
-    q = p + 0x4f; i = 2;
-    do { q[2] = 0; q[1] = 0; q[0] = 0; q[3] = 0x3f800000; q = q + 4; i = i - 1; } while (i != 0);
-    p[0x151] = 0; p[0x150] = 0; p[0x14f] = 0; p[0x152] = 0x3f800000;
-    p[0x155] = 0; p[0x154] = 0; p[0x153] = 0; p[0x156] = 0x3f800000;
-    p[0x159] = 0; p[0x158] = 0; p[0x157] = 0; p[0x15a] = 0x3f800000;
-    p[0x15e] = 0; p[0x15d] = 0; p[0x15c] = 0; p[0x15f] = 0x3f800000;
-    p[0x1a4] = 0; p[0x1a3] = 0; p[0x1a2] = 0; p[0x1a5] = 0x3f800000;
-    p[0x1b5] = 0; p[0x1b4] = 0; p[0x1b3] = 0; p[0x1b6] = 0x3f800000;
-    p[0x1b9] = 0; p[0x1b8] = 0; p[0x1b7] = 0; p[0x1ba] = 0x3f800000;
-    p[0x1d4] = 0; p[0x1d3] = 0; p[0x1d2] = 0; p[0x1d5] = 0x3f800000;
-    p[0x1d8] = 0; p[0x1d7] = 0; p[0x1d6] = 0; p[0x1d9] = 0x3f800000;
-    p[0x1dc] = 0; p[0x1db] = 0; p[0x1da] = 0; p[0x1dd] = 0x3f800000;
+    new ((char *)p + 0x2c) V4_0002B1C0;
+    new ((char *)p + 0x3c) V4_0002B1C0;
+    q4 = (V4_0002B1C0 *)((char *)p + 0x4c); i = 3;
+    do { new (q4) V4_0002B1C0; q4 = q4 + 1; i = i - 1; } while (i != 0);
+    new ((char *)p + 0x7c) V4_0002B1C0;
+    new ((char *)p + 0x8c) V4_0002B1C0;
+    new ((char *)p + 0x9c) V4_0002B1C0;
+    new ((char *)p + 0xac) V4_0002B1C0;
+    new ((char *)p + 0xbc) V4_0002B1C0;
+    new ((char *)p + 0xcc) V4_0002B1C0;
+    new ((char *)p + 0xdc) V4_0002B1C0;
+    new ((char *)p + 0xec) V4_0002B1C0;
+    new ((char *)p + 0xfc) V4_0002B1C0;
+    new ((char *)p + 0x10c) V4_0002B1C0;
+    new ((char *)p + 0x11c) V4_0002B1C0;
+    new ((char *)p + 0x12c) V4_0002B1C0;
+    q4 = (V4_0002B1C0 *)((char *)p + 0x13c); i = 2;
+    do { new (q4) V4_0002B1C0; q4 = q4 + 1; i = i - 1; } while (i != 0);
+    new ((char *)p + 0x53c) V4_0002B1C0;
+    new ((char *)p + 0x54c) V4_0002B1C0;
+    new ((char *)p + 0x55c) V4_0002B1C0;
+    new ((char *)p + 0x570) V4_0002B1C0;
+    new ((char *)p + 0x688) V4_0002B1C0;
+    new ((char *)p + 0x6cc) V4_0002B1C0;
+    new ((char *)p + 0x6dc) V4_0002B1C0;
+    new ((char *)p + 0x748) V4_0002B1C0;
+    new ((char *)p + 0x758) V4_0002B1C0;
+    new ((char *)p + 0x768) V4_0002B1C0;
     p[0x1de] = 0; p[0x1df] = 0; p[0x1e0] = 0; p[0x1e2] = 0; p[0x1e1] = 0;
     p[0x82] = 0; p[0xce] = 0xffffffff; p[0x10f] = 0; p[0x110] = 0; p[0x111] = 0;
     p[0x11a] = 0; p[0x11b] = 0; p[0x1a8] = 0; p[0x11c] = 0; p[0x11e] = 1; p[0x120] = 0;
