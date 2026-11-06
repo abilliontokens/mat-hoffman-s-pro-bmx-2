@@ -5,6 +5,8 @@
 
 extern int D_00284DEC;
 extern int D_00284EA0;
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 
 void *func_001E8A44(int size);
 
@@ -213,38 +215,43 @@ struct C_0013ED30 {
 
 int C_0013E6F0::func_0013E6F0(char *name, int b, int c)
 {
-    int dim[2];
-    int lock[2];
-    int desc[7];
     char buf[0x104];
     fAC = c;
     char *p = func_001E8AC0(name, 0x2e);
     if (p) {
         memset(p, 0, strlen(p));
     }
-    int i;
-    for (i = 0; i < 6; i++) {
-        func_001ADCC0(buf, 0x104, D_002772CC, name, i);
-        f114[i] = (Surf *)func_001D6E20(buf, b, c);
-        if (!f114[i]) return 0;
-        if (i == 0) {
-            dim[1] = f114[i]->f8;
-            dim[0] = f114[i]->fA4;
+    int t;
+    {
+        int w, h;
+        int i;
+        for (i = 0; i < 6; i++) {
+            func_001ADCC0(buf, 0x104, D_002772CC, name, i);
+            f114[i] = (Surf *)func_001D6E20(buf, b, c);
+            if (!f114[i]) return 0;
+            if (i == 0) {
+                h = f114[i]->f8;
+                w = f114[i]->fA4;
+            }
         }
+        fA4 = (void *)w;
+        t = func_001FCF20(h, h, 1, 1, 1, w, 5);
+        f110 = t;
     }
-    fA4 = (void *)dim[0];
-    int t = func_001FCF20(dim[1], dim[1], 1, 1, 1, dim[0], 5);
-    f110 = t;
     long hr = t ? 0 : 0x8007000e;
     if (hr >= 0) {
+        int i;
+        int lr[2];
+        int lock[2];
+        int desc[7];
         for (i = 0; i < 6; i++) {
             f12C[i] = func_001FCED0(f110, i, 0);
-            func_00201210(f12C[i], (int)lock, 0, 0);
-            func_001FCEA0((int)f114[i]->fB8, 0, (int)&dim[1], 0, 0);
+            func_00201210((int)*(void **)&f12C[i], (int)lock, 0, 0);
+            func_001FCEA0((int)f114[i]->fB8, 0, (int)lr, 0, 0);
             func_001FCE40((int)f114[i]->fB8, 0, (int)desc);
-            void *src = (void *)dim[1];
+            void *src = (void *)lr[1];
             func_001B2CB0((int)fA4);
-            memcpy((void *)lock[1], src, desc[4]);
+            memcpy((void *)lock[1], src, desc[3]);
             func_00201100(f114[i]->fB8);
             f114[i]->fB8 = 0;
         }
@@ -344,14 +351,16 @@ void C_0013ECF0::func_0013ECF0(int a1, int a2, C_0013ECF0_Arg *a3, int a4, int a
 }
 
 void __stdcall func_001FEE00(int a, int b, int c);
+void __stdcall func_001FEE00(int, int, int);
 void func_0013F2F0(void)
 {
     char *p = D_002EFDB8->f4;
+
     func_001FEC30(0x18, p + 0x250);
-    func_001FEBD0(2, p + 0x170);
+    func_001FEBD0(0x2, p + 0x170);
     func_001FEE00(0, *(int *)((char *)D_002BF250 + 0x21e4), 0xc);
     func_001FEE00(1, *(int *)((char *)D_002BF250 + 0x21e8), 0xc);
-    func_001FEE00(2, *(int *)((char *)D_002BF250 + 0x21ec + *(int *)((char *)D_002BF250 + 0x21f8) * 4), 4);
+    func_001FEE00(2, *(int *)((char *)D_002BF250 + 0x21ec + *(int *)((char *)D_002BF250 + 0x21f8) * 4), 0x4);
 }
 
 C_0013F650 *func_0013F650(void)
