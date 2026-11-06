@@ -52,7 +52,7 @@ struct MgrD {
     char pad1A8[4];
     Mid2D *f1AC;
 };
-struct __declspec(align(16)) AV4 { float x; float y; float z; float w; };
+struct __declspec(align(16)) AV4 : V4 {};
 struct F4ObjD {
     char pad0[0xe8];
     NodeD *fE8;
@@ -367,6 +367,10 @@ int Obj::_func_0003E410()
     Blk *blk;
     int w, h, d;
     int i, j;
+
+    a.z = 0.0f; a.y = 0.0f; a.x = 0.0f; a.w = 1.0f;
+    b.z = 0.0f; b.y = 0.0f; b.x = 0.0f; b.w = 1.0f;
+    c.z = 0.0f; c.y = 0.0f; c.x = 0.0f; c.w = 1.0f;
 
     if (f564->a != 0)
         return 1;
