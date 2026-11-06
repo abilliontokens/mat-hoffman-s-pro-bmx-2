@@ -92,6 +92,14 @@ struct V4_000298F0 {
     float x, y, z, w;
 };
 
+static __forceinline void InitV4_00028CD0(V4_000298F0 *v)
+{
+    v->z = 0;
+    v->y = 0;
+    v->x = 0;
+    v->w = 1.0f;
+}
+
 extern float D_00275544;
 extern float D_00275548;
 extern float D_002766A0;
@@ -172,8 +180,7 @@ struct C_000298F0 {
 void C_28CD0::func_00028CD0(void *arg0)
 {
     S_28CD0 *self = (S_28CD0 *)this;
-    V4_000298F0 a, b, c, d, e, f, g, h, up;
-    V4_000298F0 neg, cross;
+    V4_000298F0 g, e, h, f, a, c, d, up, neg, b, cross;
     V4_000298F0 *p;
 #define THIS ((S_28CD0 *)this)
 #define SELF (*(S_28CD0 *volatile *)&self)
