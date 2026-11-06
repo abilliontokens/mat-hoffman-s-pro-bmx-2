@@ -6,6 +6,12 @@ struct C_000B6080 {
     void func_000B6080(int param_1);
 };
 
+struct C_000B5260 {
+    char pad0[0x54];
+    float unk54;
+    int func_000B5260(float dt);
+};
+
 struct C_000B5870 {
     char pad0[0x24];
     int unk24;
@@ -185,5 +191,13 @@ void *C_000B60A0::func_000B60A0(int flags)
     func_001E891B(this);
   }
   return this;
+}
+
+void func_000B6140(int param_1, int param_2)
+{
+  int p = *(int *)(param_1 + 0x60);
+
+  *(int *)(p + 0x1e4) = param_2;
+  *(int *)(p + 0x8c) = *(int *)(param_2 + 0x64);
 }
 
