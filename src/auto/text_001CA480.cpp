@@ -68,7 +68,7 @@ struct SndBank_1CB290 {
     virtual void v1();
     virtual void v2();
     virtual void v3();
-    virtual void v4();
+    virtual SndBank_1CB290 *v4();
     int f4;
     int f8;
     int fC;
@@ -249,7 +249,7 @@ Ret_001CA480 WaterDisplacement::func_001CA480(Plane_001CA480 *plane, void *arg1)
     int ret = 0;
     int flip = 0;
     if (cam->pos.y < plane->f4) flip = 1;
-    float T = func_0014F600(cam->fov * D_0028AC40);
+    float T = func_0014F600(cam->fov * 0.00872664526f);
     float K = cam->aspect;
     Vec3_001CA480 P = cam->dir * cam->nearD + cam->pos;
     float tr = T * cam->nearD;
@@ -462,7 +462,13 @@ void XboxSndIf_1CB290::func_001CB290(void)
         f13C->v2();
     }
     p = (SndBank_1CB290 *)func_001E8A44(0x20);
-    (f13C = (p != 0 ? p->func_001AC3A0() : 0))->v4();
+    if (p != 0) {
+        p = p->func_001AC3A0();
+    } else {
+        p = 0;
+    }
+    f13C = p;
+    p->v4();
 }
 
 void XboxSndIf_1CB290::func_001CB2D0(void)
