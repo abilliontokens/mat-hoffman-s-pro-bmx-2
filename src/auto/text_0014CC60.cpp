@@ -108,6 +108,102 @@ struct C_0014CC60 {
 };
 
 #pragma optimize("", on)
+int C_0014CC60::func_0014CC60(const char *name, int *out)
+{
+    int h;
+    int i;
+    int j;
+    unsigned char flag;
+    unsigned char b;
+    S_Slot **slots = (S_Slot **)f54;
+
+    h = D_002BEAAC->func_0013C9F0(name, D_00275FB4);
+    *out = h;
+    if (h == -1) {
+        return 0;
+    }
+    D_002BEAAC->func_0013C8A0(h, &f38, 4, 1);
+    f598 = (unsigned char *)func_001E8AA5(0x100);
+    f594 = 0;
+    for (i = 0; i < 0x100; i++) {
+        f598[i] = (unsigned char)i;
+    }
+    for (i = 0; i < 0x100; i++) {
+        D_002BEAAC->func_0013C8A0(h, &flag, 1, 1);
+        if (!flag) {
+            break;
+        }
+        D_002BEAAC->func_0013C8A0(h, &b, 1, 1);
+        f598[i] = (unsigned char)f594;
+        S_Slot *s = (S_Slot *)func_001E8A44(0x20C);
+        if (s) {
+            s = (S_Slot *)s, s->func_0014C720();
+        }
+        slots[f594] = s;
+        D_002BEAAC->func_0013C8A0(h, slots[f594], b, 1);
+        D_002BEAAC->func_0013C8A0(h, &b, 1, 1);
+        D_002BEAAC->func_0013C8A0(h, slots[f594]->name2, b, 1);
+        D_002BEAAC->func_0013C8A0(h, &slots[f594]->f180, 4, 1);
+        D_002BEAAC->func_0013C8A0(h, &slots[f594]->f184, 4, 1);
+        D_002BEAAC->func_0013C8A0(h, &slots[f594]->f188, 4, 1);
+        D_002BEAAC->func_0013C8A0(h, &slots[f594]->f18C, 4, 1);
+        D_002BEAAC->func_0013C8A0(h, &slots[f594]->f190, 4, 1);
+        D_002BEAAC->func_0013C8A0(h, &slots[f594]->f194, 4, 1);
+        D_002BEAAC->func_0013C8A0(h, &slots[f594]->f1B8, 4, 1);
+        D_002BEAAC->func_0013C8A0(h, &slots[f594]->f1BC, 4, 1);
+        D_002BEAAC->func_0013C8A0(h, &slots[f594]->f1C4, 4, 1);
+        D_002BEAAC->func_0013C8A0(h, &slots[f594]->f1C0, 4, 1);
+        D_002BEAAC->func_0013C8A0(h, &slots[f594]->f1C8, 4, 1);
+        D_002BEAAC->func_0013C8A0(h, &slots[f594]->f1E0, 4, 1);
+        D_002BEAAC->func_0013C8A0(h, &slots[f594]->f1E4, 4, 1);
+        D_002BEAAC->func_0013C8A0(h, &slots[f594]->f1DC, 4, 1);
+        if (f38 == 2) {
+            D_002BEAAC->func_0013C8A0(h, &slots[f594]->f1E8, 4, 1);
+            D_002BEAAC->func_0013C8A0(h, &slots[f594]->f198, 4, 1);
+            D_002BEAAC->func_0013C8A0(h, &slots[f594]->f19C, 4, 1);
+            D_002BEAAC->func_0013C8A0(h, &slots[f594]->f1A0, 4, 1);
+            D_002BEAAC->func_0013C8A0(h, &slots[f594]->f1A4, 4, 1);
+            D_002BEAAC->func_0013C8A0(h, &slots[f594]->f1A8, 4, 1);
+            D_002BEAAC->func_0013C8A0(h, &slots[f594]->f1AC, 4, 1);
+            D_002BEAAC->func_0013C8A0(h, &slots[f594]->f1B0, 4, 1);
+            D_002BEAAC->func_0013C8A0(h, &slots[f594]->f1B4, 4, 1);
+            D_002BEAAC->func_0013C8A0(h, &flag, 1, 1);
+            if (flag) {
+                D_002BEAAC->func_0013C8A0(h, &b, 1, 1);
+                D_002BEAAC->func_0013C8A0(h, slots[f594]->name3, b, 1);
+            }
+        }
+        D_002BEAAC->func_0013C8A0(h, &slots[f594]->f1EC, 4, 1);
+        slots[f594]->f1F0 = (S_Entry *)func_001E8AA5(slots[f594]->f1EC * 0x2c);
+        for (j = 0; j < slots[f594]->f1EC; j++) {
+            S_Entry *e = slots[f594]->f1F0;
+            D_002BEAAC->func_0013C8A0(h, (char *)e + j * 0x2c + 0x20, 4, 1);
+            D_002BEAAC->func_0013C8A0(h, (char *)slots[f594]->f1F0 + j * 0x2c, 0xc, 1);
+            *(float *)((char *)slots[f594]->f1F0 + j * 0x2c + 0xc) = 1.0f;
+            D_002BEAAC->func_0013C8A0(h, (char *)slots[f594]->f1F0 + j * 0x2c + 0x10, 0xc, 1);
+            *(float *)((char *)slots[f594]->f1F0 + j * 0x2c + 0x1c) = 1.0f;
+            D_002BEAAC->func_0013C8A0(h, (char *)slots[f594]->f1F0 + j * 0x2c + 0x24, 4, 1);
+            D_002BEAAC->func_0013C8A0(h, (char *)slots[f594]->f1F0 + j * 0x2c + 0x28, 4, 1);
+        }
+        f594++;
+    }
+    D_002BEAAC->func_0013C8A0(h, &flag, 1, 1);
+    if (flag) {
+        D_002BEAAC->func_0013C8A0(h, &b, 1, 1);
+        D_002BEAAC->func_0013C8A0(h, (char *)this + 0x458, b, 1);
+        if (f38 == 2) {
+            D_002BEAAC->func_0013C8A0(h, (char *)this + 0x454, 4, 1);
+            D_002BEAAC->func_0013C8A0(h, &flag, 1, 1);
+            if (flag) {
+                D_002BEAAC->func_0013C8A0(h, &b, 1, 1);
+                D_002BEAAC->func_0013C8A0(h, (char *)this + 0x4D8, b, 1);
+                D_002BEAAC->func_0013C8A0(h, (char *)this + 0x558, 4, 1);
+            }
+        }
+    }
+    return 1;
+}
+
 int C_0014CC60::func_0014D360(int handle, int flag)
 {
     C_0014CC60 *self = this;
@@ -152,7 +248,7 @@ int C_0014CC60::func_0014D360(int handle, int flag)
         rec->pos = pos;
         rec->b = b;
         rec->a = a;
-        rec->flags |= 1;
+        rec->flag0 = 1;
         position.x = position.y = position.z = 0;
         position.w = 1;
         bounds.x = bounds.y = bounds.z = 0;
