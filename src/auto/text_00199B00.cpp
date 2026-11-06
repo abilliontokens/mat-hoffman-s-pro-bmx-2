@@ -49,15 +49,7 @@ struct S_0019A680_V4 {
 };
 
 static inline S_0019A680_V4 Vec_0019A680(float x, float y, float z) { return S_0019A680_V4(x, y, z, 1.0f); }
-static inline S_0019A680_V4 Add_0019A680(const S_0019A680_V4 &a, const S_0019A680_V4 &b)
-{
-    S_0019A680_V4 r;
-    r.x = a.x + b.x;
-    r.y = a.y + b.y;
-    r.z = a.z + b.z;
-    r.w = 1.0f;
-    return r;
-}
+static inline S_0019A680_V4 Add_0019A680(const S_0019A680_V4 &a, const S_0019A680_V4 &b) { return Vec_0019A680(a.x + b.x, a.y + b.y, a.z + b.z); }
 static inline S_0019A680_V4 Sub_0019A680(const S_0019A680_V4 &a, const S_0019A680_V4 &b) { return Vec_0019A680(a.x - b.x, a.y - b.y, a.z - b.z); }
 static inline S_0019A680_V4 Scale_0019A680(const S_0019A680_V4 &a, float s) { return Vec_0019A680(a.x * s, a.y * s, a.z * s); }
 
