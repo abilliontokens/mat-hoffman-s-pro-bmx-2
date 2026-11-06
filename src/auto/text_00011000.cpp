@@ -161,6 +161,7 @@ struct S_11BE0_State { char pad[0xbc]; int fBC; };
 struct S_11BE0_Actor { char pad[0x834]; C_00017680_Vec pos; char pad844[0x950-0x844]; S_11BE0_State *state; char pad954[0xa00-0x954]; S_11BE0_Mid *mid; };
 struct S_11BE0_List { char pad[0x24]; int count; char pad28[0x1a8-0x28]; S_11BE0_Actor *actors[1]; };
 static __forceinline S_11BE0_List *load_list_11BE0(S_11BE0_List * volatile *p) { return *p; }
+static __forceinline C_00017680_Vec vec_at_11E30(const C_00017680_Vec *base, int i) { return base[i]; }
 struct S_11E30_Cnt { char pad[0x124]; int count; };
 struct S_115F0_Mgr { char pad[0x4dc]; S_11E30_Cnt *cnt; S_11BE0_List *list; char pad4e4[0x588-0x4e4]; S_115F0_Path **paths; };
 static __forceinline float distance_11BE0(const C_00017680_Vec &a, const C_00017680_Vec &b) {
@@ -225,19 +226,16 @@ extern float D_00275544;
 extern "C" float __cdecl sqrtf(float);
 extern "C" float sqrtf(float);
 #pragma intrinsic(sqrtf)
-float func_00011000(float x) { return sqrtf(x); }
+float func_00011000(float x) { volatile float r; r = x; return sqrtf(r); }
 float func_00011020(float a, float b)
 {
-    float r;
-    _mm_store_ss(&r, _mm_min_ss(*(__m128 *)&a, *(__m128 *)&b));
-    return r;
+    return _mm_min_ss(*(__m128 *)&a, *(__m128 *)&b).m128_f32[0];
 }
 
 float func_00011040(float a, float b)
 {
-    float r;
-    _mm_store_ss(&r, _mm_max_ss(*(__m128 *)&a, *(__m128 *)&b));
-    return r;
+    __m128 r = _mm_max_ss(*(__m128 *)&a, *(__m128 *)&b);
+    return *(float *)&r;
 }
 
 C_00011060* C_00011060::func_00011060(void) {
@@ -272,8 +270,7 @@ void func_00011140(float *out, float *in, float s) {
 }
 
 float func_00011170(float *v) {
-    float s = v[0] * v[0] + v[1] * v[1] + v[2] * v[2];
-    return sqrtf(s);
+    return sqrtf(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
 }
 
 void func_000111B0(float *out, float *in) {
@@ -550,20 +547,20 @@ int C_00011D30::func_00011D30(void)
 C_00017680_Vec C_00011E30::func_00011E30(void)
 {
  C_00017680_Vec pos, tmp, a, ret;
- int idx; volatile int cur;
- float distance;
+ struct { volatile int cur; int idx; float distance; } L;
  f3C->f4->func_00199B00(&pos,0);
  if ((float)D_002B9120->cnt->count >= pos.y) {
- ret=v404; cur=f3B8;
- ((C_00011BE0*)this)->func_00011BE0(&idx,&distance);
- if(idx!=-1) {
+ ret=v404; L.cur=f3B8;
+ ((C_00011BE0*)this)->func_00011BE0(&L.idx,&L.distance);
+ if(L.idx!=-1) {
  *(volatile float*)&a.z=0; *(volatile float*)&a.y=0; *(volatile float*)&a.x=0; *(volatile float*)&a.w=1;
- S_11BE0_Actor *actor=load_list_11BE0(&D_002B9120->list)->actors[idx];
- if(actor->state->fBC) a=*D_002B9120->list->actors[idx]->mid->f4->func_00199B00(&tmp,0);
+ S_11BE0_Actor *actor=load_list_11BE0(&D_002B9120->list)->actors[L.idx];
+ if(actor->state->fBC) a=*D_002B9120->list->actors[L.idx]->mid->f4->func_00199B00(&tmp,0);
  else a=actor->pos;
- cur=((C_000115F0*)this)->func_000115F0((float*)&a,33.0f,f3B8,1);
- ret=*(C_00017680_Vec*)((char*)D_002B9120->paths[f3B4]->pts+cur*16);
- f3C->f4->func_00199600(ret); f3B0=cur;
+ int c=((C_000115F0*)this)->func_000115F0((float*)&a,33.0f,f3B8,1);
+ ret=((C_00017680_Vec*)D_002B9120->paths[f3B4]->pts)[c];
+ L.cur=c;
+ f3C->f4->func_00199600(ret); f3B0=L.cur;
  }
  } else ret=pos;
  return ret;
