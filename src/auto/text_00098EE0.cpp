@@ -6,7 +6,6 @@ struct S_00098EE0_release { void func_0001B8A0(void *); };
 struct S_00098EE0_tbl {
     char pad0[0x24];
     int count;
-    char pad28[4];
     void **arr;
 };
 struct S_00098EE0_mgr {
@@ -134,6 +133,143 @@ struct C_00097FD0 {
     void func_00099600(f32 lo, f32 hi);
     void func_00099750(S_00097FD0_owner *owner, f32 hi);
 };
+
+void C_00097FD0::func_00098EE0(S_00099A60_arg *a, int b)
+{
+    C_00096870 **list;
+    int *slotp;
+    int count;
+    int pass;
+    int k;
+    int j;
+    int m;
+    int n;
+    int q;
+    int z;
+    int off;
+    int active;
+    int x;
+    int y;
+    int special;
+    int found;
+    char buf[0x104];
+
+    for (pass = 0; pass < 3; pass++) {
+        switch (pass) {
+        case 0: list = arr0; break;
+        case 1: list = arr1; break;
+        case 2: list = arr2; break;
+        default: list = 0; break;
+        }
+        switch (pass) {
+        case 0: count = cnt0; break;
+        case 1: count = cnt1; break;
+        case 2: count = cnt2; break;
+        default: count = 0; break;
+        }
+        slotp = (int *)((char *)this + 0x2c) + pass * 15;
+        for (k = 0; k < 15; k++) {
+            int id = slotp[k];
+            if (id != -1) {
+                S_00098EE0_mgr *mgr = (S_00098EE0_mgr *)unk198->f64;
+                mgr->f484->func_0001B8A0(mgr->f3ac->arr[id]);
+            }
+        }
+        for (j = 0; j < count; j++) {
+            if (list[j]->f48e0 == 0)
+                list[j]->func_00096750();
+            active = 0;
+            if (unk198->unk1c8 != 0 && list[j]->f1b4 != 0)
+                active = 1;
+            x = FLD(int, list[j], 0x1a8) != 0;
+            y = FLD(int, list[j], 0x1ac) != 0;
+            special = 0;
+            if (y && list[j]->f48e0 == 0 && !active && !x)
+                special = 1;
+            if (list[j]->f48e0 != 0 && !active && !x && !y)
+                continue;
+            if (FLD(char, list[j], 0x12c) != 0)
+                ((S_00098EE0_self *)this)->func_00097890((char *)list[j] + 0x12c);
+            for (off = 0; off < 0x5a0; off += 0x78) {
+                if (((char *)list[j])[off + 0x1910] != 0) {
+                    found = -1;
+                    for (n = 0; n < ((S_00098EE0_mgr *)unk198->f64)->f3ac->count && found == -1; n++) {
+                        if (!func_001EA426((char *)list[j] + off + 0x1910,
+                                           (char *)((S_00098EE0_mgr *)unk198->f64)->f3ac->arr[n] + 0xa0))
+                            found = n;
+                    }
+                    {
+                        S_00098EE0_mgr *mgr = (S_00098EE0_mgr *)unk198->f64;
+                        mgr->f484->func_0001B8A0(mgr->f3ac->arr[found]);
+                    }
+                }
+                if (((char *)list[j])[off + 0x290] != 0) {
+                    found = -1;
+                    for (n = 0; n < ((S_00098EE0_mgr *)unk198->f64)->f3ac->count && found == -1; n++) {
+                        if (!func_001EA426((char *)list[j] + off + 0x290,
+                                           (char *)((S_00098EE0_mgr *)unk198->f64)->f3ac->arr[n] + 0xa0))
+                            found = n;
+                    }
+                    {
+                        S_00098EE0_mgr *mgr = (S_00098EE0_mgr *)unk198->f64;
+                        mgr->f484->func_0001B8A0(mgr->f3ac->arr[found]);
+                    }
+                }
+            }
+            for (m = 0; m < list[j]->f1b8; m++) {
+                if (special && memcmp((char *)list[j] + 0xb4, D_0027A30C, 15) != 0)
+                    continue;
+                list[j]->f1c8[m]->f40 = 0;
+                if (list[j]->f1c8[m]->f0 != 1)
+                    continue;
+                for (n = 0; n < list[j]->f1c8[m]->f2554; n++) {
+                    ((int *)((char *)list[j]->f1c8[m] + 0x6388))[n] = 0;
+                    if (((int *)((char *)list[j]->f1c8[m] + 0x2580))[n] == 0 &&
+                        ((int *)((char *)list[j]->f1c8[m] + 0x25d0))[n] == 0) {
+                        for (z = 0; z < FLD(int, a->f28[((int *)((char *)list[j]->f1c8[m] + 0x2558))[n]], 0x8); z++) {
+                            void *item = FLD(void **, a->f28[((int *)((char *)list[j]->f1c8[m] + 0x2558))[n]], 0x10c)[z];
+                            if (FLD(int, item, 4) == 4) {
+                                found = -1;
+                                for (q = 0; q < ((S_00098EE0_mgr *)unk198->f64)->f3ac->count && found == -1; q++) {
+                                    if (!func_001EA426((char *)item + 0x110,
+                                                       (char *)((S_00098EE0_mgr *)unk198->f64)->f3ac->arr[q] + 0xa0))
+                                        found = q;
+                                }
+                                {
+                                    S_00098EE0_mgr *mgr = (S_00098EE0_mgr *)unk198->f64;
+                                    mgr->f484->func_0001B8A0(mgr->f3ac->arr[found]);
+                                }
+                            } else if (FLD(int, item, 4) == 1) {
+                                found = -1;
+                                for (q = 0; q < ((S_00098EE0_mgr *)unk198->f64)->f3ac->count && found == -1; q++) {
+                                    if (!func_001EA426((char *)item + 0x114,
+                                                       (char *)((S_00098EE0_mgr *)unk198->f64)->f3ac->arr[q] + 0xa0))
+                                        found = q;
+                                }
+                                {
+                                    S_00098EE0_mgr *mgr = (S_00098EE0_mgr *)unk198->f64;
+                                    mgr->f484->func_0001B8A0(mgr->f3ac->arr[found]);
+                                }
+                            }
+                        }
+                    }
+                    strcpy(buf, (char *)list[j]->f1c8[m] + 0x2ff8 + n * 0x78);
+                    if (buf[0] != 0) {
+                        found = 0;
+                        for (q = 0; q < ((S_00098EE0_mgr *)unk198->f64)->f3ac->count && !found; q++) {
+                            void *item = ((S_00098EE0_mgr *)unk198->f64)->f3ac->arr[q];
+                            if (!func_001EA426(buf, (char *)item + 0xa0)) {
+                                S_00098EE0_mgr *mgr = (S_00098EE0_mgr *)unk198->f64;
+                                mgr->f484->func_0001B8A0(item);
+                                found = 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 void C_00097FD0::func_00099500(const char *name) {
     C_00096870 **list;
