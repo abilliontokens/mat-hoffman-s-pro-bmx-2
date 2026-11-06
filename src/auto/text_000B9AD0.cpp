@@ -196,7 +196,7 @@ struct BmxUIMain {
     int f2D0[8];
     BmxUIMain *func_000BA360(int a);
     void func_000BE540();
-    void *func_001577A0(V_000B9D50 *obj, int flags);
+    void *func_001577A0(void *obj, int flags);
     BmxUIMain *func_000B9D30(int a);
     void func_000B9D50();
     void *func_000BA2A0(unsigned int flags);
