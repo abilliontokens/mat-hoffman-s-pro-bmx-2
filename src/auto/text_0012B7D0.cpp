@@ -62,10 +62,10 @@ static inline S_0012B950_V3 V3Add_0012B950(const S_0012B950_V3 &a, const S_0012B
 
 static inline void V3AddInto_0012B950(S_0012B950_Vec4 *o, const S_0012B950_V3 &a, const S_0012B950_V3 &b)
 {
-    o->w = 1.0f;
     o->x = a.x + b.x;
     o->y = a.y + b.y;
     o->z = a.z + b.z;
+    o->w = 1.0f;
 }
 
 static inline S_0012B950_V3 V3Scale_0012B950(const S_0012B950_V3 &v, float s)
@@ -191,8 +191,11 @@ C_0012B8F0 *C_0012B8F0::func_0012B8F0(void) {
     return this;
 }
 
+#pragma optimize("a", on)
 void __stdcall func_0012B950(S_0012B950_Vec4 *out, float t, S_0012B950_Vec4 p0, S_0012B950_Vec4 p1, S_0012B950_Vec4 p2, S_0012B950_Vec4 p3) {
     float t2;
+    float t3;
+    float u;
     float b;
     float a;
     float c;
@@ -201,10 +204,12 @@ void __stdcall func_0012B950(S_0012B950_Vec4 *out, float t, S_0012B950_Vec4 p0, 
     S_0012B950_V3 m1;
 
     t2 = t * t;
-    a = (((t * t2) + (t * t2)) - t2 * 3.0f) + D_00275460;
-    b = 3.0f * t2 - ((t * t2) + (t * t2));
-    c = ((t * t2) - D_00275600 * t2) + t;
-    d = (t * t2) - t2;
+    t3 = t * t2;
+    u = t3 + t3;
+    a = (u - t2 * 3.0f) + D_00275460;
+    b = 3.0f * t2 - u;
+    c = (t3 - D_00275600 * t2) + t;
+    d = t3 - t2;
     m0 = V3Scale_0012B950(V3Sub_0012B950(*(S_0012B950_V3 *)&p2, *(S_0012B950_V3 *)&p0), D_002755E8);
     m1 = V3Scale_0012B950(V3Sub_0012B950(*(S_0012B950_V3 *)&p3, *(S_0012B950_V3 *)&p1), D_002755E8);
     V3AddInto_0012B950(out,
@@ -213,7 +218,7 @@ void __stdcall func_0012B950(S_0012B950_Vec4 *out, float t, S_0012B950_Vec4 p0, 
                 V3Scale_0012B950(m0, c)),
             V3Scale_0012B950(m1, d));
 }
-
+#pragma optimize("a", off)
 float __stdcall func_0012BAE0(float t, float p0, float p1, float p2, float p3) {
     float m0 = (p2 - p0) * D_002755E8;
     float m1 = (p3 - p1) * D_002755E8;
