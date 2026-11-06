@@ -6,8 +6,8 @@
 extern int D_002A99B0;
 extern const float D_00275544;
 extern const float D_00275460;
-extern float D_00278784;
-extern float D_0028AE80;
+extern const float D_00278784;
+extern const float D_0028AE80;
 struct C_00194520 {
  char pad0[0x34]; float f34, f38; char pad3C[0x10]; unsigned f4C, f50, f54; float f58; char pad5C[0x28]; float f84, f88, f8C, f90; char pad94[0x18]; int fAC; char padB0[0x30]; float fE0, fE4;
  int func_00194520(float dt, int a);
