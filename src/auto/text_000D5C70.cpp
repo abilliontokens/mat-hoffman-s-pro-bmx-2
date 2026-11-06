@@ -39,9 +39,9 @@ struct ElemHOF2 {
     void SetIdentity() {
         m40 = 0;
         m44 = 0;
-        b58 |= 4;
         m3c = 1.0f;
         m48 = 1.0f;
+        b58 |= 4;
     }
     void SetX(int nx) {
         if (x != nx) {
@@ -238,6 +238,70 @@ void BmxUIPageHOF2::func_000D5E00()
         }
     }
     func_001BE3F0();
+}
+
+BmxUIPageHOF2 *BmxUIPageHOF2::func_000D5E80(int a, int b, int c)
+{
+    void *mem;
+    char buf[8];
+    int i;
+    int j;
+
+    func_001BE4F0(a, b, c);
+    D_002A8490->res->func_0018C160(D_00278690);
+    D_002A8490->res->func_0018C160(D_002786A0);
+    D_002A8490->res->func_0018C160(D_00278678);
+    for (i = 0; i < 5; i++) {
+        mem = func_001E8A44(0x184);
+        arr2D4[i] = mem ? ((S_000D6A60_Widget *)mem)->func_001B12C0(1) : 0;
+        arr2D4[i]->func_001B13A0(D_002786A0, D_002786A0, 0, 0x1e);
+        arr2D4[i]->func_001B2270(0xffcccccc);
+        func_001577A0(arr2D4[i], -1);
+        mem = func_001E8A44(0x184);
+        arr2E8[i] = mem ? ((S_000D6A60_Widget *)mem)->func_001B12C0(1) : 0;
+        arr2E8[i]->func_001B13A0(D_002786A0, D_002786A0, 0, 0x32);
+        arr2E8[i]->func_001B2270(0xffcccccc);
+        func_001577A0(arr2E8[i], -1);
+        mem = func_001E8A44(0x184);
+        arr304[i] = mem ? ((S_000D6A60_Widget *)mem)->func_001B12C0(1) : 0;
+        arr304[i]->func_001B13A0(D_002786A0, D_002786A0, 0, 5);
+        arr304[i]->func_001B1A30(175.0f, (float)i * D_0027F2BC + D_0027F2B4, 0);
+        arr304[i]->func_001B2270(0xffcccccc);
+        func_001ADCC0(buf, 5, D_0027F2AC, i + 1, D_0027CEF0);
+        arr304[i]->func_001B17D0(buf);
+        func_001577A0(arr304[i], -1);
+    }
+    for (j = 0; j < 2; j++) {
+        mem = func_001E8A44(0x64);
+        arr2FC[j] = mem ? ((ElemHOF2 *)mem)->func_001D5760() : 0;
+        if (j % 2 == 0) {
+            arr2FC[j]->func_001D5810(D_0027F29C, 110.0f, 147.0f, 0);
+        } else {
+            arr2FC[j]->func_001D5810(D_0027F29C, 321.0f, 147.0f, 0);
+        }
+        arr2FC[j]->SetIdentity();
+        arr2FC[j]->SetX(0x435d0000);
+        arr2FC[j]->SetArgbRaw(0xffbfa35a);
+    }
+    mem = func_001E8A44(0x64);
+    arr2C4[0] = mem ? ((ElemHOF2 *)mem)->func_001D5760() : 0;
+    arr2C4[0]->func_001D5810(D_00279B00, 0, 0, 0);
+    arr2C4[0]->SetPos(0x43560000, 0x42e40000);
+    arr2C4[0]->SetArgbRaw(0xffbfa35a);
+    mem = func_001E8A44(0x64);
+    arr2CC[0] = mem ? ((ElemHOF2 *)mem)->func_001D5760() : 0;
+    arr2CC[0]->func_001D5810(D_00279AF0, 0, 0, 0);
+    arr2CC[0]->SetPos(0x43560000, 0x42e40000);
+    mem = func_001E8A44(0x64);
+    arr2C4[1] = mem ? ((ElemHOF2 *)mem)->func_001D5760() : 0;
+    arr2C4[1]->func_001D5810(D_00279AE0, 0, 0, 0);
+    arr2C4[1]->SetPos(0x43cd8000, 0x42e40000);
+    arr2C4[1]->SetArgbRaw(0xffbfa35a);
+    mem = func_001E8A44(0x64);
+    arr2CC[1] = mem ? ((ElemHOF2 *)mem)->func_001D5760() : 0;
+    arr2CC[1]->func_001D5810(D_00279AD0, 0, 0, 0);
+    arr2CC[1]->SetPos(0x43cd8000, 0x42e40000);
+    return this;
 }
 
 void BmxUIPageHOF2::func_000D6710()
