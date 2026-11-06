@@ -248,6 +248,30 @@ static __forceinline void CopyName_0005BA80(char *d, const char *s)
     }
 }
 
+static __forceinline void InsertF_0005BA80(S_0005B960_FGroup *g, int i, float val, char *name)
+{
+    int j;
+
+    for (j = 4; j > i; j--) {
+        g->val[j] = g->val[j - 1];
+        CopyName_0005BA80(g->name[j], g->name[j - 1]);
+    }
+    g->val[i] = val;
+    CopyName_0005BA80(g->name[i], name);
+}
+
+static __forceinline void InsertI_0005BA80(S_0005B960_IGroup *g, int i, int val, char *name)
+{
+    int j;
+
+    for (j = 4; j > i; j--) {
+        g->val[j] = g->val[j - 1];
+        CopyName_0005BA80(g->name[j], g->name[j - 1]);
+    }
+    g->val[i] = val;
+    CopyName_0005BA80(g->name[i], name);
+}
+
 
 void C_0005B8D0::func_0005B8D0(void)
 {
@@ -324,6 +348,98 @@ int C_0005B960::func_0005B960(int sel, float val)
     }
 found:
     return 1;
+}
+
+extern "C" char *__cdecl strcpy(char *dst, const char *src);
+int C_0005B960::func_0005BA80(int sel, float val, char *name)
+{
+    int iv = (int)val;
+    float f = val;
+    float *p;
+    int *q;
+    int i, j;
+
+    switch (sel) {
+    case 1:
+        for (i = 0, p = g1.val; i < 5; i++, p++) {
+            if (f > *p) goto f1;
+        }
+        return 0;
+    f1:
+        for (j = 4; j > i; j--) {
+            g1.val[j] = g1.val[j - 1];
+            CopyName_0005BA80(g1.name[j], g1.name[j - 1]);
+        }
+        g1.val[i] = f;
+        CopyName_0005BA80(g1.name[i], name);
+        return 1;
+    case 3:
+        for (i = 0, q = g4.val; i < 5; i++, q++) {
+            if (iv > *q) goto f3;
+        }
+        return 0;
+    f3:
+        for (j = 4; j > i; j--) {
+            g4.val[j] = g4.val[j - 1];
+            CopyName_0005BA80(g4.name[j], g4.name[j - 1]);
+        }
+        g4.val[i] = iv;
+        CopyName_0005BA80(g4.name[i], name);
+        return 1;
+    case 4:
+        for (i = 0, q = g3.val; i < 5; i++, q++) {
+            if (iv > *q) goto f4;
+        }
+        return 0;
+    f4:
+        for (j = 4; j > i; j--) {
+            g3.val[j] = g3.val[j - 1];
+            CopyName_0005BA80(g3.name[j], g3.name[j - 1]);
+        }
+        g3.val[i] = (int)f;
+        CopyName_0005BA80(g3.name[i], name);
+        return 1;
+    case 0:
+        for (i = 0; i < 5; i++) {
+            if (f > g0.val[i]) goto f0;
+        }
+        return 0;
+    f0:
+        for (j = 4; j > i; j--) {
+            g0.val[j] = g0.val[j - 1];
+            CopyName_0005BA80(g0.name[j], g0.name[j - 1]);
+        }
+        g0.val[i] = f;
+        CopyName_0005BA80(g0.name[i], name);
+        return 1;
+    case 2:
+        for (i = 0, p = g2.val; i < 5; i++, p++) {
+            if (f > *p) goto f2;
+        }
+        return 0;
+    f2:
+        for (j = 4; j > i; j--) {
+            g2.val[j] = g2.val[j - 1];
+            CopyName_0005BA80(g2.name[j], g2.name[j - 1]);
+        }
+        g2.val[i] = f;
+        CopyName_0005BA80(g2.name[i], name);
+        return 1;
+    case 5:
+        for (i = 0, q = g5.val; i < 5; i++, q++) {
+            if (iv > *q) goto f5;
+        }
+        return 0;
+    f5:
+        for (j = 4; j > i; j--) {
+            g5.val[j] = g5.val[j - 1];
+            CopyName_0005BA80(g5.name[j], g5.name[j - 1]);
+        }
+        g5.val[i] = iv;
+        CopyName_0005BA80(g5.name[i], name);
+        return 1;
+    }
+    return 0;
 }
 
 int C_0005B960::func_0005BED0(int sel, int idx, float *out, char *dst)
