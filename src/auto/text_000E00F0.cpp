@@ -82,6 +82,19 @@ struct BmxUIPageMusicPlaylist {
  void func_000DFC90();
 };
 extern float D_0027988C;
+struct PlaylistCalls {
+ int func_000301D0();
+ int func_00136170(int,int,int);
+ void func_000B9A80(int,int);
+ int func_00095250(int);
+ int func_000952A0(int);
+ void func_00094D90(int);
+ void func_00095490(int);
+ void func_00094E40(int,int,int);
+ void func_00094960(int);
+ void func_00094C60();
+ void func_000DFC90();
+};
 /* BmxUIPageTime */
 struct C_000E0D50 {
     void *vtbl;
