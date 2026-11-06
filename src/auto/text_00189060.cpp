@@ -129,7 +129,8 @@ struct E_189D40 {
     virtual void v25(); virtual void v26();
     virtual void v27(int a, int b, int c, int d, int e, int f, int g, int h, int i, int j, int k, int l, int m, int n, int o, int p);
     virtual void v28();
-    char padx[0xd0 - 8];
+    virtual void v29();
+    char padx[0xd0 - 4];
     O_189D40 *unkd0;
     E_189D40 *func_001732E0(int a);
     void func_001740B0(int a, int b, int c, int d, int e, int f);
