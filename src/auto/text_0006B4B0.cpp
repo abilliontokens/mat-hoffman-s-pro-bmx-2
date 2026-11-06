@@ -151,6 +151,57 @@ struct C_0006BBF0 {
     int func_0006BBF0(void);
 };
 
+struct S_0006BD40_Msg {
+    char pad0[8];
+    int unk8;
+};
+
+struct C_00031610 {
+    void func_00031610(int a, int b);
+};
+
+struct C_0006BD40 {
+    void *vtbl;
+    char pad4[0x154 - 4];
+    int unk154;
+    int unk158;
+    C_00031610 *unk15C;
+    int unk160;
+    char pad164[4];
+    int unk168;
+    char pad16C[0x174 - 0x16C];
+    char **unk174;
+    C_0005E840 *unk178;
+    int unk17C;
+    int unk180;
+    int unk184;
+    int unk188;
+    char pad18C[0x1a8 - 0x18C];
+    int unk1a8;
+    char pad1AC[0x1b4 - 0x1AC];
+    int unk1b4;
+    int unk1b8;
+    int unk1bc;
+    char pad1C0[0x1d8 - 0x1C0];
+    int unk1d8;
+    char pad1DC[0x1e4 - 0x1DC];
+    int unk1e4;
+    int unk1e8;
+    int unk1ec;
+    int unk1f0;
+    int unk1f4;
+    S_0006BD40_Msg *unk1f8;
+    void func_00157BF0(S_0006BD40_Msg *m, int a);
+    int func_0006BD40(S_0006BD40_Msg *m, int a);
+};
+
+extern int D_002B9024;
+extern char D_002789C4[];
+extern char D_002789C0[];
+extern char D_002789BC[];
+extern "C" int func_001361E0(int a, int b, S_0006BD40_Msg *m, int key);
+extern "C" char *func_001E8AF0(char *a, char *b);
+
 struct C_0006BB90 {
     virtual void vf0();
     virtual void vf1();
