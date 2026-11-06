@@ -178,7 +178,10 @@ struct C_00102370 {
     float f340;
     Obj102370_344 *f344;
     int f348;
-    char pad34C[0x10];
+    int f34C;
+    int f350;
+    int f354;
+    int f358;
     int f35C;
     int f360;
     int f364;
