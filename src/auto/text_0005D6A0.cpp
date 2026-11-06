@@ -1,5 +1,6 @@
 /* 7 functions from 0x0005D6A0 to 0x0005E600, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 extern "C" void *__cdecl memcpy(void *, const void *, unsigned int);
 extern "C" void *__cdecl memset(void *, int, unsigned int);
 #pragma intrinsic(memcpy, memset)
@@ -226,6 +227,10 @@ C_0005D6A0 *C_0005D6A0::func_0005D6A0(void)
     return this;
 }
 
+void func_0005D9C0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
+}
+
 void C_0005DA30::func_0005DA30(int a0) {
     int func_001D3F50(...);
     unk2C = a0;
@@ -244,5 +249,62 @@ void C_0005DA50::func_0005DA50(int a0) {
 void C_0005DA80::func_0005DA80(int a0) {
     unk7C = a0;
     *(S_0005DA80_rec *)((char *)this + 0x48) = *(S_0005DA80_rec *)((char *)this + (a0 + 8) * 16);
+}
+
+extern float D_002784F0;
+extern float D_002A1CA4;
+extern "C" double sqrt(double x);
+int BmxGrindConstraint::func_0005DAB0()
+{
+    char *self = (char *)this;
+    volatile Vec4_5DAB0 v0;
+    volatile Vec4_5DAB0 v1;
+    volatile Vec4_5DAB0 v2;
+    volatile Vec4_5DAB0 v3;
+    volatile Vec4_5DAB0 v4;
+    volatile Vec4_5DAB0 v5;
+    volatile Vec4_5DAB0 v6;
+    volatile Vec4_5DAB0 v7;
+    volatile float one = 1.0f;
+    Node_5DAB0 *node;
+    Vec4_5DAB0 *r;
+    float dx, dy, dz;
+    float len;
+    int flag;
+
+    v0.x = 0; v0.y = 0; v0.z = 0; v0.w = 1;
+    v1.x = 0; v1.y = 0; v1.z = 0; v1.w = 1;
+    v2.x = 0; v2.y = 0; v2.z = 0; v2.w = 1;
+    v3.x = 0; v3.y = 0; v3.z = 0; v3.w = 1;
+    v4.x = 0; v4.y = 0; v4.z = 0; v4.w = 1;
+    v5.x = 0; v5.y = 0; v5.z = 0; v5.w = 1;
+    v6.x = 0; v6.y = 0; v6.z = 0; v6.w = 1;
+    v7.x = 0; v7.y = 0; v7.z = 0; v7.w = 1;
+    node = *(Node_5DAB0 **)(self + 0x30);
+    *(Vec4_5DAB0 *)(self + 0xd0) = *(Vec4_5DAB0 *)((char *)node + 0x40);
+    (*(Holder_5DAB0 **)(self + 0x2c))->f22C->func_001994C0((void *)&v7, (void *)&v6, 0);
+    r = (*(Holder_5DAB0 **)(self + 0x2c))->f22C->func_00197F70((void *)(self + 0x38));
+    *(Vec4_5DAB0 *)(self + 0x58) = *r;
+    dx = node->f20 - *(float *)(self + 0x58);
+    dy = node->f24 - *(float *)(self + 0x5c);
+    dz = node->f28 - *(float *)(self + 0x60);
+    v0.x = dz * node->f44 + dy * node->f40;
+    v0.y = 0;
+    flag = (v0.x == D_002784F0);
+    *(float *)(self + 0x38) = dx;
+    *(float *)(self + 0x3c) = dy;
+    *(float *)(self + 0x40) = dz;
+    *(float *)(self + 0x44) = 1.0f;
+    len = (float)sqrt(dx * dx + dz * dz + dy * dy);
+    if (flag && len != D_002A1CA4) {
+        *(int *)(self + 0x24) = 0;
+        (*(Holder_5DAB0 **)(self + 0x2c))->f22C->func_00199960((void *)(self + 0x38), 0);
+        r = (*(Holder_5DAB0 **)(self + 0x2c))->f22C->func_00197F70((void *)(self + 0x38));
+        *(Vec4_5DAB0 *)(self + 0x58) = *r;
+        r = (*(Holder_5DAB0 **)(self + 0x2c))->f22C->func_00197F70((void *)(self + 0x48));
+        *(Vec4_5DAB0 *)(self + 0x68) = *r;
+    }
+    v1.x = v6.x + v5.x + v4.x + v3.x + v2.x + v1.x;
+    return 1;
 }
 
