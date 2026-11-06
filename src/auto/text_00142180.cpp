@@ -70,6 +70,7 @@ struct C_001425B0 {
     void func_0001DFE0(void);
     C_001425B0 *func_001425B0(void);
     void func_00142180(int buffer, int dst, int src, int count, int clear);
+    void CopyVertex_00142180(Vertex_00142180 *out, int d, int s);
 };
 
 extern int D_002A6D30;
@@ -289,6 +290,54 @@ extern C_00142AF0_NodeMgr *D_002A829C;
 extern C_00142AF0_SlotMgr *D_002AA6C0;
 extern C_00142AF0_TrackMgr *D_002F0630;
 
+
+void C_001425B0::func_00142180(int buffer, int dst, int src, int count, int clear)
+{
+    void *buf = ((void **)f8)[buffer];
+    Vertex_00142180 *out = (Vertex_00142180 *)func_001FF410(buf, 0);
+    int i = 0;
+    int j;
+    int s = src + 1;
+
+#define COPY_00142180(D, S) \
+    out[D].x = ((int *)f10)[(S) * 11 + 0]; \
+    out[D].y = ((int *)f10)[(S) * 11 + 1]; \
+    out[D].z = ((int *)f10)[(S) * 11 + 2]; \
+    out[D].a = *(float *)&f58 - ((float *)f10)[(S) * 11 + 6]; \
+    out[D].b = ((int *)f10)[(S) * 11 + 3]; \
+    out[D].c = ((int *)f10)[(S) * 11 + 4]; \
+    out[D].d = ((int *)f10)[(S) * 11 + 5]; \
+    out[D].e = ((int *)f10)[(S) * 11 + 10]; \
+    out[D].f = ((float *)f10)[(S) * 11 + 9] * 2.0f; \
+    out[D].g = ((int *)f10)[(S) * 11 + 7]; \
+    out[D].l = fEC; \
+    out[D].h = f64.y; \
+    out[D].i = f70.y; \
+    out[D].j = f7C; \
+    out[D].k = f80;
+
+    if (count >= 4) {
+        do {
+            COPY_00142180(dst + i, s - 1)
+            COPY_00142180(dst + i + 1, s)
+            COPY_00142180(dst + i + 2, s + 1)
+            COPY_00142180(dst + i + 3, s + 2)
+            i += 4;
+            s += 4;
+        } while (i + 3 < count);
+    }
+    for (; i < count; i++) {
+        COPY_00142180(dst + i, src + i)
+    }
+#undef COPY_00142180
+    if (clear) {
+        j = dst + count + 1;
+        while (j < f24) {
+            *(float *)&out[j].g = 0.001f;
+            j++;
+        }
+    }
+}
 
 void C_00142560::func_00142560(void)
 {
@@ -669,10 +718,13 @@ void C_00142D90::func_00142D90(int param_1)
 }
 
 void C_00142D00::func_00142D00(void *a0) {
-    if (a0 != unk0) {
-        func_00201350(a0);
-        unk0 = a0;
+    C_00142D00 *self = this;
+    void *p = a0;
+    if (p == self->unk0) {
+        return;
     }
+    func_00201350(p);
+    self->unk0 = p;
 }
 
 void C_00142D20::func_00142D20() {
