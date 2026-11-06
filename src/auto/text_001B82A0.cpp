@@ -186,6 +186,16 @@ extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
 extern "C" char *func_001E8AC0(const char *s, int c);
 extern "C" int func_001EA426(const char *a, const char *b);
 extern "C" int strlen(const char *s);
+
+static __forceinline void CopyName_001B8550(char *dst, const char *src, int max)
+{
+    volatile int len = strlen(src);
+    volatile int limit = max;
+    volatile int n = Min_001B8550(limit, len);
+
+    func_001E8920(dst, src, n);
+    dst[n] = 0;
+}
 extern "C" void *memset(void *dst, int c, unsigned int n);
 #pragma intrinsic(memset)
 
@@ -285,7 +295,9 @@ void C_001B8550::func_001B8550(Arg_001B8550 *arg)
 {
     C_001B8550 *volatile self = this;
     char buf[0x104];
-    int i, j, k, m, len, n;
+    int i, j, k, m;
+    volatile int limit, len, n;
+    volatile int limit2, n2, len2;
     Voice_001B8550 *voice;
     Entry1_001B8550 *e;
     Entry2_001B8550 *e2;
@@ -305,10 +317,8 @@ void C_001B8550::func_001B8550(Arg_001B8550 *arg)
                     continue;
                 }
                 len = strlen(buf);
-                n = 0x7f;
-                if (len < n) {
-                    n = len;
-                }
+                limit = 0x7f;
+                n = Min_001B8550(limit, len);
                 func_001E8920(voice->name, buf, n);
                 voice->name[n] = 0;
                 voice->func_00199600(self->f28[i]->f128);
@@ -340,13 +350,11 @@ void C_001B8550::func_001B8550(Arg_001B8550 *arg)
                     if (e2 == 0 || e2->f4 != 1 || e2->f8 == 0) {
                         continue;
                     }
-                    len = strlen((char *)e2->f8 + 0x28);
-                    n = 0x103;
-                    if (len < n) {
-                        n = len;
-                    }
-                    func_001E8920((char *)e2->f8 + 0x28, buf, n);
-                    buf[n] = 0;
+                    len2 = strlen((char *)e2->f8 + 0x28);
+                    limit2 = 0x103;
+                    n2 = Min_001B8550(limit2, len2);
+                    func_001E8920((char *)e2->f8 + 0x28, buf, n2);
+                    buf[n2] = 0;
                     dot = func_001E8AC0(buf, '.');
                     if (dot != 0) {
                         memset(dot, 0, strlen(dot));
