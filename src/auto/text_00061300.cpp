@@ -97,7 +97,7 @@ struct C_00061B80_Obj {
     unsigned char flags;
 };
 
-static inline void set_00061B80(C_00061B80_Obj *o, float a, float b, float c, float k)
+static __forceinline void set_00061B80(C_00061B80_Obj *o, float a, float b, float c, int k)
 {
     c *= D_00278784;
     if (o->f4 != a || o->f8 != b) {
