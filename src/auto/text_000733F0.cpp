@@ -244,6 +244,32 @@ void C_00073620::func_00073620(void) {
     unk70->func_001D5AD0();
 }
 
+char *__stdcall func_00073680(int value, char *out) {
+ char buffer[64];
+ int i, o, n;
+ memset(buffer, 0, 64);
+ *(int *)out = 0;
+ func_001ADCC0(buffer, 260, D_00277038, value);
+ value = strlen(buffer) % 3;
+ o = 0;
+ n = strlen(buffer);
+ for (i = 0; i < n; i++) {
+  char c = buffer[i];
+  if (c == ' ') {
+   strcat(out, buffer + i);
+   break;
+  }
+  if (i > value - 1 && i != 0 && ((i - value) == 0 || (i - value) % 3 == 0)) {
+   out[o++] = ',';
+   out[o++] = c;
+  } else {
+   out[o++] = c;
+  }
+ }
+ out[o] = 0;
+ return out;
+}
+
 void C_000739D0::func_000737A0() {
     unk68->func_001D6600();
     unk88->func_001D6600();
