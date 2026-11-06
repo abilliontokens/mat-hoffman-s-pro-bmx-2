@@ -95,10 +95,6 @@ struct C_00032E90 {
 };
 
 struct V4_00032E50;
-struct V3_00032F50 {
-    float x, y, z;
-    V3_00032F50(float a, float b, float c) { x = a; y = b; z = c; }
-};
 struct O_Cam32F50 {
     char pad0[0x28];
     char name[0x198];
