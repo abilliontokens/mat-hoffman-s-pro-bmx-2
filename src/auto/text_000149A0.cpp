@@ -223,6 +223,13 @@ void AIPedFleeState::func_00014EA0()
     }
 }
 
+static __forceinline float Sqrt_14EF0(float square)
+{
+    float r;
+    _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&square));
+    return r;
+}
+
 int AIPedFleeState::func_00014EF0(float dt)
 {
     struct {
