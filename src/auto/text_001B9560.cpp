@@ -414,8 +414,8 @@ int KeyFramedModel::func_001B9D60(S_001B9D60_Owner *p)
     S_001B9D60_Vec4 a;
     S_001B9D60_Vec4 b;
     if (f18.x == D_002AA9F4 && f18.y == D_002AA9F8 && f18.z == D_002AA9FC) {
-        func_00167FE0(&a, &b, func_00016D20(D_00275998 * f38), func_00016D20(D_00275998 * f3c),
-                      func_00016D20(D_00275998 * f40));
+        func_00167FE0(&a, &b, func_00016D20(f38 * 0.0174532905f), func_00016D20(f3c * 0.0174532905f),
+                      func_00016D20(f40 * 0.0174532905f));
     } else {
         a = f18;
         b = f28;
