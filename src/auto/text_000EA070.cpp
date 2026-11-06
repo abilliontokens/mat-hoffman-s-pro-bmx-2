@@ -12,6 +12,8 @@ struct S_000EA070_Elem {
     unsigned char f4e;
     char pad4F[9];
     unsigned char f58;
+    void func_001D5AD0();
+    void func_001D6600();
 };
 
 struct C_000EA070 {
