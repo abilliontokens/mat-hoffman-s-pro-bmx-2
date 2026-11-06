@@ -72,7 +72,7 @@ struct XboxVideoCard_001D7E30 {
 };
 
 struct XboxVideoCard_001D7D50 {
-    void *vtbl;
+    void *volatile vtbl;
     char pad4[0x68];
     volatile int f6C;
     char pad70[0x5B4 - 0x70];
