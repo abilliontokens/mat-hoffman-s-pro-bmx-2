@@ -31,7 +31,8 @@ struct C_000F83C0 {
     char pad3f8[8];
     char pad400[0x3c];
     int f43c[0x12];
-    char pad484[8];
+    int f484;
+    char pad488[4];
     int f48c;
     int f490;
     char pad494[4];
