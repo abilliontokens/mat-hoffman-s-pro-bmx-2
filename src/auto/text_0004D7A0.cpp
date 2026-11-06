@@ -38,6 +38,13 @@ struct C_0004DCA0_Rider {
     int f95C;
     char pad960[0x10];
     int f970;
+    char pad974[0xcc];
+    int fA40;
+    char padA44[0x7ac];
+    int f11F0;
+    int f11F4;
+    void func_001084E0(void);
+    int func_00108660(void);
     void func_00108680(int a);
     void func_0010C090(void *a, void *b, int c, int d);
 };
