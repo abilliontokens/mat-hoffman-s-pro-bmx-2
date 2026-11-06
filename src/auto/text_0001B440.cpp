@@ -348,6 +348,75 @@ struct C_0001B910 {
     int func_001B5720(void);
 };
 
+void C_0001B790::func_0001B440(S_0001B790_Obj *obj, int r)
+{
+    C_0001B910 *p = (C_0001B910 *)obj;
+    S_0001B910_Anim *anim = p->f1A4;
+    int flag = 0;
+    int i;
+
+    if (anim->f18 != 0) {
+        if (anim->f18->f38 - p->f9C < anim->f18->f3c)
+            flag = 1;
+        if (p->f8C == p->f64[p->f84] - 1 && p->f70[p->f84] == 0)
+            flag = 0;
+    }
+    if (p->f88 == -1) {
+        i = p->f84;
+        p->f88 = i;
+        if (p->f78[i] == 0) {
+            int j = i;
+            for (;;) {
+                j++;
+                if (j >= p->f60) j = 0;
+                if (j == i) break;
+                if (p->f78[j] == 0) continue;
+                if (p->f78[j] != 1) break;
+                break;
+            }
+            p->f88 = j;
+        }
+        p->f90 = -1;
+        if (p->f78[p->f88] == 1) {
+            int *cnt = &p->f64[i];
+            for (;;) {
+                p->f90++;
+                if (p->f90 < *cnt) continue;
+                if (p->f70[p->f88] == 0) {
+                    p->f78[p->f88] = 0;
+                    p->f90--;
+                    break;
+                }
+                p->f90 = 0;
+                if (p->f6C[p->f88][p->f90] == 100) break;
+                if (r >= p->f6C[p->f88][p->f90]) continue;
+                break;
+            }
+        } else {
+            p->f88 = -1;
+            p->f90 = -1;
+        }
+        p->f88 = -1;
+        if (p->f78[p->f88] == 1) {
+            int a = p->func_001B5720();
+            int b = (int)p->func_001B56F0();
+            p->f98 = (a != b);
+        }
+    }
+    if (flag != 0) {
+        p->f84 = p->f88;
+        p->f8C = p->f90;
+    }
+    for (i = 0; i < p->f4C; i++) {
+        S_0001B910_Child *c = p->f50[i];
+        if (c->f108 < (float)anim->f34 && anim->f10 == 0 && c->f10C == 0) {
+            c->f110->v20(anim->f220);
+            p->f50[i]->v0();
+            p->f50[i]->f10C = 1;
+        }
+    }
+}
+
 int C_0001B790::func_0001B790(float dt)
 {
     int i;
@@ -584,21 +653,28 @@ void C_0001C1E0::func_0001BDB0(int idx)
     }
 }
 
+static __forceinline int InRange_0001BDF0(S_0001C1E0_List *list, int idx)
+{
+    return list != 0 && idx < list->f24 && idx >= 0;
+}
+
 int C_0001C1E0::func_0001BDF0(int a, int b)
 {
     S_0001C1E0_Slot *s;
     int k;
     int idx = func_0001B3C0(a);
 
-    if (f2c != 0 && idx < f2c->f24 && idx >= 0) {
+    do {
+        if (f2c == 0 || idx >= f2c->f24 || idx < 0) {
+            return 0;
+        }
         s = f2c->f28[idx];
         k = s->func_001B5750(b);
         if (s->f84 == k) {
             return s->f78[k] | (s->f1A4->f10 == 0);
         }
         return s->f78[k];
-    }
-    return 0;
+    } while (0);
 }
 
 struct S_0001C020_Mgr {
