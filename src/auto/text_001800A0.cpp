@@ -77,7 +77,7 @@ struct C_00180600 {
     int fF4;
     float fF8;
     Rec180600 *fFC;
-    Rec180600 *f100;
+    Pair180600 *f100;
     short fF0s;
     void func_00180600(int a0, int a1);
 };
