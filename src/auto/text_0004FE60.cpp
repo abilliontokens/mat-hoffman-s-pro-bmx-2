@@ -211,7 +211,11 @@ struct BmxEventMountVert {
     int func_000508C0();
     void func_00034090();
     void func_0004FAC0();
+    void func_000342C0();
+    BmxEventMountVert *func_0004FE60();
 };
+extern char D_00277830;
+int func_001EA426(const char *a, const char *b);
 
 int BmxEventMountVert::func_000508C0() {
     int i;
