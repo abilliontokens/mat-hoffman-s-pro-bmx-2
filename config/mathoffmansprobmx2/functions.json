@@ -524473,6 +524473,7 @@
   "func_00149380": "C_00149380::C_00149380",
   "func_0015B660": "LinearPositionController::LinearPositionController",
   "func_0015B7A0": "BezierPositionController::BezierPositionController",
+  "func_001691E0": "C_00168F40::~C_00168F40",
   "func_001827B0": "C_001827B0::C_001827B0",
   "func_001858A0": "PortalInfo::PortalInfo",
   "func_001887A0": "BytesEqual",

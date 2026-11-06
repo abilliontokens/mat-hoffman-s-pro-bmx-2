@@ -238,7 +238,7 @@ void __stdcall func_001690D0(char *src, char *dst)
     dst[j] = 0;
 }
 
-void C_00168F40::func_001691E0(void)
+C_00168F40::~C_00168F40()
 {
     int i;
 
