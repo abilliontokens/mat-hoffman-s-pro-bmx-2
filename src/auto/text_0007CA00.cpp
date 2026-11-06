@@ -33,6 +33,38 @@ struct Menu {
     int s178;
     Menu* func_0007CA00(int a);
 };
+struct BmxSprite {
+    char pad0[0x28];
+    float w;
+    float h;
+    char pad30[0x8];
+    unsigned int color;
+    float u0, v0, u1, v1;
+    float sx, sy;
+    char pad54[4];
+    unsigned char flags;
+    void Init(const char* name, float a, float b, int c);
+};
+struct BmxMenu {
+    char pad0[0x80];
+    BmxSprite* s80;
+    BmxSprite* s84;
+    char pad88[0x30];
+    BmxSprite* sb8;
+    BmxSprite* sbc;
+    char padc0[8];
+    BmxSprite* sc8;
+    BmxSprite* scc;
+    char padd0[0x1c];
+    BmxSprite* sec[5];
+    BmxSprite* s100[14];
+    BmxSprite* s138;
+    char pad13c[0x10];
+    int* s14c;
+    char pad150[0x28];
+    int s178;
+    BmxMenu* func_0007CA00(int a);
+};
 struct C_0007D6D0 {
     undefined4 func_0007D6D0(byte param_1);
 };
