@@ -540,6 +540,7 @@ LoadMemoryCard *LoadMemoryCard::func_001A61C0(void *arg) {
 void C_001A6260::func_001A6260()
 {
     int i;
+    int k;
     vtbl = &D_0028BB74;
     if (D_002F0630 != 0) {
         D_002F0630->v0(1);
@@ -565,7 +566,9 @@ void C_001A6260::func_001A6260()
             f44[i] = 0;
         }
     }
-    memset(&f24, 0, 16);
+    for (k = 0; k < 4; k++) {
+        (&f24)[k] = 0;
+    }
     if (f94 != 0) {
         f94->v2();
         f94 = 0;
