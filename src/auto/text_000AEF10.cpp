@@ -198,7 +198,8 @@ inline T AF0D0_Min(const T &a, const T &b)
 inline void AF0D0_Copy(char *dst, const char *src, int max)
 {
     int len = strlen(src);
-    int n = AF0D0_Min(max, len);
+    int lim = max;
+    int n = *(lim > len ? &len : &lim);
     func_001E8920(dst, src, n);
     dst[n] = 0;
 }
