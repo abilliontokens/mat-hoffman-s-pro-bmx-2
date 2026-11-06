@@ -217,6 +217,25 @@ struct C_5EA10_Input {
     C_00135D30 *fCC0;
 };
 
+struct C_5ED_Data {
+    char pad0[0xAC8];
+    int fAC8;
+    char padACC[0xE98 - 0xACC];
+    int fE98;
+    char padE9C[0xFC0 - 0xE9C];
+    int fFC0;
+};
+
+struct C_5ED_Sub {
+    char pad0[4];
+    C_5ED_Data *f4;
+};
+
+struct C_5ED_Lookup {
+    int *func_0018C160(int id);
+    void func_0018C780(int count, int *names, int flags);
+};
+
 struct C_5EA10_Root {
     char pad0[8];
     C_5EA10_Input *f8;
@@ -224,6 +243,9 @@ struct C_5EA10_Root {
     C_5EA10_Players *f2A4;
     char pad2A8[0x2E0 - 0x2A8];
     C_5EA10_Mode *f2E0;
+    char pad2E4[4];
+    C_5ED_Sub *f2E8;
+    C_5ED_Lookup *f2EC;
 };
 
 struct C_5EA10_Cam {
@@ -435,6 +457,77 @@ void C_0005E9F0::func_0005E9F0(int param_1)
     *(byte *)(in_ECX + 0x4e) = *(byte *)(in_ECX + 0x4e) | 6;
   }
   return;
+}
+
+void BmxMenu::func_0005EA10(int a0)
+{
+    int used[4];
+    C_5EA10_Event ev;
+    C_5EA10_Params params;
+    int i;
+    int moved;
+    float x;
+    float y;
+    int pad;
+    C_5EA10_Root *root;
+
+    used[0] = 0;
+    used[1] = 0;
+    used[2] = 0;
+    used[3] = 0;
+    for (i = 0; root = D_002A8490, i < root->f2A4->f90; i++) {
+        C_5EA10_Mode *mode = root->f2E0;
+        if (mode->f4 == 10) {
+            x = D_002B9120->f4E4->f44;
+            y = D_002B9120->f4E4->f40;
+        } else {
+            C_5EA10_Rider *r = D_002A8490->f2A4->f64->f4E0->f1A8[i];
+            *(int *)&x = *(int *)&r->f9E8->f24;
+            *(int *)&y = *(int *)&r->f9EC->f24;
+        }
+        pad = mode->f300[i];
+        moved = 0;
+        if (root->f8->f14[pad]->v44() != 0) {
+            int *u = &used[pad];
+            if (*u == 0) {
+                if (x < D_00275544) {
+                    if (x <= D_00277FBC && f24[i] > D_00277FBC) {
+                        D_002A8490->f8->fCC0->func_00135D30(0, &ev, pad);
+                        moved = 1;
+                    }
+                } else if (x >= D_002755E8 && f24[i] < D_002755E8) {
+                    D_002A8490->f8->fCC0->func_00135D30(1, &ev, pad);
+                    moved = 1;
+                }
+                if (y < D_00275544) {
+                    if (y <= D_00277FBC && f44[i] > D_00277FBC) {
+                        D_002A8490->f8->fCC0->func_00135D30(2, &ev, pad);
+                        moved = 1;
+                    }
+                } else if (y >= D_002755E8 && f44[i] < D_002755E8) {
+                    D_002A8490->f8->fCC0->func_00135D30(3, &ev, pad);
+                    moved = 1;
+                }
+                if (moved) {
+                    ev.one = 1;
+                    params.one = 1;
+                    ev.type = 2;
+                    ev.pad = pad;
+                    ev.flags = 0x80000000;
+                    params.scale = 1.0f;
+                    params.z[0] = 0;
+                    params.z[1] = 0;
+                    params.z[2] = 0;
+                    params.z[3] = 0;
+                    v5C(&ev, &params);
+                }
+                *u = 1;
+                f24[i] = x;
+                f44[i] = y;
+            }
+        }
+    }
+    func_00157A00(a0);
 }
 
 C_0005ECA0 *C_0005ECA0::func_0005ECA0(int a0)
