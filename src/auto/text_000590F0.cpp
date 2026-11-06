@@ -3,12 +3,48 @@
 
 extern int D_00277FD4;
 extern float D_002755E8, D_002756D0, D_002756B8, D_002756E8, D_00277FBC, D_00275544, D_002756DC, D_00277FB8, D_00277FB4, D_00277FB0, D_00277D04;
+struct S_00059290_Sub3 { char pad0[0x3c]; float f3c; };
+struct S_00059290_Obj {
+    char pad0[0x1e0];
+    int f1e0;
+    S_00059290_Sub3 *f1ec;
+    char pad1f0[0x964 - 0x1f0];
+    float f964;
+    char pad968[0x1218 - 0x968];
+    int f1218;
+};
+struct S_00059290_Item2 { char pad0[0x22c]; int f22c; };
+struct S_00059290_Item3 { char pad0[0x288]; int f288; };
+struct S_00059290_Item {
+    char pad0[4];
+    int f4;
+    char pad8[0x58 - 8];
+    S_00059290_Item2 *f58;
+    char pad5c[0x1a4 - 0x5c];
+    S_00059290_Item3 *f1a4;
+};
+struct S_00059290_List { char pad0[0x24]; int count; S_00059290_Item **items; };
+struct S_00059290_Mgr { char pad0[0x2c]; S_00059290_List *f2c; };
+struct S_00059290_Mgr0 { char pad0[0x484]; S_00059290_Mgr *f484; };
+extern S_00059290_Mgr0 *D_002B9120;
+int __stdcall func_000590F0(int a);
 struct C_00059290 {
-    char pad0[0x58];
-    int f58;
-    char pad5c[0x190 - 0x5c];
-    float f190;
-    char pad194[0x1dc - 0x194];
+    char pad0[4];
+    S_00059290_Obj *f4;
+    char pad8[4];
+    int f0c;
+    int f10;
+    char pad14[0x50 - 0x14];
+    int f50, f54, f58;
+    char pad5c[0x64 - 0x5c];
+    float f64, f68;
+    char pad6c[0x14c - 0x6c];
+    float f14c;
+    char pad150[0x15c - 0x150];
+    float f15c;
+    char pad160[0x184 - 0x160];
+    float f184, f188, f18c, f190, f194;
+    char pad198[0x1dc - 0x198];
     int f1dc, f1e0;
     void func_00059290(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7, float a8, float a9, float a10);
 };
