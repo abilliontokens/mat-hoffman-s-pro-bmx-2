@@ -29,6 +29,9 @@ struct Img_75F30 {
     char pad54[4];
     unsigned char flags;
     Img_75F30 *func_001D5760();
+    Img_75F30 *func_001D5E90();
+    void func_001D5FA0(void *p, char *name, int a, int b);
+    void func_0005E840(int x);
     void func_001D5810(char *name, float x, float y, int z);
 };
 
