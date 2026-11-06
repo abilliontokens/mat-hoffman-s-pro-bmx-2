@@ -249,6 +249,62 @@ struct C_00182CC0 {
     void func_00183AB0();
 };
 
+struct V4 {
+    float x, y, z, w;
+};
+extern char D_00289504[], D_002894F0[], D_002894E4[], D_00288A68[], D_002894D4[], D_002894C0[];
+extern char D_002894B4[], D_002894A8[], D_0028949C[], D_00289494[], D_0028948C[], D_00289480[];
+extern char D_00289474[], D_002A90B4[], D_00289464[], D_002A90D4[], D_00275AD4[], D_00289454[];
+extern char D_00289440[], D_0028942C[], D_00289410[], D_002867E8[], D_002893F4[];
+extern "C" V4 *func_00182980(V4 *out, const char *s);
+void *func_001E83E8(void *p, int size);
+
+struct C_001AE3E0 {
+    C_001AE3E0 *func_001AE3E0(int a);
+    void func_001AEBD0(char *a, char *b, void *c, float d, float e, float f, float g, int n, V4 v, int p);
+    void func_001AE4D0(V4 a, V4 b, int i);
+};
+
+struct C_00183450 {
+    char pad0[0x28];
+    C_00168280 *f28;
+    char pad2C[0x340 - 0x2c];
+    int f340;
+    char pad344[0x48C - 0x344];
+    C_001AE3E0 **f48C;
+    int f490;
+    void func_00183450(int param);
+};
+
+void C_00183450::func_00183450(int param)
+{
+    V4 pos = {0, 0, 0, 1}, a = {0, 0, 0, 1}, b = {0, 0, 0, 1};
+    int cnt = 0, i, j, ok;
+    char name[0x40], s1[0x104], s2[0x104], s3[0x104];
+    float p1[4], p2[4], p3[4], p4[4], p5[4];
+    int ia, ib;
+
+    f28->func_00169710(D_00289504);
+    f28->func_00168C20(D_002894F0, 0, &cnt);
+    if (cnt > 0) {
+        int old;
+        if (f48C == 0) {
+            old = 0;
+            f490 = cnt;
+            f48C = (C_001AE3E0 **)func_001E8A44(cnt * 4);
+        } else {
+            old = f490;
+            f490 += cnt;
+            f48C = (C_001AE3E0 **)func_001E83E8(f48C, f490 * 4);
+        }
+        for (i = old; i < f490; i++) {
+            func_001ADCC0(name, 0x40, D_002894E4, i + 1);
+            if (f28->func_00169710(name)) {
+            }
+        }
+    }
+}
+
 void C_00182CC0_Scene::func_00182CC0()
 {
     char bufB[0x100];
