@@ -155,7 +155,7 @@ struct ObjF8_26 {
 };
 struct Obj204_26 {
     char pad0[0x68]; int f68;
-    void func_001A4A50(int); void func_00129920(int);
+    Obj204_26 *func_001A4A50(int); void func_00129920(int);
 };
 struct Obj208_26 {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
