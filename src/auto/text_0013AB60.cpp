@@ -14,6 +14,7 @@ struct C_0013AFD0 {
 };
 
 #include <string.h>
+#include "asm_helpers.h"
 
 static inline int Min_0013B530(int a, int b) { return a < b ? a : b; }
 template <class T> inline const T &MinRef_0013B530(const T &a, const T &b) { return b < a ? b : a; }
@@ -168,77 +169,51 @@ void func_0013AC00(unsigned char *p, unsigned int n, unsigned char key)
 }
 
 void *func_001E83E8(void *p, unsigned int size);
-int C_0013AEC0::func_0013AC40(const char * volatile key, int a2, int a3, int a4, int *out, int grow)
+int C_0013AEC0::func_0013AC40(const char *key, int a2, int a3, int a4, int *out, int grow)
 {
-    struct { C_0013AEC0 * volatile self; volatile int n; } t;
-    C_0013AEC0 *p = this;
     int i;
-    int e;
-    int cap;
-    int idx;
-    int j;
-    S_0013AEC0_Slot *s;
-    char *buf;
-
-    t.self = this;
-    for (i = 0; i < *(volatile int *)&p->fEC; i++, p = t.self) {
-        if (p->fE8[i].f8 != 0 && func_001EA426(key, (const char *)p->fE8[i].f8) == 0)
+    for (i = 0; i < fEC; i++) {
+        if (fE8[i].f8 != 0 && func_001EA426(key, (const char *)fE8[i].f8) == 0)
             return 1;
     }
-    if (p->fE4 == -1) {
-        t.n = grow;
-        if (grow < 1)
-            t.n = 1;
-        p = t.self;
-        cap = p->fEC + t.n;
-        t.self->fE8 = (S_0013AEC0_Slot *)func_001E83E8(p->fE8, cap * sizeof(S_0013AEC0_Slot));
-        p = t.self;
-        if (p->fE8 == 0)
+    if (fE4 == -1) {
+        int n = AsmMaxI(grow, 1);
+        int cap = fEC + n;
+        fE8 = (S_0013AEC0_Slot *)func_001E83E8(fE8, cap * sizeof(S_0013AEC0_Slot));
+        if (fE8 == 0)
             return 0;
-        p->fE4 = p->fEC;
+        fE4 = fEC;
         do {
-            p = t.self;
-            *(volatile int *)&p->fE8[p->fEC].f18 = 1;
-            p = t.self;
-            *(volatile int *)&p->fE8[p->fEC].f8 = 0;
-            p = t.self;
-            *(volatile int *)&p->fE8[p->fEC].f0 = 0;
-            p = t.self;
-            *(volatile int *)&p->fE8[p->fEC].fC = 0;
-            p = t.self;
-            *(volatile int *)&p->fE8[p->fEC].f10 = 0;
-            p = t.self;
-            *(volatile int *)&p->fE8[p->fEC].f14 = 0;
-            p = t.self;
-            *(volatile int *)&p->fE8[p->fEC].f4 = 0;
-            p = t.self;
-            *(volatile int *)&p->fE8[p->fEC].f1C = 0;
-            p = t.self;
-            p->fEC++;
-            p = t.self;
-        } while ((e = *(volatile int *)&p->fEC) != cap);
+            fE8[fEC].f18 = 1;
+            fE8[fEC].f8 = 0;
+            fE8[fEC].f0 = 0;
+            fE8[fEC].fC = 0;
+            fE8[fEC].f10 = 0;
+            fE8[fEC].f14 = 0;
+            fE8[fEC].f4 = 0;
+            fE8[fEC].f1C = 0;
+            fEC++;
+        } while (fEC != cap);
     }
-    idx = p->fE4;
-    *(volatile int *)&p->fE4 = -1;
-    j = idx + 1;
-    p = t.self;
-    if (p->fEC > 1) {
-        if (j == p->fEC)
+    int idx = fE4;
+    fE4 = -1;
+    int j = idx + 1;
+    if (fEC > 1) {
+        if (j == fEC)
             j = 0;
         do {
-            if (p->fE8[j].f18 & 1) {
-                p->fE4 = j;
+            if (fE8[j].f18 & 1) {
+                fE4 = j;
                 break;
             }
             j++;
-            if (j == p->fEC)
+            if (j == fEC)
                 j = 0;
         } while (j != idx);
     }
-    p = t.self;
-    s = &p->fE8[idx];
-    *(volatile int *)&s->f18 = 0;
-    buf = (char *)func_001E8AA5(strlen(key) + 1);
+    S_0013AEC0_Slot *s = &fE8[idx];
+    s->f18 = 0;
+    char *buf = (char *)func_001E8AA5(strlen(key) + 1);
     s->f8 = buf;
     strcpy(buf, key);
     s->f0 = a2;
@@ -594,6 +569,35 @@ int __stdcall func_0013B4C0(S_BufSet * volatile set, volatile int n, volatile in
         }
     }
     return total;
+}
+
+extern "C" int func_001DC8A0(void *, void *, int);
+int __stdcall func_0013B530(int *s, char *dst, int size, unsigned int off)
+{
+    struct A4 { int *s; char *dst; int size; unsigned int off; };
+    A4 *A = (A4 *)&s;
+    char buf[0x6000];
+    volatile int res;
+    volatile int a;
+    int idx = A->off / (unsigned)A->s[8];
+    int i;
+    for (i = 0; i < idx; i++)
+        A->off -= A->s[8 + i];
+    if (A->size + A->off > (unsigned)A->s[8 + idx]) {
+        char *p = buf;
+        for (i = idx; A->size > 0; i++) {
+            a = A->s[8 + i] - A->off;
+            int x = a;
+            res = x > A->size ? A->size : x;
+            int n = res;
+            memcpy(p, (char *)A->s[i] + A->off, n);
+            A->size -= n;
+            p += n;
+            A->off = 0;
+        }
+        return func_001DC8A0(A->dst, buf, 0x6000);
+    }
+    return func_001DC8A0(A->dst, (char *)A->s[idx] + A->off, 0x6000);
 }
 
 void __stdcall func_0013B660(S_BufSet *set, void *dst, unsigned int off)
