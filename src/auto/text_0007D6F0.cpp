@@ -153,8 +153,96 @@ struct C_0007E220 {
 
 extern GObjRoot_7E *D_002A8490;
 extern int D_00277038;
-void func_001ADCC0(char *buf, int size, char *fmt, int val);
+void func_001ADCC0(char *buf, int size, char *fmt, ...);
 void func_001AC330(char *dest, char *fmt, char *arg);
+
+void *func_001E8A44(int size);
+extern char D_00278664[];      /* "global\textures\" */
+extern char D_002A60B0[];
+extern char D_002786A0[];      /* "nosebleedbold16" */
+extern char D_00278690[];      /* "nosebleedbold18" */
+extern char D_00278658[];      /* "letterbox" */
+extern char D_00278600[];      /* "Dimmer" */
+extern char D_00278648[];      /* "xsymbol" */
+extern char D_00278624[];      /* "xsymbolhighlighted" */
+extern char D_00278638[];      /* "symbol" */
+extern char D_00278608[];      /* "triangle" */
+extern char D_002786B0[];      /* "overlay" */
+extern char D_00279008[];      /* "circlesymbol" */
+extern char D_00278FF0[];      /* "circlesymbolhighlighted" */
+extern char D_00279038[];      /* "ui_updown" */
+extern char D_00279044[];      /* "ui_leftright" */
+extern char D_00275678[];      /* "%s%s" */
+extern char D_002A5870[];      /* "tracks\" */
+extern char D_002A5FA8[];      /* "textures\" */
+extern float D_00278650;       /* 128.0f */
+extern float D_00278654;       /* 127.0f */
+extern float D_00275544;       /* 0.0f */
+extern float D_0027653C;       /* 15.0f */
+extern float D_00279054;       /* 84.0f */
+
+struct S17_7D { char b[17]; };
+
+struct C_0018C780Obj {
+    void func_0018C780(int a, void **arr, int b);
+};
+
+/* XboxScreenIcon */
+struct Icon_7D {
+    void *vtbl;
+    char pad4[0x20];
+    float f24;
+    float f28;
+    float f2c;
+    int f30;
+    int f34;
+    u32 f38;
+    float f3c;
+    float f40;
+    float f44;
+    float f48;
+    float f4c;
+    float f50;
+    void *f54;
+    u8 f58;
+    char pad59[0xb];
+    Icon_7D *func_001D5760();
+    void func_001D5810(int tex, float b, float c, float d);
+    void setW(float v) { if (f28 != v) { f58 |= 1; f28 = v; } }
+    void setH(float v) { if (f2c != v) { f58 |= 1; f2c = v; } }
+    void updateUV() {
+        f3c = f4c * D_00278654;
+        f40 = f4c * D_00275544;
+        f44 = f50 * D_0027653C;
+        f48 = f50 * D_00275544;
+        f58 |= 4;
+    }
+};
+
+struct C_Arg_7D {
+    char pad0[0x1d0];
+    int f1d0;
+};
+
+struct C_0007D6F0 {
+    char pad0[0x64];
+    SetterObj_7E *texts[8];
+    char pad84[0x14];
+    Icon_7D *f98, *f9c, *fa0, *fa4, *fa8, *fac, *fb0, *fb4, *fb8, *fbc;
+    int ys[8];
+    char padE0[4];
+    Icon_7D *fE4[5];
+    Icon_7D *fF8[5];
+    Icon_7D *f10c[16];
+    Icon_7D *f14c;
+    char pad150[8];
+    C_Arg_7D *f15c;
+    char pad160[0x40];
+    int f1a0;
+    C_0007D6F0 *func_0007D6F0(C_Arg_7D *arg);
+    void func_0006A360();
+    void func_001577A0(void *p, int n);
+};
 
 struct C_0007E1E0 {
     void *func_0007E1E0(unsigned int flags);
