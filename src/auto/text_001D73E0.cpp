@@ -46,6 +46,8 @@ extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 extern int D_0028F774;
 extern int D_002F0BB8;
 extern float D_00275460;
+extern float D_00284758;
+extern float D_0027A060;
 
 template <class T> inline const T &min_001D7E60(const T &a, const T &b) { return b < a ? b : a; }
 
@@ -680,28 +682,29 @@ int __stdcall func_001D8140(S_001D8140 *p, unsigned int index, int h)
 int XboxVideoCard_001D8240::func_001D8240(void)
 {
     volatile int *d = (volatile int *)&D_002F0BBC;
+    int two = 2;
     if (f10 != 0)
         return 0;
     if (f14 == 1) {
-        if (*d <= 1 && *d < 2)
+        if (*d <= 1 && *d < two)
             goto wait;
-    } else if (f14 == 2 && *d == 0) {
+    } else if (f14 == two && *d == 0) {
 wait:
         while (*d < 1)
             ;
         *d = 0;
     }
     f6BC++;
-    if (f9D4 & 2) {
+    if (f9D4 & two) {
         func_001FF4E0(0, 0, 0xf3, 0, 0, 0);
         func_002025D0(0);
         func_001FF4E0(0, 0, 0xf3, 0, 0, 0);
         func_002025D0(0);
     }
-    if (f9D4 & 2) {
+    if (f9D4 & two) {
         func_001FFBB0();
         v7(f9D8);
-        f9D4 &= ~2;
+        f9D4 &= ~two;
     }
     return 1;
 }
