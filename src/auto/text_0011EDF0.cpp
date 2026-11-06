@@ -171,6 +171,14 @@ void func_0011F010(int a0, float x, float y, float z, float s, float c)
     m[10] = *(volatile float *)&s * z + c;
 }
 
+static __forceinline void SetV_0011F210(C_0011EDF0 *t, s16 *q)
+{
+    t->x = (float)q[0] * D_002B9348;
+    t->y = (float)q[1] * D_002B9348;
+    t->z = (float)q[2] * D_002B9348;
+    t->w = 1.0f;
+}
+
 void func_0011F0E0(C_0011EDF0 *a, C_0011EDF0 *b, C_0011EDF0 *c, unsigned short *indices, void **data)
 {
     if (data[2]) {
