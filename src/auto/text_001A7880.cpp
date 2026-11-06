@@ -75,6 +75,12 @@ struct State_001A7FE0 {
 };
 extern unsigned D_002BA154, D_002BA15C, D_002BA160;
 void func_0011F540(V4_001A7FE0 *, V4_001A7FE0, float *);
+static __forceinline V4_001A7FE0 xform_001A7FE0(V4_001A7FE0 v, float *m)
+{
+    V4_001A7FE0 r;
+    func_0011F540(&r, v, m);
+    return r;
+}
 char *func_001E9260(const char *, int);
 extern "C" unsigned int __cdecl strlen(const char *);
 void func_001A7FE0(State_001A7FE0 *, Contact_001A7FE0 *);
@@ -167,6 +173,74 @@ undefined4 C_001A7FC0::func_001A7FC0(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+void func_001A7FE0(State_001A7FE0 *state, Contact_001A7FE0 *contact)
+{
+    unsigned flags = contact->f68;
+    if (flags & D_002BA154) return;
+    Model_001A7FE0 *model = state->f60;
+    Body_001A7FE0 *body = state->f64;
+    Body_001A7FE0 *other = 0;
+    Contact_001A7FE0 *previous = model->f154;
+    if (!previous || (previous->f68 & D_002BA15C)) model->f154 = contact;
+    int proceed = 1;
+    int frame = 0;
+    if (flags & D_002BA15C) {
+        other = contact->f64;
+        if (body->v39(other)) proceed = 0;
+        else {
+            other->v38(body);
+            body->v36(other);
+            other->v36(body);
+        }
+        char *name = other->f22c;
+        if (name) {
+        char *end = func_001E9260(name + 0x28, '.');
+        if (!end) end = name + 0x28 + strlen(name + 0x28);
+        if (end[-3] == 'f' && end[-2] == 'r') frame = end[-1] - '0';
+    }
+    } else if (flags & D_002BA160) {
+        char *name = contact->f60;
+        if (name) {
+            char *end = func_001E9260(name + 0x28, '.');
+            if (!end) end = name + 0x28 + strlen(name + 0x28);
+            if (end[-3] == 'f' && end[-2] == 'r') frame = end[-1] - '0';
+        }
+    }
+    if (!proceed) return;
+    switch (state->f50) {
+    case 5: {
+        Shape_001A7FE0 *shape = (Shape_001A7FE0 *)state->f54;
+        V4_001A7FE0 a, b;
+        func_0011F540(&a, shape->f14, (float *)(body->f22c + 0xf0));
+        for (int i=0; i<shape->f4; ++i) {
+            V4_001A7FE0 t = shape->f14 - shape->f24[i] * state->f100;
+            func_0011F540(&b, t, (float *)(body->f22c + 0xf0));
+            model->func_001A95B0(a,b,shape->f24[i],shape->f24[i+3],flags,other,state->f110,frame);
+        }
+        break;
+    }
+    case 3: {
+        Mesh_001A7FE0 *mesh = (Mesh_001A7FE0 *)state->f54;
+        int count = mesh->f7c;
+        V4_001A7FE0 a, b;
+        for (int i=0; i<count; ++i, count=mesh->f7c) {
+            if (!mesh->f88[i]) continue;
+            V4_001A7FE0 t = state->fc0[i] + state->fc4[i] * state->fbc[i];
+            func_0011F540(&b, t,(float *)(body->f22c+0xf0));
+            func_0011F540(&a, state->fc0[i],(float *)(body->f22c+0xf0));
+            model->func_001A95B0(a,b,mesh->f74[i],mesh->f78[i],flags,other,state->fac[i],frame);
+        }
+        break;
+    }
+    case 2: {
+        Mesh_001A7FE0 *mesh = (Mesh_001A7FE0 *)state->f54;
+        for(int i=0;i<mesh->f80;++i)
+            model->func_001A95B0(mesh->f70[i*2],mesh->f70[i*2+1],mesh->f74[i],mesh->f78[i],flags,other,state->ff4,frame);
+        break;
+    }
+    }
 }
 
 extern "C" void *__cdecl memset(void *, int, unsigned int);
