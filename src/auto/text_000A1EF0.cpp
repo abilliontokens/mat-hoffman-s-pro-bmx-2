@@ -54,6 +54,9 @@ struct Reader2 {
     int func_00169710(const void *name);
     void func_00168C20(const void *name, int def, void *out);
     void func_00168C50(const void *name, int def, void *out);
+    void func_00168C50(const void *name, float def, void *out);
+    void func_00168550(const void *name, void *buf, int size);
+    void func_00168A10(const void *name, int *out);
     void func_00168CB0(const void *name, void *def, void *out);
     void func_00168BE0(const void *name, const void *def, void *buf, int size);
 };
