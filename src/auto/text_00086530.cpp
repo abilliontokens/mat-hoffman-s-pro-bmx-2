@@ -116,9 +116,8 @@ struct BestScoreOverlay_Text {
     void SetPosRev(int nx, int ny) {
         if (x != nx || y != ny) {
             y = ny;
-            unsigned char f = flags | 6;
+            flags |= 6;
             x = nx;
-            flags = f;
         }
     }
     void SetPosY(int nx, float ny) {
@@ -513,7 +512,15 @@ BestScoreOverlay *BestScoreOverlay::func_00086E60(u32 a, int mode, int c)
         f24->SetPos(0x4415c000, 0x41d00000);
         f24->SetColor(D_0028F5EC);
         f28->func_001D5FA0(font2, &D_0027958C, 0x28, 0);
-        f28->SetPosRev(0x4415c000, 0x42500000);
+        {
+            BestScoreOverlay_Text *p = f28;
+            if (p->x != 0x4415c000 || p->y != 0x42500000) {
+                p->y = 0x42500000;
+                unsigned char fl = p->flags | 6;
+                p->x = 0x4415c000;
+                p->flags = fl;
+            }
+        }
     } else if (mode == 1) {
         f24->func_001D5FA0(font, &D_002786A0, 0x28, 0);
         f24->SetColor(D_0028F5EC);
