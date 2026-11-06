@@ -46,6 +46,21 @@ static __forceinline V4_00125540 Sub_00125540(const V4_00125540 &a, const V4_001
     return V4_00125540(a.x - b.x, a.y - b.y, a.z - b.z);
 }
 
+static __forceinline V4_00125540 Add_00125540(const V4_00125540 &a, const V4_00125540 &b)
+{
+    return V4_00125540(a.x + b.x, a.y + b.y, a.z + b.z);
+}
+
+static __forceinline V4_00125540 Mul_00125540(const V4_00125540 &v, float s)
+{
+    return V4_00125540(v.x * s, v.y * s, v.z * s);
+}
+
+static __forceinline float Dot_00125540(const V4_00125540 &a, const V4_00125540 &b)
+{
+    return a.y * b.y + a.x * b.x + a.z * b.z;
+}
+
 static __forceinline float Abs_00125540(float f)
 {
     int i = *(int *)&f & 0x7fffffff;
