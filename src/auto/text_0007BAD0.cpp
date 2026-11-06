@@ -38,6 +38,7 @@ struct S_7C690_Global {
     int f274;
     char pad278[0x2e0 - 0x278];
     S_7C690_E *f2e0;
+    int pad2e4;
     S_7C690_Mgr *f2e8;
 };
 extern S_7C690_Global *D_002A8490;
@@ -96,6 +97,40 @@ struct C_0007C9E0 {
     undefined4 func_0007C9E0(byte param_1);
 };
 
+
+undefined4 C_0007C2C0::func_0007C2C0()
+{
+    char buf[0x32];
+    S_7C2C0_U *u;
+    int n, i, count, si, color, idx;
+    S_7C2C0_W *w;
+
+    n = D_002A8490->f2e0->f2c0->func_0005C020(D_002A8490->f2e0->f2d8);
+    u = f1d0->f64;
+    count = u->f568;
+    si = f244;
+    func_001ADCC0(buf, 0x32, D_00275678, (char *)D_002A8490->f2e8->f4->f790, D_00279030);
+    i = func_00064580(si, buf, 0xffbfa35a);
+    si = func_00064580(i, D_00275630, 0xffcccccc);
+    for (i = 0; i < count; i++) {
+        idx = D_002A8490->f2e0->f48 * 100 + i;
+        color = ((int *)((char *)n + 0x678))[idx];
+        color = color ? 0xcccccc : 0xbfa35a;
+        if (strncmp(u->f56c[i] + 0x24, D_00275630, 1) == 0)
+            continue;
+        if (si < 0 || si >= 0x10)
+            continue;
+        w = f13c[si];
+        w->func_0005E840(u->f56c[i] + 0x24);
+        if (w->color != color) {
+            w->flags |= 8;
+            w->color = (w->color ^ color) & 0xffffff ^ w->color;
+        }
+        w->func_001D6600();
+        si++;
+    }
+    return 0;
+}
 
 undefined4 C_0007C670::func_0007C670(byte param_1)
 {
