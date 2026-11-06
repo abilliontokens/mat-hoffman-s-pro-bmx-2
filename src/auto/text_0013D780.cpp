@@ -508,11 +508,12 @@ void *C_0013E080::func_0013E140(unsigned int flags) {
 void C_0013E170::func_0013E170(int index, char *name, int value)
 {
     if (index < *(int *)((int)this + 0x193c)) {
-        S_0013E170_Entry *e = (S_0013E170_Entry *)storage[index];
-        if (strcmp(e->name, name) != 0) {
-            func_001E8920(e->name, name, 0x4f);
-            e->name[0x4f] = 0;
-            e->value = value;
+        char *base = (char *)this + index * 0x5c;
+        char *buf = base + 0x230;
+        if (strcmp(buf, name) != 0) {
+            func_001E8920(buf, name, 0x4f);
+            base[0x27f] = 0;
+            *(int *)(base + 0x280) = value;
         }
     }
 }
