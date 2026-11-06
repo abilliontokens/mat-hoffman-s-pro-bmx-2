@@ -54,6 +54,10 @@ struct Ctx_000E6EF0 {
     int i284;
     int i288;
     int i28C;
+    int func_000BDF30(int a);
+    int func_000BE020(int a);
+    int func_000BC050();
+    int func_000BC130();
 };
 struct GObjRoot_000F1980 {
     char pad0[0x8];
