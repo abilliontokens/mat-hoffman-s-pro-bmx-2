@@ -218,14 +218,6 @@ struct C_0004EA20_World {
     C_0001B3C0 *f484;
 };
 
-static __forceinline int IsBadPick_0004EA20(C_00097DA0 *p, char *c)
-{
-    if (*c != 0 && p != 0 && p->func_00097DA0(c) == 0) {
-        return 1;
-    }
-    return 0;
-}
-
 struct C_0004EA20_Item {
     char pad0[0x34];
     char f34[0x1c];
