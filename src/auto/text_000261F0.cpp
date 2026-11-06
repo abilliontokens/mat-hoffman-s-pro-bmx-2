@@ -370,19 +370,8 @@ S_000267F0_V4 func_00026910(float *m, int col)
 S_00026960_Mat func_00026960(void)
 {
     S_00026960_Mat m;
-    S_00026960_Mat * volatile p = &m;
-    S_00026960_Mat *q = p;
-    __m128 *v = (__m128 *)q;
-    __m128 z = _mm_setzero_ps();
 
-    v[0] = z;
-    v[1] = z;
-    v[2] = z;
-    v[3] = z;
-    q->m[0] = 1.0f;
-    q->m[5] = 1.0f;
-    q->m[10] = 1.0f;
-    q->m[15] = 1.0f;
+    AsmIdentityMatrix(&m);
     return m;
 }
 
