@@ -44,7 +44,7 @@ struct Txt_849F0 {
     void func_0005E9F0(unsigned v);
     inline void SetPos(unsigned x, unsigned y) { if (f4 != x || f8 != y) { f4 = x; f8 = y; f4e |= 6; } }
     inline void SetColor(unsigned c) { if (f48 != c) { f4e |= 8; f48 = (c & 0xffffff) | (f48 & c); } }
-    inline void SetColor2(unsigned c) { if (f48 != c) { unsigned char fl = f4e; unsigned v = f48 & c; f4e = fl | 8; f48 = v | (c & 0xffffff); } }
+    inline void SetColor2(unsigned c) { if (f48 != c) { unsigned v = f48 & c; f4e |= 8; f48 = v | (c & 0xffffff); } }
     inline void SetFont(unsigned v) { if (f44 != v) { f44 = v; f4e |= 6; } }
     inline void SetF3C(unsigned v) { if (f3C != v) { f3C = v; f4e |= 4; } }
 };
@@ -246,7 +246,7 @@ C_000849F0 *C_000849F0::func_000849F0(int a, int b, int c, int d)
         f28->func_001D5FA0(font2, D_0027958C, 15, 0);
     }
     f28->func_0005E840((int)D_002795B4);
-    f28->SetColor(0xffbfa35a);
+    f28->SetColor2(0xffbfa35a);
 
     st = ((G_849F0 *)D_002A8490)->f2E0;
     if (st->f0 > 1 && d == 0) {
