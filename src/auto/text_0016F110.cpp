@@ -68,7 +68,7 @@ struct C_0016FBC0 {
 };
 
 struct O_0016F800 { char pad[0xa8]; int f; };
-struct S_16F800_Part { float x, y, z; char padc[0x14]; int f20; int f24; };
+struct S_16F800_Part { float x, y, z; char padc[0x14]; S_16F800_Part *next; int f24; };
 struct S_16F800_Bucket { int id; S_16F800_Part *node; };
 struct S_16F800_Range {
     char pad0[0x170]; float f170, f174, f178, f17c;
@@ -185,14 +185,17 @@ void C_0016F7B0::func_0016F7B0(void)
 
 int C_0016F800::func_0016F800(void)
 {
+    S_16F800_Obj *o;
     this->f144 = 0;
     if (this->obj170->f) func_001D7D00();
-    if (this->count > 0) {
-        this->used = 0;
-        this->minb = 0x7fffffff;
-        this->maxb = 0;
-        this->frame++;
-    }
+    if (this->count <= 0) return 1;
+    o = (S_16F800_Obj *)D_002A829C->f14[this->f148->index].obj;
+    o->func_001B07A0();
+    this->f144 = D_002F0630[o->fD4 + 4];
+    this->used = 0;
+    this->minb = 0x7fffffff;
+    this->maxb = 0;
+    this->frame++;
     return 1;
 }
 
