@@ -84,6 +84,58 @@ struct C_000DB0E0 {
     void func_001578D0(void);
 };
 
+int DA_Page::func_000DAAB0(int a, int key) {
+ char *o=owner;
+ DA_Call *sound=*(DA_Call **)(o+0x24);
+ int blocked;
+ blocked=(*(DA_Call **)(*(char **)(o+0x25c)+0x74))->func_000301D0() ||
+ (((f280 || f284) && !f288)) ||
+ !(*(DA_Call **)(o+0x270))->func_000B5870() || !f2a4;
+ if(blocked) return 0;
+ if(key==(*(DA_Call **)((char*)D_002A8490+8))->func_00136170(2,2,0)) {
+ f2b8=f2b4;
+ if(f2b4>0) { --f2b4; f2b0=f2b4; }
+ if(f2b4!=f2b8) { f2bc=1; sound->func_000B9A80(2,1); }
+ int selected=f2b4;
+ if(f2c4==selected) {
+ f2c4=selected-1; f2c8=0; --f2c0;
+ if(!f2cc) { float *p=positions; int n=11; do { double v=*p; *p++ = v+D_002757F0; }while(--n); f2d0=1; }
+ if(!f2b4) f2cc=1;
+ }
+ } else if(key==(*(DA_Call **)((char*)D_002A8490+8))->func_00136170(3,2,0)) {
+ f2b8=f2b4;
+ if(f2b4<10) { ++f2b4; f2b0=f2b4; }
+ if(f2b4!=f2b8) { f2bc=1; sound->func_000B9A80(2,1); }
+ if(f2b4>4 && f2b4<=12 && f2c0==f2b4) {
+ ++f2c4; f2c0=f2b4+1; f2cc=0;
+ if(!f2c8) { float *p=positions; int n=11; while(n) { *p++ -= D_002757F0; --n; } f2d0=1; if(f2b4==12) f2c8=1; }
+ }
+ } else if(key==(*(DA_Call **)((char*)D_002A8490+8))->func_00136170(4,2,0) ||
+ key==(*(DA_Call **)((char*)D_002A8490+8))->func_00136170(23,2,0)) {
+ if(!f280) { sound->func_000B9A80(4,1); f2a0=1; }
+ if(!f288) { f294=0; f280=1; f28c=key; f290=a; return f288; }
+ switch(f2b4) {
+case 0: *(int*)(owner+0x138)=7; *(int*)(owner+0x134)=28; f2b0=0; *(int*)(o+0x2a8)=0; break;
+case 1: *(int*)(owner+0x138)=7; *(int*)(owner+0x134)=28; f2b0=1; *(int*)(o+0x2a8)=1; break;
+case 2: *(int*)(owner+0x138)=7; *(int*)(owner+0x134)=28; f2b0=2; *(int*)(o+0x2a8)=2; break;
+case 3: *(int*)(owner+0x138)=7; *(int*)(owner+0x134)=28; f2b0=3; *(int*)(o+0x2a8)=3; break;
+case 4: *(int*)(owner+0x138)=7; *(int*)(owner+0x134)=28; f2b0=4; *(int*)(o+0x2a8)=4; break;
+case 5: *(int*)(owner+0x138)=7; *(int*)(owner+0x134)=28; f2b0=6; *(int*)(o+0x2a8)=6; break;
+case 6: *(int*)(owner+0x138)=7; *(int*)(owner+0x134)=28; f2b0=5; *(int*)(o+0x2a8)=5; break;
+case 7: *(int*)(owner+0x138)=7; *(int*)(owner+0x134)=28; f2b0=9; *(int*)(o+0x2a8)=9; break;
+case 8: *(int*)(owner+0x138)=7; *(int*)(owner+0x134)=28; f2b0=7; *(int*)(o+0x2a8)=7; break;
+case 9: *(int*)(owner+0x138)=7; *(int*)(owner+0x134)=28; f2b0=8; *(int*)(o+0x2a8)=8; break;
+case 10: *(int*)(owner+0x138)=7; *(int*)(owner+0x134)=29; f2b0=10; break;
+ } f280=0; f288=0;
+ } else if(key==(*(DA_Call **)((char*)D_002A8490+8))->func_00136170(5,2,0) ||
+ key==(*(DA_Call **)((char*)D_002A8490+8))->func_00136170(24,2,0)) {
+ if(f284) { sound->func_000B9A80(1,1); (*(DA_Call **)(*(char **)((char*)D_002A8490+0x2e0)+0x2fc))->func_00094E40(2,1,500); f2a0=1; }
+ f284=1; f294=0; f28c=key; f290=a;
+ if(f288) { *(int*)(owner+0x138)=7; *(int*)(owner+0x134)=24; } else return f288;
+ }
+ return 1;
+}
+
 void C_000DB0E0::func_000DB0E0(void)
 {
     int ids[3];
