@@ -64,6 +64,7 @@ struct C_001B1980 {
     void func_001B1980(void);
 };
 
+void *func_001E8A44(unsigned int);
 struct Str_8CC50 {
     int a[4];
     char c;
