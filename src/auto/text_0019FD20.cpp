@@ -23,6 +23,8 @@ static inline void Cross_19FD20(Vec_19FD20 &out, const Vec_19FD20 &a, const Vec_
     _mm_storeu_ps(&out.x, va);
 }
 
+static __forceinline float Sqrt_19FD20(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+
 struct Node_19FD20 {
     void func_00199A70(int a, Vec_19FD20 *out);
     Vec_19FD20 func_00198040(Vec_19FD20 *in);
