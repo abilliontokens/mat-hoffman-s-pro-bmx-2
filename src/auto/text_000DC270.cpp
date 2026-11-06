@@ -9,6 +9,7 @@ struct C_000DC270_UI {
  void func_00094570(float,float,int,int,int,int);
  void func_00093A00(float,float,int,int,int,int);
  int func_000301D0();
+ void Draw(int color) { func_00093A00(320,80,color,0,0,0); }
 };
 extern C_000DC270_UI **D_002B91AC;
 extern int D_0028F5E0;
