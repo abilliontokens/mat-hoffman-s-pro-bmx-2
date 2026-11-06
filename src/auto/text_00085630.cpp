@@ -1,5 +1,14 @@
 /* 18 functions from 0x00085630 to 0x00086530, found by Ghidra. */
 #include "common.h"
+struct C_00085630_Manager {
+ void func_0018C780(int, const char **, int);
+ int *func_0018C160(const char *);
+};
+extern char D_00278690[], D_002796B0[];
+extern int D_0028F5DC, D_0028F5E0;
+void *func_001E8A44(unsigned int);
+extern "C" char *strcpy(char *, const char *);
+extern "C" unsigned int strlen(const char *);
 struct C_0005E840 { void func_0005E840(const char *s); };
 struct C_00085E50 {
     char pad0[0x84];
