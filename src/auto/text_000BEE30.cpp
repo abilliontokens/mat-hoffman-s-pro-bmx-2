@@ -141,6 +141,14 @@ extern char D_002A60B0[];
 extern char D_00275678[];
 extern char D_002A5348[];
 extern char D_002A5FA8[];
+inline void ElemA_BEE::Scale()
+{
+    f58 |= 4;
+    f3C = f4C * D_00278654;
+    f40 = f4C * D_00275544;
+    f44 = f50 * D_0027653C;
+    f48 = f50 * D_00275544;
+}
 struct LookupBEE {
     void func_0018C780(int, int *, int);
     int *func_0018C160(char *);
