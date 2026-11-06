@@ -35,6 +35,7 @@ inline T min_22E30(const volatile T &a, const volatile T &b)
 
 __forceinline void copy_22E30(char *dst, const char *src, int max)
 {
+    volatile int length = strlen(src);
     int n = max;
     func_001E8920(dst, src, n);
     dst[n] = 0;
