@@ -10,6 +10,9 @@ struct C_000CB6B0_Widget {
     void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, float a7, int a8, float a9, int a10, float a11, float a12, int a13);
     void func_001B1AB0(int a1, float a2);
     void func_001B1B30(float a, float b);
+    C_000CB6B0_Widget *func_001B12C0(int a);
+    void func_001B13A0(char *a, char *b, int c, int d);
+    void func_001B1A30(float a, float b, int c);
 };
 
 struct C_001D5760 {
