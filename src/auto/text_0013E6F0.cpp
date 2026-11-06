@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 extern int D_00284DEC;
 extern int D_00284EA0;
@@ -245,7 +246,8 @@ int C_0013E6F0::func_0013E6F0(char *name, int b, int c)
         int lock[2];
         int desc[7];
         for (i = 0; i < 6; i++) {
-            func_00201210(f12C[i] = func_001FCED0(f110, i, 0), (int)lock, 0, 0);
+            f12C[i] = func_001FCED0(f110, i, 0);
+            func_00201210(f12C[i], (int)lock, 0, 0);
             func_001FCEA0((int)f114[i]->fB8, 0, (int)lr, 0, 0);
             func_001FCE40((int)f114[i]->fB8, 0, (int)desc);
             void *src = (void *)lr[1];
@@ -282,6 +284,10 @@ undefined4 C_0013E900::func_0013E900(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+void func_0013E920(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
 void func_0013E990(void)
