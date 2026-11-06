@@ -27,6 +27,7 @@ struct S_001EF734 {
     S_001EF734 *func_001EFD7A(void *out, char *s);
     S_001EF734 *func_001EFAB5(void *out, S_001EF734 *p);
     void func_001EEEE6(S_001EF734 *src);
+    void func_001EEEE6(S_001EF734 &src);
     S_001EF734 *func_001EF170(int v);
     void func_001EF613(int v);
     void func_001EF935(void *v);
@@ -66,6 +67,69 @@ static inline int und_strncmp(const char *first, const char *last, unsigned int 
 #pragma optimize("t", off)
 extern char D_00295CE8[];
 S_001EF734 *func_001F1DF5(S_001EF734 *);
+long func_001E919C(char *s);
+void *func_001F098B(S_001EF734 *out, bool update)
+{
+    S_001EF734 *func_001F0886(S_001EF734 *o);
+    S_001EF734 *func_001F041A(S_001EF734 *o);
+    S_001EF734 *func_001EFD19(S_001EF734 *out, char *s, S_001EF734 *n);
+    char c = *D_002F6A28;
+    int n = c - '0';
+    if (n >= 0 && n <= 9) {
+        D_002F6A28++;
+        D_002F6A20->func_001EEFBA(n);
+        return out;
+    }
+    S_001EF734 zName;
+    S_001EF734 tmp;
+    S_001EF734 *src;
+    zName.value = 0;
+    zName.initial = 0;
+    if (c == '?') {
+        zName.func_001EEF4F(func_001F0886(&tmp));
+        if (*D_002F6A28++ != '@') {
+            D_002F6A28--;
+            zName.func_001EF333(*D_002F6A28 ? 1 : 2);
+        }
+    } else {
+        char *genericType;
+        if (und_strncmp(D_002F6A28, D_00295CBC, 19) == 0) {
+            genericType = D_00295CBC;
+            D_002F6A28 += 19;
+        } else if (und_strncmp(D_002F6A28, D_00295CAC, 13) == 0) {
+            genericType = D_00295CAC;
+            D_002F6A28 += 13;
+        } else {
+            S_001EF734 t;
+            zName.func_001EEF4F(t.func_001EF789(&D_002F6A28, '@'));
+            goto done;
+        }
+        func_001F041A(&tmp);
+        if (D_002F6A39 & 0x40) {
+            char buf[16];
+            tmp.func_001EF26D(buf, 16);
+            char *p = D_002F6A3C(func_001E919C(buf));
+            if (p) {
+                zName.func_001EF9B2(p);
+            } else {
+                S_001EF734 x, y;
+                zName.func_001EF9B2(D_00295CA8);
+                zName.func_001EF935(func_001EFD19(&x, genericType, &tmp)->func_001EFD7A(&y, D_00295C94));
+            }
+        } else {
+            S_001EF734 x, y;
+            zName.func_001EF9B2(D_00295CA8);
+            zName.func_001EF935(func_001EFD19(&x, genericType, &tmp)->func_001EFD7A(&y, D_00295C94));
+        }
+    }
+done:
+    if (update && D_002F6A20->count != 9)
+        D_002F6A20->func_001EF3D2(&zName);
+    src = &zName;
+    out->func_001EEEE6(src);
+    return out;
+}
+
 void *func_001F0F86(void *out)
 {
     S_001EF734 local, base, temps[2];
