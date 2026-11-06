@@ -57,8 +57,9 @@ struct S_Heap {
     S_FreeNode *head;
 };
 
-extern "C" __declspec(dllimport) long __stdcall NtAllocateVirtualMemory(void **base, u32 zeroBits, u32 *size, u32 type, u32 protect);
-extern "C" __declspec(dllimport) long __stdcall NtFreeVirtualMemory(void **base, u32 *size, u32 type);
+/* the import slots themselves: the original calls through the IAT entry */
+extern "C" __declspec(dllimport) long (__stdcall *NtAllocateVirtualMemory)(void **base, u32 zeroBits, u32 *size, u32 type, u32 protect);
+extern "C" __declspec(dllimport) long (__stdcall *NtFreeVirtualMemory)(void **base, u32 *size, u32 type);
 
 S_FreeNode * __stdcall func_001DF626(S_Heap *heap);
 void __stdcall func_001DF746(S_Heap *heap, S_FreeNode *node);
@@ -163,18 +164,17 @@ struct S_CacheSector {
 int __stdcall func_001E233F(S_AnsiString *s, unsigned int size);
 long __stdcall func_001E1BD7(S_AnsiString *s, unsigned int size);
 int __stdcall func_001DEC61(int a);
+#pragma optimize("s", on)
 int __stdcall func_001DE8C7(int unused, int threadHandle, void *startContext1, void *startContext2, u32 flags, u32 *threadId)
 {
-    int status;
-
-    status = _imp__PsCreateSystemThreadEx((int *)&threadHandle, 0, threadHandle ? threadHandle : D_00010130, D_002F6BC0, threadId, startContext1, startContext2, (flags >> 2) & 0xffffff01, 0, (void *)func_001DE82F);
-    if (status < 0 && __readfsbyte(0x24) < 2 && *(int *)(__readfsdword(0x28) + 0x28) != 0) {
+    int status = _imp__PsCreateSystemThreadEx(&threadHandle, 0, threadHandle ? threadHandle : D_00010130, D_002F6BC0, threadId, startContext1, startContext2, ((flags >> 2) & 1) | ((flags >> 2) & ~0xffu), 0, (void *)func_001DE82F);
+    if (status < 0 && (__readfsbyte(0x24) + 0x100u) < 0x102u && *(int *)(__readfsdword(0x28) + 0x28)) {
         func_001DD659(status);
-        threadHandle = 0;
+        return 0;
     }
     return threadHandle;
 }
-#pragma intrinsic(__readfsdword)
+#pragma optimize("", on)
 int func_001DE935(void)
 {
     return *(int *)(__readfsdword(0x28) + 0x12c);
@@ -227,6 +227,63 @@ int __stdcall func_001DE942(const char *path, unsigned __int64 *freeToCaller, un
     return 1;
 }
 
+int func_001EAC1A(char *buf, int count, const char *fmt, ...);
+int __stdcall func_001DEC61(int a)
+{
+    S_AnsiString name2;
+    int x;
+    char buf[0x104];
+    long status;
+    int ok;
+    unsigned int size;
+    void (__stdcall *init)(S_AnsiString *, const char *);
+
+    {
+        int y;
+        status = func_001DEA36(a, &x, &y);
+        if (status < 0) {
+            ok = 0;
+            goto fail;
+        }
+        if (a == 0) {
+            a = 0;
+            if (y != 0)
+                a = 1;
+        }
+    }
+    {
+        S_AnsiString name1;
+        size = 0x4000 << (D_00010124 >> 0x1e);
+        func_001EAC1A(buf, 0x104, D_0028FCEC, x);
+        init = _imp__RtlInitAnsiString;
+        init(&name1, buf);
+        init(&name2, buf);
+        name2.length--;
+        if (a != 0) {
+            ok = func_001E233F(&name2, size);
+            if (ok == 0)
+                goto done;
+        }
+        status = func_001E1BD7(&name1, size);
+        if (status < 0) {
+            if (a == 0 && func_001E233F(&name2, size))
+                status = func_001E1BD7(&name1, size);
+        }
+    }
+    if (status >= 0) {
+        status = _imp__IoCreateSymbolicLink(&D_0028FCE4, &name2);
+        ok = status >= 0;
+        if (ok)
+            goto done;
+    } else {
+        ok = 0;
+    }
+fail:
+    func_001DD659(status);
+done:
+    return ok;
+}
+
 static __forceinline void ClearBits_1DED66(u8 *p, unsigned m) { *p &= ~m; }
 void __stdcall func_001DED66(char c)
 {
@@ -239,7 +296,7 @@ void __stdcall func_001DED66(char c)
     RtlInitAnsiString(&name, buf);
     status = IoDeleteSymbolicLink(&name);
     if (c == 'X' && status >= 0) {
-        *(char *)&D_002F41C8 &= 0u;
+        D_002F41C8 &= (status < 0);
     }
     RtlNtStatusToDosError(status);
 }
@@ -510,9 +567,8 @@ int __stdcall func_001DF304(int *a, void *out)
     if (out != 0) {
         if (flag != 0) {
             func_001DF1C2(a + 2, (const void *)a[1], 0x10, digest);
-        } else {
-            ok = 1;
         }
+        ok = 1;
         if (flag != 0) {
             ok = func_001DF234(a, digest, out);
         }
@@ -529,18 +585,27 @@ int __stdcall func_001DF361(int a0)
     return func_001DF26F(a0, ((int *)D_00010118)[2]);
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 int __stdcall func_001DF375(int a)
 {
-    void *t;
     char *p;
 
     func_001E2213();
-    t = *(void **)(__readfsdword(0x20) + 0x250);
-    p = t != 0 ? *(char **)((char *)t + 0x24) : 0;
+    {
+        void *t = *(void **)(__readfsdword(0x20) + 0x250);
+        p = t != 0 ? *(char **)((char *)t + 0x24) : 0;
+    }
     if (p != 0) {
-        int *tib = (int *)__readfsdword(0x28);
-        int idx = D_002F41D0;
-        int v = *(int *)(__readfsdword(4) + idx * 4) - tib[10];
+        unsigned long thread = __readfsdword(0x28);
+        int *base;
+        int idx;
+        int v;
+        _ReadWriteBarrier();
+        base = (int *)__readfsdword(4);
+        _ReadWriteBarrier();
+        idx = D_002F41D0;
+        v = base[idx] - *(int *)(thread + 0x28);
         *p = 1;
         *(int *)(p + 4) = v + 4;
     }
@@ -550,7 +615,6 @@ int __stdcall func_001DF375(int a)
     func_001E20BF(1, 1, 0);
     return 0;
 }
-
 void func_001DF3E4(void)
 {
     int *p = (int *)D_00010118;
@@ -680,6 +744,56 @@ void __stdcall func_001DF5F4(char *s)
 extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
 void __stdcall func_001DF622(int a)
 {
+}
+
+S_FreeNode * __stdcall func_001DF626(S_Heap *heap)
+{
+    S_FreeNode *blk;
+    S_FreeNode *p;
+    S_FreeNode *prev;
+    char *end;
+    u32 reserve;
+    u32 size;
+    void *base;
+    S_FreeNode **list;
+
+    list = &heap->pool->freeNodes;
+    if (*list == 0) {
+        blk = *(S_FreeNode **)((char *)heap->pool + 0x48);
+        if (blk != 0 && blk->size != blk->addr) {
+            size = 0x1000;
+            base = (char *)blk + blk->size;
+            if (NtAllocateVirtualMemory(&base, 0, &size, 0x1000, 4) < 0)
+                return 0;
+            blk->size += size;
+        } else {
+            reserve = (u32)D_00010000;
+            blk = 0;
+            if (NtAllocateVirtualMemory((void **)&blk, 0, &reserve, 0x2000, 4) < 0)
+                return 0;
+            size = 0x1000;
+            if (NtAllocateVirtualMemory((void **)&blk, 0, &size, 0x1000, 4) < 0) {
+                NtFreeVirtualMemory((void **)&blk, &reserve, 0x8000);
+                return 0;
+            }
+            blk->next = *(S_FreeNode **)((char *)heap->pool + 0x48);
+            *(S_FreeNode **)((char *)heap->pool + 0x48) = blk;
+            blk->addr = reserve;
+            blk->size = size;
+        }
+        base = (char *)blk + 0x10;
+        end = (char *)blk + blk->size;
+        prev = (S_FreeNode *)&heap->pool->freeNodes;
+        for (p = (S_FreeNode *)base; (char *)p < end; p = (S_FreeNode *)((char *)p + 0x10)) {
+            prev->next = p;
+            prev = p;
+        }
+        prev->next = 0;
+        list = &heap->pool->freeNodes;
+    }
+    p = *list;
+    *list = p->next;
+    return p;
 }
 
 #pragma optimize("sy", on)
