@@ -2,8 +2,8 @@
 #include "common.h"
 #include "ghidra.h"
 extern float D_00275544;
-extern const float D_002755E8;
-extern const float D_00275994;
+extern float D_002755E8;
+extern float D_00275994;
 struct CsGlobal { char pad[0x124]; int f124; };
 extern CsGlobal *D_002A8490;
 struct CsValue { int id; float time; int f8; };
@@ -121,8 +121,10 @@ int CutScene::func_001396D0(float dt)
                         v = &f40[f24].values[i];
                         if (v->time < D_00275544) {
                             id = v->id;
-                            if (id >= 0 && f80[id] != 0 && !f80[id]->v7()) {
-                                f80[id]->v5(0);
+                            if (id >= 0 && f80[id] != 0) {
+                                if (!f80[id]->v7()) {
+                                    f80[id]->v5(0);
+                                }
                             }
                             f40[f24].values[i].time = 0;
                         }
@@ -191,7 +193,7 @@ play:
         }
     }
     if (f2c >= D_00275544) {
-        f50->func_001C4E70(f2c * D_002755E8 * D_00275994);
+        f50->func_001C4E70((float)((double)f2c * D_002755E8 * D_00275994));
         if (f2c == D_00275544) {
             f2c = -1.0f;
         } else {
