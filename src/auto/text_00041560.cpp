@@ -393,12 +393,164 @@ struct S_3D910_Base {
     void func_0003D910(int a0);
 };
 
+int BmxEventEditor::func_00041560()
+{
+    S_41F00_V4 a;
+    S_41F00_V4 b;
+    S_41F00_V4 c;
+    S_41F00_V4 pos;
+    S_41F00_P4 tmp1;
+    S_41F00_P4 tmp2;
+    int px, py, pz;
+    S_41560_Block *blk;
+    int w, h;
+    int i, j, k;
+    int idx;
+    int flag;
+    S_41F00_Entry *save564;
+    void *save568;
+    void *save56C;
+    void *save570;
+    int save48C;
+
+    f564->obj->func_00197E70(&a);
+    f564->obj->func_00197B40(&b, &c);
+    flag = 1;
+    if (func_00038B10(&f564->obj->f28, a, b, &px, &py, &pz, 1) == 0)
+        return -1;
+    blk = 0;
+    func_00038A70(&f564->obj->f28, (void **)&blk);
+    if (blk == 0)
+        return -1;
+    save48C = f48c;
+    save568 = f568;
+    w = blk->w;
+    h = blk->h;
+    save564 = f564;
+    f564 = 0;
+    f568 = 0;
+    save56C = 0;
+    save570 = 0;
+    if (f56c != 0) {
+        save56C = f56c;
+        f56c = 0;
+    }
+    if (f570 != 0) {
+        save570 = f570;
+        f570 = 0;
+    }
+    for (i = 0; i < h; i++) {
+        for (j = 0; j < w; j++) {
+            if (b.x > D_00276E9C || b.x < D_00276E98) {
+                pos.x = (float)(px + i) * D_00275AEC + (float)f428;
+                pos.y = (float)py * D_00275548 + (float)f42C;
+                pos.z = (float)(pz + j) * D_00275AEC + (float)f430;
+                idx = ((f45C * (px + i) + py) * f460 + j) + pz;
+            } else {
+                pos.x = (float)(px + j) * D_00275AEC + (float)f428;
+                pos.y = (float)py * D_00275548 + (float)f42C;
+                pos.z = (float)(i + pz) * D_00275AEC + (float)f430;
+                idx = ((f45C * (px + j) + py) * f460 + i) + pz;
+            }
+            if (f49C[idx] != 0) {
+                flag = 0;
+                if (func_0003D7B0(pos) != 0) {
+                    f564->obj->func_00197E70(&pos);
+                    f568 = func_00038850(f564->obj, pos, 0);
+                    if (f564->type >= 3) {
+                        if (f564->type == 3 || f564->type == 5)
+                            f56c = func_00038850(f564->objC, pos, 0);
+                        if (f564->type == 4 || f564->type == 5)
+                            f570 = func_00038850(0, pos, 1);
+                    }
+                    if (func_0003E660() == 0) {
+                        f564 = save564;
+                        f568 = save568;
+                        if (save56C != 0)
+                            f56c = save56C;
+                        if (save570 != 0)
+                            f570 = save570;
+                        f48c = save48C;
+                        return -1;
+                    }
+                    k = arr.count - 1;
+                    if (k >= 0) {
+                        do {
+                            S_41F00_Entry *e2 = arr.at(k);
+                            if (f564 == e2) {
+                                f48c = k;
+                                break;
+                            }
+                            k--;
+                        } while (k >= 0);
+                    }
+                    if (f564->type == 0) {
+                        if (func_001E8AF0(&f564->obj->f28, D_00276F78) != 0) {
+                            S_41F00_Item *item = f64->GetItem(f64->f5A4->f284);
+                            f288--;
+                            func_001ADCC0(item->s314, 0x32, D_00276F68, (unsigned char)f288 + 1);
+                            if (f288 == 0) {
+                                f290 = 0;
+                                *(S_41F00_P4 *)f294 = D_002A14D4;
+                                *(S_41F00_P4 *)f2a4 = D_002A14D4;
+                                *(S_41F00_P4 *)f2b4 = D_002A14D4;
+                            } else if (f48c == f28C) {
+                                k = f28C + 1;
+                                if (k < arr.count) {
+                                    do {
+                                        S_41F00_Entry *e2 = arr.at(k);
+                                        if (e2->type == 0) {
+                                            if (func_001E8AF0(&e2->obj->f28, D_00276F78) != 0) {
+                                                *(S_41F00_P4 *)f294 = *(S_41F00_P4 *)(e2->obj->func_00199B00((S_41F00_V4 *)&tmp1, 0));
+                                                e2->obj->func_00197B40((S_41F00_V4 *)f2a4, (S_41F00_V4 *)f2b4);
+                                                f28C = k;
+                                                break;
+                                            }
+                                        }
+                                        k++;
+                                    } while (k < arr.count);
+                                }
+                                if (f28C == f48c && f28C > 0) {
+                                    k = 0;
+                                    do {
+                                        S_41F00_Entry *e2 = arr.at(k);
+                                        if (e2->type == 0) {
+                                            if (func_001E8AF0(&e2->obj->f28, D_00276F78) != 0) {
+                                                *(S_41F00_P4 *)f294 = *(S_41F00_P4 *)(e2->obj->func_00199B00((S_41F00_V4 *)&tmp2, 0));
+                                                e2->obj->func_00197B40((S_41F00_V4 *)f2a4, (S_41F00_V4 *)f2b4);
+                                                f28C = k;
+                                                break;
+                                            }
+                                        }
+                                        k++;
+                                    } while (k < f28C);
+                                }
+                            }
+                        }
+                    }
+                    func_0003D910(1);
+                }
+            }
+        }
+    }
+    f564 = save564;
+    f568 = save568;
+    if (save56C != 0)
+        f56c = save56C;
+    if (save570 != 0)
+        f570 = save570;
+    f48c = -1;
+    return flag == 0;
+}
+
 void BmxEventEditor::func_00041CF0()
 {
     int idx = D_002A8490->f2e0->f300;
     if (D_002A8490->f8->arr14[idx]->v16() == 0 && f2c8 == 0) {
-        if (f48c != -1 || f564 != 0) {
-            ((S_3D910_Base *)this)->func_0003D910(0);
+        if (f48c != -1) {
+            func_0003D910(0);
+        } else if (f564 != 0) {
+            func_0003D910(0);
         }
         v18(1);
         f2c8 = 1;
