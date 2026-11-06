@@ -285,13 +285,8 @@ struct VtblStore_00055380 {
 extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
 
-#pragma comment(linker, "/alternatename:??0CameraBehavior_00055380@@QAE@XZ=_func_0012B510")
 struct CameraBehavior_00055380 {
-    virtual void v0();
-    virtual void v1();
-    virtual void v2();
-    virtual void v3();
-    CameraBehavior_00055380();
+    __forceinline CameraBehavior_00055380() { ((C_00055380 *)this)->func_0012B510(); }
 };
 
 static __forceinline void G2_00055380(u32 *a, u32 *b, u32 va, u32 vb)
