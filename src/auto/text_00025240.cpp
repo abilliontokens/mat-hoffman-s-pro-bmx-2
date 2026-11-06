@@ -1,5 +1,59 @@
 /* 13 functions from 0x00025240 to 0x000261F0, found by Ghidra. */
 #include "common.h"
+
+/* func_00025240: ambient object spawn over the manager's tracks and entries */
+struct S_25240_V4 { float x, y, z, w; };
+struct S_25240_Pt { float x, y, z, pad[3]; };
+struct S_25240_Track { char pad0[4]; int f4; char pad8[0x10]; S_25240_Pt *f18; };
+struct S_25240_Entry { int f0; int f4; };
+struct S_25240_Obj { void func_00199600(S_25240_V4 v); };
+struct S_25240_Hold {
+    char pad0[4];
+    S_25240_Obj *f4;
+    char pad8[8];
+    int f10;
+    void func_00164820(int a);
+};
+struct S_25240_Y { char pad0[8]; void *f8; };
+struct S_25240_Own {
+    char pad0[0x1a4];
+    S_25240_Hold *f1a4;
+    char pad1a8[4];
+    S_25240_Y *f1ac;
+};
+struct S_25240_Item {
+    char pad0[0x28];
+    S_25240_Own *f28;
+    S_25240_Track *f2c;
+    int f30, f34, f38, f3c, f40;
+    char pad44[8];
+    S_25240_V4 f4c;
+    S_25240_V4 f5c;
+    float f6c, f70, f74;
+    char pad78[2];
+    u8 f7a;
+    char pad7b;
+    void func_00022E30(void);
+};
+struct C_00025240 {
+    char pad0[0x30];
+    int f30;
+    int f34;
+    char pad38[4];
+    int f3c;
+    char pad40[0x20];
+    S_25240_Item **f60;
+    S_25240_Track **f64;
+    char pad68[4];
+    S_25240_Entry *f6c;
+    int func_00022730(void *name, int idx);
+    int func_00025240(void);
+};
+extern f32 D_00275460, D_0027651C, D_00275F58, D_002A0F78, D_002A0F7C;
+extern char D_002A0F74[];
+int func_00011260(int a0, int a1);
+void func_001E891B(void *p);
+void __stdcall func_00166C80(void *p, int a);
 struct C_00025E10 {
     int unk0;
     int unk4;
