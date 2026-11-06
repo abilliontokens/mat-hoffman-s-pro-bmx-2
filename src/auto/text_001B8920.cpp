@@ -21,38 +21,32 @@ extern V4_1B8920 D_002AAA14;
 extern "C" void func_00158390(float f, V4_1B8920 a, V4_1B8920 b, V4_1B8920 *out);
 extern "C" float func_0014F890(float x);
 
-static __forceinline float vld_1B8920(const volatile float *p)
-{
-    return *p;
-}
-
-static __forceinline void norm_1B8920(float * volatile out, float * volatile in)
+static __forceinline void norm_1B8920(float *out, float *in)
 {
     __m128 v = _mm_loadu_ps(in);
     __m128 sq = _mm_mul_ps(v, v);
     __m128 len = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
     len = _mm_add_ss(len, _mm_shuffle_ps(sq, sq, 0xe1));
-    __m128 minv = _mm_set_ss(vld_1B8920(&D_0028CA50));
+    __m128 minv = _mm_load_ss(&D_0028CA50);
     __m128 cmp = _mm_cmplt_ss(len, minv);
     len = _mm_add_ss(len, _mm_and_ps(cmp, minv));
     __m128 r = _mm_rsqrt_ss(len);
     __m128 t = _mm_mul_ss(_mm_mul_ss(len, r), r);
-    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_set_ss(vld_1B8920(&D_0028CA30))), _mm_sub_ss(_mm_set_ss(vld_1B8920(&D_0028CA40)), t));
+    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_0028CA30)), _mm_sub_ss(_mm_load_ss(&D_0028CA40), t));
     scale = _mm_shuffle_ps(scale, scale, 0);
     _mm_storeu_ps(out, _mm_mul_ps(scale, v));
 }
 
-static __forceinline void Cross_1B8920(V4_1B8920 * volatile out, V4_1B8920 * volatile a, V4_1B8920 * volatile b)
+static __forceinline void Cross_1B8920(V4_1B8920 *out, const V4_1B8920 *a, const V4_1B8920 *b)
 {
-    V4_1B8920 *pa = a, *pb = b;
     _mm_storeu_ps(&out->x,
         _mm_shuffle_ps(
             _mm_sub_ps(
-                _mm_mul_ps(_mm_loadu_ps(&pa->x), _mm_shuffle_ps(_mm_loadu_ps(&pb->x), _mm_loadu_ps(&pb->x), 0xc9)),
-                _mm_mul_ps(_mm_loadu_ps(&pb->x), _mm_shuffle_ps(_mm_loadu_ps(&pa->x), _mm_loadu_ps(&pa->x), 0xc9))),
+                _mm_mul_ps(_mm_loadu_ps(&a->x), _mm_shuffle_ps(_mm_loadu_ps(&b->x), _mm_loadu_ps(&b->x), 0xc9)),
+                _mm_mul_ps(_mm_loadu_ps(&b->x), _mm_shuffle_ps(_mm_loadu_ps(&a->x), _mm_loadu_ps(&a->x), 0xc9))),
             _mm_sub_ps(
-                _mm_mul_ps(_mm_loadu_ps(&pa->x), _mm_shuffle_ps(_mm_loadu_ps(&pb->x), _mm_loadu_ps(&pb->x), 0xc9)),
-                _mm_mul_ps(_mm_loadu_ps(&pb->x), _mm_shuffle_ps(_mm_loadu_ps(&pa->x), _mm_loadu_ps(&pa->x), 0xc9))), 0xc9));
+                _mm_mul_ps(_mm_loadu_ps(&a->x), _mm_shuffle_ps(_mm_loadu_ps(&b->x), _mm_loadu_ps(&b->x), 0xc9)),
+                _mm_mul_ps(_mm_loadu_ps(&b->x), _mm_shuffle_ps(_mm_loadu_ps(&a->x), _mm_loadu_ps(&a->x), 0xc9))), 0xc9));
 }
 
 struct Item_1B8920 {
