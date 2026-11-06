@@ -193,6 +193,10 @@ static __forceinline float vec3_lengthSquared(float *v) {
     return v[0] * v[0] + v[1] * v[1] + v[2] * v[2];
 }
 
+static __forceinline float vec3_invLength(float lengthSquared) {
+    return func_0001E960(lengthSquared);
+}
+
 
 void GR_BitString::func_0001E3F0(u32 *a0, u32 a1, int a2) {
     unk18 = a2 ? -1 : 0;
@@ -493,7 +497,7 @@ void func_0001E9E0(float *out, float *v)
 {
     float inv;
 
-    inv = func_0001E960(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
+    inv = func_0001E960(vec3_lengthSquared(v));
     vec3_set(out, inv * v[0], inv * v[1], inv * v[2]);
 }
 
