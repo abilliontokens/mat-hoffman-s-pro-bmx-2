@@ -76,7 +76,6 @@ void *func_001E8AA5(unsigned int size);
 extern double D_002766A8, D_00286D30, D_0028C110, D_0028C108, D_0028C100, D_002766B8;
 double func_001EA2BA(double, double *);
 int func_001E8858(double);
-static __declspec(noinline) char *cvt_probe(int *sign, char *buf, double arg, int ndigits, int *decpt, int eflag);
 
 
 int DynamicStringTable::func_001AC440(const char *name)
@@ -250,35 +249,37 @@ void *DynamicStringTable::func_001AC920(int flags)
 double func_001EA2BA(double value, double *ipart);
 static __declspec(noinline) char *func_001AC940(int *sign, char *buf, double arg, int ndigits, int *decpt, int eflag)
 {
-    char *p = buf;
+    char *p;
     char *p1;
     double fi, fj;
-    int dp = 0;
+    int dp;
 
     if (ndigits >= 0x4f)
         ndigits = 0x4e;
+    dp = 0;
     *sign = 0;
-    if (arg < D_002766A8) {
+    p = buf;
+    if (arg < 0.0) {
         *sign = 1;
         arg = -arg;
     }
     arg = func_001EA2BA(arg, &fi);
-    if (fi != D_002766A8) {
+    if (fi != 0.0) {
         p1 = buf + 0x50;
-        while (p1 > buf && fi != D_002766A8) {
-            fj = func_001EA2BA(fi * D_00286D30, &fi);
-            *--p1 = '0' - (int)((fj + D_0028C110) * D_0028C108);
+        while (p1 > buf && fi != 0.0) {
+            fj = func_001EA2BA(fi * 0.1, &fi);
+            *--p1 = '0' - (int)((fj + 0.03) * -10.0);
             dp++;
         }
         while (p1 < buf + 0x50)
             *p++ = *p1++;
-    } else if (arg > D_002766A8) {
-        while ((fj = arg * D_0028C100) < D_002766B8) {
+    } else if (arg > 0.0) {
+        while ((fj = arg * 10.0) < 1.0) {
             arg = fj;
             dp--;
         }
     }
-    p1 = buf + ndigits;
+    p1 = (unsigned int)ndigits + buf;
     if (eflag == 0)
         p1 += dp;
     *decpt = dp;
@@ -287,8 +288,7 @@ static __declspec(noinline) char *func_001AC940(int *sign, char *buf, double arg
         return buf;
     }
     while (p <= p1 && p < buf + 0x50) {
-        arg *= D_0028C100;
-        arg = func_001EA2BA(arg, &fj);
+        arg = func_001EA2BA(arg * 10.0, &fj);
         *p++ = (int)fj + '0';
     }
     if (p1 >= buf + 0x50) {
