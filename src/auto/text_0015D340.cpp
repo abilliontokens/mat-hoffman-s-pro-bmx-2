@@ -320,3 +320,26 @@ int C_0015E0F0::func_0015E0F0(int param_1)
   }
   return 0;
 }
+
+extern "C" void * __cdecl memset(void *, int, unsigned int);
+void C_0015E130::func_0015E130(A_15E130* arg0, float arg1, float arg2, V4_15E130* out, V4_15E130* out2) {
+N2_15E130 *p=arg0->p;
+int idx=p->idx;
+V4_15E130 sa, sb;
+memset(&sa,0,sizeof(sa)); memset(&sb,0,sizeof(sb));
+N_15E130* n=p->list;
+float w;
+*out=a[idx]; if(out2) *out2=b[idx];
+w=0.0f;
+for(;n;n=n->next) {float d;
+if(n->obj->func_0017A1D0(arg1,arg2,&d)) {
+float t; int j=n->p->idx;
+w+=t=(arg2-d)/arg2;
+sa.x+=t*a[j].x; sa.y+=t*a[j].y; sa.z+=t*a[j].z;
+if(out2 && flags[j]) {sb.x+=t*b[j].x; sb.y+=t*b[j].y; sb.z+=t*b[j].z;}
+}}
+w=1.0f/(w+1.0f);
+out->w=1.0f; out->x=(sa.x+out->x)*w; out->y=(sa.y+out->y)*w; out->z=(sa.z+out->z)*w;
+if(out2) {out2->w=0.0f; out2->x=(sb.x+out2->x)*w; out2->y=(sb.y+out2->y)*w; out2->z=(sb.z+out2->z)*w;}
+}
+
