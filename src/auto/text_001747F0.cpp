@@ -21,7 +21,13 @@ struct R_001747F0 {
     Vec4_001747F0 v5C;
     Vec4_001747F0 v6C;
     Vec4_001747F0 v7C;
-    char pad8C[0x190 - 0x8c];
+    char pad8C[0x130 - 0x8c];
+    Vec4_001747F0 v130;
+    Vec4_001747F0 v140;
+    Vec4_001747F0 v150;
+    Vec4_001747F0 v160;
+    Vec4_001747F0 v170;
+    Vec4_001747F0 v180;
     Vec4_001747F0 v190;
     Vec4_001747F0 v1A0;
     char pad1B0[0x1b4 - 0x1b0];
