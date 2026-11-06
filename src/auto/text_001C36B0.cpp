@@ -467,6 +467,44 @@ C_001C3810* C_001C3810::func_001C3810(int a0) {
     return this;
 }
 
+int DXIndexBufferCache::func_001C38D0(int a1, int a2)
+{
+    DXIndexBuffer *vb;
+    DXIndexBuffer *res;
+    IndexBuffer *ib;
+    IndexBuffer *res2;
+
+    vb = (DXIndexBuffer *)func_001E8A44(0x18);
+    if (vb != 0) {
+        vb->f8 = 0;
+        vb->fC = 0;
+        vb->f10 = 0;
+        vb->vtbl = (void *)&D_0028E30C;
+        vb->f4 = 0;
+        if (a1 == 0x65) {
+            vb->f8 = 0x65;
+            vb->fC = 2;
+            vb->f10 = a2;
+            vb->f14 = func_001FF380(a2 * 2);
+        }
+        res = vb;
+    } else {
+        res = 0;
+    }
+    f4 = res;
+    if (res == 0)
+        return 0;
+    ib = (IndexBuffer *)func_001E8A44(0x10);
+    if (ib != 0) {
+        ib = ib->func_0012A350(0, a2);
+        res2 = ib;
+    } else {
+        res2 = 0;
+    }
+    f8 = res2;
+    return res2 != 0;
+}
+
 void DXVertexBufferCache::func_001C3980(void)
 {
     VertexBuffer *p = (VertexBuffer *)f4;
@@ -935,8 +973,8 @@ CrossFade_001C44A0 *CrossFade_001C44A0::func_001C44A0(int a0)
     }
     o = unk24;
     t = D_002779FC + D_0028E3CC;
-    o->f44 = *(int *)&D_0028E3CC;
     o->b58 |= 4;
+    o->f44 = D_0028E3CC;
     o->f3C = 0;
     o->f40 = 0x44200000;
     o->f48 = t;
