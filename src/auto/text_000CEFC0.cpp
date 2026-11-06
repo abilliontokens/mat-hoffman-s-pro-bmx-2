@@ -53,8 +53,10 @@ struct S_000CEFC0_124 {
     void func_000BB600(int v);
     void func_000BC2A0();
     void func_000BDF30(int show);
-    void func_000BC240();
-    void func_000BE020(int v);
+          void func_000BC240();
+      void func_000BE020(int v);
+      int func_000BC180();
+      int func_000BC0B0();
 };
 
 struct S_000CEFC0_4F8 {
