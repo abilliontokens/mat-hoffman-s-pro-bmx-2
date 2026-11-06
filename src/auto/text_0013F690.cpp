@@ -121,16 +121,18 @@ struct __declspec(align(16)) S_001401C0_Mat {
     }
 };
 
-static void Mat_Copy_0013FD50(S_001401C0_Mat *volatile dst, const S_001401C0_Mat *volatile src)
+static void Mat_Copy_0013FD50(S_001401C0_Mat *dst, const S_001401C0_Mat *src)
 {
-    __m128 a = _mm_load_ps(&src->m[0]);
-    __m128 b = _mm_load_ps(&src->m[4]);
-    __m128 c = _mm_load_ps(&src->m[8]);
-    __m128 d = _mm_load_ps(&src->m[12]);
-    _mm_store_ps(&dst->m[0], a);
-    _mm_store_ps(&dst->m[4], b);
-    _mm_store_ps(&dst->m[8], c);
-    _mm_store_ps(&dst->m[12], d);
+    S_001401C0_Mat *const *pd = &dst;
+    const S_001401C0_Mat *const *ps = &src;
+    __m128 a = _mm_load_ps(&(*ps)->m[0]);
+    __m128 b = _mm_load_ps(&(*ps)->m[4]);
+    __m128 c = _mm_load_ps(&(*ps)->m[8]);
+    __m128 d = _mm_load_ps(&(*ps)->m[12]);
+    _mm_store_ps(&(*pd)->m[0], a);
+    _mm_store_ps(&(*pd)->m[4], b);
+    _mm_store_ps(&(*pd)->m[8], c);
+    _mm_store_ps(&(*pd)->m[12], d);
 }
 
 struct S_001401C0_Info {
