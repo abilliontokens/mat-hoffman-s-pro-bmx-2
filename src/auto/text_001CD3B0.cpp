@@ -468,16 +468,9 @@ int C_001CD510::func_001CD510(int a)
     return 1;
 }
 
-int C_001CD590::func_001CD590(int a, int b) {
-    if (b) {
-        v33(0);
-        fA0 |= 2;
-        f38 = 1;
-        return func_001CD450(a, b) != 0;
-    }
-    return 0;
-}
-
+#pragma optimize("y", off)
+int C_001CD590::func_001CD590(int a, int b) { if(b) { v33(0); fA0|=2; f38=1; return func_001CD450(a,b)!=0; } return 0; }
+#pragma optimize("", on)
 XboxSoundGroup *XboxSoundGroup::func_001CD770(int a, int b)
 {
     S_001CD770_Arr *arr = (S_001CD770_Arr *)&list;
@@ -794,30 +787,31 @@ int XboxSoundInterface::func_001CDF30(int a, int b)
     fF8 = D_002ABA74;
     f108 = D_002ABA64;
     {
-        void **dev = &f30;
-        int r = func_00222353(*dev, 0, 0, 0, 1);
+        int r;
+        void *d1 = f30;
+        r = func_00222353(d1, 0, 0, 0, 1);
         if (r < 0) {
             func_001CBC10(r, &D_0028EECC, 0xa2);
             goto fail;
         }
-        r = func_00222309(*dev, 0, 0, 1.0f, 0, 1.0f, 0, 1);
+        void *d2 = f30;
+        r = func_00222309(d2, 0, 0, 1.0f, 0, 1.0f, 0, 1);
         if (r < 0) {
             func_001CBC10(r, &D_0028EECC, 0xab);
             goto fail;
         }
-        r = func_002223AC(*dev, 0, 0, 0, 1);
+        void *d3 = f30;
+        r = func_002223AC(d3, 0, 0, 0, 1);
         if (r < 0) {
             func_001CBC10(r, &D_0028EECC, 0xb3);
             goto fail;
         }
         func_001CC0C0(1.0f);
-        {
-            void *device = *dev;
-            r = func_0022195C(device);
-            if (r >= 0)
-                goto done;
-            func_001CBC10(r, &D_0028EECC, 0xbc);
-        }
+        void *d4 = f30;
+        r = func_0022195C(d4);
+        if (r >= 0)
+            goto done;
+        func_001CBC10(r, &D_0028EECC, 0xbc);
     }
 fail:
     hr = 0x80004005;
