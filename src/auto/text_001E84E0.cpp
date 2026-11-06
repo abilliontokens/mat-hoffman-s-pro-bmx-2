@@ -138,7 +138,8 @@ recurse:
 void func_001E87E0(void) {
 }
 
-#pragma optimize("g", on)
+#pragma optimize("g", off)
+#pragma optimize("y", on)
 void func_001E87E1(void)
 {
     int func_001EB786(...);
