@@ -11,6 +11,7 @@ struct C_0013C8A0 {
     int func_0013C9F0(const char *name, const char *mode);
 };
 extern C_0013C8A0 *D_002BEAAC;
+extern char D_00275FB4[];
 struct S_0014D360_Vector { float x,y,z,w; };
 struct C_000BA430 {
     void func_000BA430(S_0014D360_Vector *, int, int, int);
