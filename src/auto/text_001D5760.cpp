@@ -200,9 +200,10 @@ struct Tbl_001D5810 {
     void func_001B2640(void);
 };
 struct Size_001D5810 {
-    char pad0[0x14];
-    int w;
-    int h;
+    int pad0;
+    int pad4;
+    unsigned w;
+    unsigned h;
 };
 struct Cfg_001D5810 {
     char pad0[0x4c0];
@@ -470,17 +471,17 @@ void C_001D5E90::func_001D5F00(int param)
 void C_001D6190::func_001D5FA0(int a, int b, int c, int d)
 {
     C_001D5E90 * volatile self = (C_001D5E90 *)this;
-    volatile int max;
-    volatile int len;
-    volatile int n;
+    struct { volatile int max, len, n; } l;
     C_001D5FA0Obj *o;
+    char *p;
+    DXVSStreams_001D5760 *s;
 
     self->f4e |= 0x20;
-    char *p = self->f0;
+    p = self->f0;
     if (p != 0) {
         func_001E891B(p);
     }
-    DXVSStreams_001D5760 *s = self->f5c;
+    s = self->f5c;
     if (s != 0) {
         s->v0(1);
     }
@@ -498,13 +499,11 @@ void C_001D6190::func_001D5FA0(int a, int b, int c, int d)
         self->func_001D5F00(b);
     }
     if (d != 0) {
-        len = strlen((const char *)d);
-        max = self->f4f;
-        int l = len;
-        int m = max;
-        n = l > m ? m : l;
-        self->f50 = (unsigned char)n;
-        memcpy(self->f0, (const char *)d, self->f50);
+        l.len = strlen((const char *)d);
+        l.max = self->f4f;
+        l.n = l.len < l.max ? l.len : l.max;
+        self->f50 = (unsigned char)l.n;
+        func_001E8920(self->f0, (const char *)d, self->f50);
         self->f0[self->f50] = 0;
     } else {
         self->f50 = 0;
