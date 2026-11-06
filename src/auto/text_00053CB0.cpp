@@ -1,6 +1,7 @@
 /* 11 functions from 0x00053930 to 0x00054680, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 extern const float D_00277B40, D_00277B50, D_00277B60;
 static __forceinline void Normalize_53CB0(float *volatile outArg, const float *volatile inArg)
 {
@@ -224,18 +225,7 @@ struct C_00053D20 {
 
 extern float D_00275544;
 
-void func_00053CB0(float *out, const float *in)
-{
-    __m128 v = _mm_loadu_ps(in), sq = _mm_mul_ps(v, v);
-    __m128 len = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
-    len = _mm_add_ss(len, _mm_shuffle_ps(sq, sq, 0xe1));
-    __m128 minv = _mm_load_ss(&D_00277B60);
-    __m128 cmp = _mm_cmplt_ss(len, minv);
-    len = _mm_add_ss(len, _mm_and_ps(cmp, minv));
-    __m128 r = _mm_rsqrt_ss(len);
-    __m128 t = _mm_mul_ss(_mm_mul_ss(len, r), r);
-    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_00277B40)), _mm_sub_ss(_mm_load_ss(&D_00277B50), t));
-    scale = _mm_shuffle_ps(scale, scale, 0);
-    _mm_storeu_ps(out, _mm_mul_ps(scale, v));
+void func_00053CB0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
