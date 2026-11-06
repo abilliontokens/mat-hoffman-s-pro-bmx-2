@@ -53,6 +53,7 @@ float func_0014FBA0(float a, float b);
 extern float D_00277240;
 extern float D_002755EC;
 
+static __forceinline float Sqrt549(float f) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&f)); return r; }
 struct V549 { float x, y, z, w; };
 struct Item549 {
     char pad0[0x5c8]; int f5c8;
