@@ -108,10 +108,10 @@ static __forceinline void SetUnitW_001594F0(int *p)
 }
 
 struct C_001594F0 {
-    unsigned unk0 : 16;
-    unsigned unk2 : 8;
-    unsigned unk3 : 3;
-    unsigned unk3b : 5;
+    unsigned short unk0;
+    unsigned char unk2;
+    unsigned char unk3 : 3;
+    unsigned char unk3b : 5;
     int unk4;
     char pad8[0x14 - 8];
     int unk14;
@@ -288,26 +288,11 @@ C_001594F0 *C_001594F0::func_001594F0(void)
     unk0 = 0;
     unk2 = 0xff;
     unk3 = 0;
-    unk28 = 0;
-    unk24 = 0;
-    unk20 = 0;
-    unk2c = 0x3f800000;
-    unk38 = 0;
-    unk34 = 0;
-    unk30 = 0;
-    unk3c = 0x3f800000;
-    unk48 = 0;
-    unk44 = 0;
-    unk40 = 0;
-    unk4c = 0x3f800000;
-    unk60 = 0;
-    unk5c = 0;
-    unk58 = 0;
-    unk64 = 0x3f800000;
-    unk70 = 0;
-    unk6c = 0;
-    unk68 = 0;
-    unk74 = 0x3f800000;
+    SetUnitW_001594F0(&unk20);
+    SetUnitW_001594F0(&unk30);
+    SetUnitW_001594F0(&unk40);
+    SetUnitW_001594F0(&unk58);
+    SetUnitW_001594F0(&unk68);
     unk14 = 0;
     unk18 = 0;
     unk1c = 0;
