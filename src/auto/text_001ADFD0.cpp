@@ -550,22 +550,11 @@ void C_001AE3E0::func_001AE460(void)
     ((C_00157660 *)this)->func_00157660();
 }
 
-void C_001AE3E0::func_001AE4D0(int a, int b, int c, int d, int e, int f, int g, int h, int idx)
+void C_001AE3E0::func_001AE4D0(C_001AE3E0_Vec4 a, C_001AE3E0_Vec4 b, int idx)
 {
-    int off = idx << 4;
-    C_001AE3E0_Vec4 *p;
-
     f84 |= 2;
-    p = (C_001AE3E0_Vec4 *)((char *)f38 + off);
-    p->x = a;
-    p->y = b;
-    p->z = c;
-    p->w = d;
-    p = (C_001AE3E0_Vec4 *)((char *)f3C + off);
-    p->x = e;
-    p->y = f;
-    p->z = g;
-    p->w = h;
+    f38[idx] = a;
+    f3C[idx] = b;
 }
 
 struct C_1AE570_Cam {
