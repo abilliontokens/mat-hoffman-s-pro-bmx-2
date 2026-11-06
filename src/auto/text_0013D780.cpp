@@ -62,6 +62,7 @@ extern int D_00284C58;
 extern int D_00100000;
 
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 extern int D_00284DEC;
 extern int D_00284D5C;
@@ -706,15 +707,18 @@ void func_0013E4A0(void *dst, void *src)
                           _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), s + 5), s + 7), 0xdd);
 }
 
+#pragma optimize("y", on)
 DXCamera *DXCamera::func_0013E4F0(int a)
 {
     func_0012A3F0(a);
     vtbl = &D_00284D5C;
-    f250.Identity();
-    f290.Identity();
+    AsmIdentityMatrix(&f250);
+    AsmIdentityMatrix(&f290);
     return this;
 }
-
+#pragma optimize("", on)
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 void DXCamera::func_0013E580(void)
 {
     DXCamera *volatile self = this;
@@ -725,6 +729,7 @@ void DXCamera::func_0013E580(void)
     func_0012AEC0();
     c = self;
     func_000263B0(&c->f250, (char *)c + 0xb0, (char *)c + 0x70);
+    _ReadWriteBarrier();
     {
         __m128 *volatile p = (__m128 *)m.m;
         __m128 z = _mm_setzero_ps();
@@ -743,7 +748,6 @@ void DXCamera::func_0013E580(void)
     m.m[10] = s;
     func_000263B0(&c->f290, &c->f250, &m);
 }
-
 int DXCamera::func_0013E610(void)
 {
     __declspec(align(16)) Mat4_0013E4F0 m;
