@@ -417,22 +417,21 @@ void XboxTextureMap::func_001D6C50(void *param)
 int XboxTextureMap::func_001D6CB0(int param)
 {
     int v = f8;
-    int n = func_001FCFE0((int)fB8);
-    int i = 0;
+    void *p = fB8;
+    unsigned int n = func_001FCFE0((int)p);
+    unsigned int i = 0;
 
-    if (v != param) {
-        while (i < n) {
-            v /= 2;
-            i++;
-            if (v == param) {
-                return i;
-            }
+    while (v != param) {
+        if (i >= n) {
+            break;
         }
+        v /= 2;
+        i++;
     }
-    if (v != param) {
-        return -1;
+    if (v == param) {
+        return i;
     }
-    return i;
+    return -1;
 }
 
 void XboxTextureMap::func_001D6D00(Img_001D6D00 *img, Sz_001D6D00 *sz, char *name)
