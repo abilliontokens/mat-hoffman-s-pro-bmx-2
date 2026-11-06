@@ -243,7 +243,7 @@ struct InputDevice {
     virtual void v1();
     virtual void v2();
     virtual void v3();
-    virtual void v4();
+    virtual int v4(int a, int b, int c, int d);
     virtual int v5(int a, int b, int c, int d);
 };
 
