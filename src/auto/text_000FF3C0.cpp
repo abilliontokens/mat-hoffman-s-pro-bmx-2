@@ -200,11 +200,11 @@ struct C_00100280 {
 
 struct C_000FFFA0 {
     char pad0[0x124];
-    char *f124;
+    S_000FFC20_Owner *f124;
     char pad128[0x164];
     int f28c, f290;
     char pad294[8];
-    char *f29c;
+    S_00100030_Item *f29c;
     char pad2a0[12];
     int f2ac, f2b0;
     char pad2b4[16];
