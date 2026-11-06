@@ -57,8 +57,11 @@ struct C_001B4E20 {
     int func_001B4E20(void *param);
 };
 
-struct C_001B4ED0 {
+struct C_001B4ED0_Base {
     void *vtbl;
+    C_001B4ED0_Base() { vtbl = (void *)&D_0028CA9C; }
+};
+struct C_001B4ED0 : C_001B4ED0_Base {
     int f04;
     int f08;
     int f0C;
