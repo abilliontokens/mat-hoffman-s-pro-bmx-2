@@ -318,7 +318,7 @@ struct func_00055380 : CameraBehavior_00055380 {
     Quat_00055380 q2C;
     u32 unk3C, unk40, unk44, unk48, unk4C, unk50, unk54, unk58;
     char pad5C[4];
-    volatile u32 unk60; u32 unk64, unk68;
+    u32 unk60; u32 unk64, unk68;
     Quat_00055380 q6C, q7C, q8C, q9C, qAC, qBC, qCC, qDC, qEC, qFC, q10C, q11C;
     char pad12C[12];
     u32 unk138, unk13C, unk140, unk144, unk148, unk14C, unk150; volatile u32 unk154; u32 unk158, unk15C;
@@ -338,6 +338,7 @@ void func_00055140(S_00056100_Quat *,S_00056100_Quat *);
 void C_000559E0_unused();
 func_00055380::func_00055380()
 {
+    vtbl_dummy_unused_pad = &D_00277CF4;
     unkC = 0;
     unk10 = 0;
     unk14 = 0;
