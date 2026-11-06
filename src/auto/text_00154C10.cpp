@@ -2,6 +2,7 @@
 #include "common.h"
 
 #include <string.h>
+#include <math.h>
 
 extern int D_00286DD4;
 
