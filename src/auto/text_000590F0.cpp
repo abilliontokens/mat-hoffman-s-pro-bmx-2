@@ -44,6 +44,7 @@ struct Fader_000597B0 {
 };
 
 template <class T> inline const T &Min_000590F0(const T &a, const T &b) { return b < a ? b : a; }
+static __forceinline int Clamp_000590F0(int v, int hi) { return v > hi ? hi : v; }
 
 struct File_000590F0 {
     char data[0x4C8];
