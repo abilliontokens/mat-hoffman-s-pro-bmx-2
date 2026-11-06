@@ -17,13 +17,6 @@ struct V4_001CA360 {
     float x, y, z, w;
 };
 
-static __forceinline void v3_scale(V4_001CA360 *out, const V4_001CA360 *in, float s)
-{
-    out->x = in->x * s;
-    out->y = in->y * s;
-    out->z = in->z * s;
-}
-
 static __forceinline void v3_scale(V4_001CA360 *out, const V4_001CA360 &in, float s)
 {
     out->x = in.x * s;
@@ -369,7 +362,7 @@ int func_001CA360(float *n, float *p, float *a, float *b, V4_001CA360 *out)
         t += e[2] * n[2];
         t = t / denom;
         if (t >= D_00275544 && t <= D_00275460) {
-            v3_scale(&s, &d, t);
+            v3_scale(&s, d, t);
             d.x = s.x + a[0];
             d.y = s.y + a[1];
             d.z = s.z + a[2];
