@@ -6,6 +6,8 @@ static __forceinline float Min_0011FDF0(float a, float b) { float r; _mm_store_s
 static __forceinline float Max_0011FDF0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b))); return r; }
 static __forceinline float Abs_0011FDF0(const float &f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
 
+static __forceinline float AbsVal_00120470(float f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
+
 extern float D_00275544;
 extern float D_002B9348;
 extern void **D_002B92F4;
@@ -55,11 +57,39 @@ float func_0011FDF0(float *p, float *a, float *b)
     return r;
 }
 
+int func_0011FF30(S_0011F4B0_V4 *p, void *t)
+{
+    short *tri = (short *)t;
+    S_0011F4B0_V4 n, a, b, c, u, v, w, x;
+    n.x = (float)tri[6] * D_002B9348;
+    n.y = (float)tri[7] * D_002B9348;
+    n.z = (float)tri[8] * D_002B9348;
+    a.z = 0.0f; a.y = 0.0f; a.x = 0.0f; a.w = 1.0f;
+    b.z = 0.0f; b.y = 0.0f; b.x = 0.0f; b.w = 1.0f;
+    c.z = 0.0f; c.y = 0.0f; c.x = 0.0f; c.w = 1.0f;
+    func_0011F0E0(&a, &b, &c, tri, D_002B92F4);
+    u.x = b.x - a.x; u.y = b.y - a.y; u.z = b.z - a.z; u.w = 1.0f;
+    v.x = c.x - a.x; v.y = c.y - a.y; v.z = c.z - a.z; v.w = 1.0f;
+    w.x = p->x - a.x; w.y = p->y - a.y; w.z = p->z - a.z; w.w = 1.0f;
+    x.z = 0.0f; x.y = 0.0f; x.x = 0.0f; x.w = 1.0f;
+    Cross_0011FF30(&x, &u, &w);
+    if (!(x.y * n.y + x.x * n.x + x.z * n.z > D_00275544)) return 0;
+    Cross_0011FF30(&x, &w, &v);
+    if (!(x.y * n.y + x.x * n.x + x.z * n.z > D_00275544)) return 0;
+    u.x = c.x - b.x; u.y = c.y - b.y; u.z = c.z - b.z; u.w = 1.0f;
+    v.x = a.x - b.x; v.y = a.y - b.y; v.z = a.z - b.z; v.w = 1.0f;
+    w.x = p->x - b.x; w.y = p->y - b.y; w.z = p->z - b.z; w.w = 1.0f;
+    Cross_0011FF30(&x, &u, &w);
+    if (!(x.y * n.y + x.x * n.x + x.z * n.z > D_00275544)) return 0;
+    Cross_0011FF30(&x, &w, &v);
+    if (!(x.y * n.y + x.x * n.x + x.z * n.z > D_00275544)) return 0;
+    return 1;
+}
+
 int func_00120470(short *tri, S_0011F4B0_V4 pos, float radius, int unused, float *m)
 {
     S_00120470_Triangle triangle;
-    union { float f[4]; double d[2]; } scaled;
-    float delta[4];
+    float delta[4], scaled[4];
     volatile float absoluteInput;
     volatile int absoluteBits;
     float d;
@@ -71,17 +101,15 @@ int func_00120470(short *tri, S_0011F4B0_V4 pos, float radius, int unused, float
     triangle.b.z = 0.0f; triangle.b.y = 0.0f; triangle.b.x = 0.0f; triangle.b.w = 1.0f;
     triangle.c.z = 0.0f; triangle.c.y = 0.0f; triangle.c.x = 0.0f; triangle.c.w = 1.0f;
     func_0011F0E0(&triangle.a, &triangle.b, &triangle.c, tri, D_002B92F4);
-    delta[0] = pos.x - triangle.a.x;
-    delta[1] = pos.y - triangle.a.y;
-    delta[2] = pos.z - triangle.a.z;
+    delta[0] = pos.x - triangle.a.x; delta[1] = pos.y - triangle.a.y; delta[2] = pos.z - triangle.a.z;
     d = delta[2] * triangle.n.z + (delta[0] * triangle.n.x + delta[1] * triangle.n.y);
     absoluteInput = *(volatile float *)&d;
     absoluteBits = *(volatile int *)&absoluteInput & 0x7fffffff;
     if (*(volatile float *)&absoluteBits > radius) return 0;
-    scaled.f[0] = triangle.n.x * d; scaled.f[1] = triangle.n.y * d; scaled.f[2] = triangle.n.z * d;
-    triangle.n.x = pos.x - scaled.f[0];
-    triangle.n.y = pos.y - scaled.f[1];
-    triangle.n.z = pos.z - scaled.f[2];
+    scaled[0] = triangle.n.x * d; scaled[1] = triangle.n.y * d; scaled[2] = triangle.n.z * d;
+    triangle.n.x = pos.x - scaled[0];
+    triangle.n.y = pos.y - scaled[1];
+    triangle.n.z = pos.z - scaled[2];
     triangle.n.w = 1.0f;
     if (func_0011FF30(&triangle.n, tri)) return 1;
     d = func_0011FDF0(&pos, &triangle.a, &triangle.b);
