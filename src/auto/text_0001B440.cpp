@@ -321,7 +321,9 @@ struct S_0001B910_Child {
 };
 
 struct C_0001B910 {
-    char pad0[0x4C];
+    char pad0[0x44];
+    int f44;
+    int f48;
     int f4C;
     S_0001B910_Child **f50;
     char pad54[0xC];
