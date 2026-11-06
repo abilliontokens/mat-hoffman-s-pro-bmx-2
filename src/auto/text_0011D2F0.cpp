@@ -81,7 +81,10 @@ struct C_0011D2F0 {
     int f130;
     V4_0011D2F0 f134;
     V4_0011D2F0 f144;
-    char pad154[0x198 - 0x154];
+    char pad154[0x168 - 0x154];
+    V4_0011D2F0 f168;
+    V4_0011D2F0 f178;
+    char pad188[0x198 - 0x188];
     V4_0011D2F0 f198;
     char pad1A8[0x1ac - 0x1a8];
     int f1AC;
@@ -168,6 +171,7 @@ void C_0011D2F0::func_0011D2F0(float dt)
         return;
     }
     {
+        M4_0011D2F0 mTmp;
         V4_0011D2F0 hit, nrm;
         V4_0011D2F0 from, to;
         v0.z = 0.0f;
@@ -211,6 +215,21 @@ void C_0011D2F0::func_0011D2F0(float dt)
                 self->f34 = self->f24;
             }
         }
+        self->f84->node->func_00199C20(0, &mTmp);
+        if (self->f84->f10 == 0) {
+            self->f84->func_001670C0(dt, 0, 0);
+        } else {
+            self->f8C += dt;
+            if (self->f8C >= self->f90) {
+                self->fBC = 3;
+            }
+        }
+        self->f12C = self->fBC;
+        self->f1AC = 0;
+        func_0011BBB0(hit);
+        self->f84->node->func_00197E70(&self->f134);
+        self->f84->node->func_00197B90(&self->f144);
+        self->func_00157A00(dt);
     }
 }
 #pragma optimize("", on)
