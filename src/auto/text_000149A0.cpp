@@ -6,6 +6,8 @@ struct AIPedestrian {
     void func_00014020();
     void func_001C6DA0(int arg1, int arg2);
     void func_000149A0(int idx, float scale);
+    int func_000119D0(void *pos);
+    int func_00011BE0(int *idx, float *dist);
 };
 
 struct Vec4_149A0 {
