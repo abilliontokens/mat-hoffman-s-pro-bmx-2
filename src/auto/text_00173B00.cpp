@@ -129,6 +129,7 @@ static __forceinline float LengthSq(float x, float y, float z, float w) {
     return x * x + y * y + z * z + w * w;
 }
 static inline float Sqrt_001743A0(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+static __forceinline float SqrtC_001743A0(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
 struct C_00174550 {
     char pad0[0x28C];
     int unk28C;
@@ -334,10 +335,10 @@ void PhysicsRigidBody::func_001746D0()
     int i;
 
     for (i = 0; i < 2; i++) {
-        Zero3(f298[i]);
+        ZeroVec3(f298[i]);
         f2C8[i] = D_002EF740;
-        Zero3(f2B0[i]);
-        Zero3(f2E8[i]);
+        ZeroVec3(f2B0[i]);
+        ZeroVec3(f2E8[i]);
     }
 }
 
