@@ -104,7 +104,7 @@ extern char D_002A60B0[];
 extern char D_002A5FA8[];
 extern char D_002A5870[];
 extern char D_00275678[];
-extern char D_002786B0[];
+extern const char D_002786B0[];
 extern int D_0028F5E0;
 extern float D_002755E8, D_002757F0, D_002786B8;
 struct Mid_5F { S_0005FBD0_Obj *func_0018C070(); };
