@@ -5,6 +5,7 @@ extern float D_002879B4, D_002879B0, D_002879AC, D_002879A8;
 #pragma optimize("g", off)
 static __forceinline float abs_0015FF80(volatile float v) { unsigned int bits = *(volatile unsigned int *)&v & 0x7fffffff; return *(float *)&bits; }
 #pragma optimize("", on)
+static __forceinline float fabs_0015FF80(float v) { unsigned int bits = *(unsigned int *)&v & 0x7fffffff; return *(float *)&bits; }
 static __forceinline float atan_poly_0015FF80(float t) {
     float s = t * t;
     return t * (((D_002879B0 - D_002879B4 * s) * s - D_002879AC) * s + D_002879A8);
@@ -247,6 +248,103 @@ struct C_00160860 {
     C_00160860 *func_00160860(int a0);
 };
 
+
+float func_0015FF80(volatile float y, volatile float x)
+{
+    volatile float ax, ay;
+    volatile unsigned int tmp[2];
+    float t, s;
+    unsigned int bits;
+    bits = *(volatile unsigned int *)&x; tmp[0] = bits; bits = tmp[0]; bits &= 0x7fffffff; *(volatile unsigned int *)&ax = bits;
+    tmp[1] = *(volatile unsigned int *)&y; bits = tmp[1]; bits &= 0x7fffffff; *(volatile unsigned int *)&ay = bits;
+    if (ax < D_002879B8) {
+    if (ay < D_002879B8) return y / x;
+    if (ax < D_002879B8 && ay > D_002879B8) {
+        if (y > D_00275544) return D_002756D4;
+        return D_00286AC4;
+    }
+    }
+    if (ay < D_002879B8 && ax > D_002879B8) {
+        if (!(x > D_00275544)) return D_002756D0;
+        return D_00275544;
+    }
+    if (x > D_00275544 && y > D_00275544) {
+        if (ay < ax) return (t = ay / ax, s = t * t, t * (((D_002879B0 - D_002879B4 * s) * s - D_002879AC) * s + D_002879A8));
+        return D_002756D4 - (t = ax / ay, s = t * t, t * (((D_002879B0 - D_002879B4 * s) * s - D_002879AC) * s + D_002879A8));
+    }
+    if (x < D_00275544) {
+    if (y > D_00275544) {
+        if (ay < ax) return D_002756D0 - (t = ay / ax, s = t * t, t * (((D_002879B0 - D_002879B4 * s) * s - D_002879AC) * s + D_002879A8));
+        return (t = ax / ay, s = t * t, t * (((D_002879B0 - D_002879B4 * s) * s - D_002879AC) * s + D_002879A8)) + D_002756D4;
+    }
+    if (x < D_00275544 && y < D_00275544) {
+        if (ay < ax) return (t = ay / ax, s = t * t, t * (((D_002879B0 - D_002879B4 * s) * s - D_002879AC) * s + D_002879A8)) - D_002756D0;
+        return D_00286AC4 - (t = ax / ay, s = t * t, t * (((D_002879B0 - D_002879B4 * s) * s - D_002879AC) * s + D_002879A8));
+    }
+    }
+    if (x > D_00275544 && y < D_00275544) {
+        if (ay < ax) return -(t = ay / ax, s = t * t, t * (((D_002879B0 - D_002879B4 * s) * s - D_002879AC) * s + D_002879A8));
+        return (t = ax / ay, s = t * t, t * (((D_002879B0 - D_002879B4 * s) * s - D_002879AC) * s + D_002879A8)) - D_002756D4;
+    }
+    return D_00275544;
+}
+
+int C_00160310::func_00160310(void)
+{
+    V4_00160310 q;
+    V4_00160310 dir;
+    S_Cam_00160310 *cam;
+    float dx, dy, dz, inv, d2, dist, m;
+    int idx;
+
+    if (D_002A80C0 == 0) {
+        return 1;
+    }
+    cam = D_002EFDB8->cam;
+    q.x = 0.0f;
+    q.y = 0.0f;
+    q.z = 0.0f;
+    q.w = 1.0f;
+    dir.x = cam->c8 * scale;
+    dir.y = cam->c4 * scale;
+    dir.z = cam->c0 * scale;
+    dir.w = 1.0f;
+    dx = x - cam->p.x;
+    dy = y - cam->p.y;
+    dz = z - cam->p.z;
+    inv = 1.0f;
+    if (D_002E2944) {
+        d2 = dx * dx + dy * dy + dz * dz;
+        dist = Sqrt_00160310(d2);
+        m = dist * D_002A810C;
+        inv = D_00275460 / Max_00160310(D_002A8110, m);
+    }
+    if (f84) {
+        q.x = cam->d0;
+        q.y = cam->d4;
+        q.z = cam->d8;
+        q.w = 1.0f;
+    } else {
+        q.x = cam->b0 * scale;
+        q.y = cam->b4 * scale;
+        q.z = cam->b8 * scale;
+        q.w = 1.0f;
+    }
+    dx = q.x - dir.x;
+    dy = q.y - dir.y;
+    dz = q.z - dir.z;
+    if (D_002E2944) {
+        dx = dx * inv;
+        dy = dy * inv;
+        dz = dz * inv;
+    }
+    idx = *(int *)(*(int *)(f78 + 0x24) + 4);
+    if (idx != -1) {
+        func_001B07A0(*(void **)(*(int *)(D_002A829C + 0x14) + (idx << 4) + 4));
+    }
+    func_001578D0();
+    return 1;
+}
 
 int C_00160860::func_001607B0(void)
 {
