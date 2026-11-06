@@ -526,10 +526,15 @@ void C_00094760::func_000947F0(int node)
 int *C_00094760::func_00094810(int node)
 {
     S_00094620_Path *path = unk50;
+    S_00094620_Node *n = 0;
+    int ok = 0;
 
     if (node < path->unkA8 && node >= 0) {
-        S_00094620_NodeTail &tail = *path->Node(node);
-        return &tail.unk0;
+        n = path->Node(node);
+        ok = 1;
+    }
+    if (ok) {
+        return &n->unk0;
     }
     return 0;
 }
