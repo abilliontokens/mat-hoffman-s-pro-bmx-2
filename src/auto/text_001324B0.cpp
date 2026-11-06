@@ -66,6 +66,8 @@ extern int D_002845AC;
 void func_001E891B(void *ptr);
 void func_001E8390(void *ptr);
 
+static __forceinline float Abs_001325D0(float f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
+
 struct C_Off_1324B0 {
     char pad0[4];
     int f4;
