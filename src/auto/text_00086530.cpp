@@ -210,7 +210,7 @@ struct Icon86E60 {
     void func_001D5810(char *name, float x, float y, int z);
     void SetW() { if (w28 != 0x42c00000) { w28 = 0x42c00000; flags |= 1; } }
     void SetH() { if (h34 != 0x40c00000) { h34 = 0x40c00000; flags |= 1; } }
-    void SetQuad() { flags |= 4; a3C = 1.0f; b40 = 0.0f; c44 = 0.0f; d48 = 1.0f; }
+    void SetQuad() { unsigned char f = flags | 4; a3C = 1.0f; b40 = 0.0f; c44 = 0.0f; d48 = 1.0f; flags = f; }
 };
 
 struct C_000874D0 {
@@ -456,14 +456,8 @@ BestScoreOverlay *BestScoreOverlay::func_00086E60(u32 a, int mode, int c)
             v->func_001D5810(D_002786B0, 109.0f, 47.0f, 0);
         }
     }
-    if (((Icon86E60 *)f2C)->w28 != 0x42c00000) {
-        ((Icon86E60 *)f2C)->w28 = 0x42c00000;
-        ((Icon86E60 *)f2C)->flags = ((Icon86E60 *)f2C)->flags | 1;
-    }
-    if (((Icon86E60 *)f2C)->h34 != 0x40c00000) {
-        ((Icon86E60 *)f2C)->h34 = 0x40c00000;
-        ((Icon86E60 *)f2C)->flags = ((Icon86E60 *)f2C)->flags | 1;
-    }
+    ((Icon86E60 *)f2C)->SetW();
+    ((Icon86E60 *)f2C)->SetH();
     mem = func_001E8A44(0x64);
     v = mem ? ((Icon86E60 *)mem)->func_001D5760() : 0;
     f30 = (BestScoreOverlay_Text *)v;
@@ -482,19 +476,9 @@ BestScoreOverlay *BestScoreOverlay::func_00086E60(u32 a, int mode, int c)
             v->func_001D5810(D_002786B0, 204.0f, 47.0f, 0);
         }
     }
-    if (((Icon86E60 *)f30)->w28 != 0x42c00000) {
-        ((Icon86E60 *)f30)->w28 = 0x42c00000;
-        ((Icon86E60 *)f30)->flags = ((Icon86E60 *)f30)->flags | 1;
-    }
-    ((Icon86E60 *)f30)->flags = ((Icon86E60 *)f30)->flags | 4;
-    ((Icon86E60 *)f30)->a3C = 1.0f;
-    ((Icon86E60 *)f30)->b40 = 0.0f;
-    ((Icon86E60 *)f30)->c44 = 0.0f;
-    ((Icon86E60 *)f30)->d48 = 1.0f;
-    if (((Icon86E60 *)f30)->h34 != 0x40c00000) {
-        ((Icon86E60 *)f30)->h34 = 0x40c00000;
-        ((Icon86E60 *)f30)->flags = ((Icon86E60 *)f30)->flags | 1;
-    }
+    ((Icon86E60 *)f30)->SetW();
+    ((Icon86E60 *)f30)->SetQuad();
+    ((Icon86E60 *)f30)->SetH();
     int font;
     int font2;
     if (mode == 0) {
