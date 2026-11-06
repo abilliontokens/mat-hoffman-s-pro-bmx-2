@@ -1,6 +1,8 @@
 /* 13 functions from 0x0010DA70 to 0x0010E920, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <xmmintrin.h>
+#include <math.h>
 
 extern int D_00275630;
 
@@ -407,9 +409,8 @@ int C_0010DED0::func_0010E030(int a, int b)
         for (i = 0; i < 16; i++) {
             if (f1134 != -1) break;
             t = f24->f52C;
-            idx = cur * 16 + i;
-            if (t->ids[idx] != a) continue;
-            if (t->keys[idx] == b) {
+            idx = i + (cur << 4);
+            if (t->ids[idx] == a && t->keys[idx] == b) {
                 int *p = &cntE20[cur * 16 + i];
                 f1134 = i;
                 f111C = b;
