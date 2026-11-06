@@ -71,6 +71,95 @@ struct C_001C19D0 {
     void func_001BF600(Cfg19D0 *);
     void *func_001C19D0(int, int);
 };
+static inline void LoadSub19D0(Sub19D0 *s, Cfg19D0 *cfg, char **keys, char *buf)
+{
+    char *p = func_001E8AC0(buf, 0x2e);
+    if (p != 0) {
+        int n = 0;
+        while (p[n] != 0) n++;
+        for (int i = 0; i < n; i++) p[i] = 0;
+    }
+    int v[4];
+    v[0] = 0;
+    v[1] = func_001E8858(s->f28);
+    v[2] = 0;
+    v[3] = func_001E8858(s->f2c);
+    s->func_001D5810(v, 0, 0, 0);
+    int a[4];
+    int b[4];
+    b[0] = 0; b[1] = 0; b[2] = 0; b[3] = 0;
+    if (cfg->func_00168E70(keys[0], b, a) != 0) {
+        s->f58 |= 4;
+        s->f3c = (float)a[0] * s->f4c;
+        s->f40 = (float)a[2] * s->f4c;
+        s->f44 = (float)a[1] * s->f50;
+        s->f48 = (float)a[3] * s->f50;
+    }
+    if (cfg->func_00168E70(keys[1], b, a) == 0) {
+        float t;
+        cfg->func_00168C50(keys[2], 0, &t);
+        int x = func_001E8858(t);
+        cfg->func_00168C50(keys[3], 0, &t);
+        int y = func_001E8858(t);
+        b[0] = x;
+        b[1] = y;
+        b[2] = (x - a[0]) + a[2];
+        b[3] = (y - a[1]) + a[3];
+    }
+    if ((float)b[1] != s->f04 || (float)b[3] != s->f08) {
+        s->f04 = (float)b[1];
+        s->f08 = (float)b[3];
+        s->f58 |= 1;
+    }
+    {
+        int w = b[2] - b[1];
+        if ((float)w != s->f28) {
+            s->f28 = (float)w;
+            s->f58 |= 1;
+        }
+        int h = b[3] - b[0];
+        if ((float)h != s->f2c) {
+            s->f2c = (float)h;
+            s->f58 |= 1;
+        }
+    }
+    float f1, f2, f3;
+    if (cfg->func_00168C50(keys[4], 0, &f1) != 0) {
+        cfg->func_00168C50(keys[5], 0, &f2);
+        cfg->func_00168C50(keys[6], 0, &f3);
+        if (s->f30 != f1) {
+            s->f30 = f1;
+            s->f58 |= 1;
+        }
+        if (s->f14 != f2 || s->f18 != f3) {
+            s->f14 = f2;
+            s->f18 = f3;
+            s->f58 |= 1;
+        }
+    }
+    int color;
+    cfg->func_00168C20(keys[7], 0xff, &color);
+    s->f38 = ((int)(short)color << 24) | (s->f38 & 0xffffff);
+    s->f58 |= 2;
+    float temp;
+    cfg->func_00168C50(keys[8], 0, &temp);
+    if (temp < D_00275544) {
+        temp = (float)(D_002F07B8[0x6b4 / 4] - 300);
+    }
+    if (s->f34 != temp) {
+        s->f34 = temp;
+        s->f58 |= 1;
+    }
+    float colIn[4];
+    float colOut[4];
+    colIn[0] = 200.0f; colIn[1] = 200.0f; colIn[2] = 200.0f; colIn[3] = 1.0f;
+    cfg->func_00168CB0(keys[9], colOut, colIn);
+    int packed = func_001E8858(colOut[1]) & 0xff;
+    packed = (packed << 8) | (func_001E8858(colOut[0]) & 0xff);
+    packed = (packed << 8) | (func_001E8858(colOut[2]) & 0xff);
+    s->f38 = (s->f38 ^ packed) & 0xffffff ^ s->f38;
+    s->f58 |= 2;
+}
 struct C_001C22A0 {
     undefined4 func_001C22A0(byte param_1);
 };
