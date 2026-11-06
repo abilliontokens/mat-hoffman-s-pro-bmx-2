@@ -127,6 +127,10 @@ struct V4_0014B940 {
     V4_0014B940() { z = 0; y = 0; x = 0; w = 1.0f; }
     V4_0014B940(f32 x_, f32 y_, f32 z_, f32 w_) { x = x_; y = y_; z = z_; w = w_; }
     V4_0014B940 &operator=(const V4_0014B940 &o) { x = o.x; y = o.y; z = o.z; w = o.w; return *this; }
+    V4_0014B940 ScaleAdd(f32 s, const V4_0014B940 &d) const
+    {
+        return V4_0014B940(x + s * d.x, y + s * d.y, z + s * d.z, 1.0f);
+    }
 };
 
 static void DebugLine_0014B940(V4_0014B940 a, V4_0014B940 b) {}
@@ -144,6 +148,104 @@ struct S_0014B940_Obj {
 };
 
 #pragma auto_inline(on)
+int DynamicRayCollisionObject::func_0014B260(char *obj)
+{
+    int hit = 0;
+    char *g;
+    __declspec(align(16)) f32 m[16];
+    int cnt[2];
+    int i;
+    char *t = (char *)this;
+    if (obj == 0 || !(obj[0x21] & 1))
+        return 0;
+    func_00133D80(*(int *)(t + 0x54));
+    g = D_002B92EC;
+    memset(*(void **)(g + 0x88), 0, unkA8 * 4);
+    {
+        f32 dx = *(f32 *)(t + 0xd8) - *(f32 *)(obj + 0x28);
+        f32 dy = *(f32 *)(t + 0xdc) - *(f32 *)(obj + 0x2c);
+        f32 dz = *(f32 *)(t + 0xe0) - *(f32 *)(obj + 0x30);
+        f32 r = *(f32 *)(t + 0xe8) + *(f32 *)(obj + 0x48);
+        if (dx * dx + dy * dy + dz * dz <= r * r)
+            return 0;
+    }
+    *(f32 *)(g + 0x94) = 1.0f;
+    {
+        f32 *p = *(f32 **)(g + 0x8c);
+        for (i = 0; i < unkA8; i++)
+            *p++ = -1.0f;
+    }
+    *(int *)(g + 0x80) = 0;
+    switch (*(int *)(obj + 0x50)) {
+    case 0: {
+        char *src = obj + 0xb0;
+        ((Mtx44 *)m)->func_000264C0((Mtx44 *)src);
+        func_0011AC30(m, m);
+        for (i = 0; i < unkA8; i++) {
+            func_0001C680((Vec4 *)(*(char **)(t + 0xb8) + i * 16), *(Vec4 *)((char *)unkC4 + i * 16), (float *)m);
+            func_00030AC0(*(char **)(t + 0xb4) + i * 16, (char *)unkC0 + i * 16, m);
+        }
+        func_00030AC0(t + 0xc8, t + 0xd8, m);
+        cnt[0] = *(int *)(obj + 0x1c8);
+        cnt[1] = *(int *)(obj + 0x1c4);
+        func_00126740(this, 0, cnt, obj + 0x1b0, g, 1);
+        {
+            int *f = *(int **)(g + 0x88);
+            Vec4 *a = *(Vec4 **)(g + 0x78);
+            Vec4 *b = *(Vec4 **)(g + 0x74);
+            for (i = 0; i < unkA8; i++, f++, a++, b++) {
+                if (*f) {
+                    hit = 1;
+                    func_00030AC0(a, a, src);
+                    func_0001C680(b, *b, (float *)src);
+                }
+            }
+        }
+        if (hit) {
+            func_00030AC0(g + 0x30, g + 0x30, src);
+            func_0001C680((Vec4 *)(g + 0x20), *(Vec4 *)(g + 0x20), (float *)src);
+            func_0001C680((Vec4 *)(g + 0x40), *(Vec4 *)(g + 0x40), (float *)src);
+        }
+        break;
+    }
+    case 1: {
+        int nsub = *(int *)(obj + 0x190);
+        for (int s = 0; s < nsub; s++) {
+            char *sub = *(char **)(*(char **)(obj + 0x1a0) + s * 4);
+            char *src = sub + 0xb0;
+            *(Mtx44 *)m = *(Mtx44 *)src;
+            func_0011AC30(m, m);
+            for (i = 0; i < unkA8; i++) {
+                func_0001C680((Vec4 *)(*(char **)(t + 0xb8) + i * 16), *(Vec4 *)((char *)unkC4 + i * 16), (float *)m);
+                Xform_0014BA80((Vec4 *)(*(char **)(t + 0xb4) + i * 16), (M44_0014BA80 *)m, (float *)((char *)unkC0 + i * 16));
+            }
+            cnt[0] = *(int *)(sub + 0x1c8);
+            cnt[1] = *(int *)(sub + 0x1c4);
+            func_00126740(this, 0, cnt, sub + 0x1b0, g, 1);
+            {
+                int *f = *(int **)(g + 0x88);
+                Vec4 *a = *(Vec4 **)(g + 0x78);
+                Vec4 *b = *(Vec4 **)(g + 0x74);
+                for (i = 0; i < unkA8; i++, f++, a++, b++) {
+                    if (*f) {
+                        hit = 1;
+                        Xform_0014BA80(a, (M44_0014BA80 *)src, (float *)a);
+                        func_0001C680(b, *b, (float *)src);
+                    }
+                }
+            }
+            if (hit) {
+                Xform_0014BA80((Vec4 *)(g + 0x30), (M44_0014BA80 *)src, (float *)(g + 0x30));
+                func_0001C680((Vec4 *)(g + 0x20), *(Vec4 *)(g + 0x20), (float *)src);
+                func_0001C680((Vec4 *)(g + 0x40), *(Vec4 *)(g + 0x40), (float *)src);
+            }
+        }
+        break;
+    }
+    }
+    return hit;
+}
+
 void S_0014B940_Obj::func_0014B940()
 {
     volatile V4_0014B940 a;
