@@ -43,7 +43,7 @@ struct Txt_849F0 {
     void func_0005E960(int x, int y);
     void func_0005E9F0(unsigned v);
     inline void SetPos(unsigned x, unsigned y) { if (f4 != x || f8 != y) { f4 = x; f8 = y; f4e |= 6; } }
-    inline void SetColor(unsigned c) { if (f48 != c) { f4e |= 8; f48 = (f48 & c) | (c & 0xffffff); } }
+    inline void SetColor(unsigned c) { if (f48 != c) { f48 = (f48 & c) | (c & 0xffffff); f4e |= 8; } }
     inline void SetFont(unsigned v) { if (f44 != v) { f44 = v; f4e |= 6; } }
     inline void SetF3C(unsigned v) { if (f3C != v) { f3C = v; f4e |= 4; } }
 };
@@ -148,6 +148,142 @@ struct C_00085520 {
     void func_00157660();
     void func_00085520();
 };
+
+C_000849F0 *C_000849F0::func_000849F0(int a, int b, int c, int d)
+{
+    St_849F0 *st;
+    int mode;
+    int font;
+    int font2;
+    Spr_849F0 *s;
+    Txt_849F0 *t;
+
+    f38 = a;
+    f34 = b;
+    f3C = c;
+    D_002A60B0 = D_00278664;
+    D_002A60B4 = D_00278668;
+    D_002A60B8 = D_0027866C;
+    D_002A60BC = D_00278670;
+    D_002A60C0 = D_00278674;
+    s = (Spr_849F0 *)func_001E8A44(0x64);
+    f2C = s ? s->func_001D5760() : 0;
+    s = (Spr_849F0 *)func_001E8A44(0x64);
+    f30 = s ? s->func_001D5760() : 0;
+    st = ((G_849F0 *)D_002A8490)->f2E0;
+    if (st->f0 > 1 && d == 0) {
+        mode = st->f8;
+        if (mode == 2) {
+            if (f3C == 1) {
+                f2C->func_001D5810(D_002786B0, 0x43d68000, 0x423c0000, 0);
+                f2C->SetF28(0x42c00000);
+                f30->func_001D5810(D_002786B0, 0x44030000, 0x423c0000, 0);
+                f30->SetF28(0x42c00000);
+            } else {
+                f2C->func_001D5810(D_002786B0, 0x41a00000, 0x423c0000, 0);
+                f2C->SetF28(0x42c00000);
+                f30->func_001D5810(D_002786B0, 0x42e80000, 0x423c0000, 0);
+                f30->SetF28(0x42c00000);
+            }
+        } else if (mode == 1) {
+            if (f3C == 0) {
+                f2C->func_001D5810(D_002786B0, 0x41a00000, 0x42340000, 0);
+                f2C->func_00051140(0x42c00000);
+                f30->func_001D5810(D_002786B0, 0x42e80000, 0x42340000, 0);
+                f30->func_00051140(0x42c00000);
+            } else {
+                f2C->func_001D5810(D_002786B0, 0x41a00000, 0x43868000, 0);
+                f2C->func_00051140(0x42c00000);
+                f30->func_001D5810(D_002786B0, 0x42e80000, 0x43868000, 0);
+                f30->func_00051140(0x42c00000);
+            }
+        }
+    } else {
+        f2C->func_001D5810(D_002786B0, 0x41a00000, 0x423c0000, 0);
+        f2C->SetF28(0x42c00000);
+        f30->func_001D5810(D_002786B0, 0x42e80000, 0x423c0000, 0);
+        f30->SetF28(0x42c00000);
+    }
+    s = f30;
+    s->f3C = 0x3f800000;
+    s->f48 = 0x3f800000;
+    s->f58 |= 4;
+    s->f40 = 0;
+    s->f44 = 0;
+    f2C->SetF34(0x40c00000);
+    f30->SetF34(0x40c00000);
+
+    if (((G_849F0 *)D_002A8490)->f2E0->f8 != 0) {
+        char *name = D_002786A0;
+        ((G_849F0 *)D_002A8490)->f2EC->func_0018C780(1, &name, 0);
+        int *p = ((G_849F0 *)D_002A8490)->f2EC->func_0018C160(D_002786A0);
+        font = p ? *p : 0;
+        t = (Txt_849F0 *)func_001E8A44(0x60);
+        f24 = t ? t->func_001D5E90() : 0;
+        f24->func_001D5FA0(font, D_002786A0, 5, 0);
+        f24->func_0005E840(((G_849F0 *)D_002A8490)->f2E8->f4->f1010);
+        f24->SetColor(0xffcccccc);
+        t = (Txt_849F0 *)func_001E8A44(0x60);
+        f28 = t ? t->func_001D5E90() : 0;
+        f28->func_001D5FA0(font, D_002786A0, 15, 0);
+    } else {
+        char *names[2];
+        names[0] = D_00278690;
+        names[1] = D_0027958C;
+        ((G_849F0 *)D_002A8490)->f2EC->func_0018C780(2, names, 0);
+        int *p = ((G_849F0 *)D_002A8490)->f2EC->func_0018C160(D_00278690);
+        font = p ? *p : 0;
+        p = ((G_849F0 *)D_002A8490)->f2EC->func_0018C160(D_0027958C);
+        font2 = p ? *p : 0;
+        t = (Txt_849F0 *)func_001E8A44(0x60);
+        f24 = t ? t->func_001D5E90() : 0;
+        f24->func_001D5FA0(font, D_00278690, 5, 0);
+        f24->func_0005E840(((G_849F0 *)D_002A8490)->f2E8->f4->f1010);
+        f24->SetColor(0xffcccccc);
+        t = (Txt_849F0 *)func_001E8A44(0x60);
+        f28 = t ? t->func_001D5E90() : 0;
+        f28->func_001D5FA0(font2, D_0027958C, 15, 0);
+    }
+    f28->func_0005E840((int)D_002795B4);
+    f28->SetColor(0xffbfa35a);
+
+    st = ((G_849F0 *)D_002A8490)->f2E0;
+    if (st->f0 > 1 && d == 0) {
+        mode = st->f8;
+        if (mode == 2) {
+            if (f3C == 1) {
+                f24->func_0005E960(599, 26);
+                f24->SetFont(D_0028F5EC);
+                f28->func_0005E960(599, 52);
+                f28->SetFont(D_0028F5EC);
+            } else {
+                f24->func_0005E960(40, 26);
+                f24->SetFont(D_0028F5DC);
+                f28->func_0005E960(40, 52);
+                f28->SetFont(D_0028F5DC);
+            }
+        } else if (mode == 1) {
+            if (f3C == 0) {
+                f24->func_0005E960(40, 26);
+                f24->func_0005E9F0(D_0028F5DC);
+                f28->func_0005E960(40, 49);
+                f28->func_0005E9F0(D_0028F5DC);
+            } else {
+                f24->func_0005E960(40, 250);
+                f24->func_0005E9F0(D_0028F5DC);
+                f28->func_0005E960(40, 273);
+                f28->func_0005E9F0(D_0028F5DC);
+            }
+        }
+    } else {
+        f24->SetPos(0x42200000, 0x41d00000);
+        f24->SetFont(D_0028F5DC);
+        f28->SetPos(0x42200000, 0x424c0000);
+        f28->SetFont(D_0028F5DC);
+    }
+    f24->SetF3C(0x40a00000);
+    return this;
+}
 
 void C_00084FF0::func_00084FF0(void)
 {
