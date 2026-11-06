@@ -113,6 +113,7 @@ struct S_7BAD0_Grp {
 };
 struct S_7C2C0_V { char pad0[0x64]; S_7C2C0_U *f64; char pad68[0x1c0 - 0x68]; S_7BAD0_Grp *f1c0; };
 int func_001ADCC0(char *buf, int n, char *fmt, ...);
+int func_001AC330(char *dst, char *fmt, ...);
 
 struct C_0007C2C0 {
     char pad0[0x13c];
