@@ -59,6 +59,16 @@ struct Wid_779C0 {
     float f3c, f40, f44, f48, f4c, f50;
     char pad54[4];
     unsigned char b58;
+    __forceinline void SetW(float w) { if (f28 != w) { f28 = w; b58 |= 1; } }
+    __forceinline void SetH(float h) { if (f2c != h) { f2c = h; b58 |= 1; } }
+    __forceinline void Scale()
+    {
+        f3c = f4c * D_00278654;
+        b58 |= 4;
+        f40 = f4c * D_00275544;
+        f44 = f50 * D_0027653C;
+        f48 = f50 * D_00275544;
+    }
     Wid_779C0 *func_001D5760();
     void func_001D5810(char *, float, float, float);
 };
