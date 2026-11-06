@@ -98,7 +98,7 @@ struct C_00107070 {
     float f1fa0;
     void func_00107070(float dt);
 };
-static inline float abs_106B20(float v) { volatile float t = v; int bits = *(volatile int *)&t & 0x7fffffff; return *(float *)&bits; }
+static inline float abs_106B20(float v) { int bits = *(int *)&v & 0x7fffffff; return *(float *)&bits; }
 struct Vec_106B20 { int x,y,z,w; };
 struct Obj_106B20 {
  char pad0[0x1cc]; unsigned char flags;
@@ -212,8 +212,8 @@ void C_00106810::func_00106810(S_106810_Arg *arg, int mode)
 void C_00106B20::func_00106B20() {
     C_00106B20 * volatile self = this;
     C_00106B20 *q;
-    int active = 0;
-    float amount = 0;
+    int active;
+    float amount;
     if (D_002A8490->f2a4->f1c8 == 0) {
         flags &= ~2;
         q = self;
@@ -224,6 +224,8 @@ void C_00106B20::func_00106B20() {
     q = self;
     q->f1234->func_001B4970();
     q = self;
+    active = 0;
+    amount = 0;
     if (q->f9a0 > D_00275544 || (*(int *)(q->f20c + 0x30) == 1 && *(char **)(q->f1e8 + 0x1d8) && (*(unsigned char *)(*(char **)(q->f1e8 + 0x1d8) + 0xa7) & 8))) {
         active = 1;
         amount = q->f9a0;
@@ -239,9 +241,7 @@ void C_00106B20::func_00106B20() {
     q->f7d8->func_0011CA60(*(Vec_106B20 *)(q->f1e8 + 0x130));
     q = self;
     if (*(int *)(q->f1e8 + 0x54) == 1 && active) {
-        float ratio = q->f744 / *(float *)(q->f1ec + 0x3c);
-        *(unsigned int *)&ratio &= 0x7fffffff;
-        float strength = ratio * amount;
+        float strength = abs_106B20(q->f744 / *(float *)(q->f1ec + 0x3c)) * amount;
         float rate = .1f;
         q = self;
         if (q->f1598 || *(int *)(*(char **)((char *)D_002A8490 + 0x2e0) + 0x190 + q->fa28 * 4) == 12) {
