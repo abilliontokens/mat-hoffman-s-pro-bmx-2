@@ -74,15 +74,6 @@ static __forceinline void Add_0017F2B0(Vec4_0017F2B0 *r, const Vec4_0017F2B0 *a,
     r->z = a->z + b->z;
 }
 
-static __forceinline Vec4_0017F2B0 AddV_0017F2B0(const Vec4_0017F2B0 &a, const Vec4_0017F2B0 &b)
-{
-    Vec4_0017F2B0 r;
-    r.x = a.x + b.x;
-    r.y = a.y + b.y;
-    r.z = a.z + b.z;
-    return r;
-}
-
 static __forceinline void Sub_0017F2B0(Vec4_0017F2B0 *r, const Vec4_0017F2B0 *a, const Vec4_0017F2B0 *b)
 {
     r->x = a->x - b->x;
