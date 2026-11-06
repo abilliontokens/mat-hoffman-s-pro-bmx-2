@@ -356,16 +356,26 @@ done:
     return ret;
 }
 
+static __forceinline int *ZeroDwords(int *p, int n)
+{
+    int *z = p;
+    for (; n > 0; n--) {
+        *z++ = 0;
+    }
+    return p;
+}
+
 int C_000DCC20::func_000DCE10(void)
 {
     char buf[0x104];
+    C_000DCC20 *self = this;
     void *mem = 0;
     int ret;
 
-    if (unk2D0 != 0) {
+    if (self->unk2D0 != 0) {
         mem = func_001E8A44((int)&D_00080000);
         int src, dst;
-        if (unk2D8 > unk2DC) {
+        if (self->unk2D8 > self->unk2DC) {
             src = 4;
             dst = 0;
         } else {
@@ -374,14 +384,14 @@ int C_000DCC20::func_000DCE10(void)
         }
         int i;
         for (i = 0; i < 4; i++) {
-            void *s = arr368[src + i]->v40(0, 0, 0);
-            void *d = arr368[dst + i]->v40(0, 0, 0);
+            void *s = self->arr368[src + i]->v40(0, 0, 0);
+            void *d = self->arr368[dst + i]->v40(0, 0, 0);
             memcpy(d, s, 0x20000);
-            arr368[src + i]->v44(0);
-            arr368[dst + i]->v44(0);
+            self->arr368[src + i]->v44(0);
+            self->arr368[dst + i]->v44(0);
         }
-        func_001ADCC0(buf, 0x104, &D_00277A04, &D_00277A0C, unk2D8);
-        int r = D_002A8490->f2E0->f2CC->func_001D4590((char *)unk2BC->func_000928D0(), buf, (int)mem, (int)&D_00080000);
+        func_001ADCC0(buf, 0x104, &D_00277A04, &D_00277A0C, self->unk2D8);
+        int r = D_002A8490->f2E0->f2CC->func_001D4590((char *)self->unk2BC->func_000928D0(), buf, (int)mem, (int)&D_00080000);
         if (r != 1) {
             if (r == -1) {
                 int *tmp = (int *)func_001E8A44((int)&D_00080000);
@@ -390,7 +400,7 @@ int C_000DCC20::func_000DCE10(void)
                 for (n = (int)&D_00020000; n > 0; n--) {
                     *z++ = 0;
                 }
-                D_002A8490->f2E0->f2CC->func_001D4440((char *)unk2BC->func_000928D0(), buf, (int)tmp, (int)&D_00080000);
+                D_002A8490->f2E0->f2CC->func_001D4440((char *)self->unk2BC->func_000928D0(), buf, (int)tmp, (int)&D_00080000);
                 func_001E891B(tmp);
             } else {
                 ret = 0;
@@ -400,9 +410,9 @@ int C_000DCC20::func_000DCE10(void)
         D_002A8490->f2E0->f2C0->func_0005C020(D_002A8490->f2E0->f2D8);
         D_002A8490->f2E0->f2C0->func_0005C6A0();
         for (i = 0; i < 4; i++) {
-            void *d = arr368[src + i]->v40(0, 0, 0);
+            void *d = self->arr368[src + i]->v40(0, 0, 0);
             memcpy(d, (char *)mem + i * (int)&D_00020000, 0x20000);
-            arr368[src + i]->v44(0);
+            self->arr368[src + i]->v44(0);
         }
     }
     ret = 1;
