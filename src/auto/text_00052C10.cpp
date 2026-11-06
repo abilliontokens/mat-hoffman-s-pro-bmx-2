@@ -141,6 +141,7 @@ struct C_52F90_Inner {
     unsigned char fC0;
     void func_00104190();
     void func_001041C0();
+    void func_001041E0();
 };
 struct C_52F90_Pl {
     void func_00108660_dummy();
