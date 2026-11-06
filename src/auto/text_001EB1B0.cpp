@@ -327,8 +327,6 @@ static __declspec(noinline) char *func_001EB4F7(char *buf, int ndec, int caps, S
     return buf;
 }
 
-static __forceinline int Less_001EB6F9(int a, int b) { return a < b; }
-
 char *__cdecl func_001EB5A0(double *pvalue, char *buf, int ndec, int caps)
 {
     typedef S_StrFlt *(__cdecl *Fltout2Fn)(S_CrtDouble, S_StrFlt *, char *);
