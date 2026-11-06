@@ -361,28 +361,20 @@ int C_001B4AF0::func_001B4B80(S_001B4B80_Stream *stream) {
 }
 
 C_001B4BE0 *C_001B4BE0::func_001B4BE0(void) {
-    C_001B4BE0 *self;
-    int limit;
-    int count;
-    self = this;
-    ((C_001B4AF0 *)self)->func_001B4AF0();
-    self->vtbl = (void *)&D_0028CA7C;
-    limit = sizeof(f114) - 1;
-    if (limit > strlen("none")) {
-        count = strlen("none");
-    } else {
-        count = limit;
-    }
-    func_001E8920(self->f114, (const char *)&D_002764F0, count);
-    self->f114[count] = 0;
-    self->f218 = 0;
-    self->f21C = 0;
-    self->f220 = 0;
-    self->f224 = 1;
-    self->f228 = 1;
-    self->f22C = 0;
-    self->f230 = 0;
-    return self;
+    ((C_001B4AF0 *)this)->func_001B4AF0();
+    vtbl = (void *)&D_0028CA7C;
+    int limit = sizeof(f114) - 1;
+    int count = AsmMinI(limit, 4);
+    func_001E8920(f114, (const char *)&D_002764F0, count);
+    f114[count] = 0;
+    f218 = 0;
+    f21C = 0;
+    f220 = 0;
+    f224 = 1;
+    f228 = 1;
+    f22C = 0;
+    f230 = 0;
+    return this;
 }
 
 int C_001B4BE0::func_001B4C90(S_001B4C90_Stream * volatile stream) {
