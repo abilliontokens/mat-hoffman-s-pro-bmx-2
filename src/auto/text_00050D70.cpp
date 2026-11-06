@@ -46,6 +46,7 @@ struct C_00050D70 {
     int f298;
     void func_00050D70(int arg);
     void func_00031260(int arg);
+    void func_00157A00(int arg);
 };
 
 /* the object D_002A8490 points at: only the slot this file calls is known */
