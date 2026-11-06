@@ -40,14 +40,102 @@ struct C_001AC150 {
     void func_001AC1A0(int n);
 };
 
+struct Elem_001AB800 {
+    char pad_00[0x10];
+    float in[4];
+    float n[4];
+    float p[3];
+    char pad_3c[4];
+    void *mat;
+    int f44;
+    void *f48;
+    float f4c;
+    int idx;
+    unsigned char flags;
+    char pad_55[3];
+};
+
+struct Frame_001AB800 {
+    char pad_00[0x22c];
+    char *f22c;
+};
+
+extern float D_00275544;
+extern float D_002755F4;
+void func_00030AC0(float *out, float *v, float *m);
+
+static __forceinline void Xform_001AB800(float *out, float *v, float *m)
+{
+    __m128 r0 = _mm_load_ps(m);
+    __m128 r1 = _mm_load_ps(m + 4);
+    __m128 r2 = _mm_load_ps(m + 8);
+    __m128 vec = _mm_loadu_ps(v);
+    __m128 lo, hi;
+    _mm_storeh_pi((__m64 *)(out + 2), vec);
+    out[3] = 1.0f;
+    vec = _mm_loadh_pi(vec, (__m64 *)(out + 2));
+    r0 = _mm_mul_ps(r0, vec);
+    r1 = _mm_mul_ps(r1, vec);
+    r2 = _mm_mul_ps(r2, vec);
+    lo = _mm_unpacklo_ps(r0, r1);
+    hi = _mm_unpackhi_ps(r0, r1);
+    lo = _mm_add_ps(lo, hi);
+    r2 = _mm_add_ps(r2, _mm_movehl_ps(r2, r2));
+    hi = _mm_movehl_ps(hi, lo);
+    lo = _mm_movelh_ps(lo, r2);
+    hi = _mm_shuffle_ps(hi, r2, 0x14);
+    lo = _mm_add_ps(lo, hi);
+    _mm_storeu_ps(out, lo);
+    out[3] = 1.0f;
+}
+
 struct SpringCollisionModel {
     void *vtbl;
-    char pad_04[0x80];
-    void *field_84;
-    char pad_88[0x8];
-    void *field_90;
+    char pad_04[0x20];
+    Frame_001AB800 *field_24;
+    int f28;
+    int f2c;
+    int f30;
+    int f34;
+    int f38;
+    int f3c;
+    int f40;
+    int f44;
+    int f48;
+    int f4c;
+    int f50;
+    int f54;
+    int f58;
+    int f5c;
+    int f60;
+    int f64;
+    int f68;
+    int f6c;
+    int f70;
+    int f74;
+    int f78;
+    int f7c;
+    int f80;
+    Elem_001AB800 *field_84;
+    int f88;
+    int f8c;
+    Elem_001AB800 *field_90;
+    float f94;
+    char pad_98[0xdc - 0x98];
+    float fdc[10];
+    float f104[4];
+    float f114[4];
+    char pad_124[0x134 - 0x124];
+    V4_001AB670 f134;
+    V4_001AB670 f144;
     void func_00157660();
     void *func_001AB7B0(unsigned int flags);
+    void func_001A9990(V4_001AB670 v, void *other);
+    void func_001AA270(float s, V4_001AB670 v, V4_001AB670 q, void *other, unsigned int mask);
+    void func_001A9D20(float s, V4_001AB670 v, V4_001AB670 q, void *other, unsigned int mask);
+    void func_001A9FA0(float s, V4_001AB670 v, V4_001AB670 q, void *other, unsigned int mask);
+    void func_001AB670(float *v, void *q, int b);
+    int func_001AB800();
 };
 
 struct StateMachine {
@@ -191,8 +279,7 @@ void C_001AC200::func_001AC200(int n)
     if (c != 0) {
         s++;
         do {
-            char *dst = field_0C + field_04;
-            *dst = c;
+            ((char *)field_04)[(int)field_0C] = c;
             field_04++;
             c = *s++;
         } while (c != 0);
