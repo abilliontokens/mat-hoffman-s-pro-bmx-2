@@ -94,20 +94,9 @@ V4_001225C0 func_00104A00(const V4_001225C0 &v);
 extern "C" V4_001225C0 *func_0011EE50(V4_001225C0 *out, V4_001225C0 *in);
 extern "C" V4_001225C0 *func_0011EEE0(V4_001225C0 *out, V4_001225C0 *a, V4_001225C0 *b);
 
-extern float D_002B9348;
-extern void **D_002B92F4;
-extern V4_001225C0 D_002B9350[13];
-extern V4_001225C0 D_002A3C3C[3];
-void func_0011F0E0(void *a, void *b, void *c, void *indices, void **data);
-void func_0001C680(V4_001225C0 *out, V4_001225C0 v, float *m);
-void func_0011EFA0(float *out, float *in);
 extern "C" int func_001217F0(int a0, int a1, short *tri, float *m, int a4, int a5, float *pos, float *ext)
 {
-    struct V4s {
-        float x, y, z, w;
-        V4s() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
-    };
-    static V4s s0, s1, s2, s3, s4, s5, s6, s7, s8, s9;
+    static V4s_001217F0 s0, s1, s2, s3, s4, s5, s6, s7, s8, s9;
     V4_001225C0 t, r, n;
     V4_001225C0 *ax;
     float dx, dy, dz, proj, d;
