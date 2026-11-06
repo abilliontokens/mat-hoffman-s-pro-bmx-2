@@ -40,13 +40,21 @@ void __stdcall func_00201100(void *p);
 
 struct S_Obj {
     virtual void v0(int flags);
-    virtual void v4();
+    virtual void v4(char *name, int a);
     virtual void v8();
+    void *f4;
+    int f8;
+    unsigned char fC;
+    void *f10;
+    S_Obj *func_00144640(void);
+    S_Obj *func_001425B0(void);
 };
 
 struct S_Obj154 {
     void func_0014A540(void);
     void func_0014A650(S_Obj154 *src);
+    S_Obj154 *func_0014A520(void *a);
+    void func_0014A560(void *a, int b);
 };
 
 struct V4_0016FEE0 {
