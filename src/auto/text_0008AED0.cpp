@@ -338,20 +338,13 @@ C_0008AED0 *C_0008AED0::func_0008AED0()
     s3c->SetF34(0x40b00000);
     s40->func_001D5810((int)D_00279DD0, 321.0f, 296.0f, 0);
     s40->SetF28(0x42c00000);
-    s40->f3c = 1.0f;
-    s40->b58 |= 4;
-    s40->f40 = 0.0f;
-    s40->f44 = 0.0f;
-    s40->f48 = 1.0f;
+    s40->SetVec4(1.0f, 0.0f, 0.0f, 1.0f);
     s40->SetF34(0x40b00000);
 
     mem = func_001E8A44(0x64);
     s44 = mem ? ((Sprite_8AED0 *)mem)->func_001D5760() : 0;
     s44->func_001D5810((int)D_00279DC0, 0.0f, 0.0f, 0);
-    s44->b58 |= 2;
-    s44->f38 &= 0xff000000;
-    s44->b58 |= 2;
-    ((char *)&s44->f38)[3] = (char)0x80;
+    s44->SetAlphaByte();
     s44->SetF2c(0x43bc8000);
     s44->SetF28(0x44200000);
     s44->SetF34(0x40b9999a);
@@ -607,4 +600,7 @@ void C_0008BBE0::func_0008BBE0()
     }
     func_00157660();
 }
-
+struct Position_0008B710 {
+    float x, y, z;
+    Position_0008B710(float a, float b, float c) : x(a), y(b), z(c) {}
+};
