@@ -36,6 +36,10 @@ struct C_0001C750 {
  void func_0001C750(S_0001C610_V4 a, S_0001C610_V4 b);
 };
 static __forceinline void Add3_1C750(float *a, float *b) { a[0]+=b[0]; a[1]+=b[1]; a[2]+=b[2]; }
+static __forceinline __m128 cross_1C750(const float *a, const float *b) {
+ return _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9)));
+}
 struct C_0001C710 {
     char pad0[0x130];
     float unk130;
@@ -464,6 +468,21 @@ void C_0001C710::func_0001C710(float a0, float a1, float a2, int a3) {
     unk130 = a0 + unk130;
     unk134 = a1 + unk134;
     unk138 = a2 + unk138;
+}
+
+void C_0001C750::func_0001C750(S_0001C610_V4 a, S_0001C610_V4 b) {
+ C_0001C750 *volatile self=this;
+ if(self->f22C) {
+ S_0001C610_V4 v, d, c;
+ self->f22C->func_00197EC0(&v,&a);
+ Add3_1C750(self->f130,&v.x);
+ c.z=c.y=c.x=0; c.w=1;
+ vec3_set(&d.x,b.x-self->f190[0],b.y-self->f190[1],b.z-self->f190[2]);
+ __m128 x=_mm_loadu_ps(&d.x), y=_mm_loadu_ps(&a.x);
+ __m128 z=_mm_sub_ps(_mm_mul_ps(x,_mm_shuffle_ps(y,y,0xc9)),_mm_mul_ps(y,_mm_shuffle_ps(x,x,0xc9)));
+ _mm_storeu_ps(&c.x,_mm_shuffle_ps(z,z,0xc9));
+ Add3_1C750(self->f140,&c.x);
+ }
 }
 
 float func_0001C870(float a, float b, float c, float d, float e)
