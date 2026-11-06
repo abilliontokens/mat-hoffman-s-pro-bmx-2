@@ -276,6 +276,14 @@ struct S_Slot {
     int f1C;
     u8 lo : 3;
     u8 busy : 1;
+    void reset()
+    {
+        f14 = 0;
+        f18 = 0;
+        f1C = 0;
+        lo = 0;
+        busy = 0;
+    }
 };
 struct S_SlotList {
     int count;
