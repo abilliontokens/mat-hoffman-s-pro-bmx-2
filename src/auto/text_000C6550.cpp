@@ -1,5 +1,6 @@
 /* 9 functions from 0x000C6550 to 0x000C6E70, found by Ghidra. */
 #include "common.h"
+#include <string.h>
 
 extern int D_0027E1F4;
 extern char D_00278690[], D_002786A0[], D_00278678[], D_002786B0[];
