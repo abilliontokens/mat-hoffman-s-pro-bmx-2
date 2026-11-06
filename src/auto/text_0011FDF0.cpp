@@ -4,7 +4,7 @@
 
 static __forceinline float Min_0011FDF0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_set_ss(a), _mm_set_ss(b))); return r; }
 static __forceinline float Max_0011FDF0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b))); return r; }
-static __forceinline float Abs_0011FDF0(volatile float f) { volatile int i = *(volatile int *)&f & 0x7fffffff; return *(volatile float *)&i; }
+static __forceinline float Abs_0011FDF0(const float &f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
 
 extern float D_00275544;
 extern float D_002B9348;
