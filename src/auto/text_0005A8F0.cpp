@@ -67,6 +67,115 @@ struct S_2A8490 {
 
 extern S_2A8490 *D_002A8490;
 
+extern "C" int memcmp(const void *a, const void *b, unsigned int n);
+extern "C" int strcmp(const char *a, const char *b);
+char *func_001E8920(char *dst, const char *src, int n);
+int func_001EA426(const char *a, const char *b);
+int func_001ADCC0(char *buf, int size, char *fmt, char *arg);
+extern char D_002A48F8[];
+extern char D_00276F28[];
+extern char D_002A47F0[];
+
+struct S_VObj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual int v7(char *s);
+    int func_001CB170(char *s, int *out);
+};
+struct S_MgrB { char pad0[0xB4]; S_VObj *fB4; };
+struct S_GGame { char pad0[4]; S_MgrB *f4; };
+struct S_F07B8 { int func_001D7FB0(float a, float b, float c, int d); };
+extern S_F07B8 *D_002F07B8;
+struct S_ObjAA { int func_00147890(char *s); };
+extern S_ObjAA *D_002AA46C;
+extern S_ObjAA *D_002AA470;
+struct S_EFDB8 { char pad0[0x30]; int f30; };
+extern S_EFDB8 *D_002EFDB8;
+struct S_Obj14 { int func_001577A0(void *a, int b); };
+
+struct S_LevelInfo {
+    int f0; int f4; int f8; int fC;
+    char pad10[0x38];
+    int f48;
+    char f4C[0x300 - 0x50];
+    int arr300[8];
+    char pad320[4];
+    int f324;
+};
+struct S_Obj2EC {
+    S_Obj2EC *func_001D5350();
+    S_Obj2EC *func_001D3F50();
+};
+struct S_Obj2F0 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual int v10();
+    char pad4[0xB8 - 4];
+    int fB8;
+    S_Obj2F0 *func_001A58D0(int a);
+    int func_0001EDC0(int a);
+};
+struct S_ModeObj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual int v10();
+    S_ModeObj *func_0004BAB0(int a);
+    S_ModeObj *func_000511A0(int a);
+    S_ModeObj *func_000536A0(int a);
+    S_ModeObj *func_0004C610(int a);
+    S_ModeObj *func_0004D930(int a);
+    S_ModeObj *func_00053D20(int a);
+    S_ModeObj *func_0004ECC0(int a);
+    S_ModeObj *func_00050A10(int a);
+    S_ModeObj *func_0004F220(int a);
+    S_ModeObj *func_00049C00(int a);
+    S_ModeObj *func_000378D0(int a);
+};
+struct S_LevelObj {
+    char pad0[0x2F0];
+    S_Obj2F0 *f2F0;
+};
+struct BmxGame {
+    char pad0[0x14];
+    S_Obj14 *f14;
+    char pad18[0x2A4 - 0x18];
+    int f2A4;
+    char pad2A8[0x2B8 - 0x2A8];
+    char name1[15];
+    char name2[17];
+    int f2D8;
+    char pad2DC[4];
+    S_LevelInfo *f2E0;
+    int f2E4;
+    char pad2E8[4];
+    S_Obj2EC *f2EC;
+    S_Obj2F0 *f2F0;
+    int func_0005A8F0();
+    int func_0005A480(int a);
+    S_LevelObj *func_0005D6A0();
+};
+
 struct C_000952A0 {
     int func_000952A0(int i);
 };
@@ -100,6 +209,8 @@ struct C_0005B880 {
 };
 
 
+int func_0005A8F0(void) { return 0; }
+
 void C_0005B220::func_0005B220(void)
 {
   int in_ECX = (int)this;
@@ -112,6 +223,33 @@ void C_0005B220::func_0005B220(void)
     puVar2 = puVar2 + 1;
   }
   return;
+}
+
+extern "C" void *memcpy(void *, const void *, unsigned int);
+void C_0005B240::func_0005B240(void)
+{
+    char buf[0x104];
+    R_Reader *r;
+    void *p;
+    char *e;
+    strcpy(buf, D_002A5348);
+    e = buf - 1;
+    do { } while (*++e);
+    *(S_Str15 *)e = D_00278250;
+    p = func_001E8A44(0x4cc);
+    if (p) r = (R_Reader *)((R_Reader *)p)->func_00168280();
+    else r = 0;
+    if (r->func_00169490(buf, 0)) {
+        r->func_00169710(D_00278244); r->func_00168A10(D_0027823C, &v[0]);
+        r->func_00169710(D_00278234); r->func_00168A10(D_0027823C, &v[1]);
+        r->func_00169710(D_00278228); r->func_00168A10(D_0027823C, &v[2]);
+        r->func_00169710(D_0027821C); r->func_00168A10(D_0027823C, &v[3]);
+        r->func_00169710(D_00278210); r->func_00168A10(D_0027823C, &v[4]);
+        r->func_00169710(D_00278204); r->func_00168A10(D_0027823C, &v[5]);
+        r->func_00169710(D_002781FC); r->func_00168A10(D_0027823C, &v[6]);
+        r->func_00169710(D_002781F4); r->func_00168A10(D_0027823C, &v[7]);
+        if (r) { r->func_001691E0(); func_001E891B(r); }
+    }
 }
 
 void C_0005B3F0::func_0005B3F0(void)
