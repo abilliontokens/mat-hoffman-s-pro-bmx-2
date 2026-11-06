@@ -245,14 +245,17 @@ struct BmxUIPageGameOptions {
     u32 unk318;
     u32 unk31C;
     u32 unk320;
-    u32 unk324;
+    WidgetC9090 *unk324;
     u32 unk328;
-    char pad32C[8];
+    WidgetC9090 *arr32C[2];
     DelObjC_000C *arr334[12];
     void func_001BE3F0();
     void func_001BE360(int a);
     void func_000C9050();
     BmxUIPageGameOptions *func_000C8F30(int a);
+    void func_001BE4F0(int a, int b, int c);
+    void func_001577A0(int a, WidgetC9090 *w);
+    BmxUIPageGameOptions *func_000C9090(int a, int b, int c);
 };
 
 void BmxUIPageOptions::func_000C8E60()
