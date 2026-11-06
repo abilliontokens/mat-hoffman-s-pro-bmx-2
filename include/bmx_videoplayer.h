@@ -2,6 +2,12 @@
 #ifndef BMX_VIDEOPLAYER_H
 #define BMX_VIDEOPLAYER_H
 
+struct S_BmxProbe {
+    int x;
+};
+
+#endif
+
 /* this's vtable: cast `this` to call its virtual slots */
 struct V_THISVT {
     virtual void v0();
