@@ -479,6 +479,66 @@ S_Tiddata * __cdecl func_001EB7E9(void)
     return ptd;
 }
 
+void __cdecl func_001EB86B(S_Tiddata *ptd)
+{
+    S_Tiddata **slot;
+    S_TlsBlock **base;
+    unsigned long idx;
+    unsigned long irql;
+    int *loc;
+
+    irql = __readfsbyte(0x24);
+    if ((unsigned char)irql >= 2) {
+        _imp__KeBugCheck(10);
+    }
+    if (*(int *)(__readfsdword(0x28) + 0x28) != 0) {
+        idx = D_002F41D0;
+        base = (S_TlsBlock **)__readfsdword(4);
+        slot = &base[idx]->ptd;
+    } else {
+        slot = &D_002FB360;
+    }
+    if (ptd == 0) {
+        ptd = *slot;
+        if (ptd == 0) {
+            goto done;
+        }
+    }
+    if (ptd->f24 != 0) {
+        func_001E8390(ptd->f24);
+    }
+    if (ptd->f2c != 0) {
+        func_001E8390(ptd->f2c);
+    }
+    if (ptd->f34 != 0) {
+        func_001E8390(ptd->f34);
+    }
+    if (ptd->f3c != 0) {
+        func_001E8390(ptd->f3c);
+    }
+    if (ptd->f44 != 0) {
+        func_001E8390(ptd->f44);
+    }
+    if (ptd->f48 != 0) {
+        func_001E8390(ptd->f48);
+    }
+    if (ptd->pxcptacttab != D_002AEDD8) {
+        func_001E8390(ptd->pxcptacttab);
+    }
+    func_001EB390(13);
+    __try {
+        loc = ptd->ptlocinfo;
+        if (loc != 0 && --*loc == 0 && loc != D_002FAFEC) {
+            func_001E8390(loc);
+        }
+    } __finally {
+        func_001EB302(13);
+    }
+    func_001E8390(ptd);
+done:
+    *slot = 0;
+}
+
 void func_001EB977(void) {
     int func_001EB302(...);
     func_001EB302(13);
@@ -487,9 +547,9 @@ void func_001EB977(void) {
 int __cdecl func_001EB980(void)
 {
     S_Tiddata *ptd;
-    int *tls;
+    S_Tiddata **tls;
     unsigned long idx;
-    int **base;
+    char **base;
 
     if (func_001EB290() == 0) {
         func_001EB2D9();
@@ -497,9 +557,9 @@ int __cdecl func_001EB980(void)
     }
     ptd = func_001EA1A1(1, 0x84);
     idx = D_002F41D0;
-    base = (int **)__readfsdword(4);
-    tls = base[idx];
-    tls[2] = (int)ptd;
+    base = (char **)__readfsdword(4);
+    tls = (S_Tiddata **)base[idx];
+    *(S_Tiddata * volatile *)((char *)tls + 8) = ptd;
     if (ptd == 0) {
         ptd->pxcptacttab = D_002AEDD8;
         ptd->holdrand = 1;
