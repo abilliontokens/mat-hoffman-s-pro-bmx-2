@@ -20,13 +20,12 @@ static __forceinline void Slice(Vec4 *P,Vec4 *N,const Vec4 *p,const Vec4 *a,cons
   float t,s;
  int i;
  for(i=0;i<2;i++){
-  const Vec4 *a0=v[2*i],*a1=v[2*i+1],*n0=vn[2*i],*n1=vn[2*i+1];
-  t=(pa[k]-(&a0->x)[k])/((&a1->x)[k]-(&a0->x)[k]);
+  t=(pa[k]-(&v[2*i]->x)[k])/((&v[2*i+1]->x)[k]-(&v[2*i]->x)[k]);
   s=D_00275460-t;
-  P[i]=*a1*t+*a0*s;
-  N[i]=*n1*t+*n0*s;
+  P[i]=*v[2*i+1]*t+*v[2*i]*s;
+  N[i]=*vn[2*i+1]*t+*vn[2*i]*s;
  }
  }
 #include <math.h>
 
-void func_00123F20(Vec4*out,const Vec4*p,const volatile Vec4*n,const Vec4*a,const Vec4*b,const Vec4*c,const Vec4*na,const Vec4*nb,const Vec4*nc){Vec4 N[2],P[2];const Vec4 *v[4],*vn[4];float t;float ax=Fabs(n->x),az=Fabs(n->z);if(ax>az){Slice(P,N,p,a,b,c,na,nb,nc,2,v,vn);if(Fabs(n->y)>Fabs(n->x))t=(p->x-P[0].x)/(P[1].x-P[0].x);else t=(p->y-P[0].y)/(P[1].y-P[0].y);}else{Slice(P,N,p,a,b,c,na,nb,nc,0,v,vn);if(Fabs(n->y)>Fabs(n->z))t=(p->z-P[0].z)/(P[1].z-P[0].z);else t=(p->y-P[0].y)/(P[1].y-P[0].y);}*out=N[1]*t+N[0]*(D_00275460-t);func_0011EFA0(out,out);}
+void func_00123F20(Vec4*out,const Vec4*p,const volatile Vec4*n,const Vec4*a,const Vec4*b,const Vec4*c,const Vec4*na,const Vec4*nb,const Vec4*nc){Vec4 N[2],P[2];const Vec4 *v[4],*vn[4];float t;if(Fabs(n->x)>Fabs(n->z)){Slice(P,N,p,a,b,c,na,nb,nc,2,v,vn);if(Fabs(n->y)>Fabs(n->x))t=(p->x-P[0].x)/(P[1].x-P[0].x);else t=(p->y-P[0].y)/(P[1].y-P[0].y);}else{Slice(P,N,p,a,b,c,na,nb,nc,0,v,vn);if(Fabs(n->y)>Fabs(n->z))t=(p->z-P[0].z)/(P[1].z-P[0].z);else t=(p->y-P[0].y)/(P[1].y-P[0].y);}*out=N[1]*t+N[0]*(D_00275460-t);func_0011EFA0(out,out);}
