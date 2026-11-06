@@ -37,7 +37,8 @@
     "addr": 69760,
     "offset": 8320,
     "size": 48,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ??YD3DXVECTOR3@@QAEAAU0@ABU0@@Z from d3dx8.lib (createmesh.obj)"
    },
    {
     "name": "_func_000110B0",
@@ -215,7 +216,8 @@
     "addr": 70704,
     "offset": 9264,
     "size": 16,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ?AssertContiguous@D3D@@YGXPAXPAD@Z from d3d8.lib (texture.obj)"
    },
    {
     "name": "_func_00011440@16",
@@ -645,7 +647,8 @@
     "addr": 74048,
     "offset": 12608,
     "size": 16,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ?DumpClocks@CMiniport@D3D@@AAEXXZ from d3d8.lib (mpcore.obj)"
    },
    {
     "name": "_func_00012150",
@@ -8645,7 +8648,8 @@
     "addr": 116144,
     "offset": 54704,
     "size": 48,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ??ZD3DXVECTOR3@@QAEAAU0@ABU0@@Z from d3dx8.lib (createmesh.obj)"
    },
    {
     "name": "_func_0001C5E0",
@@ -9929,7 +9933,8 @@
       "_D_00275F18",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??0XFactory@@QAE@XZ from d3dx8.lib (xfactory.obj)"
    },
    {
     "name": "_func_0001DFF0",
@@ -25066,7 +25071,8 @@
       "_func_001578D0",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?AddRef@D3DResource@@QAGKXZ from d3d8.lib (vshader.obj)"
    },
    {
     "name": "_func_00031410",
@@ -25094,7 +25100,8 @@
       "_func_001576D0@2147483647",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?AddRef@D3DResource@@QAGKXZ from d3d8.lib (vshader.obj)"
    },
    {
     "name": "_func_00031430@2147483647",
@@ -25302,7 +25309,8 @@
       "_func_000314F0@2147483647",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?AddRef@D3DResource@@QAGKXZ from d3d8.lib (vshader.obj)"
    },
    {
     "name": "_func_00031640",
@@ -53401,7 +53409,8 @@
       "_func_00031640",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?AddRef@D3DResource@@QAGKXZ from d3d8.lib (vshader.obj)"
    }
   ],
   "text_00053930": [
@@ -54097,7 +54106,8 @@
       "_func_00031410",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?AddRef@D3DResource@@QAGKXZ from d3d8.lib (vshader.obj)"
    },
    {
     "name": "_func_00054340",
@@ -103239,7 +103249,8 @@
     "addr": 549184,
     "offset": 487744,
     "size": 16,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ?setBasis@CPatch@D3D@@QAEXW4NV_PATCH_BASIS_TYPE@2@@Z from d3d8.lib (patch.obj)"
    },
    {
     "name": "_func_00086150@4",
@@ -118022,7 +118033,8 @@
     "addr": 602752,
     "offset": 541312,
     "size": 16,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ?ValidateFVF@D3D@@YGXK@Z from d3d8.lib (vshader.obj)"
    },
    {
     "name": "_func_00093290@4",
@@ -153506,7 +153518,8 @@
       "_func_000BC7B0",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?AddRef@D3DResource@@QAGKXZ from d3d8.lib (vshader.obj)"
    },
    {
     "name": "_func_000BA2A0@4",
@@ -234696,7 +234709,8 @@
       "_func_00196290",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?AddRef@D3DResource@@QAGKXZ from d3d8.lib (vshader.obj)"
    },
    {
     "name": "_func_001041F0@4",
@@ -263526,7 +263540,8 @@
       "_func_00133020@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?AddRef@D3DResource@@QAGKXZ from d3d8.lib (vshader.obj)"
    }
   ],
   "text_00129930": [
@@ -264480,7 +264495,8 @@
       "_func_001576C0@2147483647",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?AddRef@D3DResource@@QAGKXZ from d3d8.lib (vshader.obj)"
    },
    {
     "name": "_func_0012B150",
@@ -290097,7 +290113,8 @@
       "_func_001B1010@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?AddRef@D3DResource@@QAGKXZ from d3d8.lib (vshader.obj)"
    },
    {
     "name": "_func_001493B0@4",
@@ -295741,7 +295758,8 @@
       "_func_001E9760",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?AddRef@D3DResource@@QAGKXZ from d3d8.lib (vshader.obj)"
    },
    {
     "name": "_func_0014FE60",
@@ -295769,7 +295787,8 @@
       "_func_001E9A0C",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?AddRef@D3DResource@@QAGKXZ from d3d8.lib (vshader.obj)"
    },
    {
     "name": "_func_0014FE90",
@@ -310721,7 +310740,8 @@
       "_func_001AC440",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?AddRef@D3DResource@@QAGKXZ from d3d8.lib (vshader.obj)"
    },
    {
     "name": "_func_00161680",
@@ -310863,7 +310883,8 @@
       "_func_001AC750",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?AddRef@D3DResource@@QAGKXZ from d3d8.lib (vshader.obj)"
    },
    {
     "name": "_func_00161850@4",
@@ -342080,7 +342101,8 @@
       "_func_00157A00@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?AddRef@D3DResource@@QAGKXZ from d3d8.lib (vshader.obj)"
    }
   ],
   "text_0018DE60": [
@@ -345996,7 +346018,8 @@
     "addr": 1647360,
     "offset": 1585920,
     "size": 16,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ?ServiceMediaPortInterrupt@CMiniport@D3D@@AAEKXZ from d3d8.lib (mpintr.obj)"
    },
    {
     "name": "_func_00192310",
@@ -357715,7 +357738,8 @@
       "_func_001A4FC0",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?AddRef@D3DResource@@QAGKXZ from d3d8.lib (vshader.obj)"
    },
    {
     "name": "_func_001A57A0@4",
@@ -387408,7 +387432,8 @@
       "_func_00157960",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?AddRef@D3DResource@@QAGKXZ from d3d8.lib (vshader.obj)"
    },
    {
     "name": "_func_001C6EA0@12",
@@ -389966,7 +389991,8 @@
       "_func_00157BF0@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?AddRef@D3DResource@@QAGKXZ from d3d8.lib (vshader.obj)"
    },
    {
     "name": "_func_001C99E0@4",
@@ -396805,7 +396831,8 @@
     "addr": 1907248,
     "offset": 1845808,
     "size": 16,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ?SetDebugMarker@D3DDevice@@SGKK@Z from d3d8.lib (present.obj)"
    },
    {
     "name": "_func_001D1A40",
@@ -396819,7 +396846,8 @@
     "addr": 1907280,
     "offset": 1845840,
     "size": 16,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: _D3DDevice_SetTextureState_ParameterCheck@12 from d3d8.lib (state.obj)"
    },
    {
     "name": "_func_001D1A60",
@@ -408544,7 +408572,8 @@
       "__imp__RtlTimeToTimeFields",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _GetSystemTime@4 from xapilib.lib (datetime.obj)"
    },
    {
     "name": "_func_001DC974",
@@ -408638,7 +408667,8 @@
       "_func_001DF4E1@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XWriteTitleInfoNoReboot@20 from xapilib.lib (launch.obj)"
    },
    {
     "name": "_func_001DCA56@8",
@@ -408676,7 +408706,8 @@
       "__imp__MmFreeContiguousMemory",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XGetLaunchInfo@8 from xapilib.lib (launch.obj)"
    },
    {
     "name": "_func_001DCABA@20",
@@ -408702,7 +408733,8 @@
       "__imp__RtlNtStatusToDosError",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XWriteTitleInfoAndRebootA@20 from xapilib.lib (launch.obj)"
    },
    {
     "name": "_func_001DCAFF@8",
@@ -408832,7 +408864,8 @@
       "_func_001DD62B@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _CreateFileA@28 from xapilib.lib (fileopcr.obj)"
    }
   ],
   "text_001DCDC7": [
@@ -408962,7 +408995,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _CopyFileExA@24 from xapilib.lib (fileopcr.obj)"
    },
    {
     "name": "_func_001DD0A9@12",
@@ -408976,7 +409010,8 @@
       "_func_001DCDC7@24",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _CopyFileA@12 from xapilib.lib (fileopcr.obj)"
    },
    {
     "name": "_func_001DD0C8@4",
@@ -408990,21 +409025,24 @@
       "__imp__MmQueryStatistics",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _GlobalMemoryStatus@4 from xapilib.lib (virtual.obj)"
    },
    {
     "name": "_func_001DD117@4",
     "addr": 1954071,
     "offset": 1892631,
     "size": 17,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: _QueryPerformanceCounter@4 from xapilib.lib (perfctr.obj)"
    },
    {
     "name": "_func_001DD128@4",
     "addr": 1954088,
     "offset": 1892648,
     "size": 20,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: _QueryPerformanceFrequency@4 from xapilib.lib (perfctr.obj)"
    },
    {
     "name": "_func_001DD13C@4",
@@ -409024,7 +409062,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _CloseHandle@4 from xapilib.lib (handle.obj)"
    },
    {
     "name": "_func_001DD15A@20",
@@ -409056,7 +409095,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _ReadFile@20 from xapilib.lib (filehops.obj)"
    },
    {
     "name": "_func_001DD247@20",
@@ -409088,7 +409128,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _WriteFile@20 from xapilib.lib (filehops.obj)"
    },
    {
     "name": "_func_001DD31D@4",
@@ -409120,7 +409161,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _SetEndOfFile@4 from xapilib.lib (filehops.obj)"
    },
    {
     "name": "_func_001DD3A1@16",
@@ -409170,7 +409212,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _SetFilePointer@16 from xapilib.lib (filehops.obj)"
    },
    {
     "name": "_func_001DD49B@20",
@@ -409208,7 +409251,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _SetFilePointerEx@20 from xapilib.lib (filehops.obj)"
    },
    {
     "name": "_func_001DD563@4",
@@ -409228,7 +409272,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _FlushFileBuffers@4 from xapilib.lib (filehops.obj)"
    },
    {
     "name": "_func_001DD58A@8",
@@ -409248,7 +409293,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _GetFileSizeEx@8 from xapilib.lib (filehops.obj)"
    },
    {
     "name": "_func_001DD5C8@8",
@@ -409268,7 +409314,8 @@
       "_func_001DD62B@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _GetFileSize@8 from xapilib.lib (filehops.obj)"
    },
    {
     "name": "_func_001DD603",
@@ -409282,7 +409329,8 @@
       "_D_002F41D0",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _GetLastError@0 from xapilib.lib (error.obj)"
    },
    {
     "name": "_func_001DD62B@4",
@@ -409296,7 +409344,8 @@
       "_D_002F41D0",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _SetLastError@4 from xapilib.lib (error.obj)"
    },
    {
     "name": "_func_001DD659@4",
@@ -409316,7 +409365,8 @@
       "_func_001DD62B@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiSetLastNTError@4 from xapilib.lib (error.obj)"
    },
    {
     "name": "_func_001DD670@16",
@@ -409342,7 +409392,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _GetOverlappedResult@16 from xapilib.lib (error.obj)"
    },
    {
     "name": "_func_001DD6D5@12",
@@ -409356,7 +409407,8 @@
       "_func_001DD15A@20",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiReadFromStDb@12 from xapilib.lib (xsndtrk.obj)"
    },
    {
     "name": "_func_001DD713@8",
@@ -409388,7 +409440,8 @@
       "__imp__NtClose",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiOpenStDbAndReadHeader@8 from xapilib.lib (xsndtrk.obj)"
    },
    {
     "name": "_func_001DD779@12",
@@ -409450,7 +409503,8 @@
       "_D_002ACB5C",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiGetNextSoundtrack@12 from xapilib.lib (xsndtrk.obj)"
    },
    {
     "name": "_func_001DD7F7@8",
@@ -409464,7 +409518,8 @@
       "_func_001DD779@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XFindNextSoundtrack@8 from xapilib.lib (xsndtrk.obj)"
    },
    {
     "name": "_func_001DD816@4",
@@ -409532,7 +409587,8 @@
       "_func_001DF5D6@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XFindFirstSoundtrack@4 from xapilib.lib (xsndtrk.obj)"
    },
    {
     "name": "_func_001DD8C5@24",
@@ -409696,7 +409752,8 @@
       "_func_001DD13C@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XGetSoundtrackSongInfo@24 from xapilib.lib (xsndtrk.obj)"
    },
    {
     "name": "_func_001DDAEE@8",
@@ -409740,7 +409797,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XOpenSoundtrackSong@8 from xapilib.lib (xsndtrk.obj)"
    },
    {
     "name": "_func_001DDB7E@16",
@@ -409760,7 +409818,8 @@
       "_func_001DD62B@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XPhysicalAlloc@16 from xapilib.lib (physical.obj)"
    },
    {
     "name": "_MmFreeContiguousMemory",
@@ -409807,7 +409866,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _CreateEventA@16 from xapilib.lib (synch.obj)"
    },
    {
     "name": "_func_001DDC28@4",
@@ -409827,7 +409887,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _SetEvent@4 from xapilib.lib (synch.obj)"
    },
    {
     "name": "_func_001DDC48@12",
@@ -409859,7 +409920,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _CreateMutexA@12 from xapilib.lib (synch.obj)"
    },
    {
     "name": "_func_001DDCA0@4",
@@ -409879,7 +409941,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _SetEvent@4 from xapilib.lib (synch.obj)"
    },
    {
     "name": "_func_001DDCC0@12",
@@ -409905,7 +409968,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _WaitForSingleObjectEx@12 from xapilib.lib (synch.obj)"
    },
    {
     "name": "_func_001DDD04@20",
@@ -409937,7 +410001,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _WaitForMultipleObjectsEx@20 from xapilib.lib (synch.obj)"
    }
   ],
   "text_001DDD84": [
@@ -409959,7 +410024,8 @@
       "__imp__KeDelayExecutionThread",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _SleepEx@8 from xapilib.lib (synch.obj)"
    },
    {
     "name": "_func_001DDDD6@8",
@@ -409973,7 +410039,8 @@
       "_func_001DDCC0@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _WaitForSingleObject@8 from xapilib.lib (synch.obj)"
    },
    {
     "name": "_func_001DDDE8@16",
@@ -409987,7 +410054,8 @@
       "_func_001DDD04@20",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _WaitForMultipleObjects@16 from xapilib.lib (synch.obj)"
    },
    {
     "name": "_func_001DDE02@4",
@@ -410001,7 +410069,8 @@
       "_func_001DDD84@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _Sleep@4 from xapilib.lib (synch.obj)"
    },
    {
     "name": "_func_001DDE10@12",
@@ -410015,7 +410084,8 @@
       "_func_001EA539",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _wvsprintfW@12 from xapilib.lib (kthunks.obj)"
    },
    {
     "name": "_func_001DDE27@12",
@@ -410029,7 +410099,8 @@
       "_func_001EA5A7",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _wvsprintfW@12 from xapilib.lib (kthunks.obj)"
    },
    {
     "name": "_func_001DDE3E",
@@ -410043,7 +410114,8 @@
       "_func_001DDE10@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _wsprintfW from xapilib.lib (kthunks.obj)"
    },
    {
     "name": "_func_001DDE51",
@@ -410057,14 +410129,16 @@
       "_func_001DDE27@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _wsprintfW from xapilib.lib (kthunks.obj)"
    },
    {
     "name": "_func_001DDE64@4",
     "addr": 1957476,
     "offset": 1896036,
     "size": 20,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: _HexDigitToChar@4 from xapilib.lib (xsaveapi.obj)"
    },
    {
     "name": "_func_001DDE78@12",
@@ -410108,7 +410182,8 @@
       "_func_001DDE64@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiSaveGameHashEncode@12 from xapilib.lib (xsaveapi.obj)"
    },
    {
     "name": "_func_001DDF0A@8",
@@ -410128,7 +410203,8 @@
       "_func_001DD15A@20",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiValidateAndSkipUnicodeSignature@8 from xapilib.lib (xsaveapi.obj)"
    },
    {
     "name": "_func_001DDF52@16",
@@ -410196,7 +410272,8 @@
       "_func_001DD3A1@16",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiFindValueInMetaFile@16 from xapilib.lib (xsaveapi.obj)"
    },
    {
     "name": "_func_001DE0DD@12",
@@ -410240,7 +410317,8 @@
       "_func_001DD13C@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiFillInSaveGameData@12 from xapilib.lib (xsaveapi.obj)"
    },
    {
     "name": "_func_001DE1DF@8",
@@ -410290,7 +410368,8 @@
       "_func_001DD603",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiVerifyGameName@8 from xapilib.lib (xsaveapi.obj)"
    },
    {
     "name": "_func_001DE25F@4",
@@ -410322,7 +410401,8 @@
       "_func_001DD13C@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiTouchDirectoryTimestamp@4 from xapilib.lib (xsaveapi.obj)"
    },
    {
     "name": "_func_001DE2BB@24",
@@ -410486,7 +410566,8 @@
       "_func_001DF0D2@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XCreateSaveGame@24 from xapilib.lib (xsaveapi.obj)"
    },
    {
     "name": "_func_001DE51E@8",
@@ -410566,7 +410647,8 @@
       "_func_001DD62B@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XFindFirstSaveGame@8 from xapilib.lib (xsaveapi.obj)"
    },
    {
     "name": "_func_001DE625@8",
@@ -410592,7 +410674,8 @@
       "_func_001DEF3C@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XFindNextSaveGame@8 from xapilib.lib (xsaveapi.obj)"
    },
    {
     "name": "_func_001DE66C@4",
@@ -410618,7 +410701,8 @@
       "_func_001DD13C@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XFindClose@4 from xapilib.lib (xsaveapi.obj)"
    },
    {
     "name": "_func_001DE6B8@4",
@@ -410656,7 +410740,8 @@
       "__imp__RtlLeaveCriticalSection",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiCallThreadNotifyRoutines@4 from xapilib.lib (thread.obj)"
    },
    {
     "name": "_func_001DE6F0",
@@ -410670,7 +410755,8 @@
       "_D_002F6BBC",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _UnhandledExceptionFilter@4 from xapilib.lib (thread.obj)"
    },
    {
     "name": "_func_001DE70D@4",
@@ -410690,7 +410776,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _SuspendThread@4 from xapilib.lib (thread.obj)"
    },
    {
     "name": "_func_001DE733@4",
@@ -410710,7 +410797,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _SuspendThread@4 from xapilib.lib (thread.obj)"
    },
    {
     "name": "_func_001DE759@16",
@@ -410730,7 +410818,8 @@
       "__imp__RtlRaiseException",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _RaiseException@16 from xapilib.lib (thread.obj)"
    },
    {
     "name": "_func_001DE7AF",
@@ -410744,7 +410833,8 @@
       "__imp__NtYieldExecution",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _SwitchToThread@0 from xapilib.lib (thread.obj)"
    },
    {
     "name": "_func_001DE7C2@2147483647",
@@ -410764,7 +410854,8 @@
       "__imp__PsTerminateSystemThread",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _ExitThread@4 from xapilib.lib (thread.obj)"
    },
    {
     "name": "_func_001DE7D4@4",
@@ -410784,7 +410875,8 @@
       "_D_002F6BBC",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _SetUnhandledExceptionFilter@4 from xapilib.lib (thread.obj)"
    },
    {
     "name": "_func_001DE7E6@8",
@@ -410828,7 +410920,8 @@
       "__imp__RtlLeaveCriticalSection",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XRegisterThreadNotifyRoutine@8 from xapilib.lib (thread.obj)"
    },
    {
     "name": "_func_001DE82F",
@@ -410930,14 +411023,16 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _CreateThread@24 from xapilib.lib (thread.obj)"
    },
    {
     "name": "_func_001DE935",
     "addr": 1960245,
     "offset": 1898805,
     "size": 13,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: _GetCurrentThreadId@0 from xapilib.lib (thread.obj)"
    },
    {
     "name": "_func_001DE942@16",
@@ -411011,7 +411106,8 @@
       "_func_001EA470@16",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _GetDiskFreeSpaceExA@16 from xapilib.lib (pathmisc.obj)"
    },
    {
     "name": "_func_001DEA36@12",
@@ -411073,7 +411169,8 @@
       "__imp__NtClose",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiSelectCachePartition@12 from xapilib.lib (pathmisc.obj)"
    },
    {
     "name": "_func_001DEC61@4",
@@ -411153,7 +411250,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XMountUtilityDrive@4 from xapilib.lib (pathmisc.obj)"
    },
    {
     "name": "_func_001DED66@4",
@@ -411197,14 +411295,16 @@
       "__imp__RtlNtStatusToDosError",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XUnmountAlternateTitleA@4 from xapilib.lib (pathmisc.obj)"
    },
    {
     "name": "_func_001DEDC3@8",
     "addr": 1961411,
     "offset": 1899971,
     "size": 108,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: _XapiDirectoryInformationToFindData@8 from xapilib.lib (filefind.obj)"
    },
    {
     "name": "_func_001DEE2F@8",
@@ -411260,7 +411360,8 @@
       "_func_001DD62B@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _FindFirstFileA@8 from xapilib.lib (filefind.obj)"
    },
    {
     "name": "_func_001DEF3C@8",
@@ -411286,7 +411387,8 @@
       "_func_001DEDC3@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _FindNextFileA@8 from xapilib.lib (filefind.obj)"
    },
    {
     "name": "_func_001DEF8D@4",
@@ -411312,7 +411414,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _GetFileAttributesA@4 from xapilib.lib (filemisc.obj)"
    },
    {
     "name": "_func_001DEFD8@4",
@@ -411362,7 +411465,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _DeleteFileA@4 from xapilib.lib (filemisc.obj)"
    },
    {
     "name": "_func_001DF066@8",
@@ -411400,7 +411504,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _CreateDirectoryA@8 from xapilib.lib (dir.obj)"
    },
    {
     "name": "_func_001DF0D2@4",
@@ -411450,7 +411555,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _RemoveDirectoryA@4 from xapilib.lib (dir.obj)"
    },
    {
     "name": "_func_001DF160@12",
@@ -411470,7 +411576,8 @@
       "_XcSHAUpdate",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XShaHmacInitialize@12 from xapilib.lib (xcalcsig.obj)"
    },
    {
     "name": "_func_001DF1C2@16",
@@ -411502,7 +411609,8 @@
       "_XcSHAFinal",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XShaHmacComputeFinal@16 from xapilib.lib (xcalcsig.obj)"
    },
    {
     "name": "_func_001DF234@12",
@@ -411540,7 +411648,8 @@
       "_func_001DF1C2@16",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiConvertSignatureToNonRoamable@12 from xapilib.lib (xcalcsig.obj)"
    },
    {
     "name": "_func_001DF26F@8",
@@ -411584,7 +411693,8 @@
       "_func_001DF160@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XCalculateSignatureBeginEx@8 from xapilib.lib (xcalcsig.obj)"
    },
    {
     "name": "_func_001DF2EA@12",
@@ -411598,7 +411708,8 @@
       "_XcSHAUpdate",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XCalculateSignatureUpdate@12 from xapilib.lib (xcalcsig.obj)"
    },
    {
     "name": "_func_001DF304@8",
@@ -411630,7 +411741,8 @@
       "_func_001DD603",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XCalculateSignatureEnd@8 from xapilib.lib (xcalcsig.obj)"
    },
    {
     "name": "_func_001DF361@4",
@@ -411650,7 +411762,8 @@
       "_func_001DF26F@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XCalculateSignatureBegin@4 from xapilib.lib (xcalcsig.obj)"
    },
    {
     "name": "_func_001DF375",
@@ -411694,7 +411807,8 @@
       "_func_001E20BF@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _mainXapiStartup@4 from xapilib.lib (xapi0.obj)"
    },
    {
     "name": "_func_001DF3E4",
@@ -411774,7 +411888,8 @@
       "_func_001DD13C@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _mainCRTStartup from xapilib.lib (xapi0.obj)"
    },
    {
     "name": "_func_001DF456@20",
@@ -411794,7 +411909,8 @@
       "__imp__RtlNtStatusToDosError",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XQueryValue@20 from xapilib.lib (xvalue.obj)"
    },
    {
     "name": "_func_001DF478",
@@ -411814,7 +411930,8 @@
       "__imp__HalBootSMCVideoMode",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XGetAudioFlags@0 from xapilib.lib (xvalue.obj)"
    },
    {
     "name": "_func_001DF4BC",
@@ -411828,7 +411945,8 @@
       "_ExQueryNonVolatileSetting",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XGetParentalControlSetting@0 from xapilib.lib (xvalue.obj)"
    },
    {
     "name": "_func_001DF4E1@12",
@@ -411854,7 +411972,8 @@
       "_func_001EAB1B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _lstrcpynA@12 from xapilib.lib (lcompata.obj)"
    },
    {
     "name": "_func_001DF546@12",
@@ -411868,14 +411987,16 @@
       "__imp__RtlInitAnsiString",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiFormatObjectAttributes@12 from xapilib.lib (support.obj)"
    },
    {
     "name": "_func_001DF56E@8",
     "addr": 1963374,
     "offset": 1901934,
     "size": 46,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: _XapiFormatTimeOut@8 from xapilib.lib (support.obj)"
    },
    {
     "name": "_func_001DF59C@12",
@@ -411889,7 +412010,8 @@
       "_func_001E1297@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _HeapFree@12 from xapilib.lib (xapiheap.obj)"
    },
    {
     "name": "_func_001DF5B3",
@@ -411903,7 +412025,8 @@
       "_D_002F6BB4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _GetProcessHeap@0 from xapilib.lib (xapiheap.obj)"
    },
    {
     "name": "_func_001DF5B9@8",
@@ -411923,7 +412046,8 @@
       "_func_001E0AE0@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _LocalAlloc@8 from xapilib.lib (xapiheap.obj)"
    },
    {
     "name": "_func_001DF5D6@4",
@@ -411943,7 +412067,8 @@
       "_func_001E1297@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _LocalFree@4 from xapilib.lib (xapiheap.obj)"
    },
    {
     "name": "_func_001DF5F4@2147483647",
@@ -411989,14 +412114,16 @@
       "__imp__NtFreeVirtualMemory",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _RtlpCreateUnCommittedRange@4 from xapilib.lib (heap.obj)"
    },
    {
     "name": "_func_001DF746@8",
     "addr": 1963846,
     "offset": 1902406,
     "size": 33,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: _RtlpDestroyUnCommittedRange@8 from xapilib.lib (heap.obj)"
    },
    {
     "name": "_func_001DF767@12",
@@ -412016,7 +412143,8 @@
       "_func_001DF626@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _RtlpInsertUnCommittedPages@12 from xapilib.lib (heap.obj)"
    }
   ],
   "text_001DF7FA": [
@@ -412038,7 +412166,8 @@
       "_func_001DF746@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _RtlpFindAndCommitPages@16 from xapilib.lib (heap.obj)"
    },
    {
     "name": "_func_001DF985@16",
@@ -412082,7 +412211,8 @@
       "__imp__RtlCompareMemoryUlong",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _RtlpCoalesceFreeBlocks@16 from xapilib.lib (heap.obj)"
    },
    {
     "name": "_func_001DFC2A@12",
@@ -412108,14 +412238,16 @@
       "_D_0000FF00",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _RtlpInsertFreeBlock@12 from xapilib.lib (heap.obj)"
    },
    {
     "name": "_func_001DFD24@4",
     "addr": 1965348,
     "offset": 1903908,
     "size": 28,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: _RtlpGetExtraStuffPointer@4 from xapilib.lib (heap.obj)"
    },
    {
     "name": "_func_001DFD40@20",
@@ -412165,14 +412297,16 @@
       "_func_001DFC2A@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _RtlpGrowBlockInPlace@20 from xapilib.lib (heap.obj)"
    },
    {
     "name": "_func_001E013E@12",
     "addr": 1966398,
     "offset": 1904958,
     "size": 47,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: _RtlSizeHeap@12 from xapilib.lib (heap.obj)"
    },
    {
     "name": "_func_001E016D@28",
@@ -412198,7 +412332,8 @@
       "_func_001DFC2A@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _RtlpInitializeHeapSegment@28 from xapilib.lib (heap.obj)"
    },
    {
     "name": "_func_001E028B@8",
@@ -412242,7 +412377,8 @@
       "__imp__NtFreeVirtualMemory",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _RtlpExtendHeap@8 from xapilib.lib (heap.obj)"
    },
    {
     "name": "_func_001E0412@12",
@@ -412286,7 +412422,8 @@
       "_func_001DFC2A@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _RtlpDeCommitFreeBlock@12 from xapilib.lib (heap.obj)"
    }
   ],
   "text_001E06BC": [
@@ -412422,7 +412559,8 @@
       "_func_001EAB1B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _RtlCreateHeap@24 from xapilib.lib (heap.obj)"
    },
    {
     "name": "_func_001E0AE0@12",
@@ -412502,7 +412640,8 @@
       "__imp__RtlLeaveCriticalSection",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _RtlAllocateHeap@12 from xapilib.lib (heap.obj)"
    },
    {
     "name": "_func_001E1297@12",
@@ -412576,7 +412715,8 @@
       "__imp__RtlLeaveCriticalSection",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _RtlFreeHeap@12 from xapilib.lib (heap.obj)"
    }
   ],
   "text_001E148B": [
@@ -412688,7 +412828,8 @@
       "__imp__RtlLeaveCriticalSection",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _RtlReAllocateHeap@16 from xapilib.lib (heap.obj)"
    },
    {
     "name": "_func_001E1BD7@8",
@@ -412720,7 +412861,8 @@
       "__imp__NtClose",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiValidateDiskPartitionEx@8 from xapilib.lib (xapiinit.obj)"
    },
    {
     "name": "_func_001E1C4F@16",
@@ -412782,7 +412924,8 @@
       "__imp__NtClose",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiCopySectionToFile@16 from xapilib.lib (xapiinit.obj)"
    },
    {
     "name": "_func_001E1D36@24",
@@ -413006,7 +413149,8 @@
       "__imp__IoCreateSymbolicLink",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiMapLetterToDirectory@24 from xapilib.lib (xapiinit.obj)"
    },
    {
     "name": "_func_001E206A@8",
@@ -413062,7 +413206,8 @@
       "_func_001E1D36@24",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiSetupPerTitleDriveLetters@8 from xapilib.lib (xapiinit.obj)"
    },
    {
     "name": "_func_001E20BF@12",
@@ -413088,7 +413233,8 @@
       "__imp__HalReturnToFirmware",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiBootToDash@12 from xapilib.lib (xapiinit.obj)"
    },
    {
     "name": "_func_001E2124",
@@ -413126,7 +413272,8 @@
       "__imp__NtClose",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiVerifyMediaInDrive@0 from xapilib.lib (xapiinit.obj)"
    },
    {
     "name": "_func_001E2202@4",
@@ -413140,7 +413287,8 @@
       "_func_001E1BD7@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiFormatFATVolume@4 from xapilib.lib (format.obj)"
    },
    {
     "name": "_func_001E2213",
@@ -413286,7 +413434,8 @@
       "_func_001E20BF@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiInitProcess@0 from xapilib.lib (xapiinit.obj)"
    }
   ],
   "text_001E233F": [
@@ -413446,7 +413595,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiFormatFATVolumeEx@8 from xapilib.lib (format.obj)"
    },
    {
     "name": "_func_001E2655",
@@ -413484,7 +413634,8 @@
       "_D_002A040C",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __cinit@0 from xapilib.lib (xapi0dat.obj)"
    },
    {
     "name": "_func_001E26AD",
@@ -413504,7 +413655,8 @@
       "_D_0029F4EC",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __rtinit@0 from xapilib.lib (xapi0dat.obj)"
    },
    {
     "name": "_func_001E26D6",
@@ -413530,7 +413682,8 @@
       "__imp__KeSetTimer",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XAutoPowerDownResetTimer@0 from xapilib.lib (powerdwn.obj)"
    },
    {
     "name": "_func_001E26F1",
@@ -413624,7 +413777,8 @@
       "_func_001E26D6",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiInitAutoPowerDown@0 from xapilib.lib (powerdwn.obj)"
    }
   ],
   "text_001E2770": [
@@ -413671,7 +413825,8 @@
       "_func_001DD62B@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XGetSectionHandleA@4 from xapilib.lib (xemodule.obj)"
    },
    {
     "name": "_func_001E27DB@4",
@@ -413691,7 +413846,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XLoadSectionByHandle@4 from xapilib.lib (xemodule.obj)"
    },
    {
     "name": "_func_001E27FC@4",
@@ -413711,7 +413867,8 @@
       "_func_001DD659@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XFreeSectionByHandle@4 from xapilib.lib (xemodule.obj)"
    },
    {
     "name": "_func_001E281A@4",
@@ -413731,7 +413888,8 @@
       "_func_001E27DB@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XLoadSectionA@4 from xapilib.lib (xemodule.obj)"
    },
    {
     "name": "_func_001E2835@4",
@@ -413751,7 +413909,8 @@
       "_func_001E27FC@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XLoadSectionA@4 from xapilib.lib (xemodule.obj)"
    },
    {
     "name": "_func_001E2850@4",
@@ -413824,7 +413983,8 @@
       "_D_00252DE8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _prvAdaptTrigToSubframeConfig_XDS@4 from dsound.lib (float.obj)"
    },
    {
     "name": "_func_001E2B60@12",
@@ -413886,7 +414046,8 @@
       "_D_0019660D",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _prvInverseQuantizeLowRate_XDS@12 from dsound.lib (float.obj)"
    },
    {
     "name": "_XcSHAUpdate",
@@ -414087,7 +414248,8 @@
       "_D_002F47D8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _D3DDevice_GetOverscanColor@0 from d3d8.lib (d3dbase.obj)"
    },
    {
     "name": "_func_001E3010@4",
@@ -415552,7 +415714,8 @@
     "addr": 2000096,
     "offset": 1938656,
     "size": 112,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: _shortsort from libcmt.lib (qsort.obj)"
    },
    {
     "name": "_func_001E8550",
@@ -415566,7 +415729,8 @@
       "_func_001E84E0",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _qsort from libcmt.lib (qsort.obj)"
    },
    {
     "name": "_func_001E87E0",
@@ -415707,7 +415871,8 @@
       "_D_00269EC3",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _rand from libcmt.lib (rand.obj)"
    }
   ],
   "text_001E8858": [
@@ -415716,7 +415881,8 @@
     "addr": 2000984,
     "offset": 1939544,
     "size": 117,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __ftol2 from libcmt.lib (ftol2.obj)"
    },
    {
     "name": "_func_001E88CD",
@@ -415762,7 +415928,8 @@
       "_func_001EB302",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??1type_info@@UAE@XZ from libcmt.lib (typinfo.obj)"
    },
    {
     "name": "_func_001E88FF@4",
@@ -415782,7 +415949,8 @@
       "_func_001E891B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??_GCD3DXSprite@@QAEPAXI@Z from d3dx8.lib (d3dx8core.obj)"
    },
    {
     "name": "_func_001E891B",
@@ -415810,7 +415978,8 @@
       "_D_0000FFFF",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _strncpy from libcmt.lib (strncpy.obj)"
    },
    {
     "name": "_func_001E8A44",
@@ -415850,7 +416019,8 @@
       "_func_001E0AE0@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __heap_alloc from libcmt.lib (malloc.obj)"
    },
    {
     "name": "_func_001E8A79",
@@ -415870,7 +416040,8 @@
       "_func_001EB3BE",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __nh_malloc from libcmt.lib (malloc.obj)"
    },
    {
     "name": "_func_001E8AA5",
@@ -415899,7 +416070,8 @@
     "addr": 2001600,
     "offset": 1940160,
     "size": 45,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: _strrchr from libcmt.lib (strrchr.obj)"
    }
   ],
   "text_001E8AF0": [
@@ -415915,7 +416087,8 @@
       "_D_001E9266",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _strstr from libcmt.lib (strstr.obj)"
    },
    {
     "name": "_func_001E8B76",
@@ -415929,14 +416102,16 @@
       "_func_001EBA57",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _sscanf from libcmt.lib (sscanf.obj)"
    },
    {
     "name": "_func_001E8BB0",
     "addr": 2001840,
     "offset": 1940400,
     "size": 57,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: _strncmp from libcmt.lib (strncmp.obj)"
    }
   ],
   "text_001E8BF0": [
@@ -415945,7 +416120,8 @@
     "addr": 2001904,
     "offset": 1940464,
     "size": 309,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: _strncat from libcmt.lib (strncat.obj)"
    },
    {
     "name": "_func_001E8D25",
@@ -415971,7 +416147,8 @@
       "_D_002AEA30",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _tolower from libcmt.lib (tolower.obj)"
    }
   ],
   "text_001E8D58": [
@@ -415994,7 +416171,8 @@
       "_func_001E8D80",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __CIpow_default from libcmt.lib (pow.obj)"
    },
    {
     "name": "_func_001E8D77",
@@ -416202,7 +416380,8 @@
       "_func_001E8F8D",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __CIasin from libcmt.lib (asin.obj)"
    },
    {
     "name": "_func_001E8F84",
@@ -416311,7 +416490,8 @@
     "addr": 2003008,
     "offset": 1941568,
     "size": 70,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: _strcspn from libcmt.lib (strcspn.obj)"
    }
   ],
   "text_001E9088": [
@@ -416333,7 +416513,8 @@
       "_func_001ECDE7",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __exp_default from libcmt.lib (87ctran.obj)"
    },
    {
     "name": "_func_001E9092@2147483647",
@@ -416440,7 +416621,8 @@
       "_D_002FB370",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __onexit_lk from libcmt.lib (onexit.obj)"
    },
    {
     "name": "_func_001E912A",
@@ -416472,7 +416654,8 @@
       "_D_002FB370",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ___onexitinit from libcmt.lib (onexit.obj)"
    },
    {
     "name": "_func_001E9152",
@@ -416516,7 +416699,8 @@
       "_func_001EAECC",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __onexit from libcmt.lib (onexit.obj)"
    },
    {
     "name": "_func_001E918A",
@@ -416530,7 +416714,8 @@
       "_func_001E9152",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _atexit from libcmt.lib (onexit.obj)"
    },
    {
     "name": "_func_001E919C",
@@ -416544,7 +416729,8 @@
       "_func_001ED045",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _atol from libcmt.lib (atox.obj)"
    },
    {
     "name": "_func_001E91F4",
@@ -416558,7 +416744,8 @@
       "_func_001E919C",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _DebugBreak@0 from xapilib.lib (kthunks.obj)"
    }
   ],
   "text_001E9200": [
@@ -416567,7 +416754,8 @@
     "addr": 2003456,
     "offset": 1942016,
     "size": 65,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __alloca_probe from libcmt.lib (chkstk.obj)"
    }
   ],
   "text_001E9250": [
@@ -416627,7 +416815,8 @@
       "_func_001ED075",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _strtod from libcmt.lib (strtod.obj)"
    },
    {
     "name": "_func_001E93CD",
@@ -416665,7 +416854,8 @@
       "_func_001ED075",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _strtoxl from libcmt.lib (strtol.obj)"
    },
    {
     "name": "_func_001E9576",
@@ -416679,7 +416869,8 @@
       "_func_001E93CD",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _strtol from libcmt.lib (strtol.obj)"
    },
    {
     "name": "_func_001E958D",
@@ -416693,7 +416884,8 @@
       "_func_001E93CD",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _strtoul from libcmt.lib (strtol.obj)"
    },
    {
     "name": "_func_001E95A4",
@@ -416707,7 +416899,8 @@
       "_func_001EB7E9",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _strtok from libcmt.lib (strtok.obj)"
    },
    {
     "name": "_func_001E9649",
@@ -416739,7 +416932,8 @@
       "_func_001ED0FC",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _atof from libcmt.lib (atof.obj)"
    },
    {
     "name": "_func_001E96A5",
@@ -416789,7 +416983,8 @@
       "_func_001EB15B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __fsopen from libcmt.lib (fopen.obj)"
    },
    {
     "name": "_func_001E9701",
@@ -416803,7 +416998,8 @@
       "_func_001E96A5",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _fopen from libcmt.lib (fopen.obj)"
    },
    {
     "name": "_func_001E9714",
@@ -416835,7 +417031,8 @@
       "_func_001E8390",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __fclose_lk from libcmt.lib (fclose.obj)"
    },
    {
     "name": "_func_001E9760",
@@ -416879,7 +417076,8 @@
       "_func_001EB15B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _fclose from libcmt.lib (fclose.obj)"
    },
    {
     "name": "_func_001E97B1",
@@ -416899,7 +417097,8 @@
       "_func_001ED552",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __fread_lk from libcmt.lib (fread.obj)"
    },
    {
     "name": "_func_001E98A9",
@@ -416943,7 +417142,8 @@
       "_func_001EB15B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _fread from libcmt.lib (fread.obj)"
    },
    {
     "name": "_func_001E98F5",
@@ -416969,7 +417169,8 @@
       "_func_001ED8A7",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __fwrite_lk from libcmt.lib (fwrite.obj)"
    },
    {
     "name": "_func_001E9A0C",
@@ -417013,7 +417214,8 @@
       "_func_001EB15B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _fread from libcmt.lib (fread.obj)"
    },
    {
     "name": "_func_001E9A58",
@@ -417069,7 +417271,8 @@
       "_func_001EB15B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _fprintf from libcmt.lib (fprintf.obj)"
    },
    {
     "name": "_func_001E9AB6",
@@ -417089,7 +417292,8 @@
       "_func_001ED8A7",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __vsnprintf from libcmt.lib (vsnprint.obj)"
    },
    {
     "name": "_func_001E9B0C",
@@ -417121,7 +417325,8 @@
       "_func_001ED075",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __fseek_lk from libcmt.lib (fseek.obj)"
    },
    {
     "name": "_func_001E9B9B",
@@ -417165,7 +417370,8 @@
       "_func_001EB15B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _fseek from libcmt.lib (fseek.obj)"
    },
    {
     "name": "_func_001E9BE4",
@@ -417209,7 +417415,8 @@
       "_func_001EE52F",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __ftell_lk from libcmt.lib (ftell.obj)"
    },
    {
     "name": "_func_001E9D46",
@@ -417253,7 +417460,8 @@
       "_func_001EB15B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _ftell from libcmt.lib (ftell.obj)"
    },
    {
     "name": "_func_001E9D87",
@@ -417273,7 +417481,8 @@
       "_func_001ED075",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __setmode_lk from libcmt.lib (setmode.obj)"
    },
    {
     "name": "_func_001E9DE9",
@@ -417287,7 +417496,8 @@
       "_func_001EDB4B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __flush from libcmt.lib (fflush.obj)"
    },
    {
     "name": "_func_001E9E46",
@@ -417307,7 +417517,8 @@
       "_func_001EE8F1",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __fflush_lk from libcmt.lib (fflush.obj)"
    },
    {
     "name": "_func_001E9E74",
@@ -417407,7 +417618,8 @@
       "_func_001EB302",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __flushall from libcmt.lib (fflush.obj)"
    },
    {
     "name": "_func_001E9F49",
@@ -417457,7 +417669,8 @@
       "_func_001EB15B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _fflush from libcmt.lib (fflush.obj)"
    },
    {
     "name": "_func_001E9F99",
@@ -417471,7 +417684,8 @@
       "_func_001E9E74",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __flushall from libcmt.lib (fflush.obj)"
    },
    {
     "name": "_func_001E9FA2",
@@ -417521,7 +417735,8 @@
       "_func_001EB302",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?name@type_info@@QBEPBDXZ from libcmt.lib (typname.obj)"
    },
    {
     "name": "_func_001EA038",
@@ -417613,7 +417828,8 @@
       "_func_001F32E8@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ___RTtypeid from libcmt.lib (rtti.obj)"
    },
    {
     "name": "_func_001EA0D3",
@@ -417681,7 +417897,8 @@
       "_func_001F38F6",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _floor from libcmt.lib (floor.obj)"
    },
    {
     "name": "_func_001EA1A1",
@@ -417719,14 +417936,16 @@
       "_func_001EB3BE",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _calloc from libcmt.lib (calloc.obj)"
    },
    {
     "name": "_func_001EA1EE",
     "addr": 2007534,
     "offset": 1946094,
     "size": 35,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __strupr from libcmt.lib (strupr.obj)"
    },
    {
     "name": "_func_001EA211",
@@ -417752,7 +417971,8 @@
       "_D_002AEA30",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _isalpha from libcmt.lib (_ctype.obj)"
    }
   ],
   "text_001EA23F": [
@@ -417780,7 +418000,8 @@
       "_D_002AEA30",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _islower from libcmt.lib (_ctype.obj)"
    },
    {
     "name": "_func_001EA268",
@@ -417806,7 +418027,8 @@
       "_D_002AEA30",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _isdigit from libcmt.lib (_ctype.obj)"
    },
    {
     "name": "_func_001EA291",
@@ -417832,7 +418054,8 @@
       "_D_002AEA30",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _isspace from libcmt.lib (_ctype.obj)"
    },
    {
     "name": "_func_001EA2BA",
@@ -417924,7 +418147,8 @@
       "_func_001F3AFB",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _modf from libcmt.lib (modf.obj)"
    }
   ],
   "text_001EA3D0": [
@@ -417933,14 +418157,16 @@
     "addr": 2008016,
     "offset": 1946576,
     "size": 64,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: _strpbrk from libcmt.lib (strpbrk.obj)"
    },
    {
     "name": "_func_001EA410",
     "addr": 2008080,
     "offset": 1946640,
     "size": 22,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: _wcslen from libcmt.lib (wcslen.obj)"
    },
    {
     "name": "_func_001EA426",
@@ -417972,7 +418198,8 @@
       "_func_001E8D25",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __stricmp from libcmt.lib (stricmp.obj)"
    }
   ],
   "text_001EA470": [
@@ -417981,14 +418208,16 @@
     "addr": 2008176,
     "offset": 1946736,
     "size": 52,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __allmul from libcmt.lib (llmul.obj)"
    },
    {
     "name": "_func_001EA4A4",
     "addr": 2008228,
     "offset": 1946788,
     "size": 61,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: _wcsncpy from libcmt.lib (wcsncpy.obj)"
    },
    {
     "name": "_func_001EA4E1",
@@ -418008,7 +418237,8 @@
       "_func_001ED8A7",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _sprintf from libcmt.lib (sprintf.obj)"
    },
    {
     "name": "_func_001EA539",
@@ -418034,7 +418264,8 @@
       "_func_001ED8A7",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _vswprintf from libcmt.lib (vswprint.obj)"
    },
    {
     "name": "_func_001EA5A7",
@@ -418054,7 +418285,8 @@
       "_func_001ED8A7",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _vsprintf from libcmt.lib (vsprintf.obj)"
    }
   ],
   "text_001EA600": [
@@ -418063,7 +418295,8 @@
     "addr": 2008576,
     "offset": 1947136,
     "size": 31,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __aullshr from libcmt.lib (ullshr.obj)"
    }
   ],
   "text_001EA620": [
@@ -418072,7 +418305,8 @@
     "addr": 2008608,
     "offset": 1947168,
     "size": 117,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __aullrem from libcmt.lib (ullrem.obj)"
    }
   ],
   "text_001EA6A0": [
@@ -418146,14 +418380,16 @@
     "addr": 2009565,
     "offset": 1948125,
     "size": 94,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: _wcsstr from libcmt.lib (wcsstr.obj)"
    },
    {
     "name": "_func_001EAA3B",
     "addr": 2009659,
     "offset": 1948219,
     "size": 50,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: _wcscmp from libcmt.lib (wcscmp.obj)"
    },
    {
     "name": "_func_001EAA6D",
@@ -418179,7 +418415,8 @@
       "_func_001ED8A7",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __snwprintf from libcmt.lib (snwprint.obj)"
    }
   ],
   "text_001EAAE0": [
@@ -418195,14 +418432,16 @@
       "_D_001EB1B8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __SEH_prolog from libcmt.lib (sehprolg.obj)"
    },
    {
     "name": "_func_001EAB1B",
     "addr": 2009883,
     "offset": 1948443,
     "size": 17,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __SEH_epilog from libcmt.lib (sehprolg.obj)"
    },
    {
     "name": "_func_001EAB2C",
@@ -418222,14 +418461,16 @@
       "_RtlUnwind@16",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __global_unwind2 from libcmt.lib (exsup.obj)"
    },
    {
     "name": "_func_001EAB4C",
     "addr": 2009932,
     "offset": 1948492,
     "size": 34,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __unwind_handler from libcmt.lib (exsup.obj)"
    },
    {
     "name": "_func_001EAB6E",
@@ -418303,7 +418544,8 @@
       "_func_001ED8A7",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __snprintf from libcmt.lib (snprintf.obj)"
    }
   ],
   "text_001EAC80": [
@@ -418312,7 +418554,8 @@
     "addr": 2010240,
     "offset": 1948800,
     "size": 104,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __aulldiv from libcmt.lib (ulldiv.obj)"
    }
   ],
   "text_001EACF0": [
@@ -418321,7 +418564,8 @@
     "addr": 2010352,
     "offset": 1948912,
     "size": 33,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __allshr from libcmt.lib (llshr.obj)"
    }
   ],
   "text_001EAD20": [
@@ -418330,7 +418574,8 @@
     "addr": 2010400,
     "offset": 1948960,
     "size": 170,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __alldiv from libcmt.lib (lldiv.obj)"
    }
   ],
   "text_001EADCC": [
@@ -418364,7 +418609,8 @@
       "_func_001EAC02@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _longjmp from libcmt.lib (longjmp.obj)"
    }
   ],
   "text_001EAE48": [
@@ -418373,7 +418619,8 @@
     "addr": 2010696,
     "offset": 1949256,
     "size": 123,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __setjmp3 from libcmt.lib (setjmp3.obj)"
    },
    {
     "name": "_func_001EAEC3",
@@ -418387,7 +418634,8 @@
       "_func_001EB390",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __lockexit from libcmt.lib (crt0dat.obj)"
    },
    {
     "name": "_func_001EAECC",
@@ -418401,7 +418649,8 @@
       "_func_001EB302",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __lockexit from libcmt.lib (crt0dat.obj)"
    },
    {
     "name": "_func_001EAED5",
@@ -418493,7 +418742,8 @@
       "__imp__KeBugCheck",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _doexit from libcmt.lib (crt0dat.obj)"
    },
    {
     "name": "_func_001EAF7F",
@@ -418507,14 +418757,16 @@
       "_func_001EAED5",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __exit from libcmt.lib (crt0dat.obj)"
    },
    {
     "name": "_func_001EAF91",
     "addr": 2011025,
     "offset": 1949585,
     "size": 33,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __copysign from libcmt.lib (ieeemisc.obj)"
    },
    {
     "name": "_func_001EAFB2",
@@ -418540,7 +418792,8 @@
       "_D_002766A8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __fpclass from libcmt.lib (ieeemisc.obj)"
    },
    {
     "name": "_func_001EB04C",
@@ -418626,7 +418879,8 @@
       "_D_002AE6E0",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ___initstdio from libcmt.lib (_file.obj)"
    },
    {
     "name": "_func_001EB0F5",
@@ -418652,7 +418906,8 @@
       "_func_001F445B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ___endstdio from libcmt.lib (_file.obj)"
    },
    {
     "name": "_func_001EB109",
@@ -418684,7 +418939,8 @@
       "__imp__RtlEnterCriticalSection",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __lock_file from libcmt.lib (_file.obj)"
    },
    {
     "name": "_func_001EB138",
@@ -418704,7 +418960,8 @@
       "__imp__RtlEnterCriticalSection",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __lock_file2 from libcmt.lib (_file.obj)"
    },
    {
     "name": "_func_001EB15B",
@@ -418736,7 +418993,8 @@
       "__imp__RtlLeaveCriticalSection",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __lock_file from libcmt.lib (_file.obj)"
    },
    {
     "name": "_func_001EB18A",
@@ -418756,7 +419014,8 @@
       "__imp__RtlLeaveCriticalSection",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __lock_file2 from libcmt.lib (_file.obj)"
    }
   ],
   "text_001EB1B0": [
@@ -418842,7 +419101,8 @@
       "_D_002AE8F0",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __mtinitlocks from libcmt.lib (mlock.obj)"
    },
    {
     "name": "_func_001EB2D9",
@@ -418868,7 +419128,8 @@
       "_D_002AEA10",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __mtdeletelocks from libcmt.lib (mlock.obj)"
    },
    {
     "name": "_func_001EB302",
@@ -418888,7 +419149,8 @@
       "__imp__RtlLeaveCriticalSection",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __unlock from libcmt.lib (mlock.obj)"
    },
    {
     "name": "_func_001EB314",
@@ -418950,7 +419212,8 @@
       "_func_001EB302",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __mtinitlocknum from libcmt.lib (mlock.obj)"
    },
    {
     "name": "_func_001EB390",
@@ -418982,7 +419245,8 @@
       "__imp__RtlEnterCriticalSection",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __lock from libcmt.lib (mlock.obj)"
    },
    {
     "name": "_func_001EB3BE",
@@ -418996,7 +419260,8 @@
       "_D_002F69E8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __callnewh from libcmt.lib (handler.obj)"
    },
    {
     "name": "_func_001EB3D9",
@@ -419034,7 +419299,8 @@
       "_D_002AEA3C",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __forcdecpt from libcmt.lib (cvt.obj)"
    },
    {
     "name": "_func_001EB431",
@@ -419074,7 +419340,8 @@
       "_func_001F48A1",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __fassign from libcmt.lib (cvt.obj)"
    },
    {
     "name": "_func_001EB4D4",
@@ -419088,7 +419355,8 @@
       "_func_001EA6A0",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __shift from libcmt.lib (cvt.obj)"
    },
    {
     "name": "_func_001EB4F7",
@@ -419114,7 +419382,8 @@
       "_D_00295024",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __cftoe2 from libcmt.lib (cvt.obj)"
    },
    {
     "name": "_func_001EB5A0",
@@ -419140,7 +419409,8 @@
       "_func_001EB4F7",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __cftoe from libcmt.lib (cvt.obj)"
    },
    {
     "name": "_func_001EB600",
@@ -419172,7 +419442,8 @@
       "_func_001EB4D4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __cftof2 from libcmt.lib (cvt.obj)"
    },
    {
     "name": "_func_001EB6A7",
@@ -419198,7 +419469,8 @@
       "_func_001EB600",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __cftof from libcmt.lib (cvt.obj)"
    },
    {
     "name": "_func_001EB6F9",
@@ -419230,7 +419502,8 @@
       "_func_001EB4F7",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __cftog from libcmt.lib (cvt.obj)"
    },
    {
     "name": "_func_001EB786",
@@ -419256,7 +419529,8 @@
       "_func_001EB5A0",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __cfltcvt from libcmt.lib (cvt.obj)"
    },
    {
     "name": "_func_001EB7D7",
@@ -419282,7 +419556,8 @@
       "_func_001F4BC8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __setdefaultprecision from libcmt.lib (fp8.obj)"
    },
    {
     "name": "_func_001EB7E9",
@@ -419332,7 +419607,8 @@
       "_func_001EB9F3",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __getptd from libcmt.lib (tidtable.obj)"
    },
    {
     "name": "_func_001EB86B",
@@ -419536,7 +419812,8 @@
       "_func_001DE7E6@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __mtinit from libcmt.lib (tidtable.obj)"
    },
    {
     "name": "_func_001EB9F3",
@@ -419562,7 +419839,8 @@
       "_D_002AEA2C",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __amsg_exit from libcmt.lib (crt0.obj)"
    },
    {
     "name": "_func_001EBA0F",
@@ -419588,7 +419866,8 @@
       "_D_002AEA30",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __hextodec from libcmt.lib (input.obj)"
    },
    {
     "name": "_func_001EBA41",
@@ -419602,7 +419881,8 @@
       "_func_001ED552",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __inc from libcmt.lib (input.obj)"
    }
   ],
   "text_001EBA57": [
@@ -420056,7 +420336,8 @@
       "_func_001EAB1B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __input from libcmt.lib (input.obj)"
    },
    {
     "name": "_func_001EC5F1",
@@ -420070,7 +420351,8 @@
       "_D_002AEA30",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __isctype from libcmt.lib (isctype.obj)"
    }
   ],
   "text_001EC614": [
@@ -420182,7 +420464,8 @@
       "_D_001EC9C5",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: .text#1 from libcmt.lib (87tran.obj)"
    }
   ],
   "text_001EC80C": [
@@ -420198,7 +420481,8 @@
       "_D_002AEABC",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __trandisp1 from libcmt.lib (87disp.obj)"
    },
    {
     "name": "_func_001EC873@2147483647",
@@ -420212,7 +420496,8 @@
       "_D_002AEABC",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __trandisp2 from libcmt.lib (87disp.obj)"
    },
    {
     "name": "_func_001EC8FF",
@@ -420241,7 +420526,8 @@
     "addr": 2017752,
     "offset": 1956312,
     "size": 23,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __startTwoArgErrorHandling from libcmt.lib (genexcep.obj)"
    },
    {
     "name": "_func_001EC9EF",
@@ -420255,7 +420541,8 @@
       "_func_001F4F7C",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __startOneArgErrorHandling from libcmt.lib (genexcep.obj)"
    }
   ],
   "text_001ECA2C": [
@@ -420264,14 +420551,16 @@
     "addr": 2017836,
     "offset": 1956396,
     "size": 21,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __twoToTOS from libcmt.lib (common.obj)"
    },
    {
     "name": "_func_001ECA41",
     "addr": 2017857,
     "offset": 1956417,
     "size": 23,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __load_CW from libcmt.lib (common.obj)"
    },
    {
     "name": "_func_001ECA58",
@@ -420291,28 +420580,32 @@
       "_D_0029545C",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __convertTOStoQNaN from libcmt.lib (common.obj)"
    },
    {
     "name": "_func_001ECA71",
     "addr": 2017905,
     "offset": 1956465,
     "size": 67,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __fload_withFB from libcmt.lib (common.obj)"
    },
    {
     "name": "_func_001ECAB4",
     "addr": 2017972,
     "offset": 1956532,
     "size": 22,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __checkTOS_withFB from libcmt.lib (common.obj)"
    },
    {
     "name": "_func_001ECACA",
     "addr": 2017994,
     "offset": 1956554,
     "size": 13,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __fast_exit from libcmt.lib (common.obj)"
    },
    {
     "name": "_func_001ECAD7",
@@ -420326,14 +420619,16 @@
       "_func_001EC9EF",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __math_exit from libcmt.lib (common.obj)"
    },
    {
     "name": "_func_001ECB01",
     "addr": 2018049,
     "offset": 1956609,
     "size": 20,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __check_overflow_exit from libcmt.lib (common.obj)"
    },
    {
     "name": "_func_001ECB15",
@@ -420389,7 +420684,8 @@
       "_D_00295490",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __check_range_exit from libcmt.lib (common.obj)"
    },
    {
     "name": "_func_001ECBB8",
@@ -420421,7 +420717,8 @@
       "_func_001F3996",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __d_inttype from libcmt.lib (powhlp.obj)"
    },
    {
     "name": "_func_001ECC19",
@@ -420519,7 +420816,8 @@
       "_D_002AED78",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __powhlp from libcmt.lib (powhlp.obj)"
    }
   ],
   "text_001ECD6C": [
@@ -420547,7 +420845,8 @@
       "_func_001ECE36",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __cintrindisp2 from libcmt.lib (87cdisp.obj)"
    },
    {
     "name": "_func_001ECDAA",
@@ -420573,7 +420872,8 @@
       "_func_001ECE36",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __cintrindisp1 from libcmt.lib (87cdisp.obj)"
    },
    {
     "name": "_func_001ECDE7",
@@ -420694,14 +420994,16 @@
       "_func_001ECE2F@2147483647",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __ctrandisp1 from libcmt.lib (87cdisp.obj)"
    },
    {
     "name": "_func_001ECFB0",
     "addr": 2019248,
     "offset": 1957808,
     "size": 60,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __fload from libcmt.lib (87cdisp.obj)"
    },
    {
     "name": "_func_001ECFEC",
@@ -420797,7 +421099,8 @@
       "_D_002AEA30",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __ismbcspace from libcmt.lib (ismbspc.obj)"
    },
    {
     "name": "_func_001ED075",
@@ -420811,7 +421114,8 @@
       "_func_001EB7E9",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __errno from libcmt.lib (dosmap.obj)"
    },
    {
     "name": "_func_001ED07E",
@@ -420825,7 +421129,8 @@
       "_func_001EB7E9",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ___doserrno from libcmt.lib (dosmap.obj)"
    },
    {
     "name": "_func_001ED087",
@@ -420875,7 +421180,8 @@
       "_func_001EB7E9",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __dosmaperr from libcmt.lib (dosmap.obj)"
    }
   ],
   "text_001ED0FC": [
@@ -420897,7 +421203,8 @@
       "_func_001F4848",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __fltin2 from libcmt.lib (cfin.obj)"
    },
    {
     "name": "_func_001ED181",
@@ -420923,7 +421230,8 @@
       "_D_002F6858",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __openfile from libcmt.lib (_open.obj)"
    },
    {
     "name": "_func_001ED2E9",
@@ -421071,7 +421379,8 @@
       "_func_001EB302",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __flushall from libcmt.lib (fflush.obj)"
    },
    {
     "name": "_func_001ED40B",
@@ -421133,7 +421442,8 @@
       "_func_001ED087",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __close_lk from libcmt.lib (close.obj)"
    },
    {
     "name": "_func_001ED48C",
@@ -421243,7 +421553,8 @@
       "_func_001E8390",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __freebuf from libcmt.lib (_freebuf.obj)"
    },
    {
     "name": "_func_001ED552",
@@ -421275,7 +421586,8 @@
       "_D_002AEC40",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __filbuf from libcmt.lib (_filbuf.obj)"
    },
    {
     "name": "_func_001ED633",
@@ -421337,7 +421649,8 @@
       "_func_001EE4BD",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __read_lk from libcmt.lib (read.obj)"
    },
    {
     "name": "_func_001ED7FC",
@@ -421501,7 +421814,8 @@
       "_func_001EDB4B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __flsbuf from libcmt.lib (_flsbuf.obj)"
    },
    {
     "name": "_func_001ED9C0",
@@ -421575,7 +421889,8 @@
       "_func_001ED07E",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __write_lk from libcmt.lib (write.obj)"
    },
    {
     "name": "_func_001EDB4B",
@@ -421721,7 +422036,8 @@
       "_func_001E8AA5",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __stbuf from libcmt.lib (_sftbuf.obj)"
    },
    {
     "name": "_func_001EDC7E",
@@ -421735,7 +422051,8 @@
       "_func_001E9DE9",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __ftbuf from libcmt.lib (_sftbuf.obj)"
    },
    {
     "name": "_func_001EDCA8",
@@ -421749,7 +422066,8 @@
       "_func_001ED8A7",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _write_char from libcmt.lib (output.obj)"
    },
    {
     "name": "_func_001EDCDB",
@@ -421763,7 +422081,8 @@
       "_func_001EDCA8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _write_multi_char from libcmt.lib (output.obj)"
    },
    {
     "name": "_func_001EDCFF",
@@ -421777,7 +422096,8 @@
       "_func_001EDCA8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _write_string from libcmt.lib (output.obj)"
    }
   ],
   "text_001EDD36": [
@@ -421973,7 +422293,8 @@
       null,
       555
      ]
-    ]
+    ],
+    "generated": "XDK library code: __output from libcmt.lib (output.obj)"
    },
    {
     "name": "_func_001EE4BD",
@@ -422017,7 +422338,8 @@
       "_D_002FB260",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __lseek_lk from libcmt.lib (lseek.obj)"
    },
    {
     "name": "_func_001EE52F",
@@ -422181,7 +422503,8 @@
       "_func_001ED07E",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __set_osfhnd from libcmt.lib (osfinfo.obj)"
    },
    {
     "name": "_func_001EE685",
@@ -422213,7 +422536,8 @@
       "_func_001ED07E",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __free_osfhnd from libcmt.lib (osfinfo.obj)"
    },
    {
     "name": "_func_001EE6CE",
@@ -422245,7 +422569,8 @@
       "_func_001ED07E",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __get_osfhandle from libcmt.lib (osfinfo.obj)"
    },
    {
     "name": "_func_001EE70F",
@@ -422289,7 +422614,8 @@
       "__imp__RtlEnterCriticalSection",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __lock_fhandle from libcmt.lib (osfinfo.obj)"
    },
    {
     "name": "_func_001EE782",
@@ -422309,7 +422635,8 @@
       "__imp__RtlLeaveCriticalSection",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __unlock_fhandle from libcmt.lib (osfinfo.obj)"
    },
    {
     "name": "_func_001EE7A4",
@@ -422407,7 +422734,8 @@
       "_func_001EB302",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __alloc_osfhnd from libcmt.lib (osfinfo.obj)"
    },
    {
     "name": "_func_001EE8F1",
@@ -422493,14 +422821,16 @@
       "_func_001EAB1B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __commit from libcmt.lib (commit.obj)"
    },
    {
     "name": "@func_001EE9AB@8",
     "addr": 2025899,
     "offset": 1964459,
     "size": 38,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ?Destructor@HeapManager@@QAEXXZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EE9D1",
@@ -422532,7 +422862,8 @@
       "_D_002F6A28",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getNumberOfDimensions@UnDecorator@@CAHXZ from libcmt.lib (xundname.obj)"
    }
   ],
   "text_001EEA34": [
@@ -422716,7 +423047,8 @@
       null,
       941
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getTypeEncoding@UnDecorator@@CAHXZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EEE49",
@@ -422736,7 +423068,8 @@
       "_D_002955B8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?UScore@UnDecorator@@SAPBDW4Tokens@@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EEE62@16",
@@ -422750,35 +423083,40 @@
       "_D_002F6A04",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getMemory@HeapManager@@QAEPAXIH@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EEEE6@12",
     "addr": 2027238,
     "offset": 1965798,
     "size": 105,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ??0DName@@QAE@ABV0@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EEF4F@12",
     "addr": 2027343,
     "offset": 1965903,
     "size": 107,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ??4DName@@QAEAAV0@ABV0@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EEFBA@12",
     "addr": 2027450,
     "offset": 1966010,
     "size": 41,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ??AReplicator@@QBEABVDName@@H@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EEFE3@12",
     "addr": 2027491,
     "offset": 1966051,
     "size": 41,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ??YDNameNode@@QAEAAV0@PAV0@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EF00C",
@@ -422799,7 +423137,8 @@
       "_D_00295BD8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??0pDNameNode@@QAE@PAVDName@@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EF062@12",
@@ -422813,21 +423152,24 @@
       "_D_00295BE4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??0DNameStatusNode@@QAE@W4DNameStatus@@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EF087",
     "addr": 2027655,
     "offset": 1966215,
     "size": 13,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ?getLastChar@DNameStatusNode@@UBEDXZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EF094",
     "addr": 2027668,
     "offset": 1966228,
     "size": 32,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ?und_strncpy@@YAPADPADPBDI@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EF0B4",
@@ -422841,7 +423183,8 @@
       "_func_001F23B8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getDataIndirectType@UnDecorator@@CA?AVDName@@XZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EF0E7",
@@ -422855,7 +423198,8 @@
       "_func_001F23B8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getThisType@UnDecorator@@CA?AVDName@@XZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EF11B@12",
@@ -422881,7 +423225,8 @@
       "@func_001EF033@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??0DName@@QAE@PAV0@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EF170@12",
@@ -422907,14 +423252,16 @@
       "@func_001EF062@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??0DName@@QAE@W4DNameStatus@@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EF1D0@8",
     "addr": 2027984,
     "offset": 1966544,
     "size": 23,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ?isValid@DName@@QBEHXZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EF1E7@8",
@@ -422928,7 +423275,8 @@
       "@func_001EF1D0@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?isEmpty@DName@@QBEHXZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EF1FC",
@@ -422942,7 +423290,8 @@
       "@func_001EF1E7@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?isUDC@DName@@QBEHXZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EF210@8",
@@ -422956,7 +423305,8 @@
       "@func_001EF1E7@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?length@DName@@QBEHXZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EF235@8",
@@ -422970,7 +423320,8 @@
       "@func_001EF1E7@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getLastChar@DName@@QBEDXZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EF26D@8",
@@ -423002,7 +423353,8 @@
       "@func_001EEE62@16",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getString@DName@@QBEPADPADH@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EF2FE@12",
@@ -423016,7 +423368,8 @@
       "@func_001EF1D0@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??_5DName@@QAEAAV0@ABV0@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EF333@12",
@@ -423042,7 +423395,8 @@
       "@func_001EF062@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??4DName@@QAEAAV0@W4DNameStatus@@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EF3B4",
@@ -423062,7 +423416,8 @@
       "@func_001EF170@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??0Replicator@@QAE@XZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EF3D2@12",
@@ -423094,7 +423449,8 @@
       "@func_001EEEE6@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??YReplicator@@QAEAAV0@ABVDName@@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EF419@8",
@@ -423126,7 +423482,8 @@
       "@func_001EF033@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?clone@DNameNode@@QAEPAV1@XZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EF45F@16",
@@ -423158,7 +423515,8 @@
       "_func_001EF094",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??0pcharNode@@QAE@PBDH@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EF4C6",
@@ -423282,7 +423640,8 @@
       "_D_002F6A18",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??0UnDecorator@@QAE@PADPBDHP6APADJ@ZK@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EF5E4",
@@ -423314,7 +423673,8 @@
       "_func_001F306F",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getReturnType@UnDecorator@@CA?AVDName@@PAV2@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EF613@12",
@@ -423364,7 +423724,8 @@
       "@func_001EF333@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??YDName@@QAEAAV0@W4DNameStatus@@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EF68E@8",
@@ -423408,7 +423769,8 @@
       "_D_00295BCC",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?doPchar@DName@@AAEXPBDH@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EF734@12",
@@ -423422,7 +423784,8 @@
       "_func_001EF68E@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??0DName@@QAE@D@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EF759@12",
@@ -423436,7 +423799,8 @@
       "_func_001EF68E@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??0DName@@QAE@PBD@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EF789@8",
@@ -423456,7 +423820,8 @@
       "_func_001EF68E@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??0DName@@QAE@AAPBDD@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EF848@4",
@@ -423470,7 +423835,8 @@
       "_func_001EF68E@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??0DName@@QAE@K@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EF88F@4",
@@ -423484,7 +423850,8 @@
       "_func_001EF68E@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??0DName@@QAE@H@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EF8F6@8",
@@ -423522,7 +423889,8 @@
       "@func_001EEEE6@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??HDName@@QBE?AV0@W4DNameStatus@@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EF935@12",
@@ -423566,7 +423934,8 @@
       "@func_001EEFE3@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??YDName@@QAEAAV0@ABV0@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EF999@12",
@@ -423580,7 +423949,8 @@
       "_func_001EF68E@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??4DName@@QAEAAV0@D@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EF9B2@12",
@@ -423594,7 +423964,8 @@
       "_func_001EF68E@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??4DName@@QAEAAV0@PBD@Z from libcmt.lib (xundname.obj)"
    }
   ],
   "text_001EF9D9": [
@@ -423646,7 +424017,8 @@
       "@func_001EF170@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getCallingConvention@UnDecorator@@CA?AVDName@@XZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EFA7E",
@@ -423684,7 +424056,8 @@
       "@func_001EF170@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getVCallThunkType@UnDecorator@@CA?AVDName@@XZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EFAB5@8",
@@ -423734,7 +424107,8 @@
       "@func_001EEEE6@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??HDName@@QBE?AV0@ABV0@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EFB18@12",
@@ -423784,7 +424158,8 @@
       "@func_001EEFE3@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??YDName@@QAEAAV0@D@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "@func_001EFB82@12",
@@ -423834,7 +424209,8 @@
       "@func_001EEFE3@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??YDName@@QAEAAV0@PBD@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EFBEE",
@@ -423920,7 +424296,8 @@
       "@func_001EEEE6@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getArgumentList@UnDecorator@@CA?AVDName@@XZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EFCD5",
@@ -423940,7 +424317,8 @@
       "_func_001EFAB5@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??H@YA?AVDName@@DABV0@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EFCF7",
@@ -423960,7 +424338,8 @@
       "_func_001EFAB5@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??H@YA?AVDName@@DABV0@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EFD19",
@@ -423980,7 +424359,8 @@
       "_func_001EFAB5@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??H@YA?AVDName@@DABV0@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EFD3B@8",
@@ -424018,7 +424398,8 @@
       "@func_001EEEE6@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??HDName@@QBE?AV0@W4DNameStatus@@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EFD7A@8",
@@ -424056,7 +424437,8 @@
       "@func_001EEEE6@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??HDName@@QBE?AV0@W4DNameStatus@@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EFDB9",
@@ -424142,7 +424524,8 @@
       "@func_001EEEE6@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getDimension@UnDecorator@@CA?AVDName@@_N@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EFE9D",
@@ -424282,7 +424665,8 @@
       null,
       70
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getEnumType@UnDecorator@@CA?AVDName@@XZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001EFF6E",
@@ -424368,7 +424752,8 @@
       "@func_001EF759@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getArgumentTypes@UnDecorator@@CA?AVDName@@XZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F0000",
@@ -424436,7 +424821,8 @@
       "_func_001EFD3B@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getThrowTypes@UnDecorator@@CA?AVDName@@XZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F007D",
@@ -424582,7 +424968,8 @@
       "_func_001EFD7A@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getArrayType@UnDecorator@@CA?AVDName@@ABV2@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F01D8",
@@ -424608,7 +424995,8 @@
       "_func_001EFD3B@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getLexicalFrame@UnDecorator@@CA?AVDName@@XZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F0209",
@@ -424802,7 +425190,8 @@
       "@func_001EEEE6@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getVfTableType@UnDecorator@@CA?AVDName@@ABV2@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F037A",
@@ -424894,7 +425283,8 @@
       "@func_001EF170@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getStringEncoding@UnDecorator@@CA?AVDName@@PADH@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F041A",
@@ -424938,7 +425328,8 @@
       "_func_001EFDB9",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getSignedDimension@UnDecorator@@CA?AVDName@@XZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F046A",
@@ -425138,7 +425529,8 @@
       "@func_001EF170@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getTemplateConstant@UnDecorator@@CA?AVDName@@XZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F062A",
@@ -425242,7 +425634,8 @@
       "_func_001EFCF7",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getPtrRefDataType@UnDecorator@@CA?AVDName@@ABV2@H@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F06E9",
@@ -425418,7 +425811,8 @@
       "@func_001EEEE6@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getTemplateArgumentList@UnDecorator@@CA?AVDName@@XZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F0886",
@@ -425576,7 +425970,8 @@
       "@func_001EF170@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getTemplateName@UnDecorator@@CA?AVDName@@XZ from libcmt.lib (xundname.obj)"
    }
   ],
   "text_001F098B": [
@@ -425790,7 +426185,8 @@
       "@func_001EEEE6@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getZName@UnDecorator@@CA?AVDName@@_N@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F0B53",
@@ -426170,7 +426566,8 @@
       "@func_001EF1E7@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getOperatorName@UnDecorator@@CA?AVDName@@XZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F0F86",
@@ -426280,7 +426677,8 @@
       "@func_001EEEE6@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getScopedName@UnDecorator@@CA?AVDName@@XZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F1085",
@@ -426408,7 +426806,8 @@
       "@func_001EF759@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getECSUDataType@UnDecorator@@CA?AVDName@@XZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F1184",
@@ -426440,7 +426839,8 @@
       "_func_001F098B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getSymbolName@UnDecorator@@CA?AVDName@@XZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F11B1",
@@ -426526,7 +426926,8 @@
       "@func_001EEEE6@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getBasedType@UnDecorator@@CA?AVDName@@XZ from libcmt.lib (xundname.obj)"
    }
   ],
   "text_001F1243": [
@@ -427214,7 +427615,8 @@
       "@func_001EEEE6@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?composeDeclaration@UnDecorator@@CA?AVDName@@ABV2@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F1C3A",
@@ -427414,7 +427816,8 @@
       "@func_001EF170@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getDecoratedName@UnDecorator@@CA?AVDName@@XZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F1DF5",
@@ -427668,7 +428071,8 @@
       "@func_001EEEE6@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getScope@UnDecorator@@CA?AVDName@@XZ from libcmt.lib (xundname.obj)"
    }
   ],
   "text_001F208F": [
@@ -428020,7 +428424,8 @@
       "@func_001EF170@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getFunctionIndirectType@UnDecorator@@CA?AVDName@@ABV2@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F23B8",
@@ -428592,7 +428997,8 @@
       "@func_001EF170@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getDataIndirectType@UnDecorator@@CA?AVDName@@ABV2@D0H@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F28F4",
@@ -428738,7 +429144,8 @@
       "_D_002F6A30",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??BUnDecorator@@QAEPADXZ from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F2A1C",
@@ -428860,7 +429267,8 @@
       "@func_001EEEE6@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getPtrRefType@UnDecorator@@CA?AVDName@@ABV2@0D@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F2B32",
@@ -429334,7 +429742,8 @@
       null,
       108
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getBasicDataType@UnDecorator@@CA?AVDName@@ABV2@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F2F3F",
@@ -429456,7 +429865,8 @@
       "_func_001F208F",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getPrimaryDataType@UnDecorator@@CA?AVDName@@ABV2@@Z from libcmt.lib (xundname.obj)"
    }
   ],
   "text_001F306F": [
@@ -429544,7 +429954,8 @@
       "_func_001EFCF7",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getDataType@UnDecorator@@CA?AVDName@@PAV2@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F311D",
@@ -429600,7 +430011,8 @@
       "@func_001EEEE6@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?getExternalDataType@UnDecorator@@CA?AVDName@@ABV2@@Z from libcmt.lib (xundname.obj)"
    },
    {
     "name": "_func_001F318D@4",
@@ -429620,7 +430032,8 @@
       "_func_001E8AA5",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??0exception@@QAE@ABQBD@Z from libcmt.lib (stdexcpt.obj)"
    },
    {
     "name": "_func_001F31D2@4",
@@ -429640,7 +430053,8 @@
       "_func_001E8AA5",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??0exception@@QAE@ABV0@@Z from libcmt.lib (stdexcpt.obj)"
    },
    {
     "name": "@func_001F3221@8",
@@ -429660,7 +430074,8 @@
       "_func_001E8390",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??1exception@@UAE@XZ from libcmt.lib (stdexcpt.obj)"
    },
    {
     "name": "_func_001F3237",
@@ -429674,7 +430089,8 @@
       "_D_00295F08",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?what@exception@@UBEPBDXZ from libcmt.lib (stdexcpt.obj)"
    },
    {
     "name": "_func_001F3244@4",
@@ -429694,7 +430110,8 @@
       "_D_00295F1C",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??0bad_cast@@QAE@PBD@Z from libcmt.lib (stdexcpt.obj)"
    },
    {
     "name": "_func_001F325D",
@@ -429714,7 +430131,8 @@
       "_D_00295F1C",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??0CD3DXCodec_UYVY@@QAE@PAUD3DX_BLT@@@Z from d3dx8.lib (cd3dxcodec.obj)"
    },
    {
     "name": "_func_001F3275",
@@ -429734,7 +430152,8 @@
       "@func_001F3221@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??1CDirectSoundStreamSettings@DirectSound@@UAE@XZ from dsound.lib (dsapi.obj)"
    },
    {
     "name": "_func_001F3280@4",
@@ -429754,7 +430173,8 @@
       "_D_00295F24",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??0CD3DXCodec_UYVY@@QAE@PAUD3DX_BLT@@@Z from d3dx8.lib (cd3dxcodec.obj)"
    },
    {
     "name": "_func_001F3298",
@@ -429774,7 +430194,8 @@
       "_D_00295F24",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??0CD3DXCodec_UYVY@@QAE@PAUD3DX_BLT@@@Z from d3dx8.lib (cd3dxcodec.obj)"
    },
    {
     "name": "_func_001F32B0@4",
@@ -429794,7 +430215,8 @@
       "_func_001E891B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??_GCD3DXSprite@@QAEPAXI@Z from d3dx8.lib (d3dx8core.obj)"
    },
    {
     "name": "_func_001F32CC@4",
@@ -429814,7 +430236,8 @@
       "_func_001E891B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??_GCD3DXSprite@@QAEPAXI@Z from d3dx8.lib (d3dx8core.obj)"
    },
    {
     "name": "_func_001F32E8@8",
@@ -429834,7 +430257,8 @@
       "_func_001DE759@16",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __CxxThrowException@8 from libcmt.lib (throw.obj)"
    },
    {
     "name": "_func_001F3321",
@@ -429866,7 +430290,8 @@
       "_func_001DE759@16",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __raise_exc from libcmt.lib (fpexcept.obj)"
    },
    {
     "name": "_func_001F35C5",
@@ -429982,7 +430407,8 @@
       "_func_001F3B1F",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __handle_exc from libcmt.lib (fpexcept.obj)"
    },
    {
     "name": "_func_001F37B0",
@@ -430002,14 +430428,16 @@
       "_func_001ED075",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __set_errno from libcmt.lib (fpexcept.obj)"
    },
    {
     "name": "_func_001F37D8",
     "addr": 2045912,
     "offset": 1984472,
     "size": 45,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __errcode from libcmt.lib (fpexcept.obj)"
    },
    {
     "name": "_func_001F3805",
@@ -430071,7 +430499,8 @@
       "_func_001F37B0",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __umatherr from libcmt.lib (fpexcept.obj)"
    },
    {
     "name": "_func_001F38A3",
@@ -430109,7 +430538,8 @@
       "_func_001F3AFB",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __handle_qnan1 from libcmt.lib (fpexcept.obj)"
    },
    {
     "name": "_func_001F38F6",
@@ -430165,21 +430595,24 @@
       "_func_001F3AFB",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __except1 from libcmt.lib (fpexcept.obj)"
    },
    {
     "name": "_func_001F3996",
     "addr": 2046358,
     "offset": 1984918,
     "size": 19,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __frnd from libcmt.lib (frnd.obj)"
    },
    {
     "name": "_func_001F39A9",
     "addr": 2046377,
     "offset": 1984937,
     "size": 42,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __set_exp from libcmt.lib (util.obj)"
    },
    {
     "name": "_func_001F39D3",
@@ -430193,7 +430626,8 @@
       "_D_0007FFFF",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __sptype from libcmt.lib (util.obj)"
    },
    {
     "name": "_func_001F3A2E",
@@ -430231,28 +430665,32 @@
       "_func_001F39A9",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __decomp from libcmt.lib (util.obj)"
    },
    {
     "name": "_func_001F3AE0",
     "addr": 2046688,
     "offset": 1985248,
     "size": 13,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __statfp from libcmt.lib (fpctrl.obj)"
    },
    {
     "name": "_func_001F3AED",
     "addr": 2046701,
     "offset": 1985261,
     "size": 14,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __clrfp from libcmt.lib (fpctrl.obj)"
    },
    {
     "name": "_func_001F3AFB",
     "addr": 2046715,
     "offset": 1985275,
     "size": 36,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __ctrlfp from libcmt.lib (fpctrl.obj)"
    },
    {
     "name": "_func_001F3B1F",
@@ -430278,7 +430716,8 @@
       "_D_002AED8C",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __set_statfp from libcmt.lib (fpctrl.obj)"
    }
   ],
   "text_001F3B80": [
@@ -430287,7 +430726,8 @@
     "addr": 2046848,
     "offset": 1985408,
     "size": 78,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ___ascii_stricmp from libcmt.lib (_stricmp.obj)"
    },
    {
     "name": "_func_001F3BCE",
@@ -430301,7 +430741,8 @@
       "_func_001F59DC",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _write_char from libcmt.lib (woutput.obj)"
    },
    {
     "name": "_func_001F3BF3",
@@ -430315,7 +430756,8 @@
       "_func_001F3BCE",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _write_multi_char from libcmt.lib (woutput.obj)"
    },
    {
     "name": "_func_001F3C18",
@@ -430329,7 +430771,8 @@
       "_func_001F3BCE",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _write_string from libcmt.lib (woutput.obj)"
    },
    {
     "name": "_func_001F3C55",
@@ -430529,7 +430972,8 @@
       null,
       558
      ]
-    ]
+    ],
+    "generated": "XDK library code: __woutput from libcmt.lib (woutput.obj)"
    },
    {
     "name": "_func_001F4419",
@@ -430555,7 +430999,8 @@
       "_func_001EAB1B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __rt_probe_read4@4 from libcmt.lib (sehsupp.obj)"
    },
    {
     "name": "_func_001F445B",
@@ -430643,7 +431088,8 @@
       "_func_001EB302",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __flushall from libcmt.lib (fflush.obj)"
    },
    {
     "name": "_func_001F44DF@8",
@@ -430657,7 +431103,8 @@
       "__imp__RtlInitializeCriticalSection",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ___crtInitCritSecNoSpinCount@8 from libcmt.lib (initcrit.obj)"
    },
    {
     "name": "_func_001F44EF",
@@ -430713,14 +431160,16 @@
       "_func_001EAB1B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ___crtInitCritSecAndSpinCount from libcmt.lib (initcrit.obj)"
    },
    {
     "name": "_func_001F4550",
     "addr": 2049360,
     "offset": 1987920,
     "size": 50,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __ZeroTail from libcmt.lib (intrncvt.obj)"
    },
    {
     "name": "_func_001F4582",
@@ -430740,7 +431189,8 @@
       "_func_001F5AA1",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __IncMan from libcmt.lib (intrncvt.obj)"
    },
    {
     "name": "_func_001F45CF",
@@ -430760,28 +431210,32 @@
       "_func_001F4582",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __RoundMan from libcmt.lib (intrncvt.obj)"
    },
    {
     "name": "_func_001F4641",
     "addr": 2049601,
     "offset": 1988161,
     "size": 27,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __CopyMan from libcmt.lib (intrncvt.obj)"
    },
    {
     "name": "_func_001F465C",
     "addr": 2049628,
     "offset": 1988188,
     "size": 25,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __IsZeroMan from libcmt.lib (intrncvt.obj)"
    },
    {
     "name": "_func_001F4675",
     "addr": 2049653,
     "offset": 1988213,
     "size": 123,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __ShrMan from libcmt.lib (intrncvt.obj)"
    },
    {
     "name": "_func_001F46F0",
@@ -430843,7 +431297,8 @@
       "_func_001F4675",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __ld12cvt from libcmt.lib (intrncvt.obj)"
    },
    {
     "name": "_func_001F4848",
@@ -430863,7 +431318,8 @@
       "_func_001F46F0",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __ld12tod from libcmt.lib (intrncvt.obj)"
    },
    {
     "name": "_func_001F485E",
@@ -430883,7 +431339,8 @@
       "_func_001F46F0",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __ld12tod from libcmt.lib (intrncvt.obj)"
    },
    {
     "name": "_func_001F4874",
@@ -430903,7 +431360,8 @@
       "_func_001F4848",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __atodbl from libcmt.lib (intrncvt.obj)"
    },
    {
     "name": "_func_001F48A1",
@@ -430923,7 +431381,8 @@
       "_func_001F485E",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __atodbl from libcmt.lib (intrncvt.obj)"
    },
    {
     "name": "_func_001F48CE",
@@ -430937,7 +431396,8 @@
       "_func_001EA6A0",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __fptostr from libcmt.lib (_fptostr.obj)"
    },
    {
     "name": "_func_001F494D",
@@ -430957,7 +431417,8 @@
       "_D_0000FFFF",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ___dtold from libcmt.lib (cfout.obj)"
    },
    {
     "name": "_func_001F4A07",
@@ -430977,7 +431438,8 @@
       "_func_001F5C49",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __fltout2 from libcmt.lib (cfout.obj)"
    },
    {
     "name": "_func_001F4A6D",
@@ -430991,7 +431453,8 @@
       "_func_001EB9F3",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __fptrap from libcmt.lib (crt0fp.obj)"
    },
    {
     "name": "_func_001F4A76",
@@ -431023,7 +431486,8 @@
       "_D_00040000",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __abstract_cw from libcmt.lib (ieee87.obj)"
    }
   ],
   "text_001F4B08": [
@@ -431057,7 +431521,8 @@
       "_D_00040000",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __hw_cw from libcmt.lib (ieee87.obj)"
    },
    {
     "name": "_func_001F4B96",
@@ -431077,7 +431542,8 @@
       "_func_001F4B08",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __control87 from libcmt.lib (ieee87.obj)"
    },
    {
     "name": "_func_001F4BC8",
@@ -431091,7 +431557,8 @@
       "_func_001F4B96",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __controlfp from libcmt.lib (ieee87.obj)"
    },
    {
     "name": "_func_001F4BDE",
@@ -431129,7 +431596,8 @@
       "_D_002FAFE8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _setSBCS from libcmt.lib (mbctype.obj)"
    },
    {
     "name": "_func_001F4C09",
@@ -431233,7 +431701,8 @@
       "_D_002FB120",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __setmbcp_lk from libcmt.lib (mbctype.obj)"
    },
    {
     "name": "_func_001F4D18",
@@ -431463,7 +431932,8 @@
       "_func_001DF5F4@2147483647",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __NMSG_WRITE from libcmt.lib (crt0msg.obj)"
    },
    {
     "name": "_func_001F4EB7",
@@ -431489,7 +431959,8 @@
       "_func_001F4E8B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __FF_MSGBANNER from libcmt.lib (crt0msg.obj)"
    },
    {
     "name": "_func_001F4ED9",
@@ -431503,14 +431974,16 @@
       "_func_001F57BB",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __ungetc_lk from libcmt.lib (ungetc.obj)"
    },
    {
     "name": "_func_001F4F45",
     "addr": 2051909,
     "offset": 1990469,
     "size": 55,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: _mbtowc from libcmt.lib (mbtowc.obj)"
    },
    {
     "name": "_func_001F4F7C",
@@ -431560,7 +432033,8 @@
       "_func_001F37B0",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __87except from libcmt.lib (87except.obj)"
    },
    {
     "name": "_func_001F5059",
@@ -431772,7 +432246,8 @@
       null,
       657
      ]
-    ]
+    ],
+    "generated": "XDK library code: ___strgtold12 from libcmt.lib (strgtold.obj)"
    },
    {
     "name": "_func_001F54D0",
@@ -431900,7 +432375,8 @@
       "_func_001ED40B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __tsopen_lk from libcmt.lib (open.obj)"
    },
    {
     "name": "_func_001F5766",
@@ -431938,7 +432414,8 @@
       "_func_001EE782",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __sopen from libcmt.lib (open.obj)"
    },
    {
     "name": "_func_001F57BB",
@@ -431958,7 +432435,8 @@
       "_func_001E8AA5",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __getbuf from libcmt.lib (_getbuf.obj)"
    },
    {
     "name": "_func_001F57FF",
@@ -431978,7 +432456,8 @@
       "_D_002FB260",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __isatty from libcmt.lib (isatty.obj)"
    },
    {
     "name": "_func_001F5829",
@@ -432022,7 +432501,8 @@
       "_D_002FB260",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __lseeki64_lk from libcmt.lib (lseeki64.obj)"
    },
    {
     "name": "_func_001F58AA",
@@ -432036,7 +432516,8 @@
       "_func_001ED075",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _wctomb from libcmt.lib (wctomb.obj)"
    }
   ],
   "text_001F58E0": [
@@ -432045,7 +432526,8 @@
     "addr": 2054368,
     "offset": 1992928,
     "size": 149,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __aulldvrm from libcmt.lib (ulldvrm.obj)"
    },
    {
     "name": "_func_001F5975@4",
@@ -432077,7 +432559,8 @@
       "_D_002F6A70",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?__CxxUnhandledExceptionFilter@@YGJPAU_EXCEPTION_POINTERS@@@Z from libcmt.lib (unhandld.obj)"
    },
    {
     "name": "_func_001F59BB",
@@ -432103,7 +432586,8 @@
       "_D_002F6A70",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?__CxxSetUnhandledExceptionFilter@@YAHXZ from libcmt.lib (unhandld.obj)"
    },
    {
     "name": "_func_001F59CD",
@@ -432123,14 +432607,16 @@
       "_func_001DE7D4@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?__CxxRestoreUnhandledExceptionFilter@@YAXXZ from libcmt.lib (unhandld.obj)"
    },
    {
     "name": "_func_001F59D9",
     "addr": 2054617,
     "offset": 1993177,
     "size": 3,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ?BeginScene@D3DDevice@@SGJXZ from d3dx8.lib (cd3dxrendertosurface.obj)"
    },
    {
     "name": "_func_001F59DC",
@@ -432174,14 +432660,16 @@
       "_func_001F62CE",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __putwc_lk from libcmt.lib (fputwc.obj)"
    },
    {
     "name": "_func_001F5AA1",
     "addr": 2054817,
     "offset": 1993377,
     "size": 33,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ___addl from libcmt.lib (mantold.obj)"
    },
    {
     "name": "_func_001F5AC2",
@@ -432213,21 +432701,24 @@
       "_func_001F5AA1",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ___add_12 from libcmt.lib (mantold.obj)"
    },
    {
     "name": "_func_001F5B20",
     "addr": 2054944,
     "offset": 1993504,
     "size": 46,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ___shl_12 from libcmt.lib (mantold.obj)"
    },
    {
     "name": "_func_001F5B4E",
     "addr": 2054990,
     "offset": 1993550,
     "size": 45,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ___shr_12 from libcmt.lib (mantold.obj)"
    },
    {
     "name": "_func_001F5B7B",
@@ -432283,7 +432774,8 @@
       "_D_0000FFFF",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ___mtold12 from libcmt.lib (mantold.obj)"
    },
    {
     "name": "_func_001F5C49",
@@ -432363,7 +432855,8 @@
       "_func_001F5B20",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _$I10_OUTPUT from libcmt.lib (x10fout.obj)"
    },
    {
     "name": "_func_001F5EC0",
@@ -432413,7 +432906,8 @@
       "_D_00018000",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ___ld12mul from libcmt.lib (tenpow.obj)"
    },
    {
     "name": "_func_001F60E2",
@@ -432439,7 +432933,8 @@
       "_func_001F5EC0",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ___multtenpow12 from libcmt.lib (tenpow.obj)"
    },
    {
     "name": "_func_001F6158",
@@ -432537,7 +433032,8 @@
       "_func_001EE4BD",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __chsize_lk from libcmt.lib (chsize.obj)"
    },
    {
     "name": "_func_001F627B",
@@ -432551,7 +433047,8 @@
       "_func_001F655B@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?_ValidateExecute@@YAHP6GHXZ@Z from libcmt.lib (validate.obj)"
    },
    {
     "name": "_func_001F6292@2147483647",
@@ -432589,7 +433086,8 @@
       "__imp__KeBugCheck",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?terminate@@YAXXZ from libcmt.lib (hooks.obj)"
    },
    {
     "name": "_func_001F62CE",
@@ -432663,7 +433161,8 @@
       "_D_0000FFFF",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __flswbuf from libcmt.lib (_flswbuf.obj)"
    }
   ],
   "text_001F6400": [
@@ -432679,7 +433178,8 @@
       "__imp__IofCompleteRequest",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _XapiDpcForCancelIo@16 from xapilib.lib (cancelio.obj)"
    },
    {
     "name": "_func_001F6427@4",
@@ -432753,7 +433253,8 @@
       "__imp__ObfDereferenceObject",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _CancelIo@4 from xapilib.lib (cancelio.obj)"
    },
    {
     "name": "_func_001F64F6@8",
@@ -432779,7 +433280,8 @@
       "_func_001EAB1B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _IsBadReadPtr@8 from xapilib.lib (process.obj)"
    },
    {
     "name": "_func_001F655B@4",
@@ -432793,7 +433295,8 @@
       "_func_001F64F6@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _IsBadCodePtr@4 from xapilib.lib (process.obj)"
    }
   ],
   "text_001F656A": [
@@ -432842,14 +433345,16 @@
       "_func_001E8D25",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: __strnicmp from libcmt.lib (strnicmp.obj)"
    },
    {
     "name": "_func_001F65C5",
     "addr": 2057669,
     "offset": 1996229,
     "size": 35,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: __strlwr from libcmt.lib (strlwr.obj)"
    }
   ],
   "text_001F65F0": [
@@ -432858,7 +433363,8 @@
     "addr": 2057712,
     "offset": 1996272,
     "size": 97,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ___ascii_strnicmp from libcmt.lib (_strnicm.obj)"
    }
   ],
   "text_001F6660": [
@@ -485842,7 +486348,8 @@
       "_func_001DDE02@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?Reset@CWMAXMediaObject@@AAEXXZ from dsound.lib (wmaxmo.obj)"
    },
    {
     "name": "_func_0023EA16@4",
@@ -485934,7 +486441,8 @@
       "__imp__RtlLeaveCriticalSection",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?Flush@CWMAXMediaObject@@UAGJXZ from dsound.lib (wmaxmo.obj)"
    },
    {
     "name": "_func_0023EB1F@8",
@@ -485966,7 +486474,8 @@
       "_func_001DDC28@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?Decode@CWMAXMediaObject@@QAGJPBU_XMEDIAPACKET@@@Z from dsound.lib (wmaxmo.obj)"
    },
    {
     "name": "_func_0023EC0D@12",
@@ -485986,7 +486495,8 @@
       "__imp__RtlLeaveCriticalSection",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?GetData@CWMAXMediaObject@@QAEKKKPAPAX@Z from dsound.lib (wmaxmo.obj)"
    },
    {
     "name": "_func_0023EC71@12",
@@ -486042,7 +486552,8 @@
       "_func_0023EB1F@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?ReadWmaDataFromFile@CWMAXMediaObject@@AAEJPAXKPAU_WMAXMO_ASYNC_CONTEXT@@@Z from dsound.lib (wmaxmo.obj)"
    },
    {
     "name": "_func_0023ED4C",
@@ -486069,7 +486580,8 @@
       "__imp__RtlLeaveCriticalSection",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?GetStatus@CWMAXMediaObject@@UAGJPAK@Z from dsound.lib (wmaxmo.obj)"
    },
    {
     "name": "_func_0023EDB5",
@@ -486120,14 +486632,16 @@
     "addr": 2354736,
     "offset": 2286640,
     "size": 81,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ?WMASampleRateToHz@CWMAXMediaObject@@AAEKW4tagWMAFileSampleRate@@@Z from dsound.lib (wmaxmo.obj)"
    },
    {
     "name": "_func_0023EE81@12",
     "addr": 2354817,
     "offset": 2286721,
     "size": 82,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ?GetData@CWMADecoder@@QAEKKKPAPAX@Z from dsound.lib (wmaxmo.obj)"
    },
    {
     "name": "_func_0023EED3",
@@ -486195,21 +486709,24 @@
       "_func_001DD13C@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??1CWMAXMediaObject@@QAE@XZ from dsound.lib (wmaxmo.obj)"
    },
    {
     "name": "_func_0023EF5D@4",
     "addr": 2355037,
     "offset": 2286941,
     "size": 30,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ?AddRef@CWMAXMediaObject@@UAGKXZ from dsound.lib (wmaxmo.obj)"
    },
    {
     "name": "_func_0023EF7B",
     "addr": 2355067,
     "offset": 2286971,
     "size": 53,
-    "relocs": []
+    "relocs": [],
+    "generated": "XDK library code: ?GetFileHeader@CWMAXMediaObject@@UAGJPAU_WMAXMOFileHeader@@@Z from dsound.lib (wmaxmo.obj)"
    },
    {
     "name": "_func_0023EFB0@12",
@@ -486297,7 +486814,8 @@
       "_func_0023EE81@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _WMAFileCBGetData@20 from dsound.lib (wmaxmo.obj)"
    },
    {
     "name": "_func_0023F119@8",
@@ -486311,7 +486829,8 @@
       "_func_0023EE30@4",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?GetFormat@CWMAXMediaObject@@AAGJPAUtWAVEFORMATEX@@@Z from dsound.lib (wmaxmo.obj)"
    },
    {
     "name": "_func_0023F160",
@@ -486325,7 +486844,8 @@
       "_func_0023EFB0@12",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?WmaXmoThreadProc@@YGKPAX@Z from dsound.lib (wmaxmo.obj)"
    },
    {
     "name": "_func_0023F16E@4",
@@ -486345,7 +486865,8 @@
       "_func_001E891B",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?Release@CWMAXMediaObject@@UAGKXZ from dsound.lib (wmaxmo.obj)"
    },
    {
     "name": "_func_0023F1AB",
@@ -486365,7 +486886,8 @@
       "__imp__RtlInitializeCriticalSection",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ??0CWMAXMediaObject@@QAE@XZ from dsound.lib (wmaxmo.obj)"
    },
    {
     "name": "_func_0023F23E@32",
@@ -486451,7 +486973,8 @@
       "_func_0023F119@8",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: ?Initialize@CWMAXMediaObject@@QAGJPBDPAXHKKKPAUtWAVEFORMATEX@@@Z from dsound.lib (wmaxmo.obj)"
    },
    {
     "name": "_func_0023F3F7@32",
@@ -486477,7 +487000,8 @@
       "_func_0023F23E@32",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _WmaCreateDecoder@32 from dsound.lib (wmaxmo.obj)"
    },
    {
     "name": "_func_0023F469@32",
@@ -486491,7 +487015,8 @@
       "_func_0023F3F7@32",
       0
      ]
-    ]
+    ],
+    "generated": "XDK library code: _WmaCreateInMemoryDecoderEx@20 from dsound.lib (wmaxmo.obj)"
    }
   ],
   "text_0023F480": [
