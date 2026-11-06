@@ -286,6 +286,15 @@ static __forceinline float length_00022060(S_00022060_Src *v)
     return r;
 }
 
+static inline void wrap_00022060(float *a)
+{
+    if (*a > D_002756D0) {
+        *a = *a - D_002756B8;
+    } else if (*a < D_002756E8) {
+        *a = *a + D_002756B8;
+    }
+}
+
 int C_00022060::func_00022060(float dt)
 {
     Vec4_000223B0 a;
