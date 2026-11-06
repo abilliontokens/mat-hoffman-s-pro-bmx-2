@@ -446,36 +446,15 @@ void C_00188920::func_00188920(void)
 
 void __stdcall func_00188980(int *type, S_00188980_Model **out)
 {
-    S_00188980_Model *p;
-
     if (*type == 1) {
-        p = (S_00188980_Model *)func_001E8A44(0x10);
-        if (p != 0) {
-            p->f4 = 0;
-            p->vtbl = (void *)&D_00289F70;
-            p->f8 = 0;
-            p->fc = 0;
-        }
+        *out = new S_00188980_Std;
     } else if (*type == 2) {
-        p = (S_00188980_Model *)func_001E8A44(0x10);
-        if (p != 0) {
-            p->f4 = 0;
-            p->vtbl = (void *)&D_00289F8C;
-            p->f8 = 0;
-            p->fc = 0;
-        }
+        *out = new S_00188980_Phys;
     } else {
-        p = (S_00188980_Model *)func_001E8A44(0x10);
-        if (p != 0) {
-            p->f4 = 0;
-            p->vtbl = (void *)&D_00289F70;
-            p->f8 = 0;
-            p->fc = 0;
-        }
+        *out = new S_00188980_Std;
         *type = 1;
     }
-    *out = p;
-    p->f4 = *type;
+    (*out)->f4 = *type;
 }
 
 extern "C" int __cdecl strcmp(const char *, const char *);
