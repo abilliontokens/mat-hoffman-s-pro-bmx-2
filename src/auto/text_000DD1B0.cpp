@@ -59,6 +59,7 @@ struct S_DD1B0_Root {
 extern S_DD1B0_Root *D_002A8490;
 
 struct S_DD1B0_Str { char s[0x25]; };
+extern S_DD1B0_Str D_00278BD4;
 
 struct C_DD1B0 {
     char pad0[0x294];
