@@ -66,6 +66,7 @@ extern "C" long (__stdcall *__imp__NtFreeVirtualMemory)(void **baseAddress, unsi
 unsigned char *__stdcall func_001DF7FA(S_HeapRoot *root, S_HeapBlock *blk, unsigned int *size, int a3);
 unsigned char *__stdcall func_001DF985(S_HeapRoot *root, unsigned char *entry, unsigned int *size, char a3);
 extern char D_0000FF00;
+extern char D_0000FF01;
 extern "C" unsigned long (__stdcall *_imp__RtlCompareMemoryUlong)(void *source, unsigned long length, unsigned long pattern);
 
 #pragma optimize("sy", on)
