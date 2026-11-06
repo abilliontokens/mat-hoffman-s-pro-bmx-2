@@ -206,6 +206,7 @@ struct BmxUIPageParkEditor {
     void *vtbl;
     char pad4[0x120];
     C_5E40_A *f124;
+    C_5E40_A *getA() { return f124; }
     char pad128[0x18];
     C_6420_P *f140;
     char pad144[0x13C];
@@ -313,9 +314,7 @@ BmxUIPageParkEditor *BmxUIPageParkEditor::func_000C5D00(int a, int b, int c)
 
 void BmxUIPageParkEditor::func_000C5E40(void)
 {
-    C_5E40_B *b = this->f124->f25C;
-
-    if (b->f74->func_000301D0() == 0)
+    if (f124->getB()->f74->func_000301D0() == 0)
         D_002B91AC->f38->func_001D6600();
     D_002B91AC->f80->func_001D6600();
     D_002B91AC->f84->func_001D6600();
