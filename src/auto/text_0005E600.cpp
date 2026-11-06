@@ -345,7 +345,7 @@ static __forceinline void pos5ED(Txt_5ED *p, int x, int y) { if (p->x != x || p-
 static __forceinline void align5ED(Txt_5ED *p, int a) { if (p->align != a) { p->align = a; p->flags |= 6; } }
 static __forceinline void color5ED(Txt_5ED *p, unsigned int c) { if (p->color != c) { p->flags |= 8; p->color = (p->color & (c | 0xff000000)) | (c & 0xffffff); } }
 extern float D_00278654, D_0027653C;
-static __forceinline void uv5ED(Img_5ED *p) { float a = D_00278654 * p->w; p->flags |= 4; p->a = a; p->b = D_00275544 * p->w; p->c = D_0027653C * p->h; p->d = D_00275544 * p->h; }
+static __forceinline void uv5ED(Img_5ED *p) { float a = p->w * D_00278654; p->flags |= 4; p->a = a; p->b = p->w * D_00275544; p->c = p->h * D_0027653C; p->d = p->h * D_00275544; }
 static __forceinline void width5ED(Img_5ED *p, int v) { if (p->width != v) { p->width = v; p->flags |= 1; } }
 static __forceinline void height5ED(Img_5ED *p, int v) { if (p->height != v) { p->height = v; p->flags |= 1; } }
 
