@@ -137,6 +137,8 @@ struct C_52C10 {
 };
 
 struct C_52F90_Inner {
+    char pad0[0xC0];
+    unsigned char fC0;
     void func_00104190();
     void func_001041C0();
 };
