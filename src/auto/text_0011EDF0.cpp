@@ -150,6 +150,10 @@ V4_0011EE50 *func_0011EEE0(V4_0011EE50 *out, V4_0011EE50 *a, V4_0011EE50 *b)
     return out;
 }
 
+void func_0011EFA0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
+}
+
 void func_0011F010(int a0, float x, float y, float z, float s, float c)
 {
     float *m = (float *)a0;
