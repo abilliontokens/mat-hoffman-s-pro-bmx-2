@@ -158,15 +158,15 @@ struct S_00157600_Flags {
 };
 
 struct C_00157600 {
-    void *volatile vtbl;
+    void *vtbl;
     int pad4;
-    volatile int f8;
-    volatile int fC;
-    volatile int f10;
-    volatile int f14;
-    volatile int f18;
-    volatile int f1C;
-    volatile unsigned char f20;
+    int f8;
+    int fC;
+    int f10;
+    int f14;
+    int f18;
+    int f1C;
+    unsigned char f20;
     S_00157600_Flags f21;
     C_00157600 *func_00157600(unsigned char flags);
 };
