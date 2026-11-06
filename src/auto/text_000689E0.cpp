@@ -77,6 +77,7 @@ struct S_689E0 {
 struct C_000689E0 {
     char pad0[0x64];
     S_689E0 *w64, *w68, *w6C, *w70, *w74, *w78, *w7C;
+    char pad80[8];
     int y88, y8C, y90, y94, y98, y9C, yA0;
     char padA4[4];
     S_689E0 *wA8;
@@ -87,6 +88,132 @@ struct C_000689E0 {
     void func_001577A0(void *w, int b);
 };
 void *func_001E8A44_689E0(int size);
+
+void C_000689E0::func_000689E0(void)
+{
+    int *r;
+    int fontA;
+    int fontB;
+    void *mem;
+    Tex_689E0 *tex;
+
+    tex = D_002A8490_2->f2E8->f4;
+    D_002A8490->f2EC->func_0018C160((int)D_002786A0);
+    r = D_002A8490->f2EC->func_0018C160((int)D_00278690);
+    fontA = r ? *r : 0;
+    r = D_002A8490->f2EC->func_0018C160((int)D_00278678);
+    fontB = r ? *r : 0;
+
+    mem = func_001E8A44_689E0(0x184);
+    w64 = mem ? (S_689E0 *)((W_689E0 *)mem)->func_001B12C0(1) : 0;
+    ((W_689E0 *)w64)->func_001B1580(D_00278690, D_00278690, tex->s7A0, 0);
+    y88 = 0x63;
+    ((W_689E0 *)w64)->func_001B19C0(0x140, y88, 0);
+    ((W_689E0 *)w64)->func_001B2270(0xffcccccc);
+    ((W_689E0 *)w64)->func_001B1C10(D_0028F5E0);
+    ((W_689E0 *)w64)->func_001B1840(1, 1, 0);
+    func_001577A0(w64, 0xffffffff);
+
+    mem = func_001E8A44_689E0(0x184);
+    w68 = mem ? (S_689E0 *)((W_689E0 *)mem)->func_001B12C0(1) : 0;
+    ((W_689E0 *)w68)->func_001B1580(D_00278690, D_00278690, tex->s878, 0);
+    y8C = 0x81;
+    ((W_689E0 *)w68)->func_001B19C0(0x140, y8C, 0);
+    ((W_689E0 *)w68)->func_001B2270(0xffcccccc);
+    ((W_689E0 *)w68)->func_001B1C10(D_0028F5E0);
+    ((W_689E0 *)w68)->func_001B1840(1, 1, 0);
+    func_001577A0(w68, 0xffffffff);
+
+    mem = func_001E8A44_689E0(0x184);
+    w6C = mem ? (S_689E0 *)((W_689E0 *)mem)->func_001B12C0(1) : 0;
+    ((W_689E0 *)w6C)->func_001B1580(D_00278690, D_00278690, tex->sAD0, 0);
+    y90 = 0x9f;
+    ((W_689E0 *)w6C)->func_001B17D0(tex->s890);
+    ((W_689E0 *)w6C)->func_001B19C0(0x140, y90, 0);
+    ((W_689E0 *)w6C)->func_001B2270(0xffcccccc);
+    ((W_689E0 *)w6C)->func_001B1C10(D_0028F5E0);
+    ((W_689E0 *)w6C)->func_001B1840(1, 1, 0);
+    func_001577A0(w6C, 0xffffffff);
+
+    mem = func_001E8A44_689E0(0x184);
+    w70 = mem ? (S_689E0 *)((W_689E0 *)mem)->func_001B12C0(1) : 0;
+    ((W_689E0 *)w70)->func_001B1580(D_00278690, D_00278690, tex->s1278, 0);
+    y94 = 0xbd;
+    ((W_689E0 *)w70)->func_001B17D0(tex->s868);
+    ((W_689E0 *)w70)->func_001B19C0(0x140, y94, 0);
+    ((W_689E0 *)w70)->func_001B2270(0xffcccccc);
+    ((W_689E0 *)w70)->func_001B1C10(D_0028F5E0);
+    ((W_689E0 *)w70)->func_001B1840(1, 1, 0);
+    func_001577A0(w70, 0xffffffff);
+
+    mem = func_001E8A44_689E0(0x184);
+    w74 = mem ? (S_689E0 *)((W_689E0 *)mem)->func_001B12C0(1) : 0;
+    ((W_689E0 *)w74)->func_001B1580(D_00278690, D_00278690, tex->s7A8, 0);
+    y98 = 0xdb;
+    ((W_689E0 *)w74)->func_001B19C0(0x140, y98, 0);
+    ((W_689E0 *)w74)->func_001B2270(0xffcccccc);
+    ((W_689E0 *)w74)->func_001B1C10(D_0028F5E0);
+    ((W_689E0 *)w74)->func_001B1840(1, 1, 0);
+    func_001577A0(w74, 0xffffffff);
+
+    mem = func_001E8A44_689E0(0x184);
+    w78 = mem ? (S_689E0 *)((W_689E0 *)mem)->func_001B12C0(1) : 0;
+    ((W_689E0 *)w78)->func_001B13A0(D_00278690, D_00278690, 0, 0x28);
+    ((W_689E0 *)w78)->func_001B17D0(tex->s828);
+    y9C = 0xf9;
+    ((W_689E0 *)w78)->func_001B19C0(0x140, y9C, 0);
+    ((W_689E0 *)w78)->func_001B2270(0xffcccccc);
+    ((W_689E0 *)w78)->func_001B1C10(D_0028F5E0);
+    ((W_689E0 *)w78)->func_001B1840(1, 1, 0);
+    ((W_689E0 *)w78)->func_001B17D0(tex->sEA0);
+    func_001577A0(w78, 0xffffffff);
+
+    mem = func_001E8A44_689E0(0x184);
+    w7C = mem ? (S_689E0 *)((W_689E0 *)mem)->func_001B12C0(1) : 0;
+    ((W_689E0 *)w7C)->func_001B1580(D_00278690, D_00278690, tex->s870, 0);
+    yA0 = 0x117;
+    ((W_689E0 *)w7C)->func_001B19C0(0x140, yA0, 0);
+    ((W_689E0 *)w7C)->func_001B2270(0xffcccccc);
+    ((W_689E0 *)w7C)->func_001B1C10(D_0028F5E0);
+    ((W_689E0 *)w7C)->func_001B1840(1, 1, 0);
+    func_001577A0(w7C, 0xffffffff);
+
+    mem = func_001E8A44_689E0(0x60);
+    w13C = mem ? (S_689E0 *)((S_689E0 *)mem)->func_001D5E90() : 0;
+    w13C->func_001D5FA0((void *)fontB, D_00278678, 0x32, 0);
+    if (w13C->f4 != 320.0f || w13C->f8 != 40.0f) {
+        w13C->f4 = 320.0f;
+        w13C->f8 = 40.0f;
+        w13C->f4E |= 6;
+    }
+    if (w13C->f48 != 0xffcccccc) {
+        w13C->f4E |= 8;
+        w13C->f48 = (w13C->f48 & 0xffcccccc) | 0xcccccc;
+    }
+    if (w13C->f44 != D_0028F5E0) {
+        w13C->f44 = D_0028F5E0;
+        w13C->f4E |= 6;
+    }
+    w13C->func_0005E840(tex->sE98);
+
+    mem = func_001E8A44_689E0(0x60);
+    wA8 = mem ? (S_689E0 *)((S_689E0 *)mem)->func_001D5E90() : 0;
+    wA8->func_001D5FA0((void *)fontA, D_00278690, 0x14, tex->s7C8);
+    if (wA8->f4 != 525.0f || wA8->f8 != 394.5f) {
+        wA8->f4 = 525.0f;
+        wA8->f8 = 394.5f;
+        wA8->f4E |= 6;
+    }
+
+    mem = func_001E8A44_689E0(0x60);
+    wAC = mem ? (S_689E0 *)((S_689E0 *)mem)->func_001D5E90() : 0;
+    wAC->func_001D5FA0((void *)fontA, D_00278690, 0xc, D_00275630);
+    if (wAC->f4 != 400.0f || wAC->f8 != 394.5f) {
+        wAC->f4 = 400.0f;
+        wAC->f8 = 394.5f;
+        wAC->f4E |= 6;
+    }
+}
 
 void C_00069080::func_00069080()
 {
