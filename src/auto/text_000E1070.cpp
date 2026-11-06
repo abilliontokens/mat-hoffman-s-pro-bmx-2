@@ -141,7 +141,7 @@ struct S_000E1070_Owner {
 
 /* sound player a page's manager holds at +0x24 */
 struct S_000E1070_Snd {
-    void func_000B9A80(int a, int b);
+    void func_000B9A80(int a, char b);
 };
 
 /* a control the manager hands out by index */
@@ -267,6 +267,110 @@ struct C_E1850_Ui { void func_000BF860(int a, int b, int c, int d); };
 
 extern float D_0027DE74;
 extern float D_00278C48;
+
+int C_000E1070::func_000E1070(int a0, int a1)
+{
+    S_000E1070_Mgr *mgr = f124;
+    S_000E1070_Snd *snd = mgr->f24;
+    S_000E1070_Ctl *c;
+
+    if (mgr->f25C->f74->func_000301D0() || f124->f138 == 4 || f124->f138 == 3 || !f2A8) return 0;
+    if ((f28C || f290) && !f294) return 0;
+    if (a1 != D_002A8490->f8->func_00136170(4, 2, 0) && a1 != D_002A8490->f8->func_00136170(0x17, 2, 0)) {
+        if (a1 == D_002A8490->f8->func_00136170(2, 2, 0)) {
+            snd->func_000B9A80(2, 1);
+            f140->f4->func_001BDF00(0);
+            f2B4 = f140->f4->f30;
+            goto done;
+        }
+        if (a1 == D_002A8490->f8->func_00136170(3, 2, 0)) {
+            snd->func_000B9A80(2, 1);
+            f140->f4->func_001BDE90(0);
+            f2B4 = f140->f4->f30;
+            goto done;
+        }
+        if (a1 == D_002A8490->f8->func_00136170(5, 2, 0) || a1 == D_002A8490->f8->func_00136170(0x18, 2, 0)) {
+            if (!f290) {
+                f2A4 = 1;
+                snd->func_000B9A80(1, 1);
+            }
+            f290 = 1;
+            f288 = 0;
+            f280 = a1;
+            f284 = a0;
+            if (!f294) return 0;
+            f124->f138 = 7;
+            if (D_002A8490->p2E0->f0 > 1) {
+                mgr->func_000BA9D0(1)->f360 = 15;
+                mgr->func_000BA9D0(10)->f304 = 1.0f;
+                f124->f134 = 10;
+            } else {
+                f124->f134 = 1;
+            }
+        }
+        goto done;
+    }
+    if (!f28C) {
+        f2A4 = 1;
+        mgr->f24->func_000B9A80(4, 1);
+    }
+    if (!f294) {
+        f28C = 1;
+        f288 = 0;
+        f280 = a1;
+        f284 = a0;
+        return 0;
+    }
+    switch (func_001BF050(1)) {
+    case 1:
+        D_002A8490->p2E0->f10 = 120.0f;
+        D_002A8490->p2E0->f14 = 1;
+        D_002A8490->p2E0->f20 = 0;
+        f124->f138 = 7;
+        f124->f134 = 3;
+        D_002A8490->p2E0->func_0005B220();
+        f2B4 = 1;
+        break;
+    case 2:
+        D_002A8490->p2E0->f10 = 300.0f;
+        D_002A8490->p2E0->f14 = 2;
+        D_002A8490->p2E0->f20 = 0;
+        f124->f138 = 7;
+        f124->f134 = 3;
+        D_002A8490->p2E0->func_0005B220();
+        f2B4 = 2;
+        break;
+    case 3:
+        D_002A8490->p2E0->f10 = 600.0f;
+        D_002A8490->p2E0->f14 = 3;
+        D_002A8490->p2E0->f20 = 0;
+        f124->f138 = 7;
+        f124->f134 = 3;
+        D_002A8490->p2E0->func_0005B220();
+        f2B4 = 3;
+        break;
+    case 4:
+        D_002A8490->p2E0->f20 = 1;
+        D_002A8490->p2E0->f14 = 4;
+        f124->f138 = 7;
+        f124->f134 = 3;
+        D_002A8490->p2E0->func_0005B220();
+        f2B4 = 4;
+        c = mgr->func_000BA9D0(3);
+        c->f59C = 1;
+        c->f5A0 = 0;
+        mgr->func_000BB7C0(D_002A8490->p2E0->f190);
+        goto done;
+    default:
+        goto done;
+    }
+    c = mgr->func_000BA9D0(3);
+    c->f59C = 1;
+    c->f5A0 = 0;
+    mgr->func_000BB7C0(D_002A8490->p2E0->f190);
+done:
+    return 1;
+}
 
 void C_000E1550::func_000E1550(void)
 {
