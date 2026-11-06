@@ -54,6 +54,13 @@ struct V4_0012E5F0 {
     V4_0012E5F0() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
 };
 
+struct VV_0012E710 {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
 /* 0x18-byte element of S_0012E5F0::arr */
 struct S_0012E5F0_Elem {
     u32 f0;
@@ -218,6 +225,95 @@ undefined4 C_0012E6F0::func_0012E6F0(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+int C_0012EF30::func_0012E710(char *name, char *arg)
+{
+    char big[0x400];
+    char s1[0x100];
+    char line[0x400];
+    char buf[0x100];
+    char s2[0x100];
+    int tmp[8];
+    V4_0012E5F0 vv[2];
+    int node;
+    int h;
+    int i;
+    S_0012E5F0_Elem *keys;
+    int count;
+
+    func_001ADCC0(buf, 0x100, D_002843B0, arg);
+    func_00030F30(name, D_002843A8);
+    h = -1;
+    node = 0;
+    if (D_002BEAAC->func_0013D310(name, D_00275FB4, &h, &node, 1)) {
+        if (node == 0) {
+            ((C_0012EF30_Vtbl *)this)->v48(h);
+            D_002BEAAC->func_0013B1F0(h, f414);
+            D_002BEAAC->func_0013C110(h);
+            *(int *)((char *)this + 0x404) = 1;
+            return 1;
+        }
+    } else {
+        func_00030F30(name, D_0028422C);
+        h = -1;
+        node = 0;
+        if (!D_002BEAAC->func_0013D310(name, D_00276274, &h, &node, 1)) {
+            return 0;
+        }
+        if (node == 0) {
+            f414 = (S_0012E5F0 *)func_001E8A44(0x18);
+            f414->count = 0;
+            f414->f10 = 0;
+            f414->fC = 0;
+            while (!D_002BEAAC->func_0013AFB0(h)) {
+                D_002BEAAC->func_0013C6E0(h, line, 0x400);
+                if (func_001E8BB0(line, D_0027626C, 5) == 0) {
+                    f414->count++;
+                }
+            }
+            D_002BEAAC->func_0013AFF0(h, 0, 0);
+            count = f414->count;
+            keys = (S_0012E5F0_Elem *)func_001E8A44(count * 0x18);
+            if (keys != 0) {
+                func_00011FF0(keys, 0x18, count, (void *)func_0012D460);
+            } else {
+                keys = 0;
+            }
+            f414->arr = keys;
+            i = -1;
+            while (!D_002BEAAC->func_0013AFB0(h)) {
+                D_002BEAAC->func_0013C6E0(h, line, 0x400);
+                if (func_001E8BB0(line, D_0027626C, 5) == 0) {
+                    i++;
+                    func_001E8B76(line, D_00279058, big, &tmp[0]);
+                    f32 t = (f32)tmp[0];
+                    if (tmp[0] < 0) {
+                        t += D_002755E4;
+                    }
+                    *(f32 *)&keys[i].f0 = t;
+                } else if (func_001E8BB0(line, D_00276260, 9) == 0) {
+                    vv[1].x = vv[1].y = vv[1].z = 0;
+                    vv[0].x = vv[0].y = vv[0].z = 0;
+                    vv[1].w = 1.0f;
+                    vv[0].w = 1.0f;
+                    func_001E8B76(line, D_00276234, s1, s2, &tmp[2], &tmp[3], &tmp[4], &tmp[5], &tmp[6], &tmp[7], &vv[0].x, &vv[0].z, &vv[0].y, &vv[1].x, &vv[1].z, &vv[1].y);
+                    if (func_001E8AF0(s2, buf) != 0 || func_001E8AF0(s2, D_00284398) != 0) {
+                        keys[i].v = vv[1];
+                    }
+                }
+            }
+            ((C_0012EF30_Vtbl *)this)->v50();
+            f414->f4 = 1;
+            D_002BEAAC->func_0013B1F0(h, f414);
+            D_002BEAAC->func_0013C110(h);
+            *(int *)((char *)this + 0x404) = 1;
+            return 1;
+        }
+    }
+    f414 = (S_0012E5F0 *)node;
+    f414->f4++;
+    return 1;
 }
 
 C_0012EF30 *C_0012EF30::func_0012EF30(int a)
