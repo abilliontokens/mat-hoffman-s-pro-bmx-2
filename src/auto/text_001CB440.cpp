@@ -73,8 +73,8 @@ struct C_001CBD40 : Base_001CBD40 {
     int f13C;
     void func_0001C9F0();
 };
-struct func_001CBD40 : C_001CBD40 {
-    func_001CBD40();
+struct func_001CBD40_ctor : C_001CBD40 {
+    func_001CBD40_ctor();
 };
 
 struct C_001CB440 {
