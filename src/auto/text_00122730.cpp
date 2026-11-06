@@ -11,6 +11,14 @@ struct Vec4 {
 
 void func_00030AC0(float *out, float *v, float *m);
 
+static __forceinline float DistSq_00122730(const float *a, const float *b)
+{
+    float dx = b[0] - a[0];
+    float dy = b[1] - a[1];
+    float dz = b[2] - a[2];
+    return dx * dx + dy * dy + dz * dz;
+}
+
 struct S_00122810_V4 {
     float x, y, z, w;
 };
@@ -64,8 +72,6 @@ int func_00122810(float *p, float *half, S_00122810_Box *box, float eps, float u
 {
     S_00122810_V3 a;
     S_00122810_V3 b;
-    float cx, cy, cz;
-    float hx, hy, hz;
 
     func_0011F540(&a, box->min, m);
     func_0011F540(&b, box->max, m);
@@ -75,19 +81,15 @@ int func_00122810(float *p, float *half, S_00122810_Box *box, float eps, float u
     b.x -= p[0];
     b.y -= p[1];
     b.z -= p[2];
-    cx = (b.x + a.x) * D_002755E8;
-    cy = (b.y + a.y) * D_002755E8;
-    cz = (b.z + a.z) * D_002755E8;
-    hx = cx - a.x;
-    hy = cy - a.y;
-    hz = cz - a.z;
-    if (Fabs_00122810(hx) + half[0] + eps < Fabs_00122810(cx)) {
+    S_00122810_V3 c = (b + a) * D_002755E8;
+    S_00122810_V3 h = c - a;
+    if (Fabs_00122810(h.x) + half[0] + eps < Fabs_00122810(c.x)) {
         return 0;
     }
-    if (Fabs_00122810(hy) + half[1] + eps < Fabs_00122810(cy)) {
+    if (Fabs_00122810(h.y) + half[1] + eps < Fabs_00122810(c.y)) {
         return 0;
     }
-    if (Fabs_00122810(hz) + half[2] + eps < Fabs_00122810(cz)) {
+    if (Fabs_00122810(h.z) + half[2] + eps < Fabs_00122810(c.z)) {
         return 0;
     }
     return 1;
