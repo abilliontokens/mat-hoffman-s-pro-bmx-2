@@ -212,29 +212,37 @@ extern float D_002A8318;
 float func_0014F7E0(float x);
 float func_0015C900(float param_1);
 
-int func_0015C640(float *param_1, int param_2, float param_3)
+int func_0015C640(float *arr, int n, float t)
 {
-    int iVar1;
-    if (param_2 != 0) {
-        if (param_3 >= param_1[param_2 * 2 - 2]) {
-            return param_2;
-        }
-        if (param_3 >= *param_1) {
-            int iVar2;
-            iVar2 = 0;
-            do {
-                while (iVar1 = (param_2 + iVar2) >> 1, param_3 >= param_1[iVar1 * 2]) {
-                    iVar2 = iVar1;
-                    if (param_3 < param_1[iVar1 * 2 + 2]) {
-                        return iVar1 + 1;
-                    }
-                }
-                param_2 = iVar1;
-            } while (param_3 < param_1[iVar1 * 2 - 2]);
-            return iVar1;
+    int mid;
+    int lo;
+    int hi;
+
+    if (n == 0) {
+        return 0;
+    }
+    if (t >= arr[(n - 1) * 2]) {
+        return n;
+    }
+    if (t < arr[0]) {
+        return 0;
+    }
+    lo = 0;
+    hi = n;
+    for (;;) {
+        mid = (hi + lo) >> 1;
+        if (t >= arr[mid * 2]) {
+            if (t < arr[(mid + 1) * 2]) {
+                return mid + 1;
+            }
+            lo = mid;
+        } else {
+            if (t >= arr[(mid - 1) * 2]) {
+                return mid;
+            }
+            hi = mid;
         }
     }
-    return 0;
 }
 
 struct S_0015C6F0_Key {
