@@ -29,6 +29,8 @@ struct Node_19FD20 {
     void func_00199A70(int a, Vec_19FD20 *out);
     Vec_19FD20 func_00198040(Vec_19FD20 *in);
     void func_00199C90(Vec_19FD20 axis, f32 c, f32 s);
+    void func_00197E70(Vec_19FD20 *v);
+    void func_00198120(Vec_19FD20 *a, Vec_19FD20 *b);
 };
 
 struct Res_19FD20 {
