@@ -278,25 +278,12 @@ int Game::func_00156880(void)
     return p != 0;
 }
 
-void Game::func_001568A0(int a, int b, int c, int d)
+void Game::func_00156920(int *out)
 {
-    f260 = a;
-    f264 = b;
-    f268 = c;
-    f26c = d;
-    f270 = 0;
-    if (f260 != 0) {
-        f270 = 1;
-    }
-    if (f264 != 0) {
-        f270 += 1;
-    }
-    if (f268 != 0) {
-        f270 += 1;
-    }
-    if (f26c != 0) {
-        f270 += 1;
-    }
+    out[0] = f260;
+    out[1] = f264;
+    out[2] = f268;
+    out[3] = f26c;
 }
 
 void C_00156E80::func_00156E80(void)
@@ -499,6 +486,45 @@ int Game2::func_001572B0(int a)
     }
     f278->func_001577A0((GameObject *)f4, 0xffffffff);
     return 1;
+}
+
+int Game::func_00157420()
+{
+ unsigned int now;
+ if (!f23c) { now=func_001DC974(); f23c=now; }
+ else now=func_001DC974();
+ f238=now;
+ float dt=(float)(f238-f23c)*D_00276098;
+ if(dt>D_002756DC) { dt=0.033f; goto init; }
+ if(!D_002DF944) {
+ init:
+ D_002DF944=1;
+ for(int i=0;i<10;++i) D_002DF91C[i]=dt;
+ }
+ D_002DF91C[D_002DF918]=dt;
+ D_002DF918=(D_002DF918+1)%10;
+ dt=(D_002DF91C[0]+D_002DF91C[1]+D_002DF91C[2]+D_002DF91C[3]+D_002DF91C[4]+D_002DF91C[5]+D_002DF91C[6]+D_002DF91C[7]+D_002DF91C[8]+D_002DF91C[9])*D_002756DC;
+ f25c=dt;
+ if(dt>D_00275F64) dt=0.2f;
+ if(D_002DF8F8 && dt>D_0028714C) dt=0.03333f;
+ f8->func_001D0D60();
+ f8->update(dt);
+ if(!(f230&8)) {
+ f234=2;
+ f244=dt;
+ if(dt>D_00275544) f248=D_00275460/dt;
+ f278->v12(dt);
+ f234=0;
+ ((VT_Game *)vtbl)->f20(this);
+ D_002EFDB8->func_00182810();
+ }
+ func_00220AFD();
+ f23c=f238;
+ if(*(int *)((char *)this+0x128)) {
+ *(int *)((char *)this+0x124)=1;
+ *(int *)((char *)this+0x128)=0;
+ }
+ return 1;
 }
 
 C_00157600 *C_00157600::func_00157600(unsigned char flags)
