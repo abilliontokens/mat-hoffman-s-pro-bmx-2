@@ -312,7 +312,7 @@ struct Obj1_00029E00 { char pad[0x23c]; float f23c; };
 struct Obj2_00029E00 { char pad[0x30]; int f30; };
 struct C_00029E00 {
     char pad0[0x10c];
-    V4_00029BD0 f10c;
+    V4_0002A250 f10c;
     char pad11c[0x120 - 0x11c];
     float f120;
     char pad124[0x1e0 - 0x124];
