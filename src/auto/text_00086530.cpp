@@ -196,7 +196,6 @@ extern int D_0027958C;
 extern int D_002786A0;
 extern int D_0028F5EC;
 extern int D_0028F5DC;
-static __forceinline void SetPosF_86E60(BestScoreOverlay_Text *p, int nx, int ny) { if (p->x != nx || p->y != ny) { p->y = ny; p->x = nx; p->flags |= 6; } }
 struct Icon86E60 {
     void *vtbl;
     char pad4[0x24];
