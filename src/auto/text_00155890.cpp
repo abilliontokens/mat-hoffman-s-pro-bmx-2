@@ -151,6 +151,8 @@ extern S_1561_V4 D_002A79C8;
 extern S_1561_V4 D_002A79D8;
 struct S_1561_Vecs { S_1561_Vec4 a; S_1561_V4 c; S_1561_Vec4 b; };
 struct S_1561_Obj99 { S_1561_V4 func_00199B00(int a); };
+struct S_1561_Obj99Out { void func_00199B00(S_1561_V4 *out, int a); };
+struct S_1561_1A4Out { char pad0[4]; S_1561_Obj99Out *unk4; };
 struct S_1561_1A4 { char pad0[4]; S_1561_Obj99 *unk4; };
 struct S_1561_Arg1Sub { char pad0[0x1a4]; S_1561_1A4 *unk1A4; };
 struct S_1561_Arg1 {
