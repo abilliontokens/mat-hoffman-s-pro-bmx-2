@@ -61,6 +61,14 @@ struct S_000C50E0_Mid {
 };
 
 struct S_000C50E0_Widget {
+    char pad0[0x28];
+    int f28;
+    char pad2c[0x10];
+    int f3c, f40, f44, f48;
+    char pad4c[0xc];
+    unsigned char f58;
+    S_000C50E0_Widget *func_001D5760();
+    void func_001D5810(int, float, float, int);
     S_000C50E0_Clamp *func_001D5AA0();
 };
 
