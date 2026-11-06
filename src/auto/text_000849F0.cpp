@@ -45,6 +45,7 @@ struct Txt_849F0 {
     inline void SetPos(unsigned x, unsigned y) { if (f4 != x || f8 != y) { f4 = x; f8 = y; f4e |= 6; } }
     inline void SetColor(unsigned c) { if (f48 != c) { f4e |= 8; f48 = (c & 0xffffff) | (f48 & c); } }
     inline void SetColor2(unsigned c) { if (f48 != c) { unsigned v = f48 & c; f4e |= 8; f48 = v | (c & 0xffffff); } }
+    inline void SetColor3(unsigned c) { if (f48 != c) { unsigned v = (f48 & c) | (c & 0xffffff); f4e |= 8; f48 = v; } }
     inline void SetFont(unsigned v) { if (f44 != v) { f44 = v; f4e |= 6; } }
     inline void SetF3C(unsigned v) { if (f3C != v) { f3C = v; f4e |= 4; } }
 };
