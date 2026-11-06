@@ -278,11 +278,6 @@ struct C_00094A00 {
     int func_00094E70(int *ids, int count, int a, int b);
 };
 
-static __forceinline void Release_94C00(C_00094A00 *p, int i)
-{
-    p->f28->func_001CD7D0(p->f84[i]);
-}
-
 /* one entry of BmxMusicManager's list at +0x54: the flags at +0x64/+0x68 are what
    func_00095110 / func_000951B0 set */
 struct S_00095060_Track {
@@ -668,16 +663,15 @@ int C_00094A00::func_00094A10(char *name, void *arg)
 
 void C_00094A00::func_00094C00(void)
 {
-    int i = 0;
+    int i;
 
-    while (i < f7C) {
-        if (f2C != 0) {
+    for (i = 0; i < f7C; i++) {
+        if (getF2C() != 0) {
             f28->func_001CD7D0(f84[i]);
         } else {
             f28->func_001CD7D0(f84[i]);
         }
         f84[i] = 0;
-        i++;
     }
     f7C = 0;
     if (f2C != 0) {
