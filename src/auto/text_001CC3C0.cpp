@@ -255,6 +255,10 @@ int __stdcall func_00221A71(int h, int a, int b, int c, int d);
 #include <xmmintrin.h>
 static __forceinline float Max_001CC4B0(float a, float b) { return _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b)).m128_f32[0]; }
 struct S_Vec_001CC4B0 { int x, y, z; };
+struct S_V4_001CCE10 {
+    int x, y, z, w;
+    void Set(int a, int b, int c, int d) { x = a; y = b; z = c; w = d; }
+};
 int __stdcall func_00221A71(int h, S_Vec_001CC4B0 v, int d);
 int __stdcall func_00221B90(int h, S_Vec_001CC4B0 v, int d);
 int __stdcall func_00221BB9(int h, S_Vec_001CC4B0 v, int d);
@@ -546,11 +550,12 @@ int C_001CC3C0::func_001CCE10(int a, int b, int c, int d)
                 return 0;
             }
         }
+        int *p = &f1E8;
+        p[0] = a;
+        p[1] = b;
+        p[2] = c;
+        p[3] = d;
     }
-    f1E8 = a;
-    *(int *)((char *)this + 0x1ec) = b;
-    *(int *)((char *)this + 0x1f0) = c;
-    *(int *)((char *)this + 0x1f4) = d;
     return 1;
 }
 
