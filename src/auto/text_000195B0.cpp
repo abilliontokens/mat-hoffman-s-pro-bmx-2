@@ -339,8 +339,8 @@ template <class T> inline T min_198E0(T a, T b)
 #define CopyPathV_198E0(dst, src, len, lim, res) \
     { \
         int ma, mb, n; \
-        lim = 0x103; \
         len = strlen(src); \
+        lim = 0x103; \
         ma = lim; \
         mb = len; \
         res = ma > mb ? mb : ma; \
