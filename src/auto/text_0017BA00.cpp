@@ -16,6 +16,10 @@ static __forceinline f32 Max_0017C360(f32 a, f32 b)
     _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b)));
     return r;
 }
+static __forceinline f32 Pass_0017C360(f32 v)
+{
+    return v;
+}
 extern int D_0028909C;
 extern void *D_002EFD80;
 
@@ -337,7 +341,10 @@ void C_0017BDE0::func_0017BE40(void) {
         if ((v[1] - v[5]) * v[6] + (v[7] - v[1]) * v[4] + (v[5] - v[7]) * v[0] < D_00275544) {
             return;
         }
-        if ((v[3] - v[7]) * v[4] + (v[5] - v[3]) * v[6] + (v[7] - v[5]) * v[2] < D_00275544) {
+        f32 s3 = (v[3] - v[7]) * v[4];
+        s3 += (v[5] - v[3]) * v[6];
+        s3 += (v[7] - v[5]) * v[2];
+        if (s3 < D_00275544) {
             w[6] = t.x2;
             w[7] = t.y2;
             w[4] = t.x3;
@@ -357,9 +364,10 @@ void C_0017BDE0::func_0017BE40(void) {
             w[6] = t.x1;
             w[7] = t.y1;
         } else {
-            f32 m1 = (v[3] - v[7]) * v[0];
-            f32 m2 = (v[7] - v[1]) * v[2];
-            if (m1 + m2 + d01 * v[6] < D_00275544) {
+            f32 s = (v[3] - v[7]) * v[0];
+            s += (v[7] - v[1]) * v[2];
+            s += d01 * v[6];
+            if (s < D_00275544) {
                 w[2] = t.x2;
                 w[3] = t.y2;
                 w[4] = t.x1;
