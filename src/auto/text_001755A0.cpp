@@ -7,6 +7,13 @@ extern char D_0000FFF8[];
 extern char D_0000F81F[];
 extern char D_0000FFFC[];
 
+static __forceinline unsigned int Spread565(unsigned int px)
+{
+    unsigned int a = px & (unsigned int)D_0000FFFF;
+    unsigned int b = px >> 16;
+    return ((b << 15) & 0x3f00000) + ((a & 0x7e0) << 15) + (b & (unsigned int)D_0000F81F) + (a & (unsigned int)D_0000F81F);
+}
+
 static __forceinline void Shrink565Fast(unsigned short *dst, unsigned short *src, int width, int height, int dstPitch, int srcPitch)
 {
     int y;
@@ -103,12 +110,12 @@ int func_00175E30(unsigned short *dst, unsigned short *src, int width, int heigh
 {
     int y;
     int x;
-    unsigned short *srow = src;
-    unsigned short *drow = dst;
     if (flags & 1) {
+        unsigned char *srow = (unsigned char *)src;
+        unsigned char *drow = (unsigned char *)dst;
         for (y = height; y > 0; --y) {
             unsigned int *p = (unsigned int *)srow;
-            unsigned short *d = drow;
+            unsigned short *d = (unsigned short *)drow;
             for (x = height; x != 0; --x) {
                 unsigned int sum = 0;
                 unsigned int a, b;
@@ -131,13 +138,15 @@ int func_00175E30(unsigned short *dst, unsigned short *src, int width, int heigh
                 p++;
                 ++d;
             }
-            srow += srcPitch * 2;
-            drow += dstPitch;
+            srow += srcPitch * 4;
+            drow += dstPitch * 2;
         }
     } else if (flags & 2) {
+        unsigned char *srow = (unsigned char *)src;
+        unsigned char *drow = (unsigned char *)dst;
         for (y = height; y > 0; --y) {
-            unsigned short *s = srow;
-            unsigned short *d = drow;
+            unsigned short *s = (unsigned short *)srow;
+            unsigned short *d = (unsigned short *)drow;
             for (x = width; x > 0; --x) {
                 unsigned short c = s[srcPitch];
                 unsigned short e = s[srcPitch + 1];
@@ -160,13 +169,15 @@ int func_00175E30(unsigned short *dst, unsigned short *src, int width, int heigh
                 *d++ = result;
                 s += 2;
             }
-            srow += srcPitch * 2;
-            drow += dstPitch;
+            srow += srcPitch * 4;
+            drow += dstPitch * 2;
         }
     } else {
+        unsigned char *srow = (unsigned char *)src;
+        unsigned char *drow = (unsigned char *)dst;
         for (y = height; y > 0; --y) {
-            unsigned short *s = srow;
-            unsigned short *d = drow;
+            unsigned short *s = (unsigned short *)srow;
+            unsigned short *d = (unsigned short *)drow;
             for (x = width; x > 0; --x) {
                 unsigned short c = s[srcPitch];
                 unsigned short a = s[0];
@@ -178,8 +189,8 @@ int func_00175E30(unsigned short *dst, unsigned short *src, int width, int heigh
                 *d++ = (unsigned short)((((red << 6) | green) << 5) | blue);
                 s += 2;
             }
-            srow += srcPitch * 2;
-            drow += dstPitch;
+            srow += srcPitch * 4;
+            drow += dstPitch * 2;
         }
     }
     return 1;
