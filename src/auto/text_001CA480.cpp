@@ -75,6 +75,8 @@ struct SndBank_1CB290 {
     int f10;
     SndEntry_1CB2D0 *f14;
     SndBank_1CB290 *func_001AC3A0(void);
+    SndBank_1CB290();
+    void *operator new(unsigned int n) { return func_001E8A44(n); }
 };
 
 struct XboxSndIf_1CB290 {
@@ -457,14 +459,19 @@ void func_001CB270(void)
 void XboxSndIf_1CB290::func_001CB290(void)
 {
     SndBank_1CB290 *p;
+    SndBank_1CB290 *q;
 
     if (f13C != 0) {
         f13C->v2();
     }
     p = (SndBank_1CB290 *)func_001E8A44(0x20);
-    p = p != 0 ? p->func_001AC3A0() : 0;
-    f13C = p;
-    p->v4();
+    if (p != 0) {
+        q = p->func_001AC3A0();
+    } else {
+        q = 0;
+    }
+    f13C = q;
+    q->v4();
 }
 
 void XboxSndIf_1CB290::func_001CB2D0(void)
