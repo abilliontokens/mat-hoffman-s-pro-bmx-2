@@ -36,6 +36,7 @@ struct S_001EF734 {
     void func_001EF9B2(char *s);
     char *func_001EF26D(char *buf, int n);
     S_001EF734 *func_001EF789(char **pp, char delim);
+    S_001EF734 *func_001EFD3B(void *out, char c);
 };
 
 struct S_002F6A20 {
