@@ -173,7 +173,7 @@ struct K_0012E380 {
 };
 extern f32 D_00275544;
 
-static inline float Abs_0012E380(float x)
+static float Abs_0012E380(float x)
 {
     u32 b = *(u32 *)&x & 0x7fffffff;
     return *(float *)&b;
@@ -183,6 +183,43 @@ struct C_0012E6F0 {
     undefined4 func_0012E6F0(byte param_1);
 };
 
+
+float C_0012EF30::func_0012E380(float time, float dist)
+{
+    C_0012EF30 *self = this;
+    float t = time * self->f4c0;
+    u32 i;
+    for (i = self->f4b8 + 1; i < (u32)self->f414->count && t > ((K_0012E380 *)self->f414->arr)[i].t; i++)
+        self->f4b8++;
+    for (; self->f4b8 > 0 && t < ((K_0012E380 *)self->f414->arr)[self->f4b8].t; i--)
+        self->f4b8--;
+    if (dist > D_00275544) {
+        int j = self->f4b8;
+        float v = (t - ((K_0012E380 *)self->f414->arr)[j].t) / (((K_0012E380 *)self->f414->arr)[i].t - ((K_0012E380 *)self->f414->arr)[j].t) * ((K_0012E380 *)self->f414->arr)[j].len;
+        while (v < dist) {
+            j--;
+            if (j < 0)
+                j += self->f414->count;
+            v += ((K_0012E380 *)self->f414->arr)[j].len;
+        }
+        K_0012E380 *kj = &((K_0012E380 *)self->f414->arr)[j];
+        if (kj->len != D_00275544)
+            return ((((K_0012E380 *)self->f414->arr)[(j + 1) % (u32)self->f414->count].t - kj->t) * ((v - dist) / kj->len) + kj->t) * self->f4c4;
+    } else {
+        u32 j = self->f4b8;
+        float w = (((K_0012E380 *)self->f414->arr)[i].t - t) / (((K_0012E380 *)self->f414->arr)[i].t - ((K_0012E380 *)self->f414->arr)[j].t) * ((K_0012E380 *)self->f414->arr)[j].len;
+        while (w < Abs_0012E380(dist)) {
+            j = (j + 1) % (u32)self->f414->count;
+            w += ((K_0012E380 *)self->f414->arr)[j].len;
+        }
+        K_0012E380 *kj = &((K_0012E380 *)self->f414->arr)[j];
+        if (kj->len != D_00275544) {
+            K_0012E380 *n = &((K_0012E380 *)self->f414->arr)[(j + 1) % (u32)self->f414->count];
+            return ((D_00275460 - (w + dist) / kj->len) * (n->t - kj->t) + n->t) * self->f4c4;
+        }
+    }
+    return D_00275544;
+}
 
 void __stdcall func_0012E5A0(float t, float *a, float *b, float *c, float *d)
 {
@@ -235,7 +272,7 @@ int C_0012EF30::func_0012E710(char *name, char *arg)
     char buf[0x100];
     char s2[0x100];
     int tmp[8];
-    V4_0012E5F0 vv[2];
+    VV_0012E710 vv[2];
     int node;
     int h;
     int i;
@@ -299,7 +336,7 @@ int C_0012EF30::func_0012E710(char *name, char *arg)
                     vv[0].w = 1.0f;
                     func_001E8B76(line, D_00276234, s1, s2, &tmp[2], &tmp[3], &tmp[4], &tmp[5], &tmp[6], &tmp[7], &vv[0].x, &vv[0].z, &vv[0].y, &vv[1].x, &vv[1].z, &vv[1].y);
                     if (func_001E8AF0(s2, buf) != 0 || func_001E8AF0(s2, D_00284398) != 0) {
-                        keys[i].v = vv[1];
+                        keys[i].v = *(V4_0012E5F0 *)&vv[1];
                     }
                 }
             }
