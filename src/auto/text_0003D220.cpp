@@ -1,5 +1,6 @@
 /* 2 functions from 0x0003D220 to 0x0003D910, found by Ghidra. */
 #include "common.h"
+#include <string.h>
 
 struct Vec4_3D220 { float x, y, z, w; };
 void *func_001E8A44(unsigned int size);
