@@ -2,7 +2,14 @@
 #include "common.h"
 #include "ghidra.h"
 #include <string.h>
-struct Vol_725 { void func_00031610(int, int); };
+struct Slider_725 { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29(); virtual void v30(); virtual void setv(int); };
+struct Vol_725 { void func_00031610(int, int); char pad[0x1b4]; Slider_725 *s1b4; };
+struct List_725 { char pad[0x28]; Slider_725 *s28; void func_00094960(int); int func_000947B0(); int func_000952F0(); int func_00094870(); int func_00094760(); };
+struct Cur_725 { char pad[4]; int f4; char pad8[0x10]; int f18, f1c; char pad20[0x2dc]; List_725 *list; };
+struct Opt_725 { char pad[0x64]; struct Opt2_725 *o64; };
+struct Opt2_725 { char pad[0x4c0]; Slider_725 *s4c0; };
+struct Game_725 { char pad[0x2a4]; Opt_725 *opt; char pad2[0x38]; Cur_725 *cur; };
+extern Game_725 *D_002A8490_g;
 extern "C" int __cdecl func_001361E0(int, int, int, unsigned int);
 extern int D_002B903C;
 struct C_000725B0 {
