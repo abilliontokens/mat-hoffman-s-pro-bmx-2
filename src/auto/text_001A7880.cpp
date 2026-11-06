@@ -162,6 +162,19 @@ struct C_001A7FC0 {
 };
 
 
+void SplashScreenManager_001A7880::func_001A7880()
+{
+    Obj_001A7880 *o = (Obj_001A7880 *)func_001E8A44(0x2d0);
+    Obj_001A7880 *p = o ? o->func_0013E4F0(1) : 0;
+    f1C0 = p;
+    p->func_0012B410(0x3f9f49f5, 0x280, 0x1c0);
+    D_002A8490->v15(f1C0, 0, 0, 0);
+    func_001577A0(f1C0, -1);
+    func_001A59F0();
+    func_001A7140();
+    func_001D3F50();
+}
+
 undefined4 C_001A7FC0::func_001A7FC0(byte param_1)
 {
   int func_001A7260(...);
@@ -215,8 +228,7 @@ void func_001A7FE0(State_001A7FE0 *state, Contact_001A7FE0 *contact)
         V4_001A7FE0 a = xform_001A7FE0(shape->f14, (float *)(body->f22c + 0xf0));
         V4_001A7FE0 b;
         for (int i=0; i<shape->f4; ++i) {
-            V4_001A7FE0 t = shape->f14 - shape->f24[i] * state->f100;
-            func_0011F540(&b, t, (float *)(body->f22c + 0xf0));
+            func_0011F540(&b, shape->f14 - shape->f24[i] * state->f100, (float *)(body->f22c + 0xf0));
             model->func_001A95B0(a,b,shape->f24[i],shape->f24[i+3],flags,other,state->f110,frame);
         }
         break;
@@ -227,8 +239,7 @@ void func_001A7FE0(State_001A7FE0 *state, Contact_001A7FE0 *contact)
         V4_001A7FE0 a, b;
         for (int i=0; i<count; ++i, count=mesh->f7c) {
             if (!mesh->f88[i]) continue;
-            V4_001A7FE0 t = state->fc0[i] + state->fc4[i] * state->fbc[i];
-            func_0011F540(&b, t,(float *)(body->f22c+0xf0));
+            func_0011F540(&b, state->fc0[i] + state->fc4[i] * state->fbc[i], (float *)(body->f22c+0xf0));
             func_0011F540(&a, state->fc0[i],(float *)(body->f22c+0xf0));
             model->func_001A95B0(a,b,mesh->f74[i],mesh->f78[i],flags,other,state->fac[i],frame);
         }
@@ -244,34 +255,36 @@ void func_001A7FE0(State_001A7FE0 *state, Contact_001A7FE0 *contact)
 }
 
 extern "C" void *__cdecl memset(void *, int, unsigned int);
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 SpringCollisionDetectionModel *SpringCollisionDetectionModel::func_001A8630(int param_1)
 {
+    V4_001A7FE0 *a = (V4_001A7FE0 *)&this->f34;
+    V4_001A7FE0 *b = (V4_001A7FE0 *)&this->f44;
     ((C_00157600 *)this)->func_00157600(param_1);
     vtbl = &D_0028BF14;
-    memset(&this->f34, 0, 12);
-    this->f40 = 0x3f800000;
-    this->f50 = 0x3f800000;
-    memset(&this->f44, 0, 12);
+    _ReadWriteBarrier();
+    a->Clear();
+    b->Clear();
     this->f58 = 0;
     this->f24 = 0;
     this->f28 = 0;
     this->f2C = 0;
     this->f54 = 0;
-    this->f64 = 0;
-    this->f68 = 0;
     this->f5C = 1;
     this->f60 = 1;
-    this->f34 = D_002AA140;
-    this->f38 = D_002AA144;
-    this->f3C = D_002AA148;
-    this->f40 = D_002AA14C;
-    this->f44 = D_002AA140;
-    this->f48 = D_002AA144;
-    this->f4C = D_002AA148;
-    this->f50 = D_002AA14C;
+    this->f64 = 0;
+    this->f68 = 0;
+    a->x = D_002AA140;
+    a->y = D_002AA144;
+    a->z = D_002AA148;
+    a->w = D_002AA14C;
+    b->x = D_002AA140;
+    b->y = D_002AA144;
+    b->z = D_002AA148;
+    b->w = D_002AA14C;
     return this;
 }
-
 void SpringCollisionDetectionModel::func_001A86D0(int param_1)
 {
     C_001A86D0_Body *body = (C_001A86D0_Body *)param_1;
