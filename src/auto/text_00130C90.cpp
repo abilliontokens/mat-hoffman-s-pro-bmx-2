@@ -33,6 +33,80 @@ struct S_KeyNode {
 
 void *func_001E8A44(int size);
 
+/* CarProceduralExtended: loads its key-frame track from a text file */
+struct S_00130C90_Vec4 {
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 w;
+};
+
+/* one 0x28-byte key: time plus two vectors */
+struct S_00130C90_Key {
+    f32 time;
+    int f4;
+    S_00130C90_Vec4 v8;
+    S_00130C90_Vec4 v18;
+};
+
+/* the 0x18-byte reference-counted block CarProceduralExtended::f518 points to */
+struct S_00130C90_Track {
+    int count;
+    int refs;
+    S_00130C90_Key *keys;
+    int fC;
+    int f10;
+    int f14;
+};
+
+struct S_00130C90_File {
+    int func_0013D310(char *name, char *key, int *h, int *node, int flag);
+    int func_0013AFB0(int h);
+    char *func_0013C6E0(int h, char *buf, int size);
+    void func_0013AFF0(int h, int off, int mode);
+    void func_0013C110(int h);
+    void func_0013B1F0(int h, void *obj);
+};
+
+struct C_00130C90VT {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35();
+    virtual void v36(); virtual void v37(); virtual void v38(); virtual void v39();
+    virtual void v40(); virtual void v41(); virtual void v42(); virtual void v43();
+    virtual void v44(); virtual void v45(); virtual void v46(); virtual void v47();
+    virtual void v48(int h);
+    virtual void v49();
+    virtual void v50();
+};
+
+struct C_00130C90 {
+    void *vtbl;
+    char pad4[0x400];
+    int f404;
+    char pad408[0x110];
+    S_00130C90_Track *f518;
+    int func_00130C90(char *name, int arg);
+};
+
+extern S_00130C90_File *D_002BEAAC;
+extern char D_002843B0[], D_002843A8[], D_00275FB4[], D_0028422C[], D_00276274[];
+extern char D_0027626C[], D_00276260[], D_00279058[], D_00276234[], D_00284398[];
+extern float D_002755E4;
+int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+void func_00030F30(char *dst, const char *src);
+int func_001E8BB0(char *a, char *b, unsigned int n);
+void func_001E8B76(char *str, char *fmt, ...);
+int func_001EA426(const char *a, const char *b);
+void __stdcall func_00011FF0(void *p, int stride, int count, void *ctor);
+void func_0012F460(void);
+
 static S_KeyNode *initKeyNode(S_KeyNode *n, f32 value, f32 time)
 {
     n->f0 = value;
