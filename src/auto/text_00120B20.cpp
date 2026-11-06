@@ -30,7 +30,7 @@ extern S_0011F4B0_V4 D_002A3C3C[3];
 extern S_0011F4B0_V4 D_002B9350[15];
 extern float D_00275544;
 
-static __forceinline void Cross_00120FF0(S_0011F4B0_V4 *a, S_0011F4B0_V4 *b, S_0011F4B0_V4 *out)
+static inline void Cross_00120FF0(S_0011F4B0_V4 *a, S_0011F4B0_V4 *b, S_0011F4B0_V4 *out)
 {
     _mm_storeu_ps(&out->x, _mm_shuffle_ps(
         _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a->x), _mm_shuffle_ps(_mm_loadu_ps(&b->x), _mm_loadu_ps(&b->x), 0xc9)),
