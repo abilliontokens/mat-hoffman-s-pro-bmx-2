@@ -1,6 +1,7 @@
 /* 13 functions from 0x00179B40 to 0x0017AA90, found by Ghidra. */
 #include "common.h"
 #include <string.h>
+#include "asm_helpers.h"
 struct ShadowPieceTable { char pad0[8]; int count; };
 struct DXRenderableObject { char pad0[0x1a4]; ShadowPieceTable *f1a4; };
 struct Alloc190;
@@ -219,36 +220,42 @@ int C_00179B40::func_00179B40(C_0017BB10 *a0, char *a1)
 {
     V4_0017A8F0 v[10];
     C_0017B9E0 t[4];
-    C_00179B40 *volatile self = this;
+    C_00179B40 *volatile selfp[1];
     C_00179B40 *p;
+    V4_0017A8F0 *q;
     int i, n, all, any;
     float d;
     int ad;
+    selfp[0] = this;
     for (i = 0; i < 10; i++) { v[i].z = 0; v[i].y = 0; v[i].x = 0; v[i].w = 1.0f; }
-    p = self;
-    d = (p->f28 * p->f68 + p->f24 * p->f64 + p->f2c * p->f6c) - (*(float *)(a1 + 0x174) * p->f68 + *(float *)(a1 + 0x170) * p->f64 + *(float *)(a1 + 0x178) * p->f6c);
+    p = selfp[0];
+    d = (p->f68 * p->f28 + p->f64 * p->f24 + p->f6c * p->f2c) - (p->f68 * *(float *)(a1 + 0x174) + p->f64 * *(float *)(a1 + 0x170) + p->f6c * *(float *)(a1 + 0x178));
     ad = *(int *)&d & 0x7fffffff;
     if (*(float *)&ad < *(float *)(a1 + 0x1fc)) {
         a0->func_0017BB10((C_0017B9E0 *)&D_002EFD38);
         return 1;
     }
-    p = self;
-    func_00161BE0(&v[0], &p->f24, 4, a1 + 0xf0, 16, 16);
-    all = -1; any = 0;
-    for (i = 0; i < 4; i++) { int c = func_001325D0(&v[i]); all &= c; any |= c; }
+    p = selfp[0];
+    func_00161BE0(&v[0], &p->f24, a1 + 0xf0, 4, 16, 16);
+    all = -1;
+    q = v;
+    any = 0;
+    for (i = 0; i < 4; i++) { int c = func_001325D0(q); all &= c; any |= c; q++; }
     if (any == 0) n = 4;
     else {
         if (all) return 0;
-        n = func_00132650(&v[0], &v[1], 4);
+        n = func_00132650(&v[0], &v[0], 4);
         if (n == 0) return 0;
     }
+    q = v;
     for (i = 0; i < n; i++) {
-        float r = D_00275460 / v[i].w;
-        v[i].x *= r;
-        v[i].y *= r;
+        float r = D_00275460 / q->w;
+        q->x *= r;
+        q->y *= r;
+        q++;
     }
     if (n == 4) {
-        ((C_0017BB10 *)a1)->func_0017BB10((C_0017B9E0 *)v);
+        a0->func_0017BB50(v);
         a0->func_0017BE40();
         return 1;
     }
@@ -263,11 +270,13 @@ int C_00179B40::func_00179B40(C_0017BB10 *a0, char *a1)
         return 1;
     }
     float minx = v[0].x, maxx = v[0].x, miny = v[0].y, maxy = v[0].y;
+    q = &v[1];
     for (i = 1; i < n; i++) {
-        if (v[i].x < minx) minx = v[i].x;
-        if (v[i].x > maxx) maxx = v[i].x;
-        if (v[i].y < miny) miny = v[i].y;
-        if (v[i].y > maxy) maxy = v[i].y;
+        if (q->x < minx) minx = q->x;
+        if (q->x > maxx) maxx = q->x;
+        if (q->y < miny) miny = q->y;
+        if (q->y > maxy) maxy = q->y;
+        q++;
     }
     *(float *)&t[0].unk0 = minx; *(float *)&t[0].unk4 = miny;
     *(float *)&t[1].unk0 = maxx; *(float *)&t[1].unk4 = miny;
@@ -361,6 +370,10 @@ C_0017A1D0 *C_0017A1D0::func_0017A310(C_0017A1D0_Vec4 *p)
     func_00179880();
     func_00179950();
     return this;
+}
+
+void func_0017A460(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
 C_0017A4D0 *C_0017A4D0::func_0017A4D0(int a0)
