@@ -95,7 +95,6 @@ struct C_001D6410 {
     void func_0005E7C0(float a, float b);
     void func_001D6600();
     void func_001D5AD0();
-    inline void setPosition(unsigned a, unsigned b) { setPos(a, b); }
     inline void setPos(unsigned a, unsigned b)
     {
         if (x != a || yi != b) {
@@ -375,13 +374,12 @@ void C_001A6B70::func_001A6B70()
 
 void C_001A6D30::func_001A6BA0()
 {
-    unsigned y = 0x43c48000;
     if (f6C == 9) {
         f48->func_0005E840(D_002A8490->f2e8->f4->f1248);
         f48->func_001D6600();
         if (f60) f40->func_001D5AD0(); else f38->func_001D5AD0();
         f44->func_0005E840(D_002A8490->f2e8->f4->f7a0);
-        f44->setPosition(0x43fa0000, y);
+        f44->setPos(0x43fa0000, 0x43c48000);
         f44->func_001D6600();
         if (f5C) f3C->func_001D5AD0(); else f34->func_001D5AD0();
     } else if (f6C == 3 || f6C == 6) {
@@ -397,7 +395,7 @@ void C_001A6D30::func_001A6BA0()
         unsigned x;
         if (f6C == 3) { f44->func_0005E840(D_002A8490->f2e8->f4->f11a0); x = 0x43af0000; }
         else { f44->func_0005E840(D_002A8490->f2e8->f4->f7a0); x = 0x43fa0000; }
-        f44->setPosition(x, y);
+        f44->setPos(x, 0x43c48000);
         f44->func_001D6600();
     }
 }
