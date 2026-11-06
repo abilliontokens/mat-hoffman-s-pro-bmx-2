@@ -272,8 +272,7 @@ struct C_001D48E0Base : C_001827B0 {
 };
 
 struct V4_001D48E0 {
-    volatile float x, y, z;
-    float w;
+    float x, y, z, w;
 };
 
 /* XboxRenderTarget */
