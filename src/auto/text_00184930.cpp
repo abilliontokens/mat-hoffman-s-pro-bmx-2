@@ -491,13 +491,12 @@ int C_00184930::func_00184FC0(void)
 
 int C_00184930::func_00185110(int a)
 {
-    unsigned int n = 5;
     if (!f388) return 1;
     if (!f388->f4) return 1;
     f3e0 = (S_00185110_Obj **)func_001E8A44(f388->f4 * 4);
     int i = 0;
     while (i < f388->f4) {
-        if (memcmp(f388->f8[i], D_002764F0, n) != 0) {
+        if (strcmp(f388->f8[i], "none") != 0) {
             S_00185110_Obj *p = (S_00185110_Obj *)func_001E8A44(0x7e0);
             f3e0[i] = p ? p->func_00197680(1) : 0;
             if (!f3e0[i]->func_001976A0(f388->f8[i], 1024.0f)) {
