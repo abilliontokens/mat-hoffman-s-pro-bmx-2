@@ -285,6 +285,20 @@ void func_001622C0(float *m, void *arg)
     m[15] = 1.0f;
 }
 
+void func_0011ACC0(void *out, void *a, void *b);
+void func_00162330(void *a, float *n, float *p1, float *p2, float *p3)
+{
+    __m128 mat[4];
+    float *m=(float *)mat;
+    __m128 trans[4];
+    float *s=(float *)trans;
+    setmatrix_00162330(m,p1[0],p1[1],p1[2],p2[0],p2[1],p2[2],p3[0],p3[1],p3[2]);
+    m[12]=0.0f; m[13]=0.0f; m[14]=0.0f;
+    m[3]=0.0f; m[7]=0.0f; m[11]=0.0f; m[15]=1.0f;
+    translate_00162330(s,-n[0],-n[1],-n[2]);
+    func_0011ACC0(a,s,m);
+}
+
 /* The part of the projection matrix that doesn't depend on the far plane. */
 static __forceinline void setprojcommon(float *m, float a2, float a3, float a4, float a5, float a6)
 {
