@@ -63,7 +63,7 @@ struct S_0005F3C0_8490 {
 struct S_0005F3C0_2E8 { int f0; int *f4; };
 struct Label_5F3 {
     char pad0[0x28];
-    float f28;
+    int f28;
     char pad2C[0x10];
     float f3C;
     float f40;
