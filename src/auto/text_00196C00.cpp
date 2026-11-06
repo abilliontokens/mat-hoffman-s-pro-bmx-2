@@ -249,6 +249,93 @@ struct C_00197820 {
 };
 
 
+extern float func_00196290(float v);
+extern int func_001968C0(void *self);
+extern void func_00195D40(float *out, float a, float b, float c, float d);
+extern void func_0015C7D0(float *out, float *a, float *b, float *c, float *d);
+extern int func_00016CF0(float v);
+void __fastcall func_00196C00(char *self, int, float dt)
+{
+    float t;
+    int i;
+    int n;
+    char *p;
+    int *arr;
+
+    *(float *)(self + 0x2c) = *(float *)(self + 0x28);
+    if (*(unsigned char *)(self + 0xc0) & 8) {
+        float v = func_00196290(*(float *)(self + 0x28));
+        float s = v - dt * *(float *)(self + 0x44);
+        *(float *)(self + 0x28) = s;
+        if (s < 0.0f) s = 0.0f;
+        *(float *)(self + 0x28) = s;
+    } else {
+        *(float *)(self + 0x28) += dt * *(float *)(self + 0x44);
+    }
+
+    if (*(unsigned char *)(self + 0xc0) & 0x20) return;
+
+    for (;;) {
+        if (*(float *)(self + 0x28) >= *(float *)(self + 0x48)) {
+            int r = func_001968C0(self);
+            *(unsigned char *)(self + 0xc0) ^= (r << 5) & 0x20;
+        }
+        if (!(*(unsigned char *)(self + 0xc0) & 0x20)) continue;
+        break;
+    }
+    if (*(float *)(self + 0x48) == *(float *)(self + 0x30)) return;
+
+    t = (*(float *)(self + 0x28) - *(float *)(self + 0x30)) /
+        (*(float *)(self + 0x48) - *(float *)(self + 0x30));
+    n = *(int *)(self + 0x74);
+    if (n <= 0) return;
+
+    for (i = 0; i < n; i++) {
+        p = ((char **)(self + 0x7c))[i];
+        if (p == 0) continue;
+        if (((int *)(self + 0x84))[i] == 0) continue;
+        if (((int *)(self + 0x80))[i] != 0) {
+            if (((int *)(self + 0x8c))[i] != 0) {
+                *(int *)p = ((int *)(self + 0xa0))[i];
+                continue;
+            }
+        } else {
+            if (((int *)(self + 0x8c))[i] != 0) {
+                *(int *)p = ((int *)(self + 0xa0))[i];
+                continue;
+            }
+            {
+                int ty = ((int *)(self + 0x88))[i];
+                if (ty == 3) {
+                    float q1[4], q2[4], q3[4];
+                    func_00195D40(q1,
+                                  ((float *)(self + 0x9c))[i * 4],
+                                  ((float *)(self + 0x9c))[i * 4 + 1],
+                                  ((float *)(self + 0x9c))[i * 4 + 2],
+                                  ((float *)(self + 0x9c))[i * 4 + 3]);
+                    func_00195D40(q2,
+                                  ((float *)(self + 0xa0))[i * 4],
+                                  ((float *)(self + 0xa0))[i * 4 + 1],
+                                  ((float *)(self + 0xa0))[i * 4 + 2],
+                                  ((float *)(self + 0xa0))[i * 4 + 3]);
+                    func_0015C7D0(q3, q1, q2, 0, 0);
+                    ((float *)(self + 0x7c))[i * 4] = q3[0];
+                    continue;
+                }
+                if (ty == 0) {
+                    *(float *)p = ((float *)(self + 0xa0))[i];
+                    continue;
+                }
+                if (ty == 1) {
+                    *(float *)p = ((float *)(self + 0x9c))[i] +
+                                  (((float *)(self + 0xa0))[i] - ((float *)(self + 0x9c))[i]) * t;
+                    continue;
+                }
+            }
+        }
+    }
+}
+
 float C_00197250::func_00197250(void) {
     return unk2C;
 }
@@ -378,89 +465,5 @@ void C_00197700::func_00197780()
         D_002EFDB8->f4->func_0012B3D0();
     }
     func_00137F90();
-}
-
-C_00197820 *C_00197820::func_00197820(int a0)
-{
-    C_00197820 *volatile self = this;
-    S_00197820_Mat *volatile m;
-    S_00197820_HdrInit(&self->f24);
-    self->func_00157600(a0);
-    self->vtbl = &D_0028B0E4;
-    S_00197820_VecInit(&self->f130);
-    S_00197820_VecInit(&self->f140);
-    S_00197820_VecInit(&self->f150);
-    S_00197820_VecInit(&self->f160);
-    self->f170 = 0;
-    self->f174 = 0;
-    self->f17C = 0;
-    self->f178 = 0;
-    m = &self->fB0;
-    S_00197820_Identity(m);
-    m = &self->fF0;
-    S_00197820_Zero(m);
-    self->f180 &= 0xfe;
-    self->f180 |= 0x80;
-    self->f18C = 0;
-    self->f24.f3 &= 0xfb;
-    self->f180 &= 0xfd;
-    self->f180 &= 0xfb;
-    self->f180 &= 0xf7;
-    self->f180 &= 0xef;
-    self->f180 &= 0xdf;
-    self->f130.x = 0; self->f130.y = 0; self->f130.z = 0;
-    self->f140.x = 0; self->f140.y = 0; self->f140.z = 0;
-    self->f180 &= 0xbf;
-    self->f150.x = 0; self->f150.y = 0; self->f150.z = 0;
-    self->f160.x = 0; self->f160.y = 0; self->f160.z = 0;
-    self->f28 = 0;
-    self->f190 = 0;
-    self->f24.f2 = D_002AAEC8->func_001BC6E0(D_0028AB70);
-    self->f20 = self->f24.f2;
-    self->f181 |= 1;
-    self->f181 &= 0xfd;
-    self->f194 = 0;
-    return self;
-}
-
-void C_00197AA0::func_00197AA0()
-{
-    if (!(f180 & 1)) {
-        if (f170 != 0) {
-            f170->func_00197AA0();
-            func_0011ACC0(fF0, fB0, f170->fF0);
-            f180 |= 1;
-        } else {
-            ((C_00197AA0_Mat *)fF0)->func_000264C0(fB0);
-            f180 |= 1;
-        }
-    }
-}
-
-void C_00197AA0::func_00197B10()
-{
-    if (f178 != 0) {
-        f178->func_00197B10();
-    }
-    if (f180 & 1) {
-        f180 &= 0xfe;
-        if (f174 != 0) {
-            f174->func_00197B10();
-        }
-    }
-}
-
-void C_00197B40::func_00197B40(float *a, float *b)
-{
-    if (a != 0) {
-        a[0] = fB8;
-        a[1] = fC8;
-        a[2] = fD8;
-    }
-    if (b != 0) {
-        b[0] = fB4;
-        b[1] = fC4;
-        b[2] = fD4;
-    }
 }
 
