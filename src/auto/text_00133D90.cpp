@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <math.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 static __forceinline float Min_133F10(float a,float b) {float r;_mm_store_ss(&r,_mm_min_ss(_mm_load_ss(&a),_mm_load_ss(&b)));return r;}
 static __forceinline float Sqrt_133F10(float a) {float r;_mm_store_ss(&r,_mm_sqrt_ss(_mm_load_ss(&a)));return r;}
@@ -187,11 +188,11 @@ float func_00133D90(Coll_00133D90 *obj, float *p, float r)
     float rad = r + obj->f48;
     float dx = obj->f28 - p[0];
     float dz = obj->f30 - p[2];
-    float res = sqrtf(dz * dz + dx * dx) - rad;
-    if (res <= D_00275544) {
-        res = D_00275544;
+    float res = AsmSqrtF(dz * dz + dx * dx) - rad;
+    if (res > D_00275544) {
+        return res;
     }
-    return res;
+    return D_00275544;
 }
 
 float func_00133DF0(Coll_00133D90 *a, Coll_00133D90 *b)
@@ -240,6 +241,106 @@ void Obj_00133ED0::func_00133EF0(int a)
 {
     v31(a);
     ((C_00133210 *)this)->func_00133210();
+}
+
+float __fastcall func_00133F10(void *self, int unused, void *arg)
+{
+    unsigned char *s = (unsigned char *)self;
+    float *f = (float *)self;
+    Mgr_00134770 *o = (Mgr_00134770 *)self;
+
+    if (!(s[0xa7] & 2)) {
+        s[0xa7] &= 0xdf;
+        return D_00276610;
+    }
+    float v[3];
+    v[0] = f[10] - f[14];
+    v[1] = f[11] - f[15];
+    v[2] = f[12] - f[16];
+    float d = v[1] * v[1] + v[2] * v[2] + v[0] * v[0];
+    f[19] -= Sqrt_133F10(d);
+    *(V4_00134980 *)(f + 14) = *(V4_00134980 *)(f + 10);
+    if (arg && f[19] > D_00275544)
+        return f[19];
+    f[19] = 0;
+    V4_00134980 a, b, c, e;
+    S_00134530_Iter iter;
+    iter.func_001A46F0();
+    o->v28();
+    s[0xa7] |= 16;
+    o->v30(&a.x, &b.x);
+    iter.func_001A4790(o->f98, 1, &a.x, &b.x, (int)&e, (int)&c, 1);
+    float m1 = e.x - (b.x + a.x), m2 = e.z - (b.z + a.z), m3 = a.z - b.z - c.z, m4 = a.x - b.x - c.x;
+    float best = Min_133F10(Min_133F10(Min_133F10(m4, m3), m1), m2);
+    Ent_00134770 *node;
+    while ((node = iter.func_001A4840()) != 0) {
+        float distance;
+        if (node->b2 == D_002A4330) {
+            Ent_00134770 *other = (Ent_00134770 *)((char *)node - 0x24);
+            other->flags |= 16;
+            distance = func_00133DF0((Coll_00133D90 *)self, (Coll_00133D90 *)other);
+            if (distance == D_00275544) {
+                best = 0;
+                if (o->func_001332E0(other) && o->v29(other)) {
+                    s[0xa7] |= 32;
+                    if (o->cb9c) o->cb9c(self, other);
+                    if (other->cbA0) other->cbA0(other, self);
+                }
+            } else if (distance < best) {
+                best = distance;
+                if (arg && distance < f[19]) arg = (void *)((unsigned int)arg * 2);
+            }
+        } else if (!(s[0xa7] & 1) && node->b2 == D_002A4331) {
+            V4_00134980 pos;
+            pos.x = node->w8 * *(float *)(D_002BF250 + 0x578);
+            pos.z = node->wC * *(float *)(D_002BF250 + 0x578);
+            distance = func_00133D90((Coll_00133D90 *)self, &pos.x, node->func_0014CC20());
+            if (distance == D_00275544) {
+                for (int i = 0; i < node->func_0014CA60(); i++) {
+                    Ent_00134770 *other = node->func_0014CA80(i);
+                    if (other) {
+                        other->flags |= 16;
+                        best = 0;
+                        if (o->v29(other)) {
+                            s[0xa7] |= 32;
+                            if (o->cb9c) o->cb9c(self, other);
+                            if (other->cbA0) other->cbA0(other, self);
+                        }
+                    }
+                }
+            } else if (arg && distance < best) {
+                best = distance;
+                if (distance < f[19]) arg = (void *)((unsigned int)arg * 2);
+            }
+        }
+    }
+    int active = 0;
+    for (int *p = (int *)o->f98; p; p = (int *)*p) {
+        int *q = (int *)p[1];
+        if (q[10] != q[11]) active = 1;
+    }
+    if (active) {
+        iter.func_001A4790(o->f98, 2, &a.x, &b.x, 0, 0, 0);
+        while ((node = iter.func_001A4840()) != 0) {
+            if (node->b2 == D_002A4330) {
+                Ent_00134770 *other = (Ent_00134770 *)((char *)node - 0x24);
+                other->flags |= 16;
+                if (func_00133DF0((Coll_00133D90 *)self, (Coll_00133D90 *)other) == D_00275544 &&
+                    o->func_001332E0(other) && o->v29(other)) {
+                    s[0xa7] |= 32;
+                    if (o->cb9c) o->cb9c(self, other);
+                    if (other->cbA0) other->cbA0(other, self);
+                }
+            }
+        }
+    }
+    if (s[0xa7] & 32) {
+        V4_00134980 pos;
+        pos.y = -10000;
+        *(V4_00134980 *)(f + 14) = pos;
+        return f[19] = D_00275544;
+    }
+    return f[19] = best;
 }
 
 void Mgr_00134770::func_00134530(int max, int *cnt, Ent_00134770 **list, int type, int noDist, int noSub)
