@@ -71,6 +71,17 @@ struct Vec4f_149620 {
     float w;
 };
 
+struct L_149ED0 {
+    Vec4f_149620 t;
+    float u;
+    float vv;
+    int h1;
+    Vec4f_149620 m[4];
+    int h2;
+    Vec4f_149620 v0;
+    V_149ED0 vtx2;
+};
+
 struct C_0014A3A0 : C_0001DFE0 {
     int unk8[8];
     int unk28[8];
@@ -218,6 +229,147 @@ int C_00149E70::func_00149E70(int param_1, int param_2, int param_3)
     unk4C = func_001FCE50(param_1, 0);
     hr = unk4C != 0 ? 0 : 0x8007000e;
     return hr >= 0;
+}
+
+int C_0014A3A0::func_00149ED0(int param_1, int param_2)
+{
+    void __stdcall func_001FFB30(void *p);
+    int __stdcall func_001FFE40(int a);
+    int func_00200210();
+    void __stdcall func_001FD450(int a);
+    void __stdcall func_001FEFE0(int a);
+    int __fastcall func_001FEBD0(int n, void *p);
+    void *__stdcall func_001FF410(void *buffer, int flags);
+    void __stdcall func_001FF940(int a, int b);
+    void __stdcall func_00200230(void *p);
+    void __stdcall func_00200390(int index, int value);
+    void __stdcall func_00200A90(int a, int b, int c);
+    void __stdcall func_001FF4E0(int a, int b, int c, int d, float e, int f);
+    void __stdcall func_001FEE00(int a, void *b, int c);
+
+    V_149ED0 vtx;
+    int h1;
+    Vec4f_149620 m[4];
+    int h2;
+    Vec4f_149620 v;
+    V_149ED0 vtx2;
+    Vec4f_149620 t;
+    int i;
+    unsigned int *p;
+    float f1;
+    float f2;
+
+    if (D_002A74D0 != 0) {
+        func_001FFB30(&vtx2);
+        h1 = func_001FFE40(0);
+        h2 = func_00200210();
+        func_001FD450(0);
+    }
+
+    p = (unsigned int *)m;
+    i = 4;
+    do {
+        p[2] = 0;
+        p[1] = 0;
+        p[0] = 0;
+        p[3] = 0x3f800000;
+        p += 4;
+        i--;
+    } while (i != 0);
+
+    f1 = D_00275460 / (float)unk50;
+    m[0] = unk5C[0];
+    m[1] = unk5C[1];
+    m[2] = unk5C[2];
+    m[3] = unk5C[3];
+    f2 = D_00275460 / (float)unk54;
+    m[0].x *= f1; m[0].y *= f2;
+    m[1].x *= f1; m[1].y *= f2;
+    m[2].x *= f1; m[2].y *= f2;
+    m[3].x *= f1; m[3].y *= f2;
+    func_001FEFE0(1);
+
+    v.x = 0; v.y = 0; v.z = 0; v.w = 1.0f;
+    func_001FEBD0(0, &v);
+    for (i = 0; i < 4; i++)
+        func_001FEBD0(0x22 + i, &m[i]);
+
+    D_002EFDB8->f6c->func_0014A650(unkE8);
+    D_002EFDB8->f70->func_00142D00(unkEC);
+
+    if (param_2 != 0) {
+        Vec4f_149620 *q = (Vec4f_149620 *)func_001FF410((void *)unkE4, 0x10);
+        t.x = 0; t.y = 0; t.z = 0; t.w = 1.0f; q[1] = t;
+        t.x = (float)unk50; t.y = 0; t.z = 0; t.w = 1.0f; q[3] = t;
+        t.x = (float)unk50; t.y = (float)unk54; t.z = 0; t.w = 1.0f; q[5] = t;
+        t.x = 0; t.y = (float)unk54; t.z = 0; t.w = 1.0f; q[7] = t;
+        func_001FEE00(0, (void *)unkE4, 0x20);
+    } else {
+        func_001FEE00(0, (void *)unkDC, 0x20);
+    }
+
+    {
+        int *q;
+        unsigned int flags = D_0020C6DC;
+        for (i = 0, q = &D_0020C720; q < &D_0020C920; i++, q += 0x20) {
+            q[-0x10] = 3;
+            q[-0xf] = 3;
+            q[-0xd] = 2;
+            q[-0xc] = 2;
+            q[-0xb] = 1;
+            q[-9] = 0;
+            q[-7] = 0;
+            q[-6] = 0;
+            q[-5] = 0;
+            q[-4] = 1;
+            q[0] = 1;
+            q[5] = 0;
+            flags |= (1 << i) | 0xc00;
+        }
+        D_0020C6DC = flags;
+    }
+
+    if (param_1 == -1)
+        param_1 = unk58;
+    if (param_1 > unk58)
+        param_1 = unk58;
+
+    for (i = 0; i < param_1; i++) {
+        vtx.f0 = 0;
+        vtx.f4 = 0;
+        vtx.f8 = unk9C[i];
+        vtx.fC = unkBC[i];
+        vtx.f10 = 0;
+        vtx.f14 = 0x3f800000;
+        func_001FF940(unk28[i], 0);
+        func_00200230(&vtx);
+        func_001FF4E0(0, 0, 0xf0, 0xfff020f0, 1.0f, 0);
+        if (i == 0) {
+            func_00200390(0, unk48);
+            func_00200390(1, unk48);
+            func_00200390(2, unk48);
+            func_00200390(3, unk48);
+        } else {
+            func_00200390(0, unk8[i - 1]);
+            func_00200390(1, unk8[i - 1]);
+            func_00200390(2, unk8[i - 1]);
+            func_00200390(3, unk8[i - 1]);
+        }
+        func_00200A90(8, 0, 4);
+    }
+
+    if (D_002A74D0 != 0) {
+        func_001FF940(h1, h2);
+        func_00201100(h1);
+        if (h2 != 0)
+            func_00201100(h2);
+        func_00200230(&vtx2);
+    }
+    func_00200390(0, 0);
+    func_00200390(1, 0);
+    func_00200390(2, 0);
+    func_00200390(3, 0);
+    return unk8[param_1 - 1];
 }
 
 undefined4 C_0014A360::func_0014A360(int param_1)
