@@ -184,14 +184,6 @@ struct IB_001858A0 {
     }
 };
 
-static __forceinline void Fill4_001858A0(u32 *p, u32 v)
-{
-    p[0] = v;
-    p[1] = v;
-    p[2] = v;
-    p[3] = v;
-}
-
 struct C_00185D00 {
     void *vtbl;
     int f4;
