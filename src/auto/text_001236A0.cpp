@@ -1,6 +1,7 @@
 /* 10 functions from 0x001236A0 to 0x00123F20, found by Ghidra. */
 #include "common.h"
 
+#include <string.h>
 extern int D_002B92F4;
 
 struct S_001236A0_Vec3 {
@@ -139,7 +140,7 @@ int func_00123C80(int a1, int a2, S_001236A0_Mat *a3, unsigned short a4, S_002B9
     int func_00120FF0(...);
     int r;
     __declspec(align(16)) S_001236A0_Mat m;
-    S_001236A0_Vec4 hi, lo;
+    S_001236A0_Vec4 box[2];
     S_001236A0_Node *node;
     if (a4 & 0x8000) {
         m = *a3;
@@ -152,15 +153,15 @@ int func_00123C80(int a1, int a2, S_001236A0_Mat *a3, unsigned short a4, S_002B9
     func_0011AC30(&m, &m);
     func_0011ACC0(&m, a6, &m);
     node = &tree->nodes[a4];
-    lo.x = node->v0.x;
-    lo.y = node->v0.y;
-    lo.z = node->v0.z;
-    lo.w = 1.0f;
-    hi.x = node->v1.x;
-    hi.y = node->v1.y;
-    hi.z = node->v1.z;
-    hi.w = 1.0f;
-    if (func_00120FF0(a1, a2, &lo, &hi, &m) != 0) {
+    box[1].x = node->v0.x;
+    box[1].y = node->v0.y;
+    box[1].z = node->v0.z;
+    box[1].w = 1.0f;
+    box[0].x = node->v1.x;
+    box[0].y = node->v1.y;
+    box[0].z = node->v1.z;
+    box[0].w = 1.0f;
+    if (func_00120FF0(a1, a2, &box[1], &box[0], &m) != 0) {
         r = func_00123C80(a1, a2, a3, node->left, tree, a6);
         if (r == 0) {
             return func_00123C80(a1, a2, a3, node->right, tree, a6);
