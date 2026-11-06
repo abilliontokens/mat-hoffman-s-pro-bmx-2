@@ -18,12 +18,17 @@ static __forceinline void Slice(Vec4 *P,Vec4 *N,const Vec4 *p,const Vec4 *a,cons
  if(vb[k]!=vc[k]&&((vb[k]<=pa[k]&&vc[k]>=pa[k])||(vb[k]>=pa[k]&&vc[k]<=pa[k]))){v[count]=b;v[count+1]=c;vn[count]=nb;vn[count+1]=nc;count+=2;}
  if(vc[k]!=va[k]&&((vc[k]<=pa[k]&&va[k]>=pa[k])||(vc[k]>=pa[k]&&va[k]<=pa[k]))){v[count]=c;v[count+1]=a;vn[count]=nc;vn[count+1]=na;}
   float t,s;
+ float px,py,pz,qx,qy,qz;
  int i;
  for(i=0;i<2;i++){
   t=(pa[k]-(&v[2*i]->x)[k])/((&v[2*i+1]->x)[k]-(&v[2*i]->x)[k]);
   s=D_00275460-t;
-  P[i]=*v[2*i]*s+*v[2*i+1]*t;
-  N[i]=*vn[2*i]*s+*vn[2*i+1]*t;
+  px=v[2*i]->x*s;py=v[2*i]->y*s;pz=v[2*i]->z*s;
+  qx=v[2*i+1]->x*t;qy=v[2*i+1]->y*t;qz=v[2*i+1]->z*t;
+  P[i]=Vec4(qx+px,qy+py,qz+pz);
+  px=vn[2*i]->x*s;py=vn[2*i]->y*s;pz=vn[2*i]->z*s;
+  qx=vn[2*i+1]->x*t;qy=vn[2*i+1]->y*t;qz=vn[2*i+1]->z*t;
+  N[i]=Vec4(qx+px,qy+py,qz+pz);
  }
  }
 #include <math.h>
