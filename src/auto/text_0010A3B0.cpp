@@ -281,7 +281,7 @@ void Hud_0010A3B0::func_0010A3B0()
     char prefix[5];
     char buf[256];
     char name[52];
-    int i, j, k, r;
+    int j, i, k, r;
     prefix[0] = 0;
     LOAD_ALL_TEX;
     NAME_LOOP5(47, 0x6858, 0x6858)
