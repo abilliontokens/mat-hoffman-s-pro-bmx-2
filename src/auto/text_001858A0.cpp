@@ -119,7 +119,7 @@ struct C_00185BF0 {
     int fc;
     char f10[0x104];
     char f114[0x410];
-    int f524, f528, f52c, f530, f534, f538, f53c, f540, f544;
+    float f524, f528, f52c, f530, f534, f538, f53c, f540, f544;
     C_00185BF0 *func_00185BF0(void);
     int func_00185D60(struct S_Stream3 *stream, int count);
 };
@@ -418,6 +418,77 @@ void C_00185D00::func_00185D00(void)
     if (fc != 0) {
         func_001E891B(fc);
     }
+}
+
+int C_00185BF0::func_00185D60(S_Stream3 *stream, int count)
+{
+    char buf2[0x104];
+    char buf[0x104];
+    int i;
+    float *fp = (float *)this;
+#define F8 (*(void ***)&f8)
+#define FC (*(int **)&fc)
+    if (!stream->func_00169710(&D_002897EC))
+        return 0;
+    stream->func_00168C20(&D_002897D8, 1, &f4);
+    if (f4 > 0) {
+        F8 = (void **)func_001E8A44(f4 * 4);
+        for (i = 0; i < f4; i++) {
+            F8[i] = func_001E8A44(0x104);
+            func_001ADCC0(buf, 0x104, &D_002867E8, &D_002897CC, i + 1);
+            if (!stream->func_00168BE0(buf, &D_002764F0, F8[i], -1) && i == 0) {
+                func_001ADCC0(buf, 0x104, &D_00276F28, &D_002897CC);
+                stream->func_00168BE0(buf, &D_002764F0, F8[0], -1);
+            }
+        }
+    }
+    if (count > 0) {
+        FC = (int *)func_001E8A44(count * 4);
+        for (i = 0; i < count; i++) {
+            func_001ADCC0(buf2, 0x104, &D_002867E8, &D_002897BC, i + 1);
+            stream->func_00168C20(buf2, 1, FC + i);
+            FC[i]--;
+        }
+    }
+    if (f4 == 1 && F8 && !memcmp(F8[0], &D_002764F0, 5)) {
+        func_001E891B(F8[0]);
+        F8[0] = 0;
+        f4 = 0;
+    }
+    char *name = (char *)this + 0x31c;
+    stream->func_00168BE0(&D_002897AC, &D_002764F0, name, -1);
+    if (memcmp(name, &D_002764F0, 5)) {
+        char *dot = strchr(name, '.');
+        if (dot)
+            memset(dot, 0, strlen(dot));
+        strcpy(buf2, name);
+        func_001ADCC0(name, 0x104, &D_002895A0, &D_002A5870, buf2);
+    }
+    stream->func_00168BE0(&D_002897A0, &D_002764F0, &f10, -1);
+    stream->func_00168C50(&D_00289790, 0, &f524);
+    stream->func_00168C50(&D_00289780, 0, &f528);
+    stream->func_00168C50(&D_0028976C, 0, &f52c);
+    stream->func_00168C50(&D_00289758, 0, &f530);
+    stream->func_00168C50(&D_00289744, 0, &f534);
+    if (!stream->func_00168C50(&D_0028973C, 0, &f538))
+        fp[0x538 / 4] = -fp[0x534 / 4];
+    if (!stream->func_00168C50(&D_00289734, 0, &f53c)) {
+        float t = fp[0x52c / 4] * fp[0x524 / 4];
+        fp[0x53c / 4] = t * D_00278784 + fp[0x534 / 4];
+    }
+    if (!stream->func_00168C50(&D_0028972C, 0, &f540))
+        fp[0x540 / 4] = -fp[0x534 / 4];
+    if (!stream->func_00168C50(&D_00289724, 0, &f544)) {
+        float t = fp[0x530 / 4] * fp[0x528 / 4];
+        fp[0x544 / 4] = t * D_00278784 + fp[0x534 / 4];
+    }
+    if (!stream->func_00168C50(&D_00289714, 0, (char *)this + 0x548))
+        *(u32 *)((char *)this + 0x548) = 0x42c00000;
+    stream->func_00168C50(&D_00289704, D_00289388, (char *)this + 0x54c);
+    stream->func_00168C50(&D_002896F4, D_0028938C, (char *)this + 0x550);
+    stream->func_00168BE0(&D_002896E8, &D_002764F0, f114, -1);
+    stream->func_00168BE0(&D_002896D0, &D_002764F0, (char *)this + 0x420, -1);
+    return 1;
 }
 
 C_00186170 *C_00186170::func_00186170(void)
