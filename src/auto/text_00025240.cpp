@@ -285,6 +285,11 @@ extern Vec4_257E0 D_002A0F94;
 extern "C" void func_00158390(float f, Vec4_257E0 a, Vec4_257E0 b, Vec4_257E0 *out);
 extern "C" float func_00161F80(float x);
 
+static __forceinline float Rand01_00025980(void)
+{
+    return (float)func_001E8833() * D_002754B0;
+}
+
 static __forceinline void Normalize_00025980(float *volatile outArg, const float *volatile inArg)
 {
     const float *in = inArg;
@@ -378,6 +383,94 @@ void *AmbientDebris::func_00025920(unsigned int flags)
         func_001E891B(this);
     }
     return this;
+}
+
+int C_00025980::func_00025980(float dt)
+{
+    Vec4_257E0 n;
+    Vec4_257E0 v;
+    Vec4_257E0 w;
+    int i;
+    int j;
+    int idx;
+    int count;
+    float a;
+    float b;
+
+    if (D_002A8490->unk124 == 0) {
+        if (f58 != 0 && f58 < D_002A8490->unk238) {
+            func_000255D0(&f74, f24, 0.0f, 1);
+            f58 = 0;
+        }
+        f2c = (int)(f2c * D_002755E8);
+        if (f54 < D_002A8490->unk238) {
+            count = f34;
+            idx = f48;
+            for (i = 0; i < count; i++) {
+                if (f64[idx]->f2c == 0 && f64[idx]->f2e == 0) {
+                    S_00025980_Pt *pt = &f64[idx]->f18[f64[idx]->f4 - 1];
+                    v.x = pt->x;
+                    v.y = pt->y;
+                    v.z = pt->z;
+                    v.w = 1.0f;
+                    func_000255D0(&v, 32.0f, 0.0f, 1);
+                    idx++;
+                    if (idx >= f34) {
+                        idx -= f34;
+                    }
+                    f48 = idx;
+                    f54 = (int)(D_002A8490->unk2e0->f10 * D_00276278 / f34) + D_002A8490->unk238;
+                    break;
+                }
+                idx++;
+                if (idx >= count) {
+                    idx -= count;
+                }
+            }
+        }
+        for (i = 0; i < f44; i++) {
+            for (j = 0; j < f70[i]->f14; j++) {
+                if (f70[i]->f18[j]->f24 == 0) {
+                    if ((float)func_001E8833() * D_002754B0 < D_00276088) {
+                        D_002B9120->unk4e0->f1a8[D_002A8490->unk2a4->f120]->f1e0->f22c->func_00199B00(&v, 0);
+                        w = *(Vec4_257E0 *)D_002A0F74;
+                        if (D_002B9120->unk24 != 0) {
+                            w.x = D_002754B0 * (float)func_001E8833() * D_00275994;
+                        } else {
+                            w.x = D_002754B0 * (float)func_001E8833() * D_0027599C + D_00275994;
+                        }
+                        func_00158390(D_002754B0 * (float)func_001E8833() * D_002756B8, D_002A0F94, w, &w);
+                        v.x = v.x + w.x;
+                        v.y = w.y + v.y;
+                        v.z = w.z + v.z;
+                        f70[i]->f18[j]->func_000223B0(v, 0.0f);
+                    }
+                }
+            }
+        }
+        f4c++;
+        if (f28 > D_00275544) {
+            f28 -= dt;
+            if (f28 < D_00275544) {
+                f28 = 0;
+            }
+        }
+        D_002B7E1C += dt;
+        a = func_00161F80(D_002B7E1C) * D_002756C8;
+        b = func_00161F80(D_002B7E1C + D_002755EC) * D_00276098;
+        n.x = func_00161F80(D_002B7E1C + D_00276524) * D_00276098;
+        n.y = 0;
+        n.z = b;
+        n.w = 1.0f;
+        Normalize_00025980(&n.x, &n.x);
+        v.x = n.x * a;
+        v.y = n.y * a;
+        v.z = n.z * a;
+        v.w = 1.0f;
+        f84 = v;
+        func_00157A00(dt);
+    }
+    return 1;
 }
 
 C_00025E10* C_00025E10::func_00025E10(void) {
