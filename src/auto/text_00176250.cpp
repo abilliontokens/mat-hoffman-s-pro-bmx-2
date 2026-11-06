@@ -25,6 +25,7 @@ struct S_00176250_Pal {
 /* dither row buffers: two rows of width*(B,G,R) accumulators in 8.19 fixed point */
 extern int D_002EFD18;
 extern int *D_002EFD1C[2];
+extern int *D_002EFD20;
 
 /* constant masks the original kept as globals (memory-operand AND/CMP/ADD) */
 extern int D_0007FFFF;
@@ -158,9 +159,181 @@ u32 func_00176250(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
 u32 _func_00176630(u8 *src, int fmt, int width, int height, int srcWidth, int dstWidth,
                   u8 *out888, u16 *out565, u16 *out555, u8 *outPal, S_00176250_Pal *pal)
 {
-    int bpp = func_001B2910(fmt);
-    return bpp + (pal != 0) + (out888 == src) + (out565 == out555) + (outPal == (u8 *)src)
-        + (srcWidth == dstWidth) + (height == width);
+    int bpp;
+    u8 *tbl;
+    Rgb3 *colors;
+    int pitch;
+    u8 *srcRow;
+    int rowBytes;
+    u16 *p555;
+    int off565;
+    u8 *rgbRow;
+    u8 *palRow;
+    int *cur;
+    int *nxt;
+    u8 *p888;
+    u8 *p8;
+    u16 *p565;
+    u16 *p555w;
+    int x;
+    int y;
+    int qR, qG, qB;
+    int eR, eG, eB;
+    u8 idx;
+    Rgb3 c;
+    int iR, iG, iB;
+    int t7;
+
+    bpp = func_001B2910(fmt);
+    if (pal == 0)
+        return bpp;
+    tbl = (u8 *)pal->func_00135410();
+    colors = (Rgb3 *)pal->func_00135400();
+    if (D_002EFD18 < width) {
+        if (D_002EFD1C[0] != 0)
+            func_001E8390(D_002EFD1C[0]);
+        D_002EFD18 = 0;
+        D_002EFD1C[0] = (int *)func_001E8AA5(width * 24);
+        if (D_002EFD1C[0] == 0)
+            return (u32)D_002EFD1C[0];
+        D_002EFD1C[1] = D_002EFD1C[0] + width * 12;
+        D_002EFD18 = width;
+    }
+    if (fmt == 0x22b)
+        func_00175210((u16 *)src, width);
+    else if (fmt == 0x235)
+        func_001751D0((u16 *)src, width);
+    else
+        func_001751A0(src, width);
+    pitch = bpp * srcWidth >> 3;
+    srcRow = src + pitch;
+    rowBytes = dstWidth * 3;
+    p555 = out555;
+    off565 = (int)((u8 *)out565 - (u8 *)out555);
+    rgbRow = out888;
+    palRow = outPal;
+    for (y = 0; y < height; y++) {
+        cur = D_002EFD1C[y % 2];
+        nxt = D_002EFD1C[1 - y % 2];
+        p888 = rgbRow;
+        p8 = palRow;
+        p565 = (u16 *)((u8 *)p555 + off565);
+        p555w = p555;
+        if (y != height - 1) {
+            if (fmt == 0x22b)
+                func_00175210((u16 *)srcRow, height);
+            else if (fmt == 0x235)
+                func_001751D0((u16 *)srcRow, height);
+            else
+                func_001751A0(srcRow, height);
+        }
+        for (x = 0; x < height; x++) {
+            eR = cur[2];
+            if (eR < 0)
+                qR = 0;
+            else if (eR >= 0x1000000)
+                qR = 0xffffff;
+            else {
+                qR = (eR + (eR >> 31 & D_0007FFFF)) >> 19 << 19;
+                if (eR - qR > D_00040000)
+                    qR += D_00080000;
+            }
+            eG = cur[1];
+            if (eG < 0)
+                qG = 0;
+            else if (eG >= 0x1000000)
+                qG = 0xffffff;
+            else {
+                qG = (eG + (eG >> 31 & D_0007FFFF)) >> 19 << 19;
+                if (eG - qG > D_00040000)
+                    qG += D_00080000;
+            }
+            eB = cur[0];
+            if (eB < 0)
+                qB = 0;
+            else if (eB >= 0x1000000)
+                qB = 0xffffff;
+            else {
+                qB = (eB + (eB >> 31 & D_0007FFFF)) >> 19 << 19;
+                if (eB - qB > D_00040000)
+                    qB += D_00080000;
+            }
+            if (pal != 0) {
+                iR = qR >= 0x1000000 ? 0xffffff : qR;
+                iG = qG >= 0x1000000 ? 0xffffff : qG;
+                iB = qB >= 0x1000000 ? 0xffffff : qB;
+                idx = tbl[(((iR >> 9) & 0xfffffc1f | iG >> 14) & D_0000FFE0) | (u16)(iB >> 19)];
+                c = colors[idx];
+                if (abs(eR - (c.r << 16)) <= 0 && abs(eG - (c.g << 16)) <= 0 && abs(eB - (c.b << 16)) <= 0) {
+                    qR = c.r << 16;
+                    qG = c.g << 16;
+                    qB = c.b << 16;
+                }
+            }
+            eR -= qR;
+            eG -= qG;
+            eB -= qB;
+            if (qR >= 0x1000000) {
+                cur[2] = 0xffffff;
+                qR = 0xffffff;
+            }
+            if (qG >= 0x1000000) {
+                cur[1] = 0xffffff;
+                qG = 0xffffff;
+            }
+            if (qB >= 0x1000000) {
+                cur[0] = 0xffffff;
+                qB = 0xffffff;
+            }
+            if (qR < 0)
+                qR = 0;
+            if (qG < 0)
+                qG = 0;
+            if (qB < 0)
+                qB = 0;
+            cur[2] = qR;
+            cur[1] = qG;
+            cur[0] = qB;
+            if (out888 != 0) {
+                p888[2] = qR >> 16;
+                p888[1] = cur[1] >> 16;
+                p888[0] = cur[0] >> 16;
+                p888 += 3;
+            }
+            if (out565 != 0)
+                *p565++ = ((cur[2] >> 8) & D_0000F81F | cur[1] >> 13) & D_0000FFE0 | cur[0] >> 19;
+            if (out555 != 0)
+                *p555w++ = ((cur[2] >> 9) & D_0000FC1F | cur[1] >> 14) & D_0000FFE0 | (u16)(cur[0] >> 19);
+            if (outPal != 0)
+                *p8++ = idx;
+            if (x < height - 1) {
+                t7 = eR * 7 / 16;
+                cur[5] += t7;
+                nxt[5] += -3 * eR / 16 - 5 * eR / 16 - t7 + eR;
+                t7 = eG * 7 / 16;
+                cur[4] += t7;
+                nxt[4] += -3 * eG / 16 - 5 * eG / 16 - t7 + eG;
+                t7 = eB * 7 / 16;
+                cur[3] += t7;
+                nxt[3] += -3 * eB / 16 - 5 * eB / 16 - t7 + eB;
+                nxt[2] += 5 * eR / 16;
+                nxt[1] += 5 * eG / 16;
+                nxt[0] += 5 * eB / 16;
+                if (x > 0) {
+                    nxt[-1] += 3 * eR / 16;
+                    nxt[-2] += 3 * eG / 16;
+                    nxt[-3] += 3 * eB / 16;
+                }
+            }
+            cur += 3;
+            nxt += 3;
+        }
+        srcRow += pitch;
+        rgbRow += rowBytes;
+        palRow += dstWidth * 2;
+        palRow += dstWidth;
+    }
+    return 1;
 }
 
 u32 func_00176CD0(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch)
