@@ -276,6 +276,7 @@ struct S_Slot {
     int f1C;
     u8 lo : 3;
     u8 busy : 1;
+    S_Slot();
     void reset()
     {
         f14 = 0;
