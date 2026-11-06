@@ -158,6 +158,8 @@ struct C_00198330 {
     f32 f144;
     C_00198330 *func_00198330(void *a0);
     void func_00199A70(C_00198330 *a0, Vec4 *a1);
+    void func_00197E70(Vec4 *v);
+    Vec4 *func_00197F70(Vec4 *out, Vec4 *in);
 };
 
 struct BmxWallPlantConstraint {
