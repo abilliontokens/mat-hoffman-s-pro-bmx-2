@@ -34,7 +34,7 @@ Mat4_001747F0 *func_001741C0(Mat4_001747F0 *out, Vec4_001747F0 *in);
 float func_00011170(Vec4_001747F0 *v);
 struct Emit_001747F0 {
     char pad0[0x234];
-    void (*fn)(int, Vec4_001747F0 *, Vec4_001747F0 *);
+    void (*fn)(int, int, Vec4_001747F0 *, Vec4_001747F0 *);
 };
 
 struct R_001747F0 {
@@ -116,6 +116,10 @@ int R_001747F0::func_001747F0(int a)
 {
     Vec4_001747F0 t1;
     Vec4_001747F0 t2;
+    Vec4_001747F0 t3;
+    Vec4_001747F0 t4;
+    Mat4_001747F0 m;
+    Mat4_001747F0 mSrc;
     float len2;
     float s;
 
@@ -147,6 +151,75 @@ int R_001747F0::func_001747F0(int a)
     v2B0.x = v6C.x;
     v2B0.y = v6C.y;
     v2B0.z = v6C.z;
+
+    len2 = v238.x * v238.x + v238.y * v238.y + v238.z * v238.z;
+    if (len2 > f220) {
+        s = AsmSqrtF(f220 / len2);
+        v238.x *= s;
+        v238.y *= s;
+        v238.z *= s;
+    }
+    v298.x = v238.x;
+    v298.y = v238.y;
+    v298.z = v238.z;
+
+    func_0001C680(&v7C, v140, (char *)p22C + 0xf0);
+
+    if (i28C == 0) { v268.x = 0; v7C.x = 0; v2F4.x = v7C.x; }
+    if (i290 == 0) { v268.y = 0; v7C.y = 0; v2F4.y = v7C.y; }
+    if (i294 == 0) { v268.z = 0; v7C.z = 0; v2F4.z = v7C.z; }
+
+    len2 = v7C.x * v7C.x + v7C.y * v7C.y + v7C.z * v7C.z;
+    if (len2 > f21C) {
+        s = AsmSqrtF(f21C / len2);
+        v7C.x *= s;
+        v7C.y *= s;
+        v7C.z *= s;
+    }
+    v2E8.x = v7C.x;
+    v2E8.y = v7C.y;
+    v2E8.z = v7C.z;
+
+    len2 = v268.x * v268.x + v268.y * v268.y + v268.z * v268.z;
+    if (len2 > f224) {
+        s = AsmSqrtF(f224 / len2);
+        v268.x *= s;
+        v268.y *= s;
+        v268.z *= s;
+    }
+    v2C8 = *func_001742F0(&t2, &v1A0, &v268);
+
+    v1A0 = *func_00174110(&t1, &v1A0);
+    m = *func_001741C0(&mSrc, &v1A0);
+    p22C->func_0019AD60(0, &m);
+    if (v160.x != 0.0f || v160.y != 0.0f || v160.z != 0.0f) {
+        t3 = *p22C->func_00197EC0(&t2, &v160);
+        float d = func_00011170(&t3);
+        if (d != 0.0f) {
+            Vec4_001747F0 sv;
+            float inv = 1.0f / d;
+            sv.x = t3.x * inv;
+            sv.y = t3.y * inv;
+            sv.z = t3.z * inv;
+            sv.w = t3.w;
+            p22C->func_00199CF0(&d, sv);
+        }
+    }
+    t4 = *p22C->func_00197F70(&t4, &v190);
+    v4C.x = v4C.x + (v150.x - t4.x);
+    v4C.y = v4C.y + (v150.y - t4.y);
+    v4C.z = v4C.z + (v150.z - t4.z);
+    p22C->func_00199960(0, &v4C);
+    p22C->func_0019AC50();
+    v248 = *v41(&t2);
+    v258 = *v44(&t2);
+    v130 = D_002A8C18;
+    v140 = D_002A8C18;
+    v170 = D_002A8C18;
+    v180 = D_002A8C18;
+    v150 = D_002A8C18;
+    v160 = D_002A8C18;
+    v37();
     return 1;
 }
 
