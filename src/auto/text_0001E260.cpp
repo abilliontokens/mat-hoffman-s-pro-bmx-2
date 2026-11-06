@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <xmmintrin.h>
 #include "ghidra.h"
+#include "asm_helpers.h"
 extern u8 D_002A0B18[];
 struct Vec4 {
     float x, y, z, w;
@@ -221,11 +222,11 @@ static __forceinline float vec3_invLength(float lengthSquared) {
 void GR_BitString::func_0001E260(int a0)
 {
     union { unsigned int i; unsigned short s[2]; unsigned char c[4]; } u;
-    int m = 32 - a0;
     int words = ((int)unk4 + 31) / 32;
     u32 *last = (u32 *)unk8 + words - 1;
     u32 *prev = last;
-    u32 *cur = last + 1;
+    char *cur = (char *)(last + 1);
+    int m = 32 - a0;
     int i;
     u32 v;
 
@@ -233,11 +234,11 @@ void GR_BitString::func_0001E260(int a0)
     u.i = (u32)(((u.c[0] << 8 | u.c[1]) << 8 | (unsigned char)u.s[1]) << 8 | (unsigned char)(u.s[1] >> 8)) >> a0;
     *last = ((u.c[0] << 8 | u.c[1]) << 8 | (unsigned char)u.s[1]) << 8 | (unsigned char)(u.s[1] >> 8);
     for (i = words - 1; i != 0; i--) {
-        cur--;
+        cur -= 4;
         prev--;
         if (*prev != 0) {
             if (*prev == 0xffffffff) {
-                *cur |= D_002A0C18[a0];
+                *(u32 *)cur |= D_002A0C18[a0];
                 *prev = ~D_002A0C18[a0];
             } else {
                 unsigned char *b = (unsigned char *)prev;
@@ -245,7 +246,7 @@ void GR_BitString::func_0001E260(int a0)
                 v = *prev << m;
                 if (v != 0) {
                     u.i = v;
-                    *cur |= ((u.c[0] << 8 | u.c[1]) << 8 | (unsigned char)u.s[1]) << 8 | (unsigned char)(u.s[1] >> 8);
+                    *(u32 *)cur |= ((u.c[0] << 8 | u.c[1]) << 8 | (unsigned char)u.s[1]) << 8 | (unsigned char)(u.s[1] >> 8);
                 }
                 v = *prev >> a0;
                 *prev = v;
@@ -256,12 +257,30 @@ void GR_BitString::func_0001E260(int a0)
             }
         }
     }
-    cur--;
+    cur -= 4;
     if (unk18 == 0) {
-        *cur &= ~D_002A0C18[a0];
+        *(u32 *)cur &= ~D_002A0C18[a0];
     } else {
-        *cur |= D_002A0C18[a0];
+        *(u32 *)cur |= D_002A0C18[a0];
     }
+}
+
+GR_BitString *GR_BitString::func_0001E3F0(u32 *a0, u32 a1, int a2) {
+    unk4 = a1;
+    unk18 = a2 ? -1 : 0;
+    unk14 = 0;
+    vtbl = &D_00275F7C;
+    unk8 = a0;
+    unk1C = 1;
+    unkC = a0;
+    unk10 = 0x80;
+    D_002B7D4C = a0;
+    D_002B7D54 = 0;
+    u32 v = *a0;
+    u32 b3 = ((u8 *)a0)[3];
+    u16 b2 = ((u8 *)&v)[2] << 8;
+    D_002B7D50 = (((v << 16) | (v & 0xFF00)) << 8) | b2 | b3;
+    return this;
 }
 
 void GR_BitString::func_0001E460() {
@@ -269,6 +288,24 @@ void GR_BitString::func_0001E460() {
     if (unk1C == 0 && unk8 != 0) {
         func_001E891B(unk8);
     }
+}
+
+void GR_BitString::func_0001E480(int *out) {
+    u8 *p = (u8 *)unk8;
+    if (p == 0 || unk4 == 0)
+        return;
+    int bytes = ((int)unk4 + 7) / 8;
+    int n = bytes / 2;
+    u8 *q = (u8 *)unk8 + bytes;
+    do {
+        u8 *e = q - 1;
+        u8 a = D_002A0B18[*p];
+        u8 b = D_002A0B18[*e];
+        q = e;
+        *p++ = b;
+        *q = a;
+    } while (--n);
+    *out = -((8 - (int)unk4 % 8) % 8);
 }
 
 #pragma optimize("y", off)
@@ -522,19 +559,23 @@ void *C_0001E930::func_0001E930(unsigned int flags) {
     return this;
 }
 
+#pragma optimize("y", on)
 float func_0001E960(float lengthSquared)
 {
-    __m128 v = _mm_load_ss(&lengthSquared);
+    __m128 v;
     __m128 r;
+    __m128 eps;
 
-    v = _mm_add_ss(v, _mm_and_ps(_mm_cmplt_ss(v, _mm_load_ss(&D_00275FC8)), _mm_load_ss(&D_00275FC8)));
+    v = _mm_load_ss(&lengthSquared);
+    eps = _mm_load_ss(&D_00275FC8);
+    v = _mm_add_ss(v, _mm_and_ps(_mm_cmplt_ss(v, eps), eps));
     r = _mm_rsqrt_ss(v);
-    v = _mm_mul_ss(_mm_mul_ss(v, r), r);
-    r = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_00275FC0)), _mm_sub_ss(_mm_load_ss(&D_00275FC4), v));
+    r = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_00275FC0)),
+                   _mm_sub_ss(_mm_load_ss(&D_00275FC4), _mm_mul_ss(_mm_mul_ss(v, r), r)));
     _mm_store_ss(&lengthSquared, r);
     return lengthSquared;
 }
-
+#pragma optimize("", on)
 void func_0001E9B0(float *out, float *a, float *b)
 {
     vec3_set(out, a[0] * b[0], a[1] * b[1], a[2] * b[2]);
@@ -549,15 +590,21 @@ float *func_0001E9E0(float *out, float *v)
  return out;
 }
 
+void func_0001EA40(float *out, float *in) {
+    AsmVec3Normalize(out, in);
+}
+
 #pragma optimize("y", on)
 void func_0001EAB0(float *out, float *a, float *b)
 {
-    _mm_storeu_ps(out, _mm_shuffle_ps(
-        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
-                   _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9))),
-        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
-                   _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9))),
-        0xc9));
+    __m128 va = _mm_loadu_ps(a);
+    __m128 vb = _mm_loadu_ps(b);
+    __m128 sa = _mm_shuffle_ps(va, va, 0xc9);
+    __m128 sb = _mm_shuffle_ps(vb, vb, 0xc9);
+    __m128 r = _mm_sub_ps(_mm_mul_ps(va, sb), _mm_mul_ps(vb, sa));
+
+    r = _mm_shuffle_ps(r, r, 0xc9);
+    _mm_storeu_ps(out, r);
 }
 #pragma optimize("", on)
 void C_0001EAF0::func_0001EAF0(Vec4 v)
@@ -587,17 +634,16 @@ void C_0001EAF0::func_0001EB50(Vec4 v)
 C_0001EBB0 *C_0001EBB0::func_0001EBB0(int a0)
 {
     int *u;
-    int *p;
     int v;
 
     func_00157600(a0);
     u = (int *)this;
     u[0] = (int)&D_00276004;
-    p = &u[0x27]; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
-    p = &u[0x2f]; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
-    p = &u[0x33]; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
-    p = &u[0x41]; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
-    p = &u[0x49]; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    u[0x27] = u[0x28] = u[0x29] = 0; u[0x2a] = 0x3f800000;
+    u[0x2f] = u[0x30] = u[0x31] = 0; u[0x32] = 0x3f800000;
+    u[0x33] = u[0x34] = u[0x35] = 0; u[0x36] = 0x3f800000;
+    u[0x41] = u[0x42] = u[0x43] = 0; u[0x44] = 0x3f800000;
+    u[0x49] = u[0x4a] = u[0x4b] = 0; u[0x4c] = 0x3f800000;
     u[0xb] = 1;
     u[0xc] = 0;
     u[0x26] = 0;
