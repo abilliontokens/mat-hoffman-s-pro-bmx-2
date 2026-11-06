@@ -392,19 +392,20 @@ void func_001640D0(C_1640D0_Obj *a1, C_1640D0_Obj *a2, int axis, S_Vec4_1640D0 *
 
 void func_001641B0(int mode, float *v)
 {
+    float x = v[1];
+    float y = v[2];
+    float z = v[3];
+
     if (mode == 0) {
-        v[1] = -(-v[1]);
-        v[2] = -v[2];
-        v[3] = -v[3];
+        x = -x;
     } else if (mode == 1) {
-        v[1] = -v[1];
-        v[2] = -(-v[2]);
-        v[3] = -v[3];
+        y = -y;
     } else if (mode == 2) {
-        v[1] = -v[1];
-        v[2] = -v[2];
-        v[3] = -(-v[3]);
+        z = -z;
     }
+    v[1] = -x;
+    v[2] = -y;
+    v[3] = -z;
 }
 
 float func_00164220(float a, float b, float c)
