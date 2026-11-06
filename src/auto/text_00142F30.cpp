@@ -1,6 +1,16 @@
 /* 19 functions from 0x00142F30 to 0x00143C00, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#define F143660_INT 0
+#if F143660_INT
+#define F143660_RET int
+#define F143660_VAL 1
+#define F143660_TAIL return
+#else
+#define F143660_RET void
+#define F143660_VAL
+#define F143660_TAIL
+#endif
 struct WaveBuffer {
  virtual void v0();
  virtual void v1();
@@ -315,6 +325,88 @@ struct DXSignatureWave {
 };
 
 
+void Alloc190::func_00142F30(int a)
+{
+    Alloc190 * volatile self = this;
+    Mat_1432B0 t;
+    Mat_1432B0 * volatile p;
+    Mat_1432B0 * volatile dst;
+    const Mat_1432B0 * volatile src;
+    int func_000263B0(...);
+    int func_00030AC0(...);
+    int func_0011ACC0(...);
+
+    p = &t;
+    p->transpose((const Mat_1432B0 *)((char *)f4 + 0xf0));
+    {
+        Alloc190 *s = self;
+        DXRenderableObject *o = s->f4;
+        if (o->f1d4) {
+            func_000263B0((char *)s + 0x90, (char *)o + 0xf0, a + 0x290);
+            src = (const Mat_1432B0 *)(a + 0x290);
+            dst = (Mat_1432B0 *)((char *)self + 0x50);
+            Mat_Copy_1432B0(dst, src);
+        } else {
+            func_000263B0((char *)s + 0x90, (char *)o + 0xf0, a + 0x250);
+            src = (const Mat_1432B0 *)(a + 0x250);
+            dst = (Mat_1432B0 *)((char *)self + 0x50);
+            Mat_Copy_1432B0(dst, src);
+        }
+    }
+    {
+        Alloc190 *s = self;
+        *(float *)((char *)s + 0x150) = *(float *)(a + 0x170) - *(float *)((char *)s->f4 + 0xfc);
+    }
+    {
+        Alloc190 *s = self;
+        *(float *)((char *)s + 0x154) = *(float *)(a + 0x174) - *(float *)((char *)s->f4 + 0x10c);
+    }
+    {
+        Alloc190 *s = self;
+        *(float *)((char *)s + 0x158) = *(float *)(a + 0x178) - *(float *)((char *)s->f4 + 0x11c);
+    }
+    p = &t;
+    {
+        float *v = (float *)((char *)self + 0x150);
+        p->xform(v, v);
+    }
+    {
+        Alloc190 *s = self;
+        DXRenderableObject *o = s->f4;
+        if (o->f1a3 && *(int *)((char *)o + 0x18c)) {
+            D_002E2930->func_0015F880(*(int *)((char *)o + 0x18c),
+                Vec4_143660(*(float *)((char *)o + 0xbc), *(float *)((char *)o + 0xcc), *(float *)((char *)o + 0xdc), 1.0f),
+                D_002A6E78, (char *)s + 0xd0, (char *)s + 0x110, 0);
+            {
+                Alloc190 *s2 = self;
+                if (*(int *)((char *)s2->f4 + 0x190) <= 1) {
+                    char *q = (char *)s2 + 0xd0;
+                    func_00030AC0(q, q, &t);
+                    q = (char *)self + 0xe0;
+                    func_00030AC0(q, q, &t);
+                    q = (char *)self + 0xf0;
+                    func_00030AC0(q, q, &t);
+                }
+            }
+        } else {
+            D_002E2930->func_0015E420((char *)s + 0xd0, (char *)s + 0x110, 0);
+            {
+                Alloc190 *s2 = self;
+                if (*(int *)((char *)s2->f4 + 0x190) <= 1) {
+                    char *q = (char *)s2 + 0xd0;
+                    func_00030AC0(q, q, &t);
+                }
+            }
+        }
+    }
+    {
+        Alloc190 *s = self;
+        func_0011ACC0((char *)s + 0x10, (char *)s->f4 + 0xf0, a + 0xb0);
+    }
+    ((Vec4_143660 *)((char *)self + 0x170))->SetRef(*(Vec4_143660 *)(a + 0x170));
+    ((Vec4_143660 *)((char *)self + 0x180))->SetRef(*(Vec4_143660 *)((char *)D_002EFDB8 + 0x74));
+}
+
 DXRenderableObjectData *DXRenderableObjectData::func_00143520(void)
 {
     func_00181410();
@@ -369,13 +461,15 @@ void DXRenderableObject::func_00143660(void)
 {
     ShadowPiece *piece;
     int i;
+    bool one = true;
 
-    if (!(f181 & 1))
+    if (!(one & f181))
         return;
     if (f1d4 == -1)
-        f1d4 = (D_002A829C->f14[*f1b8].f4->f54->f24 >> 3) & 1;
+        f1d4 = (D_002A829C->f14[*f1b8].f4->f54->f24 >> 3) & one;
     ((Alloc190 *)f1d0)->func_00142F30(D_002EFDB8[1]);
-    ((Alloc190 *)f1d0)->f160.SetRef(Vec4_143660(f1c0.x, f1c0.y, f1c0.z, f1c0.w));
+    Vec4_143660 v(f1c0.x, f1c0.y, f1c0.z, f1c0.w);
+    ((Alloc190 *)f1d0)->f160 = v;
     piece = &f1a4->pieces[f1a0];
     for (i = 0; i < piece->count; i++)
         piece->items[i].func_001446B0((int)f1d0, (int)this, f1b8[piece->items[i].f4]);
