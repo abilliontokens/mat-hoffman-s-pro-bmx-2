@@ -36,6 +36,17 @@ struct C_001C1110 {
     char pad30[8];
     void *f38;
     void *f3c;
+    __forceinline void Check(void)
+    {
+        if (f38 == 0 || f3c == 0) {
+            if (f38 != 0) {
+                v7();
+            }
+            if (f3c != 0) {
+                v5();
+            }
+        }
+    }
     void func_001C1110(void);
 };
 
@@ -458,14 +469,18 @@ done:
 void C_001C1110::func_001C1110(void)
 {
   f2c = 0;
-  if (f38 == 0 || f3c == 0) {
-    if (f38 != 0) {
-      v7();
-    }
+  if (f38 != 0) {
     if (f3c != 0) {
-      v5();
+      goto done;
     }
   }
+  if (f38 != 0) {
+    v7();
+  }
+  if (f3c != 0) {
+    v5();
+  }
+done:
   v5();
 }
 
