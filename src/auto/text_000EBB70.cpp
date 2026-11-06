@@ -29,7 +29,12 @@ struct DelObjC_000EB {
 
 struct C_001D6600 {
     void func_001D6600();
+    void func_0005E840(int a0);
 };
+int func_00092A10();
+struct S_EBE90_Sel { int pad0; struct S_EBE90_Page *f4; };
+struct S_EBE90_Page { char pad0[0x7c8]; int f7c8; char pad7cc[0xa48 - 0x7cc]; int fa48; int fa4c_unused; int fa50_pad; };
+struct S_EBE90_Ctx { char pad0[0x274]; int f274; };
 
 struct C_000EBB_Elem {
     char pad0[0x38];
