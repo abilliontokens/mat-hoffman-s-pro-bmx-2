@@ -128,6 +128,13 @@ struct S_00087D20_Sprite {
             b58 |= 1;
         }
     }
+    void SetF28(float v)
+    {
+        if (f28 != v) {
+            f28 = v;
+            b58 |= 1;
+        }
+    }
 };
 
 struct S_00087D20_Label {
@@ -231,52 +238,60 @@ struct DirectionArrowOverlay {
 
 void C_00087D20::func_00087D20()
 {
-    C_00087D20_Config cfg;
-    char path[0x104];
-    char section[0x104];
-    S_00087D20_Vec vLabel1 = {0.0f, 0.0f, 0.0f, 1.0f};
-    S_00087D20_Vec vLabel2 = {0.0f, 0.0f, 0.0f, 1.0f};
-    S_00087D20_Vec vSprite1 = {0.0f, 0.0f, 0.0f, 1.0f};
-    S_00087D20_Vec vSprite2 = {0.0f, 0.0f, 0.0f, 1.0f};
-    int count;
-    char c1[4];
-    char c2[4];
+    S_00087D20_Frame fr;
     int val;
+    S_00087D20_Sprite *o;
 
-    cfg.func_00168280();
-    func_001ADCC0(path, 0x104, D_0027953C, D_002A5348);
-    if (cfg.func_00169490(path, 0) == 0) goto done;
-    {
-        int mode = *(int *)(*(int *)((char *)D_002A8490 + 0x2e0) + 8);
-        if (mode == 0) {
-            func_001ADCC0(section, 0x104, D_00279870);
-        } else if (mode == 2) {
-            func_001ADCC0(section, 0x104, D_00279854);
-        } else {
-            func_001ADCC0(section, 0x104, D_00279838);
-        }
+    fr.vLabel1.z = 0.0f;
+    fr.vLabel1.y = 0.0f;
+    fr.vLabel1.x = 0.0f;
+    fr.vLabel1.w = 1.0f;
+    fr.vLabel2.z = 0.0f;
+    fr.vLabel2.y = 0.0f;
+    fr.vLabel2.x = 0.0f;
+    fr.vLabel2.w = 1.0f;
+    fr.vSprite1.z = 0.0f;
+    fr.vSprite1.y = 0.0f;
+    fr.vSprite1.x = 0.0f;
+    fr.vSprite1.w = 1.0f;
+    fr.vSprite2.z = 0.0f;
+    fr.vSprite2.y = 0.0f;
+    fr.vSprite2.x = 0.0f;
+    fr.vSprite2.w = 1.0f;
+    fr.cfg.func_00168280();
+    func_001ADCC0(fr.path, 0x104, D_0027953C, D_002A5348);
+    if (fr.cfg.func_00169490(fr.path, 0) == 0) goto done;
+    val = *(int *)(*(int *)((char *)D_002A8490 + 0x2e0) + 8);
+    if (val == 0) {
+        func_001ADCC0(fr.section, 0x104, D_00279870);
+    } else if (val == 2) {
+        func_001ADCC0(fr.section, 0x104, D_00279854);
+    } else {
+        func_001ADCC0(fr.section, 0x104, D_00279838);
     }
-    if (cfg.func_00169710(section) == 0) goto done;
-    cfg.func_00168CB0(D_0027945C, &D_002A2034, &vLabel1);
-    cfg.func_00168BE0(D_00279448, D_00279258, c1, -1);
-    cfg.func_00168CB0(D_00279830, &D_002A2034, &vLabel2);
-    cfg.func_00168BE0(D_0027981C, D_00279258, c2, -1);
-    cfg.func_00168CB0(D_00279418, &D_002A2034, &vSprite1);
-    cfg.func_00168CB0(D_00279408, &D_002A2034, &vSprite2);
-    cfg.func_00168C20(D_002793F8, 0, &count);
-    f2C->SetPos(vSprite1.x, vSprite1.y);
-    if ((float)count != f2C->f28) {
-        f2C->f28 = (float)count;
-        f2C->b58 |= 1;
+    if (fr.cfg.func_00169710(fr.section) == 0) goto done;
+    fr.cfg.func_00168CB0(D_0027945C, &D_002A2034, &fr.vLabel1);
+    fr.cfg.func_00168BE0(D_00279448, D_00279258, fr.c1, -1);
+    fr.cfg.func_00168CB0(D_00279830, &D_002A2034, &fr.vLabel2);
+    fr.cfg.func_00168BE0(D_0027981C, D_00279258, fr.c2, -1);
+    fr.cfg.func_00168CB0(D_00279418, &D_002A2034, &fr.vSprite1);
+    fr.cfg.func_00168CB0(D_00279408, &D_002A2034, &fr.vSprite2);
+    fr.cfg.func_00168C20(D_002793F8, 0, &fr.count);
+    o = f2C;
+    o->SetPos(fr.vSprite1.x, fr.vSprite1.y);
+    if ((float)fr.count != o->f28) {
+        o->f28 = (float)fr.count;
+        o->b58 |= 1;
     }
-    f30->SetPos(vSprite2.x, vSprite2.y);
-    if ((float)count != f30->f28) {
-        f30->f28 = (float)count;
-        f30->b58 |= 1;
+    o = f30;
+    o->SetPos(fr.vSprite2.x, fr.vSprite2.y);
+    if ((float)fr.count != o->f28) {
+        o->f28 = (float)fr.count;
+        o->b58 |= 1;
     }
-    f24->SetPos(vLabel1.x, vLabel1.y);
-    f28->SetPos(vLabel2.x, vLabel2.y);
-    switch (c1[0]) {
+    f24->SetPos(fr.vLabel1.x, fr.vLabel1.y);
+    f28->SetPos(fr.vLabel2.x, fr.vLabel2.y);
+    switch (fr.c1[0]) {
     case 'L':
     case 'l':
         val = D_0028F5DC;
@@ -292,12 +307,12 @@ void C_00087D20::func_00087D20()
     default:
         goto second;
     }
-    if (f24->f44 != val) {
+    if (val != f24->f44) {
         f24->f44 = val;
         f24->b4e |= 6;
     }
 second:
-    switch (c2[0]) {
+    switch (fr.c2[0]) {
     case 'L':
     case 'l':
         val = D_0028F5DC;
@@ -313,12 +328,12 @@ second:
     default:
         goto done;
     }
-    if (f28->f44 != val) {
+    if (val != f28->f44) {
         f28->f44 = val;
         f28->b4e |= 6;
     }
 done:
-    cfg.func_001691E0();
+    fr.cfg.func_001691E0();
 }
 
 SplitScreenSeparator *SplitScreenSeparator::func_00088530(int param_1)
