@@ -7,7 +7,7 @@ extern char D_0000FFF8[];
 extern char D_0000F81F[];
 extern char D_0000FFFC[];
 
-static inline void Downsample555Row(unsigned int *src, unsigned short *dst, int count, int srcPitch)
+static __forceinline void Downsample555Row(unsigned int *src, unsigned short *dst, int count, int srcPitch)
 {
     do {
         unsigned int sum = 0;
