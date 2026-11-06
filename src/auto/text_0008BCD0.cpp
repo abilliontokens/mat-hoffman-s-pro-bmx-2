@@ -27,6 +27,14 @@ struct Str_0008BCD0 {
 };
 extern Str_0008BCD0 D_00278664;
 extern Str_0008BCD0 D_002A60B0;
+extern int D_00278668;
+extern int D_0027866C;
+extern int D_00278670;
+extern char D_00278674;
+extern int D_002A60B4;
+extern int D_002A60B8;
+extern int D_002A60BC;
+extern char D_002A60C0;
 
 void *func_001E8A44(unsigned int size);
 
