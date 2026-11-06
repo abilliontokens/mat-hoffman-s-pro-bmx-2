@@ -119,11 +119,6 @@ static __forceinline int Min_0018E3E0(int a, int b)
     return b > a ? a : b;
 }
 
-static __forceinline unsigned int Ld_0018E250(const unsigned int &x)
-{
-    return x;
-}
-
 /* named value slot: flags (type in byte 1), pointer to the stored value, linked list of slots */
 struct Node_0018EA50 {
     unsigned int flags;
