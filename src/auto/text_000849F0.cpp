@@ -8,6 +8,68 @@ extern char D_00279560[];
 extern char D_00279550[];
 extern char D_00277038[];
 
+void *func_001E8A44(int size);
+struct Spr_849F0 {
+    char pad0[0x28];
+    unsigned f28;
+    char pad2C[8];
+    unsigned f34;
+    char pad38[4];
+    unsigned f3C, f40, f44, f48;
+    char pad4C[0xC];
+    unsigned char f58;
+    char pad59[0x64 - 0x59];
+    Spr_849F0 *func_001D5760();
+    void func_001D5810(void *a, unsigned x, unsigned y, int z);
+    void func_00051140(unsigned v);
+    inline void SetF28(unsigned v) { if (f28 != v) { f58 |= 1; f28 = v; } }
+    inline void SetF34(unsigned v) { if (f34 != v) { f58 |= 1; f34 = v; } }
+};
+struct Txt_849F0 {
+    char pad0[4];
+    unsigned f4;
+    unsigned f8;
+    char padC[0x3C - 0xC];
+    unsigned f3C;
+    char pad40[4];
+    unsigned f44;
+    unsigned f48;
+    char pad4C[2];
+    unsigned char f4e;
+    char pad4F[0x60 - 0x4F];
+    Txt_849F0 *func_001D5E90();
+    void func_001D5FA0(int font, char *name, int a, int b);
+    void func_0005E840(int a);
+    void func_0005E960(int x, int y);
+    void func_0005E9F0(unsigned v);
+    inline void SetPos(unsigned x, unsigned y) { if (f4 != x || f8 != y) { f4 = x; f8 = y; f4e |= 6; } }
+    inline void SetColor(unsigned c) { if (f48 != c) { f4e |= 8; f48 = (f48 & c) | (c & 0xffffff); } }
+    inline void SetFont(unsigned v) { if (f44 != v) { f44 = v; f4e |= 6; } }
+    inline void SetF3C(unsigned v) { if (f3C != v) { f3C = v; f4e |= 4; } }
+};
+struct Lk_849F0 { int *func_0018C160(char *); void func_0018C780(int count, char **names, int flags); };
+struct St_849F0 { int f0; int f4; int f8; };
+struct Menu_849F0 { char pad[0x1010]; int f1010; };
+struct Hud_849F0 { int pad0; Menu_849F0 *f4; };
+struct G_849F0 { char pad[0x2e0]; St_849F0 *f2E0; char pad2E4[4]; Hud_849F0 *f2E8; Lk_849F0 *f2EC; };
+extern char D_002786B0[], D_002786A0[], D_002795B4[];
+extern unsigned D_0028F5EC, D_0028F5DC;
+extern int D_00278664, D_00278668, D_0027866C, D_00278670;
+extern char D_00278674;
+extern int D_002A60B0, D_002A60B4, D_002A60B8, D_002A60BC;
+extern char D_002A60C0;
+struct C_000849F0 {
+    char pad0[0x24];
+    Txt_849F0 *f24;
+    Txt_849F0 *f28;
+    Spr_849F0 *f2C;
+    Spr_849F0 *f30;
+    int f34;
+    int f38;
+    int f3C;
+    C_000849F0 *func_000849F0(int a, int b, int c, int d);
+};
+
 struct S_851C0_Values;
 struct S_84FF0_Text {
     S_851C0_Values *func_001D5AA0();
