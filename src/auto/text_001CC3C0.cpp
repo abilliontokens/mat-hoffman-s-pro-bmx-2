@@ -1,5 +1,6 @@
 /* 10 functions from 0x001CC3C0 to 0x001CD3B0, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
 
 extern int D_0028EECC;
 extern int D_0028ED5C;
