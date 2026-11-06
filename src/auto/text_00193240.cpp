@@ -26,6 +26,8 @@ struct Handler_00193240 {
     virtual void v7(void *a, int b, void *c, void *d);
     virtual void v8(void *a, int b, void *c, void *d);
     virtual void v9(void *a, int b);
+    char pad4[4];
+    int f8;
 };
 
 struct Node_00193240 {
@@ -531,6 +533,60 @@ void Node_00193240::func_001938C0(void *a1, C_00192B50 *a2, int a3, S_00193240_V
     func_00193530(a1, a4, a5, a6);
 }
 
+void Node_00193240::func_00193950(void *a1, S_00193240_V4 *a2, void *a3, void *a4)
+{
+    C_00192B50 *cur = (C_00192B50 *)f4;
+    if (cur != 0) {
+        Link_00193530 *link = cur->f24;
+        if (link == 0) {
+            func_001937F0(a1, a2, a3);
+        } else {
+            C_00192B50 *best = cur;
+            C_00192B50 *prev = 0;
+            while (link != 0) {
+                if (link->owner != prev && link->query->func_0017A010(&f18, a2, 0)) {
+                    prev = best;
+                    best = link->owner;
+                    link = best->f24;
+                } else {
+                    link = link->next;
+                }
+            }
+            Handler_00193240 *h;
+            if (best != (C_00192B50 *)f4) {
+                f8->v9(a1, f14);
+                Node_00193240 *n = f0;
+                while (n != 0) {
+                    n->f8->v9(a1, n->f14);
+                    Node_00193240 *next = n->f0;
+                    D_002EFE70->func_0001E790(n);
+                    n = next;
+                }
+                f0 = 0;
+                f4 = best;
+                h = best->func_00192B50(((int *)a1)[2]);
+                f8 = h;
+                int r = h->v5(a2, 0);
+                f14 = r;
+                h->v7(a1, r, a2, a3);
+                func_00193530(a1, a2, a3, a4);
+            } else {
+                h = f8;
+                int r = h->v6(a2, a3, f14);
+                if (r != f14) {
+                    h->v9(a1, f14);
+                    h->v7(a1, r, a2, a3);
+                    f14 = r;
+                } else {
+                    h->v8(a1, r, a2, a3);
+                }
+                func_00193600(a1, a2, a3, a4);
+            }
+        }
+        *(S_00193240_V4 *)&f18 = *a2;
+    }
+}
+
 void func_00193AF0(S_00193AF0 *p)
 {
     float v[4];
@@ -591,6 +647,60 @@ void C_00193B50::func_00193BC0(void)
         func_001E8390(f54);
     }
     ((C_00157600 *)this)->func_00157660();
+}
+
+void Cam_00193C20::func_00193C20(int count, float dt, int a3, Env_00193C20 *env, int a5, Tgt_00193C20 *tgt,
+                                V4_00193C20 v, int last)
+{
+    V4_00193C20 pos;
+    float *d;
+    int i;
+    int j;
+    int val;
+    void *p;
+
+    f50 = tgt;
+    f28 = v;
+    f24 = count;
+    f48 = env;
+    f4c = (Seg_00193C20 **)func_001E8AA5(f24 * 4);
+    f54 = (Key_00193C20 **)func_001E8AA5(f24 * 4);
+    f50->func_00199A70(0, &f38);
+    d = f50->func_00197EC0(&v.x, &f28);
+    f38.x = f38.x + d[0];
+    f38.y = d[1] + f38.y;
+    f38.z = d[2] + f38.z;
+    pos = f38;
+    for (i = 0; i < f24; i++) {
+        p = func_001E8A44(0x1e0);
+        f4c[i] = p ? ((Seg_00193C20 *)p)->func_00143580(1) : 0;
+        if (last != 0 && i == f24 - 1) {
+            val = last;
+        } else {
+            val = a3;
+        }
+        f4c[i]->v35(val, 0, 0);
+        f4c[i]->func_00199600(pos);
+        f4c[i]->func_00198F50(&D_002A9934, &D_002A9924, 0, 1, 0);
+        f4c[i]->func_0019ABA0((void *)f48->f4a8[a5], 2);
+        func_001577A0(f4c[i], 0);
+        pos.y = pos.y - dt;
+        p = func_001E8A44(0x18);
+        f54[i] = p ? ((Key_00193C20 *)p)->func_00135850() : 0;
+    }
+    p = func_001E8A44(0x4c);
+    f58 = p ? ((Path_00193C20 *)p)->func_00135700(1) : 0;
+    f58->func_00135A80(f24, 0, 0, f24, f54, this);
+    f58->f44 = (void *)func_00193AF0;
+    func_001577A0(f58, 2);
+    for (i = 0; i < f24; i++) {
+        f4c[i]->func_00199A70(0, f58->f34 + i * 0x4c + 0x1c);
+    }
+    f54[0]->func_00135870(dt, 0, f58->f34, &f38, 1);
+    for (j = 0; j < f24 - 1; j++) {
+        f54[j + 1]->func_00135870(dt, f58->f34 + j * 0x4c, f58->f34 + j * 0x4c + 0x4c, 0, 1);
+    }
+    func_001D3F50();
 }
 
 undefined4 C_00194110::func_00194110(byte param_1)
