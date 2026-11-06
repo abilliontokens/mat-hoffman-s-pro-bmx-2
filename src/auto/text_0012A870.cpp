@@ -509,317 +509,35 @@ void C_0012AC20::func_0012AC20(S_0012AB70Vec *p1, S_0012AB70Vec *p2, S_0012AB70V
     if (p5) *p5 = f1d0;
 }
 
-void C_0012AEC0::func_0012AEC0(void)
+int C_0012ACC0::func_0012ACC0(float x, float y, float z, float w)
 {
-    S_0012AEC0_Mat tmp;
-    float num;
-    float half;
-
-    fb0.func_000264C0(func_00161AE0(&tmp, f170, f180, f190, f1d4));
-    f70.func_000264C0(func_00161AA0(&tmp, f1fc, f200, f1d0 * 0.0174532905f, D_00275460 / f1f8));
-    func_000263B0(&ff0, &fb0, &f70);
-    num = (float)f1e8 * 0.5f;
-    half = f1d0 * 0.5f;
-    f1d8 = num / func_0014F600(half * 0.0174532905f);
-}
-
-void C_0012B000::func_0012B000(float param1, float param2)
-{
-    f1fc = param1;
-    f200 = param2;
-    float f = D_00275460 / (D_00275460 - param1 / param2);
-    f98 = f;
-    f9c = -(f * param1);
-    func_000263B0(ff0, fb0, f70);
-}
-
-void Camera::func_0012B060(void)
-{
-    int func_001E891B(...);
-    int func_0014FE50(...);
-    S_Camera28 *p = f28;
-    void *arr[4];
-    int i;
-
-    vtbl = (void *)&D_00284074;
-    if (p != 0) {
-        p->func_00193500();
-        func_001E891B(p);
-    }
-    if (f224 != 0) {
-        func_0014FE50(f224);
-    }
-    D_002A8490->v16(arr);
-    for (i = 0; i < 4; i++) {
-        if (arr[i] == (void *)this) {
-            arr[i] = 0;
-        }
-    }
-    D_002A8490->v15(arr[0], arr[1], arr[2], arr[3]);
-    if (D_002EFDB8 != 0 && D_002EFDB8[1] == (int)this) {
-        ((S_002EFDB8 *)D_002EFDB8)->func_00182830(0);
-    }
-    ((CameraController *)this)->func_00157660();
-}
-
-void Camera::func_0012B110(void)
-{
-    func_001576D0();
-    ((S_002EFDB8 *)D_002EFDB8)->func_00182830(this);
-    f210 = D_002EFDB8[4] + 1;
-}
-
-void func_0012B140(void) {
-    int func_001576C0(...);
-    func_001576C0();
-}
-
-int Camera::func_0012B150(void)
-{
-    int func_00157AE0(...);
-    func_00157AE0();
-    f210 = D_002EFDB8[4] + 1;
-    return 1;
-}
-
-int C_0012B170::func_0012B170(int a, int b)
-{
-    func_00157BF0(a, b);
-    return 0;
-}
-
-int C_0012B190::func_0012B190(int x, int y, int w, int h)
-{
-    if (w > f204) {
-        w = f204;
-    }
-    if (h > f208) {
-        h = f208;
-    }
-    func_0012A7C0(x, y, w, h);
-    return 1;
-}
-
-void C_0012B1D0::func_0012B1D0(undefined4 *param_1)
-{
-  int in_ECX = (int)this;
-  
-  *param_1 = *(undefined4 *)(in_ECX + 0x1e0);
-  param_1[2] = *(int *)(in_ECX + 0x1e8) + *(int *)(in_ECX + 0x1e0);
-  param_1[1] = *(undefined4 *)(in_ECX + 0x1e4);
-  param_1[3] = *(int *)(in_ECX + 0x1ec) + *(int *)(in_ECX + 0x1e4);
-  return;
-}
-
-void C_0012B210::func_0012B210(int *out) {
- C_0012B210 * volatile self=this;
- out[0]=0;
- { int *p=out+2; float t=(float)(int)self->f1e8; if((int)self->f1e8<0)t+=D_002755E4; float f=t/D_002A3E34; *p=_mm_cvttss_si32(*(__m128 const *)&f); }
- out[1]=0;
- { int *p=out+3; float t=(float)(int)self->f1ec; if((int)self->f1ec<0)t+=D_002755E4; float f=t/D_002A3E38; *p=_mm_cvttss_si32(*(__m128 const *)&f); }
-}
-
-void C_0012B2B0::func_0012B2B0(S_0012B2B0_Rect *in, S_0012B2B0_Rect *out)
-{
-    if (out != 0) {
-        memcpy(out, &f1e0, 0x18);
-        out->f4 = (int)((float)out->f4 - D_00284034);
-    }
-    memcpy(&f1e0, in, 0x18);
-    f1e0.f4 = (int)((float)f1e0.f4 + D_00284034);
-}
-
-undefined4 C_0012B330::func_0012B330(byte param_1)
-{
-  int func_0012B060(...);
-  int func_001E891B(...);
-  undefined4 in_ECX = (undefined4)this;
-  
-  func_0012B060();
-  if ((param_1 & 1) != 0) {
-    func_001E891B(in_ECX);
-  }
-  return in_ECX;
-}
-
-void Camera::func_0012B350(void)
-{
-    int func_001E891B(...);
-    if (f28 != 0) {
-        f28->func_00193870(&f24);
-        S_Camera28 *p = f28;
-        if (p != 0) {
-            p->func_00193500();
-            func_001E891B(p);
-        }
-        f28 = 0;
-    }
-}
-
-undefined4 C_0012B390::func_0012B390(undefined4 param_1, undefined4 param_2, undefined4 param_3)
-{
-  int __stdcall func_0012A7C0(int, int, int, int);
-  int in_ECX = (int)this;
-  
-  *(undefined4 *)(in_ECX + 0x204) = param_2;
-  *(undefined4 *)(in_ECX + 0x208) = param_3;
-  *(undefined4 *)(in_ECX + 0x1dc) = param_1;
-  func_0012A7C0((int)(0), (int)(0), (int)(param_2), (int)(param_3));
-  return 1;
-}
-
-int C_0012AAE0::func_0012B3D0(void)
-{
-    if (f200 != D_0028403C || f1fc != D_00284038) {
-        func_0012AAE0(D_00284038, D_0028403C);
-    }
-    return 1;
-}
-
-C_0012B410 *C_0012B410::func_0012B410(int a, int b, int c)
-{
-    func_001D3F50();
-    f204 = b;
-    f208 = c;
-    f1dc = a;
-    func_0012A7C0(0, 0, b, c);
-    vtbl->f70(this);
-    if (f21 & 1) {
-        ((S_002EFDB8 *)D_002EFDB8)->func_00182830(this);
-    }
-    return this;
-}
-
-void Camera::func_0012B470(void)
-{
-    int rect[4];
-
-    if (f20c != 0) {
-        rect[0] = f1e0;
-        rect[1] = f1e4;
-        rect[2] = f1e0 + f1e8;
-        rect[3] = f1e4 + f1ec;
-        ((S_002EFDB8V *)D_002EFDB8)->v10(rect, 0);
-    }
-    if (f200 != D_0028403C || f1fc != D_00284038) {
-        ((C_0012AAE0 *)this)->func_0012AAE0(D_00284038, D_0028403C);
-    }
-    func_00157920();
-}
-
-C_0012B510R *C_0012B510R::func_0012B510(void)
-{
-    extern int D_002840FC;
-    unk0 = (int)&D_002840FC;
-    return this;
-}
-
-void __stdcall func_0012B520(undefined4 *param_1)
-{
-  int iVar1;
-  
-  for (iVar1 = 0x18; iVar1 != 0; iVar1 = iVar1 + -1) {
-    *param_1 = 0;
-    param_1 = param_1 + 1;
-  }
-  return;
-}
-
-void C_0012B540::func_0012B540(void) {
-    extern int D_002840FC;
-    unk0 = (int)&D_002840FC;
-}
-
-CameraController *CameraController::func_0012B550(int a)
-{
-    func_00157600(a);
-    f24 = 0;
-    f28 = 0;
-    f2c = 0;
-    f30 = 0;
-    vtbl = (void *)&D_0028411C;
-    return this;
-}
-
-void CameraController::func_0012B580(void)
-{
-    int func_001E8390(...);
-    vtbl = (void *)&D_0028411C;
-    if (f2c != 0) {
-        func_001E8390(f2c);
-    }
-    func_00157660();
-}
-
-C_0012B5B0 *C_0012B5B0::func_0012B5B0(int param_1)
-{
-    int func_001D3F50(...);
-
-    if (func_001D3F50() != 0) {
-        if (param_1 != 0) {
-            f30 = param_1;
-            return this;
-        }
-        v2();
-    }
-    return 0;
-}
-
-void CameraController::func_0012B5E0(int a)
-{
-    S_0012AB70Vec pos;
-    S_0012AB70Vec up;
-    S_0012AB70Vec tgt;
-    S_0012AB70Vec out;
-    int flag;
-    int roll;
-    float fov;
-
-    *(float *)&pos.v2 = 0.0f; *(float *)&pos.v1 = 0.0f; *(float *)&pos.v0 = 0.0f; *(float *)&pos.v3 = 1.0f;
-    *(float *)&up.v2 = 0.0f; *(float *)&up.v1 = 0.0f; *(float *)&up.v0 = 0.0f; *(float *)&up.v3 = 1.0f;
-    *(float *)&tgt.v2 = 0.0f; *(float *)&tgt.v1 = 0.0f; *(float *)&tgt.v0 = 0.0f; *(float *)&tgt.v3 = 1.0f;
-    *(float *)&out.v2 = 0.0f; *(float *)&out.v1 = 0.0f; *(float *)&out.v0 = 0.0f; *(float *)&out.v3 = 1.0f;
-    flag = 1;
-    ((S_0012B5E0_Cam *)f30)->func_0012AC20(&pos, &tgt, &up, &roll, &fov);
-    ((S_0012B5E0_Ctl **)f2c)[f28]->v3(a, &flag, &pos, &out, &fov, &tgt, &up, &roll);
-    if (flag) {
-        ((S_0012B5E0_Cam *)f30)->func_0012AB70(&pos, 0, &up, &roll, &fov);
-        ((S_0012B5E0_Cam *)f30)->v30(out);
+    C_0012ACC0 *volatile self = this;
+    float right[4];
+    S_0012AB70Vec delta;
+    if (x == pos[0] && y == pos[1] && z == pos[2]) return 0;
+    right[2] = right[1] = right[0] = 0.0f;
+    right[3] = 1.0f;
+    self->up[0] = 0.0f;
+    self->up[1] = 1.0f;
+    self->up[2] = 0.0f;
+    float dz = z - self->pos[2], dy = y - self->pos[1], dx = x - self->pos[0];
+    *(float *)&delta.v0 = dx;
+    *(float *)&delta.v1 = dy;
+    *(float *)&delta.v2 = dz;
+    delta.v3 = 0x3f800000;
+    func_0012A380(self->forward, (int)&delta);
+    if (x == self->pos[0] && z == self->pos[2]) {
+        *(float *)&delta.v0 = 1.0f;
+        *(float *)&delta.v1 = 0.0f;
+        *(float *)&delta.v2 = 0.0f;
+        *(float *)&delta.v3 = 1.0f;
+        memcpy(right, &delta, 16);
     } else {
-        ((S_0012B5E0_Cam *)f30)->func_0012AB70(&pos, &tgt, &up, &roll, &fov);
+        Cross_0012ACC0(right, self->up, self->forward);
+        func_0012A380(right, (int)right);
     }
-    ((S_0012B5E0_Cam *)f30)->v12(a);
-    func_00157A00(a);
-}
-
-undefined4 C_0012B750::func_0012B750(undefined4 param_1)
-{
-  int func_001E83E8(...);
-  int in_ECX = (int)this;
-  int iVar1;
-  
-  iVar1 = func_001E83E8(*(undefined4 *)(in_ECX + 0x2c),*(int *)(in_ECX + 0x24) * 4 + 4);
-  *(int *)(in_ECX + 0x2c) = iVar1;
-  if (iVar1 == 0) {
-    return 0;
-  }
-  *(undefined4 *)(iVar1 + *(int *)(in_ECX + 0x24) * 4) = param_1;
-  *(int *)(in_ECX + 0x24) = *(int *)(in_ECX + 0x24) + 1;
-  return 1;
-}
-
-CameraController *CameraController::func_0012B790(byte flags)
-{
-    int func_001E8390(...);
-    int func_001E891B(...);
-    vtbl = (void *)&D_0028411C;
-    if (f2c != 0) {
-        func_001E8390(f2c);
-    }
-    func_00157660();
-    if ((flags & 1) != 0) {
-        func_001E891B(this);
-    }
-    return this;
+    Cross_0012ACC0(self->up, self->forward, right);
+    self->stamp = D_002EFDB8[4] + 1;
+    return 1;
 }
 
