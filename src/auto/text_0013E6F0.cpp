@@ -189,6 +189,28 @@ struct C_0013E9B0 {
     int func_0013E9B0(S_0013E9B0_Arg *arg);
 };
 
+extern float D_002756DC;
+extern float D_0027A060;
+extern float D_00275544;
+float func_0001E960(float x);
+int func_001E8858(float x);
+int *__stdcall func_001FF410(int a, int b);
+void func_0013E920(float *out, float *in);
+
+static __forceinline float MinF_0013ED30(float a, float b)
+{
+    float r;
+    _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b)));
+    return r;
+}
+
+struct C_0013ED30 {
+    char pad00[0x21EC];
+    int f21EC[3];
+    int f21F8;
+    void func_0013ED30(void);
+};
+
 C_0013E8C0 *C_0013E8C0::func_0013E8C0(int param_1)
 {
     ((C_001387B0 *)this)->func_001387B0(param_1);
@@ -277,6 +299,17 @@ void C_0013ECF0::func_0013ECF0(int a1, int a2, C_0013ECF0_Arg *a3, int a4, int a
     p[1] = a2;
     p[2] = a1;
     f21D0->func_00149310((int)a3, a4, a5, 0);
+}
+
+void __stdcall func_001FEE00(int a, int b, int c);
+void func_0013F2F0(void)
+{
+    char *p = D_002EFDB8->f4;
+    func_001FEC30(0x18, p + 0x250);
+    func_001FEBD0(2, p + 0x170);
+    func_001FEE00(0, *(int *)((char *)D_002BF250 + 0x21e4), 0xc);
+    func_001FEE00(1, *(int *)((char *)D_002BF250 + 0x21e8), 0xc);
+    func_001FEE00(2, *(int *)((char *)D_002BF250 + 0x21ec + *(int *)((char *)D_002BF250 + 0x21f8) * 4), 4);
 }
 
 C_0013F650 *func_0013F650(void)
