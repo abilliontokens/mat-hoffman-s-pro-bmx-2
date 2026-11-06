@@ -19,6 +19,10 @@ struct S_Node_00131510 {
     float f10;
 };
 
+struct S_Sub_00131510 {
+    void func_000BA430(V4_00131510 *a, int b, int c, int d);
+};
+
 /* CinematographerCam */
 struct C_00131510 {
     void *vtbl;
