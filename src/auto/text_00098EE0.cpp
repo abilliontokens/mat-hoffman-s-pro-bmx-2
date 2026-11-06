@@ -15,6 +15,7 @@ struct S_00098EE0_mgr {
     char pad3b0[0x484 - 0x3b0];
     S_00098EE0_release *f484;
 };
+struct S_00098EE0_self { void func_00097890(char *name); };
 extern int func_001EA426(const char *, const char *);
 extern char D_0027A30C[];
 extern "C" int memcmp(const void *, const void *, unsigned int);
