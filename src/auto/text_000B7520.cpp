@@ -23,9 +23,3 @@ struct C_000B7520 {
     int func_000B67C0();
     int func_000B7520(int a);
 };
-
-int __stdcall func_000B7520(int a)
-{
-    (void)a;
-    return 0;
-}
