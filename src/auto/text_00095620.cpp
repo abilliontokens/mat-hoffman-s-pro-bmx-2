@@ -369,28 +369,32 @@ int C_00095A00::func_00095880()
         }
         if (f68.count == func_000952F0()) f68.func_00094F10();
         count = 0;
-        for (int i = 1; n > 0; ++i, --n) {
-            if (!func_00095250(i) && func_000952A0(i) && !func_000955C0(i)) {
-                a.func_001CDED0(i);
-                ++count;
+        if (n > 0) {
+            for (int i = 1; n > 0; ++i, --n) {
+                if (!func_00095250(i) && func_000952A0(i) && !func_000955C0(i)) {
+                    a.func_001CDED0(i);
+                    ++count;
+                }
             }
         }
     } else {
-        if (a.capacity <= 0) {
+        if (n <= 0) {
             func_001E891B(buf);
             return 0;
         }
         if (f68.count == n) f68.func_00094F10();
         count = 0;
-        for (int i = 1; n > 0; ++i, --n) {
-            if (!func_000955C0(i)) {
-                a.func_001CDED0(i);
-                ++count;
+        if (count < n) {
+            for (int i = 1; n > 0; ++i, --n) {
+                if (!func_000955C0(i)) {
+                    a.func_001CDED0(i);
+                    ++count;
+                }
             }
         }
     }
     int index = func_00011260(0, count - 1);
-    int *d = a.data;
+    int *d = *(int * volatile *)&a.data;
     int chosen = a.count > 0 && d && index < a.count ? d[index] : 0;
     f68.func_001CDED0(chosen);
     f50->v30(chosen - 1, 1);
