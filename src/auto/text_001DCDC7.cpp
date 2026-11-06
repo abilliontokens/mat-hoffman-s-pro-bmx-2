@@ -815,12 +815,6 @@ int __stdcall func_001DD8C5(u32 id, u32 idx, u32 *out1, u32 *out2, unsigned shor
 
 #pragma optimize("y", on)
 
-static __forceinline u32 Fail_001DDAEE(int status)
-{
-    func_001DD659(status);
-    return -1;
-}
-
 u32 __stdcall func_001DDAEE(u32 id, int flag)
 {
     char buf[0x104];
