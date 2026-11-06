@@ -656,29 +656,6 @@ unsigned char __fastcall func_001EF235(BitObj *self, int unused)
     return 0;
 }
 
-/* copies the nodes' text into dst, at most left bytes; returns the end of the copy */
-static __forceinline char *CopyNodes_001EF26D(S_001EF210_Node *p, char *dst, int left)
-{
-    int len;
-
-    for (; p != 0; p = p->next) {
-        if (left <= 0) {
-            break;
-        }
-        len = p->v0();
-        if (len != 0) {
-            if (left - len < 0) {
-                len = left;
-            }
-            if (p->v2(dst, len) != 0) {
-                left -= len;
-                dst += len;
-            }
-        }
-    }
-    return dst;
-}
-
 char *__fastcall func_001EF26D(BitObj *self, int unused, char *buf, int n)
 {
     if (func_001EF1E7(self, unused) == 0) {
