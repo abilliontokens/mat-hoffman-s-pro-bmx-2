@@ -91,12 +91,19 @@ struct V4f {
 };
 
 struct Particle_0016DEA0 {
-    char pad0[0x2c];
+    V4f_0016D6A0 pos;
+    V4f_0016D6A0 vel;
+    char pad20[8];
+    int f28;
     int f2C;
     int f30;
-    char pad34[0x10];
+    float f34;
+    float f38;
+    float f3C;
+    int f40;
     u32 f44;
     void *f48;
+    int f4C;
 };
 
 struct Pool_0016DEA0 {
@@ -108,13 +115,39 @@ struct Pool_0016DEA0 {
     Particle_0016DEA0 **items;
 };
 
+extern float D_002754B0;
+extern float D_002755E8;
+int func_001E8833(void);
+int func_00011260(int lo, int hi);
+
 struct C_0016DEA0 {
-    char pad0[0x64];
+    void *vtbl;
+    char pad4[0x20];
+    float f24, f28, f2c;
+    char pad30[0x34];
     Pool_0016DEA0 *f64;
-    char pad68[0x118];
-    int f180;
-    char pad184[0x9c];
-    float f220;
+    char pad68[0x108];
+    int f170;
+    int f174;
+    int f178;
+    float f17C;
+    float f180;
+    int f184;
+    int f188;
+    int f18C;
+    int f190;
+    int f194;
+    int f198;
+    char pad19C[0xC];
+    int f1A8, f1AC;
+    char pad1B0[0x14];
+    void *f1C4, *f1C8;
+    char pad1CC[0x24];
+    float f1F0, f1F4, f1F8, f1FC;
+    float f200, f204, f208, f20C;
+    float f210[2];
+    float f218, f21C;
+    float f220[4];
     void func_0016DEA0(void);
 };
 
