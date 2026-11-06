@@ -92,6 +92,50 @@ struct BmxUIPageGlobal {
     void func_001578D0(void);
 };
 
+struct ElemA_BEE {
+    char pad0[4]; float x; float y;
+    char padC[0x28 - 0xC]; float f28; float f2C;
+    char pad30[0x3C - 0x30]; float f3C; float f40; float f44; float f48; float f4C; float f50;
+    char pad54[4]; unsigned char f58;
+    ElemA_BEE *func_001D5760();
+    void func_001D5810(char *name, float a, float b, float c);
+    void SetXY58(float nx, float ny) { if (nx != x || y != ny) { x = nx; y = ny; f58 |= 1; } }
+    void SetF28(float v) { if (f28 != v) { f28 = v; f58 |= 1; } }
+    void SetF2C(float v) { if (f2C != v) { f2C = v; f58 |= 1; } }
+};
+struct ElemB_BEE {
+    char pad0[4]; float x; float y;
+    char padC[0x44 - 0xC]; int f44; int f48;
+    char pad4C[2]; unsigned char f4E;
+    ElemB_BEE *func_001D5E90();
+    void func_001D5FA0(void *a, char *name, int n, int b);
+    void SetXY4E(float nx, float ny) { if (nx != x || y != ny) { x = nx; y = ny; f4E |= 6; } }
+};
+extern float D_00278654;
+extern float D_0027653C;
+extern float D_00275544;
+extern int D_0028F5E0;
+extern int D_0028F5DC;
+extern char D_00278658[];
+extern char D_00278648[];
+extern char D_00278624[];
+void *func_001E8A44(unsigned int);
+void func_001ADCC0(char *, int, char *, char *, char *);
+extern char D_002A60B0[];
+extern char D_00275678[];
+extern char D_002A5348[];
+extern char D_002A5FA8[];
+struct LookupBEE {
+    void func_0018C780(int, int *, int);
+    int *func_0018C160(char *);
+};
+struct C_BEE30 {
+    char pad0[0x24];
+    ElemA_BEE *f24; ElemA_BEE *f28; ElemA_BEE *f2C; ElemA_BEE *f30;
+    ElemB_BEE *f34; ElemB_BEE *a38[6];
+    ElemA_BEE *a50[6]; ElemA_BEE *a68[6];
+    void func_000BEE30(void);
+};
 struct C_000BFB70 {
     void *vtbl;
     char pad4[0x27C];
