@@ -2,6 +2,10 @@
 #include "common.h"
 #include "ghidra.h"
 #include <string.h>
+#include <xmmintrin.h>
+
+static inline float Sqrt_001CA480(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
+
 struct S_Vec4Int_1CB320 {
     int x, y, z, w;
 };
@@ -237,56 +241,41 @@ struct VCall_1CAFF0 {
 
 bool WaterDisplacement::func_001CA480(Plane_001CA480 *plane, void *arg1)
 {
-    Cam_001CA480 *cam = D_002EFDB8->cam;
+    CamV_001CA480 *cam = (CamV_001CA480 *)D_002EFDB8->cam;
     Vec4_001CA480 A[4];
     Vec4_001CA480 B[2];
     Vec4_001CA480 C[2];
     bool ret = false;
-    bool flip = cam->posy < plane->f4;
+    bool flip = cam->pos.y < plane->f4;
     float T = func_0014F600(cam->fov * D_0028AC40);
     float K = cam->aspect;
-    float px = cam->nearD * cam->dirx + cam->posx;
-    float py = cam->nearD * cam->diry + cam->posy;
-    float pz = cam->nearD * cam->dirz + cam->posz;
+    Vec3_001CA480 P = cam->dir * cam->nearD + cam->pos;
     float tr = T * cam->nearD;
-    float ux = tr * unk64.x * K;
-    float uy = tr * unk64.y * K;
-    float uz = tr * unk64.z * K;
-    float vx = tr * unk54.x;
-    float vy = tr * unk54.y;
-    float vz = tr * unk54.z;
+    Vec3_001CA480 U = *(Vec3_001CA480 *)&unk64 * tr * K;
+    Vec3_001CA480 V = *(Vec3_001CA480 *)&unk54 * tr;
+    Vec3_001CA480 t;
     float s;
 
-    B[0] = Vec4_001CA480(ux + px, uy + py, uz + pz, 1.0f);
-    C[0] = Vec4_001CA480(px - ux, py - uy, pz - uz, 1.0f);
-    D_002F08BC->vF4 = Vec4_001CA480(cam->nearD * cam->dirx + ux - vx, cam->nearD * cam->diry + uy - vy, cam->nearD * cam->dirz + uz - vz, 1.0f);
+    t = U + P;
+    B[0] = Vec4_001CA480(t.x, t.y, t.z, 1.0f);
+    t = P - U;
+    C[0] = Vec4_001CA480(t.x, t.y, t.z, 1.0f);
+    t = cam->dir * cam->nearD + U - V;
+    D_002F08BC->vF4 = Vec4_001CA480(t.x, t.y, t.z, 1.0f);
     D_002F08BC->vF4.w = 1.0f;
     s = 1.0f / ((float)D_002F08BC->f304 - 1.0f);
-    D_002F08BC->vD4 = Vec4_001CA480((vx + vx) * s, (vy + vy) * s, (vz + vz) * s, 1.0f);
-    float mx = ux * -2.0f;
-    float my = uy * -2.0f;
-    float mz = uz * -2.0f;
+    D_002F08BC->vD4 = Vec4_001CA480((V.x + V.x) * s, (V.y + V.y) * s, (V.z + V.z) * s, 1.0f);
     s = 1.0f / ((float)D_002F08BC->f308 - 1.0f);
-    D_002F08BC->vE4 = Vec4_001CA480(mx * s, my * s, mz * s, 1.0f);
+    D_002F08BC->vE4 = Vec4_001CA480(U.x * -2.0f * s, U.y * -2.0f * s, U.z * -2.0f * s, 1.0f);
 
-    float qx = cam->farD * cam->dirx + cam->posx;
-    float qy = cam->farD * cam->diry + cam->posy;
-    float qz = cam->farD * cam->dirz + cam->posz;
+    Vec3_001CA480 Q = cam->dir * cam->farD + cam->pos;
     float tr2 = cam->farD * T;
-    float u2x = tr2 * unk64.x * K;
-    float u2y = tr2 * unk64.y * K;
-    float u2z = tr2 * unk64.z * K;
-    float v2x = tr2 * unk54.x;
-    float v2y = tr2 * unk54.y;
-    float v2z = tr2 * unk54.z;
-    float bx = qx + u2x;
-    float by = qy + u2y;
-    float bz = qz + u2z;
-    float cx = qx - u2x;
-    float cy = qy - u2y;
-    float cz = qz - u2z;
-    B[1] = Vec4_001CA480(bx, by, bz, 1.0f);
-    C[1] = Vec4_001CA480(cx, cy, cz, 1.0f);
+    Vec3_001CA480 U2 = *(Vec3_001CA480 *)&unk64 * tr2 * K;
+    Vec3_001CA480 V2 = *(Vec3_001CA480 *)&unk54 * tr2;
+    t = Q + U2;
+    B[1] = Vec4_001CA480(t.x, t.y, t.z, 1.0f);
+    t = Q - U2;
+    C[1] = Vec4_001CA480(t.x, t.y, t.z, 1.0f);
 
     int r1 = func_001CA360(arg1, plane, &B[0], &C[0], &A[0]);
     int r2 = func_001CA360(arg1, plane, &B[1], &C[1], &A[1]);
@@ -294,8 +283,8 @@ bool WaterDisplacement::func_001CA480(Plane_001CA480 *plane, void *arg1)
     int r4 = func_001CA360(arg1, plane, &C[0], &C[1], &A[3]);
 
     if (r1) {
-        *(Vec4_001CA480 *)&unk74[1] = Vec4_001CA480(A[0].x - vx, A[0].y - vy, A[0].z - vz, 1.0f);
-        *(Vec4_001CA480 *)&unk74[3] = Vec4_001CA480(A[0].x + vx, A[0].y + vy, A[0].z + vz, 1.0f);
+        *(Vec4_001CA480 *)&unk74[1] = Vec4_001CA480(A[0].x - V.x, A[0].y - V.y, A[0].z - V.z, 1.0f);
+        *(Vec4_001CA480 *)&unk74[3] = Vec4_001CA480(A[0].x + V.x, A[0].y + V.y, A[0].z + V.z, 1.0f);
         ret = true;
     }
     return ret;
