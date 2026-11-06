@@ -245,15 +245,6 @@ void func_001F5B7B(char *s, unsigned int n, S_U12 *x)
 }
 
 #pragma optimize("a", on)
-/* x *= 10 on the 96-bit mantissa (inlined into func_001F5C49) */
-static __forceinline void Mul10_001F5C49(S_U12 *x)
-{
-    S_U12 t = *x;
-    func_001F5B20(x);
-    func_001F5B20(x);
-    func_001F5AC2(x, &t);
-    func_001F5B20(x);
-}
 int __cdecl func_001F5C49(unsigned long lo, unsigned long hi, unsigned long se, int ndigits, unsigned int flags, S_I10_Fos *fos)
 {
     int retval;
@@ -350,11 +341,11 @@ zero_digit:
                 *((unsigned char *)&ld12 + 11) = 0;
             } while (--cnt);
         }
+        man = fos->man;
         r = p;
         r--;
         c = *r;
         r--;
-        man = fos->man;
         if (c >= '5') {
             do {
                 if (*r != '9') {
