@@ -132,6 +132,72 @@ struct C_00162DF0 {
     void func_00162DF0(int count);
 };
 
+void Mgr162B70::func_00162B70(Pack162B70 *pFirst, int pSecond)
+{
+    Pack162B70 *p = (Pack162B70 *)pSecond;
+    int id = (int)pFirst;
+    int size, i, n;
+    int *w;
+    char *buf;
+    void *h;
+    if (!ready)
+        return;
+    size = 0x1c;
+    for (i = 0; i < p->countA; i++) {
+        size += 8;
+        if (p->kindA == 0)
+            size += p->listA[i]->count * 16;
+        else if (p->kindA == 1)
+            size += p->listA[i]->count * 40;
+    }
+    for (i = 0; i < p->countB; i++) {
+        size += 8;
+        if (p->kindB == 0)
+            size += p->listB[i]->count * 8;
+        else if (p->kindB == 1)
+            size += p->listB[i]->count * 12;
+    }
+    buf = (char *)func_001E8A44(size);
+    w = (int *)buf;
+    *w++ = -2;
+    *w++ = p->id0;
+    *w++ = p->id1;
+    *w++ = p->kindB;
+    *w++ = p->kindA;
+    *w++ = p->countA;
+    *w++ = p->countB;
+    for (i = 0; i < p->countA; i++) {
+        *w++ = p->listA[i]->count;
+        *w++ = p->listA[i]->unk4;
+        if (p->kindA == 0) {
+            n = p->listA[i]->count * 16;
+            memcpy(w, p->listA[i]->data, n);
+            w = (int *)((char *)w + n);
+        } else if (p->kindA == 1) {
+            n = p->listA[i]->count * 40;
+            memcpy(w, p->listA[i]->data, n);
+            w = (int *)((char *)w + n);
+        }
+    }
+    for (i = 0; i < p->countB; i++) {
+        *w++ = p->listB[i]->count;
+        *w++ = p->listB[i]->unk4;
+        if (p->kindB == 0) {
+            n = p->listB[i]->count * 8;
+            memcpy(w, p->listB[i]->data, n);
+            w = (int *)((char *)w + n);
+        } else if (p->kindB == 1) {
+            n = p->listB[i]->count * 12;
+            memcpy(w, p->listB[i]->data, n);
+            w = (int *)((char *)w + n);
+        }
+    }
+    h = D_002BEAAC->func_0013C9F0(id, D_00282960);
+    D_002BEAAC->func_0013B930(h, buf, size, 1);
+    D_002BEAAC->func_0013C110(h);
+    func_001E891B(buf);
+}
+
 void C_00162DF0::func_00162DF0(int count) {
     int i;
     int *mem;
@@ -171,3 +237,90 @@ void C_00162DF0::func_00162DF0(int count) {
         }
     }
 }
+
+int __stdcall func_00162FB0(Src162FB0 *src, char *name, Pack162FB0 *pack)
+{
+    Mgr162FB0 *mgr = (Mgr162FB0 *)D_002BEAAC;
+    int handle;
+    int table[0x100];
+    char buf[0x400];
+    int found;
+    int count2;
+    int i;
+    float *mats;
+    handle = mgr->func_0013C9F0(name, D_00276274);
+    if (handle == -1)
+        return 0;
+    for (i = 0; i < 0x100; i++)
+        table[i] = 0;
+    found = 0;
+    count2 = 0;
+    while (mgr->func_0013C6E0(handle, buf, 0xff)) {
+        char *s;
+        func_001EA1EE(buf);
+        s = func_001E95A4(buf, D_002789B8);
+        if (func_001EA426(s, D_0027626C) == 0) {
+            found++;
+        } else if (func_001EA426(s, D_00287D04) == 0) {
+            if (found == 1)
+                count2++;
+            {
+                char *v = func_001E95A4(0, D_00287D00);
+                unsigned int idx = (unsigned char)src->func_00164650(v);
+                if (idx != 0xff && found == 1) {
+                    table[idx] = found;
+                    if (src->entries1EC[idx].f3C != 0)
+                        pack->countB++;
+                    if (src->entries1EC[idx].f38 != 0)
+                        pack->countA++;
+                }
+            }
+        }
+    }
+    if (found < pack->f34 || pack->f34 == 0)
+        pack->f34 = found;
+    pack->f38 = (float)(pack->f34 - 1) / (float)pack->f30;
+    mats = (float *)func_001E8A44(src->count1E8 << 6);
+    for (i = 0; i < src->count1E8; i++) {
+        float *m = mats + i * 16;
+        int k;
+        for (k = 0; k < 16; k++)
+            m[k] = 0.0f;
+        m[0] = 1.0f;
+        m[5] = 1.0f;
+        m[10] = 1.0f;
+        m[15] = 1.0f;
+    }
+    pack->func_00162DF0(pack->countB);
+    pack->func_001628C0(pack->countA);
+    for (i = 0; i < pack->countA; i++) {
+        Obj162FB0 *o = pack->listA[i];
+        o->vt->v7(pack->f34);
+        o->f8 = (pack->kind24 >> 1) & 1;
+    }
+    for (i = 0; i < pack->countB; i++) {
+        Obj162FB0 *o = pack->listB[i];
+        o->vt->v6(pack->f34);
+        o->f8 = (pack->kind24 >> 2) & 1;
+    }
+    {
+        int idxA = 0;
+        int idxB = 0;
+        for (i = 0; i < src->count1E8; i++) {
+            if (table[i] != 0) {
+                if (src->entries1EC[i].f3C != 0) {
+                    pack->listB[idxB]->unk4 = i;
+                    idxB++;
+                }
+                if (src->entries1EC[i].f38 != 0) {
+                    pack->listA[idxA]->unk4 = i;
+                    idxA++;
+                }
+            }
+        }
+    }
+    mgr->func_0013AFF0(handle, 0, 0);
+    mgr->func_0013C110(handle);
+    return 1;
+}
+
