@@ -311,14 +311,10 @@ struct C_001677C0_Dst {
 
 static __forceinline void CopyBlock_001677C0(S_001677C0_Block *dst, const S_001677C0_Block *src)
 {
-    __m128 a = _mm_load_ps(&src->m[0]);
-    __m128 b = _mm_load_ps(&src->m[4]);
-    __m128 c = _mm_load_ps(&src->m[8]);
-    __m128 d = _mm_load_ps(&src->m[12]);
-    _mm_store_ps(&dst->m[0], a);
-    _mm_store_ps(&dst->m[4], b);
-    _mm_store_ps(&dst->m[8], c);
-    _mm_store_ps(&dst->m[12], d);
+    _mm_store_ps(&dst->m[0], _mm_load_ps(&src->m[0]));
+    _mm_store_ps(&dst->m[4], _mm_load_ps(&src->m[4]));
+    _mm_store_ps(&dst->m[8], _mm_load_ps(&src->m[8]));
+    _mm_store_ps(&dst->m[12], _mm_load_ps(&src->m[12]));
 }
 
 struct C_001677C0 {
