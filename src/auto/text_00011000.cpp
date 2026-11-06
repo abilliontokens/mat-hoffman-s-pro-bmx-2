@@ -2,6 +2,7 @@
 #include "common.h"
 #include <math.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 struct C_00011060 {
     int unk0;
     int unk4;
@@ -225,10 +226,15 @@ extern float D_00275544;
 extern "C" float __cdecl sqrtf(float);
 extern "C" float sqrtf(float);
 #pragma intrinsic(sqrtf)
-float func_00011000(float x) { volatile float r; r = x; return sqrtf(r); }
+float func_00011000(float x)
+{
+    return AsmSqrtF(x);
+}
 float func_00011020(float a, float b)
 {
-    return _mm_min_ss(*(__m128 *)&a, *(__m128 *)&b).m128_f32[0];
+    const __m128 &x = *(const __m128 *)&a;
+    const __m128 &y = *(const __m128 *)&b;
+    return _mm_min_ss(x, y).m128_f32[0];
 }
 
 float func_00011040(float a, float b)
