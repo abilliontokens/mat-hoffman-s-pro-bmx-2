@@ -302,12 +302,13 @@ int STV_1959E0::func_001959E0(float dt, float *pos, Vec4_195D40 *out)
 
 Vec4_195D40 *func_00195D40(Vec4_195D40 *out, int x, int y, int z, int w)
 {
- Vec4_195D40 v = {x,y,z,w};
- out->x = *(volatile int *)&v.x;
- out->y = *(volatile int *)&v.y;
- out->z = *(volatile int *)&v.z;
- out->w = *(volatile int *)&v.w;
- return out;
+    volatile int t[4];
+    t[0] = x;
+    t[1] = y;
+    t[2] = z;
+    t[3] = w;
+    *out = *(Vec4_195D40 *)t;
+    return out;
 }
 
 SimpleVCR *SimpleVCR::func_00195D90(void)
