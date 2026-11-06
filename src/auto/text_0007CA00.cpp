@@ -94,13 +94,31 @@ struct G7CF_A {
     char pad0[4];
     G7CF_B *f4;
 };
+struct G7CF_C {
+    void func_0018C780(int count, int* names, int flags);
+};
 struct G7CF_G {
     char pad0[0x274];
     int f274;
     char pad278[0x2E8 - 0x278];
     G7CF_A *f2E8;
+    G7CF_C *f2EC;
 };
 extern G7CF_G *D_002A8490;
+
+extern char D_002786A0[], D_00278690[], D_00278678[], D_00278658[], D_00278648[];
+extern char D_00278638[], D_00278624[], D_00278608[], D_00278600[], D_002786B0[];
+extern int D_00278664, D_00278668, D_0027866C, D_00278670;
+extern char D_00278674;
+extern int D_002A60B0, D_002A60B4, D_002A60B8, D_002A60BC;
+extern char D_002A60C0;
+extern float D_00278654, D_00275544, D_0027653C, D_00278650, D_00275800, D_00279034;
+extern char D_00275678[], D_002A5870[], D_002A5FA8[];
+extern "C" void *func_001E8A44(unsigned int size);
+
+static __forceinline void uv7CA(BmxSprite *p) { float a = p->sx * D_00278654; p->flags |= 4; p->u0 = a; p->v0 = p->sx * D_00275544; p->u1 = p->sy * D_0027653C; p->v1 = p->sy * D_00275544; }
+static __forceinline void width7CA(BmxSprite *p, int v) { if (p->w != v) { p->w = v; p->flags |= 1; } }
+static __forceinline void height7CA(BmxSprite *p, int v) { if (p->h != v) { p->h = v; p->flags |= 1; } }
 
 struct Dev7CF {
     virtual void v0();
