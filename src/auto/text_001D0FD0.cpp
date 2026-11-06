@@ -236,7 +236,8 @@ struct S_15D0_Pad {
     int f6E8;
     char pad6EC[0x3A];
     int f726;
-    int func_001D15D0(int *out);
+    void func_0015AFC0(int a0, float a1, float a2);
+    int func_001D15D0(float dt);
 };
 struct S_15D0_Pkt { int id; unsigned short buttons; unsigned char a[8]; short lx, ly, rx, ry; };
 int XboxGame::func_001D0FD0(int param_1)
