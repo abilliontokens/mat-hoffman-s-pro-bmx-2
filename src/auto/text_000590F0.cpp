@@ -8,7 +8,9 @@ struct C_00059290 {
     int f58;
     char pad5c[0x190 - 0x5c];
     float f190;
-    void func_00059290(float *a0, float *a1, float *a2);
+    char pad194[0x1dc - 0x194];
+    int f1dc, f1e0;
+    void func_00059290(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7, float a8, float a9, float a10);
 };
 
 void func_001E891B(void *p);
