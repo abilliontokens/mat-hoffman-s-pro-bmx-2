@@ -198,7 +198,7 @@ int __stdcall func_001DDDD6(int h, int t);
 void __stdcall func_001DE70D(int a);
 void __stdcall func_001DE733(int a);
 void __stdcall func_002025D0(int a);
-void __stdcall func_001DE7C2(int a);
+__declspec(noreturn) void __stdcall func_001DE7C2(int a);
 
 struct C_00160BF0 {
     void func_00160BF0();
@@ -352,8 +352,7 @@ void __stdcall func_001D3300(int param, int unused)
     S_001D3300_Arg *a = (S_001D3300_Arg *)param;
     C_001D2A40 *obj = a->obj;
     int r;
-    r = func_001DDDD6(a->h, 0x11);
-    while (r != 0) {
+    while ((r = func_001DDDD6(a->h, 0x11)) != 0) {
         if (r == 0x102) {
             func_001DE70D(a->lock);
             obj->func_001D2A40();
@@ -362,7 +361,6 @@ void __stdcall func_001D3300(int param, int unused)
             func_002025D0(0);
             func_001DE733(a->lock);
         }
-        r = func_001DDDD6(a->h, 0x11);
     }
     func_001DE7C2(0);
 }
