@@ -166,6 +166,58 @@ inline void B3E10_Copy(char *dst, const char *src, int max)
     dst[n] = 0;
 }
 
+struct S_B4530_Anim {
+    void func_001A2AA0(int a);
+};
+
+struct S_B4530_Pair {
+    char pad0[8];
+    S_B4530_Anim *f8;
+};
+
+struct S_B4530_Hold {
+    char pad0[0x28];
+    S_B4530_Pair *f28;
+};
+
+struct S_B4530_Mode {
+    char pad0[0x1c8];
+    int f1c8;
+};
+
+struct S_B4530_Root {
+    char pad0[0x124];
+    int f124;
+    char pad128[0x2a4 - 0x128];
+    S_B4530_Mode *f2a4;
+};
+
+struct S_B4530_Ent {
+    int f0;
+    int f4;
+    char pad8[4];
+    int fC;
+    int f10;
+};
+
+struct S_B4530_List {
+    char pad0[0x40];
+    int f40;
+    char pad44[0x50 - 0x44];
+    S_B4530_Ent **f50;
+};
+
+extern S_B4530_Root *D_002A8490;
+extern S_B4530_List *D_002B9134;
+extern float D_002755E0;
+extern float D_0027D268;
+extern float D_00275544;
+extern float D_00278C48;
+extern float D_0027D264;
+void func_00192300(void *p);
+void func_00011110(float *out, float *a, float *b);
+float func_00011170(float *v);
+
 struct C_000B4300 {
     virtual void v00(); virtual void v04(); virtual void v08(); virtual void v0c();
     virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1c();
