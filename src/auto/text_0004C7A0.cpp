@@ -79,6 +79,59 @@ struct C_0004D070 {
 
 extern S_0004D070_Global *D_002A8490;
 
+/* the two functions the analysis merged into func_0004CEC0: 0x4CED0 and 0x4CFC0 */
+struct V4_0004CED0 { int a, b, c, d; };
+struct C_0012B410_0004CED0 { void func_0012B410(int a, int b, int c); };
+struct C_0013E4F0_0004CED0 { C_0012B410_0004CED0 *func_0013E4F0(int a); };
+struct C_000306F0_0004CED0;
+struct C_0002EF20_0004CED0 { C_000306F0_0004CED0 *func_0002EF20(int a); };
+struct C_000306F0_0004CED0 { void func_000306F0(void *a, int b, int c, V4_0004CED0 d, int e, int f); };
+struct G_0004CED0_E0 { char pad0[8]; int f8; };
+struct G_0004CED0 {
+    char pad0[0x124]; int f124;
+    char pad128[0x108]; unsigned char f230;
+    char pad231[0xAF]; G_0004CED0_E0 *f2E0;
+};
+struct O_0004CED0_4DC { char pad0[0x24]; V4_0004CED0 f24; };
+struct O_0004CED0_64 { char pad0[0x4ac]; int *f4AC; char pad4B0[0x2c]; O_0004CED0_4DC *f4DC; };
+struct M_0004CFC0 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14();
+    virtual void v15(void *a, int b, int c, int d);
+};
+struct S_0004CFC0_Data { int w[6]; };
+struct S_0004CFC0_Sub {
+    char pad0[0x1E0];
+    S_0004CFC0_Data f1E0;
+    char pad1F8[0xC];
+    int f204;
+    int f208;
+};
+void __stdcall func_0012B190(int a, int b, int c, int d);
+struct C_0004CED0 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28();
+    char pad4[0x20];
+    C_0012B410_0004CED0 *f24;
+    char pad28[0x1C];
+    C_000306F0_0004CED0 *f44;
+    char pad48[0x1C];
+    O_0004CED0_64 *f64;
+    char pad68[0x174];
+    S_0004CFC0_Data f1DC;
+    int func_0004CED0();
+    void func_0004CFC0();
+    void probe();
+};
+
 struct C_00088F70 {
     void func_00088F70(int a, int b);
     int func_00089040(void);
@@ -469,6 +522,9 @@ int func_0004CCE0(void) {
     func_00033300();
     return 1;
 }
+
+void func_00031400(void);
+void func_0004CEC0(void) { func_00031400(); }
 
 void C_0004D010::func_0004D010(void)
 {
