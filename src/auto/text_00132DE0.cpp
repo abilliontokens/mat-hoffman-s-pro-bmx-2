@@ -361,21 +361,16 @@ C_00132EB0 *C_00132EB0::func_00132EB0(int a)
  p=(int*)&f38;
  p[2]=0; p[1]=0; p[0]=0; p[3]=0x3f800000;
  if(D_002A4330==0xff) D_002A4330=D_002AAEC8->func_001BC6E0(D_00282AA8);
- if(D_002A4331==0xff) D_002A4331=D_002AAEC8->func_001BC6E0(D_00282A9C);
+ if(D_002A4331==0xff) D_002A4331=D_002AAEC8->func_001BC6E0(D_00282AA8 == 0 ? D_00282A9C : D_00282A9C);
  f26=D_002AAEC8->func_001BC6E0(D_00282AA8);
  f74=1; f80=1; f8C=1;
  fA7=(fA7&0x8e)|6;
- float v[4];
- v[0]=0.0f; v[1]=-10000.0f; v[2]=0.0f; v[3]=1.0f;
- *(volatile int*)&f38=collision_float_bits(v[0]);
- *(volatile int*)&f3C=collision_float_bits(v[1]);
- *(volatile int*)&f40=collision_float_bits(v[2]);
- *(volatile int*)&f50=0; f54=0; f9C=0; fA0=0; fA4=0; fA6=0;
+ f70=-1;
+ *(V4_00132EB0*)&f38 = V4_00132EB0(0.0f, -10000.0f, 0.0f, 1.0f);
+ f50=0; f54=0; f9C=0; fA0=0; fA4=0; fA6=0;
  f78=0; f84=0; f7C=0; f88=0; f90=0; f94=0;
  f58=0; f5C=0; f60=0; f64=0; f68=0;
- f6C=0; f6D=0; f4C=0; f98=0; f70=-1;
-
- f44=collision_float_bits(v[3]);
+ f6C=0; f6D=0; f4C=0; f98=0;
  return this;
 }
 
