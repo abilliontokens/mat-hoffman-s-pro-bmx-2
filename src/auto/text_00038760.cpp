@@ -43,7 +43,7 @@ struct S_00038760_Entry {
     void *data;              /* 0x10 */
 };
 
-static __forceinline void Round_00038850(int *out, float value) { *out = _mm_cvtss_si32(*(__m128 *)&value); }
+static __forceinline void Round_00038850(int *out, float value) { *out = _mm_cvtss_si32(_mm_load_ss(&value)); }
 extern char D_00276E90[];
 extern int D_002B911C;
 int func_001E8AF0(void *, void *);
