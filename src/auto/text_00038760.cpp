@@ -48,12 +48,18 @@ struct S_00038760_Conv {
     float v;
 };
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
+
 static __forceinline void Round_00038850(int *out, float value)
 {
     S_00038760_Conv c;
+    int rounded;
     c.out = out;
     c.v = value;
-    *(*(int * volatile *)&c.out) = _mm_cvtss_si32(*(__m128 *)&c.v);
+    rounded = _mm_cvtss_si32(*(__m128 *)&c.v);
+    _ReadWriteBarrier();
+    *(*(int * volatile *)&c.out) = rounded;
 }
 extern char D_00276E90[];
 extern int D_002B911C;
@@ -146,6 +152,43 @@ int C_00038760::func_00038760(float x, float y, float z, int unused, int *out)
         }
     }
     return j;
+}
+
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
+C_00038850_Item *C_00038760::func_00038850(void * volatile owner, float x, float y, float z, int unused, volatile int allow)
+{
+    C_00038760 * volatile self = this;
+    S_00038760_Arr *a = &arr3;
+    int ix, iy, iz;
+    float v[4];
+    int i;
+
+    v[2] = 0.0f;
+    v[1] = 0.0f;
+    v[0] = 0.0f;
+    v[3] = 1.0f;
+    _ReadWriteBarrier();
+    for (i = 0; i < a->count; i++, a = &self->arr3) {
+        C_00038850_Item *e = (C_00038850_Item *)a->at(i);
+        e->func_0019C320(v);
+        Round_00038850(&ix, v[0]);
+        Round_00038850(&iy, v[1]);
+        Round_00038850(&iz, v[2]);
+        _ReadWriteBarrier();
+        v[0] = (float)ix;
+        v[1] = (float)iy;
+        v[2] = (float)iz;
+        if (x == v[0] && y == v[1] && z == v[2]) {
+            if (owner != 0 && func_001E8AF0((char *)owner + 0x28, D_00276E90) != 0) {
+                if (e->owner == 0)
+                    return e;
+            } else if (e->owner == owner && (allow || e->f68 != D_002B911C)) {
+                return e;
+            }
+        }
+    }
+    return 0;
 }
 
 int *C_00038760::func_000389C0(int param_1)
