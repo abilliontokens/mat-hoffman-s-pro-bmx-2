@@ -27,7 +27,7 @@ static __inline void SetTimerRelative(void *timer, __int64 due, void *dpc) {
     _imp__KeSetTimer(timer, due, dpc);
 }
 
-static void initterm(PVFV *pfbegin, PVFV *pfend) {
+static __forceinline void initterm(PVFV *pfbegin, PVFV *pfend) {
     while (pfbegin < pfend) {
         if (*pfbegin != 0 && (int)*pfbegin != -1) {
             (**pfbegin)();
@@ -37,23 +37,171 @@ static void initterm(PVFV *pfbegin, PVFV *pfend) {
 }
 
 #pragma optimize("t", off)
+extern "C" void *__cdecl memset(void *, int, unsigned int);
+extern "C" int (__stdcall *_imp__NtOpenFile)(void **h, unsigned int access, void *oa, void *iosb, unsigned int share, unsigned int opts);
+extern "C" int (__stdcall *_imp__NtDeviceIoControlFile)(void *h, void *ev, void *apc, void *ctx, void *iosb, unsigned int code, void *in, unsigned int inLen, void *out, unsigned int outLen);
+extern "C" int (__stdcall *_imp__NtFsControlFile)(void *h, void *ev, void *apc, void *ctx, void *iosb, unsigned int code, void *in, unsigned int inLen, void *out, unsigned int outLen);
+extern "C" int (__stdcall *_imp__NtClose)(void *h);
+extern "C" int (__stdcall *_imp__NtWriteFile)(void *h, void *ev, void *apc, void *ctx, void *iosb, void *buf, unsigned int len, void *offset);
+extern "C" void (__stdcall *_imp__KeQuerySystemTime)(void *t);
+unsigned char __fastcall func_001E2770(unsigned int n);
+void __stdcall func_001DD659(int status);
+void __stdcall func_001DD62B(int err);
+void *__stdcall func_001DF5B9(unsigned int flags, unsigned int size);
+void __stdcall func_001DF5D6(void *p);
+unsigned int __stdcall func_001EAD20(unsigned int lo, unsigned int hi, unsigned int dlo, unsigned int dhi);
+extern char D_00100003;
+extern char D_00070000;
+extern char D_00074004;
+extern char D_0000FFF0;
+extern char D_00090020;
+#pragma optimize("t", off)
+int __stdcall func_001E233F(void *name, unsigned int bytesPerCluster) {
+    unsigned int part[8];
+    unsigned int geom[6];
+    struct { void *root; void *name; unsigned int attr; } oa;
+    unsigned int t[2];
+    unsigned int iosb[2];
+    unsigned __int64 offset;
+    unsigned int fat;
+    unsigned int reserved;
+    unsigned int status;
+    unsigned int remaining;
+    void *handle;
+    unsigned __int64 len;
+    unsigned int sectorSize;
+    unsigned int clusters;
+    int st;
+    int st2;
+    unsigned char is16;
+    unsigned int *buf;
+    int (__stdcall *ioctl)(void *, void *, void *, void *, void *, unsigned int, void *, unsigned int, void *, unsigned int);
+
+    oa.name = name;
+    oa.root = 0;
+    oa.attr = 0x40;
+    st = _imp__NtOpenFile(&handle, (unsigned int)&D_00100003, &oa, iosb, 0, 0x18);
+    if (st < 0) {
+        func_001DD659(st);
+        return 0;
+    }
+    ioctl = _imp__NtDeviceIoControlFile;
+    st = ioctl(handle, 0, 0, 0, iosb, (unsigned int)&D_00070000, 0, 0, geom, 0x18);
+    if (st < 0) {
+        _imp__NtClose(handle);
+        func_001DD659(st);
+        return 0;
+    }
+    status = func_001E2770(geom[5]);
+    st2 = ioctl(handle, 0, 0, 0, iosb, (unsigned int)&D_00074004, 0, 0, part, 0x20);
+    if (st2 < 0) {
+        _imp__NtClose(handle);
+        func_001DD659(st2);
+        return 0;
+    }
+    sectorSize = (geom[5] + 0xfff) & ~0xfff;
+    if (bytesPerCluster < sectorSize) bytesPerCluster = sectorSize;
+    reserved = 0x1000;
+    if (sectorSize > 0x1000) reserved = sectorSize;
+    len = *(unsigned __int64 *)&part[2];
+    if ((unsigned __int64)reserved >= len) goto fail;
+    clusters = func_001EAD20((unsigned int)len, (unsigned int)(len >> 32), bytesPerCluster, 0) + 1;
+    if (clusters < (unsigned int)&D_0000FFF0) {
+        fat = clusters * 2;
+        is16 = 1;
+    } else {
+        fat = clusters * 4;
+        is16 = 0;
+    }
+    fat = (fat + sectorSize - 1) & ~(sectorSize - 1);
+    len -= reserved;
+    if ((unsigned __int64)fat > len) goto fail;
+    len -= fat;
+    if ((unsigned __int64)bytesPerCluster > len) {
+fail:
+        _imp__NtClose(handle);
+        func_001DD62B(0x70);
+        return 0;
+    }
+    buf = (unsigned int *)func_001DF5B9(0, sectorSize);
+    if (buf == 0) {
+        _imp__NtClose(handle);
+        func_001DD659(0xc000009a);
+        return 0;
+    }
+    memset(buf, 0xff, sectorSize);
+    buf[0] = 0x58544146;
+    buf[3] = 1;
+    buf[2] = (unsigned char)(bytesPerCluster >> status);
+    *(unsigned short *)&buf[4] = 0;
+    _imp__KeQuerySystemTime(t);
+    buf[1] = t[0];
+    offset = 0;
+    remaining = reserved;
+    do {
+        status = _imp__NtWriteFile(handle, 0, 0, 0, iosb, buf, sectorSize, &offset);
+        if ((int)status < 0) {
+            func_001DF5D6(buf);
+            goto done;
+        }
+        memset(buf, 0, sectorSize);
+        offset += sectorSize;
+    } while ((remaining -= sectorSize) != 0);
+    memset(buf, 0, sectorSize);
+    offset = reserved;
+    remaining = fat;
+    if (is16) {
+        ((unsigned short *)buf)[1] = 0xffff;
+        ((unsigned short *)buf)[0] = 0xfff8;
+    } else {
+        buf[1] = 0xffffffff;
+        buf[0] = 0xfffffff8;
+    }
+    do {
+        status = _imp__NtWriteFile(handle, 0, 0, 0, iosb, buf, sectorSize, &offset);
+        if ((int)status < 0) goto freebuf;
+        memset(buf, 0, 8);
+        offset += sectorSize;
+    } while ((remaining -= sectorSize) != 0);
+    memset(buf, 0xff, sectorSize);
+    remaining = bytesPerCluster;
+    do {
+        status = _imp__NtWriteFile(handle, 0, 0, 0, iosb, buf, sectorSize, &offset);
+        if ((int)status < 0) break;
+        offset += sectorSize;
+    } while ((remaining -= sectorSize) != 0);
+freebuf:
+    func_001DF5D6(buf);
+done:
+    _imp__NtFsControlFile(handle, 0, 0, 0, iosb, (unsigned int)&D_00090020, 0, 0, 0, 0);
+    _imp__NtClose(handle);
+    if ((int)status >= 0) return 1;
+    func_001DD659(status);
+    return 0;
+}
+#pragma optimize("", on)
+
 void func_001E2655(void) {
-    PVFV f;
-    PVFV *p;
+    PVFV *p1;
+    PVFV *e1;
+    PVFV *p2;
+    PVFV *e2;
     if (D_002AE580 != 0) {
         D_002AE580();
     }
-    for (p = D_002A0410; p < D_002A0424; ++p) {
-        f = *p;
-        if (f != 0 && f != (PVFV)-1) {
-            f();
+    e1 = D_002A0424;
+    for (p1 = D_002A0410; p1 < e1; p1++) {
+        if (*p1 != 0 && (int)*p1 != -1) {
+            (**p1)();
         }
     }
-    for (p = D_0029F4F0; p < D_002A040C; ++p) {
-        f = *p;
-        if (f != 0 && f != (PVFV)-1) {
-            f();
+    p2 = D_0029F4F0;
+    e2 = D_002A040C;
+    while (p2 < e2) {
+        if (*p2 != 0 && (int)*p2 != -1) {
+            (**p2)();
         }
+        p2++;
     }
 }
 #pragma optimize("", on)
