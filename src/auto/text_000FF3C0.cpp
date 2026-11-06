@@ -173,6 +173,17 @@ struct C_000FF590 {
     int func_000DCC20(); void func_001BED00(float); void func_000FF590(float dt);
 };
 
+struct C_000FF590Vt {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(int a, int b);
+};
+
 struct C_000FF3C0 {
     undefined4 func_000FF3C0(byte param_1);
 };
@@ -367,6 +378,320 @@ void *C_000FF550::func_000FF550(int flags)
         func_001E891B(this);
     }
     return this;
+}
+
+int func_001E8858(float f);
+void C_000FF590::func_000FF590(float dt)
+{
+    typedef void (__fastcall *VF590)(void *self, int dummy, int a, int b);
+    PhotoOwner *owner = this->owner;
+
+    if (f28c || f290) {
+        memset(inputs, 0, 32);
+    }
+    if (f2e8 && !f2c0) {
+        f2e4 = f2e4 + dt;
+        if (!(f2e4 < 1.0f)) {
+            f2c0 = 1;
+            f2e8 = 0;
+        }
+    }
+    switch (f2d4) {
+    case 1:
+        if (f2d0 == 1) {
+            if (!(f2b8 < D_002755E8)) {
+                if (f30c == 0) {
+                    if (func_000DCC20() != 0) {
+                        f2d4 = 4;
+                        owner->ui->messages->func_0001BC50(D_0027A144, D_00282638, 0);
+                        break;
+                    }
+                }
+                f30c = 1;
+            }
+        } else if (f2d0 == 0) {
+            f2d4 = 1;
+            owner->ui->messages->func_0001BC50(D_0027A144, D_00282648, 0);
+            if (f2d8 > f2dc) {
+                owner->ui->messages->func_0001BC50(D_0027F7D4, D_00282648, 0);
+            }
+            f2d8 = 0;
+            f2dc = 1;
+            f2a8 = 0;
+        }
+        break;
+    case 3:
+        if (f2d0 != 0) {
+            f2d4 = 2;
+            if (f2bc->func_00092A50(0) && f2bc->func_00092BE0()) {
+                f2d4 = 3;
+                f2b8 = f2b8 + dt;
+                if (!(f2b8 < D_00275460) && owner->dev->f74->func_000301D0() == 0) {
+                    f2d0 = f2bc->func_00092A10();
+                    f2b8 = 0;
+                }
+            }
+        }
+        break;
+    case 5:
+        if (f2d0 == 1) {
+            if (!(f2b8 < D_00275544) && f308 == 0) {
+                f298 = 1;
+                f2d4 = 4;
+                if (f2e0 == 0) {
+                    owner->ui->messages->func_0001BC50(D_0027F7D4, D_00282658, 0);
+                } else {
+                    owner->ui->messages->func_0001BC50(D_0027F7D4, D_00282668, 0);
+                }
+                break;
+            }
+        } else if (f2d0 == 0) {
+            f2d4 = 1;
+            owner->ui->messages->func_0001BC50(D_0027A144, D_00282648, 0);
+            if (f2d8 > f2dc) {
+                owner->ui->messages->func_0001BC50(D_0027F7D4, D_00282648, 0);
+            }
+            f2d8 = 0;
+            f2dc = 1;
+            f2a8 = 0;
+        }
+        break;
+    }
+    if (f290 || f28c) {
+        f280 = f280 + dt;
+        if (!(f280 < D_0027DE74)) {
+            if (f2d4 == 0) {
+                f294 = 1;
+                ((VF590)(*(void ***)this)[0x1C])(this, 0, f288, f284);
+            } else if (f2d4 == 4) {
+                int n = f2d8;
+                if (f290) {
+                    if (n < 7) {
+                        if (n > f2dc) f2d4 = 5;
+                        f2d8 = n + 1;
+                        f2e0 = 0;
+                    }
+                } else if (n > 0) {
+                    if (n < f2dc) f2d4 = 5;
+                    f2d8 = n - 1;
+                    f2e0 = 1;
+                    f2dc = n;
+                }
+                if (f2d4 != 5) {
+                    if (f2e0 == 0) {
+                        owner->ui->messages->func_0001BC50(D_0027F7D4, D_00282658, 0);
+                    } else {
+                        owner->ui->messages->func_0001BC50(D_0027F7D4, D_00282668, 0);
+                    }
+                    f2b8 = 0;
+                } else {
+                    f294 = 1;
+                    ((VF590)(*(void ***)this)[0x1C])(this, 0, f288, f284);
+                }
+            }
+            f290 = 0;
+            f28c = 0;
+            f280 = 0;
+        }
+    }
+    if (f2ac) {
+        f280 = f280 + dt;
+        if (owner->busy) {
+            f2c8 = 0;
+        } else if (!(f280 < D_0027DE74)) {
+            switch (f2d4) {
+            case 0:
+                f2d0 = f2bc->func_00092A10();
+                if (f2d0 != 0) {
+                    f2d4 = 2;
+                    if (f2bc->func_00092A50(0) && f2bc->func_00092BE0()) {
+                        f2d4 = 3;
+                        f2b8 = 0;
+                    }
+                }
+                break;
+            case 1:
+            case 2:
+            case 3:
+                f2d4 = 1;
+                f2b8 = 0;
+                break;
+            case 4:
+                f2d4 = 0;
+                break;
+            case 5: {
+                int n = ++f2ec;
+                if (n == 2) {
+                    owner->func_000BB380(D_0028260C);
+                } else if (n == 3) {
+                    owner->func_000BB380(D_002825FC);
+                } else if (n == 4) {
+                    owner->func_000BB380(D_002825EC);
+                } else {
+                    f2d4 = 4;
+                    owner->func_000BB380(D_002825E4);
+                }
+                f280 = 0;
+                f2ac = 0;
+                break;
+            }
+            case 6:
+                f2d4 = 6;
+                f2ec = 1;
+                owner->func_000BB3B0(D_0028261C, D_0028262C);
+                break;
+            }
+        }
+    }
+    if (f2b0) {
+        f280 = f280 + dt;
+        if (!(f280 < D_0027DE74)) {
+            if (f2d4 == 0) {
+                if (D_002A8490->f2E0->f324 == 1) {
+                    f294 = 1;
+                    ((VF590)(*(void ***)this)[0x1C])(this, 0, f288, f284);
+                }
+            } else if (f2d4 == 4) {
+                f2d4 = 0;
+                owner->ui->messages->func_0001BC50(D_0027A144, D_00282648, 0);
+                if (f2d8 > f2dc) {
+                    owner->ui->messages->func_0001BC50(D_0027F7D4, D_00282648, 0);
+                }
+                f2d8 = 0;
+                f2dc = 1;
+                f2a8 = 0;
+            }
+            f2b0 = 0;
+            f280 = 0;
+        }
+    }
+    if (f2f0 != f2f8) {
+        if (!(f2fc < f300)) {
+            f2f8 = f2f0;
+            f308 = 0;
+        } else {
+            int b = f2f4;
+            f2f8 = func_001E8858((float)(f2f0 - b) * (f2fc / f300)) + b;
+            f2fc = f2fc + dt;
+        }
+    }
+    func_001BED00(dt);
+}
+
+void C_000FFFA0::func_000FFC20()
+{
+    S_00100030_Hud *hud = D_002B91AC;
+    S_000FFC20_Owner *owner = f124;
+    S_00100030_Item *item;
+    int state;
+
+    hud->f24->func_001D5AD0();
+    hud->f28->func_001D5AD0();
+    hud->f2C->func_001D5AD0();
+    hud->f30->func_001D5AD0();
+    D_002B91AC->func_000BF860(0, 0x1eb, 0x184, 0);
+    switch (f2d4) {
+    case 0:
+        if (D_002A8490->f2E0->f324 == 0) {
+            if (f28c)
+                D_002B91AC->f90->func_001D5AD0();
+            else
+                D_002B91AC->f88->func_001D5AD0();
+            if (f290)
+                D_002B91AC->f94->func_001D5AD0();
+            else
+                D_002B91AC->f8C->func_001D5AD0();
+        } else if (!owner->f25c->f74->func_000301D0()) {
+            if (f2b0)
+                D_002B91AC->f6C->func_001D5AD0();
+            else
+                D_002B91AC->f54->func_001D5AD0();
+        }
+        if (!owner->f25c->f74->func_000301D0()) {
+            if (f2ac)
+                D_002B91AC->f68->func_001D5AD0();
+            else
+                D_002B91AC->f50->func_001D5AD0();
+        }
+        break;
+    case 1:
+        D_002B91AC->func_000BF860(0, 0x140, 0x184, 0);
+        goto case6;
+    case 2:
+        if (f2ac)
+            D_002B91AC->f68->func_001D5AD0();
+        else
+            D_002B91AC->f50->func_001D5AD0();
+        break;
+    case 3:
+        if (f30c) {
+            if (f2ac)
+                D_002B91AC->f68->func_001D5AD0();
+            else
+                D_002B91AC->f50->func_001D5AD0();
+        }
+        break;
+    case 4:
+    case 5:
+        if (f2d8) {
+            if (f2d8 != 7) {
+                if (f28c)
+                    D_002B91AC->f90->func_001D5AD0();
+                else
+                    D_002B91AC->f88->func_001D5AD0();
+                if (f290)
+                    D_002B91AC->f94->func_001D5AD0();
+                else
+                    D_002B91AC->f8C->func_001D5AD0();
+            } else {
+                if (f28c)
+                    D_002B91AC->f90->func_001D5AD0();
+                else
+                    D_002B91AC->f88->func_001D5AD0();
+            }
+        } else {
+            if (f290)
+                D_002B91AC->f94->func_001D5AD0();
+            else
+                D_002B91AC->f8C->func_001D5AD0();
+        }
+        if (f2ac)
+            D_002B91AC->f68->func_001D5AD0();
+        else
+            D_002B91AC->f50->func_001D5AD0();
+        if (f2b0)
+            D_002B91AC->f6C->func_001D5AD0();
+        else
+            D_002B91AC->f54->func_001D5AD0();
+        break;
+    case 6:
+    case6:
+        if (f2ac)
+            D_002B91AC->f68->func_001D5AD0();
+        else
+            D_002B91AC->f50->func_001D5AD0();
+        break;
+    }
+    state = f2d4;
+    if (state == 1 || state == 2 || state == 3 || state == 5) {
+        if (!f304) {
+            f2f0 = 0x80;
+            f2f4 = 0;
+            f2f8 = 0;
+            f2fc = 0;
+            f300 = 0.25f;
+            f304 = 1;
+            return;
+        }
+    } else {
+        if (f304)
+            func_000DCBF0();
+        return;
+    }
+    item = f29c;
+    item->color = ((short)f2f8 << 24) | (item->color & 0xffffff);
+    item->flags |= 2;
+    f29c->func_001D5AD0();
 }
 
 void C_000FFF70::func_000FFF70()
