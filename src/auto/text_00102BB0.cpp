@@ -88,6 +88,55 @@ struct C_001033D0 {
     void func_00103960();
 };
 
+struct S_Cfg {
+    void func_00168550(const void *key, char *buf, int size);
+    void func_00168BE0(const void *key, char *a, char *b, int size);
+    int func_00168C20(const void *key, int def, int *out);
+    int func_00168C50(const void *key, float def, float *out);
+    int func_00168CB0(const void *key, S_00103_Vec4 *def, S_00103_Vec4 *out);
+};
+extern char D_0027DE5C[], D_0027DE4C[], D_0027DE38[], D_0027DE2C[], D_00282898[], D_00282890[], D_00282880[];
+extern char D_00282874[], D_0028286C[], D_0028285C[], D_00282854[], D_00282844[], D_0028283C[], D_0027DE44[];
+extern char D_0028282C[], D_00282824[], D_0028281C[], D_00282810[], D_00282800[], D_002827EC[], D_0027C294[];
+extern int D_0028F5EC, D_0028F5E8, D_0028F5E4, D_0028F5E0, D_0028F5DC;
+int func_001E8858(float f);
+void *func_001E8A44(unsigned int n);
+struct C_001BF600 { void func_001BF600(S_Cfg *c); };
+struct C_001B12C0 { C_001B12C0 *func_001B12C0(int a); };
+struct C_001B13A0 { static void func_001B13A0(char *a, char *b, int c, int d); };
+struct C_001C01E0 { void func_001C01E0(char *s); };
+struct C_001577A0 { void func_001577A0(C_001B1980 *o, int a); };
+struct C_001B17D0 { void func_001B17D0(char *s); };
+struct C_00103450 {
+    void *vtbl;
+    char pad4[0x24];
+    int unk28;
+    char pad2C[0xC4];
+    char unkF0[0x80];
+    int unk170;
+    char pad174[4];
+    int unk178;
+    char pad17C[0x14];
+    int unk190;
+    char pad194[0x1C];
+    C_001B1980 **unk1B0;
+    char pad1B4[4];
+    char unk1B8[0x104];
+    char pad2BC[0x104];
+    int unk3C0;
+    int unk3C4;
+    int unk3C8;
+    int unk3CC;
+    int unk3D0;
+    S_00103_Vec4 vec3D4;
+    float unk3E4;
+    int unk3E8;
+    int unk3EC;
+    int unk3F0;
+    int unk3F4;
+    C_00103450 *func_00103450(S_Cfg *cfg, int a);
+};
+
 struct C_001BF6A0 {
     void func_001BF6A0();
 };
