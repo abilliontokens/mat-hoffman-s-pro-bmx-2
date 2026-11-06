@@ -69,19 +69,6 @@ extern S_1C4FB0_Cull *D_002AB66C;
         } \
     }
 
-/* last child of a path: the calls are in tail position */
-#define QN_VISIT_LAST(i, EX, EZ) \
-    if (f4[i]) { \
-        ctr.y = f4[i]->fC; \
-        ext2.y = f4[i]->f10; \
-        ctr.x = EX; \
-        ctr.z = EZ; \
-        if (D_002AB66C->func_001C5DE0(f + 0xf0, &ctr, &ext2, &res)) { \
-            if (res == 0) return f4[i]->vf1(a, b, c, d, e); \
-            else return f4[i]->func_001C4FB0(a, b, c, d, e, f); \
-        } \
-    }
-
 /* VisibilityQuadTree */
 struct C_001C5AA0 {
     char pad0[0x890];
