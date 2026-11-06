@@ -2,8 +2,8 @@
 #include "common.h"
 #include <xmmintrin.h>
 
-static __forceinline float Min_0011FDF0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
-static __forceinline float Max_0011FDF0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float Min_0011FDF0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_set_ss(a), _mm_set_ss(b))); return r; }
+static __forceinline float Max_0011FDF0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b))); return r; }
 
 extern float D_00275544;
 extern float D_002B9348;
@@ -57,7 +57,8 @@ float func_0011FDF0(float *p, float *a, float *b)
 int func_00120470(short *tri, S_0011F4B0_V4 pos, float radius, int unused, float *m)
 {
     S_00120470_Triangle triangle;
-    float delta[4], scaled[4];
+    union { float f[4]; double d[2]; } scaled;
+    float delta[4];
     volatile float absoluteInput;
     volatile int absoluteBits;
     float d;
@@ -69,15 +70,17 @@ int func_00120470(short *tri, S_0011F4B0_V4 pos, float radius, int unused, float
     triangle.b.z = 0.0f; triangle.b.y = 0.0f; triangle.b.x = 0.0f; triangle.b.w = 1.0f;
     triangle.c.z = 0.0f; triangle.c.y = 0.0f; triangle.c.x = 0.0f; triangle.c.w = 1.0f;
     func_0011F0E0(&triangle.a, &triangle.b, &triangle.c, tri, D_002B92F4);
-    delta[0] = pos.x - triangle.a.x; delta[1] = pos.y - triangle.a.y; delta[2] = pos.z - triangle.a.z;
+    delta[0] = pos.x - triangle.a.x;
+    delta[1] = pos.y - triangle.a.y;
+    delta[2] = pos.z - triangle.a.z;
     d = delta[2] * triangle.n.z + (delta[0] * triangle.n.x + delta[1] * triangle.n.y);
     absoluteInput = *(volatile float *)&d;
     absoluteBits = *(volatile int *)&absoluteInput & 0x7fffffff;
     if (*(volatile float *)&absoluteBits > radius) return 0;
-    scaled[0] = triangle.n.x * d; scaled[1] = triangle.n.y * d; scaled[2] = triangle.n.z * d;
-    triangle.n.x = pos.x - scaled[0];
-    triangle.n.y = pos.y - scaled[1];
-    triangle.n.z = pos.z - scaled[2];
+    scaled.f[0] = triangle.n.x * d; scaled.f[1] = triangle.n.y * d; scaled.f[2] = triangle.n.z * d;
+    triangle.n.x = pos.x - scaled.f[0];
+    triangle.n.y = pos.y - scaled.f[1];
+    triangle.n.z = pos.z - scaled.f[2];
     triangle.n.w = 1.0f;
     if (func_0011FF30(&triangle.n, tri)) return 1;
     d = func_0011FDF0(&pos, &triangle.a, &triangle.b);
