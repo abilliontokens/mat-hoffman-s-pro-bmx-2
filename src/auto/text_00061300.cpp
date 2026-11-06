@@ -119,6 +119,28 @@ static __forceinline void set_00061B80(C_00061B80_Obj *o, float a, float b, floa
     }
 }
 
+#define SET_00061B80(p, a, b, c, k) { \
+    float cc = (c) * D_00278784; \
+    float bb = (b); \
+    if ((p)->f4 != (a) || (p)->f8 != bb) { \
+        (p)->f4 = (a); \
+        (p)->f8 = bb; \
+        (p)->flags |= 1; \
+    } \
+    if ((p)->f2c != cc) { \
+        (p)->f2c = cc; \
+        (p)->flags |= 1; \
+    } \
+    if ((p)->f28 != cc) { \
+        (p)->f28 = cc; \
+        (p)->flags |= 1; \
+    } \
+    if ((p)->f34 != (k)) { \
+        (p)->f34 = (k); \
+        (p)->flags |= 1; \
+    } \
+}
+
 struct C_00061B80 {
     char pad0[0x12c];
     C_00061B80_Obj *o12c;
