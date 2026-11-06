@@ -26,7 +26,27 @@ struct C_0018AFD0 {
     void *func_0018AFD0(unsigned int flags);
 };
 
-struct C_0018A320 { void *vtbl; int f4; void func_0018A320(int a, void *b, void *c, int *d); };
+struct S_0018A320_W { char pad[0x390]; void *f390; char pad2[0x4d8-0x394]; unsigned char f4D8; };
+struct S_0018A320_P {
+    int func_00169710(char *name);
+    void func_00168C20(char *key, int def, int *out);
+    void func_00168C50(char *key, float def, float *out);
+    int func_00168BE0(char *key, char *def, char *out, int len);
+};
+struct S_0018A320_Tok { char *p0, *p1; void func_001B4A40(char *s); char *func_001B4A70(char *sep); };
+struct S_0018A320_Vec { int x, y, z, w; };
+extern S_0018A320_Vec *func_00182980(S_0018A320_Vec *out, char *s);
+extern void *func_001E8A44(unsigned int);
+extern int func_001E91F4(const char *);
+extern void func_001ADCC0(char *dst, int size, const char *fmt, ...);
+extern "C" int __cdecl memcmp(const void *, const void *, unsigned int);
+extern "C" char * __cdecl strcpy(char *, const char *);
+extern char D_0028A4F4[], D_0028A4DC[], D_0028A4C4[], D_00276844[], D_0028A4B8[];
+extern char D_002895F4[], D_002895EC[], D_0028A4A0[], D_0028A484[], D_0028A468[];
+extern char D_0028A454[], D_0028A438[], D_0028A41C[], D_0028973C[], D_00289734[];
+extern char D_0028972C[], D_00289724[], D_0028A410[], D_0027C494[], D_0028A404[];
+extern char D_0028A3F4[], D_0028A3E8[], D_00275630[], D_0028A3D8[], D_0028803C[];
+extern char D_0028A3C4[], D_0028A3A8[];
 extern int D_00289ABC;
 extern int D_00289830;
 extern int D_002897FC;
