@@ -355,31 +355,4 @@ C_0016D620 *C_0016D620::func_0016D620(void *param)
     f194 = 0;
     return this;
 }
-struct C_0016C870 {
-    char pad0[0x24];
-    float unk24, unk28, unk2c;
-    char pad30[0x34 - 0x30];
-    float unk34, unk38, unk3c;
-    int unk40;
-    char pad44[0x54 - 0x44];
-    float unk54, unk58, unk5c, unk60;
-    void *unk64;
-    int unk68;
-    char pad6C[0x170 - 0x6C];
-    float unk170, unk174;
-    int unk178;
-    float unk17C, unk180;
-    char pad184[4];
-    int unk188;
-    int unk18C, unk190;
-    char pad194[0x1A8 - 0x194];
-    int unk1A8, unk1AC, unk1B0, unk1B4;
-    int *unk1BC;
-    int unk1C0, unk1C4, unk1C8;
-    char pad1CC[0x1F0 - 0x1CC];
-    float unk1F0, unk1F4, unk1F8, unk1FC, unk200, unk204, unk208, unk20C;
-    float unk210, unk214;
-    int unk218;
-    int func_00169E10(void *p);
-    int func_0016C870(float dt);
-};
+/* C_0016C870 is declared at the top of the file, above its first function. */
