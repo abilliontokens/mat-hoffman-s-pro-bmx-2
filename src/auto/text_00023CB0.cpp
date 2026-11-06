@@ -15,6 +15,7 @@ static __forceinline float sqrt_24210(float x) { return _mm_sqrt_ss(*(__m128 *)&
 struct C_00199B00 {
     S_00024210_Vec func_00199B00(int a);
     S_00024210_Vec *func_00199B00(S_00024210_Vec *out, int a);
+    void func_00199600(S_00024210_Vec v);
 };
 
 struct C_00198390 {
@@ -138,6 +139,11 @@ struct AmbientDebris {
 };
 
 extern C_000229C0 *D_002B7E18;
+
+int C_00023C30::func_00023CB0(int a, S_00024210_Vec v, float len)
+{
+    return 1;
+}
 
 AmbientDebris *AmbientDebris::func_00024140(int a, int b)
 {
