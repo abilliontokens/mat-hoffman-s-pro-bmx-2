@@ -433,9 +433,12 @@ struct BmxEvent_00030A30 : VT_00031260 {
 void func_00030A30(Vec4_00030A30 *out, float x, float y, float z, float w, float *m)
 {
     Vec4_00030A30 r;
+
     r.x = y * m[4] + z * m[8] + x * m[0];
     r.y = x * m[1] + (y * m[5] + z * m[9]);
-    r.z = y * m[6] + z * m[10] + x * m[2];
+    float t = y * m[6];
+    float u = z * m[10];
+    r.z = t + u + x * m[2];
     r.w = 1.0f;
     *out = r;
 }
