@@ -90,7 +90,7 @@ static __forceinline void Cross_0011F8E0(float * volatile out, float *a, float *
 static __forceinline float Min_0011F8E0(float a, float b)
 {
     float r;
-    _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b)));
+    r = a < b ? a : b;
     return r;
 }
 
