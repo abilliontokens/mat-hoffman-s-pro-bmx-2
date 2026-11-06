@@ -242,10 +242,28 @@ struct C_0001D330_Item {
     virtual void virt33();
 };
 
+struct C_0001D330_List {
+    int count;
+    C_0001D330_Item **items;
+    int growBy;
+    int capacity;
+    C_0001D330_Item *at(int i) {
+        if (count > 0 && items != 0 && i < count) {
+            return items[i];
+        }
+        return 0;
+    }
+};
+
 struct C_0001D330 {
     char pad0[0x70];
-    int unk70;
-    C_0001D330_Item **unk74;
+    union {
+        C_0001D330_List list;
+        struct {
+            int unk70;
+            C_0001D330_Item **unk74;
+        };
+    };
     C_0001D330_Item *itemAt(int i) {
         if (unk70 > 0 && unk74 != 0 && i < unk70) {
             return unk74[i];
