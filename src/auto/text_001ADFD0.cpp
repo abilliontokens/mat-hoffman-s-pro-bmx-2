@@ -407,12 +407,18 @@ struct C_1AE570_Cam {
     float pos[3];
     float f17C;
     float dir[3];
-    char pad18C[0x60];
+    char pad18C[0x54];
+    int f1E0;
+    int f1E4;
+    int f1E8;
     unsigned int f1EC;
 };
 struct C_1AE570_Root {
     char pad0[4];
     C_1AE570_Cam *cam;
+    char pad8[0x64];
+    S_ADFD0_Slot6C *f6c;
+    S_ADFD0_Slot70 *f70;
 };
 struct C_1AE570_Tr {
     int func_001C5C50(C_1AE570_Cam *cam, float *mat, float *b, float *a, float *out);
