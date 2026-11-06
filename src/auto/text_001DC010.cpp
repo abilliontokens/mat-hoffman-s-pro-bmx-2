@@ -169,6 +169,31 @@ void __stdcall func_001FF940(void *, void *);
 void __stdcall func_001FF4E0(int,int,unsigned int,unsigned int,int,int);
 void __stdcall func_00201100(int);
 void __stdcall func_00200230(void *);
+#include <xmmintrin.h>
+struct V4_001DC010 { float x, y, z, w; V4_001DC010(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; } };
+struct Vtx_001DC010 { float f[5]; void func_001D8AE0(float x, float y, float z, float u, float v); };
+struct Obj_001DC010 { void func_00143BF0(XboxWaterDisplacement *w); };
+S_WaterVector *func_0001C610(S_WaterVector *out, const void *a, const void *b);
+S_WaterVector *func_0001E9E0(S_WaterVector *out, const S_WaterVector *in);
+float func_0014F4B0(int a);
+float func_0014F450(int a);
+float func_0014F590(float a);
+float func_0014F990(float a);
+int __stdcall func_001FE490(int a);
+void __stdcall func_001FD450(int a);
+void __stdcall func_001FD770(int a);
+void __stdcall func_001DAAD0(int a, Vtx_001DC010 *v, V4_001DC010 *c);
+extern int D_002AC750[];
+extern float D_00275460, D_0028FA18, D_0028AC40, D_00289080, D_002F08D0, D_0028F8E0, D_002755E4;
+extern float D_002AC82C, D_002AC830, D_002AC834, D_002AC838;
+extern int D_002AC7A0[], D_002AC790[];
+extern int D_002AC794, D_002F0BD0, D_0020C6DC, D_0020CA78, D_0020CA50;
+#define W_001DC010(p, off, T) (*(T *)((char *)(p) + (off)))
+static __forceinline float Max_001DC010(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float Min_001DC010(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float Abs_001DC010(float a) { int i = *(int *)&a & 0x7fffffff; return *(float *)&i; }
+static __forceinline float Sqrt_001DC010(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
+
 struct C_001DC540 {
     undefined4 func_001DC540(byte param_1);
 };
