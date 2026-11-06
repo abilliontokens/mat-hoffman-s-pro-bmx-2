@@ -11,9 +11,10 @@ struct C_001B1980 {
     void func_001B17D0(void *a);
 };
 
-extern const char D_0027E83C[0x11];
-extern char D_00281A48[];
-extern "C" int __cdecl memcmp(const void *a, const void *b, unsigned int n);
+/* The two name strings ("Ruben Alacantara" -> "Ruben Alcantara") are literals in the
+   original (.rdata D_0027E83C / D_00281A48); strcmp with a literal is what expands
+   to the inline repe cmpsb with edi loaded before ecx (memcmp orders them the other way). */
+extern "C" int __cdecl strcmp(const char *a, const char *b);
 
 struct E7_GObj {
     void func_0005E840(int a);
