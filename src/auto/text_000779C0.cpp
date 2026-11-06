@@ -63,11 +63,12 @@ struct Wid_779C0 {
     __forceinline void SetH(float h) { if (f2c != h) { f2c = h; b58 |= 1; } }
     __forceinline void Scale()
     {
-        f3c = D_00278654 * f4c;
+        float a = f4c, b = f50;
+        f3c = a * D_00278654;
         b58 |= 4;
-        f40 = D_00275544 * f4c;
-        f44 = D_0027653C * f50;
-        f48 = D_00275544 * f50;
+        f40 = a * D_00275544;
+        f44 = b * D_0027653C;
+        f48 = b * D_00275544;
     }
     Wid_779C0 *func_001D5760();
     void func_001D5810(char *, float, float, float);
