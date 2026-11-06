@@ -374,6 +374,45 @@ int C_00029BD0::func_00029BD0()
  return result;
 }
 
+extern V4_0002A250 D_002A1100;
+void C_00029E00::func_00029E00(float dt)
+{
+    float ang;
+    V4_00029BD0 a;
+    V4_00029BD0 b;
+    V4_0002A250 axis;
+    float lim;
+    V4_0002A250 *n;
+    float d;
+
+    if (f1e8->f64 && f628) {
+        f628 = 0;
+    }
+    if (f1e8->f6c && !f628) {
+        if (f684 && f1e0->f23c > D_00275460) goto done;
+        if (f1f0->f30 && !f5c8) goto done;
+        if (f120 < D_002756D8) {
+            n = &f10c;
+            { V4_00029BD0 t; func_0001E9E0(&a, func_0001C610(&t, (V4_00029BD0 *)n, &f1e8->v1a0)); }
+            { V4_00029BD0 t; func_0001E9E0(&a, func_0001C610(&t, &f1e8->v1a0, &a)); }
+            d = a.z * n->z;
+            ang = func_0014F7E0(a.x * n->x + a.y * n->y + d);
+            { V4_00029BD0 t; func_0001E9E0(&b, func_0001C610(&t, (V4_00029BD0 *)n, &a)); }
+            ((W_0002A7C0 *)f230)->func_00198040((V4_0002A7C0 *)&axis, (V4_0002A7C0 *)&b);
+            lim = D_002A1154 * dt;
+            if (ang > lim) ang = lim;
+            f230->func_00199CF0(axis, ang);
+        } else {
+            if (f1e8->f50) f624 -= dt * f620;
+            else f624 += dt * f620;
+            f230->func_00199CF0(D_002A1100, dt * f624);
+            return;
+        }
+    }
+done:
+    f624 = 0;
+}
+
 void C_0002A010::func_0002A010(float dt)
 {
     static float rate = (float)((D_002766B8 - D_002766C0 - D_002766B0) * D_002A1160);
