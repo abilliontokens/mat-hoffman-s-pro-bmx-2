@@ -71,7 +71,14 @@ struct V4_0011F8E0 {
     V4_0011F8E0() { x = y = z = 0; w = 1.0f; }
 };
 
+extern "C" void __cdecl _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
+
 void func_0011EFA0(float *out, float *in);
+float *func_0001C5E0(float *out, float t, float *dir);
+float *func_000110E0(float *out, float *a, float *b);
+float *func_00011110(float *out, float *a, float *b);
+float func_00011170(float *v);
 V4_0011F8E0 func_0001C5E0(float t, float *dir, float *org);
 V4_0011F8E0 func_000110E0(const V4_0011F8E0 &a);
 V4_0011F8E0 func_00011110(const V4_0011F8E0 &a, const V4_0011F8E0 &b);
