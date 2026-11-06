@@ -96,9 +96,9 @@ struct V4_000B5260 {
 };
 
 struct C_000B59E0_f30 {
-    void func_00199900(void *a);
-    void func_00197B40(void *a, void *b);
-    void *func_00198040(void *a, void *b);
+    void func_00199900(float *a);
+    void func_00197B40(float *a, float *b);
+    float *func_00198040(float *a, float *b);
     void func_00199CF0(V4_000B5260 v, float f);
 };
 float *func_0001C610(float *out, float *a, float *b);
@@ -206,19 +206,47 @@ C_000B5990 *C_000B5990::func_000B5990(int param_1)
   return this;
 }
 
-int __fastcall func_000B59E0(char *self, int, float dt)
+int __fastcall func_000B59E0(char *thiz, int, float dt)
 {
-    float p0[4];
-    float d[3];
-    float *o;
+    char * volatile self = thiz;
+    float len, ang, t, step, absang;
+    float m[16];
+    float V[4];
+    float d[4];
+    float w[4];
+    float ax[4];
+    float *ap, *o;
+    float *func_0001E9E0(float *out, float *v);
 
-    ((C_00197F70 *)*(int *)(self + 0x30))->func_00197F70((float *)(self + 0x44), p0);
+    ((C_00197F70 *)*(int *)(self + 0x30))->func_00197F70(m + 12, (float *)(self + 0x44));
     o = *(float **)(self + 0x28);
-    d[0] = (*(float *)(self + 0x54) * o[0x10] + o[8]) - p0[0];
-    d[1] = (*(float *)(self + 0x54) * o[0x11] + o[9]) - p0[1];
-    d[2] = (*(float *)(self + 0x54) * o[0x12] + o[10]) - p0[2];
-    if (d[0] != 0.0f || d[1] != 0.0f || d[2] != 0.0f) {
-        *(float *)(self + 0x70) = d[0] + d[1] + d[2];
+    d[0] = (*(float *)(self + 0x54) * o[16] + o[8]) - m[12];
+    d[1] = (*(float *)(self + 0x54) * o[17] + o[9]) - m[13];
+    d[2] = (*(float *)(self + 0x54) * o[18] + o[10]) - m[14];
+    d[3] = 1.0f;
+    ap = func_0001E9E0(m + 13, m);
+    m[0] = ap[0]; m[1] = ap[1]; m[2] = ap[2]; m[3] = ap[3];
+    len = sqrtf(d[0] * d[0] + d[1] * d[1] + d[2] * d[2]);
+    if (!(len > *(float *)(self + 0x60))) {
+        return 1;
+    }
+    if (!(len < *(float *)(self + 0x58))) {
+        t = dt * *(float *)(self + 0x68);
+        len = len < t ? len : t;
+    }
+    func_0001E9E0(w, d);
+    V[0] = len * w[0];
+    V[1] = len * w[1];
+    V[2] = len * w[2];
+    V[3] = 1.0f;
+    ((C_000B59E0_f30 *)*(int *)(self + 0x30))->func_00199900(V);
+    ((C_000B59E0_f30 *)*(int *)(self + 0x30))->func_00197B40(m + 8, m + 4);
+    func_0001E9E0(V, func_0001C610(ax, V, d));
+    ang = func_0014F7E0(d[1] * D_00275544 + d[0] * D_00275544 + d[2]);
+    len = ang;
+    *(int *)&absang = *(int *)&ang & 0x7fffffff;
+    if (absang > *(float *)(self + 0x64)) {
+        step = len;
     }
     return 1;
 }
