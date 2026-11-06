@@ -37,11 +37,11 @@ struct ElemHOF2 {
     void func_001D5810(char *name, float x, float y, int z);
     void func_001D5AD0();
     void SetIdentity() {
+        b58 |= 4;
         m40 = 0;
         m44 = 0;
         m3c = 1.0f;
         m48 = 1.0f;
-        b58 |= 4;
     }
     void SetX(int nx) {
         if (x != nx) {
@@ -246,6 +246,7 @@ BmxUIPageHOF2 *BmxUIPageHOF2::func_000D5E80(int a, int b, int c)
     char buf[8];
     int i;
     int j;
+    ElemHOF2 *e;
 
     func_001BE4F0(a, b, c);
     D_002A8490->res->func_0018C160(D_00278690);
@@ -273,11 +274,12 @@ BmxUIPageHOF2 *BmxUIPageHOF2::func_000D5E80(int a, int b, int c)
     }
     for (j = 0; j < 2; j++) {
         mem = func_001E8A44(0x64);
-        arr2FC[j] = mem ? ((ElemHOF2 *)mem)->func_001D5760() : 0;
+        e = mem ? ((ElemHOF2 *)mem)->func_001D5760() : 0;
+        arr2FC[j] = e;
         if (j % 2 == 0) {
-            arr2FC[j]->func_001D5810(D_0027F29C, 110.0f, 147.0f, 0);
+            e->func_001D5810(D_0027F29C, 110.0f, 147.0f, 0);
         } else {
-            arr2FC[j]->func_001D5810(D_0027F29C, 321.0f, 147.0f, 0);
+            e->func_001D5810(D_0027F29C, 321.0f, 147.0f, 0);
         }
         arr2FC[j]->SetIdentity();
         arr2FC[j]->SetX(0x435d0000);
