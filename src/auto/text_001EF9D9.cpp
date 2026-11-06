@@ -281,7 +281,7 @@ void *_func_001EFBEE(S_001EF734 *o)
         int d = c - '0';
         if (d >= 0 && d <= 9) {
             D_002F6A28++;
-            ((C_Lex *)D_002F6A18)->func_001EEFBA(d);
+            acc.func_001EF935(((C_Lex *)D_002F6A18)->func_001EEFBA(d));
         } else {
             char *p = D_002F6A28;
             aux.value = 0;
