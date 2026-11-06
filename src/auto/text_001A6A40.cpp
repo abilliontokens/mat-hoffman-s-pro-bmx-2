@@ -314,12 +314,6 @@ extern float D_002EFF78;
 extern float D_00275460;
 extern float D_00278C48;
 
-static __forceinline float AdvanceTimer(float &timer, float dt)
-{
-    timer = dt + timer;
-    return timer;
-}
-
 struct C_001A6E90 {
     void *vtbl;
     char pad4[0x48];
@@ -527,8 +521,8 @@ void C_001A6E90::func_001A6E90(float dt)
     }
 after_draw:
     if (f5C != 0 || f60 != 0) {
-        t = dt + f64;
-        if ((f64 = t) >= D_002755E8) {
+        f64 += dt;
+        if (f64 >= D_002755E8) {
             if (f5C != 0) {
                 if (f6C == 3) {
                     if (f78->func_00092A10() == 0) {
@@ -541,7 +535,7 @@ after_draw:
                     f4C->f24 = 9;
                     f5C = 0;
                 }
-            } else if (f60 != 0 && t >= D_00278C48) {
+            } else if (f60 != 0 && f64 >= D_00278C48) {
                 if (f6C == 9) {
                     msg.type = 2;
                     msg.code = 0x55;
