@@ -122,6 +122,9 @@ struct C_0012EF30_Vtbl {
     virtual void v45();
     virtual void v46();
     virtual void v47(char *name, void *buf);
+    virtual void v48(int a);
+    virtual void v49();
+    virtual void v50();
 };
 
 /* CarProceduralExtended */
