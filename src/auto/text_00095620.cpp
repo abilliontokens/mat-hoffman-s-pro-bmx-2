@@ -341,7 +341,7 @@ int C_00095A00::func_00095880()
 {
     if (!f50) return 0;
     int n = f34 == 0 ? f54 : f50->v41(f34);
-    S_00095880_Raw2 a;
+    S_00095880_Array a;
     unsigned char t = a.flags;
     a.count = 0;
     t &= 0xfe;
