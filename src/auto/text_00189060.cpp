@@ -202,6 +202,83 @@ struct C_00189B60_Node {
     void func_0017A8F0(S_00189B60_Vec4 *a, S_00189B60_Vec4 *b, int c);
 };
 
+extern "C" int strcmp(const char *, const char *);
+
+struct S_00189060_Obj {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
+    virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14();
+    virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24();
+    virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29();
+    virtual void v30(); virtual void v31(); virtual void v32();
+};
+
+struct S_00189060_X {
+    char pad0[4];
+    S_00189060_Obj **f4;
+    char pad8[0xc];
+    int f14;
+};
+
+struct S_00189060_Holder {
+    char pad0[0x28];
+    S_00189060_X **f28;
+};
+
+struct S_00189060_Item {
+    char pad0[4];
+    int kind;
+    char pad8[0x104];
+    int f10c;
+    int f110;
+    char name[1];
+};
+
+struct S_00189060_Group {
+    char pad0[8];
+    int count;
+    char padc[0x100];
+    S_00189060_Item **items;
+};
+
+struct BasicScene;
+
+struct S_00189060_Root {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
+    virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14();
+    virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24();
+    virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29();
+    virtual void v30(BasicScene *scene);
+    char pad4[0x24 - 4];
+    int count;
+    S_00189060_Group **groups;
+};
+
+struct S_00189060_Name {
+    char pad0[0xa0];
+    char name[1];
+};
+
+struct S_00189060_List {
+    char pad0[0x24];
+    int count;
+    S_00189060_Name **items;
+};
+
+struct S_00189060_Mgr {
+    char pad0[0x2c];
+    S_00189060_List *f2c;
+    void func_0001C240(void);
+    void func_0001BAC0(int idx, int a);
+};
+
+struct S_00189060_Sub {
+    void func_00188E70(void);
+};
+
 struct BasicScene {
     virtual void dummy0();
     virtual void dummy1();
