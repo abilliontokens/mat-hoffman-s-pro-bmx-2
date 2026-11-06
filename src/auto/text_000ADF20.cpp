@@ -94,6 +94,8 @@ struct C_000AE780 {
 };
 
 void *func_001E8920(void *dst, const void *src, unsigned int n);
+extern "C" size_t strlen(const char *s);
+#pragma intrinsic(strlen)
 extern char D_0027CBAC[], D_0027CB90[], D_0027CB78[], D_002764F0[], D_0027C4D0[];
 extern char D_0027C4BC[], D_00275680[], D_0027CB6C[], D_0027CB60[], D_0027CB54[];
 extern char D_0027CB44[], D_0027CB38[], D_00275AD4[], D_0027CB30[], D_0027CB2C[];
