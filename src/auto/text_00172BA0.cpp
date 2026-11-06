@@ -254,3 +254,112 @@ void *C_00173550::func_00173550(int flags) {
     }
     return this;
 }
+
+void C_00173580::func_00173580(int a1, int a2, const char *name, int a4, int a5)
+{
+    char buf2[0x104];
+    char buf[0x104];
+    char *p;
+    void *mem;
+
+    func_001D3F50();
+    fa8 = a4;
+    fac = a5;
+
+    mem = func_001E8A44(0x310);
+    fc4 = mem ? ((G_00173580 *)mem)->func_00175110(1) : 0;
+    fc4->v10();
+    fc4->v27(f14c);
+    F_00173580(fc4, 0x300, int) = 1;
+    fc4->v34(0);
+    func_001577A0(fc4, -1);
+
+    mem = func_001E8A44(0x44);
+    fc8 = mem ? ((G_00173580 *)mem)->func_00194130(1) : 0;
+    fc8->v27(1);
+    fc8->v28(fc4);
+    func_001577A0(fc8, 0);
+
+    strcpy(buf, name);
+    p = func_001E8AC0(buf, '.');
+    if (p) {
+        strcpy(p, "m.col");
+    } else {
+        strcat(buf, "m.col");
+    }
+
+    mem = func_001E8A44(0x110);
+    fd4 = mem ? ((G_00173580 *)mem)->func_0017F050(1) : 0;
+    fd4->func_0017F0A0(3);
+    F_00173580(fd4, 0x68, int) = D_002BA15C;
+    F_00173580(fd4, 0x60, C_00173580 *) = this;
+    F_00173580(fd4, 0x64, G_00173580 *) = fc4;
+    fd4->func_00181140(f14c, buf, 0);
+    fd4->func_001A52C0();
+    func_001577A0(fd4, 0);
+
+    mem = func_001E8A44(0x158);
+    fd0 = mem ? ((G_00173580 *)mem)->func_001A8E30(1) : 0;
+    fd0->func_001A9070(0x32);
+    fd0->func_0001EDC0(fc4);
+    fd0->func_001A9430(fd4, 1, f14c);
+    F_00173580(fd0, 0x28, int) = 1;
+    F_00173580(fd0, 0x4c, int) = 1;
+    F_00173580(fd0, 0x40, int) = 0;
+    F_00173580(fd0, 0x60, int) = 1;
+    F_00173580(fd0, 0x44, int) = 1;
+    F_00173580(fd0, 0xb0, float) = 1.0f;
+    F_00173580(fd0, 0xb4, float) = 1.0f;
+    F_00173580(fd0, 0xb8, float) = 1.0f;
+    F_00173580(fd0, 0xc8, float) = 1.0f;
+    F_00173580(fd0, 0xd0, float) = 0.005f;
+    F_00173580(fd0, 0xd4, float) = 0.0f;
+    F_00173580(fd0, 0x9c, float) = 1.0f;
+    func_001577A0(fd0, 0);
+
+    mem = func_001E8A44(0x6c);
+    fcc = mem ? ((G_00173580 *)mem)->func_001A8630(1) : 0;
+    fcc->func_001A8BC0(fd0, a1, 0, 0, *(Q4_00173580 *)&D_002A8BA0, 0);
+    F_00173580(fcc, 0x58, int) = 1;
+    fcc->func_001A86D0(fd4);
+    func_001577A0(fcc, 0);
+
+    strcpy(buf2, name);
+    p = func_001E8AC0(buf2, '.');
+    if (p) {
+        strcpy(p, "f.col");
+    } else {
+        strcat(buf2, "f.col");
+    }
+
+    mem = func_001E8A44(0x1e0);
+    fd8 = mem ? ((G_00173580 *)mem)->func_0019B700(1) : 0;
+    fd8->func_00129920(5);
+    F_00173580(fd8, 0x68, int) = D_002BA148 | D_002BA15C;
+    fd8->func_0019D7B0(f14c, buf2);
+    F_00173580(fd8, 0xa0, void *) = (void *)func_00171F10;
+    F_00173580(fd8, 0x60, C_00173580 *) = this;
+    F_00173580(fd8, 0x64, G_00173580 *) = fc4;
+    fd8->func_0019C1E0();
+    func_001577A0(fd8, 0);
+
+    mem = func_001E8A44(0xf4);
+    fdc = mem ? ((G_00173580 *)mem)->func_0014AB30(1) : 0;
+    fdc->func_00129920(3);
+    func_001577A0(fdc, 0);
+    F_00173580(fdc, 0x60, C_00173580 *) = this;
+    F_00173580(fdc, 0x68, int) = D_002BA15C;
+    fdc->func_0014C1C0(1, 0, 0);
+    fdc->func_00086C20(1);
+    fdc->func_00133660(D_002BA15C);
+    F_00173580(fdc, 0xa7, unsigned char) |= 1;
+    fd4->func_001334E0(1);
+    fd8->func_001334E0(1);
+    fd4->func_001334F0(fd8);
+    fd4->func_001334F0(fdc);
+    fd8->func_001334F0(fd4);
+    fd8->func_001334F0(fdc);
+    func_00171F50(a4, 1);
+    f27 = (f27 & ~4) | 3;
+}
+
