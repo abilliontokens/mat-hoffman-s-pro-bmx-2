@@ -47,6 +47,57 @@ struct S_0011C3F0_Smoother {
     }
 };
 
+struct S_0011C3F0_Obj54 {
+    char pad0[0x40];
+    float f40;
+    float f44;
+    float f48;
+};
+
+struct S_0011C3F0_A0 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    virtual void v31(float *m);
+    char pad4[0x50];
+    S_0011C3F0_Obj54 *f54;
+    char pad58[0xA7 - 0x58];
+    unsigned char fA7;
+    float func_00133F10(int a);
+};
+
+struct S_0011C3F0_80 {
+    void func_000BA430(V4_0011C3F0 *a, V4_0011C3F0 *b, int c, int d);
+};
+
 struct C_0011CA60 {
     char pad0[0x24];
     S_0011CA20_V4 f24;
