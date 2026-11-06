@@ -196,6 +196,8 @@ struct S_000BE020_Item {
 };
 
 struct S_000BDF30_Lookup {
+    char pad0[0x2c];
+    void *f2c;
     int func_0001B3C0(void *entry);
 };
 
