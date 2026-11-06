@@ -11,7 +11,7 @@ struct V4_2D270 {
 struct V3_2D270 { float x, y, z; };
 
 /* a point (w = 1) from its three coordinates */
-static __forceinline V4_2D270 Pt_2D270(float x, float y, float z)
+static __forceinline V4_2D270 Pt_2D270(const float &x, const float &y, const float &z)
 {
     V4_2D270 v;
     v.x = x;
