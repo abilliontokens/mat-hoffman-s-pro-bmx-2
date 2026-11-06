@@ -39,7 +39,8 @@ struct C_000E6D00 {
     int f508;
     char pad50C[0x94];
     C_001B1980 *f5A0[35];
-    C_001B1980 *f62C[1];
+    C_001B1980 *f62C[19];
+    void func_000E5FF0(void);
     void func_000E6D00(void);
     void func_000E6DC0(void);
     void func_000E6E20(void);
