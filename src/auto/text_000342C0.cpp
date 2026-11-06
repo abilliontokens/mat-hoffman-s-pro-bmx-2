@@ -11,6 +11,8 @@ struct Vec4 {
     float y;
     float z;
     float w;
+    Vec4() {}
+    Vec4(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
 };
 
 static __forceinline Vec4 Vec3Sub(Vec4 a, Vec4 b)
@@ -168,19 +170,23 @@ C_00034890* C_00034890::func_00034890(void) {
 void func_000348B0(Vec4 *out, float t, Vec4 p0, Vec4 p1, Vec4 p2, Vec4 p3)
 {
     float t2 = t * t;
-    float t6 = t * t2 + t * t2;
+    float t3 = t * t2;
+    float t6 = 2.0f * t3;
     float k = t2 * 3.0f;
     float a = (t6 - k) + D_00275460;
     float b = k - t6;
-    float c = (t * t2 - D_00275600 * t2) + t;
-    float d = t * t2 - t2;
+    float c = (t3 - D_00275600 * t2) + t;
+    float d = t3 - t2;
     Vec4 m0 = Vec3Scale(Vec3Sub(p2, p0), D_002755E8);
     Vec4 m1 = Vec3Scale(Vec3Sub(p3, p1), D_002755E8);
     Vec4 n1 = Vec3Scale(m1, d);
     Vec4 n0 = Vec3Scale(m0, c);
-    Vec4 q2 = Vec3Scale(p2, b);
-    Vec4 q1 = Vec3Scale(p1, a);
+    Vec4 q2;
+    q2.x = p2.x * b;
+    q2.y = p2.y * b;
+    q2.z = p2.z * b;
     out->w = 1.0f;
+    Vec4 q1 = Vec3Scale(p1, a);
     Vec4 s = Vec3Add(q1, q2);
     Vec4 u = Vec3Add(s, n0);
     out->x = u.x + n1.x;
