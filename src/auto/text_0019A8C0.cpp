@@ -168,7 +168,7 @@ struct S_0019B1A0_VThis {
     virtual void v29(SoultreeObject **out);
 };
 
-static void Transpose_0019B1A0(float *src, float *dst)
+static __forceinline void Transpose_0019B1A0(float *src, float *dst)
 {
     __m128 t0, t1, t2, t3;
 
