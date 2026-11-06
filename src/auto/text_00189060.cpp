@@ -155,6 +155,7 @@ struct C_189D40 {
     int f498;
     Q_189D40 **f49C;
     int f4A0;
+    int pad4A4;
     int *f4A8;
     int *f4AC;
     int func_00189D40(void);
@@ -529,6 +530,19 @@ void BasicScene::func_00189770(void)
     dummy60();
 }
 
+void BasicScene::func_001898D0(void)
+{
+    void *tbl;
+    if (f3b4 == 0) {
+        void *mem = func_001E8A44(0x2c);
+        f3b4 = (S_00189060_Root *)(mem != 0 ? ((SceneLoader *)mem)->func_001B6E70(1) : 0);
+    }
+    if (((SceneLoader *)f3b4)->dummy27(this, f28, (tbl = &D_0027B160, &tbl), 0) == 0) {
+        ((SceneLoader *)f3b4)->dummy2();
+        f3b4 = 0;
+    }
+}
+
 int BasicScene::func_00189AA0(void)
 {
     int i = 0;
@@ -600,9 +614,7 @@ int C_189D40::func_00189D40(void)
 
     if (f49C != 0) {
         p = func_001E8A44(0x24);
-        if (p)
-            ((C_00157600 *)p)->func_00157600(1);
-        f4A0 = (int)p;
+        f4A0 = p ? ((C_00157600 *)p)->func_00157600(1) : 0;
     }
     for (i = 0; i < f498; i++) {
         for (j = 0; j < f340; j++) {
