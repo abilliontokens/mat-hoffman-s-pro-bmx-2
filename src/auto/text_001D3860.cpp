@@ -280,6 +280,13 @@ struct S_001D3860_Coords {
     int w, h;
 };
 
+/* the quad vertex func_001D3860 fills */
+struct S_001D3860_Vtx {
+    float x, y, z;
+    unsigned int color;
+    float u, v;
+};
+
 struct S_001D3860_Locals {
     volatile float f[6];
     S_001D3860_Mat * volatile pm;
