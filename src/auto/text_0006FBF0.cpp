@@ -128,7 +128,7 @@ struct C_00070360 {
     C_001D5AD0 *unk150[2];
     C_001D5AD0 *unk158[5];
     C_001D5AD0 *unk16C[5];
-    C_001D5AD0 *unk180[1];
+    C_001D5AD0 *unk180[8];
     int func_0006FF80(void);
     void func_00070360(void);
     void func_00070450(void);
