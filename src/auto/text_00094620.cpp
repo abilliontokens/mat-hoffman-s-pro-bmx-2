@@ -357,12 +357,12 @@ struct C_00095060 {
     C_00094F10 tracks;
     int f5C;
     int f60;
-    volatile unsigned char f64;
+    unsigned char f64;
     char pad65[3];
     S_00095060_PtrList ids;
     int f70;
     int f74;
-    volatile unsigned char f78;
+    unsigned char f78;
     char pad79[3];
     int f7C;
     void *f80;
