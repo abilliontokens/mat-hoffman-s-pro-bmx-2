@@ -9,7 +9,7 @@ struct S_002F6A38 {
 extern S_002F6A38 D_002F6A38;
 extern int D_00295C04;
 extern int D_002955B8[];
-static __declspec(noinline) char *func_001EEE49(int n)
+extern "C" char *func_001EEE49(int n)
 {
     volatile int *gp = (volatile int *)&D_002F6A38;
     if (~*gp & 1) {
