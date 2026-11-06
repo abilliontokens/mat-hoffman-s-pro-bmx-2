@@ -99,7 +99,7 @@ struct M_0004CFC0 {
     virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
     virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
     virtual void v12(); virtual void v13(); virtual void v14();
-    virtual void v15(void *a, int b, int c, int d);
+    virtual int v15(void *a, int b, int c, int d);
 };
 struct S_0004CFC0_Data { int w[6]; };
 struct S_0004CFC0_Sub {
