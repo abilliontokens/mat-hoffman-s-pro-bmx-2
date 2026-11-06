@@ -57,7 +57,7 @@ struct Elem58 {
 
 struct Rec12 {
     virtual void dummy0();
-    virtual void dummy1(int i, void *scene);
+    virtual int dummy1(int i, void *scene);
     int f4;
     int f8;
 };
@@ -170,18 +170,15 @@ int BmxScene::func_00184880(void)
         f38c->objs2[i].dummy1(i, this);
         func_001577A0(f38c->objs2[i].f4, 2);
     }
-    i = 0;
-    if (f340 > 0) {
-        do {
-            float *f = f38c->floats;
-            int *n = f38c->ints;
-            if (f[i * 4] >= D_0028957C) {
-                D_002E2930->func_0015E300(i, (int)&f[i * 4], (int)&n[i]);
-            } else {
-                D_002E2930->func_0015E300(i, 0, (int)&n[i]);
-            }
-            i++;
-        } while (i < f340);
+    for (i = 0; i < f340; i++) {
+        BmxSceneMgr *m = f38c;
+        float *f = m->floats;
+        int *n = m->ints;
+        if (f[i * 4] >= D_0028957C) {
+            D_002E2930->func_0015E300(i, (int)&f[i * 4], (int)&n[i]);
+        } else {
+            D_002E2930->func_0015E300(i, 0, (int)&n[i]);
+        }
     }
     return 1;
 }
