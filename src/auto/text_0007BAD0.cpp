@@ -55,7 +55,7 @@ struct ResultsScreen {
     S_7C690_Obj90 *f10C;
     char pad110[0x40];
     int f150;
-    S_7C690_Text *f154;
+    S_7C690_TextB *f154;
     void func_000682B0();
     void func_00067DA0();
     void func_00157960();
