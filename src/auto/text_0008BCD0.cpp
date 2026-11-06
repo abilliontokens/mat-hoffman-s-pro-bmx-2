@@ -1,5 +1,8 @@
 /* 2 functions from 0x0008BCD0 to 0x0008CC50, found by Ghidra. */
 #include "common.h"
+#include <string.h>
+extern int D_0028F5DC;
+extern char D_00279EE0[];
 extern int *D_002A8490;
 extern int *D_002F07B8;
 extern int D_0028F5E0;
