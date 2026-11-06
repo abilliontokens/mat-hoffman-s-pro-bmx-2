@@ -229,7 +229,7 @@ struct PhysicsBody {
     void func_00172090(float a0, float a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, float a9, float a10, float a11, float a12, float a13, float a14, float a15);
 };
 
-struct C_001729D0_Cam { void func_00199A70(int a, float *b); void func_00199790(int a, float *b); void func_0019AC50(void); };
+struct C_001729D0_Cam { void func_00199A70(int a, float *b); void func_00199790(int a, float *b); void func_0019AC50(void); V4_00171BA0 *func_00198040(V4_00171BA0 *a, V4_00171BA0 *b); };
 struct C_001729D0_Node { char pad[0x20]; float m[4]; float pos[4]; };
 struct C_001729D0_Obj {
     char pad0[0x54]; C_001729D0_Node *f54; char pad58[0x4F]; unsigned char fA7;
