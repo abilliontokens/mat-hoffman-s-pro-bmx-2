@@ -141,6 +141,55 @@ struct C_000A2620 {
     void func_000A2620(void);
 };
 
+struct V4_26B0 {
+    float x, y, z, w;
+    V4_26B0() { x = y = z = 0.0f; w = 1.0f; }
+    V4_26B0(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
+};
+struct S_26B0_Cam { void func_00199110(int a, V4_26B0 *pos, V4_26B0 *dir, int b, int c, int d); };
+struct S_26B0_Info { char pad0[4]; S_26B0_Cam *f4; };
+struct C_26B0_Ped {
+    char pad0[0x3C];
+    S_26B0_Info *f3C;
+    C_26B0_Ped *func_000112E0(int a);
+    void func_00014170(char *name, int b, int c, char *d, char *e, char *f, float g, int h, int i, int j, V4_26B0 *k);
+};
+struct S_26B0_Trk { int f0; V4_26B0 *f4; int f8; };
+struct S_26B0_Mark { int f0, f4, f8; };
+struct S_26B0_File {
+    int func_0013C9F0(const char *name, const char *mode);
+    int func_0013AFB0(int h);
+    char *func_0013C6E0(int h, char *buf, int size);
+    void func_0013AFF0(int h, int off, int mode);
+    void func_0013C110(int h);
+};
+extern S_26B0_File *D_002BEAAC;
+extern V4_26B0 D_002A2734;
+extern char D_0027B110[], D_0027B0FC[], D_0027B0EC[], D_0027B0E0[], D_0027B0CC[], D_0027B0BC[], D_0027B0AC[];
+extern char D_00275680[], D_00275AE4[], D_00276980[], D_00276310[], D_00275AD4[], D_0027B0A0[], D_0027B090[];
+extern char D_0027B084[], D_0027B078[], D_0027B070[], D_0027B064[], D_0027B058[], D_00276274[], D_0027626C[];
+extern char D_00276260[], D_00276234[], D_0027B048[], D_0027B030[], D_0027B020[], D_0027B014[], D_0027B008[];
+extern char D_0027AFFC[];
+void *func_001E83E8(void *p, int size);
+int func_001E8BB0(char *a, char *b, unsigned int n);
+void func_001E8B76(char *str, char *fmt, ...);
+void __stdcall func_00011FF0(void *p, int stride, int count, void *ctor);
+void func_00011060(void);
+
+struct C_000A26B0 {
+    char pad0[0x28];
+    Reader2 *f28;
+    char pad2C[0x54C];
+    int f578;
+    C_26B0_Ped **f57C;
+    int f580;
+    int f584;
+    S_26B0_Trk **f588;
+    int f58C;
+    S_26B0_Mark **f590;
+    void func_000A26B0(void);
+};
+
 void C_000A1EF0::func_000A1EF0(void)
 {
     char buf[0x104];
