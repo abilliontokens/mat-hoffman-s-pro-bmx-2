@@ -452,8 +452,6 @@ undefined4 C_001D15B0::func_001D15B0(void)
   return 1;
 }
 
-extern "C" int func_0026ECB6(void *h, void *p);
-extern float D_00284758, D_00287B68, D_00278650, D_00278784;
 int S_15D0_Pad::func_001D15D0(float dt)
 {
     S_15D0_Pkt p;
