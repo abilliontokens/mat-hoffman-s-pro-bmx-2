@@ -351,6 +351,7 @@ C_0008AED0 *C_0008AED0::func_0008AED0()
     mem = func_001E8A44(0x64);
     s44 = mem ? ((Sprite_8AED0 *)mem)->func_001D5760() : 0;
     s44->func_001D5810((int)D_00279DC0, 0.0f, 0.0f, 0);
+    s44->SetAlphaMask();
     s44->SetAlphaByte();
     s44->SetF2c(0x43bc8000);
     s44->SetF28(0x44200000);
