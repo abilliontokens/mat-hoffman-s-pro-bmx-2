@@ -62,8 +62,9 @@ struct C_00108660 {
 };
 
 struct V4_08690 { float x, y, z, w; };
+struct M4_08690 { float m[16]; };
 struct C_Cam_08690 {
-    V4_08690 *func_00197F70(V4_08690 *out, V4_08690 *in);
+    V4_08690 func_00197F70(V4_08690 *in);
     void func_00197B90(V4_08690 *v);
     void func_00199300(V4_08690 *v);
     void func_00197B40(V4_08690 *a, V4_08690 *b);
@@ -71,21 +72,52 @@ struct C_Cam_08690 {
 };
 struct C_Obj_08690 { char pad[0x38]; float f38; };
 struct C_Gen_08690 {
-    void func_00165E20(V4_08690 *out, C_Obj_08690 *o, float f, void *d, int i);
-    void func_00165EF0(V4_08690 *out, C_Obj_08690 *o, float f, void *d, int i);
+    V4_08690 func_00165E20(C_Obj_08690 *o, float f, char *d, int i);
+    V4_08690 func_00165EF0(C_Obj_08690 *o, float f, char *d, int i);
+};
+struct C_08690_NodeA {
+    void func_00199C20(int a, M4_08690 *m);
+};
+struct C_08690_NodeB {
+    void func_0019AD60(int a, M4_08690 *m);
+};
+struct C_08690_MatRef {
+    char pad0[4];
+    C_08690_NodeB *f4;
+};
+struct C_08690_Entity {
+    virtual void v0();  virtual void v1();  virtual void v2();  virtual void v3();
+    virtual void v4();  virtual void v5();  virtual void v6();  virtual void v7();
+    virtual void v8();  virtual void v9();  virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35();
+    virtual void v36(); virtual void v37(); virtual void v38(); virtual void v39();
+    virtual void v40();
+    char pad4[0x22C - 4];
+    C_08690_NodeA *f22C;
+    char pad230[0x238 - 0x230];
+    V4_08690 f238;
+    char pad248[0x268 - 0x248];
+    V4_08690 f268;
 };
 extern char D_00276690[];
 extern float D_00282AC0;
 extern double D_00282AB8;
+extern V4_08690 D_002A3A3C;
 struct C_00108690 {
     char pad0[0x1E0];
-    char *f1E0;
+    C_08690_Entity *f1E0;
     char pad1E4[0x230 - 0x1E4];
     C_Cam_08690 *f230;
     char pad234[0x790 - 0x234];
     C_Obj_08690 *f790;
     int f794;
-    char pad798[0xA04 - 0x798];
+    char pad798[0xA00 - 0x798];
+    C_08690_MatRef *fA00;
     C_Gen_08690 *fA04;
     void func_00108690(float dt);
 };
