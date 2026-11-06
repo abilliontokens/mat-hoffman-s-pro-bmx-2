@@ -27,6 +27,7 @@ struct C_001C5AA0 {
     char pad894[4];
     int unk898;
     void func_001C5AA0();
+    void func_001927C0(int a0, int a1);
 };
 
 struct C_001C5AC0 {
@@ -37,7 +38,9 @@ struct C_001C5AC0 {
 
 void C_001C5AA0::func_001C5AA0()
 {
-    func_001927C0(unk890, unk898);
+    int __stdcall func_001927C0(int a0, int a1);
+    int second = unk898;
+    func_001927C0(unk890, second);
     return;
 }
 
