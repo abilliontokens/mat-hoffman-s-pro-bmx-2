@@ -334,9 +334,7 @@ struct VideoCard {
     int f30;
     int f34;
     int f38;
-    volatile VideoCardFlags f3C;
-    void Clear_001C3D90(void) { f30 = 0; f2C = 0; f34 = 0; f38 = 0; f3C.bit0 = 0; }
-    void Alloc_001C3D90(void) { f30 = (int)func_001E8A44(4); f34 = 1; f38 = 1; f3C.bit0 = 1; }
+    VideoCardFlags f3C;
     VideoCard *func_001C3D90(void);
     void *func_001C3E20(unsigned int flags);
 };
