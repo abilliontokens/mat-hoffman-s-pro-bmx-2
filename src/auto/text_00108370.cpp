@@ -417,6 +417,22 @@ void C_00108370::func_00108370()
     f11BC->func_001332A0();
 }
 
+void C_00108370::func_001083E0()
+{
+    C_001083E0_St *s = D_002A8490->f2E0;
+    if (s->f190[fA28] != 3 && s->f45C == 0) {
+        f230->func_001983A0();
+        f230->func_0019ABA0(*f24->f4A8, 2);
+    }
+    fA00->f4->func_001983A0();
+    fA00->f4->func_0019ABA0(*f24->f4A8, 2);
+    f11AC->func_00133140(*f24->f4AC, 2);
+    f11B0->func_00133140(*f24->f4AC, 2);
+    f11B4->func_00133140(*f24->f4AC, 2);
+    f11B8->func_00133140(*f24->f4AC, 2);
+    f11BC->func_00133140(*f24->f4AC, 2);
+}
+
 void C_001084E0::func_001084E0(void)
 {
   int func_00027D40(...);
@@ -704,6 +720,27 @@ Vec4_00108370 *C_00109180::func_00109180(Vec4_00108370 *out)
 
     vec3_set((float *)out, b[0] + a[0], b[1] + a[1], b[2] + a[2]);
     return out;
+}
+
+int C_001091D0::func_001091D0(void)
+{
+    S_001091D0_V a = f1e8->f1a0;
+    S_001091D0_V b;
+    S_001091D0_V o;
+    a = *(S_001091D0_V *)func_0001E9E0((float *)&b, (float *)&a);
+    b = f874;
+    func_0001E9E0((float *)&o, (float *)&b);
+    S_001091D0_Ref *ref = f1e8->f1d8;
+    if (ref != 0 && ref->f68 == D_002B9108) {
+        if (f874.y > D_00282AC8 && a.y > D_00282AC8) {
+            return 1;
+        }
+    } else {
+        if (f874.y > D_00282AC4 && a.y > D_00282AC4) {
+            return 1;
+        }
+    }
+    return 0;
 }
 
 void C_001092D0::func_001092D0(int a0) {
