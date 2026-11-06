@@ -40,10 +40,8 @@ struct V4_0011EE50 {
 
 static float fabs_0011EE50(float v)
 {
-    volatile float x;
     volatile int tmp;
-    x = v;
-    tmp = *(volatile int *)&x & 0x7fffffff;
+    tmp = *(volatile int *)&v & 0x7fffffff;
     return *(float *)&tmp;
 }
 
