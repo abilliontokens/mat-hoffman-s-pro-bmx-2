@@ -48,6 +48,7 @@ struct S_000C4FD0_Mid {
 /* lookup of named UI nodes, and the nodes it hands out */
 struct S_000C50E0_Lookup {
     int *func_0018C160(int name);
+    void func_0018C780(int, int *, int);
 };
 
 struct S_000C50E0_Clamp {
@@ -219,3 +220,36 @@ void C_000C4FD0::func_000C4FD0()
         D_002B91AC->f34->func_001D6600();
     }
 }
+
+void C_000C50E0::func_000C50E0()
+{
+    int ids[3];
+    int i;
+    S_000C50E0_Widget **e;
+    S_000C50E0_Lookup *lk;
+    ids[0] = (int)&D_002786A0;
+    ids[1] = (int)&D_00278678;
+    ids[2] = (int)&D_00278690;
+    for (i = 0; i < 3; i++) {
+        lk = D_002A8490->f2EC;
+        int *r = lk->func_0018C160(ids[i]);
+        if (r && *r) {
+            S_000C50E0_Clamp *o = ((S_000C50E0_Mid *)*r)->func_0018C070();
+            if (D_00275AEC > o->f10) o->f10 = 10.0f;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) o->f14 = 10.0f;
+        }
+    }
+    e = a2F8;
+    i = 10;
+    do {
+        if (*e) {
+            S_000C50E0_Clamp *o = (*e)->func_001D5AA0();
+            if (D_00275AEC > o->f10) o->f10 = 10.0f;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) o->f14 = 10.0f;
+        }
+        e++;
+        i--;
+    } while (i);
+    func_001578D0();
+}
+
