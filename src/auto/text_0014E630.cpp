@@ -51,7 +51,7 @@ struct S_0014ECD0_Item {
 
 struct S_0014ECD0_Vec {
     float x, y, z, w;
-    S_0014ECD0_Vec() { x = 0; y = 0; z = 0; w = 1.0f; }
+    S_0014ECD0_Vec() { z = 0; y = 0; x = 0; w = 1.0f; }
 };
 
 struct S_0014ECD0_Base {
@@ -175,8 +175,8 @@ C_0014ECD0 *C_0014ECD0::func_0014ECD0(int a0, char *name, int a2, int a3, int a4
     self->f564 = f6;
     self->f50 = a0;
     self->f55c = a2;
-    t.tb = D_002F07E8->f44;
-    t.ta = D_002F07E8->f40;
+    t.tb = *(volatile float *)&D_002F07E8->f44;
+    t.ta = *(volatile float *)&D_002F07E8->f40;
     t.m = t.ta > t.tb ? t.ta : t.tb;
     self->f57c = D_00286A9C / t.m;
     self->f578 = t.m * D_00286A90;
