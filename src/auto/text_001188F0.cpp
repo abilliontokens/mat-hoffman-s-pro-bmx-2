@@ -67,6 +67,11 @@ static __forceinline void Copy_001188F0(M4 * volatile dst, const M4 * volatile s
     d->r0 = r0; d->r1 = r1; d->r2 = r2; d->r3 = r3;
 }
 
+struct Self1188F0 {
+    void func_00107380();
+    void func_001138E0(int a);
+};
+
 static inline float Wrap(float v) {
     if (v > D_002756D0) return v - D_002756B8;
     if (v < D_002756E8) return v + D_002756B8;
