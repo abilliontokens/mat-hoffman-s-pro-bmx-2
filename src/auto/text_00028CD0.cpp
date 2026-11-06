@@ -31,7 +31,8 @@ struct C_295D0 {
 struct C_28CD0_Call { void func_0005DA40(void *); void func_0005DA80(int); int func_00026A70(int); void func_000B6080(void *); void func_00026130(); };
 static __forceinline float abs_28CD0(float v)
 {
-    unsigned int u = *(unsigned int *)&v & 0x7fffffff;
+    volatile float t = v;
+    unsigned int u = *(volatile unsigned int *)&t & 0x7fffffff;
     return *(float *)&u;
 }
 struct S_28CD0_Arg {
