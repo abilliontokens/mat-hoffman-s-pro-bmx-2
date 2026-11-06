@@ -28,6 +28,7 @@ static __forceinline void norm28130(float *out, float *in)
 int strcmp(const char *a, const char *b);
 void func_00026340(void *a, void *b);
 float func_0014F7E0(float a);
+float sqrtf(float a);
 
 struct Cand {
     char pad0[0x10];
