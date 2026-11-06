@@ -416,4 +416,70 @@ undefined4 C_0015A640::func_0015A640(byte param_1)
   }
   return in_ECX;
 }
-
+#pragma optimize("y", off)
+GrindLine *GrindLineManager::func_00159E90(char *name, GLV *p0, GLV *p1, char *s2, char *s3, int n)
+{
+    int i;
+    GrindLine *e;
+    int len;
+    if (unk28 >= unk24) {
+        unk34 = (GrindLine **)func_001E83E8(unk34, unk24 * 4 + 4000);
+        unk24 += 1000;
+        for (i = unk28; i < unk24; i++) {
+            unk34[i] = 0;
+        }
+    }
+    void *m = func_001E8A44(0x84);
+    if (m) {
+        e = ((GrindLine *)m)->func_001594F0();
+    } else {
+        e = 0;
+    }
+    len = strlen(name) + 1;
+    e->unk14 = (char *)func_001E8A44(len);
+    func_001E8920(e->unk14, name, len);
+    if (s2 != 0 && *s2 != 0) {
+        len = strlen(s2) + 1;
+        e->unk18 = (char *)func_001E8A44(len);
+        func_001E8920(e->unk18, s2, len);
+        len = strlen(s3) + 1;
+        e->unk1C = (char *)func_001E8A44(len);
+        func_001E8920(e->unk1C, s3, len);
+    } else {
+        e->unk18 = 0;
+        e->unk1C = 0;
+    }
+    e->unk20 = *p0;
+    e->unk30 = *p1;
+    e->unk58 = *p0;
+    e->unk68 = *p1;
+    GLV d;
+    d.x = p1->x - p0->x;
+    d.y = p1->y - p0->y;
+    d.z = p1->z - p0->z;
+    d.w = 1.0f;
+    e->unk40 = d;
+    e->unk4 = 0;
+    e->unk8 = 1;
+    e->unkC = 0;
+    e->unk50 = 0;
+    e->unk7C = 0;
+    e->unk54 = n;
+    void *o = func_001E8A44(0x28);
+    e->unk78 = o ? ((GLObj *)o)->func_00193490() : 0;
+    norm1596((float *)&e->unk40, (const float *)&e->unk40);
+    char c = *name;
+    if (c == 'L' || c == 'l') e->unk10 = 1;
+    else if (c == 'R' || c == 'r') e->unk10 = 2;
+    else e->unk10 = 0;
+    int idx = -1;
+    int found = 0;
+    for (i = 0; i < unk24; i++) {
+        if (found) break;
+        if (unk34[i] == 0) { idx = i; found = 1; }
+    }
+    unk34[idx] = e;
+    unk28++;
+    return e;
+}
+#pragma optimize("", on)
