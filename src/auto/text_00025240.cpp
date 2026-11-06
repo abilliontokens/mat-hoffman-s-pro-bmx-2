@@ -227,6 +227,81 @@ struct AmbientDebris {
 };
 
 
+/* AmbientObjectManager: per-frame update (func_00025980) */
+struct S_00025980_E1E0 { char pad0[0x22c]; C_00199B00 *f22c; };
+struct S_00025980_E1A8 { char pad0[0x1e0]; S_00025980_E1E0 *f1e0; };
+struct S_00025980_Pt { float x, y, z, pad[3]; };
+struct S_00025980_Track {
+    char pad0[4];
+    int f4;
+    char pad8[0x10];
+    S_00025980_Pt *f18;
+    char pad1c[0x10];
+    char f2c;
+    char pad2d;
+    char f2e;
+};
+struct S_00025980_Item {
+    char pad0[0x24];
+    int f24;
+    void func_000223B0(Vec4_257E0 pos, float dy);
+};
+struct S_00025980_Group {
+    char pad0[0x14];
+    int f14;
+    S_00025980_Item **f18;
+};
+
+struct C_00025980 {
+    void *vtbl;
+    char pad4[0x20];
+    float f24;
+    float f28;
+    int f2c;
+    char pad30[4];
+    int f34;
+    char pad38[0xc];
+    int f44;
+    int f48;
+    int f4c;
+    char pad50[4];
+    u32 f54;
+    u32 f58;
+    char pad5c[8];
+    S_00025980_Track **f64;
+    char pad68[8];
+    S_00025980_Group **f70;
+    Vec4_257E0 f74;
+    Vec4_257E0 f84;
+    void func_000255D0(Vec4_257E0 *pos, float radius, float t, int chance);
+    void func_00157A00(float dt);
+    int func_00025980(float dt);
+};
+
+extern double D_00276088;
+extern float D_002755E8, D_00276278, D_002755EC, D_00276524, D_00276098, D_002756C8, D_002756B8;
+extern float D_00275994, D_0027599C, D_002760D0, D_002760C0, D_002760B0, D_002B7E1C;
+extern Vec4_257E0 D_002A0F94;
+extern "C" void func_00158390(float f, Vec4_257E0 a, Vec4_257E0 b, Vec4_257E0 *out);
+extern "C" float func_00161F80(float x);
+
+static __forceinline void Normalize_00025980(float *volatile outArg, const float *volatile inArg)
+{
+    const float *in = inArg;
+    float *out = outArg;
+    __m128 v = _mm_loadu_ps(in), sq = _mm_mul_ps(v, v);
+    __m128 len = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
+    len = _mm_add_ss(len, _mm_shuffle_ps(sq, sq, 0xe1));
+    __m128 minv = _mm_load_ss(&D_002760D0);
+    __m128 cmp = _mm_cmplt_ss(len, minv);
+    len = _mm_add_ss(len, _mm_and_ps(cmp, minv));
+    __m128 r = _mm_rsqrt_ss(len);
+    __m128 t = _mm_mul_ss(_mm_mul_ss(len, r), r);
+    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_002760B0)), _mm_sub_ss(_mm_load_ss(&D_002760C0), t));
+    scale = _mm_shuffle_ps(scale, scale, 0);
+    _mm_storeu_ps(out, _mm_mul_ps(scale, v));
+}
+
 void C_000255D0::func_000255D0(Vec4_257E0 *pos, float radius, float t, int chance)
 {
     int hits;
