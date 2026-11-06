@@ -5,7 +5,7 @@
 struct Q_001A1930 { float x,y,z,w; };
 static inline Q_001A1930 Sub_001A1930(const Q_001A1930 &a,const Q_001A1930 &b) { Q_001A1930 q; q.x=a.x-b.x;q.y=a.y-b.y;q.z=a.z-b.z;q.w=1;return q; }
 struct I3_001A1930 { float x,y,z; };
-struct O_001A1930 { char pad[8]; I3_001A1930 pos; char pad14[0x24]; I3_001A1930 vel; };
+struct O_001A1930 { char pad[8]; I3_001A1930 pos; char pad14[0x24]; I3_001A1930 vel; I3_001A1930 GetPos() { return pos; } };
 struct N_001A1930 { int unk0; O_001A1930 *obj;
  void GetPosition(Q_001A1930 *p) {
   O_001A1930 *o=obj;
@@ -344,6 +344,41 @@ int C_001A1860::func_001A1860(S_001A1860_Buf buf, S_001A1860_Quad q70, S_001A186
 fail:
     v2();
     return 0;
+}
+
+void C_001A1930::func_001A1930(int count, N_001A1930 **nodes)
+{
+ Q_001A1930 position,velocity;
+ position.x=position.y=position.z=0; position.w=1;
+ velocity.x=velocity.y=velocity.z=0;
+ distance=3.402823466e38F;
+ for(int i=0;i<count;i++){
+  O_001A1930 *o=nodes[i]->obj;
+  if(o){ int x=((const volatile int*)&o->pos)[0], y=((const volatile int*)&o->pos)[1], z=((const volatile int*)&o->pos)[2]; ((int*)&position)[0]=x;((int*)&position)[1]=y;((int*)&position)[2]=z; }
+  float d=func_0001CAF0(&pos,&position);
+  if(d<distance){nearest=nodes[i]; distance=d;}
+ }
+ state &= ~2;
+ if(flags&1){
+  if(distance>range){
+   if((flags&16)&&(state&1)) state &= ~1;
+   state &= ~16;
+   return;
+  }
+ }else if((distance>=1.2f*unk4C)) return;
+ state |=2;
+ O_001A1930 *o=nearest->obj;
+ if(o){velocity.x=o->vel.x;velocity.y=o->vel.y;velocity.z=o->vel.z;}
+ o=*(O_001A1930 * volatile *)&nearest->obj;
+ if(o){int x=((const volatile int*)&o->pos)[0], y=((const volatile int*)&o->pos)[1], z=((const volatile int*)&o->pos)[2]; ((int*)&position)[0]=x;((int*)&position)[1]=y;((int*)&position)[2]=z;}
+ { Q_001A1930 t;
+ t.x=pos.x-position.x;t.y=pos.y-position.y;t.z=pos.z-position.z;t.w=1;
+ if(!emitter) return;
+ emitter->v20(t);
+ }
+ Q_001A1930 delta;
+ delta.x=vel.x-velocity.x;delta.y=vel.y-velocity.y;delta.z=vel.z-velocity.z;delta.w=1;
+ emitter->v21(delta);
 }
 
 int C_001A1C70::func_001A1B60(S_001A1C70_Obj *obj)
