@@ -186,16 +186,6 @@ extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
 extern "C" char *func_001E8AC0(const char *s, int c);
 extern "C" int func_001EA426(const char *a, const char *b);
 extern "C" int strlen(const char *s);
-
-static __forceinline void CopyName_001B8550(char *dst, const char *src, int max)
-{
-    volatile int len = strlen(src);
-    volatile int limit = max;
-    volatile int n = Min_001B8550(limit, len);
-
-    func_001E8920(dst, src, n);
-    dst[n] = 0;
-}
 extern "C" void *memset(void *dst, int c, unsigned int n);
 #pragma intrinsic(memset)
 
