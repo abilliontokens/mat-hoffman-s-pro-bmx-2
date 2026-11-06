@@ -16,7 +16,14 @@ struct C_001D5AD0 {
     char pad0[0x38];
     unsigned int f38;
     char pad3C[0x1C];
-    unsigned char f58;
+    union {
+        unsigned char f58;
+        struct {
+            unsigned char b0 : 1;
+            unsigned char b1 : 1;
+            unsigned char rest : 6;
+        } f58b;
+    };
     void func_001D5AD0(void);
 };
 extern int D_0028F5E0;
@@ -314,6 +321,7 @@ void C_000EC850::func_000EC850()
 
 void C_000ECC60::func_000ECC60(void) {
     C_001D5AD0 *p;
+    C_001D5AD0 *q;
     S_002B91AC *s;
     C_001D5AD0 **ptr;
     int i;
@@ -343,10 +351,9 @@ skip:
             p->f38 = (p->f38 & 0xff000000) | 0xbfa35a;
             p->f58 |= 2;
         } else {
-            p = *ptr;
-            unsigned char f = p->f58 | 2;
-            p->f38 = (p->f38 & 0xff000000) | 0xcccccc;
-            p->f58 = f;
+            q = *ptr;
+            q->f38 = (q->f38 & 0xff000000) | 0xcccccc;
+            q->f58 |= 2;
         }
         (*ptr)->func_001D5AD0();
         i++;
