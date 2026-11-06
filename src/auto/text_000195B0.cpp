@@ -4,6 +4,7 @@
 #include "ghidra.h"
 #include <xmmintrin.h>
 extern "C" float __cdecl sqrtf(float);
+#pragma intrinsic(sqrtf)
 struct S_1A400_Vec4 { float x, y, z, w; };
 struct S_1A400_Pos {
     char pad[0x24];
@@ -358,6 +359,12 @@ struct C_198E0 {
 };
 
 static __forceinline void Touch_198E0(void *) {}
+
+int TikiEvadeState::func_000195B0(float dt)
+{
+    TikiEvadeState *self = this;
+    return Body_195B0(self, dt);
+}
 
 void C_00019790::func_00019790(void)
 {
