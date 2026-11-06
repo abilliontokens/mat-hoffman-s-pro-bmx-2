@@ -169,8 +169,8 @@ struct This_001A9D20 {
     void func_001A9D20(float s, V4_001A96D0 v, V4_001A96D0 q, Obj_001A9D20 *other, unsigned mask);
 };
 
-static __forceinline float Min_001A9D20(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_set_ss(a), _mm_set_ss(b))); return r; }
-static __forceinline float Max_001A9D20(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b))); return r; }
+static __forceinline float Min_001A9D20(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float Max_001A9D20(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 
 void This_001A96D0::func_001A96D0(Body_001A96D0 *body, V4_001A96D0 p, V4_001A96D0 q, float s)
 {
