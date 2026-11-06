@@ -55,6 +55,8 @@ struct C_000D4AE0_Game {
 struct C_000D4AE0_Root {
     char pad0[0x2E0];
     C_000D4AE0_Game* f2E0;
+    char pad2E4[8];
+    C_D3DA0_Manager* f2EC;
 };
 extern C_000D4AE0_Root* D_002A8490;
 
