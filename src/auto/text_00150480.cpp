@@ -134,6 +134,11 @@ struct Global_150F80 { char pad[0x2a4]; Manager_150F80 *f2a4; };
 struct Players_150F80 { char pad[0x4e4]; C_00150900 *f4e4[4]; };
 extern Global_150F80 *D_002A8490;
 extern Players_150F80 *D_002B9120;
+extern int D_002BA148;
+struct State_150A80 { char p0[0x64]; void *f64; char p68[0x1c]; Vec4_150900 f84,f94; char pa4[0x34]; int fd8,fdc; };
+struct Path_150A80 { char p0[0x74]; Vec4_150900 *f74,*f78; int f7c,f80; };
+struct Arg_150A80 { char p0[0x50]; int f50; Path_150A80 *f54; char p58[8]; State_150A80 *f60; int f64,f68; };
+struct Check_150A80 { char p0[0x4f4]; int f4f4; };
 struct C_00150F80 { int u[445]; void func_00150F80(); };
 __forceinline void Vec4_150900::reset_150F80(int *flag) {
     *(int *)&x=D_002A789C; *(int *)&y=D_002A78A0; *(int *)&z=D_002A78A4;
@@ -191,5 +196,40 @@ void C_00150F60::func_00150F60(int a0, int a1) {
     unk24 = a0;
     unk28 = a1;
     func_001D3F50();
+}
+
+void C_00150F80::func_00150F80() {
+    ((C_00150900_obj *)u[0x2c/4])->unk1A4->unk4->func_00199600(*(Vec4_150900 *)&u[0x6dc/4]);
+    u[0x4c/4] = u[0x6ec/4];
+    u[0x48/4] = u[0x6f0/4];
+    ((C_00150900_obj *)u[0x2c/4])->unk1A4->func_00132D20();
+    ((V_150F80 *)this)->v18();
+    u[0x584/4] = 1000;
+    u[0x574/4] = 10;
+    int *p = &u[0xe8/4];
+    *(Vec4_150900 *)p = *(Vec4_150900 *)&D_002A789C;
+    p = &u[0xf8/4];
+    *(Vec4_150900 *)p = *(Vec4_150900 *)&D_002A789C;
+    u[0x10c/4]=0;
+    ((C_00150900_obj *)u[0x2c/4])->unk1A4->unk4->func_001983A0();
+    Manager_150F80 *manager = D_002A8490->f2a4;
+    manager->f44[u[9]]->f64->func_0009FAC0(D_002B9120->f4e4[u[9]]->unk2C->unk1A4->unk4);
+    manager->f44[u[9]]->func_0002F990();
+    manager->f284[u[9]]->func_0008D550();
+    p = &u[0x120/4];
+    *(Vec4_150900 *)p = *(Vec4_150900 *)&D_002A789C;
+    u[0xdc/4]=0;
+    p = &u[0x1ac/4];
+    for(int i=0;i<11;++i,p+=24) {
+        p[-6]=0;
+        ((V_150F80 *)p[-23])->func_00198390();
+        ((V_150F80 *)p[-23])->v10();
+        ((V_150F80 *)p[0])->v7c();
+        ((V_150F80 *)p[0])->v80();
+        ((V_150F80 *)p[0])->v10();
+        ((V_150F80 *)p[-1])->v7c();
+        ((V_150F80 *)p[-1])->v80();
+        ((V_150F80 *)p[-1])->v10();
+    }
 }
 
