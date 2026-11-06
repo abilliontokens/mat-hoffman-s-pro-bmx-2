@@ -18,6 +18,7 @@ struct C_6A70_Data {
     C_6A70_V4 f10;
     C_6A70_V4 f20;
     C_6A70_V4 f30;
+    char pad40[0xc];
     int f4c;
     C_6A70_Data *func_001B6850(void);
     void func_001B6930(void *cfg, int a);
@@ -327,6 +328,64 @@ struct C_001B6E70 {
     void func_001B73C0(C_001B73C0_Arg *arg);
     void func_001577A0(void *p, int v);
 };
+
+int C_6A70::func_001B6A70(C_6A70_Cfg *cfg, int a1, int a2, C_6A70_Src *a3, int a4)
+{
+    char buf1[0x104];
+    char buf2[0x104];
+    char buf3[0x104];
+    char buf4[0x104];
+    char flag;
+    int i;
+    int r = 0;
+    C_6A70_Data *d;
+    C_6A70_Obj *o;
+
+    cfg->func_00168BE0(D_00276980, D_00275630, f18, 0x78);
+    cfg->func_00168C20(D_0027A84C, 0, &f8);
+    cfg->func_00168C20(D_00284B7C, 1, &fC);
+    cfg->func_00168BE0(D_0028CE58, D_00275630, f90, 0x78);
+    cfg->func_00168C20(D_0027B0AC, 1, &f10);
+    cfg->func_00168BE0(D_0027CC48, D_00275630, buf1, 0x104);
+    cfg->func_00168BE0(D_0027CC38, D_00275630, buf3, 0x104);
+    fC--;
+    cfg->func_00168C20(D_00289948, 0x64, &f14);
+    d = (C_6A70_Data *)func_001E8A44(0x50);
+    d = d ? d->func_001B6850() : 0;
+    f108 = d;
+    d->func_001B6930(cfg, a2);
+    o = (C_6A70_Obj *)func_001E8A44(0x2f0);
+    o = o ? o->func_001BB680(1) : 0;
+    f4 = o;
+    o->func_001BC040(d->f0, d->f10, d->f20, d->f30, d->f4c, f8, f14, a4);
+    cfg->func_00168C20(D_0028CE4C, 0, (int *)&flag);
+    ((S_6A70_Bits *)&f4->b2EC)->b3 = flag;
+    strcpy(f4->fD4, buf1);
+    strcpy(f4->f1D8, buf3);
+    if (f10 == 0)
+        f4->v4();
+    if (f8 == 0)
+        return 0;
+    f10C = (C_6A70_Item **)func_001E8A44(f8 * 4);
+    for (i = 0; i < f8; i++) {
+        func_001ADCC0(buf2, 0x104, D_0028CE38, a2, i + 1);
+        if (cfg->func_00169710(buf2) == 0) {
+            func_00012140();
+            continue;
+        }
+        cfg->func_00168BE0(D_0027CAD4, (const char *)&D_002764F0, buf4, 0x104);
+        cfg->func_00168C20(D_0028CE20, -1, &f4->fBC[i]);
+        cfg->func_00168C20(D_0028CE04, -1, &f4->fC0[i]);
+        cfg->func_00168C50(D_0028CDEC, 0, &f4->fC4[i]);
+        r = a3->v1(buf4);
+        a3->v0(&r, &f10C[i]);
+        if (r == 0)
+            continue;
+        f10C[i]->f4 = r;
+        f10C[i]->v0(cfg, a1);
+    }
+    return 1;
+}
 
 C_001B6E70 *C_001B6E70::func_001B6E70(void *param) {
     ((C_00157600 *)this)->func_00157600(param);
