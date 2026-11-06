@@ -49,7 +49,7 @@ struct R_001747F0 {
     int i280, i284, i288;
     char pad28C[0x2b0 - 0x28c];
     Vec4_001747F0 v2B0;
-    void func_001747F0(int a);
+    int func_001747F0(int a);
 };
 struct C_00175170 {
     int unk0;
