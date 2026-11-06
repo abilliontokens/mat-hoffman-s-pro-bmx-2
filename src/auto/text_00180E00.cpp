@@ -82,6 +82,10 @@ struct RenderableObject {
             unsigned short bit11 : 1;
             unsigned short bits12 : 4;
         };
+        struct {
+            unsigned char unk1A2_lo;
+            unsigned char unk1A3;
+        };
     };
     S_00181540_Res *unk1A4;
     void *unk1A8;
@@ -562,5 +566,128 @@ void Loader::func_001816A0(void *stream)
         items[i] = obj;
         D_002A829C->v6(obj, D_002AA46C);
     }
+}
+
+RenderableObject *RenderableObject::func_001817F0(char *name, int a, int b)
+{
+    RObj17 &self = *(RObj17 *)this;
+    RObj17 *other;
+    int h;
+    int v18;
+    int v1c;
+    char buf[0x104];
+    char buf2[0x104];
+    int arr[256];
+    char *p;
+
+    func_001D3F50();
+    other = &self;
+    v18 = 0;
+    if (D_002A5EA0[0] != 0) {
+        strcpy(buf, D_002A5EA0);
+        if (D_002A5E9F[strlen(D_002A5EA0)] != '\\') {
+            char *e = buf;
+            while (*e != 0)
+                e++;
+            *(unsigned short *)e = D_00284644;
+        }
+        strcat(buf, name);
+    } else {
+        strcpy(buf, name);
+    }
+    for (p = buf; *p != 0; p++)
+        *p = (char)func_001E8D25(*p);
+    func_00030F30(buf, D_00289328);
+    strcpy((char *)&self + 0x20, buf);
+    h = -1;
+    v1c = 0;
+    if (a != 0) {
+        self.f181 |= 2;
+        void *m = func_001E8A44(0x1a0);
+        other = m ? ((RObj17 *)m)->func_00197820(1) : 0;
+    }
+    self.func_0019ADF0(other);
+    if (D_002BEAAC->func_0013D310(buf, &D_00275FB4, &h, &v1c, 0) == 0) {
+        self.s2();
+        return 0;
+    }
+    if (v1c != 0) {
+        RObj17 *src;
+        int i;
+        self.f1A4 = (Res17 *)v1c;
+        self.f1A4->s1();
+        src = self.f1A4->f14;
+        if (a != 0) {
+            if (src->f181 & 2)
+                other->s33(src->f174);
+            else
+                self.s33(src);
+        } else {
+            if (src->f181 & 2)
+                self.s33(src->f174);
+            else if (src->f174 != 0)
+                self.s33(src);
+            else {
+                self.m130 = src->m130;
+                self.m140 = src->m140;
+                self.f184 = src->f184;
+                self.f180 |= 0x24;
+            }
+        }
+        v18 = 1;
+        arr[0] = (int)other;
+        other->func_001982A0(&v18, arr);
+        self.f190 = v18;
+        self.f1B4 = src->f1B4;
+        self.f1B8 = (int *)func_001E8AA5(self.f1B4 * 4);
+        memcpy(self.f1B8, src->f1B8, self.f1B4 * 4);
+        for (i = 0; i < self.f1B4; i++)
+            D_002A829C->v6((void *)self.f1B8[i], D_002AA46C);
+        self.s37(src);
+    } else {
+        int vC;
+        D_002BEAAC->func_0013C8A0(h, &vC, 1, 4);
+        D_002BEAAC->func_0013C8A0(h, buf, 4, 1);
+        if (func_001EA426((char *)&vC, D_00289324) != 0 && func_001EA426((char *)&vC, D_00289320) != 0 && func_001EA426((char *)&vC, D_0028931C) == 0)
+            self.f1A3 |= 4;
+        if (func_001EA426((char *)&vC, D_00289318) != 0 && func_001EA426((char *)&vC, D_00289314) != 0)
+            func_001EA426((char *)&vC, D_00289310);
+        if (a != 0) {
+            self.f190 = other->func_0019B1A0(h, arr);
+        } else {
+            v18 = self.func_0019B1A0(h, arr);
+        }
+        int esiNew = 0;
+        if (self.f1A3 & 4) {
+            func_0014FF00(buf, 0, 0, buf2, 0);
+            buf2[strlen(buf2) - 2] = 0;
+            esiNew = D_002E28F4->func_0015B570(buf2);
+        }
+        self.func_001816A0((void *)h);
+        self.s36(h);
+        void *m = func_001E8A44(0x18);
+        Res17 *res = m ? ((Res17 *)m)->func_00143520() : 0;
+        self.f1A4 = res;
+        res->s4(h, esiNew);
+        res->f14 = &self;
+        D_002BEAAC->func_0013B1F0(h, res);
+        D_002BEAAC->func_0013C110(h);
+        if (self.f1A8 == 0) {
+            int cnt = self.f1A4->f10->count;
+            self.f1A8 = func_001E8A44(cnt << 8);
+            int i2;
+            int j;
+            for (i2 = 0; i2 < cnt; i2++) {
+                for (j = 0; j < 32; j++) {
+                    ((int *)self.f1A8)[i2 * 64 + j * 2] = 0x7f7fffff;
+                    ((int *)self.f1A8)[i2 * 64 + j * 2 + 1] = 0x7f7fffff;
+                }
+            }
+        }
+    }
+    self.f1AC = func_001E8A44(v18 * 4);
+    memcpy(self.f1AC, arr, v18 * 4);
+    self.f1A3 &= 0xef;
+    return (RenderableObject *)&self;
 }
 
