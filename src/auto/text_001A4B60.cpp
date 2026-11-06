@@ -142,6 +142,7 @@ struct S_001A5730_Item {
     f32 x, y, z, w;
 };
 
+struct V3_001A4B60 { int x,y,z; };
 struct S_001A53C0_V4 {
     f32 x, y, z, w;
     S_001A53C0_V4() { z = 0; y = 0; x = 0; w = 1.0f; }
