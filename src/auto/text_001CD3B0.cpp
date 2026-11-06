@@ -340,6 +340,13 @@ XboxSoundGroup *XboxSoundGroup::func_001CD770(int a, int b)
     return this;
 }
 
+void C_001CD7D0::func_001CD7D0(S_001CD7D0_Arg *p)
+{
+    p->v6(0);
+    p->v2();
+    f30.func_001CBCF0(p);
+}
+
 int XboxSoundGroup::func_001CD800(void)
 {
     int i;
