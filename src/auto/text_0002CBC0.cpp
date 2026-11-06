@@ -32,6 +32,7 @@ struct S2CBC0 {
     float f730;
     void func_0002CBC0(float dt);
     void func_0002D270();
+    void func_0002A7C0();
 };
 
 void func_000263B0(void *out, void *a, void *b);
