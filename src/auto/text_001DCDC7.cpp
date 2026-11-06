@@ -127,89 +127,6 @@ int __stdcall func_001DD13C(void *a0) {
     }
 }
 
-#pragma optimize("y", off)
-int __stdcall func_001DD15A(void *h, void *buffer, u32 size, u32 *read, S_001DD670_Overlapped *ov)
-{
-    S_IoStatusBlock iosb;
-    u32 offset[2];
-    int status;
-
-    if (read)
-        *read = 0;
-    if (ov) {
-        offset[0] = ov->Offset;
-        offset[1] = ov->OffsetHigh;
-        ov->Internal = 0x103;
-        status = _imp__NtReadFile(h, ov->hEvent, 0, ((u32)ov->hEvent & 1) ? 0 : ov, ov, buffer, size, offset);
-        if (status >= 0 && status != 0x103) {
-            if (read)
-                *read = ov->InternalHigh;
-            return 1;
-        }
-        if (status == 0xc0000011) {
-            if (read)
-                *read = 0;
-            goto fail;
-        }
-        goto fail;
-    }
-    status = _imp__NtReadFile(h, 0, 0, 0, &iosb, buffer, size, 0);
-    if (status == 0x103)
-        status = _imp__NtWaitForSingleObject(h, 0, 0);
-    if (status >= 0) {
-        status = iosb.status;
-        if (status >= 0) {
-            *read = iosb.information;
-            return 1;
-        }
-    }
-    if (status == 0xc0000011) {
-        *read = 0;
-        return 1;
-    }
-    if (((u32)status & 0xc0000000) == 0x80000000)
-        *read = iosb.information;
-fail:
-    func_001DD659(status);
-    return 0;
-}
-#pragma optimize("s", on)
-int __stdcall func_001DD247(void *h, void *buffer, u32 size, u32 *written, S_001DD670_Overlapped *ov)
-{
-    S_IoStatusBlock iosb;
-    u32 offset[2];
-    int status;
-
-    if (written)
-        *written = 0;
-    if (ov) {
-        offset[0] = ov->Offset;
-        offset[1] = ov->OffsetHigh;
-        ov->Internal = 0x103;
-        status = _imp__NtWriteFile(h, ov->hEvent, 0, ((u32)ov->hEvent & 1) ? 0 : ov, ov, buffer, size, offset);
-        if (((u32)status & 0xc0000000) == 0xc0000000 || status == 0x103)
-            goto fail;
-        if (written)
-            *written = ov->InternalHigh;
-    ok:
-        return 1;
-    }
-    status = _imp__NtWriteFile(h, 0, 0, 0, &iosb, buffer, size, 0);
-    if (status == 0x103)
-        status = _imp__NtWaitForSingleObject(h, 0, 0);
-    if (status >= 0) {
-        status = iosb.status;
-        if (status >= 0) {
-            *written = iosb.information;
-            goto ok;
-        }
-    }
-    if (((u32)status & 0xc0000000) == 0x80000000)
-        *written = iosb.information;
-fail:
-    func_001DD659(status);
-    return 0;
-}
 #pragma optimize("y", on)
 
 int __stdcall func_001DD31D(void *a0) {
@@ -295,13 +212,11 @@ int __stdcall func_001DD3A1(void *h, u32 lo, u32 *hi, int method)
     }
     if (pos.q < 0) {
         func_001DD62B(0x83);
-        pos.s.lo = -1;
-        return pos.s.lo;
+        return -1;
     }
     if (hi == 0 && (pos.s.hi & 0x7fffffff) != 0) {
         func_001DD62B(0x57);
-        pos.s.lo = -1;
-        return pos.s.lo;
+        return -1;
     }
     status = _imp__NtSetInformationFile(h, iosb, &pos, 8, 0xe);
     if (status >= 0) {
