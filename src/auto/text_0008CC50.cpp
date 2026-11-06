@@ -55,13 +55,12 @@ static __forceinline void S_0008D290_Fmt(char *a, char *out)
 {
     int r = strlen(a) % 3;
     int i, j;
-    char *p = out;
     for (i = 0, j = -r; i < (int)strlen(a); i++) {
         if (i > r - 1 && i != 0 && (j == 0 || j % 3 == 0)) {
-            *p++ = ',';
-            *p++ = a[i];
+            *out++ = ',';
+            *out++ = a[i];
         } else {
-            *p++ = a[i];
+            *out++ = a[i];
         }
         j++;
     }
@@ -395,54 +394,24 @@ void S_0008D290::func_0008D290()
 {
     char a[15] = {0};
     char out[15] = {0};
-    register char *p;
-    int i, j, k, r;
 
     u48->func_001D5AD0();
     u4c->func_001D5AD0();
     u70 = u64->u584;
     func_001ADCC0(a, 15, D_00277038, u70);
-    r = strlen(a) % 3;
-    for (i = 0, p = out, j = -r; i < (int)strlen(a); i++) {
-        if (i > r - 1 && i != 0 && (j == 0 || j % 3 == 0)) {
-            *p++ = ',';
-            *p++ = a[i];
-        } else {
-            *p++ = a[i];
-        }
-        j++;
-    }
+    S_0008D290_Fmt(a, out);
     u28->func_0005E840(out);
     u28->func_001D6600();
     u74 = u64->u574 + u64->u578 * 10;
     func_001ADCC0(a, 15, D_00277038, u74);
-    r = strlen(a) % 3;
-    for (i = 0, k = 0, j = -r; i < (int)strlen(a); i++) {
-        if (i > r - 1 && i != 0 && (j == 0 || j % 3 == 0)) {
-            out[k++] = ',';
-            out[k++] = a[i];
-        } else {
-            out[k++] = a[i];
-        }
-        j++;
-    }
-    out[k] = 0;
+    S_0008D290_FmtIdx(a, out);
     u2c->func_0005E840(out);
     u2c->func_001D6600();
     if (u68) {
-        for (i = 0; i < 15; i++) out[i] = 0;
+        for (int i = 0; i < 15; i++) out[i] = 0;
         u78 = u68->u4d4;
         func_001ADCC0(a, 15, D_00277038, u78);
-        r = strlen(a) % 3;
-        for (i = 0, p = out, j = -r; i < (int)strlen(a); i++) {
-            if (i > r - 1 && i != 0 && (j == 0 || j % 3 == 0)) {
-                *p++ = ',';
-                *p++ = a[i];
-            } else {
-                *p++ = a[i];
-            }
-            j++;
-        }
+        S_0008D290_Fmt(a, out);
         u34->func_0005E840(out);
         u34->func_001D6600();
     }
