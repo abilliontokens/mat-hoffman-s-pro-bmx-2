@@ -108,8 +108,8 @@ struct S_0004CFC0_Sub {
     char pad1F8[0xC];
     int f204;
     int f208;
+    void func_0012B190(int a, int b, int c, int d);
 };
-void __stdcall func_0012B190(int a, int b, int c, int d);
 struct C_0004CED0 {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
     virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
