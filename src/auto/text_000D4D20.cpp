@@ -4,7 +4,17 @@ extern int D_0027F20C;
 
 struct DelObjA_000D4DD0 {
     virtual void Destroy(int a0);
+    char pad4[0x34];
+    unsigned int f38;
+    char pad3c[0x1c];
+    unsigned char b58;
+    DelObjA_000D4DD0 *func_001D5760();
+    void func_001D5810(char *name, float x, float y, int z);
     void func_001D5AD0();
+    void SetArgbRaw(unsigned int c) {
+        f38 = (f38 & c) | (c & 0xffffff);
+        b58 |= 2;
+    }
 };
 struct DelObjB_000D4DD0 {
     virtual void Destroy(int a0);
@@ -12,15 +22,42 @@ struct DelObjB_000D4DD0 {
     unsigned int f38;
     char pad3c[0x1c];
     unsigned char b58;
+    DelObjB_000D4DD0 *func_001D5760();
+    void func_001D5810(char *name, float x, float y, int z);
     void func_001D5AD0();
 };
 struct DelObjC_000D4DD0 {
     virtual void Destroy(int a0);
-    char pad4[0x34];
+    char pad4[0x24];
+    int x;
+    char pad2c[0xc];
     unsigned int f38;
-    char pad3c[0x1c];
+    float m3c;
+    float m40;
+    float m44;
+    float m48;
+    char pad4c[0xc];
     unsigned char b58;
+    DelObjC_000D4DD0 *func_001D5760();
+    void func_001D5810(char *name, float x, float y, int z);
     void func_001D5AD0();
+    void SetIdentity() {
+        b58 |= 4;
+        m40 = 0;
+        m44 = 0;
+        m3c = 1.0f;
+        m48 = 1.0f;
+    }
+    void SetX(int nx) {
+        if (x != nx) {
+            x = nx;
+            b58 |= 1;
+        }
+    }
+    void SetArgbRaw(unsigned int c) {
+        f38 = (f38 & c) | (c & 0xffffff);
+        b58 |= 2;
+    }
 };
 
 struct S_000D5860_Draw {
