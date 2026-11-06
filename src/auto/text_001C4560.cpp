@@ -202,6 +202,8 @@ struct S_1C4560_G {
 };
 extern S_1C4560_G *D_002A8490;
 extern float D_00275818;
+extern float D_002AB4EC;
+extern float D_002AB4F0;
 struct S_1C4560_Mgr {
     char pad0[4];
     char *f4;
