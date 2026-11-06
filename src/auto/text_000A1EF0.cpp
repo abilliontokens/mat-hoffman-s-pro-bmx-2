@@ -58,7 +58,7 @@ struct Reader2 {
     void func_00168BE0(const void *name, const void *def, void *buf, int size);
 };
 struct C_00152E30 { C_00152E30 *func_00152E30(int a); void func_00150F60(int i, int v); };
-struct C_00049BD0 { void func_00049BD0(void); };
+struct C_00049BD0 { C_00049BD0 *func_00049BD0(void); };
 struct C_000185A0 { C_000185A0 *func_000185A0(int a); void func_000198E0(Reader2 *r, void *e); };
 struct C_00155450 { C_00155450 *func_00155450(int a); void func_001561A0(Reader2 *r, void *e); };
 struct Obj6F4 {
