@@ -128,12 +128,7 @@ static __forceinline int edge_1793E0(Vec4 *p, Vec4 *q, Vec4 *r, Vec4 *n)
     t.z = r->z - p->z;
     t.w = 1.0f;
     b = t;
-    _mm_storeu_ps(&c.x, _mm_shuffle_ps(
-        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a.x), _mm_shuffle_ps(_mm_loadu_ps(&b.x), _mm_loadu_ps(&b.x), 0xc9)),
-                   _mm_mul_ps(_mm_loadu_ps(&b.x), _mm_shuffle_ps(_mm_loadu_ps(&a.x), _mm_loadu_ps(&a.x), 0xc9))),
-        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a.x), _mm_shuffle_ps(_mm_loadu_ps(&b.x), _mm_loadu_ps(&b.x), 0xc9)),
-                   _mm_mul_ps(_mm_loadu_ps(&b.x), _mm_shuffle_ps(_mm_loadu_ps(&a.x), _mm_loadu_ps(&a.x), 0xc9))),
-        0xc9));
+    _mm_storeu_ps(&c.x, cross_ps_179950(_mm_loadu_ps(&a.x), _mm_loadu_ps(&b.x)));
     float d = c.y * n->y + c.x * n->x + c.z * n->z;
     return *(int *)&d >= 0;
 }
