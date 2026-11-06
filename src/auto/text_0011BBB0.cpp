@@ -104,6 +104,25 @@ V4_0011C3F0 func_0011B1B0(float angle);
 V4_0011C3F0 func_0001C610(const V4_0011C3F0 &a, const V4_0011C3F0 &b);
 void func_000265C0(float *out, const V4_0011C3F0 *a, const V4_0011C3F0 *b, const V4_0011C3F0 *c, int d, int e);
 
+struct C_0011C3F0 {
+    char pad0[0x24];
+    V4_0011C3F0 f24;
+    char pad34[0x58 - 0x34];
+    float f58;
+    char pad5C[0x80 - 0x5C];
+    S_0011C3F0_80 *f80;
+    char pad84[0xA0 - 0x84];
+    S_0011C3F0_A0 *fA0;
+    char padA4[4];
+    S_0011C3F0_Smoother *fA8;
+    S_0011C3F0_Smoother *fAC;
+    S_0011C3F0_Smoother *fB0;
+    char padB4[0xF0 - 0xB4];
+    void **fF0;
+    int fF4;
+    void func_0011C3F0(float *m, float dt);
+};
+
 struct C_0011CA60 {
     char pad0[0x24];
     S_0011CA20_V4 f24;
