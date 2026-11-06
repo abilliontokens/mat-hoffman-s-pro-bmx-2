@@ -32,6 +32,11 @@ static __forceinline float Abs_19FD20(float f)
     return *(float *)&i;
 }
 
+static __forceinline float Dot_19FD20(Vec_19FD20 *a, Vec_19FD20 *b)
+{
+    return a->y * b->y + a->x * b->x + a->z * b->z;
+}
+
 struct Node_19FD20 {
     void func_00199A70(int a, Vec_19FD20 *out);
     Vec_19FD20 func_00198040(Vec_19FD20 *in);
@@ -106,7 +111,8 @@ void C_0019FD20::func_0019FD20(Node_19FD20 *a, Node_19FD20 *b, Node_19FD20 *c, f
     float dx, dy, dz, s;
     Vec_19FD20 *m30 = &this->f30;
     m30->z = 0; m30->y = 0; m30->x = 0; m30->w = 1.0f;
-    this->f44.z = 0; this->f44.y = 0; this->f44.x = 0; this->f44.w = 1.0f;
+    this->f44.z = this->f44.y = this->f44.x = 0;
+    this->f44.w = 1.0f;
     Vec_19FD20 *m44 = &this->f44;
     this->f0 = a;
     this->f4 = b;
@@ -137,30 +143,24 @@ void C_0019FD20::func_0019FD20(Node_19FD20 *a, Node_19FD20 *b, Node_19FD20 *c, f
     this->f4->func_00198120(&q1, &p0);
     this->f4->func_00198120(&q2, &p2);
     Vec_19FD20 v1(0, 0, 0, 1.0f);
-    s = q1.y * this->f44.y + q1.x * this->f44.x + q1.z * this->f44.z;
-    float fa1 = Abs_19FD20(s);
-    if (q1.y * this->f44.y + q1.x * this->f44.x + q1.z * this->f44.z <= D_00275544) {
-        v1.x = q1.x + fa1 * this->f44.x;
-        v1.y = q1.y + fa1 * this->f44.y;
-        v1.z = q1.z + fa1 * this->f44.z;
-    } else {
-        v1.x = q1.x - fa1 * this->f44.x;
-        v1.y = q1.y - fa1 * this->f44.y;
-        v1.z = q1.z - fa1 * this->f44.z;
-    }
+    float fa1 = Abs_19FD20(q1.y * this->f44.y + q1.x * this->f44.x + q1.z * this->f44.z);
+    float p1x = fa1 * this->f44.x;
+    float p1y = fa1 * this->f44.y;
+    float p1z = fa1 * this->f44.z;
+    if (q1.y * this->f44.y + q1.x * this->f44.x + q1.z * this->f44.z > D_00275544)
+        v1 = Vec_19FD20(q1.x - p1x, q1.y - p1y, q1.z - p1z);
+    else
+        v1 = Vec_19FD20(q1.x + p1x, q1.y + p1y, q1.z + p1z);
     float l1 = AsmSqrtF(v1.x * v1.x + v1.y * v1.y + v1.z * v1.z);
     Vec_19FD20 v2(0, 0, 0, 1.0f);
-    s = q2.y * this->f44.y + q2.x * this->f44.x + q2.z * this->f44.z;
-    float fa2 = Abs_19FD20(s);
-    if (q2.y * this->f44.y + q2.x * this->f44.x + q2.z * this->f44.z <= D_00275544) {
-        v2.x = q2.x + fa2 * this->f44.x;
-        v2.y = q2.y + fa2 * this->f44.y;
-        v2.z = q2.z + fa2 * this->f44.z;
-    } else {
-        v2.x = q2.x - fa2 * this->f44.x;
-        v2.y = q2.y - fa2 * this->f44.y;
-        v2.z = q2.z - fa2 * this->f44.z;
-    }
+    float fa2 = Abs_19FD20(q2.y * this->f44.y + q2.x * this->f44.x + q2.z * this->f44.z);
+    float p2x = fa2 * this->f44.x;
+    float p2y = fa2 * this->f44.y;
+    float p2z = fa2 * this->f44.z;
+    if (q2.y * this->f44.y + q2.x * this->f44.x + q2.z * this->f44.z > D_00275544)
+        v2 = Vec_19FD20(q2.x - p2x, q2.y - p2y, q2.z - p2z);
+    else
+        v2 = Vec_19FD20(q2.x + p2x, q2.y + p2y, q2.z + p2z);
     float l2 = AsmSqrtF(v2.x * v2.x + v2.y * v2.y + v2.z * v2.z);
     int s1 = (q1.y * this->f44.y + q1.x * this->f44.x + q1.z * this->f44.z < D_00275544) ? -1 : 1;
     int s2 = (q2.y * this->f44.y + q2.x * this->f44.x + q2.z * this->f44.z < D_00275544) ? -1 : 1;
@@ -172,17 +172,18 @@ void C_0019FD20::func_0019FD20(Node_19FD20 *a, Node_19FD20 *b, Node_19FD20 *c, f
     t.x = p1.x - p2.x; t.y = p1.y - p2.y; t.z = p1.z - p2.z; t.w = 1.0f;
     Vec_19FD20 tmp;
     func_0001E9E0(&tmp, &t);
-    q2 = this->f4->func_00198040(&tmp);
+    t = this->f4->func_00198040(&tmp);
     func_0019FBD0(&v2, &v2);
-    this->f24 = q2.x * v1.x + q2.y * v1.y + q2.z * v1.z;
+    this->f24 = t.x * v1.x + t.y * v1.y + t.z * v1.z;
     v2.x = -v2.x; v2.y = -v2.y; v2.z = -v2.z; v2.w = 1.0f;
     this->f24 = v2.x * v1.x + v2.y * v1.y + v2.z * v1.z;
     this->f28 = AsmSqrtF(D_00275460 - this->f24 * this->f24);
     this->f2C = func_0014F890(this->f24);
-    Vec_19FD20 ax = func_0001C610(&v1, &q2);
-    func_0019FBD0(&ax, &ax);
-    ax = this->f0->func_00198040(&ax);
-    this->f0->func_00199C90(ax, this->f24, this->f28);
+    Vec_19FD20 ax = func_0001C610(&v1, &t);
+    if (ax.y * this->f44.y + ax.x * this->f44.x + ax.z * this->f44.z > D_00275544)
+        this->f2C = -this->f2C;
+    this->f40 = 0;
+    this->f10 = 1;
 }
 
 void C_001A0510::func_001A0510(Vec_19FD20 target)
