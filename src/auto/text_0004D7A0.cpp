@@ -112,6 +112,20 @@ struct C_0004DCA0_Cam {
     void func_00086130(int a);
     void func_00086140(int a);
     void func_00085BD0(int a);
+    void func_00085D00(int a);
+    void func_00085E50(int a);
+    void func_00085F40(int a);
+    void func_00086030(int a);
+    void func_00086150(int a);
+    void func_00086160(float a);
+    int func_00086180(void);
+    int func_000861C0(int a);
+};
+
+struct C_0004DCA0_Obj19C {
+    char pad0[0xb8];
+    int fB8;
+    void func_0006D280(void);
 };
 
 struct C_0004DCA0_Snd {
