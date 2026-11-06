@@ -43,7 +43,6 @@ struct C_001C67C0VT {
 struct C_001C67C0 {
     char pad0[0x10];
     C_001C67C0VT *obj10;
-    void func_001C67C0(Vec4 *out, int param_2);
     Vec4 func_001C67C0(int param_2);
 };
 
