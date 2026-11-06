@@ -201,10 +201,7 @@ struct C_000C85B0 {
     int unk2CC;
     int unk2D0;
     int unk2D4;
-    int unk2D8;
-    int unk2DC;
-    int unk2E0;
-    int unk2E4;
+    struct S_000C8660_Obj *unk2D8[4];
     C_000C85B0 *func_000C85B0(int param_1);
 };
 
@@ -524,10 +521,8 @@ C_000C85B0 *C_000C85B0::func_000C85B0(int param_1) {
     unk2BC = 0;
     *(void **)this = &D_0027E334;
     unk2B0 = 1;
-    unk2D8 = 0;
-    unk2DC = 0;
-    unk2E0 = 0;
-    unk2E4 = 0;
+    for (int i = 0; i < 4; i++)
+        ((void **)&unk2D8)[i] = 0;
     unk2C4 = 0;
     unk2C8 = 0;
     unk2CC = 0;
@@ -566,5 +561,40 @@ void C_000C86A0::func_000C86A0(void)
     D_002B91AC->unk38->func_0005E840(D_002A8490->f2E8->f4->f7C8);
     D_002B91AC->unk80->func_0005E840(D_002A8490->f2E8->f4->f928);
     D_002B91AC->unk84->func_0005E840(D_002A8490->f2E8->f4->f908);
+}
+
+void BmxUIPageOptions::func_000C88E0(void)
+{
+    int ids[3];
+    int i;
+    int *r;
+    C_NumHorse_Clamp *o;
+    S_000C8660_Obj **e;
+    C_000C87A0_Lookup *lk;
+
+    ids[0] = (int)&D_00278690;
+    ids[1] = (int)&D_002786A0;
+    ids[2] = (int)&D_00278678;
+    for (i = 0; i < 3; i++) {
+        lk = D_002A8490->p2EC;
+        r = lk->func_0018C160(ids[i]);
+        if (r != 0 && *r != 0) {
+            o = ((C_NumHorse_Mid *)*r)->func_0018C070();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+    }
+    e = unk2D8;
+    i = 4;
+    do {
+        if (*e != 0) {
+            o = (*e)->func_001D5AA0();
+            if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+            if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+        }
+        e++;
+        i--;
+    } while (i != 0);
+    func_001578D0();
 }
 
