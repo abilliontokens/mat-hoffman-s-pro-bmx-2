@@ -8,6 +8,37 @@ extern f32 D_002A252C;
 extern f32 D_002A2530;
 extern f32 D_002A2534;
 extern int D_0027AC8C;
+extern float D_00277F40, D_002A24DC, D_002756DC, D_002754B0, D_002755E8, D_00275460;
+struct Root9E { char pad0[0x124]; int f124; };
+extern Root9E *D_002A8490;
+struct Vec4f { float x, y, z, w; };
+struct Pool9E {
+    char pad0[0x11C];
+    int count11C;
+    char pad120[4];
+    int cap124;
+    char pad128[4];
+    int **arr12C;
+};
+struct Particle9E {
+    char pad0[0x10];
+    Vec4f v10;
+    int f28;
+    float f2C;
+    float f30;
+    float f34;
+    float f38;
+    int f40;
+    int f44;
+    int f48;
+};
+float func_00011170(float *v);
+void func_0009DA90(float *a, float *b);
+float func_0014F7E0(float a);
+void func_0001EAB0(float *a, float *b, float *c);
+int func_001E8833();
+Vec4f *func_0009DA50(float *a, float *b, float c);
+void func_00158390(Vec4f a, Vec4f b, float c, void *d);
 void func_001ADCC0(void *dst, int n, void *src, void *x);
 
 struct C_0009EDF0 {
