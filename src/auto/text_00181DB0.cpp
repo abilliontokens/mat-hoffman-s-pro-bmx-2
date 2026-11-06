@@ -188,8 +188,8 @@ struct C_00182750 {
 };
 
 struct C_00182110_Elem {
-    void func_00198440(float *a, V4_00181E10 *b, int c);
-    void func_001985D0(V4_00181E10 *a, V4_00181E10 *b, V4_00181E10 *c, void *d, int e);
+    void func_00198440(V4_00181E10 *a, float *b, int c);
+    void func_001985D0(float *a, V4_00181E10 *b, V4_00181E10 *c, void *d, int e);
 };
 V4_00181E10 * __stdcall func_00197F70(V4_00181E10 *out, V4_00181E10 *in);
 V4_00181E10 * __stdcall func_00198120(V4_00181E10 *out, V4_00181E10 *in);
