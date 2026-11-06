@@ -7,11 +7,7 @@ struct C_00148780 {
 };
 
 struct C_00148750 {
-    char pad0[4];
     void func_00148750(unsigned int flags);
-};
-
-struct C_Derived_00148750 : C_00148780, C_00148750 {
 };
 
 void C_00148750::func_00148750(unsigned int flags)
