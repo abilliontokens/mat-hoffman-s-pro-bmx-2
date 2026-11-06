@@ -126,6 +126,34 @@ struct Pack162FB0 {
 int func_001EA1EE(char *s);
 char *func_001E95A4(char *a, char *b);
 int func_001EA426(char *a, char *b);
+#include <xmmintrin.h>
+double func_001E9649(char *s);
+void func_000265C0(float *dst, float *a, float *b, float *c, int d, int e);
+extern float D_00287CF0;
+extern float D_00287CE0;
+extern float D_00287CD0;
+
+/* normalise a 3-vector in place (classic rsqrt + one Newton step) */
+static __forceinline void Norm_00162FB0(float *v)
+{
+    __m128 x = _mm_loadu_ps(v);
+    __m128 orig = x;
+    __m128 sq = _mm_mul_ps(x, x);
+    __m128 s = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
+    s = _mm_add_ss(s, _mm_shuffle_ps(sq, sq, 0xe1));
+    __m128 e = _mm_load_ss(&D_00287CF0);
+    s = _mm_add_ss(s, _mm_and_ps(_mm_cmplt_ss(s, e), e));
+    __m128 r = _mm_rsqrt_ss(s);
+    __m128 s2 = _mm_mul_ss(s, r);
+    __m128 c3 = _mm_load_ss(&D_00287CE0);
+    s2 = _mm_mul_ss(s2, r);
+    r = _mm_mul_ss(r, _mm_load_ss(&D_00287CD0));
+    c3 = _mm_sub_ss(c3, s2);
+    r = _mm_mul_ss(r, c3);
+    r = _mm_shuffle_ps(r, r, 0);
+    r = _mm_mul_ps(r, orig);
+    _mm_storeu_ps(v, r);
+}
 
 struct S_00162DF0_A {
     char pad0[0x18];
