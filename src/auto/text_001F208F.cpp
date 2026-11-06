@@ -6,6 +6,7 @@ struct T { int a; int b; T() {} int func_001EF1E7(); void func_001EF734(char); v
     T* func_001EEF4F(T*); T* func_001EF2FE(T*); T* func_001EF613(int); T* func_001EFD3B(T*, char); T* func_001EFD7A(T*, char*); T* func_001EFAB5(T*, T*);
     void func_001EF935(const T&); T* func_001EEF4F(const T&); T* func_001EF2FE(const T&);
     T func_001EFD3B(char); T func_001EFD7A(char*); T func_001EFAB5(const T&); T* func_001EFAB5(T*, const T&); };
+struct N : T { N() { a = 0; b &= 0xfffffe00; } };
 extern char* D_002F6A28;
 T* func_001F208F(T*, T*);
 T* func_001F23B8(T*, T*, char, T*, int);
@@ -61,26 +62,25 @@ extern int D_002F6A34;
 extern unsigned char D_002F6A39;
 extern char D_00295E5C[];
 
-#pragma optimize("t", off)
+#pragma optimize("s", on)
 T* func_001F23B8(T* ret, T* superType, char prefix, T* cvType, int thisFlag)
 {
     T A;
     A.a = 0;
     A.b &= 0xfffffe00;
-    if (*D_002F6A28 != 0) {
+    if (*D_002F6A28) {
         if (*D_002F6A28 == '$') {
             D_002F6A28++;
             switch (*D_002F6A28++) {
             case '0': {
-                T t1, t2;
                 unsigned dim = ((D_002F6A28[0] - '0') << 4) + (D_002F6A28[1] - '0');
                 D_002F6A28 += 2;
                 A.func_001EF9B2(D_00295E38);
                 while (dim > 1) {
                     dim--;
-                    A.func_001EEF4F(A.func_001EFD7A(&t1, D_002869B8));
+                    A.func_001EEF4F(A.func_001EFD7A(D_002869B8));
                 }
-                A.func_001EEF4F(A.func_001EFD7A(&t2, D_00295E34));
+                A.func_001EEF4F(A.func_001EFD7A(D_00295E34));
                 prefix = 0;
                 break;
             }
@@ -97,13 +97,13 @@ T* func_001F23B8(T* ret, T* superType, char prefix, T* cvType, int thisFlag)
                 break;
             }
         }
+        {
         T B;
         B.a = 0;
         B.b &= 0xfffffe00;
         T C;
         C.a = 0;
         C.b &= 0xfffffe00;
-        T t1, t2, t3, t4, t5, t6, t7, t8;
         int code = *D_002F6A28 - (*D_002F6A28 >= 'A' ? 'A' : '0' - 26);
         for (;;) {
             switch (code) {
@@ -112,7 +112,7 @@ T* func_001F23B8(T* ret, T* superType, char prefix, T* cvType, int thisFlag)
                     if (B.func_001EF1E7()) {
                         B.func_001EF9B2(func_001EEE49(7));
                     } else {
-                        B.func_001EEF4F(B.func_001EFD3B(&t1, ' ')->func_001EFD7A(&t2, func_001EEE49(7)));
+                        B.func_001EEF4F(B.func_001EFD3B(' ').func_001EFD7A(func_001EEE49(7)));
                     }
                 }
                 break;
@@ -121,7 +121,7 @@ T* func_001F23B8(T* ret, T* superType, char prefix, T* cvType, int thisFlag)
                     if (C.func_001EF1E7()) {
                         C.func_001EF9B2(func_001EEE49(9));
                     } else {
-                        C.func_001EEF4F(C.func_001EFD3B(&t3, ' ')->func_001EFD7A(&t4, func_001EEE49(9)));
+                        C.func_001EEF4F(C.func_001EFD3B(' ').func_001EFD7A(func_001EEE49(9)));
                     }
                 }
                 break;
@@ -130,7 +130,7 @@ T* func_001F23B8(T* ret, T* superType, char prefix, T* cvType, int thisFlag)
                     if (B.func_001EF1E7()) {
                         B.func_001EF9B2(func_001EEE49(8));
                     } else {
-                        B.func_001EEF4F(B.func_001EFD3B(&t5, ' ')->func_001EFD7A(&t6, func_001EEE49(8)));
+                        B.func_001EEF4F(B.func_001EFD3B(' ').func_001EFD7A(func_001EEE49(8)));
                     }
                 }
                 break;
@@ -148,26 +148,30 @@ T* func_001F23B8(T* ret, T* superType, char prefix, T* cvType, int thisFlag)
         }
         T tmp8;
         tmp8.func_001EF734(prefix);
-        tmp8.func_001EEF4F(A.func_001EFAB5(&t1, &tmp8));
+        tmp8.func_001EEF4F(A.func_001EFAB5(tmp8));
         if (!B.func_001EF1E7()) {
-            tmp8.func_001EEF4F(tmp8.func_001EFD3B(&t7, ' ')->func_001EFAB5(&t2, &B));
+            tmp8.func_001EEF4F(tmp8.func_001EFD3B(' ').func_001EFAB5(B));
         }
         if (!C.func_001EF1E7()) {
-            tmp8.func_001EEF4F(C.func_001EFD3B(&t7, ' ')->func_001EFAB5(&t2, &tmp8));
+            tmp8.func_001EEF4F(C.func_001EFD3B(' ').func_001EFAB5(tmp8));
         }
         if (code & 0x10) {
-            if (thisFlag != 0) {
+            if (thisFlag) {
                 ret->func_001EF170(1);
                 return ret;
             }
             if (prefix) {
-                tmp8.func_001EEF4F(func_001EFD19(&t2, D_00295CE8, &tmp8));
-                tmp8.func_001EEF4F(*D_002F6A28 ? func_001F1DF5(&t8)->func_001EFAB5(&t2, &tmp8) : func_001EFCF7(&t2, 2, &tmp8));
+                tmp8.func_001EEF4F(func_001EFD19(D_00295CE8, tmp8));
+                if (*D_002F6A28) {
+                    tmp8.func_001EEF4F(func_001F1DF5().func_001EFAB5(tmp8));
+                } else {
+                    tmp8.func_001EEF4F(func_001EFCF7(2, tmp8));
+                }
             } else if (*D_002F6A28) {
-                tmp8.func_001EF2FE(func_001F1DF5(&t2));
+                tmp8.func_001EF2FE(func_001F1DF5());
             }
             char ch = *D_002F6A28;
-            if (ch == 0) {
+            if (!ch) {
                 tmp8.func_001EF613(2);
             } else {
                 D_002F6A28++;
@@ -179,57 +183,58 @@ T* func_001F23B8(T* ret, T* superType, char prefix, T* cvType, int thisFlag)
         }
         if (~(u32)D_002F6A38.b1 & 1) {
             if ((code & 0xc) == 0xc) {
-                if (thisFlag != 0) {
+                if (thisFlag) {
                     ret->func_001EF170(1);
                     return ret;
                 }
-                tmp8.func_001EEF4F(func_001F11B1(&t8)->func_001EFAB5(&t2, &tmp8));
+                tmp8.func_001EEF4F(func_001F11B1().func_001EFAB5(tmp8));
             }
         } else if ((code & 0xc) == 0xc) {
-            tmp8.func_001EF2FE(func_001F11B1(&t2));
+            tmp8.func_001EF2FE(func_001F11B1());
         }
         if (code & 2) {
-            tmp8.func_001EEF4F(func_001EFD19(&t2, D_00295E28, &tmp8));
+            tmp8.func_001EEF4F(func_001EFD19(D_00295E28, tmp8));
         }
         if (code & 1) {
-            tmp8.func_001EEF4F(func_001EFD19(&t2, D_00295E20, &tmp8));
+            tmp8.func_001EEF4F(func_001EFD19(D_00295E20, tmp8));
         }
-        if (thisFlag == 0) {
+        if (!thisFlag) {
             if (!superType->func_001EF1E7()) {
                 if (!(superType->b & 0x10) && !cvType->func_001EF1E7()) {
-                    tmp8.func_001EF935(func_001EFCD5(&t3, ' ', cvType)->func_001EFD3B(&t2, ' ')->func_001EFAB5(&t1, superType));
+                    tmp8.func_001EF935(func_001EFCD5(' ', *cvType).func_001EFD3B(' ').func_001EFAB5(*superType));
                 } else if (superType->b & 0x80) {
-                    tmp8.func_001EEF4F(superType);
+                    tmp8.func_001EEF4F(*superType);
                 } else {
-                    tmp8.func_001EF935(func_001EFCD5(&t1, ' ', cvType));
+                    tmp8.func_001EF935(func_001EFCD5(' ', *cvType));
                 }
             } else if (!cvType->func_001EF1E7()) {
-                tmp8.func_001EF935(func_001EFCD5(&t1, ' ', cvType));
+                tmp8.func_001EF935(func_001EFCD5(' ', *cvType));
             }
         }
         tmp8.b |= 0x10;
         ret->func_001EEEE6(&tmp8);
         return ret;
+        }
     }
-    if (thisFlag == 0) {
-        T t1, t2, t3;
+    if (!thisFlag) {
         if (!superType->func_001EF1E7()) {
             if (!(superType->b & 0x10) && !cvType->func_001EF1E7()) {
-                func_001EFCF7(&t1, 2, cvType)->func_001EFD3B(&t2, ' ')->func_001EFAB5(ret, superType);
+                func_001EFCF7(2, *cvType).func_001EFD3B(' ').func_001EFAB5(ret, *superType);
                 return ret;
             }
-            func_001EFCF7(ret, 2, superType);
+            func_001EFCF7(ret, 2, *superType);
             return ret;
         }
         if (!cvType->func_001EF1E7()) {
-            func_001EFCF7(ret, 2, cvType);
+            func_001EFCF7(ret, 2, *cvType);
             return ret;
         }
     }
     ret->func_001EF170(2);
     return ret;
 }
-
+#pragma optimize("", on)
+#pragma optimize("t", off)
 char *func_001F28F4(void)
 {
     S_001EF734 func_001F1C3A(void);
