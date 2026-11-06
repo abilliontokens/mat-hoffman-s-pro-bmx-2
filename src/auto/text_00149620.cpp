@@ -317,6 +317,7 @@ undefined4 C_0014A500::func_0014A500(byte param_1)
   return in_ECX;
 }
 
+#pragma auto_inline(off)
 C_0014A520* C_0014A520::func_0014A520(int a0) {
     unk0 = 0;
     unk4 = a0;
