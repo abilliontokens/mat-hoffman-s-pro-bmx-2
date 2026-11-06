@@ -6,11 +6,17 @@ extern int D_0027C1EC;
 
 void func_001E891B(void *p);
 extern int D_0027C12C;
+void *func_001E8A44(int size);
 struct C_000ADF20_Obj {
     void *vtbl;
     int f4;
     char pad8[8];
     C_000ADF20_Obj *func_00188700();
+    C_000ADF20_Obj() {
+        func_00188700();
+        vtbl = (void *)&D_0027C12C;
+    }
+    static void *operator new(unsigned int size) { return func_001E8A44(size); }
 };
 
 struct GrindElem {
@@ -118,6 +124,20 @@ struct C_000AE740 {
 };
 
 
+void __stdcall func_000ADF20(int *param_1, C_000ADF20_Obj **param_2)
+{
+    C_000ADF20_Obj *obj = (C_000ADF20_Obj *)func_001E8A44(0x10);
+    if (obj != 0) {
+        obj->func_00188700();
+    }
+    C_000ADF20_Obj *result = obj;
+    if (obj != 0) {
+        obj->vtbl = &D_0027C12C;
+    }
+    *param_2 = result;
+    result->f4 = *param_1;
+}
+
 void Grinds::func_000AE6E0() {
     vtbl = (void *)&D_0027C1EC;
     if (arr) {
@@ -154,6 +174,77 @@ void *BMXCameraFacingObjects::func_000AE760(unsigned int flags)
         func_001E891B(this);
     }
     return this;
+}
+
+void C_000AE780::func_000AE780(C_000AE780Parser *parser)
+{
+    int total;
+    int i;
+    char buf[0x104];
+
+    if (parser->func_00169710(D_0027CBAC)) {
+        parser->func_00168C20(D_0027CB90, 0, &total);
+        if (total > 0) {
+            if (arr != 0) {
+                i = count;
+                count = total + i;
+                arr = (C_000AE780Elem **)func_001E83E8(arr, count * 4);
+            } else {
+                count = total;
+                i = 0;
+                arr = (C_000AE780Elem **)func_001E8A44(count * 4);
+            }
+            int n = 1 - i;
+            for (; i < count; i++) {
+                func_001ADCC0(buf, 0x104, D_0027CB78, i + n);
+                if (parser->func_00169710(buf)) {
+                    Vec4_000AEC90 v11c;
+                    Vec4_000AEC90 v12c;
+                    Vec4_000AEC90 v13c;
+                    Vec4_000AEC90 v14c;
+                    char name[0x104];
+                    int f104, f108, f10c, f110, f114, f118;
+                    parser->func_00168BE0(D_0027C4D0, D_002764F0, name, -1);
+                    parser->func_00168C20(D_0027C4BC, 1, &f104);
+                    parser->func_00168C20(D_00275680, 0, &f108);
+                    parser->func_00168C20(D_0027CB6C, 1, &f10c);
+                    parser->func_00168C50(D_0027CB60, 0, &f110);
+                    parser->func_00168C50(D_0027CB54, 0, &f114);
+                    parser->func_00168C50(D_0027CB44, 0, &f118);
+                    parser->func_00168CB0(D_0027CB38, D_002A2734, &v11c);
+                    parser->func_00168CB0(D_00275AD4, D_002A2734, &v12c);
+                    parser->func_00168CB0(D_0027CB30, D_002A2734, &v13c);
+                    parser->func_00168CB0(D_0027CB2C, D_002A2734, &v14c);
+                    void *mem = func_001E8A44(0x160);
+                    arr[i] = mem ? ((C_000AE780Elem *)mem)->func_000A9A00() : 0;
+                    volatile int len = (int)strlen(name);
+                    volatile int maxlen = 0x103;
+                    int n2 = min_000AE780((int)maxlen, (int)len);
+                    func_001E8920(arr[i]->name, name, n2);
+                    arr[i]->name[n2] = 0;
+                    arr[i]->f104 = f104;
+                    arr[i]->f108 = f108;
+                    arr[i]->f10c = f10c;
+                    arr[i]->f110 = f110;
+                    arr[i]->f114 = f114;
+                    arr[i]->f118 = f118;
+                    arr[i]->v11c = v11c;
+                    arr[i]->v12c = v12c;
+                    arr[i]->v13c = v13c;
+                    arr[i]->v14c = v14c;
+                    if (f104 == 0) {
+                        arr[i]->f15c = (int *)func_001E8A44(4);
+                        arr[i]->f15c[0] = 0;
+                    } else {
+                        arr[i]->f15c = (int *)func_001E8A44(f104 << 2);
+                        for (int j = 0; j < f110; j++) {
+                            arr[i]->f15c[j] = 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 void *WaterInclusionBoxes::func_000AEC50(unsigned int flags) {
