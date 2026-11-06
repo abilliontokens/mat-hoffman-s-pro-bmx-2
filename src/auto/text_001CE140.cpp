@@ -99,10 +99,8 @@ struct Globals138 {
     LockOwner *f138;
 };
 extern Globals138 *D_002F08EC;
-extern "C" void (__stdcall *__imp__RtlEnterCriticalSection)(void *cs);
-extern "C" void (__stdcall *__imp__RtlLeaveCriticalSection)(void *cs);
-#define RtlEnterCriticalSection __imp__RtlEnterCriticalSection
-#define RtlLeaveCriticalSection __imp__RtlLeaveCriticalSection
+extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *cs);
+extern "C" __declspec(dllimport) void __stdcall RtlLeaveCriticalSection(void *cs);
 int __stdcall func_00220A12(int h, int a, int b, int c);
 
 struct Voice {
