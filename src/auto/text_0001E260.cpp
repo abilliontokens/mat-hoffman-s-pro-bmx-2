@@ -494,12 +494,13 @@ void func_0001E9B0(float *out, float *a, float *b)
     vec3_set(out, a[0] * b[0], a[1] * b[1], a[2] * b[2]);
 }
 
-void func_0001E9E0(float *out, float *v)
+float *func_0001E9E0(float *out, float *v)
 {
     float inv;
 
     inv = func_0001E960(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
     vec3_set(out, inv * v[0], inv * v[1], inv * v[2]);
+    return out;
 }
 
 void func_0001EAB0(float *out, float *a, float *b)
