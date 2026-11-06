@@ -17,6 +17,7 @@ struct C_00109520 {
     void func_00109550(int p);
     int func_00109580(int idx);
     int func_00109C70(C_00109520 *src);
+    void func_001095A0(int idx, char *dst);
 
     int GetB(int idx) { if (idx >= count) return 0; return b[idx]; }
     int GetC(int idx) { if (idx >= count) return 0; return c[idx]; }
