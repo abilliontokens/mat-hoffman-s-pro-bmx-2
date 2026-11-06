@@ -417,24 +417,24 @@ void S_6E970::func_0006E620(int a0)
     unk10C = 1;
     unk19C = 1;
     strcpy(buf, D_002A8490->field2E0->field2C0->func_0005B870());
-    if (memcmp(buf, D_002789B8, 2) == 0) {
+    if (strcmp(buf, " ") == 0) {
         switch (D_002A8490->field2E0->mode) {
-        case 0: memcpy(buf, "mat", 4); break;
-        case 1: memcpy(buf, D_00278BC8, 5); break;
-        case 2: memcpy(buf, "joe", 4); break;
-        case 3: memcpy(buf, D_00278BC0, 5); break;
-        case 4: memcpy(buf, D_00278414, 5); break;
-        case 5: memcpy(buf, D_002783F8, 5); break;
-        case 6: memcpy(buf, "day", 4); break;
-        case 7: memcpy(buf, D_00278BB8, 6); break;
-        case 8: memcpy(buf, D_00278BB0, 8); break;
-        case 9: memcpy(buf, D_00278BA8, 6); break;
-        case 10: memcpy(buf, D_00278BA0, 5); break;
-        case 11: memcpy(buf, D_00278B98, 6); break;
-        case 12: memcpy(buf, "big", 4); break;
-        case 13: memcpy(buf, D_00278B90, 5); break;
-        case 14: memcpy(buf, D_00278B88, 5); break;
-        case 15: memcpy(buf, D_00278B80, 5); break;
+        case 0: strcpy(buf, "mat"); break;
+        case 1: strcpy(buf, "girl"); break;
+        case 2: strcpy(buf, "joe"); break;
+        case 3: strcpy(buf, "mime"); break;
+        case 4: strcpy(buf, "rick"); break;
+        case 5: strcpy(buf, "mike"); break;
+        case 6: strcpy(buf, "day"); break;
+        case 7: strcpy(buf, "simon"); break;
+        case 8: strcpy(buf, "volcano"); break;
+        case 9: strcpy(buf, "kevin"); break;
+        case 10: strcpy(buf, "cory"); break;
+        case 11: strcpy(buf, "ruben"); break;
+        case 12: strcpy(buf, "big"); break;
+        case 13: strcpy(buf, "seth"); break;
+        case 14: strcpy(buf, "nate"); break;
+        case 15: strcpy(buf, "chad"); break;
         }
     }
     unkD0->func_001B17D0(buf);
