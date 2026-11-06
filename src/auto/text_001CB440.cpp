@@ -32,7 +32,13 @@ extern int D_002ABA64, D_002ABA68, D_002ABA6C, D_002ABA70;
 extern int D_002ABA74, D_002ABA78, D_002ABA7C, D_002ABA80;
 
 /* XboxSoundInterface */
-struct C_001CBD40 {
+extern int D_0028EE8C;
+void func_0001C9F0();
+struct Base_001CBD40 {
+    __forceinline Base_001CBD40() { func_0001C9F0(); *(void **)this = (void *)&D_0028EE8C; }
+};
+struct C_001CBD40 : Base_001CBD40 {
+    C_001CBD40();
     void *vtbl;
     char pad4[0x28];
     unsigned char f2C;
