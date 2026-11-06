@@ -200,6 +200,76 @@ extern int D_0028BB04;
 extern int D_0028BAE0;
 void *func_001E8A44(int size);
 
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+extern char D_0028BC34[];
+extern char D_002A64D0[];
+extern int D_00020000;
+extern char D_0028BC0C[];
+extern int D_00278690;
+extern float D_0028BC08;
+extern int D_0028F5E0;
+extern int D_0028F5DC;
+extern char D_00275678[];
+extern char D_002A5348[];
+extern char D_002A5FA8[];
+extern char D_002A60B0[];
+extern char D_002A63C8[];
+extern char D_00278648[];
+extern char D_00278624[];
+extern char D_00278638[];
+extern char D_00278608[];
+extern int D_0028BBEC;
+extern int D_0028BBE0;
+extern char D_002A48F8[];
+extern char D_002A47F0[];
+struct Font6330 { float func_0018C210(); };
+struct Lookup6330 { int *func_0018C160(int a); void func_0018C780(int a, void *b, int c); };
+struct V829C { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(void *a); void func_00161680(); void func_001616F0(); };
+extern V829C *D_002A829C;
+struct GAA6C0 { void func_001B2640(); };
+extern GAA6C0 *D_002AA6C0;
+struct Big6330 { Big6330 *func_00149380(); };
+struct W6330 {
+    W6330 *func_001B12C0(int a);
+    void func_001B13A0(void *a, void *b, int c, int d);
+    void func_001B1A30(float a, float b, int c);
+    void func_001B2270(int a);
+    void func_001B19A0(int a);
+    void func_001B17D0(void *a);
+};
+struct Ico6330 { Ico6330 *func_001D5760(); void func_001D5810(char *n, float x, float y, int z); };
+struct Txt6330 {
+    virtual void Destroy(int flag);
+    int x; int y; char padC[0x30]; int scale; char pad40[4]; int color; unsigned int argb; char pad4C[2]; unsigned char flags;
+    void SetPos(int nx, int ny) { if (x != nx || y != ny) { x = nx; y = ny; flags |= 6; } }
+    void SetColor(int c) { if (color != c) { color = c; flags |= 6; } }
+    void SetArgb(unsigned int c) { if (argb != c) { flags |= 8; argb = (argb & c) | (c & 0xffffff); } }
+    Txt6330 *func_001D5E90(void);
+    void func_001D6190(int a, void *b, void *c);
+};
+struct Obj4_6330 { char pad0[0xd08]; void *fD08; char padD0C[4]; void *fD10; char padD14[4]; void *fD18; char padD1C[0x1108 - 0xd1c]; void *f1108; char pad110C[0x11a0 - 0x1110]; void *f11A0; char pad11A4[0x1248 - 0x11a8]; void *f1248; };
+struct Mid2E8_6330 { char pad0[4]; Obj4_6330 *f4; };
+struct GB4Obj { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); };
+struct G4Chain { char pad0[0xb4]; GB4Obj *fB4; };
+struct W78_6330 { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); W78_6330 *func_00092890(int a); int func_00092A10(); int func_00092AC0(); };
+struct W94_6330 { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29(); virtual void v30(int a); W94_6330 *func_001CD770(void *a, int b); };
+struct W90_6330 { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(void *a, int b, int c, int d, int e); W90_6330 *func_001CF740(void *a, void *b, int c); };
+struct C_001A6330 {
+    char pad0[0x24];
+    W6330 *a24[4];
+    Ico6330 *f34; Ico6330 *f38; Ico6330 *f3c; Ico6330 *f40;
+    Txt6330 *f44; Txt6330 *f48;
+    int f4c; void *f50;
+    char pad54[0x18];
+    int f6c;
+    char pad70[8];
+    W78_6330 *f78;
+    char pad7C[0x14];
+    W90_6330 *f90; W94_6330 *f94;
+    void func_001577A0(void *a, int b);
+    C_001A6330 *func_001A6330(int a);
+};
+
 struct C_001A5F10 {
     void *vtbl;
     char pad4[0x20];
