@@ -102,7 +102,8 @@ struct C_00158BE0 {
 struct C_001594F0 {
     short unk0;
     char unk2;
-    unsigned char unk3;
+    unsigned char unk3 : 3;
+    unsigned char unk3b : 5;
     int unk4;
     char pad8[0x14 - 8];
     int unk14;
