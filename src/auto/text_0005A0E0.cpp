@@ -43,7 +43,7 @@ struct C_Mgr { C_Tex *func_00163DC0(C_Ini *ini, char *a, char *b); };
 extern C_Dev *D_002BEAAC;
 extern C_Mgr *D_002EF7D0;
 extern char D_00276C90[], D_002780CC[], D_002A4A00[], D_002780C0[], D_00277298[], D_00277288[], D_00277268[], D_00276C08[], D_002780AC[], D_002780A0[], D_002A5660[];
-extern float D_002780BC;
+extern const float D_002780BC;
 extern int D_001F4240;
 extern "C" int func_001ADCC0(char *buf, int n, char *fmt, ...);
 extern "C" void func_001DC974();
@@ -152,6 +152,90 @@ int C_0005A0E0::func_0005A0E0(void)
     if (unk_2AC)
         ((C_001BC7F0 *)unk_2AC)->func_001BC7F0(0);
     return result;
+}
+
+void __stdcall func_0005A480(int flag)
+{
+    float f;
+    int count = 0;
+    char buf[0x104];
+    char buf2[0x104];
+    char buf3[0x104];
+    C_Dlg2 *dlg;
+    C_Ini *ini;
+    C_Ini *ini2;
+    C_Tex *tex;
+    int i;
+    int n;
+
+    func_001DC974();
+    f = 0;
+    dlg = (C_Dlg2 *)func_001E8A44(0x54);
+    dlg = dlg ? dlg->func_001D1BB0() : 0;
+    dlg->v0(D_00276C90, 0);
+    dlg->v14();
+    func_001ADCC0(buf, 0x104, D_002780CC, D_002A5348);
+    D_002BEAAC->func_0013C1D0((int)&D_001F4240);
+    if (flag) {
+        D_002BEAAC->func_00086130(1);
+    } else {
+        if (D_002BEAAC->func_0013D780(buf, 1, 0, 0, 0, 0, 0, 0))
+            D_002BEAAC->func_0013B260(1);
+    }
+
+    ini = (C_Ini *)func_001E8A44(0x4cc);
+    ini = ini ? ini->func_00168280() : 0;
+    func_001ADCC0(buf2, 0x104, D_002780C0, D_002A4A00);
+    ini->func_00169490(buf2, 0);
+    ini->func_00169710(D_00277298);
+    ini->func_00168C20(D_00277288, 0, &count);
+    for (i = 0; i < count; i++) {
+        func_001ADCC0(buf3, 0x104, D_00277268, i + 1);
+        tex = D_002EF7D0->func_00163DC0(ini, buf3, D_002A4A00);
+        if (tex) tex->cnt++;
+        n = (int)(f += D_002780BC);
+        dlg->vC(D_00276C08, n, 0x10);
+        dlg->v8(D_00276C08, n / 2 + 0x72, 0x187);
+    }
+    if (ini) {
+        ini->func_001691E0();
+        func_001E891B(ini);
+    }
+    if (flag) D_002BEAAC->func_00086130(0);
+    D_002BEAAC->func_0013CC80(buf, 1, 1, 0, 0, 0, 0, 1);
+    D_002BEAAC->func_0013DFF0((float *)buf, 1);
+    func_001ADCC0(buf, 0x104, D_002780AC, D_002A5348);
+    if (flag) {
+        D_002BEAAC->func_00086130(1);
+    } else {
+        if (D_002BEAAC->func_0013D780(buf, 1, 0, 0, 0, 0, 0, 0))
+            D_002BEAAC->func_0013B260(1);
+    }
+
+    ini2 = (C_Ini *)func_001E8A44(0x4cc);
+    ini2 = ini2 ? ini2->func_00168280() : 0;
+    func_001ADCC0(buf2, 0x104, D_002780A0, D_002A5660);
+    ini2->func_00169490(buf2, 0);
+    ini2->func_00169710(D_00277298);
+    ini2->func_00168C20(D_00277288, 0, &count);
+    for (i = 0; i < count; i++) {
+        func_001ADCC0(buf3, 0x104, D_00277268, i + 1);
+        tex = D_002EF7D0->func_00163DC0(ini2, buf3, D_002A5660);
+        if (tex) tex->cnt++;
+        n = (int)(f += D_002780BC);
+        dlg->vC(D_00276C08, n, 0x10);
+        dlg->v8(D_00276C08, n / 2 + 0x72, 0x187);
+    }
+    if (ini2) {
+        ini2->func_001691E0();
+        func_001E891B(ini2);
+    }
+    if (flag) D_002BEAAC->func_00086130(0);
+    D_002BEAAC->func_0013CC80(buf, 1, 1, 0, 0, 0, 0, 1);
+    D_002BEAAC->func_0013DFF0((float *)buf, 1);
+    D_002BEAAC->func_0013B260(0);
+    dlg->func_001D35E0();
+    func_001E891B(dlg);
 }
 
 undefined4 *C_0005A8A0::func_0005A8A0(byte param_1)
