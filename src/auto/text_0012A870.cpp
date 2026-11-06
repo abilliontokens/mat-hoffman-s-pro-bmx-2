@@ -113,6 +113,12 @@ struct C_0012AB70R {
     void func_0012AB70(S_0012AB70Vec *param1, S_0012AB70Vec *param2, S_0012AB70Vec *param3, int *param4, float *param5);
 };
 
+void func_0012A380(S_0012AB70Vec *dst, const S_0012AB70Vec *src);
+static inline void Vec_AssignFrom(S_0012AB70Vec *src, S_0012AB70Vec *dst)
+{
+    func_0012A380(dst, src);
+}
+
 struct C_0012B510 {
     int unk0;
     void func_0012B510(void);
@@ -459,16 +465,16 @@ void C_0012AAE0::func_0012AAE0(float param1, float param2)
 }
 
 void func_0012A380(S_0012AB70Vec *dst, const S_0012AB70Vec *src);
-void C_0012AB70R::func_0012AB70(S_0012AB70Vec *param1, int param2, int param3, int *param4, float *param5)
+void C_0012AB70R::func_0012AB70(S_0012AB70Vec *param1, S_0012AB70Vec *param2, S_0012AB70Vec *param3, int *param4, float *param5)
 {
     if (param1 != 0) {
         f170 = *param1;
     }
     if (param2 != 0) {
-        func_0012A380((char *)this + 0x180, param2);
+        func_0012A380(&f180, param2);
     }
     if (param3 != 0) {
-        func_0012A380((char *)this + 0x190, param3);
+        func_0012A380(&f190, param3);
     }
     if (param4 != 0) {
         f1d4 = *param4;
