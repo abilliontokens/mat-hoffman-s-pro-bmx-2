@@ -112,12 +112,6 @@ struct C_001A1FB0 {
     void func_001A1860(S36_1A s0, S16_1A s1, S16_1A s2, int a19, int a20, int a21, int a22, int a23);
 };
 
-struct Null_001A1E60 {
-    ObjV2 *p;
-    Null_001A1E60() { p = 0; }
-    bool Eq(ObjV2 *o) const { return p == o; }
-};
-
 struct C_001A1E60 {
     char pad0[0x1BC];
     ObjV2 *unk1BC;
@@ -594,12 +588,11 @@ void C_001A1E60::func_001A1E60() {
     if (unk1BC != 0) {
         int r = unk1BC->v2();
         unk1BC = 0;
-        if (r == 0) {
-            unk1BC = 0;
+        if (r != 0) {
+            return;
         }
-    } else {
-        unk1BC = 0;
     }
+    unk1BC = 0;
 }
 
 C_001A1F70 *C_001A1F70::func_001A1F70(int a0, int a1, int a2, int a3) {
