@@ -13,14 +13,16 @@ int func_001ADCC0(char *dst, int size, const char *fmt, ...);
 void func_00012140();
 
 /* config file reader, 0x4CC bytes */
-struct C_00168280 {
+struct C_00168F40 {
     char pad0[0x4CC];
-    C_00168280 *func_00168280(void);
+    C_00168F40 *func_00168280(void);
     int func_00169490(const char *path, int flags);
     void func_001691E0(void);
+    ~C_00168F40();
     void func_00169710(const char *name);
     void func_00168C50(const char *key, float def, float *out);
 };
+typedef C_00168F40 C_00168280;
 
 /* photo-preset widget (0x64 bytes) */
 struct Img_51F {
