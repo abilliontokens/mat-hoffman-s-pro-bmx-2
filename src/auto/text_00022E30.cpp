@@ -81,6 +81,117 @@ struct C_00023340 {
     void func_00023340();
 };
 
+/* Path follower (same class as C_00023340): walks along tables kept in D_002B7E18 */
+struct V4_000235C0 {
+    float x, y, z, w;
+};
+
+/* V4 built from a float triple (w = 1.0f); func_000212A0 is its constructor */
+struct func_000212A0 {
+    u32 x, y, z, w;
+    func_000212A0(u32 *p);
+};
+
+struct W4_000235C0 {
+    u32 x, y, z, w;
+    W4_000235C0 *func_000212A0(u32 *p);
+};
+
+struct S_000235C0_Elem {
+    float px, py, pz;
+    float dx, dy, dz;
+};
+
+struct S_000235C0_Tbl {
+    int f0;
+    int count;
+    int f8;
+    int fc;
+    int f10;
+    int f14;
+    S_000235C0_Elem *elems;
+    float f1c[4];
+    unsigned char pad2c[4];
+    unsigned char f2c;
+    unsigned char f2d;
+    unsigned char f2e;
+    unsigned char f2f;
+};
+
+struct S_000235C0_Pt {
+    u32 x, y, z;
+    int used;
+};
+
+struct S_000235C0_Grp {
+    int count;
+    int cur;
+    int f8;
+    int fc;
+    S_000235C0_Pt *pts;
+};
+
+struct S_000235C0_Mgr {
+    char pad0[0x34];
+    int f34;
+    int f38;
+    char pad3c[0x28];
+    S_000235C0_Tbl **f64;
+    S_000235C0_Grp **f68;
+};
+
+struct S_000235C0_Cam {
+    void func_00199600(func_000212A0 v);
+    void func_00199110(int a, void *pos, void *dir, int b, int c, int d);
+    void func_00198F50(V4_000235C0 *a, V4_000235C0 *b, int c, int d, int e);
+};
+
+struct S_000235C0_Rig {
+    int pad0;
+    S_000235C0_Cam *f4;
+};
+
+struct S_000235C0_Owner {
+    char pad0[0x1a4];
+    S_000235C0_Rig *f1a4;
+};
+
+extern S_000235C0_Mgr *D_002B7E18;
+extern int D_002A0F94;
+void func_00011110(V4_000235C0 *out, void *a, void *b);
+
+struct C_000235C0 {
+    char pad0[0x28];
+    S_000235C0_Owner *f28;
+    S_000235C0_Tbl *f2c;
+    int f30;
+    int f34;
+    int f38;
+    char pad3c[0xc];
+    union {
+        int f48;
+        unsigned char b48[4];
+    };
+    W4_000235C0 f4c;
+    V4_000235C0 f5c;
+    char pad6c[0x78 - 0x6c];
+    unsigned char f78;
+    unsigned char f79;
+    void func_00021A20();
+    int func_00021A50(int idx, int v);
+    void func_000219E0(int idx);
+    inline void Select(int idx)
+    {
+        if (idx >= 0 && idx < D_002B7E18->f34 && D_002B7E18->f64[idx]->count != 0) {
+            f2c = D_002B7E18->f64[idx];
+            f30 = idx;
+            f34 = 0;
+            func_00021A20();
+        }
+    }
+    void func_000235C0();
+};
+
 /* AmbientDebrisType */
 struct C_00023BE0 {
     void *vtbl;
@@ -110,10 +221,12 @@ struct C_00023BE0 {
 
 void C_00023340::func_00023340()
 {
-    f34++;
-    Wrap();
-    if (f2c->f2c == 1 || f2c->f2f == 1) {
-        C_00023340_Elem *e = &f2c->elems[f38];
+    C_00023340 *volatile self = this;
+
+    self->f34++;
+    self->Wrap();
+    if (self->f2c->f2c == 1 || self->f2c->f2f == 1) {
+        C_00023340_Elem *e = &self->f2c->elems[self->f38];
         V4_00023340 p;
         V4_00023340 dir;
         V4_00023340 cr;
@@ -121,42 +234,42 @@ void C_00023340::func_00023340()
         V4_00023340 t;
 
         p.x = e->px;
-        p.y = e->py + f70;
+        p.y = e->py + self->f70;
         p.z = e->pz;
-        dir.x = p.x - f5c.x;
-        dir.y = p.y - f5c.y;
-        dir.z = p.z - f5c.z;
+        dir.x = p.x - self->f5c.x;
+        dir.y = p.y - self->f5c.y;
+        dir.z = p.z - self->f5c.z;
         func_000212C0(&dir, &dir);
-        e = &f2c->elems[f38];
+        e = &self->f2c->elems[self->f38];
         up.x = e->dx;
         up.y = e->dy;
         up.z = e->dz;
         cross_00023340(&cr.x, &up.x, &dir.x);
-        t.x = cr.x * f6c + p.x;
-        t.y = cr.y * f6c + p.y;
-        t.z = cr.z * f6c + p.z;
-        f4c = t;
+        t.x = cr.x * self->f6c + p.x;
+        t.y = cr.y * self->f6c + p.y;
+        t.z = cr.z * self->f6c + p.z;
+        self->f4c = t;
     } else {
-        C_00023340_Elem *e = &f2c->elems[f38];
-        f4c.x = e->px;
-        f4c.y = e->py;
-        f4c.z = e->pz;
-        f4c.w = 1.0f;
+        C_00023340_Elem *e = &self->f2c->elems[self->f38];
+        self->f4c.x = e->px;
+        self->f4c.y = e->py;
+        self->f4c.z = e->pz;
+        self->f4c.w = 1.0f;
     }
     {
         V4_00023340 v;
         V4_00023340 up2;
         C_00023340_Elem *e2;
 
-        v.x = f4c.x - f5c.x;
-        v.y = f4c.y - f5c.y;
-        v.z = f4c.z - f5c.z;
-        e2 = &f2c->elems[f34];
+        v.x = self->f4c.x - self->f5c.x;
+        v.y = self->f4c.y - self->f5c.y;
+        v.z = self->f4c.z - self->f5c.z;
+        e2 = &self->f2c->elems[self->f34];
         up2.x = e2->dx;
         up2.y = e2->dy;
         up2.z = e2->dz;
         func_000212C0(&v, &v);
-        f28->f1a4->f4->func_00198F50(&v, &up2, 0, 1, 0);
+        self->f28->f1a4->f4->func_00198F50(&v, &up2, 0, 1, 0);
     }
 }
 
