@@ -65,6 +65,18 @@ struct MidObj_874E0 {
     ClampObj_874E0 *func_0018C070();
 };
 
+struct C_00087760 {
+    char pad0[0x2c];
+    int *f2C;
+    int *f30;
+    int f34;
+    char pad38[0x8];
+    int f40;
+    char pad44[0x80];
+    int fC4;
+    C_00087760 *func_00087760(int a, int b);
+};
+
 /* BestScoreOverlay */
 struct C_000874E0 {
     char pad0[0x44];
@@ -72,6 +84,34 @@ struct C_000874E0 {
     void func_000874E0(void);
     void func_001578D0(void);
 };
+
+void C_000874E0::func_000874E0(void)
+{
+    int *r;
+    MidObj_874E0 *a;
+    MidObj_874E0 *b;
+    ClampObj_874E0 *o;
+
+    if (D_002A8490->f10 != f44) {
+        func_001578D0();
+        return;
+    }
+    r = D_002A8490->p2EC->func_0018C160((int)&D_00278690);
+    a = r != 0 ? (MidObj_874E0 *)*r : 0;
+    r = D_002A8490->p2EC->func_0018C160((int)&D_0027958C);
+    b = r != 0 ? (MidObj_874E0 *)*r : 0;
+    if (a != 0) {
+        o = a->func_0018C070();
+        if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+        if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+    }
+    if (b != 0) {
+        o = b->func_0018C070();
+        if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
+        if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000;
+    }
+    func_001578D0();
+}
 
 C_000876B0 *C_000876B0::func_000876B0(int a0) {
     ((C_00157600 *)this)->func_00157600(1);
