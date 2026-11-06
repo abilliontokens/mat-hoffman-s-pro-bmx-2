@@ -79,11 +79,10 @@ V4_0011F8E0 func_000110E0(const V4_0011F8E0 &a);
 V4_0011F8E0 func_00011110(const V4_0011F8E0 &a, const V4_0011F8E0 &b);
 float func_00011170(const V4_0011F8E0 &a);
 
-static __forceinline void Cross_0011F8E0(float * volatile out, float * volatile a, float * volatile b)
+static __forceinline void Cross_0011F8E0(float * volatile out, float *a, float *b)
 {
-    float *pa = a, *pb = b;
-    __m128 va = _mm_loadu_ps(pa);
-    __m128 vb = _mm_loadu_ps(pb);
+    __m128 va = _mm_loadu_ps(a);
+    __m128 vb = _mm_loadu_ps(b);
     __m128 sa = va, sb = vb;
     sa = _mm_shuffle_ps(sa, sa, 0xc9);
     sb = _mm_shuffle_ps(sb, sb, 0xc9);
