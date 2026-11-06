@@ -27,6 +27,7 @@ struct C_0017B9E0 {
 };
 struct C_0017BB10 {
     void func_0017BB10(C_0017B9E0 *p);
+    void func_0017BB50(struct V4_0017A8F0 *p);
     void func_0017BE40();
 };
 extern C_0017BB10 D_002EFD38;
