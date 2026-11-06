@@ -38,6 +38,7 @@ struct S_ioinfo {
     char pipech;
     char pad6[0x22];
 };
+#define _pioinfo(i) (D_002FB260[(i) >> 5] + ((i) & 0x1f))
 
 #pragma optimize("y", off)
 void func_001ED0FC(unsigned int *param_1, int param_2)
