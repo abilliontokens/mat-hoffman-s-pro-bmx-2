@@ -76,7 +76,7 @@ struct Vec4_0002AF90 {
     __forceinline Vec4_0002AF90 Mul(void) const
     {
         Vec4_0002AF90 r;
-        r.x = x * D_002A1178;
+        r.x = D_002A1178 * x;
         r.y = y * D_002A1178;
         r.z = z * D_002A1178;
         r.w = 1.0f;
@@ -204,6 +204,8 @@ static __forceinline float Abs_0002AAA0(volatile float x)
 void C_0002AAA0::func_0002AAA0(float dt)
 {
     C_0002AAA0 * volatile self = this;
+    C_0002AAA0 *p;
+    S_0002AAA0_Body *b;
     float t;
     float step;
     float v;
@@ -243,12 +245,15 @@ void C_0002AAA0::func_0002AAA0(float dt)
 
     f1e0->func_00174550(1, 1, 1);
     self->f1e0->v35();
-    self->f204->func_00133EF0(self->f230 + 0xf0);
-    self->f204->func_00134530(0x40, &self->f234, &self->f238, 3, 0, 0);
-    if (self->f234 > 0) {
-        self->f1f4->f5c = 1;
+    p = self;
+    p->f204->func_00133EF0(p->f230 + 0xf0);
+    p = self;
+    p->f204->func_00134530(0x40, &p->f234, &p->f238, 3, 0, 0);
+    p = self;
+    if (p->f234 > 0) {
+        p->f1f4->f5c = 1;
     } else {
-        self->f1f4->f5c = 0;
+        p->f1f4->f5c = 0;
     }
     self->f1e4->v29(32.2f);
     self->f1f4->v13(dt);
@@ -259,13 +264,15 @@ void C_0002AAA0::func_0002AAA0(float dt)
     if (D_00275544 < dt) {
         do {
             self->f1e4->func_001941F0(step);
-            if (self->f1e8->f64 == 0) {
-                v = -(self->f1e0->f210 * self->f28);
+            p = self;
+            if (p->f1e8->f64 == 0) {
+                b = p->f1e0;
+                v = -(b->f210 * p->f28);
                 s.dy = D_002A1114 * v;
                 s.dz = D_002A1118 * v;
-                self->f1e0->f130 += D_002A1110 * v;
-                self->f1e0->f134 += s.dy;
-                self->f1e0->f138 += s.dz;
+                b->f130 += D_002A1110 * v;
+                b->f134 += s.dy;
+                b->f138 += s.dz;
             }
             self->func_00027860(step);
             self->f1f0->v13(step);
