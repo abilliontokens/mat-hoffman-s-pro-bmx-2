@@ -129,9 +129,9 @@ struct EmitterLoad {
 };
 
 int EmitterLoad::func_0016A3A0(EmitterReader *r) {
-    int i[8];
+    int i0, i1, i2, i3, i4, i5, i6, i7;
     int mode;
-    if (!r) return 0;
+    if (r) {
     r->func_00169710(D_00277298);
     r->func_00168C20(D_002882D4, -1, &f1B0);
     r->func_00168C50(D_002882C4, 1000.0f, &f170);
@@ -165,24 +165,24 @@ int EmitterLoad::func_0016A3A0(EmitterReader *r) {
         f1DC = f1E4;
     }
     r->func_00169710(D_002881C0);
-    r->func_00168C20(D_002881B8, 0, &i[0]);
-    r->func_00168C20(D_002881AC, 0, &i[1]);
-    r->func_00168C20(D_002881A4, 0, &i[2]);
-    r->func_00168C20(D_00288194, 0, &i[3]);
-    r->func_00168C20(D_0028818C, 0, &i[5]);
-    r->func_00168C20(D_00288180, 0, &i[4]);
-    r->func_00168C20(D_00283B18, 0, &i[6]);
-    r->func_00168C20(D_0028817C, 1, &i[7]);
+    r->func_00168C20(D_002881B8, 0, &i0);
+    r->func_00168C20(D_002881AC, 0, &i1);
+    r->func_00168C20(D_002881A4, 0, &i2);
+    r->func_00168C20(D_00288194, 0, &i3);
+    r->func_00168C20(D_0028818C, 0, &i5);
+    r->func_00168C20(D_00288180, 0, &i4);
+    r->func_00168C20(D_00283B18, 0, &i6);
+    r->func_00168C20(D_0028817C, 1, &i7);
     r->func_00168C20(D_00288168, 0, &f1C4);
     r->func_00168C20(D_00288154, 0, &f1C8);
-    if (i[0]) f190 |= 2; else f190 &= ~2;
-    if (i[1]) f190 |= 4; else f190 &= ~4;
-    if (i[2]) f190 |= 8; else f190 &= ~8;
-    if (i[3]) f190 |= 0x1000; else f190 &= ~0x1000;
-    if (i[4]) f190 |= 1; else f190 &= ~1;
-    if (i[5]) f190 |= 0x2000; else f190 &= ~0x2000;
-    if (i[6]) f190 |= 0x20; else f190 &= ~0x20;
-    if (!i[7]) f190 |= 0x800; else f190 &= ~0x800;
+    if (i0) f190 |= 2; else f190 &= ~2;
+    if (i1) f190 |= 4; else f190 &= ~4;
+    if (i2) f190 |= 8; else f190 &= ~8;
+    if (i3) f190 |= 0x1000; else f190 &= ~0x1000;
+    if (i4) f190 |= 1; else f190 &= ~1;
+    if (i5) f190 |= 0x2000; else f190 &= ~0x2000;
+    if (i6) f190 |= 0x20; else f190 &= ~0x20;
+    if (!i7) f190 |= 0x800; else f190 &= ~0x800;
     if (*(int *)&f19C != 0x7f7fffff) f190 |= 0x200; else f190 &= ~0x200;
     r->func_00169710(D_00288148);
     r->func_00168C50(D_00288138, -1.0f, &f1B4);
@@ -200,6 +200,8 @@ int EmitterLoad::func_0016A3A0(EmitterReader *r) {
         }
     }
     return 1;
+    }
+    return 0;
 }
 
 struct ParticleEmitter {
