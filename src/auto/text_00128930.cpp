@@ -110,7 +110,8 @@ struct S_00128930_Hit {
     float *f8C;
     short *f90;
     float t;
-    unsigned char flags;
+    unsigned char fl0 : 1;
+    unsigned char fl1 : 1;
 };
 
 extern S_00128930_Hit *D_002B92EC;
