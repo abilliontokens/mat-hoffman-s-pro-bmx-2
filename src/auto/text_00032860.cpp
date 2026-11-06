@@ -94,12 +94,6 @@ struct C_00032E90 {
     void func_00032E90(void);
 };
 
-static inline void RoundToInt(int *out, float f)
-{
-    int * volatile p = out;
-    *p = _mm_cvtss_si32(*(__m128 *)&f);
-}
-
 struct V4_00032E50;
 struct O_Cam32F50 {
     char pad0[0x28];
