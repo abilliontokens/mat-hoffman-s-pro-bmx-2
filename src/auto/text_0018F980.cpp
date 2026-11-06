@@ -124,6 +124,13 @@ struct C_0018FF10 {
     Ent0018FF10 *ents;
     int func_0018EB70(int, char *, Node0018FF10 *);
     int func_0018FF10(char *src, char *name, int idx, int *out);
+    Node0018FF10 *Find0018FF10(const char *name)
+    {
+        for (Node0018FF10 *n = head; n; n = n->next) {
+            if (!strcmp(name, n->name)) return n;
+        }
+        return 0;
+    }
 };
 
 extern char D_0027D1D8[], D_0027D21C[], D_0027D240[], D_0028A834[], D_0028A82C[];
@@ -235,7 +242,7 @@ void C_0018F980::func_0018F980(int a1, char *volatile str)
     }
     n = t.r;
     func_001E8920((char *)self->name, str, n);
-    *(volatile char *)(n + (int)self + 0x28) = 0;
+    self->name[n] = 0;
     self->f12c = 4;
     self->f130 = 4;
     self->f134 = 4;
@@ -294,100 +301,73 @@ void C_0018F980::func_0018F980(int a1, char *volatile str)
     self->func_001D3F50();
 }
 
-int C_0018FF10::func_0018FF10(char *src, char *name, int idx, int *out)
+int C_0018FF10::func_0018FF10(char *src, char *volatile name, int idx, int *out)
 {
+    char *key = name;
     C_0018FF10 *volatile self = this;
-    struct {
-        volatile int a;
-        volatile int b;
-        volatile int r;
-    } t;
+    struct { volatile int a, b, r; } t;
     Node0018FF10 *n;
-    int id;
     int count;
-    int one;
-
-    one = 1;
-    if (name == 0 || memcmp(name, D_00275630, one) == 0) {
-        *out = 0;
-        return 0;
-    }
-    for (n = self->head; n != 0; n = n->next) {
-        if (strcmp(name, n->name) == 0) {
-            self->ents[idx].node = n;
+    if (!key || strcmp(key, "") == 0) return 0;
+    n = this->head;
+    while (n && strcmp(key, n->name)) n = n->next;
+    if (!n) {
+        int id = D_002BEAAC->func_0013C9F0(key, D_00275FB4);
+        if (id == -1) { *out = 0; return 0; }
+        n = (Node0018FF10 *)func_001E8A44(0x110);
+        if (self->func_0018EB70(id, src, n) != 1) {
+            func_001E891B(n);
             *out = 0;
-            return 1;
+            return 0;
         }
-    }
-    id = D_002BEAAC->func_0013C9F0(name, D_00275FB4);
-    if (id == -1) {
-        *out = 0;
-        return 0;
-    }
-    n = (Node0018FF10 *)func_001E8A44(0x110);
-    if (self->func_0018EB70(id, src, n) != 1) {
-        func_001E891B(n);
-        *out = 0;
-        return 0;
-    }
-    t.a = strlen(name);
-    t.b = 0x103;
-    {
-        int vb = t.b;
-        int va = t.a;
-        t.r = vb > va ? va : vb;
-    }
-    count = t.r;
-    func_001E8920(n, name, count);
-    n->name[count] = 0;
-    self->ents[idx].node = n;
-    if (self->tail == 0) {
-        self->head = n;
-    } else {
+        t.a = strlen(name);
+        t.b = 0x103;
+        {
+            int vb = t.b;
+            int va = t.a;
+            t.r = vb > va ? va : vb;
+        }
+        count = t.r;
+        func_001E8920(n, name, count);
+        n->name[count] = 0;
+        self->ents[idx].node = n;
+        if (!self->tail) { self->head = n; self->tail = n; *out = 1; return 1; }
         self->tail->next = n;
+        self->tail = n;
+        *out = 1;
+        return 1;
+    } else {
+        this->ents[idx].node = n;
+        *out = 0;
+        return 1;
     }
-    self->tail = n;
-    *out = 1;
-    return 1;
 }
 
 void C_00190200::func_001900E0(int a0, int a1, int a2, C_190200_Rec *rec, unsigned int flags, int a5, C_1900E0_Ctx *ctx)
 {
-    int tbl;
-    int idx;
-    unsigned int kind;
-
-    if (rec->name[0] == '$') {
-        if (func_0018E7D0(0, rec, &idx) == 1) {
-            tbl = named[idx].f0;
-        } else {
-            ctx->func_0018F4D0(flags);
-            return;
-        }
-    } else {
-        tbl = a0;
-        idx = a2;
-    }
-    kind = flags & 0xff;
-    switch (kind) {
-    case 2: {
-        int loc = rec->f40;
-        C_190200_Elem *e = named[idx].f54 + (loc & 0xff);
-        char *ptr = (char *)e->func_0018E1D0() + ((loc >> 16) & 0xff);
-        ctx->func_0018F390((char *)D_00275630, flags & 0xffff00, ptr);
-        break;
-    }
-    case 1: {
-        int loc = rec->f40;
-        C_190200_Cell *cells = f164[named[idx].f44].f2c;
-        char *ptr = cells[loc & 0xff].f4 + ((loc >> 16) & 0xff) + tbl;
-        ctx->func_0018F390((char *)D_00275630, flags & 0xffff00, ptr);
-        break;
-    }
-    case 0:
-        f170[a5].fn(rec, ctx);
-        break;
-    }
+ int tbl; int idx;
+ if(rec->name[0]=='$') {
+  if(func_0018E7D0(0,rec,&idx)==1) tbl=named[idx].f0;
+  else { ctx->func_0018F4D0(flags); return; }
+ } else { tbl=a0; idx=a2; }
+ register unsigned int original=flags;
+ switch(original&255) {
+ case 2: {
+ flags=rec->f40;
+ unsigned int offset=(unsigned int)rec->f40 >> 16;
+ C_190200_Elem *base=named[idx].f54;
+ offset &= 255;
+ char *ptr=(char *)(base+(flags&255))->func_0018E1D0()+(unsigned char)offset;
+ ctx->func_0018F390((char *)D_00275630,original&0xffff00,ptr); break;
+ }
+ case 1: {
+ flags=rec->f40;
+ C_190200_Cell *cells=f164[named[idx].f44].f2c;
+ char *ptr=cells[flags&255].f4+((flags>>16)&255)+tbl;
+ ctx->func_0018F390((char *)D_00275630,original&0xffff00,ptr); break;
+ }
+ case 0: f170[a5].fn(rec,ctx); break;
+ }
 }
 
 void C_00190200::func_00190200(int a0, int a1, int a2, C_190200_Src *src, C_190200_Rec *rec, unsigned int flags)
