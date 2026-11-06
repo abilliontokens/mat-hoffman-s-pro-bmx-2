@@ -29,6 +29,7 @@ struct Wid_B4B0 {
     __forceinline void SetPos(float x, float y) { if (f4 != x || f8 != y) { f4 = x; f8 = y; b58 |= 1; } }
     void func_001D5AD0(void);
 };
+typedef void RT_B4B0;
 struct C_0006B4B0 {
     char pad0[0x98];
     C_001D5AD0 *unk98;
