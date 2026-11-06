@@ -158,15 +158,15 @@ C_0001AE60* C_0001AE60::func_0001AE60(const Vec3* v) {
     float t;
     p = &tmp;
     t = D_00275AFC * v->x;
-    *p = _mm_cvtss_si32(*(__m128 *)&t);
+    *p = _mm_cvtss_si32(_mm_load_ss(&t));
     self->r = (s8)tmp;
     p = &tmp;
     t = D_00275AFC * v->y;
-    *p = _mm_cvtss_si32(*(__m128 *)&t);
+    *p = _mm_cvtss_si32(_mm_load_ss(&t));
     self->g = (s8)tmp;
     p = &tmp;
     t = D_00275AFC * v->z;
-    *p = _mm_cvtss_si32(*(__m128 *)&t);
+    *p = _mm_cvtss_si32(_mm_load_ss(&t));
     self->b = (s8)tmp;
     return self;
 }
@@ -221,8 +221,8 @@ C_0001B0A0 *C_0001B0A0::func_0001B0A0(void) {
 }
 
 void func_0001B130(u8 *dst, Quat *q) {
-    int tmp;
     float angle;
+    int tmp;
     int * volatile p;
     Vec4 v;
     C_0001AE60 col;
