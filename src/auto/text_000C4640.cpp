@@ -145,7 +145,9 @@ struct C_000C4EB0 {
     char pad4[0x288 - 4];
 
     int f288;
-    char pad28C[0x2E0 - 0x28C];
+    char pad28C[0x2C4 - 0x28C];
+    Text_000C4640 *f2C4;
+    char pad2C8[0x2E0 - 0x2C8];
     int f2E0;
     int f2E4;
     int f2E8;
