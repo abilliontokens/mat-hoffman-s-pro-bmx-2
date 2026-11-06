@@ -5,6 +5,13 @@
 #include <math.h>
 #include <string.h>
 struct __declspec(align(16)) S_Matrix_00162330 { float m[16]; };
+static __forceinline void translate_00162330(float *s, float x, float y, float z)
+{
+    s[3]=x; s[7]=y; s[11]=z;
+    s[0]=1.0f; s[4]=0.0f; s[8]=0.0f; s[12]=0.0f;
+    s[1]=0.0f; s[5]=1.0f; s[9]=0.0f; s[13]=0.0f;
+    s[2]=0.0f; s[6]=0.0f; s[10]=1.0f; s[14]=0.0f; s[15]=1.0f;
+}
 static __forceinline void setmatrix_00162330(float *p, float x0, float y0, float z0, float x1, float y1, float z1, float x2, float y2, float z2)
 {
     p[0]=x0; p[4]=x1; p[8]=x2;
