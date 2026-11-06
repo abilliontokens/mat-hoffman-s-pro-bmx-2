@@ -43,7 +43,13 @@ extern char D_002867C8[], D_002867B4[], D_002867A8[], D_00275630[], D_0028679C[]
 extern char D_0028676C[], D_002A719C[], D_002BEF60[];
 extern Resource_00148E80 *D_002A829C;
 extern ShaderData_00148E80 *D_002AA470;
-extern Manager_00148E80 *D_002A751C, *D_002A6D84, *D_002AA6C0;
+struct Manager2_00148910 {
+ virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5();
+ virtual void Set(int, int);
+ virtual short Create(const void *, int);
+};
+extern Manager_00148E80 *D_002A751C, *D_002A6D84;
+extern Manager2_00148910 *D_002AA6C0;
 extern char D_002A7130[], D_002BED60[], D_002A7148[], D_002BEE60[];
 extern void __cdecl func_0014A7B0(char *, const char *);
 extern void *__cdecl func_001E8A44(unsigned int);
@@ -398,6 +404,88 @@ undefined4 C_001488F0::func_001488F0(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+int DXShaderDescriptor::func_00148910(int a0, Parser_00148910 *p, int id, int idx, int arg4)
+{
+    Item12_00148910 items[128];
+    char path[0x104];
+    char name[0x40];
+    char tmp3[0x40];
+    char tmp2[0x40];
+    char buf[0x40];
+    char loopName[0x40];
+    char bufA[0x40];
+    unsigned char n;
+    char flag2;
+    int x;
+    int flag;
+    int count2;
+    int val;
+    int count1;
+    ShaderData_00148E80 *sd;
+    int i;
+    short *out;
+
+    count1 = 0;
+    count2 = 0;
+    sd = D_002A829C->func_00161850(id);
+    if (sd == 0)
+        sd = D_002AA470;
+    func_001ADCC0(name, 0x40, D_002867E8, D_002867F0, idx + 1);
+    p->func_00169710(name);
+    p->func_00168BE0(D_00286730, (const char *)sd, buf, 0x40);
+    if (p->func_00168BE0(D_00286710, D_0028671C, tmp2, 0x40)) {
+        if (func_001EA426(tmp2, D_0028671C) == 0)
+            f14 = 0;
+        else if (func_001EA426(tmp2, D_0028670C) == 0)
+            f14 = 1;
+    } else {
+        f14 = sd->f80;
+    }
+    f26 = D_002A751C->Create(buf, 0);
+    if (f14 == 1) {
+        func_0014A7B0(D_002BED60, D_002A7130);
+        D_002A751C->Set(f26, D_002BED60);
+    } else if (memcmp(buf, D_002867DC, 10) == 0) {
+        func_0014A7B0(D_002BEF60, D_002A719C);
+        D_002A751C->Set(f26, D_002BEF60);
+    } else {
+        func_0014A7B0(D_002BEE60, D_002A7148);
+        D_002A751C->Set(f26, D_002BEE60);
+    }
+    p->func_00168BE0(D_00286720, sd->name2, tmp3, 0x40);
+    f28 = D_002A6D84->Create(tmp3, 0);
+    D_002A6D84->Set(f28, 0);
+    flag = 1;
+    p->func_00168C20(D_002867C8, 1, &flag);
+    fl1 = flag;
+    p->func_00168C20(D_002867B4, 1, &n);
+    fA = n;
+    if (n == 0) {
+        func_00145370(p, sd, 0, items, &count1);
+    } else {
+        out = f18;
+        for (i = 0; i < fA; i++) {
+            func_001ADCC0(loopName, 0x40, D_002867E8, D_002867A8, i + 1);
+            p->func_00168BE0(loopName, D_00275630, bufA, -1);
+            if (bufA[0] == 0)
+                func_0014FF00(D_002A829C->f14[id].f0, 0, 0, bufA, 0);
+            if (bufA[0] == 0x26) {
+                *out = func_00144AE0(bufA, 0, 0, 0);
+            } else if (func_001EA426(bufA, D_0028679C) == 0) {
+                *out = -3;
+            } else if (func_001EA426(bufA, D_0028678C) == 0) {
+                *out = -4;
+            }
+            func_00145370(p, sd, i, &items[count1], &count1);
+            func_001ADCC0(loopName, 0x40, D_002867E8, D_0028676C, i + 1);
+            p->func_00168C20(loopName, i, &flag2);
+            f20[i] = flag2;
+            out++;
+        }
+    }
+    return 1;
 }
 
 void *C_00149040::func_00149040(unsigned int flags)
