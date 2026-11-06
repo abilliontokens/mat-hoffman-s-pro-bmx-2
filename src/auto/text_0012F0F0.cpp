@@ -48,6 +48,21 @@ struct V4C_0012F0F0 : V4_0012FCF0 {
     V4C_0012F0F0(f32 a, f32 b, f32 c, f32 d) { x = a; y = b; z = c; w = d; }
 };
 
+static inline V4C_0012F0F0 VMul_0012F0F0(const V4_0012FCF0 &a, f32 s)
+{
+    return V4C_0012F0F0(a.x * s, a.y * s, a.z * s, 1.0f);
+}
+
+static inline V4C_0012F0F0 VAdd_0012F0F0(const V4_0012FCF0 &a, const V4_0012FCF0 &b)
+{
+    return V4C_0012F0F0(a.x + b.x, a.y + b.y, a.z + b.z, 1.0f);
+}
+
+static inline V4C_0012F0F0 VSub_0012F0F0(const V4_0012FCF0 &a, const V4_0012FCF0 &b)
+{
+    return V4C_0012F0F0(a.x - b.x, a.y - b.y, a.z - b.z, 1.0f);
+}
+
 /* 0x28-byte spline key */
 struct S_0012F0F0_Key {
     f32 time;
@@ -330,6 +345,51 @@ void C_CarProceduralExtended::func_0012F600(f32 param_1, int param_2)
         }
     }
     this->f4AC = param_2;
+}
+
+f32 C_0012F670::func_0012F670(f32 a, f32 b)
+{
+    S_12F670_Spline *ar = f518;
+    f32 r;
+    u32 j;
+
+    r = a * f4C0;
+    j = idx + 1;
+    if (j < ar->count) {
+        do {
+            if (r <= ar->keys[j].time) {
+                break;
+            }
+            idx++;
+            j++;
+        } while (j < f518->count);
+    }
+    while (idx != 0 && r < ar->keys[idx].time) {
+        idx--;
+        j--;
+    }
+    if (b > D_00275544) {
+        S_0012F0F0_Key *keys = ar->keys;
+        u32 cur = idx;
+        S_0012F0F0_Key *k0 = &keys[cur];
+        S_0012F0F0_Key *k1 = &keys[j];
+        f32 f = (b - k0->time) / (k1->time - k0->time) * k0->f4;
+        u32 e = cur;
+        while (!(f >= b)) {
+            e--;
+            if ((int)e < 0) {
+                e += ar->count;
+            }
+            f += keys[e].f4;
+        }
+        k0 = &keys[e];
+        if (k0->f4 == D_00275544) {
+            return D_00275544;
+        }
+        k1 = &keys[(e + 1) % ar->count];
+        return (k0->time + (f - b) / k0->f4 * (k1->time - k0->time)) * f4C4;
+    }
+    return b * f4C4;
 }
 
 void C_CarProceduralExtended::func_0012FBF0(int param_1)
