@@ -664,6 +664,10 @@ struct C_00142D00 {
     void func_00142D00(void *a0);
 };
 
+struct C_00201350 {
+    void func_00201350(void *p);
+};
+
 struct C_00142D20 {
     char pad0[0x8];
     int unk8;
@@ -715,14 +719,11 @@ void C_00142D90::func_00142D90(int param_1)
     }
 }
 
-void C_00142D00::func_00142D00(void *a0) {
-    C_00142D00 *self = this;
-    void *p = a0;
-    if (p == self->unk0) {
-        return;
+void __fastcall func_00142D00(C_00142D00 *self, int dummy, void *a0) {
+    if (a0 != self->unk0) {
+        func_00201350(a0);
+        self->unk0 = a0;
     }
-    func_00201350(p);
-    self->unk0 = p;
 }
 
 void C_00142D20::func_00142D20() {
