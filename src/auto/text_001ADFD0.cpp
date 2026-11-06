@@ -387,7 +387,8 @@ void C_001ADFD0::func_001ADFD0(float *srcf, S_ADFD0_Tex *tex, int *rect, int a4,
 {
     int *src = (int *)srcf;
     S_ADFD0_Mat mat;
-    S_ADFD0_Mat *pm = &mat;
+    S_ADFD0_Mat *volatile pm = &mat;
+    C_001ADFD0 *volatile self = this;
     int x, y, z, w;
     int s0, s1, s2, s3;
     float u0, v0, u1, v1;
@@ -473,38 +474,38 @@ void C_001ADFD0::func_001ADFD0(float *srcf, S_ADFD0_Tex *tex, int *rect, int a4,
         u1 = (float)z / (float)tex->f8;
         v1 = (float)w / (float)tex->fC;
     }
-    cr = f24;
-    cg = f25;
-    cb = f26;
-    p = (S_ADFD0_Vtx *)func_001FF410(f28, 0);
+    cr = self->f24;
+    cg = self->f25;
+    cb = self->f26;
+    p = (S_ADFD0_Vtx *)func_001FF410(self->f28, 0);
     p[0].x = fx;
     p[0].y = fw;
-    p[0].z = f68;
-    p[0].color = MakeColor_001AEBD0(f64, cb, cg, cr);
+    p[0].z = self->f68;
+    p[0].color = MakeColor_001AEBD0(self->f64, cb, cg, cr);
     p[0].u = u0;
     p[0].v = v1;
     p[1].x = fx;
     p[1].y = fy;
-    p[1].z = f68;
-    p[1].color = MakeColor_001AEBD0(f64, cb, cg, cr);
+    p[1].z = self->f68;
+    p[1].color = MakeColor_001AEBD0(self->f64, cb, cg, cr);
     p[1].u = u0;
     p[1].v = v0;
     p[2].x = fz;
     p[2].y = fw;
-    p[2].z = f68;
-    p[2].color = MakeColor_001AEBD0(f64, cb, cg, cr);
+    p[2].z = self->f68;
+    p[2].color = MakeColor_001AEBD0(self->f64, cb, cg, cr);
     p[2].u = u1;
     p[2].v = v1;
     p[3].x = fz;
     p[3].y = fy;
-    p[3].z = f68;
-    p[3].color = MakeColor_001AEBD0(f64, cb, cg, cr);
+    p[3].z = self->f68;
+    p[3].color = MakeColor_001AEBD0(self->f64, cb, cg, cr);
     p[3].u = u1;
     p[3].v = v0;
-    ((S_ADFD0_RootX *)D_002EFDB8)->f6c->func_0014A650(f10);
-    ((S_ADFD0_RootX *)D_002EFDB8)->f70->func_00142D00(f14);
+    ((S_ADFD0_RootX *)D_002EFDB8)->f6c->func_0014A650(self->f10);
+    ((S_ADFD0_RootX *)D_002EFDB8)->f70->func_00142D00(self->f14);
     func_001FEC30(0x22, mat.m);
-    func_001FEE00(0, f28, 0x18);
+    func_001FEE00(0, self->f28, 0x18);
     func_00200A90(6, 0, 4);
 }
 
@@ -586,6 +587,10 @@ extern const float D_002755E4;
 extern const float D_00275544;
 extern const float D_0028C280;
 extern const float D_00275460;
+static __forceinline float Dot3_001AE570(float ax, float ay, float az, const float *v)
+{
+    return ax * v[0] + ay * v[1] + az * v[2];
+}
 void func_001578D0_(void);
 struct C_1AE570 {
     char pad0[0x30];
@@ -616,7 +621,7 @@ void __stdcall func_001FF4E0(int, void *, int, int, int, int);
 void __stdcall func_00201210(void *, void *, int, int);
 void __stdcall func_002011F0(void *, void *);
 #pragma auto_inline(off)
-float __stdcall func_001AE530(float x, float y)
+float C_1AE570::func_001AE530(float x, float y)
 {
     extern float D_00278788;
     extern float D_0028AC88;
