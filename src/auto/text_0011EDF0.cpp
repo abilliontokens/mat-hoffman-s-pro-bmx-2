@@ -109,7 +109,7 @@ static __forceinline float Max_0011F8E0(float a, float b)
 static __forceinline float Sqrt_0011F8E0(float x)
 {
     float r;
-    _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x));
+    _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x)));
     return r;
 }
 
