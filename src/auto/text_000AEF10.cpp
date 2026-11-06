@@ -165,7 +165,7 @@ struct S_000AF0D0_Mgr {
 
 struct S_000AF0D0_Node {
     char pad0[0x128];
-    char f128[1];
+    char f128[6][0x78];
 };
 
 struct S_000AF0D0_List {
