@@ -476,3 +476,28 @@ void RenderableObject::func_00181540(void)
     ((SoultreeObject *)this)->func_0019ACE0();
 }
 
+void Loader::func_001816A0(void *stream)
+{
+    char name[0x40];
+    char path[0x104];
+    int i;
+    void *obj;
+
+    D_002BEAAC->func_0013C8A0((int)stream, &count, 4, 1);
+    items = (void **)func_001E8AA5(count * 4);
+    for (i = 0; i < count; i++) {
+        D_002BEAAC->func_0013C8A0((int)stream, name, 0x40, 1);
+        if (D_002A60B0[0] != 0) {
+            strcpy(path, D_002A60B0);
+            if (D_002A60AF[strlen(D_002A60B0)] != '\\')
+                strcat(path, "\\");
+            strcat(path, name);
+        } else {
+            strcpy(path, name);
+        }
+        obj = D_002A829C->func_001617F0(path, 1);
+        items[i] = obj;
+        D_002A829C->v6(obj, D_002AA46C);
+    }
+}
+
