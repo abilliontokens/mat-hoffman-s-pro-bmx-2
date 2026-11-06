@@ -1,5 +1,6 @@
 /* 5 functions from 0x0006B4B0 to 0x0006C470, found by Ghidra. */
 #include "common.h"
+extern "C" unsigned int strlen(const char *);
 
 struct V_002EFDB8 {
     virtual void vf0();
@@ -270,9 +271,93 @@ void C_0006B4B0::func_0006B4B0(void)
     unk98->func_001D5AD0();
     unk9C->func_001D5AD0();
     for (i = 0; i < 5; i++) {
-        unkF8[i - 5 + 0]->func_001D5AD0();
+        unkE4[i]->func_001D5AD0();
         unkF8[i]->func_001D5AD0();
     }
+    if (unk164) {
+        for (i = 0; i < 16; i++) {
+            if (i == unk154 * 2 || i == unk154 * 2 + 1) {
+                ((Wid_B4B0 *)unk10C[i])->color = (((Wid_B4B0 *)unk10C[i])->color & 0xffbfa35a) | 0xbfa35a;
+                ((Wid_B4B0 *)unk10C[i])->b58 |= 2;
+            }
+            unk10C[i]->func_001D5AD0();
+        }
+    }
+    if (unk168) {
+        for (i = 0; i < 2; i++) {
+            unkB8[i]->func_001D5AD0();
+        }
+    }
+    if (unk164) goto L164;
+    if (unk168) goto L168;
+    unkA0->SetPos(491.0f, 388.0f);
+    unkAC->SetPos(491.0f, 388.0f);
+    switch (unk1D8) {
+    case 0:
+        unkA0->SetPos(320.0f, 388.0f);
+        unkAC->SetPos(320.0f, 388.0f);
+        if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
+        break;
+    case 1:
+        unkA0->SetPos(491.0f, 388.0f);
+        unkAC->SetPos(491.0f, 388.0f);
+        if (unk1FC) {
+            unkA4->SetPos(388.0f, 388.0f);
+            unkB0->SetPos(388.0f, 388.0f);
+        } else {
+            unkA4->SetPos(195.0f, 388.0f);
+            unkB0->SetPos(195.0f, 388.0f);
+        }
+        if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
+        if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
+        break;
+    case 2:
+    case 3:
+    case 13:
+        unkA0->SetPos(491.0f, 388.0f);
+        unkAC->SetPos(491.0f, 388.0f);
+        if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
+        break;
+    case 4:
+        if (unk1BC) unkB4->func_001D5AD0(); else unkA8->func_001D5AD0();
+        unkA4->SetPos(365.5f, 388.0f);
+        unkB0->SetPos(365.5f, 388.0f);
+        if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
+        break;
+    case 11:
+    case 12:
+        unkA0->func_001D5AD0();
+        unkA4->SetPos(365.5f, 388.0f);
+        unkB0->SetPos(365.5f, 388.0f);
+        if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
+        break;
+    default:
+        unkA0->SetPos(491.0f, 388.0f);
+        unkAC->SetPos(491.0f, 388.0f);
+        if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
+        unkA4->SetPos(365.5f, 388.0f);
+        unkB0->SetPos(365.5f, 388.0f);
+        if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
+        break;
+    }
+    goto Lend;
+L164:
+    unkA0->SetPos(501.0f, 388.0f);
+    unkAC->SetPos(501.0f, 388.0f);
+    if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
+    unkA4->SetPos(380.0f, 388.0f);
+    unkB0->SetPos(380.0f, 388.0f);
+    if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
+    goto Lend;
+L168:
+    unkA0->SetPos(496.0f, 388.0f);
+    unkAC->SetPos(496.0f, 388.0f);
+    if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
+    unkA4->SetPos(375.5f, 388.0f);
+    unkB0->SetPos(375.5f, 388.0f);
+    if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
+Lend:
+    if (unk14C) unk14C->func_001D5AD0();
 }
 
 void C_0006BB90::func_0006BB90(void) {
@@ -332,6 +417,7 @@ int C_0006BBF0::func_0006BBF0(void)
 int C_0006BD40::func_0006BD40(S_0006BD40_Msg *m, int a)
 {
     struct S26 { char b[0x26]; };
+    S_0006BD40_Msg *mm = m;
     int len;
     char tmp[0x10];
     char name[0x10];
@@ -340,7 +426,7 @@ int C_0006BD40::func_0006BD40(S_0006BD40_Msg *m, int a)
     char *q;
 
     if (unk1a8 != 0) {
-        D_002B9024 = m->unk8;
+        D_002B9024 = mm->unk8;
         unk1a8 = 0;
     }
     if (unk1b4 != 0) return 0;
@@ -354,7 +440,7 @@ int C_0006BD40::func_0006BD40(S_0006BD40_Msg *m, int a)
         while ((*q++ = *p++) != 0) {}
         *(S26 *)alpha = *(S26 *)D_002789C4;
 
-        if (func_001361E0(2, 2, m, 0x80000000)) {
+        if (func_001361E0(2, 2, mm, 0x80000000)) {
             unk15C->func_00031610(2, 1);
             if (++unk188 >= 0x25) unk188 = 0;
             func_001ADCC0((char *)&m, 0x104, D_002789C0, alpha[unk188]);
@@ -362,13 +448,13 @@ int C_0006BD40::func_0006BD40(S_0006BD40_Msg *m, int a)
             if (unk1f0 == 0) {
                 unk1f0 = 1;
                 unk1e8 = 0;
-                unk1f8 = m;
+                unk1f8 = mm;
                 unk1f4 = a;
-                func_00157BF0(m, a);
+                func_00157BF0(mm, a);
                 return 0;
             }
         }
-        if (func_001361E0(3, 2, m, 0x80000000)) {
+        if (func_001361E0(3, 2, mm, 0x80000000)) {
             unk15C->func_00031610(2, 1);
             if (--unk188 < 0) unk188 = 0x24;
             func_001ADCC0((char *)&m, 0x104, D_002789C0, alpha[unk188]);
@@ -376,13 +462,13 @@ int C_0006BD40::func_0006BD40(S_0006BD40_Msg *m, int a)
             if (unk1ec == 0) {
                 unk1ec = 1;
                 unk1e8 = 0;
-                unk1f8 = m;
+                unk1f8 = mm;
                 unk1f4 = a;
-                func_00157BF0(m, a);
+                func_00157BF0(mm, a);
                 return 0;
             }
         }
-        if (func_001361E0(0, 2, m, 0x80000000)) {
+        if (func_001361E0(0, 2, mm, 0x80000000)) {
             unk15C->func_00031610(2, 1);
             if (len > 0) {
                 p = *unk174;
@@ -392,15 +478,15 @@ int C_0006BD40::func_0006BD40(S_0006BD40_Msg *m, int a)
                 unk178->func_0005E840(&name[len - 1]);
                 unk188 = (int)(func_001E8AF0(alpha, &name[len - 1]) - (alpha + 8));
                 unk178->func_0005E840(tmp);
-                func_00157BF0(m, a);
+                func_00157BF0(mm, a);
                 return 0;
             }
             unk178->func_0005E840(D_002789BC);
             unk188 = 0;
-            func_00157BF0(m, a);
+            func_00157BF0(mm, a);
             return 0;
         }
-        if (func_001361E0(1, 2, m, 0x80000000)) {
+        if (func_001361E0(1, 2, mm, 0x80000000)) {
             unk15C->func_00031610(2, 1);
             if (len < 0xf) {
                 p = *(char **)unk178;
@@ -411,17 +497,17 @@ int C_0006BD40::func_0006BD40(S_0006BD40_Msg *m, int a)
                 unk180 = 0;
                 unk188 = 0;
                 unk178->func_0005E840(D_002789BC);
-                func_00157BF0(m, a);
+                func_00157BF0(mm, a);
                 return 0;
             }
         }
         goto tail;
     }
 
-    if (func_001361E0(4, 2, m, 0x80000000)) goto other;
-    if (func_001361E0(0x17, 2, m, 0x80000000)) goto other;
-    if (func_001361E0(5, 2, m, 0x80000000)) goto keys23;
-    if (func_001361E0(0x18, 2, m, 0x80000000)) {
+    if (func_001361E0(4, 2, mm, 0x80000000)) goto other;
+    if (func_001361E0(0x17, 2, mm, 0x80000000)) goto other;
+    if (func_001361E0(5, 2, mm, 0x80000000)) goto keys23;
+    if (func_001361E0(0x18, 2, mm, 0x80000000)) {
         if (unk1b8 != 0) return 0;
         unk15C->func_00031610(4, 1);
         unk160 = 0;
@@ -431,59 +517,59 @@ int C_0006BD40::func_0006BD40(S_0006BD40_Msg *m, int a)
     goto tail;
 
 other:
-    if (func_001361E0(2, 2, m, 0x80000000)) {
+    if (func_001361E0(2, 2, mm, 0x80000000)) {
         unk15C->func_00031610(2, 1);
         unk158 = unk154;
         if (--unk154 < 0) unk154 = 7;
         unk1e4 = 1;
         if (unk154 >= 0) goto tail;
-        func_00157BF0(m, a);
+        func_00157BF0(mm, a);
         return 0;
     }
-    if (func_001361E0(3, 2, m, 0x80000000)) {
+    if (func_001361E0(3, 2, mm, 0x80000000)) {
         unk15C->func_00031610(2, 1);
         unk158 = unk154;
         unk1e4 = 1;
         if (++unk154 < 8) goto tail;
         unk154 = 0;
-        func_00157BF0(m, a);
+        func_00157BF0(mm, a);
         return 0;
     }
     goto keys456;
 
 keys23:
-    if (func_001361E0(2, 2, m, 0x80000000)) {
+    if (func_001361E0(2, 2, mm, 0x80000000)) {
         unk15C->func_00031610(2, 1);
         unk158 = unk154;
         if (--unk154 < 0) unk154 = 7;
         unk1e4 = 1;
         if (unk154 >= 0) goto tail;
-        func_00157BF0(m, a);
+        func_00157BF0(mm, a);
         return 0;
     }
-    if (func_001361E0(3, 2, m, 0x80000000)) {
+    if (func_001361E0(3, 2, mm, 0x80000000)) {
         unk15C->func_00031610(2, 1);
         unk158 = unk154;
         unk1e4 = 1;
         if (++unk154 < 8) goto tail;
         unk154 = 0;
-        func_00157BF0(m, a);
+        func_00157BF0(mm, a);
         return 0;
     }
     goto keys456;
 
 keys456:
-    if (func_001361E0(4, 2, m, 0x80000000)) goto set18;
-    if (func_001361E0(0x17, 2, m, 0x80000000)) goto set18;
-    if (func_001361E0(5, 2, m, 0x80000000)) goto set17;
-    if (func_001361E0(0x18, 2, m, 0x80000000)) goto set17;
-    if (func_001361E0(6, 2, m, 0x80000000)) {
+    if (func_001361E0(4, 2, mm, 0x80000000)) goto set18;
+    if (func_001361E0(0x17, 2, mm, 0x80000000)) goto set18;
+    if (func_001361E0(5, 2, mm, 0x80000000)) goto set17;
+    if (func_001361E0(0x18, 2, mm, 0x80000000)) goto set17;
+    if (func_001361E0(6, 2, mm, 0x80000000)) {
         if (unk1d8 != 1) goto tail;
         if (unk1bc != 0) goto tail;
         unk15C->func_00031610(4, 1);
         unk1bc = 1;
         unk160 = 0;
-        func_00157BF0(m, a);
+        func_00157BF0(mm, a);
         return 0;
     }
     goto tail;
@@ -503,7 +589,7 @@ set17:
     return 0;
 
 tail:
-    func_00157BF0(m, a);
+    func_00157BF0(mm, a);
     return 0;
 }
 
