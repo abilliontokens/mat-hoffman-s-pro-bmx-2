@@ -19,6 +19,15 @@ struct C_001C10D0 {
     int f2c;
     int f30;
     int f34;
+    void ReleaseChildren(void)
+    {
+        if (f30 != 0) {
+            v7();
+        }
+        if (f34 != 0) {
+            v5();
+        }
+    }
     void func_001C10D0(void);
 };
 
@@ -437,16 +446,17 @@ void C_001C1030::func_001C1030(int slot, int value, int key)
 
 void C_001C10D0::func_001C10D0(void)
 {
-  f2c = 1;
-  if (!f30 || !f34) {
-    if (f30) {
-      v7();
+    f2c = 1;
+    if (f30 != 0 && f34 != 0) {
+    } else {
+        if (f30 != 0) {
+            v7();
+        }
+        if (f34 != 0) {
+            v5();
+        }
     }
-    if (f34) {
-      v5();
-    }
-  }
-  v7();
+    v7();
 }
 
 void C_001C1110::func_001C1110(void)
