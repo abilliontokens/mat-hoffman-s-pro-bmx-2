@@ -23,18 +23,114 @@ struct S_000BE1D0_Slots {
     S_000BE1D0_Slot *func_0005C020(int a);
 };
 
+struct V_F4VT {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+};
+
+struct S_000BDF30_F4 {
+    char pad0[0xb4];
+    V_F4VT *vtb4;
+};
+
+struct S_000BDF30_F8 {
+    char pad0[0x14];
+    int arr[8];
+    char pad34[0x1cc];
+    int func_00135E80(int which, float v);
+};
+
+struct V_F28obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30(int a);
+};
+
+struct S_000BDF30_F2FC {
+    char pad0[0x28];
+    V_F28obj *f28;
+    int func_00094F00();
+    void func_00094A10(char *s, int f);
+};
+
+struct V_VB {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+};
+
+struct S_LOOK2 {
+    char pad0[0x28];
+    int *f28;
+};
+
+struct C_ELEM {
+    char pad0[0x1a4];
+    void *f1a4;
+};
+
+struct S_000BDF30_F0 {
+    char pad0[0x1dc];
+    int f1DC;
+};
+
 struct S_000BDF30_Config {
-    char pad0[0x324];
+    char pad0[0x18];
+    int f18;
+    char pad1C[0x2e0];
+    S_000BDF30_F2FC *f2FC;
+    char pad300[0x24];
     int f324;
+    void func_0005C720();
 };
 
 struct S_000BDF30_Game {
-    char pad0[0x234];
+    char pad0[4];
+    S_000BDF30_F4 *f4;
+    S_000BDF30_F8 *f8;
+    char padC[0x228];
     int f234;
     char pad238[0xa8];
     S_000BDF30_Config *f2E0;
     char pad2E4[8];
     void *f2EC;
+    S_000BDF30_F0 *f2F0;
 };
 
 struct S_000BDF30_Audio {
@@ -212,8 +308,7 @@ int C_000BBE30::func_000BE020(int show)
     }
     *p = 0;
     func_001ADCC0(buf2, 0x104, D_0027DDE0, buf3);
-    if (D_002A8490->f234 == 1) {
-    } else {
+    if (D_002A8490->f234 != 1) {
         D_002EFDB8->v7(1);
         D_002EFDB8->v8();
     }
@@ -226,19 +321,20 @@ int C_000BBE30::func_000BE020(int show)
 
 void C_000BBE30::func_000BE1D0(int slot)
 {
+    volatile C_000BBE30 *self = this;
     S_000BE1D0_Slot *s = (*(S_000BE1D0_Slots **)((char *)D_002A8490->f2E0 + 0x2c0))->func_0005C020(*(int *)((char *)D_002A8490->f2E0 + 0x2d8));
     volatile int len;
     volatile int max;
-    volatile int m;
+    int m;
     int n;
 #define COPYNAME(dst, src) len = strlen(src); max = 7; m = max > len ? len : max; n = m; func_001E8920(dst, src, n); (dst)[n] = 0;
-    COPYNAME((char *)D_002A8490->f2E0 + 0x150 + slot * 8, f27C[f284].f104)
-    ((int *)((char *)D_002A8490->f2E0 + 0x1b0))[slot] = f28C;
-    COPYNAME((char *)D_002A8490->f2E0 + slot * 8 + 0x1f4, f280[f27C[f284].f120[f288]].name)
+    COPYNAME((char *)D_002A8490->f2E0 + 0x150 + slot * 8, self->f27C[self->f284].f104)
+    ((int *)((char *)D_002A8490->f2E0 + 0x1b0))[slot] = self->f28C;
+    COPYNAME((char *)D_002A8490->f2E0 + slot * 8 + 0x1f4, self->f280[self->f27C[self->f284].f120[self->f288]].name)
     if (*(int *)((char *)D_002A8490->f2E0 + 4) == 0) {
-        COPYNAME(s->f5D4, f27C[f284].f104)
-        s->f5E4 = f28C;
-        COPYNAME(s->f5DC, f280[f27C[f284].f120[f288]].name)
+        COPYNAME(s->f5D4, self->f27C[self->f284].f104)
+        s->f5E4 = self->f28C;
+        COPYNAME(s->f5DC, self->f280[self->f27C[self->f284].f120[self->f288]].name)
     }
 #undef COPYNAME
     func_000BC3E0(slot);
@@ -298,6 +394,17 @@ void C_000BBE30::func_000BE540()
     }
     ((C_0018C120 *)D_002A8490->f2EC)->func_0018C120();
     ((C_001BCC40 *)this)->func_001BCC40();
+}
+
+void C_000BE640::func_000BE640(char *a, char *b, int c)
+{
+    D_002A8490->f234 = 1;
+    if (*(int *)((char *)D_002A8490->f2EC + 0x1dc) != 0) {
+        func_001ADCC0((char *)0, 0, 0);
+    }
+    func_001BCC90(b);
+    func_000BADB0();
+    *(int *)((char *)D_002EFDB8 + 0x30) = 1;
 }
 
 undefined4 C_000BEDA0::func_000BEDA0(byte param_1)
