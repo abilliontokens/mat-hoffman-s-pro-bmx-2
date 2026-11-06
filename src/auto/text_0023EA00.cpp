@@ -639,18 +639,22 @@ unsigned int __stdcall func_0023F0F4(int p1, C_0023EC0D *obj, unsigned int a, un
     return obj->func_0023EE81(a, b, out);
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 int __stdcall func_0023F119(S_0023F119_Src *src, S_0023F119_Wfx *wfx)
 {
+    unsigned short ba;
     wfx->wFormatTag = 1;
     wfx->nSamplesPerSec = src->func_0023EE30(src->fC);
     wfx->nChannels = src->f10;
     wfx->cbSize = 0;
-    wfx->nBlockAlign = (unsigned short)(wfx->nChannels << 1);
-    wfx->nAvgBytesPerSec = wfx->nBlockAlign * *(volatile unsigned int *)&wfx->nSamplesPerSec;
+    ba = (unsigned short)(wfx->nChannels << 1);
+    wfx->nBlockAlign = ba;
+    _ReadWriteBarrier();
+    wfx->nAvgBytesPerSec = ba * wfx->nSamplesPerSec;
     wfx->wBitsPerSample = 16;
     return 0;
 }
-
 int __stdcall func_0023F160(C_0023EFB0 *p)
 {
     p->func_0023EFB0();
