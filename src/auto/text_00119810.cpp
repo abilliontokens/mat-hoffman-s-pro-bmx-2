@@ -39,8 +39,9 @@ static __forceinline Vec4 MakeVec4_0011A4B0(f32 a, f32 b, f32 c, f32 d)
 static __forceinline Vec4 PlantPos_0011A4B0(const Vec4 &v, f32 h)
 {
     Vec4 r;
+    double dy = v.y;
     r.x = 0.0f;
-    r.y = v.y;
+    r.y = (float)dy;
     r.z = v.z + h;
     r.w = 1.0f;
     return r;
