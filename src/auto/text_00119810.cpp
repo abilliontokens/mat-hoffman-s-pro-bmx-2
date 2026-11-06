@@ -151,6 +151,9 @@ struct BmxVehicle {
     void func_00113290(int a);
     void func_00105B30(int a);
     void func_00105CB0();
+    void func_00106B20();
+    void func_00106E30();
+    int func_00157A00(int a);
 };
 
 struct C_00198330 {
