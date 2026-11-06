@@ -1,5 +1,7 @@
 /* 4 functions from 0x0014B260 to 0x0014C1C0, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
+#include <math.h>
 #pragma auto_inline(off)
 
 struct Vec4 {
