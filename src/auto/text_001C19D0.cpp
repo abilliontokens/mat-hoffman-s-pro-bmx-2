@@ -586,8 +586,8 @@ void *C_001C19D0::func_001C19D0(int a1, int a2)
     f28 = a1;
     float f1, f3, f2;
     f1 = 0;
-    f2 = 0;
     f3 = 0;
+    f2 = 0;
     Col19D0 colOut;
     int V[4], A[4], W[4];
     int color;
