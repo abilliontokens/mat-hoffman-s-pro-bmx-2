@@ -127,6 +127,162 @@ done:
     return out;
 }
 
+extern char *D_00295520[];
+extern char *D_002955B0[];
+extern char D_00295CD0[];
+extern char D_00295A74[];
+extern char *D_00295594[];
+extern char *D_00295650[];
+extern char *D_002955F8[];
+extern char D_00295B2C[];
+extern char *D_00295504[];
+void *func_001F0B53(S_001EF734 *out)
+{
+    void *func_001F098B(void *, int);
+    S_001EF734 *func_001EFCD5(void *out, char c, S_001EF734 *n);
+    S_001EF734 *func_001EFD19(S_001EF734 *out, char *s, S_001EF734 *n);
+    S_001EF734 *func_001F037A(void *out, char *s, int v);
+    S_001EF734 *func_001F041A(void *out);
+    S_001EF734 *func_001EFDB9(void *out, int v);
+    S_001EF734 *func_001F306F(void *out, int v);
+    int isCtor = 0;
+    S_001EF734 name;
+    S_001EF734 second;
+    name.flags &= 0xfffffe00;
+    second.flags &= 0xfffffe00;
+    int c = *D_002F6A28++;
+    name.value = 0;
+    second.value = 0;
+    switch (c) {
+    case 0:
+    trunc:
+        D_002F6A28--;
+        out->func_001EF170(2);
+        return out;
+    case '0':
+    case '1': {
+        S_001EF734 t20, t28;
+        char *save = D_002F6A28;
+        name.func_001EEF4F((S_001EF734 *)func_001F098B(&t20, 0));
+        D_002F6A28 = save;
+        if (!name.func_001EF1E7() && save[-1] == '1')
+            name.func_001EEF4F(func_001EFCD5(&t28, '~', &name));
+        goto done;
+    }
+    case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
+        name.func_001EF9B2(D_00295520[D_002F6A28[-1]]);
+        goto check;
+    case 'B':
+        isCtor = 1;
+    case 'A': case 'C': case 'D': case 'E': case 'F': case 'G': case 'H': case 'I':
+    case 'J': case 'K': case 'L': case 'M': case 'N': case 'O': case 'P': case 'Q':
+    case 'R': case 'S': case 'T': case 'U': case 'V': case 'W': case 'X': case 'Y': case 'Z':
+        name.func_001EF9B2(D_00295504[D_002F6A28[-1]]);
+        if (!isCtor)
+            goto check;
+        if (!name.func_001EF1E7())
+            name.flags |= 0x20;
+        goto done;
+    case '_':
+        c = *D_002F6A28++;
+        switch (c) {
+        case 0:
+            goto trunc;
+        case '0': case '1': case '2': case '3': case '4': case '5': case '6':
+            name.func_001EF9B2(D_002955B0[D_002F6A28[-1]]);
+            goto check;
+        case '7': case '8': case '9':
+            out->func_001EF759(D_002955B0[D_002F6A28[-1]]);
+            return out;
+        case '?': {
+            S_001EF734 t18;
+            c = *D_002F6A28++;
+            if (c == 0)
+                goto trunc;
+            if (c != '0')
+                goto error;
+            func_001F037A(&t18, D_00295CD0, 0);
+            t18.flags |= 0x100;
+            out->func_001EEEE6(&t18);
+            return out;
+        }
+        case 'C': {
+            S_001EF734 t18;
+            func_001F037A(&t18, D_00295A74, 1);
+            t18.flags |= 0x100;
+            out->func_001EEEE6(&t18);
+            return out;
+        }
+        case 'P': {
+            S_001EF734 tP;
+            name.func_001EF9B2(D_00295594[D_002F6A28[-1]]);
+            second.func_001EEF4F((S_001EF734 *)func_001F0B53(&tP));
+            if (second.func_001EF1E7() || second.func_001EF1E7())
+                goto quote;
+            if (second.flags & 0x40)
+                goto error;
+            name.func_001EFAB5(out, &second);
+            return out;
+        }
+        case 'R': {
+            S_001EF734 t18, t30, t38, t40, t48, t50, t58, t60, t68, t70, t78;
+            name.func_001EF9B2(D_00295594[D_002F6A28[-1]]);
+            second.func_001EF9B2(D_00295650[*D_002F6A28]);
+            c = *D_002F6A28++;
+            switch (c) {
+            case '0':
+                func_001F306F(&t18, 0);
+                t18.func_001EFD3B(&t78, ' ')->func_001EFAB5(&t70, &name)->func_001EFAB5(out, &second);
+                return out;
+            case '1':
+                name.func_001EFAB5(&t18, &second);
+                t18.func_001EF935(func_001F041A(&t38)->func_001EFD3B(&t30, ','));
+                t18.func_001EF935(func_001F041A(&t48)->func_001EFD3B(&t40, ','));
+                t18.func_001EF935(func_001F041A(&t58)->func_001EFD3B(&t50, ','));
+                t18.func_001EF935(func_001EFDB9(&t68, 0)->func_001EFD3B(&t60, ')'));
+            case '2': case '3': case '4':
+            quote:
+                t18.func_001EFD3B(out, '\'');
+                return out;
+            default:
+                D_002F6A28--;
+                out->func_001EF170(2);
+                return out;
+            }
+        }
+        case '_':
+            c = *D_002F6A28++;
+            if (c < 'A' || c > 'D')
+                goto error;
+            out->func_001EF759(D_002955F8[D_002F6A28[-1]]);
+            return out;
+        case 'A': case 'B': case 'D': case 'E': case 'F': case 'G': case 'H': case 'I': case 'J':
+        case 'L': case 'M': case 'N': case 'O': case 'S': case 'T': case 'X': case 'Y':
+            out->func_001EF759(D_00295594[D_002F6A28[-1]]);
+            return out;
+        case 'Q':
+            goto check;
+        case 'U': case 'V':
+            name.func_001EF9B2(D_00295594[D_002F6A28[-1]]);
+        check:
+            {
+                S_001EF734 t80;
+                if (!name.func_001EF1E7())
+                    name.func_001EEF4F(func_001EFD19(&t80, D_00295B2C, &name));
+            }
+        done:
+            out->func_001EEEE6(&name);
+            return out;
+        default:
+            goto error;
+        }
+    default:
+    error:
+        out->func_001EF170(1);
+        return out;
+    }
+}
+
 void *func_001F0F86(void *out)
 {
     S_001EF734 local, base, temps[2];
@@ -218,17 +374,19 @@ void *func_001F1184(void *p)
     }
     return p;
 }
+#pragma optimize("s", on)
+#pragma optimize("y", off)
+static inline char und_peek() { return *D_002F6A28; }
+static inline char und_next() { return *D_002F6A28++; }
 void *func_001F11B1(S_001EF734 *o)
 {
-    int func_001EEE49(int n, ...);
+    void *func_001EEE49(int n);
     void *func_001F0F86(void *out);
     S_001EF734 local;
     S_001EF734 tmp;
-    local.func_001EF759((void *)func_001EEE49(0));
-    if (D_002F6A28[0] != 0) {
-        int c = D_002F6A28[0];
-        D_002F6A28 += 1;
-        switch (c) {
+    local.func_001EF759(func_001EEE49(0));
+    if (*(volatile char *)D_002F6A28 != 0) {
+        switch (*D_002F6A28++) {
         case '5':
             o->func_001EF170(1);
             return o;
@@ -246,4 +404,3 @@ void *func_001F11B1(S_001EF734 *o)
     o->func_001EEEE6(&local);
     return o;
 }
-
