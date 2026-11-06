@@ -118,6 +118,7 @@ struct SubElem_0008 {
     char pad0[0x28];
  int x28, y2c; char pad30[0x28]; unsigned char flags58; char pad59[11];
  void func_001D5810(const void *, float, float, int);
+ void init(const void *name) { func_001D5810(name,20.0f,388.0f,0); if(x28!=0x42280000){x28=0x42280000;flags58|=1;} if(y2c!=0x42280000){y2c=0x42280000;flags58|=1;} }
     void func_001D5760();
     void func_001D57E0();
     ClampObj *func_001D5AA0();
