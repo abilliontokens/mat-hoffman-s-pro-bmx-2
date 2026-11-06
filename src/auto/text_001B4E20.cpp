@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <string.h>
 static inline const int &min_ref(const int &a, const int &b) { return b < a ? b : a; }
+static inline int min_val_001B4E20(int a, int b) { return b < a ? b : a; }
 struct C_001B5D00 {
     int unk0;
     int unk4;
