@@ -435,8 +435,8 @@ struct C_0001C4C0 {
 };
 
 float func_0001C590(float x) {
-    int i = *(int *)&x & 0x7fffffff;
-    return *(float *)&i;
+    const int &r = *(int *)&x & 0x7fffffff;
+    return *(const float *)&r;
 }
 
 C_0001C5B0 *C_0001C5B0::func_0001C5B0(float *p) {
@@ -451,12 +451,11 @@ void func_0001C5E0(float *out, float s, float *in) {
 }
 
 S_0001C610_V4 func_0001C610(float *a, float *b) {
-    S_0001C610_V4 r;
-
-    r.x = cross_0001C610(a, b, 1, 2);
-    r.y = cross_0001C610(a, b, 2, 0);
-    r.z = cross_0001C610(a, b, 0, 1);
-    r.w = 1.0f;
-    return r;
+ S_0001C610_V4 r;
+ r.x = ((volatile float*)b)[2]*a[1]-((volatile float*)b)[1]*a[2];
+ r.y = ((volatile float*)b)[0]*a[2]-((volatile float*)b)[2]*a[0];
+ r.z = ((volatile float*)b)[1]*a[0]-((volatile float*)b)[0]*a[1];
+ r.w = 1.0f;
+ return r;
 }
 
