@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+#include <math.h>
 static __forceinline float Sqrt_00197B90(float x) { __m128 r = _mm_sqrt_ss(_mm_load_ss(&x)); return r.m128_f32[0]; }
 extern float D_00275460;
 extern float D_00278C48;
