@@ -201,13 +201,15 @@ struct Glob4334_26 { int func_00132E20(const char *); void func_001577A0(void *,
 struct C_00026B60 {
     char pad0[0x2C]; V4_000273F0 f2C; V4_000273F0 f3C;
     char pad4C[0x1E0 - 0x4C];
-    ObjE0_26 *f1E0; ObjE4_26 *f1E4; ObjE8_26 *f1E8; char padEC[4];
+    ObjE0_26 *f1E0; ObjE4_26 *f1E4; ObjE8_26 *f1E8; Obj1EC_26 *f1EC;
     ObjF0_26 *f1F0; ObjF4_26 *f1F4; ObjF8_26 *f1F8; ObjFC_26 *f1FC; ObjFC_26 *f200;
     Obj204_26 *f204; Obj208_26 *f208; Obj20C_26 *f20C;
-    char pad210[0x220 - 0x210]; Axis14_26 *f220; Axis14_26 *f224; Axis14_26 *f228;
+    Obj210_26 *f210; Obj214_26 *f214; Obj218_26 *f218; Obj21C_26 *f21C;
+    Axis14_26 *f220; Axis14_26 *f224; Axis14_26 *f228;
     int f22C; int f230; int f234; int f238;
     char pad23C[0x33C - 0x23C]; char f33C[0x100];
-    char pad43C[0x758 - 0x43C]; int f758;
+    char pad43C[0x5EC - 0x43C]; Obj40_26 *f5EC; Obj40_26 *f5F0; Obj40_26 *f5F4;
+    char pad5F8[0x758 - 0x5F8]; int f758;
     char pad75C[0x768 - 0x75C]; int f768;
     void func_00026B60(char *name, V4_000273F0 a1, V4_000273F0 a2, V4_000273F0 a3, V4_000273F0 a4, int a5, int a6);
     void func_001577A0(void *, int);
