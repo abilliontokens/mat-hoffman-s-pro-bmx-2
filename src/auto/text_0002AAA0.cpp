@@ -105,7 +105,7 @@ extern Vec4_0002AF90 D_002B7E4C;
 extern float D_002B7E50;
 extern float D_002B7E54;
 extern float D_002B7E58;
-extern float D_002A10F0, D_002A10F4, D_002A10F8, D_002A1178;
+extern float D_002A10F0, D_002A10F4, D_002A10F8, D_002A10FC, D_002A1178;
 
 struct C_0002AF90 {
     char pad0[0x13c];
