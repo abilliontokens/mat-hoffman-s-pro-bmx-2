@@ -466,8 +466,6 @@ C_001A5F40 *C_001A5F40::func_001A5F40(void *a, int b)
 
 void C_001A5FD0::func_001A5FD0(int arg)
 {
-    S_001A5FD0_F24 *p;
-
     if (f28 != 0 && f28->f48 == 0) {
         f28->func_00157810();
         f28->v2();
@@ -475,28 +473,19 @@ void C_001A5FD0::func_001A5FD0(int arg)
         f28 = 0;
         if (m == 9) {
             f24->f24 = 6;
-            func_00157A00(arg);
-            return;
-        }
-        if (m == 0xb) {
+        } else if (m == 0xb) {
             if (((S_001A5FD0_G1M *)D_002A8490->f2e0)->f2c0->func_0005C0E0() == 0) {
                 f24->f24 = 0xc;
-                func_00157A00(arg);
-                return;
+            } else {
+                f24->f1dc = 1;
+                f24->f24 = 1;
             }
-            p = f24;
+        } else if (m == 0xd) {
+            f24->f1dc = 1;
+            f24->f24 = 1;
         } else {
-            p = f24;
-            if (m != 0xd) {
-                p->f24 = 1;
-                func_00157A00(arg);
-                return;
-            }
+            f24->f24 = 1;
         }
-        p->f1dc = 1;
-        f24->f24 = 1;
-        func_00157A00(arg);
-        return;
     }
     func_00157A00(arg);
 }
@@ -544,6 +533,46 @@ LoadMemoryCard *LoadMemoryCard::func_001A61C0(void *arg) {
     f74 = 0; f78 = 0; f7c = 0;
     f84 = 0; f88 = 0; f8c = 0; f90 = 0; f94 = 0; f98 = 0;
     return this;
+}
+
+void C_001A6260::func_001A6260()
+{
+    int i;
+    vtbl = &D_0028BB74;
+    if (D_002F0630 != 0) {
+        D_002F0630->v0(1);
+        D_002F0630 = 0;
+    }
+    if (f50 != 0) {
+        f50->v2();
+        f50 = 0;
+    }
+    for (i = 0; i < 2; i++) {
+        if (f3c[i] != 0) {
+            f3c[i]->v0(1);
+            f3c[i] = 0;
+        }
+        if (f34[i] != 0) {
+            f34[i]->v0(1);
+            f34[i] = 0;
+        }
+        S_6260_E *e = f44[i];
+        if (e != 0) {
+            e->func_001D6410();
+            func_001E891B(e);
+            f44[i] = 0;
+        }
+    }
+    f24 = 0;
+    f28 = 0;
+    f2c = 0;
+    f30 = 0;
+    if (f94 != 0) {
+        f94->v2();
+        f94 = 0;
+    }
+    ((C_001A6260 *)*(void **)((char *)D_002A8490 + 0x2ec))->func_0018C120();
+    func_00157660();
 }
 
 void C_001A6260::func_001A6930()
