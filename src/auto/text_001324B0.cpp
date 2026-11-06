@@ -105,6 +105,22 @@ struct C_198E60_1324B0 {
     void func_00198E60();
 };
 
+struct Obj_132A40 {
+    int *vt;
+    void func_0019C1E0();
+    Obj_132A40 **func_0019EEC0(int *);
+    void func_00133730(void *, int);
+    Obj_132A40 *func_00171270(int);
+    void func_001577A0(void *, int);
+    void func_001D3F50();
+};
+extern char D_002A46E8[], D_00275678[], D_002A4C10[];
+extern int D_002BA15C, D_002BA03C;
+int func_001ADCC0(char *, int, const char *, ...);
+Obj_132A40 *func_00133750(void *, char *, int);
+void *func_001E8AA5(int);
+void *func_001E8A44(int);
+
 struct C_132CC0 {
     char pad0[4];
     void *f4;
