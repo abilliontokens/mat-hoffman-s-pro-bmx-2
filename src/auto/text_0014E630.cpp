@@ -24,6 +24,13 @@ struct TrigEntry {
 };
 extern TrigEntry *D_002CF6B4;
 
+struct ObjB700 { ObjB700 *func_0019B700(int a); void func_0019D7B0(void *a, void *b); };
+struct ObjA50 { ObjA50 *func_001A4A50(int a); };
+struct ObjE620 { ObjE620 *func_0017E620(int a); };
+void func_00129920(int a);
+extern int D_002BA150;
+extern int D_002BA574;
+
 struct S_0014E630_Holder {
     char pad0[0x1ec];
     int count;
