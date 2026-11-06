@@ -191,7 +191,7 @@ struct VehicleAI {
 };
 
 /* trigger item of func_000B2930's target list (flag at +0x3e0) */
-struct S_000B2930_Item { char pad0[0x3e0]; };
+struct S_000B2930_Item { char pad0[0x3e0]; VehicleV4 *func_00011E30(VehicleV4 *out); };
 void *func_00011E30(S_000B2930_Item *self);
 extern float D_0027CE50;
 extern float D_0027CE40;
