@@ -129,8 +129,7 @@ struct S_001EEFE3 {
     S_001EEFE3 *func_001EF419(void);
     S_001EEFE3 *Tail(void) {
         S_001EEFE3 *p = this;
-        S_001EEFE3 *q;
-        while ((q = *(S_001EEFE3 * volatile *)&p->next) != 0) p = q;
+        while (p->next != 0) p = p->next;
         return p;
     }
 };
