@@ -22,6 +22,35 @@ extern C_VT *D_002A829C;
 void func_001ADCC0(void *, int, void *, void *, void *);
 void *func_001E8A44(int);
 void func_001BC7F0(void *, int);
+struct C_Dlg { virtual void v0(char *s, int n); virtual void v4(); virtual void v8(char *s, int x, int y); virtual void vC(char *s, int w, int h); virtual void v10(); virtual void v14(); };
+struct C_Dev {
+    void func_0013C1D0(int a);
+    void func_00086130(int a);
+    int func_0013D780(char *p, int a, int b, int c, int d, int e, int f, int g);
+    void func_0013B260(int a);
+    void func_0013CC80(char *p, int a, int b, int c, int d, int e, int f, int g, int h);
+    void func_0013DFF0(float *p, int a);
+};
+struct C_Ini {
+    C_Ini *func_00168280(void);
+    void func_00169490(char *p, int a);
+    void func_00169710(char *p);
+    void func_00168C20(char *p, int a, float *out);
+    void func_001691E0(void);
+};
+struct C_Tex { char pad[0x40]; int cnt; };
+struct C_Mgr { C_Tex *func_00163DC0(char *a, char *b); };
+extern C_Dev *D_002BEAAC;
+extern C_Mgr *D_002EF7D0;
+extern char D_00276C90[], D_002780CC[], D_002A4A00[], D_002780C0[], D_00277298[], D_00277288[], D_00277268[], D_00276C08[], D_002780AC[], D_002780A0[], D_002A5660[];
+extern float D_002780BC;
+extern int D_001F4240;
+extern "C" int func_001ADCC0(char *buf, int n, char *fmt, ...);
+extern "C" void func_001DC974();
+extern "C" int func_001E8858();
+extern "C" void func_001E891B(void *);
+struct C_Dlg2 : C_Dlg { C_Dlg2 *func_001D1BB0(); void func_001D35E0(); };
+void *operator new(unsigned int);
 struct C_0018C640 {
     void func_0018C640(void);
 };
