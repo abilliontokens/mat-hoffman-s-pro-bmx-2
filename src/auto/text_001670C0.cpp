@@ -42,7 +42,6 @@ struct C_001673B0_Base {
 
 /* an already loaded object of the family (found by name) */
 struct C_001673B0_Found : virtual C_001673B0_Base {
-    char pad0[4];
     char *f4;
     void func_00166CA0(int arg);
 };
@@ -59,6 +58,7 @@ struct C_001673B0 : virtual C_001673B0_Base {
     int f1e0;
     C_001673B0_Base *func_001673B0(const char *name, const char *slt, void *unused, int id, int arg4);
     void func_00166EB0(int arg);
+    void func_00166CA0(C_001673B0_Found *found, int arg);
 };
 struct C_001648E0_Item {
  virtual void v0(); virtual void v1();
@@ -415,8 +415,66 @@ void C_001670C0::func_001670C0(float dt, int remap, int *mask)
 
 C_001673B0_Base *C_001673B0::func_001673B0(const char *name, const char *slt, void *unused, int id, int arg4)
 {
+    char buf[0x100];
+    char path[0x104];
+    C_001673B0_Found *found = 0;
+    int key = -1;
+    int key2;
+    int n;
+    int len;
+    C_00168280 *p;
+
     f1e0 = id;
-    return 0;
+    if (slt) {
+        strcpy(buf, name);
+        strcat(buf, slt);
+    }
+    if (D_002BEAAC->func_0013D310(buf, D_00275FB4, &key, &found, 0) == 0 &&
+        D_002BEAAC->func_0013D310((char *)name, D_00275FB4, &key, &found, 0) == 0) {
+        v2();
+        return 0;
+    }
+    if (found == 0) {
+        key2 = key;
+        if (slt)
+            D_002BEAAC->func_0013AC40(buf, 0, 0, 0, &key2, 0);
+        D_002BEAAC->func_0013B1F0(key2, this);
+        D_002BEAAC->func_0013C110(key);
+    }
+    p = (C_00168280 *)func_001E8A44(0x4cc);
+    f8 = p ? p->func_00168280() : 0;
+    len = strlen(name);
+    n = Min(0x4f, len);
+    func_001E8920((char *)this + 0x48, name, n);
+    ((char *)this)[0x48 + n] = 0;
+    f8->func_00169490(name, 0);
+    f8->func_00169710(D_00287E90);
+    if (slt) {
+        strcpy(f138, slt);
+        f188 = 1;
+    } else {
+        f8->func_00168550(D_00287EA8, f138, -1);
+        f188 = 0;
+    }
+    if (found) {
+        func_0014FF00(found->f4 + 0x28, 0, 0, path, 0);
+        func_00030F30(path, D_00287EA0);
+        if (func_001EA426(path, f138) == 0) {
+            found->func_00166CA0(arg4);
+            if (f8) {
+                f8->func_001691E0();
+                func_001E891B(f8);
+            }
+            return (C_001673B0_Base *)found;
+        }
+    }
+    found = 0;
+    func_00166EB0(arg4);
+    if (f8) {
+        f8->func_001691E0();
+        func_001E891B(f8);
+    }
+    return ((C_001673B0_Base *)this)->func_001D3F50();
 }
 
 C_001676D0 *C_001676D0::func_001676D0(int n)
