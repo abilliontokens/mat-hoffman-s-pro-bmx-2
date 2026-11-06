@@ -163,7 +163,7 @@ struct C_0023EC0D {
 struct S_0023F119_Wfx {
     unsigned short wFormatTag;
     unsigned short nChannels;
-    volatile unsigned int nSamplesPerSec;
+    unsigned int nSamplesPerSec;
     unsigned int nAvgBytesPerSec;
     unsigned short nBlockAlign;
     unsigned short wBitsPerSample;
@@ -639,10 +639,10 @@ int __stdcall func_0023F119(S_0023F119_Src *src, S_0023F119_Wfx *wfx)
 {
     wfx->wFormatTag = 1;
     wfx->nSamplesPerSec = src->func_0023EE30(src->fC);
-    wfx->nChannels = src->f10;
-    wfx->cbSize = 0;
-    wfx->nBlockAlign = (unsigned short)(wfx->nChannels << 1);
-    wfx->nAvgBytesPerSec = *(volatile unsigned int *)&wfx->nSamplesPerSec * wfx->nBlockAlign;
+    *(unsigned short *)((char *)wfx + 2) = src->f10;
+    *(unsigned short *)((char *)wfx + 0x10) = 0;
+    *(unsigned short *)((char *)wfx + 0xc) = (unsigned short)(wfx->nChannels << 1);
+    wfx->nAvgBytesPerSec = wfx->nBlockAlign * wfx->nSamplesPerSec;
     wfx->wBitsPerSample = 16;
     return 0;
 }
