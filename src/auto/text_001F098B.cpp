@@ -64,6 +64,8 @@ static inline int und_strncmp(const char *first, const char *last, unsigned int 
     return *(unsigned char *)first - *(unsigned char *)last;
 }
 
+static inline void CopyName(S_001EF734 *src, S_001EF734 *dst) { dst->func_001EEEE6(src); }
+
 #pragma optimize("t", off)
 extern char D_00295CE8[];
 S_001EF734 *func_001F1DF5(S_001EF734 *);
@@ -82,7 +84,6 @@ void *func_001F098B(S_001EF734 *out, bool update)
     }
     S_001EF734 zName;
     S_001EF734 tmp;
-    S_001EF734 *src;
     zName.value = 0;
     zName.initial = 0;
     if (c == '?') {
@@ -125,8 +126,7 @@ void *func_001F098B(S_001EF734 *out, bool update)
 done:
     if (update && D_002F6A20->count != 9)
         D_002F6A20->func_001EF3D2(&zName);
-    src = &zName;
-    out->func_001EEEE6(src);
+    out->func_001EEEE6(zName);
     return out;
 }
 
