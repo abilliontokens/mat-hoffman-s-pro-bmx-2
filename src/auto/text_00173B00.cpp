@@ -3,17 +3,23 @@
 #include <math.h>
 #include <xmmintrin.h>
 
-struct PhIface { virtual void v00(); };
+struct PhIface { virtual void v00(); void func_00133ED0(); };
+struct S_00173B00_Rig;
 struct PhObj {
     void *vtbl; char pad4[0x2c];
     int f30, f34, f38;
     char pad3c[0x78];
     float fb4, fb8, fbc;
     char padc0[4];
-    char *fc4; PhIface *fc8; PhIface *fcc; PhObj *fd0; PhIface *fd4; PhIface *fd8;
+    S_00173B00_Rig *fc4; PhIface *fc8; PhIface *fcc; PhObj *fd0; PhIface *fd4; PhIface *fd8;
     char padDC[0x40];
     float f11c, f120, f124, f128;
     int func_00173B00(float dt);
+    int func_00157A00(float dt);
+    void func_001729D0();
+    void func_00172000();
+    void func_001730B0(float dt);
+    void func_001724B0(float dt);
 };
 struct PhGlobal { char pad[0x124]; int f124; };
 extern PhGlobal *D_002A8490;
@@ -193,6 +199,24 @@ Vec4 *func_001742F0(Vec4 *dst, Vec4 *a, Vec4 *b)
     r.y = (a->x * b->x + a->z * b->z - a->w * b->y) * D_002755E8;
     r.z = (a->x * b->y + b->x * a->w - a->y * b->z) * D_002755E8;
     r.w = (a->y * b->y + b->z * a->x - a->z * b->x) * D_002755E8;
+    *dst = r;
+    return dst;
+}
+
+float func_0014FBA0(float a0, float a1);
+Vec4 *func_001743A0(Vec4 *dst, Vec4 *q)
+{
+    Vec4 r;
+    float a = (q->y * q->z + q->w * q->x) * 2.0f;
+    float d = D_00275460 - (q->w * q->w + q->y * q->y) * 2.0f;
+    float b = (q->w * q->y + q->x * q->z) * 2.0f;
+    float c = (q->w * q->z - q->y * q->x) * 2.0f;
+    float e = D_00275460 - (q->z * q->z + q->y * q->y) * 2.0f;
+    r.w = 1.0f;
+    r.y = -func_0014FBA0(b, e);
+    r.z = -func_0014FBA0(a, d);
+    float s = sqrtf(d * d + a * a);
+    r.x = -func_0014FBA0(-c, s);
     *dst = r;
     return dst;
 }
