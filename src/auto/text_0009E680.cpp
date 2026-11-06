@@ -66,6 +66,7 @@ struct C_0009EDF0 {
     float f20c, f210, f214, f218;
     C_0009EDF0 *func_0009EDF0(int a);
     int func_0009E680(C_0009EDF0 *arg);
+    float func_00011170(float *v);
     void func_00169C50(int a);
     C_0009EDF0 *func_0009EF00(int a, int b, int c);
     void func_0016A1D0(int a, int b, int c);
