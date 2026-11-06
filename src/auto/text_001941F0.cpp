@@ -504,19 +504,10 @@ int C_00194520::func_00194520(float dt, int a) {
 SignatureWave *SignatureWave::func_00194600(S_Vec4 *a1, S_Vec4 *a2, int a3, float a4, float a5, float a6, float a7, int a8, int a9, int a10, int a11, int a12, int a13, float a14, int a15, int a16, int a17, int a18)
 {
     ((C_00157600 *)this)->func_00157600(1);
-    f6C = 0.0f;
-    f68 = 0.0f;
-    f64 = 0.0f;
     vtbl = (void *)&D_0028AE14;
-    f70 = 1.0f;
-    f7C = 0.0f;
-    f78 = 0.0f;
-    f74 = 0.0f;
-    f80 = 1.0f;
-    fB8 = 0.0f;
-    fB4 = 0.0f;
-    fB0 = 0.0f;
-    fBC = 1.0f;
+    ((S_Vec4Unit *)&f64)->Init();
+    ((S_Vec4Unit *)&f74)->Init();
+    ((S_Vec4Unit *)&fB0)->Init();
     if (a12 == 0 && a14 > D_002EFEA0) {
         D_002EFEA0 = a14;
         D_002AB85C = a14 * 255.0f;
