@@ -43,7 +43,7 @@ struct S_B4300_Cfg {
     char f14c[1];
 };
 
-struct C_000B4300;
+struct __single_inheritance C_000B4300;
 struct S_B3E10_Obj;
 #pragma pointers_to_members(full_generality, single_inheritance)
 typedef void (C_000B4300::*B4300_Cb)(void);
