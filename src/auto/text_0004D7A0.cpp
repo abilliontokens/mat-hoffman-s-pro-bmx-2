@@ -107,7 +107,7 @@ struct C_0004D7A0_GlobalState {
 struct C_0004D7A0_Global { char pad0[0x2e0]; C_0004D7A0_GlobalState *f2E0; };
 extern C_0004D7A0_Global *D_002A8490;
 extern float D_00275544;
-extern float D_00275460;
+extern const float D_00275460;
 int func_001361E0(int, int, int *, int);
 
 struct C_0004DCA0_World {
@@ -294,6 +294,173 @@ C_0004DCA0 *C_0004DCA0::func_0004DCA0(void)
     if (f1C0)
         f1C0->func_00099D40(-1);
     return this;
+}
+
+int C_0004DCA0::func_0004DDB0(float dt)
+{
+    int a;
+    int b;
+    int n;
+    int i;
+
+    if (f1F4) {
+        return func_00157A00(dt);
+    }
+    if (f298) {
+        f298 = 0;
+        func_0004D0E0();
+    }
+    func_00031260(dt);
+    if (f294) {
+        f29C -= dt;
+        if (f29C < D_00275544) {
+            f29C = 0;
+        }
+        f288->func_00086160(D_00275460 + f29C);
+    }
+    if (f29C <= D_00275544 && f64->f4E0->f1A8[f120]->f11F0 == 0 && f64->f4E0->f1A8[f120]->f11F4 == 1) {
+        f64->f4E0->f1A8[f120]->f11F0 = 1;
+    }
+    if (f64->f4E0->f1A8[f120]->f11F4 == 3 || (f29C <= D_00275544 && f294)) {
+        f64->f4E0->f1A8[f120]->func_001084E0();
+        f284 = 1;
+        f294 = 0;
+        f288->func_00086160(0.0f);
+    }
+    switch (f290) {
+    case 0:
+        if (f2C0) {
+            f288->func_00085BD0(0);
+            f64->f4E0->f1A8[f120]->f95C = 0;
+            f288->func_00086130(0);
+            f288->func_00086140(0);
+            f29C = 10.0f;
+            f294 = 1;
+            f288->func_00086130(0);
+            f288->func_00086140(1);
+            f290 = 1;
+        }
+        break;
+    case 2:
+        if (f2C0) {
+            f288->func_00085D00(0);
+            f64->f4E0->f1A8[f120]->f95C = 0;
+            f288->func_00086130(0);
+            f288->func_00086140(0);
+            f29C = 10.0f;
+            f294 = 1;
+            f288->func_00086140(1);
+            f288->func_00086130(1);
+            f290 = 3;
+        }
+        break;
+    case 6:
+        if (f2C0) {
+            func_0004D0E0();
+            func_0004D230();
+            f288->func_00085F40(0);
+            func_0004CCF0(0);
+        }
+        break;
+    case 5:
+        if (f2C0) {
+            func_0004D0E0();
+            func_0004D230();
+            f288->func_00085E50(0);
+            func_0004CCF0(0);
+        }
+        break;
+    case 4:
+        if (f2C0) {
+            func_0004D0E0();
+            f288->func_00086030(0);
+            f288->func_00086130(0);
+            f288->func_00086140(0);
+            f288->func_00085D00(1);
+            f288->func_00086130(1);
+            f64->f4E0->f1A8[f120]->f95C = 1;
+            f290 = 2;
+        }
+        break;
+    }
+    f2C0 = 0;
+    if (f284) {
+        if (f64->f4E0->f1A8[f120]->func_00108660()) {
+            a = f64->f4E0->f1A8[f120]->fA40;
+            b = f288->func_00086180();
+            f64->f4E0->f1A8[f120]->fA40 = 0;
+            switch (f290) {
+            case 1:
+                func_0004D0E0();
+                if (a > 0) {
+                    f288->func_00086150(a);
+                    f288->func_00086130(0);
+                    f288->func_00086140(0);
+                    f288->func_00085D00(1);
+                    f288->func_00086130(1);
+                    f64->f4E0->f1A8[f120]->f95C = 1;
+                    f290 = 2;
+                } else {
+                    func_0004CCF0(0);
+                }
+                f294 = 0;
+                break;
+            case 3:
+                if (b <= a) {
+                    f288->func_00086150(a);
+                    func_0004D0E0();
+                    f288->func_00086130(0);
+                    f288->func_00086140(0);
+                    f288->func_00085D00(1);
+                    f288->func_00086130(1);
+                    f64->f4E0->f1A8[f120]->f95C = 1;
+                    f290 = 2;
+                    f284 = 0;
+                    return 1;
+                }
+                if (f288->func_000861C0(f120)) {
+                    f288->func_00086130(0);
+                    f288->func_00086140(0);
+                    f288->func_00085E50(1);
+                    f64->f4E0->f1A8[f120]->f95C = 1;
+                    f284 = 0;
+                    f290 = 5;
+                    return 1;
+                }
+                f2A0[f120] = 0;
+                n = 0;
+                i = 0;
+                if (0 < f90) {
+                    do {
+                        if (f2A0[i]) {
+                            n++;
+                            f134 = i;
+                        }
+                        i++;
+                    } while (i < f90);
+                    if (n > 1) {
+                        f288->func_00086130(0);
+                        f288->func_00086140(0);
+                        f288->func_00085F40(1);
+                        f64->f4E0->f1A8[f120]->f95C = 1;
+                        f284 = 0;
+                        f290 = 6;
+                        return 1;
+                    }
+                }
+                f288->func_00086130(0);
+                f288->func_00086140(0);
+                func_00032A20();
+                f19C->func_0006D280();
+                f19C->fB8 = f134 + 1;
+                f284 = 0;
+                f290 = 7;
+                return 1;
+            }
+            f284 = 0;
+        }
+    }
+    return 1;
 }
 
 void C_0004E480::func_0004E480() {
