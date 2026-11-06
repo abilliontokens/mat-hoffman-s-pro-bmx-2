@@ -43,6 +43,22 @@ struct C_00097050 {
     void func_00097050(C_00097050_Arg *a);
 };
 extern float D_00275544;
+struct C_00097050_Rec {
+    int kind;
+    char pad0[0x2554 - 4];
+    int count;
+    char pad1[0x2ff8 - 0x2558];
+    char nameA[10][0x78];
+    char nameB[10][0x78];
+    char pad2[0x50c8 - 0x3958];
+    char nameC[10][0x78];
+    char nameD[10][0x78];
+    char nameE[10][0x78];
+    char nameF[10][0x78];
+    char pad3[0x63d8 - 0x6388];
+    C_00097050_Obj *objA[10];
+    C_00097050_Obj *objB[10];
+};
 struct C_000976A0 {
     undefined4 func_000976A0(void);
 };
@@ -274,6 +290,112 @@ struct C_00097DA0 {
 };
 
 
+void C_00097050::func_00097050(C_00097050_Arg *a)
+{
+    char *self = (char *)this;
+    char buf[0x104];
+    char b2[0x104];
+    char b3[0x104];
+#define LIST(o) (*(char **)(*(char **)((char *)a + 0x64) + (o)))
+#define MGR (*(C_00097050_Mgr **)(*(char **)((char *)a + 0x64) + 0x484))
+#define N(m) ((char (*)[0x78])(self + 0x290 + (m)))
+    for (int i = 0; i < *(int *)(self + 0x1cc); i++) {
+        float *r = (float *)(self + 0x4104 + i * 0x10);
+        int *q = (int *)(self + 0x40d0 + i * 4);
+        int j;
+        for (j = 0; j < *(int *)(LIST(0x3ac) + 0x24); j++) {
+            char *item = (*(char ***)(LIST(0x3ac) + 0x28))[j];
+            if (N(0x1680)[i][0] && N(0x10e0)[i][0] && !func_001EA426(item + 0xa0, N(0x1680)[i])) {
+                MGR->func_0001BDB0(j);
+                MGR->func_0001B9E0(item, MGR->func_0001B900(item), 1);
+                MGR->func_0001B910(item);
+            }
+            if (N(0)[i][0] && !func_001EA426(item + 0xa0, N(0)[i]))
+                MGR->func_0001B910(item);
+            if (N(0x5a0)[i][0] && !func_001EA426(item + 0xa0, N(0x5a0)[i]))
+                MGR->func_0001B820(item);
+        }
+        if (N(0x38a0)[i][0] && *(int *)((char *)a + 0x1c8) == 0) {
+            C_00097050_Obj *o = (C_00097050_Obj *)(*(C_00097050_Finder **)((char *)D_002A8490 + 4))->func_0001D450(N(0x38a0)[i]);
+            if (o && *q != -1)
+                o->func_001A2A10(*q);
+        }
+        if (N(0x3f30)[i][0])
+            a->func_00033090(N(0x3f30)[i], *(C_00097050_V16 *)((char *)r + 0x65c), 1);
+        if (r[-1] != D_00275544 || r[0] != D_00275544 || r[1] != D_00275544)
+            a->func_00032E50(*(C_00097050_V16 *)(r - 1));
+        if (N(0x1c20)[i][0] && N(0x21c0)[i][0])
+            (*(C_00097050_Obj **)((char *)q + 0x7b0))->func_001B65D0();
+        if (N(0x2760)[i][0]) {
+            int found = -1;
+            int k;
+            for (k = 0; k < *(int *)(LIST(0x3b4) + 0x24) && found == -1; k++) {
+                char *e = (*(char ***)(LIST(0x3b4) + 0x28))[k];
+                if (!func_001EA426(N(0x2760)[i], e + 0x18)) {
+                    found = k;
+                    (*(C_00097050_VObj **)(e + 4))->v6();
+                }
+            }
+        }
+        if (N(0x2d00)[i][0] && *(int *)((char *)a + 0x1c8) == 0) {
+            C_00097050_VObj2 *o = (*(C_00097050_Finder **)((char *)D_002A8490 + 4))->func_0001D450(N(0x2d00)[i]);
+            if (o)
+                o->v20();
+        }
+    }
+    int n;
+    for (n = 0; n < *(int *)(self + 0x1b8); n++)
+        (*(C_00097050_Item ***)(self + 0x1c8))[n]->func_00096020(a);
+    if (*(int *)(self + 0x1b0) == 0)
+        return;
+#define ITEM ((*(char ***)(self + 0x1c8))[m])
+#define S(it, o) ((it) + k * 0x78 + (o))
+    for (int m = 0; m < *(int *)(self + 0x1b8); m++) {
+        if (*(int *)ITEM != 1)
+            continue;
+        int k;
+        for (k = 0; k < *(int *)(ITEM + 0x2554); k++) {
+            int done;
+            int j;
+            strcpy(buf, S(ITEM, 0x2ff8));
+            if (buf[0]) {
+                done = 0;
+                for (j = 0; j < *(int *)(LIST(0x3ac) + 0x24) && !done; j++) {
+                    char *e = (*(char ***)(LIST(0x3ac) + 0x28))[j];
+                    if (!func_001EA426(e + 0xa0, buf)) {
+                        MGR->func_0001B910(e);
+                        done = 1;
+                    }
+                }
+            }
+            strcpy(buf, S(ITEM, 0x34a8));
+            if (buf[0]) {
+                done = 0;
+                for (j = 0; j < *(int *)(LIST(0x3ac) + 0x24) && !done; j++) {
+                    char *e = (*(char ***)(LIST(0x3ac) + 0x28))[j];
+                    if (!func_001EA426(e + 0xa0, buf)) {
+                        MGR->func_0001B820(e);
+                        done = 1;
+                    }
+                }
+            }
+            strcpy(b2, S(ITEM, 0x5578));
+            strcpy(b3, S(ITEM, 0x50c8));
+            if (b3[0] && b2[0])
+                (*(C_00097050_Obj **)(ITEM + k * 4 + 0x63d8))->func_001B65D0();
+            strcpy(b2, S(ITEM, 0x5ed8));
+            strcpy(b3, S(ITEM, 0x5a28));
+            if (b2[0] && b3[0])
+                (*(C_00097050_Obj **)(ITEM + k * 4 + 0x6400))->func_001B65D0();
+        }
+    }
+#undef S
+#undef ITEM
+#undef N
+#undef LIST
+#undef MGR
+}
+
 undefined4 C_000976A0::func_000976A0(void)
 {
   int in_ECX = (int)this;
@@ -337,6 +459,30 @@ undefined4 C_00097740::func_00097740(int param_1)
     return in_ECX[2];
   }
   return 0;
+}
+
+void __stdcall func_00097770(const char *name)
+{
+    C_00097770_List *list = D_002A8490->f2A4->f64->f3A8->f0;
+    int i;
+    for (i = 0; i < list->count; i++) {
+        C_00097770_Entry *&e = list->items[i];
+        if (e->f4 == 2) {
+            C_00097770_Obj *obj = e->f8;
+            char buf[0x104];
+            const char *src = obj->f14C->name;
+            int n = min_ref((int)strlen(src), 0x103);
+            func_001E8920(buf, src, n);
+            buf[n] = 0;
+            char *ext = func_001E8AC0(buf, '.');
+            if (ext != 0) {
+                memset(ext, 0, strlen(ext));
+            }
+            if (func_001EA426(name, buf) == 0) {
+                obj->v4();
+            }
+        }
+    }
 }
 
 void __stdcall func_00097890(const char *name)
