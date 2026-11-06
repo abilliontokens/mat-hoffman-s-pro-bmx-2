@@ -252,6 +252,21 @@ struct C_0008B850 {
     C_0008B850 *func_0008B850(int a1, char *a2);
 };
 
+struct C_0008AED0 {
+    void *vtbl;
+    char pad4[0x20];
+    C_0008B850_Text *t24;
+    C_0008B850_Text *t28;
+    C_0008B850_Text *t2c;
+    C_0008B850_Text *t30;
+    C_0008B850_Text *t34;
+    C_0008B850_Text *t38;
+    Sprite_8AED0 *s3c;
+    Sprite_8AED0 *s40;
+    Sprite_8AED0 *s44;
+    C_0008AED0 *func_0008AED0();
+};
+
 struct V2_0008B710 {
     float x;
     float y;
