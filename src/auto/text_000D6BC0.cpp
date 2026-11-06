@@ -122,6 +122,24 @@ struct BmxUIPageHOF3 {
     void func_001BE3F0(void);
 };
 
+struct S_6DD0_Str { void func_0018C160(char *p); };
+struct S_6DD0_Mgr { char pad[0x2ec]; S_6DD0_Str *s; };
+struct S_6DD0_W {
+    S_6DD0_W *func_001B12C0(int a);
+    void func_001B13A0(char *a, char *b, int c, int d);
+    void func_001B2270(unsigned int c);
+    void func_001B1A30(float a, int b, float c);
+    void func_001B17D0(char *s);
+};
+struct S_6DD0_Spr {
+    char pad0[0x28]; float f28; char pad2c[0xc]; unsigned int f38; float f3c, f40, f44, f48; char pad4c[0xc]; unsigned char b58;
+    S_6DD0_Spr *func_001D5760();
+    void func_001D5810(char *a, float b, float c, int d);
+};
+extern char D_00278690[], D_002786A0[], D_00278678[], D_0027CEF0[], D_0027F29C[], D_00279B00[], D_00279AF0[], D_00279AE0[], D_00279AD0[], D_0027F2AC[];
+extern float D_0027F2B4;
+extern void *operator new(unsigned int);
+
 struct BmxUIPageHOF4 {
     int vtbl;
     char pad0[0x27c];
