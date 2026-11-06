@@ -63,7 +63,7 @@ extern int D_0027D1D8;
 void *_func_001EFBEE(S_001EF734 *o);
 struct C_Lex {
     int kind;
-    void func_001EEFBA(int d);
+    S_001EF734 *func_001EEFBA(int d);
     void func_001EF3D2(void *p);
 };
 extern void *D_002F6A18;
@@ -256,6 +256,46 @@ C_001EFB82 *C_001EFB82::func_001EFB82(char *param_1)
     }
     return this;
 }
+
+void *_func_001EFBEE(S_001EF734 *o)
+{
+    S_001EF734 acc;
+    S_001EF734 tmp;
+    S_001EF734 aux;
+    int first = 1;
+    acc.value = 0;
+    *(u32 *)&acc.flags &= 0xfffffe00;
+    while ((acc.flags & 0xf) == 0) {
+        char c = *D_002F6A28;
+        if (c == '@' || c == 'Z')
+            break;
+        if (first)
+            first = 0;
+        else
+            acc.func_001EFB18(',');
+        c = *D_002F6A28;
+        if (c == 0) {
+            acc.func_001EF613(2);
+            break;
+        }
+        int d = c - '0';
+        if (d >= 0 && d <= 9) {
+            D_002F6A28++;
+            ((C_Lex *)D_002F6A18)->func_001EEFBA(d);
+        } else {
+            char *p = D_002F6A28;
+            aux.value = 0;
+            *(u32 *)&aux.flags &= 0xfffffe00;
+            func_001F2F3F(&tmp, &aux);
+            if (D_002F6A28 - p > 1 && ((C_Lex *)D_002F6A18)->kind != 9)
+                ((C_Lex *)D_002F6A18)->func_001EF3D2(&tmp);
+            acc.func_001EF935(&tmp);
+        }
+    }
+    o->func_001EEEE6(&acc);
+    return o;
+}
+
 #pragma optimize("", on)
 void *_func_001EFCD5(void *a, char b, void *c)
 {
