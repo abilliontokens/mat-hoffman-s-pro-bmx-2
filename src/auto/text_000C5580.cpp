@@ -246,6 +246,11 @@ struct C_59C0_Res { char pad0[0x1a4]; C_59C0_Obj *f1a4; };
 struct C_59C0_Tab4 { char pad0[0x28]; C_59C0_Res **f28; };
 struct C_59C0_Tab3 { char pad0[0x2c]; C_59C0_Tab4 *f2c; int func_0001B3C0(int i); };
 struct C_59C0_Tab2 { char pad0[0x484]; C_59C0_Tab3 *f484; };
+struct C_59C0_VB {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8();
+};
 struct C_59C0_Sub {
     char pad0[0x150];
     C_59C0_Tab2 *f150;
@@ -344,6 +349,24 @@ void BmxUIPageParkEditor::func_000C5980(void)
         }
     }
     func_001BE3F0();
+}
+
+void BmxUIPageParkEditor::func_000C59C0()
+{
+    int i;
+
+    f280 = 0;
+    *(int *)((char *)this + 0x288) = 0;
+    f284 = 0;
+    f298 = 0;
+    f294 = 0;
+    f29C = 1;
+    f2A4 = 0;
+    for (i = 0; i < 16; i++) {
+        if (((C_59C0_Sub *)f124)->func_000BC0F0(i))
+            break;
+        D_002A8490->p2E0->f2C0->func_0005C1E0(i);
+    }
 }
 
 BmxUIPageParkEditor *BmxUIPageParkEditor::func_000C5D00(int a, int b, int c)
