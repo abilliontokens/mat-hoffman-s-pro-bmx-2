@@ -11,6 +11,7 @@ struct RiderPane {
     int func_00092A50(int *out);
     int func_00092B40(int idx);
     int func_00092BE0(void);
+    int func_00092AC0(void);
     void func_00093290(float a);
     void func_00093A00(float x, float y, int c, int a, int b, int d);
 };
