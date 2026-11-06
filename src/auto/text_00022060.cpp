@@ -48,7 +48,7 @@ struct C_000229C0 {
 extern double D_00276088;
 extern float D_002754B0, D_00275460, D_002756B8;
 extern "C" int func_001E8833(void);
-extern "C" void func_00158390(V4_000229C0 a, V4_000229C0 b, float c, V4_000229C0 *out);
+extern "C" void func_00158390(float r, V4_000229C0 v2, V4_000229C0 v1, V4_000229C0 *out);
 
 struct C_00157660 {
     void func_00157660(void);
