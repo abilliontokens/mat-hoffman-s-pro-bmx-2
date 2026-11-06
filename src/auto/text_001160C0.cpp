@@ -332,8 +332,8 @@ void C_001160C0::func_001160C0(float dt)
  if(!grounded && !f468 && state==4 && f9B0==D_00275544 && !f4F8 && !f4F4 && f1178) f9D0=1;
  }
  if(f9D0)f99C=0;
- }
  if(special && !grounded && !f468 && !f4F8 && !f4F4 && f1178)goto keep_d0;
+ }
  f9D0=0;
  keep_d0:
  f9B8=0;f9B0=0;
