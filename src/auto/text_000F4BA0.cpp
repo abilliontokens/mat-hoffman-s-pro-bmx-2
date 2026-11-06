@@ -111,7 +111,7 @@ void BmxUIPageOptions::func_000F4BA0(float dt)
             unk2a0 = 0;
         } else if (unk290 >= D_0027DE74) {
             unk284 = 1;
-            ((VPage_000F4BA0 *)this)->v70(unk28c, unk288);
+            v70(unk28c, unk288);
             unk290 = 0;
         }
     }
