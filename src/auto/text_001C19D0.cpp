@@ -82,7 +82,6 @@ static __forceinline void LoadSub19D0(Sub19D0 *s, Cfg19D0 *cfg, char **keys, cha
     s->func_001D5810((int *)buf, 0, 0, 0);
     int v1 = (int)s->f28;
     int v2 = (int)s->f2c;
-    (void)v1; (void)v2;
     int a[4];
     int b[4];
     b[0] = 0; b[1] = 0; b[2] = 0; b[3] = 0;
