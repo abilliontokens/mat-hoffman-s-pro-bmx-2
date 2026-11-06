@@ -14,6 +14,28 @@ struct V_002EFDB8 {
 };
 extern V_002EFDB8 *D_002EFDB8;
 
+struct C_001D5AD0 {
+    void func_001D5AD0(void);
+};
+
+struct C_0006B4B0 {
+    char pad0[0x98];
+    C_001D5AD0 *unk98;
+    C_001D5AD0 *unk9C;
+    char padA0[0xB8 - 0xA0];
+    C_001D5AD0 *unkB8[2];
+    char padC0[0xF8 - 0xC0];
+    C_001D5AD0 *unkF8[5];
+    char pad10C[4];
+    C_001D5AD0 *unk10C[16];
+    char pad14C[0x154 - 0x14C];
+    int unk154;
+    char pad158[0x164 - 0x158];
+    int unk164;
+    int unk168;
+    void func_0006B4B0(void);
+};
+
 struct C_001B1980 {
     void func_001B1980(void);
 };
