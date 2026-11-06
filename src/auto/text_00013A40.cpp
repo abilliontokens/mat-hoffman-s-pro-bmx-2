@@ -71,6 +71,16 @@ void *func_001E8A44(unsigned int size);
 extern "C" unsigned int strlen(const char *);
 #pragma intrinsic(strlen)
 template <class T> inline const T &Min_00013A40(const T &a, const T &b) { return a > b ? b : a; }
+inline int Clamp_00013A40(const char *s)
+{
+    volatile int len = strlen(s);
+    volatile int lim = 0x103;
+    volatile int res;
+    int a = lim, b = len;
+    if (a > b) a = b;
+    res = a;
+    return res;
+}
 inline int MinV_00013A40(int a, int b) { return a > b ? b : a; }
 
 struct C_00013F50 {
