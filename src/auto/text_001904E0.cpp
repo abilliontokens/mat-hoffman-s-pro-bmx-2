@@ -33,6 +33,11 @@ struct S_1904E0_Sub {
     void *func_00191400(void);
 };
 
+struct S_1904E0_Run {
+    char pad0[8];
+    int f8;
+};
+
 struct C_0018F350 {
     char pad0[0x18];
     unsigned int f18;
