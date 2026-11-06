@@ -18,9 +18,7 @@ struct Vec4 {
 
 static __inline float Max(float a, float b)
 {
-    float r;
-    _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b)));
-    return r;
+    return a > b ? a : b;
 }
 
 struct VecInit_0014ACB0 : Vec4 {
@@ -494,5 +492,77 @@ void C_0014AC30::func_0014AC30(Vec4 *vecs, int *ints)
         }
         fB0[i] = vecs[i];
     }
+}
+
+void C_0014ACB0::func_0014ACB0(void)
+{
+    VecInit_0014ACB0 a;
+    VecInit_0014ACB0 b;
+    Vec4 mn(3.4028235e+38f, 3.4028235e+38f, 3.4028235e+38f, 1.0f);
+    Vec4 mx(-3.4028235e+38f, -3.4028235e+38f, -3.4028235e+38f, 1.0f);
+    Vec4 t1, t2, t3, t4;
+    Vec4 *r;
+    int i;
+    float len;
+    float rad;
+
+    fA7 &= 0xdf;
+    D_002B92E0 = 0;
+    D_002B92F0 = 0;
+    *(u32 *)&f28.x = D_002A75A8;
+    *(u32 *)&f28.y = D_002A75AC;
+    *(u32 *)&f28.z = D_002A75B0;
+    *(u32 *)&f28.w = D_002A75B4;
+    f48 = 0;
+    for (i = 0; i < fA8; i++) {
+        if (fAC[i].a != 0) {
+            Xform_0014ACB0(&a, &fAC[i].a->mat, &fB0[i * 2].x);
+        } else {
+            *(Vec4 *)&a = fB0[i * 2];
+        }
+        if (fAC[i].b != 0) {
+            Xform_0014ACB0(&b, &fAC[i].b->mat, &fB0[i * 2 + 1].x);
+        } else {
+            *(Vec4 *)&b = fB0[i * 2 + 1];
+        }
+        Vec4 d(b.x - a.x, b.y - a.y, b.z - a.z, 1.0f);
+        _mm_store_ss(&len, _mm_sqrt_ss(_mm_set_ss(d.x * d.x + d.y * d.y + d.z * d.z)));
+        fC0[i] = a;
+        fBC[i] = len;
+        if (len > D_00275544) {
+            float inv = D_00275460 / len;
+            fC4[i] = Vec4(d.x * inv, d.y * inv, d.z * inv, 1.0f);
+        } else {
+            *(u32 *)&fC4[i].x = D_002A75A8;
+            *(u32 *)&fC4[i].y = D_002A75AC;
+            *(u32 *)&fC4[i].z = D_002A75B0;
+            *(u32 *)&fC4[i].w = D_002A75B4;
+        }
+        r = func_0011EEE0(&t1, &mn, &b);
+        r = func_0011EEE0(&t2, r, &a);
+        mn = *r;
+        r = func_0014AA70(&t3, &mx, &b);
+        r = func_0014AA70(&t4, r, &a);
+        mx = *r;
+    }
+    fD8 = Vec4((mx.x + mn.x) * D_002755E8, (mx.y + mn.y) * D_002755E8, (mx.z + mn.z) * D_002755E8, 1.0f);
+    f28 = fD8;
+    {
+        Vec4 h((mx.x - mn.x) * D_002755E8, (mx.y - mn.y) * D_002755E8, (mx.z - mn.z) * D_002755E8, 1.0f);
+        _mm_store_ss(&rad, _mm_sqrt_ss(_mm_set_ss(h.x * h.x + h.y * h.y + h.z * h.z)));
+        fE8 = rad;
+    }
+    f48 = fE8;
+    func_00133D80(f54);
+    *(u32 *)&f54->f0.x = D_002A75A8;
+    *(u32 *)&f54->f0.y = D_002A75AC;
+    *(u32 *)&f54->f0.z = D_002A75B0;
+    *(u32 *)&f54->f0.w = D_002A75B4;
+    *(u32 *)&f54->f10.x = D_002A75A8;
+    *(u32 *)&f54->f10.y = D_002A75AC;
+    *(u32 *)&f54->f10.z = D_002A75B0;
+    *(u32 *)&f54->f10.w = D_002A75B4;
+    f54->f80 = 0;
+    f54->f94 = 1.0f;
 }
 
