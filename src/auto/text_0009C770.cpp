@@ -43,15 +43,17 @@ static __forceinline void Free_0009C770(S_0009C770_E2 *e)
     int k;
     S_0009C770_Child *c;
 
-    for (k = 0; k < 12; k++) {
-        c = e->f4880[k];
-        if (c != 0) {
-            c->func_00012140();
-            func_001E891B(c);
-            e->f4880[k] = 0;
+    if (e != 0) {
+        for (k = 0; k < 12; k++) {
+            c = e->f4880[k];
+            if (c != 0) {
+                c->func_00012140();
+                func_001E891B(c);
+                e->f4880[k] = 0;
+            }
         }
+        func_001E891B(e);
     }
-    func_001E891B(e);
 }
 
 void C_0009C770::func_0009C770(void)
