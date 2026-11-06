@@ -118,18 +118,6 @@ struct C_001A1E60 {
     void func_001A1E60();
 };
 
-static __forceinline void ReleaseSlot_001A1E60(ObjV2 *&slot, ObjV2 *z)
-{
-    ObjV2 *p = slot;
-    if (p != z) {
-        int r = p->v2();
-        slot = z;
-        if (r != 0) {
-            return;
-        }
-    }
-    slot = z;
-}
 
 struct C_001A2500 {
     bool func_001A2500(void);
