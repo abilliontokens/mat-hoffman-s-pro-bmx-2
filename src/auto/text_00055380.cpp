@@ -288,7 +288,6 @@ struct func_0012B510 {
     virtual void v1();
     virtual void v2();
     virtual void v3();
-    char pad4[4];
 };
 typedef func_0012B510 CameraBehavior_00055380;
 
