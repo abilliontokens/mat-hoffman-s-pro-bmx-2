@@ -522,14 +522,18 @@ void C_001A60A0::func_001A60A0(int a, int b)
 }
 
 LoadMemoryCard *LoadMemoryCard::func_001A61C0(void *arg) {
+    int i;
+    int k;
     func_00157600(arg);
     vtbl = &D_0028BB74;
-    for (int i = 0; i < 2; i++) {
+    for (i = 0; i < 2; i++) {
         (&f44)[i] = 0;
         (&f34)[i] = 0;
         (&f3c)[i] = 0;
     }
-    f24 = 0; f28 = 0; f2c = 0; f30 = 0;
+    for (k = 0; k < 4; k++) {
+        (&f24)[k] = 0;
+    }
     f4c = 0; f50 = 0; f54 = 0x3f800000; f58 = 0;
     f64 = 0; f5c = 0; f60 = 0; f68 = 0; f70 = 1;
     f74 = 0; f78 = 0; f7c = 0;
