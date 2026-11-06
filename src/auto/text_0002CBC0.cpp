@@ -8,13 +8,15 @@ struct V4_2D270 {
     V4_2D270() { x = 0.0f; y = 0.0f; z = 0.0f; w = 1.0f; }
 };
 
-/* column i of a 4x4 matrix as a point (w = 1) */
-static __forceinline V4_2D270 Col_2D270(const float *m, int i)
+struct V3_2D270 { float x, y, z; };
+
+/* a point (w = 1) from its three coordinates */
+static __forceinline V4_2D270 Pt_2D270(float x, float y, float z)
 {
     V4_2D270 v;
-    v.x = m[i];
-    v.y = m[i + 4];
-    v.z = m[i + 8];
+    v.x = x;
+    v.y = y;
+    v.z = z;
     return v;
 }
 
