@@ -1,6 +1,6 @@
 /* 2 functions from 0x0003D910 to 0x0003E660, found by Ghidra. */
 #include "common.h"
-struct V4 { float x, y, z, w; V4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; } };
+struct V4 { float x, y, z, w; };
 struct Blk { char pad[0x358]; int w; int h; int d; char pad2[4]; int flag; };
 struct Q { char pad[0x28]; void func_00197E70(V4*); void func_00197B40(V4*, V4*); };
 struct Sub { int a; int b; Q* q; };
@@ -367,10 +367,6 @@ int Obj::_func_0003E410()
     Blk *blk;
     int w, h, d;
     int i, j;
-
-    a.z = 0.0f; a.y = 0.0f; a.x = 0.0f; a.w = 1.0f;
-    b.z = 0.0f; b.y = 0.0f; b.x = 0.0f; b.w = 1.0f;
-    c.z = 0.0f; c.y = 0.0f; c.x = 0.0f; c.w = 1.0f;
 
     if (f564->a != 0)
         return 1;
