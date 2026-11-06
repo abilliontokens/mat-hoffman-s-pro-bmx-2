@@ -6,6 +6,7 @@ static __forceinline void FloatToInt(int *out, float f)
     int * volatile p = out;
     *p = _mm_cvttss_si32(*(__m128 *)&f);
 }
+static __forceinline void Pin_0014D360(void *p) { }
 struct C_0013C8A0 {
     void func_0013C8A0(int key, void *out, int size, int flag);
     int func_0013C9F0(const char *name, const char *mode);
