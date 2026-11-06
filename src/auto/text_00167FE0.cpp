@@ -437,11 +437,11 @@ int C_00168280::func_00168A10(const char *name, int *out)
     return 0;
 }
 
-int __stdcall func_00168B90(float a, float *out)
+int C_00168280::func_00168B90(const char *name, float *out)
 {
     char buf[0x400];
 
-    if (func_00168550(a, buf, -1) != 0) {
+    if (func_00168550(name, buf, -1) != 0) {
         *out = (float)func_001E9649(buf);
         return 1;
     }
