@@ -308,6 +308,9 @@ extern int D_00275AD4;
 extern int D_002A90E4;
 extern int D_00275AC8;
 extern int D_002A90D4;
+extern int D_002A90B8, D_002A90BC, D_002A90C0;
+extern int D_002A90E8, D_002A90EC, D_002A90F0;
+extern int D_002A90D8, D_002A90DC, D_002A90E0;
 extern int D_0027CEE4;
 extern int D_0027CED8;
 extern int D_00289EB8;
@@ -366,9 +369,7 @@ int C_00187670::func_00187670(C_001877F0Param *stream)
     int i;
     int n;
     S_00187670_Elem *p;
-    char *s;
-    char c;
-    int off;
+    S_00187670_Elem *r;
 
     stream->func_00168C20((void *)&D_00289BE0, 0, &f24);
     n = f24;
@@ -377,17 +378,12 @@ int C_00187670::func_00187670(C_001877F0Param *stream)
     p = (S_00187670_Elem *)func_001E8A44(n * 0x10);
     if (p != 0) {
         func_00011FF0(p, 0x10, n, (void *)&func_00187000);
+        r = p;
     } else {
-        p = 0;
+        r = 0;
     }
-    f28 = p;
-    s = stream->section;
-    off = (int)saved - (int)s;
-    do {
-        c = *s;
-        s[off] = c;
-        s++;
-    } while (c != 0);
+    f28 = r;
+    strcpy(saved, stream->section);
     for (i = 0; i < f24; i++) {
         func_001ADCC0(buf, 0x104, (const char *)&D_00289BD0, saved, i + 1);
         stream->func_00169710(buf);
