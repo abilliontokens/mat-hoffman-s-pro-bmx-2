@@ -4,26 +4,9 @@
 
 struct V_000551B0 {
     int x, y, z, w;
-    V_000551B0() { x = 0; y = 0; z = 0; w = 0; }
-    V_000551B0(int px, int py, int pz, int pw) { x = px; y = py; z = pz; w = pw; }
 };
 extern int D_002A1A64, D_002A1A68, D_002A1A6C, D_002A1A70;
-
-static __forceinline V_000551B0 vec_000551B0(void)
-{
-    V_000551B0 v;
-    v.x = D_002A1A64; v.y = D_002A1A68; v.z = D_002A1A6C; v.w = D_002A1A70;
-    return v;
-}
 extern int D_002BA160, D_002B9118, D_002B9108, D_002B9114, D_002B9110, D_002B910C;
-
-static __forceinline void setV_000551B0(V_000551B0 *d)
-{
-    d->x = D_002A1A64;
-    d->y = D_002A1A68;
-    d->z = D_002A1A6C;
-    d->w = D_002A1A70;
-}
 
 struct S_00054430_V4 {
     float x, y, z, w;
