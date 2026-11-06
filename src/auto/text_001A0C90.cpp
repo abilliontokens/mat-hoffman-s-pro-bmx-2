@@ -236,10 +236,34 @@ extern int D_002A9ECC, D_002A9ED0, D_002A9ED4, D_002A9ED8;
 extern int D_002EFF50;
 int __stdcall func_00157600(int a);
 
+struct V4I_001A1680 { int x, y, z, w; };
+
 /* SoundEmitter */
 struct C_001A1680 {
     void *vtbl;
-    int u[0x6C];
+    int pad4[8];
+    int f24;
+    V4I_001A1680 f28;
+    int f38;
+    int a3c[9];
+    V4I_001A1680 f60;
+    V4I_001A1680 f70;
+    V4I_001A1680 f80;
+    int f90;
+    int pad94;
+    int f98;
+    unsigned char f9c;
+    unsigned char pad9d[0x1a0 - 0x9d];
+    unsigned char f1a0;
+    unsigned char pad1a1[3];
+    int f1a4;
+    int f1a8;
+    int f1ac;
+    unsigned short f1b0;
+    unsigned short pad1b2;
+    int f1b4;
+    int f1b8;
+    int f1bc;
     C_001A1680 *func_001A1680(int a1, int a2, unsigned short a3, int a0);
 };
 
