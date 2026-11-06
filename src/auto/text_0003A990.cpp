@@ -36,10 +36,61 @@ static inline void Round_0003AC20(int *out,float f) { *out = _mm_cvtss_si32(*(__
 
 struct S_3AE40_Obj { void func_00197E70(float *p); void func_00197B40(float *p, void *q); };
 extern char D_002A14F4[];
+extern "C" char *func_001E8920(char *dst, const char *src, int n);
+template <class T> inline const T &Min(const T &a, const T &b) { return a > b ? b : a; }
+struct S_3AE40_Vec4 { float x, y, z, w; };
+/* 0x70-byte record written by C_3AE40::func_0003AE40 */
+struct S_3AE40_Rec {
+    unsigned short idx;
+    unsigned char kind;
+    char pad3;
+    unsigned short f4;
+    char name0[0x14];
+    char name1[0x14];
+    char pad2E[2];
+    S_3AE40_Vec4 v30;
+    float f40, f44, f48;
+    float pad4C;
+    S_3AE40_Vec4 v50;
+    unsigned short f60;
+    short f62, f64;
+    char pad66[10];
+};
+struct S_3AE40_Src4 { char pad0[0x24]; char name0[0x3C]; char name1[0x7C]; unsigned short fDC; };
+struct S_3AE40_Src10 {
+    char pad0[0x24];
+    S_3AE40_Vec4 v24;
+    S_3AE40_Vec4 v34;
+    char pad44[0x14];
+    float f58;
+    char pad5C[0xC];
+    float f68;
+    char pad6C[0xC];
+    float f78;
+};
+struct S_3AE40_Ent {
+    unsigned char kind;
+    char pad1[3];
+    S_3AE40_Src4 *f4;
+    S_3AE40_Obj *f8;
+    char padC[4];
+    S_3AE40_Src10 *f10;
+};
+struct S_3AE40_List {
+    int count;
+    S_3AE40_Ent **items;
+    S_3AE40_Ent *at(int i)
+    {
+        if (count > 0 && items != 0 && i < count) {
+            return items[i];
+        }
+        return 0;
+    }
+};
 struct C_3AE40 {
-    char pad0[0x484]; int f484; char pad488[0x5A0-0x488]; int count; void **items;
+    char pad0[0x484]; int f484; char pad488[0x5A0-0x488]; S_3AE40_List list;
     unsigned short func_00038A70(void *p, int *o);
-    void func_0003AE40(char *dst);
+    void func_0003AE40(S_3AE40_Rec *dst);
 };
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 extern char D_00276EEC[];
