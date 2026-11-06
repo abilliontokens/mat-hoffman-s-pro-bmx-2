@@ -95,6 +95,7 @@ struct C_001D6410 {
     void func_0005E7C0(float a, float b);
     void func_001D6600();
     void func_001D5AD0();
+    inline void setPosition(unsigned a, unsigned b) { setPos(a, b); }
     inline void setPos(unsigned a, unsigned b)
     {
         if (x != a || yi != b) {
