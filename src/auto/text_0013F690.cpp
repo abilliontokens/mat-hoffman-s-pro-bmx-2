@@ -135,6 +135,9 @@ static __forceinline void Mat_Copy_0013FD50(S_001401C0_Mat * volatile dst, const
     *(__m128 *)&d->m[12] = e;
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
+
 struct S_001401C0_Info {
     char pad0[0x30];
     int f30;
