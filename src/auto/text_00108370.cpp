@@ -532,6 +532,49 @@ void C_00108680::func_00108680(int a0) {
     unkA2C = a0;
 }
 
+V4_08690 func_00104B00(V4_08690 *a, V4_08690 *b);
+void C_00108690::func_00108690(float dt)
+{
+    if (f790 != 0) {
+        V4_08690 m1 = fA04->func_00165E20(f790, 1.0f, D_00276690, f794);
+        V4_08690 dir;
+        V4_08690 m2 = fA04->func_00165E20(f790, 0.98f, D_00276690, f794);
+        V4_08690 q;
+        V4_08690 v1;
+        V4_08690 v2;
+        V4_08690 m3 = fA04->func_00165EF0(f790, 1.0f, D_00276690, f794);
+        V4_08690 m4 = fA04->func_00165EF0(f790, 0.98f, D_00276690, f794);
+        m2 = f230->func_00197F70(&m2);
+        m1 = f230->func_00197F70(&m1);
+        float scale = 1.0f / (f790->f38 * D_00282AC0);
+        dir.x = (m1.x - m2.x) * scale;
+        dir.y = (m1.y - m2.y) * scale;
+        dir.z = (m1.z - m2.z) * scale;
+        dir.w = 1.0f;
+        f230->func_00197B90(&q);
+        q = func_00104B00(&q, &m3);
+        f230->func_00199300(&q);
+        v1.z = 0; v1.y = 0; v1.x = 0; v1.w = 1.0f;
+        v2.z = 0; v2.y = 0; v2.x = 0; v2.w = 1.0f;
+        f230->func_00197B40(&v1, &v2);
+        if (v1.y >= D_00282AB8) {
+            dir.x = 0.0f;
+            dir.z = 0.0f;
+            m1.x += dir.x * dt;
+            m1.y += dir.y * dt;
+            m1.z += dir.z * dt;
+            f230->func_00199650(&m1);
+        }
+        __declspec(align(16)) M4_08690 mat;
+        C_08690_Entity *e = f1E0;
+        e->f22C->func_00199C20(0, &mat);
+        fA00->f4->func_0019AD60(0, &mat);
+        e->v40();
+        e->f238 = dir;
+        e->f268 = *(V4_08690 *)&D_002A3A3C;
+    }
+}
+
 void C_001089C0::func_001089C0(Vec4_00108370 *out)
 {
     Vec4_00108370 v;
