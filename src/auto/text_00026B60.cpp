@@ -105,7 +105,7 @@ struct ObjE0_26 {
     virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
     virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24();
     virtual void v25(); virtual void v26(); virtual void v27(void *); virtual void v28(void *);
-    char pad4[0x28 - 4]; V4_000273F0 f2C; V4_000273F0 f3C;
+    char pad4[0x2C - 4]; V4_000273F0 f2C; V4_000273F0 f3C;
     char pad4C[0x204 - 0x4C]; int f204;
     char pad208[0x218 - 0x208]; float f218;
     char pad21C[0x238 - 0x21C]; V4_000273F0 f238;
@@ -205,6 +205,126 @@ struct C_00027850 {
     void func_00027850(int a0);
 };
 
+
+char *strcpy(char *, const char *);
+void C_00026B60::func_00026B60(char *name, V4_000273F0 a1, V4_000273F0 a2, V4_000273F0 a3, V4_000273F0 a4, int a5, int a6)
+{
+    void *mem;
+    int edi;
+    strcpy(f33C, name);
+    mem = func_001E8A44(0x310);
+    f1E0 = mem ? (ObjE0_26 *)((ObjE0_26 *)mem)->func_00175110(1) : 0;
+    f1E0->v10();
+    f1E0->func_00174550(0, 1, 0);
+    f1E0->f204 = D_002BA148;
+    func_001577A0(f1E0, -1);
+    f1E0->f2C = a3;
+    f1E0->f3C = a4;
+    f1E0->f238 = f1E0->f2C;
+    f1E0->f268 = f1E0->f3C;
+    f1E0->f218 = 12345.0f;
+    f1E0->f300 = 1;
+    f2C = a1;
+    f3C = a2;
+    mem = func_001E8A44(0x44);
+    f1E4 = mem ? (ObjE4_26 *)((ObjE4_26 *)mem)->func_00194130(1) : 0;
+    f1E4->v27((void *)1);
+    func_001577A0(f1E4, -1);
+    f1E4->v28(f1E0);
+    f230 = a6;
+    f1E0->v27((void *)a6);
+    f22C = a5;
+    mem = func_001E8A44(0x158);
+    f1F0 = mem ? (ObjF0_26 *)((ObjF0_26 *)mem)->func_001A8E30(1) : 0;
+    f1F0->func_001A9070(0x3c);
+    f1F0->func_0001EDC0(f1E0);
+    f1F0->f28 = 1;
+    f1F0->f68 = 0;
+    f1F0->f60 = 1;
+    f1F0->f3C = 0;
+    f1F0->f40 = 0;
+    f1F0->f4C = 1;
+    f1F0->f44 = 1;
+    f1F0->fB4 = 0;
+    f1F0->fB8 = 0;
+    f1F0->fD0 = 0.25f;
+    f1F0->fD4 = 0;
+    f1F0->fC8 = 0;
+    func_001577A0(f1F0, -1);
+    mem = func_001E8A44(0x6c);
+    f1F4 = mem ? (ObjF4_26 *)((ObjF4_26 *)mem)->func_001A8630(1) : 0;
+    f1F4->func_001A8BC0(f1F0, f22C, 0, D_002A10F0, 0, 0);
+    func_001577A0(f1F4, -1);
+    f1F4->f58 = 1;
+    f1F4->f64 = &f234;
+    f1F4->f68 = &f238;
+    mem = func_001E8A44(0x110);
+    f1FC = mem ? (ObjFC_26 *)((ObjFC_26 *)mem)->func_0017F050(1) : 0;
+    f1FC->func_0017F0A0(2);
+    func_001577A0(f1FC, 2);
+    f1FC->f60 = this;
+    f1FC->func_001334E0(1);
+    f1FC->f68 = D_002BA15C;
+    edi = ((Glob4334_26 *)D_002A4334)->func_00132E20(&D_00276688);
+    f1FC->func_00086C20(0);
+    f1FC->func_00133660(edi);
+    f1FC->fA7 |= 1;
+    mem = func_001E8A44(0x110);
+    f200 = mem ? (ObjFC_26 *)((ObjFC_26 *)mem)->func_0017F050(1) : 0;
+    f200->func_0017F0A0(2);
+    func_001577A0(f200, 2);
+    f200->f60 = this;
+    f200->func_001334E0(1);
+    f200->f68 = D_002BA15C;
+    f200->func_00086C20(0);
+    f200->func_00133660(edi);
+    f200->fA7 |= 1;
+    mem = func_001E8A44(0xf4);
+    f1F8 = mem ? (ObjF8_26 *)((ObjF8_26 *)mem)->func_0014AB30(1) : 0;
+    f1F8->func_00129920(2);
+    func_001577A0(f1F8, 2);
+    f1F8->f60 = this;
+    f1F8->func_0014C1C0(1, 0, 0);
+    f1F8->v32();
+    f1F8->f9C = (void *)0;
+    f1F8->f68 = D_002BA15C;
+    f1F8->f60 = f1F0;
+    f1F8->f64 = (void *)f1F0->f24;
+    mem = func_001E8A44(0x120);
+    f204 = mem ? (Obj204_26 *)((Obj204_26 *)mem)->func_001A4A50(1) : 0;
+    f204->func_00129920(3);
+    f204->f68 = D_002BA154;
+    func_001577A0(f204, 2);
+    mem = func_001E8A44(0x138);
+    f208 = mem ? (Obj208_26 *)((Obj208_26 *)mem)->func_0001EBB0(1) : 0;
+    f208->v10();
+    func_001577A0(f208, 2);
+    f208->v27(f1E0);
+    f208->v28(this);
+    f208->f30 = 1;
+    mem = func_001E8A44(0x1ec);
+    f1E8 = mem ? (ObjE8_26 *)((ObjE8_26 *)mem)->func_000B6180(1) : 0;
+    f1E8->func_000B6640(f22C, f1E0);
+    f1E8->f94 = &f234;
+    f1E8->f98 = &f238;
+    func_001577A0(f1E8, -1);
+    mem = func_001E8A44(0x14);
+    f220 = mem ? (Axis14_26 *)mem : 0;
+    if (f220) { f220->f0 = 0.0f; f220->f4 = 0.0f; f220->fC = 3.402823466e+38f; f220->f10 = -3.402823466e+38f; f220->f8 = 1.0f; }
+    mem = func_001E8A44(0x14);
+    f224 = mem ? (Axis14_26 *)mem : 0;
+    if (f224) { f224->f0 = 1.0f; f224->f4 = 0.0f; f224->fC = 3.402823466e+38f; f224->f10 = -3.402823466e+38f; f224->f8 = 1.0f; }
+    mem = func_001E8A44(0x14);
+    f228 = mem ? (Axis14_26 *)mem : 0;
+    if (f228) { f228->f0 = 0.0f; f228->f4 = 0.0f; f228->fC = 3.402823466e+38f; f228->f10 = -3.402823466e+38f; f228->f8 = 1.0f; }
+    mem = func_001E8A44(0xbc);
+    f20C = mem ? (Obj20C_26 *)((Obj20C_26 *)mem)->func_000B8B60(1) : 0;
+    func_001577A0(f20C, -1);
+    f20C->f24 = 1;
+    f20C->func_000B8C80(f1E0);
+    f20C->f94 = &f758;
+    f20C->f98 = &f768;
+}
 
 int C_000273F0::func_000273F0(V4_000273F0 *a1, V4_000273F0 *a2, V4_000273F0 *a3)
 {
