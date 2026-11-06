@@ -33,10 +33,10 @@ struct Sound149A0 {
 extern char *D_002B9120;
 extern const float D_002756B4;
 #include <xmmintrin.h>
-static inline float sqrtf(float x)
+static __forceinline float sqrtf(float x)
 {
     float r;
-    _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x)));
+    _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x));
     return r;
 }
 
@@ -228,49 +228,58 @@ void AIPedFleeState::func_00014EA0()
 
 int AIPedFleeState::func_00014EF0(float dt)
 {
-    float dist;
-    int idx;
+    struct {
+        AIPedFleeState *self;
+        float dist;
+        int idx;
+    } L;
+    float d2;
     float len;
-    char *rider;
 
+    L.dist = 0.0f;
+    L.idx = 0;
+    L.self = this;
     if (*(int *)(*(int *)((char *)D_002A8490 + 0x2a4) + 0x1c8) == 1)
         return 1;
-    *(int *)((char *)owner + 0x3b0) = owner->func_000119D0((char *)owner + 0x3e4);
-    owner->func_00011BE0(&idx, &dist);
-    if (idx == -1)
+    *(int *)((char *)L.self->owner + 0x3b0) = L.self->owner->func_000119D0((char *)L.self->owner + 0x3e4);
+    L.self->owner->func_00011BE0(&L.idx, &L.dist);
+    if (L.idx == -1)
         return 1;
-    rider = *(char **)(*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8);
-    if (dist < D_002756C8 && *(float *)(rider + 0x1194) > D_00275460) {
-        if (*(int *)(*(int *)(rider + 0x950) + 0xbc) == 0)
+    if (L.dist < D_002756C8 &&
+        *(float *)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + L.idx * 4 + 0x1a8) + 0x1194) > D_00275460) {
+        if (*(int *)(*(int *)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + L.idx * 4 + 0x1a8) + 0x950) + 0xbc) == 0)
             func_00012B00(1);
     } else {
-        float dx = *(float *)((char *)this + 0xc) - *(float *)((char *)owner + 0x3e4);
-        float dy = *(float *)((char *)this + 0x10) - *(float *)((char *)owner + 0x3e8);
-        float dz = *(float *)((char *)this + 0x14) - *(float *)((char *)owner + 0x3ec);
-        len = sqrtf(dx * dx + dy * dy + dz * dz);
+        float *o = (float *)((char *)L.self->owner + 0x3e4);
+        float dx = *(float *)((char *)L.self + 0xc) - o[0];
+        float dy = *(float *)((char *)L.self + 0x10) - o[1];
+        float dz = *(float *)((char *)L.self + 0x14) - o[2];
+        d2 = dx * dx + dy * dy + dz * dz;
+        len = sqrtf(d2);
         if (len < D_00275600) {
-            if (*(unsigned int *)((char *)D_002A8490 + 0x238) <= *(unsigned int *)((char *)this + 0x1c))
+            if (*(unsigned int *)((char *)D_002A8490 + 0x238) <= *(unsigned int *)((char *)L.self + 0x1c))
                 return 1;
             func_00012B00(0);
         }
     }
-    if (dist > D_002756C4) {
+    if (L.dist > D_002756C4) {
         if (IsLocal_151F0())
-            *(int *)((char *)owner + 0x3bc) = 4;
-        (*(PedAnim **)((char *)owner + 0x384))->func_0008AB90(*(int *)((char *)owner + 0x3a0));
+            *(int *)((char *)L.self->owner + 0x3bc) = 4;
+        (*(PedAnim **)((char *)L.self->owner + 0x384))->func_0008AB90(*(int *)((char *)L.self->owner + 0x3a0));
     }
-    if (*(char *)((char *)owner + 0x3e2) == 2)
+    if (*(char *)((char *)L.self->owner + 0x3e2) == 2)
         return 1;
-    if (dist < D_002756BC && *(int *)(*(int *)(rider + 0x950) + 0xbc) == 0)
-        func_000149A0(idx, -13.0f);
+    if (L.dist < D_002756BC &&
+        *(int *)(*(int *)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + L.idx * 4 + 0x1a8) + 0x950) + 0xbc) == 0)
+        func_000149A0(L.idx, -13.0f);
     if (IsLocal_151F0())
-        *(int *)((char *)owner + 0x3bc) = 6;
-    (*(PedAnim **)((char *)owner + 0x384))->func_0008AB90(*(int *)((char *)owner + 0x390));
-    *(float *)((char *)owner + 0x3d8) = dt + *(float *)((char *)owner + 0x3d8);
-    if (*(float *)((char *)owner + 0x3d8) > D_00275548) {
+        *(int *)((char *)L.self->owner + 0x3bc) = 6;
+    (*(PedAnim **)((char *)L.self->owner + 0x384))->func_0008AB90(*(int *)((char *)L.self->owner + 0x390));
+    *(float *)((char *)L.self->owner + 0x3d8) = dt + *(float *)((char *)L.self->owner + 0x3d8);
+    if (*(float *)((char *)L.self->owner + 0x3d8) > D_00275548) {
         if (IsLocal_151F0())
-            *(int *)((char *)owner + 0x3bc) = 8;
-        (*(PedAnim **)((char *)owner + 0x384))->func_0008AB90(*(int *)((char *)owner + 0x3a8));
+            *(int *)((char *)L.self->owner + 0x3bc) = 8;
+        (*(PedAnim **)((char *)L.self->owner + 0x384))->func_0008AB90(*(int *)((char *)L.self->owner + 0x3a8));
     }
     return 1;
 }
