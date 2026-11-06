@@ -543,7 +543,19 @@ void *C_0001C9C0::func_0001C9C0(int flags) {
 
 C_0001CA30 *C_0001CA30::func_0001C9F0(void)
 {
-    init_0001C9F0(this);
+    extern int D_00275DAC;
+    vtbl = (void *)&D_00275DAC;
+    f8 = 0;
+    f4 = 0;
+    fC = 0;
+    f10 = 0;
+    clear_bit0_0001C9F0(&f14);
+    f1C = 0;
+    f18 = 0;
+    f20 = 0;
+    f24 = 0;
+    clear_bit0_0001C9F0(&f28);
+    clear_bit0_0001C9F0(&f2C);
     return this;
 }
 
