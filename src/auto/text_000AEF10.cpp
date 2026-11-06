@@ -135,6 +135,59 @@ struct C_000AF8A0 {
 
 extern int D_0027CA70;
 
+#include <string.h>
+
+struct Vec4_000AF0D0 {
+    float x, y, z, w;
+    Vec4_000AF0D0() { x = y = z = 0; w = 1; }
+};
+
+/* config file reader, 0x4CC bytes */
+struct S_000AF0D0_Stream {
+    char pad0[0x4CC];
+    S_000AF0D0_Stream *func_00168280(void);
+    int func_00169490(const char *path, int flags);
+    void func_001691E0(void);
+    void func_00169710(const char *name);
+    void func_00168A10(const char *key, int *dst);
+    void func_00168550(const char *key, char *dst, int n);
+    void func_00168BE0(const char *key, const char *def, char *dst, int n);
+    void func_00168CB0(const char *key, const Vec4_000AF0D0 &def, Vec4_000AF0D0 &dst);
+};
+
+/* grind line manager */
+struct S_000AF0D0_Mgr {
+    S_000AF0D0_Mgr *func_00159560(int a);
+    void func_001595A0(int n, void *owner);
+    void *func_00159E90(char *name, Vec4_000AF0D0 *p0, Vec4_000AF0D0 *p1, char *s2, char *s3, int n);
+};
+
+struct S_000AF0D0_Node {
+    char pad0[0x128];
+    char f128[1];
+};
+
+struct S_000AF0D0_List {
+    char pad0[0x24];
+    int f24;
+    S_000AF0D0_Node **f28;
+};
+
+struct C_000AF0D0 {
+    char pad0[0x134];
+    char f134[0x530 - 0x134];
+    S_000AF0D0_Mgr *f530;
+    S_000AF0D0_List *f534;
+    int func_000AF0D0(void);
+};
+
+extern char D_002A5870[];
+extern char D_00276DCC[], D_00276DBC[], D_00276DB0[], D_00276DA4[], D_00276D98[], D_00276D8C[];
+extern char D_00275630[];
+int func_001ADCC0(char *dst, int size, const char *fmt, ...);
+extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
+void func_000AE280(void);
+
 /* one 0x160-byte record of the table at BmxScene+0x344 */
 struct S_000AEFA0_Elem {
     char pad0[0x160];
