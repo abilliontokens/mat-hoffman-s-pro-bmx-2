@@ -20,6 +20,9 @@ struct V4_00125540 {
 };
 
 void func_0011F0E0(V4_00125540 *a, V4_00125540 *b, V4_00125540 *c, unsigned short *indices, void **data);
+void func_0011F210(V4_00125540 *a, V4_00125540 *b, V4_00125540 *c, unsigned short *indices, void **data);
+void func_00123F20(V4_00125540 *outNormal, V4_00125540 *outHit, V4_00125540 *n, V4_00125540 *a, V4_00125540 *b, V4_00125540 *c, V4_00125540 *a2, V4_00125540 *b2, V4_00125540 *c2);
+void func_00124760(V4_00125540 *outNormal, V4_00125540 *outHit, V4_00125540 *n, V4_00125540 *a, V4_00125540 *b, V4_00125540 *c, V4_00125540 *a2, V4_00125540 *b2, V4_00125540 *c2);
 void func_0011EFA0(float *out, float *in);
 
 static __forceinline void Cross_00125540(float * volatile out, float * volatile a, float * volatile b)
