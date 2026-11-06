@@ -40,6 +40,8 @@ extern char D_0028D75C[], D_0028D998[], D_0028E1D4[], D_0028E1C4[], D_0028E1B0[]
 extern float D_00275544;
 extern int D_002F07B8[];
 char *func_001E8AC0(char *, int);
+extern "C" void *memset(void *, int, unsigned int);
+extern "C" unsigned int strlen(const char *);
 int func_001E8858(float);
 struct Cfg19D0 {
     void func_00168BE0(char *, char *, char *, int);
