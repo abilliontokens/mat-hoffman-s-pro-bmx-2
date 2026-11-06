@@ -267,6 +267,14 @@ struct C_001A1680 {
     C_001A1680 *func_001A1680(int a1, int a2, unsigned short a3, int a0);
 };
 
+static __forceinline void Copy_001A1680(V4I_001A1680 *d, const V4I_001A1680 *s)
+{
+    d->x = s->x;
+    d->y = s->y;
+    d->z = s->z;
+    d->w = s->w;
+}
+
 struct C_001A1860 {
     virtual void v0();
     virtual void v1();
