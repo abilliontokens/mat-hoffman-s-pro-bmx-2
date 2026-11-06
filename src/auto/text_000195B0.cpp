@@ -325,6 +325,17 @@ template <class T> inline T min_198E0(T a, T b)
 {
     return a > b ? b : a;
 }
+#define CopyPathW_198E0(dst, src) \
+    { \
+        volatile int len, lim; \
+        int n, r; \
+        len = strlen(src); \
+        lim = 0x103; \
+        r = min_198E0((int)lim, (int)len); \
+        n = r; \
+        func_001E8920(dst, src, n); \
+        (dst)[n] = 0; \
+    }
 #define CopyPathV_198E0(dst, src, len, lim, res) \
     { \
         int n, r; \
