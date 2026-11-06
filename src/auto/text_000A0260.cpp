@@ -1,5 +1,19 @@
 /* 10 functions from 0x000A0260 to 0x000A11A0, found by Ghidra. */
 #include "common.h"
+struct Node_A0B { char pad[0x3c]; int id; Node_A0B* func_00192900(int); void func_00192AF0(void*,int); void func_00192A50(Node_A0B*,void*); void func_00192A90(void*); void func_00192AC0(void*); };
+struct List_A0B { List_A0B* func_00157600(int); void func_001577A0(void*,int); };
+struct Link_A0B { Link_A0B* func_00179820(int); void* func_0017A310(void*); };
+struct World_A0B { void func_0015D850(int,int,int,int,int,int,int,int,int); void func_0015DA60(int,int,void*); };
+struct Special_A0B { void** vt; Special_A0B* func_001C4F40(); int func_001C4F70(int,int,int,int,int,int,int); void func_001C4FA0(int); };
+struct Result_A0B { int x; Node_A0B* node; Special_A0B* special; Result_A0B* func_00193490(); };
+struct Sector_A0B { char pad[0x114]; int a; int b; int c; int d; int e; int f; void* data; int count; char rest[0x34]; };
+struct Edge_A0B { int x; char data[0x40]; int a,b; };
+struct Bounds_A0B { char pad[0x538]; int a,b,c,d; };
+struct Scene_A0B { void** vt; char pad[0x33c]; int count; Sector_A0B* sectors; int x348; int edges; int flag; char p354[0x30]; Edge_A0B* edge; Bounds_A0B* bounds; char p38c[0x118]; List_A0B* list; Node_A0B** nodes; Node_A0B** other; int *a,*b,*c,*d; int func_000A0BA0(); };
+extern World_A0B* D_002E2930;
+extern Special_A0B* D_002F07E8;
+extern Result_A0B* D_002EFE78;
+void func_00012140();
 struct C_000A09F0 {
     char pad0[0x18];
     int unk18;
