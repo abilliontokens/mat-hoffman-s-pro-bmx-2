@@ -11,6 +11,10 @@ struct C_0004BAB0 {
     void *func_0004BAB0(int param_1);
 };
 
+struct C_0004AD10 {
+    void func_0004AD10();
+};
+
 struct C_0004BA90 {
     undefined4 func_0004BA90(byte param_1);
 };
