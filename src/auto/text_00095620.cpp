@@ -395,7 +395,6 @@ int C_00095A00::func_00095880()
 
 extern "C" void *__cdecl memset(void *dst, int c, unsigned int n);
 #pragma intrinsic(memset)
-static __inline void zero_mem(void *p, unsigned int n) { memset(p, 0, n); }
 int C_00095A00::func_00095A00(int n)
 {
     if (f34 == 0) {
@@ -408,16 +407,17 @@ int C_00095A00::func_00095A00(int n)
             return 0;
     }
 
-    S_00095A00_Sub *sub = &f68;
-
-    if (sub->count > 0) {
-        memset(sub->data, 0, sub->count * 4);
-        sub->count = 0;
+    int cnt = f68.count;
+    if (cnt > 0) {
+        unsigned char *p = (unsigned char *)f68.data;
+        for (int i = 0; i < cnt * 4; i++)
+            p[i] = 0;
+        f68.count = 0;
     }
-    sub->func_001CDED0(n);
+    f68.func_001CDED0(n);
     f38 = n;
     if (f50->v30(n - 1, 1) == 0) {
-        sub->func_001CBCF0(n);
+        f68.func_001CBCF0(n);
         f30 = 6;
     } else {
         f30 = 2;
