@@ -9,7 +9,9 @@ void func_000B6140();
 void *func_001E8A44(int size);
 
 extern int D_0027D4C4;
-extern int D_002A2FD8, D_002A2FDC, D_002A2FE0, D_002A2FE4;
+struct Q4_000B6180 { int x, y, z, w; };
+extern Q4_000B6180 D_002A2FD8;
+extern int D_002A2FDC, D_002A2FE0, D_002A2FE4;
 struct C_000B6180_Base {
     void func_00157600(int a0);
     C_000B6180_Base(int a0) { func_00157600(a0); }
