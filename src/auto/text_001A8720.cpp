@@ -255,8 +255,8 @@ struct C_001A8720 {
     int func_001A8720(void);
 };
 
-static __forceinline float Min_001A8720(float a, float b) { return a < b ? a : b; }
-static __forceinline float Max_001A8720(float a, float b) { return a > b ? a : b; }
+static __forceinline float Min_001A8720(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float Max_001A8720(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 
 int C_001A8720::func_001A8720(void)
 {
