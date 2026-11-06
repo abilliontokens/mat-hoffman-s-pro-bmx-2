@@ -304,6 +304,8 @@ void TireTrack::func_001B4A20()
 }
 
 #pragma intrinsic(strlen)
+/* Points the tokenizer at `str`, or clears it when the string is empty.
+   The original called strlen, which the compiler expanded inline. */
 C_001B4A40Ret *C_001B4A40Ret::Tokenizer_SetString(const char *str)
 {
     f4 = strlen(str) ? str : 0;
