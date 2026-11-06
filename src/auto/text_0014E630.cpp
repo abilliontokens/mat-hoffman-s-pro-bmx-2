@@ -115,6 +115,8 @@ struct C_0014ECD0 {
     C_0014ECD0 *func_0014ECD0(int a0, char *name, int a2, int a3, int a4, float f5, float f6, int a7);
 };
 
+extern "C" unsigned int __cdecl strlen(const char *);
+extern float D_002755E8;
 extern S_0014ECD0_G *D_002F07E8;
 extern S_0014ECD0_Files *D_002BEAAC;
 extern S_0014ECD0_Class *D_002AAEC8;
