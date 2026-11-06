@@ -398,7 +398,7 @@ void __stdcall func_001FF4E0(int, void *, int, int, int, int);
 void __stdcall func_00201210(void *, void *, int, int);
 void __stdcall func_002011F0(void *, void *);
 #pragma auto_inline(off)
-float __stdcall func_001AE530(float x, float y)
+float C_1AE570::func_001AE530(float x, float y)
 {
     extern float D_00278788;
     extern float D_0028AC88;
