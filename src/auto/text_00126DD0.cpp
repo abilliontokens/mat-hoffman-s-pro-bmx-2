@@ -10,9 +10,10 @@ struct S_00126DD0_V4 { float x, y, z, w; };
 extern float D_00275544;
 extern float D_0027954C;
 extern float D_00276DD4;
-void *func_001E8AA5(unsigned int size);
+void *func_001E8AA5(int size);
+void func_001E8390(void *p);
 void func_00126770(S_00126DD0_Tri *tris, S_00126DD0_Tri *a, S_00126DD0_Tri *b, int count, int *na, int *nb, float split, int axis);
-void func_00126DD0(S_00126DD0_Tri *tris, int count, float *matrix, S_00126DD0_V4 *center, S_00126DD0_Vec *extent, float *volume, float *radius, float *out);
+void func_00126DD0(S_00126DD0_Tri *tris, int count, float *matrix, S_00126DD0_Vec *center, S_00126DD0_Vec *extent, float *volume, float *radius, float *out);
 
 static inline void Xform_00126DD0(S_00126DD0_Vec *out, const S_00126DD0_Mat *mat, const float *v)
 {
