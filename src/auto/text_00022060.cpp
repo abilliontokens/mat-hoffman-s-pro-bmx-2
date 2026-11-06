@@ -282,7 +282,7 @@ static __forceinline float length_00022060(S_00022060_Src *v)
 {
     float square = v->x * v->x + v->y * v->y + v->z * v->z;
     float r;
-    _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&square));
+    _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&square)));
     return r;
 }
 
