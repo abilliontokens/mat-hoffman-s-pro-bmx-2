@@ -191,6 +191,7 @@ struct S_001CB610_Entry {
     char term;
     unsigned char f40;
     char pad41[3];
+    unsigned char Flags() { return f40; }
 };
 int __stdcall func_0023F469(int a0, int handle, int a2, int *a3, int a4, int a5,
                             int *desc, S_001CB7D0_Com **out);
