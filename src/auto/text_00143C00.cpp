@@ -669,18 +669,6 @@ void *C_00144940::func_00144940(unsigned int flags)
     return this;
 }
 
-void C_00144960::func_00144960(int a0, int a1, int a2, int a3)
-{
-    void *func_001E8A44(int);
-    func_001AF100(a0, a1, a2, a3);
-    void *p = func_001E8A44(0x38);
-    if (p != 0) {
-        p = ((C_00144710 *)p)->func_00144710(a0);
-    }
-    f10 = p;
-    fc |= 1;
-}
-
 C_001449B0 *C_001449B0::func_001449B0(void *param)
 {
     ((C_001AF300 *)this)->func_001AF300(param);
