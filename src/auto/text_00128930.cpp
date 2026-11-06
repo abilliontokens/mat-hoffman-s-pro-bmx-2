@@ -75,6 +75,72 @@ struct BoxCollisionObject {
 };
 
 
+extern float D_002B9348;
+extern float D_00275460;
+extern int D_002B9344;
+
+struct S_00128930_Leaf {
+    char pad0[0xC];
+    short sx;
+    short sy;
+    short sz;
+};
+
+struct S_00128930_Mat {
+    float m[4][4];
+};
+
+/* accumulator of ray hits, D_002B92EC */
+struct S_00128930_Hit {
+    S_00129050_Vec4 v0;
+    S_00129050_Vec4 v1;
+    S_00129050_Vec4 v2;
+    S_00129050_Vec4 v3;
+    float minv[3];
+    float padMin;
+    float maxv[3];
+    float padMax;
+    S_00129050_Vec4 (*f70)[2];
+    S_00129050_Vec4 *f74;
+    S_00129050_Vec4 *f78;
+    char pad7C[4];
+    int count;
+    int *f84;
+    char pad88[4];
+    float *f8C;
+    short *f90;
+    float t;
+    unsigned char flags;
+};
+
+extern S_00128930_Hit *D_002B92EC;
+
+static inline void Xform_00128930(S_00129050_Vec4 *out, const S_00128930_Mat *mat, const float *v)
+{
+    __m128 t = _mm_loadu_ps(v);
+    _mm_storeh_pi((__m64 *)&out->z, t);
+    out->w = 1.0f;
+    t = _mm_loadh_pi(t, (__m64 *)&out->z);
+    __m128 r0 = _mm_mul_ps(_mm_load_ps(mat->m[0]), t);
+    __m128 r1 = _mm_mul_ps(_mm_load_ps(mat->m[1]), t);
+    __m128 r2 = _mm_mul_ps(_mm_load_ps(mat->m[2]), t);
+    __m128 lo = _mm_unpacklo_ps(r0, r1);
+    __m128 hi = _mm_unpackhi_ps(r0, r1);
+    __m128 junk = _mm_movehl_ps(r2, r2);
+    lo = _mm_add_ps(lo, hi);
+    r2 = _mm_add_ps(r2, junk);
+    hi = _mm_movehl_ps(hi, lo);
+    lo = _mm_movelh_ps(lo, r2);
+    hi = _mm_shuffle_ps(hi, r2, 0x14);
+    lo = _mm_add_ps(lo, hi);
+    _mm_storeu_ps(&out->x, lo);
+    out->w = 1.0f;
+}
+
+static inline float Sqrt_00128930(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
+static __forceinline float Min_00128930(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float Max_00128930(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+
 #pragma optimize("y", off)
 int func_00129050(unsigned int a0, unsigned int a1)
 {
