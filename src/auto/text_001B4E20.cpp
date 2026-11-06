@@ -68,7 +68,7 @@ struct ModelVector_001B4ED0 {
     ModelVector_001B4ED0() { x = y = z = 0; w = 0x3f800000; }
 };
 struct C_001B4ED0_Base {
-    void *vtbl;
+    void *volatile vtbl;
     C_001B4ED0_Base() { vtbl = (void *)&D_0028CA9C; }
 };
 struct C_001B4ED0 : C_001B4ED0_Base {
@@ -328,13 +328,15 @@ int C_001B4E20::func_001B4E20(void *volatile param) {
     volatile int len;
     volatile int count;
     C_001B4E20 * volatile self = this;
+    int n;
 
     func_001B4B80(param);
     ((S_001B4E20_Stream *)param)->func_00168BE0((char *)&D_0027D880, (char *)&D_002764F0, buf, 0x104);
     len = func_001E9040(buf, (char *)&D_0027CEF0);
     count = len > 0x32 ? 0x32 : len;
-    func_001E8920((char *)self + 4, buf, count);
-    ((char *)self)[count + 4] = 0;
+    n = count;
+    func_001E8920((char *)self + 4, buf, n);
+    ((char *)self)[n + 4] = 0;
     ((S_001B4E20_Stream *)param)->func_00168C20((char *)&D_0028CA88, 1, (char *)self + 0x114);
     return 1;
 }
