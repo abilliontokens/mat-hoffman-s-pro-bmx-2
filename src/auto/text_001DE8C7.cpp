@@ -60,6 +60,8 @@ struct S_Heap {
 /* the import slots themselves: the original calls through the IAT entry */
 extern "C" __declspec(dllimport) long (__stdcall *NtAllocateVirtualMemory)(void **base, u32 zeroBits, u32 *size, u32 type, u32 protect);
 extern "C" __declspec(dllimport) long (__stdcall *NtFreeVirtualMemory)(void **base, u32 *size, u32 type);
+extern "C" long (__stdcall *_imp__NtAllocateVirtualMemory)(void **base, u32 zeroBits, u32 *size, u32 type, u32 protect);
+extern "C" long (__stdcall *_imp__NtFreeVirtualMemory)(void **base, u32 *size, u32 type);
 
 S_FreeNode * __stdcall func_001DF626(S_Heap *heap);
 void __stdcall func_001DF746(S_Heap *heap, S_FreeNode *node);
@@ -228,10 +230,11 @@ int __stdcall func_001DE942(const char *path, unsigned __int64 *freeToCaller, un
 }
 
 int func_001EAC1A(char *buf, int count, const char *fmt, ...);
+extern "C" int func_001EAC1A(char *buf, unsigned int n, const char *fmt, ...);
 int __stdcall func_001DEC61(int a)
 {
-    S_AnsiString name2;
     int x;
+    S_AnsiString name2;
     char buf[0x104];
     long status;
     int ok;
