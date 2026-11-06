@@ -73,7 +73,7 @@ extern S_002EFDB8 *D_002EFDB8;
 
 struct R146_Call { void func_0014A650(int); void func_00142D00(int); };
 struct R146_Entry { int a; int value; int c,d; };
-struct R146_Table { char pad[0x14]; R146_Entry *entries; };
+struct R146_Table { char pad[0x14]; R146_Entry *entries; void func_0014A8A0(); void func_00142D20(); };
 extern R146_Table *D_002A751C, *D_002A6D84, *D_002AA6C0;
 struct R146_Vector { int x,y,z,w; };
 struct R146_Constant { int index; R146_Vector value; };
@@ -201,6 +201,95 @@ struct C_00146DC0 {
     int unk48;
     void func_00146DC0();
 };
+
+void C_001467A0::func_001467A0() {
+    int i;
+    int resource = D_002A751C->entries[id26].value;
+    if (!resource) { func_0014A8A0(); resource = D_002A751C->entries[id26].value; }
+    (*(R146_Call **)((char *)D_002EFDB8 + 0x6c))->func_0014A650(resource);
+    resource = D_002A6D84->entries[id28].value;
+    if (!resource) { func_00142D20(); resource = D_002A6D84->entries[id28].value; }
+    (*(R146_Call **)((char *)D_002EFDB8 + 0x70))->func_00142D00(resource);
+    for (i = 0; i < count; ++i) {
+        int id = textures[i];
+        if (id < 0) {
+            if (id == -3) { save48 = *D_002EFDB8->f58; *D_002EFDB8->f58 = (save48 & 0xfffcffff) | (int)&D_00040000; func_00200390(i, (int)D_002EFDB8->f58); }
+            else if (id == -4) { save44 = *D_002EFDB8->f54; *D_002EFDB8->f54 = (save44 & 0xfffcffff) | (int)&D_00040000; func_00200390(i, (int)D_002EFDB8->f54); }
+            else if (id == -1) func_00200390(i, 0);
+            else func_00200390(i, ((R146_Entry *)*(void **)(D_002A71C0 + 0x14))[-id].value);
+        } else {
+            R146_Texture *texture = (R146_Texture *)D_002AA6C0->entries[id].value;
+            if (texture) {
+                int key = func_001AFF80(i);
+                texture = texture->v4(key);
+                func_00200390(i, texture->texture);
+                int palette = texture->palette;
+                if (palette) func_00200510(i, palette);
+            }
+        }
+    }
+    for (i = 0; i < stateCount; ++i) {
+        int state = states[i].state;
+        R146_State *p = &states[i]; unsigned value = p->value; int stage = p->stage;
+        if (state < 12) { D_0020C6DC |= 1 << stage; D_0020C6E0[stage * 32 + state] = value; }
+        else if (state == 12) { D_0020C6DC |= value < 25 ? 0x800 : 0x480f; D_0020C710[stage * 32] = value; }
+        else if (state < 22) { D_0020C6DC |= D_002751E8[state]; D_0020C6E0[stage * 32 + state] = value; }
+        else if (state == 28) func_001FD8E0(stage, value);
+        else if (state == 29) func_001FDA60(stage, value);
+        else if (state == 30) func_001FDAA0(stage, value);
+        else if (state <= 27) func_001FD9F0(stage, state, value);
+    }
+    for (i = 0; i < renderCount; ++i) {
+        unsigned value = render[i].value;
+        R146_Pair *p = &render[i]; int state = p->state;
+        if (state < 92) func_001FD020(D_002752F0[state], value);
+        else if (state < 136) { D_0020C6DC |= __imp__PsCreateSystemThreadEx[state]; D_0020C8E0[state] = value; }
+        else if (state == 136) func_001FCFF0(value);
+        else if (state == 137) func_001FD890(value);
+        else if (state == 138) func_001FD400(value);
+        else if (state == 139) func_001FD770(value);
+        else if (state == 140) func_001FD7C0(value);
+        else if (state == 141) func_001FD820(value);
+        else if (state == 142) func_001FD500(value);
+        else if (state == 143) func_001FE490(value);
+        else if (state == 144) func_001FE520(value);
+        else if (state == 145) func_001FE5B0(value);
+        else if (state == 147) func_001FD450(value);
+        else if (state == 146) func_001FD4C0(value);
+        else if (state == 148) func_001FD540(value);
+        else if (state == 149) func_001FD690(value);
+        else if (state == 150) func_001FD710(value);
+        else if (state == 151) func_001FD380(value);
+        else if (state == 152) func_001FE810(value);
+        else if (state == 153) func_001FE890(value);
+        else if (state == 154) func_001FE790(value);
+        else if (state == 155) func_001FE7D0(value);
+        else if (state == 156) func_001FD3C0(value);
+        else if (state == 157) func_001FD5A0(value);
+        else if (state == 158) func_001FE8E0(value);
+        else if (state == 159) func_001FD610(value);
+        else if (state == 160) func_001FE620(value);
+        else if (state == 161) func_001FE650(value);
+        else if (state == 162) func_001FE6C0(value);
+        else if (state == 163) func_001FE730(value);
+        else if (state == 164) func_001FE750(value);
+        else if (state == 165) func_001FE770(value);
+    }
+    i = 0;
+    if (constantCount >= 4) {
+        R146_Vector matrix[4];
+        for (int j = 0; j < 4; ++j) { matrix[j].z = 0; matrix[j].y = 0; matrix[j].x = 0; matrix[j].w = 0x3f800000; }
+        matrix[0] = constants[0].value; matrix[1] = constants[1].value;
+        matrix[2] = constants[2].value; matrix[3] = constants[3].value;
+        func_001FEC30(constants[0].index + 96, matrix);
+        i = 4;
+    }
+    for (; i < constantCount; ++i) func_001FEBD0(constants[i].index + 96, &constants[i].value);
+    *((char *)D_002EFDB8 + 0x90) = colors[0];
+    *((char *)D_002EFDB8 + 0x91) = colors[1];
+    *((char *)D_002EFDB8 + 0x92) = colors[2];
+    *((char *)D_002EFDB8 + 0x93) = colors[3];
+}
 
 void C_00146DC0::func_00146DC0()
 {
