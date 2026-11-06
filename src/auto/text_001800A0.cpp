@@ -122,6 +122,15 @@ extern float D_00275460;
 static __forceinline V_1800 Unpack1800(C_001804F0 *s) {
     return V_1800((float)s->unk0 * D_002EFD9C * D_002AB30C, (float)s->unk2 * D_002EFD9C * D_002AB30C, (float)s->unk4 * D_002EFD9C * D_002AB30C);
 }
+struct F4_1800 { float x, y, z, w; };
+static __forceinline F4_1800 UnpackF1800(C_001804F0 *s) {
+    F4_1800 r;
+    r.x = (float)s->unk0 * D_002EFD9C * D_002AB30C;
+    r.y = (float)s->unk2 * D_002EFD9C * D_002AB30C;
+    r.z = (float)s->unk4 * D_002EFD9C * D_002AB30C;
+    r.w = 1.0f;
+    return r;
+}
 void C_00180600::func_00180600(int a0, volatile int handle)
 {
     int n1;
@@ -168,20 +177,20 @@ void C_00180600::func_00180600(int a0, volatile int handle)
             D_002BEAAC->func_0013C8A0(handle, &y, 4, 1);
             D_002BEAAC->func_0013C8A0(handle, &z, 4, 1);
             V_1800 A(x, y, z);
-            C_001804F0 *s = q1.func_001804F0(&A.x);
-            rec->fC = (float)s->unk0 * D_002EFD9C * D_002AB30C;
-            rec->f10 = (float)s->unk2 * D_002EFD9C * D_002AB30C;
-            rec->f14 = (float)s->unk4 * D_002EFD9C * D_002AB30C;
+            V_1800 P = Unpack1800(q1.func_001804F0(&A.x));
+            rec->fC = P.x;
+            rec->f10 = P.y;
+            rec->f14 = P.z;
             V_1800 d = Sub1800(&rec->fC, &A.x);
             func_00104A00(n, &d.x);
             D_002BEAAC->func_0013C8A0(handle, &x, 4, 1);
             D_002BEAAC->func_0013C8A0(handle, &y, 4, 1);
             D_002BEAAC->func_0013C8A0(handle, &z, 4, 1);
             V_1800 B(n[0] + x, n[1] + y, n[2] + z);
-            s = q2.func_001804F0(&B.x);
-            rec->f18 = (float)s->unk0 * D_002EFD9C * D_002AB30C;
-            rec->f1C = (float)s->unk2 * D_002EFD9C * D_002AB30C;
-            rec->f20 = (float)s->unk4 * D_002EFD9C * D_002AB30C;
+            V_1800 Q = Unpack1800(q2.func_001804F0(&B.x));
+            rec->f18 = Q.x;
+            rec->f1C = Q.y;
+            rec->f20 = Q.z;
             V_1800 C(rec->f18, rec->f1C, rec->f20);
             if (C.x < x)
                 C.x += D_00275460;
@@ -189,10 +198,10 @@ void C_00180600::func_00180600(int a0, volatile int handle)
                 C.y += D_00275460;
             if (C.z < z)
                 C.z += D_00275460;
-            s = q3.func_001804F0(&C.x);
-            rec->f18 = (float)s->unk0 * D_002EFD9C * D_002AB30C;
-            rec->f1C = (float)s->unk2 * D_002EFD9C * D_002AB30C;
-            rec->f20 = (float)s->unk4 * D_002EFD9C * D_002AB30C;
+            V_1800 R = Unpack1800(q3.func_001804F0(&C.x));
+            rec->f18 = R.x;
+            rec->f1C = R.y;
+            rec->f20 = R.z;
             rec->f4 = sqrtf(C.z * C.z + C.y * C.y + C.x * C.x);
             D_002BEAAC->func_0013C8A0(handle, &rec->s8, 2, 1);
             D_002BEAAC->func_0013C8A0(handle, &rec->sA, 2, 1);
