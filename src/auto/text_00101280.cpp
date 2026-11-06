@@ -1,6 +1,7 @@
 /* 8 functions from 0x00101280 to 0x00101CF0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <string.h>
 extern float D_002B91CC;
 extern float D_002B91C8;
 extern float D_002755E8;
