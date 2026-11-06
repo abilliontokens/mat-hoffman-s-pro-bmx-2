@@ -6,6 +6,7 @@
 
 static __forceinline float Min_133F10(float a,float b) {float r;_mm_store_ss(&r,_mm_min_ss(_mm_load_ss(&a),_mm_load_ss(&b)));return r;}
 static __forceinline float Sqrt_133F10(float a) {float r;_mm_store_ss(&r,_mm_sqrt_ss(_mm_load_ss(&a)));return r;}
+static __forceinline float SqrtMem_00133D90(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
 extern float D_00275544;
 extern int D_0028464C;
 
