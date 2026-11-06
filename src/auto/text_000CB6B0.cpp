@@ -12,6 +12,39 @@ struct C_000CB6B0_Widget {
     void func_001B1B30(float a, float b);
 };
 
+struct C_001D5760 {
+    char pad0[0x28];
+    float f28;
+    float f2C;
+    char pad30[0xb];
+    unsigned char f3B;
+    float f3C;
+    float f40;
+    float f44;
+    float f48;
+    char pad4C[0xc];
+    unsigned char f58;
+    C_001D5760 *func_001D5760();
+    void func_001D5810(char *s, float a, float b, int c);
+    void func_001D5AA0();
+};
+struct C_0018C160 {
+    void *func_0018C160(char *s);
+};
+extern char D_00278690[], D_002786A0[], D_00278678[], D_002786B0[], D_0027E52C[];
+extern float D_002757F0, D_0027E140, D_0027886C;
+extern void *func_001E8A44(int n);
+extern void func_00160C20(int *p, int v);
+struct C_000CB6B0 {
+    char pad0[0x294];
+    C_001D5760 *f294;
+    C_000CB6B0_Widget *f298[2];
+    C_001D5760 *f2A0[4];
+    C_000CB6B0 *func_000CB6B0(int a, int b, int c);
+    void func_001BE4F0(int a, int b, int c);
+    void func_001577A0(C_000CB6B0_Widget *w, int v);
+};
+
 struct C_0005E840 {
     void func_0005E840(int id);
     void func_001D6600();
