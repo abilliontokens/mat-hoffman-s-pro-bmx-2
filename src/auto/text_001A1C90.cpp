@@ -157,6 +157,30 @@ struct C_001A23F0 {
 extern int D_0028B58C;
 void *func_001E8A44(int size);
 
+struct S_30D0_Block {
+    int count;
+    void **items;
+    int cap;
+    int grow;
+    u8 flag;
+    char pad[3];
+    void init(void)
+    {
+        items = 0;
+        count = 0;
+        cap = 0;
+        grow = 0;
+        flag &= 0xfe;
+    }
+    void alloc(void)
+    {
+        items = (void **)func_001E8A44(4);
+        cap = 16;
+        grow = 1;
+        flag |= 1;
+    }
+};
+
 struct C_001A2470 {
     char pad0[0x1c0];
     int f1c0;
@@ -597,6 +621,11 @@ void C_001A1E60::func_001A1E60() {
     unk1BC = 0;
 }
 
+extern "C" void __fastcall func_001A1E90(int *self)
+{
+    self[0x1b8 / 4] = 1;
+}
+
 C_001A1F70 *C_001A1F70::func_001A1F70(int a0, int a1, int a2, int a3) {
     func_001A1680(a0, a1, a2, a3);
     unk1C0 = 0;
@@ -633,6 +662,14 @@ C_001A2250 *C_001A2250::func_001A2250(int a0, S36_1A s0, S16_1A s1, S16_1A s2, i
 void C_001A22E0::func_001A22E0(int a0) {
     unk1C0 = a0;
 }
+
+#pragma optimize("g", off)
+void C_001A22F0::func_001A22F0(void) {
+ if (f1bc == 0) return;
+ if (f98 & 8) f1b4 = 1;
+ f1bc->v5(0);
+}
+#pragma optimize("", on)
 
 C_001A23F0 *C_001A23F0::func_001A23F0(S36_1A s0, S16_1A s1, S16_1A s2, int a17, int a18, int a19, int a20, int a21) {
     func_001A1860(s0, s1, s2, a17, a18, a19, a20, a21);
@@ -676,14 +713,16 @@ bool C_001A2500::func_001A2500(void)
 
 int C_001A2510::func_001A2510(S_001A2510_Arg *arg, int a1, int a2)
 {
-    if (arg == 0) {
-        return 0;
-    }
+    if (arg != 0) goto body;
+fail:
+    return 0;
+body:
     f0 = arg;
     f4 = arg->fb4->func_001CBEF0();
-    if (f4 == 0 || func_001A14A0(a1) == 0 || func_001A14F0(a2) == 0 || func_001A1450(0.3048f) == 0) {
-        return 0;
-    }
+    if (f4 == 0) goto fail;
+    if (func_001A14A0(a1) == 0) goto fail;
+    if (func_001A14F0(a2) == 0) goto fail;
+    if (func_001A1450(0.3048f) == 0) goto fail;
     return func_001A1410() != 0;
 }
 
