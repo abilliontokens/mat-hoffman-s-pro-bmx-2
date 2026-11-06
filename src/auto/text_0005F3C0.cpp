@@ -70,7 +70,9 @@ struct Label_5F3 {
     float f44;
     float f48;
     char pad4C[0xC];
-    u8 f58;
+    u8 f58_0 : 1;
+    u8 f58_1 : 1;
+    u8 f58_2 : 1;
     Label_5F3 *func_001D5760(void);
     void func_001D5810(void *font, float x, float y, int a);
 };
