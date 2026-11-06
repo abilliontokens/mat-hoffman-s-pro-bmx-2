@@ -68,17 +68,32 @@ struct C_0016FBC0 {
 };
 
 struct O_0016F800 { char pad[0xa8]; int f; };
-struct S_16F800_Part { float x, y, z; char padc[0x18]; int f24; char pad28[0x1c]; };
+struct S_16F800_Part { float x, y, z; char padc[0x14]; int f20; int f24; };
+struct S_16F800_Bucket { int id; S_16F800_Part *node; };
 struct S_16F800_Range {
-    char pad0[0x180]; float f180, f184; char pad188[8]; float f190;
-    char pad194[0x1fc - 0x194]; float f1fc, f200;
+    char pad0[0x170]; float f170, f174, f178, f17c;
+    float f180, f184, f188;
+    char pad18c[0x1fc - 0x18c]; float f1fc, f200;
     char pad204[0x270 - 0x204]; float f270, f274, f278, f27c;
 };
+struct S_16F800_Idx { char pad0[4]; int index; };
+struct S_16F800_Table { char pad0[4]; void *obj; };
+struct S_16F800_Creator { char pad0[0x14]; S_16F800_Table *f14; };
+struct S_16F800_Obj { char pad0[0xd4]; int fD4; void func_001B07A0(); };
+struct C_0015DA60 { void func_0015DD80(float *matrix, int count, char *in, char *out, int stride); };
 struct C_0016F800 {
-    char pad0[0x108];
+    char pad0[0x97];
+    char f97;
+    char pad98[0xb7 - 0x98];
+    char fB7;
+    char padB8[0xd7 - 0xb8];
+    char fD7;
+    char padD8[0xf7 - 0xd8];
+    char fF7;
+    char padF8[0x108 - 0xf8];
     int frame;          // 0x108
     int f10c;           // 0x10c
-    void *buckets;      // 0x110
+    S_16F800_Bucket *buckets; // 0x110
     int minb;           // 0x114
     int maxb;           // 0x118
     int count;          // 0x11c
@@ -87,7 +102,7 @@ struct C_0016F800 {
     S_16F800_Part **nodes; // 0x12c
     char pad130[0x14];  // 0x130
     int f144;           // 0x144
-    void *f148;         // 0x148
+    S_16F800_Idx *f148; // 0x148
     char pad14c[0x24];  // 0x14c
     O_0016F800 *obj170; // 0x170
     int func_0016F800(void);
@@ -96,12 +111,10 @@ extern "C" void __fastcall func_001D7D00(void);
 extern int D_002A88B8;
 extern float D_00288A7C, D_00275994, D_00275460;
 extern int *D_002F0630;
-struct S_16F800_Creator { char pad[0x14]; void *f14; };
 extern S_16F800_Creator *D_002A829C;
-void func_001B07A0(void);
-int func_001E8858(void);
-void func_000265C0(void *m, void *a, void *b);
-void *func_0015DD80(int a, void *m, void *b, void *c, int d);
+extern C_0015DA60 *D_002E2930;
+int func_001E8858(float f);
+void func_000265C0(float *out, void *a, void *b, void *c, int d, int e);
 
 struct C_00142560 {
     void func_00142560(void);
@@ -116,6 +129,39 @@ struct C_0016F7B0 {
     C_00142560 *obj170;
     void func_0016F7B0(void);
 };
+
+int C_0016F110::func_0016F110(char *name)
+{
+    char buf[0x104];
+    Rdr6F110 rdr;
+    char buf2[0xf0];
+
+    rdr.func_00168280();
+    strcpy(buf, D_002A5558);
+    strcat(buf, name);
+    func_00030F30(buf, D_00288A74);
+    if (rdr.func_00169490(buf, 0) != 0) {
+        rdr.func_00169710(&D_00277298);
+        rdr.func_00168BE0(D_00288A68, D_00275630, buf2, -1);
+        rdr.func_00168C20(D_00288A5C, 0, &f14c);
+        rdr.func_00168C20(D_00288A50, 0, &f138);
+        rdr.func_00168C50(D_00288A44, 255.0f, &f140);
+        if (f138 > 0) {
+            f134 = func_001E8A44(f138 * 12);
+        }
+        if (f14c > 0) {
+            f104 = func_001E8A44(f14c * 32);
+        }
+        f150 = 0;
+        rdr.func_001691E0();
+        return 1;
+    }
+    f14c = 0x3d;
+    f104 = func_001E8A44(0x7a0);
+    f150 = 1;
+    rdr.func_001691E0();
+    return 0;
+}
 
 void C_0016F7B0::func_0016F7B0(void)
 {
@@ -148,5 +194,85 @@ int C_0016F800::func_0016F800(void)
         this->frame++;
     }
     return 1;
+}
+
+void C_0016FBC0::func_0016FBC0()
+{
+    float *second;
+    float *first = (float *)func_001FF410(size1,16);
+    float *out;
+    if(size2) { out=(float *)func_001FF410(size2,16); second=out; }
+    else out=second;
+    count2=0;
+    count1=0;
+    int index=count;
+    volatile int i=index;
+    if(index<0) return;
+    do {
+        int *b=(int *)entries;
+        if(b[index*2] == id) {
+        int *e=b+index*2;
+        S_0016FBC0_Node *p=(S_0016FBC0_Node *)e[1];
+        if(p)
+        do {
+            float alpha=1.0f;
+            if(p->flags & 0x2000) { alpha=f140; ++count1; }
+            else if(p->flags & 1) ++count1;
+            else { int n=count2+1; out=first; count2=n; }
+            if(count1>max) { out=first; ++count2; count1=max; }
+            int flags=p->flags;
+            if(flags & 0x80) {
+                float *obj=(float *)(D_002EFDB8->obj+0x170);
+                float x=p->x-obj[0];
+                float y=p->y-obj[1];
+                float z=p->z-obj[2];
+                float dist=z*z+y*y+x*x;
+                float fade=1.0f-p->f34*p->f2c;
+                if(dist < *(float *)(p->owner+0x218))
+                    alpha *= fade * *(float *)(p->owner+0x21c) * dist;
+                else alpha *= fade;
+            } else if(flags&2) alpha *= 1.0f-p->f34*p->f2c;
+            else if(flags&0x1000) {
+                float a=p->f3c, b=p->f38;
+                float na=a*a, nb=b*b;
+                alpha *= ((na*p->f3c)/(nb*p->f38))*(p->f34*p->f2c);
+            }
+            float size=*(float *)(D_002EFDB8->obj+0x1d8)*p->f38*D_002A88BC;
+            int *uv=table+p->index*8;
+            if(!(p->flags&0x4000)) {
+                ((int*)out)[3]=uv[0]; ((int*)out)[4]=uv[1];
+                ((int*)out)[11]=uv[6]; ((int*)out)[12]=uv[7];
+                ((int*)out)[19]=uv[4]; ((int*)out)[20]=uv[5];
+                ((int*)out)[27]=uv[2];
+            } else {
+                if(flags&0x4000) {
+                    ((int*)out)[3]=uv[2]; ((int*)out)[27]=uv[0];
+                    ((int*)out)[11]=uv[4]; ((int*)out)[19]=uv[6];
+                } else {
+                    ((int*)out)[3]=uv[0]; ((int*)out)[11]=uv[6];
+                    ((int*)out)[19]=uv[4]; ((int*)out)[27]=uv[2];
+                }
+                if(p->flags&0x8000) {
+                    ((int*)out)[4]=uv[3]; ((int*)out)[28]=uv[1];
+                    ((int*)out)[12]=uv[5]; ((int*)out)[20]=uv[7];
+                    goto positions;
+                } else {
+                    ((int*)out)[4]=uv[1]; ((int*)out)[12]=uv[7]; ((int*)out)[20]=uv[5];
+                }
+            }
+            ((int*)out)[28]=uv[3];
+positions:
+            out[0]=p->x;out[1]=p->y;out[2]=p->z;out[6]=size;out[7]=alpha;out[5]=0.0f;
+            out[8]=p->x;out[9]=p->y;out[10]=p->z;out[14]=size;out[15]=alpha;out[13]=1.0f;
+            out[16]=p->x;out[17]=p->y;out[18]=p->z;out[22]=size;out[23]=alpha;out[21]=2.0f;
+            out[24]=p->x;out[25]=p->y;out[26]=p->z;out[30]=size;out[31]=alpha;out[29]=3.0f;
+            if(out==second) second+=32; else first+=32;
+            out=second;
+            p=p->next;
+        } while(p);
+        }
+        index=i-1;
+        i=index;
+    } while(index>=0);
 }
 
