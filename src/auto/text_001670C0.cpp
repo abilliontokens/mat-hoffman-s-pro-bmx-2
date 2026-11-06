@@ -6,7 +6,7 @@
 struct Vec4_165EF0 { float x,y,z,w; };
 /* the engine's file wrapper (D_002BEAAC) */
 struct C_0013B210_1673B0 {
-    int func_0013D310(char *name, char *key, int *h, int *node, int flag);
+    int func_0013D310(char *name, char *key, int *h, void *out, int flag);
     int func_0013AC40(char *name, int a2, int a3, int a4, int *out, int grow);
     void func_0013B1F0(int h, void *obj);
     void func_0013C110(int h);
