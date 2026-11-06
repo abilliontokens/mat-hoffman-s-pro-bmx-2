@@ -72,11 +72,13 @@ struct C_0013B9C0 {
     int f74;
     int f78;
     unsigned short *f7C;
-    char pad80[0x60];
+    S_0013B9C0_Cache f80[8];
     int fE0;
     char padE4[4];
     S_0013B9C0_Ent20 *fE8;
     int fEC;
+    char padF0[0x10];
+    int f100;
     int func_0013C3D0(const char *name, char *mode, int a2);
     int func_0013AC40(int a, int b, int c, int d, int e, int f);
     int func_0013C240(const char *name, unsigned int size);
