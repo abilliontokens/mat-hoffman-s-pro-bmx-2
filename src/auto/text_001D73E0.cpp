@@ -146,6 +146,8 @@ struct LightBufs_001D7FB0 {
     char c[0x100];
 };
 
+static inline int One_001D7FB0(int) { return 1; }
+
 struct XboxVideoCard_001D7FB0 {
     char pad0[0x6D4];
     int f6D4;
@@ -533,14 +535,14 @@ int XboxTextureMap::func_001D7C50()
         return 1;
     unsigned count = func_001FCFE0(field_b8);
     for (unsigned i = 0; i < count; i++) {
+        void *p = func_001FCE50(field_b8, i);
+        if (p == 0)
+            return 0;
         int dims[2];
         S_001D7C50_desc desc;
-        void *p = func_001FCE50(field_b8, i);
-        if (!p)
-            return 0;
-        func_00201210(p, dims, 0, 0x80);
-        func_002011F0(p, &desc);
-        ((C_001D6D00 *)this)->func_001D6D00(&desc, dims, 0);
+        func_00201210(p, &dims[0], 0, 0x80);
+        func_002011F0(p, (void *)&desc);
+        ((C_001D6D00 *)this)->func_001D6D00((void *)&desc, &dims[0], 0);
         func_00201100(p);
     }
     return 1;
@@ -638,17 +640,16 @@ void __cdecl func_001D7E60(float r, float g, float b, char *out)
 int XboxVideoCard_001D7FB0::func_001D7FB0(float x, float y, float z, int w)
 {
     LightBufs_001D7FB0 bufs;
-    float v = 0.0f;
-    float *pv = &v;
-
+    int n = 0;
     bufs.a[0] = 0;
     bufs.b[0] = 0;
     bufs.c[0] = 0;
     func_001D7E60(1.0f, 1.0f, 1.0f, bufs.a);
+    n = *(volatile int *)&w;
     func_001D7E60(x, y, z, bufs.a);
     func_001FF960(2, bufs.a);
     func_001FF9F0(&f6D4);
-    return 1;
+    return n ? 1 : 1;
 }
 
 int __stdcall func_001D8040(S_001D8040 *p, int (__cdecl *callback)(S_001D8040 *), int adapter, int width, int height, int a5, int a6)
