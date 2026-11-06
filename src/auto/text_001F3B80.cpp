@@ -36,6 +36,25 @@ struct F3Obj {
     char pad_0d[0x3];
 };
 
+/* _woutput flag bits, buffer sizes and va_arg helpers */
+#define OUT_FL_SIGN       0x0001
+#define OUT_FL_SIGNSP     0x0002
+#define OUT_FL_LEFT       0x0004
+#define OUT_FL_LEADZERO   0x0008
+#define OUT_FL_LONG       0x0010
+#define OUT_FL_SHORT      0x0020
+#define OUT_FL_SIGNED     0x0040
+#define OUT_FL_ALTERNATE  0x0080
+#define OUT_FL_NEGATIVE   0x0100
+#define OUT_FL_FORCEOCTAL 0x0200
+#define OUT_FL_WIDECHAR   0x0800
+#define OUT_FL_I64        0x8000
+#define OUT_BUFFERSIZE    512
+#define OUT_CVTBUFSIZE    349
+#define out_get_int_arg(ap)   (*(int *)((*(ap) += 4) - 4))
+#define out_get_ptr_arg(ap)   (*(void **)((*(ap) += 4) - 4))
+#define out_get_int64_arg(ap) (*(__int64 *)((*(ap) += 8) - 8))
+
 extern "C" unsigned int strlen(const char *s);
 extern "C" char *strcpy(char *dst, const char *src);
 #pragma intrinsic(strlen)
