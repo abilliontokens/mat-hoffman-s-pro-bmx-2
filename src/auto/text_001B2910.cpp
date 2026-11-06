@@ -29,12 +29,6 @@ struct S_001B3560 {
 struct S_001B2CD0_Px {
     unsigned short lo;
     unsigned char hi;
-    S_001B2CD0_Px &operator=(const S_001B2CD0_Px &o)
-    {
-        lo = o.lo;
-        hi = o.hi;
-        return *this;
-    }
 };
 #pragma pack(pop)
 
