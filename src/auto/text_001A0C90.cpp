@@ -549,19 +549,6 @@ static __forceinline void CopyPos_001A1930(O_001A1930 *o, Q_001A1930 *out)
     }
 }
 
-static __forceinline void GetPos_001A1930(N_001A1930 *n, Q_001A1930 *out)
-{
-    O_001A1930 *o = n->obj;
-    if (o) {
-        int x = ((const volatile int *)&o->pos)[0];
-        int y = ((const volatile int *)&o->pos)[1];
-        int z = ((const volatile int *)&o->pos)[2];
-        ((int *)out)[0] = x;
-        ((int *)out)[1] = y;
-        ((int *)out)[2] = z;
-    }
-}
-
 void C_001A1930::func_001A1930(int count, N_001A1930 **nodes)
 {
  Q_001A1930 position,velocity;
@@ -569,7 +556,7 @@ void C_001A1930::func_001A1930(int count, N_001A1930 **nodes)
  velocity.x=velocity.y=velocity.z=0;
  distance=3.402823466e38F;
  for(int i=0;i<count;i++){
-  GetPos_001A1930(nodes[i],&position);
+  CopyPos_001A1930(nodes[i]->obj,&position);
   float d=func_0001CAF0(&pos,&position);
   if(d<distance){nearest=nodes[i]; distance=d;}
  }
@@ -584,7 +571,7 @@ void C_001A1930::func_001A1930(int count, N_001A1930 **nodes)
  state |=2;
  O_001A1930 *vo=*(O_001A1930 * volatile *)&nearest->obj;
  if(vo){velocity.x=vo->vel.x;velocity.y=vo->vel.y;velocity.z=vo->vel.z;}
- GetPos_001A1930(nearest,&position);
+ CopyPos_001A1930(nearest->obj,&position);
  { Q_001A1930 t;
  t.x=pos.x-position.x;t.y=pos.y-position.y;t.z=pos.z-position.z;t.w=1;
  if(!emitter) return;
