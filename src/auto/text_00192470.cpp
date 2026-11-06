@@ -730,20 +730,15 @@ int SearchNode::func_00192F40(SearchNode *root)
     for (n = f24; n != 0; n = n->next) {
         SearchNode *o = (SearchNode *)n->a;
         if (D_002EFE50 == o->f90 && o->f92 != D_002EFE54) {
-            int i;
-            for (i = 0; i < root->f34; i++) {
-                if (root->f30[i] == o->f3c) {
-                    goto skip;
+            if (!root->HasId(o->f3c)) {
+                o->func_00192F40(root);
+                if (D_002EFE58 != 0) {
+                    ((S_00192930_Iface *)n->b)->v16();
                 }
             }
-            o->func_00192F40(root);
-            if (D_002EFE58 != 0) {
-                ((S_00192930_Iface *)n->b)->v16();
-            }
         }
-    skip:;
     }
-    if (D_002EFE5C != 0 && D_002EFE60 == D_002EFE5C) {
+    if (D_002EFE5C == 0 || D_002EFE60 == D_002EFE5C) {
         int t = D_002A8490->f18;
         if (t != 0) {
             func_0013E1F0(t, D_002A9868, D_0028AC60, f3c + 1,
@@ -752,12 +747,12 @@ int SearchNode::func_00192F40(SearchNode *root)
                           (int)((f44 + 1.0f) * D_00278788),
                           (int)(224.0f - f48 * 224.0f));
         }
-    }
-    if (f28 != 0) {
-        f28->v16();
-    }
-    if (f2C != 0 && f2C != f28) {
-        f2C->v16();
+        if (f28 != 0) {
+            f28->v16();
+        }
+        if (f2C != 0 && f2C != f28) {
+            f2C->v16();
+        }
     }
     if (D_002EFE60 == 1 && D_002EFE4C != 0 && D_002EFE50 == D_002EFE4C->f90) {
         int t = D_002A8490->f18;
