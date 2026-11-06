@@ -111,7 +111,7 @@ struct C_00034A40 {
     S_00034A40_28 *f28;
     void *f2c;
     char pad30[4];
-    void *f34;
+    S_34A40_Owner *f34;
     float f38;
     void func_00034A40(void *a1, void *a2, void *a3, S_00034A40_Tab *a4, float a5, int a6, int a7, int a8, int a9);
 };
