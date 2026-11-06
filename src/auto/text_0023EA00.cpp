@@ -178,6 +178,11 @@ struct S_0023F119_Src {
     int func_0023EE30(int a);
 };
 
+static __forceinline unsigned int Wfx_AvgBytes(S_0023F119_Wfx *w)
+{
+    return w->nBlockAlign * w->nSamplesPerSec;
+}
+
 void func_001E891B(void *p);
 
 /* the stream object: its lock, the packet list and the "has a thread" flag */
@@ -479,7 +484,6 @@ int __stdcall func_0023ED4C(S_0023ED4C_Src *src, S_0023ED4C_Out *out)
     out->f8 = src->f10 << 12;
     return 0;
 }
-
 int __stdcall func_0023ED71(S_0023ED71 *p, int *out)
 {
     if (out != 0) {
@@ -588,7 +592,7 @@ extern "C" long __cdecl _InterlockedIncrement(long volatile *);
 #pragma intrinsic(_InterlockedIncrement)
 int __stdcall func_0023EF5D(char *self)
 {
-    return _InterlockedIncrement((long volatile *)(self + 0x8c));
+    return _InterlockedIncrement((long *)(self + 0x8c));
 }
 
 int __stdcall func_0023EF7B(S_0023EF7B_Src *src, S_0023EF7B_Out *out)
@@ -639,10 +643,10 @@ int __stdcall func_0023F119(S_0023F119_Src *src, S_0023F119_Wfx *wfx)
 {
     wfx->wFormatTag = 1;
     wfx->nSamplesPerSec = src->func_0023EE30(src->fC);
-    *(unsigned short *)((char *)wfx + 2) = src->f10;
-    *(unsigned short *)((char *)wfx + 0x10) = 0;
-    *(unsigned short *)((char *)wfx + 0xc) = (unsigned short)(wfx->nChannels << 1);
-    wfx->nAvgBytesPerSec = wfx->nBlockAlign * wfx->nSamplesPerSec;
+    wfx->nChannels = src->f10;
+    wfx->cbSize = 0;
+    wfx->nBlockAlign = (unsigned short)(wfx->nChannels << 1);
+    wfx->nAvgBytesPerSec = wfx->nBlockAlign * *(volatile unsigned int *)&wfx->nSamplesPerSec;
     wfx->wBitsPerSample = 16;
     return 0;
 }
