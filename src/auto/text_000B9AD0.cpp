@@ -200,7 +200,7 @@ struct BmxUIMain {
     BmxUIMain *func_000B9D30(int a);
     void func_000B9D50();
     void *func_000BA2A0(unsigned int flags);
-    B9D90_Ret func_000B9D90(int type, int a2);
+    void func_000B9D90(int type, int a2);
 };
 
 struct V_B9D90 {
@@ -293,13 +293,13 @@ void BmxUIMain::func_000B9D50()
     func_001577A0(obj, 0x1000);
 }
 
-B9D90_Ret BmxUIMain::func_000B9D90(int type, int a2)
+void BmxUIMain::func_000B9D90(int type, int a2)
 {
     void *m;
     void *obj = 0;
     unsigned k = type - 1;
     if (k > 0x1f) {
-        B9D90_RET0;
+        return;
     }
     switch (k) {
     UI_CASE(0, 0x368, 000C44C0)
@@ -335,7 +335,7 @@ B9D90_Ret BmxUIMain::func_000B9D90(int type, int a2)
     UI_CASE(30, 0x2c4, 000F1D00)
     UI_CASE(31, 0x318, 000D9820)
     }
-    B9D90_RET func_001577A0(((V_B9D90 *)obj)->vf31(&f154, a2, this), -1);
+    func_001577A0(((V_B9D90 *)obj)->vf31(&f154, a2, this), -1);
 }
 
 void func_000BA290(void) {
