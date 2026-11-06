@@ -14,6 +14,11 @@ struct Vec4 {
     Vec4(f32 x_, f32 y_, f32 z_, f32 w_) : x(x_), y(y_), z(z_), w(w_) {}
 };
 
+static inline f32 GetZ(const Vec4 *p)
+{
+    return p->z;
+}
+
 static inline void SetVec4(Vec4 *d, f32 x, f32 y, f32 z, f32 w)
 {
     d->x = x;
