@@ -506,6 +506,9 @@ void C_000C8590::func_000C8590(void) {
 }
 
 C_000C85B0 *C_000C85B0::func_000C85B0(int param_1) {
+    S_000C8660_Obj **e;
+    int i;
+
     ((C_000BE360 *)this)->func_001BE360(param_1);
     unk2B8 = 0;
     unk288 = 0;
@@ -521,8 +524,13 @@ C_000C85B0 *C_000C85B0::func_000C85B0(int param_1) {
     unk2BC = 0;
     *(void **)this = &D_0027E334;
     unk2B0 = 1;
-    for (int i = 0; i < 4; i++)
-        ((void **)&unk2D8)[i] = 0;
+    e = unk2D8;
+    i = 4;
+    do {
+        *e = 0;
+        e++;
+        i--;
+    } while (i != 0);
     unk2C4 = 0;
     unk2C8 = 0;
     unk2CC = 0;
