@@ -71,6 +71,7 @@ struct C_0003BC90 {
  char pad590[0x38]; ListBC f5C8;
  void func_001577A0(NodeBC*,int);
  void func_0003BC90();
+ void func_00035C10(NodeBC*,int,char*,V4*,V4*,V4*,int,int);
 };
 extern char D_002A5870[],D_00276BB4[],D_002A5EA0[],D_00276F58[],D_002A60B0[],D_002A4C10[],D_00276F44[],D_00276F34[],D_00276F2C[];
 extern float D_00275548,D_00276554,D_00275AE8;
