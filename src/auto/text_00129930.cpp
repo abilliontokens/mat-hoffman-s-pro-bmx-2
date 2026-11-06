@@ -204,6 +204,7 @@ extern int D_00284074;
 extern int D_002A3E3C, D_002A3E40, D_002A3E44, D_002A3E48;
 
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 struct V4_12A3F0 { float x, y, z, w; };
 
@@ -291,24 +292,31 @@ int C_00129A10::func_00129A10(S_00129A10_Arg *a)
     v1[0] = 0.0f; v1[1] = 0.0f; v1[2] = 0.0f; v1[3] = 1.0f;
     v2[0] = 0.0f; v2[1] = 0.0f; v2[2] = 0.0f; v2[3] = 1.0f;
     switch (a->f50) {
+    case 5: {
+        float t[4];
+        t[0] = a->f10C * a->fA8;
+        t[1] = a->f10C * a->fAC;
+        t[2] = a->f10C * a->fB0;
+        t[3] = 1.0f;
+        func_00030AC0(t, &t[1], (char *)a + 0xc0);
+        float s = a->f100 * a->f100;
+        func_001225C0(fF0, f100, &t[3], (void *)*(int *)&a->f100, (void *)*(int *)&s, fB0);
+        return 1;
+    }
+    case 3: {
+        float s = a->fE8 * a->fE8;
+        func_001225C0(fF0, f100, v2, (char *)a + 0xd8, (void *)*(int *)&a->fE8, (void *)*(int *)&s);
+        return 1;
+    }
     case 0:
-        break;
     case 1:
-        break;
     case 2:
-        break;
-    case 3:
-        break;
     case 4:
-        break;
-    case 5:
-        break;
     case 6:
-        break;
+        return 1;
     default:
         return 0;
     }
-    return 1;
 }
 
 void BoxCollisionObject::func_00129DF0(int a, int b)
@@ -406,6 +414,10 @@ StaticCache_12A350 *StaticCache_12A350::func_0012A350(int a, int b)
     fC = 0;
     vtbl = (void *)&D_00284018;
     return this;
+}
+
+void func_0012A380(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
 Camera_12A3F0 *Camera_12A3F0::func_0012A3F0(int a)
