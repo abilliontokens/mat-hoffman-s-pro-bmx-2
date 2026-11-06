@@ -301,6 +301,22 @@ struct S_Owner { char pad[0x138]; char *f138; };
 extern S_Owner *D_002F08EC;
 extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
 extern "C" void (__stdcall *_imp__RtlLeaveCriticalSection)(void *cs);
+struct S_SlotObj : S_Slot {
+    S_SlotObj()
+    {
+        f8 = 0;
+        fC = 0;
+        f10 = 0;
+        _imp__RtlEnterCriticalSection(D_002F08EC->f138 + 0x50);
+        f4 = 0;
+        _imp__RtlLeaveCriticalSection(D_002F08EC->f138 + 0x50);
+        f14 = 0;
+        f18 = 0;
+        f1C = 0;
+        lo = 0;
+        busy = 0;
+    }
+};
 
 int __stdcall func_00220AE5(void *obj, int a, int b, int c);
 extern char D_00040000;
