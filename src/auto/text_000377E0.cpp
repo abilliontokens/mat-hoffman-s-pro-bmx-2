@@ -60,9 +60,9 @@ extern float D_002A14D4, D_002A14D8, D_002A14DC, D_002A14E0;
 inline void V4_378D0::identity() { x = D_002A14D4; y = D_002A14D8; z = D_002A14DC; w = D_002A14E0; }
 extern int D_00276CA4;
 struct Arr_378D0 {
-    int count; void *data; int grow; int cap; unsigned char flags;
-    void init() { data = 0; count = 0; grow = 0; cap = 0; flags &= ~1; }
-    void alloc(int n) { data = func_001E8A44(n * 4); grow = 16; cap = n; flags |= 1; }
+    int count; void *data; int grow; int cap; unsigned char owned : 1;
+    void init() { data = 0; count = 0; grow = 0; cap = 0; owned = 0; }
+    void alloc(int n) { data = func_001E8A44(n * 4); grow = 16; cap = n; owned = 1; }
 };
 struct C_378D0_Sub {
     void *vtbl; int pad4[8];
