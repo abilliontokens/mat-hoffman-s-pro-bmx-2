@@ -21,6 +21,7 @@ struct C_0017A700 {
     void func_0017A700(DXRenderableObject *owner, int index);
 };
 static inline int ShadowMinV(int a, int b) { return a > b ? b : a; }
+static inline int ShadowMinR(int b, int a) { return a > b ? b : a; }
 struct C_0017B9E0 {
     int unk0, unk4;
     void func_001D3F50();
@@ -420,36 +421,38 @@ void C_0017A700::func_0017A700(DXRenderableObject *owner, int index)
     void *func_001E8AA5(int);
     void *func_001E83E8(void *, int);
     void *func_001E8A44(int);
-    volatile struct { C_0017A700 *self; int max; int value; } L;
+    volatile struct { volatile C_0017A700 *self; int max; int value; } L;
     L.self = this;
-    if (!fF0) {
+    DXShadowCaster **f0 = ((volatile C_0017A700 *)this)->fF0;
+    if (!f0) {
         L.self->fF0 = (DXShadowCaster **)func_001E8AA5(4);
         L.self->fF8 = 1;
-        C_0017A700 *s = L.self;
+        volatile C_0017A700 *s = L.self;
         s->fF0[s->fF4] = 0;
     } else if (fF8 < fF4 + 1) {
-        L.self->fF0 = (DXShadowCaster **)func_001E83E8(fF0, fF4 * 4 + 4);
-        C_0017A700 *s1 = L.self;
+        L.self->fF0 = (DXShadowCaster **)func_001E83E8(f0, fF4 * 4 + 4);
+        volatile C_0017A700 *s1 = L.self;
         s1->fF8 = s1->fF4 + 1;
-        C_0017A700 *s2 = L.self;
+        volatile C_0017A700 *s2 = L.self;
         s2->fF0[s2->fF4] = 0;
     }
-    C_0017A700 *s3 = L.self;
-    if (s3->fF0[s3->fF4]) s3->fF0[s3->fF4]->v2(owner);
+    volatile C_0017A700 *s3 = L.self;
+    DXShadowCaster *e = s3->fF0[s3->fF4];
+    if (e) e->v2(owner);
     else {
         DXShadowCaster *p = (DXShadowCaster *)func_001E8A44(16);
         if (p) p = p->func_00143820(owner);
         else p = 0;
-        C_0017A700 *s4 = L.self;
+        volatile C_0017A700 *s4 = L.self;
         s4->fF0[s4->fF4] = p;
     }
-    C_0017A700 *s5 = L.self;
+    volatile C_0017A700 *s5 = L.self;
     DXShadowCaster *c = s5->fF0[s5->fF4];
     L.max = c->f4->f1a4->count - 1;
     int m = L.max;
     L.value = index > m ? m : index;
     c->f8 = L.value;
-    L.self->fF4++;
+    ((C_0017A700 *)L.self)->fF4++;
 }
 
 void C_0017A850::func_0017A850(void) {
