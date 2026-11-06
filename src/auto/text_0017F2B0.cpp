@@ -60,6 +60,13 @@ struct C_0017F2B0 {
     int func_0017F550(S_0017F550_Shape *a);
 };
 extern f32 D_002755E8;
+
+/* axis-aligned box: min corner then max corner */
+struct Aabb_0017F2B0 {
+    Vec4_0017F2B0 mn;
+    Vec4_0017F2B0 mx;
+};
+
 static inline Vec4_0017F2B0 Vec4Make_0017F2B0(f32 x, f32 y, f32 z) {
     Vec4_0017F2B0 r;
     r.x = x; r.y = y; r.z = z; r.w = 1.0f;
@@ -176,6 +183,66 @@ struct RayCollisionObject {
     C_00199C20 *f19C;
     void func_00180070(void);
 };
+
+int C_0017F2B0::func_0017F2B0(char *a)
+{
+    struct TS { Vec4_0017F2B0 tmp; Vec4_0017F2B0 s; } ts;
+    char *t = (char *)this;
+    char *m;
+    char *e;
+    Vec4_0017F2B0 d;
+    Vec4_0017F2B0 c;
+    Vec4_0017F2B0 b;
+    Vec4_0017F2B0 p;
+    f32 *o = *(f32 **)(t + 0xfc);
+    f32 *q;
+
+    p.z = 0.0f; p.y = 0.0f; p.x = 0.0f; p.w = 1.0f;
+    c.z = 0.0f; c.y = 0.0f; c.x = 0.0f; c.w = 1.0f;
+    b.z = 0.0f; b.y = 0.0f; b.x = 0.0f; b.w = 1.0f;
+    d.z = 0.0f; d.y = 0.0f; d.x = 0.0f; d.w = 1.0f;
+    if (o) {
+        ts.tmp.x = o[3]; ts.tmp.y = o[4]; ts.tmp.z = o[5]; ts.tmp.w = 1.0f;
+        p = ts.tmp;
+        ts.tmp.x = o[6]; ts.tmp.y = o[7]; ts.tmp.z = o[8]; ts.tmp.w = 1.0f;
+        b = ts.tmp;
+    } else {
+        q = *(f32 **)(t + 0x100);
+        ts.s.x = q[4] + q[0];
+        ts.s.y = q[5] + q[1];
+        ts.s.z = q[6] + q[2];
+        ts.tmp.x = ts.s.x * D_002755E8;
+        ts.tmp.y = ts.s.y * D_002755E8;
+        ts.tmp.z = ts.s.z * D_002755E8;
+        ts.tmp.w = 1.0f;
+        p = ts.tmp;
+        ts.s.x = q[4] - q[0];
+        ts.s.y = q[5] - q[1];
+        ts.s.z = q[6] - q[2];
+        ts.tmp.x = ts.s.x * D_002755E8;
+        ts.tmp.y = ts.s.y * D_002755E8;
+        ts.tmp.z = ts.s.z * D_002755E8;
+        ts.tmp.w = 1.0f;
+        b = ts.tmp;
+    }
+    m = t + 0xb0;
+    switch (*(int *)(a + 0x50)) {
+    case 0: {
+        f32 *r = *(f32 **)(a + 0x1c4);
+        c.x = r[3]; c.y = r[4]; c.z = r[5]; c.w = 1.0f;
+        d.x = r[6]; d.y = r[7]; d.z = r[8]; d.w = 1.0f;
+        break;
+    }
+    case 1:
+        c = *(Vec4_0017F2B0 *)(a + 0xa8);
+        d = *(Vec4_0017F2B0 *)(a + 0xb8);
+        break;
+    default:
+        return 0;
+    }
+    e = a + 0x130;
+    return func_00123770(&p, &b, m, &c, &d, e);
+}
 
 int C_0017F2B0::func_0017F550(S_0017F550_Shape *a)
 {
@@ -329,6 +396,22 @@ void C_0017FDB0::func_0017FDB0(u16 idx, S_0017FDB0_Tree *tree, float *m)
     max = leaf->max;
     func_00030AC0(&out1.x, &min.x, m);
     func_00030AC0(&out2.x, &max.x, m);
+}
+
+void C_0017FEB0::func_0017FEB0(int a)
+{
+    S_0017FDB0_Tree t;
+
+    if (fA6) {
+        t = tree;
+        if (fA4 == 0) {
+            ((C_0017FDB0 *)this)->func_0017FDB0(fF0, &t, (float *)((char *)this + 0xB0));
+        } else {
+            ((C_0017FCA0 *)this)->func_0017FCA0(fF0, &t, fA4 - 1, (float *)((char *)this + 0xB0));
+        }
+    }
+    fA7 &= 0xEF;
+    func_00157A00(a);
 }
 
 void RayCollisionObject::func_00180070(void) {
