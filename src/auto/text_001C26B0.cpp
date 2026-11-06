@@ -144,6 +144,15 @@ struct UIWidgetStaticUserRotate {
             }
         }
     }
+
+    void Dispatch(int p)
+    {
+        if (f1E0 != 0) {
+            func_001C2F90(p);
+        } else {
+            func_00157A00(p);
+        }
+    }
 };
 
 static inline void CopyMem(void *dst, const void *src, unsigned int n)
@@ -238,11 +247,8 @@ struct UIWidgetMovementControl {
 
 C_001C26B0 *C_001C26B0::func_001C26B0(int a, C_001C26B0 *p)
 {
-    union {
-        L_001C26B0 l;
-        int i;
-    };
-    register int j;
+    L_001C26B0 l;
+    int i;
 
     func_001BF600(p);
     l.v0[0] = l.v0[1] = l.v0[2] = 0; l.v0[3] = 1;
@@ -256,10 +262,10 @@ C_001C26B0 *C_001C26B0::func_001C26B0(int a, C_001C26B0 *p)
     p->func_00168C50(D_0028E27C, 0x3f800000, data + 0x17c);
     l.has = p->func_00168550(D_002828C0, l.text, 0x1e0);
     if (l.has) {
-        char *t = *(char **)(D_002A8490 + 0x2e8);
-        C_001C26B0 *lookup = (C_001C26B0 *)*(void **)(t + 0x2c);
-        lookup->func_000979C0(l.text, &(i = 0));
-        *(int *)(data + 0x6c) = i;
+        int tmp;
+        memset(&tmp, 0, sizeof(tmp));
+        ((C_001C26B0 *)*(void **)(*(char **)(D_002A8490 + 0x2e8) + 0x2c))->func_000979C0(l.text, &tmp);
+        *(int *)(data + 0x6c) = tmp;
     } else {
         *(int *)(data + 0x180) = p->func_00168C20(D_0028E264, 0, data + 0x174);
         p->func_00168C20(D_0028E24C, 0, data + 0x170);
@@ -303,30 +309,30 @@ C_001C26B0 *C_001C26B0::func_001C26B0(int a, C_001C26B0 *p)
     }
     if (*(int *)(data + 0x180) != 0) {
         *(void **)(data + 0x68) = func_001E8AA5(*(int *)(data + 0x170) * 4);
-        for (j = 0; j < *(int *)(data + 0x170); j++) {
+        for (i = 0; i < *(int *)(data + 0x170); i++) {
             C_001C26B0 *q = (C_001C26B0 *)func_001E8A44(0x184);
             if (q) {
                 q = q->func_001B12C0(1);
             } else {
                 q = 0;
             }
-            (*(C_001C26B0 ***)(data + 0x68))[j] = q;
-            (*(C_001C26B0 ***)(data + 0x68))[j]->func_001B13A0(data + 0x70, data + 0xf0, 0, *(int *)(data + 0x174));
-            (*(C_001C26B0 ***)(data + 0x68))[j]->func_001B1860(0, -1, 255, 1, 0, 0, -1, 255, 1, 0, 0, 0, 0);
-            (*(C_001C26B0 ***)(data + 0x68))[j]->func_001B19A0(*(int *)(data + 0x178));
-            (*(C_001C26B0 ***)(data + 0x68))[j]->func_001B2270(*(int *)(data + 0x184));
-            (*(C_001C26B0 ***)(data + 0x68))[j]->func_001B17D0(D_00275630);
-            (*(C_001C26B0 ***)(data + 0x68))[j]->func_001B19C0(*(int *)(data + 0x188), (int)(((Font_001C26B0 *)*(void **)((*(C_001C26B0 ***)(data + 0x68))[j]->data + 0x28))->func_0018C210() * j * *(float *)(data + 0x17c)) + *(int *)(data + 0x18c), 0);
-            (*(C_001C26B0 ***)(data + 0x68))[j]->func_001B1AB0(*(int *)(data + 0x194), 0);
-            (*(C_001C26B0 ***)(data + 0x68))[j]->func_001B1BF0(*(int *)(data + 0x198));
-            func_001577A0((*(C_001C26B0 ***)(data + 0x68))[j], -1);
+            (*(C_001C26B0 ***)(data + 0x68))[i] = q;
+            (*(C_001C26B0 ***)(data + 0x68))[i]->func_001B13A0(data + 0x70, data + 0xf0, 0, *(int *)(data + 0x174));
+            (*(C_001C26B0 ***)(data + 0x68))[i]->func_001B1860(0, -1, 255, 1, 0, 0, -1, 255, 1, 0, 0, 0, 0);
+            (*(C_001C26B0 ***)(data + 0x68))[i]->func_001B19A0(*(int *)(data + 0x178));
+            (*(C_001C26B0 ***)(data + 0x68))[i]->func_001B2270(*(int *)(data + 0x184));
+            (*(C_001C26B0 ***)(data + 0x68))[i]->func_001B17D0(D_00275630);
+            (*(C_001C26B0 ***)(data + 0x68))[i]->func_001B19C0(*(int *)(data + 0x188), (int)(((Font_001C26B0 *)*(void **)((*(C_001C26B0 ***)(data + 0x68))[i]->data + 0x28))->func_0018C210() * i * *(float *)(data + 0x17c)) + *(int *)(data + 0x18c), 0);
+            (*(C_001C26B0 ***)(data + 0x68))[i]->func_001B1AB0(*(int *)(data + 0x194), 0);
+            (*(C_001C26B0 ***)(data + 0x68))[i]->func_001B1BF0(*(int *)(data + 0x198));
+            func_001577A0((*(C_001C26B0 ***)(data + 0x68))[i], -1);
         }
         return this;
     }
     if (i != 0) {
         *(void **)(data + 0x68) = func_001E8AA5(*(int *)(data + 0x170) * 4);
-        for (j = 0; j < *(int *)(data + 0x170); j++) {
-            func_001ADCC0(l.kind, 0x14, D_0027DE24, j + 1);
+        for (i = 0; i < *(int *)(data + 0x170); i++) {
+            func_001ADCC0(l.kind, 0x14, D_0027DE24, i + 1);
             p->func_00168550(l.kind, l.text, 0x1e0);
             C_001C26B0 *q = (C_001C26B0 *)func_001E8A44(0x184);
             if (q) {
@@ -334,16 +340,16 @@ C_001C26B0 *C_001C26B0::func_001C26B0(int a, C_001C26B0 *p)
             } else {
                 q = 0;
             }
-            (*(C_001C26B0 ***)(data + 0x68))[j] = q;
-            (*(C_001C26B0 ***)(data + 0x68))[j]->func_001B13A0(data + 0x70, data + 0xf0, 0, (int)strlen(l.text));
-            func_001577A0((*(C_001C26B0 ***)(data + 0x68))[j], -1);
-            (*(C_001C26B0 ***)(data + 0x68))[j]->func_001B1860(0, -1, 255, 1, 0, 0, -1, 255, 1, 0, 0, 0, 0);
-            (*(C_001C26B0 ***)(data + 0x68))[j]->func_001B19A0(*(int *)(data + 0x178));
-            (*(C_001C26B0 ***)(data + 0x68))[j]->func_001B2270(*(int *)(data + 0x184));
-            (*(C_001C26B0 ***)(data + 0x68))[j]->func_001B17D0(l.text);
-            (*(C_001C26B0 ***)(data + 0x68))[j]->func_001B19C0(*(int *)(data + 0x188), (int)(((Font_001C26B0 *)*(void **)((*(C_001C26B0 ***)(data + 0x68))[j]->data + 0x28))->func_0018C210() * j * *(float *)(data + 0x17c)) + *(int *)(data + 0x18c), 0);
-            (*(C_001C26B0 ***)(data + 0x68))[j]->func_001B1AB0(*(int *)(data + 0x194), 0);
-            (*(C_001C26B0 ***)(data + 0x68))[j]->func_001B1BF0(*(int *)(data + 0x198));
+            (*(C_001C26B0 ***)(data + 0x68))[i] = q;
+            (*(C_001C26B0 ***)(data + 0x68))[i]->func_001B13A0(data + 0x70, data + 0xf0, 0, (int)strlen(l.text));
+            func_001577A0((*(C_001C26B0 ***)(data + 0x68))[i], -1);
+            (*(C_001C26B0 ***)(data + 0x68))[i]->func_001B1860(0, -1, 255, 1, 0, 0, -1, 255, 1, 0, 0, 0, 0);
+            (*(C_001C26B0 ***)(data + 0x68))[i]->func_001B19A0(*(int *)(data + 0x178));
+            (*(C_001C26B0 ***)(data + 0x68))[i]->func_001B2270(*(int *)(data + 0x184));
+            (*(C_001C26B0 ***)(data + 0x68))[i]->func_001B17D0(l.text);
+            (*(C_001C26B0 ***)(data + 0x68))[i]->func_001B19C0(*(int *)(data + 0x188), (int)(((Font_001C26B0 *)*(void **)((*(C_001C26B0 ***)(data + 0x68))[i]->data + 0x28))->func_0018C210() * i * *(float *)(data + 0x17c)) + *(int *)(data + 0x18c), 0);
+            (*(C_001C26B0 ***)(data + 0x68))[i]->func_001B1AB0(*(int *)(data + 0x194), 0);
+            (*(C_001C26B0 ***)(data + 0x68))[i]->func_001B1BF0(*(int *)(data + 0x198));
         }
         return this;
     }
@@ -369,7 +375,7 @@ C_001C26B0 *C_001C26B0::func_001C26B0(int a, C_001C26B0 *p)
     (*(C_001C26B0 ***)(data + 0x68))[0]->func_001B17D0(l.text);
     (*(C_001C26B0 ***)(data + 0x68))[0]->func_001B19A0(*(int *)(data + 0x178));
     (*(C_001C26B0 ***)(data + 0x68))[0]->func_001B2270(*(int *)(data + 0x184));
-    (*(C_001C26B0 ***)(data + 0x68))[0]->func_001B19C0(*(int *)(data + 0x188), (int)(((Font_001C26B0 *)*(void **)((*(C_001C26B0 ***)(data + 0x68))[0]->data + 0x28))->func_0018C210() * i * *(float *)(data + 0x17c)) + *(int *)(data + 0x18c), 0);
+    (*(C_001C26B0 ***)(data + 0x68))[0]->func_001B19C0(*(int *)(data + 0x188), *(int *)(data + 0x18c), 0);
     (*(C_001C26B0 ***)(data + 0x68))[0]->func_001B1AB0(*(int *)(data + 0x194), 0);
     (*(C_001C26B0 ***)(data + 0x68))[0]->func_001B1BF0(*(int *)(data + 0x198));
     return this;
@@ -478,7 +484,6 @@ void UIWidgetStaticUserRotate::func_001C33A0(void)
 
 void UIWidgetStaticUserRotate::func_001C3440(int p)
 {
-    UIWidgetStaticUserRotate *self = this;
     if (f1E4 != 0) {
         u32 now = func_001DC974();
         if (f240 < (float)((now - f244) / 1000)) {
@@ -486,10 +491,13 @@ void UIWidgetStaticUserRotate::func_001C3440(int p)
             f1E4 = 0;
         }
     }
-    if (f1E0 != 0) {
-        self->func_001C2F90(p);
-    } else {
-        self->func_00157A00(p);
+    switch (f1E0) {
+    case 0:
+        func_00157A00(p);
+        break;
+    default:
+        func_001C2F90(p);
+        break;
     }
 }
 
@@ -523,12 +531,21 @@ void *C_001C3510::func_001C3510(int flags)
 
 DXVertexBuffer *DXVertexBuffer::func_001C3550(int type, int count)
 {
-    switch (type) {
-    case 0x112:
-    case 0x1c4:
-    case 0x1c6: {
-        int ok;
-        int fail;
+    int d;
+    int ok;
+    int fail;
+
+    d = type;
+    d -= 0x112;
+    if (d == 0) {
+        goto build;
+    }
+    d -= 0xb2;
+    if (d == 0) {
+        goto build;
+    }
+    if (d == 2) {
+build:
         f10 = count;
         fC = 0x20;
         f8 = type;
@@ -537,16 +554,15 @@ DXVertexBuffer *DXVertexBuffer::func_001C3550(int type, int count)
         fail = (int)((unsigned)(ok - 1) & 0x8007000E) < 0;
         return (DXVertexBuffer *)((fail - 1) & (int)this);
     }
-    }
     return 0;
 }
 
 void C_001C35B0::func_001C35B0(void *src, int index, unsigned int count)
 {
     int offset = fC * index;
-    char *dst = (char *)func_001FF410(f14, 0) + offset;
-
-    memcpy(dst, src, count);
+    void *buffer = *(void *volatile *)&f14;
+    char *dst = (char *)func_001FF410(buffer, 0) + offset;
+    CopyMem(dst, src, count);
 }
 
 void *DXVertexBuffer::func_001C35F0(S_001C35F0_Src *src, int b, int c, int d)
