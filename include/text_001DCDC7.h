@@ -139,6 +139,7 @@ extern u32 D_002ACB5C;
 extern unsigned short D_002ACB60[];
 int __stdcall func_001DDDD6(void *a0, int a1);
 int __stdcall func_001DD15A(void *a0, void *a1, int a2, void *a3, int a4);
+int __stdcall func_001DD13C(void *a0);
 
 /* OVERLAPPED */
 struct S_001DD670_Overlapped {
