@@ -53,6 +53,7 @@ template <class T> inline const T &min_001D7E60(const T &a, const T &b) { return
 
 void func_001FFB70();
 void __cdecl func_001D7E60(float r, float g, float b, char *out);
+void __fastcall func_001D7E60(int start, int, float r, float g, float b, char *out);
 void __stdcall func_001FF960(int kind, char *buf);
 void __stdcall func_001FF9F0(void *p);
 void __stdcall func_001FF4E0(int a, void *b, int c, int d, float e, int f);
@@ -717,7 +718,7 @@ int __stdcall func_001D8140(S_001D8140 *p, unsigned int index, int h)
 int XboxVideoCard_001D8240::func_001D8240(void)
 {
     volatile int *d = (volatile int *)&D_002F0BBC;
-    int two = 2;
+    unsigned char two = 2;
     if (f10 != 0)
         return 0;
     if (f14 == 1) {
@@ -739,7 +740,7 @@ wait:
     if (f9D4 & two) {
         func_001FFBB0();
         v7(f9D8);
-        f9D4 &= ~two;
+        f9D4 &= 0xFD;
     }
     return 1;
 }
