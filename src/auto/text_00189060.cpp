@@ -366,7 +366,8 @@ struct BasicScene {
     C_00189B60_Node *arr3f4[12];
     C_00167760 *arr424[12];
     int arr454[12];
-    char pad484[0x494 - 0x484];
+    S_00189060_Mgr *f484;
+    char pad488[0x494 - 0x488];
     int f494;
     char pad498[0x4a8 - 0x498];
     SceneSlot **f4a8;
