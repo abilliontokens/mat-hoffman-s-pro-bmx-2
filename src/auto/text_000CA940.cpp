@@ -119,8 +119,9 @@ struct RenderEntryCB {
 /* give a drawable the colour of the page's index and mark it dirty */
 static void setEntryColor(RenderEntryCB *e, s32 c)
 {
-    e->f38 = (c << 24) | (e->f38 & 0xffffff);
+    u32 old = e->f38 & 0xffffff;
     e->b58 |= 2;
+    e->f38 = (c << 24) | old;
 }
 
 /* give a drawable a fixed colour and mark it dirty */
