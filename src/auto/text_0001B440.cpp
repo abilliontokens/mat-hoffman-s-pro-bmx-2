@@ -176,7 +176,7 @@ struct C_0001C1E0 {
     int func_0001B3C0(int a);
     void func_0001BDB0(int idx);
     int func_0001BDF0(int a, int b);
-    void func_0001C1E0(int idx, int b, int c, int d);
+    int func_0001C1E0(int idx, int b, int c, int d);
     int func_0001C200(int a, int b, int c, int d);
     void func_0001C240(void);
     int func_0001BE90(S_0001C1E0_Slot *obj, int b, int c, int d);
@@ -605,13 +605,14 @@ void __cdecl func_0001C020(int a, int b, C_0001B910 *obj, int flag)
     }
 }
 
-void C_0001C1E0::func_0001C1E0(int idx, int b, int c, int d)
+int C_0001C1E0::func_0001C1E0(int idx, int b, int c, int d)
 {
-    if (f2c != 0)
-        goto have;
-    return;
-have:
-    func_0001BE90(f2c->f28[idx], b, c, d);
+    S_0001C1E0_List *list = f2c;
+
+    if (list == 0) {
+        return (int)list;
+    }
+    return func_0001BE90(list->f28[idx], b, c, d);
 }
 
 int C_0001C1E0::func_0001C200(int a, int b, int c, int d)
