@@ -409,12 +409,13 @@ struct BmxGame {
 
 int Screen_000597B0::func_000590F0(int a)
 {
+    Screen_000597B0 *self = this;
     File_000590F0 f;
     char buf[0x100];
-    if (f4C == 0)
+    if (self->f4C == 0)
         return 0;
     f.func_00168280();
-    if (!f.func_00169490(f4C, 0)) {
+    if (!f.func_00169490(self->f4C, 0)) {
         f.func_001691E0();
         return 0;
     }
@@ -665,7 +666,10 @@ int BmxGame::func_00059AC0(void)
         default:
             goto done;
         }
-        f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->v10(), -1);
+        {
+            S_00059F50_Obj &o = *obj;
+            f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(o.v10(), -1);
+        }
     }
 done:
     if (f2F0 != 0) {
@@ -679,12 +683,13 @@ int BmxGame::func_00059CC0() {
  if(f2A4) {
  D_002A8490->f2E0->f2FC->func_00094960(0);
  D_002A8490->f2E0->f2FC->func_000947F0(0);
- if(D_002A8490->f2A4->f64->f594)
+ if(*(int*)(*(char**)(*(char**)((char*)D_002A8490+0x2a4)+0x64)+0x594)) {
  D_002A8490->f2E0->f2FC->func_00094D90(250);
  D_002A8490->f2E0->f2FC->func_00094C00();
- f4->func_0001D330();
- D_002A8490->f2A4->f64->f4C0->v28();
- f4->fB4->v14();
+ }
+ (*(S_00059F50_F4**)((char*)this+4))->func_0001D330();
+ (*(S_00059F50_Fb4**)(*(char**)(*(char**)((char*)D_002A8490+0x2a4)+0x64)+0x4c0))->v28();
+ (*(S_00059F50_F4**)((char*)this+4))->fB4->v14();
  f2EC->func_0018C120();
  D_002A8490->f4->fB4->v9();
  if(*(void**)((char*)D_002A8490->f2E0+0x2c4)) {
