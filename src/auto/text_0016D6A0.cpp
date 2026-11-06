@@ -83,6 +83,7 @@ struct V4u_0016D6A0 {
 struct V4f_0016D6A0 {
     float x, y, z, w;
     void Set(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
+    V4f_0016D6A0(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
 };
 
 struct V4f {
@@ -473,6 +474,85 @@ int C_0016DD70::func_0016DD70(float dt)
     }
     func_00169E10(dt);
     return 1;
+}
+
+void C_0016DEA0::func_0016DEA0(void)
+{
+    int i;
+    int count;
+    float r1, r2, r3;
+    Particle_0016DEA0 *p;
+
+    for (i = 0; i < f64->count; i++) {
+        if (f64->items[i]->f48 == this) {
+            f64->items[i]->f44 &= ~0x80u;
+            f64->items[i]->f2C = f64->items[i]->f30;
+        }
+    }
+    f220[0] = f180 > f220[0] ? f180 : f220[0];
+    for (count = 0; (float)count < f220[0]; count++) {
+        if (f64->count >= f64->max) {
+            break;
+        }
+        r1 = Rand01_0016DEA0();
+        r2 = Rand01_0016DEA0();
+        r3 = Rand01_0016DEA0();
+        p = f64->items[f64->count];
+        p->pos.x = (f200 - f1F0) * r1 + f1F0 + f24;
+        p->pos.y = (f204 - f1F4) * r2 + f1F4 + f28;
+        p->pos.z = (f208 - f1F8) * r3 + f1F8 + f2c;
+        p->pos.w = 1.0f;
+        if (f220[1] != -1.0f) {
+            float a = Rand01_0016DEA0();
+            float b = Rand01_0016DEA0();
+            float c = Rand01_0016DEA0();
+            float vx = b * f220[3];
+            float vy = a * f220[3];
+            float vz = c * f220[3];
+            if (Rand01_0016DEA0() > D_002755E8) {
+                vx = vx * D_00275F58;
+            }
+            if (Rand01_0016DEA0() > D_002755E8) {
+                vy = vy * D_00275F58;
+            }
+            if (Rand01_0016DEA0() > D_002755E8) {
+                vz = vz * D_00275F58;
+            }
+            p->vel.x = vx;
+            p->vel.y = vy;
+            p->vel.z = vz;
+            p->vel.w = 1.0f;
+        }
+        {
+            float life = (f210[1] - f210[0]) * Rand01_0016DEA0() + f210[0];
+            p->f38 = life;
+            p->f3C = life;
+        }
+        p->f48 = this;
+        p->f30 = f170;
+        p->f34 = D_00275460 / p->f30;
+        p->f2C = f198;
+        p->f28 = f188;
+        p->f40 = 0;
+        p->f4C = f18C;
+        p->f44 = f190;
+        {
+            int b1 = r1 > D_002755E8;
+            int b2 = r2 > D_002755E8;
+            if (b1 && f1C4) {
+                p->f44 |= 0x4000;
+            } else {
+                p->f44 &= ~0x4000u;
+            }
+            if (b2 && f1C8) {
+                p->f44 |= 0x8000;
+            } else {
+                p->f44 &= ~0x8000u;
+            }
+        }
+        f64->count++;
+        f188 = func_00011260(f1A8, f1AC);
+    }
 }
 
 void *C_0016E2E0::func_0016E2E0(unsigned int flags)
