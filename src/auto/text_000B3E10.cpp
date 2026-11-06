@@ -42,9 +42,14 @@ struct S_B4300_Cfg {
 struct C_000B4300;
 typedef void (C_000B4300::*B4300_Cb)(void);
 
+struct B4300_CbBox {
+    B4300_Cb f;
+    B4300_CbBox(B4300_Cb p) : f(p) {}
+};
+
 struct S_B4300_Mgr {
     int func_0018E740(void *obj, const char *name);
-    void func_0018CF40(int id, B4300_Cb cb, const char *a, const char *b, const char *c, int d);
+    void func_0018CF40(int id, B4300_CbBox cb, const char *a, const char *b, const char *c, int d);
     void func_0018D330(int id, int k, const char *a, const char *b);
     void func_00191270(void *obj, const char *name, S_B4300_Stream *s, char *buf);
 };
@@ -208,7 +213,7 @@ C_000B4300 *C_000B4300::func_000B4300(S_B4300_Stream * volatile a, S_B4300_Strea
         *(volatile int *)&t->f6c = t->f40->f118;
     }
     b->func_00168BE0(D_0027D138, D_0027D144, buf, 0x104);
-    a->func_00168BE0(D_0027D250, D_002764F0, name, 0x104);
+    b->func_00168BE0(D_0027D250, D_002764F0, name, 0x104);
     if (func_001EA426(name, D_002764F0) != 0) {
         C_000B4300 *t = self;
         if (t->f40->f108 != 0)
