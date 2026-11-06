@@ -14,7 +14,6 @@ struct S_50D70_G { char pad0[0x2E0]; S_50D70_M *f2E0; };
 extern float D_00277910, D_00277900, D_00277914;
 extern double D_00277908;
 extern "C" double __cdecl pow(double, double);
-void __stdcall func_00157A00(int a);
 struct C_00050D70 {
     virtual void v00(); virtual void v04(); virtual void v08(); virtual void v0C();
     virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1C();
