@@ -96,6 +96,8 @@ struct C_00197EC0 {
 };
 
 void func_0011AC30(void *out, void *in);
+void func_0011F540(C_00197EC0_Vec4 *out, C_00197EC0_Vec4 pos, float *m);
+void func_00030A30(C_00197EC0_Vec4 *out, C_00197EC0_Vec4 v, float *m);
 
 extern float D_00275544;
 
