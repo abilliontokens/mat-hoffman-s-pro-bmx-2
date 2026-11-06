@@ -35,7 +35,7 @@ struct C_Ini {
     C_Ini *func_00168280(void);
     void func_00169490(char *p, int a);
     void func_00169710(char *p);
-    void func_00168C20(char *p, int a, float *out);
+    void func_00168C20(char *p, int a, int *out);
     void func_001691E0(void);
 };
 struct C_Tex { char pad[0x40]; int cnt; };
