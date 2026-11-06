@@ -7,6 +7,7 @@ extern char D_0000FFE0;
 extern char D_0000F000;
 extern char D_0000FF00;
 extern char D_0000FFF8;
+extern char D_0000FFF0;
 
 u32 func_00178210(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int pal)
 {
@@ -196,6 +197,64 @@ u32 func_001785C0(u16 *dst, u8 *src, int width, int height, int dstPitch, int sr
         d += dstPitch;
     }
     return 1;
+}
+
+int func_001787C0(unsigned short* dst, unsigned short* src, int width, int height, int dstPitch, int srcPitch, int alpha)
+{
+    int x, y;
+    unsigned short v;
+    int thr = (alpha & ~0xF) << 8;
+    unsigned short* srow = src;
+    unsigned short* drow = dst;
+    for (y = height; y > 0; y--) {
+        for (x = width; x > 0; x--) {
+            v = *src;
+            if ((v & 0xF000) < thr) {
+                *dst = 0;
+            } else {
+                *dst = (unsigned short)((((((v & 0xFF00) | 0xF000) << 1) | (v & 0xF0)) << 1 | (v & 0xF)) << 1);
+            }
+            dst++;
+            src++;
+        }
+        srow += srcPitch;
+        drow += dstPitch;
+        src = srow;
+        dst = drow;
+    }
+    return 1;
+}
+
+u32 func_00178890(u16 *dst, u16 *src, int width, int height, int dstPitch, int srcPitch, int thresh, u32 key)
+{
+  u16 *d;
+  u16 *s;
+  u16 *p;
+  u16 *q;
+  u16 c;
+  u16 v;
+  int ref;
+  int x;
+  int y;
+
+  ref = (thresh & ~0xf) << 8;
+  c = (u16)(((key >> 8) & 0xf800) | ((key >> 5) & 0x7e0) | ((key >> 3) & 0x1f));
+  s = src;
+  d = dst;
+  for (y = height; y > 0; y--) {
+    for (q = s, p = d, x = width; x > 0; x--) {
+      v = *q;
+      if ((v & 0xf000) < ref) {
+        *p++ = c;
+      } else {
+        *p++ = (u16)(((((v & 0xff00) << 1) | (v & 0xf0)) << 2 | (v & 0xf)) << 1);
+      }
+      q++;
+    }
+    s += srcPitch;
+    d += dstPitch;
+  }
+  return 1;
 }
 
 u32 func_00178990(u16 *dst, u16 *src, int width, int height, int dstPitch, int srcPitch, u32 key)
