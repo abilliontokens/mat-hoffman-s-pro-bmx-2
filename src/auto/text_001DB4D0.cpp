@@ -20,6 +20,7 @@ extern char D_002AC6D8[],D_002AC6EC[],D_002AC6FC[],D_002AC710[];
 extern char D_002F0D08[],D_002F0E08[],D_002F0F08[],D_002F0C08[];
 extern char D_0028F9AC[],D_0028F994[],D_0028F980[];
 void *func_001E8A44(int);
+struct WEnt { float x, z, a; int pad; int f10; };
 struct I_Release;
 I_Release *func_001D6E20(const char *,int,int);
 void func_001ADCC0(char *,int,const char *,...);
