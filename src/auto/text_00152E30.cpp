@@ -15,6 +15,12 @@ static __forceinline void copy_id_00152E30(Q4_00152E30 *d)
 {
     *d = D_002A789C;
 }
+/* one entry of the 11-slot table at this+0x150 (stride 0x60) */
+struct S_Slot4_00152E30 {
+    int f0;
+    Q4_00152E30 q0, q1, q2, q3;
+    int f44, f48, f4c, f50, f54, f58, f5c;
+};
 struct C_00152E30 {
     int f0;
     C_00152E30 *func_00152E30(int a0);
@@ -141,10 +147,10 @@ C_00152E30 *C_00152E30::func_00152E30(int a0)
     j = 11;
     do {
         q[0] = 0;
-        *(Q4_00152E30 *)&q[1] = D_002A789C;
-        *(Q4_00152E30 *)&q[5] = D_002A789C;
-        *(Q4_00152E30 *)&q[9] = D_002A789C;
-        *(Q4_00152E30 *)&q[13] = D_002A789C;
+        copy_id_00152E30((Q4_00152E30 *)&q[1]);
+        copy_id_00152E30((Q4_00152E30 *)&q[5]);
+        copy_id_00152E30((Q4_00152E30 *)&q[9]);
+        copy_id_00152E30((Q4_00152E30 *)&q[13]);
         q[17] = 0; q[18] = 0; q[19] = 0;
         q[21] = 0; q[22] = 0; q[23] = 0;
         q += 24;
