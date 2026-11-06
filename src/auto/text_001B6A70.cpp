@@ -397,36 +397,34 @@ C_001B6E70 *C_001B6E70::func_001B6E70(void *param) {
 
 int C_001B6E70::func_001B6EA0(void *a, C_00169710 *param, void *b, void *c)
 {
-    char buf[0x104];
     int count;
-    int start;
-    int total;
     int i;
-    int n;
+    int end;
+    int start;
+    char buf[0x104];
+    C_001B7370_item *obj;
 
     if (param->func_00169710(D_0028CF08) == 0) {
         return 0;
     }
     param->func_00168C20(D_0028CEF4, 0, &count);
     if (count > 0) {
-        total = count;
         if (f28 != 0) {
             start = f24;
-            total += start;
-            f24 = total;
-            f28 = (C_001B7370_item **)func_001E83E8(f28, total * 4);
+            f24 = start + count;
+            end = f24;
+            f28 = (C_001B7370_item **)func_001E83E8(f28, f24 * 4);
         } else {
             start = 0;
             f24 = count;
-            f28 = (C_001B7370_item **)func_001E8A44(count * 4);
+            end = f24;
+            f28 = (C_001B7370_item **)func_001E8A44(f24 * 4);
         }
-        i = start;
-        n = 1;
-        while (i < total) {
-            func_001ADCC0(buf, 0x104, D_0028CEE8, n);
-            if (param->func_00169710(buf)) {
-                C_001B7370_item *obj = (C_001B7370_item *)func_001E8A44(0x110);
-                if (obj) {
+        for (i = start; i < end; i++) {
+            func_001ADCC0(buf, 0x104, D_0028CEE8, i - start + 1);
+            if (param->func_00169710(buf) != 0) {
+                obj = (C_001B7370_item *)func_001E8A44(0x110);
+                if (obj != 0) {
                     *(void **)obj = &D_0028CDE4;
                     *(int *)((char *)obj + 0x4) = 0;
                     *(int *)((char *)obj + 0x108) = 0;
@@ -437,10 +435,8 @@ int C_001B6E70::func_001B6EA0(void *a, C_00169710 *param, void *b, void *c)
                     obj = 0;
                 }
                 f28[i] = obj;
-                f28[i]->vf0(param, a, n, b, c);
+                f28[i]->vf0(param, a, i - start + 1, b, c);
             }
-            i++;
-            n++;
         }
     }
     return 1;
@@ -565,6 +561,7 @@ C_001B7480 *C_001B7480::func_001B7480(void) {
     C_001B7480 * volatile self = this;
     volatile int tmp[2];
     int lim;
+    int cap = 4;
     int n;
 
     vtbl = (void *)&D_0028CF30;
@@ -577,20 +574,14 @@ C_001B7480 *C_001B7480::func_001B7480(void) {
     }
     tmp[0] = sizeof(fC) - 1;
     lim = tmp[0];
-    if (lim > 4) {
-        lim = 4;
-    }
-    tmp[1] = lim;
+    tmp[1] = (lim > cap) ? cap : lim;
     n = tmp[1];
     func_001E8920(self->fC, (const char *)&D_002764F0, n);
     self->fC[n] = 0;
 
     tmp[1] = sizeof(f214) - 1;
     lim = tmp[1];
-    if (lim > 4) {
-        lim = 4;
-    }
-    tmp[0] = lim;
+    tmp[0] = (lim > cap) ? cap : lim;
     n = tmp[0];
     func_001E8920(self->f214, (const char *)&D_002764F0, n);
     self->f214[n] = 0;
