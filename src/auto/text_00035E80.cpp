@@ -10,7 +10,6 @@ struct Vec4_000361F0 {
 
 static inline int Min_00035E80(volatile int a, volatile int b) { int y = b, x = a; return y > x ? x : y; }
 
-template <class T> inline const T &Min_00035E80(const T &a, const T &b) { return a > b ? b : a; }
 
 /* config file reader, 0x4CC bytes */
 struct S_00035E80_Stream {
