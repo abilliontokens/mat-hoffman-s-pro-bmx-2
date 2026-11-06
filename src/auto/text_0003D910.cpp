@@ -93,7 +93,7 @@ extern int D_002A14D8;
 extern int D_002A14DC;
 extern int D_002A14E0;
 void func_001E891B(void *p);
-int func_000265C0(V4 *a, V4 *b, V4 *c, V4 *d, int e, int f);
+int func_000265C0(V4 *out, V4 *a, V4 *b, V4 *c, int d, int e);
 
 struct C_0003D910 {
     char pad0[0x44];
@@ -134,8 +134,10 @@ struct C_0003D910 {
     void func_000392B0();
 };
 
+#pragma optimize("y", on)
 void C_0003D910::func_0003D910(int a0)
 {
+    __declspec(align(16)) float L[20];
     D_002EFDB8->vf7(1);
     D_002EFDB8->vf8();
     if (f564 == 0) {
@@ -156,22 +158,18 @@ void C_0003D910::func_0003D910(int a0)
             f564->f8->func_00198F50(&v4FC, &v50C, 0, 1, 0);
             f564->f8->func_0019AC50();
             if (f568 != 0) {
-                V4 tmp;
-                func_000265C0(&v4EC, &tmp, &v4FC, &v50C, 0, 1);
-                f568->func_00133EF0(&tmp);
+                func_000265C0(&v4EC, (V4 *)(L + 4), &v4FC, &v50C, 0, 1);
+                f568->func_00133EF0((V4 *)(L + 4));
             }
-            V4 tmp2;
-            f564->f8->func_001824E0(&tmp2, 1.0f, 1.0f, 1.0f);
+            f564->f8->func_001824E0((V4 *)L, 1.0f, 1.0f, 1.0f);
         } else if (st == 2) {
             RetD *r = func_00038A10(f564->f4->fEC, 0);
             if (r != 0) {
-                V4 tmp2;
-                r->f8->func_001824E0(&tmp2, 1.0f, 1.0f, 1.0f);
+                r->f8->func_001824E0((V4 *)L, 1.0f, 1.0f, 1.0f);
             }
             RetD *r2 = func_00038A10(f564->f4->fE8, 0);
             if (r2 != 0) {
-                V4 tmp2;
-                r2->f8->func_001824E0(&tmp2, 1.0f, 1.0f, 1.0f);
+                r2->f8->func_001824E0((V4 *)L, 1.0f, 1.0f, 1.0f);
             }
             f564 = (Sub2D *)r2;
             V4 v = *(V4 *)((char *)f564->f10 + 0x24);
@@ -184,23 +182,19 @@ void C_0003D910::func_0003D910(int a0)
             f564->f8->func_00198F50(&v4FC, &v50C, 0, 1, 0);
             f564->f8->func_0019AC50();
             if (f568 != 0) {
-                V4 tmp;
-                func_000265C0(&v4EC, &tmp, &v4FC, &v50C, 0, 1);
-                f568->func_00133EF0(&tmp);
+                func_000265C0(&v4EC, (V4 *)(L + 4), &v4FC, &v50C, 0, 1);
+                f568->func_00133EF0((V4 *)(L + 4));
             }
-            V4 tmp2;
-            f564->f8->func_001824E0(&tmp2, 1.0f, 1.0f, 1.0f);
+            f564->f8->func_001824E0((V4 *)L, 1.0f, 1.0f, 1.0f);
             if (f564->a == 3 || f564->a == 5) {
                 f564->fC->func_00199600(v4EC);
                 f564->fC->func_00198F50(&v4FC, &v50C, 0, 1, 0);
                 f564->fC->func_0019AC50();
-                V4 tmp3;
-                f56C->func_00133EF0(&tmp3);
-                f564->fC->func_001824E0(&tmp3, 1.0f, 1.0f, 1.0f);
+                f56C->func_00133EF0((V4 *)(L + 4));
+                f564->fC->func_001824E0((V4 *)L, 1.0f, 1.0f, 1.0f);
             }
             if (f564->a == 4 || f564->a == 5) {
-                V4 tmp3;
-                f570->func_00133EF0(&tmp3);
+                f570->func_00133EF0((V4 *)(L + 4));
                 func_000392B0();
             }
         }
@@ -215,97 +209,95 @@ void C_0003D910::func_0003D910(int a0)
         f570 = 0;
         return;
     }
-    if (f2D0 != 0 && f2DC != 0 && f2D8 != 0 && f2E0 == 0) {
-        goto partB;
+    if ((f2D0 != 0 && f2DC == 0) || (f2D8 != 0 && f2E0 == 0)) {
+        if (f2D0 != 0) {
+            f2D0 = 0;
+            f598->f1A4->f4->func_00198390();
+        }
+        if (f2D8 != 0) {
+            f2D8 = 0;
+            f59C->f1A4->func_00164820(f59C->f1AC->f4);
+            f59C->f1A4->func_001670C0(0, 0, 0);
+            f59C->f1A4->f10 = 1;
+            f59C->f1A4->func_00132D20();
+            f59C->f1A4->f4->func_00198390();
+        }
+        func_001E891B(f564);
+        f564 = 0;
+    } else {
+        V4 *p = &v51C;
+        *(int *)&p->x = D_002A14D4;
+        *(int *)&p->y = D_002A14D8;
+        *(int *)&p->z = D_002A14DC;
+        *(int *)&p->w = D_002A14E0;
+        if (f564->a == 0) {
+            int i;
+            for (i = 0; i < f564->f14; i++) {
+                f64->f530->func_0015A180(f564->f18[i]);
+            }
+            func_001E891B(f564->f18);
+            f564->f8->func_00198E60();
+            f564->f8->func_00157810();
+            f564->f8->nv2();
+            f564->f8 = 0;
+        } else if (f564->a == 1) {
+            if (f48C != -1) {
+                ((ArrObjD *)((char *)this + 0x5a0))->func_000377F0(f48C);
+                f48C = -1;
+            }
+            f564->f8->func_00198E60();
+            f564->f8->func_00157810();
+            f564->f8->nv2();
+            ((NodeD *)((char *)f564->f10 + 0x2e4))->func_001332A0();
+            f564->f10->func_00157810();
+            f564->f10->nv2();
+            f564->f10 = 0;
+        } else if (f564->a == 2) {
+            int key[2];
+            if (f48C != -1) {
+                ((ArrObjD *)((char *)this + 0x5a0))->func_000377F0(f48C);
+                f48C = -1;
+            }
+            RetD *r = func_00038A10(f564->f4->fE8, key);
+            r->f8->func_00198E60();
+            r->f8->func_00157810();
+            r->f8->nv2();
+            func_001E891B(r);
+            ((ArrObjD *)((char *)this + 0x5a0))->func_000377F0(key[1]);
+            RetD *r2 = func_00038A10(f564->f4->fEC, key);
+            r2->f8->func_00198E60();
+            r2->f8->func_00157810();
+            r2->f8->nv2();
+            func_001E891B(r2);
+            ((ArrObjD *)((char *)this + 0x5a0))->func_000377F0(key[1]);
+            f564->f4->func_000A3B60(9999);
+            f564->f4->func_001332A0();
+            f564->f4->func_001332A0();
+            f564->f4->func_00157810();
+            f564->f4->fE8->func_00157810();
+            f564->f4->fE8->nv2();
+            f564->f4->fEC->func_00157810();
+            f564->f4->fEC->nv2();
+            f564->f4 = 0;
+        } else if (f564->a > 2) {
+            int i;
+            for (i = 0; i < f564->f14; i++) {
+                f64->f530->func_0015A180(f564->f18[i]);
+            }
+            func_001E891B(f564->f18);
+            f564->f8->func_00198E60();
+            f564->f8->func_00157810();
+            f564->f8->nv2();
+            if (f564->a == 3 || f564->a == 5) {
+                f564->fC->func_00198E60();
+                f564->fC->func_00157810();
+                f564->fC->nv2();
+                f564->fC = 0;
+            }
+        }
+        func_001E891B(f564);
+        f564 = 0;
     }
-    if (f2D0 != 0) {
-        f2D0 = 0;
-        f598->f1A4->f4->func_00198390();
-    }
-    if (f2D8 != 0) {
-        f2D8 = 0;
-        f59C->f1A4->func_00164820(f59C->f1AC->f4);
-        f59C->f1A4->func_001670C0(0, 0, 0);
-        f59C->f1A4->f10 = 1;
-        f59C->f1A4->func_00132D20();
-        f59C->f1A4->f4->func_00198390();
-    }
-    func_001E891B(f564);
-    f564 = 0;
-    goto tail;
-partB:
-    *(int *)&v51C.x = D_002A14D4;
-    *(int *)&v51C.y = D_002A14D8;
-    *(int *)&v51C.z = D_002A14DC;
-    *(int *)&v51C.w = D_002A14E0;
-    if (f564->a == 0) {
-        int i;
-        for (i = 0; i < f564->f14; i++) {
-            f64->f530->func_0015A180(f564->f18[i]);
-        }
-        func_001E891B(f564->f18);
-        f564->f8->func_00198E60();
-        f564->f8->func_00157810();
-        f564->f8->nv2();
-        f564->f8 = 0;
-    } else if (f564->a == 1) {
-        if (f48C != -1) {
-            ((ArrObjD *)((char *)this + 0x5a0))->func_000377F0(f48C);
-            f48C = -1;
-        }
-        f564->f8->func_00198E60();
-        f564->f8->func_00157810();
-        f564->f8->nv2();
-        ((NodeD *)((char *)f564->f10 + 0x2e4))->func_001332A0();
-        f564->f10->func_00157810();
-        f564->f10->nv2();
-        f564->f10 = 0;
-    } else if (f564->a == 2) {
-        if (f48C != -1) {
-            ((ArrObjD *)((char *)this + 0x5a0))->func_000377F0(f48C);
-            f48C = -1;
-        }
-        int key[2];
-        RetD *r = func_00038A10(f564->f4->fE8, key);
-        r->f8->func_00198E60();
-        r->f8->func_00157810();
-        r->f8->nv2();
-        func_001E891B(r);
-        ((ArrObjD *)((char *)this + 0x5a0))->func_000377F0(key[1]);
-        RetD *r2 = func_00038A10(f564->f4->fEC, key);
-        r2->f8->func_00198E60();
-        r2->f8->func_00157810();
-        r2->f8->nv2();
-        func_001E891B(r2);
-        ((ArrObjD *)((char *)this + 0x5a0))->func_000377F0(key[1]);
-        f564->f4->func_000A3B60(9999);
-        f564->f4->func_001332A0();
-        f564->f4->func_001332A0();
-        f564->f4->func_00157810();
-        f564->f4->fE8->func_00157810();
-        f564->f4->fE8->nv2();
-        f564->f4->fEC->func_00157810();
-        f564->f4->fEC->nv2();
-        f564->f4 = 0;
-    } else if (f564->a > 2) {
-        int i;
-        for (i = 0; i < f564->f14; i++) {
-            f64->f530->func_0015A180(f564->f18[i]);
-        }
-        func_001E891B(f564->f18);
-        f564->f8->func_00198E60();
-        f564->f8->func_00157810();
-        f564->f8->nv2();
-        if (f564->a == 3 || f564->a == 5) {
-            f564->fC->func_00198E60();
-            f564->fC->func_00157810();
-            f564->fC->nv2();
-            f564->fC = 0;
-        }
-    }
-    func_001E891B(f564);
-    f564 = 0;
-tail:
     if (f48C != -1) {
         int idx568 = -1;
         int idx56C = -1;
@@ -359,8 +351,6 @@ tail:
         f570 = 0;
     }
 }
-
-#pragma optimize("y", on)
 int Obj::_func_0003E410()
 {
     V4 a, b, c;
