@@ -32,6 +32,25 @@ struct S_001B9B50_Stream {
     int func_00169710(void *name);
     void func_00168C20(void *key, int def, int *out);
     void func_00168BE0(void *key, void *def, char *buf, int size);
+    void func_00168C50(void *key, int def, int *out);
+    void func_00168CB0(void *key, void *def, void *out);
+};
+
+extern char D_0028D0F8[], D_0028D0E4[], D_00284A98[], D_0028CF6C[], D_0028CF60[];
+extern char D_0028CF4C[], D_0027C4BC[], D_0028D0D4[], D_0028D0C0[];
+int func_001EA426(char *a, char *b);
+
+struct SegmentedCordTempData {
+    void *vtbl;
+    int f04;
+    int f08;
+    int f0C;
+    char f10[0x104];
+    char f114[0x104];
+    char f218[0x104];
+    char *f31C;
+    char f320[0x10];
+    int func_001B9560(S_001B9B50_Stream *stream);
 };
 
 extern char D_0028D1F0[];
