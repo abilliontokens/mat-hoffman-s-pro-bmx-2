@@ -24,6 +24,82 @@ struct ResetGlobal { virtual void v0(); virtual void v1(); virtual void v2(); vi
 struct ResetGroup { int f0; ResetChild **children; int pad[2]; int count; };
 struct ResetGroups { char pad[0x24]; int count; ResetGroup **groups; };
 extern ResetGlobal *D_002A8490;
+extern int D_00284A98;
+int func_001EA426(char *a, char *b);
+void *func_001E8A44(int size);
+void func_0011CA60(int a, int b, int c, int d);
+struct Obj138 {
+    char pad0[8];
+    int f8;
+    char padC[0x30C];
+    int vec318[4];
+    int count328;
+    int f32c;
+};
+struct Found138 {
+    int *func_00199B00(int *a, int b);
+};
+struct Elem138 {
+    int f0;
+    Found138 *f4;
+    Found138 *func_00198330(char *s);
+};
+struct ArrObj138 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    virtual void v31();
+};
+struct Entry138 {
+    virtual void v0();
+    virtual void v1();
+    virtual int v2(int a, void *b, void *c);
+    int *arr4;
+    Obj138 *obj8;
+    int typeC;
+    int count10;
+    int f14;
+};
+struct Cont138 {
+    char pad0[0x24];
+    int count;
+    Entry138 **arr;
+};
+struct C0_138 { C0_138 *func_0016ABE0(int); };
+struct C1_138 { C1_138 *func_0016B770(int); };
+struct C2_138 { C2_138 *func_0016BE40(int); };
+struct C3_138 { C3_138 *func_0016C5B0(int); };
+struct C4_138 { C4_138 *func_0016CE80(int); };
+struct C5_138 { C5_138 *func_0016D620(int); };
+struct C6_138 { C6_138 *func_0016DA40(int); };
 struct CutScene {
  void *vtbl; char pad4[0x20];
 int f24;
