@@ -88,7 +88,7 @@ extern void *D_002F0670;
 extern void *D_002BEAAC;
 extern void *D_002A829C;
 struct S_342C0_FE08 {
-    void func_0018C960(int a);
+    S_342C0_FE08 *func_0018C960(int a);
     void func_0018F980(int a, const char *s);
 };
 struct C_000342C0 {
