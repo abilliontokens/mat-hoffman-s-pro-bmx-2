@@ -47,6 +47,41 @@ int _func_001755A0(unsigned int flag, unsigned short* src, int w, int h, int dst
     }
     return 1;
 }
+
+static __forceinline int MaskF8(int x) { return x & (unsigned int)D_0000FFF8; }
+
+#pragma optimize("y", on)
+int func_00175840(unsigned short *dst, unsigned short *src, int width, int height, int dstStride, int srcStride)
+{
+    unsigned short *srcRow = src, *dstRow = dst;
+    for (int y = height; y > 0; --y) {
+        unsigned short *out = dstRow;
+        for (int x = width; x > 0; --x) {
+            unsigned short p0, p1, p2, p3;
+            int n = 0, b = 0, g = 0, r = 0;
+            p0 = src[0];
+            p2 = src[srcStride];
+            p3 = src[srcStride + 1];
+            if (p0 & 0x8000) { r = (p0 >> 7) & 248; g = (p0 >> 2) & 248; b = (p0 & 31) << 3; n = 1; }
+            p1 = src[1];
+            if (p1 & 0x8000) { r += (p1 >> 7) & 248; g += (p1 >> 2) & 248; b += (p1 & 31) << 3; ++n; }
+            if (p2 & 0x8000) { r += (p2 >> 7) & 248; g += (p2 >> 2) & 248; b += (p2 & 31) << 3; ++n; }
+            if (p3 & 0x8000) { r += (p3 >> 7) & 248; g += (p3 >> 2) & 248; b += (p3 & 31) << 3; ++n; }
+            if (n >= 2) {
+                int c = ((r + n * 4) / n & 0xfff8) << 5;
+                c |= (g + n * 4) / n;
+                c = (c & 0xfff8) | 0xe000;
+                *out++ = (c << 2) | (((b + n * 4) / n) >> 3);
+            } else *out++ = 0;
+            src += 2;
+        }
+        srcRow += srcStride * 2; src = srcRow;
+        dstRow += dstStride;
+    }
+    return 1;
+}
+#pragma optimize("", on)
+
 #pragma optimize("", on)
 
 int func_00175E30(unsigned short *dst, unsigned short *src, int width, int height, int dstPitch, int srcPitch, unsigned char flags, unsigned short key)
@@ -61,7 +96,7 @@ int func_00175E30(unsigned short *dst, unsigned short *src, int width, int heigh
             unsigned short *d = drow;
             for (x = height; x != 0; --x) {
                 unsigned int sum = 0;
-                int a;
+                unsigned int a;
                 unsigned short b;
                 a = *p & (unsigned int)D_0000FFFF;
                 b = (unsigned short)(*p >> 16);
