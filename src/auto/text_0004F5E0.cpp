@@ -151,6 +151,7 @@ struct C_0004F6E0_Sub {
     char pad1F8[0xC];
     int f204;
     int f208;
+    void func_0012B190(int a, int b, int c, int d);
 };
 
 struct C_0004F6E0 {
