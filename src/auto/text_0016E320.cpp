@@ -1,5 +1,7 @@
 /* 3 functions from 0x0016E320 to 0x0016F110, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
+static __forceinline void FloatToInt_16EC80(int *out, float f) { int * volatile p = out; *p = _mm_cvttss_si32(*(__m128 *)&f); }
 
 struct Anim { int unk_0; int unk_4; int unk_8; };
 struct Owner { char pad[0x1b0]; int idx; float unk_1b4; float unk_1b8; };
