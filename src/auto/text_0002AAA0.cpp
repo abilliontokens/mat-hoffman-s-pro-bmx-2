@@ -342,14 +342,13 @@ void C_0002AAA0::func_0002AAA0(float dt)
 
 void C_0002AF90::func_0002AF90(void)
 {
- struct Raw4 { int a, b, c, d; };
  Vec4_0002AF90 v; Vec4_0002AF90 *cur; Vec4_0002AF90 *tgt;
  if((D_002B7E5C&1)==0){
  D_002B7E5C|=1;D_002B7E4C.x=0;D_002B7E4C.y=2.0f;D_002B7E4C.z=0;D_002B7E4C.w=1.0f;
  }
  v=f230->func_00197EC0(&D_002B7E4C);tgt=&f14c;f230->func_00199A70(0,tgt);
  cur=&f13c;tgt->x+=v.x;tgt->y+=v.y;tgt->z+=v.z;
- if(cur->x==D_002A10F0&&cur->y==D_002A10F4&&cur->z==D_002A10F8){*(Raw4 *)cur=*(const Raw4 *)tgt;}
+ if(cur->x==D_002A10F0&&cur->y==D_002A10F4&&cur->z==D_002A10F8){f13c=f14c;}
  Vec4_0002AF90 delta=cur->Sub(tgt);
  Vec4_0002AF90 scaled;
  scaled.x=D_002A1178*delta.x;
