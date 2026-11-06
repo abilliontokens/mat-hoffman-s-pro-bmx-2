@@ -141,9 +141,10 @@ struct C_0018C120Obj {
 struct C_CardStrings { char pad0[0x7a0]; int f7a0; char pad7a4[0xf58-0x7a4]; int ff58; char padf5c[0x11a0-0xf5c]; int f11a0; char pad11a4[0x1248-0x11a4]; int f1248; };
 struct C_CardStringsHolder { char pad0[4]; C_CardStrings *f4; };
 struct C_CardText {
-    int f0, x, y;
+    int f0;
+    unsigned x, y;
     char padc[0x4e-0xc]; unsigned char flags;
-    void setPosition(int a, int b) { if(x != a || y != b) { y=b; x=a; flags |= 6; } }
+    inline void setPosition(unsigned a, unsigned b) { if(x != a || y != b) { y=b; x=a; flags |= 6; } }
     void func_0005E840(int);
     void func_0005E7C0(float, float);
     void func_001D6600();
@@ -368,6 +369,43 @@ void C_001A6B70::func_001A6B70()
     func_00157920();
 }
 
+void C_001A6D30::func_001A6BA0()
+{
+    if (f6C == 9) {
+        f48->func_0005E840(D_002A8490->f2e8->f4->f1248);
+        f48->func_001D6600();
+        if (f60) f40->func_001D5AD0(); else f38->func_001D5AD0();
+        f44->func_0005E840(D_002A8490->f2e8->f4->f7a0);
+        int y = 0x43c48000;
+        int x = 0x43fa0000;
+        C_CardText *p = f44;
+        if (p->x != x || p->y != y) {
+            p->y = y; p->x = x; p->flags |= 6;
+        }
+        f44->func_001D6600();
+        if (f5C) f3C->func_001D5AD0(); else f34->func_001D5AD0();
+    } else if (f6C == 3 || f6C == 6) {
+        if (f5C) {
+            if (f6C == 3) f3C->func_0005E7C0(310.0f, 388.0f);
+            else f3C->func_0005E7C0(461.0f, 388.0f);
+            f3C->func_001D5AD0();
+        } else {
+            if (f6C == 3) f34->func_0005E7C0(310.0f, 388.0f);
+            else f34->func_0005E7C0(461.0f, 388.0f);
+            f34->func_001D5AD0();
+        }
+        int x;
+        if (f6C == 3) { f44->func_0005E840(D_002A8490->f2e8->f4->f11a0); x = 0x43af0000; }
+        else { f44->func_0005E840(D_002A8490->f2e8->f4->f7a0); x = 0x43fa0000; }
+        int y = 0x43c48000;
+        C_CardText *p = f44;
+        if (p->x != x || p->y != y) {
+            p->y = y; p->x = x; p->flags |= 6;
+        }
+        f44->func_001D6600();
+    }
+}
+
 void C_001A6D30::func_001A6D30()
 {
     func_001A6BA0();
@@ -584,6 +622,126 @@ void C_001A7260::func_001A7260()
     }
     D_002A8490->f2ec->func_0018C120();
     func_00157660();
+}
+
+C_001A7260 *C_001A7260::func_001A7320(C_Holder24 *owner)
+{
+    char bufA[0x104];
+    char bufB[0x104];
+    int names;
+    int *r;
+    int font;
+    void *m;
+    int i;
+    int idx;
+
+    D_002A8490->f234 = 1;
+    D_002EFDB8->v8();
+    f24 = owner;
+    func_001ADCC0(bufA, 0x104, D_0028BC34, D_002A64D0);
+    D_002BEAAC->func_0013D780(bufA, 1, 0, 0, 0, 0, 0, 0);
+    m = func_001E8A44(0x4010);
+    if (m) {
+        ((S_001A7320_Obj *)m)->func_00149380();
+    }
+    D_002A829C->v4(D_0028BC0C);
+    names = (int)D_00278690;
+    D_002A8490->f2ec->func_0018C780(1, &names, 0);
+    r = D_002A8490->f2ec->func_0018C160(D_00278690);
+    font = r ? *r : 0;
+
+    m = func_001E8A44(0x60);
+    f30 = m ? ((C_001D6410 *)m)->func_001D5E90() : 0;
+    f30->func_001D5FA0(font, D_00278690, 5, 0);
+    f30->setPos(0x42240000, 0x43200000);
+    f30->setColor(0xffbfa35a);
+    f30->func_0005E840(D_002A8490->f2e8->f4->ff58);
+
+    for (i = 0; i < 8; i++) {
+        float y;
+        float t;
+
+        m = func_001E8A44(0x60);
+        f34[i] = m ? ((C_001D6410 *)m)->func_001D5E90() : 0;
+        f34[i]->func_001D5FA0(font, D_00278690, 0x32, 0);
+        y = ((S_001A7320_Font *)font)->func_0018C210();
+        if (i == 0) {
+            t = y * D_00275544;
+            f34[0]->setPosF(0x42ae0000, t + D_0028BDBC);
+        } else {
+            t = y * i;
+            f34[i]->setPosF(0x42240000, t + D_0028BDBC);
+        }
+        f34[i]->setColor(0xffcccccc);
+    }
+
+    D_002EFDB8->f30 = 0;
+    D_002BEAAC->func_0013DFF0(bufA, 1);
+    switch (D_002A8490->f2e0->f48) {
+    case 0:
+        f24->func_001A5B10(D_0028BDA0, &f28);
+        break;
+    case 1:
+        f24->func_001A5B10(D_0028BD84, &f28);
+        break;
+    case 2:
+        f24->func_001A5B10(D_0028BD68, &f28);
+        break;
+    case 3:
+        f24->func_001A5B10(D_0028BD4C, &f28);
+        break;
+    case 4:
+        f24->func_001A5B10(D_0028BD30, &f28);
+        break;
+    case 5:
+        f24->func_001A5B10(D_0028BD14, &f28);
+        break;
+    case 6:
+        f24->func_001A5B10(D_0028BCF8, &f28);
+        break;
+    case 7:
+        if (D_002A8490->f2e0->f4 == 10) {
+            f24->func_001A5B10(D_0028BCDC, &f28);
+        } else {
+            f24->func_001A5B10(D_0028BCDC, &f28);
+        }
+        break;
+    case 8:
+        f24->func_001A5B10(D_0028BCC0, &f28);
+        break;
+    case 9:
+        f24->func_001A5B10(D_0028BCA4, &f28);
+        break;
+    case 10:
+        f24->func_001A5B10(D_0028BC88, &f28);
+        break;
+    case 12:
+        f24->func_001A5B10(D_0028BC6C, &f28);
+        break;
+    case 13:
+        f24->func_001A5B10(D_0028BC50, &f28);
+        break;
+    }
+    if (f28 != 0) {
+        D_002EFDB8->v4(0, f28, 0, 0);
+        D_002A8490->v9();
+        D_002EFDB8->v4(0, f28, 0, 0);
+        D_002A8490->v9();
+        D_002EFDB8->v4(0, f28, 0, 0);
+    }
+    if (D_002A8490->f2e0->f4 == 0xb) {
+        idx = func_00011260(0, f24->f1d8 - 1);
+        func_001ADCC0(bufB, 0x104, D_00276F28, f24->f1d4[idx]);
+        func_001A5C30(bufB, f34, 0x1e, 8);
+    } else {
+        func_001ADCC0(bufB, 0x104, D_00276F28, f24->f1cc[func_00011260(0, f24->f1d0 - 1)]);
+        func_001A5C30(bufB, f34, 0x1e, 8);
+    }
+    f2c = 0;
+    D_002A829C->func_00161680();
+    D_002AA6C0->func_001B2640();
+    D_002A829C->func_001616F0();
+    return this;
 }
 
 void *C_001A77B0::func_001A77B0(int flags)
