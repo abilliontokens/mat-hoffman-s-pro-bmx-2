@@ -19,3 +19,7 @@ struct C_00062070 {
     int f284;
     void func_00062070(int a);
 };
+
+void C_00062070::func_00062070(int a)
+{
+}
