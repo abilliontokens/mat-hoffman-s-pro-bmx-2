@@ -68,6 +68,8 @@ struct XboxWaterDisplacement {
     I_Release *f4A0;
     void func_001DBA40(void);
     void func_001CA1C0(void);
+    void func_001CA1D0(WaterConfig *,const char *,int,int,int,unsigned int);
+    XboxWaterDisplacement *func_001DBBF0(WaterConfig *,const char *,int,int,int,unsigned int);
 };
 
 void XboxWaterDisplacement::func_001DBA40(void)
