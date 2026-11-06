@@ -46,13 +46,14 @@ struct C_00145290 {
 };
 
 struct C_00144D30_V { float v[4]; };
-struct C_00144D30_E { int obj; C_00144D30_V m; };
+struct C_00144D30_E { int obj; C_00144D30_V m; void Apply(); };
 struct C_00144D30_Cnt { char pad[0x40]; int n; };
 struct C_00144D30 {
     void func_00144D30();
 };
 void __fastcall func_001FEC30(void *self, C_00144D30_V *m);
 void __fastcall func_001FEBD0(void *self, C_00144D30_V *m);
+inline void C_00144D30_E::Apply() { func_001FEBD0((char *)obj + 0x60, &m); }
 
 void *func_001E8A44(int size);
 void func_001E891B(void *p);
@@ -245,6 +246,36 @@ void C_00144CF0::func_00144CF0(void)
     }
     p++;
   } while (--n);
+}
+
+void C_00144D30::func_00144D30()
+{
+    char *self = (char *)this;
+    int n = (*(C_00144D30_Cnt **)(self - 0x14))->n;
+    int i = 0;
+    float t;
+    if (n >= 4) {
+        float m[4][4];
+        C_00144D30_E *e;
+        int j;
+        for (j = 0; j < 4; j++) {
+            m[j][2] = 0; m[j][1] = 0; m[j][0] = 0; m[j][3] = 1.0f;
+        }
+        e = *(C_00144D30_E **)(self + 4);
+        *(C_00144D30_V *)m[0] = e[0].m;
+        *(C_00144D30_V *)m[1] = e[1].m;
+        *(C_00144D30_V *)m[2] = e[2].m;
+        *(C_00144D30_V *)m[3] = e[3].m;
+        t = m[1][0]; m[1][0] = m[0][1]; m[0][1] = t;
+        t = m[2][0]; m[2][0] = m[0][2]; m[0][2] = t;
+        t = m[2][1]; m[2][1] = m[1][2]; m[1][2] = t;
+        func_001FEC30((char *)e->obj + 0x60, (C_00144D30_V *)m);
+        i = 4;
+    }
+    for (; i < n; i++) {
+        C_00144D30_E *q = &(*(C_00144D30_E **)(self + 4))[i];
+        func_001FEBD0((char *)q->obj + 0x60, &q->m);
+    }
 }
 
 void C_00144E70::func_00144E70(void)
