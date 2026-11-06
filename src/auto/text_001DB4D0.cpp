@@ -39,7 +39,7 @@ struct WaterEntry {
 void func_001E891B(void *p);
 void __stdcall func_00201100(void *p);
 extern int D_0028F8F4;
-struct C_00012140 { void func_00012140(void); };
+struct C_00012140 { void func_00012140(void); C_00012140 *func_00142C70(); void func_00142C80(const char *,int); };
 struct C_0014A540 { void func_0014A540(void); };
 struct I_Release { virtual void v0(); virtual void v1(); virtual void Release(); };
 struct XboxWaterDisplacement {
