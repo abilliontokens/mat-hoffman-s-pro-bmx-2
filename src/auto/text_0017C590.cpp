@@ -94,6 +94,7 @@ struct QuadTree {
     u16 *func_0017D050(void);
     void func_0017D120(S_QuadTreeListNode *node);
     void func_0017D1B0(void);
+    void func_0017C590(int *position, int unused);
 };
 
 struct C_0017D190 {
