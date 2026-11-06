@@ -10,13 +10,13 @@ extern int D_002955B8[];
  * exists here because MSVC emits `add esp,4` instead of `pop ecx` after calls to a callee whose
  * body it has already compiled in the same translation unit; remove it once these files are
  * merged into one undname translation unit with the callee first. */
-extern "C" void *func_001EEE49(int n)
+extern "C" char *func_001EEE49(int n)
 {
     volatile int *gp = (volatile int *)&D_002F6A38;
     if (~*gp & 1) {
-        return (void *)D_002955B8[n];
+        return (char *)D_002955B8[n];
     }
-    return (void *)(D_002955B8[n] + 1 + 1);
+    return (char *)D_002955B8[n] + 1 + 1;
 }
 extern char D_00295D20[];
 extern char D_00295D14[];
@@ -391,7 +391,6 @@ void *func_001F1184(void *p)
 #pragma optimize("y", off)
 void *func_001F11B1(S_001EF734 *o)
 {
-    void *func_001EEE49(int n);
     void *func_001F0F86(void *out);
     S_001EF734 local;
     S_001EF734 tmp;
