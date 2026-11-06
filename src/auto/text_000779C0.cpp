@@ -47,6 +47,52 @@ struct C_00078050 {
 
 extern float D_002A1FEC;
 
+struct Wid_779C0 {
+    char pad0[0x28];
+    float f28, f2c;
+    char pad30[8];
+    unsigned int color;
+    float f3c, f40, f44, f48, f4c, f50;
+    char pad54[4];
+    unsigned char b58;
+    Wid_779C0 *func_001D5760();
+    void func_001D5810(char *, float, float, float);
+};
+struct Txt_779C0 {
+    char pad0[4];
+    float f4, f8;
+    char padC[0x38];
+    int f44;
+    unsigned int f48;
+    char pad4C[2];
+    unsigned char b4e;
+    Txt_779C0 *func_001D5E90();
+    void func_001D5FA0(int, char *, int, int);
+    void func_001D6190(int, int, int *);
+};
+struct Cnt_779C0 {
+    char pad0[0x64];
+    Wid_779C0 *w64, *w68;
+    char pad6C[0x14];
+    Wid_779C0 *w80[5];
+    Wid_779C0 *w94;
+    Txt_779C0 *t98;
+    char pad9C[0xc];
+    Wid_779C0 *wA8, *wAC, *wB0, *wB4;
+    Txt_779C0 *tBC, *tC0, *tC4;
+    int fC8;
+    char padCC[0xc];
+    int fD8;
+    Cnt_779C0 *func_000779C0(void *);
+};
+extern char D_00278658[], D_00278648[], D_00278624[], D_00278638[], D_00278608[], D_00278600[];
+extern int D_00278664, D_00278668, D_0027866C, D_00278670;
+extern char D_00278674;
+extern int D_002A60B0, D_002A60B4, D_002A60B8, D_002A60BC;
+extern char D_002A60C0;
+extern float D_00278654, D_00275544, D_0027653C, D_00278650;
+void *func_001E8A44(int);
+
 struct Sprite_78620 {
     char pad0[4];
     float f4, f8;
