@@ -38,6 +38,11 @@ struct C_000876B0 {
     void func_00087700(void);
 };
 
+static __forceinline void SetVtbl_876B0(C_000876B0 *p)
+{
+    p->vtbl = (void *)&D_002797A4;
+}
+
 struct LookupObj_874E0 {
     int *func_0018C160(int a);
 };
@@ -114,18 +119,21 @@ void C_000874E0::func_000874E0(void)
 }
 
 C_000876B0 *C_000876B0::func_000876B0(int a0) {
+    volatile C_000876B0 *v;
+
     ((C_00157600 *)this)->func_00157600(1);
-    *(void *volatile *)this = (void *)&D_002797A4;
-    f24[0] = 0;
-    f24[1] = 0;
-    f2C = 0;
-    f30 = 0;
-    f34 = 0;
-    f38 = 0;
-    f3C = 0;
-    f40 = 0;
-    fC4 = 0;
-    memset(f44, 0, sizeof(f44));
+    v = (volatile C_000876B0 *)this;
+    v->vtbl = (void *)&D_002797A4;
+    v->f24[0] = 0;
+    v->f24[1] = 0;
+    v->f2C = 0;
+    v->f30 = 0;
+    v->f34 = 0;
+    v->f38 = 0;
+    v->f3C = 0;
+    v->f40 = 0;
+    v->fC4 = 0;
+    memset((void *)v->f44, 0, sizeof(f44));
     return this;
 }
 
