@@ -1,6 +1,58 @@
 /* 4 functions from 0x0016AE10 to 0x0016B900, found by Ghidra. */
 #include "common.h"
 
+extern short D_002EFE50;
+extern "C" float __cdecl fabsf(float);
+float sqrtf(float);
+extern float D_00278C48, D_00284ECC, D_002754B0;
+int func_001E8833();
+int func_00011260(int a, int b);
+
+struct V4f_AE {
+    float x, y, z, w;
+};
+V4f_AE func_0001E9E0(V4f_AE *in);
+V4f_AE func_0001C610(V4f_AE *a, V4f_AE *b);
+
+struct AE_Pool {
+    char pad0[0x11C];
+    int f11C;
+    char pad120[4];
+    int f124;
+    char pad128[4];
+    float **f12C;
+};
+struct AE_Base {
+    int func_00169E10(float dt);
+};
+struct AE_Self {
+    void *vtbl;
+    char pad4[0x24 - 4];
+    float f24, f28, f2C;
+    u32 f30;
+    float f34, f38, f3C;
+    char pad40[0x54 - 0x40];
+    float f54, f58, f5C;
+    u32 f60;
+    AE_Pool *f64;
+    void *f68;
+    char pad6C[0x174 - 0x6C];
+    float f174;
+    char pad178[0x180 - 0x178];
+    u32 f180;
+    char pad184[4];
+    u32 f188, f18C, f190;
+    char pad194[0x1A8 - 0x194];
+    u32 f1A8, f1AC;
+    char pad1B0[0x1F0 - 0x1B0];
+    float f1F0, f1F4, f1F8, f1FC, f200, f204, f208, f20C, f210, f214, f218, f21C, f220, f224, f228, f22C;
+    float f230, f234, f238;
+    u32 f23C;
+    float f240, f244, f248;
+    u32 f24C;
+    int func_0016AE10(float dt);
+};
+
 extern int D_002884D4;
 extern char D_002A5558[];
 extern "C" char * __cdecl strcpy(char *, const char *);
