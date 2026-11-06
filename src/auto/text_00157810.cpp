@@ -231,8 +231,6 @@ unsigned int S_00157810_Child::func_00157770(void)
 int C_00157810::func_00157810(void)
 {
     S_00157810_Child *p;
-    S_00157810_Child *c;
-    unsigned int r;
 
     if (D_002DF948 != 0) {
         return 0;
@@ -250,11 +248,7 @@ int C_00157810::func_00157810(void)
     while (p->f14 != 0) {
         p = p->f14;
     }
-    r = 0;
-    for (c = p->f10; c != 0; c = c->fC) {
-        r |= c->func_00157770();
-    }
-    p->f1C = r;
+    p->func_00157770();
     f14 = 0;
     fC = 0;
     f8 = 0;
