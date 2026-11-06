@@ -91,13 +91,14 @@ struct FPSSave_R2A4 {
 };
 
 struct FPSSave_R2E0 {
-    char pad0[0x2C0];
+    int f4;
+    char pad8[0x2C0 - 8];
     FPSSave_Opt *p2C0;
     char pad2C4[0x2D8 - 0x2C4];
     int f2D8;
     char pad2DC[0x2FC - 0x2DC];
     FPSSave_Mem *p2FC;
-    char pad300[0x324 - 0x300];
+    int f300[9];
     int f324;
 };
 
