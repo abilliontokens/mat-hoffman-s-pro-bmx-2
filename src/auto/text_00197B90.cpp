@@ -40,6 +40,14 @@ static __forceinline void Copy_00198120(M_00198040 *dst, const M_00198040 *src)
     *dst = *src;
 }
 
+static __forceinline void Copy4_00198040(__m128 * volatile dst, __m128 * volatile src)
+{
+    __m128 *s = src;
+    __m128 *d = dst;
+    __m128 a0 = s[0], a1 = s[1], a2 = s[2], a3 = s[3];
+    d[0] = a0; d[1] = a1; d[2] = a2; d[3] = a3;
+}
+
 static __forceinline void Xform_00198120(C_00197EC0_Vec4 *out, const M_00198040 *mat, const float *v)
 {
     __m128 t = _mm_loadu_ps(v);
@@ -228,6 +236,41 @@ C_00197EC0_Vec4 C_00197EC0::func_00197EC0(float *v)
     return r;
 }
 
+C_00197EC0_Vec4 C_00197EC0::func_00197F70(float *vin)
+{
+    C_00197EC0_Vec4 q;
+    q.z = 0;
+    q.y = 0;
+    q.x = 0;
+    q.w = 1.0f;
+    func_00197AA0();
+    float *m = &fF0;
+    C_00197EC0_Vec4 *pq = &q;
+    __m128 v = _mm_loadu_ps(vin);
+    __m128 r0 = _mm_load_ps(m);
+    _mm_storeh_pi((__m64 *)&pq->z, v);
+    __m128 r1 = _mm_load_ps(m + 4);
+    pq->w = 1.0f;
+    __m128 r2 = _mm_load_ps(m + 8);
+    v = _mm_loadh_pi(v, (__m64 const *)&pq->z);
+    r0 = _mm_mul_ps(r0, v);
+    r1 = _mm_mul_ps(r1, v);
+    r2 = _mm_mul_ps(r2, v);
+    __m128 lo = _mm_unpacklo_ps(r0, r1);
+    __m128 hi = _mm_unpackhi_ps(r0, r1);
+    __m128 t;
+    t = _mm_movehl_ps(t, r2);
+    lo = _mm_add_ps(lo, hi);
+    r2 = _mm_add_ps(r2, t);
+    hi = _mm_movehl_ps(hi, lo);
+    lo = _mm_movelh_ps(lo, r2);
+    hi = _mm_shuffle_ps(hi, r2, 0x14);
+    lo = _mm_add_ps(lo, hi);
+    _mm_storeu_ps(&pq->x, lo);
+    pq->w = 1.0f;
+    return q;
+}
+
 C_00197EC0_Vec4 C_00197EC0::func_00198120(float *v)
 {
     C_00197EC0_Vec4 q;
@@ -406,6 +449,51 @@ void C_00197EC0::func_00198440(float * volatile pos, float * volatile maxDist, i
         C_00197EC0 *c;
         for (c = self->f174; c != 0; c = c->f178) {
             c->func_00198440(pos, maxDist, 1);
+        }
+    }
+}
+
+void C_00197EC0::func_001985D0(int *flag, C_00197EC0_Vec4 *mn, C_00197EC0_Vec4 *mx, float *m, int n)
+{
+    C_00197EC0 * volatile self = this;
+    if (self->f180 & 4) {
+        C_00197EC0_Vec4 center;
+        C_00197EC0_Vec4 ax, ay, az;
+        C_00197EC0_Vec4 p;
+        float ex, ey, ez;
+        ax.x = self->f140[0]; ax.y = 0.0f; ax.z = 0.0f; ax.w = 1.0f;
+        ay.x = 0.0f; ay.y = self->f140[1]; ay.z = 0.0f; ay.w = 1.0f;
+        az.x = 0.0f; az.y = 0.0f; az.z = self->f140[2]; az.w = 1.0f;
+        center = self->func_00197F70(self->f130);
+        ax = self->func_00197EC0((float *)&ax);
+        ay = self->func_00197EC0((float *)&ay);
+        az = self->func_00197EC0((float *)&az);
+        func_0011F540(&p, center, m);
+        func_00030A30(&ax, ax, m);
+        func_00030A30(&ay, ay, m);
+        func_00030A30(&az, az, m);
+        ex = fabs_00198440(ax.x) + fabs_00198440(ay.x) + fabs_00198440(az.x);
+        ey = fabs_00198440(ax.y) + fabs_00198440(ay.y) + fabs_00198440(az.y);
+        ez = fabs_00198440(ax.z) + fabs_00198440(ay.z) + fabs_00198440(az.z);
+        if (*flag == 0) {
+            mn->x = p.x - ex; mn->y = p.y - ey; mn->z = p.z - ez; mn->w = 1.0f;
+            mx->x = p.x + ex; mx->y = p.y + ey; mx->z = p.z + ez; mx->w = 1.0f;
+            *flag = 1;
+        } else {
+            float lo, hi;
+            lo = p.x - ex; if (lo < mn->x) mn->x = lo;
+            lo = p.y - ey; if (lo < mn->y) mn->y = lo;
+            lo = p.z - ez; if (lo < mn->z) mn->z = lo;
+            hi = p.x + ex; if (hi > mx->x) mx->x = hi;
+            hi = p.y + ey; if (hi > mx->y) mx->y = hi;
+            hi = p.z + ez; if (hi > mx->z) mx->z = hi;
+        }
+    }
+    if (n) {
+        C_00197EC0 *child = self->f174;
+        while (child) {
+            child->func_001985D0(flag, mn, mx, m, 1);
+            child = child->f178;
         }
     }
 }
