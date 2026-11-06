@@ -241,6 +241,78 @@ struct S_000BE540_Vt {
 extern C_0013B210 *D_002BEAAC;
 extern int D_0027D75C;
 
+extern char D_00276C90[];
+extern char D_00276C08[];
+extern char D_00276C58[];
+extern char D_0027DDFC[];
+extern char D_0027DE0C[];
+extern char D_0027DDEC[];
+extern char D_0027D68C[];
+extern char D_00275678[];
+extern char D_002A5348[];
+extern char D_002A5FA8[];
+extern char D_002A63C8[];
+extern char D_002A60B0[0x104];
+extern int D_002A64D0;
+extern int D_0027DB9C;
+extern void *D_002A829C;
+
+extern "C" void __stdcall func_000BC520(int flags, void *p);
+extern "C" void __stdcall func_0015B060(void *p, float a, float b);
+extern "C" void __stdcall func_0012B190(int a, int b, int c, int d);
+extern "C" int func_001DC974(void);
+
+struct VideoFXManager {
+    VideoFXManager *func_001C3E50(int a);
+    void func_001C3EA0(int n);
+};
+struct C_001C4A70 { void func_001C4A70(void); };
+struct C_001C4C30 { void func_001C4C30(void); };
+struct C_00161870 { void func_001616F0(void); };
+struct C_001D35E0 { void func_001D35E0(void); };
+
+struct C_001D1BB0 {
+    virtual void v0(int a, int b);
+    virtual void v1();
+    virtual void v2(int a, int b, int c);
+    virtual void v3(int a, int b, int c);
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    C_001D1BB0 *func_001D1BB0();
+};
+
+struct C_00092890 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    C_00092890 *func_00092890(int a);
+    void func_00012140(void);
+};
+
+struct C_001362A0 {
+    C_001362A0 *func_001362A0(float a, float b, int c, int d, int e, float f);
+};
+
+struct VB_A {
+    virtual void b0();
+    virtual void b1();
+    virtual void b2();
+    virtual void b3();
+    virtual void b4();
+    virtual void b5();
+};
+struct VB_D : virtual VB_A { };
+
 struct C_001C3E50;
 struct C_000BEDC0;
 struct C_00092890;
