@@ -162,7 +162,7 @@ struct C_00157600 {
 /* (0, 0, 0, 1) vector, zeroed z first */
 struct S_Vec4Unit {
     float x, y, z, w;
-    S_Vec4Unit() {
+    void Init() {
         x = y = z = 0.0f;
         w = 1.0f;
     }
