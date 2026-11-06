@@ -106,11 +106,14 @@ struct C_0007E0C0 {
 };
 
 struct SetterObj_7E {
+    void *func_001B12C0(int a);
+    void *func_001B13A0(int a, int b, int c, int len);
     void func_001B17D0(char *s);
     void func_001B1980();
     float func_001B15E0();
     void func_001B1A30(float x, float y, int z);
     void func_001B19C0(int x, int y, int z);
+    void func_001B19A0(int p);
     void func_001B2270(unsigned int color);
     void func_001B1860(int, float, int, float, float, float, float, int, float, float, float, float, float);
 };
