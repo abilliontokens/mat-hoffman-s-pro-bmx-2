@@ -39,6 +39,11 @@ struct C_001A8BC0 {
     char pad0[0x24];
     int f24;
     int f28;
+    S_001A8BC0_Mesh *f2C;
+    char pad30[0x24];
+    void *f54;
+    void func_001577A0(S_001A8BC0_Mesh *, int);
+    void func_001D3F50();
     void func_001A8BC0(int a, int b, int c, int d, int e, int f, int g, int h, int i);
 };
 
