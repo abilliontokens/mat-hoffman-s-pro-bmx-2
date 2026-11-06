@@ -64,7 +64,8 @@ struct S_00191270_List {
 
 /* 0x60-byte slot of the manager's table, indexed by the owner's slot number */
 struct S_00191270_Entry {
-    char pad0[0x44];
+    int f0;
+    char pad4[0x40];
     int f44;
     S_00191270_List *f48;
     int f4C;
