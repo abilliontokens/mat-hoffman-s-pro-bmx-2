@@ -23,15 +23,50 @@ struct S_000380B0_Widget {
     virtual void v0(int); virtual void v1(); virtual void v2();
     void func_001A4100(int, int, int);
 };
+struct V4_382D0 {
+    f32 x, y, z, w;
+    void init() { x = y = z = 0.0f; w = 1.0f; }
+};
+struct S_000382D0_Item {
+    char pad0[0x44];
+    int f44;
+};
+struct S_000382D0_Pool {
+    char pad0[0x5A4];
+    S_000382D0_Item *f5A4;
+    int f5A8;
+    int *f5AC;
+};
+struct S_000382D0_Render {
+    void func_0019A0A0(f32, f32, f32);
+    void func_00199600(V4_382D0);
+    void func_00198F50(V4_382D0 *, V4_382D0 *, int, int, int);
+    void func_0019AC50();
+    void func_001BB950(V4_382D0 *, V4_382D0 *, V4_382D0 *, V4_382D0 *, int);
+};
+struct S_000382D0_Holder {
+    char pad0[8];
+    S_000382D0_Render *f8;
+    char padC[4];
+    S_000382D0_Render *f10;
+};
 struct BmxEventEditor {
     void *vtbl;
-    char pad4[0x498];
+    char pad4[0x60];
+    S_000382D0_Pool *f64;
+    char pad68[0x414];
+    int f47C, f480;
+    char pad484[0x18];
     void *f49C;
-    char pad4A0[0x9C];
+    char pad4A0[0x1C];
+    V4_382D0 v4BC, v4CC, v4DC;
+    char pad4EC[0x50];
     S_000380B0_Widget *f53C;
     int f540;
     S_000380B0_Widget *f544, *f548, *f54C;
-    char pad550[0x40];
+    char pad550[0x14];
+    S_000382D0_Holder *f564;
+    char pad568[0x28];
     S_000380B0_Widget *f590, *f594, *f598, *f59C;
     S_000380B0_Array a, b, c, d;
     void func_000380B0();
