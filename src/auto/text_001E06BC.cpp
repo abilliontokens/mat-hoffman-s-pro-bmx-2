@@ -1,5 +1,6 @@
 /* 3 functions from 0x001E06BC to 0x001E148B, found by Ghidra. */
 #include "common.h"
+#include <excpt.h>
 
 extern "C" unsigned long __readfsdword(unsigned long Offset);
 #pragma intrinsic(__readfsdword)
@@ -56,3 +57,125 @@ u8 __stdcall func_001E016D(S_Heap *heap, void *a, int b, void *c, u32 d, void *e
 S_HeapEntry *__stdcall func_001DF985(S_Heap *heap, S_HeapEntry *entry, u32 *size, int a3);
 void __stdcall func_001E0412(S_Heap *heap, S_HeapEntry *entry, u32 size);
 void __stdcall func_001DFC2A(S_Heap *heap, S_HeapEntry *entry, u32 size);
+
+int __stdcall func_001E06BC(u32 flags, void *base, u32 reserve, u32 commit, void *lock, S_HeapParams *params)
+{
+    S_HeapParams p;
+    S_Heap *heap;
+    u32 heapSize;
+    void *region;
+    u32 mbi[8];
+    u32 flag;
+    u32 *pbase;
+    u32 psize;
+
+    heap = 0;
+    memset(&p, 0, 0x30);
+    if (params) {
+        if (params->length == 0x30) {
+            memcpy(&p, params, 0x30);
+        } else {
+            return 1;
+        }
+    }
+    if (D_002F6BB2 & 0x20) {
+        flags |= 0x80;
+    }
+    if (p.segmentReserve == 0) p.segmentReserve = D_002ACBD4;
+    if (p.segmentCommit == 0) p.segmentCommit = D_002ACBD8;
+    if (p.deCommitFree == 0) p.deCommitFree = D_002ACBE0;
+    if (p.deCommitTotal == 0) p.deCommitTotal = D_002ACBDC;
+    if (p.maxAlloc == 0) p.maxAlloc = 0x7ffdefff;
+    if (p.virtualThreshold != 0 && p.virtualThreshold > D_000FF000) {
+        p.virtualThreshold = D_000FF000;
+    }
+    if (commit == 0) {
+        commit = 0x1000;
+        if (reserve == 0) {
+            reserve = D_00040000;
+        } else {
+            reserve = (reserve + 0xfff) & 0xfffff000;
+        }
+    } else {
+        commit = (commit + 0xfff) & 0xfffff000;
+        if (reserve == 0) {
+            reserve = (commit + D_0000FFFF) & 0xffff0000;
+        } else {
+            reserve = (reserve + 0xfff) & 0xfffff000;
+        }
+    }
+    heapSize = 0x590;
+    if (!(flags & 1)) {
+        if (lock) {
+            flags |= 0x8000;
+        } else {
+            heapSize = 0x5ac;
+            lock = (void *)-1;
+        }
+    } else {
+        if (lock) {
+            return 0;
+        }
+    }
+    if (base) {
+        if (p.initialCommit != 0) {
+            region = (void *)p.initialReserve;
+            if (region == 0 || p.initialCommit == 0 || (u32)region > p.initialCommit) {
+                return 0;
+            }
+            if (flags & 2) {
+                return 0;
+            }
+            psize = p.initialCommit;
+            pbase = &psize;
+            region = base;
+            memset(base, 0, 0x1000);
+        } else {
+            memset(&mbi, 0, 0x20);
+            if (NtQueryVirtualMemory(base, 0, &mbi, 0x1c, 0) < 0) {
+                return 0;
+            }
+            if ((void *)mbi[0] != base) {
+                return 0;
+            }
+            if (mbi[4] == D_00010000) {
+                return 0;
+            }
+            region = base;
+            if (mbi[4] == 0x1000) {
+                memset(base, 0, 0x1000);
+            }
+            commit = mbi[3];
+            if (NtQueryVirtualMemory((char *)base + commit, 0, &mbi, 0x1c, 0) >= 0 && mbi[4] == 0x2000) {
+                reserve = commit + mbi[3];
+            }
+        }
+        flag = 1;
+        heap = (S_Heap *)base;
+    } else {
+        if (p.initialCommit != 0) {
+            return 0;
+        }
+        pbase = (u32 *)&heap;
+        psize = reserve;
+        if (NtAllocateVirtualMemory((void **)&pbase, 0, &psize, 0x2000, 4) < 0) {
+            return 0;
+        }
+        flag = 0;
+        if (commit == 0) commit = 0x1000;
+        region = heap;
+        if (region == heap) {
+            psize = commit;
+            pbase = (u32 *)&region;
+            if (NtAllocateVirtualMemory((void **)&pbase, 0, &psize, 0x1000, 4) < 0) {
+                if (base != 0) {
+                    return 0;
+                }
+                NtFreeVirtualMemory((void **)&heap, &reserve, 0x8000);
+                return 0;
+            }
+        }
+        region = (char *)region + commit;
+    }
+    return 1;
+}
