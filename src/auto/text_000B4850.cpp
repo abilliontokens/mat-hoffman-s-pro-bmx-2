@@ -12,6 +12,12 @@ struct Vec4 {
     f32 w;
     Vec4() {}
     Vec4(f32 x_, f32 y_, f32 z_, f32 w_) : x(x_), y(y_), z(z_), w(w_) {}
+    Vec4(f32 x_, double y_, double z_, f32 w_) {
+        x = x_;
+        y = (f32)y_;
+        z = (f32)z_;
+        w = w_;
+    }
     Vec4(f32 x_, f32 y_, double z_, f32 w_) {
         x = x_;
         y = y_;
