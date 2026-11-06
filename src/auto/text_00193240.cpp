@@ -331,6 +331,7 @@ extern float D_002A997C;
 
 struct V4_00193EB0 {
     float x, y, z, w;
+    V4_00193EB0() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
     V4_00193EB0 &operator+=(const V4_00193EB0 &o)
     {
         x += o.x;
