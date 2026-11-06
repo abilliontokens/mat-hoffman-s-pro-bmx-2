@@ -336,8 +336,8 @@ void func_00162530(float *m, float a2, float a3, float a4, float a5, int a6)
 {
     float v;
     float w;
-    v = func_0014F590(a2 * 0.5f) * a4;
-    w = v / a3;
+    v = func_0014F590(a2 * 0.5f);
+    w = (v *= a4) / a3;
     func_00162470(m, -v, v, -w, w, a4, a5, a6);
 }
 
