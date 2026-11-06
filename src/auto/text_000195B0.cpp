@@ -176,6 +176,129 @@ static __forceinline void Dist_1A060(float * volatile d, const float *a, const f
     _mm_store_ss(d, _mm_sqrt_ss(*(__m128 *)&square));
 }
 
+/* ---- func_000198E0: Tiki state set-up (config stream, sub-objects, animation slots) ---- */
+#include <string.h>
+void *func_001E8A44(unsigned int size);
+int func_001ADCC0(char *dst, int size, const char *fmt, ...);
+extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
+
+extern char D_00275630[], D_00275AE4[], D_00275AE0[], D_00275AD4[], D_00275AC8[], D_00275AC0[];
+extern char D_00275AB4[], D_00275AA8[], D_00275A9C[], D_00275A8C[], D_00275A80[], D_00275A6C[];
+extern char D_00275A54[], D_00275A3C[], D_00275A24[], D_00275A18[], D_00275A04[], D_002759F0[];
+extern char D_002759D4[], D_002759BC[], D_002759A0[];
+extern char D_00275678[], D_002A5870[], D_002A45E0[], D_002A5FA8[];
+extern char D_002A5EA0[], D_002A4C10[], D_002A60B0[];
+extern char D_002A0748, D_002A0738;
+extern int D_00275840, D_0027580C, D_00275820, D_00275830, D_002BA148;
+
+struct S_198E0_V4 { float x, y, z, w; };
+struct S_198E0_Vec4 : S_198E0_V4 {
+    S_198E0_Vec4() { x = y = z = 0; w = 1; }
+};
+extern S_198E0_V4 D_002A0728;
+
+struct S_198E0_Stream {
+    void func_00168BE0(const char *key, const char *def, char *dst, int size);
+    void func_00168CB0(const char *key, void *def, void *dst);
+};
+struct S_198E0_Cam {
+    void func_00199110(int a, void *pos, void *dir, int b, int c, int d);
+};
+struct S_198E0_F3C { char pad0[4]; S_198E0_Cam *f4; };
+struct S_198E0_Anim { char pad0[0x54]; int f54; int pad58; };
+struct S_198E0_Obj {
+    char pad0[0x60];
+    void *f60;
+    void *f64;
+    int f68;
+    S_198E0_Obj *func_0019DA80(int a);
+    void func_00129920(int a);
+    void func_0019F9B0(S_198E0_Cam *cam, char *path);
+};
+struct S_198E0_Machine {
+    char pad0[0x6c];
+    S_198E0_Machine *func_001AC080(void);
+    void func_001AC0A0(void *state, const char *name);
+};
+struct S_198E0_State {
+    void *vtbl;
+    int kind;
+    void *owner;
+    int pad0C;
+    float f10;
+    int f14;
+};
+static __forceinline S_198E0_State *InitA_198E0(void *p)
+{
+    S_198E0_State *s = (S_198E0_State *)p;
+    s->vtbl = &D_00275840;
+    s->kind = 0;
+    s->owner = 0;
+    return s;
+}
+static __forceinline S_198E0_State *InitB_198E0(void *p)
+{
+    S_198E0_State *s = (S_198E0_State *)p;
+    s->vtbl = &D_0027580C;
+    s->kind = 1;
+    s->owner = 0;
+    return s;
+}
+static __forceinline S_198E0_State *InitC_198E0(void *p)
+{
+    S_198E0_State *s = (S_198E0_State *)p;
+    s->vtbl = &D_00275820;
+    s->kind = 2;
+    s->owner = 0;
+    s->f14 = 0;
+    s->f10 = 1.0f;
+    return s;
+}
+static __forceinline S_198E0_State *InitD_198E0(void *p)
+{
+    S_198E0_State *s = (S_198E0_State *)p;
+    s->vtbl = &D_00275830;
+    s->kind = 3;
+    s->owner = 0;
+    return s;
+}
+
+/* the original saves the three path buffers with a length-clamped copy, keeping the
+   clamp's operands and result in three stack slots (len/limit/result) */
+static __forceinline void CopyPathV_198E0(char *dst, const char *src, volatile int &len, volatile int &lim, volatile int &res)
+{
+    int ma, mb, n;
+    len = strlen(src);
+    lim = 0x103;
+    ma = lim;
+    mb = len;
+    res = ma > mb ? mb : ma;
+    n = res;
+    func_001E8920(dst, src, n);
+    dst[n] = 0;
+}
+
+struct C_198E0 {
+    char pad0[0x3c];
+    S_198E0_F3C *f3C;
+    char pad40[0xc0 - 0x40];
+    S_198E0_Anim *fC0;
+    char padC4[0x384 - 0xc4];
+    S_198E0_Machine *f384;
+    S_198E0_State *f388, *f38C, *f390, *f394;
+    S_198E0_Cam *f398;
+    char pad39C[0x4a0 - 0x39c];
+    S_198E0_Obj *f4A0;
+    char pad4A4[0x4f8 - 0x4a4];
+    S_198E0_V4 f4F8;
+    char pad508[0x730 - 0x508];
+    int f730, f734, f738, f73C, f740, f744, f748, f74C, f750, f754, f758, f75C, f760, f764, f768;
+    void func_00018D40(S_198E0_Stream *stream);
+    void func_001C76B0(char *buf, int a, S_198E0_V4 *pos, int b, int c, S_198E0_V4 v1, S_198E0_V4 v2);
+    int func_001C6E30(const char *name);
+    C_198E0 *func_000198E0(S_198E0_Stream *stream, S_198E0_Cam *cam);
+};
+
 void C_00019790::func_00019790(void)
 {
     int chance;
