@@ -1,2 +1,74 @@
 /* 1 function from 0x0003BC90 to 0x0003D220, found by Ghidra. */
 #include "common.h"
+struct V4 { float x,y,z,w; };
+struct NodeBC {
+ virtual void vf0();
+virtual void vf1();
+virtual void vf2();
+virtual void vf3();
+virtual void vf4();
+virtual void vf5();
+virtual void vf6();
+virtual void vf7();
+virtual void vf8();
+virtual void vf9();
+virtual void vf10();
+virtual void vf11();
+virtual void vf12();
+virtual void vf13();
+virtual void vf14();
+virtual void vf15();
+virtual void vf16();
+virtual void vf17();
+virtual void vf18();
+virtual void vf19();
+virtual void vf20();
+virtual void vf21();
+virtual void vf22();
+virtual void vf23();
+virtual void vf24();
+virtual void vf25();
+virtual void vf26();
+virtual void vf27();
+virtual void vf28();
+virtual void vf29();
+virtual void vf30();
+virtual void vf31();
+virtual void vf32();
+virtual void vf33();
+virtual void vf34();
+ virtual int Load(const char*,int,int);
+ char pad4[0x24]; char name[128];
+ NodeBC *func_00143580(int);
+ void func_00199600(V4);
+ void func_00198F50(V4*,V4*,int,int,int);
+ void func_0019ABA0(int,int);
+ void func_00198390();
+};
+struct ListBC {
+ int count; NodeBC **data; int grow,capacity;
+ int func_0015ACA0(int);
+ void func_001CDE90(NodeBC*);
+};
+struct EntryBC { char name[0x34]; int count; char pad38[0xc]; int index; };
+struct DataBC {
+ char pad0[0x3a8]; void *f3A8; char pad3AC[0xfc];
+ int *f4A8; char pad4AC[0xf4];
+ int count; EntryBC *entries; int stringCount; char **strings;
+};
+struct C_0003BC90 {
+ char pad0[0x64]; DataBC *f64; char pad68[0x3c0];
+ int f428; int f42C; int f430; int f434; int f438; int f43C;
+ float f440; int f444; int f448;
+ char pad44C[0x100]; int f54C;
+ char pad550[0x3c]; NodeBC *f58C;
+ char pad590[0x38]; ListBC f5C8;
+ void func_001577A0(NodeBC*,int);
+ void func_0003BC90();
+};
+extern char D_002A5870[],D_00276BB4[],D_002A5EA0[],D_00276F58[],D_002A60B0[],D_002A4C10[],D_00276F44[],D_00276F34[],D_00276F2C[];
+extern float D_00275548,D_00276554,D_00275AE8;
+int func_001ADCC0(char*,int,const char*,...);
+void *func_001E8A44(unsigned int);
+void *func_001E8920(void*,const void*,unsigned int);
+extern "C" unsigned int __cdecl strlen(const char*);
