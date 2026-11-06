@@ -6,7 +6,16 @@ struct T { int a; int b; int func_001EF1E7(); void func_001EF734(int); void func
     T* func_001EEF4F(T*); T* func_001EF2FE(T*); T* func_001EF613(int); T* func_001EFD3B(T*, char); T* func_001EFD7A(T*, char*); T* func_001EFAB5(T*, T*); };
 extern char* D_002F6A28;
 T* func_001F208F(T*, T*);
-T* func_001F23B8(T*, T*, int, T*, int);
+T* func_001F23B8(T*, T*, char, T*, int);
+char* func_001EEE49(int);
+T* func_001EFCD5(T*, char, T*);
+T* func_001EFD19(T*, char*, T*);
+T* func_001EFCF7(T*, char, T*);
+T* func_001F1DF5(T*);
+T* func_001F11B1(T*);
+extern char D_00295E54[], D_00295E4C[], D_00295E40[], D_00295E38[], D_00295E34[], D_002869B8[], D_00295E28[], D_00295E20[], D_00295CE8[];
+struct S_002F6A38_Flags { u32 b0 : 1; u32 b1 : 1; u32 mid : 15; u32 b17 : 1; u32 rest : 14; };
+extern S_002F6A38_Flags D_002F6A38;
 T* func_001F062A(T*, T*, int);
 T* func_001F2BCC(T*, T*);
 T* func_001F2A1C(T*, T*, T*, int);
