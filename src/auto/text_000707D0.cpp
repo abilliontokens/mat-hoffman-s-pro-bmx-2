@@ -18,7 +18,7 @@ struct KB_Obj {
     void func_00032150(char *s, int a);
     void func_00032180(char *s, int a);
     void func_000320E0(char *s, int a);
-    int func_0005B960(float a, int b);
+    int func_0005B960(int a, float b);
     void func_00064A40();
     void func_00032720();
     void func_00032740();
@@ -178,6 +178,180 @@ struct BmxMusicMenu {
 extern int D_0027850C;
 extern int D_00278C64;
 extern char* D_002A8490;
+
+int C_000707D0::func_000707D0(float dt)
+{
+    char *g2e0;
+    char *g2a4;
+
+    f68 += dt;
+    if (f68 >= D_002755E8) {
+        f68 = 0.0f;
+        f6C = (f6C == 0);
+    }
+    D_002B9034 += dt;
+    f110 += dt;
+    if (f11C == 0) {
+        if (f118 != 0) {
+            KB_VT *o = *(KB_VT **)(*(char **)(D_002A8490 + 8));
+            if (o->v4(2, 2, 0x3F, 0) != 0) {
+                if (f114 >= D_00278C58 && D_002B9034 >= D_00278C50) {
+                    ((KB_VT23 *)this)->v23(f124, f120);
+                    D_002B9034 = 0.0f;
+                }
+            }
+        } else {
+            goto after118;
+        }
+    }
+    f11C = 0;
+    {
+        KB_VT *o = *(KB_VT **)(*(char **)(D_002A8490 + 8));
+        if (o->v4(3, 2, 0x3F, 0) != 0) {
+            if (f114 >= D_00278C48 && D_002B9034 >= D_00278C50) {
+                ((KB_VT23 *)this)->v23(f124, f120);
+                D_002B9034 = 0.0f;
+            }
+        }
+    }
+    f118 = 0;
+after118:
+    f114 += dt;
+    fBC += dt;
+    if (fC4 != 0) {
+        if (fBC >= D_00278500 && f104 != 0) {
+            f104 = 0;
+            fC4 = 0;
+            func_0006EC60();
+            if (*(int *)(*(char **)(D_002A8490 + 0x2E0) + 4) == 0) {
+                ((KB_Obj *)((char *)fEC + 0x160 - 0x160))->func_000602B0();
+                *(KB_Obj **)((char *)fEC + 0x160);
+                ((KB_Obj *)*(int *)((char *)fEC + 0x160))->func_000602B0();
+            } else {
+                ((KB_Obj *)*(int *)((char *)fEC + 0x15C))->func_000602B0();
+            }
+        }
+    }
+    if (fC0 == 0) goto tail;
+    if (fBC < D_00278500) goto tail;
+    if (f104 != 0) {
+        f104 = 0;
+        fC0 = 0;
+        ((KB_Obj *)*(int *)(*(char **)(D_002A8490 + 0x2E0) + 0x2FC))->func_00094960(0);
+        ((KB_VT *)*(int *)(*(int *)(*(char **)(D_002A8490 + 0x2A4) + 0x64) + 0x4C0))->v31(0, 1);
+        ((KB_VT *)*(int *)(*(char **)(D_002A8490 + 0x2E0) + 0x2FC))->v18(0);
+        *(int *)(*(char **)(D_002A8490 + 0x2A4) + 0x154) = 1;
+        g2e0 = *(char **)(D_002A8490 + 0x2E0);
+        *(int *)(g2e0 + 0x324) = (*(int *)(g2e0 + 4) == 0);
+        ((KB_Obj *)*(int *)(*(char **)(D_002A8490 + 0x2F0)))->func_0001EDC0(4);
+        return func_0005EA10(dt);
+    }
+    {
+        char *s = fD0->func_001B17F0();
+        char *s4;
+        fA0 = 0;
+        while (s[fA0] != 0) fA0++;
+        if (fA0 > 0xF) goto tail;
+        s4 = fD4->func_001B17F0();
+        if (s4 != 0) {
+            strcpy(aA4, fD0->func_001B17F0());
+            strcat(aA4, s4);
+        }
+        fD0->func_001B17D0(aA4);
+        f68 = 0.0f;
+        *(int *)&fBC = 0;
+        f6C = 1;
+        ((KB_Obj *)*(int *)(*(char **)(D_002A8490 + 0x2E0) + 0x2C0))->func_0005B850(aA4);
+        g2a4 = *(char **)(D_002A8490 + 0x2A4);
+        fEC->func_00032060(aA4, *(int *)(*(int *)(*(int *)(g2a4 + 0x64) + 0x4E0) + 0x1A8 + fF4 * 4) + 0xA58);
+        fEC->func_000320A0(aA4, *(int *)(*(int *)(*(int *)(g2a4 + 0x64) + 0x4E0) + 0x1A8 + fF4 * 4) + 0xA4C);
+        fEC->func_00032120(aA4, *(int *)(*(int *)(*(int *)(g2a4 + 0x64) + 0x4E0) + 0x1A8 + fF4 * 4) + 0x1058);
+        fEC->func_00032150(aA4, *(int *)(*(int *)(*(int *)(g2a4 + 0x64) + 0x4E0) + 0x1A8 + fF4 * 4) + 0xA54);
+        fEC->func_00032180(aA4, *(int *)(*(int *)(*(int *)(g2a4 + 0x64) + 0x4E0) + 0x1A8 + fF4 * 4) + 0xA5C);
+        if (*(float *)(*(char **)(D_002A8490 + 0x2E0) + 0x10) == D_002782A8) {
+            fEC->func_000320E0(aA4, *(int *)(*(int *)(*(int *)(g2a4 + 0x64) + 0x4E0) + 0x1A8 + fF4 * 4) + 0xA40);
+        }
+        if (*(int *)((char *)fEC + 0x90) - 1 != fF4) {
+            func_0006E910();
+            fEC->func_0006E620(fF4);
+            fC0 = 0;
+            *(int *)&fBC = 0;
+            goto tail;
+        }
+    }
+    g2e0 = *(char **)(D_002A8490 + 0x2E0);
+    switch (*(int *)(g2e0 + 4)) {
+    case 0:
+        if (fFC == 0) {
+            *(int *)(*(int *)((char *)fEC + 0x16C) + 0x64) = 1;
+            *(int *)(D_002A8490 + 0x124) = 0;
+            func_0006EC60();
+            ((KB_Obj *)((char *)fEC + 0x16C - 0x16C))->func_00064A40();
+            *(KB_Obj **)((char *)fEC + 0x16C);
+            ((KB_Obj *)*(int *)((char *)fEC + 0x16C))->func_00064A40();
+            ((KB_VT *)fEC)->v39();
+            return 1;
+        }
+        if (fFC == 1) {
+            func_0006EC60();
+            fEC->func_00032720();
+            ((KB_VT *)fEC)->v39();
+            fEC->func_00032740();
+            return 1;
+        }
+        if (fFC == 2) {
+            fC0 = 0;
+            ((KB_Obj *)*(int *)(*(char **)(D_002A8490 + 0x2E0) + 0x2FC))->func_00094960(0);
+            ((KB_VT *)*(int *)(*(int *)(*(char **)(D_002A8490 + 0x2A4) + 0x64) + 0x4C0))->v31(0, 1);
+            ((KB_VT *)*(int *)(*(char **)(D_002A8490 + 0x2E0) + 0x2FC))->v18(0);
+            *(int *)(*(char **)(D_002A8490 + 0x2A4) + 0x154) = 1;
+            g2e0 = *(char **)(D_002A8490 + 0x2E0);
+            *(int *)(g2e0 + 0x324) = (*(int *)(g2e0 + 4) == 0);
+            ((KB_Obj *)*(int *)(*(char **)(D_002A8490 + 0x2F0)))->func_0001EDC0(4);
+            return 1;
+        }
+        break;
+    case 2:
+        if (fFC == 2) {
+            fC0 = 0;
+            ((KB_Obj *)*(int *)(*(char **)(D_002A8490 + 0x2E0) + 0x2FC))->func_00094960(0);
+            ((KB_VT *)*(int *)(*(int *)(*(char **)(D_002A8490 + 0x2A4) + 0x64) + 0x4C0))->v31(0, 1);
+            ((KB_VT *)*(int *)(*(char **)(D_002A8490 + 0x2E0) + 0x2FC))->v18(0);
+            *(int *)(*(char **)(D_002A8490 + 0x2A4) + 0x154) = 1;
+            g2e0 = *(char **)(D_002A8490 + 0x2E0);
+            *(int *)(g2e0 + 0x324) = (*(int *)(g2e0 + 4) == 0);
+            ((KB_Obj *)*(int *)(*(char **)(D_002A8490 + 0x2F0)))->func_0001EDC0(4);
+            return 1;
+        }
+        if (fFC != 3) {
+            func_0006EC60();
+            fEC->func_00032720();
+            ((KB_VT *)fEC)->v39();
+            fEC->func_00032740();
+            fC0 = 0;
+            return 1;
+        }
+        goto lab6db;
+    case 3:
+    case 5:
+    case 6:
+    case 8:
+    case 9:
+    lab6db:
+        func_0006E910();
+        ((KB_Obj *)*(int *)((char *)fEC + 0x190))->func_000683F0();
+        return 1;
+    case 4:
+    case 7:
+        func_0006E910();
+        ((KB_Obj *)*(int *)((char *)fEC + 0x19C))->func_0006D1D0();
+        *(int *)(*(int *)((char *)fEC + 0x19C) + 0xB8) = *(int *)((char *)fEC + 0x134) + 1;
+        return 1;
+    }
+    return 1;
+tail:
+    return func_0005EA10(dt);
+}
 
 void* BmxMusicMenu::func_000715B0(int a0) {
  func_00157600(a0);
