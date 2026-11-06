@@ -25,7 +25,18 @@ struct C_001D27F0 {
     void func_001D27F0();
 };
 
+struct S_001D2A40_Dev {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4(int a, void *b, void *c);
+};
+extern S_001D2A40_Dev *D_002EFDB8;
+
 struct C_001D2A40 {
+    char pad0[8]; int f8; char padc[4]; char *f10; char *f14; char pad18[0x18];
+    char f30[0x20]; void *f50;
     void func_001D2A40();
 };
 
