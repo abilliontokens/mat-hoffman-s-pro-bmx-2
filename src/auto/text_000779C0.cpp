@@ -65,8 +65,8 @@ struct Wid_779C0 {
     __forceinline void SetH(float h) { if (f2c != h) { f2c = h; b58 |= 1; } }
     __forceinline void Scale()
     {
-        f3c = (float)((double)f4c * D_00278654);
         b58 |= 4;
+        f3c = (float)((double)f4c * D_00278654);
         f40 = (float)((double)f4c * D_00275544);
         f44 = (float)((double)f50 * D_0027653C);
         f48 = (float)((double)f50 * D_00275544);
@@ -295,9 +295,9 @@ Cnt_779C0 *Cnt_779C0::func_000779C0(void *a)
         w = w80[i];
         w->f3c = 0;
         w->f48 = 0;
-        w->b58 |= 4;
         w->f40 = 1.0f;
         w->f44 = 0.99f;
+        w->b58 |= 4;
     }
     p = func_001E8A44(0x64);
     w = p ? ((Wid_779C0 *)p)->func_001D5760() : 0;
@@ -319,10 +319,8 @@ Cnt_779C0 *Cnt_779C0::func_000779C0(void *a)
     w = p ? ((Wid_779C0 *)p)->func_001D5760() : 0;
     w94 = w;
     w->func_001D5810(D_00278600, 0, 0, 0);
-    w94->b58 |= 2;
-    w94->color &= 0xff000000;
-    w94->b58 |= 2;
-    *((unsigned char *)&w94->color + 3) = 0x80;
+    w94->SetRGB(0);
+    w94->SetAlpha(0x80);
     w94->SetH(448.0f);
     w94->SetW(640.0f);
     p = func_001E8A44(0x60);
