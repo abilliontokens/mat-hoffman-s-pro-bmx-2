@@ -45,7 +45,7 @@ static __forceinline void pos72(Res_72C90* p,int x,int y){if(p->x!=x||p->y!=y){p
 static __forceinline void align72(Res_72C90* p,int a){if(p->align!=a){p->align=a;p->flags|=6;}}
 static __forceinline void color72(Res_72C90* p,unsigned int c){if(p->color!=c){p->flags|=8;p->color=(p->color & (c|0xff000000))|(c&0xffffff);}}
 static __forceinline void uv72(Obj_72C90* p){float a=127.0f*p->w;p->flags|=4;p->a=a;p->b=0.0f*p->w;p->c=15.0f*p->h;p->d=0.0f*p->h;}
-static __forceinline void size72(Obj_72C90* p){if(p->width!=0x44200000){p->width=0x44200000;p->flags|=1;}if(p->height!=0x42480000){p->height=0x42480000;p->flags|=1;}}
+static __forceinline void size72(Obj_72C90*& p){if(p->width!=0x44200000){p->width=0x44200000;p->flags|=1;}if(p->height!=0x42480000){p->height=0x42480000;p->flags|=1;}}
 
 /* BmxMenu-derived menu (RunResultsMenu) */
 struct C_00072C90 {
