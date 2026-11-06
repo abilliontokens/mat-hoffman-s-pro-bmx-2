@@ -36,7 +36,7 @@ struct Lookup_72 { Font_72** func_0018C160(int); };
 struct Data_72 { int x; char* p; };
 struct Root_72 { char pad[0x2e8]; Data_72* data; Lookup_72* lookup; };
 extern Root_72* D_002A8490;
-extern int D_00278678,D_00278690,D_0028F5E0;
+extern char D_00278678[],D_00278690[]; extern int D_0028F5E0;
 extern char D_002A5FA8[],D_002A5348[],D_00275678[],D_002A60B0[],D_002A63C8[],D_00278658[],D_00278638[],D_00278608[];
 extern float D_00278D40,D_00278654,D_00275544,D_0027653C,D_00278650;
 void* func_001E8A44(int);
