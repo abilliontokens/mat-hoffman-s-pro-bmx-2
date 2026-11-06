@@ -466,7 +466,7 @@ void C_0013AEC0::func_0013B280(int keep)
     p = (S_0013B340_Buf *)((char *)this + 0x80);
     do {
         idx = p->f4;
-        if (idx != -2 && (idx == -1 || (*(unsigned char *)(idx * 0x20 + (char *)fE8 + 0x18) & 4) == 0)) {
+        if (idx != -2 && (idx == -1 || (fE8[p->f4].f18 & 4) == 0)) {
             p->f8 = -0x6000;
             p->f4 = -1;
             count++;
