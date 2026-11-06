@@ -554,7 +554,8 @@ void Node_00193240::func_00193950(void *a1, S_00193240_V4 *a2, void *a3, void *a
             }
             Handler_00193240 *h;
             if (best != (C_00192B50 *)f4) {
-                f8->v9(a1, f14);
+                Handler_00193240 *old = f8;
+                old->v9(a1, f14);
                 Node_00193240 *n = f0;
                 while (n != 0) {
                     n->f8->v9(a1, n->f14);
@@ -564,7 +565,7 @@ void Node_00193240::func_00193950(void *a1, S_00193240_V4 *a2, void *a3, void *a
                 }
                 f0 = 0;
                 f4 = best;
-                h = best->func_00192B50(((int *)a1)[2]);
+                h = best->func_00192B50(old->f8);
                 f8 = h;
                 int r = h->v5(a2, 0);
                 f14 = r;
