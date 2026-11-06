@@ -202,6 +202,85 @@ struct C_001DC540 {
 };
 
 
+void XboxWaterDisplacement::func_001DC010()
+{
+    XboxWaterDisplacement * volatile self = this;
+    char *cam = (char *)D_002EFDB8[1];
+    S_WaterVector t1, t2, t3, t4;
+    Vtx_001DC010 verts[4];
+    float d, s, a, b, x, y, k, p, q, w, h, hy;
+    int *g;
+    int i;
+
+    W_001DC010(self, 0x54, S_WaterVector) = *func_0001E9E0(&t2, func_0001C610(&t1, D_002AC750, cam + 0x180));
+    W_001DC010(self, 0x64, S_WaterVector) = *func_0001E9E0(&t4, func_0001C610(&t3, cam + 0x180, &W_001DC010(self, 0x54, S_WaterVector)));
+    {
+        XboxWaterDisplacement *t = self;
+        d = W_001DC010(t, 0x6c, float) * W_001DC010(t, 0xbc, float)
+          + W_001DC010(t, 0x64, float) * W_001DC010(t, 0xb4, float)
+          + W_001DC010(t, 0x68, float) * W_001DC010(t, 0xb8, float);
+    }
+    d = _mm_max_ss(_mm_set_ss(-1.0f), _mm_set_ss(d)).m128_f32[0];
+    d = _mm_min_ss(_mm_set_ss(1.0f), _mm_set_ss(d)).m128_f32[0];
+    d = Abs_001DC010(d);
+    s = _mm_sqrt_ss(_mm_set_ss(D_00275460 - d * d)).m128_f32[0];
+    a = Abs_001DC010(func_0014F4B0(W_001DC010(self, 0xc4, int)));
+    b = Abs_001DC010(func_0014F450(W_001DC010(self, 0xc4, int)));
+    x = a * d - b * s;
+    y = a * s + b * d;
+    k = W_001DC010(self, 0xcc, float) * D_0028FA18;
+    p = k * y + x;
+    q = k * x + y;
+    W_001DC010(cam, 0x1d0, float) = func_0014F990(func_0014F590(W_001DC010(self, 0xc8, float) * D_0028AC40) * p) * D_00289080 + D_002F08D0;
+    W_001DC010(cam, 0x190, S_WaterVector) = W_001DC010(self, 0x64, S_WaterVector);
+    W_001DC010(cam, 0x1d4, int) = 0;
+    W_001DC010(cam, 0x1f8, float) = q;
+    W_001DC010(cam, 0x1dc, float) = D_00275460 / q;
+    ((S_WaterVirtual *)cam)->slot28();
+
+    D_002AC794 = D_002F08BC[0x28 / 4];
+    if (self->func_001CA480(D_002AC790, D_002AC7A0) && D_002F0BD0 != 0) {
+        func_001FE490(2);
+        D_0020C6DC |= 0x1200;
+        D_0020CA78 = 0;
+        func_001FD450(0);
+        func_001FD770(0x1b02);
+        D_0020C6DC |= 0x2000;
+        D_0020CA50 = 0;
+        if (D_002AB7F0 != 0)
+            self->func_001DA500();
+        for (i = 0; W_001DC010(self, 0x48, Obj_001DC010 **)[i] != 0; i++)
+            W_001DC010(self, 0x48, Obj_001DC010 **)[i]->func_00143BF0(self);
+        if (W_001DC010(cam, 0x184, float) > D_0028F8E0) {
+            g = D_002F08BC;
+            w = (float)(unsigned int)g[0x304 / 4];
+            h = (float)(unsigned int)g[0x308 / 4];
+            hy = h - D_002AC834;
+            verts[0].func_001D8AE0(0.0f, hy, D_002AC838, 0.0f, 0.0f);
+            verts[1].func_001D8AE0(w, hy, D_002AC838, 1.0f, 0.0f);
+            verts[2].func_001D8AE0(0.0f, h, D_002AC830, 0.0f, 1.0f);
+            verts[3].func_001D8AE0(w, h, D_002AC830, 1.0f, 1.0f);
+            func_001FF940(g + 0x228 / 4, g + 0x258 / 4);
+            func_001FE490(1);
+            {
+                static V4_001DC010 c1(0.0f, 0.0f, 0.0f, 1.0f);
+                func_001DAAD0(W_001DC010(W_001DC010(self, 0x4a0, char *), 0xb8, int), verts, &c1);
+            }
+            hy = h - D_002AC82C;
+            verts[0].func_001D8AE0(0.0f, hy, D_002AC838, 0.0f, 0.0f);
+            verts[1].func_001D8AE0(w, hy, D_002AC838, 1.0f, 0.0f);
+            verts[2].func_001D8AE0(0.0f, h, D_002AC830, 0.0f, 1.0f);
+            verts[3].func_001D8AE0(w, h, D_002AC830, 1.0f, 1.0f);
+            func_001FF940(D_002F08BC + 0x240 / 4, D_002F08BC + 0x258 / 4);
+            func_001FE490(0);
+            {
+                static V4_001DC010 c2(1.0f, 1.0f, 0.0f, 1.0f);
+                func_001DAAD0(W_001DC010(W_001DC010(self, 0x4a0, char *), 0xb8, int), verts, &c2);
+            }
+        }
+    }
+}
+
 undefined4 C_001DC540::func_001DC540(byte param_1)
 {
   int func_001DBA40(...);
@@ -380,48 +459,40 @@ u32 __stdcall func_001DCAFF(const char *path, void *data)
 
     for (cb = D_002A0440; cb < D_002A0444; cb++) {
         if (*cb != 0) {
-            goto call_callback;
+            return (*cb)(path, data);
         }
     }
+    if (path != 0 && ((*path != 'D' && *path != 'd') || path[1] != ':' || path[2] != '\\')) {
+        return 0x57;
+    }
     if (path == 0) {
-        goto no_path;
-    }
-    if ((*path == 'D' || *path == 'd') && path[1] == ':' && path[2] == '\\') {
-        goto have_path;
-    }
-    return 0x57;
-call_callback:
-    return (*cb)(path, data);
-no_path:
-    result = func_001DCABA(0, 0, (data != 0) * 2 - 1, D_00010118->titleId, (int)data);
-    goto done;
-have_path:
-    devicePath[0] = 0;
-    oa.RootDirectory = 0;
-    oa.Attributes = 0x40;
-    oa.ObjectName = &D_0028FA28;
-    status = _imp__NtOpenSymbolicLinkObject(&h, &oa);
-    if (status >= 0) {
-        target.Buffer = targetBuf;
-        target.Length = 0;
-        target.MaximumLength = 0x208;
-        status = _imp__NtQuerySymbolicLinkObject(h, &target, 0);
-        _imp__NtClose(h);
-    }
-    if (status >= 0) {
-        unsigned int len = target.Length + 1;
-        func_001DF4E1(devicePath, targetBuf, len <= 0x168 ? len : 0x168);
+        result = func_001DCABA(0, 0, (data != 0) * 2 - 1, D_00010118->titleId, (int)data);
     } else {
-        int i = 0;
-        char c;
-        do {
-            c = D_0028FA30[i];
-            devicePath[i] = c;
-            i++;
-        } while (c != 0);
+        devicePath[0] = 0;
+        oa.RootDirectory = 0;
+        oa.Attributes = 0x40;
+        oa.ObjectName = &D_0028FA28;
+        status = _imp__NtOpenSymbolicLinkObject(&h, &oa);
+        if (status >= 0) {
+            target.Buffer = targetBuf;
+            target.Length = 0;
+            target.MaximumLength = 0x208;
+            status = _imp__NtQuerySymbolicLinkObject(h, &target, 0);
+            _imp__NtClose(h);
+        }
+        if (status >= 0) {
+            func_001DF4E1(devicePath, targetBuf, (0x168u < (unsigned int)target.Length + 1) ? 0x168u : (unsigned int)target.Length + 1);
+        } else {
+            int i = 0;
+            char c;
+            do {
+                c = D_0028FA30[i];
+                devicePath[i] = c;
+                i++;
+            } while (c != 0);
+        }
+        result = func_001DCABA((int)(path + 3), (int)devicePath, (data != 0) - 1, D_00010118->titleId, (int)data);
     }
-    result = func_001DCABA((int)(path + 3), (int)devicePath, (data != 0) - 1, D_00010118->titleId, (int)data);
-done:
     return result;
 }
 
