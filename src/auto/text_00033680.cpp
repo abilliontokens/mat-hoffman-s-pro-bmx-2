@@ -199,7 +199,7 @@ struct E33680_Ev {
     char pad94[0x11c - 0x94];
     int f11c;
     char pad120[0x1c4 - 0x120];
-    int f1c4;
+    E33680_Rp *f1c4;
     char pad1c8[0x1d4 - 0x1c8];
     E33680_Trace *f1d4;
     char pad1d8[0x1f8 - 0x1d8];
