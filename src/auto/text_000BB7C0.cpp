@@ -564,10 +564,11 @@ int C_000BBE30::func_000BC0F0(int idx)
 
 undefined4 C_000BC180::func_000BC130(void)
 {
-    S_000BC180_Entry *e = cur();
-    int *tbl = e->f120;
-    int v = tbl[f288];
-    e->f128 = v;
+    if (D_002A8490->f2E0->f324 == 1) {
+        f27c->f128 = f27c->f120[f288];
+    } else {
+        f27c[f284].f128 = f27c[f284].f120[f288];
+    }
     return f288;
 }
 
@@ -667,16 +668,17 @@ void C_000BC4A0::func_000BC4A0(undefined4 param_1, undefined4 param_2)
 void C_000BC4C0::func_000BC4C0(float a, float b)
 {
     C_000BC4C0 * volatile self = this;
-    int x, y;
+    int x;
+    int y;
     int * volatile p;
     float t;
 
     p = &x;
     t = a;
-    *p = (int)t;
+    *p = _mm_cvttss_si32(*(__m128 *)&t);
     p = &y;
     t = b;
-    *p = (int)t;
+    *p = _mm_cvttss_si32(*(__m128 *)&t);
     self->f30->func_001D3700(x, y);
 }
 
