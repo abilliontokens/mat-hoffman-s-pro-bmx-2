@@ -40,6 +40,7 @@ struct S_00128480_Entry {
     union {
         struct { int a, b, c; float x, y, z; };
         struct { S_00128630_V3 va, vb; };
+        struct { S_00128630_V3i ia, ib; };
     };
 };
 extern "C" float __cdecl sqrtf(float);
