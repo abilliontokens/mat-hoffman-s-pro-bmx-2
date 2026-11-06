@@ -30,7 +30,6 @@ extern "C" unsigned int strlen(const char *);
 extern "C" char *strcpy(char *, const char *);
 extern "C" void *memcpy(void *, const void *, unsigned int);
 static inline int min_i(int a, int b) { return a > b ? b : a; }
-int probe_0013B9C0(int *a, int *b, int *c, int n) { int s = 0; int t = 1; int i; for (i = 0; i < n; i++) { s += a[i] * b[i]; t ^= c[i]; b[i] = s; c[i] = t; } return s + t + a[0] + b[0]; }
 
 struct S_0013B9C0_Ent28 {
     int f0;
