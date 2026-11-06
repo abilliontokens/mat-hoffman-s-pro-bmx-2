@@ -100,6 +100,36 @@ void C_000CA7D0::func_000CA7D0(void)
     func_001578D0();
 }
 
+struct ElemC9 {
+    void func_001B2270(unsigned int color);
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, float a7, int a8, float a9, int a10, int a11, float a12, int a13);
+    void func_001B1B30(float a, int b);
+};
+static __forceinline void setupC9(ElemC9 *o, unsigned int color, float a, float b)
+{
+    o->func_001B2270(color);
+    o->func_001B1860(0, -1.0f, 0xff, a, 0, 0, 0.0f, 0, b, 0, 0, 0.25f, 0);
+}
+
+struct C_000C9940 {
+    char pad0[0x2a4];
+    int f2A4;
+    char pad2A8[0x30];
+    ElemC9 *f2D8;
+    ElemC9 *f2DC;
+    char pad2E0[8];
+    ElemC9 *f2EC;
+    char pad2F0[4];
+    ElemC9 *f2F4;
+    ElemC9 *f2F8;
+    ElemC9 *f2FC;
+    ElemC9 *f300;
+    char pad304[0x28];
+    ElemC9 *f32C;
+    ElemC9 *f330;
+    void func_000C9940(void);
+};
+
 void C_000CA8D0::func_000CA8D0(void)
 {
     unk2E0->func_001B1980();
