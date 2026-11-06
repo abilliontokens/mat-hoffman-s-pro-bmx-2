@@ -587,3 +587,32 @@ C_00158590 *C_00158590::func_00158590(int a0)
     return this;
 }
 
+void C_001586F0::func_001586F0(int a)
+{
+    int v[8];
+    int i;
+    int w;
+    S_001586F0_Obj *o = (S_001586F0_Obj *)func_001E8A44(0xf4);
+    f40 = o ? o->func_0014AB30(1) : 0;
+    f40->func_00129920(2);
+    f40->f60 = this;
+    f40->f9C = (void *)func_00158510;
+    f40->func_001334E0(1);
+    f40->fA7 |= 1;
+    f40->func_0014C1C0(1, 0, 0);
+    for (i = 0; i < 2; i++) {
+        v[i * 4 + 2] = 0;
+        v[i * 4 + 1] = 0;
+        v[i * 4] = 0;
+        v[i * 4 + 3] = 0x3f800000;
+    }
+    int x = D_002A7B80, y = D_002A7B84, z = D_002A7B88;
+    w = D_002A7B8C;
+    v[6] = z; v[2] = z;
+    v[5] = y; v[1] = y;
+    v[4] = x; v[7] = w; v[0] = x; v[3] = w;
+    f40->func_0014AC30(v, 0);
+    f40->func_001332A0();
+    f40->func_00133140(a, 2);
+}
+
