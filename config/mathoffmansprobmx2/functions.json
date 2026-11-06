@@ -95881,7 +95881,9 @@
       0
      ]
     ]
-   },
+   }
+  ],
+  "text_0007DDD0": [
    {
     "name": "_func_0007DDD0",
     "addr": 515536,
@@ -524400,6 +524402,7 @@
   ]
  },
  "names": {
+  "func_0001C9F0": "C_0001C9F0_Ctor::C_0001C9F0_Ctor",
   "func_00023C30": "C_00023C30::C_00023C30",
   "func_0010E920": "BmxVehicle::BmxVehicle",
   "func_0012F460": "C_0012F460::C_0012F460",
