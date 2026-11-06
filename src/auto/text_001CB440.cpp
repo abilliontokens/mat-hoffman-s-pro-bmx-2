@@ -377,10 +377,6 @@ struct C_001CB9A0 {
 };
 
 extern char D_0002EDEF;
-inline int is_valid_frequency(unsigned int freq)
-{
-    return freq >= 0xbc && freq <= (unsigned int)&D_0002EDEF;
-}
 extern "C" int __stdcall D_00221B4C(void *stream, unsigned int value);
 int __stdcall func_00222388(int handle, float value, int flag);
 int __stdcall func_00221974(int handle, unsigned int value);
@@ -928,32 +924,37 @@ int C_001CC0C0::func_001CC1E0(void)
 int C_001CC0C0::func_001CC320(unsigned int v)
 {
     int r;
+    int h;
+    C_001CB9A0 *s;
 
-    if (f13C != 0) {
+    h = f13C;
+    if (h != 0) {
         if (f19C != v) {
             if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
                 return 0;
             }
-            r = func_00221974(f13C, v);
+            r = func_00221974(h, v);
             if (r < 0) {
                 func_001CBC10(r, &D_0028EECC, 0x621);
                 return 0;
             }
             f19C = v;
         }
-    } else if (f140 != 0) {
-        if (f19C == v) {
-            return 1;
+    } else {
+        s = f140;
+        if (s != 0) {
+            if (f19C != v) {
+                if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
+                    return 0;
+                }
+                r = D_00221B4C(s->fC, v);
+                if (r < 0) {
+                    func_001CBC10(r, &D_0028EECC, 0x630);
+                    return 0;
+                }
+                f19C = v;
+            }
         }
-        if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
-            return 0;
-        }
-        r = D_00221B4C(f140->fC, v);
-        if (r < 0) {
-            func_001CBC10(r, &D_0028EECC, 0x630);
-            return 0;
-        }
-        f19C = v;
     }
     return 1;
 }
