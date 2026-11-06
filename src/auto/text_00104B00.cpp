@@ -28,6 +28,10 @@ extern char D_002A5D98[];
 extern char D_002A5EA0[];
 extern char D_002829A0[];
 extern char D_0010103F[];
+extern char D_00282A50[], D_00282A48[], D_00282A40[], D_00282A38[], D_00282A30[], D_00282A28[];
+extern char D_00282A20[], D_00282A18[], D_00282A10[], D_00282A08[], D_00282A00[], D_002829F8[];
+extern char D_002829F0[], D_002829E8[], D_002829E0[], D_002829D8[], D_002829D0[], D_002829C8[];
+extern char D_002829C0[], D_002829B8[], D_002829B0[], D_002829A8[];
 
 struct V4_00104B00 {
     float x, y, z, w;
