@@ -96,6 +96,25 @@ struct BmxUIPageMain {
     void func_001BF000(void);
 };
 
+static inline void S5580_Highlight(BmxUIPageMain *page, int count, int n)
+{
+    int i;
+    E_000C5710 *e;
+
+    for (i = 0; i < count; i++) {
+        if (n * 2 == i || n * 2 + 1 == i) {
+            e = page->f2F8[i];
+            e->f38 = (e->f38 & 0xffbfa35a) | 0xbfa35a;
+            e->b58 |= 2;
+            page->f2F8[i]->func_001D5AD0();
+        } else {
+            e = page->f2F8[i];
+            e->f38 = (e->f38 & 0xffcccccc) | 0xcccccc;
+            e->b58 |= 2;
+        }
+    }
+}
+
 void BmxUIPageMain::func_000C5580()
 {
     S5580_Elem *m;
@@ -125,10 +144,10 @@ void BmxUIPageMain::func_000C5580()
         else
             m = ((S5580_G *)D_002B91AC)->f8C;
         m->func_001D5AD0();
-        n = f140->f4->f30;
-        n--;
+        n = f140->f4->f30 - 1;
         count = (((S5580_Root *)D_002A8490)->p2E0->f2C0->func_0005C0E0() != 0) ? 10 : 8;
-        for (i = 0; i < count; i++) {
+        i = 0;
+        while (i < count) {
             if (n * 2 == i || n * 2 + 1 == i) {
                 e = f2F8[i];
                 e->f38 = (e->f38 & 0xffbfa35a) | 0xbfa35a;
@@ -139,6 +158,7 @@ void BmxUIPageMain::func_000C5580()
                 e->f38 = (e->f38 & 0xffcccccc) | 0xcccccc;
                 e->b58 |= 2;
             }
+            i++;
         }
     }
     s = (S5580_G *)D_002B91AC;
@@ -367,12 +387,11 @@ void BmxUIPageParkEditor::func_000C5980(void)
 
 void BmxUIPageParkEditor::func_000C59C0()
 {
-    char *self = (char *)this;
     C_59C0_Sub *sub = (C_59C0_Sub *)f124;
-    int i, k, off, r;
+    int i, k, off;
 
     f280 = 0;
-    *(int *)(self + 0x288) = 0;
+    f288 = 0;
     f284 = 0;
     f298 = 0;
     f294 = 0;
@@ -383,24 +402,42 @@ void BmxUIPageParkEditor::func_000C59C0()
             break;
         D_002A8490->p2E0->f2C0->func_0005C1E0(i);
     }
-    for (k = 0, off = 0; off < 0x1a80; k++, off += 0x1a8) {
+    for (k = 0, off = 0; off < 0x1a80; off += 0x1a8, k++) {
         if (D_002A8490->p2E0->f2C0->func_0005C1D0(k) == 0) {
             if (off == 0x1a8 || off == 0x4f8 || off == 0x9f0 || off == 0xd40 || off == 0x13e0 || off == 0x18d8) {
-                r = sub->f150->f484->func_0001B3C0(sub->f27c + off);
-                ((C_59C0_VB *)sub->f150->f484->f2c->f28[r]->f1a4)->v5();
+                int index = sub->f150->f484->func_0001B3C0(sub->f27c + off);
+                char *obj = (char *)sub->f150->f484->f2c->f28[index]->f1a4;
+                ((C_59C0_VB *)(obj + *(int *)(*(char **)obj + 4)))->v5();
             }
-        } else if (*(int *)((char *)D_002A8490->p2E0 + 4) == 0) {
+        } else if (D_002A8490->p2E0->f4 == 0) {
             if (off == 0x1a8 || off == 0x4f8 || off == 0x9f0 || off == 0xd40 || off == 0x13e0 || off == 0x18d8) {
-                r = sub->f150->f484->func_0001B3C0(sub->f27c + off);
-                ((C_59C0_VB *)sub->f150->f484->f2c->f28[r]->f1a4)->v5();
+                int arg = sub->f27c + off;
+                C_59C0_Tab3 *t = sub->f150->f484;
+                int index = t->func_0001B3C0(arg);
+                char *obj = (char *)sub->f150->f484->f2c->f28[index]->f1a4;
+                ((C_59C0_VB *)(obj + *(int *)(*(char **)obj + 4)))->v5();
             }
         } else {
             if (off == 0x1a8 || off == 0x4f8 || off == 0x9f0 || off == 0xd40 || off == 0x13e0 || off == 0x18d8) {
-                r = sub->f150->f484->func_0001B3C0(sub->f27c + off);
-                ((C_59C0_VB *)sub->f150->f484->f2c->f28[r]->f1a4)->v7();
+                int arg = sub->f27c + off;
+                C_59C0_Tab3 *t = sub->f150->f484;
+                int index = t->func_0001B3C0(arg);
+                char *obj = (char *)sub->f150->f484->f2c->f28[index]->f1a4;
+                ((C_59C0_VB *)(obj + *(int *)(*(char **)obj + 4)))->v7();
             }
         }
     }
+    if (D_002A8490->p2E0->f2FC->func_00094F00() == 0) {
+        D_002A8490->p2E0->f2FC->func_00094A10((int)D_0027DDEC, 0);
+        D_002A8490->f4->fB4->v6();
+    }
+    if (D_002A8490->p2E0->f2FC->func_00094EE0() == 0)
+        D_002A8490->p2E0->f2FC->func_00094C60();
+    D_002B91AC->f34->func_0005E840(D_002A8490->f2E8->f4->f900);
+    D_002B91AC->func_000BF860(0, 0x1eb, 0x184, 0);
+    D_002B91AC->f38->func_0005E840(D_002A8490->f2E8->f4->f7C8);
+    D_002B91AC->f80->func_0005E840(D_002A8490->f2E8->f4->f908);
+    D_002B91AC->f84->func_0005E840(D_002A8490->f2E8->f4->f918);
 }
 
 BmxUIPageParkEditor *BmxUIPageParkEditor::func_000C5D00(int a, int b, int c)
