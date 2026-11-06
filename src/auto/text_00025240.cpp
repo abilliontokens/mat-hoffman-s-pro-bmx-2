@@ -125,7 +125,8 @@ struct C_00168B90 {
 extern float D_00275544, D_00276520;
 extern char D_002A0F74[];
 int func_001E8858(float f);
-double __cdecl sqrt(double);
+extern "C" double __cdecl sqrt(double);
+#pragma intrinsic(sqrt)
 
 struct S_000255D0_Part {
     virtual void v0();
@@ -367,6 +368,42 @@ void C_000255D0::func_000255D0(Vec4_257E0 *pos, float radius, float t, int chanc
     }
 }
 
+#pragma intrinsic(sqrt)
+int AmbientBird::func_000257E0(volatile int a0)
+{
+    AmbientBird *volatile self = this;
+    if (D_002A8490->unk124 == 0) {
+        func_00157A00(a0);
+        AmbientBird *p = self;
+        if (p->unk79 == 1) {
+            Vec4_257E0 v;
+            p->unk28->unk1A4->unk4->func_00199B00(&v, 0);
+            self->unk5C = v;
+            p = self;
+            float dx = p->unk4C - p->unk5C.x;
+            float dy = p->unk50 - p->unk5C.y;
+            float dz = p->unk54 - p->unk5C.z;
+            float d = (float)sqrt(dx * dx + dy * dy + dz * dz);
+            if (d < D_00275600) {
+                p = self;
+                if (p->unk78 != 2) {
+                    p->func_00023340();
+                }
+                self->func_000235C0();
+            }
+        }
+        p = self;
+        if (p->unk79 == 1) {
+            p->func_000239F0(a0);
+        }
+        if (self->unk7B == 1) {
+            D_002B7E18->unk2C++;
+            D_002B9120->unk484->func_0001B440(self->unk28, func_00011260(0, 100));
+            self->unk7B = 0;
+        }
+    }
+    return 1;
+}
 void *AmbientDebris::func_00025920(unsigned int flags)
 {
     vtbl = &D_00276294;
@@ -431,15 +468,15 @@ int C_00025980::func_00025980(float dt)
         for (i = 0; i < f44; i++) {
             for (j = 0; j < f70[i]->f14; j++) {
                 if (f70[i]->f18[j]->f24 == 0) {
-                    if ((float)func_001E8833() * D_002754B0 < D_00276088) {
+                    if (Rand01_00025980() < D_00276088) {
                         D_002B9120->unk4e0->f1a8[D_002A8490->unk2a4->f120]->f1e0->f22c->func_00199B00(&v, 0);
                         w = *(Vec4_257E0 *)D_002A0F74;
                         if (D_002B9120->unk24 != 0) {
-                            w.x = D_002754B0 * (float)func_001E8833() * D_00275994;
+                            w.x = Rand01_00025980() * D_00275994;
                         } else {
-                            w.x = D_002754B0 * (float)func_001E8833() * D_0027599C + D_00275994;
+                            w.x = Rand01_00025980() * D_0027599C + D_00275994;
                         }
-                        func_00158390(D_002754B0 * (float)func_001E8833() * D_002756B8, D_002A0F94, w, &w);
+                        func_00158390(Rand01_00025980() * D_002756B8, D_002A0F94, w, &w);
                         v.x = v.x + w.x;
                         v.y = w.y + v.y;
                         v.z = w.z + v.z;
