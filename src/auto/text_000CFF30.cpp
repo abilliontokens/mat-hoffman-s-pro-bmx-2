@@ -1,6 +1,17 @@
 /* 5 functions from 0x000CFF30 to 0x000D0E00, found by Ghidra. */
 #include "common.h"
 
+#define AT(T, p, o) (*(T *)((char *)(p) + (o)))
+
+extern char *D_002B91AC;
+void __stdcall func_000BF860(int a, int b, int c, int d);
+struct C_000301D0 { int func_000301D0(void); };
+struct C_0005E840 { void func_0005E840(int a); };
+struct C_001D6600 { void func_001D6600(void); };
+struct C_000BA9B0 { void *func_000BA9B0(int a); };
+struct C_000BBDF0 { int func_000BBDF0(void); };
+
+
 extern int D_0028F5E0;
 extern char D_00277038[];
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
