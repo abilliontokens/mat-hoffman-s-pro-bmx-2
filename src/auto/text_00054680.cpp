@@ -74,7 +74,7 @@ struct Items549 { char pad0[0x24]; int count24; char pad28[0x1a8 - 0x28]; Item54
 struct List549 { char pad0[0x28]; void **items; };
 struct Lookup549 { int func_0001B3C0(const char *); void func_0001B820(void *); void func_0001B8A0(void *); };
 struct Ctx549 {
-    char pad0[0x3ac]; List549 *f3ac; List549 *f3b4;
+    char pad0[0x3ac]; List549 *f3ac; char pad3b0[4]; List549 *f3b4;
     char pad3b8[0x484 - 0x3b8]; Lookup549 *f484;
     char pad488[0x4e0 - 0x488]; Items549 *f4e0;
 };
@@ -201,3 +201,134 @@ void *C_000549C0::func_000549C0(int flags) {
     }
     return this;
 }
+
+float sqrtf(float);
+void C_000549F0::func_000549F0(float dt)
+{
+    Bx549 *bx;
+    int i;
+    int edi;
+    if (f1f4) {
+        func_00157A00(dt);
+        return;
+    }
+    bx = (Bx549 *)f64->f3ac->items[f64->f484->func_0001B3C0(&D_00277C9C)];
+    if (f2c4 < 0) {
+        for (i = 0; i < f90; i++) {
+            f64->f4e0->items[i]->fa3c = 1;
+        }
+        if (f64->f3b4 != 0) {
+            ((CtxF54430 *)this)->func_00054430();
+            Obj2E8549 *e = ((Entry549 *)f64->f3b4->items[f2c8])->f4;
+            if (e->flags2ec & 0x10) {
+                for (i = 0; i < f90; i++) {
+                    if (e->f2e8 == f64->f4e0->items[i]->f11b0) {
+                        f2c4 = i;
+                    }
+                }
+            }
+        }
+    } else {
+        V549 v0;
+        V549 v1;
+        V549 tmp;
+        func_00054680();
+        edi = 1;
+        for (i = 0; i < f90; i++) {
+            if (f64->f4e0->items[i]->f5c8 == 0) {
+                edi = 0;
+            }
+        }
+        if (edi) {
+            f64->f484->func_0001B820(bx);
+        } else {
+            if (f2e8 == 0) {
+                f64->f484->func_0001B8A0(bx);
+            }
+            f2e8 = edi;
+        }
+        if (f64->f4e0->items[f2c4]->f5c8 == 0 && f64->f4e0->items[f2c4]->f1584 == 0 && !edi) {
+            int prev = f2c4;
+            do {
+                f2c4 = func_00011260(0, D_002A8490->f2e0->f0 - 1);
+            } while (f2c4 == prev);
+            func_00031260(dt);
+            return;
+        }
+        v0 = f64->f4e0->items[0]->f834;
+        v1 = f64->f4e0->items[1]->f834;
+        {
+            float dx = v1.x - v0.x;
+            float dy = v1.y - v0.y;
+            float dz = v1.z - v0.z;
+            float dist = sqrtf(dx * dx + dy * dy + dz * dz);
+            if (dist <= f2e0 && f2cc <= D_00275544) {
+                f2c4 = (f2c4 == 0);
+                f2cc = f2e4;
+            } else {
+                if (f2cc > D_00275544) {
+                    f2cc -= dt;
+                    if (f2cc < D_00275544) {
+                        f2cc = 0.0f;
+                    }
+                }
+            }
+        }
+        for (i = 0; i < f90; i++) {
+            Item549 *item = f64->f4e0->items[i];
+            if (i == f2c4) {
+                item->fa3c = 0;
+            } else {
+                item->fa3c = 1;
+                int r = D_002A8490->f2a4->arr[i]->func_000831C0();
+                f64->f4e0->items[f2c4]->func_001092D0(r ? 0.5f : 1.0f);
+                item->func_001092D0(1.0f);
+                f284[i]->func_0008BB50(f2c4);
+            }
+        }
+        {
+            Obj983549 *o = f64->f4e0->items[f2c4]->fa00->f4;
+            void *obj = o->func_00198330(&D_00277CA4);
+            Obj983549 *os = (Obj983549 *)obj;
+            tmp = D_002A1988;
+            os->func_00197E70(&tmp);
+            V549 *ret = os->func_00197F70(&v0, &tmp);
+            tmp = *ret;
+            bx->f1a4arr[1]->func_00199600(*ret);
+            bx->f1a4arr[1]->func_0019AC50();
+        }
+    }
+    if (f190) {
+        int all;
+        if (!f2d0) {
+            GlobInfo549 *m = D_002A8490->f2e0;
+            if (!m->f20) { if (f128 <= D_00275544) f2d0 = 1; }
+            else { if (f124 > m->f10) f2d0 = 1; }
+        }
+        all = 1;
+        for (i = 0; i < f90; i++) {
+            if (!f64->f4e0->items[i]->func_00108660()) all = 0;
+        }
+        if (f2d0) {
+            for (i = 0; i < f90; i++) {
+                f64->f4e0->items[i]->func_001084E0();
+            }
+        }
+        if (f2d0 && all && !f190->f168) {
+            for (i = 0; i < f90; i++) {
+                f190->func_00067D60(i, f64->f4e0->items[i]->fa40);
+            }
+            ((Vt549 *)this)->v18(1);
+            for (i = 0; i < f64->f4e0->count24; i++) {
+                if (f68->func_0005B960(3, (float)f12c)) break;
+                if (f68->func_0005B960(1, f64->f4e0->items[i]->fa4c)) break;
+                if (f68->func_0005B960(4, (float)f64->f4e0->items[i]->fa40)) break;
+                if (f68->func_0005B960(2, f64->f4e0->items[i]->f1058)) break;
+                f68->func_0005B960(0, f64->f4e0->items[i]->fa54);
+            }
+            f190->func_000684B0();
+        }
+    }
+    func_00031260(dt);
+}
+
