@@ -95,12 +95,6 @@ struct V4_000B5260 {
     float x, y, z, w;
 };
 
-static inline float Abs_000B5950(float x)
-{
-    int bits = *(int *)&x & 0x7fffffff;
-    return *(float *)&bits;
-}
-
 
 int C_000B5260::func_000B5260(float dt)
 {
