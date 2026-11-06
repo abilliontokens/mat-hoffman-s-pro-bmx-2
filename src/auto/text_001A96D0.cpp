@@ -165,6 +165,7 @@ struct This_001A9D20 {
     int fb8;
     char padBC[0x124 - 0xBC];
     float f124, f128, f12c;
+    void func_001A96D0(Obj_001A9D20 *o, V4_001A96D0 b, V4_001A96D0 c, int a);
     void func_001A9D20(float s, V4_001A96D0 v, V4_001A96D0 q, Obj_001A9D20 *other, unsigned mask);
 };
 
