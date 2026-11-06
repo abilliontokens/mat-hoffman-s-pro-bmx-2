@@ -415,7 +415,6 @@ void __stdcall func_001F32E8(int param_1, int param_2) {
 #pragma optimize("s", on)
 void func_001F3321(S_001F3321_Rec *rec, unsigned int *pcw, unsigned int code, int op, double *a, double *res)
 {
-    extern char D_0001FFE0;
     int func_001F3AE0(void);
     void func_001F3AED(void);
     void __stdcall func_001DE759(int, int, int, int *);
@@ -492,7 +491,7 @@ void func_001F3321(S_001F3321_Rec *rec, unsigned int *pcw, unsigned int code, in
         rec->bits &= 0xffffffe3;
         break;
     }
-    rec->bits ^= ((op << 5) ^ rec->bits) & (unsigned int)&D_0001FFE0;
+    rec->Bits.Operation = op;
     rec->op1flags |= 1;
     rec->op1flags = (rec->op1flags & 0xffffffe3) | 2;
     rec->op1 = *a;
@@ -653,19 +652,22 @@ void func_001F37B0(int code) {
 #pragma optimize("sy", on)
 int func_001F37D8(int status) {
     u8 bits = (u8)status;
+    int mode;
+
     if (bits & 0x20) {
-        return 5;
+        mode = 5;
+    } else if (bits & 0x08) {
+        mode = 1;
+    } else if (bits & 0x04) {
+        mode = 2;
+    } else if (bits & 0x01) {
+        mode = 3;
+    } else if (bits & 0x02) {
+        mode = 4;
+    } else {
+        mode = 0;
     }
-    if (bits & 0x08) {
-        return 1;
-    }
-    if (bits & 0x04) {
-        return 2;
-    }
-    if (bits & 0x01) {
-        return 3;
-    }
-    return ((unsigned int)bits & 2) << 1;
+    return mode;
 }
 double func_001F3805(int type, int fnid, D8_001F3805 arg1, D8_001F3805 arg2, D8_001F3805 retval, u32 cw) {
     extern int D_002AEC70[];
@@ -746,6 +748,11 @@ double func_001F38F6(int param_1, int param_2, double param_3, double param_4, i
     return param_4;
 }
 
+double func_001F3996(double x)
+{
+    return (double)(__int64)x;
+}
+
 #pragma optimize("s", on)
 double func_001F39A9(double x, int exp)
 {
@@ -813,6 +820,21 @@ double func_001F3A2E(double x, int *expptr)
     *expptr = exp;
     return result;
 }
+
+int func_001F3AE0(void)
+{
+  short in_FPUStatusWord;
+  
+  return (int)in_FPUStatusWord;
+}
+
+int func_001F3AED(void)
+{
+  short in_FPUStatusWord;
+  
+  return (int)in_FPUStatusWord;
+}
+
 #pragma optimize("", on)
 
 #pragma optimize("", on)
@@ -822,10 +844,12 @@ extern long double D_002AED8C;
 #pragma auto_inline(off)
 void func_001F3B1F(unsigned int flags)
 {
-    double d;
+    volatile double d;
+    volatile int i;
+    volatile double z = 0.0;
 
     if (flags & 1) {
-        flags = (int)D_002AED80;
+        i = (int)D_002AED80;
     }
     if (flags & 8) {
         d = (double)D_002AED80;
@@ -834,7 +858,6 @@ void func_001F3B1F(unsigned int flags)
         d = (double)D_002AED8C;
     }
     if (flags & 4) {
-        volatile double z = 0.0;
         d = 1.0 / z;
     }
     if (flags & 0x20) {
