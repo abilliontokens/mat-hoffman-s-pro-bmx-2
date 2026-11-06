@@ -138,6 +138,12 @@ static inline void FloatToIndex(int *out, float f) {
     *p = _mm_cvttss_si32(*(__m128 *)&f);
 }
 
+static inline void FloatToIndexRef(int *out, const float &f) {
+    int * volatile p = out;
+    float g = f;
+    *p = _mm_cvttss_si32(*(__m128 *)&g);
+}
+
 struct C_0014F170 {
     undefined4 func_0014F170(byte param_1);
 };
@@ -406,8 +412,10 @@ float func_0014F450(int x) {
 
 float func_0014F4B0(int x) {
     float f = (func_00016D60(x) + D_002756D0) * D_002DF870;
+    int * volatile p = &x;
+    float t = f;
 
-    FloatToIndex(&x, f);
+    *p = _mm_cvttss_si32(*(__m128 *)&t);
     return D_002CF6B4[x].a - (f - (float)x) * D_002CF6B4[x].b * D_002DF874;
 }
 
@@ -425,8 +433,8 @@ float func_0014F550(float x) {
 
 float func_0014F590(int x) {
     float f = (func_00016D60(x) + D_002756D0) * D_002DF870;
-    int i = _mm_cvttss_si32(_mm_set_ss(f));
-    float t = (f - (float)i) * D_002DF874;
-    return (t * D_002CF6B4[i].a + D_002CF6B4[i].b) / (D_002CF6B4[i].a - t * D_002CF6B4[i].b);
+    FloatToIndex(&x, f);
+    float t = (f - (float)x) * D_002DF874;
+    return (t * D_002CF6B4[x].a + D_002CF6B4[x].b) / (D_002CF6B4[x].a - t * D_002CF6B4[x].b);
 }
 
