@@ -144,7 +144,26 @@ extern int D_002A3A9C, D_002A3A98, D_002B91FC;
 
 __declspec(align(16)) struct Mat44_10E2A0 {
     float m[16];
+    void identity(void)
+    {
+        _mm_store_ps(&m[0], _mm_setzero_ps());
+        _mm_store_ps(&m[4], _mm_setzero_ps());
+        _mm_store_ps(&m[8], _mm_setzero_ps());
+        _mm_store_ps(&m[12], _mm_setzero_ps());
+        m[0] = 1.0f;
+        m[5] = 1.0f;
+        m[10] = 1.0f;
+        m[15] = 1.0f;
+    }
 };
+
+static __forceinline float length_10E2A0(Vec4 *v)
+{
+    float square = v->x * v->x + v->y * v->y + v->z * v->z;
+    float r;
+    _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&square));
+    return r;
+}
 
 static __forceinline void identity_ref_10E2A0(Mat44_10E2A0 * volatile &p)
 {
