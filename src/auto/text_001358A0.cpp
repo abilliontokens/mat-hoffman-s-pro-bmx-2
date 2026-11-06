@@ -504,11 +504,8 @@ int C_00135E00::func_00136110(int a, int idx)
 {
     S_00136110_Dev *dev = f14[idx];
 
-    if (dev != 0) {
-        if (dev->v3(a, 0x3f, 0) != 0) {
-            return 1;
-        }
-    }
+    if (dev != 0 && dev->v3(a, 0x3f, 0) != 0)
+        return 1;
     return 0;
 }
 
@@ -577,15 +574,15 @@ int func_001361E0(int idx, int type, int *binding, int a3)
     return 0;
 }
 
-void C_001362A0::func_001362A0(int p1, int p2, float p3, int p4, int p5, float p6)
+C_001362A0::C_001362A0(int p1, int p2, float p3, int p4, int p5, float p6)
 {
     f0 = 0;
     f14 = 0;
+    fC = -1;
     f34 = p3 + p6;
     f18 = 0;
     f1C = 0;
     f20 = 0;
-    fC = -1;
     f38 = p3 - p6;
     f10 = -1;
     f2C = p1;
