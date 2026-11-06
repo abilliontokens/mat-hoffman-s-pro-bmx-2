@@ -6,7 +6,13 @@ struct C_000ACE60_s4 {
     int b;
     int c;
     int d;
+    int func_000A4150(char *name);
+    int func_000A4250(void);
+    int func_000A4400(char *name);
 };
+
+struct C_000ACF30_Game;
+struct C_000ACF30_Obj;
 
 struct C_000ACE60 {
     int unk0;
@@ -15,9 +21,11 @@ struct C_000ACE60 {
     C_000ACE60_s4 arr1[8];
     C_000ACE60_s4 arr2[8];
     C_000ACE60_s4 arr3[8];
-    int arr4[8];
+    C_000ACF30_Obj *arr4[8];
     int arr5[8];
     C_000ACE60 *func_000ACE60(int param);
+    void func_001577A0(void *p, int n);
+    int func_000ACF30(C_000ACF30_Game *game, int count, int flag3, int flag4);
 };
 
 struct C_000ACF00 {
