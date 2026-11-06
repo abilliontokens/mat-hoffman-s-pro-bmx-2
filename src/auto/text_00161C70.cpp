@@ -242,11 +242,13 @@ int func_00162210(float *out, float *m)
 void func_001622C0(float *m, void *arg)
 {
     float v[2];
+    float n;
     func_0014F6E0(arg, &v[0], &v[1]);
     m[0] = v[1];
+    n = -v[0];
     m[4] = v[0];
     m[5] = v[1];
-    m[1] = -v[0];
+    m[1] = n;
     m[8] = 0.0f;
     m[12] = 0.0f;
     m[9] = 0.0f;
