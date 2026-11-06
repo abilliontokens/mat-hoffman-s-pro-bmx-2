@@ -35,7 +35,9 @@ static __forceinline int min_22E30(const volatile int &a, const volatile int &b)
 __forceinline void copy_22E30(char *dst, const char *src, int max)
 {
     volatile int length = strlen(src);
-    int n = max;
+    volatile int limit = max;
+    volatile int size = min_22E30(limit, length);
+    int n = size;
     func_001E8920(dst, src, n);
     dst[n] = 0;
 }
