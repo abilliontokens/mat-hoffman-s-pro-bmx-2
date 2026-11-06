@@ -7,7 +7,7 @@ extern char D_0000FFF8[];
 extern char D_0000F81F[];
 extern char D_0000FFFC[];
 
-static void Shrink565Fast(unsigned short *dst, unsigned short *src, int width, int height, int dstPitch, int srcPitch)
+static __forceinline void Shrink565Fast(unsigned short *dst, unsigned short *src, int width, int height, int dstPitch, int srcPitch)
 {
     int y;
     int x;
