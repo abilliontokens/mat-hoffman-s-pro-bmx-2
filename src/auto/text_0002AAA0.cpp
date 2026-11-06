@@ -346,7 +346,7 @@ void C_0002AF90::func_0002AF90(void)
 {
  Vec4_0002AF90 v; Vec4_0002AF90 *cur; Vec4_0002AF90 *tgt;
  if((D_002B7E5C&1)==0){
- D_002B7E5C|=1;D_002B7E4C.x=0;D_002B7E4C.y=2.0f;D_002B7E4C.z=0;D_002B7E4C.w=1.0f;
+ D_002B7E5C|=1;D_002B7E4C.x=0;D_002B7E50=2.0f;D_002B7E54=0;D_002B7E58=1.0f;
  }
  v=f230->func_00197EC0(&D_002B7E4C);tgt=&f14c;f230->func_00199A70(0,tgt);
  cur=&f13c;tgt->x+=v.x;tgt->y+=v.y;tgt->z+=v.z;
