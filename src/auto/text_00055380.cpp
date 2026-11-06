@@ -282,14 +282,9 @@ struct VtblStore_00055380 {
     VtblStore_00055380() { p = &D_00277CF4; }
 };
 
-struct func_0012B510 {
-    func_0012B510();
-    virtual void v0();
-    virtual void v1();
-    virtual void v2();
-    virtual void v3();
+struct CameraBehavior_00055380 {
+    __forceinline CameraBehavior_00055380() { ((C_00055380 *)this)->func_0012B510(); }
 };
-typedef func_0012B510 CameraBehavior_00055380;
 
 static __forceinline void G2_00055380(u32 *a, u32 *b, u32 va, u32 vb)
 {
