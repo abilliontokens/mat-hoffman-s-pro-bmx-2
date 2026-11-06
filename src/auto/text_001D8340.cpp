@@ -339,12 +339,9 @@ void XboxVideoCard::func_001D8AA0(void *param_1)
     }
 }
 
-void C_001D8AE0::func_001D8AE0(int p1, int p2, int p3, int p4, int p5)
+C_001D8AE0::C_001D8AE0(int p1, int p2, int p3, int p4, int p5)
 {
     volatile u32 t[3];
-    sub.c = 0;
-    sub.b = 0;
-    sub.a = 0;
     t[0] = p1;
     t[1] = p2;
     t[2] = p3;
