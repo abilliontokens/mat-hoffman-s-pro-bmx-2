@@ -271,7 +271,7 @@ struct BoundsAccum {
     char pad0[0x154];
     float f154, f158, f15c;
     char pad160[4];
-    volatile int f164;
+    int f164;
     float f168, f16c, f170;
     char pad174[4];
     float f178, f17c, f180;
@@ -301,9 +301,9 @@ void func_0011AFF0(BoundsOwner *self)
         if (r.y < acc->f16c) acc->f16c = r.y;
         if (r.z < acc->f170) acc->f170 = r.z;
     }
-    acc->f154 = src->f40 + acc->f154;
-    acc->f158 = src->f44 + acc->f158;
-    acc->f15c = src->f48 + acc->f15c;
+    *(volatile float *)&acc->f154 = acc->f154 + src->f40;
+    *(volatile float *)&acc->f158 = acc->f158 + src->f44;
+    *(volatile float *)&acc->f15c = acc->f15c + src->f48;
     acc->f164++;
 }
 
