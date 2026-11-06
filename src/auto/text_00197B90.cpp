@@ -40,16 +40,15 @@ static __forceinline void Copy_00198120(M_00198040 *dst, const M_00198040 *src)
     *dst = *src;
 }
 
-static __forceinline void CopyMat_00198040(M_00198040 * volatile dst, const M_00198040 * volatile src)
-{
-    *dst = *src;
-}
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 
 static __forceinline void Copy4_00198040(__m128 * volatile dst, __m128 * volatile src)
 {
     __m128 *s = src;
     __m128 *d = dst;
     __m128 a0 = s[0], a1 = s[1], a2 = s[2], a3 = s[3];
+    _ReadWriteBarrier();
     d[0] = a0; d[1] = a1; d[2] = a2; d[3] = a3;
 }
 
