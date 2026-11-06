@@ -97,6 +97,8 @@ struct BmxUIPageLevelSelection {
     char pad2022[0x2044 - 0x2022];
     C_001D5AD0* f2044;
     void func_000D4AE0();
+    void func_000D3DA0();
+    void func_001578D0();
 };
 
 struct C_000D4280 {
