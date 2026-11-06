@@ -334,7 +334,7 @@ struct VideoCard {
     int f30;
     int f34;
     int f38;
-    VideoCardFlags f3C;
+    volatile VideoCardFlags f3C;
     void Clear_001C3D90(void) { f30 = 0; f2C = 0; f34 = 0; f38 = 0; f3C.bit0 = 0; }
     void Alloc_001C3D90(void) { f30 = (int)func_001E8A44(4); f34 = 1; f38 = 1; f3C.bit0 = 1; }
     VideoCard *func_001C3D90(void);
@@ -762,11 +762,7 @@ void C_001C3D80::func_001C3D80(void) {
 VideoCard *VideoCard::func_001C3D90(void)
 {
     vtbl = &D_0028E3A0;
-    f30 = 0;
-    f2C = 0;
-    f34 = 0;
-    f38 = 0;
-    f3C.bit0 = 0;
+    Clear_001C3D90();
     f1C = 0;
     f20 = 0;
     f4 = 0;
@@ -775,10 +771,7 @@ VideoCard *VideoCard::func_001C3D90(void)
     f10 = 0;
     f24 = 0;
     f28 = 0;
-    f30 = (int)func_001E8A44(4);
-    f34 = 1;
-    f38 = 1;
-    f3C.bit0 = 1;
+    Alloc_001C3D90();
     f14 = 2;
     f18 = 2;
     return this;
