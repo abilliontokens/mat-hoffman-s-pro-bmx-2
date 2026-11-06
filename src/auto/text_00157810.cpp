@@ -4,6 +4,11 @@
 extern "C" char *__cdecl strcat(char *, const char *);
 extern "C" unsigned int __cdecl strlen(const char *);
 
+struct S_00158390_Vec4 {
+    float x, y, z, w;
+};
+void func_0014F6E0(float a, float *s, float *c);
+
 /* the run-time type information record of an object (typeid(*obj)) */
 struct S_00157D40_TypeInfo {
     const char *func_001E9FA2(void);
@@ -211,7 +216,7 @@ struct C_00157CF0 {
     int func_0001E010(void);
 };
 
-int S_00157810_Child::func_00157810(void)
+int C_00157810::func_00157810(void)
 {
     S_00157810_Child *p;
     S_00157810_Child *c;
@@ -226,10 +231,10 @@ int S_00157810_Child::func_00157810(void)
     if (fC != 0) {
         fC->f8 = f8;
     }
-    if (f14 != 0 && f14->f10 == this) {
+    if (f14 != 0 && f14->f10 == (S_00157810_Child *)this) {
         f14->f10 = fC;
     }
-    p = this;
+    p = (S_00157810_Child *)this;
     while (p->f14 != 0) {
         p = p->f14;
     }
