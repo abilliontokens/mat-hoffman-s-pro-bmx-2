@@ -249,6 +249,10 @@ struct C_000255D0 {
 #include <xmmintrin.h>
 static __forceinline float Max_00025E50(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float Min_00025E50(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+/* The clamps in func_00025E50 home both operands and the result on the stack and
+   copy them in and out with integer movs, which is what volatile operands give. */
+static __forceinline float MaxV_00025E50(volatile float a, volatile float b) { volatile float r; _mm_store_ss((float *)&r, _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b))); return r; }
+static __forceinline float MinV_00025E50(volatile float a, volatile float b) { volatile float r; _mm_store_ss((float *)&r, _mm_min_ss(_mm_set_ss(a), _mm_set_ss(b))); return r; }
 static __forceinline float MaxR_00025E50(const float &a, const float &b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float MinR_00025E50(const float &a, const float &b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 extern int D_002A1030;
@@ -475,7 +479,7 @@ void C_000255D0::func_000255D0(Vec4_257E0 * volatile pos, float radius, float t,
     int idx[6];
 
     if (t != D_00275544) {
-        f58 = D_002A8490->unk238 - (int)(t * D_00276520);
+        f58 = D_002A8490->unk238 - (int)(*(volatile float *)&t * D_00276520);
         self->f74 = *pos;
         self->f24 = radius;
         return;
@@ -535,42 +539,41 @@ void C_000255D0::func_000255D0(Vec4_257E0 * volatile pos, float radius, float t,
 #pragma intrinsic(sqrt)
 int AmbientBird::func_000257E0(volatile int a0)
 {
-    C_002A8490 *g = D_002A8490;
-    AmbientBird *volatile self = this;
-    AmbientBird *p;
-    if (g->unk124 == 0) {
-        func_00157A00(a0);
-        p = self;
-        if (p->unk79 == 1) {
-            struct { volatile float sum; volatile float root; } t;
-            Vec4_257E0 v;
-            p->unk28->unk1A4->unk4->func_00199B00(&v, 0);
-            self->unk5C = v;
-            p = self;
-            float dx = p->unk4C - p->unk5C.x;
-            float dy = p->unk50 - p->unk5C.y;
-            float dz = p->unk54 - p->unk5C.z;
-            t.sum = dx * dx + dy * dy + dz * dz;
-            t.root = (float)sqrt(t.sum);
-            if (t.root < D_00275600) {
-                p = self;
-                if (p->unk78 != 2) {
-                    p->func_00023340();
-                }
-                self->func_000235C0();
-            }
-        }
-        p = self;
-        if (p->unk79 == 1) {
-            p->func_000239F0(a0);
-        }
-        if (self->unk7B == 1) {
-            D_002B7E18->unk2C++;
-            D_002B9120->unk484->func_0001B440(self->unk28, func_00011260(0, 100));
-            self->unk7B = 0;
-        }
-    }
-    return 1;
+ AmbientBird *volatile self = this;
+ C_002A8490 *g = D_002A8490;
+ AmbientBird *p;
+ if(g->unk124==0) {
+ self->func_00157A00(a0);
+ p=self;
+ if(p->unk79==1) {
+ struct { volatile float sum; float root; } t;
+ Vec4_257E0 v;
+ p->unk28->unk1A4->unk4->func_00199B00(&v,0);
+ p=self;
+ volatile int *dst=(volatile int*)&p->unk5C;
+ volatile int *src=(volatile int*)&v;
+ dst[0]=src[0]; dst[1]=src[1]; dst[2]=src[2]; dst[3]=src[3];
+ p=self;
+ float dx=p->unk4C-p->unk5C.x;
+ float dy=p->unk50-p->unk5C.y;
+ float dz=p->unk54-p->unk5C.z;
+ t.sum=dx*dx+dy*dy+dz*dz;
+ t.root=(float)sqrt(t.sum);
+ p=self;
+ if(t.root<D_00275600) {
+ if(p->unk78!=2) p->func_00023340();
+ self->func_000235C0();
+ }
+ }
+ p=self;
+ if(p->unk79==1) p->func_000239F0(a0);
+ if(self->unk7B==1) {
+ D_002B7E18->unk2C++;
+ D_002B9120->unk484->func_0001B440(self->unk28,func_00011260(0,100));
+ self->unk7B=0;
+ }
+ }
+ return 1;
 }
 void *AmbientDebris::func_00025920(unsigned int flags)
 {
