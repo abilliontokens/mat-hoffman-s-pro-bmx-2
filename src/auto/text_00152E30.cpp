@@ -8,6 +8,7 @@ struct Q4_00152E30 { int x, y, z, w; };
 struct C_00152E30 {
     int f0;
     C_00152E30 *func_00152E30(int a0);
+    void func_00157600(int a0);
 };
 
 struct C_00136300 {
