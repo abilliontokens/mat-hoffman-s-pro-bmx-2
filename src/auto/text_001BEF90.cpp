@@ -611,6 +611,45 @@ undefined4 C_001BF070::func_001BF070(byte param_1)
   return in_ECX;
 }
 
+int C_001BF090::func_001BF090(char *name, int a) {
+    char buf[0x104];
+    func_001ADCC0(buf, 0x104, D_00275678, D_002A63C8, name);
+    if (unk168 != 0) {
+        unk168->v2();
+        unk168 = 0;
+    }
+    if (unk16c != 0) {
+        unk16c->func_001D37C0();
+        unk16c->func_00157810();
+        unk16c->v2();
+        unk16c = 0;
+    }
+    if (*name != '*') {
+        if (func_001E8AF0(buf, D_0028762C)) {
+            D_002EFDB8->f30 = 0;
+            unk168 = (S_001BF090_Obj *)func_001D6E20(buf, 0x22b8, 0);
+        }
+        if (func_001E8AF0(buf, D_0028D774)) {
+            D_002EFDB8->f30 = 0;
+            unk168 = (S_001BF090_Obj *)func_001D6E20(buf, 0x22b8, 0);
+        } else if (func_001E8AF0(buf, D_0027EF00)) {
+            func_001ADCC0(unk170, 0x104, D_00276F28, buf);
+            unk274 = a;
+            if (unk278 != 0) {
+                func_001BF030();
+                if (unk16c != 0)
+                    unk16c->func_001D3CC0(unk170);
+            }
+        }
+        if (unk168 != 0 || unk170[0] != 0)
+            return 1;
+        return 0;
+    }
+    unk168 = 0;
+    unk16c = 0;
+    return 0;
+}
+
 void C_001BF220::func_001BF220(void)
 {
     int i;
