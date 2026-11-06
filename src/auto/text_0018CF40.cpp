@@ -9,6 +9,7 @@ extern char D_0028A9F0[];
 extern "C" void *func_001E8AA5(unsigned int);
 extern "C" void *func_001E83E8(void *, unsigned int);
 extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
+static inline int ms_min(volatile int a, volatile int b) { int x = a, y = b; volatile int result = x < y ? x : y; return result; }
 
 struct C_0018D580_Sub {
     u8 a;
@@ -150,6 +151,125 @@ struct C_0018D580 {
     void *func_0018DA90(void *result, int index, int type, const char *name, int *out);
 };
 
+void C_0018D7B0::func_0018CF40(volatile int index, int a, int b, const char *str, const char *name, int c)
+{
+#define L_ (*(char **)(self + 0x164) + index * 0x38)
+#define R_(l) (*(char **)((l) + 0x20) + *(int *)((l) + 0x24) * 0x1c)
+    char *volatile self = (char *)this;
+    char *list = (char *)lists + index * 0x38;
+    int count = *(int *)(list + 0x24);
+    if (*(int *)(list + 0x28) < count + 1) {
+        *(int *)(list + 0x28) = count + 20;
+        list = L_;
+        *(char **)(L_ + 0x20) = (char *)func_001E83E8(*(char **)(list + 0x20), *(int *)(list + 0x28) * 0x1c);
+        list = L_;
+        if (*(char **)(list + 0x20) == 0)
+            return;
+    }
+    *(int *)(R_(list) + 0x18) = a;
+    { char *l = L_; *(int *)(R_(l)) = b; }
+    { char *l = L_; *(int *)(R_(l) + 0x8) = c; }
+    { char *l = L_; *(int *)(R_(l) + 0x4) = *(int *)(l + 0x24); }
+
+    int i;
+    int n = *(int *)(self + 0x174);
+    for (i = 0; i < n; i++) {
+        char *d = *(char **)(self + 0x170);
+        if (strcmp(name, *(char **)(d + i * 0x24)) == 0) {
+            char *l = L_;
+            *(int *)(R_(l) + 0xc) = (*(int *)(d + i * 0x24 + 4) & 0xffff00) | 1;
+            break;
+        }
+    }
+
+    char buffer[256] = "";
+    char packed[256] = "";
+    volatile int length = strlen(str);
+    volatile int limit = 255;
+    volatile int size = limit > length ? length : limit;
+    func_001E8920(buffer, str, size);
+    buffer[size] = 0;
+    volatile int parts = 1;
+    int p = 1;
+    if (buffer[0]) {
+        char *s = buffer;
+        char *d = packed;
+        do {
+            char ch = *s;
+            if (ch != ' ') {
+                *d++ = ch;
+                if (ch == ',')
+                    p++;
+            }
+            s++;
+        } while (*s);
+        parts = p;
+    }
+    list = L_;
+    *(void **)(R_(list) + 0x10) = func_001E8AA5(p * 4);
+    volatile char *token = func_001E95A4(packed, D_0028A9F0);
+    volatile int k = 0;
+    do {
+        int cnt = *(int *)(self + 0x174);
+        for (i = 0; i < cnt; i++) {
+            char *d = *(char **)(self + 0x170);
+            if (strcmp((char *)token, *(char **)(d + i * 0x24)) == 0) {
+                char *l = L_;
+                *(int *)(*(char **)(R_(l) + 0x10) + k) = (*(int *)(d + i * 0x24 + 4) & 0xffff00) | 1;
+                k += 4;
+                break;
+            }
+        }
+        token = func_001E95A4(0, D_0028A9F0);
+    } while (token);
+    { char *l = L_; *(int *)(R_(l) + 0x14) = parts; }
+    (*(int *)(L_ + 0x24))++;
+#undef L_
+#undef R_
+}
+
+void C_0018D7B0::func_0018D330(int index, int a, int b, const char *str)
+{
+    int i;
+
+    if (lists[index].capacity < lists[index].count + 1) {
+        lists[index].capacity = lists[index].count + 10;
+        lists[index].items = (C_0018D330_Item *)func_001E83E8(lists[index].items, lists[index].capacity * sizeof(C_0018D330_Item));
+    }
+    if (lists[index].items) {
+        lists[index].items[lists[index].count].f4 = a;
+        lists[index].items[lists[index].count].f0 = b;
+        char buf[256] = {0};
+        char out[256] = {0};
+        const char *e = str;
+        while (*e++) {}
+        int len = e - (str + 1);
+        volatile int mx = 255;
+        int n = mx > len ? len : mx;
+        func_001E8920(buf, str, n);
+        buf[n] = 0;
+        if (buf[0]) {
+            char *s = buf;
+            char *d = out;
+            do {
+                if (*s != ' ') {
+                    *d++ = *s;
+                }
+            } while (*++s);
+        }
+        int cnt = defCount;
+        C_0018D7B0_Def *p = defs;
+        for (i = 0; i < cnt; i++, p++) {
+            if (strcmp(out, p->name) == 0) {
+                lists[index].items[lists[index].count].f8 = (defs[i].sub & 0xffff00) | 1;
+                lists[index].items[lists[index].count].fC = defs[i].f10;
+                lists[index].count++;
+                return;
+            }
+        }
+    }
+}
+
 int C_0018D580::func_0018D580(unsigned int id)
 {
     int i = 0;
@@ -260,6 +380,75 @@ int C_0018D580::func_0018DA00(int index, const char *name)
         }
     }
     return -1;
+}
+
+void *__fastcall func_0018DA90(char *volatile self, int, void *result, int type, int index, const char *name, int *out)
+{
+    int value[17];
+    char buffer[256] = "";
+    value[16] = -1;
+    volatile int length = strlen(name);
+    volatile int limit = 255;
+    volatile int size = limit > length ? length : limit;
+    func_001E8920(buffer, name, size);
+    buffer[size] = 0;
+    int dots = 0;
+    for (int k = 0; buffer[k]; k++) if (buffer[k] == '.') dots++;
+    int i = 0;
+    int slot;
+    value[0] = 0;
+    char *token = func_001E95A4(buffer, D_0027CEF0);
+    if (type == 1) {
+        char *list = *(char **)(self + 0x164) + index * 0x38;
+        volatile int count = *(int *)(list + 0x30);
+        char *items = *(char **)(list + 0x2c);
+        for (i = 0; i < count; i++) {
+            if (strcmp(token, *(char **)(items + i * 16)) == 0) {
+                int id = *(int *)(items + i * 16 + 8);
+                slot = (id >> 16) & 255;
+                *out = id;
+                value[16] = i;
+                break;
+            }
+        }
+    } else if (type == 2) {
+        char *list = *(char **)(self + 0x158) + index * 0x60;
+        int count = *(int *)(list + 0x58);
+        char *items = *(char **)(list + 0x54);
+        for (i = 0; i < count; i++) {
+            if (strcmp(token, items + i * 0x1c0) == 0) {
+                slot = (unsigned char)items[i * 0x1c0 + 0x1a];
+                *out = i;
+                value[16] = i;
+                break;
+            }
+        }
+    }
+    token = func_001E95A4(0, D_0027CEF0);
+    if (token && value[16] != -1) {
+        dots--;
+        volatile int n = 0;
+        do {
+            if (n == dots) {
+                char *list = *(char **)(self + 0x17c) + slot * 8;
+                int count = *(int *)(list + 4);
+                char *items = *(char **)list;
+                for (i = 0; i < count; i++) {
+                    if (strcmp(token, *(char **)(items + i * 24)) == 0) {
+                        int high = *(int *)(items + i * 24 + 8);
+                        int low = *(int *)(items + i * 24 + 4);
+                        *out = low;
+                        value[16] = (value[16] & 255) | (high << 16);
+                        break;
+                    }
+                }
+            }
+            token = func_001E95A4(0, D_0027CEF0);
+            n++;
+        } while (token);
+    }
+    for (i = 0; i < 17; i++) ((int *)result)[i] = value[i];
+    return result;
 }
 
 int C_0018DDD0_Mgr::func_0018DDD0(C_0018DDD0_Owner *owner, C_0018DDD0_List *list, const char *name)
