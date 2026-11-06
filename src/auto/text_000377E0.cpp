@@ -54,8 +54,10 @@ struct V4_378D0 {
     float x, y, z, w;
     void init() { x = y = z = 0.0f; w = 1.0f; }
     void init2() { w = 1.0f; x = y = z = 0.0f; }
+    void identity();
 };
-extern V4_378D0 D_002A14D4;
+extern float D_002A14D4, D_002A14D8, D_002A14DC, D_002A14E0;
+inline void V4_378D0::identity() { x = D_002A14D4; y = D_002A14D8; z = D_002A14DC; w = D_002A14E0; }
 extern int D_00276CA4;
 struct Arr_378D0 {
     int count; void *data; int grow; int cap; unsigned char flags;
