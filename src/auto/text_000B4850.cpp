@@ -110,8 +110,8 @@ struct ParserB4850 {
     void func_00168BE0(char *a, char *b, char *c, int d);
 };
 
-template <class T> inline const T &Min(const T &a, const T &b) { return b < a ? b : a; }
-template <class T> inline const T &Max(const T &a, const T &b) { return a < b ? b : a; }
+template <class T> inline T Min(const T &a, const T &b) { return a > b ? b : a; }
+template <class T> inline T Max(const T &a, const T &b) { return a < b ? b : a; }
 
 struct ObjB1EE0 {
     ObjB1EE0 *func_000B1EE0(int a);
