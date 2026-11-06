@@ -191,6 +191,26 @@ void C_00084FF0::func_00084FF0(void)
     f28->func_001D6600();
 }
 
+C_00085520 *C_00085520::func_00085470(int a)
+{
+    int i;
+    float *p;
+    func_00157600(1);
+    vtbl = (int)&D_00279644;
+    for (i=0; i<8; i++) {
+        a24[i]=0;
+        a44[i]=0;
+        a64[i]=0;
+    }
+    f98=0; f9C=0; f94=0; fC8=0;
+    p=(float *)&a84[0];
+    for (i=0; i<4; i++) p[i]=0.0f;
+    fD0=0; fD4=0;
+    for(i=0;i<8;i++) aA4[i]=0;
+    fE8=0; fC4=0; fEC=0; fA0=0; fF0=0; fF4=0;
+    return this;
+}
+
 void C_00085520::func_00085520()
 {
     int i;
