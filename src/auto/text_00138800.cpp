@@ -178,6 +178,7 @@ struct S_1395_Entry {
     char padC[0x14];
     S_1395_Track *tracks;
     S_1395_Group *groups;
+    int tail;
 };
 
 struct S_1395_Owner {
@@ -351,13 +352,12 @@ void CutScene::func_001394F0(int arg) {
 
 void __fastcall func_001395D0(S_1395_Owner *self) {
     for (int i = 0; i < self->count; i++) {
-        for (int j = 0; j < *(int *)((char *)self->entries + i * 0x2c + 4); j++) {
-            S_1395_Track *t = (S_1395_Track *)((S_1390A0_Entry *)((char *)self->entries + i * 0x2c))->list1 + j;
-            if (t->flag == 1)
-                self->list58[t->id]->f4->func_00198390();
+        for (int j = 0; j < self->entries[i].count1; j++) {
+            if (self->entries[i].tracks[j].flag == 1)
+                self->list58[self->entries[i].tracks[j].id]->f4->func_00198390();
         }
-        for (int k = 0; k < *(int *)((char *)self->entries + i * 0x2c + 8); k++) {
-            S_1395_Group *g = (S_1395_Group *)((S_1390A0_Entry *)((char *)self->entries + i * 0x2c))->list2 + k;
+        for (int k = 0; k < self->entries[i].count2; k++) {
+            S_1395_Group *g = &self->entries[i].groups[k];
             if (g->flag == 1) {
                 S_1390A0_Q *q = (S_1390A0_Q *)self->p60->f28[g->id];
                 for (int m = 0; m < q->f10; m++) {
