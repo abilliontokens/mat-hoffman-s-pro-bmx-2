@@ -259,6 +259,7 @@ struct InputDevice {
 struct C_001577A0 {
     int func_001577A0(int a, int b);
 };
+typedef int (__fastcall *PFN_Obj_v10)(S_00059F50_Obj *self);
 
 /* constructors (thiscall, flag argument) of the objects BmxGame::func_00059AC0 creates, each returns this */
 struct S_00059AC0_Ctors {
@@ -669,8 +670,7 @@ int BmxGame::func_00059AC0(void)
         default:
             goto done;
         }
-        _ReadWriteBarrier();
-        f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->v10(), -1);
+        f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->GetId(), -1);
     }
 done:
     if (f2F0 != 0) {
