@@ -83,11 +83,17 @@ struct C_000A8C90 {
 int __stdcall func_001BBAA0(void *a, void *b);
 extern char D_000A8D40;
 
+/* the object the trigger registers its callback with */
+struct S_000A8D90_Mgr {
+    int func_001BBAA0(void *owner, void *cb);
+};
+
 /* BikeShutdownTriggerAction */
 struct C_000A8D90 {
     void *vtbl;
     void Register(void *cb) { func_001BBAA0(this, cb); }
     int func_000A8D90(void *a, int b);
+    int func_000A8D90(void *a, S_000A8D90_Mgr *b);
 };
 
 struct C_000A8BC0 {
@@ -602,10 +608,7 @@ int __stdcall func_001BBAA0(void *a, void *b);
 extern char D_000A8D40;
 int C_000A8D90::func_000A8D90(void *a, int b)
 {
-    if (b) {
-        Register(&D_000A8D40);
-    }
-    return 1;
+    return b ? (func_001BBAA0(this, &D_000A8D40), 1) : 1;
 }
 
 C_000A8DB0 *C_000A8DB0::func_000A8DB0() {
