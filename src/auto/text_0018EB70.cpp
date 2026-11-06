@@ -32,7 +32,7 @@ struct C_0018EB70 {
 };
 extern "C" int func_001E8390(void *);
 extern "C" void *func_001E83E8(void *,int);
-static inline const int &minref(const int &a,const int &b){return a<b?a:b;}
+static inline int minref(int x,int y){volatile int a=x,b=y;volatile int result=a>b?b:a;return result;}
 extern char D_00275630[];
 struct C_00191470 {
     void func_00191470(unsigned int b);
