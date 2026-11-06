@@ -586,10 +586,8 @@ static void func_001EDCFF(char *str, int len, S_001EDC7E *stream, int *pcnt)
         *pcnt += len;
         return;
     }
-    while (len > 0) {
-        len--;
-        func_001EDCA8(*str, stream, pcnt);
-        str++;
+    while (len-- > 0) {
+        func_001EDCA8(*str++, stream, pcnt);
         if (*pcnt == -1) break;
     }
 }
