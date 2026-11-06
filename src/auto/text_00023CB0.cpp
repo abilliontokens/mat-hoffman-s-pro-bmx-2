@@ -10,6 +10,8 @@ struct S_00024210_Vec {
     float w;
 };
 
+static __forceinline float sqrt_24210(float x) { return _mm_sqrt_ss(*(__m128 *)&x).m128_f32[0]; }
+
 struct C_00199B00 {
     S_00024210_Vec func_00199B00(int a);
     S_00024210_Vec *func_00199B00(S_00024210_Vec *out, int a);
@@ -150,14 +152,16 @@ AmbientDebris *AmbientDebris::func_00024140(int a, int b)
 int AmbientDebris::func_00024210(int a)
 {
     if (f24 != 0 && f28 != 0) {
-        const S_00024210_Vec &p = D_002B9120->f4E0->a1A8[D_002A8490->f2A4->f120]->f1E0->f22C->func_00199B00(0);
-        const S_00024210_Vec &q = ((C_00199B00 *)f2c)->func_00199B00(0);
+        S_00024210_Vec tmpP;
+        S_00024210_Vec tmpQ;
         S_00024210_Vec d;
+        S_00024210_Vec *p = D_002B9120->f4E0->a1A8[D_002A8490->f2A4->f120]->f1E0->f22C->func_00199B00(&tmpP, 0);
+        S_00024210_Vec *q = ((C_00199B00 *)f2c)->func_00199B00(&tmpQ, 0);
         float len;
 
-        d.x = q.x - p.x;
-        d.y = q.y - p.y;
-        d.z = q.z - p.z;
+        d.x = q->x - p->x;
+        d.y = q->y - p->y;
+        d.z = q->z - p->z;
         d.w = 1.0f;
         len = sqrtf(d.z * d.z + d.y * d.y + d.x * d.x);
         if (len > D_0027554C) {
