@@ -38,10 +38,7 @@ struct C_001C5AC0 {
 
 void C_001C5AA0::func_001C5AA0()
 {
-    int __stdcall func_001927C0(int a0, int a1);
-    int second = unk898;
-    func_001927C0(unk890, second);
-    return;
+    func_001927C0(unk890, unk898);
 }
 
 C_001C5AC0 *C_001C5AC0::func_001C5AC0(unsigned int flags)
