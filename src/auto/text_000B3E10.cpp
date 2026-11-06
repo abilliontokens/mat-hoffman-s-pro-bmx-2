@@ -40,6 +40,7 @@ struct S_B4300_Cfg {
 };
 
 struct C_000B4300;
+struct S_B3E10_Obj;
 typedef void (C_000B4300::*B4300_Cb)(void);
 
 struct S_B4300_Mgr {
@@ -328,7 +329,7 @@ int C_000B4300::func_000B4530(float dt)
 {
     float tmp[4];
 
-    if (f1a0 == 0) {
+    if (!f1a0) {
         int id = D_002A829C->func_001617F0(f9c, 1);
         f3c->f400->func_00181DB0(id);
         f3c->f400->func_001820B0((void *)func_00192300, this, id);
@@ -336,25 +337,24 @@ int C_000B4300::func_000B4530(float dt)
     }
     if (D_002A8490->f124 == 0) {
         if (D_002A8490->f2a4->f1c8 == 0) {
-            if (f1a2 == 0) {
+            if (!f1a2) {
                 f3c->f400->func_00199A70(0, f7c);
-                if (f2a8 == 0) {
-                    if (f2a9 == 0) {
-                        if (f2ab == 0)
+                if (!f2a8) {
+                    if (!f2a9) {
+                        if (!f2ab)
                             func_000B2630();
                         if (f74 == 0)
                             func_000B2930();
                     }
                     func_000B3C30();
-                    if (f70 == 1 && f2a9 == 0)
+                    if (f70 == 1 && !f2a9)
                         func_000B3B40();
                 } else if (f74 == 0) {
                     func_000B2510(0x5a);
                     func_000B2450(f64);
                     float d = func_00011170(func_00011110(tmp, f8c, f7c));
                     if (d >= f6c) {
-                        float x = D_002755E0 * d;
-                        f64 = f68 = func_000B24C0(x, d * D_0027D268, x);
+                        f64 = f68 = func_000B24C0(0.01f * d, d * 0.005f, 0.01f * d);
                     } else if (f64 != D_00275544) {
                         f64 = 0.0f;
                         f68 = 0.0f;
@@ -365,7 +365,7 @@ int C_000B4300::func_000B4530(float dt)
             }
             if (f64 != f68) {
                 if (f64 < f68) {
-                    f64 = dt * D_00278C48 + f64;
+                    f64 = dt * 0.25f + f64;
                     if (f64 > f68)
                         f64 = f68;
                 } else if (f64 > f68) {
@@ -378,9 +378,9 @@ int C_000B4300::func_000B4530(float dt)
             if (f1a1 == 1) {
                 int v = f5c;
                 if (f58 < v) {
-                    f5c = (int)((float)v - dt * D_0027D264);
+                    f5c = (int)((float)v - dt * 600.0f);
                 } else if (f58 > v) {
-                    f5c = (int)(dt * D_0027D264 + v);
+                    f5c = (int)(dt * 600.0f + v);
                 }
                 if (f5c >= 0x5a) {
                     f5c = 0x5a;
@@ -396,8 +396,9 @@ int C_000B4300::func_000B4530(float dt)
                 S_B4530_List *l = D_002B9134;
                 int n = l->f40;
                 int i;
+                u32 key = f50;
                 for (i = 0; i < n; i++) {
-                    if (l->f50[i]->f0 == f50 && l->f50[i]->f4 == k && info->f518->f14 == 0) {
+                    if (l->f50[i]->f0 == key && l->f50[i]->f4 == k && info->f518->f14 == 0) {
                         func_000B2C20(l->f50[i]->fC, l->f50[i]->f10);
                         break;
                     }
