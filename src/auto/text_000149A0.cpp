@@ -32,6 +32,8 @@ struct Sound149A0 {
 
 extern char *D_002B9120;
 extern const float D_002756B4;
+extern "C" float __cdecl sqrtf(float);
+#pragma intrinsic(sqrtf)
 
 struct Obj13F50 {
     void func_00013F50(void *arg1, int arg2, void *arg3, int arg4);
