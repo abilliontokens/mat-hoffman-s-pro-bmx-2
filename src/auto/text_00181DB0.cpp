@@ -110,6 +110,7 @@ extern float D_00275460;
 extern float D_002A8F40;
 extern float D_002A8F3C;
 
+extern "C" float __cdecl sqrtf(float);
 static __forceinline float Sqrt_00181E10(const float &x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
 static __forceinline float Max_00181E10(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 
@@ -607,6 +608,26 @@ undefined4 C_00182550::func_00182550(byte param_1)
   return in_ECX;
 }
 
+void C_00182570::func_00182570(int key, int a1)
+{
+    int i;
+    int j;
+    int n;
+
+    D_002BEAAC->func_0013C8A0(key, &count, 4, 1);
+    entries = (C_00182570_Entry *)func_001E8AA5(count * sizeof(C_00182570_Entry));
+    memset(entries, 0, count * sizeof(C_00182570_Entry));
+    for (i = 0; i < count; i++) {
+        D_002BEAAC->func_0013C8A0(key, &entries[i].f4, 4, 1);
+        D_002BEAAC->func_0013C8A0(key, &n, 4, 1);
+        entries[i].count = n;
+        entries[i].elems = new C_00182570_Elem[n];
+        for (j = 0; j < n; j++) {
+            entries[i].elems[j].func_00144960(key, a1, j, D_002AA46C);
+        }
+    }
+}
+
 undefined4 C_00182730::func_00182730(byte param_1)
 {
   int func_00181540(...);
@@ -681,6 +702,13 @@ void C_00182830::func_00182830(C_00182830_Target *p)
             p->func_0012B390(0x3f9f49f5, 0x280, 0x1c0);
         }
     }
+}
+
+void *RenderTarget::func_00182870(unsigned int flags)
+{
+    vtbl = &D_0028933C;
+    if (flags & 1) func_001E891B(this);
+    return this;
 }
 
 #pragma intrinsic(strcmp)
