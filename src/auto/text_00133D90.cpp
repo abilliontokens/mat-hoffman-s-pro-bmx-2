@@ -163,7 +163,7 @@ struct Mgr_00134770 {
     char pad_a4[3];
     unsigned char flags;
     int func_001332E0(Ent_00134770 *e);
-    int func_00134770(Ent_00134770 **list, int count);
+    int func_00134770(int count, Ent_00134770 **list);
     void func_00134530(int max, int *cnt, Ent_00134770 **list, int type, int noDist, int noSub);
 };
 
@@ -193,19 +193,15 @@ float func_00133D90(Coll_00133D90 *obj, float *p, float r)
 
 float func_00133DF0(Coll_00133D90 *a, Coll_00133D90 *b)
 {
-    float rad = a->f48 + b->f48;
-    float dx = a->f28 - b->f28;
-    float dy = a->f2C - b->f2C;
-    float dz = a->f30 - b->f30;
-    float d;
-    float res;
-
-    _mm_store_ss(&d, _mm_sqrt_ss(_mm_set_ss(dz * dz + dy * dy + dx * dx)));
-    res = d - rad;
-    if (res <= D_00275544) {
-        res = D_00275544;
-    }
-    return res;
+ volatile float rad=a->f48+b->f48;
+ float dx=a->f28-b->f28;
+ float dy=a->f2C-b->f2C;
+ float dz=a->f30-b->f30;
+ volatile float square=dz*dz+dy*dy+dx*dx;
+ float d=(float)sqrt((double)square);
+ float res=d-rad;
+ if(res>D_00275544) return res;
+ return D_00275544;
 }
 
 #pragma auto_inline(on)
@@ -241,6 +237,55 @@ void Obj_00133ED0::func_00133EF0(int a)
 {
     v31(a);
     ((C_00133210 *)this)->func_00133210();
+}
+
+void Mgr_00134770::func_00134530(int max, int *cnt, Ent_00134770 **list, int type, int noDist, int noSub)
+{
+    S_00134530_Iter iter;
+    Ent_00134770 *node;
+
+    *cnt = 0;
+    if ((flags & 2) == 0) {
+        flags &= 0xdf;
+        return;
+    }
+    flags |= 0x10;
+    V4_00134980 b;
+    V4_00134980 a;
+    v30((float *)&b, (float *)&a);
+    iter.func_001A46F0();
+    iter.func_001A4790(f98, type, (float *)&b, (float *)&a, 0, 0, 1);
+    for (node = iter.func_001A4840(); node != 0 && *cnt < max; node = iter.func_001A4840()) {
+        if (node->b2 == D_002A4330) {
+            Ent_00134770 *c = (Ent_00134770 *)((char *)node - 0x24);
+            c->flags |= 0x10;
+            if (noDist != 0 || func_00133DF0((Coll_00133D90 *)this, (Coll_00133D90 *)c) == D_00275544) {
+                if (func_001332E0(c) != 0) {
+                    list[*cnt] = node;
+                    (*cnt)++;
+                }
+            }
+        } else if (noSub == 0 && node->b2 == D_002A4331) {
+            float v[4];
+            int i;
+
+            v[3] = 1.0f;
+            v[1] = 0.0f;
+            v[0] = (float)node->w8 * *(float *)(D_002BF250 + 0x578);
+            v[2] = (float)node->wC * *(float *)(D_002BF250 + 0x578);
+            if (noDist != 0 || func_00133D90((Coll_00133D90 *)this, v, node->func_0014CC20()) == D_00275544) {
+                for (i = 0; i < node->func_0014CA60(); i++) {
+                    Ent_00134770 *sub = node->func_0014CA80(i);
+                    if (sub == 0) {
+                        return;
+                    }
+                    sub->flags |= 0x10;
+                    list[*cnt] = node;
+                    (*cnt)++;
+                }
+            }
+        }
+    }
 }
 
 C_00134980::C_00134980()
