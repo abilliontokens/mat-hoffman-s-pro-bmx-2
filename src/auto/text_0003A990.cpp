@@ -31,7 +31,9 @@ struct C_0003AC20 {
  char pad57C[0x5A0-0x57C]; int count; S_0003AC20_Entry **items;
  S_0003AC20_Entry *at(int i) { if(count>0 && items && i<count) return items[i]; return 0; }
     int func_00038760(S_0003AC20_Arg pos,int *out);
+   int func_00038760(S_0003AC20_Vec pos,int *out);
    int func_0003AC20(int x,float y,int z,int w);
+   int func_0003AC20(S_0003AC20_Vec pos);
   };
 static __forceinline void Round_0003AC20(int * volatile out,float f) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
 
@@ -190,6 +192,25 @@ int C_3A990::func_0003A990(S_0003AC20_Vec a, S_0003AC20_Vec b)
  func_001E891B(values);
  return result;
 }
+
+int C_0003AC20::func_0003AC20(int x,float y,int z,int w) {
+ int index;
+ for(int i=f450;i<f45C;i++) {
+  y=i*D_00275548+f440;
+  if(func_00038760(S_0003AC20_Arg(x,y,z,w),&index)) {
+   S_0003AC20_Entry *e=at(index);
+   S_0003AC20_Vec v=e->owner->fE8->pos;
+   f574=e;
+   f578=index;
+   f2D4=1;
+   int result;
+   Round_0003AC20(&result, v.y+v.y+y-f440);
+   return result;
+  }
+ }
+ return -1;
+}
+
 #pragma optimize("", on)
 
 void C_0003AD50::func_0003AD50(void)
