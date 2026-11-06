@@ -2,6 +2,22 @@
 #include "common.h"
 #include "ghidra.h"
 #include <string.h>
+struct Vol_725 { void func_00031610(int, int); };
+extern "C" int __cdecl func_001361E0(int, int, int, unsigned int);
+extern int D_002B903C;
+struct C_000725B0 {
+    char pad0[0x64];
+    int f64, f68, f6C;
+    char pad70[0x14];
+    int f84, f88, f8C, f90;
+    char pad94[4];
+    int f98, f9C, fA0;
+    Vol_725 *fA4;
+    char padA8[4];
+    int fAC, fB0, fB4, fB8, fBC, fC0, fC4, fC8;
+    int func_000725B0(int a, int b);
+    int func_00157BF0(int, int);
+};
 struct C_00072E50 {
     void func_00072E50(void);
 };
