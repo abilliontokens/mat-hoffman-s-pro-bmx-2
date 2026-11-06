@@ -1,6 +1,7 @@
 /* 2 functions from 0x0002CBC0 to 0x0002D730, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include <string.h>
 
 struct V4_2D270 { float x, y, z, w; };
 
