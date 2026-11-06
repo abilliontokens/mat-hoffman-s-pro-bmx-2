@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 extern "C" void *memset(void *dst, int c, unsigned int n);
+extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
 extern int D_00278484;
 extern int D_002A1CB0;
 extern int D_002A1CB4;
@@ -685,15 +686,15 @@ C_0005ECA0 *C_0005ECA0::func_0005ECA0(int a0)
 
 C_0005EDC0 *C_0005EDC0::func_0005EDC0(void *a0)
 {
-    int mode;
-    C_5ED_Data *d;
-    Txt_5ED *t;
-    Img_5ED *o;
-    int i;
-    int font2;
-    int font1;
-    int *r;
     int ids[3];
+    int *r;
+    int font1;
+    int font2;
+    int i;
+    Img_5ED *o;
+    Txt_5ED *t;
+    C_5ED_Data *d;
+    int mode;
 
     unk104 = a0;
     ids[0] = (int)D_002786A0;
