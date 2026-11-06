@@ -156,6 +156,16 @@ extern S_B3E10_Res *D_002A829C;
 extern "C" char *func_001E8920(char *dst, const char *src, int n);
 extern "C" void *func_001E8A44(unsigned int n);
 extern "C" void func_001E891B(void *p);
+extern "C" char D_000B1E50[];
+extern "C" char D_000B1E60[];
+extern "C" char D_000B1E70[];
+
+inline B4300_Cb B4300_CbOf(void *p)
+{
+    union { void *p; B4300_Cb f; } u;
+    u.p = p;
+    return u.f;
+}
 
 template <class T>
 inline T B3E10_Min(const volatile T &a, const volatile T &b)
