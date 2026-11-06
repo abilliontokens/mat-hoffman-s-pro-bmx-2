@@ -147,6 +147,7 @@ void func_000551B0();
 extern char D_00055290;
 extern S_00056100_Quat D_002A1A64;
 extern S_00056100_Quat D_002A1A84;
+extern u32 D_002A1A68, D_002A1A6C, D_002A1A70, D_002A1A88, D_002A1A8C, D_002A1A90;
 
 static __forceinline void InitQuat_00055380(S_00056100_Quat *q, int zero)
 {
@@ -301,26 +302,9 @@ struct func_00055380 : CameraBehavior_00055380 {
 struct C_00055A10_Filter { float func_00026A10(float,float); void func_000269B0(float,float,float); };
 void func_00055140(S_00056100_Quat *,S_00056100_Quat *);
 void C_000559E0_unused();
-C_00055380 *C_00055380::func_00055380(void)
+func_00055380::func_00055380()
 {
-    func_0012B510();
-    *(volatile u32 *)&unk0 = (u32)&D_00277CF4;
-    q1C.z = 0; q1C.y = 0; q1C.x = 0; q1C.w = 1.0f;
-    q2C.z = 0; q2C.y = 0; q2C.x = 0; q2C.w = 1.0f;
-    q6C.z = 0; q6C.y = 0; q6C.x = 0; q6C.w = 1.0f;
-    q7C.z = 0; q7C.y = 0; q7C.x = 0; q7C.w = 1.0f;
-    q8C.z = 0; q8C.y = 0; q8C.x = 0; q8C.w = 1.0f;
-    q9C.z = 0; q9C.y = 0; q9C.x = 0; q9C.w = 1.0f;
-    qAC.z = 0; qAC.y = 0; qAC.x = 0; qAC.w = 1.0f;
-    qBC.z = 0; qBC.y = 0; qBC.x = 0; qBC.w = 1.0f;
-    qCC.z = 0; qCC.y = 0; qCC.x = 0; qCC.w = 1.0f;
-    qDC.z = 0; qDC.y = 0; qDC.x = 0; qDC.w = 1.0f;
-    qEC.z = 0; qEC.y = 0; qEC.x = 0; qEC.w = 1.0f;
-    qFC.z = 0; qFC.y = 0; qFC.x = 0; qFC.w = 1.0f;
-    q10C.z = 0; q10C.y = 0; q10C.x = 0; q10C.w = 1.0f;
-    q11C.z = 0; q11C.y = 0; q11C.x = 0; q11C.w = 1.0f;
-    q1EC.z = 0; q1EC.y = 0; q1EC.x = 0; q1EC.w = 1.0f;
-    q1FC.z = 0; q1FC.y = 0; q1FC.x = 0; q1FC.w = 1.0f;
+    vtbl_dummy_unused_pad = &D_00277CF4;
     unkC = 0;
     unk10 = 0;
     unk14 = 0;
@@ -401,7 +385,6 @@ C_00055380 *C_00055380::func_00055380(void)
     unk21C = 0x3f400000;
     qCC = D_002A1A64;
     qFC = D_002A1A64;
-    return this;
 }
 
 void C_00055910::func_00055910(void)
