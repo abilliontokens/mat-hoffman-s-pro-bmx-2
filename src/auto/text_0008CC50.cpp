@@ -50,6 +50,38 @@ extern char D_00277038[];
 int func_001ADCC0(char *buf, int n, char *fmt, int v);
 extern "C" unsigned int strlen(const char *);
 #pragma intrinsic(strlen)
+
+static __forceinline void S_0008D290_Fmt(char *a, char *out)
+{
+    int r = strlen(a) % 3;
+    int i, j;
+    char *p = out;
+    for (i = 0, j = -r; i < (int)strlen(a); i++) {
+        if (i > r - 1 && i != 0 && (j == 0 || j % 3 == 0)) {
+            *p++ = ',';
+            *p++ = a[i];
+        } else {
+            *p++ = a[i];
+        }
+        j++;
+    }
+}
+
+static __forceinline void S_0008D290_FmtIdx(char *a, char *out)
+{
+    int r = strlen(a) % 3;
+    int i, j, k = 0;
+    for (i = 0, j = -r; i < (int)strlen(a); i++) {
+        if (i > r - 1 && i != 0 && (j == 0 || j % 3 == 0)) {
+            out[k++] = ',';
+            out[k++] = a[i];
+        } else {
+            out[k++] = a[i];
+        }
+        j++;
+    }
+    out[k] = 0;
+}
 struct S_0008D290 {
     char pad0[0x28];
     S_5E *u28; S_5E *u2c; char pad30[4]; S_5E *u34;
