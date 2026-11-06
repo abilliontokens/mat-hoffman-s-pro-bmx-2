@@ -262,6 +262,13 @@ struct S_00185610_Vec4 {
     float x, y, z, w;
 };
 
+static __forceinline void AddScaled_00185610(S_00185610_Vec4 *v, S_00185610_Vec4 q, float s)
+{
+    v->x += q.x * s;
+    v->y += q.y * s;
+    v->z += q.z * s;
+}
+
 struct S_00185610_Elem {
     char pad0[0x134];
     S_00185610_Vec4 f134;
@@ -536,9 +543,10 @@ void S_00185610_Scene::func_00185610(S_00185610_Out *out)
 
     for (; l != 0; l = l->next) {
         if (l->test->func_0017A1D0(pos, D_002A9118, &dist) != 0) {
-            S_00185610_Elem *o = &f344[l->node->f3c];
-            S_00185610_Vec4 q = o->f134;
             float w = (D_002A9118 - dist) / D_002A9118;
+            S_00185610_Elem *o = &f344[l->node->f3c];
+            S_00185610_Vec4 q;
+            memcpy(&q, &o->f134, sizeof(q));
             total += w;
             v.x += q.x * w;
             v.y += q.y * w;
