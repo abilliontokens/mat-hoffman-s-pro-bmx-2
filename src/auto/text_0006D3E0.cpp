@@ -38,45 +38,48 @@ extern int D_002786A0, D_00278690, D_00278678;
 extern float D_00275AEC;
 
 struct S_0006D750_Obj {
-    char pad0[0x28];
-    int f28;
-    int f2c;
+    char pad0[4];
+    char pad4[0x24];
+    int width;
+    int height;
     char pad30[8];
-    int f38;
-    int f3c;
-    int f40;
-    int f44;
-    int f48;
-    int f4c;
-    int f50;
+    union {
+        unsigned int color;
+        struct { unsigned int lo : 24; unsigned int hi : 8; } cb;
+    };
+    float a, b, c, d;
+    float w, h;
     char pad54[4];
-    unsigned char f58;
+    unsigned char flags;
     S_0006D750_Obj *func_001D5760();
-    void func_001D5810(int a, int b, int c, int d);
+    void func_001D5810(char *name, float x, float y, int z);
 };
 
 struct S_0006D750_Txt {
-    char pad0[4];
-    int f4;
-    int f8;
+    int pad0, x, y;
     char padC[0x38];
-    int f44;
-    int f48;
-    char pad4C[2];
-    unsigned char f4e;
+    int align;
+    unsigned int color;
+    char pad4c[2];
+    unsigned char flags;
     S_0006D750_Txt *func_001D5E90();
-    void func_001D5FA0(int a, int b, int c, int d);
+    void func_001D5FA0(int font, char *name, int size, int z);
     void func_001D6190(int a, int b, int c);
 };
 
 struct S_002A60B0 { int f0, f4, f8, fC; unsigned char f10; };
-extern S_002A60B0 D_002A60B0;
-extern int D_00278664, D_00278668, D_0027866C, D_00278670;
-extern unsigned char D_00278674;
-extern float D_00278650, D_00278654, D_0027653C, D_00275800, D_00278AE8;
-extern int D_00278658, D_00278638, D_00278608, D_00278600;
+extern S_002A60B0 D_002A60B0, D_00278664;
+extern float D_00275544, D_00278650, D_00278654, D_0027653C, D_00275800, D_00278AE8;
+extern char D_00278658[], D_00278638[], D_00278608[], D_00278600[];
 extern char D_00275678[], D_002A5870[], D_002A5FA8[];
 extern int D_0028F5EC, D_0028F5E0;
+
+static __forceinline void pos6D(S_0006D750_Txt *p, int x, int y) { if (p->x != x || p->y != y) { p->y = y; p->x = x; p->flags |= 6; } }
+static __forceinline void align6D(S_0006D750_Txt *p, int a) { if (p->align != a) { p->align = a; p->flags |= 6; } }
+static __forceinline void color6D(S_0006D750_Txt *p, unsigned int c) { if (p->color != c) { p->flags |= 8; p->color = (p->color & (c | 0xff000000)) | (c & 0xffffff); } }
+static __forceinline void uv6D(S_0006D750_Obj *p) { float a = D_00278654 * p->w; p->flags |= 4; p->a = a; p->b = D_00275544 * p->w; p->c = D_0027653C * p->h; p->d = D_00275544 * p->h; }
+static __forceinline void width6D(S_0006D750_Obj *p, int v) { if (p->width != v) { p->width = v; p->flags |= 1; } }
+static __forceinline void height6D(S_0006D750_Obj *p, int v) { if (p->height != v) { p->height = v; p->flags |= 1; } }
 struct C_001D5AD0 {
     ClampObj_0006DD40 *func_001D5AA0();
     void func_001D5AD0(void);
