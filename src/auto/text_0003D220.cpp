@@ -1,6 +1,8 @@
 /* 2 functions from 0x0003D220 to 0x0003D910, found by Ghidra. */
 #include "common.h"
 
+struct Obj3D { char pad[0x2cc]; int flag2cc; int func_0003D220(); };
+
 #include <xmmintrin.h>
 __forceinline void S_3D7B0_Round(float f, int *out) { *out = _mm_cvtss_si32(_mm_set_ss(f)); }
 struct S_3D7B0_Vec4 { float x, y, z, w; };
