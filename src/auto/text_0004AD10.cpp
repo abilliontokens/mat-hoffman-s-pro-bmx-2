@@ -15,7 +15,7 @@ struct C_0004BAB0 {
 #include <string.h>
 struct Vec16 { int v[4]; };
 struct __declspec(align(16)) Mtx { float m[16]; };
-inline const int &Min(const int &a, const int &b) { return b < a ? b : a; }
+inline int Min(const int &a, const int &b) { return a > b ? b : a; }
 
 struct Obj {
     void func_00198390();
