@@ -185,7 +185,31 @@ struct RadiusLineCollisionObject {
 
 struct Vec4_0017E6F0 { float x, y, z, w; };
 
-struct V4C_0017E7C0 { float x, y, z, w; V4C_0017E7C0() { z = 0; y = 0; x = 0; w = 1.0f; } };
+struct V4C_0017E7C0 {
+    float x, y, z, w;
+    V4C_0017E7C0() { z = 0; y = 0; x = 0; w = 1.0f; }
+    V4C_0017E7C0(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
+};
+
+/* bounds of a RadiusLineCollisionObject: capsule from (fF0..) to (f100..) swept by a radius, as centre + half extents */
+extern float D_002755E8;
+void func_0001C680(V4C_0017E7C0 *out, V4C_0017E7C0 v, float *m);
+
+static __forceinline float Abs_0017E920(float f)
+{
+    int i = *(int *)&f & 0x7fffffff;
+    return *(float *)&i;
+}
+
+struct C_0017E920 {
+    char pad0[0xB0];
+    float mB0[12];
+    char padE0[0x10];
+    float fF0, fF4, fF8, fFC;
+    float f100, f104, f108, f10C;
+    float f110, f114, f118, f11C;
+    void func_0017E920(V4C_0017E7C0 *centre, float *extent);
+};
 void func_00030AC0(V4C_0017E7C0 *out, void *v, void *m);
 void func_0017E5B0(V4C_0017E7C0 *a, V4C_0017E7C0 *b);
 
@@ -229,6 +253,76 @@ struct C_0017E6F0 {
     float f110, f114, f118, f11C;
     void func_0017E6F0(Vec4_0017E6F0 a, Vec4_0017E6F0 b, float r);
 };
+
+int QuadTree::func_0017E2C0(float *a, float *b, int *c, int **d, int *e)
+{
+    float x0;
+    float z1;
+    float x1;
+    float z0;
+    float t;
+    int i0;
+    int i1;
+    int i2;
+    int i3;
+
+    x0 = a[0] - b[0] - f28;
+    x1 = a[0] + b[0] - f28;
+    z0 = a[2] - b[2] - f30;
+    z1 = a[2] + b[2] - f30;
+    if (x1 < x0) {
+        t = x0;
+        x0 = x1;
+        x1 = t;
+    }
+    if (z1 < z0) {
+        t = z0;
+        z0 = z1;
+        z1 = t;
+    }
+    if (x1 < D_00275544 || x0 > f40 || z1 < D_00275544 || z0 > f44 || (d == 0 && e == 0) || c == 0) {
+        return 0;
+    }
+    if (f0E & 1) {
+        v14();
+    }
+    f0C++;
+    if (d != 0) {
+        if (f88C < f888) {
+            if (f894 != 0) {
+                func_001E8390(f894);
+            }
+            f894 = 0;
+        }
+        if (f894 == 0) {
+            f894 = (int *)func_001E8AA5(f888 * 4);
+            f88C = f888;
+        }
+        f898 = 0;
+        f89C = f888;
+        f890 = f894;
+        *d = f890;
+        f0E |= 1;
+    } else if (e != 0) {
+        f89C = *c;
+        f890 = e;
+        f0E &= 0xfe;
+    }
+    D_002EFD80 = this;
+    z0 *= f54;
+    x1 *= f54;
+    z1 *= f54;
+    x0 *= f54;
+    FloatToInt(&i0, x0);
+    FloatToInt(&i1, z0);
+    FloatToInt(&i2, x1);
+    FloatToInt(&i3, z1);
+    if (f8C != 0) {
+        f8C->func_0017E1D0(i0, i1, i2, i3, 0, 0, 0x4000, f50);
+    }
+    *c = f898;
+    return 1;
+}
 
 RadiusLineCollisionObject *RadiusLineCollisionObject::func_0017E620(int a0) {
     func_00132EB0(a0);
