@@ -22,6 +22,7 @@ struct Obj {
 extern float D_00276E9C;
 extern float D_00276E98;
 
+struct __declspec(align(16)) AV4 : V4 {};
 struct NodeD {
     virtual void nv0();
     virtual void nv1();
