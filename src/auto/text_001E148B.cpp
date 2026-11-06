@@ -372,6 +372,9 @@ extern "C" int __stdcall func_001E06BC(int a1, int a2, int a3, int a4, int a5, v
 extern int D_00010134, D_00010138, D_002F6BB4;
 extern unsigned int D_00010124;
 extern char D_002ACBE4[], D_002ACBF4[];
+struct S_Bit0_1E148B {
+    unsigned int bit0 : 1;
+};
 extern "C" void *__imp__XboxHardwareInfo;
 extern "C" int __stdcall func_001DEC61(int a1);
 extern "C" unsigned int __cdecl func_001DF4BC(void);
@@ -381,52 +384,54 @@ void __stdcall func_001E2213(void)
     int local[12];
     int st;
     unsigned int v;
-    int zero = 0;
+    int a, b, c;
 
     func_001E2703();
     memset(local, 0, sizeof(local));
     local[0] = 0x30;
-    st = func_001E06BC(2, zero, D_00010134, D_00010138, zero, local);
+    st = func_001E06BC(2, 0, D_00010134, D_00010138, 0, local);
     D_002F6BB4 = st;
-    if (st == zero) {
-        func_001E20BF(1, 1, zero);
-        return;
+    if (st == 0) {
+        a = 1; b = 1; c = 0;
+        goto fail;
     }
     if ((*(unsigned int *)((char *)D_00010118 + 0x9c) & 0xffffff) == 2) {
         if (func_001E2124() < 0) {
-            func_001E20BF(zero, zero, zero);
+            func_001E20BF(0, 0, 0);
             return;
         }
     }
     if (!(D_00010124 & 8)) {
-        if (func_001E2202((S_AnsiString_1E148B *)D_002ACBF4) < 0) {
-            func_001E20BF(1, 2, zero);
-            return;
-        }
-        if (!(((unsigned char *)_imp__XboxHardwareInfo)[1] & 1)) {
+        if (func_001E2202((S_AnsiString_1E148B *)D_002ACBF4) < 0)
+            goto err12;
+        if (!(((unsigned char *)_imp__XboxHardwareInfo)[1] & 4)) {
             st = _imp__IoCreateSymbolicLink(D_002ACBE4, (S_AnsiString_1E148B *)D_002ACBEC);
             if (st < 0 && st != 0xC0000035) {
-                func_001E20BF(1, 1, zero);
-                return;
+                a = 1; b = 1; c = 0;
+                goto fail;
             }
         }
     }
     if (!(D_00010124 & 0x18)) {
         st = func_001E206A(*(int *)((char *)D_00010118 + 8), (int)((char *)D_00010118 + 0xc));
         if (st < 0) {
-            if (st != 0xC000007F) {
-                func_001E20BF(1, 2, zero);
-                return;
+            if (st == 0xC000007F) {
+                a = 2; b = 0x54; c = 0x10;
+            } else {
+err12:
+                a = 1; b = 2; c = 0;
             }
-            func_001E20BF(2, 0x54, 0x10);
-            return;
+            goto fail;
         }
     }
-    if (!(D_00010124 & 8) && (D_00010124 & 1) && func_001DEC61(D_00010124 & 2) == zero)
-        func_001E20BF(1, 2, zero);
+    if (!(D_00010124 & 8) && (D_00010124 & 4) && func_001DEC61(D_00010124 & 2) == 0)
+        func_001E20BF(1, 2, 0);
     v = *(unsigned int *)((char *)D_00010118 + 0xa4);
-    if (v < func_001DF4BC())
-        func_001E20BF(1, 4, v);
+    if (v >= func_001DF4BC())
+        return;
+    a = 1; b = 4; c = v;
+fail:
+    func_001E20BF(a, b, c);
 }
 
 #pragma optimize("", on)
