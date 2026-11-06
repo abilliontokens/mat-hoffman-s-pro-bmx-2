@@ -98,6 +98,12 @@ struct S_0011C3F0_80 {
     void func_000BA430(V4_0011C3F0 *a, V4_0011C3F0 *b, int c, int d);
 };
 
+int func_00134DE0(V4_0011C3F0 *seg, V4_0011C3F0 *out, V4_0011C3F0 *hit, int noSub, int count, void **skip, int mask, int a7, int mode);
+void func_0011ABC0(V4_0011C3F0 *out, V4_0011C3F0 *in);
+V4_0011C3F0 func_0011B1B0(float angle);
+V4_0011C3F0 func_0001C610(const V4_0011C3F0 &a, const V4_0011C3F0 &b);
+void func_000265C0(float *out, const V4_0011C3F0 *a, const V4_0011C3F0 *b, const V4_0011C3F0 *c, int d, int e);
+
 struct C_0011CA60 {
     char pad0[0x24];
     S_0011CA20_V4 f24;
