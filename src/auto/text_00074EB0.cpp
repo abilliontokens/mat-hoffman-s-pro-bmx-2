@@ -73,10 +73,14 @@ struct C_00075170 {
     int unk1B4;
     void func_00075170();
 };
-#define SETUP_LABEL(slot) \
-    if ((slot)->f48 != 0xffcccccc) { (slot)->f4E |= 8; (slot)->f48 = ((slot)->f48 & 0xffcccccc) | 0xcccccc; } \
-    if ((slot)->f44 != D_0028F5E0) { (slot)->f44 = D_0028F5E0; (slot)->f4E |= 6; } \
-    if ((slot)->f34 != 0x3f800000) { (slot)->f34 = 0x3f800000; (slot)->f4E |= 6; }
+#define SETUP_LABEL(slot) { \
+    Lbl_75170 *p = (slot); \
+    u32 color = p->f48; \
+    if (color != 0xffcccccc) { p->f4E |= 8; p->f48 = (color & 0xffcccccc) | 0xcccccc; } \
+    p = (slot); \
+    if (p->f44 != D_0028F5E0) { p->f44 = D_0028F5E0; p->f4E |= 6; } \
+    p = (slot); \
+    if (p->f34 != 0x3f800000) { p->f34 = 0x3f800000; p->f4E |= 6; } }
 
 struct V_002EFDB8 {
     virtual void vf0();
@@ -272,6 +276,103 @@ if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000; } e++;
 e=&unkAC[12]; i=6; do { if(*e) { o=(*e)->func_001D5AA0(); if (D_00275AEC > o->f10) *(int *)&o->f10 = 0x41200000;
 if (D_00275AEC < o->f14 || o->f14 > o->f10) *(int *)&o->f14 = 0x41200000; } e++; i--; }while(i);
 func_001578D0();
+}
+
+void C_00075170::func_00075170()
+{
+    char buf[64];
+    char num[8];
+    int i;
+    int t;
+    int v;
+
+    if (unk1B4 != 0) {
+        Text_75170 **p;
+        unk100->func_0005E840(D_002A8490->p2E8->p4->fEC0);
+        p = &unk94[0];
+        i = 3;
+        do {
+            (*p)->func_001B1980();
+            p++;
+            i--;
+        } while (i != 0);
+        unk118->func_001D6600();
+        unk100->func_001D6600();
+        return;
+    }
+    unk100->func_0005E840(D_002A8490->p2E8->p4->fFD8);
+    unk104->func_001D6600();
+    unk108->func_001D6600();
+    unk10C->func_001D6600();
+    unk110->func_001D6600();
+    t = (int)D_002A8490->p2A4->f2C4;
+    unk190 = t % 60;
+    unk18C = t / 60;
+    func_001ADCC0(buf, 0x104, D_00278DE4, unk18C, unk190);
+    unk114->func_0005E840(buf);
+    unk114->func_001D6600();
+    if (unk1AC != 0) {
+        for (i = 0; i < 2; i++) {
+            unk94[i]->func_001B1980();
+            if (i == unk11C) {
+                unk94[i]->func_001B2270(0xffbfa35a);
+                unk94[i]->func_001B19C0(320, (int)(fA0[i] - D_00276DD4), 0);
+                unk94[i]->func_001B1860(0, -1, 255, 1, 0, 0, 0, 255, 1.3f, 0, 0, 0.2f, 0);
+            } else if (i == unk1A8) {
+                unk94[i]->func_001B2270(0xffcccccc);
+                unk94[i]->func_001B19C0(320, (int)fA0[i], 0);
+                unk94[i]->func_001B1860(0, -1, 255, 1.3f, 0, 0, 0, 255, 1, 0, 0, 0.2f, 0);
+            } else {
+                unk94[i]->func_001B2270(0xffcccccc);
+                unk94[i]->func_001B19C0(320, (int)fA0[i], 0);
+                unk94[i]->func_001B1860(0, -1, 255, 1, 0, 0, -1, 255, 1, 0, 0, 0, 0);
+            }
+        }
+        unk1AC = 0;
+    }
+    if (unk120->f90 == 1) {
+        for (i = 0; i < 2; i++) {
+            if (i == 1) {
+                func_001AC330(buf, D_00278DD8);
+                unk64[1]->func_0005E840(buf);
+                unk12C[1] = D_002B9120->f4E4[0]->f6CC;
+                unk14C[1] = D_002B9120->f4E4[0]->f6D0;
+                v = D_002B9120->f528->f774;
+                if (v == 0) {
+                    unk16C[1] = 0;
+                } else {
+                    unk16C[1] = (int)((float)D_002B9120->f4E4[0]->f6D8 * D_00275994 / (float)v);
+                }
+            } else {
+                func_001ADCC0(num, 0x104, D_00277038, i + 1);
+                func_001AC330(buf, D_002A8490->p2E8->p4->f850, num);
+                unk64[i]->func_0005E840(buf);
+                unk12C[i] = D_002B9120->f528->f76C;
+                unk14C[i] = D_002B9120->f528->f770;
+                v = D_002B9120->f4E4[i]->f6D4;
+                if (v == 0) {
+                    unk16C[i] = 0;
+                } else {
+                    unk16C[i] = (int)((float)D_002B9120->f528->f778 * D_00275994 / (float)v);
+                }
+            }
+            SETUP_LABEL(unk64[i]);
+            unk64[i]->func_001D6600();
+            func_001ADCC0(buf, 0x104, D_00277038, unk12C[i]);
+            unk70[i]->func_0005E840(buf);
+            SETUP_LABEL(unk70[i]);
+            unk70[i]->func_001D6600();
+            func_001ADCC0(buf, 0x104, D_00277038, unk14C[i]);
+            unk7C[i]->func_0005E840(buf);
+            SETUP_LABEL(unk7C[i]);
+            unk7C[i]->func_001D6600();
+            func_001ADCC0(buf, 0x104, D_00278DD0, unk16C[i]);
+            unk88[i]->func_0005E840(buf);
+            SETUP_LABEL(unk88[i]);
+            unk88[i]->func_001D6600();
+        }
+    }
+    unk100->func_001D6600();
 }
 
 int C_00075750::func_00075750(void)
