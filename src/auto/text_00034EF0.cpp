@@ -355,7 +355,7 @@ extern int D_002B911C;
 extern int D_002B9114;
 extern int D_002BA160;
 
-template <class T> inline const T &min_35C10(const T &a, const T &b) { return b < a ? b : a; }
+template <class T> inline const T &min_35C10(const T &a, const T &b) { return a > b ? b : a; }
 struct __declspec(align(16)) S_35C10_Mat { float m[16]; };
 void func_000265C0(S_35C10_Mat *out, void *a, void *b, void *c, int d, int e);
 
