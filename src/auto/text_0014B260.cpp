@@ -35,6 +35,7 @@ extern float D_002755E8;
 Vec4 *func_0011EEE0(Vec4 *out, Vec4 *a, Vec4 *b);
 Vec4 *func_0014AA70(Vec4 *out, Vec4 *a, Vec4 *b);
 void func_0001C680(Vec4 *out, Vec4 v, float *m);
+#pragma auto_inline(on)
 static __forceinline void Xform_0014BA80(Vec4 *out, const M44_0014BA80 *mat, const float *v)
 {
     __m128 t = _mm_loadu_ps(v);
@@ -99,3 +100,60 @@ void DynamicRayCollisionObject::func_0014BA40(int param_1)
     unkA7 = unkA7 & 0xef;
     func_00157A00(param_1);
 }
+
+#pragma auto_inline(on)
+void DynamicRayCollisionObject::func_0014BA80(Vec4 *centre, float *extent)
+{
+    VecInit_0014BA80 axes[3];
+    VecInit_0014BA80 a;
+    VecInit_0014BA80 b;
+    Vec4 mn(3.4028235e+38f, 3.4028235e+38f, 3.4028235e+38f, 1.0f);
+    Vec4 mx(-3.4028235e+38f, -3.4028235e+38f, -3.4028235e+38f, 1.0f);
+    Vec4 t1, t2, t3, t4;
+    Vec4 *r;
+    int i;
+    for (i = 0; i < unkA8; i++) {
+        if (fAC[i].a != 0) {
+            Xform_0014BA80(&a, &fAC[i].a->mat, &fB0[i * 2].x);
+        } else {
+            *(Vec4 *)&a = fB0[i * 2];
+        }
+        if (fAC[i].b != 0) {
+            Xform_0014BA80(&b, &fAC[i].b->mat, &fB0[i * 2 + 1].x);
+        } else {
+            *(Vec4 *)&b = fB0[i * 2 + 1];
+        }
+        r = func_0011EEE0(&t1, &mn, &b);
+        r = func_0011EEE0(&t2, r, &a);
+        mn = *r;
+        r = func_0014AA70(&t3, &mx, &b);
+        r = func_0014AA70(&t4, r, &a);
+        mx = *r;
+    }
+    Vec4 c((mx.x + mn.x) * D_002755E8, (mx.y + mn.y) * D_002755E8, (mx.z + mn.z) * D_002755E8, 1.0f);
+    Vec4 h((mx.x - mn.x) * D_002755E8, (mx.y - mn.y) * D_002755E8, (mx.z - mn.z) * D_002755E8, 1.0f);
+    f28 = c;
+    float rad;
+    _mm_store_ss(&rad, _mm_sqrt_ss(_mm_set_ss(h.x * h.x + h.y * h.y + h.z * h.z)));
+    f48 = rad;
+    M44_0014BA80 m;
+    _mm_store_ps((float *)&m.m[0], _mm_setzero_ps());
+    _mm_store_ps((float *)&m.m[1], _mm_setzero_ps());
+    _mm_store_ps((float *)&m.m[2], _mm_setzero_ps());
+    _mm_store_ps((float *)&m.m[3], _mm_setzero_ps());
+    ((float *)&m)[0] = 1.0f;
+    ((float *)&m)[5] = 1.0f;
+    ((float *)&m)[10] = 1.0f;
+    ((float *)&m)[15] = 1.0f;
+    axes[0] = VecInit_0014BA80(h.x, 0.0f, 0.0f);
+    axes[1] = VecInit_0014BA80(0.0f, h.y, 0.0f);
+    axes[2] = VecInit_0014BA80(0.0f, 0.0f, h.z);
+    Xform_0014BA80(centre, &m, &c.x);
+    func_0001C680(&axes[0], axes[0], (float *)&m);
+    func_0001C680(&axes[1], axes[1], (float *)&m);
+    func_0001C680(&axes[2], axes[2], (float *)&m);
+    extent[0] = Abs_0014BA80(axes[2].x) + Abs_0014BA80(axes[1].x) + Abs_0014BA80(axes[0].x);
+    extent[1] = Abs_0014BA80(axes[2].y) + Abs_0014BA80(axes[1].y) + Abs_0014BA80(axes[0].y);
+    extent[2] = Abs_0014BA80(axes[2].z) + Abs_0014BA80(axes[1].z) + Abs_0014BA80(axes[0].z);
+}
+#pragma auto_inline(off)
