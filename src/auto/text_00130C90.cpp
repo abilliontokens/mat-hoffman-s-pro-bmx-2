@@ -1,6 +1,7 @@
 /* 7 functions from 0x00130C90 to 0x00131510, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include "asm_helpers.h"
 struct C_001314E0 {
     void func_001314E0(undefined4 *param_1);
 };
@@ -164,6 +165,102 @@ f32 func_0014F870(f32 a);
 f32 func_0014FBA0(f32 a, f32 b);
 void func_001310E0(S_Vec4 *a, S_Vec4 *b);
 
+
+int C_00130C90::func_00130C90(char *name, int arg)
+{
+    char big[0x400];
+    char s1[0x100];
+    char line[0x400];
+    char buf[0x100];
+    char s2[0x100];
+    int tmp[8];
+    S_00130C90_Vec4 vv[2];
+    int node;
+    int h;
+    int i;
+    S_00130C90_Key *keys;
+    int count;
+
+    func_001ADCC0(buf, 0x100, D_002843B0, arg);
+    func_00030F30(name, D_002843A8);
+    h = -1;
+    node = 0;
+    if (D_002BEAAC->func_0013D310(name, D_00275FB4, &h, &node, 1)) {
+        if (node != 0) {
+            f518 = (S_00130C90_Track *)node;
+            f518->refs++;
+            return 1;
+        }
+        ((C_00130C90VT *)this)->v48(h);
+        D_002BEAAC->func_0013B1F0(h, f518);
+        D_002BEAAC->func_0013C110(h);
+        f404 = 1;
+        return 1;
+    } else {
+        func_00030F30(name, D_0028422C);
+        h = -1;
+        node = 0;
+        if (D_002BEAAC->func_0013D310(name, D_00276274, &h, &node, 1)) {
+            if (node == 0) {
+                f518 = (S_00130C90_Track *)func_001E8A44(0x18);
+                f518->count = 0;
+                f518->fC = 0;
+                while (!D_002BEAAC->func_0013AFB0(h)) {
+                    D_002BEAAC->func_0013C6E0(h, line, 0x400);
+                    if (func_001E8BB0(line, D_0027626C, 5) == 0) {
+                        f518->count++;
+                    }
+                }
+                D_002BEAAC->func_0013AFF0(h, 0, 0);
+                count = f518->count;
+                keys = (S_00130C90_Key *)func_001E8A44(count * 0x28);
+                if (keys != 0) {
+                    func_00011FF0(keys, 0x28, count, (void *)func_0012F460);
+                } else {
+                    keys = 0;
+                }
+                f518->keys = keys;
+                i = -1;
+                while (!D_002BEAAC->func_0013AFB0(h)) {
+                    D_002BEAAC->func_0013C6E0(h, line, 0x400);
+                    if (func_001E8BB0(line, D_0027626C, 5) == 0) {
+                        i++;
+                        func_001E8B76(&line[0], D_00279058, big, &tmp[0]);
+                        f32 t = (f32)tmp[0];
+                        if (tmp[0] < 0) {
+                            t += D_002755E4;
+                        }
+                        f518->keys[i].time = t;
+                    } else if (func_001E8BB0(&line[0], D_00276260, 9) == 0) {
+                        vv[1].x = vv[1].y = vv[1].z = 0;
+                        vv[0].x = vv[0].y = vv[0].z = 0;
+                        vv[1].w = 1.0f;
+                        vv[0].w = 1.0f;
+                        func_001E8B76(line, D_00276234, s1, s2, &tmp[2], &tmp[3], &tmp[4], &tmp[5], &tmp[6], &tmp[7], &vv[0].x, &vv[0].z, &vv[0].y, &vv[1].x, &vv[1].z, &vv[1].y);
+                        if (func_001EA426(s2, buf) != 0 || func_001EA426(s2, D_00284398) != 0) {
+                            f518->keys[i].v8 = vv[1];
+                            f518->keys[i].v18 = vv[0];
+                        }
+                    }
+                }
+                ((C_00130C90VT *)this)->v50();
+                f518->refs = 1;
+                D_002BEAAC->func_0013B1F0(h, f518);
+                D_002BEAAC->func_0013C110(h);
+                f404 = 1;
+                return 1;
+            }
+            f518 = (S_00130C90_Track *)node;
+            f518->refs++;
+            return 1;
+        }
+    }
+    return 0;
+}
+
+void func_001310E0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
+}
 
 C_001313C0 *C_001313C0::func_00131150(void)
 {
