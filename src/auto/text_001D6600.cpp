@@ -2,6 +2,7 @@
 #include "common.h"
 
 #include <xmmintrin.h>
+#include <string.h>
 
 extern int D_0028F644;
 extern int D_002A83E0;
