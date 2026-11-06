@@ -18,6 +18,79 @@ struct S_00094F40 {
     void func_00095640(char *buf, int a, int b);
 };
 struct C_0005D6A0 { C_0005D6A0 *func_0005D6A0(void); };
+
+struct Vec4_5DAB0 {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
+struct Node_5DAB0 {
+    char pad0[0x20];
+    float f20;
+    float f24;
+    float f28;
+    char pad2C[0x40 - 0x2C];
+    float f40;
+    float f44;
+    float f48;
+};
+
+struct Obj22C_5DAB0 {
+    Vec4_5DAB0 *func_00197F70(void *a);
+    void func_001994C0(void *a, void *b, int c);
+    void func_00199960(void *a, int b);
+};
+
+struct Holder_5DAB0 {
+    char pad0[0x22c];
+    Obj22C_5DAB0 *f22C;
+};
+
+struct BmxGrindConstraint {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    int func_0005DAB0();
+    char pad34[0x58 - 0x34];
+    float f58;
+    float f5C;
+    float f60;
+    int f64;
+    float f68;
+    float f6C;
+    float f70;
+    int f74;
+    char pad78[0xC0 - 0x78];
+    int fC0;
+    float fC4;
+    char padC8[0xCC - 0xC8];
+    int fCC;
+    int fD0;
+    int fD4;
+    int fD8;
+    int fDC;
+    int f24;
+    int f28;
+    Holder_5DAB0 *f2C;
+    Node_5DAB0 *f30;
+    Node_5DAB0 *f34;
+    int f38;
+    int f3C;
+    int f40;
+    int f44;
+};
 struct C_0005DA30 {
     char pad0[0x2C];
     int unk2C;
