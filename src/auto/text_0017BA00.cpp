@@ -321,31 +321,83 @@ int C_0017BDE0::func_0017BDE0(f32 x, f32 y) {
  return 1;
 }
 
-int C_0017BDE0::func_0017BFB0(void) {
-    f32 loc[16];
-    unsigned int k;
-    int off;
+void C_0017BDE0::func_0017BE40(void) {
+    struct { int x0, y0, x1, y1, x2, y2, x3, y3; } t;
+    int *w = (int *)v;
+    t.x1 = w[2];
+    t.y1 = w[3];
+    t.x2 = w[4];
+    t.y2 = w[5];
+    t.x3 = w[6];
+    t.y3 = w[7];
+    f32 d01 = v[1] - v[3];
+    f32 d20 = v[5] - v[1];
 
-    k = 0;
-    loc[0] = v[2] - v[0];
-    loc[1] = v[3] - v[1];
-    loc[2] = v[4] - v[2];
-    loc[3] = v[5] - v[3];
-    loc[4] = v[6] - v[4];
-    loc[5] = v[7] - v[5];
-    loc[6] = v[0] - v[6];
-    off = 0;
-    loc[7] = v[1] - v[7];
-    do {
-        *(u32 *)((char *)loc + off + 0x24) = *(u32 *)((char *)loc + off);
-        k++;
-        *(f32 *)((char *)loc + off + 0x20) = -*(f32 *)((char *)loc + off + 4);
-        if (D_00275544 < loc[(k & 3) * 2 + 1] * *(f32 *)((char *)loc + off + 0x24) + loc[(k & 3) * 2] * *(f32 *)((char *)loc + off + 0x20)) {
-            return 0;
+    if ((v[3] - v[5]) * v[0] + d01 * v[4] + d20 * v[2] < D_00275544) {
+        if ((v[1] - v[5]) * v[6] + (v[7] - v[1]) * v[4] + (v[5] - v[7]) * v[0] < D_00275544) {
+            return;
         }
-        off += 8;
-    } while (off < 0x20);
-    return 1;
+        if ((v[3] - v[7]) * v[4] + (v[5] - v[3]) * v[6] + (v[7] - v[5]) * v[2] < D_00275544) {
+            w[6] = t.x2;
+            w[7] = t.y2;
+            w[4] = t.x3;
+            w[5] = t.y3;
+        } else {
+            w[6] = t.x2;
+            w[7] = t.y2;
+            w[2] = t.x3;
+            w[3] = t.y3;
+            w[4] = t.x1;
+            w[5] = t.y1;
+        }
+    } else {
+        if ((v[1] - v[7]) * v[4] + (v[7] - v[5]) * v[0] + d20 * v[6] < D_00275544) {
+            w[2] = t.x3;
+            w[3] = t.y3;
+            w[6] = t.x1;
+            w[7] = t.y1;
+        } else {
+            f32 m1 = (v[3] - v[7]) * v[0];
+            f32 m2 = (v[7] - v[1]) * v[2];
+            if (m1 + m2 + d01 * v[6] < D_00275544) {
+                w[2] = t.x2;
+                w[3] = t.y2;
+                w[4] = t.x1;
+                w[5] = t.y1;
+            } else {
+                w[2] = t.x2;
+                w[3] = t.y2;
+                w[4] = t.x3;
+                w[5] = t.y3;
+                w[6] = t.x1;
+                w[7] = t.y1;
+            }
+        }
+    }
+}
+
+static __forceinline f32 dot2_0017BFB0(const f32 *a, const f32 *b)
+{
+    return a[1] * b[1] + a[0] * b[0];
+}
+
+int C_0017BDE0::func_0017BFB0(void) {
+ f32 e[4][2]; f32 n[4][2]; int k; int off;
+ e[0][0]=v[2]-v[0]; e[0][1]=v[3]-v[1];
+ e[1][0]=v[4]-v[2]; e[1][1]=v[5]-v[3];
+ e[2][0]=v[6]-v[4]; e[2][1]=v[7]-v[5];
+ e[3][0]=v[0]-v[6]; e[3][1]=v[1]-v[7]; k=0; off=0;
+ do {
+ f32 *ee=(f32*)((char*)e+off);
+ f32 *nn=(f32*)((char*)n+off);
+ *(u32*)&nn[1]=*(u32*)&ee[0];
+ nn[0]=-ee[1];
+ ++k;
+ f32 *q=e[k&3];
+ if(D_00275544 < q[1] * nn[1] + q[0] * nn[0]) return 0;
+ off+=8;
+ }while(off<32);
+ return 1;
 }
 
 void C_0017C300::func_0017C300(void) {
@@ -384,7 +436,7 @@ void C_0017C300::func_0017C360(f32 a, f32 b, f32 c, f32 d, f32 e)
     *(f32 *)&self->unk8B0 = e;
     x = self->f40;
     y = self->f44;
-    _mm_store_ss(&m, _mm_max_ss(_mm_set_ss(x), _mm_set_ss(y)));
+    m = x > y ? x : y;
     self->f54 = D_00289094 / m;
     p = self;
     D_002EFD7C = D_00275460 / p->f54;
