@@ -131,6 +131,7 @@ T* func_001F208F(T* a0, T* a1)
     return a0;
 }
 
+#pragma optimize("", on)
 T* func_001F23B8(T* ret, T* superType, char prefix, T* cvType, int thisFlag)
 {
     N A;
@@ -172,28 +173,28 @@ T* func_001F23B8(T* ret, T* superType, char prefix, T* cvType, int thisFlag)
                 switch (code) {
                 case 4:
                     if (~(u32)D_002F6A38.b1 & 1 && ~(u32)D_002F6A38.b17 & 1) {
-                        if (B.func_001EF1E7()) {
-                            B.func_001EF9B2(func_001EEE49(7));
-                        } else {
+                        if (!B.func_001EF1E7()) {
                             B.func_001EEF4F(B.func_001EFD3B(' ').func_001EFD7A(func_001EEE49(7)));
+                        } else {
+                            B.func_001EF9B2(func_001EEE49(7));
                         }
                     }
                     break;
                 case 5:
                     if (~(u32)D_002F6A38.b1 & 1) {
-                        if (C.func_001EF1E7()) {
-                            C.func_001EF9B2(func_001EEE49(9));
-                        } else {
+                        if (!C.func_001EF1E7()) {
                             C.func_001EEF4F(C.func_001EFD3B(' ').func_001EFD7A(func_001EEE49(9)));
+                        } else {
+                            C.func_001EF9B2(func_001EEE49(9));
                         }
                     }
                     break;
                 case 8:
                     if (~(u32)D_002F6A38.b1 & 1) {
-                        if (B.func_001EF1E7()) {
-                            B.func_001EF9B2(func_001EEE49(8));
-                        } else {
+                        if (!B.func_001EF1E7()) {
                             B.func_001EEF4F(B.func_001EFD3B(' ').func_001EFD7A(func_001EEE49(8)));
+                        } else {
+                            B.func_001EF9B2(func_001EEE49(8));
                         }
                     }
                     break;
@@ -207,8 +208,7 @@ T* func_001F23B8(T* ret, T* superType, char prefix, T* cvType, int thisFlag)
     out:
         D_002F6A28++;
         if ((unsigned)code > 0x1f) {
-            ret->func_001EF170(1);
-            return ret;
+            goto fail;
         }
         {
         T tmp8;
@@ -222,8 +222,7 @@ T* func_001F23B8(T* ret, T* superType, char prefix, T* cvType, int thisFlag)
         }
         if (code & 0x10) {
             if (thisFlag) {
-                ret->func_001EF170(1);
-                return ret;
+                goto fail;
             }
             if (prefix) {
                 tmp8.func_001EEF4F(func_001EFD19(D_00295CE8, tmp8));
@@ -241,16 +240,14 @@ T* func_001F23B8(T* ret, T* superType, char prefix, T* cvType, int thisFlag)
             } else {
                 D_002F6A28++;
                 if (ch != '@') {
-                    ret->func_001EF170(1);
-                    return ret;
+                    goto fail;
                 }
             }
         }
         if (~(u32)D_002F6A38.b1 & 1) {
             if ((code & 0xc) == 0xc) {
                 if (thisFlag) {
-                    ret->func_001EF170(1);
-                    return ret;
+                    goto fail;
                 }
                 tmp8.func_001EEF4F(func_001F11B1().func_001EFAB5(tmp8));
             }
@@ -297,6 +294,9 @@ T* func_001F23B8(T* ret, T* superType, char prefix, T* cvType, int thisFlag)
         }
     }
     ret->func_001EF170(2);
+    return ret;
+fail:
+    ret->func_001EF170(1);
     return ret;
 }
 #pragma optimize("", on)
@@ -426,27 +426,171 @@ T* func_001F2BCC(T* ret, T* superType)
     }
     D_002F6A28++;
     N A;
+    T B;
+    T C;
+    T D;
     int ebx = -1;
-    switch (c) {
-    case 'C': case 'D': case 'E':
-        A.func_001EF9B2(D_00295EF8);
-        break;
-    case 'F': case 'G':
-        A.func_001EF9B2(D_00295EF0);
-        break;
-    case 'H': case 'I':
-        A.func_001EF9B2(D_0027D240);
-        break;
-    case 'J': case 'K':
-        A.func_001EF9B2(D_00295EE8);
-        break;
-    case 'M':
+    char c2;
+
+    if (c > 'M') goto ext;
+    if (c == 'M') {
         A.func_001EF9B2(D_0027D21C);
-        break;
-    default:
-        ebx = c & 3;
-        break;
+        goto dad;
     }
+    switch (c - 'C') {
+    case 0: case 1: case 2:
+        A.func_001EF9B2(D_00295EF8);
+        goto dad;
+    case 3: case 4:
+        A.func_001EF9B2(D_00295EF0);
+        goto dad;
+    case 5: case 6:
+        A.func_001EF9B2(D_0027D240);
+        goto dad;
+    case 7: case 8:
+        A.func_001EF9B2(D_00295EE8);
+        goto dad;
+    }
+    goto dflt;
+
+ext:
+    if (c == 'N') {
+        A.func_001EF9B2(D_00295E9C);
+        goto dad;
+    }
+    if (c == 'O') {
+        A.func_001EF9B2(D_00295EA4);
+        goto dad;
+    }
+    if (c < 'N') goto dflt;
+    if (c <= 'S') {
+        A.func_001EF9B2(D_00295EAC);
+        goto dad;
+    }
+    if (c != '_') goto dflt;
+    c2 = *D_002F6A28++;
+    if (c2 > 'M') goto gt_m;
+    if (c2 >= 'L') {
+        A.func_001EF9B2(D_00295EB4);
+        goto dad;
+    }
+    if (c2 > 'G') goto gt_g;
+    if (c2 >= 'F') {
+        A.func_001EF9B2(D_00295ED0);
+        goto dad;
+    }
+    if (c2 == '$') {
+        T* r = func_001F2BCC(&C, superType);
+        func_001EFD19(ret, D_00295ED8, r);
+        return ret;
+    }
+    if (c2 <= 'C' || c2 > 'E') goto dflt;
+    A.func_001EF9B2(D_00295EE0);
+    goto dad;
+gt_g:
+    if (c2 < 'H') goto dflt;
+    if (c2 <= 'I') {
+        A.func_001EF9B2(D_00295EC0);
+        goto dad;
+    }
+    if (c2 > 'K') goto dflt;
+    A.func_001EF9B2(D_00295EC8);
+    goto dad;
+gt_m:
+    if (c2 == 'N') {
+        A.func_001EF9B2(D_00295E9C);
+        goto dad;
+    }
+    if (c2 == 'O') {
+        A.func_001EF9B2(D_00295EA4);
+        goto dad;
+    }
+    if (c2 == 'W') {
+        A.func_001EF9B2(D_00295EAC);
+        goto dad;
+    }
+    if (c2 <= 'W' || c2 > 'Y') goto dflt;
+    D_002F6A28--;
+    A.func_001EEF4F((T*)func_001F1085(&B));
+    if (A.func_001EF1E7()) goto dad;
+    ret->func_001EEEE6(&A);
+    return ret;
+
+dflt:
+    ebx = c & 3;
+    A.func_001EF9B2(D_00295C38);
+    A.func_001EFB82(D_0028A82C);
+    {
+    T* r;
+    int n;
+    n = c - 'C';
+    if (n == 0) goto e01;
+    n -= 2;
+    if (n == 0) goto df3;
+    n -= 2;
+    if (n == 0) goto df3;
+    n -= 2;
+    if (n == 0) goto df3;
+    n -= 2;
+    if (n == 0) goto df3;
+    n -= 0x14;
+    if (n != 0) goto e1f;
+    n = c2 - 'E';
+    if (n == 0) goto de5;
+    n -= 2;
+    if (n == 0) goto de5;
+    n -= 2;
+    if (n == 0) goto de5;
+    n -= 2;
+    if (n == 0) goto de5;
+    n -= 2;
+    if (n != 0) goto e1f;
+    goto de5;
+e01:
+    r = func_001EFD19(&A, D_00295C2C, &D);
+    goto e0d;
+df3:
+    r = func_001EFD19(&A, D_00295C2C, &C);
+    goto e0d;
+de5:
+    r = func_001EFD19(&A, D_00295E94, &B);
+    goto e0d;
+e0d:
+    A.func_001EEF4F(r);
+    if (superType->func_001EF1E7()) goto e90;
+    A.func_001EF935(func_001EFCD5(&D, ' ', superType));
+    goto e90;
+e1f:
+    r = func_001EFD19(&A, D_00295E94, &B);
+    A.func_001EEF4F(r);
+    }
+e90:
+    if (superType->func_001EF1E7()) goto e90b;
+    if (ebx & 1) {
+        A.func_001EF9B2(D_00295E8C);
+    }
+    if (ebx & 2) {
+        A.func_001EFB82(D_00295E80);
+        goto e90b;
+    }
+    goto e90b;
+e90b:
+    if (ebx & 2) {
+        A.func_001EF9B2(D_00295E74);
+    }
+    func_001F2A1C(ret, &A, &B, 0x2a);
+    return ret;
+
+dad:
+    A.a = 0;
+    A.b &= 0xfffffe00;
+    B.func_001EEEE6(superType);
+    B.b |= 0x80;
+    func_001F2A1C(&C, &A, &B, 0);
+    if (!(C.b & 0x80)) {
+        C.func_001EFB82(D_00295B38);
+    }
+    ret->func_001EEEE6(&C);
     return ret;
 }
 
