@@ -3,18 +3,20 @@
 #include <xmmintrin.h>
 extern float D_002755E8;
 static __forceinline void Xform1800(float *out,const float *in,const float *m){__m128 v = _mm_loadu_ps(in);
-__m128 r0 = _mm_load_ps(m);
 _mm_storeh_pi((__m64 *)(out + 2), v);
-__m128 r1 = _mm_load_ps(m+4);
 out[3]=1.0f;
-__m128 r2 = _mm_load_ps(m+8);
 v=_mm_loadh_pi(v,(__m64 *)(out+2));
-r0=_mm_mul_ps(r0,v);r1=_mm_mul_ps(r1,v);r2=_mm_mul_ps(r2,v);
-__m128 t=r0;r0=_mm_unpacklo_ps(r0,r1);t=_mm_unpackhi_ps(t,r1);
-__m128 h=_mm_movehl_ps(r2,r2);
-r0=_mm_add_ps(r0,t);r2=_mm_add_ps(r2,h);t=_mm_movehl_ps(t,r0);
-r0=_mm_movelh_ps(r0,r2);t=_mm_shuffle_ps(t,r2,0x14);
-_mm_storeu_ps(out,_mm_add_ps(r0,t));out[3]=1.0f;}
+__m128 r0=_mm_mul_ps(_mm_load_ps(m),v);
+__m128 r1=_mm_mul_ps(_mm_load_ps(m+4),v);
+__m128 r2=_mm_mul_ps(_mm_load_ps(m+8),v);
+v=_mm_unpackhi_ps(r0,r1);
+r0=_mm_unpacklo_ps(r0,r1);
+r2=_mm_add_ps(r2,_mm_movehl_ps(r2,r2));
+r0=_mm_add_ps(r0,v);
+v=_mm_movehl_ps(v,r0);
+r0=_mm_movelh_ps(r0,r2);
+v=_mm_shuffle_ps(v,r2,0x14);
+_mm_storeu_ps(out,_mm_add_ps(r0,v));out[3]=1.0f;}
 
 struct V_1800 { float x,y,z,w; __forceinline V_1800(){x=y=z=0;w=1;} V_1800(const float &a,const float &b,const float &c){x=a;y=b;z=c;w=1;} };
 struct RayCollisionObject { char pad[0xB0]; float matrix[16]; char padF0[12]; float *pFC; float *p100; void func_001800A0(float *out,float *extent); };
