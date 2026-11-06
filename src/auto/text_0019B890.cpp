@@ -22,7 +22,7 @@ static __forceinline void Normalize_0019B890(float *out, const float *in)
     __m128 sq = _mm_mul_ps(v, v);
     __m128 d = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
     d = _mm_add_ss(d, _mm_shuffle_ps(sq, sq, 0xE1));
-    sq = _mm_set_ss(D_0028B1B0);
+    sq = _mm_load_ss(&D_0028B1B0);
     d = _mm_add_ss(d, _mm_and_ps(_mm_cmplt_ss(d, sq), sq));
     sq = _mm_rsqrt_ss(d);
     __m128 dr = _mm_mul_ss(_mm_mul_ss(d, sq), sq);
@@ -368,28 +368,36 @@ void C_0019BBD0::func_0019BD20(unsigned short idx, S_0019BBD0_Tree *tree, void *
     }
 }
 
-void SoultreeCollisionObject::func_0019C0E0(S_Matrix16 *m)
+void SoultreeCollisionObject::func_0019C0E0(S_Matrix16 * volatile m)
 {
-    char *p = (char *)this;
+    SoultreeCollisionObject * volatile self = this;
+    SoultreeCollisionObject *s;
+    S_Matrix16 *mm;
     S_0019BBD0_Vec v;
     float *d;
     float x, y, z;
 
-    ((C_000264C0 *)(p + 0x170))->func_000264C0(m);
-    ((C_000264C0 *)(p + 0x130))->func_000264C0(m);
-    func_0011ACC0(p + 0xb0, p + 0xf0, m);
-    v.x = m->m[3];
-    v.y = m->m[7];
-    v.z = m->m[11];
+    ((C_000264C0 *)((char *)this + 0x170))->func_000264C0(m);
+    ((C_000264C0 *)((char *)self + 0x130))->func_000264C0(m);
+    s = self;
+    func_0011ACC0((char *)s + 0xb0, (char *)s + 0xf0, m);
+    mm = m;
+    v.x = mm->m[3];
+    v.y = mm->m[7];
+    v.z = mm->m[11];
     v.w = 1.0f;
-    *(S_0019BBD0_Vec *)(p + 0x28) = v;
-    d = (float *)(*(char **)(p + 0x1c4) + 0x18);
+    s = self;
+    *(S_0019BBD0_Vec *)((char *)s + 0x28) = v;
+    s = self;
+    d = (float *)((char *)s->f1C4 + 0x18);
     x = d[0];
     y = d[1];
     z = d[2];
-    *(float *)(p + 0x48) = sqrtf(z * z + y * y + x * x);
-    func_00030AC0((float *)(p + 0x28), (float *)(p + 0x28), (float *)m);
-    ((C_0019C2F0_VT *)this)->v31(m);
+    s = self;
+    *(float *)((char *)s + 0x48) = sqrtf(z * z + y * y + x * x);
+    s = self;
+    func_00030AC0((float *)((char *)s + 0x28), (float *)((char *)s + 0x28), (float *)m);
+    ((C_0019C2F0_VT *)self)->v31(m);
 }
 
 void SoultreeCollisionObject::func_0019C1E0(void)
@@ -422,8 +430,8 @@ void SoultreeCollisionObject::func_0019C210(S_Matrix16 * volatile m)
     s = self;
     func_0011ACC0((float *)((char *)s + 0xb0), (float *)((char *)s + 0xf0), m);
     s = self;
-    src = (float *)((char *)s->f1C4 + 0xc);
     dst = (float *)((char *)s + 0x28);
+    src = (float *)((char *)s->f1C4 + 0xc);
     dst[0] = src[0];
     dst[1] = src[1];
     dst[2] = src[2];
