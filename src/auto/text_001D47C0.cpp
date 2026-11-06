@@ -398,10 +398,6 @@ C_001D48A0* C_001D48A0::func_001D48A0(u8 param_1)
 
 C_001D48E0::C_001D48E0(void)
 {
-    v74.x = 0;
-    v74.y = 0;
-    v74.z = 0;
-    v74.w = 1.0f;
     f60 = 0x1b02;
     f54 = 0;
     f58 = 0;
@@ -410,6 +406,10 @@ C_001D48E0::C_001D48E0(void)
     f64 = 0;
     f6C = 0;
     f70 = 0;
+    v74.x = 0;
+    v74.y = 0;
+    v74.z = 0;
+    v74.w = 1.0f;
     memset(idx, 0, sizeof(idx));
     for (int i = 0; i < 300; i++) {
         idx[i] = i;
