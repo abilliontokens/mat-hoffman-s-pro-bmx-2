@@ -91,19 +91,6 @@ extern char D_00282AA8[];
 extern char D_00282A9C[];
 extern int D_0028464C;
 
-static __forceinline int collision_float_bits(const float &value)
-{
-    return *(const int *)&value;
-}
-
-static __forceinline void set_collision_vector(float *out, const float &x, const float &y, const float &z, const float &w)
-{
-    ((int *)out)[0] = *(int *)&x;
-    ((int *)out)[1] = *(int *)&y;
-    ((int *)out)[2] = *(int *)&z;
-    ((int *)out)[3] = *(int *)&w;
-}
-
 struct V4_00132EB0 {
     float x, y, z, w;
     V4_00132EB0(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
