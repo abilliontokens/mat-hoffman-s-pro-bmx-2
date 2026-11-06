@@ -14,6 +14,11 @@ struct Vec4_149A0 {
     float x, y, z, w;
 };
 
+struct V4C_149A0 {
+    float x, y, z, w;
+    V4C_149A0(float p, float q, float r, float s) { x = p; y = q; z = r; w = s; }
+};
+
 struct Obj197B40 {
     void func_00197B40(Vec4_149A0 *a, Vec4_149A0 *b);
 };
@@ -158,7 +163,7 @@ int AIPedScaredState_14B40::func_00014B40(float dt)
 
     if (*(int *)(*(char **)((char *)D_002A8490 + 0x2a4) + 0x1c8) == 1)
         return 1;
-    owner->func_00011BE0(&dist, &idx);
+    owner->func_00011BE0((float *)&idx, (int *)&dist);
     if (idx == -1)
         return 1;
     id = *(int *)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x1194);
