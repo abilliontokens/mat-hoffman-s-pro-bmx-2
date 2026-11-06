@@ -10,6 +10,7 @@ extern char D_002769DC[], D_00277A24[], D_00277A30[], D_00277A38[], D_00277A44[]
 extern char D_00277A48[], D_00277A4C[], D_00277A54[], D_00277A5C[];
 extern char D_00275678[], D_002A5870[], D_002A5348[], D_002A5FA8[], D_002A60B0[];
 int func_001ADCC0(char *dst, int size, const char *fmt, ...);
+void func_00012140();
 
 /* config file reader, 0x4CC bytes */
 struct C_00168280 {
@@ -347,9 +348,9 @@ void R_00051CF0::func_00051CF0()
 
 void C_00051CF0::func_00051F10()
 {
-    char secName[0x104];
-    char buf[0x104];
     C_00168280 reader;
+    char buf[0x104];
+    char secName[0x104];
     Img_51F *p;
     int i;
     float a;
@@ -392,38 +393,38 @@ void C_00051CF0::func_00051F10()
     p = (Img_51F *)func_001E8A44(0x64);
     unk2A8 = p ? p->func_001D5760() : 0;
     unk2A8->func_001D5810(D_00277A38, D_00277A00 - D_00277928, D_002779FC - D_0027792C, 0);
-    if (unk2A8->f28 != D_00277928) { unk2A8->f28 = D_00277928; unk2A8->f58_0 = 1; }
-    if (unk2A8->f2C != D_0027792C) { unk2A8->f2C = D_0027792C; unk2A8->f58_0 = 1; }
-    if (unk2A8->f34 != D_00275544) { unk2A8->f34 = 0.0f; unk2A8->f58_0 = 1; }
-    unk2A8->f58_1 = 1;
+    if (unk2A8->f28 != D_00277928) { unk2A8->f28 = D_00277928; unk2A8->flags |= 1; }
+    if (unk2A8->f2C != D_0027792C) { unk2A8->f2C = D_0027792C; unk2A8->flags |= 1; }
+    if (unk2A8->f34 != D_00275544) { unk2A8->f34 = 0.0f; unk2A8->flags |= 1; }
+    unk2A8->flags |= 2;
     unk2A8->cb.hi = 0x20;
     p = (Img_51F *)func_001E8A44(0x64);
     unk2AC = p ? p->func_001D5760() : 0;
     unk2AC->func_001D5810(D_00277A30, 442.0f, 285.0f, 0);
-    if (unk2AC->f28 != 197.0f) { unk2AC->f28 = 197.0f; unk2AC->f58_0 = 1; }
-    if (unk2AC->f2C != 16.0f) { unk2AC->f2C = 16.0f; unk2AC->f58_0 = 1; }
-    if (unk2AC->f34 != D_00275544) { unk2AC->f34 = 0.0f; unk2AC->f58_0 = 1; }
+    if (unk2AC->f28 != 197.0f) { unk2AC->f28 = 197.0f; unk2AC->flags |= 1; }
+    if (unk2AC->f2C != 16.0f) { unk2AC->f2C = 16.0f; unk2AC->flags |= 1; }
+    if (unk2AC->f34 != D_00275544) { unk2AC->f34 = 0.0f; unk2AC->flags |= 1; }
     p = (Img_51F *)func_001E8A44(0x64);
     unk2B0 = p ? p->func_001D5760() : 0;
     unk2B0->func_001D5810(D_00277A30, 427.0f, 448.0f, 0);
-    if (unk2B0->f28 != 147.0f) { unk2B0->f28 = 147.0f; unk2B0->f58_0 = 1; }
-    if (unk2B0->f2C != 16.0f) { unk2B0->f2C = 16.0f; unk2B0->f58_0 = 1; }
+    if (unk2B0->f28 != 147.0f) { unk2B0->f28 = 147.0f; unk2B0->flags |= 1; }
+    if (unk2B0->f2C != 16.0f) { unk2B0->f2C = 16.0f; unk2B0->flags |= 1; }
     if (unk2B0->f14 != 427.0f || unk2B0->f18 != 448.0f) {
         unk2B0->f14 = 427.0f;
         unk2B0->f18 = 448.0f;
-        unk2B0->f58_0 = 1;
+        unk2B0->flags |= 1;
     }
-    if (unk2B0->f30 != -1.5707964f) { unk2B0->f30 = -1.5707964f; unk2B0->f58_0 = 1; }
+    if (unk2B0->f30 != -1.5707964f) { unk2B0->f30 = -1.5707964f; unk2B0->flags |= 1; }
     unk2B0->f3C = 1.0f;
     unk2B0->f48 = 1.0f;
     unk2B0->f40 = 0.0f;
     unk2B0->f44 = 0.0f;
-    unk2B0->f58_2 = 1;
-    if (unk2B0->f34 != D_00275544) { unk2B0->f34 = 0.0f; unk2B0->f58_0 = 1; }
+    unk2B0->flags |= 4;
+    if (unk2B0->f34 != D_00275544) { unk2B0->f34 = 0.0f; unk2B0->flags |= 1; }
     p = (Img_51F *)func_001E8A44(0x64);
     unk2B4 = p ? p->func_001D5760() : 0;
     unk2B4->func_001D5810(D_00277A24, 427.0f, 285.0f, 0);
-    if (unk2B4->f34 != D_00275544) { unk2B4->f34 = 0.0f; unk2B4->f58_0 = 1; }
+    if (unk2B4->f34 != D_00275544) { unk2B4->f34 = 0.0f; unk2B4->flags |= 1; }
     reader.func_001691E0();
 }
 
