@@ -66,6 +66,12 @@ struct C_001067B0 {
 
 struct Vec4_00105B30 {
     float x, y, z, w;
+    void Set(const Vec4_00105B30 &o) {
+        x = o.x;
+        y = o.y;
+        z = o.z;
+        w = o.w;
+    }
 };
 
 extern float D_002A3A3C;
@@ -113,6 +119,50 @@ void C_001067B0::func_00105AA0(void)
         f15AC = 1.0f;
     } else {
         f15AC = 0.0f;
+    }
+}
+
+void C_00105B30::func_00105B30(int unused)
+{
+    Vec4_00105B30 v;
+    Vec4_00105B30 *cur = &f834;
+    Vec4_00105B30 *prev;
+    Vec4_00105B30 *prev2;
+
+    f230->func_00199A70(0, cur);
+    f230->func_001994C0(0, &f854, f874);
+    prev = &f844;
+    if (prev->x == D_002A3A3C && prev->y == D_002A3A40 && prev->z == D_002A3A44) {
+        *prev = *cur;
+    }
+    prev2 = &f864;
+    if (prev2->x == D_002A3A3C && prev2->y == D_002A3A40 && prev2->z == D_002A3A44) {
+        *prev2 = f854;
+    }
+    v = f854;
+    v.y = 0.0f;
+    func_00104A90(&v, &v);
+    f122C = f1E0->f26C;
+    *prev = *cur;
+    *prev2 = v;
+}
+
+void C_001067B0::func_00105CB0(void)
+{
+    if (f15A4 == 0) {
+        return;
+    }
+    {
+        C_Button *b = f15A4->func_001A2EF0(3);
+        if (*(int *)((char *)this + 0x5c8) == 0 &&
+            *(int *)((char *)this + 0x11dc) == 0 &&
+            *(int *)((char *)this + 0x69c) == 0 &&
+            b->v7() != 0) {
+            f15A4->func_001A2DD0(3);
+        }
+    }
+    if (f15A4->func_001A2EF0(2)->v7()) {
+        f15A4->func_001A2DD0(2);
     }
 }
 
