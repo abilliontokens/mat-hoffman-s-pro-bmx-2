@@ -51,6 +51,12 @@ static __forceinline float fabs_0011EE50(volatile float v)
     return *(float *)&tmp;
 }
 
+static __forceinline float fabsT_0011EE50(float v, volatile int *tmp)
+{
+    *tmp = *(volatile int *)&v & 0x7fffffff;
+    return *(volatile float *)tmp;
+}
+
 struct V3_0011EEE0 {
     float x;
     float y;
