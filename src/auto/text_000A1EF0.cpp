@@ -49,6 +49,52 @@ extern C_00161680 *D_002A829C;
 extern C_001B2640 *D_002AA6C0;
 extern "C" int func_001ADCC0(char *buf, int n, char *fmt, int v);
 
+extern "C" char * __cdecl strcpy(char *, const char *);
+struct Reader2 {
+    int func_00169710(const void *name);
+    void func_00168C20(const void *name, int def, void *out);
+    void func_00168C50(const void *name, int def, void *out);
+    void func_00168CB0(const void *name, void *def, void *out);
+    void func_00168BE0(const void *name, const void *def, void *buf, int size);
+};
+struct C_00152E30 { C_00152E30 *func_00152E30(int a); void func_00150F60(int i, int v); };
+struct C_00049BD0 { void func_00049BD0(void); };
+struct C_000185A0 { C_000185A0 *func_000185A0(int a); void func_000198E0(Reader2 *r, void *e); };
+struct C_00155450 { C_00155450 *func_00155450(int a); void func_001561A0(Reader2 *r, void *e); };
+struct Obj6F4 {
+    char pad0[0x5c4];
+    int f5c4;
+    char pad5c8[0x114];
+    char f6dc[0x10];
+    int f6ec, f6f0;
+};
+struct Item90 { char pad0[8]; char name[0x78]; int f80; int pad84; int f88; int f8c; };
+struct SelE { int pad0; int f4; char s18[1]; };
+struct Sel { char pad0[0x24]; int cnt; SelE **arr; };
+extern "C" int func_001EA426(const char *a, const char *b);
+extern char D_0027AFD8[], D_00277C7C[], D_00277C6C[], D_00277C5C[], D_00277C4C[], D_0027AFCC[], D_0027AFB8[];
+extern char D_0027AFA8[], D_0027618C[], D_0027AF9C[], D_0027AF90[], D_0027AF74[], D_0027AF68[], D_0027AF5C[];
+extern char D_0027AF50[], D_0027AF44[], D_0027AF38[], D_0027AF24[], D_00275630[], D_0027AF14[], D_002764F0[];
+extern char D_0027AF08[], D_0027AEF8[], D_00275AC0[], D_0027AEEC[];
+void *func_001E8A44(int size);
+
+struct C_000A1EF0 {
+    char pad0[0x28];
+    Reader2 *f28;
+    char pad2C[0x388];
+    Sel *f3B4;
+    char pad3B8[0x124];
+    char *f4DC;
+    char pad4E0[4];
+    Obj6F4 *f4E4[8];
+    C_00155450 *f504[8];
+    Item90 **f524;
+    C_000185A0 *f528;
+    char pad52C[0x34];
+    int f560;
+    void func_000A1EF0(void);
+};
+
 struct C_000A2440 {
     char pad0[0x484];
     C_0001B3C0 *f484;
