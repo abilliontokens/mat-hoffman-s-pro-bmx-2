@@ -256,6 +256,59 @@ struct C_00165980 {
     void func_00165980(int **out, int value);
 };
 
+void C1653::func_001653E0(Set1653 *a, Set1653 *b, Set1653 *c, Set1653 *d, float s, float blend1, float blend2, int flag, float t2)
+{
+    float t = s * a->f38;
+    int i;
+    int idx;
+    f18 = 0;
+    for (i = 0; i < a->f20; i++) {
+        Vec4_165EF0 v[4];
+        a->f18[i]->get(t, (float *)&v[0]);
+        b->f18[i]->get(t, (float *)&v[1]);
+        func_0015C7D0((float *)&v[1], (float *)&v[0], (float *)&v[1], blend1);
+        c->f18[i]->get(t, (float *)&v[2]);
+        d->f18[i]->get(t, (float *)&v[3]);
+        func_0015C7D0((float *)&v[3], (float *)&v[2], (float *)&v[3], blend2);
+        func_0015C7D0((float *)&v[3], (float *)&v[1], (float *)&v[1], blend1);
+        if (flag) {
+            mirror_165A20(&v[1], fc);
+            idx = f1F0[a->f18[i]->f4];
+        } else {
+            idx = a->f18[i]->f4;
+        }
+        if (t2 > D_00275544 && f200) {
+            v[0] = ((Vec4_165EF0 *)f200)[idx];
+            func_0015C7D0((float *)&v[1], (float *)&v[0], (float *)&v[1], t2);
+        }
+        f1EC[idx].f34->func_00199300((void *)&v[1]);
+    }
+    for (i = 0; i < a->f1c; i++) {
+        Vec4_165EF0 v[3];
+        v[0].x = v[0].y = v[0].z = 0.0f; v[0].w = 1.0f;
+        v[1].x = v[1].y = v[1].z = 0.0f; v[1].w = 1.0f;
+        v[2].x = v[2].y = v[2].z = 0.0f; v[2].w = 1.0f;
+        a->f14[i]->get2(t, (float *)&v[0]);
+        b->f14[i]->get2(t, (float *)&v[1]);
+        v[0] = v[1] - (v[1] - v[0]) * blend1;
+        c->f14[i]->get2(t, (float *)&v[2]);
+        v[0] = v[2] - (v[2] - v[0]) * blend2;
+        d->f14[i]->get2(t, (float *)&v[2]);
+        v[0] = v[2] - (v[2] - v[0]) * blend1;
+        if (flag) {
+            func_001640D0(f4, f1EC[f1F0[a->f14[i]->f4]].f34->f170, (void *)fc, &v[0]);
+            idx = f1F0[a->f14[i]->f4];
+        } else {
+            idx = a->f14[i]->f4;
+        }
+        if (t2 > D_00275544 && f204) {
+            v[1] = ((Vec4_165EF0 *)f204)[idx];
+            v[0] = v[0] + (v[1] - v[0]) * t2;
+        }
+        f1EC[idx].f34->func_00199650((void *)&v[0]);
+    }
+}
+
 void C_00165980::func_00165980(int **out, int value)
 {
     int i;
@@ -292,9 +345,15 @@ void C_00165A20::func_00165A20(C_00165A20_Arg1 *a1, int *unused, f32 a2, int *ma
                 break;
             }
         }
-        a1->f18[i]->v2(a2, &v);
+        a1->f18[i]->v2(*(float *)&unused, &v);
         if (a4 != 0) {
-            mirror_165A20(&v, fC);
+            Vec4_165EF0 temp;
+            temp.x = v.y;
+            double z = v.z, w = v.w;
+            if (fC == 0) temp.x = -temp.x;
+            else if (fC == 1) z = -z;
+            else if (fC == 2) w = -w;
+            v.y = -temp.x; v.z = (float)-z; v.w = (float)-w;
             f1EC[f1F0[a1->f18[i]->f4]].f34->func_00199300(&v);
         } else {
             f1EC[a1->f18[i]->f4].f34->func_00199300(&v);
@@ -305,13 +364,13 @@ void C_00165A20::func_00165A20(C_00165A20_Arg1 *a1, int *unused, f32 a2, int *ma
             continue;
         }
         for (j = 0; j < f218; j++) {
-            if (f21C[j] == a1->f14[i]->f4) {
+            if (f21C[j] == a1->f18[i]->f4) {
                 break;
             }
         }
         v.x = v.y = v.z = 0.0f;
         v.w = 1.0f;
-        a1->f14[i]->v3(a2, &v);
+        a1->f14[i]->v3(*(float *)&unused, &v);
         if (a4 != 0) {
             func_001640D0(f4, f1EC[f1F0[a1->f14[i]->f4]].f34->f170, (void *)fC, &v);
             f1EC[f1F0[a1->f14[i]->f4]].f34->func_00199650(&v);
@@ -320,14 +379,18 @@ void C_00165A20::func_00165A20(C_00165A20_Arg1 *a1, int *unused, f32 a2, int *ma
         }
     }
     for (i = 0; i < f20C; i++) {
+        Vec4_165EF0 d;
         Vec4_165EF0 *p;
         v.x = v.y = v.z = 0.0f;
         v.w = 1.0f;
         f210[i]->f8->func_00199A70(0, &v);
+        d.x = v.x * a2;
+        d.y = v.y * a2;
+        d.z = v.z * a2;
         p = &f214[i];
-        p->x = v.x * a2 + p->x;
-        p->y = v.y * a2 + p->y;
-        p->z = v.z * a2 + p->z;
+        p->x = d.x + p->x;
+        p->y = d.y + p->y;
+        p->z = d.z + p->z;
     }
 }
 
