@@ -238,7 +238,7 @@ struct S_001AFF80_list {
 static __forceinline void FloatToInt(int *out, float f)
 {
     int * volatile p = out;
-    *p = _mm_cvtt_ss2si(*(__m128 *)&f);
+    *p = (int)f;
 }
 
 struct C_001AFF80 {
