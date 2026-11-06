@@ -1,7 +1,29 @@
 /* 42 functions from 0x0005B8D0 to 0x0005C720, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+/* 0x1f98-byte record, ten of them at this+0xd80 */
+struct S_0005C3A0_Rec {
+    int f0, f4, f8;
+    int grid[8][3][15];
+    int g[8];
+    int f5cc, f5d0;
+    int tag;
+    int pad5d8;
+    char name[8];
+    int f5e4;
+    int z0;
+    int z[8];
+    int oh1[8];
+    int oh2[3];
+    int oh3[8];
+    int c[8];
+    int d[8][100];
+    int e[8];
+    int f[8][100];
+};
 struct C_0005C3A0 {
+    char pad0[0xd80];
+    S_0005C3A0_Rec recs[10];
     void func_0005C3A0(int idx);
 };
 extern int D_002782AC;
@@ -362,7 +384,7 @@ int C_0005B960::func_0005BA80(int sel, float val, char *name)
     switch (sel) {
     case 1:
         for (i = 0, p = g1.val; i < 5; i++, p++) {
-            if (f > *p) goto f1;
+            if (val > *p) goto f1;
         }
         return 0;
     f1:
@@ -370,7 +392,7 @@ int C_0005B960::func_0005BA80(int sel, float val, char *name)
             g1.val[j] = g1.val[j - 1];
             CopyName_0005BA80(g1.name[j], g1.name[j - 1]);
         }
-        g1.val[i] = f;
+        g1.val[i] = val;
         CopyName_0005BA80(g1.name[i], name);
         return 1;
     case 3:
@@ -401,7 +423,7 @@ int C_0005B960::func_0005BA80(int sel, float val, char *name)
         return 1;
     case 0:
         for (i = 0; i < 5; i++) {
-            if (f > g0.val[i]) goto f0;
+            if (val > g0.val[i]) goto f0;
         }
         return 0;
     f0:
@@ -414,7 +436,7 @@ int C_0005B960::func_0005BA80(int sel, float val, char *name)
         return 1;
     case 2:
         for (i = 0, p = g2.val; i < 5; i++, p++) {
-            if (f > *p) goto f2;
+            if (val > *p) goto f2;
         }
         return 0;
     f2:
@@ -706,6 +728,7 @@ void C_0005C390::func_0005C390(void) {
     unkCE4 = 1;
 }
 
+extern "C" void * __cdecl memcpy(void *, const void *, unsigned int);
 void C_0005C3A0::func_0005C3A0(int param_1)
 {
   int in_ECX = (int)this;
@@ -750,8 +773,7 @@ void C_0005C3A0::func_0005C3A0(int param_1)
         puVar6[-7] = 0;
         puVar6[-6] = 0;
         puVar6[-5] = 0x74616d;
-        puVar6[-3] = D_002782AC;
-        *(undefined2 *)(puVar6 + -2) = D_002782B0;
+        memcpy(puVar6 - 3, &D_002782AC, 6);
         puVar6[-1] = 0;
         iVar1 = 0;
         do {
@@ -759,7 +781,7 @@ void C_0005C3A0::func_0005C3A0(int param_1)
             *(undefined4 *)(local_a + -0x20 + in_ECX) = 1;
           }
           else {
-            *(undefined4 *)(in_ECX + (local_18 + -8 + iVar1) * 4) = 0;
+            *(undefined4 *)(in_ECX + (iVar1 + local_18 + -8) * 4) = 0;
           }
           iVar1 = iVar1 + 1;
         } while (iVar1 < 8);
@@ -779,7 +801,7 @@ void C_0005C3A0::func_0005C3A0(int param_1)
             *(undefined4 *)(local_a + 0xc + in_ECX) = 1;
           }
           else {
-            *(undefined4 *)(in_ECX + (local_18 + 3 + iVar1) * 4) = 0;
+            *(undefined4 *)(in_ECX + (iVar1 + local_18 + 3) * 4) = 0;
           }
           iVar1 = iVar1 + 1;
         } while (iVar1 < 8);
@@ -823,11 +845,18 @@ void C_0005C3A0::func_0005C3A0(int param_1)
           }
           puVar5 = puVar5 + 100;
         } while (iVar1 != 0);
-        local_a = local_a + 0x1f98;
-        local_10 = local_10 + 0x7e6;
-        puVar6 = puVar6 + 0x7e6;
-        local_18 = local_18 + 0x7e6;
-        local_8 = local_8 + -1;
+        {
+          int c = local_18;
+          undefined4 *b = local_10;
+          int a = local_a;
+          a += 0x1f98;
+          b += 0x7e6;
+          puVar6 += 0x7e6;
+          local_10 = b;
+          local_a = a;
+          local_18 = c + 0x7e6;
+          --local_8;
+        }
       } while (local_8 != 0);
     }
   }
