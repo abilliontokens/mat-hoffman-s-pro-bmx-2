@@ -92,6 +92,9 @@ struct C_001D6410 {
     C_001D6410 *func_001D5E90();
     void func_001D5FA0(int font, char *name, int a, int b);
     void func_0005E840(int a);
+    void func_0005E7C0(float a, float b);
+    void func_001D6600();
+    void func_001D5AD0();
     inline void setPos(unsigned a, unsigned b)
     {
         if (x != a || yi != b) {
@@ -371,17 +374,13 @@ void C_001A6B70::func_001A6B70()
 
 void C_001A6D30::func_001A6BA0()
 {
+    unsigned y = 0x43c48000;
     if (f6C == 9) {
         f48->func_0005E840(D_002A8490->f2e8->f4->f1248);
         f48->func_001D6600();
         if (f60) f40->func_001D5AD0(); else f38->func_001D5AD0();
         f44->func_0005E840(D_002A8490->f2e8->f4->f7a0);
-        int y = 0x43c48000;
-        int x = 0x43fa0000;
-        C_CardText *p = f44;
-        if (p->x != x || p->y != y) {
-            p->y = y; p->x = x; p->flags |= 6;
-        }
+        f44->setPosition(0x43fa0000, y);
         f44->func_001D6600();
         if (f5C) f3C->func_001D5AD0(); else f34->func_001D5AD0();
     } else if (f6C == 3 || f6C == 6) {
@@ -394,14 +393,10 @@ void C_001A6D30::func_001A6BA0()
             else f34->func_0005E7C0(461.0f, 388.0f);
             f34->func_001D5AD0();
         }
-        int x;
+        unsigned x;
         if (f6C == 3) { f44->func_0005E840(D_002A8490->f2e8->f4->f11a0); x = 0x43af0000; }
         else { f44->func_0005E840(D_002A8490->f2e8->f4->f7a0); x = 0x43fa0000; }
-        int y = 0x43c48000;
-        C_CardText *p = f44;
-        if (p->x != x || p->y != y) {
-            p->y = y; p->x = x; p->flags |= 6;
-        }
+        f44->setPosition(x, y);
         f44->func_001D6600();
     }
 }
