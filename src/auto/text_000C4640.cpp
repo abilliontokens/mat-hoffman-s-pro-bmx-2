@@ -154,7 +154,7 @@ struct C_000C4EB0 {
     int f2EC;
     int f2F0;
     int f2F4;
-    char pad2F8[0x320 - 0x2F8];
+    S_000C50E0_Widget *a2F8[10];
     S_000C4EB0_Obj *a320[3];
     S_000C4EB0_Obj *a32C[3];
     S_000C4EB0_Obj *a338[3];
