@@ -150,12 +150,35 @@ struct S_000BDF30_Audio {
 extern S_000BDF30_Game *D_002A8490;
 extern S_000BDF30_Audio *D_002EFDB8;
 
+struct C_000BBE30;
+
 /* BmxVideoPlayer: video setup, this in ecx, three stack args (second is the file name) */
 struct C_000BE640 {
     virtual void v0();
+    virtual void v28(int a);
+    virtual void v32();
+    virtual void v37(int a);
+    char pad0[0x150];
+    C_000BBE30 *f150;
+    char f154[0x104];
+    struct { char pad0[0x204]; int f204; int f208; } *f258;
+    void *f268;
+    void *f26c;
+    void *f270;
+    void *f274;
+    char pad278[0xc];
+    int f284;
+    char pad288[0x24];
+    void *f2ac;
+    int f2B0[8];
+    int f2D0[8];
     void func_000BE640(char *a, char *b, int c);
     void func_001BCC90(void *p);
     void func_000BADB0();
+    void func_000BCBB0();
+    void func_000BABF0();
+    void func_000BACE0();
+    void func_000BB0C0();
 };
 
 struct S_000BDF30_Entry {
