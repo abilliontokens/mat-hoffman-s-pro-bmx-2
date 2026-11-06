@@ -95,6 +95,16 @@ struct V4_000B5260 {
     float x, y, z, w;
 };
 
+struct C_000B59E0_f30 {
+    void func_00199900(void *a);
+    void func_00197B40(void *a, void *b);
+    void *func_00198040(void *a, void *b);
+    void func_00199CF0(V4_000B5260 v, float f);
+};
+float *func_0001C610(float *out, float *a, float *b);
+float func_0014F7E0(float x);
+extern float D_00275544, D_00275F58;
+
 struct Obj_000B58B0 {
     float pad0[8];
     V4_000B5260 pos;
