@@ -33,6 +33,40 @@ extern "C" char* D_002A8490;
 extern "C" char* D_002B91AC;
 extern "C" char D_0027DDEC;
 #define LST ((X_any*)P(P(D_002A8490,0x2e0),0x2c0))
+/* object behind +0x1a4 of the per-slot object: virtual base, slot 5 is called */
+struct VB_000F2CC0 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+};
+struct VD_000F2CC0 : virtual VB_000F2CC0 {
+};
+/* object behind D_002A8490->f4->fB4: slot 6 is called */
+struct V_000F2CC0 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+};
+/* career record returned by X_any::func_0005C020: two 8x100 int tables */
+struct R_000F2CC0 {
+    char pad0[0x678];
+    int tabA[8][100];
+    char pad1[0x20];
+    int tabB[8][100];
+};
+/* D_002A8490->f2E0: two 8-int sums at 0x34C / 0x36C */
+struct G_000F2CC0 {
+    char pad0[0x34c];
+    int sumA[8];
+    int sumB[8];
+};
 extern char* D_002A8490;
 struct C_000F3C50 {
     undefined4 func_000F3C50(byte param_1);
