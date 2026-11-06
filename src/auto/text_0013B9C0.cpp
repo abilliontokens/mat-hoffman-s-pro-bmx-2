@@ -195,31 +195,26 @@ int C_0013B9C0::func_0013C5D0(S_0013B9C0_Ent28 *arg1, int arg2)
 
 int C_0013B9C0::func_0013C660(int arg)
 {
-    S_0013B9C0_Ent28 *e;
-    S_0013B9C0_Ent28 *end;
-    int a = arg;
     int result = 1;
-    int r;
-
-    e = fC;
-    end = e + f10 - 1;
+    S_0013B9C0_Ent28 *e = fC;
+    S_0013B9C0_Ent28 *end = e + f10 - 1;
     if (f10 > 1) {
         do {
-            if (func_0013C5D0(e, a) == 0) {
+            if (!func_0013C5D0(e, arg)) {
                 result = 0;
             }
             e++;
         } while (e != end);
     }
-    r = func_0013C5D0(e, a) != 0 ? result : 0;
-    {
-        int *q = f24;
-        do {
-            *q = -1;
-            q++;
-        } while (q <= f28);
+    if (!func_0013C5D0(e, arg)) {
+        result = 0;
     }
-    return r;
+    int *q = f24;
+    do {
+        *q = -1;
+        q++;
+    } while (q <= f28);
+    return result;
 }
 
 int C_0013B9C0::func_0013C8A0(int idx, int a2, int size, int count)
