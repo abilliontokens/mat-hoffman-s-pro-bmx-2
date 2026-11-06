@@ -158,6 +158,7 @@ struct BmxUIPageRider {
     void func_000FA720(float dt);
     void func_000CFCA0(void);
     void func_000CFDA0(void);
+    void func_000CFB90(void);
     void func_000CE0A0(void);
     void func_000FA620(void);
     void func_001BED00(float dt);
