@@ -108,8 +108,7 @@ struct E33680_List {
     char pad28[0x1a8 - 0x28];
     E33680_Track *arr1a8[1];
 };
-struct E33680_V3;
-struct E33680_Obj388 { char pad0[0x420]; float f420[3]; };
+struct E33680_Obj388 { char pad0[0x420]; union { float f420[3]; E33680_V3 v420; }; };
 
 struct E33680_Ev;
 struct E33680_Level {
