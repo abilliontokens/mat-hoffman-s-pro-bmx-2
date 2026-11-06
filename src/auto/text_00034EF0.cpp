@@ -355,6 +355,7 @@ extern int D_002B911C;
 extern int D_002B9114;
 extern int D_002BA160;
 
+template <class T> inline const T &min_35C10(const T &a, const T &b) { return b < a ? b : a; }
 struct __declspec(align(16)) S_35C10_Mat { float m[16]; };
 void func_000265C0(S_35C10_Mat *out, void *a, void *b, void *c, int d, int e);
 
@@ -607,5 +608,78 @@ void C_00035BE0::func_00035BE0(void)
     if (f1a0 != 0) {
         func_001577A0(f1a0, -1);
     }
+}
+
+int C_00035C10::func_00035C10(void *a1, char a2, char * volatile name, void *a4, void *a5, void *a6, int a7, int volatile a8)
+{
+    char buf[0x34];
+    S_35C10_Mat mat;
+    struct { C_00035C10 * volatile self; volatile int limit; volatile int cnt; volatile int len; } t;
+    char *p;
+    S_35C10_Obj *o;
+    void *mem;
+    int mode;
+
+    t.self = this;
+    t.len = strlen(name);
+    t.limit = 0x31;
+    t.cnt = t.limit > t.len ? t.len : t.limit;
+    func_001E8920(buf, name, t.cnt);
+    buf[t.cnt] = 0;
+    for (p = buf; *p != 0; p++) {
+        *p = (char)func_001E8D25(*p);
+    }
+    mem = func_001E8A44(0x1e0);
+    o = mem ? ((S_35C10_Obj *)mem)->func_0019B700(1) : 0;
+    if (o->func_00129920(5) != 0) {
+        if (func_001E8AF0(buf, D_00276D84) != 0) {
+            o->f68 = D_002B9118;
+        } else if (func_001E8AF0(buf, D_00276D7C) != 0) {
+            o->f68 = D_002B9108;
+        } else if (func_001E8AF0(buf, D_00276D74) != 0) {
+            o->f68 = D_002B910C;
+        } else if (func_001E8AF0(buf, D_00276D6C) != 0) {
+            o->f68 = D_002B911C;
+        } else if (func_001E8AF0(buf, D_00276D64) != 0) {
+            o->f68 = D_002B9114;
+        } else {
+            o->f68 = D_002BA160;
+        }
+        if (a8 == 0) {
+            if (o->func_0019D7B0(a1, name) == 0) {
+                o->v2();
+                return 1;
+            }
+        } else {
+            if (o->func_0019D7B0(0, name) == 0) {
+                o->v2();
+                return 1;
+            }
+        }
+    }
+    if (o != 0) {
+        o->f6d = a2;
+        if (a8 != 0) {
+            mode = 2;
+        } else {
+            mode = 0;
+        }
+        (*t.self->f64->f3a8)->func_001577A0(o, mode);
+        func_000265C0(&mat, a4, a5, a6, 0, 1);
+        o->func_00133EF0(&mat);
+        o->func_00133140(*t.self->f64->f4ac, 2);
+        o->func_00133210();
+        if (a7 == 0) {
+            if (a8 == 0) {
+                t.self->f568 = o;
+                return 1;
+            }
+        } else if (a8 == 0) {
+            t.self->f56c = o;
+            return 1;
+        }
+        t.self->f570 = o;
+    }
+    return 1;
 }
 
