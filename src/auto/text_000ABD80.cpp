@@ -365,10 +365,7 @@ struct C_000AC780_Obj {
     virtual void v4();
     void func_00157600(int v);
     char pad0[0x24 - 4];
-    int field_24;
-    int field_28;
-    int field_2C;
-    int field_30;
+    C_000AC780_Quad field_24;
 };
 
 struct C_000AC780 {
