@@ -216,6 +216,12 @@ struct C_0008B850_Text {
             flags |= 6;
         }
     }
+    void SetF3c(int v) {
+        if (f3c != v) {
+            f3c = v;
+            flags |= 4;
+        }
+    }
     void SetArgb(unsigned int c) {
         if (argb != c) {
             flags |= 8;
