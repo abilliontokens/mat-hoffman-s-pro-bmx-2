@@ -30,7 +30,7 @@ struct FPSSave_Mem {
     void func_00094960(int a0);
     void func_000949B0(float a0, float a1, int a2);
 };
-struct FPSSave_Opt { void func_0005C390(); int func_0005C310(float a0, int a1); };
+struct FPSSave_Opt { void func_0005C390(); int func_0005C310(int a0, int a1); };
 struct S_InGameObj {
     char pad0[0xA40]; int fA40; char padA44[0xA4C - 0xA44]; float fA4C;
     char padA50[0xA54 - 0xA50]; float fA54; int fA58; int fA5C;
@@ -178,7 +178,7 @@ int BmxSinglePlayerInGameMenu::func_00079800(float dt)
                     case 14: v = 9; break;
                     default: v = 0; break;
                     }
-                    D_002A8490->p2E0->p2C0->func_0005C310((int)dt, 8);
+                    D_002A8490->p2E0->p2C0->func_0005C310(dt, 8);
                     unk184 = 0;
                     return 1;
                 }
