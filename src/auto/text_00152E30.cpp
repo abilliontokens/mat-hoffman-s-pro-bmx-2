@@ -11,22 +11,6 @@ static __forceinline void set_id_00152E30(int *d)
 {
     d[0] = D_002A789C.x; d[1] = D_002A789C.y; d[2] = D_002A789C.z; d[3] = D_002A789C.w;
 }
-static __forceinline void copy_id_00152E30(Q4_00152E30 *d)
-{
-    *d = D_002A789C;
-}
-/* one entry of the 11-slot table at this+0x150 (stride 0x60), quaternions as an array */
-struct S_Slot4a_00152E30 {
-    int f0;
-    Q4_00152E30 q[4];
-    int f44, f48, f4c, f50, f54, f58, f5c;
-};
-/* one entry of the 11-slot table at this+0x150 (stride 0x60) */
-struct S_Slot4_00152E30 {
-    int f0;
-    Q4_00152E30 q0, q1, q2, q3;
-    int f44, f48, f4c, f50, f54, f58, f5c;
-};
 struct C_00152E30 {
     int f0;
     C_00152E30 *func_00152E30(int a0);
