@@ -160,13 +160,124 @@ struct C_52F90_T { void func_0006E970(int a); };
 struct C_52F90_U { void func_0009CAD0(int a, int b, int c); };
 struct C_52F90_V { void func_0001D330(); };
 struct C_52F90_X { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27(); };
+struct C_52F90_VT40 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35();
+    virtual void v36(); virtual void v37(); virtual void v38(); virtual void v39();
+};
+struct C_52F90_VT6 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(int a);
+};
+struct C_52F90_Dev {
+    char pad0[0xa40];
+    int fA40;
+    char padA44[8];
+    int fA4C;
+    char padA50[4];
+    int fA54;
+    int fA58;
+    int fA5C;
+    char padA60[0x5f8];
+    int f1058;
+    char pad105C[0x198];
+    int f11F4;
+    char pad11F8[0x18];
+    int f1210;
+    int f1214;
+    char pad1218[0x90];
+    unsigned char f12A8;
+    int func_00108660();
+    void func_001084E0();
+};
+struct C_52F90_List {
+    char pad0[0x1a8];
+    C_52F90_Dev *f1A8;
+};
+struct C_52F90_63C {
+    char pad0[0x63c];
+    int f63C;
+};
+struct C_52F90_Mid {
+    char pad0[0x4e0];
+    C_52F90_List *f4E0;
+};
+struct C_52F90_64 {
+    char pad0[0x3b4];
+    int f3B4;
+    char pad3B8[0x108];
+    C_52F90_VT40 *f4C0;
+    char pad4C4[0x1c];
+    C_52F90_List *f4E0;
+    char pad4E4[0x50];
+    int f534;
+};
+struct C_52F90_2E0 {
+    char pad0[0x10];
+    float f10;
+    char pad14[0xc];
+    int f20;
+};
+struct C_52F90_Net {
+    char pad0[0x11b8];
+    int f11B8;
+    int f11C0;
+};
+struct C_52F90_2E8 {
+    char pad0[4];
+    C_52F90_Net *f4;
+};
+struct C_52F90_Root {
+    char pad0[4];
+    C_52F90_V *f4;
+    char pad8[0x2d8];
+    C_52F90_2E0 *f2E0;
+    char pad2E4[4];
+    C_52F90_2E8 *f2E8;
+};
 struct C_52F90 {
+    void *vtbl;
+    char pad04[0x60];
+    C_52F90_Mid *f64;
+    C_52F90_Q *f68;
+    char pad6C[0xb8];
+    float f124;
+    float f128;
+    char pad12C[0x28];
+    int f154;
+    char pad158[0xc];
+    C_52F90_T *f164;
+    C_52F90_R *f16C;
+    C_52F90_S *f170;
+    char pad174[0x44];
+    void *f1B8;
+    C_52F90_U *f1C0;
+    C_52F90_Inner *f1C4;
+    int f1C8;
+    int f1CC;
+    char pad1D0[0x24];
+    int f1F4;
+    char pad1F8[0x94];
+    int f28C;
+    C_52F90_63C *f290;
+    char pad294[0x3c];
+    int f2D0;
+    char pad2D4[0x84];
+    int f358;
     void func_000529D0();
     void func_00031260(int a);
     void func_00032530();
     void func_000526D0();
     int func_00052F90(int a);
 };
+extern char D_00277A70[];
 extern "C" void func_001041E0();
 struct C_535C0_44 { void func_0002F8A0(); };
 struct C_535C0_1C0 {
