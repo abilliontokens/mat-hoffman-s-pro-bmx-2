@@ -136,7 +136,9 @@ int f8c;
     void func_001390A0(int index);
    void func_00139360(int oldIndex, int index);
    void func_00139180(int index);
-  void func_001394F0(int);
+     void func_001394F0(int);
+   void func_00138950();
+   void func_001577A0(void *o, int a);
 };
 struct CutScene_Item {
     char pad0[0x18];
