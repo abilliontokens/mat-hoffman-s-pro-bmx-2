@@ -23,7 +23,7 @@ int func_0014FE60(void *p, int size, void *file);
 void *func_001E83E8(void *p, int size);
 void *func_0014FDF0(const char *name, char *mode);
 extern short D_00284C50;
-static inline int min_i(int a, int b) { return a < b ? a : b; }
+static inline int min_i(const int &a, const int &b) { return a < b ? a : b; }
 
 struct S_0013B9C0_Ent28 {
     int f0;
@@ -84,6 +84,53 @@ struct C_0013B9C0 {
     void func_0013B480(void *a);
     int func_0013B4C0(void *a, int size, void *file);
 };
+
+void C_0013B9C0::func_0013B9C0(S_0013B9C0_Ent28 * volatile p, int index)
+{
+ C_0013B9C0 * volatile self = this;
+ volatile int size;
+ volatile int limit;
+ volatile int remaining;
+ func_00012140(p->f10);
+ int flags=p->fC;
+ int compressed = flags & 0x40;
+ int extra = 0;
+ if (flags & 0x200) extra = 1;
+ if (self->f74 == -1 && compressed) {
+ if (self->f7C) func_001E8390(self->f7C);
+ self->f7C = (unsigned short *)func_001E8AA5(((int *)p)[8]);
+ func_0014FED0(p->f10, ((int *)p)[7], 0);
+ func_0014FE60(self->f7C, ((int *)p)[8], p->f10);
+ }
+ if (extra) func_0013B480((char *)self+0x2c);
+ int offset = ((int *)p)[6];
+ if (compressed) {
+ for (int i=0; i<index; ++i) offset += self->f7C[i]+extra;
+ } else offset += (extra+0x6000)*index;
+ func_0014FED0(p->f10, offset, 0);
+ limit = self->f70;
+ remaining = (int)p->f14-offset;
+ size = remaining > limit ? limit : remaining;
+ int result;
+ if (extra) {
+ *(int *)((char *)self+0x100)=1;
+ result = func_0013B4C0((char *)self+0x2c, size, p->f10);
+ } else result = func_0013B4C0((char *)self+0x2c, size, p->f10);
+ self->f74=index;
+ if (compressed) {
+ self->f78=self->f74;
+ unsigned short *q=self->f7C+self->f74;
+ do {
+ result -= *q+extra;
+ ++q;
+ if (result > *q) ++self->f78;
+ } while (result>0);
+ } else {
+ int block=extra+0x6000;
+ self->f78=self->f74+result/block;
+ if (result%block) --self->f78;
+ }
+}
 
 int C_0013B9C0::func_0013C110(int idx)
 {
@@ -215,6 +262,55 @@ int C_0013B9C0::func_0013C660(int arg)
         q++;
     } while (q <= f28);
     return result;
+}
+
+char *C_0013B9C0::func_0013C6E0(int idx, char *buf, int size)
+{
+    S_0013B9C0_Ent20 *e = &fE8[idx];
+    int remain = (int)e->f14 - (int)e->f10;
+    S_0013B9C0_Ent28 *t;
+    int n;
+    int lim;
+    int bound;
+    char *p;
+
+    if (remain <= 0) {
+        *buf = 0;
+        return 0;
+    }
+    t = &fC[e->f0];
+    if (!func_0013B760(t, e->fC + (int)e->f10)) {
+        return 0;
+    }
+    bound = ((int)e->f10 / 0x6000 + 1) * 0x6000 - (int)e->f10;
+    lim = min_i(remain, size - 2);
+    n = min_i(bound, lim);
+    if (!func_0013BBA0(t, e->f4, (int)buf, n)) {
+        *buf = 0;
+        return 0;
+    }
+    buf[n] = 0;
+    p = func_001E9260(buf, 10);
+    if (!p && n != remain) {
+        int m = min_i(remain, size - 2) - bound;
+        if (!func_0013BBA0(t, e->f4, (int)(buf + n), m)) {
+            *buf = 0;
+            return 0;
+        }
+        buf[n + m] = 0;
+        p = func_001E9260(buf, 10);
+        n += m;
+    }
+    if (p) {
+        n = (int)(p - buf) + 1;
+        if (p > buf && p[-1] == 13) {
+            p--;
+            *p = 10;
+        }
+        p[1] = 0;
+    }
+    e->f10 = (void *)((int)e->f10 + n);
+    return buf;
 }
 
 int C_0013B9C0::func_0013C8A0(int idx, int a2, int size, int count)
