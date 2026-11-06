@@ -263,7 +263,7 @@ int C_0018D580::func_0018DA00(int index, const char *name)
     return -1;
 }
 
-int __stdcall func_0018DDD0(C_0018DDD0_Owner *owner, C_0018DDD0_List *list, const char *name)
+int C_0018DDD0_Mgr::func_0018DDD0(C_0018DDD0_Owner *owner, C_0018DDD0_List *list, const char *name)
 {
     C_0018DDD0_Node *n;
 
