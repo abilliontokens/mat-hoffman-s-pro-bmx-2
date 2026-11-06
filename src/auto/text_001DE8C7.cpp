@@ -227,35 +227,128 @@ int __stdcall func_001DE942(const char *path, unsigned __int64 *freeToCaller, un
     return 1;
 }
 
+#pragma optimize("y", off)
+long __stdcall func_001DEA36(int a, int *x, int *y)
+{
+    S_CacheSector buf;
+    S_ObjectAttributes oa;
+    S_IoStatusBlock iosb;
+    __int64 off;
+    unsigned int titleId;
+    long status;
+    void *handle;
+    unsigned int last;
+    unsigned int n;
+    unsigned int i;
+    unsigned int j;
+    unsigned int k;
+    unsigned int found;
+    unsigned int start;
+    unsigned int idx;
+    S_CacheSlot *slot;
+    S_CacheSlot *p;
+
+    titleId = *(unsigned int *)((char *)D_00010118 + 8);
+    oa.rootDirectory = 0;
+    oa.attributes = 0x40;
+    oa.objectName = &D_0028FD0C;
+    status = _imp__NtOpenFile(&handle, 0xc0100000, &oa, &iosb, 3, 0x10);
+    if (status >= 0) {
+        off = 0x800;
+        status = _imp__NtReadFile(handle, 0, 0, 0, &iosb, &buf, 0x200, &off);
+        if (status >= 0) {
+            found = *_imp__HalDiskCachePartitionCount - 1;
+            if (buf.magic != 0x97315286 || buf.signature != 0xaa550000 || buf.version != 2) {
+                memset(&buf, 0, sizeof(buf));
+                buf.magic = 0x97315286;
+                buf.version = 2;
+                buf.signature = 0xaa550000;
+            }
+            start = 0;
+            *y = 1;
+            n = *_imp__HalDiskCachePartitionCount;
+            if (n > 41) {
+                n = 41;
+            }
+            last = n - 1;
+            for (i = 0; i < n; i++) {
+                p = &buf.slots[i];
+                if (titleId == p->titleId && p->used != 0) {
+                    start = buf.slots[i].start + 3;
+                    found = i;
+                    *y = 0;
+                    break;
+                }
+            }
+            if (start == 0) {
+                for (j = 0; j < n; j++) {
+                    for (k = 0; k < n; k++) {
+                        if (buf.slots[k].used != 0 && buf.slots[k].start == j) {
+                            break;
+                        }
+                    }
+                    if (k == n) {
+                        start = j + 3;
+                    }
+                }
+                if (start == 0) {
+                    start = buf.slots[last].start + 3;
+                }
+            }
+            if (start >= n + 3) {
+                start = n + 2;
+            }
+            idx = a ? last : 0;
+            *x = start;
+            if (idx < found) {
+                func_001EA6A0(&buf.slots[1], &buf.slots[0], found * sizeof(S_CacheSlot));
+            } else if (idx > found) {
+                slot = &buf.slots[found];
+                func_001EA6A0(slot, slot + 1, (last - found) * sizeof(S_CacheSlot));
+            }
+            slot = &buf.slots[idx];
+            slot->titleId = titleId;
+            slot->start = start - 3;
+            slot->used = (a == 0);
+            _imp__NtWriteFile(handle, 0, 0, 0, &iosb, &buf, 0x200, &off);
+        }
+        _imp__NtClose(handle);
+    }
+    return status;
+}
+#pragma optimize("", on)
+
 int func_001EAC1A(char *buf, int count, const char *fmt, ...);
 extern "C" int func_001EAC1A(char *buf, unsigned int n, const char *fmt, ...);
+#pragma optimize("gsy", on)
+#pragma optimize("t", off)
+#pragma optimize("y", off)
 int __stdcall func_001DEC61(int a)
 {
-    int x;
-    S_AnsiString name2;
     char buf[0x104];
     long status;
+    long first;
     int ok;
     unsigned int size;
     void (__stdcall *init)(S_AnsiString *, const char *);
 
     {
-        int y;
-        status = func_001DEA36(a, &x, &y);
-        if (status < 0) {
-            ok = 0;
-            goto fail;
-        }
-        if (a == 0) {
-            a = 0;
-            if (y != 0)
+        int x, y;
+        first = func_001DEA36(a, &x, &y);
+        if (first >= 0) {
+            if (a == 0) {
+                a = 0;
+                if (y != 0)
+                    a = 1;
+            } else {
                 a = 1;
+            }
+            size = 0x4000 << (D_00010124 >> 0x1e);
+            func_001EAC1A(buf, 0x104, D_0028FCEC, x);
         }
     }
-    {
-        S_AnsiString name1;
-        size = 0x4000 << (D_00010124 >> 0x1e);
-        func_001EAC1A(buf, 0x104, D_0028FCEC, x);
+    if (first >= 0) {
+        S_AnsiString name2, name1;
         init = _imp__RtlInitAnsiString;
         init(&name1, buf);
         init(&name2, buf);
@@ -270,21 +363,19 @@ int __stdcall func_001DEC61(int a)
             if (a == 0 && func_001E233F(&name2, size))
                 status = func_001E1BD7(&name1, size);
         }
-    }
-    if (status >= 0) {
-        status = _imp__IoCreateSymbolicLink(&D_0028FCE4, &name2);
+        if (status >= 0)
+            status = _imp__IoCreateSymbolicLink(&D_0028FCE4, &name2);
         ok = status >= 0;
-        if (ok)
-            goto done;
+        if (!ok)
+            func_001DD659(status);
     } else {
         ok = 0;
+        func_001DD659(first);
     }
-fail:
-    func_001DD659(status);
 done:
     return ok;
 }
-
+#pragma optimize("", on)
 static __forceinline void ClearBits_1DED66(u8 *p, unsigned m) { *p &= ~m; }
 void __stdcall func_001DED66(char c)
 {
@@ -830,7 +921,7 @@ void __stdcall func_001DF767(S_Heap *heap, unsigned int addr, unsigned int size)
             }
             break;
         }
-        if (addr == n->addr + n->size) {
+        if (n->addr + n->size == addr) {
             size += n->size;
             addr = n->addr;
             *link = n->next;
