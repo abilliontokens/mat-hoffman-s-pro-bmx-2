@@ -16,6 +16,8 @@ struct Node_0011D2F0 {
     void func_00199A70(int a, V4_0011D2F0 *v);
     void func_001994C0(int a, V4_0011D2F0 *b, V4_0011D2F0 *c);
     void func_00199110(int a, V4_0011D2F0 *b, V4_0011D2F0 *c, int d, int e, int f);
+    void func_00197E70(V4_0011D2F0 *v);
+    void func_00197B90(V4_0011D2F0 *v);
 };
 
 struct Body_0011D2F0 {
