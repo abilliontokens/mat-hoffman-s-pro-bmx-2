@@ -97,7 +97,10 @@ static __forceinline __m128 cross_ps_179950(__m128 va, __m128 vb)
 
 static __forceinline void cross_179950(float *out, float *a, float *b)
 {
-    _mm_storeu_ps(out, cross_ps_179950(_mm_loadu_ps(a), _mm_loadu_ps(b)));
+    float * volatile dst = out;
+    float * volatile pa = a;
+    float * volatile pb = b;
+    _mm_storeu_ps(dst, cross_ps_179950(_mm_loadu_ps(pa), _mm_loadu_ps(pb)));
 }
 
 static __forceinline int edge_1793E0(Vec4 *p, Vec4 *q, Vec4 *r, Vec4 *n)
@@ -124,6 +127,93 @@ static __forceinline int edge_1793E0(Vec4 *p, Vec4 *q, Vec4 *r, Vec4 *n)
         0xc9));
     float d = c.y * n->y + c.x * n->x + c.z * n->z;
     return *(int *)&d >= 0;
+}
+
+int func_00178C60(void *a, void *b, int c, int d, int e, int f, int g, int h, int i, int j, int k, int l, int m)
+{
+    int es;
+    void *dst;
+    int height;
+    int pitch;
+    int flag = 0;
+
+    height = d;
+    dst = a;
+    pitch = e;
+    if (m != 0) {
+        es = func_001B2CB0(g);
+        dst = func_001E8A44(es * height * pitch);
+        if (dst == 0)
+            return 0;
+    }
+
+    switch (h) {
+    case 0x235:
+        switch (g) {
+        case 0x235: func_00177370(dst, b, c, height, pitch, f, 0, 2); break;
+        case 0x22b: func_00178180(dst, b, c, height, pitch, f); break;
+        case 0x8: func_00177CA0(dst, b, c, height, pitch, f, i, j); break;
+        case 0x378: func_00176CD0(dst, b, c, height, pitch, f); break;
+        case 0x613: func_00178AE0(dst, b, c, height, pitch, f, l); break;
+        case 0x22b8: func_00177780(dst, b, c, height, pitch, f, l); break;
+        default: break;
+        }
+        break;
+    case 0x22b:
+        switch (g) {
+        case 0x235: func_001780F0(dst, b, c, height, pitch, f); break;
+        case 0x22b: func_001774E0(dst, b, c, height, pitch, f, 0, 2); break;
+        case 0x8: func_00177E50(dst, b, c, height, pitch, f, i, j); break;
+        case 0x378: func_00178040(dst, b, c, height, pitch, f); break;
+        case 0x613: func_00177F50(dst, b, c, height, pitch, f, l); break;
+        case 0x22b8: func_00178990(dst, b, c, height, pitch, f, l); break;
+        default: break;
+        }
+        break;
+    case 0x8:
+        switch (g) {
+        case 0x22b: func_00178330(dst, b, c, height, pitch, f, j); break;
+        case 0x235: func_00177650(dst, b, c, height, pitch, 0, f, j); break;
+        case 0x8: func_001782B0(dst, b, c, height, pitch, f, j); break;
+        case 0x378: func_00178210(dst, b, c, height, pitch, f, j); break;
+        default: break;
+        }
+        break;
+    case 0x378:
+        switch (g) {
+        case 0x235: func_001779C0(dst, b, c, height, pitch, f, i); break;
+        case 0x22b: func_00177AB0(dst, b, c, height, pitch, f, i); break;
+        case 0x8: func_00177BA0(dst, b, c, height, pitch, f, i, j); break;
+        case 0x378:
+            if (i == 0)
+                func_00176D60(dst, b, c, height, pitch, f);
+            else
+                func_00176630(b, 0x378, c, height, f, pitch, dst, 0, 0, 0, 0);
+            break;
+        case 0x613: func_00177000(dst, b, c, height, pitch, f, l); flag = 1; break;
+        case 0x22b8: func_001785C0(dst, b, c, height, pitch, f, l); break;
+        default: break;
+        }
+        break;
+    case 0x22b8:
+        switch (g) {
+        case 0x613: func_00178470(dst, b, c, height, pitch, f, k); break;
+        case 0x378: func_00178540(dst, b, c, height, pitch, f); break;
+        case 0x115c: func_001783B0(dst, b, c, height, pitch, f); break;
+        case 0x22b8: func_00176EA0(dst, b, c, height, pitch, f, 0); break;
+        default: break;
+        }
+        break;
+    case 0x115c:
+        switch (g) {
+        case 0x235: func_00178890(dst, b, c, height, pitch, f, i, j); break;
+        default: break;
+        }
+        break;
+    default:
+        break;
+    }
+    return flag;
 }
 
 int func_001793E0(Vec4 *a0, Vec4 *a1, Vec4 *a2, Vec4 *a3, Vec4 *a4, Vec4 *a5)
@@ -167,19 +257,11 @@ C_00179820 *C_00179820::func_00179820(int a0) {
 }
 
 void C_00179820::func_00179880(void) {
-    float dx1 = v24[2].x - v24[0].x;
-    float dy1 = v24[2].y - v24[0].y;
-    float dz1 = v24[2].z - v24[0].z;
-    float dx2 = v24[3].x - v24[1].x;
-    float dy2 = v24[3].y - v24[1].y;
-    float dz2 = v24[3].z - v24[1].z;
-    float a;
-    float b;
-    float m;
-    _mm_store_ss(&a, _mm_sqrt_ss(_mm_set_ss(dy1 * dy1 + dx1 * dx1 + dz1 * dz1)));
-    _mm_store_ss(&b, _mm_sqrt_ss(_mm_set_ss(dy2 * dy2 + dx2 * dx2 + dz2 * dz2)));
-    _mm_store_ss(&m, _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b)));
-    fB4 = m;
+ float d1[3]={v24[2].x-v24[0].x,v24[2].y-v24[0].y,v24[2].z-v24[0].z};
+ float d2[3]={v24[3].x-v24[1].x,v24[3].y-v24[1].y,v24[3].z-v24[1].z};
+ float a=sqrtf(d1[1]*d1[1]+d1[0]*d1[0]+d1[2]*d1[2]);
+ float b=sqrtf(d2[1]*d2[1]+d2[0]*d2[0]+d2[2]*d2[2]);
+ fB4=a>b?a:b;
 }
 
 void C_00179820::func_00179950(void) {
