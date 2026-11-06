@@ -182,7 +182,7 @@ void func_001E891B(void *p);
 
 struct C_0009A290 {
     char pad0[0x194];
-    int f194;
+    union { int f194; void *p194; };
     C_0009A290 *func_0009A290(void *a0, char *a1, int a2);
     void func_0009C770(void);
 };
