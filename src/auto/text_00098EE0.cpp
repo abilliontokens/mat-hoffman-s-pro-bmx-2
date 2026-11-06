@@ -2,6 +2,10 @@
 #include "common.h"
 
 struct S_00097FD0_owner;
+struct S_00098EE0_release { void func_0001B8A0(void *); };
+extern int func_001EA426(const char *, const char *);
+extern char D_0027A30C[];
+extern "C" int memcmp(const void *, const void *, unsigned int);
 
 #define FLD(T, p, off) (*(T *)((char *)(p) + (off)))
 extern "C" char *strcpy(char *, const char *);
