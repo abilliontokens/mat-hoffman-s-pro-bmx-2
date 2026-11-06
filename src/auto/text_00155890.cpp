@@ -187,7 +187,7 @@ struct C_1561 {
     volatile int unk3BC[9];
     void func_001C76B0(char *buf, int a, S_1561_V4 *pos, int b, int c, S_1561_V4 v1, S_1561_V4 v2);
     int func_001C6E30(const char *name);
-    void func_001561A0(S_1561_Stream *stream, S_1561_Arg1 *arg1);
+    void func_001561A0(S_1561_Stream * volatile stream, S_1561_Arg1 * volatile arg1);
 };
 
 struct C_00156820 {
@@ -215,6 +215,69 @@ int TikiPlayerAirborneState::func_00156030(int param_1)
 void TikiPlayerFlinchState::func_001560A0(void)
 {
     unk8->Flinch();
+}
+
+void C_1561::func_001561A0(S_1561_Stream *stream, S_1561_Arg1 *arg1)
+{
+    struct { char save1[0x104]; char save2[0x104]; char buf[0x104]; } L;
+    S_1561_Vec4 vA;
+    S_1561_V4 vC;
+    S_1561_Vec4 vB;
+    struct { C_1561 * volatile self; volatile int s0; volatile int s1; volatile int s2; } t;
+    void *mem;
+    t.self = this;
+    arg1->func_00150900(&vA, &vB);
+    if (arg1->unk2C == 0) {
+        vC = D_002A79B8;
+    } else {
+        vC = arg1->unk2C->unk1A4->unk4->func_00199B00(0);
+    }
+    stream->func_00168BE0(D_00275AE4, D_00275630, L.buf, 0x104);
+    t.self->unk39C = arg1;
+    CopyPath1561(L.save1, D_002A5EA0, t.s0, t.s1, t.s2);
+    CopyPath1561(L.save2, D_002A60B0, t.s2, t.s1, t.s0);
+    func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5870, D_002A45E0);
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+    t.self->func_001C76B0(L.buf, 0, &vB, 0, 0, D_002A79C8, D_002A79C8);
+    t.self->unk3C->unk4->func_00199110(0, &vA, &D_002A79D8, 0, 1, 0);
+    mem = func_001E8A44(0x6c);
+    t.self->unk384 = mem ? ((S_1561_Machine *)mem)->func_001AC080() : 0;
+    mem = func_001E8A44(0x10);
+    t.self->unk388 = mem ? Init1561A(mem) : 0;
+    t.self->unk388->owner = t.self;
+    mem = func_001E8A44(0xc);
+    t.self->unk38C = mem ? Init1561B(mem) : 0;
+    t.self->unk38C->owner = t.self;
+    mem = func_001E8A44(0xc);
+    t.self->unk390 = mem ? Init1561C(mem) : 0;
+    t.self->unk390->owner = t.self;
+    mem = func_001E8A44(0xc);
+    t.self->unk394 = mem ? Init1561D(mem) : 0;
+    t.self->unk394->owner = t.self;
+    mem = func_001E8A44(0xc);
+    t.self->unk398 = mem ? Init1561E(mem) : 0;
+    t.self->unk398->owner = t.self;
+    t.self->unk384->func_001AC0A0(t.self->unk388, D_0027AEEC);
+    t.self->unk3BC[0] = t.self->func_001C6E30(D_00286F50);
+    t.self->unkC0[0].unk54 = 1;
+    t.self->unk3BC[1] = t.self->func_001C6E30(D_00286F40);
+    t.self->unkC0[1].unk54 = 1;
+    t.self->unk3BC[2] = t.self->func_001C6E30(D_00286F30);
+    t.self->unkC0[2].unk54 = 0;
+    t.self->unk3BC[3] = t.self->func_001C6E30(D_00286F18);
+    t.self->unkC0[3].unk54 = 0;
+    t.self->unk3BC[4] = t.self->func_001C6E30(D_00286F00);
+    t.self->unkC0[4].unk54 = 0;
+    t.self->unk3BC[5] = t.self->func_001C6E30(D_00286EEC);
+    t.self->unkC0[5].unk54 = 1;
+    t.self->unk3BC[6] = t.self->func_001C6E30(D_00286ED0);
+    t.self->unkC0[6].unk54 = 0;
+    t.self->unk3BC[7] = t.self->func_001C6E30(D_00286EB0);
+    t.self->unkC0[7].unk54 = 1;
+    t.self->unk3BC[8] = t.self->func_001C6E30(D_00286EA0);
+    t.self->unkC0[8].unk54 = 0;
+    CopyPath1561(D_002A5EA0, L.save1, t.s2, t.s1, t.s0);
+    CopyPath1561(D_002A60B0, L.save2, t.s2, t.s1, t.s0);
 }
 
 void C_00156740::func_00156740(void)
