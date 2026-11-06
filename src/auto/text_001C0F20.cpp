@@ -232,6 +232,7 @@ struct S_001C1490_Obj {
     virtual void v1();
     virtual void v2();
     void func_00157810(void);
+    void func_00197EA0(void *p);
 };
 
 struct C_001C1490 {
@@ -451,18 +452,19 @@ void C_001C1030::func_001C1030(int slot, int value, int key)
 
 void C_001C10D0::func_001C10D0(void)
 {
-    f2c = 1;
-    if (f30 == 0 || f34 == 0) {
-        if (f30 != 0) {
-            v7();
-        }
-        if (f34 != 0) {
-            v5();
-        }
+  f2c = 1;
+  if (f30 == 0 || f34 == 0) {
+    if (f30 != 0) {
+      v7();
     }
-    v7();
+    if (f34 != 0) {
+      v5();
+    }
+  }
+  v7();
 }
 
+#pragma optimize("g", on)
 void C_001C1110::func_001C1110(void)
 {
   f2c = 0;
@@ -476,7 +478,7 @@ void C_001C1110::func_001C1110(void)
   }
   v5();
 }
-
+#pragma optimize("", on)
 C_001C1150 *C_001C1150::func_001C1150(int a, int b)
 {
     u32 *p;
