@@ -53,6 +53,14 @@ extern float D_00275544;
 
 void func_000111B0(Vec4_15980 *dst, Vec4_15980 *src);
 
+struct S_15980_Obj {
+    void func_00011BE0(int *i, float *f);
+    void *func_00199B00(int a, Vec4_15980 *out);
+    void func_00197B40(void *a, void *b);
+    void func_0008AB90(void *a);
+    void func_000149A0(int a, float b);
+};
+
 struct C_00015980 {
     char pad0[0x384];
     void *f384;
