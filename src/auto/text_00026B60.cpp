@@ -171,7 +171,8 @@ struct ObjE8_26 {
     char pad0[0x94]; void *f94; void *f98;
     ObjE8_26 *func_000B6180(int); void func_000B6640(int, void *);
 };
-struct Axis14_26 { float f0, f4, f8, fC, f10; };
+struct Axis14_26 { float f0, f4, f8, fC, f10;
+    Axis14_26 *Init(float x) { f0 = x; f4 = 0.0f; fC = 3.402823466e+38f; f10 = -3.402823466e+38f; f8 = 1.0f; return this; } };
 struct Obj20C_26 {
     char pad0[0x24]; int f24;
     char pad28[0x94 - 0x28]; void *f94; void *f98;
