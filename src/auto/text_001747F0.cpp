@@ -42,7 +42,10 @@ struct R_001747F0 {
     char pad230[0x234 - 0x230];
     void (*fn234)(int, Vec4_001747F0 *, Vec4_001747F0 *);
     Vec4_001747F0 v238;
-    char pad248[0x280 - 0x248];
+    Vec4_001747F0 v248;
+    Vec4_001747F0 v258;
+    Vec4_001747F0 v268;
+    char pad278[0x280 - 0x278];
     int i280, i284, i288;
     char pad28C[0x2b0 - 0x28c];
     Vec4_001747F0 v2B0;
