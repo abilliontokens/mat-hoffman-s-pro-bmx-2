@@ -14,8 +14,19 @@ void func_0011F540(S_0011F4B0_V4 *out, S_0011F4B0_V4 pos, float *m);
 void func_0011F0E0(void *a, void *b, void *c, void *indices, void **data);
 int func_0011FF30(S_0011F4B0_V4 *p, void *tri);
 float func_0011FDF0(void *p, void *a, void *b);
+void func_0011EFA0(S_0011F4B0_V4 *out, S_0011F4B0_V4 *in);
 struct S_001206E0_Tri { int pad0[2]; float t; short x, y, z; };
-struct S_001206E0_Hit { int max; int count; float t; };
+struct S_001206E0_Hit {
+    int max;
+    int count;
+    float t;
+    int pad0[6];
+    S_0011F4B0_V4 v24;
+    int pad1[8];
+    S_0011F4B0_V4 v54;
+    int pad2[8];
+    int f84;
+};
 extern S_001206E0_Hit *D_002B92EC;
 
 
@@ -36,6 +47,47 @@ float func_0011FDF0(float *p, float *a, float *b)
     ez = p[2] - (dz * t + a[2]);
     _mm_store_ss(&r, _mm_sqrt_ss(_mm_set_ss(ez * ez + ey * ey + ex * ex)));
     return r;
+}
+
+int func_00120470(short *tri, S_0011F4B0_V4 pos, float radius, int unused, float *m)
+{
+    S_00120470_Triangle triangle;
+    float delta[4], scaled[4];
+    volatile float absoluteInput;
+    volatile int absoluteBits;
+    float d;
+    func_0011F540(&pos, pos, m);
+    triangle.n.x = (float)tri[6] * D_002B9348;
+    triangle.n.y = (float)tri[7] * D_002B9348;
+    triangle.n.z = (float)tri[8] * D_002B9348;
+    triangle.a.z = 0.0f; triangle.a.y = 0.0f; triangle.a.x = 0.0f; triangle.a.w = 1.0f;
+    triangle.b.z = 0.0f; triangle.b.y = 0.0f; triangle.b.x = 0.0f; triangle.b.w = 1.0f;
+    triangle.c.z = 0.0f; triangle.c.y = 0.0f; triangle.c.x = 0.0f; triangle.c.w = 1.0f;
+    func_0011F0E0(&triangle.a, &triangle.b, &triangle.c, tri, D_002B92F4);
+    delta[0] = pos.x - triangle.a.x; delta[1] = pos.y - triangle.a.y; delta[2] = pos.z - triangle.a.z;
+    d = delta[2] * triangle.n.z + (delta[0] * triangle.n.x + delta[1] * triangle.n.y);
+    absoluteInput = *(volatile float *)&d;
+    absoluteBits = *(volatile int *)&absoluteInput & 0x7fffffff;
+    if (*(volatile float *)&absoluteBits > radius) return 0;
+    scaled[0] = triangle.n.x * d; scaled[1] = triangle.n.y * d; scaled[2] = triangle.n.z * d;
+    triangle.n.x = pos.x - scaled[0];
+    triangle.n.y = pos.y - scaled[1];
+    triangle.n.z = pos.z - scaled[2];
+    triangle.n.w = 1.0f;
+    if (func_0011FF30(&triangle.n, tri)) return 1;
+    d = func_0011FDF0(&pos, &triangle.a, &triangle.b);
+    absoluteInput = d;
+    absoluteBits = *(volatile int *)&absoluteInput & 0x7fffffff;
+    if (*(volatile float *)&absoluteBits < radius) return 1;
+    d = func_0011FDF0(&pos, &triangle.b, &triangle.c);
+    absoluteInput = d;
+    absoluteBits = *(volatile int *)&absoluteInput & 0x7fffffff;
+    if (*(volatile float *)&absoluteBits < radius) return 1;
+    d = func_0011FDF0(&pos, &triangle.c, &triangle.a);
+    absoluteInput = d;
+    absoluteBits = *(volatile int *)&absoluteInput & 0x7fffffff;
+    if (*(volatile float *)&absoluteBits < radius) return 1;
+    return 0;
 }
 
 int func_001209F0(float *a, float *b, float *p, float r2)
