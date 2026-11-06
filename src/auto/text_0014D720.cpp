@@ -96,6 +96,44 @@ struct EcoSystem {
     EcoSystem *func_0014E3E0(int param_1);
     void func_0014E4E0(void);
     void func_00157660(void);
+    void func_0014D720(void);
+};
+struct EcoSub4 {
+    char pad0[0xF0]; float fF0;
+    char padF4[0x170 - 0xF4]; float f170; char pad174[4]; float f178;
+    char pad17C[4]; float f180; char pad184[4]; float f188;
+    char pad18C[0x200 - 0x18C]; float f200;
+};
+struct EcoSubB0 { char pad0[0x20]; float f20; char pad24[4]; float f28; float f2C; };
+struct F07Obj {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13();
+    char pad4[0x890 - 4]; int *f890; char pad894[4]; int f898;
+};
+extern F07Obj *D_002F07E8;
+extern EcoSubB0 *D_002BF274;
+extern int D_002BF258;
+extern int D_002BF25C;
+extern int D_002BF260;
+extern int D_002BF264;
+extern int D_002BF268;
+extern int D_002BF26C;
+extern float D_002BF270;
+extern float D_002BF280;
+extern float D_00275460;
+extern float D_002869C0;
+extern float D_002869BC;
+extern float D_0027D264;
+extern float D_0027988C;
+extern float D_002869B0;
+float func_0001E960(float);
+struct Ent14 {
+    char pad0[2]; unsigned char f2; char pad3; short f4; short f6;
+    short f8; short fA; short fC; unsigned char fE; unsigned char fF;
+    signed char f10; signed char f11; unsigned char f12; char pad13;
+    short f14; short f16; int f18;
 };
 
 extern EcoSystem *D_002BF250;
