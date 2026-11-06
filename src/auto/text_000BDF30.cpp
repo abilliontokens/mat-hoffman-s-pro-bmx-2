@@ -52,6 +52,13 @@ struct S_000BDF30_Audio {
 extern S_000BDF30_Game *D_002A8490;
 extern S_000BDF30_Audio *D_002EFDB8;
 
+/* BmxVideoPlayer: video setup, this in ecx, three stack args (second is the file name) */
+struct C_000BE640 {
+    void func_000BE640(char *a, char *b, int c);
+    void func_001BCC90(void *p);
+    void func_000BADB0();
+};
+
 struct S_000BDF30_Entry {
     char name[0x104];
     char f104[0x1c];
@@ -215,6 +222,26 @@ int C_000BBE30::func_000BE020(int show)
         t.self->func_000BBA80(idx, buf1);
     }
     return idx;
+}
+
+void C_000BBE30::func_000BE1D0(int slot)
+{
+    S_000BE1D0_Slot *s = (*(S_000BE1D0_Slots **)((char *)D_002A8490->f2E0 + 0x2c0))->func_0005C020(*(int *)((char *)D_002A8490->f2E0 + 0x2d8));
+    volatile int len;
+    volatile int max;
+    volatile int m;
+    int n;
+#define COPYNAME(dst, src) len = strlen(src); max = 7; m = max > len ? len : max; n = m; func_001E8920(dst, src, n); (dst)[n] = 0;
+    COPYNAME((char *)D_002A8490->f2E0 + 0x150 + slot * 8, f27C[f284].f104)
+    ((int *)((char *)D_002A8490->f2E0 + 0x1b0))[slot] = f28C;
+    COPYNAME((char *)D_002A8490->f2E0 + slot * 8 + 0x1f4, f280[f27C[f284].f120[f288]].name)
+    if (*(int *)((char *)D_002A8490->f2E0 + 4) == 0) {
+        COPYNAME(s->f5D4, f27C[f284].f104)
+        s->f5E4 = f28C;
+        COPYNAME(s->f5DC, f280[f27C[f284].f120[f288]].name)
+    }
+#undef COPYNAME
+    func_000BC3E0(slot);
 }
 
 void *C_000BE510::func_000BE510(int flags) {
