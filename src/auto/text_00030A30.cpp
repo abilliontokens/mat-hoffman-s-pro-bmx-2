@@ -170,6 +170,7 @@ struct C_00030E70 {
     float f70;
     char pad74[4];
     S_00030E70_Target *f78;
+    S_00030E70_Target *GetTarget() { return f78; }
     int func_00030E70(int a0);
 };
 
@@ -429,18 +430,36 @@ struct BmxEvent_00030A30 : VT_00031260 {
 void func_00030A30(Vec4_00030A30 *out, float x, float y, float z, float w, float *m)
 {
     Vec4_00030A30 r;
-    r.x = x * m[0] + (y * m[4] + z * m[8]);
+    float *p = m + 2;
+    r.x = y * m[4] + z * m[8] + x * m[0];
     r.y = x * m[1] + (y * m[5] + z * m[9]);
-    r.z = x * m[2] + (y * m[6] + z * m[10]);
+    r.z = y * m[6] + z * m[10] + x * *p;
     r.w = 1.0f;
     *out = r;
 }
 
 void func_00030AC0(float *out, float *v, float *m)
 {
-    out[0] = v[0] * m[0] + v[1] * m[1] + v[2] * m[2] + v[3] * m[3];
-    out[1] = v[0] * m[4] + v[1] * m[5] + v[2] * m[6] + v[3] * m[7];
-    out[2] = v[0] * m[8] + v[1] * m[9] + v[2] * m[10] + v[3] * m[11];
+    __m128 r0 = _mm_load_ps(m);
+    __m128 r1 = _mm_load_ps(m + 4);
+    __m128 r2 = _mm_load_ps(m + 8);
+    __m128 vec = _mm_loadu_ps(v);
+    __m128 lo, hi;
+    _mm_storeh_pi((__m64 *)(out + 2), vec);
+    out[3] = 1.0f;
+    vec = _mm_loadh_pi(vec, (__m64 *)(out + 2));
+    r0 = _mm_mul_ps(r0, vec);
+    r1 = _mm_mul_ps(r1, vec);
+    r2 = _mm_mul_ps(r2, vec);
+    lo = _mm_unpacklo_ps(r0, r1);
+    hi = _mm_unpackhi_ps(r0, r1);
+    lo = _mm_add_ps(lo, hi);
+    r2 = _mm_add_ps(r2, _mm_movehl_ps(r2, r2));
+    hi = _mm_movehl_ps(hi, lo);
+    lo = _mm_movelh_ps(lo, r2);
+    hi = _mm_shuffle_ps(hi, r2, 0x14);
+    lo = _mm_add_ps(lo, hi);
+    _mm_storeu_ps(out, lo);
     out[3] = 1.0f;
 }
 
