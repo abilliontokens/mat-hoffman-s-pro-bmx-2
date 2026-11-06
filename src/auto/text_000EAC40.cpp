@@ -144,6 +144,50 @@ struct BmxUIPageMedia {
     BmxUIPageMedia *func_000EB570(int a, int b, int c);
 };
 
+int BmxUIPageHOFTitle::func_000EAC40(int a, int b)
+{
+ S_000EB1F0_Mgr *mgr = f124;
+ S_EAC_Action *action = mgr->f24;
+ if (mgr->f25C->f74->func_000301D0() || f124->f138 == 4 || f124->f138 == 3 || !f2B0) return 0;
+ if ((f290 || f29C || f2A0) && !f298) return 0;
+ if (b == (*(S_EAC_Input **)((char *)D_002A8490+8))->func_00136170(4,2,0) ||
+     b == (*(S_EAC_Input **)((char *)D_002A8490+8))->func_00136170(23,2,0)) {
+   if (!f290) {
+     if (!((BmxUIPageHOFTitle *)mgr)->f2A4) f2A8=1;
+     action->func_000B9A80(4,1);
+   }
+   int ready=f298;
+   f290=1; f28C=0; f284=b; f288=a;
+   if (!ready) return 0;
+   goto confirm;
+ } else if (b == (*(S_EAC_Input **)((char *)D_002A8490+8))->func_00136170(3,2,0)) {
+   action->func_000B9A80(2,1); f140->f4->func_001BDE90(0); f2AC=f140->f4->f30;
+ } else if (b == (*(S_EAC_Input **)((char *)D_002A8490+8))->func_00136170(2,2,0)) {
+   action->func_000B9A80(2,1); f140->f4->func_001BDF00(0); f2AC=f140->f4->f30;
+ } else if (b == (*(S_EAC_Input **)((char *)D_002A8490+8))->func_00136170(0,2,0)) {
+   if (!f29C) { f2A8=1; action->func_000B9A80(2,1); }
+   if (!f298) { f29C=1; f28C=0; f284=b; f288=a; return 0; }
+   f124->f138=7; f124->f134=12; mgr->func_000BB380(&D_00281B18);
+ } else if (b == (*(S_EAC_Input **)((char *)D_002A8490+8))->func_00136170(1,2,0)) {
+   if (!f2A0) { f2A8=1; action->func_000B9A80(2,1); }
+   if (!f298) { f2A0=1; f28C=0; f284=b; f288=a; return 0; }
+   f124->f138=7; f124->f134=4; mgr->func_000BB380(&D_00281B04);
+ }
+ goto done;
+confirm:
+   switch(func_001BF050(1)) {
+   case 1: f2AC=1; f124->f138=7; f124->f134=6; (*(S_EAC_Sound **)(*(char **)((char *)D_002A8490+0x2E0)+0x2FC))->func_00094E40(2,100,500); break;
+   case 2: f2AC=2; f124->f138=7; f124->f134=16; (*(S_EAC_Sound **)(*(char **)((char *)D_002A8490+0x2E0)+0x2FC))->func_00094E40(2,100,500); break;
+   case 3: f2AC=3; f124->f138=7; f124->f134=17; (*(S_EAC_Sound **)(*(char **)((char *)D_002A8490+0x2E0)+0x2FC))->func_00094E40(2,100,500); break;
+   case 4: f2AC=4; f124->f138=7; f124->f134=18; (*(S_EAC_Sound **)(*(char **)((char *)D_002A8490+0x2E0)+0x2FC))->func_00094E40(2,100,500); break;
+   case 5: f2AC=5; f124->f138=7; f124->f134=19; (*(S_EAC_Sound **)(*(char **)((char *)D_002A8490+0x2E0)+0x2FC))->func_00094E40(2,100,500); break;
+   case 6: f2AC=6; f124->f138=7; f124->f134=32; (*(S_EAC_Sound **)(*(char **)((char *)D_002A8490+0x2E0)+0x2FC))->func_00094E40(2,100,500); break;
+   default: break;
+   }
+done:
+ return 1;
+}
+
 void BmxUIPageHOFTitle::func_000EB0F0()
 {
     int ids[3];
