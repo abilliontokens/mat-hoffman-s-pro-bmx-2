@@ -236,7 +236,10 @@ struct S_001C1490_Obj {
 
 struct C_001C1490 {
     char pad0[0x68];
-    S_001C1490_Obj *f68;
+    union {
+        S_001C1490_Obj *f68;
+        S_001C1490_Obj *f68a[1];
+    };
     char pad6c[0x180];
     int f1ec;
     char pad1f0[0x10];
@@ -469,18 +472,14 @@ done:
 void C_001C1110::func_001C1110(void)
 {
   f2c = 0;
-  if (f38 != 0) {
+  if (f38 == 0 || f3c == 0) {
+    if (f38 != 0) {
+      v7();
+    }
     if (f3c != 0) {
-      goto done;
+      v5();
     }
   }
-  if (f38 != 0) {
-    v7();
-  }
-  if (f3c != 0) {
-    v5();
-  }
-done:
   v5();
 }
 
