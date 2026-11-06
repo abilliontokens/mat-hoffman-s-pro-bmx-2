@@ -370,13 +370,9 @@ int func_001D7D40()
 
 XboxVideoCard_001D7D50 *XboxVideoCard_001D7D50::func_001D7D50(void)
 {
-    int i;
-
     ((C_001C3D90 *)this)->func_001C3D90();
     vtbl = (void *)&D_0028F774;
-    for (i = 0; i < 0x40; i++) {
-        a5B4[i] = 0;
-    }
+    memset(a5B4, 0, 0x100);
     D_002F0BB8 = 0;
     f6BC = 0;
     f6C = -1;
@@ -386,9 +382,7 @@ XboxVideoCard_001D7D50 *XboxVideoCard_001D7D50::func_001D7D50(void)
     f6C8 = 0;
     f6CC = 0;
     f6D0 = 0;
-    for (i = 0; i < 0xC0; i++) {
-        a6D4[i] = 0;
-    }
+    memset(a6D4, 0, 0x300);
     return this;
 }
 
@@ -490,4 +484,6 @@ void XboxVideoCard_001D8310::func_001D8310(void)
 {
     v6();
 }
-
+#include <math.h>
+extern float D_00284758;
+extern float D_0027A060;
