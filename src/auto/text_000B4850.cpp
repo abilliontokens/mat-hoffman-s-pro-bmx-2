@@ -142,6 +142,8 @@ struct BigObjB4850 {
     void *func_000B1860();
     void func_000B31F0(int a);
     void func_000B2ED0();
+    void func_000B31F0(char *buf, ParserB4850 *p);
+    void func_000B2ED0(ParserB4850 *p);
 };
 
 struct Obj14B4850 {
@@ -186,51 +188,56 @@ struct StopLight {
 
 void StopLight::func_000B4850(ParserB4850 *p)
 {
-    int n;
+    int n = 0;
     int i;
     int old;
-    char buf[0x38];
+    int cnt;
+    char buf[0x3c];
 
     if (p->func_00169710(D_0027D364) != 0) {
         p->func_00168C20(D_0027D350, 0, &n);
         if (n > 0) {
-            if (f4C == 0) {
+            if (t4C == 0) {
                 f3C = n;
-                f4C = (void **)func_001E8A44(f3C * 4);
+                cnt = f3C;
                 old = 0;
+                t4C = (ObjA4C4850 **)func_001E8A44(cnt * 4);
             } else {
                 old = f3C;
                 f3C = old + n;
-                f4C = (void **)func_001E83E8(f4C, f3C * 4);
+                cnt = f3C;
+                t4C = (ObjA4C4850 **)func_001E83E8(t4C, cnt * 4);
             }
-            for (i = old; i < f3C; i++) {
-                int *o = (int *)func_001E8A44(0x10);
-                f4C[i] = o;
-                o[2] = 0;
-                o[3] = 0;
-                o[1] = 0;
-                o[0] = 0;
+            for (i = old; i < cnt; i++) {
+                t4C[i] = (ObjA4C4850 *)func_001E8A44(0x10);
+                t4C[i]->f8 = 0;
+                t4C[i]->fC = 0;
+                t4C[i]->f4 = 0;
+                t4C[i]->f0 = 0;
             }
         }
     }
     if (D_002A8490->p2E0->f0 == 1) {
         if (p->func_00169710(D_0027D348) != 0) {
+            int n2;
             p->func_00168C50(D_0027D334, 45.0f, &f24);
             p->func_00168C20(D_0027D324, 13, &f2C);
             p->func_00168C20(D_0027D314, 6, &f30);
             p->func_00168C50(D_0027D300, 20.0f, &f28);
-            p->func_00168C20(D_0027D2F0, 0, &n);
-            if (n > 0) {
-                if (f48 == 0) {
-                    f38 = n;
-                    f48 = (void **)func_001E8A44(f38 * 4);
+            p->func_00168C20(D_0027D2F0, 0, &n2);
+            if (n2 > 0) {
+                if (t48 == 0) {
+                    f38 = n2;
+                    cnt = f38;
                     old = 0;
+                    t48 = (ObjB1EE0 **)func_001E8A44(cnt * 4);
                 } else {
                     old = f38;
-                    f38 = old + n;
-                    f48 = (void **)func_001E83E8(f48, f38 * 4);
+                    f38 = n2 + old;
+                    cnt = f38;
+                    t48 = (ObjB1EE0 **)func_001E83E8(t48, cnt * 4);
                 }
-                for (i = old; i < f38; i++) {
+                for (i = old; i < cnt; i++) {
                     ObjB1EE0 *o;
                     func_001ADCC0(buf, 0x10, D_0027D2E8, i - old + 1);
                     if (p->func_00169710(buf) != 0) {
@@ -239,50 +246,43 @@ void StopLight::func_000B4850(ParserB4850 *p)
                             o = ((ObjB1EE0 *)mem)->func_000B1EE0(1);
                         else
                             o = 0;
-                        f48[i] = o;
-                        o->func_000B4300(buf, p);
+                        t48[i] = o;
+                        t48[i]->func_000B4300(buf, p);
                     }
                 }
             }
         }
         if (p->func_00169710(D_0027D2D0) != 0) {
-            p->func_00168C20(D_0027D2BC, 0, &n);
-            if (n > 0) {
-                if (f50 == 0) {
-                    f40 = (void **)n;
-                    f50 = (void **)func_001E8A44((int)f40 * 4);
+            int n3;
+            p->func_00168C20(D_0027D2BC, 0, &n3);
+            if (n3 > 0) {
+                if (t50 == 0) {
+                    c40 = n3;
                     old = 0;
+                    t50 = (Obj14B4850 **)func_001E8A44(c40 * 4);
+                    cnt = c40;
                 } else {
-                    old = (int)f40;
-                    f40 = (void **)((int)f40 + n);
-                    f50 = (void **)func_001E83E8(f50, (int)f40 * 4);
+                    old = c40;
+                    c40 = n3 + old;
+                    cnt = c40;
+                    t50 = (Obj14B4850 **)func_001E83E8(t50, cnt * 4);
                 }
-                for (i = old; i < (int)f40; i++) {
-                    Obj14B4850 *o = (Obj14B4850 *)func_001E8A44(0x14);
+                for (i = old; i < cnt; i++) {
                     int v;
-                    f50[i] = o;
+                    float fl;
+                    t50[i] = (Obj14B4850 *)func_001E8A44(0x14);
                     func_001ADCC0(buf, 0x20, D_0027D2A8, i - old + 1);
                     p->func_00169710(buf);
                     p->func_00168C20(D_002764A8, 0, &v);
-                    v--;
-                    if (v > f3C)
-                        v = f3C;
-                    if (v < 0)
-                        v = 0;
-                    o->f0 = v;
+                    t50[i]->f0 = Max(0, Min(n, v - 1));
                     p->func_00168C20(D_0027649C, 0, &v);
-                    o->f4 = v - 1;
+                    t50[i]->f4 = v - 1;
                     p->func_00168C20(D_00276490, 0, &v);
-                    v--;
-                    if (v > f3C)
-                        v = f3C;
-                    if (v < 0)
-                        v = 0;
-                    o->f8 = v;
+                    t50[i]->f8 = Max(0, Min(n, v - 1));
                     p->func_00168C20(D_00276488, 0, &v);
-                    o->fC = v - 1;
-                    p->func_00168C50(D_0027D29C, 0.0f, (float *)&v);
-                    o->f10 = v;
+                    t50[i]->fC = v - 1;
+                    p->func_00168C50(D_0027D29C, 0.0f, &fl);
+                    t50[i]->f10 = fl;
                 }
             }
         }
@@ -292,45 +292,77 @@ void StopLight::func_000B4850(ParserB4850 *p)
     {
         int nA;
         int nB;
+        int first = 0;
         p->func_00168C20(D_0027D280, 0, &nA);
         p->func_00168C20(D_0027D26C, 0, &nB);
         if (nB > 0) {
-            if (f44 == 0) {
+            if (t44 == 0) {
                 f34 = nB;
-                f44 = (void **)func_001E8A44(f34 * 4);
-                old = 0;
+                cnt = f34;
+                first = 1;
+                t44 = (BigObjB4850 **)func_001E8A44(cnt * 4);
+                for (i = 0; i < cnt; i++) {
+                    BigObjB4850 *o;
+                    void *mem = func_001E8A44(0x370);
+                    if (mem != 0) {
+                        o = (BigObjB4850 *)mem;
+                        o->func_0018C7B0(1);
+                        o->vtbl = &D_0027CEFC;
+                        o->f40 = 0;
+                        o->f44 = 0;
+                        o->f50 = 2;
+                        o->f54 = 2;
+                        o->f5C = 0;
+                        o->f60 = 0;
+                        o->f4C = 0;
+                        o->f48 = 0;
+                    } else {
+                        o = 0;
+                    }
+                    t44[i] = o;
+                    {
+                        void *mem2 = func_001E8A44(0x488);
+                        void *sub;
+                        if (mem2 != 0)
+                            sub = ((BigObjB4850 *)mem2)->func_000B1860();
+                        else
+                            sub = 0;
+                        t44[i]->f3C = sub;
+                    }
+                }
             } else {
                 old = f34;
                 f34 = old + nB;
-                f44 = (void **)func_001E83E8(f44, f34 * 4);
-            }
-            for (i = old; i < f34; i++) {
-                BigObjB4850 *o;
-                void *mem = func_001E8A44(0x370);
-                if (mem != 0) {
-                    o = (BigObjB4850 *)mem;
-                    o->func_0018C7B0(1);
-                    o->vtbl = &D_0027CEFC;
-                    o->f40 = 0;
-                    o->f44 = 0;
-                    o->f50 = 2;
-                    o->f54 = 2;
-                    o->f5C = 0;
-                    o->f60 = 0;
-                    o->f4C = 0;
-                    o->f48 = 0;
-                } else {
-                    o = 0;
-                }
-                f44[i] = o;
-                {
-                    void *mem2 = func_001E8A44(0x488);
-                    void *sub;
-                    if (mem2 != 0)
-                        sub = ((BigObjB4850 *)mem2)->func_000B1860();
-                    else
-                        sub = 0;
-                    o->f3C = sub;
+                cnt = f34;
+                t44 = (BigObjB4850 **)func_001E83E8(t44, cnt * 4);
+                for (i = old; i < cnt; i++) {
+                    BigObjB4850 *o;
+                    void *mem = func_001E8A44(0x370);
+                    if (mem != 0) {
+                        o = (BigObjB4850 *)mem;
+                        o->func_0018C7B0(1);
+                        o->vtbl = &D_0027CEFC;
+                        o->f40 = 0;
+                        o->f44 = 0;
+                        o->f50 = 2;
+                        o->f54 = 2;
+                        o->f5C = 0;
+                        o->f60 = 0;
+                        o->f4C = 0;
+                        o->f48 = 0;
+                    } else {
+                        o = 0;
+                    }
+                    t44[i] = o;
+                    {
+                        void *mem2 = func_001E8A44(0x488);
+                        void *sub;
+                        if (mem2 != 0)
+                            sub = ((BigObjB4850 *)mem2)->func_000B1860();
+                        else
+                            sub = 0;
+                        t44[i]->f3C = sub;
+                    }
                 }
             }
         }
@@ -344,12 +376,12 @@ void StopLight::func_000B4850(ParserB4850 *p)
                     char b2[0x3c];
                     p->func_00168BE0(b1, b2, D_00276980, 0x3b);
                     if (f34 == 1) {
-                        ((BigObjB4850 *)f44[0])->func_000B31F0(0);
+                        t44[0]->func_000B31F0(0);
                     } else {
                         int k;
                         int found = 0;
                         for (k = 0; k < f34; k++) {
-                            BigObjB4850 *o = (BigObjB4850 *)f44[k];
+                            BigObjB4850 *o = t44[k];
                             if (func_001EA426((char *)o->f3C + 0x348, name) == 0) {
                                 o->func_000B2ED0();
                                 found = 1;
@@ -358,7 +390,7 @@ void StopLight::func_000B4850(ParserB4850 *p)
                         }
                         if (found == 0) {
                             for (k = 0; k < f34; k++) {
-                                BigObjB4850 *o = (BigObjB4850 *)f44[k];
+                                BigObjB4850 *o = t44[k];
                                 if (func_001EA426((char *)o->f3C + 0x348, D_0027CED0) == 0) {
                                     o->func_000B31F0(0);
                                     break;
