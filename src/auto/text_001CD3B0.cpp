@@ -699,16 +699,16 @@ int __stdcall func_001CDD50(S_SlotList *list, int max, S_Slot **outSlot, int *ou
     if (list->count < max) {
         s = (S_Slot *)func_001E8A44(0x24);
         if (s != 0) {
-            int z = 0;
+            int *p;
+            int k;
             s->f8 = 0;
             s->fC = 0;
             s->f10 = 0;
             _imp__RtlEnterCriticalSection(D_002F08EC->f138 + 0x50);
             s->f4 = 0;
             _imp__RtlLeaveCriticalSection(D_002F08EC->f138 + 0x50);
-            s->f14 = z;
-            s->f18 = z;
-            s->f1C = z;
+            p = (int *)&s->f14;
+            for (k = 0; k < 3; k++) p[k] = 0;
             s->f20 &= 0xf0;
             s->f0 = -1;
             *outSlot = s;
