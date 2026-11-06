@@ -1,7 +1,7 @@
 /* 19 functions from 0x00142F30 to 0x00143C00, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
-#define F143660_INT 0
+#define F143660_INT 1
 #if F143660_INT
 #define F143660_RET int
 #define F143660_VAL 1
@@ -457,14 +457,14 @@ void C_00143600::func_00143600()
     D_002AB66C->func_001C5DE0(m, (char *)this + 0x150, (char *)this + 0x160, 0);
 }
 
-void DXRenderableObject::func_00143660(void)
+F143660_RET DXRenderableObject::func_00143660(void)
 {
     ShadowPiece *piece;
     int i;
-    bool one = true;
+    u32 one = 1;
 
     if (!(one & f181))
-        return;
+        return F143660_VAL;
     if (f1d4 == -1)
         f1d4 = (D_002A829C->f14[*f1b8].f4->f54->f24 >> 3) & one;
     ((Alloc190 *)f1d0)->func_00142F30(D_002EFDB8[1]);
@@ -473,7 +473,7 @@ void DXRenderableObject::func_00143660(void)
     piece = &f1a4->pieces[f1a0];
     for (i = 0; i < piece->count; i++)
         piece->items[i].func_001446B0((int)f1d0, (int)this, f1b8[piece->items[i].f4]);
-    func_00157960();
+    F143660_TAIL func_00157960();
 }
 
 void *DXRenderableObjectData::func_00143770(int flags)
