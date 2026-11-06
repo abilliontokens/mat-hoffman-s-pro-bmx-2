@@ -164,7 +164,10 @@ struct BmxInGameMenu {
     C_001D5AD0 *unkD8;
     C_001D5AD0 *unkDC;
     C_001D5AD0 *unkE0;
-    char padE4[0x10];
+    struct Text_5F3 *unkE4;
+    struct Text_5F3 *unkE8;
+    char padEC[0x8];
+    void func_001577A0(void *w, int n);
     int unkF4;
     int unkF8;
     int unkFC;
