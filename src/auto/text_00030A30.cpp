@@ -307,6 +307,8 @@ struct VT_00031260 {
     virtual void v44();
 };
 
+static __forceinline void CallV30_00031260(VT_00031260 *o, int a) { o->v30(a); }
+
 struct Inner_00031260 {
     char pad0[0x28];
     VT_00031260 *f28;
@@ -711,8 +713,7 @@ int BmxEvent_00030A30::func_00031260(float dt)
         D_002B8F18 = D_002A7CB8->func_00026500((int)&D_00276B68, -1);
     }
     if (D_002A8490->f4 != 0) {
-        int state = D_002A8490->f2e0->f4;
-        v30(state != 10 ? 1 : 0);
+        v30(!(D_002A8490->f2e0->f4 == 10));
     }
     func_00157A00(dt);
     if (D_002A8490->f124 == 0 && f110 != 0) {
