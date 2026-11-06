@@ -150,7 +150,7 @@ extern "C" void* func_001E8AA5(int);
 
 static inline void FloatToIndex(int *out, float f) {
     int * volatile p = out;
-    *p = _mm_cvttss_si32(*(__m128 *)&f);
+    *p = _mm_cvttss_si32(_mm_load_ss(&f));
 }
 
 struct C_0014F170 {
@@ -161,6 +161,7 @@ struct C_0014F170 {
 void __fastcall func_0014E630(void *self, int edx, S_0014E630_Holder *a)
 {
     int i;
+    int off;
     (void)self;
     (void)edx;
     if (a->count == 0) {
@@ -168,8 +169,19 @@ void __fastcall func_0014E630(void *self, int edx, S_0014E630_Holder *a)
         return;
     }
     a->out = (void **)func_001E8AA5(a->count * 4);
+    off = 0;
     for (i = 0; i < a->count; i++) {
-        a->out[i] = 0;
+        char *entry = (char *)a->items + off;
+        int type = *(int *)(entry + 0x20);
+        if (type == 0) {
+            void *mem = func_001E8AA5(0x1e0);
+            ObjB700 *o = mem ? ((ObjB700 *)mem)->func_0019B700(1) : 0;
+            func_00129920(4);
+            o->func_0019D7B0(*(void **)((char *)a + 0x1f8), a);
+            a->out[i] = o;
+            *(int *)((char *)o + 0x68) = D_002BA150;
+        }
+        off += 0x2c;
     }
 }
 
