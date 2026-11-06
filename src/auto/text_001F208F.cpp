@@ -131,7 +131,6 @@ T* func_001F208F(T* a0, T* a1)
     return a0;
 }
 
-#pragma optimize("", on)
 T* func_001F23B8(T* ret, T* superType, char prefix, T* cvType, int thisFlag)
 {
     N A;
