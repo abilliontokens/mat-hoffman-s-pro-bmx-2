@@ -121,7 +121,7 @@ struct WaterDisplacement {
     Quat_1CAF20 unk74[4];
     Quat_1CAF20 unkB4;
     WaterDisplacement *func_001CAF20();
-    bool func_001CA480(Plane_001CA480 *plane, void *arg1);
+    Ret_001CA480 func_001CA480(Plane_001CA480 *plane, void *arg1);
     void *func_001CAFA0(int flags);
     void func_00157600(int a0);
     void func_00157660();
