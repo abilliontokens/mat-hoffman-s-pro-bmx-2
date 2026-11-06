@@ -124,7 +124,7 @@ struct C_0018FF10 {
     Ent0018FF10 *ents;
     int func_0018EB70(int, char *, Node0018FF10 *);
     int func_0018FF10(char *src, char *name, int idx, int *out);
-    Node0018FF10 *Find0018FF10(const char *name)
+    __forceinline Node0018FF10 *Find0018FF10(const char *name)
     {
         for (Node0018FF10 *n = head; n; n = n->next) {
             if (!strcmp(name, n->name)) return n;
