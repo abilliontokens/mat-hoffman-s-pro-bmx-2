@@ -36,7 +36,9 @@ int __cdecl func_0013F650(void);
 /* two lists that grow 20 entries at a time: f48 holds one entry per item,
    f21D8 twenty per item */
 struct C_0014CC60 {
-    char pad0[0x40];
+    char pad0[0x38];
+    int f38;
+    char pad3C[4];
     char *f40;
     int f44;
     int *f48;
