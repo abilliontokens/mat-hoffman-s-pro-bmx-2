@@ -73,6 +73,8 @@ struct UIPage {
     u32 f274;
     u32 f278;
     u32 f27C;
+    UIPage *func_001BE4F0(char *name, char *file, UIInputState *input);
+    void func_001577A0(void *object, int index);
     void func_00157660(void);
     void func_001BE3F0(void);
     UIPage *func_001BE360(int param_1);
