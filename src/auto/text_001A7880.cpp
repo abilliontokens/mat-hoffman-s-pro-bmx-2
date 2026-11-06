@@ -83,7 +83,7 @@ static __forceinline V4_001A7FE0 xform_001A7FE0(V4_001A7FE0 v, float *m)
 }
 struct Pair_001A7FE0 {
     V4_001A7FE0 b, a;
-    __forceinline Pair_001A7FE0() { a.Clear(); b.Clear(); }
+    __forceinline Pair_001A7FE0() : b(0), a(0) { a.Clear(); b.Clear(); }
 };
 static __forceinline Pair_001A7FE0 pair_001A7FE0(V4_001A7FE0 v, float *m)
 {
