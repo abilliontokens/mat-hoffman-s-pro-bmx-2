@@ -164,6 +164,11 @@ void *func_001E8A44(int size);
 void *func_001E8AA5(int size);
 void func_001E891B(void *p);
 
+static inline S_0019EB10_Node **alloc_node_list_0019ECB0(int bytes)
+{
+    return (S_0019EB10_Node **)func_001E8A44(bytes);
+}
+
 void func_00030AC0(float *out, float *v, float *m);
 void func_0001C680(V4_0019E860 *out, V4_0019E860 v, float *m);
 void SoultreeHierarchyCollisionObject::func_0019E860(float *m, float *ext)
@@ -197,8 +202,8 @@ void C_0019EB10::func_0019EB10(int h)
         node = node->f170;
     }
     c.list = (S_0019EB10_Node **)func_001E8A44(node->func_00198270() * 4);
-    c.count = 1;
     *c.list = node;
+    c.count = 1;
     node->func_001982A0(&c.count, c.list);
     fh = h;
     D_002BEAAC->func_0013C8A0(fh, &f190, 4, 1);
@@ -225,6 +230,7 @@ void C_0019EB10::func_0019ECB0(S_0019EB10_Node *root, S_0019EB10_Sub *d)
 {
     S_0019EB10_Node **list;
     S_0019EB10_Node *node;
+    S_0019EB10_Sub *dd;
     int count;
     int i;
     void *mem;
@@ -232,33 +238,41 @@ void C_0019EB10::func_0019ECB0(S_0019EB10_Node *root, S_0019EB10_Sub *d)
 
     f19c = root;
     node = root;
-    while (node->f170 != 0) {
-        node = node->f170;
+    if (node->f170 != 0) {
+        do {
+            node = node->f170;
+        } while (node->f170 != 0);
     }
-    list = (S_0019EB10_Node **)func_001E8A44(node->func_00198270() * 4);
-    count = 1;
-    *list = node;
-    node->func_001982A0(&count, list);
+    (*(list = (S_0019EB10_Node **)func_001E8A44(node->func_00198270() * 4)) = node)->func_001982A0(&(count = 1), list);
+    dd = d;
     f190 = d->f8;
     f1a0 = (S_0019EB10_Obj **)func_001E8AA5(f190 * 4);
     f194 = (int *)func_001E8A44(f190 * 4);
     f198 = (int *)func_001E8A44(f190 * 4);
-    for (i = 0; i < f190; i++) {
-        mem = func_001E8A44(0x1e0);
-        obj = mem != 0 ? ((S_0019EB10_Obj *)mem)->func_0019B700(1) : 0;
-        f1a0[i] = obj;
-        f1a0[i]->f1c0 = list[d->f24[i]];
-        f194[i] = 1;
-        f1a0[i]->f1c4 = d->f14[i];
-        f1a0[i]->f1c8 = d->f18[i];
-        f1a0[i]->f1cc = (short)d->fC[i];
-        f1a0[i]->f1ce = (short)d->f10[i];
-        f1a0[i]->f1b0 = d->f1c[i];
-        f1a0[i]->fF0.func_000264C0(d->f20 + i);
-        f1a0[i]->f1bc = d->f28[i];
+    i = 0;
+    if (f190 > 0) {
+        d = 0;
+        root = 0;
+        do {
+            mem = func_001E8A44(0x1e0);
+            obj = mem != 0 ? ((S_0019EB10_Obj *)mem)->func_0019B700(1) : 0;
+            f1a0[i] = obj;
+            f1a0[i]->f1c0 = list[dd->f24[i]];
+            f194[i] = 1;
+            f1a0[i]->f1c4 = dd->f14[i];
+            f1a0[i]->f1c8 = dd->f18[i];
+            f1a0[i]->f1cc = (short)dd->fC[i];
+            f1a0[i]->f1ce = (short)dd->f10[i];
+            f1a0[i]->f1b0 = *(S_0019EB10_Vec3 *)((char *)dd->f1c + (int)root);
+            f1a0[i]->fF0.func_000264C0((char *)dd->f20 + (int)d);
+            f1a0[i]->f1bc = dd->f28[i];
+            i++;
+            root = (S_0019EB10_Node *)((char *)root + 0xc);
+            d = (S_0019EB10_Sub *)((char *)d + 0x40);
+        } while (i < f190);
     }
-    f1a4 = d;
-    d->f2c++;
+    f1a4 = dd;
+    dd->f2c++;
     func_001E891B(list);
 }
 
