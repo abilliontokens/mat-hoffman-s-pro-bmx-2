@@ -39,6 +39,11 @@ struct Obj2_3D220 {
     void func_001BBAE0(int a);
 };
 struct Track_3D220 { char pad[0x44]; int f44; };
+struct NameList_3D220 {
+    int count; char **data;
+    char *get(int i) { return (count > 0 && data && i < count) ? data[i] : 0; }
+};
+template <class T> inline const T &Min_3D220(const T &a, const T &b) { return (b < a) ? b : a; }
 struct Game_3D220 {
     char pad0[0x3a8]; Mgr_3D220 **f3a8;
     char pad1[0x4a8 - 0x3ac]; int *f4a8; int *f4ac;
