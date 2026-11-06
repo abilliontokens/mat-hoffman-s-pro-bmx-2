@@ -210,6 +210,36 @@ struct C_00014020 {
     void func_001C75A0();
 };
 
+
+extern char D_002A5EA0[], D_002A60B0[], D_002A45E0[], D_002A5FA8[], D_002756AC[], D_002756A0[];
+extern int D_00275554, D_00275564, D_00275574, D_00275584, D_00275594, D_002755A4, D_002755B4, D_002755C4, D_002755D4;
+extern S_00014850_Vec4 D_002A050C, D_002A04FC;
+int func_001EA426(const char*, const char*);
+struct State_14170 { void *vtbl; int kind; void *owner; S_00014850_Vec4 vec; int last; };
+struct Machine_14170 {
+ char pad[0x6c];
+ Machine_14170 *func_001AC080();
+ void func_001AC0A0(State_14170*, char*);
+ void func_0008AB90(State_14170*);
+};
+struct C_14170 {
+ char pad[0xc0]; char *fc0; char padc4[0x2c0];
+ Machine_14170 *f384;
+ State_14170 *f388,*f38c,*f390,*f394,*f398,*f39c,*f3a0,*f3a4,*f3a8;
+ int f3ac,f3b0,f3b4,f3b8,f3bc;
+ char pad3c0[0xc]; float f3cc; char pad3d0[0x12]; unsigned char f3e2,f3e3;
+ char pad3e4[0x20]; S_00014850_Vec4 f404;
+ int f414,f418,f41c,f420,f424,f428; char f42c[0x104];
+ void func_00014170(char*,unsigned char,int,int,char*,char*,float,int,int,int,S_00014850_Vec4*);
+ void func_001C76B0(int,int,S_00014850_Vec4*,int,int,S_00014850_Vec4,S_00014850_Vec4);
+ void func_001C6DA0(int,int);
+};
+static __forceinline State_14170 *Make_14170(unsigned size, void *vt, int kind) {
+ State_14170 *s=(State_14170*)func_001E8A44(size);
+ if(s) { s->vtbl=vt;s->kind=kind;s->owner=0; }
+ return s;
+}
+
 void C_00013F50::func_00013F50(C_00013F50_Dst *dst, int kind, void *arg1, float arg2)
 {
     dst->f3ac = 0;
