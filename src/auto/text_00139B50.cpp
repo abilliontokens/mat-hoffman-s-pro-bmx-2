@@ -110,7 +110,7 @@ struct V_60 {
     virtual void v24();
     virtual void v25();
     virtual void v26();
-    virtual void v27(void *a);
+    virtual int v27(void *a);
 };
 
 struct V_80 {
@@ -154,4 +154,90 @@ struct S_func_00139B50_this {
 
 void S_func_00139B50_this::func_00139B50(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11, int a12, int a13, int a14, int a15)
 {
+    char b1[0x104];
+    char b2[0x104];
+    char b3[0x104];
+    char b4[0x104];
+    char b5[0x104];
+    char b6[0x104];
+    char b8[0x104];
+    int len;
+    int n;
+    int i;
+    void *p;
+    void *obj;
+    C_UI *ui;
+
+    f24 = -1;
+    f38 = a12;
+    f30 = *(float *)&a13 + *(float *)&a13;
+    f2c = *(int *)&f30;
+    f4c = (void *)a3;
+    f7c = a11;
+    f98 = *(int *)(*(int *)(a3 + 0x4a8) + a15 * 4);
+    func_001ADCC0(b1, 0x104, D_00275678, a2, a1);
+    ui = (C_UI *)func_001E8A44(0x4cc);
+    if (ui) {
+        ui = ((C_UIo *)ui)->func_00168280();
+    } else {
+        ui = 0;
+    }
+    ui->func_00169490(b8, 0);
+    ui->func_00169710(D_00277298);
+    ui->func_00168C20(D_00284C30, 0, &f3c);
+    ui->func_00168C20(D_00284C20, 0, &f54);
+    ui->func_00168C20(D_00284C14, -1, &f64);
+    ui->func_00168C20(D_00284C08, 0x64, &f68);
+    ui->func_00168C20(D_00284BF8, 0, &f6c);
+    ui->func_00168C20(D_00284BE8, 0, &f70);
+    f78 = a10;
+    if (f64 == -1) {
+        f64 = a12;
+    }
+    len = strlen(D_002A60B0);
+    n = 0x103 > len ? len : 0x103;
+    func_001E8920(b2, D_002A60B0, n);
+    b2[n] = 0;
+    len = strlen(D_002A5EA0);
+    n = 0x103 > len ? len : 0x103;
+    func_001E8920(b3, D_002A5EA0, n);
+    b3[n] = 0;
+    len = strlen(D_002A48F8);
+    n = 0x103 > len ? len : 0x103;
+    func_001E8920(b4, D_002A48F8, n);
+    b4[n] = 0;
+    func_001ADCC0(D_002A60B0, 0x104, D_00276F58, a5);
+    D_002A48F8[0] = 0;
+    len = strlen((char *)a9);
+    n = 0x103 > len ? len : 0x103;
+    func_001E8920(D_002A5EA0, (char *)a2, n);
+    D_002A5EA0[n] = 0;
+    if (f54 > 0) {
+        f58 = (void **)func_001E8AA5(f54 * 4);
+        for (i = 0; i < f54; i++) {
+            func_001ADCC0(b5, 0x104, D_00284BD8, i + 1);
+            ui->func_00169710(b5);
+            ui->func_00168BE0(D_0027D880, D_00275630, b6, 0x104);
+            func_001ADCC0(b1, 0x104, D_00275678, a2, b6);
+            p = func_001E8A44(0x244);
+            if (p) {
+                p = ((C_00164440 *)p)->func_00164440(1, 1);
+            } else {
+                p = 0;
+            }
+            f58[i] = p;
+            ((C_001673B0o *)f58[i])->func_001673B0(b8, 0, 1, 1);
+            ((C_00198390o *)*(void **)((char *)f58[i] + 4))->func_00198390();
+            *(unsigned char *)(*(int *)((char *)f58[i] + 4) + 0x180) |= 8;
+            *(unsigned char *)(*(int *)((char *)f58[i] + 4) + 0x180) &= 0xef;
+            ((C_0019ABA0o *)*(void **)((char *)f58[i] + 4))->func_0019ABA0(a6, 2);
+            obj = f58[i];
+            if (obj) {
+                p = (void *)(*(int *)(*(int *)obj + 4) + (int)obj);
+            } else {
+                p = 0;
+            }
+            func_001577A0(p, -1);
+        }
+    }
 }
