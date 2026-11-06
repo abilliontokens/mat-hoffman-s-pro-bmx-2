@@ -27,13 +27,16 @@ struct S_7C690_Device {
 };
 extern S_7C690_Device *D_002EFDB8;
 
-struct S_7C690_Data { char pad0[0x7b8]; int f7b8; char pad7bc[4]; int f7c0; char pad7c4[4]; int f7c8; };
+struct S_7C690_Data { char pad0[0x790]; int f790; char pad794[0x7b8 - 0x794]; int f7b8; char pad7bc[4]; int f7c0; char pad7c4[4]; int f7c8; char pad7cc[0xff8 - 0x7cc]; int ff8; };
 struct S_7C690_Mgr { char pad0[4]; S_7C690_Data *f4; };
+struct S_7C690_C020 { int func_0005C020(void *a); };
+struct S_7C690_E { char pad0[0x2c0]; S_7C690_C020 *f2c0; char pad2c4[0x14]; void *f2d8; };
 struct S_7C690_Global {
     char pad0[0x270];
     int f270;
     int f274;
-    char pad278[0x2e8 - 0x278];
+    char pad278[0x2e0 - 0x278];
+    S_7C690_E *f2e0;
     S_7C690_Mgr *f2e8;
 };
 extern S_7C690_Global *D_002A8490;
@@ -98,32 +101,32 @@ int ResultsScreen::func_0007C690()
         D_002B9048 |= 1;
         D_002B9044 = D_002A7CB8->func_00026500(D_00278AF0, 0);
     }
-    if (D_002A8490->f274 >= D_002A8490->f270 - 1) {
-        D_002EFDB8->v8();
-        D_002EFDB8->v7(1);
-        dev = D_002EFDB8->f4;
-        if (f10C->f90 > 1) {
-            vp = dev->rect;
-            vp.x = 0;
-            vp.y = 0;
-            vp.w = 0x280;
-            vp.h = 0x1c0;
-            dev->func_0012B2B0(&vp, &old);
-        }
-        func_000682B0();
-        func_00067DA0();
-        if (f150) {
-            f100->func_0005E840(D_002A8490->f2e8->f4->f7b8);
-            f154->func_0005E840(D_002A8490->f2e8->f4->f7c0);
-            f154->func_001D6600();
-        } else {
-            f100->func_0005E840(D_002A8490->f2e8->f4->f7c8);
-            f100->func_001D6600();
-        }
-        func_00157960();
-        if (f10C->f90 > 1) {
-            dev->func_0012B2B0(&old, 0);
-        }
+    if (D_002A8490->f274 < D_002A8490->f270 - 1)
+        return 1;
+    D_002EFDB8->v8();
+    D_002EFDB8->v7(1);
+    dev = D_002EFDB8->f4;
+    if (f10C->f90 > 1) {
+        vp = dev->rect;
+        vp.x = 0;
+        vp.y = 0;
+        vp.w = 0x280;
+        vp.h = 0x1c0;
+        dev->func_0012B2B0(&vp, &old);
+    }
+    func_000682B0();
+    func_00067DA0();
+    if (f150) {
+        f100->func_0005E840(D_002A8490->f2e8->f4->f7b8);
+        f154->func_0005E840(D_002A8490->f2e8->f4->f7c0);
+        f154->func_001D6600();
+    } else {
+        f100->func_0005E840(D_002A8490->f2e8->f4->f7c8);
+        f100->func_001D6600();
+    }
+    func_00157960();
+    if (f10C->f90 > 1) {
+        dev->func_0012B2B0(&old, 0);
     }
     return 1;
 }
