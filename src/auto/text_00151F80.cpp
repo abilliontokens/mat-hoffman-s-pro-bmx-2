@@ -74,11 +74,14 @@ extern "C" int func_001DC974(void);
 struct C_00151F80 {
     char pad0[0x2c];
     S_151F80_Cam *f2c;
-    char pad30[0x24];
+    char pad30[4];
+    float f34;
+    char pad38[0x1c];
     float f54;
-    char pad58[0xc];
+    char pad58[8];
+    S_152BA0_Obj *f60;
     S_151F80_Tgt *f64;
-    char pad68[0x10];
+    S_151F80_Vec f68;
     S_151F80_Line *f78;
     char pad7c[8];
     S_151F80_Vec f84;
