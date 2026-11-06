@@ -1,7 +1,11 @@
 /* 6 functions from 0x00054680 to 0x00055380, found by Ghidra. */
 #include "common.h"
 
-struct V_000551B0 { int x, y, z, w; };
+struct V_000551B0 {
+    int x, y, z, w;
+    V_000551B0() { x = 0; y = 0; z = 0; w = 0; }
+    V_000551B0(int px, int py, int pz, int pw) { x = px; y = py; z = pz; w = pw; }
+};
 extern int D_002A1A64, D_002A1A68, D_002A1A6C, D_002A1A70;
 
 static __forceinline V_000551B0 vec_000551B0(void)
