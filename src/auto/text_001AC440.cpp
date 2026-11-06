@@ -472,7 +472,7 @@ char *func_001ACD40(int ndec, char fmt, double value, int alt, int *sign, char *
     int esign;
     int len;
 
-    src = cvt_probe(sign, digits, value, fmt == 'f' ? ndec : ndec + 1, &decpt, fmt != 'f');
+    src = func_001AC940(sign, digits, value, fmt == 'f' ? ndec : ndec + 1, &decpt, fmt != 'f');
     if (func_001EA211(*src)) {
         strcpy(buf, src);
         *outlen = strlen(buf);
