@@ -18,11 +18,6 @@ struct S_ObjectAttributes {
     u32 attributes;
 };
 
-struct S_ByteTop {
-    unsigned int lo : 24;
-    unsigned int hi : 8;
-};
-
 extern int D_00010130;
 extern int D_002F6BC0;
 extern int D_002F6BB4;
@@ -261,8 +256,8 @@ void __stdcall func_001DEDC3(void *info, char *out)
     *(u32 *)((char *)out + 0x1c) = *(u32 *)((char *)info + 0x2c);
     *(u32 *)((char *)out + 0x20) = *(u32 *)((char *)info + 0x28);
     memcpy(out + 0x2c, (char *)info + 0x40, *(u32 *)((char *)info + 0x3c));
-    out[0x2c + *(u32 *)((char *)info + 0x3c)] = 0;
-    out[0x130] = 0;
+    *(bool *)(out + 0x2c + *(u32 *)((char *)info + 0x3c)) &= false;
+    *(bool *)(out + 0x130) &= false;
 }
 int __stdcall func_001DEE2F(const char *path, char *out)
 {
