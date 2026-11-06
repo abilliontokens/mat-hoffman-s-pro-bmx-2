@@ -122,7 +122,7 @@ struct W_Label {
     char padc[0x30];
     float f3c;
     char pad40[4];
-    float f44;
+    int f44;
     int f48;
     char pad4c[2];
     unsigned char flags;
