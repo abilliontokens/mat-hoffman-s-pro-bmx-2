@@ -53,12 +53,15 @@ struct S_001D8AE0_S3 {
     int a;
     int b;
     int c;
+    S_001D8AE0_S3() { a = b = c = 0; }
+    S_001D8AE0_S3(int x, int y, int z) { a = x; b = y; c = z; }
 };
 
 struct C_001D8AE0 {
     S_001D8AE0_S3 sub;
     u32 fC;
     u32 f10;
+    C_001D8AE0(int p1, int p2, int p3, int p4, int p5);
     void func_001D8AE0(int p1, int p2, int p3, int p4, int p5);
 };
 
@@ -330,13 +333,10 @@ int XboxVideoCard::func_001D8A10(int a1, int a2, int a3, int a4, int a5, int a6,
 void XboxVideoCard::func_001D8AA0(void *param_1)
 {
     S_001D8AA0_Local local;
-    switch (this->func_001D8140(&local, param_1, this->f44)) {
-    case 0:
+    if (this->func_001D8140(&local, param_1, this->f44) != 0) {
+        this->func_001D8970(local.fC, local.f10, 0);
         return;
-    default:
-        break;
     }
-    this->func_001D8970(local.fC, local.f10, 0);
 }
 
 void C_001D8AE0::func_001D8AE0(int p1, int p2, int p3, int p4, int p5)
