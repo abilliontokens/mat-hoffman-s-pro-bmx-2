@@ -142,6 +142,23 @@ struct Q_189D40 { char pad[0x248]; int a248, a24c, a250, a254, a258, a25c, a260,
 extern char D_00289F8C[];
 void func_001577A0(void *l, void *v, int t);
 int func_001E8AF0(void *a, void *b);
+
+struct C_189D40 {
+    char pad0[0x340];
+    int f340;
+    char pad344[0x3a8 - 0x344];
+    G_189D40 **f3A8;
+    char pad3ac[0x3e4 - 0x3ac];
+    int f3E4;
+    int f3E8;
+    char pad3ec[0x498 - 0x3ec];
+    int f498;
+    Q_189D40 **f49C;
+    int f4A0;
+    int *f4A8;
+    int *f4AC;
+    int func_00189D40(void);
+};
 extern char D_0028A388[];
 extern char D_0028A374[];
 extern char D_0028A35C[];
