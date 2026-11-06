@@ -91,18 +91,55 @@ struct S_0008A0B0_Root {
 extern S_0008A0B0_Root *D_002A8490;
 
 struct W_Widget {
-    char pad0[0x34];
+    char pad0[0x14];
+    float f14;
+    float f18;
+    char pad1c[0xc];
+    float f28;
+    float f2c;
+    float f30;
     float f34;
-    char pad38[0x20];
+    float f3c;
+    float f40;
+    float f44;
+    float f48;
+    char pad4c[0xc];
     unsigned char flags;
-    W_Widget *init(void *tpl, float x, float y, int z);
+    W_Widget *func_001D5760(void);
+    void init(char *tpl, float x, float y, int z);
 };
 extern void *func_001E8A44(int size);
-extern "C" int D_00279B30;
+extern char D_00279B30[];
+extern char D_00279B10[];
+extern char D_00279B00[];
+extern char D_00279AF0[];
+extern char D_00279AE0[];
+extern char D_00279AD0[];
+extern float D_00279B28;
+extern float D_00279B2C;
+struct S_00089290_Tpl17 { char b[17]; };
+extern S_00089290_Tpl17 D_00278664;
+extern S_00089290_Tpl17 D_002A60B0;
 
 struct C_00089290 {
     char pad0[0x34];
     W_Widget *w34;
+    W_Widget *w38;
+    W_Widget *w3c;
+    W_Widget *w40;
+    W_Widget *w44;
+    W_Widget *w48;
+    W_Widget *w4c;
+    W_Widget *w50;
+    char pad54[0x10];
+    W_Widget *w64;
+    W_Widget *w68;
+    W_Widget *w6c;
+    W_Widget *w70;
+    W_Widget *w74;
+    W_Widget *w78;
+    W_Widget *w7c;
+    char pad80[0xa8];
     void func_00089290(void);
 };
 
