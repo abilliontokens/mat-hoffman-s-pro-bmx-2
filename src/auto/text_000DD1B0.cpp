@@ -3,7 +3,7 @@
 
 void *func_001E8A44(unsigned int size);
 
-extern char D_00278690[], D_002786A0[], D_00278678[], D_00278C18[], D_002786B0[], D_00278BD4[];
+extern char D_00278690[], D_002786A0[], D_00278678[], D_00278C18[], D_002786B0[];
 extern int D_0028F5DC;
 extern float D_00275AEC;
 
