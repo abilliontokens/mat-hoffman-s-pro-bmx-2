@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <string.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 static __forceinline float Sqrt_001CA480(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
 
@@ -380,15 +381,13 @@ void *WaterObject::func_001CB070(int flags) {
 extern "C" double __cdecl log10(double);
 int func_001CB0A0(int x)
 {
-    volatile float f;
     if (x == 0)
         return -10000;
-    f = log10(x * D_002755E0) * D_0028B320;
-    x = (int)f;
-    if (x > -2500)
-        x = x < -10000 ? -10000 : x;
-    x = x > 0 ? 0 : x;
-    return x;
+    AsmFloatToInt(log10(x * D_002755E0) * D_0028B320, &x);
+    if (x <= -2500)
+        return -10000;
+    else
+        return AsmMinI(0, AsmMaxI(-10000, x));
 }
 
 bool C_001CB120::func_001CB120(void)
@@ -463,11 +462,7 @@ void XboxSndIf_1CB290::func_001CB290(void)
         f13C->v2();
     }
     p = (SndBank_1CB290 *)func_001E8A44(0x20);
-    if (p != 0) {
-        q = p->func_001AC3A0();
-    } else {
-        q = 0;
-    }
+    q = p ? p->func_001AC3A0() : 0;
     f13C = q;
     q->v4();
 }
