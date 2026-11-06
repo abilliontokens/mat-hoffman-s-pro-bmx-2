@@ -20,7 +20,6 @@ struct C_0005A0E0 {
 };
 extern char D_002A47F0[], D_002A5348[], D_00275678[], D_002A48F8[], D_0027808C[], D_00278064[];
 extern C_VT *D_002A829C;
-void func_001ADCC0(void *, int, void *, void *, void *);
 void *func_001E8A44(int);
 void func_001BC7F0(void *, int);
 struct C_Dlg { virtual void v0(char *s, int n); virtual void v4(); virtual void v8(char *s, int x, int y); virtual void vC(char *s, int w, int h); virtual void v10(); virtual void v14(); };
