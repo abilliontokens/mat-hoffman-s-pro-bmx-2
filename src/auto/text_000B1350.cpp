@@ -58,7 +58,6 @@ struct C_000B1A40 {
     u32 f2C[4];
     char name[0x244 - 0x3C];
     char text[0x104];
-    int Clamp(int a, int b) { return a > b ? b : a; }
     void func_000B1A40(S_000B1A40_Stream *stream);
 };
 
