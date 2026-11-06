@@ -96,6 +96,25 @@ struct BmxUIPageMain {
     void func_001BF000(void);
 };
 
+static __forceinline void S5580_Highlight(BmxUIPageMain *page, int n, int count)
+{
+    int i;
+    E_000C5710 *e;
+
+    for (i = 0; i < count; i++) {
+        if (n * 2 == i || n * 2 + 1 == i) {
+            e = page->f2F8[i];
+            e->f38 = (e->f38 & 0xffbfa35a) | 0xbfa35a;
+            e->b58 |= 2;
+            page->f2F8[i]->func_001D5AD0();
+        } else {
+            e = page->f2F8[i];
+            e->f38 = (e->f38 & 0xffcccccc) | 0xcccccc;
+            e->b58 |= 2;
+        }
+    }
+}
+
 void BmxUIPageMain::func_000C5580()
 {
     S5580_Elem *m;
@@ -125,22 +144,22 @@ void BmxUIPageMain::func_000C5580()
         else
             m = ((S5580_G *)D_002B91AC)->f8C;
         m->func_001D5AD0();
-        n = f140->f4->f30 - 1;
-        count = (((S5580_Root *)D_002A8490)->p2E0->f2C0->func_0005C0E0() != 0) ? 10 : 8;
-        i = 0;
-        while (i < count) {
-            if (n * 2 == i || n * 2 + 1 == i) {
-                e = f2F8[i];
-                e->f38 = (e->f38 & 0xffbfa35a) | 0xbfa35a;
-                e->b58 |= 2;
-                f2F8[i]->func_001D5AD0();
-            } else {
-                e = f2F8[i];
-                e->f38 = (e->f38 & 0xffcccccc) | 0xcccccc;
-                e->b58 |= 2;
+        do {
+            n = f140->f4->f30 - 1;
+            count = (((S5580_Root *)D_002A8490)->p2E0->f2C0->func_0005C0E0() != 0) ? 10 : 8;
+            for (i = 0; i < count; i++) {
+                if (n * 2 == i || n * 2 + 1 == i) {
+                    e = f2F8[i];
+                    e->f38 = (e->f38 & 0xffbfa35a) | 0xbfa35a;
+                    e->b58 |= 2;
+                    f2F8[i]->func_001D5AD0();
+                } else {
+                    e = f2F8[i];
+                    e->f38 = (e->f38 & 0xffcccccc) | 0xcccccc;
+                    e->b58 |= 2;
+                }
             }
-            i++;
-        }
+        } while (0);
     }
     s = (S5580_G *)D_002B91AC;
     s->f24->func_001D5AD0();
