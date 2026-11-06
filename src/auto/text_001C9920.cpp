@@ -56,7 +56,7 @@ struct C_001C9920_28 {
 
 struct S_001C9920_arg {
     char pad0[0x28];
-    C_001C9920_28 *unk28;
+    C_001C9920_28 * volatile unk28;
 };
 
 struct C_001C9920 {
@@ -148,11 +148,13 @@ struct C_001CA1C0 {
 void C_001C9920::func_001C9920(int a)
 {
     S_001C9920_arg *p = (S_001C9920_arg *)a;
+    C_001C9920_28 *s;
     int rate;
     int v;
     unkCC = p;
-    if (p->unk28 != 0) {
-        unk44 = p->unk28->v16(0, &a, 0x80);
+    s = p->unk28;
+    if (s != 0) {
+        unk44 = s->v16(0, &a, 0x80);
         rate = func_001B2910(p->unk28->unkA4);
         v = (a << 3) / rate;
         unk21C = rate;
