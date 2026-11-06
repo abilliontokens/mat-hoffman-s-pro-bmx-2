@@ -40,7 +40,7 @@ static __forceinline void sub_179950(float *out, Vec4 *a, Vec4 *b)
     out[3] = 1.0f;
 }
 
-static __forceinline void norm_179950(float *out, float *in)
+static void norm_179950(float *out, float *in)
 {
     __m128 v = _mm_loadu_ps(in);
     __m128 sq = _mm_mul_ps(v, v);
