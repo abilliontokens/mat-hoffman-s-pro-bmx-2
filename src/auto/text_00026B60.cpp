@@ -111,7 +111,7 @@ struct ObjE0_26 {
     char pad21C[0x238 - 0x21C]; V4_000273F0 f238;
     char pad248[0x268 - 0x248]; V4_000273F0 f268;
     char pad278[0x300 - 0x278]; int f300;
-    void func_00175110(int); void func_00174550(int, int, int);
+    ObjE0_26 *func_00175110(int); void func_00174550(int, int, int);
 };
 struct ObjE4_26 {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
