@@ -126,6 +126,7 @@ struct V4_0014B940 {
     f32 x; f32 y; f32 z; f32 w;
     V4_0014B940() { z = 0; y = 0; x = 0; w = 1.0f; }
     V4_0014B940(f32 x_, f32 y_, f32 z_, f32 w_) { x = x_; y = y_; z = z_; w = w_; }
+    void operator=(const V4_0014B940 &o) volatile { w = o.w; x = o.x; y = o.y; z = o.z; }
     V4_0014B940 ScaleAdd(f32 s, const V4_0014B940 &d) const
     {
         return V4_0014B940(x + s * d.x, y + s * d.y, z + s * d.z, 1.0f);
@@ -247,18 +248,27 @@ int DynamicRayCollisionObject::func_0014B260(char *obj)
 
 void S_0014B940_Obj::func_0014B940()
 {
-    volatile V4_0014B940 a;
+    V4_0014B940 a;
+    V4_0014B940 t;
     volatile V4_0014B940 b;
     int i;
+
+    b.z = 0.0f;
+    b.y = 0.0f;
+    b.x = 0.0f;
+    b.w = 1.0f;
     for (i = 0; i < unkA8; i++) {
-        a.x = unkC0[i].x;
-        a.y = unkC0[i].y;
-        a.z = unkC0[i].z;
-        a.w = unkC0[i].w;
-        b.x = a.x + unkBC[i] * unkC4[i].x;
-        b.y = a.y + unkBC[i] * unkC4[i].y;
-        b.z = a.z + unkBC[i] * unkC4[i].z;
-        b.w = 1.0f;
+        f32 s = unkBC[i];
+
+        a = unkC0[i];
+        t.x = a.x + s * unkC4[i].x;
+        t.y = a.y + s * unkC4[i].y;
+        t.z = a.z + s * unkC4[i].z;
+        t.w = 1.0f;
+        b.w = t.w;
+        b.x = t.x;
+        b.y = t.y;
+        b.z = t.z;
     }
 }
 #pragma auto_inline(off)
