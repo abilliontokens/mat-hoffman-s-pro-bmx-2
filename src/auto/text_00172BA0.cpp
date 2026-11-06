@@ -80,6 +80,13 @@ struct C_001730B0 {
     void func_001730B0(float dt);
 };
 
+struct C_00172BA0 {
+    char pad[0x38];
+    int f38;
+    void func_00172BA0();
+    void func_001578D0();
+};
+
 extern int D_002A8BA0;
 extern int D_002A8BA4;
 extern int D_002A8BA8;
