@@ -18,21 +18,45 @@ struct C_001D5AD0 {
     void func_001D5AD0(void);
 };
 
+struct Wid_B4B0 {
+    char pad0[4];
+    float f4, f8;
+    char padC[0x38 - 0xC];
+    unsigned int color;
+    char pad3C[0x58 - 0x3C];
+    unsigned char b58;
+    __forceinline void SetPos(float x, float y) { if (f4 != x || f8 != y) { f4 = x; f8 = y; b58 |= 1; } }
+    void func_001D5AD0(void);
+};
 struct C_0006B4B0 {
     char pad0[0x98];
     C_001D5AD0 *unk98;
     C_001D5AD0 *unk9C;
-    char padA0[0xB8 - 0xA0];
+    Wid_B4B0 *unkA0;
+    Wid_B4B0 *unkA4;
+    Wid_B4B0 *unkA8;
+    Wid_B4B0 *unkAC;
+    Wid_B4B0 *unkB0;
+    Wid_B4B0 *unkB4;
     C_001D5AD0 *unkB8[2];
-    char padC0[0xF8 - 0xC0];
+    char padC0[0xE4 - 0xC0];
+    C_001D5AD0 *unkE4[5];
     C_001D5AD0 *unkF8[5];
-    char pad10C[4];
     C_001D5AD0 *unk10C[16];
-    char pad14C[0x154 - 0x14C];
+    C_001D5AD0 *unk14C;
+    char pad150[0x154 - 0x150];
     int unk154;
     char pad158[0x164 - 0x158];
     int unk164;
     int unk168;
+    char pad16C[0x1B4 - 0x16C];
+    int unk1B4;
+    int unk1B8;
+    int unk1BC;
+    char pad1C0[0x1D8 - 0x1C0];
+    int unk1D8;
+    char pad1DC[0x1FC - 0x1DC];
+    int unk1FC;
     void func_0006B4B0(void);
 };
 
@@ -240,6 +264,17 @@ struct C_0006BB90 {
     void func_0006BB90(void);
 };
 
+void C_0006B4B0::func_0006B4B0(void)
+{
+    int i;
+    unk98->func_001D5AD0();
+    unk9C->func_001D5AD0();
+    for (i = 0; i < 5; i++) {
+        unkF8[i - 5 + 0]->func_001D5AD0();
+        unkF8[i]->func_001D5AD0();
+    }
+}
+
 void C_0006BB90::func_0006BB90(void) {
     D_002EFDB8->vf7(1);
     unk1b4 = 0;
@@ -292,6 +327,184 @@ int C_0006BBF0::func_0006BBF0(void)
     unk1e4 = 1;
     unk1a8 = 1;
     return 1;
+}
+
+int C_0006BD40::func_0006BD40(S_0006BD40_Msg *m, int a)
+{
+    struct S26 { char b[0x26]; };
+    int len;
+    char tmp[0x10];
+    char name[0x10];
+    char alpha[0x26];
+    char *p;
+    char *q;
+
+    if (unk1a8 != 0) {
+        D_002B9024 = m->unk8;
+        unk1a8 = 0;
+    }
+    if (unk1b4 != 0) return 0;
+    if (unk1b8 != 0) return 0;
+
+    if (unk168 != 0) {
+        p = *unk174;
+        len = 0;
+        while (p[len] != 0) len++;
+        q = tmp;
+        while ((*q++ = *p++) != 0) {}
+        *(S26 *)alpha = *(S26 *)D_002789C4;
+
+        if (func_001361E0(2, 2, m, 0x80000000)) {
+            unk15C->func_00031610(2, 1);
+            if (++unk188 >= 0x25) unk188 = 0;
+            func_001ADCC0((char *)&m, 0x104, D_002789C0, alpha[unk188]);
+            unk178->func_0005E840((char *)&m);
+            if (unk1f0 == 0) {
+                unk1f0 = 1;
+                unk1e8 = 0;
+                unk1f8 = m;
+                unk1f4 = a;
+                func_00157BF0(m, a);
+                return 0;
+            }
+        }
+        if (func_001361E0(3, 2, m, 0x80000000)) {
+            unk15C->func_00031610(2, 1);
+            if (--unk188 < 0) unk188 = 0x24;
+            func_001ADCC0((char *)&m, 0x104, D_002789C0, alpha[unk188]);
+            unk178->func_0005E840((char *)&m);
+            if (unk1ec == 0) {
+                unk1ec = 1;
+                unk1e8 = 0;
+                unk1f8 = m;
+                unk1f4 = a;
+                func_00157BF0(m, a);
+                return 0;
+            }
+        }
+        if (func_001361E0(0, 2, m, 0x80000000)) {
+            unk15C->func_00031610(2, 1);
+            if (len > 0) {
+                p = *unk174;
+                q = name;
+                while ((*q++ = *p++) != 0) {}
+                tmp[len - 1] = 0;
+                unk178->func_0005E840(&name[len - 1]);
+                unk188 = (int)(func_001E8AF0(alpha, &name[len - 1]) - (alpha + 8));
+                unk178->func_0005E840(tmp);
+                func_00157BF0(m, a);
+                return 0;
+            }
+            unk178->func_0005E840(D_002789BC);
+            unk188 = 0;
+            func_00157BF0(m, a);
+            return 0;
+        }
+        if (func_001361E0(1, 2, m, 0x80000000)) {
+            unk15C->func_00031610(2, 1);
+            if (len < 0xf) {
+                p = *(char **)unk178;
+                q = tmp;
+                while ((*q++ = *p++) != 0) {}
+                ((C_0005E840 *)unk174)->func_0005E840(tmp);
+                unk184 = 1;
+                unk180 = 0;
+                unk188 = 0;
+                unk178->func_0005E840(D_002789BC);
+                func_00157BF0(m, a);
+                return 0;
+            }
+        }
+        goto tail;
+    }
+
+    if (func_001361E0(4, 2, m, 0x80000000)) goto other;
+    if (func_001361E0(0x17, 2, m, 0x80000000)) goto other;
+    if (func_001361E0(5, 2, m, 0x80000000)) goto keys23;
+    if (func_001361E0(0x18, 2, m, 0x80000000)) {
+        if (unk1b8 != 0) return 0;
+        unk15C->func_00031610(4, 1);
+        unk160 = 0;
+        unk1b8 = 1;
+        return 0;
+    }
+    goto tail;
+
+other:
+    if (func_001361E0(2, 2, m, 0x80000000)) {
+        unk15C->func_00031610(2, 1);
+        unk158 = unk154;
+        if (--unk154 < 0) unk154 = 7;
+        unk1e4 = 1;
+        if (unk154 >= 0) goto tail;
+        func_00157BF0(m, a);
+        return 0;
+    }
+    if (func_001361E0(3, 2, m, 0x80000000)) {
+        unk15C->func_00031610(2, 1);
+        unk158 = unk154;
+        unk1e4 = 1;
+        if (++unk154 < 8) goto tail;
+        unk154 = 0;
+        func_00157BF0(m, a);
+        return 0;
+    }
+    goto keys456;
+
+keys23:
+    if (func_001361E0(2, 2, m, 0x80000000)) {
+        unk15C->func_00031610(2, 1);
+        unk158 = unk154;
+        if (--unk154 < 0) unk154 = 7;
+        unk1e4 = 1;
+        if (unk154 >= 0) goto tail;
+        func_00157BF0(m, a);
+        return 0;
+    }
+    if (func_001361E0(3, 2, m, 0x80000000)) {
+        unk15C->func_00031610(2, 1);
+        unk158 = unk154;
+        unk1e4 = 1;
+        if (++unk154 < 8) goto tail;
+        unk154 = 0;
+        func_00157BF0(m, a);
+        return 0;
+    }
+    goto keys456;
+
+keys456:
+    if (func_001361E0(4, 2, m, 0x80000000)) goto set18;
+    if (func_001361E0(0x17, 2, m, 0x80000000)) goto set18;
+    if (func_001361E0(5, 2, m, 0x80000000)) goto set17;
+    if (func_001361E0(0x18, 2, m, 0x80000000)) goto set17;
+    if (func_001361E0(6, 2, m, 0x80000000)) {
+        if (unk1d8 != 1) goto tail;
+        if (unk1bc != 0) goto tail;
+        unk15C->func_00031610(4, 1);
+        unk1bc = 1;
+        unk160 = 0;
+        func_00157BF0(m, a);
+        return 0;
+    }
+    goto tail;
+
+set18:
+    if (unk1b8 != 0) return 0;
+    unk15C->func_00031610(4, 1);
+    unk160 = 0;
+    unk1b8 = 1;
+    return 0;
+
+set17:
+    if (unk1b4 != 0) return 0;
+    unk15C->func_00031610(4, 1);
+    unk1b4 = 1;
+    unk160 = 0;
+    return 0;
+
+tail:
+    func_00157BF0(m, a);
+    return 0;
 }
 
 C_0006C380 *C_0006C380::func_0006C380(int a0)
