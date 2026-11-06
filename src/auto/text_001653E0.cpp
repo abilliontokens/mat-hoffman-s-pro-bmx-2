@@ -390,6 +390,4 @@ void C_00166190::func_00166190(void)
         D_002BEAAC->func_0013C110(id);
     }
 }
-struct Obj1653 { virtual void v0(); virtual void v1(); virtual void get(float t, float *out); virtual void get2(float t, float *out); int f4; };
-struct Set1653 { char pad[0x14]; Obj1653 **f14; Obj1653 **f18; int f1c; int f20; char pad24[0x14]; float f38; };
-struct C1653 { char pad0[4]; int f4; char pad8[4]; int fc; void func_001653E0(Set1653*, Set1653*, Set1653*, Set1653*, float, int, int, int, float); };
+
