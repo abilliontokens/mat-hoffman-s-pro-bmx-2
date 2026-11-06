@@ -156,7 +156,7 @@ struct V4_00104A00 {
     }
 };
 
-static float fabs_00104A00(float x)
+static float fabs_00104A00(volatile float x)
 {
     volatile int tmp;
     tmp = *(int *)&x & 0x7fffffff;
