@@ -149,7 +149,7 @@ struct Obj14B4850 {
     int f4;
     int f8;
     int fC;
-    int f10;
+    float f10;
 };
 
 struct StopLight {
