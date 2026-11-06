@@ -76,6 +76,7 @@ struct C_001138E0 {
     char pad1F8C[0x2010 - 0x1F8C]; int f2010;
     char pad2014[0x20A0 - 0x2014]; int f20A0;
     void func_00108D10(int a, int b);
+    float func_00108CE0(int idx);
 
     void func_0010DD90(float a, float b, void *c, int d, int e, int f);
     void func_001138E0(float dt);
