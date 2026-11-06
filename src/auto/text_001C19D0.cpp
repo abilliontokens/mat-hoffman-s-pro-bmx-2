@@ -159,7 +159,7 @@ static __forceinline void LoadSub19D0(Sub19D0 *s, Cfg19D0 *cfg, char **keys, cha
     s->f38 = (s->f38 ^ packed) & 0xffffff ^ s->f38;
     s->f58 |= 2;
 }
-static __forceinline void LoadSubK19D0(Sub19D0 *s, Cfg19D0 *cfg, char *buf, char *k0, char *k1, char *k2, char *k3, char *k4, char *k5, char *k6, char *k7, char *k8, char *k9)
+static __forceinline void LoadSubK19D0(Sub19D0 *s, Cfg19D0 *cfg, char *buf, char *k0, char *k1, char *k2, char *k3, char *k4, char *k5, char *k6, char *k7, char *k8, char *k9, int *b = 0, float *vf = 0)
 {
     char *p = func_001E8AC0(buf, 0x2e);
     if (p != 0) {
@@ -169,11 +169,10 @@ static __forceinline void LoadSubK19D0(Sub19D0 *s, Cfg19D0 *cfg, char *buf, char
     int v1 = (int)s->f28;
     int v2 = (int)s->f2c;
     int a[4];
-    int b[4];
-    b[0] = 0; b[1] = 0; b[2] = 0; b[3] = 0;
-    b[2] = v1;
+    int *bb = (int *)vf;
+    bb[2] = v1;
     a[0] = v2;
-    if (cfg->func_00168E70(k0, b, a) != 0) {
+    if (cfg->func_00168E70(k0, bb, a) != 0) {
         s->f58 |= 4;
         s->f3c = (float)a[0] * s->f4c;
         s->f40 = (float)a[2] * s->f4c;
@@ -343,18 +342,10 @@ void *C_001C19D0::func_001C19D0(int a1, int a2)
     func_001BF600(cfg);
     f28 = a2;
     char buf[0x104];
-    char *keys1[10];
-    keys1[0] = D_0028E1D4; keys1[1] = D_0028E1C4; keys1[2] = D_0028E1B0; keys1[3] = D_0028E19C;
-    keys1[4] = D_0028E18C; keys1[5] = D_0028E17C; keys1[6] = D_0028E16C; keys1[7] = D_0028E15C;
-    keys1[8] = D_0028E14C; keys1[9] = D_0027DE44;
     cfg->func_00168BE0(D_0028D998, D_0028D75C, buf, 0x104);
-    LoadSub19D0(&f68, cfg, keys1, buf);
-    char *keys2[10];
-    keys2[0] = D_0028E120; keys2[1] = D_0028E10C; keys2[2] = D_0028E0F8; keys2[3] = D_0028E0E4;
-    keys2[4] = D_0028E0D4; keys2[5] = D_0028E0C0; keys2[6] = D_0028E0AC; keys2[7] = D_0028E09C;
-    keys2[8] = D_0028E08C; keys2[9] = D_0028E07C;
+    LoadSubK19D0(&f68, cfg, buf, D_0028E1D4, D_0028E1C4, D_0028E1B0, D_0028E19C, D_0028E18C, D_0028E17C, D_0028E16C, D_0028E15C, D_0028E14C, D_0027DE44);
     cfg->func_00168BE0(D_0028E138, D_0028D75C, buf, 0x104);
-    LoadSub19D0(&fCC, cfg, keys2, buf);
+    LoadSubK19D0(&fCC, cfg, buf, D_0028E120, D_0028E10C, D_0028E0F8, D_0028E0E4, D_0028E0D4, D_0028E0C0, D_0028E0AC, D_0028E09C, D_0028E08C, D_0028E07C);
     return this;
 }
 
