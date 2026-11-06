@@ -119,11 +119,11 @@ static __forceinline float Max_001C6B30(float a, float b)
 
 inline void cross_001C6B30(float *out, float *a, float *b)
 {
-    _mm_storeu_ps(out, _mm_shuffle_ps(
-        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
-                   _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9))),
-        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
-                   _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9))), 0xc9));
+    __m128 va = _mm_loadu_ps(a);
+    __m128 vb = _mm_loadu_ps(b);
+    __m128 r = _mm_sub_ps(_mm_mul_ps(vb, _mm_shuffle_ps(va, va, 0xc9)),
+                          _mm_mul_ps(va, _mm_shuffle_ps(vb, vb, 0xc9)));
+    _mm_storeu_ps(out, _mm_shuffle_ps(r, r, 0xc9));
 }
 
 struct V4_001C6B30 {
