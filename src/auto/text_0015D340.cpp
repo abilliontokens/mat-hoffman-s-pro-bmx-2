@@ -125,6 +125,7 @@ struct C_0015DA60 {
 
 extern float D_00275460;
 struct V4_15E130 { float x, y, z, w; };
+struct Sum_15E130 { V4_15E130 sa, sb; };
 struct N2_15E130 { char pad[0x24]; struct N_15E130* list; char pad2[0x14]; int idx; };
 struct A_15E130 { int pad; N2_15E130* p; };
 struct C_0017A1D0 { int func_0017A1D0(float a, float b, float* out); };
@@ -138,6 +139,25 @@ struct C_0015E0F0 {
     int func_0015E0F0(int param_1);
 };
 
+
+extern int D_002E2928;
+extern int D_002E292C;
+int __stdcall func_00157BF0(int a, int b);
+int func_00135C70(int a, int b, int c, int d);
+int __stdcall func_0015D340(int a, int b)
+{
+    int r = func_00157BF0(a, b);
+
+    if (func_00135C70(0x1e, 0, a, 0x80)) {
+        D_002E2928 = 1 - D_002E2928;
+        return 1;
+    }
+    if (func_00135C70(0x26, 0, a, 0x80)) {
+        D_002E292C = 1 - D_002E292C;
+        return 1;
+    }
+    return r;
+}
 
 void C_0015DA60::func_0015D850(int count, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int flag)
 {
