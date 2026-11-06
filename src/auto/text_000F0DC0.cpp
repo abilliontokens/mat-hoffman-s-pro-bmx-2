@@ -7,6 +7,11 @@ struct Elem_000F0DC0 {
  char pad0[0x14]; int x,y; char pad1C[0xc]; int width; int f2C; int angle; int f34; unsigned int color; int m0,m1,m2,m3; char pad4C[0xc]; unsigned char flags;
  Elem_000F0DC0 *func_001D5760();
  void func_001D5810(int,int,int,int);
+ void setWidth(int v) { if(width!=v){width=v;flags|=1;} }
+ void setColor() { color=(color&0xffbfa35a)|0xbfa35a;flags|=2; }
+ void setPos(int a,int b) { if(x!=a||y!=b){x=a;y=b;flags|=1;} }
+ void setAngle(int v) {if(angle!=v){angle=v;flags|=1;} }
+ void setMatrix(){m0=0x3f800000;m1=0;m2=0;m3=0x3f800000;flags|=4;}
 };
 struct C_000F0DC0 {
  char pad0[0x3e8];
