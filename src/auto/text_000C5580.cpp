@@ -160,6 +160,8 @@ struct C_6420_Elem {
     char pad3C[0x1C];
     unsigned char b58;
     void func_001D5AD0();
+    void color() { f38 = (f38 & 0xffbfa35a) | 0xbfa35a; b58 |= 2; }
+    void dim() { f38 = (f38 & 0xffcccccc) | 0xcccccc; b58 |= 2; }
 };
 
 struct C_5E40_G {
@@ -319,5 +321,54 @@ void __fastcall func_000C5E40(BmxUIPageParkEditor *self)
     D_002B91AC->f80->func_001D6600();
     D_002B91AC->f84->func_001D6600();
     D_002B91AC->f34->func_001D6600();
+}
+
+void BmxUIPageParkEditor::func_000C6420()
+{
+    C_6420_Elem **p;
+    C_6420_Elem *e;
+    C_6420_Elem *m;
+    C_5E40_G *s;
+    C_5E40_B *o;
+    int n;
+    int i;
+
+    o = f124->f25C;
+    if (o->f74->func_000301D0() == 0) {
+        if (f280)
+            m = D_002B91AC->f68;
+        else
+            m = D_002B91AC->f50;
+        m->func_001D5AD0();
+    }
+    if (f294)
+        m = D_002B91AC->f90;
+    else
+        m = D_002B91AC->f88;
+    m->func_001D5AD0();
+    if (f298)
+        m = D_002B91AC->f94;
+    else
+        m = D_002B91AC->f8C;
+    m->func_001D5AD0();
+    n = f140->f4->f30 - 1;
+    p = (C_6420_Elem **)f2D0;
+    for (i = 0; i < 4; i++, p++) {
+        if (i == n * 2 || i == n * 2 + 1) {
+            e = *p;
+            e->b58 |= 2;
+            e->f38 = (e->f38 & 0xffbfa35a) | 0xbfa35a;
+        } else {
+            e = *p;
+            e->f38 = (e->f38 & 0xffcccccc) | 0xcccccc;
+            e->b58 |= 2;
+        }
+        (*p)->func_001D5AD0();
+    }
+    s = D_002B91AC;
+    s->f24->func_001D5AD0();
+    s->f28->func_001D5AD0();
+    s->f2C->func_001D5AD0();
+    s->f30->func_001D5AD0();
 }
 
