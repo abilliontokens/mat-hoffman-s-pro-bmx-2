@@ -70,7 +70,7 @@ static __forceinline void S_3D7B0_Round(int *out, float f)
 {
     int * volatile p = out;
 
-    *p = _mm_cvtss_si32(*(__m128 *)&f);
+    *p = _mm_cvtss_si32(_mm_load_ss(&f));
 }
 struct S_3D7B0_Vec4 { float x, y, z, w; };
 struct C_3D7B0 {
@@ -85,14 +85,13 @@ struct C_3D7B0 {
 
 int C_3D7B0::func_0003D7B0(S_3D7B0_Vec4 v)
 {
-    S_3D7B0_Vec4 w = v;
     int ix;
     int iy;
     int iz;
 
-    S_3D7B0_Round(&ix, w.x - (float)f428);
-    S_3D7B0_Round(&iy, w.y - (float)f42c);
-    S_3D7B0_Round(&iz, w.z - (float)f430);
+    S_3D7B0_Round(&ix, v.x - (float)f428);
+    S_3D7B0_Round(&iy, v.y - (float)f42c);
+    S_3D7B0_Round(&iz, v.z - (float)f430);
     ix = ix / 10;
     iy = iy / 5;
     iz = iz / 10;
