@@ -190,11 +190,17 @@ struct C_00051CF0 {
     C_000529D0_1C4 *unk1C4;           /* 0x1C4 */
     int unk1C8;                       /* 0x1C8 */
     int unk1CC;                       /* 0x1CC */
-    char pad1D0[0xE8];
+    char pad1D0[0xD8];
+    Img_51F *unk2A8;                  /* 0x2A8 */
+    Img_51F *unk2AC;                  /* 0x2AC */
+    Img_51F *unk2B0;                  /* 0x2B0 */
+    Img_51F *unk2B4;                  /* 0x2B4 */
     float unk2B8[4];                  /* 0x2B8 */
     char pad2C8[4];
     int unk2CC;                       /* 0x2CC */
-    char pad2D0[0x88];
+    char pad2D0[8];
+    float m1[4][4];                   /* 0x2D8 */
+    float m2[4][4];                   /* 0x318 */
     int unk358;                       /* 0x358 */
     void func_00031450();
     void func_00032860();
