@@ -34,7 +34,7 @@ struct C_00082790_X {
 
 struct S_00082790_Settings {
     float f[18];
-    char rest[0x154 - 72];
+    char rest[0x14c - 72];
 };
 struct C_00082400 {
     void func_00082400(short param_1);
@@ -270,252 +270,267 @@ extern int D_0028F5E0;
 void BmxInGameOverlays::func_00082790()
 {
     int func_001ADCC0(char *, int, char *, ...);
-    C_00082790_Ini ini;
     char buf[0x104];
-    float v[4];
-    float tA;
-    float tB;
-    float tC;
-    float tD;
-    float tE;
-    float tF;
-    int iA;
-    char ch1;
-    char ch2;
-    char *selStr;
-    int *sub;
+    C_00082790_Ini ini;
+    char buf2[0x104];
+    S_00082790_Settings s;
     int val;
+    int *sub;
 
-    v[0] = 0.0f;
-    v[1] = 0.0f;
-    v[2] = 0.0f;
-    v[3] = 1.0f;
+    s.f[0] = 0.0f;
+    s.f[1] = 0.0f;
+    s.f[2] = 0.0f;
+    s.f[3] = 1.0f;
+    s.f[14] = 0.0f;
+    s.f[15] = 0.0f;
+    s.f[16] = 0.0f;
+    s.f[17] = 1.0f;
+    s.f[6] = 0.0f;
+    s.f[7] = 0.0f;
+    s.f[8] = 0.0f;
+    s.f[9] = 1.0f;
+    s.f[10] = 0.0f;
+    s.f[11] = 0.0f;
+    s.f[12] = 0.0f;
+    s.f[13] = 1.0f;
     ini.func_00168280();
-    func_001ADCC0(buf, 0x104, D_0027953C, D_002A5348);
-    if (ini.sub.func_00169490(buf, 0) != 0) {
-        // section 1
-        val = *(int *)(*(int *)(D_002A8490 + 0x2e0) + 8);
-        if (val == 0) {
-            selStr = D_00279520;
-        } else if (val == 2) {
-            selStr = w[0x10] ? D_002794C8 : D_002794F4;
-        } else {
-            selStr = w[0x10] ? D_00279468 : D_00279498;
+    func_001ADCC0(buf, 0x104, D_0027953C, &D_002A5348);
+    if (ini.sub.func_00169490(buf, 0) == 0) {
+        ini.func_001691E0();
+        return;
+    }
+    val = *(int *)(*(int *)(D_002A8490 + 0x2e0) + 8);
+    if (val == 0) {
+        func_001ADCC0(buf, 0x104, D_00279520);
+    } else if (val == 2) {
+        if (w[0x10]) func_001ADCC0(buf, 0x104, D_002794C8);
+        else func_001ADCC0(buf, 0x104, D_002794F4);
+    } else {
+        if (w[0x10]) func_001ADCC0(buf, 0x104, D_00279468);
+        else func_001ADCC0(buf, 0x104, D_00279498);
+    }
+    if (ini.sub.func_00169710(buf) != 0) {
+        ini.sub.func_00168CB0(D_0027945C, D_002A2034, &s.f[1]);
+        ini.sub.func_00168BE0(D_00279448, D_00275630, (int *)&s.f[1], -1);
+        ini.sub.func_00168CB0(D_0027943C, D_002A2034, &s.f[15]);
+        ini.sub.func_00168BE0(D_00279428, D_00275630, (int *)&s.f[6], -1);
+        ini.sub.func_00168CB0(D_00279418, D_002A2034, &s.f[7]);
+        ini.sub.func_00168CB0(D_00279408, D_002A2034, &s.f[11]);
+        ini.sub.func_00168C20(D_002793F8, 0, (char *)&s.f[6]);
+        sub = *(int **)((char *)this + 0x16c);
+        if (*(float *)(sub + 1) != s.f[1] || *(float *)(sub + 2) != s.f[2]) {
+            *(float *)(sub + 2) = s.f[2];
+            *(float *)(sub + 1) = s.f[1];
+            *((char *)sub + 0x4e) |= 6;
         }
-        func_001ADCC0(buf, 0x104, selStr);
-        if (ini.sub.func_00169710(buf) != 0) {
-            ini.sub.func_00168CB0(D_0027945C, D_002A2034, &tA);
-            ini.sub.func_00168BE0(D_00279448, D_00275630, &iA, -1);
-            ini.sub.func_00168CB0(D_0027943C, D_002A2034, &tC);
-            ini.sub.func_00168BE0(D_00279428, D_00275630, &iA, -1);
-            ini.sub.func_00168CB0(D_00279418, D_002A2034, &tE);
-            ini.sub.func_00168CB0(D_00279408, D_002A2034, &tF);
-            ini.sub.func_00168C20(D_002793F8, 0, &ch1);
-            sub = *(int **)((char *)this + 0x16c);
-            if (*(float *)(sub + 1) != tA || *(float *)(sub + 2) != tB) {
-                *(float *)(sub + 2) = tB;
-                *(float *)(sub + 1) = tA;
-                *((char *)sub + 0x4e) |= 6;
-            }
-            sub = *(int **)((char *)this + 0x178);
-            if (*(float *)(sub + 1) != tC || *(float *)(sub + 2) != tD) {
-                *(float *)(sub + 2) = tD;
-                *(float *)(sub + 1) = tC;
-                *((char *)sub + 0x4e) |= 6;
-            }
-            switch (ch1) {
-            case 'C':
-            case 'c':
-                val = D_0028F5E0;
-                break;
-            case 'L':
-            case 'l':
-                val = D_0028F5DC;
-                break;
-            case 'R':
-            case 'r':
-                val = D_0028F5EC;
-                break;
-            default:
-                goto after1;
-            }
-            sub = *(int **)((char *)this + 0x16c);
-            if (*(int *)((char *)sub + 0x44) != val) {
-                *(int *)((char *)sub + 0x44) = val;
-                *((char *)sub + 0x4e) |= 6;
-            }
-        after1:
-            switch (ch2) {
-            case 'C':
-            case 'c':
-                val = D_0028F5E0;
-                break;
-            case 'L':
-            case 'l':
-                val = D_0028F5DC;
-                break;
-            case 'R':
-            case 'r':
-                val = D_0028F5EC;
-                break;
-            default:
-                goto after2;
-            }
-            sub = *(int **)((char *)this + 0x178);
-            if (*(int *)((char *)sub + 0x44) != val) {
-                *(int *)((char *)sub + 0x44) = val;
-                *((char *)sub + 0x4e) |= 6;
-            }
-        after2:
-            ;
+        sub = *(int **)((char *)this + 0x178);
+        if (*(float *)(sub + 1) != s.f[15] || *(float *)(sub + 2) != s.f[16]) {
+            *(float *)(sub + 2) = s.f[16];
+            *(float *)(sub + 1) = s.f[15];
+            *((char *)sub + 0x4e) |= 6;
         }
-        // section 2 (reads only)
-        val = *(int *)(*(int *)(D_002A8490 + 0x2e0) + 8);
-        if (val == 0) {
-            selStr = D_002793DC;
-        } else if (val == 2) {
-            selStr = w[0x10] ? D_00279384 : D_002793B0;
-        } else {
-            selStr = w[0x10] ? D_00279324 : D_00279354;
+        switch (((char *)s.f)[0]) {
+        case 'C':
+        case 'c':
+            val = D_0028F5E0;
+            break;
+        case 'L':
+        case 'l':
+            val = D_0028F5DC;
+            break;
+        case 'R':
+        case 'r':
+            val = D_0028F5EC;
+            break;
+        default:
+            goto after1;
         }
-        func_001ADCC0(buf, 0x104, selStr);
-        if (ini.sub.func_00169710(buf) != 0) {
-            ini.sub.func_00168CB0(D_0027945C, D_002A2034, &tA);
-            ini.sub.func_00168BE0(D_00279448, D_00275630, &iA, -1);
-            ini.sub.func_00168CB0(D_0027943C, D_002A2034, &tC);
-            ini.sub.func_00168BE0(D_00279428, D_00275630, &iA, -1);
-            ini.sub.func_00168CB0(D_00279418, D_002A2034, &tE);
-            ini.sub.func_00168CB0(D_00279408, D_002A2034, &tF);
-            ini.sub.func_00168C20(D_002793F8, 0, &ch1);
+        sub = *(int **)((char *)this + 0x16c);
+        if (*(int *)((char *)sub + 0x44) != val) {
+            *(int *)((char *)sub + 0x44) = val;
+            *((char *)sub + 0x4e) |= 6;
         }
-        // section 3
-        val = *(int *)(*(int *)(D_002A8490 + 0x2e0) + 8);
-        if (val == 0) {
-            selStr = D_0027930C;
-        } else if (val == 2) {
-            selStr = w[0x10] ? D_002792BC : D_002792E4;
-        } else {
-            selStr = w[0x10] ? D_0027926C : D_00279294;
+    after1:
+        switch (((char *)s.f)[0x14]) {
+        case 'C':
+        case 'c':
+            val = D_0028F5E0;
+            break;
+        case 'L':
+        case 'l':
+            val = D_0028F5DC;
+            break;
+        case 'R':
+        case 'r':
+            val = D_0028F5EC;
+            break;
+        default:
+            goto after2;
         }
-        func_001ADCC0(buf, 0x104, selStr);
-        if (ini.sub.func_00169710(buf) != 0) {
-            ini.sub.func_00168CB0(D_0027925C, D_002A2034, &tA);
-            ini.sub.func_00168BE0(D_0027923C, D_00279258, &iA, -1);
-            sub = *(int **)((char *)this + 0xc50);
-            if (*(float *)(sub + 1) != tA || *(float *)(sub + 2) != tB) {
-                *(float *)(sub + 2) = tB;
-                *(float *)(sub + 1) = tA;
-                *((char *)sub + 0x4e) |= 6;
-            }
-            switch (ch1) {
-            case 'C':
-            case 'c':
-                val = D_0028F5E0;
-                break;
-            case 'L':
-            case 'l':
-                val = D_0028F5DC;
-                break;
-            case 'R':
-            case 'r':
-                val = D_0028F5EC;
-                break;
-            default:
-                goto after3;
-            }
-            sub = *(int **)((char *)this + 0xc50);
-            if (*(int *)((char *)sub + 0x44) != val) {
-                *(int *)((char *)sub + 0x44) = val;
-                *((char *)sub + 0x4e) |= 6;
-            }
-        after3:
-            ini.sub.func_00168CB0(D_0027922C, D_002A2034, &tA);
-            ini.sub.func_00168BE0(D_00279210, D_00279258, &iA, -1);
-            sub = *(int **)((char *)this + 0x208);
-            if (*(float *)(sub + 1) != tA || *(float *)(sub + 2) != tB) {
-                *(float *)(sub + 2) = tB;
-                *(float *)(sub + 1) = tA;
-                *((char *)sub + 0x4e) |= 6;
-            }
-            switch (ch1) {
-            case 'C':
-            case 'c':
-                val = D_0028F5E0;
-                break;
-            case 'L':
-            case 'l':
-                val = D_0028F5DC;
-                break;
-            case 'R':
-            case 'r':
-                val = D_0028F5EC;
-                break;
-            default:
-                goto after4;
-            }
-            sub = *(int **)((char *)this + 0x208);
-            if (*(int *)((char *)sub + 0x44) != val) {
-                *(int *)((char *)sub + 0x44) = val;
-                *((char *)sub + 0x4e) |= 6;
-            }
-        after4:
-            ini.sub.func_00168CB0(D_00279204, D_002A2034, &tA);
-            ini.sub.func_00168BE0(D_002791EC, D_00279258, &iA, -1);
-            ((C_00082790_X *)*(int *)((char *)this + 0xd08))->func_001B1A30((int)tA, (int)tB, 0);
-            switch (ch1) {
-            case 'C':
-            case 'c':
-                val = D_0028F5E0;
-                break;
-            case 'L':
-            case 'l':
-                val = D_0028F5DC;
-                break;
-            case 'R':
-            case 'r':
-                val = D_0028F5EC;
-                break;
-            default:
-                goto after5;
-            }
-            ((C_00082790_X *)*(int *)((char *)this + 0xd08))->func_001B19A0(val);
-        after5:
-            ini.sub.func_00168CB0(D_002791E0, D_002A2034, &tA);
-            ini.sub.func_00168BE0(D_002791C8, D_00279258, &iA, -1);
-            ((C_00082790_X *)*(int *)((char *)this + 0xd0c))->func_001B1A30((int)tA, (int)tB, 0);
-            switch (ch1) {
-            case 'C':
-            case 'c':
-                val = D_0028F5E0;
-                break;
-            case 'L':
-            case 'l':
-                val = D_0028F5DC;
-                break;
-            case 'R':
-            case 'r':
-                val = D_0028F5EC;
-                break;
-            default:
-                goto after6;
-            }
-            ((C_00082790_X *)*(int *)((char *)this + 0xd0c))->func_001B19A0(val);
-        after6:
-            ini.sub.func_00168CB0(D_00279418, D_002A2034, &tE);
-            ini.sub.func_00168CB0(D_00279408, D_002A2034, &tF);
-            ini.sub.func_00168C20(D_002793F8, 0, &ch1);
-            sub = *(int **)((char *)this + 0x164);
-            if (*(float *)(sub + 1) != tA || *(float *)(sub + 2) != tB) {
-                *(float *)(sub + 2) = tB;
-                *(float *)(sub + 1) = tA;
-                *((char *)sub + 0x58) |= 1;
-            }
-            sub = *(int **)((char *)this + 0x168);
-            if (*(float *)(sub + 1) != tC || *(float *)(sub + 2) != tD) {
-                *(float *)(sub + 2) = tD;
-                *(float *)(sub + 1) = tC;
-                *((char *)sub + 0x58) |= 1;
-            }
+        sub = *(int **)((char *)this + 0x178);
+        if (*(int *)((char *)sub + 0x44) != val) {
+            *(int *)((char *)sub + 0x44) = val;
+            *((char *)sub + 0x4e) |= 6;
+        }
+    after2:
+        ;
+    }
+    val = *(int *)(*(int *)(D_002A8490 + 0x2e0) + 8);
+    if (val == 0) {
+        func_001ADCC0(buf, 0x104, D_002793DC);
+    } else if (val == 2) {
+        if (w[0x10]) func_001ADCC0(buf, 0x104, D_00279384);
+        else func_001ADCC0(buf, 0x104, D_002793B0);
+    } else {
+        if (w[0x10]) func_001ADCC0(buf, 0x104, D_00279324);
+        else func_001ADCC0(buf, 0x104, D_00279354);
+    }
+    if (ini.sub.func_00169710(buf) != 0) {
+        ini.sub.func_00168CB0(D_0027945C, D_002A2034, &s.f[1]);
+        ini.sub.func_00168BE0(D_00279448, D_00275630, (int *)&s.f[1], -1);
+        ini.sub.func_00168CB0(D_0027943C, D_002A2034, &s.f[15]);
+        ini.sub.func_00168BE0(D_00279428, D_00275630, (int *)&s.f[6], -1);
+        ini.sub.func_00168CB0(D_00279418, D_002A2034, &s.f[7]);
+        ini.sub.func_00168CB0(D_00279408, D_002A2034, &s.f[11]);
+        ini.sub.func_00168C20(D_002793F8, 0, (char *)&s.f[6]);
+    }
+    val = *(int *)(*(int *)(D_002A8490 + 0x2e0) + 8);
+    if (val == 0) {
+        func_001ADCC0(buf, 0x104, D_0027930C);
+    } else if (val == 2) {
+        if (w[0x10]) func_001ADCC0(buf, 0x104, D_002792BC);
+        else func_001ADCC0(buf, 0x104, D_002792E4);
+    } else {
+        if (w[0x10]) func_001ADCC0(buf, 0x104, D_0027926C);
+        else func_001ADCC0(buf, 0x104, D_00279294);
+    }
+    if (ini.sub.func_00169710(buf) != 0) {
+        ini.sub.func_00168CB0(D_0027925C, D_002A2034, &s.f[1]);
+        ini.sub.func_00168BE0(D_0027923C, D_00279258, (int *)&s.f[1], -1);
+        sub = *(int **)((char *)this + 0xc50);
+        if (*(float *)(sub + 1) != s.f[1] || *(float *)(sub + 2) != s.f[2]) {
+            *(float *)(sub + 2) = s.f[2];
+            *(float *)(sub + 1) = s.f[1];
+            *((char *)sub + 0x4e) |= 6;
+        }
+        switch (((char *)s.f)[0]) {
+        case 'C':
+        case 'c':
+            val = D_0028F5E0;
+            break;
+        case 'L':
+        case 'l':
+            val = D_0028F5DC;
+            break;
+        case 'R':
+        case 'r':
+            val = D_0028F5EC;
+            break;
+        default:
+            goto after3;
+        }
+        sub = *(int **)((char *)this + 0xc50);
+        if (*(int *)((char *)sub + 0x44) != val) {
+            *(int *)((char *)sub + 0x44) = val;
+            *((char *)sub + 0x4e) |= 6;
+        }
+    after3:
+        ini.sub.func_00168CB0(D_0027922C, D_002A2034, &s.f[1]);
+        ini.sub.func_00168BE0(D_00279210, D_00279258, (int *)&s.f[1], -1);
+        sub = *(int **)((char *)this + 0x208);
+        if (*(float *)(sub + 1) != s.f[1] || *(float *)(sub + 2) != s.f[2]) {
+            *(float *)(sub + 2) = s.f[2];
+            *(float *)(sub + 1) = s.f[1];
+            *((char *)sub + 0x4e) |= 6;
+        }
+        switch (((char *)s.f)[0]) {
+        case 'C':
+        case 'c':
+            val = D_0028F5E0;
+            break;
+        case 'L':
+        case 'l':
+            val = D_0028F5DC;
+            break;
+        case 'R':
+        case 'r':
+            val = D_0028F5EC;
+            break;
+        default:
+            goto after4;
+        }
+        sub = *(int **)((char *)this + 0x208);
+        if (*(int *)((char *)sub + 0x44) != val) {
+            *(int *)((char *)sub + 0x44) = val;
+            *((char *)sub + 0x4e) |= 6;
+        }
+    after4:
+        ini.sub.func_00168CB0(D_00279204, D_002A2034, &s.f[1]);
+        ini.sub.func_00168BE0(D_002791EC, D_00279258, (int *)&s.f[1], -1);
+        ((C_00082790_X *)*(int *)((char *)this + 0xd08))->func_001B1A30(s.f[1], s.f[2], 0);
+        switch (((char *)s.f)[0]) {
+        case 'C':
+        case 'c':
+            val = D_0028F5E0;
+            break;
+        case 'L':
+        case 'l':
+            val = D_0028F5DC;
+            break;
+        case 'R':
+        case 'r':
+            val = D_0028F5EC;
+            break;
+        default:
+            goto after5;
+        }
+        ((C_00082790_X *)*(int *)((char *)this + 0xd08))->func_001B19A0(val);
+    after5:
+        ini.sub.func_00168CB0(D_002791E0, D_002A2034, &s.f[1]);
+        ini.sub.func_00168BE0(D_002791C8, D_00279258, (int *)&s.f[1], -1);
+        ((C_00082790_X *)*(int *)((char *)this + 0xd0c))->func_001B1A30(s.f[1], s.f[2], 0);
+        switch (((char *)s.f)[0]) {
+        case 'C':
+        case 'c':
+            val = D_0028F5E0;
+            break;
+        case 'L':
+        case 'l':
+            val = D_0028F5DC;
+            break;
+        case 'R':
+        case 'r':
+            val = D_0028F5EC;
+            break;
+        default:
+            goto after6;
+        }
+        ((C_00082790_X *)*(int *)((char *)this + 0xd0c))->func_001B19A0(val);
+    after6:
+        ini.sub.func_00168CB0(D_00279418, D_002A2034, &s.f[7]);
+        ini.sub.func_00168CB0(D_00279408, D_002A2034, &s.f[11]);
+        ini.sub.func_00168C20(D_002793F8, 0, (char *)&s.f[6]);
+        sub = *(int **)((char *)this + 0x164);
+        if (*(float *)(sub + 1) != s.f[7] || *(float *)(sub + 2) != s.f[8]) {
+            *(float *)(sub + 2) = s.f[8];
+            *(float *)(sub + 1) = s.f[7];
+            *((char *)sub + 0x58) |= 1;
+        }
+        sub = *(int **)((char *)this + 0x168);
+        if (*(float *)(sub + 1) != s.f[11] || *(float *)(sub + 2) != s.f[12]) {
+            *(float *)(sub + 2) = s.f[12];
+            *(float *)(sub + 1) = s.f[11];
+            *((char *)sub + 0x58) |= 1;
+        }
+        sub = *(int **)((char *)this + 0x164);
+        if ((float)*(int *)&s.f[6] != *(float *)((char *)sub + 0x28)) {
+            *(float *)((char *)sub + 0x28) = (float)*(int *)&s.f[6];
+            *((char *)sub + 0x58) |= 1;
+        }
+        sub = *(int **)((char *)this + 0x168);
+        if ((float)*(int *)&s.f[6] != *(float *)((char *)sub + 0x28)) {
+            *(float *)((char *)sub + 0x28) = (float)*(int *)&s.f[6];
+            *((char *)sub + 0x58) |= 1;
         }
     }
     ini.func_001691E0();
