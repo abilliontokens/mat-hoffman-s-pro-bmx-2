@@ -2,7 +2,7 @@
 #include "common.h"
 
 struct V_000551B0 { int x, y, z, w; };
-extern V_000551B0 D_002A1A64;
+extern int D_002A1A64, D_002A1A68, D_002A1A6C, D_002A1A70;
 extern int D_002BA160, D_002B9118, D_002B9108, D_002B9114, D_002B9110, D_002B910C;
 
 struct S_00054430_V4 {
@@ -61,6 +61,47 @@ struct C_00054960 {
     void func_00054960(void);
     void func_001577A0(void *a, int b);
 };
+
+void C_00054680::func_00054680()
+{
+    S_00054430_V4 a;
+    S_00054430_V4 b;
+    S_00054430_V4 *q;
+    S_00054430_V4 *pos;
+    float ang;
+    int i;
+
+    q = &f64->f4e0->f1a8[0]->f834;
+    pos = &f64->f4e0->f1a8[1]->f834;
+    a = S_00054430_V4(pos->x - q->x, pos->y - q->y, pos->z - q->z, 1.0f);
+    func_00053CB0(&a, &a);
+    a = f64->f4e0->f1a8[0]->f230->func_00198040(&a);
+    ang = func_0014FBA0(a.x, a.z);
+    b = f64->f4e0->f1a8[1]->f834;
+    b.y += 3.0f;
+    f2a4[0]->func_00088A40((int)(ang * 57.29578f), &b);
+
+    q = &f64->f4e0->f1a8[1]->f834;
+    pos = &f64->f4e0->f1a8[0]->f834;
+    S_00054430_V4 *pa = &a;
+    a = S_00054430_V4(pos->x - q->x, pos->y - q->y, pos->z - q->z, 1.0f);
+    func_00053CB0(&a, pa);
+    a = f64->f4e0->f1a8[1]->f230->func_00198040(&a);
+    ang = func_0014FBA0(a.x, a.z);
+    b = f64->f4e0->f1a8[0]->f834;
+    b.y += 3.0f;
+    f2a4[1]->func_00088A40((int)(ang * 57.29578f), &b);
+
+    for (i = 0; i < f90; i++) {
+        if (i == f2c4) {
+            f284[i]->v4();
+            f2a4[i]->v4();
+        } else {
+            f284[i]->v6();
+            f2a4[i]->v6();
+        }
+    }
+}
 
 void C_00054960::func_00054960(void)
 {
