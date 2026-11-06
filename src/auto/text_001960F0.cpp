@@ -97,10 +97,9 @@ int C_00196290::func_001961E0(int param_1, int param_2, int param_3)
 void C_00196290::func_00196290(void)
 {
     u32 i;
-    u32 n = f6c;
-    f5c = n * 4 + 8;
     fc0 &= 0xdf;
-    f60 = n * 5 + 8;
+    f5c = f6c * 4 + 8;
+    f60 = f6c * 5 + 8;
     f68 = 0;
     f24 = 0;
     f34 = 0;
