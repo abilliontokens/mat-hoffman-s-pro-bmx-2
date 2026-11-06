@@ -21,6 +21,15 @@ extern S_002B9120 *D_002B9120;
 
 void func_001E891B(void *p);
 
+static inline void wrap_00022060(float &a, float pi, float twopi, float npi)
+{
+    if (a > pi) {
+        a -= twopi;
+    } else if (a < npi) {
+        a += twopi;
+    }
+}
+
 struct V4_000229C0 {
     float x, y, z, w;
 };
@@ -490,6 +499,66 @@ void C_000229C0::func_000229C0(Arg_000229C0 *arg)
             }
         }
         f28 = 3.0f;
+    }
+}
+
+void C_B70::func_00022B70()
+{
+    int i, j;
+    f2c = 0;
+    f48 = 0;
+    G_B70 *g = D_002A8490;
+    float t = g->f2e0->f10;
+    int n = f34;
+    f54 = (long)(t * D_00276278 / n) + g->f238;
+    for (i = 0; i < f34; i++) ((char *)f64[i])[0x2d] = 0;
+    for (i = 0; i < f38; i++) {
+        rows[i]->f4 = 0;
+        for (j = 0; j < rows[i]->count; j++) rows[i]->f10[j * 4 + 3] = 0;
+    }
+    for (i = 0; i < f30; i++) {
+        E_B70 *e = ents[i];
+        e->f48 = 0;
+        ents[i]->f7b = 1;
+        ents[i]->f78 = 0;
+        e = ents[i];
+        e->f30 = e->f3c;
+        int k = ents[i]->f30;
+        ents[i]->t = D_002B7E18->ts[k];
+        e = ents[i];
+        e->f34 = e->f40;
+        e = ents[i];
+        e->f38 = e->f34 + 1;
+        e = ents[i];
+        if (e->t->f2c == 1) {
+            e->f79 = 1;
+            e = ents[i];
+            P_B70 *p = &e->t->pts[e->f38];
+            e->a.x = p->x; e->a.y = p->y; e->a.z = p->z; e->a.w = 1.0f;
+            Own_B70 *o = ents[i]->own;
+            Hold_B70 *h = o->h;
+            Y_B70 *y = o->y;
+            if (h->f10 == 0) func_00166C80(y->f8, 1);
+            else func_00164820(y->f8);
+        } else {
+            e->f79 = 0;
+            e = ents[i];
+            if (e->t->f2f == 0) e->t->f2d = 1;
+            e = ents[i];
+            e->own->h->o->func_00199110(0, (V4_B70 *)((char *)e->t + 0x1c), (char *)&D_002A0F94, 0, 1, 1);
+            e = ents[i];
+            e->a = e->b;
+            Own_B70 *o = ents[i]->own;
+            Hold_B70 *h = o->h;
+            Y_B70 *y = o->y;
+            if (h->f10 == 0) func_00166C80(y->f0, 1);
+            else func_00164820(y->f0);
+        }
+        e = ents[i];
+        P_B70 *p = &e->t->pts[e->f34];
+        e->b.x = p->x; e->b.y = p->y; e->b.z = p->z; e->b.w = 1.0f;
+        e = ents[i];
+        e->own->h->o->func_00199600(e->b);
     }
 }
 
