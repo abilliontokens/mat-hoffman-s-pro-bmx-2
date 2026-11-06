@@ -59,7 +59,7 @@ struct S2CBC0 {
 
 void func_000263B0(void *out, void *a, void *b);
 
-static __forceinline void Cross_2D270(V4_2D270 *out, const V4_2D270 *a, const V4_2D270 *b)
+static __forceinline void Cross_2D270(V4_2D270 *volatile out, const V4_2D270 *volatile a, const V4_2D270 *volatile b)
 {
     __m128 va = _mm_loadu_ps(&a->x);
     __m128 vb = _mm_loadu_ps(&b->x);
