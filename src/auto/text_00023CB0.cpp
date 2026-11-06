@@ -75,8 +75,21 @@ struct C_00143580 {
 
 /* AmbientDebrisType */
 struct C_00023C30 {
+    float f0;
+    float f4;
+    float f8;
+    int f10;
+    int f14;
+    int f18;
+    int f1C;
+    S_00024210_Vec f20;
+    S_00024210_Vec f30;
+    int f44;
+    int f48;
+    C_00199B00 *f4C;
     C_00023C30 *func_00023C30(int a, int b, int c, int d);
     void func_00023CB0(int a, S_00024210_Vec v, float len);
+    int func_00021B90(int a, S_00024210_Vec v, float len);
 };
 
 /* the 0x30-byte record tying the other two together */
