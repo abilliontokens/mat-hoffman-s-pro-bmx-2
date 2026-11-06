@@ -1,7 +1,10 @@
 /* 5 functions from 0x0018EB70 to 0x0018F980, found by Ghidra. */
 #include "common.h"
 #include <string.h>
-extern char D_00288030[],D_0028AA08[],D_0028AA04[],D_0028A83C[],D_002869B8[],D_0028A9FC[],D_0028A9F8[],D_00277038[];
+extern char D_0028AA08[],D_0028AA04[],D_002869B8[],D_0028A9F8[],D_00277038[];
+extern const char D_00288030[]="BINARY";
+extern const char D_0028A83C[]="ocLABEL";
+extern const char D_0028A9FC[]=" NULL";
 extern char *D_002A96C0;
 extern char *D_002A96C4[];
 extern "C" void *func_001E8AA5(int);
