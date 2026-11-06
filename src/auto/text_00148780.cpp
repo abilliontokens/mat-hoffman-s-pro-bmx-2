@@ -520,6 +520,45 @@ int DXShaderDescriptor::func_00148910(int a0, Parser_00148910 *p, int id, int id
     return 1;
 }
 
+int DXShaderDescriptor::func_00148E80(const char *name) {
+    int count = 0;
+    int count2 = 0;
+    char buffer[0x600];
+    ShaderData_00148E80 *data = D_002A829C->func_00161850(D_002A829C->func_001617F0(name, 1));
+    if (!data) data = D_002AA470;
+    f14 = data->f80;
+    f26 = D_002A751C->Create(data, 0);
+    if (f14 == 1) {
+        func_0014A7B0(D_002BED60, D_002A7130);
+        D_002A751C->Set(f26, D_002BED60);
+    } else {
+        func_0014A7B0(D_002BEE60, D_002A7148);
+        D_002A751C->Set(f26, D_002BEE60);
+    }
+    f28 = D_002A6D84->Create((char *)data + 0x40, 0);
+    D_002A6D84->Set(f28, 0);
+    fl0 = 0;
+    fl1 = 1;
+    f18[0] = D_002AA6C0->Create(name, 0);
+    f20[0] = 0;
+    fA = 1;
+    int mode;
+    switch (data->f84) { case 0: mode = 0; break; case 1: mode = 2; break; }
+    D_002AA6C0->Set(f18[0], mode);
+    func_00145370(0, data, 0, (Item12_00148910 *)buffer, &count);
+    unsigned int size = count * 12;
+    f2C = (Item12_00148910 *)func_001E8A44(size);
+    memcpy(f2C, buffer, size);
+    f38 = count;
+    func_001458E0(0, data, (Entry8_00148910 *)buffer, &count2);
+    int n = *(volatile int *)&count2;
+    f30 = (Entry8_00148910 *)func_001E8A44(n * 8);
+    size = n * 8;
+    memcpy(f30, buffer, size);
+    f3C = n;
+    return 1;
+}
+
 void *C_00149040::func_00149040(unsigned int flags)
 {
   void func_001E891B(void *);
