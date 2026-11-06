@@ -5,6 +5,14 @@ extern "C" void *memset(void *dst, int c, unsigned int n);
 extern int D_0027850C;
 extern int D_002786CC;
 
+extern "C" void func_001E891B(void *);
+struct C_61590_Obj {
+ virtual void destroying(int);
+ void func_001D6410();
+};
+static inline void free_61590(int p) {
+ if(p) { ((C_61590_Obj *)p)->func_001D6410(); func_001E891B((void *)p); }
+}
 struct C_00061300 {
     int w[0xBC];
     void func_00157600(int a0);
