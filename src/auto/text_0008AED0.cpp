@@ -27,6 +27,8 @@ struct Sprite_8AED0 {
     void SetF28(int v) { if (f28 != v) { f28 = v; b58 |= 1; } }
     void SetF34(int v) { if (f34 != v) { f34 = v; b58 |= 1; } }
     void SetF2c(int v) { if (f2c != v) { f2c = v; b58 |= 1; } }
+    void SetVec4(float a, float b, float c, float d) { f3c = a; f40 = b; f44 = c; f48 = d; b58 |= 4; }
+    void SetAlphaByte() { b58 |= 2; f38 &= 0xff000000; b58 |= 2; ((char *)&f38)[3] = (char)0x80; }
 };
 extern int D_00275630;
 extern int D_00279DEC;
@@ -332,28 +334,16 @@ C_0008AED0 *C_0008AED0::func_0008AED0()
     mem = func_001E8A44(0x64);
     s40 = mem ? ((Sprite_8AED0 *)mem)->func_001D5760() : 0;
     s3c->func_001D5810((int)D_00279DD0, 225.0f, 296.0f, 0);
-    if (s3c->f28 != 0x42c00000) {
-        s3c->f28 = 0x42c00000;
-        s3c->b58 |= 1;
-    }
-    if (s3c->f34 != 0x40b00000) {
-        s3c->f34 = 0x40b00000;
-        s3c->b58 |= 1;
-    }
+    s3c->SetF28(0x42c00000);
+    s3c->SetF34(0x40b00000);
     s40->func_001D5810((int)D_00279DD0, 321.0f, 296.0f, 0);
-    if (s40->f28 != 0x42c00000) {
-        s40->f28 = 0x42c00000;
-        s40->b58 |= 1;
-    }
+    s40->SetF28(0x42c00000);
     s40->f3c = 1.0f;
     s40->b58 |= 4;
     s40->f40 = 0.0f;
     s40->f44 = 0.0f;
     s40->f48 = 1.0f;
-    if (s40->f34 != 0x40b00000) {
-        s40->f34 = 0x40b00000;
-        s40->b58 |= 1;
-    }
+    s40->SetF34(0x40b00000);
 
     mem = func_001E8A44(0x64);
     s44 = mem ? ((Sprite_8AED0 *)mem)->func_001D5760() : 0;
@@ -362,18 +352,9 @@ C_0008AED0 *C_0008AED0::func_0008AED0()
     s44->f38 &= 0xff000000;
     s44->b58 |= 2;
     ((char *)&s44->f38)[3] = (char)0x80;
-    if (s44->f2c != 0x43bc8000) {
-        s44->f2c = 0x43bc8000;
-        s44->b58 |= 1;
-    }
-    if (s44->f28 != 0x44200000) {
-        s44->f28 = 0x44200000;
-        s44->b58 |= 1;
-    }
-    if (s44->f34 != 0x40b9999a) {
-        s44->f34 = 0x40b9999a;
-        s44->b58 |= 1;
-    }
+    s44->SetF2c(0x43bc8000);
+    s44->SetF28(0x44200000);
+    s44->SetF34(0x40b9999a);
 
     res = ((C_0008B850_Res *)((int *)D_002A8490)[0x2ec / 4])->func_0018C160((void *)D_0027958C);
     font = res ? *res : 0;
