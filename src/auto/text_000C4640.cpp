@@ -45,9 +45,38 @@ struct S_000C4FD0_Mid {
     S_000C4FD0_Strings *f4;
 };
 
+/* lookup of named UI nodes, and the nodes it hands out */
+struct S_000C50E0_Lookup {
+    int *func_0018C160(int name);
+};
+
+struct S_000C50E0_Clamp {
+    char pad0[0x10];
+    float f10, f14;
+};
+
+struct S_000C50E0_Mid {
+    S_000C50E0_Clamp *func_0018C070();
+};
+
+struct S_000C50E0_Widget {
+    S_000C50E0_Clamp *func_001D5AA0();
+};
+
 struct S_000C4FD0_Root {
     char pad0[0x2E8];
     S_000C4FD0_Mid *f2E8;
+    S_000C50E0_Lookup *f2EC;
+};
+
+extern float D_00275AEC;
+extern int D_002786A0, D_00278678, D_00278690;
+
+struct C_000C50E0 {
+    char pad0[0x2F8];
+    S_000C50E0_Widget *a2F8[10];
+    void func_000C50E0();
+    void func_001578D0();
 };
 
 extern S_000C4FD0_Root *D_002A8490;
