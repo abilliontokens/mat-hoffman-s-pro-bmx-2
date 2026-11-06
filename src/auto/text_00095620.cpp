@@ -414,12 +414,8 @@ int C_00095A00::func_00095A00(int n)
             return 0;
     }
 
-    int cnt = f68.count;
-    if (cnt > 0) {
-        unsigned char *p = (unsigned char *)f68.data;
-        for (int i = 0; i < cnt * 4; i++)
-            p[i] = 0;
-        f68.count = 0;
+    if (f68.count > 0) {
+        f68.Clear();
     }
     f68.func_001CDED0(n);
     f38 = n;
