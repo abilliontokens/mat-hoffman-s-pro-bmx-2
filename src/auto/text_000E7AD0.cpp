@@ -13,7 +13,7 @@ struct C_001B1980 {
 
 extern char D_0027E83C[];
 extern char D_00281A48[];
-int memcmp(const void *a, const void *b, unsigned int n);
+extern "C" int __cdecl memcmp(const void *a, const void *b, unsigned int n);
 
 struct E7_GObj {
     void func_0005E840(int a);
@@ -108,7 +108,7 @@ void C_000E7AD0::func_000E7AD0()
     E7_124 *saved = f124;
     int esi;
 
-    if (f2AC == 0) {
+    if (f2AC != 0) {
         D_002B91AC->f40->func_0005E840(D_002A8490->f2E8->f4->fF50);
     } else {
         D_002B91AC->f40->func_0005E840(D_002A8490->f2E8->f4->fA38);
@@ -116,7 +116,7 @@ void C_000E7AD0::func_000E7AD0()
     for (esi = 0x38; esi < 0x44; esi += 4) {
         ((E7_GObj *)((char *)D_002B91AC + esi))->func_001D6600();
     }
-    if (f2AC == 0 && f508 == 0 && f284 == 1) {
+    if (f2AC != 0 && f508 == 0 && f284 == 1) {
         f500->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
         D_002B91AC->f44->func_0005E840(D_002A8490->f2E8->f4->f1120);
         D_002B91AC->f44->func_001D6600();
