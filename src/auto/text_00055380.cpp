@@ -283,8 +283,21 @@ struct VtblStore_00055380 {
 };
 
 struct CameraBehavior_00055380 {
-    __forceinline CameraBehavior_00055380() { ((C_00055380 *)this)->func_0012B510(); }
+    __forceinline CameraBehavior_00055380() { ((C_00055380 *)this)->func_0012B510(); *(u32 *)this = (u32)&D_00277CF4; }
 };
+
+static __forceinline void G2_00055380(u32 *a, u32 *b, u32 va, u32 vb)
+{
+    *a = va;
+    *b = vb;
+}
+
+static __forceinline void G3_00055380(u32 *a, u32 *b, u32 *c, u32 va, u32 vb, u32 vc)
+{
+    *a = va;
+    *b = vb;
+    *c = vc;
+}
 
 struct QuatV_00055380 : S_00056100_Quat {
     __forceinline QuatV_00055380() { *(void * volatile *)((char *)this - 0x1c) = &D_00277CF4; z = 0; y = 0; x = 0; w = 1.0f; }
