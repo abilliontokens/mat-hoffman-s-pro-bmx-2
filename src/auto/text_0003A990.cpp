@@ -14,8 +14,9 @@ struct C_3A990 {
  char pad464[0x49c-0x464]; char **f49C;
  char pad4A0[0x564-0x4A0]; S_3A990_Owner *f564;
  void func_00038A70(void *, S_3A990_Blk **);
- int func_00038B10(void *, S_0003AC20_Vec, S_0003AC20_Vec, int *, int *, int *, int);
- int func_0003A990(S_0003AC20_Vec a, S_0003AC20_Vec b);
+    int func_00038B10(void *, S_0003AC20_Vec, S_0003AC20_Vec, int *, int *, int *, int);
+   __forceinline S_3A990_Blk *Lookup(char *o) { S_3A990_Blk *b = 0; func_00038A70(o + 0x28, &b); return b; }
+   int func_0003A990(S_0003AC20_Vec a, S_0003AC20_Vec b);
 };
 struct S_0003AC20_Data { char pad0[0x34]; S_0003AC20_Vec pos; };
 struct S_0003AC20_Owner { char pad0[0xE8]; S_0003AC20_Data *fE8; };
@@ -89,6 +90,56 @@ struct C_0003AD50 {
     S_0003AD50_Label *f550;
     void func_0003AD50(void);
 };
+
+#pragma optimize("a", on)
+int C_3A990::func_0003A990(S_0003AC20_Vec a, S_0003AC20_Vec b)
+{
+ int width,height;
+ int *used;
+ int x,y,z;
+ { char *object=f564->object;
+ S_3A990_Blk *block=0;
+ func_00038A70(object+0x28,&block);
+ width=block->width; height=block->height;
+ }
+ if(!func_00038B10(f564->object+0x28,a,b,&x,&y,&z,1)) return -1;
+ int count=width*height;
+ used=(int *)func_001E8A44(count*4);
+ int *values=(int *)func_001E8A44(count*4);
+ memset(used,0,count*4);
+ for(int i=0;i<count;i++) values[i]=0;
+ for(int row=0;row<height;row++) {
+  for(int col=0;col<width;col++) {
+   for(int layer=f450;layer<f45C;layer++) {
+    int index;
+    if(!(b.x>D_00276E9C) && !(b.x<D_00276E98))
+     index=((x+col)*f45C+layer)*f460+row+z;
+    else index=((x+row)*f45C+layer)*f460+col+z;
+    char *item=f49C[index];
+    if(item) {
+     S_3A990_Blk *entry=0;
+     func_00038A70(item+0x28,&entry);
+     if(entry) {
+      used[row*width+col]=1;
+      if(values[row*width+col]==-1) values[row*width+col]=1;
+      else values[row*width+col]++;
+     } else values[row*width+col]=0;
+    }
+   }
+  }
+ }
+ int result=values[0];
+ if(result>=0) {
+  for(int row=0;row<height;row++)
+   for(int col=0;col<width;col++)
+    if(result>=0 && values[row*width+col]>result) result=values[row*width+col];
+  if(result==0) result=-1;
+ }
+ func_001E891B(used);
+ func_001E891B(values);
+ return result;
+}
+#pragma optimize("", on)
 
 void C_0003AD50::func_0003AD50(void)
 {
