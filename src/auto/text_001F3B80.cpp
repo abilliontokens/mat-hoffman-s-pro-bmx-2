@@ -521,6 +521,8 @@ int __stdcall func_001F4419(int *p)
     return r;
 }
 
+#pragma inline_depth(0)
+void func_001F44D6(void);
 int func_001F445B(void)
 {
     int count = 0;
@@ -539,12 +541,11 @@ int func_001F445B(void)
             }
         }
     } __finally {
-        func_001EB302(1);
+        func_001F44D6();
     }
     return count;
 }
-
-#pragma optimize("", on)
+#pragma inline_depth()
 void func_001F44D6(void) {
     int func_001EB302(...);
     func_001EB302(1);
@@ -684,6 +685,9 @@ void func_001F4675(unsigned int *x, int n)
         }
     }
 }
+
+#pragma optimize("", on)
+
 #pragma optimize("", on)
 
 #pragma optimize("", on)
@@ -792,5 +796,28 @@ STRFLT *func_001F4A07(double x, STRFLT *flt, char *resultstr)
 void func_001F4A6D(void) {
     int func_001EB9F3(...);
     func_001EB9F3(2);
+}
+
+extern char D_00080000, D_00010000, D_00020000, D_00040000;
+unsigned int func_001F4A76(unsigned short cw) {
+    unsigned int r = 0;
+    unsigned int t;
+    if (cw & 1) r = 0x10;
+    if (cw & 4) r |= 8;
+    if (cw & 8) r |= 4;
+    if (cw & 0x10) r |= 2;
+    if (cw & 0x20) r |= 1;
+    if (cw & 2) r |= (unsigned int)&D_00080000;
+    switch (cw & 0xc00) {
+    case 0: break;
+    case 0x400: r |= 0x100; break;
+    case 0x800: r |= 0x200; break;
+    case 0xc00: r |= 0x300; break;
+    }
+    t = cw & 0x300;
+    if (t == 0) r |= (unsigned int)&D_00020000;
+    else if (t == 0x200) r |= (unsigned int)&D_00010000;
+    if (cw & 0x1000) r |= (unsigned int)&D_00040000;
+    return r;
 }
 
