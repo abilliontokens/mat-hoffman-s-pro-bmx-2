@@ -25,6 +25,7 @@ static __forceinline void norm28130(float *out, float *in)
     scale = _mm_shuffle_ps(scale, scale, 0);
     _mm_storeu_ps(out, _mm_mul_ps(scale, v));
 }
+int strcmp(const char *a, const char *b);
 void func_00026340(void *a, void *b);
 float func_0014F7E0(float a);
 
