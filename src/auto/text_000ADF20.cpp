@@ -100,9 +100,9 @@ extern char D_0027CBAC[], D_0027CB90[], D_0027CB78[], D_002764F0[], D_0027C4D0[]
 extern char D_0027C4BC[], D_00275680[], D_0027CB6C[], D_0027CB60[], D_0027CB54[];
 extern char D_0027CB44[], D_0027CB38[], D_00275AD4[], D_0027CB30[], D_0027CB2C[];
 
-template <class T> inline const T &min_000AE780(const T &a, const T &b)
+template <class T> inline T min_000AE780(T a, T b)
 {
-    return b < a ? b : a;
+    return a > b ? b : a;
 }
 
 #include "ghidra.h"
