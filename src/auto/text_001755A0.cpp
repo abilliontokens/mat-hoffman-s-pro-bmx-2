@@ -7,6 +7,74 @@ extern char D_0000FFF8[];
 extern char D_0000F81F[];
 extern char D_0000FFFC[];
 
+static inline void Downsample555Row(unsigned int *src, unsigned short *dst, int count, int srcPitch)
+{
+    do {
+        unsigned int sum = 0;
+        unsigned int a;
+        unsigned int b;
+        a = *src & (unsigned int)D_0000FFFF;
+        b = *src >> 16;
+        sum += (b << 15) & 0x1f00000;
+        sum += (a & 0x3e0) << 15;
+        sum += b & 0x7c1f;
+        sum += a & 0x7c1f;
+        src = (unsigned int *)((unsigned short *)src + srcPitch);
+        a = *src & (unsigned int)D_0000FFFF;
+        b = *src >> 16;
+        sum += (b << 15) & 0x1f00000;
+        sum += (a & 0x3e0) << 15;
+        sum += b & 0x7c1f;
+        sum += a & 0x7c1f;
+        src = (unsigned int *)((unsigned short *)src - srcPitch);
+        sum >>= 2;
+        *dst = (unsigned short)((sum & 0x7c1f) + ((sum >> 15) & 0x3e0));
+        src++;
+        dst++;
+    } while (--count);
+}
+
+#pragma optimize("y", on)
+int _func_001755A0(unsigned int flag, unsigned short* src, int w, int h, int dstride, int sstride)
+{
+    unsigned short* dst = (unsigned short*)flag;
+    int x, y;
+    if (flag & 1) {
+        for (y = 0; y < h; y++) {
+            unsigned short* d = dst;
+            unsigned short* s = src;
+            if (h) {
+                for (x = h; x; x--) {
+                    int a = s[0], b = s[1], c = s[sstride], e = s[sstride + 1];
+                    int t = (((a & 0xF0F0) << 12 | (a & 0xF0F)) + ((b & 0xF0F0) << 12 | (b & 0xF0F)) + ((c & 0xF0F0) << 12 | (c & 0xF0F)) + ((e & 0xF0F0) << 12 | (e & 0xF0F))) >> 2;
+                    t = (t >> 12 ^ t) & 0xF0F ^ (t >> 12);
+                    *d++ = (unsigned short)t;
+                }
+            }
+            src += sstride * 2;
+            dst += dstride;
+        }
+        return 1;
+    }
+    for (y = 0; y < h; y++) {
+        unsigned short* d = dst;
+        unsigned short* s = src;
+        for (x = w; x > 0; x--) {
+            unsigned int a = s[0], b = s[1], c = s[sstride], e = s[sstride + 1];
+            unsigned int r = (((((a >> 10) & 0x3C) + ((b >> 10) & 0x3C) + ((c >> 10) & 0x3C) + ((e >> 10) & 0x3C) + 2) >> 4) << 4)
+                | (((((a >> 6) & 0x3C) + ((b >> 6) & 0x3C) + ((c >> 6) & 0x3C) + ((e >> 6) & 0x3C) + 2) >> 4));
+            r = (r << 4) | (((((a >> 2) & 0x3C) + ((b >> 2) & 0x3C) + ((c >> 2) & 0x3C) + ((e >> 2) & 0x3C) + 2) >> 4));
+            r = (r << 4) | ((((a & 15) + (b & 15) + (c & 15) + (e & 15)) * 4 + 2) >> 4);
+            *d++ = (unsigned short)r;
+            s += 2;
+        }
+        src += sstride * 2;
+        dst += dstride;
+    }
+    return 1;
+}
+#pragma optimize("", on)
+
 int func_00175E30(unsigned short *dst, unsigned short *src, int width, int height, int dstPitch, int srcPitch, unsigned char flags, unsigned short key)
 {
     int y;
@@ -19,7 +87,7 @@ int func_00175E30(unsigned short *dst, unsigned short *src, int width, int heigh
             unsigned short *d = drow;
             for (x = height; x != 0; --x) {
                 unsigned int sum = 0;
-                unsigned int a;
+                int a;
                 unsigned short b;
                 a = *p & (unsigned int)D_0000FFFF;
                 b = (unsigned short)(*p >> 16);
