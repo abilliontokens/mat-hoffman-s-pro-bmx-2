@@ -24,9 +24,11 @@ struct TrigEntry {
 };
 extern TrigEntry *D_002CF6B4;
 
-struct ObjB700 { ObjB700 *func_0019B700(int a); void func_0019D7B0(void *a, void *b); };
-struct ObjA50 { ObjA50 *func_001A4A50(int a); };
-struct ObjE620 { ObjE620 *func_0017E620(int a); };
+struct V4x { float x, y, z, w; };
+struct ObjB700 { ObjB700 *func_0019B700(int a); void func_0019D7B0(void *a, void *b); void func_00129920(int a); void func_001334E0(int a); void func_00011FF0(void *buf, int a, int b, void *cb); void func_0019C710(void *a, void *b, int c, int d); };
+struct ObjA50 { ObjA50 *func_001A4A50(int a); void func_00129920(int a); void func_001A57E0(int a, int b, V4x v); };
+struct ObjE620 { ObjE620 *func_0017E620(int a); void func_00129920(int a); void func_0017E6F0(V4x a, V4x b, int c); };
+struct Ent14E { char p0[0x20]; int type; float f24; int f28; void func_001577A0(void *a, int b); };
 void func_00129920(int a);
 extern int D_002BA150;
 extern int D_002BA574;
@@ -187,7 +189,6 @@ void __fastcall func_0014E630(void *self, int edx, S_0014E630_Holder *a)
 
 C_0014ECD0 *C_0014ECD0::func_0014ECD0(int a0, char * volatile name, int a2, int volatile a3, int a4, volatile float f5, volatile float f6, int a7)
 {
-    C_0014ECD0 * volatile self = this;
     C_0014ECD0 *p;
     struct {
         union {
@@ -215,6 +216,7 @@ C_0014ECD0 *C_0014ECD0::func_0014ECD0(int a0, char * volatile name, int a2, int 
     S_0014ECD0_Item *items;
     S_0014ECD0_Item *mem;
     S_0014ECD0_Base *base;
+    C_0014ECD0 * volatile self = this;
 
     func_001D3F50();
     self->f560 = f5;
@@ -224,7 +226,7 @@ C_0014ECD0 *C_0014ECD0::func_0014ECD0(int a0, char * volatile name, int a2, int 
     t.tb = D_002F07E8->f44;
     t.ta = D_002F07E8->f40;
     t.m = t.ta > t.tb ? t.ta : t.tb;
-    self->f57c = D_00286A9C / t.m;
+    self->f57c = *(volatile float *)&D_00286A9C / t.m;
     self->f578 = t.m * D_00286A90;
     if (func_001E8AF0(name, D_00286A94) == 0) {
         if (func_001E8AF0(name, D_00286A88) != 0) {
@@ -448,10 +450,8 @@ float func_0014F450(int x) {
 
 float func_0014F4B0(int x) {
     float f = (func_00016D60(x) + D_002756D0) * D_002DF870;
-    int * volatile p = &x;
-    float t = f;
 
-    *p = _mm_cvttss_si32(*(__m128 *)&t);
+    FloatToIndex(&x, f);
     return D_002CF6B4[x].a - (f - (float)x) * D_002CF6B4[x].b * D_002DF874;
 }
 
