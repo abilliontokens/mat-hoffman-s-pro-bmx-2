@@ -1,6 +1,7 @@
 /* 11 functions from 0x001B3E70 to 0x001B4E20, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 extern int D_002AA8E0;
 extern int D_002AA8C0;
@@ -313,49 +314,37 @@ C_001B4A40Ret *C_001B4A40Ret::Tokenizer_SetString(const char *str)
     return this;
 }
 char *C_001B4A70::func_001B4A70(char *delims) {
-    char *p = f4;
-    char c;
-    int d;
-    char *r;
-
-    if (p == 0) {
-        return 0;
-    }
-    f0 = p;
-    p = func_001EA3D0(p, delims);
-    f4 = p;
-    if (p != 0) {
-        *p = 0;
-        f4++;
-        c = *f4;
-        if (c == 0) {
-            f4 = 0;
-            return f0;
-        }
-        r = func_001E9260(delims, c);
-        while (r != 0) {
-            f4++;
-            d = *f4;
-            r = func_001E9260(delims, d);
-        }
-    }
-    return f0;
+ char *p = f4;
+ char c;
+ if (!p) return 0;
+ f0=p;
+ p=func_001EA3D0(p,delims);
+ f4=p;
+ if(p) {
+ *p=0;
+ f4++;
+ c=*f4;
+ if(c==0) {f4=0;return f0;}
+ if(func_001E9260(delims,c)) {
+ int d;
+ do {
+ d=*(f4=f4+1);
+ } while(func_001E9260(delims,d));
+ }
+ }
+ return f0;
 }
 
 C_001B4AF0 *C_001B4AF0::func_001B4AF0(void) {
-    C_001B4AF0 * volatile self = this;
-    volatile int limit;
-    int count;
-
-    self->vtbl = (void *)&D_0028CA64;
-    limit = sizeof(f4) - 1;
-    count = limit > strlen("none") ? strlen("none") : limit;
-    func_001E8920(self->f4, (const char *)&D_002764F0, count);
-    self->f4[count] = 0;
-    self->f108 = 0;
-    self->f10C = 1;
-    self->f110 = 1;
-    return self;
+    vtbl = (void *)&D_0028CA64;
+    int limit = sizeof(f4) - 1;
+    int count = AsmMinI(limit, strlen("none"));
+    func_001E8920(f4, (const char *)&D_002764F0, count);
+    f4[count] = 0;
+    f108 = 0;
+    f10C = 1;
+    f110 = 1;
+    return this;
 }
 
 void C_001B4B70::func_001B4B70(void) {
@@ -396,17 +385,19 @@ C_001B4BE0 *C_001B4BE0::func_001B4BE0(void) {
     return self;
 }
 
-int C_001B4BE0::func_001B4C90(S_001B4C90_Stream *stream) {
+int C_001B4BE0::func_001B4C90(S_001B4C90_Stream * volatile stream) {
     char buf[0x104];
     volatile int len;
-    volatile int count;
+    int count;
     C_001B4BE0 * volatile self = this;
     ((C_001B4AF0 *)this)->func_001B4B80((S_001B4B80_Stream *)stream);
     stream->func_00168BE0(D_00276310, (char *)&D_002764F0, buf, 0x104);
     len = func_001E9040(buf, D_0027CEF0);
-    count = len > 0x32 ? 0x32 : len;
-    func_001E8920((char *)self + 4, buf, count);
-    ((char *)self)[count + 4] = 0;
+    int n = len;
+    count = n > 0x32 ? 0x32 : n;
+    n = count;
+    func_001E8920((char *)self + 4, buf, n);
+    ((volatile char *)self)[n + 4] = 0;
     stream->func_00168BE0(D_002764EC, (char *)&D_002764F0, self->f114, -1);
     stream->func_00168C50(D_002764D8, 0, &self->f218);
     stream->func_00168C20(D_0027D060, 0, &self->f21C);
