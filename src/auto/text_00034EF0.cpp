@@ -20,6 +20,7 @@ struct S_34EF0_Y { char pad0[4]; void *f4; };
 struct S_34EF0_Own {
     char pad0[0x1a4];
     S_34EF0_Hold *f1a4;
+    char pad1a8[4];
     S_34EF0_Y *f1ac;
 };
 struct S_34EF0_Gfx {
@@ -452,6 +453,41 @@ struct C_00035C10 {
     S_35C10_Obj *f570;
     int func_00035C10(void *a1, char a2, char *name, void *a4, void *a5, void *a6, int a7, int a8);
 };
+
+void PreviewPane::func_00034EF0(float dt)
+{
+    S_34EF0_V4 from, pos, tmp, dir, side;
+
+    if (f24 != 0) {
+        f24->func_0019A8C0(&from, &tmp);
+    } else if (f28 != 0) {
+        f40 += dt;
+        f28->f1a4->f4->func_0019A8C0(&from, &tmp);
+        if (f28->f1a4->f10 == 0) {
+            D_002B9120->f484->func_0001B440(f28, func_00011260(0, 100));
+        }
+        if (f28->f1a4->f10 != 0 && f40 >= D_00275548) {
+            f28->f1a4->func_00164820(f28->f1ac->f4);
+            f40 = 0.0f;
+        }
+    }
+    f34->f5c->func_00194E90(&pos);
+    dir.x = pos.x - from.x;
+    dir.y = pos.y - from.y;
+    dir.z = pos.z - from.z;
+    dir.w = 1.0f;
+    func_00034820(&dir.x, &dir.x);
+    func_00158390(0.025f, D_002A14F4, dir, &dir);
+    f34->f5c->func_00194EB0(S_34EF0_V4(-dir.x, -dir.y, -dir.z, 1.0f));
+    S_34EF0_V4 p(dir.x * f38 + from.x, dir.y * f38 + from.y, dir.z * f38 + from.z, 1.0f);
+    Cross_34EF0(&side, &dir, &D_002A14F4);
+    func_00034820(&side.x, &side.x);
+    Cross_34EF0(&side, &side, &dir);
+    func_00034820(&side.x, &side.x);
+    f34->f5c->func_00194F60(side);
+    f34->f5c->func_00194E60(p);
+    func_00157A00(dt);
+}
 
 void C_00035300::func_00035300(char *name, int n)
 {
