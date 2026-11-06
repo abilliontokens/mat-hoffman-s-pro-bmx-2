@@ -186,12 +186,6 @@ struct C_0009A290 {
     C_0009A290 *func_0009A290(void *a0, char *a1, int a2);
     void func_0009C770(void);
 };
-static __forceinline void destroy_00031840(C_0009A290 *p)
-{
-    if (p != 0) {
-        p->func_0009C770();
-    }
-}
 
 struct C_00031840 {
     char pad0[0x64];
@@ -857,9 +851,10 @@ void C_00031840::func_00031840(void)
     C_0009A290 *obj = m ? ((C_0009A290 *)m)->func_0009A290(this, f64 + 0x134, 0) : 0;
 
     f1C0 = obj;
-    if (f1C0->f194 != 0) {
-        if (obj != 0) {
-            obj->func_0009C770();
+    C_0009A290 *chk = f1C0;
+    if (obj->f194 != 0) {
+        if (chk) {
+            chk->func_0009C770();
         }
         func_001E891B(obj);
         f1C0 = 0;
