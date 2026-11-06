@@ -148,10 +148,16 @@ struct BmxInGameMenu {
     virtual void vf32();
     char pad4[0x60];
     C_001D5AA0 *unk64[8];
-    char pad84[0x10];
+    struct Widget_5F3 *unk84;
+    struct Widget_5F3 *unk88;
+    struct Widget_5F3 *unk8C;
+    struct Widget_5F3 *unk90;
     C_001D5AD0 *unk94;
     C_001D5AD0 *unk98;
-    char pad9C[0x10];
+    int unk9C;
+    int unkA0;
+    int unkA4;
+    int unkA8;
     C_001D5AD0 *unkAC[5];
     C_001D5AD0 *unkC0[5];
     C_001D5AD0 *unkD4;
