@@ -4,6 +4,8 @@ struct Vec4 {
  float x,y,z,w;
  Vec4(){z=0;y=0;x=0;w=1;}
  Vec4(float a,float b,float c){x=a;y=b;z=c;w=1;}
+ Vec4(const Vec4 &v){x=v.x;y=v.y;z=v.z;w=v.w;}
+ Vec4&operator=(const Vec4 &v){x=v.x;y=v.y;z=v.z;w=v.w;return *this;}
  Vec4 operator*(float s)const{return Vec4(x*s,y*s,z*s);}
  Vec4 operator+(Vec4 b)const{return Vec4(x+b.x,y+b.y,z+b.z);}
 };
