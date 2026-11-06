@@ -272,7 +272,11 @@ struct C_59C0_Mgr { char pad0[0x2fc]; void *f2fc; void func_00094F00(); void fun
 extern char D_0027DDEC[];
 struct C_59C0_Mgr2 { char pad0[0x4]; char *f4; };
 struct C_59C0_Page { char pad0[0x2e0]; C_59C0_Mgr *p2E0; char pad2e4[4]; C_59C0_Mgr2 *p2E8; };
-struct C_NumHorse_Root { char pad0[0x2E0]; C_5580_Q *p2E0; char pad2E4[8]; C_NumHorse_Lookup *p2EC; };
+struct C_59C0_E8_4 { char pad0[0x7C8]; int f7C8; char pad7CC[0x900 - 0x7CC]; int f900; int f904; int f908; char pad90C[0x918 - 0x90C]; int f918; };
+struct C_59C0_E8 { int f0; C_59C0_E8_4 *f4; };
+struct C_59C0_Fb4 { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); };
+struct C_59C0_Root4 { char pad0[0xB4]; C_59C0_Fb4 *fB4; };
+struct C_NumHorse_Root { char pad0[4]; C_59C0_Root4 *f4; char pad8[0x2E0 - 8]; C_5580_Q *p2E0; char pad2E4[4]; C_59C0_E8 *f2E8; C_NumHorse_Lookup *p2EC; };
 extern C_NumHorse_Root *D_002A8490;
 extern int D_00278690, D_002786A0, D_00278678, D_002786B0;
 extern float D_0027E140;
