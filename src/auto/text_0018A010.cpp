@@ -67,11 +67,16 @@ struct C_0018A210 {
     int f4;
     char name[0x104];
     int f10C;
-    int pad110;
-    int f114, f118, f11C, f120, f124, f128, f12C;
+    int f110;
+    int f114, f118, f11C, f120;
+    int *f124;
+    int f128, f12C;
     C_0018A210_Sub sub;
-    unsigned char flags;
+    unsigned char bit0:1, bit1:1, bit2:1;
+    float f150, f154, f158, f15c;
     C_0018A210 *func_0018A210();
+    int func_0018A320(S_0018A320_W *w, S_0018A320_P *p, int level);
+    int func_00185860(char *buf);
 };
 
 /* LightTempData */
