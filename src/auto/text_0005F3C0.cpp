@@ -179,7 +179,12 @@ struct BmxInGameMenu {
     void func_000601D0(void);
     void func_00060220(void);
     void func_000602B0(void);
+    int func_0005FC30(void);
 };
+
+struct Obj_5FC { void func_0005E840(int a); void func_001D6600(void); void func_001B1980(void); void func_00157960(void); void func_0012B2B0(void *a, void *b); };
+extern "C" int func_001ADCC0(char *buf, int n, const char *fmt, ...);
+extern char D_002786BC[];
 
 
 void BmxInGameMenu::func_0005F960(void)
