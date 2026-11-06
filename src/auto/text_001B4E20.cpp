@@ -291,6 +291,23 @@ struct C_001B5860 {
     void func_001B5860(void);
 };
 
+extern int D_002769A8, D_00277288, D_0028CA84;
+extern char D_0028CB6C[], D_0028CB58[], D_0028CB44[], D_0028CB30[], D_0028CB1C[];
+extern char D_0028CB0C[], D_0028CAFC[], D_0028CAE8[], D_0028CAD4[], D_002869B8[];
+int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+char *func_001E95A4(char *s, const char *delim);
+int func_001E91F4(const char *s);
+
+struct C_001B4AF0 {
+    void func_001B4AF0(void);
+};
+
+struct C_001B5240_Obj {
+    virtual void v0(void *p);
+    char pad4[0x110];
+    int f114;
+};
+
 
 int C_001B4E20::func_001B4E20(void *param) {
     char buf[0x104];
