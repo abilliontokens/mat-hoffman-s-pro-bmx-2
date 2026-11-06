@@ -41,7 +41,7 @@ struct L_001C26B0 {
     int has;
     float v2[4];
     char kind[20];
-    char text[476];
+    char text[480];
 };
 extern char D_0028281C[];
 extern char D_00282810[];
