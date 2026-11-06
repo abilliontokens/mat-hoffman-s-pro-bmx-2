@@ -169,6 +169,13 @@ static inline float C_0017A1D0_Abs(volatile float f)
     return u.f;
 }
 
+static __forceinline float C_0017A1D0_AbsV(float x)
+{
+    volatile int tmp;
+    tmp = *(int *)&x & 0x7fffffff;
+    return *(float *)&tmp;
+}
+
 struct C_0017A1D0 {
     char pad0[0x24];
     C_0017A1D0_Vec4 pts[4];
