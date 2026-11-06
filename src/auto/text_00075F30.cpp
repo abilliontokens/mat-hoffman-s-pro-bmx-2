@@ -15,7 +15,6 @@ struct Lookup_75F30 {
 struct Mgr_75F30 {
     char pad0[0x2e8];
     void *f2e8;
-    char pad2ec[4];
     Lookup_75F30 *f2ec;
 };
 
