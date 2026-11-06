@@ -279,7 +279,7 @@ void __stdcall func_001DFC2A(S_HeapRoot *root, unsigned char *blk, unsigned int 
         if (n > (unsigned int)&D_0000FF00) {
             sz = (unsigned int)&D_0000FF00;
             if (n == (unsigned int)&D_0000FF01) {
-                sz = (unsigned int)(&D_0000FF00 + -16);
+                sz -= 0x10;
             }
             e->flags = 0;
         } else {
@@ -314,6 +314,86 @@ unsigned char *__stdcall func_001DFD24(unsigned char *p)
         r = p + *(unsigned short *)p * 16 - 0x10;
     }
     return r;
+}
+
+/* tail of the grow-in-place path: shrink the entry to `index` granules and give
+   the rest (total - index granules) back to the free lists */
+static __forceinline unsigned char GrowTail_001DFD40(S_HeapRoot *root, unsigned int flags, S_HeapEntry *entry,
+                                                     unsigned int size, unsigned int index, unsigned int total,
+                                                     unsigned char eflags, unsigned char fflags)
+{
+    unsigned int oldSize;
+    unsigned int n;
+    S_HeapEntry *next;
+    S_HeapEntry *split;
+
+    oldSize = entry->size * 16 - *((unsigned char *)entry + 6);
+    n = total - index;
+    if (n <= 2) {
+        index += n;
+        n = 0;
+    }
+    if (eflags & 2) {
+        *(S_HeapEntry *)((unsigned char *)entry + index * 16 - 16) = *(S_HeapEntry *)((unsigned char *)entry + entry->size * 16 - 16);
+    }
+    entry->size = (unsigned short)index;
+    *((unsigned char *)entry + 6) = (unsigned char)(index * 16 - size);
+    if (n == 0) {
+        entry->flags |= fflags & 0x10;
+        if (!(fflags & 0x10)) {
+            *(unsigned short *)((unsigned char *)entry + (unsigned short)index * 16 + 2) = (unsigned short)index;
+        } else {
+            ((S_HeapBlock *)root->bucket[entry->bucket])->next = (unsigned char *)entry;
+        }
+    } else {
+        split = (S_HeapEntry *)((unsigned char *)entry + index * 16);
+        split->prevSize = (unsigned short)index;
+        split->bucket = entry->bucket;
+        if (fflags & 0x10) {
+            ((S_HeapBlock *)root->bucket[split->bucket])->next = (unsigned char *)split;
+            split->flags = fflags;
+            split->size = (unsigned short)n;
+            split->flags = fflags & 0xf8;
+            FreeInsert_001DFD40(root, split, n);
+            root->freeTotal += n;
+        } else {
+            next = (S_HeapEntry *)((unsigned char *)split + n * 16);
+            if (next->flags & 1) {
+                split->flags = fflags & 0xef;
+                split->size = (unsigned short)n;
+                *(unsigned short *)((unsigned char *)split + n * 16 + 2) = (unsigned short)n;
+                split->flags &= 0xf8;
+                FreeInsert_001DFD40(root, split, n);
+                root->freeTotal += n;
+            } else {
+                fflags = next->flags;
+                FreeUnlink_001DF985(root, next);
+                root->freeTotal -= next->size;
+                n += next->size;
+                split->flags = fflags;
+                if (n <= (unsigned int)&D_0000FF00) {
+                    split->size = (unsigned short)n;
+                    if (!(fflags & 0x10)) {
+                        *(unsigned short *)((unsigned char *)split + n * 16 + 2) = (unsigned short)n;
+                    } else {
+                        ((S_HeapBlock *)root->bucket[split->bucket])->next = (unsigned char *)split;
+                    }
+                    split->flags &= 0xf8;
+                    FreeInsert_001DFD40(root, split, n);
+                    root->freeTotal += n;
+                } else {
+                    func_001DFC2A(root, (unsigned char *)split, n);
+                }
+            }
+        }
+    }
+    if (flags & 8) {
+        if (size > oldSize) {
+            memset((unsigned char *)entry + 0x10 + oldSize, 0, size - oldSize);
+        }
+    }
+    entry->flags = ((unsigned char)(flags >> 4) ^ entry->flags) & 0x1f ^ (unsigned char)(flags >> 4);
+    return 1;
 }
 
 unsigned char __stdcall func_001DFD40(S_HeapRoot *root, unsigned int flags, S_HeapEntry *entry, unsigned int size, unsigned int index)
@@ -440,44 +520,50 @@ int __stdcall func_001E013E(int a, int b, unsigned char *p)
     return r;
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 unsigned char __stdcall func_001E016D(S_HeapRoot *root, unsigned int blkAddr, unsigned char bucket, int a3, unsigned char *base, unsigned int start, unsigned int end)
 {
+    struct { int granules; int pages; } t;
     S_HeapBlock *blk = (S_HeapBlock *)blkAddr;
-    int pages = (int)(end - (unsigned int)base) / 0x1000;
-    unsigned char *tail = (unsigned char *)((blkAddr + 0x57) & 0xfffffff0);
+    int pageSize = 0x1000;
     unsigned short prev;
-    int granules;
     int rest;
-    unsigned int cur = start;
+    unsigned char *tail;
+    unsigned int cur;
 
+    *(volatile int *)&t.pages = (int)(end - (unsigned int)base) / pageSize;
+    tail = (unsigned char *)((blkAddr + 0x57) & 0xfffffff0);
+    cur = start;
+    _ReadWriteBarrier();
     if ((unsigned char *)root == base) {
         prev = root->firstSize;
     } else {
         prev = 0;
     }
-    granules = (int)((unsigned int)tail - blkAddr) >> 4;
+    *(volatile int *)&t.granules = (int)((unsigned int)tail - (unsigned int)blk) >> 4;
     if ((unsigned int)tail + 0x10 >= cur) {
         if ((unsigned int)tail + 0x10 >= end) {
             return 0;
         }
         blkAddr = (unsigned int)tail - cur + 0x10;
-        if (__imp__NtAllocateVirtualMemory(&start, 0, &blkAddr, 0x1000, 4) < 0) {
+        if (__imp__NtAllocateVirtualMemory(&start, 0, &blkAddr, pageSize, 4) < 0) {
             return 0;
         }
         cur = start += blkAddr;
     }
-    rest = (int)(end - cur) / 0x1000;
+    rest = (int)(end - cur) / pageSize;
     blk->prevSize = prev;
-    blk->size = (unsigned short)granules;
+    blk->size = (unsigned short)t.granules;
     blk->f14 = a3;
     blk->root = root;
     blk->base = base;
-    blk->limit = base + pages * 0x1000;
+    blk->limit = base + t.pages * 0x1000;
     blk->flags = 1;
     blk->bucket = bucket;
     blk->tag = 0xffeeffee;
     blk->tail = tail;
-    blk->pages = pages;
+    blk->pages = t.pages;
     blk->spare = rest;
     if (rest != 0) {
         func_001DF767(blk, cur, rest << 12);
@@ -490,7 +576,6 @@ unsigned char __stdcall func_001E016D(S_HeapRoot *root, unsigned int blkAddr, un
     func_001DFC2A(root, tail, (int)(cur - (unsigned int)tail) >> 4);
     return 1;
 }
-
 unsigned char *__stdcall func_001E028B(S_HeapRoot *heap, unsigned int size)
 {
     unsigned int pages = (size + 0xfff) >> 12;
@@ -565,4 +650,103 @@ unsigned char *__stdcall func_001E028B(S_HeapRoot *heap, unsigned int size)
     __imp__NtFreeVirtualMemory((void **)&cur, &allocSize, 0x8000);
     return 0;
 }
+
+#pragma optimize("y", off)
+S_FreeNode *__stdcall func_001DF626(S_HeapBlock *blk);
+#pragma optimize("y", off)
+void __stdcall func_001E0412(S_HeapRoot *heap, S_HeapEntry *entry, unsigned int size)
+{
+    if (heap->commit) { func_001DFC2A(heap, (unsigned char *)entry, size); return; }
+    S_HeapEntry *previous = 0;
+    S_HeapBlock *block = (S_HeapBlock *)heap->bucket[entry->bucket];
+    unsigned int base = ((unsigned int)entry + 0xfff) & 0xfffff000;
+    unsigned short first = (int)(base - (unsigned int)entry) >> 4;
+    if (first == 1) {
+        base += 0x1000;
+        first = 0x101;
+    } else if (entry->prevSize && base == (unsigned int)entry) {
+        previous = entry - entry->prevSize;
+    }
+    S_HeapEntry *end = entry + size;
+    S_HeapEntry *following = 0;
+    unsigned int bytes = (unsigned int)end & 0xfffff000;
+    unsigned short last = (int)((unsigned int)end - bytes) >> 4;
+    if (last == 1) {
+        bytes -= 0x1000;
+        last = 0x101;
+    } else if (last == 0 && !(entry->flags & 0x10)) {
+        following = end;
+    }
+    unsigned int lastCount = last;
+    unsigned int lastBytes = lastCount << 4;
+    end = (S_HeapEntry *)((unsigned char *)end - lastBytes);
+    if (bytes > base) bytes -= base; else bytes = 0;
+    S_FreeNode *node;
+    long status;
+    if (bytes == 0 || (node = func_001DF626(block)) == 0) goto fallback;
+    status = __imp__NtFreeVirtualMemory((void **)&base, &bytes, 0x4000);
+    func_001DF746(block, node);
+    if (status < 0) goto fallback;
+    func_001DF767(block, base, bytes);
+    block->spare += bytes >> 12;
+    if (first) {
+        entry->flags = 0x10;
+        entry->size = first;
+        heap->freeTotal += first;
+        block->next = (unsigned char *)entry;
+        entry->flags &= 0xf8;
+        S_HeapLink *list;
+        if (first < 0x80) {
+            list = (S_HeapLink *)((unsigned char *)heap + 0x180 + first * 8);
+            if (list->flink == list)
+                heap->freeMap[entry->size >> 3] |= (unsigned char)(1 << (entry->size & 7));
+        } else {
+            S_HeapLink *head = (S_HeapLink *)((unsigned char *)heap + 0x180);
+            for (list = head->flink; list != head; list = list->flink) {
+                if (first <= ((S_HeapEntry *)((unsigned char *)list - 8))->size) break;
+            }
+        }
+        S_HeapLink *blink = list->blink;
+        entry->link.flink = list;
+        entry->link.blink = blink;
+        blink->flink = &entry->link;
+        list->blink = &entry->link;
+    } else if (previous) {
+        previous->flags |= 0x10;
+        block->next = (unsigned char *)previous;
+    } else if ((unsigned int)block->next >= base && (unsigned int)block->next < base + bytes) {
+        block->next = block->tail;
+    }
+    if (last) {
+        end->prevSize = 0;
+        end->bucket = block->bucket;
+        end->flags = 0;
+        end->size = last;
+        *(unsigned short *)((unsigned char *)end + lastBytes + 2) = last;
+        end->flags &= 0xf8;
+        S_HeapLink *list;
+        if (last < 0x80) {
+            list = (S_HeapLink *)((unsigned char *)heap + 0x180 + lastCount * 8);
+            if (list->flink == list)
+                heap->freeMap[end->size >> 3] |= (unsigned char)(1 << (end->size & 7));
+        } else {
+            S_HeapLink *head = (S_HeapLink *)((unsigned char *)heap + 0x180);
+            for (list = head->flink; list != head; list = list->flink) {
+                if (last <= ((S_HeapEntry *)((unsigned char *)list - 8))->size) break;
+            }
+        }
+        S_HeapLink *blink = list->blink;
+        end->link.flink = list;
+        end->link.blink = blink;
+        blink->flink = &end->link;
+        list->blink = &end->link;
+        heap->freeTotal += lastCount;
+    } else if (following) {
+        following->prevSize = 0;
+    }
+    return;
+fallback:
+    func_001DFC2A(heap, (unsigned char *)entry, size);
+}
+#pragma optimize("", on)
 
