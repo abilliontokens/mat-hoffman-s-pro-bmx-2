@@ -11,8 +11,6 @@ struct Obj {
     char pad3[0xa04 - 0x954]; int ia04;
     char pad4[0x12a8 - 0xa08]; char c12a8;
     char pad5[0x159c - 0x12a9]; Sub* s159c; Sub* s15a0;
-    float GetF5E0(void) { return f5e0; }
-    float GetF5E4(void) { return f5e4; }
     void func_001188F0(int a);
     void func_00106810(int a, int b);
     void func_00119680(int a);
