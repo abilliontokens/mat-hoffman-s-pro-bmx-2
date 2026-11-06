@@ -1,5 +1,6 @@
 /* 2 functions from 0x00151130 to 0x00151F80, found by Ghidra. */
 #include "common.h"
+#include <string.h>
 extern "C" double __cdecl cos(double);
 extern "C" double __cdecl sin(double);
 #pragma intrinsic(cos, sin)
