@@ -1,5 +1,13 @@
 /* 2 functions from 0x0005C720 to 0x0005D6A0, found by Ghidra. */
 #include "common.h"
+
+struct IniFile_5C720 {
+    IniFile_5C720 *func_00168280(void);
+    void func_001691E0(void);
+    int func_00169490(char *buf, int flag);
+    void func_00169710(const char *s);
+    void func_00168A10(const char *key, int *out);
+};
 extern char D_00278328[];
 extern char D_002A5348[];
 extern char D_00275678[];
