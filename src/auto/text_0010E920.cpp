@@ -5,6 +5,11 @@ struct C_0010F300 {
     undefined4 func_0010F300(byte param_1);
 };
 
+struct C_0010E920 {
+    int f[0x813];
+    void *func_0010E920(int param_1);
+};
+
 
 undefined4 C_0010F300::func_0010F300(byte param_1)
 {
