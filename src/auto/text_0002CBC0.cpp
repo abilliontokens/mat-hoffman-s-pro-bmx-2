@@ -16,7 +16,7 @@ struct S_2D270_230 {
     char pad0[0xf0];
     char f0f0[0x40];
     void func_0019AD60(int a, void *b);
-    void func_00197EC0(void *a, void *b);
+    V4_2D270 *func_00197EC0(void *a, void *b);
 };
 
 struct S_2D270_Glob { char pad[0x248]; float f248; };
