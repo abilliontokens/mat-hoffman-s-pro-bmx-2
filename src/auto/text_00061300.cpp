@@ -24,6 +24,12 @@ static inline void freez_61590(int &p) {
  C_61590_Obj *q = (C_61590_Obj *)p;
  if(q) { q->func_001D6410(); func_001E891B((void *)q); p=0; }
 }
+struct V_61590 {
+ char pad0[0x12c]; int a12c[4];
+ char pad13c[0x1a4-0x13c]; int a1a4[4];
+ int a1b4[2]; int a1bc[2];
+ char pad1c4[0x2c8-0x1c4]; int a2c8[5]; int a2dc[5];
+};
 struct C_00061300 {
     int w[0xBC];
     void func_00157600(int a0);
