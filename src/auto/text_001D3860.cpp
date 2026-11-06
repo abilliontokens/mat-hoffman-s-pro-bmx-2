@@ -273,6 +273,12 @@ __declspec(align(16)) struct S_001D3860_Mat {
     }
 };
 
+struct S_001D3860_Coords {
+    float f[6];
+    int x[4];
+    int w, h;
+};
+
 /* XboxMediaControl */
 struct C_001D3AB0 {
     void *vtbl;
@@ -645,21 +651,18 @@ unsigned C_001D4200::func_001D4060(int a)
 
 int C_001D4200::func_001D40E0(int a)
 {
-    struct {
-        char c;
-    } L;
+    char letter;
 
     if (a == 8) {
         unk0 = a;
         strcpy(unk4, "u:\\");
         return 1;
     }
-    if ((func_0026EBC5(&D_0026D8D0) & func_001D4060(a)) != 0) {
-        if (func_0026ED5B(func_001D4010(a), (a >= 4) ? 1 : 0, &L.c) >= 0) {
-            func_001ADCC0(unk4, 4, D_0028F130, L.c);
-            unk0 = a;
-            return 1;
-        }
+    if ((func_001D4060(a) & func_0026EBC5(&D_0026D8D0)) != 0 &&
+        func_0026ED5B(func_001D4010(a), a >= 4, &letter) >= 0) {
+        func_001ADCC0(unk4, 4, D_0028F130, letter);
+        unk0 = a;
+        return 1;
     }
     return 0;
 }
@@ -713,8 +716,8 @@ int C_001D4200::func_001D4200(char *out)
                 break;
             }
         } while (func_001DE625(h, &find) != 0);
-        func_001DE66C(h);
         ret = found;
+        func_001DE66C(h);
     }
     return ret;
 }
