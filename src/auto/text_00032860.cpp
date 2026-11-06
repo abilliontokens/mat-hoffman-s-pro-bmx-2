@@ -383,14 +383,49 @@ void C_00032E90::func_00032E90(void)
 {
     struct { C_00032E90 * volatile self; int v; int * volatile p; float t; } L;
     C_00032E90 *s;
+    int r;
 
     L.self = this;
     if (D_002F08BC != 0 && (f210 != D_00275544 || f214 != D_00275544 || f218 != D_00275544) && f230 < D_00275600) {
         *(volatile float *)&f230 = D_002A8490->f244 + f230;
         s = L.self;
+        L.v = *(int *)&s->f210;
         L.p = &L.v;
-        L.t = func_0001C870(s->f230, 0, s->f220, 2.0f, s->f210);
-        *L.p = _mm_cvtss_si32(*(__m128 *)&L.t);
+        L.t = func_0001C870(s->f230, 0, s->f220, 2.0f, *(float *)&L.v);
+        r = _mm_cvtss_si32(*(__m128 *)&L.t);
+        *L.p = r;
+    }
+}
+
+static __inline float Interp_00032F50(float t, float from, float to)
+{
+    return func_0001C870(t, 0, from, 2.0f, to);
+}
+
+void BmxEvent::func_00032F50()
+{
+    float t;
+    O_Obj32F50 *o;
+    int i;
+
+    for (i = 0; i < 2; i++) {
+        o = f234[i];
+        if (o) {
+            if (f27C[i] < D_00275600) {
+                t = D_002A8490->f244 + f27C[i];
+                f27C[i] = t;
+                o->f8->func_001824E0(
+                    func_0001C870(t, 0, f25C[i].x, 2.0f, f23C[i].x),
+                    func_0001C870(t, 0, f25C[i].y, 2.0f, f23C[i].y),
+                    func_0001C870(t, 0, f25C[i].z, 2.0f, f23C[i].z));
+            } else {
+                o->f8->func_001824E0(f23C[i].x, f23C[i].y, f23C[i].z);
+                f234[i] = 0;
+                f23C[i] = D_002A1460;
+                f25C[i] = D_002A1460;
+                f27C[i] = 0.0f;
+            }
+        }
     }
 }
 
