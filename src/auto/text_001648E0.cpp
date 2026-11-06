@@ -6,13 +6,6 @@ struct Vec4_165EF0 {
  __forceinline Vec4_165EF0 operator-(const Vec4_165EF0 &b) const { Vec4_165EF0 r; r.x=x-b.x; r.y=y-b.y; r.z=z-b.z; r.w=1.0f; return r; }
  Vec4_165EF0 operator*(float s) const { Vec4_165EF0 r; r.x=x*s; r.y=y*s; r.z=z*s; r.w=1.0f; return r; }
  Vec4_165EF0 operator+(const Vec4_165EF0 &b) const { Vec4_165EF0 r; r.x=x+b.x; r.y=y+b.y; r.z=z+b.z; r.w=1.0f; return r; }
- __forceinline void Mirror(int mode) {
-  float z = this->z, w = this->w, y = this->y;
-  if (mode == 0) y = -y;
-  else if (mode == 1) z = -z;
-  else if (mode == 2) w = -w;
-  this->y = -y; this->z = -z; this->w = -w;
- }
 };
 struct C_001648E0_Item {
  virtual void v0();
