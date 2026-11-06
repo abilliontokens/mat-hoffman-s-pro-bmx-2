@@ -88,10 +88,11 @@ struct GObjD {
     virtual void vf8();
 };
 extern GObjD *D_002EFDB8;
-extern int D_002A14D4;
-extern int D_002A14D8;
-extern int D_002A14DC;
-extern int D_002A14E0;
+extern float D_002A14D4;
+extern float D_002A14D8;
+extern float D_002A14DC;
+extern float D_002A14E0;
+inline void V4::identity() { x = D_002A14D4; y = D_002A14D8; z = D_002A14DC; w = D_002A14E0; }
 void func_001E891B(void *p);
 int func_000265C0(V4 *out, V4 *a, V4 *b, V4 *c, int d, int e);
 
