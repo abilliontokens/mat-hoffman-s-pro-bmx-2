@@ -41,14 +41,14 @@ struct Q64_000448D0 {
     char pad0[0x4e0];
     Q4E0_000448D0 *f4e0;
 };
+struct Q2FC_000448D0 {
+    void func_00095200(int);
+};
 struct Q2E0_000448D0 {
     char pad0[0x190];
     int f190;
     char pad194[0x2fc - 0x194];
-    void *f2fc;
-};
-struct Q2FC_000448D0 {
-    void func_00095200(int);
+    Q2FC_000448D0 *f2fc;
 };
 struct G8490_000448D0 {
     char pad0[4];
