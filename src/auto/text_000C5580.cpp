@@ -164,6 +164,13 @@ struct C_6420_Elem {
     void dim() { f38 = (f38 & 0xffcccccc) | 0xcccccc; b58 |= 2; }
 };
 
+struct C_6420_Elem2 {
+    char pad0[0x38];
+    unsigned int f38;
+    char pad3C[0x1C];
+    unsigned char b58;
+};
+
 struct C_5E40_G {
     char pad0[0x24];
     C_6420_Elem *f24;
@@ -325,11 +332,11 @@ void __fastcall func_000C5E40(BmxUIPageParkEditor *self)
 
 void BmxUIPageParkEditor::func_000C6420()
 {
-    C_6420_Elem **p;
     C_6420_Elem *e;
     C_6420_Elem *m;
     C_5E40_G *s;
     C_5E40_B *o;
+    unsigned char b;
     int n;
     int i;
 
@@ -352,18 +359,18 @@ void BmxUIPageParkEditor::func_000C6420()
         m = D_002B91AC->f8C;
     m->func_001D5AD0();
     n = f140->f4->f30 - 1;
-    p = (C_6420_Elem **)f2D0;
-    for (i = 0; i < 4; i++, p++) {
+    for (i = 0; i < 4; i++) {
         if (i == n * 2 || i == n * 2 + 1) {
-            e = *p;
-            e->b58 |= 2;
+            e = (C_6420_Elem *)f2D0[i];
+            b = e->b58 | 2;
             e->f38 = (e->f38 & 0xffbfa35a) | 0xbfa35a;
+            e->b58 = b;
         } else {
-            e = *p;
-            e->f38 = (e->f38 & 0xffcccccc) | 0xcccccc;
+            e = (C_6420_Elem *)f2D0[i];
             e->b58 |= 2;
+            e->f38 = (e->f38 & 0xffcccccc) | 0xcccccc;
         }
-        (*p)->func_001D5AD0();
+        ((C_6420_Elem *)f2D0[i])->func_001D5AD0();
     }
     s = D_002B91AC;
     s->f24->func_001D5AD0();
