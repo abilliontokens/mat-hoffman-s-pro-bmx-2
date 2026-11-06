@@ -35,7 +35,7 @@ extern float D_002A1178;
 
 struct Vec4_0002AF90 {
     float x, y, z, w;
-    __forceinline void Set(const Vec4_0002AF90 *o) { *this = *o; }
+    __forceinline void Set(const Vec4_0002AF90 *o) { x = o->x; y = o->y; float a = o->z; float b = o->w; z = a; w = b; }
     __forceinline void Set4(const float &a, const float &b, const float &c, const float &d)
     {
         x = a;
