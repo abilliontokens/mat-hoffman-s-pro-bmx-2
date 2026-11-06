@@ -48,7 +48,9 @@ struct S_00024210_Cur {
 };
 
 struct S_00024210_A {
-    char pad0[0x2A4];
+    char pad0[0x124];
+    int f124;
+    char pad128[0x2A4 - 0x128];
     S_00024210_Cur *f2A4;
 };
 
