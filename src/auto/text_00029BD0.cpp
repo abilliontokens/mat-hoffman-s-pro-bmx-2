@@ -301,8 +301,76 @@ struct C_0002A250 {
     int f78c;
     void func_0002A250(float dt);
 };
+static __forceinline float Length_0002A250(V4_0002A250 *v)
+{
+    float square = v->x * v->x + v->y * v->y + v->z * v->z;
+    float r;
+    _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&square));
+    return r;
+}
 extern double D_002766C8;
 extern float D_002756D4, D_002A1170, D_002A116C, D_002A1168, D_002A1164, D_00275F58, D_00275460, D_002766C4;
 void func_00026340(V4_0002A250 *out, V4_0002A250 *in);
 float func_0014F7E0(float x);
 float func_0001C870(float a, int b, float c, float d, float e);
+
+void C_0002A250::func_0002A250(float dt)
+{
+    float speed;
+    V4_0002A250 a;
+    V4_0002A250 b;
+    int sign;
+    float step;
+    float s1;
+    float s2;
+
+    speed = Sqrt_0002A7C0(f1e0->v170.x * f1e0->v170.x + f1e0->v170.y * f1e0->v170.y + f1e0->v170.z * f1e0->v170.z);
+    if (f1ec->f3c * D_002766C8 < speed) {
+        f78c = 1;
+    }
+    if (speed > D_00275544 && f644 == D_00275544) {
+        a.x = a.y = a.z = 0;
+        a.w = 1.0f;
+        func_00026340(&a, &f1e0->v170);
+        f644 = D_002756D4 - func_0014F7E0(a.x * f10c.x + a.y * f10c.y + a.z * f10c.z);
+        b.x = b.y = b.z = 0;
+        b.w = 1.0f;
+        Cross_0002A7C0(&b.x, &a.x, &f10c.x);
+        func_00026340(&b, &b);
+        sign = -1;
+        if (D_00275544 <= b.y) {
+            sign = 1;
+        }
+        f644 = sign * f644 * D_002A1170;
+        f64c = Abs_0002A010(f644);
+        f650 = func_0001C870(speed, 0, D_002A1164, D_002A1168, D_002A116C);
+    }
+    s1 = D_00275460;
+    if (f4b4 < D_00275544) {
+        s1 = D_00275F58;
+    }
+    s2 = D_00275460;
+    if (f644 < D_00275544) {
+        s2 = D_00275F58;
+    }
+    if (s1 != s2 && Abs_0002A010(f4b4) > D_002766C4) {
+        f644 = 0;
+    }
+    if (Abs_0002A010(f644) > D_00275544) {
+        s2 = D_00275460;
+        step = func_0001C870(Abs_0002A010(f644), 0, D_002A1164, f64c, f650);
+        if (f644 < D_00275544) {
+            s2 = D_00275F58;
+        }
+        step = s2 * step * dt;
+        if (Abs_0002A010(f644) < Abs_0002A010(step)) {
+            step = f644;
+        }
+        f230->func_00199CF0(*(V4_0002A250 *)&D_002A1110, step);
+        f644 -= step;
+        f1e0->f268 -= f1e0->f180;
+        f1e0->f26c -= f1e0->f184;
+        f1e0->f270 -= f1e0->f188;
+        ((V4i_0002A6B0 *)&f1e0->f180)->Set(D_002A10F0, D_002A10F4, D_002A10F8, D_002A10FC);
+    }
+}
