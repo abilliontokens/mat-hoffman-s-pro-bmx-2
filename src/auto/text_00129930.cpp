@@ -7,11 +7,19 @@ struct S_00129A10_Arg {
     int f50;
     char pad54[0x54];
     float fA8, fAC, fB0;
-    char padB4[0x4C];
+    char padB4[0x34];
+    float fE8;
+    char padEC[0x10];
+    void *fc;
     float f100;
     char pad104[8];
     float f10C;
+    char pad110[0xAC];
+    unsigned short f1bc;
+    char pad1BE[6];
+    void *f1c4;
 };
+void func_00030AC0(void *a, void *b, void *c);
 struct C_00129A10 {
     char pad0[0xB0];
     float fB0[4];
