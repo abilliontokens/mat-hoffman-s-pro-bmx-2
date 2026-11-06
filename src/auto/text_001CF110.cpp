@@ -206,7 +206,7 @@ struct SoundVoiceList {
     int func_001CDE90(SoundVoice *voice);
 };
 
-static inline int Voice_CheckOther(SoundVoice *old, SoundVoice *cur)
+static inline int Voice_CheckOther(SoundVoice *cur, SoundVoice *old)
 {
     return cur->func_001CD940(old);
 }
@@ -491,9 +491,9 @@ void XboxSoundGroup::func_001CF2A0()
 int C_001CF3C0::func_001CF3C0(SoundVoice *voice)
 {
     SoundVoiceList *list;
+    SoundVoice *found;
     int x;
     int index;
-    SoundVoice *found;
 
     if (voice->f10c & 8) {
         x = f8;
@@ -503,7 +503,7 @@ int C_001CF3C0::func_001CF3C0(SoundVoice *voice)
         list = (SoundVoiceList *)f24;
     }
     if (func_001CDD50(list, x, &found, &index, &found)) {
-        if (!(voice = found)->func_001CD940(voice)) {
+        if (!Voice_CheckOther(voice, voice = found)) {
             if (index >= 0 || list->func_001CDE90(voice)) {
                 return 1;
             }
