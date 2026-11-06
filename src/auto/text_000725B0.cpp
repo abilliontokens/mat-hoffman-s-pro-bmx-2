@@ -216,9 +216,9 @@ t=(Res_72C90*)func_001E8A44(0x60);self->f88=t?t->func_001D5E90():0;self->f88->fu
 t=(Res_72C90*)func_001E8A44(0x60);self->f80=t?t->func_001D5E90():0;self->f80->func_001D5FA0(font2,(int)D_00278690,30,0);pos72(self->f80,0x43a00000,0x42ea0000);color72(self->f80,0xffcccccc);align72(self->f80,D_0028F5E0);
 for(int i=0;i<5;i++){t=(Res_72C90*)func_001E8A44(0x60);self->aB8[i]=t?t->func_001D5E90():0;self->aB8[i]->func_001D5FA0(font2,(int)D_00278690,45,0);float y=font2->func_0018C210()*i+D_00278D40;t=self->aB8[i];if(t->x!=0x43a00000||*(float*)&t->y!=y){*(float*)&t->y=y;t->x=0x43a00000;t->flags|=6;}color72(self->aB8[i],0xffcccccc);align72(self->aB8[i],D_0028F5E0);}
 func_001ADCC0(D_002A60B0,0x104,D_00275678,D_002A5348,D_002A5FA8);
-Obj_72C90* o=(Obj_72C90*)func_001E8A44(0x64);self->f78=o?o->func_001D5760():0;self->f78->func_001D5810(D_00278658,0,0,0);uv72(self->f78);size72(self->f78);
-for(int j=0;j<5;j++){o=(Obj_72C90*)func_001E8A44(0x64);self->a90[j]=o?o->func_001D5760():0;float x=j*D_00278650;self->a90[j]->func_001D5810(D_00278658,x,50,0);o=(Obj_72C90*)func_001E8A44(0x64);self->aA4[j]=o?o->func_001D5760():0;self->aA4[j]->func_001D5810(D_00278658,x,366,0);o=self->aA4[j];o->a=0;o->b=1;o->c=0.99f;o->d=0;o->flags|=4;}
-o=(Obj_72C90*)func_001E8A44(0x64);self->f7C=o?o->func_001D5760():0;self->f7C->func_001D5810(D_00278658,0,398,0);uv72(self->f7C);size72(self->f7C);
+Obj_72C90* o=(Obj_72C90*)func_001E8A44(0x64);self->f78=o?o->func_001D5760():0;self->f78->func_001D5810(D_00278658,0,0,0);uv72(self->f78);width72(self->f78);height72(self->f78);
+for(int j=0;j<5;j++){o=(Obj_72C90*)func_001E8A44(0x64);Obj_72C90* n=o?o->func_001D5760():0;float x=j*D_00278650;self->a90[j]=n;self->a90[j]->func_001D5810(D_00278658,x,50,0);o=(Obj_72C90*)func_001E8A44(0x64);self->aA4[j]=o?o->func_001D5760():0;self->aA4[j]->func_001D5810(D_00278658,x,366,0);o=self->aA4[j];o->a=0;o->b=1;o->c=0.99f;o->d=0;o->flags|=4;}
+o=(Obj_72C90*)func_001E8A44(0x64);self->f7C=o?o->func_001D5760():0;self->f7C->func_001D5810(D_00278658,0,398,0);uv72(self->f7C);width72(self->f7C);height72(self->f7C);
 o=(Obj_72C90*)func_001E8A44(0x64);self->f70=o?o->func_001D5760():0;self->f70->func_001D5810(D_00278638,379,388,0);
 o=(Obj_72C90*)func_001E8A44(0x64);self->f74=o?o->func_001D5760():0;self->f74->func_001D5810(D_00278608,379,388,0);
 strcpy(D_002A60B0,D_002A63C8);return self;
