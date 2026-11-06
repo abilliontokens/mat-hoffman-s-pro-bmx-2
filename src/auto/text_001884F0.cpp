@@ -56,6 +56,8 @@ struct C_00188VT2 {
 
 struct C_001888F0_Obj : C_00188VT {
     C_001888F0_Obj *func_00188250();
+    C_001888F0_Obj();
+    static void *operator new(unsigned int size) { return func_001E8A44(size); }
 };
 
 struct S_00188AB0_Parser {
@@ -414,15 +416,18 @@ int C_001887A0::func_001887A0(S_001887A0_Arg *p) {
 void C_00188700::func_001888F0(void)
 {
     C_001888F0_Obj *p;
+    C_001888F0_Obj *q;
+    void (__fastcall *f)(void *);
 
     p = (C_001888F0_Obj *)func_001E8A44(0x280);
     if (p != 0) {
-        p = p->func_00188250();
+        q = p->func_00188250();
     } else {
-        p = 0;
+        q = 0;
     }
-    *(C_001888F0_Obj **)&unkC = p;
-    (*(C_001888F0_Obj **)&unkC)->v0();
+    unkC = (int)q;
+    f = *(void (__fastcall **)(void *))*(void **)q;
+    f(q);
 }
 
 void C_00188920::func_00188920(void)
