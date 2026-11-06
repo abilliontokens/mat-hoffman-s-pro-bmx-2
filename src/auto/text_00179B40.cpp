@@ -374,8 +374,8 @@ static __forceinline void AddShadowCaster(C_0017A700 *o, DXRenderableObject *own
         else p = 0;
         o->fF0[o->fF4] = p;
     }
-    int max = o->fF0[o->fF4]->f4->f1a4->count - 1;
-    int value = ShadowMin(index, max);
+    volatile int max = o->fF0[o->fF4]->f4->f1a4->count - 1;
+    volatile int value = index < max ? index : max;
     o->fF0[o->fF4]->f8 = value;
     o->fF4++;
 }
