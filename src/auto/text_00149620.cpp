@@ -38,6 +38,13 @@ struct C_00012140 {
     void func_00012140();
 };
 
+struct Vec4f_149620 {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
 struct C_0014A3A0 : C_0001DFE0 {
     int unk8[8];
     int unk28[8];
@@ -47,15 +54,18 @@ struct C_0014A3A0 : C_0001DFE0 {
     int unk54;
     int unk58;
     float unk5C[16];
-    char pad9C[0x40];
+    int unk9C[8];
+    int unkBC[8];
     int unkDC;
     int unkE0;
     int unkE4;
     C_0014A540 *unkE8;
     C_00012140 *unkEC;
+    int unkF0;
     C_0014A3A0 *func_0014A3A0();
     void func_0014A420();
     int func_00149ED0(int param_1, int param_2);
+    int func_00149620(int param_1, int param_2, int param_3, int param_4, int param_5, int param_6);
 };
 
 struct C_0014A560 {
