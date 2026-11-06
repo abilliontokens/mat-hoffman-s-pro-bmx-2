@@ -73,9 +73,9 @@ struct C_00075170 {
     int unk1B4;
     void func_00075170();
 };
-static __forceinline int Percent_75170(int n, int total)
+static __forceinline int Percent_75170(float n, float total)
 {
-    return (int)((float)n * D_00275994 / (float)total);
+    return (int)(n * D_00275994 / total);
 }
 #define SETUP_LABEL(slot) { \
     Lbl_75170 *p = (slot); \
