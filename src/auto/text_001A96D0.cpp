@@ -138,7 +138,6 @@ struct Home_001A9FA0 {
     This_001A9FA0 *self;
     V4_001A96D0 a;
     V4_001A96D0 b;
-    V4_001A96D0 t;
 };
 
 struct V4 { float x, y, z, w; };
