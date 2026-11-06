@@ -140,6 +140,8 @@ struct C_BEE30 {
     ElemA_BEE *f24; ElemA_BEE *f28; ElemA_BEE *f2C; ElemA_BEE *f30;
     ElemB_BEE *f34; ElemB_BEE *a38[6];
     ElemA_BEE *a50[6]; ElemA_BEE *a68[6];
+    ElemB_BEE *b80; ElemB_BEE *b84;
+    ElemA_BEE *a88[2]; ElemA_BEE *a90[2];
     void func_000BEE30(void);
 };
 struct C_000BFB70 {
