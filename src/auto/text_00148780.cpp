@@ -287,17 +287,16 @@ void C_00148780::func_001487D0()
     void *func_001E8A44(int);
     void __stdcall func_00011FF0(void *p, int a1, int a2, int *a3);
     int n = unk8->count;
-    if (n == 0) {
-        unk20 = 0;
-        return;
-    }
-    void *p = func_001E8A44(n * 0x14);
-    if (p != 0) {
-        func_00011FF0(p, 0x14, n, &D_00144CD0);
+    void *p;
+    if (n) {
+        p = func_001E8A44(n * 0x14);
+        if (p)
+            func_00011FF0(p, 0x14, n, &D_00144CD0);
+        else
+            p = 0;
         unk20 = p;
     } else {
-        p = 0;
-        unk20 = p;
+        unk20 = 0;
     }
 }
 
