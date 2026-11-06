@@ -130,20 +130,20 @@ void C_000E7AD0::func_000E7AD0()
     D_002B91AC->f34->func_001D6600();
     if (f4AC != 0) {
         f340->func_001B1980();
-        if (memcmp(((E7_Row *)saved->f27C)[saved->f284].name, D_0027E83C, sizeof(D_0027E83C)) == 0) {
-            f340->func_001B17D0(D_00281A48);
+        if (strcmp(saved->f27C + saved->f284 * 0x1A8, "Ruben Alacantara") == 0) {
+            f340->func_001B17D0("Ruben Alcantara");
         } else {
-            f340->func_001B17D0(((E7_Row *)saved->f27C)[saved->f284].name);
+            f340->func_001B17D0(saved->f27C + saved->f284 * 0x1A8);
         }
         f340->func_001B1860(0, -1.0f, 0, 1.0f, 0, 0, 0, 0xff, 1.0f, 0, 0.25f, 0, 0);
         f4AC = 0;
     }
     if (f4B0 != 0) {
         f340->func_001B1980();
-        if (memcmp(((E7_Row *)saved->f27C)[saved->f284].name, D_0027E83C, sizeof(D_0027E83C)) == 0) {
-            f340->func_001B17D0(D_00281A48);
+        if (strcmp(saved->f27C + saved->f284 * 0x1A8, "Ruben Alacantara") == 0) {
+            f340->func_001B17D0("Ruben Alcantara");
         } else {
-            f340->func_001B17D0(((E7_Row *)saved->f27C)[saved->f284].name);
+            f340->func_001B17D0(saved->f27C + saved->f284 * 0x1A8);
         }
         f340->func_001B1860(0, -1.0f, 0xff, 1.45f, 0, 0, 0, 0, 1.45f, 0, 0.1f, 0, 0);
         f4B0 = 0;
