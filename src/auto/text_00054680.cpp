@@ -7,6 +7,11 @@ struct V_000551B0 {
 };
 extern V_000551B0 D_002A1A64;
 extern int D_002A1A68, D_002A1A6C, D_002A1A70;
+
+static __forceinline void copyQuat_000551B0(V_000551B0 *d, const V_000551B0 *s)
+{
+    *d = *s;
+}
 extern int D_002BA160, D_002B9118, D_002B9108, D_002B9114, D_002B9110, D_002B910C;
 
 struct S_00054430_V4 {
