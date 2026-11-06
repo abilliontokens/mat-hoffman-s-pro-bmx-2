@@ -77,6 +77,34 @@ struct S_00034A40_28 {
     void *f1ac;
 };
 
+struct S_34A40_Cam { void func_00198390(); };
+struct S_34A40_VBase {
+    virtual void vb0() = 0;
+    virtual void vb1() = 0;
+    virtual void vb2() = 0;
+    virtual void vb3() = 0;
+    virtual void vb4() = 0;
+};
+struct S_34A40_VObj : virtual S_34A40_VBase {
+    S_34A40_Cam *f4;
+};
+struct S_34A40_Gfx {
+    int f0;
+    int f4;
+    void func_00194E60(Vec4 v);
+    void func_00194EB0(Vec4 v);
+    void func_00194F60(Vec4 v);
+    void func_00194F90(float f);
+};
+struct S_34A40_Owner { char pad0[0x5c]; S_34A40_Gfx *f5c; };
+static __forceinline __m128 Shuf_34A40(__m128 v) { return _mm_shuffle_ps(v, v, 0xc9); }
+static __forceinline void Cross_34A40(Vec4 *out, const Vec4 *a, const Vec4 *b)
+{
+    _mm_storeu_ps(&out->x, Shuf_34A40(_mm_sub_ps(
+        _mm_mul_ps(_mm_loadu_ps(&a->x), Shuf_34A40(_mm_loadu_ps(&b->x))),
+        _mm_mul_ps(_mm_loadu_ps(&b->x), Shuf_34A40(_mm_loadu_ps(&a->x))))));
+}
+
 struct C_00034A40 {
     char pad0[0x24];
     void *f24;
