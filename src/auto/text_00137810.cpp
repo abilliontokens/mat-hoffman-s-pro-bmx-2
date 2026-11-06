@@ -244,6 +244,9 @@ struct DrawableCube {
     void func_00138390(void);
     int func_001382B0(void);
     DrawableCube *func_00138330(int a);
+    void func_001376B0(void *p);
+    void func_00136BE0(int a);
+    DrawableCube *func_00138480(int a);
 };
 
 
