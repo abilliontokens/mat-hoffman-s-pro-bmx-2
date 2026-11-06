@@ -729,14 +729,7 @@ void C_000AC7F0::func_000AC7F0(void)
         }
     }
     if (field_3AC == 0) {
-        C_000AC7F0_Dyn *p = (C_000AC7F0_Dyn *)func_001E8A44(0x2c);
-        if (p != 0) {
-            p->func_001B5830(1);
-            *(void **)p = &D_0027AE04;
-        } else {
-            p = 0;
-        }
-        field_3AC = p;
+        field_3AC = (C_000AC7F0_Dyn *)new New_000AC7F0;
     }
     if (field_3AC->v27(field_28) != 0) {
         return;
