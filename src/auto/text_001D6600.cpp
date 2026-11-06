@@ -8,7 +8,7 @@ extern int D_0028F644;
 struct TextureInit_001D6B70 {
  virtual void slot0(); virtual void slot1(); virtual void slot2(); virtual void slot3();
  virtual void slot4(); virtual void slot5(); virtual void slot6(); virtual void slot7();
- virtual int slot8(int,int,int,int,int,int,int,int,int);
+ virtual int slot8(int,int,int,int,int,int,int,int,int) volatile;
 };
 extern int D_002A83E0;
 
