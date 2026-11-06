@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <math.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 extern char D_002764F0[];
 extern char D_00276310[];
 extern char D_0027CEF0[];
@@ -453,6 +454,34 @@ struct C_000B2530 {
 };
 
 
+#pragma optimize("", on)
+void C_000B21B0::func_000B21B0(S_000B21B0_Stream * volatile stream) {
+ char buf[0x104];
+ func_001B4B80(stream);
+ stream->func_00168BE0(D_00276310,D_002764F0,buf,-1);
+ int n = func_001E9040(buf,D_0027CEF0);
+ int len = AsmMinI(n, 50);
+ func_001E8920(data+4,buf,len);
+ ((volatile char *)data)[4+len]=0;
+stream->func_00168C20(D_0027D0CC,0,data+324);
+stream->func_00168BE0(D_002769A8,D_002764F0,data+332,0x104);
+stream->func_00168C20(D_0027D0C0,0,data+328);
+stream->func_00168C50(D_0027D0AC,9.0f,data+280);
+stream->func_00168BE0(D_002764EC,D_002764F0,data+592,0x104);
+stream->func_00168C20(D_0027D09C,1,data+316);
+stream->func_00168C20(D_0027D090,-1,data+284);
+stream->func_00168BE0(D_0027D088,D_002764F0,data+852,0x104);
+stream->func_00168C20(D_0027D078,1,data+320);
+stream->func_00168C20(D_0027D06C,-1,data+288);
+stream->func_00168C50(D_002764D8,0.0f,data+276);
+stream->func_00168C20(D_0027D060,0,data+292);
+stream->func_00168C20(D_0027D050,0,data+300);
+stream->func_00168C20(D_0027D044,1,data+304);
+stream->func_00168C20(D_0027D030,0,data+308);
+stream->func_00168C20(D_0027D020,0,data+296);
+stream->func_00168C20(D_0027D008,0,data+312);
+}
+#pragma optimize("", on)
 void VehicleAI::func_000B2450(float arg)
 {
     if (f78) {
@@ -530,6 +559,66 @@ void C_000B25D0::func_000B25D0(void)
         if (f78 != 0) {
             f44->f28->f8->func_001A2B40(3);
         }
+    }
+}
+
+void C_000B2630::func_000B2630(void)
+{
+    C_000B2630 * volatile self = this;
+    float best = 10000.0f;
+    S_000B2630_Vec d;
+    S_000B2630_Vec dir;
+    S_000B2630_Vec tmp;
+    int i;
+    for (i = 0; i < D_002B9120->f4E0->f24; i++) {
+        float dx, dy, dz, dist;
+        d = *D_002B9120->f4E0->f1A8[i]->fA00->f4->func_00199B00(&tmp, 0);
+        dx = d.x - self->f7C;
+        dy = d.y - self->f80;
+        dz = d.z - self->f84;
+        dist = _mm_sqrt_ss(_mm_set_ss(dx * dx + dy * dy + dz * dz)).m128_f32[0];
+        if (dist > D_00275544 && dist < best) {
+            best = dist;
+        }
+    }
+    if (best < D_00275800) {
+        float * volatile pin;
+        float * volatile pout;
+        dir.x = 0.0f;
+        dir.y = 0.0f;
+        dir.z = 0.0f;
+        dir.w = 1.0f;
+        d.x = d.x - self->f7C;
+        d.y = d.y - self->f80;
+        d.z = d.z - self->f84;
+        d.w = 1.0f;
+        pin = &d.x;
+        pout = &dir.x;
+        Normalize_000B2630(pout, pin);
+        d = *(S_000B2630_Vec *)(self->f3C + 0x458);
+        if (d.y * dir.y + d.x * dir.x + d.z * dir.z >= D_002756D8) {
+            if (self->f2AA != 1 && self->f68 == 0x3F800000) {
+                if (func_00011260(0, 100) < 20 && self->f78) {
+                    ((S_000B25D0_Leaf *)self->f44->f28->f8)->func_001A2B40(4);
+                    self->f2AA = 1;
+                }
+            }
+            self->f68 = 0;
+            if (self->f5C != 0x5A) {
+                self->f1A1 = 1;
+                self->f58 = 0x5A;
+            }
+            return;
+        }
+    }
+    if (self->f2AA == 1 && self->f78) {
+        self->f44->f28->f8->func_001A2B40(3);
+        self->f2AA = 0;
+    }
+    self->f68 = 0x3F800000;
+    if (self->f5C != 0) {
+        self->f1A1 = 1;
+        self->f58 = 0;
     }
 }
 
