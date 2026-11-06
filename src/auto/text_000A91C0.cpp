@@ -158,7 +158,7 @@ struct A9_List { char pad[0x24]; int count; A9_Item **items; void func_001577A0(
 struct A9_Arg { char pad[0x348]; int index; char pad34C[0x5c]; A9_List **lists; A9_List *list; };
 struct A9_Global { char pad[0x3a8]; A9_List **lists; char pad3AC[0xfc]; void **models; };
 extern A9_Global *D_002B9120;
-static inline int a9_min(volatile int a, volatile int b) { int x = a, y = b; return x > y ? y : x; }
+static inline int a9_min(volatile int a, volatile int b) { int x = a, y = b; volatile int result = x < y ? x : y; return result; }
 struct C_A9 { char pad[0x24]; int count; A9_Obj **objs; void func_000A9A70(A9_Arg *); };
 extern "C" int func_001EA426(const char *, const char *);
 extern "C" char *func_001E8AC0(char *, int);
