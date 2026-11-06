@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <xmmintrin.h>
 #include <string.h>
+#include "asm_helpers.h"
 struct C_001923D0 {
     undefined4 func_001923D0(byte param_1);
 };
@@ -166,23 +167,17 @@ struct C_00192420 {
 
 void C_00191470::func_00191470(unsigned int a0)
 {
-    C_00191470 * volatile self = this;
-
     switch ((a0 >> 16) & 0xff) {
     case 0:
         f20 = D_002A97D8;
         break;
     case 1: {
-        S_00192310_Mat * volatile p;
         S_00192310_Mat m;
         S_00192310_Mat copy;
-        __m128 *v;
 
-        p = &m;
-        v = (__m128 *)p;
-        v[3] = v[2] = v[1] = v[0] = _mm_setzero_ps();
+        AsmZeroMatrix(&m);
         copy = m;
-        ((C_000264C0 *)((char *)self + 0x30))->func_000264C0(&copy);
+        ((C_000264C0 *)&f30)->func_000264C0(&copy);
         break;
     }
     }
@@ -191,11 +186,7 @@ void C_00191470::func_00191470(unsigned int a0)
 void C_00191470::func_00191510(const char * volatile a0, unsigned int a1)
 {
     volatile int slot[4];
-    int a;
-    int b;
-    int c;
-    int k;
-
+    int a, b, k;
     slot[0] = (int)this;
     switch ((a1 >> 16) & 0xff) {
     case 0:
@@ -209,15 +200,12 @@ void C_00191470::func_00191510(const char * volatile a0, unsigned int a1)
     slot[2] = 0x17;
     a = slot[2];
     b = slot[1];
-    c = a;
-    if (c > b) {
-        c = b;
-    }
-    slot[3] = c;
+    slot[3] = a > b ? b : a;
     k = slot[3];
     func_001E8920((void *)slot[0], a0, k);
-    ((volatile char *)slot[0])[k] = 0;
-    ((C_00191470 *)slot[0])->f18 = a1;
+    *(volatile char *)(k + slot[0]) = 0;
+    C_00191470 *p = (C_00191470 *)slot[0];
+    p->f18 = *(volatile unsigned int *)&a1;
 }
 
 void *C_001915A0::func_001915A0(unsigned int a0, C_00191470_Vec *a1, int *a2)
