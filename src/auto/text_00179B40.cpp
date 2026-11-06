@@ -112,7 +112,7 @@ static inline float C_0017A1D0_Dot(const C_0017A1D0_Vec4 &a, const C_0017A1D0_Ve
 }
 
 struct C_00179B40 { char pad0[0x24]; float f24, f28, f2c; char pad30[0x34]; float f64, f68, f6c; int func_00179B40(C_0017BB10 *a0, char *a1); };
-extern void func_00161BE0(V4_0017A8F0 *, void *, int, void *, int, int);
+extern void func_00161BE0(V4_0017A8F0 *, void *, ...);
 extern int func_001325D0(V4_0017A8F0 *);
 extern int func_00132650(V4_0017A8F0 *, V4_0017A8F0 *, int);
 extern float D_00275544, D_00275460;
@@ -218,18 +218,21 @@ int C_00179B40::func_00179B40(C_0017BB10 *a0, char *a1)
 {
     V4_0017A8F0 v[10];
     C_0017B9E0 t[4];
+    C_00179B40 *volatile self = this;
+    C_00179B40 *p;
     int i, n, all, any;
     float d;
-    union { float f; unsigned int u; } ab;
-    for (i = 0; i < 10; i++) { v[i].x = 0; v[i].y = 0; v[i].z = 0; v[i].w = 1.0f; }
-    d = (f68 * f28 + f64 * f24 + f6c * f2c) - (f68 * *(float *)(a1 + 0x174) + f64 * *(float *)(a1 + 0x170) + f6c * *(float *)(a1 + 0x178));
-    ab.f = d;
-    ab.u &= 0x7fffffff;
-    if (ab.f < *(float *)(a1 + 0x1fc)) {
+    int ad;
+    for (i = 0; i < 10; i++) { v[i].z = 0; v[i].y = 0; v[i].x = 0; v[i].w = 1.0f; }
+    p = self;
+    d = (p->f28 * p->f68 + p->f24 * p->f64 + p->f2c * p->f6c) - (*(float *)(a1 + 0x174) * p->f68 + *(float *)(a1 + 0x170) * p->f64 + *(float *)(a1 + 0x178) * p->f6c);
+    ad = *(int *)&d & 0x7fffffff;
+    if (*(float *)&ad < *(float *)(a1 + 0x1fc)) {
         a0->func_0017BB10((C_0017B9E0 *)&D_002EFD38);
         return 1;
     }
-    func_00161BE0(&v[0], &f24, 4, a1 + 0xf0, 16, 16);
+    p = self;
+    func_00161BE0(&v[0], &p->f24, 4, a1 + 0xf0, 16, 16);
     all = -1; any = 0;
     for (i = 0; i < 4; i++) { int c = func_001325D0(&v[i]); all &= c; any |= c; }
     if (any == 0) n = 4;
@@ -435,7 +438,9 @@ void C_0017A700::func_0017A700(DXRenderableObject *owner, int index)
         s2->fF0[s2->fF4] = 0;
     }
     volatile C_0017A700 *s3 = L.self;
-    DXShadowCaster *e = s3->fF0[s3->fF4];
+    int k = s3->fF4;
+    DXShadowCaster **a = s3->fF0;
+    DXShadowCaster *e = a[k];
     if (e) e->v2(owner);
     else {
         DXShadowCaster *p = (DXShadowCaster *)func_001E8A44(16);
@@ -474,33 +479,32 @@ void C_0017A860::func_0017A860(int value)
     f13C++;
 }
 
-int C_0017A8F0::func_0017A8F0(V4_0017A8F0 *a0, V4_0017A8F0 *unused, int mode)
+int C_0017A8F0::func_0017A8F0(V4_0017A8F0 *out, V4_0017A8F0 *a0, int mode)
 {
-    V4_0017A8F0 t0, up, t1, t3;
-    int m = mode;
-    *a0 = *func_0001E9E0(&t0, a0);
-    up.x = D_002A8D0C; up.y = D_002A8D10; up.z = D_002A8D14; up.w = D_002A8D18;
-    func_0001C610(&t1, &up, a0);
-    func_0017A460(&t0, &t1);
-    t3 = *func_0001C610(&t1, a0, &t0);
-    switch (m) {
-    case 1:
-        if (D_002EFD6C) {
-            char *c = D_002EFDB8->p;
-            a0->x = *(float *)(c + 0x170);
-            a0->y = *(float *)(c + 0x174);
-            a0->z = *(float *)(c + 0x178) - D_00275800;
-        }
-        return 0;
-    case 3:
-        a0->x = -(D_002A8CE0 * a0->x);
-        a0->y = -(D_002A8CE0 * a0->y);
-        a0->z = -(D_002A8CE0 * a0->z);
-        a0->w = 1.0f;
-        f118 = m;
-        if (fFC) func_0012AB70(a0, a0, &t3, 0, 0);
-        return 1;
-    }
-    return 0;
+ V4_0017A8F0 up, t1;
+ {
+ V4_0017A8F0 t0;
+ *a0 = *func_0001E9E0(&t0,a0);
+ up.x=D_002A8D0C; up.y=D_002A8D10; up.z=D_002A8D14; up.w=D_002A8D18;
+ func_0001C610(&t1,&up,a0);
+ func_0017A460(&t1,&t1);
+ up=*func_0001C610(&t0,a0,&t1);
+ }
+ if(mode==1) {
+  if(D_002EFD6C) {
+   out->x=*(float *)(D_002EFDB8->p+0x170);
+   out->y=*(float *)(D_002EFDB8->p+0x174);
+   out->z=*(float *)(D_002EFDB8->p+0x178)-D_00275800;
+  }
+ } else if(mode==3) {
+  float xyz[4];
+  V4_0017A8F0 v;
+  xyz[0]=D_002A8CE0*a0->x; xyz[1]=D_002A8CE0*a0->y; xyz[2]=D_002A8CE0*a0->z;
+  v.w=1.0f;v.x=-xyz[0];v.y=-xyz[1];v.z=-xyz[2];
+  *out=v;
+ } else return 0;
+ if(fFC) func_0012AB70(out,a0,&up,0,0);
+ f118=mode;
+ return 1;
 }
 
