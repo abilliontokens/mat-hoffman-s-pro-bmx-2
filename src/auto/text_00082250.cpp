@@ -33,8 +33,9 @@ struct C_00082790_X {
 };
 
 struct S_00082790_Settings {
+    int dummy0;
     float f[18];
-    char rest[0x14c - 72];
+    char rest[0x14c - 76];
 };
 struct C_00082400 {
     void func_00082400(short param_1);
