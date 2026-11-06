@@ -1,5 +1,98 @@
 /* 3 functions from 0x00026B60 to 0x00027860, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
+
+struct V4_000273F0 {
+    float x;
+    float y;
+    float z;
+    float w;
+    V4_000273F0() { x = y = z = 0.0f; w = 1.0f; }
+};
+
+struct C_000273F0_Node {
+    void func_00197E70(V4_000273F0 *out);
+};
+
+struct C_000273F0_Cam {
+    C_000273F0_Node *func_00198330(const char *name);
+    void func_00199110(int a, V4_000273F0 *pos, V4_000273F0 *dir, int b, int c, int d);
+    void func_00199790(int a, V4_000273F0 *pos);
+    void func_00197AA0(void);
+};
+
+struct C_000273F0_Axis {
+    void func_000269B0(float a, float b, float c);
+};
+
+struct C_000273F0_Link {
+    void func_000BA430(V4_000273F0 *a, V4_000273F0 *b, int c, int d);
+};
+
+struct C_000273F0_Body {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
+    virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14();
+    virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24();
+    virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29();
+    virtual void v30(); virtual void v31(); virtual void v32(); virtual void v33(); virtual void v34();
+    virtual void v35(); virtual void v36(); virtual void v37(); virtual void v38(); virtual void v39();
+    virtual void v40(); virtual void v41(); virtual void v42(); virtual void v43(); virtual void v44();
+    virtual void v45();
+};
+
+struct C_000273F0_Wheel {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
+    virtual void v10(); virtual void v11(); virtual void v12();
+    virtual void v13(int a);
+    char pad4[0x60];
+    int f64;
+    void func_000B6A70(int a);
+};
+
+struct C_000273F0 {
+    char pad0[0x2C];
+    V4_000273F0 f2C;
+    V4_000273F0 f3C;
+    char pad4C[0x13C - 0x4C];
+    V4_000273F0 f13C;
+    V4_000273F0 f14C;
+    char pad15C[0x1E0 - 0x15C];
+    C_000273F0_Body *f1E0;
+    char pad1E4[4];
+    C_000273F0_Wheel *f1E8;
+    char pad1EC[0x220 - 0x1EC];
+    C_000273F0_Axis *f220;
+    C_000273F0_Axis *f224;
+    C_000273F0_Axis *f228;
+    C_000273F0_Link *f22C;
+    C_000273F0_Cam *f230;
+    char pad234[0x67C - 0x234];
+    int f67C;
+    int func_000273F0(V4_000273F0 *a1, V4_000273F0 *a2, V4_000273F0 *a3);
+};
+
+extern char D_00276690[];
+extern V4_000273F0 D_002A10F0;
+extern V4_000273F0 D_002A1110;
+void func_00026340(V4_000273F0 *out, V4_000273F0 *in);
+
+static __forceinline void Cross_000273F0(V4_000273F0 * volatile out, V4_000273F0 * volatile a, V4_000273F0 * volatile b)
+{
+    V4_000273F0 *pa = a, *pb = b;
+    __m128 va = _mm_loadu_ps(&pa->x);
+    __m128 vb = _mm_loadu_ps(&pb->x);
+    __m128 sa = va, sb = vb;
+    sa = _mm_shuffle_ps(sa, sa, 0xc9);
+    sb = _mm_shuffle_ps(sb, sb, 0xc9);
+    vb = _mm_mul_ps(vb, sa);
+    va = _mm_mul_ps(va, sb);
+    va = _mm_sub_ps(va, vb);
+    va = _mm_shuffle_ps(va, va, 0xc9);
+    _mm_storeu_ps(&out->x, va);
+}
 struct C_00027850 {
     char pad0[0x5CC];
     int unk5CC;
