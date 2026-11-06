@@ -173,7 +173,7 @@ static inline void Xform_001A53C0(f32 *out, const __m128 *mat, const S_001A53C0_
     out[3] = 1.0f;
 }
 
-static __forceinline void Xform_001A4B60(f32 *volatile outArg, const __m128 *volatile matArg, const S_001A53C0_V4 *volatile vArg)
+static __forceinline void Xform_001A4B60(const S_001A53C0_V4 *volatile vArg, const __m128 *volatile matArg, f32 *volatile outArg)
 {
     const S_001A53C0_V4 *v=vArg;
     const __m128 *mat=matArg;
