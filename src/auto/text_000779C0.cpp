@@ -96,7 +96,7 @@ struct Txt_779C0 {
 struct Cnt_779C0 {
     char pad0[0x64];
     Wid_779C0 *w64, *w68;
-    char pad6C[0x14];
+    Wid_779C0 *w6C[5];
     Wid_779C0 *w80[5];
     Wid_779C0 *w94;
     Txt_779C0 *t98;
