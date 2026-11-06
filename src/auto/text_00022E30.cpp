@@ -33,6 +33,13 @@ inline T min_22E30(const volatile T &a, const volatile T &b)
     return a > b ? b : a;
 }
 
+__forceinline void copy_22E30(char *dst, const char *src, int max)
+{
+    int n = max;
+    func_001E8920(dst, src, n);
+    dst[n] = 0;
+}
+
 struct C_00022E30_Cfg {
     int f0;
     int f4;
