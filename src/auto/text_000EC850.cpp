@@ -44,7 +44,7 @@ struct C_000ECDC0 {
     void func_000ECDC0();
 };
 struct S_000ED170_Obj {
-    void func_0005E840(const char *s);
+    void func_0005E840(char *s);
 };
 
 struct S_002B91AC {
