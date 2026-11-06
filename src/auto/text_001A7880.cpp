@@ -7,7 +7,7 @@ extern float D_002AA140;
 extern float D_002AA144;
 extern float D_002AA148;
 extern float D_002AA14C;
-struct V4_001A7FE0 { float x,y,z,w; __forceinline V4_001A7FE0() { x=y=z=0; w=1; }
+struct V4_001A7FE0 { float x,y,z,w; __forceinline V4_001A7FE0() { z=0; y=0; x=0; w=1; }
     __forceinline V4_001A7FE0(int) {}
 
     __forceinline void Clear() { x=y=z=0; w=1; }
