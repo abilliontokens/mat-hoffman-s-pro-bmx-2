@@ -15,6 +15,12 @@ static __forceinline void copy_id_00152E30(Q4_00152E30 *d)
 {
     *d = D_002A789C;
 }
+/* one entry of the 11-slot table at this+0x150 (stride 0x60), quaternions as an array */
+struct S_Slot4a_00152E30 {
+    int f0;
+    Q4_00152E30 q[4];
+    int f44, f48, f4c, f50, f54, f58, f5c;
+};
 /* one entry of the 11-slot table at this+0x150 (stride 0x60) */
 struct S_Slot4_00152E30 {
     int f0;
@@ -98,7 +104,7 @@ C_00152E30 *C_00152E30::func_00152E30(int a0)
 {
     int *u = (int *)this;
     int *p;
-    int *q;
+    S_Slot4_00152E30 *e;
     int i;
     int j;
     func_00157600(1);
@@ -143,17 +149,17 @@ C_00152E30 *C_00152E30::func_00152E30(int a0)
     u[0x58 / 4] = 0x3dcccccd;
     u[0x57c / 4] = 0; u[0x580 / 4] = 0; u[0x574 / 4] = 0; u[0x578 / 4] = 0;
     u[0x590 / 4] = 0; u[0x594 / 4] = 0;
-    q = &u[0x150 / 4];
+    e = (S_Slot4_00152E30 *)&u[0x150 / 4];
     j = 11;
     do {
-        q[0] = 0;
-        copy_id_00152E30((Q4_00152E30 *)&q[1]);
-        copy_id_00152E30((Q4_00152E30 *)&q[5]);
-        copy_id_00152E30((Q4_00152E30 *)&q[9]);
-        copy_id_00152E30((Q4_00152E30 *)&q[13]);
-        q[17] = 0; q[18] = 0; q[19] = 0;
-        q[21] = 0; q[22] = 0; q[23] = 0;
-        q += 24;
+        e->f0 = 0;
+        e->q0 = D_002A789C;
+        e->q1 = D_002A789C;
+        e->q2 = D_002A789C;
+        e->q3 = D_002A789C;
+        e->f44 = 0; e->f48 = 0; e->f4c = 0;
+        e->f54 = 0; e->f58 = 0; e->f5c = 0;
+        e++;
     } while (--j);
     u[0xe0 / 4] = 0; u[0xe4 / 4] = 0; u[0x570 / 4] = 0;
     u[0x598 / 4] = 0; u[0x59c / 4] = 0; u[0x5a0 / 4] = 0; u[0x5a4 / 4] = 0;
