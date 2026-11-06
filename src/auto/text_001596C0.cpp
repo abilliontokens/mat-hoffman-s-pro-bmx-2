@@ -162,6 +162,9 @@ static inline V4 v4(float x, float y, float z) { V4 r; r.x = x; r.y = y; r.z = z
 static inline V4 v4sub(const V4 &a, const V4 &b) { return v4(a.x - b.x, a.y - b.y, a.z - b.z); }
 static inline V4 v4add(const V4 &a, const V4 &b) { return v4(a.x + b.x, a.y + b.y, a.z + b.z); }
 static inline V4 v4scale(const V4 &a, float s) { return v4(a.x * s, a.y * s, a.z * s); }
+static inline V4 partialAdd1596(const V4 &a,const V4 &b) { V4 r; r.x=a.x+b.x;r.y=a.y+b.y;r.z=a.z+b.z;return r; }
+static inline V4 partialSub1596(const V4 &a,const V4 &b) { V4 r; r.x=a.x-b.x;r.y=a.y-b.y;r.z=a.z-b.z;return r; }
+static inline V4 partialScale1596(const V4 &a,float s) { V4 r; r.w=1; r.x=a.x*s;r.y=a.y*s;r.z=a.z*s;return r; }
 extern float D_002755E8;
 void func_001E891B(void *p);
 int func_001EA426(char *a, char *b);
