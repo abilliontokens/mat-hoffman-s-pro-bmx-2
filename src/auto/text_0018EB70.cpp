@@ -28,7 +28,7 @@ struct Result_0018EB70 {
 };
 struct Buffers_0018EB70 {char value[64],found[260],pad0[4],magic[260],pad1[4],bintext[256],text[256],buf[256],trimmed[256];};
 struct C_0018EB70 {
- int func_0018EB70(int,char*,Result_0018EB70*);
+ int func_0018EB70(int,char*,int*);
  void func_0018DE60(char*,Node_0018EB70*,int,int,char*,int);
 };
 extern "C" int func_001E8390(void *);
