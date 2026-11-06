@@ -123,7 +123,7 @@ static __forceinline StringBC *getStringBC(DataBC *d,int i) {
 static __forceinline void appendBC(ListBC *l,NodeBC *p) {
  if(l->count<l->capacity || l->func_0015ACA0(l->count+l->grow)) l->data[l->count++]=p;
 }
-static __forceinline int minBC(const int &a,const int &b) {return a<b?a:b;}
+static __forceinline const int &minBC(const int &a,const int &b) {return a<b?a:b;}
 static __forceinline void copyBC(NodeBC *p,const char *s) {
  int n=minBC(127,(int)strlen(s));func_001E8920(p->name,s,n);p->name[n]=0;
 }
