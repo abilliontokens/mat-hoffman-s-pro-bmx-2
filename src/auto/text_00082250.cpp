@@ -19,15 +19,13 @@ struct C_00082790_IniSub {
     int func_00168C20(char *key, int zero, char *out);
 };
 
+/* the INI reader; ~C_00168F40 is the 0x1691E0 teardown (defined in text_00168F40.cpp) */
 struct C_00168F40 {
     C_00082790_IniSub sub;
     char pad1[0x4cb];
     void func_00168280();
-    void func_001691E0();
-    __declspec(noinline) ~C_00168F40();
+    ~C_00168F40();
 };
-typedef C_00168F40 C_00082790_Ini;
-__declspec(noinline) C_00168F40::~C_00168F40() { sub.func_00169710(0); }
 
 struct C_00082790_X {
     int func_001B1A30(float a, float b, int c);
@@ -38,12 +36,6 @@ struct S_00082790_Settings {
     int dummy0;
     float f[18];
     char rest[0x150 - 76];
-};
-
-struct S_00082790_Frame {
-    S_00082790_Settings s;
-    C_00082790_Ini ini;
-    char buf[0x104];
 };
 struct C_00082400 {
     void func_00082400(short param_1);
