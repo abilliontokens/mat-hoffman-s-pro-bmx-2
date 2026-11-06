@@ -17,6 +17,7 @@ struct Vec_0012BB60 {
  Vec_0012BB60() { z=0; y=0; x=0; w=0x3f800000; }
 };
 struct Triple_0012BB60 { int x,y,z; };
+struct Vec_0012BF90 { float x,y,z,w; Vec_0012BF90() { z=0; y=0; x=0; w=1; } };
 static __forceinline Vec_0012BB60 *Alloc_0012BB60(int count) {
  Vec_0012BB60 *p=(Vec_0012BB60 *)func_001E8A44(count*16);
  if(p) { Vec_0012BB60 *q=p; for(int i=count-1;i>=0;--i,++q) { q->z=0; q->y=0; q->x=0; q->w=0x3f800000; } return p; }
