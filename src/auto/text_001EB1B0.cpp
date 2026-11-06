@@ -139,6 +139,35 @@ extern "C" int D_00010000;
 extern "C" int D_00030000;
 
 #pragma optimize("sy", on)
+int __cdecl func_001EB1B0(int rec, int frame, int ctx, int disp)
+{
+    int table;
+    int level;
+    int filter;
+    int res;
+
+    if ((*(unsigned int *)(rec + 4) & 6) != 0) {
+        return 1;
+    }
+    table = *(int *)(frame + 8);
+    level = *(int *)(frame + 0xc);
+    while (level != -1) {
+        filter = *(int *)(table + level * 12 + 4);
+        if (filter != 0) {
+            res = ((int (__cdecl *)(void))filter)();
+            if (res != 0) {
+                if (res < 0) {
+                    return 0;
+                }
+                return 1;
+            }
+        }
+        table = *(int *)(frame + 8);
+        level = *(int *)(table + level * 12);
+    }
+    return 1;
+}
+
 int __cdecl func_001EB290(void)
 {
     int locknum;
@@ -578,7 +607,7 @@ void __cdecl func_001EB9F3(int rterrnum)
     D_002AEA2C(0xff);
 }
 
-int __fastcall func_001EBA0F(int unused, int c)
+static int func_001EBA0F(int c)
 {
     int digit;
 
@@ -591,6 +620,12 @@ int __fastcall func_001EBA0F(int unused, int c)
         c = (c & ~0x20) - 7;
     }
     return c;
+}
+
+/* experiment: a caller in the same unit makes MSVC give the static helper its register convention */
+int func_test_caller_001EBA0F(int c)
+{
+    return func_001EBA0F(c);
 }
 
 int __fastcall func_001EBA41(int unused, S_File *f)
