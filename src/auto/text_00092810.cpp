@@ -185,7 +185,6 @@ struct C_00092890 {
     int func_00092EF0(void);
     void func_00092D10(void);
     void *func_000928F0(void);
-    void func_000928F0(int probe);
     void func_000929A0(void);
     void func_001578D0(void);
     void func_001577A0(void *o, int a);
