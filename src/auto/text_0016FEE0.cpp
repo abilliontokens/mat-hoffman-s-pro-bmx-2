@@ -9,7 +9,7 @@ struct V_00170B60 { int m[4]; __forceinline void reset() { m[0]=D_002A8A80; m[1]
 static inline void Copy_00170B60(int *p) {
  p[0]=D_002A8A80; p[1]=D_002A8A84; p[2]=D_002A8A88; p[3]=D_002A8A8C;
 }
-static inline void Identity_00170B60(S_00170B60_Mat *p) {
+static __forceinline void Identity_00170B60(S_00170B60_Mat *p) {
     __m128 z = _mm_setzero_ps();
     ((__m128 *)p->m)[0]=z; ((__m128 *)p->m)[1]=z;
     ((__m128 *)p->m)[2]=z; ((__m128 *)p->m)[3]=z;
@@ -520,3 +520,23 @@ void C_00170B50::func_00170B50(void) {
     unk0 = (int)&D_00288B4C;
     func_00171980();
 }
+
+void C_00170B60::func_00170B60() {
+
+ ((V_00170B60 *)((char *)this+304))->reset();
+ ((V_00170B60 *)((char *)this+320))->reset();
+ ((V_00170B60 *)((char *)this+108))->reset();
+ ((V_00170B60 *)((char *)this+124))->reset();
+ ((V_00170B60 *)((char *)this+568))->reset();
+ ((V_00170B60 *)((char *)this+584))->reset();
+ ((V_00170B60 *)((char *)this+92))->reset();
+ ((V_00170B60 *)((char *)this+616))->reset();
+ ((V_00170B60 *)((char *)this+600))->reset();
+ __declspec(align(16)) S_00170B60_Mat a,b;
+ Identity_00170B60(&a); b=a;
+ ((C_000264C0 *)((char *)this+0x280))->func_000264C0(&b);
+ Identity_00170B60(&b); a=b;
+ ((C_000264C0 *)((char *)this+0x2c0))->func_000264C0(&a);
+ ((int *)this)[10]=0;
+}
+
