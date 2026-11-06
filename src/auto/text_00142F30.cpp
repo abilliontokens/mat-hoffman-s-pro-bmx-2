@@ -457,13 +457,13 @@ void C_00143600::func_00143600()
     D_002AB66C->func_001C5DE0(m, (char *)this + 0x150, (char *)this + 0x160, 0);
 }
 
-F143660_RET DXRenderableObject::func_00143660(void)
+int DXRenderableObject::func_00143660(void)
 {
     ShadowPiece *piece;
     int i;
 
     if (!(f181 & 1))
-        return F143660_VAL;
+        return 1;
     if (f1d4 == -1)
         f1d4 = (D_002A829C->f14[*f1b8].f4->f54->f24 >> 3) & 1;
     ((Alloc190 *)f1d0)->func_00142F30(D_002EFDB8[1]);
