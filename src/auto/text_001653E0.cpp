@@ -2,7 +2,11 @@
 #include "common.h"
 struct Obj1653 { virtual void v0(); virtual void v1(); virtual void get(float t, float *out); virtual void get2(float t, float *out); int f4; };
 struct Set1653 { char pad[0x14]; Obj1653 **f14; Obj1653 **f18; int f1c; int f20; char pad24[0x14]; float f38; };
-struct C1653 { char pad0[4]; int f4; char pad8[4]; int fc; void func_001653E0(Set1653*, Set1653*, Set1653*, Set1653*, float, int, int, int, float); };
+struct Node1653 { char pad0[0x170]; int f170; void func_00199300(void *p); void func_00199650(void *p); };
+struct Elem1653 { char pad0[0x34]; Node1653 *f34; char pad38[8]; };
+struct C1653 { char pad0[4]; void *f4; char pad8[4]; int fc; char pad10[8]; int f18; char pad1C[0x1D0]; Elem1653 *f1EC; int *f1F0; char pad1F4[0xC]; float *f200; float *f204; void func_001653E0(Set1653*, Set1653*, Set1653*, Set1653*, float, float, float, int, float); };
+void func_0015C7D0(float *a, float *b, float *out, float t);
+extern float D_00275544;
 
 void func_001641B0(void *a, void *b);
 
