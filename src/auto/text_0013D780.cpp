@@ -508,7 +508,7 @@ void *C_0013E080::func_0013E140(unsigned int flags) {
 void C_0013E170::func_0013E170(int index, char *name, int value)
 {
     if (index < *(int *)((int)this + 0x193c)) {
-        S_0013E170_Entry *e = (S_0013E170_Entry *)((int)this + index * 0x5c);
+        S_0013E170_Entry *e = (S_0013E170_Entry *)storage[index];
         if (strcmp(e->name, name) != 0) {
             func_001E8920(e->name, name, 0x4f);
             e->name[0x4f] = 0;
