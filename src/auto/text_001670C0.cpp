@@ -354,14 +354,6 @@ struct V4_001677C0 {
     }
 };
 
-static __forceinline void Copy_001677C0(__m128 *d, __m128 *s)
-{
-    d[0] = s[0];
-    d[1] = s[1];
-    d[2] = s[2];
-    d[3] = s[3];
-}
-
 struct S_001677C0_Src {
     char pad0[0x70];
     S_001677C0_Block blk;
@@ -550,7 +542,7 @@ void C_001677C0::func_001677C0(C_001677C0_Dst *dst)
     void * volatile h[3];
 
     h[0] = this;
-    dst->f50 = ((C_001677C0 *)h[0])->f24;
+    dst->f50 = f24;
     h[2] = &((C_001677C0 *)h[0])->f24->blk;
     h[1] = &dst->blk;
     __m128 *ps = (__m128 *)h[2];
@@ -562,6 +554,7 @@ void C_001677C0::func_001677C0(C_001677C0_Dst *dst)
     dst->blk.m[3] = 0.5f;
     dst->blk.m[7] = 0.5f;
     dst->v54 = V4_001677C0(1.0f, 1.0f, 1.0f, 0.3f);
+    h[0];
 }
 
 void C_00167860::func_00167860(void)
