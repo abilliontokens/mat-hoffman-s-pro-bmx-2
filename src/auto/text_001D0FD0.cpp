@@ -7,6 +7,19 @@ extern int D_0028F154;
 void func_001E891B(void *p);
 void *func_001E8A44(int size);
 
+/* Direct3D render/texture-stage state shadow and its setters */
+extern int D_0020C6DC, D_0020C6E4, D_0020C6F0, D_0020C710, D_0020C718, D_0020C720, D_0020C728;
+extern int D_0020CA50, D_0020CA64, D_0020CA78, D_0020CA7C;
+extern int D_00040300, D_00040304, D_00040310, D_0004033C, D_00040340, D_00040354, D_0004035C, D_0004037C;
+void __stdcall func_001FD890(int a);
+void __fastcall func_001FD020(void *p, int v);
+void __stdcall func_001FD380(int a);
+void __stdcall func_001FE810(int a);
+void __stdcall func_001FD770(int a);
+void __stdcall func_001FE490(int a);
+void __stdcall func_00200390(int index, int value);
+void __stdcall func_001FEFE0(int a);
+
 struct S_002F07B8;
 
 struct V_002EFDB8 {
