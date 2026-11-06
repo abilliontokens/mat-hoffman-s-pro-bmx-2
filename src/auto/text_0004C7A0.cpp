@@ -562,6 +562,32 @@ void BmxEventHorse::func_0004D2C0() {
     unk288 = q->func_00085630((int)unk64->unk4e0, 0);
 }
 
+void C_0004D480::func_0004D480(void)
+{
+    char buf[0x104];
+    char name[0x104];
+    C_00168280 *obj;
+    void *mem;
+    int i;
+
+    func_001ADCC0(buf, 0x104, D_002775F0, D_002A5870, f64 + 0x134);
+    if (D_002BEAAC->func_0013B1A0(buf) != 0) {
+        mem = func_001E8A44(0x4cc);
+        obj = mem != 0 ? ((C_00168280 *)mem)->func_00168280() : 0;
+        obj->func_00169490(buf, 0);
+        obj->func_00169710(D_002775E8);
+        obj->func_00168C20(D_002775D4, 0, &f684);
+        for (i = 0; i < f684; i++) {
+            func_001ADCC0(name, 0x104, D_002775BC, i + 1);
+            obj->func_00168CB0(name, D_002A16E8, (char *)this + 0x688 + i * 0x10);
+            func_001ADCC0(name, 0x104, D_002775A4, i + 1);
+            obj->func_00168CB0(name, D_002A1718, (char *)this + 0x708 + i * 0x10);
+            func_001ADCC0(name, 0x104, D_00277590, i + 1);
+            obj->func_00168550(name, (char *)this + 0x2c4 + i * 0x78, 0x77);
+        }
+    }
+}
+
 void C_0004D5F0::func_0004D5F0()
 {
     if (f288 != 0) {
