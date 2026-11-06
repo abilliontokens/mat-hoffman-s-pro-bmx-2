@@ -194,15 +194,6 @@ void C_00198B70::func_00198C00(C_00198B70 *src, C_00198B70 *dst)
 }
 
 extern "C" void *memset(void *, int, unsigned int);
-static __forceinline void Identity_198DE0(S_00198B70_Mat *m)
-{
-    unsigned int *iq = (unsigned int *)m;
-    memset(m, 0, 0x40);
-    iq[0] = 0x3f800000;
-    iq[5] = 0x3f800000;
-    iq[10] = 0x3f800000;
-    iq[15] = 0x3f800000;
-}
 void C_00198B70::func_00198DE0(void)
 {
     C_00198B70 * volatile self = this;
