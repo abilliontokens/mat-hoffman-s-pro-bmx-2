@@ -48,7 +48,7 @@ struct C_0015F120 {
     int f7C;
     char pad80[4];
     E_0015F120 **f84;
-    void func_0015F120(int a, float x, float y, float z, float *m0, float *m1, float *m2);
+    void func_0015F120(int a, float x, float y, float z, int unused, float *m0, float *m1, float *m2);
 };
 struct S_0015F470_Row {
     int x, y, z, w;
@@ -240,6 +240,74 @@ undefined4 C_0015F860::func_0015F860(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+extern "C" float __cdecl sqrtf(float);
+#pragma intrinsic(sqrtf)
+void C_15F880::func_0015F880(void *arg, V4_0015F120 pos, float radius, float *volatile m0, float *volatile m1, float *volatile m2)
+{
+ C_15F880 *self=this;
+ if (self->f8c && self->f8c->func_0015F640((int)arg,(S_0015F470_Mat*)m0,(S_0015F470_Mat*)m1,(S_0015F470_Mat*)m2)) return;
+ int index = arg ? *(int*)(*(char**)((char*)arg+4)+0x3c) : 0;
+ if(self->f7c<=4) { self->func_0015F120(index,pos,m0,m1,m2); return; }
+ E_0015F120 *chosen[3]={0,0,0};
+ float scores[3];
+ V4_0015F120 half={radius,radius,radius,1};
+ float r2=radius*radius;
+ Iter_15F880 iter; iter.func_001A46F0();
+ V4_0015F120 zero1={0,0,0,1}, zero2={0,0,0,1};
+ Query_15F880 query; query.func_00193490();
+ int enabled=self->f38 && self->f38[index];
+ query.data[1]=self->f6c[index];
+ iter.func_001A4790(&query,3,&pos,&half,&zero1,&zero2,0);
+ scores[0]=scores[1]=scores[2]=radius*D_002A8060+D_002A805C+r2*D_002A8064;
+ int slot=0;
+ V4_0015F120 delta;
+ for(char *node=iter.func_001A4840();node;node=iter.func_001A4840()) {
+  if((unsigned char)node[2]!=D_002A8010) continue;
+  E_0015F120 *e=(E_0015F120*)(node-0x24);
+  delta.x=e->px-pos.x; delta.y=e->py-pos.y; delta.z=e->pz-pos.z; delta.w=1;
+  r2=delta.x*delta.x+delta.y*delta.y+delta.z*delta.z;
+  float distance=sqrtf(r2);
+  if(distance<=*(float*)((char*)e+0x78)) {
+   float score=e->l.f54+e->l.f5C*r2+e->l.f58*distance;
+   if(e->type==3) score=func_0015E4B0(score,delta,e);
+   if(score<=scores[slot]) {
+    scores[slot]=score; chosen[slot]=e;
+    if(scores[0]>scores[1]) { if(scores[0]>scores[2]) slot=0; else slot=2; }
+    else if(scores[1]>scores[2]) slot=1; else slot=2;
+   }
+  }
+ }
+ iter.func_001A4A20();
+ float *extra=0;
+ if(self->f34 && enabled) {extra=m1+slot*4;chosen[slot]=self->f34;scores[slot]=1;}
+ V4_0015F120 dirs[3]; for(int j=0;j<3;j++){dirs[j].x=0;dirs[j].y=0;dirs[j].z=0;dirs[j].w=1;}
+ for(int i=0;i!=3;++i) {
+  E_0015F120 *e=chosen[i];
+  if(e) {
+   volatile float scale=D_00275460/scores[i];
+   V4_0015F120 *v=&dirs[i];
+   if(e->type==2) {v->x=-e->l.f40;v->y=-e->l.f44;v->z=-e->l.f48;}
+   else {delta.x=e->px-pos.x;delta.y=e->py-pos.y;delta.z=e->pz-pos.z;delta.w=1;*v=delta;}
+   func_0015CD90(v,v);
+   m0[i*4]=v->x;m0[i*4+1]=v->y;m0[i*4+2]=v->z;m0[i*4+3]=1;
+   m1[i]=scale*e->l.f4;m1[i+4]=scale*e->l.f8;m1[i+8]=scale*e->l.fC;m1[i+12]=scale;
+   if(m2) {m2[i]=scale*e->l.f14;m2[i+4]=scale*e->l.f1C;m2[i+8]=scale*e->l.f18;m2[i+12]=scale;}
+  } else {
+   m0[i*4]=0;m0[i*4+1]=0;m0[i*4+2]=0;m0[i*4+3]=0;
+   m1[i]=0;m1[i+4]=0;m1[i+8]=0;m1[i+12]=0;
+   if(m2) {m2[i]=0;m2[i+4]=0;m2[i+8]=0;m2[i+12]=0;}
+  }
+ }
+ if(self->f78>1) self->func_0015E130(arg,&pos,D_002A80A8,m1+12,extra);
+ else {
+ m1[3]=self->f50[index].x;m1[7]=self->f50[index].y;m1[11]=self->f50[index].z;m1[15]=1;
+ m1[12]=self->f50[index].x;m1[13]=self->f50[index].y;m1[14]=self->f50[index].z;
+ }
+ m0[12]=0;m0[13]=0;m0[14]=0;m0[15]=1;
+ if(self->f8c) self->f8c->func_0015F470((int)arg,(S_0015F470_Mat*)m0,(S_0015F470_Mat*)m1,(S_0015F470_Mat*)m2);
+ query.func_00193500();
 }
 
 void C_0015FF60::func_0015FF60(int *a)
