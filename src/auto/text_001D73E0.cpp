@@ -74,12 +74,12 @@ struct XboxVideoCard_001D7E30 {
 struct XboxVideoCard_001D7D50 {
     void *vtbl;
     char pad4[0x68];
-    int f6C;
+    volatile int f6C;
     char pad70[0x5B4 - 0x70];
     int a5B4[0x40];
     int f6B4;
     int f6B8;
-    int f6BC;
+    volatile int f6BC;
     int f6C0;
     int f6C4;
     int f6C8;
@@ -370,25 +370,19 @@ int func_001D7D40()
 
 XboxVideoCard_001D7D50 *XboxVideoCard_001D7D50::func_001D7D50(void)
 {
-    int i;
-
     ((C_001C3D90 *)this)->func_001C3D90();
     vtbl = (void *)&D_0028F774;
-    for (i = 0; i < 0x40; i++) {
-        a5B4[i] = 0;
-    }
+    memset(a5B4, 0, 0x100);
     D_002F0BB8 = 0;
     f6BC = 0;
     f6C = -1;
     f9D8 = 500;
-    f9D4 &= 0xFC;
+    f9D4b.b01 = 0;
     f6C4 = 0;
     f6C8 = 0;
     f6CC = 0;
     f6D0 = 0;
-    for (i = 0; i < 0xC0; i++) {
-        a6D4[i] = 0;
-    }
+    memset(a6D4, 0, 0x300);
     return this;
 }
 
