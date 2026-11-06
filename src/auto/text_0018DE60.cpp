@@ -119,6 +119,11 @@ static __forceinline int Min_0018E3E0(int a, int b)
     return b > a ? a : b;
 }
 
+static __forceinline unsigned int Ld_0018E250(const unsigned int &x)
+{
+    return x;
+}
+
 /* named value slot: flags (type in byte 1), pointer to the stored value, linked list of slots */
 struct Node_0018EA50 {
     unsigned int flags;
@@ -211,21 +216,21 @@ struct C_0018E7D0 {
 
 void C_0018E0E0::func_0018DE60(int a, C_0018DE60_Arg *arg, int idx, int kind, const char *name, int type)
 {
-    C_0018E0E0 *self = this;
+    C_0018E0E0 *volatile self = this;
     unsigned int out;
     C_0018DA90_Result res;
     int r;
     int i;
     char *s;
 
-    arg->f20[idx].idx = idx;
-    arg->f20[idx].kind = kind;
-    arg->f20[idx].type = type;
+    (*(C_0018DE60_Arg *volatile *)&arg)->f20[*(volatile int *)&idx].idx = *(volatile int *)&idx;
+    (*(C_0018DE60_Arg *volatile *)&arg)->f20[*(volatile int *)&idx].kind = kind;
+    (*(C_0018DE60_Arg *volatile *)&arg)->f20[*(volatile int *)&idx].type = type;
     int len = strlen(name);
     int max = 0x3f;
     int n = max > len ? len : max;
-    func_001E8920(arg->f20[idx].name, name, n);
-    arg->f20[idx].name[n] = 0;
+    func_001E8920((*(C_0018DE60_Arg *volatile *)&arg)->f20[*(volatile int *)&idx].name, name, n);
+    (*(C_0018DE60_Arg *volatile *)&arg)->f20[*(volatile int *)&idx].name[n] = 0;
     if (name[0] == '$')
         return;
     if ((char)type == 1
@@ -236,15 +241,15 @@ void C_0018E0E0::func_0018DE60(int a, C_0018DE60_Arg *arg, int idx, int kind, co
             out = 0;
             res = self->func_0018DA90(1, r, name, &out);
             if (res.f40 != -1)
-                arg->f20[idx].f44 = res.f40;
+                (*(C_0018DE60_Arg *volatile *)&arg)->f20[*(volatile int *)&idx].f44 = res.f40;
             else
-                arg->f20[idx].f44 = -1;
+                (*(C_0018DE60_Arg *volatile *)&arg)->f20[*(volatile int *)&idx].f44 = -1;
         }
     }
     if (kind == 15) {
         for (i = 0; (s = D_002A96A4[i]) != 0; i++) {
             if (strcmp(name, s) == 0) {
-                arg->f20[idx].f44 = i + 1;
+                (*(C_0018DE60_Arg *volatile *)&arg)->f20[*(volatile int *)&idx].f44 = i + 1;
                 return;
             }
         }
@@ -254,35 +259,36 @@ void C_0018E0E0::func_0018DE60(int a, C_0018DE60_Arg *arg, int idx, int kind, co
             return;
         r = self->func_0018DA00(r, name);
         if (r == -1)
-            arg->f20[idx].f44 = -1;
+            (*(C_0018DE60_Arg *volatile *)&arg)->f20[*(volatile int *)&idx].f44 = -1;
         else
-            arg->f20[idx].f44 = r;
+            (*(C_0018DE60_Arg *volatile *)&arg)->f20[*(volatile int *)&idx].f44 = r;
     } else if (kind == 16 || kind == 17 || kind == 18) {
-        arg->f20[idx].f44 = func_001E91F4(name);
+        (*(C_0018DE60_Arg *volatile *)&arg)->f20[*(volatile int *)&idx].f44 = func_001E91F4(name);
     }
 }
 
 void C_0018E0E0::func_0018E0E0(C_0018E0E0_Arg *arg, int idx)
 {
     int i;
+    unsigned int x;
     C_0018DA90_Result r;
-    C_0018E0E0_Entry *e;
 
-    for (i = 0; i < arg->f24; i++) {
-        e = &arg->f20[i];
-        if (e->type == 2) {
-            int kind = e->kind;
-            char c = e->name[0];
-            const char *name = e->name;
+    i = 0;
+    while (i < arg->f24) {
+        if (arg->f20[i].type == 2) {
+            int kind = arg->f20[i].kind;
+            char c = arg->f20[i].name[0];
+            const char *name = arg->f20[i].name;
             if (c != '$'
                 && (kind == 13 || kind == 14 || kind == 10 || kind == 11 || kind == 12
                     || kind == 2 || kind == 19 || kind == 20 || kind == 21)) {
-                r = func_0018DA90(2, idx, name, 0);
+                r = func_0018DA90(2, idx, name, &x);
                 if (r.f40 != -1) {
                     arg->f20[i].f44 = r.f40;
                 }
             }
         }
+        i++;
     }
 }
 
@@ -398,14 +404,14 @@ void Node_0018EA50::func_0018E3E0(int a, int b)
         p->f18 = *(int *)b;
         p = (Node_0018EA50 *)slot[0];
         p->f0C = &p->f18;
-        v = D_002EFE08->f12C;
+        v = *(volatile int *)&D_002EFE08->f12C;
         ((Node_0018EA50 *)slot[0])->f4 = v;
         break;
     case 2:
         p->f1C = *(int *)b;
         p = (Node_0018EA50 *)slot[0];
         p->f0C = &p->f1C;
-        v = D_002EFE08->f130;
+        v = *(volatile int *)&D_002EFE08->f130;
         ((Node_0018EA50 *)slot[0])->f4 = v;
         break;
     case 3: {
@@ -425,7 +431,7 @@ void Node_0018EA50::func_0018E3E0(int a, int b)
         p->f20 = p->f24;
         p = (Node_0018EA50 *)slot[0];
         p->f0C = &p->f20;
-        v = D_002EFE08->f134;
+        v = *(volatile int *)&D_002EFE08->f134;
         ((Node_0018EA50 *)slot[0])->f4 = v;
         break;
     }
@@ -437,7 +443,7 @@ void Node_0018EA50::func_0018E3E0(int a, int b)
         ((Node_0018EA50 *)slot[0])->f134 = v;
         p = (Node_0018EA50 *)slot[0];
         p->f0C = &p->f130;
-        v = D_002EFE08->f138;
+        v = *(volatile int *)&D_002EFE08->f138;
         ((Node_0018EA50 *)slot[0])->f4 = v;
         break;
     }
@@ -445,28 +451,28 @@ void Node_0018EA50::func_0018E3E0(int a, int b)
         p->f138 = *(char *)b;
         p = (Node_0018EA50 *)slot[0];
         p->f0C = &p->f138;
-        v = D_002EFE08->f13C;
+        v = *(volatile int *)&D_002EFE08->f13C;
         ((Node_0018EA50 *)slot[0])->f4 = v;
         break;
     case 6:
         p->f124 = *(int *)b;
         p = (Node_0018EA50 *)slot[0];
         p->f0C = &p->f124;
-        v = D_002EFE08->f140;
+        v = *(volatile int *)&D_002EFE08->f140;
         ((Node_0018EA50 *)slot[0])->f4 = v;
         break;
     case 7:
         p->f128 = *(int *)b;
         p = (Node_0018EA50 *)slot[0];
         p->f0C = &p->f128;
-        v = D_002EFE08->f144;
+        v = *(volatile int *)&D_002EFE08->f144;
         ((Node_0018EA50 *)slot[0])->f4 = v;
         break;
     case 8:
         p->f12C = *(int *)b;
         p = (Node_0018EA50 *)slot[0];
         p->f0C = &p->f12C;
-        v = D_002EFE08->f148;
+        v = *(volatile int *)&D_002EFE08->f148;
         ((Node_0018EA50 *)slot[0])->f4 = v;
         break;
     case 9:
@@ -553,7 +559,7 @@ int C_0018E7D0::func_0018E7D0(int kind, C_0018E7D0_Rec *buf, int *out)
     if (idx == -1) {
         return 0;
     }
-    val = this->named[idx].rec.f40;
+    val = named[idx].rec.f40;
     name = func_001E95A4(0, D_0027CEF0);
     switch (kind) {
     case 0:
