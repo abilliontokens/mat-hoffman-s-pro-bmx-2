@@ -18,8 +18,8 @@ struct C_0015BDB0 {
 extern int D_00287804;
 extern int D_002877E4;
 
-void func_0001B130(void *out, int a);
-int func_0015C640(void *array, int count, int a);
+void func_0001B130(void *out, void *q);
+int func_0015C640(void *array, int count, float t);
 int func_0015C260(float *base, int hi, float v);
 int func_0015C530(float *base, float v, int hi, float **lo, float **up, float *t);
 
