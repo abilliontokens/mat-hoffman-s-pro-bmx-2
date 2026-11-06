@@ -126,6 +126,7 @@ struct S_InGameObj {
     int fA40;
     char padA44[0xA4C - 0xA44];
     float fA4C;
+    char padA50[0xA54 - 0xA50];
     float fA54;
     int fA58;
     int fA5C;
@@ -365,7 +366,13 @@ void BmxInGameMenu::func_00078FD0(float dt)
 
     if (D_002A8490->p2E0->f4 == 4 || D_002A8490->p2E0->f4 == 9) {
         id = D_002A8490->p2E0->f300[unk104->f120];
-        unk12C = !D_002A8490->p8->objs[id]->v16();
+        if (D_002A8490->p8->objs[id]->v16() == 0) {
+            unk11C = id;
+            unk128 = 1;
+            unk12C = 1;
+        } else {
+            unk12C = 0;
+        }
     } else if (unk11C == -1) {
         for (j = 0; j < unk104->f90; j++) {
             id = D_002A8490->p2E0->f300[j];
@@ -393,41 +400,44 @@ void BmxInGameMenu::func_00078FD0(float dt)
             }
         }
     } else {
-        id = D_002A8490->p2E0->f300[unk104->f120];
-        if (D_002A8490->p8->objs[id]->v16() == 0) {
-            unk11C = id;
-            unk128 = 1;
-            unk12C = 1;
-        } else {
-            unk12C = 0;
-        }
+        unk12C = !D_002A8490->p8->objs[unk11C]->v16();
     }
 
     unkF0 = unkF0 + dt;
     if (unkF4 != 0) {
         if (unkF0 >= D_00278500) {
             if (unk120 != 0) {
-                if (!((D_002A8490->p2E0->f4 == 2 || D_002A8490->p2E0->f4 == 0) &&
-                      unk104->f90 == 1 &&
-                      (unk104->f68->func_0005B960(3, (float)unk104->f64->p4E0->arr1a8[0]->fA58) != 0 ||
-                       unk104->f68->func_0005B960(1, unk104->f64->p4E0->arr1a8[0]->fA4C) != 0 ||
-                       unk104->f68->func_0005B960(5, (float)unk104->f64->p4E0->arr1a8[0]->fA5C) != 0 ||
-                       unk104->f68->func_0005B960(4, (float)unk104->f64->p4E0->arr1a8[0]->fA40) != 0 ||
-                       unk104->f68->func_0005B960(2, unk104->f64->p4E0->arr1a8[0]->f1058) != 0 ||
-                       unk104->f68->func_0005B960(0, unk104->f64->p4E0->arr1a8[0]->fA54) != 0))) {
-                    D_002A8490->p2E0->p2FC->func_00094960(0);
-                    D_002A8490->p2A4->p64->p4C0->v31(0, 1);
-                    D_002A8490->p2E0->p2FC->v18(0);
-                    D_002A8490->p2A4->f154 = 1;
-                    D_002A8490->p2E0->f324 = (D_002A8490->p2E0->f4 == 0);
-                    D_002A8490->p2F0->func_0001EDC0(4);
-                    unkF4 = 0;
-                } else {
-                    func_00060220();
-                    unk104->f164->fFC = 2;
-                    unk104->f164->func_0006E970(0);
-                    unkF4 = 0;
-                }
+                if (D_002A8490->p2E0->f4 == 2 || D_002A8490->p2E0->f4 == 0)
+                    goto checks;
+save:
+                D_002A8490->p2E0->p2FC->func_00094960(0);
+                D_002A8490->p2A4->p64->p4C0->v31(0, 1);
+                D_002A8490->p2E0->p2FC->v18(0);
+                D_002A8490->p2A4->f154 = 1;
+                D_002A8490->p2E0->f324 = (D_002A8490->p2E0->f4 == 0);
+                D_002A8490->p2F0->func_0001EDC0(4);
+                unkF4 = 0;
+                goto done;
+checks:
+                if (unk104->f90 != 1)
+                    goto save;
+                if (unk104->f68->func_0005B960(3, (float)unk104->f64->p4E0->arr1a8[0]->fA58) != 0)
+                    goto fail;
+                if (unk104->f68->func_0005B960(1, unk104->f64->p4E0->arr1a8[0]->fA4C) != 0)
+                    goto fail;
+                if (unk104->f68->func_0005B960(5, (float)unk104->f64->p4E0->arr1a8[0]->fA5C) != 0)
+                    goto fail;
+                if (unk104->f68->func_0005B960(4, (float)unk104->f64->p4E0->arr1a8[0]->fA40) != 0)
+                    goto fail;
+                if (unk104->f68->func_0005B960(2, unk104->f64->p4E0->arr1a8[0]->f1058) != 0)
+                    goto fail;
+                if (unk104->f68->func_0005B960(0, unk104->f64->p4E0->arr1a8[0]->fA54) == 0)
+                    goto save;
+fail:
+                func_00060220();
+                unk104->f164->fFC = 2;
+                unk104->f164->func_0006E970(0);
+                unkF4 = 0;
             } else {
                 switch (unk100) {
                 case 0:
@@ -498,6 +508,7 @@ void BmxInGameMenu::func_00078FD0(float dt)
             func_00060220();
         }
     }
+done:
     func_0005EA10(dt);
 }
 
