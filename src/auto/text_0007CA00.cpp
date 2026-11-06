@@ -83,7 +83,7 @@ extern C_00026500 *D_002A7CB8;
 struct G7CF_B {
     char pad0[0xE98];
     char *fE98;
-    char padE9C[0x1028 - 0xEA0];
+    char padE9C[0x1028 - 0xE9C];
     int f1028;
     char pad102C[0x1100 - 0x102C];
     int f1100;
