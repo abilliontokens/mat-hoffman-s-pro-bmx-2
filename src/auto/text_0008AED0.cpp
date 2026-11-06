@@ -197,6 +197,12 @@ struct C_0008B850_Res {
     int *func_0018C160(void *name);
 };
 
+static __forceinline S_0008BA00_Font *GetFont_0008BA00(void *name)
+{
+    int *res = ((C_0008B850_Res *)D_002A8490[0x2ec / 4])->func_0018C160(name);
+    return res ? (S_0008BA00_Font *)*res : 0;
+}
+
 struct C_0008B850_Text {
     char pad0[4];
     int x;
@@ -424,49 +430,30 @@ void C_0008B6F0::func_0008B6F0(void) {
     ((C_0005E840 *)f34)->func_0005E840((int)&D_00275630);
 }
 
-void C_0008B710::func_0008B710()
-{
-    int w;
-    float x;
-    float y;
-    float cx;
-    if (unk54 == 0) {
-        if (unk4c && (int)strlen(unk24->str) < 40) {
-            w = unk24->func_001D6290();
-            x = unk24->x;
-            y = unk24->y;
-            cx = x + (float)(w / 2);
-            C_0008B710_Item *p = unk28;
-            p->func_0005E920(cx, y);
-            p = unk28;
-            if (p->unk44 != D_0028F5DC) {
-                p->unk44 = D_0028F5DC;
-                p->unk4e |= 6;
-            }
-            unk2c->func_0005E920(x + (float)(w / 2), y);
-            p = unk2c;
-            if (p->unk44 != D_0028F5DC) {
-                p->unk44 = D_0028F5DC;
-                p->unk4e |= 6;
-            }
-            unk2c->func_001D6600();
-        }
-        unk28->func_001D6600();
-        ((C_0008B710_Item *)unk24)->func_001D6600();
-        unk34->func_001D6600();
-        unk3c->func_001D5AD0();
-        unk40->func_001D5AD0();
-        unk44->func_001D5AD0();
-    } else if (unk54 == 1) {
-        unk34->func_001D6600();
-        unk38->func_001D6600();
-        unk3c->func_001D5AD0();
-        unk40->func_001D5AD0();
-        unk44->func_001D5AD0();
-    } else {
-        unk38->func_001D6600();
-    }
-    func_00157960();
+void C_0008B710::func_0008B710() {
+if(unk54==0) {
+if(unk4c && (int)strlen(unk24->str)<40) {
+int w=unk24->func_001D6290();
+float pos[4]; pos[0]=unk24->x; pos[1]=(float)(unk24->y+0.0); pos[2]=(float)(w/2);
+double x=pos[0]; float y=pos[1];
+C_0008B710_Item *p=unk28;
+p->func_0005E920(x+pos[2],y);
+p=unk28;
+if(p->unk44!=D_0028F5DC) {p->unk44=D_0028F5DC;p->unk4e|=6;}
+unk2c->func_0005E920(x+pos[2],y);
+p=unk2c;
+if(p->unk44!=D_0028F5DC) {p->unk44=D_0028F5DC;p->unk4e|=6;}
+unk2c->func_001D6600();
+}
+unk28->func_001D6600();
+((C_0008B710_Item*)unk24)->func_001D6600();
+unk34->func_001D6600();
+unk3c->func_001D5AD0();unk40->func_001D5AD0();unk44->func_001D5AD0();
+} else if(unk54==1) {
+unk34->func_001D6600();unk38->func_001D6600();
+unk3c->func_001D5AD0();unk40->func_001D5AD0();unk44->func_001D5AD0();
+} else {unk38->func_001D6600();}
+func_00157960();
 }
 
 C_0008B820 *C_0008B820::func_0008B820(int unused) {
@@ -512,6 +499,26 @@ C_0008B850 *C_0008B850::func_0008B850(int a1, char *a2)
     unk34 = mem ? ((C_0008B850_Menu *)mem)->func_001CF740(*(int *)(((int *)D_002A8490)[1] + 0xb4), *(int *)(*(int *)(unk28 + 0x64) + 0x4c0), 1) : 0;
     unk34->v4(D_00279E58, 1, 1, 0, 0);
     return this;
+}
+
+S_0008BA00_Rect * __fastcall func_0018C070(S_0008BA00_Font *font);
+void C_0008BA00::func_0008BA00(void)
+{
+    if (D_002A8490[4] != f2C) {
+        ((C_00157600 *)this)->func_001578D0();
+        return;
+    }
+    int *res = ((C_0008B850_Res *)D_002A8490[0x2ec / 4])->func_0018C160(D_00278690);
+    if (res != 0 && *res != 0) {
+        S_0008BA00_Rect *r = func_0018C070((S_0008BA00_Font *)*res);
+        if (D_00275AEC > r->f10) {
+            r->f10 = 10.0f;
+        }
+        if (D_00275AEC < r->f14 || r->f14 > r->f10) {
+            r->f14 = 10.0f;
+        }
+    }
+    ((C_00157600 *)this)->func_001578D0();
 }
 
 void C_0008BB50::func_0008BB50(int param_1) {
