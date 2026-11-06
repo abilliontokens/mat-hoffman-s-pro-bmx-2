@@ -2,6 +2,8 @@
 #include "common.h"
 #include <string.h>
 
+static __forceinline int min7(const int &a, const int &b) { return a > b ? b : a; }
+
 extern int D_002826B4;
 
 struct C_001C0110 {
