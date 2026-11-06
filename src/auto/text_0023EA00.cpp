@@ -537,9 +537,9 @@ int __stdcall func_0023EE30(int fmt)
 
 int C_0023EE81::func_0023EE81(unsigned int a, unsigned int b, int *out)
 {
+    unsigned int n = b;
     unsigned int blk = f50;
     unsigned int off = a % blk;
-    unsigned int n = b;
 
     if (off + b > blk) {
         n = blk - off;
@@ -637,16 +637,12 @@ unsigned int __stdcall func_0023F0F4(int p1, C_0023EC0D *obj, unsigned int a, un
 
 int __stdcall func_0023F119(S_0023F119_Src *src, S_0023F119_Wfx *wfx)
 {
-    unsigned short ch;
-
     wfx->wFormatTag = 1;
     wfx->nSamplesPerSec = src->func_0023EE30(src->fC);
-    ch = src->f10;
+    wfx->nChannels = src->f10;
     wfx->cbSize = 0;
-    wfx->nChannels = ch;
-    ch <<= 1;
-    wfx->nBlockAlign = ch;
-    wfx->nAvgBytesPerSec = ch * wfx->nSamplesPerSec;
+    wfx->nBlockAlign = (unsigned short)(wfx->nChannels << 1);
+    wfx->nAvgBytesPerSec = *(volatile unsigned int *)&wfx->nSamplesPerSec * wfx->nBlockAlign;
     wfx->wBitsPerSample = 16;
     return 0;
 }
@@ -656,6 +652,18 @@ int __stdcall func_0023F160(C_0023EFB0 *p)
     p->func_0023EFB0();
     return 0;
 }
+
+#pragma optimize("y", off)
+int __stdcall func_0023F16E(C_0023EA00 *obj) {
+    int *addend = (int *)&obj->f8C;
+    int count = --*addend;
+    if (!count && obj) {
+        obj->func_0023EED3();
+        func_001E891B(obj);
+    }
+    return count;
+}
+#pragma optimize("y", on)
 
 S_0023F3F7_Obj *S_0023F3F7_Obj::func_0023F1AB(void)
 {
@@ -687,6 +695,75 @@ S_0023F3F7_Obj *S_0023F3F7_Obj::func_0023F1AB(void)
     p->fA4.prev = &p->fA4;
     p->fA4.next = &p->fA4;
     return this;
+}
+
+int __stdcall func_0023F23E(S_0023F3F7_Obj *pobj, int a0, int a1, int a2, int a3, int a4, int a5, int a6)
+{
+    S_0023F23E_Obj *obj = (S_0023F23E_Obj *)pobj;
+    S_0023F23E_Link *list;
+    int iosb[2];
+    unsigned int sz;
+    unsigned int cnt;
+    int hr;
+    obj->vtbl->v0(obj);
+    obj->fB8 = a5;
+    if (a1 == 0) {
+        obj->fAC = 0;
+        obj->f50 = func_001DCC3C(a0, 0x80000000, 1, 0, 3, a2 != 0 ? 0x40000000 : 0, 0);
+    } else {
+        obj->fAC = 1;
+        obj->f50 = a1;
+        _imp__NtQueryInformationFile(a1, iosb, &pobj, 4, 0x10);
+    }
+    if (obj->f50 == -1) {
+        if (func_001DD603() <= 0)
+            return func_001DD603();
+        return (func_001DD603() & (int)&D_0000FFFF) | 0x80070000;
+    }
+    sz = 0x2000;
+    if ((unsigned int)a3 >= 0x2000u) {
+        sz = a3 + a3;
+        obj->f94 = sz;
+    }
+    obj->f34 = (char *)func_001E8A44(sz);
+    if (obj->f34 == 0)
+        return 0x8007000e;
+    cnt = a4;
+    obj->fB4 = a2;
+    if (cnt < 2) cnt = 2;
+    obj->f98 = cnt;
+    list = &obj->f9c;
+    obj->f9c.prev = list;
+    list->next = list;
+    obj->fA4.prev = &obj->fA4;
+    obj->fA4.next = &obj->fA4;
+    if (a2 == 1) {
+        obj->f38 = (S_0023F23E_Node *)func_001E8A44(cnt * 0x24);
+        if (obj->f38 == 0) return 0x8007000e;
+        unsigned int i = 0;
+        if (obj->f98 > 0) {
+            int off = 0;
+            do {
+                S_0023F23E_Node *p = (S_0023F23E_Node *)((char *)obj->f38 + off);
+                off += 0x24;
+                p->prev = p; p->next = p;
+                S_0023F23E_Link *h = list->next;
+                p->next = (S_0023F23E_Node *)h;
+                p->prev = (S_0023F23E_Node *)list;
+                h->prev = (S_0023F23E_Link *)p;
+                list->next = (S_0023F23E_Link *)p;
+                i++;
+            } while (i < obj->f98);
+        }
+    }
+    obj->f88 = func_001DE8C7(0, 0x2000, (void *)func_0023F160, obj, 0, &obj->f68);
+    if (obj->f88 && (obj->f4C = func_001DDBC7(0, 0, 0, 0)) != 0 && (obj->f64 = func_001DDBC7(0, 0, 0, 0)) != 0) {
+        hr = obj->vtbl->v6(obj);
+        if (hr >= 0 && a6)
+            func_0023F119((S_0023F119_Src *)obj, (S_0023F119_Wfx *)a6);
+        return hr;
+    }
+    return 0x8007000e;
 }
 
 int __stdcall func_0023F3F7(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7)
