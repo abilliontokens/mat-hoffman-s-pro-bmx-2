@@ -32,10 +32,11 @@ extern float D_00275544;
 
 static __forceinline void Cross_00120FF0(S_0011F4B0_V4 *a, S_0011F4B0_V4 *b, S_0011F4B0_V4 *out)
 {
-    __m128 va = _mm_loadu_ps(&a->x);
-    __m128 vb = _mm_loadu_ps(&b->x);
-    __m128 r = _mm_sub_ps(_mm_mul_ps(va, _mm_shuffle_ps(vb, vb, 0xc9)), _mm_mul_ps(vb, _mm_shuffle_ps(va, va, 0xc9)));
-    _mm_storeu_ps(&out->x, _mm_shuffle_ps(r, r, 0xc9));
+    _mm_storeu_ps(&out->x, _mm_shuffle_ps(
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a->x), _mm_shuffle_ps(_mm_loadu_ps(&b->x), _mm_loadu_ps(&b->x), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(&b->x), _mm_shuffle_ps(_mm_loadu_ps(&a->x), _mm_loadu_ps(&a->x), 0xc9))),
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a->x), _mm_shuffle_ps(_mm_loadu_ps(&b->x), _mm_loadu_ps(&b->x), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(&b->x), _mm_shuffle_ps(_mm_loadu_ps(&a->x), _mm_loadu_ps(&a->x), 0xc9))), 0xc9));
 }
 static __forceinline float Abs_00120FF0(float f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
 static __forceinline float Dot_00120FF0(S_0011F4B0_V4 *a, S_0011F4B0_V4 *b) { return a->y * b->y + a->x * b->x + a->z * b->z; }
