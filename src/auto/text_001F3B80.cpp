@@ -584,6 +584,57 @@ int func_001F44EF(void *a, int b)
 }
 #pragma optimize("", on)
 
+int func_001F45CF(unsigned int *x, int bits);
+void func_001F4641(unsigned int *dst, unsigned int *src);
+int func_001F465C(unsigned int *p);
+void func_001F4675(unsigned int *x, int n);
+
+#pragma optimize("s", on)
+#pragma optimize("y", off)
+int func_001F46F0(int a, int b, int c)
+{
+ unsigned int x[3], saved[3];
+ int *fmt=(int*)c;
+ int exp=(*(unsigned short*)(a+10)&0x7fff)-0x3fff;
+ unsigned int sign=*(unsigned short*)(a+10)&0x8000;
+ int exponent, result;
+ x[0]=*(unsigned int*)(a+6);
+ x[1]=*(unsigned int*)(a+2);
+ x[2]=(unsigned int)*(unsigned short*)a<<16;
+ if(exp == -0x3fff) {
+  exponent=0;
+  if(!func_001F465C(x)) { for(int i=0;i<3;i++) x[i]=0; result=2; }
+  else result=0;
+ } else {
+  func_001F4641(saved,x);
+  if(func_001F45CF(x,fmt[2])) ++exp;
+  if(exp < fmt[1]-fmt[2]) {
+   for(int i=0;i<3;i++) x[i]=0; exponent=0; result=2;
+  } else if(exp <= fmt[1]) {
+   exp=fmt[1]-exp;
+   func_001F4641(x,saved);
+   func_001F4675(x,exp);
+   func_001F45CF(x,fmt[2]);
+   func_001F4675(x,fmt[3]+1);
+   exponent=0; result=2;
+  } else if(exp >= fmt[0]) {
+   for(int i=0;i<3;i++) x[i]=0;
+   ((unsigned char*)x)[3]|=0x80;
+   func_001F4675(x,fmt[3]);
+   exponent=fmt[5]+fmt[0]; result=1;
+  } else {
+   exponent=fmt[5]+exp;
+   ((unsigned char*)x)[3]&=0x7f;
+   func_001F4675(x,fmt[3]); result=0;
+  }
+ }
+ unsigned int hi=(exponent<<(31-fmt[3])) | (sign?0x80000000:0) | x[0];
+ if(fmt[4]==64) { ((unsigned int*)b)[1]=hi; ((unsigned int*)b)[0]=x[1]; }
+ else if(fmt[4]==32) *(unsigned int*)b=hi;
+ return result;
+}
+#pragma optimize("", on)
+
 #pragma optimize("sy", on)
 int func_001F4550(unsigned int *p, int bit)
 {
