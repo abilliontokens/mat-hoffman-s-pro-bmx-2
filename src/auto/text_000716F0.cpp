@@ -58,7 +58,9 @@ struct ObjD57_71880 {
 };
 
 struct S_Obj4_716 {
-    char pad0[0x930];
+    char pad0[0x838];
+    char *f838;
+    char pad83C[0xF4];
     char *p930;
     char pad934[0x13C];
     char *fA70;
