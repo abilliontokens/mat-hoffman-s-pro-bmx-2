@@ -96,7 +96,9 @@ struct C_00151F80 {
     float ff8;
     float ffc;
     float f100;
-    char pad104[0x90];
+    char pad104[0x1c];
+    S_151F80_Vec f120;
+    char pad130[0x64];
     S_152BA0_Slot slots[10];
     char pad554[0x1c];
     int f570;
