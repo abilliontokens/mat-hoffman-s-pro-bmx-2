@@ -1,6 +1,6 @@
 /* 1 function from 0x0003BC90 to 0x0003D220, found by Ghidra. */
 #include "common.h"
-struct V4 { float x,y,z,w; __forceinline V4() {*(int*)&z=0;*(int*)&y=0;*(int*)&x=0;*(int*)&w=0x3f800000;} };
+struct V4 { float x,y,z,w; };
 struct NodeBC {
  virtual void vf0(int);
 virtual void vf1();
