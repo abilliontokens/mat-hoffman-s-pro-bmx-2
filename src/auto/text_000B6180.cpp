@@ -8,6 +8,19 @@ extern int D_000B6160;
 void func_000B6140();
 void *func_001E8A44(int size);
 
+extern int D_0027D4C4;
+extern int D_002A2FD8, D_002A2FDC, D_002A2FE0, D_002A2FE4;
+struct C_000B6180 {
+    union {
+        int u[0x7c];
+        float f[0x7c];
+    };
+    C_000B6180 *func_000B6180(int a0);
+    void func_00157600(int a0);
+};
+#define VEC(o) u[(o)/4+2] = 0; u[(o)/4+1] = 0; u[(o)/4] = 0; f[(o)/4+3] = 1.0f;
+#define CPY(o) u[(o)/4] = D_002A2FD8; u[(o)/4+1] = D_002A2FDC; u[(o)/4+2] = D_002A2FE0; u[(o)/4+3] = D_002A2FE4;
+
 struct C_000B6640_Obj {
     char pad0[0x60];
     void *unk60;
