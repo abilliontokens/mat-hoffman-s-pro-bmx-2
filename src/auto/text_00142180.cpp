@@ -290,6 +290,24 @@ extern C_00142AF0_NodeMgr *D_002A829C;
 extern C_00142AF0_SlotMgr *D_002AA6C0;
 extern C_00142AF0_TrackMgr *D_002F0630;
 
+void C_001425B0::CopyVertex_00142180(Vertex_00142180 *out, int d, int s)
+{
+    out[d].x = ((Particle_00142180 *)f10)[s].x;
+    out[d].y = ((Particle_00142180 *)f10)[s].y;
+    out[d].z = ((Particle_00142180 *)f10)[s].z;
+    out[d].a = *(float *)&f58 - ((Particle_00142180 *)f10)[s].d;
+    out[d].b = ((Particle_00142180 *)f10)[s].a;
+    out[d].c = ((Particle_00142180 *)f10)[s].b;
+    out[d].d = ((Particle_00142180 *)f10)[s].c;
+    out[d].e = ((Particle_00142180 *)f10)[s].h;
+    out[d].f = ((Particle_00142180 *)f10)[s].g * 2.0f;
+    out[d].g = ((Particle_00142180 *)f10)[s].e;
+    out[d].l = fEC;
+    out[d].h = f64.y;
+    out[d].i = f70.y;
+    out[d].j = f7C;
+    out[d].k = f80;
+}
 
 void C_001425B0::func_00142180(int buffer, int dst, int src, int count, int clear)
 {
