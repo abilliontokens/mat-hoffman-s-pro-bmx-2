@@ -308,6 +308,7 @@ struct VT_00031260 {
 };
 
 static __forceinline void CallV30_00031260(VT_00031260 *o, int a) { o->v30(a); }
+static __forceinline int Ne10_00031260(int v) { return v != 10; }
 
 struct Inner_00031260 {
     char pad0[0x28];
@@ -533,6 +534,36 @@ void C_00030CD0::func_00030CD0(int a0) {
     unk78 = a0;
 }
 
+int C_00030CE0::func_00030CE0(float dt)
+{
+    if (f24 != 0 && f2C != 0) {
+        float d = f30 - f78->f28;
+        f50 = d * f4C;
+        if (f50 > D_00275460) {
+            f50 = 1.0f;
+            f54 = 0;
+        } else if (f50 < D_00275544) {
+            f54 = d * f48 * dt + f54;
+            f54 = _mm_min_ss(_mm_max_ss(_mm_set_ss(f54), _mm_set_ss(0.0f)), _mm_set_ss(1.0f)).m128_f32[0];
+            f50 = f54 + f50;
+            f50 = _mm_min_ss(_mm_max_ss(_mm_set_ss(f50), _mm_set_ss(0.0f)), _mm_set_ss(1.0f)).m128_f32[0];
+        } else {
+            f50 = 0;
+            f54 = 0;
+        }
+        float v = f50 * f44;
+        if (f28 != 0) {
+            v *= D_00276A90;
+        }
+        f60 = v;
+        return 1;
+    }
+    f54 = 0;
+    f50 = 0;
+    f60 = 0;
+    return 1;
+}
+
 int C_00030E70::func_00030E70(int a0)
 {
     float *p = &f58.x;
@@ -568,11 +599,12 @@ C_00030F90 *C_00030F90::func_00030F90(int a0)
     struct Q4 { int x, y, z, w; };
     int *u = (int *)this;
     int *p;
+    int *q;
     int *z;
     int i;
 
     ((C_00030C00 *)this)->func_00157600(a0);
-    vtbl = (void *)&D_00276AB4;
+    u[0] = (int)&D_00276AB4;
     u[0x218 / 4] = 0;
     u[0x214 / 4] = 0;
     u[0x210 / 4] = 0;
@@ -670,16 +702,16 @@ C_00030F90 *C_00030F90::func_00030F90(int a0)
     u[0x1c8 / 4] = 0;
     memset(&u[0x1dc / 4], 0, 6 * 4);
     u[0x1f4 / 4] = 0;
-    p = &u[0x25c / 4];
+    q = &u[0x25c / 4];
     z = &u[0x27c / 4];
     i = 2;
     do {
         z[-0x12] = 0;
-        *(Q4 *)(p - 8) = *(Q4 *)&D_002A1460;
-        *(Q4 *)p = *(Q4 *)&D_002A1460;
+        *(Q4 *)(q - 8) = *(Q4 *)&D_002A1460;
+        *(Q4 *)q = *(Q4 *)&D_002A1460;
         z[0] = 0;
         z++;
-        p += 4;
+        q += 4;
     } while (--i);
     u[0x1b4 / 4] = 0;
     D_002F07B8->func_001C3D40(0);
@@ -715,7 +747,7 @@ int BmxEvent_00030A30::func_00031260(float dt)
         D_002B8F18 = D_002A7CB8->func_00026500((int)&D_00276B68, -1);
     }
     if (D_002A8490->f4 != 0) {
-        v30(!!(D_002A8490->f2e0->f4 - 10));
+        v30((D_002A8490->f2e0->f4 - 10) != 0);
     }
     func_00157A00(dt);
     if (D_002A8490->f124 == 0 && f110 != 0) {
