@@ -40,16 +40,63 @@ struct C_000847B0 {
 struct S_00083B50_B {
     int f0;
     u32 f4;
-    char pad8[0x2C8];
+    int f8;
+    char padC[0x2C4];
     u32 f2D0;
 };
 
+struct Lookup_00083B50 {
+    int *func_0018C160(int a);
+};
+
 struct S_00083B50_A {
-    char pad0[0x2E0];
+    char pad0[0x10];
+    int f10;
+    char pad14[0x2E0 - 0x14];
     S_00083B50_B *f2E0;
+    char pad2E4[8];
+    Lookup_00083B50 *f2EC;
 };
 
 extern S_00083B50_A *D_002A8490;
+
+extern float D_00275AEC;
+extern char D_002786A0[], D_00278690[], D_0027958C[];
+
+struct ClampObj_00083B50 {
+    char pad0[0x10];
+    float f10;
+    float f14;
+};
+
+struct MidObj_00083B50 {
+    ClampObj_00083B50 *func_0018C070();
+};
+
+struct WidgetObj_00083B50 {
+    ClampObj_00083B50 *func_001D5AA0();
+};
+
+#define CLAMP_00083B50(p) { ClampObj_00083B50 *o = (p)->func_001D5AA0(); if (D_00275AEC > o->f10) o->f10 = 10.0f; if (D_00275AEC < o->f14 || o->f14 > o->f10) o->f14 = 10.0f; }
+
+/* BmxInGameOverlays (vtable 0x0027915C) */
+struct C_00083B50 {
+    char pad0[0x40];
+    int f40;
+    char pad44[0x164 - 0x44];
+    WidgetObj_00083B50 *f164;
+    WidgetObj_00083B50 *f168;
+    char pad16C[4];
+    WidgetObj_00083B50 *f170;
+    WidgetObj_00083B50 *f174;
+    char pad178[0x188 - 0x178];
+    WidgetObj_00083B50 *f188;
+    char pad18C[0xD84 - 0x18C];
+    WidgetObj_00083B50 *fD84;
+    WidgetObj_00083B50 *fD88;
+    void func_001578D0(void);
+    void func_00083B50(void);
+};
 
 struct C_00157600 {
     void func_00157600(int a0);
