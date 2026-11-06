@@ -70,6 +70,7 @@ struct C_001DB080 {
 
 extern int D_002F1148;
 extern float D_002F10F8[];
+struct S_001DB080_Quad { float a, b, c, d, e; };
 extern float D_002AC7DC[8];
 extern float D_0028F8E4, D_0028F8E8, D_0028F97C;
 extern float D_002F10D4, D_002F10D8, D_002F10DC, D_002F10E0;
@@ -344,5 +345,109 @@ void C_001DAC10::func_001DAC10()
         verts[i].v1 = ys[i] + 1.0f;
     }
     DrawQuad(verts, &color2, e, tex);
+}
+
+void C_001DB080::func_001DB080()
+{
+    int i;
+    float v[5];
+    float d0, d1, n;
+    S_001DAC10_Entry *e;
+    float *M;
+    float *p;
+    int tex;
+
+    if (!(D_002F1148 & 1)) {
+        D_002F1148 |= 1;
+        for (i = 0; i < 4; i++) {
+            D_002F10F8[i * 5 + 2] = 0.0f;
+            D_002F10F8[i * 5 + 1] = 0.0f;
+            D_002F10F8[i * 5 + 0] = 0.0f;
+            D_002F10F8[i * 5 + 4] = 0.0f;
+            D_002F10F8[i * 5 + 3] = 0.0f;
+        }
+    }
+    e = &D_002F08BC->f2c[cur];
+    tex = func_001FCE50(((S_001DAC10_Tex *)e->f30)->fB8, 0);
+    func_001FF940(tex, 0);
+    v[0] = 0.0f;
+    v[1] = 0.0f;
+    v[2] = 0.0f;
+    v[3] = 1.0f;
+    ((S_001DB080_Obj *)f30[cur])->func_00199A70(v, 0);
+
+    M = (float *)((char *)D_002F100C + cur * 0x10);
+    d0 = M[0] - v[1];
+    d1 = M[2] - v[2];
+    M[0] = v[1];
+    M[1] = v[2];
+    M[2] = v[3];
+    M[3] = v[4];
+    p = D_002F10F8;
+    p[3] = D_002AC7DC[4] - d0;
+    p[0] = D_002AC7DC[4];
+    p[4] = D_002AC7DC[0] - d1;
+    p[1] = D_002AC7DC[0];
+    p[8] = D_002AC7DC[5] - d0;
+    p[5] = D_002AC7DC[5];
+    p[9] = D_002AC7DC[1] - d1;
+    p[6] = D_002AC7DC[1];
+    p[13] = D_002AC7DC[6] - d0;
+    p[10] = D_002AC7DC[6];
+    p[14] = D_002AC7DC[2] - d1;
+    p[11] = D_002AC7DC[2];
+    p[18] = D_002AC7DC[7] - d0;
+    p[15] = D_002AC7DC[7];
+    p[19] = D_002AC7DC[3] - d1;
+    p[16] = D_002AC7DC[3];
+
+    func_001FE490(0);
+    ((C_001DAAD0 *)this)->func_001DAAD0((int)D_002AC770, (S_001DAAD0_Block *)D_002F10F8,
+        (void *)((S_001DAC10_Tex *)e->f30)->fB8);
+
+    if (f214 > 0) {
+        for (i = 0; i < f214; i++) {
+            float *a = (float *)((char *)f20C + i * 0x14);
+            float dx = a[0] - v[1];
+            float dy = a[1] - v[3];
+            if (fabs(dx) > D_0028F97C) continue;
+            if (fabs(dy) > D_0028F97C) continue;
+            n = -D_0028F8E4;
+            if (!(D_002F1148 & 2)) {
+                D_002F1148 |= 2;
+                D_002F10E8 = D_0028F8E8;
+                D_002F10EC = 0.0f;
+                D_002F10F0 = D_0028F8E8;
+            }
+            if (!(D_002F1148 & 4)) {
+                D_002F1148 |= 4;
+                D_002F10DC = D_0028F8E8;
+                D_002F10E0 = D_0028F8E8;
+            }
+            M[0] = v[1];
+            M[1] = v[2];
+            M[2] = v[3];
+            M[3] = v[4];
+            p[0] = n + dx + D_00278650;
+            p[4] = n + dy + D_00278650;
+            p[5] = n + dx + D_00278650;
+            p[9] = n + dy + D_00278650;
+            p[10] = D_002F10D4;
+            p[11] = D_002F10E4;
+            p[12] = D_002F10E8;
+            p[13] = D_002F10D8;
+            p[14] = D_002F10EC;
+            p[15] = D_002F10DC;
+            p[16] = D_002F10F0;
+            p[17] = D_002F10E0;
+            p[18] = n + dx + D_00278650;
+            p[19] = n + dy + D_00278650;
+            func_001FE490(0);
+            ((C_001DAAD0 *)this)->func_001DAAD0((int)D_002AC780, (S_001DAAD0_Block *)D_002F10F8,
+                (void *)((S_001DAC10_Tex *)f208)->fB8);
+        }
+    }
+    if (f210 - 1 == cur) f214 = 0;
+    func_00201100((void *)tex);
 }
 
