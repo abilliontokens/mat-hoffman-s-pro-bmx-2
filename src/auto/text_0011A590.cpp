@@ -269,9 +269,9 @@ struct BoundsSource {
 
 struct BoundsAccum {
     char pad0[0x154];
-    float f154, f158, f15c;
+    volatile float f154, f158, f15c;
     char pad160[4];
-    int f164;
+    volatile int f164;
     float f168, f16c, f170;
     char pad174[4];
     float f178, f17c, f180;
