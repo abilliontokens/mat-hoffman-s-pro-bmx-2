@@ -52,6 +52,19 @@ struct C_00066C90 {
 };
 
 struct Res_66C { void *func_0018C160(void *name); };
+struct Txt_66C {
+    char pad0[4];
+    float x;
+    float y;
+    char padc[0x38];
+    int frame;
+    unsigned int color;
+    char pad4c[2];
+    unsigned char flags;
+    Txt_66C *func_001D5E90();
+    void func_001D5FA0(int x, void *name, float y, int z);
+    void func_0005E840(void *a);
+};
 struct Spr_66C {
     char pad0[0x28];
     float x;
@@ -159,5 +172,105 @@ void C_00066C90::func_00066DC0()
  {PtrObj_66C*p=(PtrObj_66C*)unk14C;if(p){p->func_001D6410();func_001E891B(p);unk14C=0;}}
  {PtrObj_66C*p=*(PtrObj_66C**)pad154;if(p){p->func_001D6410();func_001E891B(p);*(int*)pad154=0;}}
  func_00157660();
+}
+
+extern float D_00278650, D_00275800, D_00278870;
+extern char D_002786B0[];
+extern char D_002786B0[], D_00278648[];
+extern char D_002786B0[], D_00278648[], D_00278624[], D_00278638[], D_00278608[], D_00278600[];
+void C_00066C90::func_00066FA0(int a0)
+{
+    unk10C = a0;
+    D_002A8490->unk2EC->func_0018C160(D_002786A0);
+    void *p = D_002A8490->unk2EC->func_0018C160(D_00278690);
+    int v14 = p ? *(int *)p : 0;
+    void *q = D_002A8490->unk2EC->func_0018C160(D_00278678);
+    int v10 = q ? *(int *)q : 0;
+    D_002A60B0 = D_00278664;
+    D_002A60B4 = D_00278668;
+    D_002A60B8 = D_0027866C;
+    D_002A60BC = D_00278670;
+    D_002A60C0 = D_00278674;
+    Spr_66C *s = (Spr_66C *)func_001E8A44(0x64);
+    s = s ? s->func_001D5760() : 0;
+    a90[0] = (int)s;
+    s->func_001D5810(D_00278658, 0.0f, 0.0f, 0);
+    if (s->x != 640.0f) { s->x = 640.0f; s->flags |= 1; }
+    if (s->y != 50.0f) { s->y = 50.0f; s->flags |= 1; }
+    s->u0 = s->w * D_00278654;
+    s->v0 = s->w * D_00275544;
+    s->u1 = s->h * D_0027653C;
+    s->v1 = s->h * D_00275544;
+    s->flags |= 4;
+    s = (Spr_66C *)func_001E8A44(0x64);
+    s = s ? s->func_001D5760() : 0;
+    a90[1] = (int)s;
+    s->func_001D5810(D_00278658, 0.0f, 500.0f, 0);
+    if (s->x != 640.0f) { s->x = 640.0f; s->flags |= 1; }
+    if (s->y != 50.0f) { s->y = 50.0f; s->flags |= 1; }
+    s->u0 = s->w * D_00278654;
+    s->v0 = s->w * D_00275544;
+    s->u1 = s->h * D_0027653C;
+    s->v1 = s->h * D_00275544;
+    s->flags |= 4;
+    for (int i = 0; i < 5; i++) {
+        Spr_66C *s1 = (Spr_66C *)func_001E8A44(0x64);
+        s1 = s1 ? s1->func_001D5760() : 0;
+        unk98[i] = (int)s1;
+        s1->func_001D5810(D_00278658, i * D_00278650, 50.0f, 0);
+        Spr_66C *s2 = (Spr_66C *)func_001E8A44(0x64);
+        s2 = s2 ? s2->func_001D5760() : 0;
+        unkAC[i] = (int)s2;
+        s2->func_001D5810(D_00278658, i * D_00278650, 366.0f, 0);
+        s2->u0 = 0.0f;
+        s2->v0 = 1.0f;
+        s2->u1 = 0.99f;
+        s2->v1 = 0.0f;
+        s2->flags |= 4;
+    }
+    for (int i = 0; i < 6; i++) {
+        Spr_66C *s3 = (Spr_66C *)func_001E8A44(0x64);
+        s3 = s3 ? s3->func_001D5760() : 0;
+        unkC0[i] = (int)s3;
+        float x = (i / 2) * D_00275800 + D_00278870;
+        if (i & 1)
+            s3->func_001D5810(D_002786B0, x, 325.0f, 0);
+        else
+            s3->func_001D5810(D_002786B0, x, 100.0f, 0);
+        s3->u0 = 1.0f;
+        s3->v0 = 0.0f;
+        s3->u1 = 0.0f;
+        s3->v1 = 1.0f;
+        s3->flags |= 4;
+        if (s3->x != 365.0f) { s3->x = 365.0f; s3->flags |= 1; }
+        s3->color = (s3->color & 0xffbfa35a) | 0xbfa35a;
+        s3->flags |= 2;
+    }
+    s = (Spr_66C *)func_001E8A44(0x64);
+    s = s ? s->func_001D5760() : 0;
+    unk144[0] = (int)s;
+    s->func_001D5810(D_00278648, 490.0f, 97.0f, 0);
+    s = (Spr_66C *)func_001E8A44(0x64);
+    s = s ? s->func_001D5760() : 0;
+    unk13C[0] = (int)s;
+    s->func_001D5810(D_00278624, 490.0f, 97.0f, 0);
+    s = (Spr_66C *)func_001E8A44(0x64);
+    s = s ? s->func_001D5760() : 0;
+    unk144[1] = (int)s;
+    s->func_001D5810(D_00278638, 379.0f, 97.0f, 0);
+    s = (Spr_66C *)func_001E8A44(0x64);
+    s = s ? s->func_001D5760() : 0;
+    unk13C[1] = (int)s;
+    s->func_001D5810(D_00278608, 379.0f, 97.0f, 0);
+    s = (Spr_66C *)func_001E8A44(0x64);
+    s = s ? s->func_001D5760() : 0;
+    unkF8 = (int)s;
+    s->func_001D5810(D_00278600, 0.0f, 0.0f, 0);
+    s->color &= 0xff000000;
+    s->flags |= 2;
+    s->color |= 0x80000000;
+    s->flags |= 2;
+    if (s->y != 448.0f) { s->y = 448.0f; s->flags |= 1; }
+    if (s->x != 640.0f) { s->x = 640.0f; s->flags |= 1; }
 }
 
