@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <xmmintrin.h>
 #include <string.h>
+#include "asm_helpers.h"
 struct Vec4_165EF0 { float x,y,z,w; };
 /* the engine's file wrapper (D_002BEAAC) */
 struct C_0013B210_1673B0 {
@@ -413,14 +414,15 @@ void C_001670C0::func_001670C0(float dt, int remap, int *mask)
  if(finished) { f10=1; f34=0; f38=0; }
 }
 
-C_001673B0_Base *C_001673B0::func_001673B0(const char *name, const char *slt, void *unused, int id, int arg4)
+C_001673B0_Base *C_001673B0::func_001673B0(const char * volatile name, const char * volatile slt, void *unused, int id, int arg4)
 {
     C_001673B0 * volatile self = this;
     C_001673B0_Found *found = 0;
     int key = -1;
     int key2;
-    int n;
+    volatile int n;
     int len;
+    int lim = 0x4f;
     char buf[0x100];
     char path[0x104];
     C_00168280 *mem;
@@ -445,7 +447,7 @@ C_001673B0_Base *C_001673B0::func_001673B0(const char *name, const char *slt, vo
     mem = (C_00168280 *)func_001E8A44(0x4cc);
     self->f8 = mem ? mem->func_00168280() : 0;
     len = strlen(name);
-    n = len < 0x4f ? len : 0x4f;
+    n = Min(lim, len);
     func_001E8920((char *)self + 0x48, name, n);
     ((char *)self)[0x48 + n] = 0;
     self->f8->func_00169490(name, 0);
@@ -539,22 +541,13 @@ void C_001677B0::func_001677B0(int a0) {
 
 void C_001677C0::func_001677C0(C_001677C0_Dst *dst)
 {
-    void * volatile h[3];
+    C_001677C0_Dst *d = dst;
 
-    h[0] = this;
-    dst->f50 = f24;
-    h[2] = &((C_001677C0 *)h[0])->f24->blk;
-    h[1] = &dst->blk;
-    __m128 *ps = (__m128 *)h[2];
-    __m128 *pd = (__m128 *)h[1];
-    pd[0] = ps[0];
-    pd[1] = ps[1];
-    pd[2] = ps[2];
-    pd[3] = ps[3];
-    dst->blk.m[3] = 0.5f;
-    dst->blk.m[7] = 0.5f;
-    dst->v54 = V4_001677C0(1.0f, 1.0f, 1.0f, 0.3f);
-    h[0];
+    d->f50 = f24;
+    AsmCopyMatrix(&d->blk, &f24->blk);
+    d->blk.m[3] = 0.5f;
+    d->blk.m[7] = 0.5f;
+    d->v54 = V4_001677C0(1.0f, 1.0f, 1.0f, 0.3f);
 }
 
 void C_00167860::func_00167860(void)
@@ -632,47 +625,30 @@ C_00167AC0 *C_00167AC0::func_00167AC0(void)
     return this;
 }
 
-int C_00167DD0::func_00167AF0(void *p)
-{
-    S_00167AF0_List *list = (S_00167AF0_List *)p;
-    float radius;
-    S_00167AF0_Vector center;
-    int i;
-    S_00167AF0_Vector pos;
-    S_00167AF0_Vector extent;
-    S_00167AF0_Vector delta;
-    __declspec(align(16)) float matrix[16];
-    char *obj;
-
-    pos = *(S_00167AF0_Vector *)(f24 + 0xc0);
-    for (i = 0; i < list->count; ++i) {
-        if (list->count > 0 && list->items && i < list->count)
-            obj = list->items[i];
-        else
-            obj = 0;
-        if (obj[0x20] != list->tag || !(obj[0x1a3] & 8))
-            continue;
-        radius = *(int *)(obj + 0x190) == 1 ? *(float *)(obj + 0x184) : *(float *)(obj + 0x188);
-        if (!(*(float *)(obj + 0x1b0) - radius < *(float *)((char *)this + 0x358)))
-            continue;
-        if (((C_00167AF0_Obj *)obj)->test())
-            continue;
-        center = *(S_00167AF0_Vector *)(obj + 0x150);
-        delta.x = center.x + *(float *)(obj + 0xfc) - pos.x;
-        delta.y = center.y + *(float *)(obj + 0x10c) - pos.y;
-        delta.z = center.z + *(float *)(obj + 0x11c) - pos.z;
-        if (!(delta.x * delta.x + delta.y * delta.y + delta.z * delta.z - radius * radius < *(float *)((char *)this + 0x35c)))
-            continue;
-        extent = *(S_00167AF0_Vector *)(obj + 0x160);
-        center = *(S_00167AF0_Vector *)(obj + 0x150);
-        func_000263B0(matrix, obj + 0xf0, *(char **)(f24 + 0xfc) + 0xf0);
-        if (D_002EFB1C || D_002AB66C->func_001C5DE0(matrix, &center, &extent, 0)) {
-            ((char **)((char *)this + 0x2c))[f350] = obj;
-            if (++f350 >= 200)
-                break;
-        }
-    }
-    return 1;
+int C_00167DD0::func_00167AF0(void *p) {
+ char *list=(char*)p;
+ S_00167AF0_Vector pos=*(S_00167AF0_Vector*)(f24+0xc0);
+ for(int i=0;i<*(int*)(list+0x10);++i) {
+ char *obj;
+ if(*(int*)(list+0x10)>0 && *(void**)(list+0x14) && i<*(int*)(list+0x10)) obj=(*(char***)(list+0x14))[i]; else obj=0;
+ if(obj[0x20]!=list[0x24] || !(obj[0x1a3]&8)) continue;
+ float radius=*(int*)(obj+0x190)==1 ? *(float*)(obj+0x184):*(float*)(obj+0x188);
+ if(!(*(float*)(obj+0x1b0)-radius < *(float*)((char*)this+0x358))) continue;
+ if(((C_00167AF0_Obj*)obj)->test()) continue;
+ S_00167AF0_Vector center=*(S_00167AF0_Vector*)(obj+0x150);
+ float cx=center.x+*(float*)(obj+0xfc), cy=center.y+*(float*)(obj+0x10c), cz=center.z+*(float*)(obj+0x11c);
+ float x=cx-pos.x,y=cy-pos.y,z=cz-pos.z;
+ if(!(x*x+y*y+z*z-radius*radius < *(float*)((char*)this+0x35c))) continue;
+ S_00167AF0_Vector extent=*(S_00167AF0_Vector*)(obj+0x160);
+ center=*(S_00167AF0_Vector*)(obj+0x150);
+ __declspec(align(16)) float matrix[16];
+ func_000263B0(matrix,obj+0xf0,*(char**)(f24+0xfc)+0xf0);
+ if(D_002EFB1C || D_002AB66C->func_001C5DE0(matrix,&center,&extent,0)) {
+ ((char**)((char*)this+0x2c))[f350]=obj;
+ if(++f350>=200) break;
+ }
+ }
+ return 1;
 }
 
 C_00167760 *C_00167760::func_00167D10(C_0017A860 *owner, int b)
