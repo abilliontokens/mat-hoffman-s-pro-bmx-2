@@ -221,12 +221,16 @@ static __forceinline void mirror2_165A20(int mode, float *v)
     float y = v[2];
     float z = v[3];
 
-    if (mode == 0) {
+    switch (mode) {
+    case 0:
         x = -x;
-    } else if (mode == 1) {
+        break;
+    case 1:
         y = -y;
-    } else if (mode == 2) {
+        break;
+    case 2:
         z = -z;
+        break;
     }
     v[1] = -x;
     v[2] = -y;
