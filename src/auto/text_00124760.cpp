@@ -43,9 +43,9 @@ static __forceinline void TriInterp(Vec4 *out, Vec4 *Q, Vec4 *R, float *p, float
     EdgeEval(dummy, *out, &Q[0].x, &Q[1].x, &R[0].x, &R[1].x, n, t);
 }
 
-static __forceinline float Fabs(float f)
+static __forceinline float Fabs(volatile float f)
 {
-    int i = *(int *)&f & 0x7fffffff;
+    int i = *(volatile int *)&f & 0x7fffffff;
     return *(float *)&i;
 }
 
